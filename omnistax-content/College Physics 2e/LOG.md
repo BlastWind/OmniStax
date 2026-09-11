@@ -951,3 +951,42 @@ a headless pass over 1.3, 2.1, 2.5, 2.7, 3.1, 3.2, 3.3, 3.5, 16.1, 16.3
 and 16.6 reading the joined eyebrow on every folded demo, every cited
 number linked to the folded demo's id, the original block showing every
 image under the joined number, and no console errors.
+
+### Pass 23 (2026-09-11): two labels for an interactive figure, Sim and Figure
+
+The word "Demo" leaves every label the reader sees. An interactive figure
+the agent made on its own suggestion, replacing nothing in the book, is a
+Sim, and its eyebrow reads "Sim"; one that transforms a book figure is
+still a Figure, and its eyebrow reads "Figure" with the book's number or
+the joined numbers it folds. A faithful copy and a kept photograph are
+Figures as before. The mechanism keeps its name: `kind: "demo"`, the
+`.demo` class, the `demo-` id prefix and `F.demo()` are how a figure is
+built, not what it is called, and renaming them would touch every
+section for nothing.
+
+Twenty-four eyebrows changed from "Demo" to "Sim", every `demo` row with
+no number: two each in 1.2, 1.4, 2.3, 2.4, 3.2, 16.2 and 16.4, four in
+1.3, and one each in 2.2, 2.5, 2.6, 2.7, 16.3 and 16.5. No other eyebrow
+moved. The button under a figure with an original reads "Original" as
+before and, while the book's figure is shown, "Live" rather than "Demo",
+since such a figure always replaces a book figure and is never a Sim.
+The animations switch in Settings says "interactive figure" where its
+hint said "demo".
+
+`check:content` gains a rule in `checkFigures`: the first eyebrow inside
+every `<figure>` of the text must read what its row says, "Sim" for a
+`demo` row with no number, "Figure" and the printed numbers for a `demo`
+row with one, "Figure" or "Figure N" for a `figure` row, "Figure N" for a
+`photo` row. The rule reads the eyebrow's own text at depth one, so the
+3D badge nested in the eyebrow of 2.5's braking figure is not part of the
+label. The root `RULES.md` item 14 states the rule in a paragraph of its
+own, the figure prompt, `content-tables.md` and this book's `RULES.md`
+name the two labels where they had named one, and the schema's
+description of `kind` says that `demo` is the mechanism and the label
+follows from `number`.
+
+Checks: `check:content` with no errors, 318 unit tests, `astro check`
+clean, a build, and a headless pass over 2.5, 2.7, 3.4 and 3.5 in light
+and dark reading "Sim" on the two number-less figures and "Figure …" on
+every other, the Original button toggling to "Live" and back, every
+canvas booting, and no console errors.

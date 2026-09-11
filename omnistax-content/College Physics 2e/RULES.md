@@ -149,17 +149,19 @@ the later page and both sections' `exercise_notes` say so.
 
 The book numbers its figures on openstax.org (Figure 16.4), and figures
 inside exercises are unnumbered; the number is the book's, not a count of
-the CNXML figures. A demo that replaces a book figure keeps the book's
-number and carries the book's images as its `originals` and the book's
-caption as `original_caption`, so the app can swap the original in. A
-demo that replaces nothing has no number. A kept photograph is a `photo`
-row with its number. A demo that folds several book figures (the walk,
+the CNXML figures. An interactive figure that replaces a book figure
+keeps the book's number, its eyebrow reads "Figure" with that number,
+and it carries the book's images as its `originals` and the book's
+caption as `original_caption`, so the app can swap the original in. An
+interactive figure that replaces nothing is a sim: it has no number and
+its eyebrow reads "Sim". A kept photograph is a `photo` row with its
+number. An interactive figure that folds several book figures (the walk,
 its triangle and its diagonal in 3.1; the rock thrown up and its
 strategy sketch in 2.7) names its own `number` and the rest under
 `folds`, and its eyebrow reads them all, "Figure 3.3 + 3.4 + 3.5", so
 every number the prose cites links to it. Sub-figures the book prints
 under one number, (a) and (b), are not folds; they are one number with
-several `originals`.
+several `originals`. The validator reads every eyebrow against its row.
 
 The book's images are served from `media/<chapter>/` in this folder, with
 the file names the bundle gives them.
