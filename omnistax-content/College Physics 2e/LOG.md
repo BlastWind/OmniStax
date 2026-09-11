@@ -1092,3 +1092,37 @@ rendered wider than its natural width or its book cap, none is taller
 than 540 px of a 900 px viewport (the MRI of 1.1 sits at 315 × 380, the
 jet-car graph at 231 × 540, the three originals of 3.1's walk at 400,
 200 and 350 book pixels scaled), and no console errors.
+
+### Pass 26 (2026-09-11): the introductions keep their place, and a section's summary is read where it ends
+
+Rule 21 asked for it, and Chen asked for the built chapters to be walked
+back over. The book prints an introduction for every chapter and a Preface
+for itself, and no chapter-level or book-level summary, so five pages were
+built and no `summary/` folder: `intro/` under `ch01`, `ch02`, `ch03` and
+`ch16` (the Veil Nebula, the kestrel, the wheelchair tennis player and the
+beach fire, each kept as the chapter's Figure N.1 by rule 21) and `intro/`
+at the book level for the Preface (forty paragraphs under thirty-two
+headers, its one diagram kept). Each is the book's own words with no lead,
+no objectives, no exercises and no coverage; the only things left out are
+the video-trailer links, named in each page's `notes`.
+
+The app learned the page kind first: `chapter.json` and `book.json` name
+their `intro` and `summary` modules and slugs, a page's `section.json`
+carries `id: "intro"` and is read by the app as `2.intro` so two chapters'
+introductions never collide, the loader, routes, explorer, tab titles,
+front page and footer know the new pages, and the validator holds them to
+the book's own words (empty tables, an empty lead allowed only there, no
+chapter table anchoring into one). A section's `summary_html`, stored since
+the first pass and shown nowhere, now renders at the end of its text as a
+"Section summary" block before the practise row.
+
+Two things for a later pass: the Preface's diagram is unnumbered and
+uncaptioned, and no figure kind fits that (a `photo` row must carry a
+number), so it is carried as a `figure` row with the image as its original;
+and the Chapter 16 introduction defines `oscillate` and `wave`, which the
+chapter glossary does not carry, since a glossary row names a section.
+
+Checks: `check:content` with 4 chapters, 23 sections, 5 introduction pages
+and no errors, 339 unit tests, `astro check` clean, a build of 30 pages, a
+headless pass over every page in light and dark with no console errors and
+every image loading.
