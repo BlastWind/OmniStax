@@ -1,0 +1,853 @@
+{
+ "id": "3.4",
+ "module": "m42042",
+ "chapter": "3",
+ "title": "Projectile Motion",
+ "short": "Projectile motion",
+ "lead": "A kicked football, a fireworks shell and a rock thrown from a volcano all follow the same kind of curved path once they are in the air, with gravity the only force acting on them. This section breaks that two-dimensional motion into a horizontal motion at constant velocity and a vertical motion in free fall, solves each with the kinematic equations, and recombines them to find where a projectile is and how fast it is moving at any moment, how high it rises, and how far it goes.",
+ "objectives": [
+  "Identify and explain the properties of a projectile, such as acceleration due to gravity, range, maximum height, and trajectory.",
+  "Determine the location and velocity of a projectile at different points in its trajectory.",
+  "Apply the principle of independence of motion to solve projectile motion problems."
+ ],
+ "summary_html": "<ul><li>Projectile motion is the motion of an object through the air that is subject only to the acceleration of gravity.</li><li>To solve projectile motion problems, perform the following steps:<ol><li>Determine a coordinate system. Then, resolve the position and/or velocity of the object in the horizontal and vertical components. The components of position $\\mathbf{s}$ are given by the quantities $\\kx$ and $\\ky$, and the components of the velocity $\\mathbf{v}$ are given by $\\kvx = \\kv\\cos\\theta$ and $\\kvy = \\kv\\sin\\theta$, where $\\kv$ is the magnitude of the velocity and $\\theta$ is its direction.</li><li>Analyze the motion of the projectile in the horizontal direction using the following equations: Horizontal motion ($\\kax = 0$), $\\kx = \\kxo + \\kvx\\kt$, $\\kvx = \\kvox = \\kvx = \\text{velocity is a constant.}$</li><li>Analyze the motion of the projectile in the vertical direction using the following equations: Vertical Motion (assuming positive is up $\\kay = -\\kg = -9.80\\ \\text{m/s}^2$), $\\ky = \\kyo + \\tfrac{1}{2}(\\kvoy + \\kvy)\\kt$, $\\kvy = \\kvoy - \\kg\\kt$, $\\ky = \\kyo + \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2$, $\\kvy^2 = \\kvoy^2 - 2\\kg(\\ky - \\kyo)$.</li><li>Recombine the horizontal and vertical components of location and/or velocity using the following equations: $\\ks = \\sqrt{\\kx^2 + \\ky^2}$, $\\theta = \\tan^{-1}(\\ky/\\kx)$, $\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$, $\\theta_v = \\tan^{-1}(\\kvy/\\kvx)$.</li></ol></li><li>The maximum height $\\kh$ of a projectile launched with initial vertical velocity $\\kvoy$ is given by $\\kh = \\frac{\\kvoy^2}{2\\kg}$.</li><li>The maximum horizontal distance traveled by a projectile is called the <em>range</em>. The range $\\kR$ of a projectile on level ground launched at an angle $\\theta_0$ above the horizontal with initial speed $\\kvo$ is given by $\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}$.</li></ul>",
+ "notes": "Problems 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22 and 24, the Unreasonable Results and Construct Your Own Problem items and the section’s AP test prep item have no answer in the book’s key and are left out, and the PhET simulation note is left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22 and 24, the Unreasonable Results item and the Construct Your Own Problem item have no keyed answer and are left out, as does the section’s own AP test prep item on the ball launched horizontally from 2.00 m. The second AP test prep item of section 3.2, the ball launched at 60 degrees with its table of heights, tests the vertical and horizontal velocity of a projectile, which this section introduces, so it is set here with the book’s description of the graphs as an open answer; 3.2’s notes say so as well. Problem 5 keys only its angle and problem 15 only its vertical miss, so each is a number for that part with the book’s discussion of the other part in the solution; problem 19 asks whether a kick can reach 95 m and the book answers with the maximum range of about 92 m, which is the number checked. Problem 25 is a derivation and keeps the book’s derivation as an open answer. The suggested approaches to the conceptual questions are AI-written and marked. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "demo-displacement",
+   "kind": "demo",
+   "number": "3.34",
+   "originals": [
+    "/media/ch03/Figure_03_04_01.jpg"
+   ],
+   "original_caption": "The total displacement s of a soccer ball at a point along its path. The vector s has components x and y along the horizontal and vertical axes. Its magnitude is s, and it makes an angle θ with the horizontal.",
+   "draws": [
+    "position",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "demo-components",
+   "kind": "demo",
+   "number": "3.35",
+   "originals": [
+    "/media/ch03/Figure_03_04_02.jpg"
+   ],
+   "original_caption": "(a) We analyze two-dimensional projectile motion by breaking it into two independent one-dimensional motions along the vertical and horizontal axes. (b) The horizontal motion is simple, because a_x = 0 and v_x is thus constant. (c) The velocity in the vertical direction begins to decrease as the object rises; at its highest point, the vertical velocity is zero. As the object falls towards the Earth again, the vertical velocity increases again in magnitude but points in the opposite direction to the initial vertical velocity. (d) The x- and y-motions are recombined to give the total velocity at any given point on the trajectory.",
+   "draws": [
+    "velocity",
+    "acceleration",
+    "time"
+   ]
+  },
+  {
+   "id": "demo-fireworks",
+   "kind": "demo",
+   "number": "3.36",
+   "originals": [
+    "/media/ch03/Figure_03_04_03a.jpg"
+   ],
+   "original_caption": "The trajectory of a fireworks shell. The fuse is set to explode the shell at the highest point in its trajectory, which is found to be at a height of 233 m and 125 m away horizontally.",
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration",
+    "time"
+   ]
+  },
+  {
+   "id": "demo-rock",
+   "kind": "demo",
+   "number": "3.37",
+   "originals": [
+    "/media/ch03/Figure_03_04_04a.jpg"
+   ],
+   "original_caption": "The trajectory of a rock ejected from the Kilauea volcano.",
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration",
+    "time"
+   ]
+  },
+  {
+   "id": "demo-range",
+   "kind": "demo",
+   "number": "3.38",
+   "originals": [
+    "/media/ch03/Figure_03_04_05a.jpg"
+   ],
+   "original_caption": "Trajectories of projectiles on level ground. (a) The greater the initial speed v_0, the greater the range for a given initial angle. (b) The effect of initial angle θ_0 on the range of a projectile with a given initial speed. Note that the range is the same for 15º and 75º, although the maximum heights of those paths are different.",
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration",
+    "time"
+   ]
+  },
+  {
+   "id": "demo-orbit",
+   "kind": "demo",
+   "number": "3.39",
+   "originals": [
+    "/media/ch03/Figure_03_04_06a.jpg"
+   ],
+   "original_caption": "Hypothetical projectile to satellite. From this theoretical tower, a projectile is launched from a very high tower to avoid air resistance. With increasing initial speed, the range increases and becomes longer than it would be on level ground because the Earth curves away underneath its path. With a large enough initial speed, orbit is achieved.",
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration",
+    "time"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "projectile",
+   "concept": "projectile-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "projectile",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "projectile",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "projectile",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "projectile-horizontal-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "steps",
+   "concept": "projectile-vertical-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "steps",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "free-fall-kinematics",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "x-from-vbar",
+   "verb": "uses"
+  },
+  {
+   "span": "recombine",
+   "concept": "projectile-analysis",
+   "verb": "introduces"
+  },
+  {
+   "span": "recombine",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "recombine",
+   "concept": "projectile-horizontal-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "recombine",
+   "concept": "projectile-vertical-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "max-height",
+   "concept": "maximum-height",
+   "verb": "introduces"
+  },
+  {
+   "span": "max-height",
+   "concept": "free-fall-highest-point",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "projectile-analysis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "projectile-vertical-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "projectile-horizontal-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "maximum-height",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "projectile-analysis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "projectile-vertical-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "projectile-horizontal-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "physical-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "range",
+   "concept": "range",
+   "verb": "introduces"
+  },
+  {
+   "span": "range",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "orbit",
+   "concept": "range",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2183300",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "Answer the following questions for projectile motion on level ground assuming negligible air resistance (the initial angle being neither $0^\\circ$ nor $90^\\circ$): (a) Is the velocity ever zero? (b) When is the velocity a minimum? A maximum? (c) Can the velocity ever be the same as the initial velocity at a time other than at $t = 0$? (d) Can the speed ever be the same as the initial speed at a time other than at $t = 0$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) No. The horizontal component of the velocity, $\\kvx = \\kvo\\cos\\theta_0$, never changes and is not zero, so the velocity is never zero even at the highest point, where only the vertical component vanishes. (b) The speed is smallest at the highest point of the trajectory, where $\\kvy = 0$ and the velocity is just $\\kvx$, and largest at the launch and at the landing, where the magnitude of the vertical component is greatest. (c) No. When the projectile returns to the launch height its vertical component is $-\\kvoy$, the reverse of the initial value, so the velocity has the same magnitude but a different direction, and at no other time is $\\kvy$ equal to $\\kvoy$. (d) Yes. At the landing the speed equals the initial speed, since $\\kvx$ is unchanged and $\\kvy$ has the same magnitude as at the launch."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1638420",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projectile",
+   "prompt": "Answer the following questions for projectile motion on level ground assuming negligible air resistance (the initial angle being neither $0^\\circ$ nor $90^\\circ$): (a) Is the acceleration ever zero? (b) Is the acceleration ever in the same direction as a component of velocity? (c) Is the acceleration ever opposite in direction to a component of velocity?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) No. The acceleration is the acceleration due to gravity, $\\kg$ downward, at every point of the flight, including the highest point, where the vertical velocity is zero but still changing. (b) Yes. On the way down the vertical component of the velocity points downward, the same direction as the acceleration, which is why the vertical speed grows as the projectile falls. (c) Yes. On the way up the vertical component of the velocity points upward, opposite to the acceleration, which is why it decreases to zero at the top. The horizontal component is never in the direction of the acceleration or opposite to it, since the acceleration has no horizontal part."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2062475",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "For a fixed initial speed, the range of a projectile is determined by the angle at which it is fired. For all but the maximum, there are two angles that give the same range. Considering factors that might affect the ability of an archer to hit a target, such as wind, explain why the smaller angle (closer to the horizontal) is preferable. When would it be necessary for the archer to use the larger angle? Why does the punter in a football game use the higher trajectory?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The smaller angle gives a flatter trajectory with a smaller vertical component of the initial velocity, so the arrow is in the air for a shorter time and rises to a lower maximum height. Wind and air resistance therefore have less time to push the arrow off its course, and a small error in the release angle or speed moves the landing point less. The larger angle would be necessary when something stands between the archer and the target, such as a branch or a wall the arrow must pass over, or when the target must be reached from above. The punter wants the opposite of the archer: the higher trajectory keeps the ball in the air longer, since the time of flight depends on the vertical component of the initial velocity, and that time lets the punter’s teammates run downfield before the ball comes down."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1875651",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projectile",
+   "prompt": "During a lecture demonstration, a professor places two coins on the edge of a table. She then flicks one of the coins horizontally off the table, simultaneously nudging the other over the edge. Describe the subsequent motion of the two coins, in particular discussing whether they hit the floor at the same time.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both coins leave the edge at the same instant with no vertical velocity, so their vertical motions are the same free fall from the height of the table, with $\\kay = -\\kg$, and they hit the floor at the same time. The flicked coin also has a horizontal velocity, which stays constant because there is no horizontal acceleration, so it follows a parabola and lands some distance from the table, while the nudged coin falls almost straight down and lands just below the edge. The horizontal motion of the flicked coin has no effect on its vertical motion, which is the independence of perpendicular motions that projectile motion illustrates."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2061889",
+   "source_section": "3.2",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "<table class=\"data\"><tr><th>Height (m)</th><th>Time (sec)</th></tr><tr><td>0.490</td><td>0.1</td></tr><tr><td>0.882</td><td>0.2</td></tr><tr><td>1.176</td><td>0.3</td></tr><tr><td>1.372</td><td>0.4</td></tr><tr><td>1.470</td><td>0.5</td></tr><tr><td>1.470</td><td>0.6</td></tr><tr><td>1.372</td><td>0.7</td></tr></table>A ball is launched at an angle of 60 degrees above the horizontal, and the vertical position of the ball is recorded at various points in time in the table shown, assuming the ball was at a height of 0 at time $t = 0$. 1. Draw a graph of the ball’s vertical velocity versus time. 2. Describe the graph of the ball’s horizontal velocity. 3. Draw a graph of the ball’s vertical acceleration versus time.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The graph of the ball’s vertical velocity over time should begin at 4.90 m/s during the time interval 0 – 0.1 sec (there should be a data point at t = 0.05 sec, v = 4.90 m/s). It should then have a slope of $-9.8\\ \\text{m/s}^2$, crossing through v = 0 at t = 0.55 sec and ending at v = −0.98 m/s at t = 0.65 sec. The graph of the ball’s horizontal velocity would be a constant positive value, a flat horizontal line at some positive velocity from t = 0 until t = 0.7 sec."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1923898",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "A projectile is launched at ground level with an initial speed of 50.0 m/s at an angle of $30.0^\\circ$ above the horizontal. It strikes a target above the ground 3.00 seconds later. What are the $\\kx$ and $\\ky$ distances from where the projectile was launched to where it lands?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x",
+      "value": 130,
+      "unit": "m",
+      "hint": "The horizontal velocity is $\\kvo\\cos\\theta_0$ and never changes, so $\\kx = \\kvx\\kt$."
+     },
+     {
+      "part": "y",
+      "value": 30.9,
+      "unit": "m",
+      "hint": "The vertical motion is free fall from $\\kvoy = \\kvo\\sin\\theta_0$: use $\\ky = \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2$."
+     }
+    ],
+    "solution": "$\\kx = 1.30 \\times 10^{2}\\ \\text{m}$, $\\ky = 30.9\\ \\text{m}$."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2889503",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recombine",
+   "prompt": "A ball is thrown horizontally from the top of a 60.0-m building and lands 100.0 m from the base of the building. Ignore air resistance. (a) How long is the ball in the air? (b) What must have been the initial horizontal component of the velocity? (c) What is the vertical component of the velocity just before the ball hits the ground? (d) What is the velocity (including both the horizontal and vertical components) of the ball just before it hits the ground?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.5,
+      "unit": "s",
+      "hint": "The time in the air is set by the vertical motion alone: the ball falls 60.0 m from rest vertically, so $\\ky = -\\tfrac{1}{2}\\kg\\kt^2$ with $\\ky = -60.0$ m."
+     },
+     {
+      "part": "(b)",
+      "value": 28.6,
+      "unit": "m/s",
+      "hint": "The horizontal velocity is constant and carries the ball 100.0 m in the time found in (a)."
+     },
+     {
+      "part": "(c)",
+      "value": 34.3,
+      "unit": "m/s",
+      "hint": "Use $\\kvy = \\kvoy - \\kg\\kt$ with $\\kvoy = 0$; the book gives the magnitude."
+     },
+     {
+      "part": "(d) speed",
+      "value": 44.7,
+      "unit": "m/s",
+      "hint": "Recombine the components with $\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$."
+     },
+     {
+      "part": "(d) angle below the horizontal",
+      "value": 50.2,
+      "unit": "º",
+      "hint": "The direction is $\\theta_v = \\tan^{-1}(\\kvy/\\kvx)$, and a negative vertical component puts it below the horizontal."
+     }
+    ],
+    "solution": "(a) 3.50 s (b) 28.6 m/s (c) 34.3 m/s (d) 44.7 m/s, $50.2^\\circ$ below horizontal"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1420192",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "An archer shoots an arrow at a 75.0 m distant target; the bull’s-eye of the target is at same height as the release height of the arrow. (a) At what angle must the arrow be released to hit the bull’s-eye if its initial speed is 35.0 m/s? In this part of the problem, explicitly show how you follow the steps involved in solving projectile motion problems. (b) There is a large tree halfway between the archer and the target with an overhanging horizontal branch 3.50 m above the release height of the arrow. Will the arrow go over or under the branch?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 18.4,
+    "unit": "º",
+    "hint": "The target is at the release height, so the range equation $\\kR = \\kvo^2 \\sin 2\\theta_0 / \\kg$ applies; solve it for $\\sin 2\\theta_0$ and take the smaller of the two angles.",
+    "solution": "(a) $18.4^\\circ$ (b) The arrow will go over the branch."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2126267",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "Verify the ranges for the projectiles in Figure 3.38(a) for $\\theta = 45^\\circ$ and the given initial velocities.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "R for 30 m/s",
+      "value": 91.8,
+      "unit": "m",
+      "hint": "At $45^\\circ$, $\\sin 2\\theta_0 = 1$ and the range equation reduces to $\\kR = \\kvo^2/\\kg$."
+     },
+     {
+      "part": "R for 40 m/s",
+      "value": 163,
+      "unit": "m"
+     },
+     {
+      "part": "R for 50 m/s",
+      "value": 255,
+      "unit": "m"
+     }
+    ],
+    "solution": "$\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}$. For $\\theta = 45^\\circ$, $\\kR = \\frac{\\kvo^2}{\\kg}$. $\\kR = 91.8\\ \\text{m}$ for $\\kvo = 30\\ \\text{m/s}$; $\\kR = 163\\ \\text{m}$ for $\\kvo = 40\\ \\text{m/s}$; $\\kR = 255\\ \\text{m}$ for $\\kvo = 50\\ \\text{m/s}$."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2905201",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "The cannon on a battleship can fire a shell a maximum distance of 32.0 km. (a) Calculate the initial velocity of the shell. (b) What maximum height does it reach? (At its highest, the shell is above 60% of the atmosphere—but air resistance is not really negligible as assumed to make this problem easier.) (c) The ocean is not flat, because the Earth is curved. Assume that the radius of the Earth is $6.37 \\times 10^{3}\\ \\text{km}$. How many meters lower will its surface be 32.0 km from the ship along a horizontal line parallel to the surface at the ship? Does your answer imply that error introduced by the assumption of a flat Earth in projectile motion is significant here?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 560,
+      "unit": "m/s",
+      "hint": "The maximum range is reached at $45^\\circ$, where the range equation gives $\\kR = \\kvo^2/\\kg$."
+     },
+     {
+      "part": "(b)",
+      "value": 8000,
+      "unit": "m",
+      "hint": "The maximum height is $\\kh = \\kvoy^2/2\\kg$ with $\\kvoy = \\kvo \\sin 45^\\circ$."
+     },
+     {
+      "part": "(c)",
+      "value": 80.0,
+      "unit": "m",
+      "hint": "A horizontal line of length 32.0 km is one leg of a right triangle whose hypotenuse runs from the Earth’s center; the drop is the difference between the hypotenuse and the radius."
+     }
+    ],
+    "solution": "(a) 560 m/s (b) $8.00 \\times 10^{3}\\ \\text{m}$ (c) 80.0 m. This error is not significant because it is only 1% of the answer in part (b)."
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1745072",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "In the standing broad jump, one squats and then pushes off with the legs to see how far one can jump. Suppose the extension of the legs from the crouch position is 0.600 m and the acceleration achieved from this position is 1.25 times the acceleration due to gravity, $\\kg$. How far can they jump? State your assumptions. (Increased range can be achieved by swinging the arms in the direction of the jump.)",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5,
+    "unit": "m",
+    "hint": "Find the take-off speed from $\\kv^2 = \\kvo^2 + 2\\ka(\\kx - \\kxo)$ over the 0.600 m of leg extension, then take the jump as a projectile launched at $45^\\circ$ on level ground.",
+    "solution": "1.50 m, assuming launch angle of $45^\\circ$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2254986",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recombine",
+   "prompt": "Serving at a speed of 170 km/h, a tennis player hits the ball at a height of 2.5 m and an angle $\\theta$ below the horizontal. The base line is 11.9 m from the net, which is 0.91 m high. What is the angle $\\theta$ such that the ball just crosses the net? Will the ball land in the service box, whose service line is 6.40 m from the net?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "θ",
+      "value": 6.1,
+      "unit": "º",
+      "hint": "Convert the speed to m/s, write the time to reach the net from the horizontal motion, and set the height at that time to 0.91 m; the vertical component of the initial velocity is downward."
+     },
+     {
+      "part": "distance from the net at landing",
+      "value": 5.3,
+      "unit": "m",
+      "hint": "With the angle known, find the time for the ball to fall 2.5 m, and the horizontal distance in that time less 11.9 m is how far past the net it lands."
+     }
+    ],
+    "solution": "$\\theta = 6.1^\\circ$; yes, the ball lands at 5.3 m from the net"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1796436",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "Gun sights are adjusted to aim high to compensate for the effect of gravity, effectively making the gun accurate only for a specific range. (a) If a gun is sighted to hit targets that are at the same height as the gun and 100.0 m away, how low will the bullet hit if aimed directly at a target 150.0 m away? The muzzle velocity of the bullet is 275 m/s. (b) Discuss qualitatively how a larger muzzle velocity would affect this problem and what would be the effect of air resistance.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": -0.486,
+    "unit": "m",
+    "hint": "The sighting gives the small launch angle from the range equation with $\\kR = 100.0$ m; with that angle, find the time to travel 150.0 m horizontally and the height at that time, which comes out negative.",
+    "solution": "(a) −0.486 m (b) The larger the muzzle velocity, the smaller the deviation in the vertical direction, because the time of flight would be smaller. Air resistance would have the effect of decreasing the time of flight, therefore increasing the vertical deviation."
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id1914025",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recombine",
+   "prompt": "An owl is carrying a mouse to the chicks in its nest. Its position at that time is 4.00 m west and 12.0 m above the center of the 30.0 cm diameter nest. The owl is flying east at 3.50 m/s at an angle $30.0^\\circ$ below the horizontal when it accidentally drops the mouse. Is the owl lucky enough to have the mouse hit the nest? To answer this question, calculate the horizontal position of the mouse when it has fallen 12.0 m.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.23,
+    "unit": "m",
+    "hint": "The mouse leaves with the owl’s velocity, so its initial vertical component is downward; solve the quadratic for the time to fall 12.0 m and multiply by the constant horizontal velocity.",
+    "solution": "4.23 m. No, the owl is not lucky; he misses the nest."
+   }
+  },
+  {
+   "id": "p19",
+   "source_id": "fs-id2260735",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "Can a goalkeeper at her/ his goal kick a soccer ball into the opponent’s goal without the ball touching the ground? The distance will be about 95 m. A goalkeeper can give the ball a speed of 30 m/s.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 92,
+    "unit": "m",
+    "hint": "The farthest a 30 m/s kick can reach on level ground is the range at $45^\\circ$, $\\kR = \\kvo^2/\\kg$; compare it with 95 m.",
+    "solution": "No, the maximum range (neglecting air resistance) is about 92 m."
+   }
+  },
+  {
+   "id": "p21",
+   "source_id": "fs-id1827481",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recombine",
+   "prompt": "In 2007, Michael Carter (U.S.) set a world record in the shot put with a throw of 24.77 m. What was the initial speed of the shot if he released it at a height of 2.10 m and threw it at an angle of $38.0^\\circ$ above the horizontal? (Although the maximum distance for a projectile on level ground is achieved at $45^\\circ$ when air resistance is neglected, the actual angle to achieve maximum range is smaller; thus, $38^\\circ$ will give a longer range than $45^\\circ$ in the shot put.)",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 15.0,
+    "unit": "m/s",
+    "hint": "The shot lands 2.10 m below its release, so the range equation does not apply; write the time from the horizontal motion, $\\kt = 24.77 / (\\kvo\\cos 38.0^\\circ)$, substitute it into the vertical equation with $\\ky = -2.10$ m, and solve for $\\kvo$.",
+    "solution": "15.0 m/s"
+   }
+  },
+  {
+   "id": "p23",
+   "source_id": "fs-id1779635",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "A football player punts the ball at a $45.0^\\circ$ angle. Without an effect from the wind, the ball would travel 60.0 m horizontally. (a) What is the initial speed of the ball? (b) When the ball is near its maximum height it experiences a brief gust of wind that reduces its horizontal velocity by 1.50 m/s. What distance does the ball travel horizontally?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 24.2,
+      "unit": "m/s",
+      "hint": "At $45^\\circ$ the range equation gives $\\kR = \\kvo^2/\\kg$."
+     },
+     {
+      "part": "(b)",
+      "value": 57.4,
+      "unit": "m",
+      "hint": "The ball spends half its flight rising and half falling; the first half covers 30.0 m, and in the second half the horizontal velocity is 1.50 m/s less."
+     }
+    ],
+    "solution": "(a) 24.2 m/s (b) The ball travels a total of 57.4 m with the brief gust of wind."
+   }
+  },
+  {
+   "id": "p25",
+   "source_id": "fs-id2133758",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "Derive $\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}$ for the range of a projectile on level ground by finding the time $\\kt$ at which $\\ky$ becomes zero and substituting this value of $\\kt$ into the expression for $\\kx - \\kxo$, noting that $\\kR = \\kx - \\kxo$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky - \\kyo = 0 = \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2 = (\\kvo\\sin\\theta)\\kt - \\tfrac{1}{2}\\kg\\kt^2$, so that $\\kt = \\frac{2(\\kvo\\sin\\theta)}{\\kg}$. $\\kx - \\kxo = \\kvox\\kt = (\\kvo\\cos\\theta)\\kt = \\kR$, and substituting for $\\kt$ gives: $\\kR = \\kvo\\cos\\theta\\left(\\frac{2\\kvo\\sin\\theta}{\\kg}\\right) = \\frac{2\\kvo^2\\sin\\theta\\cos\\theta}{\\kg}$. Since $2\\sin\\theta\\cos\\theta = \\sin 2\\theta$, the range is: $\\kR = \\frac{\\kvo^2\\sin 2\\theta}{\\kg}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "range"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "maximum-height",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-horizontal-motion",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-vertical-motion",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p3",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p3",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p3",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p5",
+   "concept": "range"
+  },
+  {
+   "exercise": "p5",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p5",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p7",
+   "concept": "range"
+  },
+  {
+   "exercise": "p9",
+   "concept": "range"
+  },
+  {
+   "exercise": "p9",
+   "concept": "maximum-height"
+  },
+  {
+   "exercise": "p11",
+   "concept": "range"
+  },
+  {
+   "exercise": "p11",
+   "concept": "projectile-analysis",
+   "weight": 1
+  },
+  {
+   "exercise": "p13",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p13",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p13",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p15",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p15",
+   "concept": "range"
+  },
+  {
+   "exercise": "p15",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p17",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p17",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p17",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p19",
+   "concept": "range"
+  },
+  {
+   "exercise": "p21",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p21",
+   "concept": "range",
+   "weight": 1
+  },
+  {
+   "exercise": "p23",
+   "concept": "range"
+  },
+  {
+   "exercise": "p23",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p23",
+   "concept": "projectile-vertical-motion",
+   "weight": 1
+  },
+  {
+   "exercise": "p25",
+   "concept": "range"
+  },
+  {
+   "exercise": "p25",
+   "concept": "projectile-horizontal-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "p25",
+   "concept": "projectile-vertical-motion",
+   "weight": 2
+  }
+ ]
+}

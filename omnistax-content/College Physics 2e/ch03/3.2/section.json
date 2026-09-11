@@ -1,0 +1,692 @@
+{
+ "id": "3.2",
+ "module": "m42127",
+ "chapter": "3",
+ "title": "Vector Addition and Subtraction: Graphical Methods",
+ "short": "Graphical vector addition",
+ "lead": "A vector in two dimensions is drawn as an arrow whose length is proportional to its magnitude and whose direction is given by an angle. This section shows how to add vectors graphically by placing them head to tail and measuring the resultant with a ruler and a protractor, how subtracting a vector is the same as adding its negative, what multiplying a vector by a scalar does to it, and how a single vector is resolved into the components that add up to it.",
+ "objectives": [
+  "Understand the rules of vector addition, subtraction, and multiplication by scalars.",
+  "Apply graphical methods of vector addition and subtraction to determine the displacement of moving objects."
+ ],
+ "summary_html": "<ul><li>The <em>graphical method of adding vectors</em> $\\mathbf{A}$ and $\\mathbf{B}$ involves drawing vectors on a graph and adding them using the head-to-tail method. The resultant vector $\\mathbf{R}$ is defined such that $\\mathbf{A} + \\mathbf{B} = \\mathbf{R}$. The magnitude and direction of $\\mathbf{R}$ are then determined with a ruler and protractor, respectively.</li><li>The <em>graphical method of subtracting vector</em> $\\mathbf{B}$ from $\\mathbf{A}$ involves adding the opposite of vector $\\mathbf{B}$, which is defined as $-\\mathbf{B}$. In this case, $\\mathbf{A} - \\mathbf{B} = \\mathbf{A} + (-\\mathbf{B}) = \\mathbf{R}$. Then, the head-to-tail method of addition is followed in the usual way to obtain the resultant vector $\\mathbf{R}$.</li><li>Addition of vectors is <em>commutative</em> such that $\\mathbf{A} + \\mathbf{B} = \\mathbf{B} + \\mathbf{A}$.</li><li>The <em>head-to-tail method</em> of adding vectors involves drawing the first vector on a graph and then placing the tail of each subsequent vector at the head of the previous vector. The resultant vector is then drawn from the tail of the first vector to the head of the final vector.</li><li>If a vector $\\mathbf{A}$ is multiplied by a scalar quantity $c$, the magnitude of the product is given by $c\\kA$. If $c$ is positive, the direction of the product points in the same direction as $\\mathbf{A}$; if $c$ is negative, the direction of the product points in the opposite direction as $\\mathbf{A}$.</li></ul>",
+ "notes": "Problems 2, 4, 6, 8, 10 and 12 and the first AP item have no answer in the book’s key and are left out; the second AP item is held for 3.4, which introduces the projectile motion it tests; the map of the Hawaiian Islands at the head of the section is left out as decoration, and the PhET note on the Maze Game is left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercises_lead": "Use graphical methods to solve these problems. You may assume data taken from graphs is accurate to three digits.",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6, 8, 10 and 12 have no keyed answer and are left out, so the walk that problem 7 calls “the problem two problems prior” is problem 5, the 12.0 m and 20.0 m walk. A keyed direction is checked as a number with its compass sense in the unit, so 18.4º east of north is entered as 18.4. The two AP items test the vertical and horizontal velocity of a projectile, which section 3.4 introduces: the first (fs-id1398128, the ball launched vertically) is unkeyed and left out, and the second (fs-id2061889, the ball launched at 60º with the table of heights) is keyed and held for 3.4, which takes it with source_section 3.2. The suggested approaches to the conceptual questions are AI-written and marked. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "demo-vector-2d",
+   "kind": "demo",
+   "number": "3.8",
+   "originals": [
+    "/media/ch03/Figure_03_02_01.jpg",
+    "/media/ch03/Figure_03_02_02a.jpg"
+   ],
+   "original_caption": "A person walks 9 blocks east and 5 blocks north. The displacement is 10.3 blocks at an angle 29.1º north of east.",
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "demo-head-to-tail",
+   "kind": "demo",
+   "number": "3.10",
+   "originals": [
+    "/media/ch03/Figure_03_02_03.jpg",
+    "/media/ch03/Figure_03_02_04a.jpg",
+    "/media/ch03/Figure_03_02_05a.jpg",
+    "/media/ch03/Figure_03_02_06a.jpg"
+   ],
+   "original_caption": "Head-to-Tail Method: The head-to-tail method of graphically adding vectors is illustrated for the two displacements of the person walking in a city considered in Figure 3.8. (a) Draw a vector representing the displacement to the east. (b) Draw a vector representing the displacement to the north. The tail of this vector should originate from the head of the first, east-pointing vector. (c) Draw a line from the tail of the east-pointing vector to the head of the north-pointing vector to form the sum or resultant vector D. The length of the arrow D is proportional to the vector’s magnitude and is measured to be 10.3 units. Its direction, described as the angle with respect to the east (or horizontal axis) θ is measured with a protractor to be 29.1º.",
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "demo-walk",
+   "kind": "demo",
+   "number": "3.14",
+   "originals": [
+    "/media/ch03/Figure_03_02_08-d8f8.jpg",
+    "/media/ch03/Figure_03_02_09.jpg",
+    "/media/ch03/CNX_HSPhysics_05_01_result.jpg",
+    "/media/ch03/CNX_HSPhysics_05_01_measure.jpg"
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "demo-order",
+   "kind": "demo",
+   "number": "3.18",
+   "originals": [
+    "/media/ch03/CNX_HSPhysics_05_01_order.jpg"
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "demo-subtraction",
+   "kind": "demo",
+   "number": "3.19",
+   "originals": [
+    "/media/ch03/Figure_03_02_13a.jpg",
+    "/media/ch03/Figure_03_02_14.jpg",
+    "/media/ch03/Figure_03_02_15a.jpg",
+    "/media/ch03/Figure_03_02_16a.jpg",
+    "/media/ch03/Figure_03_02_17a.jpg"
+   ],
+   "original_caption": "The negative of a vector is just another vector of the same magnitude but pointing in the opposite direction. So B is the negative of –B; it has the same length but opposite direction.",
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "demo-scalar",
+   "kind": "demo",
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "demo-components",
+   "kind": "demo",
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "fig-paths",
+   "kind": "figure",
+   "originals": [
+    "/media/ch03/Figure_03_02_20a-b5e9.jpg"
+   ],
+   "original_caption": "The various lines represent paths taken by different people walking in a city. All blocks are 120 m on a side.",
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "vectors-2d",
+   "concept": "vector-in-two-dimensions",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "reference-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "head-to-tail-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "resultant-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "vector-in-two-dimensions",
+   "verb": "uses"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "right-triangle-resultant",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "vector-addition-commutative",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "resultant-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "subtraction",
+   "concept": "vector-subtraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "subtraction",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-sail",
+   "concept": "vector-subtraction",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-sail",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-sail",
+   "concept": "resultant-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar-multiplication",
+   "concept": "scalar-multiplication",
+   "verb": "introduces"
+  },
+  {
+   "span": "scalar-multiplication",
+   "concept": "scalar",
+   "verb": "reinforces"
+  },
+  {
+   "span": "components",
+   "concept": "resolving-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "components",
+   "concept": "vector-components",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1165298732767",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "prompt": "Which of the following is a vector: a person’s height, the altitude on Mt. Everest, the age of the Earth, the boiling point of water, the cost of this book, the Earth’s population, the acceleration of gravity?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A vector is a quantity that has both magnitude and direction, and a scalar has magnitude only. A person’s height, the altitude of Mt. Everest, the age of the Earth, the boiling point of water, the cost of this book and the Earth’s population are each a single number with a unit and no direction, so they are scalars. The acceleration of gravity is the one vector in the list: it has a magnitude of $9.80\\ \\text{m/s}^2$ and a direction, straight down toward the center of the Earth."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1165298775836",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "prompt": "Give a specific example of a vector, stating its magnitude, units, and direction.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Any quantity with both a magnitude and a direction will do, and the section’s own examples are displacements. For example, the total displacement of the person walking in the city is 10.3 blocks in a direction $29.1^\\circ$ north of east, and the first leg of the sailor’s trip in Example 3.2 is a displacement of 27.5 m at $66.0^\\circ$ north of east. A velocity such as 90 km/h due west or a force of 500 N straight down is a vector in the same way, each stated with a magnitude, a unit and a direction."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1165298783616",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "prompt": "What do vectors and scalars have in common? How do they differ?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both vectors and scalars are physical quantities with a magnitude, expressed as a number with a unit, and both can be added, subtracted and multiplied by a number. They differ in that a vector also has a direction and a scalar does not. A scalar such as a temperature or a cost is a single number, whereas a vector such as a displacement must be given as a magnitude and an angle, or drawn as an arrow, and two vectors are added head to tail rather than by adding their magnitudes."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1165296576944",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_18a.jpg",
+    "alt": "At the southwest corner of the figure is a cabin and in the northeast corner is a lake. A vector S with a length five point zero kilometers connects the cabin to the lake at an angle of 40 degrees north of east. Two winding paths labeled Path 1 and Path 2 represent the routes travelled from the cabin to the lake."
+   },
+   "prompt": "Two campers in a national park hike from their cabin to the same spot on a lake, each taking a different path, as illustrated below. The total distance traveled along Path 1 is 7.5 km, and that along Path 2 is 8.2 km. What is the final displacement of each camper?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Displacement is the straight-line change in position from the starting point to the ending point, and it does not depend on the path taken. Both campers start at the cabin and end at the same spot on the lake, so both have the same displacement, the vector $\\mathbf{S}$ in the figure: 5.0 km in a direction $40^\\circ$ north of east. The distances traveled, 7.5 km and 8.2 km, are the lengths of the two paths and are larger than the magnitude of the displacement."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1165298981819",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_19a.jpg",
+    "alt": "A map of northern California with a circle with a radius of one hundred twenty three kilometers centered on San Francisco. Sacramento lies on the circumference of this circle in a direction forty-five degrees north of east from San Francisco."
+   },
+   "prompt": "If an airplane pilot is told to fly 123 km in a straight line to get from San Francisco to Sacramento, explain why he could end up anywhere on the circle shown in the figure. What other information would he need to get to Sacramento?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A distance of 123 km is a magnitude alone. Every point on the circle is 123 km from San Francisco, so flying a straight 123 km in any direction ends somewhere on the circle, and nothing in the instruction picks out one point of it. To reach Sacramento the pilot also needs the direction of the flight, in this case $45^\\circ$ north of east, which together with the 123 km makes the displacement a vector with both a magnitude and a direction."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1165298754450",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "head-to-tail",
+   "prompt": "Suppose you take two steps $\\mathbf{A}$ and $\\mathbf{B}$ (that is, two nonzero displacements). Under what circumstances can you end up at your starting point? More generally, under what circumstances can two nonzero vectors add to give zero? Is the maximum distance you can end up from the starting point $\\mathbf{A} + \\mathbf{B}$ the sum of the lengths of the two steps?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Adding the two steps head to tail, you return to the starting point only when the head of $\\mathbf{B}$ lands on the tail of $\\mathbf{A}$, which requires $\\mathbf{B}$ to have the same magnitude as $\\mathbf{A}$ and the opposite direction, so that $\\mathbf{B} = -\\mathbf{A}$ and the resultant is zero. In general, two nonzero vectors add to zero only when they are equal in magnitude and opposite in direction. The resultant is largest when the two steps point the same way, and its magnitude is then the sum of the two lengths; for any other relative direction the head-to-tail construction gives a shorter resultant, since the two steps and the resultant form a triangle."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1165298761188",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar-multiplication",
+   "prompt": "Explain why it is not possible to add a scalar to a vector.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A vector has a direction and a scalar has none, so there is no way to place a scalar head to tail with a vector. The sum of two vectors is found by adding them head to tail, which requires both to have a magnitude and a direction, and the rule of this section for scalars says only how a vector is multiplied by one, which changes its magnitude and possibly reverses its direction. Adding 5 to a displacement of 3 m north has no meaning, since the 5 has no direction and no unit of length."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1165296242489",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "head-to-tail",
+   "prompt": "If you take two steps of different sizes, can you end up at your starting point? More generally, can two vectors with different magnitudes ever add to zero? Can three or more?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With two steps of different sizes you cannot return to the starting point, because two vectors add to zero only when they have equal magnitudes and opposite directions, so that placed head to tail the second ends where the first began. Three or more vectors of different magnitudes can add to zero, since three vectors laid head to tail can close into a triangle, as walking 3 m east, then 4 m north and then 5 m back along the diagonal to the start does; the only requirement is that the head of the last vector lands on the tail of the first."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1165298745593",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "paths",
+   "prompt": "Find the following for path A in the map of paths at the end of the section: (a) the total distance traveled, and (b) the magnitude and direction of the displacement from start to finish.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 480,
+      "unit": "m",
+      "hint": "Count the blocks walked along path A, in every direction, and multiply by 120 m."
+     },
+     {
+      "part": "(b) magnitude",
+      "value": 379,
+      "unit": "m",
+      "hint": "The two legs of path A are perpendicular, so the straight line from start to finish is the hypotenuse of a right triangle."
+     },
+     {
+      "part": "(b) direction",
+      "value": 18.4,
+      "unit": "º east of north",
+      "hint": "Measure the angle between the displacement and the north direction, since the path runs mostly north."
+     }
+    ],
+    "solution": "(a) $480\\ \\text{m}$ (b) $379\\ \\text{m}$, $18.4^\\circ$ east of north"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1165298867580",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_18a.jpg",
+    "alt": "At the southwest corner of the figure is a cabin and in the northeast corner is a lake. A vector S with a length five point zero kilometers connects the cabin to the lake at an angle of 40 degrees north of east. Two winding paths labeled Path 1 and Path 2 represent the routes travelled from the cabin to the lake."
+   },
+   "prompt": "Find the north and east components of the displacement for the hikers shown in the figure.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "north component",
+      "value": 3.21,
+      "unit": "km",
+      "hint": "Draw the 5.0 km displacement to scale at 40º north of east and measure how far north its head lies from its tail."
+     },
+     {
+      "part": "east component",
+      "value": 3.83,
+      "unit": "km",
+      "hint": "Measure how far east the head of the displacement lies from its tail; the two components add head to tail to give the 5.0 km."
+     }
+    ],
+    "solution": "north component 3.21 km, east component 3.83 km"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1165298797729",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_22a.jpg",
+    "alt": "In the given figure coordinates axes are shown. Vector A with tail at origin is inclined at an angle of twenty degrees with the positive direction of x axis. The magnitude of vector A is twelve meters. Another vector B is starts from the head of vector A and inclined at an angle of forty degrees with the horizontal. The resultant R of the vectors A and B is also drawn from the tail of vector A to the head of vector B. The inclination of vector R is theta with the horizontal."
+   },
+   "prompt": "Suppose you first walk 12.0 m in a direction $20^\\circ$ west of north and then 20.0 m in a direction $40.0^\\circ$ south of west. How far are you from your starting point, and what is the compass direction of a line connecting your starting point to your final position? (If you represent the two legs of the walk as vector displacements $\\mathbf{A}$ and $\\mathbf{B}$, as in the figure, then this problem finds their sum $\\mathbf{R} = \\mathbf{A} + \\mathbf{B}$.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 19.5,
+      "unit": "m",
+      "hint": "Draw A to scale, place the tail of B at the head of A, and measure the resultant from the tail of A to the head of B with a ruler."
+     },
+     {
+      "part": "direction",
+      "value": 4.65,
+      "unit": "º south of west",
+      "hint": "The resultant lies just south of the westward axis; measure its angle from that axis with a protractor."
+     }
+    ],
+    "solution": "$19.5\\ \\text{m}$, $4.65^\\circ$ south of west"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1165298560552",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "(a) Repeat the problem two problems prior, but for the second leg you walk 20.0 m in a direction $40.0^\\circ$ north of east, (which is equivalent to subtracting $\\mathbf{B}$ from $\\mathbf{A}$—that is, finding $\\mathbf{R}' = \\mathbf{A} - \\mathbf{B}$). (b) Repeat the problem two problems prior, but now you first walk 20.0 m in a direction $40.0^\\circ$ east of south (which is equivalent to subtracting $\\mathbf{A}$ from $\\mathbf{B}$—that is, to finding $\\mathbf{R}'' = \\mathbf{B} - \\mathbf{A} = -\\mathbf{R}'$). Show that this is the case.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) magnitude",
+      "value": 26.6,
+      "unit": "m",
+      "hint": "Walking 20.0 m at 40.0º north of east is walking −B, the same length as B in the opposite direction, so add A and −B head to tail."
+     },
+     {
+      "part": "(a) direction",
+      "value": 65.1,
+      "unit": "º north of east",
+      "hint": "Measure the angle of the resultant from the eastward axis with a protractor."
+     },
+     {
+      "part": "(b) magnitude",
+      "value": 26.6,
+      "unit": "m",
+      "hint": "Walking 20.0 m at 40.0º east of south is B, and then walking A in reverse is −A; the resultant has the same length as in part (a)."
+     },
+     {
+      "part": "(b) direction",
+      "value": 65.1,
+      "unit": "º south of west",
+      "hint": "The resultant of part (b) points exactly opposite to that of part (a), since B − A = −(A − B)."
+     }
+    ],
+    "solution": "(a) $26.6\\ \\text{m}$, $65.1^\\circ$ north of east (b) $26.6\\ \\text{m}$, $65.1^\\circ$ south of west"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1165298800490",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "Show that the sum of the vectors discussed in Example 3.2 gives the result shown in Figure 3.19.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 52.9,
+      "unit": "m",
+      "hint": "Draw A, 27.5 m at 66.0º north of east, then B, 30.0 m at 112º north of east, from its head, and measure the resultant from the tail of A."
+     },
+     {
+      "part": "direction",
+      "value": 90.1,
+      "unit": "º with respect to the x-axis",
+      "hint": "The resultant points almost straight north, so its angle from the eastward x-axis is close to 90º."
+     }
+    ],
+    "solution": "$52.9\\ \\text{m}$, $90.1^\\circ$ with respect to the $x$-axis."
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1165298735190",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_23a.jpg",
+    "alt": "On the graph velocity vector V sub A begins at the origin and is inclined to x axis at an angle of twenty two point five degrees. From the head of vector V sub A another vector V sub B begins. The resultant of the two vectors, labeled V sub tot, is inclined to vector V sub A at twenty six point five degrees and to the vector V sub B at twenty three point zero degrees. V sub tot has a magnitude of 6.72 meters per second.",
+    "caption": "The two velocities $\\mathbf{v}_{\\text{A}}$ and $\\mathbf{v}_{\\text{B}}$ add to give a total $\\mathbf{v}_{\\text{tot}}$."
+   },
+   "prompt": "Find the components of $\\mathbf{v}_{\\text{tot}}$ along the $x$- and $y$-axes in the figure.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x-component",
+      "value": 4.41,
+      "unit": "m/s",
+      "hint": "The total velocity is 6.72 m/s at 22.5º + 26.5º = 49.0º above the x-axis; draw it to scale and measure how far along x its head lies."
+     },
+     {
+      "part": "y-component",
+      "value": 5.07,
+      "unit": "m/s",
+      "hint": "Measure how far along y the head of the total velocity lies; the two components add head to tail to give the 6.72 m/s."
+     }
+    ],
+    "solution": "$x$-component 4.41 m/s, $y$-component 5.07 m/s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "vector"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "scalar"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "vector"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "scalar"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "displacement"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "head-to-tail-method",
+   "weight": 1
+  },
+  {
+   "exercise": "cq7",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "vector",
+   "weight": 1
+  },
+  {
+   "exercise": "cq8",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "head-to-tail-method",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "head-to-tail-method"
+  },
+  {
+   "exercise": "p1",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "p1",
+   "concept": "distance-traveled",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "right-triangle-resultant",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "resolving-vector"
+  },
+  {
+   "exercise": "p3",
+   "concept": "vector-components"
+  },
+  {
+   "exercise": "p5",
+   "concept": "head-to-tail-method"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "p7",
+   "concept": "vector-subtraction"
+  },
+  {
+   "exercise": "p7",
+   "concept": "head-to-tail-method"
+  },
+  {
+   "exercise": "p9",
+   "concept": "head-to-tail-method"
+  },
+  {
+   "exercise": "p9",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "p9",
+   "concept": "vector-subtraction",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "resolving-vector"
+  },
+  {
+   "exercise": "p11",
+   "concept": "vector-components"
+  }
+ ]
+}

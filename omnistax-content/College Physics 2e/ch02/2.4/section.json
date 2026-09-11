@@ -1,0 +1,622 @@
+{
+ "id": "2.4",
+ "module": "m42100",
+ "chapter": "2",
+ "title": "Acceleration",
+ "short": "Acceleration",
+ "lead": "Acceleration is the rate at which velocity changes, and because velocity is a vector, a change in speed, a change in direction, or both is an acceleration. This section defines average and instantaneous acceleration, works through a racehorse leaving the gate and a subway train making its trips to show how an average acceleration is calculated from two velocities and a time, and sorts out what the sign of an acceleration means: a negative acceleration points in the negative direction, and it may or may not be a deceleration.",
+ "objectives": [
+  "Define and distinguish between instantaneous acceleration, average acceleration, and deceleration.",
+  "Calculate acceleration given initial time, initial velocity, final time, and final velocity."
+ ],
+ "summary_html": "<ul><li>Acceleration is the rate at which velocity changes. In symbols, average acceleration $\\kab$ is $\\kab = \\frac{\\kdv}{\\kdt} = \\frac{\\kvf - \\kvo}{\\ktf - \\kto}$.</li><li>The SI unit for acceleration is $\\text{m/s}^2$.</li><li>Acceleration is a vector, and thus has a both a magnitude and direction.</li><li>Acceleration can be caused by either a change in the magnitude or the direction of the velocity.</li><li>Instantaneous acceleration $\\ka$ is the acceleration at a specific instant in time.</li><li>Deceleration is an acceleration with a direction opposite to that of the velocity.</li></ul>",
+ "notes": "The photograph of the airplane landing at St. Maarten at the head of the section and the photograph of the racehorses beside Example 2.1 are left out as decoration, the Moving Man simulation link is left out, and problems 2 and 4 have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2 (Stapp’s rocket sled) and 4 (the ICBM) have no keyed answer and are left out. The Check Your Understanding carries the book’s own answer. The suggested approaches to the five conceptual questions and to the AP item on the cart’s velocity–time graph are AI-written and marked; that AP item is kept as an open answer rather than a graded choice, since the book gives no key for it. The second AP item, the book pushed across a table with position and velocity graphs to draw under either sign convention (fs-id1860126), tests derive-motion-graphs, a 2.8 idea, and is held for 2.8, which takes it with source_section 2.4. Conceptual question 3 of 2.2, whether acceleration is a vector or a scalar, states the definition in the question and stays with 2.2. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "demo-average-acceleration",
+   "kind": "demo",
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "demo-turning",
+   "kind": "demo",
+   "draws": [
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "fig-subway-photo",
+   "kind": "photo",
+   "number": "2.13",
+   "draws": []
+  },
+  {
+   "id": "demo-four-cars",
+   "kind": "demo",
+   "number": "2.14",
+   "originals": [
+    "/media/ch02/Figure_02_04_00b.jpg"
+   ],
+   "original_caption": "(a) This car is speeding up as it moves toward the right. It therefore has positive acceleration in our coordinate system. (b) This car is slowing down as it moves toward the right. Therefore, it has negative acceleration in our coordinate system, because its acceleration is toward the left. The car is also decelerating: the direction of its acceleration is opposite to its direction of motion. (c) This car is moving toward the left, but slowing down over time. Therefore, its acceleration is positive in our coordinate system because it is toward the right. However, the car is decelerating because its acceleration is opposite to its motion. (d) This car is speeding up as it moves toward the left. It has negative acceleration because it is accelerating toward the left. However, because its acceleration is in the same direction as its motion, it is speeding up (not decelerating).",
+   "draws": [
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "demo-racehorse",
+   "kind": "demo",
+   "number": "2.16",
+   "originals": [
+    "/media/ch02/Figure_02_03_01a.jpg"
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "demo-instantaneous",
+   "kind": "demo",
+   "number": "2.17",
+   "originals": [
+    "/media/ch02/Figure_02_03_02.jpg"
+   ],
+   "original_caption": "Graphs of instantaneous acceleration versus time for two different one-dimensional motions. (a) Here acceleration varies only slightly and is always in the same direction, since it is positive. The average over the interval is nearly the same as the acceleration at any given time. (b) Here the acceleration varies greatly, perhaps representing a package on a post office conveyor belt that is accelerated forward and backward as it bumps along. It is necessary to consider small time intervals (such as from 0 to 1.0 s) with constant or nearly constant acceleration in such a situation.",
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "demo-subway-displacement",
+   "kind": "demo",
+   "number": "2.18",
+   "originals": [
+    "/media/ch02/Figure_02_03_03.jpg"
+   ],
+   "original_caption": "One-dimensional motion of a subway train considered in Example 2.2, Example 2.3, Example 2.4, Example 2.5, Example 2.6, and Example 2.7. Here we have chosen the x-axis so that + means to the right and − means to the left for displacements, velocities, and accelerations. (a) The subway train moves to the right from x₀ to x_f. Its displacement Δx is +2.0 km. (b) The train moves to the left from x′₀ to x′_f. Its displacement Δx′ is −1.5 km. (Note that the prime symbol (′) is used simply to distinguish between displacement in the two different situations. The distances of travel and the size of the cars are on different scales to fit everything into the diagram.)",
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "demo-subway-speeding-up",
+   "kind": "demo",
+   "number": "2.19",
+   "originals": [
+    "/media/ch02/Figure_02_03_03c.jpg"
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "demo-subway-slowing-down",
+   "kind": "demo",
+   "number": "2.20",
+   "originals": [
+    "/media/ch02/Figure_02_03_03d.jpg"
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "demo-subway-graphs",
+   "kind": "demo",
+   "number": "2.21",
+   "originals": [
+    "/media/ch02/Figure_02_03_04.jpg"
+   ],
+   "original_caption": "(a) Position of the train over time. Notice that the train’s position changes slowly at the beginning of the journey, then more and more quickly as it picks up speed. Its position then changes more slowly as it slows down at the end of the journey. In the middle of the journey, while the velocity remains constant, the position changes at a constant rate. (b) Velocity of the train over time. The train’s velocity increases as it accelerates at the beginning of the journey. It remains the same in the middle of the journey (where there is no acceleration). It decreases as the train decelerates at the end of the journey. (c) The acceleration of the train over time. The train has positive acceleration as it speeds up at the beginning of the journey. It has no acceleration as it travels at constant velocity in the middle of the journey. Its acceleration is negative as it slows down at the end of the journey.",
+   "draws": [
+    "time",
+    "position",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "demo-subway-velocity",
+   "kind": "demo",
+   "number": "2.22",
+   "originals": [
+    "/media/ch02/Figure_02_03_04a.jpg"
+   ],
+   "draws": [
+    "time",
+    "position",
+    "velocity"
+   ]
+  },
+  {
+   "id": "demo-subway-deceleration",
+   "kind": "demo",
+   "number": "2.23",
+   "originals": [
+    "/media/ch02/Figure_02_03_04b.jpg"
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "average-acceleration",
+   "concept": "acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-acceleration",
+   "concept": "average-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-acceleration",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "average-acceleration",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "vector",
+   "concept": "acceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vector",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "deceleration",
+   "concept": "deceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "deceleration",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "negative-acceleration",
+   "concept": "acceleration-sign",
+   "verb": "introduces"
+  },
+  {
+   "span": "negative-acceleration",
+   "concept": "deceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "negative-acceleration",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-racehorse",
+   "concept": "calculate-average-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-racehorse",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-racehorse",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "instantaneous-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "subway",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-displacement",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-displacement",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-distance",
+   "concept": "distance-traveled",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-distance",
+   "concept": "distance",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-distance",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "subway-acceleration",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "subway-acceleration",
+   "concept": "deceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subway-acceleration",
+   "concept": "instantaneous-acceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-subway-speeding-up",
+   "concept": "calculate-average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-speeding-up",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-speeding-up",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-slowing-down",
+   "concept": "calculate-average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-slowing-down",
+   "concept": "deceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-slowing-down",
+   "concept": "acceleration-sign",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-slowing-down",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-velocity",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-velocity",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-velocity",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-deceleration",
+   "concept": "calculate-average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-deceleration",
+   "concept": "deceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-deceleration",
+   "concept": "acceleration-sign",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-deceleration",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "sign-direction",
+   "concept": "acceleration-sign",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sign-direction",
+   "concept": "deceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sign-direction",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id4121834",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "sign-direction"
+   },
+   "cite": "sign-direction",
+   "prompt": "An airplane lands on a runway traveling east. Describe its acceleration.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "If we take east to be positive, then the airplane has negative acceleration, as it is accelerating toward the west. It is also decelerating: its acceleration is opposite in direction to its velocity."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1454119",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-acceleration",
+   "figure": {
+    "src": "/media/ch02/Figure_Ch2_M4_14.jpg",
+    "alt": "A graph of velocity in meters per second against time in seconds for a cart, with five labeled points. A is at the origin. B is at about two thirds of a second and 8 m/s, reached by a line that rises quickly and rounds off. C is at 1.0 s and 8 m/s, joined to B by a horizontal line. D is on the time axis at a velocity of zero, just past the first tick after 1.0 s, joined to C by a straight falling line. E is at 2.0 s and −4 m/s, joined to D by a straight falling line.",
+    "caption": "Graph showing Velocity vs. Time of a cart."
+   },
+   "prompt": "A cart is constrained to move along a straight line. A varying net force along the direction of motion is exerted on the cart. The cart's velocity $v$ as a function of time $t$ is shown in the graph. The five labeled points divide the graph into four sections. Which of the following correctly ranks the magnitude of the average acceleration of the cart during the four sections of the graph?<ol type=\"a\"><li>$a_{CD} > a_{AB} > a_{BC} > a_{DE}$</li><li>$a_{BC} > a_{AB} > a_{CD} > a_{DE}$</li><li>$a_{AB} > a_{BC} > a_{DE} > a_{CD}$</li><li>$a_{CD} > a_{AB} > a_{DE} > a_{BC}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Average acceleration is the change in velocity divided by the time over which it changes, so for each straight section of the graph it is the rise in velocity divided by the run in time, and its magnitude is the steepness of the section whether it rises or falls. From A to B the velocity rises 8 m/s in about 0.7 s, an average acceleration of roughly $12\\ \\text{m/s}^2$. From B to C the velocity does not change, so the average acceleration is zero. From C to D the velocity falls 8 m/s in about 0.4 s, roughly $20\\ \\text{m/s}^2$ in magnitude. From D to E it falls 4 m/s in about 0.6 s, roughly $7\\ \\text{m/s}^2$. Ranking the magnitudes gives CD greatest, then AB, then DE, and BC last, which is the fourth option."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3526394",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "Is it possible for speed to be constant while acceleration is not zero? Give an example of such a situation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. Acceleration is the rate at which velocity changes, and velocity is a vector, so a change in direction alone is a change in velocity even when the speed does not change. A car rounding a curve at a steady 50 km/h is accelerating, because the direction of its velocity is changing all the way round the curve, and the quicker the turn, the greater the acceleration. The acceleration points in the direction of the change in velocity, toward the inside of the curve."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id4016173",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-acceleration",
+   "prompt": "Is it possible for velocity to be constant while acceleration is not zero? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. Acceleration is defined as the change in velocity divided by the time over which it changes. If the velocity is constant in both magnitude and direction, the change in velocity over any interval is zero, and so the acceleration is zero. A constant speed leaves room for an acceleration, since the direction can still change, but a constant velocity leaves nothing for the acceleration to be."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3514238",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous",
+   "prompt": "Give an example in which velocity is zero yet acceleration is not.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A ball thrown straight up is at rest for an instant at the top of its flight, yet at that instant its velocity is changing, from upward just before to downward just after, so its instantaneous acceleration is not zero. The subway train of Example 2.4 is another example at the moment it starts: its velocity is zero, but it is changing, and the acceleration is the rate at which it changes. The same holds for a pendulum at the end of its swing."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1765962",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sign-direction",
+   "prompt": "If a subway train is moving to the left (has a negative velocity) and then comes to a stop, what is the direction of its acceleration? Is the acceleration positive or negative?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The train's velocity is negative and shrinks to zero, so the change in velocity, the final velocity minus the initial velocity, is zero minus a negative number, which is positive. The acceleration is in the direction of the change in velocity, so it points to the right and is positive, as in Example 2.7, where a train slowing from −20.0 km/h to rest had an average acceleration of $+0.556\\ \\text{m/s}^2$. Because the acceleration is opposite to the velocity, the train is decelerating even though its acceleration is positive."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1780345",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sign-direction",
+   "prompt": "Plus and minus signs are used in one-dimensional motion to indicate direction. What is the sign of an acceleration that reduces the magnitude of a negative velocity? Of a positive velocity?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An acceleration that reduces the magnitude of a negative velocity is positive, since the velocity moves toward zero from below and the change in velocity is positive. An acceleration that reduces the magnitude of a positive velocity is negative, since the velocity moves toward zero from above. In both cases the acceleration has the opposite sign to the velocity, and in both cases the object is decelerating: deceleration is acceleration in the direction opposite to the velocity, whichever sign that turns out to be in the chosen coordinate system."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id4129901",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-racehorse",
+   "prompt": "A cheetah can accelerate from rest to a speed of 30.0 m/s in 7.00 s. What is its acceleration?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.29,
+    "unit": "m/s²",
+    "hint": "The cheetah starts from rest, so the change in velocity is the final speed itself, and the average acceleration is that change divided by the time it takes.",
+    "solution": "$4.29\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2299988",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-racehorse",
+   "prompt": "A commuter backs her car out of her garage with an acceleration of $1.40\\ \\text{m/s}^2$. (a) How long does it take her to reach a speed of 2.00 m/s? (b) If she then brakes to a stop in 0.800 s, what is her deceleration?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.43,
+      "unit": "s",
+      "hint": "Rearrange the definition of average acceleration to give the time: the change in velocity divided by the acceleration."
+     },
+     {
+      "part": "(b)",
+      "value": -2.5,
+      "unit": "m/s²",
+      "hint": "The change in velocity is the final velocity, zero, minus the initial velocity of 2.00 m/s, so it is negative, and dividing by 0.800 s gives an acceleration opposite to the motion."
+     }
+    ],
+    "solution": "(a) $1.43\\ \\text{s}$ (b) $-2.50\\ \\text{m/s}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "acceleration-sign"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "deceleration"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "average-acceleration"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "calculate-average-acceleration",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "instantaneous-acceleration"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "acceleration-sign"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "deceleration"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "acceleration-sign"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "deceleration"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-average-acceleration"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-acceleration"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-average-acceleration"
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-acceleration"
+  },
+  {
+   "exercise": "p3",
+   "concept": "deceleration",
+   "weight": 1
+  }
+ ]
+}

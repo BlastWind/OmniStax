@@ -1,0 +1,630 @@
+{
+ "id": "2.8",
+ "module": "m42103",
+ "chapter": "2",
+ "title": "Graphical Analysis of One-Dimensional Motion",
+ "short": "Graphical analysis",
+ "lead": "A graph of motion can be read for the motion itself. This section shows that the slope of a graph of position against time is the velocity and the slope of a graph of velocity against time is the acceleration, how the tangent to a curve gives its slope at a point, and how a graph of velocity is derived from a graph of position and a graph of acceleration from a graph of velocity.",
+ "objectives": [
+  "Describe a straight-line graph in terms of its slope and <em>y</em>-intercept.",
+  "Determine average velocity or instantaneous velocity from a graph of position vs. time.",
+  "Determine average or instantaneous acceleration from a graph of velocity vs. time.",
+  "Derive a graph of velocity vs. time from a graph of position vs. time.",
+  "Derive a graph of acceleration vs. time from a graph of velocity vs. time."
+ ],
+ "summary_html": "<ul><li>Graphs of motion can be used to analyze motion.</li><li>Graphical solutions yield identical solutions to mathematical methods for deriving motion equations.</li><li>The slope of a graph of displacement $\\kx$ vs. time $\\kt$ is velocity $\\kv$.</li><li>The slope of a graph of velocity $\\kv$ vs. time $\\kt$ graph is acceleration $\\ka$.</li><li>Average velocity, instantaneous velocity, and acceleration can all be obtained by analyzing graphs.</li></ul>",
+ "notes": "Problems 2, 4, 5, 6 and 8 have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercises_lead": "Note: There is always uncertainty in numbers taken from graphs. If your answers differ from expected values, examine them to see if they are within data extraction uncertainties estimated by you.",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6 and 8 have no keyed answer and are left out, and problem 5, which asks for the subway train’s position graph, has an empty key and is left out too. Problem 3’s key is read from the book’s CNXML source, since the converted text dropped it. The Critical Thinking item is untyped in the source and is classed as a problem by the header it sits under; its answer and the Check Your Understanding answer keep the book’s graphs. The AP item on the book pushed across a table is taken from section 2.4, since it tests deriving one motion graph from another. The suggested approaches to the conceptual questions are AI-written and marked. Numeric answers accept 2% tolerance, and the book itself notes that numbers taken from graphs carry some uncertainty.",
+ "figures": [
+  {
+   "id": "demo-line",
+   "kind": "demo",
+   "number": "2.44",
+   "originals": [
+    "/media/ch02/Figure_02_07_01.jpg"
+   ],
+   "original_caption": "A straight-line graph. The equation for a straight line is y = mx + b.",
+   "draws": []
+  },
+  {
+   "id": "demo-jet-xt",
+   "kind": "demo",
+   "number": "2.45",
+   "originals": [
+    "/media/ch02/Figure02_07_02.jpg"
+   ],
+   "original_caption": "Graph of position versus time for a jet-powered car on the Bonneville Salt Flats.",
+   "draws": [
+    "time",
+    "position",
+    "velocity"
+   ]
+  },
+  {
+   "id": "demo-jet-graphs",
+   "kind": "demo",
+   "number": "2.46",
+   "originals": [
+    "/media/ch02/Figure02_07_03.jpg"
+   ],
+   "original_caption": "Graphs of motion of a jet-powered car during the time span when its acceleration is constant. (a) The slope of an x vs. t graph is velocity. This is shown at two points, and the instantaneous velocities obtained are plotted in the next graph. Instantaneous velocity at any point is the slope of the tangent at that point. (b) The slope of the v vs. t graph is constant for this part of the motion, indicating constant acceleration. (c) Acceleration has the constant value of 5.0 m/s² over the time interval plotted.",
+   "draws": [
+    "time",
+    "position",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "fig-jet-car",
+   "kind": "photo",
+   "number": "2.47",
+   "draws": []
+  },
+  {
+   "id": "demo-tangent",
+   "kind": "demo",
+   "number": "2.48",
+   "originals": [
+    "/media/ch02/Figure02_07_03b.jpg"
+   ],
+   "original_caption": "The slope of an x vs. t graph is velocity. This is shown at two points. Instantaneous velocity at any point is the slope of the tangent at that point.",
+   "draws": [
+    "time",
+    "position",
+    "velocity"
+   ]
+  },
+  {
+   "id": "demo-jet-top",
+   "kind": "demo",
+   "number": "2.49",
+   "originals": [
+    "/media/ch02/Figure_02_07_04-4acf.jpg"
+   ],
+   "original_caption": "Graphs of motion of a jet-powered car as it reaches its top velocity. This motion begins where the motion in Figure 2.46 ends. (a) The velocity gradually approaches its top value. The slope of this graph is acceleration. It is plotted in the final graph. (b) Acceleration gradually declines to zero when velocity becomes constant. Notice in each of the three graphs that the acceleration drops down to zero and the velocity levels out. This results in a position-time graph that is almost linear. A close-up of the position time graph would show a slight curvature, as indicated in the velocity graph.",
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "slopes",
+   "concept": "straight-line-graph",
+   "verb": "introduces"
+  },
+  {
+   "span": "x-t",
+   "concept": "x-t-slope-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "x-t",
+   "concept": "straight-line-graph",
+   "verb": "uses"
+  },
+  {
+   "span": "x-t",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-avg",
+   "concept": "x-t-slope-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-avg",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-a",
+   "concept": "tangent-slope",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-a",
+   "concept": "derive-motion-graphs",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-a",
+   "concept": "x-t-slope-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-a",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-tangent",
+   "concept": "tangent-slope",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-tangent",
+   "concept": "x-t-slope-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "v-t",
+   "concept": "v-t-slope-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "v-t",
+   "concept": "straight-line-graph",
+   "verb": "uses"
+  },
+  {
+   "span": "v-t",
+   "concept": "v-from-at",
+   "verb": "uses"
+  },
+  {
+   "span": "not-constant",
+   "concept": "v-t-slope-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "not-constant",
+   "concept": "tangent-slope",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-accel",
+   "concept": "tangent-slope",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-accel",
+   "concept": "v-t-slope-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "reading-graphs",
+   "concept": "interpret-motion-graph",
+   "verb": "introduces"
+  },
+  {
+   "span": "reading-graphs",
+   "concept": "derive-motion-graphs",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1571006",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "reading-graphs"
+   },
+   "cite": "reading-graphs",
+   "figure": {
+    "src": "/media/ch02/Figure_02_07_04a-5e2c.jpg",
+    "alt": "Line graph of velocity versus time. The line has three legs. The first leg is flat. The second leg has a negative slope. The third leg also has a negative slope, but the slope is not as negative as the second leg.",
+    "caption": "Figure 2.50"
+   },
+   "prompt": "A graph of velocity vs. time of a ship coming into a harbor is shown below. (a) Describe the motion of the ship based on the graph. (b) What would a graph of the ship’s acceleration look like?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) The ship moves at constant velocity and then begins to decelerate at a constant rate. At some point, its deceleration rate decreases. It maintains this lower deceleration rate until it stops moving. (b) A graph of acceleration vs. time would show zero acceleration in the first leg, large and constant negative acceleration in the second leg, and constant negative acceleration.<figure class=\"photo\"><img src=\"/media/ch02/Figure_02_07_04b.jpg\" alt=\"A line graph of acceleration versus time. There are three legs of the graph. All three legs are flat and straight. The first leg shows constant acceleration of 0. The second leg shows a constant negative acceleration. The third leg shows a constant negative acceleration that is not as negative as the second leg.\"><figcaption><span class=\"eyebrow\">Figure 2.51</span></figcaption></figure>"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1550042",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "x-t",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_01.jpg",
+    "alt": "Line graph of position versus time with 5 points labeled: a, b, c, d, and e. The slope of the line changes. It begins with a positive slope that decreases over time until around point d, where it is flat. It then has a slightly negative slope."
+   },
+   "prompt": "(a) Explain how you can use the graph of position versus time below to describe the change in velocity over time. Identify (b) the time ($t_a$, $t_b$, $t_c$, $t_d$, or $t_e$) at which the instantaneous velocity is greatest, (c) the time at which it is zero, and (d) the time at which it is negative.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) The velocity at any time is the slope of the graph of position versus time at that time, so the change in velocity can be described by watching how steep the curve is. The curve is steepest at the start and becomes less steep as time goes on, so the velocity is positive and decreasing: the object moves in the positive direction and slows down. Near $t_d$ the curve is level, and after it the curve falls slightly, so the object has stopped and begun to move back. (b) The instantaneous velocity is greatest where the slope is greatest, which is at $t_a$, the earliest of the labeled times. (c) It is zero at $t_d$, where the tangent to the curve is horizontal. (d) It is negative at $t_e$, where the curve is falling."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id4168594",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-a",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_02.jpg",
+    "alt": "Line graph of position over time with 12 points labeled a through l. Line has a negative slope from a to c, where it turns and has a positive slope till point e. It turns again and has a negative slope till point g. The slope then increases again till l, where it flattens out."
+   },
+   "prompt": "(a) Sketch a graph of velocity versus time corresponding to the graph of position versus time given below. (b) Identify the time or times ($t_a$, $t_b$, $t_c$, etc.) at which the instantaneous velocity is greatest. (c) At which times is it zero? (d) At which times is it negative?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) The velocity graph is the graph of the slope of the position graph. Where the position curve falls, from $t_a$ to $t_c$ and from $t_e$ to $t_g$, the velocity is negative; where it rises, from $t_c$ to $t_e$ and from $t_g$ to $t_l$, the velocity is positive; and at each turning point, $t_c$, $t_e$, and $t_g$, the velocity passes through zero. The velocity is largest in magnitude where the curve is steepest, near $t_b$, $t_d$, $t_f$, and $t_j$, and it returns to zero as the curve flattens out at $t_l$. So the sketch is a smooth curve that starts negative, crosses zero at $t_c$, peaks near $t_d$, crosses zero at $t_e$, dips below zero near $t_f$, crosses zero again at $t_g$, rises to a second peak near $t_j$, and comes back to zero at $t_l$. (b) The instantaneous velocity is greatest where the position rises most steeply, in the middle of a climb, near $t_d$ and again near $t_i$ or $t_j$; the two climbs are about equally steep in the figure. (c) It is zero at $t_c$, $t_e$, $t_g$, and $t_l$, where the tangent to the curve is horizontal. (d) It is negative between $t_a$ and $t_c$ and between $t_e$ and $t_g$, where the position is decreasing."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1549493",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "v-t",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_04.jpg",
+    "alt": "Line graph of velocity over time with two points labeled. Point P is at v 1 t 1. Point Q is at v 2 t 2. The line has a positive slope that increases over time."
+   },
+   "prompt": "(a) Explain how you can determine the acceleration over time from a velocity versus time graph such as the one below. (b) Based on the graph, how does acceleration change over time?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) The acceleration at any time is the slope of the graph of velocity versus time at that time. To find it, draw the tangent to the curve at the time of interest, read the velocity and the time at two widely separated points on the tangent, and divide the change in velocity by the change in time, $a = \\Delta v / \\Delta t$. Doing this at every point gives the graph of acceleration versus time. The average acceleration between P and Q is the slope of the straight line joining them, $(v_2 - v_1)/(t_2 - t_1)$. (b) The curve becomes steeper as time goes on, so the acceleration is positive and increasing: the velocity grows faster and faster."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id4131202",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "v-t",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_05.jpg",
+    "alt": "Line graph of velocity over time with 12 points labeled a through l. The line has a positive slope from a at the origin to d where it slopes downward to e, and then back upward to h. It then slopes back down to point l at v equals 0."
+   },
+   "prompt": "(a) Sketch a graph of acceleration versus time corresponding to the graph of velocity versus time given below. (b) Identify the time or times ($t_a$, $t_b$, $t_c$, etc.) at which the acceleration is greatest. (c) At which times is it zero? (d) At which times is it negative?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) The acceleration graph is the graph of the slope of the velocity graph. From $t_a$ to $t_d$ the velocity rises, steeply at first and then more gently, so the acceleration is positive and decreasing, reaching zero at $t_d$. From $t_d$ to $t_e$ the velocity falls slightly, so the acceleration is small and negative, passing through zero again at $t_e$. From $t_e$ to $t_h$ the velocity rises again, so the acceleration is positive, falling to zero at the peak $t_h$. From $t_h$ to $t_l$ the velocity falls ever more steeply, so the acceleration is negative and grows in magnitude to the end. (b) The acceleration is greatest where the velocity rises most steeply, at the very start, near $t_a$; the largest deceleration is at the end, near $t_l$. (c) It is zero at $t_d$, $t_e$, and $t_h$, where the velocity graph is momentarily level. (d) It is negative between $t_d$ and $t_e$ and from $t_h$ to $t_l$, where the velocity is decreasing."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1365827",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_07.jpg",
+    "alt": "Line graph of velocity versus time. Line begins at the origin and has a positive slope until it reaches 3 meters per second at 3 seconds. The slope is then zero until 18 seconds, where it becomes negative until the line reaches a velocity of 0 at 23 seconds."
+   },
+   "prompt": "Consider the velocity vs. time graph of a person in an elevator shown below. Suppose the elevator is initially at rest. It then accelerates for 3 seconds, maintains that velocity for 15 seconds, then decelerates for 5 seconds until it stops. The acceleration for the entire trip is not constant so we cannot use the equations of motion from Motion Equations for Constant Acceleration in One Dimension for the complete trip. (We could, however, use them in the three individual sections where acceleration is a constant.) Sketch graphs of (a) position vs. time and (b) acceleration vs. time for this trip.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) The slope of the position graph is the velocity, so the position graph is found by asking how steep it must be at each time. During the first 3 seconds the velocity grows from zero, so the position curve starts level and bends upward, growing steeper, like the position graph of the accelerating jet car. From 3 s to 18 s the velocity is constant at 3 m/s, so the position rises along a straight line of slope 3 m/s, gaining 45 m over those 15 seconds. During the last 5 seconds the velocity falls to zero, so the position curve bends the other way and levels off, ending flat at the final position, which is 4.5 m plus 45 m plus 7.5 m, or 57 m above the start. (b) The acceleration is the slope of the velocity graph, so it is constant and positive, $1\\ \\text{m/s}^2$, during the first 3 seconds, zero during the 15 seconds of constant velocity, and constant and negative, $-0.6\\ \\text{m/s}^2$, during the last 5 seconds. The graph of acceleration versus time is three level segments, and it jumps between them at 3 s and at 18 s."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2576953",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "prompt": "A cylinder is given a push and then rolls up an inclined plane. If the origin is the starting point, sketch the position, velocity, and acceleration of the cylinder vs. time as it goes up and then down the plane.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the positive direction to be up the plane, with the origin at the starting point. The cylinder starts with a positive velocity, slows as it rolls up, stops for an instant at the top of its path, and then rolls back down faster and faster, passing the origin with a velocity equal in size and opposite in direction to the velocity it started with. The position graph therefore rises from the origin, bending over as it goes, reaches its greatest value at the instant the cylinder stops, and then falls back through zero and continues below it: it is a parabola opening downward, like the graph of the height of a ball thrown upward. The velocity graph is a straight line with a negative slope, starting at the positive initial velocity, crossing zero at the top of the path, and continuing to negative values. The acceleration graph is a level line at a constant negative value, since the acceleration points down the plane throughout and does not change when the velocity reverses."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id4088406",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-a",
+   "prompt": "(a) By taking the slope of the curve in the first graph below, verify that the velocity of the jet car is 115 m/s at $t = 20\\ \\text{s}$. (b) By taking the slope of the curve at any point in the second graph below, verify that the jet car’s acceleration is $5.0\\ \\text{m/s}^2$.<figure class=\"photo\"><img src=\"/media/ch02/Figure_02_08Sol_11-2370.jpg\" alt=\"Line graph of position over time. Line has positive slope that increases over time.\"></figure><figure class=\"photo\"><img src=\"/media/ch02/Figure_02_08Sol_12-313d.jpg\" alt=\"Line graph of velocity versus time. Line is straight with a positive slope.\"></figure>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 115,
+      "unit": "m/s",
+      "hint": "Draw the tangent to the position curve at 20 s, read the positions at two widely separated times on it, and divide the change in position by the change in time."
+     },
+     {
+      "part": "(b)",
+      "value": 5.0,
+      "unit": "m/s²",
+      "hint": "The velocity graph is a straight line, so any two points on it give the same slope, and two far apart give it most accurately."
+     }
+    ],
+    "solution": "(a) $115\\ \\text{m/s}$ (b) $5.0\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1770908",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-a",
+   "figure": {
+    "src": "/media/ch02/Figure_02_08Sol_13-ecd0.jpg",
+    "alt": "Line graph of position versus time. Line is straight with a positive slope."
+   },
+   "prompt": "Using approximate values, calculate the slope of the curve below at $t = 10.0\\ \\text{s}$ and at $t = 30\\ \\text{s}$ find the velocity at these times. (b) Using your answer to part a, find the approximate acceleration at $t = 20\\ \\text{s}$. Assume all values are known to 2 significant figures.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) velocity at 10.0 s",
+      "value": 0.208,
+      "unit": "m/s",
+      "hint": "Draw the tangent at 10.0 s and read the rise and the run between two widely separated points on it; the curve is only slightly bent, so the tangent lies close to the curve itself."
+     },
+     {
+      "part": "(a) velocity at 30 s",
+      "value": 0.238,
+      "unit": "m/s",
+      "hint": "The curve is a little steeper at 30 s than at 10.0 s, so the velocity there is a little larger."
+     },
+     {
+      "part": "(b) acceleration at 20 s",
+      "value": 0.0015,
+      "unit": "m/s²",
+      "hint": "The acceleration at 20 s is approximately the change in velocity between 10.0 s and 30 s divided by the 20 s between them."
+     }
+    ],
+    "solution": "(a) At $t = 10$, $v = 0.208\\ \\text{m/s}$; at $t = 30$, $v = 0.238\\ \\text{m/s}$. (b) $0.0015\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3520768",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "figure": {
+    "src": "/media/ch02/Figure_02_08Sol_20-6a4a.jpg",
+    "alt": "Line graph of velocity versus time. The line has two legs. The first has a constant positive slope. The second is flat, with a slope of 0."
+   },
+   "prompt": "A graph of $v(t)$ is shown for a world-class track sprinter in a 100-m race. (See the graph below.) (a) What is his average velocity for the first 4 s? (b) What is his instantaneous velocity at $t = 5\\ \\text{s}$? (c) What is his average acceleration between 0 and 4 s? (d) What is his time for the race?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6,
+      "unit": "m/s",
+      "hint": "The velocity rises along a straight line from 0 to 12 m/s over the first 4 s, so its average over those seconds is halfway between."
+     },
+     {
+      "part": "(b)",
+      "value": 12,
+      "unit": "m/s",
+      "hint": "After 4 s the graph is level, so the velocity at 5 s can be read straight off it."
+     },
+     {
+      "part": "(c)",
+      "value": 3,
+      "unit": "m/s²",
+      "hint": "The average acceleration is the slope of the velocity line between 0 and 4 s, a rise of 12 m/s over a run of 4 s."
+     },
+     {
+      "part": "(d)",
+      "value": 10,
+      "unit": "s",
+      "hint": "In the first 4 s the sprinter covers 24 m, an average of 6 m/s for 4 s, and after that he covers 12 m every second, so ask how many more seconds bring the total to 100 m."
+     }
+    ],
+    "solution": "(a) 6 m/s (b) 12 m/s (c) $3\\ \\text{m/s}^2$ (d) 10 s"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "exer-12587",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Critical Thinking",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "prompt": "Two cars are side by side on a path where friction is negligible. Car A starts from rest and has a positive, constant acceleration while car B travels at a constant speed. The cars reach the same check point down the road at the same time. (a) Which car is traveling faster at the check point? Briefly explain your reasoning. (b) Based on experimental data, an equation that fits the data is suggested for the speed of car A at the check point, <em>V</em>, which may not be correct: $V = KV_0$, where <em>K</em> is a constant with appropriate units and $V_0$ is the initial velocity of car B. Is this equation consistent with your answer from part a? Explain why or why not. Does this equation make sense? Explain why or why not. (c) Graph the velocity of car A and the velocity of car B vs. distance along the path, starting when the cars are side by side.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) Car A is traveling faster at the checkpoint because it must go past the speed of car B to reach the same distance. (b) i. Yes, the equation is consistent with the answer because the speed of car A is only a constant away from the correct answer. ii. Yes, the equation makes sense because $V = 2V_0$. (c)<figure class=\"photo\"><img src=\"/media/ch02/OSX_CP2e_Figure_02_08Sol_CTQ01c.jpg\" alt=\"The figure shows velocity v graphed as a function of position x. The plot of V sub A is linear, with a positive slope, starting at the origin and ending at a maximum velocity of 2 times v sub 0 at velocity v sub zero. The plot of V sub B is a constant at velocity v sub zero.\"></figure>"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1860126",
+   "source_section": "2.4",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "prompt": "Push a book across a table and observe it slow to a stop. Draw graphs showing the book’s position vs. time and velocity vs. time if the direction of its motion is considered positive. Draw graphs showing the book’s position vs. time and velocity vs. time if the direction of its motion is considered negative.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The position vs. time graph should be represented with a positively sloped line whose slope steadily decreases to zero. The <em>y</em>-intercept of the graph may be any value. The line on the velocity vs. time graph should have a positive <em>y</em>-intercept and a negative slope. Because the final velocity of the book is zero, the line should finish on the <em>x</em>-axis. The position vs. time graph should be represented with a negatively sloped line whose slope steadily decreases to zero. The <em>y</em>-intercept of the graph may be any value. The line on the velocity vs. time graph should have a negative <em>y</em>-intercept and a positive slope. Because the final velocity of the book is zero, the line should finish on the <em>x</em>-axis."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "tangent-slope"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "p1",
+   "concept": "tangent-slope"
+  },
+  {
+   "exercise": "p1",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "p1",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "p3",
+   "concept": "tangent-slope"
+  },
+  {
+   "exercise": "p3",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "v-t-slope-acceleration",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "p7",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "p7",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "vbar-midpoint"
+  },
+  {
+   "exercise": "p9",
+   "concept": "v-squared"
+  },
+  {
+   "exercise": "p9",
+   "concept": "derive-motion-graphs",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "acceleration-sign",
+   "weight": 2
+  }
+ ]
+}

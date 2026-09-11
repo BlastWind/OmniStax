@@ -1,0 +1,736 @@
+{
+ "id": "3.5",
+ "module": "m42045",
+ "chapter": "3",
+ "title": "Addition of Velocities",
+ "short": "Addition of velocities",
+ "lead": "A boat pointed straight across a river is carried downstream, and a plane pointed north in a crosswind drifts to the west, because a velocity is always measured relative to some observer. This section adds velocities as vectors, by components, to find what an object does relative to the shore or the ground, and then asks what two observers moving relative to each other see of the same motion, which is the study called relativity.",
+ "objectives": [
+  "Apply principles of vector addition to determine relative velocity.",
+  "Explain the significance of the observer in the measurement of velocity."
+ ],
+ "summary_html": "<ul><li>Velocities in two dimensions are added using the same analytical vector techniques, which are rewritten as $$\\kvx = \\kv\\cos\\theta$$ $$\\kvy = \\kv\\sin\\theta$$ $$\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$$ $$\\theta = \\tan^{-1}(\\kvy / \\kvx).$$</li><li>Relative velocity is the velocity of an object as observed from a particular reference frame, and it varies dramatically with reference frame.</li><li><em>Relativity</em> is the study of how different observers measure the same phenomenon, particularly when the observers move relative to one another. <em>Classical relativity</em> is limited to situations where speed is less than about 1% of the speed of light (3000 km/s).</li></ul>",
+ "notes": "Problems 2, 4, 6, 8, 10, 12, 14, 16, 17, 18 and 19 have no answer in the book’s key and are left out, and the PhET link to the Motion in 2D simulation is left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6, 8, 10, 12, 14, 16, 17, 18 and 19 have no keyed answer and are left out. Part (b) of problem 3 and part (b) of problem 7 are answered in words, so they are kept in the solution beside the numbers. The Critical Thinking item on two spring-loaded launchers turns on the maximum height of a projectile, which 3.4 introduces, but the book sets it here and 3.4 leaves it here, so it stays with this section’s problems, tagged to 3.4’s concepts, with the book’s graph as its answer to part (c). The suggested approaches to the five conceptual questions are AI-written and marked. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "demo-boat",
+   "kind": "demo",
+   "number": "3.40",
+   "originals": [
+    "/media/ch03/Figure_03_05_01a.jpg",
+    "/media/ch03/Figure_03_05_09a.jpg"
+   ],
+   "original_caption": "A boat trying to head straight across a river will actually move diagonally relative to the shore as shown. Its total velocity (solid arrow) relative to the shore is the sum of its velocity relative to the river plus the velocity of the river relative to the shore.",
+   "draws": [
+    "velocity"
+   ]
+  },
+  {
+   "id": "demo-plane",
+   "kind": "demo",
+   "number": "3.41",
+   "originals": [
+    "/media/ch03/Figure_03_05_02a.jpg"
+   ],
+   "original_caption": "An airplane heading straight north is instead carried to the west and slowed down by wind. The plane does not move relative to the ground in the direction it points; rather, it moves in the direction of its total velocity (solid arrow).",
+   "draws": [
+    "velocity"
+   ]
+  },
+  {
+   "id": "demo-components",
+   "kind": "demo",
+   "number": "3.42",
+   "originals": [
+    "/media/ch03/Figure_03_05_03a.jpg"
+   ],
+   "original_caption": "The velocity, v, of an object traveling at an angle θ to the horizontal axis is the sum of component vectors v_x and v_y.",
+   "draws": [
+    "velocity"
+   ]
+  },
+  {
+   "id": "demo-wind",
+   "kind": "demo",
+   "number": "3.44",
+   "originals": [
+    "/media/ch03/Figure_03_05_04a.jpg"
+   ],
+   "original_caption": "An airplane is known to be heading north at 45.0 m/s, though its velocity relative to the ground is 38.0 m/s at an angle west of north. What is the speed and direction of the wind?",
+   "draws": [
+    "velocity"
+   ]
+  },
+  {
+   "id": "demo-binoculars",
+   "kind": "demo",
+   "number": "3.45",
+   "originals": [
+    "/media/ch03/Figure_03_05_05.jpg"
+   ],
+   "original_caption": "Classical relativity. The same motion as viewed by two different observers. An observer on the moving ship sees the binoculars dropped from the top of its mast fall straight down. An observer on shore sees the binoculars take the curved path, moving forward with the ship. Both observers see the binoculars strike the deck at the base of the mast. The initial horizontal velocity is different relative to the two observers. (The ship is shown moving rather fast to emphasize the effect.)",
+   "draws": [
+    "velocity"
+   ]
+  },
+  {
+   "id": "demo-coin",
+   "kind": "demo",
+   "number": "3.46",
+   "originals": [
+    "/media/ch03/Figure_03_05_06a.jpg"
+   ],
+   "original_caption": "The motion of a coin dropped inside an airplane as viewed by two different observers. (a) An observer in the plane sees the coin fall straight down. (b) An observer on the ground sees the coin move almost horizontally.",
+   "draws": [
+    "velocity"
+   ]
+  },
+  {
+   "id": "fig-galaxies",
+   "kind": "figure",
+   "originals": [
+    "/media/ch03/Figure_03_05_07-12c0.jpg"
+   ],
+   "original_caption": "Five galaxies on a straight line, showing their distances and velocities relative to the Milky Way (MW) Galaxy. The distances are in millions of light years (Mly), where a light year is the distance light travels in one year. The velocities are nearly proportional to the distances. The sizes of the galaxies are greatly exaggerated; an average galaxy is about 0.1 Mly across.",
+   "draws": [
+    "velocity"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "relative-velocity",
+   "concept": "relative-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "relative-velocity",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "relative-velocity",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "velocity-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "analytical-vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-boat",
+   "concept": "velocity-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-boat",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-boat",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-plane",
+   "concept": "velocity-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-plane",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-plane",
+   "concept": "analytical-vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-plane",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "relativity",
+   "concept": "classical-relativity",
+   "verb": "introduces"
+  },
+  {
+   "span": "relativity",
+   "concept": "relative-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "relativity",
+   "concept": "reference-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "relativity",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "classical-relativity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "velocity-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "projectile-vertical-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "free-fall-kinematics",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "physical-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "galaxies",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1125168",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "relativity"
+   },
+   "cite": "relativity",
+   "prompt": "What frame or frames of reference do you instinctively use when driving a car? When flying in a commercial jet airplane?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "When driving, you instinctively use a frame of reference fixed to the road and the ground: the speedometer, the signs and the other cars are all judged relative to the Earth, and the velocity of a car ahead of you is described relative to the road. Inside a commercial jet, the cabin itself becomes your frame of reference, since you and everything around you share the plane’s velocity. You walk the aisle, pour a drink and drop a coin exactly as you would on the ground, and only the view from the window or a bump of turbulence reminds you that, relative to the Earth, the whole frame is moving at several hundred meters per second. Each velocity is relative to the frame you have chosen, and the two frames give very different values for the same motion."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1462868",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "relativity"
+   },
+   "cite": "relativity",
+   "prompt": "A basketball player dribbling down the court usually keeps his eyes fixed on the players around him. He is moving fast. Why doesn’t he need to keep his eyes on the ball?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Relative to the player, the ball has no horizontal velocity: he and the ball share the same forward velocity down the court, so in his frame of reference the ball only bounces straight up and down beside him, returning to his hand each time. This is the same situation as the binoculars dropped from the mast of a moving ship, which fall straight down in the ship’s frame even though an observer on shore sees a curved path. Because the ball’s motion relative to him is so simple and repeatable, he can leave his hand where the ball will come back and keep his eyes on the players around him, whose velocities relative to him are the ones that change."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1635072",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "prompt": "If someone is riding in the back of a pickup truck and throws a softball straight backward, is it possible for the ball to fall straight down as viewed by a person standing at the side of the road? Under what condition would this occur? How would the motion of the ball appear to the person who threw it?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. The velocity of the ball relative to the ground is the sum of its velocity relative to the truck and the velocity of the truck relative to the ground. If the ball is thrown backward with a speed exactly equal to the truck’s speed, the two horizontal velocities cancel, the ball has no horizontal velocity relative to the ground, and the person at the side of the road sees it fall straight down from the point where it was released. To the thrower, the ball moves backward at the speed it was thrown while it falls, so it follows a curved path away from the truck and lands well behind it, at the spot on the road directly below where it left the hand."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1912925",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "prompt": "The hat of a jogger running at constant velocity falls off the back of his head. Draw a sketch showing the path of the hat in the jogger’s frame of reference. Draw its path as viewed by a stationary observer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the jogger’s frame of reference the hat starts with no velocity relative to him, so it falls straight down from the back of his head; the sketch is a vertical line from the head to the ground, ending directly below the point where it came off. The stationary observer sees the hat keep the jogger’s forward velocity as it falls, so the sketch is a curved path, the parabola of a projectile launched horizontally, that carries the hat forward as far as the jogger moves during the fall. Both sketches end at the same place: the hat lands beside the jogger’s feet, not behind him, as the binoculars in Figure 3.45 land at the base of the mast."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1551935",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "prompt": "A clod of dirt falls from the bed of a moving truck. It strikes the ground directly below the end of the truck. What is the direction of its velocity relative to the truck just before it hits? Is this the same as the direction of its velocity relative to ground just before it hits? Explain your answers.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Relative to the truck, the clod had no horizontal velocity to begin with and gains none, since gravity acts only vertically, so just before it hits its velocity relative to the truck is straight down, and that is why it lands directly below the end of the truck. Relative to the ground, the clod keeps the truck’s forward velocity the whole way down while gravity adds a growing downward velocity, so just before it hits its velocity points forward and downward, at an angle below the horizontal given by the ratio of the two components. The directions are not the same, because the two velocities differ by the velocity of the truck relative to the ground, and the observer on the ground sees the clod move forward as it falls while the observer on the truck sees it fall straight down."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1533507",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "Bryan Allen pedaled a human-powered aircraft across the English Channel from the cliffs of Dover to Cap Gris-Nez on June 12, 1979. (a) He flew for 169 min at an average velocity of 3.53 m/s in a direction $45^\\circ$ south of east. What was his total displacement? (b) Allen encountered a headwind averaging 2.00 m/s almost precisely in the opposite direction of his motion relative to the Earth. What was his average velocity relative to the air? (c) What was his total displacement relative to the air mass?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 35.8,
+      "unit": "km",
+      "hint": "Displacement is average velocity multiplied by the elapsed time, with the minutes turned into seconds; the direction is the direction of the velocity."
+     },
+     {
+      "part": "(b)",
+      "value": 5.53,
+      "unit": "m/s",
+      "hint": "A headwind blows opposite to his motion, so relative to the air he moves faster by the wind’s speed, and in one dimension the velocities add like ordinary numbers."
+     },
+     {
+      "part": "(c)",
+      "value": 56.1,
+      "unit": "km",
+      "hint": "Use the velocity relative to the air from part (b) with the same time of flight."
+     }
+    ],
+    "solution": "(a) $35.8\\ \\text{km}$, $45^\\circ$ south of east (b) $5.53\\ \\text{m/s}$, $45^\\circ$ south of east (c) $56.1\\ \\text{km}$, $45^\\circ$ south of east"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1374901",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relative-velocity",
+   "prompt": "Near the end of a marathon race, the first two runners are separated by a distance of 45.0 m. The front runner has a velocity of 3.50 m/s, and the second a velocity of 4.20 m/s. (a) What is the velocity of the second runner relative to the first? (b) If the front runner is 250 m from the finish line, who will win the race, assuming they run at constant velocity? (c) What distance ahead will the winner be when she crosses the finish line?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.7,
+      "unit": "m/s",
+      "hint": "In one dimension, the velocity of one runner relative to the other is the difference of their velocities relative to the ground."
+     },
+     {
+      "part": "(c)",
+      "value": 4.17,
+      "unit": "m",
+      "hint": "Find the time each runner needs to reach the finish line, and use the difference in those times with the loser’s speed to find how far behind she is when the winner crosses."
+     }
+    ],
+    "solution": "(a) 0.70 m/s faster (b) Second runner wins (c) 4.17 m"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1678133",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "A football quarterback is moving straight backward at a speed of 2.00 m/s when he throws a pass to a player 18.0 m straight downfield. The ball is thrown at an angle of $25.0^\\circ$ relative to the ground and is caught at the same height as it is released. What is the initial velocity of the ball <em>relative to the quarterback</em>?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "speed",
+      "value": 17.0,
+      "unit": "m/s",
+      "hint": "First find the ball’s initial speed relative to the ground from the range equation of projectile motion, since the ball is caught at the height it was released; then subtract the quarterback’s velocity from the ball’s velocity, component by component."
+     },
+     {
+      "part": "angle above the ground",
+      "value": 22.1,
+      "unit": "°",
+      "hint": "Relative to the quarterback, who is moving backward, the ball’s horizontal component is larger than it is relative to the ground while its vertical component is unchanged, so the angle is smaller."
+     }
+    ],
+    "solution": "$17.0\\ \\text{m/s}$, $22.1^\\circ$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "eip-741",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "(a) A jet airplane flying from Darwin, Australia, has an air speed of 260 m/s in a direction $5.0^\\circ$ south of west. It is in the jet stream, which is blowing at 35.0 m/s in a direction $15^\\circ$ south of east. What is the velocity of the airplane relative to the Earth? (b) Discuss whether your answers are consistent with your expectations for the effect of the wind on the plane’s path.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) speed",
+      "value": 230,
+      "unit": "m/s",
+      "hint": "The velocity relative to the Earth is the sum of the velocity relative to the air and the velocity of the air; resolve both along east and north, add the components, and recombine."
+     },
+     {
+      "part": "(a) angle south of west",
+      "value": 8.0,
+      "unit": "°",
+      "hint": "The direction comes from the inverse tangent of the ratio of the summed components."
+     }
+    ],
+    "solution": "(a) $230\\ \\text{m/s}$, $8.0^\\circ$ south of west (b) The wind should make the plane travel slower and more to the south, which is what was calculated."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1545174",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "(a) Another airplane is flying in a jet stream that is blowing at 45.0 m/s in a direction $20^\\circ$ south of east (as in the problem above on the jet airplane from Darwin). Its direction of motion relative to the Earth is $45.0^\\circ$ south of west, while its direction of travel relative to the air is $5.00^\\circ$ south of west. What is the airplane’s speed relative to the air mass? (b) What is the airplane’s speed relative to the Earth?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 63.5,
+      "unit": "m/s",
+      "hint": "Two speeds are unknown but both directions are known, so write the east and north components of the sum, one equation each, and solve the pair for the two speeds."
+     },
+     {
+      "part": "(b)",
+      "value": 29.6,
+      "unit": "m/s",
+      "hint": "Once the air speed is known, either component equation gives the speed relative to the Earth."
+     }
+    ],
+    "solution": "(a) 63.5 m/s (b) 29.6 m/s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1924931",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "The velocity of the wind relative to the water is crucial to sailboats. Suppose a sailboat is in an ocean current that has a velocity of 2.20 m/s in a direction $30.0^\\circ$ east of north relative to the Earth. It encounters a wind that has a velocity of 4.50 m/s in a direction of $50.0^\\circ$ south of west relative to the Earth. What is the velocity of the wind relative to the water?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "speed",
+      "value": 6.68,
+      "unit": "m/s",
+      "hint": "The velocity of the wind relative to the water is the velocity of the wind relative to the Earth minus the velocity of the water relative to the Earth; subtract component by component."
+     },
+     {
+      "part": "angle south of west",
+      "value": 53.3,
+      "unit": "°",
+      "hint": "Recombine the components with the inverse tangent, and check the quadrant against the signs of the components."
+     }
+    ],
+    "solution": "$6.68\\ \\text{m/s}$, $53.3^\\circ$ south of west"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1781067",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "figure": {
+    "src": "/media/ch03/Figure_03_05_07-12c0.jpg",
+    "alt": "Five galaxies on a horizontal straight line are shown. The left most galaxy one has distance of three hundred millions of light years and it is moving towards left. The second and third galaxies in the figure have shown no velocities. The velocities of fourth and fifth galaxies are towards right.",
+    "caption": "Five galaxies on a straight line, showing their distances and velocities relative to the Milky Way (MW) Galaxy. The distances are in millions of light years (Mly), where a light year is the distance light travels in one year. The velocities are nearly proportional to the distances. The sizes of the galaxies are greatly exaggerated; an average galaxy is about 0.1 Mly across."
+   },
+   "prompt": "(a) Use the distance and velocity data in the galaxies figure to find the rate of expansion as a function of distance. (b) If you extrapolate back in time, how long ago would all of the galaxies have been at approximately the same position? The two parts of this problem give you some idea of how the Hubble constant for universal expansion and the time back to the Big Bang are determined, respectively.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 14.9,
+      "unit": "km/s per Mly",
+      "hint": "Divide each galaxy’s speed of recession by its distance and average the four ratios."
+     },
+     {
+      "part": "(b)",
+      "value": 20.2,
+      "unit": "billion years",
+      "hint": "A galaxy receding at constant velocity has covered its present distance in a time equal to distance divided by velocity, which is the reciprocal of the rate in part (a); convert light years to kilometers and seconds to years."
+     }
+    ],
+    "solution": "(a) $H_{\\text{average}} = 14.9\\ \\frac{\\text{km/s}}{\\text{Mly}}$ (b) 20.2 billion years"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2040310",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "A ship sailing in the Gulf Stream is heading $25.0^\\circ$ west of north at a speed of 4.00 m/s relative to the water. Its velocity relative to the Earth is $4.80\\ \\text{m/s}$ $5.00^\\circ$ west of north. What is the velocity of the Gulf Stream? (The velocity obtained is typical for the Gulf Stream a few hundred kilometers off the east coast of the United States.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "speed",
+      "value": 1.72,
+      "unit": "m/s",
+      "hint": "As in Example 3.7, the total velocity is known and the current is the velocity that must be added to the ship’s velocity relative to the water to give it; find its components by subtraction."
+     },
+     {
+      "part": "angle north of east",
+      "value": 42.3,
+      "unit": "°",
+      "hint": "Recombine the two components of the current with the inverse tangent."
+     }
+    ],
+    "solution": "$1.72\\ \\text{m/s}$, $42.3^\\circ$ north of east"
+   }
+  },
+  {
+   "id": "ct1",
+   "source_id": "exer-14790",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "tag": "Critical Thinking",
+   "prompt": "Two identical spring-loaded launchers are fixed to the end of a table. Launcher A is inclined $40^\\circ$ above the horizontal and launcher B is inclined $50^\\circ$ above the horizontal. (a) Which of these launchers will fire the ball the greatest vertical height above the launcher before it crashes into the ground? (b) Based on experimental data, an equation that fits the data is suggested for the vertical height above the launcher, <em>y</em>, which may not be correct: $y = K V_0^2 \\sin\\theta$, where <em>K</em> is a constant with appropriate units, $V_0$ is the initial velocity of the launcher, and $\\theta$ is the angle relative to the <em>x</em>-axis of the launcher. Is this equation consistent with your answer from part a? Explain why or why not. Does this equation make sense? Explain why or why not. (c) Graph the magnitude of the velocity vs. vertical height for both launcher A and B.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) Since $\\sin^2 50^\\circ > \\sin^2 40^\\circ$, then B reaches the greatest height. (b) i. Yes, it is consistent because $\\sin 50^\\circ > \\sin 40^\\circ$. ii. No, it does not make sense because <em>y</em> is proportional to $\\sin^2\\theta$. (c) <img src=\"/media/ch03/OSX_CP2e_Figure_03_05Sol_CTQ01c.jpg\" alt=\"The figure shows speed (absolute value of v) graphed as a function of position y. The plot of A is linear, with a negative slope, starting at v sub zero A and ending at speed zero. The plot of B is linear, with the same negative slope as that of A, starting at v sub zero B, which is greater than v sub zero A, and ending at speed zero.\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "reference-frame"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-motion",
+   "weight": 1
+  },
+  {
+   "exercise": "cq5",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p1",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p1",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p5",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p5",
+   "concept": "range",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p7",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "analytical-vector-addition",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p9",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p9",
+   "concept": "analytical-vector-addition",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p11",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p11",
+   "concept": "vector-subtraction",
+   "weight": 1
+  },
+  {
+   "exercise": "p13",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p13",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "p13",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p15",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p15",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "maximum-height"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "projectile-vertical-motion",
+   "weight": 2
+  }
+ ]
+}
