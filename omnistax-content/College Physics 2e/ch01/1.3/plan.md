@@ -58,7 +58,7 @@ to the Exercises document.
 | sig-figs-addition | skill | Significant figures in addition and subtraction | significant-figures | the potatoes; CYU 3(a) |
 
 Placeholders tagged on exercises only: `unit-conversion` (1.2, built) on
-problems 3, 5 and 13, and `average-velocity` (2.3, unbuilt) on problem
+problems 3, 5 and 13, and `average-speed` (2.3, a placeholder until that section was built) on problem
 13. The chapter's variables `A` and `δA` and the equation
 `eq-percent-uncertainty` anchor at `1.3-uncertainty` and
 `1.3-percent-uncertainty`, which are span ids of this page.
@@ -175,7 +175,7 @@ above cover every idea and result the section introduces.
   16 and 18 (fs-id1246911, fs-id3107170, fs-id1001291, fs-id1954504,
   fs-id1673258, fs-id3154651, fs-id1493327, fs-id2560910, fs-id1678580).
 - Weights: `unit-conversion` at 2 on problem 3 and at 1 on problems 5 and
-  13; `average-velocity` at 1 on problem 13. Everything else at the Bloom
+  13; `average-speed` at 1 on problem 13. Everything else at the Bloom
   value.
 - Nothing held for a later page, nothing held from another section, no
   AP items in this chapter. No generated questions: every node has a book

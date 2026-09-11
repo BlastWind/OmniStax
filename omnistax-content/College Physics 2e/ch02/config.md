@@ -1,6 +1,13 @@
 # Config: College Physics 2e, Chapter 2
 
-Proposed by the agent after exploration (2026-09-06). Status: confirmed 2026-09-06. Each line is a setting and its value.
+Proposed by the agent after exploration (2026-09-06). Status: confirmed
+2026-09-06 for 2.1 and 2.5. On 2026-09-11 Chen asked for the rest of the
+chapter (2.2, 2.3, 2.4, 2.6, 2.7 and 2.8) to be built in one job without
+check-ins, as Chapter 1 was: the per-section stops of rule 2 and the plan
+reviews of rule 5 are replaced by a plan file per section, written before
+the section is built and left for review after, and the photographs line
+below is brought up to the root rule 14 as it now stands. Each line is a
+setting and its value.
 
 | Setting | Value |
 |---|---|
@@ -10,7 +17,7 @@ Proposed by the agent after exploration (2026-09-06). Status: confirmed 2026-09-
 | Site | static per-section pages from `tools/build_site.py`; other sections load into tabs on demand |
 | Prose | verbatim; objectives, summary, glossary pulled into views |
 | Sub-concept headers | agent decides per section, reported in the plan |
-| Figures | a demo per idea or result the section introduces; every sketch figure replaced by a demo; photographs dropped; 3D only when spatial (rule 14) |
+| Figures | a demo per idea or result the section introduces; every sketch figure replaced by a demo; a photograph kept when the text points the reader at it or it shows the thing the passage is about, dropped when it is decoration such as a splash image, each listed in the plan with the reason; 3D only when spatial (rule 14) |
 | Demo sliders | whatever is interesting and variable in the idea, not necessarily one equation's variables |
 | Figures that serve exercises | copied over faithfully, no sliders (rule 14) |
 | Extra simulations | agent proposes only those that open a view the required figures do not; user picks from the plan (rule 15) |

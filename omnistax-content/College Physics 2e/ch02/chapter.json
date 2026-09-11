@@ -157,6 +157,165 @@
    "unit": "m/s²",
    "section": "2.5",
    "anchor": "2.5-constant-a"
+  },
+  {
+   "sym": "t0",
+   "type": "time",
+   "meaning": "the time at the beginning of the motion; in this text it is taken to be zero, as when a stopwatch is started",
+   "unit": "s",
+   "section": "2.3"
+  },
+  {
+   "sym": "tf",
+   "type": "time",
+   "meaning": "the time at the end of the motion",
+   "unit": "s",
+   "section": "2.3"
+  },
+  {
+   "sym": "Δt",
+   "type": "time",
+   "meaning": "elapsed time, the difference between the ending time and the beginning time",
+   "unit": "s",
+   "section": "2.3"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "elapsed time; the symbol used when the beginning time is taken to be zero, so that Δt = t_f ≡ t",
+   "unit": "s",
+   "section": "2.3"
+  },
+  {
+   "sym": "v̄",
+   "type": "velocity",
+   "meaning": "average velocity, displacement divided by the time of travel; the bar over the v means average",
+   "unit": "m/s",
+   "section": "2.3"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "instantaneous velocity, the average velocity at a specific instant in time or over an infinitesimally small time interval",
+   "unit": "m/s",
+   "section": "2.3"
+  },
+  {
+   "sym": "ā",
+   "type": "acceleration",
+   "meaning": "average acceleration, the change in velocity divided by the time over which it changes; the bar means average",
+   "unit": "m/s²",
+   "section": "2.4"
+  },
+  {
+   "sym": "a",
+   "type": "acceleration",
+   "meaning": "instantaneous acceleration, the acceleration at a specific instant in time",
+   "unit": "m/s²",
+   "section": "2.4"
+  },
+  {
+   "sym": "Δv",
+   "type": "velocity",
+   "meaning": "change in velocity, the final velocity minus the initial velocity; acceleration is in the direction of Δv",
+   "unit": "m/s",
+   "section": "2.4"
+  },
+  {
+   "sym": "v0",
+   "type": "velocity",
+   "meaning": "initial velocity, with its sign giving its direction in the chosen coordinate system",
+   "unit": "m/s",
+   "section": "2.4"
+  },
+  {
+   "sym": "vf",
+   "type": "velocity",
+   "meaning": "final velocity",
+   "unit": "m/s",
+   "section": "2.4"
+  },
+  {
+   "sym": "g",
+   "type": "acceleration",
+   "meaning": "the magnitude of the acceleration due to gravity, 9.80 m/s² on average at the surface of Earth; its direction is downward, toward the center of Earth",
+   "unit": "m/s²",
+   "section": "2.7"
+  },
+  {
+   "sym": "y",
+   "type": "position",
+   "meaning": "vertical position or displacement, with up taken as positive; y is used for vertical motion and x for horizontal motion",
+   "unit": "m",
+   "section": "2.7"
+  },
+  {
+   "sym": "y0",
+   "type": "position",
+   "meaning": "initial vertical position, usually taken to be zero at the point of release",
+   "unit": "m",
+   "section": "2.7"
+  },
+  {
+   "sym": "v0",
+   "type": "velocity",
+   "meaning": "initial velocity, positive when the object is thrown upward and negative when it is thrown downward",
+   "unit": "m/s",
+   "section": "2.7"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "velocity at the time t, negative when the object is moving downward",
+   "unit": "m/s",
+   "section": "2.7"
+  },
+  {
+   "sym": "a",
+   "type": "acceleration",
+   "meaning": "acceleration in the kinematic equations, which is −g when up is taken as positive and +g when down is",
+   "unit": "m/s²",
+   "section": "2.7"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "time since the object was released or thrown",
+   "unit": "s",
+   "section": "2.7"
+  },
+  {
+   "sym": "m",
+   "meaning": "slope of a straight-line graph, the rise divided by the run",
+   "unit": "",
+   "section": "2.8"
+  },
+  {
+   "sym": "b",
+   "meaning": "y-intercept, the point at which a straight-line graph crosses the vertical axis",
+   "unit": "",
+   "section": "2.8"
+  },
+  {
+   "sym": "x0",
+   "type": "position",
+   "meaning": "position at time zero, the intercept of the graph of position against time",
+   "unit": "m",
+   "section": "2.8"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "velocity, the slope of the graph of position against time; the slope of a tangent gives the instantaneous velocity",
+   "unit": "m/s",
+   "section": "2.8"
+  },
+  {
+   "sym": "a",
+   "type": "acceleration",
+   "meaning": "acceleration, the slope of the graph of velocity against time",
+   "unit": "m/s²",
+   "section": "2.8"
   }
  ],
  "equations": [
@@ -225,6 +384,141 @@
    "condition": "constant acceleration",
    "anchor": "2.5-velocity-squared",
    "important": true
+  },
+  {
+   "id": "eq-dt",
+   "concept": "elapsed-time",
+   "section": "2.3",
+   "latex": "\\Delta t = t_{\\text{f}} - t_0",
+   "ktex": "\\kdt = \\ktf - \\kto",
+   "important": true
+  },
+  {
+   "id": "eq-vbar-def",
+   "concept": "average-velocity",
+   "section": "2.3",
+   "latex": "\\bar v = \\frac{\\Delta x}{\\Delta t} = \\frac{x_{\\text{f}} - x_0}{t_{\\text{f}} - t_0}",
+   "ktex": "\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{\\kxf - \\kxo}{\\ktf - \\kto}",
+   "important": true
+  },
+  {
+   "id": "eq-vbar-t",
+   "section": "2.3",
+   "latex": "\\bar v = \\frac{\\Delta x}{t}",
+   "ktex": "\\kvb = \\frac{\\kdx}{\\kt}",
+   "condition": "the starting time t_0 taken to be zero",
+   "important": false
+  },
+  {
+   "id": "eq-avg-speed",
+   "concept": "average-speed",
+   "section": "2.3",
+   "latex": "\\text{average speed} = \\frac{\\text{distance traveled}}{\\text{elapsed time}}",
+   "important": true
+  },
+  {
+   "id": "eq-abar",
+   "concept": "average-acceleration",
+   "section": "2.4",
+   "latex": "\\bar a = \\frac{\\Delta v}{\\Delta t} = \\frac{v_{\\text{f}} - v_0}{t_{\\text{f}} - t_0}",
+   "ktex": "\\kab = \\frac{\\kdv}{\\kdt} = \\frac{\\kvf - \\kvo}{\\ktf - \\kto}",
+   "important": true
+  },
+  {
+   "id": "eq-unreasonable-v",
+   "section": "2.6",
+   "latex": "v = v_0 + at = 0 + (0.40\\ \\text{m/s}^2)(100\\ \\text{s}) = 40\\ \\text{m/s}",
+   "ktex": "\\kv = \\kvo + \\ka\\kt = 0 + (0.40\\ \\text{m/s}^2)(100\\ \\text{s}) = 40\\ \\text{m/s}",
+   "condition": "the runner who accelerates at 0.40 m/s² for 100 s",
+   "important": false
+  },
+  {
+   "id": "eq-unreasonable-mph",
+   "section": "2.6",
+   "latex": "\\left(\\frac{40\\ \\text{m}}{\\text{s}}\\right)\\left(\\frac{3.28\\ \\text{ft}}{\\text{m}}\\right)\\left(\\frac{1\\ \\text{mi}}{5280\\ \\text{ft}}\\right)\\left(\\frac{60\\ \\text{s}}{\\text{min}}\\right)\\left(\\frac{60\\ \\text{min}}{1\\ \\text{h}}\\right) = 89\\ \\text{mph}",
+   "important": false
+  },
+  {
+   "id": "eq-g",
+   "concept": "acceleration-due-to-gravity",
+   "section": "2.7",
+   "latex": "g = 9.80\\ \\text{m/s}^2",
+   "ktex": "\\kg = 9.80\\ \\text{m/s}^2",
+   "condition": "the average value on Earth; g varies from 9.78 to 9.83 m/s² with latitude, altitude and local geology",
+   "important": true
+  },
+  {
+   "id": "eq-ff-v",
+   "section": "2.7",
+   "latex": "v = v_0 - gt",
+   "ktex": "\\kv = \\kvo - \\kg\\kt",
+   "condition": "free fall with up taken as positive, so that a = −g",
+   "important": true
+  },
+  {
+   "id": "eq-ff-y",
+   "concept": "free-fall-kinematics",
+   "section": "2.7",
+   "latex": "y = y_0 + v_0 t - \\tfrac12 g t^2",
+   "ktex": "\\ky = \\kyo + \\kvo\\kt - \\tfrac{1}{2}\\kg\\kt^2",
+   "condition": "free fall with up taken as positive, so that a = −g",
+   "important": true
+  },
+  {
+   "id": "eq-ff-v2",
+   "section": "2.7",
+   "latex": "v^2 = v_0^2 - 2g(y - y_0)",
+   "ktex": "\\kv^2 = \\kvo^2 - 2\\kg(\\ky - \\kyo)",
+   "condition": "free fall with up taken as positive, so that a = −g",
+   "important": true
+  },
+  {
+   "id": "eq-a-from-fall",
+   "concept": "g-from-fall-time",
+   "section": "2.7",
+   "latex": "a = \\frac{2(y - y_0)}{t^2}",
+   "ktex": "\\ka = \\frac{2(\\ky - \\kyo)}{\\kt^2}",
+   "condition": "an object dropped from rest, v_0 = 0",
+   "important": false
+  },
+  {
+   "id": "eq-line",
+   "concept": "straight-line-graph",
+   "section": "2.8",
+   "latex": "y = mx + b",
+   "important": false
+  },
+  {
+   "id": "eq-x-graph",
+   "section": "2.8",
+   "latex": "x = x_0 + \\bar v t",
+   "ktex": "\\kx = \\kxo + \\kvb\\kt",
+   "condition": "read from a straight-line graph of position against time, whose slope is v̄ and whose intercept is x_0",
+   "important": false
+  },
+  {
+   "id": "eq-slope-x",
+   "concept": "x-t-slope-velocity",
+   "section": "2.8",
+   "latex": "\\text{slope} = \\frac{\\Delta x}{\\Delta t} = v",
+   "ktex": "\\text{slope} = \\frac{\\kdx}{\\kdt} = \\kv",
+   "important": true
+  },
+  {
+   "id": "eq-slope-v",
+   "concept": "v-t-slope-acceleration",
+   "section": "2.8",
+   "latex": "\\text{slope} = \\frac{\\Delta v}{\\Delta t} = a",
+   "ktex": "\\text{slope} = \\frac{\\kdv}{\\kdt} = \\ka",
+   "important": true
+  },
+  {
+   "id": "eq-v-graph",
+   "section": "2.8",
+   "latex": "v = v_0 + at",
+   "ktex": "\\kv = \\kvo + \\ka\\kt",
+   "condition": "read from a straight-line graph of velocity against time, whose slope is a and whose intercept is v_0",
+   "important": false
   }
  ],
  "glossary": [
@@ -252,6 +546,101 @@
    "section": "2.1",
    "term": "distance traveled",
    "definition": "the total length of the path traveled between two positions"
+  },
+  {
+   "section": "2.2",
+   "term": "scalar",
+   "definition": "a quantity that is described by magnitude, but not direction"
+  },
+  {
+   "section": "2.2",
+   "term": "vector",
+   "definition": "a quantity that is described by both magnitude and direction"
+  },
+  {
+   "section": "2.3",
+   "term": "average speed",
+   "definition": "distance traveled divided by time during which motion occurs"
+  },
+  {
+   "section": "2.3",
+   "term": "average velocity",
+   "definition": "displacement divided by time over which displacement occurs"
+  },
+  {
+   "section": "2.3",
+   "term": "instantaneous velocity",
+   "definition": "velocity at a specific instant, or the average velocity over an infinitesimal time interval"
+  },
+  {
+   "section": "2.3",
+   "term": "instantaneous speed",
+   "definition": "magnitude of the instantaneous velocity"
+  },
+  {
+   "section": "2.3",
+   "term": "time",
+   "definition": "change, or the interval over which change occurs"
+  },
+  {
+   "section": "2.3",
+   "term": "model",
+   "definition": "simplified description that contains only those elements necessary to describe the physics of a physical situation"
+  },
+  {
+   "section": "2.3",
+   "term": "elapsed time",
+   "definition": "the difference between the ending time and beginning time"
+  },
+  {
+   "section": "2.4",
+   "term": "acceleration",
+   "definition": "the rate of change in velocity; the change in velocity over time"
+  },
+  {
+   "section": "2.4",
+   "term": "average acceleration",
+   "definition": "the change in velocity divided by the time over which it changes"
+  },
+  {
+   "section": "2.4",
+   "term": "instantaneous acceleration",
+   "definition": "acceleration at a specific point in time"
+  },
+  {
+   "section": "2.4",
+   "term": "deceleration",
+   "definition": "acceleration in the direction opposite to velocity; acceleration that results in a decrease in velocity"
+  },
+  {
+   "section": "2.7",
+   "term": "free-fall",
+   "definition": "the state of movement that results from gravitational force only"
+  },
+  {
+   "section": "2.7",
+   "term": "acceleration due to gravity",
+   "definition": "acceleration of an object as a result of gravity"
+  },
+  {
+   "section": "2.8",
+   "term": "independent variable",
+   "definition": "the variable that the dependent variable is measured with respect to; usually plotted along the x-axis"
+  },
+  {
+   "section": "2.8",
+   "term": "dependent variable",
+   "definition": "the variable that is being measured; usually plotted along the y-axis"
+  },
+  {
+   "section": "2.8",
+   "term": "slope",
+   "definition": "the difference in y-value (the rise) divided by the difference in x-value (the run) of two points on a straight line"
+  },
+  {
+   "section": "2.8",
+   "term": "y-intercept",
+   "definition": "the y-value when x = 0, or when the graph crosses the y-axis"
   }
  ]
 }

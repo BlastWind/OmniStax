@@ -46,10 +46,13 @@ Sections are never folded, even the thin ones (2.2 is one sign
 convention; 2.6 is a strategy box).
 
 Chapters built so far: 1 (Introduction: The Nature of Science and
-Physics, `ch01`), 2 (Kinematics, `ch02`) and 16 (Oscillatory Motion and
-Waves, `ch16`). A chapter folder is `ch` followed by the two-digit
-chapter number. The whole table of contents is in `toc.md`. The Preface
-(m42955) is publisher front matter and is not built.
+Physics, `ch01`), 2 (Kinematics, `ch02`), 3 (Two-Dimensional Kinematics,
+`ch03`) and 16 (Oscillatory Motion and Waves, `ch16`). Chapter 2 is being
+completed in one pass on 2026-09-11, its six remaining sections built
+beside the two that already stood. A chapter folder is `ch` followed by
+the two-digit chapter number. The whole table of contents is in
+`toc.md`. The Preface (m42955) is publisher front matter and is not
+built.
 
 ## Apparatus
 

@@ -67,7 +67,7 @@ Exercises document.
 | conversion-factor | idea | conversion | glossary; the 80 m step; Example 1.1; problems 1, 3, 5, 7, 9 |
 | unit-conversion | skill, eq-unit-conversion | conversion | Example 1.1; problems 1, 3, 5, 7, 9 |
 
-Example 1.1 also leans on the placeholder `average-velocity` (2.3): the
+Example 1.1 also leans on `average-speed` (2.3, a placeholder until that section was built): the
 book says to take average speed as given for now.
 
 ## Figures
@@ -203,7 +203,7 @@ numbers it:
   eq-unit-conversion (the 80 m step, not important). Both already in
   `chapter.json`.
 - Definitions: variables `c` and `t`; the twelve glossary terms.
-- Concept map: the eight nodes above, with `average-velocity` (2.3)
+- Concept map: the eight nodes above, with `average-speed` (2.3)
   tagged on Example 1.1 only.
 
 ## Colour
