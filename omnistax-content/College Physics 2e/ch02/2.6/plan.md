@@ -141,3 +141,6 @@ written. No new hue, no new macro.
 
 - `eq-unreasonable-v` → `2.6-unreasonable`
 - `eq-unreasonable-mph` → `2.6-unreasonable`
+
+The chapter pass wrote every anchor above into `chapter.json`, each one
+checked against the ids of this section's `text.html`.

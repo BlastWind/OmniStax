@@ -143,8 +143,9 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    seconds, with the scrubber. Readout: the velocity-squared equation
    with the numbers and its negative root; small line: v₀² is the same
    either way, so at any height below the start the speeds agree, and
-   the rock thrown up passes y = 0 again at −v₀. Draws time, position,
-   velocity, acceleration.
+   the rock thrown up passes y = 0 again at −v₀. Draws position, velocity
+   and acceleration; the times in its headline are written in ink, so the
+   chapter pass took time out of its `draws` row.
 4. `demo-drop` · replaces Figure 2.42 (Figure 2.43, the strategy sketch,
    is its second original) · g-from-fall-time, free-fall-kinematics · a
    metal ball is released from rest and falls the measured distance in
@@ -275,3 +276,6 @@ length of the scene and stays in ink. No new hue, no new macro; `\ky`,
 - equation `eq-ff-y` → anchor `2.7-vertical-motion`
 - equation `eq-ff-v2` → anchor `2.7-vertical-motion`
 - equation `eq-a-from-fall` → anchor `2.7-ex-find-g`
+
+The chapter pass wrote every anchor above into `chapter.json`, each one
+checked against the ids of this section's `text.html`.

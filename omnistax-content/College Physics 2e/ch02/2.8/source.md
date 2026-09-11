@@ -265,7 +265,9 @@ Using approximate values, calculate the slope of the curve in [ref:import-auto-i
 
 SOLUTION:
 
-$$ t=10 $$  {eq:eip-id2453534}
+(a)At $t=10$,  
+      $v=0.208\;\text{m/s}$; at $t=30$,  
+      $v=0.238\;\text{m/s}$. (b) 0.0015 m/s^2  {eq:eip-id2453534}
 
 :::
 

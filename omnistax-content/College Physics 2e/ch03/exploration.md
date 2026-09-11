@@ -142,3 +142,13 @@ other order.
   no new hue, no new figlib primitive. The sprites the demos want (a ball,
   a boat, a person walking) are drawn in the section modules.
 - Nothing else: the shell, the views and the validator are unchanged.
+
+## Left for a later pass
+
+- A simulation for 3.3 that holds a vector fixed while the axes rotate
+  under it, so that the components change and the magnitude does not,
+  which is what problem 9(b) of 3.3 asks and what 3.2's `resolving-vector`
+  is about. The 3.3 plan judged it a genuine view the text does not give
+  and left it, since it belongs to two sections at once; it is the one
+  extra simulation of the chapter worth building when the chapter is next
+  touched.

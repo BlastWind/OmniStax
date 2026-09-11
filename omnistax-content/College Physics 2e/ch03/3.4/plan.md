@@ -209,10 +209,18 @@ None built.
 - 1 AP item taken from 3.2 with `source_section: "3.2"`: `ap1`
   (fs-id2061889, the ball launched at 60º with its table of heights,
   keyed with the book's description of the graphs), Analyze, an open
-  answer; the table travels with the item as a `table.data`. 3.2's own
-  first AP item (fs-id1398128, the vertical launch) is unkeyed and left
-  out there. The section's own AP item (fs-id1316152, the horizontal
-  launch from 2.00 m) is unkeyed and left out.
+  answer; the table travels with the item as a `table.data`. The chapter
+  pass added two more, both unkeyed and both kept as open items with an
+  AI-marked suggested approach, as rule 13 and the 2.5 precedent do for
+  an AP item without a key: `ap2` (fs-id1398128, 3.2's first item, the
+  vertical launch with the same table, with its four options as the book
+  prints them; Analyze, tagged `projectile-vertical-motion` at full value
+  and `free-fall-highest-point` and `derive-motion-graphs` at weight 1)
+  taken with `source_section: "3.2"`, and `ap3` (fs-id1316152, the
+  section's own item, the horizontal launch at 5.00 m/s from 2.00 m with
+  the two velocity graphs to draw; Apply, tagged
+  `projectile-horizontal-motion` and `projectile-vertical-motion` at full
+  value and `derive-motion-graphs` at weight 1).
 - 13 problems keyed and kept: `p1` (x and y after 3.00 s, multi), `p3`
   (the ball off the 60.0 m building, multi with the impact speed and
   angle), `p5` (the archer's angle, number for (a) with (b) in the
@@ -230,9 +238,13 @@ None built.
   (fs-id2177814), 18 (fs-id1403577), 20 (fs-id1437858), 22
   (fs-id1670278), 24 (fs-id2046931), the Unreasonable Results item
   (fs-id1794949) and the Construct Your Own Problem item (fs-id1815382).
-- Held for a later page: nothing. The Critical Thinking item of 3.5 on
-  the two launchers turns on the maximum height, but 3.5 is being built in
-  this job and keeps it with its own problems.
+- Taken from 3.5 in the chapter pass: the Critical Thinking item on the
+  two launchers (`ct1`, exer-14790) turns on the maximum height, which
+  this section introduces, so rule 12 places it here with
+  `source_section: "3.5"`, citing `max-height`, tagged `maximum-height` at
+  full value and `projectile-vertical-motion` at weight 2, with the book's
+  graph of speed against height inside its open answer; the image stays
+  in `media/ch03/`. (The section first left it with 3.5.)
 - No generated questions: every node has a book exercise.
 - Weights: `p7` and `p19` turn on the range equation alone and touch
   nothing else; `p11` gives `range` its full value and `projectile-analysis`
@@ -304,3 +316,15 @@ the tower height stay in ink.
   named $\theta_0$ in Example 3.4; anchoring it at `range`, where the
   range equation makes it the section's own symbol, is a judgement call
   and `max-height` would do as well.
+
+Decided in the chapter pass (2026-09-11): the thirty-four anchors above
+are written into `chapter.json`, `θ_0` at `range` as proposed. Three
+`draws` lists are trimmed to what the figure actually colours:
+`demo-displacement` draws position and velocity (its headline states the
+time in ink and nothing in it colours time), `demo-range` and `demo-orbit`
+draw position, velocity and acceleration (the `\kg` of their readouts);
+the page still binds time through the components, fireworks and rock
+demos, so nothing on the page changes colour. The range demo's caption
+names Figure 3.38 rather than "the book's figure" (rule 17). The two
+unkeyed AP items and the Critical Thinking item of 3.5 are kept, as the
+exercises list now says.

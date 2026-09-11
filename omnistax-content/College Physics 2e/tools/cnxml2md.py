@@ -145,9 +145,14 @@ def block(e, depth):
             if tag(k) != "title":
                 lines.append(block(k, depth + 1))
     elif t == "equation":
-        m = e.find(M + "math")
         eid = e.get("id", "")
-        lines.append(f"\n$$ {latex(m) if m is not None else ''} $$  {{eq:{eid}}}\n")
+        maths = e.findall(M + "math")
+        # Some solutions put prose and several maths inside one <equation>; that is a line of text, not a display equation.
+        mixed = (e.text or "").strip() or len(maths) != 1 or any(k.tag != M + "math" or (k.tail or "").strip() for k in e)
+        if mixed:
+            lines.append(f"\n{inline(e).strip()}  {{eq:{eid}}}\n")
+        else:
+            lines.append(f"\n$$ {latex(maths[0])} $$  {{eq:{eid}}}\n")
     elif t == "figure":
         title = e.find(C + "title")
         media = e.find(C + "media")

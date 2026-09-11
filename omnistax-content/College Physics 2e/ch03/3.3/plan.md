@@ -61,13 +61,16 @@ span ids as the chapter's anchors expect them:
    Figure 3.33 is drawn beside the passage that refers to it, before the
    closing paragraph, where the book prints it after.
 7. `paths` **Paths for the problems**: the map of the city that problems 1
-   and 2 refer to, a figure that serves exercises.
+   and 2 refer to, a figure that serves exercises. (Removed in the chapter
+   pass: the map is 3.2's figure, built once there, and problem 1's card
+   carries the book's image, so the page does not keep the figure twice.)
 
 The cross-references to Kinematics in Two Dimensions: An Introduction,
 Vector Addition and Subtraction: Graphical Methods and Projectile Motion
-stay plain text. "Figure 3.31" and "Figure 3.32" in the example stay the
-book's wording and are not linked, since the one demo that stands for the
-run carries the number 3.28.
+stay plain text. "Figure 3.29", "Figure 3.30", "Figure 3.31" and "Figure
+3.32" in the steps and the example stay the book's wording and are not
+linked, since the one demo that stands for the run carries the number
+3.28.
 
 Learning objectives, section summary and glossary come out of the running
 text into the views. The conceptual questions and the problems go to the
@@ -165,7 +168,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    exercises, copied over as it is: the book's image
    `Figure_03_02_20a-b5e9.jpg`, shared with 3.2's problems 1 and 2, with
    the book's caption · no sliders, no motion · kind `figure`, drawn as
-   a photograph is · draws nothing.
+   a photograph is · draws nothing. Removed in the chapter pass: the same
+   book figure is not kept twice, 3.2 builds it as its faithful copy, and
+   problem 1's card here carries the image, so the reader of the problem
+   still sees the map; `p1` cites `adding` instead of the removed span.
 
 Photographs: none in the section.
 
@@ -286,3 +292,9 @@ rather than per type (rule 7). No new hue, no new macro.
 - concepts components-from-magnitude-angle: the evidence names "problems 3, 6 and 9"; problem 6 is unkeyed and left out, so "problems 3 and 9" is what the page carries.
 - concepts analytical-vector-addition: the evidence names "problems 1, 5, 7, 9 and 11"; problem 4 is kept as well (the key under problem 5 answers it), so "problems 1, 4, 5, 7, 9 and 11".
 - exploration: an extra simulation worth a later pass, a vector held fixed while the axes rotate under it, for 3.2's `resolving-vector` and problem 9(b) here.
+
+Decided in the chapter pass (2026-09-11): the twenty-two anchors above are
+written into `chapter.json`, and the two evidence lines are changed in
+`book.json` as asked, so that each names the problems the page carries.
+The paths figure is not kept on this page, as the figure list now says.
+The rotating-axes simulation stays a note for a later pass.

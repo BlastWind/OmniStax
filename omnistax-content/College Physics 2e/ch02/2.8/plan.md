@@ -1,7 +1,10 @@
 # Plan: 2.8 Graphical Analysis of One-Dimensional Motion (m42103)
 
-Source: `source.md` (converted from CNXML); the answer key of problem 3
-read from the CNXML itself, since the converter dropped its MathML.
+Source: `source.md` (converted from CNXML). The answer key of problem 3
+was first read from the CNXML itself, since the converter kept only the
+first piece of MathML in an `<equation>` that mixes prose with several
+pieces; the converter now writes such an equation as a line of text,
+and `source.md` was converted again with it in the chapter pass.
 Status: built 2026-09-11 without a review stop, on Chen's instruction to
 finish Chapters 2 and 3 in one job.
 
@@ -275,3 +278,6 @@ chapter config says for untyped quantities. No new hue, no new macro.
 - equation `eq-slope-x` → anchor `2.8-x-t`
 - equation `eq-slope-v` → anchor `2.8-v-t`
 - equation `eq-v-graph` → anchor `2.8-v-t`
+
+The chapter pass wrote every anchor above into `chapter.json`, each one
+checked against the ids of this section's `text.html`.

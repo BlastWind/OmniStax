@@ -226,13 +226,14 @@ Extra simulations (rule 15): thought about and judged:
   (fs-id2080170, the athlete crossing the river), 16 (fs-id1769191, the
   hockey player), 17 and 18 (fs-id1839158, fs-id1915156, Unreasonable
   Results), 19 (fs-id1913487, Construct Your Own Problem).
-- 1 Critical Thinking item kept, `ct1` (exer-14790, two spring-loaded
+- 1 Critical Thinking item, `ct1` (exer-14790, two spring-loaded
   launchers at 40° and 50°), keyed with words and the book's graph of
   speed against height, which is kept as an image inside the open
   answer. It tests the maximum height of a projectile, which 3.4
-  introduces, so under rule 12 it would go to that page; but 3.4's plan
-  leaves it here, so it stays with this section's problems, tagged to
-  3.4's `maximum-height` and `projectile-vertical-motion`, and the
+  introduces, so under rule 12 it goes to that page: the section first
+  kept it here because 3.4's plan left it, and the chapter pass moved it
+  to 3.4 with `source_section: "3.5"`, where it is tagged to
+  `maximum-height` and `projectile-vertical-motion`; both sections'
   `exercise_notes` say so.
 - No generated questions: every node has a book exercise.
 - Weights: `p5` turns on the projectile range (3.4) to get the ball's
@@ -281,3 +282,11 @@ ink on this page since it binds neither acceleration nor position.
   `eq-vel-y → 3.5-velocity-addition`, `eq-vel-mag → 3.5-velocity-addition`,
   `eq-vel-direction → 3.5-velocity-addition`,
   `eq-wind-components → 3.5-ex-plane`.
+
+Decided in the chapter pass (2026-09-11): the twenty anchors above are
+written into `chapter.json`. The Critical Thinking item is moved to 3.4,
+as the exercises list now says. Example 3.6 refers to Figure 3.43, which
+`demo-boat` carries as a further original under the number 3.40, so that
+reference is not linked; this is accepted, since the example adds no
+quantity the section figure does not show. The lead of the galaxies block
+is a full sentence now, and the caption spells center as the book does.

@@ -315,3 +315,6 @@ ink.
   `2.4-average-acceleration`
 - variable `a` (section 2.4) → anchor `2.4-instantaneous`
 - equation `eq-abar` → anchor `2.4-average-acceleration`
+
+The chapter pass wrote every anchor above into `chapter.json`, each one
+checked against the ids of this section's `text.html`.

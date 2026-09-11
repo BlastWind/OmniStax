@@ -45,12 +45,16 @@ physics and are dropped.
 
 - 2.5 is done (`ch02/2.5`). Its three external prerequisites point at 2.1,
   2.3 and 2.4, which are not built yet; the nodes are placeholders that
-  open the OpenStax page.
+  open the OpenStax page. (2.1 was built on 2026-09-06 and 2.3, 2.4 and
+  2.7 on 2026-09-11, so `displacement`, `average-velocity`,
+  `instantaneous-velocity`, `acceleration` and `acceleration-due-to-gravity`
+  are built nodes now and nothing in 2.5 waits on a placeholder.)
 - 2.2 and 2.6 are thin. 2.2 is one idea (sign convention on a coordinate
   axis) with no equations or problems. 2.6 is a six-step strategy box plus
   "unreasonable results" with two conceptual questions and no problems.
   Each is a candidate to fold into a neighbour (2.2 into 2.1, 2.6 into 2.5
-  or 2.7) rather than get its own page.
+  or 2.7) rather than get its own page. Rule 11 settled it on 2026-09-11:
+  sections are never folded, and both are pages of their own.
 - 2.4 has 7 examples and 13 figures, the heaviest narrative in the chapter.
   Its concepts (acceleration, instantaneous vs average, sign of a and v)
   are what 2.5 assumed.

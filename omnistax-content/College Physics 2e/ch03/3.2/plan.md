@@ -230,12 +230,14 @@ view the eight figures do not give.
   (fs-id1165298704732, the magnitudes of $\mathbf{v}_A$ and
   $\mathbf{v}_B$), 12 (fs-id1165296227129, components along rotated
   axes).
-- AP items: the first (fs-id1398128, the ball launched vertically) is
-  unkeyed and left out; the second (fs-id2061889, the 60° launch with the
-  table of heights) is keyed but tests a projectile's vertical and
-  horizontal velocity, which 3.4 introduces, so it is held for 3.4, which
-  takes it with `source_section: "3.2"`. Both are named in
-  `exercise_notes`.
+- AP items: both test a projectile's vertical and horizontal velocity,
+  which 3.4 introduces, so both are held for 3.4, which takes them with
+  `source_section: "3.2"`: the first (fs-id1398128, the ball launched
+  vertically with the table of heights) is unkeyed and is kept there as
+  an open item with an AI-marked approach, as rule 13 and the 2.5
+  precedent do for an AP item without a key; the second (fs-id2061889,
+  the 60° launch with the same table) is keyed. Both are named in
+  `exercise_notes`. (The section first left the unkeyed one out.)
 - Nothing taken from another section; 3.3's problems 1 and 2 use the map
   of paths but test the analytical method and stay there.
 - No generated questions. `vector-addition-commutative` has no keyed
@@ -286,3 +288,12 @@ hue, no new macro.
 - `variables[D]` (3.2): the unit is `m` but the book's walk in the city
   measures $\kD$ in blocks (10.3 blocks); `blocks (or m)` would say what
   the section says. Not changed by this section.
+
+Decided in the chapter pass (2026-09-11): the eight anchors above are
+written into `chapter.json`. The unit of `D` is `blocks`, since the row's
+meaning is the walk in the city and the text measures that displacement in
+blocks; a displacement in meters has the rows `A_mag`, `B`, `C` and `R`.
+Problem 9's prompt now names Figure 3.23, the figure the book's cross
+reference points at (the sum $\mathbf{A} + \mathbf{B} = \mathbf{R}'$ of
+Example 3.2), where the section had written 3.19. The unkeyed first AP
+item is held for 3.4 with the second, as the exercises list now says.

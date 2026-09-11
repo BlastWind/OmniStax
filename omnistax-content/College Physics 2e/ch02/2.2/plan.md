@@ -118,11 +118,14 @@ velocity and acceleration are ideas of 2.3 and 2.4. None built.
 - 1 Check Your Understanding, open, inline after `scalars`, with the
   book's answer: `cyu1` (is speed a scalar, citing `scalars`).
 - 1 AP test prep item, `ap1` (how to set up the coordinate system for a
-  dropped feather), a choice with four options. The CNXML carries no
-  solution for it, so the correct option and the reasoning are AI-written
-  and marked. It names the feather's velocity and acceleration, which are
-  ideas of 2.3 and 2.4, but the choice it asks for is the coordinate
-  system, which this section teaches, so it stays here.
+  dropped feather). The book prints four options and the CNXML carries no
+  solution, so the item is kept as an open answer whose suggested approach
+  is AI-written and marked, with the options set out in the prompt as the
+  book prints them; a graded choice would grade an AI guess, which rule
+  13 does not allow, and 2.5's marble item set the precedent. It names
+  the feather's velocity and acceleration, which are ideas of 2.3 and
+  2.4, but the choice it asks for is the coordinate system, which this
+  section teaches, so it stays here.
 - 4 conceptual questions, open, with AI-written suggested approaches:
   `cq1` (a speed of −10 m/s), `cq2` (the speed of that bird, which the
   book asks by a link to the previous question), `cq3` (is acceleration a
@@ -154,4 +157,5 @@ temperature are untyped and in ink. No new hue, no new macro.
 
 - Nothing: the section has no variable or equation rows, so there are no
   anchors to write, and the concept, glossary and symbol rows it needs
-  are all there.
+  are all there. The chapter pass changed nothing at chapter level for
+  this section and rewrote the AP item as the line above says.

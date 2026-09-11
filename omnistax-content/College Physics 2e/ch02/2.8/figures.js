@@ -76,7 +76,7 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     line(ctx, X(0), Y(pos(0)), X(8), Y(pos(8)), C('position'), 5);
     /* the intercept, hollow, and the two chosen points, filled */
     dot(ctx, X(0), Y(x0.v), C('position'), false, 10);
-    text(ctx, 'x₀ = ' + fmt(x0.v, 0) + ' m', X(0) - 16, Y(x0.v) - 30, C('position'), { weight: 600, size: 22, align: 'left' });
+    text(ctx, 'x₀ = ' + fmt(x0.v, 0) + ' m', X(0) - 16, Y(x0.v) - 58, C('position'), { weight: 600, size: 22, align: 'left' });   /* high enough to clear a chosen point near the axis */
     if (Math.abs(dt) > 0.05) {
       triangle(ctx, X, Y, [t1.v, xa], [t2.v, xb], 'Δt = ' + neg(fmt(dt, 2)) + ' s', 'Δx = ' + neg(fmt(dx, 0)) + ' m', C('time'), C('position'), box);
       drop(ctx, X(t1.v), Y(xa), X(t1.v), box.b, C('time')); drop(ctx, X(t2.v), Y(xb), X(t2.v), box.b, C('time'));
@@ -139,7 +139,7 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     dot(ctx, g2.X(0), g2.Y(v0.v), C('velocity'), false, 9);
     dot(ctx, g2.X(tau), g2.Y(vt), C('velocity'), true, 9);
     text(ctx, 'v₀ = ' + fmt(v0.v, 0) + ' m/s', g2.X(0) + 18, g2.Y(v0.v) + 28, C('velocity'), { weight: 600, size: 20 });
-    if (tau > 8) text(ctx, 'slope = a', g2.X(tau / 2), g2.Y(vel(tau / 2)) + 34, C('acceleration'), { weight: 600, size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (tau > 8) text(ctx, 'slope = a', g2.X(tau / 2), g2.Y(vel(tau / 2)) - 30, C('acceleration'), { weight: 600, size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });   /* above the line, clear of the v₀ label under it */
     /* (c) the acceleration, level, drawn as far as the velocity line has been plotted */
     if (tau > 0) line(ctx, g3.X(0), g3.Y(a.v), g3.X(tau), g3.Y(a.v), C('acceleration'), 5);
     dot(ctx, g3.X(tau), g3.Y(a.v), C('acceleration'), true, 9);

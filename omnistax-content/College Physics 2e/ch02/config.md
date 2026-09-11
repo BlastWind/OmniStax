@@ -6,7 +6,8 @@ chapter (2.2, 2.3, 2.4, 2.6, 2.7 and 2.8) to be built in one job without
 check-ins, as Chapter 1 was: the per-section stops of rule 2 and the plan
 reviews of rule 5 are replaced by a plan file per section, written before
 the section is built and left for review after, and the photographs line
-below is brought up to the root rule 14 as it now stands. Each line is a
+below is brought up to the root rule 14 as it now stands. The chapter
+was completed that day (LOG Pass 20). Each line is a
 setting and its value.
 
 | Setting | Value |
@@ -14,7 +15,7 @@ setting and its value.
 | Unit of work | one section = one page; sections never folded (rule 11) |
 | Order | 2.1, 2.2, 2.3, 2.4, re-link 2.5, 2.6, 2.7, 2.8; chapter intro as a short landing page |
 | Loop | per section: plan message → build → stop for feedback |
-| Site | static per-section pages from `tools/build_site.py`; other sections load into tabs on demand |
+| Site | one page per section, built by the Astro app in `omnistax-web/` (the earlier `tools/build_site.py` is gone since Pass 7); other sections load into tabs on demand |
 | Prose | verbatim; objectives, summary, glossary pulled into views |
 | Sub-concept headers | agent decides per section, reported in the plan |
 | Figures | a demo per idea or result the section introduces; every sketch figure replaced by a demo; a photograph kept when the text points the reader at it or it shows the thing the passage is about, dropped when it is decoration such as a splash image, each listed in the plan with the reason; 3D only when spatial (rule 14) |

@@ -293,7 +293,7 @@ function tower(ctx, x, y, h, color) {
     ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.08); ctx.fillRect(g.X(tr.lo), 585, g.X(0) - g.X(tr.lo), 185); ctx.restore();
     curve(ctx, f.y, tr.lo, tr.hi, g.X, g.Y, C('position'), 5, 120);
     line(ctx, g.X(tr.lo), g.Y(yl.v), g.X(tr.hi), g.Y(yl.v), C('position'), 3, [10, 10]);
-    text(ctx, 'landing level, y = ' + fmt(yl.v, 1) + ' m', g.X(tr.lo) + 12, g.Y(yl.v) - 20, C('position'), { size: 17, weight: 600 });
+    text(ctx, 'landing level, y = ' + fmt(yl.v, 1) + ' m', g.X((tn + tp) / 2), g.Y(yl.v) - 20, C('position'), { size: 17, weight: 600, align: 'center' });   /* between the roots, clear of both markers */
     line(ctx, g.X(tp), g.Y(0), g.X(tp), g.Y(yl.v), C('time'), 3, [4, 8]); line(ctx, g.X(tn), g.Y(0), g.X(tn), g.Y(yl.v), PAL.muted, 3, [4, 8]);
     dot(ctx, g.X(tp), g.Y(yl.v), C('time'), true, 10); dot(ctx, g.X(tn), g.Y(yl.v), PAL.muted, false, 10);
     dot(ctx, g.X(tau), g.Y(y), PAL.ink, true, 9);

@@ -136,7 +136,12 @@ adds a ball 2.7 has already shown. None built.
   keyed with the book's sentence on what to record) kept as an open
   answer to compare with, Analyze, at the end; the second item
   (fs-id895568, the graph of the vertical acceleration against time) is
-  unkeyed and left out, named in `notes` and `exercise_notes`.
+  unkeyed; the section first left it out, and the chapter pass kept it
+  as `ap2`, an open item with the four options as the book prints them
+  and an AI-marked suggested approach, as rule 13 and the 2.5 precedent
+  (`ap-marble`) do for an AP item without a key. Understand, at the end,
+  tagged `independence-of-perpendicular-motions` at full value and
+  `acceleration-due-to-gravity` and `derive-motion-graphs` at weight 1.
 - Nothing taken from another section, nothing held for a later page. The
   two-coins conceptual question of 3.4 tests the independence of
   perpendicular motions but is printed with projectile motion and stays
@@ -175,3 +180,10 @@ $b$, $c$ of the theorem are in ink. No new hue, no new macro.
 - `eq-pythagoras` → anchor `3.1-walking`.
 - (nothing else: no variable row belongs to this section, and every
   concept id, equation id and glossary term it needs is there.)
+
+Decided in the chapter pass (2026-09-11): `eq-pythagoras` is anchored at
+`3.1-walking`. The prose refers to Figure 3.5, which the demo carries as
+a further original under the number 3.3, so that reference is not linked;
+this is accepted, since one scene drawn three times is one demo. The
+unkeyed AP item is kept as an open item rather than left out, as the
+exercises list above now says.

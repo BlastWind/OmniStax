@@ -275,8 +275,10 @@ function accelDemo(o) {
     const { X: GX, Y: GY } = axes(ctx, box, [0, dt.v], [yr.lo, yr.hi], { xl: 't (s)', xc: C('time'), yl: 'v (' + o.unit + ')', yc: C('velocity'), nx: 4, ny: yr.n, fx: (t) => fmt(t, o.dtdec) });
     line(ctx, GX(0), GY(v0.v), GX(dt.v), GY(vf.v), C('velocity'), 5);
     dot(ctx, GX(0), GY(v0.v), C('velocity'), false, 10); dot(ctx, GX(dt.v), GY(vf.v), C('velocity'), true, 10);
-    text(ctx, 'v₀', GX(0) + 26, GY(v0.v) + (vf.v >= v0.v ? 30 : -30), C('velocity'), { weight: 600, size: 24 });
-    sub(ctx, 'v', 'f', GX(dt.v) - 30, GY(vf.v) + (vf.v >= v0.v ? -30 : 30), C('velocity'), 24, 'center');
+    /* the endpoint labels sit on the far side of the line from each other and stay inside the box, clear of the tick labels */
+    const inBox = (yy) => Math.max(box.t + 18, Math.min(box.b - 18, yy));
+    text(ctx, 'v₀', GX(0) + 26, inBox(GY(v0.v) + (vf.v >= v0.v ? 30 : -30)), C('velocity'), { weight: 600, size: 24 });
+    sub(ctx, 'v', 'f', GX(dt.v) - 30, inBox(GY(vf.v) + (vf.v >= v0.v ? -30 : 30)), C('velocity'), 24, 'center');
     text(ctx, 'slope = ā', GX(dt.v / 2) + 20, GY(vel(dt.v / 2)) + (vf.v >= v0.v ? 34 : -34), C('acceleration'), { weight: 600, size: 20 });
     line(ctx, GX(tau), box.b, GX(tau), GY(vv), C('time'), 3, [4, 8]); dot(ctx, GX(tau), GY(vv), PAL.ink, true, 9);
     const st = story(a);
@@ -358,7 +360,7 @@ accelDemo({ ...TRAIN, id: 'demo-subway-deceleration', v0: -20, vf: 0, dt: 10 });
    answers its four sliders: no cycle, no transport.
 ===================================================================== */
 (function () {
-  const d = demo('demo-subway-displacement', 570);
+  const d = demo('demo-subway-displacement', 600);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 10, step: 0.05, value: 4.7, unit: 'km', dec: 2 });
   const xf = ctl(d.controls, { label: '\\kxf', cls: 'position', min: 0, max: 10, step: 0.05, value: 6.7, unit: 'km', dec: 2 });
   const x0p = ctl(d.controls, { label: "\\kxo'", cls: 'position', min: 0, max: 10, step: 0.05, value: 5.25, unit: 'km', dec: 2, aria: 'initial position of trip (b)' });
@@ -379,7 +381,7 @@ accelDemo({ ...TRAIN, id: 'demo-subway-deceleration', v0: -20, vf: 0, dt: 10 });
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const dxa = trip(ctx, '(a)', x0.v, xf.v, 190, ''), dxb = trip(ctx, '(b)', x0p.v, xfp.v, 440, '′');
+    const dxa = trip(ctx, '(a)', x0.v, xf.v, 215, ''), dxb = trip(ctx, '(b)', x0p.v, xfp.v, 470, '′');
     headline(ctx, '(a) Δx = ' + fmt(xf.v, 2) + ' − ' + fmt(x0.v, 2) + ' = ' + signed(dxa, 2) + ' km · (b) Δx′ = ' + fmt(xfp.v, 2) + ' − ' + fmt(x0p.v, 2) + ' = ' + signed(dxb, 2) + ' km');
     readout(d.readout, `\\kdx = ${fmt(xf.v, 2)} - ${fmt(x0.v, 2)} = ${tsigned(dxa, 2)}\\ \\text{km} \\qquad \\kdx' = ${fmt(xfp.v, 2)} - ${fmt(x0p.v, 2)} = ${tsigned(dxb, 2)}\\ \\text{km}`,
       'The distance traveled is the magnitude of the displacement, ' + fmt(Math.abs(dxa), 2) + ' km in (a) and ' + fmt(Math.abs(dxb), 2) + ' km in (b), and it has no sign to indicate direction.');

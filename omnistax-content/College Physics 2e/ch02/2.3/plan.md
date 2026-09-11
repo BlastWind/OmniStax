@@ -268,3 +268,6 @@ and the count of swings are untyped and in ink. No new hue, no new macro.
 - `eq-vbar-def` → `2.3-average-velocity`
 - `eq-vbar-t` → `2.3-average-velocity`
 - `eq-avg-speed` → `2.3-speed`
+
+The chapter pass wrote every anchor above into `chapter.json`, each one
+checked against the ids of this section's `text.html`.

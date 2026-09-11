@@ -739,3 +739,159 @@ clean, build, a headless pass over the four pages in light and dark with
 no console errors, every photograph loading and every canvas booting; one
 fix pass for the ladder's value label sitting on a tick label and a slider
 step that snapped the meter demo's 3.34 ns to 3.35.
+
+### Pass 20 (2026-09-11): the rest of Chapter 2, Kinematics, in one pass
+
+Chen asked for Chapters 2 and 3 to be finished in one job without
+check-ins, as Chapter 1 was. Chapter 2 had 2.1 and 2.5 standing; this
+pass built the other six sections, `ch02/2.2` to `ch02/2.4` and
+`ch02/2.6` to `ch02/2.8`, each by its own agent from a `plan.md` written
+before the section and left for review after, and then a chapter pass
+over the whole of `ch02`. The concept nodes, prerequisite edges, symbols,
+variables, equations and glossary rows had gone into `book.json` and
+`chapter.json` before any section was built; the chapter pass wrote the
+anchors the plans asked for (23 variable rows and 17 equation rows,
+`2.3-elapsed-time` to `2.8-v-t`, each checked against the ids of its
+section's `text.html`). Twenty-nine concept nodes belong to the six
+sections, from `vector` and `scalar` through the six of 2.4 to the
+graph-reading skills of 2.8, and 2.5's prerequisites `average-velocity`,
+`instantaneous-velocity`, `acceleration` and `acceleration-due-to-gravity`
+are built nodes now rather than placeholders.
+
+Twenty-nine demos, twenty-three moving and six still by the test of rule
+14: the jet on two coordinate lines; the pendulum over a time line with a
+stopwatch; the airplane passenger's walk, once as a straight line and
+once cut into intervals whose chords settle onto the tangent; the round
+trip to the store with an odometer and its three graphs; the car whose
+velocity grows by ā every second; the eleven figures of 2.4, four of them
+one shape built by one function for the racehorse and the three subway
+sketches, and the whole subway journey on one clock; the runner of 2.6
+whose speed crosses what a person can run at 25 s; the hammer and the
+feather in air and in a vacuum; the rock thrown up beside its three
+graphs, the two rocks that arrive at the same velocity, the strobed drop
+that gives g, and the mine shaft with the sound climbing back; and the
+five graph figures of 2.8, four of them still because the reader places
+points and reads a slope. Two extra simulations earned their place under
+rule 15, the car rounding a bend at constant speed (2.4) and the mine
+shaft (2.7). Three photographs kept, the Eclipse jet, the São Paulo
+subway train and the Air Force jet car; four splash and stock images
+dropped. The exercise figures of 2.4 and 2.8 (the cart's graph, the ship's
+graphs, the conceptual questions' and problems' graphs) ride on the cards.
+
+Fifty-nine exercises: five Check Your Understanding inline, five AP items,
+twenty-eight conceptual questions with AI-marked approaches, twenty-one
+keyed problems; twenty-one unkeyed problems left out and named in each
+section's notes. The AP item of 2.4 on the book pushed across a table
+goes to 2.8 with `source_section`, since it tests deriving one motion
+graph from another. Problem 1 of 2.7 sits inline after Example 2.14,
+which it repeats with another number.
+
+Learned on the way:
+- An AP item without a key is an open answer with an AI-marked approach,
+  never a graded choice: 2.2's feather item had been built as a `choice`
+  whose `correct` was an AI guess, and the chapter pass rewrote it to the
+  shape of 2.5's marble item, with the book's four options in the prompt.
+- `$…$` inside a `data-original-caption` attribute is rendered by the math
+  prerender and breaks the tag; the `$(+)$` and `$(-)$` of Figure 2.7's
+  caption are written plain. The `lead` of `section.json` is not rendered
+  either, so a symbol in a lead is a plain letter.
+- `tools/cnxml2md.py` kept only the first piece of MathML of an
+  `<equation>` that mixes prose with several pieces, which is how some
+  keys are written (problem 3 of 2.8); it now writes such an equation as a
+  line of text, and 2.8's `source.md` was converted again. No other
+  `source.md` of the book changes under the fix.
+- `draws` lists what a figure colours, not what it mentions: the
+  rock-down demo writes its times in ink and lost `time` from its row.
+  2.1's paths figure is a `figure` row now, the kind the schema keeps for
+  a faithful copy.
+
+Checks: `check:content` with no errors, 311 unit tests, `astro check`
+clean, build, a headless pass over the eight pages of the chapter in
+light and dark with no console errors, every image loading, every canvas
+booting, a transport on every moving figure and none on the six still
+ones, and every inline place filled but 2.5's `position-quadratic`, which
+has held no exercise since Pass 6. One fix pass: the endpoint labels of
+the four acceleration demos stay inside the graph box instead of sitting
+on the last tick label, the two subway strips of Figure 2.18 moved down
+from under the headline, and in 2.8 the intercept label rose above a
+chosen point near the axis and "slope = a" moved above the velocity line,
+clear of the v₀ label under it.
+
+### Pass 21 (2026-09-11): Chapter 3, Two-Dimensional Kinematics, in one pass
+
+The second half of the job Chen set with Pass 20: Chapter 3 in full,
+`ch03/3.1` to `ch03/3.5`, each section by its own agent from a `plan.md`
+written before the section and left for review after, with
+`exploration.md` and `config.md` written before any of them, and then a
+chapter pass over the whole of `ch03`. Twenty-two concept nodes, from
+`right-triangle-resultant` to `classical-relativity`, and forty symbol
+rows had gone into `book.json` before the sections were built, and the
+chapter sheet its 32 equations, 53 variable rows and 24 glossary rows;
+the chapter pass wrote the anchors the plans asked for on every one of
+the variable and equation rows, `3.1-walking` to `3.5-ex-plane`, each
+checked against the ids of its section's `text.html`, and set the unit of
+3.2's `D` to blocks, which is what the walk in the city is measured in.
+
+Twenty-five demos, fourteen moving and eleven still by the test of rule
+14, and two faithful figures for the problems. The walk of 9 blocks east
+and 5 north runs through the chapter: a pedestrian and a helicopter race
+it in 3.1 while two strobed balls fall side by side; 3.2 draws it as one
+arrow under a ruler and a protractor, walks it head to tail, walks the
+three legs of Example 3.1 and lays them in any order, compares the dock
+with where the sailor ends up, scales a vector by a signed number and
+takes the walk apart into its components, every vector picture a still
+one; 3.3 is four still pictures of components, a resultant, a sum and a
+difference, with the four steps of the method worked below in live
+numbers; 3.4 is six flights, the soccer ball with its displacement, the
+projectile with its velocity components and their graphs, the fireworks
+shell to its apex, the hot rock to the slope with both roots of the
+quadratic on a graph, the range with its complementary angle and the arch
+of R against θ₀, and a projectile that falls around the Earth from a tower
+until it is in orbit; 3.5 is a boat crossing a river and a plane in a
+wind, both moving, the velocity triangle and the wind found from the
+plane's track, both still, and the binoculars from the mast and the coin
+in the airliner seen by two observers each. One extra simulation earned
+its place under rule 15, a heading on the boat so the reader can point it
+upstream, built as a slider rather than a figure. No photograph kept: the
+two the chapter has are splash images. The paths map that the problems
+of 3.2 and 3.3 share is built once, in 3.2, and rides on 3.3's card.
+
+Sixty-two exercises: three inline (3.1's AP item on the acceleration of a
+thrown ball, 3.5's two shortest conceptual questions), six AP items,
+twenty-one conceptual questions with AI-marked approaches, thirty-five
+keyed problems, the derivation of the range equation and the Critical
+Thinking item of 3.5 among them as open answers to compare with;
+thirty-six unkeyed problems left out and named in each section's notes.
+Three exercises cross sections under rule 12: both AP items of 3.2 (the
+tables of heights) and the Critical Thinking item of 3.5 (two launchers,
+the maximum height) are set on 3.4 with `source_section`.
+
+Decided in the chapter pass:
+- The three unkeyed AP items (3.1's graph of vertical acceleration, 3.2's
+  vertical launch, 3.4's horizontal launch) had been left out by their
+  sections; they are open items with the book's options in the prompt
+  and an AI-marked approach, as Pass 20 settled for 2.2. The 3.2 item
+  goes to 3.4 with its keyed twin rather than staying in 3.2, which
+  introduces nothing it tests.
+- The Critical Thinking item of 3.5 moves to 3.4, which introduces the
+  maximum height; 3.5's plan had left it and said so.
+- Three `draws` lists of 3.4 are trimmed to what the figure colours
+  (a headline that states the time in ink does not bind time); the page
+  binds the same four types as before.
+- Evidence lines of twelve Chapter 3 concepts name the problems the pages
+  carry rather than the book's unkeyed ones.
+- The book prints its problem figures' captions as plain text on the
+  card, so a caption with `$…$` in it (3.2's velocities figure) is
+  written plain.
+
+Left for a later pass, in `exploration.md`: a vector held fixed while the
+axes turn under it, for 3.2's `resolving-vector` and 3.3's problem 9(b).
+
+Checks: `check:content` with no errors, 311 unit tests, `astro check`
+clean, build, a headless pass over the five pages in light and dark with
+no console errors, every image loading, every canvas booting, a transport
+on every moving figure and none on the eleven still ones, and every
+inline place filled. One fix pass: the landing-level label of the hot
+rock's graph moved from over the negative root to between the two roots.
+Noted and not changed: `figlib`'s `fmt` prints a negative number on the
+canvas with a hyphen where the book sets a minus sign, in every chapter.
