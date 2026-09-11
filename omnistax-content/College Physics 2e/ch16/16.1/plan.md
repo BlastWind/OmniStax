@@ -147,3 +147,9 @@ in ink. Macros: `\kF`, `\kFa`, `\kk`, `\kPE`, `\kKE`, `\kW`.
 `cnxml2md.py` emitted the figure `import-auto-id1471703` (the F–x graph)
 with its alt and caption on one line because the source figure sits
 inside a paragraph without a newline. To fix before 16.2.
+
+Fold pass (2026-09-11): `demo-ruler` folds Figure 16.3 (the five stages
+of the ruler) under its own number 16.2, and `demo-stored-energy` folds
+Figure 16.7 (the toy gun of Example 16.2) under 16.6; each row lists the
+folded number under `folds` and its eyebrow reads both, "Figure 16.2 +
+16.3" and "Figure 16.6 + 16.7".

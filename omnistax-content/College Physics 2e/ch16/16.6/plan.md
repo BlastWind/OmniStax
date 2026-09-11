@@ -122,3 +122,9 @@ the two demos cover what the section says.
 
 ω takes the angular-rate hue bound at 16.5. X and x position, v and
 v_max velocity, T time. θ in ink. Nothing new.
+
+Fold pass (2026-09-11): on openstax.org the turntable is Figure 16.16,
+the point P Figure 16.17 and the trace on paper Figure 16.18 (the numbers
+above are two high). `demo-turntable` keeps 16.16 as its number and lists
+16.18 under `folds`; its eyebrow reads "Figure 16.16 + 16.18", and the
+text's reference to Figure 16.18 links to the demo.

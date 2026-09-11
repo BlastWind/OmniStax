@@ -187,3 +187,8 @@ item (folded into demo 1's readout). One survivor:
 Amplitude X takes the position hue (config). Two macros to add to
 `book.json`: `\kX` (class `kv-x`) and `\kvmax` (class `kv-v`). v and a
 use the chapter 2 macros already there. No new hue.
+
+Fold pass (2026-09-11): the bouncing car is Figure 16.10 on openstax.org
+and the paper strip Figure 16.11, so `demo-paper-strip` keeps 16.11 as
+its number and lists 16.10 under `folds`; its eyebrow reads "Figure 16.10
++ 16.11", and the text's reference to Figure 16.10 links to the demo.

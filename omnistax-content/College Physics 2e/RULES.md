@@ -153,7 +153,13 @@ the CNXML figures. A demo that replaces a book figure keeps the book's
 number and carries the book's images as its `originals` and the book's
 caption as `original_caption`, so the app can swap the original in. A
 demo that replaces nothing has no number. A kept photograph is a `photo`
-row with its number.
+row with its number. A demo that folds several book figures (the walk,
+its triangle and its diagonal in 3.1; the rock thrown up and its
+strategy sketch in 2.7) names its own `number` and the rest under
+`folds`, and its eyebrow reads them all, "Figure 3.3 + 3.4 + 3.5", so
+every number the prose cites links to it. Sub-figures the book prints
+under one number, (a) and (b), are not folds; they are one number with
+several `originals`.
 
 The book's images are served from `media/<chapter>/` in this folder, with
 the file names the bundle gives them.

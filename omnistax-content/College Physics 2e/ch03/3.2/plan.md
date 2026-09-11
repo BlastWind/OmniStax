@@ -297,3 +297,12 @@ Problem 9's prompt now names Figure 3.23, the figure the book's cross
 reference points at (the sum $\mathbf{A} + \mathbf{B} = \mathbf{R}'$ of
 Example 3.2), where the section had written 3.19. The unkeyed first AP
 item is held for 3.4 with the second, as the exercises list now says.
+
+Fold pass (2026-09-11): the four demos that stand for a run of book
+figures now say so in their rows. `demo-vector-2d` carries 3.8 with 3.9
+under `folds`, `demo-head-to-tail` carries 3.10 with 3.11 to 3.13,
+`demo-walk` carries 3.14 with 3.15 to 3.17, and `demo-subtraction`
+carries 3.19 with 3.20 to 3.23, so each eyebrow reads every number of its
+run and the text's references to any of them link to the one demo. The
+build links references in the running text only; problem 9's prompt is an
+exercise card, and its "Figure 3.23" stays plain there.

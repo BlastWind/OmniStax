@@ -182,8 +182,9 @@ $b$, $c$ of the theorem are in ink. No new hue, no new macro.
   concept id, equation id and glossary term it needs is there.)
 
 Decided in the chapter pass (2026-09-11): `eq-pythagoras` is anchored at
-`3.1-walking`. The prose refers to Figure 3.5, which the demo carries as
-a further original under the number 3.3, so that reference is not linked;
-this is accepted, since one scene drawn three times is one demo. The
-unkeyed AP item is kept as an open item rather than left out, as the
+`3.1-walking`. The prose refers to Figure 3.5, which `demo-walk` folds
+together with 3.4 under its own number 3.3: one scene drawn three times
+is one demo. The fold pass (2026-09-11) wrote the two further numbers
+into the row's `folds`, so the eyebrow reads "Figure 3.3 + 3.4 + 3.5" and
+the reference to Figure 3.5 now links to the demo. The unkeyed AP item is kept as an open item rather than left out, as the
 exercises list above now says.

@@ -286,7 +286,9 @@ ink on this page since it binds neither acceleration nor position.
 Decided in the chapter pass (2026-09-11): the twenty anchors above are
 written into `chapter.json`. The Critical Thinking item is moved to 3.4,
 as the exercises list now says. Example 3.6 refers to Figure 3.43, which
-`demo-boat` carries as a further original under the number 3.40, so that
-reference is not linked; this is accepted, since the example adds no
-quantity the section figure does not show. The lead of the galaxies block
+`demo-boat` folds under its own number 3.40, since the example adds no
+quantity the section figure does not show. The fold pass (2026-09-11)
+wrote 3.43 into the row's `folds`, so the eyebrow reads "Figure 3.40 +
+3.43" and the example's reference now links to the demo. The lead of the
+galaxies block
 is a full sentence now, and the caption spells center as the book does.

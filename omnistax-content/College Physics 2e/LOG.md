@@ -895,3 +895,59 @@ inline place filled. One fix pass: the landing-level label of the hot
 rock's graph moved from over the negative root to between the two roots.
 Noted and not changed: `figlib`'s `fmt` prints a negative number on the
 canvas with a hyphen where the book sets a minus sign, in every chapter.
+
+### Pass 22 (2026-09-11): a folded demo keeps every number it replaces
+
+The book draws one scene several times because print cannot move, and
+the earlier passes folded such runs into one demo: the walk across the
+city, its right triangle and the helicopter's diagonal (Figures 3.3, 3.4
+and 3.5) are one `demo-walk`. Until now the demo carried only the first
+number of its run, the rest as further originals, and a reference in the
+prose to Figure 3.5 stayed plain text, accepted in three plans as the
+price of the fold. Chen's design, now root rule 14 and the book's
+"Figures" rule: a folded demo reports the fold. Its row keeps its own
+`number` and lists the others under `folds`, its eyebrow reads "Figure
+3.3 + 3.4 + 3.5", and every one of those numbers in the prose links and
+jumps to the one demo.
+
+In the app: `FigureSchema` gains `folds`; `printedNumbers` in
+`fragment.ts` joins a row's number and folds in the book's order, numeric
+on both parts so 2.9 comes before 2.10, and `figureIds` reads a
+`data-figure` of "3.3 + 3.4 + 3.5" as three numbers to the one id, so
+`linkFigureRefs` links each; the original block under a demo already read
+`dataset.figure`, so it prints the joined form over the book's caption.
+`check:content` compares a `<figure data-figure>` against the joined
+string, refuses a fold that repeats the row's own number or a number
+another figure of the section carries, and gains a third level of
+finding: a warning, printed between the errors and the notes, for a
+`Figure N.M` the text cites that no row of the book carries, since a
+citation into a chapter nobody has built is legitimate and one into a
+built chapter is a slip. The book has no warnings left.
+
+Twenty folds, found by reading every row with more than one original
+against the CNXML's figure order: 1.23 + 1.24 (the two bull's-eyes);
+2.3 + 2.4 (the professor and the passenger); 2.27 + 2.28, 2.31 + 2.32
+and 2.33 + 2.34 in 2.5 and 2.38 + 2.39, 2.40 + 2.41 and 2.42 + 2.43 in
+2.7, where a "Draw a sketch" strategy figure with an empty caption is
+folded into the demo that follows its example; 3.3 + 3.4 + 3.5; 3.8 +
+3.9, 3.10 to 3.13, 3.14 to 3.17 and 3.19 to 3.23 in 3.2; 3.24 to 3.26
+and 3.28 to 3.32 in 3.3; 3.40 + 3.43 (the boat and the example's
+figure); 16.2 + 16.3 (the ruler and its five stages), 16.6 + 16.7 (the
+force graph and the toy gun); 16.10 + 16.11 (the bouncing car and the
+paper strip); 16.16 + 16.18 (the turntable and the trace on paper). The
+brief had guessed that 2.1, 2.5 and 16.1 held sub-figures; the CNXML
+shows separate `<figure>` elements with their own numbers, so they are
+folds, and the rule's sub-figure case, (a) and (b) under one number, has
+no instance in the book so far. The references to Figures 1.24, 3.5,
+3.29 to 3.31, 3.43, 16.10 and 16.18 that had stayed plain now link.
+
+Learned: the plans of 2.1, 16.3 and 16.6 numbered the book's figures by
+counting CNXML figures, one short in 2.1 and two high in 16.6; the rows
+were right and the plans now say so. The build links references in the
+running text only, so 3.2's problem 9, whose prompt names Figure 3.23 on
+an exercise card, stays plain there. Checks: `check:content` with no
+errors and no warnings, 317 unit tests, `astro check` clean, a build, and
+a headless pass over 1.3, 2.1, 2.5, 2.7, 3.1, 3.2, 3.3, 3.5, 16.1, 16.3
+and 16.6 reading the joined eyebrow on every folded demo, every cited
+number linked to the folded demo's id, the original block showing every
+image under the joined number, and no console errors.

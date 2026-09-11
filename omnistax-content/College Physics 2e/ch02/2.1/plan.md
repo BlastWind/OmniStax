@@ -64,3 +64,8 @@ Photograph of the cyclists (splash) dropped.
 `cnxml2md.py` dropped the FIGURE block for the professor figure
 (import-auto-id2972079) and emitted its caption as a paragraph. Fix in the
 converter before 2.2.
+
+Fold pass (2026-09-11): the book prints the professor as Figure 2.3 and
+the passenger as Figure 2.4 (the numbers above are one short), and
+`demo-displacement` draws both scenes, so its row keeps 2.3 as its number
+and lists 2.4 under `folds`; the eyebrow reads "Figure 2.3 + 2.4".

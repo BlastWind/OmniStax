@@ -150,7 +150,9 @@ Photographs, four:
   book's number 1.23, both images as originals and the 1.23 caption.
 - Figure 1.24, the bull's-eye with high precision and low accuracy
   (credit: Dark Evil): **folded** into the same demo, which reproduces it
-  at spread 0.3 and offset 2.5.
+  at spread 0.3 and offset 2.5. Since the fold pass (2026-09-11) the row
+  lists 1.24 under `folds`, the eyebrow reads "Figure 1.23 + 1.24", and
+  the prose's reference to Figure 1.24 links to the demo.
 
 Figures that serve exercises: none in this section.
 

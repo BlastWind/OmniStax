@@ -68,9 +68,10 @@ span ids as the chapter's anchors expect them:
 The cross-references to Kinematics in Two Dimensions: An Introduction,
 Vector Addition and Subtraction: Graphical Methods and Projectile Motion
 stay plain text. "Figure 3.29", "Figure 3.30", "Figure 3.31" and "Figure
-3.32" in the steps and the example stay the book's wording and are not
-linked, since the one demo that stands for the run carries the number
-3.28.
+3.32" in the steps and the example stay the book's wording, and since the
+fold pass (2026-09-11) each of them links to `demo-add`, the one demo that
+stands for the run: its row carries 3.28 as its number and 3.29 to 3.32
+under `folds`, and its eyebrow reads them all.
 
 Learning objectives, section summary and glossary come out of the running
 text into the views. The conceptual questions and the problems go to the
@@ -187,8 +188,10 @@ lengths and angles with no time in them, so none registers a cycle and
 none gets a transport, and each redraws when a slider moves. Figures
 3.24 to 3.26 are one drawing at three stages and Figures 3.28 to 3.32
 one drawing at five, so two demos stand for eight sketches, each carrying
-the first number of its run and the rest as further originals, as the
-chapter config allows.
+the first number of its run as its `number`, the rest under `folds`, and
+every image among its originals, as root rule 14 allows. The eyebrows
+read "Figure 3.24 + 3.25 + 3.26" and "Figure 3.28 + 3.29 + 3.30 + 3.31 +
+3.32".
 
 Extra simulations (rule 15), thought about and left:
 - A walk animated along the legs and then along the resultant, an

@@ -51,9 +51,12 @@ block per idea, span ids as the chapter's anchors expect them:
    example).
 
 The three "Draw a sketch" figures (2.38, 2.40, 2.43) are strategy sketches
-with empty captions; each is kept as an original of the demo that follows
-its example, as 2.5 did with its own sketches, so no figure row carries
-those numbers and the text never refers to them. The source's `$$$`
+with empty captions; each is folded into the demo that follows its
+example, as 2.5 did with its own sketches. Since the fold pass
+(2026-09-11) each demo's row lists the sketch's number under `folds` and
+its eyebrow reads both numbers, "Figure 2.38 + 2.39", "Figure 2.40 +
+2.41" and "Figure 2.42 + 2.43"; the text never refers to the sketches by
+number. The source's `$$$`
 artifact in the 9.78 to 9.83 sentence, the stray caret after the second
 $-9.80\ \text{m/s}^2$ of the discussion, and the italic marks round $y_2$
 are converter noise and are not reproduced. The book's own "$t =
