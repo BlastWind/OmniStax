@@ -107,7 +107,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     arrow(ctx, bx, by, hx, hy, alpha(C('velocity'), 0.55), 3);
     if (vr.v > 0.02) arrow(ctx, hx, hy, hx + vr.v * k, hy, alpha(C('velocity'), 0.55), 3);
     arrow(ctx, bx, by, bx + ux * k, by - uy * k, C('velocity'), 5);
-    text(ctx, 'v_tot', bx + ux * k + 12, by - uy * k - 12, C('velocity'), { size: 17, weight: 600 });
+    text(ctx, 'v (total)', bx + ux * k + 12, by - uy * k - 12, C('velocity'), { size: 17, weight: 600 });
     ctx.restore();
     text(ctx, 'downstream →', R - 8, PB + 22, PAL.muted, { size: 17, align: 'right' });
     text(ctx, 'far bank', L + 8, Y(W) - 20, PAL.muted, { size: 17 }); text(ctx, 'near bank', L + 8, Y(0) + 22, PAL.muted, { size: 17 });
@@ -118,9 +118,9 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     line(ctx, Ox - 40, Oy, Ox + 60, Oy, PAL.muted, 2); line(ctx, Ox, Oy + 30, Ox, Oy - 60, PAL.muted, 2);
     text(ctx, 'x', Ox + 72, Oy, PAL.muted, { size: 18 }); text(ctx, 'y', Ox, Oy - 74, PAL.muted, { size: 18, align: 'center' });
     const Hx = Ox + cx * K, Hy = Oy - sy * K, Tx = Ox + ux * K, Ty = Oy - uy * K;
-    arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v_boat = ' + sf(vb.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), -1, 18);
-    if (vr.v > 0.02) { arrow(ctx, Hx, Hy, Hx + vr.v * K, Hy, alpha(C('velocity'), 0.55), 3); text(ctx, 'v_river = ' + sf(vr.v) + ' m/s', (2 * Hx + vr.v * K) / 2, Hy - 24, C('velocity'), { size: 18, weight: 600, align: 'center' }); }
-    arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v_tot = ' + sf(vt) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), 1);
+    arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (boat) = ' + sf(vb.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), -1, 18);
+    if (vr.v > 0.02) { arrow(ctx, Hx, Hy, Hx + vr.v * K, Hy, alpha(C('velocity'), 0.55), 3); text(ctx, 'v (river) = ' + sf(vr.v) + ' m/s', (2 * Hx + vr.v * K) / 2, Hy - 24, C('velocity'), { size: 18, weight: 600, align: 'center' }); }
+    arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v (total) = ' + sf(vt) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), 1);
     if (vt > 0.05) angleArc(ctx, Ox, Oy, 48, 0, th, PAL.ink, 'θ = ' + fmt(th, 1) + '°');
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     /* what the numbers say */
@@ -174,7 +174,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     arrow(ctx, px, py, hx, hy, alpha(C('velocity'), 0.55), 3);
     if (vw.v > 0.02) arrow(ctx, hx, hy, hx + vwx * k, hy - vwy * k, alpha(C('velocity'), 0.55), 3);
     arrow(ctx, px, py, px + ux * k, py - uy * k, C('velocity'), 5);
-    text(ctx, 'v_tot', px + ux * k + (ux >= 0 ? 12 : -12), py - uy * k - 12, C('velocity'), { size: 17, weight: 600, align: ux >= 0 ? 'left' : 'right' });
+    text(ctx, 'v (total)', px + ux * k + (ux >= 0 ? 12 : -12), py - uy * k - 12, C('velocity'), { size: 17, weight: 600, align: ux >= 0 ? 'left' : 'right' });
     ctx.restore();
     arrow(ctx, L + 30, PB - 30, L + 100, PB - 30, PAL.muted, 3); text(ctx, 'x (east)', L + 110, PB - 30, PAL.muted, { size: 17 });
     arrow(ctx, L + 30, PB - 30, L + 30, PB - 100, PAL.muted, 3); text(ctx, 'y (north)', L + 30, PB - 114, PAL.muted, { size: 17, align: 'center' });
@@ -184,9 +184,9 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     line(ctx, Ox - 50, Oy, Ox + 50, Oy, PAL.muted, 2); line(ctx, Ox, Oy + 40, Ox, Oy - 50, PAL.muted, 2);
     text(ctx, 'x (east)', Ox + 60, Oy, PAL.muted, { size: 17 }); text(ctx, 'y (north)', Ox - 12, Oy - 54, PAL.muted, { size: 17, align: 'right' });
     const Hx = Ox, Hy = Oy - vp.v * K, Tx = Ox + ux * K, Ty = Oy - uy * K;
-    if (vp.v > 0.02) { arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v_p = ' + sf(vp.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), ux <= 0 ? 1 : -1, 18); }
-    if (vw.v > 0.02) { arrow(ctx, Hx, Hy, Hx + vwx * K, Hy - vwy * K, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v_w = ' + sf(vw.v) + ' m/s', Hx, Hy, Hx + vwx * K, Hy - vwy * K, C('velocity'), vwy <= 0 ? -1 : 1, 18); }
-    arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v_tot = ' + sf(vt) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), ux <= 0 ? -1 : 1);
+    if (vp.v > 0.02) { arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (plane) = ' + sf(vp.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), ux <= 0 ? 1 : -1, 18); }
+    if (vw.v > 0.02) { arrow(ctx, Hx, Hy, Hx + vwx * K, Hy - vwy * K, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (wind) = ' + sf(vw.v) + ' m/s', Hx, Hy, Hx + vwx * K, Hy - vwy * K, C('velocity'), vwy <= 0 ? -1 : 1, 18); }
+    arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v (total) = ' + sf(vt) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), ux <= 0 ? -1 : 1);
     if (vt > 0.05) angleArc(ctx, Ox, Oy, 44, 0, Math.atan2(uy, ux) / DEG, PAL.ink, fmt(Math.atan2(uy, ux) / DEG, 1) + '°');
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     /* what the numbers say */
@@ -218,8 +218,8 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     text(ctx, 'x', 1246, Oy, PAL.ink, { size: 22, weight: 600 }); text(ctx, 'y', Ox + 22, 86, PAL.ink, { size: 22, weight: 600 });
     /* the components along the axes, then the velocity itself */
     const Hx = Ox + vx * K, Hy = Oy - vy * K;
-    if (Math.abs(vx) > 0.01) { arrow(ctx, Ox, Oy, Hx, Oy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'v_x = ' + sf(vx) + ' m/s', (Ox + Hx) / 2, Oy + (vy >= 0 ? 30 : -30), C('velocity'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.75) }); }
-    if (Math.abs(vy) > 0.01) { arrow(ctx, Hx, Oy, Hx, Hy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'v_y = ' + sf(vy) + ' m/s', Hx + (vx >= 0 ? 18 : -18), (Oy + Hy) / 2, C('velocity'), { size: 20, weight: 600, align: vx >= 0 ? 'left' : 'right', bg: alpha(PAL.panel, 0.75) }); }
+    if (Math.abs(vx) > 0.01) { arrow(ctx, Ox, Oy, Hx, Oy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'vx = ' + sf(vx) + ' m/s', (Ox + Hx) / 2, Oy + (vy >= 0 ? 30 : -30), C('velocity'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.75) }); }
+    if (Math.abs(vy) > 0.01) { arrow(ctx, Hx, Oy, Hx, Hy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'vy = ' + sf(vy) + ' m/s', Hx + (vx >= 0 ? 18 : -18), (Oy + Hy) / 2, C('velocity'), { size: 20, weight: 600, align: vx >= 0 ? 'left' : 'right', bg: alpha(PAL.panel, 0.75) }); }
     arrow(ctx, Ox, Oy, Hx, Hy, C('velocity'), 5);
     alongLabel(ctx, 'v = ' + sf(v.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), vy >= 0 ? -1 : 1, 22);
     if (Math.abs(th.v) > 2) angleArc(ctx, Ox, Oy, 58, 0, th.v, PAL.ink, 'θ = ' + fmt(th.v, 1) + '°');
@@ -227,8 +227,8 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     /* what the numbers say */
     headline(ctx, 'a velocity of ' + sf(v.v) + ' m/s at ' + fmt(th.v, 1) + '° has components ' + sf(vx) + ' m/s along x and ' + sf(vy) + ' m/s along y');
     const back = Math.hypot(vx, vy), calc = Math.abs(vx) < 1e-9 ? null : Math.atan(vy / vx) / DEG;
-    const angleNote = calc === null ? ' Because v_x is zero here, v_y/v_x is undefined, and the angle is ' + (vy > 0 ? '+90°' : '−90°') + ' by inspection.'
-      : vx < 0 ? ' Because v_x is negative, the angle is 180° away from the ' + fmt(calc, 1) + '° a calculator’s tan⁻¹ returns.' : '';
+    const angleNote = calc === null ? ' Because the x component is zero here, the ratio of the y component to it is undefined, and the angle is ' + (vy > 0 ? '+90°' : '−90°') + ' by inspection.'
+      : vx < 0 ? ' Because the x component is negative, the angle is 180° away from the ' + fmt(calc, 1) + '° a calculator’s tan⁻¹ returns.' : '';
     readout(d.readout, `\\kvx = \\kv\\cos\\theta = (${sf(v.v)})\\cos ${fmt(th.v, 1)}^\\circ = ${sf(vx)}\\ \\text{m/s}\\qquad \\kvy = \\kv\\sin\\theta = (${sf(v.v)})\\sin ${fmt(th.v, 1)}^\\circ = ${sf(vy)}\\ \\text{m/s}`,
       'The last two equations return what you set: √(' + sf(vx) + '² + ' + sf(vy) + '²) = ' + sf(back) + ' m/s' + (calc === null ? '.' : ', and tan⁻¹(' + sf(vy) + '/' + sf(vx) + ') gives ' + fmt(th.v, 1) + '°.') + angleNote);
   }
@@ -255,18 +255,18 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     text(ctx, 'x (east)', Ox + 82, Oy, PAL.muted, { size: 17 }); text(ctx, 'y (north)', Ox - 12, Oy - 54, PAL.muted, { size: 17, align: 'right' });
     ctx.save(); ctx.globalAlpha = 0.35; ctx.translate(Ox, Oy); ctx.rotate(-Math.PI / 2); plane(ctx, 0, 0, PAL.ink, 0.9); ctx.restore();
     const Hx = Ox, Hy = Oy - vp.v * K, Tx = Ox + ux * K, Ty = Oy - uy * K;
-    arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v_p = ' + sf(vp.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), b.v >= 0 ? 1 : -1, 18);
-    if (vw > 0.05) { arrow(ctx, Hx, Hy, Tx, Ty, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v_w = ' + sf(vw) + ' m/s', Hx, Hy, Tx, Ty, C('velocity'), vwy <= 0 ? -1 : 1, 18); }
-    arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v_tot = ' + sf(vt.v) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), b.v >= 0 ? -1 : 1);
+    arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (plane) = ' + sf(vp.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), b.v >= 0 ? 1 : -1, 18);
+    if (vw > 0.05) { arrow(ctx, Hx, Hy, Tx, Ty, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (wind) = ' + sf(vw) + ' m/s', Hx, Hy, Tx, Ty, C('velocity'), vwy <= 0 ? -1 : 1, 18); }
+    arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v (total) = ' + sf(vt.v) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), b.v >= 0 ? -1 : 1);
     angleArc(ctx, Ox, Oy, 48, 0, a, PAL.ink, fmt(a, 1) + '°');
     if (Math.abs(b.v) > 2) angleArc(ctx, Ox, Oy, 110, 90, a, PAL.ink, fmt(Math.abs(b.v), 1) + '°');
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     /* the three velocities in words, beside the triangle */
     const tx = 900, rows = [
-      ['plane relative to the air', 'v_p = ' + sf(vp.v) + ' m/s, due north'],
-      ['plane relative to the ground', 'v_tot = ' + sf(vt.v) + ' m/s, ' + compass(ux, uy)],
-      ['wind, found from the two', 'v_w = ' + sf(vw) + ' m/s, ' + (vw < 0.05 ? 'no wind at all' : compass(vwx, vwy))],
-      ['its components', 'v_wx = ' + sf(vwx) + ' m/s, v_wy = ' + sf(vwy) + ' m/s'],
+      ['plane relative to the air', 'v (plane) = ' + sf(vp.v) + ' m/s, due north'],
+      ['plane relative to the ground', 'v (total) = ' + sf(vt.v) + ' m/s, ' + compass(ux, uy)],
+      ['wind, found from the two', 'v (wind) = ' + sf(vw) + ' m/s, ' + (vw < 0.05 ? 'no wind at all' : compass(vwx, vwy))],
+      ['its components', 'x: ' + sf(vwx) + ' m/s, y: ' + sf(vwy) + ' m/s'],
     ];
     rows.forEach(([lab, val], i) => { text(ctx, lab, tx, 150 + i * 96, PAL.muted, { size: 17 }); text(ctx, val, tx, 150 + i * 96 + 30, C('velocity'), { size: 20, weight: 600 }); });
     /* what the numbers say */
@@ -358,7 +358,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     vbracket(ctx, 360, top, FLOOR, PAL.ink, fmt(h.v, 2) + ' m', 1);
     const cyy = top + drop * s, k = 8;
     dot(ctx, 290, cyy, PAL.ink, true, 9);
-    if (tau > 0.02) { arrow(ctx, 290, cyy, 290, cyy + G * tau * k, C('velocity'), 4); text(ctx, 'v_y = ' + sf(-G * tau) + ' m/s', 272, cyy + G * tau * k / 2, C('velocity'), { size: 17, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.75) }); }
+    if (tau > 0.02) { arrow(ctx, 290, cyy, 290, cyy + G * tau * k, C('velocity'), 4); text(ctx, 'vy = ' + sf(-G * tau) + ' m/s', 272, cyy + G * tau * k / 2, C('velocity'), { size: 17, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.75) }); }
     /* right: the ground's view, a graph of the path with the plane above it */
     title(ctx, 'relative to the Earth', 990, 100);
     const box = { l: 700, r: 1320, t: 190, b: 380 }, xr = nice(0, R, 4), yr = nice(0, h.v, 3);
@@ -372,15 +372,15 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     /* the velocity at the floor, to one scale: the fall is a stub beside the plane's speed */
     text(ctx, 'the coin’s velocity at the floor, relative to the Earth', 700, 448, PAL.muted, { size: 17 });
     const kx = 540 / 300, ox = 700, oy = 500, tipx = ox + vp.v * kx, tipy = oy - vy * kx;
-    arrow(ctx, ox, oy, tipx, oy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'v_x = ' + sf(vp.v) + ' m/s', (ox + tipx) / 2, oy - 22, C('velocity'), { size: 18, weight: 600, align: 'center' });
-    arrow(ctx, tipx, oy, tipx, tipy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'v_y = ' + sf(vy) + ' m/s', tipx + 16, tipy, C('velocity'), { size: 18, weight: 600 });
+    arrow(ctx, ox, oy, tipx, oy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'vx = ' + sf(vp.v) + ' m/s', (ox + tipx) / 2, oy - 22, C('velocity'), { size: 18, weight: 600, align: 'center' });
+    arrow(ctx, tipx, oy, tipx, tipy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'vy = ' + sf(vy) + ' m/s', tipx + 16, tipy, C('velocity'), { size: 18, weight: 600 });
     arrow(ctx, ox, oy, tipx, tipy, C('velocity'), 5);
     text(ctx, 'v = ' + sf(v, 5) + ' m/s at ' + fmt(th, 2) + '°', ox, oy + 48, C('velocity'), { size: 20, weight: 600 });
     /* what the numbers say */
     headline(ctx, done ? 'the coin lands after ' + fmt(Tc, 3) + ' s, ' + fmt(h.v, 2) + ' m below where it was dropped and ' + fmt(R, 0) + ' m along the ground, at ' + sf(v, 5) + ' m/s'
       : 't = ' + fmt(tau, 2) + ' s · the coin has fallen ' + fmt(drop, 2) + ' m and moved ' + fmt(vp.v * tau, 0) + ' m along the ground, staying directly below the passenger');
     readout(d.readout, `\\kv = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{(${sf(vp.v)})^2 + (${sf(vy)})^2} = ${sf(v, 5)}\\ \\text{m/s}\\qquad \\theta = \\tan^{-1}(\\kvy/\\kvx) = \\tan^{-1}(${sf(vy)}/${sf(vp.v)}) = ${fmt(th, 2)}^\\circ`,
-      'Relative to the plane the coin’s velocity at the floor is v_y = ' + sf(vy) + ' m/s alone, straight down, the same as if it had been dropped from rest on the ground.');
+      'Relative to the plane the coin’s velocity at the floor is ' + sf(vy) + ' m/s alone, straight down, the same as if it had been dropped from rest on the ground.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
 })();
