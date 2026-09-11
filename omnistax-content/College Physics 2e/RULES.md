@@ -18,10 +18,11 @@ has to be scanned for.
 
 One module is one section. Modules are numbered `m4NNNN` and live at
 `source/osbooks-college-physics-bundle/modules/<module>/index.cnxml`; the
-chapter's `chapter.json` records which module each section is, and the
-chapter introduction's module is `intro_module`. Figures sit beside the
-modules under the bundle's `media/`, and the ones a section keeps are
-copied to `media/<chapter>/` here.
+chapter's `chapter.json` records which module each section is, and its
+`intro` record names the chapter introduction's module and its slug at
+the publisher, as `book.json`'s `intro` names the Preface's. Figures sit
+beside the modules under the bundle's `media/`, and the ones a page keeps
+are copied to `media/<chapter>/` here.
 
 `tools/cnxml2md.py` turns one module into `source.md`:
 
@@ -41,10 +42,23 @@ and an exercise's `source_id` is the id its block carries.
 ## Structure
 
 book → chapters (34) → sections (numbered N.M) → untitled narrative
-headers. Each chapter has an unnumbered introduction of its own. The
-working format maps onto it directly: one module, one section, one page.
-Sections are never folded, even the thin ones (2.2 is one sign
-convention; 2.6 is a strategy box).
+headers. Each chapter has an unnumbered introduction of its own, one
+module of three to five paragraphs under a splash photograph, and the
+book opens on a Preface; it prints no chapter summary and no closing
+summary of its own. The working format maps onto it directly: one
+module, one section, one page, and, by root rule 21, the chapter
+introduction is a page of its own in the chapter's `intro/` folder,
+listed before the first section, and the Preface is the book's own
+introduction in `intro/` beside the chapters, listed before Chapter 1.
+An introduction page keeps the book's words and its opening photograph,
+which is the point of the page and so is kept with its number, caption
+and credit (Figure 2.1 is the kestrel); it has no lead, no objectives, no
+summary, no glossary of its own and no exercises, and the link to the
+publisher's video trailer at the end of the module is left out, as the
+PhET links are, and named in `notes`. A defined term the introduction
+carries (kinematics, in Chapter 2) stays in the glossary under the
+section the chapter's tables already give it. Sections are never folded,
+even the thin ones (2.2 is one sign convention; 2.6 is a strategy box).
 
 Chapters built so far: 1 (Introduction: The Nature of Science and
 Physics, `ch01`), 2 (Kinematics, `ch02`), 3 (Two-Dimensional Kinematics,
@@ -52,8 +66,10 @@ Physics, `ch01`), 2 (Kinematics, `ch02`), 3 (Two-Dimensional Kinematics,
 completed in one pass on 2026-09-11, its six remaining sections built
 beside the two that already stood. A chapter folder is `ch` followed by
 the two-digit chapter number. The whole table of contents is in
-`toc.md`. The Preface (m42955) is publisher front matter and is not
-built.
+`toc.md`. The introduction of Chapter 2 (m42122, `ch02/intro/`) is
+built; the introductions of Chapters 1, 3 and 16 and the Preface
+(m42955) are named in their `intro` records and wait to be built the
+same way.
 
 ## Apparatus
 
@@ -61,7 +77,13 @@ Inside each module, in this order: learning objectives, the narrative
 (examples, figures, equations, inline definitions, Check Your
 Understanding boxes), sometimes a PhET note, AP test prep, the section
 summary, conceptual questions, problems and exercises. Glossary entries are
-`<definition>` elements inside the module.
+`<definition>` elements inside the module. The section summary goes to
+`summary_html` and the app prints it at the end of the section's text,
+after the last passage and before the way on to practice, as the book
+prints it at the end of the chapter (root rule 21); the objectives and
+the glossary go to the tables and the views, as before. A chapter
+introduction module carries none of this apparatus, only its photograph
+and its paragraphs.
 
 The answer key covers roughly every second problem: the solution sits
 inline in the exercise element when the book gives one, and a problem

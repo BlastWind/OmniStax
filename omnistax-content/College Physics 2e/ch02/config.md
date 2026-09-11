@@ -13,7 +13,7 @@ setting and its value.
 | Setting | Value |
 |---|---|
 | Unit of work | one section = one page; sections never folded (rule 11) |
-| Order | 2.1, 2.2, 2.3, 2.4, re-link 2.5, 2.6, 2.7, 2.8; chapter intro as a short landing page |
+| Order | 2.1, 2.2, 2.3, 2.4, re-link 2.5, 2.6, 2.7, 2.8; the chapter introduction as a page of its own in `intro/`, listed before 2.1 (root rule 21; built 2026-09-11) |
 | Loop | per section: plan message → build → stop for feedback |
 | Site | one page per section, built by the Astro app in `omnistax-web/` (the earlier `tools/build_site.py` is gone since Pass 7); other sections load into tabs on demand |
 | Prose | verbatim; objectives, summary, glossary pulled into views |
