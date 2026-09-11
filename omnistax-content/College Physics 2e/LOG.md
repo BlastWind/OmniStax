@@ -1035,3 +1035,60 @@ light and dark: every `figure.sim` boots a canvas, the four still sims of
 on every figure with an original, the references in 3.1 link to
 `#3.1-sim-walk`, a figure hidden under its old id comes up hidden under
 its new one, and no console errors.
+
+### Pass 25 (2026-09-11): a book image at a sensible size
+
+A kept photograph and the Originals shown under a sim were set to
+`width: 100%`, so a 315 × 380 file was stretched to the 740 px column
+and the 594 × 1397 jet-car graph of 2.8 ran past the whole viewport.
+Chen chose three measures together, and the stylesheet now says all
+three for `figure.photo img` and `.sim .original img`: an image is
+never upscaled (it sits at its natural size, centred, never wider than
+the column); it is never taller than 60vh, width following; and where
+the book says how wide it prints the image, that width is honoured on
+our column. The book lays its pages out on a 600 px column and the
+article is 740 px wide (820 less two 40 px paddings), so one of the
+book's pixels is 740 / 600 of ours; `--book-px: 1.2333px` names that in
+`global.css`, and an image with a known width is capped at
+`min(100%, calc(var(--book-w) * var(--book-px)))`. The exercise cards'
+figures share the `photo` class, so they obey the first two measures
+too.
+
+The book's width is the `width` attribute of the CNXML `<image>`, which
+most figures carry. The figures table keeps it as `widths`: one number
+per image the row shows, in the row's order (a photograph's one image,
+or the `originals`), empty where the book gives none. The text carries
+the same numbers for the browser as the other facts of a row are
+carried, `data-width` on a photograph's `<img>` and `data-original-width`
+on a figure with originals, comma-separated and aligned with
+`data-original`; the validator's new rule `checkWidths` reads both
+against the row and refuses a count that does not match the images. The
+build writes `--book-w` onto a photograph's `<img>` from `data-width`
+(`sizeImages` in `fragment.ts`, so no content file carries a style
+attribute), and `original.ts` writes it onto each original image from
+`data-original-width` as it makes them. The converter's `FIGURE` block
+gains a `> width: 400` line after `alt:` (and a subfigure line
+`width=`), for sections converted from here on; the committed
+`source.md` files were not reconverted.
+
+A script read every built section's module in the bundle and filled
+`widths` and the two attributes: 65 rows got widths and 25 were left
+empty. Twenty-three of those carry only a `height` in the CNXML (eight of
+1.1's eleven photographs and its atom model, 1.2's three photographs,
+1.3's target, three of 3.2's vector figures, 3.3's components, 3.4's
+components, fireworks and range, 3.5's coin, 16.3's x-v-a graphs and
+16.5's energy transfer), and two carry neither
+(`fig-paths` of 3.2 and `fig-galaxies` of 3.5). One bundle file is
+named with a space, "Figure 02_01_02.jpg", where the section's copy has
+an underscore; the script tries that spelling and 2.1's displacement
+figure got its width. A row with several originals is all or nothing,
+so 3.2's head-to-tail (two of four) and subtraction (one of five) stay
+empty rather than half-set.
+
+Checks: `check:content` with no errors, 322 unit tests, `astro check`
+clean, a build, and a headless pass over 1.1, 2.4, 2.7, 2.8 and 3.1 in
+light and dark with every Original opened: every image loads, none is
+rendered wider than its natural width or its book cap, none is taller
+than 540 px of a 900 px viewport (the MRI of 1.1 sits at 315 × 380, the
+jet-car graph at 231 × 540, the three originals of 3.1's walk at 400,
+200 and 350 book pixels scaled), and no console errors.

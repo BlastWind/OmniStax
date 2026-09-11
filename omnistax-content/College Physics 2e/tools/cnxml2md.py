@@ -159,16 +159,21 @@ def block(e, depth):
         alt = media.get("alt", "") if media is not None else ""
         img = media.find(C + "image") if media is not None else None
         src = img.get("src", "") if img is not None else ""
+        # The width the book prints the image at, in pixels of its own column; most figures carry one, and a figure without it is left to its natural size.
+        width = img.get("width") if img is not None else None
+        width_line = f"\n> width: {width}" if width else ""
         cap = e.find(C + "caption")
-        lines.append(f"\n> FIGURE {{fig:{e.get('id','')}}} src={src}\n> alt: {alt}\n> caption: {inline(cap).strip() if cap is not None else ''}\n")
+        lines.append(f"\n> FIGURE {{fig:{e.get('id','')}}} src={src}\n> alt: {alt}{width_line}\n> caption: {inline(cap).strip() if cap is not None else ''}\n")
         for sf in e.findall(C + "subfigure"):
             lines.append(block(sf, depth))
     elif t == "subfigure":
         media = e.find(C + "media")
         img = media.find(C + "image") if media is not None else None
         src = img.get("src", "") if img is not None else ""
+        width = img.get("width") if img is not None else None
+        width_part = f" width={width}" if width else ""
         cap = e.find(C + "caption")
-        lines.append(f"> subfigure src={src} caption: {inline(cap).strip() if cap is not None else ''}")
+        lines.append(f"> subfigure src={src}{width_part} caption: {inline(cap).strip() if cap is not None else ''}")
     elif t == "note":
         title = e.find(C + "title")
         lines.append(f"\n:::note [{e.get('class', e.get('type',''))}] {inline(title).strip() if title is not None else ''}")

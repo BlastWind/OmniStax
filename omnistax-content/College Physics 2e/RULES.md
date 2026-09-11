@@ -32,7 +32,8 @@ python3 tools/cnxml2md.py source/osbooks-college-physics-bundle/modules/m42240/i
 It converts MathML to LaTeX and keeps the markers the later steps read:
 `{eq:id}` after an equation, `{term:…}` round a defined term,
 `[ref:target]` for a cross reference, a `> FIGURE {fig:id}` block with the
-image path, alt text and caption, `:::example {ex:id}` and
+image path, alt text, the width the book prints the image at where the
+CNXML gives one, and caption, `:::example {ex:id}` and
 `:::exercise {id} type=…` blocks, `PROBLEM:` and `SOLUTION:` inside them,
 and `- {def}` for a glossary entry. The ids are the book's own CNXML ids,
 and an exercise's `source_id` is the id its block carries.
@@ -163,6 +164,18 @@ every number the prose cites links to it. Sub-figures the book prints
 under one number, (a) and (b), are not folds; they are one number with
 several `originals`. The validator reads every eyebrow against its row.
 
+A book image is shown no larger than the book shows it. A row keeps the
+width the book prints each of its images at, `widths`, one number per
+image in the order the row shows them (a photograph's one image, or the
+originals), taken from the `width` attribute of the CNXML `<image>`;
+the text carries the same numbers as `data-width` on a photograph's
+`<img>` and `data-original-width` on a figure with originals. The app
+never upscales an image, never lets one stand taller than three fifths
+of the viewport, and where a width is known caps the image at that
+width scaled to its column. Where the book gives an image no width (a
+few images carry only a `height`), `widths` stays empty and the image
+sits at its natural size.
+
 The book's images are served from `media/<chapter>/` in this folder, with
 the file names the bundle gives them.
 
@@ -192,5 +205,7 @@ to this book:
   table lists them.
 - `text.html` carries the article body with local ids and `\k` macros in
   its math, and each `<figure>` carries `id`, `class` (sim or photo),
-  `data-figure`, `data-original` and `data-original-caption`, which must
-  agree with the figures table; the validator checks that they do.
+  `data-figure`, `data-original`, `data-original-caption` and, where the
+  row carries `widths`, `data-original-width` (a photograph carries its
+  one width as `data-width` on the `<img>`), which must agree with the
+  figures table; the validator checks that they do.
