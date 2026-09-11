@@ -44,10 +44,9 @@ function runs(ctx, parts, x, y, size) {
 ===================================================================== */
 (function () {
   const d = demo('demo-target', 620);
-  const S = ctl(d.controls, { label: '\\text{spread}', cls: '', min: 0.1, max: 3, step: 0.1, value: 2, unit: 'rings', dec: 1, onInput: reset, aria: 'spread of the attempts' });
-  const O = ctl(d.controls, { label: '\\text{offset}', cls: '', min: 0, max: 3, step: 0.1, value: 0.3, unit: 'rings', dec: 1, onInput: reset, aria: 'offset of the centre of the attempts' });
-  const cy = cycle(() => Infinity, 0);
-  function reset() { cy.reset(); }
+  const S = ctl(d.controls, { label: '\\text{spread}', cls: '', min: 0.1, max: 3, step: 0.1, value: 2, unit: 'rings', dec: 1, aria: 'spread of the attempts' });
+  const O = ctl(d.controls, { label: '\\text{offset}', cls: '', min: 0, max: 3, step: 0.1, value: 0.3, unit: 'rings', dec: 1, aria: 'offset of the centre of the attempts' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const CX = 400, CY = 340, RING = 44, ANG = (-25 * Math.PI) / 180;
   function draw() {
     const { ctx } = begin(d.c);
@@ -75,7 +74,7 @@ function runs(ctx, parts, x, y, size) {
     readout(d.readout, `\\text{spread} = ${fmt(S.v, 1)}\\ \\text{rings}, \\quad \\text{offset of the centre} = ${fmt(O.v, 1)}\\ \\text{rings}`,
       'Precision is about how closely the attempts agree with one another, and accuracy about how close they are to the correct value. A system can have either without the other.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+  register(d.fig, { update: () => {}, draw });
 })();
 
 /* =====================================================================
@@ -85,10 +84,9 @@ function runs(ctx, parts, x, y, size) {
 ===================================================================== */
 (function () {
   const d = demo('demo-percent', 560);
-  const A = ctl(d.controls, { label: 'A', cls: '', min: 1, max: 10, step: 0.1, value: 5.1, unit: 'lb', dec: 1, onInput: reset, aria: 'average weight' });
-  const dA = ctl(d.controls, { label: '\\delta A', cls: '', min: 0.1, max: 1, step: 0.1, value: 0.4, unit: 'lb', dec: 1, onInput: reset, aria: 'uncertainty in the weight' });
-  const cy = cycle(() => Infinity, 0);
-  function reset() { cy.reset(); }
+  const A = ctl(d.controls, { label: 'A', cls: '', min: 1, max: 10, step: 0.1, value: 5.1, unit: 'lb', dec: 1, aria: 'average weight' });
+  const dA = ctl(d.controls, { label: '\\delta A', cls: '', min: 0.1, max: 1, step: 0.1, value: 0.4, unit: 'lb', dec: 1, aria: 'uncertainty in the weight' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const WEEKS = [4.8, 5.3, 4.9, 5.4];
   const pct = (a, u) => Math.round((100 * u) / a);
   function draw() {
@@ -114,7 +112,7 @@ function runs(ctx, parts, x, y, size) {
     readout(d.readout, `\\%\\,\\text{unc} = \\frac{\\delta A}{A} \\times 100\\% = \\frac{${fmt(dA.v, 1)}\\ \\text{lb}}{${fmt(A.v, 1)}\\ \\text{lb}} \\times 100\\% = ${p}\\%`,
       'The same uncertainty on a bag half as heavy, ' + fmt(half, 2) + ' lb ± ' + fmt(dA.v, 1) + ' lb, is ' + ph + '%, so the lighter the bag, the larger the share of it the uncertainty is.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+  register(d.fig, { update: () => {}, draw });
 })();
 
 /* =====================================================================
@@ -124,10 +122,9 @@ function runs(ctx, parts, x, y, size) {
 ===================================================================== */
 (function () {
   const d = demo('demo-area', 620);
-  const pL = ctl(d.controls, { label: '\\text{length}', cls: '', min: 0, max: 10, step: 0.5, value: 2, unit: '%', dec: 1, onInput: reset, aria: 'percent uncertainty in the length' });
-  const pW = ctl(d.controls, { label: '\\text{width}', cls: '', min: 0, max: 10, step: 0.5, value: 1, unit: '%', dec: 1, onInput: reset, aria: 'percent uncertainty in the width' });
-  const cy = cycle(() => Infinity, 0);
-  function reset() { cy.reset(); }
+  const pL = ctl(d.controls, { label: '\\text{length}', cls: '', min: 0, max: 10, step: 0.5, value: 2, unit: '%', dec: 1, aria: 'percent uncertainty in the length' });
+  const pW = ctl(d.controls, { label: '\\text{width}', cls: '', min: 0, max: 10, step: 0.5, value: 1, unit: '%', dec: 1, aria: 'percent uncertainty in the width' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const LEN = 4, WID = 3, K = 130, CX = 420, CY = 330;
   const pc = (p) => (Number.isInteger(p) ? fmt(p, 0) : fmt(p, 1)) + '%';
   const pcTex = (p) => (Number.isInteger(p) ? fmt(p, 0) : fmt(p, 1)) + '\\%';
@@ -156,7 +153,7 @@ function runs(ctx, parts, x, y, size) {
       'The largest floor the uncertainties allow is (' + fmt(a, 2) + ' m)(' + fmt(b, 2) + ' m) = ' + fmt(a * b, 1) + ' m² and the smallest (' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m², so '
       + (pA <= 5 ? 'adding the percents is very nearly exact when the uncertainties are small.' : 'adding the percents is only an approximation, which serves well when the uncertainties are a few percent or less.'));
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+  register(d.fig, { update: () => {}, draw });
 })();
 
 /* =====================================================================
@@ -238,12 +235,11 @@ function runs(ctx, parts, x, y, size) {
 ===================================================================== */
 (function () {
   const d = demo('demo-calc', 560);
-  const a0 = ctl(d.controls, { label: 'a', cls: '', min: 1, max: 20, step: 0.01, value: 7.56, unit: '', dec: 2, onInput: reset, aria: 'length a' });
-  const da = ctl(d.controls, { label: '\\text{decimals of } a', cls: '', min: 0, max: 3, step: 1, value: 2, unit: '', dec: 0, onInput: reset, aria: 'decimals of a' });
-  const b0 = ctl(d.controls, { label: 'b', cls: '', min: 1, max: 20, step: 0.001, value: 6.052, unit: '', dec: 3, onInput: reset, aria: 'length b' });
-  const db = ctl(d.controls, { label: '\\text{decimals of } b', cls: '', min: 0, max: 3, step: 1, value: 3, unit: '', dec: 0, onInput: reset, aria: 'decimals of b' });
-  const cy = cycle(() => Infinity, 0);
-  function reset() { cy.reset(); }
+  const a0 = ctl(d.controls, { label: 'a', cls: '', min: 1, max: 20, step: 0.01, value: 7.56, unit: '', dec: 2, aria: 'length a' });
+  const da = ctl(d.controls, { label: '\\text{decimals of } a', cls: '', min: 0, max: 3, step: 1, value: 2, unit: '', dec: 0, aria: 'decimals of a' });
+  const b0 = ctl(d.controls, { label: 'b', cls: '', min: 1, max: 20, step: 0.001, value: 6.052, unit: '', dec: 3, aria: 'length b' });
+  const db = ctl(d.controls, { label: '\\text{decimals of } b', cls: '', min: 0, max: 3, step: 1, value: 3, unit: '', dec: 0, aria: 'decimals of b' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const PLACES = ['whole units', 'tenths', 'hundredths', 'thousandths'];
   /* the raw digits split after the nth significant one */
   function splitSig(raw, n) {
@@ -289,6 +285,6 @@ function runs(ctx, parts, x, y, size) {
     readout(d.readout, `\\begin{aligned} a + b &= ${As} + ${Bs} = ${sumTex} \\\\ a \\times b &= ${As} \\times ${Bs} = ${pTex} \\end{aligned}`,
       'For addition and subtraction the answer keeps the decimal places of the least precise measurement, and for multiplication and division it keeps the significant figures of the quantity with the fewest.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+  register(d.fig, { update: () => {}, draw });
 })();
 };

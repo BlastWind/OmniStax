@@ -104,10 +104,9 @@ function stopwatch(ctx, x, y, r, f) {
 ===================================================================== */
 (function () {
   const d = demo('demo-ladder', 420);
-  const M = ctl(d.controls, { label: '\\text{mantissa } m', cls: '', min: 1, max: 9.9, step: 0.1, value: 4.5, unit: '', dec: 1, onInput: reset, aria: 'mantissa' });
-  const N = ctl(d.controls, { label: '\\text{exponent } n', cls: '', min: -18, max: 26, step: 1, value: 2, unit: '', dec: 0, onInput: reset, aria: 'exponent' });
-  const cy = cycle(() => Infinity, 0);
-  function reset() { cy.reset(); }
+  const M = ctl(d.controls, { label: '\\text{mantissa } m', cls: '', min: 1, max: 9.9, step: 0.1, value: 4.5, unit: '', dec: 1, aria: 'mantissa' });
+  const N = ctl(d.controls, { label: '\\text{exponent } n', cls: '', min: -18, max: 26, step: 1, value: 2, unit: '', dec: 0, aria: 'exponent' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const PREFIX = [[-18, 'atto', 'a'], [-15, 'femto', 'f'], [-12, 'pico', 'p'], [-9, 'nano', 'n'], [-6, 'micro', 'µ'], [-3, 'milli', 'm'], [-2, 'centi', 'c'], [-1, 'deci', 'd'],
     [1, 'deka', 'da'], [2, 'hecto', 'h'], [3, 'kilo', 'k'], [6, 'mega', 'M'], [9, 'giga', 'G'], [12, 'tera', 'T'], [15, 'peta', 'P'], [18, 'exa', 'E']];
   /* the lengths of Table 1.3: power of ten, label, row above the ladder (0 nearest), and which side of its tick the label sits */
