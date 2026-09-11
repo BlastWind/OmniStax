@@ -1,0 +1,550 @@
+{
+ "id": "5",
+ "dir": "ch05",
+ "title": "Further Applications of Newton's Laws: Friction, Drag, and Elasticity",
+ "intro": {
+  "module": "m42138",
+  "slug": "5-introduction-further-applications-of-newtons-laws"
+ },
+ "sections": [
+  {
+   "id": "5.1",
+   "module": "m42139",
+   "title": "Friction",
+   "slug": "5-1-friction"
+  },
+  {
+   "id": "5.2",
+   "module": "m42080",
+   "title": "Drag Forces",
+   "slug": "5-2-drag-forces"
+  },
+  {
+   "id": "5.3",
+   "module": "m42081",
+   "title": "Elasticity: Stress and Strain",
+   "slug": "5-3-elasticity-stress-and-strain"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "f_fric",
+   "type": "force",
+   "meaning": "magnitude of the friction force, which is parallel to the contact surface and always opposes motion or attempted motion",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "f_s",
+   "type": "force",
+   "meaning": "magnitude of static friction, the force between two systems that are in contact and are not moving relative to one another",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "f_smax",
+   "type": "force",
+   "meaning": "the largest static friction the surfaces can supply; once the applied force exceeds it, the object moves",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "f_k",
+   "type": "force",
+   "meaning": "magnitude of kinetic friction, the force between two systems that are in contact and moving relative to one another",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "N",
+   "type": "force",
+   "meaning": "magnitude of the normal force, the force perpendicular to the contact surface between the systems",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "F",
+   "type": "force",
+   "meaning": "the force applied parallel to the surface, which static friction answers with an equal and opposite force until the object breaks away",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "μ_s",
+   "meaning": "coefficient of static friction, which depends on both of the materials in contact and carries no units",
+   "unit": "",
+   "section": "5.1"
+  },
+  {
+   "sym": "μ_k",
+   "meaning": "coefficient of kinetic friction, which is less than the coefficient of static friction for the same two materials",
+   "unit": "",
+   "section": "5.1"
+  },
+  {
+   "sym": "w",
+   "type": "force",
+   "meaning": "the weight of the skier, which the coordinate system of the slope splits into a component perpendicular to the slope and a component along it",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "w_perp",
+   "type": "force",
+   "meaning": "the component of the weight perpendicular to the slope, equal in magnitude to the normal force, so that there is no motion perpendicular to the slope",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "w_par",
+   "type": "force",
+   "meaning": "the component of the weight along the slope, which is larger than the friction and so accelerates the skier down it",
+   "unit": "N",
+   "section": "5.1"
+  },
+  {
+   "sym": "θ",
+   "meaning": "the angle the slope makes with the horizontal",
+   "unit": "º",
+   "section": "5.1"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the system whose weight presses the two surfaces together",
+   "unit": "kg",
+   "section": "5.1"
+  },
+  {
+   "sym": "g",
+   "type": "acceleration",
+   "meaning": "the acceleration due to gravity, which turns the mass resting on the surface into a weight",
+   "unit": "m/s²",
+   "section": "5.1"
+  },
+  {
+   "sym": "F_D",
+   "type": "force",
+   "meaning": "magnitude of the drag force on an object moving through a fluid, which always opposes the motion",
+   "unit": "N",
+   "section": "5.2"
+  },
+  {
+   "sym": "C_drag",
+   "meaning": "the drag coefficient, a dimensionless number determined empirically in a wind tunnel, which depends on the shape of the object",
+   "unit": "",
+   "section": "5.2"
+  },
+  {
+   "sym": "A",
+   "meaning": "the area of the object facing the fluid",
+   "unit": "m²",
+   "section": "5.2"
+  },
+  {
+   "sym": "ρ",
+   "meaning": "the density of the fluid the object moves through, which for air is 1.21 kg/m³",
+   "unit": "kg/m³",
+   "section": "5.2"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the speed of the object through the fluid, which the drag force depends on",
+   "unit": "m/s",
+   "section": "5.2"
+  },
+  {
+   "sym": "v_t",
+   "type": "velocity",
+   "meaning": "the terminal velocity, the constant speed a falling object reaches when the drag force has grown equal to its weight",
+   "unit": "m/s",
+   "section": "5.2"
+  },
+  {
+   "sym": "b",
+   "meaning": "the constant 0.5CρA, which gathers the shape, the size and the fluid into one number so that the drag force is bv²",
+   "unit": "kg/m",
+   "section": "5.2"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the falling object, whose weight the drag force grows to match",
+   "unit": "kg",
+   "section": "5.2"
+  },
+  {
+   "sym": "g",
+   "type": "acceleration",
+   "meaning": "the acceleration due to gravity, which gives the falling object the weight mg",
+   "unit": "m/s²",
+   "section": "5.2"
+  },
+  {
+   "sym": "F_s",
+   "type": "force",
+   "meaning": "magnitude of the drag force given by Stokes' law, which holds for a very small object moving slowly or in a medium denser than air",
+   "unit": "N",
+   "section": "5.2"
+  },
+  {
+   "sym": "r",
+   "meaning": "the radius of the small object that Stokes' law applies to",
+   "unit": "m",
+   "section": "5.2"
+  },
+  {
+   "sym": "η",
+   "meaning": "the viscosity of the fluid, measured in kilograms per meter per second",
+   "unit": "kg/(m·s)",
+   "section": "5.2"
+  },
+  {
+   "sym": "F",
+   "type": "force",
+   "meaning": "the force applied to the object, which changes its shape rather than its motion",
+   "unit": "N",
+   "section": "5.3"
+  },
+  {
+   "sym": "ΔL",
+   "type": "position",
+   "meaning": "the deformation, the change in length the force produces",
+   "unit": "m",
+   "section": "5.3"
+  },
+  {
+   "sym": "k",
+   "type": "stiffness",
+   "meaning": "a proportionality constant that depends on the shape and the composition of the object and on the direction of the force",
+   "unit": "N/m",
+   "section": "5.3"
+  },
+  {
+   "sym": "L_0",
+   "type": "position",
+   "meaning": "the original length of the wire or rod, before the force is applied",
+   "unit": "m",
+   "section": "5.3"
+  },
+  {
+   "sym": "A",
+   "meaning": "the cross-sectional area of the wire or rod, which is πr² for a cylinder of radius r",
+   "unit": "m²",
+   "section": "5.3"
+  },
+  {
+   "sym": "Y",
+   "type": "elastic-modulus",
+   "meaning": "Young's modulus, the elastic modulus for a change in length, which depends on the substance; a material with a large Y deforms little for a given tension or compression",
+   "unit": "N/m²",
+   "section": "5.3"
+  },
+  {
+   "sym": "S",
+   "type": "elastic-modulus",
+   "meaning": "the shear modulus, which sets the sideways deformation that a shearing force produces",
+   "unit": "N/m²",
+   "section": "5.3"
+  },
+  {
+   "sym": "B_bulk",
+   "type": "elastic-modulus",
+   "meaning": "the bulk modulus, which sets the change in volume that a force per unit area applied evenly inward on all surfaces produces",
+   "unit": "N/m²",
+   "section": "5.3"
+  },
+  {
+   "sym": "Δx",
+   "type": "position",
+   "meaning": "the shear deformation, which is perpendicular to the original length rather than parallel to it",
+   "unit": "m",
+   "section": "5.3"
+  },
+  {
+   "sym": "ΔV",
+   "meaning": "the change in volume produced by a force applied evenly inward on every surface",
+   "unit": "m³",
+   "section": "5.3"
+  },
+  {
+   "sym": "V_0",
+   "meaning": "the original volume of the object, before it is compressed",
+   "unit": "m³",
+   "section": "5.3"
+  },
+  {
+   "sym": "w",
+   "type": "force",
+   "meaning": "the weight hung from the guitar string or from the nail, which is the force that deforms it",
+   "unit": "N",
+   "section": "5.3"
+  },
+  {
+   "sym": "r",
+   "meaning": "the radius of the rod, wire or nail, from which the cross-sectional area πr² is found",
+   "unit": "m",
+   "section": "5.3"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass whose weight deforms the object",
+   "unit": "kg",
+   "section": "5.3"
+  }
+ ],
+ "equations": [
+  {
+   "id": "eq-fs",
+   "concept": "static-friction-magnitude",
+   "section": "5.1",
+   "latex": "f_{\\text{s}} \\le \\mu_{\\text{s}} N",
+   "ktex": "\\kfs \\le \\mu_{\\text{s}} \\kN",
+   "condition": "the two systems are in contact and are not moving relative to one another",
+   "important": true
+  },
+  {
+   "id": "eq-fs-max",
+   "section": "5.1",
+   "latex": "f_{\\text{s}(\\text{max})} = \\mu_{\\text{s}} N",
+   "ktex": "\\kfsmax = \\mu_{\\text{s}} \\kN",
+   "condition": "static friction has reached its maximum and the object is about to move",
+   "important": true
+  },
+  {
+   "id": "eq-fk",
+   "concept": "kinetic-friction-magnitude",
+   "section": "5.1",
+   "latex": "f_{\\text{k}} = \\mu_{\\text{k}} N",
+   "ktex": "\\kfk = \\mu_{\\text{k}} \\kN",
+   "condition": "the two systems are moving relative to one another and friction behaves simply",
+   "important": true
+  },
+  {
+   "id": "eq-N-incline",
+   "section": "5.1",
+   "latex": "N = w_{\\perp} = w\\cos\\theta = mg\\cos\\theta",
+   "ktex": "\\kN = \\kwperp = \\kwgt\\cos\\theta = m\\kg\\cos\\theta",
+   "condition": "there is no motion perpendicular to the slope",
+   "important": false
+  },
+  {
+   "id": "eq-fk-incline",
+   "concept": "friction-on-an-incline",
+   "section": "5.1",
+   "latex": "f_{\\text{k}} = \\mu_{\\text{k}} mg\\cos\\theta",
+   "ktex": "\\kfk = \\mu_{\\text{k}} m\\kg\\cos\\theta",
+   "condition": "an object slides down a slope that makes an angle θ with the horizontal",
+   "important": true
+  },
+  {
+   "id": "eq-mu-k-slope",
+   "section": "5.1",
+   "latex": "\\mu_{\\text{k}} = \\frac{f_{\\text{k}}}{N} = \\frac{f_{\\text{k}}}{mg\\cos\\theta}",
+   "ktex": "\\mu_{\\text{k}} = \\frac{\\kfk}{\\kN} = \\frac{\\kfk}{m\\kg\\cos\\theta}",
+   "important": false
+  },
+  {
+   "id": "eq-mu-tan",
+   "section": "5.1",
+   "latex": "\\mu_{\\text{k}} = \\frac{mg\\sin\\theta}{mg\\cos\\theta} = \\tan\\theta",
+   "condition": "the object slides down the slope at a constant velocity, so that the acceleration is zero",
+   "important": true
+  },
+  {
+   "id": "eq-drag-prop",
+   "section": "5.2",
+   "latex": "F_{\\text{D}} \\propto v^2",
+   "ktex": "\\kFD \\propto \\kv^2",
+   "condition": "a large object moving fast enough through a fluid",
+   "important": false
+  },
+  {
+   "id": "eq-drag-force",
+   "concept": "drag-force-equation",
+   "section": "5.2",
+   "latex": "F_{\\text{D}} = \\frac{1}{2} C \\rho A v^2",
+   "ktex": "\\kFD = \\frac{1}{2} C \\rho A \\kv^2",
+   "condition": "a large object such as a bicyclist, a car or a baseball, not moving too slowly",
+   "important": true
+  },
+  {
+   "id": "eq-drag-b",
+   "section": "5.2",
+   "latex": "F_{\\text{D}} = bv^2, \\quad b = 0.5 C \\rho A",
+   "ktex": "\\kFD = b\\kv^2, \\quad b = 0.5 C \\rho A",
+   "important": false
+  },
+  {
+   "id": "eq-terminal-balance",
+   "section": "5.2",
+   "latex": "F_{\\text{net}} = mg - F_{\\text{D}} = ma = 0",
+   "ktex": "F_{\\text{net}} = m\\kg - \\kFD = m\\ka = 0",
+   "condition": "at the terminal velocity",
+   "important": false
+  },
+  {
+   "id": "eq-vt",
+   "concept": "terminal-velocity-magnitude",
+   "section": "5.2",
+   "latex": "v_{\\text{t}} = \\sqrt{\\frac{2mg}{\\rho C A}}",
+   "ktex": "\\kvt = \\sqrt{\\frac{2m\\kg}{\\rho C A}}",
+   "condition": "the drag force has grown equal to the weight",
+   "important": true
+  },
+  {
+   "id": "eq-stokes",
+   "concept": "stokes-law",
+   "section": "5.2",
+   "latex": "F_{\\text{s}} = 6\\pi r \\eta v",
+   "ktex": "\\kFs = 6\\pi r \\eta \\kv",
+   "condition": "the object is very small, is going very slowly, or is in a medium denser than air",
+   "important": true
+  },
+  {
+   "id": "eq-hooke-dl",
+   "section": "5.3",
+   "latex": "F = k\\Delta L",
+   "ktex": "\\kF = \\kk\\kdL",
+   "condition": "small deformations, for which the object returns to its original shape",
+   "important": true
+  },
+  {
+   "id": "eq-dl-from-k",
+   "section": "5.3",
+   "latex": "\\Delta L = \\frac{F}{k}",
+   "ktex": "\\kdL = \\frac{\\kF}{\\kk}",
+   "important": false
+  },
+  {
+   "id": "eq-delta-L",
+   "concept": "youngs-modulus",
+   "section": "5.3",
+   "latex": "\\Delta L = \\frac{1}{Y}\\frac{F}{A}L_0",
+   "ktex": "\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo",
+   "condition": "a force applied parallel to the length of a wire or rod, stretching or compressing it",
+   "important": true
+  },
+  {
+   "id": "eq-stress-strain-form",
+   "section": "5.3",
+   "latex": "\\frac{F}{A} = Y\\frac{\\Delta L}{L_0}",
+   "ktex": "\\frac{\\kF}{A} = \\kY\\frac{\\kdL}{\\kLo}",
+   "important": true
+  },
+  {
+   "id": "eq-stress-strain",
+   "concept": "stress-strain",
+   "section": "5.3",
+   "latex": "\\text{stress} = Y \\times \\text{strain}",
+   "ktex": "\\text{stress} = \\kY \\times \\text{strain}",
+   "important": true
+  },
+  {
+   "id": "eq-F-YA",
+   "section": "5.3",
+   "latex": "F = YA\\frac{\\Delta L}{L_0}",
+   "ktex": "\\kF = \\kY A\\frac{\\kdL}{\\kLo}",
+   "important": false
+  },
+  {
+   "id": "eq-k-rod",
+   "section": "5.3",
+   "latex": "k = \\frac{YA}{L_0}",
+   "ktex": "\\kk = \\frac{\\kY A}{\\kLo}",
+   "condition": "the object is a uniform rod or wire of cross-sectional area A and length L₀",
+   "important": true
+  },
+  {
+   "id": "eq-shear",
+   "concept": "shear-deformation",
+   "section": "5.3",
+   "latex": "\\Delta x = \\frac{1}{S}\\frac{F}{A}L_0",
+   "ktex": "\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo",
+   "condition": "the force is applied perpendicular to L₀ and parallel to the cross-sectional area A",
+   "important": true
+  },
+  {
+   "id": "eq-shear-F",
+   "section": "5.3",
+   "latex": "F = \\frac{SA}{L_0}\\Delta x",
+   "ktex": "\\kF = \\frac{\\kS A}{\\kLo}\\kdx",
+   "important": false
+  },
+  {
+   "id": "eq-bulk",
+   "concept": "bulk-deformation",
+   "section": "5.3",
+   "latex": "\\Delta V = \\frac{1}{B}\\frac{F}{A}V_0",
+   "ktex": "\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0",
+   "condition": "the force per unit area is applied uniformly inward on all surfaces",
+   "important": true
+  }
+ ],
+ "glossary": [
+  {
+   "section": "5.1",
+   "term": "friction",
+   "definition": "a force that opposes relative motion or attempts at motion between systems in contact"
+  },
+  {
+   "section": "5.1",
+   "term": "kinetic friction",
+   "definition": "a force that opposes the motion of two systems that are in contact and moving relative to one another"
+  },
+  {
+   "section": "5.1",
+   "term": "static friction",
+   "definition": "a force that opposes the motion of two systems that are in contact and are not moving relative to one another"
+  },
+  {
+   "section": "5.1",
+   "term": "magnitude of static friction",
+   "definition": "fₛ ≤ μₛN, where μₛ is the coefficient of static friction and N is the magnitude of the normal force"
+  },
+  {
+   "section": "5.1",
+   "term": "magnitude of kinetic friction",
+   "definition": "fₖ = μₖN, where μₖ is the coefficient of kinetic friction"
+  },
+  {
+   "section": "5.2",
+   "term": "drag force",
+   "definition": "the force on an object moving through a fluid, found to be proportional to the square of the speed of the object: it is ½CρAv², where C is the drag coefficient, A is the area of the object facing the fluid, and ρ is the density of the fluid"
+  },
+  {
+   "section": "5.2",
+   "term": "Stokes' law",
+   "definition": "Fₛ = 6πrηv, where r is the radius of the object, η is the viscosity of the fluid, and v is the object's velocity"
+  },
+  {
+   "section": "5.3",
+   "term": "deformation",
+   "definition": "change in shape due to the application of force"
+  },
+  {
+   "section": "5.3",
+   "term": "Hooke's law",
+   "definition": "proportional relationship between the force F on a material and the deformation ΔL it causes, F = kΔL"
+  },
+  {
+   "section": "5.3",
+   "term": "tensile strength",
+   "definition": "the breaking stress that will cause permanent deformation or fracture of a material"
+  },
+  {
+   "section": "5.3",
+   "term": "stress",
+   "definition": "ratio of force to area"
+  },
+  {
+   "section": "5.3",
+   "term": "strain",
+   "definition": "ratio of change in length to original length"
+  },
+  {
+   "section": "5.3",
+   "term": "shear deformation",
+   "definition": "deformation perpendicular to the original length of an object"
+  }
+ ]
+}

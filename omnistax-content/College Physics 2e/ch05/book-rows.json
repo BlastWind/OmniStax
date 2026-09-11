@@ -1,0 +1,436 @@
+{
+ "types": [
+  {
+   "id": "stress",
+   "label": "stress",
+   "dimension": "N/m²"
+  },
+  {
+   "id": "elastic-modulus",
+   "label": "elastic modulus",
+   "dimension": "N/m²"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "f_s",
+   "latex": "f_{\\text{s}}",
+   "type": "force",
+   "macro": "\\kfs"
+  },
+  {
+   "sym": "f_smax",
+   "latex": "f_{\\text{s}(\\text{max})}",
+   "type": "force",
+   "macro": "\\kfsmax"
+  },
+  {
+   "sym": "f_k",
+   "latex": "f_{\\text{k}}",
+   "type": "force",
+   "macro": "\\kfk"
+  },
+  {
+   "sym": "v_t",
+   "latex": "v_{\\text{t}}",
+   "type": "velocity",
+   "macro": "\\kvt"
+  },
+  {
+   "sym": "ΔL",
+   "latex": "\\Delta L",
+   "type": "position",
+   "macro": "\\kdL"
+  },
+  {
+   "sym": "L_0",
+   "latex": "L_0",
+   "type": "position",
+   "macro": "\\kLo"
+  },
+  {
+   "sym": "Y",
+   "latex": "Y",
+   "type": "elastic-modulus",
+   "macro": "\\kY"
+  },
+  {
+   "sym": "S",
+   "latex": "S",
+   "type": "elastic-modulus",
+   "macro": "\\kS"
+  },
+  {
+   "sym": "B_bulk",
+   "latex": "B",
+   "type": "elastic-modulus",
+   "macro": "\\kBb"
+  },
+  {
+   "sym": "μ",
+   "latex": "\\mu"
+  },
+  {
+   "sym": "μ_s",
+   "latex": "\\mu_{\\text{s}}"
+  },
+  {
+   "sym": "μ_k",
+   "latex": "\\mu_{\\text{k}}"
+  },
+  {
+   "sym": "C_drag",
+   "latex": "C"
+  },
+  {
+   "sym": "ρ",
+   "latex": "\\rho"
+  },
+  {
+   "sym": "η",
+   "latex": "\\eta"
+  },
+  {
+   "sym": "r",
+   "latex": "r"
+  },
+  {
+   "sym": "ΔV",
+   "latex": "\\Delta V"
+  },
+  {
+   "sym": "V_0",
+   "latex": "V_0"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "kinetic-friction",
+   "kind": "idea",
+   "section": "5.1",
+   "name": "Kinetic friction",
+   "why": "When two surfaces in contact are moving relative to one another, the friction between them is called kinetic friction. It is the force that slows a hockey puck sliding on ice, and it is the one that behaves simply enough to be written as a single product.",
+   "evidence": "The book boxes the definition and the glossary carries it, and the skiing example, the incline problems and the AP item on a block sliding across a floor are all about the friction on something already moving."
+  },
+  {
+   "id": "static-friction",
+   "kind": "idea",
+   "section": "5.1",
+   "name": "Static friction",
+   "why": "When the surfaces are not moving relative to one another, static friction can act between them. It is a responsive force, growing to be equal and opposite to whatever you push with, up to a limit, which is why a heavy crate can be pushed harder and harder and still not move.",
+   "evidence": "The crate on the concrete floor is the section's first worked argument, the glossary defines the term, and the AP item on a 20 N push against a 40 N box and the conceptual question on letting up on the brake pedal both turn on it."
+  },
+  {
+   "id": "coefficient-of-friction",
+   "kind": "idea",
+   "section": "5.1",
+   "name": "Coefficient of friction",
+   "why": "The coefficient of friction is the number that carries what the two materials are. It has no units, its magnitude is usually between 0 and 1.0, and for the same pair of surfaces the kinetic coefficient is smaller than the static one, which is why a crate is easier to keep moving than it was to start.",
+   "evidence": "Table 5.1 lists both coefficients for thirteen pairs of materials, the text works a 100 kg crate through both of them, and the AP item that asks whether a coefficient is greater than 0.5 tests nothing else."
+  },
+  {
+   "id": "static-friction-magnitude",
+   "kind": "result",
+   "section": "5.1",
+   "name": "Magnitude of static friction, $\\kfs \\le \\mu_{\\text{s}}\\kN$",
+   "eq": "eq-fs",
+   "why": "Static friction has a minimum and a maximum, and the maximum is the coefficient of static friction times the normal force. The inequality is the whole content of the result: the friction is whatever it needs to be, until the applied force passes that maximum and the object moves.",
+   "evidence": "The book boxes the equation, the text uses it to find the 440 N needed to start a 100 kg crate, and the problems on the wooden crate, the utility truck and the block of ice all ask for the force at which motion begins."
+  },
+  {
+   "id": "kinetic-friction-magnitude",
+   "kind": "result",
+   "section": "5.1",
+   "name": "Magnitude of kinetic friction, $\\kfk = \\mu_{\\text{k}}\\kN$",
+   "eq": "eq-fk",
+   "why": "Once an object is moving, the friction on it is the coefficient of kinetic friction times the normal force. A system in which this holds is described as one in which friction behaves simply, and it is the form every problem of the section uses.",
+   "evidence": "The book boxes the equation, the skiing example solves it for the coefficient, and the problems on the steel spatula, the piston, the knee joint and the freight train are all this one product."
+  },
+  {
+   "id": "friction-on-an-incline",
+   "kind": "result",
+   "section": "5.1",
+   "name": "Friction on a slope, $\\kfk = \\mu_{\\text{k}} m\\kg\\cos\\theta$",
+   "eq": "eq-fk-incline",
+   "why": "On a slope the normal force is not the whole weight but only the component of it perpendicular to the surface, so the friction is the coefficient times mg cos θ. This is where the components of Chapter 3 and the friction of this section meet, and it is why every object slides down a given slope with the same constant acceleration.",
+   "evidence": "The skiing example resolves the weight on a 25º slope, the take-home experiment with a coin on a tilted book measures the coefficient as tan θ, and the problems on the snowboarder, the skier and the car on a 6º slope all follow the same steps."
+  },
+  {
+   "id": "atomic-origin-of-friction",
+   "kind": "idea",
+   "section": "5.1",
+   "name": "The atomic origin of friction",
+   "why": "Friction is proportional to the normal force but not to the total area in contact, and that is only explained by looking at the surfaces closely: they touch at their high spots, the actual area of contact grows as they are pressed together, and they warm because the rubbing sets their atomic lattices vibrating.",
+   "evidence": "Figure 5.5 draws the actual area of contact under a small and a large normal force, Figure 5.6 shows a probe tip deformed as it is dragged, the Making Connections note describes the research, and two of the AP items ask for the direction of friction and for where the heat comes from."
+  },
+  {
+   "id": "drag-force-equation",
+   "kind": "result",
+   "section": "5.2",
+   "name": "Drag force, $\\kFD = \\tfrac{1}{2}C\\rho A\\kv^2$",
+   "eq": "eq-drag-force",
+   "why": "For a large object that is not moving too slowly, the drag force is proportional to the square of the speed, and the constant in front gathers the drag coefficient, the area facing the fluid and the density of the fluid. Doubling the speed of a car therefore multiplies the drag on it by about four.",
+   "evidence": "The book boxes the equation, Table 5.2 lists drag coefficients from an airfoil to a circular flat plate, and the problems on the Camry and the Hummer and on the factor by which drag grows between 65 and 110 km/h use it directly."
+  },
+  {
+   "id": "drag-coefficient",
+   "kind": "idea",
+   "section": "5.2",
+   "name": "Drag coefficient",
+   "why": "The drag coefficient is the dimensionless number that carries the shape of the object. It is determined empirically, usually in a wind tunnel, and it is why aerodynamic shaping matters: a Toyota Camry has a coefficient of 0.28 and a Hummer H2 one of 0.64, and a skydiver's own coefficient changes with the position they fall in.",
+   "evidence": "Table 5.2 lists twelve values from an airfoil to a circular flat plate, Figure 5.8 shows the wind tunnel they are found in, the passage on body suits and shaved legs is about reducing them, and the conceptual question on body suits asks for the pros and the cons."
+  },
+  {
+   "id": "terminal-velocity",
+   "kind": "idea",
+   "section": "5.2",
+   "name": "Terminal velocity",
+   "why": "A falling body speeds up until the drag force has grown equal to its weight. The net force is then zero, so by Newton's second law the acceleration is zero and the speed stays where it is. Terminal velocity is what free fall becomes once the air is no longer neglected.",
+   "evidence": "The skydiver is worked through in the text, the example finds the terminal velocity of an 85 kg skydiver falling spread eagle, and the take-home experiment with nested coffee filters measures it."
+  },
+  {
+   "id": "terminal-velocity-magnitude",
+   "kind": "result",
+   "section": "5.2",
+   "name": "Terminal velocity, $\\kvt = \\sqrt{2m\\kg/\\rho C A}$",
+   "eq": "eq-vt",
+   "why": "Setting the drag force equal to the weight and solving for the speed gives the terminal velocity in terms of the mass, the drag coefficient, the area facing the fluid and the density of the fluid. It is why a 75 kg skydiver falls at about 350 km/h head first and at about 200 km/h spread eagle.",
+   "evidence": "The text works the 75 kg skydiver through it, the example repeats it for 85 kg, and the problems on the 80 kg skydiver, on two skydivers of different masses and on the falling squirrel are all this equation."
+  },
+  {
+   "id": "stokes-law",
+   "kind": "result",
+   "section": "5.2",
+   "name": "Stokes' law, $\\kFs = 6\\pi r\\eta\\kv$",
+   "eq": "eq-stokes",
+   "why": "When the object is very small, is going very slowly, or is in a medium denser than air, the drag is proportional to the speed itself rather than to its square, and the force is 6πrηv. This is the drag that a bacterium, a grain of pollen or a dust particle feels.",
+   "evidence": "The book boxes the law, the text gives the terminal velocities of bacteria and of sediment settling in a lake, and the problems on the spherical bacterium and on the ball bearing dropped in motor oil use it in both directions."
+  },
+  {
+   "id": "size-and-terminal-velocity",
+   "kind": "idea",
+   "section": "5.2",
+   "name": "Size and terminal velocity",
+   "why": "Divide an animal's length, breadth and height each by ten and its weight falls to a thousandth while its surface falls only to a hundredth, so the smaller animal meets relatively ten times the resistance. That is why a squirrel can fall from a tree and walk away and a person cannot.",
+   "evidence": "Haldane's paragraph is quoted in full, the text compares the squirrel's terminal velocity with the skydiver's, the conceptual question asks why the squirrel is unharmed, and the Critical Thinking item on two beads compares their radii from their fall times."
+  },
+  {
+   "id": "deformation",
+   "kind": "idea",
+   "section": "5.3",
+   "name": "Deformation",
+   "why": "A change in shape due to the application of a force is a deformation. Even very small forces are known to cause some deformation, and for small ones two things are observed: the object returns to its original shape when the force is removed, and the size of the deformation is proportional to the force.",
+   "evidence": "The section opens on a bulldozer pushing a car into a wall, the glossary defines the term, and the conceptual questions on whether your height depends on the time of day and on the stress needed to deform a spider's web are about nothing else."
+  },
+  {
+   "id": "elastic-limit",
+   "kind": "idea",
+   "section": "5.3",
+   "name": "The elastic region, permanent deformation and tensile strength",
+   "why": "The proportionality between force and deformation holds only so far. Past the straight part of the graph the deformation is still elastic, past that the object is permanently deformed, and at the tensile strength it fractures. Bones are brittle, so their elastic region is small and the fracture abrupt.",
+   "evidence": "Figure 5.11 draws all of the regions of the graph of deformation against applied force, the glossary defines tensile strength, and the tendon's curve in Figure 5.15 shows a material with a toe region, a linear region and a failure region."
+  },
+  {
+   "id": "youngs-modulus",
+   "kind": "result",
+   "section": "5.3",
+   "name": "Change in length, $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$",
+   "eq": "eq-delta-L",
+   "why": "The change in length of a wire or rod is proportional to the force and to the original length and inversely proportional to the cross-sectional area, and the constant that carries the substance is Young's modulus. A long guitar string stretches more than a short one, and a thick one stretches less than a thin one.",
+   "evidence": "Table 5.3 lists Young's modulus for twenty materials, Figure 5.12 shows one weight stretching three strings by three different amounts, and the examples on the ski-lift cable and on the femur, together with eight of the problems, all solve this equation."
+  },
+  {
+   "id": "stress",
+   "kind": "idea",
+   "section": "5.3",
+   "name": "Stress",
+   "why": "The ratio of force to area is defined as stress, measured in newtons per square meter. Writing the force in this way is what lets one number describe a material rather than one particular rod, since the same force on a thinner wire is a larger stress.",
+   "evidence": "The book boxes the definition and the glossary carries it, the tendon's curve is plotted against tensile stress, and the bulk modulus example works with a force per unit area of 5.00 × 10⁷ N/m² at a depth of 5.00 km."
+  },
+  {
+   "id": "strain",
+   "kind": "idea",
+   "section": "5.3",
+   "name": "Strain",
+   "why": "The ratio of the change in length to the original length is defined as strain, and it is a unitless quantity. Most materials behave elastically while the strain is less than about 0.1%, and a support tendon such as the ones in your leg can change its length by as much as ten percent.",
+   "evidence": "The book boxes the definition and the glossary carries it, Figure 5.15 plots the tendon's stress against its strain, and the water-compression example gives its answer as the fractional change in volume."
+  },
+  {
+   "id": "stress-strain",
+   "kind": "result",
+   "section": "5.3",
+   "name": "Stress and strain, $\\text{stress} = \\kY \\times \\text{strain}$",
+   "eq": "eq-stress-strain",
+   "why": "Rearranged, the equation for the change in length says that the stress is Young's modulus times the strain. In this form it is Hooke's law again, with stress in place of force and strain in place of deformation, which is why one shape of statement covers a stretched wire, a sheared bookcase and a compressed cube.",
+   "evidence": "The book states the form in words and boxes it under Strain, derives the force constant k = YA/L₀ from it, and plots the tendon's stress against its strain in Figure 5.15."
+  },
+  {
+   "id": "shear-deformation",
+   "kind": "result",
+   "section": "5.3",
+   "name": "Shear deformation, $\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$",
+   "eq": "eq-shear",
+   "why": "A force applied perpendicular to the length and parallel to the cross-sectional area shears the object sideways, and the constant is the shear modulus. The equation is logical: it is easier to bend a long thin pencil than a short thick one, and both bend more easily than a steel rod of the same size.",
+   "evidence": "Figure 5.16 shears a bookcase, the book boxes the expression, the example finds the mass of a picture from the 1.80 μm flex of the nail it hangs on, and the problems on a vertebra, on a disc between vertebrae and on a pencil eraser use it."
+  },
+  {
+   "id": "bulk-deformation",
+   "kind": "result",
+   "section": "5.3",
+   "name": "Change in volume, $\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0$",
+   "eq": "eq-bulk",
+   "why": "An object squeezed evenly on all its surfaces changes its volume rather than its length, and the constant is the bulk modulus. Gases compress easily because their molecules are far apart, while liquids and solids are extraordinarily difficult to compress, which is why seawater five kilometers down has lost only 2.3% of its volume.",
+   "evidence": "Figure 5.18 draws a cube compressed on every face, Table 5.3 gives bulk moduli for five liquids, the example computes the fractional decrease in the volume of seawater, and the problems on the capped bottle of grape juice and on freezing water run the equation backwards to a force per unit area."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "kinetic-friction",
+   "prereq": "friction"
+  },
+  {
+   "concept": "static-friction",
+   "prereq": "friction"
+  },
+  {
+   "concept": "coefficient-of-friction",
+   "prereq": "static-friction"
+  },
+  {
+   "concept": "coefficient-of-friction",
+   "prereq": "kinetic-friction"
+  },
+  {
+   "concept": "static-friction-magnitude",
+   "prereq": "static-friction"
+  },
+  {
+   "concept": "static-friction-magnitude",
+   "prereq": "coefficient-of-friction"
+  },
+  {
+   "concept": "static-friction-magnitude",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "kinetic-friction-magnitude",
+   "prereq": "kinetic-friction"
+  },
+  {
+   "concept": "kinetic-friction-magnitude",
+   "prereq": "coefficient-of-friction"
+  },
+  {
+   "concept": "kinetic-friction-magnitude",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "kinetic-friction-magnitude"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "weight-components-on-incline"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "acceleration-on-frictionless-incline"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "free-body-diagram"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "atomic-origin-of-friction",
+   "prereq": "friction"
+  },
+  {
+   "concept": "atomic-origin-of-friction",
+   "prereq": "coefficient-of-friction"
+  },
+  {
+   "concept": "drag-force-equation",
+   "prereq": "drag-force"
+  },
+  {
+   "concept": "drag-coefficient",
+   "prereq": "drag-force-equation"
+  },
+  {
+   "concept": "terminal-velocity",
+   "prereq": "drag-force-equation"
+  },
+  {
+   "concept": "terminal-velocity",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "terminal-velocity",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "terminal-velocity",
+   "prereq": "weight"
+  },
+  {
+   "concept": "terminal-velocity-magnitude",
+   "prereq": "terminal-velocity"
+  },
+  {
+   "concept": "stokes-law",
+   "prereq": "drag-force"
+  },
+  {
+   "concept": "size-and-terminal-velocity",
+   "prereq": "terminal-velocity-magnitude"
+  },
+  {
+   "concept": "deformation",
+   "prereq": "force"
+  },
+  {
+   "concept": "elastic-limit",
+   "prereq": "deformation"
+  },
+  {
+   "concept": "youngs-modulus",
+   "prereq": "deformation"
+  },
+  {
+   "concept": "stress",
+   "prereq": "force"
+  },
+  {
+   "concept": "strain",
+   "prereq": "deformation"
+  },
+  {
+   "concept": "stress-strain",
+   "prereq": "stress"
+  },
+  {
+   "concept": "stress-strain",
+   "prereq": "strain"
+  },
+  {
+   "concept": "stress-strain",
+   "prereq": "youngs-modulus"
+  },
+  {
+   "concept": "shear-deformation",
+   "prereq": "stress-strain"
+  },
+  {
+   "concept": "bulk-deformation",
+   "prereq": "stress-strain"
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+# Config: College Physics 2e, Chapter 6
+
+Proposed by the agent after exploration (2026-09-11). Status: applied as
+proposed on 2026-09-11, on Chen's instruction to finish the book in one job
+without check-ins; the per-section stops of rule 2 and the plan reviews of
+rule 5 are replaced by a plan file per section, written before the section
+is built and left for review after, as Chapters 1 to 3 did it. Each line is
+a setting and its value. Lines that repeat the Chapter 1, 2 and 3 configs
+are unchanged unless marked.
+
+| Setting | Value |
+|---|---|
+| Chapter | 6 Uniform Circular Motion and Gravitation, modules m42140 (introduction), m42083, m42084, m42086, m42142, m42143, m42144 |
+| Front matter | the chapter introduction (m42140) is a page of its own in `ch06/intro/`, listed before 6.1 (rule 21), built in the prep pass |
+| Unit of work | one section = one page; sections never folded (rule 11); 6.4, which has no equation and no problem set, stays a page of its own |
+| Order | 6.1 to 6.6 in book order, built in parallel by one agent per section |
+| Loop | plan file → build → validator, all six sections in one wave; review after |
+| Prose | verbatim; objectives, summary, glossary pulled into the tables and views; the book's boxed notes kept verbatim (the three Take-Home Experiments in 6.1, 6.3 and 6.5, the Misconception Alert and Making Connections of 6.5, the Making Connections of 6.6); the numbered conditions of 6.6 and its numbered definition of a planet kept as the book's numbered lists |
+| Tables | two of the book's: Table 6.1, degrees against radians, in 6.1, and Table 6.2, orbital data and Kepler's third law, in 6.6; each a `div.book-table` with the book's number and title, never a `<figure>` |
+| Sub-concept headers | agent decides per section, reported in the plan; 6.1, 6.5 and 6.6 print their own headers in the source and those are kept |
+| Figures | a sim per idea or result the section introduces; every sketch replaced by a sim; a photograph kept when the text points at it or it shows the thing the passage is about (the CD of 6.1, the black hole, the astronauts and the apple-and-du-Châtelet artwork of 6.5, the two NASA satellite images inside 6.4's composite), dropped when it is a splash image; each listed in the plan (rule 14) |
+| Folds | judged per section; the rotated radius and the two pits of 6.1 (Figures 6.3 + 6.4) draw the same disc and fold; the two views of the merry-go-round and the ball slid across it in 6.4 (Figures 6.13 + 6.15) are the same scene twice and fold; Figure 6.8 of 6.2 and Figure 6.16 of 6.4 print several panels inside one image under one number, so they are one row with one original and are not folds |
+| Sim sliders | whatever is interesting and variable in the idea: a radius and an angular velocity, a speed and a radius of curvature, a banking angle, a mass and a separation, an orbital radius |
+| Motion | a wheel turns, a car goes round a curve, a merry-go-round rotates and a planet sweeps its orbit, so those sims run cycles and get the transport; a free-body diagram that answers its sliders, a velocity triangle that shrinks with its angle, and the inverse-square law drawn against distance are still pictures with no transport (rule 14) |
+| 3D | none; every scene of the chapter is planar and the plane of motion is the canvas |
+| Figures that serve exercises | copied over faithfully, no sliders, labelled Figure with no number: 6.3's race track, vertical loop, merry-go-round with the lunch box, mass on a nail, leaning bicycle, NASA centrifuge and teardrop loop, and the graph of $v$ against $r$ that 6.6's Critical Thinking answer carries, which travels with the item to 6.3 |
+| Extra simulations | agent proposes only those that open a view the required figures do not, builds the one or two that clearly earn their place, and says in the plan which were left (rule 15) |
+| Colour coding | no new type (new): $\omega$ is the `angular-rate` the book declared for 16.6, $a_{\text{c}}$ is an acceleration, $F_{\text{c}}$ is a force, $r$ and $\Delta s$ are positions, $T$ is a time; the rotation angle $\Delta\theta$, the banking angle $\theta$, the masses $m$ and $M$, the coefficient $\mu_{\text{s}}$ and the constant $G$ stay untyped and in ink; thirteen symbol rows added to `book.json` (`r_curv`, `Δs`, `Δθ`, `a_c`, `F_c`, `M`, `G`, `T_orb1`, `T_orb2`, `r_1`, `r_2`, `v_1`, `v_2`), and the rows Chapters 4 and 5 merged first used as they stand (`F_net`, `N`, `w`, `f_fric`, `μ_s`); the radius of curvature is keyed `r_curv` with the macro `\kr` because Chapter 5 holds an untyped `r`, and the two orbital periods are keyed `T_orb1` and `T_orb2` with `\kTorbone` and `\kTorbtwo` because Chapter 4 holds `T_1` and `T_2` as tensions |
+| Inline exercises | none: the chapter has no Check Your Understanding box |
+| Exercises tab | end-of-section problems, conceptual questions, AP test prep |
+| Exercise placement | an exercise goes with the section that introduces what it tests; 6.6's Critical Thinking item on the normal force in a vertical loop is set with 6.3 and carries `source_section: "6.6"`, with both sections' `exercise_notes` saying so; 6.4's two conceptual questions on action at a distance and on a satellite in free fall are word for word 6.5's and are kept only in 6.5; 6.2's satellite-altitude problem needs 6.5's $g = GM/r^2$ but has no key, so it is left out and named rather than held |
+| AP test prep | included; 6.5 is the only section with AP items; an unkeyed AP item is kept as an open item with its options as the book prints them and an AI-marked suggested approach, never as a graded choice |
+| PhET interactive links | dropped (Ladybug Revolution, Ladybug Motion 2D, Gravity and Orbits) |
+| Cross-references to other chapters | plain text where the target is unbuilt (Dynamics: Newton's Laws of Motion in the introduction and in 6.2, Particle Physics in 6.5 and 6.6); references to sections of Chapters 1, 2, 3 and 6 may be plain text too |
+| Answers to book problems | book answer key only; never generated; the twenty-one unkeyed problems are left out and named in the notes, the Construct Your Own Problem items of 6.1 and 6.6 and the Unreasonable Results items among them where they have no key |
+| Suggested approaches for open questions | generated, marked AI: every conceptual question of the chapter and the three unkeyed AP items of 6.5 |
+| Generated questions | none; a node with no book exercise of its own (6.5's `center-of-mass`, 6.6's `keplers-first-law`) is noted in the plan, no question generated |
+| Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 39 nodes written into `book.json` before the sections were built (6 for 6.1, 4 for 6.2, 8 for 6.3, 4 for 6.4, 9 for 6.5, 8 for 6.6) with 82 edges into Chapters 1, 2, 3, 4 and 5; the inertial frame is Chapter 4's node, defined in 4.5, so 6.4 reinforces it rather than introducing one |
+| Formulas | `ch06/chapter.json`: 34 equations, the boxed and named ones important (the rotation angle, the radian, $v = r\omega$, the two forms of $a_{\text{c}}$, the three forms of $F_{\text{c}}$, $r = mv^2/F_{\text{c}}$, $\mu_{\text{s}} = v^2/rg$, the ideal banking angle and the ideal speed, the universal law, $G$, $g = GM/r^2$, $M = gr^2/G$, Kepler's third law, $GM/r = v^2$, $T^2 = 4\pi^2 r^3/GM$ and $r^3/T^2 = GM/4\pi^2$) and the derivation steps not; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass writes them from the section plans |
+| Book manifest | `ch06` after `ch03` in `book.json` chapters, merged with `tools/mergebook.py merge ch06` |

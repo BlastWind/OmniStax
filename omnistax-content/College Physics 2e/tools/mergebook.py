@@ -25,8 +25,8 @@ idempotent: run it again after every change to book-rows.json.
 Ownership rules the merge enforces (it refuses and prints the offenders):
   - a staged concept id may not exist under another chapter's section, unless
     it stands there as a placeholder pointing at one of this chapter's sections;
-  - every placeholder that already points at this chapter's sections must be in
-    the staged rows (other chapters reference those ids);
+  - a concept already in book.json under this chapter's sections that the staged
+    rows leave out is withdrawn, unless another chapter's edge rests on it;
   - a staged symbol `sym` or `macro`, or a staged type `id`, may not already
     exist in book.json unless this chapter merged it earlier;
   - a staged edge's `concept` must be one of this chapter's concepts, and its
@@ -104,8 +104,12 @@ def merge(ch):
         if c.get("section") not in my_sections:
             errors.append(f"concept {c['id']} names section {c.get('section')!r}, not one of {ch}'s")
     placeholders = {c["id"] for c in book["concepts"] if c["section"] in my_sections}
+    referenced = {e["prereq"] for e in book["concept_prereqs"] if e["concept"] not in placeholders}
     for pid in sorted(placeholders - set(staged_ids)):
-        errors.append(f"placeholder {pid} points at {ch} and must be in the staged concepts (other chapters reference it)")
+        if pid in referenced:
+            errors.append(f"concept {pid} is missing from the staged rows but another chapter's edge rests on it; keep it or move it")
+        else:
+            print(f"mergebook: {ch} withdraws {pid} (no other chapter rests on it)")
     others = {c["id"]: c["section"] for c in book["concepts"] if c["section"] not in my_sections}
     for cid in staged_ids:
         if cid in others:

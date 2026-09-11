@@ -1,0 +1,39 @@
+# Config: College Physics 2e, Chapter 4
+
+Proposed by the agent after exploration (2026-09-11). Status: applied as
+proposed on 2026-09-11, on Chen's instruction to finish the book in one job
+without check-ins; the per-section stops of rule 2, the plan reviews of rule 5
+and the user picks of rule 15 are replaced by a plan file per section, written
+before the section is built and left for review after, as Chapters 1 to 3 did
+it. Each line is a setting and its value. Lines that repeat the Chapter 1 to 3
+configs are unchanged unless marked.
+
+| Setting | Value |
+|---|---|
+| Chapter | 4 Dynamics: Force and Newton’s Laws of Motion, modules m42129 (introduction), m42069, m42130, m42073, m42074, m42075, m42076, m42132, m42137 |
+| Front matter | the chapter introduction (m42129) is a page of its own in `ch04/intro/`, listed before 4.1 (rule 21), built in this pass |
+| Unit of work | one section = one page; sections never folded (rule 11); 4.2, eight kilobytes and no figure, and 4.6, a procedure and seventeen problems, each stay a page of their own |
+| Order | 4.1 to 4.8 in book order, built in parallel by one agent per section |
+| Loop | plan file → build → validator, all eight sections in one wave; review after |
+| Prose | verbatim; objectives, summary, glossary pulled into the views; the book’s boxed notes (Newton’s First Law of Motion, Newton’s Second Law of Motion, Weight, Common Misconceptions: Mass vs. Weight, Take-Home Experiment: Mass and Weight, Take-Home Experiment: Force Standards, Common Misconception: Normal Force (N) vs. Newton (N), Resolving Weight into Components, Take-Home Experiment: Force Parallel, Applying Newton’s Second Law, Concept Connections: The Four Basic Forces, Concept Connections: Unifying Forces, Concept Connections: Force Fields, Making Connections: Past and Present Philosophy) kept verbatim as notes; the four numbered steps of 4.6 and the two of 4.7 kept as the book’s numbered steps |
+| Tables | Table 4.1 Properties of the Four Basic Forces, in 4.8, kept in the text as a `div.book-table` with the book’s number and title; it is never a `<figure>` |
+| Sub-concept headers | agent decides per section, reported in the plan; the book’s own headers (Mass; Units of Force; Weight and the Gravitational Force; Normal Force; Tension; Extended Topic: Real Forces and Inertial Frames; Problem-Solving Strategy for Newton’s Laws of Motion; Integrating Concepts; Action at a Distance) are the starting split |
+| Figures | a sim per idea or result the section introduces; every sketch replaced by a sim, and a sim that shows a scene beside its free-body diagram may stand for a run of the book’s step figures, carrying the first number of the run and the rest as further originals; a photograph kept when the text points at it or it shows the thing the passage is about (the Golden Gate Bridge of 4.19, the LHC of 4.26, LISA of 4.27, the M87 black hole of 4.28, and both photographs of the introduction), each listed in the plan (rule 14) |
+| Sim sliders | whatever is interesting and variable in the idea: an applied force and a mass, a friction force, the angle of an incline, the sag of a wire, the acceleration of a lift, the number of rockets burning |
+| Motion | a lawn mower and a rocket sled accelerate, a professor pushes a cart across a room and a lift rises and stops, so those sims run finite loops with the scrubber; a free-body diagram that answers its sliders, a weight resolved on a slope and a tightrope that sags are still pictures with no transport (rule 14) |
+| 3D | none; every scene of the chapter is planar and the plane of the forces is the canvas |
+| Figures that serve exercises | copied over faithfully, no sliders, labelled Figure with no number since the book gives these none: the three rocket-sled drawings of 4.3 (two of them the same image, so it is copied once and carried on both cards), the free-body diagram of 4.4’s balloon AP item, the toboggan, kite, leg traction and baby-scale figures of 4.5, the five problem figures of 4.6, the sliding block, Achilles tendon and rescue figures of 4.7, and the racetrack figures of the AP item held for 4.3 |
+| Extra simulations | agent proposes only those that open a view the required figures do not, builds the one or two that clearly earn their place, and says in the plan which were left (rule 15) |
+| Colour coding | the force hue from the global tier for every force the chapter names, each told from the others by its subscript as the book writes it; acceleration, velocity, position and time keep the hues Chapters 2 and 3 gave them; mass, the angle of an incline, the angle of a wire and the dimensionless strengths of 4.8 stay untyped and in ink; twenty-five symbol rows added to `book.json` (`F_net`, `F_netx`, `F_nety`, `w`, `w_par`, `w_perp`, `N`, `f_fric`, `T_force`, `T_L`, `T_R`, `T_1`, `T_2`, `F_1`, `F_2`, `F_tot`, `F_x`, `F_y`, `F_perp`, `F_restore`, `F_D`, `F_s`, `F_prof`, `F_floor`, `a_par`); no new type (new) |
+| Inline exercises | the one Check Your Understanding box of the chapter, in 4.2, placed after the passage on mass; a section agent may place a short conceptual question inline where it is plainly a Remember or Understand check |
+| Exercises tab | end-of-section problems, conceptual questions, AP test prep |
+| Exercise placement | an exercise goes with the section that introduces what it tests; 4.1’s racetrack AP item, 4.5’s arrow AP item and 4.8’s Critical Thinking item are held for 4.3, and both sections’ `exercise_notes` say so each time; 4.7’s sliding-block AP item needs the coefficient of friction of 5.1 and is left out and named, since Chapter 5 is not built |
+| AP test prep | included; an unkeyed AP item is kept as an open item with its options as the book prints them and an AI-marked suggested approach, as rule 13 and the 2.5 and 3.1 precedents do |
+| PhET interactive links | dropped (Gravity Force Lab in 4.4, Forces in 1 Dimension in 4.5) |
+| Cross-references to other chapters | plain text; the chapter points at Two-Dimensional Kinematics in 4.1 and 4.3, at Magnetism in 4.1 and 4.8, at Uniform Circular Motion and Gravitation, Electric Charge and Electric Field, Radioactivity and Nuclear Physics and Particle Physics in 4.8, and at the nature of science and physics and at Special Relativity in the introduction; only the first two of these name a built chapter, and both stay plain text as Chapter 3’s config decided |
+| Answers to book problems | book answer key only; never generated; unkeyed problems are left out and named in the notes; the Construct Your Own Problem and Unreasonable Results items of 4.6 and 4.7 are unkeyed and left out |
+| Suggested approaches for open questions | generated, marked AI |
+| Generated questions | none; a node with no book exercise of its own is noted in the plan and no question is generated |
+| Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 36 nodes written into `book.json` before the sections were built (5 for 4.1, 3 for 4.2, 7 for 4.3, 4 for 4.4, 7 for 4.5, 3 for 4.6, 4 for 4.7, 3 for 4.8) with edges into Chapters 1, 2 and 3; the three placeholders that already pointed at this chapter (`newtons-first-law`, `newtons-second-law`, `tension`) keep their ids |
+| Formulas | `ch04/chapter.json`: 23 equations, the boxed and named ones important (the two vector forms of the second law, the newton, the weight, the normal force on a level surface, the two components of weight on an incline, the acceleration down a frictionless incline, the tension supporting a weight, the tension from a perpendicular force, the net force along each axis, the two wires at different angles, the scale reading) and the worked steps not; 53 variable rows; anchors written in the chapter pass from the section plans |
+| Book manifest | `ch04` after `ch03` in `book.json` chapters |

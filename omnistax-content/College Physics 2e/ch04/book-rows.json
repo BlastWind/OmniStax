@@ -1,0 +1,783 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "F_net",
+   "latex": "F_{\\text{net}}",
+   "type": "force",
+   "macro": "\\kFnet"
+  },
+  {
+   "sym": "F_netx",
+   "latex": "F_{\\text{net}\\,x}",
+   "type": "force",
+   "macro": "\\kFnetx"
+  },
+  {
+   "sym": "F_nety",
+   "latex": "F_{\\text{net}\\,y}",
+   "type": "force",
+   "macro": "\\kFnety"
+  },
+  {
+   "sym": "w",
+   "latex": "w",
+   "type": "force",
+   "macro": "\\kwgt"
+  },
+  {
+   "sym": "w_par",
+   "latex": "w_{\\parallel}",
+   "type": "force",
+   "macro": "\\kwpar"
+  },
+  {
+   "sym": "w_perp",
+   "latex": "w_{\\perp}",
+   "type": "force",
+   "macro": "\\kwperp"
+  },
+  {
+   "sym": "N",
+   "latex": "N",
+   "type": "force",
+   "macro": "\\kN"
+  },
+  {
+   "sym": "f_fric",
+   "latex": "f",
+   "type": "force",
+   "macro": "\\kff"
+  },
+  {
+   "sym": "T_force",
+   "latex": "T",
+   "type": "force",
+   "macro": "\\kTf"
+  },
+  {
+   "sym": "T_L",
+   "latex": "T_{\\text{L}}",
+   "type": "force",
+   "macro": "\\kTL"
+  },
+  {
+   "sym": "T_R",
+   "latex": "T_{\\text{R}}",
+   "type": "force",
+   "macro": "\\kTR"
+  },
+  {
+   "sym": "T_1",
+   "latex": "T_1",
+   "type": "force",
+   "macro": "\\kTone"
+  },
+  {
+   "sym": "T_2",
+   "latex": "T_2",
+   "type": "force",
+   "macro": "\\kTtwo"
+  },
+  {
+   "sym": "F_1",
+   "latex": "F_1",
+   "type": "force",
+   "macro": "\\kFone"
+  },
+  {
+   "sym": "F_2",
+   "latex": "F_2",
+   "type": "force",
+   "macro": "\\kFtwo"
+  },
+  {
+   "sym": "F_tot",
+   "latex": "F_{\\text{tot}}",
+   "type": "force",
+   "macro": "\\kFtot"
+  },
+  {
+   "sym": "F_x",
+   "latex": "F_x",
+   "type": "force",
+   "macro": "\\kFx"
+  },
+  {
+   "sym": "F_y",
+   "latex": "F_y",
+   "type": "force",
+   "macro": "\\kFy"
+  },
+  {
+   "sym": "F_perp",
+   "latex": "F_{\\perp}",
+   "type": "force",
+   "macro": "\\kFperp"
+  },
+  {
+   "sym": "F_restore",
+   "latex": "F_{\\text{restore}}",
+   "type": "force",
+   "macro": "\\kFres"
+  },
+  {
+   "sym": "F_D",
+   "latex": "F_{\\text{D}}",
+   "type": "force",
+   "macro": "\\kFD"
+  },
+  {
+   "sym": "F_s",
+   "latex": "F_{\\text{s}}",
+   "type": "force",
+   "macro": "\\kFs"
+  },
+  {
+   "sym": "F_prof",
+   "latex": "F_{\\text{prof}}",
+   "type": "force",
+   "macro": "\\kFprof"
+  },
+  {
+   "sym": "F_floor",
+   "latex": "F_{\\text{floor}}",
+   "type": "force",
+   "macro": "\\kFfloor"
+  },
+  {
+   "sym": "a_par",
+   "latex": "a_{\\parallel}",
+   "type": "acceleration",
+   "macro": "\\kapar"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "dynamics",
+   "kind": "idea",
+   "section": "4.1",
+   "name": "Dynamics",
+   "why": "Kinematics describes how an object moves, and says nothing about why it moves that way. Dynamics is the study of the forces that cause objects and systems to move, and Newton’s laws of motion are its foundation, so the rest of the chapter rests on knowing what question dynamics asks.",
+   "evidence": "The section opens by naming dynamics as the study of the forces that cause motion, the chapter introduction sets it against kinematics, and the section summary states it again."
+  },
+  {
+   "id": "force",
+   "kind": "idea",
+   "section": "4.1",
+   "name": "Force",
+   "why": "A force is a push or a pull, and it has both a magnitude and a direction, so it is a vector and adds as the vectors of the previous chapter add. Every later idea in the chapter is stated in terms of forces, so the working definition comes first.",
+   "evidence": "The section defines force as a push or a pull with magnitude and direction, Figure 4.3 adds the forces of two skaters head to tail, and the conceptual question asks what properties allow forces to be classified as vectors."
+  },
+  {
+   "id": "external-force",
+   "kind": "idea",
+   "section": "4.1",
+   "name": "External force",
+   "why": "Only the forces that act on a body from outside it change its motion, so before any law can be applied the forces have to be sorted into those that come from outside and those that act between parts of the body. A body cannot push itself along.",
+   "evidence": "The section defines an external force as one that originates outside the object or system, the free-body diagram of Figure 4.3 shows only external forces, and two AP items ask whether a body can exert a force on itself and what exerts the force that moves a rowed boat."
+  },
+  {
+   "id": "free-body-diagram",
+   "kind": "skill",
+   "section": "4.1",
+   "name": "Draw a free-body diagram",
+   "why": "A free-body diagram draws the body as a single point and every external force acting on it as an arrow from that point, so the forces can be added without the picture of the situation getting in the way. It is the drawing every problem in this chapter starts from.",
+   "evidence": "The section names Figure 4.3(b) as the first free-body diagram of the book and defines the technique, and the diagrams are drawn again in the worked examples of 4.3, 4.4, 4.5 and 4.7."
+  },
+  {
+   "id": "force-standard",
+   "kind": "idea",
+   "section": "4.1",
+   "name": "Standard unit of force",
+   "why": "A force can be measured only against some force that can be produced again and again, just as a distance is measured against a standard distance. The stretched spring gives such a standard, and the magnitude of any other force can then be stated as a multiple of it.",
+   "evidence": "The section takes the restoring force of a spring stretched a fixed distance as a standard, Figure 4.4 shows a spring scale reading six units, and the conceptual question asks the reader to propose a different standard that can produce the same force repeatedly."
+  },
+  {
+   "id": "newtons-first-law",
+   "kind": "idea",
+   "section": "4.2",
+   "name": "Newton’s first law of motion",
+   "why": "A body at rest remains at rest, and a body in motion remains in motion at a constant velocity, unless a net external force acts on it. The law says that a change in velocity has a cause, so a sliding object that stops has been stopped by something, and friction is that something.",
+   "evidence": "The section states the law in a box, argues it from a block sliding on a surface made smoother and smoother, and both conceptual questions and the whole of 4.3 rest on it."
+  },
+  {
+   "id": "inertia",
+   "kind": "idea",
+   "section": "4.2",
+   "name": "Inertia",
+   "why": "Inertia is the property of a body that keeps it at rest or keeps it moving at a constant velocity, which is why Newton’s first law is also called the law of inertia. Some bodies have more of it than others, and that difference is what mass measures.",
+   "evidence": "The section defines inertia and names the first law the law of inertia, the boulder and the basketball show that bodies differ in it, and a conceptual question asks how inertia and mass are related."
+  },
+  {
+   "id": "mass",
+   "kind": "idea",
+   "section": "4.2",
+   "name": "Mass",
+   "why": "Mass is the quantity of matter in a body, and it is how much inertia the body has. Unlike weight, mass does not vary with location: a body has the same mass on Earth, in orbit and on the Moon, and masses are found in practice by comparison with the standard kilogram.",
+   "evidence": "The section defines mass as the quantity of matter and the measure of inertia, the Check Your Understanding box asks whether a kilogram of cotton balls or a kilogram of gold has more mass, and a conceptual question asks which of weight and mass is the intrinsic property."
+  },
+  {
+   "id": "system-of-interest",
+   "kind": "skill",
+   "section": "4.3",
+   "name": "Define the system of interest",
+   "why": "Which forces count as external depends on where the boundary of the system is drawn, so the boundary has to be chosen before Newton’s second law can be written down. The wagon and its rider make one system; the wagon alone makes another, and the two give different net forces.",
+   "evidence": "The section defines a system by its boundaries and works the wagon of Figure 4.5 both ways, a conceptual question asks how the choice of system affects which forces must be considered, and the first problem on the two children pushing a wagon asks for the system before it asks for the acceleration."
+  },
+  {
+   "id": "net-external-force",
+   "kind": "idea",
+   "section": "4.3",
+   "name": "Net external force",
+   "why": "The net external force is the vector sum of all the external forces acting on a system, found head to tail or by components as any other vectors are. It is the single force that stands in for all of them, and it is what the second law relates to the acceleration.",
+   "evidence": "The section defines the net external force and adds the forces of the wagon in Figure 4.5(b), the rocket sled example writes it as four thrusts minus friction, and the problems ask for it directly."
+  },
+  {
+   "id": "newtons-second-law",
+   "kind": "result",
+   "section": "4.3",
+   "name": "Newton’s second law of motion, $\\kFnet = m\\ka$",
+   "why": "The acceleration of a system is directly proportional to the net external force on it and in the same direction, and inversely proportional to its mass. This is the equation the rest of the chapter and much of the book is worked with, and it is a relation among three quantities that can each be measured on their own, not a definition.",
+   "evidence": "The section builds the law from the two proportionalities, states it in a box in three forms, and applies it to the lawn mower and the rocket sled; a dozen problems ask for a force, a mass or an acceleration from the other two.",
+   "eq": "eq-newton2"
+  },
+  {
+   "id": "newton-unit",
+   "kind": "idea",
+   "section": "4.3",
+   "name": "The newton, $1\\ \\text{N} = 1\\ \\text{kg}\\cdot\\text{m/s}^2$",
+   "why": "The SI unit of force is defined from Newton’s second law: one newton is the force that accelerates a one-kilogram system at one metre per second squared. Substituting the units is also what turns an answer in newtons per kilogram into an acceleration.",
+   "evidence": "The section defines the newton under its own heading, the lawn mower example substitutes kilogram metres per second squared for newtons to get its answer, and the problems are all set in newtons.",
+   "eq": "eq-newton-unit"
+  },
+  {
+   "id": "weight",
+   "kind": "result",
+   "section": "4.3",
+   "name": "Weight, $\\kwgt = m\\kg$",
+   "why": "The weight of an object is the gravitational force on it, and Newton’s second law applied to a falling object gives its magnitude as the mass times the acceleration due to gravity. Weight is a force and is measured in newtons, and it changes with the body the object is near.",
+   "evidence": "The section derives the equation in a box, works out that a 1.0 kg object weighs 9.8 N on Earth and about 1.7 N on the Moon, and the problems on the astronaut on the Moon and the lunar module turn on it.",
+   "eq": "eq-weight"
+  },
+  {
+   "id": "mass-versus-weight",
+   "kind": "idea",
+   "section": "4.3",
+   "name": "Mass against weight",
+   "why": "Mass is the quantity of matter and does not change with place; weight is the gravitational force on that mass and does. The two words are used interchangeably in everyday language, and separating them is what makes the Moon problems and the bathroom-scale questions come out right.",
+   "evidence": "The section sets the two against each other in the Common Misconceptions box and the Take-Home Experiment on bathroom scales, and the problem on the astronaut on the Moon asks for the weight on Earth and the mass in both places."
+  },
+  {
+   "id": "friction",
+   "kind": "idea",
+   "section": "4.3",
+   "name": "Friction",
+   "why": "Friction is a force that opposes the motion past each other of objects that are touching, and it appears in almost every free-body diagram of the chapter. Naming it as an external force is what lets the first law account for a sliding object slowing down.",
+   "evidence": "The section defines friction where the wagon of Figure 4.5 is analysed, the rocket sled example subtracts 650 N of it from the thrust, and the problems on the mower, the motorcycle and the wagon all give a friction force."
+  },
+  {
+   "id": "newtons-third-law",
+   "kind": "result",
+   "section": "4.4",
+   "name": "Newton’s third law of motion",
+   "why": "Whenever one body exerts a force on a second body, the first body experiences a force equal in magnitude and opposite in direction to the force it exerts. Forces always occur in pairs, and no body can exert a force on another without experiencing one itself.",
+   "evidence": "The section states the law in a box, shows it in the swimmer pushing off the wall in Figure 4.9, and the AP items on the ball hitting the ceiling, the skaters and the Earth and the Moon all turn on it."
+  },
+  {
+   "id": "action-reaction-pairs",
+   "kind": "idea",
+   "section": "4.4",
+   "name": "The two forces of a pair act on different bodies",
+   "why": "The two forces of a third-law pair look as though they should cancel, and they do not, because they act on different systems. The wall pushes on the swimmer’s feet and the swimmer’s feet push on the wall, and only the first of those is an external force on the swimmer.",
+   "evidence": "The section makes the point with the swimmer of Figure 4.9 and lists the walking professor, the car’s drive wheels, the rocket and the bird, and a conceptual question asks the football lineman how he can out-push an opponent who pushes back just as hard."
+  },
+  {
+   "id": "internal-forces-cancel",
+   "kind": "result",
+   "section": "4.4",
+   "name": "Internal forces cancel and do not enter the second law",
+   "why": "A force between two parts of one system is matched by its equal and opposite partner inside the same system, so the two add to nothing and the net external force is unchanged. That is why the professor’s push on the cart does not appear when the professor and the cart are taken as one system.",
+   "evidence": "The section works the professor and cart of Figure 4.10 twice, once as System 1 and once as System 2, and the discussion states that internal forces cancel; a conceptual question asks how the choice of system decides whether a pair cancels."
+  },
+  {
+   "id": "thrust",
+   "kind": "idea",
+   "section": "4.4",
+   "name": "Thrust",
+   "why": "A rocket moves forward by throwing gas backward: it pushes hard on the gas, and by the third law the gas pushes just as hard forward on the rocket. That forward reaction force is called thrust, and it is what drives rockets, aeroplanes and cars.",
+   "evidence": "The section defines thrust where the rocket and the helicopter are discussed, and the rocket sled of 4.3 and the rocket problems of 4.6 and 4.7 are worked with it."
+  },
+  {
+   "id": "normal-force",
+   "kind": "idea",
+   "section": "4.5",
+   "name": "Normal force $\\kN$",
+   "why": "Whatever supports a load must push up on it, and where that support is perpendicular to the surface of contact it is called the normal force. A table sags under a bag of dog food until its restoring force is as large as the weight, and on a level surface that makes the normal force equal to the weight; on an incline, or when the object accelerates, it is not.",
+   "evidence": "The section defines the normal force with the dog food of Figure 4.11, the summary states that it equals the weight on a level surface, the skier example finds it from the perpendicular equation, and the toboggan and kite AP items are drawn with it.",
+   "eq": "eq-normal"
+  },
+  {
+   "id": "weight-components-on-incline",
+   "kind": "result",
+   "section": "4.5",
+   "name": "Weight on an incline, $\\kwpar = m\\kg\\sin\\theta$ and $\\kwperp = m\\kg\\cos\\theta$",
+   "why": "On a slope the convenient axes are along and across the surface, and the weight is the one force that lies along neither, so it is resolved into a component parallel to the slope, which drives the object down it, and a component perpendicular to it, which the normal force balances.",
+   "evidence": "The section resolves the skier’s weight in the boxed note Resolving Weight into Components and Figure 4.13, the skier example uses both components, and the car on the 20º slope in the AP items is worked the same way.",
+   "eq": "eq-w-parallel"
+  },
+  {
+   "id": "acceleration-on-frictionless-incline",
+   "kind": "result",
+   "section": "4.5",
+   "name": "Acceleration down a frictionless incline, $\\kapar = \\kg\\sin\\theta$",
+   "why": "Dividing the parallel component of the weight by the mass cancels the mass, so every object slides down a frictionless incline of the same angle with the same acceleration, just as every object falls with the same acceleration in the absence of air resistance.",
+   "evidence": "The section derives it in part (a) of the skier example and states in the discussion that the result holds regardless of mass, and part (b) shows how friction reduces it.",
+   "eq": "eq-a-incline"
+  },
+  {
+   "id": "tension",
+   "kind": "idea",
+   "section": "4.5",
+   "name": "Tension",
+   "why": "A tension is a force carried along the length of a flexible connector such as a rope, a cable or a tendon. A connector can only pull, never push, so the force it carries is always parallel to its length, and where there is no friction the tension is the same everywhere along it.",
+   "evidence": "The section defines tension, shows the rope of Figure 4.14 pulling equally on the hand and the mass, and follows the same tension round the corners of a tendon and a bicycle brake cable in Figure 4.15; the traction conceptual questions and the spider-web and gymnast problems turn on it."
+  },
+  {
+   "id": "tension-supports-weight",
+   "kind": "result",
+   "section": "4.5",
+   "name": "Tension in a rope supporting a weight, $\\kTf = m\\kg$",
+   "why": "A mass hanging at rest from a rope has no acceleration, so the net force on it is zero and the tension must equal the weight. Once the tension is known at one point of a frictionless connector it is known everywhere along it.",
+   "evidence": "The section proves it from Newton’s second law for the 5.00 kg mass of Figure 4.14 and gets 49.0 N, and the gymnast, spider web and baby-scale problems and the cable AP item ask for a tension the same way.",
+   "eq": "eq-tension-weight"
+  },
+  {
+   "id": "tension-from-perpendicular-force",
+   "kind": "result",
+   "section": "4.5",
+   "name": "Tension from a perpendicular force, $\\kTf = \\kFperp / (2\\sin\\theta)$",
+   "why": "Pushing sideways at the middle of a connector that is nearly straight creates a tension far larger than the push, because only the small vertical component of each half supports it. That is how a car is pulled out of the mud with a chain, and it is why no connector can be exactly horizontal.",
+   "evidence": "The section extends the tightrope result to a perpendicular force and applies it to the chain and the car of Figure 4.18, a problem asks the reader to show the relation, and another asks for the force needed at 2.00º and at 7.00º.",
+   "eq": "eq-tension-perp"
+  },
+  {
+   "id": "inertial-frame",
+   "kind": "idea",
+   "section": "4.5",
+   "name": "Inertial frame of reference",
+   "why": "Newton’s laws take the simple forms of this chapter only in a frame that is neither accelerating nor rotating. In an accelerating frame an observer sees forces with no physical origin, such as the westward push on a satellite seen from a rotating Earth, and those fictitious forces are an artefact of the frame.",
+   "evidence": "The section distinguishes real from fictitious forces under Extended Topic: Real Forces and Inertial Frames, defines the inertial frame in the glossary, and states that every phenomenon in the text is considered in one."
+  },
+  {
+   "id": "newtons-laws-problem-solving",
+   "kind": "skill",
+   "section": "4.6",
+   "name": "The four steps for a problem about forces",
+   "why": "A problem about forces is worked in the same four steps every time: sketch the situation and draw every force as an arrow, list the knowns and unknowns and choose the system of interest, draw the free-body diagram and apply Newton’s second law, and check that the answer and its units are reasonable.",
+   "evidence": "The section sets out the four steps with Tarzan on his vine in Figure 4.20 and restates them in the summary, and a dozen problems ask the reader to show explicitly how the steps are followed."
+  },
+  {
+   "id": "net-force-by-axis",
+   "kind": "result",
+   "section": "4.6",
+   "name": "Net force along each axis, $\\kFnetx = m\\ka$ and $\\kFnety = 0$",
+   "why": "Before the force equations are written, decide in which directions the system accelerates. Where there is no acceleration along an axis the net force along that axis is zero, and where there is, the net force along it is the mass times that acceleration; the two axes are then two one-dimensional problems.",
+   "evidence": "The section states both equations in the boxed note Applying Newton’s Second Law, the AP items on the toboggan and the elevator are answered from them, and the nurse’s cart and the snow-saucer problems use them along both axes.",
+   "eq": "eq-fnet-x"
+  },
+  {
+   "id": "resolve-forces-into-components",
+   "kind": "skill",
+   "section": "4.6",
+   "name": "Resolve forces onto convenient axes",
+   "why": "A two-dimensional force problem becomes a pair of one-dimensional problems as soon as the forces are projected onto a well-chosen pair of axes: one axis along the direction of motion, or along an incline, saves most of the work.",
+   "evidence": "The section says in step 3 that a two-dimensional problem is broken down by projecting the forces onto axes chosen for convenience, and the snow-saucer sled, the braces on a tooth and the pair of forces adding to a total in Figure 4.25 are all worked this way."
+  },
+  {
+   "id": "unequal-tensions",
+   "kind": "result",
+   "section": "4.7",
+   "name": "Two wires at different angles carry different tensions",
+   "why": "When an object hangs from two wires the horizontal components of the tensions must cancel and the vertical components must add to the weight. The two tensions are equal only when the two angles are equal; the wire that is nearer the vertical carries the greater share.",
+   "evidence": "The section works the traffic light of Figure 4.22 and finds 108 N and 132 N, the discussion states when the tensions are equal, and the problem on the person pulled from a burning building is keyed with two unequal tensions.",
+   "eq": "eq-tension-two-wires"
+  },
+  {
+   "id": "apparent-weight",
+   "kind": "result",
+   "section": "4.7",
+   "name": "What a scale reads, $\\kFs = m\\ka + m\\kg$",
+   "why": "A bathroom scale reads the force it pushes up with, not the weight. In an elevator accelerating upward it reads more than the weight, at any constant velocity it reads the weight exactly, and in free fall it reads zero and the person appears weightless.",
+   "evidence": "The section works the 75.0 kg man of Figure 4.23 and gets 825 N while accelerating and 735 N at constant speed, the conceptual questions on the aircraft flown at g and the hat in the elevator turn on it, and an Unreasonable Results problem asks for the reading again.",
+   "eq": "eq-apparent-weight"
+  },
+  {
+   "id": "drag-force",
+   "kind": "idea",
+   "section": "4.7",
+   "name": "Drag force",
+   "why": "A drag force is the frictional force a fluid such as air or water exerts on an object moving through it, and like any friction it opposes the motion. Here it is the one unknown in Newton’s second law: subtract the mass times the acceleration from the applied force and what is left is the drag.",
+   "evidence": "The barge example names the drag force, draws it opposite to the applied force in Figure 4.21 and finds it to be 7.5 × 10⁴ N, less than a six-hundredth of the weight of the ship.",
+   "eq": "eq-drag"
+  },
+  {
+   "id": "integrated-kinematics-dynamics",
+   "kind": "skill",
+   "section": "4.7",
+   "name": "Join kinematics to Newton’s laws in one problem",
+   "why": "Forces produce accelerations, and an acceleration is what the kinematic equations are written in, so a problem can be worked from a force to a distance or from a distance back to a force. Identify which principles are involved, then use each chapter’s own strategy in turn.",
+   "evidence": "The section sets out the two steps and works the soccer player from a change in velocity to an average force, and eight problems marked Integrated Concepts ask for a speed, a height or a force in the same way."
+  },
+  {
+   "id": "four-basic-forces",
+   "kind": "idea",
+   "section": "4.8",
+   "name": "The four basic forces",
+   "why": "Only four distinct forces account for every known phenomenon: the gravitational, the electromagnetic, the weak nuclear and the strong nuclear force. Everything we feel directly except gravity is electromagnetic, and the two nuclear forces act only over the size of a nucleus or less.",
+   "evidence": "The section names the four forces and tabulates their relative strengths, ranges and carrier particles in Table 4.1, the AP items ask which force explains a normal force and a rope’s tension, and the problems ask for ratios of their strengths."
+  },
+  {
+   "id": "force-field",
+   "kind": "idea",
+   "section": "4.8",
+   "name": "Force field",
+   "why": "All forces act at a distance, so something must carry them between objects. A force field surrounds the object that creates it and is a characteristic of that object alone; a test object placed in the field experiences a force that depends on where it is.",
+   "evidence": "The section defines a force field, uses Earth’s gravitational field as the example that gives the weight at the surface, and Figure 4.24 draws the electric field between two charges."
+  },
+  {
+   "id": "carrier-particle",
+   "kind": "idea",
+   "section": "4.8",
+   "name": "Carrier particle",
+   "why": "Fields leave open what actually carries a force, and the proposal that has held since Yukawa is that every force is transmitted by the exchange of an elementary particle, as two people passing a basketball push each other apart without touching.",
+   "evidence": "The section draws the basketball and the exchanged meson in Figure 4.25, Table 4.1 lists the carrier particle of each of the four forces, and a conceptual question asks for an example in which an exchange gives an attractive force."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "force",
+   "prereq": "vector"
+  },
+  {
+   "concept": "force",
+   "prereq": "head-to-tail-method"
+  },
+  {
+   "concept": "external-force",
+   "prereq": "force"
+  },
+  {
+   "concept": "free-body-diagram",
+   "prereq": "force"
+  },
+  {
+   "concept": "free-body-diagram",
+   "prereq": "external-force"
+  },
+  {
+   "concept": "force-standard",
+   "prereq": "force"
+  },
+  {
+   "concept": "force-standard",
+   "prereq": "units"
+  },
+  {
+   "concept": "dynamics",
+   "prereq": "force"
+  },
+  {
+   "concept": "newtons-first-law",
+   "prereq": "external-force"
+  },
+  {
+   "concept": "newtons-first-law",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "inertia",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "mass",
+   "prereq": "inertia"
+  },
+  {
+   "concept": "mass",
+   "prereq": "fundamental-units"
+  },
+  {
+   "concept": "system-of-interest",
+   "prereq": "external-force"
+  },
+  {
+   "concept": "net-external-force",
+   "prereq": "external-force"
+  },
+  {
+   "concept": "net-external-force",
+   "prereq": "head-to-tail-method"
+  },
+  {
+   "concept": "net-external-force",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "newtons-second-law",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "newtons-second-law",
+   "prereq": "mass"
+  },
+  {
+   "concept": "newtons-second-law",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "newtons-second-law",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "newton-unit",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "newton-unit",
+   "prereq": "fundamental-units"
+  },
+  {
+   "concept": "weight",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "weight",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "mass-versus-weight",
+   "prereq": "weight"
+  },
+  {
+   "concept": "mass-versus-weight",
+   "prereq": "mass"
+  },
+  {
+   "concept": "friction",
+   "prereq": "force"
+  },
+  {
+   "concept": "friction",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "newtons-third-law",
+   "prereq": "force"
+  },
+  {
+   "concept": "newtons-third-law",
+   "prereq": "external-force"
+  },
+  {
+   "concept": "action-reaction-pairs",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "action-reaction-pairs",
+   "prereq": "system-of-interest"
+  },
+  {
+   "concept": "internal-forces-cancel",
+   "prereq": "action-reaction-pairs"
+  },
+  {
+   "concept": "internal-forces-cancel",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "thrust",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "normal-force",
+   "prereq": "force"
+  },
+  {
+   "concept": "normal-force",
+   "prereq": "weight"
+  },
+  {
+   "concept": "normal-force",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "weight-components-on-incline",
+   "prereq": "weight"
+  },
+  {
+   "concept": "weight-components-on-incline",
+   "prereq": "resolving-vector"
+  },
+  {
+   "concept": "weight-components-on-incline",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "acceleration-on-frictionless-incline",
+   "prereq": "weight-components-on-incline"
+  },
+  {
+   "concept": "acceleration-on-frictionless-incline",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "tension",
+   "prereq": "force"
+  },
+  {
+   "concept": "tension",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "tension-supports-weight",
+   "prereq": "tension"
+  },
+  {
+   "concept": "tension-supports-weight",
+   "prereq": "weight"
+  },
+  {
+   "concept": "tension-supports-weight",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "tension-from-perpendicular-force",
+   "prereq": "tension"
+  },
+  {
+   "concept": "tension-from-perpendicular-force",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "inertial-frame",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "inertial-frame",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "newtons-laws-problem-solving",
+   "prereq": "free-body-diagram"
+  },
+  {
+   "concept": "newtons-laws-problem-solving",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "newtons-laws-problem-solving",
+   "prereq": "system-of-interest"
+  },
+  {
+   "concept": "newtons-laws-problem-solving",
+   "prereq": "problem-solving-steps"
+  },
+  {
+   "concept": "net-force-by-axis",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "net-force-by-axis",
+   "prereq": "independence-of-perpendicular-motions"
+  },
+  {
+   "concept": "resolve-forces-into-components",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "resolve-forces-into-components",
+   "prereq": "net-force-by-axis"
+  },
+  {
+   "concept": "resolve-forces-into-components",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "unequal-tensions",
+   "prereq": "tension"
+  },
+  {
+   "concept": "unequal-tensions",
+   "prereq": "net-force-by-axis"
+  },
+  {
+   "concept": "unequal-tensions",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "drag-force",
+   "prereq": "friction"
+  },
+  {
+   "concept": "drag-force",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "apparent-weight",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "apparent-weight",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "apparent-weight",
+   "prereq": "weight"
+  },
+  {
+   "concept": "integrated-kinematics-dynamics",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "integrated-kinematics-dynamics",
+   "prereq": "newtons-laws-problem-solving"
+  },
+  {
+   "concept": "integrated-kinematics-dynamics",
+   "prereq": "const-a"
+  },
+  {
+   "concept": "integrated-kinematics-dynamics",
+   "prereq": "choose-equation"
+  },
+  {
+   "concept": "four-basic-forces",
+   "prereq": "force"
+  },
+  {
+   "concept": "four-basic-forces",
+   "prereq": "friction"
+  },
+  {
+   "concept": "four-basic-forces",
+   "prereq": "tension"
+  },
+  {
+   "concept": "force-field",
+   "prereq": "four-basic-forces"
+  },
+  {
+   "concept": "force-field",
+   "prereq": "weight"
+  },
+  {
+   "concept": "carrier-particle",
+   "prereq": "force-field"
+  },
+  {
+   "concept": "carrier-particle",
+   "prereq": "four-basic-forces"
+  }
+ ]
+}
