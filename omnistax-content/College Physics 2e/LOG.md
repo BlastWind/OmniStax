@@ -901,7 +901,7 @@ canvas with a hyphen where the book sets a minus sign, in every chapter.
 The book draws one scene several times because print cannot move, and
 the earlier passes folded such runs into one demo: the walk across the
 city, its right triangle and the helicopter's diagonal (Figures 3.3, 3.4
-and 3.5) are one `demo-walk`. Until now the demo carried only the first
+and 3.5) are one `sim-walk`. Until now the demo carried only the first
 number of its run, the rest as further originals, and a reference in the
 prose to Figure 3.5 stayed plain text, accepted in three plans as the
 price of the fold. Chen's design, now root rule 14 and the book's
@@ -990,3 +990,48 @@ clean, a build, and a headless pass over 2.5, 2.7, 3.4 and 3.5 in light
 and dark reading "Sim" on the two number-less figures and "Figure …" on
 every other, the Original button toggling to "Live" and back, every
 canvas booting, and no console errors.
+
+### Pass 24 (2026-09-11): the mechanism is a sim, and the word "demo" leaves the repository
+
+Pass 23 left the mechanism its old name. Chen asked for the rename as
+well, so that "demo" appears nowhere: the mechanism behind an interactive
+figure is a **sim**, a simulation the reader can play with, and the two
+labels of pass 23 are unchanged and still follow from `number`. The
+schema's `kind` is `sim` where it was `demo`; every figure id `demo-<name>`
+is `sim-<name>` (ninety rows across the twenty-three built sections, and
+the ids the plans and configs quote); the `.demo` class and `.demo-head`
+are `.sim` and `.sim-head` in every `text.html`, in `global.css` and in
+every selector the app holds (`voice.ts`, `notes/paint.ts`, `fragment.ts`,
+`original.ts`, `fold.ts`, `registry.svelte.ts`, `hover/cards.ts`,
+`Hover.svelte`); the drawing layer's `F.demo(root, id, H)` is
+`F.sim(root, id, H)`, its `Demo` type is `Sim`, and every `figures.js`
+reads `const sim = (id, H) => F.sim(root, id, H)` and calls `sim('sim-…', H)`.
+The three faithful copies (`fig-paths` twice, `fig-galaxies`) keep their
+`fig-` ids and now carry `class="sim"`, since the sim mechanism draws them.
+The docs and rules follow: the figure prompt's template, `content-tables.md`,
+the regenerated `content-format.md`, the root `RULES.md` paragraph on the
+two labels and this book's `RULES.md` "Files" section.
+
+The change was a whole-word, case-aware substitution over the worktree,
+read hunk by hunk afterwards. Two things the script could not see: the
+regex literals `\bdemo\b` and `\bdemo-head\b` in `fragment.ts`, where the
+`\b` before the word hid it from a whole-word match, and a test that
+tried "Demo" as a label the validator must refuse, which now tries
+"Animation".
+
+What the reader's browser keeps: `omnistax-hidden-figs` stores qualified
+figure ids such as `2.5-demo-avg`, and `omnistax-layout-v5` stores figure
+tabs as `fig:2.5/demo-avg`; a layout with one such tab would have been
+thrown away whole, since `parseLayout` refuses a group with an unknown
+tab. Both are read through a one-line rename at the storage boundary
+(`renamedSimId` in `fold.ts`, `renamedSimKeys` in `layout/model.ts`), and
+the next save writes the new ids. Those two functions and their tests are
+the only places the old prefix survives outside this log.
+
+Checks: `check:content` with no errors, 320 unit tests, `astro check`
+clean, a build, and a headless pass over 1.3, 2.5, 3.1, 3.4 and 16.3 in
+light and dark: every `figure.sim` boots a canvas, the four still sims of
+1.3 have no transport and every moving one has, the Original button sits
+on every figure with an original, the references in 3.1 link to
+`#3.1-sim-walk`, a figure hidden under its old id comes up hidden under
+its new one, and no console errors.

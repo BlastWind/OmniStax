@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.1'] = function (root, F) {
 const { fmt, tex, C, PAL, REDUCED, LW, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, scale, runner } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function xfLabel(ctx, x, y, color) { text(ctx, 'x', x - 6, y, color, { align: 'center', weight: 600, size: 24 }); text(ctx, 'f', x + 8, y + 8, color, { align: 'center', weight: 600, size: 16 }); }
 function twoLine(host, a, b) { if (!host._a) { host._a = document.createElement('div'); host._b = document.createElement('small'); host.replaceChildren(host._a, host._b); } tex(host._a, a); tex(host._b, b); }
 const sgn = (n, d) => (n > 0 ? '+' : n < 0 ? '−' : '') + fmt(Math.abs(n), d);
@@ -19,11 +19,11 @@ function bike(ctx, x, y, color, dir, phase) {
 }
 
 /* =====================================================================
-   DEMO 1: displacement on a line. The professor (1.5 → 3.5 m) by default;
+   SIM 1: displacement on a line. The professor (1.5 → 3.5 m) by default;
    set 6.0 → 2.0 for the airplane passenger.
 ===================================================================== */
 (function () {
-  const d = demo('demo-displacement', 440);
+  const d = sim('sim-displacement', 440);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 8, step: 0.5, value: 1.5, unit: 'm', dec: 1, onInput: reset });
   const xf = ctl(d.controls, { label: '\\kxf', cls: 'position', min: 0, max: 8, step: 0.5, value: 3.5, unit: 'm', dec: 1, onInput: reset, aria: 'final position' });
   const T = () => Math.max(1.5, Math.abs(xf.v - x0.v) * 0.9);
@@ -53,11 +53,11 @@ function bike(ctx, x, y, color, dir, phase) {
 })();
 
 /* =====================================================================
-   DEMO 2: distance traveled vs displacement. The cyclist from Check Your
+   SIM 2: distance traveled vs displacement. The cyclist from Check Your
    Understanding: 0 → −3 → −1 km.
 ===================================================================== */
 (function () {
-  const d = demo('demo-path', 540);
+  const d = sim('sim-path', 540);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: -5, max: 5, step: 0.5, value: 0, unit: 'km', dec: 1, onInput: reset });
   const xt = ctl(d.controls, { label: 'x_{\\text{turn}}', cls: 'position', min: -5, max: 5, step: 0.5, value: -3, unit: 'km', dec: 1, onInput: reset, aria: 'turning point' });
   const xf = ctl(d.controls, { label: '\\kxf', cls: 'position', min: -5, max: 5, step: 0.5, value: -1, unit: 'km', dec: 1, onInput: reset, aria: 'final position' });
@@ -99,7 +99,7 @@ function bike(ctx, x, y, color, dir, phase) {
    the problems need these numbers. Each path is traced in turn.
 ===================================================================== */
 (function () {
-  const d = demo('fig-paths', 540);
+  const d = sim('fig-paths', 540);
   const PATHS = [{ n: 'A', p: [0, 7] }, { n: 'B', p: [12, 7] }, { n: 'C', p: [2, 10, 8, 11] }, { n: 'D', p: [9, 3, 5] }];
   const rows = [110, 170, 250, 350];                       // top row of each path
   const lens = PATHS.map((P) => P.p.slice(1).reduce((a, x, i) => a + Math.abs(x - P.p[i]), 0));

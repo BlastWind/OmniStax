@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, runner } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
@@ -101,7 +101,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
    along it and a protractor at its tail. No motion.
 ===================================================================== */
 (function () {
-  const d = demo('demo-vector-2d', 660);
+  const d = sim('sim-vector-2d', 660);
   const D = ctl(d.controls, { label: '\\kD\\ \\text{(blocks)}', cls: 'position', min: 1, max: 12, step: 0.1, value: 10.3, unit: '', dec: 1, aria: 'magnitude in blocks' });
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 0.1, value: 29.1, unit: '°', dec: 1, aria: 'direction' });
   const ox = 330, oy = 590, b = 40;
@@ -138,7 +138,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
    head of the last and measured. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-head-to-tail', 660);
+  const d = sim('sim-head-to-tail', 660);
   const E = ctl(d.controls, { label: '\\text{blocks east}', cls: 'position', min: 1, max: 12, step: 1, value: 9, unit: '', dec: 0, onInput: reset, aria: 'blocks east' });
   const N = ctl(d.controls, { label: '\\text{blocks north}', cls: 'position', min: 0, max: 8, step: 1, value: 5, unit: '', dec: 0, onInput: reset, aria: 'blocks north' });
   const TW = 3.4, TR = 0.9, T = TW + TR;
@@ -191,7 +191,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
    drawn and measured. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-walk', 640);
+  const d = sim('sim-walk', 640);
   const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 40, step: 0.5, value: 25, unit: 'm', dec: 1, onInput: reset, aria: 'first leg' });
   const B = ctl(d.controls, { label: '\\kB', cls: 'position', min: 5, max: 40, step: 0.5, value: 23, unit: 'm', dec: 1, onInput: reset, aria: 'second leg' });
   const Cm = ctl(d.controls, { label: '\\kC', cls: 'position', min: 5, max: 40, step: 0.5, value: 32, unit: 'm', dec: 1, onInput: reset, aria: 'third leg' });
@@ -250,7 +250,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
    the two end at one point and the resultant is one arrow. No motion.
 ===================================================================== */
 (function () {
-  const d = demo('demo-order', 620);
+  const d = sim('sim-order', 620);
   const O = ctl(d.controls, { label: '\\text{order}', cls: '', min: 1, max: 6, step: 1, value: 5, unit: '', dec: 0, aria: 'order of addition' });
   const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: -180, max: 180, step: 1, value: 49, unit: '°', dec: 0, aria: 'direction of A' });
   const TB = ctl(d.controls, { label: '\\theta_{\\text{B}}', cls: '', min: -180, max: 180, step: 1, value: 15, unit: '°', dec: 0, aria: 'direction of B' });
@@ -291,7 +291,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
    ends up, with both resultants from the starting point. No motion.
 ===================================================================== */
 (function () {
-  const d = demo('demo-subtraction', 660);
+  const d = sim('sim-subtraction', 660);
   const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 40, step: 0.5, value: 27.5, unit: 'm', dec: 1, aria: 'first leg' });
   const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: 0, max: 180, step: 1, value: 66, unit: '°', dec: 0, aria: 'direction of A' });
   const B = ctl(d.controls, { label: '\\kB', cls: 'position', min: 5, max: 40, step: 0.5, value: 30, unit: 'm', dec: 1, aria: 'second leg' });
@@ -327,12 +327,12 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
 })();
 
 /* =====================================================================
-   DEMO: multiplying a vector by a scalar. The first leg of the sailing
+   SIM: multiplying a vector by a scalar. The first leg of the sailing
    example and the same vector times c, which keeps the direction when c is
    positive and reverses it when c is negative. No motion.
 ===================================================================== */
 (function () {
-  const d = demo('demo-scalar', 680);
+  const d = sim('sim-scalar', 680);
   const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 40, step: 0.5, value: 27.5, unit: 'm', dec: 1, aria: 'magnitude of A' });
   const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: 0, max: 180, step: 1, value: 66, unit: '°', dec: 0, aria: 'direction of A' });
   const K = ctl(d.controls, { label: 'c', cls: '', min: -3, max: 3, step: 0.5, value: 3, unit: '', dec: 1, aria: 'scalar' });
@@ -363,12 +363,12 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
 })();
 
 /* =====================================================================
-   DEMO: resolving a vector into components. The total displacement of the
+   SIM: resolving a vector into components. The total displacement of the
    walk in the city and the two displacements, east and north, that add to
    it head to tail, each measured with a ruler. No motion.
 ===================================================================== */
 (function () {
-  const d = demo('demo-components', 700);
+  const d = sim('sim-components', 700);
   const D = ctl(d.controls, { label: '\\kD\\ \\text{(blocks)}', cls: 'position', min: 1, max: 12, step: 0.1, value: 10.3, unit: '', dec: 1, aria: 'magnitude in blocks' });
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 0.1, value: 29.0, unit: '°', dec: 1, aria: 'direction' });
   const ox = 330, oy = 590, b = 40;
@@ -410,7 +410,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
    and 2 of section 3.3). A faithful copy: no sliders, no motion.
 ===================================================================== */
 (function () {
-  const d = demo('fig-paths', 600);
+  const d = sim('fig-paths', 600);
   const X0 = 320, Y0 = 560, P = 100, G = 18;
   const SX = (i) => X0 + P * i + P - G / 2, SY = (j) => Y0 - P * j + G / 2;   /* the street right of block column i, and below block row j */
   const PATHS = [

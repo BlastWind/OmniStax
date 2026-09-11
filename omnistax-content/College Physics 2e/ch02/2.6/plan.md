@@ -53,7 +53,7 @@ already draws for the two nodes, plus the conversion.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-runner` · new · unreasonable-results, v-from-at · a runner on a
+1. `sim-runner` · new · unreasonable-results, v-from-at · a runner on a
    strip across the full width covers the distance $\tfrac12 a t^2$ of
    the run while a graph of velocity against time below draws the line
    $v = v_0 + at$ up to the present moment; a velocity arrow over the
@@ -131,7 +131,7 @@ questions ask the same thing in words. Not built.
 
 ## Colour
 
-The page binds time, velocity and acceleration, from the one demo, whose
+The page binds time, velocity and acceleration, from the one sim, whose
 sliders carry an acceleration and a time and whose graph and readout
 state a velocity. Position is not bound: the distance the runner covers
 is a scale on the strip in ink, and no position symbol is drawn or

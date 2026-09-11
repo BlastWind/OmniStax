@@ -12,8 +12,8 @@ repeat the Chapter 2 config are unchanged unless marked.
 | Loop | per section: plan message → build → stop for feedback |
 | Prose | verbatim; objectives, summary, glossary pulled into views; Take-Home Experiment boxes kept verbatim as notes (new) |
 | Sub-concept headers | agent decides per section, reported in the plan |
-| Figures | a demo per idea or result the section introduces; every sketch and graph replaced by a demo; a photograph kept when it serves the narrative and the text, dropped when it is decoration, each listed in the plan (the Tacoma Narrows photograph is kept); no 3D expected, the chapter is planar (rule 14) |
-| Demo sliders | whatever is interesting and variable in the idea (mass, force constant, amplitude, damping, drive frequency, string length, harmonic number) |
+| Figures | a sim per idea or result the section introduces; every sketch and graph replaced by a sim; a photograph kept when it serves the narrative and the text, dropped when it is decoration, each listed in the plan (the Tacoma Narrows photograph is kept); no 3D expected, the chapter is planar (rule 14) |
+| Sim sliders | whatever is interesting and variable in the idea (mass, force constant, amplitude, damping, drive frequency, string length, harmonic number) |
 | Motion | steady oscillations and travelling waves run as an endless cycle; damped, driven and released motions are finite and get the time scrubber (new) |
 | Figures that serve exercises | copied over faithfully, no sliders: the two 16.3 AP images (the pendulum pair may swing, since the question asks about frequency), the 16.9 wave and seismograph images, the 16.10 rarefaction image |
 | Extra simulations | agent proposes only those that open a view the required figures do not; user picks from the plan (rule 15) |

@@ -18,12 +18,12 @@ unless marked.
 | Prose | verbatim; objectives, summary, glossary pulled into views; the book's boxed notes (Models, Theories, and Laws; The Scientific Method; Limits on the Laws of Classical Physics; The Quest for Microscopic Standards; Nonstandard Units; Fevers or Chills) kept verbatim as notes |
 | Tables | the book's three tables kept in the text as tables, numbered as openstax.org numbers them (new) |
 | Sub-concept headers | agent decides per section, reported in the plan |
-| Figures | a demo per idea or result the section introduces; every sketch replaced by a demo (the planetary atom, the meter of light, the two bull's-eyes); a photograph kept when the text refers to it or it shows the thing the passage is about, dropped when it is a splash image (the geese, the Earth from the Moon, the two balances); each listed in the plan (rule 14) |
-| Demo sliders | whatever is interesting and variable in the idea: the number of electrons, a time for light, a power of ten, a distance and a time, a spread and an offset, a value and its uncertainty, a ruler's smallest division, stories and people |
+| Figures | a sim per idea or result the section introduces; every sketch replaced by a sim (the planetary atom, the meter of light, the two bull's-eyes); a photograph kept when the text refers to it or it shows the thing the passage is about, dropped when it is a splash image (the geese, the Earth from the Moon, the two balances); each listed in the plan (rule 14) |
+| Sim sliders | whatever is interesting and variable in the idea: the number of electrons, a time for light, a power of ten, a distance and a time, a spread and an offset, a value and its uncertainty, a ruler's smallest division, stories and people |
 | Motion | the atom's electrons and the car run as an endless cycle; light along the meter, the estimates and the ruler are finite and get the scrubber |
 | Figures that serve exercises | none kept: the Salmonella photograph belongs to an unkeyed problem and goes with it |
 | Extra simulations | none proposed beyond the required figures; the chapter is qualitative and the required figures already open the views the text does not (rule 15) |
-| Colour coding | time and velocity hues from the global tier, for the two 1.2 demos that carry a time or a speed; every other quantity in the chapter (a length, a mass, a count, a value and its uncertainty) is untyped and in ink; `c` joins the symbol table under the velocity type (new) |
+| Colour coding | time and velocity hues from the global tier, for the two 1.2 sims that carry a time or a speed; every other quantity in the chapter (a length, a mass, a count, a value and its uncertainty) is untyped and in ink; `c` joins the symbol table under the velocity type (new) |
 | Inline exercises | Check Your Understanding items, after the passage they test (1.1's on law against theory goes after the models block; 1.2's two go after the prefixes; 1.3's stopwatch goes after uncertainty) |
 | Exercises tab | end-of-section problems and conceptual questions |
 | AP test prep | none in this chapter |

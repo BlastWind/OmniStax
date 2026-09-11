@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, curve } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
@@ -75,7 +75,7 @@ function tower(ctx, x, y, h, color) {
    so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-displacement', 560);
+  const d = sim('sim-displacement', 560);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 10, max: 40, step: 0.5, value: 20, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
   const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 15, max: 80, step: 1, value: 50, unit: 'º', dec: 0, onInput: reset, aria: 'launch angle' });
   const fl = () => flight(v0.v, th.v);
@@ -123,7 +123,7 @@ function tower(ctx, x, y, h, color) {
    the components against time. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-components', 860);
+  const d = sim('sim-components', 860);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 10, max: 40, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
   const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 10, max: 80, step: 1, value: 60, unit: 'º', dec: 0, onInput: reset, aria: 'launch angle' });
   const fl = () => flight(v0.v, th.v);
@@ -188,7 +188,7 @@ function tower(ctx, x, y, h, color) {
    the top per loop, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-fireworks', 640);
+  const d = sim('sim-fireworks', 640);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 30, max: 100, step: 0.5, value: 70, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
   const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 30, max: 89, step: 0.5, value: 75, unit: 'º', dec: 1, onInput: reset, aria: 'launch angle' });
   const fl = () => flight(v0.v, th.v);
@@ -243,7 +243,7 @@ function tower(ctx, x, y, h, color) {
    Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-rock', 800);
+  const d = sim('sim-rock', 800);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 10, max: 40, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
   const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 0, max: 70, step: 0.5, value: 35, unit: 'º', dec: 1, onInput: reset, aria: 'launch angle' });
   const yl = ctl(d.controls, { label: '\\ky', cls: 'position', min: -60, max: -5, step: 0.5, value: -20, unit: 'm', dec: 1, onInput: reset, aria: 'height of the landing point' });
@@ -314,7 +314,7 @@ function tower(ctx, x, y, h, color) {
    θ₀ for the set speed. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-range', 800);
+  const d = sim('sim-range', 800);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 10, max: 60, step: 1, value: 50, unit: 'm/s', dec: 0, onInput: reset, aria: 'initial speed' });
   const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: 'º', dec: 0, onInput: reset, aria: 'launch angle' });
   const fl = () => flight(v0.v, th.v);
@@ -366,7 +366,7 @@ function tower(ctx, x, y, h, color) {
    g = 9.80 m/s² at the surface. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-orbit', 660);
+  const d = sim('sim-orbit', 660);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 9, step: 0.1, value: 6, unit: 'km/s', dec: 1, onInput: reset, aria: 'launch speed' });
   const ht = ctl(d.controls, { label: '\\text{tower height}', cls: '', min: 200, max: 3000, step: 100, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: 'tower height' });
   const RE = 6.37e6, GM = G * RE * RE;

@@ -2,17 +2,17 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, axes, nice, curve, scale, spring, block, fixed } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* =====================================================================
-   DEMO 1: the period. A plucked guitar string vibrates without dying
+   SIM 1: the period. A plucked guitar string vibrates without dying
    away; the midpoint's position is traced against time, one period is
    bracketed between successive crests, and a counting window shows how
    many cycles fit in it. A steady oscillation, so it runs endlessly.
 ===================================================================== */
 (function () {
-  const d = demo('demo-period', 660);
+  const d = sim('sim-period', 660);
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 0.25, max: 4, step: 0.05, value: 0.5, unit: 's', dec: 2, onInput: reset, aria: 'period' });
   const W = ctl(d.controls, { label: '\\text{window}', cls: 'time', min: 1, max: 5, step: 0.5, value: 2, unit: 's', dec: 1, onInput: reset, aria: 'counting window' });
   const cy = cycle(() => Infinity, 0);
@@ -56,12 +56,12 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 })();
 
 /* =====================================================================
-   DEMO 2: the count. A mass on a spring bobs while a stopwatch runs and
+   SIM 2: the count. A mass on a spring bobs while a stopwatch runs and
    a counter ticks off completed cycles; each completed cycle leaves a
    mark on a time line. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-count', 580);
+  const d = sim('sim-count', 580);
   const N = ctl(d.controls, { label: 'N', cls: '', min: 5, max: 50, step: 1, value: 10, unit: 'cycles', dec: 0, onInput: reset, aria: 'number of cycles' });
   const tt = ctl(d.controls, { label: '\\kt', cls: 'time', min: 2, max: 30, step: 0.5, value: 6, unit: 's', dec: 1, onInput: reset, aria: 'elapsed time' });
   const T = () => tt.v / N.v;

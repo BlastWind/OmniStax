@@ -80,18 +80,18 @@ other order.
   9 blocks east and 5 blocks north (Figures 3.3, 3.5, 3.8, 3.9, 3.10 to
   3.13 and 3.26 all draw it), the woman's three-leg walk of Example 3.1
   (3.14 to 3.18), the sailor of Example 3.2 (3.20 to 3.23), the two legs A
-  and B of 3.3 (3.28 to 3.33). A demo that lets the reader drag the head
+  and B of 3.3 (3.28 to 3.33). A sim that lets the reader drag the head
   of a vector and watch the components, the resultant and the measured
   angle follow covers a whole run of the book's step figures at once; a
-  section plan should say which book figures each demo replaces and carry
-  their numbers, the first of the run as the demo's number and the rest
+  section plan should say which book figures each sim replaces and carry
+  their numbers, the first of the run as the sim's number and the rest
   as further originals, as 2.5 did for the airplane.
 - 3.4 leans on 2.5 and 2.7: it restates the five constant-acceleration
   equations in a box, applies them to the vertical motion with $a_y = -g$
   and to the horizontal motion with $a_x = 0$, and its nodes rest on
   `free-fall-kinematics`, `free-fall-highest-point`, `x-from-vbar`,
   `choose-equation` and `physical-solution` (the discarded negative root
-  of the hot rock). Its demos are the first in the book with motion in two
+  of the hot rock). Its sims are the first in the book with motion in two
   dimensions: a trajectory with the velocity and its components drawn
   every frame, the range against launch angle, the fireworks shell and the
   volcano rock as the worked examples' defaults. They stay 2D canvas; the
@@ -139,7 +139,7 @@ other order.
 ## What the tooling needs
 
 - Forty new symbol rows in `book.json`, listed in the config; no new type,
-  no new hue, no new figlib primitive. The sprites the demos want (a ball,
+  no new hue, no new figlib primitive. The sprites the sims want (a ball,
   a boat, a person walking) are drawn in the section modules.
 - Nothing else: the shell, the views and the validator are unchanged.
 

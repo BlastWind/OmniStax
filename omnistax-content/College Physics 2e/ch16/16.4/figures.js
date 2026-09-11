@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, scale, fixed } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI, DEG = Math.PI / 180;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const sgn = (v) => (v < 0 ? '−' : '+');
@@ -16,12 +16,12 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
 }
 
 /* =====================================================================
-   DEMO 1: the forces on the bob. True motion (no small-angle
+   SIM 1: the forces on the bob. True motion (no small-angle
    approximation), the weight split along the string and along the arc,
    and F against s beside it with Hooke's line. Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-pendulum-force', 640);
+  const d = sim('sim-pendulum-force', 640);
   const a0 = ctl(d.controls, { label: '\\theta_0', cls: '', min: 2, max: 60, step: 1, value: 15, unit: '°', dec: 0, onInput: reset, aria: 'swing amplitude' });
   const L = ctl(d.controls, { label: 'L', cls: '', min: 0.5, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length' });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
@@ -84,11 +84,11 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
 })();
 
 /* =====================================================================
-   DEMO 2: the period. Two pendulums of different length and mass
+   SIM 2: the period. Two pendulums of different length and mass
    released together; T against L below for the set g. Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-pendulum-period', 760);
+  const d = sim('sim-pendulum-period', 760);
   const L1 = ctl(d.controls, { label: 'L_1', cls: '', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 1' });
   const L2 = ctl(d.controls, { label: 'L_2', cls: '', min: 0.1, max: 2, step: 0.05, value: 0.25, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 2' });
   const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 10, step: 0.1, value: 5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the second bob' });
@@ -123,11 +123,11 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
 })();
 
 /* =====================================================================
-   DEMO 3: measuring g. Ten swings timed on a stopwatch, the period from
+   SIM 3: measuring g. Ten swings timed on a stopwatch, the period from
    the total, g from the period. Example 16.5 on load. Finite.
 ===================================================================== */
 (function () {
-  const d = demo('demo-measure-g', 600);
+  const d = sim('sim-measure-g', 600);
   const L = ctl(d.controls, { label: 'L', cls: '', min: 0.25, max: 2, step: 0.005, value: 0.75, unit: 'm', dec: 3, onInput: reset, aria: 'length' });
   const gl = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.6, max: 12, step: 0.0001, value: 9.8281, unit: 'm/s²', dec: 4, onInput: reset, aria: 'local acceleration due to gravity' });
   const N = 10, T = () => TAU * Math.sqrt(L.v / gl.v), total = () => N * T();

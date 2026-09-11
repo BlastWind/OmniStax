@@ -39,8 +39,8 @@ on the idea node (`eq` field) rather than getting a result node of its own.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-displacement` · Fig 2.2 (professor) and Fig 2.3 (passenger) · displacement, position · a person on a number line walks from x₀ to x_f, displacement arrow grows · x₀, x_f (−6 to 6 m; defaults 1.5, 3.5 reproduce the professor; set 6.0 → 2.0 for the passenger) · "Δx = 3.5 − 1.5 = +2.0 m, to the right" · none · no
-2. `demo-path` · Fig 2.4 (cyclist CYU) · distance-traveled, distance, displacement · a rider goes x₀ → x_turn → x_f while an odometer counts path length and a bracket shows displacement · x₀, x_turn, x_f (defaults 0, −3, −1 km reproduce the CYU) · "distance traveled 5 km · displacement −1 km · magnitude 1 km" · none · no
+1. `sim-displacement` · Fig 2.2 (professor) and Fig 2.3 (passenger) · displacement, position · a person on a number line walks from x₀ to x_f, displacement arrow grows · x₀, x_f (−6 to 6 m; defaults 1.5, 3.5 reproduce the professor; set 6.0 → 2.0 for the passenger) · "Δx = 3.5 − 1.5 = +2.0 m, to the right" · none · no
+2. `sim-path` · Fig 2.4 (cyclist CYU) · distance-traveled, distance, displacement · a rider goes x₀ → x_turn → x_f while an odometer counts path length and a bracket shows displacement · x₀, x_turn, x_f (defaults 0, −3, −1 km reproduce the CYU) · "distance traveled 5 km · displacement −1 km · magnitude 1 km" · none · no
 3. `fig-paths` · Fig 2.5 (paths A to D for the problems) · distance-traveled, displacement · four dots trace the four paths in turn, each leaving its trail · none (the problems need the book's numbers) · "path C: 2 → 10 → 8 → 11 m" · none · no
 
 Photograph of the cyclists (splash) dropped.
@@ -67,5 +67,5 @@ converter before 2.2.
 
 Fold pass (2026-09-11): the book prints the professor as Figure 2.3 and
 the passenger as Figure 2.4 (the numbers above are one short), and
-`demo-displacement` draws both scenes, so its row keeps 2.3 as its number
+`sim-displacement` draws both scenes, so its row keeps 2.3 as its number
 and lists 2.4 under `folds`; the eyebrow reads "Figure 2.3 + 2.4".

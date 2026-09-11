@@ -50,7 +50,7 @@ Two notes for review:
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-pendulum-force` · Fig 16.15 (the bob with its forces) ·
+1. `sim-pendulum-force` · Fig 16.15 (the bob with its forces) ·
    simple-pendulum, pendulum-restoring-force · a bob on a string swings
    from a pivot, endlessly and without damping, with the true equation of
    motion (not the small-angle one, so a wide swing is visibly slower);
@@ -68,7 +68,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    it. The small readout line gives the difference between sin θ and θ
    at the current amplitude, and how much longer the period is than
    2π√(L/g) when the amplitude is large.
-2. `demo-pendulum-period` · new (the length and gravity paragraphs and
+2. `sim-pendulum-period` · new (the length and gravity paragraphs and
    the CYU have no sketch) · pendulum-period · two pendulums hang side by
    side and swing together from the same release, one of length L₁ and
    one of L₂, the bobs of different mass; below the pair, T against L for
@@ -80,25 +80,25 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    T = 2.01 s; the pendulum a quarter as long swings twice as fast" ·
    T against L, curve for the current g, two points · no. Endless. Two
    pendulums side by side make a wide scene, so the graph stacks below.
-3. `demo-measure-g` · new (Example 16.5 and the Take-Home Experiment) ·
+3. `sim-measure-g` · new (Example 16.5 and the Take-Home Experiment) ·
    measuring-g · a pendulum of known length swings while a stopwatch
    runs and a counter ticks off ten complete swings, as the Take-Home
    Experiment instructs; at the tenth the run stops, the period is the
    time divided by ten, and g follows from g = 4π²L/T² · length L (0.25
    to 2.0 m, default 0.75000 for the example, ink), the local g (1.6 to
-   12 m/s², default 9.8281, acceleration hue; the demo swings at that g
+   12 m/s², default 9.8281, acceleration hue; the sim swings at that g
    and the readout recovers it) · "ten swings took 17.357 s, so T =
    1.7357 s and g = 4π²(0.75000 m)/(1.7357 s)² = 9.8281 m/s²" · none: the
    stopwatch and the counter are the instrument, as in 16.2 · no.
    Finite, so it gets the scrubber. The readout is carried to five
    digits, as the example insists.
 
-Example 16.5 gets no separate figure: demo 3 reproduces it on load.
+Example 16.5 gets no separate figure: sim 3 reproduces it on load.
 
 Photographs: none in this section. Figures that serve exercises: none.
 
-Extra simulations (rule 15): considered the pendulum on the Moon (demo
-2's g slider), the large-amplitude period (folded into demo 1's readout),
+Extra simulations (rule 15): considered the pendulum on the Moon (sim
+2's g slider), the large-amplitude period (folded into sim 1's readout),
 and a conical or physical pendulum (not in the text). One survivor:
 
 - **A clock that runs slow** (for problems 12 and 13): a clock face

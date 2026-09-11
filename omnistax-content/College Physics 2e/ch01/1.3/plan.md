@@ -16,7 +16,7 @@ block per idea, in the book's order:
 
 1. **Accuracy and precision of a measurement** (`accuracy-precision`; the
    three paragraphs on the paper measurements and the GPS restaurant, then
-   the demo that replaces the two bull's-eyes)
+   the sim that replaces the two bull's-eyes)
 2. **The uncertainty in a measurement** (`uncertainty`; the uncertainty
    paragraph, the list of four factors, the paragraph after it, and the
    note "Making Connections: Real-World Connections – Fevers or Chills?";
@@ -24,15 +24,15 @@ block per idea, in the book's order:
    asks whether an uncertainty can tell two readings apart)
 3. **Uncertainty as a percent of the measured value**
    (`percent-uncertainty`; the defining sentence and the equation, Example
-   1.2 with the bag of apples, then a new demo)
+   1.2 with the bag of apples, then a new sim)
 4. **The uncertainty in a quantity you calculate** (`calculations`; the
-   method of adding percents and the floor, then a new demo)
+   method of adding percents and the floor, then a new sim)
 5. **The precision of a measuring tool and significant figures**
    (`sig-figs`; the two paragraphs on the ruler and the caliper, the
-   "Zeros" sub-header with its paragraph, then a new demo; Check Your
+   "Zeros" sub-header with its paragraph, then a new sim; Check Your
    Understanding 2, counting significant figures, goes inline here)
 6. **Significant figures in calculations** (`sig-figs-calculations`; the
-   two rules with the circle and the potatoes, then a new demo)
+   two rules with the circle and the potatoes, then a new sim)
 7. **Significant figures in this text** (`sig-figs-text`; the paragraph;
    Check Your Understanding 3, the bags and the wagon, goes inline here,
    since it applies both rules)
@@ -67,7 +67,7 @@ problems 3, 5 and 13, and `average-speed` (2.3, a placeholder until that section
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-target` · Figures 1.23 and 1.24 (both bull's-eyes, one demo) ·
+1. `sim-target` · Figures 1.23 and 1.24 (both bull's-eyes, one sim) ·
    accuracy, precision · a bull's-eye target of five rings with the
    restaurant at its centre and eight GPS attempts as ink dots, drawn
    from a fixed seeded sequence so the picture is stable; the dots
@@ -85,7 +85,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    line: precision is about how closely the attempts agree with one
    another, and accuracy about how close they are to the correct value;
    a system can have either without the other.
-2. `demo-percent` · new (Example 1.2) · percent-uncertainty · a number
+2. `sim-percent` · new (Example 1.2) · percent-uncertainty · a number
    line of weight in pounds with the four weekly weights of the example
    as ink ticks, the average A as a filled marker and the band A ± δA as
    a shaded bracket; a second line beneath repeats it for a bag half as
@@ -94,7 +94,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    lb, default 0.4, ink) · "5.1 lb ± 0.4 lb is 5.1 lb ± 8%" · none · no.
    No motion. Readout: the equation with the numbers substituted. Small
    line: the same uncertainty on a bag half as heavy is 16%.
-3. `demo-area` · new (the floor) · adding-percents · the 4.00 m by 3.00 m
+3. `sim-area` · new (the floor) · adding-percents · the 4.00 m by 3.00 m
    floor drawn to scale with the largest and smallest floors the
    uncertainties allow as dashed outlines about the same centre and the
    ring between them shaded, so the uncertainty in the area is the ring;
@@ -105,7 +105,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    12.0 m² ± 0.4 m². Small line: the largest and smallest floors, computed
    from the sliders, and that adding the percents is very nearly exact
    when the uncertainties are small.
-4. `demo-ruler` · new (the precision of a measuring tool) ·
+4. `sim-ruler` · new (the precision of a measuring tool) ·
    significant-figures, precision · a stick of true length L on a strip
    and a ruler that slides in from the left over about four seconds and
    stops with its zero at the stick's left end; below, a magnified view
@@ -120,7 +120,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    last digit written down is the first with some uncertainty; the
    centimeter ruler gives 37 cm, two figures, and the caliper 36.71 cm,
    four, computed from L.
-5. `demo-calc` · new (the two rules) · sig-figs-multiplication,
+5. `sim-calc` · new (the two rules) · sig-figs-multiplication,
    sig-figs-addition · two measured lengths a and b as two sticks laid end
    to end for the sum, and as the sides of a rectangle for the product;
    on the right the calculator's result for each with the rejected digits
@@ -146,13 +146,13 @@ Photographs, four:
 - Figure 1.22, the digital balance (credit: Karel Jakubec): **drop**, for
   the same reason.
 - Figure 1.23, the bull's-eye with low precision and high accuracy
-  (credit: Dark Evil): **replaced** by `demo-target`, which carries the
+  (credit: Dark Evil): **replaced** by `sim-target`, which carries the
   book's number 1.23, both images as originals and the 1.23 caption.
 - Figure 1.24, the bull's-eye with high precision and low accuracy
-  (credit: Dark Evil): **folded** into the same demo, which reproduces it
+  (credit: Dark Evil): **folded** into the same sim, which reproduces it
   at spread 0.3 and offset 2.5. Since the fold pass (2026-09-11) the row
   lists 1.24 under `folds`, the eyebrow reads "Figure 1.23 + 1.24", and
-  the prose's reference to Figure 1.24 links to the demo.
+  the prose's reference to Figure 1.24 links to the sim.
 
 Figures that serve exercises: none in this section.
 

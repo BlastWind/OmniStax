@@ -63,8 +63,8 @@ one estimate among several.
 
 - A style for the book's tables in the article (`table.book`), since no
   built section had one.
-- One new symbol, `c` (velocity type, `\kc`), for the meter demo, and two
+- One new symbol, `c` (velocity type, `\kc`), for the meter sim, and two
   untyped symbols, `A` and `δA`, for the definitions view.
-- No new type, no new hue, no new figlib primitive; the sprites the demos
+- No new type, no new hue, no new figlib primitive; the sprites the sims
   need (a car, a person, a building, a ruler) are drawn in the section
   modules.

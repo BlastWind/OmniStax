@@ -53,7 +53,7 @@ Two notes for review:
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-energy-transfer` · Fig 16.16 (the five energy snapshots) ·
+1. `sim-energy-transfer` · Fig 16.16 (the five energy snapshots) ·
    shm-energy · the block on a spring on a frictionless surface, released
    from x = X and running endlessly, as in 16.3; at the right end of the
    strip two bars, kinetic and elastic potential, rise and fall against
@@ -65,7 +65,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    kg, default 0.50, ink) · "at x = +0.050 m the spring holds 0.063 J
    and the block carries 0.188 J; the total is 0.250 J throughout" ·
    energy against x below the horizontal scene · no. Endless.
-2. `demo-max-speed` · new (Example 16.6 and the three factors have no
+2. `sim-max-speed` · new (Example 16.6 and the three factors have no
    sketch) · shm-max-speed · the car of Example 16.6 bounces on its
    springs above the road, released from an amplitude X, with its
    velocity arrow drawn each frame; beside the car, velocity against
@@ -82,7 +82,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
 Photographs: none. Figures that serve exercises: none.
 
 Extra simulations (rule 15): considered the pendulum's energy in its own
-clothing (the same view as demo 1) and the Citigroup Center's tuned mass
+clothing (the same view as sim 1) and the Citigroup Center's tuned mass
 (resonance, which is 16.8's subject). One survivor:
 
 - **The climber's fall** (problem 1): a climber drops 2.00 m on slack

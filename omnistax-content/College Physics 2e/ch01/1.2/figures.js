@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, car, FONT } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
@@ -61,7 +61,7 @@ function stopwatch(ctx, x, y, r, f) {
    the meter is defined to be. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-light-meter', 370);
+  const d = sim('sim-light-meter', 370);
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 5, step: 0.01, value: 3.34, unit: 'ns', dec: 2, onInput: reset, aria: 'elapsed time' });
   const CNS = 0.299792458;   /* the speed of light in meters per nanosecond, exact */
   const cy = cycle(() => T.v, 1.2);
@@ -97,13 +97,13 @@ function stopwatch(ctx, x, y, r, f) {
 })();
 
 /* =====================================================================
-   DEMO: the ladder of powers of 10. A logarithmic ladder from 10⁻¹⁸ m to
+   SIM: the ladder of powers of 10. A logarithmic ladder from 10⁻¹⁸ m to
    10²⁶ m, the metric prefixes under their powers, some known lengths
    above, and a marker at m × 10ⁿ. The decade the value falls in is
    shaded: every number in it has the same order of magnitude. No motion.
 ===================================================================== */
 (function () {
-  const d = demo('demo-ladder', 420);
+  const d = sim('sim-ladder', 420);
   const M = ctl(d.controls, { label: '\\text{mantissa } m', cls: '', min: 1, max: 9.9, step: 0.1, value: 4.5, unit: '', dec: 1, aria: 'mantissa' });
   const N = ctl(d.controls, { label: '\\text{exponent } n', cls: '', min: -18, max: 26, step: 1, value: 2, unit: '', dec: 0, aria: 'exponent' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
@@ -170,13 +170,13 @@ function stopwatch(ctx, x, y, r, f) {
 })();
 
 /* =====================================================================
-   DEMO: the short drive home of Example 1.1. A car drives from school to
+   SIM: the short drive home of Example 1.1. A car drives from school to
    home along a strip marked in kilometers while a stopwatch counts the
    minutes; the average speed is written in km/min, km/h and m/s. Finite
    motion, one run per set time, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-drive', 530);
+  const d = sim('sim-drive', 530);
   const D = ctl(d.controls, { label: 'd', cls: '', min: 2, max: 40, step: 0.5, value: 10, unit: 'km', dec: 1, onInput: reset, aria: 'distance' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 5, max: 60, step: 1, value: 20, unit: 'min', dec: 1, onInput: reset, aria: 'time' });
   const cy = cycle(() => T.v, 1.2);

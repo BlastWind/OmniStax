@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.4'] = function (root, F) {
 const { el, fmt, tex, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, text, headline, vbracket, nice } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* a number written the way the book writes it: whole when it is whole, otherwise to one decimal */
@@ -31,7 +31,7 @@ function person(ctx, x, y, h, color) {
 }
 
 /* =====================================================================
-   DEMO 1: the height of a building. A person stands beside a building
+   SIM 1: the height of a building. A person stands beside a building
    on a common ground line, and the stories stack up one by one to the
    set count while a bracket on the right reads the running height. The
    ground story is shown magnified on the left with the persons that
@@ -39,7 +39,7 @@ function person(ctx, x, y, h, color) {
    tall. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-building', 620);
+  const d = sim('sim-building', 620);
   const N = ctl(d.controls, { label: '\\text{stories}', cls: '', min: 1, max: 100, step: 1, value: 39, unit: '', dec: 0, onInput: reset, aria: 'number of stories' });
   const P = ctl(d.controls, { label: '\\text{person}', cls: '', min: 1.5, max: 2, step: 0.1, value: 2, unit: 'm', dec: 1, onInput: reset, aria: 'height of a person' });
   const S = ctl(d.controls, { label: '\\text{persons per story}', cls: '', min: 1, max: 3, step: 0.5, value: 2, unit: '', dec: 1, onInput: reset, aria: 'persons per story' });
@@ -87,7 +87,7 @@ function person(ctx, x, y, h, color) {
 })();
 
 /* =====================================================================
-   DEMO 2: a trillion dollars on a football field. A side view of the
+   SIM 2: a trillion dollars on a football field. A side view of the
    field, 100 yd between the end zones, with a scale in feet on the left
    and a person 6 ft tall in the end zone for scale; the pile of
    100-bill stacks rises on the field to its final height, which is
@@ -96,7 +96,7 @@ function person(ctx, x, y, h, color) {
    Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-trillion', 640);
+  const d = sim('sim-trillion', 640);
   const A = ctl(d.controls, { label: '\\text{trillions}', cls: '', min: 0.1, max: 30, step: 0.1, value: 1, unit: '', dec: 1, onInput: reset, aria: 'amount in trillions of dollars' });
   const TH = ctl(d.controls, { label: '\\text{stack}', cls: '', min: 0.3, max: 0.7, step: 0.05, value: 0.5, unit: 'in.', dec: 2, onInput: reset, aria: 'thickness of a stack of 100 bills' });
   const T = 5, AREA = 6480000;   /* the field between the end zones, 100 yd by 50 yd, in square inches */

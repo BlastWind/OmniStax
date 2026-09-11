@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, curve, plane, FONT } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
@@ -74,7 +74,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
    Finite motion (one crossing), so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-boat', 640);
+  const d = sim('sim-boat', 640);
   const vb = ctl(d.controls, { label: '\\kvboat', cls: 'velocity', min: 0.1, max: 3, step: 0.01, value: 0.75, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the boat relative to the water' });
   const vr = ctl(d.controls, { label: '\\kvriver', cls: 'velocity', min: 0, max: 3, step: 0.01, value: 1.2, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the river relative to the shore' });
   const ph = ctl(d.controls, { label: '\\text{heading}', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, onInput: reset, aria: 'heading of the boat, degrees from downstream' });
@@ -146,7 +146,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
    Finite motion (the plane crosses the map), so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-plane', 640);
+  const d = sim('sim-plane', 640);
   const vp = ctl(d.controls, { label: '\\kvp', cls: 'velocity', min: 0, max: 70, step: 0.5, value: 45, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the plane relative to the air' });
   const vw = ctl(d.controls, { label: '\\kvw', cls: 'velocity', min: 0, max: 40, step: 0.1, value: 16, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the wind' });
   const dir = ctl(d.controls, { label: '\\text{wind toward}', cls: '', min: 0, max: 360, step: 0.1, value: 215.6, unit: '°', dec: 1, onInput: reset, aria: 'direction the wind blows toward, degrees counterclockwise from east' });
@@ -206,7 +206,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
    what was set. A still picture: no cycle, no transport.
 ===================================================================== */
 (function () {
-  const d = demo('demo-components', 760);
+  const d = sim('sim-components', 760);
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.2, max: 5, step: 0.01, value: 1.42, unit: 'm/s', dec: 2, aria: 'magnitude of the velocity' });
   const th = ctl(d.controls, { label: '\\theta', cls: '', min: -180, max: 180, step: 0.5, value: 32, unit: '°', dec: 1, aria: 'direction of the velocity, degrees from the x-axis' });
   const Ox = 640, Oy = 420;
@@ -241,7 +241,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
    is what has to be added to one to give the other. A still picture.
 ===================================================================== */
 (function () {
-  const d = demo('demo-wind', 600);
+  const d = sim('sim-wind', 600);
   const vp = ctl(d.controls, { label: '\\kvp', cls: 'velocity', min: 10, max: 70, step: 0.5, value: 45, unit: 'm/s', dec: 1, aria: 'speed of the plane relative to the air' });
   const vt = ctl(d.controls, { label: '\\kvtot', cls: 'velocity', min: 5, max: 70, step: 0.5, value: 38, unit: 'm/s', dec: 1, aria: 'speed of the plane relative to the ground' });
   const b = ctl(d.controls, { label: '\\text{west of north}', cls: '', min: -60, max: 60, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'direction of the total velocity, degrees west of north' });
@@ -285,7 +285,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
    and from the shore. Finite motion (one fall), so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-binoculars', 600);
+  const d = sim('sim-binoculars', 600);
   const vs = ctl(d.controls, { label: '\\kv_{\\text{ship}}', cls: 'velocity', min: 0, max: 15, step: 0.5, value: 6, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the ship' });
   const h = ctl(d.controls, { label: 'h', cls: '', min: 4, max: 20, step: 0.5, value: 12, unit: 'm', dec: 1, onInput: reset, aria: 'height of the mast' });
   const T = () => Math.sqrt(2 * h.v / G);
@@ -339,7 +339,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
    the plane's velocity and moves 144 m while it falls. Finite motion.
 ===================================================================== */
 (function () {
-  const d = demo('demo-coin', 620);
+  const d = sim('sim-coin', 620);
   const vp = ctl(d.controls, { label: '\\kv_{\\text{plane}}', cls: 'velocity', min: 50, max: 300, step: 1, value: 260, unit: 'm/s', dec: 0, onInput: reset, aria: 'speed of the plane' });
   const h = ctl(d.controls, { label: 'h', cls: '', min: 0.5, max: 3, step: 0.05, value: 1.5, unit: 'm', dec: 2, onInput: reset, aria: 'height of the drop' });
   const T = () => Math.sqrt(2 * h.v / G);
@@ -390,7 +390,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
    with the book's numbers. No sliders, no motion.
 ===================================================================== */
 (function () {
-  const d = demo('fig-galaxies', 320);
+  const d = sim('fig-galaxies', 320);
   const ROWS = [[1, '300 Mly', -4500, 190], [2, '150 Mly', -2200, 470], [3, '', 0, 700], [4, '190 Mly', 2830, 930], [5, '450 Mly', 6700, 1200]];
   function draw() {
     const { ctx } = begin(d.c);

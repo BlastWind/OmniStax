@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, spring, block, fixed } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI, DEG = 180 / Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const sgn = (v) => (v < 0 ? '−' : '+');
@@ -14,12 +14,12 @@ function curl(ctx, cx, cy, r, color) {
 }
 
 /* =====================================================================
-   DEMO 1: the turntable. A ball on a circle, its shadow on a line below
+   SIM 1: the turntable. A ball on a circle, its shadow on a line below
    drawn as a block on a spring, and the trace on paper moving downward.
    Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-turntable', 900);
+  const d = sim('sim-turntable', 900);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 5, max: 20, step: 1, value: 10, unit: 'cm', dec: 0, onInput: reset, aria: 'radius' });
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 0.5, max: 4, step: 0.1, value: 2, unit: 's', dec: 2, onInput: reset, aria: 'period' });
   const cy = cycle(() => Infinity, 0);
@@ -67,11 +67,11 @@ function curl(ctx, cx, cy, r, color) {
 })();
 
 /* =====================================================================
-   DEMO 2: the two similar triangles. P on the circle, the displacement
+   SIM 2: the two similar triangles. P on the circle, the displacement
    triangle at the centre and the velocity triangle at P. Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-circle-triangles', 700);
+  const d = sim('sim-circle-triangles', 700);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 5, max: 20, step: 1, value: 10, unit: 'cm', dec: 0, onInput: reset, aria: 'radius' });
   const om = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 0.5, max: 6, step: 0.1, value: 3.1, unit: 'rad/s', dec: 1, onInput: reset, aria: 'angular velocity' });
   const cy = cycle(() => Infinity, 0);

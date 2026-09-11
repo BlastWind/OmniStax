@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.8'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, dot, text, headline, vbracket, axes, nice, curve } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const sgn = (v) => (v < 0 ? '−' : '+');
 const neg = (s) => s.replace('-', '−');
@@ -28,7 +28,7 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
    in ink. A still picture: no cycle, no transport.
 ===================================================================== */
 (function () {
-  const d = demo('demo-line', 520);
+  const d = sim('sim-line', 520);
   const M = ctl(d.controls, { label: 'm', cls: '', min: -2, max: 3, step: 0.1, value: 1.5, unit: '', dec: 1, aria: 'slope' });
   const B = ctl(d.controls, { label: 'b', cls: '', min: -3, max: 4, step: 0.5, value: 1, unit: '', dec: 1, aria: 'intercept' });
   const box = { l: 240, r: 1160, t: 100, b: 440 };
@@ -62,7 +62,7 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
    points are the defaults. A still picture.
 ===================================================================== */
 (function () {
-  const d = demo('demo-jet-xt', 560);
+  const d = sim('sim-jet-xt', 560);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 1000, step: 25, value: 400, unit: 'm', dec: 0, aria: 'initial position' });
   const vb = ctl(d.controls, { label: '\\kvb', cls: 'velocity', min: 50, max: 350, step: 5, value: 250, unit: 'm/s', dec: 0, aria: 'average velocity' });
   const t1 = ctl(d.controls, { label: '\\kt_{1}', cls: 'time', min: 0, max: 8, step: 0.1, value: 0.5, unit: 's', dec: 2, aria: 'first chosen time' });
@@ -109,7 +109,7 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
    seconds, then a hold.
 ===================================================================== */
 (function () {
-  const d = demo('demo-jet-graphs', 880);
+  const d = sim('sim-jet-graphs', 880);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 500, step: 10, value: 200, unit: 'm', dec: 0, onInput: reset, aria: 'initial position' });
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 60, step: 1, value: 15, unit: 'm/s', dec: 0, onInput: reset, aria: 'initial velocity' });
   const a = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0, max: 8, step: 0.1, value: 5, unit: 'm/s²', dec: 1, onInput: reset, aria: 'acceleration' });
@@ -159,7 +159,7 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
    A still picture.
 ===================================================================== */
 (function () {
-  const d = demo('demo-tangent', 620);
+  const d = sim('sim-tangent', 620);
   const tQ = ctl(d.controls, { label: '\\kt_{Q}', cls: 'time', min: 2, max: 30, step: 0.5, value: 25, unit: 's', dec: 1, aria: 'time of the point Q' });
   const t1 = ctl(d.controls, { label: '\\kt_{1}', cls: 'time', min: 0, max: 30, step: 0.5, value: 19, unit: 's', dec: 1, aria: 'first endpoint of the tangent' });
   const t2 = ctl(d.controls, { label: '\\kt_{2}', cls: 'time', min: 2, max: 35, step: 0.5, value: 32, unit: 's', dec: 1, aria: 'second endpoint of the tangent' });
@@ -210,7 +210,7 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
    book's velocities and the example's endpoints. A still picture.
 ===================================================================== */
 (function () {
-  const d = demo('demo-jet-top', 800);
+  const d = sim('sim-jet-top', 800);
   const tQ = ctl(d.controls, { label: '\\kt_{Q}', cls: 'time', min: 0, max: 60, step: 0.5, value: 25, unit: 's', dec: 1, aria: 'chosen time' });
   const t1 = ctl(d.controls, { label: '\\kt_{1}', cls: 'time', min: 0, max: 60, step: 0.5, value: 1, unit: 's', dec: 1, aria: 'first endpoint of the tangent' });
   const t2 = ctl(d.controls, { label: '\\kt_{2}', cls: 'time', min: 0, max: 70, step: 0.5, value: 51, unit: 's', dec: 1, aria: 'second endpoint of the tangent' });

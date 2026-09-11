@@ -25,7 +25,7 @@ figure shows something a printed one cannot. Four criteria:
 
 Nine of the eleven numbered sections meet criterion 1 (16.2 and 16.11 are
 the exceptions). Runner-up was Chapter 3 (projectile motion and relative
-velocity are excellent demos, but 3.2 and 3.3 are vector arithmetic);
+velocity are excellent sims, but 3.2 and 3.3 are vector arithmetic);
 then Chapter 25 (lens and mirror ray diagrams, which the static figures
 already carry well) and Chapter 6 (only 6.5 and 6.6 are orbital).
 
@@ -70,7 +70,7 @@ exercises only.
   that clearly serves the text (a real resonance failure) and is kept
   with its credit line; the car beside Example 16.1 is the kind that is
   dropped.
-- **Sketches and graphs, 31, each replaced by a demo:** the displaced
+- **Sketches and graphs, 31, each replaced by a sim:** the displaced
   ruler and its restoring force (16.1), F against x with the stored-energy
   area (16.1, twice), the toy-gun spring (16.1), the car on its springs (16.1, 16.3), the spring
   oscillator (16.3), the bouncing car and the paper strip recording a sine
@@ -96,7 +96,7 @@ exercises only.
   cord carrying a wave, energy bars. Two new archetypes beyond the seven
   recorded in the figure prompt: a circle beside a strip with a projection
   line (16.6), and a curve on a strip that travels (16.9, 16.10).
-- The 2.5 idiom "loop 0..T with a hold" fits the damped and driven demos
+- The 2.5 idiom "loop 0..T with a hold" fits the damped and driven sims
   (finite motions, which get the scrubber) but not the steady oscillations
   and travelling waves, which are infinite and should run as a continuous
   cycle with the plain transport. Both already exist in the library.
@@ -112,7 +112,7 @@ exercises only.
   and 2.4 nodes when those are built.
 - 16.2 is one page: period, frequency, f = 1/T, one example. It stays its
   own page (rule 11).
-- 16.8 has no equations. Resonance is taught qualitatively, so the demo
+- 16.8 has no equations. Resonance is taught qualitatively, so the sim
   (a driven oscillator with the drive frequency on a slider) carries the
   section.
 - 16.10 is the heaviest section: eight definitions, three sub-ideas

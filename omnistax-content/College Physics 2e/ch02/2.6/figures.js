@@ -2,13 +2,13 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, scale, axes, nice, runner } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const WORDS = ['', '', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
 const times = (n) => (WORDS[n] ?? String(n)) + ' times';
 
 /* =====================================================================
-   DEMO: the runner of Unreasonable Results. A person accelerates at a
+   SIM: the runner of Unreasonable Results. A person accelerates at a
    for t seconds; the strip shows the run and the graph below draws the
    velocity along v = v0 + at up to the present moment. A dashed level at
    10 m/s is about what a person can run (the book's 89 mph is "about
@@ -17,7 +17,7 @@ const times = (n) => (WORDS[n] ?? String(n)) + ' times';
    scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-runner', 660);
+  const d = sim('sim-runner', 660);
   const A = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0.1, max: 1, step: 0.05, value: 0.4, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 5, max: 120, step: 5, value: 100, unit: 's', dec: 0, onInput: reset, aria: 'time' });
   const RUN = 10;                       /* about what a person can run, in m/s */

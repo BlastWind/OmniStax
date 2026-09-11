@@ -67,7 +67,7 @@ in the components passage, and `displacement` and `distance-traveled`
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-vector-2d` · replaces Figure 3.8 (the walk of 9 blocks east and
+1. `sim-vector-2d` · replaces Figure 3.8 (the walk of 9 blocks east and
    5 blocks north drawn as one arrow) and Figure 3.9 (the ruler and
    protractor laid on it) · vector-in-two-dimensions · **still**: the
    idea is a picture of an arrow, and nothing in it has a time · a grid
@@ -83,7 +83,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    arrow's length is proportional to the magnitude and its direction is
    the vector's direction, so the two numbers and the arrow say the same
    thing. Draws position.
-2. `demo-head-to-tail` · replaces Figure 3.10 (a to c) and the step
+2. `sim-head-to-tail` · replaces Figure 3.10 (a to c) and the step
    figures 3.11, 3.12 and 3.13 · head-to-tail-method, resultant-vector ·
    **moves**: a person walks the first leg east, then the second leg
    north from the head of the first, and only then is the resultant drawn
@@ -100,7 +100,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    \text{blocks}$ at $\theta = 29.1º$; small line on the resultant being
    drawn from the tail of the first vector to the head of the last.
    Draws position.
-3. `demo-walk` · replaces Figures 3.14, 3.15, 3.16 and 3.17 (Example 3.1:
+3. `sim-walk` · replaces Figures 3.14, 3.15, 3.16 and 3.17 (Example 3.1:
    the three vectors drawn, laid head to tail, the resultant, the ruler
    and protractor) · head-to-tail-method, resultant-vector · **moves**:
    the woman walks the three legs in turn, each arrow laid down with its
@@ -115,7 +115,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    Readout: $\kR = 50.8\ \text{m}$, $\theta = 5.47º$ south of east; small
    line: the method works for any number of vectors and is limited only
    by the precision of the drawing. Draws position.
-4. `demo-order` · replaces Figure 3.18 (the same three vectors added as
+4. `sim-order` · replaces Figure 3.18 (the same three vectors added as
    C, then A, then B) · vector-addition-commutative · **still**: the
    idea is that two constructions end at one point, and the comparison
    is a picture · the walk of Example 3.1 laid head to tail in the order
@@ -130,7 +130,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    \mathbf{B} + \mathbf{C} = \mathbf{R}$, $\kR = 50.8\ \text{m}$; small
    line: vector addition is commutative, as 2 + 3 and 3 + 2 are. Draws
    position (the resultant's magnitude in the readout).
-5. `demo-subtraction` · replaces Figure 3.19 (B and −B) and Figures 3.20
+5. `sim-subtraction` · replaces Figure 3.19 (B and −B) and Figures 3.20
    to 3.23 (Example 3.2: A and B, −B, A + (−B) = R, A + B = R′) ·
    vector-subtraction · **still**: the picture answers its sliders; the
    two destinations, the dock and the place the sailor ends up, are
@@ -148,10 +148,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    90.1° north of east" · none · no. Readout: $\mathbf{A} - \mathbf{B} =
    \mathbf{A} + (-\mathbf{B})$, $\kR = 22.6\ \text{m}$; small line: the dock
    and the place she reaches are 2B = 60.0 m apart. Draws position. The
-   demo computes the difference exactly, 22.6 m at 6.9° south of east,
+   sim computes the difference exactly, 22.6 m at 6.9° south of east,
    where the book's drawing measured 23.0 m at 7.5°; the sum agrees with
    the book's 52.9 m at 90.1°, and the text keeps the book's numbers.
-6. `demo-scalar` · new (the passage has no sketch) · scalar-multiplication
+6. `sim-scalar` · new (the passage has no sketch) · scalar-multiplication
    · **still** · the vector $\mathbf{A}$ of the sailing example drawn from
    the origin and, beneath it from a second origin, $c\mathbf{A}$, the
    same direction when c is positive and the reverse when it is negative
@@ -161,7 +161,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    east" or, for a negative c, "… in the opposite direction" · none ·
    no. Readout: $|c|\,\kA = 3.0 \times 27.5\ \text{m} = 82.5\ \text{m}$;
    small line: dividing by 2 is multiplying by 1/2. Draws position.
-7. `demo-components` · new (the passage has no sketch) · resolving-vector
+7. `sim-components` · new (the passage has no sketch) · resolving-vector
    · **still** · the total displacement of the walk in the city, 10.3
    blocks at 29.0° north of east, drawn on the grid of blocks with the
    two vectors that add to it, east and north, drawn head to tail beneath
@@ -200,7 +200,7 @@ them.
 Extra simulations (rule 15): one considered, none built. A simulation
 that lets the reader lay a fourth and fifth vector down and watch the
 resultant keep up would show that the method is valid for any number of
-vectors, but the three-leg walk and the order demo already show it for
+vectors, but the three-leg walk and the order sim already show it for
 three, and the sentence in the text says the rest. Nothing else opens a
 view the eight figures do not give.
 
@@ -265,7 +265,7 @@ view the eight figures do not give.
 
 ## Colour
 
-The page binds position only, from the seven demos whose sliders carry a
+The page binds position only, from the seven sims whose sliders carry a
 displacement magnitude ($\kD$, $\kA$, $\kB$, $\kC$) or whose readouts state
 a resultant ($\kR$). Every angle, the scalar c and the order of addition
 are untyped and in ink, as the chapter config says; the bold vectors
@@ -298,11 +298,11 @@ reference points at (the sum $\mathbf{A} + \mathbf{B} = \mathbf{R}'$ of
 Example 3.2), where the section had written 3.19. The unkeyed first AP
 item is held for 3.4 with the second, as the exercises list now says.
 
-Fold pass (2026-09-11): the four demos that stand for a run of book
-figures now say so in their rows. `demo-vector-2d` carries 3.8 with 3.9
-under `folds`, `demo-head-to-tail` carries 3.10 with 3.11 to 3.13,
-`demo-walk` carries 3.14 with 3.15 to 3.17, and `demo-subtraction`
+Fold pass (2026-09-11): the four sims that stand for a run of book
+figures now say so in their rows. `sim-vector-2d` carries 3.8 with 3.9
+under `folds`, `sim-head-to-tail` carries 3.10 with 3.11 to 3.13,
+`sim-walk` carries 3.14 with 3.15 to 3.17, and `sim-subtraction`
 carries 3.19 with 3.20 to 3.23, so each eyebrow reads every number of its
-run and the text's references to any of them link to the one demo. The
+run and the text's references to any of them link to the one sim. The
 build links references in the running text only; problem 9's prompt is an
 exercise card, and its "Figure 3.23" stays plain there.

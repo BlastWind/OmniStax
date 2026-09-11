@@ -51,7 +51,7 @@ Two notes for review:
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-ruler` · Fig 16.2 (plucked ruler) and Fig 16.3 (a–e) ·
+1. `sim-ruler` · Fig 16.2 (plucked ruler) and Fig 16.3 (a–e) ·
    restoring-force, force-constant · a ruler clamped at the bottom is
    pulled aside and released; the tip swings through the equilibrium line
    and settles under light damping, with a force arrow on the tip that
@@ -61,7 +61,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    light) · "the tip is 3.1 cm to the left, so the restoring force points
    to the right" · none: the scene is the idea · no. Finite motion, so it
    gets the scrubber.
-2. `demo-spring-scale` · Fig 16.4 (a) graph and (b) hanging springs ·
+2. `sim-spring-scale` · Fig 16.4 (a) graph and (b) hanging springs ·
    hookes-law, force-constant · a spring hangs from a beam; a mass is
    hung on it and the spring stretches to x = mg/k; the load steps
    through the book's masses (0 to 0.500 kg) in a loop, each step adding
@@ -70,7 +70,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    "a 0.300 kg load weighs 2.94 N and stretches the spring 0.076 m" ·
    F against x below, the book's six data points as dots, the line with
    slope k, the current point filled · no.
-3. `demo-stored-energy` · Fig 16.6 (applied force against deformation,
+3. `sim-stored-energy` · Fig 16.6 (applied force against deformation,
    area = work) and the toy-gun figure of Example 16.2 ·
    elastic-potential-energy · a toy-gun spring on a strip is compressed
    by x (the applied force arrow grows as it goes), holds, then releases
@@ -83,7 +83,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    The readout's small line shows Method B: average force ½kx times x.
 
 Example 16.1 (car settling 1.20 cm under 80.0 kg) gets no figure of its
-own: it adds no quantity that `demo-spring-scale` does not show.
+own: it adds no quantity that `sim-spring-scale` does not show.
 
 Photographs, one:
 
@@ -95,8 +95,8 @@ Photographs, one:
 Figures that serve exercises: none in this section.
 
 Extra simulations (rule 15): considered a ruler-length slider (folded
-into `demo-ruler` as the CYU 1 slider), an unloaded-length demo for
-problem 6 (the line on `demo-spring-scale` already shows the intercept),
+into `sim-ruler` as the CYU 1 slider), an unloaded-length sim for
+problem 6 (the line on `sim-spring-scale` already shows the intercept),
 and a quadratic-versus-linear energy plot (the shaded triangle already
 shows it). One survivor:
 
@@ -148,8 +148,8 @@ in ink. Macros: `\kF`, `\kFa`, `\kk`, `\kPE`, `\kKE`, `\kW`.
 with its alt and caption on one line because the source figure sits
 inside a paragraph without a newline. To fix before 16.2.
 
-Fold pass (2026-09-11): `demo-ruler` folds Figure 16.3 (the five stages
-of the ruler) under its own number 16.2, and `demo-stored-energy` folds
+Fold pass (2026-09-11): `sim-ruler` folds Figure 16.3 (the five stages
+of the ruler) under its own number 16.2, and `sim-stored-energy` folds
 Figure 16.7 (the toy gun of Example 16.2) under 16.6; each row lists the
 folded number under `folds` and its eyebrow reads both, "Figure 16.2 +
 16.3" and "Figure 16.6 + 16.7".

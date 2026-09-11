@@ -75,7 +75,7 @@ contrast the passage draws.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-elapsed-time` · new · time, elapsed-time · a pendulum swings
+1. `sim-elapsed-time` · new · time, elapsed-time · a pendulum swings
    above a time line while a marker runs along the line from $t_0$ to
    $t_f$; a bracket in the time hue spans the elapsed time; a stopwatch
    at the right reads zero until the motion starts and then counts up; the
@@ -93,7 +93,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    a stopwatch started at the same moment reads zero at $t_0$ and 30.0 s
    at $t_f$, which is why the text takes $t_0 = 0$ and writes $t$ for the
    elapsed time. Draws time.
-2. `demo-average-velocity` · new · average-velocity, elapsed-time,
+2. `sim-average-velocity` · new · average-velocity, elapsed-time,
    displacement · the aisle of an airplane drawn as a strip inside an
    outline of the fuselage, the nose to the right so that $x$ increases
    toward the front as in the book; a passenger walks from $x_0$ to
@@ -112,7 +112,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    velocity is a vector because displacement is one, and the sign of the
    average velocity is the sign of the displacement. Draws position,
    time, velocity.
-3. `demo-segments` · replaces Figure 2.9 · instantaneous-velocity,
+3. `sim-segments` · replaces Figure 2.9 · instantaneous-velocity,
    average-velocity · the same passenger on the same aisle, but now his
    actual trip is recorded: he walks toward the rear, slows, comes forward
    a step, and goes back again, ending 4.0 m behind where he started after
@@ -134,7 +134,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    the text means by an infinitesimally small interval. Keeps the book's
    number 2.9, the book's image as its original and the book's caption.
    Draws position, time, velocity.
-4. `demo-store` · replaces Figure 2.10 · average-speed, average-velocity,
+4. `sim-store` · replaces Figure 2.10 · average-speed, average-velocity,
    distance-traveled, displacement · a road from home at the left to the
    store at the right; a car drives out to the store and part or all of
    the way back while a stopwatch counts the minutes; an odometer under
@@ -157,7 +157,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    average velocity 3.0 km/h away from home while the average speed is
    9.0 km/h. Keeps the book's number 2.10, the book's image as its
    original and the book's caption. Draws position, time, velocity.
-5. `demo-trip-graphs` · replaces Figure 2.11 · average-speed,
+5. `sim-trip-graphs` · replaces Figure 2.11 · average-speed,
    average-velocity, instantaneous-velocity, instantaneous-speed · the
    same round trip as Figure 2.10 drawn three ways under a short strip
    with the car on it: position against time (a tent that rises to the
@@ -191,11 +191,11 @@ distance of Table 1.3, which its hint names.
 Extra simulations (rule 15), thought about and judged:
 
 - A dashboard with a speedometer and an odometer for a trip that stops at
-  the store: not built. The odometer is already in `demo-store` and the
-  speedometer's reading is the speed graph of `demo-trip-graphs`; a
+  the store: not built. The odometer is already in `sim-store` and the
+  speedometer's reading is the speed graph of `sim-trip-graphs`; a
   dashboard would animate what those two already show.
 - A chord shrinking to a tangent at one chosen instant: not built as a
-  figure of its own, because `demo-segments` already does it for every
+  figure of its own, because `sim-segments` already does it for every
   interval of the trip at once, which is closer to the book's argument.
 
 None built.
@@ -250,7 +250,7 @@ None built.
 
 ## Colour
 
-The page binds time, position and velocity, from the five demos: every
+The page binds time, position and velocity, from the five sims: every
 one carries a time on a slider, the passenger and the car are placed by
 position, and the arrows and the graphs of velocity are drawn in the
 velocity hue. The distance to the store, the percentage of the way home

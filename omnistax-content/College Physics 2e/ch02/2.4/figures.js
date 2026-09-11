@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, scale, axes, nice, curve, car, FONT } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
@@ -67,12 +67,12 @@ function topCar(ctx, x, y, heading, color) {
 }
 
 /* =====================================================================
-   DEMO: the definition. A car whose velocity changes by ā every second
+   SIM: the definition. A car whose velocity changes by ā every second
    for 5.0 s; the v–t graph below is marked at each whole second, so the
    unit m/s² is read off the picture. Finite motion, scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-average-acceleration', 640);
+  const d = sim('sim-average-acceleration', 640);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 5, unit: 'm/s', dec: 1, onInput: reset });
   const a = ctl(d.controls, { label: '\\kab', cls: 'acceleration', min: -5, max: 5, step: 0.1, value: 2.5, unit: 'm/s²', dec: 1, onInput: reset });
   const T = 5;
@@ -116,13 +116,13 @@ function topCar(ctx, x, y, heading, color) {
 })();
 
 /* =====================================================================
-   DEMO: the turning car. A car rounds a bend at constant speed; the
+   SIM: the turning car. A car rounds a bend at constant speed; the
    velocity at the start of the turn and the velocity now are set tail
    to tail beside the road, and their difference points to the inside
    of the bend. Endless loop over the whole run.
 ===================================================================== */
 (function () {
-  const d = demo('demo-turning', 560);
+  const d = sim('sim-turning', 560);
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 5, max: 20, step: 0.5, value: 10, unit: 'm/s', dec: 1, onInput: reset });
   const Rm = ctl(d.controls, { label: '\\text{radius}', cls: '', min: 20, max: 80, step: 5, value: 40, unit: 'm', dec: 0, onInput: reset, aria: 'radius of the bend' });
   const K = 2.75;                                     /* canvas units per meter */
@@ -191,7 +191,7 @@ function topCar(ctx, x, y, heading, color) {
    keep their length and sign. Finite motion, scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-four-cars', 620);
+  const d = sim('sim-four-cars', 620);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 5, max: 30, step: 1, value: 15, unit: 'm/s', dec: 0, onInput: reset, aria: 'starting speed' });
   const am = ctl(d.controls, { label: '|\\ka|', cls: 'acceleration', min: 1, max: 6, step: 0.1, value: 3, unit: 'm/s²', dec: 1, onInput: reset, aria: 'size of the acceleration' });
   const T = () => v0.v / am.v;
@@ -228,14 +228,14 @@ function topCar(ctx, x, y, heading, color) {
 })();
 
 /* =====================================================================
-   The average-acceleration demos: a sprite on a strip whose velocity
+   The average-acceleration sims: a sprite on a strip whose velocity
    runs from v₀ to v_f in Δt, a velocity arrow that changes and an
    acceleration arrow that does not, and the v–t graph below. Built
    once and used for the racehorse (Figure 2.16) and the three subway
    sketches (Figures 2.19, 2.20 and 2.23). Finite motion, scrubber.
 ===================================================================== */
-function accelDemo(o) {
-  const d = demo(o.id, 650);
+function accelSim(o) {
+  const d = sim(o.id, 650);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: o.vmin, max: o.vmax, step: o.vstep, value: o.v0, unit: o.unit, dec: 1, onInput: reset });
   const vf = ctl(d.controls, { label: '\\kvf', cls: 'velocity', min: o.vmin, max: o.vmax, step: o.vstep, value: o.vf, unit: o.unit, dec: 1, onInput: reset });
   const dt = ctl(d.controls, { label: '\\kdt', cls: 'time', min: o.dtmin, max: o.dtmax, step: o.dtstep, value: o.dt, unit: 's', dec: o.dtdec, onInput: reset });
@@ -288,8 +288,8 @@ function accelDemo(o) {
   register(d.fig, { update: (dt2) => { cy.step(dt2, () => dt.v / 5); if (cy.tau < dt.v && Math.abs(vel(cy.tau)) > 0.05) ph += dt2 * 12; }, draw });
 }
 /* the racehorse of Example 2.1, in m/s with east positive */
-accelDemo({
-  id: 'demo-racehorse', sprite: 'horse', unit: 'm/s', vmin: -20, vmax: 20, vstep: 0.5, v0: 0, vf: -15, dtmin: 0.5, dtmax: 5, dtstep: 0.05, dt: 1.8, dtdec: 2,
+accelSim({
+  id: 'sim-racehorse', sprite: 'horse', unit: 'm/s', vmin: -20, vmax: 20, vstep: 0.5, v0: 0, vf: -15, dtmin: 0.5, dtmax: 5, dtstep: 0.05, dt: 1.8, dtdec: 2,
   ka: 14, adec: 2, vpad: 2, axis: 'east (+)', pos: 'east', neg: 'west', subject: 'the horse',
   readout: (v0, vf, dt, a) => `\\kab = \\frac{\\kdv}{\\kdt} = \\frac{\\kvf - \\kvo}{\\kdt} = \\frac{(${tnum(vf, 1)}) - (${tnum(v0, 1)})\\ \\text{m/s}}{${fmt(dt, 2)}\\ \\text{s}} = ${tsig3(a)}\\ \\text{m/s}^2`,
   small: (a, st) => (Math.abs(a) > 1e-9 ? 'An acceleration of ' + sig3(Math.abs(a)) + ' m/s² due ' + (a < 0 ? 'west' : 'east') + ' means that the horse gains ' + sig3(Math.abs(a)) + ' m/s of ' + (a < 0 ? 'westward' : 'eastward') + ' velocity every second. ' : '') + st.long,
@@ -297,9 +297,9 @@ accelDemo({
 /* the subway train, in km/h with right positive, converted to m/s² in the readout as the book does it */
 const trainReadout = (v0, vf, dt, a) => `\\kab = \\frac{\\kdv}{\\kdt} = \\left(\\frac{${tsigned(vf - v0, 1)}\\ \\text{km/h}}{${fmt(dt, 2)}\\ \\text{s}}\\right)\\left(\\frac{10^{3}\\ \\text{m}}{1\\ \\text{km}}\\right)\\left(\\frac{1\\ \\text{h}}{3600\\ \\text{s}}\\right) = ${tsig3s(a)}\\ \\text{m/s}^2`;
 const TRAIN = { sprite: 'train', unit: 'km/h', vmin: -60, vmax: 60, vstep: 0.5, dtmin: 1, dtmax: 60, dtstep: 0.5, dtdec: 2, ka: 60, adec: 3, vpad: 5, axis: '+x', pos: 'right', neg: 'left', subject: 'the train', readout: trainReadout };
-accelDemo({ ...TRAIN, id: 'demo-subway-speeding-up', v0: 0, vf: 30, dt: 20 });
-accelDemo({ ...TRAIN, id: 'demo-subway-slowing-down', v0: 30, vf: 0, dt: 8 });
-accelDemo({ ...TRAIN, id: 'demo-subway-deceleration', v0: -20, vf: 0, dt: 10 });
+accelSim({ ...TRAIN, id: 'sim-subway-speeding-up', v0: 0, vf: 30, dt: 20 });
+accelSim({ ...TRAIN, id: 'sim-subway-slowing-down', v0: 30, vf: 0, dt: 8 });
+accelSim({ ...TRAIN, id: 'sim-subway-deceleration', v0: -20, vf: 0, dt: 10 });
 
 /* =====================================================================
    FIGURE 2.17: instantaneous acceleration. The book's two a–t graphs
@@ -308,7 +308,7 @@ accelDemo({ ...TRAIN, id: 'demo-subway-deceleration', v0: -20, vf: 0, dt: 10 });
    area is the change in velocity. Finite motion, scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-instantaneous', 560);
+  const d = sim('sim-instantaneous', 560);
   const t1 = ctl(d.controls, { label: 't_1', cls: 'time', min: 0, max: 5.5, step: 0.1, value: 0, unit: 's', dec: 1, onInput: reset, aria: 'start of the interval' });
   const t2 = ctl(d.controls, { label: 't_2', cls: 'time', min: 0.5, max: 6, step: 0.1, value: 3, unit: 's', dec: 1, onInput: reset, aria: 'end of the interval' });
   const lo = () => Math.min(t1.v, t2.v), hi = () => Math.max(t1.v, t2.v, lo() + 0.1);
@@ -360,7 +360,7 @@ accelDemo({ ...TRAIN, id: 'demo-subway-deceleration', v0: -20, vf: 0, dt: 10 });
    answers its four sliders: no cycle, no transport.
 ===================================================================== */
 (function () {
-  const d = demo('demo-subway-displacement', 600);
+  const d = sim('sim-subway-displacement', 600);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 10, step: 0.05, value: 4.7, unit: 'km', dec: 2 });
   const xf = ctl(d.controls, { label: '\\kxf', cls: 'position', min: 0, max: 10, step: 0.05, value: 6.7, unit: 'km', dec: 2 });
   const x0p = ctl(d.controls, { label: "\\kxo'", cls: 'position', min: 0, max: 10, step: 0.05, value: 5.25, unit: 'km', dec: 2, aria: 'initial position of trip (b)' });
@@ -395,7 +395,7 @@ accelDemo({ ...TRAIN, id: 'demo-subway-deceleration', v0: -20, vf: 0, dt: 10 });
    strip. Finite motion, scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-subway-graphs', 980);
+  const d = sim('sim-subway-graphs', 980);
   const vt = ctl(d.controls, { label: 'v_{\\text{top}}', cls: 'velocity', min: 10, max: 60, step: 1, value: 30, unit: 'km/h', dec: 1, onInput: reset, aria: 'top speed' });
   const t1 = ctl(d.controls, { label: 't_{\\text{speed up}}', cls: 'time', min: 5, max: 40, step: 0.5, value: 20, unit: 's', dec: 1, onInput: reset, aria: 'time spent speeding up' });
   const t2 = ctl(d.controls, { label: 't_{\\text{steady}}', cls: 'time', min: 0, max: 40, step: 0.5, value: 20, unit: 's', dec: 1, onInput: reset, aria: 'time at constant velocity' });
@@ -459,7 +459,7 @@ accelDemo({ ...TRAIN, id: 'demo-subway-deceleration', v0: -20, vf: 0, dt: 10 });
    motion, scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-subway-velocity', 670);
+  const d = sim('sim-subway-velocity', 670);
   const x0 = ctl(d.controls, { label: "\\kxo'", cls: 'position', min: 0, max: 10, step: 0.05, value: 5.25, unit: 'km', dec: 2, onInput: reset, aria: 'initial position' });
   const xf = ctl(d.controls, { label: "\\kxf'", cls: 'position', min: 0, max: 10, step: 0.05, value: 3.75, unit: 'km', dec: 2, onInput: reset, aria: 'final position' });
   const dt = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 1, max: 15, step: 0.25, value: 5, unit: 'min', dec: 2, onInput: reset });

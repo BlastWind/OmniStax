@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.3'] = function (root, F) {
 const { el, fmt, tex, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, strip, nice, FONT } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- helpers for the whole section ---------- */
@@ -43,7 +43,7 @@ function runs(ctx, parts, x, y, size) {
    the spread slider sets. Nothing moves; the picture answers the sliders.
 ===================================================================== */
 (function () {
-  const d = demo('demo-target', 620);
+  const d = sim('sim-target', 620);
   const S = ctl(d.controls, { label: '\\text{spread}', cls: '', min: 0.1, max: 3, step: 0.1, value: 2, unit: 'rings', dec: 1, aria: 'spread of the attempts' });
   const O = ctl(d.controls, { label: '\\text{offset}', cls: '', min: 0, max: 3, step: 0.1, value: 0.3, unit: 'rings', dec: 1, aria: 'offset of the centre of the attempts' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
@@ -78,12 +78,12 @@ function runs(ctx, parts, x, y, size) {
 })();
 
 /* =====================================================================
-   DEMO: percent uncertainty. The four weekly weights of Example 1.2 on a
+   SIM: percent uncertainty. The four weekly weights of Example 1.2 on a
    number line, the average with its band A ± δA, and beneath it a bag
    half as heavy with the same δA. Nothing moves.
 ===================================================================== */
 (function () {
-  const d = demo('demo-percent', 560);
+  const d = sim('sim-percent', 560);
   const A = ctl(d.controls, { label: 'A', cls: '', min: 1, max: 10, step: 0.1, value: 5.1, unit: 'lb', dec: 1, aria: 'average weight' });
   const dA = ctl(d.controls, { label: '\\delta A', cls: '', min: 0.1, max: 1, step: 0.1, value: 0.4, unit: 'lb', dec: 1, aria: 'uncertainty in the weight' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
@@ -116,12 +116,12 @@ function runs(ctx, parts, x, y, size) {
 })();
 
 /* =====================================================================
-   DEMO: the floor. The 4.00 m by 3.00 m floor to scale, the largest and
+   SIM: the floor. The 4.00 m by 3.00 m floor to scale, the largest and
    smallest floors the uncertainties allow as dashed outlines about the
    same centre, and the ring between them shaded. Nothing moves.
 ===================================================================== */
 (function () {
-  const d = demo('demo-area', 620);
+  const d = sim('sim-area', 620);
   const pL = ctl(d.controls, { label: '\\text{length}', cls: '', min: 0, max: 10, step: 0.5, value: 2, unit: '%', dec: 1, aria: 'percent uncertainty in the length' });
   const pW = ctl(d.controls, { label: '\\text{width}', cls: '', min: 0, max: 10, step: 0.5, value: 1, unit: '%', dec: 1, aria: 'percent uncertainty in the width' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
@@ -157,7 +157,7 @@ function runs(ctx, parts, x, y, size) {
 })();
 
 /* =====================================================================
-   DEMO: the ruler. A stick of true length L on a strip; a ruler slides in
+   SIM: the ruler. A stick of true length L on a strip; a ruler slides in
    from the left over four seconds and stops with its zero at the stick's
    left end. Beneath, a magnified view of the end of the stick against
    the ruler's marks at the chosen division, with the two marks the end
@@ -165,7 +165,7 @@ function runs(ctx, parts, x, y, size) {
    scrubber; reduced motion draws it aligned.
 ===================================================================== */
 (function () {
-  const d = demo('demo-ruler', 500);
+  const d = sim('sim-ruler', 500);
   const Lc = ctl(d.controls, { label: '\\text{length}', cls: '', min: 10, max: 50, step: 0.01, value: 36.71, unit: 'cm', dec: 2, onInput: reset, aria: 'true length of the stick' });
   const Dv = ctl(d.controls, { label: '\\text{division}', cls: '', min: 0, max: 2, step: 1, value: 1, unit: '', dec: 0, onInput: reset, aria: 'smallest division of the ruler' });
   const divVal = d.controls.lastElementChild ? d.controls.lastElementChild.querySelector('.ctl-val') : null;
@@ -228,13 +228,13 @@ function runs(ctx, parts, x, y, size) {
 })();
 
 /* =====================================================================
-   DEMO: the two rules. Two measured lengths a and b, each known to its
+   SIM: the two rules. Two measured lengths a and b, each known to its
    own decimals, laid end to end for the sum and set as the sides of a
    rectangle for the product; the calculator's result for each is printed
    with the rejected digits in muted type. Nothing moves.
 ===================================================================== */
 (function () {
-  const d = demo('demo-calc', 560);
+  const d = sim('sim-calc', 560);
   const a0 = ctl(d.controls, { label: 'a', cls: '', min: 1, max: 20, step: 0.01, value: 7.56, unit: '', dec: 2, aria: 'length a' });
   const da = ctl(d.controls, { label: '\\text{decimals of } a', cls: '', min: 0, max: 3, step: 1, value: 2, unit: '', dec: 0, aria: 'decimals of a' });
   const b0 = ctl(d.controls, { label: 'b', cls: '', min: 1, max: 20, step: 0.001, value: 6.052, unit: '', dec: 3, aria: 'length b' });

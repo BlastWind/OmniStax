@@ -32,11 +32,11 @@ span ids as the chapter's anchors expect them:
    `velocity-addition`; the chapter's `v`, `v_x`, `v_y`, `θ` and the
    four boxed equations anchor here.
 3. `boat` **A boat on a river**: Example 3.6 as `<div class="example"
-   id="ex-boat">`, with Figure 3.43 folded into the demo of block 1 (see
+   id="ex-boat">`, with Figure 3.43 folded into the sim of block 1 (see
    Figures). The chapter's `v_tot`, `v_boat`, `v_river` anchor at
    `ex-boat`.
 4. `plane` **A plane in a wind**: Example 3.7 as `ex-plane`, its Figure
-   3.44 replaced by a demo of the inverse problem, and the book's
+   3.44 replaced by a sim of the inverse problem, and the book's
    closing paragraph on choosing a coordinate system with one axis
    parallel to one of the velocities. The chapter's `v_totx`, `v_toty`,
    `v_p`, `v_px`, `v_py`, `v_w`, `v_wx`, `v_wy` and `eq-wind-components`
@@ -80,7 +80,7 @@ on `analytical-vector-addition` (3.3) and `coordinate-system` (2.2).
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-boat` · replaces Figure 3.40 (the boat that moves diagonally)
+1. `sim-boat` · replaces Figure 3.40 (the boat that moves diagonally)
    and carries Figure 3.43 (the same boat with Example 3.6's numbers) as
    a further original, since the example adds no quantity the section
    figure does not show · relative-velocity, velocity-addition · a boat
@@ -101,7 +101,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    discussion as the small line; with the heading off 90° the readout
    shows $\kvx = \kvriver + \kvboat\cos\phi$ and the small line says
    where the boat lands. Draws velocity.
-2. `demo-plane` · replaces Figure 3.41 (the plane carried west by the
+2. `sim-plane` · replaces Figure 3.41 (the plane carried west by the
    wind) · relative-velocity · a plane pointed due north flies over a
    map while the wind's streaks drift across it; the plane's track runs
    along its total velocity, off its heading · `\kvp` (0 to 70 m/s,
@@ -117,7 +117,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    the map, about 5 real seconds), scrubber. Readout: $\kvtot =
    \sqrt{(\kvpx + \kvwx)^2 + (\kvpy + \kvwy)^2}$ with the numbers; small
    line names the direction in the book's compass words. Draws velocity.
-3. `demo-components` · replaces Figure 3.42 (a velocity and its
+3. `sim-components` · replaces Figure 3.42 (a velocity and its
    components) · velocity-addition · still · `\kv` (0.20 to 5.00 m/s,
    default 1.42, velocity), θ (−180° to 180°, default 32.0°, ink); the
    defaults are Example 3.6's total velocity, so the components come
@@ -128,7 +128,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    and $\kvy = \kv\sin\theta$ with the numbers; the small line runs the
    other two equations back from the components, and says when a
    calculator's $\tan^{-1}$ needs 180° added. Draws velocity.
-4. `demo-wind` · replaces Figure 3.44 (Example 3.7) · velocity-addition
+4. `sim-wind` · replaces Figure 3.44 (Example 3.7) · velocity-addition
    · still · `\kvp` (10 to 70 m/s, default 45.0, velocity), `\kvtot` (5
    to 70 m/s, default 38.0, velocity), the direction of the total
    velocity in degrees west of north (−60° to 60°, default 20.0°, ink) ·
@@ -136,10 +136,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    from 45.0 to 38.0 m/s and turns its track 20.0° off its heading" ·
    none · no. Still. The example gets a figure of its own because it is
    the inverse problem: the total is known and the wind is found, which
-   Figure 3.41's demo cannot show. Readout: $\kvw = \sqrt{\kvwx^2 +
+   Figure 3.41's sim cannot show. Readout: $\kvw = \sqrt{\kvwx^2 +
    \kvwy^2} = 16.0$ m/s with the components written on the triangle,
    small line on the components and the 110° angle. Draws velocity.
-5. `demo-binoculars` · replaces Figure 3.45 (the sailor drops the
+5. `sim-binoculars` · replaces Figure 3.45 (the sailor drops the
    binoculars) · classical-relativity · two panels: on the left, seen
    from the ship, the mast stands still and the binoculars fall straight
    down while the water slides past; on the right, seen from shore, the
@@ -153,7 +153,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    scrubber. Readout: the velocity at the deck in the two frames, (6.0,
    −15.3) m/s from shore and (0, −15.3) m/s from the ship; small line:
    the observers differ by the ship's velocity alone. Draws velocity.
-6. `demo-coin` · replaces Figure 3.46 (Example 3.8) · classical-relativity,
+6. `sim-coin` · replaces Figure 3.46 (Example 3.8) · classical-relativity,
    velocity-addition · on the left, relative to the plane, the coin
    falls straight down 1.50 m in the cabin with its velocity arrow
    growing; on the right, relative to the Earth, a graph of the coin's
@@ -167,7 +167,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    its velocity is 260.06 m/s" · the ground-frame path is the graph ·
    no. Moves: a fall, finite, scrubber. The example gets a figure of its
    own because it adds the velocity at the floor and its five-digit
-   magnitude, which the binoculars demo does not show. Readout: $\kv =
+   magnitude, which the binoculars sim does not show. Readout: $\kv =
    \sqrt{\kvx^2 + \kvy^2} = 260.06$ m/s and $\theta = -1.19°$; small
    line: relative to the plane the velocity is $\kvy = -5.42$ m/s alone.
    Draws velocity.
@@ -189,8 +189,8 @@ Extra simulations (rule 15): thought about and judged:
 - A heading on the boat, so the reader can point it upstream and find
   the heading that lands it straight across, which is what the take-home
   experiment asks and what problem 8 (unkeyed) asks of a ship. Built, as
-  the third slider of `demo-boat` rather than a figure of its own; at
-  its default of 90° the demo is the book's.
+  the third slider of `sim-boat` rather than a figure of its own; at
+  its default of 90° the sim is the book's.
 - The expanding line of galaxies seen from each galaxy in turn, so the
   reader sees that every observer finds themself at the centre. Left:
   problem 12, which asks exactly this, is unkeyed and left out, and the
@@ -255,7 +255,7 @@ Extra simulations (rule 15): thought about and judged:
 
 ## Colour
 
-The page binds velocity only: every demo carries a velocity on a slider
+The page binds velocity only: every sim carries a velocity on a slider
 and draws velocity arrows, and the readouts write `\kv`, `\kvx`, `\kvy`,
 `\kvtot`, `\kvboat`, `\kvriver`, `\kvp`, `\kvw` and their components.
 Angles, the river's width, the mast height, the drop height and the
@@ -286,9 +286,9 @@ ink on this page since it binds neither acceleration nor position.
 Decided in the chapter pass (2026-09-11): the twenty anchors above are
 written into `chapter.json`. The Critical Thinking item is moved to 3.4,
 as the exercises list now says. Example 3.6 refers to Figure 3.43, which
-`demo-boat` folds under its own number 3.40, since the example adds no
+`sim-boat` folds under its own number 3.40, since the example adds no
 quantity the section figure does not show. The fold pass (2026-09-11)
 wrote 3.43 into the row's `folds`, so the eyebrow reads "Figure 3.40 +
-3.43" and the example's reference now links to the demo. The lead of the
+3.43" and the example's reference now links to the sim. The lead of the
 galaxies block
 is a full sentence now, and the caption spells center as the book does.

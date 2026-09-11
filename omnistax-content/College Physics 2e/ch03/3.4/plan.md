@@ -85,7 +85,7 @@ all of which the coverage rows mark as used where the text uses them.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-displacement` · replaces Figure 3.34 (the soccer ball and its
+1. `sim-displacement` · replaces Figure 3.34 (the soccer ball and its
    total displacement) · projectile-motion, projectile-analysis · **moves**:
    a ball kicked from the origin flies along its parabola for one flight,
    and at every instant the total displacement $\mathbf{s}$ is drawn from
@@ -98,7 +98,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    above the horizontal" · none: the trajectory is the picture · no.
    Readout: $\ks = \sqrt{\kx^2 + \ky^2}$ with the numbers; small line on
    $\theta = \tan^{-1}(\ky/\kx)$. Draws position, velocity, time.
-2. `demo-components` · replaces Figure 3.35 (a) to (d) (the velocity and
+2. `sim-components` · replaces Figure 3.35 (a) to (d) (the velocity and
    its components along the trajectory) · projectile-horizontal-motion,
    projectile-vertical-motion, projectile-analysis · **moves**: the
    projectile flies once from launch to landing on level ground; every
@@ -115,7 +115,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    book's part (c)), with the moving point on each · no. Readout: $\kv =
    \sqrt{\kvx^2 + \kvy^2}$ and $\theta_v = \tan^{-1}(\kvy/\kvx)$ with the
    live numbers. Draws velocity, acceleration, time.
-3. `demo-fireworks` · replaces Figure 3.36 (the fireworks shell) ·
+3. `sim-fireworks` · replaces Figure 3.36 (the fireworks shell) ·
    maximum-height, projectile-vertical-motion, projectile-horizontal-motion
    · **moves**: the shell rises from the launch point to its apex, where
    the fuse fires and a burst is drawn; the height $\kh$ is bracketed
@@ -129,7 +129,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    \kvoy^2 / 2\kg$ with the numbers; small line on the time to the top and
    the horizontal displacement $\kx = \kvx\kt$. Draws position, velocity,
    acceleration, time.
-4. `demo-rock` · replaces Figure 3.37 (the hot rock from Kilauea) ·
+4. `sim-rock` · replaces Figure 3.37 (the hot rock from Kilauea) ·
    projectile-analysis, projectile-vertical-motion,
    projectile-horizontal-motion, physical-solution · **moves**: the rock
    leaves the rim, rises and falls to the slope 20.0 m below, and at
@@ -144,7 +144,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    as an event before the launch · no. Readout: the quadratic and its two
    roots; small line with $\kv$ and $\theta_v$ at impact. Draws position,
    velocity, acceleration, time.
-5. `demo-range` · replaces Figure 3.38 (a) and (b) (trajectories on level
+5. `sim-range` · replaces Figure 3.38 (a) and (b) (trajectories on level
    ground) · range, maximum-height · **moves**: the projectile flies its
    trajectory once per loop while the range is bracketed beneath; the
    complementary angle's trajectory is drawn dashed and lands at the same
@@ -159,7 +159,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    the same height · no. Readout: $\kR = \kvo^2 \sin 2\theta_0 / \kg$
    with the numbers; small line naming the complementary angle and its
    different maximum height. Draws position, velocity, acceleration, time.
-6. `demo-orbit` · replaces Figure 3.39 (the tower and the satellite) ·
+6. `sim-orbit` · replaces Figure 3.39 (the tower and the satellite) ·
    range · **moves**: a projectile leaves a tall tower horizontally and
    falls around the Earth under gravity that always points at the centre,
    until it hits the surface or completes an orbit; the arc of surface it
@@ -182,21 +182,21 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
 Every book figure of the section is a sketch and is replaced; no
 photograph to keep or drop. Problems 7 and 8 refer to Figure 3.38, which
-`demo-range` replaces with the book's numbers reachable on its sliders and
+`sim-range` replaces with the book's numbers reachable on its sliders and
 the book's image as its original, so no separate exercise figure is
 needed.
 
 Extra simulations (rule 15), considered and left:
 
 - Two coins flicked and nudged off a table (conceptual question 4): the
-  independence of the two motions is already what `demo-components` shows
+  independence of the two motions is already what `sim-components` shows
   with its flat $\kvx$ line, and 3.1 built the horizontal throw. Left.
 - The trajectory with air resistance beside the ideal parabola (the text's
   38º against 45º): a real view the text does not give, but the book has
   no drag model to be faithful to, so anything drawn would be invented.
   Left.
 - The trajectory as $y = ax + bx^2$ (problem 24): a graph-only figure
-  that repeats what every demo already draws. Left.
+  that repeats what every sim already draws. Left.
 
 None built.
 
@@ -266,12 +266,12 @@ None built.
 
 ## Colour
 
-The page binds position, velocity, acceleration and time: every demo
+The page binds position, velocity, acceleration and time: every sim
 carries $\kvo$ on a slider and draws the velocity and its components, four
 of them bracket a height, a range or a displacement in the position hue,
-the rock demo carries the landing depth $\ky$ on a slider, the
+the rock sim carries the landing depth $\ky$ on a slider, the
 acceleration arrow $\kay = -\kg$ is drawn in the components, fireworks,
-rock and orbit demos and $\kg$ is stated in every readout, and every
+rock and orbit sims and $\kg$ is stated in every readout, and every
 headline states the time. Angles ($\theta_0$, $\theta$, $\theta_v$) and
 the tower height stay in ink.
 
@@ -320,11 +320,11 @@ the tower height stay in ink.
 Decided in the chapter pass (2026-09-11): the thirty-four anchors above
 are written into `chapter.json`, `θ_0` at `range` as proposed. Three
 `draws` lists are trimmed to what the figure actually colours:
-`demo-displacement` draws position and velocity (its headline states the
-time in ink and nothing in it colours time), `demo-range` and `demo-orbit`
+`sim-displacement` draws position and velocity (its headline states the
+time in ink and nothing in it colours time), `sim-range` and `sim-orbit`
 draw position, velocity and acceleration (the `\kg` of their readouts);
 the page still binds time through the components, fireworks and rock
-demos, so nothing on the page changes colour. The range demo's caption
+sims, so nothing on the page changes colour. The range sim's caption
 names Figure 3.38 rather than "the book's figure" (rule 17). The two
 unkeyed AP items and the Critical Thinking item of 3.5 are kept, as the
 exercises list now says.

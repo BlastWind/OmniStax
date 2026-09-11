@@ -2,11 +2,11 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* =====================================================================
-   DEMO 1: the planetary model of the atom, replacing Figure 1.10. A
+   SIM 1: the planetary model of the atom, replacing Figure 1.10. A
    nucleus of protons at the centre, electrons on circular orbits of
    increasing radius filling shells of two, eight and eight, going round
    without end. One slider, the number of electrons, since the section
@@ -14,7 +14,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
    atom the model is a picture of. An endless cycle, so no scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-atom-model', 620);
+  const d = sim('sim-atom-model', 620);
   const Z = ctl(d.controls, { label: '\\text{electrons}', cls: '', min: 1, max: 18, step: 1, value: 1, unit: '', dec: 0, onInput: reset, aria: 'number of electrons' });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }

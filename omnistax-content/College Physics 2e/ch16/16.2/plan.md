@@ -57,7 +57,7 @@ Two notes for review:
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-period` · new (the book has no sketch; the photograph is
+1. `sim-period` · new (the book has no sketch; the photograph is
    discussed below) · periodic-motion, period, period-frequency · a
    guitar string across the strip is plucked and vibrates as an endless
    cycle, no damping, so the tone "lasts a long time"; below it the
@@ -71,7 +71,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    continuous cycle with the plain transport.
    Readout: f = 1/T = 1/(0.500 s) = 2.00 Hz. Small line: "4 crests pass
    in 2.0 s, which is also 2.00 Hz."
-2. `demo-count` · new · frequency, period-frequency · a mass on a spring
+2. `sim-count` · new · frequency, period-frequency · a mass on a spring
    (the 16.1 coil spring and block sprites) bobs while a stopwatch runs
    and a counter ticks off completed cycles; the run stops when the
    stopwatch reaches the set time · cycles N (5 to 50, default 10, ink),
@@ -82,15 +82,15 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    0.600 s. The defaults keep the AP item's ratio (50 cycles in 30 s) at
    a speed the eye can follow; dialling in 50 and 30 reproduces the item.
 
-Why two demos rather than one: demo 1 is the reciprocal relation, read
-off one trace. Demo 2 is frequency as the book defines it, a count of
+Why two sims rather than one: sim 1 is the reciprocal relation, read
+off one trace. Sim 2 is frequency as the book defines it, a count of
 events over an interval, with no trace at all; it is the method the AP
 item and problems 2, 5 and 6 actually use, and no equation in the section
 writes it down. If you would rather have one figure, the counting window
-of demo 1 already carries most of demo 2 and I would drop demo 2.
+of sim 1 already carries most of sim 2 and I would drop sim 2.
 
 Example 16.3 (0.400 µs ultrasound, 264 Hz middle C) gets no figure of its
-own: its numbers are too fast to animate and it adds no quantity demo 1
+own: its numbers are too fast to animate and it adds no quantity sim 1
 does not show.
 
 Photographs, one:
@@ -100,13 +100,13 @@ Photographs, one:
   string, the first learning objective names it, and the caption is
   about the strings vibrating at regular intervals, so it shows the
   thing the passage is about. It is a borderline case: the strings are
-  at rest, and demo 1 shows them moving. Say the word and it is dropped.
+  at rest, and sim 1 shows them moving. Say the word and it is dropped.
 
 Figures that serve exercises: none in this section.
 
 Extra simulations (rule 15): considered a frequency ladder from heartbeat
 to ultrasound (a static scale, not a simulation, and the text does not
-need it), a heartbeat trace for problem 2 (the same view as demo 2), and
+need it), a heartbeat trace for problem 2 (the same view as sim 2), and
 the eight-cylinder engine of problem 6 (too contrived to draw). One
 survivor:
 

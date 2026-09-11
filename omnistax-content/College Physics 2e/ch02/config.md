@@ -18,8 +18,8 @@ setting and its value.
 | Site | one page per section, built by the Astro app in `omnistax-web/` (the earlier `tools/build_site.py` is gone since Pass 7); other sections load into tabs on demand |
 | Prose | verbatim; objectives, summary, glossary pulled into views |
 | Sub-concept headers | agent decides per section, reported in the plan |
-| Figures | a demo per idea or result the section introduces; every sketch figure replaced by a demo; a photograph kept when the text points the reader at it or it shows the thing the passage is about, dropped when it is decoration such as a splash image, each listed in the plan with the reason; 3D only when spatial (rule 14) |
-| Demo sliders | whatever is interesting and variable in the idea, not necessarily one equation's variables |
+| Figures | a sim per idea or result the section introduces; every sketch figure replaced by a sim; a photograph kept when the text points the reader at it or it shows the thing the passage is about, dropped when it is decoration such as a splash image, each listed in the plan with the reason; 3D only when spatial (rule 14) |
+| Sim sliders | whatever is interesting and variable in the idea, not necessarily one equation's variables |
 | Figures that serve exercises | copied over faithfully, no sliders (rule 14) |
 | Extra simulations | agent proposes only those that open a view the required figures do not; user picks from the plan (rule 15) |
 | Feedback stops | agent waits until the user has answered every point before building (rule 16) |

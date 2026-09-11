@@ -2,12 +2,12 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, LW, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, scale, axes, nice, curve, runner, car, plane, dragster } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 /* =====================================================================
-   DEMO 1: notation. A number line, two positions, one stopwatch.
+   SIM 1: notation. A number line, two positions, one stopwatch.
 ===================================================================== */
 (function () {
-  const d = demo('demo-notation', 460);
+  const d = sim('sim-notation', 460);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 100, step: 1, value: 20, unit: 'm', dec: 0, onInput: reset });
   const x = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0, max: 100, step: 1, value: 80, unit: 'm', dec: 0, onInput: reset });
   const t = ctl(d.controls, { label: '\\kt', cls: 'time', min: 1, max: 60, step: 0.5, value: 12, unit: 's', dec: 1, onInput: reset });
@@ -42,10 +42,10 @@ const demo = (id, H) => F.demo(root, id, H);
 })();
 
 /* =====================================================================
-   DEMO 2: average velocity under constant acceleration is the midpoint
+   SIM 2: average velocity under constant acceleration is the midpoint
 ===================================================================== */
 (function () {
-  const d = demo('demo-avg', 600);
+  const d = sim('sim-avg', 600);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 30, step: 0.5, value: 10, unit: 'm/s', onInput: reset });
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 30, step: 0.5, value: 20, unit: 'm/s', onInput: reset });
   const t = ctl(d.controls, { label: '\\kt', cls: 'time', min: 1, max: 20, step: 0.5, value: 10, unit: 's', onInput: reset });
@@ -76,10 +76,10 @@ const demo = (id, H) => F.demo(root, id, H);
 })();
 
 /* =====================================================================
-   DEMO 3: the jogger, x = x0 + v̄ t
+   SIM 3: the jogger, x = x0 + v̄ t
 ===================================================================== */
 (function () {
-  const d = demo('demo-jogger', 660);
+  const d = sim('sim-jogger', 660);
   const vb = ctl(d.controls, { label: '\\kvb', cls: 'velocity', min: 0, max: 8, step: 0.05, value: 4, unit: 'm/s', dec: 2, onInput: reset });
   const t = ctl(d.controls, { label: '\\kt', cls: 'time', min: 10, max: 180, step: 1, value: 120, unit: 's', dec: 0, onInput: reset });
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: -200, max: 200, step: 10, value: 0, unit: 'm', dec: 0, onInput: reset });
@@ -110,10 +110,10 @@ const demo = (id, H) => F.demo(root, id, H);
 })();
 
 /* =====================================================================
-   DEMO 4: the airplane, v = v0 + a t
+   SIM 4: the airplane, v = v0 + a t
 ===================================================================== */
 (function () {
-  const d = demo('demo-plane', 680);
+  const d = sim('sim-plane', 680);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 90, step: 1, value: 70, unit: 'm/s', dec: 1, onInput: reset });
   const a = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: -4, max: 4, step: 0.05, value: -1.5, unit: 'm/s²', dec: 2, onInput: reset });
   const t = ctl(d.controls, { label: '\\kt', cls: 'time', min: 1, max: 60, step: 0.5, value: 40, unit: 's', dec: 1, onInput: reset });
@@ -147,10 +147,10 @@ const demo = (id, H) => F.demo(root, id, H);
 })();
 
 /* =====================================================================
-   DEMO 5: the dragster, x = x0 + v0 t + ½ a t²
+   SIM 5: the dragster, x = x0 + v0 t + ½ a t²
 ===================================================================== */
 (function () {
-  const d = demo('demo-dragster', 680);
+  const d = sim('sim-dragster', 680);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 0, unit: 'm/s', dec: 1, onInput: reset });
   const a = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 1, max: 30, step: 0.1, value: 26, unit: 'm/s²', dec: 1, onInput: reset });
   const t = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 8, step: 0.01, value: 5.56, unit: 's', dec: 2, onInput: reset });
@@ -184,11 +184,11 @@ const demo = (id, H) => F.demo(root, id, H);
 })();
 
 /* =====================================================================
-   DEMO 6 (3D): braking on dry vs wet concrete, v² = v0² + 2aΔx
+   SIM 6 (3D): braking on dry vs wet concrete, v² = v0² + 2aΔx
 ===================================================================== */
 (function () {
-  const fig = F.byId(root, 'demo-braking'); if (!fig) return;   /* a split-out pane for another figure: no WebGL context here */
-  const d = demo('demo-braking', 300);
+  const fig = F.byId(root, 'sim-braking'); if (!fig) return;   /* a split-out pane for another figure: no WebGL context here */
+  const d = sim('sim-braking', 300);
   const wrap = el('div', 'three-wrap'); d.stage.insertBefore(wrap, d.stage.firstChild);   /* the 3D view above the graph canvas */
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 30, unit: 'm/s', dec: 1, onInput: reset });
   const tr = ctl(d.controls, { label: 't_{\\text{react}}', cls: 'time', min: 0, max: 1.5, step: 0.05, value: 0.5, unit: 's', dec: 2, onInput: reset, aria: 'reaction time' });
@@ -292,10 +292,10 @@ const demo = (id, H) => F.demo(root, id, H);
 })();
 
 /* =====================================================================
-   DEMO 7: merging car, two roots of the quadratic
+   SIM 7: merging car, two roots of the quadratic
 ===================================================================== */
 (function () {
-  const d = demo('demo-merge', 700);
+  const d = sim('sim-merge', 700);
   const x = ctl(d.controls, { label: '\\kx', cls: 'position', min: 50, max: 400, step: 10, value: 200, unit: 'm', dec: 0, onInput: reset });
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 10, unit: 'm/s', dec: 1, onInput: reset });
   const a = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0.5, max: 4, step: 0.05, value: 2, unit: 'm/s²', dec: 2, onInput: reset });

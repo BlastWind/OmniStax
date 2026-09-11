@@ -74,7 +74,7 @@ book says to take average speed as given for now.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-light-meter` · replaces Figure 1.18 (the flashlight and the meter
+1. `sim-light-meter` · replaces Figure 1.18 (the flashlight and the meter
    stick) · fundamental-units · a pulse of light leaves a flashlight at
    the left end of a meter stick and runs along it at the speed of
    light; the stick is drawn 1.5 m long with 10 cm ticks so a longer
@@ -89,7 +89,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    of light being exact by definition and the meter being what is
    measured. The pulse is drawn in the velocity hue, the bracket in ink,
    the time label in the time hue. Draws time and velocity.
-2. `demo-ladder` · new · metric-prefixes, order-of-magnitude · a
+2. `sim-ladder` · new · metric-prefixes, order-of-magnitude · a
    horizontal logarithmic ladder from $10^{-18}$ m to $10^{26}$ m, a
    tick per decade and a label every three, the prefixes of Table 1.2
    written under their powers of 10 (atto at −18 up to exa at 18, on
@@ -107,7 +107,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    decimal for |n| ≤ 3, the nearest prefix otherwise); small line: every
    number from 1 × 10² to 9.9 × 10² is of the same order of magnitude,
    10², just as 800 and 450 are. All ink; draws nothing.
-3. `demo-drive` · new, for Example 1.1 · unit-conversion,
+3. `sim-drive` · new, for Example 1.1 · unit-conversion,
    conversion-factor, physical-quantity · a car drives from a school at
    the left to a house at the right along a strip marked in kilometers
    while a stopwatch beside the strip counts up; a velocity arrow on the
@@ -141,7 +141,7 @@ Photographs, six:
   Jurvetson/Flickr): **keep** as `fig-clock`. The text says "See Figure
   1.17", and it shows the thing the second is now defined by.
 - Figure 1.18, light along a meter stick: a sketch, **replaced** by
-  `demo-light-meter`, which keeps the number 1.18, the book's image as
+  `sim-light-meter`, which keeps the number 1.18, the book's image as
   its original and the book's caption.
 - Figure 1.19, the phytoplankton (credit: Prof. Gordon T. Taylor, Stony
   Brook University; NOAA Corps Collections): **keep** as `fig-plankton`.
@@ -208,7 +208,7 @@ numbers it:
 
 ## Colour
 
-The page binds time and velocity, from the two demos that carry a time
+The page binds time and velocity, from the two sims that carry a time
 on a slider and draw a speed: the pulse of light and the car. Every other
 quantity on the page (a length, a mass, a mantissa, an exponent, a
 distance in kilometers) is untyped and in ink, as the chapter config

@@ -84,7 +84,7 @@ derive-motion-graphs.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-line` · replaces Figure 2.44 (the straight line $y = mx + b$) ·
+1. `sim-line` · replaces Figure 2.44 (the straight line $y = mx + b$) ·
    straight-line-graph · **still**: a graph of $y$ against $x$ with the
    line $y = mx + b$, a rise-over-run triangle drawn on it between
    $x = 1$ and $x = 3$, and the intercept marked on the vertical axis
@@ -96,7 +96,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    $y = mx + b = 1.5x + 1.0$ with a small line on the slope being the
    same between any two points of a straight line. All ink; draws
    nothing.
-2. `demo-jet-xt` · replaces Figure 2.45 (the jet car's position against
+2. `sim-jet-xt` · replaces Figure 2.45 (the jet car's position against
    time) · x-t-slope-velocity, straight-line-graph · **still**: the
    straight line $x = x_0 + \bar v t$ on axes of 0 to 8 s and 0 to
    2400 m, two chosen points on it with drop lines to both axes, the
@@ -113,7 +113,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    $\kvb = \kdx / \kdt = (2000 − 525) / (6.4 − 0.50) = 250$ m/s, with a
    small line saying the intercept is $x_0$ and so the graph reads
    $\kx = \kxo + \kvb\kt$. Draws time, position, velocity.
-3. `demo-jet-graphs` · replaces Figure 2.46 (position, velocity and
+3. `sim-jet-graphs` · replaces Figure 2.46 (position, velocity and
    acceleration of the jet car under constant acceleration) ·
    derive-motion-graphs, tangent-slope, x-t-slope-velocity,
    v-t-slope-acceleration · **moving**: three graphs stacked on one
@@ -136,7 +136,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    small line on the velocity line being straight because its slope,
    the acceleration, is constant. Draws time, position, velocity,
    acceleration.
-4. `demo-tangent` · replaces Figure 2.48 (Example 2.18, the tangent at Q)
+4. `sim-tangent` · replaces Figure 2.48 (Example 2.18, the tangent at Q)
    · tangent-slope, x-t-slope-velocity · **still**: the same position
    curve on axes of 0 to 35 s and 0 to 3500 m, the book's table of
    positions at 0, 5, 10, … 30 s beside it, the point Q at the chosen
@@ -153,7 +153,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    tangent does not change the slope, and that a wider interval makes
    any error in reading the graph proportionally smaller. Draws time,
    position, velocity.
-5. `demo-jet-top` · replaces Figure 2.49 (velocity and acceleration as
+5. `sim-jet-top` · replaces Figure 2.49 (velocity and acceleration as
    the car reaches its top velocity) · v-t-slope-acceleration,
    tangent-slope · **still**: two graphs stacked on one time axis, 0 to
    70 s: the velocity curve from 165 m/s levelling out at 250 m/s with a
@@ -175,10 +175,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    1.0$ m/s². Draws time, velocity, acceleration.
 
 The three examples: 2.17 is the slope of Figure 2.45 and is served by
-`demo-jet-xt`, whose defaults are its two points; 2.18 gets
-`demo-tangent` because it adds what `demo-jet-graphs` does not show, the
+`sim-jet-xt`, whose defaults are its two points; 2.18 gets
+`sim-tangent` because it adds what `sim-jet-graphs` does not show, the
 endpoints of a tangent and the arithmetic of a slope read between them;
-2.19 is served by `demo-jet-top`, whose defaults are its endpoints.
+2.19 is served by `sim-jet-top`, whose defaults are its endpoints.
 
 Photographs, one:
 
@@ -201,7 +201,7 @@ Extra simulations (rule 15), proposed and judged:
 
 - A slope-matching game: a motion is played on a strip and the reader
   drags the slope of a graph to match it. Left out: it animates what
-  `demo-jet-graphs` already shows.
+  `sim-jet-graphs` already shows.
 - A graph of a motion with a turn-around, position rising then falling,
   with the velocity graph beneath crossing zero where the position graph
   is flat. This is what conceptual questions 1, 2 and 6 and the AP item
@@ -260,7 +260,7 @@ None built.
 
 ## Colour
 
-The page binds time, position, velocity and acceleration: every demo
+The page binds time, position, velocity and acceleration: every sim
 but the first carries a time on a slider and draws a position, a
 velocity or an acceleration on an axis. The straight line of Figure 2.44
 is pure mathematics, so $y$, $x$, $m$ and $b$ stay in ink there, as the

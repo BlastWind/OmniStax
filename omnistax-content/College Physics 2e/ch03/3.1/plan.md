@@ -57,10 +57,10 @@ projectile motion and 3.4's page keeps it; `exercise_notes` says so.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-walk` · replaces Figures 3.3, 3.4 and 3.5 (the walk on the grid
+1. `sim-walk` · replaces Figures 3.3, 3.4 and 3.5 (the walk on the grid
    of blocks, the right triangle of the Pythagorean theorem, and the
    helicopter's straight-line path; one scene in the book drawn three
-   times, so one demo carries the number 3.3 with the other two images as
+   times, so one sim carries the number 3.3 with the other two images as
    further originals) · right-triangle-resultant, vector-components · a
    pedestrian walks east along the bottom of a grid of square blocks and
    then north up its right edge while a helicopter flies the straight
@@ -83,7 +83,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    three displacement arrows and their labels are in the position hue,
    the walker and the helicopter are ink sprites, the angle is in ink.
    Draws position.
-2. `demo-two-balls` · replaces Figure 3.6 (the two baseballs under the
+2. `sim-two-balls` · replaces Figure 3.6 (the two baseballs under the
    stroboscope) · independence-of-perpendicular-motions · one ball is
    dropped from rest and another is thrown horizontally from the same
    height at the same instant; both fall, and at every flash of the
@@ -116,13 +116,13 @@ Photographs, one:
 Figures that serve exercises: none. The unkeyed second AP item asks about
 a graph the reader would draw, not one the book prints.
 
-Extra simulations (rule 15): thought about a demo where the reader drags
+Extra simulations (rule 15): thought about a sim where the reader drags
 the destination anywhere on the grid and the walker takes any staircase
 path (the distance walked is always the same 14 blocks, whatever the
 staircase); a version of the two balls with air resistance switched on
 ("in the real world, air resistance will affect the speed of the balls in
 both directions"); and a third ball thrown vertically, from the third AP
-item. The first only redraws the walk demo with a longer path, the second
+item. The first only redraws the walk sim with a longer path, the second
 needs a drag model the book does not give until Chapter 5, and the third
 adds a ball 2.7 has already shown. None built.
 
@@ -170,7 +170,7 @@ adds a ball 2.7 has already shown. None built.
 
 The page binds position (the three displacement arrows of the walk and
 the height of the balls), and time, velocity and acceleration from the
-balls demo, whose sliders carry a flash interval and a horizontal
+balls sim, whose sliders carry a flash interval and a horizontal
 velocity and whose arrows are velocities and an acceleration. The angle
 of the diagonal, the counts of blocks in the headline, and the legs $a$,
 $b$, $c$ of the theorem are in ink. No new hue, no new macro.
@@ -182,9 +182,9 @@ $b$, $c$ of the theorem are in ink. No new hue, no new macro.
   concept id, equation id and glossary term it needs is there.)
 
 Decided in the chapter pass (2026-09-11): `eq-pythagoras` is anchored at
-`3.1-walking`. The prose refers to Figure 3.5, which `demo-walk` folds
+`3.1-walking`. The prose refers to Figure 3.5, which `sim-walk` folds
 together with 3.4 under its own number 3.3: one scene drawn three times
-is one demo. The fold pass (2026-09-11) wrote the two further numbers
+is one sim. The fold pass (2026-09-11) wrote the two further numbers
 into the row's `folds`, so the eyebrow reads "Figure 3.3 + 3.4 + 3.5" and
-the reference to Figure 3.5 now links to the demo. The unkeyed AP item is kept as an open item rather than left out, as the
+the reference to Figure 3.5 now links to the sim. The unkeyed AP item is kept as an open item rather than left out, as the
 exercises list above now says.

@@ -185,12 +185,12 @@ The layout is the one the root `RULES.md` draws. Two things are specific
 to this book:
 
 - `figures.js` is `window.OMNISTAX_FIGURES['<section>'] = function (root, F) {…}`,
-  one function per figure, every lookup through `F.demo(root, id, H)` or
+  one function per figure, every lookup through `F.sim(root, id, H)` or
   `F.byId(root, id)`. The types a figure draws are the ones its sliders
   carry (`cls`), its colour lookups name (`C('velocity')`) and its
   readouts write with a `\k` macro; the `draws` column of the figures
   table lists them.
 - `text.html` carries the article body with local ids and `\k` macros in
-  its math, and each `<figure>` carries `id`, `class` (demo or photo),
+  its math, and each `<figure>` carries `id`, `class` (sim or photo),
   `data-figure`, `data-original` and `data-original-caption`, which must
   agree with the figures table; the validator checks that they do.

@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, plane } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 /* a number with its sign written out, as the book writes a signed displacement; a value that rounds to zero takes no sign */
 const eps = (d) => 0.5 * Math.pow(10, -d);
@@ -17,14 +17,14 @@ function jet(ctx, x, y, heading, s) {
 }
 
 /* =====================================================================
-   DEMO: a vector and a scalar. On the left the velocity of a jet is an
+   SIM: a vector and a scalar. On the left the velocity of a jet is an
    arrow whose length is proportional to its magnitude and which points
    east or west by its sign; on the right a temperature is a point on the
    scale of a thermometer, below the zero mark when it is negative. No
    motion: the figure answers its sliders and nothing else.
 ===================================================================== */
 (function () {
-  const d = demo('demo-vector-scalar', 430);
+  const d = sim('sim-vector-scalar', 430);
   const V = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: -120, max: 120, step: 5, value: 90, unit: 'km/h', dec: 0, aria: 'velocity, east positive' });
   const T = ctl(d.controls, { label: '\\text{temperature}', cls: '', min: -40, max: 40, step: 1, value: 20, unit: 'ºC', dec: 0, aria: 'temperature' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
@@ -72,7 +72,7 @@ function jet(ctx, x, y, heading, s) {
    motion, one flight in about four real seconds, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-axes', 520);
+  const d = sim('sim-axes', 520);
   const D = ctl(d.controls, { label: '\\text{distance flown}', cls: '', min: 0.5, max: 8, step: 0.5, value: 5, unit: 'km', dec: 1, onInput: reset, aria: 'distance flown' });
   const O = ctl(d.controls, { label: '\\text{origin}', cls: '', min: 0, max: 10, step: 0.5, value: 9, unit: 'km', dec: 1, onInput: reset, aria: 'where the zero of the line is placed' });
   const PERIOD = 4;                          /* seconds of flight */

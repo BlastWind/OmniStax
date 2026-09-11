@@ -83,7 +83,7 @@ subway examples use `displacement`, `distance-traveled` (2.1),
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-average-acceleration` · new, for the boxed definition ·
+1. `sim-average-acceleration` · new, for the boxed definition ·
    average-acceleration, acceleration · a car on a strip whose velocity
    grows by ā every second for 5.0 s; the velocity arrow lengthens each
    frame and the acceleration arrow keeps its length; every whole second
@@ -96,7 +96,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    One run of 5.0 s of model time in about 5 real seconds, so it gets the
    scrubber. Readout: $\kab = \kdv/\kdt = (17.5 − 5.0)/5.0 = 2.5$ m/s².
    Draws time, velocity, acceleration.
-2. `demo-turning` · new (rule 15, built; see below) · acceleration · a
+2. `sim-turning` · new (rule 15, built; see below) · acceleration · a
    car seen from above drives a straight road, rounds a quarter circle
    at constant speed and drives on; the velocity arrow rides on the car,
    and beside the bend the velocity at the start of the turn and the
@@ -110,7 +110,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    straight) in about 5 real seconds. Readout: $|\kdv| = 2\kv\sin(θ/2)$
    in words: the speed has not changed and the velocity has. Draws
    velocity, acceleration.
-3. `demo-four-cars` · replaces Figure 2.14 (the four cars) ·
+3. `sim-four-cars` · replaces Figure 2.14 (the four cars) ·
    acceleration-sign, deceleration · four strips, one per car of the
    book's figure: (a) moving right and speeding up, (b) moving right and
    slowing down, (c) moving left and slowing down, (d) moving left and
@@ -125,7 +125,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    in about 5 real seconds, scrubber. Readout: the four signs as the
    book's caption gives them, with the live velocities. Draws velocity,
    acceleration.
-4. `demo-racehorse` · replaces Figure 2.16 (the sketch for Example 2.1) ·
+4. `sim-racehorse` · replaces Figure 2.16 (the sketch for Example 2.1) ·
    average-acceleration, calculate-average-acceleration · a horse runs
    west along a strip with east positive; its velocity arrow grows from
    v₀ to v_f over Δt, the acceleration arrow points west with a fixed
@@ -136,7 +136,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    velocity every second" · v–t below · no. Moving, finite, scrubber.
    Readout: $\kab = \kdv/\kdt = (−15.0 − 0)/1.80 = −8.33$ m/s². Draws
    time, velocity, acceleration.
-5. `demo-instantaneous` · replaces Figure 2.17 (the two graphs of
+5. `sim-instantaneous` · replaces Figure 2.17 (the two graphs of
    instantaneous acceleration) · instantaneous-acceleration,
    average-acceleration · two a–t graphs side by side as the book draws
    them, (a) the slight wobble about 1.8 m/s² over 5 s and (b) the
@@ -152,7 +152,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    both; small line: over 0 to 1.0 s alone the right-hand motion has
    +3.0 m/s² and over 1.0 to 3.0 s −2.0 m/s², the book's numbers. Draws
    time, velocity, acceleration.
-6. `demo-subway-displacement` · replaces Figure 2.18 (the train's two
+6. `sim-subway-displacement` · replaces Figure 2.18 (the train's two
    trips) · displacement, distance-traveled, coordinate-system · two
    strips of track marked in kilometers; on each a hollow outline of
    the train at the initial position, the train itself at the final
@@ -164,7 +164,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    of two positions and has no time in it; the figure answers its four
    sliders, and Examples 2.2 and 2.3 read straight off it. Readout: the
    two displacements and the two distances traveled. Draws position.
-7. `demo-subway-speeding-up` · replaces Figure 2.19 (the sketch for
+7. `sim-subway-speeding-up` · replaces Figure 2.19 (the sketch for
    Example 2.4) · average-acceleration, calculate-average-acceleration,
    unit-conversion · the train on a strip moving right, from rest to
    30.0 km/h in 20.0 s; the velocity arrow grows, the acceleration arrow
@@ -176,7 +176,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    Readout: the book's step with the conversion, $(+30.0\ \text{km/h}
    / 20.0\ \text{s})(10^3\ \text{m}/1\ \text{km})(1\ \text{h}/3600\
    \text{s}) = 0.417$ m/s². Draws time, velocity, acceleration.
-8. `demo-subway-slowing-down` · replaces Figure 2.20 (the sketch for
+8. `sim-subway-slowing-down` · replaces Figure 2.20 (the sketch for
    Example 2.5) · deceleration, average-acceleration,
    calculate-average-acceleration · the same train, 30.0 km/h to rest
    in 8.00 s; the velocity arrow shrinks while the acceleration arrow
@@ -185,7 +185,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    velocity, so this is a deceleration" · v–t below · no. Moving,
    finite, scrubber. Readout: −1.04 m/s² with the conversion. Draws
    time, velocity, acceleration.
-9. `demo-subway-graphs` · replaces Figure 2.21 (position, velocity and
+9. `sim-subway-graphs` · replaces Figure 2.21 (position, velocity and
    acceleration of the train against time) · average-acceleration,
    instantaneous-acceleration, deceleration · the whole journey of
    Examples 2.4 and 2.5 on one clock: the train speeds up for 20 s,
@@ -201,7 +201,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    Moving, finite, scrubber. Readout: the two accelerations, +0.417 and
    −1.04 m/s², and the distance covered. Draws time, position, velocity,
    acceleration.
-10. `demo-subway-velocity` · replaces Figure 2.22 (the train's trip to
+10. `sim-subway-velocity` · replaces Figure 2.22 (the train's trip to
     the left, for Example 2.6) · average-velocity, displacement · the
     train travels left from x′₀ to x′_f in Δt at a steady rate, its
     velocity arrow pointing left, while an x–t graph below draws the
@@ -212,7 +212,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
     Moving, finite, scrubber. Readout: $\kvb = \kdx'/\kdt = (−1.50\
     \text{km}/5.00\ \text{min})(60\ \text{min}/1\ \text{h}) = −18.0$
     km/h. Draws time, position, velocity.
-11. `demo-subway-deceleration` · replaces Figure 2.23 (the sketch for
+11. `sim-subway-deceleration` · replaces Figure 2.23 (the sketch for
     Example 2.7) · acceleration-sign, deceleration, average-acceleration
     · the train moving left at −20.0 km/h comes to rest in 10.0 s; the
     velocity arrow points left and shrinks, the acceleration arrow
@@ -254,7 +254,7 @@ they are all one-dimensional); a speedometer needle whose rate of
 turning is the acceleration (only animates what the v–t graphs already
 say); a v–t graph the reader draws freehand and whose average
 acceleration over a chosen interval is read off (the same view as
-figure 5). Built: the turning car, `demo-turning` (figure 2), since it
+figure 5). Built: the turning car, `sim-turning` (figure 2), since it
 opens the one view the section's text gives and its figures do not, a
 change in velocity that is entirely a change in direction. Left: the
 other two.
@@ -301,10 +301,10 @@ other two.
 
 ## Colour
 
-The page binds time, position, velocity and acceleration: every demo
+The page binds time, position, velocity and acceleration: every sim
 carries a velocity or a position on a slider and draws a velocity
 arrow, the moving ones carry a time, and all but the displacement and
-velocity demos draw an acceleration arrow. Speeds of the four cars and
+velocity sims draw an acceleration arrow. Speeds of the four cars and
 the turning car are velocities and take that hue; the radius of the
 bend, the length of a strip and the count of a car are untyped and in
 ink.

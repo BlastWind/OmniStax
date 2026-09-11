@@ -69,7 +69,7 @@ The cross-references to Kinematics in Two Dimensions: An Introduction,
 Vector Addition and Subtraction: Graphical Methods and Projectile Motion
 stay plain text. "Figure 3.29", "Figure 3.30", "Figure 3.31" and "Figure
 3.32" in the steps and the example stay the book's wording, and since the
-fold pass (2026-09-11) each of them links to `demo-add`, the one demo that
+fold pass (2026-09-11) each of them links to `sim-add`, the one sim that
 stands for the run: its row carries 3.28 as its number and 3.29 to 3.32
 under `folds`, and its eyebrow reads them all.
 
@@ -96,7 +96,7 @@ preparation's decision): the `subtraction` span reinforces it and uses
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-components` · replaces Figures 3.24, 3.25 and 3.26 (one run: the
+1. `sim-components` · replaces Figures 3.24, 3.25 and 3.26 (one run: the
    vector with its components, the components as $A\cos\theta$ and
    $A\sin\theta$, the walk in the city with the numbers) ·
    components-from-magnitude-angle · **still**: the picture answers its
@@ -114,7 +114,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    component vectors add to $\mathbf{A}$, but their magnitudes do not,
    9.0 + 5.0 is not 10.3. The angle runs the whole circle so that a
    component can come out negative. Draws position.
-2. `demo-resultant` · replaces Figure 3.27 · magnitude-direction-from-
+2. `sim-resultant` · replaces Figure 3.27 · magnitude-direction-from-
    components · **still**, for the same reason · the two components laid
    head to tail from the origin and the vector they add to, with the right
    angle marked and the angle arc; the direction is also said as a
@@ -128,7 +128,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    says that the inverse tangent gives the angle of the line and the arrow
    points the other way along it, so the compass direction is the one to
    read off the drawing. Draws position.
-3. `demo-add` · replaces Figures 3.28, 3.29, 3.30, 3.31 and 3.32 (one
+3. `sim-add` · replaces Figures 3.28, 3.29, 3.30, 3.31 and 3.32 (one
    run: the two legs and the resultant, the components of each, the
    components summed, and the example's figure with and without its
    numbers) · analytical-vector-addition, components-from-magnitude-angle,
@@ -153,7 +153,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    reproduces Example 3.3 on load and is placed before the four steps,
    where the book prints Figure 3.28; the example follows with its own
    numbers on the page. Draws position.
-4. `demo-subtract` · replaces Figure 3.33 · analytical-vector-addition,
+4. `sim-subtract` · replaces Figure 3.33 · analytical-vector-addition,
    vector-subtraction · **still** · the same drawing with $-\mathbf{B}$
    in place of $\mathbf{B}$, the leg $\mathbf{B}$ itself as a muted ghost
    from the head of $\mathbf{A}$ so that the reversal is seen, the
@@ -183,11 +183,11 @@ legs $\mathbf{A}$ west and $\mathbf{B}$ north (`Figure_03_02_21a.jpg`)
 with the book's caption. The figures of problems 8, 10 and 12 go with
 problems that have no key and are not copied.
 
-Every demo is a still picture: the section's ideas are relations between
+Every sim is a still picture: the section's ideas are relations between
 lengths and angles with no time in them, so none registers a cycle and
 none gets a transport, and each redraws when a slider moves. Figures
 3.24 to 3.26 are one drawing at three stages and Figures 3.28 to 3.32
-one drawing at five, so two demos stand for eight sketches, each carrying
+one drawing at five, so two sims stand for eight sketches, each carrying
 the first number of its run as its `number`, the rest under `folds`, and
 every image among its originals, as root rule 14 allows. The eyebrows
 read "Figure 3.24 + 3.25 + 3.26" and "Figure 3.28 + 3.29 + 3.30 + 3.31 +
@@ -196,14 +196,14 @@ read "Figure 3.24 + 3.25 + 3.26" and "Figure 3.28 + 3.29 + 3.30 + 3.31 +
 Extra simulations (rule 15), thought about and left:
 - A walk animated along the legs and then along the resultant, an
   odometer counting the path against the straight-line distance. It only
-  animates what `demo-add` already shows, and 3.2's walk figures carry
+  animates what `sim-add` already shows, and 3.2's walk figures carry
   the head-to-tail picture. Left.
 - A vector held fixed while the axes rotate, showing that the components
   change and the magnitude does not (problem 9(b)). A genuine view the
   text does not give, but it belongs to 3.2's `resolving-vector` and one
   problem here; left, and named for a later pass.
 - A sum of many legs (Gilligan's seven) with a running total of the
-  components. The two-leg demo already shows that components along one
+  components. The two-leg sim already shows that components along one
   axis add like numbers; a seventh slider adds nothing to the idea. Left.
 
 ## Exercises
@@ -256,7 +256,7 @@ Extra simulations (rule 15), thought about and left:
 
 ## Colour
 
-The page binds position, from the four demos whose sliders carry a
+The page binds position, from the four sims whose sliders carry a
 magnitude or a component of a displacement and whose readouts write
 $\kA$, $\kAx$, $\kAy$, $\kB$, $\kBx$, $\kBy$, $\kR$, $\kRx$, $\kRy$. The
 angles $\theta$, $\theta_A$, $\theta_B$ are untyped and in ink, as the

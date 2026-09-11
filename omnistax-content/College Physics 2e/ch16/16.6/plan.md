@@ -47,7 +47,7 @@ angular-velocity, both 6.1.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-turntable` · Fig 16.18 (the lit turntable and its shadow) and
+1. `sim-turntable` · Fig 16.18 (the lit turntable and its shadow) and
    Fig 16.20 (the trace on moving paper and the x–t graph) ·
    ucm-shm-projection · a ball rides a circle at constant angular
    velocity, face on; light from above drops its shadow onto a line
@@ -64,7 +64,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    line is what makes the "easy way to produce simple harmonic motion"
    literal. If you would rather have the conventional x against t with
    time running right, the paper can be laid beside the circle instead.
-2. `demo-circle-triangles` · Fig 16.19 (P on the circle, the two
+2. `sim-circle-triangles` · Fig 16.19 (P on the circle, the two
    triangles) · ucm-shm-projection, reinforcing shm-max-speed and
    shm-period · the point P moves round the circle of radius X at angular
    velocity ω; the radius to P, the projection x on the diameter and the
@@ -89,10 +89,10 @@ Photographs, one:
 Figures that serve exercises: none.
 
 Extra simulations (rule 15): considered the ladybug on the record
-(problem 4, which demo 1 already shows with other numbers), the bathroom
+(problem 4, which sim 1 already shows with other numbers), the bathroom
 scale (16.5's view), and a two-phasor sum for the closing remark about
 adding waves (16.10's subject, deferred to that plan). Nothing survives;
-the two demos cover what the section says.
+the two sims cover what the section says.
 
 ## Exercises
 
@@ -125,6 +125,6 @@ v_max velocity, T time. θ in ink. Nothing new.
 
 Fold pass (2026-09-11): on openstax.org the turntable is Figure 16.16,
 the point P Figure 16.17 and the trace on paper Figure 16.18 (the numbers
-above are two high). `demo-turntable` keeps 16.16 as its number and lists
+above are two high). `sim-turntable` keeps 16.16 as its number and lists
 16.18 under `folds`; its eyebrow reads "Figure 16.16 + 16.18", and the
-text's reference to Figure 16.18 links to the demo.
+text's reference to Figure 16.18 links to the sim.

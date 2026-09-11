@@ -34,26 +34,26 @@ block per idea, span ids as the chapter's anchors expect them:
    `v`, `a`, `t` and the equations `eq-ff-v`, `eq-ff-y`, `eq-ff-v2`
    anchor here.
 5. `rock-up` **A rock thrown upward** (book: Example 2.14 as `ex-rock-up`
-   with Table 2.1 as a `div.book-table`, Figure 2.39 replaced by a demo,
+   with Table 2.1 as a `div.book-table`, Figure 2.39 replaced by a sim,
    then the Take-Home Experiment on reaction time). Problem 1, which is
    Example 2.14 with a different initial velocity, goes inline at the end
    of this block.
 6. `rock-down` **A rock thrown downward** (book: Example 2.15 as
-   `ex-rock-down`, Figure 2.41 replaced by a demo, the "another way to
+   `ex-rock-down`, Figure 2.41 replaced by a sim, the "another way to
    look at it" paragraph).
 7. `find-g` **Finding g from data on a falling object** (book: Example
-   2.16 as `ex-find-g`, Figure 2.42 replaced by a demo). The equation
+   2.16 as `ex-find-g`, Figure 2.42 replaced by a sim). The equation
    `eq-a-from-fall` anchors at `ex-find-g`. The Check Your Understanding
    box (the chunk of ice) goes inline at the end of this block, where the
    book has it.
 8. `well` **The depth of a mine shaft** (no book prose: one sentence of
-   lead and the extra demo below, which draws the section's opening
+   lead and the extra sim below, which draws the section's opening
    example).
 
 The three "Draw a sketch" figures (2.38, 2.40, 2.43) are strategy sketches
-with empty captions; each is folded into the demo that follows its
+with empty captions; each is folded into the sim that follows its
 example, as 2.5 did with its own sketches. Since the fold pass
-(2026-09-11) each demo's row lists the sketch's number under `folds` and
+(2026-09-11) each sim's row lists the sketch's number under `folds` and
 its eyebrow reads both numbers, "Figure 2.38 + 2.39", "Figure 2.40 +
 2.41" and "Figure 2.42 + 2.43"; the text never refers to the sketches by
 number. The source's `$$$`
@@ -85,7 +85,7 @@ chosen), `ex-find-g` uses `precision` (1.3), and `accel-gravity` uses
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-hammer-feather` · replaces Figure 2.37 · free-fall,
+1. `sim-hammer-feather` · replaces Figure 2.37 · free-fall,
    acceleration-due-to-gravity · a hammer and a feather are let go
    together from the same height in two panels, in air and in a vacuum;
    in the vacuum they stay side by side all the way down, and in air the
@@ -102,7 +102,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    with the live numbers; small line: the mass does not appear in the
    equation, and on the Moon the same fall takes the time the slider
    would give. Draws time, position, acceleration.
-2. `demo-rock-up` · replaces Figure 2.39 (Figure 2.38, the strategy
+2. `sim-rock-up` · replaces Figure 2.39 (Figure 2.38, the strategy
    sketch, is its second original) · free-fall-kinematics,
    free-fall-highest-point, acceleration-due-to-gravity · a rock leaves
    the edge of a cliff straight up at $\kvo$, rises to its highest point,
@@ -124,7 +124,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    scrubber. Readout: the position and velocity equations with the live
    time substituted; small line: the rock is highest at t = v₀/g, where v
    = 0 and y = v₀²/2g. Draws time, position, velocity, acceleration.
-3. `demo-rock-down` · replaces Figure 2.41 (Figure 2.40, the strategy
+3. `sim-rock-down` · replaces Figure 2.41 (Figure 2.40, the strategy
    sketch, is its second original) · free-fall-symmetry,
    free-fall-kinematics · two rocks leave the same cliff edge at the same
    instant, one thrown straight up at $+\kvo$ and one straight down at
@@ -149,7 +149,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    the rock thrown up passes y = 0 again at −v₀. Draws position, velocity
    and acceleration; the times in its headline are written in ink, so the
    chapter pass took time out of its `draws` row.
-4. `demo-drop` · replaces Figure 2.42 (Figure 2.43, the strategy sketch,
+4. `sim-drop` · replaces Figure 2.42 (Figure 2.43, the strategy sketch,
    is its second original) · g-from-fall-time, free-fall-kinematics · a
    metal ball is released from rest and falls the measured distance in
    the measured time, leaving a strobe mark every 0.1 s with its position
@@ -168,7 +168,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    it; small line: position grows with the square of the time, velocity
    in proportion to it, and the acceleration is the same at every
    instant. Draws time, position, velocity, acceleration.
-5. `demo-well` · new (the extra simulation below) · free-fall-kinematics
+5. `sim-well` · new (the extra simulation below) · free-fall-kinematics
    · a rock is dropped into a shaft and falls to the water; from the
    splash a sound climbs back up at the speed of sound, and the clock
    reads the two legs, the long fall and the short return · the depth d
@@ -186,24 +186,24 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    position, velocity, acceleration.
 
 Photographs: none. Figure 2.37 is an illustration (three drawn panels, in
-air, in a vacuum and on the Moon), so it is a sketch the demo replaces and
-its image is the demo's original.
+air, in a vacuum and on the Moon), so it is a sketch the sim replaces and
+its image is the sim's original.
 
 Figures that serve exercises: none. No problem of the section refers to a
 figure.
 
 Extra simulations (rule 15), thought through and judged:
 
-- The depth of a mine shaft from the splash: **built** as `demo-well`.
+- The depth of a mine shaft from the splash: **built** as `sim-well`.
   The section opens with it ("we can estimate the depth of a vertical
   mine shaft by dropping a rock into it and listening"), problem 15
   turns on it, and no required figure shows a fall followed by a second
   leg on the same clock, or how neglecting the sound's travel overstates
   the depth.
 - The reaction-time ruler of the Take-Home Experiment: **left**. It is
-  the drop demo with a ruler in place of the ball; the view is the same.
+  the drop sim with a ruler in place of the ball; the view is the same.
 - A jump on Earth and on the Moon side by side (conceptual questions 5
-  and 6): **left**. The rock-up demo's $\kg$ slider already shows the
+  and 6): **left**. The rock-up sim's $\kg$ slider already shows the
   highest point rise as $\kg$ falls, so a second figure would only
   animate that comparison.
 - The Vomit Comet: **left**. The book defers it to a later chapter.
@@ -259,7 +259,7 @@ example, as a `div.book-table` numbered as openstax.org numbers it.
 
 ## Colour
 
-The page binds time, position, velocity and acceleration: every demo
+The page binds time, position, velocity and acceleration: every sim
 carries a time, a position or a velocity on its sliders and draws $g$ in
 the acceleration hue. The drop height of the hammer and the feather is a
 length of the scene and stays in ink. No new hue, no new macro; `\ky`,

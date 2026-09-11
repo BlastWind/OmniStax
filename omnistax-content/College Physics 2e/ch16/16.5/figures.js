@@ -2,18 +2,18 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, spring, block, fixed } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const sgn = (v) => (v < 0 ? '−' : '+');
 function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times10^{${e}}`; }
 
 /* =====================================================================
-   DEMO 1: energy going back and forth. The block on a spring, two energy
+   SIM 1: energy going back and forth. The block on a spring, two energy
    bars, and energy against position below. Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-energy-transfer', 740);
+  const d = sim('sim-energy-transfer', 740);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.01, value: 0.1, unit: 'm', dec: 2, onInput: reset, aria: 'amplitude' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
@@ -66,11 +66,11 @@ function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / 
 })();
 
 /* =====================================================================
-   DEMO 2: the maximum speed. Example 16.6's car bouncing, and v against
+   SIM 2: the maximum speed. Example 16.6's car bouncing, and v against
    x beside it: the ellipse with v_max at x = 0. Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-max-speed', 620);
+  const d = sim('sim-max-speed', 620);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.005, value: 0.1, unit: 'm', dec: 3, onInput: reset, aria: 'amplitude' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10000, max: 200000, step: 100, value: 65300, unit: 'N/m', dec: 0, onInput: reset });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 100, max: 2000, step: 10, value: 900, unit: 'kg', dec: 0, onInput: reset, aria: 'mass' });

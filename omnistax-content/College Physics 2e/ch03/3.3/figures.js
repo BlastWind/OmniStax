@@ -4,7 +4,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, FONT } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
@@ -66,7 +66,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
    with the live numbers. Still: no time in a vector's components.
 ===================================================================== */
 (function () {
-  const d = demo('demo-components', 760);
+  const d = sim('sim-components', 760);
   const A = ctl(d.controls, { label: '\\kA\\ (\\text{blocks})', cls: 'position', min: 0.5, max: 12, step: 0.1, value: 10.3, unit: '', dec: 1, aria: 'magnitude of A' });
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: -180, max: 180, step: 0.1, value: 29.1, unit: '°', dec: 1, aria: 'angle of A' });
   const OX = 560, OY = 395, S = 26;
@@ -111,7 +111,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
    theorem and the inverse tangent worked with the live numbers. Still.
 ===================================================================== */
 (function () {
-  const d = demo('demo-resultant', 760);
+  const d = sim('sim-resultant', 760);
   const AX = ctl(d.controls, { label: '\\kAx\\ (\\text{blocks})', cls: 'position', min: -12, max: 12, step: 0.5, value: 9, unit: '', dec: 1, aria: 'x-component of A' });
   const AY = ctl(d.controls, { label: '\\kAy\\ (\\text{blocks})', cls: 'position', min: -12, max: 12, step: 0.5, value: 5, unit: '', dec: 1, aria: 'y-component of A' });
   const OX = 560, OY = 395, S = 26;
@@ -163,7 +163,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
    Still: a sum of displacements has no time in it.
 ===================================================================== */
 function walk(id, sign) {
-  const d = demo(id, 720);
+  const d = sim(id, 720);
   const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 80, step: 0.5, value: 53, unit: 'm', dec: 1, aria: 'magnitude of A' });
   const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: -180, max: 180, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'angle of A' });
   const B = ctl(d.controls, { label: '\\kB', cls: 'position', min: 5, max: 80, step: 0.5, value: 34, unit: 'm', dec: 1, aria: 'magnitude of B' });
@@ -239,6 +239,6 @@ function walk(id, sign) {
   }
   register(d.fig, { update: () => {}, draw });
 }
-walk('demo-add', 1);
-walk('demo-subtract', -1);
+walk('sim-add', 1);
+walk('sim-subtract', -1);
 };

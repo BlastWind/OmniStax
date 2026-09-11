@@ -63,7 +63,7 @@ one spring, which is the period result applied. Two notes for review:
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-shm-oscillator` · Fig 16.9 (a–e, the block on a frictionless
+1. `sim-shm-oscillator` · Fig 16.9 (a–e, the block on a frictionless
    surface) · simple-harmonic-motion, amplitude · a block on a spring
    slides on a frictionless strip, released from x = +X and running
    endlessly; the restoring force arrow and the velocity arrow are drawn
@@ -75,7 +75,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    0: the net force is zero and the speed is greatest" · none, the scene
    is the idea · no. Endless. The small readout line carries the held AP
    item: "in one full period the block covers 4X = 0.40 m of ground".
-2. `demo-shm-period` · new (the stiffness and mass paragraphs and the
+2. `sim-shm-period` · new (the stiffness and mass paragraphs and the
    diving board have no sketch; serves Example 16.4) · shm-period · two
    identical block-and-spring systems on two strips, released together,
    the lower with half the amplitude of the upper; they pass through
@@ -88,7 +88,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    N/m give T = 0.738 s, for either amplitude" · T against m, curve
    T = 2π√(m/k), current point filled · no. Endless. Horizontal scene, so
    the graph stacks below.
-3. `demo-paper-strip` · Fig 16.11 (the paper strip) and Fig 16.10 (the
+3. `sim-paper-strip` · Fig 16.11 (the paper strip) and Fig 16.10 (the
    car's headlight streak, a drawing of the same idea) · shm-kinematics
    (x(t)) · a mass hangs on a spring beside a strip of paper that moves
    left; a pen on the mass draws its position onto the paper, and the
@@ -99,9 +99,9 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    vertical scene (layout rule) · no. Endless. The car streak is folded
    in: it draws the same sine, and the paper strip is the one the
    equation x(t) refers to. If you would rather see the car, the sprite
-   exists and the demo can drive a bouncing car to the right with the
+   exists and the sim can drive a bouncing car to the right with the
    headlight tracing behind it instead.
-4. `demo-shm-xva` · Fig 16.12 (the ten snapshots and the x, v, a graphs)
+4. `sim-shm-xva` · Fig 16.12 (the ten snapshots and the x, v, a graphs)
    · shm-kinematics · a mass on a vertical spring with the position,
    velocity and acceleration arrows drawn each frame, and three stacked
    graphs beside it, x(t), v(t), a(t), each with its moving point and the
@@ -112,9 +112,9 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    vertical scene · no. Endless.
 
 Example 16.4 (the 900 kg car) gets no figure of its own: its numbers are
-the defaults of demo 2.
+the defaults of sim 2.
 
-Figures that serve exercises, copied faithfully, "Figure" not "Demo":
+Figures that serve exercises, copied faithfully, "Figure" not "Sim":
 
 - The two pendulum graphs of AP question 1 (A against t to 8π, 3A/2
   against t to 24π) and the single graph of AP question 3. Neither
@@ -133,11 +133,11 @@ Photographs, two, both attached to problems:
   caption and credit line.
 
 Extra simulations (rule 15): considered the two rulers of the second
-Take-Home Experiment (demo 2's mass slider already shows it), a car
+Take-Home Experiment (sim 2's mass slider already shows it), a car
 crossing a bump with bad shock absorbers (decoration), a two-masses-on-
-one-spring comparison for problems 3, 6 and 9 (demo 2's graph already
+one-spring comparison for problems 3, 6 and 9 (sim 2's graph already
 shows T against m), and the distance-per-period counter for the held AP
-item (folded into demo 1's readout). One survivor:
+item (folded into sim 1's readout). One survivor:
 
 - **The marble in the bowl** (first Take-Home Experiment): a marble
   rolling in a hemispherical bowl with the force on it drawn, so the
@@ -189,6 +189,6 @@ Amplitude X takes the position hue (config). Two macros to add to
 use the chapter 2 macros already there. No new hue.
 
 Fold pass (2026-09-11): the bouncing car is Figure 16.10 on openstax.org
-and the paper strip Figure 16.11, so `demo-paper-strip` keeps 16.11 as
+and the paper strip Figure 16.11, so `sim-paper-strip` keeps 16.11 as
 its number and lists 16.10 under `folds`; its eyebrow reads "Figure 16.10
-+ 16.11", and the text's reference to Figure 16.10 links to the demo.
++ 16.11", and the text's reference to Figure 16.10 links to the sim.

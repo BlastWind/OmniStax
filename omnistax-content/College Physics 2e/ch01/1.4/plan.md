@@ -18,12 +18,12 @@ per idea:
    paragraph, "On many occasions, physicists…", which introduces the one
    concept of the section.
 2. **Approximating from the height of a person** (`ex-building`):
-   Example 1.3, the 39-story building, verbatim, then a new demo that
+   Example 1.3, the 39-story building, verbatim, then a new sim that
    stacks the stories up.
 3. **Approximating a vast number** (`ex-trillion`): Example 1.4, a
    trillion dollars on a football field, verbatim, with the bank-stack
    photograph (Figure 1.25) at its head where the book puts it, then a
-   new demo that lays the stacks down. The Check Your Understanding (the
+   new sim that lays the stacks down. The Check Your Understanding (the
    basketball court) goes inline at the end of this block.
 
 The learning objective, the one-sentence summary and the glossary entry
@@ -46,7 +46,7 @@ in `book.json`.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-building` · new (Example 1.3 has no figure) · approximation,
+1. `sim-building` · new (Example 1.3 has no figure) · approximation,
    unit-conversion · a person stands beside a building on a common
    ground line, and over a finite cycle of about 4 s (scrubber) the
    stories stack up one by one to the set count while a bracket on the
@@ -64,7 +64,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    156 m, with the live values. Small line: the estimate is only as good
    as its inputs, and the ranges of the sliders put it within a factor of
    about two. On reduced motion the finished building is drawn.
-2. `demo-trillion` · new (Example 1.4 has only the photograph) ·
+2. `sim-trillion` · new (Example 1.4 has only the photograph) ·
    approximation, order-of-magnitude, unit-conversion,
    sig-figs-multiplication · a side view of a football field, 100 yd
    between the end zones, with a vertical scale in feet on the left and
@@ -84,7 +84,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    example mentions) comes to at the set thickness. On reduced motion
    the finished pile is drawn.
 
-Both demos draw in ink: nothing in the section is a typed quantity, so
+Both sims draw in ink: nothing in the section is a typed quantity, so
 `draws` is `[]` for every figure and the page binds no colour.
 
 Photographs, two:
@@ -101,7 +101,7 @@ Figures that serve exercises: none kept.
 
 Extra simulations (rule 15): none proposed. The chapter config says the
 required figures already open the views the text does not, and the
-two demos here are the two examples made live.
+two sims here are the two examples made live.
 
 ## Exercises
 

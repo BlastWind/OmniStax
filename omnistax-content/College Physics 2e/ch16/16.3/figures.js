@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, curve, spring, block, fixed } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 /* a number in scientific notation for the readout, 6.53 × 10⁴ */
@@ -19,12 +19,12 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
 }
 
 /* =====================================================================
-   DEMO 1: the simple harmonic oscillator. A block on a frictionless
+   SIM 1: the simple harmonic oscillator. A block on a frictionless
    surface, released from x = X; force and velocity arrows every frame.
    Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-shm-oscillator', 520);
+  const d = sim('sim-shm-oscillator', 520);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.01, value: 0.1, unit: 'm', dec: 2, onInput: reset, aria: 'amplitude' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
@@ -66,12 +66,12 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
 })();
 
 /* =====================================================================
-   DEMO 2: the period. Two identical oscillators released together at
+   SIM 2: the period. Two identical oscillators released together at
    different amplitudes stay in step; below, T against m for the set k.
    Example 16.4's car as the defaults. Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-shm-period', 720);
+  const d = sim('sim-shm-period', 720);
   const m = ctl(d.controls, { label: 'm', cls: '', min: 100, max: 2000, step: 10, value: 900, unit: 'kg', dec: 0, onInput: reset, aria: 'mass' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10000, max: 200000, step: 100, value: 65300, unit: 'N/m', dec: 0, onInput: reset });
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.1, step: 0.005, value: 0.05, unit: 'm', dec: 3, onInput: reset, aria: 'amplitude' });
@@ -104,12 +104,12 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
 })();
 
 /* =====================================================================
-   DEMO 3: the paper strip. A mass on a vertical spring writes its
+   SIM 3: the paper strip. A mass on a vertical spring writes its
    position on paper moving left; the trace is X cos(2πt/T). Vertical
    scene, so the paper is beside it. Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-paper-strip', 640);
+  const d = sim('sim-paper-strip', 640);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.1, step: 0.005, value: 0.05, unit: 'm', dec: 3, onInput: reset, aria: 'amplitude' });
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 0.5, max: 3, step: 0.1, value: 1, unit: 's', dec: 2, onInput: reset, aria: 'period' });
   const cy = cycle(() => Infinity, 0);
@@ -149,11 +149,11 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
 })();
 
 /* =====================================================================
-   DEMO 4: x, v and a. A mass on a vertical spring with its three arrows,
+   SIM 4: x, v and a. A mass on a vertical spring with its three arrows,
    and the three graphs beside it. Endless.
 ===================================================================== */
 (function () {
-  const d = demo('demo-shm-xva', 790);
+  const d = sim('sim-shm-xva', 790);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.1, step: 0.005, value: 0.05, unit: 'm', dec: 3, onInput: reset, aria: 'amplitude' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });

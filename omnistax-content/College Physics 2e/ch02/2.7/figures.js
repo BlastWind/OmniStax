@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, curve, fixed } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const sgn = (v) => (v < 0 ? '−' : '+');
 /* a signed number for a label: "+3.20" or "−6.60" */
@@ -61,7 +61,7 @@ function stopwatch(ctx, x, y, r, f) {
    none. Finite motion, one drop per loop, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-hammer-feather', 580);
+  const d = sim('sim-hammer-feather', 580);
   const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1, max: 20, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration due to gravity' });
   const h = ctl(d.controls, { label: 'h', cls: '', min: 0.5, max: 5, step: 0.1, value: 2, unit: 'm', dec: 1, onInput: reset, aria: 'drop height' });
   const T = () => Math.sqrt((2 * h.v) / g.v);
@@ -109,7 +109,7 @@ function stopwatch(ctx, x, y, r, f) {
    and a against t beside it. Finite flight, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-rock-up', 780);
+  const d = sim('sim-rock-up', 780);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 25, step: 0.1, value: 13, unit: 'm/s', dec: 1, onInput: reset });
   const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1, max: 20, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration due to gravity' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 8, step: 0.05, value: 3, unit: 's', dec: 2, onInput: reset, aria: 'time shown' });
@@ -175,7 +175,7 @@ function stopwatch(ctx, x, y, r, f) {
    flight, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-rock-down', 720);
+  const d = sim('sim-rock-down', 720);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 25, step: 0.1, value: 13, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
   const yE = ctl(d.controls, { label: '\\ky', cls: 'position', min: -40, max: -1, step: 0.1, value: -5.1, unit: 'm', dec: 2, onInput: reset, aria: 'level reached' });
   const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1, max: 20, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration due to gravity' });
@@ -241,7 +241,7 @@ function stopwatch(ctx, x, y, r, f) {
    gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-drop', 760);
+  const d = sim('sim-drop', 760);
   const yF = ctl(d.controls, { label: '\\ky', cls: 'position', min: -3, max: -0.2, step: 0.0001, value: -1, unit: 'm', dec: 4, onInput: reset, aria: 'position at the end of the fall' });
   const tF = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.2, max: 1, step: 0.00001, value: 0.45173, unit: 's', dec: 5, onInput: reset, aria: 'time of the fall' });
   const cy = cycle(() => tF.v, 1.4);
@@ -295,13 +295,13 @@ function stopwatch(ctx, x, y, r, f) {
 })();
 
 /* =====================================================================
-   DEMO: the depth of a mine shaft. A rock falls to the water and the
+   SIM: the depth of a mine shaft. A rock falls to the water and the
    sound of the splash climbs back up; the clock reads the two legs, and
    beside the shaft the height of the rock and then of the sound against
    time. Finite round trip, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-well', 640);
+  const d = sim('sim-well', 640);
   const D = ctl(d.controls, { label: 'd', cls: 'position', min: 5, max: 200, step: 1, value: 40, unit: 'm', dec: 0, onInput: reset, aria: 'depth of the shaft' });
   const vs = ctl(d.controls, { label: '\\kv_{\\text{s}}', cls: 'velocity', min: 300, max: 360, step: 1, value: 340, unit: 'm/s', dec: 0, onInput: reset, aria: 'speed of sound' });
   const G = 9.8;

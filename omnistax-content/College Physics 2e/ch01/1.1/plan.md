@@ -27,7 +27,7 @@ structure, one block per idea:
    (`models`; book: the laws of nature and their discovery, Newton and
    Curie, curiosity and data, the model, the theory in the two
    paragraphs the book prints, the law, principles, the planetary atom
-   as the demo that replaces Figure 1.10, the note "Models, Theories,
+   as the sim that replaces Figure 1.10, the note "Models, Theories,
    and Laws", the two closing paragraphs on prediction and on science as
    exploration; the Check Your Understanding goes inline at its end)
 4. **The scientific method** (`scientific-method`; book: the boxed note
@@ -79,7 +79,7 @@ generated, so none is.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-atom-model` · Figure 1.10 (the planetary model of the atom) ·
+1. `sim-atom-model` · Figure 1.10 (the planetary model of the atom) ·
    model · a nucleus at the centre drawn as a cluster of protons, and
    electrons on circular orbits of increasing radius, filling shells of
    two, eight and eight, going round endlessly (an endless cycle, so the
@@ -99,7 +99,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
 No figure for the other ideas (theory, law, scientific method, classical
 and modern physics): none of them names a quantity, and a drawing would
-only illustrate a definition (rule 14 asks for a demo where an idea has
+only illustrate a definition (rule 14 asks for a sim where an idea has
 something variable in it).
 
 Photographs, thirteen:
@@ -126,7 +126,7 @@ Photographs, thirteen:
 - Fig 1.9, Marie Curie (credit: Wikimedia Commons): **keep**,
   `fig-curie`. Named with 1.8.
 - Fig 1.10, the planetary model of the atom: **replaced** by
-  `demo-atom-model`, which keeps the number, the book's image as its
+  `sim-atom-model`, which keeps the number, the book's image as its
   original and the book's caption.
 - Fig 1.11, Aristotle (credit: Jastrow (2006)/Ludovisi Collection):
   **keep**, `fig-aristotle`. "(See Figure 1.11, Figure 1.12, and
@@ -186,7 +186,7 @@ view the text does not give.
 
 ## Colour
 
-The page binds nothing. The one demo draws a count in ink, its orbits in
+The page binds nothing. The one sim draws a count in ink, its orbits in
 the rule colour and its nucleus in ink; no typed symbol appears in the
 text except $F = ma$, whose $F$ and $a$ take their macros and render in
 ink since no figure on the page draws force or acceleration.

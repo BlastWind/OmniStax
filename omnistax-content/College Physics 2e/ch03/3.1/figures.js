@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, curve, fixed } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const G = 9.80;
 
@@ -34,7 +34,7 @@ function walker(ctx, x, y, color) {
    the Pythagorean theorem. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-walk', 620);
+  const d = sim('sim-walk', 620);
   const E = ctl(d.controls, { label: '\\text{blocks east}', cls: 'position', min: 1, max: 12, step: 1, value: 9, unit: 'blocks', dec: 0, onInput: reset, aria: 'blocks east' });
   const N = ctl(d.controls, { label: '\\text{blocks north}', cls: 'position', min: 1, max: 8, step: 1, value: 5, unit: 'blocks', dec: 0, onInput: reset, aria: 'blocks north' });
   /* model time counts blocks travelled: the walker and the helicopter each cover one block per unit of it */
@@ -97,7 +97,7 @@ function walker(ctx, x, y, color) {
    where they part. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-two-balls', 640);
+  const d = sim('sim-two-balls', 640);
   const V = ctl(d.controls, { label: '\\kvox', cls: 'velocity', min: 0.5, max: 6, step: 0.1, value: 3, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial horizontal velocity' });
   const DT = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.05, max: 0.2, step: 0.01, value: 0.1, unit: 's', dec: 2, onInput: reset, aria: 'interval between flashes' });
   const Y0 = ctl(d.controls, { label: '\\kyo', cls: 'position', min: 1, max: 5, step: 0.1, value: 1.5, unit: 'm', dec: 1, onInput: reset, aria: 'height' });

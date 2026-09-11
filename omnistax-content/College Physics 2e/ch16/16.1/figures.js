@@ -2,17 +2,17 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, spring, block, fixed } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* =====================================================================
-   DEMO 1: the plucked ruler. A cantilever clamped at the bottom, pulled
+   SIM 1: the plucked ruler. A cantilever clamped at the bottom, pulled
    aside and released; the restoring force always points back to the
    equilibrium line and grows with the displacement. Finite motion.
 ===================================================================== */
 (function () {
-  const d = demo('demo-ruler', 640);
+  const d = sim('sim-ruler', 640);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: -6, max: 6, step: 0.5, value: 4, unit: 'cm', dec: 1, onInput: reset, aria: 'initial pull of the tip' });
   const Lr = ctl(d.controls, { label: '\\text{free length}', cls: '', min: 10, max: 30, step: 1, value: 30, unit: 'cm', dec: 0, onInput: reset, aria: 'free length of the ruler' });
   const damp = ctl(d.controls, { label: '\\text{damping}', cls: '', min: 0.1, max: 3, step: 0.1, value: 0.6, unit: '/s', dec: 1, onInput: reset });
@@ -52,12 +52,12 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 })();
 
 /* =====================================================================
-   DEMO 2: the spring scale. Weights hung one at a time, each stretch
+   SIM 2: the spring scale. Weights hung one at a time, each stretch
    plotted against the weight; the slope of the line is k. Book data:
    0.100 kg steps, k about 39 N/m.
 ===================================================================== */
 (function () {
-  const d = demo('demo-spring-scale', 640);
+  const d = sim('sim-spring-scale', 640);
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 0.5, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass hung on the spring' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 100, step: 1, value: 39, unit: 'N/m', dec: 0, onInput: reset });
   const STEP = 1.1, steps = () => Math.round(m.v / 0.1), T = () => steps() * STEP;
@@ -102,12 +102,12 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 })();
 
 /* =====================================================================
-   DEMO 3: energy stored in a compressed spring. The toy gun of Example
+   SIM 3: energy stored in a compressed spring. The toy gun of Example
    16.2: compress, hold, release; the work done is the triangle under the
    applied-force line, and it becomes the dart's kinetic energy.
 ===================================================================== */
 (function () {
-  const d = demo('demo-stored-energy', 720);
+  const d = sim('sim-stored-energy', 720);
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
   const x = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0.02, max: 0.3, step: 0.005, value: 0.15, unit: 'm', dec: 3, onInput: reset, aria: 'compression of the spring' });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 10, step: 0.5, value: 2, unit: 'g', dec: 1, onInput: reset, aria: 'mass of the dart' });

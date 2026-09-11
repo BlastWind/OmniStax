@@ -52,7 +52,7 @@ acceleration is a vector and so tags `acceleration` (2.4) as well.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `demo-vector-scalar` · new · vector, scalar · still: the figure answers
+1. `sim-vector-scalar` · new · vector, scalar · still: the figure answers
    its sliders and nothing else. Left half, a vector: the jet of Figure
    2.6 on a strip with a velocity arrow drawn from its nose whose length
    is proportional to the speed and which points east or west by the sign;
@@ -68,7 +68,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    (east) beside $\text{temperature} = 20\ \text{ºC}$; small line: the
    length of the arrow alone, 90 km/h, is the speed, which is a scalar.
    Draws velocity.
-2. `demo-axes` · replaces Figure 2.7 (the axes with right and up positive)
+2. `sim-axes` · replaces Figure 2.7 (the axes with right and up positive)
    · coordinate-system, vector · moves: the jet flies a set distance to
    the left along a strip, one flight in about 4 real seconds, and the
    figure gets the scrubber. Above the strip is the coordinate line with
@@ -99,17 +99,17 @@ Photographs, one:
 Sketch, one:
 
 - Figure 2.7, the axes with +x to the right and +y up: **replaced** by
-  `demo-axes`, which keeps the number 2.7, the book's image
+  `sim-axes`, which keeps the number 2.7, the book's image
   (`media/ch02/Figure_02_02_00b.jpg`) as its original and the book's
-  caption. The demo shows the horizontal line only; the vertical
+  caption. The sim shows the horizontal line only; the vertical
   convention of the book's figure is stated in its caption.
 
 Figures that serve exercises: none.
 
 Extra simulations (rule 15): one considered, a vertical version of the
-coordinate demo with the feather of the AP item falling from a hand to
+coordinate sim with the feather of the AP item falling from a hand to
 the floor under the four coordinate systems the item offers. Left: the
-horizontal demo already shows what the choice of origin and of positive
+horizontal sim already shows what the choice of origin and of positive
 direction does to a position and a displacement, and the feather's
 velocity and acceleration are ideas of 2.3 and 2.4. None built.
 
@@ -148,8 +148,8 @@ velocity and acceleration are ideas of 2.3 and 2.4. None built.
 
 ## Colour
 
-The page binds velocity, from the arrow of the vector demo and its
-slider, and position, from the coordinate demo's positions and
+The page binds velocity, from the arrow of the vector sim and its
+slider, and position, from the coordinate sim's positions and
 displacement. The distance flown, the place of the origin and the
 temperature are untyped and in ink. No new hue, no new macro.
 

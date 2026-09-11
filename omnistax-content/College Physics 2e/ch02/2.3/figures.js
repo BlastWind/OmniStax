@@ -2,7 +2,7 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, axes, nice, curve, runner, car, fixed, FONT } = F;
-const demo = (id, H) => F.demo(root, id, H);
+const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
@@ -77,13 +77,13 @@ function trip(u) {
 }
 
 /* =====================================================================
-   DEMO: elapsed time. A pendulum swings above a time line while a marker
+   SIM: elapsed time. A pendulum swings above a time line while a marker
    runs from t₀ to t_f; a bracket spans the elapsed time and a stopwatch
    started at t₀ counts up from zero. Finite motion, one run per elapsed
    time, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-elapsed-time', 520);
+  const d = sim('sim-elapsed-time', 520);
   const t0 = ctl(d.controls, { label: '\\kto', cls: 'time', min: 0, max: 60, step: 0.5, value: 10, unit: 's', dec: 1, onInput: reset, aria: 'time at the beginning' });
   const tf = ctl(d.controls, { label: '\\ktf', cls: 'time', min: 0, max: 120, step: 0.5, value: 40, unit: 's', dec: 1, onInput: reset, aria: 'time at the end' });
   const sw = ctl(d.controls, { label: '\\text{one swing}', cls: 'time', min: 0.5, max: 2, step: 0.05, value: 0.75, unit: 's', dec: 2, onInput: reset, aria: 'time of one swing of the pendulum' });
@@ -129,13 +129,13 @@ function trip(u) {
 })();
 
 /* =====================================================================
-   DEMO: average velocity. A passenger walks the aisle of an airplane from
+   SIM: average velocity. A passenger walks the aisle of an airplane from
    x₀ to x_f in a time t; a bracket for the displacement, a stopwatch,
    and below a graph of position against time whose line from start to
    finish has slope v̄. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-average-velocity', 690);
+  const d = sim('sim-average-velocity', 690);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 10, step: 0.5, value: 6, unit: 'm', dec: 1, onInput: reset });
   const xf = ctl(d.controls, { label: '\\kxf', cls: 'position', min: 0, max: 10, step: 0.5, value: 2, unit: 'm', dec: 1, onInput: reset });
   const t = ctl(d.controls, { label: '\\kt', cls: 'time', min: 1, max: 20, step: 0.5, value: 5, unit: 's', dec: 1, onInput: reset });
@@ -192,7 +192,7 @@ function trip(u) {
    scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-segments', 720);
+  const d = sim('sim-segments', 720);
   const W = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.1, max: 5, step: 0.05, value: 1.25, unit: 's', dec: 2, onInput: reset, aria: 'width of one interval' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 2, max: 10, step: 0.5, value: 5, unit: 's', dec: 1, onInput: reset, aria: 'time of the whole trip' });
   const cy = cycle(() => T.v, 1.2); let ph = 0;
@@ -256,7 +256,7 @@ function trip(u) {
    the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-store', 520);
+  const d = sim('sim-store', 520);
   const D = ctl(d.controls, { label: 'd', cls: '', min: 1, max: 10, step: 0.5, value: 3, unit: 'km', dec: 1, onInput: reset, aria: 'distance to the store' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 10, max: 120, step: 5, value: 30, unit: 'min', dec: 0, onInput: reset, aria: 'time of the trip' });
   const B = ctl(d.controls, { label: '\\text{of the way home}', cls: '', min: 0, max: 100, step: 10, value: 100, unit: '%', dec: 0, onInput: reset, aria: 'how far back toward home the car drives' });
@@ -311,7 +311,7 @@ function trip(u) {
    gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = demo('demo-trip-graphs', 660);
+  const d = sim('sim-trip-graphs', 660);
   const D = ctl(d.controls, { label: 'd', cls: '', min: 1, max: 10, step: 0.5, value: 3, unit: 'km', dec: 1, onInput: reset, aria: 'distance to the store' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 10, max: 120, step: 5, value: 30, unit: 'min', dec: 0, onInput: reset, aria: 'time of the trip' });
   const cy = cycle(() => T.v, 1.2);
