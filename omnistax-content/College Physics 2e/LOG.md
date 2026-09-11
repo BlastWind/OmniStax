@@ -680,3 +680,62 @@ Changes:
 Checks: `astro check` clean, 304 unit tests, `check:content` with no
 errors, build, a static serve and a dev serve of a section page and a
 media file.
+
+### Pass 19 (2026-09-11): Chapter 1, the book's introduction, in one pass
+
+Chen asked for everything before Chapter 2. The Preface (m42955) is
+publisher front matter with no place in the book → chapters → sections
+model and is not built; the chapter introduction (m42119) is recorded as
+`intro_module` and waits for a chapter landing page. What was built is
+Chapter 1 in full, `ch01/1.1` to `ch01/1.4`, with `exploration.md`,
+`config.md` and a `plan.md` per section written before the section and
+left for review after, since the instruction was to build the whole
+chapter without the per-section stops of rule 2.
+
+The chapter is qualitative, and the tables and figures show it. Twenty-four
+concept nodes went into `book.json` before any section was built (seven
+for 1.1: physics, model, theory, law, scientific method, classical and
+modern physics; eight for 1.2 from physical quantity to the conversion
+skill; eight for 1.3 from accuracy to the two significant-figure rules;
+one skill for 1.4), with `average-velocity` (2.3) the one placeholder the
+chapter reaches. The chapter sheet has three equations (average speed,
+the 80 m conversion, percent uncertainty) and 28 glossary rows. One new
+symbol, `c`, joins the velocity type; `A` and `δA` are untyped rows.
+
+Eleven demos, all but two in ink: the planetary atom (1.10, one slider,
+the number of electrons); light along a meter stick (1.18) and the drive
+home of Example 1.1, the two figures that carry a time and a speed; the
+ladder of powers of ten with the prefixes of Table 1.2 and the lengths of
+Table 1.3 on it; the bull's-eye of GPS fixes (1.23 and 1.24 folded into
+one, with spread and offset sliders); the band A ± δA on a number line
+with the bag half as heavy beneath it; the floor whose largest and
+smallest outlines show why percents add; a ruler sliding under a stick
+with a magnifier on the estimated digit; two sticks summed and multiplied
+with the rejected digits muted; the building stacked up story by story
+beside a person; and a trillion dollars rising on a football field.
+Twenty photographs kept where the text points at them ("See Figure 1.4
+and Figure 1.5"), four splash images dropped. The book's three tables are
+in the text as `div.book-table` (new style in `global.css`).
+
+Fifty-one exercises: nine Check Your Understanding inline, twelve
+conceptual questions with AI-marked approaches, twenty-two keyed
+problems; the twenty-three unkeyed problems are left out and named in
+each section's notes, and the Salmonella photograph goes with problem 4
+of 1.4. The approximation problems' keys are the book's "sample
+answers", so they are open answers to compare with rather than numbers
+checked to 2%.
+
+Two things learned on the way:
+- `\$` inside display math is torn apart by the build, since the
+  prerender runs the inline `$…$` pass over the rendered display block
+  and KaTeX prints the dollar raw. Dollar amounts in prose are `&#36;`,
+  and the one display equation that needs the sign uses a fullwidth `＄`
+  in `\text{}`.
+- The `open` answer has no `hint` field; a pointer to a table goes in
+  `exercise_notes`.
+
+Checks: `check:content` with no errors, 311 unit tests, `astro check`
+clean, build, a headless pass over the four pages in light and dark with
+no console errors, every photograph loading and every canvas booting; one
+fix pass for the ladder's value label sitting on a tick label and a slider
+step that snapped the meter demo's 3.34 ns to 3.35.

@@ -1,0 +1,665 @@
+{
+ "id": "1.3",
+ "module": "m42120",
+ "chapter": "1",
+ "title": "Accuracy, Precision, and Significant Figures",
+ "short": "Accuracy, precision, significant figures",
+ "lead": "Every measurement is close to the correct value only to some degree, and repeated measurements agree with one another only to some degree. This section names those two degrees accuracy and precision, records what is not known about a measurement as its uncertainty, and shows how the digits you write down, the significant figures, say how precise the measuring tool was and how many digits a calculated answer may keep.",
+ "objectives": [
+  "Determine the appropriate number of significant figures in both addition and subtraction, as well as multiplication and division calculations.",
+  "Calculate the percent uncertainty of a measurement."
+ ],
+ "summary_html": "<ul><li>Accuracy of a measured value refers to how close a measurement is to the correct value. The uncertainty in a measurement is an estimate of the amount by which the measurement result may differ from this value.</li><li>Precision of measured values refers to how close the agreement is between repeated measurements.</li><li>The precision of a <em>measuring tool</em> is related to the size of its measurement increments. The smaller the measurement increment, the more precise the tool.</li><li>Significant figures express the precision of a measuring tool.</li><li>When multiplying or dividing measured values, the final answer can contain only as many significant figures as the least precise value.</li><li>When adding or subtracting measured values, the final answer cannot contain more decimal places than the least precise value.</li></ul>",
+ "notes": "Problems 2, 4, 6, 8, 10, 12, 14, 16 and 18 have no answer in the book’s key and are left out, and the two photographs of balances at the head of the section are dropped as decoration the text never refers to.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercises_lead": "Express your answers to problems in this section to the correct number of significant figures and proper units.",
+ "exercise_notes": "Bloom levels, concept tags, hints and the weights on the unit-conversion and average-velocity tags are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6, 8, 10, 12, 14, 16 and 18 have no keyed answer and are left out. The Check Your Understanding on the stopwatch is set after the uncertainty passage rather than where the book prints it, after the floor. Suggested approaches for the two conceptual questions are AI-written and marked. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "demo-target",
+   "kind": "demo",
+   "number": "1.23",
+   "originals": [
+    "/media/ch01/Figure_01_03_03.jpg",
+    "/media/ch01/Figure_01_03_04.jpg"
+   ],
+   "original_caption": "A GPS system attempts to locate a restaurant at the center of the bull’s-eye. The black dots represent each attempt to pinpoint the location of the restaurant. The dots are spread out quite far apart from one another, indicating low precision, but they are each rather close to the actual location of the restaurant, indicating high accuracy. (credit: Dark Evil)",
+   "draws": []
+  },
+  {
+   "id": "demo-percent",
+   "kind": "demo",
+   "draws": []
+  },
+  {
+   "id": "demo-area",
+   "kind": "demo",
+   "draws": []
+  },
+  {
+   "id": "demo-ruler",
+   "kind": "demo",
+   "draws": []
+  },
+  {
+   "id": "demo-calc",
+   "kind": "demo",
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "accuracy-precision",
+   "concept": "accuracy",
+   "verb": "introduces"
+  },
+  {
+   "span": "accuracy-precision",
+   "concept": "precision",
+   "verb": "introduces"
+  },
+  {
+   "span": "uncertainty",
+   "concept": "uncertainty",
+   "verb": "introduces"
+  },
+  {
+   "span": "uncertainty",
+   "concept": "accuracy",
+   "verb": "uses"
+  },
+  {
+   "span": "uncertainty",
+   "concept": "precision",
+   "verb": "uses"
+  },
+  {
+   "span": "percent-uncertainty",
+   "concept": "percent-uncertainty",
+   "verb": "introduces"
+  },
+  {
+   "span": "percent-uncertainty",
+   "concept": "uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-apples",
+   "concept": "percent-uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "calculations",
+   "concept": "adding-percents",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculations",
+   "concept": "percent-uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs",
+   "concept": "significant-figures",
+   "verb": "introduces"
+  },
+  {
+   "span": "sig-figs",
+   "concept": "precision",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs",
+   "concept": "uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs-calculations",
+   "concept": "sig-figs-multiplication",
+   "verb": "introduces"
+  },
+  {
+   "span": "sig-figs-calculations",
+   "concept": "sig-figs-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "sig-figs-calculations",
+   "concept": "significant-figures",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs-text",
+   "concept": "sig-figs-multiplication",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs-text",
+   "concept": "sig-figs-addition",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2586676",
+   "kind": "check-understanding",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "uncertainty"
+   },
+   "cite": "uncertainty",
+   "prompt": "A high school track coach has just purchased a new stopwatch. The stopwatch manual states that the stopwatch has an uncertainty of $\\pm 0.05\\ \\text{s}$. The team’s top sprinter clocked a 100 meter sprint at 12.04 seconds last week and at 11.96 seconds this week. Can we conclude that this week’s time was faster?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No, the uncertainty in the stopwatch is too great to effectively differentiate between the sprint times."
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id3141103",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "sig-figs"
+   },
+   "cite": "sig-figs",
+   "prompt": "Determine the number of significant figures in the following measurements: (a) 0.0009 (b) 15,450.0 (c) $6 \\times 10^{3}$ (d) 87.990 (e) 30.42",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1,
+      "unit": "figures",
+      "hint": "Zeros that only locate the decimal point are placekeepers, not measured digits."
+     },
+     {
+      "part": "(b)",
+      "value": 6,
+      "unit": "figures",
+      "hint": "A zero written after the decimal point tells you the measurement was made to that place."
+     },
+     {
+      "part": "(c)",
+      "value": 1,
+      "unit": "figures",
+      "hint": "The power of ten sets the size of the number, not how many digits were measured."
+     },
+     {
+      "part": "(d)",
+      "value": 5,
+      "unit": "figures",
+      "hint": "A final zero after the decimal point was written down on purpose."
+     },
+     {
+      "part": "(e)",
+      "value": 4,
+      "unit": "figures",
+      "hint": "A zero between two other digits is not a placekeeper."
+     }
+    ],
+    "solution": "(a) 1; the zeros in this number are placekeepers that indicate the decimal point. (b) 6; here, the zeros indicate that a measurement was made to the 0.1 decimal point, so the zeros are significant. (c) 1; the value $10^{3}$ signifies the decimal place, not the number of measured values. (d) 5; the final zero indicates that a measurement was made to the 0.001 decimal point, so it is significant. (e) 4; any zeros located in between significant figures in a number are also significant."
+   }
+  },
+  {
+   "id": "cyu3",
+   "source_id": "fs-id2506196",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "sig-figs-text"
+   },
+   "cite": "sig-figs-text",
+   "prompt": "Perform the following calculations and express your answer using the correct number of significant digits. (a) A woman has three bags: two of the bags weigh 13.5 pounds each, and one bag weighs of 10.2 pounds. What is the total weight of the bags? (b) The force $F$ on an object is equal to its mass $m$ multiplied by its acceleration $a$. If a wagon with mass 55 kg accelerates at a rate of $0.0255\\ \\text{m/s}^2$, what is the force on the wagon? (The unit of force is called the newton, and it is expressed with the symbol N.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 37.2,
+      "unit": "pounds",
+      "hint": "Add the three weights and keep the decimal places of the least precise one. The count of bags is exact."
+     },
+     {
+      "part": "(b)",
+      "value": 1.4,
+      "unit": "N",
+      "hint": "Multiply the mass by the acceleration and keep as many significant figures as the quantity with the fewest."
+     }
+    ],
+    "solution": "(a) 37.2 pounds; Because the number of bags is an exact value, it is not considered in the significant figures. (b) 1.4 N; Because the value 55 kg has only two significant figures, the final value must also contain two significant figures."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2839906",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uncertainty",
+   "prompt": "What is the relationship between the accuracy and uncertainty of a measurement?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Accuracy is how close a measurement is to the correct value, and uncertainty is a quantitative measure of how much the measured value may deviate from that value. The uncertainty is a disclaimer on the measurement, and the two go together: a measurement that is not very accurate has a high uncertainty, and a measurement with a small uncertainty is one whose value can be trusted to lie close to the correct value. The text says the same of precision, since a measurement that is neither accurate nor precise has a very high uncertainty."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id953198",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uncertainty",
+   "prompt": "Prescriptions for vision correction are given in units called diopters (D). Determine the meaning of that unit. Obtain information (perhaps by calling an optometrist or performing an internet search) on the minimum uncertainty with which corrections in diopters are determined and the accuracy with which corrective lenses can be produced. Discuss the sources of uncertainties in both the prescription and accuracy in the manufacture of lenses.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A diopter is the reciprocal of the focal length of a lens in meters, so a 2 D lens has a focal length of 0.5 m. Prescriptions are written in steps of 0.25 D, which is the smallest increment the examination can settle, so a prescription carries an uncertainty of about that size, and a lens can be made to within a fraction of a diopter of what is ordered. Look for the sources of uncertainty the text lists. The prescription depends on the limitations of the measuring device and on the skill of the person making the measurement, since the patient judges which of two settings looks sharper and the examiner reads the result, and on irregularities in the object measured, since the eye changes with fatigue and lighting. The manufacture of the lens depends on the precision of the grinding tools and on how closely the finished lens is checked against the order."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2131067",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "percent-uncertainty",
+   "prompt": "Suppose that your bathroom scale reads your mass as 65 kg with a 3% uncertainty. What is the uncertainty in your mass (in kilograms)?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "unit": "kg",
+    "hint": "The uncertainty is the percent uncertainty, as a fraction, times the measured value.",
+    "solution": "2 kg"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2773103",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "percent-uncertainty",
+   "prompt": "(a) A car speedometer has a $5.0\\%$ uncertainty. What is the range of possible speeds when it reads $90\\ \\text{km/h}$? (b) Convert this range to miles per hour. ($1\\ \\text{km} = 0.6214\\ \\text{mi}$)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) lowest",
+      "value": 85,
+      "unit": "km/h",
+      "hint": "Find 5.0% of 90 km/h and take it away from the reading."
+     },
+     {
+      "part": "(a) highest",
+      "value": 95,
+      "unit": "km/h",
+      "hint": "Find 5.0% of 90 km/h and add it to the reading."
+     },
+     {
+      "part": "(b) lowest",
+      "value": 53,
+      "unit": "mi/h",
+      "hint": "Multiply the lowest speed by the number of miles in a kilometer."
+     },
+     {
+      "part": "(b) highest",
+      "value": 59,
+      "unit": "mi/h",
+      "hint": "Multiply the highest speed by the number of miles in a kilometer."
+     }
+    ],
+    "solution": "(a) 85 to 95 km/h (b) 53 to 59 mi/h"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1359647",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sig-figs-calculations",
+   "prompt": "(a) Suppose that a person has an average heart rate of 72.0 beats/min. How many beats do they have in 2.0 y? (b) In 2.00 y? (c) In 2.000 y?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 76000000,
+      "unit": "beats",
+      "hint": "Convert the years to minutes, multiply by the rate, and keep the two significant figures of 2.0 y."
+     },
+     {
+      "part": "(b)",
+      "value": 75700000,
+      "unit": "beats",
+      "hint": "The same product, kept to the three significant figures of 2.00 y and of 72.0 beats/min."
+     },
+     {
+      "part": "(c)",
+      "value": 75700000,
+      "unit": "beats",
+      "hint": "The rate has only three significant figures, so more figures in the time do not add any to the answer."
+     }
+    ],
+    "solution": "(a) $7.6 \\times 10^{7}\\ \\text{beats}$ (b) $7.57 \\times 10^{7}\\ \\text{beats}$ (c) $7.57 \\times 10^{7}\\ \\text{beats}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id882742",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sig-figs-calculations",
+   "prompt": "State how many significant figures are proper in the results of the following calculations: (a) $(106.7)(98.2)/(46.210)(1.01)$ (b) $(18.7)^{2}$ (c) $(1.60 \\times 10^{-19})(3712)$.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3,
+      "unit": "figures",
+      "hint": "Count the significant figures of each factor and keep the smallest count."
+     },
+     {
+      "part": "(b)",
+      "value": 3,
+      "unit": "figures",
+      "hint": "Squaring is multiplying a number by itself."
+     },
+     {
+      "part": "(c)",
+      "value": 3,
+      "unit": "figures",
+      "hint": "The power of ten does not count; look at the digits of 1.60."
+     }
+    ],
+    "solution": "(a) 3 (b) 3 (c) 3"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2675538",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "percent-uncertainty",
+   "prompt": "(a) If your speedometer has an uncertainty of $2.0\\ \\text{km/h}$ at a speed of $90\\ \\text{km/h}$, what is the percent uncertainty? (b) If it has the same percent uncertainty when it reads $60\\ \\text{km/h}$, what is the range of speeds you could be going?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.2,
+      "unit": "%",
+      "hint": "Divide the uncertainty by the reading and multiply by 100%."
+     },
+     {
+      "part": "(b) lowest",
+      "value": 59,
+      "unit": "km/h",
+      "hint": "Apply the same percent to 60 km/h to find the uncertainty, then take it away."
+     },
+     {
+      "part": "(b) highest",
+      "value": 61,
+      "unit": "km/h",
+      "hint": "Apply the same percent to 60 km/h to find the uncertainty, then add it."
+     }
+    ],
+    "solution": "(a) 2.2% (b) 59 to 61 km/h"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1500652",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculations",
+   "prompt": "A person measures their heart rate by counting the number of beats in $30\\ \\text{s}$. If $40 \\pm 1$ beats are counted in $30.0 \\pm 0.5\\ \\text{s}$, what is the heart rate and its uncertainty in beats per minute?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "heart rate",
+      "value": 80,
+      "unit": "beats/min",
+      "hint": "Divide the beats by the time and convert the time to minutes."
+     },
+     {
+      "part": "uncertainty",
+      "value": 3,
+      "unit": "beats/min",
+      "hint": "Find the percent uncertainty of the count and of the time, add them, and apply the sum to the rate."
+     }
+    ],
+    "solution": "$80 \\pm 3\\ \\text{beats/min}$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2998426",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sig-figs-calculations",
+   "prompt": "If a marathon runner averages 9.5 mi/h, how long does it take him or her to run a 26.22-mi marathon?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.8,
+    "unit": "h",
+    "hint": "Time is distance divided by speed, and the speed has only two significant figures.",
+    "solution": "2.8 h"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2509052",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculations",
+   "prompt": "The sides of a small rectangular box are measured to be $1.80 \\pm 0.01\\ \\text{cm}$, $2.05 \\pm 0.02\\ \\text{cm}$, and $3.1 \\pm 0.1\\ \\text{cm}$ long. Calculate its volume and uncertainty in cubic centimeters.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "volume",
+      "value": 11.4,
+      "unit": "cm³",
+      "hint": "Multiply the three sides and keep the significant figures of the side with the fewest."
+     },
+     {
+      "part": "uncertainty",
+      "value": 0.6,
+      "unit": "cm³",
+      "hint": "Turn each uncertainty into a percent, add the three percents, and apply the sum to the volume."
+     }
+    ],
+    "solution": "$11.4 \\pm 0.6\\ \\text{cm}^3$"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id2637086",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculations",
+   "prompt": "The length and width of a rectangular room are measured to be $3.955 \\pm 0.005\\ \\text{m}$ and $3.050 \\pm 0.005\\ \\text{m}$. Calculate the area of the room and its uncertainty in square meters.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "area",
+      "value": 12.06,
+      "unit": "m²",
+      "hint": "Multiply length by width and keep four significant figures, since each side has four."
+     },
+     {
+      "part": "uncertainty",
+      "value": 0.04,
+      "unit": "m²",
+      "hint": "Add the two percent uncertainties and apply the sum to the area."
+     }
+    ],
+    "solution": "$12.06 \\pm 0.04\\ \\text{m}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "uncertainty"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "precision"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "significant-figures"
+  },
+  {
+   "exercise": "cyu3",
+   "concept": "sig-figs-addition"
+  },
+  {
+   "exercise": "cyu3",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "accuracy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "uncertainty"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "uncertainty"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "precision"
+  },
+  {
+   "exercise": "p1",
+   "concept": "percent-uncertainty"
+  },
+  {
+   "exercise": "p3",
+   "concept": "percent-uncertainty"
+  },
+  {
+   "exercise": "p3",
+   "concept": "unit-conversion",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "p5",
+   "concept": "unit-conversion",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "p7",
+   "concept": "significant-figures"
+  },
+  {
+   "exercise": "p9",
+   "concept": "percent-uncertainty"
+  },
+  {
+   "exercise": "p11",
+   "concept": "percent-uncertainty"
+  },
+  {
+   "exercise": "p11",
+   "concept": "adding-percents"
+  },
+  {
+   "exercise": "p13",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "p13",
+   "concept": "unit-conversion",
+   "weight": 1
+  },
+  {
+   "exercise": "p13",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p15",
+   "concept": "adding-percents"
+  },
+  {
+   "exercise": "p15",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "p17",
+   "concept": "adding-percents"
+  },
+  {
+   "exercise": "p17",
+   "concept": "sig-figs-multiplication"
+  }
+ ]
+}

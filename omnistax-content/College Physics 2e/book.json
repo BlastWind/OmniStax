@@ -12,6 +12,7 @@
  "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
  "openstax": "https://openstax.org/books/college-physics-2e/pages/",
  "chapters": [
+  "ch01",
   "ch02",
   "ch16"
  ],
@@ -226,6 +227,20 @@
   {
    "sym": "θ",
    "latex": "\\theta"
+  },
+  {
+   "sym": "c",
+   "latex": "c",
+   "type": "velocity",
+   "macro": "\\kc"
+  },
+  {
+   "sym": "A",
+   "latex": "A"
+  },
+  {
+   "sym": "δA",
+   "latex": "\\delta A"
   }
  ],
  "exercise_kinds": [
@@ -247,6 +262,200 @@
   }
  ],
  "concepts": [
+  {
+   "id": "physics",
+   "kind": "idea",
+   "section": "1.1",
+   "name": "Physics and its realm",
+   "why": "Physics is concerned with describing the interactions of energy, matter, space, and time, and it is especially interested in what fundamental mechanisms underlie every phenomenon. A surprisingly small and unified set of physical laws explains what we observe, and that underlying order is what makes the subject worth studying.",
+   "evidence": "Glossary term; the passage on the realm of physics; conceptual questions 7 and 9 ask where its classical branch applies. No exercise tests the definition on its own."
+  },
+  {
+   "id": "model",
+   "kind": "idea",
+   "section": "1.1",
+   "name": "Model",
+   "why": "A model is a representation of something that is often too difficult or impossible to display directly, such as the planetary model of the atom. It is justified by experiment but accurate only under limited situations, and it lets us picture what we cannot see.",
+   "evidence": "Glossary term; conceptual questions 1, 2 and 6 ask what a model is, how it differs from a theory, and whether its validity can be limited."
+  },
+  {
+   "id": "theory",
+   "kind": "idea",
+   "section": "1.1",
+   "name": "Theory",
+   "why": "To a scientist a theory is a testable explanation for patterns in nature, supported by scientific evidence and verified many times by different groups of researchers. It should describe every aspect of any system within its domain, and an experiment that contradicts it means the theory is thrown out or modified.",
+   "evidence": "Glossary term; Check Your Understanding; conceptual questions 2, 3, 4 and 6 turn on what makes a theory valid."
+  },
+  {
+   "id": "law",
+   "kind": "idea",
+   "section": "1.1",
+   "name": "Law",
+   "why": "A law uses concise language, often a single equation such as F = ma, to describe a generalized pattern in nature that is supported by scientific evidence and repeated experiments. A law describes a single action, whereas a theory explains a whole group of related phenomena.",
+   "evidence": "Glossary term; Check Your Understanding asks what can be known about a new law before hearing it; conceptual question 6 compares the validity required of a law with that of a model."
+  },
+  {
+   "id": "scientific-method",
+   "kind": "idea",
+   "section": "1.1",
+   "name": "Scientific method",
+   "why": "The scientific method is the process scientists follow as they inquire about the world: an observation and a question, some research, a hypothesis, an experiment to test it, and a conclusion drawn from the results. The cornerstone is observation, since science must describe the universe as it is.",
+   "evidence": "Glossary term; the car that will not start is worked through as an example; conceptual question 5 asks how strict the criteria for believing a result must be."
+  },
+  {
+   "id": "classical-physics",
+   "kind": "idea",
+   "section": "1.1",
+   "name": "Classical physics",
+   "why": "Classical physics is the physics that developed from the Renaissance to the end of the 19th century. It is an excellent approximation when matter moves at less than about 1% of the speed of light, when objects are large enough to be seen with a microscope, and when only weak gravitational fields such as the Earth’s are involved, which is why most of this text is devoted to it.",
+   "evidence": "Glossary term; the boxed limits on the laws of classical physics; conceptual questions 7 and 9 ask when classical physics applies, the second for a satellite at 7500 m/s."
+  },
+  {
+   "id": "modern-physics",
+   "kind": "idea",
+   "section": "1.1",
+   "name": "Modern physics",
+   "why": "Modern physics consists of two revolutionary theories, relativity and quantum mechanics, which deal with the very fast and the very small. Relativity must be used above about 1% of the speed of light or in a strong gravitational field, and quantum mechanics for objects smaller than can be seen with a microscope; their combination, relativistic quantum mechanics, is the best universally applicable theory we have.",
+   "evidence": "Glossary terms for modern physics, relativity and quantum mechanics; conceptual question 8 asks when relativistic quantum mechanics is necessary."
+  },
+  {
+   "id": "physical-quantity",
+   "kind": "idea",
+   "section": "1.2",
+   "name": "Physical quantity",
+   "why": "A physical quantity is defined either by specifying how it is measured or by stating how it is calculated from other measurements. Distance and time are defined by methods for measuring them, whereas average speed is defined as distance traveled divided by time of travel.",
+   "evidence": "Glossary term; the section summary; Example 1.1 calculates average speed from a distance and a time."
+  },
+  {
+   "id": "units",
+   "kind": "idea",
+   "section": "1.2",
+   "name": "Units",
+   "why": "Measurements of physical quantities are expressed in terms of units, which are standardized values. Without them it would be extremely difficult to express and compare measured values in a meaningful way; the two major systems in use are SI units and English units.",
+   "evidence": "Glossary terms for units, SI units and English units; conceptual question 1; every problem in the section converts a value from one unit to another."
+  },
+  {
+   "id": "fundamental-units",
+   "kind": "idea",
+   "section": "1.2",
+   "name": "Fundamental units",
+   "why": "The most fundamental physical quantities can be defined only in terms of the procedure used to measure them, and their units are called fundamental units. In this text they are length, mass, time, and electric current, measured in the meter, the kilogram, the second, and the ampere.",
+   "evidence": "Glossary terms for fundamental units, second, meter and kilogram; Table 1.1; Check Your Understanding 1 asks which fundamental unit describes a hummingbird’s wingbeat."
+  },
+  {
+   "id": "derived-units",
+   "kind": "idea",
+   "section": "1.2",
+   "name": "Derived units",
+   "why": "All other physical quantities, such as force and electric charge, can be expressed as algebraic combinations of length, mass, time, and current; speed, for example, is length divided by time. The units of such quantities are called derived units.",
+   "evidence": "Glossary term; Check Your Understanding 2 asks what a cubic centimeter being a milliliter says about the SI units."
+  },
+  {
+   "id": "metric-prefixes",
+   "kind": "idea",
+   "section": "1.2",
+   "name": "Metric prefixes",
+   "why": "The metric system is convenient for calculation because its units are categorized by factors of 10, and a standard set of prefixes lets the same unit be used over extremely large ranges of values. Distances in meters suit construction, kilometers suit air travel, and nanometers suit optical design, with no need to invent new units.",
+   "evidence": "Glossary term for the metric system; Table 1.2; Check Your Understanding 1 asks for the prefix that fits a hummingbird’s wingbeat; conceptual question 1; problems 7 and 9."
+  },
+  {
+   "id": "order-of-magnitude",
+   "kind": "idea",
+   "section": "1.2",
+   "name": "Order of magnitude",
+   "why": "The order of magnitude of a value is the power of 10 that sets its scale. The numbers 800 and 450 can both be written as a number times 10², so they are of the same order of magnitude; the diameter of an atom is of order 10⁻¹⁰ m and the diameter of the Sun of order 10⁹ m.",
+   "evidence": "Glossary term; Table 1.3 of known lengths, masses and times; Check Your Understanding 1 asks which factor of 10 fits a measurement; the approximation problems of section 1.4 read their inputs from Table 1.3."
+  },
+  {
+   "id": "conversion-factor",
+   "kind": "idea",
+   "section": "1.2",
+   "name": "Conversion factor",
+   "why": "A conversion factor is a ratio expressing how many of one unit are equal to another unit, such as 1000 meters in 1 kilometer or 60 seconds in 1 minute. Multiplying by the factor that cancels the unwanted unit leaves the desired unit in its place.",
+   "evidence": "Glossary term; the 80 m to 0.080 km conversion in the text; Example 1.1; problems 1, 3, 5, 7 and 9."
+  },
+  {
+   "id": "unit-conversion",
+   "kind": "skill",
+   "section": "1.2",
+   "name": "Convert a value from one unit to another",
+   "why": "To convert, list the units you have and the units you want, find the conversion factor between them, and multiply so that the units cancel. If the factor is written upside down the units do not cancel, so checking the units of the answer is part of the method.",
+   "evidence": "Example 1.1 converts an average speed to km/h and to m/s; problems 1, 3, 5, 7 and 9 are conversions.",
+   "eq": "eq-unit-conversion"
+  },
+  {
+   "id": "accuracy",
+   "kind": "idea",
+   "section": "1.3",
+   "name": "Accuracy",
+   "why": "Accuracy is how close a measurement is to the correct value for that measurement. Three measurements of 11.1, 11.2 and 10.9 inches of paper that is 11.0 inches long are accurate; a measurement of 12 inches is not.",
+   "evidence": "Glossary term; the GPS bull’s-eye passage; conceptual question 1 asks how accuracy and uncertainty are related."
+  },
+  {
+   "id": "precision",
+   "kind": "idea",
+   "section": "1.3",
+   "name": "Precision",
+   "why": "The precision of a measurement system refers to how close the agreement is between repeated measurements made under the same conditions, that is, to the spread of the measured values. A measuring system can be accurate but not precise, or precise but not accurate.",
+   "evidence": "Glossary term; the GPS bull’s-eye passage; the precision of a measuring tool decides how many digits a measurement can carry."
+  },
+  {
+   "id": "uncertainty",
+   "kind": "idea",
+   "section": "1.3",
+   "name": "Uncertainty $A \\pm \\delta A$",
+   "why": "Uncertainty is a quantitative measure of how much your measured values deviate from a standard or expected value, a disclaimer on the number: 45,000 miles plus or minus 500. All measurements contain some uncertainty, from the measuring device, the skill of the person, irregularities in the object, and anything else that affects the outcome.",
+   "evidence": "Glossary term; the fevers-or-chills note; Check Your Understanding 1 asks whether a stopwatch can tell two sprint times apart; conceptual questions 1 and 2; problems 11, 15 and 17."
+  },
+  {
+   "id": "percent-uncertainty",
+   "kind": "result",
+   "section": "1.3",
+   "name": "Percent uncertainty, $\\%\\,\\text{unc} = \\frac{\\delta A}{A} \\times 100\\%$",
+   "why": "One way to express uncertainty is as a percent of the measured value: the uncertainty divided by the value, times 100%. A bag of apples weighed at 5.1 lb with an uncertainty of 0.4 lb has a percent uncertainty of 8%.",
+   "evidence": "Glossary term; Example 1.2; problems 1, 3, 9 and 11.",
+   "eq": "eq-percent-uncertainty"
+  },
+  {
+   "id": "adding-percents",
+   "kind": "result",
+   "section": "1.3",
+   "name": "Method of adding percents",
+   "why": "There is an uncertainty in anything calculated from measured quantities. When the measurements going in have small uncertainties, the percent uncertainty in a quantity calculated by multiplication or division is the sum of the percent uncertainties in the items used to make the calculation: a floor 4.00 m by 3.00 m, known to 2% and 1%, has an area of 12.0 m² known to 3%.",
+   "evidence": "Glossary term; the floor-area passage; problems 11, 15 and 17 ask for the uncertainty in a rate, a volume and an area."
+  },
+  {
+   "id": "significant-figures",
+   "kind": "idea",
+   "section": "1.3",
+   "name": "Significant figures",
+   "why": "When we express measured values we can list only as many digits as the measuring tool gave us, and the last digit written down is the first digit with some uncertainty. Counting the digits from the first measured digit on the left through the last on the right gives the number of significant figures, and zeros are significant except when they serve only as placekeepers.",
+   "evidence": "Glossary term; the ruler and caliper passage; the rules for zeros; Check Your Understanding 2 counts the significant figures in five measurements; problems 5 and 7."
+  },
+  {
+   "id": "sig-figs-multiplication",
+   "kind": "skill",
+   "section": "1.3",
+   "name": "Significant figures in multiplication and division",
+   "why": "For multiplication and division, the result should have the same number of significant figures as the quantity having the least significant figures entering into the calculation. A circle whose radius is known to two figures has an area known to two figures, even though π is good to at least eight.",
+   "evidence": "The area of a circle worked in the text; Check Your Understanding 3(b); problems 5, 7 and 13."
+  },
+  {
+   "id": "sig-figs-addition",
+   "kind": "skill",
+   "section": "1.3",
+   "name": "Significant figures in addition and subtraction",
+   "why": "For addition and subtraction, the answer can contain no more decimal places than the least precise measurement. Potatoes weighed on scales good to 0.01 kg, 0.001 kg and 0.1 kg add up to a mass that can be given only to the tenth of a kilogram.",
+   "evidence": "The potatoes worked in the text; Check Your Understanding 3(a) adds three bag weights."
+  },
+  {
+   "id": "approximation",
+   "kind": "skill",
+   "section": "1.4",
+   "name": "Make a reasonable approximation",
+   "why": "Physicists, other scientists and engineers often need approximations or “guesstimates” for a quantity, based on formulae whose inputs are known only to limited accuracy. Scaling up from a known quantity, such as the height of a person, gives an estimate good to an order of magnitude, which is enough to rule out unrealistic numbers and to guide an approach.",
+   "evidence": "Examples 1.3 and 1.4 estimate the height of a building and of a trillion dollars in bills; Check Your Understanding asks for the area of a basketball court; problems 1, 3, 5 and 7."
+  },
   {
    "id": "reference-frame",
    "kind": "idea",
@@ -600,6 +809,110 @@
   }
  ],
  "concept_prereqs": [
+  {
+   "concept": "model",
+   "prereq": "physics"
+  },
+  {
+   "concept": "scientific-method",
+   "prereq": "physics"
+  },
+  {
+   "concept": "theory",
+   "prereq": "model"
+  },
+  {
+   "concept": "theory",
+   "prereq": "scientific-method"
+  },
+  {
+   "concept": "law",
+   "prereq": "theory"
+  },
+  {
+   "concept": "law",
+   "prereq": "scientific-method"
+  },
+  {
+   "concept": "classical-physics",
+   "prereq": "physics"
+  },
+  {
+   "concept": "modern-physics",
+   "prereq": "classical-physics"
+  },
+  {
+   "concept": "units",
+   "prereq": "physical-quantity"
+  },
+  {
+   "concept": "fundamental-units",
+   "prereq": "units"
+  },
+  {
+   "concept": "derived-units",
+   "prereq": "fundamental-units"
+  },
+  {
+   "concept": "metric-prefixes",
+   "prereq": "units"
+  },
+  {
+   "concept": "order-of-magnitude",
+   "prereq": "metric-prefixes"
+  },
+  {
+   "concept": "conversion-factor",
+   "prereq": "units"
+  },
+  {
+   "concept": "unit-conversion",
+   "prereq": "conversion-factor"
+  },
+  {
+   "concept": "unit-conversion",
+   "prereq": "metric-prefixes"
+  },
+  {
+   "concept": "uncertainty",
+   "prereq": "accuracy"
+  },
+  {
+   "concept": "uncertainty",
+   "prereq": "precision"
+  },
+  {
+   "concept": "percent-uncertainty",
+   "prereq": "uncertainty"
+  },
+  {
+   "concept": "adding-percents",
+   "prereq": "percent-uncertainty"
+  },
+  {
+   "concept": "significant-figures",
+   "prereq": "precision"
+  },
+  {
+   "concept": "significant-figures",
+   "prereq": "uncertainty"
+  },
+  {
+   "concept": "sig-figs-multiplication",
+   "prereq": "significant-figures"
+  },
+  {
+   "concept": "sig-figs-addition",
+   "prereq": "significant-figures"
+  },
+  {
+   "concept": "approximation",
+   "prereq": "order-of-magnitude"
+  },
+  {
+   "concept": "approximation",
+   "prereq": "unit-conversion"
+  },
   {
    "concept": "position",
    "prereq": "reference-frame"

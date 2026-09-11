@@ -45,9 +45,11 @@ working format maps onto it directly: one module, one section, one page.
 Sections are never folded, even the thin ones (2.2 is one sign
 convention; 2.6 is a strategy box).
 
-Chapters built so far: 2 (Kinematics, `ch02`) and 16 (Oscillatory Motion
-and Waves, `ch16`). A chapter folder is `ch` followed by the two-digit
-chapter number. The whole table of contents is in `toc.md`.
+Chapters built so far: 1 (Introduction: The Nature of Science and
+Physics, `ch01`), 2 (Kinematics, `ch02`) and 16 (Oscillatory Motion and
+Waves, `ch16`). A chapter folder is `ch` followed by the two-digit
+chapter number. The whole table of contents is in `toc.md`. The Preface
+(m42955) is publisher front matter and is not built.
 
 ## Apparatus
 
@@ -116,8 +118,12 @@ velocity and angular frequency are one type, the angular rate. Nothing is
 coerced into a neighbouring type to save a colour.
 
 Every symbol the text colours has a row in the `symbols` table with its
-type and its macro name (`\kx`, `\kvo`, `\kF`); a symbol with no type (θ)
-has a row with its LaTeX only. The macros are derived from the table, so
+type and its macro name (`\kx`, `\kvo`, `\kF`); a symbol with no type (θ,
+a measured value A and its uncertainty δA) has a row with its LaTeX only.
+The speed of light c is a velocity and takes that hue (`\kc`). Chapter 1
+is qualitative, and its pages colour only the time and the speed that pass
+through the unit conversions; everything else there (a length, a mass, a
+count, a percent) is untyped and in ink. The macros are derived from the table, so
 a new symbol is a new row, not a new macro.
 
 ## Exercise kinds
@@ -149,8 +155,18 @@ row with its number.
 The book's images are served from `media/<chapter>/` in this folder, with
 the file names the bundle gives them.
 
-The chapters built so far are planar; no 3D was needed. The one
-photograph kept for its narrative is the Tacoma Narrows bridge (16.8).
+The book's tables (Chapter 1 has three: the fundamental SI units, the
+metric prefixes, the known ranges of length, mass and time) stay in the
+text as tables, in a `div.book-table` whose eyebrow is the number the
+book prints (Table 1.2) and whose caption is the book's title for it. A
+table is never a `<figure>`, since the validator reads every figure
+element as a figure row.
+
+The chapters built so far are planar; no 3D was needed. Photographs are
+kept where the text points the reader at them (Chapter 1 does this for
+most of its photographs: "See Figure 1.4 and Figure 1.5") or where they
+show the thing the passage is about (the Tacoma Narrows bridge, 16.8), and
+dropped where they are a splash image at the head of a section.
 
 ## Files
 
