@@ -24,10 +24,12 @@ the publisher, as `book.json`'s `intro` names the Preface's. Figures sit
 beside the modules under the bundle's `media/`, and the ones a page keeps
 are copied to `media/<chapter>/` here.
 
-`tools/cnxml2md.py` turns one module into `source.md`:
+`../tools/cnxml2md.py`, the converter every CNXML book shares (root rule
+18; `tools/cnxml2md.py` here still runs it), turns one module into
+`source.md`:
 
 ```
-python3 tools/cnxml2md.py source/osbooks-college-physics-bundle/modules/m42240/index.cnxml > ch16/16.1/source.md
+python3 ../tools/cnxml2md.py source/osbooks-college-physics-bundle/modules/m42240/index.cnxml > ch16/16.1/source.md
 ```
 
 It converts MathML to LaTeX and keeps the markers the later steps read:
