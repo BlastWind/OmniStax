@@ -1,0 +1,580 @@
+{
+ "id": "9.5",
+ "module": "m42174",
+ "chapter": "9",
+ "title": "Simple Machines",
+ "short": "Simple machines",
+ "lead": "A simple machine multiplies the force you apply, and what it usually asks in return is the distance you must apply that force through. This section defines the mechanical advantage of a machine as the ratio of its output force to its input force, works that ratio out for a lever from the balance of torques about its fulcrum, and then reads the same ratio off a wheelbarrow, a shovel, an inclined plane, a crank, a car axle and a system of pulleys.",
+ "objectives": [
+  "Describe different simple machines.",
+  "Calculate the mechanical advantage."
+ ],
+ "summary_html": "<ul><li>Simple machines are devices that can be used to multiply or augment a force that we apply – often at the expense of a distance through which we have to apply the force.</li><li>The ratio of output to input forces for any simple machine is called its mechanical advantage</li><li>A few simple machines are the lever, nail puller, wheelbarrow, crank, etc.</li></ul>",
+ "notes": "Problems 2, 4 and 6 have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4 and 6, which ask for the fulcrum of a lever under a mower, the mechanical advantage of a car axle and the tension in a two-cable pulley, have no keyed answer and are left out. The four conceptual questions and the second AP item have no key either and carry an AI-marked suggested approach, while the first AP item is keyed and its open answer is the book’s own. That second AP item opens “Figure 9.24(a) shows a wheelbarrow”, which is the number the AP Physics edition gives the wheelbarrow; in this edition Figure 9.24 is the combinations of pulleys and the wheelbarrow is Figure 9.22, so the item is set with 9.22 and lands on the figure it is about. Two problems point at another problem rather than repeating it: problem 5 names the nail puller of problem 1, which is kept, and problem 7 repeats problem 6, which is left out, so problem 6’s own words are quoted inside problem 7 and nothing is lost. Nothing is held for a later section and nothing is taken from another section: every item the module prints tests what this section introduces.",
+ "figures": [
+  {
+   "id": "sim-nail-puller",
+   "kind": "sim",
+   "number": "9.21",
+   "originals": [
+    "/media/ch09/Figure_10_05_01-8f17.jpg"
+   ],
+   "original_caption": "A nail puller is a lever with a large mechanical advantage. The external forces on the nail puller are represented by solid arrows. The force that the nail puller applies to the nail (F_o) is not a force on the nail puller. The reaction force the nail exerts back on the puller (F_n) is an external force and is equal and opposite to F_o. The perpendicular lever arms of the input and output forces are l_i and l_o.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ]
+  },
+  {
+   "id": "sim-wheelbarrow",
+   "kind": "sim",
+   "number": "9.22",
+   "originals": [
+    "/media/ch09/Figure_10_05_02a.jpg"
+   ],
+   "original_caption": "(a) In the case of the wheelbarrow, the output force or load is between the pivot and the input force. The pivot is the wheel’s axle. Here, the output force is greater than the input force. Thus, a wheelbarrow enables you to lift much heavier loads than you could with your body alone. (b) In the case of the shovel, the input force is between the pivot and the load, but the input lever arm is shorter than the output lever arm. The pivot is at the handle held by the right hand. Here, the output force (supporting the shovel’s load) is less than the input force (from the hand nearest the load), because the input is exerted closer to the pivot than is the output.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "force",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-incline",
+   "kind": "sim",
+   "draws": [
+    "force"
+   ]
+  },
+  {
+   "id": "sim-crank",
+   "kind": "sim",
+   "number": "9.23",
+   "originals": [
+    "/media/ch09/Figure_10_05_03.jpg"
+   ],
+   "original_caption": "(a) A crank is a type of lever that can be rotated 360º about its pivot. Cranks are usually designed to have a large MA. (b) A simplified automobile axle drives a wheel, which has a much larger diameter than the axle. The MA is less than 1. (c) An ordinary pulley is used to lift a heavy load. The pulley changes the direction of the force T exerted by the cord without changing its magnitude. Hence, this machine has an MA of 1.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-pulleys",
+   "kind": "sim",
+   "number": "9.24",
+   "originals": [
+    "/media/ch09/Figure_10_05_04a.jpg"
+   ],
+   "original_caption": "(a) The combination of pulleys is used to multiply force. The force is an integral multiple of tension if the pulleys are frictionless. This pulley system has two cables attached to its load, thus applying a force of approximately 2T. This machine has MA ≈ 2. (b) Three pulleys are used to lift a load in such a way that the mechanical advantage is about 3. Effectively, there are three cables attached to the load. (c) This pulley system applies a force of 4T, so that it has MA ≈ 4. Effectively, four cables are pulling on the system of interest.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "force"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "machines",
+   "concept": "simple-machine",
+   "verb": "introduces"
+  },
+  {
+   "span": "machines",
+   "concept": "mechanical-advantage",
+   "verb": "introduces"
+  },
+  {
+   "span": "machines",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "machines",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "lever",
+   "verb": "introduces"
+  },
+  {
+   "span": "lever",
+   "concept": "lever-mechanical-advantage",
+   "verb": "introduces"
+  },
+  {
+   "span": "lever",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "perpendicular-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "mechanical-advantage",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "lever",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "lever-mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "simple-machine",
+   "verb": "reinforces"
+  },
+  {
+   "span": "incline",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "crank",
+   "concept": "crank-and-wheel",
+   "verb": "introduces"
+  },
+  {
+   "span": "crank",
+   "concept": "lever",
+   "verb": "reinforces"
+  },
+  {
+   "span": "crank",
+   "concept": "mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "pulleys",
+   "concept": "pulley-mechanical-advantage",
+   "verb": "introduces"
+  },
+  {
+   "span": "pulleys",
+   "concept": "mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "pulleys",
+   "concept": "tension",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2581856",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "Scissors are like a double-lever system. Which of the simple machines in Figure 9.21 and Figure 9.22 is most analogous to scissors?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each blade of a pair of scissors is a lever whose fulcrum is the screw that joins the two blades, and the fulcrum sits between the hand that pushes on the handle and the place along the blade where the cutting is done. That is the arrangement of the nail puller in Figure 9.21, where the input force and the output force are on opposite sides of the pivot, and not the arrangement of the wheelbarrow or the shovel in Figure 9.22, where both forces are on the same side of it. Scissors are therefore two nail pullers working against each other, one for each blade, and the closer to the screw the material is held, the shorter the output lever arm and the greater the force the blades bring to bear."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2597028",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "Suppose you pull a nail at a constant rate using a nail puller as shown in Figure 9.21. Is the nail puller in equilibrium? What if you pull the nail with some acceleration – is the nail puller in equilibrium then? In which case is the force applied to the nail puller larger and why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At a constant rate the nail puller is in equilibrium. Its velocity is not changing, so the net external force on it is zero, and it is not gaining any rotation, so the net torque on it is zero as well; this is the dynamic equilibrium of the first section of the chapter, and the torque of the input force is exactly the torque of the reaction force the nail exerts back on the puller. If the nail is pulled with some acceleration the puller is not in equilibrium, because the second condition no longer holds: the torque of the input force must be greater than the torque of the nail’s reaction for the rotation about the pivot to speed up. The applied force is therefore larger in the accelerating case, since its lever arm has not changed and only a larger force can make the larger torque."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2730066",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheelbarrow",
+   "prompt": "Explain the mechanical advantage of a wheelbarrow and how it explains why moving a heavy load is easier with a wheelbarrow.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A wheelbarrow is a lever pivoted at the wheel’s axle. The weight of the barrow and its load acts down at the center of gravity, which is close to the axle, and your hands lift at the ends of the handles, which are far from it. The two torques about the axle must be equal while the barrow is held up, so the lift you supply is the weight reduced in the ratio of the two lever arms, and the mechanical advantage is that ratio, the long hand arm divided by the short load arm. In the worked example it is 13.6, so a load weighing 441 N is held up with 32.4 N. The rest of the weight is carried by the wheel and not by you, and that is why a heavy load you could not lift with your body alone moves easily in a wheelbarrow. A longer pair of handles, or a load set closer to the wheel, makes the advantage larger still."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1428982",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pulleys",
+   "prompt": "How does a pulley enable a person to lift a load as heavy as a piano with little effort?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A single fixed pulley does not help with the size of the force at all; it only turns the direction of the pull, so its mechanical advantage is one. What helps is a combination of pulleys arranged so that several cables run down to the block the piano hangs from. The tension is very nearly the same everywhere along a friction-free cord, so each of those cables pulls up on the load with that same tension, and the load is held by about the number of cables times the tension. With four cables the person supplies about a quarter of the piano’s weight. Nothing is had for nothing: the free end of the cord has to be drawn in about four times as far as the piano rises, so the work done is the same as it would have been lifting the piano directly."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2166007",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "As a young student, you likely learned that simple machines are capable of increasing the ability to lift and move objects. Now, as an educated AP Physics student, you are aware that this capability is governed by the relationship between force and torque. In the space below, explain why torque is integral to the increase in force created by a simple machine. You may use an example or diagram to assist in your explanation. Be sure to cite the mechanical advantage in your explanation as well.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The student should mention that the guiding principle behind simple machines is the second condition of equilibrium. Though the torque leaving a machine must be equivalent to torque entering a machine, the same requirement does not exist for forces. As a result, by decreasing the lever arm to the existing force, the size of the existing force will be increased. The mechanical advantage will be equivalent to the ratio of the forces exiting and entering the machine."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1777151",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheelbarrow",
+   "prompt": "Figure 9.22(a) shows a wheelbarrow being lifted by an applied force $\\mathbf{F}_{\\text{i}}$. If the wheelbarrow is filled with twenty bricks massing 3 kg each, estimate the value of the applied force $\\mathbf{F}_{\\text{i}}$. Provide an explanation behind the total weight $\\boldsymbol{w}$ and any reasoning toward your final answer. Additionally, provide a range of values over which you feel the force could exist.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Begin with the total weight. Twenty bricks of 3 kg each come to 60 kg, and the barrow itself is not weightless; a garden wheelbarrow is perhaps 10 to 20 kg, so the combined mass is something like 70 to 80 kg and the total weight is $\\boldsymbol{w} = mg$, roughly 690 to 780 N. Then use the mechanical advantage. Figure 9.22(a) puts the center of gravity of the load a short distance from the wheel’s axle and the hands a long distance from it, and the worked example of this section measures those two lever arms as 7.50 cm and 1.02 m, a mechanical advantage of 13.6. Dividing the weight by that advantage gives an applied force of about 50 to 60 N. A reasonable range is 40 N to 90 N, since the mass of the barrow itself, and how far forward the bricks are stacked, are both estimates, and stacking the bricks farther back lengthens the load’s lever arm and raises the force you must supply."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3038577",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "What is the mechanical advantage of a nail puller—similar to the one shown in Figure 9.21—where you exert a force $45\\ \\text{cm}$ from the pivot and the nail is $1.8\\ \\text{cm}$ on the other side? What minimum force must you exert to apply a force of $1250\\ \\text{N}$ to the nail?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "MA",
+      "value": 25,
+      "unit": "",
+      "hint": "The mechanical advantage of a lever is the ratio of the two perpendicular lever arms, $\\text{MA} = \\kli/\\klo$."
+     },
+     {
+      "part": "$\\kFi$",
+      "value": 50,
+      "unit": "N",
+      "hint": "The mechanical advantage is also $\\kFo/\\kFi$, so the input force is the output force divided by it."
+     }
+    ],
+    "solution": "$\\text{MA} = 25$, and the minimum input force is $50\\ \\text{N}$."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3530769",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheelbarrow",
+   "prompt": "(a) What is the mechanical advantage of a wheelbarrow, such as the one in Figure 9.22, if the center of gravity of the wheelbarrow and its load has a perpendicular lever arm of 5.50 cm, while the hands have a perpendicular lever arm of 1.02 m? (b) What upward force should you exert to support the wheelbarrow and its load if their combined mass is 55.0 kg? (c) What force does the wheel exert on the ground?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 18.5,
+      "unit": "",
+      "hint": "The mechanical advantage of this lever is the hands’ lever arm divided by the load’s, $\\kli/\\klo$."
+     },
+     {
+      "part": "(b)",
+      "value": 29.1,
+      "unit": "N",
+      "hint": "The weight of the barrow and its load is $\\kwgt = mg$, and the lift is that weight divided by the mechanical advantage."
+     },
+     {
+      "part": "(c)",
+      "value": 510,
+      "unit": "N",
+      "hint": "The first condition for equilibrium gives $\\kFi + \\kN = \\kwgt$, and by Newton’s third law the wheel presses on the ground with the same force, directed downward."
+     }
+    ],
+    "solution": "(a) $\\text{MA} = 18.5$ (b) $\\kFi = 29.1\\ \\text{N}$ (c) 510 N downward."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2552465",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "What force does the nail puller in the first problem of this set exert on the supporting surface? The nail puller has a mass of 2.10 kg.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1300,
+    "unit": "N",
+    "hint": "The puller is in equilibrium, so the normal force at the pivot balances everything pressing down on it: the input force, the reaction force of the nail and the weight of the puller itself.",
+    "solution": "$1.3\\times 10^{3}\\ \\text{N}$."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2696021",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pulleys",
+   "prompt": "Repeat the previous problem — “If you used an ideal pulley of the type shown in Figure 9.24(a) to support a car engine of mass 115 kg, (a) What would be the tension in the rope? (b) What force must the ceiling supply, assuming you pull straight down on the rope?” — for the pulley shown in Figure 9.24(c), assuming you pull straight up on the rope. The pulley system’s mass is 7.00 kg.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 299,
+      "unit": "N",
+      "hint": "Four cables pull up on the load in Figure 9.24(c), so $\\kFo \\approx 4\\kTf$, and the load here is the engine together with the pulley system."
+     },
+     {
+      "part": "(b)",
+      "value": 897,
+      "unit": "N",
+      "hint": "Count the cables that run to the ceiling rather than the ones that run to the load, and remember that you are pulling straight up on the free end."
+     }
+    ],
+    "solution": "(a) $\\kTf = 299\\ \\text{N}$ (b) 897 N upward."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "lever"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "simple-machine",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "lever"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "lever-mechanical-advantage"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "lever",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pulley-mechanical-advantage"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "simple-machine",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "lever",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "second-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "lever-mechanical-advantage"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "lever-mechanical-advantage"
+  },
+  {
+   "exercise": "p1",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "p1",
+   "concept": "lever",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "lever-mechanical-advantage"
+  },
+  {
+   "exercise": "p3",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "p3",
+   "concept": "lever",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "lever"
+  },
+  {
+   "exercise": "p5",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "mechanical-advantage",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "pulley-mechanical-advantage"
+  },
+  {
+   "exercise": "p7",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  }
+ ]
+}

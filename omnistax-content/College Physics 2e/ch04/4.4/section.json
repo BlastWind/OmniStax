@@ -1,0 +1,696 @@
+{
+ "id": "4.4",
+ "module": "m42074",
+ "chapter": "4",
+ "title": "Newton’s Third Law of Motion: Symmetry in Forces",
+ "short": "Newton’s third law",
+ "lead": "Every force is one half of a pair: whenever one body pushes on another, the second body pushes back just as hard in the opposite direction. This section states Newton’s third law, shows why the two forces of such a pair do not cancel each other, since they act on different bodies, and uses that to choose the system of interest in a problem, so that the forces inside the system drop out and only the external ones are left to accelerate it.",
+ "objectives": [
+  "Understand Newton’s third law of motion.",
+  "Apply Newton’s third law to define systems and solve problems of motion."
+ ],
+ "summary_html": "<ul><li>Newton’s third law of motion represents a basic symmetry in nature. It states: Whenever one body exerts a force on a second body, the first body experiences a force that is equal in magnitude and opposite in direction to the force that the first body exerts.</li><li>A thrust is a reaction force that pushes a body forward in response to a backward force. Rockets, airplanes, and cars are pushed forward by a thrust reaction force.</li></ul>",
+ "notes": "The PhET simulation note Gravity Force Lab is left out, and problem 2, on the two rugby players, has no answer in the book’s key and is left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key: it keys six of the eleven AP items and the first of the two problems. Problem 2, in which the rugby player’s friction force and the winning player’s push are asked for, has no keyed answer and is left out. The five unkeyed AP items (the ball and the gym ceiling, why skater A does not move, the object on the icy surface, the flight attendant’s cart and the two water-skiers) are kept as open items with their options as the book prints them and an AI-written suggested approach, marked as such, rather than as graded choice items; the six conceptual questions, which the book does not key either, are kept the same way. The conceptual question asking the reader to describe a situation in which one system exerts a force on another is a short Understand check on the law itself, so it is set inline after the statement of the law; everything else is in the problem set. The parachutist, the two water-skiers and the figure skaters are second-law arithmetic set in a third-law situation, and each of them names the pair of bodies before it divides, so all three stay with this section. Nothing is held for a later section and nothing is taken from another: 4.5’s items on the child with the wagon and on the tug of war also name pairs of forces, but each is stated in terms of the tension, the normal force and the friction that 4.5 introduces, so they stay there. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-swimmer",
+   "kind": "sim",
+   "number": "4.9",
+   "originals": [
+    "/media/ch04/Figure_04_04_01.jpg"
+   ],
+   "original_caption": "When the swimmer exerts a force F_feet on wall on the wall, she accelerates in the direction opposite to that of her push. This means the net external force on her is in the direction opposite to F_feet on wall. This opposition occurs because, in accordance with Newton’s third law of motion, the wall exerts a force F_wall on feet on her, equal in magnitude but in the direction opposite to the one she exerts on it. The line around the swimmer indicates the system of interest. Note that F_feet on wall does not act on this system (the swimmer) and, thus, does not cancel F_wall on feet. Thus the free-body diagram shows only F_wall on feet, w, the gravitational force, and BF, the buoyant force of the water supporting the swimmer’s weight. The vertical forces w and BF cancel since there is no vertical motion.",
+   "widths": [
+    600
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-rocket",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-cart",
+   "kind": "sim",
+   "number": "4.10",
+   "originals": [
+    "/media/ch04/Figure_04_04_02.jpg"
+   ],
+   "original_caption": "A professor pushes a cart of demonstration equipment. The lengths of the arrows are proportional to the magnitudes of the forces (except for f, since it is too small to draw to scale). Different questions are asked in each example; thus, the system of interest must be defined differently for each. System 1 is appropriate for this example, since it asks for the acceleration of the entire group of objects. Only F_floor and f are external forces acting on System 1 along the line of motion. All other forces either cancel or act on the outside world. System 2 is chosen for Example 4.4 so that F_prof will be an external force and enter into Newton’s second law. Note that the free-body diagrams, which allow us to apply Newton’s second law, vary with the system chosen.",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "third-law",
+   "concept": "newtons-third-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "third-law",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "third-law",
+   "concept": "external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "different-systems",
+   "concept": "action-reaction-pairs",
+   "verb": "introduces"
+  },
+  {
+   "span": "different-systems",
+   "concept": "newtons-third-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "different-systems",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "different-systems",
+   "concept": "external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "different-systems",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "different-systems",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "thrust",
+   "concept": "thrust",
+   "verb": "introduces"
+  },
+  {
+   "span": "thrust",
+   "concept": "newtons-third-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thrust",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "internal-forces-cancel",
+   "verb": "introduces"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "action-reaction-pairs",
+   "verb": "reinforces"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "mass",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1572333",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "When you take off in a jet aircraft, there is a sensation of being pushed back into the seat. Explain why you move backward in the seat—is there really a force backward on you? (The same reasoning explains whiplash injuries, in which the head is apparently thrown backward.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "There is no force pushing you backward. When the aircraft accelerates forward, your body tends to keep the speed it already had, as Newton’s first law says it will, and the seat has to push you forward to carry you along with the aircraft. What you feel is that forward push of the seat on your back, and because the seat is overtaking you, you settle into it. By Newton’s third law your back pushes just as hard backward on the seat, but that force acts on the seat and not on you, so it cannot push you anywhere. Whiplash is the same thing: the seat accelerates the torso forward while the head, with nothing pushing it, stays behind until the neck pulls it along."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1595226",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "A device used since the 1940s to measure the kick or recoil of the body due to heart beats is the “ballistocardiograph.” What physics principle(s) are involved here to measure the force of cardiac contraction? How might we construct such a device?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Newton’s third law and Newton’s second law are both at work. Each time the heart contracts it pushes blood forward through the aorta, and by Newton’s third law the blood pushes back on the heart, and so on the rest of the body, with a force equal in magnitude and opposite in direction. The body therefore recoils a little with every beat. To measure that recoil you would lay the person on a light platform that is free to move along its length with as little friction as possible, and record how the platform moves. The acceleration of the platform, multiplied by the mass of the platform and the person on it, gives the force of the contraction from $\\kFnet = m\\ka$."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2846557",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "third-law"
+   },
+   "cite": "third-law",
+   "prompt": "Describe a situation in which one system exerts a force on another and, as a consequence, experiences a force that is equal in magnitude and opposite in direction. Which of Newton’s laws of motion apply?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Any push or pull will serve, so long as you name both bodies. A person stepping off a small boat onto a dock pushes backward on the boat, and the boat pushes forward on the person: the person steps onto the dock and the boat slides away. A hammer driving a nail pushes down on the nail, and the nail pushes up on the hammer, which is what brings the hammer to rest. Newton’s third law is the law that says the two forces are equal in magnitude and opposite in direction. Newton’s second law is what turns each of those forces into the acceleration of the body it acts on, and the two accelerations need not be the same, since the two bodies need not have the same mass."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2661705",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thrust",
+   "prompt": "Why does an ordinary rifle recoil (kick backward) when fired? The barrel of a recoilless rifle is open at both ends. Describe how Newton’s third law applies when one is fired. Can you safely stand close behind one when it is fired?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An ordinary rifle exerts a large forward force on the bullet and on the gases behind it, and by Newton’s third law the bullet and the gases exert an equal backward force on the rifle. That backward force is the recoil. The rifle is far more massive than the bullet, so the same force gives it a much smaller acceleration, but it is not zero. A recoilless rifle is open at the back, so as much gas is thrown backward out of the open end as is thrown forward with the shell. The forward thrust the one stream gives the rifle is balanced by the backward thrust the other gives it, and the rifle hardly moves. You should not stand close behind one when it is fired: the gas that leaves the open end carries that backward thrust and is expelled at high speed."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2423524",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "different-systems",
+   "prompt": "An American football lineman reasons that it is senseless to try to out-push the opposing player, since no matter how hard he pushes he will experience an equal and opposite force from the other player. Use Newton’s laws and draw a free-body diagram of an appropriate system to explain how he can still out-push the opposition if he is strong enough.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The two forces of the pair between the linemen are always equal in magnitude and opposite in direction, but they act on different bodies, so they never cancel each other. Take the lineman himself as the system of interest. The forces on him are the backward push of the opposing player, the forward force the ground exerts on his cleats in reaction to the backward push of his feet, and his weight and the normal force, which cancel because he does not move vertically. His free-body diagram therefore carries two horizontal arrows, and Newton’s second law says he accelerates forward whenever the forward force from the ground is the larger of the two. He out-pushes the opposition by pushing harder on the ground, not by defeating the force the other player exerts on him."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2355576",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "Newton’s third law of motion tells us that forces always occur in pairs of equal and opposite magnitude. Explain how the choice of the “system of interest” affects whether one such pair of forces cancels.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A pair cancels only when both of its forces act on the system of interest. If the system is the cart alone, the force the professor exerts on the cart is an external force on it and accelerates it, while the force the cart exerts back on her acts on a body outside the system and does nothing to it. If the system is the professor and the cart taken together, both forces of that pair are inside the system, they add to zero, and all that is left in the net external force is what comes from outside: the floor and the forces opposing the motion. The pair itself has not changed. What changed is where the boundary of the system was drawn."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1642858",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "What object or objects commonly exert forces on the following objects in motion? (a) a soccer ball being kicked, (b) a dolphin jumping, (c) a parachutist drifting to Earth.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) A soccer player, gravity, air, and friction commonly exert forces on a soccer ball being kicked. (b) Gravity and the surrounding water commonly exert forces on a dolphin jumping. (The dolphin moves its muscles to exert a force on the water. The water exerts an equal force on the dolphin, resulting in the dolphin’s motion.) (c) Gravity and air exert forces on a parachutist drifting to Earth."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1681743",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "A ball with a mass of 0.25 kg hits a gym ceiling with a force of 78.0 N. What is the net force on the ball?<ol type=\"a\"><li>2.50 N downward</li><li>75.5 N downward</li><li>78.0 N downward</li><li>80.5 N downward</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The ball pushes on the ceiling with 78.0 N, so by Newton’s third law the ceiling pushes back on the ball with 78.0 N, directed downward, away from the ceiling. That is not the only force on the ball. Its weight also acts, and it acts downward as well: $\\kwgt = m\\kg = (0.25\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 2.45\\ \\text{N}$. The two forces point the same way and so they add, and the net force on the ball is $78.0\\ \\text{N} + 2.45\\ \\text{N} = 80.45\\ \\text{N}$ downward, which is the last of the four values offered."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1900456",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "Which of the following is true?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Earth exerts a force due to gravity on your body, and your body exerts a smaller force on the Earth, because your mass is smaller than the mass of the Earth.",
+     "The Moon orbits the Earth because the Earth exerts a force on the Moon and the Moon exerts a force equal in magnitude and direction on the Earth.",
+     "A rocket taking off exerts a force on the Earth equal to the force the Earth exerts on the rocket.",
+     "An airplane cruising at a constant speed is not affected by gravity."
+    ],
+    "correct": 2,
+    "hint": "The two forces of a third-law pair are always equal in magnitude and opposite in direction, whatever the two masses are.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1683591",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "different-systems",
+   "prompt": "Stationary skater A pushes stationary skater B, who then accelerates at 5.0 m/s$^2$. Skater A does not move. Since forces act in action-reaction pairs, explain why Skater A did not move?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The force A exerts on B and the force B exerts back on A are equal in magnitude and opposite in direction, so A is pushed backward just as hard as B is pushed forward. Whether a body moves, though, depends on the net external force on that body and not on one force of a pair. The push of B on A is only one of the forces on A: she is braced, her skates dig into the ice, and the ice pushes forward on her with a force of the same size. The forces on her add to zero, so her acceleration is zero and she stays where she is. Nothing balances the push B receives, so his net external force gives him the acceleration of 5.0 m/s$^2$. The two forces of the pair are equal; the accelerations of the two skaters do not have to be."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1870798",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "different-systems",
+   "prompt": "The current in a river exerts a force of 9.0 N on a balloon floating in the river. A wind exerts a force of 13.0 N on the balloon in the opposite direction. Draw a free-body diagram to show the forces acting on the balloon. Use your free-body diagram to predict the effect on the balloon.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<figure class=\"photo\"><img src=\"/media/ch04/Figure_04_04_03.jpg\" alt=\"A free-body diagram illustrating four forces acting on a central point. Fw (13.0 N) points left, Fc (9.0 N) points right, Fb points upward, and Fg points downward.\"></figure>The diagram consists of a black dot in the center and two small red arrows pointing up (F_b) and down (F_g) and two long red arrows pointing right (F_c = 9.0 N) and left (F_w = 13.0 N). In the diagram, $F_g$ represents the force due to gravity on the balloon, and $F_b$ represents the buoyant force. These two forces are equal in magnitude and opposite in direction. $F_c$ represents the force of the current. $F_w$ represents the force of the wind. The net force on the balloon will be $F_w - F_c = 4.0$ N and the balloon will accelerate in the direction the wind is blowing."
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id946101",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "A force is applied to accelerate an object on a smooth icy surface. When the force stops, which of the following will be true? (Assume zero friction.)<ol type=\"a\"><li>The object’s acceleration becomes zero.</li><li>The object’s speed becomes zero.</li><li>The object’s acceleration continues to increase at a constant rate.</li><li>The object accelerates, but in the opposite direction.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Newton’s second law says the acceleration of the object is the net external force on it divided by its mass. While the applied force acts, the object accelerates. When the force stops and there is no friction, no horizontal force is left on the object, the net external force is zero, and so the acceleration becomes zero. The object does not stop: with nothing to change its velocity it goes on at the speed it had when the force was removed, which is what Newton’s first law says of a body with no net external force on it. The first of the four statements is the one that holds."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1651805",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "A parachutist’s fall to Earth is determined by two opposing forces. A gravitational force of 539 N acts on the parachutist. After 2 s, she opens her parachute and experiences an air resistance of 615 N. At what speed is the parachutist falling after 10 s?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.4,
+    "unit": "m/s",
+    "hint": "Find her mass from the gravitational force on her, then take the first 2 s and the last 8 s as two stretches of constant acceleration, each with its own net external force.",
+    "solution": "Since $m = \\kF/\\ka$, the parachutist has a mass of $539\\ \\text{N} / 9.8\\ \\text{m/s}^2 = 55\\ \\text{kg}$. For the first 2 s, the parachutist accelerates at 9.8 m/s$^2$, so $\\kv = \\ka\\kt = (9.8\\ \\text{m/s}^2)(2\\ \\text{s}) = 19.6\\ \\text{m/s}$. Her speed after 2 s is 19.6 m/s. From 2 s to 10 s, the net force on the parachutist is 539 N – 615 N, or 76 N upward, so $\\ka = \\kF/m = -76\\ \\text{N} / 55\\ \\text{kg} = -1.4\\ \\text{m/s}^2$. Since $\\kv = \\kvo + \\ka\\kt$, $\\kv = 19.6\\ \\text{m/s} + (-1.4\\ \\text{m/s}^2)(8\\ \\text{s}) = 8.4\\ \\text{m/s}$. At 10 s, the parachutist is falling to Earth at 8.4 m/s."
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1437308",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "A flight attendant pushes a cart down the aisle of a plane in flight. In determining the acceleration of the cart relative to the plane, which factor do you not need to consider?<ol type=\"a\"><li>The friction of the cart’s wheels.</li><li>The force with which the flight attendant’s feet push on the floor.</li><li>The velocity of the plane.</li><li>The mass of the items in the cart.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The acceleration of the cart relative to the plane follows from the net external force on the system of interest and its mass. The force the attendant’s feet exert on the floor matters, since the floor pushes her forward in reaction to it; the friction of the cart’s wheels matters, since it opposes the motion; and the mass of the items in the cart matters, since it is part of the mass being accelerated. The velocity of the plane is not one of these. A plane flying at a constant velocity is a frame in which Newton’s laws hold just as they do on the ground, and a constant velocity changes neither a force nor an acceleration. The velocity of the plane is the factor you do not need."
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id1045665",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "A landscaper is easing a wheelbarrow full of soil down a hill. Define the system you would analyze and list all the forces that you would need to include to calculate the acceleration of the wheelbarrow.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The system includes the gardener and the wheelbarrow with its contents. The following forces are important to include: the weight of the wheelbarrow, the weight of the gardener, the normal force for the wheelbarrow and the gardener, the force of the gardener pushing against the ground and the equal force of the ground pushing back against the gardener, and any friction in the wheelbarrow’s wheels."
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1461301",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "Two water-skiers, with masses of 48 kg and 61 kg, are preparing to be towed behind the same boat. When the boat accelerates, the rope the skiers hold onto accelerates with it and exerts a net force of 290 N on the skiers. At what rate will the skiers accelerate?<ol type=\"a\"><li>10.8 m/s$^2$</li><li>2.7 m/s$^2$</li><li>6.0 m/s$^2$ and 4.8 m/s$^2$</li><li>5.3 m/s$^2$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The two skiers are towed by the same rope behind the same boat, so they accelerate as a unit and the system of interest is the two of them taken together. Their combined mass is $48\\ \\text{kg} + 61\\ \\text{kg} = 109\\ \\text{kg}$, and the net external force on that system is the 290 N the rope exerts. Newton’s second law then gives $\\ka = \\kFnet/m = 290\\ \\text{N} / 109\\ \\text{kg} = 2.7\\ \\text{m/s}^2$, and both skiers have that same acceleration. The forces the skiers exert on each other through the rope are internal to this system and cancel, so they never enter the calculation. The second of the four values is the one this gives."
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id1433607",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "A figure skater has a mass of 40 kg and her partner’s mass is 50 kg. She pushes against the ice with a force of 120 N, causing her and her partner to move forward. Calculate the pair’s acceleration. Assume that all forces opposing the motion, such as friction and air resistance, total 5.0 N.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.28,
+    "unit": "m/s²",
+    "hint": "Take the two skaters together as the system of interest, so that the forces between them are internal and cancel.",
+    "solution": "The system undergoing acceleration is the two figure skaters together. Net force = $120\\ \\text{N} - 5.0\\ \\text{N} = 115\\ \\text{N}$. Total mass = $40\\ \\text{kg} + 50\\ \\text{kg} = 90\\ \\text{kg}$. Using Newton’s second law we have that $\\ka = \\kF/m = 115\\ \\text{N} / 90\\ \\text{kg} = 1.28\\ \\text{m/s}^2$. The pair accelerates forward at 1.28 m/s$^2$."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1740619",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "What net external force is exerted on a 1100-kg artillery shell fired from a battleship if the shell is accelerated at $2.40 \\times 10^{4}\\ \\text{m/s}^2$? What is the magnitude of the force exerted on the ship by the artillery shell?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the net external force on the shell",
+      "value": 26400000.0,
+      "unit": "N",
+      "hint": "Newton’s second law gives the net external force on the shell directly from its mass and its acceleration."
+     },
+     {
+      "part": "the magnitude of the force on the ship",
+      "value": 26400000.0,
+      "unit": "N",
+      "hint": "The shell and the ship are a third-law pair, so the two forces are equal in magnitude and opposite in direction."
+     }
+    ],
+    "solution": "Force on shell: $2.64 \\times 10^{7}\\ \\text{N}$. Force exerted on ship $= -2.64 \\times 10^{7}\\ \\text{N}$, by Newton’s third law."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "newtons-first-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "thrust"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "internal-forces-cancel"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "action-reaction-pairs",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "external-force"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "newtons-first-law"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "v-from-at",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "reference-frame",
+   "weight": 2
+  },
+  {
+   "exercise": "ap9",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "free-body-diagram",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "internal-forces-cancel"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "system-of-interest",
+   "weight": 2
+  },
+  {
+   "exercise": "ap11",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "internal-forces-cancel"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "system-of-interest",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "action-reaction-pairs",
+   "weight": 2
+  }
+ ]
+}

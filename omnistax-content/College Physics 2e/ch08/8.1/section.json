@@ -1,0 +1,424 @@
+{
+ "id": "8.1",
+ "module": "m42156",
+ "chapter": "8",
+ "title": "Linear Momentum and Force",
+ "short": "Linear momentum",
+ "lead": "Momentum is the product of a system’s mass and its velocity, and it is the quantity that says how hard a moving object is to stop. This section defines it, sets the momentum of a running football player against the momentum of a hard-thrown football, and then states Newton’s second law in the form he first gave it, as the net external force equal to the change in momentum divided by the time over which it changes, from which the familiar force equals mass times acceleration follows whenever the mass of the system is constant.",
+ "objectives": [
+  "Define linear momentum.",
+  "Explain the relationship between momentum and force.",
+  "State Newton’s second law of motion in terms of momentum.",
+  "Calculate momentum given mass and velocity."
+ ],
+ "summary_html": "<ul><li>Linear momentum (<em>momentum</em> for brevity) is defined as the product of a system’s mass multiplied by its velocity.</li><li>In symbols, linear momentum $\\kp$ is defined to be $$\\kp = m\\kv,$$ where <em>$m$</em> is the mass of the system and $\\kv$ is its velocity.</li><li>The SI unit for momentum is $\\text{kg}\\cdot\\text{m/s}$.</li><li>Newton’s second law of motion in terms of momentum states that the net external force equals the change in momentum of a system divided by the time over which it changes.</li><li>In symbols, Newton’s second law of motion is defined to be $$\\kFnet = \\frac{\\kdp}{\\kdt},$$ $\\kFnet$ is the net external force, $\\kdp$ is the change in momentum, and $\\kdt$ is the change time.</li></ul>",
+ "notes": "Problems 2, 4 and 6 have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key: it keys the first of the two AP items and problems 1, 3 and 5. Problems 2, 4 and 6, the large ship, the garbage truck and the linear momentum of the Earth, have no keyed answer and are left out. The unkeyed AP item, the baseball reversed by the bat, is kept as an open item with an AI-marked suggested approach that lays out the method rather than working the force out, and the four conceptual questions, none of which the book keys anywhere in this chapter, are kept the same way. The question on how a small force can impart the same momentum as a large force is set inline after Example 8.2, since that is the passage it tests. Nothing is held for a later section and nothing is taken from another one; section 8.5’s problem about the football player catching the ball uses the mass and the speed of this section’s example, but it needs an inelastic collision and so it stays with 8.5.",
+ "figures": [
+  {
+   "id": "sim-momentum",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "velocity"
+   ]
+  },
+  {
+   "id": "sim-force",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "velocity",
+    "force",
+    "time",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "momentum",
+   "concept": "linear-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "momentum",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "momentum",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "momentum",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating",
+   "concept": "calculate-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculating",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating",
+   "concept": "derived-units",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "newtons-second-law-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-law",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-mass",
+   "concept": "constant-mass-second-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-mass",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-mass",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-mass",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tennis",
+   "concept": "newtons-second-law-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tennis",
+   "concept": "constant-mass-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tennis",
+   "concept": "calculate-momentum",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1022532",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "A boy standing on a frictionless ice rink is initially at rest. He throws a snowball in the +<em>x</em>-direction, and it travels on a ballistic trajectory, hitting the ground some distance away. Which of the following is true about the boy while he is in the act of throwing the snowball?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "He feels an upward force to compensate for the downward trajectory of the snowball.",
+     "He feels a backward force exerted by the snowball he is throwing.",
+     "He feels no net force.",
+     "He feels a forward force, the same force that propels the snowball."
+    ],
+    "correct": 1,
+    "hint": "While he is throwing, the snowball’s momentum is changing, so the boy is exerting a force on it, and the snowball exerts a force of the same size back on him.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1049937",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tennis",
+   "prompt": "A 150-g baseball is initially moving 80 mi/h in the –<em>x</em>-direction. After colliding with a baseball bat for 20 ms, the baseball moves 80 mi/h in the +<em>x</em>-direction. What is the magnitude and direction of the average force exerted by the bat on the baseball?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The bat acts on the ball for a known length of time, so the form of the second law to reach for is $\\kFnet = \\kdp/\\kdt$, worked exactly as Example 8.2 works the tennis serve. Put everything into SI units first: 150 g is 0.150 kg, 20 ms is $20 \\times 10^{-3}\\ \\text{s}$, and 80 mi/h has to be turned into metres per second by the unit conversion of Physical Quantities and Units. The direction matters here in a way it did not in the tennis example, because the ball arrives moving one way and leaves moving the other. Take the $+x$-direction as positive; then the initial velocity is negative and the final velocity is positive, so $\\kdv = \\kvf - \\kvi$ is twice the speed rather than the speed itself, which is the step this question is really testing. Multiply that change in velocity by the mass to get $\\kdp$, divide by the contact time to get the average force, and read the direction off the sign of the result, which is the direction the bat sends the ball."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1522179",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "momentum",
+   "prompt": "An object that has a small mass and an object that has a large mass have the same momentum. Which object has the largest kinetic energy?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write both quantities for one object: its momentum is $\\kp = m\\kv$ and its kinetic energy is $\\kKE = \\tfrac{1}{2}m\\kv^2$. If the two objects have the same momentum, the smaller mass must be moving faster, and faster by exactly the factor by which its mass is smaller. The kinetic energy carries the speed squared, so that gain in speed counts twice over while the loss in mass counts only once, and the object with the small mass has the larger kinetic energy. The same thing can be seen by writing the kinetic energy in terms of the momentum, $\\kKE = \\kp^2/2m$: with $\\kp$ the same for both objects, the kinetic energy is inversely proportional to the mass."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1522190",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "momentum",
+   "prompt": "An object that has a small mass and an object that has a large mass have the same kinetic energy. Which mass has the largest momentum?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write the two quantities again, $\\kKE = \\tfrac{1}{2}m\\kv^2$ and $\\kp = m\\kv$. If the two objects have the same kinetic energy, the smaller mass must be moving faster, but only by the square root of the factor by which its mass is smaller, since the speed enters the kinetic energy squared. The momentum has only one factor of the speed in it, so that extra speed does not make up for the missing mass, and the object with the large mass has the larger momentum. Writing the momentum in terms of the kinetic energy, $\\kp = \\sqrt{2m\\kKE}$, says the same thing: with the kinetic energy the same for both, the momentum grows with the square root of the mass."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1522201",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "tag": "Professional Application",
+   "prompt": "Football coaches advise players to block, hit, and tackle with their feet on the ground rather than by leaping through the air. Using the concepts of momentum, work, and energy, explain how a football player can be more effective with his feet on the ground.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With his feet on the ground the player can push against the Earth, and the Earth pushes back on him with a force of the same size. That force is external to him, and by $\\kFnet = \\kdp/\\kdt$ a force acting over a time is exactly what changes momentum, so for as long as he keeps his footing he can go on adding to his own momentum and can stand against the momentum the other player brings. His legs are also doing work on him while he is in contact with the ground, so his kinetic energy can keep growing through the block. A player who has leapt into the air has nothing to push against. The only external force on him is then his weight, which is vertical, so his momentum in the direction he is travelling cannot change at all, and the momentum and the kinetic energy he left the ground with are all he will have when he arrives."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1522215",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "tennis"
+   },
+   "cite": "tennis",
+   "prompt": "How can a small force impart the same momentum to an object as a large force?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The change in momentum is the net external force multiplied by the time over which it acts, since $\\kFnet = \\kdp/\\kdt$ can be rearranged to read $\\kdp = \\kFnet\\kdt$. Two forces of very different sizes therefore bring about the same change in momentum as long as the smaller one acts for the longer time, in inverse proportion: a force one tenth as large gives the same change in momentum if it acts for ten times as long. The racquet of Example 8.2 holds the tennis ball for only 5.0 ms and so needs 661 N to give it 3.3 kg·m/s, whereas a steady push of 6.61 N acting for half a second would give the same ball the same momentum. It is the same reason a ball caught with the hands drawn back is gentler on the hands than a ball caught with the hands held rigid."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1522230",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "prompt": "(a) Calculate the momentum of a 2000-kg elephant charging a hunter at a speed of $7.50\\ \\text{m/s}$. (b) Compare the elephant’s momentum with the momentum of a 0.0400-kg tranquilizer dart fired at a speed of $600\\ \\text{m/s}$. (c) What is the momentum of the 90.0-kg hunter running at $7.40\\ \\text{m/s}$ after missing the elephant?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 15000,
+      "unit": "kg·m/s",
+      "hint": "The momentum is the mass multiplied by the speed, $\\kp = m\\kv$."
+     },
+     {
+      "part": "(b) the ratio of the elephant’s momentum to the dart’s",
+      "value": 625,
+      "unit": "",
+      "hint": "Work out the dart’s momentum the same way and divide the elephant’s by it."
+     },
+     {
+      "part": "(c)",
+      "value": 666,
+      "unit": "kg·m/s",
+      "hint": "The hunter is another mass moving at another speed, so the same definition applies."
+     }
+    ],
+    "solution": "(a) $1.50 \\times 10^{4}\\ \\text{kg}\\cdot\\text{m/s}$ (b) 625 to 1 (c) $6.66 \\times 10^{2}\\ \\text{kg}\\cdot\\text{m/s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1493544",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "prompt": "(a) At what speed would a $2.00 \\times 10^{4}\\text{-kg}$ airplane have to fly to have a momentum of $1.60 \\times 10^{9}\\ \\text{kg}\\cdot\\text{m/s}$ (the same as the ship’s momentum in the problem above)? (b) What is the plane’s momentum when it is taking off at a speed of $60.0\\ \\text{m/s}$? (c) If the ship is an aircraft carrier that launches these airplanes with a catapult, discuss the implications of your answer to (b) as it relates to recoil effects of the catapult on the ship.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 80000,
+      "unit": "m/s",
+      "hint": "Rearrange $\\kp = m\\kv$ for the speed, $\\kv = \\kp/m$."
+     },
+     {
+      "part": "(b)",
+      "value": 1200000,
+      "unit": "kg·m/s",
+      "hint": "Multiply the plane’s mass by its take-off speed."
+     }
+    ],
+    "solution": "(a) $8.00 \\times 10^{4}\\ \\text{m/s}$ (b) $1.20 \\times 10^{6}\\ \\text{kg}\\cdot\\text{m/s}$ (c) Because the momentum of the airplane is 3 orders of magnitude smaller than of the ship, the ship will not recoil very much. The recoil would be $-0.0100\\ \\text{m/s}$, which is probably not noticeable."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1493884",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "A runaway train car that has a mass of 15,000 kg travels at a speed of $5.4\\ \\text{m/s}$ down a track. Compute the time required for a force of 1500 N to bring the car to rest.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 54,
+    "unit": "s",
+    "hint": "The car is brought to rest, so the change in momentum is the whole of the momentum it started with. Rearrange $\\kFnet = \\kdp/\\kdt$ for the time.",
+    "solution": "54 s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "linear-momentum",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "calculate-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "constant-mass-second-law",
+   "weight": 1
+  },
+  {
+   "exercise": "cq1",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "linear-momentum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-momentum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "linear-momentum"
+  },
+  {
+   "exercise": "p5",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-momentum",
+   "weight": 2
+  }
+ ]
+}

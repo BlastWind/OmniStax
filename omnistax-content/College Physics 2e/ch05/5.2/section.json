@@ -1,0 +1,448 @@
+{
+ "id": "5.2",
+ "module": "m42080",
+ "chapter": "5",
+ "title": "Drag Forces",
+ "short": "Drag forces",
+ "lead": "A body moving through a fluid is pushed back on by the fluid, and unlike simple friction that push depends on how fast the body is going. This section gives the drag force its equation, follows the drag coefficient that carries the shape of the body, and watches a falling body speed up until the drag has grown equal to its weight and the speed stops changing. It ends with Stokes' law, the drag on something very small or very slow, and with what all of this means for a squirrel that falls out of a tree.",
+ "objectives": [
+  "Express mathematically the drag force.",
+  "Discuss the applications of drag force.",
+  "Define terminal velocity.",
+  "Determine the terminal velocity given mass."
+ ],
+ "summary_html": "<ul><li>Drag forces acting on an object moving in a fluid oppose the motion. For larger objects (such as a baseball) moving at a velocity $\\kv$ in air, the drag force is given by $$\\kFD = \\frac{1}{2}C\\rho A\\kv^2,$$ where $C$ is the drag coefficient (typical values are given in Table 5.2), $A$ is the area of the object facing the fluid, and $\\rho$ is the fluid density.</li><li>For small objects (such as a bacterium) moving in a denser medium (such as water), the drag force is given by Stokes’ law, $$\\kFs = 6\\pi\\eta r\\kv,$$ where $r$ is the radius of the object, $\\eta$ is the fluid viscosity, and $\\kv$ is the object’s velocity.</li></ul>",
+ "notes": "Problems 2, 4, 6 and 8 have no answer in the book’s key and are left out. Nothing else of the module is dropped: it carries no PhET simulation note and no Check Your Understanding box, and the promise of a few pages on fluid dynamics is kept as the book words it, since that chapter is not built yet.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6 and 8, on the two skydivers of different masses, on the drag forces on a Camry and a Hummer, on the falling rain drop and on the spherical bacterium in water, have no keyed answer and are left out. The four conceptual questions have no key, so each carries an AI-written suggested approach, marked as such. There is no AP test prep in this module, so nothing is held from it. The Critical Thinking item of 5.3, on two spherical beads falling at constant speed through a fluid, tests terminal velocity and the drag force, which this section introduces, so it is set here with source_section 5.3 and 5.3’s own notes say so; it is keyed, and the book’s graph of the bead radius against the fall time travels with its answer. The third conceptual question, on oil and gasoline on a road in the rain, is printed among this section’s questions but turns on the coefficient of friction between a tyre and the road, which 5.1 introduces and this section does not, so rule 12 sets it with 5.1, which carries it with source_section 5.2; 5.1’s notes say so.",
+ "figures": [
+  {
+   "id": "sim-drag",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "velocity"
+   ]
+  },
+  {
+   "id": "fig-bobsled",
+   "kind": "photo",
+   "number": "5.7",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-wind-tunnel",
+   "kind": "photo",
+   "number": "5.8",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-body-suits",
+   "kind": "photo",
+   "number": "5.9",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-terminal",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "velocity",
+    "acceleration",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-size",
+   "kind": "sim",
+   "draws": [
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-stokes",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "velocity"
+   ]
+  },
+  {
+   "id": "fig-geese",
+   "kind": "photo",
+   "number": "5.10",
+   "widths": [
+    250
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "drag",
+   "concept": "drag-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drag",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "drag-force-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "coefficient",
+   "concept": "drag-coefficient",
+   "verb": "introduces"
+  },
+  {
+   "span": "coefficient",
+   "concept": "drag-force-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal",
+   "concept": "terminal-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal",
+   "concept": "terminal-velocity-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal",
+   "concept": "drag-force-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "size",
+   "concept": "size-and-terminal-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "size",
+   "concept": "terminal-velocity-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "stokes",
+   "concept": "stokes-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "stokes",
+   "concept": "drag-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "stokes",
+   "concept": "terminal-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "streamlining",
+   "concept": "drag-coefficient",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1165298899670",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coefficient",
+   "prompt": "Athletes such as swimmers and bicyclists wear body suits in competition. Formulate a list of pros and cons of such suits.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In favour of the suits: a smooth, tight skin lowers the drag coefficient, and the drag force is proportional to that coefficient, so a smaller value is a smaller force at every speed. The book credits the LZR Racer suit with at least 10% less drag and with many of the world records set after 2008, and at racing speeds that is enough to decide a gold medal from a silver. A suit also compresses the body into a more streamlined shape, so less of the athlete’s area faces the direction of motion, and $A$ enters the drag force as well. Against the suits: a record then belongs partly to whoever made the suit rather than to the athlete alone, which is not what the sport sets out to measure; a suit costs money, so an athlete who cannot buy one is at a disadvantage that has nothing to do with training; and, as the section says, careful and precise guidelines have to be written and rewritten to maintain the integrity of the sport, which is work the sport did not have to do before."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1165298622189",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stokes",
+   "prompt": "Two expressions were used for the drag force experienced by a moving object in a liquid. One depended upon the speed, while the other was proportional to the square of the speed. In which types of motion would each of these expressions be more applicable than the other one?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The expression that goes as the square of the speed, $\\kFD = \\tfrac{1}{2}C\\rho A\\kv^2$, is the one to use for a large object that is not moving too slowly: a bicyclist, a car, a baseball, a skydiver. The expression that goes as the speed itself, Stokes’ law $\\kFs = 6\\pi r\\eta\\kv$, is the one to use when the object is very small, is going very slowly, or is in a medium denser than air: a bacterium, a grain of pollen, a dust particle, a ball bearing sinking through motor oil. The section says this directly where it introduces the exponent: for small particles moving at low speeds in a fluid the exponent on the speed is 1 rather than 2."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1165296346967",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "size",
+   "prompt": "Why can a squirrel jump from a tree branch to the ground and run away undamaged, while a human could break a bone in such a fall?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The terminal velocity is $\\kvt = \\sqrt{2m\\kg/\\rho C A}$, and for two animals of the same shape the mass grows as the cube of the length while the area facing the air grows only as the square, so the small animal has much the smaller terminal velocity. The squirrel reaches its terminal velocity within the first metre or two of the fall and then arrives at the ground at that modest speed, which its legs and joints are strong enough to absorb. A person falling the same few metres is nowhere near a terminal velocity of about 44 m/s, so the speed at the ground is set by the height of the fall alone, and stopping a much heavier body from that speed in the same short distance takes a force large enough to break a bone. Haldane puts the same point the other way round: divide an animal’s length, breadth and height each by ten and its weight is reduced to a thousandth but its surface only to a hundredth, so the resistance to falling is relatively ten times greater for the small animal."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1165298861311",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "The terminal velocity of a person falling in air depends upon the weight and the area of the person facing the fluid. Find the terminal velocity (in meters per second and kilometers per hour) of an 80.0-kg skydiver falling in a headfirst position with a cross-section area facing the fluid of $0.140\\ \\text{m}^2$.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "in meters per second",
+      "value": 115,
+      "unit": "m/s",
+      "hint": "At the terminal velocity the drag equals the weight, so $\\kvt = \\sqrt{2m\\kg/\\rho C A}$; take the density of air as 1.21 kg/m³ and the drag coefficient for a skydiver falling feet first from Table 5.2."
+     },
+     {
+      "part": "in kilometers per hour",
+      "value": 414,
+      "unit": "km/h",
+      "hint": "One metre per second is 3.6 kilometres per hour."
+     }
+    ],
+    "solution": "$115\\ \\text{m/s}$; $414\\ \\text{km/hr}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1165298835347",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "size",
+   "prompt": "A 560-g squirrel with a cross-section area facing the fluid of $144\\ \\text{cm}^2$ falls from a 5.0-m tree to the ground. Estimate its terminal velocity. (Use a drag coefficient for a horizontal skydiver.) What will be the velocity of a 56-kg person hitting the ground, assuming no drag contribution in such a short distance?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the squirrel’s terminal velocity",
+      "value": 25.1,
+      "unit": "m/s",
+      "hint": "Use $\\kvt = \\sqrt{2m\\kg/\\rho C A}$ with $C = 1.0$ from Table 5.2, and remember that 144 cm² is $1.44 \\times 10^{-2}\\ \\text{m}^2$."
+     },
+     {
+      "part": "the person’s speed at the ground",
+      "value": 9.9,
+      "unit": "m/s",
+      "hint": "With no drag the fall is free fall from rest, so $\\kv^2 = 2\\kg\\ky$ over the 5.0 m."
+     }
+    ],
+    "solution": "$25.1\\ \\text{m/s}$; $9.90\\ \\text{m/s}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1165298726139",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drag",
+   "prompt": "By what factor does the drag force on a car increase as it goes from 65 to 110 km/h?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.9,
+    "hint": "The drag coefficient, the frontal area and the density of the air are the same at both speeds, so the ratio of the two drag forces is the ratio of the squares of the speeds.",
+    "solution": "$2.9$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1165296534353",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stokes",
+   "prompt": "Using Stokes’ law, verify that the units for viscosity are kilograms per meter per second.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$(\\eta) = \\frac{(\\kFs)}{(r)(\\kv)} = \\frac{\\text{kg}\\cdot\\text{m/s}^2}{\\text{m}\\cdot\\text{m/s}} = \\frac{\\text{kg}}{\\text{m}\\cdot\\text{s}}$$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1165298696745",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stokes",
+   "prompt": "Stokes’ law describes sedimentation of particles in liquids and can be used to measure viscosity. Particles in liquids achieve terminal velocity quickly. One can measure the time it takes for a particle to fall a certain distance and then use Stokes’ law to calculate the viscosity of the liquid. Suppose a steel ball bearing (density $7.8 \\times 10^3\\ \\text{kg/m}^3$, diameter $3.0\\ \\text{mm}$) is dropped in a container of motor oil. It takes 12 s to fall a distance of 0.60 m. Calculate the viscosity of the oil.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.76,
+    "unit": "kg/(m·s)",
+    "hint": "The bearing falls at a constant speed, so the Stokes drag equals its weight: find the speed from the distance and the time, the mass from the density and the volume of a sphere, and solve $m\\kg = 6\\pi r\\eta\\kv$ for $\\eta$.",
+    "solution": "$0.76\\ \\text{kg/m}\\cdot\\text{s}$"
+   }
+  },
+  {
+   "id": "ct1",
+   "source_id": "exer-86622",
+   "source_section": "5.3",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Critical Thinking",
+   "place": {
+    "at": "end"
+   },
+   "cite": "size",
+   "prompt": "Two spherical beads of the same mass fall at a constant speed due to a drag force. Bead A takes twice as long to fall the same distance as bead B. (a) Which of these beads has the larger radius? (b) Based on experimental data, an equation that fits the data is suggested for radius of a bead, <em>r</em>, which may not be correct: $r = Kt - \\frac{1}{2}$, where <em>K</em> is a constant with appropriate units and <em>t</em> is the time it takes for a bead to reach a determined distance. Is this equation consistent with your answer from part a? Explain why or why not. Does this equation make sense? Explain why or why not. (c) Beads of different radii are selected and the time it takes to fall a set distance is recorded. Graph the radius of these beads as a function of the time it takes to fall a determined distance.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) Bead A has the larger radius because both have the same weight and drag force. Since A takes longer to fall, its speed is less and, therefore, it must have larger area or radius. (b) i. This equation is not consistent because it shows that the bead that took longer to fall has a smaller radius. ii. It does not make sense because <em>r</em> is proportional to <em>t</em>. (c) <img src=\"/media/ch05/OSX_CP2e_Figure_05_03Sol_CTQ01c.jpg\" alt=\"The figure is a plot of r as a function of t. The plot is a straight line through the origin with a positive slope.\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "drag-coefficient"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "drag-force-equation",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "drag-force-equation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "stokes-law"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "size-and-terminal-velocity"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "terminal-velocity-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "terminal-velocity-magnitude"
+  },
+  {
+   "exercise": "p1",
+   "concept": "terminal-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "drag-coefficient",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "size-and-terminal-velocity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "terminal-velocity-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "free-fall",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "drag-force-equation"
+  },
+  {
+   "exercise": "p7",
+   "concept": "stokes-law"
+  },
+  {
+   "exercise": "p9",
+   "concept": "stokes-law"
+  },
+  {
+   "exercise": "p9",
+   "concept": "terminal-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "ct1",
+   "concept": "terminal-velocity"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "size-and-terminal-velocity"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "stokes-law",
+   "weight": 2
+  }
+ ]
+}

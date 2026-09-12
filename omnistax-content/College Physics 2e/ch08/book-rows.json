@@ -1,0 +1,814 @@
+{
+ "types": [
+  {
+   "id": "momentum",
+   "label": "momentum, impulse",
+   "dimension": "kg·m/s"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "p",
+   "latex": "p",
+   "type": "momentum",
+   "macro": "\\kp"
+  },
+  {
+   "sym": "Δp",
+   "latex": "\\Delta p",
+   "type": "momentum",
+   "macro": "\\kdp"
+  },
+  {
+   "sym": "p_1",
+   "latex": "p_1",
+   "type": "momentum",
+   "macro": "\\kpone"
+  },
+  {
+   "sym": "p_2",
+   "latex": "p_2",
+   "type": "momentum",
+   "macro": "\\kptwo"
+  },
+  {
+   "sym": "p_1prime",
+   "latex": "{p'}_1",
+   "type": "momentum",
+   "macro": "\\kponeprime"
+  },
+  {
+   "sym": "p_2prime",
+   "latex": "{p'}_2",
+   "type": "momentum",
+   "macro": "\\kptwoprime"
+  },
+  {
+   "sym": "p_tot",
+   "latex": "p_{\\text{tot}}",
+   "type": "momentum",
+   "macro": "\\kptot"
+  },
+  {
+   "sym": "p_totprime",
+   "latex": "{p'}_{\\text{tot}}",
+   "type": "momentum",
+   "macro": "\\kptotprime"
+  },
+  {
+   "sym": "p_x",
+   "latex": "p_x",
+   "type": "momentum",
+   "macro": "\\kpx"
+  },
+  {
+   "sym": "p_y",
+   "latex": "p_y",
+   "type": "momentum",
+   "macro": "\\kpy"
+  },
+  {
+   "sym": "p_1x",
+   "latex": "p_{1x}",
+   "type": "momentum",
+   "macro": "\\kponex"
+  },
+  {
+   "sym": "p_1y",
+   "latex": "p_{1y}",
+   "type": "momentum",
+   "macro": "\\kponey"
+  },
+  {
+   "sym": "p_2x",
+   "latex": "p_{2x}",
+   "type": "momentum",
+   "macro": "\\kptwox"
+  },
+  {
+   "sym": "p_2y",
+   "latex": "p_{2y}",
+   "type": "momentum",
+   "macro": "\\kptwoy"
+  },
+  {
+   "sym": "p_player",
+   "latex": "p_{\\text{player}}",
+   "type": "momentum",
+   "macro": "\\kpplayer"
+  },
+  {
+   "sym": "p_ball",
+   "latex": "p_{\\text{ball}}",
+   "type": "momentum",
+   "macro": "\\kpball"
+  },
+  {
+   "sym": "v_1prime",
+   "latex": "{v'}_1",
+   "type": "velocity",
+   "macro": "\\kvoneprime"
+  },
+  {
+   "sym": "v_2prime",
+   "latex": "{v'}_2",
+   "type": "velocity",
+   "macro": "\\kvtwoprime"
+  },
+  {
+   "sym": "v_prime",
+   "latex": "v'",
+   "type": "velocity",
+   "macro": "\\kvprime"
+  },
+  {
+   "sym": "v_i",
+   "latex": "v_i",
+   "type": "velocity",
+   "macro": "\\kvi"
+  },
+  {
+   "sym": "v_e",
+   "latex": "v_{\\text{e}}",
+   "type": "velocity",
+   "macro": "\\kve"
+  },
+  {
+   "sym": "u",
+   "latex": "u",
+   "type": "velocity",
+   "macro": "\\ku"
+  },
+  {
+   "sym": "KE_int",
+   "latex": "\\text{KE}_{\\text{int}}",
+   "type": "energy",
+   "macro": "\\kKEint"
+  },
+  {
+   "sym": "KE_intprime",
+   "latex": "{\\text{KE}'}_{\\text{int}}",
+   "type": "energy",
+   "macro": "\\kKEintprime"
+  },
+  {
+   "sym": "F_eff",
+   "latex": "F_{\\text{eff}}",
+   "type": "force",
+   "macro": "\\kFeff"
+  },
+  {
+   "sym": "F_thrust",
+   "latex": "F_{\\text{thrust}}",
+   "type": "force",
+   "macro": "\\kFthrust"
+  },
+  {
+   "sym": "m_1",
+   "latex": "m_1"
+  },
+  {
+   "sym": "m_2",
+   "latex": "m_2"
+  },
+  {
+   "sym": "Δm",
+   "latex": "\\Delta m"
+  },
+  {
+   "sym": "m_0",
+   "latex": "m_0"
+  },
+  {
+   "sym": "m_r",
+   "latex": "m_{\\text{r}}"
+  },
+  {
+   "sym": "θ_1",
+   "latex": "\\theta_1"
+  },
+  {
+   "sym": "θ_2",
+   "latex": "\\theta_2"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "linear-momentum",
+   "kind": "idea",
+   "section": "8.1",
+   "name": "Linear momentum, $\\kp = m\\kv$",
+   "eq": "eq-momentum",
+   "why": "Linear momentum is the product of a system’s mass and its velocity, and it is the quantity that says how hard a moving object is to stop. A large, fast-moving object has greater momentum than a smaller, slower one, and every result in this chapter is written in terms of it, so the definition comes first.",
+   "evidence": "The section boxes the definition and the glossary carries it, the worked example compares the momentum of a football player with the momentum of a thrown football, and the first four problems each ask for a momentum, a mass or a speed from the definition."
+  },
+  {
+   "id": "calculate-momentum",
+   "kind": "skill",
+   "section": "8.1",
+   "name": "Calculate a momentum from a mass and a velocity",
+   "why": "Momentum is a vector with the same direction as the velocity, and its SI unit is the kilogram metre per second. Reading a mass and a speed out of a problem and multiplying them, keeping the direction and the unit, is the step every later collision problem begins with.",
+   "evidence": "The worked example calculates the momentum of the football player and of the football and then compares the two, and the problems ask for the momentum of a charging elephant, a tranquilizer dart, a garbage truck, a trash can and the Earth in its orbit."
+  },
+  {
+   "id": "newtons-second-law-momentum",
+   "kind": "result",
+   "section": "8.1",
+   "name": "Newton’s second law in terms of momentum, $\\kFnet = \\kdp / \\kdt$",
+   "eq": "eq-newton2-momentum",
+   "why": "Newton stated his second law as the net external force equals the change in momentum of a system divided by the time over which it changes. This is the more general statement, because it holds for a system whose mass changes, such as a rocket, as well as for one whose mass is constant.",
+   "evidence": "The section boxes the statement and the glossary carries it as the second law of motion, the Venus Williams example finds the average force on a tennis ball from its change in momentum and the contact time, and the AP item on a baseball struck by a bat asks for the same thing."
+  },
+  {
+   "id": "constant-mass-second-law",
+   "kind": "result",
+   "section": "8.1",
+   "name": "The familiar $\\kFnet = m\\ka$ as the constant-mass case",
+   "eq": "eq-newton2-const-mass",
+   "why": "When the mass of the system does not change, the change in momentum is the mass times the change in velocity, and dividing by the time gives the acceleration. The form of the second law you already know is therefore a special case of the momentum form, and knowing which one to reach for is what makes the momentum form worth having.",
+   "evidence": "The section derives $F_{\\text{net}} = ma$ from $F_{\\text{net}} = \\Delta p / \\Delta t$ in three steps and prints the words “when the mass of the system is constant” in italics, and the discussion of the tennis example says the problem could also have been solved by first finding the acceleration."
+  },
+  {
+   "id": "change-in-momentum",
+   "kind": "idea",
+   "section": "8.2",
+   "name": "Change in momentum $\\kdp$",
+   "why": "The change in momentum is the difference between the final and the initial momentum, and for a constant mass it is the mass times the change in velocity. It is the quantity a force acting for a time produces, and it is what is conserved in the sections that follow, so it is named on its own.",
+   "evidence": "The section defines the term and the glossary carries it, the billiard-ball example works out the change in momentum of each ball in components, and two AP items ask for the magnitude and direction of a puck’s change in momentum."
+  },
+  {
+   "id": "impulse",
+   "kind": "result",
+   "section": "8.2",
+   "name": "Impulse, $\\kdp = \\kFnet\\kdt$",
+   "eq": "eq-impulse",
+   "why": "Rearranging Newton’s second law shows that the change in momentum equals the average net external force multiplied by the time this force acts, and that product is called the impulse. Impulse is the same as the change in momentum, so the effect of a force depends on how long it acts as well as on how great it is.",
+   "evidence": "The section boxes the equation under the heading Impulse: Change in Momentum and the glossary carries the term, the section summary states it again, and most of the section’s sixteen problems ask for a force, a time or a velocity change from it."
+  },
+  {
+   "id": "extending-collision-time",
+   "kind": "idea",
+   "section": "8.2",
+   "name": "A longer collision time means a smaller force",
+   "why": "The change in momentum a stop requires is fixed by the mass and the speed, so if the stop is spread over a longer time the force is smaller. This is why a car has a padded dashboard, an airbag and parts that crumple, and why you roll on landing rather than land stiff-legged.",
+   "evidence": "The section spends three paragraphs on dashboards, airbags, crumpling racing cars and jumping onto a soft mat, the conceptual questions ask about padding and about trampolines, and the problems compare the force on a passenger stopped by a dashboard with the force on one stopped by an airbag."
+  },
+  {
+   "id": "effective-force",
+   "kind": "idea",
+   "section": "8.2",
+   "name": "Average effective force $\\kFeff$",
+   "why": "A real force is not constant over the brief time of a collision, but you can always find an average effective force that produces the same result. On a graph of force against time, the area under the actual curve is the impulse, and the rectangle of the effective force over the same interval has the same area.",
+   "evidence": "Figure 8.2 draws the actual force and the effective force on one pair of axes and the caption says the areas under the two curves are equal, and two AP items give a graph of force against time and ask for the change in momentum it represents."
+  },
+  {
+   "id": "average-force-from-impulse",
+   "kind": "skill",
+   "section": "8.2",
+   "name": "Find an average force from a change in momentum and a contact time",
+   "why": "Most of what impulse is used for is one calculation: take the mass and the velocities before and after, form the change in momentum, and divide by the time of contact. Doing it carefully, with the direction kept and the milliseconds converted, is what the section’s problems and AP items ask for again and again.",
+   "evidence": "The problems ask for the force on a bullet in a barrel, on a passenger held by a seat belt, on a leg slapped by a hand, on a spacecraft window struck by a paint chip and on a pier struck by a cruise ship, and the AP items ask for the force on a ball of putty, on a bouncing ball and on a car hitting a wall."
+  },
+  {
+   "id": "momentum-changes-cancel",
+   "kind": "result",
+   "section": "8.3",
+   "name": "The two changes in momentum cancel, $\\Delta \\kpone + \\Delta \\kptwo = 0$",
+   "eq": "eq-dp-sum-zero",
+   "why": "The two cars push on each other for the same length of time, and Newton’s third law makes the two forces equal and opposite. The impulses are therefore equal and opposite, so the momentum one car loses is the momentum the other gains, and this is the whole argument for conservation of momentum.",
+   "evidence": "The section derives the result in five steps from the impulse on each car and from $F_2 = -F_1$, and Figure 8.3 draws the two cars before and after the bump with the momentum of each labelled."
+  },
+  {
+   "id": "conservation-of-momentum",
+   "kind": "result",
+   "section": "8.3",
+   "name": "Conservation of momentum, $\\kptot = \\kptotprime$",
+   "eq": "eq-ptot-constant",
+   "why": "The total momentum of an isolated system is constant, whatever happens inside it and however many objects it holds. Momentum is one of the few quantities nature conserves, and every collision in the rest of the chapter is solved by writing the total momentum before the collision equal to the total momentum after it.",
+   "evidence": "The section boxes the conservation of momentum principle and the glossary carries it, the section summary states it again, and the problems find the final velocity of coupled train cars, of a clay koala, of a car that hits a deer and of a falcon that catches a dove."
+  },
+  {
+   "id": "isolated-system",
+   "kind": "idea",
+   "section": "8.3",
+   "name": "Isolated system, $\\kFnet = 0$",
+   "eq": "eq-isolated-system",
+   "why": "An isolated system is one for which the net external force is zero, and that is exactly the condition momentum needs in order to be conserved. Before you can use conservation of momentum you have to choose a system large enough that the forces that matter are internal to it.",
+   "evidence": "The section boxes the definition and the glossary carries it, the text points out that the two-car system conserves momentum while each one-car system does not, and two AP items ask which of four collisions is an example of an open system."
+  },
+  {
+   "id": "recoil",
+   "kind": "idea",
+   "section": "8.3",
+   "name": "Recoil",
+   "why": "The backward momentum felt by a body that exerts a force on another is called a recoil. When a football player runs into the goalpost the Earth recoils too, and because the Earth is so much more massive its recoil is immeasurably small, though it is real nevertheless.",
+   "evidence": "The section opens on the player and the goalpost and names the recoil, and problems in this and the following sections ask for the recoil velocity of a ship firing a shell, of a rifle and of a performer catching a cannon ball."
+  },
+  {
+   "id": "momentum-conserved-by-direction",
+   "kind": "idea",
+   "section": "8.3",
+   "name": "Momentum can be conserved along one direction and not another",
+   "why": "The three directions in space are independent, so momentum can be conserved along one of them while it is not conserved along another. For a projectile with negligible air resistance the horizontal forces are zero and the horizontal momentum is unchanged, while the vertical force of gravity is not zero and the vertical momentum is not conserved.",
+   "evidence": "The section states it and Figure 8.4 draws a space probe separating in flight, with the net horizontal force still zero and the net vertical force not, and a conceptual question asks what the angle between the two directions is and for an example."
+  },
+  {
+   "id": "subatomic-momentum",
+   "kind": "idea",
+   "section": "8.3",
+   "name": "Momentum of subatomic particles",
+   "why": "Conservation of momentum is not a rule about billiard balls alone. Momentum is a property of every subatomic particle, massless ones such as photons included, and the analysis of what scatters from what is how the nucleus and the quarks inside a proton were found.",
+   "evidence": "The section’s last passage is on subatomic collisions, Figure 8.5 shows a particle scattering straight backward from a target, and the glossary carries the term quark."
+  },
+  {
+   "id": "elastic-collision",
+   "kind": "idea",
+   "section": "8.4",
+   "name": "Elastic collision",
+   "eq": "eq-elastic-kinetic-energy",
+   "why": "An elastic collision is one that conserves internal kinetic energy as well as momentum. That second conservation law is the extra equation you need when both final velocities are unknown, so knowing whether a collision is elastic decides how you can solve it.",
+   "evidence": "The section boxes the definition and the glossary carries it, the conceptual question asks what an elastic collision is, and several AP items turn on whether momentum alone or momentum and kinetic energy together are conserved."
+  },
+  {
+   "id": "internal-kinetic-energy",
+   "kind": "idea",
+   "section": "8.4",
+   "name": "Internal kinetic energy $\\kKEint$",
+   "eq": "eq-internal-kinetic-energy",
+   "why": "The internal kinetic energy of a system is the sum of the kinetic energies of the objects in it. It is the quantity that is conserved in an elastic collision and changed in an inelastic one, so it is the bookkeeping that tells the two kinds of collision apart.",
+   "evidence": "The section boxes the definition and the glossary carries it, the discussion of the worked example asks you to check that the internal kinetic energy is unchanged at 4.00 J, and the following section computes it before and after several collisions."
+  },
+  {
+   "id": "elastic-collision-1d",
+   "kind": "skill",
+   "section": "8.4",
+   "name": "Find both final velocities of a one-dimensional elastic collision",
+   "why": "Two unknown final velocities need two independent equations, and an elastic collision supplies them: conservation of momentum and conservation of internal kinetic energy. Solving the pair gives a quadratic with two roots, and the root that repeats the initial condition describes the situation before the collision and is discarded.",
+   "evidence": "The worked example solves the pair for a 0.500-kg object striking a 3.50-kg object at rest, discards the root $v'_1 = 4.00$ m/s and keeps $v'_1 = -3.00$ m/s, and the problems ask for the final relative velocity of two docking satellites and for the final velocities of a goalie and a puck."
+  },
+  {
+   "id": "nearly-elastic-collisions",
+   "kind": "idea",
+   "section": "8.4",
+   "name": "Real collisions are at best nearly elastic",
+   "why": "Truly elastic collisions can only be achieved with subatomic particles. Macroscopic collisions always convert some kinetic energy into heat transfer due to friction and into sound, so two steel blocks on ice or two carts with spring bumpers on an air track are treated as elastic because they are nearly so, not because they are exactly so.",
+   "evidence": "The section says so in its third paragraph and names the steel blocks and the air track, the take-home investigation asks you to judge whether ice cubes flicked across a tabletop collide approximately elastically, and an AP item asks why a rubber ball rebounds to only 90 per cent of the height it was dropped from."
+  },
+  {
+   "id": "inelastic-collision",
+   "kind": "idea",
+   "section": "8.5",
+   "name": "Inelastic collision",
+   "why": "An inelastic collision is one in which the internal kinetic energy changes. The forces between the colliding objects do work that can turn internal kinetic energy into heat transfer, or turn stored energy into internal kinetic energy, so only momentum can be counted on here.",
+   "evidence": "The section boxes the definition and the glossary carries it, the conceptual question asks what an inelastic collision is, and several AP items ask which of four described outcomes is the inelastic one."
+  },
+  {
+   "id": "perfectly-inelastic-collision",
+   "kind": "idea",
+   "section": "8.5",
+   "name": "Perfectly inelastic collision, $m_1\\kvone = (m_1 + m_2)\\kvprime$",
+   "eq": "eq-perfectly-inelastic-momentum",
+   "why": "A collision in which the objects stick together is called perfectly inelastic, because it reduces internal kinetic energy more than any other kind of collision can while still conserving momentum. Since the two objects share one final velocity afterwards, conservation of momentum alone is enough to find it.",
+   "evidence": "The section boxes the term and the glossary carries it, Figure 8.7 shows two equal masses meeting at equal speeds and coming to rest together, and the problems ask for the final velocity of two skaters, of a loaded freight car and of two football players who cling together."
+  },
+  {
+   "id": "recoil-velocity",
+   "kind": "result",
+   "section": "8.5",
+   "name": "Recoil velocity, $\\kvprime = m_1\\kvone / (m_1 + m_2)$",
+   "eq": "eq-recoil-velocity",
+   "why": "When a moving object is caught by one that is at rest, the two move off together at the incoming velocity reduced by the ratio of the incoming mass to the total mass. A goalie who catches a puck therefore recoils only a few centimetres a second, which is why the recoil of a heavy body is so easy to miss.",
+   "evidence": "The worked example derives the expression and puts 0.150 kg and 70.0 kg into it to get $7.48 \\times 10^{-2}$ m/s, and the problems ask for the recoil of a battleship firing a shell, of a rifle, of a circus performer catching a cannon ball and of the Moon struck by an asteroid."
+  },
+  {
+   "id": "kinetic-energy-lost-in-collision",
+   "kind": "skill",
+   "section": "8.5",
+   "name": "Find the internal kinetic energy lost in a collision",
+   "eq": "eq-internal-kinetic-energy-after",
+   "why": "Once the final velocities are known you can add up the kinetic energies before the collision and after it and subtract. The difference is what was lost to thermal energy and sound, and in a perfectly inelastic collision it is nearly all of what there was to begin with.",
+   "evidence": "The worked example finds 91.9 J before the collision and 0.196 J after it and says the minus sign means the energy was lost, and problems ask how much kinetic energy is lost when two skaters meet, when two satellites dock and when a freight car is loaded."
+  },
+  {
+   "id": "energy-released-in-collision",
+   "kind": "idea",
+   "section": "8.5",
+   "name": "A collision can release stored energy",
+   "why": "An inelastic collision does not only remove internal kinetic energy; it can add it. When a compressed spring is released during the collision, or when exploding bolts push a satellite away from its launcher, stored energy is converted into internal kinetic energy and the system ends with more than it started with.",
+   "evidence": "Figure 8.9 shows two carts on an air track, one carrying a compressed spring, the second worked example finds that the internal kinetic energy increases by 5.46 J in that collision, and a problem asks for the velocities of a satellite and its launcher after exploding bolts supply 5000 J."
+  },
+  {
+   "id": "two-dimensional-collision",
+   "kind": "idea",
+   "section": "8.6",
+   "name": "Two-dimensional collision",
+   "why": "When objects scatter to the side rather than along one line, you choose a convenient coordinate system and resolve the motion into components along perpendicular axes. Resolving the motion this way yields a pair of one-dimensional problems to be solved together, which is the same approach that carried kinematics and dynamics into the plane.",
+   "evidence": "The section opens by saying so, Figure 8.10 draws the coordinate system with the x-axis along the incoming velocity, and the section summary repeats the choice of axes as the first thing to do."
+  },
+  {
+   "id": "point-mass",
+   "kind": "idea",
+   "section": "8.6",
+   "name": "Point mass",
+   "why": "Two objects that collide off centre can begin to spin, and rotation is not treated until later. A point mass is a structureless particle that cannot rotate or spin, and restricting the analysis to point masses is what keeps the collision describable by the velocities alone.",
+   "evidence": "The section names the restriction in its second paragraph, using two ice skaters who hook arms as the case it rules out, and the glossary carries the term."
+  },
+  {
+   "id": "momentum-conservation-x",
+   "kind": "result",
+   "section": "8.6",
+   "name": "Momentum along the x-axis, $m_1\\kvone = m_1\\kvoneprime\\cos\\theta_1 + m_2\\kvtwoprime\\cos\\theta_2$",
+   "eq": "eq-momentum-x",
+   "why": "With the x-axis chosen parallel to the velocity of the incoming object and the second object at rest, the whole of the initial momentum lies along x. Conservation of momentum along that axis then relates the one initial speed to the two final speeds and the two scattering angles.",
+   "evidence": "The section boxes the equation under the heading Conservation of Momentum along the x-axis, the section summary states it, and the worked example and the puck, cannon and bowling problems all begin with it."
+  },
+  {
+   "id": "momentum-conservation-y",
+   "kind": "result",
+   "section": "8.6",
+   "name": "Momentum along the y-axis, $0 = m_1\\kvoneprime\\sin\\theta_1 + m_2\\kvtwoprime\\sin\\theta_2$",
+   "eq": "eq-momentum-y",
+   "why": "Neither object has any momentum along the y-axis before the collision, so the two y-components afterwards must add to zero. This is the second of the two independent equations, and it is the one that ties the two scattering angles to each other.",
+   "evidence": "The section boxes the equation under the heading Conservation of Momentum along the y-axis, the section summary states it, and the worked example uses it to find the speed of the unseen object because it has the fewer terms."
+  },
+  {
+   "id": "scattering-to-find-unseen-object",
+   "kind": "skill",
+   "section": "8.6",
+   "name": "Find an unseen object’s velocity from the scattering of another",
+   "why": "Two equations can be solved for two unknowns. Taking the ratio of the two conservation equations removes the unknown speed and leaves the unknown angle, and either equation then gives the speed, so a measurement of what comes out of a collision tells you about what you could not see going in.",
+   "evidence": "The worked example slides an object into a dark room and finds the velocity of the object it struck from the angle and speed at which the first object emerges, a problem asks you to confirm that the example conserves momentum along both axes, and the Rutherford problem does the same for a helium nucleus scattered by gold."
+  },
+  {
+   "id": "equal-mass-elastic-2d",
+   "kind": "result",
+   "section": "8.6",
+   "name": "Equal masses colliding elastically, $\\frac{1}{2}m\\kvone^2 = \\frac{1}{2}m\\kvoneprime^2 + \\frac{1}{2}m\\kvtwoprime^2 + m\\kvoneprime\\kvtwoprime\\cos(\\theta_1 - \\theta_2)$",
+   "eq": "eq-equal-mass-identity",
+   "why": "For two objects of equal mass, conservation of momentum along both axes gives an expression for the initial kinetic energy that carries one extra term beyond the elastic condition. The two statements can both be true only if that extra term is zero, and what follows from that is the whole of what pool players know about angles.",
+   "evidence": "The section derives the identity and leaves the algebra to the reader, a problem asks you to carry out that derivation and prints the working as its answer, and the section summary states the identity."
+  },
+  {
+   "id": "ninety-degree-separation",
+   "kind": "result",
+   "section": "8.6",
+   "name": "Equal masses separate at $\\theta_1 - \\theta_2 = 90^\\circ$",
+   "eq": "eq-separation-angle",
+   "why": "The extra term can be zero in three ways: the incoming object stops, the incoming object misses, or the angle of separation is ninety degrees. All three are familiar at a pool table, and the third is the one that lets you find the second object’s direction without any further calculation.",
+   "evidence": "The section lists the three ways and says the angle between the balls is very close to ninety degrees after the collision unless a great deal of spin is put on the ball, and the air hockey problem invites you to use the result to find the velocity of the second puck."
+  },
+  {
+   "id": "rocket-propulsion",
+   "kind": "idea",
+   "section": "8.7",
+   "name": "Rocket propulsion",
+   "why": "A rocket, a jet engine, a deflating balloon and a squid all move for the same reason: matter is forcefully ejected from the system, producing an equal and opposite reaction on what remains. The exhaust does not push on the ground, which is why a rocket’s thrust is greater in outer space than on the launch pad.",
+   "evidence": "The section opens on the principle and names Newton’s third law, the take-home experiment asks you to let go of a filled balloon and say which way it goes, and a conceptual question asks how a motionless astronaut in the middle of a space station could move himself."
+  },
+  {
+   "id": "rocket-thrust",
+   "kind": "result",
+   "section": "8.7",
+   "name": "Thrust, $\\kFthrust = \\kve\\,\\Delta m / \\kdt$",
+   "eq": "eq-rocket-thrust",
+   "why": "The exhaust velocity multiplied by the rate at which mass leaves the rocket is a quantity with the units of newtons, and it is the force the exhaust gases exert on the rocket. The faster the rocket burns its fuel, and the faster the gas leaves, the greater the thrust.",
+   "evidence": "The section names the quantity thrust and gives its units, the discussion of the Saturn V example says you can show the thrust of the engines was $3.36 \\times 10^7$ N, and the keyed derivation problem works the thrust out from the force needed to accelerate a small mass of gas."
+  },
+  {
+   "id": "rocket-acceleration",
+   "kind": "result",
+   "section": "8.7",
+   "name": "Acceleration of a rocket, $\\ka = (\\kve / m)(\\Delta m / \\kdt) - \\kg$",
+   "eq": "eq-rocket-acceleration",
+   "why": "Equating the change in momentum of the whole system over a short time to the impulse of gravity gives a good approximation for the acceleration of what is left of the rocket. It is the one equation the section’s problems are worked from, and it is the first result in the book that describes a system whose mass is changing.",
+   "evidence": "The section boxes the equation under the heading Acceleration of a Rocket, the worked example puts the Saturn V’s liftoff mass, burn rate and exhaust velocity into it, and the problems ask for the takeoff acceleration of an antiballistic missile, of a rocket leaving the Moon and of an ion engine."
+  },
+  {
+   "id": "factors-affecting-rocket-acceleration",
+   "kind": "idea",
+   "section": "8.7",
+   "name": "The three factors in a rocket’s acceleration",
+   "why": "The equation says that a rocket accelerates harder the greater the exhaust velocity, the faster it burns its fuel and the smaller its mass. The last of the three changes as the rocket flies, because most of a rocket is fuel to begin with, so the acceleration increases continuously and reaches a maximum just before the fuel runs out.",
+   "evidence": "The section boxes the three factors as a list and gives the practical limit of about $2.5 \\times 10^3$ m/s for the exhaust velocity of a conventional propulsion system, and the discussion of the worked example explains why the Saturn V’s acceleration grew after liftoff."
+  },
+  {
+   "id": "rocket-velocity-mass-ratio",
+   "kind": "result",
+   "section": "8.7",
+   "name": "Final velocity of a rocket, $\\kv = \\kve \\ln(m_0 / m_{\\text{r}})$",
+   "eq": "eq-rocket-velocity",
+   "why": "Neglecting air resistance and gravity, the velocity a rocket gains depends only on the exhaust velocity and on the natural logarithm of the ratio of its initial mass to the mass that is left when the fuel is gone. Because the ratio enters through a logarithm, going faster costs a great deal more fuel than you might expect.",
+   "evidence": "The section states the equation and uses it to show that escaping Earth from rest needs a mass ratio of 88, so that 98.9 per cent of the rocket is fuel, and the problems ask for the velocity increase of a space probe and for how much of a single-stage rocket can be anything but fuel."
+  },
+  {
+   "id": "multistage-rocket",
+   "kind": "idea",
+   "section": "8.7",
+   "name": "Why rockets have stages",
+   "why": "Once air resistance and gravity are taken into account, the mass left at burnout can only be about one hundred and eightieth of the initial mass, and it is difficult to build a rocket in which the fuel has a mass 180 times everything else. The answer is to give each stage only part of the final velocity and discard it when its fuel is spent, so that later stages can be smaller.",
+   "evidence": "The section works out the mass ratio, calls it difficult to build, and gives multistage rockets as the solution, and it notes that launching from an airplane starts the rocket above zero velocity and out of most of the atmosphere’s resistance."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "linear-momentum",
+   "prereq": "mass"
+  },
+  {
+   "concept": "linear-momentum",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "linear-momentum",
+   "prereq": "vector"
+  },
+  {
+   "concept": "calculate-momentum",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "calculate-momentum",
+   "prereq": "derived-units"
+  },
+  {
+   "concept": "newtons-second-law-momentum",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "newtons-second-law-momentum",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "newtons-second-law-momentum",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "constant-mass-second-law",
+   "prereq": "newtons-second-law-momentum"
+  },
+  {
+   "concept": "constant-mass-second-law",
+   "prereq": "average-acceleration"
+  },
+  {
+   "concept": "change-in-momentum",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "impulse",
+   "prereq": "change-in-momentum"
+  },
+  {
+   "concept": "impulse",
+   "prereq": "newtons-second-law-momentum"
+  },
+  {
+   "concept": "extending-collision-time",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "effective-force",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "effective-force",
+   "prereq": "interpret-motion-graph"
+  },
+  {
+   "concept": "average-force-from-impulse",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "average-force-from-impulse",
+   "prereq": "calculate-momentum"
+  },
+  {
+   "concept": "momentum-changes-cancel",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "momentum-changes-cancel",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "isolated-system",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "isolated-system",
+   "prereq": "internal-forces-cancel"
+  },
+  {
+   "concept": "isolated-system",
+   "prereq": "system-of-interest"
+  },
+  {
+   "concept": "conservation-of-momentum",
+   "prereq": "momentum-changes-cancel"
+  },
+  {
+   "concept": "conservation-of-momentum",
+   "prereq": "isolated-system"
+  },
+  {
+   "concept": "recoil",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "recoil",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "momentum-conserved-by-direction",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "momentum-conserved-by-direction",
+   "prereq": "independence-of-perpendicular-motions"
+  },
+  {
+   "concept": "momentum-conserved-by-direction",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "subatomic-momentum",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "internal-kinetic-energy",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "elastic-collision",
+   "prereq": "internal-kinetic-energy"
+  },
+  {
+   "concept": "elastic-collision",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "elastic-collision-1d",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "elastic-collision-1d",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "elastic-collision-1d",
+   "prereq": "physical-solution"
+  },
+  {
+   "concept": "nearly-elastic-collisions",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "nearly-elastic-collisions",
+   "prereq": "friction"
+  },
+  {
+   "concept": "inelastic-collision",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "inelastic-collision",
+   "prereq": "internal-kinetic-energy"
+  },
+  {
+   "concept": "perfectly-inelastic-collision",
+   "prereq": "inelastic-collision"
+  },
+  {
+   "concept": "recoil-velocity",
+   "prereq": "perfectly-inelastic-collision"
+  },
+  {
+   "concept": "recoil-velocity",
+   "prereq": "recoil"
+  },
+  {
+   "concept": "kinetic-energy-lost-in-collision",
+   "prereq": "inelastic-collision"
+  },
+  {
+   "concept": "kinetic-energy-lost-in-collision",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "energy-released-in-collision",
+   "prereq": "inelastic-collision"
+  },
+  {
+   "concept": "energy-released-in-collision",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "energy-released-in-collision",
+   "prereq": "elastic-potential-energy"
+  },
+  {
+   "concept": "two-dimensional-collision",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "two-dimensional-collision",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "two-dimensional-collision",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "point-mass",
+   "prereq": "two-dimensional-collision"
+  },
+  {
+   "concept": "momentum-conservation-x",
+   "prereq": "two-dimensional-collision"
+  },
+  {
+   "concept": "momentum-conservation-x",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "momentum-conservation-y",
+   "prereq": "two-dimensional-collision"
+  },
+  {
+   "concept": "momentum-conservation-y",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "scattering-to-find-unseen-object",
+   "prereq": "momentum-conservation-x"
+  },
+  {
+   "concept": "scattering-to-find-unseen-object",
+   "prereq": "momentum-conservation-y"
+  },
+  {
+   "concept": "scattering-to-find-unseen-object",
+   "prereq": "magnitude-direction-from-components"
+  },
+  {
+   "concept": "equal-mass-elastic-2d",
+   "prereq": "momentum-conservation-x"
+  },
+  {
+   "concept": "equal-mass-elastic-2d",
+   "prereq": "momentum-conservation-y"
+  },
+  {
+   "concept": "equal-mass-elastic-2d",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "ninety-degree-separation",
+   "prereq": "equal-mass-elastic-2d"
+  },
+  {
+   "concept": "rocket-propulsion",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "rocket-propulsion",
+   "prereq": "thrust"
+  },
+  {
+   "concept": "rocket-propulsion",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "rocket-thrust",
+   "prereq": "rocket-propulsion"
+  },
+  {
+   "concept": "rocket-thrust",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "rocket-acceleration",
+   "prereq": "rocket-thrust"
+  },
+  {
+   "concept": "rocket-acceleration",
+   "prereq": "newtons-second-law-momentum"
+  },
+  {
+   "concept": "rocket-acceleration",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "factors-affecting-rocket-acceleration",
+   "prereq": "rocket-acceleration"
+  },
+  {
+   "concept": "rocket-velocity-mass-ratio",
+   "prereq": "rocket-acceleration"
+  },
+  {
+   "concept": "multistage-rocket",
+   "prereq": "rocket-velocity-mass-ratio"
+  }
+ ]
+}

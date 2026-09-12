@@ -1,0 +1,827 @@
+{
+ "id": "4.3",
+ "module": "m42073",
+ "chapter": "4",
+ "title": "Newton’s Second Law of Motion: Concept of a System",
+ "short": "Newton’s second law",
+ "lead": "Newton’s first law says that a change in motion must have a cause; this section says how much change a given cause produces. It draws the boundary of the system of interest, adds the external forces acting on it into a single net external force, and states that the acceleration of the system is directly proportional to that force and inversely proportional to its mass. From that one relation come the newton, the unit force is measured in, and the weight of an object, which is the gravitational force on its mass.",
+ "objectives": [
+  "Define net force, external force, and system.",
+  "Understand Newton’s second law of motion.",
+  "Apply Newton’s second law to determine the weight of an object."
+ ],
+ "summary_html": "<ul><li>Acceleration, $\\ka$, is defined as a change in velocity, meaning a change in its magnitude or direction, or both.</li><li>An external force is one acting on a system from outside the system, as opposed to internal forces, which act between components within the system.</li><li>Newton’s second law of motion states that the acceleration of a system is directly proportional to and in the same direction as the net external force acting on the system, and inversely proportional to its mass.</li><li>In equation form, Newton’s second law of motion is $\\mathbf{a} = \\frac{\\mathbf{F}_{\\text{net}}}{m}$.</li><li>This is often written in the more familiar form: $\\mathbf{F}_{\\text{net}} = m\\mathbf{a}$.</li><li>The weight $\\mathbf{w}$ of an object is defined as the force of gravity acting on an object of mass $m$. The object experiences an acceleration due to gravity $\\mathbf{g}$: $\\mathbf{w} = m\\mathbf{g}$.</li><li>If the only force acting on an object is due to gravity, the object is in free fall.</li><li>Friction is a force that opposes the motion past each other of objects that are touching.</li></ul>",
+ "notes": "Problems 2, 4, 5, 6, 8, 10, 12 and 14 have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercises_lead": "You may assume data taken from illustrations is accurate to three digits.",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 5, 6, 8, 10, 12 and 14 have no keyed answer and are left out. None of the ten conceptual questions is keyed, so each carries an AI-written suggested approach, marked as such, and the two shortest of them are set inline beside the passage they check: the rock at the top of its trajectory follows the passage on weight, and the constant nonzero force follows the passage on the second law. Three items the book prints in other sections are set here, since an exercise goes with the section that introduces what it tests, and each of those sections says so in its own notes. The first AP item of section 4.1, the two cars on the racetrack, asks for the direction of the net external force at points around the track and is keyed, so it comes here with source_section 4.1 and the book’s own answer; its curved sections anticipate the centripetal force of Chapter 6, and the book’s answer argues the straight sections, so it stands as the book prints it. The first AP item of section 4.5, the force of gravity on an arrow, is the weight of the arrow and nothing else; it has no key, so it comes here with source_section 4.5 as an open item with its four options as the book prints them and an AI-written suggested approach. The Critical Thinking item of section 4.8, the two boxes pushed different distances, turns on the second law and on the constant-acceleration equation that relates the square of the final speed to the distance, rather than on the four basic forces; it is keyed, so it comes here with source_section 4.8 and the book’s graph inside its answer. Problem 7 keys its part (a) as a number and keeps the book’s reason for part (b) in the solution; problem 9 keys its parts (c) and (d) as numbers and keeps the book’s system and free-body diagram for parts (a) and (b) in the solution; problem 11 keys all four of its readings. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-wagon",
+   "kind": "sim",
+   "number": "4.5",
+   "originals": [
+    "/media/ch04/Figure_04_03_01.jpg"
+   ],
+   "original_caption": "Different forces exerted on the same mass produce different accelerations. (a) Two children push a wagon with a child in it. Arrows representing all external forces are shown. The system of interest is the wagon and its rider. The weight w of the system and the support of the ground N are also shown for completeness and are assumed to cancel. The vector f represents the friction acting on the wagon, and it acts to the left, opposing the motion of the wagon. (b) All of the external forces acting on the system add together to produce a net force, F_net. The free-body diagram shows all of the forces acting on the system of interest. The dot represents the center of mass of the system. Each force vector extends from this dot. Because there are two forces acting to the right, we draw the vectors collinearly. (c) A larger net external force produces a larger acceleration (a′ > a) when an adult pushes the child.",
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-mass",
+   "kind": "sim",
+   "number": "4.6",
+   "originals": [
+    "/media/ch04/Figure_04_03_02.jpg"
+   ],
+   "original_caption": "The same force exerted on systems of different masses produces different accelerations. (a) A basketball player pushes on a basketball to make a pass. (The effect of gravity on the ball is ignored.) (b) The same player exerts an identical force on a stalled SUV and produces a far smaller acceleration (even if friction is negligible). (c) The free-body diagrams are identical, permitting direct comparison of the two situations. A series of patterns for the free-body diagram will emerge as you do more problems.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-mower",
+   "kind": "sim",
+   "number": "4.7",
+   "originals": [
+    "/media/ch04/Figure_04_03_03.jpg"
+   ],
+   "original_caption": "The net force on a lawn mower is 51 N to the right. At what rate does the lawn mower accelerate to the right?",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-sled",
+   "kind": "sim",
+   "number": "4.8",
+   "originals": [
+    "/media/ch04/Figure_04_03_04.jpg"
+   ],
+   "original_caption": "A sled experiences a rocket thrust that accelerates it to the right. Each rocket creates an identical thrust T. As in other situations where there is only horizontal acceleration, the vertical forces cancel. The ground exerts an upward force N on the system that is equal in magnitude and opposite in direction to its weight, w. The system here is the sled, its rockets, and rider, so none of the forces between these objects are considered. The arrow representing friction (f) is drawn larger than scale.",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity"
+   ]
+  },
+  {
+   "id": "sim-weight",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "system",
+   "concept": "system-of-interest",
+   "verb": "introduces"
+  },
+  {
+   "span": "system",
+   "concept": "external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "system",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "system",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "system",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "net-force",
+   "concept": "net-external-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "net-force",
+   "concept": "friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "net-force",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "net-force",
+   "concept": "analytical-vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "net-force",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "net-force",
+   "concept": "inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "newtons-second-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-law",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "newton",
+   "concept": "newton-unit",
+   "verb": "introduces"
+  },
+  {
+   "span": "newton",
+   "concept": "fundamental-units",
+   "verb": "uses"
+  },
+  {
+   "span": "newton",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "weight",
+   "concept": "weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "weight",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "weight",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-weight",
+   "concept": "mass-versus-weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "mass-weight",
+   "concept": "weight",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mass-weight",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "mower",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mower",
+   "concept": "newton-unit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sled",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sled",
+   "concept": "net-external-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sled",
+   "concept": "friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sled",
+   "concept": "system-of-interest",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2928601",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "Which statement is correct? (a) Net force causes motion. (b) Net force causes change in motion. Explain your answer and give an example.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Statement (b) is the correct one. Newton’s first law says that a body already moving at a constant velocity keeps moving at that velocity with no net external force on it at all, so motion itself needs no cause; what needs a cause is a change in the velocity, and that cause is the net external force. A puck sliding on an air table glides across it at very nearly a constant velocity while the net external force on it is very nearly zero, and it changes its motion only when a hand or a wall pushes on it."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2423185",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "system",
+   "prompt": "Why can we neglect forces such as those holding a body together when we apply Newton’s second law of motion?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The forces that hold a body together act between the parts of the body, so once the body is chosen as the system of interest they are internal forces, and only external forces affect the motion of a system. The internal forces cancel in pairs, as the next section shows, so they add nothing to the net external force and nothing to the acceleration. This is a tremendous simplification: the muscular forces inside the child’s body and the myriad forces between the atoms of the wagon need never be counted."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3010660",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "system",
+   "prompt": "Explain how the choice of the “system of interest” affects which forces must be considered when applying Newton’s second law of motion.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A force is external or internal according to where the boundary of the system is drawn, so the choice of system decides which forces are counted. Take the wagon of Figure 4.5: if the system is the wagon together with the child riding in it, then the grip of the child on the wagon is internal and is left out, and the external forces are the two pushes, the friction, the weight of the system and the support of the ground. If the system is the wagon alone, then the grip of the child becomes an external force on it and has to be drawn, and the weight of the system is now the weight of the wagon alone. Both choices are correct, and each gives a different net external force and a different mass to divide it by, so the boundary has to be settled before the second law is written down."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2672485",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "Describe a situation in which the net external force on a system is not zero, yet its speed remains constant.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A car driven round a bend at a steady reading on the speedometer is such a system. Velocity is a vector, so the car’s velocity is changing even though its speed is not: the direction of the velocity turns with the bend. A change in velocity is an acceleration, and an acceleration needs a net external force, which here is the sideways force the road exerts on the tires. That force points toward the inside of the bend, at right angles to the velocity, so it turns the car without making it go any faster or any slower."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3026744",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "A system can have a nonzero velocity while the net external force on it <em>is</em> zero. Describe such a situation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A car driven along a straight, level road at a steady speed is such a system. The forward force the road exerts on the driving wheels is matched by the friction and air resistance opposing the motion, and the weight of the car is matched by the support of the road, so the forces cancel in pairs and the net external force is zero. Newton’s first law then says the car keeps moving at a constant velocity, which is exactly what it does. A puck gliding across an air table and a spacecraft coasting far from any large body are the same situation with even less to cancel."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1449832",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "weight"
+   },
+   "cite": "weight",
+   "prompt": "A rock is thrown straight up. What is the net external force acting on the rock when it is at the top of its trajectory?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At the top of the trajectory the rock is momentarily at rest, but being at rest is not the same as having no force on it. Air resistance aside, the only force acting on the rock at any point of its flight is the gravitational force, so the net external force at the top is the weight of the rock, mg, pointing straight down. That is why the rock does not stay at the top: the net external force is not zero, so the velocity keeps changing at 9.80 m/s every second and the rock at once begins to fall."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1475076",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "(a) Give an example of different net external forces acting on the same system to produce different accelerations. (b) Give an example of the same net external force acting on systems of different masses, producing different accelerations. (c) What law accurately describes both effects? State it in words and as an equation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) The wagon of Figure 4.5 is one system pushed two ways: two children give it a certain net external force and a certain acceleration, and an adult pushing on the same wagon gives it a larger net external force and a larger acceleration. (b) The player of Figure 4.6 pushes on a basketball and then, with the same force, on a stalled SUV; the ball accelerates quickly and the SUV hardly at all. (c) Newton’s second law of motion describes both. In words, the acceleration of a system is directly proportional to and in the same direction as the net external force acting on the system, and inversely proportional to its mass. As an equation, a = F net / m, which is usually written F net = ma."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1930138",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "If the acceleration of a system is zero, are no external forces acting on it? What about internal forces? Explain your answers.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A zero acceleration means only that the net external force is zero, not that no external forces act. A book resting on a table has its weight pulling it down and the support of the table pushing it up; the two are equal and opposite, so they add to nothing and the book does not accelerate. Internal forces say nothing at all about the acceleration, since they cancel in pairs within the system whatever their size: the forces holding the book’s pages and fibers together are large, and the book is at rest all the same."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3180550",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "second-law"
+   },
+   "cite": "second-law",
+   "prompt": "If a constant, nonzero force is applied to an object, what can you say about the velocity and acceleration of the object?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "If the net external force is constant and not zero, then a = F net / m says the acceleration is constant too, in the same direction as the force and of the same size at every instant. The velocity is therefore never constant: it changes by the same amount in every second. If the object starts out moving in the direction of the force, or starts from rest, its speed grows steadily and without limit as long as the force is applied. If it starts out moving against the force, it slows at a steady rate, comes to rest for an instant, and then gathers speed in the direction of the force."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3210019",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "The gravitational force on the basketball in Figure 4.6 is ignored. When gravity <em>is</em> taken into account, what is the direction of the net external force on the basketball—above horizontal, below horizontal, or still horizontal?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Below horizontal. With gravity taken into account there are two external forces on the ball: the horizontal push of the player and the weight of the ball, which points straight down. The net external force is the vector sum of the two, found head to tail or by components, and a horizontal vector added to a downward one gives a resultant that points below the horizontal. How far below depends on the size of the push: the harder the player pushes, the closer to horizontal the net external force lies, which is why the figure can ignore gravity for a hard pass."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2025052",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "A 63.0-kg sprinter starts a race with an acceleration of $4.20\\ \\text{m/s}^2$. What is the net external force on him?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 265,
+    "unit": "N",
+    "hint": "The mass and the acceleration are both given, so Newton’s second law in the form $\\kFnet = m\\ka$ gives the force directly, and a kilogram metre per second squared is a newton.",
+    "solution": "265 N"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1947422",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "A cleaner pushes a 4.50-kg laundry cart in such a way that the net external force on it is 60.0 N. Calculate the magnitude of its acceleration.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 13.3,
+    "unit": "m/s²",
+    "hint": "Use $\\ka = \\kFnet/m$, and substitute kilogram metres per second squared for the newtons so that the kilograms cancel.",
+    "solution": "$13.3\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2673239",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sled",
+   "figure": {
+    "src": "/media/ch04/Figure_04_03_05-1144.jpg",
+    "alt": "A sled is shown with thrust represented by a vector T pushing the sled toward the right. Friction force is represented by an arrow labeled as vector f pointing toward the left on the sled. The weight of the sled is represented by an arrow labeled as vector W, shown pointing downward, and the normal force is represented by an arrow labeled as vector N having the same length as W acting upward on the sled."
+   },
+   "prompt": "(a) If the rocket sled shown in the figure starts with only one rocket burning, what is the magnitude of its acceleration? Assume that the mass of the system is 2100 kg, the thrust T is $2.59 \\times 10^{4}$ N, and the force of friction opposing the motion is known to be 650 N. (b) Why is the acceleration not one-fourth of what it is with all rockets burning?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 12,
+    "unit": "m/s²",
+    "hint": "The net external force along the rail is the one thrust less the friction, and the second law divides it by the mass of the system.",
+    "solution": "(a) $12\\ \\text{m/s}^2$. (b) The acceleration is not one-fourth of what it was with all rockets burning because the frictional force is still as large as it was with all rockets burning."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2963161",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "system",
+   "prompt": "Suppose two children push horizontally, but in exactly opposite directions, on a third child in a wagon. The first child exerts a force of 75.0 N, the second a force of 90.0 N, friction is 12.0 N, and the mass of the third child plus wagon is 23.0 kg. <ol type=\"a\"><li>What is the system of interest if the acceleration of the child in the wagon is to be calculated?</li><li>Draw a free-body diagram, including all forces acting on the system.</li><li>Calculate the acceleration.</li><li>What would the acceleration be if friction were 15.0 N?</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(c)",
+      "value": 0.13,
+      "unit": "m/s²",
+      "hint": "The two pushes are in opposite directions, so they subtract, and the friction opposes the motion that results."
+     },
+     {
+      "part": "(d)",
+      "value": 0,
+      "unit": "m/s²",
+      "hint": "Work out the net external force again with the larger friction and see what is left of it."
+     }
+    ],
+    "solution": "(a) The system is the child in the wagon plus the wagon. (b) <img src=\"/media/ch04/Figure_04_03_06.jpg\" alt=\"An object represented as a dot labeled m is shown at the center. One force represented by an arrow labeled as vector F sub 2 acts toward the right. Another force represented by an arrow labeled as vector F sub 1 having a slightly shorter length in comparison with F sub 2 acts on the object pointing left. A friction force represented by an arrow labeled as vector f having a small length acts on the object toward the left. Weight, represented by an arrow labeled as vector W, acts on the object downward, and normal force, represented by an arrow labeled as vector N, acts upward, having the same length as W.\"> (c) $a = 0.130\\ \\text{m/s}^2$ in the direction of the second child’s push. (d) $a = 0.00\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3091858",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sled",
+   "figure": {
+    "src": "/media/ch04/Figure_04_03_07-c153.jpg",
+    "alt": "A sled is shown with four rockets. Friction force is represented by an arrow labeled as vector f pointing toward the left on the sled. The weight of the sled is represented by an arrow labeled as vector W, shown pointing downward, and the normal force is represented by an arrow labeled as vector N having the same length as W acting upward on the sled."
+   },
+   "prompt": "The rocket sled shown in the figure accelerates at a rate of $49.0\\ \\text{m/s}^2$. Its passenger has a mass of 75.0 kg. (a) Calculate the horizontal component of the force the seat exerts against his body. Compare this with his weight by using a ratio. (b) Calculate the direction and magnitude of the total force the seat exerts against his body.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) horizontal component",
+      "value": 3680,
+      "unit": "N",
+      "hint": "The passenger is the system now, and the horizontal force on him is his own mass times the acceleration of the sled."
+     },
+     {
+      "part": "(a) ratio to his weight",
+      "value": 5.0,
+      "hint": "His weight is $\\kwgt = m\\kg$, so the ratio is the acceleration of the sled divided by the acceleration due to gravity."
+     },
+     {
+      "part": "(b) magnitude",
+      "value": 3750,
+      "unit": "N",
+      "hint": "The seat also holds him up against his weight, so combine the horizontal component with a vertical one equal to his weight."
+     },
+     {
+      "part": "(b) direction above horizontal",
+      "value": 11.3,
+      "unit": "º",
+      "hint": "The direction is the inverse tangent of the vertical component over the horizontal one."
+     }
+    ],
+    "solution": "(a) $3.68 \\times 10^{3}\\ \\text{N}$. This force is 5.00 times greater than his weight. (b) 3750 N; 11.3º above horizontal"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3244376",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-weight",
+   "prompt": "The weight of an astronaut plus their space suit on the Moon is only 250 N. How much do they weigh on Earth? What is the mass on the Moon? On Earth?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "weight on Earth",
+      "value": 1500,
+      "unit": "N",
+      "hint": "Find the mass first from the weight on the Moon and the Moon’s acceleration due to gravity, then weigh that mass on Earth."
+     },
+     {
+      "part": "mass on the Moon",
+      "value": 150,
+      "unit": "kg",
+      "hint": "Weight is $\\kwgt = m\\kg$, so the mass is the weight divided by the acceleration due to gravity where it was weighed."
+     },
+     {
+      "part": "mass on Earth",
+      "value": 150,
+      "unit": "kg",
+      "hint": "Mass is the quantity of matter and does not vary with location."
+     }
+    ],
+    "solution": "$1.5 \\times 10^{3}\\ \\text{N}, 150\\ \\text{kg}, 150\\ \\text{kg}$"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1691415",
+   "source_section": "4.1",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "<img src=\"/media/ch04/Figure_04_01_03.jpg\" alt=\"The diagram looks like a solid black oval race track with 16 equally-spaced short perpendicular hash marks crossing the track. The oval is longer than it is tall and the top and bottom parts of the track are horizontal and parallel to the bottom of the page. To complete the oval, the race track starts to curve in a half-circle starting from the second perpendicular hash mark to the right of the top center hash mark. The curve continues for four perpendicular hash marks and the horizontal bottom part of the track starts two perpendicular hash marks to the right of the center bottom hash mark. The half-circle is mirrored on the left side of the track. On the right side of the oval is an arrow curving around the track and pointing up with the text “Direction of Cars’ Motion.” There is one solid line above the track and one to the right outside of the track. Both lines are indicated by the lowercase letter d. One line starts at the first hash mark’s location on a horizontally straight bit of track in the upper right side and indicates that the size of the line goes for 4 additional hash marks. The second line starts at the end of the horizontal stretch on the upper left of the track and curves around for 4 additional hash marks.\">The figure above represents a racetrack with semicircular sections connected by straight sections. Each section has length <em>d</em>, and markers along the track are spaced <em>d</em>/4 apart. Two people drive cars counterclockwise around the track, as shown. Car <em>X</em> goes around the curves at constant speed $v_{\\text{c}}$, increases speed at constant acceleration for half of each straight section to reach a maximum speed of $2v_{\\text{c}}$, then brakes at constant acceleration for the other half of each straight section to return to speed $v_{\\text{c}}$. Car <em>Y</em> also goes around the curves at constant speed $v_{\\text{c}}$, increases its speed at constant acceleration for one-fourth of each straight section to reach the same maximum speed $2v_{\\text{c}}$, stays at that speed for half of each straight section, then brakes at constant acceleration for the remaining fourth of each straight section to return to speed $v_{\\text{c}}$. (a) On the figures below, draw an arrow showing the direction of the net force on each of the cars at the positions noted by the dots. If the net force is zero at any position, label the dot with 0.<img src=\"/media/ch04/Figure_04_01_04.jpg\" alt=\"There are two dashed oval tracks representative of the larger oval track shown in the earlier figure. Both tracks have the same 16 equally spaced perpendicular hash marks shown in the earlier figure but there are dashes around the tracks instead of a solid line. Between each of the perpendicular dashes is one smaller dash at the perpendicular dash and three additional dashes. Centered above the figure on the left is the text Car X and over the figure on the right is Car Y. There are 6 black dots positioned on each of the Car X and Car Y tracks.\">(b) i. Indicate which car, if either, completes one trip around the track in less time, and justify your answer qualitatively without using equations. ii. Justify your answer about which car, if either, completes one trip around the track in less time quantitatively with appropriate equations.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/Figure_04_01_05.jpg\" alt=\"Two identical diagrams feature oval-shaped dashed paths with alternating plus and minus signs. Each path includes black dots with arrows indicating specific vector directions at points along the loop.\">Car <em>X</em> is shown on the left, and Car <em>Y</em> is shown on the right. i. Car <em>X</em> takes longer to accelerate and does not spend any time traveling at top speed. Car <em>Y</em> accelerates over a shorter time and spends time going at top speed. So Car <em>Y</em> must cover the straightaways in a shorter time. Curves take the same time, so Car <em>Y</em> must overall take a shorter time. ii. The only difference in the calculations for the time of one segment of linear acceleration is the difference in distances. That shows that Car <em>X</em> takes longer to accelerate. The equation $\\frac{d}{4{v}_{c}} = {t}_{c}$ corresponds to Car <em>Y</em> traveling for a time at top speed. Substituting $a = \\frac{{v}_{c}}{{t}_{1}}$ into the displacement equation in part (b) ii gives $D = \\frac{3}{2}{v}_{c}{t}_{1}$. This shows that a car takes less time to reach its maximum speed when it accelerates over a shorter distance. Therefore, Car <em>Y</em> reaches its maximum speed more quickly, and spends more time at its maximum speed than Car <em>X</em> does, as argued in part (b) i."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1367314",
+   "source_section": "4.5",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight",
+   "prompt": "An archer shoots an arrow straight up with a force of 24.5 N. The arrow has a mass of 0.4 kg. What is the force of gravity on the arrow?<ol type=\"a\"><li>9.8 m/s<sup>2</sup></li><li>9.8 N</li><li>61.25 N</li><li>3.9 N</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The force of gravity on the arrow is its weight, and the weight of a body is its mass times the acceleration due to gravity, $\\kwgt = m\\kg$. The 24.5 N with which the archer shoots does not enter the calculation at all, since the question asks only for the gravitational force on the arrow, and that force depends on the mass of the arrow and on nothing else the archer does. Work out $\\kwgt = (0.4\\ \\text{kg})(9.80\\ \\text{m/s}^2)$ and compare the result with the four options. Two of them can be set aside before any arithmetic: a force is measured in newtons, so an answer in metres per second squared is an acceleration and cannot be the force of gravity, and an answer larger than the archer’s own 24.5 N would have sent the arrow downward rather than up."
+   }
+  },
+  {
+   "id": "ct1",
+   "source_id": "exer-16012",
+   "source_section": "4.8",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Critical Thinking",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "Two boxes of equal mass slide start from rest and slide with different horizontal applied forces across frictionless surfaces to reach the same distance away. Box A has a horizontal force of three times that of box B. (a) Which box is traveling faster at this distance away from the starting point? Briefly explain your reasoning. (b) Based on experimental data, an equation that fits the data is suggested for the final speed, <em>V</em>, which may not be correct: $V = KF$, where <em>K</em> is a constant with appropriate units and <em>F</em> is the horizontal applied force. Is this equation consistent with your answer from part a? Explain why or why not. Does this equation make sense? Explain why or why not. (c) Now the applied force can be any value and the distance from the starting point is measured when the speed gets to a consistent value. Graph the distance the box gets to at a given speed as a function of the applied force.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) Box A travels faster at the finishing distance since a greater force with equal mass results in a greater acceleration. Also, a greater acceleration over the same distance results in a greater final speed. (b) i. Yes, it is consistent because a greater force results in a greater final speed. ii. It does not make sense because $V=\\sqrt{2(f/m)x}=\\text{K}\\sqrt{(F)}$. (c) <img src=\"/media/ch04/OSX_CP2e_Figure_04_08Sol_CTQ01c.jpg\" alt=\"The figure is a plot of x as a function of F. The curve starts at a high value of x just to the right of the x axis and decreases in both value and slope, tending asymptotically to the F axis. Under the graph it is noted that x is proportional to 1 over F.\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "newtons-first-law",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "newtons-first-law"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "weight"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "system-of-interest",
+   "weight": 2
+  },
+  {
+   "exercise": "cq9",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newton-unit",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "newton-unit",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p7",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "p7",
+   "concept": "friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "p9",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "p9",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p9",
+   "concept": "friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p11",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "weight"
+  },
+  {
+   "exercise": "p13",
+   "concept": "mass-versus-weight"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-first-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "weight"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "mass-versus-weight",
+   "weight": 1
+  },
+  {
+   "exercise": "ct1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "ct1",
+   "concept": "v-squared",
+   "weight": 2
+  }
+ ]
+}

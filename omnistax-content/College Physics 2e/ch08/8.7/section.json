@@ -1,0 +1,379 @@
+{
+ "id": "8.7",
+ "module": "m42166",
+ "chapter": "8",
+ "title": "Introduction to Rocket Propulsion",
+ "short": "Rocket propulsion",
+ "lead": "A rocket, a jet engine, a deflating balloon and a squid all move by throwing part of themselves away, and Newton’s third law says that what remains must be pushed the other way. This section follows a rocket through a short time Δt as it ejects a mass of hot gas, arrives at the acceleration the exhaust velocity, the burn rate and the remaining mass give it, and then asks how much of a rocket has to be fuel if it is to reach orbit or escape the Earth altogether.",
+ "objectives": [
+  "State Newton’s third law of motion.",
+  "Explain the principle involved in propulsion of rockets and jet engines.",
+  "Derive an expression for the acceleration of the rocket and discuss the factors that affect the acceleration.",
+  "Describe the function of a space shuttle."
+ ],
+ "summary_html": "<ul><li>Newton’s third law of motion states that to every action, there is an equal and opposite reaction.</li><li>Acceleration of a rocket is $\\ka = \\frac{\\kve}{m}\\;\\frac{\\Delta m}{\\kdt} - \\kg$.</li><li>A rocket’s acceleration depends on three main factors. They are<ol><li>The greater the exhaust velocity of the gases, the greater the acceleration.</li><li>The faster the rocket burns its fuel, the greater its acceleration.</li><li>The smaller the rocket's mass, the greater the acceleration.</li></ol></li></ul>",
+ "notes": "Problems 2, 4, 6 and 7, the Unreasonable Results item and the two Construct Your Own Problem items have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6 and 7, the Unreasonable Results item about the flying squid and the two Construct Your Own Problem items have no keyed answer and are left out. The chapter keys none of its conceptual questions, so all three of this section’s are kept as open items with an AI-written suggested approach, marked as such. The section sets no Check Your Understanding box and no AP test prep item, so nothing stands inline; nothing is taken from another section, since none of the chapter’s other items turns on the thrust, the acceleration or the mass ratio of a rocket, and nothing of this section’s is held for a later one, since 8.7 is the last section of the chapter.",
+ "figures": [
+  {
+   "id": "sim-rocket",
+   "kind": "sim",
+   "number": "8.12",
+   "originals": [
+    "/media/ch08/Figure_09_07_01a.jpg"
+   ],
+   "original_caption": "(a) This rocket has a mass m and an upward velocity v. The net external force on the system is −mg, if air resistance is neglected. (b) A time Δt later the system has two main parts, the ejected gas and the remainder of the rocket. The reaction force on the rocket is what overcomes the gravitational force and accelerates it upward.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "velocity",
+    "force",
+    "acceleration",
+    "momentum",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-mass-ratio",
+   "kind": "sim",
+   "draws": [
+    "velocity"
+   ]
+  },
+  {
+   "id": "fig-shuttle",
+   "kind": "photo",
+   "number": "8.13",
+   "widths": [
+    250
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "propulsion",
+   "concept": "rocket-propulsion",
+   "verb": "introduces"
+  },
+  {
+   "span": "propulsion",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "rocket-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "rocket-propulsion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "center-of-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "factors",
+   "concept": "rocket-thrust",
+   "verb": "introduces"
+  },
+  {
+   "span": "factors",
+   "concept": "factors-affecting-rocket-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "factors",
+   "concept": "thrust",
+   "verb": "uses"
+  },
+  {
+   "span": "factors",
+   "concept": "rocket-acceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mass-ratio",
+   "concept": "rocket-velocity-mass-ratio",
+   "verb": "introduces"
+  },
+  {
+   "span": "stages",
+   "concept": "multistage-rocket",
+   "verb": "introduces"
+  },
+  {
+   "span": "stages",
+   "concept": "rocket-velocity-mass-ratio",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2554772",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ejecting-mass",
+   "prompt": "Suppose a fireworks shell explodes, breaking into three large pieces for which air resistance is negligible. How is the motion of the center of mass affected by the explosion? How would it be affected if the pieces experienced significantly more air resistance than the intact shell?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The explosion is internal to the shell, so the forces the three pieces exert on one another cancel in pairs and change the momentum of the system not at all. With air resistance negligible the only external force is gravity, so the center of mass of the three pieces keeps travelling along the same parabola the intact shell was already following, in the same way that the center of mass of a rocket and its exhaust stays in free fall while the rocket itself accelerates upward. If the pieces meet significantly more air resistance than the intact shell did, then there is a large external force on the system, and the center of mass is slowed: it falls short of the parabola and lands nearer the launch point than the unbroken shell would have."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1279088",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "propulsion",
+   "prompt": "During a visit to the International Space Station, an astronaut was positioned motionless in the center of the station, out of reach of any solid object on which he could exert a force. Suggest a method by which he could move himself away from this position, and explain the physics involved.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "He can throw something he is carrying — a tool, a glove, a boot, even a hard breath of air — as fast as he can in the direction opposite to the one he wants to go. While he pushes the object away, the object pushes back on him with an equal and opposite force, which is Newton’s third law. Nothing outside the pair acts on them, so the momentum of the system is conserved: the momentum the object carries off in one direction is matched by the momentum he gains in the other, and he drifts toward the wall he wants to reach. This is the principle of rocket propulsion, with the astronaut as the rocket and the thrown object as the exhaust, and the same two things govern how fast he goes: the greater the mass he throws and the faster he throws it, the greater his own speed."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1656529",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ejecting-mass",
+   "prompt": "It is possible for the velocity of a rocket to be greater than the exhaust velocity of the gases it ejects. When that is the case, the gas velocity and gas momentum are in the same direction as that of the rocket. How is the rocket still able to obtain thrust by ejecting the gases?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The thrust does not depend on how fast the rocket is moving relative to the ground. The exhaust velocity $\\kve$ is the velocity of the gas relative to the rocket, and the engine throws the gas backward at that speed whatever the rocket’s own velocity happens to be, so the thrust $\\kFthrust = \\kve\\,\\Delta m / \\kdt$ is the same in both cases. When the rocket is travelling faster than $\\kve$, the gas is still moving forward over the ground after it leaves, but it has been slowed: the engine pushed it backward, and by Newton’s third law it pushed the engine forward by the same amount. What matters is the change in the momentum of the gas, not the direction the gas happens to be moving in when an observer on the ground looks at it."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1106358",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ejecting-mass",
+   "prompt": "Antiballistic missiles (ABMs) are designed to have very large accelerations so that they may intercept fast-moving incoming missiles in the short time available. What is the takeoff acceleration of a 10,000-kg ABM that expels 196 kg of gas per second at an exhaust velocity of $2.50 \\times 10^3\\ \\text{m/s}$?",
+   "answer": {
+    "type": "number",
+    "value": 39.2,
+    "unit": "m/s²",
+    "generated_by": "source",
+    "hint": "Every quantity on the right of $\\ka = (\\kve / m)(\\Delta m / \\kdt) - \\kg$ is given: the exhaust velocity, the mass, the rate at which gas is ejected, and the acceleration due to gravity.",
+    "solution": "$\\ka = 39.2\\ \\text{m/s}^2$."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2687489",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-ratio",
+   "prompt": "Calculate the increase in velocity of a 4000-kg space probe that expels 3500 kg of its mass at an exhaust velocity of $2.00 \\times 10^3\\ \\text{m/s}$. You may assume the gravitational force is negligible at the probe’s location.",
+   "answer": {
+    "type": "number",
+    "value": 4160,
+    "unit": "m/s",
+    "generated_by": "source",
+    "hint": "The probe starts with 4000 kg and is left with what does not get expelled, so the mass ratio $m_0 / m_{\\text{r}}$ is 4000 kg divided by 500 kg.",
+    "solution": "$\\kv = 4.16 \\times 10^3\\ \\text{m/s}$."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2605458",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ejecting-mass",
+   "prompt": "Derive the equation for the vertical acceleration of a rocket.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The force needed to give a small mass $\\Delta m$ an acceleration $a_{\\Delta m}$ is $\\kF = \\Delta m\\,a_{\\Delta m}$. To accelerate this mass in the small time interval $\\kdt$ requires $\\kve = a_{\\Delta m}\\kdt$, so $\\kF = \\kve\\frac{\\Delta m}{\\kdt}$. By Newton’s third law, this force is equal in magnitude to the thrust force acting on the rocket, so $\\kFthrust = \\kve\\frac{\\Delta m}{\\kdt}$, where all quantities are positive. Applying Newton’s second law to the rocket gives $\\kFthrust - m\\kg = m\\ka \\Rightarrow \\ka = \\frac{\\kve}{m}\\frac{\\Delta m}{\\kdt} - \\kg$, where $m$ is the mass of the rocket and unburnt fuel."
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2339225",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-ratio",
+   "prompt": "How much of a single-stage rocket that is 100,000 kg can be anything but fuel if the rocket is to have a final speed of $8.00\\ \\text{km/s}$, given that it expels gases at an exhaust velocity of $2.20 \\times 10^3\\ \\text{m/s}$?",
+   "answer": {
+    "type": "number",
+    "value": 2630,
+    "unit": "kg",
+    "generated_by": "source",
+    "hint": "Rearranging $\\kv = \\kve\\,\\text{ln}(m_0 / m_{\\text{r}})$ gives the mass ratio as $e^{\\kv / \\kve}$, and what is left is the liftoff mass divided by that ratio.",
+    "solution": "$m_{\\text{r}} = 2.63 \\times 10^3\\ \\text{kg}$."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3112790",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "propulsion",
+   "prompt": "(a) A 5.00-kg squid initially at rest ejects 0.250-kg of fluid with a velocity of 10.0 m/s. What is the recoil velocity of the squid if the ejection is done in 0.100 s and there is a 5.00-N frictional force opposing the squid’s movement. (b) How much energy is lost to work done against friction?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.421,
+      "unit": "m/s",
+      "hint": "The fluid carries off a momentum the squid gains in the opposite direction, and the friction takes some of it back over the 0.100 s the ejection lasts."
+     },
+     {
+      "part": "b",
+      "value": 0.237,
+      "unit": "J",
+      "hint": "The work done against friction is the frictional force multiplied by the distance the squid moves while it is being pushed."
+     }
+    ],
+    "solution": "(a) 0.421 m/s away from the ejected fluid. (b) $0.237\\ \\text{J}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rocket-propulsion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "rocket-propulsion"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rocket-thrust"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rocket-propulsion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rocket-acceleration"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rocket-thrust",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "rocket-velocity-mass-ratio"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rocket-thrust"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rocket-acceleration"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rocket-propulsion",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "rocket-velocity-mass-ratio"
+  },
+  {
+   "exercise": "p8",
+   "concept": "multistage-rocket",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "rocket-propulsion"
+  },
+  {
+   "exercise": "p9",
+   "concept": "rocket-thrust",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  }
+ ]
+}

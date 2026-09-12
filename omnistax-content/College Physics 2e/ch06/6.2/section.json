@@ -1,0 +1,561 @@
+{
+ "id": "6.2",
+ "module": "m42084",
+ "chapter": "6",
+ "title": "Centripetal Acceleration",
+ "short": "Centripetal acceleration",
+ "lead": "Turning at a steady speed is still an acceleration, because the direction of the velocity changes the whole way round the curve. This section finds which way that acceleration points, shows from two similar triangles how large it is, writes the result in terms of the speed and in terms of the angular velocity, and uses it on a car taking a highway curve and on an ultracentrifuge, comparing each with the acceleration due to gravity.",
+ "objectives": [
+  "Establish the expression for centripetal acceleration.",
+  "Explain the centrifuge."
+ ],
+ "summary_html": "<ul><li>Centripetal acceleration $\\kac$ is the acceleration experienced while in uniform circular motion. It always points toward the center of rotation. It is perpendicular to the linear velocity $\\kv$ and has the magnitude $\\kac = \\frac{\\kv^2}{\\kr};\\; \\kac = \\kr\\kw^2$.</li><li>The unit of centripetal acceleration is $\\text{m}/\\text{s}^2$.</li></ul>",
+ "notes": "Problems 2, 4, 6, 8 and 10 have no answer in the book’s key and are left out; problem 8 also asks for the acceleration due to gravity at the height of a satellite, which needs the law of gravitation of section 6.5, and the PhET simulation note is left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2 (the runner on the curved track), 4 (the fighter plane’s propeller), 6 (the helicopter blade), 8 (the satellite 300 km up) and 10 (the rotating space station) have no keyed answer and are left out. Problem 8 is left out for a second reason as well: what it asks for is the acceleration due to gravity at altitude, which needs g = GM/r² from section 6.5, Newton’s Universal Law of Gravitation, so it is not held for that section but named here. Nothing is taken from another section: 6.1’s problems all turn on the rotation angle and the angular velocity, and 6.3’s questions and problems all turn on the centripetal force, which 6.3 introduces. Problem 3, the distance Earth has travelled since its birth, is an arc length rather than an acceleration and so tests what 6.1 introduces; the book prints it here and the reader has already met arc length, so it is kept where the book puts it and tagged with 6.1’s concepts. The book’s key prints the accelerations of problem 7(b), 7(c) and 12(a) in m/s, and since each of those parts asks for a centripetal acceleration the numbers are the book’s and the unit is the one the question asks for, m/s². Problem 12(b) asks for a free body diagram, for which the key prints nothing, so the answer keys only the two numeric parts. The suggested approach to the conceptual question is AI-written and marked. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-triangles",
+   "kind": "sim",
+   "number": "6.7",
+   "originals": [
+    "/media/ch06/Figure_07_02_01a.jpg"
+   ],
+   "original_caption": "The directions of the velocity of an object at two different points are shown, and the change in velocity Δv is seen to point directly toward the center of curvature. (See small inset.) Because a_c = Δv/Δt, the acceleration is also toward the center; a_c is called centripetal acceleration. (Because Δθ is very small, the arc length Δs is equal to the chord length Δr for small time differences.)",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-curve",
+   "kind": "sim",
+   "number": "6.8",
+   "originals": [
+    "/media/ch06/Figure_07_02_02a.jpg"
+   ],
+   "original_caption": "(a) The car following a circular path at constant speed is accelerated perpendicular to its velocity, as shown. The magnitude of this centripetal acceleration is found in Example 6.2. (b) A particle of mass in a centrifuge is rotating at constant angular velocity . It must be accelerated perpendicular to its velocity or it would continue in a straight line. The magnitude of the necessary acceleration is found in Example 6.3.",
+   "widths": [
+    198
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-centrifuge",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "velocity",
+    "angular-rate",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "direction",
+   "concept": "centripetal-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "direction",
+   "concept": "uniform-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "direction",
+   "concept": "instantaneous-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "direction",
+   "concept": "vector-subtraction",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude",
+   "concept": "centripetal-acceleration-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitude",
+   "concept": "centripetal-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude",
+   "concept": "vector-subtraction",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude",
+   "concept": "arc-length",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude",
+   "concept": "rotation-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "centrifuge",
+   "concept": "centrifuge",
+   "verb": "introduces"
+  },
+  {
+   "span": "centrifuge",
+   "concept": "acceleration-in-multiples-of-g",
+   "verb": "introduces"
+  },
+  {
+   "span": "centrifuge",
+   "concept": "centripetal-acceleration-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "centrifuge",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-car",
+   "concept": "centripetal-acceleration-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-car",
+   "concept": "acceleration-in-multiples-of-g",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-ultracentrifuge",
+   "concept": "centripetal-acceleration-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-ultracentrifuge",
+   "concept": "centrifuge",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-ultracentrifuge",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-ultracentrifuge",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-ultracentrifuge",
+   "concept": "acceleration-in-multiples-of-g",
+   "verb": "reinforces"
+  },
+  {
+   "span": "net-force",
+   "concept": "centripetal-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "net-force",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1348631",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction",
+   "prompt": "Can centripetal acceleration change the speed of circular motion? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The centripetal acceleration points toward the center of the circle, and the velocity points along the tangent, so the two are perpendicular at every moment. An acceleration at right angles to the velocity turns the velocity without lengthening or shortening it, so the direction of the motion changes and the speed does not, which is what makes the motion uniform. If the speed of an object on a circular path does change, then part of its acceleration lies along the velocity, and that part is not the centripetal acceleration; the centripetal part is still $\\kac = \\kv^2/\\kr$ toward the center, and it is what keeps the object on the circle."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2617114",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "A fairground ride spins its occupants inside a flying saucer-shaped container. If the horizontal circular path the riders follow has an 8.00 m radius, at how many revolutions per minute will the riders be subjected to a centripetal acceleration whose magnitude is 1.50 times that due to gravity?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 12.9,
+    "unit": "rev/min",
+    "hint": "Set $\\kac = 1.50\\kg$ and use the second form, $\\kac = \\kr\\kw^2$, to find $\\kw$ in rad/s; then turn radians per second into revolutions per minute.",
+    "solution": "12.9 rev/min"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3116567",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "Taking the age of Earth to be about $4 \\times 10^{9}$ years and assuming its orbital radius of $1.5 \\times 10^{11}$ m has not changed and is circular, calculate the approximate total distance Earth has traveled since its birth (in a frame of reference stationary with respect to the Sun).",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4e+21,
+    "unit": "m",
+    "hint": "Earth goes once round its orbit each year, so the rotation angle is $2\\pi$ times the number of years; the distance travelled is the arc length $\\kds = \\kr\\Delta\\theta$.",
+    "solution": "$4 \\times 10^{21}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2017206",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "An ordinary workshop grindstone has a radius of 7.50 cm and rotates at 6500 rev/min. (a) Calculate the magnitude of the centripetal acceleration at its edge in meters per second squared and convert it to multiples of $\\kg$. (b) What is the linear speed of a point on its edge?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the centripetal acceleration",
+      "value": 34700,
+      "unit": "m/s²",
+      "hint": "Turn 6500 rev/min into rad/s and use $\\kac = \\kr\\kw^2$ with the radius in metres."
+     },
+     {
+      "part": "(a) in multiples of g",
+      "value": 3550,
+      "unit": "g",
+      "hint": "Divide the acceleration by $\\kg = 9.80\\ \\text{m/s}^2$."
+     },
+     {
+      "part": "(b) the linear speed",
+      "value": 51.1,
+      "unit": "m/s",
+      "hint": "The tangential speed of a point on the edge is $\\kv = \\kr\\kw$."
+     }
+    ],
+    "solution": "a) $3.47 \\times 10^{4}\\ \\text{m/s}^2$, $3.55 \\times 10^{3}\\,g$ b) $51.1\\ \\text{m/s}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3224044",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "Olympic ice skaters are able to spin at about 5 rev/s. (a) What is their angular velocity in radians per second? (b) What is the centripetal acceleration of the skater’s nose if it is 0.120 m from the axis of rotation? (c) An exceptional skater named Dick Button was able to spin much faster in the 1950s than anyone since—at about 9 rev/s. What was the centripetal acceleration of the tip of his nose, assuming it is at 0.120 m radius? (d) Comment on the magnitudes of the accelerations found. It is reputed that Button ruptured small blood vessels during his spins.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angular velocity",
+      "value": 31.4,
+      "unit": "rad/s",
+      "hint": "One revolution is $2\\pi$ rad, so 5 rev/s is $5 \\times 2\\pi$ rad/s."
+     },
+     {
+      "part": "(b) the acceleration at 5 rev/s",
+      "value": 118,
+      "unit": "m/s²",
+      "hint": "Use $\\kac = \\kr\\kw^2$ with $\\kr = 0.120$ m."
+     },
+     {
+      "part": "(c) the acceleration at 9 rev/s",
+      "value": 384,
+      "unit": "m/s²",
+      "hint": "The radius is the same, so the acceleration grows as the square of the angular velocity."
+     }
+    ],
+    "solution": "a) 31.4 rad/s b) 118 m/s² c) 384 m/s² d) The centripetal acceleration felt by Olympic skaters is 12 times larger than the acceleration due to gravity. That’s quite a lot of acceleration in itself. The centripetal acceleration felt by Button’s nose was 39.2 times larger than the acceleration due to gravity. It is no wonder that he ruptured small blood vessels in his spins."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1993714",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-ultracentrifuge",
+   "prompt": "Verify that the linear speed of an ultracentrifuge is about 0.50 km/s, and Earth in its orbit is about 30 km/s by calculating: (a) The linear speed of a point on an ultracentrifuge 0.100 m from its center, rotating at 50,000 rev/min. (b) The linear speed of Earth in its orbit about the Sun (use data from the text on the radius of Earth’s orbit and approximate it as being circular).",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the ultracentrifuge",
+      "value": 0.524,
+      "unit": "km/s",
+      "hint": "Turn 50,000 rev/min into rad/s and use $\\kv = \\kr\\kw$."
+     },
+     {
+      "part": "(b) Earth in its orbit",
+      "value": 29.7,
+      "unit": "km/s",
+      "hint": "Earth covers the circumference $2\\pi\\kr$ of its orbit in one year; take the radius $1.5 \\times 10^{11}$ m from the text."
+     }
+    ],
+    "solution": "a) 0.524 km/s b) 29.7 km/s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3033187",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "At takeoff, a commercial jet has a 60.0 m/s speed. Its tires have a diameter of 0.850 m. (a) At how many rev/min are the tires rotating? (b) What is the centripetal acceleration at the edge of the tire? (c) With what force must a determined $1.00 \\times 10^{-15}\\ \\text{kg}$ bacterium cling to the rim? (d) Take the ratio of this force to the bacterium’s weight.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the rate of rotation",
+      "value": 1350,
+      "unit": "rev/min",
+      "hint": "The rim moves with the plane, so $\\kw = \\kv/\\kr$ with $\\kr$ half the diameter."
+     },
+     {
+      "part": "(b) the centripetal acceleration",
+      "value": 8470,
+      "unit": "m/s²",
+      "hint": "Use $\\kac = \\kv^2/\\kr$ at the edge of the tire."
+     },
+     {
+      "part": "(c) the force on the bacterium",
+      "value": 8.47e-12,
+      "unit": "N",
+      "hint": "A net force of $m\\kac$ is needed to keep the bacterium on its circle."
+     },
+     {
+      "part": "(d) the ratio to its weight",
+      "value": 865,
+      "unit": "",
+      "hint": "The weight is $m\\kg$, so the ratio is $\\kac/\\kg$."
+     }
+    ],
+    "solution": "(a) $1.35 \\times 10^{3}\\ \\text{rpm}$ (b) $8.47 \\times 10^{3}\\ \\text{m/s}^2$ (c) $8.47 \\times 10^{-12}\\ \\text{N}$ (d) 865"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id1363119",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "Riders in an amusement park ride shaped like a Viking ship hung from a large pivot are rotated back and forth like a rigid pendulum. Sometime near the middle of the ride, the ship is momentarily motionless at the top of its circular arc. The ship then swings down under the influence of gravity. The speed at the bottom of the arc is 23.4 m/s. The radius of the arc is 14.0 m. (a) What is the centripetal acceleration at the bottom of the arc? (b) Draw a free body diagram of the forces acting on a rider at the bottom of the arc. (c) Find the force exerted by the ride on a 60.0 kg rider and compare it to her weight. (d) Discuss whether the answer seems reasonable.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the centripetal acceleration",
+      "value": 39.2,
+      "unit": "m/s²",
+      "hint": "At the bottom of the arc the speed and the radius are both given, so use $\\kac = \\kv^2/\\kr$."
+     },
+     {
+      "part": "(c) the force on the rider",
+      "value": 2930,
+      "unit": "N",
+      "hint": "The seat pushes up and gravity pulls down, and the two together must give the rider the upward acceleration found in part (a)."
+     }
+    ],
+    "solution": "(a) $39.2\\ \\text{m/s}^2$ (c) $2.93 \\times 10^{3}\\ \\text{N}$ or $5.00\\,w$, that is, the normal force (upward) is five times her weight. (d) This answer seems reasonable, since she feels like she’s being forced into the chair MUCH stronger than just by gravity."
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3170075",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Unreasonable Results",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "A mother pushes her child on a swing so that his speed is 9.00 m/s at the lowest point of his path. The swing is suspended 2.00 m above the child’s center of mass. (a) What is the magnitude of the centripetal acceleration of the child at the low point? (b) What is the magnitude of the force the child exerts on the seat if his mass is 18.0 kg? (c) What is unreasonable about these results? (d) Which premises are unreasonable or inconsistent?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the centripetal acceleration",
+      "value": 40.5,
+      "unit": "m/s²",
+      "hint": "The radius of the swing’s arc is 2.00 m, so use $\\kac = \\kv^2/\\kr$."
+     },
+     {
+      "part": "(b) the force on the seat",
+      "value": 905,
+      "unit": "N",
+      "hint": "The seat must both hold the child up and supply the upward acceleration of part (a), and by Newton’s third law the child pushes back just as hard."
+     }
+    ],
+    "solution": "a) $40.5\\ \\text{m/s}^2$ b) 905 N c) The force in part (b) is very large. The acceleration in part (a) is too much, about 4 g. d) The speed of the swing is too large. At the given velocity at the bottom of the swing, there is enough kinetic energy to send the child all the way over the top, ignoring friction."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "centripetal-acceleration"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "centripetal-acceleration-magnitude",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "centripetal-acceleration-magnitude"
+  },
+  {
+   "exercise": "p1",
+   "concept": "acceleration-in-multiples-of-g"
+  },
+  {
+   "exercise": "p1",
+   "concept": "linear-angular-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "p3",
+   "concept": "rotation-angle",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "centripetal-acceleration-magnitude"
+  },
+  {
+   "exercise": "p5",
+   "concept": "acceleration-in-multiples-of-g"
+  },
+  {
+   "exercise": "p5",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "centripetal-acceleration-magnitude"
+  },
+  {
+   "exercise": "p7",
+   "concept": "acceleration-in-multiples-of-g"
+  },
+  {
+   "exercise": "p7",
+   "concept": "angular-velocity"
+  },
+  {
+   "exercise": "p9",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p9",
+   "concept": "centrifuge",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "centripetal-acceleration-magnitude"
+  },
+  {
+   "exercise": "p11",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p11",
+   "concept": "newtons-second-law",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "p12",
+   "concept": "centripetal-acceleration-magnitude"
+  },
+  {
+   "exercise": "p12",
+   "concept": "free-body-diagram",
+   "weight": 1
+  },
+  {
+   "exercise": "p12",
+   "concept": "newtons-second-law",
+   "weight": 1
+  },
+  {
+   "exercise": "p13",
+   "concept": "centripetal-acceleration-magnitude"
+  },
+  {
+   "exercise": "p13",
+   "concept": "unreasonable-results"
+  },
+  {
+   "exercise": "p13",
+   "concept": "newtons-second-law",
+   "weight": 1
+  }
+ ]
+}

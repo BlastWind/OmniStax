@@ -1,0 +1,649 @@
+{
+ "id": "4.7",
+ "module": "m42132",
+ "chapter": "4",
+ "title": "Further Applications of Newton’s Laws of Motion",
+ "short": "Further applications",
+ "lead": "Newton’s laws are put to work here on three situations that take more than one step: two tugboats pushing a barge at right angles to each other, a traffic light hung from two wires that meet it at different angles, and a person standing on a bathroom scale in a moving lift. The section closes by joining these laws to the kinematics of the earlier chapters, so that a problem can be carried from a force to a distance, or from a distance back to a force.",
+ "objectives": [
+  "Apply problem-solving techniques to solve for quantities in more complex systems of forces.",
+  "Integrate concepts from kinematics to solve problems using Newton's laws of motion."
+ ],
+ "summary_html": "<ul><li>Newton’s laws of motion can be applied in numerous situations to solve problems of motion.</li><li>Some problems will contain multiple force vectors acting in different directions on an object. Be sure to draw diagrams, resolve all force vectors into horizontal and vertical components, and draw a free-body diagram. Always analyze the direction in which an object accelerates so that you can determine whether $\\kFnet = m\\ka$ or $\\kFnet = 0$.</li><li>The normal force on an object is not always equal in magnitude to the weight of the object. If an object is accelerating, the normal force will be less than or greater than the weight of the object. Also, if the object is on an inclined plane, the normal force will always be less than the full weight of the object.</li><li>Some problems will contain various physical quantities, such as forces, acceleration, velocity, or position. You can apply concepts from kinematics and dynamics in order to solve these problems of motion.</li></ul>",
+ "notes": "The AP test prep item on the block sliding across a surface whose coefficient of friction is 0.20 is left out, since the coefficient of friction is not introduced until Friction, which is not built yet; and the seven problems the book gives no answer for — the Achilles tendon, the dolphin, the rocket at takeoff, the fireworks shell fired straight up, the lift full of passengers, and the two Unreasonable Results items — are left out as well.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Answers come from the book’s answer key; Bloom levels, concept tags, weights and hints are AI-written, and so are the suggested approaches to the two conceptual questions and to the first AP item, none of which the book keys. The two conceptual questions are set inline after the passage on the bathroom scale, since each is a short check on what has just been read. Seven problems have no keyed answer and are left out: the Achilles tendon (fs-id1427030), the dolphin (fs-id1486506), the rocket at takeoff (fs-id2441621), the fireworks shell fired straight up (fs-id3178018), the lift full of passengers (fs-id3028228) and the two Unreasonable Results items (fs-id2670683 and fs-id1890360). The third AP item (fs-id1046422), a block sliding on a surface whose coefficient of friction is 0.20, needs a quantity the book does not introduce until Friction; that chapter is not built, so the item is left out here and is for that chapter’s own pass to pick up. The problem on the fireworks shell fired ten degrees from the vertical is printed as a repeat of the shell fired straight up, which is one of the seven left out, so its card asks the three questions that problem asks with the angle this one sets. Nothing is taken from another section: 4.6’s AP item on the tension in the cable of a lift that is accelerating is the nearest thing here to apparent weight, but it stays with 4.6, where the book prints it and where the four steps it is set under are introduced.",
+ "figures": [
+  {
+   "id": "sim-barge",
+   "kind": "sim",
+   "number": "4.21",
+   "originals": [
+    "/media/ch04/Figure_04_07_01-386e.jpg"
+   ],
+   "original_caption": "(a) A view from above of two tugboats pushing on a barge. (b) The free-body diagram for the ship contains only forces acting in the plane of the water. It omits the two vertical forces—the weight of the barge and the buoyant force of the water supporting it cancel and are not shown. Since the applied forces are perpendicular, the x- and y-axes are in the same direction as F_x and F_y. The problem quickly becomes a one-dimensional problem along the direction of F_app, since friction is in the direction opposite to F_app.",
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-traffic-light",
+   "kind": "sim",
+   "number": "4.22",
+   "originals": [
+    "/media/ch04/Figure_04_07_02.jpg"
+   ],
+   "original_caption": "A traffic light is suspended from two wires. (b) Some of the forces involved. (c) Only forces acting on the system are shown here. The free-body diagram for the traffic light is also shown. (d) The forces projected onto vertical (y) and horizontal (x) axes. The horizontal components of the tensions must cancel, and the sum of the vertical components of the tensions must equal the weight of the traffic light. (e) The free-body diagram shows the vertical and horizontal forces acting on the traffic light.",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "force"
+   ]
+  },
+  {
+   "id": "sim-elevator-scale",
+   "kind": "sim",
+   "number": "4.23",
+   "originals": [
+    "/media/ch04/Figure_04_07_03a.jpg"
+   ],
+   "original_caption": "(a) The various forces acting when a person stands on a bathroom scale in an elevator. The arrows are approximately correct for when the elevator is accelerating upward—broken arrows represent forces too large to be drawn to scale. T is the upward force on the elevator, w_s is the weight of the scale, w_e is the weight of the elevator, F_s is the force of the scale on the person, F_p is the force of the person on the scale, F_t is the force of the scale on the floor of the elevator, and N is the force of the floor upward on the scale. (b) The free-body diagram shows only the external forces acting on the designated system of interest—the person.",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-soccer",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "fig-rescue",
+   "kind": "figure",
+   "originals": [
+    "/media/ch04/Figure_04_07_08a.jpg"
+   ],
+   "original_caption": "The force T_2 needed to hold steady the person being rescued from the fire is less than her weight and less than the force T_1 in the other rope, since the more vertical rope supports a greater part of her weight (a vertical force).",
+   "draws": [
+    "force"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "drag",
+   "concept": "drag-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "drag",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "resultant-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "unequal-tensions",
+   "verb": "introduces"
+  },
+  {
+   "span": "tensions",
+   "concept": "tension",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "net-force-by-axis",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "resolve-forces-into-components",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "apparent-weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "scale",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "integrated-kinematics-dynamics",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrating",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "newtons-laws-problem-solving",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "problem-solving-steps",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "const-a",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rescue",
+   "concept": "unequal-tensions",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3109644",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "scale"
+   },
+   "cite": "scale",
+   "prompt": "To simulate the apparent weightlessness of space orbit, astronauts are trained in the hold of a cargo aircraft that is accelerating downward at $\\kg$. Why will they appear to be weightless, as measured by standing on a bathroom scale, in this accelerated frame of reference? Is there any difference between their apparent weightlessness in orbit and in the aircraft?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A bathroom scale reads the force $\\kFs$ with which it pushes up on whoever stands on it, and that force is $\\kFs = m\\ka + m\\kg$. When the aircraft and everything in it accelerate downward at $\\kg$, the acceleration is $\\ka = -\\kg$, so $\\kFs = -m\\kg + m\\kg = 0$ and the dial reads zero. The scale does not have to push at all, because the astronaut is already falling at the rate that gravity alone would give her, and she feels nothing under her feet. There is no difference between the two cases in what she feels or in what the scale reads. An astronaut in orbit is falling freely as well; the only difference is that the Earth curves away beneath her as fast as she falls, so that she never lands, while the aircraft has to pull out of its dive after half a minute or so."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1449853",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "scale"
+   },
+   "cite": "scale",
+   "prompt": "A cartoon shows the hat coming off the head of an elevator passenger when the elevator rapidly stops during an upward ride. Can this really happen without the person being tied to the floor of the elevator? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It can happen, but only if the elevator stops very abruptly indeed. While an upward ride is ending the elevator is slowing down, so its acceleration points downward, and everything in it needs a downward net force to slow down with it. The passenger gets that force from the floor, which simply pushes up on her with less than her weight, which is why the scale reading of the previous example is smaller than the weight while a lift is slowing down. The hat has no such help: once it is only resting on her head, the head can push it up but cannot pull it down, so the largest downward acceleration the hat can have is $\\kg$. If the elevator slows at a rate greater than $\\kg$, the head drops away faster than the hat can fall and the hat lifts off. For the ordinary stop of a lift the deceleration is a small fraction of $\\kg$ and the hat stays where it is, so the cartoon exaggerates an effect that is real."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1471760",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drag",
+   "prompt": "A basketball player jumps as he shoots the ball. Describe the forces that are acting on the ball and on the basketball player. What are the results?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "While the ball is still in his hands, two forces act on it: its weight, which pulls it down, and the push of his hands, which is larger than the weight while he is throwing. The net force on the ball is therefore upward and the ball accelerates out of his hands. Once the ball has left him, the only force on it is its weight, so its acceleration is $\\kg$ downward: it slows as it rises, and speeds up again as it falls toward the basket. Three forces act on the player while his feet are still on the floor: his weight, the upward push of the floor, and the downward push of the ball on his hands, which is equal in magnitude and opposite in direction to the push he gives the ball, by Newton’s third law. He leaves the floor because the floor pushes up on him harder than his weight and the ball’s push together press him down; once his feet are off the floor, only his weight acts on him, so he too accelerates downward at $\\kg$ and comes back to the floor."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1669265",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drag",
+   "prompt": "Two people push on a boulder to try to move it. The mass of the boulder is 825 kg. One person pushes north with a force of 64 N. The other pushes west with a force of 38 N. Predict the magnitude of the acceleration of the boulder. Assume that friction is negligible.",
+   "answer": {
+    "type": "number",
+    "value": 0.09,
+    "unit": "m/s²",
+    "generated_by": "source",
+    "hint": "The two pushes are at right angles, so add them by the Pythagorean theorem before you divide by the mass.",
+    "solution": "A free-body diagram would show a northward force of 64 N and a westward force of 38 N. The net force is equal to the sum of the two applied forces. It can be found using the Pythagorean theorem: $\\kFnet = \\sqrt{\\kFx^2 + \\kFy^2} = \\sqrt{(38\\ \\text{N})^2 + (64\\ \\text{N})^2} = 74.4\\ \\text{N}$. Since $\\ka = \\kFnet / m$, $\\ka = 74.4\\ \\text{N} / 825\\ \\text{kg} = 0.09\\ \\text{m/s}^2$. The boulder will accelerate at $0.09\\ \\text{m/s}^2$."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2391286",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drag",
+   "prompt": "A flea jumps by exerting a force of $1.20\\times 10^{-5}\\ \\text{N}$ straight down on the ground. A breeze blowing on the flea parallel to the ground exerts a force of $0.500\\times 10^{-6}\\ \\text{N}$ on the flea. Find the direction and magnitude of the acceleration of the flea if its mass is $6.00\\times 10^{-7}\\ \\text{kg}$. Do not neglect the gravitational force.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 10.2,
+      "unit": "m/s²",
+      "hint": "By Newton’s third law the ground pushes the flea up with $1.20\\times 10^{-5}\\ \\text{N}$; take the weight away from that to get the vertical force, add the breeze at right angles to it, and divide by the mass."
+     },
+     {
+      "part": "direction",
+      "value": 4.67,
+      "unit": "° from vertical",
+      "hint": "The angle is $\\tan^{-1}$ of the horizontal force divided by the vertical one."
+     }
+    ],
+    "solution": "$10.2\\ \\text{m/s}^2$, $4.67^\\circ$ from vertical."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2953749",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tensions",
+   "figure": {
+    "src": "/media/ch04/Figure_04_07_08a.jpg",
+    "alt": "A lady is being pulled away from a burning building using a rope. She is in the middle of the rope; her weight is shown by a vector acting vertically downward. Tension, T sub one, acts upward through the left side of the rope, making an angle of fifteen degrees with the vertical. Tension T sub two acts through the right side of the rope, making an angle of ten degrees above the positive x axis.",
+    "caption": "The force T_2 needed to hold steady the person being rescued from the fire is less than her weight and less than the force T_1 in the other rope, since the more vertical rope supports a greater part of her weight (a vertical force)."
+   },
+   "prompt": "A 76.0-kg person is being pulled away from a burning building as shown in the rescue figure. Calculate the tension in the two ropes if the person is momentarily motionless. Include a free-body diagram in your solution.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$\\kTone$",
+      "value": 736,
+      "unit": "N",
+      "hint": "Resolve both tensions onto a horizontal and a vertical axis. The horizontal components cancel and the vertical components add to her weight, which gives two equations for the two unknowns."
+     },
+     {
+      "part": "$\\kTtwo$",
+      "value": 194,
+      "unit": "N",
+      "hint": "The rope that is nearer the vertical carries the greater share of the weight, so this tension is the smaller of the two."
+     }
+    ],
+    "solution": "$\\kTone = 736\\ \\text{N}$, $\\kTtwo = 194\\ \\text{N}$."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3078491",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating",
+   "prompt": "When starting a foot race, a 70.0-kg sprinter exerts an average force of 650 N backward on the ground for 0.800 s. (a) What is his final speed? (b) How far does he travel?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 7.43,
+      "unit": "m/s",
+      "hint": "Find the acceleration from $\\kFnet = m\\ka$ first, and then use $\\kv = \\kvo + \\ka\\kt$ with $\\kvo = 0$."
+     },
+     {
+      "part": "b",
+      "value": 2.97,
+      "unit": "m",
+      "hint": "With a constant acceleration from rest the distance is $\\tfrac{1}{2}\\ka\\kt^2$."
+     }
+    ],
+    "solution": "(a) $7.43\\ \\text{m/s}$; (b) 2.97 m."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3065143",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating",
+   "prompt": "A basketball player jumps straight up for a ball. To do this, they lower their body 0.300 m and then accelerate through this distance by forcefully straightening their legs. This player leaves the floor with a vertical velocity sufficient to carry the player 0.900 m above the floor. (a) Calculate the player’s velocity when they leave the floor. (b) Calculate their acceleration while they are straightening their legs. They go from zero to the velocity found in part (a) in a distance of 0.300 m. (c) Calculate the force they exert on the floor to do this, given that their mass is 110 kg.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 4.2,
+      "unit": "m/s",
+      "hint": "Once the player is in the air only gravity acts, so $\\kv^2 = \\kvo^2 - 2\\kg\\ky$ with $\\kv = 0$ at the highest point."
+     },
+     {
+      "part": "b",
+      "value": 29.4,
+      "unit": "m/s²",
+      "hint": "Use $\\kv^2 = \\kvo^2 + 2\\ka\\kdx$ over the 0.300 m through which the legs straighten."
+     },
+     {
+      "part": "c",
+      "value": 4310,
+      "unit": "N",
+      "hint": "The net force on the player is $m\\ka$, and the floor must also carry their weight; the force they exert on the floor is equal and opposite to the force the floor exerts on them."
+     }
+    ],
+    "solution": "(a) $4.20\\ \\text{m/s}$; (b) $29.4\\ \\text{m/s}^2$; (c) $4.31\\times 10^{3}\\ \\text{N}$."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2963222",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating",
+   "prompt": "A 2.50-kg fireworks shell is fired from a mortar at an angle of $10.0^\\circ$ from the vertical and reaches a height of 110 m. (a) Neglecting air resistance (a poor assumption, but we will make it for this example), calculate the shell’s velocity when it leaves the mortar. (b) The mortar itself is a tube 0.450 m long. Calculate the average acceleration of the shell in the tube as it goes from zero to the velocity found in (a). (c) What is the average force on the shell in the mortar? Express your answer in newtons and as a ratio to the weight of the shell.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 47.1,
+      "unit": "m/s",
+      "hint": "Only the vertical component of the launch velocity carries the shell to 110 m, and that component is the speed times the cosine of the angle from the vertical."
+     },
+     {
+      "part": "b",
+      "value": 2470,
+      "unit": "m/s²",
+      "hint": "Use $\\kv^2 = \\kvo^2 + 2\\ka\\kdx$ over the 0.450 m of the tube, starting from rest."
+     },
+     {
+      "part": "c",
+      "value": 6180,
+      "unit": "N",
+      "hint": "The net force is $m\\ka$; divide it by the weight $m\\kg$ of the shell for the ratio."
+     }
+    ],
+    "solution": "(a) 47.1 m/s; (b) $2.47\\times 10^{3}\\ \\text{m/s}^2$; (c) $6.18\\times 10^{3}\\ \\text{N}$. The average force is 252 times the shell’s weight."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "apparent-weight"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "free-fall",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "apparent-weight"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "newtons-first-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "normal-force",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "free-body-diagram",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "drag-force"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "drag-force"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "unequal-tensions"
+  },
+  {
+   "exercise": "p3",
+   "concept": "tension",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "net-force-by-axis",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "integrated-kinematics-dynamics"
+  },
+  {
+   "exercise": "p5",
+   "concept": "newtons-second-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "v-from-at",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "x-quadratic",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "integrated-kinematics-dynamics"
+  },
+  {
+   "exercise": "p7",
+   "concept": "newtons-second-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "v-squared",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "free-fall-highest-point",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "integrated-kinematics-dynamics"
+  },
+  {
+   "exercise": "p9",
+   "concept": "newtons-second-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "v-squared",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "components-from-magnitude-angle",
+   "weight": 2
+  }
+ ]
+}

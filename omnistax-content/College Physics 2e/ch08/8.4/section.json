@@ -1,0 +1,691 @@
+{
+ "id": "8.4",
+ "module": "m42163",
+ "chapter": "8",
+ "title": "Elastic Collisions in One Dimension",
+ "short": "Elastic collisions",
+ "lead": "When two objects collide and none of their kinetic energy is turned into heat transfer, sound or the work of deforming them, the collision is elastic, and the sum of the kinetic energies of the two objects is the same afterwards as it was before. This section defines that sum as the internal kinetic energy of the system, sets its conservation beside the conservation of momentum, and uses the two equations together to find both final velocities of two objects that collide along a line.",
+ "objectives": [
+  "Describe an elastic collision of two objects in one dimension.",
+  "Define internal kinetic energy.",
+  "Derive an expression for conservation of internal kinetic energy in a one dimensional collision.",
+  "Determine the final velocities in an elastic collision given masses and initial velocities."
+ ],
+ "summary_html": "<ul><li>An elastic collision is one that conserves internal kinetic energy.</li><li>Conservation of kinetic energy and momentum together allow the final velocities to be calculated in terms of initial velocities and masses in one dimensional two-body collisions.</li></ul>",
+ "notes": "The PhET simulation note on the Collision Lab is left out, and problems 1 and 3, which have no answer in the book’s key, are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 1 (fs-id3102664, the two identical objects) and 3 (fs-id898804, the goalie and the puck) have no keyed answer and are left out. Nine of the section’s twenty AP test prep items turn on an inelastic or a perfectly inelastic collision, or on what tells the two kinds of collision apart, which section 8.5 introduces, so they are held for that page with source_section 8.4: fs-id2208648, fs-id1342061, fs-id1442938, fs-id2332080, fs-id2494812, fs-id1862350, fs-id2389032, fs-id1741049 and fs-id1971159. The trade runs the other way as well: three of section 8.5’s AP items are about an elastic collision, which this section introduces, and are set here with source_section 8.5, fs-id2060437, fs-id1367751 and fs-id1538341; section 8.5’s notes say so too. The two items that ask for the velocity or the momentum of the centre of mass of the two pucks stay with the collision they describe and are tagged with the centre-of-mass node of section 6.5; the book gives the idea one sentence, in Conservation of Momentum, where it says that the total momentum can be shown to be the momentum of the centre of mass of the system, and the suggested approaches lean on that sentence. Every unkeyed AP item here asks for an answer in words or in numbers rather than for a choice, so each is kept as an open item with an AI-written suggested approach, marked as such; the suggested approach to the conceptual question is AI-written in the same way, since the book keys no conceptual question in this chapter. The graph of the positions of two colliding air carts that the two items fs-id1165124579546 and fs-id2378587 both read is carried on both cards, because the second item says “For the above graph” and each card has to stand on its own. The numeric answer accepts 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-elastic-collision",
+   "kind": "sim",
+   "number": "8.6",
+   "originals": [
+    "/media/ch08/Figure_09_04_01a.jpg"
+   ],
+   "original_caption": "An elastic one-dimensional two-object collision. Momentum and internal kinetic energy are conserved.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "velocity",
+    "momentum",
+    "energy"
+   ]
+  },
+  {
+   "id": "sim-two-solutions",
+   "kind": "sim",
+   "draws": [
+    "velocity",
+    "momentum",
+    "energy"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "elastic",
+   "concept": "elastic-collision",
+   "verb": "introduces"
+  },
+  {
+   "span": "elastic",
+   "concept": "internal-kinetic-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "elastic",
+   "concept": "nearly-elastic-collisions",
+   "verb": "introduces"
+  },
+  {
+   "span": "elastic",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic",
+   "concept": "isolated-system",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "equations",
+   "concept": "elastic-collision-1d",
+   "verb": "introduces"
+  },
+  {
+   "span": "equations",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "equations",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "equations",
+   "concept": "elastic-collision",
+   "verb": "uses"
+  },
+  {
+   "span": "equations",
+   "concept": "internal-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "elastic-collision-1d",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "physical-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "internal-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "elastic-collision",
+   "verb": "reinforces"
+  },
+  {
+   "span": "example",
+   "concept": "nearly-elastic-collisions",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1478642",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Puck A (200 g) slides across a frictionless surface to collide with puck B (800 g), initially at rest. The velocity of each puck is measured during the experiment as follows:<table class=\"data\"><tr><th>Time</th><th>Velocity A</th><th>Velocity B</th></tr><tr><td>0</td><td>+8.0 m/s</td><td>0</td></tr><tr><td>1.0 s</td><td>+8.0 m/s</td><td>0</td></tr><tr><td>2.0 s</td><td>−2.0 m/s</td><td>+2.5 m/s</td></tr><tr><td>3.0 s</td><td>−2.0 m/s</td><td>+2.5 m/s</td></tr></table>What is the change in momentum of the center of mass of the system as a result of the collision?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "+1.6 kg•m/s",
+     "+0.8 kg•m/s",
+     "0",
+     "−1.6 kg•m/s"
+    ],
+    "correct": 2,
+    "solution": "(c)",
+    "generated_by": "source",
+    "hint": "The total momentum of a system is the momentum of its centre of mass, and the two pucks slide on a frictionless surface, so ask first what the net external force on the pair is."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1364045",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "<table class=\"data\"><tr><th>Time</th><th>Velocity A</th><th>Velocity B</th></tr><tr><td>0</td><td>+8.0 m/s</td><td>0</td></tr><tr><td>1.0 s</td><td>+8.0 m/s</td><td>0</td></tr><tr><td>2.0 s</td><td>−2.0 m/s</td><td>+2.5 m/s</td></tr><tr><td>3.0 s</td><td>−2.0 m/s</td><td>+2.5 m/s</td></tr></table>For the table above, calculate the center-of-mass velocity of the system both before and after the collision, then calculate the center-of-mass momentum of the system both before and after the collision. From this, determine the change in the momentum of the system as a result of the collision.",
+   "answer": {
+    "type": "open",
+    "solution": "Conservation of Momentum says that the total momentum of a system can be shown to be the momentum of the centre of mass of the system, so work with the sum of the two momenta and divide by the total mass of 0.200 kg + 0.800 kg = 1.00 kg. Before the collision the total momentum is $(0.200\\ \\text{kg})(8.0\\ \\text{m/s}) + (0.800\\ \\text{kg})(0) = 1.6\\ \\text{kg}\\cdot\\text{m/s}$, so the centre of mass moves at $1.6\\ \\text{kg}\\cdot\\text{m/s} \\div 1.00\\ \\text{kg} = 1.6\\ \\text{m/s}$ in the positive direction. After the collision the total momentum is $(0.200\\ \\text{kg})(-2.0\\ \\text{m/s}) + (0.800\\ \\text{kg})(2.5\\ \\text{m/s}) = -0.4 + 2.0 = 1.6\\ \\text{kg}\\cdot\\text{m/s}$, so the centre of mass still moves at 1.6 m/s in the positive direction. The change in the momentum of the system is therefore zero. That is what you should expect: the pucks slide on a frictionless surface, the net external force on the pair is zero, and the forces the pucks exert on one another are internal to the system, so they change the momentum of each puck but not the momentum of the two together.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2432045",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Two cars (A and B) of equal mass have an elastic collision. Prior to the collision, car A is moving at 15 m/s in the +<em>x</em>-direction, and car B is moving at 10 m/s in the –<em>x</em>-direction. Assuming that both cars continue moving along the <em>x</em>-axis after the collision, what will be the velocity of car A after the collision?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "same as the original 15 m/s speed, opposite direction",
+     "equal to car B’s velocity prior to the collision",
+     "equal to the average of the two velocities, in its original direction",
+     "equal to the average of the two velocities, in the opposite direction"
+    ],
+    "correct": 1,
+    "solution": "(b)",
+    "generated_by": "source",
+    "hint": "Put $m_1 = m_2$ into the two equations of an elastic collision and see what the pair of final velocities has to be."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id3206663",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Two cars (A and B) of equal mass have an elastic collision. Prior to the collision, car A is moving at 20 m/s in the +<em>x</em>-direction, and car B is moving at 10 m/s in the –<em>x</em>-direction. Assuming that both cars continue moving along the <em>x</em>-axis after the collision, what will be the velocities of each car after the collision?",
+   "answer": {
+    "type": "open",
+    "solution": "Take the +<em>x</em>-direction as positive, so that $\\kvone = 20\\ \\text{m/s}$ and $\\kvtwo = -10\\ \\text{m/s}$, and write the two equations of an elastic collision with $m_1 = m_2 = m$. Conservation of momentum gives $m(20) + m(-10) = m\\kvoneprime + m\\kvtwoprime$, so $\\kvoneprime + \\kvtwoprime = 10\\ \\text{m/s}$, and conservation of internal kinetic energy gives $\\tfrac{1}{2}m(20)^2 + \\tfrac{1}{2}m(-10)^2 = \\tfrac{1}{2}m{\\kvoneprime}^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2$, so ${\\kvoneprime}^2 + {\\kvtwoprime}^2 = 500\\ \\text{m}^2/\\text{s}^2$. The pair that satisfies both, apart from the pair the cars already had, is $\\kvoneprime = -10\\ \\text{m/s}$ and $\\kvtwoprime = 20\\ \\text{m/s}$. Two objects of equal mass that collide elastically along a line simply exchange their velocities: car A leaves at 10 m/s in the –<em>x</em>-direction and car B at 20 m/s in the +<em>x</em>-direction.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1683789",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "elastic",
+   "prompt": "A rubber ball is dropped from rest at a fixed height. It bounces off a hard floor and rebounds upward, but it only reaches 90% of its original fixed height. What is the best way to explain the loss of kinetic energy of the ball during the collision?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "Energy was required to deform the ball’s shape during the collision with the floor.",
+     "Energy was lost due to work done by the ball pushing on the floor during the collision.",
+     "Energy was lost due to friction between the ball and the floor.",
+     "Energy was lost due to the work done by gravity during the motion."
+    ],
+    "correct": 0,
+    "solution": "(a)",
+    "generated_by": "source",
+    "hint": "A collision is elastic only when none of the kinetic energy is turned into another form, so ask what the ball does that a steel block on ice does not."
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1514509",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "elastic",
+   "prompt": "A tennis ball strikes a wall with an initial speed of 15 m/s. The ball bounces off the wall but rebounds with slightly less speed (14 m/s) after the collision. Explain (a) what else changed its momentum in response to the ball’s change in momentum so that overall momentum is conserved, and (b) how some of the ball’s kinetic energy was lost.",
+   "answer": {
+    "type": "open",
+    "solution": "(a) Momentum is conserved for a system on which the net external force is zero, and the ball alone is not such a system: the wall pushes on it. Take the ball and the wall together, and the wall is attached to the building and through it to the Earth, so the system is the ball and the Earth. While the ball is in contact with the wall the ball pushes on the wall exactly as hard as the wall pushes on the ball, and for exactly as long, so the Earth takes up a change in momentum equal in size and opposite in direction to the ball’s. The Earth is so massive that this leaves it with no measurable change in velocity, but the momentum of the ball and the Earth together is the same after the bounce as before it. (b) The collision is not elastic. While the ball is squashed against the wall, work is done deforming the rubber and the wall, and not all of that work comes back as kinetic energy when the ball springs out again: some of it stays in the ball and the wall as heat transfer, and some of it leaves as the sound of the impact. The internal kinetic energy of the system is therefore smaller after the bounce than before it, which is why the ball comes away at 14 m/s rather than at 15 m/s.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1321180",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Mass A is three times more massive than mass B. Mass A is initially moving 12 m/s in the +<em>x</em>-direction. Mass B is initially moving 12 m/s in the –<em>x</em>-direction. Assuming that the collision is elastic, calculate the final velocity of both masses after the collision. Show that your results are consistent with conservation of momentum and conservation of kinetic energy.",
+   "answer": {
+    "type": "open",
+    "solution": "Let mass B be $m$, so that mass A is $3m$, and take the +<em>x</em>-direction as positive, so that $\\kvone = 12\\ \\text{m/s}$ for A and $\\kvtwo = -12\\ \\text{m/s}$ for B. Conservation of momentum gives $3m(12) + m(-12) = 3m\\kvoneprime + m\\kvtwoprime$, so $3\\kvoneprime + \\kvtwoprime = 24\\ \\text{m/s}$, and conservation of internal kinetic energy gives $3{\\kvoneprime}^2 + {\\kvtwoprime}^2 = 3(12)^2 + (12)^2 = 576\\ \\text{m}^2/\\text{s}^2$. Solving the pair, and discarding the solution that repeats the initial condition as the worked example of this section does, gives $\\kvoneprime = 0$ and $\\kvtwoprime = 24\\ \\text{m/s}$: the more massive object stops dead and the lighter one leaves at 24 m/s in the +<em>x</em>-direction. Check the momentum: before the collision it is $3m(12) + m(-12) = 24m$, and after it is $3m(0) + m(24) = 24m$, the same. Check the kinetic energy: before it is $\\tfrac{1}{2}(3m)(12)^2 + \\tfrac{1}{2}m(12)^2 = 216m + 72m = 288m$, and after it is $\\tfrac{1}{2}(3m)(0)^2 + \\tfrac{1}{2}m(24)^2 = 288m$, also the same.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1487248",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Two objects (A and B) of equal mass collide elastically. Mass A is initially moving 5.0 m/s in the +<em>x</em>-direction prior to the collision. Mass B is initially moving 3.0 m/s in the –<em>x</em>-direction prior to the collision. After the collision, mass A will be moving with a velocity of 3.0 m/s in the –<em>x</em>-direction. What will be the velocity of mass B after the collision?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "3.0 m/s in the +<em>x</em>-direction",
+     "5.0 m/s in the +<em>x</em>-direction",
+     "3.0 m/s in the –<em>x</em>-direction",
+     "5.0 m/s in the –<em>x</em>-direction"
+    ],
+    "correct": 1,
+    "solution": "(b)",
+    "generated_by": "source",
+    "hint": "The masses are equal, so write conservation of momentum with one mass cancelled and solve for the one velocity you do not have."
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id3182581",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Two objects (A and B) of equal mass collide elastically. Mass A is initially moving 4.0 m/s in the +<em>x</em>-direction prior to the collision. Mass B is initially moving 8.0 m/s in the –<em>x</em>-direction prior to the collision. After the collision, mass A will be moving with a velocity of 8.0 m/s in the –<em>x</em>-direction. (a) Use the principle of conservation of momentum to predict the velocity of mass B after the collision. (b) Use the fact that kinetic energy is conserved in elastic collisions to predict the velocity of mass B after the collision.",
+   "answer": {
+    "type": "open",
+    "solution": "Take the +<em>x</em>-direction as positive and let each mass be $m$. (a) Conservation of momentum gives $m(4.0) + m(-8.0) = m(-8.0) + m\\kvtwoprime$, and the mass cancels, leaving $\\kvtwoprime = 4.0\\ \\text{m/s}$: mass B leaves at 4.0 m/s in the +<em>x</em>-direction. (b) Conservation of internal kinetic energy gives $\\tfrac{1}{2}m(4.0)^2 + \\tfrac{1}{2}m(8.0)^2 = \\tfrac{1}{2}m(8.0)^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2$, and the mass and the halves cancel, leaving ${\\kvtwoprime}^2 = 16\\ \\text{m}^2/\\text{s}^2$, so $\\kvtwoprime = \\pm 4.0\\ \\text{m/s}$. The energy equation is a quadratic and gives two roots, as the worked example of this section does, and only the positive one agrees with the momentum equation, so mass B leaves at 4.0 m/s in the +<em>x</em>-direction. The two equations agree, which is what makes them usable together: momentum fixes the sign that energy alone cannot.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1165124579546",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "figure": {
+    "src": "/media/ch08/CNX_APPhysics_08_M3_aircars.jpg",
+    "alt": "The figure shows a graph of the position in meters as a function of time in seconds for two objects, A and B. The time axis runs from 0 to 1.2 seconds. The position axis runs from 0 to 2.5 meters. Object A starts at position 0 at time 0. Its position increases linearly to reach position 1.5 meters at time 0.6 seconds. Its position then decreases linearly to reach position 0 meters at time 1.2 seconds. Object B starts at position 2.0 meters at time 0. Its position decreases linearly to reach position 1.5 meters at time 0.6 seconds. Its position then increases linearly to reach position 2.0 meters at time 1.2 seconds.",
+    "caption": "The positions of two colliding objects, measured before, during, and after the collision."
+   },
+   "prompt": "This figure shows the positions of two colliding objects measured before, during, and after a collision. Mass A is 1.0 kg. Mass B is 3.0 kg. Which of the following statements is true?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "This is an elastic collision, with a total momentum of 0 kg • m/s.",
+     "This is an elastic collision, with a total momentum of 1.67 kg • m/s.",
+     "This is an inelastic collision, with a total momentum of 0 kg • m/s.",
+     "This is an inelastic collision, with a total momentum of 1.67 kg • m/s."
+    ],
+    "correct": 0,
+    "solution": "(a)",
+    "generated_by": "source",
+    "hint": "The slope of each line is the velocity of that object, so read the four slopes off the graph and then work out the total momentum and the internal kinetic energy before and after."
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id2378587",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "figure": {
+    "src": "/media/ch08/CNX_APPhysics_08_M3_aircars.jpg",
+    "alt": "The figure shows a graph of the position in meters as a function of time in seconds for two objects, A and B. The time axis runs from 0 to 1.2 seconds. The position axis runs from 0 to 2.5 meters. Object A starts at position 0 at time 0. Its position increases linearly to reach position 1.5 meters at time 0.6 seconds. Its position then decreases linearly to reach position 0 meters at time 1.2 seconds. Object B starts at position 2.0 meters at time 0. Its position decreases linearly to reach position 1.5 meters at time 0.6 seconds. Its position then increases linearly to reach position 2.0 meters at time 1.2 seconds.",
+    "caption": "The positions of two colliding objects, measured before, during, and after the collision."
+   },
+   "prompt": "For the above graph, determine the initial and final momentum for both objects, assuming mass A is 1.0 kg and mass B is 3.0 kg. Also, determine the initial and final kinetic energies for both objects. Based on your results, explain whether momentum is conserved in this collision, and state whether the collision is elastic or inelastic.",
+   "answer": {
+    "type": "open",
+    "solution": "The slope of a position-against-time line is the velocity of that object, so read the four slopes first. Object A goes from 0 m to 1.5 m in 0.6 s, a velocity of $+2.5\\ \\text{m/s}$, and after the collision it goes from 1.5 m back to 0 m in 0.6 s, a velocity of $-2.5\\ \\text{m/s}$. Object B goes from 2.0 m to 1.5 m in 0.6 s, a velocity of $-0.83\\ \\text{m/s}$, and afterwards from 1.5 m back to 2.0 m, a velocity of $+0.83\\ \\text{m/s}$. The momenta are then $\\kpone = (1.0\\ \\text{kg})(2.5\\ \\text{m/s}) = +2.5\\ \\text{kg}\\cdot\\text{m/s}$ and $\\kptwo = (3.0\\ \\text{kg})(-0.83\\ \\text{m/s}) = -2.5\\ \\text{kg}\\cdot\\text{m/s}$ before the collision, and $\\kponeprime = -2.5\\ \\text{kg}\\cdot\\text{m/s}$ and $\\kptwoprime = +2.5\\ \\text{kg}\\cdot\\text{m/s}$ after it. The total momentum is zero both before and after, so momentum is conserved, as it must be for two objects that slide without friction and feel no net external force. The kinetic energies are $\\tfrac{1}{2}(1.0)(2.5)^2 = 3.1\\ \\text{J}$ for A and $\\tfrac{1}{2}(3.0)(0.83)^2 = 1.0\\ \\text{J}$ for B, and each object has the same speed after the collision as before it, so each has the same kinetic energy as well. The internal kinetic energy of the system is $4.1\\ \\text{J}$ before the collision and $4.1\\ \\text{J}$ after it, so the collision is elastic.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap12",
+   "source_id": "fs-id2060437",
+   "source_section": "8.5",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Mass A (2.0 kg) has an initial velocity of 4 m/s in the +<em>x</em>-direction. Mass B (2.0 kg) has an initial velocity of 5 m/s in the –<em>x</em>-direction. If the two masses have an elastic collision, what will be the final velocities of the masses after the collision?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "Both will move 0.5 m/s in the –<em>x</em>-direction.",
+     "Mass A will stop; mass B will move 9 m/s in the +<em>x</em>-direction.",
+     "Mass B will stop; mass A will move 9 m/s in the –<em>x</em>-direction.",
+     "Mass A will move 5 m/s in the –<em>x</em>-direction; mass B will move 4 m/s in the +<em>x</em>-direction."
+    ],
+    "correct": 3,
+    "solution": "(d)",
+    "generated_by": "source",
+    "hint": "The two masses are equal, so ask what the two conservation equations leave the pair of final velocities when $m_1 = m_2$."
+   }
+  },
+  {
+   "id": "ap13",
+   "source_id": "fs-id1367751",
+   "source_section": "8.5",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Mass A has an initial velocity of 22 m/s in the +<em>x</em>-direction. Mass B is three times more massive than mass A and has an initial velocity of 22 m/s in the –<em>x</em>-direction. If the two masses have an elastic collision, what will be the final velocities of the masses after the collision?",
+   "answer": {
+    "type": "open",
+    "solution": "Let mass A be $m$ and mass B be $3m$, and take the +<em>x</em>-direction as positive, so that $\\kvone = 22\\ \\text{m/s}$ and $\\kvtwo = -22\\ \\text{m/s}$. Conservation of momentum gives $m(22) + 3m(-22) = m\\kvoneprime + 3m\\kvtwoprime$, so $\\kvoneprime + 3\\kvtwoprime = -44\\ \\text{m/s}$, and conservation of internal kinetic energy gives ${\\kvoneprime}^2 + 3{\\kvtwoprime}^2 = (22)^2 + 3(22)^2 = 1936\\ \\text{m}^2/\\text{s}^2$. One solution of the pair repeats the velocities the objects already had and describes the situation before the collision, so it is discarded; the other is $\\kvoneprime = -44\\ \\text{m/s}$ and $\\kvtwoprime = 0$. The lighter object rebounds at 44 m/s in the –<em>x</em>-direction and the heavier one is left at rest. Check the momentum: $22m - 66m = -44m$ before and $-44m + 0 = -44m$ after. Check the kinetic energy: $\\tfrac{1}{2}m(22)^2 + \\tfrac{1}{2}(3m)(22)^2 = 968m$ before and $\\tfrac{1}{2}m(44)^2 = 968m$ after.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap14",
+   "source_id": "fs-id1538341",
+   "source_section": "8.5",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Mass A is initially moving with a velocity of 2 m/s in the +<em>x</em>-direction. Mass B is initially moving with a velocity of 6 m/s in the –<em>x</em>-direction. The two objects have equal masses. After they collide, mass A moves with a speed of 4 m/s in the –<em>x</em>-direction. What is the final velocity of mass B after the collision?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "6 m/s in the +<em>x</em>-direction",
+     "4 m/s in the +<em>x</em>-direction",
+     "zero",
+     "4 m/s in the –<em>x</em>-direction"
+    ],
+    "correct": 2,
+    "solution": "(c)",
+    "generated_by": "source",
+    "hint": "Momentum is conserved whatever becomes of the kinetic energy, so write the momentum equation with equal masses and solve it for the velocity you do not have."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3105556",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "inline",
+    "after": "elastic"
+   },
+   "cite": "elastic",
+   "prompt": "What is an elastic collision?",
+   "answer": {
+    "type": "open",
+    "solution": "An elastic collision is a collision that conserves internal kinetic energy as well as momentum. The internal kinetic energy of a system is the sum of the kinetic energies of the objects in it, so in an elastic collision that sum is the same after the collision as before it, and none of it has been turned into heat transfer, sound or the work of deforming the objects. Momentum is conserved in any collision on which the net external force is zero, elastic or not; what makes a collision elastic is the second conservation law, and it is that second equation which lets both final velocities be found from the masses and the initial velocities.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1319285",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "Professional Application",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "Two piloted satellites approach one another at a relative speed of 0.250 m/s, intending to dock. The first has a mass of $4.00 \\times 10^{3}\\ \\text{kg}$, and the second a mass of $7.50 \\times 10^{3}\\ \\text{kg}$. If the two satellites collide elastically rather than dock, what is their final relative velocity?",
+   "answer": {
+    "type": "number",
+    "value": 0.25,
+    "unit": "m/s",
+    "generated_by": "source",
+    "solution": "0.250 m/s",
+    "hint": "Write the two equations of an elastic collision and look at what they do to the difference of the two velocities rather than to each velocity on its own."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "nearly-elastic-collisions"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "nearly-elastic-collisions"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap9",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "internal-kinetic-energy"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "physical-solution",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "internal-kinetic-energy"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap11",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "internal-kinetic-energy"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap12",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap13",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap13",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap13",
+   "concept": "physical-solution",
+   "weight": 2
+  },
+  {
+   "exercise": "ap14",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap14",
+   "concept": "elastic-collision",
+   "weight": 1
+  },
+  {
+   "exercise": "cq1",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "internal-kinetic-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "p1",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  }
+ ]
+}

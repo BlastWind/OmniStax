@@ -62,14 +62,19 @@ even the thin ones (2.2 is one sign convention; 2.6 is a strategy box).
 
 Chapters built so far: 1 (Introduction: The Nature of Science and
 Physics, `ch01`), 2 (Kinematics, `ch02`), 3 (Two-Dimensional Kinematics,
-`ch03`) and 16 (Oscillatory Motion and Waves, `ch16`). Chapter 2 is being
-completed in one pass on 2026-09-11, its six remaining sections built
-beside the two that already stood. A chapter folder is `ch` followed by
-the two-digit chapter number. The whole table of contents is in
-`toc.md`. The introduction of Chapter 2 (m42122, `ch02/intro/`) is
-built; the introductions of Chapters 1, 3 and 16 and the Preface
-(m42955) are named in their `intro` records and wait to be built the
-same way.
+`ch03`), 4 (Dynamics: Force and Newton's Laws of Motion, `ch04`), 5
+(Further Applications of Newton's Laws, `ch05`), 6 (Uniform Circular
+Motion and Gravitation, `ch06`), 8 (Linear Momentum and Collisions,
+`ch08`), 9 (Statics and Torque, `ch09`) and 16 (Oscillatory Motion and
+Waves, `ch16`); Chapter 7 (Work, Energy, and Energy Resources, `ch07`)
+is prepared, with its tables, concepts and introduction in place, and its
+sections wait (LOG pass 27, `Plan.md` at the repository root). A chapter
+folder is `ch` followed by the two-digit chapter number. The whole table
+of contents is in `toc.md`. Every built chapter's introduction and the
+Preface (m42955) are pages of their own in their `intro/` folders. A
+chapter's book-level rows (types, symbols, concepts, prerequisite edges)
+are staged in its `book-rows.json` and merged into `book.json` with
+`tools/mergebook.py merge chNN`, never written by hand.
 
 ## Apparatus
 

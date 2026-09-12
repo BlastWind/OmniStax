@@ -112,7 +112,7 @@ def inline(e):
             out.append(inline(k))
         elif t == "list":
             out.append("\n" + block(k, 0) + "\n")
-        elif t in ("figure", "note", "equation"):
+        elif t in ("figure", "note", "equation", "table"):
             # block elements nested inside a para: emit them as blocks, not as inline text.
             # The sentinels keep para() from folding the block's lines into the paragraph.
             out.append("\n\x02" + block(k, 0) + "\x03\n")

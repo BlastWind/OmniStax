@@ -1,0 +1,159 @@
+<section id="drag">
+<h2>Adding perpendicular forces: the drag on a barge</h2>
+<p class="cite-target">There are many interesting applications of Newton’s laws of motion, a few more of which are presented in this section. These serve also to illustrate some further subtleties of physics and to help build problem-solving skills.</p>
+<div class="example" id="ex-barge">
+<h3>Example 4.7 · Drag Force on a Barge</h3>
+<p>Suppose two tugboats push on a barge at different angles, as shown in Figure 4.21. The first tugboat exerts a force of $2.7\times 10^{5}\ \text{N}$ in the <em>x</em>-direction, and the second tugboat exerts a force of $3.6\times 10^{5}\ \text{N}$ in the <em>y</em>-direction.</p>
+<figure class="sim" id="sim-barge" data-figure="4.21" data-original="/media/ch04/Figure_04_07_01-386e.jpg" data-original-caption="(a) A view from above of two tugboats pushing on a barge. (b) The free-body diagram for the ship contains only forces acting in the plane of the water. It omits the two vertical forces—the weight of the barge and the buoyant force of the water supporting it cancel and are not shown. Since the applied forces are perpendicular, the x- and y-axes are in the same direction as F_x and F_y. The problem quickly becomes a one-dimensional problem along the direction of F_app, since friction is in the direction opposite to F_app.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.21</span><span>Two tugboats push on a barge at right angles to each other, seen from above, and the free-body diagram of the barge is drawn beside the scene. Change either push and watch the total applied force $\kFa$ swing round and grow; change the mass or the acceleration you observe and watch the drag force $\kFD$, which is what is left of the applied force once the barge has been accelerated, change with them.</span></div>
+</figure>
+<p>If the mass of the barge is $5.0\times 10^{6}\ \text{kg}$ and its acceleration is observed to be $7.5\times 10^{-2}\ \text{m/s}^{2}$ in the direction shown, what is the drag force of the water on the barge resisting the motion? (Note: drag force is a frictional force exerted by fluids, such as air or water. The drag force opposes the motion of the object.)</p>
+<h4>Strategy</h4>
+<p>The directions and magnitudes of acceleration and the applied forces are given in Figure 4.21(a). We will define the total force of the tugboats on the barge as $\kFa$ so that:</p>
+$$\kFa = \kFx + \kFy$$
+<p>Since the barge is flat bottomed, the drag of the water $\kFD$ will be in the direction opposite to $\kFa$, as shown in the free-body diagram in Figure 4.21(b). The system of interest here is the barge, since the forces on <em>it</em> are given as well as its acceleration. Our strategy is to find the magnitude and direction of the net applied force $\kFa$, and then apply Newton’s second law to solve for the drag force $\kFD$.</p>
+<h4>Solution</h4>
+<p>Since $\kFx$ and $\kFy$ are perpendicular, the magnitude and direction of $\kFa$ are easily found. First, the resultant magnitude is given by the Pythagorean theorem:</p>
+$$\begin{aligned}\kFa &= \sqrt{\kFx^{2} + \kFy^{2}}\\ \kFa &= \sqrt{(2.7\times 10^{5}\ \text{N})^{2} + (3.6\times 10^{5}\ \text{N})^{2}} = 4.5\times 10^{5}\ \text{N}.\end{aligned}$$
+<p>The angle is given by</p>
+$$\begin{aligned}\theta &= \tan^{-1}\!\left(\frac{\kFy}{\kFx}\right)\\ \theta &= \tan^{-1}\!\left(\frac{3.6\times 10^{5}\ \text{N}}{2.7\times 10^{5}\ \text{N}}\right) = 53^\circ,\end{aligned}$$
+<p>which we know, because of Newton’s first law, is the same direction as the acceleration. $\kFD$ is in the opposite direction of $\kFa$, since it acts to slow down the acceleration. Therefore, the net external force is in the same direction as $\kFa$, but its magnitude is slightly less than $\kFa$. The problem is now one-dimensional. From Figure 4.21(b), we can see that</p>
+$$\kFnet = \kFa - \kFD.$$
+<p>But Newton’s second law states that</p>
+$$\kFnet = m\ka.$$
+<p>Thus,</p>
+$$\kFa - \kFD = m\ka.$$
+<p>This can be solved for the magnitude of the drag force of the water $\kFD$ in terms of known quantities:</p>
+$$\kFD = \kFa - m\ka.$$
+<p>Substituting known values gives</p>
+$$\kFD = (4.5\times 10^{5}\ \text{N}) - (5.0\times 10^{6}\ \text{kg})(7.5\times 10^{-2}\ \text{m/s}^{2}) = 7.5\times 10^{4}\ \text{N}.$$
+<p>The direction of $\kFD$ has already been determined to be in the direction opposite to $\kFa$, or at an angle of $53^\circ$ south of west.</p>
+<h4>Discussion</h4>
+<p>The numbers used in this example are reasonable for a moderately large barge. It is certainly difficult to obtain larger accelerations with tugboats, and small speeds are desirable to avoid running the barge into the docks. Drag is relatively small for a well-designed hull at low speeds, consistent with the answer to this example, where $\kFD$ is less than 1/600th of the weight of the ship.</p>
+</div>
+</section>
+
+<section id="tensions">
+<h2>Two wires at different angles</h2>
+<p class="cite-target">In the earlier example of a tightrope walker we noted that the tensions in wires supporting a mass were equal only because the angles on either side were equal. Consider the following example, where the angles are not equal; slightly more trigonometry is involved.</p>
+<div class="example" id="ex-traffic-light">
+<h3>Example 4.8 · Different Tensions at Different Angles</h3>
+<p>Consider the traffic light (mass 15.0 kg) suspended from two wires as shown in Figure 4.22. Find the tension in each wire, neglecting the masses of the wires.</p>
+<figure class="sim" id="sim-traffic-light" data-figure="4.22" data-original="/media/ch04/Figure_04_07_02.jpg" data-original-width="475" data-original-caption="A traffic light is suspended from two wires. (b) Some of the forces involved. (c) Only forces acting on the system are shown here. The free-body diagram for the traffic light is also shown. (d) The forces projected onto vertical (y) and horizontal (x) axes. The horizontal components of the tensions must cancel, and the sum of the vertical components of the tensions must equal the weight of the traffic light. (e) The free-body diagram shows the vertical and horizontal forces acting on the traffic light.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.22</span><span>A traffic light hangs at rest from two wires that meet the horizontal at different angles, and the free-body diagram beside the scene resolves each tension into a horizontal and a vertical part. Change either angle and watch the horizontal parts stay equal to each other while the vertical parts share the weight; the wire that is nearer the vertical always carries the larger tension, and both tensions grow as the wires are pulled toward the horizontal.</span></div>
+</figure>
+<h4>Strategy</h4>
+<p>The system of interest is the traffic light, and its free-body diagram is shown in Figure 4.22(c). The three forces involved are not parallel, and so they must be projected onto a coordinate system. The most convenient coordinate system has one axis vertical and one horizontal, and the vector projections on it are shown in part (d) of the figure. There are two unknowns in this problem ($\kTone$ and $\kTtwo$), so two equations are needed to find them. These two equations come from applying Newton’s second law along the vertical and horizontal axes, noting that the net external force is zero along each axis because acceleration is zero.</p>
+<h4>Solution</h4>
+<p>First consider the horizontal or <em>x</em>-axis:</p>
+$$\kFnetx = \kTtwox - \kTonex = 0.$$
+<p>Thus, as you might expect,</p>
+$$\kTonex = \kTtwox.$$
+<p>This gives us the following relationship between $\kTone$ and $\kTtwo$:</p>
+$$\kTone\cos(30^\circ) = \kTtwo\cos(45^\circ).$$
+<p>Thus,</p>
+$$\kTtwo = (1.225)\kTone.$$
+<p>Note that $\kTone$ and $\kTtwo$ are not equal in this case, because the angles on either side are not equal. It is reasonable that $\kTtwo$ ends up being greater than $\kTone$, because it is exerted more vertically than $\kTone$.</p>
+<p>Now consider the force components along the vertical or <em>y</em>-axis:</p>
+$$\kFnety = \kToney + \kTtwoy - \kwgt = 0.$$
+<p>This implies</p>
+$$\kToney + \kTtwoy = \kwgt.$$
+<p>Substituting the expressions for the vertical components gives</p>
+$$\kTone\sin(30^\circ) + \kTtwo\sin(45^\circ) = \kwgt.$$
+<p>There are two unknowns in this equation, but substituting the expression for $\kTtwo$ in terms of $\kTone$ reduces this to one equation with one unknown:</p>
+$$\kTone(0.500) + (1.225\kTone)(0.707) = \kwgt = m\kg,$$
+<p>which yields</p>
+$$(1.366)\kTone = (15.0\ \text{kg})(9.80\ \text{m/s}^{2}).$$
+<p>Solving this last equation gives the magnitude of $\kTone$ to be</p>
+$$\kTone = 108\ \text{N}.$$
+<p>Finally, the magnitude of $\kTtwo$ is determined using the relationship between them, $\kTtwo = 1.225\,\kTone$, found above. Thus we obtain</p>
+$$\kTtwo = 132\ \text{N}.$$
+<h4>Discussion</h4>
+<p>Both tensions would be larger if both wires were more horizontal, and they will be equal if and only if the angles on either side are the same (as they were in the earlier example of a tightrope walker).</p>
+</div>
+</section>
+
+<section id="scale">
+<h2>What a bathroom scale reads in an elevator</h2>
+<p class="cite-target">The bathroom scale is an excellent example of a normal force acting on a body. It provides a quantitative reading of how much it must push upward to support the weight of an object. But can you predict what you would see on the dial of a bathroom scale if you stood on it during an elevator ride? Will you see a value greater than your weight when the elevator starts up? What about when the elevator moves upward at a constant speed: will the scale still read more than your weight at rest? Consider the following example.</p>
+<div class="example" id="ex-scale">
+<h3>Example 4.9 · What Does the Bathroom Scale Read in an Elevator?</h3>
+<p>Figure 4.23 shows a 75.0-kg man (weight of about 165 lb) standing on a bathroom scale in an elevator. Calculate the scale reading: (a) if the elevator accelerates upward at a rate of $1.20\ \text{m/s}^{2}$, and (b) if the elevator moves upward at a constant speed of 1 m/s.</p>
+<figure class="sim" id="sim-elevator-scale" data-figure="4.23" data-original="/media/ch04/Figure_04_07_03a.jpg" data-original-width="550" data-original-caption="(a) The various forces acting when a person stands on a bathroom scale in an elevator. The arrows are approximately correct for when the elevator is accelerating upward—broken arrows represent forces too large to be drawn to scale. T is the upward force on the elevator, w_s is the weight of the scale, w_e is the weight of the elevator, F_s is the force of the scale on the person, F_p is the force of the person on the scale, F_t is the force of the scale on the floor of the elevator, and N is the force of the floor upward on the scale. (b) The free-body diagram shows only the external forces acting on the designated system of interest—the person.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.23</span><span>A man stands on a bathroom scale in an elevator that starts from rest, speeds up, rides at a constant velocity and then slows to a stop, and the dial follows the ride. Watch the reading rise above his weight while the lift is speeding up, fall back to his weight exactly while the velocity is constant, and drop below his weight while the lift is slowing down. Change his mass or the acceleration of the lift and the whole ride is run again.</span></div>
+</figure>
+<h4>Strategy</h4>
+<p>If the scale is accurate, its reading will equal $F_{\text{p}}$, the magnitude of the force the person exerts downward on it. Figure 4.23(a) shows the numerous forces acting on the elevator, scale, and person. It makes this one-dimensional problem look much more formidable than if the person is chosen to be the system of interest and a free-body diagram is drawn as in Figure 4.23(b). Analysis of the free-body diagram using Newton’s laws can produce answers to both parts (a) and (b) of this example, as well as some other questions that might arise. The only forces acting on the person are his weight $\kwgt$ and the upward force of the scale $\kFs$. According to Newton’s third law $F_{\text{p}}$ and $\kFs$ are equal in magnitude and opposite in direction, so that we need to find $\kFs$ in order to find what the scale reads. We can do this, as usual, by applying Newton’s second law,</p>
+$$\kFnet = m\ka.$$
+<p>From the free-body diagram we see that $\kFnet = \kFs - \kwgt$, so that</p>
+$$\kFs - \kwgt = m\ka.$$
+<p>Solving for $\kFs$ gives an equation with only one unknown:</p>
+$$\kFs = m\ka + \kwgt,$$
+<p>or, because $\kwgt = m\kg$, simply</p>
+$$\kFs = m\ka + m\kg.$$
+<p>No assumptions were made about the acceleration, and so this solution should be valid for a variety of accelerations in addition to the ones in this exercise.</p>
+<h4>Solution for (a)</h4>
+<p>In this part of the problem, $\ka = 1.20\ \text{m/s}^{2}$, so that</p>
+$$\kFs = (75.0\ \text{kg})(1.20\ \text{m/s}^{2}) + (75.0\ \text{kg})(9.80\ \text{m/s}^{2}),$$
+<p>yielding</p>
+$$\kFs = 825\ \text{N}.$$
+<h4>Discussion for (a)</h4>
+<p>This is about 185 lb. What would the scale have read if he were stationary? Since his acceleration would be zero, the force of the scale would be equal to his weight:</p>
+$$\begin{aligned}\kFnet &= m\ka = 0 = \kFs - \kwgt\\ \kFs &= \kwgt = m\kg\\ \kFs &= (75.0\ \text{kg})(9.80\ \text{m/s}^{2})\\ \kFs &= 735\ \text{N.}\end{aligned}$$
+<p>So, the scale reading in the elevator is greater than his 735-N (165 lb) weight. This means that the scale is pushing up on the person with a force greater than his weight, as it must in order to accelerate him upward. Clearly, the greater the acceleration of the elevator, the greater the scale reading, consistent with what you feel in rapidly accelerating versus slowly accelerating elevators.</p>
+<h4>Solution for (b)</h4>
+<p>Now, what happens when the elevator reaches a constant upward velocity? Will the scale still read more than his weight? For any constant velocity—up, down, or stationary—acceleration is zero because $\ka = \frac{\kdv}{\kdt}$, and $\kdv = 0$.</p>
+<p>Thus,</p>
+$$\kFs = m\ka + m\kg = 0 + m\kg.$$
+<p>Now</p>
+$$\kFs = (75.0\ \text{kg})(9.80\ \text{m/s}^{2}),$$
+<p>which gives</p>
+$$\kFs = 735\ \text{N}.$$
+<h4>Discussion for (b)</h4>
+<p>The scale reading is 735 N, which equals the person’s weight. This will be the case whenever the elevator has a constant velocity—moving up, moving down, or stationary.</p>
+</div>
+<p>The solution to the previous example also applies to an elevator accelerating downward, as mentioned. When an elevator accelerates downward, $\ka$ is negative, and the scale reading is <em>less</em> than the weight of the person, until a constant downward velocity is reached, at which time the scale reading again becomes equal to the person’s weight. If the elevator is in free-fall and accelerating downward at $\kg$, then the scale reading will be zero and the person will <em>appear</em> to be weightless.</p>
+</section>
+
+<section id="integrating">
+<h2>Integrating concepts: Newton’s laws of motion and kinematics</h2>
+<p class="cite-target">Physics is most interesting and most powerful when applied to general situations that involve more than a narrow set of physical principles. Newton’s laws of motion can also be integrated with other concepts that have been discussed previously in this text to solve problems of motion. For example, forces produce accelerations, a topic of kinematics, and hence the relevance of earlier chapters. When approaching problems that involve various types of forces, acceleration, velocity, and/or position, use the following steps to approach the problem:</p>
+<div class="note">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<p><strong><em>Step 1.</em></strong> <em>Identify which physical principles are involved</em>. Listing the givens and the quantities to be calculated will allow you to identify the principles involved.</p>
+<p><strong><em>Step 2.</em></strong> <em>Solve the problem using strategies outlined in the text</em>. If these are available for the specific topic, you should refer to them. You should also refer to the sections of the text that deal with a particular topic. The following worked example illustrates how these strategies are applied to an integrated concept problem.</p>
+</div>
+<figure class="sim" id="sim-soccer">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A soccer player starts from rest and accelerates forward, and the graph beneath the strip follows his velocity as he runs. The slope of that straight line is his average acceleration, and the arrow on the player is the force the ground pushes him forward with, which is his mass times that acceleration. Change his top speed, the time he takes to reach it or his mass, and watch how a change in one of the two kinematic quantities changes the force.</span></div>
+</figure>
+<div class="example" id="ex-soccer">
+<h3>Example 4.10 · What Force Must a Soccer Player Exert to Reach Top Speed?</h3>
+<p>A soccer player starts from rest and accelerates forward, reaching a velocity of 8.00 m/s in 2.50 s. (a) What was his average acceleration? (b) What average force did he exert backward on the ground to achieve this acceleration? The player’s mass is 70.0 kg, and air resistance is negligible.</p>
+<h4>Strategy</h4>
+<p>To solve an <em>integrated concept problem</em>, we must first identify the physical principles involved and identify the chapters in which they are found. Part (a) of this example considers <em>acceleration</em> along a straight line. This is a topic of <em>kinematics</em>. Part (b) deals with <em>force</em>, a topic of <em>dynamics</em> found in this chapter.</p>
+<p>The following solutions to each part of the example illustrate how the specific problem-solving strategies are applied. These involve identifying knowns and unknowns, checking to see if the answer is reasonable, and so forth.</p>
+<h4>Solution for (a)</h4>
+<p>We are given the initial and final velocities (zero and 8.00 m/s forward); thus, the change in velocity is $\kdv = 8.00\ \text{m/s}$. We are given the elapsed time, and so $\kdt = 2.50\ \text{s}$. The unknown is acceleration, which can be found from its definition:</p>
+$$\ka = \frac{\kdv}{\kdt}.$$
+<p>Substituting the known values yields</p>
+$$\begin{aligned}\ka &= \frac{8.00\ \text{m/s}}{2.50\ \text{s}}\\ &= 3.20\ \text{m/s}^{2}.\end{aligned}$$
+<h4>Discussion for (a)</h4>
+<p>This is an attainable acceleration for an athlete in good condition.</p>
+<h4>Solution for (b)</h4>
+<p>Here we are asked to find the average force the player exerts backward to achieve this forward acceleration. Neglecting air resistance, this would be equal in magnitude to the net external force on the player, since this force causes his acceleration. Since we now know the player’s acceleration and are given his mass, we can use Newton’s second law to find the force exerted. That is,</p>
+$$\kFnet = m\ka.$$
+<p>Substituting the known values of $m$ and $\ka$ gives</p>
+$$\begin{aligned}\kFnet &= (70.0\ \text{kg})(3.20\ \text{m/s}^{2})\\ &= 224\ \text{N}.\end{aligned}$$
+<h4>Discussion for (b)</h4>
+<p>This is about 50 pounds, a reasonable average force.</p>
+<p>This worked example illustrates how to apply problem-solving strategies to situations that include topics from different chapters. The first step is to identify the physical principles involved in the problem. The second step is to solve for the unknown using familiar problem-solving strategies. These strategies are found throughout the text, and many worked examples show how to use them for single topics. You will find these techniques for integrated concept problems useful in applications of physics outside of a physics course, such as in your profession, in other science disciplines, and in everyday life. The following problems will build your skills in the broad application of physical principles.</p>
+</div>
+</section>
+
+<section id="rescue">
+<h2>The rescue of the problems</h2>
+<p class="lead">One of the problems asks for the tension in each of the two ropes that hold a person steady as she is pulled away from a burning building. The ropes and the angles they make are drawn below.</p>
+<figure class="sim" id="fig-rescue" data-original="/media/ch04/Figure_04_07_08a.jpg" data-original-caption="The force T_2 needed to hold steady the person being rescued from the fire is less than her weight and less than the force T_1 in the other rope, since the more vertical rope supports a greater part of her weight (a vertical force).">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span>A person of mass $m$ hangs motionless between two ropes. The rope on the left makes an angle of $15^\circ$ with the vertical and carries the tension $\kTone$, and the rope on the right rises at $10^\circ$ above the horizontal and carries the tension $\kTtwo$. Her weight $\kwgt$ pulls straight down.</span></div>
+</figure>
+</section>

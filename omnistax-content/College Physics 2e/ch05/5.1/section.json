@@ -1,0 +1,814 @@
+{
+ "id": "5.1",
+ "module": "m42139",
+ "chapter": "5",
+ "title": "Friction",
+ "short": "Friction",
+ "lead": "Friction is the force between two surfaces in contact that opposes their relative motion, and it is what slows a hockey puck as well as what lets you walk. This section separates static friction, which answers whatever you push with until the object breaks away, from kinetic friction, which acts once it is moving, gives the magnitude of each in terms of the normal force, works the friction on a slope, and looks at what the two surfaces are doing at the atomic scale.",
+ "objectives": [
+  "Discuss the general characteristics of friction.",
+  "Describe the various types of friction.",
+  "Calculate the magnitude of static and kinetic friction."
+ ],
+ "summary_html": "<ul><li>Friction is a contact force between systems that opposes the motion or attempted motion between them. Simple friction is proportional to the normal force $\\kN$ pushing the systems together. (A normal force is always perpendicular to the contact surface between systems.) Friction depends on both of the materials involved. The magnitude of static friction $\\kfs$ between systems stationary relative to one another is given by $\\kfs \\le \\mu_{\\text{s}}\\kN,$ where $\\mu_{\\text{s}}$ is the coefficient of static friction, which depends on both of the materials.</li><li>The kinetic friction force $\\kfk$ between systems moving relative to one another is given by $\\kfk = \\mu_{\\text{k}}\\kN,$ where $\\mu_{\\text{k}}$ is the coefficient of kinetic friction, which also depends on both materials.</li></ul>",
+ "notes": "The PhET simulation Forces and Motion, linked at the end of the module, is left out, and so are the twelve problems the book’s answer key does not cover, together with the figures of the two ice skaters and of the mountain climber that belong to two of them.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key, and the twelve problems it does not key (2, 3, 5, 7, 8, 9, 11, 12, 13, 15, 17 and 19) are left out, with the figures of the ice skaters and of the mountain climber that belong to two of them. The block of ice that problem 18 refers to is drawn at the end of the section, since problem 18 is keyed. No conceptual question is keyed, so each carries an AI-marked suggested approach. The first and third AP items are keyed and keep the book’s options; the second and fourth have no key and are kept as open items with an AI-marked approach rather than as graded choices. Nothing is held for a later section, since all four AP items test the friction this section introduces. Two conceptual questions are taken from elsewhere in the chapter under rule 12, because each tests the coefficient of friction that this section introduces and neither turns on anything its own section teaches: the one on the soles of shoes, printed with 5.3, carries source_section 5.3, and the one on oil and gasoline on a road in the rain, printed with 5.2, carries source_section 5.2. Both sections’ notes say where the item went. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-interface",
+   "kind": "sim",
+   "number": "5.2",
+   "folds": [
+    "5.5"
+   ],
+   "originals": [
+    "/media/ch05/Figure_06_01_01a.jpg",
+    "/media/ch05/Figure_06_01_04a.jpg"
+   ],
+   "original_caption": "Frictional forces, such as f, always oppose motion or attempted motion between surfaces in contact. Friction arises in part because of the roughness of the surfaces in contact, as seen in the expanded view. In order for the object to move, it must rise to where the peaks can skip along the bottom surface. Thus a force is required just to set the object in motion. Some of the peaks will be broken off, also requiring a force to maintain motion. Much of the friction is actually due to attractive forces between molecules making up the two objects, so that even perfectly smooth surfaces are not friction-free. Such adhesive forces also depend on the substances the surfaces are made of, explaining, for example, why rubber-soled shoes slip less than those with leather soles.",
+   "widths": [
+    375,
+    250
+   ],
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-breakaway",
+   "kind": "sim",
+   "draws": [
+    "force"
+   ]
+  },
+  {
+   "id": "fig-knee",
+   "kind": "photo",
+   "number": "5.3",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-skier",
+   "kind": "sim",
+   "number": "5.4",
+   "originals": [
+    "/media/ch05/Figure_06_01_03a.jpg"
+   ],
+   "original_caption": "The motion of the skier and friction are parallel to the slope and so it is most convenient to project all forces onto a coordinate system where one axis is parallel to the slope and the other is perpendicular (axes shown to left of skier). N (the normal force) is perpendicular to the slope, and f (the friction) is parallel to the slope, but w (the skier’s weight) has components along both axes, namely w⊥ and W//. N is equal in magnitude to w⊥, so there is no motion perpendicular to the slope. However, f is less than W// in magnitude, so there is acceleration down the slope (along the x-axis).",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-probe",
+   "kind": "sim",
+   "number": "5.6",
+   "originals": [
+    "/media/ch05/Figure_06_01_05a.jpg"
+   ],
+   "original_caption": "The tip of a probe is deformed sideways by frictional force as the probe is dragged across a surface. Measurements of how the force varies for different materials are yielding fundamental insights into the atomic nature of friction.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force"
+   ]
+  },
+  {
+   "id": "fig-ice",
+   "kind": "figure",
+   "originals": [
+    "/media/ch05/Figure_06_01_07a.jpg"
+   ],
+   "original_caption": "Which method of sliding a block of ice requires less force—(a) pushing or (b) pulling at the same angle above the horizontal?",
+   "widths": [
+    234
+   ],
+   "draws": [
+    "force"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "characteristics",
+   "concept": "kinetic-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "characteristics",
+   "concept": "static-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "characteristics",
+   "concept": "friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "static-friction-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "coefficient-of-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "static-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "kinetic-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "joints",
+   "concept": "coefficient-of-friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "incline",
+   "concept": "friction-on-an-incline",
+   "verb": "introduces"
+  },
+  {
+   "span": "incline",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "weight-components-on-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-skiing",
+   "concept": "friction-on-an-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-skiing",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-skiing",
+   "concept": "coefficient-of-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "atomic",
+   "concept": "atomic-origin-of-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "atomic",
+   "concept": "coefficient-of-friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "atomic",
+   "concept": "friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "atomic",
+   "concept": "normal-force",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1320466",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "Define normal force. What is its relationship to friction when friction behaves simply?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The normal force is the force perpendicular to the contact surface between two systems. Where a body rests on a horizontal surface it is equal in magnitude to the weight the surface supports, and on a slope it is only the component of the weight perpendicular to the surface. Friction behaves simply when the friction on a moving body is the coefficient of kinetic friction times that normal force, $\\kfk = \\mu_{\\text{k}}\\kN$, so the friction is proportional to the normal force pressing the surfaces together and not to the total area in contact."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1748990",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "characteristics",
+   "prompt": "The glue on a piece of tape can exert forces. Can these forces be a type of simple friction? Explain, considering especially that tape can stick to vertical walls and even to ceilings.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Simple friction is parallel to the contact surface, opposes motion or attempted motion, and is proportional to the normal force pressing the two surfaces together. Tape on a ceiling is held by a force perpendicular to the contact surface, and nothing is pressing the tape and the ceiling together, so there is no normal force for the force to be proportional to; the glue therefore does not exert simple friction. Adhesion is still part of the story of friction, since the text says that much of friction is due to attractive forces between the molecules of the two surfaces, but those forces enter friction through the surfaces that are pressed together rather than as the $f = \\mu \\kN$ of this section."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1425681",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "characteristics",
+   "prompt": "When you learn to drive, you discover that you need to let up slightly on the brake pedal as you come to a stop or the car will stop with a jerk. Explain this in terms of the relationship between static and kinetic friction.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "While the car is still rolling forward, the surfaces that slow it are moving relative to one another, so the friction on it is kinetic friction. The moment the car comes to rest the surfaces are no longer moving relative to one another and static friction acts instead, and the static friction between two surfaces is usually greater than the kinetic friction. The retarding force therefore jumps up at the instant the car stops, and that sudden increase is the jerk. Letting up on the pedal as the car comes to rest lowers the force before the change, so nothing jumps."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1272970",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "characteristics",
+   "prompt": "When you push a piece of chalk across a chalkboard, it sometimes screeches because it rapidly alternates between slipping and sticking to the board. Describe this process in more detail, in particular explaining how it is related to the fact that kinetic friction is less than static friction. (The same slip-grab process occurs when tires screech on pavement.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "While the chalk is stuck, static friction answers your push and grows with it, up to the maximum the two surfaces can supply. Once your push passes that maximum the chalk slips, and while it is slipping the friction on it is the smaller kinetic friction, so there is a net force and the chalk lurches forward. As it lurches it loses its push against the board, sticks again, and the whole cycle repeats many times a second. The chalk therefore vibrates against the board, and that vibration is the screech; it happens only because the kinetic friction is less than the static friction, so that the force drops the instant the chalk starts to move."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1165296252981",
+   "source_section": "5.3",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "Examine different types of shoes, including sports shoes and thongs. In terms of physics, why are the bottom surfaces designed as they are? What differences will dry and wet conditions make for these surfaces?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The sole of a shoe has to supply the friction that pushes you along, and the largest friction it can supply is the coefficient of static friction times the normal force, which is your weight. The shoe cannot change your weight, so the only thing left to design is the coefficient, and that is why the bottom surfaces are made of rubber and moulded into studs, ridges and grooves rather than left smooth: rubber adheres well to the surfaces it is pressed against, and Table 5.1 gives shoes on wood a static coefficient of 0.9 where steel on steel has only 0.6. A sports shoe is designed for the one surface it will be worn on, so a running shoe grips the track and a studded boot digs into soft ground, while a thong is made for comfort and grips very little. Water and other liquids act as lubricants, so a wet surface has a much smaller coefficient than a dry one: Table 5.1 drops rubber on concrete from 1.0 dry to 0.7 wet. The grooves in a sole are cut so that the water has somewhere to go and the rubber can reach the ground, which is why a worn, smooth sole is dangerous in the rain and why shoes on ice, where a thin film of water always sits between the two surfaces, have a coefficient of only 0.1."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1165296261672",
+   "source_section": "5.2",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "As cars travel, oil and gasoline leaks onto the road surface. If a light rain falls, what does this do to the control of the car? Does a heavy rain make any difference?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Oil and gasoline act as a lubricant between the tyre and the road, and a lubricated surface has a much smaller coefficient of friction than a dry one, so the greatest friction force the tyres can supply falls. A light rain does not wash the oil away. It mixes with it and spreads it as a thin film over the whole surface, so the driver has less grip for accelerating, for braking and for turning than on a dry road or on a road that is merely wet, and the car is harder to control. A heavy rain does make a difference, because it washes much of the oil off the road, and after the first few minutes the grip comes back towards what wet concrete ordinarily gives. Against that, a heavy rain can leave standing water, and a tyre that cannot push the water aside fast enough rides up on it and loses contact with the road altogether."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "import-auto-id0000007",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "When a force of 20 N is applied to a stationary box weighing 40 N, the box does not move. This means the coefficient of static friction",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "is equal to 0.5.",
+     "is greater than 0.5.",
+     "is less than 0.5.",
+     "cannot be determined."
+    ],
+    "correct": 1,
+    "hint": "The box has not moved, so the static friction has answered the 20 N push without reaching its maximum of $\\mu_{\\text{s}}\\kN$, and the normal force here is the 40 N weight.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "import-auto-id0000013",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "incline",
+   "prompt": "A 2-kg block slides down a ramp which is at an incline of $25^\\circ$. If the frictional force is 4.86 N, what is the coefficient of friction? At what incline will the box slide at a constant velocity? Assume g = 10 m/s^2.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "This is the skiing exercise with different numbers. There is no motion perpendicular to the ramp, so the normal force is the component of the weight perpendicular to it, $\\kN = m\\kg\\cos\\theta$, and the coefficient follows from $\\mu_{\\text{k}} = \\kfk / (m\\kg\\cos 25^\\circ)$ with the friction of 4.86 N. For the second part, the block slides at a constant velocity when its acceleration is zero, which is when the friction balances the component of the weight along the slope: $\\mu_{\\text{k}} m\\kg\\cos\\theta = m\\kg\\sin\\theta$, so the angle wanted is the one with $\\tan\\theta = \\mu_{\\text{k}}$, the angle the take-home experiment with a coin on a book measures."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "import-auto-id0000018",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "atomic",
+   "prompt": "A block is given a short push and then slides with constant friction across a horizontal floor. Which statement best explains the direction of the force that friction applies on the moving block?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Friction will be in the same direction as the block's motion because molecular interactions between the block and the floor will deform the block in the direction of motion.",
+     "Friction will be in the same direction as the block's motion because thermal energy generated at the interface between the block and the floor adds kinetic energy to the block.",
+     "Friction will be in the opposite direction of the block's motion because molecular interactions between the block and the floor will deform the block in the opposite direction of motion.",
+     "Friction will be in the opposite direction of the block's motion because thermal energy generated at the interface between the block and the floor converts some of the block's kinetic energy to potential energy."
+    ],
+    "correct": 2,
+    "hint": "Friction always opposes motion or attempted motion, and the figure of the probe tip shows what the molecules at the interface do to the moving body.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "import-auto-id0000024",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "atomic",
+   "prompt": "A student pushes a cardboard box across a carpeted floor and afterwards notices that the bottom of the box feels warm. Explain how interactions between molecules in the cardboard and molecules in the carpet produced this heat.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The cardboard and the carpet are rough, so they touch only at their high spots, and the molecules there adhere to one another. As the box is pushed along, those adhesions are made and broken over and over. The atoms of each surface are linked with one another into lattices, so the rubbing sets those lattices vibrating, which is to say that it creates sound waves that travel into the material. The waves diminish with distance and their energy is converted into heat, and it is the bottom of the box, where the rubbing happened, that is left warm."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1462497",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "A physics major is cooking breakfast when he notices that the frictional force between his steel spatula and his Teflon frying pan is only 0.200 N. Knowing the coefficient of kinetic friction between the two materials, he quickly calculates the normal force. What is it?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.0,
+    "unit": "N",
+    "hint": "Table 5.1 gives the coefficient of kinetic friction for Teflon on steel; rearrange $\\kfk = \\mu_{\\text{k}}\\kN$ for the normal force.",
+    "solution": "$5.00\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1550746",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "Suppose you have a 120-kg wooden crate resting on a wood floor. (a) What maximum force can you exert horizontally on the crate without moving it? (b) If you continue to exert this force once the crate starts to slip, what will the magnitude of its acceleration then be?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 588,
+      "unit": "N",
+      "hint": "The crate is still, so the force you can exert without moving it is the maximum static friction, $\\kfsmax = \\mu_{\\text{s}}\\kN$, with the normal force equal to the weight."
+     },
+     {
+      "part": "(b)",
+      "value": 1.96,
+      "unit": "m/s²",
+      "hint": "Once it slips the friction is the smaller $\\kfk = \\mu_{\\text{k}}\\kN$, so the net force is your 588 N less that friction."
+     }
+    ],
+    "solution": "(a) $588\\ \\text{N}$ (b) $1.96\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1294370",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "A team of eight dogs pulls a sled with waxed wood runners on wet snow (mush!). The dogs have average masses of 19.0 kg, and the loaded sled with its rider has a mass of 210 kg. (a) Calculate the magnitude of the acceleration starting from rest if each dog exerts an average force of 185 N backward on the snow. (b) What is the magnitude of the acceleration once the sled starts to move? (c) For both situations, calculate the magnitude of the force in the coupling between the dogs and the sled.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.29,
+      "unit": "m/s²",
+      "hint": "The system is the dogs and the sled together; while they start from rest the friction on the sled is the static one, with the coefficient for waxed wood on wet snow."
+     },
+     {
+      "part": "(b)",
+      "value": 3.52,
+      "unit": "m/s²",
+      "hint": "Once the sled is moving the friction is the smaller kinetic one, so the same 8 × 185 N gives a larger acceleration."
+     },
+     {
+      "part": "(c) starting from rest",
+      "value": 980,
+      "unit": "N",
+      "hint": "Take the sled alone as the system: the coupling force must accelerate it against the friction on its runners."
+     },
+     {
+      "part": "(c) once moving",
+      "value": 945,
+      "unit": "N",
+      "hint": "Repeat the same system with the kinetic friction and the acceleration of part (b)."
+     }
+    ],
+    "solution": "(a) $3.29\\ \\text{m/s}^2$ (b) $3.52\\ \\text{m/s}^2$ (c) 980 N; 945 N"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1555366",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "incline",
+   "prompt": "Calculate the deceleration of a snow boarder going up a $5.0^\\circ$, slope assuming the coefficient of friction for waxed wood on wet snow. The result of the problem on the acceleration down an incline where friction behaves simply may be useful, but be careful to consider the fact that the snow boarder is going uphill. Explicitly show how you follow the steps in Problem-Solving Strategies.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.83,
+    "unit": "m/s²",
+    "hint": "Going uphill, the friction and the component of the weight along the slope both point down the slope, so the two add rather than subtract: $a = \\kg(\\sin\\theta + \\mu_{\\text{k}}\\cos\\theta)$.",
+    "solution": "$1.83\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1924033",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "incline",
+   "prompt": "Calculate the maximum acceleration of a car that is heading up a $4^\\circ$ slope (one that makes an angle of $4^\\circ$ with the horizontal) under the following road conditions. Assume that only half the weight of the car is supported by the two drive wheels and that the coefficient of static friction is involved—that is, the tires are not allowed to slip during the acceleration. (Ignore rolling.) (a) On dry concrete. (b) On wet concrete. (c) On ice, assuming that $\\mu_{\\text{s}} = 0.100$, the same as for shoes on ice.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.2,
+      "unit": "m/s²",
+      "hint": "The driving force is the maximum static friction on the drive wheels, and the normal force on them is half the weight; the component of the weight along the slope then acts against it."
+     },
+     {
+      "part": "(b)",
+      "value": 2.74,
+      "unit": "m/s²",
+      "hint": "Only the coefficient changes, to the one Table 5.1 gives for rubber on wet concrete."
+     },
+     {
+      "part": "(c)",
+      "value": -0.195,
+      "unit": "m/s²",
+      "hint": "With so little friction the slope wins, and the sign of the answer says what that means."
+     }
+    ],
+    "solution": "(a) $4.20\\ \\text{m/s}^2$ (b) $2.74\\ \\text{m/s}^2$ (c) $-0.195\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "fs-id1439017",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "A freight train consists of two $8.00 \\times 10^{5}\\text{-kg}$ engines and 45 cars with average masses of $5.50 \\times 10^{5}\\ \\text{kg}$. (a) What force must each engine exert backward on the track to accelerate the train at a rate of $5.00 \\times 10^{-2}\\ \\text{m/s}^2$ if the force of friction is $7.50 \\times 10^{5}\\ \\text{N}$, assuming the engines exert identical forces? This is not a large frictional force for such a massive system. Rolling friction for trains is small, and consequently trains are very energy-efficient transportation systems. (b) What is the magnitude of the force in the coupling between the 37th and 38th cars (this is the force each exerts on the other), assuming all cars have the same mass and that friction is evenly distributed among all of the cars and engines?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1030000,
+      "unit": "N",
+      "hint": "Take the whole train as the system: the two engines together must supply the net force that accelerates it and overcome the friction as well."
+     },
+     {
+      "part": "(b)",
+      "value": 348000,
+      "unit": "N",
+      "hint": "Take the eight cars behind the coupling as the system, with their share of the friction, and find the force needed to give them the same acceleration."
+     }
+    ],
+    "solution": "(a) $1.03 \\times 10^{6}\\ \\text{N}$ (b) $3.48 \\times 10^{5}\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p18",
+   "source_id": "fs-id1531145",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "A contestant in a winter sporting event pushes a 45.0-kg block of ice across a frozen lake as shown in part (a) of the figure at the end of the section. (a) Calculate the minimum force $F$ he must exert to get the block moving. (b) What is the magnitude of its acceleration once it starts to move, if that force is maintained?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 51.0,
+      "unit": "N",
+      "hint": "The push is at $25^\\circ$ below the horizontal, so it presses the block into the ice as well as driving it forward; write the normal force with that downward component in it before setting the horizontal component equal to $\\mu_{\\text{s}}\\kN$."
+     },
+     {
+      "part": "(b)",
+      "value": 0.72,
+      "unit": "m/s²",
+      "hint": "Keep the same push and use the coefficient of kinetic friction for ice on ice."
+     }
+    ],
+    "solution": "(a) $51.0\\ \\text{N}$ (b) $0.720\\ \\text{m/s}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "normal-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "static-friction"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "atomic-origin-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "static-friction"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "kinetic-friction"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "static-friction"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "kinetic-friction"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "coefficient-of-friction"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "static-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "coefficient-of-friction"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "static-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "static-friction-magnitude"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "friction-on-an-incline"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "kinetic-friction-magnitude",
+   "weight": 3
+  },
+  {
+   "exercise": "ap2",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "kinetic-friction"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "atomic-origin-of-friction"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "atomic-origin-of-friction"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "kinetic-friction",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "p1",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p4",
+   "concept": "static-friction-magnitude"
+  },
+  {
+   "exercise": "p4",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "p4",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p4",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p6",
+   "concept": "static-friction-magnitude"
+  },
+  {
+   "exercise": "p6",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "p6",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p6",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p10",
+   "concept": "friction-on-an-incline"
+  },
+  {
+   "exercise": "p10",
+   "concept": "kinetic-friction-magnitude",
+   "weight": 3
+  },
+  {
+   "exercise": "p10",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p14",
+   "concept": "friction-on-an-incline"
+  },
+  {
+   "exercise": "p14",
+   "concept": "static-friction-magnitude",
+   "weight": 3
+  },
+  {
+   "exercise": "p14",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p16",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p16",
+   "concept": "kinetic-friction-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p18",
+   "concept": "static-friction-magnitude"
+  },
+  {
+   "exercise": "p18",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "p18",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  }
+ ]
+}

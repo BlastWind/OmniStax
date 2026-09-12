@@ -1,0 +1,885 @@
+{
+ "id": "8.2",
+ "module": "m42159",
+ "chapter": "8",
+ "title": "Impulse",
+ "short": "Impulse",
+ "lead": "The previous section wrote Newton’s second law as the rate at which momentum changes. Rearranged, it says that the change in momentum an object undergoes is the average net external force on it multiplied by the time that force acts, and that product has a name of its own, the impulse. This section follows what that means for a ball bouncing off a rigid wall, for a passenger a dashboard or an airbag brings to rest, and for a real force, which is never constant and has instead an average effective force with the same area under it.",
+ "objectives": [
+  "Define impulse.",
+  "Describe effects of impulses in everyday life.",
+  "Determine the average effective force using graphical representation.",
+  "Calculate average force and impulse given mass, velocity, and time."
+ ],
+ "summary_html": "<ul><li>Impulse, or change in momentum, equals the average net external force multiplied by the time this force acts: $\\kdp = \\kFnet\\kdt.$</li><li>Forces are usually not constant over a period of time.</li></ul>",
+ "notes": "Problems 2, 4, 6, 8, 10, 12, 14 and 16 have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6, 8, 10, 12, 14 and 16 have no keyed answer and are left out. Six of the twelve AP test prep items are keyed and are kept as the book keys them; the other six—the bouncing ball, the glass figure, the crash test, the experiment to design, the puck’s change in momentum and the trapezoidal graph—have no key, and each is an open item with an AI-written suggested approach, marked as such, which sets the calculation up and stops short of the number. None of those six prints a list of options, so none had to be turned from a graded choice into an open item. None of the three conceptual questions is keyed anywhere in the chapter, so each carries an AI-written suggested approach as well, and the shortest of them, on how padding reduces forces, is set inline beside the passage it checks. Problem 3 keys its part (a) as a number and keeps the book’s reason for part (b) in the solution; problems 5 and 7 key both of their parts; problem 13 is the book’s own derivation and is kept as an open item with that derivation as its answer. No exercise is held for a later section, and none is taken from another: the second AP item of 8.1, the baseball struck by a bat for 20 ms, was considered for this page and left with 8.1, since it is answered by that section’s own $\\kFnet = \\kdp/\\kdt$ with nothing this section adds. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-impulse",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "force",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-billiard",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "velocity",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-effective-force",
+   "kind": "sim",
+   "number": "8.2",
+   "originals": [
+    "/media/ch08/Figure_09_02_01a.jpg"
+   ],
+   "original_caption": "A graph of force versus time with time along the x-axis and force along the y-axis for an actual force and an equivalent effective force. The areas under the two curves are equal.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "time",
+    "momentum"
+   ]
+  },
+  {
+   "id": "fig-bounce",
+   "kind": "figure",
+   "originals": [
+    "/media/ch08/Figure_08_M2_Bounce.jpg"
+   ],
+   "original_caption": "This is a graph showing the force exerted by a rigid wall versus time.",
+   "draws": [
+    "force",
+    "time"
+   ]
+  },
+  {
+   "id": "fig-collision",
+   "kind": "figure",
+   "originals": [
+    "/media/ch08/Figure_08_M2_Collision.jpg"
+   ],
+   "original_caption": "This is a graph showing the force exerted by a rigid wall versus time.",
+   "draws": [
+    "force",
+    "time"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "impulse",
+   "concept": "change-in-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse",
+   "concept": "impulse",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse",
+   "concept": "extending-collision-time",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse",
+   "concept": "average-force-from-impulse",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "impulse",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "impulse",
+   "concept": "calculate-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "billiard",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "billiard",
+   "concept": "change-in-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "billiard",
+   "concept": "average-force-from-impulse",
+   "verb": "reinforces"
+  },
+  {
+   "span": "billiard",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "billiard",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "effective-force",
+   "concept": "effective-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "effective-force",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "effective-force",
+   "concept": "interpret-motion-graph",
+   "verb": "uses"
+  },
+  {
+   "span": "exercise-figures",
+   "concept": "effective-force",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1247228",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "impulse"
+   },
+   "cite": "impulse",
+   "prompt": "<strong>Professional Application</strong> Explain in terms of impulse how padding reduces forces in a collision. State this in terms of a real example, such as the advantages of a carpeted vs. tile floor for a day care center.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Padding works by stretching the collision out in time. Whatever you land on, your momentum has to be brought to zero, and the change in momentum is fixed by your mass and the speed you were travelling at; it is the same on carpet as it is on tile. What the padding changes is how long the stop takes. Since the change in momentum equals the average net external force multiplied by the time this force acts, a stop that is given ten times as long needs only a tenth of the force. In a day care center a carpeted floor lets a child’s head or wrist come to rest over a few hundredths of a second instead of a few thousandths, and the force on the bone is smaller in the same proportion, which is often the difference between a bruise and a fracture."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1126726",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "While jumping on a trampoline, sometimes you land on your back and other times on your feet. In which case can you reach a greater height and why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "You can reach a greater height when you land on your feet. In both landings the trampoline has to reverse your momentum, and the impulse it gives you is the force it exerts multiplied by the time it acts. Landing on your feet, you meet the bed over a small area, the bed stretches a long way, and your legs are between you and it, so you can straighten them as the bed pushes back and add your own work to what the bed returns; the upward impulse is then larger than the one that stopped you. Landing on your back you spread the contact over a large area, the bed stretches much less, and nothing you do adds to the push, so more of the energy goes into deforming you and the bed than into throwing you back up. The landing on your back is the gentler one, and the height is what it costs."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1700394",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "<strong>Professional Application</strong> Tennis racquets have “sweet spots.” If the ball hits a sweet spot then the player's arm is not jarred as much as it would be otherwise. Explain why this is the case.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A racquet held in the hand is free to move back along with the ball and also to turn about the place your hand holds it. A ball that strikes away from the sweet spot does both: it pushes the head back and twists the handle, and your arm has to supply whatever force is needed to keep the handle where it is. That force acts over the few thousandths of a second the ball is on the strings, and it is what jars you. At the sweet spot the turning the blow produces and the pushing back it produces cancel at the handle, so the racquet moves without twisting in your hand and the only impulse your arm has to supply is the small one that goes with the recoil of the whole racquet. The ball’s change in momentum is much the same wherever it strikes; what changes is how much of the force that produces it is passed on to your arm."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2018730",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A 1.0-kg ball of putty is released from rest and falls vertically 1.5 m until it strikes a hard floor, where it comes to rest in a 0.045-s time interval. What is the magnitude and direction of the average force exerted on the ball by the floor during the collision?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "33 N, up",
+     "120 N, up",
+     "120 N, down",
+     "240 N, down"
+    ],
+    "correct": 1,
+    "hint": "Find the speed the putty has reached after falling 1.5 m, turn that into a momentum, and divide by the time the floor takes to remove it.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1463188",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A 75-g ball is dropped from rest from a height of 2.2 m. It bounces off the floor and rebounds to a maximum height of 1.7 m. If the ball is in contact with the floor for 0.024 s, what is the magnitude and direction of the average force exerted on the ball by the floor during the collision?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Work out both speeds from the heights before you go near the force. Falling freely from rest through 2.2 m gives the ball a downward speed of $\\sqrt{2\\kg(2.2\\ \\text{m})}$, and rising to 1.7 m means it left the floor with an upward speed of $\\sqrt{2\\kg(1.7\\ \\text{m})}$. Take up as positive. The ball arrives going one way and leaves going the other, so its change in momentum is the mass of 0.075 kg multiplied by the sum of the two speeds, and it points upward. Divide that change by the 0.024 s of contact, $\\kFnet = \\kdp / \\kdt$, and you have the average force, which also points upward. What you have found is the net force on the ball; the force from the floor alone is larger than it by the weight of the ball, which is small beside it."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id3561525",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A 2.4-kg ceramic bowl falls to the floor. During the 0.018-s impact, the bowl experiences an average force of 750 N from the floor. The bowl is at rest after the impact. From what initial height did the bowl fall?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1.6 m",
+     "2.8 m",
+     "3.2 m",
+     "5.6 m"
+    ],
+    "correct": 0,
+    "hint": "The impulse the floor gives the bowl is the momentum the bowl arrived with, so work from the force and the time back to a speed, and from the speed back to a height.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2377967",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "Whether or not an object (such as a plate, glass, or bone) breaks upon impact depends on the average force exerted on that object by the surface. When a 1.2-kg glass figure hits the floor, it will break if it experiences an average force of 330 N. When it hits a tile floor, the glass comes to a stop in 0.015 s. From what minimum height must the glass fall to experience sufficient force to break? How would your answer change if the figure were falling to a padded or carpeted surface? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Work backwards from the force. A force of 330 N acting for 0.015 s changes the figure’s momentum by $\\kdp = \\kFnet\\kdt$, and since the figure is at rest afterwards that is the momentum it must have on arrival. Divide by the 1.2 kg to get the speed it must be falling at, and then use the free-fall relation $\\kv^2 = 2\\kg h$ to turn that speed into the height it must fall from. Any smaller height gives a smaller arrival speed, a smaller change in momentum over the same 0.015 s, and so a smaller force. On a padded or carpeted surface the stop takes longer. The same fall then produces the same change in momentum spread over a longer time, so the force is smaller, and the figure would have to fall from a greater height before the force reached 330 N."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2871828",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A 2.5-kg block slides across a frictionless table toward a horizontal spring. As the block bounces off the spring, a probe measures the velocity of the block (initially negative, moving away from the probe) over time as follows:<table class=\"data\"><tr><th>Velocity (m/s)</th><th>Time (s)</th></tr><tr><td>−12.0</td><td>0</td></tr><tr><td>−10.0</td><td>0.10</td></tr><tr><td>−6.0</td><td>0.20</td></tr><tr><td>0</td><td>0.30</td></tr><tr><td>6.0</td><td>0.40</td></tr><tr><td>10.0</td><td>0.50</td></tr><tr><td>12.0</td><td>0.60</td></tr></table>What is the average force exerted on the block by the spring over the entire 0.60-s time interval of the collision?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "50 N",
+     "60 N",
+     "100 N",
+     "120 N"
+    ],
+    "correct": 2,
+    "hint": "Only the first and the last rows of the table matter: they give the velocity before and after, and the whole of the change happens in 0.60 s.",
+    "solution": "(c) (based on calculation of $F = \\frac{m\\Delta v}{\\Delta t}$)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id938074",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "During an automobile crash test, the average force exerted by a solid wall on a 2500-kg car that hits the wall is measured to be 740,000 N over a 0.22-s time interval. What was the initial speed of the car prior to the collision, assuming the car is at rest at the end of the time interval?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The wall takes away all of the car’s momentum, so the impulse it gives the car is exactly the momentum the car had. Multiply the average force by the time it acts, $\\kdp = \\kFnet\\kdt = (740{,}000\\ \\text{N})(0.22\\ \\text{s})$, and divide that momentum by the 2500 kg of the car to get the speed it was travelling at before it reached the wall. Keep the direction in mind: the force is against the motion, so the change in momentum is negative and the initial momentum is positive."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id2498125",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A test car is driving toward a solid crash-test barrier with a speed of 45 mi/h. Two seconds prior to impact, the car begins to brake, but it is still moving when it hits the wall. After the collision with the wall, the car crumples somewhat and comes to a complete stop. In order to estimate the average force exerted by the wall on the car, what information would you need to collect?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The (negative) acceleration of the car before it hits the wall and the distance the car travels while braking.",
+     "The (negative) acceleration of the car before it hits the wall and the velocity of the car just before impact.",
+     "The velocity of the car just before impact and the duration of the collision with the wall.",
+     "The duration of the collision with the wall and the distance the car travels while braking."
+    ],
+    "correct": 2,
+    "hint": "The force during the collision follows from the change in momentum and the time the collision takes, and nothing that happens during the braking enters it.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1515775",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "Design an experiment to verify the relationship between the average force exerted on an object and the change in momentum of that object. As part of your explanation, list the equipment you would use and describe your experimental setup. What would you measure and how? How exactly would you verify the relationship? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Say what you would measure, with what, and what you would plot. One setup that works is a cart of known mass on a level track with as little friction as you can manage, a force sensor mounted on the front of the cart with a spring bumper on it, a rigid stop at the end of the track, and a motion sensor watching the cart. Push the cart at the stop and record the force against time and the velocity against time right through the collision. The change in momentum is the mass of the cart multiplied by the change in velocity the motion sensor reports, and the impulse is the area under the force-against-time curve the force sensor reports. Repeat the run at several speeds and with bumpers of different stiffness, so that both quantities take a range of values, and plot the impulse against the change in momentum. If the relationship holds, the points lie on a straight line through the origin whose slope is one. Say where the largest uncertainties are—in the area under the curve and in how level the track is—and what you would do to reduce them."
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id3187844",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A 22-g puck hits the wall of an air hockey table perpendicular to the wall with an initial speed of 14 m/s. The puck is in contact with the wall for 0.0055 s, and it rebounds from the wall with a speed of 14 m/s in the opposite direction. What is the magnitude of the average force exerted by the wall on the puck?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "0.308 N",
+     "0.616 N",
+     "56 N",
+     "112 N"
+    ],
+    "correct": 3,
+    "hint": "The puck arrives going one way and leaves going the other, so the change in its momentum is twice $m\\kv$, not once.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1478146",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A 22-g puck hits the wall of an air hockey table perpendicular to the wall with an initial speed of 7 m/s. The puck is in contact with the wall for 0.011 s, and the wall exerts an average force of 28 N on the puck during that time. Calculate the magnitude and direction of the change in momentum of the puck.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The change in momentum is the impulse, and the impulse is the average force multiplied by the time it acts, so the two numbers you need are the ones the question gives you: $\\kdp = \\kFnet\\kdt = (28\\ \\text{N})(0.011\\ \\text{s})$. Its direction is the direction of the force, which is away from the wall and so opposite to the way the puck was travelling. The mass and the initial speed are there so that you can say what became of the puck: work out its momentum on arrival, $m\\kv = (0.022\\ \\text{kg})(7\\ \\text{m/s})$, and compare it with the change you found. If the change is larger than the arrival momentum, the puck leaves the wall going the other way; if it is smaller, the puck is still moving into the wall when the contact ends."
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id3327236",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "effective-force",
+   "figure": {
+    "src": "/media/ch08/Figure_08_M2_Bounce.jpg",
+    "alt": "The force exerted by the wall on the object is a constant 15 N from t = 0.080 s until t = 0.24 s, at which time the force drops to zero.",
+    "caption": "This is a graph showing the force exerted by a rigid wall versus time."
+   },
+   "prompt": "The graph shown represents the force exerted on a particle during a collision. What is the magnitude of the change in momentum of the particle as a result of the collision?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1.2 kg • m/s",
+     "2.4 kg • m/s",
+     "3.6 kg • m/s",
+     "4.8 kg • m/s"
+    ],
+    "correct": 1,
+    "hint": "The change in momentum is the area under the force-against-time graph, and here that area is a single rectangle.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap12",
+   "source_id": "fs-id2014894",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "effective-force",
+   "figure": {
+    "src": "/media/ch08/Figure_08_M2_Collision.jpg",
+    "alt": "The force exerted by the wall on the object is zero at t = 0 and rises in a linear fashion to 15 N at a time t = 0.080 s. The force remains constant at 15 N until a time t = 0.24 s. From 0.24 s to 0.32 s, the force drops from 15 N to zero in a linear fashion.",
+    "caption": "This is a graph showing the force exerted by a rigid wall versus time."
+   },
+   "prompt": "The graph shown represents the force exerted on a particle during a collision. What is the magnitude of the change in momentum of the particle as a result of the collision?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The change in momentum is the impulse, and the impulse is the area under the graph of force against time. This force does not stand at one value the way the previous one did: it rises in a straight line from zero at $\\kt = 0$ to 15 N at 0.080 s, holds 15 N until 0.24 s, and falls in a straight line back to zero at 0.32 s. The shape that encloses is a trapezoid, so take the average of the two parallel sides—the whole interval from 0 to 0.32 s along the bottom and the flat part from 0.080 s to 0.24 s along the top—and multiply by the height of 15 N. You can check the result by cutting the shape into a triangle, a rectangle and a second triangle and adding the three areas."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1525993",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A bullet is accelerated down the barrel of a gun by hot gases produced in the combustion of gun powder. What is the average force exerted on a 0.0300-kg bullet to accelerate it to a speed of 600.0 m/s in a time of 2.00 ms (milliseconds)?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 9000,
+    "unit": "N",
+    "hint": "The bullet starts at rest, so the change in momentum is the whole of $m\\kv$. Turn the milliseconds into seconds before you divide.",
+    "solution": "$9.00\\times 10^{3}\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1259039",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A person slaps her leg with her hand, bringing her hand to rest in 2.50 milliseconds from an initial speed of 4.00 m/s. (a) What is the average force exerted on the leg, taking the effective mass of the hand and forearm to be 1.50 kg? (b) Would the force be any different if the woman clapped her hands together at the same speed and brought them to rest in the same time? Explain why or why not.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2400,
+    "unit": "N",
+    "part": "(a)",
+    "hint": "Take the change in momentum of the hand and forearm and divide it by the 2.50 ms the stop takes.",
+    "solution": "(a) $2.40\\times 10^{3}\\ \\text{N}$ toward the leg. (b) The force on each hand would have the same magnitude as that found in part (a) (but in opposite directions by Newton’s third law) because the change in momentum and the time interval are the same."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1672015",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "<strong>Professional Application</strong> Suppose a child drives a bumper car head on into the side rail, which exerts a force of 4000 N on the car for 0.200 s. (a) What impulse is imparted by this force? (b) Find the final velocity of the bumper car if its initial velocity was 2.80 m/s and the car plus driver have a mass of 200 kg. You may neglect friction between the car and floor.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 800,
+      "unit": "kg·m/s",
+      "hint": "The impulse is the force multiplied by the time it acts, and nothing else enters part (a)."
+     },
+     {
+      "part": "(b)",
+      "value": 1.2,
+      "unit": "m/s",
+      "hint": "Add the impulse to the initial momentum, keeping the signs, and divide by the mass."
+     }
+    ],
+    "solution": "(a) 800 kg⋅m/s away from the wall. (b) 1.20 m/s away from the wall."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1107691",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "<strong>Professional Application</strong> A 75.0-kg person is riding in a car moving at 20.0 m/s when the car runs into a bridge abutment. (a) Calculate the average force on the person if he is stopped by a padded dashboard that compresses an average of 1.00 cm. (b) Calculate the average force on the person if he is stopped by an air bag that compresses an average of 15.0 cm.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1500000,
+      "unit": "N",
+      "hint": "The distance tells you the time: over the stop the average speed is half the initial speed, so 1.00 cm at 10.0 m/s takes a thousandth of a second."
+     },
+     {
+      "part": "(b)",
+      "value": 100000,
+      "unit": "N",
+      "hint": "The same change in momentum, but the air bag gives it fifteen times as long to happen."
+     }
+    ],
+    "solution": "(a) $1.50\\times 10^{6}\\ \\text{N}$ away from the dashboard. (b) $1.00\\times 10^{5}\\ \\text{N}$ away from the dashboard."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id495190",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "A cruise ship with a mass of $1.00\\times 10^{7}\\ \\text{kg}$ strikes a pier at a speed of 0.750 m/s. It comes to rest 6.00 m later, damaging the ship, the pier, and the tugboat captain’s finances. Calculate the average force exerted on the pier using the concept of impulse. (Hint: First calculate the time it took to bring the ship to rest.)",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 469000,
+    "unit": "N",
+    "hint": "The ship slows steadily, so its average speed over the 6.00 m is half of 0.750 m/s, and that is what gives you the time.",
+    "solution": "$4.69\\times 10^{5}\\ \\text{N}$ in the boat’s original direction of motion"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1465317",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "Water from a fire hose is directed horizontally against a wall at a rate of 50.0 kg/s and a speed of 42.0 m/s. Calculate the magnitude of the force exerted on the wall, assuming the water’s horizontal momentum is reduced to zero.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2100,
+    "unit": "N",
+    "hint": "A rate in kilograms a second is a mass divided by a time already, so the momentum removed each second is that rate multiplied by the speed.",
+    "solution": "$2.10\\times 10^{3}\\ \\text{N}$ away from the wall"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1357831",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "Starting with the definitions of momentum and kinetic energy, derive an equation for the kinetic energy of a particle expressed as a function of its momentum.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$\\begin{array}{l}\\kp = m\\kv \\Rightarrow \\kp^{2} = m^{2}\\kv^{2} \\Rightarrow \\dfrac{\\kp^{2}}{m} = m\\kv^{2} \\\\ \\Rightarrow \\dfrac{\\kp^{2}}{2m} = \\dfrac{1}{2}m\\kv^{2} = \\kKE \\\\ \\kKE = \\dfrac{\\kp^{2}}{2m}\\end{array}$$"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1523810",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "When serving a tennis ball, a player hits the ball when its velocity is zero (at the highest point of a vertical toss). The racquet exerts a force of 540 N on the ball for 5.00 ms, giving it a final velocity of 45.0 m/s. Using these data, find the mass of the ball.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 60.0,
+    "unit": "g",
+    "hint": "Work out the impulse first; the ball starts from rest, so that impulse is $m\\kv$, and the mass is all that is left unknown.",
+    "solution": "60.0 g"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "impulse",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "change-in-momentum",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "free-fall-kinematics",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "free-fall-kinematics",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "free-fall-kinematics",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "extending-collision-time",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "free-fall-kinematics",
+   "weight": 1
+  },
+  {
+   "exercise": "ap5",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "effective-force"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "effective-force"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p1",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p3",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-third-law",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p5",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "p5",
+   "concept": "average-force-from-impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "p7",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p7",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p9",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p11",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p11",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p13",
+   "concept": "linear-momentum"
+  },
+  {
+   "exercise": "p13",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "p13",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "change-in-momentum",
+   "weight": 1
+  },
+  {
+   "exercise": "p15",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p15",
+   "concept": "impulse"
+  }
+ ]
+}

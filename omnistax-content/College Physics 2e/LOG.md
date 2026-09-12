@@ -1126,3 +1126,55 @@ Checks: `check:content` with 4 chapters, 23 sections, 5 introduction pages
 and no errors, 339 unit tests, `astro check` clean, a build of 30 pages, a
 headless pass over every page in light and dark with no console errors and
 every image loading.
+
+
+### Pass 27 (2026-09-11): Chapters 4, 5, 6, 8 and 9 are built, and Chapter 7 is prepared
+
+Chen asked for the rest of the book to be built by Opus agents in one
+job without check-ins, and this pass is what stood when he paused it
+with credits running low. The plan and its running record are in
+`Plan.md` at the repository root. The process is the three-phase split
+of passes 20 and 21 (prep, sections in parallel, chapter pass), with one
+change: `book.json` is never edited by hand. A chapter stages its
+book-level rows in `book-rows.json` and `tools/mergebook.py merge chNN`
+merges them under a lock, refusing duplicate concept ids, symbols,
+macros and types across chapters; `mergebook.py log chNN` appends a
+staged log pass.
+
+Built whole: Chapter 4 (Dynamics, eight sections), Chapter 5 (Friction,
+Drag and Elasticity, three), Chapter 6 (Uniform Circular Motion and
+Gravitation, six), Chapter 8 (Linear Momentum and Collisions, seven)
+and Chapter 9 (Statics and Torque, six), each with its introduction
+page; Chapter 7 (Work, Energy and Energy Resources) is prepared and its
+introduction built, and its sections wait. Five types joined the nine:
+`stress` and `elastic-modulus` (5.3), `power` (7.7), `momentum` (8.1,
+impulse is the same type) and `torque` (9.2, its own type although its
+dimension is the joule's). Mass, angle, a scene length and every
+dimensionless coefficient stay in ink. One concept moved: the book states
+the energy of a stretched spring first in 7.4, so
+`elastic-potential-energy` sits there and 16.1 reinforces it.
+
+What the sections taught: statics has no time in it, so every figure of
+Chapter 9 is still; a rotor at 200 rad/s is drawn still for the same
+reason, since it turns 32 times a second; folds carried the pole
+vaulter's three holds (9.18 + 9.19 + 9.20), the pencil on its eraser,
+the merry-go-round (6.13 + 6.15), the tides (6.21 + 6.22) and the rough
+interface (5.2 + 5.5). AP items trade both ways between 8.4 and 8.5, and
+between 9.4 and 9.2 and 9.3. The masculine ordinal the CNXML writes for
+degrees has no KaTeX metrics and became `^\circ` inside math. The book
+prints Table 4.1 with a weak-force strength its own answer key
+contradicts, and it is printed as printed. The converter flattened a
+table nested inside a paragraph (only 5.3's Elastic Moduli) and now
+emits it; it still drops every table's title, which each chapter's
+`exploration.md` carries.
+
+Cut short: the chapter passes of 4, 5 and 6 were stopped mid-way, so
+the anchors, cross-section checks and full-chapter headless passes are
+still owed for 4, 5, 6, 8 and 9 (each section's `plan.md` lists what it
+wants at chapter level); 7.1 to 7.5 are held outside the tree until 7.6
+and 7.9, which they take exercises from, are built.
+
+Checks: `check:content` clean with 10 chapters, 53 sections and 11
+introduction pages; 348 unit tests; `astro check` clean; a build of 66
+pages; a headless pass over all 36 new pages in light and dark with no
+console error, every image loading and every canvas booting.

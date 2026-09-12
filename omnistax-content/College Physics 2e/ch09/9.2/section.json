@@ -1,0 +1,481 @@
+{
+ "id": "9.2",
+ "module": "m42171",
+ "chapter": "9",
+ "title": "The Second Condition for Equilibrium",
+ "short": "The second condition",
+ "lead": "A force that is balanced by another may still set a body turning, and whether it does depends on where the force is applied and in what direction it points. This section defines torque, the turning effectiveness of a force, gives the two forms of its definition and the perpendicular lever arm they share, states the second condition for equilibrium as a net torque of zero, and works it through on the one system everyone already has an intuition about, two children balancing a seesaw.",
+ "objectives": [
+  "State the second condition that is necessary to achieve equilibrium.",
+  "Explain torque and the factors on which it depends.",
+  "Describe the role of torque in rotational mechanics."
+ ],
+ "summary_html": "<ul><li>The second condition assures those torques are also balanced. Torque is the rotational equivalent of a force in producing a rotation and is defined to be $\\ktau = \\krlev\\kF\\sin\\theta$ where $\\ktau$ is torque, $\\krlev$ is the distance from the pivot point to the point where the force is applied, $\\kF$ is the magnitude of the force, and $\\theta$ is the angle between $\\kF$ and the vector directed from the point where the force acts to the pivot point. The perpendicular lever arm $\\krperp$ is defined to be $\\krperp = \\krlev\\sin\\theta$ so that $\\ktau = \\krperp\\kF$.</li><li>The perpendicular lever arm $\\krperp$ is the shortest distance from the pivot point to the line along which $\\kF$ acts. The SI unit for torque is newton-meter (N·m). The second condition necessary to achieve equilibrium is that the net external torque on a system must be zero: $\\text{net}\\;\\ktau = 0$. By convention, counterclockwise torques are positive, and clockwise torques are negative.</li></ul>",
+ "notes": "The two problems the book leaves unkeyed, the wrench converted to foot-pounds and the item that asks for the supporting force from the second condition alone, are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Problems 2 and 4 have no keyed answer and are left out: the wrench whose torque is to be converted to foot-pounds, and the item that asks for the supporting force $\\kFp$ of Example 9.1 from the second condition alone. Problem 1 keys only part (a), so the card checks that number and carries the book’s own answer to part (b) in its solution. The section’s first AP item, on which situation involves no torque, is keyed and is set as a graded choice; its second, on the five equal forces applied to an anchored object, has no key and is kept as an open item with its five options as the book prints them, the book’s figure on the card and an AI-written suggested approach, marked as such. Section 9.4’s AP item asking for the best estimate of the torque a child on the end of a see-saw makes is a torque magnitude and nothing else, so it is set here with source_section 9.4, unkeyed, as an open item with its four options as printed and an AI-written approach; 9.4’s notes say so as well. Nothing of this section’s own is held for a later page, since a reader who has both conditions can do every problem the rest of the chapter prints. The suggested approaches to the three conceptual questions are AI-written and marked. The first conceptual question is a short check on the passage that defines torque and is set inline after it; everything else is at the end. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-door",
+   "kind": "sim",
+   "number": "9.6",
+   "originals": [
+    "/media/ch09/Figure_10_02_01a.jpg"
+   ],
+   "original_caption": "Torque is the turning or twisting effectiveness of a force, illustrated here for door rotation on its hinges (as viewed from overhead). Torque has both magnitude and direction. (a) Counterclockwise torque is produced by this force, which means that the door will rotate in a counterclockwise due to F. Note that r_⊥ is the perpendicular distance of the pivot from the line of action of the force. (b) A smaller counterclockwise torque is produced by a smaller force F′ acting at the same distance from the hinges (the pivot point). (c) The same force as in (a) produces a smaller counterclockwise torque when applied at a smaller distance from the hinges. (d) The same force as in (a), but acting in the opposite direction, produces a clockwise torque. (e) A smaller counterclockwise torque is produced by the same magnitude force acting at the same point but in a different direction. Here, θ is less than 90º. (f) Torque is zero here since the force just pulls on the hinges, producing no rotation. In this case, θ = 0º.",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ]
+  },
+  {
+   "id": "sim-hockey-stick",
+   "kind": "sim",
+   "number": "9.7",
+   "originals": [
+    "/media/ch09/Figure_10_02_02abc.jpg"
+   ],
+   "original_caption": "A force applied to an object can produce a torque, which depends on the location of the pivot point. (a) The three factors r, F, and θ for pivot point A on a body are shown here—r is the distance from the chosen pivot point to the point where the force F is applied, and θ is the angle between F and the vector directed from the point of application to the pivot point. If the object can rotate around point A, it will rotate counterclockwise. This means that torque is counterclockwise relative to pivot A. (b) In this case, point B is the pivot point. The torque from the applied force will cause a clockwise rotation around point B, and so it is a clockwise torque relative to B.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ]
+  },
+  {
+   "id": "sim-seesaw",
+   "kind": "sim",
+   "number": "9.8",
+   "originals": [
+    "/media/ch09/Figure_10_02_03.jpg"
+   ],
+   "original_caption": "Two children balancing a seesaw satisfy both conditions for equilibrium. The lighter child sits farther from the pivot to create a torque equal in magnitude to that of the heavier child.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ]
+  },
+  {
+   "id": "sim-any-pivot",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ]
+  },
+  {
+   "id": "fig-forces",
+   "kind": "figure",
+   "originals": [
+    "/media/ch09/Figure_09_S2_02.jpg"
+   ],
+   "original_caption": "Five forces acting on an object.",
+   "draws": [
+    "force"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "torque-defined",
+   "concept": "torque",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "perpendicular-lever-arm",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "torque-from-lever-arm",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "point-of-application",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "resolving-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot",
+   "concept": "torque-depends-on-pivot",
+   "verb": "introduces"
+  },
+  {
+   "span": "pivot",
+   "concept": "torque-sign-convention",
+   "verb": "introduces"
+  },
+  {
+   "span": "pivot",
+   "concept": "perpendicular-lever-arm",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pivot",
+   "concept": "torque-from-lever-arm",
+   "verb": "reinforces"
+  },
+  {
+   "span": "second-condition",
+   "concept": "second-condition-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-condition",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "second-condition",
+   "concept": "torque-sign-convention",
+   "verb": "reinforces"
+  },
+  {
+   "span": "second-condition",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "balanced-seesaw",
+   "verb": "introduces"
+  },
+  {
+   "span": "seesaw",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "torque-sign-convention",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw-lessons",
+   "concept": "center-of-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "seesaw-lessons",
+   "concept": "torque-depends-on-pivot",
+   "verb": "reinforces"
+  },
+  {
+   "span": "seesaw-lessons",
+   "concept": "balanced-seesaw",
+   "verb": "reinforces"
+  },
+  {
+   "span": "seesaw-lessons",
+   "concept": "center-of-mass",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2659358",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "torque-defined"
+   },
+   "cite": "torque-defined",
+   "prompt": "What three factors affect the torque created by a force relative to a specific pivot point?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The magnitude of the force, the distance from the pivot point to the point where the force is applied, and the direction in which the force is applied. The definition $\\ktau = \\krlev\\kF\\sin\\theta$ carries all three: the harder you push the larger the torque, the farther from the pivot you push the larger the torque, and only the part of the force perpendicular to the line back to the pivot counts, which is what the factor $\\sin\\theta$ measures. A force directed straight at the pivot has $\\theta = 0^\\circ$ and produces no torque at all, however large it is."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3564976",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pivot",
+   "prompt": "A wrecking ball is being used to knock down a building. One tall unsupported concrete wall remains standing. If the wrecking ball hits the wall near the top, is the wall more likely to fall over by rotating at its base or by falling straight down? Explain your answer. How is it most likely to fall if it is struck with the same force at its base? Note that this depends on how firmly the wall is attached at its base.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the pivot at the bottom of the wall, where it meets the ground. A blow near the top acts a long way from that pivot, so its perpendicular lever arm is nearly the whole height of the wall and the torque it makes about the base is large; the wall is therefore more likely to rotate about its base and fall over than to be driven straight down. The same force delivered at the base has almost no lever arm about that point, so it makes almost no torque, and what it does instead is push the bottom of the wall sideways. If the wall is firmly attached at its base it can neither slide nor turn easily, and the blow does its damage locally rather than toppling the wall; if the base is free to move, the bottom is knocked out from under the wall and the wall comes down more or less where it stood."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1430926",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-defined",
+   "prompt": "Mechanics sometimes put a length of pipe over the handle of a wrench when trying to remove a very tight bolt. How does this help? (It is also hazardous since it can break the bolt.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The pipe lengthens the handle, so the mechanic’s hands act farther from the center of the bolt and the perpendicular lever arm $\\krperp$ is longer. Since $\\ktau = \\krperp\\kF$, the same push then produces a larger torque on the bolt, and the bolt turns under a force that would not have shifted it at the end of the wrench alone. It is hazardous for exactly the same reason: the torque is easily made larger than the bolt will bear, and the bolt shears off instead of turning."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1330781",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-defined",
+   "prompt": "Which of the following is not an example of an object undergoing a torque?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A car is rounding a bend at a constant speed.",
+     "A merry-go-round increases from rest to a constant rotational speed.",
+     "A pendulum swings back and forth.",
+     "A bowling ball rolls down a bowling alley."
+    ],
+    "correct": 0,
+    "hint": "A torque changes a rotation. Ask of each situation whether something is being made to turn faster, more slowly, or the other way about an axis of its own.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1495433",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pivot",
+   "figure": {
+    "src": "/media/ch09/Figure_09_S2_02.jpg",
+    "alt": "The diagram shows a gray that is a rounded shape of a shoe. Slightly to the right of center is a black dot labeled P. There are 5 red arrows nearly perpendicular to the curved line representing the edge of the object. Arrow A is pointing straight down toward where the line curves around the top. Arrow B is a horizontal line pointing away from the object as the edge curves slightly in an almost vertical line. Arrow C is pointing directly below the P from the edge down. At this point the object begins to curve up from the horizontal. Arrow D is pointing toward straight up toward the object's edge where the object is curving upward more than point C. Arrow E is pointing toward the left edge at around a 45 degree angle toward the object and is approximately perpendicular to the object again.",
+    "caption": "Five forces acting on an object."
+   },
+   "prompt": "Five forces of equal magnitude, labeled <strong><em>A</em></strong>–<strong><em>E</em></strong>, are applied to the object shown below. If the object is anchored at point <strong><em>P</em></strong>, which force will provide the greatest torque?<ol type=\"a\"><li>Force <strong><em>A</em></strong></li><li>Force <strong><em>B</em></strong></li><li>Force <strong><em>C</em></strong></li><li>Force <strong><em>D</em></strong></li><li>Force <strong><em>E</em></strong></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "All five forces have the same magnitude, so by $\\ktau = \\krperp\\kF$ the greatest torque belongs to the force with the longest perpendicular lever arm. The lever arm is the shortest distance from $P$ to the line along which the force acts, not the distance from $P$ to the point of the edge where the force touches, so extend each arrow into a full line right across the drawing and measure from $P$ to that line. A force applied far out along the object but pointing nearly at $P$ has a short lever arm and makes little torque; a force applied the same distance out but at right angles to the line back to $P$ has a lever arm equal to the whole of that distance. Compare the five lines on those two counts together, how far out the force acts and how squarely it is directed, and the one whose line passes farthest from $P$ is the answer."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1383310",
+   "source_section": "9.4",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seesaw",
+   "prompt": "A child sits on the end of a playground see-saw. Which of the following values is the most appropriate estimate of the torque created by the child?<ol type=\"a\"><li>6 N•m</li><li>60 N•m</li><li>600 N•m</li><li>6000 N•m</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Estimate the two quantities the definition asks for and multiply them. A child of school age has a mass of perhaps 30 kg, so a weight of about $(30\\ \\text{kg})(9.80\\ \\text{m/s}^2) \\approx 300\\ \\text{N}$, and half the length of a playground see-saw is about 2 m, which is the distance from the pivot to the child on the end. The weight hangs straight down while the plank runs out horizontally, so $\\theta$ is close to $90^\\circ$ and $\\sin\\theta$ is close to 1. Then $\\ktau = \\krlev\\kF\\sin\\theta \\approx (2\\ \\text{m})(300\\ \\text{N}) = 600\\ \\text{N}\\cdot\\text{m}$. What the question is really asking for is the order of magnitude: a child weighs a few hundred newtons and sits a couple of meters out, so the torque belongs in the hundreds of newton-meters and not in the tens or the thousands."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1405750",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-defined",
+   "prompt": "(a) When opening a door, you push on it perpendicularly with a force of 55.0 N at a distance of 0.850 m from the hinges. What torque are you exerting relative to the hinges? (b) Does it matter if you push at the same height as the hinges?",
+   "answer": {
+    "type": "number",
+    "value": 46.8,
+    "unit": "N·m",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "The push is perpendicular to the door, so $\\theta = 90^\\circ$, $\\sin\\theta = 1$, and the perpendicular lever arm is the whole distance from the hinges.",
+    "solution": "(a) 46.8 N·m. (b) It does not matter at what height you push. The torque depends on only the magnitude of the force applied and the perpendicular distance of the force’s application from the hinges. (Children don’t have a tougher time opening a door because they push lower than adults, they have a tougher time because they don’t push far enough from the hinges.)"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2699718",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-condition",
+   "prompt": "Two children push on opposite sides of a door during play. Both push horizontally and perpendicular to the door. One child pushes with a force of 17.5 N at a distance of 0.600 m from the hinges, and the second child pushes at a distance of 0.450 m. What force must the second child exert to keep the door from moving? Assume friction is negligible.",
+   "answer": {
+    "type": "number",
+    "value": 23.3,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "The door does not move, so the net torque about the hinges is zero and the two torques are equal in magnitude and opposite in sign. Both pushes are perpendicular to the door, so each torque is simply a distance times a force.",
+    "solution": "23.3 N"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2989327",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seesaw",
+   "prompt": "Repeat the seesaw problem in Example 9.1 with the center of mass of the seesaw 0.160 m to the left of the pivot (on the side of the lighter child) and assuming a mass of 12.0 kg for the seesaw. The other data given in the example remain unchanged. Explicitly show how you follow the steps in the Problem-Solving Strategy for static equilibrium.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$\\krtwo$",
+      "value": 1.36,
+      "unit": "m",
+      "hint": "The weight of the seesaw now acts at its own center of gravity, 0.160 m to the left of the pivot, so it adds a third counterclockwise torque to the one the lighter child makes."
+     },
+     {
+      "part": "$\\kFp$",
+      "value": 686,
+      "unit": "N",
+      "hint": "The first condition now has four vertical forces in it: the supporting force up, and the two children and the seesaw down."
+     }
+    ],
+    "solution": "Given: $m_1 = 26.0\\ \\text{kg}$, $m_2 = 32.0\\ \\text{kg}$, $m_\\text{s} = 12.0\\ \\text{kg}$, $\\krone = 1.60\\ \\text{m}$, $r_\\text{s} = 0.160\\ \\text{m}$; find (a) $\\krtwo$ and (b) $\\kFp$. (a) Since the children are balancing, $\\text{net}\\;\\tau_\\text{cw} = -\\text{net}\\;\\tau_\\text{ccw}$, so $\\kwone\\krone + m_\\text{s}\\kg r_\\text{s} = \\kwtwo\\krtwo$. Solving for $\\krtwo$ gives $\\krtwo = \\frac{\\kwone\\krone + m_\\text{s}\\kg r_\\text{s}}{\\kwtwo} = \\frac{m_1\\krone + m_\\text{s} r_\\text{s}}{m_2} = \\frac{(26.0\\ \\text{kg})(1.60\\ \\text{m}) + (12.0\\ \\text{kg})(0.160\\ \\text{m})}{32.0\\ \\text{kg}} = 1.36\\ \\text{m}$. (b) Since the children are not moving, $\\text{net}\\;\\kF = 0 = \\kFp - \\kwone - \\kwtwo - w_\\text{s}$, so $\\kFp = \\kwone + \\kwtwo + w_\\text{s} = (26.0\\ \\text{kg} + 32.0\\ \\text{kg} + 12.0\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 686\\ \\text{N}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "torque"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "torque"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "torque-depends-on-pivot",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "perpendicular-lever-arm"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "perpendicular-lever-arm"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "torque",
+   "weight": 3
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque-from-lever-arm",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "torque"
+  },
+  {
+   "exercise": "p1",
+   "concept": "torque-from-lever-arm",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p3",
+   "concept": "torque",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "balanced-seesaw"
+  },
+  {
+   "exercise": "p5",
+   "concept": "second-condition-equilibrium",
+   "weight": 4
+  },
+  {
+   "exercise": "p5",
+   "concept": "first-condition-equilibrium",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "center-of-gravity",
+   "weight": 2
+  }
+ ]
+}

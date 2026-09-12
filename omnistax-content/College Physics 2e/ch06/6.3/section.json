@@ -1,0 +1,891 @@
+{
+ "id": "6.3",
+ "module": "m42086",
+ "chapter": "6",
+ "title": "Centripetal Force",
+ "short": "Centripetal force",
+ "lead": "A car rounding a curve, a ball on the end of a string and the Moon in its orbit are all accelerating toward the center of a circle, so in every case some force must be pushing or pulling them that way. This section gives that net force its name, the centripetal force, writes its magnitude in terms of the speed and in terms of the angular velocity, and then works the two cases a road gives you: a level curve, where friction alone holds the car on its path, and a banked curve, whose slope can hold the car at one speed with no friction at all.",
+ "objectives": [
+  "Calculate coefficient of friction on a car tire.",
+  "Calculate ideal speed and angle of a car on a turn."
+ ],
+ "summary_html": "<ul><li>Centripetal force $\\kFc$ is any force causing uniform circular motion. It is a “center-seeking” force that always points toward the center of rotation. It is perpendicular to linear velocity $\\kv$ and has magnitude $$\\kFc = m\\kac,$$ which can also be expressed as $$\\kFc = m\\frac{\\kv^2}{\\kr} \\quad \\text{or} \\quad \\kFc = m\\kr\\kw^2.$$</li></ul>",
+ "notes": "Problems 2, 4, 6 and 9 have no answer in the book’s key and are left out, and the link to the PhET simulation Gravity and Orbits is left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and the suggested approaches to the conceptual questions are AI-generated and marked as such; the answers to the problems come from the book’s own answer key and nothing is computed here. Problems 2 (the wind turbine blade), 4 (the ideal speed of the 20.0º curve), 6 (the leaning bicycle) and 9 (the roller coaster’s vertical loop) have no keyed answer and are left out, though the book’s figures for the last two are kept with the other exercise figures. The chapter has no Check Your Understanding box; the shortest conceptual question, which asks the reader to define the centripetal force and to say which forces can be one, is set inline after the passage that answers it, and every other item sits with the problem set. The Critical Thinking item of section 6.6, on where the normal force on a car in a vertical loop is greatest and on whether $F_N = Kr^{1/2}$ can be right, turns on the centripetal force, which this section introduces, so it is set here with source_section 6.6 and carries the book’s graph of $v$ against $r$ inside its answer; 6.6’s notes say so as well.",
+ "figures": [
+  {
+   "id": "sim-radius",
+   "kind": "sim",
+   "number": "6.9",
+   "originals": [
+    "/media/ch06/Figure_07_03_01a.jpg"
+   ],
+   "original_caption": "The frictional force supplies the centripetal force and is numerically equal to it. Centripetal force is perpendicular to velocity and causes uniform circular motion. The larger the F_c, the smaller the radius of curvature r and the sharper the curve. The second curve has the same v, but a larger F_c produces a smaller r′.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "position",
+    "angular-rate"
+   ]
+  },
+  {
+   "id": "sim-level-curve",
+   "kind": "sim",
+   "number": "6.10",
+   "originals": [
+    "/media/ch06/Figure_07_03_02a.jpg"
+   ],
+   "original_caption": "This car on level ground is moving away and turning to the left. The centripetal force causing the car to turn in a circular path is due to friction between the tires and the road. A minimum coefficient of friction is needed, or the car will move in a larger-radius curve and leave the roadway.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "position",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-banked",
+   "kind": "sim",
+   "number": "6.11",
+   "originals": [
+    "/media/ch06/Figure_07_03_03a.jpg"
+   ],
+   "original_caption": "The car on this banked curve is moving away and turning to the left.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "position",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-loop",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "velocity",
+    "position",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "fig-race-track",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_04a.jpg"
+   ],
+   "original_caption": "Two paths around a race track curve are shown. Race car drivers will take the inside path (called cutting the corner) whenever possible because it allows them to take the curve at the highest speed.",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-loop-ride",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_05a.jpg"
+   ],
+   "original_caption": "Amusement rides with a vertical loop are an example of a form of curved motion.",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-merry-go-round",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_06a.jpg"
+   ],
+   "original_caption": "A child riding on a merry-go-round releases her lunch box at point P. This is a view from above the clockwise rotation. Assuming it slides with negligible friction, will it follow path A, B, or C, as viewed from Earth’s frame of reference? What will be the shape of the path it leaves in the dust on the merry-go-round?",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-nail",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_07a.jpg"
+   ],
+   "original_caption": "A mass attached to a nail on a frictionless table moves in a circular path. The force stretching the string is real and not fictional. What is the physical origin of the force on the string?",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-bicycle",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_08-6eb6.jpg"
+   ],
+   "original_caption": "A bicyclist negotiating a turn on level ground must lean at the correct angle—the ability to do this becomes instinctive. The force of the ground on the wheel needs to be on a line through the center of gravity. The net external force on the system is the centripetal force. The vertical component of the force on the wheel cancels the weight of the system while its horizontal component must supply the centripetal force. This process produces a relationship among the angle θ, the speed v, and the radius of curvature r of the turn similar to that for the ideal banking of roadways.",
+   "draws": [
+    "force"
+   ]
+  },
+  {
+   "id": "fig-centrifuge",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/OSX_CPhysics2e_06_03_P22_img.jpg"
+   ],
+   "original_caption": "(a) NASA centrifuge used to subject trainees to accelerations similar to those experienced in rocket launches and reentries. (credit: NASA) (b) Rider in cage showing how the cage pivots outward during rotation. This allows the total force exerted on the rider by the cage to be along its axis at all times.",
+   "draws": [
+    "force"
+   ]
+  },
+  {
+   "id": "fig-teardrop",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_10a.jpg"
+   ],
+   "original_caption": "Teardrop-shaped loops are used in the latest roller coasters so that the radius of curvature gradually decreases to a minimum at the top. This means that the centripetal acceleration builds from zero to a maximum at the top and gradually decreases again. A circular loop would cause a jolting change in acceleration at entry, a disadvantage discovered long ago in railroad curve design. With a small radius of curvature at the top, the centripetal acceleration can more easily be kept greater than g so that the passengers do not lose contact with their seats nor do they need seat belts to keep them in place.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "centripetal-force",
+   "concept": "centripetal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "centripetal-force",
+   "concept": "uniform-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "centripetal-force",
+   "concept": "centripetal-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "centripetal-force",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "centripetal-force",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "two-forms",
+   "concept": "centripetal-force-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-forms",
+   "concept": "centripetal-acceleration-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "two-forms",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "two-forms",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "radius",
+   "concept": "radius-and-centripetal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "radius",
+   "concept": "centripetal-force-magnitude",
+   "verb": "reinforces"
+  },
+  {
+   "span": "level-curve",
+   "concept": "friction-as-centripetal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "level-curve",
+   "concept": "free-body-circular-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "level-curve",
+   "concept": "static-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "level-curve",
+   "concept": "static-friction-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "level-curve",
+   "concept": "coefficient-of-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "level-curve",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "level-curve",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-flat-curve",
+   "concept": "centripetal-force-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-flat-curve",
+   "concept": "friction-as-centripetal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-flat-curve",
+   "concept": "free-body-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-flat-curve",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "banked-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "banked",
+   "concept": "ideal-banking-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "banked",
+   "concept": "free-body-circular-motion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "banked",
+   "concept": "resolve-forces-into-components",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "ideal-speed",
+   "concept": "ideal-speed",
+   "verb": "introduces"
+  },
+  {
+   "span": "ideal-speed",
+   "concept": "ideal-banking-angle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-ideal-speed",
+   "concept": "ideal-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-ideal-speed",
+   "concept": "newtons-laws-problem-solving",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3255120",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "prompt": "If you wish to reduce the stress (which is related to centripetal force) on high-speed tires, would you use large- or small-diameter tires? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "You would use large-diameter tires. A point on the tread of a tire of radius $\\kr$ turning at speed $\\kv$ needs a centripetal force $\\kFc = m\\kv^2/\\kr$ to keep it on its circular path, and that force has to be supplied by the rubber pulling on itself. Written the other way round, $\\kr = m\\kv^2/\\kFc$: at a given road speed the larger the radius, the smaller the force each piece of tread needs, and so the smaller the stress in the tire. A small-diameter tire turns the tread through a tighter curve at the same speed and needs a larger force to do it."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3055510",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "centripetal-force"
+   },
+   "cite": "centripetal-force",
+   "prompt": "Define centripetal force. Can any type of force (for example, tension, gravitational force, friction, and so on) be a centripetal force? Can any combination of forces be a centripetal force?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A centripetal force is any net force that causes uniform circular motion, and what makes a force centripetal is its direction: it points toward the center of curvature of the path. Any type of force can play that part, and the section lists several that do—the tension in the rope on a tether ball, the gravitational force of Earth on the Moon, friction between roller skates and a rink floor, and the force of a banked roadway on a car. A combination of forces can be a centripetal force as well, since what the second law asks for is the net external force; on the banked curve it is the normal force and the weight together that add to a horizontal force pointing at the center."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3035023",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "If centripetal force is directed toward the center, why do you feel that you are ‘thrown’ away from the center as a car goes around a curve? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Nothing throws you outward. By Newton’s first law your body goes on in a straight line unless a force turns it, and it is the car that turns. The car door or the seat has to push you inward to bend your path into the same circle the car is following, and it is that inward push you feel, on the outward side of your body. Seen from the ground there is no outward force at all: what you notice is your own tendency to keep going straight while the car curves away beneath you."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3286004",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "prompt": "Race car drivers routinely cut corners as shown in the race-track figure. Explain how this allows the curve to be taken at the greatest speed.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Cutting the corner straightens the path: the line that runs to the outside of the track on the way in, touches the inside at the middle of the bend and returns to the outside on the way out has a larger radius of curvature than the lane itself. The force the tires can supply is limited by friction, and $\\kr = m\\kv^2/\\kFc$ says that with the same force a larger radius allows a larger speed, or equivalently $\\kv = \\sqrt{\\kFc \\kr / m}$. So the driver who takes the widest arc the track allows can carry the most speed through the bend."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2405334",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "A number of amusement parks have rides that make vertical loops like the one shown in the amusement-ride figure. For safety, the cars are attached to the rails in such a way that they cannot fall off. If the car goes over the top at just the right speed, gravity alone will supply the centripetal force. What other force acts and what is its direction if: (a) The car goes over the top at faster than this speed? (b) The car goes over the top at slower than this speed?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At the top the centripetal force must be $m\\kv^2/\\kr$ and must point downward, toward the center of the loop, and the weight supplies $m\\kg$ of it. (a) Faster than the right speed, $m\\kv^2/\\kr$ is greater than the weight, so the rails must supply the difference: the track pushes down on the car from outside, and the force on the car is directed downward, toward the center. (b) Slower than the right speed, $m\\kv^2/\\kr$ is less than the weight, so something must hold part of the weight up: the rails pull the car outward, and the force on the car is directed upward, away from the center. This is why the cars are fastened to the rails."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1186294",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "What is the direction of the force exerted by the car on the passenger as the car goes over the top of the amusement ride pictured in the amusement-ride figure under the following circumstances: (a) The car goes over the top at such a speed that the gravitational force is the only force acting? (b) The car goes over the top faster than this speed? (c) The car goes over the top slower than this speed?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The passenger needs a net downward force of $m\\kv^2/\\kr$ at the top, and the weight already supplies $m\\kg$ of it. (a) At the speed for which gravity alone is enough, the car exerts no force on the passenger at all; the passenger is in free fall along with the car and feels weightless. (b) Faster than that speed, more than the weight is needed, so the seat must press on the passenger downward, toward the center of the loop, and the passenger is pressed into the seat. (c) Slower than that speed, less than the weight is needed, so the restraint must pull the passenger upward, away from the center, and the passenger hangs against the harness."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3011795",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "level-curve",
+   "prompt": "As a skater forms a circle, what force is responsible for making her turn? Use a free body diagram in your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Friction between the skate blades and the ice is what turns her. Draw the free-body diagram of the skater as she comes round the circle: her weight $\\kwgt$ points straight down, the normal force $\\kN$ of the ice points straight up and balances it, and the only horizontal force is the friction of the ice on the blades, which points toward the center of the circle. That friction is therefore the whole net external force, and it is the centripetal force, with magnitude $\\kFc = m\\kv^2/\\kr$. Leaning into the turn is what lets the blades push sideways on the ice, so that the ice pushes back inward on her."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3047120",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "Suppose a child is riding on a merry-go-round at a distance about halfway between its center and edge. She has a lunch box resting on wax paper, so that there is very little friction between it and the merry-go-round. Which path shown in the merry-go-round figure will the lunch box take when she lets go? The lunch box leaves a trail in the dust on the merry-go-round. Is that trail straight, curved to the left, or curved to the right? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Once the box is let go there is no horizontal force on it, since the wax paper gives almost no friction, so from the ground it goes on in a straight line at the velocity it had at the moment of release. That velocity is tangent to its circle, so the box takes the tangential path, path B. The trail it leaves in the dust is a different matter: the merry-go-round keeps turning clockwise under the box while the box travels straight, so relative to the platform the box appears to curve. Seen from the platform the trail curves to the left of the box’s motion."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id2404351",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "banked",
+   "prompt": "Do you feel yourself thrown to either side when you negotiate a curve that is ideally banked for your car’s speed? What is the direction of the force exerted on you by the car seat?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. On an ideally banked curve taken at the ideal speed, no friction is needed along the road surface, and there is nothing pressing you sideways against the seat or the door. The seat pushes on you perpendicular to its own surface, that is, perpendicular to the banked road: straight down into the seat from your point of view, and up and toward the center of the curve seen from the ground. The vertical part of that push holds your weight and the horizontal part is the centripetal force that turns you with the car, which is exactly what the road does for the car itself."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3340905",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "Suppose a mass is moving in a circular path on a frictionless table as shown in the nail-and-string figure. In the Earth’s frame of reference, there is no centrifugal force pulling the mass away from the centre of rotation, yet there is a very real force stretching the string attaching the mass to the nail. Using concepts related to centripetal force and Newton’s third law, explain what force stretches the string, identifying its physical origin.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The string pulls the mass inward, and that tension is the centripetal force $\\kFc = m\\kv^2/\\kr$ that keeps the mass on its circle. By Newton’s third law the mass pulls back on the string with an equal force directed outward, and at the other end the nail holds the string against an equal inward pull. The string is therefore pulled at both ends, outward by the mass and inward by the nail, and that pair of forces is what stretches it. The outward force is real, but it acts on the string, not on the mass; nothing pulls the mass outward, which is why it does not fly off along the radius but along the tangent when the string is cut."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3245705",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-forms",
+   "prompt": "(a) A 22.0 kg child is riding a playground merry-go-round that is rotating at 40.0 rev/min. What centripetal force must she exert to stay on if she is 1.25 m from its center? (b) What centripetal force does she need to stay on an amusement park merry-go-round that rotates at 3.00 rev/min if she is 8.00 m from its center? (c) Compare each force with her weight.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 483,
+      "unit": "N"
+     },
+     {
+      "part": "b",
+      "value": 17.4,
+      "unit": "N"
+     }
+    ],
+    "solution": "(a) 483 N (b) 17.4 N (c) The playground force is 2.24 times her weight and the amusement park force is 0.0807 times her weight."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1864125",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "banked",
+   "prompt": "What is the ideal banking angle for a gentle turn of 1.20 km radius on a highway with a 105 km/h speed limit (about 65 mi/h), assuming everyone travels at the limit?",
+   "answer": {
+    "type": "number",
+    "value": 4.14,
+    "unit": "º",
+    "generated_by": "source",
+    "hint": "Put the speed limit into meters per second before you use $\\theta = \\tan^{-1}(\\kv^2/\\kr\\kg)$.",
+    "solution": "$4.14^\\circ$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-id1167458029802",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "banked",
+   "prompt": "(a) What is the radius of a bobsled turn banked at 75.0° and taken at 30.0 m/s, assuming it is ideally banked? (b) Calculate the centripetal acceleration. (c) Does this acceleration seem large to you?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 24.6,
+      "unit": "m"
+     },
+     {
+      "part": "b",
+      "value": 36.6,
+      "unit": "m/s²"
+     }
+    ],
+    "solution": "(a) 24.6 m (b) $36.6\\ \\text{m/s}^2$ (c) $\\kac = 3.73\\,\\kg.$ This does not seem too large, but it is clear that bobsledders feel a lot of force on them going through sharply banked turns."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3424499",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "prompt": "A large centrifuge, like the one shown in the centrifuge figure, is used to expose aspiring astronauts to accelerations similar to those experienced in rocket launches and atmospheric reentries. (a) At what angular velocity is the centripetal acceleration $10\\,\\kg$ if the rider is 15.0 m from the center of rotation? (b) The rider’s cage hangs on a pivot at the end of the arm, allowing it to swing outward during rotation, as the figure shows. At what angle $\\theta$ below the horizontal will the cage hang when the centripetal acceleration is $10\\,\\kg$? (Hint: The arm supplies centripetal force and supports the weight of the cage. Draw a free body diagram of the forces to see what the angle $\\theta$ should be.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 2.56,
+      "unit": "rad/s"
+     },
+     {
+      "part": "b",
+      "value": 5.71,
+      "unit": "º"
+     }
+    ],
+    "solution": "(a) 2.56 rad/s (b) $5.71^\\circ$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2963096",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ideal-speed",
+   "prompt": "If a car takes a banked curve at less than the ideal speed, friction is needed to keep it from sliding toward the inside of the curve (a real problem on icy mountain roads). (a) Calculate the ideal speed to take a 100 m radius curve banked at 15.0º. (b) What is the minimum coefficient of friction needed for a frightened driver to take the same curve at 20.0 km/h?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 16.2,
+      "unit": "m/s"
+     },
+     {
+      "part": "b",
+      "value": 0.234,
+      "unit": ""
+     }
+    ],
+    "solution": "(a) 16.2 m/s (b) 0.234"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id2667652",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Unreasonable Results",
+   "place": {
+    "at": "end"
+   },
+   "cite": "level-curve",
+   "prompt": "(a) Calculate the minimum coefficient of friction needed for a car to negotiate an unbanked 50.0 m radius curve at 30.0 m/s. (b) What is unreasonable about the result? (c) Which premises are unreasonable or inconsistent?",
+   "answer": {
+    "type": "number",
+    "value": 1.84,
+    "unit": "",
+    "part": "a",
+    "generated_by": "source",
+    "solution": "(a) 1.84 (b) A coefficient of friction this much greater than 1 is unreasonable. (c) The assumed speed is too great for the tight curve."
+   }
+  },
+  {
+   "id": "ct1",
+   "source_id": "exer-86626",
+   "source_section": "6.6",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Critical Thinking",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-forms",
+   "prompt": "A car travels around a loop with negligible friction at a constant speed and never loses contact with the loop. The top of the loop is labeled A and the bottom of the loop is labeled B. (a) At what point would the normal force be greatest? Briefly explain your reasoning. (b) Based on experimental data, an equation that fits the data is suggested for the normal force, <em>F</em><sub>N</sub>, which may not be correct: $F_N = Kr^{1/2}$, where <em>K</em> is a constant with appropriate units and <em>r</em> is the radius of the loop. Is this equation consistent with your answer from part a? Explain why or why not. Does this equation make sense? Explain why or why not. (c) Now the car travels around loops of various radii and the speed at which the car barely makes it around the loop is measured. Graph that speed vs. the radius of the loop.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) The normal force is greatest at point B. At point A, the normal force and the weight are the net force; at point B, only the normal force points in the same direction as the net force. (b) i. This is not consistent because a larger radius should decrease the net force and tension, not increase it. ii. This does not make sense because $F_c = mv^2/r$. (c) <img src=\"/media/ch06/OSX_CP2e_Figure_06_06Sol_CTQ01c.jpg\" alt=\"The figure is a plot of v as a function of r. The function starts at the origin and increases monotonically, with decreasing slope.\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "radius-and-centripetal-force"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "centripetal-force-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "radius-and-centripetal-force"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "friction-as-centripetal-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "centripetal-force-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "centripetal-force-magnitude"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "free-body-circular-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "free-body-circular-motion"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "centripetal-force-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "free-body-circular-motion"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "friction-as-centripetal-force"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "centripetal-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "uniform-circular-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "cq9",
+   "concept": "banked-curve"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "ideal-speed"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "ideal-banking-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "cq10",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "free-body-circular-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq10",
+   "concept": "newtons-third-law",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "centripetal-force-magnitude"
+  },
+  {
+   "exercise": "p1",
+   "concept": "angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "ideal-banking-angle"
+  },
+  {
+   "exercise": "p3",
+   "concept": "banked-curve",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "ideal-banking-angle"
+  },
+  {
+   "exercise": "p5",
+   "concept": "radius-and-centripetal-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "centripetal-acceleration-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "acceleration-in-multiples-of-g",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "free-body-circular-motion"
+  },
+  {
+   "exercise": "p7",
+   "concept": "centripetal-force-magnitude"
+  },
+  {
+   "exercise": "p7",
+   "concept": "centripetal-acceleration-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "acceleration-in-multiples-of-g",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "ideal-speed"
+  },
+  {
+   "exercise": "p8",
+   "concept": "friction-as-centripetal-force"
+  },
+  {
+   "exercise": "p8",
+   "concept": "ideal-banking-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p10",
+   "concept": "friction-as-centripetal-force"
+  },
+  {
+   "exercise": "p10",
+   "concept": "coefficient-of-friction"
+  },
+  {
+   "exercise": "p10",
+   "concept": "centripetal-force-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "ct1",
+   "concept": "centripetal-force-magnitude"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "free-body-circular-motion"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "centripetal-force",
+   "weight": 2
+  }
+ ]
+}

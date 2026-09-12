@@ -1,0 +1,668 @@
+{
+ "id": "4.5",
+ "module": "m42075",
+ "chapter": "4",
+ "title": "Normal, Tension, and Other Examples of Forces",
+ "short": "Normal force and tension",
+ "lead": "Forces carry many names, and this section takes the most important of them. It defines the normal force with which a surface supports whatever rests on it, resolves the weight of an object on an incline into a component along the slope and a component into it, follows the tension a rope or a cable carries from one end to the other, and closes by separating the real forces from the fictitious ones an accelerating observer seems to see.",
+ "objectives": [
+  "Define normal and tension forces.",
+  "Apply Newton's laws of motion to solve problems involving a variety of forces.",
+  "Use trigonometric identities to resolve weight into components."
+ ],
+ "summary_html": "<ul><li>When objects rest on a surface, the surface applies a force to the object that supports the weight of the object. This supporting force acts perpendicular to and away from the surface. It is called a normal force, $\\kN$.</li><li>When objects rest on a non-accelerating horizontal surface, the magnitude of the normal force is equal to the weight of the object: $\\kN = m\\kg.$</li><li>When objects rest on an inclined plane that makes an angle $\\theta$ with the horizontal surface, the weight of the object can be resolved into components that act perpendicular ($\\kwperp$) and parallel ($\\kwpar$) to the surface of the plane. These components can be calculated using $\\kwpar = \\kwgt\\sin(\\theta) = m\\kg\\sin(\\theta)$ and $\\kwperp = \\kwgt\\cos(\\theta) = m\\kg\\cos(\\theta).$</li><li>The pulling force that acts along a stretched flexible connector, such as a rope or cable, is called tension, $\\kTf$. When a rope supports the weight of an object that is at rest, the tension in the rope is equal to the weight of the object: $\\kTf = m\\kg.$</li><li>In any inertial frame of reference (one that is not accelerated or rotated), Newton’s laws have the simple forms given in this chapter and all forces are real forces having a physical origin.</li></ul>",
+ "notes": "The PhET simulation link Forces in 1 Dimension is left out, as are the three problems the book gives no answer for and the drawing of the baby on the spring scale, which belongs to the last of them.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Answers come from the book’s answer key; Bloom levels, concept tags, hints and the suggested approaches are AI-written, and the approaches are marked as such. Three of the six problems have no keyed answer and are left out: the trampoline and the gymnast (fs-id1600446), the gymnast climbing a rope (fs-id1914521) and the baby on the spring scale (fs-id2372303), whose figure goes with it. The section’s first AP item, the force of gravity on an arrow (fs-id1367314), is the weight $\\kwgt = m\\kg$ of section 4.3 and nothing else, so it is set with that section and 4.3’s notes say so. The unkeyed AP items on the toboggan and on the car on the slope are kept as open items, the toboggan with its four options as the book prints them, since no answer may be invented for a graded choice. The item on the child and the wagon is kept where the book prints it, although it leans on the system of interest and the third law of 4.3 and 4.4, because the wagon is pulled by a flexible connector and the tension in the handle is what the answer turns on. The two conceptual questions share the book’s drawing of the leg in traction, as the book refers to it from both.",
+ "figures": [
+  {
+   "id": "sim-normal",
+   "kind": "sim",
+   "number": "4.11",
+   "originals": [
+    "/media/ch04/Figure_04_05_01.jpg"
+   ],
+   "original_caption": "(a) The person holding the bag of dog food must supply an upward force F_hand equal in magnitude and opposite in direction to the weight of the food w. (b) The card table sags when the dog food is placed on it, much like a stiff trampoline. Elastic restoring forces in the table grow as it sags until they supply a force N equal in magnitude and opposite in direction to the weight of the load.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "stiffness"
+   ]
+  },
+  {
+   "id": "sim-skier",
+   "kind": "sim",
+   "number": "4.12",
+   "originals": [
+    "/media/ch04/Figure_04_05_02.jpg"
+   ],
+   "original_caption": "Since motion and friction are parallel to the slope, it is most convenient to project all forces onto a coordinate system where one axis is parallel to the slope and the other is perpendicular (axes shown to left of skier). N is perpendicular to the slope and f is parallel to the slope, but w has components along both axes, namely w_⊥ and w_∥. N is equal in magnitude to w_⊥, so that there is no motion perpendicular to the slope, but f is less than w_∥, so that there is a downslope acceleration (along the parallel axis).",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-incline",
+   "kind": "sim",
+   "number": "4.13",
+   "originals": [
+    "/media/ch04/Figure_04_05_03.jpg"
+   ],
+   "original_caption": "An object rests on an incline that makes an angle θ with the horizontal.",
+   "widths": [
+    425
+   ],
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-rope",
+   "kind": "sim",
+   "number": "4.14",
+   "originals": [
+    "/media/ch04/Figure_04_05_04.jpg"
+   ],
+   "original_caption": "When a perfectly flexible connector (one requiring no force to bend it) such as this rope transmits a force T, that force must be parallel to the length of the rope, as shown. The pull such a flexible connector exerts is a tension. Note that the rope pulls with equal force but in opposite directions on the hand and the supported mass (neglecting the weight of the rope). This is an example of Newton’s third law. The rope is the medium that carries the equal and opposite forces between the two objects. The tension anywhere in the rope between the hand and the mass is equal. Once you have determined the tension in one location, you have determined the tension at all locations along the rope.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-corners",
+   "kind": "sim",
+   "number": "4.15",
+   "originals": [
+    "/media/ch04/Figure_04_05_05.jpg"
+   ],
+   "original_caption": "(a) Tendons in the finger carry force T from the muscles to other parts of the finger, usually changing the force’s direction, but not its magnitude (the tendons are relatively friction free). (b) The brake cable on a bicycle carries the tension T from the handlebars to the brake mechanism. Again, the direction but not the magnitude of T is changed.",
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-tightrope",
+   "kind": "sim",
+   "number": "4.16",
+   "folds": [
+    "4.17"
+   ],
+   "originals": [
+    "/media/ch04/Figure_04_05_06.jpg",
+    "/media/ch04/Figure_04_05_07.jpg"
+   ],
+   "original_caption": "The weight of a tightrope walker causes a wire to sag by 5.0 degrees. The system of interest here is the point in the wire at which the tightrope walker is standing.",
+   "widths": [
+    375,
+    450
+   ],
+   "draws": [
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-chain",
+   "kind": "sim",
+   "number": "4.18",
+   "originals": [
+    "/media/ch04/Figure_04_05_08.jpg"
+   ],
+   "original_caption": "We can create a very large tension in the chain by pushing on it perpendicular to its length, as shown. Suppose we wish to pull a car out of the mud when no tow truck is available. Each time the car moves forward, the chain is tightened to keep it as nearly straight as possible. The tension in the chain is given by T = F_⊥ / (2 sin θ); since θ is small, T is very large. This situation is analogous to the tightrope walker shown in Figure 4.16, except that the tensions shown here are those transmitted to the car and the tree rather than those acting at the point where F_⊥ is applied.",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "force"
+   ]
+  },
+  {
+   "id": "fig-bridge",
+   "kind": "photo",
+   "number": "4.19",
+   "widths": [
+    325
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "named-forces",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-force",
+   "concept": "normal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "normal-force",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-force",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-force",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "weight-components-on-incline",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "acceleration-on-frictionless-incline",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-incline",
+   "concept": "acceleration-on-frictionless-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-incline",
+   "concept": "weight-components-on-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-incline",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "tension",
+   "verb": "introduces"
+  },
+  {
+   "span": "tension",
+   "concept": "tension-supports-weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "tension",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "tightrope",
+   "concept": "tension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tightrope",
+   "concept": "tension-supports-weight",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tightrope",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "tightrope",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "tightrope",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-tightrope",
+   "concept": "tension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "large-tension",
+   "concept": "tension-from-perpendicular-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "large-tension",
+   "concept": "tension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inertial-frames",
+   "concept": "inertial-frame",
+   "verb": "introduces"
+  },
+  {
+   "span": "inertial-frames",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "inertial-frames",
+   "concept": "reference-frame",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1458737",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "prompt": "A cable raises a mass of 120.0 kg with an acceleration of 1.3 m/s<sup>2</sup>. What force of tension is in the cable?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1332,
+    "unit": "N",
+    "hint": "The cable has to hold the weight up and accelerate the mass as well, so add the force that balances the weight to the force that produces the acceleration.",
+    "solution": "The force of tension must equal the force of gravity plus the force necessary to accelerate the mass. $F = m\\kg$ can be used to calculate the first, and $F = m\\ka$ can be used to calculate the second. For gravity: $F = m\\kg = (120.0\\ \\text{kg})(9.8\\ \\text{m/s}^2) = 1205.4\\ \\text{N}$. For acceleration: $F = m\\ka = (120.0\\ \\text{kg})(1.3\\ \\text{m/s}^2) = 159.9\\ \\text{N}$. The total force of tension in the cable is 1176 N + 156 N = 1332 N."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1591869",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "prompt": "A child pulls a wagon along a grassy field. Define the system, the pairs of forces at work, and the results.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the wagon as the system of interest, since it is the wagon whose motion is asked about. The external forces on it are the tension in the handle, which the child’s hand pulls along the length of the handle, the weight of the wagon straight down, the normal force of the grass perpendicular to the ground, and the friction of the grass on the wheels, which is parallel to the ground and opposes the motion. Each of these is one half of a third-law pair: the handle pulls the wagon forward and the wagon pulls back on the child’s hand, the Earth pulls the wagon down and the wagon pulls the Earth up, the ground pushes up on the wheels and the wheels push down on the ground, and the grass drags backward on the wheels while the wheels drag forward on the grass. Only the forces on the wagon enter Newton’s second law for the wagon. The vertical forces balance, since the wagon does not rise off the ground, and the horizontal component of the tension is left against the friction: while it is the larger of the two the wagon accelerates forward, and when the two are equal the wagon rolls on at a constant velocity."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1349141",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "prompt": "Two teams are engaging in a tug-of-war. The rope suddenly snaps. Which statement is true about the forces involved?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The forces exerted by the two teams are no longer equal; the teams will accelerate in opposite directions as a result.",
+     "The forces exerted by the players are no longer balanced by the force of tension in the rope; the teams will accelerate in opposite directions as a result.",
+     "The force of gravity balances the forces exerted by the players; the teams will fall as a result.",
+     "The force of tension in the rope is transferred to the players; the teams will accelerate in opposite directions as a result."
+    ],
+    "correct": 1,
+    "hint": "While the rope holds, the tension in it is what balances the push each team makes against the ground. Ask what is left unbalanced when the rope is gone."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1624568",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-on-incline",
+   "figure": {
+    "src": "/media/ch04/CNX_APPhysics_04_M5_Q20_img.jpg",
+    "alt": "The diagram consists of a red dot with four solid black arrows pointing away from the dot. Arrow f is pointing to the right and slightly up. Arrow p is about half the size of arrow f and is pointing in the opposite direction, to the left and slightly down. An arrow N, about the same size as f, is pointing up and slightly to the left. Another similar sized arrow w is pointing straight down. A dotted red arrow extends from the red dot in the opposite direction of arrow N (down and to the right) and is the same size. Another short dotted red arrow extends from the tip of the first dotted red arrow to the tip of the w arrow and forms a right angle."
+   },
+   "prompt": "The following free-body diagram represents a toboggan on a hill. What acceleration would you expect, and why?<ol type=\"a\"><li>Acceleration down the hill; the force due to being pushed, together with the downhill component of gravity, overcomes the opposing force of friction.</li><li>Acceleration down the hill; friction is less than the opposing component of force due to gravity.</li><li>No movement; friction is greater than the force due to being pushed.</li><li>No movement; friction is greater than the sum of the downhill forces.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Work on the axes the diagram is drawn on: one along the slope and one perpendicular to it. Perpendicular to the slope the normal force $\\kN$ and the perpendicular part of the weight, the long dashed arrow drawn opposite to $\\kN$, are equal and opposite, so nothing happens across the surface. Along the slope there are three arrows: the push $p$ and the parallel part of the weight, the short dashed arrow, both pointing down the hill, and the friction $f$ pointing up it. The toboggan accelerates only if the two downhill arrows together are longer than $f$. In this diagram they are not: $f$ is drawn twice as long as $p$, and the parallel part of the weight is the short dashed arrow, so friction is larger than the two downhill forces added together and the toboggan does not move. That is the fourth answer. The third answer compares friction with the push alone and leaves the weight out, which is why it is not the one to choose."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2298446",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "figure": {
+    "src": "/media/ch04/Figure_04_05_13.jpg",
+    "alt": "A free-body diagram illustrates three forces acting on a point: gravitational force (Fg) downward, tension force (Ft) leftward, and wind force (Fw) upward and rightward."
+   },
+   "prompt": "Draw a free-body diagram to represent the forces acting on a kite on a string that is floating stationary in the air. Label the forces in your diagram.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The diagram has a black dot and three solid red arrows pointing away from the dot. Arrow F<sub>t</sub> is long and pointing to the left and slightly down. Arrow F<sub>w</sub> is also long and is a bit below a diagonal line halfway between pointing up and pointing to the right. A short arrow F<sub>g</sub> is pointing down. <strong>F</strong><sub>g</sub> is the force on the kite due to gravity. <strong>F</strong><sub>w</sub> is the force exerted on the kite by the wind. <strong>F</strong><sub>t</sub> is the force of tension in the string holding the kite. It must balance the vector sum of the other two forces for the kite to float stationary in the air."
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2154704",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-on-incline",
+   "prompt": "A car is sliding down a hill with a slope of 20°. The mass of the car is 965 kg. When a cable is used to pull the car up the slope, a force of 4215 N is applied. What is the car’s acceleration, ignoring friction?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the car as the system and use axes along and across the slope, as in Example 4.5. Across the slope the normal force balances $\\kwperp$ and nothing accelerates. Along the slope there are two forces: the pull of the cable up the slope, and the parallel component of the weight, $\\kwpar = m\\kg\\sin\\theta = (965\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin 20^\\circ = 3234\\ \\text{N}$, down the slope. The net force along the slope is therefore $4215\\ \\text{N} - 3234\\ \\text{N} = 981\\ \\text{N}$ up the slope, and Newton’s second law gives $\\kapar = 981\\ \\text{N} / 965\\ \\text{kg} = 1.02\\ \\text{m/s}^2$, directed up the slope. The car is sliding down when the cable is attached, so this acceleration first slows it, then brings it to rest, and then draws it back up the hill."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2656274",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "figure": {
+    "src": "/media/ch04/Figure_04_05_10.jpg",
+    "alt": "Diagram of a leg in traction.",
+    "caption": "A leg is suspended by a traction system in which wires are used to transmit forces. Frictionless pulleys change the direction of the force T without changing its magnitude."
+   },
+   "prompt": "If a leg is suspended by a traction setup as shown in the figure, what is the tension in the rope?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The rope runs over frictionless pulleys, so the tension is the same everywhere along it, and at the free end the rope simply holds up the hanging weight. That weight hangs at rest, so the tension there equals its weight, $\\kTf = \\kwgt = m\\kg$. The same tension is carried round every pulley to the leg, its direction changed at each corner but not its magnitude. The forces pulling on the leg are therefore each of size $m\\kg$, and what one arrangement of pulleys changes from another is the directions they pull in, not how hard they pull."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1384888",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "figure": {
+    "src": "/media/ch04/Figure_04_05_10.jpg",
+    "alt": "Diagram of a leg in traction.",
+    "caption": "A leg is suspended by a traction system in which wires are used to transmit forces. Frictionless pulleys change the direction of the force T without changing its magnitude."
+   },
+   "prompt": "In a traction setup for a broken bone, with pulleys and rope available, how might we be able to increase the force along the tibia using the same weight? (Note that the tibia is the shin bone shown in this image.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The hanging weight fixes the tension, since the rope carries $\\kTf = m\\kg$ everywhere along it whatever path the pulleys send it on. What can be changed is the direction each strand pulls in and how many strands pull on the bone. Run the rope over more pulleys so that several strands come back to the foot, and the forces they exert add together. Bring those strands more nearly parallel to the tibia as well, so that the whole of each tension acts along the bone rather than only a component of it, in the way that the nearly horizontal wire of Example 4.6 spends most of its tension on components that cancel. Both changes increase the force along the tibia while the weight, and so the tension, stays the same."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2600233",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "Two teams of nine members each engage in a tug of war. Each of the first team’s members has an average mass of 68 kg and exerts an average force of 1350 N horizontally. Each of the second team’s members has an average mass of 73 kg and exerts an average force of 1365 N horizontally. (a) What is magnitude of the acceleration of the two teams? (b) What is the tension in the section of rope between the teams?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.11,
+      "unit": "m/s²",
+      "hint": "Take both teams and the rope as one system. The forces the two teams exert on the ground are the external forces, and the total mass is that of all eighteen members."
+     },
+     {
+      "part": "b",
+      "value": 12000,
+      "unit": "N",
+      "hint": "Now take one team as the system. The rope pulls on that team with the tension, and Newton’s second law for the team alone gives it."
+     }
+    ],
+    "solution": "(a) $0.11\\ \\text{m/s}^2$  (b) $1.2 \\times 10^4\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2666528",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "(a) Calculate the tension in a vertical strand of spider web if a spider of mass $8.00 \\times 10^{-5}\\ \\text{kg}$ hangs motionless on it. (b) Calculate the tension in a horizontal strand of spider web if the same spider sits motionless in the middle of it much like the tightrope walker in Figure 4.16. The strand sags at an angle of $12^\\circ$ below the horizontal. Compare this with the tension in the vertical strand (find their ratio).",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.000784,
+      "unit": "N",
+      "hint": "A motionless spider on a vertical strand is the hanging mass of Figure 4.14: the tension equals the weight."
+     },
+     {
+      "part": "b",
+      "value": 0.00189,
+      "unit": "N",
+      "hint": "This is the tightrope of Example 4.6 with a sag of 12º, so $\\kTf = \\kwgt / (2\\sin\\theta)$."
+     }
+    ],
+    "solution": "(a) $7.84 \\times 10^{-4}\\ \\text{N}$ (b) $1.89 \\times 10^{-3}\\ \\text{N}$. This is 2.41 times the tension in the vertical strand."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id858402",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "Show that, as stated in the text, a force $\\kFperp$ exerted on a flexible medium at its center and perpendicular to its length (such as on the tightrope wire in Figure 4.16) gives rise to a tension of magnitude $\\kTf = \\frac{\\kFperp}{2\\sin(\\theta)}$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Newton’s second law applied in the vertical direction gives $F_y = F - 2\\kTf\\sin\\theta = 0$, so that $F = 2\\kTf\\sin\\theta$ and $\\kTf = \\frac{F}{2\\sin\\theta}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "tension-supports-weight"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "weight"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "tension"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "tension"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "newtons-first-law",
+   "weight": 1
+  },
+  {
+   "exercise": "ap4",
+   "concept": "weight-components-on-incline"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "friction"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "normal-force",
+   "weight": 1
+  },
+  {
+   "exercise": "ap5",
+   "concept": "tension"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "force"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "weight-components-on-incline"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "acceleration-on-frictionless-incline"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "tension"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "tension-supports-weight"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "tension"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "tension-from-perpendicular-force",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "tension"
+  },
+  {
+   "exercise": "p1",
+   "concept": "tension-supports-weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "tension-supports-weight"
+  },
+  {
+   "exercise": "p3",
+   "concept": "tension-from-perpendicular-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "tension-from-perpendicular-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "components-from-magnitude-angle"
+  }
+ ]
+}

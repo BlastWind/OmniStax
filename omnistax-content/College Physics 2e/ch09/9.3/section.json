@@ -1,0 +1,371 @@
+{
+  "id": "9.3",
+  "module": "m42172",
+  "chapter": "9",
+  "title": "Stability",
+  "short": "Stability",
+  "lead": "A system can satisfy both conditions for equilibrium and still fall over at the slightest nudge. This section sorts equilibrium into three kinds by what the weight of a body does once the body is displaced, and shows why a wide base of support and a low center of gravity are what make a body hard to topple.",
+  "objectives": [
+    "State the types of equilibrium.",
+    "Describe stable and unstable equilibriums.",
+    "Describe neutral equilibrium."
+  ],
+  "summary_html": "<ul><li>A system is said to be in stable equilibrium if, when displaced from equilibrium, it experiences a net force or torque in a direction opposite the direction of the displacement.</li><li>A system is in unstable equilibrium if, when displaced from equilibrium, it experiences a net force or torque in the same direction as the displacement from equilibrium.</li><li>A system is in neutral equilibrium if its equilibrium is independent of displacements from its original position.</li></ul>",
+  "notes": "Problems 2, 4, 6, 8 and 10 have no answer in the book’s key and are left out, and with problem 6 goes the drawing of the chicken in the wind, which only that problem refers to.",
+  "ai": { "text": "Claude Opus 5", "figures": "Claude Opus 5" },
+  "built": "2026-09-11",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4, 6, 8 and 10 have no keyed answer and are left out. The AP item on a stack of overhanging books is printed in 9.4, but it asks what has to be known before the stack tips, which is the base of support this section introduces, so it is set here with source_section 9.4 and 9.4’s notes say so. The suggested approaches to the two conceptual questions are AI-written and marked, and the AP item on the traffic cone carries the book’s own answer. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "fig-doll",
+      "kind": "photo",
+      "number": "9.9",
+      "widths": [200],
+      "draws": []
+    },
+    {
+      "id": "sim-eraser",
+      "kind": "sim",
+      "number": "9.10",
+      "folds": ["9.11", "9.12"],
+      "originals": [
+        "/media/ch09/Figure_10_03_02aa.jpg",
+        "/media/ch09/Figure_10_03_02bb.jpg",
+        "/media/ch09/Figure_10_03_02cc.jpg"
+      ],
+      "original_caption": "This pencil is in the condition of equilibrium. The net force on the pencil is zero and the total torque about any pivot is zero.",
+      "widths": [200, 200, 200],
+      "draws": ["force", "position", "torque"]
+    },
+    {
+      "id": "sim-point",
+      "kind": "sim",
+      "number": "9.13",
+      "folds": ["9.14"],
+      "originals": [
+        "/media/ch09/Figure_10_03_03aa.jpg",
+        "/media/ch09/Figure_10_03_03bb.jpg"
+      ],
+      "original_caption": "This figure shows unstable equilibrium, although both conditions for equilibrium are satisfied.",
+      "widths": [200, 200],
+      "draws": ["force", "position", "torque"]
+    },
+    {
+      "id": "sim-neutral",
+      "kind": "sim",
+      "number": "9.15",
+      "originals": ["/media/ch09/Figure_10_03_04a.jpg"],
+      "original_caption": "(a) Here we see neutral equilibrium. The cg of a sphere on a flat surface lies directly above the point of support, independent of the position on the surface. The sphere is therefore in equilibrium in any location, and if displaced, it will remain put. (b) Because it has a circular cross section, the pencil is in neutral equilibrium for displacements perpendicular to its length.",
+      "widths": [200],
+      "draws": ["force", "position", "torque"]
+    },
+    {
+      "id": "sim-marble",
+      "kind": "sim",
+      "draws": ["force"]
+    },
+    {
+      "id": "sim-stance",
+      "kind": "sim",
+      "number": "9.16",
+      "originals": ["/media/ch09/Figure_10_03_05a.jpg"],
+      "original_caption": "(a) The center of gravity of an adult is above the hip joints (one of the main pivots in the body) and lies between two narrowly-separated feet. Like a pencil standing on its eraser, this person is in stable equilibrium in relation to sideways displacements, but relatively small displacements take his cg outside the base of support and make him unstable. (b) While bending in the manner shown, stability is increased by lowering the center of gravity. Stability is also increased if the base is expanded by placing the feet farther apart.",
+      "widths": [375],
+      "draws": ["force", "position", "torque"]
+    },
+    {
+      "id": "sim-chicken",
+      "kind": "sim",
+      "number": "9.17",
+      "originals": ["/media/ch09/Figure_10_03_06a.jpg"],
+      "original_caption": "The center of gravity of a chicken is below the hip joints. The chicken is in stable equilibrium. The body of the chicken is supported from above by the hips and acts as a pendulum between them.",
+      "widths": [200],
+      "draws": ["force", "position", "torque"]
+    }
+  ],
+  "coverage": [
+    { "span": "types", "concept": "center-of-gravity", "verb": "uses" },
+    { "span": "types", "concept": "second-condition-equilibrium", "verb": "uses" },
+    { "span": "types", "concept": "static-equilibrium", "verb": "uses" },
+    { "span": "stable", "concept": "stable-equilibrium", "verb": "introduces" },
+    { "span": "stable", "concept": "restoring-torque", "verb": "introduces" },
+    { "span": "stable", "concept": "torque", "verb": "uses" },
+    { "span": "stable", "concept": "torque-depends-on-pivot", "verb": "uses" },
+    { "span": "unstable", "concept": "unstable-equilibrium", "verb": "introduces" },
+    { "span": "unstable", "concept": "restoring-torque", "verb": "reinforces" },
+    { "span": "unstable", "concept": "torque-sign-convention", "verb": "uses" },
+    { "span": "neutral", "concept": "neutral-equilibrium", "verb": "introduces" },
+    { "span": "neutral", "concept": "center-of-gravity", "verb": "uses" },
+    { "span": "neutral", "concept": "stable-equilibrium", "verb": "reinforces" },
+    { "span": "neutral", "concept": "unstable-equilibrium", "verb": "reinforces" },
+    { "span": "limits", "concept": "base-of-support", "verb": "introduces" },
+    { "span": "limits", "concept": "stable-equilibrium", "verb": "reinforces" },
+    { "span": "limits", "concept": "unstable-equilibrium", "verb": "reinforces" },
+    { "span": "limits", "concept": "center-of-gravity", "verb": "uses" },
+    { "span": "animals", "concept": "base-of-support", "verb": "reinforces" },
+    { "span": "animals", "concept": "restoring-torque", "verb": "reinforces" },
+    { "span": "design", "concept": "first-condition-equilibrium", "verb": "uses" },
+    { "span": "design", "concept": "second-condition-equilibrium", "verb": "uses" },
+    { "span": "design", "concept": "base-of-support", "verb": "reinforces" }
+  ],
+  "exercises": [
+    {
+      "id": "ap1",
+      "source_id": "fs-id3163270",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": { "at": "end" },
+      "cite": "unstable",
+      "prompt": "Using the concept of torque, explain why a traffic cone placed on its base is in stable equilibrium, while a traffic cone placed on its tip is in unstable equilibrium.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Both objects are in equilibrium. However, they will respond differently if a force is applied to their sides. If the cone placed on its base is displaced to the side, its center of gravity will remain over its base and it will return to its original position. When the traffic cone placed on its tip is displaced to the side, its center of gravity will drift from its base, causing a torque that will accelerate it to the ground."
+      }
+    },
+    {
+      "id": "ap2",
+      "source_id": "fs-id1362521",
+      "source_section": "9.4",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "limits",
+      "figure": {
+        "src": "/media/ch09/Figure%2009_S3_03.jpg",
+        "alt": "Three rectangles with thick blue borders on the bottom, left, and right side and a think black slightly indented line of the right indicate three books. There are two short black vertical lines going down on the left and right of the bottom book with a double-headed black arrow and the label Width below. On the left side of the bottom book are two short horizontal lines with a black vertical double-headed short arrow labeled Depth. The three books are stacked with the second book offset to the right and the third offset even more to the right on the second book. The edge of the second book is marked with a double-headed arrow marked 1” between a vertical line above the left edge of the bottom book and a vertical line above the left edge of the second book.",
+        "caption": "3 overlapping stacked books."
+      },
+      "prompt": "A group of students is stacking a set of identical books, each one overhanging the one below it by 1 inch. They would like to estimate how many books they could place on top of each other before the stack tipped. What information below would they need to know to make this calculation?<ol type=\"I\"><li>The mass of each book</li><li>The width of each book</li><li>The depth of each book</li></ol>",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": ["I only", "I and II only", "I and III only", "II only", "I, II, and III"],
+        "correct": 3,
+        "hint": "The stack tips when the center of gravity of everything above a book passes beyond the edge of the book below, so ask which of the three measurements decides where that edge is.",
+        "solution": "(d)"
+      }
+    },
+    {
+      "id": "cq1",
+      "source_id": "fs-id1370333",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": { "at": "end" },
+      "cite": "neutral",
+      "prompt": "A round pencil lying on its side as in Figure 9.12 is in neutral equilibrium relative to displacements perpendicular to its length. What is its stability relative to displacements parallel to its length?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "It is in neutral equilibrium along its length as well. Pushed along its own length on a flat horizontal surface, the pencil slides rather than rolls, but its center of gravity stays at the same height and stays directly above the part of the pencil that touches the surface. The weight and the normal force therefore remain in one line, the lever arm of the weight about the point of support is zero, and no torque acts on the pencil in any position. Its equilibrium is independent of where it has been displaced to, which is what neutral equilibrium means."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id1368647",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": { "at": "end" },
+      "cite": "limits",
+      "prompt": "Explain the need for tall towers on a suspension bridge to ensure stable equilibrium.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The deck of a suspension bridge hangs from cables that run up over the towers and down to the anchorages, so the bridge is a body supported from above rather than balanced from below. The taller the towers, the more steeply the cables rise away from the deck, and a steeper cable puts more of its tension into holding the deck up and less into pulling the towers inward, so the same load is carried with a smaller tension. Tall towers also lift the points the deck hangs from well above the deck’s center of gravity, and a body whose support is above its center of gravity behaves like the chicken rather than like the pencil: displaced by wind or by traffic, its weight produces a torque about those supports in the direction opposite the displacement and brings it back. Low towers would leave the cables nearly horizontal, needing an enormous tension to support the same weight, and would leave the deck with almost nothing above it to restore it once it was displaced."
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id2858061",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "limits",
+      "figure": {
+        "src": "/media/ch09/Figure_10_03_07a-e190.jpg",
+        "alt": "In part a, a horse is standing next to a wall with its legs crossed. A sleepy-looking rider is leaning against the wall. Part b is a drawing of the same horse from a rear view, but this time with no rider. The horse is crossing its rear legs, and its rump is leaning against the wall. The reaction of the wall F is acting on the horse at a height one point two meters above the ground. The weight of the horse is acting at its center of gravity near the base of the tail. The center of gravity is one point four meters above the ground. The line of action of weight is zero point three five meters away from the feet of the horse."
+      },
+      "prompt": "Suppose a horse leans against a wall as in the figure, emulating a scene in the comedy movie <em>Cat Ballou</em>. Calculate the force exerted on the wall assuming that force is horizontal while using the data in the schematic representation of the situation. Note that the force exerted on the wall is equal in magnitude and opposite in direction to the force exerted on the horse, keeping it in equilibrium. The total mass of the horse and rider is 500 kg. Take the data to be accurate to three digits.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 1430,
+        "unit": "N",
+        "hint": "Take the pivot at the horse’s feet, so that the force there has no lever arm, and set the torque of the weight against the torque of the wall’s force.",
+        "solution": "$F_{\\text{wall}} = 1.43 \\times 10^{3}\\ \\text{N}$"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id1403061",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "limits",
+      "figure": {
+        "src": "/media/ch09/Figure_10_03_07a-e190.jpg",
+        "alt": "In part a, a horse is standing next to a wall with its legs crossed. A sleepy-looking rider is leaning against the wall. Part b is a drawing of the same horse from a rear view, but this time with no rider. The horse is crossing its rear legs, and its rump is leaning against the wall. The reaction of the wall F is acting on the horse at a height one point two meters above the ground. The weight of the horse is acting at its center of gravity near the base of the tail. The center of gravity is one point four meters above the ground. The line of action of weight is zero point three five meters away from the feet of the horse."
+      },
+      "prompt": "(a) Calculate the magnitude and direction of the force on each foot of the horse in the figure (two are on the ground), assuming the center of mass of the horse is midway between the feet. The total mass of the horse and rider is 500 kg. (b) What is the minimum coefficient of friction between the hooves and ground? Note that the force exerted by the wall is horizontal.",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 2550,
+            "unit": "N",
+            "hint": "Each foot carries half the weight upward and half the wall’s force sideways; combine the two components and take the angle from the vertical."
+          },
+          {
+            "part": "(b)",
+            "value": 0.292,
+            "unit": "",
+            "hint": "The friction must supply the whole horizontal force, so compare it with the normal force on the two feet."
+          }
+        ],
+        "solution": "a) $2.55 \\times 10^{3}\\ \\text{N}$, 16.3º to the left of vertical (i.e., toward the wall)\nb) 0.292"
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id2658775",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "limits",
+      "figure": {
+        "src": "/media/ch09/Figure_10_03_08a-99e4.jpg",
+        "alt": "A seventeen meter high wall is standing on the ground with ten braces to support it. At the base of the figure a brown colored ground is visible. Only one brace is visible from a side. A brace makes an angle of thirty five degree with the wall. The point of contact of the brace is eight point five meters high. You have to find the force exerted by this brace on the wall to support."
+      },
+      "prompt": "A 17.0-m-high and 11.0-m-long wall under construction and its bracing are shown in the figure. The wall is in stable equilibrium without the bracing but can pivot at its base. Calculate the force exerted by each of the 10 braces if a strong wind exerts a horizontal force of 650 N on each square meter of the wall. Assume that the net force from the wind acts at a height halfway up the wall and that all braces exert equal forces parallel to their lengths. Neglect the thickness of the wall.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 21200,
+        "unit": "N",
+        "hint": "Take the pivot at the base of the wall. The wind’s torque is its total force times half the height, and each brace contributes only the component of its force perpendicular to the wall.",
+        "solution": "$F_{\\text{B}} = 2.12 \\times 10^{4}\\ \\text{N}$"
+      }
+    },
+    {
+      "id": "p7",
+      "source_id": "fs-id2877285",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "types",
+      "figure": {
+        "src": "/media/ch09/Figure_10_03_10a.jpg",
+        "alt": "A small drawbridge is shown. There is one vertical and one horizontal wooden plank. The left end of the horizontal plank is attached to the vertical plank near its middle. At the point of contact, a hinge is shown. A wire is tied to the right end of the horizontal end, is passed over the top of the vertical plank and is connected to a pulley. The angle made by the wire with the horizontal plank is forty degrees. The reaction F at the hinge is inclined at an angle theta.",
+        "caption": "A small drawbridge, showing the forces on the hinges ($F$), its weight ($w$), and the tension in its wires ($T$)."
+      },
+      "prompt": "Suppose the weight of the drawbridge in the figure is supported entirely by its hinges and the opposite shore, so that its cables are slack. The mass of the bridge is 2500 kg. (a) What fraction of the weight is supported by the opposite shore if the point of support is directly beneath the cable attachments? (b) What is the direction and magnitude of the force the hinges exert on the bridge under these circumstances?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 0.167,
+            "unit": "",
+            "hint": "Take the pivot at the hinges, so that the hinge force drops out, and balance the torque of the weight at the center of gravity against the torque of the support at the far end."
+          },
+          {
+            "part": "(b)",
+            "value": 20000,
+            "unit": "N",
+            "hint": "The first condition then gives what is left of the weight for the hinges to carry."
+          }
+        ],
+        "solution": "a) 0.167, or about one-sixth of the weight is supported by the opposite shore.\nb) $F = 2.0 \\times 10^{4}\\ \\text{N}$, straight up."
+      }
+    },
+    {
+      "id": "p9",
+      "source_id": "fs-id1376448",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "types",
+      "figure": {
+        "src": "/media/ch09/Figure_10_03_11a.jpg",
+        "alt": "A sandwich board advertising sign is in form of a triangle. The base of the triangle is one point one zero meters. The other two sides are connected with a hinge at the top. A horizontal chain is connected to the two legs at zero point five zero meters below the hinge. The height of the hinge above the base is one point three zero meters. The centers of the gravity of the two legs are shown at their midpoints. The figure is labeled at uniform board with c g at the center.",
+        "caption": "A sandwich board advertising sign demonstrates tension."
+      },
+      "prompt": "A sandwich board advertising sign is constructed as shown in the figure. The sign’s mass is 8.00 kg. (a) Calculate the tension in the chain assuming no friction between the legs and the sidewalk. (b) What force is exerted by each side on the hinge?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 21.6,
+            "unit": "N",
+            "hint": "Take one leg alone, with the pivot at the hinge at the top, and balance the torques of its weight, the ground’s normal force and the chain."
+          },
+          {
+            "part": "(b)",
+            "value": 21.6,
+            "unit": "N",
+            "hint": "The first condition on the same leg gives the force at the hinge once the chain’s tension is known."
+          }
+        ],
+        "solution": "a) 21.6 N\nb) 21.6 N"
+      }
+    },
+    {
+      "id": "p11",
+      "source_id": "fs-id1016740",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "limits",
+      "figure": {
+        "src": "/media/ch09/Figure_10_03_12a-b4fb.jpg",
+        "alt": "A gymnast with two pompoms in her hands is shown. One of the hand is horizontal toward left and the other is vertical. The gymnast is attempting to perform a full split. The span of her legs is one point eight meters, and the distance of one foot from the center of gravity is zero point nine meters. The weight of the girl is labeled as seven hundred newtons. The vertical distance of one foot from the center of gravity is zero point three zero meter.",
+        "caption": "An athlete performs full split. The center of gravity and the various distances from it are shown."
+      },
+      "prompt": "An athlete is attempting to perform splits. From the information given in the figure, calculate the magnitude and direction of the force exerted on each foot by the floor.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 350,
+        "unit": "N",
+        "hint": "The center of gravity is midway between the feet, so the two forces are equal; the first condition then shares the 700 N weight between them.",
+        "solution": "350 N directly upwards"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    { "exercise": "ap1", "concept": "stable-equilibrium" },
+    { "exercise": "ap1", "concept": "unstable-equilibrium" },
+    { "exercise": "ap1", "concept": "restoring-torque" },
+    { "exercise": "ap1", "concept": "base-of-support", "weight": 1 },
+    { "exercise": "ap2", "concept": "base-of-support" },
+    { "exercise": "ap2", "concept": "center-of-gravity", "weight": 2 },
+    { "exercise": "cq1", "concept": "neutral-equilibrium" },
+    { "exercise": "cq1", "concept": "stable-equilibrium", "weight": 1 },
+    { "exercise": "cq2", "concept": "stable-equilibrium" },
+    { "exercise": "cq2", "concept": "restoring-torque", "weight": 2 },
+    { "exercise": "cq2", "concept": "center-of-gravity", "weight": 1 },
+    { "exercise": "p1", "concept": "second-condition-equilibrium" },
+    { "exercise": "p1", "concept": "first-condition-equilibrium", "weight": 2 },
+    { "exercise": "p1", "concept": "base-of-support", "weight": 1 },
+    { "exercise": "p3", "concept": "first-condition-equilibrium" },
+    { "exercise": "p3", "concept": "second-condition-equilibrium" },
+    { "exercise": "p3", "concept": "base-of-support", "weight": 1 },
+    { "exercise": "p5", "concept": "second-condition-equilibrium" },
+    { "exercise": "p5", "concept": "torque-from-lever-arm" },
+    { "exercise": "p5", "concept": "base-of-support", "weight": 1 },
+    { "exercise": "p7", "concept": "second-condition-equilibrium" },
+    { "exercise": "p7", "concept": "first-condition-equilibrium" },
+    { "exercise": "p7", "concept": "center-of-gravity", "weight": 2 },
+    { "exercise": "p9", "concept": "second-condition-equilibrium" },
+    { "exercise": "p9", "concept": "first-condition-equilibrium" },
+    { "exercise": "p9", "concept": "choose-pivot-to-simplify", "weight": 2 },
+    { "exercise": "p11", "concept": "first-condition-equilibrium" },
+    { "exercise": "p11", "concept": "center-of-gravity" },
+    { "exercise": "p11", "concept": "base-of-support", "weight": 1 }
+  ]
+}

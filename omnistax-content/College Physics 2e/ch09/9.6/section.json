@@ -1,0 +1,816 @@
+{
+ "id": "9.6",
+ "module": "m42175",
+ "chapter": "9",
+ "title": "Forces and Torques in Muscles and Joints",
+ "short": "Muscles and joints",
+ "lead": "Muscles, bones and joints are some of the most interesting applications of statics, and they hold a surprise: because a muscle is attached to a bone very close to the joint it turns, it has to pull far harder than the limb ever presses on the world. This section works out the force in the biceps holding a book and the force the elbow joint carries, follows the same arithmetic into the back of someone lifting a box with their spine, and asks what the body gains in return for paying so much force.",
+ "objectives": [
+  "Explain the forces exerted by muscles.",
+  "State how a bad posture causes back strain.",
+  "Discuss the benefits of skeletal muscles attached close to joints.",
+  "Discuss various complexities in the real system of muscles, bones, and joints."
+ ],
+ "summary_html": "<ul><li>Statics plays an important part in understanding everyday strains in our muscles and bones.</li><li>Many lever systems in the body have a mechanical advantage of significantly less than one, as many of our muscles are attached close to joints.</li><li>Someone with good posture stands or sits in such a way that the person's center of gravity lies directly above the pivot point in the hips, thereby avoiding back strain and damage to disks.</li></ul>",
+ "notes": "Seven of the section’s fifteen problems have no answer in the book’s key and are left out, among them the Integrated Concepts item on the elastic rope, the palm-tree item and the Construct Your Own Problem item, and the reference to Collisions of Extended Bodies in Two Dimensions is plain text because Chapter 10 is not built.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key, which covers the AP test prep item and problems 1, 3, 5, 7, 8, 10, 12 and 14; the seven conceptual questions have no key and carry an AI-marked suggested approach instead. Problems 2, 4, 6, 9, 11, 13 and 15 have no keyed answer and are left out: the Achilles tendon, the leg-exercise device, the biceps at 120°, the father lifting his child, the Integrated Concepts item on the elastic rope, the palm-tree item, which would need Chapter 8’s impulse, and the Construct Your Own Problem item. Problem 12, the push-up, is kept with the book’s four parts and the book’s whole key, but only parts (a) and (b) are set as graded parts, since (c) asks for the work done and (d) for the power output and both belong to Chapter 7, which is not built. Nothing is held for a later section and nothing is taken from another one: every item the book prints here rests on the two conditions for equilibrium, which 9.1 and 9.2 give.",
+ "figures": [
+  {
+   "id": "sim-forearm",
+   "kind": "sim",
+   "number": "9.25",
+   "originals": [
+    "/media/ch09/Figure_10_06_01a.jpg"
+   ],
+   "original_caption": "(a) The figure shows the forearm of a person holding a book. The biceps exert a force F_B to support the weight of the forearm and the book. The triceps are assumed to be relaxed. (b) Here, you can view an approximately equivalent mechanical system with the pivot at the elbow joint as seen in Example 9.4.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ]
+  },
+  {
+   "id": "sim-posture",
+   "kind": "sim",
+   "number": "9.26",
+   "originals": [
+    "/media/ch09/Figure_10_06_02a.jpg"
+   ],
+   "original_caption": "(a) Good posture places the upper body’s cg over the pivots in the hips, eliminating the need for muscle action to balance the body. (b) Poor posture requires exertion by the back muscles to counteract the clockwise torque produced around the pivot by the upper body’s weight. The back muscles have a small effective perpendicular lever arm, r_b⊥, and must therefore exert a large force F_b. Note that the legs lean backward to keep the cg of the entire body above the base of support in the feet.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ]
+  },
+  {
+   "id": "fig-stance",
+   "kind": "photo",
+   "number": "9.27",
+   "widths": [
+    269
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-lift",
+   "kind": "sim",
+   "number": "9.28",
+   "originals": [
+    "/media/ch09/Figure_10_06_04a.jpg"
+   ],
+   "original_caption": "This figure shows that large forces are exerted by the back muscles and experienced in the vertebrae when a person lifts with their back, since these muscles have small effective perpendicular lever arms. The data shown here are analyzed in the preceding example, Example 9.5.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ]
+  },
+  {
+   "id": "sim-lever-arm-trade",
+   "kind": "sim",
+   "draws": [
+    "position"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "muscles-levers",
+   "concept": "muscle-lever-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "muscles-levers",
+   "concept": "lever",
+   "verb": "uses"
+  },
+  {
+   "span": "muscles-levers",
+   "concept": "mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "muscles-levers",
+   "concept": "simple-machine",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "muscle-force-from-torque",
+   "verb": "introduces"
+  },
+  {
+   "span": "biceps",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "choose-pivot-to-simplify",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "joints",
+   "concept": "joint-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "joints",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "joints",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "joints",
+   "concept": "muscle-force-from-torque",
+   "verb": "reinforces"
+  },
+  {
+   "span": "posture",
+   "concept": "posture-and-back-strain",
+   "verb": "introduces"
+  },
+  {
+   "span": "posture",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "posture",
+   "concept": "base-of-support",
+   "verb": "uses"
+  },
+  {
+   "span": "posture",
+   "concept": "unstable-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "posture",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "posture",
+   "concept": "mechanical-advantage",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lifting",
+   "concept": "posture-and-back-strain",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lifting",
+   "concept": "joint-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lifting",
+   "concept": "muscle-force-from-torque",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lifting",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "choose-pivot-to-simplify",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "resolving-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "short-lever-arms",
+   "concept": "benefits-of-short-lever-arms",
+   "verb": "introduces"
+  },
+  {
+   "span": "short-lever-arms",
+   "concept": "mechanical-advantage",
+   "verb": "reinforces"
+  },
+  {
+   "span": "short-lever-arms",
+   "concept": "muscle-lever-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complexities",
+   "concept": "muscle-lever-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complexities",
+   "concept": "perpendicular-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "complexities",
+   "concept": "muscle-force-from-torque",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738064982",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "muscles-levers",
+   "prompt": "Why are the forces exerted on the outside world by the limbs of our bodies usually much smaller than the forces exerted by muscles inside the body?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A limb is a lever whose fulcrum is a joint, and the muscle that moves it is attached by a tendon very close to that joint. The muscle therefore pulls on a short lever arm while the hand or the foot works at the far end of a long one, so the system is a simple machine with a mechanical advantage well below one. For the two torques about the joint to balance, the short lever arm has to carry the large force, and what the limb can press on the world with is only a fraction of what the muscle pulls with."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738209013",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "joints",
+   "prompt": "Explain why the forces in our joints are several times larger than the forces we exert on the outside world with our limbs. Can these forces be even greater than muscle forces?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The muscle force is already several times the load, because the muscle works on the short lever arm, and the joint then has to supply whatever the first condition for equilibrium needs once that large force is present. In the forearm the biceps pulls up with 470 N while only 63.7 N of weight is being held, so the humerus must push down at the elbow with 407 N for the net force to be zero. The force in the joint can be larger than the force in the muscle whenever the muscle and the load pull the bone the same way, since the joint must then balance the two of them added together rather than the difference between them."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738209026",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "posture",
+   "prompt": "Certain types of dinosaurs were bipedal (walked on two legs). What is a good reason that these creatures invariably had long tails if they had long necks?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A long neck carries a great deal of weight far in front of the hips, and the base of support of a bipedal animal is only the two feet. That weight has a long perpendicular lever arm about the hips, so it makes a large torque, and the center of gravity of the whole animal moves forward towards the front of the feet and beyond. A long tail carried out behind the hips puts weight on the other side of the pivot, where its torque turns the opposite way, so the two nearly cancel and the center of gravity stays above the base of support. The animal can then stand and walk without its muscles having to hold a large torque all day."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737933072",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "posture",
+   "prompt": "Swimmers and athletes during competition need to go through certain postures at the beginning of the race. Consider the balance of the person and why start-offs are so important for races.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At the start the athlete crouches with the center of gravity low and well forward, close to the front edge of the base of support that the hands and feet make. That is a position of unstable equilibrium: a very small push tips the body forward, and the weight itself then helps to carry the athlete out of the blocks instead of having to be lifted and pushed. An athlete who starts upright, with the center of gravity safely above the middle of the feet, is in a stable position and has to spend force and time bringing the body out of it before any of the push goes into the race."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737933090",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "prompt": "If the maximum force the biceps muscle can exert is 1000 N, can we pick up an object that weighs 1000 N? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The biceps pulls on a lever arm of about 4.00 cm while the hand is about 38.0 cm from the elbow, so the lever arm of the load is nearly ten times the lever arm of the muscle. Balancing the two torques about the elbow leaves the load at about one tenth of the muscle force, and part of even that is used up holding the weight of the forearm itself. A pull of 1000 N in the biceps therefore holds something well under 100 N."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169738146835",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "short-lever-arms",
+   "prompt": "Suppose the biceps muscle was attached through tendons to the upper arm close to the elbow and the forearm near the wrist. What would be the advantages and disadvantages of this type of construction for the motion of the arm?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The advantage is force. The lever arm of the muscle would then be almost as long as the lever arm of the hand, so the mechanical advantage would come close to one and the biceps would need to pull only a little harder than the weight it holds, and the force in the elbow joint would fall with it. The disadvantages are the benefits of the real arrangement read backwards. The muscle would have to contract through nearly the whole distance the hand moves, so the reach of the hand would be limited by how far a muscle can shorten, and the movement would be slow rather than quick. A muscle running all the way to the wrist would also cross the elbow so far out that the arm would lose much of the range and the agility it now has."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169738146846",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "posture",
+   "prompt": "Explain one of the reasons why pregnant women often suffer from back strain late in their pregnancy.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The weight carried at the front of the body moves the center of gravity of the upper body forward, so that it is no longer directly above the pivot in the hips. That weight then has a perpendicular lever arm where before it had none, and the torque it makes about the hips has to be countered by the muscles of the lower back. Those muscles pull on a lever arm of only a few centimetres, so the force they must exert is many times the weight that moved forward, and holding it hour after hour is what strains the back."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1320975",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "prompt": "When you use your hand to raise a 20 lb dumbbell in a curling motion, the force on your bicep muscle is not equal to 20 lb. <ol><li>Compare the size of the force placed on your bicep muscle to the force of the 20 lb dumbbell lifted by your hand. Using the concept of torque, which force is greater and explain why the two forces are not identical.</li><li>Does the force placed on your bicep muscle change as you curl the weight closer toward your body? (In other words, is the force on your muscle different when your forearm is 90° to your upper arm than when it is 45° to your upper arm?) Explain your answer using torque.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol><li>The force placed on your bicep muscle will be greater than the force placed on the dumbbell. The bicep muscle is closer to your elbow than the downward force placed on your hand from the dumbbell. Because the elbow is the pivot point of the system, this results in a decreased lever arm for the bicep. As a result, the force on the bicep must be greater than that placed on the dumbbell. (How much greater? The ratio between the bicep and dumbbell forces is equal to the inverted ratio of their distances from the elbow. If the dumbbell is ten times further from the elbow than the bicep, the force on the bicep will be 200 pounds!)</li><li>The force placed on your bicep muscle will decrease. As the forearm lifts the dumbbell, it will get closer to the elbow. As a result, the torque placed on the arm from the weight will decrease and the countering torque created by the bicep muscle will do so as well.</li></ol>"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738208828",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "joints",
+   "prompt": "Verify that the force in the elbow joint in Example 9.4 is 407 N, as stated in the text.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 407,
+    "unit": "N",
+    "hint": "The biceps force is already known, so the first condition for equilibrium is enough: the upward pull of the muscle less the downward push at the elbow must leave the weight that is being supported.",
+    "solution": "$$\\begin{aligned}\\kFB &= 470\\ \\text{N};\\quad \\krone = 4.00\\ \\text{cm};\\quad \\kwarm = 2.50\\ \\text{kg};\\quad \\krtwo = 16.0\\ \\text{cm};\\quad \\kwbook = 4.00\\ \\text{kg};\\quad \\krthree = 38.0\\ \\text{cm}\\\\ \\kFE &= \\kwarm\\left(\\frac{\\krtwo}{\\krone} - 1\\right) + \\kwbook\\left(\\frac{\\krthree}{\\krone} - 1\\right)\\\\ &= (2.50\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\left(\\frac{16.0\\ \\text{cm}}{4.00\\ \\text{cm}} - 1\\right)\\\\ &\\quad + (4.00\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\left(\\frac{38.0\\ \\text{cm}}{4.00\\ \\text{cm}} - 1\\right)\\\\ &= 407\\ \\text{N}\\end{aligned}$$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738208672",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "joints",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_06a.jpg",
+    "alt": "The figure shows a side view of the bones of a knee and the quadriceps muscle. The upper bone is inclined at fifty five degrees to the horizontal and the tension exerted by the quadriceps muscle is one thousand two hundred and fifty newtons. The tendon from the knee cap to the lower bone is inclined at seventy five degrees below the horizontal. The force in this direction is the same as that provided by the quadriceps.",
+    "caption": "The knee joint works like a hinge to bend and straighten the lower leg. It permits a person to sit, stand, and pivot."
+   },
+   "prompt": "The upper leg muscle (quadriceps) exerts a force of 1250 N, which is carried by a tendon over the kneecap (the patella) at the angles shown in the figure. Find the direction and magnitude of the force exerted by the kneecap on the upper leg bone (the femur).",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 1100,
+      "unit": "N",
+      "hint": "The kneecap is in equilibrium under two pulls of 1250 N at the angles the figure gives, so add those two forces by their components and reverse the sum."
+     },
+     {
+      "part": "direction",
+      "value": 190,
+      "unit": "º counterclockwise from the positive x-axis",
+      "hint": "Take the direction from the components of the sum, measuring the angle counterclockwise from the positive $x$ axis."
+     }
+    ],
+    "solution": "$1.1 \\times 10^{3}\\ \\text{N}$, and $\\theta = 190º$ counterclockwise from the positive $x$ axis."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737871960",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lifting",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_08a.jpg",
+    "alt": "The head of a person working at a drafting board in relaxed position is shown. The inclination of the head is theta to the horizontal and the center of gravity is near the top of the head. The weight of the head is fifty newtons and is acting downward at the center of gravity. Three major forces are shown. The force exerted along the neck is sixty newtons."
+   },
+   "prompt": "A person working at a drafting board may hold her head as shown in the figure, requiring muscle action to support the head. The three major acting forces are shown. Calculate the direction and magnitude of the force supplied by the upper vertebrae $\\kFV$ to hold the head stationary, assuming that this force acts along a line through the center of mass as do the weight and muscle force.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 97,
+      "unit": "N",
+      "hint": "All three forces pass through the center of mass, so the first condition alone settles it: the vertebrae must supply whatever makes the weight and the muscle force add to zero."
+     },
+     {
+      "part": "direction",
+      "value": 59,
+      "unit": "º",
+      "hint": "Work out the horizontal and vertical components of the sum of the other two forces, and take the angle from them."
+     }
+    ],
+    "solution": "$\\kFV = 97\\ \\text{N}$, $\\theta = 59º$."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737911382",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_09a.jpg",
+    "alt": "An erect head is shown. The weight of the head is fifty newtons. The center of gravity of the head lies in front of its support. The perpendicular distance between the support and the weight of the head is two point five centimeters. Between these forces, there is a point where a vertical force vector is shown. This force is marked as F sub J. At the back of the head, five point zero centimeters behind the support point, is a downward vector labeled F sub m.",
+    "caption": "The center of mass of the head lies in front of its major point of support, requiring muscle action to hold the head erect. A simplified lever system is shown."
+   },
+   "prompt": "Even when the head is held erect, as in the figure, its center of mass is not directly over the principal point of support (the atlanto-occipital joint). The muscles at the back of the neck should therefore exert a force to keep the head erect. That is why your head falls forward when you fall asleep in the class. (a) Calculate the force exerted by these muscles using the information in the figure. (b) What is the force exerted by the pivot on the head?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 25,
+      "unit": "N",
+      "hint": "Take the pivot at the joint so that the force there makes no torque, and balance the torque of the weight against the torque of the neck muscles."
+     },
+     {
+      "part": "(b)",
+      "value": 75,
+      "unit": "N",
+      "hint": "With the muscle force known, the first condition gives the force at the pivot: it must balance the weight and the downward pull of the muscles together."
+     }
+    ],
+    "solution": "(a) 25 N downward. (b) 75 N upward."
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169738163893",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_10a.jpg",
+    "alt": "A foot of a person is shown. The ankle is slightly above the ground. There is a force in F-A on the back part of ankle, which is in upward direction. The weight of the leg is downward. The normal reaction is acting at the front foot in upward direction. The perpendicular distance between the normal reaction and the force F-A is sixteen centimeters. There is a point between these two forces where a force F-P is shown, which acts as fulcrum of the simplified lever system.",
+    "caption": "The muscles in the back of the leg pull the Achilles tendon when one stands on one’s toes. A simplified lever system is shown."
+   },
+   "prompt": "A 75-kg man stands on his toes by exerting an upward force through the Achilles tendon, as in the figure. (a) What is the force in the Achilles tendon if he stands on one foot? (b) Calculate the force at the pivot of the simplified lever system shown—that force is representative of forces in the ankle joint.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2210,
+      "unit": "N",
+      "hint": "Take the pivot where the figure puts it and balance the torque of the tendon against the torque of the normal force, which carries the man’s whole weight on one foot."
+     },
+     {
+      "part": "(b)",
+      "value": 2940,
+      "unit": "N",
+      "hint": "The tendon pulls up and the ground pushes up, so the pivot must push down with the sum of the two for the net force to be zero."
+     }
+    ],
+    "solution": "(a) $F_{\\text{A}} = 2.21 \\times 10^{3}\\ \\text{N}$ upward. (b) $\\kFB = 2.94 \\times 10^{3}\\ \\text{N}$ downward."
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1169738086655",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "posture",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_12a.jpg",
+    "alt": "The masseter muscles of a jaw of a man are shown. The force F sub M is equal to two hundred newtons and is acting on the muscle in upward direction and the force F sub J is acting to the left end of the muscle downward. The span of the muscle at upper part is five centimeters. At the joint of jaw, the reaction force is downward.",
+    "caption": "A person clenching a bullet between his teeth."
+   },
+   "prompt": "Unlike most of the other muscles in our bodies, the masseter muscle in the jaw, as illustrated in the figure, is attached relatively far from the joint, enabling large forces to be exerted by the back teeth. (a) Using the information in the figure, calculate the force exerted by the lower teeth on the bullet. (b) Calculate the force on the joint.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 120,
+      "unit": "N",
+      "hint": "Take the pivot at the jaw joint and balance the torque of the masseter against the torque of the force on the bullet; here the muscle has the longer lever arm."
+     },
+     {
+      "part": "(b)",
+      "value": 84,
+      "unit": "N",
+      "hint": "With both other forces known, the first condition gives what the joint must supply."
+     }
+    ],
+    "solution": "(a) $F_{\\text{teeth on bullet}} = 1.2 \\times 10^{2}\\ \\text{N}$ upward. (b) $F_{\\text{J}} = 84\\ \\text{N}$ downward."
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id1169738110743",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_13a.jpg",
+    "alt": "A woman doing pushups is shown. The weight W of her body is acting at the middle point of the length of her body. Her palms are on the ground. The distance between the palm and the feet is one point five meters. The distance between the center of gravity and the feet is zero point nine meters. The normal reaction on her hands is acting upward.",
+    "caption": "A woman doing pushups."
+   },
+   "prompt": "(a) What force should the woman in the figure exert on the floor with each hand to do a push-up? Assume that she moves up at a constant speed. (b) The triceps muscle at the back of her upper arm has an effective lever arm of 1.75 cm, and she exerts force on the floor at a horizontal distance of 20.0 cm from the elbow joint. Calculate the magnitude of the force in each triceps muscle, and compare it to her weight. (c) How much work does she do if her center of mass rises 0.240 m? (d) What is her useful power output if she does 25 pushups in one minute?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 147,
+      "unit": "N",
+      "hint": "Take the pivot at her feet and balance the torque of her weight, which acts 0.9 m from the feet, against the torque of the floor pushing up on her hands 1.5 m from the feet; then halve it between the two hands."
+     },
+     {
+      "part": "(b)",
+      "value": 1680,
+      "unit": "N",
+      "hint": "Take the pivot at the elbow: the triceps pulls on a lever arm of 1.75 cm while the hand pushes on the floor 20.0 cm away, so the two torques balance only if the muscle force is the large one."
+     }
+    ],
+    "solution": "(a) 147 N downward. (b) 1680 N, 3.4 times her weight. (c) 118 J. (d) 49.0 W."
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1169738139248",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "prompt": "<strong>Unreasonable Results</strong> Suppose two children are using a uniform seesaw that is 3.00 m long and has its center of mass over the pivot. The first child has a mass of 30.0 kg and sits 1.40 m from the pivot. (a) Calculate where the second 18.0 kg child must sit to balance the seesaw. (b) What is unreasonable about the result? (c) Which premise is unreasonable, or which premises are inconsistent?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 2.33,
+    "unit": "m",
+    "hint": "The board is uniform and pivoted at its center of mass, so its own weight makes no torque; set the two children’s torques about the pivot equal.",
+    "solution": "(a) $\\bar{x}_2 = 2.33\\ \\text{m}$. (b) The seesaw is 3.0 m long, and hence, there is only 1.50 m of board on the other side of the pivot. The second child is off the board. (c) The position of the first child must be shortened, i.e. brought closer to the pivot."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "muscle-lever-system"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "muscle-force-from-torque",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "center-of-gravity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "base-of-support"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "posture-and-back-strain",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "base-of-support"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "unstable-equilibrium"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "center-of-gravity",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "muscle-lever-system",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "benefits-of-short-lever-arms"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "posture-and-back-strain"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "center-of-gravity",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "muscle-lever-system",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p1",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p3",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "p7",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p8",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "p8",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p10",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "p10",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p10",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "p12",
+   "concept": "second-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "muscle-lever-system",
+   "weight": 2
+  },
+  {
+   "exercise": "p14",
+   "concept": "balanced-seesaw"
+  },
+  {
+   "exercise": "p14",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p14",
+   "concept": "physical-solution",
+   "weight": 2
+  }
+ ]
+}

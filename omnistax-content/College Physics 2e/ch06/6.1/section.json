@@ -1,0 +1,427 @@
+{
+ "id": "6.1",
+ "module": "m42083",
+ "chapter": "6",
+ "title": "Rotation Angle and Angular Velocity",
+ "short": "Rotation angle, angular velocity",
+ "lead": "When an object turns about an axis, every point on it follows a circular arc, and describing that motion takes two quantities the straight-line chapters did not need: the rotation angle, which is the arc length a point travels divided by its distance from the center of rotation, and the angular velocity, which is the rate at which that angle changes. This section defines both, measures the angle in radians, and ties them back to the arc length and the linear speed you already have.",
+ "objectives": [
+  "Define arc length, rotation angle, radius of curvature and angular velocity.",
+  "Calculate the angular velocity of a car wheel spin."
+ ],
+ "summary_html": "<ul><li>Uniform circular motion is motion in a circle at constant speed. The rotation angle $\\Delta\\theta$ is defined as the ratio of the arc length to the radius of curvature: $\\Delta\\theta = \\frac{\\kds}{\\kr}$, where arc length $\\kds$ is distance traveled along a circular path and $\\kr$ is the radius of curvature of the circular path. The quantity $\\Delta\\theta$ is measured in units of radians (rad), for which $2\\pi\\;\\text{rad} = 360^\\circ = 1\\ \\text{revolution.}$</li><li>The conversion between radians and degrees is $1\\;\\text{rad} = 57.3^\\circ$.</li><li>Angular velocity $\\kw$ is the rate of change of an angle, $\\kw = \\frac{\\Delta\\theta}{\\kdt}$, where a rotation $\\Delta\\theta$ takes place in a time $\\kdt$. The units of angular velocity are radians per second (rad/s). Linear velocity $\\kv$ and angular velocity $\\kw$ are related by $\\kv = \\kr\\kw$ or $\\kw = \\frac{\\kv}{\\kr}$.</li></ul>",
+ "notes": "Problems 2, 4 and 6 and the Construct Your Own Problem item have no answer in the book’s key and are left out, and the link to the Ladybug Revolution simulation is left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2 (the microwave oven), 4 (Earth’s period and the linear velocity at its surface), 6 (the lacrosse ball) and the Construct Your Own Problem item on the rotating amusement park cylinder have no keyed answer and are left out. The suggested approach to the conceptual question is AI-written and marked as such. The section has no Check Your Understanding box, so nothing is set inline, and no exercise of another section of the chapter belongs here: 6.2’s angular problems are set with the centripetal acceleration they lead to, the two conceptual questions 6.4 repeats belong to 6.5, and 6.6’s Critical Thinking item on the vertical loop belongs to 6.3. Problem 8 is keyed in all three parts and stays where the book prints it, although only its part (a) is this section’s own: part (b) asks for the average force on the football, which is Newton’s second law from Dynamics: Newton’s Laws of Motion, and part (c) asks for the range, which is section 3.4’s, so the item is tagged with those two concepts at a reduced weight. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-cd",
+   "kind": "photo",
+   "number": "6.2",
+   "widths": [
+    225
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-rotation-angle",
+   "kind": "sim",
+   "number": "6.3",
+   "folds": [
+    "6.4"
+   ],
+   "originals": [
+    "/media/ch06/Figure_07_01_01ab.jpg",
+    "/media/ch06/Figure_07_01_02a.jpg"
+   ],
+   "original_caption": "The radius of a circle is rotated through an angle Δθ. The arc length Δs is described on the circumference. Points 1 and 2 rotate through the same angle (Δθ), but point 2 moves through a greater arc length (Δs) because it is at a greater distance from the center of rotation (r).",
+   "widths": [
+    300,
+    230
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "sim-omega",
+   "kind": "sim",
+   "draws": [
+    "angular-rate",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-tire",
+   "kind": "sim",
+   "number": "6.5",
+   "originals": [
+    "/media/ch06/Figure_07_01_03a.jpg"
+   ],
+   "original_caption": "A car moving at a velocity v to the right has a tire rotating with an angular velocity ω.The speed of the tread of the tire relative to the axle is v, the same as if the car were jacked up. Thus the car moves forward at linear velocity v=rω, where r is the tire radius. A larger angular velocity for the tire means a greater velocity for the car.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "angular-rate"
+   ]
+  },
+  {
+   "id": "sim-record",
+   "kind": "sim",
+   "number": "6.6",
+   "originals": [
+    "/media/ch06/Figure_07_01_04a.jpg"
+   ],
+   "original_caption": "As an object moves in a circle, here a fly on the edge of an old-fashioned vinyl record, its instantaneous velocity is always tangent to the circle. The direction of the angular velocity is clockwise in this case.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "angular-rate"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "circular-motion",
+   "concept": "uniform-circular-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "circular-motion",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "rotation-angle",
+   "concept": "arc-length",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotation-angle",
+   "concept": "rotation-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotation-angle",
+   "concept": "distance-traveled",
+   "verb": "uses"
+  },
+  {
+   "span": "radians",
+   "concept": "radian",
+   "verb": "introduces"
+  },
+  {
+   "span": "radians",
+   "concept": "rotation-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-velocity",
+   "concept": "angular-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "angular-velocity",
+   "concept": "rotation-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-velocity",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "linear-angular-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "arc-length",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-tire",
+   "concept": "linear-angular-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-tire",
+   "concept": "angular-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-tire",
+   "concept": "radian",
+   "verb": "reinforces"
+  },
+  {
+   "span": "directions",
+   "concept": "angular-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "directions",
+   "concept": "uniform-circular-motion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "directions",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3119404",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-angular",
+   "prompt": "There is an analogy between rotational and linear physical quantities. What rotational quantities are analogous to distance and velocity?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The distance a point covers along a circular path is the arc length $\\kds$, and the rotational quantity analogous to it is the rotation angle $\\Delta\\theta$, which is that arc length divided by the radius of curvature. Linear velocity $\\kv$ is the rate at which distance is covered, and the rotational quantity analogous to it is the angular velocity $\\kw$, which is the rate at which the rotation angle changes. The two pairs are tied together by $\\kds = \\kr\\Delta\\theta$ and $\\kv = \\kr\\kw$, so each rotational quantity becomes its linear partner when it is multiplied by the radius of curvature. Note that the rotation angle and the angular velocity are the same for every point of a rotating object, while the arc length and the linear velocity are larger the farther the point sits from the center."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3004274",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radians",
+   "prompt": "Semi-trailer trucks have an odometer on one hub of a trailer wheel. The hub is weighted so that it does not rotate, but it contains gears to count the number of wheel revolutions—it then calculates the distance traveled. If the wheel has a 1.15 m diameter and goes through 200,000 rotations, how many kilometers should the odometer read?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 723,
+    "unit": "km",
+    "hint": "One rotation carries the wheel through $\\Delta\\theta = 2\\pi$ rad, so the arc length it lays down on the road is $\\kds = \\kr\\Delta\\theta = 2\\pi \\kr$, one circumference. Multiply that by the number of rotations, and remember that the diameter is twice the radius.",
+    "solution": "723 km"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1921627",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radians",
+   "prompt": "An automobile with 0.260 m radius tires travels 80,000 km before wearing them out. How many revolutions do the tires make, neglecting any backing up and any change in radius due to wear?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 50000000,
+    "unit": "rotations",
+    "hint": "Each revolution lays down one circumference of arc length, $2\\pi \\kr$, so divide the whole distance by that, taking care to work in the same unit of length throughout.",
+    "solution": "$5 \\times 10^{7}\\;\\text{rotations}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2979194",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-angular",
+   "prompt": "A baseball pitcher brings his arm forward during a pitch, rotating the forearm about the elbow. If the velocity of the ball in the pitcher’s hand is 35.0 m/s and the ball is 0.300 m from the elbow joint, what is the angular velocity of the forearm?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 117,
+    "unit": "rad/s",
+    "hint": "The ball is a point on a circle of radius 0.300 m about the elbow, so the second reading of the relation, $\\kw = \\kv / \\kr$, gives the angular velocity straight away.",
+    "solution": "117 rad/s"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2678694",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-angular",
+   "prompt": "A truck with 0.420-m-radius tires travels at 32.0 m/s. What is the angular velocity of the rotating tires in radians per second? What is this in rev/min?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "ω",
+      "value": 76.2,
+      "unit": "rad/s",
+      "hint": "The tread of the tire moves at the speed of the truck, so $\\kw = \\kv / \\kr$."
+     },
+     {
+      "part": "in rev/min",
+      "value": 728,
+      "unit": "rev/min",
+      "hint": "One revolution is $2\\pi$ rad and one minute is 60 s, so divide by $2\\pi$ to get revolutions per second and multiply by 60."
+     }
+    ],
+    "solution": "76.2 rad/s, 728 rpm"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1429548",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-angular",
+   "prompt": "When kicking a football, the kicker rotates his leg about the hip joint. (a) If the velocity of the tip of the kicker’s shoe is 35.0 m/s and the hip joint is 1.05 m from the tip of the shoe, what is the shoe tip’s angular velocity? (b) The shoe is in contact with the initially stationary 0.500 kg football for 20.0 ms. What average force is exerted on the football to give it a velocity of 20.0 m/s? (c) Find the maximum range of the football, neglecting air resistance.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 33.3,
+      "unit": "rad/s",
+      "hint": "The tip of the shoe travels on a circle of radius 1.05 m about the hip, so $\\kw = \\kv / \\kr$."
+     },
+     {
+      "part": "(b)",
+      "value": 500,
+      "unit": "N",
+      "hint": "The ball starts at rest and leaves at 20.0 m/s in 20.0 ms, which gives its average acceleration; the average force follows from Newton’s second law."
+     },
+     {
+      "part": "(c)",
+      "value": 40.8,
+      "unit": "m",
+      "hint": "The range on level ground is greatest at a launch angle of $45^\\circ$, where $\\kR = \\kvo^2 / \\kg$."
+     }
+    ],
+    "solution": "(a) 33.3 rad/s (b) 500 N (c) 40.8 m"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "angular-velocity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rotation-angle"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "arc-length",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "linear-angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "p1",
+   "concept": "radian",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "rotation-angle",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "p3",
+   "concept": "radian",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "rotation-angle",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p5",
+   "concept": "angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "radian",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p8",
+   "concept": "angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "range",
+   "weight": 2
+  }
+ ]
+}

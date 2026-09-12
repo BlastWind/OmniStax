@@ -1,0 +1,675 @@
+{
+ "id": "5.3",
+ "module": "m42081",
+ "chapter": "5",
+ "title": "Elasticity: Stress and Strain",
+ "short": "Elasticity",
+ "lead": "We now turn from forces that change the motion of an object to forces that change its shape. A small deformation is proportional to the force that produces it, which is Hooke’s law, and this section works out what the constant of proportionality depends on: the substance the object is made of, its original length and the area the force acts across. It then takes the three kinds of deformation in turn—a change in length under a tension or a compression, a sideways shear, and a change in volume—and gives each of them an elastic modulus of its own.",
+ "objectives": [
+  "State Hooke’s law.",
+  "Explain Hooke’s law using graphical representation between deformation and applied force.",
+  "Discuss the three types of deformations such as changes in length, sideways shear and changes in volume.",
+  "Describe with examples the young’s modulus, shear modulus and bulk modulus.",
+  "Determine the change in length given mass, length and radius."
+ ],
+ "summary_html": "<ul><li>Hooke’s law is given by $\\kF = \\kk\\kdL$, where $\\kdL$ is the amount of deformation (the change in length), $\\kF$ is the applied force, and $\\kk$ is a proportionality constant that depends on the shape and composition of the object and the direction of the force. The relationship between the deformation and the applied force can also be written as $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$, where <em>$\\kY$</em> is <em>Young’s modulus</em>, which depends on the substance, <em>$A$</em> is the cross-sectional area, and $\\kLo$ is the original length.</li><li>The ratio of force to area, <em>$\\frac{\\kF}{A}$</em>, is defined as <em>stress</em>, measured in N/m<sup>2</sup>.</li><li>The ratio of the change in length to length, $\\frac{\\kdL}{\\kLo}$, is defined as <em>strain</em> (a unitless quantity). In other words, $\\text{stress} = \\kY \\times \\text{strain}$.</li><li>The expression for shear deformation is $\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$, where $\\kS$ is the shear modulus and $\\kF$ is the force applied perpendicular to $\\kLo$ and parallel to the cross-sectional area $A$.</li><li>The relationship of the change in volume to other physical quantities is given by $\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0$, where $\\kBb$ is the bulk modulus, $V_0$ is the original volume, and $\\frac{\\kF}{A}$ is the force per unit area applied uniformly inward on all surfaces.</li></ul>",
+ "notes": "Problems 2, 4, 6, 8, 10, 12, 14 and 16 have no answer in the book’s key and are left out, and the telephone-pole figure of problem 16 is left out with it; the PhET simulation note is left out as well.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; the eight even-numbered problems (the wrestler’s arm bone, the TV antenna, the flagpole, the piano wire, the disc between vertebrae, the traffic-light pole, freezing water and the telephone pole) have no keyed answer and are left out, and the telephone pole’s figure goes with its problem. Problems 3 and 5 key only their first part, so each is a number for that part with the book’s discussion of the second part in the solution. The Critical Thinking item on two spherical beads falling at constant speed through a fluid (exer-86622) is printed here but turns on the drag force and terminal velocity, which section 5.2 introduces, so rule 12 sets it with 5.2, which carries it with source_section 5.3 and the book’s graph of radius against fall time as the answer to part (c); 5.2’s notes say so. The third conceptual question, on why the soles of shoes are designed as they are and what dry and wet conditions do to them, tests the coefficient of friction that section 5.1 introduces and nothing this section teaches, so rule 12 sets it with 5.1 for the same reason; 5.1 carries it with source_section 5.3 and its notes say so. No conceptual question is keyed, so every suggested approach here is AI-written and marked as such. The section has no Check Your Understanding box and no AP test prep item, and none is held from another section, since only 5.1 carries AP items and all four of them test friction. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-hooke-graph",
+   "kind": "sim",
+   "number": "5.11",
+   "originals": [
+    "/media/ch05/Figure_06_03_01a.jpg"
+   ],
+   "original_caption": "A graph of deformation ΔL versus applied force F. The straight segment is the linear region where Hooke’s law is obeyed. The slope of the straight region is 1/k. For larger forces, the graph is curved but the deformation is still elastic—ΔL will return to zero if the force is removed. Still greater forces permanently deform the object until it finally fractures. The shape of the curve near fracture depends on several factors, including how the force F is applied. Note that in this graph the slope increases just before fracture, indicating that a small increase in F is producing a large increase in L near the fracture.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "force",
+    "position",
+    "stiffness"
+   ]
+  },
+  {
+   "id": "sim-strings",
+   "kind": "sim",
+   "number": "5.12",
+   "originals": [
+    "/media/ch05/Figure_06_03_02a.jpg"
+   ],
+   "original_caption": "The same force, in this case a weight (w), applied to three different guitar strings of identical length produces the three different deformations shown as shaded segments. The string on the left is thin nylon, the one in the middle is thicker nylon, and the one on the right is steel.",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "force",
+    "position",
+    "elastic-modulus"
+   ]
+  },
+  {
+   "id": "sim-rod",
+   "kind": "sim",
+   "number": "5.13",
+   "originals": [
+    "/media/ch05/Figure_06_03_03a-d0a3.jpg"
+   ],
+   "original_caption": "(a) Tension. The rod is stretched a length ΔL when a force is applied parallel to its length. (b) Compression. The same rod is compressed by forces with the same magnitude in the opposite direction. For very small deformations and uniform materials, ΔL is approximately the same for the same magnitude of tension or compression. For larger deformations, the cross-sectional area changes as the rod is compressed or stretched.",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "force",
+    "position",
+    "elastic-modulus"
+   ]
+  },
+  {
+   "id": "fig-gondolas",
+   "kind": "photo",
+   "number": "5.14",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-tendon",
+   "kind": "sim",
+   "number": "5.15",
+   "originals": [
+    "/media/ch05/Figure_06_03_05_xa.jpg"
+   ],
+   "original_caption": "Typical stress-strain curve for mammalian tendon. Three regions are shown: (1) toe region (2) linear region, and (3) failure region.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "stress",
+    "position",
+    "elastic-modulus"
+   ]
+  },
+  {
+   "id": "sim-shear",
+   "kind": "sim",
+   "number": "5.16",
+   "originals": [
+    "/media/ch05/Figure_06_03_06a.jpg"
+   ],
+   "original_caption": "Shearing forces are applied perpendicular to the length L₀ and parallel to the area A, producing a deformation Δx. Vertical forces are not shown, but it should be kept in mind that in addition to the two shearing forces, F, there must be supporting forces to keep the object from rotating. The distorting effects of these supporting forces are ignored in this treatment. The weight of the object also is not shown, since it is usually negligible compared with forces large enough to cause significant deformations.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "elastic-modulus"
+   ]
+  },
+  {
+   "id": "sim-nail",
+   "kind": "sim",
+   "number": "5.17",
+   "originals": [
+    "/media/ch05/Figure_06_03_08a.jpg"
+   ],
+   "original_caption": "Side view of a nail with a picture hung from it. The nail flexes very slightly (shown much larger than actual) because of the shearing effect of the supported weight. Also shown is the upward force of the wall on the nail, illustrating that there are equal and opposite forces applied across opposite cross sections of the nail. See Example 5.5 for a calculation of the mass of the picture.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "elastic-modulus"
+   ]
+  },
+  {
+   "id": "sim-cube",
+   "kind": "sim",
+   "number": "5.18",
+   "originals": [
+    "/media/ch05/Figure_06_03_09a.jpg"
+   ],
+   "original_caption": "An inward force on all surfaces compresses this cube. Its change in volume is proportional to the force per unit area and its original volume, and is related to the compressibility of the substance.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "stress",
+    "elastic-modulus"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "deformation",
+   "concept": "deformation",
+   "verb": "introduces"
+  },
+  {
+   "span": "deformation",
+   "concept": "elastic-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "deformation",
+   "concept": "hookes-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "deformation",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "k-depends",
+   "concept": "force-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "k-depends",
+   "concept": "deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "length",
+   "concept": "youngs-modulus",
+   "verb": "introduces"
+  },
+  {
+   "span": "length",
+   "concept": "deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "length",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-cable",
+   "concept": "youngs-modulus",
+   "verb": "uses"
+  },
+  {
+   "span": "tissues",
+   "concept": "youngs-modulus",
+   "verb": "uses"
+  },
+  {
+   "span": "tissues",
+   "concept": "elastic-limit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tissues",
+   "concept": "stress",
+   "verb": "uses"
+  },
+  {
+   "span": "tissues",
+   "concept": "strain",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-femur",
+   "concept": "youngs-modulus",
+   "verb": "uses"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "stress",
+   "verb": "introduces"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "strain",
+   "verb": "introduces"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "stress-strain",
+   "verb": "introduces"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "force-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "youngs-modulus",
+   "verb": "uses"
+  },
+  {
+   "span": "shear",
+   "concept": "shear-deformation",
+   "verb": "introduces"
+  },
+  {
+   "span": "shear",
+   "concept": "stress",
+   "verb": "uses"
+  },
+  {
+   "span": "shear",
+   "concept": "stress-strain",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-nail",
+   "concept": "shear-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "bulk",
+   "concept": "bulk-deformation",
+   "verb": "introduces"
+  },
+  {
+   "span": "bulk",
+   "concept": "stress",
+   "verb": "uses"
+  },
+  {
+   "span": "bulk",
+   "concept": "stress-strain",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-water",
+   "concept": "bulk-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-water",
+   "concept": "strain",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1165298797418",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tissues",
+   "prompt": "The elastic properties of the arteries are essential for blood flow. Explain the importance of this in terms of the characteristics of the flow of blood (pulsating or continuous).",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The heart pushes blood out in pulses, but the tissues need a steady supply. An artery stretches while the blood is being pumped into it, so it takes up part of each pulse, and when the aortic valve shuts and the pressure falls the wall relaxes and pushes that blood on. The flow that reaches the small vessels is therefore much smoother than the flow that leaves the heart. If the arteries were rigid they could store nothing: the blood would move only while the heart was pumping and would stand still between beats, and the pressure the vessels had to carry at each beat would be far higher."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1165298867810",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tissues",
+   "prompt": "What are you feeling when you feel your pulse? Measure your pulse rate for 10 s and for 1 min. Is there a factor of 6 difference?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "You are feeling the elastic behavior of an artery. Each time the heart pumps, the pressure in the artery rises and its wall stretches, and when the valve shuts the wall relaxes again; the beat you count under your fingers is that stretch and recovery. Multiplying a 10 s count by six should give something close to the count over a full minute, but the two will not agree exactly. The heart rate changes a little from one moment to the next, and a miscount of one beat in 10 s becomes a miscount of six beats when it is multiplied up, so the count over the full minute is the more reliable of the two."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1165298840083",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "Would you expect your height to be different depending upon the time of day? Why or why not?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes, and you are tallest when you get up. The discs between your vertebrae and the cartilage in your joints are compressed by the weight they carry while you stand and walk, and by Hooke’s law that compression is proportional to the force on them. Lying down through the night takes almost all of that force away, so the discs recover their original thickness. The difference is a small fraction of your height, of the order of the 0.1% strain within which the text says most materials stay elastic, but it is enough to measure."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1165298650751",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stress-strain",
+   "prompt": "Would you expect a large or small stress to be required to deform a spider web? Why is this elasticity an important feature for a spider web?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A small stress. Table 5.3 gives spider thread a Young’s modulus of $3 \\times 10^9\\ \\text{N/m}^2$, among the smallest of the solids listed, so a small force per unit area already produces a large strain. That is what the web is for. An insect flying into a rigid web would be stopped over a very short distance, which takes a very large force and would break the threads; a thread that stretches a long way stops the insect gradually, so the force on the thread stays small enough that it holds. Because the deformation is elastic the web then returns to its shape and catches the next insect."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1165298550516",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shear",
+   "prompt": "Explain why pregnant women often suffer from back strain late in their pregnancy.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The weight carried late in a pregnancy is carried in front of the spine, so the woman has to move her shoulders back to keep her balance, and that increases the curvature of her spine. The more the spine curves, the larger the angle between the weight of the upper body and the discs it presses on, and the larger the component of that weight which acts across the discs rather than straight down them. Discs withstand compression far better than shear, so the shear stress on the lower vertebrae grows, the muscles and ligaments of the lower back have to hold against it, and the lumbosacral disc, which is the lowest and most wedge-shaped, is at the greatest risk."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1165298545438",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shear",
+   "prompt": "An old carpenter’s trick to keep nails from bending when they are pounded into hard materials is to grip the center of the nail firmly with pliers. Why does this help?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The sideways deformation a shearing force produces is proportional to the length it acts over, $\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$. The length that matters here is the length of nail free to bend, which is the part between the hammer and whatever holds the nail. Gripping the nail at its centre with pliers roughly halves that length, so the same blow bends the nail about half as far. It is the reason the text gives for a short thick pencil being harder to bend than a long thin one."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1165298771893",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bulk",
+   "prompt": "When a glass bottle full of vinegar warms up, both the vinegar and the glass expand, but vinegar expands significantly more with temperature than glass. The bottle will break if it was filled to its tightly capped lid. Explain why, and also explain how a pocket of air above the vinegar would prevent the break. (This is the function of the air above liquids in glass containers.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Being held to less volume than it would take up is the same as being compressed by that much, so the vinegar that cannot expand pushes outward on the glass with the force per unit area that $\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0$ gives, which is the bulk modulus times the fractional change it is denied. The bulk modulus of a liquid is of the order of $10^9\\ \\text{N/m}^2$, so even a few tenths of a percent gives millions of newtons per square metre, more than the glass can carry, and the bottle breaks. A pocket of air above the vinegar prevents this because a gas is easy to compress: its molecules are far apart, so the liquid expands into the pocket and squeezes the air rather than the glass, and the force per unit area on the bottle stays small."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1165298795593",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "During a circus act, one performer swings upside down hanging from a trapeze holding another, also upside-down, performer by the legs. If the upward force on the lower performer is three times her weight, how much do the bones (the femurs) in her upper legs stretch? You may assume each is equivalent to a uniform rod 35.0 cm long and 1.80 cm in radius. Her mass is 60.0 kg.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0019,
+    "unit": "cm",
+    "hint": "Three times her weight is shared by two femurs, so each carries $\\kF = \\tfrac{3}{2}mg$. Use $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$ with $A = \\pi r^2$ and the tension value of Young’s modulus for bone from Table 5.3.",
+    "solution": "$1.90 \\times 10^{-3}\\ \\text{cm}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1165298778825",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "(a) The “lead” in pencils is a graphite composition with a Young’s modulus of about $1 \\times 10^9\\ \\text{N}/\\text{m}^2$. Calculate the change in length of the lead in an automatic pencil if you tap it straight into the pencil with a force of 4.0 N. The lead is 0.50 mm in diameter and 60 mm long. (b) Is the answer reasonable? That is, does it seem to be consistent with what you have observed when using pencils?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 1,
+    "unit": "mm",
+    "hint": "The diameter is given, so the radius is 0.25 mm and $A = \\pi r^2$. Then $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$ with $\\kLo = 60$ mm.",
+    "solution": "(a) 1 mm (b) This does seem reasonable, since the lead does seem to shrink a little when you push on it."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1165298598606",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "(a) By how much does a 65.0-kg mountain climber stretch her 0.800-cm diameter nylon rope when they hang 35.0 m below a rock outcropping? (b) Does the answer seem to be consistent with what you have observed for nylon ropes? Would it make sense if the rope were actually a bungee cord?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 9,
+    "unit": "cm",
+    "hint": "The force is the climber’s weight, the original length is 35.0 m, and Table 5.3 gives Young’s modulus for nylon as $5 \\times 10^9\\ \\text{N/m}^2$.",
+    "solution": "(a) 9 cm (b) This seems reasonable for nylon climbing rope, since it is not supposed to stretch that much."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1165296239036",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "As an oil well is drilled, each new section of drill pipe supports its own weight and that of the pipe and drill bit beneath it. Calculate the stretch in a new 6.00 m length of steel pipe that supports 3.00 km of pipe having a mass of 20.0 kg/m and a 100-kg drill bit. The pipe is equivalent in stiffness to a solid cylinder 5.00 cm in diameter.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.59,
+    "unit": "mm",
+    "hint": "The force is the weight of everything hanging below the new section: 3.00 km of pipe at 20.0 kg/m together with the 100 kg bit. Then $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$ with $\\kLo = 6.00$ m and steel’s modulus from Table 5.3.",
+    "solution": "8.59 mm"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1165298982360",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shear",
+   "prompt": "A vertebra is subjected to a shearing force of 500 N. Find the shear deformation, taking the vertebra to be a cylinder 3.00 cm high and 4.00 cm in diameter.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.49e-07,
+    "unit": "m",
+    "hint": "Use $\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$ with $\\kLo$ the 3.00 cm height, $A = \\pi r^2$ for the 4.00 cm diameter, and the shear modulus of bone from Table 5.3.",
+    "solution": "$1.49 \\times 10^{-7}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1165296255735",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shear",
+   "prompt": "When using a pencil eraser, you exert a vertical force of 6.00 N at a distance of 2.00 cm from the hardwood-eraser joint. The pencil is 6.00 mm in diameter and is held at an angle of $20.0^\\circ$ to the horizontal. (a) By how much does the wood flex perpendicular to its length? (b) How much is it compressed lengthwise?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.99e-07,
+      "unit": "m",
+      "hint": "Resolve the 6.00 N force into the component perpendicular to the pencil and the component along it. The perpendicular component shears the wood, so use $\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$ with $\\kLo = 2.00$ cm and hardwood’s shear modulus."
+     },
+     {
+      "part": "(b)",
+      "value": 9.67e-08,
+      "unit": "m",
+      "hint": "The component along the pencil compresses it, so use $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$ with hardwood’s Young’s modulus."
+     }
+    ],
+    "solution": "(a) $3.99 \\times 10^{-7}\\ m$ (b) $9.67 \\times 10^{-8}\\ m$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1165298713046",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bulk",
+   "prompt": "A farmer making grape juice fills a glass bottle to the brim and caps it tightly. The juice expands more than the glass when it warms up, in such a way that the volume increases by 0.2% (that is, $\\Delta V/V_0 = 2 \\times 10^{-3}$) relative to the space available. Calculate the magnitude of the normal force exerted by the juice per square centimeter if its bulk modulus is $1.8 \\times 10^9\\ \\text{N/m}^2$, assuming the bottle does not break. In view of your answer, do you think the bottle will survive?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4000000.0,
+    "unit": "N/m²",
+    "hint": "Solve $\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0$ for the force per unit area: it is the bulk modulus times the fractional change in volume.",
+    "solution": "$4 \\times 10^6\\ \\text{N/m}^2$. This is about 36 atm, greater than a typical jar can withstand."
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1165298740744",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "This problem returns to the tightrope walker studied in Normal, Tension, and Other Examples of Forces, who created a tension of $3.94 \\times 10^3\\ N$ in a wire making an angle $5.0^\\circ$ below the horizontal with each supporting pole. Calculate how much this tension stretches the steel wire if it was originally 15 m long and 0.50 cm in diameter.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.4,
+    "unit": "cm",
+    "hint": "The force is the tension itself. Use $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$ with $A = \\pi r^2$ for the 0.50 cm diameter and steel’s Young’s modulus from Table 5.3.",
+    "solution": "1.4 cm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "deformation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "elastic-limit",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "deformation"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "deformation"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "youngs-modulus",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "stress"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "youngs-modulus",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "shear-deformation"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "stress",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "shear-deformation"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "bulk-deformation"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "stress",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p3",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p5",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p7",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p9",
+   "concept": "shear-deformation"
+  },
+  {
+   "exercise": "p11",
+   "concept": "shear-deformation"
+  },
+  {
+   "exercise": "p11",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p13",
+   "concept": "bulk-deformation"
+  },
+  {
+   "exercise": "p13",
+   "concept": "stress",
+   "weight": 2
+  },
+  {
+   "exercise": "p15",
+   "concept": "youngs-modulus"
+  }
+ ]
+}
