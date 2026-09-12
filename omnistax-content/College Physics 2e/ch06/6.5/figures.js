@@ -373,16 +373,20 @@ function sun(ctx, x, y, r, color) {
    mirror on the rod's hanger sends the lamp's beam to a new place on the
    scale, and the balance swings a few times about its new rest before it
    settles. The twist is far too small to see, so a slider draws it larger
-   than life and the headline and readout say by how much. The 2D layer
-   above the scene carries the headline, the labels, the force arrow and
-   the distance between the centres in the book's colours; where WebGL is
-   missing the same canvas draws the balance from above instead.
+   than life and the headline and readout say by how much; the slider stops
+   where the spot at its largest swing still lands on the scale. The scale
+   follows the path the spot really travels, and its ticks are numbered in
+   the true millimetres the readout gives, so the measurement can be read
+   off the drawing. The 2D layer above the scene carries the headline, the
+   labels, the force arrow and the distance between the centres in the
+   book's colours; where WebGL is missing the same canvas draws the balance
+   from above instead.
 ===================================================================== */
 (function () {
   const d = sim('sim-cavendish', 620);
   const M = ctl(d.controls, { label: 'M', cls: '', min: 5, max: 160, step: 1, value: 30, unit: 'kg', dec: 0, aria: 'the mass of each sphere on the stand', onInput: reset });
   const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.2, max: 0.6, step: 0.01, value: 0.2, unit: 'm', dec: 2, aria: 'the distance between the centres of a small sphere and the large one beside it', onInput: reset });
-  const X = ctl(d.controls, { label: '\\times', cls: '', min: 1, max: 600, step: 1, value: 300, unit: '', dec: 0, aria: 'how many times larger than life the twist is drawn' });
+  const X = ctl(d.controls, { label: '\\times', cls: '', min: 1, max: 300, step: 1, value: 150, unit: '', dec: 0, aria: 'how many times larger than life the twist is drawn' });
 
   /* ---------- the balance as numbers ---------- */
   /* Lead spheres of 0.73 kg hang from the rod, as Cavendish's did, and every
@@ -431,8 +435,9 @@ function sun(ctx, x, y, r, color) {
   const Y_ROD = 0.45, Y_MIRROR = 0.6, Y_HUB_TOP = 0.68, Y_TOP = 1.5, Y_ARM = 0.2, Y_SCALE = 0.014;
   const LAMP = [1.8, Y_MIRROR, 0];
   const N0 = [1, -0.355, 1];                       /* the mirror faces the lamp and the scale at once, tilted a little downward */
-  const RING = { r: 1.6, a0: 0, a1: 0 };           /* the scale: an arc on the floor at the radius the beam reaches, from a0 to a1 round the axis */
-  const INSET = { l: 1082, t: 352, w: 300, h: 214 }; /* the close-up of the fibre, bottom right under the lamp, in logical units */
+  /* the scale: a strip on the floor along the path the spot really travels as the rod turns, from A0 to A1 of turn. With M and r at
+     their extremes and the ring-down at its peak the rod is drawn turned 17.7° at ×300, so the scale reaches 20° and the slider stops at 300. */
+  const SCALE = { a0: -1.5 * RAD, a1: 20 * RAD, half: 0.05 };
   let S = null;                                    /* everything the scene holds, built once */
 
   /* a canvas the size given, drawn by fn, as a repeating texture */
@@ -521,6 +526,21 @@ function sun(ctx, x, y, r, color) {
     const hit = dir.y < -1e-4, t = hit ? (Y_SCALE - at.y) / dir.y : 6;
     return { at, dir, land: at.clone().addScaledVector(dir, t), hit };
   }
+  /* the spot's path along the floor: where it lands for a turn ang, how far along the scale that is, and the turn that puts it a distance s along */
+  const PATH = (() => {
+    const n = 440, ang = [], s = [], pt = [];
+    for (let k = 0; k <= n; k++) { const a = SCALE.a0 + ((SCALE.a1 - SCALE.a0) * k) / n; const l = reflect(a).land; ang.push(a); pt.push(l); s.push(k ? s[k - 1] + Math.hypot(l.x - pt[k - 1].x, l.z - pt[k - 1].z) : 0); }
+    const s0 = s.reduce((best, v, k) => (Math.abs(ang[k]) < Math.abs(ang[best]) ? k : best), 0);
+    const off = s[s0]; for (let k = 0; k <= n; k++) s[k] -= off;
+    const interp = (xs, ys, x) => { let k = 1; while (k < n && xs[k] < x) k++; const t = (x - xs[k - 1]) / (xs[k] - xs[k - 1]); return ys[k - 1] + t * (ys[k] - ys[k - 1]); };
+    return { along: (a) => interp(ang, s, a), turnFor: (d) => interp(s, ang, d), end: s[n], start: s[0] };
+  })();
+  /* the true distance the spot moves for a twist theta, in metres along the scale */
+  const travel = (theta) => PATH.along(theta);
+  /* a clean tick spacing near x: 1, 2 or 5 times a power of ten */
+  const niceStep = (x) => { const p = Math.pow(10, Math.floor(Math.log10(x))); const m = x / p; return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p; };
+  /* the strip's in-plane normal at a turn ang, pointing away from the axis */
+  const pathNormal = (a) => { const l = reflect(a).land, r = Math.hypot(l.x, l.z); return new THREE.Vector3(l.x / r, 0, l.z / r); };
   const projected = (v) => { const p = v.clone().project(S.cam); return [((p.x + 1) / 2) * 1400, ((1 - p.y) / 2) * 620]; };
   const world = (obj, dy = 0) => { const v = new THREE.Vector3(); obj.getWorldPosition(v); v.y += dy; return v; };
 
@@ -533,10 +553,9 @@ function sun(ctx, x, y, r, color) {
     wrap.appendChild(renderer.domElement);
     const scene = new THREE.Scene(); scene.environment = environment(renderer);
     const cam = new THREE.PerspectiveCamera(24, 1400 / 620, 0.05, 40);
-    const inset = new THREE.PerspectiveCamera(28, INSET.w / INSET.h, 0.01, 5); inset.layers.set(1);
     /* light: a soft sky, one lamp from the upper left that throws the shadows, and a cool fill from behind */
-    const hemi = new THREE.HemisphereLight(0xffffff, 0x8a8078, 0.42); hemi.layers.enable(1); scene.add(hemi);
-    const sun = new THREE.DirectionalLight(0xfff3e0, 1.0); sun.position.set(-2.2, 4.2, 2.6); sun.castShadow = true; sun.layers.enable(1);
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x8a8078, 0.42); scene.add(hemi);
+    const sun = new THREE.DirectionalLight(0xfff3e0, 1.0); sun.position.set(-2.2, 4.2, 2.6); sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.01;
     Object.assign(sun.shadow.camera, { left: -2.6, right: 2.6, top: 2.6, bottom: -2.6, near: 0.5, far: 12 }); scene.add(sun);
     const fill = new THREE.DirectionalLight(0xdfe8ff, 0.35); fill.position.set(3, 2, -2); scene.add(fill);
@@ -573,17 +592,15 @@ function sun(ctx, x, y, r, color) {
     const rod = new THREE.Group(); scene.add(rod);
     const bar = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 2 * L, 16), brass)); bar.rotation.z = Math.PI / 2; bar.position.y = Y_ROD; rod.add(bar);
     const smalls = [1, -1].map((s) => { const b = shadowed(new THREE.Mesh(new THREE.SphereGeometry(R_S, 40, 28), lead)); b.position.set(s * L, Y_ROD, 0); rod.add(b); return b; });
-    const hub = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, Y_HUB_TOP - Y_ROD, 24), brass)); hub.position.y = (Y_HUB_TOP + Y_ROD) / 2; hub.layers.enable(1); rod.add(hub);
-    const notch = new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.02, 0.004), inkm); notch.position.set(0.011, Y_HUB_TOP - 0.012, 0); notch.layers.enable(1); rod.add(notch);
+    const hub = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, Y_HUB_TOP - Y_ROD, 24), brass)); hub.position.y = (Y_HUB_TOP + Y_ROD) / 2; rod.add(hub);
+    const notch = new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.02, 0.004), inkm); notch.position.set(0.011, Y_HUB_TOP - 0.012, 0); rod.add(notch);
     const n0 = new THREE.Vector3(...N0).normalize();
     const mirror = new THREE.Group(); mirror.position.set(0, Y_MIRROR, 0).addScaledVector(n0, 0.02); mirror.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n0); rod.add(mirror);
     mirror.add(shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.036, 0.036, 0.004, 40), [brass, glass, inkm])));
     const mirrorRim = shadowed(new THREE.Mesh(new THREE.TorusGeometry(0.036, 0.004, 12, 40), brass)); mirrorRim.rotation.x = Math.PI / 2; mirror.add(mirrorRim);
-    /* the fibre, and a short length of it just above the hanger that only the close-up sees */
+    /* the fibre */
     const fibLen = Y_TOP - Y_HUB_TOP;
     const fib = fibre(0.008, fibLen, 64, silk); fib.position.y = (Y_TOP + Y_HUB_TOP) / 2; fm.col.repeat.set(1, 36); fm.nor.repeat.set(1, 36); scene.add(fib);
-    const nearMat = silk.clone(); nearMat.map = fm.col.clone(); nearMat.normalMap = fm.nor.clone(); nearMat.map.repeat.set(1, 36 * (0.12 / fibLen)); nearMat.normalMap.repeat.set(1, 36 * (0.12 / fibLen)); nearMat.map.needsUpdate = nearMat.normalMap.needsUpdate = true;
-    const near = fibre(0.008, 0.12, 40, nearMat); near.position.y = Y_HUB_TOP + 0.06; near.layers.set(1); scene.add(near);
     /* the lamp on its block, aimed at the mirror */
     const lampBody = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.2, 32), brass)); lampBody.rotation.z = Math.PI / 2; lampBody.position.set(LAMP[0] + 0.1, LAMP[1], LAMP[2]); scene.add(lampBody);
     const lens = new THREE.Mesh(new THREE.CircleGeometry(0.05, 32), new THREE.MeshBasicMaterial({ color: 0xfff1c0, side: THREE.DoubleSide })); lens.rotation.y = -Math.PI / 2; lens.position.set(LAMP[0] - 0.001, LAMP[1], LAMP[2]); scene.add(lens);
@@ -592,23 +609,16 @@ function sun(ctx, x, y, r, color) {
     const beamIn = new THREE.Mesh(stalkGeo(), light), beamOut = new THREE.Mesh(stalkGeo(), light); scene.add(beamIn, beamOut);
     const spot = new THREE.Mesh(new THREE.CircleGeometry(0.02, 24), light), halo = new THREE.Mesh(new THREE.CircleGeometry(0.05, 24), glow);
     spot.rotation.x = halo.rotation.x = -Math.PI / 2; scene.add(spot, halo);
-    /* the scale: an arc of ivory at the radius the beam reaches, a tick every two degrees of turn and a tall one every ten, and a brass pin at the zero mark */
+    /* the scale: a strip of ivory along the path the spot travels, with ticks placed each frame in the true millimetres the readout gives, and a brass pin at the zero mark */
     const at0 = reflect(0).land, a0dir = Math.atan2(at0.x, at0.z);
-    Object.assign(RING, { r: Math.hypot(at0.x, at0.z), a0: a0dir - 10 * RAD, a1: a0dir + 70 * RAD });
-    const shape = new THREE.Shape();
-    shape.absarc(0, 0, RING.r + 0.05, RING.a0 - Math.PI / 2, RING.a1 - Math.PI / 2, false);
-    shape.absarc(0, 0, RING.r - 0.05, RING.a1 - Math.PI / 2, RING.a0 - Math.PI / 2, true);
+    const shape = new THREE.Shape(), NS = 60, edge = (k, side) => { const a = SCALE.a0 + ((SCALE.a1 - SCALE.a0) * k) / NS; return reflect(a).land.clone().addScaledVector(pathNormal(a), side * SCALE.half); };
+    for (let k = 0; k <= NS; k++) { const q = edge(k, 1); if (k) shape.lineTo(q.x, -q.z); else shape.moveTo(q.x, -q.z); }
+    for (let k = NS; k >= 0; k--) { const q = edge(k, -1); shape.lineTo(q.x, -q.z); }
+    shape.closePath();
     const scaleMesh = shadowed(new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: 0.012, bevelEnabled: false }), ivory)); scaleMesh.rotation.x = -Math.PI / 2; scene.add(scaleMesh);
-    const tickMesh = new THREE.InstancedMesh(new THREE.BoxGeometry(0.0025, 0.002, 0.03), inkm, 41), tall = new THREE.InstancedMesh(new THREE.BoxGeometry(0.004, 0.002, 0.06), inkm, 9);
-    const mtx = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), one = new THREE.Vector3(1, 1, 1);
-    let ti = 0, tj = 0;
-    for (let k = 0; k <= 80; k += 2) {
-      const a = RING.a0 + k * RAD, big = k % 10 === 0, rr = RING.r + (big ? 0.02 : 0.035);
-      mtx.compose(new THREE.Vector3(rr * Math.sin(a), Y_SCALE, rr * Math.cos(a)), q.setFromAxisAngle(up, a), one);
-      if (big) tall.setMatrixAt(tj++, mtx); else tickMesh.setMatrixAt(ti++, mtx);
-    }
-    tickMesh.count = ti; tall.count = tj; scene.add(tickMesh, tall);
-    const pin = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.05, 12), brass)); pin.position.set((RING.r - 0.032) * Math.sin(a0dir), 0.037, (RING.r - 0.032) * Math.cos(a0dir)); scene.add(pin);
+    const tickMesh = new THREE.InstancedMesh(new THREE.BoxGeometry(0.0025, 0.002, 0.03), inkm, 120), tall = new THREE.InstancedMesh(new THREE.BoxGeometry(0.004, 0.002, 0.06), inkm, 40);
+    scene.add(tickMesh, tall);
+    const pin = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.05, 12), brass)); pin.position.copy(at0).addScaledVector(pathNormal(0), -0.032); pin.position.y = 0.037; scene.add(pin);
     /* the view: fixed, from the book's side of the balance, and turned a little by a drag */
     const view = { az: 36 * RAD, el: 20 * RAD, dist: 5.1, target: new THREE.Vector3(0.3, 0.42, 0.3) };
     const home = { az: view.az, el: view.el };
@@ -628,7 +638,7 @@ function sun(ctx, x, y, r, color) {
     /* size follows the column */
     const size = () => { const w = wrap.clientWidth || 800, h = wrap.clientHeight || Math.round((w * 620) / 1400); renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false); };
     size(); if (typeof ResizeObserver === 'function') new ResizeObserver(() => { size(); draw(); }).observe(wrap);
-    S = { wrap, renderer, scene, cam, inset, arm, bigs, rod, smalls, fib, near, fibLen, mirror, beamIn, beamOut, spot, halo, at0 };
+    S = { wrap, renderer, scene, cam, arm, bigs, rod, smalls, fib, fibLen, mirror, beamIn, beamOut, spot, halo, at0, tickMesh, tall };
   }
 
   function draw() {
@@ -640,32 +650,37 @@ function sun(ctx, x, y, r, color) {
     const head = st.u === 0 ? 'The large spheres stand away from the small ones, and the light spot rests by the zero mark of the scale.'
       : st.u < 1 ? 't = ' + fmt(st.tau, 1) + ' s · the large spheres swing in, and the rod turns toward them as the attraction grows, the twist' + drawnNote + '.'
         : st.ringing ? 't = ' + fmt(st.tau, 1) + ' s · the balance swings a few times about its new rest before it settles, the twist' + drawnNote + '.'
-          : 'Each pair attracts with ' + sci(st.rest.F, 2) + ' N, the fibre holds a twist of ' + deg(st.rest.theta) + ' and the spot rests ' + mm(2 * st.rest.theta * RING.r) + ' from the zero mark,' + drawnNote + (st.pinned ? ', as far as the spheres allow.' : '.');
+          : 'Each pair attracts with ' + sci(st.rest.F, 2) + ' N, the fibre holds a twist of ' + deg(st.rest.theta) + ' and the spot rests ' + mm(travel(st.rest.theta)) + ' from the zero mark,' + drawnNote + (st.pinned ? ', as far as the spheres allow.' : '.');
     topline(ctx, head);
     readout(d.readout, `\\kF = G\\frac{mM}{\\kr^2} = \\frac{(${texSci(G_MEASURED, 3)})(${fmt(m_S, 2)}\\ \\text{kg})(${fmt(M.v, 0)}\\ \\text{kg})}{(${fmt(r.v, 2)}\\ \\text{m})^2} = ${texSci(st.rest.F, 2)}\\ \\text{N}`,
-      'The fibre twists until the torque it resists balances the torque of the attraction, so the spot moves further along the scale the stronger the attraction is: here a twist of ' + deg(st.rest.theta) + ' that carries the spot ' + mm(2 * st.rest.theta * RING.r) + ', which the drawing shows ' + fmt(X.v, 0) + ' times larger than life' + (st.pinned ? ', or as large as it can before the spheres would touch' : '') + '. The suspended spheres have a mass of ' + fmt(m_S, 2) + ' kg and the balance swings freely once in seven minutes, as Cavendish’s did.');
+      'The fibre twists until the torque it resists balances the torque of the attraction, so the spot moves further along the scale the stronger the attraction is: here a twist of ' + deg(st.rest.theta) + ' that carries the spot ' + mm(travel(st.rest.theta)) + ', which the drawing shows ' + fmt(X.v, 0) + ' times larger than life' + (st.pinned ? ', or as large as it can before the spheres would touch' : '') + '. The suspended spheres have a mass of ' + fmt(m_S, 2) + ' kg and the balance swings freely once in seven minutes, as Cavendish’s did.');
   }
 
   /* ---------- the scene each frame, and the 2D layer over it ---------- */
   function draw3d(ctx, st) {
-    const { renderer, scene, cam, inset, arm, bigs, rod, smalls, fib, near, fibLen, beamIn, beamOut, spot, halo, wrap } = S;
+    const { renderer, scene, cam, arm, bigs, rod, smalls, fib, fibLen, beamIn, beamOut, spot, halo, wrap, tickMesh, tall } = S;
     arm.rotation.y = st.phi; rod.rotation.y = st.drawn;
     bigs.forEach(({ stalk, ball }) => { ball.scale.setScalar(st.rL); stalk.scale.set(0.016, Y_ROD - st.rL - stalk.position.y + 0.01, 0.016); });
-    twist(fib, st.drawn); twist(near, st.drawn * (0.12 / fibLen)); near.rotation.y = st.drawn * (1 - 0.12 / fibLen);
+    twist(fib, st.drawn);
     const ref = reflect(st.drawn);
     between(beamIn, new THREE.Vector3(...LAMP), ref.at, 0.006); between(beamOut, ref.at, ref.land, 0.006);
     spot.visible = halo.visible = ref.hit; spot.position.set(ref.land.x, Y_SCALE + 0.002, ref.land.z); halo.position.copy(spot.position);
-    const spotAng = Math.atan2(ref.land.x, ref.land.z), onScale = ref.hit && spotAng >= RING.a0 && spotAng <= RING.a1;
-    /* the scene, then the close-up of the fibre in its own corner */
+    /* the ticks, in the true millimetres the readout gives: a fine tick about every twentieth of the scale and a tall, numbered one every fifth of those */
+    const fine = niceStep((PATH.end / X.v) * 1000 / 20), marks = [];
+    const mtx = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), one = new THREE.Vector3(1, 1, 1);
+    let ti = 0, tj = 0;
+    for (let k = Math.ceil((PATH.start * 1000) / (fine * X.v)); k * fine * X.v <= PATH.end * 1000 && ti < 120 && tj < 40; k++) {
+      const a = PATH.turnFor((k * fine * X.v) / 1000), big = k % 5 === 0, nrm = pathNormal(a), pos = reflect(a).land.clone().addScaledVector(nrm, big ? 0.02 : 0.035); pos.y = Y_SCALE;
+      mtx.compose(pos, q.setFromAxisAngle(up, Math.atan2(nrm.x, nrm.z)), one);
+      if (big) { tall.setMatrixAt(tj++, mtx); marks.push({ v: k * fine, p: pos.clone().addScaledVector(nrm, 0.03) }); } else tickMesh.setMatrixAt(ti++, mtx);
+    }
+    tickMesh.count = ti; tall.count = tj; tickMesh.instanceMatrix.needsUpdate = tall.instanceMatrix.needsUpdate = true;
+    /* the scene */
     const cw = wrap.clientWidth, ch = wrap.clientHeight, k = cw / 1400;
     renderer.setScissorTest(false); renderer.setViewport(0, 0, cw, ch); renderer.setClearColor(0x000000, 0); renderer.clear(); renderer.render(scene, cam);
-    inset.position.set(0.02, Y_HUB_TOP + 0.02, 0.105); inset.lookAt(0, Y_HUB_TOP + 0.02, 0);
-    const il = INSET.l * k, it = (620 - INSET.t - INSET.h) * k, iw = INSET.w * k, ih = INSET.h * k;
-    renderer.setScissorTest(true); renderer.setScissor(il, it, iw, ih); renderer.setViewport(il, it, iw, ih);
-    renderer.setClearColor(0x2a2c31, 1); renderer.clear(); renderer.render(scene, inset); renderer.setScissorTest(false);
     /* the labels: each beside its thing on a page-colour panel, and the two typed quantities in their colours */
     const lab = labeller(ctx, 620);
-    lab.block(0, 0, 1400, 96); lab.block(INSET.l - 8, INSET.t - 8, INSET.l + INSET.w + 8, INSET.t + INSET.h + 40); lab.block(300, 582, 1070, 620);
+    lab.block(0, 0, 1400, 96); lab.block(300, 582, 1070, 620);
     /* the spheres keep the labels off them: each is reserved as the square round its projected disc */
     [...bigs.map((b) => [b.ball, st.rL]), ...smalls.map((b) => [b, R_S])].forEach(([ball, rad]) => { const c = projected(world(ball)), t = projected(world(ball, rad)), q = Math.hypot(t[0] - c[0], t[1] - c[1]); lab.block(c[0] - q, c[1] - q, c[0] + q, c[1] + q); });
     const pBack = projected(world(bigs[0].ball)), pSmallBack = projected(world(smalls[0])), pSmallFront = projected(world(smalls[1]));
@@ -686,13 +701,20 @@ function sun(ctx, x, y, r, color) {
     const pZero = projected(new THREE.Vector3(S.at0.x, Y_SCALE, S.at0.z)), pSpot = projected(spot.position);
     dot(ctx, pZero[0], pZero[1], PAL.muted, false, 7);
     lab.add('zero mark', pZero[0], pZero[1], -0.6, -1, PAL.muted, 17, 26);
-    if (ref.hit) lab.add(onScale ? 'the light spot' : 'the spot has run off the scale', pSpot[0], pSpot[1], 0.6, -1, PAL.ink, 18, 30);
-    const pScale = projected(new THREE.Vector3(RING.r * Math.sin(RING.a1 - 8 * RAD), 0, RING.r * Math.cos(RING.a1 - 8 * RAD)));
-    lab.add('the scale', pScale[0], pScale[1], 0.4, -1, PAL.muted, 18, 26);
+    /* the light spot's label stands still, just past the far end of the scale, and a leader runs from it to wherever the spot is */
+    const pEnd = projected(reflect(SCALE.a1).land.clone().addScaledVector(pathNormal(SCALE.a1), SCALE.half + 0.03));
+    const spotLab = [Math.min(pEnd[0] + 70, 1300), Math.min(pEnd[1] + 24, 560)];
+    lab.block(spotLab[0] - 8, spotLab[1] - 14, spotLab[0] + 120, spotLab[1] + 14);
+    const pScale = projected(reflect((SCALE.a0 + SCALE.a1) / 2).land.clone().addScaledVector(pathNormal((SCALE.a0 + SCALE.a1) / 2), SCALE.half + 0.02));
+    lab.add('the scale', pScale[0], pScale[1], 0.3, -1, PAL.muted, 18, 40);
+    /* the numbers on the tall ticks, in the readout's millimetres */
+    marks.forEach(({ v, p }, i) => { const q = projected(p), num = v === 0 ? '0' : fine < 1 ? fmt(v, 1) : fmt(v, 0); text(ctx, num + (i === marks.length - 1 ? ' mm' : ''), q[0], q[1] + 9, PAL.muted, { size: 14, align: 'center', bg: alpha(PAL.panel, 0.7) }); });
     lab.flush();
-    /* the close-up's frame and its caption, and how to turn the view */
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.strokeRect(INSET.l, INSET.t, INSET.w, INSET.h); ctx.restore();
-    text(ctx, 'the fibre close up, where it meets the hanger', INSET.l + INSET.w / 2, INSET.t + INSET.h + 18, PAL.muted, { size: 16, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (ref.hit) {
+      line(ctx, pSpot[0], pSpot[1], spotLab[0], spotLab[1], alpha(PAL.ink, 0.5), 1.5, [5, 6]);
+      text(ctx, 'the light spot', spotLab[0], spotLab[1], PAL.ink, { weight: 600, size: 18, align: 'left', bg: PAL.panel });
+    }
+    /* how to turn the view */
     text(ctx, 'drag to look from another side · double-click to look from the book’s side again', 1060, 600, PAL.muted, { size: 15, align: 'right', bg: alpha(PAL.panel, 0.85) });
   }
 
