@@ -621,20 +621,31 @@ function sun(ctx, x, y, r, color) {
     const pin = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.05, 12), brass)); pin.position.copy(at0).addScaledVector(pathNormal(0), -0.032); pin.position.y = 0.037; scene.add(pin);
     /* the view: fixed, from the book's side of the balance, and turned a little by a drag */
     const view = { az: 36 * RAD, el: 20 * RAD, dist: 5.1, target: new THREE.Vector3(0.3, 0.42, 0.3) };
-    const home = { az: view.az, el: view.el };
+    const home = { az: view.az, el: view.el, dist: view.dist };
+    /* how close the view may come: near enough that the fibre and the mirror fill the frame, far enough that the whole apparatus sits comfortably */
+    const DIST = { near: 1.4, far: 8 };
     const aim = () => { cam.position.set(view.target.x + view.dist * Math.cos(view.el) * Math.sin(view.az), view.target.y + view.dist * Math.sin(view.el), view.target.z + view.dist * Math.cos(view.el) * Math.cos(view.az)); cam.lookAt(view.target); };
     aim();
     let drag = null;
     wrap.style.touchAction = 'pan-y'; wrap.style.cursor = 'grab';
-    wrap.addEventListener('pointerdown', (e) => { if (e.button !== 0) return; drag = { x: e.clientX, y: e.clientY, az: view.az, el: view.el }; wrap.setPointerCapture(e.pointerId); wrap.style.cursor = 'grabbing'; });
+    wrap.addEventListener('pointerdown', (e) => { if (e.button !== 0 || e.target !== renderer.domElement) return; drag = { x: e.clientX, y: e.clientY, az: view.az, el: view.el }; wrap.setPointerCapture(e.pointerId); wrap.style.cursor = 'grabbing'; });
     wrap.addEventListener('pointermove', (e) => { if (!drag) return; view.az = clamp(drag.az - (e.clientX - drag.x) * 0.006, home.az - 70 * RAD, home.az + 70 * RAD); view.el = clamp(drag.el + (e.clientY - drag.y) * 0.005, 6 * RAD, 70 * RAD); aim(); });
     const endDrag = () => { drag = null; wrap.style.cursor = 'grab'; };
     wrap.addEventListener('pointerup', endDrag); wrap.addEventListener('pointercancel', endDrag);
-    const resetView = () => { view.az = home.az; view.el = home.el; aim(); draw(); };
-    wrap.addEventListener('dblclick', resetView);
-    const back = el('button', 'tbtn', 'reset view'); back.type = 'button'; back.title = 'Look from the book’s side again';
-    Object.assign(back.style, { position: 'absolute', left: '10px', bottom: '10px', zIndex: '2', width: 'auto', padding: '0 9px', fontSize: '0.72rem' });
-    back.addEventListener('click', resetView); wrap.appendChild(back);
+    const resetView = () => { view.az = home.az; view.el = home.el; view.dist = home.dist; aim(); draw(); };
+    wrap.addEventListener('dblclick', (e) => { if (e.target === renderer.domElement) resetView(); });   /* two quick presses of a zoom button are not a double-click on the scene */
+    /* zoom: the wheel over the scene scales the camera's distance, and the page stays put while the pointer is on the figure */
+    const zoomBy = (f) => { view.dist = clamp(view.dist * f, DIST.near, DIST.far); aim(); draw(); };
+    wrap.addEventListener('wheel', (e) => { e.preventDefault(); zoomBy(Math.exp(clamp(e.deltaY, -120, 120) * 0.0012)); }, { passive: false });
+    const btns = el('div', ''); Object.assign(btns.style, { position: 'absolute', left: '10px', bottom: '10px', zIndex: '2', display: 'flex', gap: '6px' }); wrap.appendChild(btns);
+    const btn = (label, title, aria, fn) => {
+      const b = el('button', 'tbtn', label); b.type = 'button'; b.title = title; b.setAttribute('aria-label', aria);
+      Object.assign(b.style, { width: 'auto', padding: '0 9px', fontSize: '0.72rem' });
+      b.addEventListener('click', fn); btns.appendChild(b); return b;
+    };
+    btn('reset view', 'Look from the book’s side again', 'reset the view to the book’s side and its usual distance', resetView);
+    btn('zoom in', 'Come closer to the balance', 'zoom in on the balance', () => zoomBy(1 / 1.25));
+    btn('zoom out', 'Stand further from the balance', 'zoom out from the balance', () => zoomBy(1.25));
     /* size follows the column */
     const size = () => { const w = wrap.clientWidth || 800, h = wrap.clientHeight || Math.round((w * 620) / 1400); renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false); };
     size(); if (typeof ResizeObserver === 'function') new ResizeObserver(() => { size(); draw(); }).observe(wrap);
@@ -715,7 +726,7 @@ function sun(ctx, x, y, r, color) {
       text(ctx, 'the light spot', spotLab[0], spotLab[1], PAL.ink, { weight: 600, size: 18, align: 'left', bg: PAL.panel });
     }
     /* how to turn the view */
-    text(ctx, 'drag to look from another side · double-click to look from the book’s side again', 1060, 600, PAL.muted, { size: 15, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'drag to look from another side · wheel to zoom · double-click to look from the book’s side again', 1060, 600, PAL.muted, { size: 15, align: 'right', bg: alpha(PAL.panel, 0.85) });
   }
 
   /* ---------- the balance from above, when there is no WebGL to draw the scene ---------- */
