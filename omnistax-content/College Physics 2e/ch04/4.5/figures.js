@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, spring, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, spring, block, fixed, FONT } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 const RAD = Math.PI / 180;
@@ -10,6 +10,67 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const num = (v, d) => commas(fmt(v, d));
 const deg = (v, d) => fmt(v, d) + '°';
+
+/* ---------- the label discipline ----------
+   A label is set beside the thing it names and never on it. It starts one
+   gap beyond the arrowhead, along the arrow's own direction; where that slot
+   is already taken, or would fall off the canvas, it steps further out and a
+   dotted leader in the label's own colour ties it back to the head. Every
+   label is drawn in a small panel the colour of the page, so a line it
+   crosses does not run through the letters, and every label is kept inside
+   the canvas at every slider position. Labels are collected and flushed
+   last, which puts text above the arrows and the arrows above the bodies.
+   block() reserves a region, such as the headline band, that no label may
+   enter. */
+function labeller(ctx, H) {
+  const placed = [], queue = [];
+  const boxOf = (s, x, y, size, align) => {
+    ctx.save(); ctx.font = '600 ' + size + 'px ' + FONT; const tw = ctx.measureText(s).width; ctx.restore();
+    const bw = tw + 14, bh = size + 8;
+    const l = align === 'center' ? x - bw / 2 : align === 'right' ? x - bw + 7 : x - 7;
+    return { l, r: l + bw, t: y - bh / 2, b: y + bh / 2 };
+  };
+  const clash = (a) => placed.some((b) => a.l < b.r + 8 && b.l < a.r + 8 && a.t < b.b + 6 && b.t < a.b + 6);
+  return {
+    block(l, t, r, b) { placed.push({ l, t, r, b }); },
+    add(s, hx, hy, ux, uy, color, size, start) {
+      const sz = size || 20, gaps = [start || 20, 58, 96, 138, 184];
+      const align = ux < -0.3 ? 'right' : ux > 0.3 ? 'left' : 'center';
+      for (let i = 0; i < gaps.length; i++) {
+        let x = hx + ux * gaps[i], y = hy + uy * gaps[i];
+        let b = boxOf(s, x, y, sz, align);
+        const dx = b.l < 16 ? 16 - b.l : b.r > 1384 ? 1384 - b.r : 0;
+        const dy = b.t < 16 ? 16 - b.t : b.b > H - 16 ? H - 16 - b.b : 0;
+        if (dx || dy) { x += dx; y += dy; b = boxOf(s, x, y, sz, align); }
+        if (clash(b) && i < gaps.length - 1) continue;
+        placed.push(b); queue.push({ s, x, y, hx, hy, color, sz, align });
+        return;
+      }
+    },
+    flush() {
+      for (const q of queue) {
+        const dx = q.x - q.hx, dy = q.y - q.hy, L = Math.hypot(dx, dy);
+        if (L > 40) line(ctx, q.hx + (dx / L) * 15, q.hy + (dy / L) * 15, q.x - (dx / L) * 17, q.y - (dy / L) * 17, alpha(q.color, 0.5), 1.5, [5, 6]);
+        text(ctx, q.s, q.x, q.y, q.color, { weight: 600, size: q.sz, align: q.align, bg: PAL.panel });
+      }
+    },
+  };
+}
+/* a headline that never runs to the border: one line where it fits, and
+   otherwise two, broken at the space that leaves the two halves most even */
+function topline(ctx, s) {
+  const wide = (t) => { ctx.save(); ctx.font = '400 26px ' + FONT; const q = ctx.measureText(t).width; ctx.restore(); return q; };
+  if (wide(s) <= 1180) { headline(ctx, s); return 1; }
+  const words = s.split(' ');
+  let cut = 1, best = Infinity;
+  for (let i = 1; i < words.length; i++) {
+    const q = Math.abs(wide(words.slice(0, i).join(' ')) - wide(words.slice(i).join(' ')));
+    if (q < best) { best = q; cut = i; }
+  }
+  text(ctx, words.slice(0, cut).join(' '), 700, 38, PAL.ink, { size: 26, align: 'center' });
+  text(ctx, words.slice(cut).join(' '), 700, 74, PAL.ink, { size: 26, align: 'center' });
+  return 2;
+}
 
 /* ---------- shared drawing ---------- */
 /* an arrow from (x, y) along (dx, dy), with its label just beyond the head */
@@ -137,16 +198,18 @@ function walker(ctx, x, y, color) {
 
 /* =====================================================================
    FIGURE 4.12: the skier of Example 4.5. She starts from rest at the top
-   of the slope and slides 40 m down it, her weight resolved along and
-   across the surface. The idea has a time in it, so the figure runs one
-   slide per loop and gets the transport.
+   of the slope and slides 40 m down it, and the same forces are drawn a
+   second time from one point, where each of them has room to be named.
+   The idea has a time in it, so the figure runs one slide per loop and
+   gets the transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-skier', 820);
+  const d = sim('sim-skier', 920);
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 40, step: 0.5, value: 25, unit: '°', dec: 1, onInput: reset, aria: 'angle of the slope' });
   const M = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the skier' });
   const FR = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 250, step: 1, value: 45, unit: 'N', dec: 1, onInput: reset, aria: 'friction' });
   const SLOPE = 40;                                   /* the length of the slope, in metres */
+  const H = 920;
   const cy = cycle(() => T(), 1.2);
   function reset() { cy.reset(); }
   const acc = () => (M.v * G * Math.sin(TH.v * RAD) - FR.v) / M.v;
@@ -164,52 +227,82 @@ function walker(ctx, x, y, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const th = TH.v * RAD, a = acc(), tau = cy.now();
-    const w = M.v * G, wpar = w * Math.sin(th), wperp = w * Math.cos(th);
+    const w = M.v * G, wpar = w * Math.sin(th), wperp = w * Math.cos(th), col = C('force');
     const dist = moving() ? Math.min(SLOPE, 0.5 * a * tau * tau) : 0, speed = moving() ? a * Math.min(tau, T()) : 0;
-    /* the hill, rising to the right, as the book draws it: she slides down to the left */
-    const BASE = 480, X0 = 200, run = Math.min(960, 250 / Math.tan(th)), drop = run * Math.tan(th);
-    const LOWX = X0, LOWY = BASE, HIX = X0 + run, HIY = BASE - drop;
+    const lab = labeller(ctx, H);
+    /* the headline first, so that no label is placed under it */
+    const rows = topline(ctx, moving()
+      ? 't = ' + fmt(Math.min(tau, T()), 2) + ' s · she is ' + fmt(dist, 1) + ' m down the slope at ' + fmt(speed, 1)
+        + ' m/s, and she gains ' + fmt(a, 2) + ' m/s every second'
+      : 'friction of ' + num(FR.v, 0) + ' N is as large as the ' + num(wpar, 0)
+        + ' N of weight along the slope, so she stays where she is');
+    lab.block(120, 12, 1280, rows === 2 ? 98 : 64);
+    /* ---------- the slope, rising to the right as the book draws it ---------- */
+    const BASE = 560, X0 = 300, run = Math.min(540, 300 / Math.tan(th)), drop = run * Math.tan(th);
+    const HIX = X0 + run, HIY = BASE - drop;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath();
-    ctx.moveTo(LOWX, LOWY); ctx.lineTo(HIX, HIY); ctx.lineTo(HIX, LOWY); ctx.closePath(); ctx.fill(); ctx.restore();
-    line(ctx, LOWX, LOWY, HIX, HIY, PAL.ink, 4);
-    line(ctx, LOWX, BASE, HIX, BASE, PAL.muted, 3);
-    angleArc(ctx, LOWX, LOWY, 84, -TH.v, 0, deg(TH.v, 1));
-    /* the skier, at her distance along the slope, measured from the top */
+    ctx.moveTo(X0, BASE); ctx.lineTo(HIX, HIY); ctx.lineTo(HIX, BASE); ctx.closePath(); ctx.fill(); ctx.restore();
+    line(ctx, X0, BASE, HIX, BASE, PAL.muted, 3);
+    line(ctx, HIX, BASE, HIX, HIY, PAL.muted, 3);
+    line(ctx, X0, BASE, HIX, HIY, PAL.ink, 4);
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(X0, BASE, 96, -th, 0); ctx.stroke(); ctx.restore();
+    /* the angle is named below the base line, clear of the wedge, which closes
+       up at small angles until nothing will fit inside it */
+    lab.add('θ = ' + deg(TH.v, 1), X0 + 96 * Math.cos(th / 2), BASE - 96 * Math.sin(th / 2), 0.34, 0.94, PAL.ink, 20, 60);
+    /* ---------- the skier, at her distance along the slope ---------- */
     const ux = -Math.cos(th), uy = Math.sin(th);                /* down the slope, to the left */
     const nx = -Math.sin(th), ny = -Math.cos(th);               /* out of the slope, up and to the left */
-    const px = Math.hypot(run, drop) / SLOPE;                   /* logical units per metre along the slope */
-    const sx = HIX + ux * dist * px, sy = HIY + uy * dist * px;
+    /* The hill is longer than the 40 m she covers, so her run is laid on the
+       middle of it: her skis and the arrow she carries then stay on the slope
+       at every angle instead of running off its lower corner. */
+    const LS = Math.hypot(run, drop), START = 0.03, SPAN = 0.69;
+    const q0 = START * LS, q = (START + SPAN * (dist / SLOPE)) * LS;
+    const sx = HIX + ux * q, sy = HIY + uy * q;
+    line(ctx, HIX + ux * q0 + nx * 10, HIY + uy * q0 + ny * 10, sx + nx * 10, sy + ny * 10, alpha(PAL.ink, 0.38), 3, [11, 9]);
+    dot(ctx, HIX + ux * q0 + nx * 12, HIY + uy * q0 + ny * 12, PAL.ink, false, 10);
     skier(ctx, sx, sy, -th);
-    const col = C('force'), S = 130 / w;                        /* the weight is always 130 units long */
-    const bx = sx + nx * 14, by = sy + ny * 14;
-    tvec(ctx, bx, by, 0, 1, w * S, col, 'w = ' + num(w, 0) + ' N', 1, 20);
-    /* the parallel component is the shortest of the three arrows, so its label is
-       set beyond its own point rather than beside its midpoint, where the normal
-       force and the weight both cross */
-    arrow(ctx, bx, by, bx + ux * wpar * S, by + uy * wpar * S, col, 5);
-    text(ctx, 'w∥ = ' + num(wpar, 0) + ' N', bx + ux * (wpar * S + 86), by + uy * (wpar * S + 86),
-      col, { weight: 600, size: 20, align: 'center', bg: PAL.panel });
-    fvec(ctx, bx, by, -nx * wperp * S, -ny * wperp * S, col, 'w⊥', 20);
-    fvec(ctx, bx, by, nx * wperp * S, ny * wperp * S, col, 'N = ' + num(wperp, 0) + ' N', 20);
-    if (FR.v > 0) fvec(ctx, bx, by, -ux * FR.v * S, -uy * FR.v * S, col, 'f = ' + num(FR.v, 0) + ' N', 20);
-    line(ctx, bx + ux * wpar * S, by + uy * wpar * S, bx, by + w * S, PAL.rule, 2, [8, 8]);
-    line(ctx, bx - nx * wperp * S, by - ny * wperp * S, bx, by + w * S, PAL.rule, 2, [8, 8]);
-    /* the graph: the speed she has reached against the time */
-    const vmax = moving() ? a * T() : 1, vr = nice(0, vmax, 4), tr = nice(0, T(), 4);
-    const box = { l: 240, r: 1240, t: 590, b: 740 };
+    const bx = sx + nx * 30, by = sy + ny * 30;
+    if (moving() && speed > 0.05) {
+      const LV = Math.min(120, 44 + 2.6 * speed);
+      arrow(ctx, bx, by, bx + ux * LV, by + uy * LV, C('velocity'), 5);
+      lab.add('v = ' + fmt(speed, 1) + ' m/s', bx + ux * LV, by + uy * LV, ux, uy, C('velocity'), 20);
+    }
+    /* ---------- the same forces, drawn a second time from one point ---------- */
+    const FX = 1090, FY = 380, S = 150 / w;                     /* the weight is always 150 units long */
+    text(ctx, 'the forces on the skier, drawn from one point', FX, 126, PAL.muted, { size: 20, align: 'center' });
+    lab.block(FX - 250, 106, FX + 250, 146);
+    line(ctx, FX - ux * 150, FY - uy * 150, FX + ux * 150, FY + uy * 150, alpha(PAL.ink, 0.32), 3, [12, 10]);
+    const hw = [FX, FY + w * S], hpar = [FX + ux * wpar * S, FY + uy * wpar * S];
+    const hperp = [FX - nx * wperp * S, FY - ny * wperp * S], hN = [FX + nx * wperp * S, FY + ny * wperp * S];
+    const fL = Math.min(190, FR.v * S), hf = [FX - ux * fL, FY - uy * fL];
+    /* the parallelogram that resolves the weight: guide lines, under the arrows */
+    line(ctx, hpar[0], hpar[1], hw[0], hw[1], alpha(col, 0.45), 2.5, [9, 7]);
+    line(ctx, hperp[0], hperp[1], hw[0], hw[1], alpha(col, 0.45), 2.5, [9, 7]);
+    arrow(ctx, FX, FY, hw[0], hw[1], col, 5);
+    arrow(ctx, FX, FY, hpar[0], hpar[1], col, 5);
+    arrow(ctx, FX, FY, hperp[0], hperp[1], col, 5);
+    arrow(ctx, FX, FY, hN[0], hN[1], col, 5);
+    if (fL > 3) arrow(ctx, FX, FY, hf[0], hf[1], col, 5);
+    dot(ctx, FX, FY, PAL.ink, true, 8);
+    lab.add('w = ' + num(w, 0) + ' N', hw[0], hw[1], 0, 1, col, 20);
+    lab.add('N = ' + num(wperp, 0) + ' N', hN[0], hN[1], nx, ny, col, 20);
+    lab.add('w∥ = ' + num(wpar, 0) + ' N', hpar[0], hpar[1], ux, uy, col, 20);
+    lab.add('w⊥ = ' + num(wperp, 0) + ' N', hperp[0], hperp[1], -nx, -ny, col, 20);
+    if (fL > 3) lab.add('f = ' + num(FR.v, 0) + ' N', hf[0], hf[1], -ux, -uy, col, 20);
+    /* ---------- the graph: the speed she has reached against the time ---------- */
+    const vmax = moving() ? a * T() : 10, vr = nice(0, vmax, 4), tr = nice(0, T(), 4);   /* a stalled run still wants round ticks */
+    const box = { l: 240, r: 1240, t: 690, b: 840 };
     const { X, Y } = axes(ctx, box, [0, tr.hi], [0, vr.hi], {
       xl: 'time t (s)', xc: C('time'), yl: 'speed v (m/s)', yc: C('velocity'), nx: tr.n, ny: vr.n,
       fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0),
     });
     if (moving()) {
       curve(ctx, (t) => a * t, 0, T(), X, Y, C('velocity'), 5, 2);
-      line(ctx, X(Math.min(tau, T())), box.b, X(Math.min(tau, T())), Y(speed), PAL.ink, 2, [4, 8]);
+      line(ctx, X(Math.min(tau, T())), box.b, X(Math.min(tau, T())), Y(speed), alpha(PAL.ink, 0.5), 2, [5, 7]);
       dot(ctx, X(Math.min(tau, T())), Y(speed), C('velocity'), true, 9);
-    } else text(ctx, 'she does not start to slide', X(tr.hi / 2), Y(vr.hi / 2), PAL.muted, { size: 20, align: 'center' });
-    headline(ctx, moving()
-      ? 't = ' + fmt(Math.min(tau, T()), 2) + ' s · she is ' + fmt(dist, 1) + ' m down the slope at ' + fmt(speed, 1)
-        + ' m/s, gaining ' + fmt(a, 2) + ' m/s every second'
-      : 'friction of ' + num(FR.v, 0) + ' N is as large as the ' + num(wpar, 0) + ' N of weight along the slope, so she stays where she is');
+    } else text(ctx, 'she does not start to slide', X(tr.hi / 2), Y(vr.hi / 2), PAL.muted, { size: 20, align: 'center', bg: PAL.panel });
+    lab.flush();
     readout(d.readout, `\\kapar = \\frac{m\\kg\\sin\\theta - \\kff}{m} = \\frac{(${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ - ${fmt(FR.v, 1)}\\ \\text{N}}{${fmt(M.v, 1)}\\ \\text{kg}} = ${fmt(Math.max(0, a), 2)}\\ \\text{m/s}^2`,
       'With friction neglected the acceleration would be g sin θ = ' + fmt(G * Math.sin(th), 2)
       + ' m/s², and that value is the same for a skier of any mass. The normal force N = mg cos θ = ' + num(wperp, 0)

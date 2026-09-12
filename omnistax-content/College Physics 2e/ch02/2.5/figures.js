@@ -184,12 +184,11 @@ const sim = (id, H) => F.sim(root, id, H);
 })();
 
 /* =====================================================================
-   SIM 6 (3D): braking on dry vs wet concrete, v² = v0² + 2aΔx
+   SIM 6: braking on dry vs wet concrete, v² = v0² + 2aΔx. The 3D view of the two cars that once stood above the bars is gone: Chen judged that a pair of distance bars carries the whole idea and the cars added nothing the reader could measure.
 ===================================================================== */
 (function () {
-  const fig = F.byId(root, 'sim-braking'); if (!fig) return;   /* a split-out pane for another figure: no WebGL context here */
   const d = sim('sim-braking', 300);
-  const wrap = el('div', 'three-wrap'); d.stage.insertBefore(wrap, d.stage.firstChild);   /* the 3D view above the graph canvas */
+  const fig = d.fig;
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 30, unit: 'm/s', dec: 1, onInput: reset });
   const tr = ctl(d.controls, { label: 't_{\\text{react}}', cls: 'time', min: 0, max: 1.5, step: 0.05, value: 0.5, unit: 's', dec: 2, onInput: reset, aria: 'reaction time' });
   const ad = ctl(d.controls, { label: '\\ka_{\\text{dry}}', cls: 'acceleration', min: -10, max: -2, step: 0.1, value: -7, unit: 'm/s²', dec: 2, onInput: reset, aria: 'deceleration on dry concrete' });
@@ -200,77 +199,8 @@ const sim = (id, H) => F.sim(root, id, H);
   function vel(a, s) { if (s <= tr.v) return v0.v; return Math.max(0, v0.v + a * (s - tr.v)); }
   const cy = cycle(T, 1.6);
   function reset() { cy.reset(); }
-  let three = null;
-  try {
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); wrap.appendChild(renderer.domElement);
-    const scene = new THREE.Scene();
-    const cam = new THREE.PerspectiveCamera(36, 16 / 9, 0.5, 3000);
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x556070, 1.0));
-    const sun = new THREE.DirectionalLight(0xffffff, 0.7); sun.position.set(-80, 120, 60); scene.add(sun);
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(2400, 800), new THREE.MeshStandardMaterial({ color: 0xdddddd, roughness: 1 })); ground.rotation.x = -Math.PI / 2; ground.position.set(300, -0.02, 0); scene.add(ground);
-    const laneDry = new THREE.Mesh(new THREE.PlaneGeometry(900, 8), new THREE.MeshStandardMaterial({ color: 0x8c9199, roughness: 0.95 })); laneDry.rotation.x = -Math.PI / 2; laneDry.position.set(350, 0, -5); scene.add(laneDry);
-    const laneWet = new THREE.Mesh(new THREE.PlaneGeometry(900, 8), new THREE.MeshStandardMaterial({ color: 0x4f5964, roughness: 0.15, metalness: 0.35 })); laneWet.rotation.x = -Math.PI / 2; laneWet.position.set(350, 0, 5); scene.add(laneWet);
-    const edgeMat = new THREE.MeshBasicMaterial({ color: 0xf2f2f2 });
-    [-9.1, -0.9, 0.9, 9.1].forEach((z) => { const m = new THREE.Mesh(new THREE.BoxGeometry(900, 0.02, 0.2), edgeMat); m.position.set(350, 0.01, z); scene.add(m); });
-    for (let x = 0; x <= 400; x += 10) { const tick = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.02, x % 50 ? 1 : 2.4), edgeMat); tick.position.set(x, 0.012, -9.1 - (x % 50 ? 0.6 : 1.3)); scene.add(tick); const t2 = tick.clone(); t2.position.z = 9.1 + (x % 50 ? 0.6 : 1.3); scene.add(t2); }
-    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 7, 12), new THREE.MeshStandardMaterial({ color: 0x333333 })); pole.position.set(0, 3.5, -10.5); scene.add(pole);
-    const housing = new THREE.Mesh(new THREE.BoxGeometry(1, 2.6, 1), new THREE.MeshStandardMaterial({ color: 0x222222 })); housing.position.set(0, 7.5, -10.5); scene.add(housing);
-    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.34, 16, 12), new THREE.MeshBasicMaterial({ color: 0xff2020 })); lamp.position.set(0.55, 8.2, -10.5); scene.add(lamp);
-    const beam = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.02, 21), new THREE.MeshBasicMaterial({ color: 0xff4040 })); beam.position.set(0, 0.015, 0); scene.add(beam);
-    function makeCar() {
-      const g = new THREE.Group(); const bodyMat = new THREE.MeshStandardMaterial({ color: 0x2a3038, roughness: 0.5, metalness: 0.2 });
-      const body = new THREE.Mesh(new THREE.BoxGeometry(4.6, 1.1, 2.1), bodyMat); body.position.y = 0.95; g.add(body);
-      const cabin = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.9, 1.9), new THREE.MeshStandardMaterial({ color: 0x9fb4c8, roughness: 0.2, metalness: 0.3 })); cabin.position.set(-0.3, 1.9, 0); g.add(cabin);
-      const wmat = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.9 });
-      [[1.5, 1.05], [1.5, -1.05], [-1.5, 1.05], [-1.5, -1.05]].forEach(([x, z]) => { const w = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.35, 16), wmat); w.rotation.x = Math.PI / 2; w.position.set(x, 0.42, z); g.add(w); });
-      const vArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 3.2, 0), 8, 0xff0000, 1.8, 1.2); g.add(vArrow);
-      const aArrow = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(0, 4.8, 0), 5, 0x8000ff, 1.8, 1.2); g.add(aArrow);
-      g.userData = { vArrow, aArrow }; return g;
-    }
-    const carDry = makeCar(); carDry.position.z = -5; scene.add(carDry);
-    const carWet = makeCar(); carWet.position.z = 5; scene.add(carWet);
-    function bar(z) { const m = new THREE.Mesh(new THREE.BoxGeometry(1, 0.1, 1.4), new THREE.MeshBasicMaterial({ color: 0x0000ff, transparent: true, opacity: 0.85 })); m.position.set(0, 0.05, z); scene.add(m); return m; }
-    const bars = { rDry: bar(-5), bDry: bar(-5), rWet: bar(5), bWet: bar(5) };
-    bars.rDry.material.opacity = bars.rWet.material.opacity = 0.45;
-    const labDry = el('span', 'lab3d', 'dry concrete'), labWet = el('span', 'lab3d', 'wet concrete'); wrap.append(labDry, labWet);
-    let yaw = -0.72, pitch = 0.34, dist = 74, drag = null;
-    const target = new THREE.Vector3(60, 0, 0);
-    wrap.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, yaw, pitch }; wrap.setPointerCapture(e.pointerId); });
-    wrap.addEventListener('pointermove', (e) => { if (!drag) return; yaw = drag.yaw - (e.clientX - drag.x) * 0.006; pitch = Math.min(1.3, Math.max(0.08, drag.pitch + (e.clientY - drag.y) * 0.005)); });
-    wrap.addEventListener('pointerup', () => { drag = null; }); wrap.addEventListener('pointercancel', () => { drag = null; });
-    wrap.addEventListener('wheel', (e) => { e.preventDefault(); dist = Math.min(200, Math.max(20, dist * (1 + e.deltaY * 0.001))); }, { passive: false });
-    function project(v) { const p = v.clone().project(cam); return [(p.x + 1) / 2 * wrap.clientWidth, (1 - p.y) / 2 * wrap.clientHeight]; }
-    function applyColors() {
-      const cv = new THREE.Color(C('velocity')), ca = new THREE.Color(C('acceleration')), cx = new THREE.Color(C('position'));
-      [carDry, carWet].forEach((c) => { c.userData.vArrow.setColor(cv); c.userData.aArrow.setColor(ca); });
-      Object.values(bars).forEach((b) => b.material.color.copy(cx));
-      ground.material.color.set(PAL.soft2); scene.background = null;
-    }
-    function render(tau) {
-      const xd = pos(ad.v, tau), xw = pos(aw.v, tau);
-      carDry.position.x = xd; carWet.position.x = xw;
-      const vd = vel(ad.v, tau), vw = vel(aw.v, tau);
-      carDry.userData.vArrow.setLength(Math.max(0.01, vd * 0.35), 1.6, 1.1); carWet.userData.vArrow.setLength(Math.max(0.01, vw * 0.35), 1.6, 1.1);
-      carDry.userData.aArrow.visible = tau > tr.v && vd > 0; carDry.userData.aArrow.setLength(-ad.v * 0.9, 1.6, 1.1);
-      carWet.userData.aArrow.visible = tau > tr.v && vw > 0; carWet.userData.aArrow.setLength(-aw.v * 0.9, 1.6, 1.1);
-      const rd = react(), bd = brake(ad.v), bw = brake(aw.v);
-      bars.rDry.scale.x = Math.max(0.01, rd); bars.rDry.position.x = rd / 2; bars.bDry.scale.x = bd; bars.bDry.position.x = rd + bd / 2;
-      bars.rWet.scale.x = Math.max(0.01, rd); bars.rWet.position.x = rd / 2; bars.bWet.scale.x = bw; bars.bWet.position.x = rd + bw / 2;
-      target.x = (rd + Math.max(bd, bw)) * 0.5;
-      cam.position.set(target.x + dist * Math.cos(pitch) * Math.sin(yaw), dist * Math.sin(pitch), dist * Math.cos(pitch) * Math.cos(yaw));
-      cam.lookAt(target);
-      const wpx = wrap.clientWidth, hpx = wrap.clientHeight;
-      if (wpx && renderer.domElement.width !== Math.round(wpx * renderer.getPixelRatio())) { renderer.setSize(wpx, hpx, false); cam.aspect = wpx / hpx; cam.updateProjectionMatrix(); }
-      renderer.render(scene, cam);
-      const pd = project(new THREE.Vector3(xd, 6.2, -5)), pw = project(new THREE.Vector3(xw, 6.2, 5));
-      labDry.style.left = pd[0] + 'px'; labDry.style.top = pd[1] + 'px'; labWet.style.left = pw[0] + 'px'; labWet.style.top = pw[1] + 'px';
-    }
-    three = { render, applyColors };
-  } catch (e) { console.error(e); wrap.innerHTML = '<p style="padding:20px;color:var(--muted)">3D view needs WebGL. The distance bars below still work.</p>'; }
   function draw() {
     const tau = cy.now();
-    if (three) { three.applyColors(); three.render(tau); }
     // distance bars: what the equation is really about
     const { ctx } = begin(d.c);
     const rd = react(), bd = brake(ad.v), bw = brake(aw.v), total = rd + Math.max(bd, bw);
@@ -287,7 +217,6 @@ const sim = (id, H) => F.sim(root, id, H);
     headline(ctx, 't = ' + fmt(tau, 2) + ' s · the speed and the driver are the same, and only the road differs');
     tex(d.readout, `\\kx_{\\text{braking}} = \\frac{\\kv^2 - \\kvo^2}{2\\ka}:\\quad \\text{dry } \\frac{0 - (${fmt(v0.v, 1)})^2}{2(${fmt(ad.v, 2)})} = ${fmt(bd, 1)}\\ \\text{m},\\quad \\text{wet } ${fmt(bw, 1)}\\ \\text{m}`);
   }
-  new ResizeObserver(() => draw()).observe(wrap);
   register(fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 

@@ -9,6 +9,31 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 /* ---------- helpers shared by the figures ---------- */
 /* a rectangle outlined in a dashed line: the shape the object had before the force was applied */
 function ghost(ctx, x, y, w, h) { line(ctx, x, y, x + w, y, PAL.muted, 2, [8, 8]); line(ctx, x + w, y, x + w, y + h, PAL.muted, 2, [8, 8]); line(ctx, x + w, y + h, x, y + h, PAL.muted, 2, [8, 8]); line(ctx, x, y + h, x, y, PAL.muted, 2, [8, 8]); }
+/* A locked view of a solid the book draws in perspective. The drawing layer has no
+   3D primitive, so the projection is done here: a pinhole camera stands at a fixed
+   yaw and pitch about the origin, dist away, and each face is lit by one fixed lamp
+   from the upper left front. P takes a point [x, y, z] (y up, z toward the viewer)
+   to the canvas, and shade takes a face's outward normal to the share of ink laid
+   over the face colour. Any figure whose original is a perspective view can reuse
+   it: choose the yaw and pitch that match the book's picture and never change them. */
+function view({ yaw, pitch, dist, cx, cy }) {
+  const e = [dist * Math.sin(yaw) * Math.cos(pitch), dist * Math.sin(pitch), dist * Math.cos(yaw) * Math.cos(pitch)];
+  const unit = (v) => { const l = Math.hypot(v[0], v[1], v[2]); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dotp = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const f = unit([-e[0], -e[1], -e[2]]), r = unit(cross(f, [0, 1, 0])), u = cross(r, f), lamp = unit([-0.45, 0.85, 0.55]);
+  return {
+    P: (p) => { const q = [p[0] - e[0], p[1] - e[1], p[2] - e[2]], z = dotp(q, f); return [cx + dist * dotp(q, r) / z, cy - dist * dotp(q, u) / z]; },
+    shade: (n) => 0.34 * (1 - Math.max(0, dotp(unit(n), lamp))),
+  };
+}
+/* one face of the solid on the canvas: the face colour, then k of ink over it for its shading, then an outline of the given width; a null k fills nothing */
+function face(ctx, pts, k, stroke) {
+  ctx.save(); ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+  if (k !== null) { ctx.fillStyle = PAL.soft; ctx.fill(); ctx.fillStyle = alpha(PAL.ink, k); ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = PAL.ink; ctx.lineWidth = stroke; ctx.lineJoin = 'round'; ctx.stroke(); }
+  ctx.restore();
+}
 /* a value in units of 10^9, written the way the book writes a modulus */
 const giga = (v) => fmt(v, v < 10 ? 1 : 0) + ' × 10⁹ N/m²';
 /* a number in scientific form for a readout, "5.00 \times 10^{7}" */
@@ -258,7 +283,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
 })();
 
 /* =====================================================================
-   FIGURE 5.16: a bookcase sheared sideways. The deformation is
+   FIGURE 5.16: a bookcase sheared sideways, drawn from the book's own viewpoint through the locked view() above. The deformation is
    perpendicular to the length rather than parallel to it, and the
    constant is the shear modulus. Still.
 ===================================================================== */
@@ -272,23 +297,47 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const dx = (Sg) => (Fa.v * L0.v) / (Sg * 1e9 * AA.v);              /* metres */
   function draw() {
     const { ctx } = begin(d.c);
-    const x = dx(SS.v), h = 120 + 300 * (L0.v / 2.5), wB = 150 + 130 * AA.v;
+    const x = dx(SS.v), H = 120 + 300 * (L0.v / 2.5), W = 150 + 130 * AA.v, D = 0.5 * W;
     const MAG = x > 0 ? Math.min(96, x * 1.6e8) / x : 0;
-    const lean = x * MAG, yb = 560, yt = yb - h, cx = 300;
-    fixed(ctx, cx - wB / 2 - 60, yb, wB + 120, 34);
-    ghost(ctx, cx - wB / 2, yt, wB, h);
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.moveTo(cx - wB / 2, yb); ctx.lineTo(cx + wB / 2, yb); ctx.lineTo(cx + wB / 2 + lean, yt); ctx.lineTo(cx - wB / 2 + lean, yt); ctx.closePath(); ctx.fill(); ctx.stroke();
-    for (let i = 1; i <= 3; i++) { const f = i / 4, yy = yb - h * f; line(ctx, cx - wB / 2 + lean * f, yy, cx + wB / 2 + lean * f, yy, PAL.muted, 2); }
-    ctx.restore();
-    arrow(ctx, cx - wB / 2 - 30 + lean, yt + 16, cx - wB / 2 - 30 + lean + 40 + Fa.v * 0.055, yt + 16, C('force'), 5);
-    text(ctx, 'F = ' + fmt(Fa.v, 0) + ' N', cx - wB / 2 + lean, yt - 22, C('force'), { weight: 600, size: 21 });
-    arrow(ctx, cx + wB / 2 + 30, yb - 16, cx + wB / 2 + 30 - 40 - Fa.v * 0.055, yb - 16, C('force'), 5);
-    text(ctx, 'F', cx + wB / 2 + 44, yb - 46, C('force'), { weight: 600, size: 21 });
-    vbracket(ctx, cx - wB / 2 - 80, yt, yb, C('position'), '', -1);
-    text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m', cx - wB / 2 - 92, (yt + yb) / 2, C('position'), { align: 'right', weight: 600, size: 20 });
-    if (lean > 5) hbracket(ctx, cx + wB / 2, cx + wB / 2 + lean, yt - 56, C('position'), 'Δx');
-    text(ctx, x > 0 ? 'Δx = ' + fmt(x * 1e6, 3) + ' µm, drawn about ' + timesLarger(MAG, h / L0.v) + ' times larger than it is' : 'with no force applied the bookcase stands square', 110, 636, PAL.muted, { size: 18 });
+    const lean = x * MAG;
+    /* the book's viewpoint: a little to the left of the bookcase and a little above it, so its left side and its top show */
+    const V = view({ yaw: -0.42, pitch: 0.2, dist: 2400, cx: 400, cy: 380 });
+    /* a point of the box in its own units (each of sx, sy, sz runs from -1 to 1; the origin is the centre of the box), sheared by sh at the top and not at all at the bottom */
+    const pt = (sx, sy, sz, sh) => V.P([sx * W / 2 + sh * (sy + 1) / 2, sy * H / 2, sz * D / 2]);
+    const quad = (a, b, c, e, sh) => [pt(...a, sh), pt(...b, sh), pt(...c, sh), pt(...e, sh)];
+    const dashed = (pts) => pts.forEach((p, i) => { const q = pts[(i + 1) % pts.length]; line(ctx, p[0], p[1], q[0], q[1], PAL.muted, 2, [8, 8]); });
+    const kFront = V.shade([0, 0, 1]), kTop = V.shade([0, 1, 0]), kLeft = V.shade([-1, 0, 0]);
+    const t = 0.07, ty = t * W / H;                                    /* the thickness of the case's walls and shelves, in box units */
+    const floor = pt(-1, -1, 1, 0);
+    fixed(ctx, floor[0] - 60, Math.max(floor[1], pt(1, -1, 1, 0)[1]), W + 120, 34);
+    /* the solid case: its front, then the inside seen through the open front (back wall, right wall, shelves), then its left side and top */
+    face(ctx, quad([-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1], lean), kFront, 3);
+    face(ctx, quad([-1 + 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, -1], [1 - 2 * t, 1 - ty, -1], [-1 + 2 * t, 1 - ty, -1], lean), kFront + 0.2);
+    face(ctx, quad([1 - 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, 1], [1 - 2 * t, 1 - ty, 1], [1 - 2 * t, 1 - ty, -1], lean), kLeft + 0.06);
+    for (let i = 0; i <= 3; i++) {
+      const yy = -1 + ty + (2 - 2 * ty) * i / 4;
+      face(ctx, quad([-1 + 2 * t, yy, -1], [1 - 2 * t, yy, -1], [1 - 2 * t, yy, 1], [-1 + 2 * t, yy, 1], lean), kTop);
+      if (i) face(ctx, quad([-1 + 2 * t, yy - ty, 1], [1 - 2 * t, yy - ty, 1], [1 - 2 * t, yy, 1], [-1 + 2 * t, yy, 1], lean), kFront, 1.5);
+    }
+    face(ctx, quad([-1 + 2 * t, -1 + ty, 1], [1 - 2 * t, -1 + ty, 1], [1 - 2 * t, 1 - ty, 1], [-1 + 2 * t, 1 - ty, 1], lean), null, 1.5);
+    face(ctx, quad([-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1], lean), kLeft, 3);
+    face(ctx, quad([-1, 1, -1], [-1, 1, 1], [1, 1, 1], [1, 1, -1], lean), kTop, 3);
+    /* the dashed outline is the case before the forces were applied: the same box with no shear */
+    dashed(quad([-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1], 0));
+    dashed(quad([-1, 1, -1], [-1, 1, 1], [1, 1, 1], [1, 1, -1], 0));
+    dashed(quad([-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1], 0));
+    const tl = pt(-1, 1, 1, lean), tl0 = pt(-1, 1, 1, 0), br = pt(1, -1, 1, 0), bl = pt(-1, -1, 1, 0), topC = pt(0, 1, -1, lean);
+    const fl = 40 + Fa.v * 0.055;
+    arrow(ctx, tl[0] - 16 - fl, tl[1] + 22, tl[0] - 16, tl[1] + 22, C('force'), 5);
+    text(ctx, 'F = ' + fmt(Fa.v, 0) + ' N', tl[0] - 16, tl[1] + 52, C('force'), { align: 'right', weight: 600, size: 21 });
+    arrow(ctx, br[0] + 24 + fl, br[1] - 14, br[0] + 24, br[1] - 14, C('force'), 5);
+    text(ctx, 'F', br[0] + 24 + fl + 12, br[1] - 14, C('force'), { weight: 600, size: 21 });
+    text(ctx, 'A = ' + fmt(AA.v, 2) + ' m²', topC[0] + 20, topC[1] - 30, PAL.ink, { align: 'center', weight: 600, size: 18 });
+    const lx = Math.min(tl0[0], bl[0]) - 50;
+    vbracket(ctx, lx, tl0[1], bl[1], C('position'), '', -1);
+    text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m', lx - 12, (tl0[1] + bl[1]) / 2, C('position'), { align: 'right', weight: 600, size: 20 });
+    if (lean > 5) hbracket(ctx, tl0[0], tl[0], tl0[1] - 40, C('position'), 'Δx');
+    text(ctx, x > 0 ? 'Δx = ' + fmt(x * 1e6, 3) + ' µm, drawn about ' + timesLarger(MAG, H / L0.v) + ' times larger than it is' : 'with no force applied the bookcase stands square', 110, 636, PAL.muted, { size: 18 });
     /* the graph beside the vertical scene: the deformation falls as 1/S, with the materials of Table 5.3 along it */
     const yr = nice(0, dx(1) * 1e6 * 1.05, 4);
     const box = { l: 800, r: 1300, t: 170, b: 540 };

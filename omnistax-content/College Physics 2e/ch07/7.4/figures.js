@@ -1,7 +1,7 @@
 /* Figures for section 7.4 Conservative Forces and Potential Energy. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, spring, fixed, car } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, pinned, spring, fixed, car } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -97,9 +97,10 @@ function stack(ctx, x0, y0, w, h, total, parts) {
       text(ctx, '½kx² = ' + fmt(0.5 * kv * xc * xc, 3) + ' J', rest + 60, y, C('energy'), { size: 21, weight: 600 });
     });
     /* the graph: the big triangle cut into four copies of the small one */
-    const box = { l: 240, r: 1180, t: 350, b: 580 };
-    const xr = 2.3 * xv, Fr = nice(0, kv * xr, 4);
-    const { X, Y } = axes(ctx, box, [0, xr], [0, Fr.hi], { xl: 'compression x (m)', xc: C('position'), yl: 'force needed (N)', yc: C('force'), nx: 4, ny: Fr.n, fx: (v) => fmt(v, 3), fy: (v) => fmt(v, 0) });
+    /* fixed axes: the sliders reach 2x = 0.12 m and k(2x) = 500 × 0.12 = 60 N, so the graph is
+       always 0 to 0.12 m by 0 to 60 N, ticked every 0.03 m and 15 N, and never rescales */
+    const box = { l: 240, r: 1180, t: 350, b: 580 }, XR = 0.12, FR = 60;
+    const { X, Y } = axes(ctx, box, [0, XR], [0, FR], { xl: 'compression x (m)', xc: C('position'), yl: 'force needed (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
     const F1 = kv * xv, F2 = 2 * F1;
     ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.3); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xv), Y(0)); ctx.lineTo(X(xv), Y(F1)); ctx.closePath(); ctx.fill(); ctx.restore();
     ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.12); ctx.beginPath(); ctx.moveTo(X(xv), Y(0)); ctx.lineTo(X(2 * xv), Y(0)); ctx.lineTo(X(2 * xv), Y(F2)); ctx.lineTo(X(xv), Y(F1)); ctx.closePath(); ctx.fill(); ctx.restore();
@@ -107,9 +108,12 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     line(ctx, X(xv), Y(F1), X(2 * xv), Y(F1), C('energy'), 2, [6, 6]);
     line(ctx, X(xv), Y(0), X(2 * xv), Y(F1), C('energy'), 2, [6, 6]);
     line(ctx, X(2 * xv), Y(0), X(2 * xv), Y(F2), C('position'), 2, [4, 8]);
-    line(ctx, X(0), Y(0), X(xr), Y(kv * xr), C('force'), 5);
-    [[0.667, 0.167], [1.667, 0.167], [1.333, 0.333], [1.667, 0.667]].forEach(([fx, fy]) => text(ctx, fmt(pe1, 3) + ' J', X(xv * fx), Y(F2 * fy), C('energy'), { size: 17, align: 'center' }));
-    text(ctx, '2x', X(2 * xv), box.b + 26, C('position'), { size: 18, weight: 600, align: 'center' });
+    line(ctx, X(0), Y(0), X(XR), Y(kv * XR), C('force'), 5);
+    pinned(ctx, box, X, Y, 2 * xv, F2, C('force'), fmt(F2, 0) + ' N');
+    /* the four copies are labelled inside when the small triangle is wide enough to hold a label, and once above it otherwise */
+    if (X(xv) - X(0) > 230) [[0.667, 0.167], [1.667, 0.167], [1.333, 0.333], [1.667, 0.667]].forEach(([fx, fy]) => text(ctx, fmt(pe1, 3) + ' J', X(xv * fx), Y(F2 * fy), C('energy'), { size: 17, align: 'center' }));
+    else text(ctx, 'four triangles of ' + fmt(pe1, 3) + ' J', X(2 * xv) + 24, Y(F2 * 0.5), C('energy'), { size: 17, weight: 600 });
+    if (2 * xv < XR - 0.006) text(ctx, '2x', X(2 * xv), box.b + 26, C('position'), { size: 18, weight: 600, align: 'center' });   /* at the far edge the 0.12 tick already reads it */
     headline(ctx, 'compressing this spring by ' + fmt(2 * xv, 3) + ' m stores ' + fmt(pe2, 3) + ' J, four times the ' + fmt(pe1, 3) + ' J that ' + fmt(xv, 3) + ' m stores');
     readout(d.readout, `\\frac{\\tfrac{1}{2}\\kk(2\\kx)^2}{\\tfrac{1}{2}\\kk\\kx^2} = \\frac{${fmt(pe2, 3)}\\ \\text{J}}{${fmt(pe1, 3)}\\ \\text{J}} = 4`,
       'Squeezing the spring twice as far doubles the force it pushes back with and doubles the distance that force acts through, so the work done on it is four times as great. The larger triangle holds four copies of the smaller one.');
@@ -133,17 +137,39 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     const tau = REDUCED ? 1.1 : cy.now();
     const xv = x0.v * Math.cos((TAU / 5) * tau), SC = 7000;
     const E = 0.5 * k.v * x0.v * x0.v, PE = 0.5 * k.v * xv * xv, KE = E - PE;
-    /* the scene: one string held between a nut and a bridge, plucked at its middle */
-    const y = 270, nut = 130, bridge = 1000, mid = (nut + 44 + bridge) / 2, dy = -xv * SC;
-    fixed(ctx, nut, y - 100, 44, 200); fixed(ctx, bridge, y - 100, 44, 200);
-    line(ctx, nut + 44, y, bridge, y, PAL.muted, 2, [10, 10]);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(nut + 44, y); ctx.lineTo(mid, y + dy); ctx.lineTo(bridge, y); ctx.stroke(); ctx.restore();
-    dot(ctx, mid, y + dy, PAL.ink, true, 9);
+    /* the scene: a guitar lying on its side, the string running from the nut on the headstock,
+       along the neck and over the sound hole to the bridge on the body, plucked at its middle */
+    const y = 270, nut = 150, bridge = 900, mid = (nut + bridge) / 2, dy = -xv * SC;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    /* the body: an upper bout at the neck, a waist, and a larger lower bout that carries the bridge */
+    ctx.beginPath(); ctx.moveTo(640, y - 88);
+    ctx.bezierCurveTo(700, y - 108, 740, y - 108, 760, y - 76);
+    ctx.bezierCurveTo(780, y - 44, 820, y - 40, 860, y - 76);
+    ctx.bezierCurveTo(920, y - 130, 1060, y - 120, 1060, y);
+    ctx.bezierCurveTo(1060, y + 120, 920, y + 130, 860, y + 76);
+    ctx.bezierCurveTo(820, y + 40, 780, y + 44, 760, y + 76);
+    ctx.bezierCurveTo(740, y + 108, 700, y + 108, 640, y + 88);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the headstock, its three tuning pegs and the nut */
+    ctx.beginPath(); ctx.moveTo(150, y - 22); ctx.lineTo(78, y - 32); ctx.lineTo(66, y - 18); ctx.lineTo(66, y + 18); ctx.lineTo(78, y + 32); ctx.lineTo(150, y + 22); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 2; [86, 108, 130].forEach((px) => { ctx.beginPath(); ctx.moveTo(px, y - 26); ctx.lineTo(px, y - 46); ctx.moveTo(px - 6, y - 46); ctx.lineTo(px + 6, y - 46); ctx.stroke(); });
+    /* the neck with its frets and position dots */
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.rect(150, y - 19, 500, 38); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 2; for (let i = 1; i <= 12; i++) { const fx = 150 + 500 * (1 - Math.pow(2, -i / 12)) * 1.0; ctx.beginPath(); ctx.moveTo(fx, y - 19); ctx.lineTo(fx, y + 19); ctx.stroke(); }
+    ctx.fillStyle = PAL.muted; [3, 5, 7, 9].forEach((i) => { const fx = 150 + 500 * (1 - Math.pow(2, -(i - 0.5) / 12)); ctx.beginPath(); ctx.arc(fx, y + 9, 3, 0, TAU); ctx.fill(); });
+    /* the sound hole, and the nut and the bridge that hold the string */
+    ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(760, y, 40, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = PAL.muted; ctx.fillRect(nut - 5, y - 24, 10, 48); ctx.fillRect(bridge - 8, y - 46, 16, 92);
+    ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(bridge, y - 32, 3, 0, TAU); ctx.arc(bridge, y + 32, 3, 0, TAU); ctx.fill();
+    ctx.restore();
+    line(ctx, nut, y, bridge, y, PAL.muted, 2, [10, 10]);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(78, y - 8); ctx.lineTo(nut, y); ctx.lineTo(mid, y + dy); ctx.lineTo(bridge, y); ctx.stroke(); ctx.restore();
+    dot(ctx, mid, y + dy, PAL.ink, true, 8);
     if (Math.abs(xv) > 0.0004) {
       vbracket(ctx, mid, y, y + dy, C('position'));
       text(ctx, 'x = ' + fmt(Math.abs(xv), 4) + ' m', mid + 18, y + dy / 2, C('position'), { weight: 600, bg: PAL.panel });
     }
-    text(ctx, 'rest line', nut + 60, y + 26, PAL.muted, { size: 18 });
+    text(ctx, 'rest line', nut + 16, y + 34, PAL.muted, { size: 18 });
     /* the two energies, side by side against the total the pluck put in */
     const b0 = 440, bh = 250, bw = 78, bx = [1110, 1230];
     line(ctx, bx[0] - 34, b0 - bh, bx[1] + bw + 34, b0 - bh, C('energy'), 2, [8, 6]);

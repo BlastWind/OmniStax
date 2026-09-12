@@ -104,11 +104,17 @@ function fly(ctx, x, y, color) {
     const { ctx } = begin(d.c);
     const T = total(), t = REDUCED ? T : cy.now(), th = om.v * t;
     const cx = 300, cyc = 350, RW = 165;
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(cx, cyc, RW, 0, TAU); ctx.stroke(); ctx.restore();
-    for (let k = 1; k < 6; k++) line(ctx, cx, cyc, ...at(cx, cyc, RW, th + (k * TAU) / 6), PAL.rule, 3);
-    line(ctx, cx, cyc, ...at(cx, cyc, RW, 0), PAL.muted, 3, [10, 10]);
-    line(ctx, cx, cyc, ...at(cx, cyc, RW, th), C('angular-rate'), 5);
-    dot(ctx, cx, cyc, PAL.muted, true, 8);
+    /* The rim has a thickness of its own, so a spoke stops at the rim's inner
+       edge and not at the circle through the middle of its stroke, and it
+       stops a further half of its own width back, since a round cap reaches
+       that far past the end of the line. The rim is drawn over the spokes and
+       the hub over their meeting point, so every join closes cleanly. */
+    const RIM_W = 5, SPOKE_W = 3, MARK_W = 5, IN = RW - RIM_W / 2;
+    for (let k = 1; k < 6; k++) line(ctx, cx, cyc, ...at(cx, cyc, IN - SPOKE_W / 2, th + (k * TAU) / 6), PAL.rule, SPOKE_W);
+    line(ctx, cx, cyc, ...at(cx, cyc, IN - SPOKE_W / 2, 0), PAL.muted, SPOKE_W, [10, 10]);
+    line(ctx, cx, cyc, ...at(cx, cyc, IN - MARK_W / 2, th), C('angular-rate'), MARK_W);
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = RIM_W; ctx.beginPath(); ctx.arc(cx, cyc, RW, 0, TAU); ctx.stroke(); ctx.restore();
+    dot(ctx, cx, cyc, PAL.muted, true, 10);
     dot(ctx, ...at(cx, cyc, RW, th), PAL.ink, true, 11);
     const rest = th - Math.floor(th / TAU) * TAU, aR = 62;
     arcAt(ctx, cx, cyc, aR, 0, rest, PAL.ink, 2.5);
@@ -121,14 +127,14 @@ function fly(ctx, x, y, color) {
     const xs = nice(0, T, 4), ys = nice(0, TAU * N.v, 4), box = { l: 760, r: 1330, t: 150, b: 500 };
     const { X, Y } = axes(ctx, box, [0, xs.hi], [0, ys.hi], { xl: 'Δt (s)', xc: C('time'), yl: 'Δθ (rad)', yc: PAL.ink, nx: xs.n, ny: ys.n, fx: (q) => fmt(q, 2), fy: (q) => fmt(q, 1) });
     for (let k = 1; k <= N.v; k++) {
-      line(ctx, box.l, Y(TAU * k), box.r, Y(TAU * k), alpha(PAL.muted, 0.45), 1.5, [6, 8]);
-      text(ctx, k === 1 ? '1 revolution' : k + ' revolutions', box.r - 8, Y(TAU * k) - 17, PAL.muted, { size: 16, align: 'right' });
+      line(ctx, box.l, Y(TAU * k), box.r, Y(TAU * k), alpha(PAL.ink, 0.4), 2, [7, 7]);
+      text(ctx, k === 1 ? '1 revolution' : k + ' revolutions', box.r - 8, Y(TAU * k) - 19, PAL.muted, { size: 16, align: 'right', bg: PAL.panel });
     }
     curve(ctx, (s) => om.v * s, 0, T, X, Y, C('angular-rate'), 5, 2);
     line(ctx, X(t), box.b, X(t), Y(th), PAL.muted, 2, [4, 8]);
     line(ctx, box.l, Y(th), X(t), Y(th), PAL.muted, 2, [4, 8]);
     dot(ctx, X(t), Y(th), PAL.ink, true, 10);
-    text(ctx, 'the slope is ω = ' + fmt(om.v, 1) + ' rad/s', X(T * 0.52), Y(om.v * T * 0.52) - 30, C('angular-rate'), { size: 19, weight: 600, align: 'right' });
+    text(ctx, 'the slope is ω = ' + fmt(om.v, 1) + ' rad/s', X(T * 0.5) - 14, Y(om.v * T * 0.5) - 38, C('angular-rate'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
     headline(ctx, 'Δt = ' + fmt(t, 2) + ' s: the wheel has turned through Δθ = ' + fmt(th, 2) + ' rad, and Δθ/Δt is ' + fmt(om.v, 2) + ' rad/s throughout');
     readout(d.readout, `\\kw = \\frac{\\Delta\\theta}{\\kdt} = \\frac{${fmt(th, 2)}\\ \\text{rad}}{${fmt(t, 2)}\\ \\text{s}} = ${fmt(om.v, 2)}\\ \\text{rad/s}`,
       'One complete revolution is 2π = 6.28 rad, so at this angular velocity the wheel goes round once every ' + fmt(TAU / om.v, 2) + ' s and takes ' + fmt(T, 2) + ' s over the ' + fmt(N.v, 0) + ' revolutions of the run.');

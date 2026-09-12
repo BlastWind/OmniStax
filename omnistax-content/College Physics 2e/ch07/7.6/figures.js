@@ -64,9 +64,10 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
       line(ctx, xa, ya, xc, ya, PAL.muted, 3); line(ctx, xc, ya, xc, yc, PAL.muted, 3);
     }
     line(ctx, 60, yb, x0, yb, PAL.muted, 3);
-    /* the climber on the slope of the stairs */
-    const cx = x0 + (x1 - x0) * s.f, cyy = yb - (yb - yt) * s.f;
-    runner(ctx, cx, cyy, PAL.ink, s.f * 26);
+    /* the climber, her feet on the tread she has reached and her body leaning into the climb */
+    const step = Math.min(N - 1, Math.floor(s.f * N)), within = done ? 1 : s.f * N - step, tread = (x1 - x0) / N;
+    const cx = done ? x1 + 24 : x0 + tread * (step + 0.3 + 0.4 * within), cyy = done ? yt : yb - ((yb - yt) * step) / N;
+    F.person(ctx, cx, cyy, PAL.ink, done ? { lean: 0 } : { phase: within * Math.PI, lean: 0.22 });
     /* her speed, along the stairs */
     const ax = 78, ay = -78 * ((yb - yt) / (x1 - x0));
     arrow(ctx, cx + 14, cyy - 54, cx + 14 + ax, cyy - 54 + ay, C('velocity'), 5);
@@ -74,7 +75,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     /* the height gained so far, bracketed against the full climb */
     line(ctx, x0, yt, 660, yt, PAL.rule, 2, [10, 10]);
     line(ctx, x0, yb, 660, yb, PAL.rule, 2, [10, 10]);
-    vbracket(ctx, 630, cyy, yb, C('position'), fmt(s.y, 1) + ' m', 1);
+    vbracket(ctx, 630, yb - (yb - yt) * s.f, yb, C('position'), fmt(s.y, 1) + ' m', 1);
     text(ctx, 'of ' + fmt(H.v, 1) + ' m', 646, yt + 22, C('position'), { size: 17, weight: 600 });
     text(ctx, 't = ' + fmt(tau, 1) + ' s', 110, 130, C('time'), { weight: 600, size: 24 });
     /* ---- the account, on the right ---- */
