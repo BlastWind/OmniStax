@@ -166,17 +166,25 @@ graph · 3D
    90º. Draws force, position.
 5. `sim-cavendish` · replaces Figure 6.25 (the torsion balance, the
    mirror, the light source and the scale) · cavendish-experiment,
-   gravitational-constant, universal-gravitation · **still**: the balance
-   settles where the attraction and the twist of the fiber balance, and
-   the figure answers its sliders; nothing accumulates as a clock runs ·
-   the suspended masses $m$ (0.2 to 5.0 kg, default 1.0, ink), the masses
-   on the stand $M$ (2 to 50 kg, default 20, ink), the distance between
-   the centers $\kr$ (0.05 to 0.50 m, default 0.10, position) · “1.0 kg
-   spheres 0.10 m from 20 kg spheres attract with 1.33 × 10⁻⁷ N, and the
-   light spot rests that far along the scale” · none · no. Readout:
-   $\kF = G\,mM/\kr^2$ with the numbers; small line on the scale reading
-   being proportional to the attraction, which is how a force this small
-   is measured at all. Draws force, position.
+   gravitational-constant, universal-gravitation · **moving**: the large
+   spheres swing in on their arm, the rod turns toward them, the fiber
+   takes up the twist, the mirror carries the beam to a new place on the
+   scale and the balance rings down about its new rest · the mass on the
+   stand $M$ (5 to 160 kg, default 30, ink), the distance between the
+   centers $\kr$ (0.20 to 0.60 m, default 0.20, position), and how many
+   times larger than life the twist is drawn (1 to 400, default 200, ink);
+   the suspended spheres are 0.73 kg, as Cavendish’s were, and every
+   sphere is drawn at the size lead of its mass has · “Each pair attracts
+   with 3.65 × 10⁻⁸ N, the fibre holds a twist of 0.026° and the spot rests
+   1.44 mm from the zero mark, drawn 200 times larger than life” · none ·
+   yes, rebuilt 2026-09-12 at Chen’s request as a THREE.js scene (wooden
+   frame, brass fittings, lead spheres, a strand-textured fiber with a
+   close-up inset, the mirror, the lamp, its beam and the spot on an arc
+   scale), the headline, labels, $\kF$ arrow and $\kr$ line on the 2D
+   layer above it, a small drag to orbit with a reset, and the flat view
+   from above where WebGL is missing. Readout: $\kF = G\,mM/\kr^2$
+   with the numbers; small line on the twist and the spot’s travel in life
+   and how many times larger they are drawn. Draws force, position.
 
 Photographs and artwork, each with keep or drop and the reason:
 

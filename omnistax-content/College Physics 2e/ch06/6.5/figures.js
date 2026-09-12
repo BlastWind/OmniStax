@@ -2,7 +2,7 @@
    the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, pinned, labeller, topline } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -239,155 +239,504 @@ function sun(ctx, x, y, r, color) {
 })();
 
 /* =====================================================================
-   FIGURE 6.21 + 6.22: the tidal bulge, and what the Sun does to it. Earth
-   turns under the bulge once a day, which is why a coast passes through
-   two high tides and two low ones, so the figure runs a cycle of one day
-   and gets the transport.
+   FIGURE 6.21 + 6.22: the tides as a day's motion. The Moon pulls the
+   near water hardest, Earth less and the far water least, and what is
+   left of each pull once the pull on Earth's center is taken away is the
+   tidal force that stands the water up on both sides. Earth turns under
+   those two bulges once a day while the Moon creeps along its orbit, so
+   a marked coast passes high, low, high, low and its second high tide
+   comes a little after twelve hours. The Sun's bulge adds along or across
+   the Moon's, which is the spring and the neap tide. Runs a day, so it
+   gets the transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-tides', 680);
-  const phi = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 0, unit: '\u00BA', dec: 0, aria: 'the angle of the Sun from the Earth-Moon line' });
-  const cy = cycle(() => 24, 1.0);
+  const d = sim('sim-tides', 700);
+  const rM = ctl(d.controls, { label: '\\kr', cls: 'position', min: 3, max: 5, step: 0.01, value: 3.84, unit: '\u00D7 10\u2078 m', dec: 2, aria: 'the distance from Earth to the Moon' });
+  const phi = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 0, unit: '\u00BA', dec: 0, aria: 'the angle of the Sun from the Earth-Moon line, zero for a spring tide and ninety for a neap tide' });
+  const cy = cycle(() => 24, 1.2);
   const pull = (dist) => (G_MEASURED * M_MOON) / (dist * dist);
+  const cx = 680, cyy = 320, R = 100, D0 = 400;        /* Earth, and the Moon's drawn distance at 3.84 */
+  /* a point at drawn distance q from Earth's center along the direction th (counterclockwise, as on the page) */
+  const at = (q, th) => ({ x: cx + q * Math.cos(th), y: cyy - q * Math.sin(th) });
+  /* the trace of the tide at the coast: a fixed frame of one day and of the
+     largest tide the Sun can add to the Moon's, so the curve never rescales */
+  const box = { l: 985, t: 500, r: 1340, b: 640 };
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = cy.now(), a = (TAU * tau) / 24;
+    const L = labeller(ctx, 700); L.block(0, 0, 1400, 90);
+    const tau = cy.now();
+    const a = (TAU * tau) / 24;                        /* Earth has turned this far */
+    const lineA = (TAU * tau) / (24 * T_MOON);         /* and the Moon has moved this far along its orbit */
+    const D = D0 * (rM.v / 3.84);
     /* The Moon raises a bulge along its own line and the Sun along its own, and
-       the two add as tidal bulges do, so the water stands highest when the Sun
-       is in line with the Earth-Moon direction and lowest when it stands at
-       ninety degrees to it. */
+       the two add as tidal bulges do: the Sun's is about half the Moon's, and the
+       water stands highest when the Sun is in line with the Moon and lowest when
+       it stands at ninety degrees to it. psi is where the joint bulge points,
+       measured from the Moon's line. */
     const p = phi.v * RAD, A = 1, B = 0.46;
     const amp = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(2 * p));
     const psi = 0.5 * Math.atan2(B * Math.sin(2 * p), A + B * Math.cos(2 * p));
-    const cx = 480, cyy = 300, R = 100;
-    const sa = R * (1.12 + 0.42 * amp), sb = R * (1.1 - 0.02 * amp);
-    /* the water: a body of ocean all round Earth, drawn as an ellipse stretched
-       along the bulge, so that it stands high on two sides and low on the others */
-    ctx.save(); ctx.translate(cx, cyy); ctx.rotate(psi);
-    ctx.fillStyle = alpha(C('position'), 0.4); ctx.strokeStyle = C('position'); ctx.lineWidth = 3;
+    const bulgeA = lineA + psi;
+    const sa = R * (1.14 + 0.36 * amp), sb = R * (1.08 - 0.02 * amp);
+    /* the water: a body of ocean all round Earth, drawn as an ellipse stretched along
+       the joint bulge, so that it stands high on two sides and low on the other two */
+    ctx.save(); ctx.translate(cx, cyy); ctx.rotate(-bulgeA);
+    ctx.fillStyle = alpha(PAL.muted, 0.28); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.ellipse(0, 0, sa, sb, 0, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'Earth', cx, cyy - 12, PAL.ink, { weight: 600, align: 'center' });
-    text(ctx, 'water', cx + (sa - 24) * Math.cos(psi) * 0.62 - 20, cyy + (sa - 24) * Math.sin(psi) * 0.62 + 30, C('position'), { size: 16, align: 'center', weight: 600 });
-    /* Earth turns under the bulge: a curved arrow inside it */
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cyy, R * 0.6, 0.35 * Math.PI, 0.72 * Math.PI); ctx.stroke(); ctx.restore();
-    arrow(ctx, cx + R * 0.6 * Math.cos(0.7 * Math.PI), cyy + R * 0.6 * Math.sin(0.7 * Math.PI), cx + R * 0.6 * Math.cos(0.78 * Math.PI), cyy + R * 0.6 * Math.sin(0.78 * Math.PI), PAL.muted, 3);
+    text(ctx, 'Earth', cx, cyy - 64, PAL.ink, { weight: 600, align: 'center' });
+    const wl = at(sa - 22, bulgeA + 0.5 * Math.PI + 0.9);
+    text(ctx, 'water', wl.x, wl.y, PAL.muted, { size: 16, align: 'center', weight: 600 });
+    /* Earth turns: a curved arrow inside it, running the way the coast goes */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cyy, R * 0.55, 0.2 * Math.PI, 0.6 * Math.PI); ctx.stroke(); ctx.restore();
+    const ta = at(R * 0.55, -0.2 * Math.PI), tb = at(R * 0.55, -0.12 * Math.PI);
+    arrow(ctx, ta.x, ta.y, tb.x, tb.y, PAL.muted, 3);
     text(ctx, 'Earth turns', cx, cyy + 14, PAL.muted, { size: 15, align: 'center' });
-    text(ctx, 'high tide', cx + (sa - 36) * Math.cos(psi), cyy + (sa - 36) * Math.sin(psi), PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'high tide', cx - (sa - 36) * Math.cos(psi), cyy - (sa - 36) * Math.sin(psi), PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'low tide', cx - (sb + 26) * Math.sin(psi), cyy + (sb + 26) * Math.cos(psi), PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'low tide', cx + (sb + 26) * Math.sin(psi), cyy - (sb + 26) * Math.cos(psi), PAL.muted, { size: 17, align: 'center' });
-    /* the coast that Earth carries round under the bulge */
-    const kx = cx + R * Math.cos(a), ky = cyy + R * Math.sin(a);
-    dot(ctx, kx, ky, PAL.ink, true, 10);
-    text(ctx, 'a coast', kx + 22 * Math.cos(a), ky + 22 * Math.sin(a), PAL.ink, { size: 17, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    /* the Moon on the line, and the Sun swung round from it */
-    const mx = cx + 620, my = cyy;
-    moon(ctx, mx, my, 34, PAL.ink);
-    text(ctx, 'the Moon', mx, my + 62, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    /* the Moon's path: it moves along its orbit, across the Earth-Moon line, as the
-       book draws it with an arrow from the Moon */
-    arrow(ctx, mx, my - 44, mx, my - 120, PAL.ink, 4);
-    text(ctx, "the Moon's path", mx, my - 138, PAL.muted, { size: 16, align: 'center' });
-    line(ctx, cx + sa, cyy, mx - 44, my, PAL.rule, 2, [10, 10]);
-    const sx = cx - 230 * Math.cos(p), sy2 = cyy + 230 * Math.sin(p);
-    line(ctx, cx, cyy, sx, sy2, PAL.rule, 2, [10, 10]);
-    sun(ctx, sx, sy2, 28, PAL.ink);
-    text(ctx, 'the Sun', sx, sy2 + 66, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    /* the three pulls that raise the water on both sides */
-    const near = pull(R_MOON_ORBIT - R_EARTH), mid = pull(R_MOON_ORBIT), far = pull(R_MOON_ORBIT + R_EARTH);
-    text(ctx, 'the Moon pulls the near water hardest and the far water least', 780, 452, PAL.muted, { size: 17 });
-    [['near water', 112], ['Earth', 82], ['far water', 60]].forEach(([lab, len], i) => {
-      const y = 500 + i * 46;
-      arrow(ctx, 780, y, 780 + len, y, C('force'), 5);
-      text(ctx, lab, 780 + len + 16, y, PAL.muted, { size: 17 });
+    /* the Moon on its line, the line itself, and the orbit it creeps along */
+    const m = at(D, lineA);
+    line(ctx, cx + R * Math.cos(lineA), cyy - R * Math.sin(lineA), m.x - 40 * Math.cos(lineA), m.y + 40 * Math.sin(lineA), alpha(PAL.ink, 0.35), 2, [10, 10]);
+    const rl = at(D * 0.72, lineA - 0.09);
+    text(ctx, 'r = ' + fmt(rM.v, 2) + ' \u00D7 10\u2078 m', rl.x, rl.y + 26, C('position'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([4, 8]); ctx.beginPath(); ctx.arc(cx, cyy, D, -lineA - 0.5, -lineA + 0.34); ctx.stroke(); ctx.restore();
+    const oa = at(D, lineA + 0.14), ob = at(D, lineA + 0.24);
+    arrow(ctx, oa.x, oa.y, ob.x, ob.y, PAL.ink, 3);
+    moon(ctx, m.x, m.y, 34, PAL.ink);
+    text(ctx, 'the Moon', m.x, m.y + 62, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'moves ' + fmt((lineA / RAD), 1) + '\u00BA along its orbit', m.x, m.y + 88, PAL.muted, { size: 15, align: 'center' });
+    /* the Sun, swung round from the far end of the Earth-Moon line by theta */
+    const sunA = lineA + Math.PI + p, s = at(232, sunA);
+    line(ctx, cx + R * Math.cos(sunA), cyy - R * Math.sin(sunA), s.x - 50 * Math.cos(sunA), s.y + 50 * Math.sin(sunA), alpha(PAL.ink, 0.35), 2, [10, 10]);
+    sun(ctx, s.x, s.y, 26, PAL.ink);
+    text(ctx, 'the Sun', s.x, s.y + 62, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    /* the three pulls the Moon exerts, drawn at the near side, the center and the
+       far side along the Moon's line with lengths that follow 1/r squared in the
+       drawing's own distances, so the near arrow is longest and the far one shortest */
+    const near = pull(rM.v * 1e8 - R_EARTH), mid = pull(rM.v * 1e8), far = pull(rM.v * 1e8 + R_EARTH);
+    const drawn = (q) => 55 * (D0 / q) * (D0 / q);   /* 55 units at the default distance, so the near arrow stops short of the Moon at 3 */
+    const Ln = drawn(D - R), Lm = drawn(D), Lf = drawn(D + R);
+    const ux = Math.cos(lineA), uy = -Math.sin(lineA), vx = -uy, vy = ux;
+    const raw = [[R, Ln, 'pull on the near water'], [0, Lm, 'pull on Earth'], [-R, Lf, 'pull on the far water']];
+    raw.forEach(([q, len, lab]) => {
+      const x0 = cx + q * ux, y0 = cyy + q * uy;
+      arrow(ctx, x0, y0, x0 + len * ux, y0 + len * uy, C('force'), 4);
+      L.add(lab, x0 + len * ux, y0 + len * uy, q > 0 ? vx : -vx, q > 0 ? vy : -vy, C('force'), 16, q === 0 ? 34 : 24);
     });
+    /* what is left of each once the pull on Earth's center is taken away: the
+       tidal force, outward on both sides, which is what stands the water up */
+    const kt = 2, tn = kt * (Ln - Lm), tf = kt * (Lm - Lf);
+    [[1, tn], [-1, tf]].forEach(([sg, len]) => {
+      const x0 = cx + sg * sa * ux + 24 * vx * sg, y0 = cyy + sg * sa * uy + 24 * vy * sg;
+      arrow(ctx, x0, y0, x0 + sg * len * ux, y0 + sg * len * uy, C('force'), 6);
+      L.add('tidal force', x0 + sg * len * ux, y0 + sg * len * uy, sg * ux, sg * uy, C('force'), 17, 22);
+    });
+    /* the coast that Earth carries round under the bulge, and its tide */
+    const k = at(R, a);
+    dot(ctx, k.x, k.y, PAL.ink, true, 10);
+    L.add('a coast', k.x, k.y, Math.cos(a), -Math.sin(a), PAL.ink, 17, 22);
+    const height = (t) => amp * Math.cos(2 * ((TAU * t) / 24 - (TAU * t) / (24 * T_MOON) - psi));
+    const h = height(tau);
+    /* the ledger: the subtraction, arrow by arrow */
+    const lx = 70, ly = 505;
+    text(ctx, "the Moon's pull", lx + 120, ly, PAL.muted, { size: 16 });
+    text(ctx, "less the pull on Earth's center: the tidal force", lx + 300, ly, PAL.muted, { size: 16 });
+    [['near water', Ln, tn], ['Earth', Lm, 0], ['far water', Lf, -tf]].forEach(([lab, len, tid], i) => {
+      const y = ly + 40 + i * 44;
+      text(ctx, lab, lx, y, PAL.muted, { size: 17 });
+      arrow(ctx, lx + 120, y, lx + 120 + len, y, C('force'), 4);
+      if (tid === 0) { dot(ctx, lx + 400, y, C('force'), false, 6); text(ctx, 'nothing', lx + 416, y, PAL.muted, { size: 15 }); }
+      else arrow(ctx, lx + 400, y, lx + 400 + tid, y, C('force'), 6);
+    });
+    /* the tide-height trace: axes fixed once from the largest spring tide */
+    text(ctx, 'the tide at the coast', box.l, box.t - 24, PAL.muted, { size: 17 });
+    const { X, Y } = axes(ctx, box, [0, 24], [-1.6, 1.6], { nx: 4, ny: 2, fx: (v) => fmt(v, 0) + ' h', fy: (v) => (v > 0 ? 'high' : v < 0 ? 'low' : '') });
+    if (tau > 0.05) curve(ctx, height, 0, tau, X, Y, PAL.ink, 3);
+    pinned(ctx, box, X, Y, tau, h, PAL.ink);
     /* the state of the marked coast, read off the water above it */
-    const rel = Math.abs(Math.cos(a - psi));
-    const stateOf = rel > 0.92 ? 'stands at high tide' : rel < 0.08 ? 'stands at low tide' : rel > 0.5 ? 'is running toward high tide' : 'is running toward low tide';
-    headline(ctx, 't = ' + fmt(tau, 1) + ' h \u00B7 the marked coast has turned ' + fmt((tau / 24) * 360, 0) + '\u00BA and ' + stateOf);
-    text(ctx, phi.v < 15 ? 'The Sun is in line with the Earth-Moon direction, so the two bulges add and these are the largest tides of the month, the spring tides.'
-      : phi.v > 75 ? 'The Sun stands at right angles to the Earth-Moon line, so the two bulges work against each other and these are the smallest tides, the neap tides.'
-        : 'The Sun stands part way round from the Earth-Moon line, so its bulge adds to the Moon\u2019s only in part and the tides are middling.', 700, 648, PAL.muted, { size: 20, align: 'center' });
-    readout(d.readout, `G\\frac{M}{\\kr^2}:\\quad ${texSci(near, 2)}\\ \\text{(near)}\\;>\\;${texSci(mid, 2)}\\ \\text{(Earth)}\\;>\\;${texSci(far, 2)}\\ \\text{m/s}^2\\ \\text{(far)}`,
-      'The near side is pulled ' + fmt((100 * (near - mid)) / mid, 1) + ' per cent harder than Earth, and Earth ' + fmt((100 * (mid - far)) / far, 1) + ' per cent harder than the far side. Small as that difference is, it is what pulls the near water away from Earth and Earth away from the far water, so the water stands high on both sides at once.');
+    const rel = h / amp, ahead = height(tau + 0.3) / amp;
+    const stateOf = rel > 0.92 ? 'stands at high tide' : rel < -0.92 ? 'stands at low tide' : ahead > rel ? 'is running toward high tide' : 'is running toward low tide';
+    topline(ctx, 't = ' + fmt(tau, 1) + ' h \u00B7 Earth has turned ' + fmt((tau / 24) * 360, 0) + '\u00BA under the bulges and the coast ' + stateOf);
+    text(ctx, phi.v < 15 ? 'The Sun is in line with the Moon, so its bulge adds to the Moon\u2019s: these are the largest tides of the month, the spring tides.'
+      : phi.v > 75 ? 'The Sun stands at right angles to the Earth-Moon line, so its bulge works against the Moon\u2019s: these are the smallest tides, the neap tides.'
+        : 'The Sun stands part way round from the Earth-Moon line, so its bulge adds to the Moon\u2019s only in part and the tides are middling.', 700, 680, PAL.muted, { size: 19, align: 'center' });
+    L.flush();
+    readout(d.readout, `G\\frac{M}{\\kr^2}:\\quad ${texSci(near, 3)}\\ \\text{(near water)}\\;>\\;${texSci(mid, 3)}\\ \\text{(Earth)}\\;>\\;${texSci(far, 3)}\\ \\text{m/s}^2\\ \\text{(far water)}`,
+      'The Moon pulls the near water ' + fmt((100 * (near - mid)) / mid, 1) + ' per cent harder than it pulls Earth, and Earth ' + fmt((100 * (mid - far)) / far, 1) + ' per cent harder than the far water. Take away the pull on Earth\u2019s center and what is left pulls the near water away from Earth and Earth away from the far water, so the water stands high on both sides at once, and Earth turns under both bulges in a day. The drawing\u2019s distances are not to scale, so its arrows differ by more than these numbers do.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 24 / 5), draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 24 / 8), draw });
 })();
 
 /* =====================================================================
-   FIGURE 6.25: the Cavendish balance, seen from above. The fiber twists
-   until what it resists balances the attraction, and the figure answers
-   its sliders; nothing accumulates as a clock runs, so it is a still
-   picture with no transport.
+   FIGURE 6.25: the Cavendish balance, built as a scene in three dimensions
+   with the app's THREE.js renderer. The large spheres swing in on their
+   arm, the attraction turns the rod, the fibre takes up the twist, the
+   mirror on the rod's hanger sends the lamp's beam to a new place on the
+   scale, and the balance swings a few times about its new rest before it
+   settles. The twist is far too small to see, so a slider draws it larger
+   than life and the headline and readout say by how much. The 2D layer
+   above the scene carries the headline, the labels, the force arrow and
+   the distance between the centres in the book's colours; where WebGL is
+   missing the same canvas draws the balance from above instead.
 ===================================================================== */
 (function () {
   const d = sim('sim-cavendish', 620);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.2, max: 5, step: 0.1, value: 1, unit: 'kg', dec: 1, aria: 'the suspended masses' });
-  const M = ctl(d.controls, { label: 'M', cls: '', min: 2, max: 50, step: 1, value: 20, unit: 'kg', dec: 0, aria: 'the masses on the stand' });
-  const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.05, max: 0.5, step: 0.01, value: 0.1, unit: 'm', dec: 2, aria: 'the distance between the centers' });
-  const FULL = 3.8e-7;                        /* the attraction that carries the spot to the far end of the scale */
-  function draw() {
-    const { ctx } = begin(d.c);
-    const Fnow = (G_MEASURED * m.v * M.v) / (r.v * r.v);
-    const frac = Math.min(1, Fnow / FULL), off = Fnow >= FULL;
-    /* the balance seen from above: the beam with its two small spheres, the two
-       large spheres standing beside them, and the mirror at the fiber */
-    const px = 400, py = 330, arm = 150, twist = -12 * RAD * frac;
-    const gap = 70 + ((r.v - 0.05) / 0.45) * 120;
-    const rs = 12 + 8 * Math.sqrt(m.v / 5), rl = 20 + 12 * Math.sqrt(M.v / 50);
-    /* the base the large spheres stand on, and the circle the small ones swing round */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.ellipse(px, py, arm + rl + 30, gap + rl + 30, 0, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.arc(px, py, arm, 0, TAU); ctx.stroke(); ctx.restore();
-    text(ctx, 'the stand', px - arm - rl - 40, py + gap + rl + 10, PAL.muted, { size: 15, align: 'center' });
-    const bx = (s) => px + s * arm * Math.cos(twist), by = (s) => py + s * arm * Math.sin(twist);
-    [1, -1].forEach((s) => sphere(ctx, px + s * arm, py - s * gap, rl, PAL.ink));
-    /* the beam: a light rod hung from the fiber, with the small spheres at its ends */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.translate(px, py); ctx.rotate(twist);
-    ctx.beginPath(); ctx.rect(-arm, -5, 2 * arm, 10); ctx.fill(); ctx.stroke(); ctx.restore();
-    [1, -1].forEach((s) => sphere(ctx, bx(s), by(s), rs, PAL.ink));
-    text(ctx, 'the beam', bx(0.5), by(0.5) + 26, PAL.muted, { size: 15, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'M = ' + fmt(M.v, 0) + ' kg', px + arm, py - gap - rl - 26, PAL.ink, { weight: 600, align: 'center' });
-    text(ctx, 'M', px - arm, py + gap + rl + 26, PAL.ink, { weight: 600, align: 'center' });
-    text(ctx, 'm = ' + fmt(m.v, 1) + ' kg', bx(-1), by(-1) - rs - 26, PAL.ink, { weight: 600, align: 'center' });
-    text(ctx, 'm', bx(1), by(1) + rs + 26, PAL.ink, { weight: 600, align: 'center' });
-    /* each small sphere is drawn toward the large one beside it */
-    [1, -1].forEach((s) => {
-      const dx = px + s * arm - bx(s), dy = py - s * gap - by(s), L = Math.hypot(dx, dy) || 1;
-      arrow(ctx, bx(s), by(s), bx(s) + (dx / L) * 54, by(s) + (dy / L) * 54, C('force'), 4);
+  const M = ctl(d.controls, { label: 'M', cls: '', min: 5, max: 160, step: 1, value: 30, unit: 'kg', dec: 0, aria: 'the mass of each sphere on the stand', onInput: reset });
+  const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.2, max: 0.6, step: 0.01, value: 0.2, unit: 'm', dec: 2, aria: 'the distance between the centres of a small sphere and the large one beside it', onInput: reset });
+  const X = ctl(d.controls, { label: '\\times', cls: '', min: 1, max: 600, step: 1, value: 300, unit: '', dec: 0, aria: 'how many times larger than life the twist is drawn' });
+
+  /* ---------- the balance as numbers ---------- */
+  /* Lead spheres of 0.73 kg hang from the rod, as Cavendish's did, and every
+     sphere is drawn at the size lead of its mass really has. The rod is a
+     metre long, the arm carries the large spheres 0.6 m from the axis, and
+     the fibre is as stiff as one that lets the balance swing freely once in
+     seven minutes. The scale stands where the beam reaches the floor. */
+  const m_S = 0.73, RHO_LEAD = 11340;
+  const L = 0.5, A = 0.6, T_FREE = 420;
+  const R_S = Math.cbrt((3 * m_S) / (4 * Math.PI * RHO_LEAD));
+  const radiusL = (Mv) => Math.cbrt((3 * Mv) / (4 * Math.PI * RHO_LEAD));
+  const KAPPA = (4 * Math.PI * Math.PI * (2 * m_S * L * L)) / (T_FREE * T_FREE);   /* the fibre's torsion constant, N·m per radian */
+  const PHI_FAR = 115 * RAD;                                                        /* where the arm waits before it swings in */
+  const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+  /* the arm angle that puts a large sphere a distance rv from the small one beside it */
+  const phiFor = (rv) => Math.acos(clamp((A * A + L * L - rv * rv) / (2 * A * L), -1, 1));
+  /* the attraction across one pair when the arm stands at phi, and the twist the fibre holds against two of them */
+  function pull(Mv, phi) {
+    const dist = Math.sqrt(A * A + L * L - 2 * A * L * Math.cos(phi));
+    const F = (G_MEASURED * m_S * Mv) / (dist * dist);
+    const theta = (2 * F * L * ((A * Math.sin(phi)) / dist)) / KAPPA;
+    return { dist, F, theta };
+  }
+  /* the loop: a short rest, the arm swings in over 2.8 s, then the balance rings down about its new rest */
+  const T0 = 1.2, T1 = 4.0, T = 10;
+  const cy = cycle(() => T, 1.2);
+  const ease = (u) => u * u * (3 - 2 * u);
+  function state(tau) {
+    const u = tau <= T0 ? 0 : tau >= T1 ? 1 : ease((tau - T0) / (T1 - T0));
+    const phiRest = phiFor(r.v), phi = PHI_FAR + (phiRest - PHI_FAR) * u;
+    const now = pull(M.v, phi), rest = pull(M.v, phiRest);
+    const s = Math.max(0, tau - T1), ring = s > 0 ? 0.35 * rest.theta * Math.exp(-s / 1.6) * Math.sin((TAU / 2.4) * s) : 0;
+    const theta = now.theta + ring, rL = radiusL(M.v);
+    /* drawn larger than life, but never so large that the small sphere is drawn into the large one */
+    const cap = Math.max(0, phi - phiFor(R_S + rL + 0.01));
+    const drawn = Math.min(theta * X.v, cap);
+    return { tau, u, phi, phiRest, now, rest, theta, rL, drawn, pinned: rest.theta * X.v > Math.max(0, phiRest - phiFor(R_S + rL + 0.01)), ringing: Math.abs(ring) > 0.04 * rest.theta };
+  }
+  function reset() { cy.reset(); }
+  const deg = (a) => fmt(a / RAD, a / RAD < 0.1 ? 3 : 2) + '°';
+  const mm = (x) => (x * 1000 < 10 ? fmt(x * 1000, 2) : fmt(x * 1000, 1)) + ' mm';
+
+  /* ---------- the scene ---------- */
+  const THREE = window.THREE;
+  const hasGL = !!(THREE && typeof WebGLRenderingContext === 'function');   /* the renderer itself throws where no context can be made, and the flat drawing takes over */
+  const Y_ROD = 0.45, Y_MIRROR = 0.6, Y_HUB_TOP = 0.68, Y_TOP = 1.5, Y_ARM = 0.2, Y_SCALE = 0.014;
+  const LAMP = [1.8, Y_MIRROR, 0];
+  const N0 = [1, -0.355, 1];                       /* the mirror faces the lamp and the scale at once, tilted a little downward */
+  const RING = { r: 1.6, a0: 0, a1: 0 };           /* the scale: an arc on the floor at the radius the beam reaches, from a0 to a1 round the axis */
+  const INSET = { l: 1082, t: 352, w: 300, h: 214 }; /* the close-up of the fibre, bottom right under the lamp, in logical units */
+  let S = null;                                    /* everything the scene holds, built once */
+
+  /* a canvas the size given, drawn by fn, as a repeating texture */
+  function canvasTex(w, h, fn, rep) {
+    const c = document.createElement('canvas'); c.width = w; c.height = h; fn(c.getContext('2d'), w, h);
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.encoding = THREE.sRGBEncoding; if (rep) t.repeat.set(rep[0], rep[1]); return t;
+  }
+  /* a small deterministic noise, so the textures are the same on every visit */
+  function noise(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function woodTex() {
+    return canvasTex(512, 512, (g, w, h) => {
+      const rnd = noise(7);
+      g.fillStyle = '#7d4f28'; g.fillRect(0, 0, w, h);
+      for (let y = 0; y < h; y += 2) {
+        const k = 0.5 + 0.5 * Math.sin(y * 0.09 + 2 * Math.sin(y * 0.021)) + 0.25 * (rnd() - 0.5);
+        g.fillStyle = `rgba(${(60 + 30 * k) | 0}, ${(34 + 18 * k) | 0}, ${(14 + 8 * k) | 0}, ${0.18 + 0.22 * k})`; g.fillRect(0, y, w, 2);
+      }
+      for (let i = 0; i < 40; i++) { g.fillStyle = 'rgba(40,22,8,0.12)'; g.fillRect(0, rnd() * h, w, 1); }
+    }, [2, 2]);
+  }
+  /* the fibre: a few strands wound round each other, as a colour map and a normal map made from the same relief */
+  function strandRelief(w, h) {
+    const rel = new Float32Array(w * h), N = 5;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const u = x / w, v = y / h;                          /* u round the fibre, v along it */
+      const phase = (((u * N - v * 3) % 1) + 1) % 1;       /* N strands, wound at about 45 degrees */
+      const bump = Math.sin(phase * Math.PI);
+      rel[y * w + x] = bump * bump;
+    }
+    return rel;
+  }
+  function fibreMaps() {
+    const w = 256, h = 256, rel = strandRelief(w, h), rnd = noise(11);
+    const col = canvasTex(w, h, (g) => {
+      const img = g.createImageData(w, h);
+      for (let i = 0; i < w * h; i++) { const k = 150 + 80 * rel[i] + 12 * (rnd() - 0.5); img.data[i * 4] = k + 10; img.data[i * 4 + 1] = k + 4; img.data[i * 4 + 2] = k - 14; img.data[i * 4 + 3] = 255; }
+      g.putImageData(img, 0, 0);
     });
-    text(ctx, 'F', bx(1) - 46, by(1) - 8, C('force'), { size: 24, weight: 600, align: 'right' });
-    line(ctx, px + arm, by(1), px + arm, py - gap, C('position'), 3, [6, 8]);
-    text(ctx, 'r = ' + fmt(r.v, 2) + ' m', px + arm + rl + 20, (by(1) + py - gap) / 2, C('position'), { size: 20, weight: 600 });
-    /* the mirror on the fiber, and the twist the fiber takes up */
-    line(ctx, px - 32 * Math.sin(twist), py + 32 * Math.cos(twist), px + 32 * Math.sin(twist), py - 32 * Math.cos(twist), PAL.muted, 5);
+    const nor = canvasTex(w, h, (g) => {
+      const img = g.createImageData(w, h);
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const l = rel[y * w + ((x + w - 1) % w)], rr = rel[y * w + ((x + 1) % w)], up = rel[((y + h - 1) % h) * w + x], dn = rel[((y + 1) % h) * w + x];
+        const nx = (l - rr) * 2.2, ny = (up - dn) * 2.2, nz = 1, len = Math.hypot(nx, ny, nz), i = (y * w + x) * 4;
+        img.data[i] = 128 + 127 * (nx / len); img.data[i + 1] = 128 + 127 * (ny / len); img.data[i + 2] = 128 + 127 * (nz / len); img.data[i + 3] = 255;
+      }
+      g.putImageData(img, 0, 0);
+    });
+    nor.encoding = THREE.LinearEncoding;
+    return { col, nor };
+  }
+  /* an environment for the metals to reflect: a soft grey sky and two bright windows */
+  function environment(renderer) {
+    const env = new THREE.Scene();
+    const sky = canvasTex(4, 64, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#dfe4ea'); gr.addColorStop(0.55, '#8d949c'); gr.addColorStop(1, '#3c3f45'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(40, 24, 16), new THREE.MeshBasicMaterial({ map: sky, side: THREE.BackSide })));
+    const win = (x, y, z, c, w, h) => { const p = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c })); p.position.set(x, y, z); p.lookAt(0, 0, 0); env.add(p); };
+    win(-12, 18, 12, 0xffffff, 14, 9); win(22, 8, -10, 0xfff1d6, 10, 7);
+    const pm = new THREE.PMREMGenerator(renderer); const t = pm.fromScene(env, 0.02).texture; pm.dispose(); return t;
+  }
+  /* a cylinder of unit height standing on the origin, so scale.y is its length and position its foot */
+  const stalkGeo = () => new THREE.CylinderGeometry(1, 1, 1, 16).translate(0, 0.5, 0);
+  const between = (mesh, a, b, rad) => {
+    const dir = new THREE.Vector3().subVectors(b, a), len = dir.length();
+    mesh.position.copy(a); mesh.scale.set(rad, len, rad); mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
+  };
+  /* the fibre twists: its top stays put and every ring below turns by its share of the angle at the bottom */
+  function twist(mesh, angle) {
+    const pos = mesh.geometry.attributes.position, base = mesh.userData.base, len = mesh.userData.len;
+    for (let i = 0; i < pos.count; i++) {
+      const x = base[3 * i], y = base[3 * i + 1], z = base[3 * i + 2], a = angle * ((len / 2 - y) / len), c = Math.cos(a), s = Math.sin(a);
+      pos.setXYZ(i, x * c + z * s, y, -x * s + z * c);
+    }
+    pos.needsUpdate = true; mesh.geometry.computeVertexNormals();
+  }
+  function fibre(rad, len, segs, mat) {
+    const g = new THREE.CylinderGeometry(rad, rad, len, 24, segs);
+    const mesh = new THREE.Mesh(g, mat); mesh.userData.base = Float32Array.from(g.attributes.position.array); mesh.userData.len = len;
+    mesh.castShadow = true; return mesh;
+  }
+  /* where the lamp's beam goes after the mirror when the rod has turned by ang: the point it leaves the mirror, its direction, and where it lands at the height of the scale */
+  function reflect(ang) {
+    const n = new THREE.Vector3(...N0).normalize().applyAxisAngle(new THREE.Vector3(0, 1, 0), ang);
+    const at = new THREE.Vector3(0, Y_MIRROR, 0).addScaledVector(n, 0.024);
+    const i = new THREE.Vector3().subVectors(at, new THREE.Vector3(...LAMP)).normalize();
+    const dir = i.clone().addScaledVector(n, -2 * i.dot(n)).normalize();
+    const hit = dir.y < -1e-4, t = hit ? (Y_SCALE - at.y) / dir.y : 6;
+    return { at, dir, land: at.clone().addScaledVector(dir, t), hit };
+  }
+  const projected = (v) => { const p = v.clone().project(S.cam); return [((p.x + 1) / 2) * 1400, ((1 - p.y) / 2) * 620]; };
+  const world = (obj, dy = 0) => { const v = new THREE.Vector3(); obj.getWorldPosition(v); v.y += dy; return v; };
+
+  function build() {
+    const wrap = el('div', 'three-wrap'); wrap.style.aspectRatio = '1400 / 620'; d.stage.insertBefore(wrap, d.c);
+    Object.assign(d.c.style, { position: 'absolute', top: '0', left: '0', width: '100%', background: 'transparent', pointerEvents: 'none', zIndex: '1' });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setClearColor(0x000000, 0); renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputEncoding = THREE.sRGBEncoding; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.95;
+    wrap.appendChild(renderer.domElement);
+    const scene = new THREE.Scene(); scene.environment = environment(renderer);
+    const cam = new THREE.PerspectiveCamera(24, 1400 / 620, 0.05, 40);
+    const inset = new THREE.PerspectiveCamera(28, INSET.w / INSET.h, 0.01, 5); inset.layers.set(1);
+    /* light: a soft sky, one lamp from the upper left that throws the shadows, and a cool fill from behind */
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x8a8078, 0.42); hemi.layers.enable(1); scene.add(hemi);
+    const sun = new THREE.DirectionalLight(0xfff3e0, 1.0); sun.position.set(-2.2, 4.2, 2.6); sun.castShadow = true; sun.layers.enable(1);
+    sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.01;
+    Object.assign(sun.shadow.camera, { left: -2.6, right: 2.6, top: 2.6, bottom: -2.6, near: 0.5, far: 12 }); scene.add(sun);
+    const fill = new THREE.DirectionalLight(0xdfe8ff, 0.35); fill.position.set(3, 2, -2); scene.add(fill);
+    /* materials */
+    const wood = new THREE.MeshStandardMaterial({ map: woodTex(), roughness: 0.72, metalness: 0 });
+    const brass = new THREE.MeshStandardMaterial({ color: 0xc9a45c, roughness: 0.32, metalness: 0.9 });
+    const lead = new THREE.MeshStandardMaterial({ color: 0x585c66, roughness: 0.42, metalness: 0.8 });
+    const fm = fibreMaps();
+    const silk = new THREE.MeshStandardMaterial({ map: fm.col, normalMap: fm.nor, normalScale: new THREE.Vector2(0.9, 0.9), roughness: 0.3, metalness: 0.55 });
+    const glass = new THREE.MeshStandardMaterial({ color: 0xf6f8fb, roughness: 0.04, metalness: 1 });
+    const ivory = new THREE.MeshStandardMaterial({ color: 0xf1e9d6, roughness: 0.85, metalness: 0 });
+    const inkm = new THREE.MeshStandardMaterial({ color: 0x24262b, roughness: 0.8, metalness: 0 });
+    const light = new THREE.MeshBasicMaterial({ color: 0xf0a828, transparent: true, opacity: 0.92, depthWrite: false });
+    const glow = new THREE.MeshBasicMaterial({ color: 0xf0a828, transparent: true, opacity: 0.32, depthWrite: false });
+    const shadowed = (mesh, cast = true, receive = true) => { mesh.castShadow = cast; mesh.receiveShadow = receive; return mesh; };
+    /* the floor takes the shadows and nothing else, so the page shows through in either theme */
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.ShadowMaterial({ opacity: 0.36 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    /* the frame: a small round stand under the pivot, a post at the left and a beam over the axis that the fibre hangs from */
+    scene.add(shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.34, 0.06, 64), wood)).translateY(0.03));
+    const postH = Y_TOP + 0.1 - 0.06;
+    scene.add(shadowed(new THREE.Mesh(new THREE.BoxGeometry(0.08, postH, 0.08), wood)).translateX(-1.08).translateY(postH / 2 + 0.06));
+    scene.add(shadowed(new THREE.Mesh(new THREE.BoxGeometry(1.24, 0.07, 0.08), wood)).translateX(-0.5).translateY(Y_TOP + 0.065));
+    const clampTop = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.05, 24), brass)); clampTop.position.y = Y_TOP + 0.005; scene.add(clampTop);
+    scene.add(shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 0.14, 32), brass)).translateY(0.13));
+    /* the arm that carries the large spheres, turning on the pivot */
+    const arm = new THREE.Group(); scene.add(arm);
+    arm.add(shadowed(new THREE.Mesh(new THREE.BoxGeometry(2 * A + 0.16, 0.035, 0.1), wood)).translateY(Y_ARM));
+    const bigs = [1, -1].map((s) => {
+      const stalk = shadowed(new THREE.Mesh(stalkGeo(), brass)); stalk.position.set(s * A, Y_ARM + 0.017, 0); arm.add(stalk);
+      const ball = shadowed(new THREE.Mesh(new THREE.SphereGeometry(1, 48, 32), lead)); ball.position.set(s * A, Y_ROD, 0); arm.add(ball);
+      return { stalk, ball };
+    });
+    /* the rod, its two small spheres, the hanger above it and the mirror on the hanger, all hung from the fibre */
+    const rod = new THREE.Group(); scene.add(rod);
+    const bar = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 2 * L, 16), brass)); bar.rotation.z = Math.PI / 2; bar.position.y = Y_ROD; rod.add(bar);
+    const smalls = [1, -1].map((s) => { const b = shadowed(new THREE.Mesh(new THREE.SphereGeometry(R_S, 40, 28), lead)); b.position.set(s * L, Y_ROD, 0); rod.add(b); return b; });
+    const hub = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, Y_HUB_TOP - Y_ROD, 24), brass)); hub.position.y = (Y_HUB_TOP + Y_ROD) / 2; hub.layers.enable(1); rod.add(hub);
+    const notch = new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.02, 0.004), inkm); notch.position.set(0.011, Y_HUB_TOP - 0.012, 0); notch.layers.enable(1); rod.add(notch);
+    const n0 = new THREE.Vector3(...N0).normalize();
+    const mirror = new THREE.Group(); mirror.position.set(0, Y_MIRROR, 0).addScaledVector(n0, 0.02); mirror.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n0); rod.add(mirror);
+    mirror.add(shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.036, 0.036, 0.004, 40), [brass, glass, inkm])));
+    const mirrorRim = shadowed(new THREE.Mesh(new THREE.TorusGeometry(0.036, 0.004, 12, 40), brass)); mirrorRim.rotation.x = Math.PI / 2; mirror.add(mirrorRim);
+    /* the fibre, and a short length of it just above the hanger that only the close-up sees */
+    const fibLen = Y_TOP - Y_HUB_TOP;
+    const fib = fibre(0.008, fibLen, 64, silk); fib.position.y = (Y_TOP + Y_HUB_TOP) / 2; fm.col.repeat.set(1, 36); fm.nor.repeat.set(1, 36); scene.add(fib);
+    const nearMat = silk.clone(); nearMat.map = fm.col.clone(); nearMat.normalMap = fm.nor.clone(); nearMat.map.repeat.set(1, 36 * (0.12 / fibLen)); nearMat.normalMap.repeat.set(1, 36 * (0.12 / fibLen)); nearMat.map.needsUpdate = nearMat.normalMap.needsUpdate = true;
+    const near = fibre(0.008, 0.12, 40, nearMat); near.position.y = Y_HUB_TOP + 0.06; near.layers.set(1); scene.add(near);
+    /* the lamp on its block, aimed at the mirror */
+    const lampBody = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.2, 32), brass)); lampBody.rotation.z = Math.PI / 2; lampBody.position.set(LAMP[0] + 0.1, LAMP[1], LAMP[2]); scene.add(lampBody);
+    const lens = new THREE.Mesh(new THREE.CircleGeometry(0.05, 32), new THREE.MeshBasicMaterial({ color: 0xfff1c0, side: THREE.DoubleSide })); lens.rotation.y = -Math.PI / 2; lens.position.set(LAMP[0] - 0.001, LAMP[1], LAMP[2]); scene.add(lens);
+    scene.add(shadowed(new THREE.Mesh(new THREE.BoxGeometry(0.08, LAMP[1] - 0.055, 0.08), wood)).translateX(LAMP[0] + 0.1).translateY((LAMP[1] - 0.055) / 2));
+    /* the two beams and the spot they end in */
+    const beamIn = new THREE.Mesh(stalkGeo(), light), beamOut = new THREE.Mesh(stalkGeo(), light); scene.add(beamIn, beamOut);
+    const spot = new THREE.Mesh(new THREE.CircleGeometry(0.02, 24), light), halo = new THREE.Mesh(new THREE.CircleGeometry(0.05, 24), glow);
+    spot.rotation.x = halo.rotation.x = -Math.PI / 2; scene.add(spot, halo);
+    /* the scale: an arc of ivory at the radius the beam reaches, a tick every two degrees of turn and a tall one every ten, and a brass pin at the zero mark */
+    const at0 = reflect(0).land, a0dir = Math.atan2(at0.x, at0.z);
+    Object.assign(RING, { r: Math.hypot(at0.x, at0.z), a0: a0dir - 10 * RAD, a1: a0dir + 70 * RAD });
+    const shape = new THREE.Shape();
+    shape.absarc(0, 0, RING.r + 0.05, RING.a0 - Math.PI / 2, RING.a1 - Math.PI / 2, false);
+    shape.absarc(0, 0, RING.r - 0.05, RING.a1 - Math.PI / 2, RING.a0 - Math.PI / 2, true);
+    const scaleMesh = shadowed(new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: 0.012, bevelEnabled: false }), ivory)); scaleMesh.rotation.x = -Math.PI / 2; scene.add(scaleMesh);
+    const tickMesh = new THREE.InstancedMesh(new THREE.BoxGeometry(0.0025, 0.002, 0.03), inkm, 41), tall = new THREE.InstancedMesh(new THREE.BoxGeometry(0.004, 0.002, 0.06), inkm, 9);
+    const mtx = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), one = new THREE.Vector3(1, 1, 1);
+    let ti = 0, tj = 0;
+    for (let k = 0; k <= 80; k += 2) {
+      const a = RING.a0 + k * RAD, big = k % 10 === 0, rr = RING.r + (big ? 0.02 : 0.035);
+      mtx.compose(new THREE.Vector3(rr * Math.sin(a), Y_SCALE, rr * Math.cos(a)), q.setFromAxisAngle(up, a), one);
+      if (big) tall.setMatrixAt(tj++, mtx); else tickMesh.setMatrixAt(ti++, mtx);
+    }
+    tickMesh.count = ti; tall.count = tj; scene.add(tickMesh, tall);
+    const pin = shadowed(new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.05, 12), brass)); pin.position.set((RING.r - 0.032) * Math.sin(a0dir), 0.037, (RING.r - 0.032) * Math.cos(a0dir)); scene.add(pin);
+    /* the view: fixed, from the book's side of the balance, and turned a little by a drag */
+    const view = { az: 36 * RAD, el: 20 * RAD, dist: 5.1, target: new THREE.Vector3(0.3, 0.42, 0.3) };
+    const home = { az: view.az, el: view.el };
+    const aim = () => { cam.position.set(view.target.x + view.dist * Math.cos(view.el) * Math.sin(view.az), view.target.y + view.dist * Math.sin(view.el), view.target.z + view.dist * Math.cos(view.el) * Math.cos(view.az)); cam.lookAt(view.target); };
+    aim();
+    let drag = null;
+    wrap.style.touchAction = 'pan-y'; wrap.style.cursor = 'grab';
+    wrap.addEventListener('pointerdown', (e) => { if (e.button !== 0) return; drag = { x: e.clientX, y: e.clientY, az: view.az, el: view.el }; wrap.setPointerCapture(e.pointerId); wrap.style.cursor = 'grabbing'; });
+    wrap.addEventListener('pointermove', (e) => { if (!drag) return; view.az = clamp(drag.az - (e.clientX - drag.x) * 0.006, home.az - 70 * RAD, home.az + 70 * RAD); view.el = clamp(drag.el + (e.clientY - drag.y) * 0.005, 6 * RAD, 70 * RAD); aim(); });
+    const endDrag = () => { drag = null; wrap.style.cursor = 'grab'; };
+    wrap.addEventListener('pointerup', endDrag); wrap.addEventListener('pointercancel', endDrag);
+    const resetView = () => { view.az = home.az; view.el = home.el; aim(); draw(); };
+    wrap.addEventListener('dblclick', resetView);
+    const back = el('button', 'tbtn', 'reset view'); back.type = 'button'; back.title = 'Look from the book’s side again';
+    Object.assign(back.style, { position: 'absolute', left: '10px', bottom: '10px', zIndex: '2', width: 'auto', padding: '0 9px', fontSize: '0.72rem' });
+    back.addEventListener('click', resetView); wrap.appendChild(back);
+    /* size follows the column */
+    const size = () => { const w = wrap.clientWidth || 800, h = wrap.clientHeight || Math.round((w * 620) / 1400); renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false); };
+    size(); if (typeof ResizeObserver === 'function') new ResizeObserver(() => { size(); draw(); }).observe(wrap);
+    S = { wrap, renderer, scene, cam, inset, arm, bigs, rod, smalls, fib, near, fibLen, mirror, beamIn, beamOut, spot, halo, at0 };
+  }
+
+  function draw() {
+    const st = state(cy.now());
+    const { ctx } = begin(d.c);
+    if (S) draw3d(ctx, st); else drawFlat(ctx, st);
+    /* the headline, in the words of the moment */
+    const drawnNote = ' drawn ' + fmt(X.v, 0) + ' times larger than life';
+    const head = st.u === 0 ? 'The large spheres stand away from the small ones, and the light spot rests by the zero mark of the scale.'
+      : st.u < 1 ? 't = ' + fmt(st.tau, 1) + ' s · the large spheres swing in, and the rod turns toward them as the attraction grows, the twist' + drawnNote + '.'
+        : st.ringing ? 't = ' + fmt(st.tau, 1) + ' s · the balance swings a few times about its new rest before it settles, the twist' + drawnNote + '.'
+          : 'Each pair attracts with ' + sci(st.rest.F, 2) + ' N, the fibre holds a twist of ' + deg(st.rest.theta) + ' and the spot rests ' + mm(2 * st.rest.theta * RING.r) + ' from the zero mark,' + drawnNote + (st.pinned ? ', as far as the spheres allow.' : '.');
+    topline(ctx, head);
+    readout(d.readout, `\\kF = G\\frac{mM}{\\kr^2} = \\frac{(${texSci(G_MEASURED, 3)})(${fmt(m_S, 2)}\\ \\text{kg})(${fmt(M.v, 0)}\\ \\text{kg})}{(${fmt(r.v, 2)}\\ \\text{m})^2} = ${texSci(st.rest.F, 2)}\\ \\text{N}`,
+      'The fibre twists until the torque it resists balances the torque of the attraction, so the spot moves further along the scale the stronger the attraction is: here a twist of ' + deg(st.rest.theta) + ' that carries the spot ' + mm(2 * st.rest.theta * RING.r) + ', which the drawing shows ' + fmt(X.v, 0) + ' times larger than life' + (st.pinned ? ', or as large as it can before the spheres would touch' : '') + '. The suspended spheres have a mass of ' + fmt(m_S, 2) + ' kg and the balance swings freely once in seven minutes, as Cavendish’s did.');
+  }
+
+  /* ---------- the scene each frame, and the 2D layer over it ---------- */
+  function draw3d(ctx, st) {
+    const { renderer, scene, cam, inset, arm, bigs, rod, smalls, fib, near, fibLen, beamIn, beamOut, spot, halo, wrap } = S;
+    arm.rotation.y = st.phi; rod.rotation.y = st.drawn;
+    bigs.forEach(({ stalk, ball }) => { ball.scale.setScalar(st.rL); stalk.scale.set(0.016, Y_ROD - st.rL - stalk.position.y + 0.01, 0.016); });
+    twist(fib, st.drawn); twist(near, st.drawn * (0.12 / fibLen)); near.rotation.y = st.drawn * (1 - 0.12 / fibLen);
+    const ref = reflect(st.drawn);
+    between(beamIn, new THREE.Vector3(...LAMP), ref.at, 0.006); between(beamOut, ref.at, ref.land, 0.006);
+    spot.visible = halo.visible = ref.hit; spot.position.set(ref.land.x, Y_SCALE + 0.002, ref.land.z); halo.position.copy(spot.position);
+    const spotAng = Math.atan2(ref.land.x, ref.land.z), onScale = ref.hit && spotAng >= RING.a0 && spotAng <= RING.a1;
+    /* the scene, then the close-up of the fibre in its own corner */
+    const cw = wrap.clientWidth, ch = wrap.clientHeight, k = cw / 1400;
+    renderer.setScissorTest(false); renderer.setViewport(0, 0, cw, ch); renderer.setClearColor(0x000000, 0); renderer.clear(); renderer.render(scene, cam);
+    inset.position.set(0.02, Y_HUB_TOP + 0.02, 0.105); inset.lookAt(0, Y_HUB_TOP + 0.02, 0);
+    const il = INSET.l * k, it = (620 - INSET.t - INSET.h) * k, iw = INSET.w * k, ih = INSET.h * k;
+    renderer.setScissorTest(true); renderer.setScissor(il, it, iw, ih); renderer.setViewport(il, it, iw, ih);
+    renderer.setClearColor(0x2a2c31, 1); renderer.clear(); renderer.render(scene, inset); renderer.setScissorTest(false);
+    /* the labels: each beside its thing on a page-colour panel, and the two typed quantities in their colours */
+    const lab = labeller(ctx, 620);
+    lab.block(0, 0, 1400, 96); lab.block(INSET.l - 8, INSET.t - 8, INSET.l + INSET.w + 8, INSET.t + INSET.h + 40); lab.block(300, 582, 1070, 620);
+    /* the spheres keep the labels off them: each is reserved as the square round its projected disc */
+    [...bigs.map((b) => [b.ball, st.rL]), ...smalls.map((b) => [b, R_S])].forEach(([ball, rad]) => { const c = projected(world(ball)), t = projected(world(ball, rad)), q = Math.hypot(t[0] - c[0], t[1] - c[1]); lab.block(c[0] - q, c[1] - q, c[0] + q, c[1] + q); });
+    const pBack = projected(world(bigs[0].ball)), pSmallBack = projected(world(smalls[0])), pSmallFront = projected(world(smalls[1]));
+    /* the distance between the centres of the back pair, and the force that pulls the small sphere across it */
+    line(ctx, pSmallBack[0], pSmallBack[1], pBack[0], pBack[1], C('position'), 3, [6, 8]);
+    lab.add('r = ' + fmt(r.v, 2) + ' m', (pSmallBack[0] + pBack[0]) / 2, (pSmallBack[1] + pBack[1]) / 2, 0.2, -1, C('position'), 20);
+    const fx = pBack[0] - pSmallBack[0], fy = pBack[1] - pSmallBack[1], fl = Math.hypot(fx, fy) || 1;
+    const fMax = pull(160, phiFor(0.2)).F, aLen = 34 + 56 * Math.sqrt(st.now.F / fMax);
+    arrow(ctx, pSmallBack[0], pSmallBack[1], pSmallBack[0] + (fx / fl) * aLen, pSmallBack[1] + (fy / fl) * aLen, C('force'), 5);
+    lab.add('F', pSmallBack[0] + (fx / fl) * aLen, pSmallBack[1] + (fy / fl) * aLen, fy / fl, -Math.abs(fx / fl) - 0.2, C('force'), 24, 16);
+    const pBigFoot = projected(world(bigs[1].ball, -st.rL)), pSmallFoot = projected(world(smalls[1], -R_S));
+    lab.add('M = ' + fmt(M.v, 0) + ' kg', pBigFoot[0], pBigFoot[1], 0, 1, PAL.ink, 20, 22);
+    lab.add('m = ' + fmt(m_S, 2) + ' kg', pSmallFoot[0], pSmallFoot[1], 0, 1, PAL.ink, 20, 22);
+    const pMirror = projected(world(S.mirror)), pFib = projected(new THREE.Vector3(0, Y_HUB_TOP + 0.4 * fibLen, 0)), pLamp = projected(new THREE.Vector3(LAMP[0] + 0.1, LAMP[1] + 0.06, LAMP[2]));
+    lab.add('the fibre', pFib[0], pFib[1], -1, 0, PAL.muted, 18, 30);
+    lab.add('the mirror', pMirror[0], pMirror[1], 1, 0.3, PAL.muted, 18, 44);
+    lab.add('the light source', pLamp[0], pLamp[1], 0, -1, PAL.muted, 18, 40);
+    const pZero = projected(new THREE.Vector3(S.at0.x, Y_SCALE, S.at0.z)), pSpot = projected(spot.position);
+    dot(ctx, pZero[0], pZero[1], PAL.muted, false, 7);
+    lab.add('zero mark', pZero[0], pZero[1], -0.6, -1, PAL.muted, 17, 26);
+    if (ref.hit) lab.add(onScale ? 'the light spot' : 'the spot has run off the scale', pSpot[0], pSpot[1], 0.6, -1, PAL.ink, 18, 30);
+    const pScale = projected(new THREE.Vector3(RING.r * Math.sin(RING.a1 - 8 * RAD), 0, RING.r * Math.cos(RING.a1 - 8 * RAD)));
+    lab.add('the scale', pScale[0], pScale[1], 0.4, -1, PAL.muted, 18, 26);
+    lab.flush();
+    /* the close-up's frame and its caption, and how to turn the view */
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.strokeRect(INSET.l, INSET.t, INSET.w, INSET.h); ctx.restore();
+    text(ctx, 'the fibre close up, where it meets the hanger', INSET.l + INSET.w / 2, INSET.t + INSET.h + 18, PAL.muted, { size: 16, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'drag to look from another side · double-click to look from the book’s side again', 1060, 600, PAL.muted, { size: 15, align: 'right', bg: alpha(PAL.panel, 0.85) });
+  }
+
+  /* ---------- the balance from above, when there is no WebGL to draw the scene ---------- */
+  function drawFlat(ctx, st) {
+    const px = 400, py = 340, armS = 150, armL = armS * (A / L), rs = 12, rl = 14 + 16 * Math.sqrt(M.v / 160);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(px, py, armL + rl + 30, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, 'the stand, seen from above', px, py + armL + rl + 54, PAL.muted, { size: 15, align: 'center' });
+    /* canvas x is the scene's x and canvas y (down) is the scene's z, so a turn about the axis is drawn clockwise */
+    const sx = (s) => px + s * armS * Math.cos(st.drawn), sy = (s) => py - s * armS * Math.sin(st.drawn);
+    const ax = (s) => px + s * armL * Math.cos(st.phi), ay = (s) => py - s * armL * Math.sin(st.phi);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.translate(px, py); ctx.rotate(-st.phi);
+    ctx.beginPath(); ctx.rect(-armL - rl, -8, 2 * (armL + rl), 16); ctx.fill(); ctx.stroke(); ctx.restore();
+    [1, -1].forEach((s) => sphere(ctx, ax(s), ay(s), rl, PAL.ink));
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.translate(px, py); ctx.rotate(-st.drawn);
+    ctx.beginPath(); ctx.rect(-armS, -4, 2 * armS, 8); ctx.fill(); ctx.stroke(); ctx.restore();
+    [1, -1].forEach((s) => sphere(ctx, sx(s), sy(s), rs, PAL.ink));
+    const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 96); lab.block(0, 582, 760, 620);
+    lab.add('M = ' + fmt(M.v, 0) + ' kg', ax(1), ay(1), 1, 0, PAL.ink, 20, rl + 14);
+    lab.add('m = ' + fmt(m_S, 2) + ' kg', sx(-1), sy(-1), -1, 0, PAL.ink, 20, rs + 14);
+    [1, -1].forEach((s) => {
+      const dx = ax(s) - sx(s), dy = ay(s) - sy(s), Ld = Math.hypot(dx, dy) || 1;
+      arrow(ctx, sx(s), sy(s), sx(s) + (dx / Ld) * 54, sy(s) + (dy / Ld) * 54, C('force'), 4);
+    });
+    lab.add('F', sx(1) + 30, sy(1) + 20, 0, 1, C('force'), 24, 20);
+    line(ctx, sx(1), sy(1), ax(1), ay(1), C('position'), 3, [6, 8]);
+    lab.add('r = ' + fmt(r.v, 2) + ' m', (sx(1) + ax(1)) / 2, (sy(1) + ay(1)) / 2, 1, -0.3, C('position'), 20, 24);
     dot(ctx, px, py, PAL.ink, true, 8);
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(px, py, 50, 0.55 * Math.PI, 0.95 * Math.PI); ctx.stroke(); ctx.restore();
-    arrow(ctx, px + 50 * Math.cos(0.93 * Math.PI), py + 50 * Math.sin(0.93 * Math.PI), px + 50 * Math.cos(1.02 * Math.PI), py + 50 * Math.sin(1.02 * Math.PI), PAL.muted, 2.5);
-    text(ctx, 'the fiber, seen end on, and its mirror', px, py + 76, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'the fiber twists', px - 56, py + 46, PAL.muted, { size: 15, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    /* the light source, the beam it sends to the mirror, the reflected beam and the scale the spot rests on */
-    const sx = 1180, sy = 540, zero = 1060, spot = zero - 300 * frac;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.translate(sx, sy); ctx.rotate(Math.atan2(py - sy, px - sx));
-    ctx.beginPath(); ctx.rect(-4, -14, 52, 28); ctx.fill(); ctx.stroke(); ctx.restore();
-    arrow(ctx, sx, sy, px + 20 * (sx - px) / Math.hypot(sx - px, sy - py), py + 20 * (sy - py) / Math.hypot(sx - px, sy - py), PAL.rule, 2);
-    text(ctx, 'light source', sx + 34, sy + 30, PAL.muted, { size: 17 });
+    lab.add('the fibre, seen end on', px, py, -0.4, 1, PAL.muted, 17, 30);
+    const lx = 1180, ly = 540, zero = 1000, spotX = zero + 300 * Math.min(1, st.drawn / 0.6);
+    line(ctx, lx, ly, px, py, alpha(PAL.ink, 0.3), 2); lab.add('the light source', lx, ly, 0, 1, PAL.muted, 17, 26);
     line(ctx, 700, 160, 1340, 160, PAL.muted, 3);
     for (let x = 700; x <= 1340.5; x += 32) line(ctx, x, 160, x, 174, PAL.muted, 2);
-    text(ctx, 'the scale', 1340, 128, PAL.muted, { size: 17, align: 'right' });
-    dot(ctx, zero, 160, PAL.muted, false, 9);
-    text(ctx, 'no attraction', zero + 14, 128, PAL.muted, { size: 17 });
-    arrow(ctx, px, py, spot, 172, C('force'), 3);
-    dot(ctx, spot, 160, C('force'), true, 10);
-    text(ctx, 'the light spot', spot, 196, C('force'), { size: 15, align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
-    headline(ctx, 'each pair attracts with ' + sci(Fnow, 2) + ' N, and the light spot rests ' + (off ? 'against the far end of the scale' : fmt(100 * frac, 0) + ' per cent of the way along the scale'));
-    readout(d.readout, `\\kF = G\\frac{mM}{\\kr^2} = \\frac{(${texSci(G_MEASURED, 3)})(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(M.v, 0)}\\ \\text{kg})}{(${fmt(r.v, 2)}\\ \\text{m})^2} = ${texSci(Fnow, 2)}\\ \\text{N}`,
-      'The fiber twists until what it resists balances the attraction, so the distance the reflected spot moves along the scale is proportional to the force. That is how Cavendish measured an attraction of less than a millionth of a newton, and with it the value of G.');
+    lab.add('the scale', 1340, 160, 0, -1, PAL.muted, 17, 26);
+    dot(ctx, zero, 160, PAL.muted, false, 9); lab.add('zero mark', zero, 160, 0, 1, PAL.muted, 17, 26);
+    line(ctx, px, py, spotX, 172, alpha(PAL.ink, 0.3), 2); dot(ctx, spotX, 160, PAL.ink, true, 10);
+    lab.add('the light spot', spotX, 160, 0.3, -1, PAL.ink, 17, 26);
+    lab.flush();
+    text(ctx, 'This browser cannot draw the balance in three dimensions, so it is drawn from above.', 24, 600, PAL.muted, { size: 15 });
   }
-  register(d.fig, { update: () => {}, draw });
+
+  if (hasGL) { try { build(); } catch (e) { console.error('sim-cavendish: falling back to the flat drawing', e); S = null; } }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 2), draw });
 })();
 
 };
