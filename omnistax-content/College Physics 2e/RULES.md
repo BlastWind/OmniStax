@@ -64,11 +64,11 @@ Chapters built so far: 1 (Introduction: The Nature of Science and
 Physics, `ch01`), 2 (Kinematics, `ch02`), 3 (Two-Dimensional Kinematics,
 `ch03`), 4 (Dynamics: Force and Newton's Laws of Motion, `ch04`), 5
 (Further Applications of Newton's Laws, `ch05`), 6 (Uniform Circular
-Motion and Gravitation, `ch06`), 8 (Linear Momentum and Collisions,
-`ch08`), 9 (Statics and Torque, `ch09`) and 16 (Oscillatory Motion and
-Waves, `ch16`); Chapter 7 (Work, Energy, and Energy Resources, `ch07`)
-is prepared, with its tables, concepts and introduction in place, and its
-sections wait (LOG pass 27, `Plan.md` at the repository root). A chapter
+Motion and Gravitation, `ch06`), 7 (Work, Energy, and Energy Resources,
+`ch07`), 8 (Linear Momentum and Collisions, `ch08`), 9 (Statics and
+Torque, `ch09`) and 16 (Oscillatory Motion and Waves, `ch16`), built in
+one job on 2026-09-11 (LOG passes 27 and 28, `Plan.md` at the
+repository root). A chapter
 folder is `ch` followed by the two-digit chapter number. The whole table
 of contents is in `toc.md`. Every built chapter's introduction and the
 Preface (m42955) are pages of their own in their `intro/` folders. A
@@ -221,7 +221,7 @@ dropped where they are a splash image at the head of a section.
 
 ## Files
 
-The layout is the one the root `RULES.md` draws. Two things are specific
+The layout is the one the root `RULES.md` draws. Three things are specific
 to this book:
 
 - `figures.js` is `window.OMNISTAX_FIGURES['<section>'] = function (root, F) {…}`,
@@ -236,3 +236,10 @@ to this book:
   row carries `widths`, `data-original-width` (a photograph carries its
   one width as `data-width` on the `<img>`), which must agree with the
   figures table; the validator checks that they do.
+- A dollar sign is written `&#36;` in the prose of `text.html`, where a
+  bare `$` would open math, but inside an exercise's `prompt` or
+  `solution` in `section.json` it is written as the fullwidth `＄`,
+  because the entity is decoded into a bare `$` before the math sweep
+  reads the string and the sweep then takes the rest of the sentence for
+  an equation; a display equation that needs the sign writes the
+  fullwidth character inside `\text{}` for the same reason.

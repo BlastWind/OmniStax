@@ -1,0 +1,870 @@
+{
+  "id": "7.2",
+  "module": "m42147",
+  "chapter": "7",
+  "title": "Kinetic Energy and the Work-Energy Theorem",
+  "short": "Kinetic energy",
+  "lead": "Work done on a system puts energy into it, and the work done by the net force puts that energy in as motion. This section defines the net work as the work done by the net external force, shows that the work a force does is the area under the graph of its component against the distance it acts through, and then derives the work-energy theorem: the net work on a system equals the change in the quantity one half the mass times the speed squared, which is what the book names the translational kinetic energy.",
+  "objectives": [
+    "Explain work as a transfer of energy and net work as the work done by the net force.",
+    "Explain and apply the work-energy theorem."
+  ],
+  "summary_html": "<ul><li>The net work $\\kWnet$ is the work done by the net force acting on an object.</li><li>Work done on an object transfers energy to the object.</li><li>The translational kinetic energy of an object of mass $m$ moving at speed $\\kv$ is $\\kKE = \\tfrac{1}{2}m\\kv^2$.</li><li>The work-energy theorem states that the net work $\\kWnet$ on a system changes its kinetic energy, $\\kWnet = \\tfrac{1}{2}m\\kv^2 - \\tfrac{1}{2}m\\kvo^2$.</li></ul>",
+  "notes": "Problems 2, 4 and 6 have no answer in the book’s key and are left out.",
+  "ai": {
+    "text": "Claude Opus 5",
+    "figures": "Claude Opus 5"
+  },
+  "built": "2026-09-11",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2, 4 and 6 (the elephant and the sprinter, the car stopped in 120 m and against an abutment, and the boxing glove) have no keyed answer and are left out. None of the three conceptual questions is keyed, so each carries an AI-written suggested approach, marked as such, and the shortest of them, which asks for an example of work putting energy into a system and taking it out again, is set inline beside the passage it checks. Seven of the thirteen AP items are unkeyed and are kept as open items with their options as the book prints them and an AI-marked suggested approach, never as graded choices; the other six carry the book’s own answer. Three items the book prints in other sections are set here, since an exercise goes with the section that introduces what it tests: the rocket-payload item of 7.1 (fs-id2527597, with its table of distance against final velocity) and the crane item of 7.1 (fs-id2714107, with its force-distance graph) are the work-energy theorem and the area under a force-distance graph, and both are keyed, so both are kept as the book’s own choice items; and the Critical Thinking item of 7.9 (exer-86622, the two boxes released by two pistons) turns on the same two ideas and is keyed, and the graph of $W$ against $x$ the book prints in part (c) of its key goes with it. The two mechanical-energy items of this section (fs-id1130691 and fs-id1353464) name mechanical energy, which 7.4 defines, but each asks the same question about the sign of the work as the rest of this set and each is answered from the work-energy theorem alone, so both stay here.",
+  "figures": [
+    {
+      "id": "sim-area",
+      "kind": "sim",
+      "number": "7.3",
+      "originals": [
+        "/media/ch07/Figure_08_02_02a.jpg"
+      ],
+      "original_caption": "(a) A graph of F cos θ vs. d, when F cos θ is constant. The area under the curve represents the work done by the force. (b) A graph of F cos θ vs. d in which the force varies. The work done for each interval is the area of each strip; thus, the total area under the curve equals the total work done.",
+      "widths": [
+        250
+      ],
+      "draws": [
+        "force",
+        "position",
+        "energy"
+      ]
+    },
+    {
+      "id": "sim-package",
+      "kind": "sim",
+      "number": "7.4",
+      "originals": [
+        "/media/ch07/Figure_08_02_03a.jpg"
+      ],
+      "original_caption": "A package on a roller belt is pushed horizontally through a distance d.",
+      "widths": [
+        400
+      ],
+      "draws": [
+        "force",
+        "position",
+        "velocity",
+        "energy"
+      ]
+    },
+    {
+      "id": "sim-ke",
+      "kind": "sim",
+      "draws": [
+        "velocity",
+        "energy"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "transfers",
+      "concept": "work-transfers-energy",
+      "verb": "introduces"
+    },
+    {
+      "span": "transfers",
+      "concept": "work",
+      "verb": "uses"
+    },
+    {
+      "span": "transfers",
+      "concept": "work-sign",
+      "verb": "uses"
+    },
+    {
+      "span": "net-work",
+      "concept": "net-work",
+      "verb": "introduces"
+    },
+    {
+      "span": "net-work",
+      "concept": "work-as-area",
+      "verb": "introduces"
+    },
+    {
+      "span": "net-work",
+      "concept": "work",
+      "verb": "uses"
+    },
+    {
+      "span": "net-work",
+      "concept": "calculate-work",
+      "verb": "uses"
+    },
+    {
+      "span": "net-work",
+      "concept": "net-external-force",
+      "verb": "uses"
+    },
+    {
+      "span": "net-work",
+      "concept": "straight-line-graph",
+      "verb": "uses"
+    },
+    {
+      "span": "theorem",
+      "concept": "work-energy-theorem",
+      "verb": "introduces"
+    },
+    {
+      "span": "theorem",
+      "concept": "net-work",
+      "verb": "reinforces"
+    },
+    {
+      "span": "theorem",
+      "concept": "newtons-second-law",
+      "verb": "uses"
+    },
+    {
+      "span": "theorem",
+      "concept": "v-squared",
+      "verb": "uses"
+    },
+    {
+      "span": "theorem",
+      "concept": "kinetic-friction",
+      "verb": "uses"
+    },
+    {
+      "span": "theorem",
+      "concept": "mass",
+      "verb": "uses"
+    },
+    {
+      "span": "kinetic-energy",
+      "concept": "kinetic-energy",
+      "verb": "introduces"
+    },
+    {
+      "span": "kinetic-energy",
+      "concept": "instantaneous-speed",
+      "verb": "uses"
+    },
+    {
+      "span": "kinetic-energy",
+      "concept": "joule",
+      "verb": "uses"
+    },
+    {
+      "span": "worked",
+      "concept": "speed-from-work-energy",
+      "verb": "introduces"
+    },
+    {
+      "span": "worked",
+      "concept": "work-energy-theorem",
+      "verb": "reinforces"
+    },
+    {
+      "span": "worked",
+      "concept": "kinetic-energy",
+      "verb": "reinforces"
+    },
+    {
+      "span": "worked",
+      "concept": "net-work",
+      "verb": "reinforces"
+    },
+    {
+      "span": "worked",
+      "concept": "work-sign",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id2008777",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "transfers",
+      "figure": {
+        "src": "/media/ch07/OSX_CP2e_Figure_08_02_04.jpg",
+        "alt": "A person pushing a lawn mower with a force F. Force is represented by a vector making an angle theta below the horizontal and distance moved by the mover is represented by vector d. The component of vector F along vector d is F cosine theta. Work done by the person, W, is equal to F d cosine theta."
+      },
+      "prompt": "The person in the figure below does work on the lawn mower. Under what conditions would the mower gain energy? Under what conditions would it lose energy?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The work the person does on the mower puts energy into it, and friction takes energy back out continuously as heat transfer, so whether the mower gains or loses energy depends on which of the two is larger. The mower gains energy when the net work on it is positive, which is what happens when the person pushes harder than the friction that opposes the motion: the net force is then forward, the mower speeds up, and by the work-energy theorem its kinetic energy rises. It loses energy when the net work on it is negative, which is what happens when the person eases off or stops pushing altogether: friction is then the only horizontal force left, it does negative work because it acts opposite to the displacement, and the mower slows and stops. Pushed just hard enough to keep it going at a constant speed, the mower neither gains nor loses energy, because the work the person does and the work friction does are equal and opposite."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id1422290",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "inline",
+        "after": "transfers"
+      },
+      "cite": "transfers",
+      "prompt": "Work done on a system puts energy into it. Work done by a system removes energy from it. Give an example for each statement.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Carrying a briefcase up a flight of stairs is work done on a system: you exert an upward force through an upward displacement, the work is positive, and the energy is stored in the briefcase-Earth system, where it stays until the briefcase comes down again. Pushing the package along the roller belt is the same kind of example with the energy put in as motion rather than stored: 96.0 J of work by the applied force leaves the package moving at 2.53 m/s instead of 0.500 m/s. Work done by a system is the reverse. Once the push stops, the package does work against friction as it coasts, and after 19.2 m all of its 95.75 J of kinetic energy has left it and it is at rest; a compressed spring that pushes a block away from it is the same thing, the spring doing work on the block and losing the energy that was stored in it."
+      }
+    },
+    {
+      "id": "cq3",
+      "source_id": "fs-id1527618",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "worked",
+      "prompt": "When solving for speed in Example 7.4, we kept only the positive root. Why?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The final speed was found by solving $\\tfrac{1}{2}m\\kv^2 = 95.75\\ \\text{J}$ for $\\kv$, and taking the square root of both sides gives two answers, $+2.53\\ \\text{m/s}$ and $-2.53\\ \\text{m/s}$. The kinetic energy carries the square of the speed, so it says how fast the package is moving but nothing at all about which way it is going, and the negative root describes a package travelling backward along the belt at 2.53 m/s. That is not the motion the example sets up: the package was already moving forward at 0.500 m/s and the net force pushes it forward throughout, so its velocity never changes sign. The negative root solves the equation and describes no motion the problem contains, so it is discarded."
+      }
+    },
+    {
+      "id": "ap1",
+      "source_id": "fs-id3219139",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "A toy car is going around a loop-the-loop. Gravity ____ the kinetic energy on the upward side of the loop, ____ the kinetic energy at the top, and ____ the kinetic energy on the downward side of the loop.<ol type=\"a\"><li>increases, decreases, has no effect on</li><li>decreases, has no effect on, increases</li><li>increases, has no effect on, decreases</li><li>decreases, increases, has no effect on</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Gravity points straight down at every point of the loop, so the work it does depends on the angle between the weight and the displacement. On the upward side the car is climbing, the displacement has an upward component, the angle is greater than $90^\\circ$ and the work is negative, so the kinetic energy decreases. At the very top the car is moving horizontally, the weight is perpendicular to the displacement, $\\cos\\theta = 0$, and gravity does no work at all, so the kinetic energy is unchanged at that instant. On the downward side the displacement has a downward component, the work is positive, and the kinetic energy increases. The second choice is the one that says this."
+      }
+    },
+    {
+      "id": "ap2",
+      "source_id": "fs-id3918076",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "A roller coaster is set up with a track in the form of a perfect cosine. Describe and graph what happens to the kinetic energy of a cart as it goes through the first full period of the track.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "The kinetic energy should change in the form of –cos, with an initial value of 0 or slightly above, and ending at the same level."
+      }
+    },
+    {
+      "id": "ap3",
+      "source_id": "fs-id1978911",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "net-work",
+      "prompt": "If wind is blowing horizontally toward a car with an angle of 30 degrees from the direction of travel, the kinetic energy will ____. If the wind is blowing at a car at 135 degrees from the direction of travel, the kinetic energy will ____.<ol type=\"a\"><li>increase, increase</li><li>increase, decrease</li><li>decrease, increase</li><li>decrease, decrease</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The wind exerts a force on the car, and the work that force does is $\\kW = \\kF\\kd\\cos\\theta$, so the kinetic energy rises when the force has a component along the direction of travel and falls when it has a component against it. At $30^\\circ$ from the direction of travel the component along the motion is $\\cos 30^\\circ = 0.866$ of the force, clearly forward, so the work is positive and the kinetic energy increases. The $135^\\circ$ case has to be read with the convention the Iditarod item of this same set uses, where a wind at $135^\\circ$ is described as pushing from behind and one side and its component along the motion is taken as $+0.707$ of the force. On that reading the work is positive again and the kinetic energy increases as well, which is the first choice. Read the other way, as a wind coming at the car from ahead and one side, the component along the motion would be backward, the work negative, and the answer the second choice; the arithmetic is the same and only the direction the wind comes from differs."
+      }
+    },
+    {
+      "id": "ap4",
+      "source_id": "fs-id980483",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "net-work",
+      "prompt": "In what direction relative to the direction of travel can a force act on a car (traveling on level ground), and not change the kinetic energy? Can you give examples of such forces?",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Any force acting perpendicular will have no effect on kinetic energy. Obvious examples are gravity and the normal force, but others include wind directly from the side and rain or other precipitation falling straight down."
+      }
+    },
+    {
+      "id": "ap5",
+      "source_id": "fs-id1847181",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "A 2000-kg airplane is coming in for a landing, with a velocity 5 degrees below the horizontal and a drag force of 40 kN acting directly rearward. Ignoring thrust and lift on the plane, kinetic energy will ____ due to the net force of ____.<ol type=\"a\"><li>increase, 20 kN</li><li>decrease, 40 kN</li><li>increase, 45 kN</li><li>decrease, 45 kN</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Two forces are left once thrust and lift are ignored: the 40 kN of drag, acting directly rearward along the flight path, and the weight, $m\\kg = (2000\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 19.6\\ \\text{kN}$, acting straight down. The path is only $5^\\circ$ below the horizontal, so the two are very nearly perpendicular and the magnitude of the net force is close to $\\sqrt{(40\\ \\text{kN})^2 + (19.6\\ \\text{kN})^2} = 45\\ \\text{kN}$. Only the component along the motion changes the kinetic energy. The drag is entirely against the motion, and the weight contributes only the small forward component $m\\kg\\sin 5^\\circ = 1.7\\ \\text{kN}$, so the net work is negative and the kinetic energy decreases. The fourth choice says both of these."
+      }
+    },
+    {
+      "id": "ap6",
+      "source_id": "fs-id1927755",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "net-work",
+      "prompt": "You are participating in the Iditarod, and your sled dogs are pulling you across a frozen lake with a force of 1200 N while a 300 N wind is blowing at you at 135 degrees from your direction of travel. What is the net force, and will your kinetic energy increase or decrease?",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Note that the wind is pushing from behind and one side, so your KE will increase. The net force has components of 1400 N in the direction of travel and 212 N perpendicular to the direction of travel. So the net force is 1420 N at 8.5 degrees from the direction of travel."
+      }
+    },
+    {
+      "id": "ap7",
+      "source_id": "fs-id1564751",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "A model drag car is being accelerated along its track from rest by a motor with a force of 75 N, but there is a drag force of 30 N due to the track. What is the kinetic energy after 2 m of travel?<ol type=\"a\"><li>90 J</li><li>150 J</li><li>210 J</li><li>60 J</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The motor pushes the car forward and the track's drag opposes it, and both are along the motion, so the net force is $\\kFnet = 75\\ \\text{N} - 30\\ \\text{N} = 45\\ \\text{N}$ in the direction of travel. The net work over the 2 m is $\\kWnet = \\kFnet\\kd = (45\\ \\text{N})(2\\ \\text{m}) = 90\\ \\text{J}$. The car starts from rest, so its initial kinetic energy is zero and the work-energy theorem makes the final kinetic energy equal to the net work, 90 J, which is the first choice. The 150 J of the second choice is what the motor alone would give, and it is too large because it ignores the work the drag force takes back out."
+      }
+    },
+    {
+      "id": "ap8",
+      "source_id": "fs-id1859034",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "You are launching a 0.315-kg potato out of a potato cannon. The cannon is 1.5 m long and is aimed 30.0 degrees above the horizontal. It exerts an average 45 N force on the potato. Ignoring friction, what is the kinetic energy of the potato as it leaves the muzzle of the potato cannon?",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Gravity has a component perpendicular to the cannon (and to displacement, so it is irrelevant) and has a component parallel to the cannon. The latter is equal to 9.8 N. Thus the net force in the direction of the displacement is 45 N − 9.8 N, and the kinetic energy is 53 J."
+      }
+    },
+    {
+      "id": "ap9",
+      "source_id": "fs-id1130691",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "When the force acting on an object is parallel to the direction of the motion of the center of mass, the mechanical energy ____. When the force acting on an object is antiparallel to the direction of the center of mass, the mechanical energy ____.<ol type=\"a\"><li>increases, increases</li><li>increases, decreases</li><li>decreases, increases</li><li>decreases, decreases</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "A force parallel to the displacement of the centre of mass makes $\\theta = 0^\\circ$ and $\\cos\\theta = 1$, so the work it does is positive; by the work-energy theorem the kinetic energy of the system rises, and with it the energy of the system. A force antiparallel to the displacement makes $\\theta = 180^\\circ$ and $\\cos\\theta = -1$, so the work is negative and the energy falls. The second choice is the one that says increases and then decreases."
+      }
+    },
+    {
+      "id": "ap10",
+      "source_id": "fs-id1353464",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "transfers",
+      "prompt": "Describe a system in which the main forces acting are parallel or antiparallel to the center of mass, and justify your answer.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "The potato cannon (and many other projectile launchers) above is an option, with a force launching the projectile, friction, potentially gravity depending on the direction it is pointed, etc. A drag (or other) car accelerating is another possibility."
+      }
+    },
+    {
+      "id": "ap11",
+      "source_id": "fs-id1893751",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "A child is pulling two red wagons, with the second one tied to the first by a (non-stretching) rope. Each wagon has a mass of 10 kg. If the child exerts a force of 30 N for 5.0 m, how much has the kinetic energy of the two-wagon system changed?<ol type=\"a\"><li>300 J</li><li>150 J</li><li>75 J</li><li>60 J</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Because the rope does not stretch, the two wagons move together and can be treated as one system of mass 20 kg. The tension in the rope is internal to that system, and the only external force with a component along the displacement is the child's 30 N pull, which acts along the motion. The net work on the system is therefore $\\kWnet = \\kFnet\\kd = (30\\ \\text{N})(5.0\\ \\text{m}) = 150\\ \\text{J}$, and by the work-energy theorem the kinetic energy of the two-wagon system changes by that much. The second choice is the one. Note that the mass never enters: it decides how fast the wagons end up going, not how much energy the work puts in."
+      }
+    },
+    {
+      "id": "ap12",
+      "source_id": "fs-id1396556",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "A child has two red wagons, with the rear one tied to the front by a (non-stretching) rope. If the child pushes on the rear wagon, what happens to the kinetic energy of each of the wagons, and the two-wagon system?",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "The kinetic energy of the rear wagon increases. The front wagon does not, until the rear wagon collides with it. The total system may be treated by its center of mass, halfway between the wagons, and its energy increases by the same amount as the sum of the two individual wagons."
+      }
+    },
+    {
+      "id": "ap13",
+      "source_id": "fs-id872246",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "net-work",
+      "prompt": "Draw a graph of the force parallel to displacement exerted on a stunt motorcycle going through a loop-the-loop versus the distance traveled around the loop. Explain the net change in energy.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Put the distance $\\kd$ travelled round the loop from the bottom on the horizontal axis and the component of the net force along the motion on the vertical one. The track's normal force is perpendicular to the motion everywhere and so contributes nothing to this graph; the weight is the only force with a component along the path. For a loop of radius $r$ the angle turned through is $\\kd/r$, so that component is $-m\\kg\\sin(\\kd/r)$: the curve starts at zero at the bottom of the loop, goes negative as the motorcycle climbs, is most negative a quarter of the way round where the track is vertical, returns to zero at the top, rises to its largest positive value three quarters of the way round, and comes back to zero at the bottom. The area under this curve is the work done, and the negative half and the positive half have the same area, so the net work round one complete loop is zero. Neglecting friction and air resistance, the motorcycle therefore comes back to the bottom of the loop with exactly the kinetic energy it started with."
+      }
+    },
+    {
+      "id": "ap-rocket",
+      "source_id": "fs-id2527597",
+      "source_section": "7.1",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "theorem",
+      "prompt": "Given the table below, about how much force does the rocket engine exert on the 3.0-kg payload?<table class=\"data\"><tr><th>Distance traveled with rocket engine firing (m)</th><th>Payload final velocity (m/s)</th></tr><tr><td>500</td><td>310</td></tr><tr><td>490</td><td>300</td></tr><tr><td>1020</td><td>450</td></tr><tr><td>505</td><td>312</td></tr></table>",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "150 N",
+          "300 N",
+          "450 N",
+          "600 N"
+        ],
+        "correct": 1,
+        "hint": "The payload starts from rest, so the net work is the whole of its final kinetic energy: set $\\kFnet\\kd = \\tfrac{1}{2}m\\kv^2$ and read one pair of numbers off the table.",
+        "solution": "(b)"
+      }
+    },
+    {
+      "id": "ap-crane",
+      "source_id": "fs-id2714107",
+      "source_section": "7.1",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "net-work",
+      "figure": {
+        "src": "/media/ch07/CNX_APPhysics_07_M1_cranegraph_img.jpg",
+        "alt": "The graph has meters on the x axis and kilonewtons on the y axis. A straight line runs from the point (0, 0) to the point (10, 10). Another straight line runs from (10, 10) to (50, 10). A third straight line runs from (50, 10) to (60, 0)."
+      },
+      "prompt": "A crane is lifting construction materials from the ground to an elevation of 60 m. Over the first 10 m, the motor linearly increases the force it exerts from 0 to 10 kN. It exerts that constant force for the next 40 m, and then winds down to 0 N again over the last 10 m, as shown in the figure. What is the total work done on the construction materials?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "500 kJ",
+          "600 kJ",
+          "300 kJ",
+          "18 MJ"
+        ],
+        "correct": 0,
+        "hint": "The work is the area under the force-distance graph, and this graph is two triangles with a rectangle between them.",
+        "solution": "(a)"
+      }
+    },
+    {
+      "id": "ct1",
+      "source_id": "exer-86622",
+      "source_section": "7.9",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "net-work",
+      "tag": "Critical Thinking",
+      "prompt": "Two boxes of the same mass are pressed against pistons that compress and release the boxes on frictionless surfaces. Box A’s piston has a constant force $\\kF$ over a distance $\\kx$ before the box is released while box B starts at zero force and increases linearly to a force of $2\\kF$ before releasing the box at a distance of $\\tfrac{1}{2}d$. (a) Which of these boxes has the greatest speed after releasing from the piston? (b) Based on experimental data for trials similar to box A, an equation that fits the data is suggested for the change in kinetic energy, $\\kdKE$, which may not be correct: $\\kdKE = KF^{1/2}x^{1/2}$, where $K$ is a constant with appropriate units, $F$ is the applied force, and $x$ is the distance the piston moves in contact with the box. Is this equation consistent with your answer from part a? Explain why or why not. Does this equation make sense? Explain why or why not. (c) If the applied force of the piston is proportional to the distance in contact with the box, graph the work done on the box vs. the distance in contact with the piston and box.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "(a) Box A has the greatest speed since it has the greatest work done; work equals change in kinetic energy and thus fastest speed. (b) i. Yes, this equation is consistent. An increased force or distance increases the work done, and thus increases the change in kinesthetic energy. ii. No, this equation does not make sense. (c) <figure class=\"photo\"><img src=\"/media/ch07/OSX_CP2e_Figure_07_09Sol_CTQ01c.jpg\" alt=\"The figure is a plot of W as a function of x. The plot starts at the origin and increases monotonically in both value and slope. The equation W equals k times x squared is shown next to the graph.\" data-width=\"200\"></figure>"
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id1688607",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "kinetic-energy",
+      "prompt": "Compare the kinetic energy of a 20,000-kg truck moving at 110 km/h with that of an 80.0-kg astronaut in orbit moving at 27,500 km/h.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.004,
+        "hint": "Work out $\\tfrac{1}{2}m\\kv^2$ for each of them in SI units, then divide the truck's by the astronaut's; the answer the book gives is the ratio, not an energy.",
+        "solution": "$1/250$"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id2628495",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "kinetic-energy",
+      "prompt": "Confirm the value given for the kinetic energy of an aircraft carrier in Table 7.1. You will need to look up the definition of a nautical mile (1 knot = 1 nautical mile/h).",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 11000000000.0,
+        "unit": "J",
+        "hint": "Turn the carrier's speed in knots into metres per second first, remembering that a nautical mile is 1852 m, and then put the mass and the speed into $\\kKE = \\tfrac{1}{2}m\\kv^2$."
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id1909004",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "worked",
+      "prompt": "A car’s bumper is designed to withstand a 4.0-km/h (1.12-m/s) collision with an immovable object without damage to the body of the car. The bumper cushions the shock by absorbing the force over a distance. Calculate the magnitude of the average force on a bumper that collapses 0.200 m while bringing a 900-kg car to rest from an initial speed of 1.12 m/s.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 2800,
+        "unit": "N",
+        "hint": "The car is brought to rest, so the net work is the whole of its initial kinetic energy with the sign reversed; divide that by the 0.200 m the bumper collapses through."
+      }
+    },
+    {
+      "id": "p7",
+      "source_id": "fs-id1663871",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "worked",
+      "prompt": "Using energy considerations, calculate the average force a 60.0-kg sprinter exerts backward on the track to accelerate from 2.00 to 8.00 m/s in a distance of 25.0 m, if he encounters a headwind that exerts an average force of 30.0 N against him.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 102,
+        "unit": "N",
+        "hint": "The change in kinetic energy gives the net work, the net work over 25.0 m gives the net force, and the sprinter's own force is the net force plus the 30.0 N the headwind takes away."
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cq1",
+      "concept": "work-transfers-energy"
+    },
+    {
+      "exercise": "cq1",
+      "concept": "net-work",
+      "weight": 2
+    },
+    {
+      "exercise": "cq1",
+      "concept": "work-energy-theorem",
+      "weight": 2
+    },
+    {
+      "exercise": "cq2",
+      "concept": "work-transfers-energy"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "work-sign",
+      "weight": 2
+    },
+    {
+      "exercise": "cq3",
+      "concept": "speed-from-work-energy"
+    },
+    {
+      "exercise": "cq3",
+      "concept": "kinetic-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap1",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "net-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ap1",
+      "concept": "work-sign",
+      "weight": 2
+    },
+    {
+      "exercise": "ap2",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "kinetic-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap2",
+      "concept": "work-sign",
+      "weight": 2
+    },
+    {
+      "exercise": "ap3",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap3",
+      "concept": "net-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ap3",
+      "concept": "calculate-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ap4",
+      "concept": "net-work"
+    },
+    {
+      "exercise": "ap4",
+      "concept": "work-energy-theorem",
+      "weight": 2
+    },
+    {
+      "exercise": "ap5",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap5",
+      "concept": "net-work",
+      "weight": 3
+    },
+    {
+      "exercise": "ap5",
+      "concept": "net-external-force",
+      "weight": 2
+    },
+    {
+      "exercise": "ap6",
+      "concept": "net-work"
+    },
+    {
+      "exercise": "ap6",
+      "concept": "work-energy-theorem",
+      "weight": 2
+    },
+    {
+      "exercise": "ap6",
+      "concept": "net-external-force",
+      "weight": 2
+    },
+    {
+      "exercise": "ap7",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap7",
+      "concept": "net-work",
+      "weight": 3
+    },
+    {
+      "exercise": "ap7",
+      "concept": "speed-from-work-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap8",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap8",
+      "concept": "net-work",
+      "weight": 3
+    },
+    {
+      "exercise": "ap8",
+      "concept": "kinetic-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap9",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap9",
+      "concept": "work-transfers-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap9",
+      "concept": "work-sign",
+      "weight": 2
+    },
+    {
+      "exercise": "ap10",
+      "concept": "work-transfers-energy"
+    },
+    {
+      "exercise": "ap10",
+      "concept": "net-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ap11",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap11",
+      "concept": "net-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ap12",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap12",
+      "concept": "work-transfers-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap12",
+      "concept": "net-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ap13",
+      "concept": "work-as-area"
+    },
+    {
+      "exercise": "ap13",
+      "concept": "work-energy-theorem",
+      "weight": 2
+    },
+    {
+      "exercise": "ap13",
+      "concept": "net-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ap-rocket",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ap-rocket",
+      "concept": "speed-from-work-energy",
+      "weight": 3
+    },
+    {
+      "exercise": "ap-rocket",
+      "concept": "kinetic-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap-crane",
+      "concept": "work-as-area"
+    },
+    {
+      "exercise": "ap-crane",
+      "concept": "net-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ap-crane",
+      "concept": "calculate-work",
+      "weight": 2
+    },
+    {
+      "exercise": "ct1",
+      "concept": "work-as-area"
+    },
+    {
+      "exercise": "ct1",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "ct1",
+      "concept": "kinetic-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ct1",
+      "concept": "speed-from-work-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "p1",
+      "concept": "kinetic-energy"
+    },
+    {
+      "exercise": "p3",
+      "concept": "kinetic-energy"
+    },
+    {
+      "exercise": "p5",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "p5",
+      "concept": "speed-from-work-energy"
+    },
+    {
+      "exercise": "p5",
+      "concept": "kinetic-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "p7",
+      "concept": "work-energy-theorem"
+    },
+    {
+      "exercise": "p7",
+      "concept": "speed-from-work-energy"
+    },
+    {
+      "exercise": "p7",
+      "concept": "net-work",
+      "weight": 3
+    }
+  ]
+}

@@ -1,0 +1,561 @@
+{
+ "id": "7.3",
+ "module": "m42148",
+ "chapter": "7",
+ "title": "Gravitational Potential Energy",
+ "short": "Gravitational potential energy",
+ "lead": "Climbing stairs and lifting a load are work done against the gravitational force, and that work is not lost when the lifting stops. It is stored in the system made up of the object and Earth, and the system gives it back when the object comes down again. This section shows that raising a mass through a height stores an energy equal to the weight times the height, that only differences in that stored energy have physical meaning, and that the same change in height stores the same energy along any path. It then spends the stored energy twice over: on the force a stiff landing puts on the knee joints, and on the speed a roller coaster reaches at the bottom of its hill.",
+ "objectives": [
+  "Explain gravitational potential energy in terms of work done against gravity.",
+  "Show that the gravitational potential energy of an object of mass $m$ at height $\\kh$ on Earth is given by $\\kPEg = m\\kg\\kh$.",
+  "Show how knowledge of the potential energy as a function of position can be used to simplify calculations and explain physical phenomena."
+ ],
+ "summary_html": "<ul><li>Work done against gravity in lifting an object becomes potential energy of the object-Earth system.</li><li>The change in gravitational potential energy, $\\kdPEg$, is $\\kdPEg = m\\kg\\kh$, with $\\kh$ being the increase in height and $\\kg$ the acceleration due to gravity.</li><li>The gravitational potential energy of an object near Earth’s surface is due to its position in the mass-Earth system. Only differences in gravitational potential energy, $\\kdPEg$, have physical significance.</li><li>As an object descends without friction, its gravitational potential energy changes into kinetic energy corresponding to increasing speed, so that $\\kdKE = -\\kdPEg$.</li></ul>",
+ "notes": "The Great Pyramid of Cheops, the ratio of the change in potential energy to the initial kinetic energy of the roller coaster and the downhill ski race have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-11",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated, and the answers come from the book’s answer key alone. Three of the six problems have no keyed answer and are left out: the gravitational potential energy stored in the Great Pyramid of Cheops (fs-id1332867), the ratio of $\\kdPEg$ to the initial kinetic energy of the roller coaster (fs-id2189211) and the downhill ski race down the $30^\\circ$ slope (fs-id2175922). Neither conceptual question is keyed, so each carries an AI-written suggested approach, marked as such. Of the section’s three AP items, the flying baseball (fs-id3349229) and the swinging yo-yo (fs-id2335813) are keyed and are set as a graded choice and as three numbers; the launched potato (fs-id1258975) has no key and is kept as an open item with the book’s four options as it prints them and an AI-written suggested approach, never as a graded choice. That item names the total mechanical energy, which 7.4 defines, but all it asks is that a kinetic energy be added to $m\\kg\\kh$, which this section does in its own roller-coaster example, so it stays here. The pendulum-clock AP item printed in 7.4 (fs-id2987264) asks how much energy three masses give up in dropping 1.3 m, which is $m\\kg\\kh$ and nothing else, so it is set here with source_section 7.4, and 7.4’s exercise notes say so as well. The photographs of the hydroelectric dam and of the toy car on its curved track belong to the problems that point at them and ride on those cards, with the book’s captions and credit clauses. The chapter prints no Check Your Understanding box anywhere and neither conceptual question is a short check beside a passage, so nothing is set inline. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-cuckoo",
+   "kind": "sim",
+   "number": "7.5",
+   "originals": [
+    "/media/ch07/Figure_08_03_01a.jpg"
+   ],
+   "original_caption": "(a) The work done to lift the weight is stored in the mass-Earth system as gravitational potential energy. (b) As the weight moves downward, this gravitational potential energy is transferred to the cuckoo clock.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "energy",
+    "position",
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-ladder",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "position",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-paths",
+   "kind": "sim",
+   "number": "7.6",
+   "originals": [
+    "/media/ch07/Figure_08_03_02a.jpg"
+   ],
+   "original_caption": "The change in gravitational potential energy (ΔPE_g) between points A and B is independent of the path. ΔPE_g = mgh for any path between the two points. Gravity is one of a small class of forces where the work done by or against the force depends only on the starting and ending points, not on the path between them.",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "energy",
+    "position",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-landing",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "position",
+    "force",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "fig-kangaroo",
+   "kind": "photo",
+   "number": "7.7",
+   "draws": []
+  },
+  {
+   "id": "sim-coaster",
+   "kind": "sim",
+   "number": "7.8",
+   "originals": [
+    "/media/ch07/Figure_08_03_04a.jpg"
+   ],
+   "original_caption": "The speed of a roller coaster increases as gravity pulls it downhill and is greatest at its lowest point. Viewed in terms of energy, the roller-coaster-Earth system’s gravitational potential energy is converted to kinetic energy. If work done by friction is negligible, all ΔPE_g is converted to KE.",
+   "draws": [
+    "energy",
+    "position",
+    "velocity",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-marble",
+   "kind": "sim",
+   "number": "7.9",
+   "originals": [
+    "/media/ch07/Figure_08_03_05a.jpg"
+   ],
+   "original_caption": "A marble rolls down a ruler, and its speed on the level surface is measured.",
+   "draws": [
+    "energy",
+    "position",
+    "velocity",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "lifting",
+   "concept": "potential-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "lifting",
+   "concept": "pe-reference-level",
+   "verb": "introduces"
+  },
+  {
+   "span": "lifting",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "work-transfers-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "converting",
+   "concept": "gravitational-potential-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "converting",
+   "concept": "potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "converting",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "converting",
+   "concept": "work-energy-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "converting",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "any-path",
+   "concept": "path-independence-of-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "any-path",
+   "concept": "gravitational-potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "any-path",
+   "concept": "pe-reference-level",
+   "verb": "reinforces"
+  },
+  {
+   "span": "landing",
+   "concept": "stopping-force-from-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "landing",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "landing",
+   "concept": "work-sign",
+   "verb": "uses"
+  },
+  {
+   "span": "landing",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "landing",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coaster",
+   "concept": "pe-to-ke",
+   "verb": "introduces"
+  },
+  {
+   "span": "coaster",
+   "concept": "gravitational-potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "coaster",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coaster",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "coaster",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "coaster",
+   "concept": "path-independence-of-gravity",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id3349229",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lifting",
+   "prompt": "A 1.0 kg baseball is flying at 10 m/s. How much kinetic energy does it have? Potential energy?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "10 J, 20 J",
+     "50 J, 20 J",
+     "unknown, 50 J",
+     "50 J, unknown"
+    ],
+    "correct": 3,
+    "hint": "The mass and the speed are enough to settle the kinetic energy, but gravitational potential energy is measured from a reference level, and the question names neither a height nor a level to measure it from.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1258975",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coaster",
+   "prompt": "A 0.305-kg potato has been launched out of a potato cannon at 15.8 m/s. What is the kinetic energy? If you then learn that it is 4.00 m above the ground, what is the total mechanical energy relative to the ground?<ol type=\"a\"><li>12.0 J, 50.1 J</li><li>2.41 J, 14.4 J</li><li>38.1 J, 50.1 J</li><li>12.0 J, 14.4 J</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Work out the kinetic energy first, from $\\kKE = \\tfrac{1}{2}m\\kv^2$ with the potato’s 0.305 kg and 15.8 m/s, and note that the speed is squared before the mass multiplies it, so a small mass moving quickly can carry a good deal of energy. The total mechanical energy relative to the ground is that kinetic energy plus the gravitational potential energy the potato has at 4.00 m above the ground, which is $m\\kg\\kh$ with the ground as the reference level, so calculate $(0.305\\ \\text{kg})(9.80\\ \\text{m/s}^2)(4.00\\ \\text{m})$ and add it on. Two checks will tell you which option is right without any further arithmetic. The second number must be larger than the first, since the potential energy is added to the kinetic energy and not taken from it, and it must be larger by only a modest amount, because four metres of height is worth far less than the energy in a 15.8 m/s launch."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2335813",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coaster",
+   "prompt": "You have a 120-g yo-yo that you are swinging at 0.9 m/s. How much energy does it have? How high can it get above the lowest point of the swing without your doing any additional work, on Earth? How high could it get on the Moon, where gravity is 1/6 Earth’s?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the energy of the swinging yo-yo",
+      "value": 0.049,
+      "unit": "J",
+      "hint": "The yo-yo is moving and is at the lowest point of its swing, so all the energy you are asked for is kinetic, $\\tfrac{1}{2}m\\kv^2$, and the mass is in grams."
+     },
+     {
+      "part": "how high it rises on Earth",
+      "value": 0.041,
+      "unit": "m",
+      "hint": "It rises until all of that kinetic energy has become gravitational potential energy, so set $m\\kg\\kh$ equal to the energy you found and solve for $\\kh$."
+     },
+     {
+      "part": "how high it rises on the Moon",
+      "value": 0.25,
+      "unit": "m",
+      "hint": "Nothing changes but $\\kg$, which is one sixth of its value on Earth, and it sits in the denominator of the height."
+     }
+    ],
+    "solution": "0.049 J; 0.041 m, 0.25 m"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2987264",
+   "source_section": "7.4",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "converting",
+   "prompt": "Old-fashioned pendulum clocks are powered by masses that need to be wound back to the top of the clock about once a week to counteract energy lost due to friction and to the chimes. One particular clock has three masses: 4.0 kg, 4.0 kg, and 6.0 kg. They can drop 1.3 meters. How much energy does the clock use in a week?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "51 J",
+     "76 J",
+     "127 J",
+     "178 J"
+    ],
+    "correct": 3,
+    "hint": "Each mass gives up $m\\kg\\kh$ as it descends, and all three descend the same 1.3 m in the week, so add the three masses before multiplying.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1415865",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coaster",
+   "prompt": "In Example 7.7, we calculated the final speed of a roller coaster that descended 20 m in height and had an initial speed of 5 m/s downhill. Suppose the roller coaster had had an initial speed at the bottom of the hill of 5 m/s <em>uphill</em> instead, and it coasted 20 m uphill, stopped, and then rolled back down to a final point at the same elevation as it started. We would find in that case that its final speed is the same as its initial speed. Explain in terms of conservation of energy.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Friction is negligible, so the only energy the coaster exchanges on the way up and on the way down is the exchange between kinetic energy and gravitational potential energy, and $-\\kdPEg = \\kdKE$ holds at every stage. Going uphill the coaster gives up kinetic energy and the coaster-Earth system stores it as gravitational potential energy; at the moment the coaster stops, the whole of the kinetic energy it began with has been stored. Coming back down through the same change in height, the system gives back exactly the energy it stored, since $\\kdPEg = m\\kg\\kh$ depends only on the change in height and the coaster returns to the elevation it started from. The kinetic energy at the finishing point is therefore the kinetic energy it had at the start, and since the mass has not changed, the speed is the same as well. Only the direction of travel has changed: the coaster is now moving downhill where it was moving uphill."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1759147",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "any-path",
+   "prompt": "Does the work you do on a book when you lift it onto a shelf depend on the path taken? On the time taken? On the height of the shelf? On the mass of the book?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The work you do against gravity in raising the book is the change in the gravitational potential energy of the book-Earth system, $\\kdPEg = m\\kg\\kh$, and only two things appear in it. It does not depend on the path: you may lift the book straight up, carry it round the room first, or raise it along a sloping board, and as long as it ends on the same shelf the work done against gravity is the same, because gravity is one of the small class of forces whose work depends only on the starting and ending points. It does not depend on the time either, since no time appears in $m\\kg\\kh$; taking an hour over the lift rather than a second changes how fast you do the work, but not how much of it there is. It does depend on the height of the shelf, and in direct proportion: a shelf twice as high takes twice the work. And it does depend on the mass of the book, in the same direct way, since the force needed to lift the book at constant speed is its weight $m\\kg$."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1942940",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "converting",
+   "figure": {
+    "src": "/media/ch07/Figure_08_03_06a-8cbf.jpg",
+    "alt": "A dam with water flowing down its gates.",
+    "caption": "Hydroelectric facility (credit: Denis Belevich, Wikimedia Commons)"
+   },
+   "prompt": "A hydroelectric power facility (see the figure below) converts the gravitational potential energy of water behind a dam to electric energy. (a) What is the gravitational potential energy relative to the generators of a lake of volume $50.0\\ \\text{km}^3$ ($\\text{mass} = 5.00\\times 10^{13}\\ \\text{kg}$), given that the lake has an average height of 40.0 m above the generators? (b) Compare this with the energy stored in a 9-megaton fusion bomb.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the gravitational potential energy of the lake",
+      "value": 1.96e+16,
+      "unit": "J",
+      "hint": "The whole mass of the lake is given, and its average height above the generators is the change in height, so the energy is $m\\kg\\kh$ with the generators as the reference level."
+     },
+     {
+      "part": "(b) the ratio of that energy to the energy stored in the bomb",
+      "value": 0.52,
+      "unit": "",
+      "hint": "A megaton of TNT is $4.2\\times 10^{15}$ J, so work out what nine of them come to and divide the lake’s energy by it."
+     }
+    ],
+    "solution": "(a) $1.96\\times 10^{16}\\ \\text{J}$ (b) The ratio of gravitational potential energy in the lake to the energy stored in the bomb is 0.52. That is, the energy stored in the lake is approximately half that in a 9-megaton fusion bomb."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1796084",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "converting",
+   "prompt": "Suppose a 350-g kookaburra (a large kingfisher bird) picks up a 75-g snake and raises it 2.5 m from the ground to a branch. (a) How much work did the bird do on the snake? (b) How much work did it do to raise its own center of mass to the branch?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the work done on the snake",
+      "value": 1.8,
+      "unit": "J",
+      "hint": "The work done in raising something at constant speed is the change in the gravitational potential energy of the object-Earth system, $m\\kg\\kh$, and the mass is in grams."
+     },
+     {
+      "part": "(b) the work done in raising the bird",
+      "value": 8.6,
+      "unit": "J",
+      "hint": "The bird’s own centre of mass rises through the same 2.5 m, so the same expression applies with the bird’s mass."
+     }
+    ],
+    "solution": "(a) 1.8 J (b) 8.6 J"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2097867",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coaster",
+   "figure": {
+    "src": "/media/ch07/Figure_08_03_07a-5a6c.jpg",
+    "alt": "A toy car is moving up a curved track.",
+    "caption": "A toy car moves up a sloped track. (credit: Leszek Leszczynski, Flickr)"
+   },
+   "prompt": "A 100-g toy car is propelled by a compressed spring that starts it moving. The car follows the curved track in the figure below. Show that the final speed of the toy car is 0.687 m/s if its initial speed is 2.00 m/s and it coasts up the frictionless slope, gaining 0.180 m in altitude.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.687,
+    "unit": "m/s",
+    "hint": "The car rises, so the change in height is negative in $\\kv = \\sqrt{2\\kg\\kh + \\kvo^2}$, and the mass does not enter the result at all.",
+    "solution": "$\\kv = \\sqrt{2\\kg\\kh + \\kvo^2} = \\sqrt{2(9.80\\ \\text{m/s}^2)(-0.180\\ \\text{m}) + (2.00\\ \\text{m/s})^2} = 0.687\\ \\text{m/s}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "pe-reference-level"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "kinetic-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "pe-to-ke"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "pe-to-ke"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pe-to-ke"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pe-reference-level",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "path-independence-of-gravity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pe-to-ke"
+  },
+  {
+   "exercise": "p5",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  }
+ ]
+}

@@ -46,8 +46,11 @@ is plainly a Remember or Understand check beside the passage it tests.
 The answer key covers roughly every second problem, as it does elsewhere in
 the book, and about half the AP items; no conceptual question is keyed, and
 the Construct Your Own Problem and Unreasonable Results items of 7.9 are
-keyed only in part (the two Unreasonable Results items are keyed, the two
-Construct Your Own Problem items are not).
+keyed only in part. The chapter pass corrected what this file first said
+here: of the two Unreasonable Results items only one is keyed, the exercise
+bicycle and body fat (`fs-id1975735`), while the car advertisement
+(`fs-id1279346`) is not, and neither Construct Your Own Problem item is.
+7.9's `exercise_notes` says the same.
 
 ## The figure numbers
 

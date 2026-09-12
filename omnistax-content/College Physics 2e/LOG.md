@@ -1178,3 +1178,101 @@ Checks: `check:content` clean with 10 chapters, 53 sections and 11
 introduction pages; 348 unit tests; `astro check` clean; a build of 66
 pages; a headless pass over all 36 new pages in light and dark with no
 console error, every image loading and every canvas booting.
+
+
+### Pass 28 (2026-09-11): Chapter 7, Work, Energy, and Energy Resources, is built
+
+Chapter 7 was prepared in pass 27 and held there, because 7.1 and 7.2 take
+exercises from 7.6 and 7.9 and the validator refuses a `source_section`
+that names a section nobody has built. Its nine sections were built in one
+wave by nine agents, and this pass is the chapter pass over them: the
+wants of the nine plans, the cross-section checks, one reading of every
+page and every `figures.js`, and the full checks.
+
+What stands. Nine section pages and the introduction page of pass 27, 43
+figure rows over them: 32 sims, of which 19 transform a book figure and 13
+are Sims of OmniStax's own, 9 kept photographs and 2 faithful copies that
+serve the problems (the skier of 7.5 and the car coasting to the gas
+station of 7.6). Every one of the book's numbers, Figure 7.1 to Figure
+7.29, is carried by exactly one row, and one fold does the work of two:
+the baseball player sliding to a stop on the level and on a 5° slope is
+Figure 7.16 + 7.17 with the angle on a slider. 105 exercises, 12 of them
+carrying a figure of the book's on their card, and six short conceptual
+questions set inline, since the chapter prints no Check Your Understanding
+box anywhere. Seven items cross sections with `source_section`, and both
+sections' `exercise_notes` say so each time: the rocket payload and the
+crane of 7.1 and the Critical Thinking item of 7.9 go to 7.2, the spring
+item of 7.1 to 7.4, the pendulum clock of 7.4 to 7.3, and the mule and the
+"describe an instance today" item of 7.6 to 7.1.
+
+What the chapter pass wrote. The 125 anchors the nine plans asked for, on
+every variable row and every equation row of `chapter.json`, each one a
+span or an example of the section's own `text.html`. One symbol: 7.2 asked
+whether `F_fr` was worth a row for the single place Example 7.3 spells the
+friction force `F_{\text{fr}}` where the rest of the chapter writes `f`,
+and it is, since that one occurrence stood in ink among coloured forces
+and read as a mistake; the row carries the type `force` and the macro
+`\kFfr`, and `book-rows.json` now stages 32 symbols. 7.4's `cq3`, which
+asks what mechanical energy has to do with nonconservative forces, now
+also tags `nonconservative-force`, a built node since 7.5 stands, with a
+weight of 1 because the question is about mechanical energy and only names
+the other idea.
+
+What the reading found. Two inline cards had nowhere to render: 7.2's
+`cq2` is placed after the span `transfers` and 7.4's `cq1` after
+`conservative-forces`, and neither `text.html` carried the
+`<div class="exercises" data-place="…">` the other four sections carry, so
+both cards were laid out into nothing. Both hosts are in. Table 7.2's
+footnote in 7.6 and Table 7.5's in 7.8 were set two different ways, and
+both are now the `<p class="tnote">` that Chapter 4 gives Table 4.1's.
+`exploration.md` said both Unreasonable Results items of 7.9 were keyed;
+only the exercise bicycle is, and the car advertisement is not, so the
+file is corrected and agrees with 7.9's `exercise_notes`.
+
+Four figures were fixed after the screenshots. In Figure 7.2 the label
+"F cos θ" sat in the same wedge as the angle's arc and its label, and now
+stands above the reference line beside "F". In Figure 7.4 the bracket for
+the net work drew its label on the dashed line at the starting energy for
+the first instants of every loop, and now waits until it is tall enough to
+hold it. Figure 7.8 read `√(2(9.80 m/s²)(0.0 m) + (0.00 m/s)²) = 0.4 m/s`
+at the top of the hill, because the car stood at the second sample of its
+run while the height fallen was printed to one decimal; the car now starts
+at the first sample and the height carries two decimals, so the arithmetic
+the readout prints is the arithmetic it does. In Figure 7.12 the speed of
+the car that takes the dip was written above it, which is where the other
+car stands as the two leave together, and now goes below and behind it.
+
+Two colour faults went with them, both in 7.3. The weight of the falling
+person was drawn and labelled "mg = 588 N" in the acceleration hue,
+although it is a force and the same figure's graph draws the force in the
+force hue; and the arrow that shows the cuckoo clock's weight coming down
+names no quantity at all, so it is in ink now rather than borrowing a
+type's colour. Rule 7 is about what a colour means, and a newton in the
+hue of an acceleration says the wrong thing.
+
+What the book's rules gained. One sentence under Files: a dollar sign is
+`&#36;` in the prose of `text.html`, but the fullwidth `＄` inside an
+exercise's `prompt` or `solution`, because the entity is decoded into a
+bare `$` before the math sweep reads the string and the sweep then takes
+the rest of the sentence for an equation. 7.7 is the only section of the
+chapter with money in it and had already written it that way; every
+`section.json` of the chapter was grepped for `&#36;` and `\$` and neither
+occurs.
+
+Left as it stands. Figure 7.29, the scatter of energy use against GDP, is
+kept as the book prints it, since neither the population nor the gross
+domestic product behind it appears anywhere in 7.9. The introduction marks
+"Conservation of energy", which the glossary carries under 7.6 as the law
+of conservation of energy, and the mark stays where the book puts it.
+`PE_el` keeps `\kPE` and plain `PE` keeps `\kPEtot`, and
+`elastic-potential-energy` sits at 7.4, where the book first states the
+energy of a stretched spring, with 16.1 reinforcing it. The book's own
+keys are printed as the book prints them, the dart gun of 7.4 included.
+
+Checks: `check:content` with 10 chapters, 62 sections and 11 introduction
+pages and no errors; 361 unit tests; `astro check` clean; a build of 75
+pages; and a headless pass over all ten pages of the chapter in light and
+dark with no console error, every image loading, every `figure.sim`
+booting its canvas, a transport under every moving figure and none under
+any still one, every eyebrow reading what its row says, and all six inline
+cards rendering in their hosts.

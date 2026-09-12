@@ -1,0 +1,617 @@
+{
+  "id": "7.4",
+  "module": "m42149",
+  "chapter": "7",
+  "title": "Conservative Forces and Potential Energy",
+  "short": "Conservative forces and potential energy",
+  "lead": "Some forces give back every joule of work done against them. This section defines a conservative force as one whose work depends only on where a motion starts and where it ends, and not on the path between, finds the potential energy $\\kPEs = \\frac{1}{2}\\kk\\kx^2$ stored in a spring that is stretched or compressed a distance $\\kx$, and shows from the work-energy theorem that when only conservative forces act the kinetic energy and the potential energy of a system add to a constant, which is the conservation of mechanical energy.",
+  "objectives": [
+    "Define conservative force, potential energy, and mechanical energy.",
+    "Explain the potential energy of a spring in terms of its compression when Hooke’s law applies.",
+    "Use the work-energy theorem to show how having only conservative forces implies conservation of mechanical energy."
+  ],
+  "summary_html": "<ul><li>A conservative force is one for which work depends only on the starting and ending points of a motion, not on the path taken.</li><li>We can define potential energy $(\\kPEtot)$ for any conservative force, just as we defined $\\kPEg$ for the gravitational force.</li><li>The potential energy of a spring is $\\kPEs = \\frac{1}{2}\\kk\\kx^2$, where $\\kk$ is the spring’s force constant and $\\kx$ is the displacement from its undeformed position.</li><li>Mechanical energy is defined to be $\\kKE + \\kPEtot$ for a conservative force.</li><li>When only conservative forces act on and within a system, the total mechanical energy is constant. In equation form, $\\left(\\begin{array}{rl} &amp; \\kKE + \\kPEtot = \\text{constant} \\\\ \\text{or} &amp; \\\\ &amp; \\kKEi + \\kPEi = \\kKEf + \\kPEf \\end{array}\\right)\\ \\text{(conservative forces only),}$ where i and f denote initial and final values. This is known as the conservation of mechanical energy.</li></ul>",
+  "notes": "The pogo-stick problem has no answer in the book’s key and is left out, and the link to the PhET simulation Energy Skate Park is left out.",
+  "ai": {
+    "text": "Claude Opus 5",
+    "figures": "Claude Opus 5"
+  },
+  "built": "2026-09-11",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated, and the answers come from the book’s answer key alone. Of the section’s two problems, the pogo stick (fs-id1628356) has no keyed answer and is left out; it is also the one item of the section that points the reader at the Problem-Solving Strategies for Energy note of 7.6, so no exercise here carries that reference. None of the four conceptual questions is keyed, so each carries an AI-written suggested approach, marked as such, and the shortest of them, “What is a conservative force?”, is a Remember check on the passage beside it and is set inline there; the chapter prints no Check Your Understanding box anywhere, so nothing of the book’s own fills that place. Of the section’s nine AP items, four are keyed: the catapult (fs-id1632979) is set as its two numbers, and the dart gun (fs-id2328776) and the pocket watch (fs-id1759232) are set as the book’s own graded choices. The two-mass item (fs-id1843533) has options but no key, so it is kept as an open item with its four options as the book prints them and an AI-written approach, never as a graded choice, and the four questions in words (fs-id2319062, fs-id2524398, fs-id1360944 and fs-id1811319) are open items with AI-written approaches. One item the book prints in 7.1 is set here with source_section 7.1: the spring compressed by x and then by 2x (fs-id2713956), which cites Figure 7.10(c), needs the potential energy of a spring, which this section introduces, and it is keyed, so it is kept as the book’s own choice; 7.1’s notes say so as well. One item of this section goes the other way: the pendulum clock whose three masses drop 1.3 m in a week (fs-id2987264) is $m\\kg\\kh$ and nothing else, which 7.3 introduces, so it is set in 7.3 with source_section 7.4, and 7.3’s notes say so.",
+  "figures": [
+    {
+      "id": "sim-spring-energy",
+      "kind": "sim",
+      "number": "7.10",
+      "originals": [
+        "/media/ch07/Figure_08_04_01a.jpg"
+      ],
+      "original_caption": "(a) An undeformed spring has no PE_s stored in it. (b) The force needed to stretch (or compress) the spring a distance x has a magnitude F = kx, and the work done to stretch (or compress) it is ½kx². Because the force is conservative, this work is stored as potential energy (PE_s) in the spring, and it can be fully recovered. (c) A graph of F vs. x has a slope of k, and the area under the graph is ½kx². Thus the work done or potential energy stored is ½kx².",
+      "widths": [
+        600
+      ],
+      "draws": [
+        "energy",
+        "force",
+        "position",
+        "stiffness"
+      ]
+    },
+    {
+      "id": "sim-double",
+      "kind": "sim",
+      "draws": [
+        "energy",
+        "force",
+        "position",
+        "stiffness"
+      ]
+    },
+    {
+      "id": "sim-guitar",
+      "kind": "sim",
+      "number": "7.11",
+      "originals": [
+        "/media/ch07/Figure_08_04_02a.jpg"
+      ],
+      "original_caption": "Work is done to deform the guitar string, giving it potential energy. When released, the potential energy is converted to kinetic energy and back to potential as the string oscillates back and forth. A very small fraction is dissipated as sound energy, slowly removing energy from the string.",
+      "widths": [
+        150
+      ],
+      "draws": [
+        "energy",
+        "position",
+        "stiffness"
+      ]
+    },
+    {
+      "id": "sim-toy-car",
+      "kind": "sim",
+      "number": "7.12",
+      "originals": [
+        "/media/ch07/Figure_08_04_03a.jpg"
+      ],
+      "original_caption": "A toy car is pushed by a compressed spring and coasts up a slope. Assuming negligible friction, the potential energy in the spring is first completely converted to kinetic energy, and then to a combination of kinetic and gravitational potential energy as the car rises. The details of the path are unimportant because all forces are conservative—the car would have the same final speed if it took the alternate path shown.",
+      "draws": [
+        "energy",
+        "velocity",
+        "position",
+        "stiffness",
+        "acceleration"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "conservative-forces",
+      "concept": "conservative-force",
+      "verb": "introduces"
+    },
+    {
+      "span": "conservative-forces",
+      "concept": "potential-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "conservative-forces",
+      "concept": "gravitational-potential-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "conservative-forces",
+      "concept": "path-independence-of-gravity",
+      "verb": "uses"
+    },
+    {
+      "span": "conservative-forces",
+      "concept": "work",
+      "verb": "uses"
+    },
+    {
+      "span": "spring-energy",
+      "concept": "elastic-potential-energy",
+      "verb": "introduces"
+    },
+    {
+      "span": "spring-energy",
+      "concept": "conservative-force",
+      "verb": "uses"
+    },
+    {
+      "span": "spring-energy",
+      "concept": "hookes-law",
+      "verb": "uses"
+    },
+    {
+      "span": "spring-energy",
+      "concept": "force-constant",
+      "verb": "uses"
+    },
+    {
+      "span": "spring-energy",
+      "concept": "work-as-area",
+      "verb": "uses"
+    },
+    {
+      "span": "spring-energy",
+      "concept": "work",
+      "verb": "uses"
+    },
+    {
+      "span": "any-deformation",
+      "concept": "elastic-potential-energy",
+      "verb": "reinforces"
+    },
+    {
+      "span": "any-deformation",
+      "concept": "potential-energy",
+      "verb": "reinforces"
+    },
+    {
+      "span": "conservation",
+      "concept": "mechanical-energy",
+      "verb": "introduces"
+    },
+    {
+      "span": "conservation",
+      "concept": "conservation-of-mechanical-energy",
+      "verb": "introduces"
+    },
+    {
+      "span": "conservation",
+      "concept": "work-energy-theorem",
+      "verb": "uses"
+    },
+    {
+      "span": "conservation",
+      "concept": "net-work",
+      "verb": "uses"
+    },
+    {
+      "span": "conservation",
+      "concept": "kinetic-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "conservation",
+      "concept": "conservative-force",
+      "verb": "uses"
+    },
+    {
+      "span": "conservation",
+      "concept": "potential-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "using-conservation",
+      "concept": "solve-with-mechanical-energy",
+      "verb": "introduces"
+    },
+    {
+      "span": "using-conservation",
+      "concept": "conservation-of-mechanical-energy",
+      "verb": "reinforces"
+    },
+    {
+      "span": "using-conservation",
+      "concept": "elastic-potential-energy",
+      "verb": "reinforces"
+    },
+    {
+      "span": "using-conservation",
+      "concept": "gravitational-potential-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "using-conservation",
+      "concept": "kinetic-energy",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id2769430",
+      "kind": "conceptual-question",
+      "bloom": "Remember",
+      "place": {
+        "at": "inline",
+        "after": "conservative-forces"
+      },
+      "cite": "conservative-forces",
+      "prompt": "What is a conservative force?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "A conservative force is one for which the work done by it or against it depends only on the starting and the ending points of a motion, and not at all on the path taken between them. The gravitational force is one, and so is the force of an ideal spring. Because the work depends only on the two configurations, a potential energy can be defined for the force, and the work done against the force is stored as that potential energy and is completely recoverable."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id2731704",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "any-deformation",
+      "prompt": "The force exerted by a diving board is conservative, provided the internal friction is negligible. Assuming friction is negligible, describe changes in the potential energy of a diving board as a swimmer dives from it, starting just before the swimmer steps on the board until just after his feet leave it.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Just before the swimmer steps on it the board is undeformed, so it holds no potential energy. As the swimmer walks out along it and then pushes down, the board bends, and the work done against the board’s restoring force is stored in it as potential energy, in the same way that work done against a spring is stored as $\\kPEs = \\frac{1}{2}\\kk\\kx^2$; the potential energy is greatest when the board is bent farthest down and the swimmer is momentarily at his lowest point. The board then straightens and gives that energy back, so its potential energy falls as the swimmer rises, and it is zero again at the instant the board passes through its undeformed shape. Just after the swimmer’s feet leave it the board holds whatever energy is left in its own vibration, and the rest has gone to the swimmer as kinetic energy and as the potential energy of his height. Because the board’s force is conservative, none of the energy is lost along the way; it only changes which part of the system holds it."
+      }
+    },
+    {
+      "id": "cq3",
+      "source_id": "fs-id1862083",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "conservation",
+      "prompt": "Define mechanical energy. What is the relationship of mechanical energy to nonconservative forces? What happens to mechanical energy if only conservative forces act?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The mechanical energy of a system is the sum of its kinetic energy and its potential energy, $\\kKE + \\kPEtot$, counting every kind of potential energy the system has. A nonconservative force, such as friction, does work that depends on the path taken, so no potential energy can be defined for it and the work it does is not stored in the system; such a force therefore changes the mechanical energy, usually removing it. If only conservative forces act on and within the system, the work they do is minus the change in potential energy, so $\\kdKE + \\kdPE = 0$ and the mechanical energy stays constant: $\\kKEi + \\kPEi = \\kKEf + \\kPEf$. The energy then only changes form, moving between kinetic energy and the various kinds of potential energy while the total stays put."
+      }
+    },
+    {
+      "id": "cq4",
+      "source_id": "fs-id1707793",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "conservative-forces",
+      "prompt": "What is the relationship of potential energy to conservative force?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "A potential energy can be defined for a force only when that force is conservative. Because the work done against a conservative force depends only on the starting and the ending configuration and not on the path, that work can be written as a quantity belonging to the configuration itself, which is what the potential energy is. The work done by the conservative force is then minus the change in that potential energy, $\\kWc = -\\kdPE$, so the energy stored by doing work against the force is completely recoverable as work done by it. A force whose work depends on the path, such as friction, has no potential energy associated with it."
+      }
+    },
+    {
+      "id": "ap1",
+      "source_id": "fs-id1843533",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "conservation",
+      "prompt": "Two 4.0 kg masses are connected to each other by a spring with a force constant of 25 N/m and a rest length of 1.0 m. If the spring has been compressed to 0.80 m in length and the masses are traveling toward each other at 0.50 m/s (each), what is the total energy in the system?<ol type=\"a\"><li>1.0 J</li><li>1.5 J</li><li>9.0 J</li><li>8.0 J</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The total energy of the system is its mechanical energy, the kinetic energy of everything that moves plus the potential energy stored in the spring. Each mass carries $\\frac{1}{2}m\\kv^2 = \\frac{1}{2}(4.0\\ \\text{kg})(0.50\\ \\text{m/s})^2 = 0.50\\ \\text{J}$, and there are two of them, so the kinetic energy is 1.0 J. The spring is compressed from its rest length of 1.0 m to 0.80 m, so its displacement from the undeformed position is $\\kx = 0.20\\ \\text{m}$ and it holds $\\kPEs = \\frac{1}{2}\\kk\\kx^2 = \\frac{1}{2}(25\\ \\text{N/m})(0.20\\ \\text{m})^2 = 0.50\\ \\text{J}$. Adding the two gives 1.5 J, which is the second choice. Note that the compressed length of the spring is not the displacement; only the amount by which the spring is deformed enters $\\frac{1}{2}\\kk\\kx^2$."
+      }
+    },
+    {
+      "id": "ap2",
+      "source_id": "fs-id1632979",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "A spring with a force constant of 5000 N/m and a rest length of 3.0 m is used in a catapult. When compressed to 1.0 m, it is used to launch a 50 kg rock. However, there is an error in the release mechanism, so the rock gets launched almost straight up. How high does it go, and how fast is it going when it hits the ground?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "the height the rock reaches",
+            "value": 20,
+            "unit": "m",
+            "hint": "The spring is deformed by $\\kx = 2.0\\ \\text{m}$, and at the top of the flight all of $\\frac{1}{2}\\kk\\kx^2$ has become $m\\kg\\kh$."
+          },
+          {
+            "part": "the speed at which it hits the ground",
+            "value": 20,
+            "unit": "m/s",
+            "hint": "Only conservative forces act, so compare the launch with the landing: the rock comes back to the height it left with all of the spring’s energy again as kinetic energy."
+          }
+        ],
+        "solution": "20 m high, 20 m/s."
+      }
+    },
+    {
+      "id": "ap3",
+      "source_id": "fs-id2319062",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "spring-energy",
+      "prompt": "What information do you need to calculate the kinetic energy and potential energy of a spring? Potential energy due to gravity? How many objects do you need information about for each of these cases?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "To find the kinetic energy of something attached to a spring you need its mass and its speed, since $\\kKE = \\frac{1}{2}m\\kv^2$, so you need information about one object, the one that moves. To find the potential energy stored in the spring you need the spring’s force constant $\\kk$ and the distance $\\kx$ by which it is stretched or compressed from its undeformed length, since $\\kPEs = \\frac{1}{2}\\kk\\kx^2$; the mass plays no part, and the information is again about one object, the spring itself. To find the gravitational potential energy you need the mass of the object, the height it has been raised through, and the acceleration due to gravity, since the change is $m\\kg\\kh$, and because $\\kg$ belongs to the Earth this case really concerns two objects, the raised body and the Earth it is raised above."
+      }
+    },
+    {
+      "id": "ap4",
+      "source_id": "fs-id2328776",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "spring-energy",
+      "prompt": "You are loading a toy dart gun, which has two settings, the more powerful with the spring compressed twice as far as the lower setting. If it takes 5.0 J of work to compress the dart gun to the lower setting, how much work does it take for the higher setting?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "20 J",
+          "10 J",
+          "2.5 J",
+          "40 J"
+        ],
+        "correct": 0,
+        "hint": "The work done on the spring is $\\frac{1}{2}\\kk\\kx^2$, so it goes as the square of the compression rather than in proportion to it.",
+        "solution": "(a)"
+      }
+    },
+    {
+      "id": "ap5",
+      "source_id": "fs-id2524398",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "any-deformation",
+      "prompt": "Describe a system you use daily with internal potential energy.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Any system that stores energy in its shape or its configuration and gives it back will do. A wind-up kitchen timer is one: turning the dial does work against a coiled spring, that work is stored as potential energy because the spring’s force is conservative, and the spring gives it back slowly as it unwinds and drives the mechanism. The retractable ballpoint pen, the spring in a stapler, the elastic of a hair tie and the mattress you sleep on all store energy the same way, by being deformed. Whichever you choose, say what is deformed, what does the work of deforming it, and how the stored energy is recovered later; for a spring that obeys Hooke’s law the amount stored is $\\kPEs = \\frac{1}{2}\\kk\\kx^2$."
+      }
+    },
+    {
+      "id": "ap6",
+      "source_id": "fs-id1360944",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "A water tower stores not only water, but (at least part of) the energy to move the water. How much? Make reasonable estimates for how much water is in the tower, and other quantities you need.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The energy the tower stores is the gravitational potential energy of the water it holds, so estimate the mass of the water and the height of its centre above the ground and take the product with $\\kg$. A municipal tank holding about $2000\\ \\text{m}^3$ of water has a mass of about $2\\times 10^{6}\\ \\text{kg}$, since a cubic metre of water is 1000 kg, and such a tank typically stands with its water about 40 m above the mains it feeds. That gives $m\\kg\\kh \\approx (2\\times 10^{6}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(40\\ \\text{m}) \\approx 8\\times 10^{8}\\ \\text{J}$, roughly a thousand megajoules, which is the work the pumps did in filling the tower and which the water gives back as it falls to the taps. Your own numbers will differ; what matters is that you state the volume, turn it into a mass, choose a height, and say that the stored energy is $m\\kg\\kh$ because the gravitational force is conservative."
+      }
+    },
+    {
+      "id": "ap7",
+      "source_id": "fs-id1759232",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "spring-energy",
+      "prompt": "Old-fashioned pocket watches needed to be wound daily so they wouldn’t run down and lose time, due to the friction in the internal components. This required a large number of turns of the winding key, but not much force per turn, and it was possible to overwind and break the watch. How was the energy stored?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "A small mass raised a long distance",
+          "A large mass raised a short distance",
+          "A weak spring deformed a long way",
+          "A strong spring deformed a short way"
+        ],
+        "correct": 2,
+        "hint": "Many turns of the key at a small force per turn means a large deformation produced by a small force, and the force needed to deform a spring is $\\kF = \\kk\\kx$.",
+        "solution": "(c)"
+      }
+    },
+    {
+      "id": "ap8",
+      "source_id": "fs-id1811319",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "conservative-forces",
+      "prompt": "Some of the very first clocks invented in China were powered by water. Describe how you think this was done.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Water held in a tank above the mechanism has gravitational potential energy, and that energy is what runs the clock. The water was let out through a small opening at a steady rate and poured into buckets set round the rim of a wheel. As each bucket filled, its weight turned the wheel through one step, the bucket emptied, and the next one came under the spout, so the wheel advanced at a rate set by the flow rather than by how much water was in the tank. The turning wheel drove the hands and the chimes. Each kilogram of water falling a height $\\kh$ gives up $m\\kg\\kh$ of potential energy, which becomes the work done on the wheel, so the clock keeps running as long as the tank is refilled."
+      }
+    },
+    {
+      "id": "ap9",
+      "source_id": "fs-id2713956",
+      "source_section": "7.1",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "spring-energy",
+      "prompt": "Look at Figure 7.10(c). You compress a spring by $\\kx$, and then release it. Next you compress the spring by $2\\kx$. How much more work did you do the second time than the first?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "Half as much",
+          "The same",
+          "Twice as much",
+          "Four times as much"
+        ],
+        "correct": 3,
+        "hint": "The work done is the area of the triangle under the graph of $\\kF$ against $\\kx$, and doubling the compression doubles both the base and the height of that triangle.",
+        "solution": "(d)"
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id1088644",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "using-conservation",
+      "prompt": "A $5.00\\times 10^{5}\\text{-kg}$ subway train is brought to a stop from a speed of 0.500 m/s in 0.400 m by a large spring bumper at the end of its track. What is the force constant $\\kk$ of the spring?",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 781000.0,
+        "unit": "N/m",
+        "hint": "Only the spring force acts along the motion, so the train’s kinetic energy at the start is the energy stored in the spring at the end: $\\frac{1}{2}m\\kv^2 = \\frac{1}{2}\\kk\\kx^2$.",
+        "solution": "$7.81\\times 10^{5}\\ \\text{N/m}$"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cq1",
+      "concept": "conservative-force"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "elastic-potential-energy"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "potential-energy",
+      "weight": 1
+    },
+    {
+      "exercise": "cq2",
+      "concept": "conservative-force",
+      "weight": 1
+    },
+    {
+      "exercise": "cq3",
+      "concept": "mechanical-energy"
+    },
+    {
+      "exercise": "cq3",
+      "concept": "conservation-of-mechanical-energy"
+    },
+    {
+      "exercise": "cq3",
+      "concept": "nonconservative-force",
+      "weight": 1
+    },
+    {
+      "exercise": "cq4",
+      "concept": "conservative-force"
+    },
+    {
+      "exercise": "cq4",
+      "concept": "potential-energy",
+      "weight": 1
+    },
+    {
+      "exercise": "ap1",
+      "concept": "mechanical-energy"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "elastic-potential-energy"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "kinetic-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap2",
+      "concept": "solve-with-mechanical-energy"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "conservation-of-mechanical-energy"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "elastic-potential-energy"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "gravitational-potential-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap3",
+      "concept": "elastic-potential-energy"
+    },
+    {
+      "exercise": "ap3",
+      "concept": "gravitational-potential-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap3",
+      "concept": "kinetic-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap4",
+      "concept": "elastic-potential-energy"
+    },
+    {
+      "exercise": "ap5",
+      "concept": "potential-energy"
+    },
+    {
+      "exercise": "ap5",
+      "concept": "elastic-potential-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap6",
+      "concept": "gravitational-potential-energy"
+    },
+    {
+      "exercise": "ap6",
+      "concept": "solve-with-mechanical-energy",
+      "weight": 2
+    },
+    {
+      "exercise": "ap7",
+      "concept": "elastic-potential-energy"
+    },
+    {
+      "exercise": "ap7",
+      "concept": "gravitational-potential-energy",
+      "weight": 1
+    },
+    {
+      "exercise": "ap8",
+      "concept": "gravitational-potential-energy"
+    },
+    {
+      "exercise": "ap8",
+      "concept": "potential-energy",
+      "weight": 1
+    },
+    {
+      "exercise": "ap9",
+      "concept": "elastic-potential-energy"
+    },
+    {
+      "exercise": "p1",
+      "concept": "elastic-potential-energy"
+    },
+    {
+      "exercise": "p1",
+      "concept": "kinetic-energy",
+      "weight": 2
+    }
+  ]
+}
