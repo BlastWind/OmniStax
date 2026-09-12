@@ -57,7 +57,7 @@ function fly(ctx, x, y, color) {
     line(ctx, cx, cyc, ...at(cx, cyc, PX * R, th), C('position'), 4);
     arcAt(ctx, cx, cyc, PX * R, 0, th, C('position'), 7);
     arcAt(ctx, cx, cyc, PX * r1, 0, th, alpha(C('position'), 0.55), 7);
-    /* the angle at the centre */
+    /* the angle at the center */
     const aR = 74; arcAt(ctx, cx, cyc, aR, 0, th, PAL.ink, 2.5);
     text(ctx, 'Δθ', ...at(cx, cyc, aR + 28, th / 2), PAL.ink, { weight: 600, align: 'center' });
     dot(ctx, ...at(cx, cyc, PX * R, 0), C('position'), false, 9);

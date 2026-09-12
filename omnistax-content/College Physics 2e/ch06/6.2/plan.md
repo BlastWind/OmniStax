@@ -231,3 +231,13 @@ of the problems and the counts of revolutions stay in ink.
   where the book prints it; if the chapter pass would rather have it on 6.1's
   page, move the row to `ch06/6.1/section.json` with
   `source_section: "6.2"` and say so in both sections' `exercise_notes`.
+
+### Decided in the chapter pass
+
+- Every anchor above is written on its variable and equation row in
+  `chapter.json`.
+- Problem `p3` (fs-id3116567) is moved to 6.1, as the plan offered. It is
+  tagged with `arc-length` and `rotation-angle` and its hint works the arc
+  length, all of which 6.1 introduces, so rule 12 puts it there rather than
+  where the book prints it. It carries `source_section: "6.2"` on 6.1's page
+  and is gone from this one, and both sections' `exercise_notes` say so.

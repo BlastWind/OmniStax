@@ -135,7 +135,7 @@ function bathScale(ctx, x, y, w, color) {
       k, 'the external forces on the wagon and its rider');
     if (n > 0) {
       arrow(ctx, 420, 762, 420 + alen(n, k), 762, C('acceleration'), 5);
-      text(ctx, 'F net = ' + fmt(n, 1) + ' N', 420 + alen(n, k) + 12, 762, C('acceleration'), { size: 19, weight: 600 });
+      text(ctx, 'F_net = ' + fmt(n, 1) + ' N', 420 + alen(n, k) + 12, 762, C('acceleration'), { size: 19, weight: 600 });
     }
     /* the speed the wagon reaches, against time */
     const vr = nice(0, Math.max(a * T, 0.5), 3);
@@ -232,7 +232,7 @@ function bathScale(ctx, x, y, w, color) {
     arrow(ctx, px + 60, py - 116, px + 60 + La, py - 116, C('acceleration'), 5);
     text(ctx, 'a = ' + fmt(a, 2) + ' m/s²', px + 74 + La, py - 116, C('acceleration'), { size: 21, weight: 600 });
     arrow(ctx, px + 60, py - 62, px + 60 + LF, py - 62, cf, 5);
-    text(ctx, 'F net = ' + fmt(Fn.v, 0) + ' N', px + 74 + LF, py - 62, cf, { size: 21, weight: 600 });
+    text(ctx, 'F_net = ' + fmt(Fn.v, 0) + ' N', px + 74 + LF, py - 62, cf, { size: 21, weight: 600 });
     if (v > 0.02) {
       arrow(ctx, px + 60, py - 8, px + 60 + Lv, py - 8, C('velocity'), 5);
       text(ctx, 'v = ' + fmt(v, 2) + ' m/s', px + 74 + Lv, py - 8, C('velocity'), { size: 21, weight: 600 });
@@ -259,7 +259,7 @@ function bathScale(ctx, x, y, w, color) {
 (function () {
   const d = sim('sim-sled', 860);
   const Tt = ctl(d.controls, { label: '\\kTf', cls: 'force', min: 5000, max: 40000, step: 100, value: 25900, unit: 'N', dec: 0, onInput: reset, aria: 'thrust of one rocket' });
-  const nn = ctl(d.controls, { label: '\\text{rockets burning}', cls: '', min: 1, max: 4, step: 1, value: 4, unit: '', dec: 0, onInput: reset, aria: 'number of rockets burning' });
+  const nn = ctl(d.controls, { label: '\\text{rockets}', cls: '', min: 1, max: 4, step: 1, value: 4, unit: '', dec: 0, onInput: reset, aria: 'number of rockets burning' });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 2000, step: 50, value: 650, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction' });
   const M = 2100, T = 2;
   const accOf = (n) => Math.max(0, n * Tt.v - ff.v) / M;
@@ -299,7 +299,7 @@ function bathScale(ctx, x, y, w, color) {
       k, 'the external forces on the sled, its rockets and its rider');
     if (net > 0) {
       arrow(ctx, 400, 782, 400 + alen(net, k), 782, C('acceleration'), 5);
-      text(ctx, 'F net = ' + sig3(net) + ' N', 400 + alen(net, k) + 12, 782, C('acceleration'), { size: 19, weight: 600 });
+      text(ctx, 'F_net = ' + sig3(net) + ' N', 400 + alen(net, k) + 12, 782, C('acceleration'), { size: 19, weight: 600 });
     }
     /* the acceleration against the number of rockets burning */
     const ar = nice(0, Math.max(accOf(4), 1) * 1.14, 4);
@@ -308,7 +308,7 @@ function bathScale(ctx, x, y, w, color) {
     line(ctx, g.X(1), g.Y(accOf(1)), g.X(4), g.Y(accOf(4)), C('acceleration'), 5);
     for (let i = 1; i <= 4; i++) dot(ctx, g.X(i), g.Y(accOf(i)), C('acceleration'), i !== n, 9);
     dot(ctx, g.X(n), g.Y(a), PAL.ink, true, 10);
-    text(ctx, 'simply proportional', g.X(2), g.Y(accOf(4) / 2) - 24, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'simply proportional', g.X(1.45), g.Y(accOf(4) * 0.36) - 30, PAL.muted, { size: 17, align: 'center' });
     headline(ctx, 't = ' + fmt(tau, 2) + ' s · ' + (n === 1 ? 'one thrust of ' : n + ' thrusts of ') + sig3(Tt.v) + ' N less ' + commas(fmt(ff.v, 0)) + ' N of friction give a = ' + fmt(a, 1) + ' m/s², and the sled is at ' + fmt(v, 1) + ' m/s');
     readout(d.readout, `\\kFnet = ${n}\\kTf - \\kff = ${n}(${sig3(Tt.v)}\\ \\text{N}) - ${commas(fmt(ff.v, 0))}\\ \\text{N} = ${sig3(net)}\\ \\text{N} = m\\ka`,
       'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s². With one rocket burning the acceleration is ' + fmt(accOf(1), 1) + ' m/s², not a quarter of ' + fmt(accOf(4), 1) + ' m/s², because the same ' + commas(fmt(ff.v, 0)) + ' N of friction is taken off it.');

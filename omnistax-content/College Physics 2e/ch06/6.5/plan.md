@@ -339,3 +339,12 @@ the book’s rules say.
   `generated_by: "source"` and the approaches would be replaced by the
   book’s own words; that is a decision for the whole book, not for this
   section.
+
+### Decided in the chapter pass
+
+- Every anchor above is written on its variable and equation row in
+  `chapter.json`.
+- A worked solution that the CNXML carries inside an XML comment is not the
+  book's key: the book does not print it, and the rule is that answers come
+  from the printed key only. The three AP items stay open items with their
+  AI-marked approaches, exactly as the section built them.

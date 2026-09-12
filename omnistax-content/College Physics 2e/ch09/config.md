@@ -1,7 +1,7 @@
 # Config: College Physics 2e, Chapter 9
 
 Proposed by the agent after exploration (2026-09-11). Status: applied as
-proposed on 2026-09-11, on Chen's instruction to finish the book in one job
+proposed on 2026-09-11 and confirmed by the chapter pass on 2026-09-12, on Chen's instruction to finish the book in one job
 without check-ins; the per-section stops of rule 2 and the plan reviews of
 rule 5 are replaced by a plan file per section, written before the section
 is built and left for review after, as Chapters 1 to 6 did it. Each line is
@@ -26,7 +26,7 @@ unchanged unless marked.
 | 3D | none; every scene of the chapter is planar and the plane of the rotation is the canvas |
 | Figures that serve exercises | copied over faithfully, no sliders, labelled Figure with no number: 9.2's five forces on an anchored object, 9.3's leaning horse, braced wall, chicken in the wind, drawbridge, sandwich board and athlete in the splits, 9.4's stack of overhanging books (which travels with its item to 9.3), and 9.6's Achilles tendon, knee, leg-exercise device, drafting board, erect head, foot on its toes, father lifting a child, clenched jaw and push-up |
 | Extra simulations | agent proposes only those that open a view the required figures do not, builds the one or two that clearly earn their place, and says in the plan which were left (rule 15) |
-| Colour coding | one new type, `torque` (new), labelled torque with the dimension N·m, because the chapter's figures draw it and its readouts state it and rule 7 keeps a derived quantity its own type even where the dimension matches energy's; the lever arms $r$, $r_\perp$, $r_1$, $r_2$, $r_3$, $l_\text{i}$ and $l_\text{o}$ are positions, every $F$, $w$, $N$ and $T$ is a force, and the masses, the angle $\theta$ and the mechanical advantage MA stay untyped and in ink; twenty-six symbol rows added to `book.json` (`τ`, `τ_1`, `τ_2`, `r_lever`, `r_perp`, `r_3`, `F_p`, `w_1`, `w_2`, `F_L`, `F_R`, `MA`, `F_i`, `F_o`, `F_nail`, `l_i`, `l_o`, `F_B`, `F_E`, `F_V`, `F_Vx`, `F_Vy`, `w_a`, `w_b`, `w_ub`, `w_box`), and Chapter 6's `r_1` and `r_2` and Chapters 4 and 5's `F`, `F_net`, `F_x`, `F_y`, `F_app`, `w`, `N`, `T_force`, `f_fric`, `m` and `θ` used as they stand; the lever arm is keyed `r_lever` with the macro `\krlev` because Chapter 5 holds an untyped `r` and Chapter 6 holds `r_curv` with `\kr` |
+| Colour coding | one new type, `torque` (new), labelled torque with the dimension N·m, because the chapter's figures draw it and its readouts state it and rule 7 keeps a derived quantity its own type even where the dimension matches energy's; the lever arms $r$, $r_\perp$, $r_1$, $r_2$, $r_3$, $l_\text{i}$ and $l_\text{o}$ are positions, every $F$, $w$, $N$ and $T$ is a force, and the masses, the angle $\theta$ and the mechanical advantage MA stay untyped and in ink; twenty-seven symbol rows added to `book.json` (`τ`, `τ_1`, `τ_2`, `r_lever`, `r_perp`, `r_3`, `F_p`, `w_1`, `w_2`, `F_L`, `F_R`, `MA`, `F_i`, `F_o`, `F_nail`, `l_i`, `l_o`, `F_B`, `F_E`, `F_V`, `F_Vx`, `F_Vy`, `w_a`, `w_b`, `w_ub`, `w_box`, and `r_bperp`, the back muscles' own perpendicular lever arm, which the chapter pass added when 9.6's plan asked for it), and Chapter 6's `r_1` and `r_2` and Chapters 4 and 5's `F`, `F_net`, `F_x`, `F_y`, `F_app`, `w`, `N`, `T_force`, `f_fric`, `m` and `θ` used as they stand; the lever arm is keyed `r_lever` with the macro `\krlev` because Chapter 5 holds an untyped `r` and Chapter 6 holds `r_curv` with `\kr` |
 | Inline exercises | none: the chapter has no Check Your Understanding box |
 | Exercises tab | end-of-module problems, conceptual questions, AP test prep |
 | Exercise placement | an exercise goes with the section that introduces what it tests; 9.4's AP item on the stack of overhanging books tests the base of support and is set with 9.3 with `source_section: "9.4"`, and 9.4's AP item on the best estimate of a child's torque on a see-saw is set with 9.2 the same way, both sections' `exercise_notes` saying so; nothing else moves, since a reader who has read 9.1 and 9.2 has both conditions and can do every problem the later sections print |
@@ -37,5 +37,28 @@ unchanged unless marked.
 | Suggested approaches for open questions | generated, marked AI: all nineteen conceptual questions of the chapter and the five unkeyed AP items |
 | Generated questions | none; a node with no book exercise of its own is noted in the plan, no question generated |
 | Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 32 nodes written into `book.json` before the sections were built (4 for 9.1, 8 for 9.2, 5 for 9.3, 4 for 9.4, 6 for 9.5, 5 for 9.6) with 85 edges into Chapters 2, 3, 4, 5, 6 and 7 and within the chapter |
-| Formulas | `ch09/chapter.json`: 23 equations, the stated and named ones important (the two forms of the first condition, the two definitions of torque and the perpendicular lever arm, the second condition, the clockwise-equals-counterclockwise form, the equal and the summed hand forces, the mechanical advantage, the lever's balance and its mechanical advantage, the crank's and the pulley's, and the biceps force) and the worked steps not; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass writes them from the section plans |
+| Formulas | `ch09/chapter.json`: 23 equations, the stated and named ones important (the two forms of the first condition, the two definitions of torque and the perpendicular lever arm, the second condition, the clockwise-equals-counterclockwise form, the equal and the summed hand forces, the mechanical advantage, the lever's balance and its mechanical advantage, the crank's and the pulley's, and the biceps force) and the worked steps not; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass wrote them from the section plans: every one of the 23 equation rows and all 52 variable rows now carries an anchor into the section that states it |
 | Book manifest | `ch09` after `ch08` in `book.json` chapters, merged with `tools/mergebook.py merge ch09` |
+
+## What the build changed (chapter pass, 2026-09-12)
+
+A few lines of the table above needed a word after the sections were built,
+and they are already corrected in it. Everything else stood.
+
+- **Symbols.** Twenty-seven rows, not twenty-six: 9.6 wanted `r_bperp` for
+  the back muscles' perpendicular lever arm, which the book writes
+  $r_{\text{b}\perp}$ in the caption of Figure 9.26 and which two of the
+  section's figures bracket. Without it the one lever arm on the page that
+  the reader is asked to drag would have been the only one in ink.
+- **Bold vectors take no colour.** Where the book sets a quantity in bold
+  because it means the vector rather than the magnitude, the equation row
+  prints the bold and carries no `ktex`, as Chapters 3 and 4 already do.
+  In this chapter that is `eq-net-force-zero` alone; the components of
+  `eq-net-force-axes` are not bold in the book and keep their macros.
+- **Degrees.** Every angle in the chapter is written with the degree sign
+  `°` outside math and `^\circ` inside it. The ordinal `º` the converter
+  carried out of the CNXML is gone from `text.html`, `figures.js`,
+  `section.json` and `chapter.json`.
+- **Motion.** The config's decision held for all twenty-six drawn figures: not one
+  of them calls `cycle()`, and the headless pass found no transport on any
+  page of the chapter.

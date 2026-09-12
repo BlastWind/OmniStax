@@ -275,3 +275,14 @@ ink.
 - The chapter introduction defines **uniform circular motion** and no
   section's glossary carries it, as `exploration.md` notes. Nothing in
   this section can fix that, since a glossary row names a section.
+
+### Decided in the chapter pass
+
+- The `ω` anchor is written on the variable row in `chapter.json`.
+- 6.3's conceptual question `fs-id3035023` stays with 6.3, as this plan and
+  6.3's notes both prefer. What it tests is the centripetal force and inertia,
+  which 6.3 introduces; the centrifugal force gives a second way of saying it
+  but is not needed to answer it.
+- The glossary row for **uniform circular motion** is written under 6.1, where
+  the term is stated and the concept introduced, so the definitions view
+  carries it for the chapter.

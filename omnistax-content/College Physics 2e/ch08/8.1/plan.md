@@ -208,3 +208,16 @@ distances of the strip and the ratio of the two momenta.
 - equations `eq-delta-p-const-mass` → 8.1-constant-mass
 - equations `eq-newton2-const-mass` → 8.1-constant-mass
 - equations `eq-delta-p-velocities` → 8.1-tennis
+
+Decided in the chapter pass (2026-09-12). The twelve variable anchors and the
+seven equation anchors above are written into `chapter.json` as asked; every
+one of them names a span or an example of this section's own `text.html`.
+
+This section moved the book's "Professional Application" out of `cq3`'s prompt
+and into the exercise's `tag`, and the chapter pass has made that the chapter's
+convention, since it is what 16.1 and 16.3 already do with "Engineering
+Application" and what the `tag` field is described for. The other six sections
+wrote the label three different ways—in bold at the head of the prompt, in
+italics, and as "Professional Application:" in plain text—and all twenty-one
+items of the chapter that carry the label in the book now carry it as a `tag`
+with the label gone from the prompt.

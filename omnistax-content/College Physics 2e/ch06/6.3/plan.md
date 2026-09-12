@@ -312,3 +312,22 @@ says.
   "6.3-ex-flat-curve" }`. The section writes $\kff$ where the book writes
   $f$, in `eq-friction-centripetal` and in Example 6.4, and the chapter
   sheet has no row for it.
+
+### Decided in the chapter pass
+
+- Every anchor above is written on its variable and equation row in
+  `chapter.json`, and the `f_fric` variable row is written as the plan asks.
+- The conceptual question `fs-id3035023` stays here. Its answer runs on
+  Newton's first law and on the inward push of the seat, both of which the
+  reader has by this point, and it is tagged with `centripetal-force` and
+  `inertia`; 6.4's fictitious force is another way to say the same thing, not
+  what the question needs, so rule 12 leaves it with the section that
+  introduces what it tests. 6.4's notes agree.
+- The leaning-bicycle figure and the teardrop-loop figure are dropped. Rule 14
+  keeps a figure of this kind because it shows the reader exactly what a
+  problem is about, and both of their problems are unkeyed and left out, so
+  neither figure has a question left to serve. The five pictures that the four
+  conceptual questions and the centrifuge problem name are kept, and the
+  section's lead for that block now counts five.
+- `sim-radius` listed `angular-rate` in its `draws` and binds no angular
+  velocity anywhere, so the type is removed from the row.

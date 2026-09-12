@@ -82,7 +82,7 @@ function fulcrum(ctx, x, y, h) {
   const d = sim('sim-door', 600);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 40, unit: 'N', dec: 0, aria: 'the size of the push' });
   const rs = ctl(d.controls, { label: '\\krlev', cls: 'position', min: 0.05, max: 0.9, step: 0.025, value: 0.8, unit: 'm', dec: 3, aria: 'the distance from the hinges to the push' });
-  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 360, step: 5, value: 90, unit: 'º', dec: 0, aria: 'the angle between the push and the line back to the hinges' });
+  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 360, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle between the push and the line back to the hinges' });
   const S = 780, KF = 4.6, HX = 250, HY = 390, LEN = 0.9;
   function draw() {
     const { ctx } = begin(d.c);
@@ -108,7 +108,7 @@ function fulcrum(ctx, x, y, h) {
       }
       arrow(ctx, px, py, px + Fv * KF * ux, py + Fv * KF * uy, fc, 5);
       text(ctx, 'F = ' + fmt(Fv, 0) + ' N', px + (Fv * KF + 16) * ux, py + (Fv * KF + 16) * uy - 18, fc, { size: 21, weight: 600, align: ux < -0.2 ? 'right' : 'left' });
-      betweenArc(ctx, px, py, Math.PI, th, 66, PAL.ink, 'θ = ' + fmt(th, 0) + 'º');
+      betweenArc(ctx, px, py, Math.PI, th, 66, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
     }
     /* the distance from the hinges to the point of application */
     hbracket(ctx, HX, px, HY + 130, pc, 'r = ' + fmt(r, 3) + ' m');
@@ -119,10 +119,10 @@ function fulcrum(ctx, x, y, h) {
     if (Math.abs(tau) > 0.005) turnArc(ctx, HX, HY, 92, tau > 0, tc, Math.PI / 2);
     headline(ctx, Fv === 0 ? 'with no push on the door there is no torque about the hinges at all'
       : Math.abs(tau) < 0.005 ? 'the push runs straight along the line to the hinges, so its lever arm is nothing and it makes no torque'
-      : 'a push of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at θ = ' + fmt(th, 0) + 'º, makes ' + fmt(Math.abs(tau), 1) + ' N·m ' + (tau > 0 ? 'counterclockwise' : 'clockwise'));
+      : 'a push of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at θ = ' + fmt(th, 0) + '°, makes ' + fmt(Math.abs(tau), 1) + ' N·m ' + (tau > 0 ? 'counterclockwise' : 'clockwise'));
     readout(d.readout, `\\ktau = \\krlev\\kF\\sin\\theta = (${fmt(r, 3)}\\ \\text{m})(${fmt(Fv, 0)}\\ \\text{N})\\sin ${fmt(th, 0)}^\\circ = ${num(tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
       Math.abs(tau) < 0.005 ? 'The perpendicular lever arm is the shortest distance from the hinges to the line along which the force acts, and here that line runs through the hinges themselves, so the lever arm is zero and the door will not turn however hard you push.'
-        : 'The perpendicular lever arm is r⊥ = r sin θ = ' + fmt(rp, 3) + ' m, and τ = r⊥F gives the same ' + fmt(Math.abs(tau), 1) + ' N·m. The book measures θ as the angle between two vectors, so it never passes 180º; a push turned beyond that makes a torque of the same size the other way, which the counterclockwise-positive convention writes with a minus sign.');
+        : 'The perpendicular lever arm is r⊥ = r sin θ = ' + fmt(rp, 3) + ' m, and τ = r⊥F gives the same ' + fmt(Math.abs(tau), 1) + ' N·m. The book measures θ as the angle between two vectors, so it never passes 180°; a push turned beyond that makes a torque of the same size the other way, which the counterclockwise-positive convention writes with a minus sign.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -138,7 +138,7 @@ function fulcrum(ctx, x, y, h) {
   const d = sim('sim-hockey-stick', 700);
   const ps = ctl(d.controls, { label: '\\text{the nail}', cls: 'position', min: 0.1, max: 1.3, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'where the nail is driven, measured from the blade' });
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 30, unit: 'N', dec: 0, aria: 'the size of the push' });
-  const gs = ctl(d.controls, { label: '\\text{the push}', cls: '', min: 0, max: 180, step: 5, value: 160, unit: 'º', dec: 0, aria: 'the direction of the push, measured from the horizontal' });
+  const gs = ctl(d.controls, { label: '\\text{the push}', cls: '', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, aria: 'the direction of the push, measured from the horizontal' });
   const X = 560, YB = 620, S = 338, HAND = 1.10, KF = 4.4, PX = 1010;
   const yOf = (s) => YB - s * S;
   function draw() {
@@ -163,7 +163,7 @@ function fulcrum(ctx, x, y, h) {
       }
       arrow(ctx, X, hy, X + Fv * KF * ux, hy + Fv * KF * uy, fc, 5);
       text(ctx, 'F = ' + fmt(Fv, 0) + ' N', X + (Fv * KF + 16) * ux, hy + (Fv * KF + 16) * uy - 20, fc, { size: 21, weight: 600, align: ux < -0.2 ? 'right' : 'left' });
-      if (r > 0.02) { const a0 = up > 0 ? Math.PI / 2 : -Math.PI / 2; betweenArc(ctx, X, hy, a0, wrap(Math.atan2(uy, ux) / RAD - a0 / RAD), 58, PAL.ink, 'θ = ' + fmt(th, 0) + 'º'); }
+      if (r > 0.02) { const a0 = up > 0 ? Math.PI / 2 : -Math.PI / 2; betweenArc(ctx, X, hy, a0, wrap(Math.atan2(uy, ux) / RAD - a0 / RAD), 58, PAL.ink, 'θ = ' + fmt(th, 0) + '°'); }
     }
     dot(ctx, X, hy, PAL.ink, true, 10);
     text(ctx, 'the hand', X + 28, hy + 36, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
@@ -175,7 +175,7 @@ function fulcrum(ctx, x, y, h) {
     /* what the nail you have chosen makes of the push */
     text(ctx, 'about the nail you have chosen', PX, 152, PAL.muted, { size: 19 });
     text(ctx, 'r = ' + fmt(r, 2) + ' m', PX, 200, pc, { size: 22, weight: 600 });
-    text(ctx, 'θ = ' + fmt(th, 0) + 'º', PX, 242, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'θ = ' + fmt(th, 0) + '°', PX, 242, PAL.ink, { size: 22, weight: 600 });
     text(ctx, 'r⊥ = r sin θ = ' + fmt(rp, 2) + ' m', PX, 284, pc, { size: 22, weight: 600 });
     text(ctx, 'τ = r⊥F = ' + num(tau, 1) + ' N·m', PX, 326, tc, { size: 22, weight: 600 });
     headline(ctx, Fv === 0 ? 'with no push on the stick there is no torque about the nail'

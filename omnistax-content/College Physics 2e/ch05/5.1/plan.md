@@ -343,3 +343,14 @@ backgrounds and her velocity arrow was moved further down the slope so the
 labels stop colliding, the probe's friction arrow was moved clear of its
 atoms, and the pull arrow's label in the ice figure was moved off the
 contestant's head.
+
+### What the chapter pass finished (2026-09-12)
+
+- The angle in `figures.js` was written with the masculine ordinal the CNXML
+  carries, in the unit of the slope slider and in eight drawn labels; every
+  one of them now writes `°`, the degree sign, as Chapters 4 and 9 write it,
+  and the `unit` of the angle in the chapter's variables writes it too.
+- `eq-mu-tan` was the one equation row of the chapter with no `ktex`. It now
+  carries `\mu_{\text{k}} = \frac{m\kg\sin\theta}{m\kg\cos\theta} = \tan\theta`,
+  so the weight in the take-home experiment's result wears the same hues as
+  the two rows above it on the formula sheet.

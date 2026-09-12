@@ -246,3 +246,18 @@ macro, no new symbol row.
 Nothing. The section has no variable row and no equation row in
 `chapter.json`, so it asks for no anchor, and every concept, symbol and
 glossary term it needs is already merged.
+
+### The chapter pass decided
+
+The section asks for no anchor and none is written.
+
+Table 4.1 stays as the book prints it, a `div.book-table` in the text with the
+book's number and title.
+
+The one formula in the prose, the weight at Earth's surface, is set in plain
+ink, $w = mg$. The page colours only force, since force is all its figures
+draw, and a coloured $w$ beside an ink $g$ would read as two conventions in
+one line.
+
+The Critical Thinking item stays on 4.3's page, as this plan and 4.3's notes
+both say.

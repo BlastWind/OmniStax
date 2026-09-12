@@ -122,7 +122,7 @@ function bar(ctx, x1, x2, y, color, h) {
   const d = sim('sim-probe', 800);
   const M = 1000;                                   /* the mass of the whole probe, in kilograms */
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 200, max: 800, step: 10, value: 500, unit: 'm/s', dec: 0, onInput: reset, aria: 'launch speed' });
-  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 30, max: 80, step: 1, value: 60, unit: 'º', dec: 0, onInput: reset, aria: 'launch angle' });
+  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 30, max: 80, step: 1, value: 60, unit: '°', dec: 0, onInput: reset, aria: 'launch angle' });
   const dp = ctl(d.controls, { label: '\\kdp', cls: 'momentum', min: 0, max: 100000, step: 5000, value: 50000, unit: 'kg·m/s', dec: 0, onInput: reset, aria: 'impulse of the separation' });
   function model() {
     const vx = v0.v * Math.cos(th.v * RAD), vy = v0.v * Math.sin(th.v * RAD);
@@ -180,7 +180,7 @@ function bar(ctx, x1, x2, y, color, h) {
     dot(ctx, GX(tau), GY(f.py(tau)), C('momentum'), false, 9);
     headline(ctx, !after
       ? 't = ' + fmt(tau, 1) + ' s · the whole probe is climbing, and its horizontal momentum is ' + whole(f.px) + ' kg·m/s'
-      : 't = ' + fmt(tau, 1) + ' s · the two halves are ' + fmt((f.xf(tau) - f.xr(tau)) / 1000, 2) + ' km apart, the horizontal momentum is still ' + whole(f.px) + ' kg·m/s, and the vertical momentum has fallen to ' + whole(f.py(tau)) + ' kg·m/s');
+      : 't = ' + fmt(tau, 1) + ' s · the horizontal momentum is still ' + whole(f.px) + ' kg·m/s, and the vertical momentum has fallen to ' + whole(f.py(tau)) + ' kg·m/s');
     readout(d.readout, `\\kpx = ${tnum(f.px)}\\ \\text{kg·m/s} = \\text{constant}\\qquad \\kpy = ${tnum(f.py(tau))}\\ \\text{kg·m/s} \\neq \\text{constant}`,
       'The two halves push each other apart with ' + whole(dp.v) + ' kg·m/s, one forward and one backward, so the horizontal momentum of the pair is the momentum the whole probe had. Gravity is an external force and takes ' + whole(M * G) + ' kg·m/s from the vertical momentum every second.');
   }
@@ -212,7 +212,7 @@ function bar(ctx, x1, x2, y, color, h) {
     line(ctx, 90, yIn, 1340, yIn, PAL.rule, 2, [12, 12]);
     const xtn = clamp(XT + (after ? K * f.w2 * (tau - TC) : 0), XT, 1290);
     particle(ctx, xtn, yIn, R, PAL.ink);
-    text(ctx, 'the target, ' + whole(mr.v) + ' electron masses', xtn, yIn + R + 32, PAL.ink, { size: 19, align: 'center' });
+    text(ctx, 'the target, ' + whole(mr.v) + (mr.v === 1 ? ' electron mass' : ' electron masses'), clamp(xtn, 240, 1140), yIn + R + 32, PAL.ink, { size: 19, align: 'center' });
     const xe = clamp(after ? 780 + K * f.w1 * (tau - TC) : 180 + K * v1.v * tau, 80, 1340);
     const ye = after ? yOut : yIn;
     dot(ctx, xe, ye, PAL.ink, true, 13);
@@ -304,7 +304,7 @@ function bar(ctx, x1, x2, y, color, h) {
     headline(ctx, !f.hits ? 'the first cart is no faster than the second, so the two never meet, and the centre of mass moves at ' + fmt(f.vcm, 2) + ' m/s all the same'
       : tau < f.tc ? 't = ' + fmt(tau, 2) + ' s · the carts are still approaching, and the centre of mass is moving at ' + fmt(f.vcm, 2) + ' m/s'
       : 't = ' + fmt(tau, 2) + ' s · the carts have stuck together and move at ' + fmt(f.vcm, 2) + ' m/s, which is the velocity the centre of mass had all along');
-    readout(d.readout, `v_{\\text{cm}} = \\frac{\\kptot}{m_1 + m_2} = \\frac{${fmt(f.ptot, 2)}\\ \\text{kg·m/s}}{${fmt(f.M1 + f.M2, 1)}\\ \\text{kg}} = ${fmt(f.vcm, 2)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kvcm = \\frac{\\kptot}{m_1 + m_2} = \\frac{${fmt(f.ptot, 2)}\\ \\text{kg·m/s}}{${fmt(f.M1 + f.M2, 1)}\\ \\text{kg}} = ${fmt(f.vcm, 2)}\\ \\text{m/s}`,
       'The carts can stick together or bounce apart, and the faint lines show the bounce; either way the total momentum is the same, so the centre of mass keeps the one velocity straight through the collision.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });

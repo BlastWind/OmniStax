@@ -367,3 +367,15 @@ and in ink, as the chapter config says.
 - The femur example wrote the weight as `\kF = mg`; it now writes `m\kg`, as
   the rest of the chapter does, so the acceleration due to gravity carries its
   hue there too.
+
+### What the chapter pass finished (2026-09-12)
+
+- The caption of Figure 5.18 said the same squeeze compresses acetone six
+  times as much as water. Table 5.3 gives water a bulk modulus of
+  2.2 × 10⁹ N/m² against acetone's 0.7 × 10⁹, and the figure's own readout
+  says three times, so the caption says three times now.
+- The caption of Figure 5.17 said the flex of the nail is drawn many
+  thousands of times larger than it is, while the figure states the
+  magnification it actually draws, a few hundred times at the numbers of
+  Example 5.5. The caption now says hundreds of times and points at the
+  number the figure prints.

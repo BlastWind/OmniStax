@@ -110,7 +110,7 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-billiard', 820);
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 1, value: 30, unit: 'º', dec: 0, onInput: reset, aria: 'angle from the perpendicular' });
+  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: 'angle from the perpendicular' });
   const u = ctl(d.controls, { label: '\\ku', cls: 'velocity', min: 1, max: 10, step: 0.5, value: 5, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the ball' });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 0.3, step: 0.01, value: 0.16, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the ball' });
   const IN = 1.8, OUT = 1.8;
@@ -134,11 +134,11 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
     const L = Math.min(p * K, 250);
     arrow(ctx, cx - L * Math.cos(a), cyy - L * Math.sin(a), cx, cyy, cp, 5);
     text(ctx, 'p before = ' + fmt(p, 2) + ' kg·m/s', cx - L * Math.cos(a) - 14, cyy - L * Math.sin(a) - 26, cp, { size: 21, weight: 600, align: 'right' });
-    if (th.v > 4) arc(ctx, cx, cyy, 86, Math.PI, Math.PI + a, 'θ = ' + fmt(th.v, 0) + 'º', PAL.ink);
+    if (th.v > 4) arc(ctx, cx, cyy, 86, Math.PI, Math.PI + a, 'θ = ' + fmt(th.v, 0) + '°', PAL.ink);
     if (hit) {
       arrow(ctx, cx, cyy, cx - L * Math.cos(a), cyy + L * Math.sin(a), cp, 5);
       text(ctx, 'p after = ' + fmt(p, 2) + ' kg·m/s', cx - L * Math.cos(a) - 14, cyy + L * Math.sin(a) + 28, cp, { size: 21, weight: 600, align: 'right' });
-      if (th.v > 4) arc(ctx, cx, cyy, 130, Math.PI - a, Math.PI, 'θ = ' + fmt(th.v, 0) + 'º', PAL.ink);
+      if (th.v > 4) arc(ctx, cx, cyy, 130, Math.PI - a, Math.PI, 'θ = ' + fmt(th.v, 0) + '°', PAL.ink);
       const dl = Math.min(dp * K, 500);
       arrow(ctx, cx - 40, 710, cx - 40 - dl, 710, cp, 7);
       text(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s, straight into the wall', cx - 54 - dl, 710, cp, { size: 22, weight: 600, align: 'right' });
@@ -148,12 +148,12 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
     text(ctx, 'along the wall the momentum keeps its ' + fmt(p * Math.sin(a), 2) + ' kg·m/s; across the wall, ' + fmt(p * Math.cos(a), 2) + ' kg·m/s is reversed',
       120, 780, PAL.ink, { size: 20 });
     headline(ctx, !hit
-      ? 'the ball comes in at ' + fmt(u.v, 1) + ' m/s, ' + fmt(th.v, 0) + 'º from the perpendicular, carrying ' + fmt(p, 2) + ' kg·m/s'
-      : 'θ = ' + fmt(th.v, 0) + 'º · the speed is the same on the way out, and the impulse the wall gives the ball is ' + fmt(dp, 2) + ' kg·m/s');
+      ? 'the ball comes in at ' + fmt(u.v, 1) + ' m/s, ' + fmt(th.v, 0) + '° from the perpendicular, carrying ' + fmt(p, 2) + ' kg·m/s'
+      : 'θ = ' + fmt(th.v, 0) + '° · the speed is the same on the way out, and the impulse the wall gives the ball is ' + fmt(dp, 2) + ' kg·m/s');
     readout(d.readout, `\\Delta p_x = -2m\\ku\\cos\\theta = -2(${fmt(m.v, 2)}\\ \\text{kg})(${fmt(u.v, 1)}\\ \\text{m/s})\\cos ${fmt(th.v, 0)}^\\circ = -${fmt(dp, 2)}\\ \\text{kg}\\cdot\\text{m/s}`,
       th.v === 0
         ? 'At the perpendicular the whole of the momentum is reversed, and that is the largest impulse the wall can give a ball of this speed.'
-        : 'A ball that strikes head-on gets the larger impulse: the ratio of the two is 1/cos ' + fmt(th.v, 0) + 'º = ' + fmt(1 / Math.cos(a), 3) + '.');
+        : 'A ball that strikes head-on gets the larger impulse: the ratio of the two is 1/cos ' + fmt(th.v, 0) + '° = ' + fmt(1 / Math.cos(a), 3) + '.');
   }
   register(d.fig, { update: (s) => cy.step(s, () => 1), draw });
 })();

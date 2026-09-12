@@ -221,3 +221,12 @@ the scenes and the counts stay in ink, as the chapter config decided.
   subscript and already wear the force hue; should the chapter pass prefer rows
   of their own, the four places they are written are in `different-systems` and
   in Example 4.3.
+
+### The chapter pass decided
+
+The six variable anchors and the two equation anchors are written.
+
+No symbol row is added for the four forces the book names in words. They are
+written $\kF$ with the book's own subscript, so they already wear the force
+hue, and a row apiece would add four symbols that the book never sets as
+symbols of its own. The section is unchanged.

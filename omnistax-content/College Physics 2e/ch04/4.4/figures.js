@@ -164,7 +164,7 @@ function plume(ctx, x, y, color, f) {
     arrow(ctx, mid, y, mid + La, y, cf, 5); text(ctx, Flab + ' = ' + fmt(Fap, 1) + ' N', mid + La + 12, y, cf, { size: 19, weight: 600 });
     arrow(ctx, mid, y, mid - Lf, y, cf, 5); text(ctx, 'f', mid - Lf - 12, y, cf, { size: 19, weight: 600, align: 'right' });
     dot(ctx, mid, y, PAL.ink, true, 10);
-    text(ctx, 'F net = ' + fmt(Fnet, 1) + ' N on ' + fmt(m, 1) + ' kg', mid, y + 84, cf, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'F_net = ' + fmt(Fnet, 1) + ' N on ' + fmt(m, 1) + ' kg', mid, y + 84, cf, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'a = ' + fmt(a, 2) + ' m/s²', mid, y + 130, C('acceleration'), { size: 22, weight: 600, align: 'center' });
   }
   function draw() {
@@ -178,18 +178,18 @@ function plume(ctx, x, y, color, f) {
     cartSprite(ctx, cxx, FLOOR, PAL.ink);
     /* the pair between the professor and the cart, internal to System 1 */
     const Lp = r.Fprof * KF, hand = px + 50;
-    arrow(ctx, hand, 200, hand + Lp, 200, cf, 5); text(ctx, 'F prof', hand + Lp + 12, 200, cf, { size: 19, weight: 600 });
-    arrow(ctx, hand, 200, hand - Lp, 200, cf, 5); text(ctx, 'F cart', hand - Lp - 12, 200, cf, { size: 19, weight: 600, align: 'right' });
+    arrow(ctx, hand, 200, hand + Lp, 200, cf, 5); text(ctx, 'F_prof', hand + Lp + 12, 200, cf, { size: 19, weight: 600 });
+    arrow(ctx, hand, 200, hand - Lp, 200, cf, 5); text(ctx, 'F_cart', hand - Lp - 12, 200, cf, { size: 19, weight: 600, align: 'right' });
     /* the pair at her feet: she pushes back on the floor, the floor pushes her forward */
     const Lf = Ff.v * KF, foot = px - 6;
-    arrow(ctx, foot, 362, foot - Lf, 362, cf, 5); text(ctx, 'F foot', foot - Lf - 12, 362, cf, { size: 19, weight: 600, align: 'right' });
-    arrow(ctx, foot, 362, foot + Lf, 362, cf, 5); text(ctx, 'F floor = ' + fmt(Ff.v, 0) + ' N', foot + Lf + 12, 362, cf, { size: 19, weight: 600 });
+    arrow(ctx, foot, 362, foot - Lf, 362, cf, 5); text(ctx, 'F_foot', foot - Lf - 12, 362, cf, { size: 19, weight: 600, align: 'right' });
+    arrow(ctx, foot, 362, foot + Lf, 362, cf, 5); text(ctx, 'F_floor = ' + fmt(Ff.v, 0) + ' N', foot + Lf + 12, 362, cf, { size: 19, weight: 600 });
     /* the forces opposing the motion, on the cart's wheels */
     const Lr = Math.max(44, fr.v * KF);   /* f is too small to draw to scale, as the book says of it */
     arrow(ctx, cxx - 40, 408, cxx - 40 - Lr, 408, cf, 4); text(ctx, 'f = ' + fmt(fr.v, 1) + ' N', cxx - 40 - Lr - 12, 408, cf, { size: 19, weight: 600, align: 'right' });
     /* a free-body diagram for each system */
-    fbd(ctx, 100, 470, 660, 'System 1: the professor, the cart and the equipment', Ff.v, 'F floor', r.Fnet, r.M, r.a, cf);
-    fbd(ctx, 740, 470, 1300, 'System 2: the cart and the equipment', r.Fprof, 'F prof', r.Fnet2, mc.v, r.a, cf);
+    fbd(ctx, 100, 470, 660, 'System 1: the professor, the cart and the equipment', Ff.v, 'F_floor', r.Fnet, r.M, r.a, cf);
+    fbd(ctx, 740, 470, 1300, 'System 2: the cart and the equipment', r.Fprof, 'F_prof', r.Fnet2, mc.v, r.a, cf);
     headline(ctx, 't = ' + fmt(tau, 2) + ' s · System 1 is pushed forward with ' + fmt(Ff.v, 0) + ' N and held back by ' + fmt(fr.v, 1) + ' N, so ' + fmt(r.M, 1) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s²');
     readout(d.readout, `\\kFnet = \\kFfloor - \\kff = ${fmt(Ff.v, 0)}\\ \\text{N} - ${fmt(fr.v, 1)}\\ \\text{N} = ${fmt(r.Fnet, 1)}\\ \\text{N},\\qquad \\ka = \\frac{\\kFnet}{m} = \\frac{${fmt(r.Fnet, 1)}\\ \\text{N}}{${fmt(r.M, 1)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
       'The force the professor exerts on the cart is ' + fmt(r.Fnet2, 1) + ' N + ' + fmt(fr.v, 1) + ' N = ' + fmt(r.Fprof, 1) + ' N. It is internal to System 1, where it cancels against the force the cart exerts back on her, so it never enters the first calculation; taking the cart alone as System 2 makes it external, and then it is the force that accelerates the cart.');

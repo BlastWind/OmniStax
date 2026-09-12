@@ -188,3 +188,8 @@ skaters themselves stay in ink.
 - variables `F_restore` → 4.1-standard
 - variables `x` → 4.1-standard
 - variables `Δx` → 4.1-standard
+
+### The chapter pass decided
+
+The seven variable anchors are written. Nothing else was wanted and nothing
+else was changed.

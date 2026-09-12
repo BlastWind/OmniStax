@@ -273,3 +273,25 @@ the resultant stay untyped and in ink, as `ch04/config.md` decided.
   `\kTtwox`, `\kTtwoy`) would let those two lines wear the force hue
   throughout; the chapter pass may add them, and if it does, the four
   occurrences in `text.html` under `tensions` are what change.
+
+### The chapter pass decided
+
+The eleven variable anchors and the four equation anchors are written.
+
+The four symbol rows this plan asked for are merged into `book.json` and
+applied in the two axis equations of `tensions`: `T_1x`, `T_1y`, `T_2x` and
+`T_2y`, all of type force, macros `\kTonex`, `\kToney`, `\kTtwox` and
+`\kTtwoy`.
+
+No rows are added for $\theta_1$ and $\theta_2$. An angle is untyped and
+stands in ink (rule 7), as $\theta_0$ and $\theta_v$ do in 3.4.
+
+The force the person exerts on the scale, $F_{\text{p}}$, is now written
+$\kF_{\text{p}}$, so that it wears the force hue beside $\kFs$, as 4.4
+writes the forces the book names in words.
+
+`drag-force` stays here, at 4.7. Chapter 5 reinforces it; it does not
+introduce it.
+
+The rescue figure is kept as this plan built it, in the text and on the card
+of the keyed problem, which is what 3.5 does with its galaxies.

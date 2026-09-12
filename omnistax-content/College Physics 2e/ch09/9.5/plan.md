@@ -296,3 +296,10 @@ two forces and so a pure number.
   a placeholder, so the edge hangs until Chapter 7 is built. Nothing to
   change; it is written down here so that the chapter pass does not read
   it as a slip.
+
+**Decided in the chapter pass (2026-09-12).** Every anchor above is written.
+`simple-machine`'s prerequisite `work` is no longer a placeholder: 7.1 is
+built, the node carries its `why` and its `evidence`, and the edge holds.
+The wheelbarrow AP item keeps the number this edition gives the wheelbarrow,
+Figure 9.22, with the note that the AP Physics edition prints it as Figure
+9.24(a).

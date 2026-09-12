@@ -125,7 +125,7 @@ function rider(ctx, x, y, color, s = 1) {
   function draw() {
     const { ctx } = begin(d.c);
     const Fc = (m.v * v.v * v.v) / r.v, mu = (v.v * v.v) / (r.v * G), N = m.v * G;
-    /* on the left, the curve seen from above, with the car on it and the force pointing at the centre */
+    /* on the left, the curve seen from above, with the car on it and the force pointing at the center */
     const R = 160 + 175 * Math.sqrt((r.v - 50) / 950), cx = 70, cyy = 545;
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 4; ctx.setLineDash([12, 12]); ctx.beginPath(); ctx.arc(cx, cyy, R, -78 * RAD, -4 * RAD, false); ctx.stroke(); ctx.restore();
     dot(ctx, cx, cyy, PAL.muted, true, 6);
@@ -167,14 +167,14 @@ function rider(ctx, x, y, color, s = 1) {
 ===================================================================== */
 (function () {
   const d = sim('sim-banked', 830);
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 2, max: 80, step: 0.5, value: 65, unit: 'º', dec: 1, aria: 'banking angle' });
+  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 2, max: 80, step: 0.5, value: 65, unit: '°', dec: 1, aria: 'banking angle' });
   const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 50, max: 1500, step: 10, value: 100, unit: 'm', dec: 0, aria: 'radius of the curve' });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 500, max: 2000, step: 25, value: 900, unit: 'kg', dec: 0, aria: 'mass of the car' });
   const ideal = () => Math.sqrt(r.v * G * Math.tan(th.v * RAD));
   function draw() {
     const { ctx } = begin(d.c);
     const t = th.v * RAD, vi = ideal(), N = (m.v * G) / Math.cos(t), w = m.v * G;
-    /* on the right, the road sloping up and away, so that the centre of the curve lies to the left */
+    /* on the right, the road sloping up and away, so that the center of the curve lies to the left */
     const ox = 800, oy = 450, L = Math.min(470 / Math.cos(t), 320 / Math.sin(t));
     const ex = ox + L * Math.cos(t), ey = oy - L * Math.sin(t);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(ex, ey); ctx.lineTo(ex, oy); ctx.closePath(); ctx.fill(); ctx.restore();
@@ -367,39 +367,6 @@ function rider(ctx, x, y, color, s = 1) {
   register(d.fig, { update: () => {}, draw });
 })();
 
-/* the leaning bicycle and the force of the ground on the wheel (problem 6) */
-(function () {
-  const d = sim('fig-bicycle', 640);
-  function draw() {
-    const { ctx } = begin(d.c);
-    const gx = 520, gy = 540, lean = 22 * RAD, L = 400, FL = 330;
-    ground(ctx, 120, 960, gy);
-    const cgx = gx - L * Math.sin(lean), cgy = gy - L * Math.cos(lean);
-    const wx = gx - 120 * Math.sin(lean), wy = gy - 120 * Math.cos(lean);
-    ctx.save(); ctx.translate(wx, wy); ctx.rotate(-lean); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.ellipse(0, 0, 18, 120, 0, 0, TAU); ctx.stroke(); ctx.restore();
-    line(ctx, gx, gy, cgx, cgy, PAL.ink, 4, [10, 10]);
-    rider(ctx, cgx, cgy - 20, PAL.ink, 2.4);
-    dot(ctx, cgx, cgy, PAL.ink, true, 9);
-    text(ctx, 'the center of gravity', cgx - 26, cgy + 42, PAL.ink, { size: 20, align: 'right' });
-    line(ctx, gx, gy, gx, gy - 300, PAL.rule, 2, [8, 8]);
-    angleArc(ctx, gx, gy, 230, 90, 112, 'θ', PAL.ink);
-    const hxc = gx - FL * Math.sin(lean), hyc = gy - FL * Math.cos(lean);
-    line(ctx, hxc, gy, hxc, hyc, PAL.rule, 2, [6, 8]);
-    line(ctx, gx, hyc, hxc, hyc, PAL.rule, 2, [6, 8]);
-    vec(ctx, gx, gy, 0, -1, FL * Math.cos(lean), C('force'), 'N');
-    vec(ctx, gx, gy, -1, 0, FL * Math.sin(lean), C('force'), 'F_c');
-    vecSide(ctx, gx, gy, -Math.sin(lean), -Math.cos(lean), FL, C('force'), 'F', -1, 0.78);
-    const fx = 1180, fy = 330;
-    text(ctx, 'free-body diagram', fx, 148, PAL.muted, { size: 19, align: 'center' });
-    dot(ctx, fx, fy, PAL.ink, true, 9);
-    vec(ctx, fx, fy, 0, -1, 128, C('force'), 'N');
-    vec(ctx, fx, fy, 0, 1, 128, C('force'), 'w');
-    vec(ctx, fx, fy, -1, 0, 110, C('force'), 'F_c');
-    text(ctx, 'the force of the ground on the wheel lies on a line through the center of gravity', 700, 604, PAL.muted, { size: 19, align: 'center' });
-  }
-  register(d.fig, { update: () => {}, draw });
-})();
-
 /* the rider's cage on the arm of the large centrifuge, the book's part (b) (problem 7) */
 (function () {
   const d = sim('fig-centrifuge', 580);
@@ -424,33 +391,6 @@ function rider(ctx, x, y, color, s = 1) {
     vec(ctx, fx, fy, 0, 1, 116, C('force'), 'w');
     vecSide(ctx, fx, fy, -Math.cos(th), -Math.sin(th), 176, C('force'), 'F', -1, 0.94, 24);
     text(ctx, 'the cage swings outward as the centrifuge turns, so the arm holds the cage up and pulls it toward the axis at once', 700, 548, PAL.muted, { size: 19, align: 'center' });
-  }
-  register(d.fig, { update: () => {}, draw });
-})();
-
-/* the teardrop-shaped roller-coaster loop (problem 9) */
-(function () {
-  const d = sim('fig-teardrop', 640);
-  function draw() {
-    const { ctx } = begin(d.c);
-    const cx = 700, cyy = 250, rt = 108, base = 562;
-    const right = [cx + rt * Math.cos(28 * RAD), cyy + rt * Math.sin(28 * RAD)];
-    const left = [cx + rt * Math.cos(152 * RAD), cyy + rt * Math.sin(152 * RAD)];
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 7; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(250, base); ctx.lineTo(430, base); ctx.bezierCurveTo(660, base - 4, 810, base - 44, right[0], right[1]); ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx, cyy, rt, 28 * RAD, 152 * RAD, true); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(left[0], left[1]); ctx.bezierCurveTo(590, base - 44, 740, base - 4, 970, base); ctx.lineTo(1150, base); ctx.stroke();
-    ctx.restore();
-    for (let x = 310; x <= 1090; x += 130) line(ctx, x, base + 4, x, base + 48, PAL.rule, 3);
-    ground(ctx, 210, 1190, base + 48);
-    vbracket(ctx, cx, cyy - rt, cyy, C('position'));
-    lab(ctx, 'r minimum', cx, cyy - rt - 26, C('position'), { size: 20 });
-    text(ctx, 'the radius of curvature is smallest at the top', cx, 76, PAL.ink, { size: 21, align: 'center' });
-    arrow(ctx, 1150, 452, 950, 534, C('position'), 4);
-    lab(ctx, 'r maximum near the base', 1170, 436, C('position'), { size: 20, align: 'right' });
-    dot(ctx, 250, base, PAL.ink, true, 10); text(ctx, 'A', 250, base + 32, PAL.ink, { size: 23, weight: 600, align: 'center' });
-    dot(ctx, 1150, base, PAL.ink, true, 10); text(ctx, 'D', 1150, base + 32, PAL.ink, { size: 23, weight: 600, align: 'center' });
-    arrow(ctx, 300, base - 34, 400, base - 34, PAL.ink, 4);
   }
   register(d.fig, { update: () => {}, draw });
 })();

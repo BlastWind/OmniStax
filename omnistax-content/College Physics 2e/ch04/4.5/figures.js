@@ -9,7 +9,7 @@ const RAD = Math.PI / 180;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const num = (v, d) => commas(fmt(v, d));
-const deg = (v, d) => fmt(v, d) + 'º';
+const deg = (v, d) => fmt(v, d) + '°';
 
 /* ---------- shared drawing ---------- */
 /* an arrow from (x, y) along (dx, dy), with its label just beyond the head */
@@ -143,7 +143,7 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-skier', 820);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 40, step: 0.5, value: 25, unit: 'º', dec: 1, onInput: reset, aria: 'angle of the slope' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 40, step: 0.5, value: 25, unit: '°', dec: 1, onInput: reset, aria: 'angle of the slope' });
   const M = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the skier' });
   const FR = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 250, step: 1, value: 45, unit: 'N', dec: 1, onInput: reset, aria: 'friction' });
   const SLOPE = 40;                                   /* the length of the slope, in metres */
@@ -183,7 +183,12 @@ function walker(ctx, x, y, color) {
     const col = C('force'), S = 130 / w;                        /* the weight is always 130 units long */
     const bx = sx + nx * 14, by = sy + ny * 14;
     tvec(ctx, bx, by, 0, 1, w * S, col, 'w = ' + num(w, 0) + ' N', 1, 20);
-    tvec(ctx, bx, by, ux, uy, wpar * S, col, 'w∥ = ' + num(wpar, 0) + ' N', 1, 20);
+    /* the parallel component is the shortest of the three arrows, so its label is
+       set beyond its own point rather than beside its midpoint, where the normal
+       force and the weight both cross */
+    arrow(ctx, bx, by, bx + ux * wpar * S, by + uy * wpar * S, col, 5);
+    text(ctx, 'w∥ = ' + num(wpar, 0) + ' N', bx + ux * (wpar * S + 86), by + uy * (wpar * S + 86),
+      col, { weight: 600, size: 20, align: 'center', bg: PAL.panel });
     fvec(ctx, bx, by, -nx * wperp * S, -ny * wperp * S, col, 'w⊥', 20);
     fvec(ctx, bx, by, nx * wperp * S, ny * wperp * S, col, 'N = ' + num(wperp, 0) + ' N', 20);
     if (FR.v > 0) fvec(ctx, bx, by, -ux * FR.v * S, -uy * FR.v * S, col, 'f = ' + num(FR.v, 0) + ' N', 20);
@@ -220,7 +225,7 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-incline', 780);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 0.5, value: 30, unit: 'º', dec: 1, aria: 'angle of the incline' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 0.5, value: 30, unit: '°', dec: 1, aria: 'angle of the incline' });
   const M = ctl(d.controls, { label: 'm', cls: '', min: 5, max: 60, step: 1, value: 20, unit: 'kg', dec: 1, aria: 'mass of the object' });
   function draw() {
     const { ctx } = begin(d.c);
@@ -249,7 +254,7 @@ function walker(ctx, x, y, color) {
     /* the graph: the two components against the angle */
     const wr = nice(0, w, 4), box = { l: 240, r: 1240, t: 560, b: 700 };
     const { X, Y } = axes(ctx, box, [0, 90], [0, wr.hi], {
-      xl: 'angle of the incline θ (º)', xc: PAL.ink, yl: 'the two components (N)', yc: col, nx: 6, ny: wr.n,
+      xl: 'angle of the incline θ (°)', xc: PAL.ink, yl: 'the two components (N)', yc: col, nx: 6, ny: wr.n,
       fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
     curve(ctx, (t) => w * Math.sin(t * RAD), 0, 90, X, Y, col, 5, 90);
@@ -261,7 +266,7 @@ function walker(ctx, x, y, color) {
     headline(ctx, 'at ' + deg(TH.v, 1) + ' the weight of ' + num(w, 0) + ' N divides into ' + num(wpar, 0)
       + ' N down the slope and ' + num(wperp, 0) + ' N into it');
     readout(d.readout, `\\kwpar = \\kwgt\\sin\\theta = m\\kg\\sin\\theta = (${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ = ${num(wpar, 0)}\\ \\text{N}`,
-      'The other component, w⊥ = mg cos θ = ' + num(wperp, 0) + ' N, presses into the surface, and the normal force is equal in magnitude and opposite in direction to it. The angle between the weight and its perpendicular component is the angle of the incline itself, and at 45º the two components are equal.');
+      'The other component, w⊥ = mg cos θ = ' + num(wperp, 0) + ' N, presses into the surface, and the normal force is equal in magnitude and opposite in direction to it. The angle between the weight and its perpendicular component is the angle of the incline itself, and at 45° the two components are equal.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -292,7 +297,7 @@ function walker(ctx, x, y, color) {
     fvec(ctx, X, 582, 0, L + 16, col, 'w = ' + num(T, 1) + ' N');
     text(ctx, 'the spring reads ' + num(T, 1) + ' N', X - 58, 340, C('force'), { size: 19, weight: 600, align: 'right' });
     /* the free-body diagram of the mass */
-    text(ctx, 'Free-body diagram', 1010, 160, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, 'the free-body diagram of the mass', 1010, 160, PAL.muted, { size: 20, align: 'center' });
     dot(ctx, 1010, 400, PAL.ink, true, 9);
     fvec(ctx, 1010, 390, 0, -130, col, 'T = ' + num(T, 1) + ' N');
     fvec(ctx, 1010, 410, 0, 130, col, 'w = ' + num(T, 1) + ' N');
@@ -313,7 +318,7 @@ function walker(ctx, x, y, color) {
 (function () {
   const d = sim('sim-corners', 720);
   const M = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 20, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass of the load' });
-  const PH = ctl(d.controls, { label: '\\text{corner}', cls: '', min: 10, max: 80, step: 1, value: 40, unit: 'º', dec: 0, aria: 'angle the cable is turned through' });
+  const PH = ctl(d.controls, { label: '\\text{corner}', cls: '', min: 10, max: 80, step: 1, value: 40, unit: '°', dec: 0, aria: 'angle the cable is turned through' });
   function draw() {
     const { ctx } = begin(d.c);
     const T = M.v * G, col = C('force'), ph = PH.v * RAD;
@@ -349,7 +354,7 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-tightrope', 820);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0.5, max: 30, step: 0.5, value: 5, unit: 'º', dec: 1, aria: 'angle the wire sags by' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0.5, max: 30, step: 0.5, value: 5, unit: '°', dec: 1, aria: 'angle the wire sags by' });
   const M = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 120, step: 1, value: 70, unit: 'kg', dec: 1, aria: 'mass of the walker' });
   const tension = (thDeg, w) => w / (2 * Math.sin(thDeg * RAD));
   function draw() {
@@ -380,7 +385,7 @@ function walker(ctx, x, y, color) {
     /* the graph: how the tension runs away as the wire is pulled straight */
     const hi = nice(0, Math.max(4 * w, 1.4 * T), 4), box = { l: 880, r: 1300, t: 510, b: 700 };
     const { X, Y } = axes(ctx, box, [0, 30], [0, hi.hi], {
-      xl: 'sag angle θ (º)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 6, ny: hi.n,
+      xl: 'sag angle θ (°)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 6, ny: hi.n,
       fx: (v) => fmt(v, 0), fy: (v) => num(v, 0),
     });
     const thMin = Math.asin(Math.min(1, w / (2 * hi.hi))) / RAD;
@@ -404,7 +409,7 @@ function walker(ctx, x, y, color) {
 (function () {
   const d = sim('sim-chain', 740);
   const FP = ctl(d.controls, { label: '\\kFperp', cls: 'force', min: 100, max: 1500, step: 10, value: 300, unit: 'N', dec: 0, aria: 'force perpendicular to the chain' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0.5, max: 15, step: 0.25, value: 2, unit: 'º', dec: 2, aria: 'angle of the bent chain' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0.5, max: 15, step: 0.25, value: 2, unit: '°', dec: 2, aria: 'angle of the bent chain' });
   const tension = (thDeg, f) => f / (2 * Math.sin(thDeg * RAD));
   /* a car seen from above, its nose to the right, centred on (x, y) */
   function carTop(ctx, x, y) {
@@ -440,7 +445,7 @@ function walker(ctx, x, y, color) {
     /* the graph: the tension against the angle, for the push that is set */
     const hi = nice(0, Math.max(6 * FP.v, 1.3 * T), 4), box = { l: 240, r: 1240, t: 480, b: 660 };
     const g = axes(ctx, box, [0, 15], [0, hi.hi], {
-      xl: 'angle of the chain θ (º)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 5, ny: hi.n,
+      xl: 'angle of the chain θ (°)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 5, ny: hi.n,
       fx: (v) => fmt(v, 0), fy: (v) => num(v, 0),
     });
     const thMin = Math.asin(Math.min(1, FP.v / (2 * hi.hi))) / RAD;

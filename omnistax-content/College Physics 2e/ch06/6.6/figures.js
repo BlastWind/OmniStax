@@ -69,7 +69,7 @@ function pin(ctx, x, y, color) {
   ctx.beginPath(); ctx.arc(x, y - 30, 7, 0, TAU); ctx.fill();
   ctx.beginPath(); ctx.arc(x, y, 3.5, 0, TAU); ctx.fill(); ctx.restore();
 }
-/* a pencil whose point rests on (x, y), leaning away from the centre (cx, cy) */
+/* a pencil whose point rests on (x, y), leaning away from the center (cx, cy) */
 function pencil(ctx, x, y, cx, cy, color) {
   const a = Math.atan2(y - cy, x - cx) || 0, ux = Math.cos(a), uy = Math.sin(a);
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.beginPath();
@@ -87,7 +87,7 @@ function pencil(ctx, x, y, cx, cy, color) {
 (function () {
   const d = sim('sim-ellipse', 690);
   const ecc = ctl(d.controls, { label: 'e', cls: '', min: 0, max: 0.8, step: 0.01, value: 0.5, unit: '', dec: 2, aria: 'eccentricity' });
-  const ang = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 360, step: 1, value: 55, unit: 'º', dec: 0, aria: 'place of the point on the curve' });
+  const ang = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 360, step: 1, value: 55, unit: '°', dec: 0, aria: 'place of the point on the curve' });
   function draw() {
     const { ctx } = begin(d.c);
     const e = ecc.v, a = 215, b = a * Math.sqrt(1 - e * e), c = a * e, th = ang.v * RAD;
@@ -118,7 +118,7 @@ function pencil(ctx, x, y, cx, cy, color) {
     planet(ctx, P2.x, P2.y, 11, PAL.ink);
     text(ctx, 'm', P2.x + 18, P2.y - 16, PAL.ink, { size: 22, weight: 600 });
     headline(ctx, e < 0.005
-      ? 'e = 0.00 · the two foci have met at the centre, so the curve is a circle and both distances are 1.00a everywhere on it'
+      ? 'e = 0.00 · the two foci have met at the center, so the curve is a circle and both distances are 1.00a everywhere on it'
       : 'e = ' + fmt(e, 2) + ' · the two distances are ' + fmt(d1, 2) + 'a and ' + fmt(d2, 2) + 'a, and they add to 2.00a wherever the pencil sits on the curve');
     readout(d.readout, `d_1 + d_2 = ${fmt(d1, 2)}a + ${fmt(d2, 2)}a = 2.00a`,
       'With M at the focus f₁, the distance from M to m runs from ' + fmt(1 - e, 2) + 'a at the nearest point of the orbit to ' + fmt(1 + e, 2) + 'a at the furthest, and it is ' + fmt(d1, 2) + 'a here.');
@@ -221,7 +221,7 @@ function pencil(ctx, x, y, cx, cy, color) {
     line(ctx, CX, CY, sx, sy, C('position'), 3, [6, 8]);
     const rl = beside(CX, CY, sx, sy, 20, 0.76);
     text(ctx, 'r', rl.x, rl.y, C('position'), { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    /* the gravitational force toward the centre and the velocity along the tangent */
+    /* the gravitational force toward the center and the velocity along the tangent */
     const fl = clamp(70 * Math.sqrt((mE / (rk * rk)) / (1 / (7.88 * 7.88))), 22, 120);
     const vl = clamp(70 * (v / orbitV(7.88, 1)), 26, 120);
     const ir = Math.hypot(CX - sx, CY - sy) || 1;
@@ -253,7 +253,7 @@ function pencil(ctx, x, y, cx, cy, color) {
 
 /* =====================================================================
    FIGURE 6.28: the same two motions drawn twice, once with Earth at the
-   centre and once with the Sun. The loops the left picture needs an
+   center and once with the Sun. The loops the left picture needs an
    epicycle for are what the right picture gets from one rule. The planets
    run, so the figure cycles over eight years.
 ===================================================================== */
@@ -270,9 +270,9 @@ function pencil(ctx, x, y, cx, cy, color) {
     const syn = 1 / Math.abs(1 - 1 / P);
     const earth = (s) => ({ x: Math.cos(TAU * s), y: Math.sin(TAU * s) });
     const outer = (s) => ({ x: r * Math.cos(TAU * s / P), y: r * Math.sin(TAU * s / P) });
-    /* (a) Earth at the centre: the Sun on a circle, the outer planet on a track that loops */
+    /* (a) Earth at the center: the Sun on a circle, the outer planet on a track that loops */
     const S1 = RMAX / (r + 1);
-    text(ctx, '(a) Earth at the centre, as the Ptolemaic model had it', CX1, 94, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, '(a) Earth at the center, as the Ptolemaic model had it', CX1, 94, PAL.muted, { size: 20, align: 'center' });
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([8, 8]); ctx.beginPath(); ctx.arc(CX1, CY, S1, 0, TAU); ctx.stroke(); ctx.restore();
     const t0 = Math.max(0, t - tr);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath();
@@ -293,9 +293,9 @@ function pencil(ctx, x, y, cx, cy, color) {
     /* Earth's own label goes on the side away from the Sun, so the two never sit on each other */
     const sn = Math.hypot(sunG.x - CX1, sunG.y - CY) || 1;
     text(ctx, 'Earth', CX1 - ((sunG.x - CX1) / sn) * 34, CY - ((sunG.y - CY) / sn) * 34, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    /* (b) the Sun at the centre: two plain circles */
+    /* (b) the Sun at the center: two plain circles */
     const S2 = RMAX / r;
-    text(ctx, '(b) the Sun at the centre, as the Copernican model has it', CX2, 94, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, '(b) the Sun at the center, as the Copernican model has it', CX2, 94, PAL.muted, { size: 20, align: 'center' });
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([8, 8]);
     ctx.beginPath(); ctx.arc(CX2, CY, S2, 0, TAU); ctx.stroke();
     ctx.beginPath(); ctx.arc(CX2, CY, S2 * r, 0, TAU); ctx.stroke(); ctx.restore();

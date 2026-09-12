@@ -299,3 +299,29 @@ as the book's own rules say.
   can point at 8.3's sentence on the momentum of the centre of mass;
   both cite `two-dimensional` instead and their suggested approaches
   name that sentence in words.
+
+Decided in the chapter pass (2026-09-12). The thirteen variable anchors and the
+nine equation anchors above are written.
+
+The eight velocity-component symbol rows (`v_1x`, `v_2x`, `v_1y`, `v_2y` and
+their primed forms) are **not** added. The plan calls them optional, and they
+would buy colour on four lines of a derivation the section does not keep as
+results: the four equations written in components have no row in `chapter.json`
+by the plan's own argument, so giving their symbols a hue would colour steps
+that lead nowhere the formula sheet goes. Rule 7 asks that a page colour only
+what it binds, and this page binds momentum and velocity through the symbols it
+does carry. The four intermediate equations stay without rows for the same
+reason.
+
+The `cite` of an exercise must name an id of the section the exercise is set in,
+which is why both AP items here cite `two-dimensional` rather than 8.3's
+sentence on the momentum of the centre of mass; their approaches name that
+sentence in words and both tag 6.5's `center-of-mass`. The chapter pass keeps
+that, and 8.5's two items of the same kind keep no cite at all, since this
+section's opening passage is about the collision the items describe while 8.5's
+text never mentions the centre of mass.
+
+The masculine ordinal stood in seventeen places in this section's `figures.js`,
+in the angle sliders' units, the arc labels, an axis label and the headlines,
+and is now the degree sign; the two angle units in the exercise answers went
+with it.

@@ -314,3 +314,22 @@ lengths of the scenes stay untyped and in ink, as Plan.md decided.
   the book prints them, and the magnitude form with the macros, so the sheet
   would read better with the `ktex` dropped from `eq-newton2-a` and kept on
   `eq-newton2` and `eq-newton2-mag`. Either way the section is unaffected.
+
+### The chapter pass decided
+
+The eight variable anchors and the seven equation anchors are written.
+
+The `ktex` of `eq-newton2-a` is dropped, as this plan proposed. It set a bold
+ink vector beside a coloured symbol, which is two conventions in one line; the
+vector forms of the law now stand in the book's bold ink on the formula sheet,
+and `eq-newton2-mag`, the magnitude form, carries the macros.
+
+The glossary row for `friction` is repaired. The book's own `<definition>`
+reads "a force past each other of objects that are touching", which is missing
+the words that make it a definition; the book's summary of this same section
+prints them, "a force that opposes the motion past each other of objects that
+are touching", and that sentence is now the row. No word is invented: the
+repair is the book's own wording from three pages later.
+
+The `T_force` row keeps the thrust meaning this section gives it, and 4.5's
+row of the same symbol keeps the tension meaning, as the plan asked.

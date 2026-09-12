@@ -236,3 +236,17 @@ the percentages stay untyped and in ink, as the book's own rules say.
   rather than at `ejecting-mass`: the word thrust appears in both spans, but
   it is the paragraph on the three factors that names the quantity
   $(\Delta m/\Delta t)\kve$, gives its units and calls it thrust.
+
+Decided in the chapter pass (2026-09-12). The ten variable anchors and the three
+equation anchors above are written, `F_thrust` and `eq-rocket-thrust` anchored
+at `8.7-factors` for the reason the plan gives.
+
+`config.md` said the rocket's free-body diagram would be a still picture. It is
+not: `sim-rocket` burns the fuel away over a finite loop and carries the
+transport, and this section's plan argues the case correctly under rule 14—a
+free body alone has no clock in it, but a figure that empties the tank does. The
+config line is corrected to say what the chapter built.
+
+The six items of this section that the book labels "Professional Application"
+had the label dropped altogether rather than kept; all six now carry it as a
+`tag`, which is the chapter's convention.

@@ -291,3 +291,19 @@ untyped and in ink, as the chapter config decides.
   type `force`, macro `\kFnetpar`. The chapter has `F_net`, `F_netx` and
   `F_nety`, and Example 4.5 writes the net force along the slope six
   times; the text sets it in plain ink LaTeX until the row is there.
+
+### The chapter pass decided
+
+The thirteen variable anchors and the eight equation anchors are written.
+
+Both symbol rows this plan asked for are merged into `book.json` and applied
+in the text: `F_hand` (`F_{\text{hand}}`, force, `\kFhand`) and `F_netpar`
+(`F_{\text{net}\,\parallel}`, force, `\kFnetpar`).
+
+`inertial-frame` stays here, at 4.5, where the book prints it.
+
+The `draws` of `sim-tightrope` no longer lists `acceleration`. The figure
+colours force and nothing else; the page still binds acceleration, because
+the skier, the incline and the rope all draw it.
+
+Every `º` in the section's text, figures and rows is now the degree sign `°`.

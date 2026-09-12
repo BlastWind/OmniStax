@@ -68,9 +68,9 @@ function trafficLight(ctx, x, y, color) {
     tug(ctx, bx - 125 - 56, by, 1, 0, PAL.muted);
     tug(ctx, bx, by + 52 + 56, 0, -1, PAL.muted);
     arrow(ctx, bx + 125, by, bx + 125 + fx.v * S, by, fc, 5);
-    text(ctx, 'Fx = ' + fmt(fx.v, 1) + ' × 10⁵ N', bx + 131 + fx.v * S, by + 30, fc, { size: 20, weight: 600 });
+    text(ctx, 'F_x = ' + fmt(fx.v, 1) + ' × 10⁵ N', bx + 131 + fx.v * S, by + 30, fc, { size: 20, weight: 600 });
     arrow(ctx, bx, by - 52, bx, by - 52 - fy.v * S, fc, 5);
-    text(ctx, 'Fy = ' + fmt(fy.v, 1) + ' × 10⁵ N', bx + 14, by - 58 - fy.v * S, fc, { size: 20, weight: 600 });
+    text(ctx, 'F_y = ' + fmt(fy.v, 1) + ' × 10⁵ N', bx + 14, by - 58 - fy.v * S, fc, { size: 20, weight: 600 });
     if (ac.v > 0.0001) {
       const al = 56 + 620 * ac.v;
       arrow(ctx, bx, by, bx + al * cos(th), by - al * sin(th), acc, 5);
@@ -81,16 +81,16 @@ function trafficLight(ctx, x, y, color) {
     text(ctx, '(b) the free-body diagram of the barge', 790, 116, PAL.muted, { size: 19 });
     const hx = ox + fx.v * S2, hy = oy - fy.v * S2;
     line(ctx, ox, oy, hx, oy, fc, 2.5, [10, 10]); line(ctx, hx, oy, hx, hy, fc, 2.5, [10, 10]);
-    text(ctx, 'Fx', (ox + hx) / 2, oy + 26, fc, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'Fy', hx + 30, (oy + hy) / 2, fc, { size: 20, weight: 600 });
+    text(ctx, 'F_x', (ox + hx) / 2, oy + 26, fc, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'F_y', hx + 30, (oy + hy) / 2, fc, { size: 20, weight: 600 });
     arrow(ctx, ox, oy, hx, hy, fc, 5);
-    text(ctx, 'Fapp = ' + fmt(app, 1) + ' × 10⁵ N', hx, hy - 28, fc, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'F_app = ' + fmt(app, 1) + ' × 10⁵ N', hx, hy - 28, fc, { size: 20, weight: 600, align: 'center' });
     angleArc(ctx, ox, oy, 0, th, 56, PAL.ink);
     text(ctx, fmt(th, 1) + '°', ox + 96 * cos(th / 2), oy - 96 * sin(th / 2) + 4, PAL.ink, { size: 19, align: 'center' });
     if (ok) {
       const dl = drag * S2;
       arrow(ctx, ox, oy, ox - dl * cos(th), oy + dl * sin(th), fc, 5);
-      text(ctx, 'FD = ' + fmt(drag, 2) + ' × 10⁵ N', ox - dl * cos(th) - 14, oy + dl * sin(th) + 26, fc, { size: 20, weight: 600, align: 'right' });
+      text(ctx, 'F_D = ' + fmt(drag, 2) + ' × 10⁵ N', ox - dl * cos(th) - 14, oy + dl * sin(th) + 26, fc, { size: 20, weight: 600, align: 'right' });
     }
     dot(ctx, ox, oy, PAL.ink, true, 8);
     /* the subtraction, as one bar along the direction of the applied force */
@@ -100,11 +100,11 @@ function trafficLight(ctx, x, y, color) {
     if (ok) { ctx.save(); ctx.fillStyle = alpha(fc, 0.55); ctx.fillRect(l, ybar - 20, ma * bw, 40); ctx.restore(); }
     line(ctx, l, ybar - 20, l + app * bw, ybar - 20, fc, 2); line(ctx, l, ybar + 20, l + app * bw, ybar + 20, fc, 2);
     line(ctx, l, ybar - 20, l, ybar + 20, fc, 2); line(ctx, l + app * bw, ybar - 20, l + app * bw, ybar + 20, fc, 2);
-    text(ctx, 'Fapp = ' + fmt(app, 1) + ' × 10⁵ N', l + app * bw + 16, ybar, fc, { size: 20, weight: 600 });
+    text(ctx, 'F_app = ' + fmt(app, 1) + ' × 10⁵ N', l + app * bw + 16, ybar, fc, { size: 20, weight: 600 });
     if (ok) {
       line(ctx, l + ma * bw, ybar - 20, l + ma * bw, ybar + 20, PAL.ink, 3);
-      hbracket(ctx, l, l + ma * bw, ybar + 64, acc, 'Fnet = ma = ' + fmt(ma, 2) + ' × 10⁵ N');
-      hbracket(ctx, l + ma * bw, l + app * bw, ybar + 126, fc, 'FD = ' + fmt(drag, 2) + ' × 10⁵ N');
+      hbracket(ctx, l, l + ma * bw, ybar + 64, acc, 'F_net = ma = ' + fmt(ma, 2) + ' × 10⁵ N');
+      hbracket(ctx, l + ma * bw, l + app * bw, ybar + 126, fc, 'F_D = ' + fmt(drag, 2) + ' × 10⁵ N');
     }
     headline(ctx, ok
       ? 'the tugs push with ' + fmt(app, 1) + ' × 10⁵ N together, the barge takes ' + fmt(ma, 2) + ' × 10⁵ N of it, and the water drags back with ' + fmt(drag, 2) + ' × 10⁵ N'
@@ -205,7 +205,7 @@ function trafficLight(ctx, x, y, color) {
     block(ctx, 320, floor - 16, 150, 32, PAL.ink);
     person(ctx, 320, floor - 32, PAL.ink, 1.05);
     arrow(ctx, 400, floor - 170, 400, floor - 170 - 92 * (Fs / top), fc, 5);
-    text(ctx, 'Fs = ' + fmt(Fs, 0) + ' N', 412, floor - 178 - 92 * (Fs / top), fc, { size: 20, weight: 600 });
+    text(ctx, 'F_s = ' + fmt(Fs, 0) + ' N', 412, floor - 178 - 92 * (Fs / top), fc, { size: 20, weight: 600 });
     arrow(ctx, 240, floor - 170, 240, floor - 170 + 92 * (w / top), fc, 5);
     text(ctx, 'w = ' + fmt(w, 0) + ' N', 228, floor - 162 + 92 * (w / top), fc, { size: 20, weight: 600, align: 'right' });
     if (vAt(t) > 0.01) { const vl = 26 + 58 * (vAt(t) / (ac.v * TA)); arrow(ctx, sr + 86, floor - 130, sr + 86, floor - 130 - vl, vc, 4); text(ctx, 'v', sr + 100, floor - 138 - vl, vc, { size: 20, weight: 600 }); }
@@ -269,7 +269,7 @@ function trafficLight(ctx, x, y, color) {
     person(ctx, px, 300, PAL.ink, 0.85);
     const late = px > 760, fl = 70 + 130 * (Fn / 1200), vl = 180 * (v / vf.v);
     arrow(ctx, px + 36, 122, px + 36 + fl, 122, fc, 5);
-    text(ctx, 'Fnet = ' + fmt(Fn, 0) + ' N, the forward push of the ground', late ? px + 24 : px + 48 + fl, 122, fc,
+    text(ctx, 'F_net = ' + fmt(Fn, 0) + ' N, the forward push of the ground', late ? px + 24 : px + 48 + fl, 122, fc,
       { size: 20, weight: 600, align: late ? 'right' : 'left' });
     if (v > 0.02) {
       arrow(ctx, px + 36, 182, px + 36 + vl, 182, vc, 4);

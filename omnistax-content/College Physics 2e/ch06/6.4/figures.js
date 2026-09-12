@@ -57,8 +57,8 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
 /* =====================================================================
    FIGURE 6.12: the tight right turn, drawn twice on one clock. On the
    right, from Earth: the car follows the bend under a real force toward
-   the centre while the driver keeps the straight line she was already
-   travelling. On the left, from inside the car: the car stands still and
+   the center while the driver keeps the straight line she was already
+   traveling. On the left, from inside the car: the car stands still and
    the driver slides to the door under a fictitious force. The car
    travels while the clock runs, so the figure moves.
 ===================================================================== */
@@ -74,7 +74,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const t = cy.now(), a = (V.v / R.v) * t, Rp = 150 + 1.4 * R.v, k = Rp / R.v, OX = 1035 + Rp / 2;
-    const lateral = R.v * (Math.cos(a) - 1 + a * Math.sin(a));   /* how far she has moved across the seat, in metres */
+    const lateral = R.v * (Math.cos(a) - 1 + a * Math.sin(a));   /* how far she has moved across the seat, in meters */
     panelTitle(ctx, 'In the car’s frame of reference', SEATX, 98);
     panelTitle(ctx, 'In Earth’s frame of reference', 1035, 98);
     divider(ctx, 700, 128, 596);
@@ -95,7 +95,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     ctx.save(); ctx.strokeStyle = PAL.soft; ctx.lineWidth = 60; ctx.beginPath(); ctx.arc(OX, OY, Rp, Math.PI, Math.PI + SWEEP); ctx.stroke(); ctx.restore();
     for (const e of [-30, 30]) { ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(OX, OY, Rp + e, Math.PI, Math.PI + SWEEP); ctx.stroke(); ctx.restore(); }
     dot(ctx, OX, OY, PAL.muted, true, 7);
-    text(ctx, 'centre of the bend', OX + 18, OY + 4, PAL.muted, { size: 17 });
+    text(ctx, 'center of the bend', OX + 18, OY + 4, PAL.muted, { size: 17 });
     const th = Math.PI + a, cxp = OX + Rp * Math.cos(th), cyp = OY + Rp * Math.sin(th);
     line(ctx, OX, OY, cxp, cyp, C('position'), 2, [10, 10]);
     const ux = -Math.sin(th), uy = Math.cos(th);
@@ -112,7 +112,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
 
     headline(ctx, 'the car has come ' + fmt(a * DEG, 0) + '° round the bend, and the driver has gone ' + fmt(V.v * t, 1) + ' m in a straight line');
     readout(d.readout, `\\kv = ${fmt(V.v, 0)}\\ \\text{m/s},\\quad \\kr = ${fmt(R.v, 0)}\\ \\text{m}\\ \\Rightarrow\\ \\text{the car has come } ${fmt(a * DEG, 0)}°\\ \\text{round the bend}`,
-      'There is no real force to the left on the driver. In Earth’s frame she keeps the straight line she was already travelling and the car is pushed to the right underneath her; in the car’s frame the same thing is felt as a push toward the door, a fictitious force with no physical origin.');
+      'There is no real force to the left on the driver. In Earth’s frame she keeps the straight line she was already traveling and the car is pushed to the right underneath her; in the car’s frame the same thing is felt as a push toward the door, a fictitious force with no physical origin.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
 })();
@@ -312,7 +312,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     const clause = turn < 0.3 ? 'so the air blows almost straight in'
       : turn < 1.5 ? 'so the air spirals in rather than blowing straight in'
         : 'so the air circles the low rather than blowing into it';
-    headline(ctx, fmt(hours, 1) + ' h to the centre · Earth turns the wind through ' + fmt(turn, 1) + ' rad on the way, ' + clause);
+    headline(ctx, fmt(hours, 1) + ' h to the center · Earth turns the wind through ' + fmt(turn, 1) + ' rad on the way, ' + clause);
     readout(d.readout, `\\kt = \\frac{\\kr}{\\kv} = \\frac{${sciTex(R.v * 1000, 2)}\\ \\text{m}}{${fmt(V.v, 0)}\\ \\text{m/s}} = ${sciTex(t, 1)}\\ \\text{s} = ${fmt(hours, 1)}\\ \\text{h}`,
       'Earth’s rotation turns a moving parcel of air to the right in the northern hemisphere and to the left in the southern one, at about 10⁻⁴ radian each second. Over a street that is nothing, which is why the Coriolis force is usually negligible; over the hours the air takes to cross a thousand kilometres it is more than a right angle, and the inward winds become a circulation, counterclockwise round a low in the north and clockwise round one in the south.');
   }

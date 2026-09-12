@@ -223,3 +223,14 @@ Anchors, one per row of `chapter.json` this section owns:
 
 Nothing else is wanted: every concept id, symbol, macro and equation this
 section needs was already merged by the chapter's prep.
+
+### The chapter pass decided
+
+The six variable anchors and the two equation anchors are written.
+
+The AP item on the tension in the cable of a lift that is accelerating stays
+here, where the book prints it and where the four steps it is set under are
+introduced. 4.7's notes say the same, so the two sections agree.
+
+The heading of the strategy is set in the book's voice, sentence case, as the
+headings of Chapters 1 to 3 are.

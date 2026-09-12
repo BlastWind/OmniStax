@@ -99,7 +99,7 @@ A child sits on the end of a playground see-saw. Which of the following values i
 PROBLEM:
 A group of students is stacking a set of identical books, each one overhanging the one below it by 1 inch. They would like to estimate how many books they could place on top of each other before the stack tipped. What information below would they need to know to make this calculation?
 
-> FIGURE {fig:fs-id1439516} src=../../media/Figure 09_S3_03.jpg
+> FIGURE {fig:fs-id1439516} src=../../media/Figure_09_S3_03.jpg
 > alt: Three rectangles with thick blue borders on the bottom, left, and right side and a think black slightly indented line of the right indicate three books. There are two short black vertical lines going down on the left and right of the bottom book with a double-headed black arrow and the label Width below. On the left side of the bottom book are two short horizontal lines with a black vertical double-headed short arrow labeled Depth. The three books are stacked with the second book offset to the right and the third offset even more to the right on the second book. The edge of the second book is marked with a double-headed arrow marked 1” between a vertical line above the left edge of the bottom book and a vertical line above the left edge of the second book.
 > caption: 3 overlapping stacked books.
 

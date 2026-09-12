@@ -171,3 +171,9 @@ says. No new hue and no new macro: `\kv`, `\kvo`, `\ka`, `\kt` and
 - Nothing else: the section states no equation, so there is no equation
   anchor to write, and the concept, glossary and symbol rows it needs are
   all in place.
+
+### The chapter pass decided
+
+The two variable anchors are written. The conceptual question that names
+weight stays here, as the section asked: what it tests is that mass does not
+vary with location, and this is where the text says so.

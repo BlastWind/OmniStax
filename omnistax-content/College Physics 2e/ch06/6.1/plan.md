@@ -257,3 +257,16 @@ $r_1$ belongs to 6.6.
   "motion in a circle at constant speed"}` would give the definitions view the
   term. Left for the chapter pass, since a section may not write
   `chapter.json`.
+
+### Decided in the chapter pass
+
+- Every anchor above is written on its variable and equation row in
+  `chapter.json`, and each one names an id in this section's `text.html`.
+- The glossary row for **uniform circular motion** is written under 6.1, in
+  the words the chapter introduction uses: "motion in a circle at constant
+  speed". The section states the term in its summary and introduces the
+  concept, so the definitions view now finds it.
+- 6.2's problem on the distance Earth has travelled since its birth asks for
+  an arc length from a rotation angle, which is this section's own idea, so
+  it is set on this page as `p-earth-orbit` with `source_section: "6.2"`.
+  Both sections' `exercise_notes` say so.

@@ -1,779 +1,785 @@
 {
- "types": [
-  {
-   "id": "torque",
-   "label": "torque",
-   "dimension": "N·m"
-  }
- ],
- "symbols": [
-  {
-   "sym": "τ",
-   "latex": "\\tau",
-   "type": "torque",
-   "macro": "\\ktau"
-  },
-  {
-   "sym": "τ_1",
-   "latex": "\\tau_1",
-   "type": "torque",
-   "macro": "\\ktauone"
-  },
-  {
-   "sym": "τ_2",
-   "latex": "\\tau_2",
-   "type": "torque",
-   "macro": "\\ktautwo"
-  },
-  {
-   "sym": "r_lever",
-   "latex": "r",
-   "type": "position",
-   "macro": "\\krlev"
-  },
-  {
-   "sym": "r_perp",
-   "latex": "r_{\\perp}",
-   "type": "position",
-   "macro": "\\krperp"
-  },
-  {
-   "sym": "r_3",
-   "latex": "r_3",
-   "type": "position",
-   "macro": "\\krthree"
-  },
-  {
-   "sym": "F_p",
-   "latex": "F_{\\text{p}}",
-   "type": "force",
-   "macro": "\\kFp"
-  },
-  {
-   "sym": "w_1",
-   "latex": "w_1",
-   "type": "force",
-   "macro": "\\kwone"
-  },
-  {
-   "sym": "w_2",
-   "latex": "w_2",
-   "type": "force",
-   "macro": "\\kwtwo"
-  },
-  {
-   "sym": "F_L",
-   "latex": "F_{\\text{L}}",
-   "type": "force",
-   "macro": "\\kFL"
-  },
-  {
-   "sym": "F_R",
-   "latex": "F_{\\text{R}}",
-   "type": "force",
-   "macro": "\\kFR"
-  },
-  {
-   "sym": "MA",
-   "latex": "\\text{MA}"
-  },
-  {
-   "sym": "F_i",
-   "latex": "F_{\\text{i}}",
-   "type": "force",
-   "macro": "\\kFi"
-  },
-  {
-   "sym": "F_o",
-   "latex": "F_{\\text{o}}",
-   "type": "force",
-   "macro": "\\kFo"
-  },
-  {
-   "sym": "F_nail",
-   "latex": "F_{\\text{n}}",
-   "type": "force",
-   "macro": "\\kFnail"
-  },
-  {
-   "sym": "l_i",
-   "latex": "l_{\\text{i}}",
-   "type": "position",
-   "macro": "\\kli"
-  },
-  {
-   "sym": "l_o",
-   "latex": "l_{\\text{o}}",
-   "type": "position",
-   "macro": "\\klo"
-  },
-  {
-   "sym": "F_B",
-   "latex": "F_{\\text{B}}",
-   "type": "force",
-   "macro": "\\kFB"
-  },
-  {
-   "sym": "F_E",
-   "latex": "F_{\\text{E}}",
-   "type": "force",
-   "macro": "\\kFE"
-  },
-  {
-   "sym": "F_V",
-   "latex": "F_{\\text{V}}",
-   "type": "force",
-   "macro": "\\kFV"
-  },
-  {
-   "sym": "F_Vx",
-   "latex": "F_{\\text{V}x}",
-   "type": "force",
-   "macro": "\\kFVx"
-  },
-  {
-   "sym": "F_Vy",
-   "latex": "F_{\\text{V}y}",
-   "type": "force",
-   "macro": "\\kFVy"
-  },
-  {
-   "sym": "w_a",
-   "latex": "w_{\\text{a}}",
-   "type": "force",
-   "macro": "\\kwarm"
-  },
-  {
-   "sym": "w_b",
-   "latex": "w_{\\text{b}}",
-   "type": "force",
-   "macro": "\\kwbook"
-  },
-  {
-   "sym": "w_ub",
-   "latex": "w_{\\text{ub}}",
-   "type": "force",
-   "macro": "\\kwub"
-  },
-  {
-   "sym": "w_box",
-   "latex": "w_{\\text{box}}",
-   "type": "force",
-   "macro": "\\kwbox"
-  }
- ],
- "concepts": [
-  {
-   "id": "first-condition-equilibrium",
-   "kind": "result",
-   "section": "9.1",
-   "name": "First condition for equilibrium, $\\text{net}\\;\\kF = 0$",
-   "why": "Newton's second law says that a system accelerates only when a net external force acts on it, so a system that does not accelerate has no net external force on it. That is the first condition for equilibrium, and because a force has components, it holds along every axis at once: the net external force is zero along the horizontal as well as along the vertical.",
-   "evidence": "The section states the condition as its first equation and restates it by axis in the second, the free-body diagrams of the motionless person and of the car at constant velocity show the forces adding to zero, and every worked example of the chapter uses it to find a supporting force.",
-   "eq": "eq-net-force-zero"
-  },
-  {
-   "id": "static-equilibrium",
-   "kind": "idea",
-   "section": "9.1",
-   "name": "Static equilibrium",
-   "why": "A system in static equilibrium is motionless, so its acceleration is zero and the first condition holds. This is the case of the desks, bridges and mountains the chapter opens with, and it is the case almost every problem of the chapter sets.",
-   "evidence": "The section names the term beside the figure of the motionless person and the glossary carries it, and the first conceptual question asks the reader to tell it from dynamic equilibrium."
-  },
-  {
-   "id": "dynamic-equilibrium",
-   "kind": "idea",
-   "section": "9.1",
-   "name": "Dynamic equilibrium",
-   "why": "A system moving at constant velocity also has zero acceleration, so it satisfies the first condition just as a motionless system does. Equilibrium is therefore not the same as being at rest, which is why a car driving steadily down a road belongs in a chapter about statics.",
-   "evidence": "The section names the term beside the figure of the car, whose applied force is balanced by air friction and whose weight is supported by the normal forces on four tires, the glossary carries it, and the first conceptual question asks what can be said about the velocity of a body in dynamic equilibrium."
-  },
-  {
-   "id": "point-of-application",
-   "kind": "idea",
-   "section": "9.1",
-   "name": "The point at which a force is applied",
-   "why": "The first condition is necessary but it is not sufficient. Two equal and opposite forces applied along the same line leave an ice hockey stick motionless, and the same two forces applied at different places set it rotating, although the net external force is zero in both cases. So where a force acts decides whether equilibrium is achieved, which is what the second condition will measure.",
-   "evidence": "The section draws the two hockey sticks side by side and says in so many words that the net force being zero is necessary but not sufficient, and the second conceptual question asks under what conditions a rotating body can be in equilibrium."
-  },
-  {
-   "id": "torque",
-   "kind": "idea",
-   "section": "9.2",
-   "name": "Torque, $\\ktau = \\krlev\\kF\\sin\\theta$",
-   "why": "Torque is the rotational equivalent of a force: it measures how effective a force is at changing a rotation. Opening a door shows what it depends on. The harder you push the faster the door opens, so torque grows with the force; pushing near the hinges barely works, so it grows with the distance from the pivot; and pushing along the door does nothing at all, so only the component of the force perpendicular to that distance counts, which is what the factor $\\sin\\theta$ supplies.",
-   "evidence": "The section defines the term and the equation after six drawings of a door pushed in different ways and at different places, the glossary carries torque and the SI unit newton-meter, the door and wrench problems ask for a torque from a force and a distance, and the first AP item asks which situation involves no torque.",
-   "eq": "eq-torque"
-  },
-  {
-   "id": "perpendicular-lever-arm",
-   "kind": "idea",
-   "section": "9.2",
-   "name": "Perpendicular lever arm, $\\krperp = \\krlev\\sin\\theta$",
-   "why": "The perpendicular lever arm is the shortest distance from the pivot point to the line along which the force acts. It gathers the distance and the angle into one length, and it is often easier to see in a drawing than $r$ and $\\theta$ are to measure separately.",
-   "evidence": "The section defines it, draws it as a dashed line in the door figure and in the hockey stick figure, and the glossary carries the term; the AP item on five forces applied to an anchored object is answered by comparing lever arms.",
-   "eq": "eq-perp-lever-arm"
-  },
-  {
-   "id": "torque-from-lever-arm",
-   "kind": "result",
-   "section": "9.2",
-   "name": "Torque from the lever arm, $\\ktau = \\krperp\\kF$",
-   "why": "Because the perpendicular lever arm already carries the angle, the torque is simply the lever arm times the force. The two expressions for torque are equally valid, and which one to use is a matter of what the drawing makes easy to find.",
-   "evidence": "The section states the equation immediately after defining the lever arm and says that both forms are equally valid, and the worked examples of 9.4 and 9.6 use this form throughout because every angle in them is 90º.",
-   "eq": "eq-torque-perp"
-  },
-  {
-   "id": "torque-depends-on-pivot",
-   "kind": "idea",
-   "section": "9.2",
-   "name": "Torque is always taken about a chosen pivot",
-   "why": "A torque has no meaning until a pivot point is named, because both the distance and the angle in its definition are measured from that point. The same force gives different torques about different points, and the point may be any point in or out of the body, whether or not the body can actually turn about it. What matters is that every torque in a problem is taken about the same point.",
-   "evidence": "The section says that any point in any object may be chosen and that the object need not actually pivot about it, the hockey stick figure works the same force out about points A and B, and the discussion after the seesaw example turns on the pivot having been chosen where the supporting force acts."
-  },
-  {
-   "id": "torque-sign-convention",
-   "kind": "idea",
-   "section": "9.2",
-   "name": "Clockwise and counterclockwise torques",
-   "why": "For rotation in a plane a torque has two possible directions, clockwise or counterclockwise about the chosen pivot, and torques in opposite directions are given opposite signs. The common convention is that counterclockwise torques are positive and clockwise torques negative, which is what lets the torques on a body be added as ordinary signed numbers.",
-   "evidence": "The section states the convention after the second condition, the hockey stick figure shows the same force turning the stick one way about A and the other way about B, and the seesaw example inserts a minus sign into the second child's torque for exactly this reason."
-  },
-  {
-   "id": "second-condition-equilibrium",
-   "kind": "result",
-   "section": "9.2",
-   "name": "Second condition for equilibrium, $\\text{net}\\;\\ktau = 0$",
-   "why": "The second condition necessary to achieve equilibrium is that the net external torque on the system is zero, so that the system has no accelerated rotation. It repairs what the first condition missed: the hockey stick pushed off centre has no net force but it does have a net torque. If the condition is satisfied for one choice of pivot it is satisfied for every other, so the pivot may be chosen freely.",
-   "evidence": "The section states the condition in italics and as an equation, the two children on the seesaw satisfy it, and every worked example and nearly every problem of the rest of the chapter is solved with it.",
-   "eq": "eq-net-torque-zero"
-  },
-  {
-   "id": "center-of-gravity",
-   "kind": "idea",
-   "section": "9.2",
-   "name": "Center of gravity",
-   "why": "The weight of a body is spread over the whole of it, but for the purpose of torques the whole weight may be taken to act at a single point, the center of gravity. This is not an approximation, and it is what allows the distance to a child on a seesaw to be measured to one point rather than over the area the child covers.",
-   "evidence": "The section makes the point in the discussion after the seesaw example and the glossary carries the term; 9.3 builds its whole account of stability on where the center of gravity lies, and every figure of 9.4 and 9.6 marks it."
-  },
-  {
-   "id": "balanced-seesaw",
-   "kind": "skill",
-   "section": "9.2",
-   "name": "Balancing a seesaw, $\\krtwo = \\krone m_1 / m_2$",
-   "why": "A seesaw is the first problem that needs both conditions at once. Taking the pivot as the point about which the torques are calculated makes the supporting force's torque zero, and the second condition then gives the distance the second child must sit at; the first condition gives the supporting force afterwards. The heavier child sits closer to the pivot, which is what everyone's intuition about seesaws already says.",
-   "evidence": "The section works the example through in two parts, the glossary and the discussion draw three lessons from it, and four of the chapter's problems are seesaws: two in 9.2, one in 9.3 and the unreasonable-results item of 9.6.",
-   "eq": "eq-seesaw-distance"
-  },
-  {
-   "id": "restoring-torque",
-   "kind": "idea",
-   "section": "9.3",
-   "name": "The torque a displacement produces",
-   "why": "What decides the kind of equilibrium a body sits in is the torque its own weight produces once the body is displaced. Tilt a pencil standing on its eraser and the pivot moves to the edge of its base while the weight still acts through the center of gravity, so the weight now has a lever arm and turns the pencil one way or the other. Whether that torque points back towards equilibrium or further away from it is the whole of this section.",
-   "evidence": "The section draws the pencil upright, tilted a little and tilted too far, and then the same pencil balanced on its point, and reads the direction of the torque off each drawing; the AP item on the traffic cone asks for the same reasoning in words."
-  },
-  {
-   "id": "stable-equilibrium",
-   "kind": "idea",
-   "section": "9.3",
-   "name": "Stable equilibrium",
-   "why": "A system is in stable equilibrium if, when displaced, it experiences a net force or torque in the direction opposite to the displacement, so that it is driven back where it came from. A marble at the bottom of a bowl and a pencil standing on its eraser are both stable, and most systems are stable at least for small displacements.",
-   "evidence": "The section defines the term, the glossary carries it, the pencil on its eraser is drawn returning to the vertical, and the keyed AP item asks why a traffic cone on its base is stable."
-  },
-  {
-   "id": "unstable-equilibrium",
-   "kind": "idea",
-   "section": "9.3",
-   "name": "Unstable equilibrium",
-   "why": "A system is in unstable equilibrium if, when displaced, it experiences a net force or torque in the same direction as the displacement, so that it accelerates away from where it started. A ball resting on the crest of a hill and a pencil balanced on its point are both unstable, although both conditions for equilibrium are satisfied while they stand.",
-   "evidence": "The section defines the term, the glossary carries it, the pencil balanced on its point is drawn toppling, and the keyed AP item asks why a traffic cone on its tip is unstable."
-  },
-  {
-   "id": "neutral-equilibrium",
-   "kind": "idea",
-   "section": "9.3",
-   "name": "Neutral equilibrium",
-   "why": "A system is in neutral equilibrium if its equilibrium does not depend on where it has been displaced to. A marble on a flat table and a round pencil lying on its side simply stay where they are put, because the center of gravity remains directly above the point of support wherever the body is moved. A body may be of one kind in one direction and another kind in another, as a marble on a saddle is.",
-   "evidence": "The section defines the term and the glossary carries it, the figure of the sphere and the pencil on its side shows both, and the first conceptual question asks about the stability of that pencil along its length."
-  },
-  {
-   "id": "base-of-support",
-   "kind": "idea",
-   "section": "9.3",
-   "name": "Base of support",
-   "why": "A body standing on a surface stays in stable equilibrium only while its center of gravity is above its base of support; once the center of gravity passes beyond the base, the torque from the weight changes direction and the body topples. That is why stability is increased by spreading the feet, which widens the base, and by bending the knees, which lowers the center of gravity, and why a chicken, whose center of gravity is below its hips and between two broad feet, is far more stable than a person.",
-   "evidence": "The section compares the standing person with the chicken and explains canes, crutches and the stance of a football player, the take-home experiment asks the reader to touch their toes with their heels against a wall, and the problems on the leaning horse, the braced wall and the chicken in the wind all turn on it."
-  },
-  {
-   "id": "static-equilibrium-strategy",
-   "kind": "skill",
-   "section": "9.4",
-   "name": "The problem-solving strategy for static equilibrium",
-   "why": "Statics is a special case of Newton's laws, so the strategies of Chapter 4 still apply, and this section adds four steps of its own: decide that the system really is in static equilibrium, draw a free body diagram and label every force with its magnitude, direction and point of application, apply either or both conditions for equilibrium, and check that the answer is reasonable in magnitude, direction and units.",
-   "evidence": "The section prints the four steps as a boxed strategy, the worked example on the pole vaulter follows them, and two problems of the chapter ask the reader explicitly to show how they follow the steps."
-  },
-  {
-   "id": "choose-pivot-to-simplify",
-   "kind": "skill",
-   "section": "9.4",
-   "name": "Choosing the pivot to simplify the problem",
-   "why": "Because the second condition holds for any choice of pivot, the pivot may be chosen to make the work easy. The useful choices are the ones that make the torques of unknown forces zero: a force applied at the pivot has no lever arm, and a force acting along a line through the pivot makes an angle of zero. Choosing the elbow, the hip or the hand a problem is asking about is what turns two unknowns into one.",
-   "evidence": "The section states the rule as step 3 of the strategy, the pole vaulter example chooses the left hand so that the left hand's torque drops out, and both examples of 9.6 choose the joint for the same reason."
-  },
-  {
-   "id": "symmetric-support",
-   "kind": "result",
-   "section": "9.4",
-   "name": "Symmetric supports share the weight, $\\kFR = \\kFL = \\kwgt/2$",
-   "why": "When supporting forces are applied symmetrically about the center of gravity, each carries an equal share of the weight. Both conditions are then satisfied at once: the forces add to the weight, and, taking the center of gravity as the pivot, the weight has no lever arm and the two equal forces are equidistant from the pivot, so their torques cancel. The four legs of a uniform table each carry a quarter of its weight for the same reason.",
-   "evidence": "The section works the pole vaulter's first hold this way and says the argument holds for any system supported symmetrically about its center of gravity, and part (c) of the section's second problem asks the reader to verify the second condition for a pivot other than the center of gravity.",
-   "eq": "eq-equal-hands"
-  },
-  {
-   "id": "unequal-support-forces",
-   "kind": "result",
-   "section": "9.4",
-   "name": "Unequal supports, $\\kFL + \\kFR = \\kwgt$",
-   "why": "Move the center of gravity away from the middle and the two supports no longer share the weight equally: the support nearer the center of gravity carries more, exactly as the nearer of two people carrying a load does. The forces still add to the weight, so the first condition gives the second force once the second condition has given the first. If the center of gravity lies beyond both supports, one force reverses direction and both grow large, which is why holding a pole at one end is so much harder than holding it in the middle.",
-   "evidence": "The section works the example with the center of gravity 0.600 m from the left hand and gets forces of 32.7 N and 16.3 N, then shows the third hold in which the right hand must push down; the keyed AP item on the car crossing a bridge between two piers asks the same question of a bridge.",
-   "eq": "eq-hands-sum"
-  },
-  {
-   "id": "simple-machine",
-   "kind": "idea",
-   "section": "9.5",
-   "name": "Simple machines",
-   "why": "A simple machine is a device that multiplies or augments the force we apply, usually at the expense of the distance through which we apply it. Levers, gears, pulleys, wedges and screws are the familiar examples. A machine does not create energy, since it cannot do more work than the work put into it; what it changes is how much force the job takes.",
-   "evidence": "The section opens by naming the devices and saying that energy is still conserved for them, and the conceptual questions ask which machine scissors resemble and how a pulley lets a person lift a piano."
-  },
-  {
-   "id": "mechanical-advantage",
-   "kind": "result",
-   "section": "9.5",
-   "name": "Mechanical advantage, $\\text{MA} = \\kFo/\\kFi$",
-   "why": "The mechanical advantage of a machine is the ratio of the output force to the input force. It is a pure number: a mechanical advantage greater than one means the machine gives out more force than is put in, and one less than one, as for a shovel or a car axle, means it gives out less and buys something else instead.",
-   "evidence": "The section defines it in its first equation and the glossary carries the term; the nail puller, wheelbarrow and car axle problems each ask for a mechanical advantage, and the first AP item asks the reader to explain the idea in terms of torque.",
-   "eq": "eq-mechanical-advantage"
-  },
-  {
-   "id": "lever",
-   "kind": "idea",
-   "section": "9.5",
-   "name": "The lever, $\\kli\\kFi = \\klo\\kFo$",
-   "why": "A lever is a rigid bar pivoted at a fixed place called the fulcrum. Because the bar turns about that point, the second condition for equilibrium applies to it: while the load is not moving the torque of the input force equals the torque of the output force, so the input force times its lever arm equals the output force times its own. The nail puller, the wheelbarrow, the shovel and a seesaw are all levers, and they differ only in where the pivot sits relative to the two forces.",
-   "evidence": "The section derives the relation from the second condition for the nail puller and then applies it to the wheelbarrow and the shovel, and the conceptual questions ask whether a nail puller pulling a nail at constant rate is in equilibrium.",
-   "eq": "eq-lever-balance"
-  },
-  {
-   "id": "lever-mechanical-advantage",
-   "kind": "result",
-   "section": "9.5",
-   "name": "Mechanical advantage of a lever, $\\text{MA} = \\kli/\\klo$",
-   "why": "Rearranging the lever's torque balance turns it into a statement about forces: the mechanical advantage of a lever is the ratio of the input lever arm to the output lever arm. The longer the handle on a nail puller, the greater the force it can exert, and the shorter the handle, the less.",
-   "evidence": "The section states the equation and says it is true for levers in general, the worked example on the wheelbarrow uses it, and the nail puller, mower and wheelbarrow problems all ask for a force from a ratio of lever arms.",
-   "eq": "eq-lever-ma"
-  },
-  {
-   "id": "crank-and-wheel",
-   "kind": "result",
-   "section": "9.5",
-   "name": "Cranks, wheels and gears, $\\text{MA} = r_{\\text{i}}/r_{\\text{o}}$",
-   "why": "A crank is a lever that can be turned through a full circle about its pivot, and a wheel driven by an axle is the same thing again. Such a machine may not look like a lever, but the physics of it is unchanged: its mechanical advantage is simply the ratio of the two radii. A crank is usually built with a large mechanical advantage, while a car axle driving a much larger wheel has one well below one.",
-   "evidence": "The section works out the mechanical advantage of a crank and of a simplified car axle and finds that the axle must exert 12,000 N to put 1000 N on the road, and one of the problems asks for the mechanical advantage of an axle of 1.10 cm radius driving a tire of 27.5 cm.",
-   "eq": "eq-crank-ma"
-  },
-  {
-   "id": "pulley-mechanical-advantage",
-   "kind": "result",
-   "section": "9.5",
-   "name": "Pulleys, $\\kFo \\approx n\\kTf$",
-   "why": "An ordinary pulley changes the direction of the force in a cord without changing its magnitude, so its mechanical advantage is one. Combinations of pulleys do multiply force: each cable that pulls directly upward on the load adds a force of about the tension, since the tension is nearly the same throughout a friction-free system, so the number of such cables is about the mechanical advantage of the system.",
-   "evidence": "The section draws three combinations with mechanical advantages of about 2, 3 and 4 and counts the cables in each, a conceptual question asks how a pulley lets a person lift a piano, and two problems ask for the tension and the ceiling force for an engine hung from such a system.",
-   "eq": "eq-pulley-force"
-  },
-  {
-   "id": "muscle-lever-system",
-   "kind": "idea",
-   "section": "9.6",
-   "name": "Muscles and joints as levers",
-   "why": "A limb is a lever whose fulcrum is a joint, and the muscle that moves it is attached by a tendon very close to that joint. The muscle's lever arm is therefore much shorter than the load's, so the system is a simple machine with a mechanical advantage well below one and the muscle must pull far harder than the limb pushes on the world. Muscles can only contract, which is why they come in pairs, a flexor to close the limb and an extensor to open it.",
-   "evidence": "The section opens with the forearm holding a book beside the equivalent lever system and says that most skeletal muscles are attached close to joints, and the conceptual questions ask why the forces our limbs exert on the world are so much smaller than the forces inside us."
-  },
-  {
-   "id": "muscle-force-from-torque",
-   "kind": "result",
-   "section": "9.6",
-   "name": "The force in a muscle, $\\kFB = (\\krtwo\\kwarm + \\krthree\\kwbook)/\\krone$",
-   "why": "Taking the pivot at the joint makes the torque of the joint force zero and leaves the muscle force as the only unknown, so the second condition alone gives it: the muscle's torque must balance the torques of the weights it holds. Because the muscle's lever arm is the small one, the answer is large. The biceps holding a forearm and a 4.00 kg book exerts 470 N, which is 7.38 times the weight it is supporting.",
-   "evidence": "The section works the example in full, the discussion notes that the force changes as the angle at the elbow changes, and the problems on the quadriceps, the Achilles tendon, the neck muscles, the masseter and the triceps in a push-up are all the same calculation on another joint.",
-   "eq": "eq-biceps-force"
-  },
-  {
-   "id": "joint-force",
-   "kind": "result",
-   "section": "9.6",
-   "name": "The force in a joint",
-   "why": "Once the muscle force is known the first condition gives the force in the joint, and it is large too. Because a muscle can contract but cannot push, the muscle and the joint pull in opposite directions and their forces subtract: in the forearm, the 470 N up from the biceps less the 407 N down from the humerus leaves the 63 N of weight actually supported. The same arithmetic gives 4660 N on the vertebrae of someone lifting a box with their back, five and a half times the weight lifted, and spines are relatively weak.",
-   "evidence": "The section states the elbow force of 407 N in the text and sets its calculation as the section's first problem, the second worked example finds the magnitude and direction of the force on the vertebrae from its components, and the problems on the knee, the ankle and the jaw each ask for a joint force."
-  },
-  {
-   "id": "posture-and-back-strain",
-   "kind": "idea",
-   "section": "9.6",
-   "name": "Posture and back strain",
-   "why": "Stand straight and the upper body's center of gravity is directly above the pivot in the hips, so its weight has no lever arm, produces no torque, and needs no muscle action to balance it. Lean forward and the center of gravity moves in front of the hips, and the torque this produces has to be countered by the muscles of the lower back, which have very small lever arms and so must pull very hard. Lifting a load with the back rather than the legs makes the same forces several times larger again.",
-   "evidence": "The section draws good and bad posture side by side, works out the 4200 N in the back muscles of someone lifting a 30.0 kg box, shows people leaning forward, sideways and backward to keep their overall center of gravity above their feet, and asks in a conceptual question why pregnant women often suffer back strain."
-  },
-  {
-   "id": "benefits-of-short-lever-arms",
-   "kind": "idea",
-   "section": "9.6",
-   "name": "Why muscles are attached close to joints",
-   "why": "Paying so much force for so little seems a poor bargain until the other side of it is counted. Because the muscle's lever arm is short, a small contraction swings the limb through a large distance in a short time, which is speed, and the arrangement leaves room for the large number of joints and the wide ranges over which they work, which is flexibility and agility. A biceps attached at the wrist could not give the arm the range of movement it has.",
-   "evidence": "The section asks the question in so many words and answers it with speed, flexibility and agility, and a conceptual question asks what the advantages and disadvantages would be of attaching the biceps near the wrist instead."
-  }
- ],
- "concept_prereqs": [
-  {
-   "concept": "first-condition-equilibrium",
-   "prereq": "newtons-second-law"
-  },
-  {
-   "concept": "first-condition-equilibrium",
-   "prereq": "net-external-force"
-  },
-  {
-   "concept": "first-condition-equilibrium",
-   "prereq": "free-body-diagram"
-  },
-  {
-   "concept": "first-condition-equilibrium",
-   "prereq": "resolve-forces-into-components"
-  },
-  {
-   "concept": "static-equilibrium",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "static-equilibrium",
-   "prereq": "newtons-first-law"
-  },
-  {
-   "concept": "dynamic-equilibrium",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "dynamic-equilibrium",
-   "prereq": "acceleration"
-  },
-  {
-   "concept": "dynamic-equilibrium",
-   "prereq": "instantaneous-velocity"
-  },
-  {
-   "concept": "point-of-application",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "point-of-application",
-   "prereq": "force"
-  },
-  {
-   "concept": "torque",
-   "prereq": "force"
-  },
-  {
-   "concept": "torque",
-   "prereq": "point-of-application"
-  },
-  {
-   "concept": "perpendicular-lever-arm",
-   "prereq": "torque"
-  },
-  {
-   "concept": "perpendicular-lever-arm",
-   "prereq": "resolving-vector"
-  },
-  {
-   "concept": "torque-from-lever-arm",
-   "prereq": "torque"
-  },
-  {
-   "concept": "torque-from-lever-arm",
-   "prereq": "perpendicular-lever-arm"
-  },
-  {
-   "concept": "torque-depends-on-pivot",
-   "prereq": "torque"
-  },
-  {
-   "concept": "torque-sign-convention",
-   "prereq": "torque"
-  },
-  {
-   "concept": "torque-sign-convention",
-   "prereq": "torque-depends-on-pivot"
-  },
-  {
-   "concept": "second-condition-equilibrium",
-   "prereq": "torque"
-  },
-  {
-   "concept": "second-condition-equilibrium",
-   "prereq": "torque-sign-convention"
-  },
-  {
-   "concept": "second-condition-equilibrium",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "center-of-gravity",
-   "prereq": "center-of-mass"
-  },
-  {
-   "concept": "center-of-gravity",
-   "prereq": "weight"
-  },
-  {
-   "concept": "balanced-seesaw",
-   "prereq": "second-condition-equilibrium"
-  },
-  {
-   "concept": "balanced-seesaw",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "balanced-seesaw",
-   "prereq": "center-of-gravity"
-  },
-  {
-   "concept": "balanced-seesaw",
-   "prereq": "weight"
-  },
-  {
-   "concept": "restoring-torque",
-   "prereq": "torque"
-  },
-  {
-   "concept": "restoring-torque",
-   "prereq": "center-of-gravity"
-  },
-  {
-   "concept": "restoring-torque",
-   "prereq": "weight"
-  },
-  {
-   "concept": "stable-equilibrium",
-   "prereq": "restoring-torque"
-  },
-  {
-   "concept": "stable-equilibrium",
-   "prereq": "second-condition-equilibrium"
-  },
-  {
-   "concept": "unstable-equilibrium",
-   "prereq": "restoring-torque"
-  },
-  {
-   "concept": "unstable-equilibrium",
-   "prereq": "second-condition-equilibrium"
-  },
-  {
-   "concept": "neutral-equilibrium",
-   "prereq": "restoring-torque"
-  },
-  {
-   "concept": "neutral-equilibrium",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "base-of-support",
-   "prereq": "stable-equilibrium"
-  },
-  {
-   "concept": "base-of-support",
-   "prereq": "center-of-gravity"
-  },
-  {
-   "concept": "base-of-support",
-   "prereq": "normal-force"
-  },
-  {
-   "concept": "static-equilibrium-strategy",
-   "prereq": "static-equilibrium"
-  },
-  {
-   "concept": "static-equilibrium-strategy",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "static-equilibrium-strategy",
-   "prereq": "second-condition-equilibrium"
-  },
-  {
-   "concept": "static-equilibrium-strategy",
-   "prereq": "free-body-diagram"
-  },
-  {
-   "concept": "static-equilibrium-strategy",
-   "prereq": "newtons-laws-problem-solving"
-  },
-  {
-   "concept": "static-equilibrium-strategy",
-   "prereq": "problem-solving-steps"
-  },
-  {
-   "concept": "choose-pivot-to-simplify",
-   "prereq": "torque-depends-on-pivot"
-  },
-  {
-   "concept": "choose-pivot-to-simplify",
-   "prereq": "second-condition-equilibrium"
-  },
-  {
-   "concept": "choose-pivot-to-simplify",
-   "prereq": "static-equilibrium-strategy"
-  },
-  {
-   "concept": "symmetric-support",
-   "prereq": "center-of-gravity"
-  },
-  {
-   "concept": "symmetric-support",
-   "prereq": "second-condition-equilibrium"
-  },
-  {
-   "concept": "symmetric-support",
-   "prereq": "weight"
-  },
-  {
-   "concept": "unequal-support-forces",
-   "prereq": "symmetric-support"
-  },
-  {
-   "concept": "unequal-support-forces",
-   "prereq": "choose-pivot-to-simplify"
-  },
-  {
-   "concept": "unequal-support-forces",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "simple-machine",
-   "prereq": "force"
-  },
-  {
-   "concept": "simple-machine",
-   "prereq": "work"
-  },
-  {
-   "concept": "mechanical-advantage",
-   "prereq": "simple-machine"
-  },
-  {
-   "concept": "lever",
-   "prereq": "simple-machine"
-  },
-  {
-   "concept": "lever",
-   "prereq": "torque"
-  },
-  {
-   "concept": "lever",
-   "prereq": "second-condition-equilibrium"
-  },
-  {
-   "concept": "lever-mechanical-advantage",
-   "prereq": "lever"
-  },
-  {
-   "concept": "lever-mechanical-advantage",
-   "prereq": "mechanical-advantage"
-  },
-  {
-   "concept": "lever-mechanical-advantage",
-   "prereq": "perpendicular-lever-arm"
-  },
-  {
-   "concept": "crank-and-wheel",
-   "prereq": "lever-mechanical-advantage"
-  },
-  {
-   "concept": "crank-and-wheel",
-   "prereq": "rotation-angle"
-  },
-  {
-   "concept": "pulley-mechanical-advantage",
-   "prereq": "mechanical-advantage"
-  },
-  {
-   "concept": "pulley-mechanical-advantage",
-   "prereq": "tension"
-  },
-  {
-   "concept": "pulley-mechanical-advantage",
-   "prereq": "free-body-diagram"
-  },
-  {
-   "concept": "muscle-lever-system",
-   "prereq": "lever"
-  },
-  {
-   "concept": "muscle-lever-system",
-   "prereq": "mechanical-advantage"
-  },
-  {
-   "concept": "muscle-force-from-torque",
-   "prereq": "muscle-lever-system"
-  },
-  {
-   "concept": "muscle-force-from-torque",
-   "prereq": "second-condition-equilibrium"
-  },
-  {
-   "concept": "muscle-force-from-torque",
-   "prereq": "choose-pivot-to-simplify"
-  },
-  {
-   "concept": "muscle-force-from-torque",
-   "prereq": "weight"
-  },
-  {
-   "concept": "joint-force",
-   "prereq": "muscle-force-from-torque"
-  },
-  {
-   "concept": "joint-force",
-   "prereq": "first-condition-equilibrium"
-  },
-  {
-   "concept": "joint-force",
-   "prereq": "newtons-third-law"
-  },
-  {
-   "concept": "joint-force",
-   "prereq": "magnitude-direction-from-components"
-  },
-  {
-   "concept": "posture-and-back-strain",
-   "prereq": "center-of-gravity"
-  },
-  {
-   "concept": "posture-and-back-strain",
-   "prereq": "base-of-support"
-  },
-  {
-   "concept": "posture-and-back-strain",
-   "prereq": "muscle-force-from-torque"
-  },
-  {
-   "concept": "benefits-of-short-lever-arms",
-   "prereq": "muscle-lever-system"
-  },
-  {
-   "concept": "benefits-of-short-lever-arms",
-   "prereq": "mechanical-advantage"
-  }
- ]
+  "types": [
+    {
+      "id": "torque",
+      "label": "torque",
+      "dimension": "N·m"
+    }
+  ],
+  "symbols": [
+    {
+      "sym": "τ",
+      "latex": "\\tau",
+      "type": "torque",
+      "macro": "\\ktau"
+    },
+    {
+      "sym": "τ_1",
+      "latex": "\\tau_1",
+      "type": "torque",
+      "macro": "\\ktauone"
+    },
+    {
+      "sym": "τ_2",
+      "latex": "\\tau_2",
+      "type": "torque",
+      "macro": "\\ktautwo"
+    },
+    {
+      "sym": "r_lever",
+      "latex": "r",
+      "type": "position",
+      "macro": "\\krlev"
+    },
+    {
+      "sym": "r_perp",
+      "latex": "r_{\\perp}",
+      "type": "position",
+      "macro": "\\krperp"
+    },
+    {
+      "sym": "r_bperp",
+      "latex": "r_{\\text{b}\\perp}",
+      "type": "position",
+      "macro": "\\krbperp"
+    },
+    {
+      "sym": "r_3",
+      "latex": "r_3",
+      "type": "position",
+      "macro": "\\krthree"
+    },
+    {
+      "sym": "F_p",
+      "latex": "F_{\\text{p}}",
+      "type": "force",
+      "macro": "\\kFp"
+    },
+    {
+      "sym": "w_1",
+      "latex": "w_1",
+      "type": "force",
+      "macro": "\\kwone"
+    },
+    {
+      "sym": "w_2",
+      "latex": "w_2",
+      "type": "force",
+      "macro": "\\kwtwo"
+    },
+    {
+      "sym": "F_L",
+      "latex": "F_{\\text{L}}",
+      "type": "force",
+      "macro": "\\kFL"
+    },
+    {
+      "sym": "F_R",
+      "latex": "F_{\\text{R}}",
+      "type": "force",
+      "macro": "\\kFR"
+    },
+    {
+      "sym": "MA",
+      "latex": "\\text{MA}"
+    },
+    {
+      "sym": "F_i",
+      "latex": "F_{\\text{i}}",
+      "type": "force",
+      "macro": "\\kFi"
+    },
+    {
+      "sym": "F_o",
+      "latex": "F_{\\text{o}}",
+      "type": "force",
+      "macro": "\\kFo"
+    },
+    {
+      "sym": "F_nail",
+      "latex": "F_{\\text{n}}",
+      "type": "force",
+      "macro": "\\kFnail"
+    },
+    {
+      "sym": "l_i",
+      "latex": "l_{\\text{i}}",
+      "type": "position",
+      "macro": "\\kli"
+    },
+    {
+      "sym": "l_o",
+      "latex": "l_{\\text{o}}",
+      "type": "position",
+      "macro": "\\klo"
+    },
+    {
+      "sym": "F_B",
+      "latex": "F_{\\text{B}}",
+      "type": "force",
+      "macro": "\\kFB"
+    },
+    {
+      "sym": "F_E",
+      "latex": "F_{\\text{E}}",
+      "type": "force",
+      "macro": "\\kFE"
+    },
+    {
+      "sym": "F_V",
+      "latex": "F_{\\text{V}}",
+      "type": "force",
+      "macro": "\\kFV"
+    },
+    {
+      "sym": "F_Vx",
+      "latex": "F_{\\text{V}x}",
+      "type": "force",
+      "macro": "\\kFVx"
+    },
+    {
+      "sym": "F_Vy",
+      "latex": "F_{\\text{V}y}",
+      "type": "force",
+      "macro": "\\kFVy"
+    },
+    {
+      "sym": "w_a",
+      "latex": "w_{\\text{a}}",
+      "type": "force",
+      "macro": "\\kwarm"
+    },
+    {
+      "sym": "w_b",
+      "latex": "w_{\\text{b}}",
+      "type": "force",
+      "macro": "\\kwbook"
+    },
+    {
+      "sym": "w_ub",
+      "latex": "w_{\\text{ub}}",
+      "type": "force",
+      "macro": "\\kwub"
+    },
+    {
+      "sym": "w_box",
+      "latex": "w_{\\text{box}}",
+      "type": "force",
+      "macro": "\\kwbox"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "first-condition-equilibrium",
+      "kind": "result",
+      "section": "9.1",
+      "name": "First condition for equilibrium, $\\text{net}\\;\\kF = 0$",
+      "why": "Newton's second law says that a system accelerates only when a net external force acts on it, so a system that does not accelerate has no net external force on it. That is the first condition for equilibrium, and because a force has components, it holds along every axis at once: the net external force is zero along the horizontal as well as along the vertical.",
+      "evidence": "The section states the condition as its first equation and restates it by axis in the second, the free-body diagrams of the motionless person and of the car at constant velocity show the forces adding to zero, and every worked example of the chapter uses it to find a supporting force.",
+      "eq": "eq-net-force-zero"
+    },
+    {
+      "id": "static-equilibrium",
+      "kind": "idea",
+      "section": "9.1",
+      "name": "Static equilibrium",
+      "why": "A system in static equilibrium is motionless, so its acceleration is zero and the first condition holds. This is the case of the desks, bridges and mountains the chapter opens with, and it is the case almost every problem of the chapter sets.",
+      "evidence": "The section names the term beside the figure of the motionless person and the glossary carries it, and the first conceptual question asks the reader to tell it from dynamic equilibrium."
+    },
+    {
+      "id": "dynamic-equilibrium",
+      "kind": "idea",
+      "section": "9.1",
+      "name": "Dynamic equilibrium",
+      "why": "A system moving at constant velocity also has zero acceleration, so it satisfies the first condition just as a motionless system does. Equilibrium is therefore not the same as being at rest, which is why a car driving steadily down a road belongs in a chapter about statics.",
+      "evidence": "The section names the term beside the figure of the car, whose applied force is balanced by air friction and whose weight is supported by the normal forces on four tires, the glossary carries it, and the first conceptual question asks what can be said about the velocity of a body in dynamic equilibrium."
+    },
+    {
+      "id": "point-of-application",
+      "kind": "idea",
+      "section": "9.1",
+      "name": "The point at which a force is applied",
+      "why": "The first condition is necessary but it is not sufficient. Two equal and opposite forces applied along the same line leave an ice hockey stick motionless, and the same two forces applied at different places set it rotating, although the net external force is zero in both cases. So where a force acts decides whether equilibrium is achieved, which is what the second condition will measure.",
+      "evidence": "The section draws the two hockey sticks side by side and says in so many words that the net force being zero is necessary but not sufficient, and the second conceptual question asks under what conditions a rotating body can be in equilibrium."
+    },
+    {
+      "id": "torque",
+      "kind": "idea",
+      "section": "9.2",
+      "name": "Torque, $\\ktau = \\krlev\\kF\\sin\\theta$",
+      "why": "Torque is the rotational equivalent of a force: it measures how effective a force is at changing a rotation. Opening a door shows what it depends on. The harder you push the faster the door opens, so torque grows with the force; pushing near the hinges barely works, so it grows with the distance from the pivot; and pushing along the door does nothing at all, so only the component of the force perpendicular to that distance counts, which is what the factor $\\sin\\theta$ supplies.",
+      "evidence": "The section defines the term and the equation after six drawings of a door pushed in different ways and at different places, the glossary carries torque and the SI unit newton-meter, the door and wrench problems ask for a torque from a force and a distance, and the first AP item asks which situation involves no torque.",
+      "eq": "eq-torque"
+    },
+    {
+      "id": "perpendicular-lever-arm",
+      "kind": "idea",
+      "section": "9.2",
+      "name": "Perpendicular lever arm, $\\krperp = \\krlev\\sin\\theta$",
+      "why": "The perpendicular lever arm is the shortest distance from the pivot point to the line along which the force acts. It gathers the distance and the angle into one length, and it is often easier to see in a drawing than $r$ and $\\theta$ are to measure separately.",
+      "evidence": "The section defines it, draws it as a dashed line in the door figure and in the hockey stick figure, and the glossary carries the term; the AP item on five forces applied to an anchored object is answered by comparing lever arms.",
+      "eq": "eq-perp-lever-arm"
+    },
+    {
+      "id": "torque-from-lever-arm",
+      "kind": "result",
+      "section": "9.2",
+      "name": "Torque from the lever arm, $\\ktau = \\krperp\\kF$",
+      "why": "Because the perpendicular lever arm already carries the angle, the torque is simply the lever arm times the force. The two expressions for torque are equally valid, and which one to use is a matter of what the drawing makes easy to find.",
+      "evidence": "The section states the equation immediately after defining the lever arm and says that both forms are equally valid, and the worked examples of 9.4 and 9.6 use this form throughout because every angle in them is 90º.",
+      "eq": "eq-torque-perp"
+    },
+    {
+      "id": "torque-depends-on-pivot",
+      "kind": "idea",
+      "section": "9.2",
+      "name": "Torque is always taken about a chosen pivot",
+      "why": "A torque has no meaning until a pivot point is named, because both the distance and the angle in its definition are measured from that point. The same force gives different torques about different points, and the point may be any point in or out of the body, whether or not the body can actually turn about it. What matters is that every torque in a problem is taken about the same point.",
+      "evidence": "The section says that any point in any object may be chosen and that the object need not actually pivot about it, the hockey stick figure works the same force out about points A and B, and the discussion after the seesaw example turns on the pivot having been chosen where the supporting force acts."
+    },
+    {
+      "id": "torque-sign-convention",
+      "kind": "idea",
+      "section": "9.2",
+      "name": "Clockwise and counterclockwise torques",
+      "why": "For rotation in a plane a torque has two possible directions, clockwise or counterclockwise about the chosen pivot, and torques in opposite directions are given opposite signs. The common convention is that counterclockwise torques are positive and clockwise torques negative, which is what lets the torques on a body be added as ordinary signed numbers.",
+      "evidence": "The section states the convention after the second condition, the hockey stick figure shows the same force turning the stick one way about A and the other way about B, and the seesaw example inserts a minus sign into the second child's torque for exactly this reason."
+    },
+    {
+      "id": "second-condition-equilibrium",
+      "kind": "result",
+      "section": "9.2",
+      "name": "Second condition for equilibrium, $\\text{net}\\;\\ktau = 0$",
+      "why": "The second condition necessary to achieve equilibrium is that the net external torque on the system is zero, so that the system has no accelerated rotation. It repairs what the first condition missed: the hockey stick pushed off centre has no net force but it does have a net torque. If the condition is satisfied for one choice of pivot it is satisfied for every other, so the pivot may be chosen freely.",
+      "evidence": "The section states the condition in italics and as an equation, the two children on the seesaw satisfy it, and every worked example and nearly every problem of the rest of the chapter is solved with it.",
+      "eq": "eq-net-torque-zero"
+    },
+    {
+      "id": "center-of-gravity",
+      "kind": "idea",
+      "section": "9.2",
+      "name": "Center of gravity",
+      "why": "The weight of a body is spread over the whole of it, but for the purpose of torques the whole weight may be taken to act at a single point, the center of gravity. This is not an approximation, and it is what allows the distance to a child on a seesaw to be measured to one point rather than over the area the child covers.",
+      "evidence": "The section makes the point in the discussion after the seesaw example and the glossary carries the term; 9.3 builds its whole account of stability on where the center of gravity lies, and every figure of 9.4 and 9.6 marks it."
+    },
+    {
+      "id": "balanced-seesaw",
+      "kind": "skill",
+      "section": "9.2",
+      "name": "Balancing a seesaw, $\\krtwo = \\krone m_1 / m_2$",
+      "why": "A seesaw is the first problem that needs both conditions at once. Taking the pivot as the point about which the torques are calculated makes the supporting force's torque zero, and the second condition then gives the distance the second child must sit at; the first condition gives the supporting force afterwards. The heavier child sits closer to the pivot, which is what everyone's intuition about seesaws already says.",
+      "evidence": "The section works the example through in two parts, the glossary and the discussion draw three lessons from it, and four of the chapter's problems are seesaws: two in 9.2, one in 9.3 and the unreasonable-results item of 9.6.",
+      "eq": "eq-seesaw-distance"
+    },
+    {
+      "id": "restoring-torque",
+      "kind": "idea",
+      "section": "9.3",
+      "name": "The torque a displacement produces",
+      "why": "What decides the kind of equilibrium a body sits in is the torque its own weight produces once the body is displaced. Tilt a pencil standing on its eraser and the pivot moves to the edge of its base while the weight still acts through the center of gravity, so the weight now has a lever arm and turns the pencil one way or the other. Whether that torque points back towards equilibrium or further away from it is the whole of this section.",
+      "evidence": "The section draws the pencil upright, tilted a little and tilted too far, and then the same pencil balanced on its point, and reads the direction of the torque off each drawing; the AP item on the traffic cone asks for the same reasoning in words."
+    },
+    {
+      "id": "stable-equilibrium",
+      "kind": "idea",
+      "section": "9.3",
+      "name": "Stable equilibrium",
+      "why": "A system is in stable equilibrium if, when displaced, it experiences a net force or torque in the direction opposite to the displacement, so that it is driven back where it came from. A marble at the bottom of a bowl and a pencil standing on its eraser are both stable, and most systems are stable at least for small displacements.",
+      "evidence": "The section defines the term, the glossary carries it, the pencil on its eraser is drawn returning to the vertical, and the keyed AP item asks why a traffic cone on its base is stable."
+    },
+    {
+      "id": "unstable-equilibrium",
+      "kind": "idea",
+      "section": "9.3",
+      "name": "Unstable equilibrium",
+      "why": "A system is in unstable equilibrium if, when displaced, it experiences a net force or torque in the same direction as the displacement, so that it accelerates away from where it started. A ball resting on the crest of a hill and a pencil balanced on its point are both unstable, although both conditions for equilibrium are satisfied while they stand.",
+      "evidence": "The section defines the term, the glossary carries it, the pencil balanced on its point is drawn toppling, and the keyed AP item asks why a traffic cone on its tip is unstable."
+    },
+    {
+      "id": "neutral-equilibrium",
+      "kind": "idea",
+      "section": "9.3",
+      "name": "Neutral equilibrium",
+      "why": "A system is in neutral equilibrium if its equilibrium does not depend on where it has been displaced to. A marble on a flat table and a round pencil lying on its side simply stay where they are put, because the center of gravity remains directly above the point of support wherever the body is moved. A body may be of one kind in one direction and another kind in another, as a marble on a saddle is.",
+      "evidence": "The section defines the term and the glossary carries it, the figure of the sphere and the pencil on its side shows both, and the first conceptual question asks about the stability of that pencil along its length."
+    },
+    {
+      "id": "base-of-support",
+      "kind": "idea",
+      "section": "9.3",
+      "name": "Base of support",
+      "why": "A body standing on a surface stays in stable equilibrium only while its center of gravity is above its base of support; once the center of gravity passes beyond the base, the torque from the weight changes direction and the body topples. That is why stability is increased by spreading the feet, which widens the base, and by bending the knees, which lowers the center of gravity, and why a chicken, whose center of gravity is below its hips and between two broad feet, is far more stable than a person.",
+      "evidence": "The section compares the standing person with the chicken and explains canes, crutches and the stance of a football player, the take-home experiment asks the reader to touch their toes with their heels against a wall, and the problems on the leaning horse, the braced wall and the chicken in the wind all turn on it."
+    },
+    {
+      "id": "static-equilibrium-strategy",
+      "kind": "skill",
+      "section": "9.4",
+      "name": "The problem-solving strategy for static equilibrium",
+      "why": "Statics is a special case of Newton's laws, so the strategies of Chapter 4 still apply, and this section adds four steps of its own: decide that the system really is in static equilibrium, draw a free body diagram and label every force with its magnitude, direction and point of application, apply either or both conditions for equilibrium, and check that the answer is reasonable in magnitude, direction and units.",
+      "evidence": "The section prints the four steps as a boxed strategy, the worked example on the pole vaulter follows them, and two problems of the chapter ask the reader explicitly to show how they follow the steps."
+    },
+    {
+      "id": "choose-pivot-to-simplify",
+      "kind": "skill",
+      "section": "9.4",
+      "name": "Choosing the pivot to simplify the problem",
+      "why": "Because the second condition holds for any choice of pivot, the pivot may be chosen to make the work easy. The useful choices are the ones that make the torques of unknown forces zero: a force applied at the pivot has no lever arm, and a force acting along a line through the pivot makes an angle of zero. Choosing the elbow, the hip or the hand a problem is asking about is what turns two unknowns into one.",
+      "evidence": "The section states the rule as step 3 of the strategy, the pole vaulter example chooses the left hand so that the left hand's torque drops out, and both examples of 9.6 choose the joint for the same reason."
+    },
+    {
+      "id": "symmetric-support",
+      "kind": "result",
+      "section": "9.4",
+      "name": "Symmetric supports share the weight, $\\kFR = \\kFL = \\kwgt/2$",
+      "why": "When supporting forces are applied symmetrically about the center of gravity, each carries an equal share of the weight. Both conditions are then satisfied at once: the forces add to the weight, and, taking the center of gravity as the pivot, the weight has no lever arm and the two equal forces are equidistant from the pivot, so their torques cancel. The four legs of a uniform table each carry a quarter of its weight for the same reason.",
+      "evidence": "The section works the pole vaulter's first hold this way and says the argument holds for any system supported symmetrically about its center of gravity, and part (c) of the section's second problem asks the reader to verify the second condition for a pivot other than the center of gravity.",
+      "eq": "eq-equal-hands"
+    },
+    {
+      "id": "unequal-support-forces",
+      "kind": "result",
+      "section": "9.4",
+      "name": "Unequal supports, $\\kFL + \\kFR = \\kwgt$",
+      "why": "Move the center of gravity away from the middle and the two supports no longer share the weight equally: the support nearer the center of gravity carries more, exactly as the nearer of two people carrying a load does. The forces still add to the weight, so the first condition gives the second force once the second condition has given the first. If the center of gravity lies beyond both supports, one force reverses direction and both grow large, which is why holding a pole at one end is so much harder than holding it in the middle.",
+      "evidence": "The section works the example with the center of gravity 0.600 m from the left hand and gets forces of 32.7 N and 16.3 N, then shows the third hold in which the right hand must push down; the keyed AP item on the car crossing a bridge between two piers asks the same question of a bridge.",
+      "eq": "eq-hands-sum"
+    },
+    {
+      "id": "simple-machine",
+      "kind": "idea",
+      "section": "9.5",
+      "name": "Simple machines",
+      "why": "A simple machine is a device that multiplies or augments the force we apply, usually at the expense of the distance through which we apply it. Levers, gears, pulleys, wedges and screws are the familiar examples. A machine does not create energy, since it cannot do more work than the work put into it; what it changes is how much force the job takes.",
+      "evidence": "The section opens by naming the devices and saying that energy is still conserved for them, and the conceptual questions ask which machine scissors resemble and how a pulley lets a person lift a piano."
+    },
+    {
+      "id": "mechanical-advantage",
+      "kind": "result",
+      "section": "9.5",
+      "name": "Mechanical advantage, $\\text{MA} = \\kFo/\\kFi$",
+      "why": "The mechanical advantage of a machine is the ratio of the output force to the input force. It is a pure number: a mechanical advantage greater than one means the machine gives out more force than is put in, and one less than one, as for a shovel or a car axle, means it gives out less and buys something else instead.",
+      "evidence": "The section defines it in its first equation and the glossary carries the term; the nail puller, wheelbarrow and car axle problems each ask for a mechanical advantage, and the first AP item asks the reader to explain the idea in terms of torque.",
+      "eq": "eq-mechanical-advantage"
+    },
+    {
+      "id": "lever",
+      "kind": "idea",
+      "section": "9.5",
+      "name": "The lever, $\\kli\\kFi = \\klo\\kFo$",
+      "why": "A lever is a rigid bar pivoted at a fixed place called the fulcrum. Because the bar turns about that point, the second condition for equilibrium applies to it: while the load is not moving the torque of the input force equals the torque of the output force, so the input force times its lever arm equals the output force times its own. The nail puller, the wheelbarrow, the shovel and a seesaw are all levers, and they differ only in where the pivot sits relative to the two forces.",
+      "evidence": "The section derives the relation from the second condition for the nail puller and then applies it to the wheelbarrow and the shovel, and the conceptual questions ask whether a nail puller pulling a nail at constant rate is in equilibrium.",
+      "eq": "eq-lever-balance"
+    },
+    {
+      "id": "lever-mechanical-advantage",
+      "kind": "result",
+      "section": "9.5",
+      "name": "Mechanical advantage of a lever, $\\text{MA} = \\kli/\\klo$",
+      "why": "Rearranging the lever's torque balance turns it into a statement about forces: the mechanical advantage of a lever is the ratio of the input lever arm to the output lever arm. The longer the handle on a nail puller, the greater the force it can exert, and the shorter the handle, the less.",
+      "evidence": "The section states the equation and says it is true for levers in general, the worked example on the wheelbarrow uses it, and the nail puller, mower and wheelbarrow problems all ask for a force from a ratio of lever arms.",
+      "eq": "eq-lever-ma"
+    },
+    {
+      "id": "crank-and-wheel",
+      "kind": "result",
+      "section": "9.5",
+      "name": "Cranks, wheels and gears, $\\text{MA} = r_{\\text{i}}/r_{\\text{o}}$",
+      "why": "A crank is a lever that can be turned through a full circle about its pivot, and a wheel driven by an axle is the same thing again. Such a machine may not look like a lever, but the physics of it is unchanged: its mechanical advantage is simply the ratio of the two radii. A crank is usually built with a large mechanical advantage, while a car axle driving a much larger wheel has one well below one.",
+      "evidence": "The section works out the mechanical advantage of a crank and of a simplified car axle and finds that the axle must exert 12,000 N to put 1000 N on the road, and one of the problems asks for the mechanical advantage of an axle of 1.10 cm radius driving a tire of 27.5 cm.",
+      "eq": "eq-crank-ma"
+    },
+    {
+      "id": "pulley-mechanical-advantage",
+      "kind": "result",
+      "section": "9.5",
+      "name": "Pulleys, $\\kFo \\approx n\\kTf$",
+      "why": "An ordinary pulley changes the direction of the force in a cord without changing its magnitude, so its mechanical advantage is one. Combinations of pulleys do multiply force: each cable that pulls directly upward on the load adds a force of about the tension, since the tension is nearly the same throughout a friction-free system, so the number of such cables is about the mechanical advantage of the system.",
+      "evidence": "The section draws three combinations with mechanical advantages of about 2, 3 and 4 and counts the cables in each, a conceptual question asks how a pulley lets a person lift a piano, and two problems ask for the tension and the ceiling force for an engine hung from such a system.",
+      "eq": "eq-pulley-force"
+    },
+    {
+      "id": "muscle-lever-system",
+      "kind": "idea",
+      "section": "9.6",
+      "name": "Muscles and joints as levers",
+      "why": "A limb is a lever whose fulcrum is a joint, and the muscle that moves it is attached by a tendon very close to that joint. The muscle's lever arm is therefore much shorter than the load's, so the system is a simple machine with a mechanical advantage well below one and the muscle must pull far harder than the limb pushes on the world. Muscles can only contract, which is why they come in pairs, a flexor to close the limb and an extensor to open it.",
+      "evidence": "The section opens with the forearm holding a book beside the equivalent lever system and says that most skeletal muscles are attached close to joints, and the conceptual questions ask why the forces our limbs exert on the world are so much smaller than the forces inside us."
+    },
+    {
+      "id": "muscle-force-from-torque",
+      "kind": "result",
+      "section": "9.6",
+      "name": "The force in a muscle, $\\kFB = (\\krtwo\\kwarm + \\krthree\\kwbook)/\\krone$",
+      "why": "Taking the pivot at the joint makes the torque of the joint force zero and leaves the muscle force as the only unknown, so the second condition alone gives it: the muscle's torque must balance the torques of the weights it holds. Because the muscle's lever arm is the small one, the answer is large. The biceps holding a forearm and a 4.00 kg book exerts 470 N, which is 7.38 times the weight it is supporting.",
+      "evidence": "The section works the example in full, the discussion notes that the force changes as the angle at the elbow changes, and the problems on the quadriceps, the Achilles tendon, the neck muscles, the masseter and the triceps in a push-up are all the same calculation on another joint.",
+      "eq": "eq-biceps-force"
+    },
+    {
+      "id": "joint-force",
+      "kind": "result",
+      "section": "9.6",
+      "name": "The force in a joint",
+      "why": "Once the muscle force is known the first condition gives the force in the joint, and it is large too. Because a muscle can contract but cannot push, the muscle and the joint pull in opposite directions and their forces subtract: in the forearm, the 470 N up from the biceps less the 407 N down from the humerus leaves the 63 N of weight actually supported. The same arithmetic gives 4660 N on the vertebrae of someone lifting a box with their back, five and a half times the weight lifted, and spines are relatively weak.",
+      "evidence": "The section states the elbow force of 407 N in the text and sets its calculation as the section's first problem, the second worked example finds the magnitude and direction of the force on the vertebrae from its components, and the problems on the knee, the ankle and the jaw each ask for a joint force."
+    },
+    {
+      "id": "posture-and-back-strain",
+      "kind": "idea",
+      "section": "9.6",
+      "name": "Posture and back strain",
+      "why": "Stand straight and the upper body's center of gravity is directly above the pivot in the hips, so its weight has no lever arm, produces no torque, and needs no muscle action to balance it. Lean forward and the center of gravity moves in front of the hips, and the torque this produces has to be countered by the muscles of the lower back, which have very small lever arms and so must pull very hard. Lifting a load with the back rather than the legs makes the same forces several times larger again.",
+      "evidence": "The section draws good and bad posture side by side, works out the 4200 N in the back muscles of someone lifting a 30.0 kg box, shows people leaning forward, sideways and backward to keep their overall center of gravity above their feet, and asks in a conceptual question why pregnant women often suffer back strain."
+    },
+    {
+      "id": "benefits-of-short-lever-arms",
+      "kind": "idea",
+      "section": "9.6",
+      "name": "Why muscles are attached close to joints",
+      "why": "Paying so much force for so little seems a poor bargain until the other side of it is counted. Because the muscle's lever arm is short, a small contraction swings the limb through a large distance in a short time, which is speed, and the arrangement leaves room for the large number of joints and the wide ranges over which they work, which is flexibility and agility. A biceps attached at the wrist could not give the arm the range of movement it has.",
+      "evidence": "The section asks the question in so many words and answers it with speed, flexibility and agility, and a conceptual question asks what the advantages and disadvantages would be of attaching the biceps near the wrist instead."
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "first-condition-equilibrium",
+      "prereq": "newtons-second-law"
+    },
+    {
+      "concept": "first-condition-equilibrium",
+      "prereq": "net-external-force"
+    },
+    {
+      "concept": "first-condition-equilibrium",
+      "prereq": "free-body-diagram"
+    },
+    {
+      "concept": "first-condition-equilibrium",
+      "prereq": "resolve-forces-into-components"
+    },
+    {
+      "concept": "static-equilibrium",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "static-equilibrium",
+      "prereq": "newtons-first-law"
+    },
+    {
+      "concept": "dynamic-equilibrium",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "dynamic-equilibrium",
+      "prereq": "acceleration"
+    },
+    {
+      "concept": "dynamic-equilibrium",
+      "prereq": "instantaneous-velocity"
+    },
+    {
+      "concept": "point-of-application",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "point-of-application",
+      "prereq": "force"
+    },
+    {
+      "concept": "torque",
+      "prereq": "force"
+    },
+    {
+      "concept": "torque",
+      "prereq": "point-of-application"
+    },
+    {
+      "concept": "perpendicular-lever-arm",
+      "prereq": "torque"
+    },
+    {
+      "concept": "perpendicular-lever-arm",
+      "prereq": "resolving-vector"
+    },
+    {
+      "concept": "torque-from-lever-arm",
+      "prereq": "torque"
+    },
+    {
+      "concept": "torque-from-lever-arm",
+      "prereq": "perpendicular-lever-arm"
+    },
+    {
+      "concept": "torque-depends-on-pivot",
+      "prereq": "torque"
+    },
+    {
+      "concept": "torque-sign-convention",
+      "prereq": "torque"
+    },
+    {
+      "concept": "torque-sign-convention",
+      "prereq": "torque-depends-on-pivot"
+    },
+    {
+      "concept": "second-condition-equilibrium",
+      "prereq": "torque"
+    },
+    {
+      "concept": "second-condition-equilibrium",
+      "prereq": "torque-sign-convention"
+    },
+    {
+      "concept": "second-condition-equilibrium",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "center-of-gravity",
+      "prereq": "center-of-mass"
+    },
+    {
+      "concept": "center-of-gravity",
+      "prereq": "weight"
+    },
+    {
+      "concept": "balanced-seesaw",
+      "prereq": "second-condition-equilibrium"
+    },
+    {
+      "concept": "balanced-seesaw",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "balanced-seesaw",
+      "prereq": "center-of-gravity"
+    },
+    {
+      "concept": "balanced-seesaw",
+      "prereq": "weight"
+    },
+    {
+      "concept": "restoring-torque",
+      "prereq": "torque"
+    },
+    {
+      "concept": "restoring-torque",
+      "prereq": "center-of-gravity"
+    },
+    {
+      "concept": "restoring-torque",
+      "prereq": "weight"
+    },
+    {
+      "concept": "stable-equilibrium",
+      "prereq": "restoring-torque"
+    },
+    {
+      "concept": "stable-equilibrium",
+      "prereq": "second-condition-equilibrium"
+    },
+    {
+      "concept": "unstable-equilibrium",
+      "prereq": "restoring-torque"
+    },
+    {
+      "concept": "unstable-equilibrium",
+      "prereq": "second-condition-equilibrium"
+    },
+    {
+      "concept": "neutral-equilibrium",
+      "prereq": "restoring-torque"
+    },
+    {
+      "concept": "neutral-equilibrium",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "base-of-support",
+      "prereq": "stable-equilibrium"
+    },
+    {
+      "concept": "base-of-support",
+      "prereq": "center-of-gravity"
+    },
+    {
+      "concept": "base-of-support",
+      "prereq": "normal-force"
+    },
+    {
+      "concept": "static-equilibrium-strategy",
+      "prereq": "static-equilibrium"
+    },
+    {
+      "concept": "static-equilibrium-strategy",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "static-equilibrium-strategy",
+      "prereq": "second-condition-equilibrium"
+    },
+    {
+      "concept": "static-equilibrium-strategy",
+      "prereq": "free-body-diagram"
+    },
+    {
+      "concept": "static-equilibrium-strategy",
+      "prereq": "newtons-laws-problem-solving"
+    },
+    {
+      "concept": "static-equilibrium-strategy",
+      "prereq": "problem-solving-steps"
+    },
+    {
+      "concept": "choose-pivot-to-simplify",
+      "prereq": "torque-depends-on-pivot"
+    },
+    {
+      "concept": "choose-pivot-to-simplify",
+      "prereq": "second-condition-equilibrium"
+    },
+    {
+      "concept": "choose-pivot-to-simplify",
+      "prereq": "static-equilibrium-strategy"
+    },
+    {
+      "concept": "symmetric-support",
+      "prereq": "center-of-gravity"
+    },
+    {
+      "concept": "symmetric-support",
+      "prereq": "second-condition-equilibrium"
+    },
+    {
+      "concept": "symmetric-support",
+      "prereq": "weight"
+    },
+    {
+      "concept": "unequal-support-forces",
+      "prereq": "symmetric-support"
+    },
+    {
+      "concept": "unequal-support-forces",
+      "prereq": "choose-pivot-to-simplify"
+    },
+    {
+      "concept": "unequal-support-forces",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "simple-machine",
+      "prereq": "force"
+    },
+    {
+      "concept": "simple-machine",
+      "prereq": "work"
+    },
+    {
+      "concept": "mechanical-advantage",
+      "prereq": "simple-machine"
+    },
+    {
+      "concept": "lever",
+      "prereq": "simple-machine"
+    },
+    {
+      "concept": "lever",
+      "prereq": "torque"
+    },
+    {
+      "concept": "lever",
+      "prereq": "second-condition-equilibrium"
+    },
+    {
+      "concept": "lever-mechanical-advantage",
+      "prereq": "lever"
+    },
+    {
+      "concept": "lever-mechanical-advantage",
+      "prereq": "mechanical-advantage"
+    },
+    {
+      "concept": "lever-mechanical-advantage",
+      "prereq": "perpendicular-lever-arm"
+    },
+    {
+      "concept": "crank-and-wheel",
+      "prereq": "lever-mechanical-advantage"
+    },
+    {
+      "concept": "crank-and-wheel",
+      "prereq": "rotation-angle"
+    },
+    {
+      "concept": "pulley-mechanical-advantage",
+      "prereq": "mechanical-advantage"
+    },
+    {
+      "concept": "pulley-mechanical-advantage",
+      "prereq": "tension"
+    },
+    {
+      "concept": "pulley-mechanical-advantage",
+      "prereq": "free-body-diagram"
+    },
+    {
+      "concept": "muscle-lever-system",
+      "prereq": "lever"
+    },
+    {
+      "concept": "muscle-lever-system",
+      "prereq": "mechanical-advantage"
+    },
+    {
+      "concept": "muscle-force-from-torque",
+      "prereq": "muscle-lever-system"
+    },
+    {
+      "concept": "muscle-force-from-torque",
+      "prereq": "second-condition-equilibrium"
+    },
+    {
+      "concept": "muscle-force-from-torque",
+      "prereq": "choose-pivot-to-simplify"
+    },
+    {
+      "concept": "muscle-force-from-torque",
+      "prereq": "weight"
+    },
+    {
+      "concept": "joint-force",
+      "prereq": "muscle-force-from-torque"
+    },
+    {
+      "concept": "joint-force",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "joint-force",
+      "prereq": "newtons-third-law"
+    },
+    {
+      "concept": "joint-force",
+      "prereq": "magnitude-direction-from-components"
+    },
+    {
+      "concept": "posture-and-back-strain",
+      "prereq": "center-of-gravity"
+    },
+    {
+      "concept": "posture-and-back-strain",
+      "prereq": "base-of-support"
+    },
+    {
+      "concept": "posture-and-back-strain",
+      "prereq": "muscle-force-from-torque"
+    },
+    {
+      "concept": "benefits-of-short-lever-arms",
+      "prereq": "muscle-lever-system"
+    },
+    {
+      "concept": "benefits-of-short-lever-arms",
+      "prereq": "mechanical-advantage"
+    }
+  ]
 }

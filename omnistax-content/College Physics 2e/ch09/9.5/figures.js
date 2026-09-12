@@ -175,7 +175,7 @@ function grip(ctx, x, y) {
 ===================================================================== */
 (function () {
   const d = sim('sim-incline', 715);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 10, max: 60, step: 1, value: 20, unit: 'º', dec: 0, aria: 'angle of the ramp' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 10, max: 60, step: 1, value: 20, unit: '°', dec: 0, aria: 'angle of the ramp' });
   const W = ctl(d.controls, { label: '\\kwgt', cls: 'force', min: 100, max: 1200, step: 25, value: 500, unit: 'N', dec: 0, aria: 'weight of the cart' });
   const HT = ctl(d.controls, { label: 'h', cls: '', min: 0.5, max: 3.0, step: 0.1, value: 1.5, unit: 'm', dec: 1, aria: 'height to be climbed' });
   const GY = 440, X0 = 150, LX = 1150;
@@ -197,7 +197,7 @@ function grip(ctx, x, y) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath();                   /* the ramp */
     ctx.moveTo(X0, GY); ctx.lineTo(tx, ty); ctx.lineTo(tx, GY); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, X0, GY, tx, ty, PAL.ink, 4); line(ctx, tx, ty, tx, GY, PAL.ink, 4);
-    text(ctx, fmt(TH.v, 0) + 'º', X0 + 70, GY - 18, PAL.ink, { size: 20, weight: 600, align: 'left' });
+    text(ctx, fmt(TH.v, 0) + '°', X0 + 70, GY - 18, PAL.ink, { size: 20, weight: 600, align: 'left' });
 
     const mx = (X0 + tx) / 2, my = (GY + ty) / 2;                            /* the cart on the ramp, and the push along it */
     cart(ctx, mx, my, th);
@@ -220,7 +220,7 @@ function grip(ctx, x, y) {
     bar(ctx, BX, 662, BW, 24, PAL.ink, 'ramp', fmt(L, 2) + ' m');
     bar(ctx, BX, 700, BW * s, 24, PAL.ink, 'lift', fmt(h, 2) + ' m');
 
-    head(ctx, 'A ramp at ' + fmt(TH.v, 0) + 'º needs a push of ' + sig3(Fi) + ' N over ' + fmt(L, 2)
+    head(ctx, 'A ramp at ' + fmt(TH.v, 0) + '° needs a push of ' + sig3(Fi) + ' N over ' + fmt(L, 2)
       + ' m, against a lift of ' + sig3(w) + ' N over ' + fmt(h, 2) + ' m');
     readout(d.readout, `\\text{MA} = \\frac{\\kFo}{\\kFi} = \\frac{\\kwgt}{\\kwgt\\sin\\theta} = \\frac{1}{\\sin ${fmt(TH.v, 0)}^\\circ} = ${fmt(1 / s, 2)}`,
       'The push of ' + sig3(Fi) + ' N over ' + fmt(L, 2) + ' m and the lift of ' + sig3(w) + ' N over ' + fmt(h, 2)

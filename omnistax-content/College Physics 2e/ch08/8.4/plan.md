@@ -248,3 +248,24 @@ masses, the time in the headline and the scene's lengths stay in ink.
   chapter carries only the form in masses and velocities, and the book prints
   the momentum form above it as the statement the other is a substitution into.
   The text sets it either way, so this is a want rather than a defect.
+
+Decided in the chapter pass (2026-09-12). The twelve variable anchors and the
+four equation anchors above are written, and the two variable rows the section
+asked for are added: `p_tot` (momentum, "the total momentum of the two-object
+system, which is the same before and after the collision", kg·m/s) and
+`KE_intprime` (energy, "the internal kinetic energy of the system after the
+collision, which an elastic collision leaves unchanged", J), both anchored at
+`8.4-equations`, so that everything `sim-elastic-collision` draws and states
+has a meaning in the Definitions view.
+
+The equation row for the momentum form, $\kpone + \kptwo = \kponeprime +
+\kptwoprime$, is **not** added. The chapter already carries that equation:
+`eq-p-pair-conserved` of 8.3, where the two-car derivation first reaches it,
+and it is marked important there. A second row with the same LaTeX would print
+the same line twice on the formula sheet, and the condition this section prints
+beside it, that the net external force is zero, is `eq-isolated-system` of 8.3
+in words. The section's text sets the equation either way, as the plan says, so
+nothing on the page changes.
+
+The caption of Figure 8.6 said the objects "collide elastically, as in Figure
+8.6", the figure pointing at itself; the clause is gone.

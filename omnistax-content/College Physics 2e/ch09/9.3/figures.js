@@ -64,12 +64,12 @@ function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel) {
   let lo = 0, hi = 0;
   for (let i = 0; i <= 80; i++) { const v = f((thMax * i) / 80); lo = Math.min(lo, v); hi = Math.max(hi, v); }
   const n = nice(lo, hi, 4), dec = n.hi - n.lo < 6 ? 1 : 0;
-  const { X, Y } = axes(ctx, box, [0, thMax], [n.lo, n.hi], { xl: 'lean θ (º)', yl: yLabel, yc: C('torque'), nx: 5, ny: n.n, fy: (v) => fmt(v, dec) });
+  const { X, Y } = axes(ctx, box, [0, thMax], [n.lo, n.hi], { xl: 'lean θ (°)', yl: yLabel, yc: C('torque'), nx: 5, ny: n.n, fy: (v) => fmt(v, dec) });
   curve(ctx, f, 0, thMax, X, Y, C('torque'), 5, 140);
   if (crit > 0.05 && crit < thMax) {
     line(ctx, X(crit), box.t, X(crit), box.b, PAL.muted, 2, [10, 10]);
     dot(ctx, X(crit), Y(0), C('torque'), false, 10);
-    text(ctx, fmt(crit, 1) + 'º', X(crit) + 10, box.t + 20, PAL.muted, { size: 17 });
+    text(ctx, fmt(crit, 1) + '°', X(crit) + 10, box.t + 20, PAL.muted, { size: 17 });
   }
   dot(ctx, X(thNow), Y(f(thNow)), C('torque'), true, 9);
 }
@@ -151,7 +151,7 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-eraser', 640);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 25, step: 0.5, value: 3, unit: 'º', dec: 1, aria: 'the lean of the pencil' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 25, step: 0.5, value: 3, unit: '°', dec: 1, aria: 'the lean of the pencil' });
   const A = ctl(d.controls, { label: 'a', cls: '', min: 2, max: 40, step: 1, value: 16, unit: 'mm', dec: 0, aria: 'half-width of the flat end' });
   const H = 90, W = 0.060, SC = 2.2, GY = 500, BX = 300;          /* the cg 90 mm up, a 0.060 N pencil */
   function draw() {
@@ -164,10 +164,10 @@ function chicken(ctx, d, h, SC, color) {
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' mm', side: -1, arcR: 200, arc: !g.up });
     tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 25, (t) => W * (H * Math.sin(t * RAD) - A.v * Math.cos(t * RAD)), TH.v, g.crit, 'τ (mN·m)');
     headline(ctx, g.up ? 'standing upright, the weight acts over the middle of the base, so the torque about any point is zero'
-      : topple ? 'leaned ' + fmt(TH.v, 1) + 'º, the weight acts ' + fmt(g.rp, 1) + ' mm outside the pivot and its torque carries the pencil over'
-        : 'leaned ' + fmt(TH.v, 1) + 'º, the weight acts ' + fmt(-g.rp, 1) + ' mm inside the pivot and its torque brings the pencil back upright');
+      : topple ? 'leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(g.rp, 1) + ' mm outside the pivot and its torque carries the pencil over'
+        : 'leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(-g.rp, 1) + ' mm inside the pivot and its torque brings the pencil back upright');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp), 1)}\\ \\text{mm})(${fmt(W, 3)}\\ \\text{N}) = ${fmt(tau, 2)}\\ \\text{mN·m}`,
-      'The turn reverses at the lean that puts the weight straight over the edge of the base, which is ' + fmt(g.crit, 1) + 'º for a flat end ' + fmt(2 * A.v, 0) + ' mm across and a center of gravity ' + fmt(H, 0) + ' mm up.');
+      'The turn reverses at the lean that puts the weight straight over the edge of the base, which is ' + fmt(g.crit, 1) + '° for a flat end ' + fmt(2 * A.v, 0) + ' mm across and a center of gravity ' + fmt(H, 0) + ' mm up.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -179,7 +179,7 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-point', 640);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 20, step: 0.5, value: 3, unit: 'º', dec: 1, aria: 'the lean of the pencil' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 20, step: 0.5, value: 3, unit: '°', dec: 1, aria: 'the lean of the pencil' });
   const L = ctl(d.controls, { label: 'L', cls: '', min: 60, max: 200, step: 5, value: 180, unit: 'mm', dec: 0, aria: 'length of the pencil' });
   const SC = 2.1, GY = 520, BX = 300;
   function draw() {
@@ -192,7 +192,7 @@ function chicken(ctx, d, h, SC, color) {
     leanForces(ctx, { px: BX, cgx, cgy, gy: GY, rpU: g.cx * SC, topple: true, rLabel: 'r⊥ = ' + fmt(g.rp, 1) + ' mm', side: -1, arcR: 200, arc: !g.up, nSide: -1 });
     tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 20, (t) => W * h * Math.sin(t * RAD), TH.v, 0, 'τ (mN·m)');
     headline(ctx, g.up ? 'balanced exactly upright, the weight and the normal force lie along one line and both conditions hold'
-      : 'leaned ' + fmt(TH.v, 1) + 'º, the weight already acts ' + fmt(g.rp, 1) + ' mm outside the point and its torque leans the pencil further');
+      : 'leaned ' + fmt(TH.v, 1) + '°, the weight already acts ' + fmt(g.rp, 1) + ' mm outside the point and its torque leans the pencil further');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(g.rp, 1)}\\ \\text{mm})(${fmt(W, 3)}\\ \\text{N}) = ${fmt(tau, 2)}\\ \\text{mN·m}`,
       'The point gives the pencil no base to speak of, so nothing is subtracted from the lever arm: the torque is zero at one lean only, and every displacement from it leads away.');
   }
@@ -302,7 +302,7 @@ function chicken(ctx, d, h, SC, color) {
   const d = sim('sim-stance', 660);
   const D = ctl(d.controls, { label: 'd', cls: '', min: 10, max: 90, step: 1, value: 25, unit: 'cm', dec: 0, aria: 'distance between the feet' });
   const HG = ctl(d.controls, { label: 'h', cls: '', min: 60, max: 110, step: 1, value: 100, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 30, step: 0.5, value: 4, unit: 'º', dec: 1, aria: 'the lean of the person' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 30, step: 0.5, value: 4, unit: '°', dec: 1, aria: 'the lean of the person' });
   const SC = 2.2, GY = 480, BX = 320, W = 700;                     /* a 700 N adult */
   function draw() {
     const { ctx } = begin(d.c);
@@ -315,10 +315,10 @@ function chicken(ctx, d, h, SC, color) {
     hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, PAL.ink, 'base of support, ' + fmt(D.v, 0) + ' cm');
     tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 460 }, 30, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)');
     headline(ctx, g.up ? 'standing straight, the weight acts through the middle of the base of support and neither foot carries more than the other'
-      : topple ? 'leaned ' + fmt(TH.v, 1) + 'º, the weight falls outside the base of support and the person goes over'
-        : 'leaned ' + fmt(TH.v, 1) + 'º, the weight still falls ' + fmt(-g.rp, 1) + ' cm inside the edge of the base, so the torque brings the person back');
+      : topple ? 'leaned ' + fmt(TH.v, 1) + '°, the weight falls outside the base of support and the person goes over'
+        : 'leaned ' + fmt(TH.v, 1) + '°, the weight still falls ' + fmt(-g.rp, 1) + ' cm inside the edge of the base, so the torque brings the person back');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp) / 100, 3)}\\ \\text{m})(${fmt(W, 0)}\\ \\text{N}) = ${fmt(Math.abs(tau), 1)}\\ \\text{N·m}`,
-      'The weight leaves the base of support at a lean of ' + fmt(g.crit, 1) + 'º. Spreading the feet widens the base and bending the knees lowers the center of gravity, and each of them raises that lean.');
+      'The weight leaves the base of support at a lean of ' + fmt(g.crit, 1) + '°. Spreading the feet widens the base and bending the knees lowers the center of gravity, and each of them raises that lean.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -330,7 +330,7 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-chicken', 660);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 45, step: 0.5, value: 10, unit: 'º', dec: 1, aria: 'the lean of the chicken' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 45, step: 0.5, value: 10, unit: '°', dec: 1, aria: 'the lean of the chicken' });
   const HG = ctl(d.controls, { label: 'h', cls: '', min: 5, max: 28, step: 1, value: 15, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
   const SC = 6.5, GY = 470, BX = 330, W = 24.5, D = 18;            /* a 2.50 kg chicken on feet 18 cm apart */
   function draw() {
@@ -348,10 +348,10 @@ function chicken(ctx, d, h, SC, color) {
     line(ctx, xp, box.t, xp, box.b, PAL.rule, 2, [6, 8]);
     text(ctx, 'a person is over by here', xp + 10, box.b - 54, PAL.muted, { size: 17 });
     headline(ctx, g.up ? 'standing straight, the chicken has its weight through the middle of a base of support two broad feet wide'
-      : topple ? 'leaned ' + fmt(TH.v, 1) + 'º, the chicken has its weight outside the base of support at last and goes over'
-        : 'leaned ' + fmt(TH.v, 1) + 'º, the chicken still has its weight ' + fmt(-g.rp, 1) + ' cm inside the edge of its base, so the torque returns it');
+      : topple ? 'leaned ' + fmt(TH.v, 1) + '°, the chicken has its weight outside the base of support at last and goes over'
+        : 'leaned ' + fmt(TH.v, 1) + '°, the chicken still has its weight ' + fmt(-g.rp, 1) + ' cm inside the edge of its base, so the torque returns it');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp) / 100, 3)}\\ \\text{m})(${fmt(W, 1)}\\ \\text{N}) = ${fmt(Math.abs(tau), 2)}\\ \\text{N·m}`,
-      'With its center of gravity ' + fmt(HG.v, 0) + ' cm up and its feet ' + fmt(D, 0) + ' cm apart, the chicken can lean ' + fmt(g.crit, 1) + 'º before its weight leaves the base of support, where an adult standing with the feet close together is over at about seven degrees.');
+      'With its center of gravity ' + fmt(HG.v, 0) + ' cm up and its feet ' + fmt(D, 0) + ' cm apart, the chicken can lean ' + fmt(g.crit, 1) + '° before its weight leaves the base of support, where an adult standing with the feet close together is over at about seven degrees.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

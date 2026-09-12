@@ -61,7 +61,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
   const d = sim('sim-triangles', 740);
   const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.5, max: 4, step: 0.1, value: 2, unit: 'm', dec: 1, onInput: reset, aria: 'radius of the circular path' });
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 1, max: 10, step: 0.5, value: 5, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed round the circle' });
-  const dth = ctl(d.controls, { label: '\\Delta\\theta', cls: '', min: 5, max: 90, step: 1, value: 40, unit: 'º', dec: 0, aria: 'angle between the two points' });
+  const dth = ctl(d.controls, { label: '\\Delta\\theta', cls: '', min: 5, max: 90, step: 1, value: 40, unit: '°', dec: 0, aria: 'angle between the two points' });
   const per = () => (TAU * r.v) / v.v;                 /* the time for one revolution, in seconds */
   const cy = cycle(per, 1.2);
   function reset() { cy.reset(); }
@@ -82,11 +82,11 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     line(ctx, x1, y1, x2, y2, PAL.muted, 2, [8, 8]);
     arcpath(ctx, cx, cyc, R, a1, th, pos, 7);
     beside(ctx, 'Δs = ' + fmt(ds, 2) + ' m', cx, cyc, R + 46, am, 0, pos);
-    /* the angle at the centre */
+    /* the angle at the center */
     const ra = 0.26 * R;
     arcpath(ctx, cx, cyc, ra, a1, th, PAL.ink, 2.5);
     beside(ctx, 'Δθ = ' + fmt(dth.v, 0) + 'º', cx, cyc, ra + 26, am, 0, PAL.ink);
-    /* the change of velocity, drawn on the circle from the middle of the arc toward the centre */
+    /* the change of velocity, drawn on the circle from the middle of the arc toward the center */
     const La = 0.40 * R;
     arrow(ctx, cxa(cx, R, am), cya(cyc, R, am), cxa(cx, R - La, am), cya(cyc, R - La, am), acc, 5);
     beside(ctx, 'a_c', cx, cyc, R - La / 2, am, -34, acc, 22);
@@ -110,9 +110,9 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const mx = (e1[0] + e2[0]) / 2, my = (e1[1] + e2[1]) / 2, mn = Math.hypot(mx - tx, my - ty) || 1;
     text(ctx, 'Δv = ' + fmt(dv, 2) + ' m/s', mx + ((mx - tx) / mn) * 52, my + ((my - ty) / mn) * 52, vel, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     dot(ctx, tx, ty, PAL.muted, true, 6);
-    headline(ctx, 'the object has turned ' + fmt(turned, 0) + 'º · Δθ = ' + fmt(dth.v, 0) + 'º, so Δv = ' + fmt(dv, 2) + ' m/s, aimed at the centre from the middle of the arc');
+    headline(ctx, 'the object has turned ' + fmt(turned, 0) + 'º · Δθ = ' + fmt(dth.v, 0) + 'º, so Δv = ' + fmt(dv, 2) + ' m/s, aimed at the center from the middle of the arc');
     readout(d.readout, `\\frac{\\kdv}{\\kv} = \\frac{\\kds}{\\kr}\\quad\\Longrightarrow\\quad \\frac{${fmt(dv, 2)}}{${fmt(v.v, 1)}} = ${fmt(dv / v.v, 3)} \\quad\\text{and}\\quad \\frac{${fmt(ds, 2)}}{${fmt(r.v, 1)}} = ${fmt(ds / r.v, 3)}`,
-      'The triangle of the two velocities and the triangle of the two radii are similar, so Δv/v is exactly the chord, ' + fmt(chord, 2) + ' m, divided by r. The book puts the arc Δs in place of the chord, which at Δθ = ' + fmt(dth.v, 0) + 'º is ' + fmt(100 * (ds / chord - 1), 1) + '% longer; take Δθ down toward zero and the two agree, and Δv comes to point straight at the centre.');
+      'The triangle of the two velocities and the triangle of the two radii are similar, so Δv/v is exactly the chord, ' + fmt(chord, 2) + ' m, divided by r. The book puts the arc Δs in place of the chord, which at Δθ = ' + fmt(dth.v, 0) + 'º is ' + fmt(100 * (ds / chord - 1), 1) + '% longer; take Δθ down toward zero and the two agree, and Δv comes to point straight at the center.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => per() / 5), draw });
 })();
@@ -120,7 +120,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
 /* =====================================================================
    FIGURE 6.8: the car on the highway curve. It drives once round the
    curve each loop with its velocity along the tangent and its centripetal
-   acceleration toward the centre, and the graph beside the scene follows
+   acceleration toward the center, and the graph beside the scene follows
    a_c against the speed for the radius set. Finite motion, so it gets the
    scrubber.
 ===================================================================== */
@@ -164,7 +164,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const left = v.v < 26;
     text(ctx, fmt(ac, 2) + ' m/s² = ' + fmt(ratio, 3) + ' g', g.X(v.v) + (left ? 18 : -18), g.Y(ac) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
     text(ctx, 'the hollow point is half the speed and a quarter of the acceleration', 1110, 556, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, 't = ' + fmt(tau, 0) + ' s · the car has turned ' + fmt(turned, 0) + 'º, and a_c = ' + fmt(ac, 2) + ' m/s² still points straight at the centre');
+    headline(ctx, 't = ' + fmt(tau, 0) + ' s · the car has turned ' + fmt(turned, 0) + 'º, and a_c = ' + fmt(ac, 2) + ' m/s² still points straight at the center');
     readout(d.readout, `\\kac = \\frac{\\kv^2}{\\kr} = \\frac{(${fmt(v.v, 1)}\\ \\text{m/s})^2}{${fmt(r.v, 0)}\\ \\text{m}} = ${fmt(ac, 2)}\\ \\text{m/s}^2`,
       'Compared with the acceleration due to gravity, a_c/g = ' + fmt(ac, 2) + '/9.80 = ' + fmt(ratio, 3) + ', so this curve asks ' + fmt(ratio, 3) + ' of what gravity asks of you standing still. One lap at this speed takes ' + fmt(T, 0) + ' s.');
   }

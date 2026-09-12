@@ -267,3 +267,17 @@ as the chapter config says.
   `r_{\text{b}\perp}`, `type` `position`, `macro` `\krbperp`. The page
   writes it in plain LaTeX for now, so it renders in ink where every other
   lever arm on the page is coloured.
+
+**Decided in the chapter pass (2026-09-12).** Every anchor above is written.
+The symbol row asked for is added to `book-rows.json` and merged: `r_bperp`,
+LaTeX `r_{\text{b}\perp}`, type `position`, macro `\krbperp`. `sim-posture`
+now carries it on its slider label and in its readout, so the back muscles'
+lever arm is coloured like every other lever arm on the page. Problem 12,
+the push-up, now sets all four of the book's parts as graded parts rather
+than two: parts (c) and (d) ask for the work done and the power output, and
+Chapter 7 is built, so they are tagged with 7.1's `calculate-work` and 7.7's
+`calculate-power` at a reduced weight. Three headlines that ran past the
+right edge of the canvas at 1400 wide were shortened (`sim-posture`,
+`sim-lift` and `sim-lever-arm-trade`), and the weight label in `sim-lift`
+took the panel background the other two force labels already had, because
+the muscle's arrow crossed it.

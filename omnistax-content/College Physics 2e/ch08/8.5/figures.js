@@ -4,6 +4,7 @@ window.OMNISTAX_FIGURES['8.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, spring } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
 /* ---------- numbers ---------- */
 const MINUS = (s) => String(s).replace('-', '−');
@@ -81,8 +82,9 @@ function vec(ctx, x, y, L, s, color, label) {
     const SC = s.hits ? 470 / (vmax * TC) : 400 / (vmax * T);
     const u1 = after ? s.v1p : v1.v, u2 = after ? s.v2p : v2.v;
     const p1 = m1.v * u1, p2 = m2.v * u2;
-    const x1 = s.hits ? cx - w1 / 2 + SC * (tau <= TC ? v1.v : s.v1p) * (tau - TC) : cx - 330 + SC * v1.v * tau;
-    const x2 = s.hits ? cx + w2 / 2 + SC * (tau <= TC ? v2.v : s.v2p) * (tau - TC) : cx + 330 + SC * v2.v * tau;
+    /* two objects that never meet can drift a long way, so hold them on the track */
+    const x1 = clamp(s.hits ? cx - w1 / 2 + SC * (tau <= TC ? v1.v : s.v1p) * (tau - TC) : cx - 330 + SC * v1.v * tau, 130, 1270);
+    const x2 = clamp(s.hits ? cx + w2 / 2 + SC * (tau <= TC ? v2.v : s.v2p) * (tau - TC) : cx + 330 + SC * v2.v * tau, 130, 1270);
     /* the scene */
     strip(ctx, 80, 1320, GY + 13, 26);
     if (cc.v > 1.001) spring(ctx, x1 + w1 / 2, GY - w1 / 2, x1 + w1 / 2 + (after ? 52 : 24), GY - w1 / 2, 5, 11, PAL.muted, 3);

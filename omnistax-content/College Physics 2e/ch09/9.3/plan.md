@@ -257,3 +257,8 @@ scene, so they stay untyped and in ink.
 - variables `N` (9.3) → 9.3-stable
 - variables `τ` (9.3) → 9.3-stable
 - No equation of this section wants an anchor: the section states none.
+
+**Decided in the chapter pass (2026-09-12).** The three anchors above are
+written. The section's AP item from 9.4, the stack of overhanging books, is
+here once with `source_section: "9.4"` and nowhere else, and 9.4's
+`exercise_notes` says so.

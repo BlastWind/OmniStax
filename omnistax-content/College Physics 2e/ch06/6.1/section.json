@@ -16,7 +16,7 @@
   "figures": "Claude Opus 5"
  },
  "built": "2026-09-11",
- "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2 (the microwave oven), 4 (Earth’s period and the linear velocity at its surface), 6 (the lacrosse ball) and the Construct Your Own Problem item on the rotating amusement park cylinder have no keyed answer and are left out. The suggested approach to the conceptual question is AI-written and marked as such. The section has no Check Your Understanding box, so nothing is set inline, and no exercise of another section of the chapter belongs here: 6.2’s angular problems are set with the centripetal acceleration they lead to, the two conceptual questions 6.4 repeats belong to 6.5, and 6.6’s Critical Thinking item on the vertical loop belongs to 6.3. Problem 8 is keyed in all three parts and stays where the book prints it, although only its part (a) is this section’s own: part (b) asks for the average force on the football, which is Newton’s second law from Dynamics: Newton’s Laws of Motion, and part (c) asks for the range, which is section 3.4’s, so the item is tagged with those two concepts at a reduced weight. Numeric answers accept 2% tolerance.",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2 (the microwave oven), 4 (Earth’s period and the linear velocity at its surface), 6 (the lacrosse ball) and the Construct Your Own Problem item on the rotating amusement park cylinder have no keyed answer and are left out. The suggested approach to the conceptual question is AI-written and marked as such. The section has no Check Your Understanding box, so nothing is set inline. One exercise of another section belongs here: the problem on the distance Earth has traveled since its birth, which the book prints with the centripetal acceleration of 6.2, asks for an arc length from a rotation angle and so tests what this section introduces, and it is taken with source_section 6.2, where the notes say the same. The rest of 6.2’s angular problems are set with the centripetal acceleration they lead to, the two conceptual questions 6.4 repeats belong to 6.5, and 6.6’s Critical Thinking item on the vertical loop belongs to 6.3. Problem 8 is keyed in all three parts and stays where the book prints it, although only its part (a) is this section’s own: part (b) asks for the average force on the football, which is Newton’s second law from Dynamics: Newton’s Laws of Motion, and part (c) asks for the range, which is section 3.4’s, so the item is tagged with those two concepts at a reduced weight. Numeric answers accept 2% tolerance.",
  "figures": [
   {
    "id": "fig-cd",
@@ -332,6 +332,26 @@
     ],
     "solution": "(a) 33.3 rad/s (b) 500 N (c) 40.8 m"
    }
+  },
+  {
+   "id": "p-earth-orbit",
+   "source_id": "fs-id3116567",
+   "kind": "problem",
+   "source_section": "6.2",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotation-angle",
+   "prompt": "Taking the age of Earth to be about $4 \\times 10^{9}$ years and assuming its orbital radius of $1.5 \\times 10^{11}$ m has not changed and is circular, calculate the approximate total distance Earth has traveled since its birth (in a frame of reference stationary with respect to the Sun).",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4e+21,
+    "unit": "m",
+    "hint": "Earth goes once round its orbit each year, so the rotation angle is $2\\pi$ times the number of years; the distance traveled is the arc length $\\kds = \\kr\\Delta\\theta$.",
+    "solution": "$4 \\times 10^{21}\\ \\text{m}$"
+   }
   }
  ],
  "exercise_concepts": [
@@ -422,6 +442,15 @@
    "exercise": "p8",
    "concept": "range",
    "weight": 2
+  },
+  {
+   "exercise": "p-earth-orbit",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "p-earth-orbit",
+   "concept": "rotation-angle",
+   "weight": 1
   }
  ]
 }

@@ -46,8 +46,8 @@ function bar(ctx, x, y, w, h, color, a) {
   const d = sim('sim-scatter', 700);
   const M1 = 0.250;                                   /* the incoming mass, as in Example 8.7 */
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 4, step: 0.05, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the incoming object' });
-  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 80, step: 0.5, value: 45, unit: 'º', dec: 1, onInput: reset, aria: 'angle of the incoming object after the collision' });
-  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 0.5, value: -48.5, unit: 'º', dec: 1, onInput: reset, aria: 'angle of the struck object after the collision' });
+  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: 'angle of the incoming object after the collision' });
+  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 0.5, value: -48.5, unit: '°', dec: 1, onInput: reset, aria: 'angle of the struck object after the collision' });
   const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the struck object' });
   /* the two conservation equations, read for the two final speeds */
   function state() {
@@ -71,8 +71,8 @@ function bar(ctx, x, y, w, h, color, a) {
     /* the two directions the reader has set */
     line(ctx, OX, OY, OX + 230 * Math.cos(s.a1), OY - 230 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
     line(ctx, OX, OY, OX + 230 * Math.cos(s.a2), OY - 230 * Math.sin(s.a2), PAL.rule, 2, [10, 10]);
-    angleArc(ctx, OX, OY, 64, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + 'º', PAL.ink);
-    angleArc(ctx, OX, OY, 96, t2.v, 'θ₂ = ' + num(t2.v, 1) + 'º', PAL.ink);
+    angleArc(ctx, OX, OY, 64, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + '°', PAL.ink);
+    angleArc(ctx, OX, OY, 96, t2.v, 'θ₂ = ' + num(t2.v, 1) + '°', PAL.ink);
     /* where each object is, and the momentum it carries */
     const r1 = rad(M1), r2 = rad(m2.v);
     if (!hit) {
@@ -111,9 +111,9 @@ function bar(ctx, x, y, w, h, color, a) {
     const Ky = 190 / Math.max(Math.abs(ay1), 1e-6), Zy = 1080;
     text(ctx, 'momentum along y (kg·m/s)', Z - 60, 440, cm, { size: 19, weight: 600 });
     line(ctx, Zy, 466, Zy, 566, PAL.muted, 2);
-    text(ctx, 'before', Zy - 210, 494, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, 'before', Zy - 274, 494, PAL.muted, { size: 18, align: 'right' });
     text(ctx, '0', Zy + 12, 494, PAL.muted, { size: 19 });
-    text(ctx, 'after', Zy - 210, 546, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, 'after', Zy - 274, 546, PAL.muted, { size: 18, align: 'right' });
     bar(ctx, Zy, 546, ay1 * Ky, 28, cm, 0.55);
     bar(ctx, Zy, 546, ay2 * Ky, 28, cm, 0.22);
     text(ctx, '+' + fmt(ay1, 3), Zy + ay1 * Ky + 12, 546, cm, { size: 18, weight: 600 });
@@ -140,7 +140,7 @@ function bar(ctx, x, y, w, h, color, a) {
   const M1 = 0.250;
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 4, step: 0.05, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed going in' });
   const v1p = ctl(d.controls, { label: '\\kvoneprime', cls: 'velocity', min: 0.5, max: 3, step: 0.05, value: 1.5, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed coming out' });
-  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 80, step: 0.5, value: 45, unit: 'º', dec: 1, onInput: reset, aria: 'angle it comes out at' });
+  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: 'angle it comes out at' });
   const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the unseen object' });
   /* the ratio of the two conservation equations gives the angle, and either gives the speed */
   function state() {
@@ -168,8 +168,8 @@ function bar(ctx, x, y, w, h, color, a) {
     line(ctx, OX, OY + 190, OX, OY - 230, PAL.rule, 2, [10, 10]);
     text(ctx, 'y', OX, OY - 250, PAL.ink, { size: 22, weight: 600, align: 'center' });
     line(ctx, OX, OY, OX + 300 * Math.cos(s.a1), OY - 300 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
-    angleArc(ctx, OX, OY, 70, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + 'º', PAL.ink);
-    angleArc(ctx, OX, OY, 110, s.a2 / RAD, 'θ₂ = ' + fmt(s.deg, 1) + 'º', PAL.ink);
+    angleArc(ctx, OX, OY, 70, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + '°', PAL.ink);
+    angleArc(ctx, OX, OY, 110, s.a2 / RAD, 'θ₂ = ' + fmt(s.deg, 1) + '°', PAL.ink);
     const r1 = rad(M1), r2 = rad(m2.v);
     if (!hit) {
       const x = OX - (TA - tau) * v1.v * S;
@@ -194,7 +194,7 @@ function bar(ctx, x, y, w, h, color, a) {
     text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 120, 620, PAL.ink, { size: 19 });
     text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg, the one mass you know', 120, 650, PAL.ink, { size: 19 });
     headline(ctx, hit
-      ? 'the unseen ' + fmt(m2.v, 3) + ' kg object leaves at ' + fmt(s.v2p, 3) + ' m/s and ' + fmt(s.deg, 1) + 'º, and the internal kinetic energy is ' + fmt(s.kep, 3) + ' J against ' + fmt(s.ke, 3) + ' J before'
+      ? 'the unseen ' + fmt(m2.v, 3) + ' kg object leaves at ' + fmt(s.v2p, 3) + ' m/s and ' + fmt(s.deg, 1) + '°, and the internal kinetic energy is ' + fmt(s.kep, 3) + ' J against ' + fmt(s.ke, 3) + ' J before'
       : 'the ' + fmt(M1, 3) + ' kg object slides in at ' + fmt(v1.v, 2) + ' m/s, carrying all ' + fmt(s.ke, 3) + ' J of the internal kinetic energy');
     const diff = s.kep - s.ke;
     readout(d.readout,
@@ -219,8 +219,8 @@ function bar(ctx, x, y, w, h, color, a) {
 (function () {
   const d = sim('sim-billiards', 900);
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 2, max: 10, step: 0.25, value: 6, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the cue ball' });
-  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 45, step: 1, value: 30, unit: 'º', dec: 0, onInput: reset, aria: 'angle of the cue ball after the collision' });
-  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 1, value: -60, unit: 'º', dec: 0, onInput: reset, aria: 'angle of the struck ball after the collision' });
+  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 45, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: 'angle of the cue ball after the collision' });
+  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 1, value: -60, unit: '°', dec: 0, onInput: reset, aria: 'angle of the struck ball after the collision' });
   /* with equal masses, momentum alone gives both speeds from the two angles */
   const speeds = (d1, d2, u) => {
     const a1 = d1 * RAD, a2 = d2 * RAD, den = Math.sin(a2 - a1);
@@ -245,8 +245,8 @@ function bar(ctx, x, y, w, h, color, a) {
     line(ctx, 110, OY, 1290, OY, PAL.rule, 2, [10, 10]);
     line(ctx, OX, OY, OX + 260 * Math.cos(t1.v * RAD), OY - 260 * Math.sin(t1.v * RAD), PAL.rule, 2, [10, 10]);
     line(ctx, OX, OY, OX + 260 * Math.cos(t2.v * RAD), OY - 260 * Math.sin(t2.v * RAD), PAL.rule, 2, [10, 10]);
-    angleArc(ctx, OX, OY, 62, t1.v, 'θ₁ = ' + fmt(t1.v, 0) + 'º', PAL.ink);
-    angleArc(ctx, OX, OY, 94, t2.v, 'θ₂ = ' + num(t2.v, 0) + 'º', PAL.ink);
+    angleArc(ctx, OX, OY, 62, t1.v, 'θ₁ = ' + fmt(t1.v, 0) + '°', PAL.ink);
+    angleArc(ctx, OX, OY, 94, t2.v, 'θ₂ = ' + num(t2.v, 0) + '°', PAL.ink);
     if (!hit) {
       const x = OX - (TA - tau) * v1.v * S;
       disc(ctx, x, OY, 20, PAL.ink, true);
@@ -266,21 +266,21 @@ function bar(ctx, x, y, w, h, color, a) {
       text(ctx, "v′₂ = " + fmt(s.v2p, 2) + ' m/s', x2 + s.v2p * K * Math.cos(a2) + 12, y2 - s.v2p * K * Math.sin(a2) + 24, cv, { size: 20, weight: 600, bg: alpha(PAL.soft, 0.9) });
     }
     text(ctx, 'the two balls have the same mass m', 110, 592, PAL.ink, { size: 19 });
-    text(ctx, 'angle of separation θ₁ − θ₂ = ' + fmt(sep, 0) + 'º', 110, 620, PAL.ink, { size: 19, weight: 600 });
+    text(ctx, 'angle of separation θ₁ − θ₂ = ' + fmt(sep, 0) + '°', 110, 620, PAL.ink, { size: 19, weight: 600 });
     /* the graph: the internal kinetic energy after the collision against the angle of separation */
     const box = { l: 300, r: 1120, t: 670, b: 830 };
-    const g = axes(ctx, box, [10, 170], [0.5, 1.5], { xl: 'angle of separation θ₁ − θ₂ (º)', yl: 'KE′int / KEint', yc: ce, nx: 4, ny: 2, fy: (v) => fmt(v, 1) });
+    const g = axes(ctx, box, [10, 170], [0.5, 1.5], { xl: 'angle of separation θ₁ − θ₂ (°)', yl: 'KE′int / KEint', yc: ce, nx: 4, ny: 2, fy: (v) => fmt(v, 1) });
     line(ctx, box.l, g.Y(1), box.r, g.Y(1), ce, 2.5, [10, 10]);
     text(ctx, 'the internal kinetic energy before the collision', box.l + 12, g.Y(1) - 18, ce, { size: 17 });
     line(ctx, g.X(90), box.t, g.X(90), box.b, PAL.muted, 2, [4, 8]);
-    text(ctx, '90º', g.X(90), box.t - 16, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    text(ctx, '90°', g.X(90), box.t - 16, PAL.ink, { size: 18, weight: 600, align: 'center' });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     curve(ctx, (x) => ratio(t1.v, t1.v - x), t1.v + 10, t1.v + 80, g.X, g.Y, ce, 5, 140);
     ctx.restore();
     dot(ctx, g.X(sep), g.Y(Math.max(0.5, Math.min(1.5, kep / ke))), PAL.ink, true, 9);
     headline(ctx, Math.abs(sep - 90) < 0.5
-      ? 'the balls separate at 90º · the cue ball leaves at ' + fmt(s.v1p, 2) + ' m/s and the struck ball at ' + fmt(s.v2p, 2) + ' m/s, and the internal kinetic energy is exactly what it was'
-      : 'the balls separate at ' + fmt(sep, 0) + 'º · the internal kinetic energy after the collision is ' + fmt(kep / ke, 2) + ' times what it was before, so this collision cannot be elastic');
+      ? 'the balls separate at 90° · the cue ball leaves at ' + fmt(s.v1p, 2) + ' m/s and the struck ball at ' + fmt(s.v2p, 2) + ' m/s'
+      : 'the balls separate at ' + fmt(sep, 0) + '° · the internal kinetic energy after the collision is ' + fmt(kep / ke, 2) + ' times what it was before');
     readout(d.readout,
       `\\tfrac{1}{2}m{\\kvone}^2 = \\tfrac{1}{2}m{\\kvoneprime}^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2 + m\\kvoneprime\\kvtwoprime\\cos(\\theta_1 - \\theta_2)\\qquad ${fmt(ke, 1)}\\,m = ${fmt(0.5 * s.v1p * s.v1p, 1)}\\,m + ${fmt(0.5 * s.v2p * s.v2p, 1)}\\,m + ${num(extra, 1)}\\,m`,
       Math.abs(extra) < 0.05

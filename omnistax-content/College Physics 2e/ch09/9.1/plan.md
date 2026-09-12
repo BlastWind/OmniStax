@@ -230,3 +230,20 @@ ask. Torque is not bound here: 9.1 never writes it.
   binds the type, and the Definitions view should say what the symbol means
   here. Nothing breaks without it; the figures name the arrow in words as
   well.
+
+**Decided in the chapter pass (2026-09-12).** Every anchor above is written,
+and the `v` row is added to `chapter.json` as asked, anchored to
+`9.1-static-and-dynamic`, since the two dynamic figures draw the velocity
+arrow and the crate's slider carries the speed, so the page does bind the
+type. One thing in the section's tables disagreed with its text and is
+settled here for the whole chapter: `eq-net-force-zero` was written
+`\text{net}\;F = 0` with the ktex `\text{net}\;\kF = 0`, while the text
+and the section summary print the book's bold vector, `\text{net}\;\mathbf{F} = 0`.
+The row now prints the bold vector and carries no ktex at all, which is the
+convention Chapters 3 and 4 already use for `eq-commutative`, `eq-newton2`
+and the rest: where the book sets a quantity in bold because it means the
+vector, the row keeps the bold and takes no colour, because a `\k` macro
+colours the magnitude and would say something the book does not. The
+components `\kFx` and `\kFy` of `eq-net-force-axes` are not bold in the
+book and keep their macros, so the formula sheet and the text agree symbol
+for symbol on both rows.

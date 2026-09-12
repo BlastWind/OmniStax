@@ -1276,3 +1276,458 @@ dark with no console error, every image loading, every `figure.sim`
 booting its canvas, a transport under every moving figure and none under
 any still one, every eyebrow reading what its row says, and all six inline
 cards rendering in their hosts.
+
+
+### Pass 29 (2026-09-12): Chapter 5, Further Applications of Newton's Laws, is built
+
+Chapter 5 was prepared in pass 27, its three sections were built by three
+agents in one wave, and this pass is the chapter pass over them: the wants
+of the three plans, the cross-section checks, one reading of every page
+and every `figures.js`, and the full checks. An earlier run of this pass
+was interrupted at its headless check, so what it had already written was
+read before anything else was changed.
+
+What stands. Three section pages and the introduction page, 23 figure rows
+over them: 15 sims, of which 10 transform a book figure and five are Sims
+of OmniStax's own, seven kept photographs and one faithful copy that
+serves the problems, the block of ice of 5.1's keyed problem 18.
+Every one of the book's numbers, Figure 5.1 to Figure 5.18, is carried by
+exactly one row, and one fold does the work of two: the crate on the
+concrete floor with the interface under its corner magnified is Figure 5.2
++ 5.5, since both drawings say that friction depends on the normal force
+and not on the area of the base. 41 exercises, and the chapter prints no
+Check Your Understanding box anywhere, so none is set inline. Three items
+cross sections with `source_section`, and both sections' `exercise_notes`
+say so each time: 5.3's Critical Thinking item on two beads falling
+through a fluid goes to 5.2, and the conceptual questions on the soles of
+shoes (5.3) and on oil and gasoline on a road in the rain (5.2) both go to
+5.1, since each turns on the coefficient of friction that 5.1 introduces
+and on nothing its own section teaches. No AP item is held: all four sit
+in 5.1 and all four test friction.
+
+What the chapter pass wrote. The 64 anchors the three plans asked for, on
+every variable row and every equation row of `chapter.json`, each one a
+span or an example of the section's own `text.html`. One equation row was
+added, `eq-dv-over-v0`, the fractional change in volume that Example 5.6
+solves for and `sim-cube` reads out; `eq-bulk` stays the important
+statement of the result. `eq-terminal-balance` now writes its `ktex` with
+the book's own macro, `\kFnet = m\kg - \kFD = m\ka = 0`, so the net force
+wears the force hue on the formula sheet, and `eq-mu-tan`, the only row of
+the chapter without a `ktex`, now carries one, so that the weight in
+μ = tan θ is coloured where the two rows above it colour it. No symbol and
+no type was added: the two this chapter needed, `stress` and
+`elastic-modulus`, were merged in the preparation pass.
+
+What the reading found. The caption of Figure 5.18 said the same squeeze
+compresses acetone six times as much as water, where Table 5.3 gives
+2.2 × 10⁹ N/m² for water against 0.7 × 10⁹ for acetone and the figure's
+own readout says three times; the caption now says three. The caption of
+Figure 5.17 said the flex of the nail is drawn many thousands of times
+larger than it is, while the figure states the magnification it actually
+uses, a few hundred times at the book's numbers; the caption now says
+hundreds and points at the number the figure prints. 5.1's `figures.js`
+wrote the degree sign as the masculine ordinal the CNXML carries, in the
+slope slider's unit and in eight drawn labels, and now writes `°`, as
+Chapters 4 and 9 do.
+
+Three decisions the plans asked for, and all three leave the node where it
+stands. `friction` stays at 4.3 and `drag-force` at 4.7, where Chapter 4
+introduces each in a built section; `hookes-law` and `force-constant` stay
+at 16.1, where Chapter 16 built them. Chapter 5 reinforces all four, which
+is what its coverage rows already say, and its own 21 nodes rest on them
+as prerequisites either way. `elastic-potential-energy` sits at 7.4, as
+pass 28 settled it.
+
+Checks: `check:content` with 10 chapters, 62 sections and 11 introduction
+pages and no errors; 361 unit tests; `astro check` clean; a build of 75
+pages; and a headless pass over all four pages of the chapter in light and
+dark with no console error, every image loading, every `figure.sim`
+booting its canvas, a transport under each of the six moving figures and
+none under any of the ten still ones, every eyebrow reading what its row
+says, and all 41 exercises rendering with no KaTeX error.
+
+
+### Pass 30 (2026-09-12): Chapter 6, Uniform Circular Motion and Gravitation, is built
+
+Chapter 6 was prepared in pass 27, and its six sections were built in one
+wave by six agents. This pass is the chapter pass over them: the wants of
+the six plans, the cross-section checks, one reading of every page and
+every `figures.js`, and the full checks. An earlier run of this pass was
+interrupted just before its corrected `book-rows.json` was merged, and the
+merge it had staged stands, so this entry covers both halves of the work.
+
+What stands. Six section pages and the introduction page, 35 figure rows
+over them: 24 sims, of which 19 transform a book figure and 5 are Sims of
+OmniStax's own, 6 kept photographs, and 5 faithful copies that serve the
+questions and problems of 6.3. Every one of the book's numbers, Figure 6.1
+to Figure 6.28, is carried by exactly one row, and three folds do the work
+of six drawings: the turning disc with its two pits is Figure 6.3 + 6.4,
+the merry-go-round seen from the ground and from the boards is Figure
+6.13 + 6.15, and the spring and neap tides are Figure 6.21 + 6.22. 57
+exercises, two of them set inline, since the chapter prints no Check Your
+Understanding box anywhere; the rest sit with the problem set. Two items
+cross sections with `source_section`, and both sections' `exercise_notes`
+say so each time.
+
+What the chapter pass wrote. The 82 anchors the six plans asked for, on
+every one of the 48 variable rows and 34 equation rows of `chapter.json`,
+each naming a span or an example of its own section's `text.html`. A
+variable row for `f_fric`, the friction that is the whole centripetal
+force on a level curve, which 6.3 writes as $\kff$ where the book writes
+$f$ and which the chapter sheet had no row for. A glossary row for
+**uniform circular motion** under 6.1: the chapter introduction defines
+the term, no section's own glossary carried it, and 6.1 states it in its
+summary and introduces the concept, so the definitions view now finds it.
+At book level, 39 concepts with 82 edges, and 13 symbols. Two of those
+symbol keys read oddly on purpose and stand: the radius of curvature is
+`r_curv` with the macro `\kr`, because Chapter 5 holds an untyped `r`, and
+the two orbital periods are `T_orb1` and `T_orb2` with `\kTorbone` and
+`\kTorbtwo`, because Chapter 4 holds `T_1` and `T_2` as tensions. The name
+of `keplers-third-law` had been written with Chapter 4's two tensions,
+which are forces, so the concept map printed the law's two periods in the
+force hue; it now reads $\kTorbone^2/\kTorbtwo^2 = \krone^3/\krtwo^3$ and
+the periods are in the time hue, as the section's own equation has them.
+
+What the reading decided. Two placements were left open by the plans and
+rule 12 settled both. 6.2's problem on the distance Earth has travelled
+since its birth is tagged with arc length and rotation angle and worked
+from $\Delta s = r\,\Delta\theta$, all of which 6.1 introduces, so it is
+set on 6.1's page as `p-earth-orbit` with `source_section: "6.2"`. 6.3's
+conceptual question on why you feel thrown away from the centre stays
+where it is: it is answered from Newton's first law and the inward push of
+the seat, both of which the reader has in 6.3, and 6.4's fictitious force
+is a second way of saying the same thing rather than what the question
+needs. Two figures went out. The leaning bicycle and the teardrop loop are
+drawn for problems 6 and 9, and both problems are unkeyed and left out, so
+neither picture had a question left to show; rule 14 keeps a figure of that
+kind because it shows the reader exactly what a problem is about, and that
+reason had gone. The block that gathers them now counts five pictures, and
+their two images are out of `media/ch06/`. Two more decisions were put and
+answered: a worked solution that the CNXML carries inside an XML comment is
+not the book's key, because the book does not print it, so 6.5's three
+unkeyed AP items stay open items with their AI-marked approaches; and the
+inertial frame stays Chapter 4's node, defined in 4.5, which 6.4
+reinforces rather than redefines.
+
+What the reading found. `sim-radius` listed `angular-rate` in its `draws`
+and binds no angular velocity anywhere on the page, so the type is out of
+the row and the figure colours only what it draws. Six section files had
+picked up British spellings in sentences OmniStax wrote — "centre",
+"metre", "travelling", "coloured" — where the book is American throughout
+and Chapters 1 to 3 have none; they are swept, and the two places where
+the word is the book's own, the alt text of the chapter opener and the
+wording of the nail-and-string question, are left as the book has them.
+No `[ref:`, `{term:` or `{eq:` marker was left in, no figure number in the
+prose lacks a row, no `$` stands in prose where `&#36;` belongs, and the
+word "demo" appears nowhere. Every `º` inside math had already gone to
+`^\circ`; what is left of the character is in the units, which the sweep of
+Chapter 4's pass is taking to `°`, and in prose the book itself prints that
+way.
+
+The checks. `npm run check:content`: 10 chapters, 62 sections, 11
+introduction or summary pages, no errors. `npm test`: 361 tests, no
+failures. `astro check`: 0 errors, 0 warnings. A build into this pass's own
+outDir: 75 pages. A headless Playwright pass over all seven pages of the
+chapter in light and dark: no console or page error, every image loading,
+every `figure.sim` with its canvas, the transport on the sixteen figures that
+run a cycle and on no other, and every inline card rendering. The pass
+caught one error there: the two dropped figures were still registered in
+6.3's `figures.js`, which threw on boot and left the centrifuge below them
+unbuilt; the two blocks are out and the page is clean. The figures were
+screenshotted at 1400 wide and no label collides.
+
+
+### Pass 31 (2026-09-12): Chapter 9, Statics and Torque, is built
+
+Chapter 9 was prepared and its six sections built in pass 27, and the
+chapter pass over them was still owed. This is that pass: the wants of the
+six plans, the cross-section checks, one reading of every page and every
+`figures.js`, and the full checks.
+
+What stands. Six section pages and the introduction page, with 29 figure
+rows over them: 26 drawn figures, of which 19 transform a book figure, 6
+are Sims of OmniStax's own and one is a faithful copy that serves an AP
+item, and 3 kept photographs (the Kalbarri rocks that open the chapter, the
+man balancing a toy doll, and the three people adjusting their stance).
+Every one of the book's numbers, Figure 9.1 to Figure 9.28, is carried by
+exactly one row, and four folds do the work of nine drawings: the hockey
+stick pushed on one line and off it is Figure 9.4 + 9.5, the pencil on its
+eraser upright and leaned twice is Figure 9.10 + 9.11 + 9.12, the pencil on
+its point is Figure 9.13 + 9.14, and the pole vaulter's three holds of one
+pole are Figure 9.18 + 9.19 + 9.20, each with the displacement on a slider.
+Not one figure of the chapter calls `cycle()`: statics has no time in it,
+every scene here either stands still or moves at constant velocity, and the
+config said so before the sections were built. 51 exercises, 21 problems,
+19 conceptual questions and 11 AP items, 14 of them carrying a figure of
+the book's on their card and two set inline, since the chapter prints no
+Check Your Understanding box anywhere. 154 coverage rows against the 32
+concept nodes, 11 glossary terms, and one new type, `torque`, which keeps
+its own hue although it shares a dimension with energy.
+
+What the chapter pass wrote. The 75 anchors the six plans asked for, on
+every one of the 52 variable rows and all 23 equation rows of
+`chapter.json`, each one a span or an example of the section's own
+`text.html`. One variable row that did not exist yet, 9.1's `v`, the
+constant velocity of a body in dynamic equilibrium, because the section's
+two dynamic figures draw the velocity arrow and its crate carries the speed
+on a slider, so the page binds the type and the Definitions view should say
+what the symbol means there. One symbol: 9.6 asked for the back muscles'
+own perpendicular lever arm, which the book writes $r_{\text{b}\perp}$ in
+the caption of Figure 9.26 and which two of the section's figures bracket;
+the row is `r_bperp` with the type `position` and the macro `\krbperp`, and
+`book-rows.json` now stages 27 symbols. Without it the one lever arm the
+reader is asked to drag would have been the only one on the page in ink.
+
+One convention was settled for the chapter. `eq-net-force-zero` was written
+`\text{net}\;F = 0` with the ktex `\text{net}\;\kF = 0`, while 9.1's text
+and its summary print the book's bold vector, `\text{net}\;\mathbf{F} = 0`.
+The row now prints the bold and carries no ktex at all, which is what
+Chapters 3 and 4 already do for `eq-commutative`, `eq-newton2` and the
+rest: where the book sets a quantity in bold because it means the vector,
+the row keeps the bold and takes no colour, since a `\k` macro colours the
+magnitude and would say something the book does not. The components of
+`eq-net-force-axes` are not bold in the book and keep their macros, so the
+formula sheet and the text now agree symbol for symbol on both rows.
+
+What the reading found. 9.2 closed on a block headed "The five forces of
+the test prep item" whose first sentence began "One of the test prep items
+applies five forces…". That is the page talking about its own apparatus
+rather than about the physics, which rule 17 does not allow; the heading is
+now "Five equal forces about one point" and the paragraph says what the
+scene is and what decides the torque each force makes. The figure and the
+item are untouched, and the book's own image still travels on the item's
+card as well, as 4.7's rescue image does. 9.6's push-up problem kept the
+book's four parts and the book's whole key but graded only two of them,
+because parts (c) and (d) ask for the work done and the power output and
+Chapter 7 was not built when 9.6 was; it is built now, so all four parts
+are graded and (c) and (d) are tagged with 7.1's `calculate-work` and 7.7's
+`calculate-power` at a weight of 2, the rest of the problem keeping the
+section's own concepts. The ordinal `º` the converter carries out of the
+CNXML was still standing in 38 places across four sections; every one of
+them inside math is now `^\circ` and every one in prose, in a slider unit
+or in a canvas label is the degree sign `°`. No dollar sign occurs anywhere
+in the chapter, in prose or in an exercise string, so the rule pass 28
+added to the book's rules had nothing to correct here.
+
+Three figures were fixed after the screenshots, all of them in 9.6, and all
+the same fault: `headline()` does not wrap, so a sentence wider than the
+1400-unit canvas is cut off at both ends. The headlines of `sim-posture`,
+`sim-lift` and `sim-lever-arm-trade` ran to 2,800, 3,060 and 2,550 units
+where the widest one that fits measures about 2,400, and each is shorter
+now without losing the live numbers it states. In `sim-lift` the arrow for
+the muscle force crossed the label of the weight, which now takes the panel
+background the other two force labels already had, and in `sim-posture` the
+lever arm of the weight is a bracket one unit wide when the body stands
+straight, drawn across the legs with "r⊥ = 0.000 m" on it, so at zero lean
+that bracket and its drop lines are left out.
+
+Left as it stands. The one media file of the chapter whose name carries a
+space, `Figure 09_S3_03.jpg`, keeps the name the bundle gives it, as the
+book's rules ask; it is referenced as `%20` and it loads. The crank's
+mechanical advantage is printed as the book prints it, $r_{\text{i}}/r_0$
+with the subscript that does not match its own diagram. The empty
+`exercises_lead` in 9.1 is left as 7.5, 5.1 and 8.2 leave theirs.
+
+Checks: `check:content` with 10 chapters, 62 sections and 11 introduction
+pages and no errors; 361 unit tests; `astro check` clean; a build of 75
+pages; and a headless pass over all seven pages of the chapter in light and
+dark with no console error, no failed request, every image loading, every
+`figure.sim` booting its canvas, no transport under any figure, and every
+exercise card rendering.
+
+
+### Pass 32 (2026-09-12): Chapter 4, Dynamics: Force and Newton's Laws of Motion, is built
+
+Eight section pages and the chapter introduction. Twenty-seven interactive
+figures, six of them Sims that replace nothing in the book and twenty-one
+transforming a book figure, one of which folds Figures 4.16 and 4.17 into a
+single tightrope scene that carries both numbers; one faithful copy, the
+unnumbered rescue diagram of 4.7; and six photographs, the dolphin and the
+Principia of the introduction, the Golden Gate Bridge of 4.5, and the LHC,
+LISA and M87 of 4.8, each with the credit clause the bundle prints. Eighty-five
+exercises, seven of them inline, three taken from another section with
+`source_section`. Every figure the book numbers from 4.1 to 4.28 is accounted
+for, and the ten worked examples run 4.1 to 4.10 in the book's order, with 4.6,
+the problem-solving strategy, carrying none of its own, as the book has it.
+
+What the chapter pass wrote. The 76 anchors the eight plans asked for, on all
+53 variable rows and all 23 equation rows of `chapter.json`, each one a span or
+an example of its own section's `text.html`. Six symbol rows the sections had
+asked for and had been writing in plain ink LaTeX for want of a row: `F_hand`
+for the hand under the bag of dog food in 4.5, `F_netpar` for the net force
+along the slope that Example 4.5 writes six times, and `T_1x`, `T_1y`, `T_2x`
+and `T_2y` for the components of the two tensions in the axis equations of 4.7.
+`book-rows.json` now stages 31 symbols, and the text of 4.5 and 4.7 uses the
+macros in ten places that stood in ink before.
+
+Two conventions were settled. The `ktex` of `eq-newton2-a` is dropped: it set
+`\mathbf{a} = \frac{\kFnet}{m}`, a bold ink vector beside a coloured symbol,
+which is two conventions in one line. The vector forms of the second law now
+stand on the formula sheet in the book's own bold, and `eq-newton2-mag`, the
+magnitude form, is the one that carries the macros — the same rule Chapters 3
+and 9 settled on for `eq-commutative` and `eq-net-force-zero`. And the ordinal
+`º` the converter carries out of the CNXML is gone from the chapter: no
+occurrence stood inside math, so all twenty-one of them — three unit strings,
+three captions, a hint, a solution, three pieces of evidence and ten slider
+units and axis labels — are now the degree sign `°`. The same ordinal was
+standing in the `unit` of a variable row in every chapter from 3 to 9,
+nineteen rows in all, and those unit strings are now `°` as well; nothing else
+in those chapters was touched.
+
+What the reading found. The book's own glossary definition of `friction` reads
+"a force past each other of objects that are touching", which drops the words
+that make it a definition; the book's summary of the same section prints them,
+and the row is now that sentence, "a force that opposes the motion past each
+other of objects that are touching". Four headings stood in the book's title
+case rather than the book's voice and are now sentence case. The force the
+person exerts on the scale in 4.7 stood in ink beside a coloured $\kFs$ and is
+now `\kF_{\text{p}}`, as 4.4 writes the forces the book names in words. The one
+formula in the prose of 4.8, the weight at Earth's surface, is set in plain ink
+$w = mg$: the page's figures draw force and nothing else, so a coloured $w$
+beside an ink $g$ would have said two things at once. `sim-tightrope` listed
+`acceleration` in its `draws` and colours no such thing; the row is corrected,
+and the page still binds the type, because the skier, the incline and the rope
+all draw it.
+
+Canvas labels were made to agree with each other. Half the chapter wrote a
+subscript with an underscore, `T_L` and `F_hand`, as 16.3 does; the other half
+wrote it with a space, `F net` and `F prof`, or ran it together, `Fapp` and
+`Fnet`, so that a subscript read as a second word. Every one-word subscript is
+now the underscore form, and the unicode subscripts of 4.7's `T₁ₓ` are left as
+they are, since they read better still.
+
+Four fixes came out of the screenshots. In 4.5's skier the label of the
+parallel component of the weight sat at the midpoint of the shortest of five
+arrows leaving one point and was crossed by two of them; it is set beyond its
+own arrow now. In 4.3's sled the slider labelled "rockets burning" left its
+track no width at 1400 and is "rockets", its aria label unchanged, and the
+annotation on the proportional line has moved off the data. 4.5's one panel
+title in title case reads like the other panels of the chapter.
+
+Left as it stands. The book's own typographical slips in the running text, the
+missing "is" in "the tension in the roped related to the weight" in 4.5 and the
+solution to part (c) printed inside the statement of Example 4.5, are the book's
+and stay. `friction` stays at 4.3 and `drag-force` at 4.7, where the book
+introduces them and not where Chapter 5 reinforces them; `inertial-frame` stays
+at 4.5. Table 4.1 stays in the text as the book prints it. 4.7's AP item on a
+block sliding on a surface of known coefficient of friction is still left out
+and named, since the quantity belongs to a chapter that was not built when the
+item was read. The four forces 4.4 names in words get no symbol rows of their
+own: they are written `\kF` with the book's subscript and already wear the
+force hue.
+
+Checks: `check:content` with 10 chapters, 62 sections and 11 introduction
+pages and no errors; 361 unit tests; `astro check` clean with one pre-existing
+hint; a build of 75 pages; and a headless pass over all nine pages of the
+chapter in light and dark with no console error, no failed request, every image
+loading, every `figure.sim` booting its canvas, a transport under each of the
+eleven moving figures and under none of the seventeen still ones, every eyebrow
+reading what its row says, and every inline exercise host filled.
+
+
+### Pass 33 (2026-09-12): Chapter 8, Linear Momentum and Collisions, is built
+
+Chapter 8's seven sections and its introduction were written in pass 27, in
+one wave of parallel agents that were not allowed to touch `book.json` or
+`chapter.json`, and pass 27 was stopped before the chapter pass over them
+could run. This is that pass: the wants of the seven plans, the
+cross-section checks, one reading of every page and every `figures.js`, and
+the full checks.
+
+What stands. Eight pages and 23 figure rows over them: 18 sims, of which 9
+transform a book figure and 9 are Sims of OmniStax's own, 2 kept photographs
+(the rugby players of the introduction and the space shuttle of 8.7) and 3
+faithful copies that serve the test prep items, the two force-against-time
+graphs of 8.2 and the position-against-time graph of two carts in 8.3. Every
+one of the book's numbers, Figure 8.1 to Figure 8.13, is carried by exactly
+one row, and one fold does the work of three: the inelastic collision of two
+equal masses, the pair sticking together and the carts with the compressed
+spring are Figure 8.7 + 8.8 + 8.9, with the two masses, the two velocities
+and the coefficient of restitution on sliders. 106 exercises, 52 of them AP
+test prep, 5 set inline, and 295 concept tags over them. Twelve items cross
+sections: nine of 8.4's AP items turn on an inelastic collision and are set
+in 8.5, three of 8.5's turn on an elastic one and are set in 8.4, and both
+sections' `exercise_notes` name every one of them by its source id. Reading
+the whole chapter's exercises by source id found 106 distinct items and no
+item kept twice.
+
+What the chapter pass wrote. The 121 anchors the seven plans asked for, on
+every variable row and every equation row of `chapter.json`, each one a span
+or an example of its own section's `text.html`. Three variable rows the plans
+asked for: `v` in 8.2, which the impulse sim carries on a slider and states
+in its readout; `p_tot` and `KE_intprime` in 8.4, which the elastic-collision
+sim draws and states, so that everything the figure names now has a meaning
+in the Definitions view. One symbol, `v_cm`, type velocity, macro `\kvcm`:
+8.3's centre-of-mass sim divides the total momentum by the total mass and had
+been writing the result as plain LaTeX, in ink beside the `\kptot` it came
+from; `book-rows.json` now stages 34 symbols. Two wants were declined and the
+reason written into the plan under the same heading. 8.4 asked for a row for
+the momentum form of the collision equation, and the chapter already carries
+it: `eq-p-pair-conserved` of 8.3, where the two-car derivation reaches it, so
+a second row would print the same line twice on the formula sheet. 8.6 asked,
+optionally, for eight velocity-component symbols; they would colour four
+lines of a derivation whose results the section does not keep as rows, and
+rule 7 asks that a page colour what it binds.
+
+What the reading found. Two inline cards had nowhere to render: 8.3's `cq2`
+is placed after the span `conservation` and 8.5's `cq1` after `inelastic`,
+and neither `text.html` carried the `<div class="exercises" data-place="…">`
+that 8.1, 8.2 and 8.4 carry, so both cards were laid out into nothing. Both
+hosts are in, and all five inline cards now render. Two captions pointed at
+themselves: Figure 8.2 said its force was drawn "as in Figure 8.2" and Figure
+8.6 that its objects collided "as in Figure 8.6", and the build links a
+figure number in prose, so each was a link to the figure the reader was
+already looking at. Both clauses are gone.
+
+The book labels 21 of the chapter's exercises "Professional Application", and
+the seven sections had written it four different ways: as a `tag` (8.1 and
+8.4), in bold at the head of the prompt (8.2 and 8.5), in italics (8.6), as
+"Professional Application:" in plain text (8.3), and not at all (8.7, which
+dropped all six of its own). The `tag` is right—it is what 16.1 and 16.3 do
+with "Engineering Application" and what the field is for—so all 21 now carry
+it as a `tag` and no prompt begins with the label. The introduction's
+photograph is the only image of the bundle whose file name carries a space,
+`Figure 09_00_01.jpg`, written `%20` in the `src`; the copy in `media/ch08/`
+is renamed with an underscore, as Chapter 4 renamed its own, and the image
+loads. The masculine ordinal the CNXML writes for degrees stood in 27 places
+in the chapter: 24 in the slider units, arc labels, an axis label and
+headlines of 8.2, 8.3 and 8.6's `figures.js`, two in the angle units of
+8.6's answers, and one in the condition of `eq-impulse-at-angle`. None of them was inside math, where the ordinal has no KaTeX
+metrics, so all of them are now the degree sign, which is what Chapters 4, 9
+and 16 write. No exercise `prompt` or `solution` of the chapter carries a
+dollar sign at all, neither `&#36;` nor `\$`, so the fullwidth rule had
+nothing to correct here.
+
+Four figure faults went with them, all found by a sweep that wrapped
+`fillText` and reported any label drawn outside the canvas while every slider
+was driven to both of its ends. 8.6's billiards sim printed a headline that
+ran off both edges at its default state, and both of its branches now stop
+where the readout takes over. In the same section's Figure 8.10 the label of
+the negative bar of the momentum along y was drawn on top of the row's name
+"after", because the bar is always the same length; the names moved left. In
+8.3's scatter sim the target's label overran the right edge when a light
+target was thrown far, and read "1 electron masses" at the bottom of its
+slider; the label is held on the canvas and the singular is right. In 8.5's
+collision sim two objects given the same velocity never meet and drifted off
+the left of the track, taking their labels with them; they are held on it
+now.
+
+Left as it stands. `config.md` said the rocket's free-body diagram would be a
+still picture; `sim-rocket` burns the fuel away over a finite loop and
+carries the transport, and 8.7's plan argues that correctly under rule 14, so
+the config line is corrected to say what was built rather than the figure
+changed. A `cite` must name an id of the section the exercise is set in, so
+only 8.3's two centre-of-mass items cite the sentence that the total momentum
+is the momentum of the centre of mass; the six like them in 8.4, 8.5, 8.6 and
+8.7 name it in their suggested approaches instead, and all eight are tagged
+with 6.5's `center-of-mass`. The book prints `"thrust.”` in 8.7 with one
+straight quotation mark and one curly, and it is printed as printed.
+
+Checks: `check:content` with 10 chapters, 62 sections and 11 introduction
+pages and no errors; 361 unit tests; `astro check` clean; a build of 75
+pages; and a headless pass over all eight pages of the chapter in light and
+dark with no console error, every image loading, every `figure.sim` booting
+its canvas, a transport under each of the fourteen moving figures and none
+under any of the seven still ones, every eyebrow reading what its row says,
+all five inline cards rendering in their hosts, and no label drawn outside
+any canvas at any position of any slider.

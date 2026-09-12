@@ -1,641 +1,722 @@
 {
- "id": "9",
- "dir": "ch09",
- "title": "Statics and Torque",
- "intro": {
-  "module": "m42167",
-  "slug": "9-introduction-to-statics-and-torque"
- },
- "sections": [
-  {
-   "id": "9.1",
-   "module": "m42170",
-   "title": "The First Condition for Equilibrium",
-   "slug": "9-1-the-first-condition-for-equilibrium"
-  },
-  {
-   "id": "9.2",
-   "module": "m42171",
-   "title": "The Second Condition for Equilibrium",
-   "slug": "9-2-the-second-condition-for-equilibrium"
-  },
-  {
-   "id": "9.3",
-   "module": "m42172",
-   "title": "Stability",
-   "slug": "9-3-stability"
-  },
-  {
-   "id": "9.4",
-   "module": "m42173",
-   "title": "Applications of Statics, Including Problem-Solving Strategies",
-   "slug": "9-4-applications-of-statics-including-problem-solving-strategies"
-  },
-  {
-   "id": "9.5",
-   "module": "m42174",
-   "title": "Simple Machines",
-   "slug": "9-5-simple-machines"
-  },
-  {
-   "id": "9.6",
-   "module": "m42175",
-   "title": "Forces and Torques in Muscles and Joints",
-   "slug": "9-6-forces-and-torques-in-muscles-and-joints"
-  }
- ],
- "variables": [
-  {
-   "sym": "F",
-   "type": "force",
-   "meaning": "the net external force on the system, which is zero when the system is in equilibrium",
-   "unit": "N",
-   "section": "9.1"
-  },
-  {
-   "sym": "F_x",
-   "type": "force",
-   "meaning": "the net external force along the horizontal axis, which is zero in equilibrium",
-   "unit": "N",
-   "section": "9.1"
-  },
-  {
-   "sym": "F_y",
-   "type": "force",
-   "meaning": "the net external force along the vertical axis, which is zero in equilibrium",
-   "unit": "N",
-   "section": "9.1"
-  },
-  {
-   "sym": "w",
-   "type": "force",
-   "meaning": "the weight of the person or the car, the gravitational force acting on it",
-   "unit": "N",
-   "section": "9.1"
-  },
-  {
-   "sym": "N",
-   "type": "force",
-   "meaning": "the normal force the ground exerts, which supports the weight",
-   "unit": "N",
-   "section": "9.1"
-  },
-  {
-   "sym": "F_app",
-   "type": "force",
-   "meaning": "the applied force between the tires and the road that drives the car forward",
-   "unit": "N",
-   "section": "9.1"
-  },
-  {
-   "sym": "f_fric",
-   "type": "force",
-   "meaning": "the air friction on the car, which balances the applied force at constant velocity",
-   "unit": "N",
-   "section": "9.1"
-  },
-  {
-   "sym": "τ",
-   "type": "torque",
-   "meaning": "torque, the turning or twisting effectiveness of a force about a chosen pivot point",
-   "unit": "N·m",
-   "section": "9.2"
-  },
-  {
-   "sym": "τ_1",
-   "type": "torque",
-   "meaning": "the counterclockwise torque the first child's weight produces about the pivot",
-   "unit": "N·m",
-   "section": "9.2"
-  },
-  {
-   "sym": "τ_2",
-   "type": "torque",
-   "meaning": "the clockwise torque the second child's weight produces about the pivot",
-   "unit": "N·m",
-   "section": "9.2"
-  },
-  {
-   "sym": "r_lever",
-   "type": "position",
-   "meaning": "the distance from the pivot point to the point where the force is applied",
-   "unit": "m",
-   "section": "9.2"
-  },
-  {
-   "sym": "r_perp",
-   "type": "position",
-   "meaning": "the perpendicular lever arm, the shortest distance from the pivot point to the line along which the force acts",
-   "unit": "m",
-   "section": "9.2"
-  },
-  {
-   "sym": "θ",
-   "meaning": "the angle between the force and the vector directed from the point of application to the pivot point",
-   "unit": "º",
-   "section": "9.2"
-  },
-  {
-   "sym": "F",
-   "type": "force",
-   "meaning": "the magnitude of the force applied to the body",
-   "unit": "N",
-   "section": "9.2"
-  },
-  {
-   "sym": "F_p",
-   "type": "force",
-   "meaning": "the supporting force the pivot exerts on the seesaw",
-   "unit": "N",
-   "section": "9.2"
-  },
-  {
-   "sym": "w_1",
-   "type": "force",
-   "meaning": "the weight of the first child",
-   "unit": "N",
-   "section": "9.2"
-  },
-  {
-   "sym": "w_2",
-   "type": "force",
-   "meaning": "the weight of the second child",
-   "unit": "N",
-   "section": "9.2"
-  },
-  {
-   "sym": "r_1",
-   "type": "position",
-   "meaning": "the distance from the pivot to the first child",
-   "unit": "m",
-   "section": "9.2"
-  },
-  {
-   "sym": "r_2",
-   "type": "position",
-   "meaning": "the distance from the pivot to the second child",
-   "unit": "m",
-   "section": "9.2"
-  },
-  {
-   "sym": "m",
-   "meaning": "the mass of a child on the seesaw",
-   "unit": "kg",
-   "section": "9.2"
-  },
-  {
-   "sym": "w",
-   "type": "force",
-   "meaning": "the weight of the body, which acts at its center of gravity",
-   "unit": "N",
-   "section": "9.3"
-  },
-  {
-   "sym": "N",
-   "type": "force",
-   "meaning": "the normal force the surface exerts at the pivot point",
-   "unit": "N",
-   "section": "9.3"
-  },
-  {
-   "sym": "τ",
-   "type": "torque",
-   "meaning": "the torque the weight produces about the pivot when the body is displaced from equilibrium",
-   "unit": "N·m",
-   "section": "9.3"
-  },
-  {
-   "sym": "F_L",
-   "type": "force",
-   "meaning": "the force the left hand exerts on the pole",
-   "unit": "N",
-   "section": "9.4"
-  },
-  {
-   "sym": "F_R",
-   "type": "force",
-   "meaning": "the force the right hand exerts on the pole",
-   "unit": "N",
-   "section": "9.4"
-  },
-  {
-   "sym": "w",
-   "type": "force",
-   "meaning": "the weight of the pole, which acts at its center of gravity",
-   "unit": "N",
-   "section": "9.4"
-  },
-  {
-   "sym": "m",
-   "meaning": "the mass of the pole",
-   "unit": "kg",
-   "section": "9.4"
-  },
-  {
-   "sym": "τ",
-   "type": "torque",
-   "meaning": "the torque a force produces about the pivot point chosen for the problem",
-   "unit": "N·m",
-   "section": "9.4"
-  },
-  {
-   "sym": "r_lever",
-   "type": "position",
-   "meaning": "the distance along the pole from the chosen pivot to a hand or to the center of gravity",
-   "unit": "m",
-   "section": "9.4"
-  },
-  {
-   "sym": "MA",
-   "meaning": "mechanical advantage, the ratio of output to input force magnitudes for a simple machine",
-   "section": "9.5"
-  },
-  {
-   "sym": "F_i",
-   "type": "force",
-   "meaning": "the input force, the force applied to the machine",
-   "unit": "N",
-   "section": "9.5"
-  },
-  {
-   "sym": "F_o",
-   "type": "force",
-   "meaning": "the output force, the force the machine applies to its load",
-   "unit": "N",
-   "section": "9.5"
-  },
-  {
-   "sym": "F_nail",
-   "type": "force",
-   "meaning": "the reaction force the nail exerts back on the puller, equal and opposite to the output force",
-   "unit": "N",
-   "section": "9.5"
-  },
-  {
-   "sym": "l_i",
-   "type": "position",
-   "meaning": "the perpendicular lever arm of the input force",
-   "unit": "m",
-   "section": "9.5"
-  },
-  {
-   "sym": "l_o",
-   "type": "position",
-   "meaning": "the perpendicular lever arm of the output force",
-   "unit": "m",
-   "section": "9.5"
-  },
-  {
-   "sym": "N",
-   "type": "force",
-   "meaning": "the normal force on the lever at the pivot, whose torque is zero",
-   "unit": "N",
-   "section": "9.5"
-  },
-  {
-   "sym": "w",
-   "type": "force",
-   "meaning": "the weight of the wheelbarrow and its load",
-   "unit": "N",
-   "section": "9.5"
-  },
-  {
-   "sym": "T_force",
-   "type": "force",
-   "meaning": "the tension in the cord that runs over a pulley",
-   "unit": "N",
-   "section": "9.5"
-  },
-  {
-   "sym": "F_B",
-   "type": "force",
-   "meaning": "the force the biceps exerts on the forearm, and in the second example the force the back muscles exert",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "F_E",
-   "type": "force",
-   "meaning": "the force the humerus exerts on the forearm at the elbow joint",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "F_V",
-   "type": "force",
-   "meaning": "the force the vertebrae exert on the spine at the pivot in the hips",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "F_Vx",
-   "type": "force",
-   "meaning": "the horizontal component of the force on the vertebrae",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "F_Vy",
-   "type": "force",
-   "meaning": "the vertical component of the force on the vertebrae",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "w_a",
-   "type": "force",
-   "meaning": "the weight of the forearm",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "w_b",
-   "type": "force",
-   "meaning": "the weight of the book the hand holds",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "w_ub",
-   "type": "force",
-   "meaning": "the weight of the upper body",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "w_box",
-   "type": "force",
-   "meaning": "the weight of the box being lifted",
-   "unit": "N",
-   "section": "9.6"
-  },
-  {
-   "sym": "r_1",
-   "type": "position",
-   "meaning": "the perpendicular lever arm from the elbow to the point where the biceps pulls",
-   "unit": "m",
-   "section": "9.6"
-  },
-  {
-   "sym": "r_2",
-   "type": "position",
-   "meaning": "the perpendicular lever arm from the elbow to the center of gravity of the forearm",
-   "unit": "m",
-   "section": "9.6"
-  },
-  {
-   "sym": "r_3",
-   "type": "position",
-   "meaning": "the perpendicular lever arm from the elbow to the center of gravity of the book",
-   "unit": "m",
-   "section": "9.6"
-  },
-  {
-   "sym": "θ",
-   "meaning": "the direction of the force on the vertebrae, measured counterclockwise from the horizontal",
-   "unit": "º",
-   "section": "9.6"
-  }
- ],
- "equations": [
-  {
-   "id": "eq-net-force-zero",
-   "concept": "first-condition-equilibrium",
-   "section": "9.1",
-   "latex": "\\text{net}\\;F = 0",
-   "ktex": "\\text{net}\\;\\kF = 0",
-   "important": true
-  },
-  {
-   "id": "eq-net-force-axes",
-   "section": "9.1",
-   "latex": "\\text{net}\\;F_x = 0 \\quad\\text{and}\\quad \\text{net}\\;F_y = 0",
-   "ktex": "\\text{net}\\;\\kFx = 0 \\quad\\text{and}\\quad \\text{net}\\;\\kFy = 0",
-   "important": true
-  },
-  {
-   "id": "eq-torque",
-   "concept": "torque",
-   "section": "9.2",
-   "latex": "\\tau = rF\\sin\\theta",
-   "ktex": "\\ktau = \\krlev\\kF\\sin\\theta",
-   "important": true
-  },
-  {
-   "id": "eq-perp-lever-arm",
-   "concept": "perpendicular-lever-arm",
-   "section": "9.2",
-   "latex": "r_{\\perp} = r\\sin\\theta",
-   "ktex": "\\krperp = \\krlev\\sin\\theta",
-   "important": true
-  },
-  {
-   "id": "eq-torque-perp",
-   "concept": "torque-from-lever-arm",
-   "section": "9.2",
-   "latex": "\\tau = r_{\\perp}F",
-   "ktex": "\\ktau = \\krperp\\kF",
-   "important": true
-  },
-  {
-   "id": "eq-net-torque-zero",
-   "concept": "second-condition-equilibrium",
-   "section": "9.2",
-   "latex": "\\text{net}\\;\\tau = 0",
-   "ktex": "\\text{net}\\;\\ktau = 0",
-   "important": true
-  },
-  {
-   "id": "eq-seesaw-torques",
-   "section": "9.2",
-   "latex": "\\tau_1 = r_1 w_1 \\quad\\text{and}\\quad \\tau_2 = -r_2 w_2",
-   "ktex": "\\ktauone = \\krone\\kwone \\quad\\text{and}\\quad \\ktautwo = -\\krtwo\\kwtwo",
-   "condition": "the torques taken about the pivot of the seesaw",
-   "important": false
-  },
-  {
-   "id": "eq-seesaw-balance",
-   "section": "9.2",
-   "latex": "r_2 w_2 = r_1 w_1",
-   "ktex": "\\krtwo\\kwtwo = \\krone\\kwone",
-   "condition": "the seesaw balanced",
-   "important": false
-  },
-  {
-   "id": "eq-seesaw-distance",
-   "concept": "balanced-seesaw",
-   "section": "9.2",
-   "latex": "r_2 = r_1\\frac{m_1}{m_2}",
-   "ktex": "\\krtwo = \\krone\\frac{m_1}{m_2}",
-   "condition": "the seesaw balanced and of negligible mass",
-   "important": false
-  },
-  {
-   "id": "eq-pivot-force",
-   "section": "9.2",
-   "latex": "F_{\\text{p}} = w_1 + w_2",
-   "ktex": "\\kFp = \\kwone + \\kwtwo",
-   "condition": "the seesaw of negligible mass",
-   "important": false
-  },
-  {
-   "id": "eq-cw-ccw",
-   "section": "9.4",
-   "latex": "\\text{net}\\;\\tau_{\\text{cw}} = -\\,\\text{net}\\;\\tau_{\\text{ccw}}",
-   "ktex": "\\text{net}\\;\\ktau_{\\text{cw}} = -\\,\\text{net}\\;\\ktau_{\\text{ccw}}",
-   "important": true
-  },
-  {
-   "id": "eq-equal-hands",
-   "concept": "symmetric-support",
-   "section": "9.4",
-   "latex": "F_R = F_L = \\frac{w}{2}",
-   "ktex": "\\kFR = \\kFL = \\frac{\\kwgt}{2}",
-   "condition": "the center of gravity of the pole halfway between the hands",
-   "important": true
-  },
-  {
-   "id": "eq-hands-sum",
-   "concept": "unequal-support-forces",
-   "section": "9.4",
-   "latex": "F_L + F_R = w = mg",
-   "ktex": "\\kFL + \\kFR = \\kwgt = mg",
-   "important": true
-  },
-  {
-   "id": "eq-mechanical-advantage",
-   "concept": "mechanical-advantage",
-   "section": "9.5",
-   "latex": "\\text{MA} = \\frac{F_{\\text{o}}}{F_{\\text{i}}}",
-   "ktex": "\\text{MA} = \\frac{\\kFo}{\\kFi}",
-   "important": true
-  },
-  {
-   "id": "eq-lever-balance",
-   "concept": "lever",
-   "section": "9.5",
-   "latex": "l_{\\text{i}}F_{\\text{i}} = l_{\\text{o}}F_{\\text{o}}",
-   "ktex": "\\kli\\kFi = \\klo\\kFo",
-   "condition": "the nail not moving, so that the two torques about the pivot are equal",
-   "important": true
-  },
-  {
-   "id": "eq-lever-ma",
-   "concept": "lever-mechanical-advantage",
-   "section": "9.5",
-   "latex": "\\text{MA} = \\frac{F_{\\text{o}}}{F_{\\text{i}}} = \\frac{l_{\\text{i}}}{l_{\\text{o}}}",
-   "ktex": "\\text{MA} = \\frac{\\kFo}{\\kFi} = \\frac{\\kli}{\\klo}",
-   "important": true
-  },
-  {
-   "id": "eq-input-force",
-   "section": "9.5",
-   "latex": "F_{\\text{i}} = F_{\\text{o}}\\frac{l_{\\text{o}}}{l_{\\text{i}}}",
-   "ktex": "\\kFi = \\kFo\\frac{\\klo}{\\kli}",
-   "important": false
-  },
-  {
-   "id": "eq-crank-ma",
-   "concept": "crank-and-wheel",
-   "section": "9.5",
-   "latex": "\\text{MA} = \\frac{r_{\\text{i}}}{r_{\\text{o}}}",
-   "important": true
-  },
-  {
-   "id": "eq-pulley-force",
-   "concept": "pulley-mechanical-advantage",
-   "section": "9.5",
-   "latex": "F_{\\text{o}} \\approx nT",
-   "ktex": "\\kFo \\approx n\\kTf",
-   "condition": "frictionless pulleys, with n cables pulling directly on the load",
-   "important": true
-  },
-  {
-   "id": "eq-biceps-torque-balance",
-   "section": "9.6",
-   "latex": "r_2 w_{\\text{a}} + r_3 w_{\\text{b}} = r_1 F_{\\text{B}}",
-   "ktex": "\\krtwo\\kwarm + \\krthree\\kwbook = \\krone\\kFB",
-   "condition": "the pivot taken at the elbow joint",
-   "important": false
-  },
-  {
-   "id": "eq-biceps-force",
-   "concept": "muscle-force-from-torque",
-   "section": "9.6",
-   "latex": "F_{\\text{B}} = \\frac{r_2 w_{\\text{a}} + r_3 w_{\\text{b}}}{r_1}",
-   "ktex": "\\kFB = \\frac{\\krtwo\\kwarm + \\krthree\\kwbook}{\\krone}",
-   "important": true
-  },
-  {
-   "id": "eq-vertebrae-magnitude",
-   "section": "9.6",
-   "latex": "F_{\\text{V}} = \\sqrt{F_{\\text{V}x}^{2} + F_{\\text{V}y}^{2}}",
-   "ktex": "\\kFV = \\sqrt{\\kFVx^{2} + \\kFVy^{2}}",
-   "important": false
-  },
-  {
-   "id": "eq-vertebrae-direction",
-   "section": "9.6",
-   "latex": "\\theta = \\tan^{-1}\\left(\\frac{F_{\\text{V}y}}{F_{\\text{V}x}}\\right)",
-   "ktex": "\\theta = \\tan^{-1}\\left(\\frac{\\kFVy}{\\kFVx}\\right)",
-   "important": false
-  }
- ],
- "glossary": [
-  {
-   "section": "9.1",
-   "term": "static equilibrium",
-   "definition": "a state of equilibrium in which the net external force and torque acting on a system is zero"
-  },
-  {
-   "section": "9.1",
-   "term": "dynamic equilibrium",
-   "definition": "a state of equilibrium in which the net external force and torque on a system moving with constant velocity are zero"
-  },
-  {
-   "section": "9.2",
-   "term": "torque",
-   "definition": "turning or twisting effectiveness of a force"
-  },
-  {
-   "section": "9.2",
-   "term": "perpendicular lever arm",
-   "definition": "the shortest distance from the pivot point to the line along which F lies"
-  },
-  {
-   "section": "9.2",
-   "term": "SI units of torque",
-   "definition": "newton times meters, usually written as N·m"
-  },
-  {
-   "section": "9.2",
-   "term": "center of gravity",
-   "definition": "the point where the total weight of the body is assumed to be concentrated"
-  },
-  {
-   "section": "9.3",
-   "term": "neutral equilibrium",
-   "definition": "a state of equilibrium that is independent of a system’s displacements from its original position"
-  },
-  {
-   "section": "9.3",
-   "term": "stable equilibrium",
-   "definition": "a system, when displaced, experiences a net force or torque in a direction opposite to the direction of the displacement"
-  },
-  {
-   "section": "9.3",
-   "term": "unstable equilibrium",
-   "definition": "a system, when displaced, experiences a net force or torque in the same direction as the displacement from equilibrium"
-  },
-  {
-   "section": "9.4",
-   "term": "static equilibrium",
-   "definition": "equilibrium in which the acceleration of the system is zero and accelerated rotation does not occur"
-  },
-  {
-   "section": "9.5",
-   "term": "mechanical advantage",
-   "definition": "the ratio of output to input forces for any simple machine"
-  }
- ]
+  "id": "9",
+  "dir": "ch09",
+  "title": "Statics and Torque",
+  "intro": {
+    "module": "m42167",
+    "slug": "9-introduction-to-statics-and-torque"
+  },
+  "sections": [
+    {
+      "id": "9.1",
+      "module": "m42170",
+      "title": "The First Condition for Equilibrium",
+      "slug": "9-1-the-first-condition-for-equilibrium"
+    },
+    {
+      "id": "9.2",
+      "module": "m42171",
+      "title": "The Second Condition for Equilibrium",
+      "slug": "9-2-the-second-condition-for-equilibrium"
+    },
+    {
+      "id": "9.3",
+      "module": "m42172",
+      "title": "Stability",
+      "slug": "9-3-stability"
+    },
+    {
+      "id": "9.4",
+      "module": "m42173",
+      "title": "Applications of Statics, Including Problem-Solving Strategies",
+      "slug": "9-4-applications-of-statics-including-problem-solving-strategies"
+    },
+    {
+      "id": "9.5",
+      "module": "m42174",
+      "title": "Simple Machines",
+      "slug": "9-5-simple-machines"
+    },
+    {
+      "id": "9.6",
+      "module": "m42175",
+      "title": "Forces and Torques in Muscles and Joints",
+      "slug": "9-6-forces-and-torques-in-muscles-and-joints"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the net external force on the system, which is zero when the system is in equilibrium",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-first-condition"
+    },
+    {
+      "sym": "F_x",
+      "type": "force",
+      "meaning": "the net external force along the horizontal axis, which is zero in equilibrium",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-first-condition"
+    },
+    {
+      "sym": "F_y",
+      "type": "force",
+      "meaning": "the net external force along the vertical axis, which is zero in equilibrium",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-first-condition"
+    },
+    {
+      "sym": "w",
+      "type": "force",
+      "meaning": "the weight of the person or the car, the gravitational force acting on it",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "N",
+      "type": "force",
+      "meaning": "the normal force the ground exerts, which supports the weight",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "F_app",
+      "type": "force",
+      "meaning": "the applied force between the tires and the road that drives the car forward",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "f_fric",
+      "type": "force",
+      "meaning": "the air friction on the car, which balances the applied force at constant velocity",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "v",
+      "type": "velocity",
+      "meaning": "the constant velocity of a body in dynamic equilibrium, whose magnitude and direction both stay the same",
+      "unit": "m/s",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "τ",
+      "type": "torque",
+      "meaning": "torque, the turning or twisting effectiveness of a force about a chosen pivot point",
+      "unit": "N·m",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "τ_1",
+      "type": "torque",
+      "meaning": "the counterclockwise torque the first child's weight produces about the pivot",
+      "unit": "N·m",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "τ_2",
+      "type": "torque",
+      "meaning": "the clockwise torque the second child's weight produces about the pivot",
+      "unit": "N·m",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "r_lever",
+      "type": "position",
+      "meaning": "the distance from the pivot point to the point where the force is applied",
+      "unit": "m",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "r_perp",
+      "type": "position",
+      "meaning": "the perpendicular lever arm, the shortest distance from the pivot point to the line along which the force acts",
+      "unit": "m",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the angle between the force and the vector directed from the point of application to the pivot point",
+      "unit": "°",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the magnitude of the force applied to the body",
+      "unit": "N",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "F_p",
+      "type": "force",
+      "meaning": "the supporting force the pivot exerts on the seesaw",
+      "unit": "N",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "w_1",
+      "type": "force",
+      "meaning": "the weight of the first child",
+      "unit": "N",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "w_2",
+      "type": "force",
+      "meaning": "the weight of the second child",
+      "unit": "N",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "r_1",
+      "type": "position",
+      "meaning": "the distance from the pivot to the first child",
+      "unit": "m",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "r_2",
+      "type": "position",
+      "meaning": "the distance from the pivot to the second child",
+      "unit": "m",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of a child on the seesaw",
+      "unit": "kg",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "w",
+      "type": "force",
+      "meaning": "the weight of the body, which acts at its center of gravity",
+      "unit": "N",
+      "section": "9.3",
+      "anchor": "9.3-stable"
+    },
+    {
+      "sym": "N",
+      "type": "force",
+      "meaning": "the normal force the surface exerts at the pivot point",
+      "unit": "N",
+      "section": "9.3",
+      "anchor": "9.3-stable"
+    },
+    {
+      "sym": "τ",
+      "type": "torque",
+      "meaning": "the torque the weight produces about the pivot when the body is displaced from equilibrium",
+      "unit": "N·m",
+      "section": "9.3",
+      "anchor": "9.3-stable"
+    },
+    {
+      "sym": "F_L",
+      "type": "force",
+      "meaning": "the force the left hand exerts on the pole",
+      "unit": "N",
+      "section": "9.4",
+      "anchor": "9.4-symmetric"
+    },
+    {
+      "sym": "F_R",
+      "type": "force",
+      "meaning": "the force the right hand exerts on the pole",
+      "unit": "N",
+      "section": "9.4",
+      "anchor": "9.4-symmetric"
+    },
+    {
+      "sym": "w",
+      "type": "force",
+      "meaning": "the weight of the pole, which acts at its center of gravity",
+      "unit": "N",
+      "section": "9.4",
+      "anchor": "9.4-symmetric"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of the pole",
+      "unit": "kg",
+      "section": "9.4",
+      "anchor": "9.4-symmetric"
+    },
+    {
+      "sym": "τ",
+      "type": "torque",
+      "meaning": "the torque a force produces about the pivot point chosen for the problem",
+      "unit": "N·m",
+      "section": "9.4",
+      "anchor": "9.4-strategy"
+    },
+    {
+      "sym": "r_lever",
+      "type": "position",
+      "meaning": "the distance along the pole from the chosen pivot to a hand or to the center of gravity",
+      "unit": "m",
+      "section": "9.4",
+      "anchor": "9.4-strategy"
+    },
+    {
+      "sym": "MA",
+      "meaning": "mechanical advantage, the ratio of output to input force magnitudes for a simple machine",
+      "section": "9.5",
+      "anchor": "9.5-machines"
+    },
+    {
+      "sym": "F_i",
+      "type": "force",
+      "meaning": "the input force, the force applied to the machine",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-machines"
+    },
+    {
+      "sym": "F_o",
+      "type": "force",
+      "meaning": "the output force, the force the machine applies to its load",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-machines"
+    },
+    {
+      "sym": "F_nail",
+      "type": "force",
+      "meaning": "the reaction force the nail exerts back on the puller, equal and opposite to the output force",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-lever"
+    },
+    {
+      "sym": "l_i",
+      "type": "position",
+      "meaning": "the perpendicular lever arm of the input force",
+      "unit": "m",
+      "section": "9.5",
+      "anchor": "9.5-lever"
+    },
+    {
+      "sym": "l_o",
+      "type": "position",
+      "meaning": "the perpendicular lever arm of the output force",
+      "unit": "m",
+      "section": "9.5",
+      "anchor": "9.5-lever"
+    },
+    {
+      "sym": "N",
+      "type": "force",
+      "meaning": "the normal force on the lever at the pivot, whose torque is zero",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-lever"
+    },
+    {
+      "sym": "w",
+      "type": "force",
+      "meaning": "the weight of the wheelbarrow and its load",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-wheelbarrow"
+    },
+    {
+      "sym": "T_force",
+      "type": "force",
+      "meaning": "the tension in the cord that runs over a pulley",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-pulleys"
+    },
+    {
+      "sym": "F_B",
+      "type": "force",
+      "meaning": "the force the biceps exerts on the forearm, and in the second example the force the back muscles exert",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "F_E",
+      "type": "force",
+      "meaning": "the force the humerus exerts on the forearm at the elbow joint",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-joints"
+    },
+    {
+      "sym": "F_V",
+      "type": "force",
+      "meaning": "the force the vertebrae exert on the spine at the pivot in the hips",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "F_Vx",
+      "type": "force",
+      "meaning": "the horizontal component of the force on the vertebrae",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "F_Vy",
+      "type": "force",
+      "meaning": "the vertical component of the force on the vertebrae",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "w_a",
+      "type": "force",
+      "meaning": "the weight of the forearm",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "w_b",
+      "type": "force",
+      "meaning": "the weight of the book the hand holds",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "w_ub",
+      "type": "force",
+      "meaning": "the weight of the upper body",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "w_box",
+      "type": "force",
+      "meaning": "the weight of the box being lifted",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "r_1",
+      "type": "position",
+      "meaning": "the perpendicular lever arm from the elbow to the point where the biceps pulls",
+      "unit": "m",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "r_2",
+      "type": "position",
+      "meaning": "the perpendicular lever arm from the elbow to the center of gravity of the forearm",
+      "unit": "m",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "r_3",
+      "type": "position",
+      "meaning": "the perpendicular lever arm from the elbow to the center of gravity of the book",
+      "unit": "m",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the direction of the force on the vertebrae, measured counterclockwise from the horizontal",
+      "unit": "°",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    }
+  ],
+  "equations": [
+    {
+      "id": "eq-net-force-zero",
+      "concept": "first-condition-equilibrium",
+      "section": "9.1",
+      "latex": "\\text{net}\\;\\mathbf{F} = 0",
+      "important": true,
+      "anchor": "9.1-first-condition"
+    },
+    {
+      "id": "eq-net-force-axes",
+      "section": "9.1",
+      "latex": "\\text{net}\\;F_x = 0 \\quad\\text{and}\\quad \\text{net}\\;F_y = 0",
+      "ktex": "\\text{net}\\;\\kFx = 0 \\quad\\text{and}\\quad \\text{net}\\;\\kFy = 0",
+      "important": true,
+      "anchor": "9.1-first-condition"
+    },
+    {
+      "id": "eq-torque",
+      "concept": "torque",
+      "section": "9.2",
+      "latex": "\\tau = rF\\sin\\theta",
+      "ktex": "\\ktau = \\krlev\\kF\\sin\\theta",
+      "important": true,
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "id": "eq-perp-lever-arm",
+      "concept": "perpendicular-lever-arm",
+      "section": "9.2",
+      "latex": "r_{\\perp} = r\\sin\\theta",
+      "ktex": "\\krperp = \\krlev\\sin\\theta",
+      "important": true,
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "id": "eq-torque-perp",
+      "concept": "torque-from-lever-arm",
+      "section": "9.2",
+      "latex": "\\tau = r_{\\perp}F",
+      "ktex": "\\ktau = \\krperp\\kF",
+      "important": true,
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "id": "eq-net-torque-zero",
+      "concept": "second-condition-equilibrium",
+      "section": "9.2",
+      "latex": "\\text{net}\\;\\tau = 0",
+      "ktex": "\\text{net}\\;\\ktau = 0",
+      "important": true,
+      "anchor": "9.2-second-condition"
+    },
+    {
+      "id": "eq-seesaw-torques",
+      "section": "9.2",
+      "latex": "\\tau_1 = r_1 w_1 \\quad\\text{and}\\quad \\tau_2 = -r_2 w_2",
+      "ktex": "\\ktauone = \\krone\\kwone \\quad\\text{and}\\quad \\ktautwo = -\\krtwo\\kwtwo",
+      "condition": "the torques taken about the pivot of the seesaw",
+      "important": false,
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "id": "eq-seesaw-balance",
+      "section": "9.2",
+      "latex": "r_2 w_2 = r_1 w_1",
+      "ktex": "\\krtwo\\kwtwo = \\krone\\kwone",
+      "condition": "the seesaw balanced",
+      "important": false,
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "id": "eq-seesaw-distance",
+      "concept": "balanced-seesaw",
+      "section": "9.2",
+      "latex": "r_2 = r_1\\frac{m_1}{m_2}",
+      "ktex": "\\krtwo = \\krone\\frac{m_1}{m_2}",
+      "condition": "the seesaw balanced and of negligible mass",
+      "important": false,
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "id": "eq-pivot-force",
+      "section": "9.2",
+      "latex": "F_{\\text{p}} = w_1 + w_2",
+      "ktex": "\\kFp = \\kwone + \\kwtwo",
+      "condition": "the seesaw of negligible mass",
+      "important": false,
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "id": "eq-cw-ccw",
+      "section": "9.4",
+      "latex": "\\text{net}\\;\\tau_{\\text{cw}} = -\\,\\text{net}\\;\\tau_{\\text{ccw}}",
+      "ktex": "\\text{net}\\;\\ktau_{\\text{cw}} = -\\,\\text{net}\\;\\ktau_{\\text{ccw}}",
+      "important": true,
+      "anchor": "9.4-unequal"
+    },
+    {
+      "id": "eq-equal-hands",
+      "concept": "symmetric-support",
+      "section": "9.4",
+      "latex": "F_R = F_L = \\frac{w}{2}",
+      "ktex": "\\kFR = \\kFL = \\frac{\\kwgt}{2}",
+      "condition": "the center of gravity of the pole halfway between the hands",
+      "important": true,
+      "anchor": "9.4-symmetric"
+    },
+    {
+      "id": "eq-hands-sum",
+      "concept": "unequal-support-forces",
+      "section": "9.4",
+      "latex": "F_L + F_R = w = mg",
+      "ktex": "\\kFL + \\kFR = \\kwgt = mg",
+      "important": true,
+      "anchor": "9.4-unequal"
+    },
+    {
+      "id": "eq-mechanical-advantage",
+      "concept": "mechanical-advantage",
+      "section": "9.5",
+      "latex": "\\text{MA} = \\frac{F_{\\text{o}}}{F_{\\text{i}}}",
+      "ktex": "\\text{MA} = \\frac{\\kFo}{\\kFi}",
+      "important": true,
+      "anchor": "9.5-machines"
+    },
+    {
+      "id": "eq-lever-balance",
+      "concept": "lever",
+      "section": "9.5",
+      "latex": "l_{\\text{i}}F_{\\text{i}} = l_{\\text{o}}F_{\\text{o}}",
+      "ktex": "\\kli\\kFi = \\klo\\kFo",
+      "condition": "the nail not moving, so that the two torques about the pivot are equal",
+      "important": true,
+      "anchor": "9.5-lever"
+    },
+    {
+      "id": "eq-lever-ma",
+      "concept": "lever-mechanical-advantage",
+      "section": "9.5",
+      "latex": "\\text{MA} = \\frac{F_{\\text{o}}}{F_{\\text{i}}} = \\frac{l_{\\text{i}}}{l_{\\text{o}}}",
+      "ktex": "\\text{MA} = \\frac{\\kFo}{\\kFi} = \\frac{\\kli}{\\klo}",
+      "important": true,
+      "anchor": "9.5-lever"
+    },
+    {
+      "id": "eq-input-force",
+      "section": "9.5",
+      "latex": "F_{\\text{i}} = F_{\\text{o}}\\frac{l_{\\text{o}}}{l_{\\text{i}}}",
+      "ktex": "\\kFi = \\kFo\\frac{\\klo}{\\kli}",
+      "important": false,
+      "anchor": "9.5-wheelbarrow"
+    },
+    {
+      "id": "eq-crank-ma",
+      "concept": "crank-and-wheel",
+      "section": "9.5",
+      "latex": "\\text{MA} = \\frac{r_{\\text{i}}}{r_{\\text{o}}}",
+      "important": true,
+      "anchor": "9.5-crank"
+    },
+    {
+      "id": "eq-pulley-force",
+      "concept": "pulley-mechanical-advantage",
+      "section": "9.5",
+      "latex": "F_{\\text{o}} \\approx nT",
+      "ktex": "\\kFo \\approx n\\kTf",
+      "condition": "frictionless pulleys, with n cables pulling directly on the load",
+      "important": true,
+      "anchor": "9.5-pulleys"
+    },
+    {
+      "id": "eq-biceps-torque-balance",
+      "section": "9.6",
+      "latex": "r_2 w_{\\text{a}} + r_3 w_{\\text{b}} = r_1 F_{\\text{B}}",
+      "ktex": "\\krtwo\\kwarm + \\krthree\\kwbook = \\krone\\kFB",
+      "condition": "the pivot taken at the elbow joint",
+      "important": false,
+      "anchor": "9.6-biceps"
+    },
+    {
+      "id": "eq-biceps-force",
+      "concept": "muscle-force-from-torque",
+      "section": "9.6",
+      "latex": "F_{\\text{B}} = \\frac{r_2 w_{\\text{a}} + r_3 w_{\\text{b}}}{r_1}",
+      "ktex": "\\kFB = \\frac{\\krtwo\\kwarm + \\krthree\\kwbook}{\\krone}",
+      "important": true,
+      "anchor": "9.6-biceps"
+    },
+    {
+      "id": "eq-vertebrae-magnitude",
+      "section": "9.6",
+      "latex": "F_{\\text{V}} = \\sqrt{F_{\\text{V}x}^{2} + F_{\\text{V}y}^{2}}",
+      "ktex": "\\kFV = \\sqrt{\\kFVx^{2} + \\kFVy^{2}}",
+      "important": false,
+      "anchor": "9.6-lifting"
+    },
+    {
+      "id": "eq-vertebrae-direction",
+      "section": "9.6",
+      "latex": "\\theta = \\tan^{-1}\\left(\\frac{F_{\\text{V}y}}{F_{\\text{V}x}}\\right)",
+      "ktex": "\\theta = \\tan^{-1}\\left(\\frac{\\kFVy}{\\kFVx}\\right)",
+      "important": false,
+      "anchor": "9.6-lifting"
+    }
+  ],
+  "glossary": [
+    {
+      "section": "9.1",
+      "term": "static equilibrium",
+      "definition": "a state of equilibrium in which the net external force and torque acting on a system is zero"
+    },
+    {
+      "section": "9.1",
+      "term": "dynamic equilibrium",
+      "definition": "a state of equilibrium in which the net external force and torque on a system moving with constant velocity are zero"
+    },
+    {
+      "section": "9.2",
+      "term": "torque",
+      "definition": "turning or twisting effectiveness of a force"
+    },
+    {
+      "section": "9.2",
+      "term": "perpendicular lever arm",
+      "definition": "the shortest distance from the pivot point to the line along which F lies"
+    },
+    {
+      "section": "9.2",
+      "term": "SI units of torque",
+      "definition": "newton times meters, usually written as N·m"
+    },
+    {
+      "section": "9.2",
+      "term": "center of gravity",
+      "definition": "the point where the total weight of the body is assumed to be concentrated"
+    },
+    {
+      "section": "9.3",
+      "term": "neutral equilibrium",
+      "definition": "a state of equilibrium that is independent of a system’s displacements from its original position"
+    },
+    {
+      "section": "9.3",
+      "term": "stable equilibrium",
+      "definition": "a system, when displaced, experiences a net force or torque in a direction opposite to the direction of the displacement"
+    },
+    {
+      "section": "9.3",
+      "term": "unstable equilibrium",
+      "definition": "a system, when displaced, experiences a net force or torque in the same direction as the displacement from equilibrium"
+    },
+    {
+      "section": "9.4",
+      "term": "static equilibrium",
+      "definition": "equilibrium in which the acceleration of the system is zero and accelerated rotation does not occur"
+    },
+    {
+      "section": "9.5",
+      "term": "mechanical advantage",
+      "definition": "the ratio of output to input forces for any simple machine"
+    }
+  ]
 }

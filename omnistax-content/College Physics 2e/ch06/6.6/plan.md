@@ -287,3 +287,15 @@ angles stay in ink, as the book's rules say.
   $\kTorbone^2/\kTorbtwo^2 = \krone^3/\krtwo^3$", the two orbital periods
   this chapter staged, so that the concept map prints the two periods in
   the time hue as the section's own equation does.
+
+### Decided in the chapter pass
+
+- Every anchor above is written on its variable and equation row in
+  `chapter.json`.
+- The `name` of `keplers-third-law` is corrected to
+  "Kepler's third law, $\kTorbone^2/\kTorbtwo^2 = \krone^3/\krtwo^3$" and
+  merged, so the concept map prints the two orbital periods this chapter
+  staged in the time hue rather than Chapter 4's two tensions.
+- The symbol keys `r_curv` (macro `\kr`) and `T_orb1`/`T_orb2` stand as they
+  were merged; they are the book-level rows this chapter added and no other
+  chapter's row is touched.

@@ -245,3 +245,23 @@ the book's own rules ask.
   section's worked examples start from. 8.4 may already own it; if it does
   not, a row at 8.4 with `concept: "elastic-collision-1d"` would give this
   section's text and `sim-collision`'s readout something to point at.
+
+Decided in the chapter pass (2026-09-12). The nine variable anchors and the
+three equation anchors above are written.
+
+The conservation of momentum written in the two objects' masses and velocities
+already has a row: `eq-collision-momentum` at 8.4, with the condition that the
+net external force on the two-object system is zero and `important: true`. 8.4
+does own it, as the plan suspected it might, so no row is added here and this
+section's text and `sim-collision`'s readout point at 8.4's row.
+
+The inline conceptual question `cq1` was placed after the span `inelastic` but
+`text.html` carried no `<div class="exercises" data-place="inelastic">`, so the
+card had nowhere to render. The host is in, at the end of that section.
+
+The two held AP items that ask for the velocity of the centre of mass keep no
+`cite`, as the notes say, because the validator requires a `cite` to name an id
+of the section the exercise is set in and this section's text never mentions the
+centre of mass. Their suggested approaches name 8.3's sentence in words and both
+are tagged with 6.5's `center-of-mass`, which is the whole of what the brief
+asks for on a page that cannot cite across sections.

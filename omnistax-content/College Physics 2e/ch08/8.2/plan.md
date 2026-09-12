@@ -244,3 +244,16 @@ of the bump stay in ink.
   unit "m/s", anchor `8.2-impulse`. The section's own figure carries it on
   a slider and its readout states it, and the Definitions view has
   nothing to say about $\kv$ on this page without the row.
+
+Decided in the chapter pass (2026-09-12). The seven anchors above are written,
+and the variable row for `v` is added to `chapter.json` with the meaning,
+the unit and the anchor the section asked for, so the Definitions view has
+something to say about the speed the slider of `sim-impulse` carries.
+
+Two things the reading found and fixed. The caption of Figure 8.2 said the
+force was "drawn against the time as in Figure 8.2", which is the figure
+pointing at itself and which the build would have linked to itself; the clause
+is gone. The masculine ordinal the CNXML writes for degrees stood in six places
+in `figures.js`, in the angle slider's unit and in the arc labels and headlines
+of `sim-billiard`; outside math it is now the degree sign, which is what
+Chapters 4, 9 and 16 write.

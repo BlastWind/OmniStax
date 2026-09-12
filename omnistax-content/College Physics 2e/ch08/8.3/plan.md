@@ -293,3 +293,19 @@ untyped and stay in ink.
   plain LaTeX, `v_{\text{cm}}`, which the validator accepts; when the row
   is merged the readout of `sim-center-of-mass` and the two approaches can
   take the macro.
+
+Decided in the chapter pass (2026-09-12). The seventeen variable anchors and
+the nine equation anchors above are written.
+
+The symbol row for the velocity of the centre of mass is merged:
+`{"sym": "v_cm", "latex": "v_{\\text{cm}}", "type": "velocity",
+"macro": "\\kvcm"}`, staged in `book-rows.json` and merged with
+`mergebook.py`. The readout of `sim-center-of-mass` now writes `\kvcm`, so the
+velocity it states stands in the velocity hue beside the `\kptot` it is
+divided out of, instead of in ink. No suggested approach of this section writes
+the symbol in LaTeX, so none of them changed.
+
+The inline conceptual question `cq2` was placed after the span `conservation`
+but `text.html` carried no `<div class="exercises" data-place="conservation">`
+for it to render in, so the card was laid out into nothing. The host is in, at
+the end of that section after the centre-of-mass sim.

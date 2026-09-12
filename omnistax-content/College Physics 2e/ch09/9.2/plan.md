@@ -274,3 +274,16 @@ acceleration: statics has none of them.
   the same way, in plain LaTeX and in ink, as $\theta_1$ and $\theta_2$ are
   written in 4.7. Nothing is wanted unless the chapter pass would rather have
   rows for them.
+
+**Decided in the chapter pass (2026-09-12).** Every anchor above is written.
+No rows are added for $m_1$ and $m_2$: they stay plain LaTeX in ink, as
+$\theta_1$ and $\theta_2$ do in 4.7, because a mass is untyped in this book
+and a row with no type would only repeat what the text says. One thing in
+`text.html` is changed. The closing block `anchored-object` was headed "The
+five forces of the test prep item" and opened "One of the test prep items
+applies five forces…", which is the page talking about its own apparatus
+rather than about the physics (rule 17). The heading is now "Five equal
+forces about one point" and the paragraph says what the scene is and what
+decides the torque each force makes; the figure and the item are untouched.
+The book's own image still travels on the item's card as well, as 4.7's
+rescue image does, so the reader meets it in both places.

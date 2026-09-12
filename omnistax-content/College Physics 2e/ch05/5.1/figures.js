@@ -188,7 +188,7 @@ function skier(ctx, x, y, theta) {
 (function () {
   const d = sim('sim-skier', 740);
   const m = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 120, step: 1, value: 62, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the skier' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 45, step: 1, value: 25, unit: 'º', dec: 0, onInput: reset, aria: 'angle of the slope' });
+  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 45, step: 1, value: 25, unit: '°', dec: 0, onInput: reset, aria: 'angle of the slope' });
   const fk = ctl(d.controls, { label: '\\kfk', cls: 'force', min: 0, max: 200, step: 0.5, value: 45, unit: 'N', dec: 1, onInput: reset, aria: 'friction on the skier' });
   const T = 4;
   const cy = cycle(() => T, 1.2);
@@ -207,7 +207,7 @@ function skier(ctx, x, y, theta) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(bx, by); ctx.lineTo(bx, by + 70); ctx.lineTo(tx, by + 70); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, tx, ty, bx, by, PAL.muted, 3);
     line(ctx, tx, by, bx, by, PAL.rule, 2, [10, 10]);
-    text(ctx, fmt(th.v, 0) + 'º', bx - 86, by - 18, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    text(ctx, fmt(th.v, 0) + '°', bx - 86, by - 18, PAL.ink, { size: 20, weight: 600, align: 'right' });
     const sx = tx + (bx - tx) * frac, sy = ty + (by - ty) * frac;
     /* the forces on her, drawn from her centre, with the skier over their tails */
     const px = sx + 8 * sn, py = sy - 44 - 8 * cs, S = 100 / w;
@@ -243,10 +243,10 @@ function skier(ctx, x, y, theta) {
     headline(ctx, steady
       ? 'the ' + fmt(fk.v, 1) + ' N of friction balances the ' + fmt(wx, 0) + ' N along the slope, so she slides at a constant velocity'
       : a > 0
-        ? 'on a ' + fmt(th.v, 0) + 'º slope her ' + fmt(w, 0) + ' N weight gives ' + fmt(wx, 0) + ' N along the slope and ' + fmt(wp, 0) + ' N into it, so μ_k = ' + fmt(mu, 3)
+        ? 'on a ' + fmt(th.v, 0) + '° slope her ' + fmt(w, 0) + ' N weight gives ' + fmt(wx, 0) + ' N along the slope and ' + fmt(wp, 0) + ' N into it, so μ_k = ' + fmt(mu, 3)
         : 'the ' + fmt(fk.v, 1) + ' N of friction is more than the ' + fmt(wx, 0) + ' N along the slope, so she would slow down rather than speed up');
     readout(d.readout, `\\mu_{\\text{k}} = \\frac{\\kfk}{\\kN} = \\frac{\\kfk}{m\\kg\\cos\\theta} = \\frac{${fmt(fk.v, 1)}\\ \\text{N}}{(${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(cs, 3)})} = ${fmt(mu, 3)}`,
-      'The acceleration down the slope is a = g(sin θ − μ_k cos θ) = ' + fmt(a, 2) + ' m/s², and it is the same for a skier of any mass. She slides at a constant velocity on a slope of tan⁻¹ μ_k = ' + fmt(Math.atan(mu) / RAD, 1) + 'º.');
+      'The acceleration down the slope is a = g(sin θ − μ_k cos θ) = ' + fmt(a, 2) + ' m/s², and it is the same for a skier of any mass. She slides at a constant velocity on a slope of tan⁻¹ μ_k = ' + fmt(Math.atan(mu) / RAD, 1) + '°.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 4.5), draw });
 })();
@@ -294,7 +294,7 @@ function skier(ctx, x, y, theta) {
     text(ctx, 'f = ' + fmt(f, 2) + ' nN', tipX - 110 - fl / 2, surfaceY - 64, C('force'), { size: 20, weight: 600, align: 'center' });
     arrow(ctx, topX, 104, topX, 174, C('force'), 5);
     text(ctx, 'N = ' + fmt(N.v, 0) + ' nN', topX - 14, 140, C('force'), { size: 20, weight: 600, align: 'right' });
-    headline(ctx, 'pressed on with N = ' + fmt(N.v, 0) + ' nN, the tip is dragged back by f = ' + fmt(f, 2) + ' nN and leans ' + fmt(lean, 1) + 'º behind its base');
+    headline(ctx, 'pressed on with N = ' + fmt(N.v, 0) + ' nN, the tip is dragged back by f = ' + fmt(f, 2) + ' nN and leans ' + fmt(lean, 1) + '° behind its base');
     readout(d.readout, `\\kfk = \\mu_{\\text{k}}\\kN = (${fmt(uk.v, 2)})(${fmt(N.v, 0)}\\ \\text{nN}) = ${fmt(f, 2)}\\ \\text{nN}`,
       'Press the tip on harder and more of its atoms adhere to the surface, so the friction that leans it back is larger. The atoms the tip has passed over are left vibrating, and that vibration travels away as sound and becomes the heat of rubbing.');
   }
@@ -303,7 +303,7 @@ function skier(ctx, x, y, theta) {
 
 /* =====================================================================
    The figure the last two problems refer to: the block of ice pushed at
-   25º below the horizontal and pulled at 25º above it. A faithful copy,
+   25° below the horizontal and pulled at 25° above it. A faithful copy,
    with no sliders and nothing moving.
 ===================================================================== */
 (function () {
@@ -324,7 +324,7 @@ function skier(ctx, x, y, theta) {
       arrow(ctx, cxp, cyp, hx, hy, C('force'), 5);
       text(ctx, 'F', (cxp + hx) / 2 + 6, (cyp + hy) / 2 - 26, C('force'), { size: 22, weight: 600, align: 'center' });
       line(ctx, cxp, cyp, cxp + 120, cyp, PAL.rule, 2, [8, 8]);
-      text(ctx, fmt(ANG, 0) + 'º', cxp + 72, cyp - 24, PAL.ink, { size: 19, align: 'center' });
+      text(ctx, fmt(ANG, 0) + '°', cxp + 72, cyp - 24, PAL.ink, { size: 19, align: 'center' });
     } else {
       const cxp = bx - bw / 2, cyp = iceY - bh + 16;
       const hx = cxp - len * Math.cos(A), hy = cyp - len * Math.sin(A);
@@ -332,7 +332,7 @@ function skier(ctx, x, y, theta) {
       arrow(ctx, hx, hy, cxp, cyp, C('force'), 5);
       text(ctx, 'F', hx - 16, hy - 12, C('force'), { size: 22, weight: 600, align: 'right' });
       line(ctx, cxp, cyp, cxp - 120, cyp, PAL.rule, 2, [8, 8]);
-      text(ctx, fmt(ANG, 0) + 'º', cxp - 76, cyp - 24, PAL.ink, { size: 19, align: 'center' });
+      text(ctx, fmt(ANG, 0) + '°', cxp - 76, cyp - 24, PAL.ink, { size: 19, align: 'center' });
     }
     text(ctx, label, x0 + 24, 120, PAL.ink, { size: 24, weight: 700 });
   }
@@ -341,7 +341,7 @@ function skier(ctx, x, y, theta) {
     ice(ctx, 20, '(a) pushing', false);
     line(ctx, 700, 100, 700, 500, PAL.rule, 2);
     ice(ctx, 730, '(b) pulling', true);
-    headline(ctx, 'the same 45.0 kg block of ice, pushed at 25º below the horizontal and pulled at 25º above it');
+    headline(ctx, 'the same 45.0 kg block of ice, pushed at 25° below the horizontal and pulled at 25° above it');
     readout(d.readout, '\\text{the block of ice: } m = 45.0\\ \\text{kg},\\quad \\theta = 25^\\circ');
   }
   register(d.fig, { update: () => {}, draw });

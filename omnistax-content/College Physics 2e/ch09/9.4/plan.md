@@ -221,3 +221,9 @@ ink, as the chapter config says.
 - equations `eq-equal-hands` → 9.4-symmetric
 - equations `eq-cw-ccw` → 9.4-unequal
 - equations `eq-hands-sum` → 9.4-unequal
+
+**Decided in the chapter pass (2026-09-12).** Every anchor above is written.
+The two AP items this section prints but does not keep, the see-saw torque
+estimate and the stack of overhanging books, appear exactly once each, in
+9.2 and 9.3, and all three sections' `exercise_notes` agree on where they
+went and why.

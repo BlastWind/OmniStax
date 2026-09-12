@@ -119,7 +119,7 @@ function crate(ctx, cx, top, w, h) {
   const d = sim('sim-posture', 720);
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 1, value: 0, unit: '°', dec: 0, aria: 'lean of the upper body away from the vertical' });
   const MU = ctl(d.controls, { label: 'm_{\\text{ub}}', cls: '', min: 40, max: 80, step: 1, value: 55, unit: 'kg', dec: 1, aria: 'mass of the upper body' });
-  const RB = ctl(d.controls, { label: 'r_{\\text{b}\\perp}', cls: 'position', min: 4, max: 12, step: 0.5, value: 8, unit: 'cm', dec: 1, aria: 'perpendicular lever arm of the back muscles' });
+  const RB = ctl(d.controls, { label: '\\krbperp', cls: 'position', min: 4, max: 12, step: 0.5, value: 8, unit: 'cm', dec: 1, aria: 'perpendicular lever arm of the back muscles' });
   const DCG = 0.400, SP = 308;         /* the centre of gravity sits 0.400 m up the spine, which makes its lever */
   const FX = 250, GY = 600, TRUNK = 210;  /* arm the 0.350 m of Example 9.5 at the lean the book draws there */
   const muscle = (th, mub, rb) => (mub * G * DCG * Math.sin(th * RAD)) / rb;
@@ -152,9 +152,11 @@ function crate(ctx, cx, top, w, h) {
     const lw = 0.12 * wub;
     arrow(ctx, cg[0], cg[1], cg[0], cg[1] + lw, C('force'), 5);
     text(ctx, 'w_ub = ' + fmt(wub, 0) + ' N', cg[0] + 14, cg[1] + lw + 18, C('force'), { size: 20, weight: 600, align: 'left' });
-    line(ctx, hip[0], hip[1], hip[0], 546, PAL.rule, 2, [6, 8]);
-    line(ctx, cg[0], cg[1] + lw, cg[0], 546, PAL.rule, 2, [6, 8]);
-    hbracket(ctx, hip[0], Math.max(cg[0], hip[0] + 1), 546, C('position'), 'r⊥ = ' + fmt(rperp, 3) + ' m');
+    if (TH.v > 0) {
+      line(ctx, hip[0], hip[1], hip[0], 546, PAL.rule, 2, [6, 8]);
+      line(ctx, cg[0], cg[1] + lw, cg[0], 546, PAL.rule, 2, [6, 8]);
+      hbracket(ctx, hip[0], cg[0], 546, C('position'), 'r⊥ = ' + fmt(rperp, 3) + ' m');
+    }
 
     /* the back muscles: a cable parallel to the spine, offset behind it by its lever arm */
     const a = [hip[0] + rb * SP * n[0], hip[1] + rb * SP * n[1]];
@@ -184,10 +186,10 @@ function crate(ctx, cx, top, w, h) {
     dot(ctx, X(TH.v), Y(FB), C('force'), true, 10);
 
     headline(ctx, TH.v === 0
-      ? 'Standing straight, the upper body’s weight of ' + fmt(wub, 0) + ' N acts through the hips, so it makes no torque and the back muscles pull with nothing at all'
-      : 'Leaning ' + fmt(TH.v, 0) + '° puts the center of gravity ' + fmt(rperp, 3) + ' m in front of the hips, and the back muscles must pull with ' + fmt(FB, 0) + ' N');
+      ? 'Standing straight, the weight of the upper body acts through the hips and makes no torque at all'
+      : 'Leaning ' + fmt(TH.v, 0) + '° puts the center of gravity ' + fmt(rperp, 3) + ' m in front of the hips, and the muscles pull ' + fmt(FB, 0) + ' N');
     readout(d.readout,
-      `\\kFB = \\frac{\\kwub\\,\\krperp}{r_{\\text{b}\\perp}} = \\frac{(${fmt(wub, 0)}\\ \\text{N})(${fmt(rperp, 3)}\\ \\text{m})}{${fmt(rb, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
+      `\\kFB = \\frac{\\kwub\\,\\krperp}{\\krbperp} = \\frac{(${fmt(wub, 0)}\\ \\text{N})(${fmt(rperp, 3)}\\ \\text{m})}{${fmt(rb, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
       TH.v === 0
         ? 'With no torque to counter, the only force needed at the hips is a vertical one equal to the weight supported, and the bones carry it up from the floor.'
         : 'The weight hangs ' + fmt(rperp / rb, 1) + ' times farther from the hips than the muscles pull, so the muscles must pull ' + fmt(rperp / rb, 1) + ' times as hard as the weight they hold.');
@@ -239,7 +241,7 @@ function crate(ctx, cx, top, w, h) {
     dot(ctx, xub, onSpine(xub), PAL.ink, false, 10);
     const lu = Math.max(K * wub, 34);
     arrow(ctx, xub, onSpine(xub), xub, onSpine(xub) + lu, C('force'), 5);
-    text(ctx, 'w_ub = ' + fmt(wub, 0) + ' N', xub + 14, onSpine(xub) + lu + 18, C('force'), { size: 19, weight: 600, align: 'left' });
+    text(ctx, 'w_ub = ' + fmt(wub, 0) + ' N', xub + 14, onSpine(xub) + lu + 18, C('force'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
     if (wbox > 0) {
       const lx = Math.max(K * wbox, 30);
       arrow(ctx, xbox, 472, xbox, 472 + lx, C('force'), 5);
@@ -278,8 +280,8 @@ function crate(ctx, cx, top, w, h) {
     });
     text(ctx, 'The muscles and the joint carry many times the weight being lifted.', 1040, 470, PAL.muted, { size: 17, align: 'center' });
 
-    headline(ctx, 'Lifting a ' + fmt(MBX.v, 1) + ' kg box with the back makes the back muscles pull with ' + fmt(FB, 0)
-      + ' N and loads the vertebrae with ' + fmt(FV, 0) + ' N, ' + fmt(FV / (wub + wbox), 2) + ' times the ' + fmt(wub + wbox, 0) + ' N being supported');
+    headline(ctx, 'A ' + fmt(MBX.v, 1) + ' kg box lifted with the back makes the muscles pull ' + fmt(FB, 0)
+      + ' N and loads the vertebrae with ' + fmt(FV, 0) + ' N');
     readout(d.readout,
       `\\kFB = \\frac{(${fmt(RUB, 3)}\\ \\text{m})\\kwub + (${fmt(rbox, 3)}\\ \\text{m})\\kwbox}{${fmt(RM, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
       'The first condition then gives the force on the vertebrae: its horizontal component is ' + fmt(FVx, 0)
@@ -346,10 +348,10 @@ function crate(ctx, cx, top, w, h) {
     });
 
     headline(ctx, Math.abs(ph - 90) < 0.5
-      ? 'The forearm is where Example 9.4 holds it; move the elbow away from 90° and compare how far the muscle and the hand each travel'
-      : (ph < 90 ? 'Closing' : 'Opening') + ' the elbow from 90° to ' + fmt(ph, 0) + '° changes the length of the biceps by '
-        + fmt(Math.abs(dL) * 100, 2) + ' cm while the hand sweeps ' + fmt(ds * 100, 1) + ' cm, '
-        + fmt(ds / Math.abs(dL), 0) + ' times as far');
+      ? 'The forearm is where Example 9.4 holds it. Move the elbow away from 90° and compare the two bars below'
+      : (ph < 90 ? 'Closing' : 'Opening') + ' the elbow to ' + fmt(ph, 0) + '° '
+        + (ph < 90 ? 'shortens' : 'lengthens') + ' the biceps by ' + fmt(Math.abs(dL) * 100, 2)
+        + ' cm while the hand sweeps ' + fmt(ds * 100, 1) + ' cm, ' + fmt(ds / Math.abs(dL), 0) + ' times as far');
     readout(d.readout,
       Math.abs(dL) < 1e-4
         ? `\\frac{\\Delta s}{\\Delta L}\\ \\text{at}\\ \\varphi = 90^\\circ`
