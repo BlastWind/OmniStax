@@ -1,7 +1,7 @@
 /* Figures for section 2.3 Time, Velocity, and Speed. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, axes, nice, curve, runner, car, fixed, FONT } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, axes, nice, curve, runner, car, fixed, topline, FONT } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -346,7 +346,7 @@ function trip(u) {
     for (const [G, val] of [[P, pos], [V, vel], [S, sp]]) {
       line(ctx, G.X(th), bot, G.X(th), G.Y(val), C('time'), 3, [4, 8]); dot(ctx, G.X(th), G.Y(val), PAL.ink, true, 9);
     }
-    headline(ctx, done ? 'in ' + fmt(H, 2) + ' h the car went out ' + fmt(D.v, 1) + ' km and back: its velocity was +' + sig3(sp) + ' km/h and then −' + sig3(sp) + ' km/h, while its speed was ' + sig3(sp) + ' km/h throughout'
+    topline(ctx, done ? 'in ' + fmt(H, 2) + ' h the car went out ' + fmt(D.v, 1) + ' km and back: its velocity was +' + sig3(sp) + ' km/h and then −' + sig3(sp) + ' km/h, while its speed was ' + sig3(sp) + ' km/h throughout'
       : 't = ' + fmt(th, 2) + ' h · the car is ' + fmt(pos, 1) + ' km from home, its velocity is ' + (dir > 0 ? '+' : '−') + sig3(sp) + ' km/h and its speed is ' + sig3(sp) + ' km/h');
     readout(d.readout, `\\kv = +${sig3(sp)}\\ \\text{km/h on the way out},\\quad \\kv = -${sig3(sp)}\\ \\text{km/h on the way back},\\quad \\text{speed} = ${sig3(sp)}\\ \\text{km/h throughout}`,
       'The speed graph is the velocity graph with its sign removed, which is what it means for instantaneous speed to be the magnitude of instantaneous velocity.');

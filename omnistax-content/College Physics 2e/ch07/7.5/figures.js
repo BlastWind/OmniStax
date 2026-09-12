@@ -1,7 +1,7 @@
 /* Figures for section 7.5 Nonconservative Forces. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, spring, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, spring, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -53,14 +53,6 @@ function crate(ctx, x, y, w, h, rot, color) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
   ctx.fillRect(-w / 2, -h, w, h); ctx.strokeRect(-w / 2, -h, w, h);
   ctx.beginPath(); ctx.moveTo(-w / 2, -h); ctx.lineTo(w / 2, 0); ctx.moveTo(w / 2, -h); ctx.lineTo(-w / 2, 0); ctx.stroke(); ctx.restore();
-}
-/* a person leaning into a push, feet at (x, y), facing up the ramp */
-function pusher(ctx, x, y, rot, color) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(30, -100, 11, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(26, -90); ctx.lineTo(0, -46);
-  ctx.moveTo(0, -46); ctx.lineTo(-30, 0); ctx.moveTo(0, -46); ctx.lineTo(22, 0);
-  ctx.moveTo(22, -78); ctx.lineTo(58, -62); ctx.stroke(); ctx.restore();
 }
 /* a baseball player sliding feet first, his contact with the ground at (x, y) */
 function slidingPlayer(ctx, x, y, rot, color) {
@@ -246,7 +238,9 @@ function skierSprite(ctx, x, y, color) {
     if (th.v > 0) text(ctx, fmt(th.v, 0) + '\u00b0', s0x + 86, YBASE - 20, PAL.ink, { size: 20, weight: 600 });
     const cx = X0 + s * SC * ca, cyy = y0 - s * SC * sa;
     crate(ctx, cx, cyy, 96, 74, -a, PAL.ink);
-    pusher(ctx, cx - 200 * ca, cyy + 200 * sa, -a, PAL.ink);
+    ctx.save(); ctx.translate(cx - 120 * ca, cyy + 120 * sa); ctx.rotate(-a);
+    F.person(ctx, 0, 0, PAL.ink, { lean: 0.35, reach: { x: 70, y: -40 }, phase: s > 0.02 && s < D - 0.02 ? s * 4 : 0 });
+    ctx.restore();
     text(ctx, fmt(m.v, 0) + ' kg', cx - 40 * sa, cyy - 40 * ca, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     if (fa.v > 0) {
       const L = 50 + (fa.v / 800) * 120, tipx = cx - 20 * ca - 124 * sa, tipy = cyy + 20 * sa - 124 * ca;
@@ -322,18 +316,25 @@ function skierSprite(ctx, x, y, color) {
     text(ctx, 'f = ' + num(ff.v, 0) + ' N', px + 34 * ca - fl * ca, py + 16 - 24 * sa, C('force'), { size: 18, weight: 600, align: 'right' });
     hbracket(ctx, x0, px, y0 + 86 + 60 * ta, C('position'), 'd = ' + fmt(s, 2) + ' m');
     /* the energy account along the slide */
-    const Er = nice(0, KEi, 4);
-    const box = { l: 250, r: 1310, t: 506, b: 660 };
-    const { X, Y } = axes(ctx, box, [0, D], [0, Er.hi], { xl: 'distance slid (m)', xc: C('position'), yl: 'energy (J)', yc: C('energy'), nx: 4, ny: Er.n, fx: (u) => fmt(u, 2), fy: (u) => num(u, 0) });
-    line(ctx, X(0), Y(KEi), X(D), Y(0), C('energy'), 5);
-    line(ctx, X(0), Y(0), X(D), Y(ff.v * D), alpha(C('energy'), 0.55), 5);
-    if (th.v > 0.01) line(ctx, X(0), Y(0), X(D), Y(m.v * G * D * sa), alpha(C('energy'), 0.3), 5);
-    text(ctx, 'KE', X(D * 0.08), Y(KEi * 0.9) - 16, C('energy'), { size: 18, weight: 600 });
-    text(ctx, 'taken by friction', X(D * 0.62), Y(ff.v * D * 0.62) - 20, alpha(C('energy'), 0.7), { size: 18, weight: 600 });
-    if (th.v > 0.01) text(ctx, 'PE_g', X(D * 0.94), Y(m.v * G * D * 0.94 * sa) - 20, alpha(C('energy'), 0.6), { size: 18, weight: 600, align: 'right' });
-    line(ctx, X(s), box.b, X(s), Y(KEi), C('position'), 2, [4, 8]);
-    dot(ctx, X(s), Y(KE), C('energy'), true, 9);
-    dot(ctx, X(s), Y(Wfr), alpha(C('energy'), 0.7), true, 9);
+    /* fixed axes. The sliders reach ½ × 110 kg × (10 m/s)² = 5500 J, and with only 200 N against
+       him that slide would run 27.5 m; the default slide is 1170 J over 2.6 m and would then sit in
+       a corner of the box, so both ranges are fixed to hold the default comfortably instead, 0 to
+       4 m by 0 to 2000 J, ticked every 1 m and every 500 J. A longer or heavier slide is drawn only
+       as far as the box reaches and read off the pinned markers. Neither range moves. */
+    const DR = 4, ER = 2000, box = { l: 250, r: 1310, t: 506, b: 660 };
+    const { X, Y } = axes(ctx, box, [0, DR], [0, ER], { xl: 'distance slid (m)', xc: C('position'), yl: 'energy (J)', yc: C('energy'), nx: 4, ny: 4, fx: (u) => fmt(u, 1), fy: (u) => num(u, 0) });
+    const cl = (u) => Math.min(u, ER), op = opp();
+    const keFrom = Math.max(0, (KEi - ER) / op), keTo = Math.min(D, DR);        /* the falling line, clipped to the box */
+    if (keTo > keFrom) line(ctx, X(keFrom), Y(cl(KEi - op * keFrom)), X(keTo), Y(KEi - op * keTo), C('energy'), 5);
+    const frTo = Math.min(D, DR, ER / ff.v);
+    line(ctx, X(0), Y(0), X(frTo), Y(ff.v * frTo), alpha(C('energy'), 0.55), 5);
+    if (th.v > 0.01) { const peTo = Math.min(D, DR, ER / (m.v * G * sa)); line(ctx, X(0), Y(0), X(peTo), Y(m.v * G * peTo * sa), alpha(C('energy'), 0.3), 5); }
+    text(ctx, 'KE', X(Math.min(D, DR) * 0.08), Y(cl(KEi * 0.9)) - 16, C('energy'), { size: 18, weight: 600 });
+    text(ctx, 'taken by friction', X(frTo * 0.62), Y(ff.v * frTo * 0.62) - 20, alpha(C('energy'), 0.7), { size: 18, weight: 600 });
+    if (th.v > 0.01) text(ctx, 'PE_g', X(Math.min(D, DR) * 0.94), Y(cl(m.v * G * Math.min(D, DR) * 0.94 * sa)) - 20, alpha(C('energy'), 0.6), { size: 18, weight: 600, align: 'right' });
+    line(ctx, X(Math.min(s, DR)), box.b, X(Math.min(s, DR)), Y(cl(KEi)), C('position'), 2, [4, 8]);
+    pinned(ctx, box, X, Y, s, KE, C('energy'), num(KE, 0) + ' J');
+    pinned(ctx, box, X, Y, s, Wfr, alpha(C('energy'), 0.7), num(Wfr, 0) + ' J');
     headline(ctx, s >= D - 1e-6
       ? 'he has stopped after ' + fmt(D, 2) + ' m, with ' + num(Wfr, 0) + ' J taken by friction' + (th.v > 0.01 ? ' and ' + num(PE, 0) + ' J stored in the height' : '')
       : 'he has slid ' + fmt(s, 2) + ' m of the ' + fmt(D, 2) + ' m it takes him to stop, and ' + num(Wfr, 0) + ' J of his ' + num(KEi, 0) + ' J are gone into friction');
@@ -394,13 +395,16 @@ function skierSprite(ctx, x, y, color) {
     hbracket(ctx, CUP0, cupX, TABLE + 70, C('position'), 'd = ' + fmt(moved * 100, 1) + ' cm');
     ebar(ctx, 1215, TABLE, 62, KE, left, 240, 'energy left', fmt(left * 1000, 2) + ' mJ');
     /* the plot the investigation asks for */
-    const Dr = nice(0, run(30) * 100, 4);
-    const box = { l: 260, r: 1320, t: 496, b: 632 };
-    const { X, Y } = axes(ctx, box, [0, 30], [0, Dr.hi], { xl: 'release position on the ruler (cm)', xc: C('position'), yl: 'distance the cup moves (cm)', yc: C('position'), nx: 6, ny: Dr.n, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
+    /* fixed axes: the release axis is the ruler itself, 0 to 30 cm. The farthest the cup can go is
+       the heaviest marble, 30 g, on the most slippery table, μk = 0.10, released at 30 cm, which is
+       0.030 × 0.15 / (0.10 × 0.033) = 1.36 m, so the distance axis is always 0 to 150 cm, ticked
+       every 30 cm, and neither range moves with the sliders. */
+    const DR = 150, box = { l: 260, r: 1320, t: 496, b: 632 };
+    const { X, Y } = axes(ctx, box, [0, 30], [0, DR], { xl: 'release position on the ruler (cm)', xc: C('position'), yl: 'distance the cup moves (cm)', yc: C('position'), nx: 6, ny: 5, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
     line(ctx, X(0), Y(0), X(30), Y(run(30) * 100), C('position'), 5);
     for (const q of [10, 20, 30]) dot(ctx, X(q), Y(run(q) * 100), C('position'), false, 10);
     dot(ctx, X(rel.v), Y(D * 100), C('position'), true, 9);
-    text(ctx, 'a straight line through the origin', X(16), Y(Dr.hi * 0.82), PAL.muted, { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'a straight line through the origin', X(16), Y(DR * 0.82), PAL.muted, { size: 18, weight: 600, align: 'center' });
     headline(ctx, rolling
       ? 'released at ' + fmt(rel.v, 0) + ' cm, the marble has ' + fmt(along, 1) + ' cm of ruler left to run'
       : 'the marble arrived with ' + fmt(KE * 1000, 2) + ' mJ and has pushed the cup ' + fmt(moved * 100, 1) + ' cm of the ' + fmt(D * 100, 1) + ' cm friction allows');

@@ -1,7 +1,7 @@
 /* Figures for section 8.7 Introduction to Rocket Propulsion. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -85,7 +85,7 @@ function bar(ctx, x1, x2, y, h, f, color) {
     plume(ctx, rx, ry + 81, 70 + 40 * (R() / 2e4), C('velocity'));
     rocket(ctx, rx, ry, PAL.ink, S);
     arrow(ctx, rx, ry + 100, rx, ry + 100 + Lv, C('velocity'), 5);
-    text(ctx, 'v\u2091 = ' + sciT(V()) + ' m/s', rx - 40, ry + 100 + Lv / 2, C('velocity'), { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'v\u2091 = ' + sciT(V()) + ' m/s', rx - 40, Math.min(ry + 100 + Lv / 2, 656), C('velocity'), { size: 20, weight: 600, align: 'right' });   /* held above the ground line so it never lands on its label at liftoff */
     line(ctx, 40, 686, 190, 686, PAL.rule, 2, [10, 10]);
     text(ctx, 'where it lifted off', 40, 708, PAL.muted, { size: 17 });
 
@@ -101,13 +101,20 @@ function bar(ctx, x1, x2, y, h, f, color) {
 
     /* the graph beside the scene: the acceleration climbing as the mass falls */
     const box = { l: 860, r: 1340, t: 200, b: 500 };
-    const xr = nice(0, T, 4), yr = nice(Math.min(0, acc(0)), acc(T), 4);
-    const { X, Y } = axes(ctx, box, [0, xr.hi], [yr.lo, yr.hi], { xl: 't (s)', yl: 'a (m/s\u00b2)', xc: C('time'), yc: C('acceleration'), nx: xr.n, ny: yr.n, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, decs(yr)) });
-    curve(ctx, (t) => acc(t), 0, T, X, Y, alpha(C('acceleration'), 0.35), 5, 90);
-    curve(ctx, (t) => acc(t), 0, Math.max(tau, 1e-6), X, Y, C('acceleration'), 5, 90);
-    line(ctx, X(tau), Y(a), X(tau), box.b, C('acceleration'), 2, [4, 8]);
-    dot(ctx, X(0), Y(acc(0)), C('acceleration'), false, 10);
-    dot(ctx, X(tau), Y(a), C('acceleration'), true, 9);
+    /* fixed axes. The slowest burn lasts 0.75 × 4 × 10⁶ / (2 × 10³) = 1500 s and the fiercest
+       engine ends at 390 m/s², but the Saturn V of the example burns for 150 s and finishes at
+       38 m/s², so on ranges that large it would be a mark in the corner. Both are fixed to hold
+       that default flight comfortably instead, 0 to 200 s by −10 to 50 m/s², ticked every 50 s and
+       every 10 m/s². A longer or fiercer burn is clipped at the edge and its acceleration is
+       pinned there. Neither range moves. */
+    const TR = 200, ALO = -10, AHI = 50;
+    const { X, Y } = axes(ctx, box, [0, TR], [ALO, AHI], { xl: 't (s)', yl: 'a (m/s\u00b2)', xc: C('time'), yc: C('acceleration'), nx: 4, ny: 6, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
+    const ca = (t) => Math.min(Math.max(acc(t), ALO), AHI);
+    curve(ctx, ca, 0, Math.min(T, TR), X, Y, alpha(C('acceleration'), 0.35), 5, 90);
+    curve(ctx, ca, 0, Math.min(Math.max(tau, 1e-6), TR), X, Y, C('acceleration'), 5, 90);
+    line(ctx, X(Math.min(tau, TR)), Y(ca(Math.min(tau, TR))), X(Math.min(tau, TR)), box.b, C('acceleration'), 2, [4, 8]);
+    dot(ctx, X(0), Y(ca(0)), C('acceleration'), false, 10);
+    pinned(ctx, box, X, Y, tau, a, C('acceleration'), fmt(a, 1) + ' m/s²');
 
     /* what is left of the rocket, and the momentum it has gathered */
     bar(ctx, 860, 1340, 600, 34, m / M0(), alpha(PAL.ink, 0.3));
@@ -156,15 +163,18 @@ function bar(ctx, x1, x2, y, h, f, color) {
 
     /* the graph: the velocity against the mass ratio, flattening as the logarithm does */
     const box = { l: 830, r: 1330, t: 170, b: 490 };
-    const yr = nice(0, Math.max(V * Math.log(200), ESCAPE * 1.05), 4);
-    const { X, Y } = axes(ctx, box, [0, 200], [0, yr.hi], { xl: 'mass ratio m\u2080 / m\u1d63', yl: 'v (m/s)', xc: PAL.ink, yc: C('velocity'), nx: 4, ny: yr.n, fx: (u) => fmt(u, 0), fy: (u) => commas(fmt(u, 0)) });
+    /* fixed axes: the fastest exhaust the slider allows, 5 × 10³ m/s, reaches
+       5000 ln 200 = 26,500 m/s at the far end of the mass-ratio axis, so the graph is always
+       1 to 200 by 0 to 30,000 m/s, ticked every 6000, and never rescales */
+    const VR = 30000;
+    const { X, Y } = axes(ctx, box, [0, 200], [0, VR], { xl: 'mass ratio m\u2080 / m\u1d63', yl: 'v (m/s)', xc: PAL.ink, yc: C('velocity'), nx: 4, ny: 5, fx: (u) => fmt(u, 0), fy: (u) => commas(fmt(u, 0)) });
     curve(ctx, (r) => V * Math.log(r), 1, 200, X, Y, C('velocity'), 5, 120);
-    if (ESCAPE <= yr.hi) {
+    if (ESCAPE <= VR) {
       line(ctx, box.l, Y(ESCAPE), box.r, Y(ESCAPE), PAL.muted, 3, [10, 10]);
       text(ctx, 'escape velocity from Earth, 11.2 \u00d7 10\u00b3 m/s', box.l + 14, Y(ESCAPE) + 20, PAL.muted, { size: 17 });
     }
-    line(ctx, X(Rm), Y(Math.min(v, yr.hi)), X(Rm), box.b, C('velocity'), 2, [4, 8]);
-    dot(ctx, X(Rm), Y(Math.min(v, yr.hi)), C('velocity'), true, 10);
+    line(ctx, X(Rm), Y(Math.min(v, VR)), X(Rm), box.b, C('velocity'), 2, [4, 8]);
+    pinned(ctx, box, X, Y, Rm, v, C('velocity'), commas(fmt(v, 0)) + ' m/s');
 
     headline(ctx, 'an exhaust velocity of ' + sciT(V) + ' m/s and a mass ratio of ' + fmt(Rm, 0) + ' give a final velocity of ' + sciT(v) + ' m/s');
     readout(d.readout, `\\kv = \\kve\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}} = (${sciX(V)}\\ \\text{m/s})\\,\\text{ln}\\;${fmt(Rm, 0)} = ${sciX(v)}\\ \\text{m/s}`,

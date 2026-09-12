@@ -1,7 +1,7 @@
 /* Figures for section 7.9 World Energy Use. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.9'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, dot, text, headline, scale, axes, nice, curve } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, dot, text, headline, scale, axes, nice, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -94,9 +94,12 @@ function key(ctx, x, y, a, label, size = 17) {
   const E = (yr, r) => E0 * Math.pow(1 + r / 100, yr - Y0);
   function draw() {
     const { ctx } = begin(d.c);
-    const r = R.v, yr = Y.v, now = E(yr, r), top = nice(0, Math.max(900, E(Y1, r)), 5);
-    const box = { l: 190, r: 1320, t: 110, b: 400 };
-    const S = axes(ctx, box, [Y0, Y1], [0, top.hi], { xl: 'year', yl: 'E (EJ)', yc: C('energy'), nx: 9, ny: top.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const r = R.v, yr = Y.v, now = E(yr, r);
+    /* fixed axes: the fastest growth the slider allows, 4% a year, carries 373 EJ to
+       373 × 1.04⁴⁵ = 2179 EJ by 2035, so the graph is always 1990 to 2035 by 0 to 2400 EJ,
+       ticked every 400 EJ, and never rescales as the rate is dragged */
+    const ER = 2400, box = { l: 190, r: 1320, t: 110, b: 400 };
+    const S = axes(ctx, box, [Y0, Y1], [0, ER], { xl: 'year', yl: 'E (EJ)', yc: C('energy'), nx: 9, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     curve(ctx, (t) => E(t, r), Y0, Y1, S.X, S.Y, C('energy'), 5, 120);
     /* the two figures the book's chart gives */
     dot(ctx, S.X(Y0), S.Y(E0), C('energy'), false, 11);
@@ -106,7 +109,7 @@ function key(ctx, x, y, a, label, size = 17) {
     /* where the curve stands in the year set */
     line(ctx, S.X(yr), S.Y(now), S.X(yr), box.b, PAL.muted, 2, [4, 8]);
     line(ctx, box.l, S.Y(now), S.X(yr), S.Y(now), PAL.muted, 2, [4, 8]);
-    dot(ctx, S.X(yr), S.Y(now), C('energy'), true, 10);
+    pinned(ctx, box, S.X, S.Y, yr, now, C('energy'), fmt(now, 0) + ' EJ');
     text(ctx, fmt(now, 0) + ' EJ', S.X(yr) - 16, S.Y(now) + 4, C('energy'), { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     headline(ctx, 'at ' + fmt(r, 2) + '% a year the world’s energy use reaches ' + fmt(now, 0) + ' EJ in ' + fmt(yr, 0) + ', ' + fmt(now / E0, 1) + ' times the 373 EJ of 1990');
     readout(d.readout, `\\kE = (373\\ \\text{EJ})(1 + ${fmt(r / 100, 4)})^{\\,${fmt(yr, 0)} - 1990} = ${fmt(now, 0)}\\ \\text{EJ}`,

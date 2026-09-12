@@ -1,7 +1,7 @@
 /* Figures for section 9.6 Forces and Torques in Muscles and Joints. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.6'] = function (root, F) {
-const { el, fmt, tex, C, PAL, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve } = F;
+const { el, fmt, tex, C, PAL, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const G = 9.80;                        /* the acceleration due to gravity, as the chapter takes it */
@@ -85,15 +85,18 @@ function crate(ctx, cx, top, w, h) {
     hbracket(ctx, PX, x3, 668, C('position'), 'r₃ = ' + fmt(R3.v, 1) + ' cm');
 
     /* how the force in the biceps climbs as the tendon moves towards the joint */
-    const box = { l: 250, r: 1290, t: 740, b: 930 };
-    const top = nice(0, force(0.02, mb, r3), 4);
-    const { X, Y } = axes(ctx, box, [2, 8], [0, top.hi], {
+    const box = { l: 250, r: 1290, t: 730, b: 916 };   /* the axis title below it stays inside the canvas */
+    /* fixed axes: the heaviest book the sliders allow, 8.00 kg at 45.0 cm, held on the shortest
+       lever arm, 2.00 cm, asks ((0.160 m)(24.5 N) + (0.450 m)(78.4 N)) / 0.0200 m = 1960 N, so the
+       graph is always 2 to 8 cm by 0 to 2000 N, ticked every 500 N, and never rescales */
+    const FR = 2000;
+    const { X, Y } = axes(ctx, box, [2, 8], [0, FR], {
       xl: 'r₁ (cm)', xc: C('position'), yl: 'F_B (N)', yc: C('force'),
-      nx: 6, ny: top.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
+      nx: 6, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
     curve(ctx, (r) => force(r / 100, mb, r3), 2, 8, X, Y, C('force'), 5, 140);
-    line(ctx, X(R1.v), Y(FB), X(R1.v), box.b, PAL.muted, 2, [4, 8]);
-    dot(ctx, X(R1.v), Y(FB), C('force'), true, 10);
+    line(ctx, X(R1.v), Y(Math.min(FB, FR)), X(R1.v), box.b, PAL.muted, 2, [4, 8]);
+    pinned(ctx, box, X, Y, R1.v, FB, C('force'), fmt(FB, 0) + ' N');
 
     headline(ctx, 'r₁ = ' + fmt(R1.v, 1) + ' cm · the biceps pulls with ' + fmt(FB, 0) + ' N to hold ' + fmt(wa + wb, 1)
       + ' N, ' + fmt(FB / (wa + wb), 2) + ' times the weight it supports');
@@ -176,14 +179,17 @@ function crate(ctx, cx, top, w, h) {
 
     /* the force the back muscles must exert, against the lean */
     const box = { l: 820, r: 1330, t: 190, b: 520 };
-    const top2 = nice(0, Math.max(muscle(60, MU.v, rb), 100), 4);
-    const { X, Y } = axes(ctx, box, [0, 60], [0, top2.hi], {
+    /* fixed axes: the heaviest upper body the sliders allow, 80.0 kg, leaned 60° over the shortest
+       lever arm, 4.00 cm, asks (784 N)(0.400 m)(sin 60°) / 0.0400 m = 6790 N, so the graph is
+       always 0 to 60° by 0 to 7000 N, ticked every 1000 N, and never rescales */
+    const FR2 = 7000;
+    const { X, Y } = axes(ctx, box, [0, 60], [0, FR2], {
       xl: 'lean θ (°)', yl: 'F_B (N)', yc: C('force'),
-      nx: 6, ny: top2.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
+      nx: 6, ny: 7, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
-    curve(ctx, (t) => muscle(t, MU.v, rb), 0, 60, X, Y, C('force'), 5, 120);
-    line(ctx, X(TH.v), Y(FB), X(TH.v), box.b, PAL.muted, 2, [4, 8]);
-    dot(ctx, X(TH.v), Y(FB), C('force'), true, 10);
+    curve(ctx, (t) => Math.min(muscle(t, MU.v, rb), FR2), 0, 60, X, Y, C('force'), 5, 120);
+    line(ctx, X(TH.v), Y(Math.min(FB, FR2)), X(TH.v), box.b, PAL.muted, 2, [4, 8]);
+    pinned(ctx, box, X, Y, TH.v, FB, C('force'), fmt(FB, 0) + ' N');
 
     headline(ctx, TH.v === 0
       ? 'Standing straight, the weight of the upper body acts through the hips and makes no torque at all'

@@ -48,13 +48,8 @@ function balance(ctx, box, items, title) {
 /* ---------- sprites, in ink ---------- */
 /* a person standing with the feet apart and the hands at the waist, the feet on (x, y) */
 function person(ctx, x, y, color, pack) {
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 7;
-  ctx.beginPath(); ctx.arc(x, y - 182, 22, 0, TAU); ctx.fill();
-  ctx.beginPath();
-  ctx.moveTo(x, y - 158); ctx.lineTo(x, y - 70);
-  ctx.moveTo(x, y - 70); ctx.lineTo(x - 38, y); ctx.moveTo(x, y - 70); ctx.lineTo(x + 38, y);
-  ctx.moveTo(x, y - 140); ctx.lineTo(x - 44, y - 100); ctx.moveTo(x, y - 140); ctx.lineTo(x + 44, y - 100);
-  ctx.stroke();
+  F.person(ctx, x, y, color, { s: 2.2 });
+  ctx.save(); ctx.strokeStyle = color;
   if (pack > 0) {
     const h = 34 + Math.min(56, pack * 1.6);
     ctx.lineWidth = 4; ctx.fillStyle = PAL.panel;

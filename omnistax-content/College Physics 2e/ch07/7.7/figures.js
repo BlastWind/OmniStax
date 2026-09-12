@@ -1,7 +1,7 @@
 /* Figures for section 7.7 Power. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, runner, FONT } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, runner, FONT, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -56,7 +56,8 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     vbracket(ctx, x0 + run + 40, y0, y0 - rise, C('position'), 'h = ' + fmt(h.v, 2) + ' m', 1);
     dot(ctx, x0 - 8, y0 - 12, PAL.ink, false, 10);
     text(ctx, 'she starts from rest', x0 - 20, y0 + 36, PAL.muted, { size: 17 });
-    runner(ctx, x0 + f * run, y0 - f * rise - 18, PAL.ink, tau * 9);
+    const tread = Math.min(n - 1, Math.floor(f * n));
+    F.person(ctx, x0 + f * run, y0 - ((tread + 1) * rise) / n, PAL.ink, { lean: 0.2, phase: done ? 0 : tau * 9 });
     if (vf.v > 0.05) {
       const ax = x0 + run - 90, ay = y0 - rise - 36;
       arrow(ctx, ax, ay, ax + vf.v * 26, ay, C('velocity'), 5);
@@ -64,8 +65,11 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     }
     /* the graph beside the scene: the work delivered against the time, whose steepness is the power */
     const box = { l: 860, r: 1330, t: 175, b: 520 };
-    const yr = nice(0, Math.max(W, 1), 4), xr = nice(0, T.v, 4);
-    const { X, Y } = axes(ctx, box, [0, xr.hi], [yr.lo, yr.hi], { xl: 't (s)', xc: C('time'), yl: 'the work delivered (J)', yc: C('energy'), nx: xr.n, ny: yr.n, fx: (v) => fmt(v, xr.hi / xr.n < 1 ? 1 : 0), fy: (v) => commas(fmt(v, 0)) });
+    /* fixed axes: the time is the slider's own range, 0 to 12 s, and the work the sliders can ask
+       for is ½ × 100 kg × (4 m/s)² + 100 kg × 9.80 × 6 m = 6680 J, so the graph is always 0 to 12 s
+       by 0 to 8000 J, ticked every 3 s and every 2000 J, and never rescales. */
+    const TR = 12, WR = 8000;
+    const { X, Y } = axes(ctx, box, [0, TR], [0, WR], { xl: 't (s)', xc: C('time'), yl: 'the work delivered (J)', yc: C('energy'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => commas(fmt(v, 0)) });
     /* the two levels the work is made of, labelled clear of one another even when they nearly meet */
     const level = (y, s) => text(ctx, s, box.l + 14, y, C('energy'), { size: 17 });
     if (Y(PE) - Y(W) > 14) { line(ctx, box.l, Y(PE), box.r, Y(PE), C('energy'), 3, [10, 10]); level(Y(PE) + 18, 'mgh = ' + whole(PE) + ' J, the climbing'); }
@@ -75,7 +79,7 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     text(ctx, 'the slope of that line is the average rate, ' + whole(P) + ' W', box.r - 14, box.b - 26, C('power'), { size: 17, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     if (tau > 1e-9) { line(ctx, X(tau), Y(0), X(tau), Y(W * f), PAL.muted, 2, [4, 8]); line(ctx, box.l, Y(W * f), X(tau), Y(W * f), PAL.muted, 2, [4, 8]); }
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
-    dot(ctx, X(tau), Y(W * f), C('energy'), true, 9);
+    pinned(ctx, box, X, Y, tau, W * f, C('energy'), whole(W * f) + ' J');
     headline(ctx, tau < 1e-9 ? 'she stands at the foot of a ' + fmt(h.v, 2) + ' m flight, about to run up it in ' + fmt(T.v, 2) + ' s'
       : done ? 't = ' + fmt(T.v, 2) + ' s · she reaches the top having done ' + whole(W) + ' J of work, an output of ' + whole(P) + ' W'
       : 't = ' + fmt(tau, 2) + ' s · she is ' + fmt(100 * f, 0) + '% of the way up and has delivered ' + whole(W * f) + ' J of the ' + whole(W) + ' J, a rate of ' + whole(P) + ' W');
@@ -190,15 +194,21 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     bar(246, HRS.v / 24, C('time'), 'for ' + fmt(HRS.v, 2) + ' h of every day', 'of 24 h');
     /* the graph: a step of energy for every day the appliance runs */
     const box = { l: 210, r: 1330, t: 355, b: 480 };
-    const yr = nice(0, Math.max(Etot, 0.1), 3);
-    const { X, Y } = axes(ctx, box, [0, DAYS], [yr.lo, yr.hi], { xl: 'the day of the month', xc: C('time'), yl: 'the energy taken (kW·h)', yc: C('energy'), nx: 6, ny: yr.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, yr.hi < 10 ? 1 : 0) });
+    /* fixed axes: the month is 30 days, and the sliders could take 5 kW × 24 h × 30 d = 3600 kW·h,
+       but the default appliance takes 36 kW·h and would then lie flat on the base line, so the
+       energy axis is fixed at 0 to 50 kW·h, ticked every 10, which holds the default month
+       comfortably. A hungrier appliance runs off the top, where the staircase is clipped and the
+       running total is pinned at the edge. Neither range moves. */
+    const ER = 50;
+    const { X, Y } = axes(ctx, box, [0, DAYS], [0, ER], { xl: 'the day of the month', xc: C('time'), yl: 'the energy taken (kW·h)', yc: C('energy'), nx: 6, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const cl = (u) => Math.min(u, ER);
     ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(X(0), Y(0));
-    for (let i = 0; i < DAYS; i++) { ctx.lineTo(X(i + HRS.v / 24), Y(energy(i + HRS.v / 24))); ctx.lineTo(X(i + 1), Y(energy(i + 1))); }
+    for (let i = 0; i < DAYS; i++) { ctx.lineTo(X(i + HRS.v / 24), Y(cl(energy(i + HRS.v / 24)))); ctx.lineTo(X(i + 1), Y(cl(energy(i + 1)))); }
     ctx.stroke(); ctx.restore();
-    if (tau > 1e-9) line(ctx, X(tau), Y(yr.lo), X(tau), Y(E), PAL.muted, 2, [4, 8]);
+    if (tau > 1e-9) line(ctx, X(tau), Y(0), X(tau), Y(cl(E)), PAL.muted, 2, [4, 8]);
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
-    dot(ctx, X(tau), Y(E), C('energy'), true, 9);
-    text(ctx, money(E * PR.v), clamp(X(tau), box.l + 50, box.r - 50), Y(E) - 30, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    pinned(ctx, box, X, Y, tau, E, C('energy'), fmt(E, 1) + ' kW·h');
+    text(ctx, money(E * PR.v), clamp(X(tau), box.l + 50, box.r - 50), Y(cl(E)) - 30, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     headline(ctx, tau < 1e-9 ? 'the month begins, and the appliance has taken nothing from the supply yet'
       : done ? 'after ' + DAYS + ' days the appliance has used ' + fmt(Etot, 1) + ' kW·h, which at ' + money(PR.v) + ' per kW·h comes to ' + money(Etot * PR.v) + ' for the month'
       : 'day ' + fmt(tau, 1) + ' of ' + DAYS + ' · the appliance has used ' + fmt(E, 1) + ' kW·h, which comes to ' + money(E * PR.v) + ' so far');

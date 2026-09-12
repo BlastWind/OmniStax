@@ -1,7 +1,7 @@
 /* Figures for section 8.2 Impulse. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -83,13 +83,19 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
     }
     /* the graph: the force the stop needs against the time it is given */
     const box = { l: 230, r: 1290, t: 560, b: 750 };
-    const yr = nice(0, p / DTMIN, 4);
-    const g = axes(ctx, box, [0, 0.5], [0, yr.hi], { xl: 'Δt (s)', xc: C('time'), yl: 'F (N)', yc: cf, nx: 5, ny: yr.n, fx: (t) => fmt(t, 1), fy: (q) => whole(q) });
-    ctx.save(); ctx.fillStyle = alpha(cp, 0.24); ctx.fillRect(g.X(0), g.Y(Fn), g.X(dt.v) - g.X(0), g.Y(0) - g.Y(Fn)); ctx.restore();
-    curve(ctx, (t) => Math.min(yr.hi, p / t), DTMIN, 0.5, g.X, g.Y, cf, 5, 200);
-    line(ctx, g.X(dt.v), g.Y(0), g.X(dt.v), g.Y(Fn), C('time'), 2, [4, 8]);
-    line(ctx, g.X(0), g.Y(Fn), g.X(dt.v), g.Y(Fn), cf, 2, [4, 8]);
-    dot(ctx, g.X(dt.v), g.Y(Fn), PAL.ink, true, 10);
+    /* fixed axes: the time is the slider's own range, 0 to 0.5 s. The force could reach
+       120 kg × 30 m/s / 0.02 s = 180,000 N, but the default stop asks 15,000 N and would then lie
+       against the base line, so the force axis is fixed at 0 to 40,000 N, ticked every 10,000,
+       which holds the default stop comfortably; the curve is clipped where it leaves the top and a
+       harder stop is read off the pinned marker. Neither range moves. */
+    const FR = 40000;
+    const g = axes(ctx, box, [0, 0.5], [0, FR], { xl: 'Δt (s)', xc: C('time'), yl: 'F (N)', yc: cf, nx: 5, ny: 4, fx: (t) => fmt(t, 1), fy: (q) => whole(q) });
+    const FnC = Math.min(Fn, FR);
+    ctx.save(); ctx.fillStyle = alpha(cp, 0.24); ctx.fillRect(g.X(0), g.Y(FnC), g.X(dt.v) - g.X(0), g.Y(0) - g.Y(FnC)); ctx.restore();
+    curve(ctx, (t) => Math.min(FR, p / t), DTMIN, 0.5, g.X, g.Y, cf, 5, 200);
+    line(ctx, g.X(dt.v), g.Y(0), g.X(dt.v), g.Y(FnC), C('time'), 2, [4, 8]);
+    line(ctx, g.X(0), g.Y(FnC), g.X(dt.v), g.Y(FnC), cf, 2, [4, 8]);
+    pinned(ctx, box, g.X, g.Y, dt.v, Fn, PAL.ink, whole(Fn) + ' N');
     text(ctx, 'every rectangle under this curve has the same area, Δp = ' + whole(p) + ' kg·m/s', box.l, box.b + 96, cp, { size: 21, weight: 600 });
     headline(ctx, !hit
       ? 'the passenger is riding at ' + fmt(v.v, 1) + ' m/s and carries ' + whole(p) + ' kg·m/s of momentum'

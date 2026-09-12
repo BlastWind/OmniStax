@@ -1,8 +1,15 @@
 /* Figures for section 8.5 Inelastic Collisions in One Dimension. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, spring } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, spring, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
+/* the hollow companion marker: an ordinary hollow dot while it is inside the box, and the
+   library's pinned marker once the fixed range can no longer hold it */
+function hollowOrPinned(ctx, box, X, Y, xv, yv, color, label) {
+  const py = Y(yv);
+  if (py >= box.t && py <= box.b) dot(ctx, X(xv), py, color, false, 10);
+  else pinned(ctx, box, X, Y, xv, yv, color, label);
+}
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
@@ -75,6 +82,7 @@ function vec(ctx, x, y, L, s, color, label) {
   function draw() {
     const { ctx } = begin(d.c);
     const s = state(), tau = REDUCED ? T : cy.now(), after = s.hits && tau >= TC;
+    const KHI = 120;                                  /* the fixed top of the energy graph, see below */
     const big = Math.max(m1.v, m2.v);
     const w1 = 34 + 46 * Math.cbrt(m1.v / big), w2 = 34 + 46 * Math.cbrt(m2.v / big);
     const cx = 700;
@@ -98,29 +106,37 @@ function vec(ctx, x, y, L, s, color, label) {
     vec(ctx, x2, GY + 118, Math.abs(p2) * KP, p2 < 0 ? -1 : 1, C('momentum'), (after ? 'p₂′ = ' : 'p₂ = ') + sig(p2) + ' kg·m/s');
     text(ctx, 'the total momentum is ' + sig(s.ptot) + ' kg·m/s, the same before the collision and after it', cx, 460, C('momentum'), { size: 20, weight: 600, align: 'center' });
     /* graph, left: the two momenta and their total against time */
-    const ps = [0, m1.v * v1.v, m2.v * v2.v, m1.v * s.v1p, m2.v * s.v2p, s.ptot];
-    const pr = span(Math.min.apply(null, ps), Math.max.apply(null, ps));
-    const bA = { l: 170, r: 640, t: 540, b: 780 };
-    const A = axes(ctx, bA, [0, T], [pr.lo, pr.hi], { xl: 'time (s)', xc: PAL.ink, yl: 'momentum (kg·m/s)', yc: C('momentum'), nx: 4, ny: pr.n, fx: (v) => fmt(v, 0), fy: (v) => sig(v, 2) });
-    const step = (S, before, afterv, color, w, dash) => {
-      const end = s.hits ? TC : T;
+    /* fixed axes. The run is the same 4 s whatever the sliders say. An 80 kg object at 40 m/s
+       carries thousands of kg·m/s, but the puck and goalie of the default state share only
+       5.25 kg·m/s and would be flat against the axis on a scale that big, so the momentum range is
+       fixed at −5 to 15 kg·m/s, ticked every 5, which holds the default state comfortably; a
+       heavier pair runs off the top, where the steps are clipped. Neither range moves. */
+    const bA = { l: 170, r: 640, t: 540, b: 780 }, PLO = -5, PHI = 15;
+    const A = axes(ctx, bA, [0, T], [PLO, PHI], { xl: 'time (s)', xc: PAL.ink, yl: 'momentum (kg·m/s)', yc: C('momentum'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => sig(v, 2) });
+    const step = (S, before0, afterv0, color, w, dash) => {
+      const end = s.hits ? TC : T, lo = S === A ? PLO : 0, hi = S === A ? PHI : KHI;
+      const before = Math.min(Math.max(before0, lo), hi), afterv = Math.min(Math.max(afterv0, lo), hi);
       line(ctx, S.X(0), S.Y(before), S.X(end), S.Y(before), color, w, dash);
       if (s.hits) { line(ctx, S.X(TC), S.Y(before), S.X(TC), S.Y(afterv), color, w, dash); line(ctx, S.X(TC), S.Y(afterv), S.X(T), S.Y(afterv), color, w, dash); }
     };
     step(A, s.ptot, s.ptot, alpha(C('momentum'), 0.3), 10);
     step(A, m1.v * v1.v, m1.v * s.v1p, C('momentum'), 4);
     step(A, m2.v * v2.v, m2.v * s.v2p, C('momentum'), 4, [10, 10]);
-    text(ctx, 'p₁', A.X(T) - 8, A.Y(m1.v * s.v1p) - 22, C('momentum'), { size: 18, weight: 600, align: 'right' });
-    text(ctx, 'p₂', A.X(T) - 8, A.Y(m2.v * s.v2p) + 22, C('momentum'), { size: 18, weight: 600, align: 'right' });
-    text(ctx, 'total', A.X(0.35), A.Y(s.ptot) - 22, C('momentum'), { size: 18, weight: 600 });
+    const clA = (v) => Math.min(Math.max(v, PLO), PHI);
+    text(ctx, 'p₁', A.X(T) - 8, A.Y(clA(m1.v * s.v1p)) - 22, C('momentum'), { size: 18, weight: 600, align: 'right' });
+    text(ctx, 'p₂', A.X(T) - 8, A.Y(clA(m2.v * s.v2p)) + 22, C('momentum'), { size: 18, weight: 600, align: 'right' });
+    text(ctx, 'total', A.X(0.35), A.Y(clA(s.ptot)) - 22, C('momentum'), { size: 18, weight: 600 });
     line(ctx, A.X(Math.min(tau, T)), bA.t, A.X(Math.min(tau, T)), bA.b, PAL.ink, 2, [4, 8]);
     /* graph, right: the internal kinetic energy against time */
-    const kr = span(0, Math.max(s.ke, s.kep) * 1.15);
+    /* fixed axes, the same 4 s across: the sliders could put tens of thousands of joules into the
+       system, but the default puck brings 92 J, so the energy range is fixed at 0 to 120 J, ticked
+       every 30, which holds the default state comfortably and a larger one is clipped at the top
+       edge with its value pinned. Neither range moves. */
     const bB = { l: 850, r: 1300, t: 540, b: 780 };
-    const B = axes(ctx, bB, [0, T], [0, kr.hi], { xl: 'time (s)', xc: PAL.ink, yl: 'internal kinetic energy (J)', yc: C('energy'), nx: 4, ny: kr.n, fx: (v) => fmt(v, 0), fy: (v) => sig(v, 2) });
+    const B = axes(ctx, bB, [0, T], [0, KHI], { xl: 'time (s)', xc: PAL.ink, yl: 'internal kinetic energy (J)', yc: C('energy'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => sig(v, 2) });
     step(B, s.ke, s.kep, C('energy'), 5);
-    dot(ctx, B.X(0), B.Y(s.ke), C('energy'), false, 10);
-    dot(ctx, B.X(T), B.Y(s.kep), C('energy'), true, 10);
+    hollowOrPinned(ctx, bB, B.X, B.Y, 0, s.ke, C('energy'), sig(s.ke, 2) + ' J');
+    pinned(ctx, bB, B.X, B.Y, T, s.kep, C('energy'), sig(s.kep, 2) + ' J');
     line(ctx, B.X(Math.min(tau, T)), bB.t, B.X(Math.min(tau, T)), bB.b, PAL.ink, 2, [4, 8]);
     /* the headline */
     const lost = s.ke - s.kep;
@@ -171,9 +187,11 @@ function vec(ctx, x, y, L, s, color, label) {
     vec(ctx, xa, GY + 66, 150, 1, C('momentum'), 'p = ' + sig(p) + ' kg·m/s');
     text(ctx, 'the momentum arrow has the same length on both sides; the velocity arrow does not', 700, 388, PAL.muted, { size: 19, align: 'center' });
     /* the curve: the recoil velocity against the catcher's mass, over three decades */
-    const yr = span(0, v1.v);
-    const g0 = { l: 200, r: 1280, t: 470, b: 700 };
-    const g = axes(ctx, g0, [0, 3], [0, yr.hi], { xl: 'mass of the catcher m₂ (kg)', xc: PAL.ink, yl: 'recoil velocity v′ (m/s)', yc: C('velocity'), nx: 3, ny: yr.n, fx: (L) => sig(Math.pow(10, L - 1), 2), fy: (y) => sig(y, 3) });
+    /* fixed axes: the catcher can never leave faster than the object arrives, and the object
+       arrives at no more than 60 m/s, so the graph is always 0.1 kg to 100 kg by 0 to 60 m/s,
+       ticked every 15 m/s, and never rescales as the sliders are dragged */
+    const VR = 60, g0 = { l: 200, r: 1280, t: 470, b: 700 };
+    const g = axes(ctx, g0, [0, 3], [0, VR], { xl: 'mass of the catcher m₂ (kg)', xc: PAL.ink, yl: 'recoil velocity v′ (m/s)', yc: C('velocity'), nx: 3, ny: 4, fx: (L) => sig(Math.pow(10, L - 1), 2), fy: (y) => sig(y, 3) });
     curve(ctx, (L) => (m1.v / (m1.v + Math.pow(10, L - 1))) * v1.v, 0, 3, g.X, g.Y, C('velocity'), 5, 140);
     const L2 = Math.log10(m2.v) + 1;
     line(ctx, g.X(L2), g0.b, g.X(L2), g.Y(v), PAL.ink, 2, [4, 8]);

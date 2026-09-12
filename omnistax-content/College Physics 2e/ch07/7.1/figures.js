@@ -1,7 +1,7 @@
 /* Figures for section 7.1 Work: The Scientific Definition. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -31,8 +31,8 @@ function angleArc(ctx, x, y, r, th, label, color) {
 
 /* ---------- sprites, in ink ---------- */
 /* a lawn mower standing on the ground at (x, y), its handle reaching up and back */
-function mower(ctx, x, y, color, s = 1) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+function mower(ctx, x, y, color, s = 1, face = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s * face, s);
   ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(-54, -14); ctx.lineTo(-54, -42); ctx.lineTo(42, -42); ctx.lineTo(42, -14); ctx.closePath(); ctx.fill();
   ctx.beginPath(); ctx.moveTo(34, -38); ctx.lineTo(96, -104); ctx.moveTo(78, -104); ctx.lineTo(114, -104); ctx.stroke();
@@ -70,14 +70,17 @@ function crate(ctx, x, y, w, color) {
     /* the ground and the mower on it */
     line(ctx, 120, GY, 1340, GY, PAL.muted, 3);
     const mx = X0 + s * SC;
-    mower(ctx, mx, GY, PAL.ink, 0.9);
+    mower(ctx, mx, GY, PAL.ink, 0.9, -1);
+    /* the person behind the mower, her hands on the handle and her feet on the ground; she walks while the mower moves */
+    const gx = mx - 86, gy = GY - 94, L = 60 + Fv * 0.6;
+    F.person(ctx, mx - 150, GY, PAL.ink, { lean: 0.25, reach: { x: gx - 2, y: gy + 4 }, phase: s > 0.05 && s < D - 0.05 ? s * 0.5 : 0 });
     /* the force at the handle, its tail up and behind, with the angle it makes with the direction of motion */
-    const gx = mx + 86, gy = GY - 94, L = 60 + Fv * 0.6;
     const tx = gx - L * cs, ty = gy - L * Math.sin(ang * RAD);
     line(ctx, tx, ty, Math.min(1370, tx + Math.max(120, L * 0.9)), ty, PAL.rule, 2, [10, 10]);
     if (ang > 6) angleArc(ctx, tx, ty, 46, ang, 'θ = ' + fmt(ang, 0) + 'º', PAL.ink);
     arrow(ctx, tx, ty, gx, gy, C('force'), 5);
-    text(ctx, 'F = ' + fmt(Fv, 1) + ' N', tx - 18, ty - 28, C('force'), { size: 22, weight: 600, align: 'center' });
+    /* kept inside the canvas wherever the mower has got to */
+    text(ctx, 'F = ' + fmt(Fv, 1) + ' N', Math.max(110, tx - 18), ty - 28, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     /* the component of the force along the motion, which is the part of it that does the work */
     line(ctx, gx, ty, gx, gy, C('force'), 2, [4, 8]);
     arrow(ctx, tx, ty, gx, ty, C('force'), 4);
@@ -91,20 +94,23 @@ function crate(ctx, x, y, w, color) {
       hbracket(ctx, X0, X0 + D * SC, 420, C('position'), 'd = ' + fmt(D, 1) + ' m');
     }
     /* the graph: the work done against the distance the mower has travelled */
-    const rx = nice(0, Math.max(D, 1), 4);
-    const lo = Math.min(0, Wtot), hi = Math.max(0, Wtot);
-    const ry = hi - lo < 1e-6 ? { lo: 0, hi: 1, n: 4 } : nice(lo, hi, 4);
-    const box = { l: 200, r: 1290, t: 500, b: 690 };
-    const { X, Y } = axes(ctx, box, [0, rx.hi], [ry.lo, ry.hi], {
+    /* fixed axes. The distance axis is the slider's own range, 0 to 40 m, ticked every 10 m. The
+       work can reach 150 N × 40 m = 6000 J either way, but the default push does 1.5 kJ and would
+       then sit in an eighth of the height, so the work axis is fixed at −3000 to 3000 J, ticked
+       every 1000, which holds the default run comfortably; beyond that the line is drawn only as
+       far as the box reaches and the work so far is pinned at the edge. Neither range moves. */
+    const XR = 40, WR = 3000, box = { l: 200, r: 1290, t: 500, b: 690 };
+    const { X, Y } = axes(ctx, box, [0, XR], [-WR, WR], {
       xl: 'distance travelled (m)', xc: C('position'), yl: 'work done (J)', yc: C('energy'),
-      nx: rx.n, ny: ry.n, fx: (v) => fmt(v, rx.hi <= 5 ? 1 : 0), fy: (v) => sig3(v),
+      nx: 4, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => sig3(v),
     });
     if (D > 0.05) {
-      line(ctx, X(0), Y(0), X(D), Y(Wtot), PAL.rule, 3, [10, 10]);
-      line(ctx, X(0), Y(0), X(s), Y(W), C('energy'), 5);
-      line(ctx, X(s), Y(0), X(s), Y(W), PAL.rule, 2, [4, 8]);
-      dot(ctx, X(s), Y(W), C('energy'), true, 9);
-      text(ctx, 'W = ' + sig3(W) + ' J', Math.min(X(s) + 18, box.r - 150), Y(W) + (Wtot < 0 ? 30 : -28), C('energy'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+      const rate = Fv * cs, sEnd = Math.abs(rate) > 1e-9 ? Math.min(D, WR / Math.abs(rate)) : D, sNow = Math.min(s, sEnd);
+      line(ctx, X(0), Y(0), X(sEnd), Y(rate * sEnd), PAL.rule, 3, [10, 10]);
+      line(ctx, X(0), Y(0), X(sNow), Y(rate * sNow), C('energy'), 5);
+      line(ctx, X(sNow), Y(0), X(sNow), Y(rate * sNow), PAL.rule, 2, [4, 8]);
+      pinned(ctx, box, X, Y, s, W, C('energy'), sig3(W) + ' J');
+      text(ctx, 'W = ' + sig3(W) + ' J', Math.min(X(sNow) + 18, box.r - 150), Y(rate * sNow) + (Wtot < 0 ? 30 : -28), C('energy'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
     }
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
     /* the headline and the readout */

@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, axes, nice, curve, runner, car, block, fixed } = F;
+const { el, fmt, tex, C, PAL, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, axes, curve, pinned, runner, person, car, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -14,8 +14,9 @@ const sig3 = (x) => { const s = Math.abs(x).toPrecision(3); return (x < 0 ? '−
 /* a power of ten as the reader writes it */
 const POW = { '-2': '0.01', '-1': '0.1', 0: '1', 1: '10', 2: '100', 3: '1,000', 4: '10,000' };
 const powLabel = (e) => POW[String(Math.round(e))] ?? String(Math.pow(10, Math.round(e)));
-/* the decimals a tick label needs for the step nice() chose */
-const decs = (r) => ((r.hi - r.lo) / r.n < 1 ? 1 : 0);
+/* draws inside the graph box, so a line that runs past a fixed range is cut off at the frame
+   instead of the frame being stretched to hold it */
+const inbox = (ctx, box, f) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); };
 /* an arrow long enough to be seen: the book draws the friction on the rocket sled larger than scale for the same reason */
 const alen = (v, k, min) => Math.max(min ?? 26, Math.abs(v) * k);
 /* a free-body diagram: a dot at (cx, cy) with one arrow per force. The horizontal
@@ -106,6 +107,11 @@ function bathScale(ctx, x, y, w, color) {
     strip(ctx, 60, 1340, gy + 22, 44);
     const wx = x0 + x * SC, wy = gy - 30, K = 3, cf = C('force');
     wagon(ctx, wx, wy, PAL.ink);
+    /* the two children who push: feet on the ground, leaning into the back of the
+       wagon with both hands on it, walking whenever the wagon rolls */
+    const walk = v > 0.02 ? (wx - x0) / 28 + 0.6 : 0;
+    person(ctx, wx - 128, gy + 22, PAL.ink, { face: 1, s: 0.78, lean: 0.55, phase: walk, reach: { x: wx - 58, y: wy + 4 } });
+    person(ctx, wx - 96, gy + 22, PAL.ink, { face: 1, s: 0.7, lean: 0.5, phase: walk ? walk + 2.2 : 0, reach: { x: wx - 56, y: wy - 8 } });
     [[F1.v, 'F₁', wy - 148], [F2.v, 'F₂', wy - 104]].forEach(([val, lab, y]) => {
       const L = alen(val, K, 10);
       arrow(ctx, wx - 70, y, wx - 70 + L, y, cf, 5);
@@ -138,12 +144,19 @@ function bathScale(ctx, x, y, w, color) {
       text(ctx, 'F_net = ' + fmt(n, 1) + ' N', 420 + alen(n, k) + 12, 762, C('acceleration'), { size: 19, weight: 600 });
     }
     /* the speed the wagon reaches, against time */
-    const vr = nice(0, Math.max(a * T, 0.5), 3);
-    const g = axes(ctx, { l: 900, r: 1290, t: 500, b: 730 }, [0, T], [0, vr.hi], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 4, ny: vr.n, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, decs(vr)) });
-    line(ctx, g.X(0), g.Y(0), g.X(T), g.Y(a * T), C('velocity'), 5);
-    line(ctx, g.X(tau), g.Y(0), g.X(tau), g.Y(v), C('time'), 2, [4, 8]);
-    dot(ctx, g.X(tau), g.Y(v), PAL.ink, true, 9);
-    text(ctx, 'the slope is the acceleration', g.X(2), g.Y(vr.hi) + 26, C('acceleration'), { size: 17, weight: 600, align: 'center' });
+    /* fixed axes: the sliders can reach a net force of 60 + 60 − 0 = 120 N on the least mass, 10 kg,
+       which is 12 m/s² and 48 m/s by the end of the 4 s run. A range that tall would leave the run
+       the figure opens with, which reaches 5.7 m/s, in an eighth of the height, so the speed axis is
+       fixed at 0 to 8 m/s instead, which holds that run comfortably, and a faster wagon runs off the
+       top as a pinned marker. Neither range changes as a slider moves. */
+    const VR = 8, gbox = { l: 900, r: 1290, t: 500, b: 730 };
+    const g = axes(ctx, gbox, [0, T], [0, VR], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 4, ny: 4, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, 0) });
+    inbox(ctx, gbox, () => {
+      line(ctx, g.X(0), g.Y(0), g.X(T), g.Y(a * T), C('velocity'), 5);
+      line(ctx, g.X(tau), g.Y(0), g.X(tau), g.Y(v), C('time'), 2, [4, 8]);
+    });
+    pinned(ctx, gbox, g.X, g.Y, tau, v, PAL.ink, fmt(v, 1) + ' m/s');
+    text(ctx, 'the slope is the acceleration', g.X(2), g.Y(VR) + 26, C('acceleration'), { size: 17, weight: 600, align: 'center' });
     headline(ctx, n <= 0
       ? 'the two pushes together, ' + fmt(F1.v + F2.v, 1) + ' N, do not overcome the ' + fmt(ff.v, 1) + ' N of friction, so the wagon stays where it is'
       : 't = ' + fmt(tau, 2) + ' s · a net force of ' + fmt(n, 1) + ' N on ' + fmt(mm.v, 1) + ' kg gives a = ' + fmt(a, 2) + ' m/s², and the wagon has reached ' + fmt(v, 2) + ' m/s');
@@ -175,13 +188,13 @@ function bathScale(ctx, x, y, w, color) {
     /* the two scenes, the same push drawn the same length on each */
     const L = 40 + Fp.v * 0.34, gy = 300;
     line(ctx, 80, gy, 680, gy, PAL.muted, 3); line(ctx, 740, gy, 1340, gy, PAL.muted, 3);
-    runner(ctx, 190, gy, PAL.ink, 0.6);
+    F.person(ctx, 214, gy, PAL.ink, { lean: 0.22, reach: { x: 276, y: gy - 50 } });
     basketball(ctx, 300, gy - 50, PAL.ink, 26);
     arrow(ctx, 332, gy - 50, 332 + L, gy - 50, cf, 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', 332 + L / 2, gy - 78, cf, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'a basketball of ' + fmt(mb.v, 3) + ' kg', 360, gy + 36, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'a = ' + sig3(ab) + ' m/s²', 360, gy - 140, ca, { size: 22, weight: 600, align: 'center' });
-    runner(ctx, 830, gy, PAL.ink, 0.6);
+    F.person(ctx, 860, gy, PAL.ink, { lean: 0.22, reach: { x: 922, y: gy - 44 } });
     car(ctx, 980, gy - 26, PAL.ink, 1.5);
     arrow(ctx, 1046, gy - 50, 1046 + L, gy - 50, cf, 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', 1046 + L / 2, gy - 78, cf, { size: 20, weight: 600, align: 'center' });
@@ -226,7 +239,7 @@ function bathScale(ctx, x, y, w, color) {
     const gy = 300, x0 = 330, SC = Math.min(820 / Math.max(xEnd, 0.5), 300);
     strip(ctx, 60, 1340, gy + 22, 44);
     const px = x0 + x * SC, py = gy - 26, cf = C('force');
-    runner(ctx, px - 150, gy, PAL.ink, 0.5);
+    F.person(ctx, px - 156, gy, PAL.ink, { lean: 0.22, reach: { x: px - 116, y: py - 78 }, phase: tau > 0 && tau < T ? tau * 6 : 0 });
     mower(ctx, px, py, PAL.ink);
     const La = Math.min(230, 30 + a * 48), LF = Fn.v * 3.2, Lv = Math.min(240, v * 22);
     arrow(ctx, px + 60, py - 116, px + 60 + La, py - 116, C('acceleration'), 5);
@@ -302,13 +315,18 @@ function bathScale(ctx, x, y, w, color) {
       text(ctx, 'F_net = ' + sig3(net) + ' N', 400 + alen(net, k) + 12, 782, C('acceleration'), { size: 19, weight: 600 });
     }
     /* the acceleration against the number of rockets burning */
-    const ar = nice(0, Math.max(accOf(4), 1) * 1.14, 4);
-    const g = axes(ctx, { l: 920, r: 1270, t: 520, b: 770 }, [0, 4], [0, ar.hi], { xl: 'rockets burning', xc: PAL.ink, yl: 'a (m/s²)', yc: C('acceleration'), nx: 4, ny: ar.n, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, decs(ar)) });
-    line(ctx, g.X(0), g.Y(0), g.X(4), g.Y(accOf(4)), PAL.muted, 3, [10, 10]);
-    line(ctx, g.X(1), g.Y(accOf(1)), g.X(4), g.Y(accOf(4)), C('acceleration'), 5);
-    for (let i = 1; i <= 4; i++) dot(ctx, g.X(i), g.Y(accOf(i)), C('acceleration'), i !== n, 9);
-    dot(ctx, g.X(n), g.Y(a), PAL.ink, true, 10);
-    text(ctx, 'simply proportional', g.X(1.45), g.Y(accOf(4) * 0.36) - 30, PAL.muted, { size: 17, align: 'center' });
+    /* fixed axes: four rockets at the largest thrust the slider allows and no friction give
+       4 × 40,000 / 2,100 = 76.2 m/s², so the acceleration axis is always 0 to 80 m/s², ticked every
+       20, and it never rescales as a slider moves; a value past the top is pinned at the edge */
+    const AR = 80, gbox = { l: 920, r: 1270, t: 520, b: 770 };
+    const g = axes(ctx, gbox, [0, 4], [0, AR], { xl: 'rockets burning', xc: PAL.ink, yl: 'a (m/s²)', yc: C('acceleration'), nx: 4, ny: 4, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, 0) });
+    inbox(ctx, gbox, () => {
+      line(ctx, g.X(0), g.Y(0), g.X(4), g.Y(accOf(4)), PAL.muted, 3, [10, 10]);
+      line(ctx, g.X(1), g.Y(accOf(1)), g.X(4), g.Y(accOf(4)), C('acceleration'), 5);
+      for (let i = 1; i <= 4; i++) dot(ctx, g.X(i), g.Y(accOf(i)), C('acceleration'), i !== n, 9);
+    });
+    pinned(ctx, gbox, g.X, g.Y, n, a, PAL.ink, fmt(a, 1) + ' m/s²');
+    text(ctx, 'simply proportional', g.X(1.45), g.Y(AR * 0.36) - 30, PAL.muted, { size: 17, align: 'center' });
     headline(ctx, 't = ' + fmt(tau, 2) + ' s · ' + (n === 1 ? 'one thrust of ' : n + ' thrusts of ') + sig3(Tt.v) + ' N less ' + commas(fmt(ff.v, 0)) + ' N of friction give a = ' + fmt(a, 1) + ' m/s², and the sled is at ' + fmt(v, 1) + ' m/s');
     readout(d.readout, `\\kFnet = ${n}\\kTf - \\kff = ${n}(${sig3(Tt.v)}\\ \\text{N}) - ${commas(fmt(ff.v, 0))}\\ \\text{N} = ${sig3(net)}\\ \\text{N} = m\\ka`,
       'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s². With one rocket burning the acceleration is ' + fmt(accOf(1), 1) + ' m/s², not a quarter of ' + fmt(accOf(4), 1) + ' m/s², because the same ' + commas(fmt(ff.v, 0)) + ' N of friction is taken off it.');
@@ -353,17 +371,24 @@ function bathScale(ctx, x, y, w, color) {
     text(ctx, 'the scale pushes back with ' + sig3(w) + ' N', cx + 16, dy - L + 12, cf, { size: 19, weight: 600 });
     dot(ctx, cx, dy, PAL.ink, true, 8);
     /* the weight against the acceleration due to gravity */
-    const wr = nice(0, mm.v * 11, 4);
-    const g = axes(ctx, { l: 850, r: 1280, t: 170, b: 630 }, [0, 11], [0, wr.hi], { xl: 'g (m/s²)', xc: ca, yl: 'w (N)', yc: cf, nx: 11, ny: wr.n, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, decs(wr)) });
-    line(ctx, g.X(0), g.Y(0), g.X(11), g.Y(mm.v * 11), cf, 5);
-    [[1.625, 'the Moon', 1], [9.8, 'Earth', -1]].forEach(([gv, name, side]) => {
-      line(ctx, g.X(gv), g.Y(0), g.X(gv), g.Y(mm.v * gv), PAL.muted, 2, [4, 8]);
-      dot(ctx, g.X(gv), g.Y(mm.v * gv), cf, true, 9);
-      text(ctx, name, g.X(gv) + side * 22, g.Y(mm.v * gv) + 34, PAL.ink, { size: 18, weight: 600, align: side > 0 ? 'left' : 'right' });
+    /* fixed axes: the gravity slider stops at 11 m/s², so the horizontal range is always 0 to 11.
+       The mass slider runs from 0.1 kg to 100 kg, a thousandfold, and a weight axis tall enough for
+       100 kg would leave the 1 kg the figure opens with in a hundredth of the height. So the weight
+       axis is fixed at 0 to 12 N, which holds that kilogram at any gravity on the slider, and a
+       heavier mass climbs off the top as a pinned marker rather than stretching the axis. */
+    const WR = 12, gbox = { l: 850, r: 1280, t: 170, b: 630 };
+    const g = axes(ctx, gbox, [0, 11], [0, WR], { xl: 'g (m/s²)', xc: ca, yl: 'w (N)', yc: cf, nx: 11, ny: 4, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, 0) });
+    inbox(ctx, gbox, () => {
+      line(ctx, g.X(0), g.Y(0), g.X(11), g.Y(mm.v * 11), cf, 5);
+      [[1.625, 'the Moon', 1], [9.8, 'Earth', -1]].forEach(([gv, name, side]) => {
+        line(ctx, g.X(gv), g.Y(0), g.X(gv), g.Y(mm.v * gv), PAL.muted, 2, [4, 8]);
+        dot(ctx, g.X(gv), g.Y(mm.v * gv), cf, true, 9);
+        text(ctx, name, g.X(gv) + side * 22, g.Y(mm.v * gv) + 34, PAL.ink, { size: 18, weight: 600, align: side > 0 ? 'left' : 'right' });
+      });
+      line(ctx, g.X(gg.v), g.Y(0), g.X(gg.v), g.Y(w), ca, 3, [10, 10]);
+      line(ctx, g.X(0), g.Y(w), g.X(gg.v), g.Y(w), cf, 2, [10, 10]);
     });
-    line(ctx, g.X(gg.v), g.Y(0), g.X(gg.v), g.Y(w), ca, 3, [10, 10]);
-    line(ctx, g.X(0), g.Y(w), g.X(gg.v), g.Y(w), cf, 2, [10, 10]);
-    dot(ctx, g.X(gg.v), g.Y(w), ca, true, 11);
+    pinned(ctx, gbox, g.X, g.Y, gg.v, w, ca, sig3(w) + ' N');
     headline(ctx, place(gg.v) + ' g = ' + gtxt(gg.v) + ' m/s², a mass of ' + fmt(mm.v, 1) + ' kg weighs ' + sig3(w) + ' N');
     readout(d.readout, `\\kwgt = m\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${gtxt(gg.v)}\\ \\text{m/s}^2) = ${sig3(w)}\\ \\text{N}`,
       'The mass is the same wherever the scale is carried, but the weight is not: the same ' + fmt(mm.v, 1) + ' kg weighs ' + sig3(mm.v * G) + ' N on Earth and ' + sig3(mm.v * 1.625) + ' N on the Moon. A bathroom scale measures the force and divides it by 9.80 to print a mass, so here it would read ' + sig3(w / G) + ' kg.');

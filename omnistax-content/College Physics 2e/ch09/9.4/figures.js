@@ -3,7 +3,7 @@
    held at rest has no time in it, so nothing registers a cycle and nothing carries a transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -91,21 +91,28 @@ function forceArrow(ctx, x, yPole, len, up, label, color) {
     hbracket(ctx, X(0), X(s), 600, C('position'), fmt(s, 3) + ' m between the hands');
     /* the graph: both hand forces as the center of gravity travels along the pole */
     const FLat = (x) => (w * x) / s, FRat = (x) => (w * (s - x)) / s;
-    const span = nice(Math.min(0, FRat(3)), Math.max(w, FLat(3)), 4);
-    const box = { l: 230, r: 1280, t: 680, b: 890 };
-    const A = axes(ctx, box, [0, 3], [span.lo, span.hi], {
+    /* fixed axes. The centre of gravity is followed along the whole 3 m of pole. A 10 kg pole held
+       with the hands only 0.30 m apart would ask nearly 1000 N of each hand, but the book's pole
+       asks between −114 N and 163 N and would be a flat pair of lines on a scale that large, so the
+       force axis is fixed at −200 to 200 N, ticked every 50, which holds the default pole
+       comfortably; each line is drawn only as far as the box reaches and the hand forces are
+       pinned at the edge. Neither range moves. */
+    const FR2 = 200, box = { l: 230, r: 1280, t: 680, b: 890 };
+    const A = axes(ctx, box, [0, 3], [-FR2, FR2], {
       xl: 'the center of gravity, measured from the right hand (m)', yl: 'force (N)',
-      xc: C('position'), yc: C('force'), nx: 6, ny: span.n, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0),
+      xc: C('position'), yc: C('force'), nx: 6, ny: 8, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0),
     });
+    const xL = Math.min(3, (FR2 * s) / w), xR = Math.min(3, s * (1 + FR2 / w));   /* where each line leaves the box */
     line(ctx, A.X(s / 2), box.t, A.X(s / 2), box.b, PAL.muted, 2, [6, 8]);
     text(ctx, 'the hands share the weight', Math.min(Math.max(A.X(s / 2), box.l + 150), box.r - 150), box.t + 20, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
-    line(ctx, A.X(0), A.Y(FLat(0)), A.X(3), A.Y(FLat(3)), C('force'), 5);
-    line(ctx, A.X(0), A.Y(FRat(0)), A.X(3), A.Y(FRat(3)), C('force'), 5, [12, 10]);
-    text(ctx, 'F_L', A.X(2.6), A.Y(FLat(2.6)) - 26, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'F_R', A.X(2.6), A.Y(FRat(2.6)) + 28, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    line(ctx, A.X(p), box.b, A.X(p), Math.min(A.Y(FL), A.Y(FR)), PAL.muted, 2, [4, 8]);
-    dot(ctx, A.X(p), A.Y(FL), C('force'), true, 10);
-    dot(ctx, A.X(p), A.Y(FR), C('force'), true, 10);
+    line(ctx, A.X(0), A.Y(FLat(0)), A.X(xL), A.Y(FLat(xL)), C('force'), 5);
+    line(ctx, A.X(0), A.Y(FRat(0)), A.X(xR), A.Y(FRat(xR)), C('force'), 5, [12, 10]);
+    text(ctx, 'F_L', A.X(Math.min(2.6, xL)), A.Y(FLat(Math.min(2.6, xL))) - 26, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'F_R', A.X(Math.min(2.6, xR)), A.Y(FRat(Math.min(2.6, xR))) + 28, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    const cf = (v) => Math.min(Math.max(v, -FR2), FR2);
+    line(ctx, A.X(p), box.b, A.X(p), Math.min(A.Y(cf(FL)), A.Y(cf(FR))), PAL.muted, 2, [4, 8]);
+    pinned(ctx, box, A.X, A.Y, p, FL, C('force'), fmt(FL, 0) + ' N');
+    pinned(ctx, box, A.X, A.Y, p, FR, C('force'), fmt(FR, 0) + ' N');
     /* what the picture says */
     headline(ctx, even
       ? 'the cg is halfway between the hands, so each hand carries ' + fmt(w / 2, 1) + ' N, half the weight of the pole'

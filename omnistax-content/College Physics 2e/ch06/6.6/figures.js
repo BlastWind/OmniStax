@@ -2,7 +2,7 @@
    Simplicity. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.6'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, curve } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, axes, curve } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -52,8 +52,12 @@ function beside(ax, ay, bx, by, k, f) {
 /* ---------- sprites, in ink ---------- */
 /* a planet of radius rad centred on (x, y), with a lit edge so it reads as a body */
 function planet(ctx, x, y, rad, color) {
-  ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, rad, 0, TAU); ctx.fill();
-  ctx.strokeStyle = PAL.panel; ctx.lineWidth = Math.min(3, Math.max(1.5, rad / 6)); ctx.beginPath(); ctx.arc(x - rad * 0.3, y - rad * 0.3, rad * 0.5, TAU * 0.55, TAU * 0.95); ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, rad, 0, TAU); ctx.fill(); ctx.stroke();
+  /* a band of cloud and a shaded limb, so that the disc reads as a world */
+  ctx.beginPath(); ctx.arc(x, y, rad, 0, TAU); ctx.clip();
+  ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.ellipse(x - rad * 0.2, y - rad * 0.25, rad * 0.5, rad * 0.22, -0.4, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(x + rad * 0.35, y + rad * 0.3, rad * 0.32, rad * 0.18, 0.3, 0, TAU); ctx.fill();
+  ctx.fillStyle = alpha(color, 0.3); ctx.beginPath(); ctx.arc(x + rad * 0.55, y + rad * 0.35, rad, 0, TAU); ctx.fill(); ctx.restore();
 }
 /* the Sun at (x, y): a disc with eight short rays */
 function sun(ctx, x, y, rad, color) {
@@ -71,10 +75,16 @@ function pin(ctx, x, y, color) {
 }
 /* a pencil whose point rests on (x, y), leaning away from the center (cx, cy) */
 function pencil(ctx, x, y, cx, cy, color) {
-  const a = Math.atan2(y - cy, x - cx) || 0, ux = Math.cos(a), uy = Math.sin(a);
-  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.beginPath();
-  ctx.moveTo(x, y); ctx.lineTo(x + ux * 52, y + uy * 52); ctx.stroke();
-  ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(x + ux * 16, y + uy * 16); ctx.lineTo(x + ux * 48, y + uy * 48); ctx.stroke(); ctx.restore();
+  const a = Math.atan2(y - cy, x - cx) || 0;
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+  /* the sharpened cone with its lead, the body with a ridge line, and the eraser at the end */
+  ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(22, -7); ctx.lineTo(22, 7); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(7, -2.3); ctx.lineTo(7, 2.3); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.rect(22, -7, 68, 14); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.rect(22, -7, 68, 4.5); ctx.fill();
+  ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.rect(90, -7, 6, 14); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = PAL.soft2; ctx.beginPath(); ctx.rect(96, -7, 12, 14); ctx.fill(); ctx.stroke();
+  ctx.restore();
 }
 
 /* =====================================================================
@@ -106,7 +116,8 @@ function pencil(ctx, x, y, cx, cy, color) {
     text(ctx, 'f₁', f1.x, f1.y + 26, PAL.muted, { size: 20, align: 'center' });
     text(ctx, 'f₂', f2.x, f2.y + 26, PAL.muted, { size: 20, align: 'center' });
     pencil(ctx, P1.x, P1.y, cx1, cy1, PAL.ink);
-    dot(ctx, P1.x, P1.y, PAL.ink, true, 6);
+    dot(ctx, P1.x, P1.y, PAL.ink, true, 5);
+    text(ctx, 'pencil', P1.x + 120 * Math.cos(th), P1.y - 120 * Math.sin(th), PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* (b) the same curve as an orbit, with M at one focus */
     const cx2 = 1030, cy2 = 360, M = { x: cx2 - c, y: cy2 }, P2 = { x: px(cx2), y: py(cy2) };
     text(ctx, '(b) the same curve as an orbit, with M at one focus', 1030, 655, PAL.muted, { size: 20, align: 'center' });
@@ -115,8 +126,10 @@ function pencil(ctx, x, y, cx, cy, color) {
     text(ctx, 'r = ' + fmt(d1, 2) + 'a', (M.x + P2.x) / 2, (M.y + P2.y) / 2 - 20, C('position'), { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     sun(ctx, M.x, M.y, 15, PAL.ink);
     text(ctx, 'M', M.x, M.y + 44, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    planet(ctx, P2.x, P2.y, 11, PAL.ink);
-    text(ctx, 'm', P2.x + 18, P2.y - 16, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'the Sun', M.x, M.y + 68, PAL.muted, { size: 17, align: 'center' });
+    planet(ctx, P2.x, P2.y, 17, PAL.ink);
+    text(ctx, 'm', P2.x + 30 * Math.cos(th) + 4, P2.y - 30 * Math.sin(th) - 8, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'a planet', P2.x + 30 * Math.cos(th) + 4, P2.y - 30 * Math.sin(th) + 16, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     headline(ctx, e < 0.005
       ? 'e = 0.00 · the two foci have met at the center, so the curve is a circle and both distances are 1.00a everywhere on it'
       : 'e = ' + fmt(e, 2) + ' · the two distances are ' + fmt(d1, 2) + 'a and ' + fmt(d2, 2) + 'a, and they add to 2.00a wherever the pencil sits on the curve');
@@ -272,7 +285,7 @@ function pencil(ctx, x, y, cx, cy, color) {
     const outer = (s) => ({ x: r * Math.cos(TAU * s / P), y: r * Math.sin(TAU * s / P) });
     /* (a) Earth at the center: the Sun on a circle, the outer planet on a track that loops */
     const S1 = RMAX / (r + 1);
-    text(ctx, '(a) Earth at the center, as the Ptolemaic model had it', CX1, 94, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, '(a) Earth at the center, as the Ptolemaic model had it', CX1, 114, PAL.muted, { size: 20, align: 'center' });
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([8, 8]); ctx.beginPath(); ctx.arc(CX1, CY, S1, 0, TAU); ctx.stroke(); ctx.restore();
     const t0 = Math.max(0, t - tr);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath();
@@ -295,7 +308,7 @@ function pencil(ctx, x, y, cx, cy, color) {
     text(ctx, 'Earth', CX1 - ((sunG.x - CX1) / sn) * 34, CY - ((sunG.y - CY) / sn) * 34, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* (b) the Sun at the center: two plain circles */
     const S2 = RMAX / r;
-    text(ctx, '(b) the Sun at the center, as the Copernican model has it', CX2, 94, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, '(b) the Sun at the center, as the Copernican model has it', CX2, 114, PAL.muted, { size: 20, align: 'center' });
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([8, 8]);
     ctx.beginPath(); ctx.arc(CX2, CY, S2, 0, TAU); ctx.stroke();
     ctx.beginPath(); ctx.arc(CX2, CY, S2 * r, 0, TAU); ctx.stroke(); ctx.restore();
@@ -310,7 +323,7 @@ function pencil(ctx, x, y, cx, cy, color) {
     planet(ctx, oH.x, oH.y, 10, PAL.ink);
     const ol2 = out2(oH, 32); text(ctx, 'planet', ol2.x, ol2.y, PAL.ink, { size: 18, weight: 600, align: 'center' });
     const loops = Math.floor((t - t0) / syn);
-    headline(ctx, t - t0 < 0.3
+    topline(ctx, t - t0 < 0.3
       ? 't = ' + fmt(t, 1) + ' y · the two planets have just set out, and the track seen from Earth is only beginning'
       : 't = ' + fmt(t, 1) + ' y · seen from the Sun the planet runs a plain circle, and seen from Earth it has turned back on itself '
         + (loops === 0 ? 'not once' : loops === 1 ? 'once' : loops === 2 ? 'twice' : loops + ' times') + ' in the last ' + fmt(t - t0, 1) + ' y');

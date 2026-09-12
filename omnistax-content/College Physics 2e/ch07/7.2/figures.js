@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, block } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, block, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -30,9 +30,18 @@ function belt(ctx, x1, x2, y) {
 }
 /* a package of side w centred on (x, y), its flaps taped across the top */
 function package_(ctx, x, y, w, h, color) {
-  block(ctx, x, y, w, h, color);
-  line(ctx, x - w / 2, y - h / 2 + 16, x + w / 2, y - h / 2 + 16, color, 3);
-  line(ctx, x, y - h / 2, x, y - h / 2 + 16, color, 3);
+  const l = x - w / 2, r = x + w / 2, t = y - h / 2, b = y + h / 2, dp = 18;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  /* the front, the side and the top of a cardboard box, seen a little from above */
+  ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.rect(l, t, w, h); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.moveTo(r, t); ctx.lineTo(r + dp, t - dp); ctx.lineTo(r + dp, b - dp); ctx.lineTo(r, b); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = PAL.soft2; ctx.beginPath(); ctx.moveTo(l, t); ctx.lineTo(l + dp, t - dp); ctx.lineTo(r + dp, t - dp); ctx.lineTo(r, t); ctx.closePath(); ctx.fill(); ctx.stroke();
+  /* the two top flaps meet along the middle, and a strip of tape holds them shut */
+  ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(l + dp / 2, t - dp / 2); ctx.lineTo(r + dp / 2, t - dp / 2); ctx.stroke();
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.moveTo(x - 7, t); ctx.lineTo(x - 7 + dp, t - dp); ctx.lineTo(x + 7 + dp, t - dp); ctx.lineTo(x + 7, t); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.rect(x - 7, t, 14, 12); ctx.fill(); ctx.stroke();
+  ctx.restore();
+  text(ctx, 'package', x, y + 6, color, { size: 16, align: 'center', weight: 600 });
 }
 
 /* =====================================================================
@@ -127,23 +136,31 @@ function package_(ctx, x, y, w, h, color) {
       arrow(ctx, px - 48, py + 26, px - 48 - fr.v * 1.6, py + 26, cF, 5);
       text(ctx, 'f = ' + sig3(fr.v) + ' N', px - 56 - fr.v * 1.6, py + 26, cF, { size: 20, weight: 600, align: 'right' });
     }
-    arrow(ctx, px, py - 56, px + Math.max(24, v * 34), py - 56, cV, 5);
-    text(ctx, 'v = ' + fmt(v, 2) + ' m/s', px + Math.max(24, v * 34) + 12, py - 56, cV, { size: 20, weight: 600 });
+    arrow(ctx, px, py - 74, px + Math.max(24, v * 34), py - 74, cV, 5);
+    text(ctx, 'v = ' + fmt(v, 2) + ' m/s', px + Math.max(24, v * 34) + 12, py - 74, cV, { size: 20, weight: 600 });
     dot(ctx, X(0), yB - 72, cD, false, 10);
     hbracket(ctx, X(0), Math.max(X(0) + 2, px), 500, cD, 'd = ' + fmt(x, 2) + ' m');
     text(ctx, 'the weight and the normal force are perpendicular to the motion, so neither does any work', 700, 552, PAL.muted, { size: 17, align: 'center' });
     /* the graph: the kinetic energy against the distance travelled */
-    const KEf = KE0 + p.Fn * p.D, yr = nice(0, KEf * 1.12, 4), xr = nice(0, p.D, 4);
-    const g = axes(ctx, { l: 220, r: 1240, t: 620, b: 850 }, [0, xr.hi], [0, yr.hi], { xl: 'd (m)', xc: cD, yl: 'KE (J)', yc: cE, nx: xr.n, ny: yr.n, fx: (u) => fmt(u, decs(xr)), fy: (u) => fmt(u, 0) });
-    line(ctx, g.X(0), g.Y(KE0), g.X(p.D), g.Y(KEf), cE, 5);
-    line(ctx, g.X(0), g.Y(KE0), g.X(xr.hi), g.Y(KE0), PAL.muted, 2, [10, 10]);
+    /* fixed axes. The distance axis is the slider's own range, 0 to 2 m, ticked every 0.5 m. The
+       energy the sliders can reach is ½ × 30 kg × (3 m/s)² + 200 N × 2 m = 535 J, but the default
+       push ends at 96 J and would then keep to the bottom fifth of the box, so the energy axis is
+       fixed at 0 to 150 J, ticked every 30, which holds the default push comfortably; a larger
+       energy is clipped at the top edge and read off the pinned marker. Neither range moves. */
+    const DR = 2, ER = 150, gbox = { l: 220, r: 1240, t: 620, b: 850 };
+    const KEf = KE0 + p.Fn * p.D;
+    const g = axes(ctx, gbox, [0, DR], [0, ER], { xl: 'd (m)', xc: cD, yl: 'KE (J)', yc: cE, nx: 4, ny: 5, fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 0) });
+    const dEnd = p.Fn > 1e-9 ? Math.min(p.D, (ER - KE0) / p.Fn) : p.D;
+    line(ctx, g.X(0), g.Y(Math.min(KE0, ER)), g.X(dEnd), g.Y(Math.min(KE0 + p.Fn * dEnd, ER)), cE, 5);
+    line(ctx, g.X(0), g.Y(Math.min(KE0, ER)), g.X(DR), g.Y(Math.min(KE0, ER)), PAL.muted, 2, [10, 10]);
     dot(ctx, g.X(0), g.Y(KE0), cE, false, 10);
     /* the bracket waits until it is tall enough to hold its own label clear of the
        dashed line at the starting energy */
-    if (x > 0.01 && g.Y(KE0) - g.Y(KE) > 28) vbracket(ctx, g.X(x) + 26, g.Y(KE0), g.Y(KE), cE, 'Wnet = ' + sig3(Wnet) + ' J', 1);
-    line(ctx, g.X(x), g.Y(0), g.X(x), g.Y(KE), cD, 2, [4, 8]);
-    dot(ctx, g.X(x), g.Y(KE), PAL.ink, true, 9);
-    text(ctx, 'slope = Fnet = ' + sig3(p.Fn) + ' N', g.X(p.D * 0.42), g.Y(KE0 + p.Fn * p.D * 0.42) - 34, cF, { size: 18, weight: 600, align: 'center' });
+    const xC = Math.min(x, dEnd), keC = Math.min(KE, ER);
+    if (x > 0.01 && g.Y(Math.min(KE0, ER)) - g.Y(keC) > 28) vbracket(ctx, g.X(xC) + 26, g.Y(Math.min(KE0, ER)), g.Y(keC), cE, 'Wnet = ' + sig3(Wnet) + ' J', 1);
+    line(ctx, g.X(xC), g.Y(0), g.X(xC), g.Y(keC), cD, 2, [4, 8]);
+    pinned(ctx, gbox, g.X, g.Y, x, KE, PAL.ink, sig3(KE) + ' J');
+    text(ctx, 'slope = Fnet = ' + sig3(p.Fn) + ' N', g.X(dEnd * 0.42), g.Y(Math.min(KE0 + p.Fn * dEnd * 0.42, ER)) - 34, cF, { size: 18, weight: 600, align: 'center' });
     headline(ctx, t < 1e-9
       ? 'the package starts at ' + fmt(p.u, 2) + ' m/s and carries ' + sig3(KE0) + ' J before the push begins'
       : done
@@ -171,10 +188,11 @@ function package_(ctx, x, y, w, h, color) {
     const { ctx } = begin(d.c);
     const m = mm.v, v = vv.v, cE = C('energy'), cV = C('velocity');
     const ke = (u) => 0.5 * m * u * u;
-    const top = ke(40), kilo = top >= 10000, unit = kilo ? 'kJ' : 'J', K = kilo ? 1000 : 1;
-    const yr = nice(0, top / K, 4);
+    /* fixed axes: the sliders reach 2000 kg at 40 m/s, where ½mv² = 1600 kJ, so the graph is
+       always 0 to 40 m/s by 0 to 1600 kJ, ticked every 400 kJ, and never rescales. */
+    const KR = 1600, kilo = true, unit = 'kJ', K = 1000;
     const box = { l: 200, r: 900, t: 150, b: 530 };
-    const g = axes(ctx, box, [0, 40], [0, yr.hi], { xl: 'v (m/s)', xc: cV, yl: 'KE (' + unit + ')', yc: cE, nx: 4, ny: yr.n, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, decs(yr)) });
+    const g = axes(ctx, box, [0, 40], [0, KR], { xl: 'v (m/s)', xc: cV, yl: 'KE (' + unit + ')', yc: cE, nx: 4, ny: 4, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
     /* the parabola, with the set speed filled and half of it hollow */
     ctx.save(); ctx.strokeStyle = cE; ctx.lineWidth = 5; ctx.beginPath();
     for (let i = 0; i <= 80; i++) { const u = (40 * i) / 80; if (i) ctx.lineTo(g.X(u), g.Y(ke(u) / K)); else ctx.moveTo(g.X(u), g.Y(ke(u) / K)); }
@@ -188,7 +206,7 @@ function package_(ctx, x, y, w, h, color) {
     dot(ctx, g.X(v), g.Y(ke(v) / K), cE, true, 10);
     /* the same two energies as bars, so the factor of four can be seen at a glance */
     const bx = [1060, 1240], bw = 110, base = box.b, top2 = box.t;
-    const H = (j) => base - ((j / K) / yr.hi) * (base - top2);
+    const H = (j) => base - ((j / K) / KR) * (base - top2);
     [[half, 0], [v, 1]].forEach(([u, i]) => {
       const h = H(ke(u));
       ctx.save(); ctx.fillStyle = alpha(cE, i ? 0.85 : 0.35); ctx.fillRect(bx[i] - bw / 2, h, bw, base - h); ctx.restore();

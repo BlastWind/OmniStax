@@ -35,8 +35,11 @@ const divider = (ctx, x, y1, y2) => line(ctx, x, y1, x, y2, PAL.rule, 2);
 /* a disc of boards with its eight spokes, turned through φ */
 function disc(ctx, cx, cy, R, phi) {
   ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.fill(); ctx.restore();
+  /* the spokes stop at the rim's inner edge, a half width back for the round
+     cap, and the rim is stroked over them, so no spoke crosses the rim */
+  const IN = R - 3;
+  for (let k = 0; k < 8; k++) { const a = phi + (k * TAU) / 8; line(ctx, cx, cy, cx + IN * Math.cos(a), cy - IN * Math.sin(a), PAL.panel, 3); }
   ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.stroke(); ctx.restore();
-  for (let k = 0; k < 8; k++) { const a = phi + (k * TAU) / 8; line(ctx, cx, cy, cx + R * Math.cos(a), cy - R * Math.sin(a), PAL.panel, 3); }
   dot(ctx, cx, cy, PAL.muted, true, 6);
 }
 /* a car seen from above, its nose along (ux, uy), centred on (x, y) */

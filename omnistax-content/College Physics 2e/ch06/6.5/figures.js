@@ -2,7 +2,7 @@
    the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -92,12 +92,18 @@ function sun(ctx, x, y, r, color) {
     hbracket(ctx, x1, x2, low + 78, C('position'), 'r = ' + fmt(r.v, 3) + ' m');
     /* the graph: how the force falls away as the bodies are drawn apart */
     const box = { l: 190, r: 1300, t: 400, b: 570 };
-    const Fhi = force(0.5), dec = split(Fhi, 2).e, k = Math.pow(10, dec);
-    const yr = nice(0, Fhi / k, 4);
-    const ax = axes(ctx, box, [0, 5], [0, yr.hi], { xl: 'r (m)', xc: C('position'), yl: 'F (10' + sup(dec) + ' N)', yc: C('force'), nx: 5, ny: yr.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, yr.hi / yr.n < 1 ? 1 : 0) });
-    curve(ctx, (s) => force(s) / k, 0.5, 5, ax.X, ax.Y, C('force'), 5, 120);
-    line(ctx, ax.X(r.v), ax.Y(0), ax.X(r.v), ax.Y(Fnow / k), PAL.muted, 2, [4, 8]);
-    dot(ctx, ax.X(r.v), ax.Y(Fnow / k), C('force'), true, 10);
+    /* fixed axes. The masses run from 0.5 kg to 100 kg each, so the force itself covers more than
+       four decades and no one scale in newtons could hold both ends. What the graph is about is the
+       shape, so the force is drawn as a fraction of its value at the closest separation the slider
+       allows, r = 0.5 m: the range is always 0 to 5 m by 0 to 1, ticked every 0.25, and it never
+       moves. The value that fraction is taken of is written on the graph, and the headline and the
+       readout carry the force in newtons. */
+    const Fhi = force(0.5);
+    const ax = axes(ctx, box, [0, 5], [0, 1], { xl: 'r (m)', xc: C('position'), yl: 'F, as a fraction of its value at r = 0.5 m', yc: C('force'), nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 2) });
+    curve(ctx, (s) => force(s) / Fhi, 0.5, 5, ax.X, ax.Y, C('force'), 5, 120);
+    line(ctx, ax.X(r.v), ax.Y(0), ax.X(r.v), ax.Y(Fnow / Fhi), PAL.muted, 2, [4, 8]);
+    dot(ctx, ax.X(r.v), ax.Y(Fnow / Fhi), C('force'), true, 10);
+    text(ctx, 'at r = 0.5 m the force is ' + sci(Fhi, 3) + ' N', box.r - 8, box.t + 26, PAL.muted, { size: 17, align: 'right' });
     headline(ctx, 'masses of ' + fmt(m.v, 3) + ' kg and ' + fmt(M.v, 3) + ' kg, ' + fmt(r.v, 3) + ' m apart, attract each other with ' + sci(Fnow, 3) + ' N, the same force on each');
     readout(d.readout, `\\kF = G\\frac{mM}{\\kr^2} = \\frac{(${texSci(G_MEASURED, 3)})(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(M.v, 3)}\\ \\text{kg})}{(${fmt(r.v, 3)}\\ \\text{m})^2} = ${texSci(Fnow, 3)}\\ \\text{N}`,
       'The arrow drawn on each body is the same length, because the force the smaller mass feels is equal in magnitude to the force the larger one feels, as Newton\u2019s third law requires. Drawing the bodies twice as far apart leaves a quarter of the force, which is the curve below the scene.');
@@ -124,24 +130,48 @@ function sun(ctx, x, y, r, color) {
     sphere(ctx, cx, cy, Rpx, PAL.ink);
     dot(ctx, cx, cy, PAL.ink, true, 7);
     text(ctx, 'center of mass', cx, cy + 26, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    /* the radius, drawn down to the left where the house is not */
-    const b = 205 * RAD, bx = cx + Rpx * Math.cos(b), by = cy + Rpx * Math.sin(b);
-    arrow(ctx, cx, cy, bx, by, C('position'), 4);
-    text(ctx, 'r = ' + sci(R, 2) + ' m', bx - 12, by + 20, C('position'), { weight: 600, align: 'right' });
-    /* the house on the surface, and the acceleration it falls with, drawn beside it */
+    /* the house on the surface, and the radius drawn from the center of mass out to
+       it, as the book draws r_e: the distance between the two centers of mass */
     const a = -50 * RAD, hx = cx + Rpx * Math.cos(a), hy = cy + Rpx * Math.sin(a);
+    arrow(ctx, cx, cy, hx - 6 * Math.cos(a), hy - 6 * Math.sin(a), C('position'), 4);
+    text(ctx, 'r = ' + sci(R, 2) + ' m', cx, cy + Rpx + 26, C('position'), { weight: 600, align: 'center' });
     house(ctx, hx, hy, a + Math.PI / 2, PAL.ink);
+    /* the magnified view the book puts beside its Earth: the house on a curved
+       surface, and the radius reaching, through a break, to the house's own
+       center of mass */
+    const ix = 655, iy = 236, ir = 84;
+    line(ctx, hx, hy, ix, iy - ir, PAL.rule, 1.5); line(ctx, hx, hy, ix, iy + ir, PAL.rule, 1.5);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(ix, iy, ir, 0, TAU); ctx.fill(); ctx.stroke(); ctx.clip();
+    ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(ix, iy + 16 + 520, 520, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.translate(ix, iy + 16); ctx.scale(2.6, 2.6); ctx.translate(-ix, -(iy + 16));
+    house(ctx, ix, iy + 16, 0, PAL.ink);
+    ctx.restore();
+    arrow(ctx, ix, iy + ir, ix, iy + 16 - 34, C('position'), 3);
+    line(ctx, ix - 12, iy + 52, ix + 12, iy + 44, PAL.panel, 6); line(ctx, ix - 12, iy + 52, ix + 12, iy + 44, C('position'), 2);
+    line(ctx, ix - 12, iy + 60, ix + 12, iy + 52, C('position'), 2);
+    dot(ctx, ix, iy + 16 - 34, C('position'), true, 5);
+    text(ctx, 'r', ix + 12, iy + 72, C('position'), { weight: 600, size: 20 });
+    text(ctx, 'the house, magnified', ix, iy + ir + 24, PAL.muted, { size: 15, align: 'center' });
+    text(ctx, 'r reaches its center of mass', ix, iy + ir + 44, PAL.muted, { size: 15, align: 'center' });
     const tx = -Math.sin(a), ty = Math.cos(a), ox = hx + 74 * tx, oy = hy + 74 * ty;
     arrow(ctx, ox + 44 * Math.cos(a), oy + 44 * Math.sin(a), ox - 34 * Math.cos(a), oy - 34 * Math.sin(a), C('acceleration'), 5);
     text(ctx, 'g = ' + fmt(gs, 2) + ' m/s\u00B2', ox + 58 * Math.cos(a), oy + 58 * Math.sin(a), C('acceleration'), { weight: 600 });
     /* the graph beside the scene: how g falls away above the surface */
-    const box = { l: 790, r: 1320, t: 150, b: 440 };
-    const yr = nice(0, gs, 4);
-    const ax = axes(ctx, box, [1, 4], [0, yr.hi], { xl: 'distance from the center (radii)', xc: PAL.ink, yl: 'g (m/s\u00B2)', yc: C('acceleration'), nx: 3, ny: yr.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, yr.hi / yr.n < 1 ? 2 : 1) });
-    curve(ctx, (u) => gs / (u * u), 1, 4, ax.X, ax.Y, C('acceleration'), 5, 120);
-    line(ctx, ax.X(1), ax.Y(0), ax.X(1), ax.Y(gs), PAL.muted, 2, [4, 8]);
-    dot(ctx, ax.X(1), ax.Y(gs), C('acceleration'), true, 10);
-    text(ctx, 'the surface', ax.X(1) + 16, ax.Y(gs) + 26, PAL.muted, { size: 17 });
+    const box = { l: 860, r: 1330, t: 150, b: 440 };
+    /* fixed axes. The sliders reach 320 Earth masses at a tenth of an Earth radius, where g would be
+       32,000 times its value here; an axis that tall would leave Earth's own 9.80 m/s² on the base
+       line, so the range is fixed at 0 to 10 m/s², ticked every 2, which holds the default state
+       comfortably. A stronger surface gravity is clipped at the top edge and read off the pinned
+       marker. The distance axis is the whole of the drawn range, 1 to 4 radii. */
+    const GR = 10;
+    const ax = axes(ctx, box, [1, 4], [0, GR], { xl: 'distance from the center (radii)', xc: PAL.ink, yl: 'g (m/s\u00B2)', yc: C('acceleration'), nx: 3, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    curve(ctx, (u) => Math.min(gs / (u * u), GR), 1, 4, ax.X, ax.Y, C('acceleration'), 5, 120);
+    const gC = Math.min(gs, GR);
+    line(ctx, ax.X(1), ax.Y(0), ax.X(1), ax.Y(gC), PAL.muted, 2, [4, 8]);
+    pinned(ctx, box, ax.X, ax.Y, 1, gs, C('acceleration'), fmt(gs, 2) + ' m/s\u00B2');
+    text(ctx, 'the surface', ax.X(1) + 16, ax.Y(gC) + 26, PAL.muted, { size: 17 });
     headline(ctx, rad.v === 1 && mass.v === 1
       ? 'with the mass and the radius of Earth, r = ' + sci(R, 2) + ' m and the surface acceleration is g = ' + fmt(gs, 2) + ' m/s\u00B2'
       : 'at ' + fmt(mass.v, 2) + ' Earth masses and ' + fmt(rad.v, 2) + ' Earth radii, g = ' + fmt(gs, 2) + ' m/s\u00B2 at the surface, which is ' + fmt(gs / 9.7995, 2) + ' times the value on Earth');
@@ -230,15 +260,22 @@ function sun(ctx, x, y, r, color) {
     const amp = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(2 * p));
     const psi = 0.5 * Math.atan2(B * Math.sin(2 * p), A + B * Math.cos(2 * p));
     const cx = 480, cyy = 300, R = 100;
-    const sa = R * (1 + 0.26 * amp), sb = R * (1 - 0.1 * amp);
-    /* the water, drawn as an ellipse stretched along the bulge */
+    const sa = R * (1.12 + 0.42 * amp), sb = R * (1.1 - 0.02 * amp);
+    /* the water: a body of ocean all round Earth, drawn as an ellipse stretched
+       along the bulge, so that it stands high on two sides and low on the others */
     ctx.save(); ctx.translate(cx, cyy); ctx.rotate(psi);
-    ctx.fillStyle = alpha(C('position'), 0.18); ctx.strokeStyle = C('position'); ctx.lineWidth = 3;
+    ctx.fillStyle = alpha(C('position'), 0.4); ctx.strokeStyle = C('position'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.ellipse(0, 0, sa, sb, 0, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    sphere(ctx, cx, cyy, R, PAL.ink);
-    text(ctx, 'Earth', cx, cyy, PAL.ink, { weight: 600, align: 'center' });
-    text(ctx, 'high tide', cx + (sa - 30) * Math.cos(psi), cyy + (sa - 30) * Math.sin(psi), PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'high tide', cx - (sa - 30) * Math.cos(psi), cyy - (sa - 30) * Math.sin(psi), PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, 'Earth', cx, cyy - 12, PAL.ink, { weight: 600, align: 'center' });
+    text(ctx, 'water', cx + (sa - 24) * Math.cos(psi) * 0.62 - 20, cyy + (sa - 24) * Math.sin(psi) * 0.62 + 30, C('position'), { size: 16, align: 'center', weight: 600 });
+    /* Earth turns under the bulge: a curved arrow inside it */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cyy, R * 0.6, 0.35 * Math.PI, 0.72 * Math.PI); ctx.stroke(); ctx.restore();
+    arrow(ctx, cx + R * 0.6 * Math.cos(0.7 * Math.PI), cyy + R * 0.6 * Math.sin(0.7 * Math.PI), cx + R * 0.6 * Math.cos(0.78 * Math.PI), cyy + R * 0.6 * Math.sin(0.78 * Math.PI), PAL.muted, 3);
+    text(ctx, 'Earth turns', cx, cyy + 14, PAL.muted, { size: 15, align: 'center' });
+    text(ctx, 'high tide', cx + (sa - 36) * Math.cos(psi), cyy + (sa - 36) * Math.sin(psi), PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'high tide', cx - (sa - 36) * Math.cos(psi), cyy - (sa - 36) * Math.sin(psi), PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'low tide', cx - (sb + 26) * Math.sin(psi), cyy + (sb + 26) * Math.cos(psi), PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'low tide', cx + (sb + 26) * Math.sin(psi), cyy - (sb + 26) * Math.cos(psi), PAL.muted, { size: 17, align: 'center' });
     /* the coast that Earth carries round under the bulge */
@@ -249,6 +286,10 @@ function sun(ctx, x, y, r, color) {
     const mx = cx + 620, my = cyy;
     moon(ctx, mx, my, 34, PAL.ink);
     text(ctx, 'the Moon', mx, my + 62, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    /* the Moon's path: it moves along its orbit, across the Earth-Moon line, as the
+       book draws it with an arrow from the Moon */
+    arrow(ctx, mx, my - 44, mx, my - 120, PAL.ink, 4);
+    text(ctx, "the Moon's path", mx, my - 138, PAL.muted, { size: 16, align: 'center' });
     line(ctx, cx + sa, cyy, mx - 44, my, PAL.rule, 2, [10, 10]);
     const sx = cx - 230 * Math.cos(p), sy2 = cyy + 230 * Math.sin(p);
     line(ctx, cx, cyy, sx, sy2, PAL.rule, 2, [10, 10]);
@@ -296,14 +337,23 @@ function sun(ctx, x, y, r, color) {
     const px = 400, py = 330, arm = 150, twist = -12 * RAD * frac;
     const gap = 70 + ((r.v - 0.05) / 0.45) * 120;
     const rs = 12 + 8 * Math.sqrt(m.v / 5), rl = 20 + 12 * Math.sqrt(M.v / 50);
+    /* the base the large spheres stand on, and the circle the small ones swing round */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.ellipse(px, py, arm + rl + 30, gap + rl + 30, 0, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5;
     ctx.beginPath(); ctx.arc(px, py, arm, 0, TAU); ctx.stroke(); ctx.restore();
+    text(ctx, 'the stand', px - arm - rl - 40, py + gap + rl + 10, PAL.muted, { size: 15, align: 'center' });
     const bx = (s) => px + s * arm * Math.cos(twist), by = (s) => py + s * arm * Math.sin(twist);
     [1, -1].forEach((s) => sphere(ctx, px + s * arm, py - s * gap, rl, PAL.ink));
-    line(ctx, bx(1), by(1), bx(-1), by(-1), PAL.ink, 5);
+    /* the beam: a light rod hung from the fiber, with the small spheres at its ends */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.translate(px, py); ctx.rotate(twist);
+    ctx.beginPath(); ctx.rect(-arm, -5, 2 * arm, 10); ctx.fill(); ctx.stroke(); ctx.restore();
     [1, -1].forEach((s) => sphere(ctx, bx(s), by(s), rs, PAL.ink));
+    text(ctx, 'the beam', bx(0.5), by(0.5) + 26, PAL.muted, { size: 15, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'M = ' + fmt(M.v, 0) + ' kg', px + arm, py - gap - rl - 26, PAL.ink, { weight: 600, align: 'center' });
+    text(ctx, 'M', px - arm, py + gap + rl + 26, PAL.ink, { weight: 600, align: 'center' });
     text(ctx, 'm = ' + fmt(m.v, 1) + ' kg', bx(-1), by(-1) - rs - 26, PAL.ink, { weight: 600, align: 'center' });
+    text(ctx, 'm', bx(1), by(1) + rs + 26, PAL.ink, { weight: 600, align: 'center' });
     /* each small sphere is drawn toward the large one beside it */
     [1, -1].forEach((s) => {
       const dx = px + s * arm - bx(s), dy = py - s * gap - by(s), L = Math.hypot(dx, dy) || 1;
@@ -312,21 +362,27 @@ function sun(ctx, x, y, r, color) {
     text(ctx, 'F', bx(1) - 46, by(1) - 8, C('force'), { size: 24, weight: 600, align: 'right' });
     line(ctx, px + arm, by(1), px + arm, py - gap, C('position'), 3, [6, 8]);
     text(ctx, 'r = ' + fmt(r.v, 2) + ' m', px + arm + rl + 20, (by(1) + py - gap) / 2, C('position'), { size: 20, weight: 600 });
+    /* the mirror on the fiber, and the twist the fiber takes up */
     line(ctx, px - 32 * Math.sin(twist), py + 32 * Math.cos(twist), px + 32 * Math.sin(twist), py - 32 * Math.cos(twist), PAL.muted, 5);
     dot(ctx, px, py, PAL.ink, true, 8);
-    text(ctx, 'the fiber and its mirror', px, py + 54, PAL.muted, { size: 17, align: 'center' });
-    /* the light source, the reflected beam and the scale the spot rests on */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(px, py, 50, 0.55 * Math.PI, 0.95 * Math.PI); ctx.stroke(); ctx.restore();
+    arrow(ctx, px + 50 * Math.cos(0.93 * Math.PI), py + 50 * Math.sin(0.93 * Math.PI), px + 50 * Math.cos(1.02 * Math.PI), py + 50 * Math.sin(1.02 * Math.PI), PAL.muted, 2.5);
+    text(ctx, 'the fiber, seen end on, and its mirror', px, py + 76, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the fiber twists', px - 56, py + 46, PAL.muted, { size: 15, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    /* the light source, the beam it sends to the mirror, the reflected beam and the scale the spot rests on */
     const sx = 1180, sy = 540, zero = 1060, spot = zero - 300 * frac;
-    line(ctx, sx, sy, px, py, PAL.rule, 2, [8, 8]);
-    dot(ctx, sx, sy, PAL.muted, true, 7);
-    text(ctx, 'light source', sx + 20, sy, PAL.muted, { size: 17 });
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.translate(sx, sy); ctx.rotate(Math.atan2(py - sy, px - sx));
+    ctx.beginPath(); ctx.rect(-4, -14, 52, 28); ctx.fill(); ctx.stroke(); ctx.restore();
+    arrow(ctx, sx, sy, px + 20 * (sx - px) / Math.hypot(sx - px, sy - py), py + 20 * (sy - py) / Math.hypot(sx - px, sy - py), PAL.rule, 2);
+    text(ctx, 'light source', sx + 34, sy + 30, PAL.muted, { size: 17 });
     line(ctx, 700, 160, 1340, 160, PAL.muted, 3);
     for (let x = 700; x <= 1340.5; x += 32) line(ctx, x, 160, x, 174, PAL.muted, 2);
     text(ctx, 'the scale', 1340, 128, PAL.muted, { size: 17, align: 'right' });
     dot(ctx, zero, 160, PAL.muted, false, 9);
     text(ctx, 'no attraction', zero + 14, 128, PAL.muted, { size: 17 });
-    line(ctx, px, py, spot, 160, C('force'), 3);
+    arrow(ctx, px, py, spot, 172, C('force'), 3);
     dot(ctx, spot, 160, C('force'), true, 10);
+    text(ctx, 'the light spot', spot, 196, C('force'), { size: 15, align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
     headline(ctx, 'each pair attracts with ' + sci(Fnow, 2) + ' N, and the light spot rests ' + (off ? 'against the far end of the scale' : fmt(100 * frac, 0) + ' per cent of the way along the scale'));
     readout(d.readout, `\\kF = G\\frac{mM}{\\kr^2} = \\frac{(${texSci(G_MEASURED, 3)})(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(M.v, 0)}\\ \\text{kg})}{(${fmt(r.v, 2)}\\ \\text{m})^2} = ${texSci(Fnow, 2)}\\ \\text{N}`,
       'The fiber twists until what it resists balances the attraction, so the distance the reflected spot moves along the scale is proportional to the force. That is how Cavendish measured an attraction of less than a millionth of a newton, and with it the value of G.');

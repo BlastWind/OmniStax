@@ -2,8 +2,11 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, spring, block, fixed, FONT } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, curve, pinned, spring, block, fixed, labeller, topline, FONT } = F;
 const sim = (id, H) => F.sim(root, id, H);
+/* draws inside the graph box, so a line or curve that runs past a fixed range is cut off at the
+   frame instead of the frame being stretched to hold it */
+const inbox = (ctx, box, f) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); };
 const G = 9.80;
 const RAD = Math.PI / 180;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -11,66 +14,8 @@ const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const num = (v, d) => commas(fmt(v, d));
 const deg = (v, d) => fmt(v, d) + '°';
 
-/* ---------- the label discipline ----------
-   A label is set beside the thing it names and never on it. It starts one
-   gap beyond the arrowhead, along the arrow's own direction; where that slot
-   is already taken, or would fall off the canvas, it steps further out and a
-   dotted leader in the label's own colour ties it back to the head. Every
-   label is drawn in a small panel the colour of the page, so a line it
-   crosses does not run through the letters, and every label is kept inside
-   the canvas at every slider position. Labels are collected and flushed
-   last, which puts text above the arrows and the arrows above the bodies.
-   block() reserves a region, such as the headline band, that no label may
-   enter. */
-function labeller(ctx, H) {
-  const placed = [], queue = [];
-  const boxOf = (s, x, y, size, align) => {
-    ctx.save(); ctx.font = '600 ' + size + 'px ' + FONT; const tw = ctx.measureText(s).width; ctx.restore();
-    const bw = tw + 14, bh = size + 8;
-    const l = align === 'center' ? x - bw / 2 : align === 'right' ? x - bw + 7 : x - 7;
-    return { l, r: l + bw, t: y - bh / 2, b: y + bh / 2 };
-  };
-  const clash = (a) => placed.some((b) => a.l < b.r + 8 && b.l < a.r + 8 && a.t < b.b + 6 && b.t < a.b + 6);
-  return {
-    block(l, t, r, b) { placed.push({ l, t, r, b }); },
-    add(s, hx, hy, ux, uy, color, size, start) {
-      const sz = size || 20, gaps = [start || 20, 58, 96, 138, 184];
-      const align = ux < -0.3 ? 'right' : ux > 0.3 ? 'left' : 'center';
-      for (let i = 0; i < gaps.length; i++) {
-        let x = hx + ux * gaps[i], y = hy + uy * gaps[i];
-        let b = boxOf(s, x, y, sz, align);
-        const dx = b.l < 16 ? 16 - b.l : b.r > 1384 ? 1384 - b.r : 0;
-        const dy = b.t < 16 ? 16 - b.t : b.b > H - 16 ? H - 16 - b.b : 0;
-        if (dx || dy) { x += dx; y += dy; b = boxOf(s, x, y, sz, align); }
-        if (clash(b) && i < gaps.length - 1) continue;
-        placed.push(b); queue.push({ s, x, y, hx, hy, color, sz, align });
-        return;
-      }
-    },
-    flush() {
-      for (const q of queue) {
-        const dx = q.x - q.hx, dy = q.y - q.hy, L = Math.hypot(dx, dy);
-        if (L > 40) line(ctx, q.hx + (dx / L) * 15, q.hy + (dy / L) * 15, q.x - (dx / L) * 17, q.y - (dy / L) * 17, alpha(q.color, 0.5), 1.5, [5, 6]);
-        text(ctx, q.s, q.x, q.y, q.color, { weight: 600, size: q.sz, align: q.align, bg: PAL.panel });
-      }
-    },
-  };
-}
-/* a headline that never runs to the border: one line where it fits, and
-   otherwise two, broken at the space that leaves the two halves most even */
-function topline(ctx, s) {
-  const wide = (t) => { ctx.save(); ctx.font = '400 26px ' + FONT; const q = ctx.measureText(t).width; ctx.restore(); return q; };
-  if (wide(s) <= 1180) { headline(ctx, s); return 1; }
-  const words = s.split(' ');
-  let cut = 1, best = Infinity;
-  for (let i = 1; i < words.length; i++) {
-    const q = Math.abs(wide(words.slice(0, i).join(' ')) - wide(words.slice(i).join(' ')));
-    if (q < best) { best = q; cut = i; }
-  }
-  text(ctx, words.slice(0, cut).join(' '), 700, 38, PAL.ink, { size: 26, align: 'center' });
-  text(ctx, words.slice(cut).join(' '), 700, 74, PAL.ink, { size: 26, align: 'center' });
-  return 2;
-}
+/* labeller() and topline() are the label discipline, promoted into the
+   figure library; see figlib.ts for what they guarantee. */
 
 /* ---------- shared drawing ---------- */
 /* an arrow from (x, y) along (dx, dy), with its label just beyond the head */
@@ -98,16 +43,6 @@ function angleArc(ctx, x, y, r, a0, a1, label, size) {
   const mid = ((a0 + a1) / 2) * RAD;
   text(ctx, label, x + (r + 30) * Math.cos(mid), y + (r + 30) * Math.sin(mid), PAL.ink,
     { size: size || 20, weight: 600, align: 'center', bg: PAL.panel });
-}
-/* a closed fist gripping at (x, y), the wrist reaching left */
-function fist(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
-  ctx.beginPath(); ctx.moveTo(x - 34, y + 26); ctx.lineTo(x - 96, y + 42); ctx.lineTo(x - 96, y - 8); ctx.lineTo(x - 36, y - 24); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.ellipse(x - 6, y, 38, 46, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-  ctx.beginPath();
-  ctx.arc(x + 16, y - 30, 11, 0, Math.PI * 2); ctx.arc(x + 22, y - 10, 11, 0, Math.PI * 2);
-  ctx.arc(x + 22, y + 10, 11, 0, Math.PI * 2); ctx.arc(x + 16, y + 30, 11, 0, Math.PI * 2);
-  ctx.fill(); ctx.stroke(); ctx.restore();
 }
 /* an open hand, palm up, its fingers just under (x, y) */
 function palm(ctx, x, y, color) {
@@ -166,20 +101,24 @@ function walker(ctx, x, y, color) {
     fvec(ctx, AX + 54, 268, 0, -L, col, 'F_hand = ' + num(w, 1) + ' N');
     fvec(ctx, AX + 54, 332, 0, L, col, 'w = ' + num(w, 1) + ' N');
     /* (b) the table sags under the bag until it pushes back with the weight */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6;
-    ctx.beginPath(); ctx.moveTo(BX - 200, TOP); ctx.quadraticCurveTo(BX, TOP + 2 * sag, BX + 200, TOP); ctx.stroke();
-    ctx.lineWidth = 5; ctx.beginPath();
-    ctx.moveTo(BX - 176, TOP + 3); ctx.lineTo(BX - 176, TOP + 150);
-    ctx.moveTo(BX + 176, TOP + 3); ctx.lineTo(BX + 176, TOP + 150); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    /* the two legs, then the top: a slab that sags under the bag */
+    ctx.beginPath(); ctx.rect(BX - 190, TOP + 8, 20, 150); ctx.rect(BX + 170, TOP + 8, 20, 150); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(BX - 210, TOP); ctx.quadraticCurveTo(BX, TOP + 2 * sag, BX + 210, TOP);
+    ctx.lineTo(BX + 210, TOP + 16); ctx.quadraticCurveTo(BX, TOP + 16 + 2 * sag, BX - 210, TOP + 16); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.restore();
+    text(ctx, 'table', BX - 180, TOP + 178, PAL.muted, { size: 18, align: 'center' });
     bag(ctx, BX, TOP + sag - 34);
     fvec(ctx, BX, TOP + sag - 66, 0, -L, col, 'N = ' + num(w, 1) + ' N');
     fvec(ctx, BX, TOP + sag - 2, 0, L, col, 'w = ' + num(w, 1) + ' N');
-    line(ctx, BX + 176, TOP, BX + 262, TOP, PAL.muted, 2, [8, 8]);
+    /* the sag, measured on the left where nothing else is drawn: the level of the
+       unloaded top, the level of the loaded one, and the note between them */
+    line(ctx, BX - 210, TOP, BX - 270, TOP, PAL.muted, 2, [8, 8]);
     if (sag > 5) {
-      line(ctx, BX, TOP + sag, BX + 262, TOP + sag, PAL.muted, 2, [8, 8]);
-      vbracket(ctx, BX + 250, TOP, TOP + sag, PAL.ink);
-      text(ctx, 'it sags ' + fmt(sagCm, 1) + ' cm', BX + 234, TOP + sag / 2, PAL.ink, { weight: 600, size: 20, align: 'right', bg: PAL.panel });
+      line(ctx, BX - 108, TOP + sag, BX - 270, TOP + sag, PAL.muted, 2, [8, 8]);
+      vbracket(ctx, BX - 258, TOP, TOP + sag, PAL.ink);
     }
+    text(ctx, 'it sags ' + fmt(sagCm, 1) + ' cm', BX - 276, TOP + Math.max(sag / 2, 14), PAL.ink, { weight: 600, size: 20, align: 'right', bg: PAL.panel });
     /* the free-body diagrams */
     text(ctx, 'Free-body diagrams', 700, 626, PAL.muted, { size: 20, align: 'center' });
     [[AX, 'F_hand'], [BX, 'N']].forEach(function (row) {
@@ -291,17 +230,26 @@ function walker(ctx, x, y, color) {
     lab.add('w⊥ = ' + num(wperp, 0) + ' N', hperp[0], hperp[1], -nx, -ny, col, 20);
     if (fL > 3) lab.add('f = ' + num(FR.v, 0) + ' N', hf[0], hf[1], -ux, -uy, col, 20);
     /* ---------- the graph: the speed she has reached against the time ---------- */
-    const vmax = moving() ? a * T() : 10, vr = nice(0, vmax, 4), tr = nice(0, T(), 4);   /* a stalled run still wants round ticks */
+    /* fixed axes: the 40 m of slope is covered at v = √(2 × 40 × a), and the steepest slope with no
+       friction gives a = 9.80 sin 40° = 6.30 m/s², so she can never pass √(80 × 6.30) = 22.4 m/s and
+       the speed axis is always 0 to 24 m/s. A slope only just steep enough to start her takes minutes
+       to run, so no fixed time axis holds every run: the time axis is set at 0 to 6 s, which holds
+       the 4.9 s run the figure opens with, and a slower run walks off the right edge as a pinned
+       marker. Neither range changes as a slider moves. */
+    const TR = 6, VR = 24;
     const box = { l: 240, r: 1240, t: 690, b: 840 };
-    const { X, Y } = axes(ctx, box, [0, tr.hi], [0, vr.hi], {
-      xl: 'time t (s)', xc: C('time'), yl: 'speed v (m/s)', yc: C('velocity'), nx: tr.n, ny: vr.n,
-      fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0),
+    const { X, Y } = axes(ctx, box, [0, TR], [0, VR], {
+      xl: 'time t (s)', xc: C('time'), yl: 'speed v (m/s)', yc: C('velocity'), nx: 6, ny: 4,
+      fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
     if (moving()) {
-      curve(ctx, (t) => a * t, 0, T(), X, Y, C('velocity'), 5, 2);
-      line(ctx, X(Math.min(tau, T())), box.b, X(Math.min(tau, T())), Y(speed), alpha(PAL.ink, 0.5), 2, [5, 7]);
-      dot(ctx, X(Math.min(tau, T())), Y(speed), C('velocity'), true, 9);
-    } else text(ctx, 'she does not start to slide', X(tr.hi / 2), Y(vr.hi / 2), PAL.muted, { size: 20, align: 'center', bg: PAL.panel });
+      const tn = Math.min(tau, T());
+      inbox(ctx, box, () => {
+        curve(ctx, (t) => a * t, 0, Math.min(T(), TR), X, Y, C('velocity'), 5, 2);
+        line(ctx, X(tn), box.b, X(tn), Y(speed), alpha(PAL.ink, 0.5), 2, [5, 7]);
+      });
+      pinned(ctx, box, X, Y, tn, speed, C('velocity'), fmt(tn, 1) + ' s');
+    } else text(ctx, 'she does not start to slide', X(TR / 2), Y(VR / 2), PAL.muted, { size: 20, align: 'center', bg: PAL.panel });
     lab.flush();
     readout(d.readout, `\\kapar = \\frac{m\\kg\\sin\\theta - \\kff}{m} = \\frac{(${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ - ${fmt(FR.v, 1)}\\ \\text{N}}{${fmt(M.v, 1)}\\ \\text{kg}} = ${fmt(Math.max(0, a), 2)}\\ \\text{m/s}^2`,
       'With friction neglected the acceleration would be g sin θ = ' + fmt(G * Math.sin(th), 2)
@@ -345,9 +293,13 @@ function walker(ctx, x, y, color) {
     line(ctx, mx - nx * wperp * S, my - ny * wperp * S, mx, my + w * S, PAL.rule, 2, [8, 8]);
     if (TH.v > 4) angleArc(ctx, mx, my, 58, 90 - TH.v, 90, 'θ', 19);
     /* the graph: the two components against the angle */
-    const wr = nice(0, w, 4), box = { l: 240, r: 1240, t: 560, b: 700 };
-    const { X, Y } = axes(ctx, box, [0, 90], [0, wr.hi], {
-      xl: 'angle of the incline θ (°)', xc: PAL.ink, yl: 'the two components (N)', yc: col, nx: 6, ny: wr.n,
+    /* fixed axes: the angle slider covers 0° to 60° and the curves are drawn across the whole
+       quadrant, so the angle runs 0 to 90°. The heaviest object the mass slider allows, 60 kg, weighs
+       60 × 9.80 = 588 N, and no component can be larger than the weight, so the force axis is always
+       0 to 600 N, ticked every 150 N, and it never rescales as a slider moves */
+    const WR = 600, box = { l: 240, r: 1240, t: 560, b: 700 };
+    const { X, Y } = axes(ctx, box, [0, 90], [0, WR], {
+      xl: 'angle of the incline θ (°)', xc: PAL.ink, yl: 'the two components (N)', yc: col, nx: 6, ny: 4,
       fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
     curve(ctx, (t) => w * Math.sin(t * RAD), 0, 90, X, Y, col, 5, 90);
@@ -377,16 +329,16 @@ function walker(ctx, x, y, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const T = M.v * GG.v, L = 44 + 66 * (T / 220), col = C('force'), X = 380, stretch = 24 * (T / 220);
-    fixed(ctx, X - 150, 96, 300, 34);
-    /* the rope, with a spring cut into it */
-    line(ctx, X, 130, X, 300, PAL.ink, 5);
+    /* the person on a ledge who holds the rope, and the rope with a spring cut into it */
+    fixed(ctx, X + 30, 300, 190, 26);
+    F.person(ctx, X + 50, 300, PAL.ink, { s: 1.5, face: -1, reach: { x: X, y: 210 } });
+    line(ctx, X, 210, X, 300, PAL.ink, 5);
     spring(ctx, X, 300, X, 366 + stretch, 7, 18, PAL.ink, 4);
     line(ctx, X, 366 + stretch, X, 466, PAL.ink, 5);
-    fist(ctx, X, 210, PAL.ink);
     block(ctx, X, 524, 170, 116, PAL.ink);
     text(ctx, 'm', X, 524, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    fvec(ctx, X + 70, 196, 0, L, col, 'T');
-    fvec(ctx, X + 70, 460, 0, -L, col, 'T');
+    fvec(ctx, X - 70, 196, 0, L, col, 'T');
+    fvec(ctx, X - 70, 460, 0, -L, col, 'T');
     fvec(ctx, X, 582, 0, L + 16, col, 'w = ' + num(T, 1) + ' N');
     text(ctx, 'the spring reads ' + num(T, 1) + ' N', X - 58, 340, C('force'), { size: 19, weight: 600, align: 'right' });
     /* the free-body diagram of the mass */
@@ -417,11 +369,12 @@ function walker(ctx, x, y, color) {
     const T = M.v * G, col = C('force'), ph = PH.v * RAD;
     const P1 = [560, 220], P2 = [P1[0] + 300 * Math.cos(ph), P1[1] + 300 * Math.sin(ph)];
     const HX = 220, LOADY = 570;
-    line(ctx, HX + 40, P1[1], P1[0], P1[1], PAL.ink, 5);
+    line(ctx, 300, P1[1], P1[0], P1[1], PAL.ink, 5);
     line(ctx, P1[0], P1[1], P2[0], P2[1], PAL.ink, 5);
     line(ctx, P2[0], P2[1], P2[0], LOADY - 46, PAL.ink, 5);
     pulley(ctx, P1[0], P1[1]); pulley(ctx, P2[0], P2[1]);
-    fist(ctx, HX, P1[1], PAL.ink);
+    fixed(ctx, 130, 330, 210, 26);
+    F.person(ctx, 250, 330, PAL.ink, { s: 1.6, lean: -0.2, reach: { x: 300, y: P1[1] + 2 } });
     block(ctx, P2[0], LOADY, 140, 92, PAL.ink);
     text(ctx, 'm', P2[0], LOADY, PAL.ink, { size: 22, weight: 600, align: 'center' });
     fvec(ctx, P2[0], LOADY + 46, 0, 62, col, 'w = ' + num(T, 1) + ' N', 20);
@@ -430,7 +383,7 @@ function walker(ctx, x, y, color) {
     tvec(ctx, P1[0] + 200 * Math.cos(ph), P1[1] + 200 * Math.sin(ph), -Math.cos(ph), -Math.sin(ph), 100, col, 'T = ' + num(T, 1) + ' N', 1);
     tvec(ctx, P2[0], LOADY - 62, 0, -1, 76, col, 'T = ' + num(T, 1) + ' N', 1);
     angleArc(ctx, P1[0], P1[1], 64, 0, PH.v, deg(PH.v, 0));
-    text(ctx, 'the cable is pulled here', HX, P1[1] + 90, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the cable is pulled here', 240, 392, PAL.muted, { size: 19, align: 'center' });
     headline(ctx, 'the ' + fmt(M.v, 2) + ' kg load makes a tension of ' + num(T, 1)
       + ' N, and the same ' + num(T, 1) + ' N is carried round both corners to the hand');
     readout(d.readout, `\\kTf = m\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`,
@@ -476,14 +429,23 @@ function walker(ctx, x, y, color) {
     arrow(ctx, OX, OY - 8, OX, OY - 8 - Math.max(6, U * Math.sin(th) * 2), alpha(C('force'), 0.5), 4);
     text(ctx, 'the two horizontal components cancel, and the two vertical ones add to the weight', OX, OY + 184, PAL.muted, { size: 19, align: 'center' });
     /* the graph: how the tension runs away as the wire is pulled straight */
-    const hi = nice(0, Math.max(4 * w, 1.4 * T), 4), box = { l: 880, r: 1300, t: 510, b: 700 };
-    const { X, Y } = axes(ctx, box, [0, 30], [0, hi.hi], {
-      xl: 'sag angle θ (°)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 6, ny: hi.n,
+    /* fixed axes: the sag slider covers 0.5° to 30°, so the angle runs 0 to 30°. The tension runs
+       away without limit as the wire is pulled straight — at half a degree it is already 57 times the
+       weight — so no range holds it. The tension axis is fixed at 0 to 6,000 N, which is four times
+       the weight of the heaviest walker the slider allows, 120 × 9.80 = 1,176 N, and holds the
+       3,935 N the figure opens with; a tighter wire pins its tension at the top edge. Neither range
+       changes as a slider moves. */
+    const TR = 6000, box = { l: 880, r: 1300, t: 510, b: 700 };
+    const { X, Y } = axes(ctx, box, [0, 30], [0, TR], {
+      xl: 'sag angle θ (°)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 6, ny: 4,
       fx: (v) => fmt(v, 0), fy: (v) => num(v, 0),
     });
-    const thMin = Math.asin(Math.min(1, w / (2 * hi.hi))) / RAD;
-    curve(ctx, (t) => tension(t, w), Math.max(thMin, 0.2), 30, X, Y, col, 5, 120);
-    if (T <= hi.hi) { line(ctx, X(TH.v), box.b, X(TH.v), Y(T), PAL.ink, 2, [4, 8]); dot(ctx, X(TH.v), Y(T), col, true, 9); }
+    const thMin = Math.asin(Math.min(1, w / (2 * TR))) / RAD;
+    inbox(ctx, box, () => {
+      curve(ctx, (t) => tension(t, w), Math.max(thMin, 0.2), 30, X, Y, col, 5, 120);
+      if (T <= TR) line(ctx, X(TH.v), box.b, X(TH.v), Y(T), PAL.ink, 2, [4, 8]);
+    });
+    pinned(ctx, box, X, Y, TH.v, T, col, num(T, 0) + ' N');
     headline(ctx, 'a ' + fmt(M.v, 1) + ' kg walker sags the wire by ' + deg(TH.v, 1) + ', and each half pulls with '
       + num(T, 0) + ' N, ' + fmt(T / w, 1) + ' times his ' + num(w, 0) + ' N weight');
     readout(d.readout, `\\kTf = \\frac{\\kwgt}{2\\sin\\theta} = \\frac{${num(w, 0)}\\ \\text{N}}{2\\sin ${fmt(TH.v, 1)}^\\circ} = ${num(T, 0)}\\ \\text{N}`,
@@ -536,14 +498,22 @@ function walker(ctx, x, y, color) {
     tvec(ctx, MIDX + (RX - MIDX) * 0.5, MIDY + (CY - MIDY) * 0.5, Math.cos(th), -Math.sin(th), 150, col, 'T = ' + num(T, 0) + ' N', -1);
     angleArc(ctx, RX, CY, 112, 180 - TH.v, 180, deg(TH.v, 2), 19);
     /* the graph: the tension against the angle, for the push that is set */
-    const hi = nice(0, Math.max(6 * FP.v, 1.3 * T), 4), box = { l: 240, r: 1240, t: 480, b: 660 };
-    const g = axes(ctx, box, [0, 15], [0, hi.hi], {
-      xl: 'angle of the chain θ (°)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 5, ny: hi.n,
+    /* fixed axes: the angle slider covers 0.5° to 15°, so the angle runs 0 to 15°. The tension grows
+       without limit as the chain is pulled straight, so no range holds it; the tension axis is fixed
+       at 0 to 10,000 N, which is more than six times the largest push the slider allows, 1,500 N, and
+       holds the 4,298 N the figure opens with. A straighter chain pins its tension at the top edge,
+       and neither range changes as a slider moves. */
+    const TR = 10000, box = { l: 240, r: 1240, t: 480, b: 660 };
+    const g = axes(ctx, box, [0, 15], [0, TR], {
+      xl: 'angle of the chain θ (°)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 5, ny: 5,
       fx: (v) => fmt(v, 0), fy: (v) => num(v, 0),
     });
-    const thMin = Math.asin(Math.min(1, FP.v / (2 * hi.hi))) / RAD;
-    curve(ctx, (t) => tension(t, FP.v), Math.max(thMin, 0.1), 15, g.X, g.Y, col, 5, 120);
-    if (T <= hi.hi) { line(ctx, g.X(TH.v), box.b, g.X(TH.v), g.Y(T), PAL.ink, 2, [4, 8]); dot(ctx, g.X(TH.v), g.Y(T), col, true, 9); }
+    const thMin = Math.asin(Math.min(1, FP.v / (2 * TR))) / RAD;
+    inbox(ctx, box, () => {
+      curve(ctx, (t) => tension(t, FP.v), Math.max(thMin, 0.1), 15, g.X, g.Y, col, 5, 120);
+      if (T <= TR) line(ctx, g.X(TH.v), box.b, g.X(TH.v), g.Y(T), PAL.ink, 2, [4, 8]);
+    });
+    pinned(ctx, box, g.X, g.Y, TH.v, T, col, num(T, 0) + ' N');
     headline(ctx, 'a push of ' + num(FP.v, 0) + ' N at ' + deg(TH.v, 2) + ' puts ' + num(T, 0) + ' N on the car, '
       + fmt(T / FP.v, 1) + ' times the push');
     readout(d.readout, `\\kTf = \\frac{\\kFperp}{2\\sin\\theta} = \\frac{${num(FP.v, 0)}\\ \\text{N}}{2\\sin ${fmt(TH.v, 2)}^\\circ} = ${num(T, 0)}\\ \\text{N}`,

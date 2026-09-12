@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, axes, nice, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, axes, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const RAD = Math.PI / 180;
 const cos = (deg) => Math.cos(deg * RAD), sin = (deg) => Math.sin(deg * RAD);
@@ -23,15 +23,6 @@ function tug(ctx, x, y, ux, uy, color) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux)); ctx.fillStyle = color;
   ctx.beginPath(); ctx.moveTo(-46, -20); ctx.lineTo(18, -20); ctx.lineTo(48, 0); ctx.lineTo(18, 20); ctx.lineTo(-46, 20); ctx.closePath(); ctx.fill();
   ctx.fillStyle = PAL.panel; ctx.fillRect(-30, -11, 26, 22); ctx.restore();
-}
-/* a person standing on (x, y), about 132 units tall at s = 1 */
-function person(ctx, x, y, color, s = 1) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 6;
-  ctx.beginPath(); ctx.arc(0, -116, 16, 0, Math.PI * 2); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(0, -100); ctx.lineTo(0, -44);
-  ctx.moveTo(0, -44); ctx.lineTo(-17, 0); ctx.moveTo(0, -44); ctx.lineTo(17, 0);
-  ctx.moveTo(0, -90); ctx.lineTo(-24, -52); ctx.moveTo(0, -90); ctx.lineTo(24, -52);
-  ctx.stroke(); ctx.restore();
 }
 /* a traffic light hanging from (x, y) */
 function trafficLight(ctx, x, y, color) {
@@ -61,16 +52,18 @@ function trafficLight(ctx, x, y, color) {
     const app = Math.hypot(fx.v, fy.v), th = Math.atan2(fy.v, fx.v) / RAD;   /* forces in units of 10⁵ N */
     const ma = 10 * mm.v * ac.v, drag = app - ma, ok = drag > 0.004;
     /* (a) the scene from above: the barge, the two tugs and the acceleration */
-    const bx = 380, by = 360, S = 34;
+    const bx = 440, by = 330, S = 22;
     text(ctx, '(a) seen from above', 110, 116, PAL.muted, { size: 19 });
     block(ctx, bx, by, 250, 104, PAL.ink);
     text(ctx, 'barge', bx, by, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    tug(ctx, bx - 125 - 56, by, 1, 0, PAL.muted);
-    tug(ctx, bx, by + 52 + 56, 0, -1, PAL.muted);
-    arrow(ctx, bx + 125, by, bx + 125 + fx.v * S, by, fc, 5);
-    text(ctx, 'F_x = ' + fmt(fx.v, 1) + ' × 10⁵ N', bx + 131 + fx.v * S, by + 30, fc, { size: 20, weight: 600 });
-    arrow(ctx, bx, by - 52, bx, by - 52 - fy.v * S, fc, 5);
-    text(ctx, 'F_y = ' + fmt(fy.v, 1) + ' × 10⁵ N', bx + 14, by - 58 - fy.v * S, fc, { size: 20, weight: 600 });
+    /* each push runs from its tugboat into the hull it presses on */
+    const tailx = bx - 125 - fx.v * S, taily = by + 52 + fy.v * S;
+    tug(ctx, tailx - 56, by, 1, 0, PAL.muted);
+    tug(ctx, bx, taily + 56, 0, -1, PAL.muted);
+    arrow(ctx, tailx, by, bx - 125, by, fc, 5);
+    text(ctx, 'F_x = ' + fmt(fx.v, 1) + ' × 10⁵ N', (tailx + bx - 125) / 2, by + 40, fc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    arrow(ctx, bx, taily, bx, by + 52, fc, 5);
+    text(ctx, 'F_y = ' + fmt(fy.v, 1) + ' × 10⁵ N', bx + 148, (taily + by + 52) / 2, fc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     if (ac.v > 0.0001) {
       const al = 56 + 620 * ac.v;
       arrow(ctx, bx, by, bx + al * cos(th), by - al * sin(th), acc, 5);
@@ -203,7 +196,7 @@ function trafficLight(ctx, x, y, color) {
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.strokeRect(sl, carT, sr - sl, 300); ctx.restore();
     line(ctx, (sl + sr) / 2, 60, (sl + sr) / 2, carT, PAL.muted, 5);
     block(ctx, 320, floor - 16, 150, 32, PAL.ink);
-    person(ctx, 320, floor - 32, PAL.ink, 1.05);
+    F.person(ctx, 320, floor - 32, PAL.ink, { s: 1.65 });
     arrow(ctx, 400, floor - 170, 400, floor - 170 - 92 * (Fs / top), fc, 5);
     text(ctx, 'F_s = ' + fmt(Fs, 0) + ' N', 412, floor - 178 - 92 * (Fs / top), fc, { size: 20, weight: 600 });
     arrow(ctx, 240, floor - 170, 240, floor - 170 + 92 * (w / top), fc, 5);
@@ -219,16 +212,21 @@ function trafficLight(ctx, x, y, color) {
     line(ctx, dx, dy, dx + (r - 16) * Math.cos(ang), dy + (r - 16) * Math.sin(ang), fc, 5); dot(ctx, dx, dy, fc, true, 6);
     text(ctx, 'the dial reads ' + fmt(Fs, 0) + ' N', dx, dy + r + 26, fc, { size: 20, weight: 600, align: 'center' });
     /* the two graphs, beside the vertical scene */
-    const fr = nice(0, mm.v * (G + ac.v) * 1.12, 4), b1 = { l: 760, r: 1330, t: 140, b: 350 };
-    const g1 = axes(ctx, b1, [0, T], [0, fr.hi], { yl: 'the scale reading Fs (N)', yc: fc, nx: 5, ny: fr.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* fixed axes: the ride always lasts 10 s, and the largest reading the sliders allow is the
+       heaviest person under the hardest acceleration, 120 × (9.80 + 3) = 1,536 N, so the reading axis
+       is always 0 to 1,600 N, ticked every 400 N, and neither range changes as a slider moves */
+    const FR = 1600, b1 = { l: 760, r: 1330, t: 140, b: 350 };
+    const g1 = axes(ctx, b1, [0, T], [0, FR], { yl: 'the scale reading Fs (N)', yc: fc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, b1.l, g1.Y(w), b1.r, g1.Y(w), fc, 2, [10, 10]);
     text(ctx, 'his weight, ' + fmt(w, 0) + ' N', b1.r - 8, g1.Y(w) - 20, fc, { size: 18, align: 'right' });
     [[0, TA], [TA, TB], [TB, T]].forEach(([p, q]) => { const y = g1.Y(mm.v * (G + aAt((p + q) / 2))); line(ctx, g1.X(p), y, g1.X(q), y, fc, 5); });
     line(ctx, g1.X(TA), g1.Y(mm.v * (G + ac.v)), g1.X(TA), g1.Y(w), fc, 5);
     line(ctx, g1.X(TB), g1.Y(w), g1.X(TB), g1.Y(mm.v * (G - ac.v)), fc, 5);
     dot(ctx, g1.X(t), g1.Y(Fs), fc, true, 9);
-    const vr = nice(0, ac.v * TA * 1.15, 4), b2 = { l: 760, r: 1330, t: 470, b: 660 };
-    const g2 = axes(ctx, b2, [0, T], [0, vr.hi], { xl: 'time t (s)', xc: C('time'), yl: 'the velocity of the lift v (m/s)', yc: vc, nx: 5, ny: vr.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
+    /* fixed axes: the lift speeds up for the first 3 s, so the hardest acceleration the slider allows
+       gives it 3 × 3 = 9 m/s, and the velocity axis is always 0 to 9 m/s, ticked every 3 m/s */
+    const VR = 9, b2 = { l: 760, r: 1330, t: 470, b: 660 };
+    const g2 = axes(ctx, b2, [0, T], [0, VR], { xl: 'time t (s)', xc: C('time'), yl: 'the velocity of the lift v (m/s)', yc: vc, nx: 5, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, g2.X(0), g2.Y(0), g2.X(TA), g2.Y(ac.v * TA), vc, 5);
     line(ctx, g2.X(TA), g2.Y(ac.v * TA), g2.X(TB), g2.Y(ac.v * TA), vc, 5);
     line(ctx, g2.X(TB), g2.Y(ac.v * TA), g2.X(T), g2.Y(0), vc, 5);
@@ -266,7 +264,7 @@ function trafficLight(ctx, x, y, color) {
     strip(ctx, 80, 1340, 300, 46);
     F.scale(ctx, X, 0, Math.floor(stot), Math.max(1, Math.round(stot / 8)), 345, 'm', 2);
     const px = X(s);
-    person(ctx, px, 300, PAL.ink, 0.85);
+    F.person(ctx, px, 300, PAL.ink, { s: 1.35, lean: 0.2, phase: t > 0 && t < el1.v ? t * 8 : 0 });
     const late = px > 760, fl = 70 + 130 * (Fn / 1200), vl = 180 * (v / vf.v);
     arrow(ctx, px + 36, 122, px + 36 + fl, 122, fc, 5);
     text(ctx, 'F_net = ' + fmt(Fn, 0) + ' N, the forward push of the ground', late ? px + 24 : px + 48 + fl, 122, fc,
@@ -276,8 +274,10 @@ function trafficLight(ctx, x, y, color) {
       text(ctx, 'v = ' + fmt(v, 2) + ' m/s', late ? px + 24 : px + 48 + vl, 182, vc, { size: 20, weight: 600, align: late ? 'right' : 'left' });
     }
     /* the graph: the velocity against time, whose slope is the average acceleration */
-    const vr = nice(0, vf.v * 1.12, 4), box = { l: 210, r: 1300, t: 430, b: 620 };
-    const g = axes(ctx, box, [0, el1.v], [0, vr.hi], { xl: 'time t (s)', xc: C('time'), yl: 'v (m/s)', yc: vc, nx: 5, ny: vr.n, fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 0) });
+    /* fixed axes: the two sliders stop at 5 s and 12 m/s, so the graph is always 0 to 5 s by
+       0 to 12 m/s, ticked every second and every 3 m/s, and it never rescales as a slider moves */
+    const TR = 5, VR = 12, box = { l: 210, r: 1300, t: 430, b: 620 };
+    const g = axes(ctx, box, [0, TR], [0, VR], { xl: 'time t (s)', xc: C('time'), yl: 'v (m/s)', yc: vc, nx: 5, ny: 4, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
     line(ctx, g.X(0), g.Y(0), g.X(el1.v), g.Y(vf.v), vc, 5);
     line(ctx, g.X(el1.v * 0.30), g.Y(vf.v * 0.30), g.X(el1.v * 0.70), g.Y(vf.v * 0.30), acc, 2.5, [6, 6]);
     line(ctx, g.X(el1.v * 0.70), g.Y(vf.v * 0.30), g.X(el1.v * 0.70), g.Y(vf.v * 0.70), acc, 2.5, [6, 6]);
@@ -308,7 +308,7 @@ function trafficLight(ctx, x, y, color) {
     text(ctx, 'the burning building', 185, 108, PAL.muted, { size: 19, align: 'center' });
     strip(ctx, 80, 1340, 460, 24);
     line(ctx, px, py, e1x, e1y, PAL.ink, 4); line(ctx, px, py, e2x, e2y, PAL.ink, 4);
-    person(ctx, px, py + 120, PAL.muted, 0.8);
+    F.person(ctx, px, py + 120, PAL.muted, { s: 1.3, reach: { x: px, y: py } });
     line(ctx, px, py, px, py - 180, PAL.rule, 2, [8, 8]);
     line(ctx, px, py, px + 240, py, PAL.rule, 2, [8, 8]);
     angleArc(ctx, px, py, 90, a1, 120, PAL.muted); angleArc(ctx, px, py, 0, a2, 180, PAL.muted);

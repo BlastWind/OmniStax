@@ -27,18 +27,6 @@ const RAD = Math.PI / 180;
   const PHR = ['the situation sketched', 'every force as an arrow', 'the system of interest', 'the forces added head to tail'];
   const GRIP = 380, STOM = 462, BASE = 600;
 
-  /* a man hanging by his hands, the grip at (x, y): head, two arms, a trunk and two legs */
-  function man(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 5;
-    ctx.beginPath(); ctx.arc(x, y + 34, 13, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(x, y); ctx.lineTo(x - 20, y + 46);
-    ctx.moveTo(x, y); ctx.lineTo(x + 20, y + 46);
-    ctx.moveTo(x, y + 50); ctx.lineTo(x, y + 104);
-    ctx.moveTo(x, y + 104); ctx.lineTo(x - 18, y + 150);
-    ctx.moveTo(x, y + 104); ctx.lineTo(x + 18, y + 150);
-    ctx.stroke(); ctx.restore();
-  }
   /* the branch and the vine the man hangs from; only the sketch shows the branch, so the tension arrow of the
      other panels has clear room above the hand */
   function vine(ctx, i, cx) {
@@ -52,19 +40,19 @@ const RAD = Math.PI / 180;
       const cx = px + PW / 2;
       text(ctx, LAB[i], cx, 88, PAL.ink, { size: 22, weight: 600, align: 'center' });
       text(ctx, PHR[i], cx, 112, PAL.muted, { size: 17, align: 'center' });
-      if (i < 3) { vine(ctx, i, cx); man(ctx, cx, GRIP); }
+      if (i < 3) { vine(ctx, i, cx); F.person(ctx, cx, GRIP + 128, PAL.ink, { s: 1.2, reach: { x: cx, y: GRIP } }); }
       if (i === 2) {                               /* the boundary of the system of interest */
         ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.setLineDash([12, 10]);
         ctx.strokeRect(cx - 66, 350, 132, 186); ctx.restore();
       }
       if (i === 1 || i === 2) {                    /* the forces on the man, with his pull on the vine only in (b) */
-        arrow(ctx, cx, GRIP, cx, GRIP - lt, C('force'), 5);
+        arrow(ctx, cx, GRIP, cx, GRIP - lt, C('force'), 7);
         text(ctx, 'T', cx - 14, GRIP - lt / 2, C('force'), { size: 24, weight: 600, align: 'right' });
-        arrow(ctx, cx, STOM, cx, STOM + lw, C('force'), 5);
+        arrow(ctx, cx, STOM, cx, STOM + lw, C('force'), 7);
         text(ctx, 'w', cx - 30, STOM + lw / 2 + 8, C('force'), { size: 24, weight: 600, align: 'right', bg: PAL.panel });
       }
       if (i === 1) {
-        arrow(ctx, cx + 34, GRIP, cx + 34, GRIP + lt, C('force'), 5);
+        arrow(ctx, cx + 34, GRIP, cx + 34, GRIP + lt, C('force'), 7);
         text(ctx, 'F_T', cx + 48, GRIP + lt / 2, C('force'), { size: 24, weight: 600, align: 'left' });
       }
       if (i === 3) {                               /* the two forces added head to tail, the second set beside the first so both read */

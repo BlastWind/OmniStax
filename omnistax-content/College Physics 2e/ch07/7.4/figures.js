@@ -14,7 +14,9 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     const pw = total > 0 ? (w * p.value) / total : 0;
     if (pw > 0.5) {
       ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.78 - 0.24 * i); ctx.fillRect(x, y0, pw, h); ctx.restore();
-      if (pw > 120) { text(ctx, p.label + ' = ' + fmt(p.value, 3) + ' J', x + pw / 2, y0 + h / 2, PAL.panel, { size: 18, weight: 600, align: 'center' }); }
+      /* the label reads the same on every band, however pale its fill: ink on a
+         panel the colour of the page, never page-coloured letters on a faint one */
+      if (pw > 120) { text(ctx, p.label + ' = ' + fmt(p.value, 3) + ' J', x + pw / 2, y0 + h / 2, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel }); }
     }
     x += pw;
   });
@@ -52,9 +54,11 @@ function stack(ctx, x0, y0, w, h, total, parts) {
       text(ctx, 'no force is needed to hold the spring here', plate + 26, y - 36, PAL.muted, { size: 19 });
     }
     /* the graph: the force against the stretch, and the work as the triangle under the line */
-    const Fr = nice(0, kv * XMAX, 4);
-    const box = { l: 210, r: 1250, t: 380, b: 620 };
-    const { X, Y } = axes(ctx, box, [0, XMAX], [0, Fr.hi], { xl: 'stretch x (m)', xc: C('position'), yl: 'force needed (N)', yc: C('force'), nx: 4, ny: Fr.n, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
+    /* fixed axes: the sliders reach k = 500 N/m at x = 0.2 m, so the force never passes
+       500 × 0.2 = 100 N, and the graph is always 0 to 0.2 m by 0 to 100 N, ticked every 25 N,
+       whatever the sliders are set to */
+    const FR = 100, box = { l: 210, r: 1250, t: 380, b: 620 };
+    const { X, Y } = axes(ctx, box, [0, XMAX], [0, FR], { xl: 'stretch x (m)', xc: C('position'), yl: 'force needed (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
     if (xv > 0.0005) {
       ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.3); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xv), Y(0)); ctx.lineTo(X(xv), Y(Fv)); ctx.closePath(); ctx.fill(); ctx.restore();
       line(ctx, X(xv), Y(0), X(xv), Y(Fv), C('position'), 2, [4, 8]);

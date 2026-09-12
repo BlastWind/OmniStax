@@ -126,11 +126,12 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     dot(ctx, px(SEP), py(0), PAL.ink, false, 22);
     text(ctx, '+', px(-SEP), py(0) - 1, PAL.panel, { size: 26, weight: 600, align: 'center' });
     text(ctx, '−', px(SEP), py(0) - 1, PAL.ink, { size: 26, weight: 600, align: 'center' });
-    text(ctx, 'the positive charge', px(-SEP), py(0) + 44, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'the negative charge', px(SEP), py(0) + 44, PAL.muted, { size: 17, align: 'center' });
+    /* on a panel the colour of the page, so no field line runs through the letters */
+    text(ctx, 'the positive charge', px(-SEP), py(0) + 44, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
+    text(ctx, 'the negative charge', px(SEP), py(0) + 44, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
     /* the two distances, so the reader can see where in the field the charge sits */
-    line(ctx, px(-SEP), py(0), px(x), py(y), PAL.rule, 2, [4, 8]);
-    line(ctx, px(SEP), py(0), px(x), py(y), PAL.rule, 2, [4, 8]);
+    line(ctx, px(-SEP), py(0), px(x), py(y), alpha(PAL.ink, 0.4), 2.5, [5, 7]);
+    line(ctx, px(SEP), py(0), px(x), py(y), alpha(PAL.ink, 0.4), 2.5, [5, 7]);
     const off = y >= 0 ? -15 : 15, at = (cx) => [cx + 0.45 * (px(x) - cx), py(0) + 0.45 * (py(y) - py(0)) + off];
     const [l1x, l1y] = at(px(-SEP)), [l2x, l2y] = at(px(SEP));
     text(ctx, fmt(d1, 2) + ' m', l1x, l1y, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
@@ -169,17 +170,6 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
   const S = 90, CX = 700, px = (m) => CX + m * S;
-  /* a person standing on (x, yb), facing right when s is 1 */
-  function person(ctx, x, yb, color, s, armUp) {
-    ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5;
-    ctx.beginPath(); ctx.arc(x, yb - 84, 12, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(x, yb - 72); ctx.lineTo(x, yb - 30);
-    ctx.moveTo(x, yb - 30); ctx.lineTo(x - 16, yb); ctx.moveTo(x, yb - 30); ctx.lineTo(x + 16, yb);
-    ctx.moveTo(x, yb - 64); ctx.lineTo(x + s * 30, yb - (armUp ? 80 : 52));
-    ctx.moveTo(x, yb - 64); ctx.lineTo(x - s * 15, yb - 38);
-    ctx.stroke(); ctx.restore();
-  }
   /* a basketball centred on (x, y) */
   function ball(ctx, x, y, color) {
     ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3;
@@ -202,8 +192,8 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     /* the people, on their ground line */
     text(ctx, 'a basketball passed between two people', 60, 96, PAL.muted, { size: 20, weight: 600 });
     line(ctx, 120, yb, 1280, yb, PAL.rule, 3);
-    person(ctx, xa, yb, PAL.ink, 1, !flying && !caught);
-    person(ctx, xb, yb, PAL.ink, -1, caught || (flying && u > 0.72));
+    F.person(ctx, xa, yb, PAL.ink, !flying && !caught ? { reach: { x: hand1[0], y: hand1[1] } } : { lean: 0.1 });
+    F.person(ctx, xb, yb, PAL.ink, caught || (flying && u > 0.72) ? { face: -1, reach: { x: hand2[0], y: hand2[1] } } : { face: -1, lean: 0.1 });
     ball(ctx, bx, by, PAL.ink);
     if (t > THROW && t < THROW + 1.6) {
       const L = 40 + 0.9 * f;

@@ -1,7 +1,7 @@
 /* Figures for section 5.2 Drag Forces. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['5.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, strip, car } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, pinned, strip, car } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -17,8 +17,9 @@ function fallTime(vt, s) {
   const u = (G * s) / (vt * vt);
   return (vt / G) * (u > 30 ? u + Math.LN2 : Math.acosh(Math.exp(u)));
 }
-/* the decimals a tick label needs for the step nice() chose */
-const decs = (r) => { const st = (r.hi - r.lo) / r.n; return st >= 1 ? 0 : st >= 0.1 ? 1 : st >= 0.01 ? 2 : 3; };
+/* draws inside the graph box, so a curve that runs past a fixed range is cut off at the frame
+   instead of the frame being stretched to hold it */
+const inbox = (ctx, box, f) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); };
 /* a number in the book's three significant figures, never in exponent form */
 const sig3 = (x) => (Math.abs(x) >= 100 ? fmt(x, 0) : Math.abs(x) >= 10 ? fmt(x, 1) : Math.abs(x) >= 1 ? fmt(x, 2) : fmt(x, 3));
 /* a mass in the unit that reads best for its size */
@@ -86,16 +87,24 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     text(ctx, who === null ? 'a body with C = ' + fmt(Cd.v, 2) + ' and A = ' + fmt(Ar.v, 2) + ' m²'
       : 'C = ' + fmt(Cd.v, 2) + ', which Table 5.2 gives for ' + who, cx, yline + 58, PAL.muted, { size: 17, align: 'center' });
     /* the graph: the drag against the speed, with the current speed and half of it marked */
-    const fr = nice(0, Ftop, 4), fd = decs(fr);
-    const g = axes(ctx, { l: 200, r: 1300, t: 400, b: 650 }, [0, VMAX], [0, fr.hi],
-      { xl: 'v (km/h)', xc: cv, yl: 'FD (N)', yc: cf, nx: 5, ny: fr.n, fy: (y) => fmt(y, fd) });
-    curve(ctx, drag, 0, VMAX, g.X, g.Y, cf, 5, 90);
-    line(ctx, g.X(V.v), g.Y(0), g.X(V.v), g.Y(Fnow), cv, 2, [4, 8]);
-    line(ctx, g.X(0), g.Y(Fnow), g.X(V.v), g.Y(Fnow), cf, 2, [4, 8]);
-    line(ctx, g.X(V.v / 2), g.Y(0), g.X(V.v / 2), g.Y(Fhalf), cv, 2, [4, 8]);
-    dot(ctx, g.X(V.v / 2), g.Y(Fhalf), cf, false, 10);
-    dot(ctx, g.X(V.v), g.Y(Fnow), cf, true, 10);
-    text(ctx, 'half the speed, a quarter of the drag', g.X(V.v / 2) + 16, g.Y(Fhalf) - 36, PAL.muted, { size: 17 });
+    /* fixed axes: the speed slider stops at 150 km/h, so the speed axis is always 0 to 150. The
+       bluntest, largest body the sliders allow, C = 1.12 and A = 3 m², would meet 3,530 N of drag at
+       that speed, and an axis that tall would leave the Camry the figure opens with, which meets
+       206 N, in a seventeenth of the height. So the drag axis is fixed at 0 to 250 N, which holds
+       that car comfortably, and a bluffer body climbs off the top as a pinned marker. Neither range
+       changes as a slider moves. */
+    const FR = 250, box = { l: 200, r: 1300, t: 400, b: 650 };
+    const g = axes(ctx, box, [0, VMAX], [0, FR],
+      { xl: 'v (km/h)', xc: cv, yl: 'FD (N)', yc: cf, nx: 5, ny: 5, fy: (y) => fmt(y, 0) });
+    inbox(ctx, box, () => {
+      curve(ctx, drag, 0, VMAX, g.X, g.Y, cf, 5, 90);
+      line(ctx, g.X(V.v), g.Y(0), g.X(V.v), g.Y(Fnow), cv, 2, [4, 8]);
+      line(ctx, g.X(0), g.Y(Fnow), g.X(V.v), g.Y(Fnow), cf, 2, [4, 8]);
+      line(ctx, g.X(V.v / 2), g.Y(0), g.X(V.v / 2), g.Y(Fhalf), cv, 2, [4, 8]);
+    });
+    pinned(ctx, box, g.X, g.Y, V.v / 2, Fhalf, cf, sig3(Fhalf) + ' N');
+    pinned(ctx, box, g.X, g.Y, V.v, Fnow, cf, sig3(Fnow) + ' N');
+    text(ctx, 'half the speed, a quarter of the drag', g.X(V.v / 2) + 16, Math.max(box.t + 20, g.Y(Fhalf) - 36), PAL.muted, { size: 17 });
     headline(ctx, 'At ' + fmt(V.v, 0) + ' km/h the drag is ' + sig3(Fnow) + ' N, four times the ' + sig3(Fhalf) + ' N it would be at half that speed');
     readout(d.readout, `\\kFD = \\tfrac{1}{2}C\\rho A\\kv^2 = \\tfrac{1}{2}(${fmt(Cd.v, 2)})(1.21\\ \\text{kg/m}^3)(${fmt(Ar.v, 2)}\\ \\text{m}^2)(${fmt(V.v / 3.6, 1)}\\ \\text{m/s})^2 = ${sig3(Fnow)}\\ \\text{N}`,
       'The speed enters as its square, so the drag at ' + fmt(V.v, 0) + ' km/h is four times the drag at ' + fmt(V.v / 2, 0) + ' km/h and nine times the drag at ' + fmt(V.v / 3, 0) + ' km/h.');
@@ -148,14 +157,21 @@ function jar(ctx, x1, x2, top, bottom, surface) {
       text(ctx, 'a = ' + fmt(a, 2) + ' m/s²', xc + 214, py + 45 * (a / G), ca, { size: 20, weight: 600 });
     } else text(ctx, 'a = 0', xc + 214, py, ca, { size: 20, weight: 600 });
     /* the graph: the falling speed against time, levelling on the terminal velocity */
-    const tr = nice(0, T, 4), td = decs(tr), vr = nice(0, V * 1.15, 4);
-    const g = axes(ctx, { l: 720, r: 1330, t: 200, b: 600 }, [0, tr.hi], [0, vr.hi],
-      { xl: 't (s)', xc: ct, yl: 'v (m/s)', yc: cv, nx: tr.n, ny: vr.n, fx: (x) => fmt(x, td), fy: (y) => fmt(y, 0) });
-    line(ctx, g.X(0), g.Y(V), g.X(tr.hi), g.Y(V), cv, 3, [10, 10]);
-    text(ctx, 'vt = ' + fmt(V, 1) + ' m/s', g.X(0) + 16, g.Y(V) - 22, cv, { size: 19, weight: 600 });
-    curve(ctx, (s) => speed(V, s), 0, T, g.X, g.Y, cv, 5, 90);
-    line(ctx, g.X(t), g.Y(0), g.X(t), g.Y(v), ct, 2, [4, 8]);
-    dot(ctx, g.X(t), g.Y(v), PAL.ink, true, 9);
+    /* fixed axes: the smallest, sleekest, heaviest body the sliders allow falls at 180 m/s and takes
+       3.5 vt / g = 64 s to settle there, and a graph that large would leave the skydiver the figure
+       opens with, who reaches 44 m/s in 16 s, in a fifth of its width and a fifth of its height. So
+       the graph is fixed at 0 to 20 s by 0 to 60 m/s, which holds that fall comfortably, and a faster
+       one runs off the edges as a pinned marker. Neither range changes as a slider moves. */
+    const TR = 20, VR = 60, box = { l: 720, r: 1330, t: 200, b: 600 };
+    const g = axes(ctx, box, [0, TR], [0, VR],
+      { xl: 't (s)', xc: ct, yl: 'v (m/s)', yc: cv, nx: 5, ny: 3, fx: (x) => fmt(x, 0), fy: (y) => fmt(y, 0) });
+    inbox(ctx, box, () => {
+      line(ctx, g.X(0), g.Y(V), g.X(TR), g.Y(V), cv, 3, [10, 10]);
+      text(ctx, 'vt = ' + fmt(V, 1) + ' m/s', g.X(0) + 16, g.Y(V) - 22, cv, { size: 19, weight: 600 });
+      curve(ctx, (s) => speed(V, s), 0, Math.min(T, TR), g.X, g.Y, cv, 5, 90);
+      line(ctx, g.X(t), g.Y(0), g.X(t), g.Y(v), ct, 2, [4, 8]);
+    });
+    pinned(ctx, box, g.X, g.Y, t, v, PAL.ink, fmt(v, 1) + ' m/s');
     headline(ctx, t < 0.05 ? 'the skydiver has just been released, so there is no drag yet and the whole weight of ' + sig3(w) + ' N is free to accelerate the fall'
       : a < 0.05 ? 't = ' + fmt(t, 1) + ' s · the drag has grown equal to the weight, ' + sig3(w) + ' N, so the net force is zero and the speed stays at ' + fmt(V, 1) + ' m/s'
         : 't = ' + fmt(t, 1) + ' s · the fall is ' + fmt(v, 1) + ' m/s, the drag is ' + sig3(FD) + ' N against a weight of ' + sig3(w) + ' N, and the acceleration is down to ' + fmt(a, 2) + ' m/s²');
@@ -204,18 +220,27 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     }
     text(ctx, 'the ground, ' + fmt(H.v, 0) + ' m down', 375, bot + 32, PAL.muted, { size: 17, align: 'center' });
     /* the graph: the two speeds against time, each levelling on its own terminal velocity */
-    const tr = nice(0, T, 4), td = decs(tr), vr = nice(0, VA * 1.15, 4);
-    const g = axes(ctx, { l: 700, r: 1330, t: 200, b: 590 }, [0, tr.hi], [0, vr.hi],
-      { xl: 't (s)', xc: ct, yl: 'v (m/s)', yc: cv, nx: tr.n, ny: vr.n, fx: (x) => fmt(x, td), fy: (y) => fmt(y, 0) });
-    line(ctx, g.X(0), g.Y(VA), g.X(tr.hi), g.Y(VA), cv, 3, [10, 10]);
-    text(ctx, 'full size, vt = ' + fmt(VA, 1) + ' m/s', g.X(0) + 16, g.Y(VA) - 22, cv, { size: 18, weight: 600 });
-    line(ctx, g.X(0), g.Y(VB), g.X(tr.hi), g.Y(VB), alpha(cv, 0.6), 3, [10, 10]);
-    text(ctx, 'smaller body, vt = ' + fmt(VB, 1) + ' m/s', g.X(0) + 16, g.Y(VB) - 22, cv, { size: 18, weight: 600 });
-    curve(ctx, (s) => speed(VA, s), 0, TA, g.X, g.Y, cv, 5, 90);
-    curve(ctx, (s) => speed(VB, s), 0, TB, g.X, g.Y, alpha(cv, 0.6), 5, 90);
-    dot(ctx, g.X(TA), g.Y(speed(VA, TA)), cv, false, 10); dot(ctx, g.X(TB), g.Y(speed(VB, TB)), cv, false, 10);
-    line(ctx, g.X(t), g.Y(0), g.X(t), g.Y(vr.hi), ct, 2, [4, 8]);
-    dot(ctx, g.X(t), g.Y(vA), PAL.ink, true, 9); dot(ctx, g.X(t), g.Y(vB), PAL.ink, true, 9);
+    /* fixed axes: the heaviest body the slider allows falls at 53 m/s, and the smallest body dropped
+       from the greatest height takes some four minutes to land, so a graph that wide would leave the
+       200 m drop the figure opens with, which lasts 16 s and reaches 42 m/s, in a sixteenth of its
+       width. So the graph is fixed at 0 to 20 s by 0 to 60 m/s, which holds that drop comfortably,
+       and a longer fall runs off the right edge as a pinned marker. Neither range changes as a
+       slider moves. */
+    const TR = 20, VR = 60, box = { l: 700, r: 1330, t: 200, b: 590 };
+    const g = axes(ctx, box, [0, TR], [0, VR],
+      { xl: 't (s)', xc: ct, yl: 'v (m/s)', yc: cv, nx: 5, ny: 3, fx: (x) => fmt(x, 0), fy: (y) => fmt(y, 0) });
+    inbox(ctx, box, () => {
+      line(ctx, g.X(0), g.Y(VA), g.X(TR), g.Y(VA), cv, 3, [10, 10]);
+      text(ctx, 'full size, vt = ' + fmt(VA, 1) + ' m/s', g.X(0) + 16, g.Y(VA) - 22, cv, { size: 18, weight: 600 });
+      line(ctx, g.X(0), g.Y(VB), g.X(TR), g.Y(VB), alpha(cv, 0.6), 3, [10, 10]);
+      text(ctx, 'smaller body, vt = ' + fmt(VB, 1) + ' m/s', g.X(0) + 16, g.Y(VB) - 22, cv, { size: 18, weight: 600 });
+      curve(ctx, (s) => speed(VA, s), 0, Math.min(TA, TR), g.X, g.Y, cv, 5, 90);
+      curve(ctx, (s) => speed(VB, s), 0, Math.min(TB, TR), g.X, g.Y, alpha(cv, 0.6), 5, 90);
+      line(ctx, g.X(t), g.Y(0), g.X(t), g.Y(VR), ct, 2, [4, 8]);
+    });
+    pinned(ctx, box, g.X, g.Y, TA, speed(VA, TA), cv, 'lands at ' + fmt(TA, 1) + ' s');
+    pinned(ctx, box, g.X, g.Y, TB, speed(VB, TB), cv, 'lands at ' + fmt(TB, 1) + ' s');
+    pinned(ctx, box, g.X, g.Y, t, vA, PAL.ink); pinned(ctx, box, g.X, g.Y, t, vB, PAL.ink);
     headline(ctx, sA >= H.v && sB >= H.v ? 'both have landed: the full-size body hit the ground at ' + fmt(vA, 1) + ' m/s and the smaller one at ' + fmt(vB, 1) + ' m/s'
       : 't = ' + fmt(t, 1) + ' s · the full-size body is falling at ' + fmt(vA, 1) + ' m/s and the smaller one at ' + fmt(vB, 1) + ' m/s');
     readout(d.readout, `\\kvt \\propto \\sqrt{k}: \\quad (${fmt(VA, 1)}\\ \\text{m/s})\\sqrt{${fmt(K.v, 2)}} = ${fmt(VB, 1)}\\ \\text{m/s}`,
@@ -265,14 +290,22 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     dot(ctx, xc, py, PAL.ink, true, rad);
     text(ctx, fmt(v * 1000, 1) + ' mm/s', xr + 20, py, cv, { size: 20, weight: 600 });
     /* the graph: the steady speed against the radius of the bead */
-    const vr = nice(0, steady(4) * 1000, 4), vd = decs(vr);
-    const g = axes(ctx, { l: 700, r: 1320, t: 210, b: 620 }, [0, 4], [0, vr.hi],
-      { xl: 'r (mm)', xc: PAL.ink, yl: 'v (mm/s)', yc: cv, nx: 4, ny: vr.n, fy: (y) => fmt(y, vd) });
-    curve(ctx, (x) => steady(x) * 1000, 0, 4, g.X, g.Y, cv, 5, 90);
-    line(ctx, g.X(R.v), g.Y(0), g.X(R.v), g.Y(v * 1000), PAL.muted, 2, [4, 8]);
-    line(ctx, g.X(0), g.Y(v * 1000), g.X(R.v), g.Y(v * 1000), cv, 2, [4, 8]);
-    dot(ctx, g.X(R.v), g.Y(v * 1000), cv, true, 10);
-    text(ctx, 'the steady speed grows as the square of the radius', g.X(0) + 16, g.Y(vr.hi) + 28, PAL.muted, { size: 17 });
+    /* fixed axes: the radius slider stops at 4 mm, so the radius runs 0 to 4 mm. The largest bead in
+       the thinnest oil the viscosity slider allows would sink at 2,720 mm/s, and an axis that tall
+       would leave the motor oil the figure opens with, in which that bead sinks at 358 mm/s, in an
+       eighth of the height. So the speed axis is fixed at 0 to 400 mm/s, which holds that oil
+       comfortably, and a thinner one carries the bead off the top as a pinned marker. Neither range
+       changes as a slider moves. */
+    const VR = 400, box = { l: 700, r: 1320, t: 210, b: 620 };
+    const g = axes(ctx, box, [0, 4], [0, VR],
+      { xl: 'r (mm)', xc: PAL.ink, yl: 'v (mm/s)', yc: cv, nx: 4, ny: 4, fy: (y) => fmt(y, 0) });
+    inbox(ctx, box, () => {
+      curve(ctx, (x) => steady(x) * 1000, 0, 4, g.X, g.Y, cv, 5, 90);
+      line(ctx, g.X(R.v), g.Y(0), g.X(R.v), g.Y(v * 1000), PAL.muted, 2, [4, 8]);
+      line(ctx, g.X(0), g.Y(v * 1000), g.X(R.v), g.Y(v * 1000), cv, 2, [4, 8]);
+    });
+    pinned(ctx, box, g.X, g.Y, R.v, v * 1000, cv, fmt(v * 1000, 1) + ' mm/s');
+    text(ctx, 'the steady speed grows as the square of the radius', g.X(0) + 16, g.Y(VR) + 28, PAL.muted, { size: 17 });
     headline(ctx, s >= DROP - 1e-9 ? 't = ' + fmt(T, 1) + ' s · the bead has reached the bottom, ' + fmt(DROP * 100, 0) + ' cm down, at the ' + fmt(v * 1000, 1) + ' mm/s it held the whole way'
       : 't = ' + fmt(t, 1) + ' s · the ' + fmt(R.v, 1) + ' mm bead has sunk ' + fmt(s * 100, 1) + ' cm at a steady ' + fmt(v * 1000, 1) + ' mm/s, since the drag matched its weight almost at once');
     readout(d.readout, `\\kFs = 6\\pi r\\eta\\kv = 6\\pi(${sciTex(R.v / 1000, 2)}\\ \\text{m})(${fmt(ETA.v, 2)}\\ \\text{kg/(m}\\cdot\\text{s)})(${fmt(v, 4)}\\ \\text{m/s}) = ${sciTex(w, 2)}\\ \\text{N}`,

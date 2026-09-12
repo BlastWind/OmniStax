@@ -1,7 +1,7 @@
 /* Figures for section 8.4 Elastic Collisions in One Dimension. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, block } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, block, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -143,20 +143,25 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     const v1p = ((M1 - M2) / (M1 + M2)) * V, v2p = ((2 * M1) / (M1 + M2)) * V;
     const ytop = V * Math.sqrt(k);
     const box = { l: 220, r: 1180, t: 150, b: 530 };
-    const rx = nice(-V * 1.15, V * 1.15, 6), ry = nice(-ytop * 1.2, ytop * 1.2, 4);
-    const step = (r) => ((r.hi - r.lo) / r.n < 1 ? 1 : 0), dx = step(rx), dy = step(ry);
-    const { X, Y } = axes(ctx, box, [rx.lo, rx.hi], [ry.lo, ry.hi], {
+    /* fixed axes. The first object never arrives faster than 6 m/s, so that is the range of v′₁,
+       ticked every 2 m/s. A very light first object could leave v′₂ near 12 m/s and the ellipse
+       near 42 m/s, but the worked example's ellipse only stands 1.5 m/s tall and would be a flat
+       line on an axis that big, so v′₂ is fixed to the same −6 to 6 m/s, which holds the default
+       state comfortably; the ellipse is clipped where it leaves the box and the state after the
+       collision is pinned at the edge. Neither range moves. */
+    const VR = 6;
+    const { X, Y } = axes(ctx, box, [-VR, VR], [-VR, VR], {
       xl: 'v′₁  (m/s)', yl: 'v′₂  (m/s)', xc: C('velocity'), yc: C('velocity'),
-      nx: rx.n, ny: ry.n, fx: (v) => fmt(v, dx), fy: (v) => fmt(v, dy),
+      nx: 6, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
 
     /* conservation of internal kinetic energy: an ellipse through the two states */
-    const up = (x) => Math.sqrt(Math.max(0, k * (V * V - x * x)));
+    const up = (x) => Math.min(VR, Math.sqrt(Math.max(0, k * (V * V - x * x))));
     curve(ctx, up, -V, V, X, Y, C('energy'), 5, 220);
     curve(ctx, (x) => -up(x), -V, V, X, Y, C('energy'), 5, 220);
 
     /* conservation of momentum: a straight line, clipped to the box */
-    const ends = [V - ry.hi / k, V - ry.lo / k].map((x) => Math.max(rx.lo, Math.min(rx.hi, x)));
+    const ends = [V - VR / k, V + VR / k].map((x) => Math.max(-VR, Math.min(VR, x)));
     const xa = Math.min(ends[0], ends[1]), xb = Math.max(ends[0], ends[1]);
     const mom = (x) => k * (V - x);
     curve(ctx, mom, xa, xb, X, Y, C('momentum'), 5, 2);
@@ -171,10 +176,10 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
 
     /* the two crossings: the initial condition, which is discarded, and the collision */
     dot(ctx, X(V), Y(0), C('velocity'), false, 12);
-    dot(ctx, X(v1p), Y(v2p), C('velocity'), true, 12);
+    pinned(ctx, box, X, Y, v1p, v2p, C('velocity'), fmt(v2p, 2) + ' m/s');
     text(ctx, 'before the collision', X(V) - 20, Y(0) + 34, PAL.muted, { align: 'right', size: 19, bg: alpha(PAL.panel, 0.85) });
-    const high = v2p > ry.hi * 0.72;
-    text(ctx, 'after the collision', X(v1p), Y(v2p) + (high ? 34 : -32), PAL.ink, { align: 'center', size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    const high = v2p > VR * 0.72;
+    text(ctx, 'after the collision', X(v1p), Y(Math.min(Math.max(v2p, -VR), VR)) + (high ? 34 : -32), PAL.ink, { align: 'center', size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
 
     headline(ctx, 'the curves meet twice: at v′₁ = ' + num(V, 2) + ' m/s, before the collision, and at v′₁ = ' + num(v1p, 2) + ' m/s, after it');
     readout(d.readout,

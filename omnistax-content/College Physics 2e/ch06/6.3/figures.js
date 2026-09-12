@@ -1,7 +1,7 @@
 /* Figures for section 6.3 Centripetal Force. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, car, FONT } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, car, view, face, FONT, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -202,13 +202,18 @@ function rider(ctx, x, y, color, s = 1) {
     dot(ctx, x0, y0, PAL.ink, true, 8);
     text(ctx, 'the horizontal component points at the center of the curve', 400, 470, PAL.muted, { size: 19, align: 'center' });
     /* the graph: the ideal angle against the speed, for the radius that is set */
-    const vmax = Math.max(20, Math.min(200, Math.ceil((vi * 1.5) / 20) * 20));
-    const box = { l: 180, r: 1240, t: 540, b: 750 };
-    const { X, Y } = axes(ctx, box, [0, vmax], [0, 90], { xl: 'v (m/s)', yl: 'θ (º)', xc: C('velocity'), yc: PAL.ink, nx: 4, ny: 3, fy: (q) => String(Math.round(q)) });
-    curve(ctx, (q) => Math.atan((q * q) / (r.v * G)) / RAD, 0, vmax, X, Y, PAL.ink, 5, 140);
-    line(ctx, X(Math.min(vi, vmax)), box.b, X(Math.min(vi, vmax)), Y(th.v), C('velocity'), 2, [4, 8]);
-    line(ctx, box.l, Y(th.v), X(Math.min(vi, vmax)), Y(th.v), PAL.muted, 2, [4, 8]);
-    dot(ctx, X(Math.min(vi, vmax)), Y(th.v), C('velocity'), true, 10);
+    /* fixed axes. The angle axis is the whole of its own range, 0 to 90º. The ideal speed the
+       sliders can reach is (1500 × 9.80 × tan 80º)^(1/2) = 289 m/s, but on the default 100 m curve
+       the marker would then sit in the first sixth of the width, so the speed axis is fixed at
+       0 to 60 m/s, ticked every 15, which holds the default 45.8 m/s comfortably; a faster ideal
+       speed is pinned at the right-hand edge. Neither range moves with the sliders. */
+    const VR = 60, box = { l: 180, r: 1240, t: 540, b: 750 };
+    const { X, Y } = axes(ctx, box, [0, VR], [0, 90], { xl: 'v (m/s)', yl: 'θ (º)', xc: C('velocity'), yc: PAL.ink, nx: 4, ny: 3, fy: (q) => String(Math.round(q)) });
+    curve(ctx, (q) => Math.atan((q * q) / (r.v * G)) / RAD, 0, VR, X, Y, PAL.ink, 5, 140);
+    const vC = Math.min(vi, VR);
+    line(ctx, X(vC), box.b, X(vC), Y(th.v), C('velocity'), 2, [4, 8]);
+    line(ctx, box.l, Y(th.v), X(vC), Y(th.v), PAL.muted, 2, [4, 8]);
+    pinned(ctx, box, X, Y, vi, th.v, C('velocity'), fmt(vi, 1) + ' m/s');
     text(ctx, 'the ideal angle for a ' + sig3(r.v) + ' m curve', box.l + 14, box.t + 26, PAL.muted, { size: 19 });
     headline(ctx, 'banked at ' + fmt(th.v, 1) + 'º, a ' + sig3(r.v) + ' m curve is ideal for ' + fmt(vi, 1) + ' m/s, about ' + sig3(vi * 3.6) + ' km/h');
     readout(d.readout, `\\kv = (\\kr\\kg\\tan\\theta)^{1/2} = ((${sig3(r.v)}\\ \\text{m})(9.80\\ \\text{m/s}^2)(${fmt(Math.tan(t), 2)}))^{1/2} = ${fmt(vi, 1)}\\ \\text{m/s}`,
@@ -249,11 +254,15 @@ function rider(ctx, x, y, color, s = 1) {
     vec(ctx, px, py, tx, ty, 72, C('velocity'), 'v', 22);
     dot(ctx, cx, cyy, PAL.muted, true, 6);
     /* the graph: the normal force all the way round the loop */
-    const box = { l: 820, r: 1330, t: 170, b: 550 };
-    const rg = nice(Math.min(0, Nt), Nb, 3);
-    const { X, Y } = axes(ctx, box, [0, 360], [rg.lo, rg.hi], { xl: 'angle from the bottom of the loop (º)', yl: 'N (N)', xc: PAL.ink, yc: C('force'), nx: 4, ny: rg.n, fy: (q) => commas(String(Math.round(q))) });
-    curve(ctx, (q) => normal(q * RAD), 0, 360, X, Y, C('force'), 5, 140);
-    dot(ctx, X((phi / TAU) * 360), Y(Nnow), C('force'), true, 10);
+    /* fixed axes. The angle axis is the whole loop, 0 to 360º. The force at the bottom can reach
+       800 × 22²/4 + 800 × 9.80 = 105,000 N, but at the default setting the curve would then keep
+       to the bottom eighth of the box, so the force axis is fixed at −4000 to 16,000 N, ticked
+       every 4000, which holds the default 4100 N to 13,900 N comfortably. A larger force is
+       clipped at the top edge and read off the pinned marker; neither range moves. */
+    const box = { l: 820, r: 1330, t: 170, b: 550 }, NLO = -4000, NHI = 16000;
+    const { X, Y } = axes(ctx, box, [0, 360], [NLO, NHI], { xl: 'angle from the bottom of the loop (º)', yl: 'N (N)', xc: PAL.ink, yc: C('force'), nx: 4, ny: 5, fy: (q) => commas(String(Math.round(q))) });
+    curve(ctx, (q) => Math.min(Math.max(normal(q * RAD), NLO), NHI), 0, 360, X, Y, C('force'), 5, 140);
+    pinned(ctx, box, X, Y, (phi / TAU) * 360, Nnow, C('force'), sig3(Nnow) + ' N');
     headline(ctx, 'the car is ' + fmt((phi / TAU) * 360, 0) + 'º round the loop and the track pushes with ' + sig3(Nnow) + ' N there, against ' + sig3(Nb) + ' N at the bottom');
     readout(d.readout, `\\kN = m\\frac{\\kv^2}{\\kr} + m\\kg\\cos\\phi = ${sig3((m.v * v.v * v.v) / r.v)}\\ \\text{N} + (${sig3(m.v * G)}\\ \\text{N})\\cos ${fmt((phi / TAU) * 360, 0)}^\\circ = ${sig3(Nnow)}\\ \\text{N}`,
       Nt > 0 ? 'At the top the weight already points at the center, so the track has only ' + sig3(Nt) + ' N left to supply; below ' + fmt(vmin, 1) + ' m/s the weight alone would be more than the circle needs and the car would leave the track.'
@@ -347,22 +356,45 @@ function rider(ctx, x, y, color, s = 1) {
 
 /* the mass on a string tied to a nail on a frictionless table (conceptual question 10) */
 (function () {
-  const d = sim('fig-nail', 540);
+  const d = sim('fig-nail', 580);
   function draw() {
     const { ctx } = begin(d.c);
-    const cx = 700, cyy = 300, RX = 300, RY = 112;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(180, 170); ctx.lineTo(1220, 170); ctx.lineTo(1330, 440); ctx.lineTo(70, 440); ctx.closePath(); ctx.fill(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.stroke(); ctx.restore();
-    line(ctx, 170, 440, 148, 505, PAL.muted, 5); line(ctx, 1230, 440, 1252, 505, PAL.muted, 5);
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.setLineDash([12, 12]); ctx.beginPath(); ctx.ellipse(cx, cyy, RX, RY, 0, 0, TAU); ctx.stroke(); ctx.restore();
-    const a = -40 * RAD, mx = cx + RX * Math.cos(a), my = cyy + RY * Math.sin(a);
-    line(ctx, cx, cyy, mx, my, PAL.ink, 3);
-    dot(ctx, cx, cyy, PAL.ink, true, 8);
-    text(ctx, 'the nail', cx, cyy + 34, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'the string', (cx + mx) / 2 + 6, (cyy + my) / 2 - 26, PAL.ink, { size: 20, align: 'center' });
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(mx, my, 20, 0, TAU); ctx.fill(); ctx.restore();
-    text(ctx, 'the mass', mx + 34, my - 6, PAL.ink, { size: 20 });
-    arrow(ctx, cx + 44, cyy - RY, cx - 44, cyy - RY, PAL.ink, 4);
-    text(ctx, 'the table is frictionless, and the mass travels the circle at a constant speed', 700, 512, PAL.muted, { size: 19, align: 'center' });
+    /* the book's viewpoint: standing at the near right corner of the table and looking down on it, so the top, the front edge and the right edge all show */
+    const V = view({ yaw: 0.30, pitch: 0.50, dist: 2600, cx: 700, cy: 160 });
+    const P = V.P, TW = 330, TD = 260, TT = 24, LEG = 146, R = 230;   /* the table half-width, half-depth, the thickness of its top, the length of a leg and the radius of the circle, all in scene units */
+    const q = (pts) => pts.map(P);
+    const kTop = V.shade([0, 1, 0]), kFront = V.shade([0, 0, 1]), kSide = V.shade([1, 0, 0]);
+    /* the four legs, drawn first so the top covers the two that stand behind it */
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sz]) => {
+      const lx = sx * (TW - 30), lz = sz * (TD - 30), w = 16, y0 = -TT, y1 = -TT - LEG;
+      face(ctx, q([[lx - w, y0, lz + w], [lx + w, y0, lz + w], [lx + w, y1, lz + w], [lx - w, y1, lz + w]]), kFront, 2);
+      face(ctx, q([[lx + w, y0, lz + w], [lx + w, y0, lz - w], [lx + w, y1, lz - w], [lx + w, y1, lz + w]]), kSide, 2);
+    });
+    /* the top of the table: the front and right edges of the slab, then its surface */
+    face(ctx, q([[-TW, 0, TD], [TW, 0, TD], [TW, -TT, TD], [-TW, -TT, TD]]), kFront, 3);
+    face(ctx, q([[TW, 0, TD], [TW, 0, -TD], [TW, -TT, -TD], [TW, -TT, TD]]), kSide, 3);
+    face(ctx, q([[-TW, 0, -TD], [TW, 0, -TD], [TW, 0, TD], [-TW, 0, TD]]), kTop, 3);
+    /* the circle the mass travels, lying flat on the table top: from this viewpoint it reads as an ellipse */
+    const on = (t) => P([R * Math.cos(t), 0, R * Math.sin(t)]);
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.setLineDash([12, 12]); ctx.beginPath();   /* muted, not rule: a rule-grey dash vanishes on the soft table top */
+    for (let i = 0; i <= 120; i++) { const c = on((i / 120) * TAU); i ? ctx.lineTo(c[0], c[1]) : ctx.moveTo(c[0], c[1]); }
+    ctx.closePath(); ctx.stroke(); ctx.restore();
+    /* the direction of travel, marked at the far side of the circle the way the book marks it */
+    const a1 = on(-Math.PI / 2 + 0.16), a2 = on(-Math.PI / 2 - 0.16);
+    arrow(ctx, a1[0], a1[1], a2[0], a2[1], PAL.ink, 4);
+    /* the nail through the centre of the circle, the string along the radius, and the mass on the end of it */
+    const t = 0.12, nail = P([0, 0, 0]), head = P([0, 22, 0]), mb = P([R * Math.cos(t), 0, R * Math.sin(t)]);
+    line(ctx, nail[0], nail[1], mb[0], mb[1], PAL.ink, 3);
+    line(ctx, nail[0], nail[1], head[0], head[1], PAL.ink, 5);
+    dot(ctx, head[0], head[1], PAL.ink, true, 7);
+    const mx = R * Math.cos(t), mz = R * Math.sin(t), h = 22, corner = P([mx + h, 2 * h, mz + h]);
+    face(ctx, q([[mx - h, 2 * h, mz - h], [mx + h, 2 * h, mz - h], [mx + h, 2 * h, mz + h], [mx - h, 2 * h, mz + h]]), kTop, 3);
+    face(ctx, q([[mx - h, 2 * h, mz + h], [mx + h, 2 * h, mz + h], [mx + h, 0, mz + h], [mx - h, 0, mz + h]]), kFront, 3);
+    face(ctx, q([[mx + h, 2 * h, mz + h], [mx + h, 2 * h, mz - h], [mx + h, 0, mz - h], [mx + h, 0, mz + h]]), kSide, 3);
+    text(ctx, 'the nail', head[0] - 16, head[1] - 26, PAL.ink, { size: 20, align: 'right' });
+    text(ctx, 'the string', (nail[0] + mb[0]) / 2, (nail[1] + mb[1]) / 2 + 30, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'the mass', corner[0] + 22, corner[1] - 10, PAL.ink, { size: 20 });
+    text(ctx, 'the table is frictionless, and the mass travels the circle at a constant speed', 700, 552, PAL.muted, { size: 19, align: 'center' });
   }
   register(d.fig, { update: () => {}, draw });
 })();

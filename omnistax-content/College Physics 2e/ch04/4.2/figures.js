@@ -1,7 +1,7 @@
 /* Figures for section 4.2 Newton's First Law of Motion: Inertia. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, axes, nice, curve, block } = F;
+const { el, fmt, tex, C, PAL, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, axes, curve, pinned, block } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -58,13 +58,19 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     }
     scale(ctx, X, 0, 60, 10, 356, 'm', 1);
     /* the graph: the speed against the time, flat when the friction is gone */
-    const nz = nice(0, Math.max(r.T, 0.4), 4);
-    const g = axes(ctx, GB, [0, nz.hi], [0, 12], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: nz.n, ny: 6, fx: (q) => fmt(q, nz.hi >= 8 ? 0 : 1), fy: (q) => fmt(q, 0) });
-    curve(ctx, (q) => Math.max(0, r.v0 - r.a * q), 0, r.T, g.X, g.Y, C('velocity'), 5);
+    /* fixed axes: the speed can reach the 10 m/s of its slider, so the speed axis is always 0 to 12 m/s.
+       The longest run the sliders allow is the frictionless one at 2 m/s, which takes 60 / 2 = 30 s to
+       cross the surface, and a range that long would squeeze the 4 s of the run drawn on load into a
+       thirteenth of the width. So the time axis is fixed at 0 to 8 s, which holds the run the figure
+       opens with and every run that slows the block at all, and a slower run walks off the right edge
+       as a pinned marker rather than stretching the axis. Neither range changes as a slider moves. */
+    const TR = 8, VR = 12;
+    const g = axes(ctx, GB, [0, TR], [0, VR], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 4, ny: 6, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
+    curve(ctx, (q) => Math.max(0, r.v0 - r.a * q), 0, Math.min(r.T, TR), g.X, g.Y, C('velocity'), 5);
     dot(ctx, g.X(0), g.Y(r.v0), C('velocity'), false, 10);
-    line(ctx, g.X(t), g.Y(v), g.X(t), GB.b, PAL.muted, 2, [4, 8]);
-    dot(ctx, g.X(t), g.Y(v), C('velocity'), true, 9);
-    if (r.a === 0) text(ctx, 'the velocity does not change', (g.X(0) + g.X(r.T)) / 2, r.v0 > 8 ? g.Y(r.v0) + 30 : g.Y(r.v0) - 30, C('velocity'), { size: 20, weight: 600, align: 'center' });
+    if (t <= TR) line(ctx, g.X(t), g.Y(v), g.X(t), GB.b, PAL.muted, 2, [4, 8]);
+    pinned(ctx, GB, g.X, g.Y, t, v, C('velocity'), 't = ' + fmt(t, 1) + ' s');
+    if (r.a === 0) text(ctx, 'the velocity does not change', (g.X(0) + g.X(Math.min(r.T, TR))) / 2, r.v0 > 8 ? g.Y(r.v0) + 30 : g.Y(r.v0) - 30, C('velocity'), { size: 20, weight: 600, align: 'center' });
     headline(ctx, !done ? 'The block has covered ' + fmt(s, 1) + ' m of the surface and is still moving at ' + fmt(v, 1) + ' m/s'
       : r.stops ? 'On ' + surface(r.a) + ' the block slides ' + fmt(r.ds, 1) + ' m and stops'
       : r.a === 0 ? 'With the friction gone the block leaves the picture at ' + fmt(r.v0, 1) + ' m/s, and nothing will stop it'

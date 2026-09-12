@@ -1,7 +1,7 @@
 /* Figures for section 8.1 Linear Momentum and Force. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, scale, axes, nice } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, scale, axes, nice, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -66,9 +66,9 @@ function racquet(ctx, x, y, color) {
     const tau = cy.now(), pp = mp.v * vp.v, pb = mb.v * vb.v, pmax = Math.max(pp, pb);
     const xp = Math.min(RUN, vp.v * tau), xb = Math.min(RUN, vb.v * tau);
     /* the player's lane */
-    text(ctx, 'the football player', L, 96, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'the football player', L, 82, PAL.ink, { size: 22, weight: 600 });
     strip(ctx, L, Rt, 175, 48);
-    F.runner(ctx, X(xp), 175, PAL.ink, xp * 1.4);
+    F.person(ctx, X(xp), 178, PAL.ink, { s: 0.85, lean: 0.25, phase: xp > 0 && xp < RUN ? xp * 1.4 : 0 });
     bar(ctx, 248, (vp.v / VMAX) * BAR, C('velocity'), 'v = ' + fmt(vp.v, 2) + ' m/s');
     bar(ctx, 296, (pp / pmax) * PBAR, C('momentum'), 'p = ' + sig3(pp) + ' kg·m/s');
     line(ctx, L, 342, Rt, 342, PAL.rule, 2);
@@ -125,17 +125,26 @@ function racquet(ctx, x, y, color) {
     arrow(ctx, X(s) + 30, YB + 68, X(s) + 30 + Math.max(8, (p / dp) * 280), YB + 68, C('momentum'), 5);
     text(ctx, 'p = ' + fmt(p, 2) + ' kg·m/s', X(s) + 30, YB + 104, C('momentum'), { size: 22, weight: 600 });
     /* the graph: the momentum the ball has taken up against the time */
-    const ry = nice(0, dp, 3), rx = nice(0, dt.v, 4);
-    const box = { l: 210, r: 1290, t: 448, b: 678 };
-    const sc = axes(ctx, box, [0, rx.hi], [0, ry.hi], { nx: rx.n, ny: ry.n, xl: 't (ms)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), fx: (u) => fmt(u, rx.hi / rx.n < 1 ? 1 : 0), fy: (u) => fmt(u, ry.hi / ry.n < 1 ? 2 : 1) });
-    line(ctx, sc.X(0), sc.Y(0), sc.X(dt.v), sc.Y(dp), C('momentum'), 5);
-    line(ctx, sc.X(dt.v), sc.Y(0), sc.X(dt.v), sc.Y(dp), C('momentum'), 2.5, [10, 10]);
-    text(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s', sc.X(dt.v) - 16, (sc.Y(0) + sc.Y(dp)) / 2, C('momentum'), { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'Δt = ' + fmt(dt.v, 1) + ' ms', sc.X(dt.v) - 20, sc.Y(0) - 24, C('time'), { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'the slope of this line is the net force, ' + sig3(Fn) + ' N', sc.X(rx.hi * 0.05), sc.Y(ry.hi * 0.82), C('force'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    line(ctx, sc.X(0), sc.Y(p), sc.X(dt.v * f), sc.Y(p), PAL.muted, 2, [4, 8]);
-    line(ctx, sc.X(dt.v * f), sc.Y(0), sc.X(dt.v * f), sc.Y(p), PAL.muted, 2, [4, 8]);
-    dot(ctx, sc.X(dt.v * f), sc.Y(p), C('momentum'), true, 9);
+    /* fixed axes. The momentum the sliders can reach is 0.2 kg × 80 m/s = 16 kg·m/s, so that axis
+       is fixed at 0 to 16 kg·m/s, ticked every 4. The contact time runs to 40 ms, but the racquet
+       of the example is on the ball for 5 ms and would then be squeezed against the left-hand edge,
+       so the time axis is fixed at 0 to 10 ms, ticked every 2.5, which holds the example
+       comfortably; a longer contact is clipped at the right-hand edge and the running momentum is
+       pinned there. Neither range moves. */
+    const TR = 10, PR = 16, box = { l: 210, r: 1290, t: 448, b: 678 };
+    const sc = axes(ctx, box, [0, TR], [0, PR], { nx: 4, ny: 4, xl: 't (ms)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 0) });
+    const xE = Math.min(dt.v, TR), pE = dp * (xE / dt.v);
+    line(ctx, sc.X(0), sc.Y(0), sc.X(xE), sc.Y(pE), C('momentum'), 5);
+    if (dt.v <= TR) {
+      line(ctx, sc.X(dt.v), sc.Y(0), sc.X(dt.v), sc.Y(dp), C('momentum'), 2.5, [10, 10]);
+      text(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s', sc.X(dt.v) - 16, (sc.Y(0) + sc.Y(dp)) / 2, C('momentum'), { size: 20, weight: 600, align: 'right' });
+      text(ctx, 'Δt = ' + fmt(dt.v, 1) + ' ms', sc.X(dt.v) - 20, sc.Y(0) - 24, C('time'), { size: 20, weight: 600, align: 'right' });
+    }
+    text(ctx, 'the slope of this line is the net force, ' + sig3(Fn) + ' N', sc.X(TR * 0.05), sc.Y(PR * 0.82), C('force'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    const xNow = Math.min(dt.v * f, TR), pNow = Math.min(p, PR);
+    line(ctx, sc.X(0), sc.Y(pNow), sc.X(xNow), sc.Y(pNow), PAL.muted, 2, [4, 8]);
+    line(ctx, sc.X(xNow), sc.Y(0), sc.X(xNow), sc.Y(pNow), PAL.muted, 2, [4, 8]);
+    pinned(ctx, box, sc.X, sc.Y, dt.v * f, p, C('momentum'), fmt(p, 2) + ' kg·m/s');
     headline(ctx, f < 0.01
       ? 'the ball is at rest against the strings, about to be given ' + fmt(dp, 2) + ' kg·m/s in ' + fmt(dt.v, 1) + ' ms'
       : 't = ' + fmt(tau * 1000, 1) + ' ms · the ball has taken up ' + fmt(p, 2) + ' of the ' + fmt(dp, 2) + ' kg·m/s the racquet will give it, at a steady ' + sig3(Fn) + ' N');

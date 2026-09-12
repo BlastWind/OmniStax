@@ -1,7 +1,7 @@
 /* Figures for section 5.1 Friction. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['5.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, block } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, block } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 const RAD = Math.PI / 180;
@@ -13,14 +13,6 @@ function crate(ctx, x, y, w, h) {
   ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
   ctx.beginPath(); ctx.moveTo(x - w / 2, y - h / 2); ctx.lineTo(x + w / 2, y + h / 2);
   ctx.moveTo(x - w / 2, y + h / 2); ctx.lineTo(x + w / 2, y - h / 2); ctx.stroke(); ctx.restore();
-}
-/* a person standing with their feet at (x, y), h units tall, one arm reaching to (hx, hy) */
-function person(ctx, x, y, h, hx, hy) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(x, y - h + 0.1 * h, 0.09 * h, 0, Math.PI * 2); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(x, y - h + 0.19 * h); ctx.lineTo(x, y - 0.36 * h);
-  ctx.moveTo(x, y - 0.36 * h); ctx.lineTo(x - 0.18 * h, y); ctx.moveTo(x, y - 0.36 * h); ctx.lineTo(x + 0.18 * h, y);
-  ctx.moveTo(x, y - 0.72 * h); ctx.lineTo(hx, hy); ctx.stroke(); ctx.restore();
 }
 /* a skier at (x, y) on a slope of θ degrees, facing downhill */
 function skier(ctx, x, y, theta) {
@@ -67,8 +59,9 @@ function skier(ctx, x, y, theta) {
     const pl = 50 + 180 * (Fp.v / 800), fl = 50 + 180 * (fr / 800);
     arrow(ctx, cx - cw / 2 - pl, floorY - 92, cx - cw / 2, floorY - 92, C('force'), 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', cx - cw / 2 - pl, floorY - 120, C('force'), { size: 20, weight: 600 });
-    arrow(ctx, cx - cw / 2 + 18, floorY - 12, cx - cw / 2 + 18 - fl, floorY - 12, C('force'), 5);
-    text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 + 18 - fl, floorY - 42, C('force'), { size: 20, weight: 600 });
+    /* friction acts at the surface, so the arrow leaves the crate's edge, not its inside */
+    arrow(ctx, cx - cw / 2, floorY - 12, cx - cw / 2 - fl, floorY - 12, C('force'), 5);
+    text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 - fl, floorY - 42, C('force'), { size: 20, weight: 600, bg: PAL.panel });
     arrow(ctx, cx + 70, floorY - 6, cx + 70, floorY - 110, C('force'), 5);
     text(ctx, 'N = ' + fmt(N, 0) + ' N', cx + 84, floorY - 92, C('force'), { size: 20, weight: 600 });
     arrow(ctx, cx + cw / 2 + 40, floorY - ch + 20, cx + cw / 2 + 250, floorY - ch + 20, PAL.muted, 3);
@@ -159,15 +152,19 @@ function skier(ctx, x, y, theta) {
     text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 + 16 - fl, floorY - 42, C('force'), { size: 20, weight: 600 });
     text(ctx, moving ? 'sliding at ' + fmt(vAt(t), 2) + ' m/s' : 'not moving', 1270, 130, PAL.muted, { size: 20, align: 'right' });
     /* the graph: the friction that answers the push */
-    const sc = nice(0, Fmax(), 4), box = { l: 230, r: 1250, t: 420, b: 680 };
-    const { X, Y } = axes(ctx, box, [0, sc.hi], [0, sc.hi], { xl: 'the push F (N)', xc: C('force'), yl: 'the friction f (N)', yc: C('force'), nx: sc.n, ny: sc.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* fixed axes: the push runs up to 1.6 μ_s m g, and the largest the sliders allow is
+       1.6 × 1 × 200 × 9.80 = 3,136 N, so both axes are always 0 to 3,200 N, ticked every 800 N.
+       Neither the push nor the friction can pass that, so nothing here ever leaves the frame, and
+       the range does not change as a slider moves. */
+    const SC = 3200, box = { l: 230, r: 1250, t: 420, b: 680 };
+    const { X, Y } = axes(ctx, box, [0, SC], [0, SC], { xl: 'the push F (N)', xc: C('force'), yl: 'the friction f (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, X(0), Y(0), X(fmax), Y(fmax), C('force'), 5);
     line(ctx, X(fmax), Y(fmax), X(fmax), Y(fk), PAL.muted, 3, [10, 10]);
-    line(ctx, X(fmax), Y(fk), X(sc.hi), Y(fk), C('force'), 5);
+    line(ctx, X(fmax), Y(fk), X(SC), Y(fk), C('force'), 5);
     dot(ctx, X(fmax), Y(fmax), C('force'), false, 11);
     text(ctx, 'f_s(max) = ' + fmt(fmax, 0) + ' N', X(fmax) - 18, Y(fmax) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'f_k = ' + fmt(fk, 0) + ' N', X(sc.hi) - 12, Y(fk) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'while it is still, the friction is as large as the push', X(0) + 24, Y(sc.hi) + 32, PAL.muted, { size: 17 });
+    text(ctx, 'f_k = ' + fmt(fk, 0) + ' N', X(SC) - 12, Y(fk) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'while it is still, the friction is as large as the push', X(0) + 24, Y(SC) + 32, PAL.muted, { size: 17 });
     line(ctx, X(Fn), box.b, X(Fn), Y(fr), PAL.muted, 2, [4, 8]);
     dot(ctx, X(Fn), Y(fr), C('force'), true, 9);
     headline(ctx, moving
@@ -319,7 +316,7 @@ function skier(ctx, x, y, theta) {
     if (pulling) {
       const cxp = bx + bw / 2, cyp = iceY - bh + 16;
       const hx = cxp + len * Math.cos(A), hy = cyp - len * Math.sin(A);
-      person(ctx, x0 + 470, iceY, 190, hx + 30, hy - 10);
+      F.person(ctx, x0 + 470, iceY, PAL.ink, { s: 2, face: -1, lean: -0.3, phase: 1.3, reach: { x: hx + 30, y: hy - 10 } });
       line(ctx, cxp, cyp, hx + 30, hy - 10, PAL.ink, 3);
       arrow(ctx, cxp, cyp, hx, hy, C('force'), 5);
       text(ctx, 'F', (cxp + hx) / 2 + 6, (cyp + hy) / 2 - 26, C('force'), { size: 22, weight: 600, align: 'center' });
@@ -328,7 +325,7 @@ function skier(ctx, x, y, theta) {
     } else {
       const cxp = bx - bw / 2, cyp = iceY - bh + 16;
       const hx = cxp - len * Math.cos(A), hy = cyp - len * Math.sin(A);
-      person(ctx, x0 + 130, iceY, 190, hx, hy);
+      F.person(ctx, x0 + 150, iceY, PAL.ink, { s: 2, lean: 0.35, phase: 1.3, reach: { x: hx, y: hy } });
       arrow(ctx, hx, hy, cxp, cyp, C('force'), 5);
       text(ctx, 'F', hx - 16, hy - 12, C('force'), { size: 22, weight: 600, align: 'right' });
       line(ctx, cxp, cyp, cxp - 120, cyp, PAL.rule, 2, [8, 8]);

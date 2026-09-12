@@ -1,7 +1,7 @@
 /* Figures for section 5.3 Elasticity: Stress and Strain. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['5.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, spring, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -9,31 +9,6 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 /* ---------- helpers shared by the figures ---------- */
 /* a rectangle outlined in a dashed line: the shape the object had before the force was applied */
 function ghost(ctx, x, y, w, h) { line(ctx, x, y, x + w, y, PAL.muted, 2, [8, 8]); line(ctx, x + w, y, x + w, y + h, PAL.muted, 2, [8, 8]); line(ctx, x + w, y + h, x, y + h, PAL.muted, 2, [8, 8]); line(ctx, x, y + h, x, y, PAL.muted, 2, [8, 8]); }
-/* A locked view of a solid the book draws in perspective. The drawing layer has no
-   3D primitive, so the projection is done here: a pinhole camera stands at a fixed
-   yaw and pitch about the origin, dist away, and each face is lit by one fixed lamp
-   from the upper left front. P takes a point [x, y, z] (y up, z toward the viewer)
-   to the canvas, and shade takes a face's outward normal to the share of ink laid
-   over the face colour. Any figure whose original is a perspective view can reuse
-   it: choose the yaw and pitch that match the book's picture and never change them. */
-function view({ yaw, pitch, dist, cx, cy }) {
-  const e = [dist * Math.sin(yaw) * Math.cos(pitch), dist * Math.sin(pitch), dist * Math.cos(yaw) * Math.cos(pitch)];
-  const unit = (v) => { const l = Math.hypot(v[0], v[1], v[2]); return [v[0] / l, v[1] / l, v[2] / l]; };
-  const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
-  const dotp = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
-  const f = unit([-e[0], -e[1], -e[2]]), r = unit(cross(f, [0, 1, 0])), u = cross(r, f), lamp = unit([-0.45, 0.85, 0.55]);
-  return {
-    P: (p) => { const q = [p[0] - e[0], p[1] - e[1], p[2] - e[2]], z = dotp(q, f); return [cx + dist * dotp(q, r) / z, cy - dist * dotp(q, u) / z]; },
-    shade: (n) => 0.34 * (1 - Math.max(0, dotp(unit(n), lamp))),
-  };
-}
-/* one face of the solid on the canvas: the face colour, then k of ink over it for its shading, then an outline of the given width; a null k fills nothing */
-function face(ctx, pts, k, stroke) {
-  ctx.save(); ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
-  if (k !== null) { ctx.fillStyle = PAL.soft; ctx.fill(); ctx.fillStyle = alpha(PAL.ink, k); ctx.fill(); }
-  if (stroke) { ctx.strokeStyle = PAL.ink; ctx.lineWidth = stroke; ctx.lineJoin = 'round'; ctx.stroke(); }
-  ctx.restore();
-}
 /* a value in units of 10^9, written the way the book writes a modulus */
 const giga = (v) => fmt(v, v < 10 ? 1 : 0) + ' × 10⁹ N/m²';
 /* a number in scientific form for a readout, "5.00 \times 10^{7}" */
@@ -94,14 +69,21 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     text(ctx, 'original length', wall + nat - 12, y - 76, PAL.muted, { size: 17, align: 'right' });
     if (x * SC > 8 && reg < 3) hbracket(ctx, wall + nat, end, y + 96, C('position'), 'ΔL = ' + fmt(x, 3) + ' m');
     /* the graph: the deformation against the force, with the three regions the book names */
-    const yr = nice(0, Math.max(0.05, full) * 1.05, 4);
+    /* The range is fixed. At the slider extremes (k = 50 N/m with the Hooke limit at 300 N) the
+       spring stretches about 25 m before it fractures, and an axis that tall would leave the default
+       state a sliver along the bottom, so the axis keeps a default-sized 0 to 4 m in ticks of 1 m and
+       never rescales; a deformation past 4 m is drawn with pinned(). */
+    const YHI = 4, YN = 4;
     const box = { l: 190, r: 1290, t: 330, b: 620 };
-    const { X, Y } = axes(ctx, box, [0, 600], [0, yr.hi], { xl: 'applied force F (N)', xc: C('force'), yl: 'deformation ΔL (m)', yc: C('position'), nx: 6, ny: yr.n, fy: (v) => fmt(v, 1) });
+    const { X, Y } = axes(ctx, box, [0, 600], [0, YHI], { xl: 'applied force F (N)', xc: C('force'), yl: 'deformation ΔL (m)', yc: C('position'), nx: 6, ny: YN, fy: (v) => fmt(v, 1) });
     const band = (a, b, hue) => { ctx.save(); ctx.fillStyle = alpha(hue, 0.08); ctx.fillRect(X(a), box.t, X(Math.min(b, 600)) - X(a), box.b - box.t); ctx.restore(); };
     band(0, Fh.v, C('position')); band(elastic(), fracture(), C('force'));
     const seg = (a, b, w) => { if (b <= a) return; line(ctx, X(a), Y(dl(a)), X(Math.min(b, 600)), Y(dl(Math.min(b, 600))), C('position'), w); };
+    /* the curve is clipped to the box, so a segment that climbs past the fixed range leaves through the top rather than running over the scene */
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     seg(0, Fh.v, 5); seg(Fh.v, elastic(), 5); seg(elastic(), fracture(), 5);
-    if (fracture() <= 600) {
+    ctx.restore();
+    if (fracture() <= 600 && dl(fracture()) <= YHI) {
       const fx = X(fracture()), fy = Y(dl(fracture()));
       line(ctx, fx - 14, fy - 14, fx + 14, fy + 14, C('force'), 4); line(ctx, fx - 14, fy + 14, fx + 14, fy - 14, C('force'), 4);
       text(ctx, 'fracture', fx + 22, fy - 14, C('force'), { size: 18, weight: 600 });
@@ -109,7 +91,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     text(ctx, 'Hooke’s law', X(Fh.v / 2), box.t + 22, PAL.muted, { size: 18, align: 'center' });
     if (X(elastic()) - X(Fh.v) > 80) text(ctx, 'still elastic', (X(Fh.v) + X(elastic())) / 2, box.t + 22, PAL.muted, { size: 18, align: 'center' });
     if (X(Math.min(600, fracture())) - X(elastic()) > 110) text(ctx, 'permanent', (X(elastic()) + X(Math.min(600, fracture()))) / 2, box.t + 22, PAL.muted, { size: 18, align: 'center' });
-    if (reg < 3) { line(ctx, X(f), box.b, X(f), Y(x), C('force'), 2, [4, 8]); line(ctx, box.l, Y(x), X(f), Y(x), C('position'), 2, [4, 8]); dot(ctx, X(f), Y(x), PAL.ink, true, 10); }
+    if (reg < 3 && x <= YHI) { line(ctx, X(f), box.b, X(f), Y(x), C('force'), 2, [4, 8]); line(ctx, box.l, Y(x), X(f), Y(x), C('position'), 2, [4, 8]); dot(ctx, X(f), Y(x), PAL.ink, true, 10); }
+    else if (reg < 3) pinned(ctx, box, X, Y, f, x, C('position'), fmt(x, 1) + ' m');
     headline(ctx, reg === 0 ? 'F = ' + fmt(f, 0) + ' N · the spring has stretched ' + fmt(x, 3) + ' m, and the graph is still on its straight segment, where Hooke’s law holds'
       : reg === 1 ? 'F = ' + fmt(f, 0) + ' N · the spring has stretched ' + fmt(x, 3) + ' m; the graph has left its straight segment, but the stretch is still elastic and comes back'
         : reg === 2 ? 'F = ' + fmt(f, 0) + ' N · the spring has stretched ' + fmt(x, 3) + ' m and is permanently deformed, so it will not return to its original length'
@@ -158,13 +141,17 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     text(ctx, 'the stretch is drawn about ' + timesLarger(MAG, len / L0.v) + ' times larger than it is', 200, 728, PAL.muted, { size: 17 });
     vbracket(ctx, 176, yTop, yTop + len, C('position'), 'L₀ = ' + fmt(L0.v, 2) + ' m', -1);
     /* the graph beside the vertical scene: the stretch each string takes against the weight hung on it */
-    const yr = nice(0, dl(STR[0], 40) * 1000 * 1.05, 4);
+    /* The range is fixed: at the slider maxima (w = 40 N and L₀ = 1.20 m) the thin nylon string, the
+       one that gives most, stretches 12.2 mm, so the axis holds 0 to 15 mm in ticks of 3 mm and never
+       rescales; a stretch past 15 mm is drawn with pinned(). */
+    const YHI = 15, YN = 5;
     const box = { l: 830, r: 1310, t: 190, b: 600 };
-    const { X, Y } = axes(ctx, box, [0, 40], [0, yr.hi], { xl: 'weight w (N)', xc: C('force'), yl: 'stretch ΔL (mm)', yc: C('position'), nx: 4, ny: yr.n, fy: (v) => fmt(v, 1) });
+    const { X, Y } = axes(ctx, box, [0, 40], [0, YHI], { xl: 'weight w (N)', xc: C('force'), yl: 'stretch ΔL (mm)', yc: C('position'), nx: 4, ny: YN, fy: (v) => fmt(v, 1) });
     STR.forEach((s, i) => {
-      const e = Math.min(40, (yr.hi / 1000) * s.Y * area(s) / L0.v);
+      const e = Math.min(40, (YHI / 1000) * s.Y * area(s) / L0.v);
       line(ctx, X(0), Y(0), X(e), Y(dl(s, e) * 1000), C('position'), i === 1 ? 5 : 3);
-      dot(ctx, X(w.v), Y(dl(s, w.v) * 1000), PAL.ink, true, 9);
+      const yv = dl(s, w.v) * 1000;
+      if (yv <= YHI) dot(ctx, X(w.v), Y(yv), PAL.ink, true, 9); else pinned(ctx, box, X, Y, w.v, yv, C('position'), fmt(yv, 1) + ' mm');
       text(ctx, s.name, X(e) - 10, Y(dl(s, e) * 1000) - 18, PAL.muted, { size: 17, align: 'right' });
     });
     headline(ctx, 'a ' + fmt(w.v, 0) + ' N weight stretches the thin nylon string ' + fmt(dl(STR[0], w.v) * 1000, 2) + ' mm, the thicker nylon string ' + fmt(dl(STR[1], w.v) * 1000, 2) + ' mm and the steel string ' + fmt(dl(STR[2], w.v) * 1000, 2) + ' mm');
@@ -190,9 +177,11 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const dl = (force, Yg) => (force * L0.v) / (Yg * 1e9 * area());   /* metres */
   function draw() {
     const { ctx } = begin(d.c);
-    const x = dl(Fa.v, YY.v), len = 130 + 300 * (L0.v / 3), wRod = 26 + 44 * (rr.v / 5);
+    const x = dl(Fa.v, YY.v), len = 100 + 180 * (L0.v / 3), wRod = 26 + 44 * (rr.v / 5);
     const MAG = x > 0 ? Math.min(90, x * 4e5) / x : 0;              /* units per metre of change, kept readable at every setting */
-    const grow = x * MAG, yTop = 190, aL = 34 + Fa.v * 0.016;
+    /* the rod, its stretch and the longest arrow all sit above CAPY, so the
+       caption is never crossed by a force arrow */
+    const grow = x * MAG, yTop = 200, aL = 24 + Fa.v * 0.010, CAPY = 700;
     ['tension', 'compression'].forEach((mode, i) => {
       const cx = 200 + i * 320, pull = mode === 'tension' ? 1 : -1;
       const bot = yTop + len + pull * grow;
@@ -203,27 +192,34 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       else { arrow(ctx, cx, yTop - 16 - aL, cx, yTop - 16, C('force'), 5); arrow(ctx, cx, bot + 16 + aL, cx, bot + 16, C('force'), 5); }
       text(ctx, 'F', cx + wRod / 2 + 14, yTop - 16 - aL / 2, C('force'), { weight: 600, size: 22 });
       text(ctx, 'F', cx + wRod / 2 + 14, bot + 16 + aL / 2, C('force'), { weight: 600, size: 22 });
-      text(ctx, '(' + (i ? 'b' : 'a') + ') ' + mode, cx, yTop + len + 150, PAL.ink, { size: 20, align: 'center', weight: 600 });
       if (grow > 4) vbracket(ctx, cx - wRod / 2 - 44, Math.min(yTop + len, bot), Math.max(yTop + len, bot), C('position'), 'ΔL', -1);
+    });
+    /* the captions last, so they sit above every arrow rather than under one */
+    ['tension', 'compression'].forEach((mode, i) => {
+      text(ctx, '(' + (i ? 'b' : 'a') + ') ' + mode, 200 + i * 320, CAPY, PAL.ink, { size: 20, align: 'center', weight: 600, bg: PAL.panel });
     });
     text(ctx, x > 0 ? 'ΔL = ' + fmt(x * 1000, 3) + ' mm, drawn about ' + timesLarger(MAG, len / L0.v) + ' times larger than it is' : 'with no force applied the rod keeps its original length', 110, 620, PAL.muted, { size: 18 });
     text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m, r = ' + fmt(rr.v, 1) + ' cm, A = πr² = ' + plain(area(), 2) + ' m²', 110, 648, PAL.muted, { size: 18 });
     /* the graph beside the two vertical rods: the change in length against the force, with four materials of Table 5.3 */
-    const yr = nice(0, dl(5000, YY.v) * 1000 * 1.05, 4);
+    /* The range is fixed. At the slider extremes (L₀ = 3.0 m, r = 0.5 cm and Y = 1 × 10⁹ N/m²) a
+       5000 N force changes the length by 191 mm, and an axis that tall would press the default state
+       flat against the bottom, so the axis keeps a default-sized 0 to 0.5 mm in ticks of 0.1 mm and
+       never rescales; a change past 0.5 mm is drawn with pinned(). */
+    const YHI = 0.5, YN = 5;
     const box = { l: 790, r: 1310, t: 150, b: 560 };
-    const { X, Y } = axes(ctx, box, [0, 5000], [0, yr.hi], { xl: 'force F (N)', xc: C('force'), yl: 'change in length ΔL (mm)', yc: C('position'), nx: 5, ny: yr.n, fy: (v) => fmt(v, 2) });
+    const { X, Y } = axes(ctx, box, [0, 5000], [0, YHI], { xl: 'force F (N)', xc: C('force'), yl: 'change in length ΔL (mm)', yc: C('position'), nx: 5, ny: YN, fy: (v) => fmt(v, 2) });
     OTHERS.forEach((o, i) => {
-      const e = Math.min(5000, (yr.hi / 1000) * o.Y * 1e9 * area() / L0.v);
+      const e = Math.min(5000, (YHI / 1000) * o.Y * 1e9 * area() / L0.v);
       if (e < 120) return;
       line(ctx, X(0), Y(0), X(e), Y(dl(e, o.Y) * 1000), PAL.rule, 3);
       /* a line that leaves through the top of the box is named beside where it leaves, not above it, so the labels keep off the axis title */
       if (e < 4980) text(ctx, o.name, X(e) + 10, box.t + 20 + i * 24, PAL.muted, { size: 16 });
       else text(ctx, o.name, X(e) - 8, Y(dl(e, o.Y) * 1000) - 16, PAL.muted, { size: 16, align: 'right' });
     });
-    const ec = Math.min(5000, (yr.hi / 1000) * YY.v * 1e9 * area() / L0.v);
+    const ec = Math.min(5000, (YHI / 1000) * YY.v * 1e9 * area() / L0.v);
     line(ctx, X(0), Y(0), X(ec), Y(dl(ec, YY.v) * 1000), C('position'), 5);
-    line(ctx, X(Fa.v), box.b, X(Fa.v), Y(x * 1000), C('force'), 2, [4, 8]);
-    dot(ctx, X(Fa.v), Y(x * 1000), PAL.ink, true, 10);
+    if (x * 1000 <= YHI) { line(ctx, X(Fa.v), box.b, X(Fa.v), Y(x * 1000), C('force'), 2, [4, 8]); dot(ctx, X(Fa.v), Y(x * 1000), PAL.ink, true, 10); }
+    else pinned(ctx, box, X, Y, Fa.v, x * 1000, C('position'), fmt(x * 1000, 2) + ' mm');
     headline(ctx, 'F = ' + fmt(Fa.v, 0) + ' N · the rod stretches ' + fmt(x * 1000, 3) + ' mm in tension and is compressed by the same amount');
     readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(YY.v * 1e9, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
       'For very small deformations and uniform materials the change in length is the same for a tension and for a compression of the same size, which is why the two rods move by equal amounts. Double the length and the change doubles; double the radius and the area is four times as large, so the change falls to a quarter.');
@@ -339,17 +335,22 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     if (lean > 5) hbracket(ctx, tl0[0], tl[0], tl0[1] - 40, C('position'), 'Δx');
     text(ctx, x > 0 ? 'Δx = ' + fmt(x * 1e6, 3) + ' µm, drawn about ' + timesLarger(MAG, H / L0.v) + ' times larger than it is' : 'with no force applied the bookcase stands square', 110, 636, PAL.muted, { size: 18 });
     /* the graph beside the vertical scene: the deformation falls as 1/S, with the materials of Table 5.3 along it */
-    const yr = nice(0, dx(1) * 1e6 * 1.05, 4);
+    /* The range is fixed. At the slider extremes (F = 2000 N, L₀ = 2.5 m and A = 0.05 m²) a material
+       of shear modulus 1 × 10⁹ N/m² deforms by 100 µm, and an axis that tall would leave the default
+       state flat along the bottom, so the axis keeps a default-sized 0 to 10 µm in ticks of 2 µm and
+       never rescales; a deformation past 10 µm is drawn with pinned(). */
+    const YHI = 10, YN = 5;
     const box = { l: 800, r: 1300, t: 170, b: 540 };
-    const { X, Y } = axes(ctx, box, [0, 80], [0, yr.hi], { xl: 'shear modulus S (× 10⁹ N/m²)', xc: C('elastic-modulus'), yl: 'deformation Δx (µm)', yc: C('position'), nx: 4, ny: yr.n, fy: (v) => fmt(v, 1) });
-    F.curve(ctx, (t) => Math.min(yr.hi, dx(t) * 1e6), 1, 80, X, Y, C('position'), 5, 140);
+    const { X, Y } = axes(ctx, box, [0, 80], [0, YHI], { xl: 'shear modulus S (× 10⁹ N/m²)', xc: C('elastic-modulus'), yl: 'deformation Δx (µm)', yc: C('position'), nx: 4, ny: YN, fy: (v) => fmt(v, 1) });
+    F.curve(ctx, (t) => Math.min(YHI, dx(t) * 1e6), 1, 80, X, Y, C('position'), 5, 140);
     MATS.forEach((m) => {
-      const yv = dx(m.S) * 1e6; if (yv > yr.hi) return;
+      const yv = dx(m.S) * 1e6; if (yv > YHI) return;
       dot(ctx, X(m.S), Y(yv), PAL.muted, false, 8);
       /* the curve crowds its points together at the right, so only three of the seven are named and the rest are left as marks */
       if (m.l) text(ctx, m.n, X(m.S) + (m.S > 60 ? -10 : 12), Y(yv) - 20, PAL.muted, { size: 17, align: m.S > 60 ? 'right' : 'left' });
     });
-    if (dx(SS.v) * 1e6 <= yr.hi) { line(ctx, X(SS.v), box.b, X(SS.v), Y(x * 1e6), C('elastic-modulus'), 2, [4, 8]); dot(ctx, X(SS.v), Y(x * 1e6), PAL.ink, true, 10); }
+    if (x * 1e6 <= YHI) { line(ctx, X(SS.v), box.b, X(SS.v), Y(x * 1e6), C('elastic-modulus'), 2, [4, 8]); dot(ctx, X(SS.v), Y(x * 1e6), PAL.ink, true, 10); }
+    else pinned(ctx, box, X, Y, SS.v, x * 1e6, C('position'), fmt(x * 1e6, 1) + ' µm');
     headline(ctx, 'F = ' + fmt(Fa.v, 0) + ' N · a bookcase ' + fmt(L0.v, 1) + ' m tall with a shear modulus of ' + giga(SS.v) + ' shears sideways by ' + fmt(x * 1e6, 3) + ' µm');
     readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(SS.v * 1e9, 1)}\\ \\text{N/m}^2)(${fmt(AA.v, 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
       'The deformation falls as one over the shear modulus, so the curve drops steeply at the left and flattens at the right. Bone sits at the far right beside steel, which is why bones are so rigid, and lead sits at the far left.');
@@ -379,16 +380,30 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     fixed(ctx, 120, y - 140, 300, 360);
     line(ctx, wallR, y - 200, wallR, y + 230, PAL.rule, 2);
     /* the nail: straight inside the wall, bending to its flex at the free end */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = thick; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(wallR - 140, y);
-    for (let i = 0; i <= 20; i++) { const f = i / 20; ctx.lineTo(wallR + len * f, y + flex * f * f); }
-    ctx.stroke(); ctx.restore();
+    /* a steel nail: the point driven into the wall, the shank straight inside it
+       and bending to its flex outside, and the head at the free end. A light
+       stripe along the top gives the metal its shine. */
+    const x0 = wallR - 140, half = thick / 2, taper = 60;
+    const cen = (xx) => (xx <= wallR ? y : y + flex * Math.pow((xx - wallR) / len, 2));
+    const width = (xx) => (xx < x0 + taper ? half * ((xx - x0) / taper) : half);
+    const pts = []; for (let i = 0; i <= 60; i++) pts.push(x0 + ((wallR + len - x0) * i) / 60);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.beginPath(); pts.forEach((xx, i) => (i ? ctx.lineTo(xx, cen(xx) - width(xx)) : ctx.moveTo(xx, cen(xx))));
+    pts.slice().reverse().forEach((xx) => ctx.lineTo(xx, cen(xx) + width(xx))); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = PAL.panel; ctx.lineWidth = Math.max(2, thick * 0.22); ctx.lineCap = 'round';
+    ctx.beginPath(); pts.filter((xx) => xx > x0 + taper + 10 && xx < wallR + len - 6).forEach((xx, i) => (i ? ctx.lineTo(xx, cen(xx) - half * 0.45) : ctx.moveTo(xx, cen(xx) - half * 0.45))); ctx.stroke();
+    /* the head: a flat disc across the end of the shank */
+    const hx0 = wallR + len, hy0 = cen(hx0);
+    ctx.fillStyle = PAL.muted; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.rect(hx0 - 2, hy0 - half * 2.1, 9, half * 4.2); ctx.fill(); ctx.stroke();
+    ctx.restore();
+    text(ctx, 'steel nail', wallR + len / 2, y - 62, PAL.ink, { size: 18, align: 'center', weight: 600 });
     line(ctx, wallR, y - 90, wallR + len, y - 90, PAL.muted, 2, [6, 6]);
     hbracket(ctx, wallR, wallR + len, y - 112, C('position'), 'L₀ = ' + fmt(L0.v, 2) + ' mm');
     text(ctx, '2r = ' + fmt(2 * rr.v, 2) + ' mm', wallR + 16, y + thick / 2 + 26, PAL.muted, { size: 18 });
     /* the picture hanging from the free end, and the two equal and opposite forces */
     const px = wallR + len, py = y + flex;
-    line(ctx, px, py, px, py + 60, PAL.muted, 3);
+    line(ctx, px - 8 - half, py, px - 8 - half, py + 60, PAL.muted, 3);
     block(ctx, px, py + 150, 210, 170, PAL.ink);
     text(ctx, fmt(mm.v, 1) + ' kg', px, py + 150, PAL.ink, { size: 22, align: 'center', weight: 600 });
     arrow(ctx, px + 130, py + 150, px + 130, py + 150 + 40 + w * 0.6, C('force'), 5);
@@ -424,18 +439,43 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const f = frac(BB.v), dV = f * V0.v;
     const side = 170 + 130 * Math.cbrt(V0.v / 10), MAG = 20;
     const shrink = Math.min(0.45, (1 - Math.pow(1 - f, 1 / 3)) * MAG);
-    const s2 = side * (1 - shrink), cx = 330, cy = 330;
-    ghost(ctx, cx - side / 2, cy - side / 2, side, side);
-    ctx.save(); ctx.fillStyle = alpha(C('stress'), 0.16); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
-    ctx.fillRect(cx - s2 / 2, cy - s2 / 2, s2, s2); ctx.strokeRect(cx - s2 / 2, cy - s2 / 2, s2, s2); ctx.restore();
-    const al = 30 + st.v * 0.8;
-    [[0, -1], [0, 1], [-1, 0], [1, 0]].forEach(([ux, uy]) => {
-      const sx = cx + ux * (s2 / 2 + al + 16), sy = cy + uy * (s2 / 2 + al + 16);
-      arrow(ctx, sx, sy, cx + ux * (s2 / 2 + 14), cy + uy * (s2 / 2 + 14), C('stress'), 5);
-    });
-    text(ctx, 'F/A on every surface', cx, cy - side / 2 - al - 44, C('stress'), { size: 20, align: 'center', weight: 600 });
-    text(ctx, 'V₀ = ' + fmt(V0.v, 1) + ' L', cx - side / 2 - al - 30, cy, PAL.muted, { size: 19, align: 'right' });
-    text(ctx, 'V₀ − ΔV', cx, cy, PAL.ink, { size: 21, align: 'center', weight: 600 });
+    /* the book's viewpoint for this cube: the same locked view the bookcase of Figure 5.16 uses, a little to the left of the solid and a little above it, so its left side, its top and its front all show */
+    const V = view({ yaw: -0.42, pitch: 0.2, dist: 2400, cx: 340, cy: 330 });
+    const h0 = side / 2, h2 = h0 * (1 - shrink);                      /* half the original edge and half the squeezed edge, in scene units */
+    /* the six faces of a cube, each as its outward normal and the four corners in units of the half-edge */
+    const FACES = [
+      { n: [0, 1, 0], q: [[-1, 1, -1], [1, 1, -1], [1, 1, 1], [-1, 1, 1]] },
+      { n: [0, -1, 0], q: [[-1, -1, -1], [1, -1, -1], [1, -1, 1], [-1, -1, 1]] },
+      { n: [-1, 0, 0], q: [[-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1]] },
+      { n: [1, 0, 0], q: [[1, -1, -1], [1, -1, 1], [1, 1, 1], [1, 1, -1]] },
+      { n: [0, 0, 1], q: [[-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]] },
+      { n: [0, 0, -1], q: [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1]] },
+    ];
+    const seen = (n) => n[1] > 0 || n[0] < 0 || n[2] > 0;             /* from this viewpoint the top, the left side and the front are the faces in view */
+    const pt = (h) => (c) => V.P([c[0] * h, c[1] * h, c[2] * h]);
+    /* the ghost of the original volume: the cube the material filled before the force was applied, left as a wireframe */
+    FACES.filter((g) => seen(g.n)).forEach((g) => face(ctx, g.q.map(pt(h0)), null, 2));
+    const far = pt(h0)([1, -1, -1]);
+    [[-1, -1, -1], [1, 1, -1], [1, -1, 1]].forEach((c) => { const e = pt(h0)(c); line(ctx, far[0], far[1], e[0], e[1], PAL.muted, 2, [8, 8]); });
+    /* an arrow pressing inward on the middle of a face, drawn in scene units so the perspective carries it */
+    const al = 26 + st.v * 0.55;
+    const push = (n, w) => {
+      const c = [n[0] * h2, n[1] * h2, n[2] * h2];
+      const tail = V.P([c[0] + n[0] * (al + 16), c[1] + n[1] * (al + 16), c[2] + n[2] * (al + 16)]);
+      const head = V.P([c[0] + n[0] * 10, c[1] + n[1] * 10, c[2] + n[2] * 10]);
+      arrow(ctx, tail[0], tail[1], head[0], head[1], w ? alpha(C('stress'), 0.45) : C('stress'), 5);
+      return tail;
+    };
+    FACES.filter((g) => !seen(g.n)).forEach((g) => push(g.n, 1));     /* the three faces turned away from us press inward too, so they are drawn muted and behind the solid */
+    /* the squeezed cube inside the ghost, each face in view lit by the lamp */
+    FACES.filter((g) => seen(g.n)).forEach((g) => face(ctx, g.q.map(pt(h2)), V.shade(g.n), 3));
+    const tops = FACES.filter((g) => seen(g.n)).map((g) => push(g.n, 0));
+    const topTail = tops[0];
+    text(ctx, 'F/A on every surface', topTail[0], topTail[1] - 34, C('stress'), { size: 20, align: 'center', weight: 600 });
+    const lo = pt(h0)([-1, -1, 1]), ctr = pt(h2)([0, 0, 1]);   /* the ghost's front bottom left corner, whose foot has room for the volume label */
+    text(ctx, 'A', pt(h0)([0, 1, 0])[0] - 70, pt(h0)([0, 1, 0])[1] - 6, PAL.ink, { size: 20, align: 'right', weight: 600 });
+    text(ctx, 'V₀ = ' + fmt(V0.v, 1) + ' L', lo[0] - 6, lo[1] + 30, PAL.muted, { size: 19, align: 'right' });
+    text(ctx, 'V₀ − ΔV', ctr[0], ctr[1], PAL.ink, { size: 21, align: 'center', weight: 600 });
     text(ctx, 'ΔV = ' + fmt(dV * 1000, 1) + ' mL, which is ' + fmt(f * 100, 2) + '% of the volume', 120, 560, PAL.muted, { size: 18 });
     text(ctx, 'the shrinking is drawn ' + MAG + ' times larger than it is', 120, 588, PAL.muted, { size: 18 });
     /* the graph beside the scene: the fractional change against the force per unit area, for the five liquids of Table 5.3 */

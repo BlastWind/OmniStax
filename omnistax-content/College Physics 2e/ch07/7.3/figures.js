@@ -1,7 +1,7 @@
 /* Figures for section 7.3 Gravitational Potential Energy. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, curve, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, curve, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -50,16 +50,6 @@ function tv(ctx, x, y, color, s = 1) {
   ctx.fillRect(-30, -46, 60, 42); ctx.strokeRect(-30, -46, 60, 42);
   ctx.beginPath(); ctx.moveTo(-14, -4); ctx.lineTo(-18, 0); ctx.lineTo(18, 0); ctx.lineTo(14, -4); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
 }
-/* a standing or crouching person, feet at (x, y); crouch 0 stands, 1 is fully bent */
-function person(ctx, x, y, color, crouch, fall) {
-  const leg = 42 - 24 * crouch, torso = 52, head = y - leg - torso - 12;
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(x, head, 11, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(x, head + 11); ctx.lineTo(x, y - leg);
-  ctx.moveTo(x, y - leg); ctx.lineTo(x - 16 - 8 * crouch, y); ctx.moveTo(x, y - leg); ctx.lineTo(x + 16 + 8 * crouch, y);
-  const ay = fall ? head + 6 : head + 30;
-  ctx.moveTo(x, head + 20); ctx.lineTo(x - 24, ay); ctx.moveTo(x, head + 20); ctx.lineTo(x + 24, ay); ctx.stroke(); ctx.restore();
-}
 /* a roller-coaster car centred on (x, y) and turned through `rot` radians */
 function coasterCar(ctx, x, y, rot, color) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.fillStyle = color;
@@ -92,20 +82,26 @@ function coasterCar(ctx, x, y, rot, color) {
     clockCase(ctx, 340, 96, PAL.ink);
     line(ctx, 340, 214, 340, yw, PAL.muted, 3);
     coneWeight(ctx, 340, yw, PAL.ink);
-    text(ctx, fmt(m.v, 3) + ' kg', 340, yw + 84, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    /* the label follows the weight down but never off the canvas */
+    text(ctx, fmt(m.v, 3) + ' kg', 340, Math.min(yw + 84, floorY + 56), PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     if (h.v * SC > 40) vbracket(ctx, 208, floorY, floorY - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     line(ctx, 190, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
     if (up) { arrow(ctx, 428, yw + 30, 428, yw - 54, C('force'), 5); text(ctx, 'F = mg = ' + fmt(m.v * G, 2) + ' N', 444, yw - 18, C('force'), { size: 18, weight: 600 }); }
     else { arrow(ctx, 428, yw + 10, 428, yw + 94, PAL.muted, 5); text(ctx, 'the weight comes down', 444, yw + 54, PAL.muted, { size: 18 }); }
     ebar(ctx, 620, floorY, 62, E, PE, 330, 'PE_g', fmt(PE, 2) + ' J');
     /* the graph beside the vertical scene: PE_g against the height of the weight */
-    const hr = nice(0, h.v, 4), Er = nice(0, E, 4);
-    const box = { l: 890, r: 1330, t: 150, b: 480 };
-    const { X, Y } = axes(ctx, box, [0, hr.hi], [0, Er.hi], { xl: 'height of the weight (m)', xc: C('position'), yl: 'PE_g (J)', yc: C('energy'), nx: hr.n, ny: Er.n, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 1) });
-    line(ctx, X(0), Y(0), X(h.v), Y(E), C('energy'), 5);
-    line(ctx, X(f * h.v), box.b, X(f * h.v), Y(PE), C('position'), 2, [4, 8]);
+    /* fixed axes. The height axis is the slider's own range, 0 to 2 m, ticked every 0.5 m. The
+       energy the sliders can reach is 2 kg × 9.80 × 2 m = 39.2 J, but the default weight stores
+       4.9 J and would then sit in the bottom eighth of the box, so the energy axis is fixed at
+       0 to 6 J, ticked every 1 J, which holds the default winding comfortably; a heavier weight
+       runs off the top, where the line is clipped and the marker is pinned. Neither range moves. */
+    const HR = 2, ER = 6, box = { l: 890, r: 1330, t: 150, b: 480 };
+    const { X, Y } = axes(ctx, box, [0, HR], [0, ER], { xl: 'height of the weight (m)', xc: C('position'), yl: 'PE_g (J)', yc: C('energy'), nx: 4, ny: 6, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
+    const rate = m.v * G, hEnd = Math.min(h.v, ER / rate), hNow = Math.min(f * h.v, hEnd);
+    line(ctx, X(0), Y(0), X(hEnd), Y(rate * hEnd), C('energy'), 5);
+    line(ctx, X(hNow), box.b, X(hNow), Y(rate * hNow), C('position'), 2, [4, 8]);
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
-    dot(ctx, X(f * h.v), Y(PE), C('energy'), true, 9);
+    pinned(ctx, box, X, Y, f * h.v, PE, C('energy'), fmt(PE, 2) + ' J');
     text(ctx, 'the slope is mg = ' + fmt(m.v * G, 2) + ' N', box.l + 16, box.t + 26, C('energy'), { size: 17, weight: 600 });
     headline(ctx, f < 0.02 ? 'the weight rests on the floor, where the clock has stored nothing yet'
       : f > 0.98 ? 'the weight is fully wound, ' + fmt(h.v, 2) + ' m up, and the mass-Earth system holds ' + fmt(E, 2) + ' J'
@@ -150,9 +146,11 @@ function coasterCar(ctx, x, y, rot, color) {
     text(ctx, 'PE_g = 0 here', 700, Yp(z.v) - 20, C('energy'), { size: 18, weight: 600, align: 'right' });
     /* the graph beside: the same straight line, shifted by the choice of zero */
     const lowM = -1, highM = 2.5;
-    const Er = nice(M * G * (lowM - z.v), M * G * (highM - z.v), 5);
-    const box = { l: 880, r: 1330, t: 150, b: 520 };
-    const { X, Y } = axes(ctx, box, [lowM, highM], [Er.lo, Er.hi], { xl: 'height above the ground (m)', xc: C('position'), yl: 'PE_g (J)', yc: C('energy'), nx: 7, ny: Er.n, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
+    /* fixed axes: with the zero level anywhere in its own range, −0.9 m to 2.4 m, the crate's
+       energy over the drawn heights stays inside 20 kg × 9.80 × 3.4 m = 666 J either way, so the
+       graph is always −1 m to 2.5 m by −700 J to 700 J, ticked every 200 J, and never rescales. */
+    const PR = 700, box = { l: 880, r: 1330, t: 150, b: 520 };
+    const { X, Y } = axes(ctx, box, [lowM, highM], [-PR, PR], { xl: 'height above the ground (m)', xc: C('position'), yl: 'PE_g (J)', yc: C('energy'), nx: 7, ny: 7, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
     line(ctx, X(lowM), Y(M * G * (lowM - z.v)), X(highM), Y(M * G * (highM - z.v)), C('energy'), 5);
     dot(ctx, X(z.v), Y(0), C('energy'), false, 10);
     dot(ctx, X(yLo), Y(M * G * (yLo - z.v)), C('position'), true, 9);
@@ -207,11 +205,11 @@ function coasterCar(ctx, x, y, rot, color) {
     const px = 1040;
     dot(ctx, px, Yp(h.v) - 26, PAL.ink, false, 18);
     line(ctx, px - 18, Yp(h.v) - 26, px - 18, Yp(s2) - 52, PAL.ink, 3);
-    line(ctx, px + 18, Yp(h.v) - 26, px + 18, Yp(0) - 20, PAL.ink, 3);
-    F.runner(ctx, px + 46, Yp(0), PAL.ink, 0);
+    line(ctx, px + 18, Yp(h.v) - 26, px + 18, Yp(0) - 90, PAL.ink, 3);
+    F.person(ctx, px + 50, Yp(0), PAL.ink, { face: -1, lean: -0.15, reach: { x: px + 18, y: Yp(0) - 90 } });
     tv(ctx, px - 18, Yp(s2), PAL.ink);
-    F.runner(ctx, Xp(p1.x), Yp(p1.y), PAL.ink, s1 * 3);
-    tv(ctx, Xp(p1.x), Yp(p1.y) - 62, PAL.ink, 0.8);
+    F.person(ctx, Xp(p1.x), Yp(p1.y), PAL.ink, { lean: 0.15, phase: s1 > 0 && s1 < L1() ? s1 * 3 : 0, reach: { x: Xp(p1.x) + 18, y: Yp(p1.y) - 52 } });
+    tv(ctx, Xp(p1.x) + 30, Yp(p1.y) - 52, PAL.ink, 0.8);
     text(ctx, 'up the stairs', Xp(run.v / 2), ground + 62, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'straight up', px, ground + 62, PAL.muted, { size: 18, align: 'center' });
     /* the two accounts */
@@ -248,8 +246,8 @@ function coasterCar(ctx, x, y, rot, color) {
     const KE = m.v * G * h.v, Fst = KE / kb.v, wgt = m.v * G;
     const floorY = 430, SC = 62, feet = falling ? floorY - h.v * SC * (1 - tau * tau) : floorY;
     strip(ctx, 100, 660, floorY + 14, 26);
-    person(ctx, 330, feet, PAL.ink, p, falling && tau > 0.1);
-    text(ctx, fmt(m.v, 1) + ' kg', 330, feet - 132, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    F.person(ctx, 330, feet, PAL.ink, { crouch: p });
+    text(ctx, fmt(m.v, 1) + ' kg', 330, feet - 112, PAL.ink, { size: 18, weight: 600, align: 'center' });
     if (h.v * SC > 40) vbracket(ctx, 168, floorY, floorY - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     line(ctx, 150, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
     if (!falling) {
@@ -335,18 +333,25 @@ function coasterCar(ctx, x, y, rot, color) {
     line(ctx, X0 - 44, BASE - h.v * SCY, X0 + 40, BASE - h.v * SCY, C('position'), 2, [8, 8]);
     if (v > 1) { const al = 50 + 130 * (v / Math.sqrt(v0.v * v0.v + 2 * G * h.v)); arrow(ctx, x + 40, y - 40, x + 40 + al, y - 40, C('velocity'), 5); text(ctx, 'v = ' + fmt(v, 1) + ' m/s', x + 46 + al, y - 66, C('velocity'), { size: 18, weight: 600 }); }
     /* the graph below the horizontal scene: the energy account against the height fallen */
-    const Er = nice(0, Etot * 1.18, 4);
-    const box = { l: 220, r: 1300, t: 510, b: 700 };
-    const { X, Y } = axes(ctx, box, [0, h.v], [0, Er.hi], { xl: 'height fallen (m)', xc: C('position'), yl: 'energy (kJ)', yc: C('energy'), nx: 4, ny: Er.n, fx: (u) => fmt(u, 0), fy: (u) => fmt(u / 1000, 0) });
-    line(ctx, X(0), Y(Etot), X(h.v), Y(Etot), C('energy'), 2, [10, 10]);
-    line(ctx, X(0), Y(m.v * G * h.v), X(h.v), Y(0), alpha(C('energy'), 0.55), 5);
-    line(ctx, X(0), Y(KEi), X(h.v), Y(Etot), C('energy'), 5);
-    text(ctx, 'PE_g', X(h.v * 0.45), Y(m.v * G * h.v * 0.55) + 26, alpha(C('energy'), 0.8), { size: 18, weight: 600, align: 'center' });
-    text(ctx, 'KE', X(h.v * 0.55), Y(KEi + m.v * G * h.v * 0.55) - 26, C('energy'), { size: 18, weight: 600, align: 'center' });
-    text(ctx, 'their sum stays the same', X(h.v * 0.5), Y(Etot) - 22, C('energy'), { size: 17, weight: 600, align: 'center' });
-    line(ctx, X(fallen), box.b, X(fallen), Y(Etot), C('position'), 2, [4, 8]);
-    dot(ctx, X(fallen), Y(PE), alpha(C('energy'), 0.7), true, 9);
-    dot(ctx, X(fallen), Y(KE), C('energy'), true, 9);
+    /* fixed axes. The height axis is the slider's own range, 0 to 40 m, ticked every 10 m. The
+       energy the sliders can reach is ½ × 2000 kg × (10 m/s)² + 2000 kg × 9.80 × 40 m = 884 kJ,
+       but the default car carries 98 kJ and would then run along the base line, so the energy axis
+       is fixed at 0 to 150 kJ, ticked every 30 kJ, which holds the default hill comfortably; a
+       heavier car is clipped at the top edge and read off its pinned marker. Neither range moves. */
+    const HR = 40, ER = 150000, box = { l: 220, r: 1300, t: 510, b: 700 };
+    const { X, Y } = axes(ctx, box, [0, HR], [0, ER], { xl: 'height fallen (m)', xc: C('position'), yl: 'energy (kJ)', yc: C('energy'), nx: 4, ny: 5, fx: (u) => fmt(u, 0), fy: (u) => fmt(u / 1000, 0) });
+    const rate = m.v * G, cl = (u) => Math.min(u, ER);
+    if (Etot <= ER) line(ctx, X(0), Y(Etot), X(h.v), Y(Etot), C('energy'), 2, [10, 10]);
+    const peStart = Math.max(0, h.v - ER / rate);                     /* where the falling PE line enters the box */
+    line(ctx, X(peStart), Y(cl(rate * (h.v - peStart))), X(h.v), Y(0), alpha(C('energy'), 0.55), 5);
+    const keEnd = Math.min(h.v, Math.max(0, (ER - KEi) / rate));      /* where the rising KE line leaves it */
+    if (KEi <= ER) line(ctx, X(0), Y(KEi), X(keEnd), Y(cl(KEi + rate * keEnd)), C('energy'), 5);
+    text(ctx, 'PE_g', X(h.v * 0.45), Y(cl(rate * h.v * 0.55)) + 26, alpha(C('energy'), 0.8), { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'KE', X(h.v * 0.55), Y(cl(KEi + rate * h.v * 0.55)) - 26, C('energy'), { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'their sum stays the same', X(h.v * 0.5), Y(cl(Etot)) - 22, C('energy'), { size: 17, weight: 600, align: 'center' });
+    line(ctx, X(fallen), box.b, X(fallen), Y(cl(Etot)), C('position'), 2, [4, 8]);
+    pinned(ctx, box, X, Y, fallen, PE, alpha(C('energy'), 0.7), fmt(PE / 1000, 1) + ' kJ');
+    pinned(ctx, box, X, Y, fallen, KE, C('energy'), fmt(KE / 1000, 1) + ' kJ');
     headline(ctx, fallen < 0.02 * h.v ? 'at the top of the ' + fmt(h.v, 1) + ' m hill the car holds ' + fmt(m.v * G * h.v / 1000, 1) + ' kJ in height and ' + fmt(KEi / 1000, 1) + ' kJ in motion'
       : 'the car has fallen ' + fmt(fallen, 1) + ' m and is doing ' + fmt(v, 1) + ' m/s: ' + fmt(KE / 1000, 1) + ' kJ of the ' + fmt(Etot / 1000, 1) + ' kJ is now motion');
     readout(d.readout, `\\kv = \\sqrt{2\\kg|\\kh| + \\kvo^2} = \\sqrt{2(9.80\\ \\text{m/s}^2)(${fmt(fallen, 2)}\\ \\text{m}) + (${fmt(v0.v, 2)}\\ \\text{m/s})^2} = ${fmt(v, 1)}\\ \\text{m/s}`,
@@ -392,9 +397,11 @@ function coasterCar(ctx, x, y, rot, color) {
     if (v > 0.05) { const al = 40 + 130 * (v / Math.max(0.2, vEnd())); arrow(ctx, mx, my - 40, mx + al, my - 40, C('velocity'), 5); text(ctx, fmt(v, 2) + ' m/s', mx + al + 12, my - 40, C('velocity'), { size: 18, weight: 600 }); }
     text(ctx, 'released at ' + fmt(rel.v, 0) + ' cm', xTop - 10, yTop - 34, PAL.muted, { size: 18 });
     /* the graph below: the plot the investigation asks for */
-    const Vr = nice(0, 2 * G * 0.3 * sn() * 1.05, 4);
-    const box = { l: 240, r: 1300, t: 380, b: 600 };
-    const { X, Y } = axes(ctx, box, [0, 0.3], [0, Vr.hi], { xl: 'release position on the ruler (m)', xc: C('position'), yl: 'v² on the level (m²/s²)', yc: C('velocity'), nx: 3, ny: Vr.n, fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 1) });
+    /* fixed axes: the steepest incline the slider allows is 25º, where releasing at the far end of
+       the ruler gives v² = 2 × 9.80 × 0.30 × sin 25º = 2.49 m²/s², so the graph is always 0 to
+       0.3 m by 0 to 2.5 m²/s², ticked every 0.5, and never rescales with either slider. */
+    const VR = 2.5, box = { l: 240, r: 1300, t: 380, b: 600 };
+    const { X, Y } = axes(ctx, box, [0, 0.3], [0, VR], { xl: 'release position on the ruler (m)', xc: C('position'), yl: 'v² on the level (m²/s²)', yc: C('velocity'), nx: 3, ny: 5, fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 1) });
     line(ctx, X(0), Y(0), X(0.3), Y(2 * G * 0.3 * sn()), C('velocity'), 5);
     for (const q of [0.1, 0.2, 0.3]) dot(ctx, X(q), Y(2 * G * q * sn()), C('velocity'), false, 10);
     dot(ctx, X(dm()), Y(vEnd() * vEnd()), C('velocity'), true, 9);

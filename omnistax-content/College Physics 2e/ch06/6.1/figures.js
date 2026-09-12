@@ -1,7 +1,7 @@
 /* Figures for section 6.1 Rotation Angle and Angular Velocity. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI, DEG = 180 / Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -53,8 +53,11 @@ function fly(ctx, x, y, color) {
     dot(ctx, cx, cyc, PAL.muted, true, 6); text(ctx, 'O', cx - 24, cyc + 22, PAL.muted, { size: 18 });
     curl(ctx, cx, cyc, PX * R + 32, PAL.muted, true);
     /* where the pits started, and the radius they ride on now */
-    line(ctx, cx, cyc, ...at(cx, cyc, PX * R, 0), PAL.muted, 3, [10, 10]);
-    line(ctx, cx, cyc, ...at(cx, cyc, PX * R, th), C('position'), 4);
+    /* a radius stops at the rim's inner edge, a further half of its own width
+       back for the round cap, so no spoke crosses the rim */
+    const EDGE = PX * R - 1.5;
+    line(ctx, cx, cyc, ...at(cx, cyc, EDGE - 1.5, 0), PAL.muted, 3, [10, 10]);
+    line(ctx, cx, cyc, ...at(cx, cyc, EDGE - 2, th), C('position'), 4);
     arcAt(ctx, cx, cyc, PX * R, 0, th, C('position'), 7);
     arcAt(ctx, cx, cyc, PX * r1, 0, th, alpha(C('position'), 0.55), 7);
     /* the angle at the center */
@@ -124,17 +127,24 @@ function fly(ctx, x, y, color) {
     text(ctx, 'Δt = ' + fmt(t, 2) + ' s', cx, cyc + RW + 54, C('time'), { size: 24, weight: 600, align: 'center' });
     text(ctx, 'Δθ = ' + fmt(th, 2) + ' rad', cx, cyc + RW + 92, PAL.ink, { size: 24, weight: 600, align: 'center' });
     /* the angle against the time */
-    const xs = nice(0, T, 4), ys = nice(0, TAU * N.v, 4), box = { l: 760, r: 1330, t: 150, b: 500 };
-    const { X, Y } = axes(ctx, box, [0, xs.hi], [0, ys.hi], { xl: 'Δt (s)', xc: C('time'), yl: 'Δθ (rad)', yc: PAL.ink, nx: xs.n, ny: ys.n, fx: (q) => fmt(q, 2), fy: (q) => fmt(q, 1) });
+    /* fixed axes. The angle never passes 2πN = 2π × 4 = 25.1 rad, so the vertical range is 0 to
+       30 rad, ticked every 5 rad, and holds every setting. The run itself lasts 2πN/ω, which at the
+       slowest wheel is 50 s; an axis that long would leave the default 3.1 s run in a sixteenth of
+       the width, so the time axis is fixed instead to 0 to 4 s, which holds the default run
+       comfortably, and a longer run runs off the edge as a pinned marker. Neither range moves. */
+    const XR = 4, YR = 30, box = { l: 760, r: 1330, t: 150, b: 500 };
+    const { X, Y } = axes(ctx, box, [0, XR], [0, YR], { xl: 'Δt (s)', xc: C('time'), yl: 'Δθ (rad)', yc: PAL.ink, nx: 4, ny: 6, fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
     for (let k = 1; k <= N.v; k++) {
       line(ctx, box.l, Y(TAU * k), box.r, Y(TAU * k), alpha(PAL.ink, 0.4), 2, [7, 7]);
       text(ctx, k === 1 ? '1 revolution' : k + ' revolutions', box.r - 8, Y(TAU * k) - 19, PAL.muted, { size: 16, align: 'right', bg: PAL.panel });
     }
-    curve(ctx, (s) => om.v * s, 0, T, X, Y, C('angular-rate'), 5, 2);
-    line(ctx, X(t), box.b, X(t), Y(th), PAL.muted, 2, [4, 8]);
-    line(ctx, box.l, Y(th), X(t), Y(th), PAL.muted, 2, [4, 8]);
-    dot(ctx, X(t), Y(th), PAL.ink, true, 10);
-    text(ctx, 'the slope is ω = ' + fmt(om.v, 1) + ' rad/s', X(T * 0.5) - 14, Y(om.v * T * 0.5) - 38, C('angular-rate'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
+    /* the line is drawn only as far as the box reaches, so the axes never stretch to follow it */
+    const tEnd = Math.min(T, XR, YR / om.v), tNow = Math.min(t, tEnd);
+    curve(ctx, (s) => om.v * s, 0, tEnd, X, Y, C('angular-rate'), 5, 2);
+    line(ctx, X(tNow), box.b, X(tNow), Y(om.v * tNow), PAL.muted, 2, [4, 8]);
+    line(ctx, box.l, Y(om.v * tNow), X(tNow), Y(om.v * tNow), PAL.muted, 2, [4, 8]);
+    pinned(ctx, box, X, Y, t, th, PAL.ink, fmt(th, 1) + ' rad at ' + fmt(t, 2) + ' s');
+    text(ctx, 'the slope is ω = ' + fmt(om.v, 1) + ' rad/s', X(tEnd * 0.5) - 14, Y(om.v * tEnd * 0.5) - 38, C('angular-rate'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
     headline(ctx, 'Δt = ' + fmt(t, 2) + ' s: the wheel has turned through Δθ = ' + fmt(th, 2) + ' rad, and Δθ/Δt is ' + fmt(om.v, 2) + ' rad/s throughout');
     readout(d.readout, `\\kw = \\frac{\\Delta\\theta}{\\kdt} = \\frac{${fmt(th, 2)}\\ \\text{rad}}{${fmt(t, 2)}\\ \\text{s}} = ${fmt(om.v, 2)}\\ \\text{rad/s}`,
       'One complete revolution is 2π = 6.28 rad, so at this angular velocity the wheel goes round once every ' + fmt(TAU / om.v, 2) + ' s and takes ' + fmt(T, 2) + ' s over the ' + fmt(N.v, 0) + ' revolutions of the run.');
@@ -161,12 +171,15 @@ function fly(ctx, x, y, color) {
     const RW = 70 + 45 * (r.v / 1.4), roadY = 340, x0 = 700 - RW * Math.PI, cx = x0 + RW * th, wy = roadY - RW;
     fixed(ctx, 110, roadY, 1220, 26);
     /* the wheel, its marked spoke, and the tread that has met the road */
+    /* the spokes stop inside the tread band, and the rim and the hub are drawn
+       over them, so no spoke crosses the rim */
+    const IN = RW - 12;
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, wy - RW * 0.22, RW * 1.2, Math.PI, TAU); ctx.stroke(); ctx.restore();
+    for (let k = 1; k < 5; k++) line(ctx, cx, wy, ...at(cx, wy, IN - 1.5, -th + (k * TAU) / 5), PAL.rule, 3);
+    line(ctx, cx, wy, ...at(cx, wy, IN - 2.5, -th), C('position'), 5);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(cx, wy, RW, 0, TAU); ctx.stroke(); ctx.restore();
     arcAt(ctx, cx, wy, RW - 6, -Math.PI / 2 - th, -Math.PI / 2, alpha(C('position'), 0.7), 8);
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, wy - RW * 0.22, RW * 1.2, Math.PI, TAU); ctx.stroke(); ctx.restore();
-    for (let k = 1; k < 5; k++) line(ctx, cx, wy, ...at(cx, wy, RW - 8, -th + (k * TAU) / 5), PAL.rule, 3);
-    line(ctx, cx, wy, ...at(cx, wy, RW - 8, -th), C('position'), 5);
-    text(ctx, 'r', ...at(cx, wy, (RW - 8) * 0.55, -th), C('position'), { weight: 600, align: 'center' });
+    text(ctx, 'r', ...at(cx, wy, IN * 0.55, -th), C('position'), { weight: 600, align: 'center' });
     dot(ctx, cx, wy, PAL.ink, true, 9);
     const LV = 60 + 3 * v.v, vx = cx + RW + 18;
     arrow(ctx, vx, wy, vx + LV, wy, C('velocity'), 5);
@@ -178,12 +191,14 @@ function fly(ctx, x, y, color) {
     hbracket(ctx, x0, Math.max(x0 + 1, cx), roadY + 70, C('position'), 'Δs = ' + fmt(r.v * th, 2) + ' m');
     hbracket(ctx, x0, full, roadY + 132, PAL.muted, 'one revolution carries the car 2πr = ' + fmt(TAU * r.v, 2) + ' m');
     /* the angular velocity across the range of tire sizes, at this speed */
-    const ys = nice(0, v.v / 0.2, 4), box = { l: 210, r: 1300, t: 570, b: 770 };
-    const { X, Y } = axes(ctx, box, [0.2, 1.4], [0, ys.hi], { xl: 'r (m)', xc: C('position'), yl: 'ω (rad/s)', yc: C('angular-rate'), nx: 6, ny: ys.n, fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
+    /* fixed axes: ω = v/r is largest on the smallest tire at the highest speed, 30 / 0.2 = 150 rad/s,
+       so the vertical range is always 0 to 150 rad/s, ticked every 30, and never rescales */
+    const WR = 150, box = { l: 210, r: 1300, t: 570, b: 770 };
+    const { X, Y } = axes(ctx, box, [0.2, 1.4], [0, WR], { xl: 'r (m)', xc: C('position'), yl: 'ω (rad/s)', yc: C('angular-rate'), nx: 6, ny: 5, fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
     curve(ctx, (q) => v.v / q, 0.2, 1.4, X, Y, C('angular-rate'), 5, 120);
     dot(ctx, X(1.2), Y(v.v / 1.2), PAL.muted, true, 9);
     text(ctx, 'an earth mover, ' + fmt(v.v / 1.2, 1) + ' rad/s', X(1.2) - 16, Y(v.v / 1.2) - 26, PAL.muted, { size: 17, align: 'right' });
-    dot(ctx, X(r.v), Y(om), PAL.ink, true, 11);
+    pinned(ctx, box, X, Y, r.v, om, PAL.ink, fmt(om, 1) + ' rad/s');
     text(ctx, 'this tire, ' + fmt(om, 1) + ' rad/s', Math.min(X(r.v) + 18, box.r - 210), Y(om) - 26, PAL.ink, { size: 17 });
     headline(ctx, 't = ' + fmt(t, 3) + ' s: the tire has turned ' + fmt(th, 2) + ' rad and the car has gone ' + fmt(r.v * th, 2) + ' m');
     readout(d.readout, `\\kw = \\frac{\\kv}{\\kr} = \\frac{${fmt(v.v, 1)}\\ \\text{m/s}}{${fmt(r.v, 3)}\\ \\text{m}} = ${fmt(om, 1)}\\ \\text{rad/s}`,
@@ -215,8 +230,10 @@ function fly(ctx, x, y, color) {
     dot(ctx, cx, cyc, PAL.muted, true, 6);
     curl(ctx, cx, cyc, RR + 20, C('angular-rate'), false);
     text(ctx, 'ω', ...at(cx, cyc, RR + 48, Math.PI * 0.22), C('angular-rate'), { weight: 600, align: 'center' });
-    line(ctx, ...at(cx, cyc, RR, u + Math.PI), ...at(cx, cyc, RR, u), PAL.muted, 2, [10, 10]);
-    line(ctx, cx, cyc, ...at(cx, cyc, RR, u), C('position'), 4);
+    /* both lines stop at the rim's inner edge, a half width back for the cap */
+    const IN = RR - 1.5;
+    line(ctx, ...at(cx, cyc, IN - 1, u + Math.PI), ...at(cx, cyc, IN - 1, u), PAL.muted, 2, [10, 10]);
+    line(ctx, cx, cyc, ...at(cx, cyc, IN - 2, u), C('position'), 4);
     text(ctx, 'r = ' + fmt(r.v, 3) + ' m', ...at(cx, cyc, RR * 0.55, u), C('position'), { size: 19, weight: 600, align: 'center', bg: PAL.bg });
     const L = 90 + 120 * (sp / 1.28);
     for (const s of [0, Math.PI]) {

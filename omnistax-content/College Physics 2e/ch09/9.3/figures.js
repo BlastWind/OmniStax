@@ -3,7 +3,7 @@
    answers its sliders: none registers a cycle and none carries a transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const RAD = Math.PI / 180;
@@ -60,18 +60,18 @@ function leanForces(ctx, o) {
 
 /* The torque about the pivot against the lean, beside a vertical scene. The
    curve crosses zero at the lean that carries the weight over the edge. */
-function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel) {
-  let lo = 0, hi = 0;
-  for (let i = 0; i <= 80; i++) { const v = f((thMax * i) / 80); lo = Math.min(lo, v); hi = Math.max(hi, v); }
-  const n = nice(lo, hi, 4), dec = n.hi - n.lo < 6 ? 1 : 0;
-  const { X, Y } = axes(ctx, box, [0, thMax], [n.lo, n.hi], { xl: 'lean θ (°)', yl: yLabel, yc: C('torque'), nx: 5, ny: n.n, fy: (v) => fmt(v, dec) });
-  curve(ctx, f, 0, thMax, X, Y, C('torque'), 5, 140);
+/* The torque range is fixed by the caller from the sliders' own limits, never from the curve as
+   it stands, so the axis never rescales under a slider; the curve is clipped where it leaves the
+   box and the current lean is drawn through pinned(). */
+function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel, lo, hi, ny, dec) {
+  const { X, Y } = axes(ctx, box, [0, thMax], [lo, hi], { xl: 'lean θ (°)', yl: yLabel, yc: C('torque'), nx: 5, ny, fy: (v) => fmt(v, dec) });
+  curve(ctx, (t) => Math.min(Math.max(f(t), lo), hi), 0, thMax, X, Y, C('torque'), 5, 140);
   if (crit > 0.05 && crit < thMax) {
     line(ctx, X(crit), box.t, X(crit), box.b, PAL.muted, 2, [10, 10]);
     dot(ctx, X(crit), Y(0), C('torque'), false, 10);
     text(ctx, fmt(crit, 1) + '°', X(crit) + 10, box.t + 20, PAL.muted, { size: 17 });
   }
-  dot(ctx, X(thNow), Y(f(thNow)), C('torque'), true, 9);
+  pinned(ctx, box, X, Y, thNow, f(thNow), C('torque'), fmt(f(thNow), dec));
 }
 
 /* ---------- sprites, drawn here because the layer has none of them ---------- */
@@ -162,7 +162,9 @@ function chicken(ctx, d, h, SC, color) {
     ctx.save(); ctx.translate(px, GY); ctx.rotate(g.th); ctx.translate(-A.v * SC, 0);
     pencilFlat(ctx, 2 * H * SC, 2 * A.v * SC, PAL.ink); ctx.restore();
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' mm', side: -1, arcR: 200, arc: !g.up });
-    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 25, (t) => W * (H * Math.sin(t * RAD) - A.v * Math.cos(t * RAD)), TH.v, g.crit, 'τ (mN·m)');
+    /* the sliders reach τ = 0.060 × 90 sin 25º = 2.17 mN·m one way and 0.060 × 40 = 2.4 mN·m the
+       other, so the torque axis is fixed at −3 to 3 mN·m, ticked every 1, and never rescales */
+    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 25, (t) => W * (H * Math.sin(t * RAD) - A.v * Math.cos(t * RAD)), TH.v, g.crit, 'τ (mN·m)', -3, 3, 6, 1);
     headline(ctx, g.up ? 'standing upright, the weight acts over the middle of the base, so the torque about any point is zero'
       : topple ? 'leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(g.rp, 1) + ' mm outside the pivot and its torque carries the pencil over'
         : 'leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(-g.rp, 1) + ' mm inside the pivot and its torque brings the pencil back upright');
@@ -190,7 +192,9 @@ function chicken(ctx, d, h, SC, color) {
     ctx.save(); ctx.translate(BX, GY); ctx.rotate(g.th);
     pencilPoint(ctx, L.v * SC, 18, PAL.ink); ctx.restore();
     leanForces(ctx, { px: BX, cgx, cgy, gy: GY, rpU: g.cx * SC, topple: true, rLabel: 'r⊥ = ' + fmt(g.rp, 1) + ' mm', side: -1, arcR: 200, arc: !g.up, nSide: -1 });
-    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 20, (t) => W * h * Math.sin(t * RAD), TH.v, 0, 'τ (mN·m)');
+    /* the longest pencil the slider allows gives 0.060 × (200/180) × 100 mm × sin 20º = 2.28 mN·m,
+       so the torque axis is fixed at 0 to 2.5 mN·m, ticked every 0.5, and never rescales */
+    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 20, (t) => W * h * Math.sin(t * RAD), TH.v, 0, 'τ (mN·m)', 0, 2.5, 5, 1);
     headline(ctx, g.up ? 'balanced exactly upright, the weight and the normal force lie along one line and both conditions hold'
       : 'leaned ' + fmt(TH.v, 1) + '°, the weight already acts ' + fmt(g.rp, 1) + ' mm outside the point and its torque leans the pencil further');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(g.rp, 1)}\\ \\text{mm})(${fmt(W, 3)}\\ \\text{N}) = ${fmt(tau, 2)}\\ \\text{mN·m}`,
@@ -313,7 +317,9 @@ function chicken(ctx, d, h, SC, color) {
     person(ctx, D.v, HG.v, SC, PAL.ink); ctx.restore();
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' cm', side: 1, arcR: 190, arc: !g.up });
     hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, PAL.ink, 'base of support, ' + fmt(D.v, 0) + ' cm');
-    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 460 }, 30, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)');
+    /* the sliders reach 7.00 × (110 sin 30º − 5 cos 30º) = 355 N·m one way and 7.00 × 45 = 315 N·m
+       the other, so the torque axis is fixed at −400 to 400 N·m, ticked every 100, and never moves */
+    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 460 }, 30, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -400, 400, 8, 0);
     headline(ctx, g.up ? 'standing straight, the weight acts through the middle of the base of support and neither foot carries more than the other'
       : topple ? 'leaned ' + fmt(TH.v, 1) + '°, the weight falls outside the base of support and the person goes over'
         : 'leaned ' + fmt(TH.v, 1) + '°, the weight still falls ' + fmt(-g.rp, 1) + ' cm inside the edge of the base, so the torque brings the person back');
@@ -343,7 +349,9 @@ function chicken(ctx, d, h, SC, color) {
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' cm', side: 1, arcR: 235, arc: !g.up });
     hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, PAL.ink, 'base of support, ' + fmt(D, 0) + ' cm');
     const box = { l: 820, r: 1340, t: 130, b: 460 };
-    tauGraph(ctx, box, 45, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)');
+    /* with feet 18 cm apart the sliders reach 0.245 × (28 − 9) sin 45º = 3.29 N·m one way and
+       0.245 × 9 = 2.21 N·m the other, so the torque axis is fixed at −4 to 4 N·m, ticked every 1 */
+    tauGraph(ctx, box, 45, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -4, 4, 8, 1);
     const xp = box.l + ((box.r - box.l) * 7.1) / 45;
     line(ctx, xp, box.t, xp, box.b, PAL.rule, 2, [6, 8]);
     text(ctx, 'a person is over by here', xp + 10, box.b - 54, PAL.muted, { size: 17 });

@@ -80,27 +80,34 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     text(ctx, 't = ' + fmt(tau, 1) + ' s', 110, 130, C('time'), { weight: 600, size: 24 });
     /* ---- the account, on the right ---- */
     const box = { l: 800, r: 1330, t: 150, b: 470 };
-    const kJ = 1 / 1000, tot = s.total * kJ, nz = F.nice(0, tot, 4), top = nz.hi;
-    const { X, Y } = axes(ctx, box, [0, T()], [0, top], { xl: 't (s)', xc: C('time'), yl: 'energy (kJ)', yc: C('energy'), nx: 4, ny: nz.n, fx: (v) => fmt(v, T() < 20 ? 1 : 0), fy: (v) => fmt(v, top > 20 ? 0 : 1) });
-    const end = state(T()), ke = s.ke * kJ;
+    /* fixed axes. The slowest, longest climb takes 20 m / (0.40 m/s × 0.5) = 100 s and the least
+       efficient one puts 431 kJ through the account, but the default climb is 16 s and 25.5 kJ and
+       would then be squeezed into a corner, so both ranges are fixed to hold the default climb
+       comfortably instead, 0 to 20 s by 0 to 30 kJ, ticked every 5 s and every 6 kJ. A longer or
+       hungrier climb is drawn only as far as the box reaches, with the total pinned at the edge.
+       Neither range moves. */
+    const TR = 20, ER = 30, kJ = 1 / 1000, tot = s.total * kJ, top = ER;
+    const { X, Y } = axes(ctx, box, [0, TR], [0, ER], { xl: 't (s)', xc: C('time'), yl: 'energy (kJ)', yc: C('energy'), nx: 4, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const tEnd = Math.min(T(), TR), end = state(tEnd), ke = s.ke * kJ;
     /* the four bands, stacked: kinetic, potential, thermal, chemical. Every one of them is
        linear in the time, so each band is a quadrilateral between the start and the end. */
-    stack(ctx, X, Y, 0, T(), 0, ke, 0, ke, 0.75);
-    stack(ctx, X, Y, 0, T(), ke, ke, ke, ke + end.pe * kJ, 0.45);
-    stack(ctx, X, Y, 0, T(), ke, ke, ke + end.pe * kJ, ke + (end.pe + end.th) * kJ, 0.22);
-    stack(ctx, X, Y, 0, T(), ke, ke + end.foodAll * kJ, ke + (end.pe + end.th) * kJ, ke + (end.pe + end.th) * kJ, 0.08);
-    line(ctx, X(0), Y(tot), X(T()), Y(tot), C('energy'), 5);
-    text(ctx, 'the total never changes', X(T() * 0.5), Y(tot) - 20, C('energy'), { size: 17, align: 'center', weight: 600 });
+    stack(ctx, X, Y, 0, tEnd, 0, ke, 0, ke, 0.75);
+    stack(ctx, X, Y, 0, tEnd, ke, ke, ke, ke + end.pe * kJ, 0.45);
+    stack(ctx, X, Y, 0, tEnd, ke, ke, ke + end.pe * kJ, ke + (end.pe + end.th) * kJ, 0.22);
+    stack(ctx, X, Y, 0, tEnd, ke, ke + end.foodAll * kJ, ke + (end.pe + end.th) * kJ, ke + end.foodAll * kJ, 0.08);
+    const totC = Math.min(tot, ER);
+    line(ctx, X(0), Y(totC), X(tEnd), Y(totC), C('energy'), 5);
+    text(ctx, 'the total never changes', X(tEnd * 0.5), Y(totC) - 20, C('energy'), { size: 17, align: 'center', weight: 600 });
     /* the bands named, each where it is thickest */
-    const name = (label, at, lo, hi) => { if ((hi - lo) * (box.b - box.t) / top > 26) text(ctx, label, X(T() * at), Y((lo + hi) / 2), PAL.ink, { size: 17, align: 'center' }); };
+    const name = (label, at, lo, hi) => { if ((hi - lo) * (box.b - box.t) / top > 26 && (lo + hi) / 2 < ER) text(ctx, label, X(tEnd * at), Y((lo + hi) / 2), PAL.ink, { size: 17, align: 'center' }); };
     name('kinetic', 0.5, 0, ke);
     name('potential', 0.78, ke, ke + end.pe * kJ);
     name('thermal', 0.72, ke + end.pe * kJ, ke + (end.pe + end.th) * kJ);
     name('chemical', 0.26, ke + 0.5 * end.foodAll * kJ, ke + end.foodAll * kJ);
     if (ke * (box.b - box.t) / top < 26) text(ctx, 'the kinetic energy, ' + J(s.ke) + ' J, is too small to see here', box.l, box.b + 58, PAL.muted, { size: 17 });
     /* where the clock stands */
-    line(ctx, X(tau), box.t, X(tau), box.b, C('time'), 3, [4, 8]);
-    dot(ctx, X(tau), Y(tot), C('energy'), true, 9);
+    line(ctx, X(Math.min(tau, TR)), box.t, X(Math.min(tau, TR)), box.b, C('time'), 3, [4, 8]);
+    F.pinned(ctx, box, X, Y, tau, tot, C('energy'), fmt(tot, 1) + ' kJ');
     headline(ctx, done
       ? 'she has climbed the whole ' + fmt(H.v, 1) + ' m on ' + fmt(s.foodAll * kJ, 1) + ' kJ of food energy, ' + fmt(s.peAll * kJ, 1) + ' kJ of it now height'
       : 't = ' + fmt(tau, 1) + ' s · she has climbed ' + fmt(s.y, 1) + ' m of the ' + fmt(H.v, 1) + ' m and spent ' + fmt(s.spent * kJ, 1) + ' kJ of the ' + fmt(s.foodAll * kJ, 1) + ' kJ');

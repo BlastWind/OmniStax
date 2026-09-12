@@ -4,7 +4,7 @@
    rotor at 7.5 × 10⁴ rev/min turns more than a thousand times a second and no drawing can follow it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, car } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, car, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -154,15 +154,21 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     arrow(ctx, bx, by, cxa(cx, R - La, th), cya(cyc, R - La, th), acc, 5);
     beside(ctx, 'a_c = ' + fmt(ac, 2) + ' m/s²', cx, cyc, R - La, th, 34, acc);
     /* the graph: a_c against the speed, for the radius set */
-    const yr = nice(0, (VMAX * VMAX) / r.v, 4), yd = decs(yr);
-    const g = axes(ctx, { l: 890, r: 1330, t: 180, b: 460 }, [0, VMAX], [0, yr.hi], { xl: 'v (m/s)', xc: vel, yl: 'a_c (m/s²)', yc: acc, nx: 4, ny: yr.n, fy: (y) => fmt(y, yd) });
-    curve(ctx, (s) => (s * s) / r.v, 0, VMAX, g.X, g.Y, acc, 5);
-    line(ctx, g.X(v.v), g.Y(0), g.X(v.v), g.Y(ac), vel, 2, [4, 8]);
-    line(ctx, g.X(0), g.Y(ac), g.X(v.v), g.Y(ac), acc, 2, [4, 8]);
-    dot(ctx, g.X(v.v / 2), g.Y(ac / 4), acc, false, 9);
-    dot(ctx, g.X(v.v), g.Y(ac), PAL.ink, true, 10);
+    /* fixed axes. The speed axis is the slider's own range, 0 to 40 m/s. The acceleration the
+       sliders can reach is 40²/50 = 32 m/s², but on the default 500 m curve the whole curve would
+       then sit in the bottom tenth of the box, so the vertical range is fixed at 0 to 4 m/s²,
+       ticked every 1, which holds the default curve comfortably; a tighter curve runs off the top,
+       where the line is clipped and the car's point is pinned at the edge with its value. */
+    const gbox = { l: 890, r: 1330, t: 180, b: 460 }, AR = 4;
+    const g = axes(ctx, gbox, [0, VMAX], [0, AR], { xl: 'v (m/s)', xc: vel, yl: 'a_c (m/s²)', yc: acc, nx: 4, ny: 4, fy: (y) => fmt(y, 0) });
+    const vEnd = Math.min(VMAX, Math.sqrt(AR * r.v)), acC = Math.min(ac, AR), vC = Math.min(v.v, vEnd);
+    curve(ctx, (s) => (s * s) / r.v, 0, vEnd, g.X, g.Y, acc, 5);
+    line(ctx, g.X(vC), g.Y(0), g.X(vC), g.Y(acC), vel, 2, [4, 8]);
+    line(ctx, g.X(0), g.Y(acC), g.X(vC), g.Y(acC), acc, 2, [4, 8]);
+    if (ac / 4 <= AR) dot(ctx, g.X(v.v / 2), g.Y(ac / 4), acc, false, 9);
+    pinned(ctx, gbox, g.X, g.Y, v.v, ac, PAL.ink);
     const left = v.v < 26;
-    text(ctx, fmt(ac, 2) + ' m/s² = ' + fmt(ratio, 3) + ' g', g.X(v.v) + (left ? 18 : -18), g.Y(ac) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
+    text(ctx, fmt(ac, 2) + ' m/s² = ' + fmt(ratio, 3) + ' g', g.X(vC) + (left ? 18 : -18), g.Y(acC) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
     text(ctx, 'the hollow point is half the speed and a quarter of the acceleration', 1110, 556, PAL.muted, { size: 17, align: 'center' });
     headline(ctx, 't = ' + fmt(tau, 0) + ' s · the car has turned ' + fmt(turned, 0) + 'º, and a_c = ' + fmt(ac, 2) + ' m/s² still points straight at the center');
     readout(d.readout, `\\kac = \\frac{\\kv^2}{\\kr} = \\frac{(${fmt(v.v, 1)}\\ \\text{m/s})^2}{${fmt(r.v, 0)}\\ \\text{m}} = ${fmt(ac, 2)}\\ \\text{m/s}^2`,
@@ -211,13 +217,16 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     arrow(ctx, sx, sy, sx + tv[0] * 120, sy + tv[1] * 120, vel, 4);
     text(ctx, 'v = ' + count3(rm * w) + ' m/s', sx + tv[0] * 152, sy + tv[1] * 152, vel, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     /* the graph: the acceleration in multiples of g, against the angular velocity, for the radius set */
-    const top = (rm * omega(WMAX) * omega(WMAX)) / G, yr = nice(0, top, 4);
-    const g = axes(ctx, { l: 960, r: 1330, t: 190, b: 470 }, [0, WMAX], [0, yr.hi], { xl: 'ω (10⁴ rev/min)', xc: ang, yl: 'a_c / g', yc: acc, nx: 3, ny: yr.n, fy: (y) => commas(Math.round(y)) });
+    /* fixed axes: the sliders reach r = 0.15 m and ω = 9 × 10⁴ rev/min = 9425 rad/s, so a_c/g is at
+       most 0.15 × 9425² / 9.80 = 1.36 × 10⁶. The graph is always 0 to 9 × 10⁴ rev/min by 0 to
+       1,400,000 g, ticked every 350,000, and neither range moves with the sliders. */
+    const gbox = { l: 960, r: 1330, t: 190, b: 470 }, RMAX = 1.4e6;
+    const g = axes(ctx, gbox, [0, WMAX], [0, RMAX], { xl: 'ω (10⁴ rev/min)', xc: ang, yl: 'a_c / g', yc: acc, nx: 3, ny: 4, fy: (y) => commas(Math.round(y)) });
     curve(ctx, (x) => (rm * omega(x) * omega(x)) / G, 0, WMAX, g.X, g.Y, acc, 5);
-    line(ctx, g.X(rpm.v), g.Y(0), g.X(rpm.v), g.Y(ratio), ang, 2, [4, 8]);
-    dot(ctx, g.X(rpm.v), g.Y(ratio), PAL.ink, true, 10);
+    line(ctx, g.X(rpm.v), g.Y(0), g.X(rpm.v), g.Y(Math.min(ratio, RMAX)), ang, 2, [4, 8]);
+    pinned(ctx, gbox, g.X, g.Y, rpm.v, ratio, PAL.ink);
     const left = rpm.v < 5.5;
-    text(ctx, count3(ratio) + ' g', g.X(rpm.v) + (left ? 18 : -18), g.Y(ratio) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
+    text(ctx, count3(ratio) + ' g', g.X(rpm.v) + (left ? 18 : -18), g.Y(Math.min(ratio, RMAX)) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
     headline(ctx, 'a point ' + fmt(r.v, 2) + ' cm from the axis at ' + fmt(rpm.v, 2) + ' × 10⁴ rev/min is accelerated at ' + sci(ac) + ' m/s², or ' + count3(ratio) + ' g');
     readout(d.readout, `\\kac = \\kr\\kw^2 = (${fmt(rm, 4)}\\ \\text{m})(${Math.round(w)}\\ \\text{rad/s})^2 = ${scitex(ac)}\\ \\text{m/s}^2`,
       fmt(rpm.v, 2) + ' × 10⁴ rev/min is ' + Math.round(w) + ' rad/s, since one revolution is 2π rad and one minute is 60.0 s. The acceleration is ' + count3(ratio) + ' times g, and it grows with the square of the angular velocity but only in proportion to the radius, which is why a centrifuge is made to spin fast rather than made wide.');

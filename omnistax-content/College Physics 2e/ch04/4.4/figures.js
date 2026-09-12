@@ -2,14 +2,15 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, runner, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, pinned, runner, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
-/* the decimals a tick label needs for the step nice() chose */
-const decs = (r) => ((r.hi - r.lo) / r.n < 1 ? 1 : 0);
+/* draws inside the graph box, so a line that runs past a fixed range is cut off at the frame
+   instead of the frame being stretched to hold it */
+const inbox = (ctx, box, f) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); };
 /* a dashed boundary round a system of interest, with its name above the top left corner */
 function boundary(ctx, l, t, r, b, label) {
   ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.setLineDash([12, 10]);
@@ -104,13 +105,21 @@ function plume(ctx, x, y, color, f) {
       text(ctx, 'v = ' + fmt(v, 2) + ' m/s', cx - Lv - 12, 322, C('velocity'), { size: 20, weight: 600, align: 'right' });
     }
     /* the graph of her speed against time */
-    const tr = nice(0, r.T, 4), vr = nice(0, Math.max(0.5, r.ve), 3);
-    const g = axes(ctx, { l: 170, r: 700, t: 500, b: 672 }, [0, tr.hi], [0, vr.hi], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: tr.n, ny: vr.n, fx: (t) => fmt(t, decs(tr)), fy: (u) => fmt(u, 1) });
-    line(ctx, g.X(0), g.Y(0), g.X(tp.v), g.Y(r.ve), C('velocity'), 5);
-    line(ctx, g.X(tp.v), g.Y(r.ve), g.X(r.T), g.Y(r.ve), C('velocity'), 5);
-    line(ctx, g.X(tp.v), g.Y(0), g.X(tp.v), g.Y(r.ve), PAL.muted, 2, [4, 8]);
+    /* fixed axes: the longest push the slider allows is 0.8 s and the glide after it lasts 1.6 s, so
+       the run never exceeds 2.4 s and the time axis is always 0 to 2.4 s, ticked every 0.6 s. The
+       hardest push on the lightest swimmer, 600 N on 40 kg for 0.8 s, would leave the wall at 12 m/s,
+       and a speed axis that tall would leave the 2.3 m/s of the push drawn on load in a fifth of the
+       height, so the speed axis is fixed at 0 to 4 m/s and a faster glide is pinned at the top edge.
+       Neither range changes as a slider moves. */
+    const TR = 2.4, VR = 4, gbox = { l: 170, r: 700, t: 500, b: 672 };
+    const g = axes(ctx, gbox, [0, TR], [0, VR], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 4, ny: 4, fx: (t) => fmt(t, 1), fy: (u) => fmt(u, 0) });
+    inbox(ctx, gbox, () => {
+      line(ctx, g.X(0), g.Y(0), g.X(tp.v), g.Y(r.ve), C('velocity'), 5);
+      line(ctx, g.X(tp.v), g.Y(r.ve), g.X(r.T), g.Y(r.ve), C('velocity'), 5);
+      line(ctx, g.X(tp.v), g.Y(0), g.X(tp.v), g.Y(r.ve), PAL.muted, 2, [4, 8]);
+    });
     text(ctx, 'her feet leave the wall', g.X(tp.v) + 10, 516, PAL.muted, { size: 17 });
-    dot(ctx, g.X(tau), g.Y(v), PAL.ink, true, 9);
+    pinned(ctx, gbox, g.X, g.Y, tau, v, PAL.ink, fmt(v, 2) + ' m/s');
     /* the free-body diagram of the swimmer */
     panel(ctx, 860, 456, 1360, 706);
     text(ctx, 'the free-body diagram of the swimmer', 1110, 482, PAL.muted, { size: 18, align: 'center' });
@@ -174,7 +183,7 @@ function plume(ctx, x, y, color, f) {
     line(ctx, 40, FLOOR, 1360, FLOOR, PAL.muted, 3);
     boundary(ctx, px - 96, 118, cxx + 70, 344, 'System 1');
     boundary(ctx, cxx - 96, 148, cxx + 58, 344, 'System 2');
-    runner(ctx, px, FLOOR - 18, PAL.ink, tau * 6);
+    F.person(ctx, px + 30, FLOOR, PAL.ink, { lean: 0.2, phase: tau * 6, reach: { x: cxx - 80, y: FLOOR - 92 } });
     cartSprite(ctx, cxx, FLOOR, PAL.ink);
     /* the pair between the professor and the cart, internal to System 1 */
     const Lp = r.Fprof * KF, hand = px + 50;
@@ -230,12 +239,17 @@ function plume(ctx, x, y, color, f) {
       arrow(ctx, rx, 342, rx + Lv, 342, C('velocity'), 5);
       text(ctx, 'v = ' + fmt(v, 1) + ' m/s', rx + Lv + 12, 342, C('velocity'), { size: 20, weight: 600 });
     }
-    const vr = nice(0, Math.max(1, r.ve), 4);
-    const g = axes(ctx, { l: 200, r: 1180, t: 430, b: 616 }, [0, BURN], [0, vr.hi], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 4, ny: vr.n, fx: (t) => fmt(t, 0), fy: (u) => fmt(u, 0) });
-    line(ctx, g.X(0), g.Y(0), g.X(BURN), g.Y(r.ve), C('velocity'), 5);
-    line(ctx, g.X(tau), g.Y(0), g.X(tau), g.Y(v), C('time'), 2, [4, 8]);
-    dot(ctx, g.X(tau), g.Y(v), PAL.ink, true, 9);
-    text(ctx, 'the slope is the acceleration, ' + fmt(r.a, 2) + ' m/s²', g.X(BURN * 0.44), g.Y(r.ve * 0.82), C('acceleration'), { size: 18, weight: 600, align: 'center' });
+    /* fixed axes: the burn always lasts 4 s, and the largest thrust the sliders allow on the least
+       mass, 20 kN on 500 kg, is 40 m/s² and so 160 m/s by the end of it. The graph is therefore
+       always 0 to 4 s by 0 to 160 m/s, ticked every 1 s and 40 m/s, and it never rescales */
+    const VR = 160, gbox = { l: 200, r: 1180, t: 430, b: 616 };
+    const g = axes(ctx, gbox, [0, BURN], [0, VR], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 4, ny: 4, fx: (t) => fmt(t, 0), fy: (u) => fmt(u, 0) });
+    inbox(ctx, gbox, () => {
+      line(ctx, g.X(0), g.Y(0), g.X(BURN), g.Y(r.ve), C('velocity'), 5);
+      line(ctx, g.X(tau), g.Y(0), g.X(tau), g.Y(v), C('time'), 2, [4, 8]);
+    });
+    pinned(ctx, gbox, g.X, g.Y, tau, v, PAL.ink, fmt(v, 1) + ' m/s');
+    text(ctx, 'the slope is the acceleration, ' + fmt(r.a, 2) + ' m/s²', g.X(BURN * 0.44), g.Y(Math.min(r.ve, VR) * 0.82), C('acceleration'), { size: 18, weight: 600, align: 'center' });
     headline(ctx, 't = ' + fmt(tau, 2) + ' s · the gas pushes the rocket forward with ' + fmt(Fk.v, 1) + ' kN, and ' + fmt(mm.v, 0) + ' kg has reached ' + fmt(v, 1) + ' m/s');
     readout(d.readout, `\\ka = \\frac{\\kF}{m} = \\frac{${fmt(Fk.v * 1000, 0)}\\ \\text{N}}{${fmt(mm.v, 0)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
       'The rocket has nothing to push on but its own exhaust gas, and that is enough: it exerts a large backward force on the gas, and by Newton’s third law the gas exerts an equal forward force on the rocket, which is its thrust.');

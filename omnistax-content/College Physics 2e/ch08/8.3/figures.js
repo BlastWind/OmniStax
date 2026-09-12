@@ -1,8 +1,15 @@
 /* Figures for section 8.3 Conservation of Momentum. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, car, block, strip } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, car, block, strip, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
+/* the hollow companion marker: an ordinary hollow dot while it is inside the box, and the
+   library's pinned marker once the fixed range can no longer hold it */
+function hollowOrPinned(ctx, box, X, Y, xv, yv, color, label) {
+  const py = Y(yv);
+  if (py >= box.t && py <= box.b && X(xv) >= box.l && X(xv) <= box.r) dot(ctx, X(xv), py, color, false, 9);
+  else pinned(ctx, box, X, Y, xv, yv, color, label);
+}
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
@@ -91,16 +98,19 @@ function bar(ctx, x1, x2, y, color, h) {
     }
     /* the graph: the two momenta and their total against time */
     const box = { l: 200, r: 1280, t: 440, b: 700 };
-    const r = nice(0, f.ptot * 1.15, 4);
-    const { X: GX, Y: GY } = axes(ctx, box, [0, T], [0, r.hi], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: r.n, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
+    /* fixed axes: the pass lasts the same 4.0 s whatever the sliders say, and the largest total the
+       sliders can make is 2000 kg × 20 m/s + 1000 kg × 14 m/s = 54,000 kg·m/s, so the graph is
+       always 0 to 4 s by 0 to 60,000 kg·m/s, ticked every 15,000, and never rescales. */
+    const PR = 60000;
+    const { X: GX, Y: GY } = axes(ctx, box, [0, T], [0, PR], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
     line(ctx, box.l, GY(f.ptot), box.r, GY(f.ptot), C('momentum'), 5);
     curve(ctx, (t) => f.p1(t), 0, T, GX, GY, C('momentum'), 4, 320);
     curve(ctx, (t) => f.p2(t), 0, T, GX, GY, C('momentum'), 4, 320);
     text(ctx, 'p₁ + p₂ = ' + whole(f.ptot), box.r - 10, GY(f.ptot) - 24, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'p₁', box.r - 10, GY(f.p1(T)) - 26, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'p₂', box.r - 10, GY(f.p2(T)) + 30, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    dot(ctx, GX(tau), GY(P1), C('momentum'), true, 9);
-    dot(ctx, GX(tau), GY(P2), C('momentum'), false, 9);
+    pinned(ctx, box, GX, GY, tau, P1, C('momentum'), whole(P1) + ' kg·m/s');
+    hollowOrPinned(ctx, box, GX, GY, tau, P2, C('momentum'), whole(P2) + ' kg·m/s');
     headline(ctx, !f.hits ? 'the trailing car is no faster than the one in front, so it never catches it and no momentum changes hands'
       : tau < f.tc ? 't = ' + fmt(tau, 2) + ' s · the cars are ' + fmt(f.x2(tau) - f.x1(tau) - LCAR, 1) + ' m apart and closing, and the total momentum is ' + whole(f.ptot) + ' kg·m/s'
       : 't = ' + fmt(tau, 2) + ' s · car 1 has lost ' + whole(-f.dp) + ' kg·m/s and car 2 has gained the same, so the total is still ' + whole(f.ptot) + ' kg·m/s');
@@ -167,17 +177,20 @@ function bar(ctx, x1, x2, y, color, h) {
     arrow(ctx, ax, ay, ax, ay - f.py(tau) * LP, C('momentum'), 5);
     text(ctx, 'the momentum of the system', ax - 8, ay - 148, C('momentum'), { size: 18, weight: 600 });
     /* the graph: the two components of the system's momentum against time */
-    const gb = { l: 200, r: 1280, t: 520, b: 710 };
-    const r = nice(-Math.max(f.px, M * f.vy) * 1.15, Math.max(f.px, M * f.vy) * 1.15, 4);
-    const { X: GX, Y: GY } = axes(ctx, gb, [0, f.T], [r.lo, r.hi], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: r.n, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
+    /* fixed axes: the probe masses 1000 kg and is launched at no more than 800 m/s, so neither
+       component of its momentum passes 800,000 kg·m/s, and the longest flight, 2 × 800 × sin 80º /
+       9.80, is 161 s. The graph is therefore always 0 to 200 s by −800,000 to 800,000 kg·m/s,
+       ticked every 50 s and every 200,000 kg·m/s, and neither range moves with the sliders. */
+    const gb = { l: 200, r: 1280, t: 520, b: 710 }, TR = 200, PR = 800000;
+    const { X: GX, Y: GY } = axes(ctx, gb, [0, TR], [-PR, PR], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: 8, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
     line(ctx, GX(f.ts), gb.t, GX(f.ts), gb.b, PAL.muted, 2, [4, 8]);
     text(ctx, 'the probe separates', GX(f.ts) + 10, gb.t + 18, PAL.muted, { size: 17 });
     line(ctx, gb.l, GY(f.px), gb.r, GY(f.px), C('momentum'), 5);
     curve(ctx, (t) => f.py(t), 0, f.T, GX, GY, C('momentum'), 4, 120);
     text(ctx, 'the horizontal momentum', gb.r - 10, GY(f.px) - 24, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'the vertical momentum', gb.r - 10, GY(f.py(f.T)) + 26, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    dot(ctx, GX(tau), GY(f.px), C('momentum'), true, 9);
-    dot(ctx, GX(tau), GY(f.py(tau)), C('momentum'), false, 9);
+    pinned(ctx, gb, GX, GY, tau, f.px, C('momentum'), whole(f.px) + ' kg·m/s');
+    hollowOrPinned(ctx, gb, GX, GY, tau, f.py(tau), C('momentum'), whole(f.py(tau)) + ' kg·m/s');
     headline(ctx, !after
       ? 't = ' + fmt(tau, 1) + ' s · the whole probe is climbing, and its horizontal momentum is ' + whole(f.px) + ' kg·m/s'
       : 't = ' + fmt(tau, 1) + ' s · the horizontal momentum is still ' + whole(f.px) + ' kg·m/s, and the vertical momentum has fallen to ' + whole(f.py(tau)) + ' kg·m/s');
@@ -291,16 +304,24 @@ function bar(ctx, x1, x2, y, color, h) {
     arrow(ctx, X(c), yT + 90, X(c) + f.vcm * LV, yT + 90, C('velocity'), 4);
     text(ctx, 'the centre of mass, moving at ' + fmt(f.vcm, 2) + ' m/s', X(c), yT + 128, C('position'), { size: 19, weight: 600, align: 'center' });
     /* the graph: where each cart is at every moment, and the straight line of the centre of mass */
-    const box = { l: 200, r: 1280, t: 400, b: 710 };
-    const r = nice(lo, hi, 4);
-    const { X: GX, Y: GY } = axes(ctx, box, [0, T], [r.lo, r.hi], { xl: 't (s)', yl: 'x (m)', xc: C('time'), yc: C('position'), nx: 4, ny: r.n, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
-    [f.b1, f.b2].forEach((g) => curve(ctx, g, 0, T, GX, GY, alpha(PAL.ink, 0.35), 3, 100));
-    [f.s1, f.s2].forEach((g) => curve(ctx, g, 0, T, GX, GY, PAL.ink, 4, 100));
-    curve(ctx, f.cm, 0, T, GX, GY, C('position'), 5, 8);
-    text(ctx, 'the centre of mass', box.r - 10, GY(f.cm(T)) - 26, C('position'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    if (f.hits) text(ctx, 'if the carts bounced apart instead', box.r - 10, GY(f.b2(T)) - 26, alpha(PAL.ink, 0.5), { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    dot(ctx, GX(tau), GY(a), PAL.ink, true, 9); dot(ctx, GX(tau), GY(b), PAL.ink, false, 9);
-    dot(ctx, GX(tau), GY(c), C('position'), true, 9);
+    /* fixed axes: the run never lasts longer than 6.4 s, so the time axis is 0 to 6.4 s, ticked
+       every 1.6 s. The fastest pair could be 60 m down the track by then, but the default pair
+       stays between 0.5 m and 8.5 m and would be pressed against the base line on an axis that
+       long, so the position axis is fixed at −4 m to 12 m, ticked every 4 m, which holds the
+       default run comfortably; a faster cart is clipped at the top edge and read off its pinned
+       marker. Neither range moves. */
+    const box = { l: 200, r: 1280, t: 400, b: 710 }, TR = 6.4, XLO = -4, XHI = 12;
+    const { X: GX, Y: GY } = axes(ctx, box, [0, TR], [XLO, XHI], { xl: 't (s)', yl: 'x (m)', xc: C('time'), yc: C('position'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
+    const clx = (g) => (t) => Math.min(Math.max(g(t), XLO), XHI);                 /* drawn only where the box reaches */
+    const TE = Math.min(T, TR);
+    [f.b1, f.b2].forEach((g) => curve(ctx, clx(g), 0, TE, GX, GY, alpha(PAL.ink, 0.35), 3, 100));
+    [f.s1, f.s2].forEach((g) => curve(ctx, clx(g), 0, TE, GX, GY, PAL.ink, 4, 100));
+    curve(ctx, clx(f.cm), 0, TE, GX, GY, C('position'), 5, 8);
+    text(ctx, 'the centre of mass', box.r - 10, GY(clx(f.cm)(TE)) - 26, C('position'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    if (f.hits) text(ctx, 'if the carts bounced apart instead', box.r - 10, GY(clx(f.b2)(TE)) - 26, alpha(PAL.ink, 0.5), { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    pinned(ctx, box, GX, GY, tau, a, PAL.ink, fmt(a, 1) + ' m');
+    hollowOrPinned(ctx, box, GX, GY, tau, b, PAL.ink, fmt(b, 1) + ' m');
+    pinned(ctx, box, GX, GY, tau, c, C('position'));
     headline(ctx, !f.hits ? 'the first cart is no faster than the second, so the two never meet, and the centre of mass moves at ' + fmt(f.vcm, 2) + ' m/s all the same'
       : tau < f.tc ? 't = ' + fmt(tau, 2) + ' s · the carts are still approaching, and the centre of mass is moving at ' + fmt(f.vcm, 2) + ' m/s'
       : 't = ' + fmt(tau, 2) + ' s · the carts have stuck together and move at ' + fmt(f.vcm, 2) + ' m/s, which is the velocity the centre of mass had all along');
