@@ -62,10 +62,17 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    shaded, and a hollow mark on the line shows the moment the runner
    crosses it · acceleration $\ka$ (0.10 to 1.00 m/s², step 0.05,
    default 0.40, acceleration hue), time $\kt$ (5 to 120 s, step 5,
-   default 100, time hue) · "after 100 s at 0.40 m/s² the runner would be
-   at 40.0 m/s, about 89 mph, about four times what a person can run";
-   while the clock runs, the speed so far and whether it is still
-   reasonable · graph below (t in s against v in m/s) · no. **Moving**:
+   default 100, time hue) · "After 100 s at 0.40 m/s² the runner would be
+   at 40.0 m/s, about 89 mph, about four times what a person can run."
+   While the clock runs the headline gives the speed so far and whether
+   it is still reasonable · graph below (t in s against v in m/s), on
+   axes fixed at 0 to 120 s and 0 to 50 m/s, which leave the 10 m/s a
+   person can run clearly above the axis; a velocity past the top is
+   drawn against it and its true value written out · 2D, the strip a
+   fixed 0 to 7200 m, the distance 1.00 m/s² for 120 s covers. Labels
+   on, seven of them, and the note "faster than anyone runs" is drawn
+   only where there is room for it above the 10 m/s level, so the two
+   notes never overprint. **Moving**:
    the idea has a time in it, a velocity accumulates as the clock runs,
    and the whole point of the passage is that the acceleration is
    reasonable each second and only the length of time is not, which the

@@ -1,7 +1,7 @@
 /* Figures for section 7.3 Gravitational Potential Energy. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, curve, fixed, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, strip, axes, nice, curve, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -14,11 +14,17 @@ function sci(v, d = 2) { if (Math.abs(v) < 1e-9) return '0'; const e = Math.floo
 const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
 function sciPlain(v, d = 2) { if (Math.abs(v) < 1e-9) return '0'; const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)} × 10${String(e).split('').map((c) => SUP[c]).join('')}`; }
 
-/* a vertical energy bar: an outline of the full amount, filled to `val` */
-function ebar(ctx, x, y0, w, full, val, cap, label, valText) {
+/* a vertical energy bar: an outline holding `full` joules, filled to `val`. Where `mark` is
+   given, a dashed rule across the bar says how far the present setting can fill it, so the
+   outline is a fixed amount of energy rather than whatever the sliders happen to make. */
+function ebar(ctx, x, y0, w, full, val, cap, label, valText, mark) {
   const h = cap * (full > 0 ? Math.min(1, val / full) : 0);
   ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.7); ctx.fillRect(x, y0 - h, w, h); ctx.restore();
   ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 2; ctx.strokeRect(x, y0 - cap, w, cap); ctx.restore();
+  if (mark !== undefined && full > 0) {
+    const ym = y0 - cap * Math.min(1, mark / full);
+    line(ctx, x - 8, ym, x + w + 8, ym, C('energy'), 2, [6, 6]);
+  }
   text(ctx, label, x + w / 2, y0 + 24, C('energy'), { size: 18, weight: 600, align: 'center' });
   text(ctx, valText, x + w / 2, y0 + 48, C('energy'), { size: 17, align: 'center' });
 }
@@ -88,7 +94,11 @@ function coasterCar(ctx, x, y, rot, color) {
     line(ctx, 190, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
     if (up) { arrow(ctx, 428, yw + 30, 428, yw - 54, C('force'), 5); text(ctx, 'F = mg = ' + fmt(m.v * G, 2) + ' N', 444, yw - 18, C('force'), { size: 18, weight: 600 }); }
     else { arrow(ctx, 428, yw + 10, 428, yw + 94, PAL.muted, 5); text(ctx, 'the weight comes down', 444, yw + 54, PAL.muted, { size: 18 }); }
-    ebar(ctx, 620, floorY, 62, E, PE, 330, 'PE_g', fmt(PE, 2) + ' J');
+    /* the bar is read against a fixed cap, 39.2 J, which is the most the sliders can store
+       (2 kg raised 2 m); the dashed rule across it is what this winding will reach. */
+    const CAP = 2 * G * 2;
+    ebar(ctx, 620, floorY, 62, CAP, PE, 330, 'PE_g', fmt(PE, 2) + ' J', E);
+    text(ctx, fmt(CAP, 1) + ' J', 651, floorY - 348, C('energy'), { size: 16, align: 'center' });
     /* the graph beside the vertical scene: PE_g against the height of the weight */
     /* fixed axes. The height axis is the slider's own range, 0 to 2 m, ticked every 0.5 m. The
        energy the sliders can reach is 2 kg × 9.80 × 2 m = 39.2 J, but the default weight stores
@@ -103,9 +113,9 @@ function coasterCar(ctx, x, y, rot, color) {
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
     pinned(ctx, box, X, Y, f * h.v, PE, C('energy'), fmt(PE, 2) + ' J');
     text(ctx, 'the slope is mg = ' + fmt(m.v * G, 2) + ' N', box.l + 16, box.t + 26, C('energy'), { size: 17, weight: 600 });
-    headline(ctx, f < 0.02 ? 'the weight rests on the floor, where the clock has stored nothing yet'
-      : f > 0.98 ? 'the weight is fully wound, ' + fmt(h.v, 2) + ' m up, and the mass-Earth system holds ' + fmt(E, 2) + ' J'
-      : (up ? 'winding: ' : 'running: ') + 'the weight is ' + fmt(f * h.v, 2) + ' m up, so ' + fmt(PE, 2) + ' J of the ' + fmt(E, 2) + ' J is stored');
+    topline(ctx, f < 0.02 ? 'The weight rests on the floor, where the clock has stored nothing yet.'
+      : f > 0.98 ? 'The weight is fully wound, ' + fmt(h.v, 2) + ' m up, and the mass-Earth system holds ' + fmt(E, 2) + ' J.'
+      : (up ? 'The clock is being wound, and the weight is ' : 'The clock is running, and the weight is ') + fmt(f * h.v, 2) + ' m up, so ' + fmt(PE, 2) + ' J of the ' + fmt(E, 2) + ' J is stored.');
     readout(d.readout, `\\kdPEg = m\\kg\\kh = (${fmt(m.v, 3)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 2)}\\ \\text{J}`,
       'The work done in winding the weight up is stored in the mass-Earth system, and the clock spends it again as the weight comes down. Raising twice the mass, or raising it twice as far, stores twice the energy.');
   }
@@ -123,7 +133,8 @@ function coasterCar(ctx, x, y, rot, color) {
   const M = 20, RISE = 0.3, NR = 8;                           /* a 20-kg crate and eight rungs, 0.30 m apart */
   const a = ctl(d.controls, { label: '\\text{lower rung}', cls: '', min: 1, max: 7, step: 1, value: 1, unit: '', dec: 0, aria: 'lower rung' });
   const b = ctl(d.controls, { label: '\\text{upper rung}', cls: '', min: 2, max: 8, step: 1, value: 2, unit: '', dec: 0, aria: 'upper rung' });
-  const z = ctl(d.controls, { label: '\\text{zero level}', cls: 'position', min: -0.9, max: 2.4, step: 0.1, value: 0, unit: 'm', dec: 1, aria: 'height at which the potential energy is called zero' });
+  /* the zero level stops at −0.4 m: a metre below the ground it would be drawn off the foot of the canvas */
+  const z = ctl(d.controls, { label: '\\text{zero level}', cls: 'position', min: -0.4, max: 2.4, step: 0.1, value: 0, unit: 'm', dec: 1, aria: 'height at which the potential energy is called zero' });
   function draw() {
     const { ctx } = begin(d.c);
     const lo = Math.min(a.v, b.v), hi = Math.max(lo + 1, Math.max(a.v, b.v));
@@ -146,7 +157,7 @@ function coasterCar(ctx, x, y, rot, color) {
     text(ctx, 'PE_g = 0 here', 700, Yp(z.v) - 20, C('energy'), { size: 18, weight: 600, align: 'right' });
     /* the graph beside: the same straight line, shifted by the choice of zero */
     const lowM = -1, highM = 2.5;
-    /* fixed axes: with the zero level anywhere in its own range, −0.9 m to 2.4 m, the crate's
+    /* fixed axes: with the zero level anywhere in its own range, −0.4 m to 2.4 m, the crate's
        energy over the drawn heights stays inside 20 kg × 9.80 × 3.4 m = 666 J either way, so the
        graph is always −1 m to 2.5 m by −700 J to 700 J, ticked every 200 J, and never rescales. */
     const PR = 700, box = { l: 880, r: 1330, t: 150, b: 520 };
@@ -156,9 +167,9 @@ function coasterCar(ctx, x, y, rot, color) {
     dot(ctx, X(yLo), Y(M * G * (yLo - z.v)), C('position'), true, 9);
     dot(ctx, X(yHi), Y(M * G * (yHi - z.v)), C('position'), true, 9);
     vbracket(ctx, X(yHi) + 34, Y(M * G * (yLo - z.v)), Y(M * G * (yHi - z.v)), C('energy'), fmt(dPE, 1) + ' J', 1);
-    headline(ctx, 'the climb from rung ' + lo + ' to rung ' + hi + ' stores ' + fmt(dPE, 1) + ' J, wherever the zero is put');
+    topline(ctx, 'The climb from rung ' + lo + ' to rung ' + hi + ' stores ' + fmt(dPE, 1) + ' J, wherever the zero is put.');
     readout(d.readout, `\\kdPEg = m\\kg\\kh = (${fmt(M, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(yHi - yLo, 2)}\\ \\text{m}) = ${fmt(dPE, 1)}\\ \\text{J}`,
-      'With the zero level at ' + fmt(z.v, 1) + ' m, rung ' + lo + ' holds ' + fmt(M * G * (yLo - z.v), 1) + ' J and rung ' + hi + ' holds ' + fmt(M * G * (yHi - z.v), 1) + ' J. Lower the zero by a metre and both grow by ' + fmt(M * G, 1) + ' J, while the climb between them is still ' + fmt(dPE, 1) + ' J, which is why the first two rungs are worth the same as the last two.');
+      'With the zero level at ' + fmt(z.v, 1) + ' m, rung ' + lo + ' holds ' + fmt(M * G * (yLo - z.v), 1) + ' J and rung ' + hi + ' holds ' + fmt(M * G * (yHi - z.v), 1) + ' J. Lower the zero by a meter and both grow by ' + fmt(M * G, 1) + ' J, while the climb between them is still ' + fmt(dPE, 1) + ' J, which is why the first two rungs are worth the same as the last two.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -217,9 +228,9 @@ function coasterCar(ctx, x, y, rot, color) {
     ebar(ctx, 1300, ground, 56, full, pe2, 300, 'hoisted', fmt(pe2, 0) + ' J');
     line(ctx, 1206, ground - 300, 1370, ground - 300, C('energy'), 2, [8, 6]);
     text(ctx, 'mgh = ' + num(full, 0) + ' J', 1288, ground - 322, C('energy'), { size: 17, weight: 600, align: 'center' });
-    headline(ctx, s1 >= L1() - 1e-9
-      ? 'both sets are on the landing ' + fmt(h.v, 1) + ' m up: one walked ' + fmt(L1(), 1) + ' m and the other rose ' + fmt(h.v, 1) + ' m, and each gained ' + num(full, 0) + ' J'
-      : 'the carried set has walked ' + fmt(s1, 1) + ' m to be ' + fmt(p1.y, 1) + ' m up, the hoisted set ' + fmt(s2, 1) + ' m of rope to be ' + fmt(s2, 1) + ' m up');
+    topline(ctx, s1 >= L1() - 1e-9
+      ? 'Both sets are on the landing ' + fmt(h.v, 1) + ' m up, one having walked ' + fmt(L1(), 1) + ' m and the other having risen ' + fmt(h.v, 1) + ' m, and each gained ' + num(full, 0) + ' J.'
+      : 'The carried set has walked ' + fmt(s1, 1) + ' m to be ' + fmt(p1.y, 1) + ' m up, and the hoisted set has taken ' + fmt(s2, 1) + ' m of rope to be ' + fmt(s2, 1) + ' m up.');
     readout(d.readout, `\\kdPEg = m\\kg\\kh = (${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 1)}\\ \\text{m}) = ${num(full, 0)}\\ \\text{J}`,
       'The staircase is ' + fmt(L1(), 1) + ' m long and the rope only ' + fmt(h.v, 1) + ' m, yet both sets end with the same ' + num(full, 0) + ' J, since only the change in vertical position enters mgh.');
   }
@@ -235,7 +246,9 @@ function coasterCar(ctx, x, y, rot, color) {
 (function () {
   const d = sim('sim-landing', 700);
   const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0.5, max: 5, step: 0.1, value: 3, unit: 'm', dec: 2, onInput: reset, aria: 'height of the fall' });
-  const kb = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.005, max: 0.75, step: 0.005, value: 0.005, unit: 'm', dec: 3, onInput: reset, aria: 'distance the knees bend' });
+  /* the two landings the section works out are soft detents on the slider, since the graph
+     beside the scene is a ratio scale and the interesting ground is all at its left-hand end */
+  const kb = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.005, max: 0.75, step: 0.005, value: 0.005, unit: 'm', dec: 3, onInput: reset, aria: 'distance the knees bend', detents: [{ v: 0.005, label: 'stiff' }, { v: 0.5, label: 'bent' }], snap: true });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the person' });
   const cy = cycle(() => 1.3, 1.0);
   function reset() { cy.reset(); }
@@ -244,10 +257,12 @@ function coasterCar(ctx, x, y, rot, color) {
     const { ctx } = begin(d.c);
     const tau = cy.now(), falling = tau < 1, p = falling ? 0 : Math.min(1, (tau - 1) / 0.3);
     const KE = m.v * G * h.v, Fst = KE / kb.v, wgt = m.v * G;
-    const floorY = 430, SC = 62, feet = falling ? floorY - h.v * SC * (1 - tau * tau) : floorY;
+    /* fixed scene scale, 42 units to the metre: the slider reaches a 5 m fall, and at that
+       height the person's head and the mass label still stop short of the headline band. */
+    const floorY = 430, SC = 42, feet = falling ? floorY - h.v * SC * (1 - tau * tau) : floorY;
     strip(ctx, 100, 660, floorY + 14, 26);
     F.person(ctx, 330, feet, PAL.ink, { crouch: p });
-    text(ctx, fmt(m.v, 1) + ' kg', 330, feet - 112, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    text(ctx, fmt(m.v, 1) + ' kg', 330, Math.max(104, feet - 112), PAL.ink, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     if (h.v * SC > 40) vbracket(ctx, 168, floorY, floorY - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     line(ctx, 150, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
     if (!falling) {
@@ -274,8 +289,8 @@ function coasterCar(ctx, x, y, rot, color) {
     text(ctx, 'the weight, ' + fmt(wgt, 0) + ' N', box.l + 12, Y(lg(wgt)) - 18, C('force'), { size: 17, weight: 600 });
     text(ctx, 'a stiff landing', X(lg(0.005)) + 16, Y(lg(KE / 0.005)) - 26, PAL.muted, { size: 17 });
     text(ctx, 'bending the legs', X(lg(0.5)) - 16, Y(lg(KE / 0.5)) + 30, PAL.muted, { size: 17, align: 'right' });
-    headline(ctx, falling ? 'falling from ' + fmt(h.v, 2) + ' m: the person reaches the floor with ' + num(KE, 0) + ' J of kinetic energy'
-      : 'the knees bend ' + fmt(kb.v * 100, 2) + ' cm, so the floor takes ' + num(KE, 0) + ' J away over that distance and pushes with ' + sciPlain(Fst) + ' N, ' + fmt(Fst / wgt, 0) + ' times the weight');
+    topline(ctx, falling ? 'Falling from ' + fmt(h.v, 2) + ' m, the person reaches the floor with ' + num(KE, 0) + ' J of kinetic energy.'
+      : 'The knees bend ' + fmt(kb.v * 100, 2) + ' cm, so the floor takes ' + num(KE, 0) + ' J away over that distance and pushes with ' + sciPlain(Fst) + ' N, which is ' + fmt(Fst / wgt, 0) + ' times the weight.');
     readout(d.readout, `\\kF = -\\frac{m\\kg\\kh}{\\kd} = -\\frac{(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(-${fmt(h.v, 2)}\\ \\text{m})}{${sci(kb.v)}\\ \\text{m}} = ${sci(Fst)}\\ \\text{N}`,
       'The same ' + num(KE, 0) + ' J has to be removed however the person lands, so the distance is what decides the force. Bending through 0.500 m instead of ' + fmt(kb.v * 100, 2) + ' cm would spread it over ' + fmt(0.5 / kb.v, 0) + ' times the distance and bring the force down to ' + sciPlain(KE / 0.5) + ' N.');
   }
@@ -331,7 +346,14 @@ function coasterCar(ctx, x, y, rot, color) {
     coasterCar(ctx, x, y - 12, rot, PAL.ink);
     vbracket(ctx, X0 - 34, BASE, BASE - h.v * SCY, C('position'), 'h = ' + fmt(h.v, 1) + ' m', 1);
     line(ctx, X0 - 44, BASE - h.v * SCY, X0 + 40, BASE - h.v * SCY, C('position'), 2, [8, 8]);
-    if (v > 1) { const al = 50 + 130 * (v / Math.sqrt(v0.v * v0.v + 2 * G * h.v)); arrow(ctx, x + 40, y - 40, x + 40 + al, y - 40, C('velocity'), 5); text(ctx, 'v = ' + fmt(v, 1) + ' m/s', x + 46 + al, y - 66, C('velocity'), { size: 18, weight: 600 }); }
+    /* the speed arrow is drawn ahead of the car while there is room for it, and behind the car
+       once the car is past x = 1100, so that neither the arrow nor its label leaves the canvas */
+    if (v > 1) {
+      const al = 50 + 130 * (v / Math.sqrt(v0.v * v0.v + 2 * G * h.v)), ahead = x < 1100;
+      const tail = ahead ? x + 40 : x - 40 - al;
+      arrow(ctx, tail, y - 40, tail + al, y - 40, C('velocity'), 5);
+      text(ctx, 'v = ' + fmt(v, 1) + ' m/s', ahead ? tail + al + 6 : tail - 6, y - 66, C('velocity'), { size: 18, weight: 600, align: ahead ? 'left' : 'right' });
+    }
     /* the graph below the horizontal scene: the energy account against the height fallen */
     /* fixed axes. The height axis is the slider's own range, 0 to 40 m, ticked every 10 m. The
        energy the sliders can reach is ½ × 2000 kg × (10 m/s)² + 2000 kg × 9.80 × 40 m = 884 kJ,
@@ -352,8 +374,8 @@ function coasterCar(ctx, x, y, rot, color) {
     line(ctx, X(fallen), box.b, X(fallen), Y(cl(Etot)), C('position'), 2, [4, 8]);
     pinned(ctx, box, X, Y, fallen, PE, alpha(C('energy'), 0.7), fmt(PE / 1000, 1) + ' kJ');
     pinned(ctx, box, X, Y, fallen, KE, C('energy'), fmt(KE / 1000, 1) + ' kJ');
-    headline(ctx, fallen < 0.02 * h.v ? 'at the top of the ' + fmt(h.v, 1) + ' m hill the car holds ' + fmt(m.v * G * h.v / 1000, 1) + ' kJ in height and ' + fmt(KEi / 1000, 1) + ' kJ in motion'
-      : 'the car has fallen ' + fmt(fallen, 1) + ' m and is doing ' + fmt(v, 1) + ' m/s: ' + fmt(KE / 1000, 1) + ' kJ of the ' + fmt(Etot / 1000, 1) + ' kJ is now motion');
+    topline(ctx, fallen < 0.02 * h.v ? 'At the top of the ' + fmt(h.v, 1) + ' m hill the car holds ' + fmt(m.v * G * h.v / 1000, 1) + ' kJ in height and ' + fmt(KEi / 1000, 1) + ' kJ in motion.'
+      : 'The car has fallen ' + fmt(fallen, 1) + ' m and is doing ' + fmt(v, 1) + ' m/s, so ' + fmt(KE / 1000, 1) + ' kJ of the ' + fmt(Etot / 1000, 1) + ' kJ is now motion.');
     readout(d.readout, `\\kv = \\sqrt{2\\kg|\\kh| + \\kvo^2} = \\sqrt{2(9.80\\ \\text{m/s}^2)(${fmt(fallen, 2)}\\ \\text{m}) + (${fmt(v0.v, 2)}\\ \\text{m/s})^2} = ${fmt(v, 1)}\\ \\text{m/s}`,
       'Mass cancels from the equation, so a ' + num(m.v, 0) + ' kg car and a train ten times as heavy reach the same speed at the bottom. Starting at ' + fmt(v0.v, 2) + ' m/s rather than from rest adds only ' + fmt(Math.sqrt(v0.v * v0.v + 2 * G * h.v) - Math.sqrt(2 * G * h.v), 2) + ' m/s to the ' + fmt(Math.sqrt(2 * G * h.v), 1) + ' m/s the hill gives on its own.');
   }
@@ -392,7 +414,7 @@ function coasterCar(ctx, x, y, rot, color) {
     const mx = onRuler ? xBot - s * cs() * SC : xBot + along * SC, my = onRuler ? table - s * sn() * SC - 12 : table - 12;
     dot(ctx, xBot - dm() * cs() * SC, table - dm() * sn() * SC - 12, C('position'), false, 10);
     dot(ctx, mx, my, PAL.ink, true, 12);
-    hbracket(ctx, xBot, xBot + SC, table + 56, C('position'), 'one metre of level surface');
+    hbracket(ctx, xBot, xBot + SC, table + 56, C('position'), 'one meter of level surface');
     vbracket(ctx, xBot + 26, table, table - dm() * sn() * SC, C('position'), 'h = ' + fmt(h * 100, 1) + ' cm', 1);
     if (v > 0.05) { const al = 40 + 130 * (v / Math.max(0.2, vEnd())); arrow(ctx, mx, my - 40, mx + al, my - 40, C('velocity'), 5); text(ctx, fmt(v, 2) + ' m/s', mx + al + 12, my - 40, C('velocity'), { size: 18, weight: 600 }); }
     text(ctx, 'released at ' + fmt(rel.v, 0) + ' cm', xTop - 10, yTop - 34, PAL.muted, { size: 18 });
@@ -405,11 +427,11 @@ function coasterCar(ctx, x, y, rot, color) {
     line(ctx, X(0), Y(0), X(0.3), Y(2 * G * 0.3 * sn()), C('velocity'), 5);
     for (const q of [0.1, 0.2, 0.3]) dot(ctx, X(q), Y(2 * G * q * sn()), C('velocity'), false, 10);
     dot(ctx, X(dm()), Y(vEnd() * vEnd()), C('velocity'), true, 9);
-    text(ctx, 'a straight line: the kinetic energy at the bottom grows in step with the potential energy at the release point', box.l + 20, box.t + 28, C('energy'), { size: 18, weight: 600 });
-    headline(ctx, onRuler ? 'rolling down: released at ' + fmt(rel.v, 0) + ' cm the marble has ' + fmt(s * 100, 1) + ' cm of ruler left and is doing ' + fmt(v, 2) + ' m/s'
-      : 'on the level: the marble crosses the metre at ' + fmt(vEnd(), 2) + ' m/s, so the metre takes ' + fmt(t2(), 2) + ' s');
+    text(ctx, 'The line is straight, so the kinetic energy at the bottom grows in step with the potential energy at the release point.', box.l + 20, box.t + 28, C('energy'), { size: 18, weight: 600 });
+    topline(ctx, onRuler ? 'Released at ' + fmt(rel.v, 0) + ' cm, the marble has ' + fmt(s * 100, 1) + ' cm of ruler left and is doing ' + fmt(v, 2) + ' m/s.'
+      : 'On the level the marble crosses the meter at ' + fmt(vEnd(), 2) + ' m/s, so the meter takes ' + fmt(t2(), 2) + ' s.');
     readout(d.readout, `\\kv = \\sqrt{2\\kg|\\kh|} = \\sqrt{2(9.80\\ \\text{m/s}^2)(${fmt(h, 4)}\\ \\text{m})} = ${fmt(vEnd(), 2)}\\ \\text{m/s}`,
-      'Releasing the marble at ' + fmt(rel.v, 0) + ' cm drops it ' + fmt(h * 100, 1) + ' cm, and it crosses the metre in ' + fmt(t2(), 2) + ' s. Because the potential energy given up grows in step with the release position, the square of the speed does too, and the plot is a straight line through the origin.');
+      'Releasing the marble at ' + fmt(rel.v, 0) + ' cm drops it ' + fmt(h * 100, 1) + ' cm, and it crosses the meter in ' + fmt(t2(), 2) + ' s. Because the potential energy given up grows in step with the release position, the square of the speed does too, and the plot is a straight line through the origin. A real marble rolls rather than slides, and some of the energy goes into spinning it, so a marble on a bench arrives about 15 percent slower than this; the line stays straight either way, which is what the investigation is after.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => (t1() + t2()) / 5), draw });
 })();

@@ -98,16 +98,20 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    nothing.
 2. `sim-jet-xt` · replaces Figure 2.45 (the jet car's position against
    time) · x-t-slope-velocity, straight-line-graph · **still**: the
-   straight line $x = x_0 + \bar v t$ on axes of 0 to 8 s and 0 to
-   2400 m, two chosen points on it with drop lines to both axes, the
+   straight line $x = x_0 + \bar v t$ on axes fixed at 0 to 8 s and 0 to
+   3800 m, which is the farthest the two sliders reach in 8 s, so a
+   faster car draws a steeper line instead of the axis stretching to
+   keep the line at the same slant; two chosen points on it with drop
+   lines to both axes, the
    run $\Delta t$ bracketed under the line and the rise $\Delta x$
    beside it, the intercept marked hollow at $t = 0$ · $\kxo$ (0 to
    1000 m, step 25, default 400, position), $\kvb$ (50 to 350 m/s, step
    5, default 250, velocity), the two chosen times $t_1$ (0 to 7.5 s,
    step 0.1, default 0.50, time) and $t_2$ (0.5 to 8 s, step 0.1,
-   default 6.4, time) · "between 0.50 s and 6.40 s the car goes from
+   default 6.4, time) · "Between 0.50 s and 6.40 s the car goes from
    525 m to 2000 m, a rise of 1475 m over a run of 5.90 s, so the
-   slope is 250 m/s" · the graph is the figure · no. No time in the
+   slope is 250 m/s." · the graph is the figure · 2D. Labels on, six of
+   them, each on a panel. No time in the
    idea: the reader chooses the two points and reads the slope, and the
    slope is the same wherever they are chosen. Readout:
    $\kvb = \kdx / \kdt = (2000 − 525) / (6.4 − 0.50) = 250$ m/s, with a
@@ -124,10 +128,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    drawn up to the current time only, so the reader sees them built from
    the tangents · $\kxo$ (0 to 500 m, step 10, default 200, position),
    $\kvo$ (0 to 60 m/s, step 1, default 15, velocity), $\ka$ (0 to 8
-   m/s², step 0.1, default 5.0, acceleration) · "t = 12.0 s · the
-   tangent at P has slope 75 m/s, which is the velocity plotted below;
-   the velocity line has slope 5.0 m/s², the acceleration" · the three
-   graphs are the figure · no. It moves because the derivation the
+   m/s², step 0.1, default 5.0, acceleration) · "After 12.0 s the
+   tangent at P has slope 75 m/s, which is plotted below as the
+   velocity, and the velocity line has slope 5.0 m/s²." · the three
+   graphs are the figure, on ranges fixed once from the slider maxima at
+   0 to 35 s, 0 to 6000 m, 0 to 300 m/s and 0 to 8.0 m/s², with the
+   position curve clipped to its box · 2D. Labels on, six of them, each
+   on a panel. It moves because the derivation the
    paragraph describes is a process in time: "if this is done at every
    point on the curve and the values are plotted against time, the
    graph of velocity versus time is obtained". One sweep from 0 to 30 s
@@ -160,11 +167,15 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    tangent at the chosen time drawn out to two endpoints, and the
    acceleration curve below falling from 5.0 m/s² to zero at 55 s with
    the value at the chosen time marked · $t_Q$ (0 to 55 s, step 0.5,
-   default 25, time), the endpoints $t_1$ (0 to 40 s, step 0.5, default
-   1.0, time) and $t_2$ (10 to 70 s, step 0.5, default 51, time) · "the
-   tangent at 25 s runs from (1.0 s, 211 m/s) to (51 s, 261 m/s), so
-   the acceleration at 25 s is 1.0 m/s², which is the value plotted
-   below" · the graphs are the figure · no. Still, for the same reason
+   default 25, time; it stops at 55 s, where the velocity levels out and
+   the acceleration reaches zero, since past that the curve draws
+   nothing the reader has not already seen), the endpoints $t_1$ (0 to
+   40 s, step 0.5, default
+   1.0, time) and $t_2$ (10 to 70 s, step 0.5, default 51, time) · "The
+   tangent at 25.0 s runs from (1.0 s, 211 m/s) to (51.0 s, 261 m/s), so
+   the acceleration at 25.0 s is 1.0 m/s²." · the graphs are the figure,
+   on axes fixed at 0 to 70 s, 160 to 260 m/s and −1 to 6 m/s² · 2D.
+   Labels on, six of them, each on a panel. Still, for the same reason
    as the tangent figure. The acceleration is modelled as falling in
    straight pieces through (0, 5.0), (10, 3.0), (25, 1.0) and (55, 0)
    m/s², which reproduces the book's velocities (205, 228, 235, 240,

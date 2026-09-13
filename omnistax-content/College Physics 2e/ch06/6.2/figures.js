@@ -68,10 +68,10 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
   const A0 = 1.15;                                     /* where the object stands at the start of a loop */
   function draw() {
     const { ctx } = begin(d.c);
-    const T = per(), tau = cy.now(), turned = (tau / T) * 360;
+    const T = per(), tau = cy.now();
     const th = A0 + (tau / T) * TAU, dt = dth.v * RAD, a1 = th - dt, am = th - dt / 2;
     const dv = 2 * v.v * Math.sin(dt / 2), ds = r.v * dt, chord = 2 * r.v * Math.sin(dt / 2);
-    const pos = C('position'), vel = C('velocity'), acc = C('acceleration');
+    const pos = C('position'), vel = C('velocity');
     const cx = 430, cyc = 400, R = 128 + 21 * r.v, Lv = 50 + 5 * v.v;
     /* the circle, the two points on it, and the arc and chord between them */
     arcpath(ctx, cx, cyc, R, 0, TAU, PAL.rule, 3);
@@ -86,10 +86,13 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const ra = 0.26 * R;
     arcpath(ctx, cx, cyc, ra, a1, th, PAL.ink, 2.5);
     beside(ctx, 'Δθ = ' + fmt(dth.v, 0) + 'º', cx, cyc, ra + 26, am, 0, PAL.ink);
-    /* the change of velocity, drawn on the circle from the middle of the arc toward the center */
-    const La = 0.40 * R;
-    arrow(ctx, cxa(cx, R, am), cya(cyc, R, am), cxa(cx, R - La, am), cya(cyc, R - La, am), acc, 5);
-    beside(ctx, 'a_c', cx, cyc, R - La / 2, am, -34, acc, 22);
+    /* the change of velocity, laid on the circle at the point the object has reached. It runs along
+       the inward radius of the middle of the arc, so it stands at half of Δθ from the radius drawn to
+       the object and swings onto that radius as Δθ is taken down toward zero, which is the book's
+       argument that the acceleration is centripetal. */
+    const La = 0.40 * R, dvx = -Math.cos(am), dvy = Math.sin(am);
+    arrow(ctx, x2, y2, x2 + dvx * La, y2 + dvy * La, vel, 5);
+    text(ctx, 'Δv', x2 + dvx * (La + 28), y2 + dvy * (La + 28), vel, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     /* the two velocities, along the tangents */
     const t1 = tang(a1), t2 = tang(th);
     arrow(ctx, x1, y1, x1 + t1[0] * Lv, y1 + t1[1] * Lv, alpha(vel, 0.55), 4);
@@ -110,9 +113,9 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const mx = (e1[0] + e2[0]) / 2, my = (e1[1] + e2[1]) / 2, mn = Math.hypot(mx - tx, my - ty) || 1;
     text(ctx, 'Δv = ' + fmt(dv, 2) + ' m/s', mx + ((mx - tx) / mn) * 52, my + ((my - ty) / mn) * 52, vel, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     dot(ctx, tx, ty, PAL.muted, true, 6);
-    headline(ctx, 'the object has turned ' + fmt(turned, 0) + 'º · Δθ = ' + fmt(dth.v, 0) + 'º, so Δv = ' + fmt(dv, 2) + ' m/s, aimed at the center from the middle of the arc');
+    headline(ctx, 'Over Δθ = ' + fmt(dth.v, 0) + '° the velocity changes by Δv = ' + fmt(dv, 2) + ' m/s, standing ' + fmt(dth.v / 2, 0) + '° from the radius.');
     readout(d.readout, `\\frac{\\kdv}{\\kv} = \\frac{\\kds}{\\kr}\\quad\\Longrightarrow\\quad \\frac{${fmt(dv, 2)}}{${fmt(v.v, 1)}} = ${fmt(dv / v.v, 3)} \\quad\\text{and}\\quad \\frac{${fmt(ds, 2)}}{${fmt(r.v, 1)}} = ${fmt(ds / r.v, 3)}`,
-      'The triangle of the two velocities and the triangle of the two radii are similar, so Δv/v is exactly the chord, ' + fmt(chord, 2) + ' m, divided by r. The book puts the arc Δs in place of the chord, which at Δθ = ' + fmt(dth.v, 0) + 'º is ' + fmt(100 * (ds / chord - 1), 1) + '% longer; take Δθ down toward zero and the two agree, and Δv comes to point straight at the center.');
+      'The triangle of the two velocities and the triangle of the two radii are similar, so Δv/v is exactly the chord, ' + fmt(chord, 2) + ' m, divided by r. The book puts the arc Δs in place of the chord, which at Δθ = ' + fmt(dth.v, 0) + 'º is ' + fmt(100 * (ds / chord - 1), 1) + '% longer. Take Δθ down toward zero and the two agree, and Δv comes to point straight at the center.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => per() / 5), draw });
 })();
@@ -170,7 +173,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const left = v.v < 26;
     text(ctx, fmt(ac, 2) + ' m/s² = ' + fmt(ratio, 3) + ' g', g.X(vC) + (left ? 18 : -18), g.Y(acC) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
     text(ctx, 'the hollow point is half the speed and a quarter of the acceleration', 1110, 556, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, 't = ' + fmt(tau, 0) + ' s · the car has turned ' + fmt(turned, 0) + 'º, and a_c = ' + fmt(ac, 2) + ' m/s² still points straight at the center');
+    headline(ctx, 'The car is ' + fmt(turned, 0) + '° round the curve, and a_c = ' + fmt(ac, 2) + ' m/s² still points at the center.');
     readout(d.readout, `\\kac = \\frac{\\kv^2}{\\kr} = \\frac{(${fmt(v.v, 1)}\\ \\text{m/s})^2}{${fmt(r.v, 0)}\\ \\text{m}} = ${fmt(ac, 2)}\\ \\text{m/s}^2`,
       'Compared with the acceleration due to gravity, a_c/g = ' + fmt(ac, 2) + '/9.80 = ' + fmt(ratio, 3) + ', so this curve asks ' + fmt(ratio, 3) + ' of what gravity asks of you standing still. One lap at this speed takes ' + fmt(T, 0) + ' s.');
   }
@@ -227,7 +230,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     pinned(ctx, gbox, g.X, g.Y, rpm.v, ratio, PAL.ink);
     const left = rpm.v < 5.5;
     text(ctx, count3(ratio) + ' g', g.X(rpm.v) + (left ? 18 : -18), g.Y(Math.min(ratio, RMAX)) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
-    headline(ctx, 'a point ' + fmt(r.v, 2) + ' cm from the axis at ' + fmt(rpm.v, 2) + ' × 10⁴ rev/min is accelerated at ' + sci(ac) + ' m/s², or ' + count3(ratio) + ' g');
+    headline(ctx, 'At ' + fmt(rpm.v, 2) + ' × 10⁴ rev/min, a point ' + fmt(r.v, 2) + ' cm from the axis is accelerated at ' + count3(ratio) + ' g.');
     readout(d.readout, `\\kac = \\kr\\kw^2 = (${fmt(rm, 4)}\\ \\text{m})(${Math.round(w)}\\ \\text{rad/s})^2 = ${scitex(ac)}\\ \\text{m/s}^2`,
       fmt(rpm.v, 2) + ' × 10⁴ rev/min is ' + Math.round(w) + ' rad/s, since one revolution is 2π rad and one minute is 60.0 s. The acceleration is ' + count3(ratio) + ' times g, and it grows with the square of the angular velocity but only in proportion to the radius, which is why a centrifuge is made to spin fast rather than made wide.');
   }

@@ -146,12 +146,18 @@ sliders with their types · headline · graph · 3D
    car travels, so the figure runs a cycle of one turn and gets the
    transport · speed $\kv$ (6 to 22 m/s, default 12, velocity), radius
    $\kr$ (4 to 15 m, default 8, position), mass $m$ (200 to 800 kg, default
-   500, ink) · "the car is 34º round the loop and the track pushes with
-   13,081 N there, against 13,900 N at the bottom" · graph
-   below: $\kN$ against the angle round the loop, from the bottom up over
-   the top and back, with the moving point on it · no. Readout: $\kN = m
-   \kv^2/\kr - m\kg\cos\phi$ with the numbers. Draws force, velocity,
-   position, acceleration.
+   500, ink) · "The car is 34° round the loop, where the track pushes with
+   13,081 N." · graph
+   beside the loop: $\kN$ against the angle round the loop on fixed axes of 0
+   to 360° by 0 to 16,000 N, from the bottom up over the top and back, with
+   the moving point on it · 2D, the plane of the loop being the canvas ·
+   labels on, there being four of them. Readout: $\kN = m
+   \kv^2/\kr + m\kg\cos\phi$ with the numbers, the angle being measured
+   from the bottom of the loop. A track pushes and never pulls, so the force
+   is clamped at zero: below $\kv = \sqrt{\kg\kr}$ the stretch of the loop
+   the car cannot keep contact along is drawn broken, no normal force is
+   drawn there, and the headline says the car would already have left the
+   track. Draws force, velocity, position, acceleration.
 
 Figures that serve exercises (rule 14: copied over faithfully, no sliders,
 no animation, labelled "Figure" with no number, each carrying the book's
@@ -170,8 +176,9 @@ problems name theirs:
 8. `fig-nail` · the mass on a string tied to a nail on a frictionless table
    (conceptual question 10) · widths 250.
 9. `fig-bicycle` · the leaning bicycle with the force of the ground on the
-   wheel and its two components (problem 6) · the CNXML gives this image no
-   width, so `widths` stays empty and the app shows it at its natural size.
+   wheel and its two components (problem 6) · **not built**. Problem 6 has no
+   answer in the book's key and is left out of the page, so the figure it
+   serves is not printed either and the chapter pass struck it.
 10. `fig-centrifuge` · the rider's cage on the arm of the large centrifuge,
     swung out below the horizontal, with the force along the arm, the
     weight and the centripetal force (problem 7) · the CNXML gives this
@@ -182,14 +189,16 @@ problems name theirs:
     one click away under the figure.
 11. `fig-teardrop` · the teardrop-shaped roller-coaster loop with its
     smallest radius at the top and its largest near the base (problem 9) ·
-    widths 250.
+    **not built**, for the same reason as the bicycle: problem 9 has no
+    answer in the book's key and is left out.
 
 The leaning bicycle belongs to problem 6 and the teardrop loop to problem
-9, and neither problem has an answer in the book's key, so both are left
-out; the two figures are kept as the chapter config asks, since the
-bicycle shows the section's own relation $\theta = \tan^{-1}(\kv^2/\kr\kg)$
-in another setting and the teardrop shows the loop that conceptual
-questions 5 and 6 are about.
+9, and neither problem has an answer in the book's key, so both problems
+are left out of the page. A figure that serves an exercise is copied for
+the sake of that exercise, so with the problems gone the chapter pass
+struck the two copies as well, and the section's figures table carries the
+five that serve printed exercises. The five are `fig-race-track`,
+`fig-loop-ride`, `fig-merry-go-round`, `fig-nail` and `fig-centrifuge`.
 
 The eighth image the chapter config names, the graph of $\kv$ against $\kr$
 that answers part (c) of 6.6's Critical Thinking item, travels inside that

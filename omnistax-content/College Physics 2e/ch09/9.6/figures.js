@@ -27,7 +27,7 @@ function crate(ctx, cx, top, w, h) {
 /* =====================================================================
    FIGURE 9.25: the forearm holding a book, with the equivalent lever
    system drawn over it. The elbow is the pivot, the biceps pulls up a
-   few centimetres along the forearm and the two weights pull down much
+   few centimeters along the forearm and the two weights pull down much
    farther along it, so the second condition can only balance if the
    muscle force is the large one. A forearm held level is in static
    equilibrium and has no time in it, so the figure answers its sliders,
@@ -46,7 +46,10 @@ function crate(ctx, cx, top, w, h) {
     const { ctx } = begin(d.c);
     const r1 = R1.v / 100, r3 = R3.v / 100, mb = MB.v;
     const wa = MA * G, wb = mb * G, FB = force(r1, mb, r3), FE = FB - wa - wb;
-    const K = 240 / Math.max(FB, 260);                 /* the biceps arrow is 240 units long whenever the force is large */
+    /* The arrows run to a fixed 500 N, which is what the book's own forearm asks, so that a
+       heavier book lengthens them; an arrow that would pass it stops there and the labels go on
+       giving the true forces, and the graph beneath carries the whole range honestly. */
+    const FULL = 500, K = 240 / FULL;
     const x1 = PX + r1 * S, x2 = PX + R2 * S, x3 = PX + r3 * S, hand = x3 + 52;
 
     /* the upper arm, the biceps and the forearm with the book in the hand */
@@ -98,8 +101,9 @@ function crate(ctx, cx, top, w, h) {
     line(ctx, X(R1.v), Y(Math.min(FB, FR)), X(R1.v), box.b, PAL.muted, 2, [4, 8]);
     pinned(ctx, box, X, Y, R1.v, FB, C('force'), fmt(FB, 0) + ' N');
 
-    headline(ctx, 'r₁ = ' + fmt(R1.v, 1) + ' cm · the biceps pulls with ' + fmt(FB, 0) + ' N to hold ' + fmt(wa + wb, 1)
-      + ' N, ' + fmt(FB / (wa + wb), 2) + ' times the weight it supports');
+    if (FB > FULL) text(ctx, 'An arrow stops at 500 N, and the labels go on giving the true forces.', 700, 130, PAL.muted, { size: 17, align: 'center' });
+    headline(ctx, 'Pulling ' + fmt(R1.v, 1) + ' cm from the elbow, the biceps exerts ' + fmt(FB, 0) + ' N to hold ' + fmt(wa + wb, 1)
+      + ' N, which is ' + fmt(FB / (wa + wb), 2) + ' times the weight it supports.');
     readout(d.readout,
       `\\kFB = \\frac{\\krtwo\\kwarm + \\krthree\\kwbook}{\\krone} = \\frac{(${fmt(R2, 3)}\\ \\text{m})(${fmt(wa, 1)}\\ \\text{N}) + (${fmt(r3, 3)}\\ \\text{m})(${fmt(wb, 1)}\\ \\text{N})}{${fmt(r1, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
       'The humerus pushes down on the forearm at the elbow with ' + fmt(FE, 0)
@@ -114,13 +118,17 @@ function crate(ctx, cx, top, w, h) {
    upper body's weight acts through the pivot in the hips and makes no
    torque, so the back muscles hold nothing. Leaning forward gives that
    weight a perpendicular lever arm, and the muscles of the lower back
-   answer it on a lever arm of a few centimetres, so their force is very
+   answer it on a lever arm of a few centimeters, so their force is very
    large. The body stands in both cases and nothing in the idea has a
    time in it, so the lean is a slider and the figure is still.
 ===================================================================== */
 (function () {
   const d = sim('sim-posture', 720);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 1, value: 0, unit: '°', dec: 0, aria: 'lean of the upper body away from the vertical' });
+  /* The lean runs to 65° rather than 60° so that the 0.350 m lever arm the worked example uses is
+     reachable: with the center of gravity 0.400 m up the spine it arrives at 61°, which is given
+     a detent of its own, as the upright position is. */
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 65, step: 1, value: 0, unit: '°', dec: 0, aria: 'lean of the upper body away from the vertical',
+    detents: [{ v: 0, label: 'upright' }, { v: 61, label: 'Example 9.5' }], snap: true });
   const MU = ctl(d.controls, { label: 'm_{\\text{ub}}', cls: '', min: 40, max: 80, step: 1, value: 55, unit: 'kg', dec: 1, aria: 'mass of the upper body' });
   const RB = ctl(d.controls, { label: '\\krbperp', cls: 'position', min: 4, max: 12, step: 0.5, value: 8, unit: 'cm', dec: 1, aria: 'perpendicular lever arm of the back muscles' });
   const DCG = 0.400, SP = 308;         /* the centre of gravity sits 0.400 m up the spine, which makes its lever */
@@ -170,30 +178,32 @@ function crate(ctx, cx, top, w, h) {
     if (FB > 0) {
       const lf = Math.max(Math.min(170 * FB / 2600, 170), 28);
       arrow(ctx, b[0], b[1], b[0] - lf * u[0], b[1] - lf * u[1], C('force'), 5);
-      text(ctx, 'F_B = ' + fmt(FB, 0) + ' N', b[0] - lf * u[0] - 16, b[1] - lf * u[1] - 20, C('force'), { size: 20, weight: 600, align: 'right' });
+      /* the label goes to the right of the arrowhead, which keeps it on the canvas at the
+         deepest lean, where the muscle is drawn furthest to the left */
+      text(ctx, 'F_B = ' + fmt(FB, 0) + ' N', b[0] - lf * u[0] + 14, b[1] - lf * u[1] - 20, C('force'), { size: 20, weight: 600, align: 'left' });
       turn(ctx, hip[0], hip[1], 62, 300 * RAD, 240 * RAD, C('torque'));
       turn(ctx, hip[0], hip[1], 92, 240 * RAD, 300 * RAD, C('torque'));
     }
-    text(ctx, FB > 0 ? 'τ = ' + fmt(wub * rperp, 1) + ' N·m each way' : 'no torque about the hips at all',
+    text(ctx, FB > 0 ? 'τ = ' + fmt(wub * rperp, 1) + ' N·m each way' : 'There is no torque about the hips at all.',
       660, 556, C('torque'), { size: 18, weight: 600, align: 'right' });
 
     /* the force the back muscles must exert, against the lean */
     const box = { l: 820, r: 1330, t: 190, b: 520 };
-    /* fixed axes: the heaviest upper body the sliders allow, 80.0 kg, leaned 60° over the shortest
-       lever arm, 4.00 cm, asks (784 N)(0.400 m)(sin 60°) / 0.0400 m = 6790 N, so the graph is
-       always 0 to 60° by 0 to 7000 N, ticked every 1000 N, and never rescales */
-    const FR2 = 7000;
-    const { X, Y } = axes(ctx, box, [0, 60], [0, FR2], {
+    /* fixed axes: the heaviest upper body the sliders allow, 80.0 kg, leaned the full 65° over the
+       shortest lever arm, 4.00 cm, asks (784 N)(0.400 m)(sin 65°) / 0.0400 m = 7100 N, so the graph
+       is always 0 to 70° by 0 to 8000 N, ticked every 10° and every 1000 N, and never rescales */
+    const FR2 = 8000, THR = 70;
+    const { X, Y } = axes(ctx, box, [0, THR], [0, FR2], {
       xl: 'lean θ (°)', yl: 'F_B (N)', yc: C('force'),
-      nx: 6, ny: 7, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
+      nx: 7, ny: 8, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
-    curve(ctx, (t) => Math.min(muscle(t, MU.v, rb), FR2), 0, 60, X, Y, C('force'), 5, 120);
+    curve(ctx, (t) => Math.min(muscle(t, MU.v, rb), FR2), 0, 65, X, Y, C('force'), 5, 120);
     line(ctx, X(TH.v), Y(Math.min(FB, FR2)), X(TH.v), box.b, PAL.muted, 2, [4, 8]);
     pinned(ctx, box, X, Y, TH.v, FB, C('force'), fmt(FB, 0) + ' N');
 
     headline(ctx, TH.v === 0
-      ? 'Standing straight, the weight of the upper body acts through the hips and makes no torque at all'
-      : 'Leaning ' + fmt(TH.v, 0) + '° puts the center of gravity ' + fmt(rperp, 3) + ' m in front of the hips, and the muscles pull ' + fmt(FB, 0) + ' N');
+      ? 'Standing straight, the weight of the upper body acts through the hips and makes no torque at all.'
+      : 'Leaning ' + fmt(TH.v, 0) + '° puts the center of gravity ' + fmt(rperp, 3) + ' m in front of the hips, so the muscles must pull ' + fmt(FB, 0) + ' N.');
     readout(d.readout,
       `\\kFB = \\frac{\\kwub\\,\\krperp}{\\krbperp} = \\frac{(${fmt(wub, 0)}\\ \\text{N})(${fmt(rperp, 3)}\\ \\text{m})}{${fmt(rb, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
       TH.v === 0
@@ -227,7 +237,9 @@ function crate(ctx, cx, top, w, h) {
     const FB = (RUB * wub + rbox * wbox) / RM;
     const FVy = wub + wbox + FB * Math.sin(ANG), FVx = FB * Math.cos(ANG);
     const FV = Math.hypot(FVx, FVy), th = Math.atan2(FVy, FVx) / RAD;
-    const K = 150 / Math.max(FB, 2000);
+    /* The arrows run to a fixed 8,000 N, which is the heaviest box the sliders reach held at the
+       longest reach, so a heavier box lengthens them instead of leaving the drawing as it was. */
+    const K = 150 / 8000;
     const onSpine = (x) => HY - (x - HX) * Math.tan(ANG);
     const xub = HX + RUB * S, xbox = HX + rbox * S;
 
@@ -277,9 +289,11 @@ function crate(ctx, cx, top, w, h) {
 
     /* the three forces side by side, which is the comparison the example ends on */
     const rows = [['the weight supported', wub + wbox], ['the back muscles', FB], ['the vertebrae', FV]];
-    const mx = Math.max(FB, FV, 1), BL = 1000, BW = 280;
+    /* the bars run to a fixed 9,000 N, taken from the heaviest box at the longest reach, so that
+       raising the mass lengthens them rather than leaving the three in the same proportion */
+    const mx = 9000, BL = 1000, BW = 280;
     rows.forEach((row, i) => {
-      const y = 230 + i * 86, w = Math.max((row[1] / mx) * BW, 3);
+      const y = 230 + i * 86, w = Math.max(Math.min(row[1] / mx, 1) * BW, 3);
       text(ctx, row[0], BL - 20, y, PAL.ink, { size: 19, align: 'right' });
       ctx.save(); ctx.fillStyle = C('force'); ctx.fillRect(BL, y - 18, w, 36); ctx.restore();
       text(ctx, fmt(row[1], 0) + ' N', BL + w + 12, y, C('force'), { size: 19, weight: 600, align: 'left' });
@@ -287,7 +301,7 @@ function crate(ctx, cx, top, w, h) {
     text(ctx, 'The muscles and the joint carry many times the weight being lifted.', 1040, 470, PAL.muted, { size: 17, align: 'center' });
 
     headline(ctx, 'A ' + fmt(MBX.v, 1) + ' kg box lifted with the back makes the muscles pull ' + fmt(FB, 0)
-      + ' N and loads the vertebrae with ' + fmt(FV, 0) + ' N');
+      + ' N and loads the vertebrae with ' + fmt(FV, 0) + ' N.');
     readout(d.readout,
       `\\kFB = \\frac{(${fmt(RUB, 3)}\\ \\text{m})\\kwub + (${fmt(rbox, 3)}\\ \\text{m})\\kwbox}{${fmt(RM, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
       'The first condition then gives the force on the vertebrae: its horizontal component is ' + fmt(FVx, 0)
@@ -301,8 +315,8 @@ function crate(ctx, cx, top, w, h) {
    SIM: what the short lever arm buys. The section answers its own
    question about the benefits of attaching muscles close to joints with
    speed, flexibility and agility, and draws nothing for the answer. The
-   biceps runs from the upper arm to a point a few centimetres along the
-   forearm, so closing the elbow shortens it by about a centimetre while
+   biceps runs from the upper arm to a point a few centimeters along the
+   forearm, so closing the elbow shortens it by about a centimeter while
    the hand sweeps ten times as far. The elbow angle is a slider and not
    a clock, so the figure is still, as every figure of this chapter is.
 ===================================================================== */
@@ -354,17 +368,17 @@ function crate(ctx, cx, top, w, h) {
     });
 
     headline(ctx, Math.abs(ph - 90) < 0.5
-      ? 'The forearm is where Example 9.4 holds it. Move the elbow away from 90° and compare the two bars below'
+      ? 'At 90° the forearm stands where Example 9.4 holds it, so neither the biceps nor the hand has moved.'
       : (ph < 90 ? 'Closing' : 'Opening') + ' the elbow to ' + fmt(ph, 0) + '° '
         + (ph < 90 ? 'shortens' : 'lengthens') + ' the biceps by ' + fmt(Math.abs(dL) * 100, 2)
-        + ' cm while the hand sweeps ' + fmt(ds * 100, 1) + ' cm, ' + fmt(ds / Math.abs(dL), 0) + ' times as far');
+        + ' cm while the hand sweeps ' + fmt(ds * 100, 1) + ' cm, which is ' + fmt(ds / Math.abs(dL), 0) + ' times as far.');
     readout(d.readout,
       Math.abs(dL) < 1e-4
-        ? `\\frac{\\Delta s}{\\Delta L}\\ \\text{at}\\ \\varphi = 90^\\circ`
+        ? `\\Delta s = \\Delta L = 0\\ \\text{cm}`
         : `\\frac{\\Delta s}{\\Delta L} = \\frac{${fmt(ds * 100, 1)}\\ \\text{cm}}{${fmt(Math.abs(dL) * 100, 2)}\\ \\text{cm}} = ${fmt(ds / Math.abs(dL), 1)}`,
       Math.abs(dL) < 1e-4
         ? 'Nothing has moved yet, since the arm is still in the position the example draws.'
-        : 'The same short lever arm that makes the biceps pull so hard is what turns a contraction of a centimetre or so into a large and quick movement of the hand. Slide the attachment out along the forearm and the muscle has to travel much farther for the same sweep.');
+        : 'The same short lever arm that makes the biceps pull so hard is what turns a contraction of a centimeter or so into a large and quick movement of the hand. Slide the attachment out along the forearm and the muscle has to travel much farther for the same sweep.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

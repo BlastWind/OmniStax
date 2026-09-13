@@ -25,7 +25,7 @@ the stages. Page structure, one block per idea:
 2. `ejecting-mass` **Ejecting mass, and the acceleration of a rocket** (book:
    the paragraph on Figure 8.12, the momentum $mv$ of the rocket, the mass
    $\Delta m$ of gas ejected at ${v}_{\text{e}}$, the negative impulse
-   $\kdp = -mg\kdt$ of gravity, the centre of mass in free fall, and why the
+   $\kdp = -mg\kdt$ of gravity, the center of mass in free fall, and why the
    thrust is greater in a vacuum; the paragraph that equates the change in
    momentum to the impulse and states the acceleration; the paragraph naming
    "the rocket" and $\kg$; the boxed note Acceleration of a Rocket; Figure
@@ -45,7 +45,7 @@ the stages. Page structure, one block per idea:
    88, worked through its four displayed steps). $\kv$, $m_0$, $m_{\text{r}}$
    and `eq-rocket-velocity` anchor here.
 5. `stages` **Multistage rockets and the space shuttle** (book: the paragraph
-   that turns 1/88 into 98.9 per cent fuel, then $m_0/180$ once drag and
+   that turns 1/88 into 98.9 percent fuel, then $m_0/180$ once drag and
    gravity are counted, and gives multistage rockets as the answer; the
    paragraph on the space shuttle and on launching from an airplane; Figure
    8.13, the photograph).
@@ -68,7 +68,7 @@ questions is a short Remember or Understand check.
 | rocket-thrust | result, eq-rocket-thrust | factors | the paragraph that names thrust and its units; the discussion of Example 8.8; the keyed derivation problem 5 |
 | factors-affecting-rocket-acceleration | idea | factors | the boxed list of three factors and the practical limit on $\kve$; the discussion of Example 8.8; problem 6 |
 | rocket-velocity-mass-ratio | result, eq-rocket-velocity | mass-ratio | the escape-velocity calculation and the ratio 88; problems 3, 4(a), 7, 8 |
-| multistage-rocket | idea | stages | 98.9 per cent fuel, $m_0/180$ with drag, the case for stages, and the shuttle's reusable parts |
+| multistage-rocket | idea | stages | 98.9 percent fuel, $m_0/180$ with drag, the case for stages, and the shuttle's reusable parts |
 
 The section leans on `newtons-third-law` and `thrust` (4.4),
 `newtons-second-law-momentum` (8.1), `impulse` (8.2),
@@ -98,8 +98,12 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    2.5 $\times 10^3$ m/s, default 2.40, velocity, the practical limit the text
    gives), burn rate $\Delta m/\Delta t$ (2 to 20 $\times 10^3$ kg/s, default
    14.0, ink), liftoff mass $m_0$ (0.5 to 4.0 $\times 10^6$ kg, default 2.80,
-   ink) · "t = 0 s · the Saturn V lifts off at 2.20 m/s², a thrust of
-   3.36 × 10⁷ N against a weight of 2.74 × 10⁷ N" · graph beside the scene,
+   ink) · "The rocket lifts off at 2.20 m/s², a thrust of 3.36 × 10⁷ N
+   against a weight of 2.74 × 10⁷ N." · the exhaust is drawn in ink, since a
+   body never takes a type hue (rule 7), and the hue stays on the exhaust
+   velocity arrow and its slider; the two free-body arrows are on one fixed
+   scale, 150 units at 5 × 10⁷ N, and the momentum bar on its own, full at
+   2.2 × 10⁹ kg·m/s, so neither follows the sliders · graph beside the scene,
    since the scene is vertical: $\ka$ against $\kt$, rising from the liftoff
    value to the burnout value, with the moving point on it, and a mass bar
    beneath it that empties as the fuel goes · no. Readout:
@@ -114,9 +118,8 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    exhaust velocity $\kve$ (0.5 to 5.0 $\times 10^3$ m/s, default 2.5,
    velocity, the value the book assumes in the escape calculation), mass ratio
    $m_0/m_{\text{r}}$ (1 to 200, default 88, ink, the value the book works
-   out) · "with an exhaust velocity of 2.50 × 10³ m/s and 88 kg at liftoff for
-   every kilogram left at burnout, the rocket reaches 11.2 × 10³ m/s, which is
-   escape velocity" · graph beside the tall rocket: $\kv$ against the mass
+   out) · "An exhaust velocity of 2.50 × 10³ m/s and a mass ratio of 88 give
+   a final velocity of 11.2 × 10³ m/s." · graph beside the tall rocket: $\kv$ against the mass
    ratio, the logarithm flattening as the ratio grows, with escape velocity
    drawn as a dashed level and the current ratio marked · no. Readout:
    $\kv = \kve\ln(m_0/m_{\text{r}})$ with the numbers; small line on the
@@ -157,7 +160,7 @@ proposals built.
 - 3 conceptual questions, `cq1` to `cq3`, none keyed anywhere in the chapter,
   so each is an open item with an AI-written suggested approach: `cq1`
   (fs-id2554772, the fireworks shell breaking into three pieces, Understand,
-  citing `ejecting-mass`, where the book says the centre of mass of the system
+  citing `ejecting-mass`, where the book says the center of mass of the system
   is in free fall), `cq2` (fs-id1279088, the motionless astronaut in the
   middle of the space station, Understand, citing `propulsion`) and `cq3`
   (fs-id1656529, a rocket moving faster than its own exhaust, Analyze, citing

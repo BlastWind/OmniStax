@@ -192,3 +192,20 @@ Fold pass (2026-09-11): the bouncing car is Figure 16.10 on openstax.org
 and the paper strip Figure 16.11, so `sim-paper-strip` keeps 16.11 as
 its number and lists 16.10 under `folds`; its eyebrow reads "Figure 16.10
 + 16.11", and the text's reference to Figure 16.10 links to the sim.
+
+Audit pass (2026-09-12): the four figure lines above are corrected to what is
+built. No block carries its mass written across it any longer; the label sits
+beside the body, and in `sim-shm-period`, where the two rows are already named
+by their amplitudes, it is dropped. `sim-shm-period` fixes its period axis at
+0 to 3 s, which covers the heaviest car on the softest suspension the sliders
+allow, so a stiffer suspension now flattens the curve; its headline says that
+both amplitudes share the period. `sim-paper-strip` runs the paper in seconds,
+a fixed six seconds of trace, which is two full waves at the slowest period
+and twelve at the fastest, so the period slider now stretches the wave.
+`sim-shm-xva` shows a fixed 2.0 s of history on all three graphs, about three
+periods of the oscillator the book draws, with the position axis at the
+amplitude slider's own plus and minus 0.10 m and the velocity and acceleration
+axes at plus and minus 1.5 m/s and 20 m/s², set from that same default state
+because the slider maxima would flatten the book's own curves; a faster
+setting is drawn clipped with its live point pinned at the edge. All four are
+two-dimensional, with no 3D, and their labels on.

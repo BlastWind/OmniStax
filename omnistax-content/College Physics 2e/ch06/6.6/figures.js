@@ -131,8 +131,8 @@ function pencil(ctx, x, y, cx, cy, color) {
     text(ctx, 'm', P2.x + 30 * Math.cos(th) + 4, P2.y - 30 * Math.sin(th) - 8, PAL.ink, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'a planet', P2.x + 30 * Math.cos(th) + 4, P2.y - 30 * Math.sin(th) + 16, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     headline(ctx, e < 0.005
-      ? 'e = 0.00 · the two foci have met at the center, so the curve is a circle and both distances are 1.00a everywhere on it'
-      : 'e = ' + fmt(e, 2) + ' · the two distances are ' + fmt(d1, 2) + 'a and ' + fmt(d2, 2) + 'a, and they add to 2.00a wherever the pencil sits on the curve');
+      ? 'At e = 0.00 the two foci meet at the center, and both distances are 1.00a everywhere.'
+      : 'At e = ' + fmt(e, 2) + ' the two distances are ' + fmt(d1, 2) + 'a and ' + fmt(d2, 2) + 'a, and they add to 2.00a.');
     readout(d.readout, `d_1 + d_2 = ${fmt(d1, 2)}a + ${fmt(d2, 2)}a = 2.00a`,
       'With M at the focus f₁, the distance from M to m runs from ' + fmt(1 - e, 2) + 'a at the nearest point of the orbit to ' + fmt(1 + e, 2) + 'a at the furthest, and it is ' + fmt(d1, 2) + 'a here.');
   }
@@ -152,7 +152,9 @@ function pencil(ctx, x, y, cx, cy, color) {
   const cy = cycle(() => 1, 1.2);
   const STARTS = [0.0, 0.26, 0.46], MARKS = [['A', 'B'], ['C', 'D'], ['E', 'F']];
   const CX = 400, CY = 360, A = 230;
-  /* the speed of the planet in units of its mean speed, from the vis-viva relation */
+  /* the speed of the planet from the vis-viva relation, in units of 2πa/T, which is the speed a
+     circular orbit of radius a would have. That is not the mean of the speed over the orbit, which
+     has no elementary form, so the figure names the level for what it is. */
   const speedAt = (r, a) => Math.sqrt(Math.max(0, 2 * a / r - 1));
   const at = (f, e) => orbitPoint(CX - A * e, CY, A, e, anomaly(((f % 1) + 1) % 1 * TAU, e));
   function draw() {
@@ -186,16 +188,16 @@ function pencil(ctx, x, y, cx, cy, color) {
     planet(ctx, p.x, p.y, 11, PAL.ink);
     /* the graph: the speed against time for one whole orbit, the three intervals shaded */
     const box = { l: 800, r: 1340, t: 210, b: 520 };
-    const { X, Y } = axes(ctx, box, [0, 1], [0, 2.5], { xl: 't / T', yl: 'v / v̄', xc: C('time'), yc: C('velocity'), nx: 4, ny: 5, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 1) });
+    const { X, Y } = axes(ctx, box, [0, 1], [0, 2.5], { xl: 't / T', yl: 'v ÷ (2πa/T)', xc: C('time'), yc: C('velocity'), nx: 4, ny: 5, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 1) });
     STARTS.forEach((s) => { ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.16); ctx.fillRect(X(s), box.t, X(s + dt) - X(s), box.b - box.t); ctx.restore(); });
     line(ctx, box.l, Y(1), box.r, Y(1), PAL.rule, 2, [10, 10]);
-    text(ctx, 'mean speed', (box.l + box.r) / 2, Y(1) - 15, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the speed of a circular orbit of radius a', (box.l + box.r) / 2, Y(1) - 15, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     curve(ctx, (f) => speedAt(at(f, e).r / A, 1), 0, 1, X, Y, C('velocity'), 5, 140);
     dot(ctx, X(tau), Y(vrel), C('velocity'), true, 9);
     line(ctx, X(tau), Y(vrel), X(tau), box.b, C('velocity'), 2, [4, 8]);
-    headline(ctx, 't = ' + fmt(tau, 2) + 'T · m is ' + fmt(p.r / A, 2) + 'a from M and moving at ' + fmt(vrel, 2) + ' times its mean speed');
+    headline(ctx, 'The planet is ' + fmt(p.r / A, 2) + 'a from M and moving at ' + fmt(vrel, 2) + ' times 2πa/T.');
     readout(d.readout, `\\frac{\\kv_{\\text{near}}}{\\kv_{\\text{far}}} = \\frac{1+e}{1-e} = \\frac{1+${fmt(e, 2)}}{1-${fmt(e, 2)}} = ${fmt((1 + e) / (1 - e), 2)}`,
-      'Each of the three sectors is swept in ' + fmt(dt, 3) + ' of the period and each covers ' + fmt(dt, 3) + ' of the area inside the orbit, which is what Kepler’s second law says: the planet has to move fastest where it is nearest M.');
+      'Each of the three sectors is swept in ' + fmt(dt, 3) + ' of the period and each covers ' + fmt(dt, 3) + ' of the area inside the orbit, which is what Kepler’s second law says. The planet has to move fastest where it is nearest M. The speed is measured against 2πa/T, the speed a circular orbit of radius a would have, and the planet passes through that value twice in every orbit.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
 })();
@@ -255,7 +257,7 @@ function pencil(ctx, x, y, cx, cy, color) {
     text(ctx, 'the Moon', X(Math.log10(MOON_R)) - 16, Y(Math.log10(orbitT(MOON_R, 1))) - 24, PAL.ink, { size: 17, align: 'right' });
     dot(ctx, X(Math.log10(rk)), Y(Math.log10(T)), C('time'), true, 10);
     line(ctx, X(Math.log10(rk)), Y(Math.log10(T)), X(Math.log10(rk)), box.b, C('position'), 2, [4, 8]);
-    headline(ctx, 'r = ' + fmt(rk, 2) + ' × 10³ km · the satellite goes round in ' + sayT(T) + ' at ' + sig3(v) + ' km/s, whatever its own mass is');
+    headline(ctx, 'At ' + fmt(rk, 2) + ' × 10³ km the satellite goes round in ' + sayT(T) + ' at ' + sig3(v) + ' km/s, whatever its mass.');
     readout(d.readout, `G\\frac{mM}{\\kr^2} = m\\kac = m\\frac{\\kv^2}{\\kr} \\;\\Rightarrow\\; \\kv = \\sqrt{\\frac{GM}{\\kr}} = ${sig3(v)}\\ \\text{km/s}, \\quad \\kac = \\frac{\\kv^2}{\\kr} = ${sig3(ac)}\\ \\text{m/s}^2`,
       Math.abs(moonOff - 1) < 0.02
         ? 'The line runs through the Moon’s point, so a parent of ' + fmt(mE, 2) + ' Earth masses is what holds the Moon in an orbit of 384 × 10³ km and 27.3 d. That is how the mass of a parent body is found from a satellite.'
@@ -324,9 +326,9 @@ function pencil(ctx, x, y, cx, cy, color) {
     const ol2 = out2(oH, 32); text(ctx, 'planet', ol2.x, ol2.y, PAL.ink, { size: 18, weight: 600, align: 'center' });
     const loops = Math.floor((t - t0) / syn);
     topline(ctx, t - t0 < 0.3
-      ? 't = ' + fmt(t, 1) + ' y · the two planets have just set out, and the track seen from Earth is only beginning'
-      : 't = ' + fmt(t, 1) + ' y · seen from the Sun the planet runs a plain circle, and seen from Earth it has turned back on itself '
-        + (loops === 0 ? 'not once' : loops === 1 ? 'once' : loops === 2 ? 'twice' : loops + ' times') + ' in the last ' + fmt(t - t0, 1) + ' y');
+      ? 'After ' + fmt(t, 1) + ' y the two planets have just set out, and the track seen from Earth is only beginning.'
+      : 'After ' + fmt(t, 1) + ' y the planet has run a plain circle seen from the Sun, and seen from Earth it has turned back on itself '
+        + (loops === 0 ? 'not once' : loops === 1 ? 'once' : loops === 2 ? 'twice' : loops + ' times') + ' in the last ' + fmt(t - t0, 1) + ' y.');
     readout(d.readout, `\\kT = \\kr^{3/2} = (${fmt(r, 2)})^{3/2} = ${fmt(P, 2)}\\ \\text{y}`,
       'Kepler’s third law fixes the planet’s period from its distance alone, and both pictures hold that one motion. Earth overtakes the planet once every ' + fmt(syn, 2) + ' y, and each time it does, the track on the left turns back on itself.');
   }

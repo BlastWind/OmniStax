@@ -88,6 +88,11 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    with the numbers; small line on the head-to-tail method and on the
    right angle of the book's figure, where the sum is simply
    $\sqrt{\kFone^2 + \kFtwo^2}$. Draws force.
+   Revised in the figure-audit pass of 2026-09-12: the labels set beyond the
+   arrowheads are clamped inside the canvas at every slider setting, so the
+   total force no longer runs off the right edge when both pushes are at
+   their largest, and the total force and the two pushes are drawn with the
+   subscripts the caption uses.
 2. `sim-spring` · replaces Figure 4.4, whose parts (a), (b) and (c) the
    book prints as one image under one number · force-standard, force · **still**: the idea has no
    time in it either. The spring answers its stretch and the scale answers
@@ -136,6 +141,12 @@ Extra simulations (rule 15), considered and left:
   method, and a third arrow only makes the same drawing busier. Left.
 
 None built.
+   Revised in the figure-audit pass of 2026-09-12: the standard stretch and
+   the standard force in the readout are set in the position and force hues
+   as decorated variants rather than left in ink, the restoring force
+   carries its subscript on the canvas, and the small line says that the
+   relaxed length changes where the spring ends and nothing else, since the
+   standard is fixed by the stretch past that length.
 
 ## Exercises
 

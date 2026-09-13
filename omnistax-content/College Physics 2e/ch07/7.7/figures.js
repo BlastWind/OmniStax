@@ -1,7 +1,7 @@
 /* Figures for section 7.7 Power. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, runner, FONT, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, vbracket, axes, nice, runner, FONT, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -80,9 +80,9 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     if (tau > 1e-9) { line(ctx, X(tau), Y(0), X(tau), Y(W * f), PAL.muted, 2, [4, 8]); line(ctx, box.l, Y(W * f), X(tau), Y(W * f), PAL.muted, 2, [4, 8]); }
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
     pinned(ctx, box, X, Y, tau, W * f, C('energy'), whole(W * f) + ' J');
-    headline(ctx, tau < 1e-9 ? 'she stands at the foot of a ' + fmt(h.v, 2) + ' m flight, about to run up it in ' + fmt(T.v, 2) + ' s'
-      : done ? 't = ' + fmt(T.v, 2) + ' s · she reaches the top having done ' + whole(W) + ' J of work, an output of ' + whole(P) + ' W'
-      : 't = ' + fmt(tau, 2) + ' s · she is ' + fmt(100 * f, 0) + '% of the way up and has delivered ' + whole(W * f) + ' J of the ' + whole(W) + ' J, a rate of ' + whole(P) + ' W');
+    topline(ctx, tau < 1e-9 ? 'She stands at the foot of a ' + fmt(h.v, 2) + ' m flight, about to run up it in ' + fmt(T.v, 2) + ' s.'
+      : done ? 'After ' + fmt(T.v, 2) + ' s she reaches the top, having done ' + whole(W) + ' J of work, an output of ' + whole(P) + ' W.'
+      : 'At ' + fmt(tau, 2) + ' s she is ' + fmt(100 * f, 0) + ' percent of the way up and has delivered ' + whole(W * f) + ' J of the ' + whole(W) + ' J, a rate of ' + whole(P) + ' W.');
     readout(d.readout, `\\kP = \\frac{\\kW}{\\kt} = \\frac{\\tfrac{1}{2}m{\\kvf}^2 + m\\kg\\kh}{\\kt} = \\frac{${whole(KE)}\\ \\text{J} + ${whole(PE)}\\ \\text{J}}{${fmt(T.v, 2)}\\ \\text{s}} = ${whole(P)}\\ \\text{W}`,
       'That is ' + fmt(P / HP, 3) + ' hp, since 1 hp = 746 W. Of the ' + whole(W) + ' J the job takes, ' + whole(PE) + ' J go into lifting her and only ' + whole(KE) + ' J into speeding her up, so nearly all of her output is spent on the climb.');
   }
@@ -141,9 +141,9 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     };
     if (below) mark(below, '× ' + factor(P / below[0]));
     if (above) mark(above, '× ' + factor(above[0] / P));
-    headline(ctx, on ? printed + ' W is the power Table 7.3 gives for ' + on[2]
-      : below && above ? printed + ' W falls between ' + below[2] + ' and ' + above[2]
-      : printed + ' W lies beyond every entry of Table 7.3');
+    topline(ctx, on ? printed + ' W is the power Table 7.3 gives for ' + on[2] + '.'
+      : below && above ? printed + ' W falls between ' + below[2] + ' and ' + above[2] + '.'
+      : printed + ' W lies beyond every entry of Table 7.3.');
     readout(d.readout, `\\kP = ${M.v === 1 ? '' : fmt(M.v, 1) + ' \\times '}10^{${N.v}}\\ \\text{W}`,
       below && above ? 'That is ' + factor(P / below[0]) + ' times the ' + below[1] + ' W of ' + below[2] + ' and ' + factor(P / above[0]) + ' of the ' + above[1] + ' W of ' + above[2] + '. A factor of that kind, read off two rows of Table 7.3, is what the first two problems of the section ask for.'
         : 'The scale runs from the 10⁻³ W of a pocket calculator to beyond the 5 × 10³⁷ W of a supernova, and every entry of Table 7.3 has a bar on it.');
@@ -184,10 +184,10 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     text(ctx, 'the meter turns once for every kilowatt-hour', 190, 302, PAL.muted, { size: 17, align: 'center' });
     /* the two things the rate of spending is made of */
     const bl = 400, bw = 420;
-    const bar = (y, frac, colour, caption, scale) => {
-      text(ctx, caption, bl, y - 34, colour, { size: 20, weight: 600 });
+    const bar = (y, frac, color, caption, scale) => {
+      text(ctx, caption, bl, y - 34, color, { size: 20, weight: 600 });
       line(ctx, bl, y, bl + bw, y, PAL.rule, 26);
-      line(ctx, bl, y, bl + bw * frac, y, colour, 26);
+      line(ctx, bl, y, bl + bw * frac, y, color, 26);
       text(ctx, scale, bl + bw + 14, y, PAL.muted, { size: 17 });
     };
     bar(158, P.v / 5, C('power'), 'it draws ' + fmt(P.v, 2) + ' kW', 'of 5 kW');
@@ -209,9 +209,9 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
     pinned(ctx, box, X, Y, tau, E, C('energy'), fmt(E, 1) + ' kW·h');
     text(ctx, money(E * PR.v), clamp(X(tau), box.l + 50, box.r - 50), Y(cl(E)) - 30, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    headline(ctx, tau < 1e-9 ? 'the month begins, and the appliance has taken nothing from the supply yet'
-      : done ? 'after ' + DAYS + ' days the appliance has used ' + fmt(Etot, 1) + ' kW·h, which at ' + money(PR.v) + ' per kW·h comes to ' + money(Etot * PR.v) + ' for the month'
-      : 'day ' + fmt(tau, 1) + ' of ' + DAYS + ' · the appliance has used ' + fmt(E, 1) + ' kW·h, which comes to ' + money(E * PR.v) + ' so far');
+    topline(ctx, tau < 1e-9 ? 'The month begins, and the appliance has taken nothing from the supply yet.'
+      : done ? 'After ' + DAYS + ' days the appliance has used ' + fmt(Etot, 1) + ' kW·h, which at ' + money(PR.v) + ' per kW·h comes to ' + money(Etot * PR.v) + ' for the month.'
+      : 'On day ' + fmt(tau, 1) + ' of ' + DAYS + ' the appliance has used ' + fmt(E, 1) + ' kW·h, which comes to ' + money(E * PR.v) + ' so far.');
     readout(d.readout, `\\kE = \\kP\\kt = (${fmt(P.v, 3)}\\ \\text{kW})(${fmt(HRS.v, 2)}\\ \\text{h/d})(${fmt(DAYS, 1)}\\ \\text{d}) = ${fmt(Etot, 1)}\\ \\text{kW}\\cdot\\text{h}`,
       'At ＄' + fmt(PR.v, 3) + ' per kilowatt-hour that comes to ＄' + fmt(Etot * PR.v, 2) + ' for the month. The bill falls just as fast whether you cut the power the appliance draws or the hours you leave it running, which is why a water heater is worth going after and a toaster is not.');
   }

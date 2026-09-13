@@ -102,6 +102,14 @@ graph · 3D
    Readout: $\kFnet = \kFone + \kFtwo - \kff$ with the numbers, and
    $\ka = \kFnet/m$; small line on the vertical forces cancelling. Draws
    force, acceleration, velocity, time.
+   Revised in the figure-audit pass of 2026-09-12: the ground is ruled 0 to
+   14 m at a fixed scale, with a meter scale under the strip, so a larger
+   net force really does carry the wagon farther; a run that passes the end
+   holds the wagon at the last mark and the headline gives its true
+   distance. The arrow labels flip back to the tails of their arrows late in
+   the run, the net force is drawn in the force hue rather than the
+   acceleration hue and told apart by the row it stands on, and the headline
+   is one capitalized sentence.
 2. `sim-mass` · replaces Figure 4.6 (the basketball and the SUV) ·
    newtons-second-law, net-external-force · **still**: the two accelerations
    are thousands apart, so no shared strip could carry both, and the idea
@@ -117,6 +125,12 @@ graph · 3D
    on each and the acceleration printed over each. Readout: $\ka = \kF/m$
    twice, once for each body; small line saying the force is the same and
    only the mass differs. Draws force, acceleration.
+   Revised in the figure-audit pass of 2026-09-12: the book's part (c) is
+   drawn: two identical one-arrow free-body diagrams under the two scenes,
+   the same push on each. The ball and the SUV are marked with pinned(), so
+   a point that falls below the floor of the graph is pinned at that edge
+   with its value rather than drawn outside the frame, and the headline is
+   one capitalized sentence.
 3. `sim-mower` · replaces Figure 4.7 (the lawn mower of Example 4.1) ·
    newtons-second-law, newton-unit · **moves**: the mower is pushed from rest
    across the lawn for three seconds under the net force, the velocity arrow
@@ -130,6 +144,11 @@ graph · 3D
    place the newton is defined; small line on the direction of the
    acceleration being the direction of the net force. Draws force,
    acceleration, velocity, position.
+   Revised in the figure-audit pass of 2026-09-12: the lawn is ruled 0 to 12
+   m at a fixed scale, with a meter scale under the strip; a run that passes
+   the end holds the mower at the last mark and the headline gives its true
+   distance. The arrow labels flip back to the tails of their arrows late in
+   the run, and the headline is one capitalized sentence.
 4. `sim-sled` · replaces Figure 4.8 (the rocket sled of Example 4.2) ·
    newtons-second-law, net-external-force, friction · **moves**: the sled
    runs down its rail for two seconds with the burning rockets drawn firing;
@@ -150,6 +169,12 @@ graph · 3D
    minimum, which is why the friction arrow is larger than scale, as the
    book’s own caption says of Figure 4.8. Draws force,
    acceleration, velocity.
+   Revised in the figure-audit pass of 2026-09-12: how many of the four
+   rockets are burning is an F.choice of 1 to 4 and no longer a slider, the
+   rail is ruled 0 to 100 m at a fixed scale with a meter scale under the
+   strip, the arrow labels flip back to the tails of their arrows late in
+   the run, the net force is drawn in the force hue, and the headline is one
+   capitalized sentence.
 5. `sim-weight` · **Sim**, replacing nothing in the book · weight,
    mass-versus-weight · **still**: the figure answers its sliders and nothing
    else, since weight has no time in it; a mass sits on a bathroom scale
@@ -205,6 +230,12 @@ Extra simulations (rule 15), considered and judged:
 
 One built, two left. Of the five figures, three move and two are still
 by the test of rule 14.
+   Revised in the figure-audit pass of 2026-09-12: the mass runs 0.1 to 2.0
+   kg with a detent at the 1.0 kg the section works with, so the fixed 0 to
+   24 N weight axis holds every setting instead of clipping above 1.2 kg;
+   the gravity slider steps by 0.005 m/s² and carries ticks at the Moon's
+   1.625 and Earth's 9.80, which the step lands on exactly, and the headline
+   is one capitalized sentence.
 
 ## Exercises
 

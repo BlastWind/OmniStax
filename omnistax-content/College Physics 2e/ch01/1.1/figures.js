@@ -53,12 +53,13 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     /* what the drawing shows, at the right */
     const lx = 1010;
     dot(ctx, lx, 170, PAL.ink, true, 9); text(ctx, 'an electron', lx + 26, 170, PAL.muted);
-    nucleus(ctx, lx, 226, 3, 6); text(ctx, 'the nucleus, ' + z + (z === 1 ? ' proton' : ' protons'), lx + 26, 226, PAL.muted);
+    nucleus(ctx, lx, 226, 3, 6); text(ctx, 'the nucleus, which holds ' + z + (z === 1 ? ' proton' : ' protons'), lx + 26, 226, PAL.muted);
     line(ctx, lx - 14, 274, lx + 14, 274, PAL.rule, 3); text(ctx, 'one orbit for each shell', lx + 26, 274, PAL.muted);
     shells.forEach((n, s) => text(ctx, ORD[s] + ' shell, ' + n + ' of ' + SHELL[s] + (n === 1 ? ' electron' : ' electrons'), lx - 14, 340 + 40 * s, n ? PAL.ink : PAL.muted, { size: 20, weight: n ? 600 : 400 }));
-    headline(ctx, NAMES[z - 1] + ': ' + WORDS[z - 1] + (z === 1 ? ' electron orbits' : ' electrons orbit') + ' a nucleus of ' + WORDS[z - 1] + (z === 1 ? ' proton' : ' protons') + ', in the picture the model gives us');
-    readout(d.readout, '\\text{diameter of the atom} \\approx 10^{-10}\\ \\text{m}',
-      'The nucleus is about 10⁵ times smaller than the atom, so a drawing to scale would show nothing but the orbits. The model is not a photograph; it is a picture that helps explain what we can measure.');
+    const an = /^[aeiou]/.test(NAMES[z - 1]) ? 'an ' : 'a ';
+    headline(ctx, 'In this picture ' + WORDS[z - 1] + (z === 1 ? ' electron goes' : ' electrons go') + ' round the nucleus of ' + an + NAMES[z - 1] + ' atom, which holds ' + WORDS[z - 1] + (z === 1 ? ' proton' : ' protons') + '.');
+    readout(d.readout, z + '\\ \\text{electrons go round } ' + z + '\\ \\text{protons, and the shells hold } ' + shells.join(' + ') + '\\ \\text{of them}',
+      'The atom is about 10⁻¹⁰ m across and its nucleus is about 10⁵ times smaller, so a drawing to scale would show nothing but the orbits. The model is not a photograph. It is a picture that helps explain what we can measure, such as the light a hot gas gives off.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

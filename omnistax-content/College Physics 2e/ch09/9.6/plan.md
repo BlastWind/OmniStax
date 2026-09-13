@@ -93,10 +93,14 @@ id · replaces or Sim · concepts · what moves · sliders · headline · graph 
    distance from the elbow to where the biceps pulls (2.0 to 8.0 cm,
    default 4.0, position); the mass of the book (0 to 8.0 kg, default 4.00,
    ink); $\krthree$, the distance from the elbow to the book (25 to 45 cm,
-   default 38.0, position) · "r₁ = 4.0 cm · the biceps pulls with 470 N to
-   hold 63.7 N, 7.38 times the weight it supports" · graph below the
+   default 38.0, position) · "Pulling 4.0 cm from the elbow, the biceps
+   exerts 470 N to hold 63.7 N, which is 7.38 times the weight it
+   supports." · graph below the
    horizontal scene: $\kFB$ against $\krone$, the curve rising steeply as
-   the tendon moves towards the joint, with the set value marked · no.
+   the tendon moves towards the joint, with the set value marked. The
+   arrows in the scene are drawn to a fixed 500 N, which is what the book's
+   own forearm asks, so a heavier book lengthens them; one that would pass
+   it stops there and the labels go on giving the true forces · no.
    Readout: `eq-biceps-force` with the live numbers; small line on the
    407 N the humerus pushes down with at the elbow and on the 63.7 N that
    is left. Draws force, position, torque (the two turning arcs at the
@@ -104,18 +108,20 @@ id · replaces or Sim · concepts · what moves · sliders · headline · graph 
 2. `sim-posture` · replaces Figure 9.26 (good and bad posture) ·
    posture-and-back-strain, muscle-force-from-torque · **still**: the body
    stands, and the lean is a slider rather than a fall · the lean of the
-   upper body away from the vertical (0º to 60º, default 0º, ink); the mass
+   upper body away from the vertical (0º to 65º, default 0º, ink, with soft
+   detents on the upright position and on the 61º of Example 9.5); the mass
    of the upper body (40 to 80 kg, default 55.0, ink); the perpendicular
    lever arm of the back muscles (4.0 to 12.0 cm, default 8.0, position) ·
-   at 0º, "Standing straight, the upper body's weight of 539 N acts
-   straight through the hips, so it makes no torque and the back muscles
-   pull with nothing at all"; leaning, "Leaning 30º puts the center of
-   gravity 0.200 m in front of the hips, and the back muscles must pull
-   with 1350 N" · graph beside the vertical scene: the force in the back
+   at 0º, "Standing straight, the weight of the upper body acts through the
+   hips and makes no torque at all."; leaning, "Leaning 30º puts the center
+   of gravity 0.200 m in front of the hips, so the muscles must pull
+   1350 N." · graph beside the vertical scene: the force in the back
    muscles against the lean · no. The upper body's center of gravity is
-   taken 0.400 m from the hips along the spine, which is the number that
-   makes its perpendicular lever arm the 0.350 m of Example 9.5 at the lean
-   the book draws there; the book gives no dimensions on Figure 9.26
+   taken 0.400 m from the hips along the spine, which makes its
+   perpendicular lever arm the 0.350 m of Example 9.5 at a lean of 61º; the
+   lean therefore runs to 65º rather than 60º, so that the example's own
+   state is reachable and carries a detent of its own. The book gives no
+   dimensions on Figure 9.26
    itself, and the plan records the choice rather than leaving it to be
    rediscovered. Draws force, position, torque.
 3. `fig-stance` · photograph, Figure 9.27, **kept**: the text points the
@@ -128,20 +134,26 @@ id · replaces or Sim · concepts · what moves · sliders · headline · graph 
    **still**: the box is lifted at constant speed, so the scene is a frozen
    one · the mass of the box (0 to 50 kg, default 30.0, ink); the distance
    from the hips to the box (30 to 70 cm, default 50.0, position); the mass
-   of the upper body (40 to 80 kg, default 55.0, ink) · "Lifting a 30.0 kg
-   box with the back makes the back muscles pull with 4200 N and loads the
-   vertebrae with 4660 N, 5.59 times the 833 N being supported" · no graph;
+   of the upper body (40 to 80 kg, default 55.0, ink) · "A 30.0 kg
+   box lifted with the back makes the muscles pull 4196 N and loads the
+   vertebrae with 4657 N." · no graph;
    three bars beside the scene compare the weight supported, the force in
    the back muscles and the force on the vertebrae, which is the comparison
-   the example ends on · no. Readout: the torque balance solved for $\kFB$
+   the example ends on, all three drawn to a fixed 9,000 N taken from the
+   heaviest box at the longest reach, and the scene's arrows to a fixed
+   8,000 N · no. Readout: the torque balance solved for $\kFB$
    with the live numbers; small line on $\kFV$ and its direction. Draws
    force, position, torque.
 5. `sim-lever-arm-trade` · **Sim**, replaces nothing · benefits-of-short-lever-arms,
    muscle-lever-system · **still**: the elbow angle is a slider, not a
    clock, and the chapter draws no motion · the elbow angle (40º to 140º,
    default 70º, ink); $\krone$, where the biceps is attached (2.0 to 8.0 cm,
-   default 4.0, position) · "Closing the elbow from 90º to 70º shortens the
-   biceps by 1.39 cm while the hand sweeps 13.3 cm, ten times as far" · no
+   default 4.0, position) · "Closing the elbow to 70º shortens the
+   biceps by 1.39 cm while the hand sweeps 13.3 cm, which is ten times as
+   far."; at 90º, where nothing has yet moved, "At 90º the forearm stands
+   where Example 9.4 holds it, so neither the biceps nor the hand has
+   moved.", and the readout is then the equation $\Delta s = \Delta L = 0$
+   rather than a ratio of nothing to nothing · no
    graph; two bars drawn to one scale under the scene, the contraction
    beside the movement of the hand · no. The biceps is taken to run from
    0.250 m up the humerus to $\krone$ along the forearm, and the hand sits

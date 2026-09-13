@@ -121,12 +121,17 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    is a picture · the walk of Example 3.1 laid head to tail in the order
    A, B, C in muted ink and again in the chosen order in full ink, both
    from the same starting point, the resultant drawn once because it is
-   the same arrow · the order (1 to 6, step 1, ink; 1 is A B C, 2 is A C
-   B, 3 is B A C, 4 is B C A, 5 is C A B, 6 is C B A), and the three
+   the same arrow · the order as a dropdown of the six arrangements, since
+   six options would wrap a button row and an order is a state rather
+   than a quantity (rule 26.1), default C + A + B, and the three
    directions θ_A (−180 to 180, default 49.0), θ_B (default 15.0), θ_C
-   (default −68.0), all ink · "added as C, then A, then B, the vectors
-   end at the same point: R is 50.8 m at 5.47° south of east" · none ·
-   no. Readout: $\mathbf{C} + \mathbf{A} + \mathbf{B} = \mathbf{A} +
+   (default −68.0), all ink · "Added as C, then A, then B, the sum ends
+   at the same point, so R is again 50.8 m at 5.47° south of east." ·
+   none · 2D. The scale is a fixed 3.5 units to the metre, which holds
+   the 80 m the three legs can reach when they all point the same way, so
+   the walk never leaves the drawing. Each leg is named once, on the
+   chosen order; the faint reference walk carries no labels of its own.
+   Readout: $\mathbf{C} + \mathbf{A} + \mathbf{B} = \mathbf{A} +
    \mathbf{B} + \mathbf{C} = \mathbf{R}$, $\kR = 50.8\ \text{m}$; small
    line: vector addition is commutative, as 2 + 3 and 3 + 2 are. Draws
    position (the resultant's magnitude in the readout).
@@ -145,7 +150,14 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    θ_A (0 to 180, default 66.0, ink), $\kB$ (5.0 to 40.0 m, default
    30.0, position hue), θ_B (0 to 180, default 112.0, ink) · "A − B is
    22.6 m at 6.9° south of east, while the dock at A + B is 52.9 m at
-   90.1° north of east" · none · no. Readout: $\mathbf{A} - \mathbf{B} =
+   90.1° north of east." · none · 2D. The scale is a fixed 4 units to the
+   metre, which holds the 80 m the two legs can reach together, so the
+   drawing never runs off the canvas. The small line says that these
+   numbers are computed from the two legs while the example measures its
+   own drawing with a ruler and a protractor and reports 23.0 m at 7.5°
+   south of east, and that a reading taken off a drawing is good to about
+   a part in fifty, so the two agree as closely as the graphical method
+   allows. Readout: $\mathbf{A} - \mathbf{B} =
    \mathbf{A} + (-\mathbf{B})$, $\kR = 22.6\ \text{m}$; small line: the dock
    and the place she reaches are 2B = 60.0 m apart. Draws position. The
    sim computes the difference exactly, 22.6 m at 6.9° south of east,
@@ -179,8 +191,11 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    under rule 14: labelled Figure, no sliders, no motion · the grid of
    blocks 120 m on a side, the compass, the Start and the second start,
    and paths A, B, C and D told apart by their dash patterns, since the
-   page colours only types · none · "all blocks are 120 m on a side" ·
-   none · no. Draws nothing; the book's image is its original.
+   page colours only types · none · "All blocks are 120 m on a side, and
+   each path is walked in the direction of its arrowheads." · none · 2D.
+   The header and the lead above it say what the map shows rather than
+   which problems refer to it, since a page never talks about itself
+   (rule 17). Draws nothing, and the book's image is its original.
 
 Photographs, one:
 

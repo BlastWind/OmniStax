@@ -82,12 +82,14 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    slider and nothing else, so it registers no cycle and carries no
    transport · a target for the renewable share (7.2 to 80 percent,
    step 0.1, default 7.2, ink, since a percentage is untyped) ·
-   "renewable sources supply 7.2% of the world's energy, and oil, coal
-   and natural gas supply 87.0% of it", and once the target is raised,
-   "raising renewable sources from 7.2% to 30.0% means moving 22.8
-   percentage points out of oil, coal, natural gas and nuclear power" ·
-   no separate graph: two hundred-percent bars are the drawing · no.
-   The book's seven shares are drawn as one bar, the four nonrenewable
+   "In 2006 renewable sources supplied 7.2 percent of the world's energy,
+   and oil, coal and natural gas supplied 87.0 percent of it.", and once
+   the target is raised, "Moving from 7.2 percent renewable to 30.0
+   percent takes 22.8 percentage points out of oil, coal, gas and nuclear
+   power." · no separate graph: two hundred-percent bars are the drawing ·
+   2D. Labels are on: each source names itself on its own row and a two-
+   entry key tells the 2006 bar from the target bar. The seven shares are
+   drawn as one bar, the four nonrenewable
    sources first and the three renewable ones after a gap, with the
    renewable group bracketed; a second bar below it holds the same seven
    sources with the renewable share raised to the target, and a legend
@@ -102,10 +104,12 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    · the annual growth rate (0.50 to 4.00 percent a year, step 0.01,
    default 1.74, ink) and the year (1990 to 2035, step 1, default 2035,
    ink, since a calendar year names a date rather than a duration) ·
-   "at 1.74% a year the world's energy use reaches 812 EJ in 2035, 2.2
-   times the 373 EJ of 1990" · the graph is the figure, energy against
-   year · no. The two numbers the book's chart gives, 373 EJ in 1990 and
-   a projected 812 EJ in 2035, are marked as hollow points, and the
+   "At 1.74 percent a year the world's energy use reaches 812 EJ in 2035,
+   which is 2.2 times the 373 EJ of 1990." · the graph is the figure,
+   energy against year on fixed axes of 1990 to 2035 by 0 to 2,400 EJ ·
+   2D. Labels are on: four of them. The two numbers the section gives,
+   373 EJ in 1990 and a projected 812 EJ in 2035, are marked as hollow
+   points, and the
    curve is steady growth at the rate set, which passes through both at
    1.74 percent. The book's bars are not redrawn, because the bundle
    gives only those two numbers and the rest would have to be invented;
@@ -115,10 +119,15 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
 3. `sim-country` · new (Sim) · renewable-energy,
    energy-and-economic-wellbeing · **still**: a table of one year has no
    time in it · a threshold for the renewable share (0 to 50 percent,
-   step 1, default 15, ink) · "three of the eleven countries listed draw
-   more than 15% of their energy from renewable sources, and Brazil
-   leads with 45.8%" · no separate graph: twelve hundred-percent bars
-   are the drawing · no. Every row of Table 7.6 becomes one bar, the
+   step 1, default 15, ink) · "3 of the 11 countries listed draw 15
+   percent or more of their energy from renewable sources." · no separate
+   graph: twelve hundred-percent bars are the drawing · 2D. The six
+   sources that make up a bar carry no type and no element of their own,
+   so they are told apart by the categorical palette rather than by six
+   strengths of one hue, which no reader could match to a key (rule 7);
+   the energy hue stays on each country's total in exajoules. Labels are
+   on: a six-entry key above the chart and one name to a row. Every row
+   of Table 7.6 becomes one bar, the
    hydro and other renewable columns first so that a single dashed line
    at the threshold cuts the countries that clear it from the countries
    that do not, sorted by renewable share, with each country's total in
@@ -179,7 +188,8 @@ Extra simulations (rule 15). Thought through, then judged:
    friction of 5.1 do) and the number of transformations (1 to 5, step 1,
    default 3, ink) · "after 3 transformations at 35% each, 4.3 J of the
    original 100 J can still do work, and the other 95.7 J has been
-   degraded to waste heat" · no separate graph · no. One row per stage,
+   degraded to waste heat." · no separate graph · 2D. Labels are on: one
+   name to a row and the two headings above the chart. One row per stage,
    every row the same length, the part still able to do work at the left
    in the energy hue and the part degraded to waste heat at the right in
    the same hue at low alpha, with the fixed right-hand edge labelled so

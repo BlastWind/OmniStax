@@ -70,18 +70,22 @@ graph · 3D
    figure replaces nothing · linear-momentum, calculate-momentum ·
    **moves**: the idea has a time in it, because a speed is only visible as
    ground covered in a time. The football player and the football start
-   together at the left of a thirty-metre strip and each travels at its own
+   together at the left of a thirty-meter strip and each travels at its own
    speed, so the ball outruns the player across the picture while the
    momentum bar beneath the player stays far the longer of the two; one run
    of the strip per loop, with the scrubber · the player's mass (50 to 150
-   kg, default 110, ink), the player's speed $\kv$ (2.0 to 15.0 m/s,
+   kg, default 110, ink), the player's speed $\kv$ (1.0 to 15.0 m/s,
    default 8.00, velocity), the football's mass (0.100 to 2.000 kg, default
    0.410, ink), the football's speed $\kv$ (5.0 to 40.0 m/s, default 25.0,
-   velocity) · "t = 0.60 s · the football has gone 15.0 m and the player
-   4.8 m, and yet the player carries 85.4 times the momentum" · no graph:
-   the two lanes and the two momentum bars beneath them are the picture ·
-   no 3D. Readout: $\kpplayer = m\kv$ and $\kpball = m\kv$ with the numbers;
-   small line on the ratio of the two. Draws momentum and velocity.
+   velocity) · "At t = 0.60 s the player carries 85.4 times the momentum of
+   the football." · no graph: the two lanes and the two momentum bars
+   beneath them are the picture · no 3D. Readout: $\kpplayer = m\kv$ with the
+   numbers; small line on the football and on the ratio of the two. Draws
+   momentum and velocity. Both bar scales are fixed and never move: 560
+   units at 40 m/s and 900 units at 2,250 kg·m/s, the most the sliders can
+   reach, so the football's momentum reads as the stub beside the player's
+   that the example says it is. The player's speed reaches down to a walk so
+   that the two momenta can be made to match, as the caption invites.
 2. `sim-force` · **Sim**, no number: the book draws nothing here either ·
    newtons-second-law-momentum, constant-mass-second-law · **moves**: the
    idea has a time in it, since the momentum accumulates while the racquet
@@ -91,9 +95,10 @@ graph · 3D
    straight line until the ball leaves at $\kvf$; one contact per loop,
    with the scrubber · the ball's mass (0.020 to 0.200 kg, default 0.057,
    ink), the speed just after impact $\kvf$ (10.0 to 80.0 m/s, default
-   58.0, velocity), the contact time $\kdt$ (1.0 to 40.0 ms, default 5.0,
-   time) · "t = 3.0 ms · the ball has taken up 2.0 of the 3.3 kg·m/s the
-   racquet will give it, at a steady 661 N" · graph below the scene: the
+   58.0, velocity), the contact time $\kdt$ (1.0 to 10.0 ms, default 5.0,
+   time, with a detent at the 5.0 ms of the example; the range is the range
+   of the time axis, so no label ever leaves the graph) · "At t = 3.0 ms the
+   ball has taken up 2.0 of the 3.3 kg·m/s the racquet will give it." · graph below the scene: the
    momentum of the ball against time, a straight line from zero to $\kdp$
    whose slope is $\kFnet$, with the slope triangle drawn and labelled ·
    no 3D. Readout: $\kFnet = \kdp/\kdt = m(\kvf - \kvi)/\kdt$ with the

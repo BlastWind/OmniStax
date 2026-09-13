@@ -56,10 +56,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    (1 to 100, step 1, default 39, ink), height of a person (1.5 to
    2.0 m, step 0.1, default 2.0, ink), persons per story (1 to 3, step
    0.5, default 2, ink) · "39 stories of about 4 m each make a building
-   about 156 m tall" · none · no. The drawing is scaled so the finished
-   building fills the canvas height, so the person beside it shrinks as
-   the building grows; that is why the magnified ground story is there,
-   since at 39 stories a true-scale person is a few units tall.
+   about 156 m tall." · none · 2D. The drawing is scaled once from the
+   tallest the sliders allow, 100 stories of 6 m each, so a one-story
+   building and a hundred-story building are drawn as different as they
+   are and the scale never follows the building. A person to that scale
+   is a few units tall, which is why the magnified ground story stands
+   on the left. Labels on, four of them, each beside something that
+   stays put.
    Readout: (2 m / 1 person) × (2 persons / 1 story) × 39 stories =
    156 m, with the live values. Small line: the estimate is only as good
    as its inputs, and the ranges of the sliders put it within a factor of
@@ -73,11 +76,17 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    its final height, which is labelled at the top · amount (0.1 to
    30.0 trillion dollars, step 0.1, default 1.0, ink), thickness of a
    stack of 100 bills (0.3 to 0.7 in., step 0.05, default 0.5, ink) ·
-   "one trillion dollars in $100 bills covers the field to a height of
-   about 100 in., or about 8 ft" · none · no. The height is computed
+   "One trillion dollars in $100 bills covers the field to a height of
+   about 100 in., or about 8 ft." · none · 2D. The feet scale is fixed at
+   0 to 40 ft, which holds the example's pile with room to spare and
+   never follows it; a pile taller than that is drawn to the top of the
+   scale with its true height written above it and said in the headline.
+   The sliders are named for what they set, an amount in trillions of
+   dollars and the thickness of one stack in inches. Labels on, five of
+   them, each beside something that stays put. The height is computed
    from the set numbers with the field's true area, 6.48 × 10⁶ in.²,
    and rounded to one significant figure in the headline as the example
-   does; the unrounded value is drawn and printed on the pile.
+   does, while the unrounded value is drawn and printed on the pile.
    Readout: height = volume / area with the live numbers, the quotient
    before rounding, then the one-figure value and its feet. Small line:
    the unrounded height, and what 28 trillion (the 2021 federal debt the

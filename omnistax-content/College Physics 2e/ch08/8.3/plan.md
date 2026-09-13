@@ -31,14 +31,14 @@ of the argument they carry:
    here, and so do the six equations of the derivation.
 3. `conservation` **The conservation of momentum principle** (book: the
    result generalised to any isolated system, $\kptot = \text{constant}$
-   and $\kptot = \kptotprime$, the parenthesis on the centre of mass, the
+   and $\kptot = \kptotprime$, the parenthesis on the center of mass, the
    definition of the isolated system, the two boxed notes, and the shorter
    argument from Newton's second law in terms of momentum). Introduces
    `conservation-of-momentum` and `isolated-system`; $\kptot$,
    $\kptotprime$, $\kFnet$ and the three equations of the principle anchor
-   here. The paragraph that carries the sentence on the centre of mass is
+   here. The paragraph that carries the sentence on the center of mass is
    the block's `cite-target`, since that one sentence is all the text the
-   centre-of-mass exercises have to lean on.
+   center-of-mass exercises have to lean on.
 4. `directions` **Momentum along one direction and not another** (book:
    the three independent length dimensions, the projectile, Figure 8.4, the
    comet and the gas, the two Take-Home Investigations and the Making
@@ -82,17 +82,22 @@ with their types · headline · graph or none · 3D or not
 1. `sim-collision` · replaces **Figure 8.3** (the two cars before and after
    the bump) · momentum-changes-cancel, conservation-of-momentum,
    isolated-system · **moves**: the trailing car catches the lead car,
-   the two touch for a tenth of a second, and they coast apart again; the
+   the two touch for a fifth of a second, and they coast apart again; the
    bump is an event in time, so the figure loops once per pass with the
    scrubber, and during the contact the two forces $\kFone$ and $\kFtwo$
    are drawn on the cars, equal in length and opposite in direction ·
    $m_1$ (600 to 2000 kg, default 1200, ink, since a mass is untyped),
    $\kvone$ (6 to 20 m/s, default 15.0, velocity), $\kvtwo$ (2 to 14 m/s,
-   default 8.0, velocity) and the bounce of the bumpers (0 to 1, default
-   0.40, ink, a dimensionless coefficient); the lead car's mass is fixed
-   at 1000 kg and labelled on the car · "t = 1.20 s · car 1 has lost
-   2,730 kg·m/s and car 2 has gained the same, so the total is still
-   26,000 kg·m/s" · graph below the strip: the momentum of each car and
+   default 8.0, velocity) and $c$, the speed the bumpers separate at divided
+   by the speed they met at (0 to 1, default 0.40, ink, a dimensionless
+   coefficient, with detents at 0 and 1 and the same name the slider of 8.5
+   carries); the lead car's mass is fixed at 1000 kg and labelled above the
+   car · "Car 1 has lost 2,730 kg·m/s and car 2 has gained the same, so the
+   total is still 26,000 kg·m/s." · the road is a fixed ninety-six meters
+   with a scale in meters along it, the farthest the lead car can be down it
+   after the four seconds of the pass, and the momentum arrows are on a
+   fixed scale of 240 units at 40,000 kg·m/s, so neither follows the sliders
+   · graph below the strip: the momentum of each car and
    the total against time, the two curves stepping in opposite directions
    at the bump while the total runs flat through it · no 3D. Readout:
    $\kpone + \kptwo = \kponeprime + \kptwoprime$ with the live numbers;
@@ -101,14 +106,17 @@ with their types · headline · graph or none · 3D or not
 2. `sim-probe` · replaces **Figure 8.4** (the space probe separating in
    flight) · momentum-conserved-by-direction, conservation-of-momentum ·
    **moves**: the probe climbs its parabola, splits into two equal halves
-   at the top, and the halves fly on while the centre of mass keeps the
+   at the top, and the halves fly on while the center of mass keeps the
    parabola the whole probe would have followed; the flight has a time in
    it, so it loops once per flight with the scrubber · $\kvo$ (200 to 800
    m/s, default 500, velocity), the launch angle $\theta_0$ (30º to 80º,
-   default 60º, ink) and the separation impulse $\Delta \kp$ (0 to 400,000
-   kg·m/s, default 200,000, momentum) · "t = 62.0 s · the two halves are
-   4.6 km apart, the horizontal momentum is still 250,000 kg·m/s, and the
-   vertical momentum has fallen to −186,000 kg·m/s" · graph below: the
+   default 60º, ink) and the separation impulse $\Delta \kp$ (0 to 100,000
+   kg·m/s, default 50,000, momentum) · "The horizontal momentum is still
+   250,000 kg·m/s, and the vertical momentum has fallen to −186,000 kg·m/s."
+   · the sky is a fixed eighty kilometers across by thirty-four high, with a
+   scale along the ground, so that a faster launch draws a longer arc rather
+   than the same one over again, and the momentum arrows in the corner are
+   on a fixed scale of 200 units at 800,000 kg·m/s · graph below: the
    horizontal and the vertical momentum of the system against time, the
    first a flat line through the separation and the second a straight fall
    of slope $-M\kg$ · no 3D. Readout: $\kpx = \text{constant}$ beside
@@ -123,8 +131,11 @@ with their types · headline · graph or none · 3D or not
    Mm/s, default 10.0, velocity), the fraction ${v'}_1/\kvone$ the
    electron keeps (−1.00 to 1.00, default −0.95, ink, a ratio), and the
    target's mass in electron masses (1 to 2000, default 1836, the proton,
-   ink) · "the electron comes straight back at 9.50 Mm/s, and the target,
-   1,836 times as massive, moves off at only 0.0106 Mm/s" · no graph; the
+   ink) · "The electron comes straight back at 9.50 Mm/s, and the target
+   moves off at 0.0106 Mm/s." · the ground the particles cover, the velocity
+   arrows and the momentum bars are all on scales fixed from the fastest the
+   speed slider allows, so that a faster electron starts further to the left,
+   draws longer arrows and lengthens every bar · no graph; the
    momenta are drawn as three bars beneath the scene, $\kpone$ before and
    $\kponeprime$ and $\kptwoprime$ after, so that the two after-bars add
    to the one before-bar · no 3D. Readout: $\kpone = \kponeprime +
@@ -135,38 +146,41 @@ with their types · headline · graph or none · 3D or not
    collision the next section derives.
 4. `sim-center-of-mass` · **Sim**, replacing nothing in the book ·
    conservation-of-momentum, momentum-changes-cancel · **moves**: two carts
-   run along a track and collide, and the centre of mass, drawn as a cross
+   run along a track and collide, and the center of mass, drawn as a cross
    between them, sails through the collision at a constant velocity; the
    motion has a time in it, so it loops with the scrubber · $m_1$ (0.2 to
    2.0 kg, default 0.50, ink), $m_2$ (0.2 to 2.0 kg, default 0.50, ink),
    $\kvone$ (0 to 10 m/s, default 6.0, velocity) and $\kvtwo$ (−6 to 10
-   m/s, default 0.0, velocity) · "t = 0.90 s · the carts have stuck
-   together and move at 3.00 m/s, which is the velocity the centre of mass
-   had all along" · graph below: the position of each cart against time,
-   solid where they stick together and faint and dashed where they bounce
-   apart instead, with the straight line of the centre of mass running
-   through both outcomes · no 3D. Readout: $v_{\text{cm}} = \kptot/(m_1 +
+   m/s, default 0.0, velocity) · "The carts have stuck together and move at
+   3.00 m/s, which is the velocity the center of mass had all along." · graph
+   below: the position of each cart against time, solid where they stick
+   together and faint and dashed where they bounce apart instead, with the
+   straight line of the center of mass running through both outcomes, on a
+   fixed range of −4 m to 12 m over 6.4 s with a cart beyond it pinned at the
+   edge · no 3D. The strip above the graph still fits itself to the run,
+   which the figure-audit pass left as it stood, since both sliders change
+   the shape of that run and the graph beneath it carries the fixed scale. Readout: $v_{\text{cm}} = \kptot/(m_1 +
    m_2)$ with the numbers, the symbol in plain LaTeX until the chapter has
    a row for it. Draws position, velocity, momentum and time.
 5. `fig-cart-graph` · a **Figure** with no number, the faithful copy of the
    position-against-time graph the fourth AP item sets its measurements on
    (`Figure_08_M3_Graph.jpg`, which the book gives no width) · **still**:
    it is a page of measurements and answers no slider, so it registers no
-   cycle and carries no transport · no sliders · headline: "all blocks of
-   eleven readings are 0.2 s apart, and the two carts move together after
-   1.0 s" · the graph is the figure · no 3D. Draws position and time.
+   cycle and carries no transport · no sliders · headline: "Cart A closes on
+   cart B, and from 1.0 s the two carts are at the same place at every
+   reading." · the graph is the figure · no 3D. Draws position and time.
 
 There is no photograph in the section to keep or drop; the chapter's one
 photograph outside the introduction is in 8.7.
 
 Extra simulations (rule 15), thought through and judged:
 
-- **The centre of mass of two colliding objects** — built, as
-  `sim-center-of-mass` above. The book defines the centre of mass in 6.5
+- **The center of mass of two colliding objects** — built, as
+  `sim-center-of-mass` above. The book defines the center of mass in 6.5
   and this section mentions in one parenthesis that the total momentum is
-  the momentum of the centre of mass, and six AP items across 8.3 to 8.6
-  then ask for the velocity of the centre of mass of a two-object system.
-  A drawing in which the cross of the centre of mass runs straight through
+  the momentum of the center of mass, and six AP items across 8.3 to 8.6
+  then ask for the velocity of the center of mass of a two-object system.
+  A drawing in which the cross of the center of mass runs straight through
   the collision, at the same velocity whatever the two carts do to each
   other, is the whole of the idea, and nothing in the text or in the three
   required figures shows it. It earns its place by rule 15's test.
@@ -192,18 +206,18 @@ Extra simulations (rule 15), thought through and judged:
   collision is an open system, keyed (d), a choice item, Understand),
   `ap3` (fs-id1468748, the total momentum of two air cars before and after,
   keyed (b), a choice item, Understand) and `ap5` (fs-id1943510, the
-  velocity of the centre of mass before and after, keyed (c), a choice
+  velocity of the center of mass before and after, keyed (c), a choice
   item, Understand) carry the book's key. `ap2` (fs-id1927054, the girl
   jumping onto the platform and the boy rebounding off the wall, Apply),
   `ap4` (fs-id1890741, the experiment that finds the mass of a cart from a
   collision, Analyze, citing `exercise-figures`) and `ap6` (fs-id2035171,
-  the velocity of the centre of mass of two carts that stick, Apply) have
+  the velocity of the center of mass of two carts that stick, Apply) have
   no key and are kept as open items with an AI-marked suggested approach,
   as rule 13 and the 2.5, 3.1 and 4.x precedents do.
-- `ap5` and `ap6` ask for a centre-of-mass velocity and keep to the
+- `ap5` and `ap6` ask for a center-of-mass velocity and keep to the
   collision they describe, which is this section's; both cite
   `conservation`, the one sentence of the text that says the total momentum
-  is the momentum of the centre of mass, and both are tagged with 6.5's
+  is the momentum of the center of mass, and both are tagged with 6.5's
   `center-of-mass` beside this section's `conservation-of-momentum`.
 - 7 conceptual questions, `cq1` to `cq7`, all unkeyed and all kept as open
   items with an AI-marked suggested approach.
@@ -215,7 +229,7 @@ Extra simulations (rule 15), thought through and judged:
   (fs-id1492048, the clay koala) and 4 (fs-id1743106, the car and the
   deer).
 - Nothing is taken from another section and nothing is held for one. The
-  chapter's trades run between 8.4 and 8.5, and the centre-of-mass items of
+  chapter's trades run between 8.4 and 8.5, and the center-of-mass items of
   8.4 and 8.5 stay with their own collisions, as the chapter's exploration
   decided. `cq1`, the dive against the belly flop, leans on the contact
   time of 8.2 as much as on this section, but it is printed here and the
@@ -247,11 +261,11 @@ The page binds momentum, velocity, force, position and time. Momentum is
 the section's own quantity and every figure draws it: the two cars carry
 $\kpone$ and $\kptwo$ as arrows and the graph plots them against the total,
 the probe's readout states $\kpx$ and $\kpy$, the scatter figure's three
-bars are momenta, and the centre-of-mass figure states $\kptot$. Velocity
+bars are momenta, and the center-of-mass figure states $\kptot$. Velocity
 rides on the sliders of all four sims and on the arrows beside the cars and
 the carts. Force appears in the collision figure, where $\kFone$ and
 $\kFtwo$ are drawn during the contact, which is the step the derivation
-turns on. Position is the vertical axis of the centre-of-mass graph and of
+turns on. Position is the vertical axis of the center-of-mass graph and of
 the cart graph, and time is the horizontal axis of every graph on the page.
 The masses, the bounce of the bumpers, the launch angle, the mass ratio of
 the target and the fraction of its velocity the electron keeps are all
@@ -285,9 +299,9 @@ untyped and stay in ink.
 - equations `eq-ptot-constant` → 8.3-conservation
 - equations `eq-ptot-conserved` → 8.3-conservation
 - equations `eq-isolated-system` → 8.3-conservation
-- A symbol row for the velocity of the centre of mass is wanted:
+- A symbol row for the velocity of the center of mass is wanted:
   `{"sym": "v_cm", "latex": "v_{\\text{cm}}", "type": "velocity", "macro":
-  "\\kvcm"}`. The centre-of-mass sim's readout and the suggested approaches
+  "\\kvcm"}`. The center-of-mass sim's readout and the suggested approaches
   of `ap5` and `ap6` all want to write it, and the chapter's symbol table
   has no row for it. Until the row exists the section writes the symbol as
   plain LaTeX, `v_{\text{cm}}`, which the validator accepts; when the row
@@ -297,7 +311,7 @@ untyped and stay in ink.
 Decided in the chapter pass (2026-09-12). The seventeen variable anchors and
 the nine equation anchors above are written.
 
-The symbol row for the velocity of the centre of mass is merged:
+The symbol row for the velocity of the center of mass is merged:
 `{"sym": "v_cm", "latex": "v_{\\text{cm}}", "type": "velocity",
 "macro": "\\kvcm"}`, staged in `book-rows.json` and merged with
 `mergebook.py`. The readout of `sim-center-of-mass` now writes `\kvcm`, so the
@@ -308,4 +322,4 @@ the symbol in LaTeX, so none of them changed.
 The inline conceptual question `cq2` was placed after the span `conservation`
 but `text.html` carried no `<div class="exercises" data-place="conservation">`
 for it to render in, so the card was laid out into nothing. The host is in, at
-the end of that section after the centre-of-mass sim.
+the end of that section after the center-of-mass sim.

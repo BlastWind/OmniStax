@@ -4,7 +4,7 @@
    redraws it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -82,15 +82,21 @@ function fulcrum(ctx, x, y, h) {
   const d = sim('sim-door', 600);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 40, unit: 'N', dec: 0, aria: 'the size of the push' });
   const rs = ctl(d.controls, { label: '\\krlev', cls: 'position', min: 0.05, max: 0.9, step: 0.025, value: 0.8, unit: 'm', dec: 3, aria: 'the distance from the hinges to the push' });
-  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 360, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle between the push and the line back to the hinges' });
+  /* The book measures θ between the force and the vector from the point of application
+     to the pivot, so it never passes 180° and the slider stops there. Which side of the
+     door the force is applied from is a state and not a quantity, so it is a choice:
+     panel (a) of the book's figure is the push, and panel (d), the same force the other
+     way about, is the pull. */
+  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle between the push and the line back to the hinges' });
+  const side = choice(d.controls, { label: '\\text{the force}', options: [{ value: 'push', label: 'push' }, { value: 'pull', label: 'pull' }], value: 'push', aria: 'which way the door is acted on' });
   const S = 780, KF = 4.6, HX = 250, HY = 390, LEN = 0.9;
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('force'), pc = C('position'), tc = C('torque');
-    const r = rs.v, Fv = Fs.v, th = ts.v;
+    const r = rs.v, Fv = Fs.v, th = ts.v, sgn = side.value === 'push' ? 1 : -1;
     const px = HX + r * S, py = HY;
-    const ux = cosd(180 - th), uy = -sind(180 - th);            /* the direction of the push on the canvas */
-    const tau = r * Fv * sind(th), rp = r * Math.abs(sind(th)), fp = foot(HX, HY, px, py, ux, uy);
+    const ux = cosd(180 - th), uy = -sgn * sind(180 - th);      /* the direction of the push on the canvas */
+    const tau = sgn * r * Fv * sind(th), rp = r * Math.abs(sind(th)), fp = foot(HX, HY, px, py, ux, uy);
     /* the wall, the hinges and the door seen from overhead */
     fixed(ctx, 70, HY - 30, 180, 60);
     text(ctx, 'the wall', 128, HY + 50, PAL.muted, { size: 19, align: 'center' });
@@ -108,7 +114,7 @@ function fulcrum(ctx, x, y, h) {
       }
       arrow(ctx, px, py, px + Fv * KF * ux, py + Fv * KF * uy, fc, 5);
       text(ctx, 'F = ' + fmt(Fv, 0) + ' N', px + (Fv * KF + 16) * ux, py + (Fv * KF + 16) * uy - 18, fc, { size: 21, weight: 600, align: ux < -0.2 ? 'right' : 'left' });
-      betweenArc(ctx, px, py, Math.PI, th, 66, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
+      betweenArc(ctx, px, py, Math.PI, sgn * th, 66, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
     }
     /* the distance from the hinges to the point of application */
     hbracket(ctx, HX, px, HY + 130, pc, 'r = ' + fmt(r, 3) + ' m');
@@ -117,12 +123,13 @@ function fulcrum(ctx, x, y, h) {
     text(ctx, 'hinges', HX - 24, HY, PAL.ink, { size: 19, align: 'right', bg: alpha(PAL.panel, 0.9) });
     /* which way the door turns */
     if (Math.abs(tau) > 0.005) turnArc(ctx, HX, HY, 92, tau > 0, tc, Math.PI / 2);
-    headline(ctx, Fv === 0 ? 'with no push on the door there is no torque about the hinges at all'
-      : Math.abs(tau) < 0.005 ? 'the push runs straight along the line to the hinges, so its lever arm is nothing and it makes no torque'
-      : 'a push of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at θ = ' + fmt(th, 0) + '°, makes ' + fmt(Math.abs(tau), 1) + ' N·m ' + (tau > 0 ? 'counterclockwise' : 'clockwise'));
-    readout(d.readout, `\\ktau = \\krlev\\kF\\sin\\theta = (${fmt(r, 3)}\\ \\text{m})(${fmt(Fv, 0)}\\ \\text{N})\\sin ${fmt(th, 0)}^\\circ = ${num(tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
+    const act = sgn > 0 ? 'push' : 'pull';
+    headline(ctx, Fv === 0 ? 'With no force on the door there is no torque about the hinges at all.'
+      : Math.abs(tau) < 0.005 ? 'The force runs straight along the line to the hinges, so its lever arm is nothing and it makes no torque.'
+      : 'A ' + act + ' of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at θ = ' + fmt(th, 0) + '°, makes ' + fmt(Math.abs(tau), 1) + ' N·m ' + (tau > 0 ? 'counterclockwise' : 'clockwise') + '.');
+    readout(d.readout, `\\ktau = ${sgn > 0 ? '' : '-'}\\krlev\\kF\\sin\\theta = ${sgn > 0 ? '' : '-'}(${fmt(r, 3)}\\ \\text{m})(${fmt(Fv, 0)}\\ \\text{N})\\sin ${fmt(th, 0)}^\\circ = ${num(tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
       Math.abs(tau) < 0.005 ? 'The perpendicular lever arm is the shortest distance from the hinges to the line along which the force acts, and here that line runs through the hinges themselves, so the lever arm is zero and the door will not turn however hard you push.'
-        : 'The perpendicular lever arm is r⊥ = r sin θ = ' + fmt(rp, 3) + ' m, and τ = r⊥F gives the same ' + fmt(Math.abs(tau), 1) + ' N·m. The book measures θ as the angle between two vectors, so it never passes 180°; a push turned beyond that makes a torque of the same size the other way, which the counterclockwise-positive convention writes with a minus sign.');
+        : 'The perpendicular lever arm is r⊥ = r sin θ = ' + fmt(rp, 3) + ' m, and τ = r⊥F gives the same ' + fmt(Math.abs(tau), 1) + ' N·m. A pull is the same force applied the other way about, so it makes a torque of the same size in the opposite sense, and the counterclockwise-positive convention writes that one with a minus sign.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -177,13 +184,15 @@ function fulcrum(ctx, x, y, h) {
     text(ctx, 'r = ' + fmt(r, 2) + ' m', PX, 200, pc, { size: 22, weight: 600 });
     text(ctx, 'θ = ' + fmt(th, 0) + '°', PX, 242, PAL.ink, { size: 22, weight: 600 });
     text(ctx, 'r⊥ = r sin θ = ' + fmt(rp, 2) + ' m', PX, 284, pc, { size: 22, weight: 600 });
-    text(ctx, 'τ = r⊥F = ' + num(tau, 1) + ' N·m', PX, 326, tc, { size: 22, weight: 600 });
-    headline(ctx, Fv === 0 ? 'with no push on the stick there is no torque about the nail'
-      : r < 0.02 ? 'the nail is driven through the very point the force is applied at, so there is no lever arm and no torque'
-      : Math.abs(tau) < 0.02 ? 'the nail lies on the line along which the force acts, so the lever arm is nothing and the stick does not turn'
-      : 'about the nail ' + fmt(p, 2) + ' m from the blade a push of ' + fmt(Fv, 0) + ' N turns the stick ' + (tau > 0 ? 'counterclockwise' : 'clockwise') + ' with ' + fmt(Math.abs(tau), 1) + ' N·m');
-    readout(d.readout, `\\ktau = \\krperp\\kF = (${fmt(rp, 2)}\\ \\text{m})(${fmt(Fv, 0)}\\ \\text{N}) = ${num(tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
-      'The same force at the same point gives a different answer for every nail, because the torque is always taken about a pivot you have chosen. Drive the nail at A, below the hand, and the stick turns counterclockwise; drive it at B, above the hand, and the same push turns it clockwise; put it on the line of the force and it does not turn at all.');
+    text(ctx, 'τ = ' + (eps(tau, 1) < 0 ? '−' : '') + 'r⊥F = ' + num(tau, 1) + ' N·m', PX, 326, tc, { size: 22, weight: 600 });
+    headline(ctx, Fv === 0 ? 'With no push on the stick there is no torque about the nail.'
+      : r < 0.02 ? 'The nail is driven through the very point the force is applied at, so there is no lever arm and no torque.'
+      : Math.abs(tau) < 0.02 ? 'The nail lies on the line along which the force acts, so the lever arm is nothing and the stick does not turn.'
+      : 'About the nail ' + fmt(p, 2) + ' m from the blade a push of ' + fmt(Fv, 0) + ' N turns the stick ' + (tau > 0 ? 'counterclockwise' : 'clockwise') + ' with ' + fmt(Math.abs(tau), 1) + ' N·m.');
+    /* r⊥ and F are both positive, so a clockwise turn takes its minus sign in the equation itself */
+    const mi = eps(tau, 1) < 0 ? '-' : '';
+    readout(d.readout, `\\ktau = ${mi}\\krperp\\kF = ${mi}(${fmt(rp, 2)}\\ \\text{m})(${fmt(Fv, 0)}\\ \\text{N}) = ${num(tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
+      'Counterclockwise is counted positive here, so the minus sign appears in the equation itself when the stick turns the other way. The same force at the same point gives a different answer for every nail, because the torque is always taken about a pivot you have chosen. Drive the nail at A, below the hand, and the stick turns counterclockwise; drive it at B, above the hand, and the same push turns it clockwise; put it on the line of the force and it does not turn at all.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -217,21 +226,21 @@ function fulcrum(ctx, x, y, h) {
       const s = on(u), tip = s.y + 16 + w * KW;
       child(ctx, s.x, s.y - 8, PAL.ink, 0.86, face);
       arrow(ctx, s.x, s.y + 16, s.x, tip, fc, 5);
-      text(ctx, 'w' + nm + ' = ' + fmt(w, 0) + ' N', s.x, tip + 24, fc, { size: 20, weight: 600, align: 'center' });
+      text(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', s.x, tip + 24, fc, { size: 20, weight: 600, align: 'center' });
       const side = s.x > 1110 ? -1 : s.x < 300 ? 1 : -face;
-      text(ctx, 'τ' + nm + ' = ' + plus(t, 0) + ' N·m', s.x + side * 18, (s.y + 16 + tip) / 2, tc, { size: 20, weight: 600, align: side > 0 ? 'left' : 'right' });
+      text(ctx, 'τ_' + nm + ' = ' + plus(t, 0) + ' N·m', s.x + side * 18, (s.y + 16 + tip) / 2, tc, { size: 20, weight: 600, align: side > 0 ? 'left' : 'right' });
     }
     /* the supporting force at the pivot, which has no lever arm of its own */
     arrow(ctx, FX, FY - 6, FX, FY - 6 - Fp * KW, fc, 5);
-    text(ctx, 'Fp = ' + fmt(Fp, 0) + ' N', FX + 16, FY - 22 - Fp * KW, fc, { size: 21, weight: 600 });
+    text(ctx, 'F_p = ' + fmt(Fp, 0) + ' N', FX + 16, FY - 22 - Fp * KW, fc, { size: 21, weight: 600 });
     dot(ctx, FX, FY, PAL.ink, true, 9);
     /* the two distances, measured from the pivot */
-    hbracket(ctx, on(-r1.v).x, FX, 652, pc, 'r1 = ' + fmt(r1.v, 2) + ' m');
-    hbracket(ctx, FX, on(r2.v).x, 652, pc, 'r2 = ' + fmt(r2.v, 2) + ' m');
+    hbracket(ctx, on(-r1.v).x, FX, 652, pc, 'r_1 = ' + fmt(r1.v, 2) + ' m');
+    hbracket(ctx, FX, on(r2.v).x, 652, pc, 'r_2 = ' + fmt(r2.v, 2) + ' m');
     const bal = (r1.v * m1.v) / m2.v;
     headline(ctx, Math.abs(net) < 1
-      ? 'both torques come to ' + fmt(t1, 0) + ' N·m, one counterclockwise and one clockwise, so the seesaw balances'
-      : 'the torques are ' + fmt(t1, 0) + ' and ' + fmt(-t2, 0) + ' N·m, so a net ' + fmt(Math.abs(net), 0) + ' N·m takes the ' + (net > 0 ? 'first' : 'second') + ' child down');
+      ? 'Both torques come to ' + fmt(t1, 0) + ' N·m, one counterclockwise and one clockwise, so the seesaw balances.'
+      : 'The torques are ' + fmt(t1, 0) + ' and ' + fmt(-t2, 0) + ' N·m, so a net ' + fmt(Math.abs(net), 0) + ' N·m takes the ' + (net > 0 ? 'first' : 'second') + ' child down.');
     readout(d.readout, `\\text{net}\\;\\ktau = \\ktauone + \\ktautwo = \\krone\\kwone - \\krtwo\\kwtwo = ${fmt(t1, 1)} - ${fmt(Math.abs(t2), 1)} = ${num(net, 1)}\\ \\text{N}\\cdot\\text{m}`,
       'For these two masses the seesaw balances when r₂ = r₁m₁/m₂ = ' + fmt(bal, 2) + ' m, so the heavier child sits closer to the pivot. The first condition then gives the supporting force, Fp = w₁ + w₂ = ' + fmt(Fp, 0) + ' N, and the pivot makes no torque of its own because its lever arm is zero.');
   }
@@ -265,20 +274,20 @@ function fulcrum(ctx, x, y, h) {
       child(ctx, X(u), FY - 8, PAL.ink, 0.78, face);
       arrow(ctx, X(u), FY + 14, X(u), FY + 14 + w * KW, fc, 5);
       const side = X(u) > 1110 ? -1 : X(u) < 300 ? 1 : -face;
-      text(ctx, 'w' + nm + ' = ' + fmt(w, 0) + ' N', X(u) + side * 16, FY + 26 + w * KW, fc, { size: 20, weight: 600, align: side > 0 ? 'left' : 'right' });
+      text(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', X(u) + side * 16, FY + 26 + w * KW, fc, { size: 20, weight: 600, align: side > 0 ? 'left' : 'right' });
     }
     arrow(ctx, FX, FY - 6, FX, FY - 6 - Fp * KW, fc, 5);
-    text(ctx, 'Fp = ' + fmt(Fp, 0) + ' N', FX + 16, FY - 22 - Fp * KW, fc, { size: 21, weight: 600 });
+    text(ctx, 'F_p = ' + fmt(Fp, 0) + ' N', FX + 16, FY - 22 - Fp * KW, fc, { size: 21, weight: 600 });
     /* the point the torques are taken about */
     line(ctx, X(p), 116, X(p), 452, pc, 3, [10, 10]);
     dot(ctx, X(p), FY, pc, true, 11);
-    text(ctx, p === 0 ? 'the torques are taken about the fulcrum' : 'the torques are taken ' + fmt(Math.abs(p), 2) + ' m ' + (p > 0 ? 'right' : 'left') + ' of the fulcrum',
+    text(ctx, p === 0 ? 'The torques are taken about the fulcrum.' : 'The torques are taken ' + fmt(Math.abs(p), 2) + ' m to the ' + (p > 0 ? 'right' : 'left') + ' of the fulcrum.',
       X(p), 92, pc, { size: 20, weight: 600, align: X(p) > 1060 ? 'right' : X(p) < 340 ? 'left' : 'center', bg: alpha(PAL.panel, 0.85) });
     /* the lever arm each force has about that point */
     const arms = [[X(-rs.v), 470, Math.abs(rs.v + p)], [X(rr2), 506, Math.abs(rr2 - p)], [FX, 542, Math.abs(p)]];
     for (const [x, y, v] of arms) if (Math.abs(x - X(p)) > 6) hbracket(ctx, Math.min(x, X(p)), Math.max(x, X(p)), y, pc, fmt(v, 2) + ' m');
     /* the three torques and their sum, as signed bars from a zero line */
-    const y0 = 596, bars = [['τ1', t1], ['τ2', t2], ['τp', tp], ['net τ', net]];
+    const y0 = 596, bars = [['τ_1', t1], ['τ_2', t2], ['τ_p', tp], ['net τ', net]];
     line(ctx, FX, y0 - 26, FX, y0 + 3 * 40 + 26, PAL.muted, 2);
     bars.forEach(([nm, v], i) => {
       const y = y0 + i * 40, w = eps(v, 1) * KT, last = i === 3;
@@ -288,8 +297,8 @@ function fulcrum(ctx, x, y, h) {
       text(ctx, num(v, 1) + ' N·m', 290, y, tc, { size: 20, weight: 600 });
     });
     headline(ctx, p === 0
-      ? 'about the fulcrum the supporting force has no lever arm, and the two weights make ' + num(t1, 0) + ' and ' + num(t2, 0) + ' N·m'
-      : 'about a point ' + fmt(Math.abs(p), 2) + ' m ' + (p > 0 ? 'right' : 'left') + ' of the fulcrum the torques are ' + num(t1, 0) + ', ' + num(t2, 0) + ' and ' + num(tp, 0) + ' N·m');
+      ? 'About the fulcrum the supporting force has no lever arm, and the two weights make ' + num(t1, 0) + ' and ' + num(t2, 0) + ' N·m.'
+      : 'About a point ' + fmt(Math.abs(p), 2) + ' m to the ' + (p > 0 ? 'right' : 'left') + ' of the fulcrum the three torques are ' + num(t1, 0) + ', ' + num(t2, 0) + ' and ' + num(tp, 0) + ' N·m.');
     readout(d.readout, `\\text{net}\\;\\ktau = \\ktauone + \\ktautwo + \\tau_{\\text{p}} = ${num(t1, 1)} ${t2 < 0 ? '-' : '+'} ${fmt(Math.abs(eps(t2, 1)), 1)} ${tp < 0 ? '-' : '+'} ${fmt(Math.abs(eps(tp, 1)), 1)} = ${num(net, 1)}\\ \\text{N}\\cdot\\text{m}`,
       'Move the point anywhere along the plank, or past its ends, and the sum comes back to zero every time. That is why the pivot may be chosen to make the work easy, and why the supporting force can be found from torques alone once the point is taken somewhere other than the fulcrum itself.');
   }
@@ -325,7 +334,7 @@ function fulcrum(ctx, x, y, h) {
       arrow(ctx, x1, y1, x2, y2, fc, 5);
       text(ctx, nm, lx, ly, fc, { size: 24, weight: 600, align: 'center' });
     }
-    headline(ctx, 'five forces of equal magnitude applied to an object that is anchored at the point P');
+    headline(ctx, 'Five forces of equal magnitude are applied to an object that is anchored at the point P.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

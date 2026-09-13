@@ -69,11 +69,14 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    form is shaded, and the angle of the diagonal above east is marked;
    the helicopter arrives first, because its path is shorter · blocks
    east (1 to 12, step 1, default 9, position hue), blocks north (1 to 8,
-   step 1, default 5, position hue) · "the walker has gone 6.0 of the 14
-   blocks and the helicopter 6.0 of its 10.3" while moving, and at the
-   end "14 blocks walked, 9 east and then 5 north, and the straight-line
-   distance is 10.3 blocks" · none, the grid is the scene and the
-   triangle is the idea · no. Moving: two things travel, one loop of
+   step 1, default 5, position hue) · "The walker has gone 6.0 of the 14
+   blocks, and the helicopter 6.0 of its 10.3." At the end, "The walk
+   covers 14 blocks, 9 east and then 5 north, while the straight-line
+   distance is 10.3 blocks." · none, the grid is the scene and the
+   triangle is the idea · 2D. The three sides carry the letters a, b and
+   c that the readout uses, so the Pythagorean theorem can be followed on
+   the drawing. Labels on, eight of them, each beside something that
+   stays put. Moving: two things travel, one loop of
    about 5 real seconds ending when the walker arrives, so it gets the
    scrubber. Readout: $c = \sqrt{a^2 + b^2} = \sqrt{(9\ \text{blocks})^2
    + (5\ \text{blocks})^2} = 10.3\ \text{blocks}$ with the legs in plain

@@ -1,7 +1,7 @@
 /* Figures for section 8.4 Elastic Collisions in One Dimension. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, block, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, strip, axes, nice, curve, block, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -74,7 +74,7 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
   /* an arrow along the surface from the object, with its symbol over the middle of it */
   function along(ctx, x, y, value, k, color, label) {
     if (Math.abs(value) < 0.02) { dot(ctx, x, y, color, false, 7); text(ctx, label, x, y - 26, color, { align: 'center', weight: 600, size: 20 }); return; }
-    const dir = value < 0 ? -1 : 1, L = Math.abs(value) * k;
+    const dir = value < 0 ? -1 : 1, L = Math.min(340, Math.abs(value) * k);
     arrow(ctx, x, y, x + dir * L, y, color, 5);
     text(ctx, label, x + (dir * L) / 2, y - 26, color, { align: 'center', weight: 600, size: 20 });
   }
@@ -91,7 +91,10 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     const ptot = p1 + p2;
     const ke = 0.5 * M1 * V1 * V1 + 0.5 * M2 * V2 * V2;
     const kep = 0.5 * M1 * s.v1p * s.v1p + 0.5 * M2 * s.v2p * s.v2p;
-    const kp = 150 / Math.max(Math.abs(p1), Math.abs(p2), Math.abs(p1p), Math.abs(p2p), 0.25);
+    /* one fixed scale for the momentum arrows, 12.5 units per kg·m/s, which puts the 3.50 kg·m/s
+       of the worked example at 44 units and holds everything up to 12 kg·m/s inside the canvas;
+       a heavier or faster pair than that is drawn at the arrow's full length of 340 units */
+    const kp = 12.5;
 
     /* the frictionless surface the two objects slide on */
     strip(ctx, 60, 1340, GY + 24, 46);
@@ -102,8 +105,8 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     /* the two objects, each with its velocity above it and its momentum below that */
     block(ctx, x1, GY - 34, w1, 68, PAL.ink);
     block(ctx, x2, GY - 34, w2, 68, PAL.ink);
-    text(ctx, '1', x1, GY - 34, PAL.ink, { align: 'center', size: 24, weight: 600 });
-    text(ctx, '2', x2, GY - 34, PAL.ink, { align: 'center', size: 24, weight: 600 });
+    text(ctx, '1', x1, GY + 62, PAL.ink, { align: 'center', size: 24, weight: 600 });
+    text(ctx, '2', x2, GY + 62, PAL.ink, { align: 'center', size: 24, weight: 600 });
     along(ctx, x1, VY, u1, 26, C('velocity'), hit ? 'v′₁' : 'v₁');
     along(ctx, x2, VY, u2, 26, C('velocity'), hit ? 'v′₂' : 'v₂');
     along(ctx, x1, PY, M1 * u1, kp, C('momentum'), hit ? 'p′₁' : 'p₁');
@@ -113,9 +116,9 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     pair(ctx, { l: 190, r: 620, t: 450, b: 640 }, 'total momentum (kg·m/s)', C('momentum'), [ptot, p1p + p2p], ['before', 'after'], '', 2);
     pair(ctx, { l: 830, r: 1260, t: 450, b: 640 }, 'internal kinetic energy (J)', C('energy'), [ke, kep], ['before', 'after'], '', 2);
 
-    headline(ctx, 't = ' + num(t, 2) + ' s · ' + (hit
-      ? 'after the collision ' + says('v′₁', s.v1p) + ' and ' + says('v′₂', s.v2p)
-      : 'before the collision ' + says('v₁', V1) + ' and ' + says('v₂', V2)));
+    topline(ctx, hit
+      ? 'After the collision ' + says('v′₁', s.v1p) + ' and ' + says('v′₂', s.v2p) + '.'
+      : 'Before the collision ' + says('v₁', V1) + ' and ' + says('v₂', V2) + '.');
     readout(d.readout,
       `\\kpone + \\kptwo = ${fmt(p1, 2)} ${term(p2, 2)} = ${fmt(ptot, 2)}\\ \\text{kg}\\cdot\\text{m/s} = \\kponeprime + \\kptwoprime`,
       'The internal kinetic energy of the system is ' + fmt(ke, 2) + ' J before the collision and ' + fmt(kep, 2) + ' J after it, because an elastic collision conserves the sum of the kinetic energies as well as the total momentum.');
@@ -181,7 +184,7 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     const high = v2p > VR * 0.72;
     text(ctx, 'after the collision', X(v1p), Y(Math.min(Math.max(v2p, -VR), VR)) + (high ? 34 : -32), PAL.ink, { align: 'center', size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
 
-    headline(ctx, 'the curves meet twice: at v′₁ = ' + num(V, 2) + ' m/s, before the collision, and at v′₁ = ' + num(v1p, 2) + ' m/s, after it');
+    topline(ctx, 'The curves meet twice, at v′₁ = ' + num(V, 2) + ' m/s before the collision and at v′₁ = ' + num(v1p, 2) + ' m/s after it.');
     readout(d.readout,
       `\\kvoneprime = \\frac{m_1 - m_2}{m_1 + m_2}\\kvone = ${fmt(v1p, 2)}\\ \\text{m/s}, \\qquad \\kvtwoprime = \\frac{2m_1}{m_1 + m_2}\\kvone = ${fmt(v2p, 2)}\\ \\text{m/s}`,
       'The hollow crossing is the pair of velocities the objects already had, so it describes the situation before the collision and is discarded; the filled crossing is the only other way the two objects can leave one another with the momentum and the internal kinetic energy they came in with.');

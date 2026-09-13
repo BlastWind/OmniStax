@@ -104,7 +104,7 @@ function rider(ctx, x, y, color, s = 1) {
     };
     one(400, 340, r1, f1.v, 'F_c', 'r');
     one(1040, 340, r2, f2.v, "F_c'", "r'");
-    headline(ctx, 'at ' + fmt(v.v, 1) + ' m/s, ' + sig3(f1.v) + ' N bends the path into a circle of radius ' + fmt(r1, 2) + ' m and ' + sig3(f2.v) + ' N into one of ' + fmt(r2, 2) + ' m');
+    headline(ctx, 'At ' + fmt(v.v, 1) + ' m/s, ' + sig3(f1.v) + ' N bends the path into a circle of ' + fmt(r1, 2) + ' m and ' + sig3(f2.v) + ' N into one of ' + fmt(r2, 2) + ' m.');
     readout(d.readout, `\\kr = \\frac{m\\kv^2}{\\kFc} = \\frac{(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})^2}{${sig3(f1.v)}\\ \\text{N}} = ${fmt(r1, 2)}\\ \\text{m}`,
       'The two objects move at the same speed, so the one on the tighter circle sweeps round faster: its angular velocity is ω = v/r = ' + fmt(v.v / r2, 1) + ' rad/s against ' + fmt(v.v / r1, 1) + ' rad/s for the other, which is why the same force can also be written F_c = mrω².');
   }
@@ -151,7 +151,7 @@ function rider(ctx, x, y, color, s = 1) {
     vec(ctx, fx, fy, 0, -1, 128, C('force'), 'N');
     vec(ctx, fx, fy, 0, 1, 92, C('force'), 'w');
     vec(ctx, fx, fy, -1, 0, 108, C('force'), 'f = F_c');
-    headline(ctx, 'at ' + fmt(v.v, 1) + ' m/s a ' + sig3(r.v) + ' m curve needs ' + sig3(Fc) + ' N of friction, which a coefficient of ' + fmt(mu, 2) + ' can supply');
+    headline(ctx, 'At ' + fmt(v.v, 1) + ' m/s a ' + sig3(r.v) + ' m curve needs ' + sig3(Fc) + ' N of friction, which a coefficient of ' + fmt(mu, 2) + ' supplies.');
     readout(d.readout, `\\mu_{\\text{s}} = \\frac{\\kv^2}{\\kr\\kg} = \\frac{(${fmt(v.v, 1)}\\ \\text{m/s})^2}{(${sig3(r.v)}\\ \\text{m})(9.80\\ \\text{m/s}^2)} = ${fmt(mu, 2)}`,
       'The friction the road must supply is F_c = mv²/r = ' + sig3(Fc) + ' N, and the most it can supply is μ_s N = μ_s mg, with N = ' + sig3(N) + ' N. The mass cancels between the two, so it does not matter how heavily the car is loaded.');
   }
@@ -215,9 +215,9 @@ function rider(ctx, x, y, color, s = 1) {
     line(ctx, box.l, Y(th.v), X(vC), Y(th.v), PAL.muted, 2, [4, 8]);
     pinned(ctx, box, X, Y, vi, th.v, C('velocity'), fmt(vi, 1) + ' m/s');
     text(ctx, 'the ideal angle for a ' + sig3(r.v) + ' m curve', box.l + 14, box.t + 26, PAL.muted, { size: 19 });
-    headline(ctx, 'banked at ' + fmt(th.v, 1) + 'º, a ' + sig3(r.v) + ' m curve is ideal for ' + fmt(vi, 1) + ' m/s, about ' + sig3(vi * 3.6) + ' km/h');
+    headline(ctx, 'Banked at ' + fmt(th.v, 1) + '°, a curve of ' + sig3(r.v) + ' m is ideal for ' + fmt(vi, 1) + ' m/s, which is about ' + sig3(vi * 3.6) + ' km/h.');
     readout(d.readout, `\\kv = (\\kr\\kg\\tan\\theta)^{1/2} = ((${sig3(r.v)}\\ \\text{m})(9.80\\ \\text{m/s}^2)(${fmt(Math.tan(t), 2)}))^{1/2} = ${fmt(vi, 1)}\\ \\text{m/s}`,
-      'Read the other way, the same relation gives the angle, θ = tan⁻¹(v²/rg) = ' + fmt(th.v, 1) + 'º. The normal force is N = mg/cos θ = ' + sig3(N) + ' N; its horizontal part supplies the whole centripetal force and its vertical part balances the weight, and neither the angle nor the ideal speed depends on the mass of the car.');
+      'Read the other way, the same relation gives the angle, θ = tan⁻¹(v²/rg) = ' + fmt(th.v, 1) + 'º. The normal force is N = mg/cos θ = ' + sig3(N) + ' N, whose horizontal part supplies the whole centripetal force while its vertical part balances the weight, and neither the angle nor the ideal speed depends on the mass of the car.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -237,10 +237,18 @@ function rider(ctx, x, y, color, s = 1) {
   const period = () => (TAU * r.v) / v.v;
   const cy = cycle(period, 0.8);
   function reset() { cy.reset(); }
-  const normal = (phi) => (m.v * v.v * v.v) / r.v + m.v * G * Math.cos(phi);   /* phi is measured from the bottom of the loop */
+  /* phi is measured from the bottom of the loop. A track can push a car but never pull it, so what
+     the relation gives is the force the circle asks of the track, and where that falls below zero
+     the car has already left the track: the figure clamps the force at zero, draws no arrow there
+     and says in words that contact is lost. */
+  const asked = (phi) => (m.v * v.v * v.v) / r.v + m.v * G * Math.cos(phi);
+  const normal = (phi) => Math.max(0, asked(phi));
+  /* the angle from the bottom at which contact is lost, or 180º where it is never lost */
+  const loseAt = () => { const c = -(v.v * v.v) / (G * r.v); return c <= -1 ? Math.PI : Math.acos(c); };
   function draw() {
     const { ctx } = begin(d.c);
-    const phi = (v.v * cy.now()) / r.v, Nb = normal(0), Nt = normal(Math.PI), Nnow = normal(phi), vmin = Math.sqrt(G * r.v);
+    const phi = (v.v * cy.now()) / r.v, Nb = normal(0), Nt = asked(Math.PI), Nnow = normal(phi), vmin = Math.sqrt(G * r.v);
+    const phiLose = loseAt(), inContact = Nnow > 0;
     const cx = 350, cyy = 320, R = 235;
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 9; ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.stroke(); ctx.restore();
     ground(ctx, 50, 680, cyy + R + 70);
@@ -248,8 +256,14 @@ function rider(ctx, x, y, color, s = 1) {
     const tx = Math.cos(phi), ty = -Math.sin(phi);                              /* along the track */
     line(ctx, cx, cyy, px, py, C('position'), 2, [6, 8]);
     lab(ctx, 'r = ' + fmt(r.v, 1) + ' m', cx + (px - cx) / 2 + tx * 28, cyy + (py - cyy) / 2 + ty * 28, C('position'), { size: 20, bg: alpha(PAL.panel, 0.8) });
+    /* the stretch of the loop the car cannot keep contact along, drawn broken */
+    if (phiLose < Math.PI) {
+      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 9; ctx.setLineDash([12, 14]);
+      ctx.beginPath(); ctx.arc(cx, cyy, R, Math.PI / 2 - phiLose, Math.PI / 2 - (TAU - phiLose), true); ctx.stroke(); ctx.restore();
+      text(ctx, 'The car cannot keep contact along the broken stretch of the loop.', cx, 660, PAL.muted, { size: 17, align: 'center' });
+    }
     ctx.save(); ctx.translate(px, py); ctx.rotate(-phi); car(ctx, 0, 0, PAL.ink, 1); ctx.restore();
-    vecSide(ctx, px, py, (cx - px) / R, (cyy - py) / R, 40 + (Nnow / Math.max(Nb, 1)) * 92, C('force'), 'N', -1);
+    if (inContact) vecSide(ctx, px, py, (cx - px) / R, (cyy - py) / R, 40 + (Nnow / Math.max(Nb, 1)) * 92, C('force'), 'N', -1);
     vec(ctx, px, py, 0, 1, 66, C('force'), 'w', 22);
     vec(ctx, px, py, tx, ty, 72, C('velocity'), 'v', 22);
     dot(ctx, cx, cyy, PAL.muted, true, 6);
@@ -259,14 +273,16 @@ function rider(ctx, x, y, color, s = 1) {
        to the bottom eighth of the box, so the force axis is fixed at −4000 to 16,000 N, ticked
        every 4000, which holds the default 4100 N to 13,900 N comfortably. A larger force is
        clipped at the top edge and read off the pinned marker; neither range moves. */
-    const box = { l: 820, r: 1330, t: 170, b: 550 }, NLO = -4000, NHI = 16000;
-    const { X, Y } = axes(ctx, box, [0, 360], [NLO, NHI], { xl: 'angle from the bottom of the loop (º)', yl: 'N (N)', xc: PAL.ink, yc: C('force'), nx: 4, ny: 5, fy: (q) => commas(String(Math.round(q))) });
-    curve(ctx, (q) => Math.min(Math.max(normal(q * RAD), NLO), NHI), 0, 360, X, Y, C('force'), 5, 140);
+    const box = { l: 820, r: 1330, t: 170, b: 550 }, NLO = 0, NHI = 16000;
+    const { X, Y } = axes(ctx, box, [0, 360], [NLO, NHI], { xl: 'angle from the bottom of the loop (º)', yl: 'N (N)', xc: PAL.ink, yc: C('force'), nx: 4, ny: 4, fy: (q) => commas(String(Math.round(q))) });
+    curve(ctx, (q) => Math.min(normal(q * RAD), NHI), 0, 360, X, Y, C('force'), 5, 140);
     pinned(ctx, box, X, Y, (phi / TAU) * 360, Nnow, C('force'), sig3(Nnow) + ' N');
-    headline(ctx, 'the car is ' + fmt((phi / TAU) * 360, 0) + 'º round the loop and the track pushes with ' + sig3(Nnow) + ' N there, against ' + sig3(Nb) + ' N at the bottom');
+    headline(ctx, inContact
+      ? 'The car is ' + fmt((phi / TAU) * 360, 0) + '° round the loop, where the track pushes with ' + sig3(Nnow) + ' N.'
+      : 'The track stops pushing ' + fmt((phiLose / TAU) * 360, 0) + '° round, so the car has already left it here.');
     readout(d.readout, `\\kN = m\\frac{\\kv^2}{\\kr} + m\\kg\\cos\\phi = ${sig3((m.v * v.v * v.v) / r.v)}\\ \\text{N} + (${sig3(m.v * G)}\\ \\text{N})\\cos ${fmt((phi / TAU) * 360, 0)}^\\circ = ${sig3(Nnow)}\\ \\text{N}`,
-      Nt > 0 ? 'At the top the weight already points at the center, so the track has only ' + sig3(Nt) + ' N left to supply; below ' + fmt(vmin, 1) + ' m/s the weight alone would be more than the circle needs and the car would leave the track.'
-        : 'At ' + fmt(v.v, 1) + ' m/s the weight is more than the circle needs at the top, so the car cannot keep contact there; it would have to travel at least ' + fmt(vmin, 1) + ' m/s.');
+      Nt > 0 ? 'At the top the weight already points at the center, so the track has only ' + sig3(Nt) + ' N left to supply. Below ' + fmt(vmin, 1) + ' m/s the weight alone would be more than the circle needs there, and the car would leave the track.'
+        : 'At ' + fmt(v.v, 1) + ' m/s the weight is already more than the circle needs from ' + fmt((phiLose / TAU) * 360, 0) + '° round, so the track can push no harder than nothing and the car leaves it. The car would have to travel at least ' + fmt(vmin, 1) + ' m/s to hold the loop all the way round.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 5), draw });
 })();

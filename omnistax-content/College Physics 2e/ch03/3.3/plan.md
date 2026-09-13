@@ -143,8 +143,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    frame · $\kA$ (5 to 80 m, step 0.5, default 53.0, position), $\theta_A$
    (−180º to 180º, step 0.5, default 20.0, ink), $\kB$ (5 to 80 m, step
    0.5, default 34.0, position), $\theta_B$ (−180º to 180º, step 0.5,
-   default 63.0, ink) · "A = 53.0 m at 20.0º and B = 34.0 m at 63.0º add
-   to R = 81.2 m at 36.6º, which is 36.6º north of east" · none · no.
+   default 63.0, ink) · "A vector of 53.0 m at 20.0º and B = 34.0 m at
+   63.0º add to R = 81.2 m at 36.6º, which is 36.6º north of east." ·
+   none · 2D. The names A, B and R ride the arrows themselves, and at
+   θ_B = θ_A the three lie along one line, so those labels go through a
+   labeller that steps one out and leaders it when the slot beside its
+   arrow is already taken (rule 26.7); the component labels sit on rows
+   below the drawing and columns to its left, where nothing else lands.
    Readout, two lines of one aligned equation, the four steps with the
    live numbers: $\kRx = \kAx + \kBx = 49.8 + 15.4 = 65.2\ \text{m}$,
    $\kRy = \kAy + \kBy = 18.1 + 30.3 = 48.4\ \text{m}$; $\kR =
@@ -159,8 +164,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    from the head of $\mathbf{A}$ so that the reversal is seen, the
    components of $-\mathbf{B}$ dashed along the axes and pointing the
    other way · the same four sliders with the same defaults, since Figure
-   3.33 is the subtraction of the vectors of Figure 3.28 · "A − B = R is
-   36.5 m at −19.5º, which is 19.5º south of east" · none · no. Readout:
+   3.33 is the subtraction of the vectors of Figure 3.28 · "A vector of
+   53.0 m at 20.0º and −B = 34.0 m at −117.0º give R = 36.5 m at −19.5º,
+   which is 19.5º south of east." · none · 2D, with the same labeller on
+   the names of the arrows. Readout:
    $\kRx = \kAx + (-\kBx) = 49.8 + (-15.4) = 34.4\ \text{m}$,
    $\kRy = \kAy + (-\kBy) = 18.1 + (-30.3) = -12.2\ \text{m}$; $\kR =
    36.5\ \text{m}$, $\theta = -19.5º$. Draws position.

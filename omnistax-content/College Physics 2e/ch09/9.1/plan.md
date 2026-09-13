@@ -62,29 +62,35 @@ sliders with their types · headline · graph or none · 3D or not
    sliders, registers no cycle and gets no transport (rule 14, chapter
    config) · the person's mass $m$ (40 to 120 kg, default 70.0, ink,
    because mass is untyped in this book) and the mass of a pack he carries
-   $m_{\text{pack}}$ (0 to 40 kg, default 0.0, ink) · "the ground pushes up
-   with 686 N, exactly what the person weighs, so the net external force is
-   zero and he does not move" · no graph in the chart sense; beside the
+   $m_{\text{pack}}$ (0 to 40 kg, default 0.0, ink) · "The ground pushes up
+   with 686 N, exactly what he weighs, so the net external force on him is
+   zero." · no graph in the chart sense; beside the
    scene stands the free-body diagram and a column that adds the vertical
-   forces with their signs and lands on zero · no. Readout:
+   forces with their signs and lands on zero, the column drawn to a fixed
+   full height of 1,600 N, which is the heaviest person and pack the
+   sliders reach, so that a heavier load lengthens the bars · no. Readout:
    $\text{net}\;\kFy = \kN - \kwgt$ with the numbers. Draws force.
 2. `sim-car` · replaces Figure 9.3 (the car at constant velocity) ·
    dynamic-equilibrium, first-condition-equilibrium · **still**: a car at
    constant velocity has no time in it either, since nothing about the
    scene changes as the clock runs; the figure answers its sliders and gets
-   no transport · the car's mass $m$ (800 to 2,500 kg, default 1,200, ink),
+   no transport · the car's mass $m$ (800 to 1,600 kg, default 1,200, ink),
    the applied force $\kFa$ between the tires and the road (0 to 2,000 N,
    default 700, force) and the air friction $\kff$ (0 to 2,000 N, default
-   700, force) · "the 700 N the tires apply and the 700 N of air friction
-   cancel, and so do the 11,800 N of weight and the support of the four
-   tires, so the car keeps its velocity", and where the two horizontal
-   forces are set unequal, "the net external force is 300 N forward, so the
-   car speeds up and this is not equilibrium" · no chart; two columns
+   700, force) · "The 700 N the tires apply and the 700 N of air friction
+   cancel, so the car keeps its constant velocity.", and where the two
+   horizontal forces are set unequal, "The net external force along the
+   road is 300 N, so the car speeds up and is not in equilibrium." · no
+   chart; two columns
    beside the free-body diagram, one for the horizontal forces and one for
    the vertical, each adding to zero when the car is in equilibrium, which
-   is the picture of $\text{net}\;\kFx = 0$ and $\text{net}\;\kFy = 0$ ·
-   no. Readout: both component equations with the numbers. Draws force,
-   velocity.
+   is the picture of $\text{net}\;\kFx = 0$ and $\text{net}\;\kFy = 0$; the
+   columns are drawn to fixed full heights of 2,000 N along the road and
+   15,680 N across it, both taken from the slider maxima · no. Readout:
+   both component equations with the numbers, the support of the road
+   carried as the single normal force $\kN$ that the four equal arrows of
+   the scene share a quarter of each, as the book's caption says. Draws
+   force, velocity.
 3. `sim-stick` · replaces Figure 9.4 and folds Figure 9.5 (the same ice
    hockey stick, the same two forces, applied first along one line and then
    at different places) · point-of-application, first-condition-equilibrium
@@ -95,10 +101,10 @@ sliders with their types · headline · graph or none · 3D or not
    opposite forces $\kF$ (5 to 60 N, default 30.0, force) and the distance
    $d$ between their two lines of action (0 to 0.60 m, default 0.00, ink,
    since 9.1 names no symbol for it and the perpendicular lever arm is
-   9.2's) · at $d = 0$, "the two forces of 30.0 N act along one line, the
-   net external force is zero, and the stick stays where it is"; above it,
-   "the two forces of 30.0 N still add to zero, but their lines of action
-   are 0.30 m apart and the stick turns" · no graph; the free-body diagram
+   9.2's) · at $d = 0$, "The two forces of 30.0 N act along one line, and
+   the net external force is zero."; above it,
+   "The two forces of 30.0 N still add to zero, but their lines of action
+   are 0.30 m apart." · no graph; the free-body diagram
    is drawn beside the scene and is the same picture at every setting,
    which is the point the book is making · no. Readout:
    $\text{net}\;\kF = \kF - \kF = 0$ with the numbers, and a second line
@@ -116,16 +122,16 @@ sliders with their types · headline · graph or none · 3D or not
    static-equilibrium, dynamic-equilibrium, first-condition-equilibrium ·
    **still**: the speed is a slider, not a clock; at every setting the
    scene is one frozen moment and the forces do not depend on how long the
-   crate has been sliding · the crate's mass $m$ (10 to 200 kg, default
-   50.0, ink), the push $\kFa$ (0 to 400 N, default 150, force) and the
+   crate has been sliding · the crate's mass $m$ (20 to 150 kg, default
+   100, ink), the push $\kFa$ (0 to 400 N, default 150, force) and the
    constant speed $\kv$ (0 to 20 m/s, default 0.0, velocity) · at
-   $\kv = 0$, "the crate is motionless, so it is in static equilibrium: the
-   150 N push and the 150 N of friction cancel, and so do the 490 N of
-   weight and the support of the floor"; above it, "the crate slides at 6.0
-   m/s and keeps that velocity, so it is in dynamic equilibrium: the same
-   four forces, adding to the same zero" · no chart; the free-body diagram
+   $\kv = 0$, "At rest the crate is in static equilibrium, because the push
+   and the friction cancel and so do the weight and the floor."; above it,
+   "At 6.0 m/s the crate is in dynamic equilibrium, and the four forces on
+   it are the ones it had at rest." · no chart; the free-body diagram
    and the two component columns, both of which stay exactly as they are as
-   the speed is raised · no. Readout: the two component equations with the
+   the speed is raised, the columns drawn to fixed full heights of 400 N
+   along the floor and 1,470 N across it · no. Readout: the two component equations with the
    numbers, and a second line saying that nothing in them mentions the
    speed. Draws force, velocity.
 

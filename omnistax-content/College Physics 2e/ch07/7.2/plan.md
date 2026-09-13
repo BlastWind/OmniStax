@@ -93,13 +93,16 @@ id · replaces or Sim · concepts · what moves or still · sliders · headline
    it registers no cycle and carries no transport (rule 14) · the force at
    the start of the push $\kF$ (0 to 200 N, default 115, force), the force
    at the end (0 to 200 N, default 115, force), the distance $\kd$ (0.2 to
-   2.0 m, default 0.800, position) · "$F\cos\theta$ holds at 115 N over
-   0.800 m, so the area under the line is W = 92.0 J" and, when the two
-   forces differ, "the force climbs from 40 N to 190 N over 0.800 m, and the
-   eight strips add to W = 92.0 J" · the graph is the figure: $F\cos\theta$
-   against $d$, the area under the line shaded in the energy hue, and, when
-   the force varies, cut into eight strips each labelled with its own
-   average force, as the book's part (b) draws them · no 3D. Readout:
+   2.0 m, default 0.800, position) · "The force component holds at 115 N
+   through 0.800 m, so the area under the line is 92.0 J of work." and, when
+   the two forces differ, "The force component climbs from 40 N to 190 N over
+   0.800 m, and the eight strips add to 92.0 J of work." · the graph is the
+   figure: $F\cos\theta$ against $d$ on fixed axes of 0 to 2.0 m by 0 to
+   200 N, the area under the line shaded in the energy hue, and, when the
+   force varies, cut into eight strips, one of them marked $W_i$ over its own
+   $d_i$ · 2D, since a force and the distance it acts through lie in the
+   plane of the graph. Labels are on: the frame, the area's value and the one
+   marked strip, which is four of them and none of them moving. Readout:
    $\kW = (F\cos\theta)\kd$ with the numbers when the force is constant, and
    the sum of the strips when it is not. Draws force, position, energy.
    Defaults are the net force and the distance of Example 7.3, so the figure
@@ -112,12 +115,16 @@ id · replaces or Sim · concepts · what moves or still · sliders · headline
    $\kFa$ (40 to 200 N, default 120, force), the friction force $\kff$ (0 to
    30 N, default 5.00, force), the distance of the push $\kd$ (0.2 to 2.0 m,
    default 0.800, position), the initial speed $\kvo$ (0 to 3 m/s, default
-   0.500, velocity) · "d = 0.52 m · the net force has done 59.4 J, so the
-   package carries 63.2 J and moves at 2.05 m/s" · graph below the strip:
-   the kinetic energy against the distance travelled, a straight line of
-   slope ${F}_{\text{net}}$ rising from ${\text{KE}}_{0}$, with the initial
-   value hollow, the current value filled and a bracket between them for the
-   net work · no 3D. Readout: the work-energy theorem with the live numbers;
+   0.500, velocity) · "After 0.52 m the net force has done 59.4 J, so the
+   package carries 63.2 J and moves at 2.05 m/s." · graph below the strip:
+   the kinetic energy against the distance traveled on fixed axes of 0 to
+   2.0 m by 0 to 150 J, a straight line of slope ${F}_{\text{net}}$ rising
+   from ${\text{KE}}_{0}$, with the initial value hollow, the current value
+   filled and a bracket between them for the net work · 2D. Both force arrows
+   are drawn to one fixed length to the newton, 190 units at the slider's own
+   200 N, so the longest arrow still stops short of the right-hand edge
+   wherever the package has got to. Labels are on: six of them, each beside
+   its own arrow, and none crowds another at any setting. Readout: the work-energy theorem with the live numbers;
    the small line gives the distance the package would coast once the push
    stops, which is Example 7.5. Draws force, position, velocity, energy.
    Defaults are the book's 120 N, 5.00 N, 0.800 m and 0.500 m/s on a 30.0-kg
@@ -126,12 +133,16 @@ id · replaces or Sim · concepts · what moves or still · sliders · headline
    **still**: kinetic energy is a property of a speed, not of a history, so
    the figure answers its two sliders and nothing runs · the mass $m$ (10 to
    2000 kg, default 900, ink, since mass is untyped) and the speed $\kv$ (0
-   to 40 m/s, default 27.8, velocity) · "at 27.8 m/s a 900 kg car carries
-   348 kJ, four times the 86.9 kJ it carries at half that speed" · the graph
+   to 40 m/s, default 27.8, velocity) · "At 27.8 m/s a 900 kg body carries
+   348 kJ, four times the 86.9 kJ it carries at half that speed." · the graph
    is the figure: $\text{KE}$ against $\kv$, the parabola $\tfrac{1}{2}mv^2$
    with the current speed filled and half that speed hollow, and two bars
-   beside it so the factor of four can be seen rather than read · no 3D.
-   Readout: $\kKE = \tfrac{1}{2}m\kv^2$ with the numbers; the small line
+   beside it so the factor of four can be seen rather than read. The axes are
+   fixed from the default state, 0 to 40 m/s by 0 to 400 kJ, since the slider
+   maxima would leave the 348 kJ of the default in a fifth of the box; a
+   heavier or faster body runs off the top, where the curve stops at the edge
+   and the value is read off a pinned marker · 2D. Labels are on: four of
+   them, two on the curve and two under the bars. Readout: $\kKE = \tfrac{1}{2}m\kv^2$ with the numbers; the small line
    states the ratio. Draws velocity, energy.
 
 The section has no photograph to keep or drop. Three figures sit inside

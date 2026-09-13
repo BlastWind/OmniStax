@@ -58,7 +58,7 @@ function jet(ctx, x, y, heading, s) {
     text(ctx, reading(temp, 0) + ' ºC', tx - 28, Y(temp), PAL.ink, { weight: 600, size: 24, align: 'right' });
     text(ctx, temp < 0 ? 'the minus sign is a point below zero, not a direction' : temp > 0 ? 'a point above zero on the scale' : 'the zero of the scale', 1060, jy + 140, PAL.ink, { size: 17, align: 'center' });
     headline(ctx, (mag > 0 ? 'A velocity of ' + fmt(mag, 0) + ' km/h ' + (east ? 'east' : 'west') + ' is an arrow' : 'A velocity of 0 km/h has no arrow')
-      + ', and a temperature of ' + reading(temp, 0) + ' ºC is a point on a scale');
+      + ', and a temperature of ' + reading(temp, 0) + ' ºC is a point on a scale.');
     readout(d.readout, `\\kv = ${signedTex(v, 0)}\\ \\text{km/h}${mag > 0 ? `\\ (\\text{${east ? 'east' : 'west'}})` : ''} \\qquad \\text{temperature} = ${readingTex(temp, 0)}^{\\circ}\\text{C}`,
       'The length of the arrow alone, ' + fmt(mag, 0) + ' km/h, is the speed, which is a scalar, and the sign of the temperature is a point on a scale rather than a direction.');
   }
@@ -66,19 +66,18 @@ function jet(ctx, x, y, heading, s) {
 })();
 
 /* =====================================================================
-   FIGURE 2.7: the coordinate line. The jet flies a set distance to the
-   left, and the flight is read on two coordinate lines with the same
-   origin, one with right positive and one with left positive. Finite
-   motion, one flight in about four real seconds, so it gets the scrubber.
+   FIGURE 2.7: the coordinate system. The flight of the jet is read on two
+   coordinate lines with the same origin, one with right positive and one
+   with left positive, and the pair of axes the book draws stands beneath
+   them with up and to the right marked positive. Still: which direction
+   is called positive is a choice and has no time in it, so a drawing that
+   answers the two sliders is all the idea needs and there is no transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-axes', 520);
-  const D = ctl(d.controls, { label: '\\text{distance flown}', cls: '', min: 0.5, max: 8, step: 0.5, value: 5, unit: 'km', dec: 1, onInput: reset, aria: 'distance flown' });
-  const O = ctl(d.controls, { label: '\\text{origin}', cls: '', min: 0, max: 10, step: 0.5, value: 9, unit: 'km', dec: 1, onInput: reset, aria: 'where the zero of the line is placed' });
-  const PERIOD = 4;                          /* seconds of flight */
-  const cy = cycle(() => PERIOD, 1.2);
-  function reset() { cy.reset(); }
-  const L = 160, R = 1240, S0 = 9.0, X = (s) => L + ((R - L) * s) / 10;   /* s is the ground coordinate, 0 to 10 km across the strip */
+  const d = sim('sim-axes', 620);
+  const D = ctl(d.controls, { label: '\\text{distance flown}', cls: '', min: 0.5, max: 8, step: 0.5, value: 5, unit: 'km', dec: 1, aria: 'distance flown' });
+  const O = ctl(d.controls, { label: '\\text{origin}', cls: '', min: 0, max: 10, step: 0.5, value: 9, unit: 'km', dec: 1, aria: 'where the zero of the line is placed' });
+  const L = 160, R = 1240, S0 = 9.0, X = (s) => L + ((R - L) * s) / 10;   /* s is the ground coordinate, a fixed 0 to 10 km across the strip */
   const yA = 170, yS = 300, yB = 430;        /* the upper line, the strip, the lower line */
   /* one coordinate line: its arrow toward the positive end, its ticks in its own coordinate, the start, the current position and the displacement */
   function axis(ctx, y, sign, label, s0, s, o) {
@@ -95,21 +94,33 @@ function jet(ctx, x, y, heading, s) {
     if (Math.abs(dx) > 0.2) text(ctx, 'Δx = ' + signed(dx, 1) + ' km', (X(s0) + X(s)) / 2, y - 58, C('position'), { size: 22, weight: 600, align: 'center' });
     return { x0, x, dx };
   }
+  /* the pair of axes the book draws under this number, with up and to the right marked positive */
+  function cross(ctx, cx, cy2) {
+    const a = 46;
+    arrow(ctx, cx, cy2, cx + a, cy2, PAL.muted, 3); arrow(ctx, cx, cy2, cx - a, cy2, PAL.muted, 3);
+    arrow(ctx, cx, cy2, cx, cy2 - a, PAL.muted, 3); arrow(ctx, cx, cy2, cx, cy2 + a, PAL.muted, 3);
+    text(ctx, '+x', cx + a + 12, cy2, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, '−x', cx - a - 12, cy2, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    text(ctx, '+y', cx, cy2 - a - 16, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, '−y', cx, cy2 + a + 16, PAL.ink, { size: 20, weight: 600, align: 'center' });
+  }
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = cy.now(), done = tau >= PERIOD - 1e-9, flown = (D.v * tau) / PERIOD, s = S0 - flown, o = O.v;
+    const s = S0 - D.v, o = O.v;
     /* the origin, the same point on both lines */
     line(ctx, X(o), yA - 8, X(o), yB + 8, PAL.rule, 2, [6, 8]);
-    /* the strip with the jet flying left */
+    /* the strip with the jet, which has flown its distance to the left */
     strip(ctx, L, R, yS, 48);
     jet(ctx, X(s), yS - 6, -1, 1.2);
     const a = axis(ctx, yA, +1, 'Right positive, the usual choice', S0, s, o);
     const b = axis(ctx, yB, -1, 'Left positive, the forward direction of the jet', S0, s, o);
-    headline(ctx, done ? 'Flying ' + fmt(D.v, 1) + ' km to the left gives Δx = ' + signed(a.dx, 1) + ' km with right positive and ' + signed(b.dx, 1) + ' km with left positive'
-      : 'The jet has flown ' + fmt(flown, 1) + ' km of its ' + fmt(D.v, 1) + ' km to the left');
+    cross(ctx, 420, 548);
+    text(ctx, 'For vertical motion the usual choice is up positive and down negative,', 520, 530, PAL.ink, { size: 20 });
+    text(ctx, 'and the two choices together make the usual pair of axes.', 520, 562, PAL.ink, { size: 20 });
+    headline(ctx, 'Flying ' + fmt(D.v, 1) + ' km to the left gives Δx = ' + signed(a.dx, 1) + ' km with right positive and ' + signed(b.dx, 1) + ' km with left positive.');
     readout(d.readout, `\\begin{aligned} \\text{right positive:}\\quad \\kdx &= \\kx - \\kxo = (${signedTex(a.x, 1)}) - (${signedTex(a.x0, 1)}) = ${signedTex(a.dx, 1)}\\ \\text{km} \\\\ \\text{left positive:}\\quad \\kdx &= \\kx - \\kxo = (${signedTex(b.x, 1)}) - (${signedTex(b.x0, 1)}) = ${signedTex(b.dx, 1)}\\ \\text{km} \\end{aligned}`,
-      'Moving the origin changes the two positions but not the displacement, and choosing the other direction as positive changes the sign of all three.');
+      'Moving the origin changes the two positions but not the displacement, and choosing the other direction as positive turns each of the three numbers into its opposite.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+  register(d.fig, { update: () => {}, draw });
 })();
 };

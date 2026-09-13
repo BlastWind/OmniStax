@@ -193,6 +193,12 @@ every number the prose cites links to it. Sub-figures the book prints
 under one number, (a) and (b), are not folds; they are one number with
 several `originals`. The validator reads every eyebrow against its row.
 
+An interactive figure that replaces an unnumbered image inside an
+exercise is a `figure` row with no number and an eyebrow reading
+"Figure", while a book image an exercise only refers to may instead
+travel on the exercise card's own `figure` field, and the chapter's
+`config.md` says which of the two that chapter used.
+
 A book image is shown no larger than the book shows it. A row keeps the
 width the book prints each of its images at, `widths`, one number per
 image in the order the row shows them (a photograph's one image, or the
@@ -215,8 +221,23 @@ book prints (Table 1.2) and whose caption is the book's title for it. A
 table is never a `<figure>`, since the validator reads every figure
 element as a figure row.
 
-The chapters built so far are planar; no 3D was needed. Photographs are
-kept where the text points the reader at them (Chapter 1 does this for
+Almost every figure of this book is planar, because almost every idea in it
+is a relation between quantities and is clearest drawn flat with a fixed
+frame (root rule 28.1). One is not. The group root rule 28.3 names is an
+apparatus whose fine parts are the explanation, and Chapter 6’s Cavendish
+balance (6.5, Figure 6.25) is this book’s one member of it: the thin fiber,
+the small rod hung from it, the mirror on the rod’s hanger and the beam that
+mirror throws across the floor to the scale are an arrangement in space, and
+a flat drawing would have to lie about depth or scale to show how a force too
+small to feel is turned into a reading anyone can take. It is a full 3D scene
+on the app’s viewer, carrying the buttons root rule 26.2 asks for, and its
+plan line states the bound on the orbit and the reason for it. Nothing else
+in the book has earned the tier: a block on an incline, a free-body diagram
+and a banked curve are drawn flat, or, where the book prints them in
+perspective, from a locked view (root rule 28.2).
+
+Photographs are kept
+where the text points the reader at them (Chapter 1 does this for
 most of its photographs: "See Figure 1.4 and Figure 1.5") or where they
 show the thing the passage is about (the Tacoma Narrows bridge, 16.8), and
 dropped where they are a splash image at the head of a section.

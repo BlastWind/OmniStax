@@ -78,17 +78,24 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    saying happens constantly; a hollow marker trails it by the angle
    $\Delta\theta$, and the two radii, the arc $\kds$ and the chord are drawn
    between them, with the velocity triangle $\kvone$, $\kvtwo$, $\kdv$ beside
-   the circle and a short $\kac$ arrow drawn from the midpoint of the arc
-   toward the centre · radius $\kr$ (0.5 to 4.0 m, default 2.0, position),
+   the circle and the difference $\kdv$ drawn again on the circle at the point
+   the object has reached, beside the radius drawn there. It runs along the
+   inward radius of the middle of the arc, so it stands at half of
+   $\Delta\theta$ from that radius and swings onto it as $\Delta\theta$ is taken
+   toward zero, which is the section's own argument that the acceleration is
+   centripetal; drawn at the midpoint instead, where it is radial at every
+   separation, it would hide that argument · radius $\kr$ (0.5 to 4.0 m, default 2.0, position),
    speed $\kv$ (1.0 to 10.0 m/s, default 5.0, velocity), separation
    $\Delta\theta$ (5º to 90º, default 40º, ink, since an angle is untyped) ·
-   "Δθ = 40º · Δv = 3.42 m/s and it misses the radius by 20.0º; shrink Δθ and
-   it swings round to point straight at the centre" · none: the velocity
+   "Over Δθ = 40° the velocity changes by Δv = 3.42 m/s, standing 20° from the
+   radius." · none: the velocity
    triangle beside the circle is the second half of the drawing, and the
-   circle is a square scene that leaves the width free · no. Readout:
+   circle is a square scene that leaves the width free · 2D, the plane of the
+   motion being the canvas · labels on, there being six of them. Readout:
    $\kdv/\kv = \kds/\kr$ with the numbers; small line on
    $\kac = \kdv/\kdt$ and on the angle the change of velocity makes with the
-   radius. Draws position, velocity, acceleration.
+   radius. Draws position and velocity: the figure states the acceleration in
+   its readout but draws no acceleration arrow, which is Figure 6.8's subject.
 2. `sim-curve` · replaces Figure 6.8 (the car on the circular path and the
    centrifuge) · centripetal-acceleration-magnitude,
    acceleration-in-multiples-of-g, centripetal-acceleration · **moves**: the

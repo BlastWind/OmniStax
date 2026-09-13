@@ -124,7 +124,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     text(ctx, 'the protractor at its tail reads', 900, 310, PAL.ink, { size: 20 });
     text(ctx, 'θ = ' + compass(th), 900, 346, PAL.ink, { size: 26, weight: 600 });
     text(ctx, 'starting point', ox - 8, oy + 48, PAL.muted, { size: 15, align: 'left' });
-    headline(ctx, 'D = ' + fmt(Dm, 1) + ' blocks at ' + compass(th) + ': the ruler reads ' + fmt(Dm, 1) + ' and the protractor ' + fmt(th, 1) + '°');
+    headline(ctx, 'The ruler along the arrow reads ' + fmt(Dm, 1) + ' blocks and the protractor at its tail reads ' + fmt(th, 1) + '°, so D is ' + fmt(Dm, 1) + ' blocks at ' + compass(th) + '.');
     readout(d.readout, `\\kD = ${fmt(Dm, 1)}\\ \\text{blocks},\\quad \\theta = ${fmt(th, 1)}^\\circ\\ \\text{north of east}`,
       'The length of the arrow is proportional to the magnitude of the vector and the arrow points in its direction, so the two numbers and the arrow say the same thing.');
   }
@@ -175,10 +175,10 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
       ['Step 4', 'draw the resultant from the tail of the first to the head of the last'], ['Steps 5 and 6', 'measure its length with a ruler and its angle with a protractor']];
     const cur = tau < tA ? 0 : tau < TW ? 1 : !done ? 2 : 3;
     steps.forEach(([k, s], i) => { const on = i === cur, col = on ? PAL.ink : PAL.muted, y = 150 + 72 * i; text(ctx, k, 880, y, col, { size: 17, weight: 600 }); text(ctx, s, 880, y + 24, col, { size: 17 }); });
-    headline(ctx, done ? 'the resultant D is ' + fmt(r, 1) + ' blocks at ' + compass(deg) + ', measured with a ruler and a protractor'
-      : cur === 0 ? 'step 1: she walks ' + fmt(e, 0) + ' blocks east, and the first arrow is drawn with a ruler'
-        : cur === 1 ? 'step 2: she walks ' + fmt(n, 0) + ' blocks north, and the second arrow starts at the head of the first'
-          : 'step 4: the resultant is drawn from the tail of the first vector to the head of the last');
+    headline(ctx, done ? 'The resultant D is ' + fmt(r, 1) + ' blocks at ' + compass(deg) + ', measured with a ruler and a protractor.'
+      : cur === 0 ? 'In step 1 she walks ' + fmt(e, 0) + ' blocks east, and the first arrow is drawn with a ruler.'
+        : cur === 1 ? 'In step 2 she walks ' + fmt(n, 0) + ' blocks north, and the second arrow starts at the head of the first.'
+          : 'In step 4 the resultant is drawn from the tail of the first vector to the head of the last.');
     readout(d.readout, `\\kD = ${fmt(r, 1)}\\ \\text{blocks},\\quad \\theta = ${fmt(deg, 1)}^\\circ\\ \\text{north of east}`,
       'A ruler along the resultant reads ' + fmt(r, 1) + ' blocks and a protractor at its tail reads ' + fmt(deg, 1) + '°; the Pythagorean theorem gives the same length, √(' + fmt(e, 0) + '² + ' + fmt(n, 0) + '²) = ' + fmt(r, 1) + '.');
   }
@@ -235,9 +235,9 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     const legs = ['A = ' + fmt(mags[0], 1) + ' m at 49.0° north of east', 'B = ' + fmt(mags[1], 1) + ' m at 15.0° north of east', 'C = ' + fmt(mags[2], 1) + ' m at 68.0° south of east'];
     legs.forEach((s, i) => text(ctx, s, 1000, 150 + 44 * i, i === cur ? PAL.ink : PAL.muted, { size: 19, weight: i === cur ? 600 : 400 }));
     text(ctx, done ? 'R = ' + fmt(r, 1) + ' m at ' + compass(deg, 2) : tau > TW ? 'R is being drawn from the tail of A to the head of C' : 'R waits until every leg is walked', 1000, 310, done ? PAL.ink : PAL.muted, { size: 19, weight: done ? 600 : 400 });
-    headline(ctx, done ? 'the resultant R is ' + fmt(r, 1) + ' m at ' + compass(deg, 2) + ', measured with a ruler and a protractor'
-      : cur >= 0 ? 'she walks leg ' + NAMES[cur] + ', ' + fmt(mags[cur], 1) + ' m, with its tail at the head of the leg before'
-        : 'the resultant is drawn from the tail of the first vector to the head of the last');
+    headline(ctx, done ? 'The resultant R is ' + fmt(r, 1) + ' m at ' + compass(deg, 2) + ', measured with a ruler and a protractor.'
+      : cur >= 0 ? 'She walks leg ' + NAMES[cur] + ', ' + fmt(mags[cur], 1) + ' m, with its tail at the head of the leg before.'
+        : 'The resultant is drawn from the tail of the first vector to the head of the last.');
     readout(d.readout, `\\kR = ${fmt(r, 1)}\\ \\text{m},\\quad \\theta = ${fmt(Math.abs(deg), 2)}^\\circ\\ \\text{${deg < 0 ? 'south' : 'north'} of east}`,
       'The head-to-tail method works for any number of vectors and is limited in accuracy only by the precision of the drawing and of the ruler and protractor.');
   }
@@ -250,37 +250,41 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
    the two end at one point and the resultant is one arrow. No motion.
 ===================================================================== */
 (function () {
-  const d = sim('sim-order', 620);
-  const O = ctl(d.controls, { label: '\\text{order}', cls: '', min: 1, max: 6, step: 1, value: 5, unit: '', dec: 0, aria: 'order of addition' });
+  const d = sim('sim-order', 760);
+  /* The order of addition is one of six arrangements, not a quantity to slide through, and six
+     options would wrap a button row, so it is a dropdown (rule 26.1). */
+  const O = F.select(d.controls, { label: '\\text{order}', options: ORDERS.map((o, i) => ({ value: String(i), label: o.map((j) => NAMES[j]).join(' + ') })), value: '4', aria: 'order of addition' });
   const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: -180, max: 180, step: 1, value: 49, unit: '°', dec: 0, aria: 'direction of A' });
   const TB = ctl(d.controls, { label: '\\theta_{\\text{B}}', cls: '', min: -180, max: 180, step: 1, value: 15, unit: '°', dec: 0, aria: 'direction of B' });
   const TC = ctl(d.controls, { label: '\\theta_{\\text{C}}', cls: '', min: -180, max: 180, step: 1, value: -68, unit: '°', dec: 0, aria: 'direction of C' });
-  const MAG = [25, 23, 32], S = 6, ox = 600, oy = 330;
-  function path(ctx, order, degs, color, w, size) {
+  /* The three legs are 25, 23 and 32 m, so the walk can reach 80 m from the start when all three
+     point the same way. At 3.5 units to the metre that is 280 units, which the canvas holds at every
+     setting of the three angle sliders, so the walk never leaves the drawing. */
+  const MAG = [25, 23, 32], S = 3.5, ox = 620, oy = 380;
+  function path(ctx, order, degs, color, w, size, label) {
     let px = ox, py = oy;
-    for (const i of order) { const [hx, hy] = tip(px, py, MAG[i] * S, degs[i]); arrow(ctx, px, py, hx, hy, color, w); beside(ctx, px, py, hx, hy, NAMES[i], color, 1, 22, size); px = hx; py = hy; }
+    for (const i of order) { const [hx, hy] = tip(px, py, MAG[i] * S, degs[i]); arrow(ctx, px, py, hx, hy, color, w); if (label) beside(ctx, px, py, hx, hy, NAMES[i], color, 1, 22, size); px = hx; py = hy; }
     return [px, py];
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const k = O.v - 1, degs = [TA.v, TB.v, TC.v];
-    line(ctx, ox - 340, oy, ox + 380, oy, PAL.rule, 2); line(ctx, ox, oy - 260, ox, oy + 260, PAL.rule, 2);
-    text(ctx, 'east', ox + 380, oy + 20, PAL.muted, { size: 15, align: 'right' });
-    if (k !== 0) path(ctx, ORDERS[0], degs, PAL.muted, 3, 17);
-    const [ex, ey] = path(ctx, ORDERS[k], degs, C('position'), 5, 20);
+    const k = Number(O.value), degs = [TA.v, TB.v, TC.v];
+    line(ctx, ox - 380, oy, ox + 400, oy, PAL.rule, 2); line(ctx, ox, oy - 300, ox, oy + 300, PAL.rule, 2);
+    text(ctx, 'east', ox + 400, oy + 20, PAL.muted, { size: 15, align: 'right' });
+    /* the reference walk, A then B then C, carries no labels: each leg is named once, on the chosen order */
+    if (k !== 0) path(ctx, ORDERS[0], degs, PAL.muted, 3, 17, false);
+    const [ex, ey] = path(ctx, ORDERS[k], degs, C('position'), 5, 20, true);
     const pol = polar(ex - ox, oy - ey), r = pol.r / S, deg = pol.deg;
     arrow(ctx, ox, oy, ex, ey, C('position'), 6);
     beside(ctx, ox, oy, ex, ey, 'R = ' + fmt(r, 1) + ' m', C('position'), 1, 36, 22);
     dot(ctx, ox, oy, PAL.ink, true, 6); dot(ctx, ex, ey, PAL.ink, true, 6);
-    /* the six orders, the chosen one in ink */
-    text(ctx, 'the order of addition', 1080, 110, PAL.ink, { size: 17, weight: 600 });
-    ORDERS.forEach((o, i) => text(ctx, (i + 1) + '   ' + o.map((j) => NAMES[j]).join(' + '), 1080, 142 + 28 * i, i === k ? PAL.ink : PAL.muted, { size: 17, weight: i === k ? 600 : 400 }));
-    text(ctx, 'A = 25.0 m, B = 23.0 m, C = 32.0 m', 1080, 340, PAL.muted, { size: 15 });
-    headline(ctx, k === 0 ? 'added as A, then B, then C, the resultant R is ' + fmt(r, 1) + ' m at ' + compass(deg, 2)
-      : 'added as ' + orderName(k) + ', the sum ends at the same point: R = ' + fmt(r, 1) + ' m at ' + compass(deg, 2));
+    text(ctx, 'A = 25.0 m, B = 23.0 m, C = 32.0 m', 1090, 120, PAL.muted, { size: 15 });
+    if (k !== 0) text(ctx, 'the faint walk is A, then B, then C', 1090, 148, PAL.muted, { size: 15 });
+    headline(ctx, k === 0 ? 'Added as A, then B, then C, the resultant R is ' + fmt(r, 1) + ' m at ' + compass(deg, 2) + '.'
+      : 'Added as ' + orderName(k) + ', the sum ends at the same point, so R is again ' + fmt(r, 1) + ' m at ' + compass(deg, 2) + '.');
     const lhs = ORDERS[k].map((i) => '\\mathbf{' + NAMES[i] + '}').join(' + ');
     readout(d.readout, (k === 0 ? lhs : lhs + ' = \\mathbf{A} + \\mathbf{B} + \\mathbf{C}') + ` = \\mathbf{R},\\quad \\kR = ${fmt(r, 1)}\\ \\text{m}`,
-      'Vector addition is commutative: the sum is the same in whatever order the vectors are added, just as 2 + 3 and 3 + 2 are both 5.');
+      'Vector addition is commutative, so the sum is the same in whatever order the vectors are added, just as 2 + 3 and 3 + 2 are both 5.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -296,7 +300,9 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
   const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: 0, max: 180, step: 1, value: 66, unit: '°', dec: 0, aria: 'direction of A' });
   const B = ctl(d.controls, { label: '\\kB', cls: 'position', min: 5, max: 40, step: 0.5, value: 30, unit: 'm', dec: 1, aria: 'second leg' });
   const TB = ctl(d.controls, { label: '\\theta_{\\text{B}}', cls: '', min: 0, max: 180, step: 1, value: 112, unit: '°', dec: 0, aria: 'direction of B' });
-  const S = 6, ox = 560, oy = 460;
+  /* Four units to the metre, fixed: the two legs reach 40 m each, so the farthest the drawing can
+     go from the start is 320 units, which the canvas holds at every setting of the four sliders. */
+  const S = 4, ox = 560, oy = 460;
   function draw() {
     const { ctx } = begin(d.c);
     const [ax, ay] = tip(ox, oy, A.v * S, TA.v), [bx, by] = tip(ax, ay, B.v * S, TB.v), [nx, ny] = tip(ax, ay, B.v * S, TB.v + 180);
@@ -319,9 +325,10 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     text(ctx, fmt(dif.r, 1) + ' m at ' + compass(dif.deg), 1010, 250, C('position'), { size: 20, weight: 600 });
     text(ctx, '−B has the magnitude of B, ' + fmt(B.v, 1) + ' m,', 1010, 310, PAL.muted, { size: 16 });
     text(ctx, 'and points the opposite way, ' + compass(TB.v + 180, 0), 1010, 334, PAL.muted, { size: 16 });
-    headline(ctx, 'A − B is ' + fmt(dif.r, 1) + ' m at ' + compass(dif.deg) + ', while the dock at A + B is ' + fmt(sum.r, 1) + ' m at ' + compass(sum.deg));
+    headline(ctx, 'A − B is ' + fmt(dif.r, 1) + ' m at ' + compass(dif.deg) + ', while the dock at A + B is ' + fmt(sum.r, 1) + ' m at ' + compass(sum.deg) + '.');
     readout(d.readout, `\\mathbf{A} - \\mathbf{B} = \\mathbf{A} + (-\\mathbf{B}),\\quad \\kR = ${fmt(dif.r, 1)}\\ \\text{m}`,
-      'The dock and the place she reaches are 2B = ' + fmt(2 * B.v, 1) + ' m apart, since B and −B lead away from the head of A in opposite directions.');
+      'The dock and the place she reaches are 2B = ' + fmt(2 * B.v, 1) + ' m apart, since B and −B lead away from the head of A in opposite directions. '
+      + 'These numbers are computed from the two legs, while the example measures its own drawing with a ruler and a protractor and reports 23.0 m at 7.5° south of east. A reading taken off a drawing is good to about a part in fifty, so the two agree as closely as the graphical method allows.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -352,12 +359,12 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
       arrow(ctx, o2[0], o2[1], hx, hy, C('position'), 5);
       beside(ctx, o2[0], o2[1], hx, hy, cs + 'A = ' + fmt(mag, 1) + ' m', C('position'), c < 0 ? -1 : 1, 66, 20);
     } else text(ctx, '0A: the vector vanishes', o2[0], o2[1] - 30, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, c === 0 ? '0 × ' + fmt(A.v, 1) + ' m = 0 m: multiplying by zero leaves no vector at all'
-      : cs + ' × ' + fmt(A.v, 1) + ' m = ' + fmt(mag, 1) + ' m ' + (c < 0 ? 'in the opposite direction, ' : 'in the same direction, ') + compass(deg, 1));
+    headline(ctx, c === 0 ? 'Multiplying ' + fmt(A.v, 1) + ' m by zero leaves no vector at all.'
+      : 'Multiplying ' + fmt(A.v, 1) + ' m by ' + cs + ' gives ' + fmt(mag, 1) + ' m ' + (c < 0 ? 'in the opposite direction, ' : 'in the same direction, ') + compass(deg, 1) + '.');
     readout(d.readout, `|c|\\,\\kA = ${fmt(Math.abs(c), 1)} \\times ${fmt(A.v, 1)}\\ \\text{m} = ${fmt(mag, 1)}\\ \\text{m}`,
       c < 0 ? 'The magnitude is |c| times the original and the minus sign reverses the direction.'
-        : Math.abs(c) < 1 && c !== 0 ? 'A scalar between 0 and 1 divides the vector: multiplying by ' + fmt(c, 1) + ' is dividing by ' + fmt(1 / c, 0) + ', and the direction is unchanged.'
-          : 'The magnitude is c times the original and the direction is unchanged; dividing by 2 would be multiplying by 1/2.');
+        : Math.abs(c) < 1 && c !== 0 ? 'A scalar between 0 and 1 divides the vector, so multiplying by ' + fmt(c, 1) + ' is dividing by ' + fmt(1 / c, 0) + ', and the direction is unchanged.'
+          : 'The magnitude is c times the original and the direction is unchanged, so dividing by 2 would be multiplying by one half.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -398,7 +405,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     text(ctx, 'and then', 900, 304, PAL.ink, { size: 18 });
     text(ctx, fmt(no, 1) + ' blocks north,', 900, 336, C('position'), { size: 20, weight: 600 });
     text(ctx, 'which are its components along the east and north directions.', 900, 372, PAL.muted, { size: 15 });
-    headline(ctx, fmt(Dm, 1) + ' blocks at ' + compass(th) + ' is ' + fmt(ex, 1) + ' blocks east and ' + fmt(no, 1) + ' blocks north');
+    headline(ctx, 'A displacement of ' + fmt(Dm, 1) + ' blocks at ' + compass(th) + ' is ' + fmt(ex, 1) + ' blocks east and ' + fmt(no, 1) + ' blocks north.');
     readout(d.readout, `\\kD = ${fmt(Dm, 1)}\\ \\text{blocks at } ${fmt(th, 1)}^\\circ\\ \\text{north of east:}\\quad ${fmt(ex, 1)}\\ \\text{blocks east},\\ ${fmt(no, 1)}\\ \\text{blocks north}`,
       'The two components added head to tail give back the vector, so finding them is the inverse of the head-to-tail method.');
   }
@@ -438,7 +445,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     /* a key to the dash patterns */
     text(ctx, 'the paths', 1180, 120, PAL.ink, { size: 17, weight: 600 });
     PATHS.forEach(({ n, dash }, i) => { const y = 156 + 34 * i; line(ctx, 1180, y, 1260, y, PAL.ink, 5, dash ?? undefined); text(ctx, n, 1276, y, PAL.ink, { size: 20, weight: 600 }); });
-    headline(ctx, 'all blocks are 120 m on a side, and each path is walked in the direction of its arrowheads');
+    headline(ctx, 'All blocks are 120 m on a side, and each path is walked in the direction of its arrowheads.');
     readout(d.readout, '\\text{one block} = 120\\ \\text{m}');
   }
   register(d.fig, { update: () => {}, draw });

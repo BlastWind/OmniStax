@@ -89,15 +89,20 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    acceleration-due-to-gravity · a hammer and a feather are let go
    together from the same height in two panels, in air and in a vacuum;
    in the vacuum they stay side by side all the way down, and in air the
-   feather drifts down slowly and lags behind (its drift is drawn
-   qualitatively, with no number, since the book gives none) · $\kg$ in
-   m/s² (1.00 to 20.00, step 0.01, default 9.80, acceleration hue; the
-   Moon's 1.67 is on the slider), the drop height h in m (0.5 to 5.0,
-   step 0.1, default 2.0, ink) · "t = 0.31 s · in a vacuum the hammer
-   and the feather have fallen the same 0.47 m together, while in air the
-   feather lags behind" and at the floor "both reach the floor at t =
-   0.64 s, having fallen 2.0 m with the same acceleration g = 9.80 m/s²"
-   · none · no. Moving: something falls, one finite drop per loop in
+   feather settles to a terminal speed within a few centimetres and then
+   drifts at that speed, which is taken as 0.80 m/s in Earth's air and
+   scaled as the square root of g, since that is how a terminal speed
+   goes; both panels carry a line saying what holds the feather back and
+   what does not · $\kg$ in m/s² (1.50 to 10.00, step 0.01, default 9.80,
+   acceleration hue, with soft detents at the Moon's 1.67 and Earth's
+   9.80), the drop height h in m (0.5 to 5.0,
+   step 0.1, default 2.0, ink) · "After 0.31 s the hammer and the feather
+   in the vacuum have fallen the same 0.47 m together, while in air the
+   feather has drifted only 0.25 m." At the floor, "In the vacuum both
+   reach the floor at t = 0.64 s, having fallen 2.0 m with the same
+   acceleration g = 9.80 m/s²."
+   · none · 2D, the two panels fixed to the drop height. Labels on, seven
+   of them. Moving: something falls, one finite drop per loop in
    about 5 real seconds, so it gets the scrubber. Readout $\ky = -\tfrac{1}{2}\kg\kt^2$
    with the live numbers; small line: the mass does not appear in the
    equation, and on the Moon the same fall takes the time the slider
@@ -109,16 +114,24 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    stops there for an instant and falls past the edge; its velocity
    arrow shrinks, reverses and grows, and its acceleration arrow points
    down the whole time; the highest point is marked with a hollow dot
-   and the time and height it is reached · $\kvo$ in m/s (0.0 to 25.0,
-   step 0.1, default 13.0, velocity hue), $\kg$ in m/s² (1.00 to 20.00,
-   step 0.01, default 9.80, acceleration hue), the time shown $\kt$ in s
-   (0.5 to 8.0, step 0.05, default 3.00, time hue) · "t = 1.00 s · y =
-   8.10 m and v = +3.20 m/s, so the rock is above its start and still
-   rising, and a = −9.80 m/s² as it is throughout"; at the top "at t =
-   1.33 s the rock is at its highest point, 8.62 m: its velocity is zero,
-   but its acceleration is still −9.80 m/s²" · three graphs beside the
+   and the time and height it is reached · $\kvo$ in m/s (1.0 to 25.0,
+   step 0.1, default 13.0, velocity hue; it starts at 1.0 rather than 0
+   so that the highest point is never the starting point and its label
+   never sits on the y₀ label), $\kg$ in m/s² (1.50 to 10.00,
+   step 0.01, default 9.80, acceleration hue, with soft detents at 1.67
+   and 9.80), the time shown $\kt$ in s
+   (0.5 to 6.0, step 0.05, default 3.00, time hue, with a detent at
+   3.00) · "After 1.00 s the rock is at y =
+   8.10 m with v = +3.20 m/s, above the start and still
+   rising, while a = −9.80 m/s² throughout." At the top, "At t =
+   1.33 s the rock is at its highest point, 8.62 m, where its velocity is
+   zero but its acceleration is still −9.80 m/s²." · three graphs beside the
    scene, stacked as the book stacks them: $\ky$ against $\kt$, $\kv$
-   against $\kt$, $\ka$ against $\kt$, the moving point on each · no. The
+   against $\kt$, $\ka$ against $\kt$, the moving point on each, all on
+   ranges fixed once at 0 to 6 s, −25 m to 25 m, −30 m/s to 30 m/s and
+   −10 m/s² to 0 · 2D. A flight that runs past the ends of the height
+   scale is drawn against them and the headline says so, rather than the
+   scale stretching to follow it. Labels on, eight of them. The
    scene is vertical, so the graphs go beside it. Moving: the rock
    travels, one finite flight per loop in about 5 real seconds, with the
    scrubber. Readout: the position and velocity equations with the live
@@ -131,17 +144,27 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    $-\kvo$, and both fall to the same level $\ky$ below the start; the
    rock thrown down arrives first and waits there with its arrival
    velocity written beside it, and the rock thrown up leaves a hollow
-   mark with a velocity arrow at every whole second, as in the book's
-   figure, and arrives with the same velocity · $\kvo$ in m/s (1.0 to
+   mark with a velocity arrow behind it as it flies,
+   and arrives with the same velocity · $\kvo$ in m/s (1.0 to
    25.0, step 0.1, default 13.0, velocity hue), the level reached $\ky$
-   in m (−40.0 to −1.0, step 0.1, default −5.10, position hue), $\kg$ in
-   m/s² (1.00 to 20.00, step 0.01, default 9.80, acceleration hue) · "t =
-   2.99 s · thrown up, the rock reaches −5.10 m at −16.4 m/s, the same
-   velocity the rock thrown down had there at t = 0.34 s" · beside the
+   in m (−12.0 to −1.0, step 0.1, default −5.10, position hue; the range
+   is cut at 12 m below the start so that the one height scale the scene
+   and the graph share stays readable), $\kg$ in
+   m/s² (1.50 to 10.00, step 0.01, default 9.80, acceleration hue, with
+   soft detents at 1.67 and 9.80), and a Labels button · "After
+   2.99 s the rock thrown up reaches −5.10 m at −16.4 m/s, which is the
+   velocity the rock thrown down had there at 0.34 s." · beside the
    scene, on the same height scale, $\kv$ across against $\ky$ up: the
    single parabola $\kv^2 = \kvo^2 - 2\kg(\ky - \kyo)$ that both rocks
    ride, the rock thrown up going over its top from the right branch to
-   the left, the rock thrown down starting on the left branch · no.
+   the left, the rock thrown down starting on the left branch, on ranges
+   fixed once at −32 m/s to 32 m/s and −12 m to 14 m, with the curve
+   clipped to the box · 2D. The marks the rock thrown up leaves are
+   spaced so that at most eight are drawn, and their labels are off by
+   default behind a Labels button, with the time under the pointer
+   instead (rule 26.7). The equation written in the corner of the graph
+   names three types at once, so it is in ink rather than in any one of
+   their hues.
    Moving: both rocks travel, one finite flight per loop in about 5 real
    seconds, with the scrubber. Readout: the velocity-squared equation
    with the numbers and its negative root; small line: v₀² is the same
@@ -155,14 +178,20 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    the measured time, leaving a strobe mark every 0.1 s with its position
    and velocity written beside it, as in the book's figure; the
    acceleration, and so $\kg$, follows from the two measurements · the
-   distance fallen d in m (0.2000 to 3.0000, step 0.0001, default
-   1.0000, position hue), the fall time $\kt$ in s (0.20000 to 1.00000,
-   step 0.00001, default 0.45173, time hue) · "t = 0.30 s · the ball has
-   fallen 0.441 m and is moving at −2.94 m/s" and at the end "the ball
-   falls 1.0000 m in 0.45173 s, which gives g = 9.8010 m/s² at this
-   place" · three graphs beside the scene, $\ky$, $\kv$ and $\ka$ against
-   $\kt$, the strobe points marked on the first two · no. The scene is
-   vertical, so the graphs go beside it. Moving: the ball falls, one
+   position at the end of the fall $\ky$ in m (−3.00 to −0.20, step 0.01,
+   default −1.00, position hue, with a soft detent at −1.00), the fall
+   time $\kt$ in s (0.20173 to 1.00173, step 0.0001, default 0.45173,
+   time hue, with a soft detent at 0.45173; the range is offset so that
+   the detent sits exactly on the step grid) · "After 0.30 s the ball has
+   fallen 0.441 m and is moving at −2.94 m/s." At the end, "The ball
+   falls 1.00 m in 0.45173 s, which gives g = 9.8000 m/s² at this
+   place." · three graphs beside the scene, $\ky$, $\kv$ and $\ka$ against
+   $\kt$, the strobe points marked on the first two, on ranges fixed at
+   0 to 1 s, 0 to −3 m, 0 to −15 m/s and 0 to −25 m/s², with a fall
+   faster than the last two scales hold drawn against their ends and
+   said to be · 2D. Labels on, six of them, and the a = −g arrow stands
+   at x = 78 so that no part of its label falls off the canvas. The
+   scene is vertical, so the graphs go beside it. Moving: the ball falls, one
    finite drop per loop in about 4 real seconds, with the scrubber.
    Readout: $\ka = 2(\ky - \kyo)/\kt^2$ with the numbers and $\kg$ from
    it; small line: position grows with the square of the time, velocity
@@ -171,14 +200,21 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
 5. `sim-well` · new (the extra simulation below) · free-fall-kinematics
    · a rock is dropped into a shaft and falls to the water; from the
    splash a sound climbs back up at the speed of sound, and the clock
-   reads the two legs, the long fall and the short return · the depth d
-   in m (5 to 200, step 1, default 40, position hue), the speed of sound
-   $\kv_{\text{s}}$ in m/s (300 to 360, step 1, default 340, velocity
-   hue) · "the splash is heard 2.97 s after the drop: 2.86 s of fall and
-   0.12 s for the sound to climb 40 m" · beside the shaft, on the same
+   reads the two legs, the long fall and the short return · one slider
+   only, the depth d in m (5 to 100, step 1, default 40, ink, since it is
+   a length of the scene and not a typed position, as the drop height in
+   the hammer-and-feather figure is). The speed of sound is no longer a
+   slider: every value between 300 and 360 m/s moved the drawing by less
+   than a line's width, so it is stated as the 340 m/s the problem uses
+   (rule 24.6) · "The splash is heard 2.97 s after the drop, which is
+   2.86 s of fall and 0.12 s for the sound to climb the 40 m." · beside
+   the shaft, on the same
    height scale, the height of the rock and then of the sound against
    $\kt$: the parabola of the fall and the straight line of the sound
-   back up · no. Moving: the rock falls and the sound rises, one finite
+   back up, both in the position hue, since both are heights against
+   time, with the sound's leg dashed to tell it from the fall; the axes
+   are fixed at 0 to 5 s and −100 m to 0 · 2D. Labels on, eight of them.
+   Moving: the rock falls and the sound rises, one finite
    round trip per loop in about 5 real seconds, with the scrubber.
    Readout: the fall time from $\sqrt{2d/\kg}$ and the sound's time from
    $d/\kv_{\text{s}}$; small line: taking the whole time as fall time

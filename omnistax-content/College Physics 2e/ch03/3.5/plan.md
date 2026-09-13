@@ -90,10 +90,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    dashed line is its path relative to the shore · `\kvboat` (0.10 to
    3.00 m/s, default 0.75, velocity), `\kvriver` (0 to 3.00 m/s, default
    1.20, velocity), heading (30° to 150° from downstream, default 90°,
-   ink; 90° is straight across as the book has it) · "the boat lands
-   40.0 m downstream after 33.3 s; relative to the shore it moves at
-   1.42 m/s, 32.0° from the bank" · the velocity triangle beside the
-   scene, drawn as the book draws it, with the numbers on each arrow · no.
+   ink; 90° is straight across as the book has it), and the width of the
+   river (10 to 60 m, default 25, position hue). The example gives no
+   width, so rather than state one as a fact the figure starts at an
+   assumed 25 m and hands the width to the reader · "After 33.3 s the
+   boat reaches the far bank 40.0 m downstream, moving at 1.42 m/s, 32.0°
+   from the bank." · the velocity triangle beside the
+   scene, drawn as the book draws it, with the numbers on each arrow · 2D.
    Moves: the crossing has a time in it (the boat drifts as it crosses),
    finite, one crossing in about 5 real seconds, so it gets the
    scrubber. Readout: $\kvtot = \sqrt{\kvx^2 + \kvy^2} = 1.42$ m/s and
@@ -147,9 +150,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    panels they land at the base of the mast; the velocity arrow on the
    binoculars is drawn every frame in each frame of reference ·
    `\kv_{\text{ship}}` (0 to 15 m/s, default 6.0, velocity), mast height
-   h (4 to 20 m, default 12, ink) · "the binoculars land at the base of
-   the mast after 1.56 s, having moved 9.4 m forward with the ship" ·
-   none, the two scenes are the idea · no. Moves: a fall, finite,
+   h (4 to 20 m, default 12, position hue, as the heights of a drop are
+   in 3.1 and 3.4) · "The binoculars land at the base of
+   the mast after 1.56 s, having moved 9.4 m forward with the ship." ·
+   none, the two scenes are the idea · 2D. Moves: a fall, finite,
    scrubber. Readout: the velocity at the deck in the two frames, (6.0,
    −15.3) m/s from shore and (0, −15.3) m/s from the ship; small line:
    the observers differ by the ship's velocity alone. Draws velocity.
@@ -162,10 +166,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    and under the graph the velocity at the floor drawn to one scale, so
    that the 5.42 m/s downward is a stub beside the 260 m/s forward ·
    `\kv_{\text{plane}}` (50 to 300 m/s, default 260, velocity), drop
-   height h (0.5 to 3.0 m, default 1.50, ink) · "the coin lands after
-   0.553 s, 1.50 m below where it was dropped and 144 m along the ground;
-   its velocity is 260.06 m/s" · the ground-frame path is the graph ·
-   no. Moves: a fall, finite, scrubber. The example gets a figure of its
+   height h (0.5 to 3.0 m, default 1.50, position hue) · "The coin lands
+   after 0.553 s, 1.50 m below where it was dropped and 144 m along the
+   ground, at 260.06 m/s." · the ground-frame path is the graph ·
+   2D. Moves: a fall, finite, scrubber. The example gets a figure of its
    own because it adds the velocity at the floor and its five-digit
    magnitude, which the binoculars sim does not show. Readout: $\kv =
    \sqrt{\kvx^2 + \kvy^2} = 260.06$ m/s and $\theta = -1.19°$; small

@@ -94,6 +94,10 @@ graph · 3D
    beneath that takes the drag out of the applied force are the picture · no. Readout: $\kFD = \kFa - m\ka$ with the
    live numbers; small line comparing the drag with the weight of the ship,
    as the book's discussion does. Draws force and acceleration.
+   Revised in the figure-audit pass of 2026-09-12: the bracket that measures
+   the net force out of the applied force is drawn in the force hue rather
+   than the acceleration hue, and is told from the drag beside it by the row
+   it stands on. The headline is one capitalized sentence.
 2. `sim-traffic-light` · replaces Figure 4.22 (a) to (e) (the light hung
    from two poles, the forces, the free-body diagram, the components and the
    two axes) · unequal-tensions, net-force-by-axis, tension · **still**: a
@@ -107,6 +111,8 @@ graph · 3D
    · no. Readout: the two axis equations with the live numbers; small line on
    when the two tensions are equal and on how both grow as the wires are
    pulled toward the horizontal, which is the book's discussion. Draws force.
+   Revised in the figure-audit pass of 2026-09-12: the headline is one
+   capitalized sentence.
 3. `sim-elevator-scale` · replaces Figure 4.23 (a) and (b) (the forces on
    the person, the scale and the elevator, and the free-body diagram of the
    person) · apparent-weight, newtons-second-law, newtons-third-law ·
@@ -124,6 +130,11 @@ graph · 3D
    · no. Readout: $\kFs = m\ka + m\kg$ with the live numbers; small line on
    what the dial would read in free fall, which is the paragraph after the
    example. Draws force, acceleration, velocity and time.
+   Revised in the figure-audit pass of 2026-09-12: the book's two parts are
+   both drawn: the person alone is ringed in a dashed boundary on the scene
+   as the system of interest, and a free-body diagram panel beside the shaft
+   carries the two forces that are left on him, his weight and the push of
+   the scale. The headline is one capitalized sentence.
 4. `sim-soccer` · Sim (the book draws no figure for Example 4.10, and the
    skill this block introduces has none) · integrated-kinematics-dynamics,
    newtons-second-law, average-acceleration · **moves**: the player starts
@@ -138,6 +149,8 @@ graph · 3D
    no. Readout: $\ka = \kdv / \kdt$ and then $\kFnet = m\ka$ with the live
    numbers; small line naming the force in pounds, as the book's discussion
    does. Draws velocity, acceleration, time and force.
+   Revised in the figure-audit pass of 2026-09-12: the headline is one
+   capitalized sentence.
 5. `fig-rescue` · a faithful copy of the unnumbered figure the keyed rescue
    problem refers to (the book gives it no number, so its eyebrow reads
    "Figure") · unequal-tensions · **still**: a person held motionless
@@ -169,6 +182,9 @@ Extra simulations (rule 15), considered and left:
   `sim-barge` already carries perpendicular forces on its sliders. Left.
 
 None built beyond the four the triggers of rule 14 call for.
+   Revised in the figure-audit pass of 2026-09-12: the note on the left rope
+   and the name of the building are moved clear of the ropes, so no line is
+   crossed by a word, and the headline is one capitalized sentence.
 
 ## Exercises
 

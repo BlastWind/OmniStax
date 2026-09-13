@@ -92,11 +92,16 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    complete revolution per loop, and the two pits paint their arcs as it goes,
    so the idea has a time in it and the figure takes the transport and the
    scrubber · the radius of curvature $\kr$ of the outer pit (2.0 to 6.0 cm,
-   default 6.0, position) and the radius $r_1$ of the inner pit (1.0 to 5.0
-   cm, default 3.0, position, held below $\kr$) · "Δθ = 1.85 rad = 106° =
-   0.29 revolutions · the outer pit has run 11.1 cm and the inner pit 5.6 cm"
+   default 6.0, position) and the inner pit as a fraction $r_1/r$ of it (0.10
+   to 0.90, default 0.50, ink, a ratio being untyped), so that the pit the
+   slider names is always the pit the drawing paints and no setting has to be
+   clamped · "Turning through Δθ = 1.85 rad carries the outer pit 11.1 cm and
+   the inner pit 5.6 cm."
    · no graph: the two arcs are unrolled into straight bars beside the disc,
-   which is what shows that the same angle gives different arc lengths · no.
+   which is what shows that the same angle gives different arc lengths · 2D,
+   the plane of the disc being the canvas · labels on: the figure names the
+   center, the two pits and the angle and nothing else, which is well under
+   six.
    Readout: $\Delta\theta = \kds/\kr$ with the numbers; small line on the
    radian, that an arc as long as the radius subtends one radian and that a
    whole circumference subtends $2\pi$. Draws position.
@@ -104,13 +109,16 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    rotation-angle · **moves**: a wheel turns at the set angular velocity while
    a clock runs, and the swept angle grows with it, so the figure loops
    through the set number of revolutions and takes the transport and the
-   scrubber · the angular velocity $\kw$ (0.5 to 12.0 rad/s, default 4.0,
-   angular rate) and the number of revolutions to run $N$ (1 to 4, default 2,
-   ink, since a count is untyped) · "Δt = 1.85 s · the wheel has turned
-   through Δθ = 7.40 rad, and Δθ/Δt is 4.00 rad/s at every moment of the run"
-   · graph beside the wheel: $\Delta\theta$ against $\kdt$, a straight line
-   through the origin whose slope is the angular velocity, with the moving
-   point and its two drop lines · no. Readout: $\kw =
+   scrubber · the angular velocity $\kw$ (2.0 to 12.0 rad/s, default 4.0,
+   angular rate) and the number of revolutions to run $N$ (a row of buttons,
+   1, 2 or 3, default 2, since a count is a discrete state and not a quantity)
+   · "In 1.85 s the wheel turns through 7.40 rad, and Δθ/Δt is 4.00 rad/s
+   throughout."
+   · graph beside the wheel: $\Delta\theta$ against $\kdt$ on fixed axes of 0
+   to 10 s by 0 to 20 rad, which hold every run the two controls allow, a
+   straight line through the origin whose slope is the angular velocity, with
+   the moving point and its two drop lines · 2D, the plane of the wheel being
+   the canvas · labels on, there being four of them. Readout: $\kw =
    \Delta\theta/\kdt$ with the numbers; small line on the time for one
    revolution. Draws angular rate, time. The section introduces the angular
    velocity where the book prints no figure at all, and rule 14's first
@@ -227,10 +235,10 @@ three of the four sims' sliders; the car's speed $\kv$ and the flies' speed
 are velocities; the angular velocity $\kw$ is the angular rate the book
 declared for 16.6, drawn as the curl round every turning thing; and the clock
 of `sim-omega` is a time, which is also the axis its graph runs along. The
-rotation angle $\Delta\theta$, the count of revolutions $N$ and the inner
-radius label $r_1$ stay in ink: an angle and a count are untyped, and $r_1$ is
-drawn in the position hue through its slider class while the book's symbol
-$r_1$ belongs to 6.6.
+rotation angle $\Delta\theta$, the count of revolutions $N$ and the ratio
+$r_1/r$ that sets the inner pit stay in ink: an angle, a count and a ratio are
+all untyped. The arc the inner pit paints is a length and keeps the position
+hue, as the outer one does.
 
 ## Wanted at chapter level
 

@@ -45,7 +45,7 @@ function runs(ctx, parts, x, y, size) {
 (function () {
   const d = sim('sim-target', 620);
   const S = ctl(d.controls, { label: '\\text{spread}', cls: '', min: 0.1, max: 3, step: 0.1, value: 2, unit: 'rings', dec: 1, aria: 'spread of the attempts' });
-  const O = ctl(d.controls, { label: '\\text{offset}', cls: '', min: 0, max: 3, step: 0.1, value: 0.3, unit: 'rings', dec: 1, aria: 'offset of the centre of the attempts' });
+  const O = ctl(d.controls, { label: '\\text{offset}', cls: '', min: 0, max: 3, step: 0.1, value: 0.3, unit: 'rings', dec: 1, aria: 'offset of the center of the attempts' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const CX = 400, CY = 340, RING = 44, ANG = (-25 * Math.PI) / 180;
   function draw() {
@@ -66,12 +66,12 @@ function runs(ctx, parts, x, y, size) {
     text(ctx, lowP ? 'low precision' : 'high precision', lx, 170, PAL.ink, { size: 44, weight: 700 });
     text(ctx, lowP ? 'the attempts are spread far apart from one another' : 'the attempts agree closely with one another', lx, 214, PAL.muted, { size: 20 });
     text(ctx, lowA ? 'low accuracy' : 'high accuracy', lx, 300, PAL.ink, { size: 44, weight: 700 });
-    text(ctx, lowA ? 'their centre is far from the restaurant' : 'their centre is close to the restaurant', lx, 344, PAL.muted, { size: 20 });
+    text(ctx, lowA ? 'their center is far from the restaurant' : 'their center is close to the restaurant', lx, 344, PAL.muted, { size: 20 });
     dot(ctx, lx + 10, 440, PAL.ink, true, 9); text(ctx, 'one attempt of the GPS to locate the restaurant', lx + 34, 440, PAL.muted, { size: 20 });
-    dot(ctx, lx + 10, 482, PAL.ink, false, 11); text(ctx, 'the centre of the eight attempts', lx + 34, 482, PAL.muted, { size: 20 });
-    line(ctx, lx, 524, lx + 20, 524, PAL.muted, 2, [6, 8]); text(ctx, 'from that centre to the restaurant', lx + 34, 524, PAL.muted, { size: 20 });
-    headline(ctx, 'a spread of ' + fmt(S.v, 1) + ' rings means ' + (lowP ? 'low' : 'high') + ' precision, and an offset of ' + fmt(O.v, 1) + ' rings means ' + (lowA ? 'low' : 'high') + ' accuracy');
-    readout(d.readout, `\\text{spread} = ${fmt(S.v, 1)}\\ \\text{rings}, \\quad \\text{offset of the centre} = ${fmt(O.v, 1)}\\ \\text{rings}`,
+    dot(ctx, lx + 10, 482, PAL.ink, false, 11); text(ctx, 'the center of the eight attempts', lx + 34, 482, PAL.muted, { size: 20 });
+    line(ctx, lx, 524, lx + 20, 524, PAL.muted, 2, [6, 8]); text(ctx, 'from that center to the restaurant', lx + 34, 524, PAL.muted, { size: 20 });
+    headline(ctx, 'A spread of ' + fmt(S.v, 1) + ' rings means ' + (lowP ? 'low' : 'high') + ' precision, and an offset of ' + fmt(O.v, 1) + ' rings means ' + (lowA ? 'low' : 'high') + ' accuracy.');
+    readout(d.readout, `\\text{spread} = ${fmt(S.v, 1)}\\ \\text{rings}, \\quad \\text{offset of the center} = ${fmt(O.v, 1)}\\ \\text{rings}`,
       'Precision is about how closely the attempts agree with one another, and accuracy about how close they are to the correct value. A system can have either without the other.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -92,23 +92,30 @@ function runs(ctx, parts, x, y, size) {
   function draw() {
     const { ctx } = begin(d.c);
     const half = A.v / 2, p = pct(A.v, dA.v), ph = pct(half, dA.v);
-    const span = nice(Math.min(half - dA.v, 4.8) - 0.3, Math.max(A.v + dA.v, 5.4) + 0.3, 6), step = (span.hi - span.lo) / span.n;
+    /* The line runs a fixed 0 to 11 lb, the widest the sliders reach (A up to 10 lb plus δA up to
+       1 lb), so moving a slider moves the marker and not the ticks. A band that would run below
+       zero is clamped to the end of the line, and the bracket's label still writes the true numbers. */
+    const span = { lo: 0, hi: 11, n: 11 }, step = 1;
     const L = 180, R = 1300, X = (w) => L + ((R - L) * (w - span.lo)) / (span.hi - span.lo);
+    const Xc = (w) => X(Math.min(span.hi, Math.max(span.lo, w)));
+    /* The four weights of Example 1.2 have the average 5.1 lb, so they are drawn only while the
+       average slider is at that value; away from it they are not the readings of that example. */
+    const atExample = Math.abs(A.v - 5.1) < 0.05;
     const lines = [{ y: 210, a: A.v, dec: 1, title: 'the bag of apples', weeks: true }, { y: 430, a: half, dec: 2, title: 'a bag half as heavy, with the same uncertainty', weeks: false }];
     for (const ln of lines) {
       const { y, a } = ln;
       text(ctx, ln.title, L, y - 104, PAL.ink, { size: 22, weight: 600 });
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(X(a - dA.v), y - 16, X(a + dA.v) - X(a - dA.v), 32); ctx.restore();
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(Xc(a - dA.v), y - 16, Xc(a + dA.v) - Xc(a - dA.v), 32); ctx.restore();
       line(ctx, L, y, R, y, PAL.muted, 3);
       for (let m = span.lo; m <= span.hi + 1e-9; m += step) { line(ctx, X(m), y - 8, X(m), y + 8, PAL.muted, 2); text(ctx, fmt(m, 0) + ' lb', X(m), y + 28, PAL.muted, { size: 17, align: 'center' }); }
-      if (ln.weeks) {
+      if (ln.weeks && atExample) {
         WEEKS.slice().sort((u, v) => u - v).forEach((w, i) => { line(ctx, X(w), y - 28, X(w), y - 4, PAL.ink, 3); text(ctx, fmt(w, 1) + ' lb', X(w), y - (i % 2 ? 66 : 42), PAL.ink, { size: 17, align: 'center' }); });
         text(ctx, 'the four weekly weights of Example 1.2', R, y - 104, PAL.muted, { size: 17, align: 'right' });
       }
-      dot(ctx, X(a), y, PAL.ink, true, 10);
-      hbracket(ctx, X(a - dA.v), X(a + dA.v), y + 84, PAL.ink, fmt(a, ln.dec) + ' lb ± ' + fmt(dA.v, 1) + ' lb, which is ± ' + pct(a, dA.v) + '%');
+      dot(ctx, Xc(a), y, PAL.ink, true, 10);
+      hbracket(ctx, Xc(a - dA.v), Xc(a + dA.v), y + 84, PAL.ink, fmt(a, ln.dec) + ' lb ± ' + fmt(dA.v, 1) + ' lb, which is ± ' + pct(a, dA.v) + '%');
     }
-    headline(ctx, fmt(A.v, 1) + ' lb ± ' + fmt(dA.v, 1) + ' lb is ' + fmt(A.v, 1) + ' lb ± ' + p + '%');
+    headline(ctx, 'A weight of ' + fmt(A.v, 1) + ' lb known to ± ' + fmt(dA.v, 1) + ' lb is known to ± ' + p + '%.');
     readout(d.readout, `\\%\\,\\text{unc} = \\frac{\\delta A}{A} \\times 100\\% = \\frac{${fmt(dA.v, 1)}\\ \\text{lb}}{${fmt(A.v, 1)}\\ \\text{lb}} \\times 100\\% = ${p}\\%`,
       'The same uncertainty on a bag half as heavy, ' + fmt(half, 2) + ' lb ± ' + fmt(dA.v, 1) + ' lb, is ' + ph + '%, so the lighter the bag, the larger the share of it the uncertainty is.');
   }
@@ -148,7 +155,7 @@ function runs(ctx, parts, x, y, size) {
     row(250, dashed, 'the largest floor allowed', '(' + fmt(a, 2) + ' m)(' + fmt(b, 2) + ' m) = ' + fmt(a * b, 1) + ' m²');
     row(350, dashed, 'the smallest floor allowed', '(' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m²');
     row(450, (y) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(px, y - 12, 30, 24); ctx.restore(); }, 'the uncertainty in the area', '± ' + pc(pA) + ' of 12.0 m², or ± ' + fmt(dArea, 1) + ' m²');
-    headline(ctx, 'a floor 4.00 m by 3.00 m, known to ' + pc(pL.v) + ' and ' + pc(pW.v) + ', has an area of 12.0 m² known to ' + pc(pA));
+    headline(ctx, 'A floor 4.00 m by 3.00 m, known to ' + pc(pL.v) + ' and ' + pc(pW.v) + ', has an area of 12.0 m² known to ' + pc(pA) + '.');
     readout(d.readout, `12.0\\ \\text{m}^2 \\pm ${pcTex(pA)} = 12.0\\ \\text{m}^2 \\pm ${fmt(dArea, 1)}\\ \\text{m}^2`,
       'The largest floor the uncertainties allow is (' + fmt(a, 2) + ' m)(' + fmt(b, 2) + ' m) = ' + fmt(a * b, 1) + ' m² and the smallest (' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m², so '
       + (pA <= 5 ? 'adding the percents is very nearly exact when the uncertainties are small.' : 'adding the percents is only an approximation, which serves well when the uncertainties are a few percent or less.'));
@@ -167,10 +174,9 @@ function runs(ctx, parts, x, y, size) {
 (function () {
   const d = sim('sim-ruler', 500);
   const Lc = ctl(d.controls, { label: '\\text{length}', cls: '', min: 10, max: 50, step: 0.01, value: 36.71, unit: 'cm', dec: 2, onInput: reset, aria: 'true length of the stick' });
-  const Dv = ctl(d.controls, { label: '\\text{division}', cls: '', min: 0, max: 2, step: 1, value: 1, unit: '', dec: 0, onInput: reset, aria: 'smallest division of the ruler' });
-  const divVal = d.controls.lastElementChild ? d.controls.lastElementChild.querySelector('.ctl-val') : null;
-  if (divVal) divVal.textContent = '1 mm';
-  const DIVS = [{ cm: 1, dec: 0, name: 'centimeter divisions', label: '1 cm' }, { cm: 0.1, dec: 1, name: 'millimeter divisions', label: '1 mm' }, { cm: 0.01, dec: 2, name: '0.1 mm divisions', label: '0.1 mm' }];
+  /* The smallest division is one of three rulers, not a quantity to slide through, so it is a choice (rule 26.1). */
+  const DIVS = { cm: { cm: 1, dec: 0, name: 'centimeter divisions' }, mm: { cm: 0.1, dec: 1, name: 'millimeter divisions' }, tenth: { cm: 0.01, dec: 2, name: '0.1 mm divisions' } };
+  const Dv = F.choice(d.controls, { label: '\\text{smallest division}', options: [{ value: 'cm', label: '1 cm' }, { value: 'mm', label: '1 mm' }, { value: 'tenth', label: '0.1 mm' }], value: 'mm', aria: 'smallest division of the ruler', onInput: reset });
   const T = 4;
   const cy = cycle(() => T, 1.5);
   function reset() { cy.reset(); }
@@ -179,7 +185,7 @@ function runs(ctx, parts, x, y, size) {
   const BOX = { l: 175, r: 1225, t: 262, b: 470 }, WIN = 1.5, KM = (BOX.r - BOX.l) / WIN;
   function draw() {
     const { ctx } = begin(d.c);
-    const dv = DIVS[Dv.v] ?? DIVS[1]; if (divVal) divVal.textContent = dv.label;
+    const dv = DIVS[Dv.value] ?? DIVS.mm;
     const u = REDUCED ? 1 : ease(Math.min(1, cy.now() / T)), aligned = u >= 1 - 1e-6;
     const L = Lc.v, reading = L.toFixed(dv.dec), n = sigfigs(L, dv.dec), last = reading[reading.length - 1];
     const slide = -(1 - u) * SLIDE, sw = slide / K;
@@ -219,8 +225,8 @@ function runs(ctx, parts, x, y, size) {
       text(ctx, 'the person writes down ' + reading + ' cm', BOX.r - 16, BOX.t + 20, PAL.ink, { size: 20, weight: 600, align: 'right' });
     }
     ctx.restore();
-    headline(ctx, aligned ? 'with ' + dv.name + ' the stick reads ' + reading + ' cm, ' + words(n) + ' figures, and the ' + last + ' is estimated'
-      : 'the ruler slides under the stick until its zero mark meets the stick’s left end');
+    headline(ctx, aligned ? 'With ' + dv.name + ' the stick reads ' + reading + ' cm, ' + words(n) + ' figures, and the ' + last + ' is estimated.'
+      : 'The ruler slides under the stick until its zero mark meets the stick’s left end.');
     readout(d.readout, `L = ${reading}\\ \\text{cm}`,
       'The last digit written down is the first with some uncertainty. A ruler marked in centimeters gives ' + L.toFixed(0) + ' cm, ' + words(sigfigs(L, 0)) + ' figures, and a caliper reading to 0.1 mm gives ' + L.toFixed(2) + ' cm, ' + words(sigfigs(L, 2)) + '.');
   }
@@ -279,8 +285,8 @@ function runs(ctx, parts, x, y, size) {
     runs(ctx, [[As + ' × ' + Bs + ' = ', PAL.ink], [pShow, PAL.ink, 600], [pCut, PAL.muted]], px, 340, 26);
     text(ctx, 'which is written ' + plainSig(pRound) + ', since ' + (na === nb ? 'both have ' : (na < nb ? 'a' : 'b') + ' has only ') + words(n), px, 376, PAL.ink, { size: 20 });
     headline(ctx, da.v === db.v
-      ? As + ' + ' + Bs + ' = ' + rawSum + ', and nothing is rounded off because both are known to ' + PLACES[dec]
-      : As + ' + ' + Bs + ' = ' + rawSum + ', which is written ' + sumKept + ' because ' + (da.v < db.v ? As : Bs) + ' is known only to ' + PLACES[dec]);
+      ? 'The calculator gives ' + As + ' + ' + Bs + ' = ' + rawSum + ', and nothing is rounded off because both are known to ' + PLACES[dec] + '.'
+      : 'The calculator gives ' + As + ' + ' + Bs + ' = ' + rawSum + ', which is written ' + sumKept + ' because ' + (da.v < db.v ? As : Bs) + ' is known only to ' + PLACES[dec] + '.');
     const sumTex = rawSum === sumKept ? rawSum : rawSum + ' = ' + sumKept, pTex = rawP === pRound ? rawP : rawP + ' = ' + texSig(pRound);
     readout(d.readout, `\\begin{aligned} a + b &= ${As} + ${Bs} = ${sumTex} \\\\ a \\times b &= ${As} \\times ${Bs} = ${pTex} \\end{aligned}`,
       'For addition and subtraction the answer keeps the decimal places of the least precise measurement, and for multiplication and division it keeps the significant figures of the quantity with the fewest.');

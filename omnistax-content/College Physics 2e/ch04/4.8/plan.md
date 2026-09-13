@@ -94,6 +94,11 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    small line on the field being a characteristic of the two charges that
    make it, so that changing $q$ changes the arrow and leaves the lines
    where they are. Draws force.
+   Revised in the figure-audit pass of 2026-09-12: x and y are bound as
+   positions and their distances colored, the force and the field are
+   stated in the units the figure counts them in, since the charges carry no
+   coulombs, and the headline is one capitalized sentence. Draws force and
+   position.
 2. `sim-exchange` · replaces Figure 4.25 (the basketball thrown and
    caught, and the meson exchanged between a proton and a neutron) ·
    carrier-particle · **moving**: the idea is an exchange, which takes
@@ -113,6 +118,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    force the same way. The people, the ball, the proton, the neutron and
    the meson are ink; the arrows and their labels are the force hue.
    Draws force.
+   Revised in the figure-audit pass of 2026-09-12: the separation slider is
+   gone, since it changed nothing the reader could read off the figure, and
+   the pair stands at the 6 m the scene needs; the headline is one
+   capitalized sentence.
 3. `sim-strengths` · new, a Sim with no number · four-basic-forces ·
    **still**: a comparison of four numbers has no time in it. A
    logarithmic ladder of relative strength from $10^{-40}$ to $10^{0}$
@@ -165,6 +174,9 @@ Extra simulations (rule 15). Thought of, judged, and only one built:
   body cancel while its gravitational forces add, which is the answer to
   conceptual question 1: it needs Coulomb's law, which the book does not
   state until Electric Charge and Electric Field.
+   Revised in the figure-audit pass of 2026-09-12: force A and force B are
+   two F.choice rows naming the four forces, not number sliders, and the
+   ladder names each force once; the headline is one capitalized sentence.
 
 ## Tables
 

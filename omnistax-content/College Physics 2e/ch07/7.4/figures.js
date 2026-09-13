@@ -1,7 +1,7 @@
 /* Figures for section 7.4 Conservative Forces and Potential Energy. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, pinned, spring, fixed, car } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, strip, axes, nice, pinned, spring, fixed, car } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -51,25 +51,31 @@ function stack(ctx, x0, y0, w, h, total, parts) {
       arrow(ctx, plate + 10, y, Math.min(plate + 70 + 320 * (Fv / (500 * XMAX)), 1370), y, C('force'), 5);
       text(ctx, 'F = kx = ' + fmt(Fv, 1) + ' N', plate + 16, y - 36, C('force'), { weight: 600 });
     } else {
-      text(ctx, 'no force is needed to hold the spring here', plate + 26, y - 36, PAL.muted, { size: 19 });
+      text(ctx, 'No force is needed to hold the spring here.', plate + 26, y - 36, PAL.muted, { size: 19 });
     }
     /* the graph: the force against the stretch, and the work as the triangle under the line */
-    /* fixed axes: the sliders reach k = 500 N/m at x = 0.2 m, so the force never passes
-       500 × 0.2 = 100 N, and the graph is always 0 to 0.2 m by 0 to 100 N, ticked every 25 N,
-       whatever the sliders are set to */
-    const FR = 100, box = { l: 210, r: 1250, t: 380, b: 620 };
-    const { X, Y } = axes(ctx, box, [0, XMAX], [0, FR], { xl: 'stretch x (m)', xc: C('position'), yl: 'force needed (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
+    /* fixed axes. The sliders reach k = 500 N/m at x = 0.2 m, where the force is 100 N, but the
+       default spring needs only 10 N and its triangle would then be a sliver a tenth of the box
+       high, so the force axis is fixed from that default state at 0 to 25 N, ticked every 5 N,
+       and the stretch axis is the slider's own 0 to 0.2 m. A stiffer spring runs off the top:
+       everything inside the frame is clipped to it and the force is read off the pinned marker.
+       Neither range moves. */
+    const FR = 25, box = { l: 210, r: 1250, t: 380, b: 620 };
+    const { X, Y } = axes(ctx, box, [0, XMAX], [0, FR], { xl: 'stretch x (m)', xc: C('position'), yl: 'force needed (N)', yc: C('force'), nx: 4, ny: 5, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     if (xv > 0.0005) {
       ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.3); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xv), Y(0)); ctx.lineTo(X(xv), Y(Fv)); ctx.closePath(); ctx.fill(); ctx.restore();
-      line(ctx, X(xv), Y(0), X(xv), Y(Fv), C('position'), 2, [4, 8]);
-      dot(ctx, X(xv), Y(Fv), C('force'), true, 9);
+      line(ctx, X(xv), Y(0), X(xv), Y(Math.min(Fv, FR)), C('position'), 2, [4, 8]);
+      if (Fv <= FR) dot(ctx, X(xv), Y(Fv), C('force'), true, 9);
       const wide = xv > 0.11;
-      text(ctx, 'area = ½kx² = ' + fmt(pe, 3) + ' J', wide ? X(xv * 0.5) : X(xv) + 20, Math.min(Y(Fv * (wide ? 0.3 : 0.5)), box.b - 30), C('energy'), { size: 19, weight: 600, align: wide ? 'center' : 'left', bg: PAL.panel });
+      text(ctx, 'area = ½kx² = ' + fmt(pe, 3) + ' J', wide ? X(xv * 0.5) : X(xv) + 20, Math.min(Y(Math.min(Fv, FR) * (wide ? 0.3 : 0.5)), box.b - 30), C('energy'), { size: 19, weight: 600, align: wide ? 'center' : 'left', bg: PAL.panel });
     }
     line(ctx, X(0), Y(0), X(XMAX), Y(kv * XMAX), C('force'), 5);
+    ctx.restore();
+    if (xv > 0.0005 && Fv > FR) pinned(ctx, box, X, Y, xv, Fv, C('force'), fmt(Fv, 1) + ' N');
     text(ctx, 'slope = k = ' + fmt(kv, 0) + ' N/m', box.l + 24, box.t + 26, C('stiffness'), { size: 18, weight: 600 });
-    headline(ctx, xv < 0.0005 ? 'the spring is at its undeformed length, so nothing is stored in it'
-      : 'stretched by ' + fmt(xv, 3) + ' m, the spring pulls back with ' + fmt(Fv, 1) + ' N, and the shaded triangle is the ' + fmt(pe, 3) + ' J stored in it');
+    topline(ctx, xv < 0.0005 ? 'The spring is at its undeformed length, so nothing is stored in it.'
+      : 'Stretched by ' + fmt(xv, 3) + ' m, the spring pulls back with ' + fmt(Fv, 1) + ' N, and the shaded triangle is the ' + fmt(pe, 3) + ' J stored in it.');
     readout(d.readout, `\\kPEs = \\tfrac{1}{2}\\kk\\kx^2 = \\tfrac{1}{2}(${fmt(kv, 0)}\\ \\text{N/m})(${fmt(xv, 3)}\\ \\text{m})^2 = ${fmt(pe, 3)}\\ \\text{J}`,
       'The force grows from 0 to ' + fmt(Fv, 1) + ' N, so its average is ½kx = ' + fmt(0.5 * Fv, 1) + ' N, and that average force acting through ' + fmt(xv, 3) + ' m does ' + fmt(pe, 3) + ' J of work, which is the same answer the area gives.');
   }
@@ -101,11 +107,15 @@ function stack(ctx, x0, y0, w, h, total, parts) {
       text(ctx, '½kx² = ' + fmt(0.5 * kv * xc * xc, 3) + ' J', rest + 60, y, C('energy'), { size: 21, weight: 600 });
     });
     /* the graph: the big triangle cut into four copies of the small one */
-    /* fixed axes: the sliders reach 2x = 0.12 m and k(2x) = 500 × 0.12 = 60 N, so the graph is
-       always 0 to 0.12 m by 0 to 60 N, ticked every 0.03 m and 15 N, and never rescales */
-    const box = { l: 240, r: 1180, t: 350, b: 580 }, XR = 0.12, FR = 60;
-    const { X, Y } = axes(ctx, box, [0, XR], [0, FR], { xl: 'compression x (m)', xc: C('position'), yl: 'force needed (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
+    /* fixed axes. The sliders reach 2x = 0.12 m and k(2x) = 60 N, but the default setting needs
+       only 10 N and the four triangles would then be a sliver a sixth of the box high, so the
+       force axis is fixed from that default state at 0 to 25 N, ticked every 5 N, and the
+       compression axis is the pair's own 0 to 0.12 m. A stiffer spring runs off the top: the
+       frame clips what it holds and the force is read off the pinned marker. Neither moves. */
+    const box = { l: 240, r: 1180, t: 350, b: 580 }, XR = 0.12, FR = 25;
+    const { X, Y } = axes(ctx, box, [0, XR], [0, FR], { xl: 'compression x (m)', xc: C('position'), yl: 'force needed (N)', yc: C('force'), nx: 4, ny: 5, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
     const F1 = kv * xv, F2 = 2 * F1;
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.3); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xv), Y(0)); ctx.lineTo(X(xv), Y(F1)); ctx.closePath(); ctx.fill(); ctx.restore();
     ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.12); ctx.beginPath(); ctx.moveTo(X(xv), Y(0)); ctx.lineTo(X(2 * xv), Y(0)); ctx.lineTo(X(2 * xv), Y(F2)); ctx.lineTo(X(xv), Y(F1)); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, X(xv), Y(0), X(xv), Y(F1), C('energy'), 2, [6, 6]);
@@ -113,12 +123,13 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     line(ctx, X(xv), Y(0), X(2 * xv), Y(F1), C('energy'), 2, [6, 6]);
     line(ctx, X(2 * xv), Y(0), X(2 * xv), Y(F2), C('position'), 2, [4, 8]);
     line(ctx, X(0), Y(0), X(XR), Y(kv * XR), C('force'), 5);
-    pinned(ctx, box, X, Y, 2 * xv, F2, C('force'), fmt(F2, 0) + ' N');
+    ctx.restore();
+    pinned(ctx, box, X, Y, 2 * xv, F2, C('force'), fmt(F2, 1) + ' N');
     /* the four copies are labelled inside when the small triangle is wide enough to hold a label, and once above it otherwise */
     if (X(xv) - X(0) > 230) [[0.667, 0.167], [1.667, 0.167], [1.333, 0.333], [1.667, 0.667]].forEach(([fx, fy]) => text(ctx, fmt(pe1, 3) + ' J', X(xv * fx), Y(F2 * fy), C('energy'), { size: 17, align: 'center' }));
     else text(ctx, 'four triangles of ' + fmt(pe1, 3) + ' J', X(2 * xv) + 24, Y(F2 * 0.5), C('energy'), { size: 17, weight: 600 });
     if (2 * xv < XR - 0.006) text(ctx, '2x', X(2 * xv), box.b + 26, C('position'), { size: 18, weight: 600, align: 'center' });   /* at the far edge the 0.12 tick already reads it */
-    headline(ctx, 'compressing this spring by ' + fmt(2 * xv, 3) + ' m stores ' + fmt(pe2, 3) + ' J, four times the ' + fmt(pe1, 3) + ' J that ' + fmt(xv, 3) + ' m stores');
+    topline(ctx, 'Compressing this spring by ' + fmt(2 * xv, 3) + ' m stores ' + fmt(pe2, 3) + ' J, four times the ' + fmt(pe1, 3) + ' J that ' + fmt(xv, 3) + ' m stores.');
     readout(d.readout, `\\frac{\\tfrac{1}{2}\\kk(2\\kx)^2}{\\tfrac{1}{2}\\kk\\kx^2} = \\frac{${fmt(pe2, 3)}\\ \\text{J}}{${fmt(pe1, 3)}\\ \\text{J}} = 4`,
       'Squeezing the spring twice as far doubles the force it pushes back with and doubles the distance that force acts through, so the work done on it is four times as great. The larger triangle holds four copies of the smaller one.');
   }
@@ -136,10 +147,16 @@ function stack(ctx, x0, y0, w, h, total, parts) {
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 200, max: 2000, step: 50, value: 800, unit: 'N/m', dec: 0, onInput: reset, aria: 'force constant of the string' });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }
+  /* The swing of a real string is far too fast to watch, so the figure slows it to five seconds
+     a swing at the default 800 N/m and keeps the rate a string's own rate goes by, the square
+     root of the force constant: a stiffer string comes back sooner, which is what the slider
+     shows as well as the energy it stores. */
+  const KREF = 800, SWING = 5;
+  const period = () => SWING * Math.sqrt(KREF / k.v);
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = REDUCED ? 1.1 : cy.now();
-    const xv = x0.v * Math.cos((TAU / 5) * tau), SC = 7000;
+    const tau = REDUCED ? period() * 0.22 : cy.now();
+    const xv = x0.v * Math.cos((TAU / period()) * tau), SC = 7000;
     const E = 0.5 * k.v * x0.v * x0.v, PE = 0.5 * k.v * xv * xv, KE = E - PE;
     /* the scene: a guitar lying on its side, the string running from the nut on the headstock,
        along the neck and over the sound hole to the bridge on the body, plucked at its middle */
@@ -185,11 +202,11 @@ function stack(ctx, x0, y0, w, h, total, parts) {
       text(ctx, lab, bx[i] + bw / 2, b0 + 24, C('energy'), { size: 18, weight: 600, align: 'center' });
       text(ctx, fmt(Math.max(0, val), 3) + ' J', bx[i] + bw / 2, b0 + 48, C('energy'), { size: 17, align: 'center' });
     });
-    headline(ctx, KE < 0.02 * E ? 'at the full pluck the string is momentarily at rest, and the whole ' + fmt(E, 3) + ' J is stored in its shape'
-      : PE < 0.02 * E ? 'crossing the rest line the string is not deformed, so the whole ' + fmt(E, 3) + ' J is the energy of its motion'
-      : 'the string is ' + fmt(Math.abs(xv), 4) + ' m from its rest line, so its shape holds ' + fmt(PE, 3) + ' J and its motion carries ' + fmt(KE, 3) + ' J');
+    topline(ctx, KE < 0.02 * E ? 'At the full pluck the string is momentarily at rest, and the whole ' + fmt(E, 3) + ' J is stored in its shape.'
+      : PE < 0.02 * E ? 'Crossing the rest line the string is not deformed, so the whole ' + fmt(E, 3) + ' J is the energy of its motion.'
+      : 'The string is ' + fmt(Math.abs(xv), 4) + ' m from its rest line, so its shape holds ' + fmt(PE, 3) + ' J and its motion carries ' + fmt(KE, 3) + ' J.');
     readout(d.readout, `\\kPEs + \\kKE = ${fmt(PE, 3)}\\ \\text{J} + ${fmt(Math.max(0, KE), 3)}\\ \\text{J} = ${fmt(E, 3)}\\ \\text{J}`,
-      'The pluck did ½kx₀² = ' + fmt(E, 3) + ' J of work on the string, and because the string’s force is conservative that total stays the same however the two energies share it.');
+      'The pluck did ½kx₀² = ' + fmt(E, 3) + ' J of work on the string, and because the string’s force is conservative that total stays the same however the two energies share it. A swing here takes ' + fmt(period(), 1) + ' s at ' + fmt(k.v, 0) + ' N/m, since the rate a string comes back at goes by the square root of its force constant; a real string does this hundreds of times a second.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -290,14 +307,14 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     const bx = 260, bw = 800, by = 520, bh = 46;
     stack(ctx, bx, by, bw, bh, E, [{ label: 'PE_s', value: peS }, { label: 'KE', value: keA }, { label: 'PE_g', value: peA }]);
     text(ctx, 'the total mechanical energy of the car stays ' + fmt(E, 3) + ' J', bx + bw / 2, by - 26, C('energy'), { size: 19, weight: 600, align: 'center' });
-    text(ctx, 'in the spring ' + fmt(peS, 3) + ' J · of the motion ' + fmt(keA, 3) + ' J · of the height ' + fmt(peA, 3) + ' J', bx + bw / 2, by + bh + 26, C('energy'), { size: 17, align: 'center' });
+    text(ctx, 'in the spring ' + fmt(peS, 3) + ' J, of the motion ' + fmt(keA, 3) + ' J, of the height ' + fmt(peA, 3) + ' J', bx + bw / 2, by + bh + 26, C('energy'), { size: 17, align: 'center' });
     const short = T.A.stall >= 0 || T.B.stall >= 0;
-    headline(ctx, launching ? 'the spring is still pushing: ' + fmt(peS, 3) + ' J is left in it and ' + fmt(keA, 3) + ' J has become the energy of the car’s motion'
-      : short ? 'the spring stores ' + fmt(E, 3) + ' J, less than the ' + fmt(M * G * hf.v, 3) + ' J the climb costs, so the car stops short of the shelf'
-      : A.done && B.done ? 'both cars are on the shelf ' + fmt(hf.v, 2) + ' m up, each moving at ' + fmt(speedAt(E, hf.v), 3) + ' m/s, whichever path it took'
-      : 't = ' + fmt(tr, 2) + ' s · the car on the rise is ' + fmt(hA, 3) + ' m up and moving at ' + fmt(vA, 2) + ' m/s, and the car round the loop is moving at ' + fmt(vB, 2) + ' m/s');
+    topline(ctx, launching ? 'The spring is still pushing, so ' + fmt(peS, 3) + ' J is left in it and ' + fmt(keA, 3) + ' J has become the energy of the car’s motion.'
+      : short ? 'The spring stores ' + fmt(E, 3) + ' J, less than the ' + fmt(M * G * hf.v, 3) + ' J the climb costs, so the car stops short of the shelf.'
+      : A.done && B.done ? 'Both cars are on the shelf ' + fmt(hf.v, 2) + ' m up, each moving at ' + fmt(speedAt(E, hf.v), 3) + ' m/s, whichever path it took.'
+      : 'At ' + fmt(tr, 2) + ' s the car on the rise is ' + fmt(hA, 3) + ' m up and moving at ' + fmt(vA, 2) + ' m/s, and the car round the loop is moving at ' + fmt(vB, 2) + ' m/s.');
     readout(d.readout, `\\tfrac{1}{2}\\kk\\kxi^2 = \\tfrac{1}{2}m\\kvf^2 + m\\kg\\khf \\;\\Rightarrow\\; ${fmt(E, 3)}\\ \\text{J} = ${fmt(Math.max(0, E - M * G * hf.v), 3)}\\ \\text{J} + ${fmt(M * G * hf.v, 3)}\\ \\text{J}`,
-      'Before the slope the whole ' + fmt(E, 3) + ' J is kinetic, so the car leaves the spring at √(k/m)·x_i = ' + fmt(speedAt(E, 0), 2) + ' m/s, and at the top of the ' + fmt(hf.v, 2) + ' m shelf it has ' + fmt(speedAt(E, hf.v), 3) + ' m/s left.');
+      'Before the slope the whole ' + fmt(E, 3) + ' J is kinetic, so the car leaves the spring at ' + fmt(speedAt(E, 0), 2) + ' m/s, and at the top of the ' + fmt(hf.v, 2) + ' m shelf it has ' + fmt(speedAt(E, hf.v), 3) + ' m/s left.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => tracks().T / 5), draw });
 })();

@@ -82,27 +82,36 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    each other along a strip, meet at the middle of the run, and leave with
    the velocities conservation of momentum gives them; the idea has a time
    in it, the run is finite, so it loops in about five seconds and gets the
-   scrubber · $m_1$ (0.05 to 5.00 kg, default 0.150, ink), $m_2$ (0.05 to
+   scrubber · a choice of the three book figures, 8.7, 8.8 and 8.9, which is
+   the control the reader reaches for first: choosing one sets the five
+   sliders to that figure's state and fixes both graph ranges and both arrow
+   scales from it, so that no range follows a slider afterward. Then $m_1$
+   (0.05 to 5.00 kg, default 0.150, ink), $m_2$ (0.05 to
    80.0 kg, default 70.0, ink), $\kvone$ (−40 to 40 m/s, default 35.0,
    velocity), $\kvtwo$ (−40 to 40 m/s, default 0, velocity), $c$ (0 to
-   3.50, default 0, ink), the ratio of the speed the two separate at to the
+   3.50, default 0, ink, with detents at 0, 1 and the 3.08 of Figure 8.9),
+   the ratio of the speed the two separate at to the
    speed they approached at, which is the coefficient of restitution the
    section's own Take-Home Experiment defines: at $c = 0$ they stick
    together and the collision is perfectly inelastic, at $c = 1$ no
    internal kinetic energy is lost, and above 1 a spring has given the pair
-   more than it brought · "t = 2.40 s · the puck and the goalie move off
-   together at 0.0748 m/s, and 91.7 J of the 91.9 J of internal kinetic
-   energy is gone" · graph below, two panels sharing the time axis: the two
+   more than it brought · "They leave at 0.0748 m/s and 0.0748 m/s, and the
+   internal kinetic energy has fallen by 91.7 J." · graph below, two panels
+   sharing the time axis, both with the time axis in the time hue: the two
    momenta and their total against time, where $\kpone$ and $\kptwo$ step
    in opposite directions at the collision and $\kptot$ runs flat through
    it, and the internal kinetic energy against time, which steps down (or,
-   above $c = 1$, up) · no. Five sliders rather than the usual four,
-   because the figure carries three book figures: the defaults are the
-   goalie and the puck of Figure 8.8 and of Example 8.5; two equal masses
-   with $\kvtwo = -\kvone$ and $c = 0$ are Figure 8.7, both objects coming
-   to rest; and $m_1 = 0.350$ kg, $m_2 = 0.500$ kg, $\kvone = 2.00$ m/s,
-   $\kvtwo = -0.500$ m/s and $c = 3.08$ are Figure 8.9 and Example 8.6,
-   which come out at $-4.00$ m/s and $3.70$ m/s with 5.46 J released.
+   above $c = 1$, up); the momentum range is −3 to 3 kg·m/s for Figure 8.7,
+   −5 to 15 for Figure 8.8 and −2 to 2 for Figure 8.9, and the energy range
+   is 5 J, 120 J and 8 J for the same three · no. Five sliders and a choice
+   rather than the usual four sliders, because the figure carries three book
+   figures: Figure 8.8 is the goalie and the puck of Example 8.5 and is where
+   the figure opens; Figure 8.7 is two equal 1.00 kg masses at ±2.00 m/s with
+   $c = 0$, both coming to rest; and Figure 8.9 is $m_1 = 0.350$ kg,
+   $m_2 = 0.500$ kg, $\kvone = 2.00$ m/s, $\kvtwo = -0.500$ m/s and
+   $c = 3.08$, Example 8.6, which comes out at $-4.00$ m/s and $3.70$ m/s
+   with 5.46 J released.
+   Draws time as well, since both graphs carry the time hue on their axis.
    Readout: $m_1\kvone + m_2\kvtwo = m_1\kvoneprime + m_2\kvtwoprime$ with
    the live numbers on both sides; small line on $\kKEint$, $\kKEintprime$
    and the difference. Draws velocity, momentum, energy.
@@ -111,11 +120,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    its three sliders and has no time in it, so the figure redraws when a
    slider moves and carries no transport (rule 14) · $m_1$ (0.05 to 5.00
    kg, default 0.150, ink), $\kvone$ (1.0 to 60.0 m/s, default 35.0,
-   velocity), $m_2$ (0.1 to 100.0 kg, default 70.0, ink) · "a 0.150 kg puck
-   at 35.0 m/s leaves a 70.0 kg goalie moving at 0.0748 m/s, one part in
-   468 of the speed it came in at" · graph below: $\kvprime$ against the
-   catcher's mass $m_2$ over three decades, the hyperbola collapsing as the
-   catcher grows heavier, with the set mass marked · no. Above the graph,
+   velocity), $m_2$ (0.1 to 100.0 kg, default 70.0, ink) · "A 0.150 kg object
+   at 35.0 m/s leaves a 70.0 kg catcher moving at 0.0748 m/s." · graph below:
+   $\kvprime$ against the catcher's mass $m_2$, both axes in decades, the mass
+   over its own three decades and the recoil velocity over the five from
+   0.001 m/s to 100 m/s, because the 0.0748 m/s of the worked example would
+   lie flat on the base line of a plain scale; the curve falls away as the
+   catcher grows heavier and the set mass is marked · no. Above the graph,
    the instant after the catch: the momentum arrow before and the momentum
    arrow after are the same length, while the velocity arrow after is a
    stub beside the one before, which is why the recoil of a heavy body is
@@ -129,10 +140,10 @@ cart graph) stay with 8.4.
 
 Extra simulations (rule 15), thought through and judged:
 
-- The velocity of the centre of mass drawn straight through a collision,
+- The velocity of the center of mass drawn straight through a collision,
   which eight exercises across 8.3 to 8.6 ask for. It would serve the two
-  centre-of-mass AP items this section takes from 8.4, but the text of 8.5
-  says nothing about the centre of mass; the one sentence the reader has is
+  center-of-mass AP items this section takes from 8.4, but the text of 8.5
+  says nothing about the center of mass; the one sentence the reader has is
   8.3's, so the figure belongs to 8.3, where `exploration.md` proposes it.
   Left.
 - A tennis racquet of variable mass striking a ball, for the sports
@@ -175,12 +186,12 @@ None built beyond the two above, both of which rule 14 calls for.
   `ap8` (fs-id2208648, keyed), `ap9` (fs-id1342061), `ap10` (fs-id1442938,
   keyed), `ap11` (fs-id2332080, keyed), `ap12` (fs-id2494812), `ap13`
   (fs-id1862350, keyed), `ap14` (fs-id2389032), `ap15` (fs-id1741049,
-  keyed) and `ap16` (fs-id1971159). The last two ask for the centre-of-mass
+  keyed) and `ap16` (fs-id1971159). The last two ask for the center-of-mass
   velocity of the pair; they stay with their collision, their approaches
   lean on 8.3's sentence that the total momentum is the momentum of the
-  centre of mass, and both are tagged with 6.5's `center-of-mass`. Their
+  center of mass, and both are tagged with 6.5's `center-of-mass`. Their
   `cite` is left empty, since a `cite` must name a span of this section's
-  own text and this section never mentions the centre of mass.
+  own text and this section never mentions the center of mass.
 - 8 problems keyed and kept: `p1` (fs-id2504992, the billiard ball off the
   bumper, multi), `p3` (fs-id1664993, the football player catching the
   pass, multi; it reuses 8.1's mass and speed data and stays here, its
@@ -259,9 +270,9 @@ The inline conceptual question `cq1` was placed after the span `inelastic` but
 `text.html` carried no `<div class="exercises" data-place="inelastic">`, so the
 card had nowhere to render. The host is in, at the end of that section.
 
-The two held AP items that ask for the velocity of the centre of mass keep no
+The two held AP items that ask for the velocity of the center of mass keep no
 `cite`, as the notes say, because the validator requires a `cite` to name an id
 of the section the exercise is set in and this section's text never mentions the
-centre of mass. Their suggested approaches name 8.3's sentence in words and both
+center of mass. Their suggested approaches name 8.3's sentence in words and both
 are tagged with 6.5's `center-of-mass`, which is the whole of what the brief
 asks for on a page that cannot cite across sections.

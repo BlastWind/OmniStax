@@ -104,21 +104,29 @@ id · replaces · concepts · still or moving · sliders · headline · graph ·
    Draws force, position, torque.
 4. `sim-neutral` · replaces Figure 9.15 (the sphere on a flat surface and the
    round pencil lying on its side) · neutral-equilibrium · **still** · the
-   displacement $x$ along the surface (−30 to 30 cm, ink) and the radius $r$
-   of the body (2 to 10 cm, ink) · "the sphere has been rolled 15 cm along the
-   surface, and its weight still acts straight down through the point of
-   support, so the torque about that point is zero" · none: the two scenes
+   displacement $x$ along the surface (−18 to 18 cm, default 12, ink) alone.
+   The radius of the sphere was a slider when the section was built and is now
+   fixed at 5 cm, because changing it moved nothing the figure is about: the
+   center of gravity of a sphere of any size sits straight above the point of
+   support (rule 24.6) · "Moved 12 cm along the
+   surface, each body still has its center of gravity straight above the point
+   of support." · none: the two scenes
    are the picture · no. Readout: $\ktau = \krperp\kwgt = 0$; small line on
-   the pencil lying on its side, neutral across its length and not along it.
-   Draws force, torque.
+   the point of support travelling with the body. Draws force, which is all
+   the figure colours, since it brackets no lever arm and draws no turning arc.
 5. `sim-marble` · replaces nothing, so it is a **Sim** · stable-equilibrium,
    unstable-equilibrium, neutral-equilibrium · **still** · the shape of the
-   surface (−1 a hill, 0 flat, +1 a bowl, ink) and the displacement $x$ of the
-   marble from the level place (−40 to 40 cm, ink) · "the marble sits 20 cm
-   from the bottom of the bowl and the force along the surface points back
-   towards it, so this is stable equilibrium" · none: the surface is the
+   surface (−1 to +1, default +1, ink, with soft detents on the three surfaces
+   the section names, a hill at −1, flat at 0 and a bowl at +1, so the reader
+   lands on them without being barred from the shapes between) and the
+   displacement $x$ of the
+   marble from the level place (−40 to 40 cm, default 30, ink) · "The force
+   along the surface, 0.69 N, points back toward the bottom, so the
+   equilibrium is stable." · none: the surface is the
    picture · no. Readout: the component of the weight along the surface with
-   its numbers; small line naming which of the three kinds the surface makes.
+   its numbers, the angle $\theta$ it takes the sine of marked on the scene
+   where the ball meets the surface; small line naming which of the three
+   kinds the surface makes.
    Draws force.
 6. `sim-stance` · replaces Figure 9.16 (a) and (b) (the person standing, feet
    close and knees straight, then knees bent and feet apart) · base-of-support
@@ -243,13 +251,20 @@ Extra simulations (rule 15), considered:
 
 ## Colour
 
+The four figures that carry a torque graph print a sign key under the lean
+axis, because the axis is signed and the readout states a size, and the reader
+has to be told which sign carries the body over and which brings it back
+(rule 26.5).
+
 The page binds force, position and torque. Every figure draws the weight and
 the normal force as arrows in the force hue and states them in its readout;
 five of the six bracket the perpendicular lever arm in the position hue; five
 draw the turning arc about the pivot and state the torque in the torque hue.
-The leans, the stance widths, the heights of a center of gravity, the radius
-of a rolling body and the shape of a surface are angles and lengths of a
-scene, so they stay untyped and in ink.
+The leans, the stance widths, the heights of a center of gravity and the
+shape of a surface are angles and lengths of a
+scene, so they stay untyped and in ink. `sim-neutral` is the exception to the
+sentence above: it brackets no lever arm and draws no turning arc, so it
+binds force alone.
 
 ## Wanted at chapter level
 

@@ -107,6 +107,12 @@ headline · graph · 3D
    numbers; small line saying that the actual
    contact area, and the friction with it, grows in the same proportion as
    the normal force. Draws force.
+   Revised in the figure-audit pass of 2026-09-12: the coefficients the
+   section's own passage gives for this crate on this concrete floor, 0.45
+   while it holds and 0.30 once it slides, are named on the drawing and
+   carried in the readout, so the branch between holding and sliding is
+   never decided by a hidden number. The headline is one capitalized
+   sentence.
 2. `sim-breakaway` · **Sim** (extra simulation, rule 15; it replaces no
    book figure) · static-friction, kinetic-friction,
    static-friction-magnitude, kinetic-friction-magnitude,
@@ -125,6 +131,14 @@ headline · graph · 3D
    point on it · no. Readout: $\kfsmax = \mu_{\text{s}}\kN$ and $\kfk =
    \mu_{\text{k}}\kN$ with the book's own numbers, 440 N and 290 N at the
    defaults. Draws force.
+   Revised in the figure-audit pass of 2026-09-12: both axes are fixed at 0
+   to 800 N from the default state rather than from the slider maxima, with
+   the live point drawn by pinned() and the lines clipped to the frame, and
+   the arrows on the scene are drawn against that same 800 N cap. The floor
+   is ruled 0 to 7 m at a fixed scale. The coefficient of kinetic friction
+   is never taken larger than the coefficient of static friction, and the
+   readout says so when the slider is set past it. The headline is one
+   capitalized sentence.
 3. `fig-knee` · **photograph, Figure 5.3, kept**: the text points the
    reader at it ("A damaged or arthritic joint can be replaced by an
    artificial joint"), and it shows the thing the passage is about. The
@@ -147,6 +161,15 @@ headline · graph · 3D
    width · no. Readout: $\mu_{\text{k}} = \kfk / (m\kg\cos\theta)$ with the
    numbers; small line with the acceleration down the slope and the angle
    at which it would be zero. Draws force, velocity, acceleration.
+   Revised in the figure-audit pass of 2026-09-12: labels once, on the free-
+   body diagram. She starts from rest only where the slope will accelerate
+   her; where the friction balances the weight along the slope she is
+   already gliding at 2.0 m/s, and where the friction is the larger she
+   slides to a stop rather than travelling down at a rate nothing accounts
+   for. The five value labels no longer ride the skier: the arrows on the
+   scene give their names under the pointer through F.hover, and the free-
+   body diagram beside the slope carries all five forces with their values.
+   The headline is one capitalized sentence.
 5. `sim-probe` · **replaces Figure 5.6** (the probe tip deformed as it is
    dragged) · atomic-origin-of-friction, kinetic-friction-magnitude ·
    **moves**: the probe is dragged across the substrate, so the idea has a
@@ -161,6 +184,12 @@ headline · graph · 3D
    of the tip; small line on the more than a factor of $10^{12}$ by which
    the shear stress varies between materials, which the book leaves to 5.3.
    Draws force.
+   Revised in the figure-audit pass of 2026-09-12: how many of the atoms
+   along the foot of the tip adhere follows the normal force one at a time,
+   so every step of the slider changes the count as well as the arrow and
+   the lean, and the headline and the small line say that the lean is drawn
+   in proportion to the friction rather than measured. The headline is one
+   capitalized sentence.
 6. `fig-ice` · **faithful copy** of the unnumbered figure inside the
    problems, the contestant pushing and pulling the block of ice across a
    frozen lake, both parts (a) and (b) as the book draws them. It serves
@@ -196,6 +225,9 @@ Extra simulations (rule 15), thought through and judged:
 - A car braking on dry, wet and icy concrete, for the problems on maximum
   deceleration — left. Both of those problems are unkeyed and out of the
   page, and 2.5 already built the braking car.
+   Revised in the figure-audit pass of 2026-09-12: the headline is one
+   capitalized sentence, and the lead names Problem 18, the one problem of
+   the section that refers to the figure.
 
 ## Exercises
 

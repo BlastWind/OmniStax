@@ -97,7 +97,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
     text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', px, py + 224, pos, { size: 24, weight: 600 });
     const axis = Math.abs(ax) < 0.05 || Math.abs(ay) < 0.05;
     text(ctx, axis ? 'one component is zero, so the other is A itself' : 'the magnitudes do not add: ' + fmt(Math.abs(ax), 1) + ' + ' + fmt(Math.abs(ay), 1) + ' ≠ ' + fmt(a, 1), px, py + 270, PAL.muted, { size: 17 });
-    headline(ctx, 'A = ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '° has the components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks');
+    headline(ctx, 'A vector of ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '° has the components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks.');
     readout(d.readout, `\\begin{aligned}\\kAx &= \\kA\\cos\\theta = (${fmt(a, 1)}\\ \\text{blocks})(\\cos ${fmt(th, 1)}^\\circ) = ${fmt(ax, 1)}\\ \\text{blocks}\\\\ \\kAy &= \\kA\\sin\\theta = (${fmt(a, 1)}\\ \\text{blocks})(\\sin ${fmt(th, 1)}^\\circ) = ${fmt(ay, 1)}\\ \\text{blocks}\\end{aligned}`,
       axis ? 'A vector along one of the axes has a component of zero along the other, and its remaining component is as long as the vector itself.'
         : 'The component vectors add to A, but their magnitudes do not: ' + fmt(Math.abs(ax), 1) + ' blocks + ' + fmt(Math.abs(ay), 1) + ' blocks is not ' + fmt(a, 1) + ' blocks, and neither component is longer than A itself.');
@@ -148,8 +148,8 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
       small = ax > 0 ? 'The direction ' + fmt(th, 1) + '° from the +x axis is ' + bearing(th) + ', as the problems state it.'
         : 'The inverse tangent gives ' + fmt(atn, 1) + '°, the angle of the line the vector lies along; the arrow points the other way along that line, at ' + fmt(th, 1) + '° from the +x axis, which is ' + bearing(th) + '.';
     }
-    headline(ctx, a > 0.05 ? 'Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks add to A = ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '°, which is ' + bearing(th)
-      : 'both components are zero, so A has no length and no direction');
+    headline(ctx, a > 0.05 ? 'The components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks add to A = ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '°, which is ' + bearing(th) + '.'
+      : 'Both components are zero, so A has no length and no direction.');
     readout(d.readout, `\\begin{aligned}\\kA &= \\sqrt{\\kAx^2 + \\kAy^2} = ${sq} = ${fmt(a, 1)}\\ \\text{blocks}\\\\ ${dir}\\end{aligned}`, small);
   }
   register(d.fig, { update: () => {}, draw });
@@ -174,6 +174,15 @@ function walk(id, sign) {
   let ctx_;
   function draw() {
     const { ctx } = begin(d.c); ctx_ = ctx;
+    /* The names of the three arrows ride the arrows themselves, and at θ_B = θ_A the three lie along
+       one line and their labels would land on one another. They go through a labeller instead, which
+       steps a label out and leaders it when the slot beside its arrow is already taken (rule 26.7). */
+    const lab = F.labeller(ctx, 720);
+    lab.block(900, 160, 1400, 520);   /* the table on the right is not a place for a stepped-out label */
+    const side = (s, x1, y1, x2, y2, color, sgn2, size) => {
+      const L = Math.hypot(x2 - x1, y2 - y1) || 1, nx = ((y2 - y1) / L) * sgn2, ny = (-(x2 - x1) / L) * sgn2;
+      lab.add(s, (x1 + x2) / 2, (y1 + y2) / 2, nx, ny, color, size || 24, 26);
+    };
     const a = A.v, ta = TA.v, b = B.v, tb = TB.v, pos = C('position');
     const ax = a * cos(ta), ay = a * sin(ta), bx0 = b * cos(tb), by0 = b * sin(tb), bx = sign * bx0, by = sign * by0;
     const rx = ax + bx, ry = ay + by, r = Math.hypot(rx, ry), th = r > 0.05 ? angleOf(rx, ry) : 0, atn = rx !== 0 ? Math.atan(ry / rx) / RAD : (ry >= 0 ? 90 : -90);
@@ -202,17 +211,18 @@ function walk(id, sign) {
     if (Math.abs(by) > 0.3) { darrow(ctx, c2, Y(ay), c2, Y(ry), pos, 3); vlabel(bl + 'y = ' + fmt(by, 1) + ' m', c2, Y(ay + by / 2), pos); }
     if (Math.abs(ry) > 0.3) { arrow(ctx, c3, Y(0), c3, Y(ry), PAL.ink, 3); vlabel('Ry = Ay + ' + (sign > 0 ? 'By' : '(−By)') + ' = ' + fmt(ry, 1) + ' m', c3 - 24, Y(ry / 2), PAL.ink); }
     /* the ghost of B when the walk subtracts it */
-    if (sign < 0) { line(ctx, X(ax), Y(ay), X(ax + bx0), Y(ay + by0), PAL.muted, 3, [10, 10]); sideLabel(ctx, 'B', X(ax), Y(ay), X(ax + bx0), Y(ay + by0), PAL.muted, -26, 22); }
+    if (sign < 0) { line(ctx, X(ax), Y(ay), X(ax + bx0), Y(ay + by0), PAL.muted, 3, [10, 10]); side('B', X(ax), Y(ay), X(ax + bx0), Y(ay + by0), PAL.muted, -1, 22); }
     /* the legs and the resultant */
-    arrow(ctx, X(0), Y(0), X(ax), Y(ay), pos, 4.5); sideLabel(ctx, 'A', X(0), Y(0), X(ax), Y(ay), pos, -26);
-    arrow(ctx, X(ax), Y(ay), X(rx), Y(ry), pos, 4.5); sideLabel(ctx, bl, X(ax), Y(ay), X(rx), Y(ry), pos);
-    if (r > 0.3) { arrow(ctx, X(0), Y(0), X(rx), Y(ry), pos, 6.5); sideLabel(ctx, 'R', X(0), Y(0), X(rx), Y(ry), pos, rx * ay - ry * ax > 0 ? -28 : 28); }
+    arrow(ctx, X(0), Y(0), X(ax), Y(ay), pos, 4.5); side('A', X(0), Y(0), X(ax), Y(ay), pos, -1);
+    arrow(ctx, X(ax), Y(ay), X(rx), Y(ry), pos, 4.5); side(bl, X(ax), Y(ay), X(rx), Y(ry), pos, 1);
+    if (r > 0.3) { arrow(ctx, X(0), Y(0), X(rx), Y(ry), pos, 6.5); side('R', X(0), Y(0), X(rx), Y(ry), pos, rx * ay - ry * ax > 0 ? -1 : 1); }
     /* the angles: each leg from a horizontal through its tail, the resultant from the +x axis on a wider arc */
     angleArc(ctx, X(0), Y(0), ta, Math.min(50, a * S * 0.5), 'θA', PAL.ink);
     if (sign > 0) { line(ctx, X(ax), Y(ay), X(ax) + 64, Y(ay), PAL.rule, 1.5, [4, 8]); angleArc(ctx, X(ax), Y(ay), tb, Math.min(40, b * S * 0.5), 'θB', PAL.ink); }
     if (r > 0.3) angleArc(ctx, X(0), Y(0), th, Math.min(110, r * S * 0.6), 'θ', PAL.ink);
     dot(ctx, X(0), Y(0), PAL.ink, true, 5);
     /* the components as a table at the right: along one axis they add like ordinary numbers */
+    lab.flush();
     const px = 960, py = 200, k1 = px + 60, k2 = px + 230, k3 = px + 390;
     text(ctx, 'x-component', k2, py, PAL.muted, { size: 17, align: 'right' }); text(ctx, 'y-component', k3, py, PAL.muted, { size: 17, align: 'right' });
     const row = (lab, x, y, yy, col) => { text(ctx, lab, k1 - 20, yy, col, { size: 24, weight: 600, align: 'right' }); text(ctx, fmt(x, 1) + ' m', k2, yy, col, { size: 22, weight: 600, align: 'right' }); text(ctx, fmt(y, 1) + ' m', k3, yy, col, { size: 22, weight: 600, align: 'right' }); };
@@ -233,8 +243,8 @@ function walk(id, sign) {
       : rx < 0 ? 'The inverse tangent gives the angle of the line the resultant lies along; the arrow points the other way along it, at ' + fmt(th, 1) + '° from the +x axis, which is ' + bearing(th) + '.'
       : sign > 0 ? 'The components of A and B along each axis add like ordinary numbers, and the resultant is ' + bearing(th) + '.'
       : 'The components of −B are the negatives of the components of B, and the resultant A − B is ' + bearing(th) + '.';
-    headline(ctx, r > 0.05 ? 'A = ' + fmt(a, 1) + ' m at ' + fmt(ta, 1) + '° and ' + bl + ' = ' + fmt(b, 1) + ' m at ' + fmt(sign > 0 ? tb : angleOf(bx, by), 1) + '° ' + (sign > 0 ? 'add to' : 'give') + ' R = ' + fmt(r, 1) + ' m at ' + fmt(th, 1) + '°, which is ' + bearing(th)
-      : 'the two legs cancel: the walk ends where it began, and R = 0');
+    headline(ctx, r > 0.05 ? 'A vector of ' + fmt(a, 1) + ' m at ' + fmt(ta, 1) + '° and ' + bl + ' = ' + fmt(b, 1) + ' m at ' + fmt(sign > 0 ? tb : angleOf(bx, by), 1) + '° ' + (sign > 0 ? 'add to' : 'give') + ' R = ' + fmt(r, 1) + ' m at ' + fmt(th, 1) + '°, which is ' + bearing(th) + '.'
+      : 'The two legs cancel, so the walk ends where it began and R is zero.');
     readout(d.readout, eq, small);
   }
   register(d.fig, { update: () => {}, draw });

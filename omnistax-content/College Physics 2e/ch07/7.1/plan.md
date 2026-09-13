@@ -78,15 +78,20 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    the transport and the scrubber · the force $\kF$ (0 to 150 N, default
    75.0, force), the angle $\theta$ between the force and the displacement
    (0º to 180º, default 35º, ink), the displacement $\kd$ (0 to 40 m,
-   default 25.0, position) · "the mower has gone 12.5 m of 25.0 m, and the
-   force has done 768 J of work on it so far" · graph below the strip: the
-   work done against the distance travelled, a straight line of slope
-   $\kF\cos\theta$ that runs downward when the angle passes 90º · no.
-   Readout: $\kW = \kF\kd\cos\theta$ with the numbers; small line naming
-   which of the book's five cases the sliders are standing in. Draws
+   default 25.0, position) · "The mower has gone 12.5 m of the 25.0 m, and
+   the force has done 768 J of work on it so far." · graph below the strip:
+   the work done against the distance traveled, a straight line of slope
+   $\kF\cos\theta$ that runs downward when the angle passes 90º, on fixed
+   axes of 0 to 40 m by −3000 to 3000 J with the work pinned at the edge
+   beyond that · 2D, since the force and the displacement lie in the plane
+   of the canvas. Labels are on: five of them, all beside things that keep
+   their places on the scene. No force is drawn below 0.05 N, since an
+   arrow standing where nobody is pushing would say that a force is there.
+   Readout: $\kW = \kF\kd\cos\theta$ with the numbers; small line saying
+   in words what the force is doing to the mower at the angle set. Draws
    force, position, energy.
 
-   The one figure reaches every case the book draws: the default is (a),
+   The one figure reaches every case of work: the default is (a),
    the lawn mower of Example 7.1 pushed with 75.0 N at 35º; $\kd = 0$ is
    (b), the briefcase held still, where the force does no work because
    nothing moves; $\theta = 90º$ is (c), the briefcase carried on level
@@ -102,12 +107,14 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    two sliders and has no time in it, so it registers no cycle and carries
    no transport · the mass lifted $m$ (0.05 to 100 kg, default 0.100,
    ink, since mass is untyped) and the height it is lifted through $\kd$
-   (0.2 to 20 m, default 1.00, position) · "lifting 0.100 kg through
-   1.00 m takes 0.98 J, which is about one joule" · a ladder of energies
-   in powers of ten rather than axes, from 0.1 J to 10 MJ, with the apple
-   at 1 J, Example 7.1's push of the lawn mower at 1536 J, one food
-   calorie at 4186 J and a day's food energy at 10 MJ marked on it, and
-   the work the sliders set placed among them · no. Readout: $\kW =
+   (0.2 to 20 m, default 1.00, position) · "Lifting 0.10 kg through
+   1.00 m takes 0.98 J of work, which is about one joule." · a ladder of
+   energies in powers of ten rather than axes, fixed at 0.01 J to 10 MJ,
+   with the apple at 1 J, Example 7.1's push of the lawn mower at 1536 J,
+   one food calorie at 4186 J and a day's food energy at 10 MJ marked on
+   it, and the work the sliders set placed among them · 2D, a ladder on
+   the plane of the canvas. Labels are on: four marks on the ladder and
+   the work itself, none of which collides at either end. Readout: $\kW =
    \kF\kd\cos\theta$ with $\kF = mg$ and $\theta = 0$, the numbers
    substituted; small line giving the same energy in kilocalories and as a
    fraction of a day's food, which is what the Discussion of Example 7.1

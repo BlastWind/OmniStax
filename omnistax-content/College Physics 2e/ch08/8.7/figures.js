@@ -1,7 +1,7 @@
 /* Figures for section 8.7 Introduction to Rocket Propulsion. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, vbracket, axes, nice, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -26,7 +26,7 @@ const commas = (t) => t.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const decs = (r) => ((r.hi - r.lo) / r.n < 1 ? 1 : 0);
 
 /* ---------- sprites, in ink ---------- */
-/* a rocket standing on its fins, centred on (x, y), 134 units tall at scale 1 */
+/* a rocket standing on its fins, centered on (x, y), 134 units tall at scale 1 */
 function rocket(ctx, x, y, color, s = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
   ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
@@ -42,7 +42,7 @@ function plume(ctx, x, y, len, color) {
   ctx.beginPath(); ctx.moveTo(x - 20, y); ctx.quadraticCurveTo(x - 11, y + len * 0.6, x, y + len); ctx.quadraticCurveTo(x + 11, y + len * 0.6, x + 20, y);
   ctx.closePath(); ctx.fill(); ctx.restore();
 }
-/* a bar from x1 to x2 at y, h tall, filled to the fraction f in colour */
+/* a bar from x1 to x2 at y, h tall, filled to the fraction f in color */
 function bar(ctx, x1, x2, y, h, f, color) {
   ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x1, y, x2 - x1, h);
   ctx.fillStyle = color; ctx.fillRect(x1, y, Math.max(0, Math.min(1, f)) * (x2 - x1), h);
@@ -75,14 +75,16 @@ function bar(ctx, x1, x2, y, h, f, color) {
     const { ctx } = begin(d.c);
     const T = burn(), tau = cy.now(), done = tau >= T - 1e-9;
     const m = mass(tau), a = acc(tau), v = vel(tau), p = m * v;
-    const thrust = V() * R(), weight = m * G, Fmax = Math.max(thrust, M0() * G);
+    /* the free-body arrows are on one scale fixed from the slider maxima, 150 units at 5 × 10⁷ N,
+       which is the fiercest thrust the sliders allow, and the momentum bar is fixed at 2.2 × 10⁹
+       kg·m/s, the most a rocket of this scene can gather. Neither scale moves. */
+    const thrust = V() * R(), weight = m * G, Fmax = 5e7, pMax = 2.2e9;
     const yTop = Math.max(1e-6, height(T)), prog = Math.max(0, Math.min(1, height(tau) / yTop));
-    const pMax = Math.max(1, mass(T) * Math.max(vel(T), 1));
 
     /* the scene: the rocket and the gas it throws down */
     const rx = 270, ry = 600 - 340 * prog, S = 1.3;
     const Lv = 40 + 50 * (V() / 2500);
-    plume(ctx, rx, ry + 81, 70 + 40 * (R() / 2e4), C('velocity'));
+    plume(ctx, rx, ry + 81, 70 + 40 * (R() / 2e4), PAL.ink);   /* the exhaust is a body, drawn in ink, and the hue stays on the arrow and the slider */
     rocket(ctx, rx, ry, PAL.ink, S);
     arrow(ctx, rx, ry + 100, rx, ry + 100 + Lv, C('velocity'), 5);
     text(ctx, 'v\u2091 = ' + sciT(V()) + ' m/s', rx - 40, Math.min(ry + 100 + Lv / 2, 656), C('velocity'), { size: 20, weight: 600, align: 'right' });   /* held above the ground line so it never lands on its label at liftoff */
@@ -90,7 +92,7 @@ function bar(ctx, x1, x2, y, h, f, color) {
     text(ctx, 'where it lifted off', 40, 708, PAL.muted, { size: 17 });
 
     /* the free-body diagram: the thrust that lifts the rocket and the weight that holds it down */
-    const fx = 600, fy = 410, Lt = 40 + 150 * (thrust / Fmax), Lw = 40 + 150 * (weight / Fmax);
+    const fx = 600, fy = 410, Lt = 40 + 150 * Math.min(1, thrust / Fmax), Lw = 40 + 150 * Math.min(1, weight / Fmax);
     dot(ctx, fx, fy, PAL.ink, true, 10);
     text(ctx, 'the rocket', fx + 22, fy, PAL.muted, { size: 17 });
     arrow(ctx, fx, fy, fx, fy - Lt, C('force'), 5);
@@ -124,12 +126,12 @@ function bar(ctx, x1, x2, y, h, f, color) {
     bar(ctx, 860, 1340, 722, 34, p / pMax, alpha(C('momentum'), 0.55));
     text(ctx, 'momentum p = mv = ' + sciT(p) + ' kg\u00b7m/s', 860, 700, C('momentum'), { size: 20, weight: 600 });
 
-    headline(ctx, acc(0) <= 0 && tau < 1e-9 ? 'the thrust of ' + sciT(thrust) + ' N is less than the weight of ' + sciT(weight) + ' N, so the rocket stays on the pad'
-      : tau < 1e-9 ? 't = 0 s \u00b7 the rocket lifts off at ' + fmt(acc(0), 2) + ' m/s\u00b2, a thrust of ' + sciT(thrust) + ' N against a weight of ' + sciT(weight) + ' N'
-      : done ? 't = ' + fmt(T, 0) + ' s \u00b7 the fuel is exhausted, and the acceleration has reached its greatest value, ' + fmt(a, 1) + ' m/s\u00b2'
-      : 't = ' + fmt(tau, 0) + ' s \u00b7 ' + sciT(m) + ' kg is left of the rocket, so the same thrust now gives it ' + fmt(a, 1) + ' m/s\u00b2');
+    topline(ctx, acc(0) <= 0 && tau < 1e-9 ? 'The thrust of ' + sciT(thrust) + ' N is less than the weight of ' + sciT(weight) + ' N, so the rocket stays on the pad.'
+      : tau < 1e-9 ? 'The rocket lifts off at ' + fmt(acc(0), 2) + ' m/s\u00b2, a thrust of ' + sciT(thrust) + ' N against a weight of ' + sciT(weight) + ' N.'
+      : done ? 'The fuel is exhausted after ' + fmt(T, 0) + ' s, and the acceleration has reached its greatest value, ' + fmt(a, 1) + ' m/s\u00b2.'
+      : 'After ' + fmt(tau, 0) + ' s, ' + sciT(m) + ' kg is left of the rocket, so the same thrust now gives it ' + fmt(a, 1) + ' m/s\u00b2.');
     readout(d.readout, `\\ka = \\frac{\\kve}{m}\\;\\frac{\\Delta m}{\\kdt} - \\kg = \\frac{${sciX(V())}\\ \\text{m/s}}{${sciX(m)}\\ \\text{kg}}(${sciX(R())}\\ \\text{kg/s}) - 9.80\\ \\text{m/s}^2 = ${fmt(a, 2)}\\ \\text{m/s}^2`,
-      'The thrust is the exhaust velocity multiplied by the rate at which gas leaves, ' + sciT(thrust) + ' N, and it does not change as the rocket burns; the weight does, because the mass falls, and that is why the acceleration grows.');
+      'The thrust is the exhaust velocity multiplied by the rate at which gas leaves, ' + sciT(thrust) + ' N, and it does not change as the rocket burns. The weight does, because the mass falls, and that is why the acceleration grows.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => burn() / 5), draw });
 })();
@@ -176,9 +178,9 @@ function bar(ctx, x1, x2, y, h, f, color) {
     line(ctx, X(Rm), Y(Math.min(v, VR)), X(Rm), box.b, C('velocity'), 2, [4, 8]);
     pinned(ctx, box, X, Y, Rm, v, C('velocity'), commas(fmt(v, 0)) + ' m/s');
 
-    headline(ctx, 'an exhaust velocity of ' + sciT(V) + ' m/s and a mass ratio of ' + fmt(Rm, 0) + ' give a final velocity of ' + sciT(v) + ' m/s');
+    topline(ctx, 'An exhaust velocity of ' + sciT(V) + ' m/s and a mass ratio of ' + fmt(Rm, 0) + ' give a final velocity of ' + sciT(v) + ' m/s.');
     readout(d.readout, `\\kv = \\kve\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}} = (${sciX(V)}\\ \\text{m/s})\\,\\text{ln}\\;${fmt(Rm, 0)} = ${sciX(v)}\\ \\text{m/s}`,
-      'Only ' + fmt(left, 2) + ' per cent of the rocket is left when the fuel is burnt, so payload, engines and fuel tanks together must weigh no more than that. Doubling the mass ratio does not double the velocity: it adds the same ' + fmt(V * Math.LN2, 0) + ' m/s however large the ratio already is.');
+      'Only ' + fmt(left, 2) + ' percent of the rocket is left when the fuel is burnt, so payload, engines and fuel tanks together must weigh no more than that. Doubling the mass ratio does not double the velocity, since it adds the same ' + fmt(V * Math.LN2, 0) + ' m/s however large the ratio already is.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

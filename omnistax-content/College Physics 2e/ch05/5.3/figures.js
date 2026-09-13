@@ -1,7 +1,7 @@
 /* Figures for section 5.3 Elasticity: Stress and Strain. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['5.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed, view, face } = F;
+const { el, fmt, tex, C, PAL, alpha, hover, ctl, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -49,11 +49,14 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const region = (f) => (f <= Fh.v ? 0 : f <= elastic() ? 1 : f <= fracture() ? 2 : 3);
   function draw() {
     const { ctx } = begin(d.c);
-    const f = Fa.v, x = dl(f), reg = region(f), full = dl(fracture());
+    const f = Fa.v, x = dl(f), reg = region(f);
     /* the scene: a spring clamped at the left and pulled to the right */
-    const y = 175, wall = 170, nat = 250, SC = 520 / Math.max(0.4, full);
+    /* fixed scene scale: the spring is drawn against the same 0 to 4 m the graph is ruled to, so a
+       stiffer spring is drawn shorter rather than filling the same span at every setting; a stretch
+       past 4 m is held at the end of the strip and the headline gives its true length */
+    const y = 175, wall = 170, nat = 250, SC = 130;
     fixed(ctx, wall - 60, y - 80, 60, 160);
-    const end = wall + nat + x * SC;
+    const end = wall + nat + Math.min(x, 4) * SC;
     strip(ctx, 120, Math.min(1320, end + 320), y, 50);
     if (reg < 3) {
       spring(ctx, wall, y, end, y, 11, 24, PAL.ink, 4);
@@ -76,8 +79,9 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const YHI = 4, YN = 4;
     const box = { l: 190, r: 1290, t: 330, b: 620 };
     const { X, Y } = axes(ctx, box, [0, 600], [0, YHI], { xl: 'applied force F (N)', xc: C('force'), yl: 'deformation ΔL (m)', yc: C('position'), nx: 6, ny: YN, fy: (v) => fmt(v, 1) });
-    const band = (a, b, hue) => { ctx.save(); ctx.fillStyle = alpha(hue, 0.08); ctx.fillRect(X(a), box.t, X(Math.min(b, 600)) - X(a), box.b - box.t); ctx.restore(); };
-    band(0, Fh.v, C('position')); band(elastic(), fracture(), C('force'));
+    /* a region of the graph is not a quantity, so it is banded in ink and never in a type hue */
+    const band = (a, b) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(X(a), box.t, X(Math.min(b, 600)) - X(a), box.b - box.t); ctx.restore(); };
+    band(0, Fh.v); band(elastic(), fracture());
     const seg = (a, b, w) => { if (b <= a) return; line(ctx, X(a), Y(dl(a)), X(Math.min(b, 600)), Y(dl(Math.min(b, 600))), C('position'), w); };
     /* the curve is clipped to the box, so a segment that climbs past the fixed range leaves through the top rather than running over the scene */
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
@@ -93,10 +97,10 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     if (X(Math.min(600, fracture())) - X(elastic()) > 110) text(ctx, 'permanent', (X(elastic()) + X(Math.min(600, fracture()))) / 2, box.t + 22, PAL.muted, { size: 18, align: 'center' });
     if (reg < 3 && x <= YHI) { line(ctx, X(f), box.b, X(f), Y(x), C('force'), 2, [4, 8]); line(ctx, box.l, Y(x), X(f), Y(x), C('position'), 2, [4, 8]); dot(ctx, X(f), Y(x), PAL.ink, true, 10); }
     else if (reg < 3) pinned(ctx, box, X, Y, f, x, C('position'), fmt(x, 1) + ' m');
-    headline(ctx, reg === 0 ? 'F = ' + fmt(f, 0) + ' N · the spring has stretched ' + fmt(x, 3) + ' m, and the graph is still on its straight segment, where Hooke’s law holds'
-      : reg === 1 ? 'F = ' + fmt(f, 0) + ' N · the spring has stretched ' + fmt(x, 3) + ' m; the graph has left its straight segment, but the stretch is still elastic and comes back'
-        : reg === 2 ? 'F = ' + fmt(f, 0) + ' N · the spring has stretched ' + fmt(x, 3) + ' m and is permanently deformed, so it will not return to its original length'
-          : 'F = ' + fmt(f, 0) + ' N · the spring has fractured, which happens here at ' + fmt(fracture(), 0) + ' N');
+    headline(ctx, reg === 0 ? 'A force of ' + fmt(f, 0) + ' N has stretched the spring ' + fmt(x, 3) + ' m, and the graph is still on its straight segment, where Hooke’s law holds'
+      : reg === 1 ? 'A force of ' + fmt(f, 0) + ' N has stretched the spring ' + fmt(x, 3) + ' m, so the graph has left its straight segment, but the stretch is still elastic and comes back'
+        : reg === 2 ? 'A force of ' + fmt(f, 0) + ' N has stretched the spring ' + fmt(x, 3) + ' m and deformed it permanently, so it will not return to its original length'
+          : 'A force of ' + fmt(f, 0) + ' N has fractured the spring, which happens here at ' + fmt(fracture(), 0) + ' N');
     readout(d.readout, reg === 0
       ? `\\kdL = \\frac{\\kF}{\\kk} = \\frac{${fmt(f, 0)}\\ \\text{N}}{${fmt(kk.v, 0)}\\ \\text{N/m}} = ${fmt(x, 3)}\\ \\text{m}`
       : `\\kF = ${fmt(f, 0)}\\ \\text{N} > ${fmt(Fh.v, 0)}\\ \\text{N}, \\qquad \\kdL = ${fmt(x, 3)}\\ \\text{m} > \\frac{\\kF}{\\kk} = ${fmt(f / kk.v, 3)}\\ \\text{m}`,
@@ -123,8 +127,10 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const dl = (s, force) => (force * L0.v) / (s.Y * area(s));       /* metres */
   function draw() {
     const { ctx } = begin(d.c);
-    const biggest = dl(STR[0], 40);
-    const MAG = 70 / Math.max(1e-9, biggest);                       /* units per metre of stretch, so the longest stretch always reads */
+    /* fixed exaggeration: seven thousand units per metre of stretch, whatever the sliders are set to,
+       so a longer string really is drawn stretching farther instead of the picture rescaling itself
+       around it. The longest stretch the sliders allow, 12.2 mm, still draws inside its 90 units. */
+    const MAG = 7000;
     const yTop = 210, len = 130 + 200 * (L0.v / 1.2);
     fixed(ctx, 200, yTop - 44, 560, 44);
     STR.forEach((s, i) => {
@@ -154,7 +160,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       if (yv <= YHI) dot(ctx, X(w.v), Y(yv), PAL.ink, true, 9); else pinned(ctx, box, X, Y, w.v, yv, C('position'), fmt(yv, 1) + ' mm');
       text(ctx, s.name, X(e) - 10, Y(dl(s, e) * 1000) - 18, PAL.muted, { size: 17, align: 'right' });
     });
-    headline(ctx, 'a ' + fmt(w.v, 0) + ' N weight stretches the thin nylon string ' + fmt(dl(STR[0], w.v) * 1000, 2) + ' mm, the thicker nylon string ' + fmt(dl(STR[1], w.v) * 1000, 2) + ' mm and the steel string ' + fmt(dl(STR[2], w.v) * 1000, 2) + ' mm');
+    headline(ctx, 'A ' + fmt(w.v, 0) + ' N weight stretches the thin nylon string ' + fmt(dl(STR[0], w.v) * 1000, 2) + ' mm, the thicker nylon string ' + fmt(dl(STR[1], w.v) * 1000, 2) + ' mm and the steel string ' + fmt(dl(STR[2], w.v) * 1000, 2) + ' mm');
     readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kwgt}{A}\\kLo = \\frac{(${fmt(w.v, 0)}\\ \\text{N})(${fmt(L0.v, 2)}\\ \\text{m})}{(${sci(STR[0].Y, 0)}\\ \\text{N/m}^2)(${sci(area(STR[0]), 2)}\\ \\text{m}^2)} = ${sci(dl(STR[0], w.v), 2)}\\ \\text{m}`,
       'The thicker nylon string has four times the cross-sectional area of the thin one, so the same weight stretches it a quarter as far; the steel string has the same area as the thin nylon one but forty-two times its Young’s modulus, so it stretches forty-two times less. All three lines are straight, which is Hooke’s law.');
   }
@@ -171,7 +177,10 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 5000, step: 50, value: 1500, unit: 'N', dec: 0, aria: 'force applied to the rod' });
   const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 0.2, max: 3, step: 0.1, value: 1, unit: 'm', dec: 1, aria: 'original length of the rod' });
   const rr = ctl(d.controls, { label: 'r', cls: '', min: 0.5, max: 5, step: 0.1, value: 1, unit: 'cm', dec: 1, aria: 'radius of the rod' });
-  const YY = ctl(d.controls, { label: '\\kY', cls: 'elastic-modulus', min: 1, max: 210, step: 1, value: 70, unit: '× 10⁹ N/m²', dec: 0, aria: 'Young’s modulus' });
+  /* every Young's modulus Table 5.3 prints is a tick on the slider, and the whole number the slider
+     steps by lands on each of them exactly; two are named, and naming more would crowd the track */
+  const YDET = [1, 3, 5, 6, 9, 10, 15, 16, 20, 45, 60, { v: 70, label: 'aluminum' }, 90, 100, { v: 210, label: 'steel' }];
+  const YY = ctl(d.controls, { label: '\\kY', cls: 'elastic-modulus', min: 1, max: 210, step: 1, value: 70, unit: '× 10⁹ N/m²', dec: 0, aria: 'Young’s modulus', detents: YDET });
   const OTHERS = [{ name: 'steel', Y: 210 }, { name: 'aluminum', Y: 70 }, { name: 'bone, compression', Y: 9 }, { name: 'nylon', Y: 5 }];
   const area = () => Math.PI * Math.pow(rr.v / 100, 2);
   const dl = (force, Yg) => (force * L0.v) / (Yg * 1e9 * area());   /* metres */
@@ -220,7 +229,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     line(ctx, X(0), Y(0), X(ec), Y(dl(ec, YY.v) * 1000), C('position'), 5);
     if (x * 1000 <= YHI) { line(ctx, X(Fa.v), box.b, X(Fa.v), Y(x * 1000), C('force'), 2, [4, 8]); dot(ctx, X(Fa.v), Y(x * 1000), PAL.ink, true, 10); }
     else pinned(ctx, box, X, Y, Fa.v, x * 1000, C('position'), fmt(x * 1000, 2) + ' mm');
-    headline(ctx, 'F = ' + fmt(Fa.v, 0) + ' N · the rod stretches ' + fmt(x * 1000, 3) + ' mm in tension and is compressed by the same amount');
+    headline(ctx, 'A force of ' + fmt(Fa.v, 0) + ' N stretches the rod ' + fmt(x * 1000, 3) + ' mm in tension and compresses it by the same amount');
     readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(YY.v * 1e9, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
       'For very small deformations and uniform materials the change in length is the same for a tension and for a compression of the same size, which is why the two rods move by equal amounts. Double the length and the change doubles; double the radius and the area is four times as large, so the change falls to a quarter.');
   }
@@ -240,7 +249,9 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const stress = (e) => (e <= TOE ? (Y * e * e) / (2 * TOE)
     : e <= LIN ? (Y * TOE) / 2 + Y * (e - TOE)
       : (Y * TOE) / 2 + Y * (LIN - TOE) + 0.5 * Y * (e - LIN) - 12 * Y * (e - LIN) * (e - LIN));
-  const slope = (e) => (e <= TOE ? (Y * e) / TOE : e <= LIN ? Y : Math.max(0, 0.5 * Y - 24 * Y * (e - LIN)));
+  /* the slope of the curve at a strain; in the failure region it falls through zero and turns
+     negative, and the tangent drawn on the graph follows it down rather than lying flat */
+  const slope = (e) => (e <= TOE ? (Y * e) / TOE : e <= LIN ? Y : 0.5 * Y - 24 * Y * (e - LIN));
   const TOP = 80e6;
   function draw() {
     const { ctx } = begin(d.c);
@@ -249,7 +260,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const y = 160, x0 = 220, base = 260 + 460 * (L0.v / 40), grow = base * e;
     strip(ctx, 120, 1320, y, 56);
     fixed(ctx, x0 - 54, y - 60, 54, 120);
-    ctx.save(); ctx.fillStyle = alpha(C('stress'), 0.3); ctx.fillRect(x0, y - 20, base + grow, 40); ctx.restore();
+    /* the tendon is a body, so it is drawn in ink; the stress it carries keeps the hue */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x0, y - 20, base + grow, 40); ctx.restore();
     line(ctx, x0, y - 20, x0 + base + grow, y - 20, PAL.ink, 4); line(ctx, x0, y + 20, x0 + base + grow, y + 20, PAL.ink, 4);
     line(ctx, x0 + base, y - 46, x0 + base, y + 46, PAL.muted, 2, [6, 6]);
     arrow(ctx, x0 + base + grow + 20, y, x0 + base + grow + 20 + 40 + s / 6e5, y, C('stress'), 5);
@@ -259,7 +271,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     /* the graph: the stress the tendon carries against its strain, with the three regions the book names */
     const box = { l: 210, r: 1270, t: 340, b: 640 };
     const { X, Y: Yg } = axes(ctx, box, [0, 0.1], [0, TOP / 1e6], { xl: 'strain ΔL / L₀', xc: PAL.ink, yl: 'tensile stress (MN/m²)', yc: C('stress'), nx: 5, ny: 4, fx: (v) => fmt(v, 2) });
-    const band = (a, b) => { ctx.save(); ctx.fillStyle = alpha(C('stress'), 0.07); ctx.fillRect(X(a), box.t, X(b) - X(a), box.b - box.t); ctx.restore(); };
+    /* a region of the graph is not a quantity, so it is banded in ink and never in a type hue */
+    const band = (a, b) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(X(a), box.t, X(b) - X(a), box.b - box.t); ctx.restore(); };
     band(0, TOE); band(LIN, 0.1);
     F.curve(ctx, (t) => stress(t) / 1e6, 0, 0.1, X, Yg, C('stress'), 5, 120);
     text(ctx, '(1) toe region', X(TOE / 2), box.t + 24, PAL.muted, { size: 18, align: 'center' });
@@ -271,8 +284,10 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     line(ctx, X(e), box.b, X(e), Yg(s / 1e6), PAL.muted, 2, [4, 8]);
     line(ctx, box.l, Yg(s / 1e6), X(e), Yg(s / 1e6), C('stress'), 2, [4, 8]);
     dot(ctx, X(e), Yg(s / 1e6), PAL.ink, true, 10);
-    headline(ctx, 'at a strain of ' + fmt(e, 3) + ' the tendon carries a stress of ' + fmt(s / 1e6, 1) + ' MN/m², and the slope of the curve there is ' + plain(m, 1) + ' N/m²');
-    readout(d.readout, `\\text{stress} = ${sci(s, 2)}\\ \\text{N/m}^2 \\qquad \\text{strain} = \\frac{\\kdL}{\\kLo} = \\frac{${fmt(dL * 1000, 1)}\\ \\text{mm}}{${fmt(L0.v, 0)}\\ \\text{cm}} = ${fmt(e, 3)}`,
+    headline(ctx, 'At a strain of ' + fmt(e, 3) + ' the tendon carries a stress of ' + fmt(s / 1e6, 1) + ' MN/m², and the slope of the curve there is ' + plain(m, 1) + ' N/m²');
+    /* the book gives stress no letter of its own, so the readout writes the word; it is a bound type
+       here, so the word is set in the stress hue rather than left in ink */
+    readout(d.readout, `\\htmlClass{kv-stress}{\\text{stress}} = ${sci(s, 2)}\\ \\text{N/m}^2 \\qquad \\text{strain} = \\frac{\\kdL}{\\kLo} = \\frac{${fmt(dL * 1000, 1)}\\ \\text{mm}}{${fmt(L0.v, 0)}\\ \\text{cm}} = ${fmt(e, 3)}`,
       'In the linear region the curve rises by Young’s modulus for tendon, 1 × 10⁹ N/m², for every unit of strain, so stress = Y × strain holds there. In the toe region the fibers are still aligning themselves with the stress and the tendon gives more easily, and in the failure region individual fibers break, so the slope falls away.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -288,9 +303,13 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 2000, step: 20, value: 800, unit: 'N', dec: 0, aria: 'shearing force' });
   const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 0.3, max: 2.5, step: 0.1, value: 1.8, unit: 'm', dec: 1, aria: 'height of the bookcase' });
   const AA = ctl(d.controls, { label: 'A', cls: '', min: 0.05, max: 1, step: 0.05, value: 0.3, unit: 'm²', dec: 2, aria: 'cross-sectional area' });
-  const SS = ctl(d.controls, { label: '\\kS', cls: 'elastic-modulus', min: 1, max: 80, step: 1, value: 10, unit: '× 10⁹ N/m²', dec: 0, aria: 'shear modulus' });
-  const MATS = [{ n: 'lead', S: 5, l: 1 }, { n: 'hardwood', S: 10 }, { n: 'glass, granite, marble', S: 20 }, { n: 'aluminum', S: 25, l: 1 }, { n: 'brass', S: 35 }, { n: 'iron', S: 40 }, { n: 'bone, steel', S: 80, l: 1 }];
+  const MATS = [{ n: 'lead', S: 5, l: 1 }, { n: 'hardwood', S: 10 }, { n: 'glass, granite, marble', S: 20 }, { n: 'aluminum', S: 25, l: 'aluminum' }, { n: 'brass', S: 35 }, { n: 'iron', S: 40 }, { n: 'bone, steel', S: 80, l: 'steel' }];
+  /* every shear modulus Table 5.3 prints is a tick on the slider, and the whole number the slider
+     steps by lands on each of them exactly; two are named, and naming more would crowd the track */
+  const SDET = MATS.map((m) => (typeof m.l === 'string' ? { v: m.S, label: m.l } : m.S));
+  const SS = ctl(d.controls, { label: '\\kS', cls: 'elastic-modulus', min: 1, max: 80, step: 1, value: 10, unit: '× 10⁹ N/m²', dec: 0, aria: 'shear modulus', detents: SDET });
   const dx = (Sg) => (Fa.v * L0.v) / (Sg * 1e9 * AA.v);              /* metres */
+  let marks = [];
   function draw() {
     const { ctx } = begin(d.c);
     const x = dx(SS.v), H = 120 + 300 * (L0.v / 2.5), W = 150 + 130 * AA.v, D = 0.5 * W;
@@ -343,18 +362,22 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const box = { l: 800, r: 1300, t: 170, b: 540 };
     const { X, Y } = axes(ctx, box, [0, 80], [0, YHI], { xl: 'shear modulus S (× 10⁹ N/m²)', xc: C('elastic-modulus'), yl: 'deformation Δx (µm)', yc: C('position'), nx: 4, ny: YN, fy: (v) => fmt(v, 1) });
     F.curve(ctx, (t) => Math.min(YHI, dx(t) * 1e6), 1, 80, X, Y, C('position'), 5, 140);
+    marks = [];
     MATS.forEach((m) => {
       const yv = dx(m.S) * 1e6; if (yv > YHI) return;
       dot(ctx, X(m.S), Y(yv), PAL.muted, false, 8);
-      /* the curve crowds its points together at the right, so only three of the seven are named and the rest are left as marks */
+      /* the curve crowds its points together at the right, so only three of the seven are named on
+         the drawing; the other four give their names under the pointer (rule 26.6) */
       if (m.l) text(ctx, m.n, X(m.S) + (m.S > 60 ? -10 : 12), Y(yv) - 20, PAL.muted, { size: 17, align: m.S > 60 ? 'right' : 'left' });
+      else marks.push({ x: X(m.S), y: Y(yv), r: 18, name: m.n + ', S = ' + giga(m.S) });
     });
     if (x * 1e6 <= YHI) { line(ctx, X(SS.v), box.b, X(SS.v), Y(x * 1e6), C('elastic-modulus'), 2, [4, 8]); dot(ctx, X(SS.v), Y(x * 1e6), PAL.ink, true, 10); }
     else pinned(ctx, box, X, Y, SS.v, x * 1e6, C('position'), fmt(x * 1e6, 1) + ' µm');
-    headline(ctx, 'F = ' + fmt(Fa.v, 0) + ' N · a bookcase ' + fmt(L0.v, 1) + ' m tall with a shear modulus of ' + giga(SS.v) + ' shears sideways by ' + fmt(x * 1e6, 3) + ' µm');
+    headline(ctx, 'A force of ' + fmt(Fa.v, 0) + ' N shears a bookcase ' + fmt(L0.v, 1) + ' m tall with a shear modulus of ' + giga(SS.v) + ' sideways by ' + fmt(x * 1e6, 3) + ' µm');
     readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(SS.v * 1e9, 1)}\\ \\text{N/m}^2)(${fmt(AA.v, 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
       'The deformation falls as one over the shear modulus, so the curve drops steeply at the left and flattens at the right. Bone sits at the far right beside steel, which is why bones are so rigid, and lead sits at the far left.');
   }
+  hover(d.stage, () => marks);
   register(d.fig, { update: () => {}, draw });
 })();
 
@@ -413,7 +436,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     if (flex > 4) vbracket(ctx, px + 46, y, py, C('position'), 'Δx', 1);
     text(ctx, 'the flex is drawn about ' + timesLarger(MAG, len / (L0.v / 1000)) + ' times larger than it is', 120, 560, PAL.muted, { size: 18 });
     text(ctx, 'the nail is steel, so its shear modulus is 80 × 10⁹ N/m²', 120, 588, PAL.muted, { size: 18 });
-    headline(ctx, 'a ' + fmt(mm.v, 1) + ' kg picture weighs ' + fmt(w, 0) + ' N and bends the nail ' + fmt(x * 1e6, 2) + ' µm, which is far too small to see');
+    headline(ctx, 'A ' + fmt(mm.v, 1) + ' kg picture weighs ' + fmt(w, 0) + ' N and bends the nail ' + fmt(x * 1e6, 2) + ' µm, which is far too small to see');
     readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo = \\frac{(${fmt(w, 1)}\\ \\text{N})(${sci(L0.v / 1000, 2)}\\ \\text{m})}{(${sci(S, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
       'Example 5.5 runs this the other way: it reads the flex off the figure as 1.80 µm and solves F = SAΔx/L₀ for the 51 N weight, which makes the picture’s mass w/g = 5.2 kg. Set the mass to 5.2 kg, the radius to 0.75 mm and the length to 5.00 mm to see those numbers.');
   }
@@ -429,7 +452,10 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const d = sim('sim-cube', 700);
   const st = ctl(d.controls, { label: '\\frac{\\kF}{A}', cls: 'stress', min: 0, max: 100, step: 1, value: 50, unit: '× 10⁶ N/m²', dec: 0, aria: 'force per unit area applied on every surface' });
   const V0 = ctl(d.controls, { label: 'V_0', cls: '', min: 0.1, max: 10, step: 0.1, value: 1, unit: 'L', dec: 1, aria: 'original volume' });
-  const BB = ctl(d.controls, { label: '\\kBb', cls: 'elastic-modulus', min: 0.7, max: 130, step: 0.1, value: 2.2, unit: '× 10⁹ N/m²', dec: 1, aria: 'bulk modulus' });
+  /* every bulk modulus Table 5.3 prints is a tick on the slider, and the tenth the slider steps by
+     lands on each of them exactly; two are named, and naming more would crowd the track */
+  const BDET = [0.7, 0.9, { v: 2.2, label: 'water' }, 4.5, 8, 25, 30, 45, 50, 70, 75, 90, { v: 130, label: 'steel' }];
+  const BB = ctl(d.controls, { label: '\\kBb', cls: 'elastic-modulus', min: 0.7, max: 130, step: 0.1, value: 2.2, unit: '× 10⁹ N/m²', dec: 1, aria: 'bulk modulus', detents: BDET });
   const LIQ = [{ n: 'acetone', B: 0.7 }, { n: 'ethanol', B: 0.9 }, { n: 'water', B: 2.2 }, { n: 'glycerin', B: 4.5 }, { n: 'mercury', B: 25 }];
   const stress = () => st.v * 1e6;
   const frac = (Bg) => Math.min(0.6, stress() / (Bg * 1e9));
@@ -489,7 +515,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const ec = Math.min(100, (TOPY / 100) * BB.v * 1e9 / 1e6);
     line(ctx, X(0), Y(0), X(ec), Y(Math.min(TOPY, (ec * 1e6 / (BB.v * 1e9)) * 100)), C('elastic-modulus'), 5);
     if (f * 100 <= TOPY) { line(ctx, X(st.v), box.b, X(st.v), Y(f * 100), C('stress'), 2, [4, 8]); dot(ctx, X(st.v), Y(f * 100), PAL.ink, true, 10); }
-    headline(ctx, 'a force per unit area of ' + plain(stress(), 1) + ' N/m² on a material of bulk modulus ' + giga(BB.v) + ' compresses it by ' + fmt(f * 100, 2) + '% of its volume');
+    headline(ctx, 'A force per unit area of ' + plain(stress(), 1) + ' N/m² on a material of bulk modulus ' + giga(BB.v) + ' compresses it by ' + fmt(f * 100, 2) + '% of its volume');
     readout(d.readout, `\\frac{\\Delta V}{V_0} = \\frac{1}{\\kBb}\\frac{\\kF}{A} = \\frac{${sci(stress(), 2)}\\ \\text{N/m}^2}{${sci(BB.v * 1e9, 1)}\\ \\text{N/m}^2} = ${fmt(f, 4)} = ${fmt(f * 100, 2)}\\%`,
       'Example 5.6 is the water line at a force per unit area of 5.00 × 10⁷ N/m², the pressure 5.00 km down, which compresses seawater by 2.3 percent. Acetone, whose bulk modulus is the smallest in Table 5.3, gives way about three times as much under the same squeeze, and mercury about eleven times less.');
   }

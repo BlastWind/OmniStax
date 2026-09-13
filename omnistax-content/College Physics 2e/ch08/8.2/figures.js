@@ -1,7 +1,7 @@
 /* Figures for section 8.2 Impulse. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, fixed, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, strip, axes, nice, curve, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -24,7 +24,7 @@ function passenger(ctx, x, y, color) {
   ctx.moveTo(x - 1, y - 54); ctx.lineTo(x + 32, y - 36);
   ctx.stroke(); ctx.restore();
 }
-/* a billiard ball centred on (x, y) */
+/* a billiard ball centered on (x, y) */
 function ball(ctx, x, y, color, r = 18) {
   ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
   ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(x - r * 0.3, y - r * 0.3, r * 0.28, 0, TAU); ctx.fill(); ctx.restore();
@@ -70,14 +70,17 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
     const px = hit ? wallX - 44 + squash : startX + (wallX - 44 - startX) * (tau / APPROACH);
     passenger(ctx, px, y, PAL.ink);
     text(ctx, fmt(m.v, 0) + ' kg', px + 2, y + 46, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    /* the momentum still to be taken away, and the force the padding pushes back with */
-    const len = Math.min(320, (300 * left) / 2000);
+    /* the momentum still to be taken away, and the force the padding pushes back with. Both arrows
+       are on scales fixed from the slider maxima and never move: 320 units at 3,600 kg·m/s, which is
+       120 kg at 30 m/s, and 250 units at 180,000 N, which is that momentum taken away in 0.02 s. */
+    const PMAX = 120 * 30, FMAX = PMAX / 0.02;
+    const len = (320 * left) / PMAX;
     if (left > 1) {
       arrow(ctx, px, 125, px + len, 125, cp, 5);
       text(ctx, 'p = ' + whole(left) + ' kg·m/s', px - 16, 125, cp, { size: 21, weight: 600, align: 'right' });
-    } else text(ctx, 'p = 0: the passenger is at rest', px - 16, 125, cp, { size: 21, weight: 600, align: 'right' });
+    } else text(ctx, 'p = 0, and the passenger is at rest', px - 16, 125, cp, { size: 21, weight: 600, align: 'right' });
     if (hit && !done) {
-      const fl = 70 + 180 * Math.min(1, Fn / 90000);
+      const fl = 70 + 180 * Math.min(1, Fn / FMAX);
       arrow(ctx, px + 50, 190, px + 50 - fl, 190, cf, 5);
       text(ctx, 'F = ' + whole(Fn) + ' N', px + 38 - fl, 190, cf, { size: 21, weight: 600, align: 'right' });
     }
@@ -96,12 +99,12 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
     line(ctx, g.X(dt.v), g.Y(0), g.X(dt.v), g.Y(FnC), C('time'), 2, [4, 8]);
     line(ctx, g.X(0), g.Y(FnC), g.X(dt.v), g.Y(FnC), cf, 2, [4, 8]);
     pinned(ctx, box, g.X, g.Y, dt.v, Fn, PAL.ink, whole(Fn) + ' N');
-    text(ctx, 'every rectangle under this curve has the same area, Δp = ' + whole(p) + ' kg·m/s', box.l, box.b + 96, cp, { size: 21, weight: 600 });
-    headline(ctx, !hit
-      ? 'the passenger is riding at ' + fmt(v.v, 1) + ' m/s and carries ' + whole(p) + ' kg·m/s of momentum'
+    text(ctx, 'Every rectangle under this curve has the same area, Δp = ' + whole(p) + ' kg·m/s.', box.l, box.b + 96, cp, { size: 21, weight: 600 });
+    topline(ctx, !hit
+      ? 'The passenger is riding at ' + fmt(v.v, 1) + ' m/s and carries ' + whole(p) + ' kg·m/s of momentum.'
       : !done
-        ? 't = ' + fmt(tin, 3) + ' s into the contact · ' + whole(left) + ' kg·m/s is left, and the padding pushes back with ' + whole(Fn) + ' N'
-        : 'all ' + whole(p) + ' kg·m/s has been taken away in ' + fmt(dt.v, 2) + ' s, which took a force of ' + whole(Fn) + ' N');
+        ? 'After ' + fmt(tin, 3) + ' s of contact, ' + whole(left) + ' kg·m/s is left and the padding pushes back with ' + whole(Fn) + ' N.'
+        : 'All ' + whole(p) + ' kg·m/s has been taken away in ' + fmt(dt.v, 2) + ' s, which took a force of ' + whole(Fn) + ' N.');
     readout(d.readout, `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{(${fmt(m.v, 0)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})}{${fmt(dt.v, 2)}\\ \\text{s}} = ${whole(Fn)}\\ \\text{N}`,
       'The change in momentum is the same however the stop is made, so giving the force twice as long to act halves it. That is what the padding on a dashboard, and far more so an airbag, is for.');
   }
@@ -122,7 +125,10 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
   const IN = 1.8, OUT = 1.8;
   const cy = cycle(() => IN + OUT, 1.2);
   function reset() { cy.reset(); }
-  const K = 170;                                  /* canvas units per kg·m/s of momentum arrow */
+  /* the momentum arrows are on one scale fixed from the slider maxima and never move: 83 units per
+     kg·m/s, so the largest momentum the sliders reach, 0.3 kg at 10 m/s, is 249 units and the largest
+     change in momentum, twice that at the perpendicular, is 498 units. Neither arrow is ever capped. */
+  const K = 83;
   function draw() {
     const { ctx } = begin(d.c);
     const a = th.v * RAD, p = m.v * u.v, dp = 2 * p * Math.cos(a);
@@ -137,7 +143,7 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
     line(ctx, cx, cyy, cx - run * Math.cos(a), cyy + run * Math.sin(a), PAL.rule, 3, [8, 8]);
     ball(ctx, cx - q * run * Math.cos(a), hit ? cyy + q * run * Math.sin(a) : cyy - q * run * Math.sin(a), PAL.ink);
     /* the momentum before, the momentum after, and the change between them */
-    const L = Math.min(p * K, 250);
+    const L = p * K;
     arrow(ctx, cx - L * Math.cos(a), cyy - L * Math.sin(a), cx, cyy, cp, 5);
     text(ctx, 'p before = ' + fmt(p, 2) + ' kg·m/s', cx - L * Math.cos(a) - 14, cyy - L * Math.sin(a) - 26, cp, { size: 21, weight: 600, align: 'right' });
     if (th.v > 4) arc(ctx, cx, cyy, 86, Math.PI, Math.PI + a, 'θ = ' + fmt(th.v, 0) + '°', PAL.ink);
@@ -145,17 +151,17 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
       arrow(ctx, cx, cyy, cx - L * Math.cos(a), cyy + L * Math.sin(a), cp, 5);
       text(ctx, 'p after = ' + fmt(p, 2) + ' kg·m/s', cx - L * Math.cos(a) - 14, cyy + L * Math.sin(a) + 28, cp, { size: 21, weight: 600, align: 'right' });
       if (th.v > 4) arc(ctx, cx, cyy, 130, Math.PI - a, Math.PI, 'θ = ' + fmt(th.v, 0) + '°', PAL.ink);
-      const dl = Math.min(dp * K, 500);
+      const dl = dp * K;
       arrow(ctx, cx - 40, 710, cx - 40 - dl, 710, cp, 7);
-      text(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s, straight into the wall', cx - 54 - dl, 710, cp, { size: 22, weight: 600, align: 'right' });
+      text(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s, straight away from the wall', cx - 54 - dl, 710, cp, { size: 22, weight: 600, align: 'right' });
       arrow(ctx, cx + 12, 650, cx + 146, 650, cf, 5);
       text(ctx, 'the force on the wall', cx + 14, 618, cf, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     }
-    text(ctx, 'along the wall the momentum keeps its ' + fmt(p * Math.sin(a), 2) + ' kg·m/s; across the wall, ' + fmt(p * Math.cos(a), 2) + ' kg·m/s is reversed',
+    text(ctx, 'Along the wall the momentum keeps its ' + fmt(p * Math.sin(a), 2) + ' kg·m/s, and across the wall ' + fmt(p * Math.cos(a), 2) + ' kg·m/s is reversed.',
       120, 780, PAL.ink, { size: 20 });
-    headline(ctx, !hit
-      ? 'the ball comes in at ' + fmt(u.v, 1) + ' m/s, ' + fmt(th.v, 0) + '° from the perpendicular, carrying ' + fmt(p, 2) + ' kg·m/s'
-      : 'θ = ' + fmt(th.v, 0) + '° · the speed is the same on the way out, and the impulse the wall gives the ball is ' + fmt(dp, 2) + ' kg·m/s');
+    topline(ctx, !hit
+      ? 'The ball comes in at ' + fmt(u.v, 1) + ' m/s, ' + fmt(th.v, 0) + '° from the perpendicular.'
+      : 'The speed is the same on the way out, and the impulse the wall gives the ball is ' + fmt(dp, 2) + ' kg·m/s.');
     readout(d.readout, `\\Delta p_x = -2m\\ku\\cos\\theta = -2(${fmt(m.v, 2)}\\ \\text{kg})(${fmt(u.v, 1)}\\ \\text{m/s})\\cos ${fmt(th.v, 0)}^\\circ = -${fmt(dp, 2)}\\ \\text{kg}\\cdot\\text{m/s}`,
       th.v === 0
         ? 'At the perpendicular the whole of the momentum is reversed, and that is the largest impulse the wall can give a ball of this speed.'
@@ -199,8 +205,8 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
     line(ctx, g.X(t2), g.Y(0) + 10, g.X(t2), g.Y(0) + 34, PAL.muted, 2);
     text(ctx, 't₁', g.X(T1), g.Y(0) + 54, PAL.ink, { size: 21, weight: 600, align: 'center' });
     text(ctx, 't₂', g.X(t2), g.Y(0) + 54, PAL.ink, { size: 21, weight: 600, align: 'center' });
-    text(ctx, 'the shaded bump and the dashed rectangle have the same area, ' + fmt(imp, 1) + ' kg·m/s', box.l, box.b + 110, cp, { size: 21, weight: 600 });
-    headline(ctx, 'the ball pushes with up to ' + whole(fp.v) + ' N for ' + fmt(D, 2) + ' s, and a steady ' + whole(feff) + ' N over the same ' + fmt(D, 2) + ' s would give the same impulse');
+    text(ctx, 'The shaded bump and the dashed rectangle have the same area, ' + fmt(imp, 1) + ' kg·m/s.', box.l, box.b + 110, cp, { size: 21, weight: 600 });
+    topline(ctx, 'The ball pushes with up to ' + whole(fp.v) + ' N, and a steady ' + whole(feff) + ' N over the same ' + fmt(D, 2) + ' s would give the same impulse.');
     readout(d.readout, `\\kdp = \\kFeff\\kdt = (${whole(feff)}\\ \\text{N})(${fmt(D, 2)}\\ \\text{s}) = ${fmt(imp, 1)}\\ \\text{kg}\\cdot\\text{m/s}`,
       'The area under the actual force has units of momentum and is the impulse between t₁ and t₂. The effective force is the steady force that encloses the same area over the same interval, so the two have the same effect on the ball.');
   }
@@ -220,12 +226,12 @@ function wallGraph(id, pts, note) {
     ctx.save(); ctx.strokeStyle = cf; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.beginPath();
     pts.forEach(([t, f], i) => (i ? ctx.lineTo(g.X(t), g.Y(f)) : ctx.moveTo(g.X(t), g.Y(f))));
     ctx.stroke(); ctx.restore();
-    headline(ctx, note);
+    topline(ctx, note);
   }
   register(d.fig, { update: () => {}, draw });
 }
 wallGraph('fig-bounce', [[0, 0], [0.08, 0], [0.08, 15], [0.24, 15], [0.24, 0], [0.32, 0]],
-  'the wall pushes with a steady 15 N from 0.080 s until 0.24 s, and with nothing at all outside that interval');
+  'The wall pushes with a steady 15 N from 0.080 s until 0.24 s, and with nothing at all outside that interval.');
 wallGraph('fig-collision', [[0, 0], [0.08, 15], [0.24, 15], [0.32, 0]],
-  'the wall builds up to 15 N by 0.080 s, holds it there until 0.24 s, and lets go by 0.32 s');
+  'The wall builds up to 15 N by 0.080 s, holds it there until 0.24 s, and lets go by 0.32 s.');
 };

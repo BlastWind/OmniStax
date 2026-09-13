@@ -95,6 +95,15 @@ const RAD = Math.PI / 180;
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 40, step: 1, value: 25, unit: '°', dec: 0, aria: 'angle of the incline' });
   const PH = ctl(d.controls, { label: '\\varphi', cls: '', min: 0, max: 45, step: 1, value: 0, unit: '°', dec: 0, aria: 'angle the axes are turned through' });
   const M = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 100, step: 5, value: 40, unit: 'kg', dec: 0, aria: 'mass of the block' });
+  /* The state that matters, φ = θ, moves with the slope, so it cannot be a fixed tick on the track;
+     instead the axes settle onto the slope when the thumb is let go within a degree of it, which is
+     what a soft detent does for a preset value. */
+  d.fig.addEventListener('change', (e) => {
+    const t = e.target;
+    if (!t || typeof t.getAttribute !== 'function') return;
+    if (t.getAttribute('aria-label') !== 'angle the axes are turned through') return;
+    if (PH.v !== TH.v && Math.abs(PH.v - TH.v) <= 1) PH.set(TH.v);
+  });
   const GY = 440, X0 = 90, L = 430;           /* the ground, the foot of the incline and the length of its face */
   const WLEN = 115;                           /* the weight always draws this long, so the picture reads at every mass */
   const O = [900, 320];                       /* the centre of the free-body diagram */
@@ -175,8 +184,8 @@ const RAD = Math.PI / 180;
     col(800, 'along the y′ axis', [['the weight', wy], ['the normal force', ny], ['the net force', wy + ny], ['mass × acceleration', m * ay]]);
 
     headline(ctx, along
-      ? 'along the slope the block accelerates at ' + num(ax, 2) + ' m/s² and not at all across it'
-      : 'turned ' + fmt(Math.abs(TH.v - PH.v), 0) + '° from the slope, the axes split the acceleration into ' + num(ax, 2) + ' and ' + num(ay, 2) + ' m/s²');
+      ? 'With one axis along the slope the block accelerates at ' + num(ax, 2) + ' m/s² along it and not at all across it'
+      : 'Turned ' + fmt(Math.abs(TH.v - PH.v), 0) + '° from the slope, the axes split the acceleration into ' + num(ax, 2) + ' and ' + num(ay, 2) + ' m/s²');
     readout(d.readout, `\\kFnetx = m\\ka_{x'} = ${num(wx + nx, 0)}\\ \\text{N} \\qquad \\kFnety = m\\ka_{y'} = ${num(wy + ny, 0)}\\ \\text{N}`,
       along
         ? 'With one axis along the slope the block accelerates along x′ alone, so the acceleration across the slope is zero and the net force across it is zero as well, and only the weight is left to resolve.'

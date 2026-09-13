@@ -113,9 +113,15 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    while a stopwatch beside the strip counts up; a velocity arrow on the
    car and the speed written in the velocity hue · distance d in km (2.0
    to 40.0, step 0.5, default 10.0, ink), time $\kt$ in min (5 to 60,
-   step 1, default 20.0, time hue) · "10.0 km in 20.0 min is 0.500
-   km/min, which is 30.0 km/h, or 8.33 m/s" · none: the stopwatch and the
-   strip are the graph · no. Finite motion, one run per set time in
+   step 1, default 20.0, time hue) · "Driving 10.0 km in 20.0 min is an
+   average speed of 0.500 km/min, which is 30.0 km/h, or 8.33 m/s." ·
+   none, since the stopwatch and the strip are the graph · 2D. The strip
+   runs a fixed 0 to 40 km, the distance slider's maximum, so a short
+   trip and a long one are drawn at the same scale, and the house stands
+   at the end of the trip rather than at the end of the road. The
+   velocity arrow is a fixed length per km/h, taken from the fastest trip
+   the sliders allow. Labels on, since the strip names four things once
+   each. Finite motion, one run per set time in
    about 5 real seconds, so it gets the scrubber. Readout:
    $\text{average speed} = \frac{10.0\ \text{km}}{20.0\ \text{min}}
    \times \frac{60\ \text{min}}{1\ \text{h}} = 30.0\ \text{km/h}$; small

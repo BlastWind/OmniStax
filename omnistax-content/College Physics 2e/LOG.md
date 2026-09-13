@@ -1731,3 +1731,958 @@ its canvas, a transport under each of the fourteen moving figures and none
 under any of the seven still ones, every eyebrow reading what its row says,
 all five inline cards rendering in their hosts, and no label drawn outside
 any canvas at any position of any slider.
+
+### Pass 34 (2026-09-12): the figure audit, every built chapter
+
+Every interactive figure of the ten built chapters was read against the root
+rules as revised through item 28, and the faults were fixed in one pass, chapter
+by chapter. The faults that recurred were of a few kinds. Axes and scene scales
+that followed the sliders, so that a slider changed the tick labels and nothing
+drawn, are fixed once per figure from the slider maxima or from the book's
+default state, with a comment stating the range and `pinned()` past the edge.
+Bars and arrows normalised to their own totals are on fixed caps. Headlines,
+toplines and readout lines that were middle-dot or semicolon chains are single
+capitalised sentences, captions no longer cite their own number, and the
+spelling is the book's American one. Discrete states that sat on sliders are
+choices, and the book's own values (Earth and Moon, the material tables) are
+detents. Bodies and regions that carried a type hue as a tint are in ink or
+`PAL.soft`. Folds carry every folded caption, prefixed by its number. Entity
+labels beyond six, or riding moving things, sit behind a Labels button with
+hover names. Two library changes serve every chapter: `text()` draws the part
+after an underscore as a subscript, and `ctl()` can disable a slider a held law
+has taken over. Nineteen figures had a physics fault and each was corrected as
+the audit said (the loop's outward normal force, the tides' Sun inside the
+Moon's orbit, the crank's swapped radii, the pulley's unconnected rope, the
+torque with the wrong sign, the marble that slid rather than rolled). The
+Cavendish balance of 6.5 is remounted on `F.view3d` with snap views, a bounded
+orbit and a stated time compression, and the book's rules now name it as the
+one apparatus in root rule 28.3's group. Plans were rewritten to what is built
+and 2.5, which had none, has one.
+
+Checks: `check:content` clean for both books; 399 unit tests; a build of 99
+pages of both books; a headless pass over all 96 section and introduction
+pages with the sliders driven to both ends, no console error, every image
+loading, every `figure.sim` with its canvas, 137 transports on the moving
+figures only, every eyebrow reading Sim or Figure, and no label drawn outside
+any canvas. The chapter notes follow.
+
+#### Log note: College Physics 2e, Chapters 1 to 3, figure-audit pass (2026-09-12)
+
+The audit of 2026-09-12 found the same handful of faults running through
+every chapter, so this pass worked through Chapters 1, 2 and 3 section by
+section, taking the patterns of Part A and the per-figure rows of Part B
+together.
+
+Across all three chapters the scales were fixed. Every axis, strip, road,
+number line and scene scale that used to follow the sliders now takes a
+range chosen once, from the slider maxima where they leave the default
+state readable and from the default state where they do not, and each one
+says so in a comment. A value that runs past the end of a scale is drawn
+against that end and the headline names the true number rather than the
+scale stretching to follow it. Where no fixed range could hold both the
+default and the extremes, the slider range itself was cut instead: the
+subway journey of 2.4, the two rocks of 2.7 and the tangent of 2.8 all
+have narrower sliders now, and none of them loses a number the book uses.
+
+Every headline, topline and readout small line in the three chapters is
+one or two capitalised sentences. The middle-dot joins are gone, the
+semicolon chains are broken into sentences, and the colon-led fragments
+are rewritten. The captions no longer cite their own figure number, and
+the phrases "the book's" and "as in the passage above" are out of the
+prose.
+
+##### Chapter 1
+
+1.1. The planetary model no longer says that a helium nucleus is made of
+two protons; it says the nucleus holds them, since the section has not
+reached neutrons. The readout, which used to be a constant, now writes
+the live count of electrons and protons and the shells that hold them.
+
+1.2. The road from school to home runs a fixed 0 to 40 km with the house
+at the end of the trip, so a 2 km errand and a 40 km drive are no longer
+drawn the same length, and the velocity arrow takes a fixed length per
+kilometre per hour.
+
+1.3. The bull's-eye carries both original captions, written as "(Figure
+1.23) … (Figure 1.24) …", so the reader who swaps in the book's images
+reads the caption of each. The percent-uncertainty line is fixed at 0 to
+11 lb, and the four weekly weights of the example are drawn only while
+the average is at 5.1 lb, since away from that they are no longer the
+readings of that example. The ruler's smallest division is a choice of
+1 cm, 1 mm and 0.1 mm rather than a three-state slider with hand-written
+value text, and the American spellings replace the British ones.
+
+1.4. The building is drawn at a scale fixed from the tallest the sliders
+allow, and the pile of banknotes on the football field is measured
+against a fixed 0 to 40 ft scale, with a taller pile drawn against the
+top of it and said to run past. The two sliders of the trillion-dollar
+estimate are named for what they set, an amount in trillions of dollars
+and the thickness of one stack in inches.
+
+##### Chapter 2
+
+2.1. Displacement is a difference between two positions and has no time
+in it, so the figure is still now and carries no transport. A choice of
+who moves, the professor against her whiteboard or the passenger against
+the cabin of his airplane, sets the book's numbers and draws the right
+frame, which is what the fold of 2.3 and 2.4 had promised and not
+delivered; both original captions are carried. The book's two "(See
+Figure …)" sentences are back in the prose, where they link to the
+figure. The map of four paths that serves the problems is a faithful copy
+again: all four are drawn at once, with no cycle and no transport, so a
+problem about path C can be read without waiting.
+
+2.2. The coordinate figure is still, since which direction is called
+positive is a choice and has no time in it, and the pair of axes the book
+draws under this number now stands under the two coordinate lines with
++x, −x, +y and −y marked. The small line no longer claims that changing
+the positive direction changes the sign of all three numbers, which is
+false at the default origin where the starting position is zero.
+
+2.3. The stopwatches all take one turn of the hand over the interval they
+time. The interval figure lost its whole-trip slider, which only
+restretched the same curve, and keeps the book's 5.0 s. The three graphs
+of the round trip gained the third slider the errand beside them already
+had, how far back toward home the car drives, so they no longer answer
+the same two questions as the figure a paragraph above.
+
+2.4. The four cars write v = v₀ + at with the live numbers for each of
+them instead of a static table of signs, and the eight letters that rode
+their arrows are behind a Labels button, off by default, with the name of
+each car under the pointer. On the bend the average acceleration is drawn
+along Δv, which is what this section defines it to be; the centripetal
+size, which belongs to Chapter 6, is no longer used. The shaded area
+under the acceleration-time curves is gone, since the book does not reach
+that result until it works with the equations of motion. The subway
+readout carries its conversion factors, so kilometres per hour over
+seconds really does come out in metres per second squared, and the train
+sprite faces the way it is going.
+
+2.5. The section had no plan file; one is written now, recording what
+stands on the page. Figure 2.25 is the jogger's own sketch, so it is
+folded into the jogger figure and the notation figure is a Sim. The
+airplane stops when its velocity reaches zero and holds there rather than
+rolling backwards down the runway, and the headline follows the sign of
+the acceleration instead of always saying the arrow shrinks. The braking
+bars are both in the position hue, the reaction distance outlined and the
+braking distance filled, since both are distances; the two cars are drawn
+as cars; and the readout gives the reaction distance and the two totals.
+The root before the motion began is a crossed marker rather than a hollow
+one, since a hollow marker means an initial value everywhere else on the
+page. The photograph of the Space Shuttle, Figure 2.29, is kept beside
+the Making Connections note that is about it, with its caption and
+credit; the dragster photograph, 2.30, is dropped, and the plan says why.
+
+2.6. The two notes on the velocity graph no longer overprint at short
+times, and the caption no longer talks about the passage above it.
+
+2.7. The feather in air settles to a terminal speed and drifts at it
+instead of lagging by a fixed share of the drop whatever the gravity, and
+both panels say what holds it back and what does not. The acceleration
+due to gravity settles on the Moon's 1.67 and Earth's 9.80 on every
+slider that carries it. The rock thrown up starts at 1 m/s rather than
+zero, so its highest point is never its starting point. The marks the
+rock thrown up leaves are spaced so that at most eight are drawn, and
+their times are behind a Labels button with the time under the pointer.
+The equation written in the corner of the velocity-height graph names
+three types at once and is in ink. The falling-ball sliders are coarse
+enough to drag and settle on the measurement the example reports. The
+speed of sound is no longer a slider, since no value of it moved the
+drawing, and the sound's leg of the height-time trace is in the position
+hue, dashed, like the fall it follows.
+
+2.8. The jet car's position graph is fixed at 0 to 3800 m, so the
+steepness the caption promises now changes with the average velocity, and
+the three stacked graphs take ranges fixed from the slider maxima. The
+sliders of the top-velocity figure are capped where the plan capped them,
+since past 55 s the curve draws nothing new.
+
+##### Chapter 3
+
+3.1. The three sides of the walk carry the letters a, b and c that the
+readout uses, so the Pythagorean theorem can be followed on the drawing.
+
+3.2. The order of addition is a dropdown of the six arrangements rather
+than a slider reading 1 to 6, each leg is named once on the chosen order,
+and the scale is fixed so that the walk never leaves the canvas. The
+sailing figure takes a fixed scale too, and its small line explains that
+its numbers are computed from the two legs while the example measures its
+own drawing with a ruler and a protractor. The map of paths is headed by
+what it shows rather than by which problems refer to it.
+
+3.3. The names A, B and R ride the arrows, and at equal angles the three
+arrows lie along one line, so those labels go through the drawing layer's
+labeller, which steps one out and leaders it when the slot beside its
+arrow is taken.
+
+3.4. Within six degrees of 45° the three trajectories share almost one
+highest point, so only the chosen angle is named there.
+
+3.5. The width of the river is no longer stated as a fact the example
+does not give; it starts at an assumed 25 m and is the reader's to set.
+The mast height and the drop height are bound as positions, as the
+heights of a drop are in 3.1 and 3.4, and the tower height of 3.4 with
+them.
+
+Each chapter's `config.md` gained the rows the audit asked for, on depth,
+on fixed scales, on discrete states, on labels and on which photographs
+are kept, so that the settings agree with what stands on the pages.
+
+#### Log note: College Physics 2e, Chapters 4 and 5, figure-audit fixes
+
+Written for LOG.md. One block per section, in the book's LOG voice.
+
+##### Chapter 4, section 4.1
+
+The two labels that sit beyond the head of an arrow are now clamped inside the
+canvas, so the total force of the three skaters no longer runs off the right
+edge when both pushes are set to 80 N, and the total force and the two pushes
+carry on the drawing the subscripts the caption uses, which the drawing layer
+now renders from a plain underscore. In the spring that is the standard of
+force, the standard stretch and the standard force are set in the position and
+force hues as decorated variants of those types rather than left in ink beside
+their colored neighbors, and the small line says what the relaxed length does
+and does not change: it moves where the spring ends, while the reading counts
+stretches of one centimeter past that length, so the same stretch always gives
+the same reading. Both headlines are one capitalized sentence.
+
+##### Chapter 4, section 4.3
+
+Every scene of the section now has a scale of its own that never moves. The
+wagon rolls on ground ruled 0 to 14 m, the lawn mower on 0 to 12 m and the
+rocket sled on 0 to 100 m, each with a meter scale under the strip, so a larger
+net force really does carry the body farther instead of every run filling the
+same span; a run that passes the end holds the body at the last mark and the
+headline gives the distance it has really covered. The arrow labels flip back to
+the tails of their arrows late in a run, where they used to leave the canvas.
+The net force, which is a force, is drawn in the force hue and no longer in the
+acceleration hue, and is told from the other forces by the row it stands on
+alone beneath the free-body diagram.
+
+How many of the four rockets are burning is a count, so it is a row of buttons
+and not a slider. Figure 4.6 now draws the book's part (c), the two identical
+one-arrow free-body diagrams that make the basketball and the SUV comparable,
+and its two markers go through `pinned()`, so a mass so large or a push so small
+that the point falls below the floor of the graph is pinned at that edge with
+its value rather than drawn outside the frame. The weight sim's mass runs 0.1 to
+2.0 kg with a detent at the 1.0 kg the passage works with, which lets its weight
+axis stand fixed at 0 to 24 N and hold every setting instead of clipping
+everything above 1.2 kg, and its gravity slider is ticked at the Moon's 1.625
+and Earth's 9.80 m/s², the two the section names. The three long headlines wrap
+through `topline()`, and all five are capitalized sentences.
+
+##### Chapter 4, section 4.4
+
+The swimmer's pool is ruled 0 to 5 m from the wall at a fixed scale with a meter
+scale along it, and her speed is named over the middle of its arrow so that a
+hard push no longer carries the words off the left edge; the slider that sets
+how long her feet stay on the wall is labeled Δt, since it is the length of the
+push and not the clock the headline reads. The rocket's flight is ruled 0 to
+80 m from the point of release, and its exhaust plume is drawn in ink: the gas is
+a body, and a body never takes a type hue. The professor's cart carried seven
+force labels on a scene that crosses the room, two of them sharing an origin at
+her hand, so they are now behind a Labels button that is off on load, every
+arrow gives its name under the pointer, and the two free-body diagrams below
+carry every value as before. The three headlines are sentences and wrap when
+they are long.
+
+##### Chapter 4, section 4.5
+
+The skier's loop has no length at all when the friction holds her where she is,
+so the transport has nothing to play through and the figure no longer runs a
+four-second loop in which nothing moves. The rope's gravity slider steps by
+0.005 m/s² and is ticked at the Moon's 1.625 and Earth's 9.80, which it now
+lands on exactly; the two sit so far apart that a thumb settling on the nearer
+of them would swallow most of the slider, so the ticks mark them and nothing is
+snapped. The corner of the cable stops at 60° and the load hangs a clear length
+of cable below the second pulley at every angle, so the pulley no longer comes
+down onto the load it carries, and a note names the finger tendon and the
+bicycle brake cable the book draws under this number and which the scene stands
+for. Every headline of the section is a capitalized sentence.
+
+##### Chapter 4, section 4.6
+
+The state the figure is about, the axes turned to lie along the slope, moves
+with the slope itself and so cannot be a fixed tick on the track; the axes now
+settle onto the slope when the thumb is let go within a degree of it, which is
+what a soft detent does for a preset that stands still. The headline is a
+sentence.
+
+##### Chapter 4, section 4.7
+
+The bracket that takes the net force out of the applied force on the barge is
+drawn in the force hue, since it measures a force, and is told from the drag
+beside it by the row it stands on. The lift now draws both of the book's parts:
+the person alone is ringed in a dashed boundary on the scene as the system of
+interest, and a free-body diagram panel beside the shaft carries the two forces
+that are left on him, his weight and the push of the scale. In the rescue
+figure the note on the left rope and the name of the burning building are moved
+clear of the ropes, so no line is crossed by a word. Every headline of the
+section is a capitalized sentence.
+
+##### Chapter 4, section 4.8
+
+Which two of the four basic forces are being compared is a choice among named
+states, so force A and force B are two rows of buttons carrying the names, and
+the ladder names each force once. In the field figure the two positions of the
+test charge are bound as positions and their distances colored, and the force
+and the field are stated in the units the figure counts them in, since the
+charges here carry no coulombs and the field no newtons per coulomb. The
+separation slider of the exchange figure changed nothing the reader could read
+off the figure and is gone; the pair stands at the six meters the scene needs.
+All three headlines are sentences.
+
+##### Chapter 5, section 5.1
+
+The coefficients that decide whether the crate holds or slides, 0.45 and 0.30,
+are the ones the section's own passage gives for this crate on this concrete
+floor, and they are now named on the drawing and carried in the readout, so the
+branch is never decided by a number the reader cannot see. The breakaway graph
+is fixed at 0 to 800 N on both axes, which is the range the crate the figure
+opens with works in, rather than at the 3,200 N the sliders can reach; the lines
+are clipped to the frame, the live point goes through `pinned()`, a note says
+where the break falls when it lies past the right edge, and the arrows on the
+scene are drawn against the same 800 N cap. The floor is ruled 0 to 7 m at a
+fixed scale. No pair of surfaces slides against more friction than it holds
+with, so the coefficient of kinetic friction is never taken larger than the
+coefficient of static friction, and the readout says so when the slider is set
+past it.
+
+The skier starts from rest only where the slope will accelerate her: where the
+friction balances the weight along the slope she is already gliding, at the
+2.0 m/s the constant-velocity case is about, and where the friction is the
+larger she slides to a stop rather than traveling down at a rate nothing
+accounts for. Her five value labels no longer ride her down the slope: the
+arrows on the scene give their names under the pointer, and the free-body
+diagram beside the slope carries all five forces with their values, which is
+where the reader now reads them. In the probe figure the number of atoms of the
+tip that adhere follows the normal force one at a time rather than in three
+steps, and the headline and the small line say that the lean is drawn in
+proportion to the friction and is not a measured angle. The lead to the block of
+ice names Problem 18, the one problem of the section that refers to the figure.
+
+##### Chapter 5, section 5.2
+
+The body in the drag figure is now the one its drag coefficient belongs to — a
+skydiver, a sphere, a circular flat plate, an airfoil, a bicycle or a road
+vehicle — so a skydiver is no longer drawn as a car, and the coefficient slider
+is ticked at every value Table 5.2 prints, each of which the hundredth it steps
+by lands on exactly. Stokes' law asks that the fluid move smoothly round the
+bead, which it does while the Reynolds number is about one or less; the curve is
+now greyed past the radius at which that number reaches one, that radius is
+marked, and the headline and the small line say that the law no longer holds
+there and give the Reynolds number the setting reaches. Every headline of the
+section is a capitalized sentence.
+
+##### Chapter 5, section 5.3
+
+The three regions of the deformation graph are banded in ink rather than in the
+position and force hues, since a region is not a quantity, and the spring is
+drawn against the same fixed 0 to 4 m its graph is ruled to, so a stiffer spring
+is drawn stretching less instead of filling the same span at every setting. The
+guitar strings stretch at a fixed seven thousand units per meter, whatever the
+original length is set to, where the drawing used to rescale itself so that the
+length changed nothing. Young's modulus, the shear modulus and the bulk modulus
+each carry a tick at every value Table 5.3 prints, two of them named on each
+track; naming more crowded the labels into each other. The four marks on the
+shear curve the drawing leaves unnamed give their names under the pointer.
+
+In the tendon the body is drawn in ink and the regions of the graph banded in
+ink, the tangent follows the slope down through zero in the failure region
+rather than lying flat where the curve falls, and the word stress in the readout
+is set in the stress hue. Every headline of the section is a capitalized
+sentence.
+
+##### Wanted at book level
+
+`stress` has a type in `book.json` and the figures of 5.3 bind it, but the book
+gives the quantity no letter of its own and there is no `symbols` row for it, so
+the readout of Figure 5.15 writes the word through `\htmlClass{kv-stress}`
+rather than through a `\k` macro. A `symbols` row for stress, with the word as
+its LaTeX and no macro of its own, would let the readout and any later page
+write it the way every other bound quantity is written. The same holds for
+strain, which stays untyped and in ink and wants no row.
+
+#### College Physics 2e, Chapter 6: the figure-audit pass
+
+Written for LOG.md. One paragraph per section, plus the two entries the pass
+left at chapter and book level.
+
+##### 6.1 Rotation Angle and Angular Velocity
+
+The inner pit of Figure 6.3 + 6.4 was set by a slider in centimeters that the
+code then clamped below the outer radius, so over most of its travel the number
+the reader set was not the number the drawing used. The slider now carries the
+inner pit as a fraction of the outer one, from a tenth to nine tenths, and
+nothing has to be clamped. In `sim-omega` the number of revolutions to run was a
+count on a slider, which rule 26.1 makes a row of buttons, so it is one now, and
+the count stops at three while the angular velocity starts at 2 rad/s, which is
+what it takes for the longest run the two controls allow to fit inside axes that
+never move: the time axis is fixed at 0 to 10 s and the angle axis at 0 to
+20 rad. All four headlines of the section are single sentences.
+
+##### 6.2 Centripetal Acceleration
+
+Figure 6.7 drew the change of velocity from the middle of the arc, where it
+points exactly at the center at every separation, so the caption's promise that
+it swings round onto the radius as the separation shrinks was never kept. The
+difference is now drawn where the object actually is, beside the radius drawn
+there, so it stands at half of the separation angle from that radius and swings
+onto it as the angle is taken toward zero, which is the section's own argument
+that the acceleration is centripetal. The arrow is the change of velocity and
+carries the velocity hue, so the figure no longer draws an acceleration and its
+`draws` row says so; the centripetal acceleration itself belongs to Figure 6.8,
+which draws it. The three headlines of the section are sentences.
+
+##### 6.3 Centripetal Force
+
+A track can push a car but it can never pull one, and below the critical speed
+`sim-loop` kept the car glued to the loop and drew the normal force pointing
+outward, which is not a thing that happens. The force is now clamped at zero:
+the stretch of the loop the car cannot keep contact along is drawn broken, no
+normal force is drawn there, the graph flattens on the axis rather than dipping
+below it, and the headline and the readout say from what angle the car would
+have left the track and how fast it would have to travel to hold the loop all
+the way round. The four headlines are sentences. The plan listed the leaning
+bicycle and the teardrop loop as built, though the chapter pass struck both when
+the problems they serve turned out to have no keyed answer and were left out;
+the plan now records that, and names the five exercise figures that were built.
+
+##### 6.4 Fictitious Forces and Non-inertial Frames
+
+The spiral in `sim-cyclone` was drawn from a pitch angle capped at eighty
+degrees, so every system larger than about a thousand kilometers drew the same
+picture and the radius slider stopped saying anything. Each track is now a
+logarithmic spiral whose whole sweep about the low is the angle Earth turns the
+parcel through on the way in, so a two-thousand-kilometer system draws twice as
+many turns as a thousand-kilometer one; four complete turns is as tight a spiral
+as the drawing can hold, and past that the headline says the drawing has stopped
+following. The inside of the tube in Figure 6.14 was tinted in the force hue,
+which rule 7 keeps off bodies, so it is filled in the page's soft grey and the
+hue stays on the two arrows. All four headlines are sentences, and the note
+under each hemisphere is a sentence as well.
+
+##### 6.5 Newton's Universal Law of Gravitation
+
+Four things were put right here. The two sliders of Figure 6.19 ran linearly
+from a hundredth of an Earth mass to three hundred and twenty of them, so the
+Moon, Earth and twice Earth all crowded into the first tenth of the track and
+none of them could be reached; both sliders now carry the power of ten of the
+ratio, with soft detents on the Moon, on Earth, on twice Earth and on Jupiter,
+and the headline and the readout write the mass and the radius themselves. In
+the tides of Figure 6.21 + 6.22 the Sun stood inside the Moon's orbit, which is
+four hundred times too close: it is now drawn at the edge of the picture along
+its true direction, on a line with a break cut out of it, with a note saying
+that this one distance is not to scale. The readout of the same figure gave
+three accelerations while the arrows above it were forces, so it now writes the
+force the Moon exerts on a parcel of water of mass 1.00 kg at the near side, at
+Earth's center and at the far side, which is the quantity the arrows draw.
+
+The Cavendish balance of Figure 6.25 was a scene of its own making, with a
+hand-rolled drag, no zoom and no way to ask for a viewpoint, ten labels of which
+half rode the turning rod, a clock reading the loop's own seconds as though they
+were the balance's, and its ink, its scale and its sky written as hex literals.
+It is now mounted on the app's viewer, so it carries the same chrome every other
+three-dimensional figure of the collection carries: three snap-to-view buttons
+for the side the book draws the balance from, a look from above and a look along
+the scale, and zoom on the wheel and on two buttons. There is no auto-rotate
+button, because a balance standing in a room with a lamp and a scale has a front
+and an idle spin would say nothing about it. The orbit is bounded to the pitches
+between eight and seventy degrees above the floor, so the bench is never seen
+from beneath, and to the yaws within ninety-two degrees of the side the book
+draws, which keeps the reader in front of the apparatus where the lamp, the
+mirror and the scale all show at once. The labels are tiered as rule 26.7 asks:
+only the distance between the centers and the force across it, the two
+quantities the readout writes, stay on the drawing, the names of the parts sit
+behind a Labels button that is off to begin with, and the pointer names any part
+it rests on. The scale now takes the page's grey and the ticks its ink, so both
+follow a change of theme, while the wood, the brass, the lead, the lamp's warm
+light, the mirror's glass and the grey room the metal reflects keep the colors
+those things have. The clock reads the true time at last: the balance swings
+freely once in seven minutes, so one drawn swing is that seven minutes, the
+scene runs the motion a hundred and seventy-five times faster than life, and the
+readout states that factor beside the factor by which the twist is drawn larger
+than life. The physics and the scale strip are untouched.
+
+##### 6.6 Satellites and Kepler's Laws
+
+The graph of Figure 6.27 measured the planet's speed against a level it called
+the mean speed. That level is the speed a circular orbit of radius a would have,
+which is not the mean of the speed over an ellipse; the mean has no elementary
+form. The axis, the level and the headline now name the level for what it is,
+2*pi*a/T, and the readout says where the planet passes through it. The four
+headlines of the section are sentences.
+
+##### At chapter level
+
+The chapter's `config.md` said that no scene of the chapter is
+three-dimensional. One is, and the row now records it with the bound on its
+orbit, its buttons, its hover names and its Labels button, and with the flat
+drawing that stands in where WebGL is missing.
+
+##### At book level
+
+The book's `RULES.md` said that the chapters built so far were planar and that
+no 3D was needed. The Figures section now names the one exception and the group
+it belongs to: root rule 28.3 asks for a full scene where the apparatus itself
+is the explanation, and the Cavendish balance is this book's one member of that
+group, its thin fiber, small rod, mirror and thrown beam being an arrangement in
+space that a flat drawing would have to lie about. Everything else in the book
+stays flat, or, where the book prints it in perspective, is drawn from a locked
+view.
+
+#### College Physics 2e, Chapter 7: the figure audit answered
+
+A read-only audit of every built chapter found that a good many of this
+chapter's figures rescaled themselves as their sliders moved, so that the
+slider changed the tick labels and nothing drawn; that several bars were
+measured against their own total, so that raising a force lengthened the bar
+and the scale together and left the picture where it was; that the headlines
+were chains of clauses joined with a middle dot rather than the sentences the
+book writes; and that a few figures said something about the world that is not
+so. This pass answers every one of those findings for Chapter 7, section by
+section.
+
+##### 7.1 Work: The Scientific Definition
+
+The lawn mower of Figure 7.2 drew a force arrow sixty units long when the
+force slider stood at zero, which told the reader that a force was there when
+nobody was pushing; below 0.05 N the arrow, its component, its angle and their
+labels are now all left out, and the scene says F = 0 N instead. Both
+headlines are full sentences in the book's voice, and the small line under the
+readout says in words what the force is doing to the mower rather than naming
+a lettered part of a printed figure. The ladder of joules runs from a
+hundredth of a joule, which is where it has always started, and its caption now
+says so.
+
+##### 7.2 Kinetic Energy and the Work-Energy Theorem
+
+The strips under the varying force are labelled with a proper subscript, W_i
+over its own d_i. On the roller belt, the applied-force arrow ran off the right
+edge of the canvas at the end of every push, because it was drawn at a fixed
+length to the newton with no regard for where the package had got to; both
+horizontal arrows now share one length to the newton, fixed from the applied
+force's own maximum, so that the longest arrow still stops short of the edge
+wherever the package is. The graph of kinetic energy against speed was drawn
+against an axis taken from the slider maxima, which left the book's own car —
+900 kg at 27.8 m/s — filling a fifth of the box; the axis is fixed from that
+default state instead, at 0 to 400 kJ, and a heavier or faster body runs off
+the top, where the curve stops at the edge and the value is read off a pinned
+marker. The two bars beside the curve are measured against the same fixed cap.
+
+##### 7.3 Gravitational Potential Energy
+
+The bar beside the cuckoo clock filled to whatever the sliders made of the
+stored energy, so a heavier weight moved the numbers and not the picture; it
+is now read against a fixed 39.2 J, the most the two sliders can store, with a
+dashed rule across it for what the present winding will reach. The ladder's
+zero-level slider reached a metre below the ground, where the line marking the
+zero was drawn off the foot of the canvas, and it now stops at −0.4 m. In the
+landing, the scene's scale is fixed at 42 units to the metre so that a person
+at the top of the longest fall clears the headline band, and the knee-bend
+slider carries soft detents at the two landings the section works out, 0.005 m
+and 0.500 m, since the graph beside it is a ratio scale and all the interesting
+ground lies at its left-hand end. The roller coaster's speed arrow is drawn
+behind the car once the car is past the three-quarter mark, so neither the
+arrow nor its label leaves the canvas on the last second of the descent. The
+marble is a rolling body and not a sliding one, and the readout now says that
+a real marble arrives about 15 percent slower than the square root of 2gh
+gives; the equation on the page stays the section's own, because a rolling
+body's share of its energy belongs to a later chapter.
+
+##### 7.4 Conservative Forces and Potential Energy
+
+Both spring figures were drawn against force axes taken from the slider
+maxima, which left the worked example's own spring a sliver a tenth of the box
+high. Both are fixed from that default state instead, at 0 to 25 N, with the
+frame clipping what it holds and the force read off a pinned marker when a
+stiffer spring runs past the top. The guitar string's force constant changed
+nothing that could be seen: the string swung at the same rate whatever it was
+set to. The rate a string comes back at goes by the square root of its force
+constant, and the figure now draws it that way, five seconds to a swing at
+800 N/m and sooner when the string is stiffer, with the readout saying both the
+swing time and that a real string does this hundreds of times a second.
+
+##### 7.5 Nonconservative Forces
+
+The two erasure bars were each measured against the friction they were drawn
+for, so raising the friction raised the scale with the bars; they now share one
+fixed cap of 13.6 J. The spring the rock falls onto was tinted in the stiffness
+hue, which put a type's colour on a body, and it is drawn in ink now, the hue
+staying on the slider and in the readout; the two energy accounts beside the
+scenes share one fixed outline of 147 J. The crate on the ramp climbed at a
+steady pace even when nobody was pushing it. It now starts at 1.00 m/s and the
+net force along the ramp decides the rest: while the push beats friction and
+the pull of gravity the crate speeds up over the whole 4.00 m, and when it does
+not it slows and stops where its kinetic energy runs out. The four work bars
+beside the ramp are drawn on one fixed scale taken from the longest bar the
+sliders allow. The sliding player's slope slider carries detents at the two
+slopes the section works out, and the drawn track carries the same four metres
+the graph does, so the scene no longer rescales with the slide. The cup's plot
+is fixed from the default run at 0 to 50 cm rather than at 0 to 150 cm, where
+the default occupied a fourteenth of the box, and the drawn table carries that
+same half metre. The fold of Figures 7.16 and 7.17 now carries both of the
+book's captions, one after the other, so that swapping the original in shows
+each drawing under its own words.
+
+##### 7.6 Conservation of Energy
+
+The ladder of Table 7.1 and the chain of the devices of Table 7.2 were reached
+by sliding an index over rows of a table, which is a discrete state on a
+slider. Each is now a dropdown of the table's own entries by name, the devices
+listed with their efficiencies, and the second device's list carries "nothing
+further" at its head. The headlines of both, and of the climber's account and
+of the car coasting to the gas station, are sentences.
+
+##### 7.7 Power
+
+The three headlines are sentences, and the month's bill no longer opens on a
+day counted off with a middle dot.
+
+##### 7.8 Work, Energy, and Power in Humans
+
+The headlines of the food-energy account and of the day's budget are sentences,
+and the oxygen is measured in liters, as the rest of the book measures it.
+
+##### 7.9 World Energy Use
+
+The chart of past and projected world energy use opened on 2020, so the
+projection the section gives, 812 EJ in 2035, was not on the page when the
+figure loaded; it opens on 2035 now, and the plan had said so all along. The
+bars of each country's energy told six sources apart by six strengths of the
+energy hue, which no reader could match to a key; the six carry no type and no
+element of their own, so they now take the categorical palette, and the energy
+hue stays on each country's total in exajoules. Two captions and one label said
+where a number came from rather than what it is, and they say the number now.
+
+##### Across the chapter
+
+Every headline, topline, canvas note and readout line the chapter writes is a
+capitalised full sentence in the book's voice, with no middle-dot joins, no
+colon-led fragments and no clause citing the figure it is written on. Every
+spelling OmniStax wrote is American: meter, center, liter, traveled, percent.
+The `draws` column of every figure row was compared with the types its code
+actually colours, and one row was corrected, the crate on the ramp, which now
+draws a speed as well. Every figure line of every plan that this pass touched
+was rewritten to what is built, with the fixed ranges, the controls, the 2D
+term and the labels decision stated, and the chapter's `config.md` records the
+new dropdowns and detents, the categorical palette in 7.9, and that every
+figure line carries a 2D term because no scene in the chapter has depth in it.
+
+#### Chapter 8, the figure-audit pass
+
+Every figure of the chapter was read against the audit's cross-chapter
+patterns and its own row, and the seven sections were corrected in one pass.
+Three things were settled for the chapter as a whole. Every scale a figure
+draws on is now fixed, stated in a comment beside it, and taken either from
+the slider maxima or, where those maxima would leave the book's own state a
+sliver, from that state with the extremes pinned; no arrow is normalised to
+its own longest value any more, so a slider that changes a quantity changes
+the length of the thing that stands for it. Every headline, canvas sentence
+and readout line is one capitalised sentence in the book's voice, with the
+middle dots and the semicolon chains gone. The chapter's British spellings
+are gone with them: colour, centre, metre and per cent are now color, center,
+meter and percent throughout the figures, the captions and the plans.
+
+**8.1.** The caption of the momentum figure invites the reader to give the
+football as much momentum as the player carries, which the sliders could not
+reach, so the player's speed now runs down to a walk and the two momenta can
+be made to match. Both bars beneath the lanes are drawn on fixed scales, 560
+units at 40 m/s and 900 units at 2,250 kg·m/s, so the football's momentum
+reads as the stub beside the player's that Example 8.1 says it is, rather
+than as a bar that fills whatever room is left. In the tennis figure the
+contact time ran to 40 ms on a graph only 10 ms wide, which took the labels
+off the picture; the slider now stops at 10 ms with a detent at the 5.00 ms
+of Example 8.2, and the momentum axis is fixed at 0 to 8 kg·m/s, which holds
+the example comfortably and pins anything heavier or faster.
+
+**8.2.** The change in momentum the wall gives the billiard ball points away
+from the wall, which is the way its arrow was already drawn, and the label
+now says so; the force on the wall is still drawn the other way. Every
+momentum arrow in the section is on one fixed scale of 83 units per kg·m/s,
+chosen so that the largest the sliders can make is the longest the canvas
+holds, and nothing is capped. The passenger's momentum arrow and the force
+the padding pushes back with are fixed in the same way, from 3,600 kg·m/s
+and 180,000 N. The two force-against-time graphs the test prep items are set
+on keep their bare "Figure" eyebrow, as the book numbers them not at all,
+and their headlines are now sentences.
+
+**8.3.** The caption said the bumpers touched for a tenth of a second where
+the figure had them touching for a fifth, and the caption has been brought
+to the figure. The bounce of the bumpers is now called $c$, the name the
+same quantity carries in 8.5, with detents at 0 and 1. The road is a fixed
+ninety-six meters with a scale along it, the farthest the lead car can be
+down it after the four seconds of the pass, and the momentum arrows are on a
+fixed scale, so both sliders now move something. The probe's sky is fixed at
+eighty kilometers by thirty-four, so that a faster launch draws a longer arc
+rather than the same arc over again. In the scattering figure the speed of
+the electron changed nothing that was drawn, because the ground, the arrows
+and the bars were all divided by it; all three are now on fixed scales, and a
+faster electron starts further to the left, draws longer arrows and lengthens
+every bar. The center of mass is spelled as the book spells it.
+
+**8.4.** The numbers on the two colliding objects sat on the blocks; they now
+sit beside them, under the surface, where nothing they cross can hide them.
+The momentum arrows are on one fixed scale of 12.5 units per kg·m/s instead
+of one that stretched to whichever momentum happened to be the largest. The
+two-solutions figure keeps its fixed square of final velocities and loses the
+colon from its headline.
+
+**8.5.** The book draws this collision three times and the figure carried all
+three, but only the puck and the goalie could be reached from the sliders. A
+choice of the three book figures now stands at the head of the controls:
+choosing one sets the five sliders to that figure's state and fixes both
+graph ranges and both arrow scales from it, so Figure 8.7 is read on −3 to 3
+kg·m/s and 5 J, Figure 8.8 on −5 to 15 and 120 J, and Figure 8.9, the two
+carts of Example 8.6, on −2 to 2 and 8 J, where the spring adds energy rather
+than taking it away. The coefficient $c$ has detents at 0, at 1 and at the
+3.08 of Figure 8.9, and the swap shows all three book captions, one after
+another, each behind its own number. Both time axes are drawn in the time
+hue, which the figure's row now records. In the recoil figure the recoil
+velocity of the worked example lay flat against the base line of a plain
+scale, so the velocity axis is now in decades like the mass axis, and the
+0.0748 m/s of the goalie sits where it can be read.
+
+**8.6.** The speed of the incoming object changed nothing drawn, since every
+arrow and every ledger bar was divided by it; all of them are now on fixed
+scales. Momentum alone allows pairs of angles that would need energy from
+somewhere, and the figure now says so under the scene, stating the internal
+kinetic energy before the collision and after it and naming the shortfall
+when there is one, which is why the figure's row gains the energy type. The
+two momentum labels ride objects that move and crowded at small angles, so
+they are behind a Labels button, off by default, with the kind named once
+beside the scene and either object's name and momentum under the pointer. In
+the billiards figure the energy per unit mass was written "18.0m J", which
+reads as millijoules; it now reads plainly as joules for every kilogram of
+ball, in the readout and in its small line alike.
+
+**8.7.** The rocket's exhaust was drawn in the velocity hue, which is a body
+wearing a type colour; it is ink now, and the hue stays on the exhaust
+velocity arrow and its slider. The thrust and the weight are drawn on one
+fixed scale, and the momentum bar on its own, so the free-body diagram no
+longer rearranges itself as the sliders move.
+
+**Chapter level.** The chapter's `config.md` now says which of the two routes
+each exercise image took, since the book's rules settled the question in this
+pass: the two force-against-time graphs of 8.2 and the cart graph of 8.3 are
+`figure` rows with no number and the eyebrow "Figure", because the prose
+beside them introduces the reading their items are set on, while the air-cart
+graph of 8.4 and the massive cube of 8.6 travel on the exercise card's own
+`figure` field, because each belongs to one item and has to stand on that card
+alone. Every plan line of the chapter was rewritten to what is built.
+
+#### College Physics 2e, Chapter 9: the figure audit fixed
+
+A read-only audit of the built book found faults of three kinds in this
+chapter — scales that followed their own sliders, discrete states put on
+sliders, and headlines that were not sentences — together with a handful of
+errors of physics and of the book's own wording. This pass fixes them in the
+six sections, rewrites the plan line of every figure it touched to what now
+stands, and records in `config.md` which of the two ways of carrying an
+exercise image each section used.
+
+**9.1 The First Condition for Equilibrium.** The columns that add the forces
+with their signs were drawn to the largest force on show, so that loading the
+person with a heavier pack lengthened no bar and changed only the printed
+number; each column now runs to a height fixed from its own sliders, 1,600 N
+for the person, 2,000 N and 15,680 N for the two axes of the car, and 400 N
+and 1,470 N for the crate. The support of the road in Figure 9.3 was labelled
+"N s" in the free-body diagram while the scene drew four arrows of a quarter
+that size, so the diagram and the column now carry one normal force N, the
+four tire arrows are named as a quarter of it each, and the readout says so.
+Figures 9.4 and 9.5 are folded into one drawing and now carry both of the
+book's captions, each behind its own number. The applied force is written
+$F_\text{app}$ on the canvas now that the drawing layer sets subscripts, and
+every headline and drawn sentence is one capitalised sentence.
+
+**9.2 The Second Condition for Equilibrium.** The angle in Figure 9.6 ran to
+360°, which contradicts the book's own definition of θ as the angle between
+the force and the vector from the point of application to the pivot; it now
+stops at 180°, and which side of the door the force is applied from — the
+book's panel (a) against its panel (d) — is a choice of push or pull, since
+that is a state and not a quantity. A pull carries its minus sign into the
+equation itself. Figure 9.7 wrote a negative torque as the product of two
+positive numbers; the minus sign of the counterclockwise-positive convention
+is now written into the equation on both the readout and the panel beside the
+stick, and the plan's default of 70° is settled at the built 110°, which is
+the angle about pivot A that the book's own drawing shows. The seesaw and the
+pivot sim set their subscripts properly, and every headline is a sentence.
+
+**9.3 Stability.** The radius of the sphere in Figure 9.15 was a slider that
+moved nothing the figure is about, since the center of gravity of a sphere of
+any size lies straight above the point of support, and it is now fixed at
+5 cm; the figure's `draws` row is corrected to the one type it colours. The
+four torque graphs print a signed torque against an unsigned readout, so each
+now carries a key under its lean axis saying which sign carries the body over
+and which brings it back. The marble's surface keeps its slider and gains soft
+detents on the three shapes the section names, a hill, a flat surface and a
+bowl, and the angle its readout takes the sine of is drawn on the scene where
+the ball meets the surface. Figures 9.10 to 9.12 and Figures 9.13 and 9.14 are
+folds and now carry every one of the book's captions.
+
+**9.4 Applications of Statics.** The pole vaulter's scene was fitted to
+whatever the sliders put on the pole, so that moving the center of gravity
+moved his hands; it is now drawn to a fixed scale from −0.50 m to 3.30 m,
+which holds every position the sliders reach, and the hands stay where they
+are. The force arrows and the torque bars were drawn to the largest value on
+show and now run to fixed ends, 100 N and 60 N·m, with a line of type saying
+so where a value passes them and the labels always giving the true numbers.
+The readout of Figure 9.18 stated the first condition, which is not what the
+figure is for; its main line is now the second condition taken about the left
+hand, as the worked example takes it, and the first condition follows on the
+small line. The three holds of the pole are a fold and now carry all three of
+the book's captions.
+
+**9.5 Simple Machines.** The five figures set their headlines with a helper of
+their own that shrank the type to fit; they now use the library's `topline()`,
+which breaks a long sentence over two lines, so that the chapter sets every
+headline the same way, and all five are capitalised sentences. Every pair of
+bars ran to whichever of the pair was larger, so that a slider changed only
+the printed number; each pair now runs to an end fixed from the sliders. In
+Figure 9.23 the two radii of the car axle were labelled the way round the
+crank labels them, which contradicts the book's sentence that the axle drives
+the wheel with its input at the smaller radius; panel (b) now names the small
+circle $r_\text{i}$ and the large one $r_\text{o}$, and the mechanical
+advantage of 0.083 reads off them. Figure 9.24 put the number of cables on a
+slider, drew the single-cable case with its cord tied to the ceiling and
+unconnected to the load, and turned the cord through a right angle with no
+pulley at the corner; the count is now a choice of one, two, three or four,
+and one continuous cord runs through the whole tackle, its legs a sheave's
+diameter apart so that each is vertical and tangent to the sheave it runs
+onto, with the movable and the fixed sheaves alternating and the dead end tied
+to the ceiling when the count is even and to the movable block when it is odd.
+At two cables the drawing is the book's own panel (a), and at one it is the
+ordinary pulley of Figure 9.23(c).
+
+**9.6 Forces and Torques in Muscles and Joints.** The lean of the upper body
+stopped at 60°, which left the 0.350 m lever arm of Example 9.5 out of reach
+with the center of gravity 0.400 m up the spine; it now runs to 65° and
+carries detents on the upright position and on the 61° that gives the
+example's lever arm, and the graph beside it is redrawn to 70° and 8,000 N so
+that the whole of the new range is on it. The arrows of the forearm, of the
+lift and the three bars that compare the weight supported with the forces in
+the muscles and the vertebrae were all drawn to the largest force on show and
+now run to fixed ends. Figure 9.25's headline was a chain joined by a middle
+dot and is now a sentence; the readout of the lever-arm sim printed a fraction
+with nothing above or below it at 90° and now states that $\Delta s$ and
+$\Delta L$ are both zero, and its headline no longer tells the reader to look
+below the picture. "Centimetres" is "centimeters" and "neighbour" is
+"neighbor" throughout the chapter, in captions, in readouts and in one
+suggested approach, which is the book's American spelling.
+
+**At chapter level.** `config.md` had one row saying that every figure serving
+an exercise was copied into the text as an unnumbered "Figure", which was true
+of 9.2 alone: 9.3 and 9.6 leave theirs on the exercise cards, in the `figure`
+field of the item that refers to them. The row now records both ways and says
+which section used which, as the book's own rules now ask a chapter to do.
+
+#### College Physics 2e, Chapter 16: the figure audit pass (2026-09-12)
+
+Every figure of the chapter was measured against the audit of 2026-09-12 and
+against rules 7, 14, 17, 24, 25, 26 and 28. The fault the chapter had in common
+was that its axes and its scene scales were read off the sliders each time it
+drew, so moving a slider changed the numbers printed along an axis and left the
+picture where it was. Every range in the chapter is now fixed, taken from the
+slider maxima where the book's own state still reads well there and from that
+default state where it does not, stated in a comment beside it, and a value that
+leaves the range is pinned at the edge of the graph with its number written
+there. The chapter's headlines, which had been middle-dot and colon chains, are
+full sentences in the book's voice, and the eight leads that cited their own
+figure number no longer do.
+
+16.1 Hooke's Law. The plucked ruler now holds at t = 0 when the reader has asked
+for reduced motion, rather than at rest, so the pull, the bracket across it and
+the restoring force are all in the still picture the reader is left with. The
+spring scale fixes its stretch axis at 0 to 0.50 m and its force axis at 0 to
+5 N, both of which the sliders reach but never pass, and draws a fixed 600 units
+to the meter in the scene, so a stiffer spring visibly stretches less under the
+same load instead of redrawing the same picture under new tick labels; its
+canvas is taller to hold the longest stretch, and the load's mass is written
+beside the block rather than across it. The stored-energy figure fixes its
+deformation axis at 0 to 0.30 m and its force axis at 0 to 30 N, so the line's
+slope and the shaded triangle under it now answer both sliders; a spring stiffer
+than 100 N/m runs off the top of the scale and its live point is pinned at the
+edge with its value. Both folded figures carry a caption for each original, the
+ruler's two drawings under Figures 16.2 and 16.3 and the force-against-distance
+graph and the toy gun under Figures 16.6 and 16.7, so showing the original no
+longer puts two images under one caption.
+
+16.2 Period and Frequency. The vibrating string shows a fixed eight seconds of
+trace, which holds the widest counting window the slider reaches with three
+seconds of run before it, so lengthening the period stretches the wave rather
+than relabelling the ticks beneath it. The counting window itself is shaded in
+ink with its edge in the time hue, since a region of a graph is not a typed
+quantity. The stopwatch figure draws its time line from 0 to 30 s, the longest
+run the elapsed-time slider allows, with the run drawn solid along it, so a
+shorter run plainly reaches less far and leaves its marks closer together.
+
+16.3 Simple Harmonic Motion. No block carries its mass written across its body
+any longer: the label sits beside the block, and in the two-oscillator figure,
+where each row is already named by its amplitude, it is dropped. The period
+figure fixes its period axis at 0 to 3 s, which covers the heaviest car on the
+softest suspension the sliders allow, so a stiffer suspension now flattens the
+curve under the reader's hand. The paper strip runs in seconds rather than in
+multiples of the period, a fixed six seconds of trace, which is two full waves
+at the slowest setting and twelve at the fastest, so the period slider stretches
+the wave instead of leaving every period looking alike. The three graphs of
+position, velocity and acceleration show a fixed two seconds of history, about
+three periods of the oscillator the book draws, with the position axis at the
+amplitude slider's own range and the velocity and acceleration axes set from
+that same default state, since the slider maxima would have flattened the book's
+own curves to a line; a faster oscillator is drawn clipped with its live points
+pinned at the edges. The paper strip's caption now carries both of its
+originals, Figures 16.11 and 16.10.
+
+16.4 The Simple Pendulum. Seven labels used to ride the bob and cross one
+another as it swung, so under rule 26.7 they are off to begin with behind a
+Labels button, and the name of everything drawn, the bob, the string, the arc,
+the weight, its two components and the tension, is available under the pointer.
+The tension is drawn in the force hue like every other force on the bob, and the
+band marking the small angles is shaded in ink rather than in the position hue.
+The graph of restoring force against arc length is fixed at plus and minus 2.4 m
+and plus and minus 20 N, both read off the slider maxima, so the straight line
+of Hooke's law and the true curve keep one frame to part company in as the swing
+is widened. The two-pendulum figure fixes its period axis at 0 to 8 s, which
+covers the longest pendulum under the weakest gravity the sliders allow, so
+weakening gravity lifts the whole curve; its gravity slider carries soft detents
+at the two values the section's problems name, 1.63 m/s² on the Moon and
+9.80 m/s² on Earth. The figure that measures g draws its time line from 0 to
+75 s, so a shorter pendulum plainly finishes its ten swings sooner.
+
+16.5 Energy and the Simple Harmonic Oscillator. The two energy bars were
+normalised to their own total, so the force constant and the amplitude changed
+only the number printed under them. Both figures now share one fixed energy
+scale, 0 to 1.00 J, and one fixed position scale, the amplitude slider's own
+range, taken from the state the book draws, where half k X squared is 0.25 J,
+since reading the scale off the slider maxima would have left the book's own
+bars a sliver; a total above the top of the scale is drawn at the top with its
+true value beside it. The maximum-speed figure fixes its velocity axis from that
+same default state, so the ellipse changes shape at every setting instead of
+looking the same at all of them. Neither the block nor the car body carries its
+mass written across it. The two figures' `draws` rows are corrected to the types
+the code actually colours: neither draws the angular rate, and the
+maximum-speed figure draws no energy.
+
+16.6 Uniform Circular Motion and Simple Harmonic Motion. The turntable's paper
+runs down at a fixed rate in seconds rather than in units of the period, so it
+always carries a little under four seconds of trace and a longer period plainly
+stretches the wave out; its marks are seconds. The lamps above the turntable are
+named, and the shadow the ball casts is drawn in ink rather than in the time
+hue, since a beam of light is not a time. The similar-triangles figure draws its
+circle at a fixed scale in centimeters, so the radius slider grows the circle all
+the way along instead of stopping at a cap partway, and its velocity arrow is
+drawn on one fixed scale set by the fastest the sliders allow rather than capped
+at its own maximum. The turntable's caption carries both of its originals,
+Figures 16.16 and 16.18.
+
+Chapter level. The chapter's `config.md` promised that the two AP items of 16.3
+that carry images would be copied faithfully as unnumbered exercise figures.
+Both items are unkeyed in the source, so under rule 13 they were left out of the
+page and their images with them, and the row is corrected to say so. The chapter
+has no `figure` row without a number and no bare "Figure" eyebrow; the one book
+image an exercise of this chapter refers to, the two skydivers beside problem 9
+of 16.3, travels on that exercise card's own `figure` field, which is the second
+of the two routes the book's `RULES.md` now records. Each section's `plan.md`
+carries a dated note bringing its figure lines to what is built: the ranges now
+fixed, the labels on or behind a button, and every figure of the chapter still
+flat, with no 3D anywhere in it.

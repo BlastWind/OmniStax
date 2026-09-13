@@ -96,12 +96,14 @@ function trafficLight(ctx, x, y, color) {
     text(ctx, 'F_app = ' + fmt(app, 1) + ' × 10⁵ N', l + app * bw + 16, ybar, fc, { size: 20, weight: 600 });
     if (ok) {
       line(ctx, l + ma * bw, ybar - 20, l + ma * bw, ybar + 20, PAL.ink, 3);
-      hbracket(ctx, l, l + ma * bw, ybar + 64, acc, 'F_net = ma = ' + fmt(ma, 2) + ' × 10⁵ N');
+      /* the net force is a force and takes the force hue; it is told from the drag beside it by the
+         row it sits on and by its name */
+      hbracket(ctx, l, l + ma * bw, ybar + 64, fc, 'F_net = ma = ' + fmt(ma, 2) + ' × 10⁵ N');
       hbracket(ctx, l + ma * bw, l + app * bw, ybar + 126, fc, 'F_D = ' + fmt(drag, 2) + ' × 10⁵ N');
     }
     headline(ctx, ok
-      ? 'the tugs push with ' + fmt(app, 1) + ' × 10⁵ N together, the barge takes ' + fmt(ma, 2) + ' × 10⁵ N of it, and the water drags back with ' + fmt(drag, 2) + ' × 10⁵ N'
-      : 'these pushes cannot accelerate ' + fmt(mm.v, 1) + ' × 10⁶ kg at ' + fmt(ac.v, 3) + ' m/s², so no drag force is left to find');
+      ? 'The tugs push with ' + fmt(app, 1) + ' × 10⁵ N together, the barge takes ' + fmt(ma, 2) + ' × 10⁵ N of it, and the water drags back with ' + fmt(drag, 2) + ' × 10⁵ N'
+      : 'These pushes cannot accelerate ' + fmt(mm.v, 1) + ' × 10⁶ kg at ' + fmt(ac.v, 3) + ' m/s², so no drag force is left to find');
     readout(d.readout, `\\kFD = \\kFa - m\\ka = ${sci(app * 1e5)}\\ \\text{N} - (${sci(mm.v * 1e6)}\\ \\text{kg})(${fmt(ac.v, 3)}\\ \\text{m/s}^2) = ${ok ? sci(drag * 1e5, 2) : '-\\,' + sci(Math.abs(drag) * 1e5 + 1e-9, 2)}\\ \\text{N}`,
       ok ? 'The weight of the barge is ' + sciP(mm.v * 1e6 * G) + ' N, so the drag on it is only one ' + fmt(mm.v * 1e6 * G / (drag * 1e5), 0) + 'th of that. A well-designed hull needs very little push at a low speed.'
         : 'The drag opposes the motion, so it cannot be negative: the applied force has to be at least as large as the mass times the acceleration. Lower the acceleration, or have the tugs push harder.');
@@ -156,7 +158,7 @@ function trafficLight(ctx, x, y, color) {
     arrow(ctx, ox, cyy, ox - hb, cyy, fc, 4); arrow(ctx, ox, cyy, ox + hb, cyy, fc, 4);
     dot(ctx, ox, cyy, PAL.ink, true, 6);
     text(ctx, 'T₁ₓ = T₂ₓ = ' + fmt(T1 * cos(t1.v), 1) + ' N', ox, cyy + 36, fc, { size: 20, weight: 600, align: 'center' });
-    headline(ctx, 'at ' + fmt(t1.v, 1) + '° and ' + fmt(t2.v, 1) + '° the wires carry ' + fmt(T1, 0) + ' N and ' + fmt(T2, 0) + ' N, and together they hold up ' + fmt(w, 0) + ' N');
+    headline(ctx, 'At ' + fmt(t1.v, 1) + '° and ' + fmt(t2.v, 1) + '° the wires carry ' + fmt(T1, 0) + ' N and ' + fmt(T2, 0) + ' N, and together they hold up ' + fmt(w, 0) + ' N');
     readout(d.readout, `\\kTone\\cos\\theta_1 = \\kTtwo\\cos\\theta_2,\\quad \\kTone\\sin\\theta_1 + \\kTtwo\\sin\\theta_2 = \\kwgt = ${fmt(w, 0)}\\ \\text{N}\\;\\Rightarrow\\;\\kTone = ${fmt(T1, 0)}\\ \\text{N},\\ \\kTtwo = ${fmt(T2, 0)}\\ \\text{N}`,
       Math.abs(t1.v - t2.v) < 0.26 ? 'The angles on either side are equal, so the two tensions are equal, as they were for the tightrope walker.'
         : 'The wire at ' + fmt(Math.max(t1.v, t2.v), 1) + '° is nearer the vertical and carries the larger tension, because it holds up the greater part of the weight. Bring both wires toward the horizontal and both tensions grow.');
@@ -197,6 +199,11 @@ function trafficLight(ctx, x, y, color) {
     line(ctx, (sl + sr) / 2, 60, (sl + sr) / 2, carT, PAL.muted, 5);
     block(ctx, 320, floor - 16, 150, 32, PAL.ink);
     F.person(ctx, 320, floor - 32, PAL.ink, { s: 1.65 });
+    /* the book's part (a) draws every force on the lift, the scale and the person; its part (b)
+       takes the person alone as the system of interest and draws the two forces that are left */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.setLineDash([12, 10]);
+    ctx.strokeRect(248, floor - 292, 144, 266); ctx.restore();
+    text(ctx, 'the system of interest: the person alone', 320, floor + 34, PAL.muted, { size: 17, align: 'center' });
     arrow(ctx, 400, floor - 170, 400, floor - 170 - 92 * (Fs / top), fc, 5);
     text(ctx, 'F_s = ' + fmt(Fs, 0) + ' N', 412, floor - 178 - 92 * (Fs / top), fc, { size: 20, weight: 600 });
     arrow(ctx, 240, floor - 170, 240, floor - 170 + 92 * (w / top), fc, 5);
@@ -211,6 +218,16 @@ function trafficLight(ctx, x, y, color) {
     const ang = (-210 + 240 * Math.min(1, Fs / (2 * w))) * RAD;
     line(ctx, dx, dy, dx + (r - 16) * Math.cos(ang), dy + (r - 16) * Math.sin(ang), fc, 5); dot(ctx, dx, dy, fc, true, 6);
     text(ctx, 'the dial reads ' + fmt(Fs, 0) + ' N', dx, dy + r + 26, fc, { size: 20, weight: 600, align: 'center' });
+    /* the free-body diagram of the system of interest: only his weight and the push of the scale */
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(566, 442, 184, 258); ctx.restore();
+    text(ctx, 'the free-body diagram', 658, 470, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'of the person alone', 658, 492, PAL.muted, { size: 17, align: 'center' });
+    const fby = 580;
+    arrow(ctx, 658, fby, 658, fby - 58 * (Fs / top), fc, 5);
+    text(ctx, 'F_s', 672, fby - 58 * (Fs / top) - 2, fc, { size: 20, weight: 600 });
+    arrow(ctx, 658, fby, 658, fby + 58 * (w / top), fc, 5);
+    text(ctx, 'w', 672, fby + 58 * (w / top) + 2, fc, { size: 20, weight: 600 });
+    dot(ctx, 658, fby, PAL.ink, true, 9);
     /* the two graphs, beside the vertical scene */
     /* fixed axes: the ride always lasts 10 s, and the largest reading the sliders allow is the
        heaviest person under the hardest acceleration, 120 × (9.80 + 3) = 1,536 N, so the reading axis
@@ -234,7 +251,7 @@ function trafficLight(ctx, x, y, color) {
     const phase = t < TA ? 'speeding up at ' + fmt(ac.v, 2) + ' m/s², and the dial reads ' + fmt(Fs, 0) + ' N against his ' + fmt(w, 0) + ' N weight'
       : t < TB ? 'riding at a constant ' + fmt(ac.v * TA, 2) + ' m/s, and the dial reads his weight of ' + fmt(w, 0) + ' N exactly'
         : 'slowing to a stop, and the dial reads only ' + fmt(Fs, 0) + ' N against his ' + fmt(w, 0) + ' N weight';
-    headline(ctx, 't = ' + fmt(t, 1) + ' s · the lift is ' + phase);
+    headline(ctx, 'After ' + fmt(t, 1) + ' s the lift is ' + phase);
     readout(d.readout, `\\kFs = m\\ka + m\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${fmt(aAt(t), 2)}\\ \\text{m/s}^2) + (${fmt(mm.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(Fs, 0)}\\ \\text{N}`,
       'Were the cable to break, the man and the lift would fall together, the acceleration would be −9.80 m/s², and the dial would read zero: he would appear to be weightless.');
   }
@@ -260,7 +277,7 @@ function trafficLight(ctx, x, y, color) {
     const fc = C('force'), acc = C('acceleration'), vc = C('velocity');
     const t = REDUCED ? el1.v : cy.now(), a = vf.v / el1.v, Fn = mm.v * a;
     const stot = 0.5 * a * el1.v * el1.v, s = 0.5 * a * t * t, v = a * t;
-    const x0 = 140, x1 = 1120, X = (metres) => x0 + (x1 - x0) * (stot > 0 ? metres / stot : 0);
+    const x0 = 140, x1 = 1120, X = (meters) => x0 + (x1 - x0) * (stot > 0 ? meters / stot : 0);
     strip(ctx, 80, 1340, 300, 46);
     F.scale(ctx, X, 0, Math.floor(stot), Math.max(1, Math.round(stot / 8)), 345, 'm', 2);
     const px = X(s);
@@ -284,7 +301,7 @@ function trafficLight(ctx, x, y, color) {
     text(ctx, 'the slope is a = ' + fmt(a, 2) + ' m/s²', g.X(el1.v * 0.72), g.Y(vf.v * 0.50), acc, { size: 20, weight: 600 });
     line(ctx, g.X(t), box.b, g.X(t), g.Y(v), PAL.ink, 2, [4, 8]);
     dot(ctx, g.X(t), g.Y(v), vc, true, 9);
-    headline(ctx, 't = ' + fmt(t, 2) + ' s · he is at ' + fmt(v, 2) + ' m/s, and the ground has pushed him forward with ' + fmt(Fn, 0) + ' N all the way');
+    headline(ctx, 'After ' + fmt(t, 2) + ' s he is at ' + fmt(v, 2) + ' m/s, and the ground has pushed him forward with ' + fmt(Fn, 0) + ' N all the way');
     readout(d.readout, `\\ka = \\frac{\\kdv}{\\kdt} = \\frac{${fmt(vf.v, 2)}\\ \\text{m/s}}{${fmt(el1.v, 2)}\\ \\text{s}} = ${fmt(a, 2)}\\ \\text{m/s}^2,\\qquad \\kFnet = m\\ka = (${fmt(mm.v, 1)}\\ \\text{kg})(${fmt(a, 2)}\\ \\text{m/s}^2) = ${fmt(Fn, 0)}\\ \\text{N}`,
       'That is about ' + fmt(Fn / 4.45, 0) + ' pounds, a reasonable average force, and he covers ' + fmt(stot, 1) + ' m while he is getting up to speed.');
   }
@@ -305,7 +322,7 @@ function trafficLight(ctx, x, y, color) {
     const e1x = px + 205 * cos(a1), e1y = py - 205 * sin(a1);
     const e2x = px + 580 * cos(a2), e2y = py - 580 * sin(a2);
     fixed(ctx, 110, 130, 150, 330);
-    text(ctx, 'the burning building', 185, 108, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the burning building', 280, 152, PAL.muted, { size: 19 });
     strip(ctx, 80, 1340, 460, 24);
     line(ctx, px, py, e1x, e1y, PAL.ink, 4); line(ctx, px, py, e2x, e2y, PAL.ink, 4);
     F.person(ctx, px, py + 120, PAL.muted, { s: 1.3, reach: { x: px, y: py } });
@@ -319,10 +336,12 @@ function trafficLight(ctx, x, y, color) {
     arrow(ctx, px, py, px, py + 160, fc, 5);
     text(ctx, 'w', px + 16, py + 150, fc, { size: 22, weight: 600 });
     dot(ctx, px, py, PAL.ink, true, 8);
-    text(ctx, 'the left rope makes 15° with the vertical', 200, 222, PAL.ink, { size: 20 });
+    /* the two notes sit clear of the ropes: the left one above the building, the right one above the
+       long rope, so neither line is crossed by a word */
+    text(ctx, 'the left rope makes 15° with the vertical', 120, 100, PAL.ink, { size: 20 });
     text(ctx, 'the right rope rises 10° above the horizontal', 900, 130, PAL.ink, { size: 20 });
     text(ctx, 'the person, of mass 76.0 kg, is momentarily motionless', px, 502, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    headline(ctx, 'a person held by two ropes, one 15° from the vertical and the other 10° above the horizontal');
+    headline(ctx, 'A person is held motionless by two ropes, one 15° from the vertical and the other 10° above the horizontal');
   }
   register(d.fig, { update: () => {}, draw });
 })();
