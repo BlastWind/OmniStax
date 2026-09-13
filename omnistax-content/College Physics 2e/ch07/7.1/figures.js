@@ -1,7 +1,7 @@
 /* Figures for section 7.1 Work: The Scientific Definition. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, nice, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -74,19 +74,27 @@ function crate(ctx, x, y, w, color) {
     /* the person behind the mower, her hands on the handle and her feet on the ground; she walks while the mower moves */
     const gx = mx - 86, gy = GY - 94, L = 60 + Fv * 0.6;
     F.person(ctx, mx - 150, GY, PAL.ink, { lean: 0.25, reach: { x: gx - 2, y: gy + 4 }, phase: s > 0.05 && s < D - 0.05 ? s * 0.5 : 0 });
-    /* the force at the handle, its tail up and behind, with the angle it makes with the direction of motion */
+    /* the force at the handle, its tail up and behind, with the angle it makes with the
+       direction of motion. Nothing of the force is drawn once the slider reaches zero: an
+       arrow of the shaft's own length standing where no one is pushing would say that a
+       force is there, so below 0.05 N the arrow, its component and the angle all go. */
+    const pushing = Fv >= 0.05;
     const tx = gx - L * cs, ty = gy - L * Math.sin(ang * RAD);
-    line(ctx, tx, ty, Math.min(1370, tx + Math.max(120, L * 0.9)), ty, PAL.rule, 2, [10, 10]);
-    if (ang > 6) angleArc(ctx, tx, ty, 46, ang, 'θ = ' + fmt(ang, 0) + 'º', PAL.ink);
-    arrow(ctx, tx, ty, gx, gy, C('force'), 5);
-    /* kept inside the canvas wherever the mower has got to */
-    text(ctx, 'F = ' + fmt(Fv, 1) + ' N', Math.max(110, tx - 18), ty - 28, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    /* the component of the force along the motion, which is the part of it that does the work */
-    line(ctx, gx, ty, gx, gy, C('force'), 2, [4, 8]);
-    arrow(ctx, tx, ty, gx, ty, C('force'), 4);
-    /* the label goes above the reference line, to the right of the tail, since the angle's
-       arc and its own label take the wedge below it */
-    text(ctx, 'F cos θ = ' + fmt(Fv * cs, 1) + ' N', Math.min(tx + 54, 1150), ty - 32, C('force'), { size: 20, weight: 600, align: 'left' });
+    if (pushing) {
+      line(ctx, tx, ty, Math.min(1370, tx + Math.max(120, L * 0.9)), ty, PAL.rule, 2, [10, 10]);
+      if (ang > 6) angleArc(ctx, tx, ty, 46, ang, 'θ = ' + fmt(ang, 0) + 'º', PAL.ink);
+      arrow(ctx, tx, ty, gx, gy, C('force'), 5);
+      /* kept inside the canvas wherever the mower has got to */
+      text(ctx, 'F = ' + fmt(Fv, 1) + ' N', Math.max(110, tx - 18), ty - 28, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+      /* the component of the force along the motion, which is the part of it that does the work */
+      line(ctx, gx, ty, gx, gy, C('force'), 2, [4, 8]);
+      arrow(ctx, tx, ty, gx, ty, C('force'), 4);
+      /* the label goes above the reference line, to the right of the tail, since the angle's
+         arc and its own label take the wedge below it */
+      text(ctx, 'F cos θ = ' + fmt(Fv * cs, 1) + ' N', Math.min(tx + 54, 1150), ty - 32, C('force'), { size: 20, weight: 600, align: 'left' });
+    } else {
+      text(ctx, 'F = 0 N', Math.max(110, gx - 18), gy - 40, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    }
     /* the displacement the force acts through */
     line(ctx, X0, GY, X0, GY + 66, PAL.rule, 2, [4, 8]);
     if (D > 0.05) {
@@ -101,7 +109,7 @@ function crate(ctx, x, y, w, color) {
        far as the box reaches and the work so far is pinned at the edge. Neither range moves. */
     const XR = 40, WR = 3000, box = { l: 200, r: 1290, t: 500, b: 690 };
     const { X, Y } = axes(ctx, box, [0, XR], [-WR, WR], {
-      xl: 'distance travelled (m)', xc: C('position'), yl: 'work done (J)', yc: C('energy'),
+      xl: 'distance traveled (m)', xc: C('position'), yl: 'work done (J)', yc: C('energy'),
       nx: 4, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => sig3(v),
     });
     if (D > 0.05) {
@@ -114,14 +122,14 @@ function crate(ctx, x, y, w, color) {
     }
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
     /* the headline and the readout */
-    headline(ctx, Fv < 0.05 ? 'nobody is pushing the mower, so no work is done on it'
-      : D < 0.05 ? 'the mower does not move, so the force does no work on it however hard the person pushes'
-      : Math.abs(cs) < 0.005 ? 'the force is perpendicular to the motion, so it does no work however far the mower goes'
-      : 'the mower has gone ' + fmt(s, 1) + ' m of ' + fmt(D, 1) + ' m, and the force has done ' + sig3(W) + ' J of work on it so far');
-    const caseLine = Fv < 0.05 || D < 0.05 ? 'There is no work without both a force and a displacement, which is the case of Figure 7.2(b).'
-      : Math.abs(cs) < 0.005 ? 'The force is perpendicular to the motion, so cos θ is zero and no energy is transferred, which is the case of Figure 7.2(c).'
-      : cs > 0 ? 'The force has a component in the direction of the motion, so the work is positive and energy is transferred to the mower, as in Figure 7.2(a) and (d).'
-      : 'The force has a component opposite to the motion, so the work is negative and energy is taken out of the system, as in Figure 7.2(e).';
+    topline(ctx, Fv < 0.05 ? 'Nobody is pushing the mower, so no work is done on it.'
+      : D < 0.05 ? 'The mower does not move, so the force does no work on it however hard the person pushes.'
+      : Math.abs(cs) < 0.005 ? 'The force is perpendicular to the motion, so it does no work however far the mower goes.'
+      : 'The mower has gone ' + fmt(s, 1) + ' m of the ' + fmt(D, 1) + ' m, and the force has done ' + sig3(W) + ' J of work on it so far.');
+    const caseLine = Fv < 0.05 || D < 0.05 ? 'There is no work without both a force and a displacement, so nothing is transferred while the mower stands still.'
+      : Math.abs(cs) < 0.005 ? 'The force is perpendicular to the motion, so cos θ is zero and no energy is transferred.'
+      : cs > 0 ? 'The force has a component in the direction of the motion, so the work is positive and energy is transferred to the mower.'
+      : 'The force has a component opposite to the motion, so the work is negative and energy is taken out of the system.';
     readout(d.readout, `\\kW = \\kF\\kd\\cos\\theta = (${fmt(Fv, 1)}\\ \\text{N})(${fmt(D, 1)}\\ \\text{m})\\cos ${fmt(ang, 0)}^\\circ = ${sig3(Wtot)}\\ \\text{J}`, caseLine);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
@@ -185,8 +193,8 @@ function crate(ctx, x, y, w, color) {
     line(ctx, xw, BT - 14, xw, BB + 12, C('energy'), 5);
     dot(ctx, xw, BB, C('energy'), true, 11);
     text(ctx, 'W = ' + sci(W, 2) + ' J', Math.max(LX + 110, Math.min(xw, RX - 110)), BB + 68, C('energy'), { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    headline(ctx, 'lifting ' + fmt(m, 2) + ' kg through ' + fmt(h, 2) + ' m takes ' + sci(W, 2) + ' J of work'
-      + (W > 0.7 && W < 1.4 ? ', which is about one joule' : ''));
+    topline(ctx, 'Lifting ' + fmt(m, 2) + ' kg through ' + fmt(h, 2) + ' m takes ' + sci(W, 2) + ' J of work'
+      + (W > 0.7 && W < 1.4 ? ', which is about one joule.' : '.'));
     readout(d.readout, `\\kW = \\kF\\kd\\cos\\theta = (${sig3(Fw)}\\ \\text{N})(${fmt(h, 2)}\\ \\text{m})\\cos 0^\\circ = ${sci(W, 2)}\\ \\text{J}`,
       'That much work is ' + sci(W / 4186, 2) + ' kcal, and the person of Example 7.1 eats about 2400 kcal in a day, so it is '
       + sci(W / 4186 / 2400, 2) + ' of a day’s food energy.');

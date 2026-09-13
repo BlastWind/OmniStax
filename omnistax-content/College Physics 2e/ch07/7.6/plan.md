@@ -96,23 +96,31 @@ headline · graph · 3D
    $\kv$ (0.4 to 2.0 m/s, default 1.0, velocity), her mass $m$ (40 to 110 kg,
    default 65, ink) and the efficiency of her body (5 to 25 %, default 20,
    ink, since a ratio of two energies stays in ink; the stairs rise at
-   $30^\circ$, so she gains height at half her walking speed) · "t = 8.0 s ·
-   she has climbed 4.0 m of the 8.0 m and spent 12.7 kJ of the 25.5 kJ", and
-   at the end of the climb "she has climbed the whole 8.0 m on 25.5 kJ of
-   food energy, 5.1 kJ of it now height" · graph beside the tall scene: the
-   four energies stacked against time, the stack level all the way across,
-   since the total is what does not change · no. Readout: $\kKEi + \kPEi + \kWnc + \kOEi =
+   $30^\circ$, so she gains height at half her walking speed) · "At 8.0 s she
+   has climbed 4.0 m of the 8.0 m and spent 12.7 kJ of the 25.5 kJ.", and at
+   the end of the climb "She has climbed the whole 8.0 m on 25.5 kJ of food
+   energy, 5.1 kJ of it now height." · graph beside the tall scene: the four
+   energies stacked against time on fixed axes, the stack level all the way
+   across, since the total is what does not change · 2D. Labels are on: each
+   band is named where it is thick enough to hold its name, and the kinetic
+   energy, which is too thin to label at most settings, says so in a note
+   under the graph. Readout: $\kKEi + \kPEi + \kWnc + \kOEi =
    \kKEf + \kPEf + \kOEf$ with the numbers; small line saying that no outside
    nonconservative force does work on the climber and the Earth together, so
    $\kWnc$ is zero here and every joule she loses from her food is one she has
    put somewhere else. Draws energy, position, velocity and time.
 2. `sim-ladder` · Sim · forms-of-energy · **still**: the table's energies
    answer the two sliders and nothing else, and there is no time in a list of
-   energies (rule 14) · the row of Table 7.1 to mark (0 to 22, default the
-   gallon of gasoline, ink) and the row to compare it with (0 to 22, default
-   the 1000-kg car at 90 km/h, ink) · "1 gallon of gasoline carries
-   $1.2\times 10^{8}$ J, which is 387 times the energy of a 1000-kg car at
-   90 km/h" · none: the ladder is the picture · no. Readout: the ratio of the
+   energies (rule 14) · the row of Table 7.1 to mark and the row to compare
+   it with, each a dropdown of the table's own twenty-three entries by name
+   rather than a slider running over their indices, since a table row is a
+   named state and not a quantity (rule 26.1); the defaults are the gallon
+   of gasoline and the 1000-kg car at 90 km/h · "1 gallon of gasoline
+   carries $1.2\times 10^{8}$ J, which is 387 times the energy of a 1000-kg
+   car at 90 km/h." · none: the ladder is the picture, on a fixed scale of
+   $10^{-20}$ to $10^{70}$ J · 2D. Labels are on: every entry of the table
+   is a mark on the ladder and the two chosen ones are named above it on two
+   lines, so no two names can sit on one another. Readout: the ratio of the
    two energies written out; small line on the span of the whole table, from
    the energy that breaks one DNA strand to the Big Bang, which is 87 powers
    of ten. Draws energy.
@@ -120,13 +128,16 @@ headline · graph · 3D
    conversion's efficiency is a ratio and has no time in it, and the figure
    answers its sliders and nothing else (rule 14) · the energy put in $\kEin$
    (1 to 100 MJ, default 10, energy), the device the energy passes through
-   (any row of Table 7.2, default the coal power plant, ink) and a second
-   device to pass the useful output through (any row of Table 7.2 or none,
-   default none, ink; set the first to the solar cell and the second to the
+   (a dropdown of Table 7.2's own entries by name and efficiency, default
+   the coal power plant) and a second device to pass the useful output
+   through (the same list with "nothing further" at its head, default
+   nothing further; set the first to the solar cell and the second to the
    electric motor and the figure is the book's own chain from sunlight to the
-   turning of a motor) · "a coal power plant turns 10.0 MJ into 4.20 MJ of
-   useful energy, and the other 5.80 MJ leaves as thermal energy" · none: the
-   branching bar is the picture · no. Readout:
+   turning of a motor) · "A coal power plant turns 10.0 MJ into 4.20 MJ of
+   useful energy, and the other 5.80 MJ leaves as thermal energy." · none:
+   the branching bar is the picture · 2D. Labels are on: four of them, each
+   set inside its band where the band is wide enough to hold it and beneath
+   the bar where it is not. Readout:
    $\text{Eff} = \kWout / \kEin$ with the numbers; small line giving the
    efficiency of the whole chain as the product of the two, when a second
    device is set. Draws energy.
@@ -139,9 +150,11 @@ headline · graph · 3D
    copied faithfully with the book's own positions and nothing else; the
    eyebrow reads "Figure" with no number, since the book numbers no figure
    inside an exercise · **still**: it answers nothing and shows the reader
-   what the question is about (rule 14) · no sliders · "the car accelerates
-   down the first hill, coasts on over the crest, runs down the second hill
-   and brakes to a stop at the gas station" · none · no. `widths` [500]. The
+   what the question is about (rule 14) · no sliders · "The car accelerates
+   down the first hill, runs out of gasoline, coasts over the crest and down
+   again, and brakes to a stop." · none · 2D. Labels are on: five of them, one at
+   each position the question asks about, each clamped clear of the headline
+   band. `widths` [500]. The
    book's image is carried on the question's card as well. Draws nothing.
 
 The section has no sketch figure of the book's to replace and folds nothing:

@@ -1,7 +1,7 @@
 /* Figures for section 16.2 Period and Frequency. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, axes, nice, curve, scale, spring, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, axes, curve, scale, spring, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -21,7 +21,10 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   const xAt = (t) => A * Math.cos(2 * Math.PI * t / T.v);
   function draw() {
     const { ctx } = begin(d.c);
-    const span = nice(0, W.v + 2.5 * T.v, 5), S = span.hi, tick = S / span.n;
+    /* Fixed and never rescaled: the trace always shows the last 8 s, which holds the widest
+       counting window the slider reaches, 5 s, with three seconds of run before it. The wave
+       itself lengthens as the period grows, instead of the tick labels changing under it. */
+    const S = 8, NX = 8;
     const tau = REDUCED ? S : cy.now(), x = xAt(tau), f = 1 / T.v;
     /* the scene: a string between two fixed ends, vibrating in its fundamental */
     const L = 140, R = 1260, ys = 180, AMP = 64, cx = (L + R) / 2;
@@ -38,17 +41,17 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     if (Math.abs(x) > 0.15) { vbracket(ctx, cx + 40, ys, ys - u * AMP, C('position')); text(ctx, 'x = ' + (x > 0 ? '+' : '−') + fmt(Math.abs(x), 1) + ' mm', cx + 58, ys - AMP - 24, C('position'), { weight: 600, size: 20 }); }
     /* the graph: the midpoint's position against time, the pen fixed at the right and the trace moving left */
     const box = { l: 140, r: 1260, t: 320, b: 580 };
-    const dec = tick < 1 ? 1 : 0;
-    const { X, Y } = axes(ctx, box, [-S, 0], [-3, 3], { xl: 'time before now (s)', xc: C('time'), yl: 'x (mm)', yc: C('position'), nx: span.n, ny: 2, fx: (v) => (Math.abs(v) < 1e-9 ? 'now' : fmt(-v, dec)), fy: (v) => fmt(v, 0) });
-    ctx.save(); ctx.fillStyle = alpha(C('time'), 0.12); ctx.fillRect(X(-W.v), box.t, X(0) - X(-W.v), box.b - box.t); ctx.restore();
+    const { X, Y } = axes(ctx, box, [-S, 0], [-3, 3], { xl: 'time before now (s)', xc: C('time'), yl: 'x (mm)', yc: C('position'), nx: NX, ny: 2, fx: (v) => (Math.abs(v) < 1e-9 ? 'now' : fmt(-v, 0)), fy: (v) => fmt(v, 0) });
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(X(-W.v), box.t, X(0) - X(-W.v), box.b - box.t); ctx.restore();
+    line(ctx, X(-W.v), box.t, X(-W.v), box.b, C('time'), 2, [8, 8]);
     const t0 = Math.max(0, tau - S);
     if (tau > 0) curve(ctx, (s) => xAt(tau + s), t0 - tau, 0, X, Y, C('position'), 4, Math.min(3000, Math.ceil(40 * (tau - t0) / T.v) + 20));
     for (let n = Math.ceil(t0 / T.v - 1e-9); n * T.v <= tau + 1e-9; n++) dot(ctx, X(n * T.v - tau), Y(A), C('time'), true, 6);
     const n1 = Math.floor(tau / T.v + 1e-9);
     if (n1 >= 1 && (n1 - 1) * T.v >= t0 - 1e-9) hbracket(ctx, X((n1 - 1) * T.v - tau), X(n1 * T.v - tau), Y(A) - 26, C('time'), 'T = ' + fmt(T.v, 2) + ' s');
-    text(ctx, 'the last ' + fmt(W.v, 1) + ' s hold ' + fmt(W.v / T.v, 2) + ' cycles', X(0) - 12, box.b - 16, C('time'), { weight: 600, size: 20, align: 'right' });
+    text(ctx, 'The last ' + fmt(W.v, 1) + ' s hold ' + fmt(W.v / T.v, 2) + ' cycles', X(0) - 12, box.b - 16, C('time'), { weight: 600, size: 20, align: 'right' });
     dot(ctx, X(0), Y(x), PAL.ink, true, 9);
-    headline(ctx, 'each cycle takes ' + fmt(T.v, 2) + ' s, so ' + fmt(f, 2) + ' cycles fit in every second');
+    headline(ctx, 'Each cycle takes ' + fmt(T.v, 2) + ' s, so ' + fmt(f, 2) + ' cycles fit in every second');
     readout(d.readout, `\\kf = \\frac{1}{\\kT} = \\frac{1}{${fmt(T.v, 2)}\\ \\text{s}} = ${fmt(f, 2)}\\ \\text{Hz}`,
       'A window of ' + fmt(W.v, 1) + ' s holds ' + fmt(W.v / T.v, 2) + ' cycles, and ' + fmt(W.v / T.v, 2) + ' cycles in ' + fmt(W.v, 1) + ' s is again ' + fmt(f, 2) + ' cycles per second. The frequency does not depend on how long you count for.');
   }
@@ -92,14 +95,17 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     text(ctx, String(n), kx, sy - 6, PAL.ink, { weight: 700, size: 88, align: 'center' });
     text(ctx, n === 1 ? 'cycle completed' : 'cycles completed', kx, sy + 64, PAL.muted, { size: 20, align: 'center' });
     /* the time line: a mark for every completed cycle */
-    const tl = 140, tr = 1260, ty = 500, Xt = (t) => tl + ((tr - tl) * t) / tt.v;
-    line(ctx, tl, ty, tr, ty, PAL.muted, 3);
-    scale(ctx, Xt, 0, tt.v, 1, ty, 's', tt.v > 12 ? 5 : 1);
+    /* The time line is fixed at 0 to 30 s, the longest run the elapsed-time slider reaches, and
+       never rescaled, so a shorter run plainly reaches less far along it and its marks sit closer. */
+    const TL = 30, tl = 140, tr = 1260, ty = 500, Xt = (t) => tl + ((tr - tl) * t) / TL;
+    line(ctx, tl, ty, tr, ty, PAL.rule, 3);
+    line(ctx, tl, ty, Xt(tt.v), ty, PAL.muted, 3);
+    scale(ctx, Xt, 0, TL, 1, ty, 's', 5);
     for (let i = 1; i <= n; i++) line(ctx, Xt(i * T()), ty - 34, Xt(i * T()), ty - 10, C('time'), 3);
     dot(ctx, Xt(tau), ty, PAL.ink, true, 8);
-    text(ctx, 'one mark for each completed cycle', tl, ty - 58, PAL.muted, { size: 17 });
-    headline(ctx, done ? N.v + ' cycles in ' + fmt(tt.v, 1) + ' s, so the frequency is ' + N.v + ' cycles per ' + fmt(tt.v, 1) + ' s, or ' + fmt(N.v / tt.v, 2) + ' Hz'
-      : n + (n === 1 ? ' cycle' : ' cycles') + ' completed so far, in ' + fmt(tau, 1) + ' s');
+    text(ctx, 'One mark for each completed cycle', tl, ty - 58, PAL.muted, { size: 17 });
+    headline(ctx, done ? N.v + ' cycles in ' + fmt(tt.v, 1) + ' s is a frequency of ' + fmt(N.v / tt.v, 2) + ' cycles per second'
+      : n + (n === 1 ? ' cycle has' : ' cycles have') + ' been completed so far, in ' + fmt(tau, 1) + ' s');
     readout(d.readout, `\\kf = \\frac{N}{\\kt} = \\frac{${N.v}}{${fmt(tt.v, 1)}\\ \\text{s}} = ${fmt(N.v / tt.v, 2)}\\ \\text{Hz}`,
       'Each cycle takes T = t/N = ' + fmt(T(), 3) + ' s, and 1/T gives the same ' + fmt(1 / T(), 2) + ' Hz.');
   }

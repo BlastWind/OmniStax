@@ -101,10 +101,12 @@ headline · graph · 3D
    else, there is no time in a comparison of rates, so it registers no cycle
    and carries no transport · the mantissa (1.0 to 9.9, default 8.0, ink) and
    the exponent (−3 to 38, default 4, ink) of a power in watts ·
-   "8.0 × 10⁴ W is the power Table 7.3 gives for a car" · the chart is the
+   "8.0 × 10⁴ W is the power Table 7.3 gives for a car." · the chart is the
    picture: a bar for each of the seventeen entries of Table 7.3 on one
    logarithmic scale from 10⁻⁴ W to 10³⁸ W, with the name in a gutter on the
-   left and the book's own figure at the end of the bar · no. The power the
+   left and the table's own figure at the end of the bar · 2D. Labels are on:
+   every entry carries its own name and value on its own row, so nothing can
+   collide. The power the
    sliders set is a dashed line across the chart, the entries above and below
    it are picked out in the power hue, and the factor from the line to each of
    them is written on its bar. Readout: the value in watts; small line naming
@@ -120,9 +122,10 @@ headline · graph · 3D
    scrubber · the power the appliance draws $\kP$ (0.05 to 5.00 kW, default
    0.200, power), the hours it runs each day $\kt$ (1.0 to 24.0 h, default
    6.00, time) and the price of a kilowatt-hour (0.05 to 0.40, default 0.120,
-   ink) · "day 12 of 30 · the computer has used 14.4 kW·h and cost ＄1.73 so
-   far" · graph below the meter, the energy in kilowatt-hours against the day,
-   a step for each day's run · no. Readout: $\kE = \kP\kt$ with the numbers of
+   ink) · "On day 12 of 30 the appliance has used 14.4 kW·h, which comes to
+   ＄1.73 so far." · graph below the meter, the energy in kilowatt-hours
+   against the day on fixed axes of 0 to 30 days by 0 to 50 kW·h, a step for
+   each day's run · 2D. Labels are on: four of them. Readout: $\kE = \kP\kt$ with the numbers of
    Example 7.12; small line on the cost for the month. Draws power, energy,
    time.
 

@@ -48,7 +48,7 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     /* the equation in whichever upper corner the line leaves free */
     text(ctx, 'y = mx + b', m >= 0 ? box.l + 40 : box.r - 40, box.t + 40, PAL.ink, { align: m >= 0 ? 'left' : 'right', weight: 600, size: 24 });
     const verb = rise > 0.05 ? 'rises ' + fmt(rise, 1) : rise < -0.05 ? 'falls ' + fmt(-rise, 1) : 'is level, rising 0.0,';
-    headline(ctx, 'the line ' + verb + ' for a run of 2.0, so its slope is ' + neg(fmt(m, 1)) + ', and it crosses the y-axis at ' + neg(fmt(b, 1)));
+    headline(ctx, 'The line ' + verb + ' for a run of 2.0, so its slope is ' + neg(fmt(m, 1)) + ', and it crosses the y-axis at ' + neg(fmt(b, 1)) + '.');
     readout(d.readout, `y = mx + b = ${neg(fmt(m, 1))}x ${sgn(b)} ${fmt(Math.abs(b), 1)}\\qquad \\text{slope} = \\frac{\\text{rise}}{\\text{run}} = \\frac{${neg(fmt(rise, 1))}}{2.0} = ${neg(fmt(m, 1))}`,
       'The slope is the same between any two points of a straight line, so the triangle may be drawn anywhere along it.');
   }
@@ -71,8 +71,9 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
   function draw() {
     const { ctx } = begin(d.c);
     const pos = (t) => x0.v + vb.v * t, xa = pos(t1.v), xb = pos(t2.v), dx = xb - xa, dt = t2.v - t1.v;
-    const yr = nice(0, Math.max(2400, pos(8)), 6);
-    const { X, Y } = axes(ctx, box, [0, 8], [0, yr.hi], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 8, ny: yr.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* the x axis is fixed at 0 to 3800 m, the farthest the two sliders reach in 8 s, so a faster car
+       draws a steeper line instead of the axis stretching to keep the line at the same slant */
+    const { X, Y } = axes(ctx, box, [0, 8], [0, 3800], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, X(0), Y(pos(0)), X(8), Y(pos(8)), C('position'), 5);
     /* the intercept, hollow, and the two chosen points, filled */
     dot(ctx, X(0), Y(x0.v), C('position'), false, 10);
@@ -89,11 +90,11 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     /* the slope named on the line */
     text(ctx, 'slope = v̄ = Δx / Δt', X(3.6), Y(pos(3.6)) - 40, C('velocity'), { align: 'right', weight: 600, size: 22, bg: alpha(PAL.panel, 0.85) });
     if (Math.abs(dt) > 0.05) {
-      headline(ctx, 'between ' + fmt(t1.v, 2) + ' s and ' + fmt(t2.v, 2) + ' s the car goes from ' + fmt(xa, 0) + ' m to ' + fmt(xb, 0) + ' m, a rise of ' + neg(fmt(dx, 0)) + ' m over a run of ' + neg(fmt(dt, 2)) + ' s, so the slope is ' + fmt(vb.v, 0) + ' m/s');
+      headline(ctx, 'Between ' + fmt(t1.v, 2) + ' s and ' + fmt(t2.v, 2) + ' s the car goes from ' + fmt(xa, 0) + ' m to ' + fmt(xb, 0) + ' m, a rise of ' + neg(fmt(dx, 0)) + ' m over a run of ' + neg(fmt(dt, 2)) + ' s, so the slope is ' + fmt(vb.v, 0) + ' m/s.');
       readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{${fmt(xb, 0)}\\ \\text{m} - ${fmt(xa, 0)}\\ \\text{m}}{${fmt(t2.v, 2)}\\ \\text{s} - ${fmt(t1.v, 2)}\\ \\text{s}} = ${fmt(vb.v, 0)}\\ \\text{m/s}`,
         'The intercept is x₀ = ' + fmt(x0.v, 0) + ' m, so the graph reads x = x₀ + v̄t: the position at any time is ' + fmt(x0.v, 0) + ' m plus ' + fmt(vb.v, 0) + ' m/s times the time.');
     } else {
-      headline(ctx, 'the two chosen times are the same, so there is no run to divide by; choose two different points on the line');
+      headline(ctx, 'The two chosen times are the same, so there is no run to divide by. Move them apart to two different points on the line.');
       readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kdt}`, 'Any two points on the line give the same slope, and two widely separated points give it most accurately.');
     }
   }
@@ -121,13 +122,14 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
   function draw() {
     const { ctx } = begin(d.c);
     const tau = cy.now(), xt = pos(tau), vt = vel(tau), done = tau >= T - 1e-9;
-    const xr = nice(0, Math.max(500, pos(T)), 6), vr = nice(0, Math.max(20, vel(T)), 4), ar = nice(0, Math.max(6, a.v * 1.2), 3);
+    /* the three ranges are fixed once from the slider maxima, 6000 m, 300 m/s and 8.0 m/s², so a
+       slider changes what is drawn and never the ticks */
     const none = () => '';
-    const g1 = axes(ctx, b1, [0, 35], [0, xr.hi], { yl: 'x (m)', yc: C('position'), nx: 7, ny: xr.n, fx: none, fy: (v) => fmt(v, 0) });
-    const g2 = axes(ctx, b2, [0, 35], [0, vr.hi], { yl: 'v (m/s)', yc: C('velocity'), nx: 7, ny: vr.n, fx: none, fy: (v) => fmt(v, 0) });
-    const g3 = axes(ctx, b3, [0, 35], [0, ar.hi], { xl: 't (s)', xc: C('time'), yl: 'a (m/s²)', yc: C('acceleration'), nx: 7, ny: ar.n, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const g1 = axes(ctx, b1, [0, 35], [0, 6000], { yl: 'x (m)', yc: C('position'), nx: 7, ny: 6, fx: none, fy: (v) => fmt(v, 0) });
+    const g2 = axes(ctx, b2, [0, 35], [0, 300], { yl: 'v (m/s)', yc: C('velocity'), nx: 7, ny: 6, fx: none, fy: (v) => fmt(v, 0) });
+    const g3 = axes(ctx, b3, [0, 35], [0, 8], { xl: 't (s)', xc: C('time'), yl: 'a (m/s²)', yc: C('acceleration'), nx: 7, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     /* (a) the whole position curve, the tangent at the moving point P */
-    curve(ctx, pos, 0, T, g1.X, g1.Y, C('position'), 5);
+    clipped(ctx, b1, () => curve(ctx, pos, 0, T, g1.X, g1.Y, C('position'), 5));
     clipped(ctx, b1, () => line(ctx, g1.X(tau - 6), g1.Y(xt - 6 * vt), g1.X(tau + 6), g1.Y(xt + 6 * vt), PAL.ink, 3));
     /* the clock's drop line through all three graphs */
     drop(ctx, g1.X(tau), b1.t, g1.X(tau), b3.b, C('time'));
@@ -144,8 +146,8 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     if (tau > 0) line(ctx, g3.X(0), g3.Y(a.v), g3.X(tau), g3.Y(a.v), C('acceleration'), 5);
     dot(ctx, g3.X(tau), g3.Y(a.v), C('acceleration'), true, 9);
     text(ctx, 'a = ' + fmt(a.v, 1) + ' m/s²', g3.X(tau) + 22, g3.Y(a.v) + 28, C('acceleration'), { weight: 600, size: 20, align: tau > 24 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
-    headline(ctx, done ? 'the slopes of the position curve make the velocity line, and its slope, ' + fmt(a.v, 1) + ' m/s², is the acceleration'
-      : 't = ' + fmt(tau, 1) + ' s · the tangent at P has slope ' + fmt(vt, 0) + ' m/s, which is plotted below as the velocity; the velocity line has slope ' + fmt(a.v, 1) + ' m/s²');
+    headline(ctx, done ? 'The slopes of the position curve make the velocity line, whose own slope of ' + fmt(a.v, 1) + ' m/s² is the acceleration.'
+      : 'After ' + fmt(tau, 1) + ' s the tangent at P has slope ' + fmt(vt, 0) + ' m/s, which is plotted below as the velocity, and the velocity line has slope ' + fmt(a.v, 1) + ' m/s².');
     readout(d.readout, `\\kv = \\kvo + \\ka\\kt = ${fmt(v0.v, 0)} + (${fmt(a.v, 1)})(${fmt(tau, 1)}) = ${fmt(vt, 0)}\\ \\text{m/s}`,
       'The velocity line is straight because its slope, the acceleration, is the same at every point, and the position curve bends because its slope keeps growing.');
   }
@@ -190,11 +192,11 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
       text(ctx, fmt(pos(t), 0), tx + 150, y, on ? PAL.ink : PAL.muted, { align: 'right', weight: on ? 600 : 400, size: 20 });
     });
     if (Math.abs(dt) > 0.05) {
-      headline(ctx, 'the tangent at Q runs from (' + fmt(t1.v, 1) + ' s, ' + fmt(x1, 0) + ' m) to (' + fmt(t2.v, 1) + ' s, ' + fmt(x2, 0) + ' m), so its slope, the velocity at ' + fmt(tQ.v, 1) + ' s, is ' + fmt(vQ, 0) + ' m/s');
+      headline(ctx, 'The tangent at Q runs from (' + fmt(t1.v, 1) + ' s, ' + fmt(x1, 0) + ' m) to (' + fmt(t2.v, 1) + ' s, ' + fmt(x2, 0) + ' m), so its slope, the velocity at ' + fmt(tQ.v, 1) + ' s, is ' + fmt(vQ, 0) + ' m/s.');
       readout(d.readout, `\\kv_{Q} = \\frac{\\kdx_{Q}}{\\kdt_{Q}} = \\frac{${fmt(x2, 0)}\\ \\text{m} - ${fmt(x1, 0)}\\ \\text{m}}{${fmt(t2.v, 1)}\\ \\text{s} - ${fmt(t1.v, 1)}\\ \\text{s}} = ${fmt(vQ, 0)}\\ \\text{m/s}`,
         'Sliding the endpoints along the tangent leaves the slope unchanged, and a wider interval makes any error in reading the graph proportionally smaller.');
     } else {
-      headline(ctx, 'the two endpoints of the tangent are the same point, so there is no run to divide by; move them apart along the tangent');
+      headline(ctx, 'The two endpoints of the tangent are the same point, so there is no run to divide by. Move them apart along the tangent.');
       readout(d.readout, `\\kv_{Q} = \\frac{\\kdx_{Q}}{\\kdt_{Q}}`, 'The velocity at Q is the slope of the tangent there, ' + fmt(vQ, 0) + ' m/s, however the endpoints are chosen.');
     }
   }
@@ -211,9 +213,12 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
 ===================================================================== */
 (function () {
   const d = sim('sim-jet-top', 800);
-  const tQ = ctl(d.controls, { label: '\\kt_{Q}', cls: 'time', min: 0, max: 60, step: 0.5, value: 25, unit: 's', dec: 1, aria: 'chosen time' });
-  const t1 = ctl(d.controls, { label: '\\kt_{1}', cls: 'time', min: 0, max: 60, step: 0.5, value: 1, unit: 's', dec: 1, aria: 'first endpoint of the tangent' });
-  const t2 = ctl(d.controls, { label: '\\kt_{2}', cls: 'time', min: 0, max: 70, step: 0.5, value: 51, unit: 's', dec: 1, aria: 'second endpoint of the tangent' });
+  /* The chosen time stops at 55 s, where the velocity levels out and the acceleration reaches zero:
+     past that the curve draws nothing the reader has not already seen. The first endpoint stops at
+     40 s and the second starts at 10 s, so the two always straddle enough of the tangent to read. */
+  const tQ = ctl(d.controls, { label: '\\kt_{Q}', cls: 'time', min: 0, max: 55, step: 0.5, value: 25, unit: 's', dec: 1, aria: 'chosen time' });
+  const t1 = ctl(d.controls, { label: '\\kt_{1}', cls: 'time', min: 0, max: 40, step: 0.5, value: 1, unit: 's', dec: 1, aria: 'first endpoint of the tangent' });
+  const t2 = ctl(d.controls, { label: '\\kt_{2}', cls: 'time', min: 10, max: 70, step: 0.5, value: 51, unit: 's', dec: 1, aria: 'second endpoint of the tangent' });
   const A = [[0, 5], [10, 3], [25, 1], [55, 0]];
   function acc(t) {
     if (t >= 55) return 0;
@@ -249,15 +254,15 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     dot(ctx, g2.X(tQ.v), g2.Y(aQ), C('acceleration'), true, 9);
     text(ctx, 'a = ' + fmt(aQ, 1) + ' m/s²', g2.X(tQ.v) + (tQ.v > 45 ? -20 : 20), g2.Y(aQ) - 28, C('acceleration'), { weight: 600, size: 20, align: tQ.v > 45 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     if (tQ.v >= 55) {
-      headline(ctx, 'at ' + fmt(tQ.v, 1) + ' s the velocity has levelled out at 250 m/s: the tangent is horizontal and the acceleration is zero');
+      headline(ctx, 'At ' + fmt(tQ.v, 1) + ' s the velocity has leveled out at 250 m/s, so the tangent is horizontal and the acceleration is zero.');
       readout(d.readout, `\\ka = \\frac{\\kdv}{\\kdt} = \\frac{0\\ \\text{m/s}}{${fmt(Math.abs(dt), 1)}\\ \\text{s}} = 0\\ \\text{m/s}^2`,
         'After 55 s the velocity is constant, so a graph of velocity against time is level and its slope, the acceleration, is zero.');
     } else if (Math.abs(dt) > 0.05) {
-      headline(ctx, 'the tangent at ' + fmt(tQ.v, 1) + ' s runs from (' + fmt(t1.v, 1) + ' s, ' + fmt(v1, 0) + ' m/s) to (' + fmt(t2.v, 1) + ' s, ' + fmt(v2, 0) + ' m/s), so the acceleration at ' + fmt(tQ.v, 1) + ' s is ' + fmt(aQ, 1) + ' m/s²');
+      headline(ctx, 'The tangent at ' + fmt(tQ.v, 1) + ' s runs from (' + fmt(t1.v, 1) + ' s, ' + fmt(v1, 0) + ' m/s) to (' + fmt(t2.v, 1) + ' s, ' + fmt(v2, 0) + ' m/s), so the acceleration at ' + fmt(tQ.v, 1) + ' s is ' + fmt(aQ, 1) + ' m/s².');
       readout(d.readout, `\\ka = \\frac{\\kdv}{\\kdt} = \\frac{${fmt(v2, 0)}\\ \\text{m/s} - ${fmt(v1, 0)}\\ \\text{m/s}}{${fmt(t2.v, 1)}\\ \\text{s} - ${fmt(t1.v, 1)}\\ \\text{s}} = ${fmt(aQ, 1)}\\ \\text{m/s}^2`,
         'Between 0 and 55 s the acceleration keeps falling, so the tangent keeps flattening, and after 55 s the velocity is constant at 250 m/s.');
     } else {
-      headline(ctx, 'the two endpoints of the tangent are the same point, so there is no run to divide by; move them apart along the tangent');
+      headline(ctx, 'The two endpoints of the tangent are the same point, so there is no run to divide by. Move them apart along the tangent.');
       readout(d.readout, `\\ka = \\frac{\\kdv}{\\kdt}`, 'The acceleration at ' + fmt(tQ.v, 1) + ' s is the slope of the tangent there, ' + fmt(aQ, 1) + ' m/s², however the endpoints are chosen.');
     }
   }

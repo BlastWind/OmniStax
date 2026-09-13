@@ -117,6 +117,12 @@ sliders with their types · headline · graph · 3D
    hollow so the factor of four can be read off the curve · no.
    Readout: $\kFD = \tfrac12 C\rho A\kv^2$ with the numbers put in; small
    line on the square dependence. Draws force, velocity.
+   Revised in the figure-audit pass of 2026-09-12: the body drawn is the one
+   the drag coefficient belongs to — a skydiver, a sphere, a circular flat
+   plate, an airfoil, a bicycle or a road vehicle — so a skydiver is never
+   drawn as a car, and the drag-coefficient slider carries a tick at every
+   value Table 5.2 prints, each of which the hundredth it steps by lands on
+   exactly.
 6. `sim-terminal` · **Sim** (the book draws no sketch of the falling
    skydiver) · terminal-velocity, terminal-velocity-magnitude,
    drag-force-equation · **moves**: a skydiver is released and falls, and
@@ -134,6 +140,8 @@ sliders with their types · headline · graph · 3D
    · no. Readout: $\kvt = \sqrt{2m\kg/\rho C A}$ with the numbers put in;
    small line giving the same speed in km/h. Draws force, velocity,
    acceleration, time.
+   Revised in the figure-audit pass of 2026-09-12: the headline is one
+   capitalized sentence.
 7. `sim-stokes` · **Sim** (the book draws no sketch of Stokes' law) ·
    stokes-law, terminal-velocity · **moves**: a steel bead sinks through a
    jar of oil and the fall takes a time that the reader is asked to measure,
@@ -148,6 +156,11 @@ sliders with their types · headline · graph · 3D
    with the current bead marked · no. Readout: $\kFs = 6\pi r\eta\kv$ with
    the numbers put in; small line saying that this equals the weight of the
    bead. Draws force, velocity, time.
+   Revised in the figure-audit pass of 2026-09-12: the curve is greyed past
+   the radius at which the Reynolds number of the sinking bead reaches one,
+   with that radius marked, and the headline and the small line say that
+   Stokes' law no longer holds there and give the Reynolds number the
+   setting reaches. The headline is one capitalized sentence.
 8. `sim-size` · **Sim** (the book draws no sketch of Haldane's scaling) ·
    size-and-terminal-velocity, terminal-velocity-magnitude · **moves**: two
    bodies of the same shape and different size are released together and
@@ -203,6 +216,8 @@ Extra simulations (rule 15), considered and judged:
   the reader rather than a result to draw. Left.
 
 None built.
+   Revised in the figure-audit pass of 2026-09-12: the headline is one
+   capitalized sentence.
 
 ## Exercises
 

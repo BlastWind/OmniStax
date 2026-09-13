@@ -77,31 +77,42 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    a legend on the right reads "low precision" and "high accuracy" in
    large type with a line under each saying why · spread (0.1 to 3.0
    rings, default 2.0, ink), offset (0 to 3.0 rings, default 0.3, ink) ·
-   "a spread of 2.0 rings means low precision, and an offset of 0.3 rings
-   means high accuracy" (low/high switch at 1.0 ring each) · none · no.
-   The defaults reproduce Figure 1.23; spread 0.3 with offset 2.5
-   reproduces Figure 1.24. No motion.
+   "A spread of 2.0 rings means low precision, and an offset of 0.3 rings
+   means high accuracy." (low/high switch at 1.0 ring each) · none · 2D.
+   Labels on, since the target and its legend name five things once each
+   and nothing moves. The defaults reproduce the first bull's-eye, and a
+   spread of 0.3 with an offset of 2.5 reproduces the second. No motion.
+   Both original captions are carried, written as "(Figure 1.23) … 
+   (Figure 1.24) …", so the reader who swaps the drawing for the book's
+   images reads the caption of each.
    Readout: spread = 2.0 rings, offset of the centre = 0.3 rings. Small
    line: precision is about how closely the attempts agree with one
-   another, and accuracy about how close they are to the correct value;
-   a system can have either without the other.
+   another, and accuracy about how close they are to the correct value,
+   and a system can have either without the other.
 2. `sim-percent` · new (Example 1.2) · percent-uncertainty · a number
    line of weight in pounds with the four weekly weights of the example
    as ink ticks, the average A as a filled marker and the band A ± δA as
    a shaded bracket; a second line beneath repeats it for a bag half as
    heavy with the same δA, so the same absolute uncertainty becomes a
    larger percent · A (1.0 to 10.0 lb, default 5.1, ink), δA (0.1 to 1.0
-   lb, default 0.4, ink) · "5.1 lb ± 0.4 lb is 5.1 lb ± 8%" · none · no.
-   No motion. Readout: the equation with the numbers substituted. Small
-   line: the same uncertainty on a bag half as heavy is 16%.
+   lb, default 0.4, ink) · "A weight of 5.1 lb known to ± 0.4 lb is known
+   to ± 8%." · none · 2D. The line runs a fixed 0 to 11 lb, the widest the
+   two sliders reach, so a slider moves the marker and not the ticks, and
+   a band that would run past an end is clamped there while the bracket
+   writes the true numbers. The four weekly weights are drawn only while
+   the average is at 5.1 lb, since away from that they are no longer the
+   readings of the example. Labels on, six ticks and two brackets, none
+   of them moving under one another. No motion. Readout: the equation
+   with the numbers substituted. Small line: the same uncertainty on a
+   bag half as heavy is 16%.
 3. `sim-area` · new (the floor) · adding-percents · the 4.00 m by 3.00 m
    floor drawn to scale with the largest and smallest floors the
    uncertainties allow as dashed outlines about the same centre and the
    ring between them shaded, so the uncertainty in the area is the ring;
    a key on the right gives the three areas · percent uncertainty in the
    length (0 to 10%, default 2, ink), in the width (0 to 10%, default 1,
-   ink) · "a floor 4.00 m by 3.00 m, known to 2% and 1%, has an area of
-   12.0 m² known to 3%" · none · no. No motion. Readout: 12.0 m² ± 3% =
+   ink) · "A floor 4.00 m by 3.00 m, known to 2% and 1%, has an area of
+   12.0 m² known to 3%." · none · 2D. No motion. Readout: 12.0 m² ± 3% =
    12.0 m² ± 0.4 m². Small line: the largest and smallest floors, computed
    from the sliders, and that adding the percents is very nearly exact
    when the uncertainties are small.
@@ -112,10 +123,12 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    of the end of the stick with the ruler's marks at the chosen division,
    a bracket over the two marks the end lies between labelled as the
    estimated digit, and the reading a person would write down · true
-   length (10.00 to 50.00 cm, default 36.71, ink), smallest division (0,
-   1, 2 for 1 cm, 1 mm, 0.1 mm, default 1 mm, ink) · "with millimeter
+   length (10.00 to 50.00 cm, default 36.71, ink), smallest division as a
+   choice of 1 cm, 1 mm and 0.1 mm, default 1 mm, since three rulers are
+   three states and not a quantity to slide through · "With millimeter
    divisions the stick reads 36.7 cm, three figures, and the 7 is
-   estimated" · none · no. Finite cycle, so it gets the scrubber;
+   estimated." · none · 2D. Labels on, four of them, each beside a thing
+   that stays put. Finite cycle, so it gets the scrubber;
    reduced motion draws it aligned. Readout: L = 36.7 cm. Small line: the
    last digit written down is the first with some uncertainty; the
    centimeter ruler gives 37 cm, two figures, and the caliper 36.71 cm,

@@ -125,3 +125,20 @@ here twice, as the bob's angular velocity (v = Lω) and, in the example's
 tail, as 2π/T. The config gives ω the time hue as an angular frequency.
 Proposed: keep ω in ink in this section and colour it when 16.6
 introduces it properly.
+
+Audit pass (2026-09-12): both figures share one fixed energy scale, 0 to
+1.00 J, and one fixed position scale, the amplitude slider's own plus and
+minus 0.20 m. The scale is taken from the state the book draws, where
+½kX² = 0.25 J, because reading it off the slider maxima, where the same
+quantity reaches 4 J, would leave the book's own bars and curves a sliver; a
+total above the top of the scale is drawn at the top with its true value
+beside it. The bars are no longer normalised to their own total, so the two
+sliders now change the height of the pair and not only the printed number.
+`sim-max-speed` fixes its velocity axis at plus and minus 2.0 m/s from that
+same default state, so the ellipse changes shape with every setting instead of
+looking alike at all of them, and a faster car is drawn clipped with its point
+pinned at the edge. Neither block nor car body carries its mass written across
+it any longer. The `draws` rows are corrected: `sim-energy-transfer` binds
+energy, position, stiffness and velocity, and `sim-max-speed` position,
+stiffness and velocity; neither draws the angular rate, and `sim-max-speed`
+draws no energy. Both are two-dimensional, with no 3D, and their labels on.

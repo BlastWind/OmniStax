@@ -65,10 +65,11 @@ function walker(ctx, x, y, color) {
     /* block numbers along the two legs, and the labels of the three vectors */
     for (let i = 0; i <= e; i++) text(ctx, String(i), x0 + i * s, yb + 30, PAL.muted, { size: 17, align: 'center' });
     for (let j = 0; j <= n; j++) text(ctx, String(j), xr + 26, yb - j * s, PAL.muted, { size: 17 });
-    text(ctx, e + (e === 1 ? ' block east' : ' blocks east'), (x0 + xr) / 2, yb + 64, pc, { weight: 600, align: 'center' });
-    text(ctx, n + (n === 1 ? ' block north' : ' blocks north'), xr + 56, (yb + yt) / 2, pc, { weight: 600 });
+    /* the three sides carry the letters the readout uses, so a, b and c can be found on the drawing */
+    text(ctx, 'a = ' + e + (e === 1 ? ' block east' : ' blocks east'), (x0 + xr) / 2, yb + 64, pc, { weight: 600, align: 'center' });
+    text(ctx, 'b = ' + n + (n === 1 ? ' block north' : ' blocks north'), xr + 56, (yb + yt) / 2, pc, { weight: 600 });
     ctx.save(); ctx.translate((x0 + xr) / 2, (yb + yt) / 2); ctx.rotate(-theta);
-    text(ctx, 'straight-line path, ' + fmt(c, 1) + ' blocks', 0, -26, pc, { weight: 600, align: 'center' }); ctx.restore();
+    text(ctx, 'c = ' + fmt(c, 1) + ' blocks, the straight-line path', 0, -26, pc, { weight: 600, align: 'center' }); ctx.restore();
     text(ctx, 'start', x0 - 16, yb, PAL.muted, { size: 17, align: 'right' });
     text(ctx, 'destination', xr + 56, yt, PAL.muted, { size: 17 });
     /* the walker on the streets and the helicopter on the diagonal, one block per unit of model time */
@@ -77,9 +78,9 @@ function walker(ctx, x, y, color) {
     helicopter(ctx, hx, hy, -theta, cy.tau * 2.4, PAL.ink);
     walker(ctx, wx, wy, PAL.ink);
     const gone = Math.min(tau, total()), flown = Math.min(tau, c);
-    headline(ctx, done ? total() + ' blocks walked, ' + e + ' east and then ' + n + ' north, and the straight-line distance is ' + fmt(c, 1) + ' blocks'
-      : tau >= c ? 'the helicopter has arrived after ' + fmt(c, 1) + ' blocks, and the walker still has ' + fmt(total() - gone, 1) + ' blocks to go'
-      : 'the walker has gone ' + fmt(gone, 1) + ' of the ' + total() + ' blocks and the helicopter ' + fmt(flown, 1) + ' of its ' + fmt(c, 1));
+    headline(ctx, done ? 'The walk covers ' + total() + ' blocks, ' + e + ' east and then ' + n + ' north, while the straight-line distance is ' + fmt(c, 1) + ' blocks.'
+      : tau >= c ? 'The helicopter has arrived after ' + fmt(c, 1) + ' blocks, and the walker still has ' + fmt(total() - gone, 1) + ' blocks to go.'
+      : 'The walker has gone ' + fmt(gone, 1) + ' of the ' + total() + ' blocks, and the helicopter ' + fmt(flown, 1) + ' of its ' + fmt(c, 1) + '.');
     readout(d.readout, `c = \\sqrt{a^2 + b^2} = \\sqrt{(${e}\\ \\text{blocks})^2 + (${n}\\ \\text{blocks})^2} = ${fmt(c, 1)}\\ \\text{blocks}`,
       'The walk covers ' + e + ' + ' + n + ' = ' + total() + ' blocks, and the straight-line path rises ' + fmt(theta * 180 / Math.PI, 1) + '° above east.');
   }
@@ -158,8 +159,8 @@ function walker(ctx, x, y, color) {
     line(ctx, g2.X(tau), bot.b, g2.X(tau), g2.Y(xnow), tc, 2, [4, 8]); dot(ctx, g2.X(tau), g2.Y(xnow), PAL.ink, true, 9);
     text(ctx, 'thrown ball', g2.X(tf * 0.5) - 12, g2.Y(xmax * 0.5) - 14, pc, { size: 17, weight: 600, align: 'right' });
     text(ctx, 'dropped ball stays at x = 0', g2.X(0) + 16, g2.Y(0) - 22, PAL.muted, { size: 17, bg: PAL.panel });
-    headline(ctx, done ? 'both balls reach the ground together after ' + fmt(tf, 2) + ' s, and the thrown ball has gone ' + fmt(xmax, 2) + ' m sideways'
-      : 't = ' + fmt(tau, 2) + ' s · both balls are ' + fmt(yOf(tau), 2) + ' m above the ground, and the thrown ball has gone ' + fmt(xnow, 2) + ' m sideways');
+    headline(ctx, done ? 'Both balls reach the ground together after ' + fmt(tf, 2) + ' s, and the thrown ball has gone ' + fmt(xmax, 2) + ' m sideways.'
+      : 'After ' + fmt(tau, 2) + ' s both balls are ' + fmt(yOf(tau), 2) + ' m above the ground, and the thrown ball has gone ' + fmt(xnow, 2) + ' m sideways.');
     readout(d.readout, `\\ky = \\kyo - \\tfrac{1}{2}\\kg\\kt^2 = ${fmt(yOf(tau), 2)}\\ \\text{m for both balls}\\qquad \\kx = \\kvox\\kt = ${fmt(xnow, 2)}\\ \\text{m for the thrown ball}`,
       'Between any two flashes the thrown ball moves the same ' + fmt(V.v * DT.v, 2) + ' m sideways, and at every flash the vertical velocities of the two balls are equal.');
   }

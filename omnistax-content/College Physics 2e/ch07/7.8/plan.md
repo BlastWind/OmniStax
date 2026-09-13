@@ -87,10 +87,11 @@ headline · graph · 3D
    18,000 kJ, default 13,000, energy), the food energy the body spends today
    $\kEin$ (6,000 to 18,000 kJ, default 12,000, energy), the efficiency
    $\text{Eff}$ with which it does useful work (2 to 25 %, default 10, ink,
-   since an efficiency is a ratio of two energies) · "you spend 12,000 kJ
-   today, 1,200 kJ of it as useful work and 10,800 kJ as thermal energy, and
-   the 1,000 kJ you eat beyond that is stored as 26 g of fat" · no graph: the
-   bar of food energy and the bar of where it went are the picture · no 3D.
+   since an efficiency is a ratio of two energies) · "You spend 12,000 kJ
+   today, 1,200 kJ of it as useful work, and the 1,000 kJ you eat beyond that
+   is stored as 26 g of fat." · no graph: the bar of food energy and the bar
+   of where it went are the picture, both drawn to one fixed scale · 2D.
+   Labels are on: four of them, each named inside its own share of the bar.
    Readout: ${\kOEi} + {\kWnc} = {\kOEf}$ with the numbers, and a small line
    on the thermal energy, the fat and the 39 kJ that go into each gram of it.
    The defaults are Example 7.13's own numbers, so the figure loads showing the
@@ -107,15 +108,17 @@ headline · graph · 3D
    the hours spent in class or studying at 210 W (0 to 8 h, default 6.0, time),
    the hours spent cycling at 400 W (0 to 4 h, default 1.0, time); whatever is
    left of the twenty-four is spent sitting at rest at 120 W, and the three
-   maxima are set so that the day can never be overfilled · "14:20 · you are
-   cycling at 400 W, and the day has cost 8,120 kJ so far" · the scene is a
+   maxima are set so that the day can never be overfilled · "At 14:20 you are
+   cycling at 400 W, and the day has cost 8,120 kJ so far." · the scene is a
    strip of the twenty-four hours blocked out by activity with a marker running
    along it, the graph below it is the power against the hour of the day, whose
    shaded area up to the marker is the energy spent, and a bar beneath that
    carries the day's running total against the 12,000 kJ that Example 7.13
-   calls an average day's food energy · no 3D. Readout: $\kE = \sum \kP\kt$
-   with the day's total, and a small line naming what each activity cost and
-   how many litres of oxygen the whole day took at about 20 kJ to the litre.
+   calls an average day's food energy · 2D. Labels are on: five of them, one
+   to each block of the day and one on the running total. Readout:
+   $\kE = \sum \kP\kt$ with the day's total, and a small line naming what
+   each activity cost and how many liters of oxygen the whole day took at
+   about 20 kJ to the liter.
    Every rate on it is a row of Table 7.5. Draws power, energy, time.
 3. `fig-oxymeter` · Figure 7.24, the pulse oxymeter · **kept**: the text points
    the reader at it, "(See Figure 7.24.)", and it shows the instrument the

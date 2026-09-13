@@ -106,9 +106,9 @@ function tower(ctx, x, y, h, color) {
     }
     dot(ctx, X(0), Y(0), C('position'), false, 10);
     ball(ctx, X(x), Y(y), PAL.ink);
-    headline(ctx, tau < 1e-9 ? 'the ball is at the origin, about to be kicked at ' + fmt(v0.v, 1) + ' m/s and ' + th.v + 'º above the horizontal'
-      : done ? 't = ' + fmt(f.T, 2) + ' s · the ball lands ' + fmt(f.R, 1) + ' m away, where s = x = ' + fmt(f.R, 1) + ' m and θ = 0'
-      : 't = ' + fmt(tau, 2) + ' s · the ball is ' + fmt(x, 1) + ' m along and ' + fmt(y, 1) + ' m up, so s = ' + fmt(s, 1) + ' m at ' + fmt(ang, 1) + 'º above the horizontal');
+    headline(ctx, tau < 1e-9 ? 'The ball is at the origin, about to be kicked at ' + fmt(v0.v, 1) + ' m/s and ' + th.v + 'º above the horizontal.'
+      : done ? 'After ' + fmt(f.T, 2) + ' s the ball lands ' + fmt(f.R, 1) + ' m away, where s = x = ' + fmt(f.R, 1) + ' m and θ = 0.'
+      : 'After ' + fmt(tau, 2) + ' s the ball is ' + fmt(x, 1) + ' m along and ' + fmt(y, 1) + ' m up, so s = ' + fmt(s, 1) + ' m at ' + fmt(ang, 1) + 'º above the horizontal.');
     readout(d.readout, `\\ks = \\sqrt{\\kx^2 + \\ky^2} = \\sqrt{(${fmt(x, 1)}\\ \\text{m})^2 + (${fmt(y, 1)}\\ \\text{m})^2} = ${fmt(s, 1)}\\ \\text{m}`,
       x > 0.5 ? 'The direction of the displacement is θ = tan⁻¹(y/x) = tan⁻¹(' + fmt(y, 1) + '/' + fmt(x, 1) + ') = ' + fmt(ang, 1) + 'º above the horizontal.'
         : 'The ball has not left the origin yet, so its displacement is zero and has no direction.');
@@ -171,10 +171,10 @@ function tower(ctx, x, y, h, color) {
     line(ctx, gr.X(tau), gr.Y(0), gr.X(tau), gr.Y(vy), C('time'), 2, [4, 8]);
     dot(ctx, gr.X(0), gr.Y(f.vy0), cv, false, 9); dot(ctx, gr.X(tau), gr.Y(vy), PAL.ink, true, 9);
     text(ctx, 'slope = −g', gr.X(f.T * 0.78), gr.Y(-f.vy0 * 0.56) - 30, C('acceleration'), { size: 18, weight: 600, align: 'center' });
-    headline(ctx, done ? 't = ' + fmt(f.T, 2) + ' s · at landing vy = −' + fmt(f.vy0, 1) + ' m/s, the negative of its initial value, and vx is unchanged'
-      : Math.abs(vy) < 0.6 ? 't = ' + fmt(tau, 2) + ' s · at the highest point vy = 0 and the velocity is entirely horizontal, v = vx = ' + fmt(f.vx, 1) + ' m/s'
-      : vy > 0 ? 't = ' + fmt(tau, 2) + ' s · vx stays at ' + fmt(f.vx, 1) + ' m/s while vy has fallen from ' + fmt(f.vy0, 1) + ' m/s to ' + fmt(vy, 1) + ' m/s'
-      : 't = ' + fmt(tau, 2) + ' s · vx stays at ' + fmt(f.vx, 1) + ' m/s while vy is now −' + fmt(-vy, 1) + ' m/s, pointing downward');
+    headline(ctx, done ? 'At landing, ' + fmt(f.T, 2) + ' s after the kick, vy = −' + fmt(f.vy0, 1) + ' m/s, the negative of its initial value, while vx is unchanged.'
+      : Math.abs(vy) < 0.6 ? 'At the highest point, ' + fmt(tau, 2) + ' s after the kick, vy = 0 and the velocity is entirely horizontal, v = vx = ' + fmt(f.vx, 1) + ' m/s.'
+      : vy > 0 ? 'After ' + fmt(tau, 2) + ' s vx stays at ' + fmt(f.vx, 1) + ' m/s while vy has fallen from ' + fmt(f.vy0, 1) + ' m/s to ' + fmt(vy, 1) + ' m/s.'
+      : 'After ' + fmt(tau, 2) + ' s vx stays at ' + fmt(f.vx, 1) + ' m/s while vy is now −' + fmt(-vy, 1) + ' m/s, pointing downward.');
     readout(d.readout, `\\kv = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{${fmt(f.vx, 1)}^2 + (${sgn(vy)}${fmt(Math.abs(vy), 1)})^2} = ${fmt(v, 1)}\\ \\text{m/s}\\qquad \\theta_v = \\tan^{-1}(\\kvy/\\kvx) = ${sgn(thv)}${fmt(Math.abs(thv), 1)}^\\circ`,
       'The horizontal motion has no acceleration, so vx is the same at every point; the vertical motion is free fall with a_y = −g, so vy changes by 9.80 m/s every second.');
   }
@@ -227,8 +227,8 @@ function tower(ctx, x, y, h, color) {
     line(ctx, g.X(t), g.Y(0), g.X(t), g.Y(vy), C('time'), 2, [4, 8]);
     dot(ctx, g.X(0), g.Y(f.vy0), C('velocity'), false, 9); dot(ctx, g.X(t), g.Y(vy), PAL.ink, true, 9);
     text(ctx, 'vy = 0 at the top', g.X(tr.hi) - 10, g.Y(Math.ceil(f.vy0 / 20) * 20) + 22, C('velocity'), { size: 17, weight: 600, align: 'right' });
-    headline(ctx, atTop ? 't = ' + fmt(f.tTop, 2) + ' s · the shell reaches its highest point, ' + fmt(f.h, 0) + ' m up and ' + fmt(xTop, 0) + ' m along, where vy = 0'
-      : 't = ' + fmt(t, 2) + ' s · the shell is ' + fmt(y, 0) + ' m up and still rising at vy = ' + fmt(vy, 1) + ' m/s');
+    headline(ctx, atTop ? 'After ' + fmt(f.tTop, 2) + ' s the shell reaches its highest point, ' + fmt(f.h, 0) + ' m up and ' + fmt(xTop, 0) + ' m along, where vy = 0.'
+      : 'After ' + fmt(t, 2) + ' s the shell is ' + fmt(y, 0) + ' m up and still rising at vy = ' + fmt(vy, 1) + ' m/s.');
     readout(d.readout, `\\kh = \\frac{\\kvoy^2}{2\\kg} = \\frac{(${fmt(f.vy0, 1)}\\ \\text{m/s})^2}{2(9.80\\ \\text{m/s}^2)} = ${fmt(f.h, 0)}\\ \\text{m}`,
       'The time to the top is t = 2y/(v₀y + vy) = ' + fmt(f.tTop, 2) + ' s, and in that time the horizontal velocity vx = ' + fmt(f.vx, 1) + ' m/s carries the shell x = vx t = ' + fmt(xTop, 0) + ' m.');
   }
@@ -299,8 +299,8 @@ function tower(ctx, x, y, h, color) {
     dot(ctx, g.X(tau), g.Y(y), PAL.ink, true, 9);
     text(ctx, 't = ' + fmt(tp, 2) + ' s', g.X(tp) + 14, g.Y(yl.v) - 22, C('time'), { size: 18, weight: 600 });
     text(ctx, 't = ' + fmt(tn, 2) + ' s, before the launch', g.X(tn) + 14, g.Y(yl.v) + 24, PAL.muted, { size: 17, weight: 600 });
-    headline(ctx, done ? 't = ' + fmt(tp, 2) + ' s · the rock lands ' + fmt(-yl.v, 1) + ' m below its start at ' + fmt(vl, 1) + ' m/s, ' + fmt(-thl, 1) + 'º below the horizontal'
-      : 't = ' + fmt(tau, 2) + ' s · the rock is ' + fmt(Math.abs(y), 1) + ' m ' + (y >= 0 ? 'above' : 'below') + ' the rim and ' + fmt(x, 1) + ' m along, moving at ' + fmt(v, 1) + ' m/s');
+    headline(ctx, done ? 'After ' + fmt(tp, 2) + ' s the rock lands ' + fmt(-yl.v, 1) + ' m below its start at ' + fmt(vl, 1) + ' m/s, ' + fmt(-thl, 1) + 'º below the horizontal.'
+      : 'After ' + fmt(tau, 2) + ' s the rock is ' + fmt(Math.abs(y), 1) + ' m ' + (y >= 0 ? 'above' : 'below') + ' the rim and ' + fmt(x, 1) + ' m along, moving at ' + fmt(v, 1) + ' m/s.');
     readout(d.readout, `(${fmt(G / 2, 2)}\\ \\text{m/s}^2)\\kt^2 - (${fmt(f.vy0, 1)}\\ \\text{m/s})\\kt - (${fmt(-yl.v, 1)}\\ \\text{m}) = 0 \\;\\Rightarrow\\; \\kt = ${fmt(tp, 2)}\\ \\text{s}\\ \\text{or}\\ ${fmt(tn, 2)}\\ \\text{s}`,
       'The negative root is an event before the launch and is discarded. At impact vx = ' + fmt(f.vx, 1) + ' m/s and vy = ' + sgn(vyl) + fmt(Math.abs(vyl), 1) + ' m/s, so v = ' + fmt(vl, 1) + ' m/s at θv = ' + fmt(thl, 1) + 'º.');
   }
@@ -330,8 +330,11 @@ function tower(ctx, x, y, h, color) {
     const SC = Math.min((box.r - box.l) / f45.R, (box.b - box.t) / Math.max(f.h, fc.h, f45.h));
     const X = (m) => box.l + m * SC, Y = (m) => box.b - m * SC;
     ground(ctx, 60, 1340, box.b);
-    if (!is45) { path(ctx, f45, 0, f45.T, X, Y, alpha(PAL.muted, 0.45), 3); text(ctx, '45º', X(f45.x(f45.tTop)), Y(f45.h) - 20, PAL.muted, { size: 18, align: 'center' }); }
-    if (!is45) { path(ctx, fc, 0, fc.T, X, Y, PAL.muted, 3, [10, 10]); text(ctx, comp + 'º', X(fc.x(fc.tTop)), Y(fc.h) - 20, PAL.muted, { size: 18, weight: 600, align: 'center' }); }
+    /* Within six degrees of 45º the three arcs have almost the same apex, so only the chosen angle
+       is named there; the other two are still drawn and the readout gives their numbers. */
+    const near45 = Math.abs(th.v - 45) < 6;
+    if (!is45) { path(ctx, f45, 0, f45.T, X, Y, alpha(PAL.muted, 0.45), 3); if (!near45) text(ctx, '45º', X(f45.x(f45.tTop)), Y(f45.h) - 20, PAL.muted, { size: 18, align: 'center' }); }
+    if (!is45) { path(ctx, fc, 0, fc.T, X, Y, PAL.muted, 3, [10, 10]); if (!near45) text(ctx, comp + 'º', X(fc.x(fc.tTop)), Y(fc.h) - 20, PAL.muted, { size: 18, weight: 600, align: 'center' }); }
     path(ctx, f, 0, f.T, X, Y, alpha(PAL.ink, 0.35), 3);
     path(ctx, f, 0, tau, X, Y, PAL.ink, 4);
     text(ctx, th.v + 'º', X(f.x(f.tTop)), Y(f.h) - 20, PAL.ink, { size: 18, weight: 600, align: 'center' });
@@ -349,8 +352,8 @@ function tower(ctx, x, y, h, color) {
     dot(ctx, g.X(th.v), g.Y(f.R), C('position'), true, 10);
     text(ctx, 'R = ' + fmt(f.R, 0) + ' m at ' + th.v + 'º' + (is45 ? '' : ' and at ' + comp + 'º'), g.X(45), g.Y(f.R) + (f.R > 0.7 * Rmax ? 30 : -24), C('position'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.8) });
     text(ctx, 'farthest at 45º', g.X(45), g.Y(Rmax) - 22, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, is45 ? 't = ' + fmt(tau, 2) + ' s · at 45º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, the farthest this speed can reach'
-      : 't = ' + fmt(tau, 2) + ' s · at ' + th.v + 'º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + 'º');
+    headline(ctx, is45 ? 'At 45º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, which is the farthest this speed can reach.'
+      : 'At ' + th.v + 'º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + 'º.');
     readout(d.readout, `\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg} = \\frac{(${v0.v}\\ \\text{m/s})^2 \\sin ${2 * th.v}^\\circ}{9.80\\ \\text{m/s}^2} = ${fmt(f.R, 0)}\\ \\text{m}`,
       is45 ? 'No other angle reaches as far at this speed, and every other angle shares its range with its complement, the angle that makes 90º with it.'
         : 'A launch at ' + comp + 'º has the same range but rises to ' + fmt(fc.h, 1) + ' m, where the ' + th.v + 'º launch rises to ' + fmt(f.h, 1) + ' m.');
@@ -368,7 +371,7 @@ function tower(ctx, x, y, h, color) {
 (function () {
   const d = sim('sim-orbit', 660);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 9, step: 0.1, value: 6, unit: 'km/s', dec: 1, onInput: reset, aria: 'launch speed' });
-  const ht = ctl(d.controls, { label: '\\text{tower height}', cls: '', min: 200, max: 3000, step: 100, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: 'tower height' });
+  const ht = ctl(d.controls, { label: '\\text{tower height}', cls: 'position', min: 200, max: 3000, step: 100, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: 'tower height' });
   const RE = 6.37e6, GM = G * RE * RE;
   /* the flight integrated from the top of the tower: points (x, y, t, angle swept) until the surface or one full turn */
   function integrate(v, h) {
@@ -447,9 +450,9 @@ function tower(ctx, x, y, h, color) {
       text(ctx, sig3(along) + ' km along the surface', lx, ly, C('position'), { size: 20, weight: 600, align: Math.cos(a) < -0.2 ? 'right' : 'left', bg: alpha(PAL.panel, 0.8) });
     }
     const min = (s) => fmt(s / 60, 1) + ' min';
-    headline(ctx, done && run.landed ? 't = ' + min(run.T) + ' · it lands ' + sig3(along) + ' km along the curved surface, against ' + sig3(flat) + ' km on level ground'
-      : done ? 't = ' + min(run.T) + ' · at ' + fmt(v0.v, 1) + ' km/s the Earth curves away as fast as the projectile falls: it is in orbit'
-      : 't = ' + min(tau) + ' · the projectile is ' + sig3((r - RE) / 1000) + ' km up and has covered ' + sig3(sofar) + ' km of the surface so far');
+    headline(ctx, done && run.landed ? 'After ' + min(run.T) + ' it lands ' + sig3(along) + ' km along the curved surface, against ' + sig3(flat) + ' km on level ground.'
+      : done ? 'At ' + fmt(v0.v, 1) + ' km/s the Earth curves away as fast as the projectile falls, so after ' + min(run.T) + ' it is in orbit.'
+      : 'After ' + min(tau) + ' the projectile is ' + sig3((r - RE) / 1000) + ' km up and has covered ' + sig3(sofar) + ' km of the surface so far.');
     readout(d.readout, `\\kR = \\kvo\\sqrt{2h/\\kg} = (${fmt(v0.v, 1)}\\ \\text{km/s})\\sqrt{\\frac{2(${commas(fmt(ht.v * 1000, 0))}\\ \\text{m})}{9.80\\ \\text{m/s}^2}} = ${sig3(flat)}\\ \\text{km on level ground}`,
       run.landed ? 'The projectile went ' + sig3(along) + ' km along the curved surface, ' + fmt(along / flat, 1) + ' times as far, because the ground fell away beneath it and it had farther to fall.'
         : 'Instead of landing, the projectile circles the Earth in ' + fmt(run.T / 60, 0) + ' min: it falls the whole way round and never reaches the surface.');

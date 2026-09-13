@@ -1,7 +1,7 @@
 /* Figures for section 16.1 Hooke's Law. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, spring, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -24,7 +24,9 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   const xAt = (s) => x0.v * Math.exp(-damp.v * s) * Math.cos(2 * Math.PI * freq() * s);   /* cm */
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = cy.now(), x = REDUCED ? 0 : xAt(tau), atRest = REDUCED || tau >= T() - 1e-6;
+    /* Reduced motion holds the figure at t = 0, the moment the book draws, so the pull,
+       the bracket and the restoring force are all there to read. */
+    const tau = REDUCED ? 0 : cy.now(), x = xAt(tau), atRest = !REDUCED && tau >= T() - 1e-6;
     const cx = 700, yb = 570, len = 130 + 300 * Lr.v / 30, yt = yb - len, U = 40;   /* 1 cm = 40 units */
     fixed(ctx, cx - 130, yb, 260, 44); text(ctx, 'clamped here', cx, yb + 24, PAL.muted, { size: 17, align: 'center', base: 'middle', bg: PAL.soft });
     line(ctx, cx, 96, cx, yb, PAL.muted, 3, [10, 10]); text(ctx, 'equilibrium position', cx - 16, yb - 40, PAL.muted, { size: 17, align: 'right' });
@@ -41,9 +43,9 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       text(ctx, 'restoring force F', tip + s * (al + 14), yt + 8, C('force'), { weight: 600, align: x > 0 ? 'right' : 'left', base: 'middle' });
     }
     dot(ctx, tip, yt, PAL.ink, true, 9);
-    headline(ctx, atRest ? 'the ruler has come to rest at its equilibrium position, where the net force is zero'
-      : Math.abs(x) < 0.15 ? 'the tip passes through equilibrium: the net force is zero, but the ruler has momentum and keeps moving'
-      : 'the tip is ' + fmt(Math.abs(x), 1) + ' cm to the ' + (x < 0 ? 'left' : 'right') + ', so the restoring force points to the ' + (x < 0 ? 'right' : 'left'));
+    headline(ctx, atRest ? 'The ruler has come to rest at its equilibrium position, where the net force on it is zero'
+      : Math.abs(x) < 0.15 ? 'The tip is passing through equilibrium, where the net force is zero, but the ruler has momentum and keeps moving'
+      : 'The tip is ' + fmt(Math.abs(x), 1) + ' cm to the ' + (x < 0 ? 'left' : 'right') + ', so the restoring force points to the ' + (x < 0 ? 'right' : 'left'));
     const Fn = -k() * x / 100;
     readout(d.readout, `\\kF = -\\kk\\kx = -(${fmt(k(), 0)}\\ \\text{N/m})(${x < 0 ? '-' : '+'}${fmt(Math.abs(x) / 100, 3)}\\ \\text{m}) = ${Fn < 0 ? '-' : '+'}${fmt(Math.abs(Fn), 2)}\\ \\text{N}`,
       'A ' + Lr.v + ' cm length of this ruler has a force constant of about ' + fmt(k(), 0) + ' N/m and swings back and forth ' + fmt(freq(), 1) + ' times each second. A shorter length is stiffer and oscillates faster.');
@@ -57,44 +59,48 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
    0.100 kg steps, k about 39 N/m.
 ===================================================================== */
 (function () {
-  const d = sim('sim-spring-scale', 640);
+  const d = sim('sim-spring-scale', 760);
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 0.5, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass hung on the spring' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 100, step: 1, value: 39, unit: 'N/m', dec: 0, onInput: reset });
   const STEP = 1.1, steps = () => Math.round(m.v / 0.1), T = () => steps() * STEP;
   const cy = cycle(T, 1.6);
   function reset() { cy.reset(); }
   const xOf = (mass) => mass * G / k.v;
+  /* Fixed from the slider maxima and never rescaled. The heaviest load on the softest
+     spring stretches (0.500 kg)(9.80 m/s²)/(10 N/m) = 0.49 m, so the stretch axis runs to
+     0.50 m and the scene draws 600 units to the meter; the weight can never pass
+     (0.500 kg)(9.80 m/s²) = 4.90 N, so the force axis runs to 5 N. No setting of the two
+     sliders leaves either range, so a stiffer spring now plainly stretches less. */
+  const SC = 600, XMAX = 0.5, FMAX = 5;
   function draw() {
     const { ctx } = begin(d.c);
     const tau = cy.now(), n = steps(), done = REDUCED || tau >= T() - 1e-6;
     const i = Math.min(n, Math.floor(tau / STEP)), f = Math.min(1, (tau - i * STEP) / 0.45), ease = 1 - (1 - f) * (1 - f);
     const mNow = done ? m.v : Math.min(m.v, 0.1 * (i + ease)), hung = done ? n : i;
     const x = xOf(mNow), w = mNow * G;
-    const SC = Math.min(1600, 300 / Math.max(0.05, xOf(m.v)));   /* units per metre of stretch, so the full load always fits */
     /* the scene: beam, spring, block */
-    const cx = 330, yBeam = 110, y0 = yBeam + 230, yEnd = y0 + x * SC;
+    const cx = 330, yBeam = 100, y0 = yBeam + 130, yEnd = y0 + x * SC;
     fixed(ctx, cx - 150, yBeam - 44, 300, 44);
     spring(ctx, cx, yBeam, cx, yEnd, 9, 26, PAL.ink, 4);
     block(ctx, cx, yEnd + 32, 96, 64, PAL.ink);
-    if (mNow > 0.001) text(ctx, fmt(mNow, 1) + ' kg', cx, yEnd + 32, PAL.ink, { size: 20, weight: 600, align: 'center', base: 'middle' });
+    if (mNow > 0.001) text(ctx, fmt(mNow, 1) + ' kg', cx + 62, yEnd + 32, PAL.ink, { size: 20, weight: 600, base: 'middle' });
     line(ctx, cx - 150, y0, cx + 190, y0, PAL.muted, 2, [10, 10]); text(ctx, 'x = 0', cx - 160, y0, C('position'), { align: 'right', base: 'middle', weight: 600, size: 22 });
     if (x > 0.004) vbracket(ctx, cx + 150, y0, yEnd, C('position'), 'x = ' + fmt(x, 3) + ' m', 1);
     if (mNow > 0.001) {
-      const al = 40 + 26 * w;
+      const al = 30 + 16 * w;
       arrow(ctx, cx + 30, yEnd + 64, cx + 30, yEnd + 64 + al, C('force'), 5); text(ctx, 'w = ' + fmt(w, 2) + ' N', cx + 46, yEnd + 64 + al - 4, C('force'), { weight: 600, size: 20 });
       arrow(ctx, cx - 30, yEnd, cx - 30, yEnd - al, C('force'), 5); text(ctx, 'F = ' + fmt(w, 2) + ' N', cx - 46, yEnd - al + 2, C('force'), { weight: 600, size: 20, align: 'right', base: 'bottom' });
     }
     /* the graph beside a vertical scene: F against x, one dot per weight hung */
-    const xr = nice(0, Math.max(0.02, xOf(m.v)) * 1.05, 3), Fr = nice(0, Math.max(0.5, m.v * G) * 1.05, 4);
-    const box = { l: 760, r: 1320, t: 120, b: 500 };
-    const { X, Y } = axes(ctx, box, [0, xr.hi], [0, Fr.hi], { xl: 'x (m)', xc: C('position'), yl: 'F (N)', yc: C('force'), nx: xr.n, ny: Fr.n, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 1) });
-    const xe = Math.min(xr.hi, Fr.hi / k.v);
+    const box = { l: 760, r: 1320, t: 150, b: 610 };
+    const { X, Y } = axes(ctx, box, [0, XMAX], [0, FMAX], { xl: 'x (m)', xc: C('position'), yl: 'F (N)', yc: C('force'), nx: 5, ny: 5, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
+    const xe = Math.min(XMAX, FMAX / k.v);
     line(ctx, X(0), Y(0), X(xe), Y(k.v * xe), C('force'), 5);
     text(ctx, 'slope = k = ' + fmt(k.v, 0) + ' N/m', X(xe * 0.55) + 30, Y(k.v * xe * 0.55) + 44, C('stiffness'), { weight: 600, size: 20 });
     for (let j = 1; j <= hung; j++) dot(ctx, X(xOf(0.1 * j)), Y(0.1 * j * G), C('force'), true, 9);
     if (mNow > 0.001) { line(ctx, X(x), box.b, X(x), Y(w), C('position'), 2, [4, 8]); line(ctx, box.l, Y(w), X(x), Y(w), C('force'), 2, [4, 8]); dot(ctx, X(x), Y(w), PAL.ink, true, 9); }
-    headline(ctx, mNow < 0.001 ? 'with no load the spring hangs at its unstretched length, x = 0'
-      : 'a ' + fmt(mNow, 1) + ' kg load weighs ' + fmt(w, 2) + ' N and stretches the spring ' + fmt(x, 3) + ' m');
+    headline(ctx, mNow < 0.001 ? 'With no load the spring hangs at its unstretched length, x = 0'
+      : 'A ' + fmt(mNow, 1) + ' kg load weighs ' + fmt(w, 2) + ' N and stretches the spring ' + fmt(x, 3) + ' m');
     readout(d.readout, `\\kF = \\kk\\kx = (${fmt(k.v, 0)}\\ \\text{N/m})(${fmt(x, 3)}\\ \\text{m}) = ${fmt(w, 2)}\\ \\text{N} = w = mg`,
       'Each dot is one weight hung on the spring. The restoring force equals the weight supported while the mass hangs still, and the slope of the line through the dots is the force constant.');
   }
@@ -141,18 +147,25 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       text(ctx, 'applied force = kx = ' + fmt(Fn, 2) + ' N', plate + 74 + al, y - 96, C('force'), { weight: 600, base: 'middle' });
     }
     if (phase === 'flight') { arrow(ctx, dartX + 24, y - 80, dartX + 24 + Math.min(300, vv * 6), y - 80, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 1) + ' m/s', dartX + 24, y - 112, C('velocity'), { weight: 600 }); }
-    /* the graph: applied force against deformation, work as the area */
-    const xr = nice(0, x.v * 1.05, 3), Fr = nice(0, k.v * x.v * 1.05, 4);
+    /* the graph: applied force against deformation, work as the area. Both ranges are fixed
+       and never rescaled: the deformation axis is the compression slider's own 0 to 0.30 m,
+       and the force axis runs to 30 N, which holds every spring up to 100 N/m at full
+       compression. A stiffer spring runs off the top, and the live point is then pinned at
+       the edge with its value, so the line's slope and the triangle's area both change with
+       the sliders instead of the picture staying the same at every setting. */
+    const XMAX = 0.3, FMAX = 30;
     const box = { l: 200, r: 1240, t: 370, b: 620 };
-    const { X, Y } = axes(ctx, box, [0, xr.hi], [0, Fr.hi], { xl: 'deformation x (m)', xc: C('position'), yl: 'applied force (N)', yc: C('force'), nx: xr.n, ny: Fr.n, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 1) });
-    if (xs > 0.001) { ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.25); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xs), Y(0)); ctx.lineTo(X(xs), Y(k.v * xs)); ctx.closePath(); ctx.fill(); ctx.restore(); }
+    const { X, Y } = axes(ctx, box, [0, XMAX], [0, FMAX], { xl: 'deformation x (m)', xc: C('position'), yl: 'applied force (N)', yc: C('force'), nx: 3, ny: 3, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    if (xs > 0.001) { ctx.fillStyle = alpha(C('energy'), 0.25); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xs), Y(0)); ctx.lineTo(X(xs), Y(k.v * xs)); ctx.closePath(); ctx.fill(); }
     line(ctx, X(0), Y(0), X(x.v), Y(k.v * x.v), C('force'), 5);
-    if (xc > 0.001) { line(ctx, X(xc), box.b, X(xc), Y(k.v * xc), C('position'), 2, [4, 8]); dot(ctx, X(xc), Y(k.v * xc), C('force'), true, 9); }
+    ctx.restore();
+    if (xc > 0.001) { line(ctx, X(xc), box.b, X(xc), Y(Math.min(FMAX, k.v * xc)), C('position'), 2, [4, 8]); pinned(ctx, box, X, Y, xc, k.v * xc, C('force'), fmt(k.v * xc, 1) + ' N'); }
     const W = 0.5 * k.v * xs * xs;
     text(ctx, (phase === 'compress' ? 'work done so far = area = ' : phase === 'hold' ? 'work done = area = ½kx² = ' : 'energy released = ') + fmt(W, 3) + ' J', box.l + 24, box.t + 26, C('energy'), { weight: 600 });
-    headline(ctx, phase === 'compress' ? 'pushing the spring in: x = ' + fmt(xc, 3) + ' m, the applied force is kx = ' + fmt(k.v * xc, 2) + ' N, and the work so far is ' + fmt(W, 3) + ' J'
-      : phase === 'hold' ? 'compressed by ' + fmt(x.v, 3) + ' m: the work done, ½kx² = ' + fmt(pe(), 3) + ' J, is stored as elastic potential energy'
-      : 'released: the ' + fmt(pe(), 3) + ' J of elastic potential energy becomes kinetic energy, and the dart leaves at ' + fmt(vv, 1) + ' m/s');
+    headline(ctx, phase === 'compress' ? 'The spring has been pushed in ' + fmt(xc, 3) + ' m, so the applied force is kx = ' + fmt(k.v * xc, 2) + ' N and the work done so far is ' + fmt(W, 3) + ' J'
+      : phase === 'hold' ? 'Held compressed by ' + fmt(x.v, 3) + ' m, the spring stores the work done on it, ½kx² = ' + fmt(pe(), 3) + ' J, as elastic potential energy'
+      : 'Released, the ' + fmt(pe(), 3) + ' J of elastic potential energy becomes kinetic energy, and the dart leaves at ' + fmt(vv, 1) + ' m/s');
     readout(d.readout, `\\kPE = \\tfrac{1}{2}\\kk\\kx^2 = \\tfrac{1}{2}(${fmt(k.v, 1)}\\ \\text{N/m})(${fmt(x.v, 3)}\\ \\text{m})^2 = ${fmt(pe(), 3)}\\ \\text{J}`,
       'Method B gives the same answer: the average force is ½kx = ' + fmt(0.5 * k.v * x.v, 2) + ' N, and (' + fmt(0.5 * k.v * x.v, 2) + ' N)(' + fmt(x.v, 3) + ' m) = ' + fmt(pe(), 3) + ' J. With no friction, ½mv² = PE_el gives v = ' + fmt(vv, 1) + ' m/s.');
   }

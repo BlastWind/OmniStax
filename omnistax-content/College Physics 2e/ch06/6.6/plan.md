@@ -116,14 +116,19 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    is about equal *times*, so the figure has a clock in it and takes the
    transport and its scrubber · the eccentricity $e$ (0.10 to 0.70, default
    0.50, ink) and the length of the swept interval $\Delta \kT$ (0.02 to
-   0.12 of the period, default 0.08, time) · "t = 0.62T · m is 1.44a from M
-   and moving at 0.63 times its mean speed" · graph beside the orbit, since
+   0.12 of the period, default 0.08, time) · "The planet is 1.44a from M and
+   moving at 0.63 times 2πa/T." · graph beside the orbit, since
    the orbit is as tall as it is wide and leaves the width free: the speed
-   of the planet against time for one orbit, with the three intervals
-   shaded on the same axis, so the fast passage near $M$ and the slow one
-   far away are read off directly · no. Readout: the ratio of the speed at the
-   nearest point to the speed at the furthest, $(1+e)/(1-e)$, with the
-   numbers. Draws position, velocity, time.
+   of the planet against time for one orbit on fixed axes of 0 to 1 period by
+   0 to 2.5, with the three intervals shaded on the same axis, so the fast
+   passage near $M$ and the slow one far away are read off directly. The
+   speed is measured against $2\pi a/\kT$, the speed a circular orbit of
+   radius $a$ would have, which is what the dashed level on the graph is
+   named; it is not the mean of the speed over the orbit, which has no
+   elementary form · 2D, the plane of the orbit being the canvas · labels on,
+   there being six of them and none of them moving. Readout: the ratio of the
+   speed at the nearest point to the speed at the furthest, $(1+e)/(1-e)$,
+   with the numbers. Draws position, velocity, time.
 3. `sim-third-law` · replaces nothing, so it is a **Sim** with no number ·
    keplers-third-law, orbital-speed, kepler-third-law-derivation,
    mass-from-orbit, satellite-conditions · **moves**: a satellite runs one

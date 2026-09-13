@@ -1,7 +1,7 @@
 /* Figures for section 7.5 Nonconservative Forces. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, nice, spring, fixed, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, strip, axes, nice, spring, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -121,7 +121,10 @@ function skierSprite(ctx, x, y, color) {
     const { ctx } = begin(d.c);
     const amp = (bow.v / 100) * PPM;
     const ra = route(330, 0), rb = route(870, amp);
-    const La = ra.px / PPM, Lb = rb.px / PPM, Wa = ff.v * La, Wb = ff.v * Lb, Wmax = ff.v * 0.68;
+    /* one fixed cap for both bars, 13.6 J: the hardest rub the friction slider allows, 20 N,
+       along the longest route the detour slider allows, 0.68 m. Raising the friction now
+       lengthens the bars instead of raising the scale they are drawn against. */
+    const La = ra.px / PPM, Lb = rb.px / PPM, Wa = ff.v * La, Wb = ff.v * Lb, Wmax = 20 * 0.68;
     panel(ctx, 330, ra, '(a) straight from A to B');
     panel(ctx, 870, rb, '(b) wandering from A to B');
     line(ctx, 600, 130, 600, 600, PAL.rule, 2);
@@ -129,9 +132,10 @@ function skierSprite(ctx, x, y, color) {
     text(ctx, 'this path is ' + fmt(Lb * 100, 0) + ' cm long', 870, 594, C('position'), { size: 18, weight: 600, align: 'center' });
     ebar(ctx, 1160, 540, 66, Wmax, Wa, 360, 'W in (a)', fmt(Wa, 2) + ' J');
     ebar(ctx, 1290, 540, 66, Wmax, Wb, 360, 'W in (b)', fmt(Wb, 2) + ' J');
-    headline(ctx, bow.v === 0
-      ? 'both erasers take the same route, so each rubs out the same face and each costs ' + fmt(Wa, 2) + ' J'
-      : 'the wandering route is ' + fmt((Lb / La - 1) * 100, 0) + ' per cent longer, so it costs ' + fmt(Wb, 2) + ' J against the ' + fmt(Wa, 2) + ' J of the straight one');
+    text(ctx, fmt(Wmax, 1) + ' J', 1225, 540 - 378, C('energy'), { size: 16, align: 'center' });
+    topline(ctx, bow.v === 0
+      ? 'Both erasers take the same route, so each rubs out the same face and each costs ' + fmt(Wa, 2) + ' J.'
+      : 'The wandering route is ' + fmt((Lb / La - 1) * 100, 0) + ' percent longer, so it costs ' + fmt(Wb, 2) + ' J against the ' + fmt(Wa, 2) + ' J of the straight one.');
     readout(d.readout, `\\kWfr = \\kff\\kd = (${fmt(ff.v, 1)}\\ \\text{N})(${fmt(Lb, 3)}\\ \\text{m}) = ${fmt(Wb, 2)}\\ \\text{J}`,
       'Both erasers begin at A and finish at B, and the straight route costs ' + fmt(Wa, 2) + ' J while the wandering one costs ' + fmt(Wb, 2) + ' J. The work done depends on the path taken and not only on where the eraser started and finished, which is what makes friction a nonconservative force, and it is why no potential energy can be defined for it.');
   }
@@ -173,8 +177,8 @@ function skierSprite(ctx, x, y, color) {
     text(ctx, '(a) dropped onto a spring', 110, 110, PAL.ink, { size: 22, weight: 600 });
     text(ctx, '(b) dropped onto the ground', 760, 110, PAL.ink, { size: 22, weight: 600 });
     const springTop = TOP + comp * SC;
-    spring(ctx, 300, GROUND, 300, springTop, 7, 34, C('stiffness'), 5);
-    line(ctx, 246, springTop, 354, springTop, C('stiffness'), 5);
+    spring(ctx, 300, GROUND, 300, springTop, 7, 34, PAL.ink, 5);
+    line(ctx, 246, springTop, 354, springTop, PAL.ink, 5);
     rock(ctx, 300, springTop - 32 - Math.max(0, leftUp) * SC, 30, PAL.ink);
     rock(ctx, 900, GROUND - 32 - rightUp * SC, 30, PAL.ink);
     line(ctx, 170, TOP - h.v * SC, 430, TOP - h.v * SC, C('position'), 2, [8, 8]);
@@ -182,11 +186,15 @@ function skierSprite(ctx, x, y, color) {
     vbracket(ctx, 190, TOP, TOP - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     vbracket(ctx, 810, GROUND, GROUND - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     text(ctx, fmt(m.v, 2) + ' kg', 300, springTop - 82 - Math.max(0, leftUp) * SC, PAL.ink, { size: 18, weight: 600, align: 'center' });
-    if (comp > xc * 0.35) text(ctx, 'the spring is pushing back', 380, TOP + 46, C('stiffness'), { size: 18, weight: 600 });
+    if (comp > xc * 0.35) text(ctx, 'the spring is pushing back', 380, TOP + 46, PAL.muted, { size: 18, weight: 600 });
     if (tau > tf) text(ctx, 'heat, sound and a dent in the ground', 900, GROUND + 62, PAL.muted, { size: 18, align: 'center' });
-    /* the two energy accounts, drawn to one scale */
-    const CAP = 350, BASE = GROUND, sc = CAP / E;
+    /* the two energy accounts, drawn to one fixed scale: the outline holds 147 J, which is the
+       most the sliders can bring down (5 kg dropped 3 m), and the dashed rule across it is what
+       this drop brings. A heavier rock now fills more of the outline instead of rescaling it. */
+    const EMAX = 5 * G * 3, CAP = 350, BASE = GROUND, sc = CAP / EMAX;
     ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 2; ctx.strokeRect(600, BASE - CAP, 62, CAP); ctx.strokeRect(1230, BASE - CAP, 62, CAP); ctx.restore();
+    [600, 1230].forEach((bxx) => line(ctx, bxx - 8, BASE - E * sc, bxx + 70, BASE - E * sc, C('energy'), 2, [6, 6]));
+    text(ctx, fmt(EMAX, 0) + ' J', 631, BASE - CAP - 20, C('energy'), { size: 16, align: 'center' });
     let y = segment(ctx, 600, BASE, 62, PEl * sc, alpha(C('energy'), 0.35), 'PE_g', C('energy'));
     y = segment(ctx, 600, y, 62, KEl * sc, C('energy'), 'KE', C('energy'));
     segment(ctx, 600, y, 62, PEs * sc, alpha(C('energy'), 0.75), 'PE_s', C('energy'));
@@ -197,11 +205,11 @@ function skierSprite(ctx, x, y, color) {
     text(ctx, 'the system in (b)', 1261, BASE + 56, C('energy'), { size: 18, weight: 600, align: 'center' });
     text(ctx, fmt(PEl + KEl + PEs, 1) + ' J of mechanical energy', 631, BASE + 80, C('energy'), { size: 17, align: 'center' });
     text(ctx, fmt(PEr + KEr, 1) + ' J of mechanical energy', 1261, BASE + 80, C('energy'), { size: 17, align: 'center' });
-    headline(ctx, tau <= tf
-      ? 'the rock falls with ' + fmt(E, 1) + ' J on both sides, and both systems still hold all of it'
+    topline(ctx, tau <= tf
+      ? 'The rock falls with ' + fmt(E, 1) + ' J on both sides, and both systems still hold all of it.'
       : tau <= tf + tc
-        ? 'the spring holds ' + fmt(PEs, 1) + ' J of the ' + fmt(E, 1) + ' J and will give it back, while on the right all ' + fmt(E, 1) + ' J has gone'
-        : 'the spring has sent the rock back up to ' + fmt(leftUp, 2) + ' m of the ' + fmt(h.v, 2) + ' m it fell, and the other rock has not moved');
+        ? 'The spring holds ' + fmt(PEs, 1) + ' J of the ' + fmt(E, 1) + ' J and will give it back, while on the right all ' + fmt(E, 1) + ' J has gone.'
+        : 'The spring has sent the rock back up to ' + fmt(leftUp, 2) + ' m of the ' + fmt(h.v, 2) + ' m it fell, and the other rock has not moved.');
     readout(d.readout, `\\kPEg = m\\kg\\kh = (${fmt(m.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 1)}\\ \\text{J}`,
       'The force in the spring is conservative, so the ' + fmt(E, 1) + ' J the rock brings down is stored in the spring at its fullest squeeze of ' + fmt(xc * 100, 1) + ' cm and is handed back, and the rock rises to the height it started from. The ground exerts nonconservative forces, so the same ' + fmt(E, 1) + ' J becomes thermal energy, sound and a dent, and that rock has lost its mechanical energy for good.');
   }
@@ -221,13 +229,32 @@ function skierSprite(ctx, x, y, color) {
   const fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 800, step: 10, value: 400, unit: 'N', dec: 0, onInput: reset, aria: 'force the person applies' });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 400, step: 10, value: 120, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction on the crate' });
   const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 30, step: 1, value: 25, unit: '\u00b0', dec: 0, onInput: reset, aria: 'angle of the ramp' });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 120, step: 5, value: 50, unit: 'kg', dec: 0, aria: 'mass of the crate' });
+  const m = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 120, step: 5, value: 50, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the crate' });
   const D = 4.0, SC = 78, BACK = 260, X0 = 260, YBASE = 460, ZERO = 1020;
-  const cy = cycle(() => D, 1.2);
+  /* The crate is already moving at 1.00 m/s when the push begins, and from there the net force
+     along the ramp decides what happens: while the push beats friction and the pull of gravity
+     the crate speeds up over the whole 4.00 m, and when it does not the crate slows and stops
+     where its kinetic energy runs out, which is what a push of nothing at all must do. */
+  const V0 = 1.0;
+  const netF = () => fa.v - ff.v - m.v * G * Math.sin(th.v * RAD);
+  const accel = () => netF() / m.v;
+  /* how far it gets, and how long that takes */
+  function travel() {
+    const acc = accel();
+    if (Math.abs(acc) < 1e-6) return { end: D, T: D / V0 };
+    if (acc > 0) return { end: D, T: (Math.sqrt(V0 * V0 + 2 * acc * D) - V0) / acc };
+    const halt = (V0 * V0) / (-2 * acc);
+    if (halt >= D) return { end: D, T: (V0 - Math.sqrt(Math.max(0, V0 * V0 + 2 * acc * D))) / -acc };
+    return { end: halt, T: V0 / -acc };
+  }
+  const cy = cycle(() => travel().T, 1.2);
   function reset() { cy.reset(); }
   function draw() {
     const { ctx } = begin(d.c);
-    const s = Math.min(cy.now(), D), a = th.v * RAD, ca = Math.cos(a), sa = Math.sin(a);
+    const tr = travel(), acc = accel(), t = Math.min(cy.now(), tr.T);
+    const s = Math.max(0, Math.min(tr.end, V0 * t + 0.5 * acc * t * t));
+    const vNow = Math.max(0, V0 + acc * t), stalled = tr.end < D - 1e-6;
+    const a = th.v * RAD, ca = Math.cos(a), sa = Math.sin(a);
     const y0 = YBASE - BACK * sa, run = D * SC + 70;
     const s0x = X0 - BACK * ca, s1x = X0 + run * ca, s1y = y0 - run * sa;
     const Wa = fa.v * s, Wf = -ff.v * s, Wg = -m.v * G * s * sa, Wnc = Wa + Wf;
@@ -242,6 +269,7 @@ function skierSprite(ctx, x, y, color) {
     F.person(ctx, 0, 0, PAL.ink, { lean: 0.35, reach: { x: 70, y: -40 }, phase: s > 0.02 && s < D - 0.02 ? s * 4 : 0 });
     ctx.restore();
     text(ctx, fmt(m.v, 0) + ' kg', cx - 40 * sa, cyy - 40 * ca, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    if (vNow > 0.02) text(ctx, 'v = ' + fmt(vNow, 2) + ' m/s', cx + 4 * ca, cyy - 96 * ca, C('velocity'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     if (fa.v > 0) {
       const L = 50 + (fa.v / 800) * 120, tipx = cx - 20 * ca - 124 * sa, tipy = cyy + 20 * sa - 124 * ca;
       arrow(ctx, tipx - L * ca, tipy + L * sa, tipx, tipy, C('force'), 5);
@@ -253,9 +281,10 @@ function skierSprite(ctx, x, y, color) {
       text(ctx, 'f = ' + num(ff.v, 0) + ' N', tx - L * ca - 12, ty + L * sa + 24, C('force'), { size: 18, weight: 600, align: 'center' });
     }
     hbracket(ctx, X0, cx, YBASE + 40, C('position'), 'd = ' + fmt(s, 2) + ' m');
-    /* the four accounts, drawn beside the scene from a common zero */
-    const top = fa.v * D, bot = Math.max(ff.v * D, m.v * G * D * Math.sin(30 * RAD), 1);
-    const sc = Math.min(top > 0 ? 320 / top : 1e9, 290 / bot);
+    /* the four accounts, drawn beside the scene from a common zero, on a fixed scale: the longest
+       bar the sliders allow is the person's own, 800 N through 4.00 m, which is 3200 J, and that
+       is drawn 320 units long, so a tenth of a unit to the joule whatever the sliders are set to */
+    const sc = 320 / 3200;
     line(ctx, ZERO, 168, ZERO, 522, PAL.muted, 2);
     text(ctx, '0', ZERO, 534, PAL.muted, { size: 17, align: 'center' });
     rowbar(ctx, ZERO, 180, Wa * sc, C('energy'), 'the person does', '+' + num(Wa, 0) + ' J');
@@ -263,11 +292,13 @@ function skierSprite(ctx, x, y, color) {
     rowbar(ctx, ZERO, 344, Wg * sc, C('energy'), 'the gravitational force does', num(Wg, 0) + ' J');
     line(ctx, 700, 424, 1370, 424, PAL.rule, 1.5);
     rowbar(ctx, ZERO, 448, Wnc * sc, C('energy'), 'the mechanical energy changes by', (Wnc >= 0 ? '+' : '') + num(Wnc, 0) + ' J');
-    headline(ctx, 'the person has done ' + num(Wa, 0) + ' J, friction has taken ' + num(-Wf, 0) + ' J, and the mechanical energy has changed by W_nc = ' + (Wnc >= 0 ? '+' : '') + num(Wnc, 0) + ' J');
+    topline(ctx, stalled && s >= tr.end - 1e-6
+      ? 'The push is not enough to keep the crate going, so it has stopped after ' + fmt(s, 2) + ' m, with the person having done ' + num(Wa, 0) + ' J and friction having taken ' + num(-Wf, 0) + ' J.'
+      : 'The person has done ' + num(Wa, 0) + ' J, friction has taken ' + num(-Wf, 0) + ' J, and the mechanical energy has changed by ' + (Wnc >= 0 ? '+' : '') + num(Wnc, 0) + ' J.');
     readout(d.readout, `\\kWnc = \\kWapp + \\kWfr = ${num(Wa, 0)}\\ \\text{J} - ${num(-Wf, 0)}\\ \\text{J} = ${num(Wnc, 0)}\\ \\text{J} = \\kdKE + \\kdPE`,
       'The gravitational force is conservative, so the ' + num(-Wg, 0) + ' J it does against the motion is already counted as the ' + num(-Wg, 0) + ' J of gravitational potential energy the crate gains, and what is left of the nonconservative work, ' + num(Wnc + Wg, 0) + ' J, is the change in the crate\u2019s kinetic energy. Lay the ramp flat and set the push equal to the friction and you have the lawn mower pushed at a constant speed, where W_nc is zero and the mechanical energy does not change at all.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => D / 4.5), draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => travel().T / 4.5), draw });
 })();
 
 /* =====================================================================
@@ -282,7 +313,8 @@ function skierSprite(ctx, x, y, color) {
   const d = sim('sim-slide', 730);
   const vi = ctl(d.controls, { label: '\\kvi', cls: 'velocity', min: 2, max: 10, step: 0.25, value: 6, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed at which the slide begins' });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 200, max: 800, step: 10, value: 450, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction against the player' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 15, step: 0.25, value: 0, unit: '\u00b0', dec: 2, onInput: reset, aria: 'angle of the slope' });
+  /* the two slopes the section works out, level ground and a rise of 5.00 degrees, are soft detents */
+  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 15, step: 0.25, value: 0, unit: '\u00b0', dec: 2, onInput: reset, aria: 'angle of the slope', detents: [{ v: 0, label: 'level' }, { v: 5, label: '5.00°' }], snap: true });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 110, step: 0.5, value: 65, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the player' });
   const opp = () => ff.v + m.v * G * Math.sin(th.v * RAD);            /* everything that takes energy from him */
   const stop = () => (0.5 * m.v * vi.v * vi.v) / opp();
@@ -294,15 +326,20 @@ function skierSprite(ctx, x, y, color) {
     const a = th.v * RAD, ca = Math.cos(a), sa = Math.sin(a), ta = Math.tan(a), acc = opp() / m.v;
     const T = tstop(), tau = Math.min(cy.now(), T), D = stop();
     const s = Math.max(0, Math.min(D, vi.v * tau - 0.5 * acc * tau * tau)), v = Math.max(0, vi.v - acc * tau);
+    /* the drawn track carries the same four metres the graph does, so the scene keeps one scale
+       whatever the sliders make of the slide; a slide longer than that runs off the end of the
+       drawn track, and the graph's pinned markers carry the numbers past it. */
     const W = ta > 1e-6 ? Math.min(900, 150 / ta) : 900;              /* the drawn track never rises more than 150 */
-    const SC = W / (1.15 * D * ca), x0 = 180, y0 = 350;
+    const DR = 4, ER = 2000;
+    const SC = W / (1.15 * DR * ca), x0 = 180, y0 = 350;
     const KEi = 0.5 * m.v * vi.v * vi.v, KE = Math.max(0, KEi - opp() * s), Wfr = ff.v * s, PE = m.v * G * s * sa;
     /* the ground he slides along, level or rising */
     ctx.save(); ctx.strokeStyle = PAL.soft; ctx.lineWidth = 30; ctx.beginPath(); ctx.moveTo(x0 - 60, y0 + 16 + 60 * ta); ctx.lineTo(x0 + W, y0 + 16 - W * ta); ctx.stroke(); ctx.restore();
     line(ctx, x0 - 60, y0 + 60 * ta, x0 + W, y0 - W * ta, PAL.muted, 4);
     if (th.v > 0.01) { line(ctx, x0 - 60, y0 + 60 * ta, x0 + W, y0 + 60 * ta, PAL.rule, 2, [8, 8]); text(ctx, fmt(th.v, 2) + '\u00b0', x0 + 16, y0 + 60 * ta - 20, PAL.ink, { size: 19, weight: 600 }); }
-    const px = x0 + s * SC * ca, py = y0 - s * SC * sa;
-    const sx = x0 + D * SC * ca, sy = y0 - D * SC * sa;
+    const sDraw = Math.min(s, DR), dDraw = Math.min(D, DR);
+    const px = x0 + sDraw * SC * ca, py = y0 - sDraw * SC * sa;
+    const sx = x0 + dDraw * SC * ca, sy = y0 - dDraw * SC * sa;
     line(ctx, sx, sy, sx, y0 + 76 + 60 * ta, C('position'), 2, [6, 8]);
     dot(ctx, x0, y0, C('position'), false, 10);
     slidingPlayer(ctx, px, py, -a, PAL.ink);
@@ -321,7 +358,7 @@ function skierSprite(ctx, x, y, color) {
        a corner of the box, so both ranges are fixed to hold the default comfortably instead, 0 to
        4 m by 0 to 2000 J, ticked every 1 m and every 500 J. A longer or heavier slide is drawn only
        as far as the box reaches and read off the pinned markers. Neither range moves. */
-    const DR = 4, ER = 2000, box = { l: 250, r: 1310, t: 506, b: 660 };
+    const box = { l: 250, r: 1310, t: 506, b: 660 };
     const { X, Y } = axes(ctx, box, [0, DR], [0, ER], { xl: 'distance slid (m)', xc: C('position'), yl: 'energy (J)', yc: C('energy'), nx: 4, ny: 4, fx: (u) => fmt(u, 1), fy: (u) => num(u, 0) });
     const cl = (u) => Math.min(u, ER), op = opp();
     const keFrom = Math.max(0, (KEi - ER) / op), keTo = Math.min(D, DR);        /* the falling line, clipped to the box */
@@ -335,9 +372,9 @@ function skierSprite(ctx, x, y, color) {
     line(ctx, X(Math.min(s, DR)), box.b, X(Math.min(s, DR)), Y(cl(KEi)), C('position'), 2, [4, 8]);
     pinned(ctx, box, X, Y, s, KE, C('energy'), num(KE, 0) + ' J');
     pinned(ctx, box, X, Y, s, Wfr, alpha(C('energy'), 0.7), num(Wfr, 0) + ' J');
-    headline(ctx, s >= D - 1e-6
-      ? 'he has stopped after ' + fmt(D, 2) + ' m, with ' + num(Wfr, 0) + ' J taken by friction' + (th.v > 0.01 ? ' and ' + num(PE, 0) + ' J stored in the height' : '')
-      : 'he has slid ' + fmt(s, 2) + ' m of the ' + fmt(D, 2) + ' m it takes him to stop, and ' + num(Wfr, 0) + ' J of his ' + num(KEi, 0) + ' J are gone into friction');
+    topline(ctx, s >= D - 1e-6
+      ? 'He has stopped after ' + fmt(D, 2) + ' m, with ' + num(Wfr, 0) + ' J taken by friction' + (th.v > 0.01 ? ' and ' + num(PE, 0) + ' J stored in the height.' : '.')
+      : 'He has slid ' + fmt(s, 2) + ' m of the ' + fmt(D, 2) + ' m it takes him to stop, and ' + num(Wfr, 0) + ' J of his ' + num(KEi, 0) + ' J have gone into friction.');
     readout(d.readout, `\\kd = \\frac{\\tfrac{1}{2}m{\\kvi}^2}{\\kff + m\\kg\\sin\\theta} = \\frac{(0.5)(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(vi.v, 2)}\\ \\text{m/s})^2}{${num(ff.v, 0)}\\ \\text{N} + (${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin(${fmt(th.v, 2)}^\\circ)} = ${fmt(D, 2)}\\ \\text{m}`,
       th.v < 0.01
         ? 'On the level the only thing taking energy from him is friction, so he slides ' + fmt(D, 2) + ' m. Raise the slope to 5.00 degrees and the gravitational force takes a share as well, which brings him to rest in ' + fmt((0.5 * m.v * vi.v * vi.v) / (ff.v + m.v * G * Math.sin(5 * RAD)), 2) + ' m.'
@@ -372,10 +409,14 @@ function skierSprite(ctx, x, y, color) {
     const { ctx } = begin(d.c);
     const t1 = tRoll(), tau = cy.now(), rolling = tau < t1;
     const along = rolling ? Math.max(0, rel.v - 0.5 * G * Math.sin(ANG) * tau * tau * 100) : 0;
-    const D = run(rel.v), SCT = 460 / Math.max(0.04, run(30));
+    /* the drawn table carries the same half metre the graph's axis does, 460 units to 0.50 m,
+       and it does not follow the sliders; a cup that goes further runs off the drawn table and
+       its distance is read off the pinned marker below. */
+    const DRAW = 0.50, SCT = 460 / DRAW;
+    const D = run(rel.v);
     const moved = rolling ? 0 : Math.max(0, Math.min(D, vCup() * (tau - t1) - 0.5 * mu.v * G * (tau - t1) * (tau - t1)));
     const KE = mkg() * G * hgt(rel.v), N = (MCUP + mkg()) * G, left = Math.max(0, KE * (1 - (D > 0 ? moved / D : 0)));
-    const cupX = CUP0 + moved * SCT;
+    const cupX = CUP0 + Math.min(moved, DRAW) * SCT;
     /* the book, the ruler propped on it, the marble and the cup */
     strip(ctx, 110, 1180, TABLE + 16, 30);
     fixed(ctx, rx(31) - 150, ry(31), 150, TABLE - ry(31));
@@ -393,21 +434,31 @@ function skierSprite(ctx, x, y, color) {
       text(ctx, 'f = \u03bc\u2096N = ' + fmt(mu.v * N * 1000, 1) + ' mN', cupX + 52, TABLE - 52, C('force'), { size: 18, weight: 600, align: 'center' });
     }
     hbracket(ctx, CUP0, cupX, TABLE + 70, C('position'), 'd = ' + fmt(moved * 100, 1) + ' cm');
-    ebar(ctx, 1215, TABLE, 62, KE, left, 240, 'energy left', fmt(left * 1000, 2) + ' mJ');
+    /* the bar is read against a fixed cap, 44.1 mJ: the heaviest marble the slider allows,
+       released at the far end of the ruler. The dashed rule is what this marble brings. */
+    const KEMAX = 0.030 * G * hgt(30);
+    ebar(ctx, 1215, TABLE, 62, KEMAX, left, 240, 'energy left', fmt(left * 1000, 2) + ' mJ', KE);
+    text(ctx, fmt(KEMAX * 1000, 1) + ' mJ', 1246, TABLE - 258, C('energy'), { size: 16, align: 'center' });
     /* the plot the investigation asks for */
-    /* fixed axes: the release axis is the ruler itself, 0 to 30 cm. The farthest the cup can go is
-       the heaviest marble, 30 g, on the most slippery table, μk = 0.10, released at 30 cm, which is
-       0.030 × 0.15 / (0.10 × 0.033) = 1.36 m, so the distance axis is always 0 to 150 cm, ticked
-       every 30 cm, and neither range moves with the sliders. */
-    const DR = 150, box = { l: 260, r: 1320, t: 496, b: 632 };
+    /* fixed axes. The release axis is the ruler itself, 0 to 30 cm. The heaviest marble on the
+       most slippery table would send the cup 1.36 m, but the default run is 10.4 cm and would
+       then keep to a fourteenth of the box, so the distance axis is fixed from that default
+       state at 0 to 50 cm, ticked every 10 cm. A longer run is clipped at the top edge and read
+       off the pinned marker. Neither range moves. */
+    const DR = 50, box = { l: 260, r: 1320, t: 496, b: 632 };
     const { X, Y } = axes(ctx, box, [0, 30], [0, DR], { xl: 'release position on the ruler (cm)', xc: C('position'), yl: 'distance the cup moves (cm)', yc: C('position'), nx: 6, ny: 5, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
-    line(ctx, X(0), Y(0), X(30), Y(run(30) * 100), C('position'), 5);
-    for (const q of [10, 20, 30]) dot(ctx, X(q), Y(run(q) * 100), C('position'), false, 10);
-    dot(ctx, X(rel.v), Y(D * 100), C('position'), true, 9);
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    /* the run grows in step with the release position, so the line leaves the box at this release */
+    const perCm = run(1) * 100, relTop = Math.min(30, perCm > 1e-9 ? DR / perCm : 30);
+    line(ctx, X(0), Y(0), X(relTop), Y(run(relTop) * 100), C('position'), 5);
+    for (const q of [10, 20, 30]) if (run(q) * 100 <= DR) dot(ctx, X(q), Y(run(q) * 100), C('position'), false, 10);
+    if (D * 100 <= DR) dot(ctx, X(rel.v), Y(D * 100), C('position'), true, 9);
+    ctx.restore();
+    if (D * 100 > DR) pinned(ctx, box, X, Y, rel.v, D * 100, C('position'), fmt(D * 100, 0) + ' cm');
     text(ctx, 'a straight line through the origin', X(16), Y(DR * 0.82), PAL.muted, { size: 18, weight: 600, align: 'center' });
-    headline(ctx, rolling
-      ? 'released at ' + fmt(rel.v, 0) + ' cm, the marble has ' + fmt(along, 1) + ' cm of ruler left to run'
-      : 'the marble arrived with ' + fmt(KE * 1000, 2) + ' mJ and has pushed the cup ' + fmt(moved * 100, 1) + ' cm of the ' + fmt(D * 100, 1) + ' cm friction allows');
+    topline(ctx, rolling
+      ? 'Released at ' + fmt(rel.v, 0) + ' cm, the marble has ' + fmt(along, 1) + ' cm of ruler left to run.'
+      : 'The marble arrived with ' + fmt(KE * 1000, 2) + ' mJ and has pushed the cup ' + fmt(moved * 100, 1) + ' cm of the ' + fmt(D * 100, 1) + ' cm friction allows.');
     readout(d.readout, `\\kKE = m\\kg\\kh = \\mu_{\\text{k}}\\kN\\kd = (${fmt(mu.v, 2)})(${fmt(N * 1000, 1)}\\ \\text{mN})(${fmt(D, 3)}\\ \\text{m}) = ${fmt(KE * 1000, 2)}\\ \\text{mJ}`,
       'The marble brings ' + fmt(KE * 1000, 2) + ' mJ to the cup, and friction does that much work through the distance the cup travels before it stops. Because the energy the marble arrives with grows in step with the release position, so does the distance the cup moves, and the plot is the straight line the investigation asks you to look for. A heavier marble arrives with more energy, and the cup goes farther.');
   }
@@ -444,7 +495,7 @@ function skierSprite(ctx, x, y, color) {
     text(ctx, 'KE_i', xa, y0 - 152, C('energy'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'KE_f + PE_f', xt + 190, yt - 136, C('energy'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'the coefficient of friction between her skis and the snow is 0.0800', 700, y0 + 84, PAL.ink, { size: 18, align: 'center' });
-    headline(ctx, 'the skier meets the rise at 12.0 m/s and coasts to the top, 2.50 m up a slope of 35\u00b0');
+    topline(ctx, 'The skier meets the rise at 12.0 m/s and coasts to the top, 2.50 m up a slope of 35\u00b0.');
     readout(d.readout, '\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf,\\quad m = 60.0\\ \\text{kg},\\ \\kvi = 12.0\\ \\text{m/s},\\ \\kh = 2.50\\ \\text{m},\\ \\mu_{\\text{k}} = 0.0800',
       'Her kinetic energy at the bottom has to pay both for the height she gains and for the work friction does along the slope, and what is left of it is the kinetic energy she has at the top. The hint the problem gives is to take her path up the rise as a straight line, so that the distance friction acts through follows from the height of the rise and the angle of the slope.');
   }

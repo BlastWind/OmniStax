@@ -58,7 +58,7 @@ Exercises document.
 
 The section leans on `conservation-of-momentum` and `isolated-system` (8.3),
 `linear-momentum` (8.1), `change-in-momentum` (8.2), `kinetic-energy` (7.2),
-`friction` (4.3), `physical-solution` (2.5) and, through the centre-of-mass
+`friction` (4.3), `physical-solution` (2.5) and, through the center-of-mass
 items, `center-of-mass` (6.5); the coverage rows mark each as used where the
 text uses it.
 
@@ -76,9 +76,11 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    which is a different length because the masses differ, and the total
    momentum arrow is drawn on a line of its own · $m_1$ (0.10 to 5.00 kg,
    default 0.500, ink), $m_2$ (0.10 to 5.00 kg, default 3.50, ink), $\kvone$
-   (−6.0 to 6.0 m/s, default 4.00, velocity), $\kvtwo$ (−6.0 to 6.0 m/s,
-   default 0, velocity) · "t = 1.40 s · the 0.500 kg object bounces back at
-   3.00 m/s and the 3.50 kg object moves off at 1.00 m/s" · graph below, two
+   (1.00 to 6.00 m/s, default 4.00, velocity), $\kvtwo$ (−6.00 to 0.50 m/s,
+   default 0, velocity) · "After the collision v′₁ = −3.00 m/s and
+   v′₂ = 1.00 m/s." · each block is numbered beside it, under the surface,
+   rather than on it, and the velocity and momentum arrows are on fixed
+   scales, 26 units per m/s and 12.5 units per kg·m/s · graph below, two
    panels of paired bars: the total momentum before and after, and the internal
    kinetic energy before and after, both pairs the same height because both are
    conserved · no. Readout: $\kpone + \kptwo = \kponeprime + \kptwoprime$ with
@@ -97,9 +99,9 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    one, which is the collision · $m_1$ (0.10 to 5.00 kg, default 0.500, ink),
    $m_2$ (0.10 to 5.00 kg, default 3.50, ink), $\kvone$ (1.0 to 6.0 m/s,
    default 4.00, velocity); the second object starts at rest, as it does in the
-   example whose algebra this draws · "the two equations meet twice: at
-   v′₁ = 4.00 m/s, which is the situation before the collision, and at
-   v′₁ = −3.00 m/s, which is the collision" · the graph is the figure · no.
+   example whose algebra this draws · "The curves meet twice, at v′₁ = 4.00
+   m/s before the collision and at v′₁ = −3.00 m/s after it." · the graph is
+   the figure, on the fixed −6 to 6 m/s square the plan set · no.
    Readout: ${v'}_1 = \frac{m_1 - m_2}{m_1 + m_2}\kvone$ and
    ${v'}_2 = \frac{2m_1}{m_1 + m_2}\kvone$ with the numbers; small line on why
    the first root is thrown away. Draws velocity, momentum, energy.
@@ -144,10 +146,10 @@ Extra simulations (rule 15), thought of, judged, and what became of them:
   elastic collision?"), Remember, after the `elastic` span, with an AI-written
   suggested approach, since no conceptual question in the chapter is keyed.
 - 11 of the section's 20 AP items are kept: `ap1` (fs-id1478642, the two pucks
-  and the table, keyed (c)), `ap2` (fs-id1364045, the centre-of-mass velocity
+  and the table, keyed (c)), `ap2` (fs-id1364045, the center-of-mass velocity
   from the same table, unkeyed), `ap3` (fs-id2432045, two cars of equal mass,
   keyed (b)), `ap4` (fs-id3206663, the same at 20 and 10 m/s, unkeyed), `ap5`
-  (fs-id1683789, the rubber ball that rebounds to 90 per cent, keyed (a)),
+  (fs-id1683789, the rubber ball that rebounds to 90 percent, keyed (a)),
   `ap6` (fs-id1514509, the tennis ball off the wall, unkeyed), `ap7`
   (fs-id1321180, mass A three times mass B, unkeyed), `ap8` (fs-id1487248,
   equal masses at 5.0 and 3.0 m/s, keyed (b)), `ap9` (fs-id3182581, the same
@@ -165,10 +167,10 @@ Extra simulations (rule 15), thought of, judged, and what became of them:
   fs-id2332080, fs-id2494812, fs-id1862350, fs-id2389032, fs-id1741049 and
   fs-id1971159. They go to 8.5 with `source_section: "8.4"`, and both sections'
   `exercise_notes` say so.
-- The two centre-of-mass items that stay, `ap1` and `ap2`, describe a collision
+- The two center-of-mass items that stay, `ap1` and `ap2`, describe a collision
   this section owns, so rule 12 keeps them here. The book gives the reader only
   one sentence on the idea, in 8.3: the total momentum can be shown to be the
-  momentum of the centre of mass of the system. `cite` may name only a span of
+  momentum of the center of mass of the system. `cite` may name only a span of
   this section's own text, so both cite `equations`, where the total momentum
   before and after is written down, and their suggested approaches quote 8.3's
   sentence in words. Both are tagged with 6.5's `center-of-mass`.

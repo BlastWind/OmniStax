@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, pinned, runner, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, choice, hover, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, scale, axes, pinned, runner, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -68,7 +68,7 @@ function plume(ctx, x, y, color, f) {
   const d = sim('sim-swimmer', 760);
   const Fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 100, max: 600, step: 10, value: 350, unit: 'N', dec: 0, onInput: reset, aria: 'force of the push' });
   const mm = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 90, step: 1, value: 60, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the swimmer' });
-  const tp = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.2, max: 0.8, step: 0.05, value: 0.4, unit: 's', dec: 2, onInput: reset, aria: 'length of the push' });
+  const tp = ctl(d.controls, { label: '\\Delta\\kt', cls: 'time', min: 0.2, max: 0.8, step: 0.05, value: 0.4, unit: 's', dec: 2, onInput: reset, aria: 'how long her feet stay on the wall' });
   const GLIDE = 1.6, WALL = 1100, KF = 0.28;
   const run = () => { const a = Fp.v / mm.v, ve = a * tp.v, xp = 0.5 * a * tp.v * tp.v; return { a, ve, xp, T: tp.v + GLIDE, D: xp + ve * GLIDE }; };
   const cy = cycle(() => run().T, 1.2);
@@ -78,12 +78,17 @@ function plume(ctx, x, y, color, f) {
     const r = run(), tau = cy.now(), pushing = tau < tp.v - 1e-9;
     const s = pushing ? 0.5 * r.a * tau * tau : r.xp + r.ve * (tau - tp.v);
     const v = pushing ? r.a * tau : r.ve;
-    const SC = (WALL - 80 - 300) / Math.max(0.8, r.D);
-    const cx = WALL - 80 - s * SC, feet = cx + 80, cf = C('force'), L = Fp.v * KF;
+    /* fixed scene scale: the pool is ruled 0 to 5 m from the wall and never rescales. The push and
+       glide the figure opens with cover 4.2 m and so fill it, and a harder push carries her past the
+       left edge, where she is held at the 5 m mark and the headline says how far she has really gone. */
+    const XMAX = 5, SC = (WALL - 80 - 300) / XMAX, SX = (mtr) => WALL - 80 - mtr * SC;
+    const past = s > XMAX;
+    const cx = SX(Math.min(s, XMAX)), feet = cx + 80, cf = C('force'), L = Fp.v * KF;
     /* the pool: its water surface and the wall she pushes off */
     line(ctx, 50, 96, WALL, 96, PAL.muted, 3, [22, 14]);
     fixed(ctx, WALL, 96, 58, 300);
     text(ctx, 'the wall of the pool', WALL + 29, 414, PAL.muted, { size: 17, align: 'center' });
+    scale(ctx, SX, 0, XMAX, 1, 418, 'm', 1);
     /* the system of interest, and the swimmer inside it */
     boundary(ctx, cx - 112, 172, cx + 86, 276, 'the system of interest');
     swimmerSprite(ctx, cx, 220, PAL.ink, pushing ? 4 : 10 * Math.sin(tau * 7));
@@ -102,7 +107,9 @@ function plume(ctx, x, y, color, f) {
     if (v > 0.05) {
       const Lv = Math.min(230, v * 46);
       arrow(ctx, cx, 322, cx - Lv, 322, C('velocity'), 5);
-      text(ctx, 'v = ' + fmt(v, 2) + ' m/s', cx - Lv - 12, 322, C('velocity'), { size: 20, weight: 600, align: 'right' });
+      /* the label sits over the middle of the arrow, clamped inside the canvas, so a fast glide
+         does not carry it off the left edge */
+      text(ctx, 'v = ' + fmt(v, 2) + ' m/s', Math.max(150, cx - Lv / 2), 294, C('velocity'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     }
     /* the graph of her speed against time */
     /* fixed axes: the longest push the slider allows is 0.8 s and the glide after it lasts 1.6 s, so
@@ -133,12 +140,14 @@ function plume(ctx, x, y, color, f) {
     } else text(ctx, 'no horizontal force acts on her now', fx - 40, fy, PAL.muted, { size: 17, align: 'right' });
     dot(ctx, fx, fy, PAL.ink, true, 10);
     text(ctx, 'the vertical forces cancel, since there is no vertical motion', 1110, 688, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, pushing
-      ? 't = ' + fmt(tau, 2) + ' s · the wall pushes back on her feet with ' + fmt(Fp.v, 0) + ' N, so her ' + fmt(mm.v, 0) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s² away from the wall'
-      : 't = ' + fmt(tau, 2) + ' s · her feet left the wall at ' + fmt(r.ve, 2) + ' m/s and she glides at that speed');
+    topline(ctx, pushing
+      ? 'After ' + fmt(tau, 2) + ' s the wall is still pushing back on her feet with ' + fmt(Fp.v, 0) + ' N, so her ' + fmt(mm.v, 0) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s² away from it'
+      : past
+        ? 'Her feet left the wall at ' + fmt(r.ve, 2) + ' m/s, and after ' + fmt(tau, 2) + ' s she has glided ' + fmt(s, 1) + ' m, past the 5 m of pool drawn here'
+        : 'Her feet left the wall at ' + fmt(r.ve, 2) + ' m/s, and after ' + fmt(tau, 2) + ' s she is still gliding at that speed, ' + fmt(s, 1) + ' m out');
     readout(d.readout, pushing
       ? `\\ka = \\frac{\\kF_{\\text{wall on feet}}}{m} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mm.v, 0)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`
-      : `\\kv = \\ka\\kt = (${fmt(r.a, 2)}\\ \\text{m/s}^2)(${fmt(tp.v, 2)}\\ \\text{s}) = ${fmt(r.ve, 2)}\\ \\text{m/s}`,
+      : `\\kv = \\ka\\,\\Delta\\kt = (${fmt(r.a, 2)}\\ \\text{m/s}^2)(${fmt(tp.v, 2)}\\ \\text{s}) = ${fmt(r.ve, 2)}\\ \\text{m/s}`,
       'The force she exerts on the wall and the force the wall exerts on her are equal in magnitude and opposite in direction, but they act on different bodies and so they do not cancel. Only the force on her feet is an external force on the system of interest, and only that force accelerates her.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => run().T / 5), draw });
@@ -157,7 +166,15 @@ function plume(ctx, x, y, color, f) {
   const fr = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 60, step: 1, value: 24, unit: 'N', dec: 1, onInput: reset, aria: 'forces opposing the motion' });
   const mp = ctl(d.controls, { label: 'm_{\\text{prof}}', cls: '', min: 40, max: 100, step: 1, value: 65, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the professor' });
   const mc = ctl(d.controls, { label: 'm_{\\text{cart}}', cls: '', min: 5, max: 40, step: 1, value: 19, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the cart and its equipment' });
+  /* Seven force labels ride a scene that crosses the room, and two of them share an origin at her
+     hand, so they are off until they are asked for (rule 26.7). The two system boundaries are frame
+     labels and stay, the free-body diagrams below carry every value, and the pointer names any arrow. */
+  const LAB = choice(d.controls, {
+    label: '\\text{Labels}', aria: 'Force labels on the scene', value: 'off',
+    options: [{ value: 'on', label: 'on' }, { value: 'off', label: 'off' }],
+  });
   const ROOM = 8, FLOOR = 330, KF = 0.7;
+  let hits = [];
   const run = () => {
     const M = mp.v + mc.v, Fnet = Ff.v - fr.v, a = Fnet / M, Fnet2 = mc.v * a;
     return { M, Fnet, a, Fnet2, Fprof: Fnet2 + fr.v, T: Math.sqrt((2 * ROOM) / a) };
@@ -187,22 +204,33 @@ function plume(ctx, x, y, color, f) {
     cartSprite(ctx, cxx, FLOOR, PAL.ink);
     /* the pair between the professor and the cart, internal to System 1 */
     const Lp = r.Fprof * KF, hand = px + 50;
-    arrow(ctx, hand, 200, hand + Lp, 200, cf, 5); text(ctx, 'F_prof', hand + Lp + 12, 200, cf, { size: 19, weight: 600 });
-    arrow(ctx, hand, 200, hand - Lp, 200, cf, 5); text(ctx, 'F_cart', hand - Lp - 12, 200, cf, { size: 19, weight: 600, align: 'right' });
+    arrow(ctx, hand, 200, hand + Lp, 200, cf, 5);
+    arrow(ctx, hand, 200, hand - Lp, 200, cf, 5);
     /* the pair at her feet: she pushes back on the floor, the floor pushes her forward */
     const Lf = Ff.v * KF, foot = px - 6;
-    arrow(ctx, foot, 362, foot - Lf, 362, cf, 5); text(ctx, 'F_foot', foot - Lf - 12, 362, cf, { size: 19, weight: 600, align: 'right' });
-    arrow(ctx, foot, 362, foot + Lf, 362, cf, 5); text(ctx, 'F_floor = ' + fmt(Ff.v, 0) + ' N', foot + Lf + 12, 362, cf, { size: 19, weight: 600 });
+    arrow(ctx, foot, 362, foot - Lf, 362, cf, 5);
+    arrow(ctx, foot, 362, foot + Lf, 362, cf, 5);
     /* the forces opposing the motion, on the cart's wheels */
     const Lr = Math.max(44, fr.v * KF);   /* f is too small to draw to scale, as the book says of it */
-    arrow(ctx, cxx - 40, 408, cxx - 40 - Lr, 408, cf, 4); text(ctx, 'f = ' + fmt(fr.v, 1) + ' N', cxx - 40 - Lr - 12, 408, cf, { size: 19, weight: 600, align: 'right' });
+    arrow(ctx, cxx - 40, 408, cxx - 40 - Lr, 408, cf, 4);
+    /* every arrow has a name under the pointer, and the names are drawn beside them when Labels is on */
+    const named = [
+      { x: hand + Lp, y: 200, side: 1, s: 'F_prof', name: 'F prof, the force the professor exerts on the cart' },
+      { x: hand - Lp, y: 200, side: -1, s: 'F_cart', name: 'F cart, the force the cart exerts back on the professor' },
+      { x: foot - Lf, y: 362, side: -1, s: 'F_foot', name: 'F foot, the force she exerts back on the floor' },
+      { x: foot + Lf, y: 362, side: 1, s: 'F_floor = ' + fmt(Ff.v, 0) + ' N', name: 'F floor, the force the floor exerts on her' },
+      { x: cxx - 40 - Lr, y: 408, side: -1, s: 'f = ' + fmt(fr.v, 1) + ' N', name: 'f, the forces opposing the motion' },
+    ];
+    hits = named.map((q) => ({ x: q.x, y: q.y, r: 30, name: q.name }));
+    if (LAB.value === 'on') named.forEach((q) => text(ctx, q.s, q.x + q.side * 12, q.y, cf, { size: 19, weight: 600, align: q.side > 0 ? 'left' : 'right', bg: alpha(PAL.panel, 0.85) }));
     /* a free-body diagram for each system */
     fbd(ctx, 100, 470, 660, 'System 1: the professor, the cart and the equipment', Ff.v, 'F_floor', r.Fnet, r.M, r.a, cf);
     fbd(ctx, 740, 470, 1300, 'System 2: the cart and the equipment', r.Fprof, 'F_prof', r.Fnet2, mc.v, r.a, cf);
-    headline(ctx, 't = ' + fmt(tau, 2) + ' s · System 1 is pushed forward with ' + fmt(Ff.v, 0) + ' N and held back by ' + fmt(fr.v, 1) + ' N, so ' + fmt(r.M, 1) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s²');
+    topline(ctx, 'After ' + fmt(tau, 2) + ' s System 1 is still pushed forward with ' + fmt(Ff.v, 0) + ' N and held back by ' + fmt(fr.v, 1) + ' N, so its ' + fmt(r.M, 1) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s²');
     readout(d.readout, `\\kFnet = \\kFfloor - \\kff = ${fmt(Ff.v, 0)}\\ \\text{N} - ${fmt(fr.v, 1)}\\ \\text{N} = ${fmt(r.Fnet, 1)}\\ \\text{N},\\qquad \\ka = \\frac{\\kFnet}{m} = \\frac{${fmt(r.Fnet, 1)}\\ \\text{N}}{${fmt(r.M, 1)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
       'The force the professor exerts on the cart is ' + fmt(r.Fnet2, 1) + ' N + ' + fmt(fr.v, 1) + ' N = ' + fmt(r.Fprof, 1) + ' N. It is internal to System 1, where it cancels against the force the cart exerts back on her, so it never enters the first calculation; taking the cart alone as System 2 makes it external, and then it is the force that accelerates the cart.');
   }
+  hover(d.stage, () => hits);
   register(d.fig, { update: (dt) => cy.step(dt, () => run().T / 4.5), draw });
 })();
 
@@ -224,10 +252,17 @@ function plume(ctx, x, y, color, f) {
   function draw() {
     const { ctx } = begin(d.c);
     const r = run(), tau = cy.now();
-    const s = 0.5 * r.a * tau * tau, v = r.a * tau, rx = 430 + (s / Math.max(1, r.S)) * 720;
+    const s = 0.5 * r.a * tau * tau, v = r.a * tau;
+    /* fixed scene scale: the distance from the point of release is ruled 0 to 80 m and never
+       rescales. The burn the figure opens with covers 67 m and so fills it, and a harder burn
+       carries the rocket past the last mark, where it is held and the headline says how far it
+       has really gone. */
+    const XMAX = 80, RX = (mtr) => 430 + mtr * (720 / XMAX);
+    const past = s > XMAX, rx = RX(Math.min(s, XMAX));
     STARS.forEach(([sx, sy]) => dot(ctx, sx, sy, PAL.rule, true, 3));
     text(ctx, 'empty space: no ground below, no air behind', 700, 86, PAL.muted, { size: 18, align: 'center' });
-    plume(ctx, rx - 48, 214, alpha(C('force'), 0.45), tau);
+    /* the exhaust gas is a body, not a force, so it is drawn in ink and never in the force hue */
+    plume(ctx, rx - 48, 214, alpha(PAL.ink, 0.5), tau);
     rocketSprite(ctx, rx, 214, PAL.ink);
     const cf = C('force'), L = Fk.v * 10;
     arrow(ctx, rx, 152, rx + L, 152, cf, 5);
@@ -239,6 +274,7 @@ function plume(ctx, x, y, color, f) {
       arrow(ctx, rx, 342, rx + Lv, 342, C('velocity'), 5);
       text(ctx, 'v = ' + fmt(v, 1) + ' m/s', rx + Lv + 12, 342, C('velocity'), { size: 20, weight: 600 });
     }
+    scale(ctx, RX, 0, XMAX, 20, 386, 'm', 1);
     /* fixed axes: the burn always lasts 4 s, and the largest thrust the sliders allow on the least
        mass, 20 kN on 500 kg, is 40 m/s² and so 160 m/s by the end of it. The graph is therefore
        always 0 to 4 s by 0 to 160 m/s, ticked every 1 s and 40 m/s, and it never rescales */
@@ -250,7 +286,7 @@ function plume(ctx, x, y, color, f) {
     });
     pinned(ctx, gbox, g.X, g.Y, tau, v, PAL.ink, fmt(v, 1) + ' m/s');
     text(ctx, 'the slope is the acceleration, ' + fmt(r.a, 2) + ' m/s²', g.X(BURN * 0.44), g.Y(Math.min(r.ve, VR) * 0.82), C('acceleration'), { size: 18, weight: 600, align: 'center' });
-    headline(ctx, 't = ' + fmt(tau, 2) + ' s · the gas pushes the rocket forward with ' + fmt(Fk.v, 1) + ' kN, and ' + fmt(mm.v, 0) + ' kg has reached ' + fmt(v, 1) + ' m/s');
+    topline(ctx, 'After ' + fmt(tau, 2) + ' s the gas has pushed the rocket forward with ' + fmt(Fk.v, 1) + ' kN, and its ' + fmt(mm.v, 0) + ' kg has reached ' + fmt(v, 1) + ' m/s' + (past ? ', ' + fmt(s, 0) + ' m from where it started and past the 80 m drawn here' : ''));
     readout(d.readout, `\\ka = \\frac{\\kF}{m} = \\frac{${fmt(Fk.v * 1000, 0)}\\ \\text{N}}{${fmt(mm.v, 0)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
       'The rocket has nothing to push on but its own exhaust gas, and that is enough: it exerts a large backward force on the gas, and by Newton’s third law the gas exerts an equal forward force on the rocket, which is its thrust.');
   }

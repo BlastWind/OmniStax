@@ -98,16 +98,26 @@ headline · graph · 3D
    0.250 kg, the mass of the incoming object in the worked example, and
    the defaults reproduce the example: $\kvoneprime = 1.50$ m/s and
    $\kvtwoprime = 0.886$ m/s. · sliders: $\kvone$ (1.00 to 4.00 m/s,
-   default 2.00, velocity), $\theta_1$ ($5^\circ$ to $85^\circ$, default
-   $45^\circ$, ink), $\theta_2$ ($-85^\circ$ to $-5^\circ$, default
-   $-48.5^\circ$, ink), $m_2$ (0.100 to 1.000 kg, default 0.400, ink) ·
-   "t = 1.80 s · the 0.250 kg object leaves at 1.50 m/s and the 0.400 kg
-   object at 0.886 m/s, so the momentum along y still adds to zero" ·
-   graph below: a momentum ledger, one bar for the momentum along $x$
+   default 2.00, velocity), $\theta_1$ ($10^\circ$ to $80^\circ$, default
+   $45^\circ$, ink), $\theta_2$ ($-80^\circ$ to $-10^\circ$, default
+   $-48.5^\circ$, ink), $m_2$ (0.100 to 1.000 kg, default 0.400, ink), and a
+   Labels button, off by default, because the two momentum labels ride
+   objects that move and would crowd at a small angle of separation (rule
+   26.7); with the labels off the kind is named once beside the scene and
+   either object still gives its name and its momentum under the pointer ·
+   "The two objects leave at 1.50 m/s and 0.886 m/s, and their momenta along
+   y still cancel." · every momentum arrow is on one fixed scale, 120 units
+   per kg·m/s, and the ledger bars on theirs, 400 units per kg·m/s along $x$
+   and 380 along $y$, so a slider lengthens what it should · graph below: a
+   momentum ledger, one bar for the momentum along $x$
    before the collision against the two after it, and one for the two
-   $y$-components, which are equal and opposite · no. Readout: the
+   $y$-components, which are equal and opposite. Under the scene the figure
+   states the internal kinetic energy before the collision and after it, and
+   says so plainly when the two angles the reader has set would need energy
+   from somewhere, since momentum alone allows pairs of angles no collision
+   could reach · no. Readout: the
    $x$-axis equation with the live numbers; small line on the $y$-axis
-   equation. Draws momentum and velocity.
+   equation. Draws momentum, velocity and energy.
 2. `sim-dark-room` · replaces Figure 8.11 · scattering-to-find-unseen-object,
    momentum-conservation-x, momentum-conservation-y · **moves**: the same
    reason as the first figure, and here the reader also watches the object
@@ -119,14 +129,16 @@ headline · graph · 3D
    the figure reads out $\theta_2 = 311.5^\circ$ and
    $\kvtwoprime = 0.886$ m/s. · sliders: $\kvone$ (1.00 to 4.00 m/s,
    default 2.00, velocity), $\kvoneprime$ (0.50 to 3.00 m/s, default 1.50,
-   velocity), $\theta_1$ ($5^\circ$ to $85^\circ$, default $45^\circ$,
-   ink), $m_2$ (0.100 to 1.000 kg, default 0.400, ink) · "t = 1.80 s · the
-   unseen 0.400 kg object leaves at 0.886 m/s and 311.5º, and the internal
-   kinetic energy has fallen from 0.500 J to 0.438 J" · none: the room is
+   velocity), $\theta_1$ ($10^\circ$ to $80^\circ$, default $45^\circ$,
+   ink), $m_2$ (0.100 to 1.000 kg, default 0.400, ink) · "The unseen object
+   leaves at 0.886 m/s and 311.5º." · the velocity arrows are on a fixed
+   scale, 21 units per m/s · none: the room is
    the picture, and the ledger belongs to the figure above · no. Readout:
    the scattering-angle equation with the live numbers; small line on the
    internal kinetic energy before and after, which is the Discussion of
-   the example. Draws velocity and energy.
+   the example. Draws velocity; the internal kinetic energy is stated in
+   words in the readout and is not colored, so it is not a type this figure
+   binds.
 3. `sim-billiards` · Sim, replacing nothing in the book ·
    equal-mass-elastic-2d, ninety-degree-separation · **moves**: a cue ball
    strikes a ball at rest and the two roll away, so the idea has a time in
@@ -140,9 +152,11 @@ headline · graph · 3D
    watch the kinetic energy fail to balance. · sliders: $\kvone$ (2.00 to
    10.00 m/s, default 6.00, velocity), $\theta_1$ ($5^\circ$ to $85^\circ$,
    default $30^\circ$, ink), the angle of separation $\theta_1 - \theta_2$
-   ($40^\circ$ to $140^\circ$, default $90^\circ$, ink) · "the balls
-   separate at 90.0º · the cue ball leaves at 5.20 m/s and the struck ball
-   at 3.00 m/s, and the internal kinetic energy is exactly what it was" ·
+   ($-80^\circ$ to $-10^\circ$ as $\theta_2$, default $-60^\circ$, ink) · "The
+   balls separate at 90º, the cue ball leaving at 5.20 m/s and the struck
+   ball at 3.00 m/s." · the velocity arrows are on a fixed scale, 8.5 units
+   per m/s, and the marker on the graph is pinned at the edge where the
+   ratio leaves the fixed 0.5 to 1.5 range ·
    graph below: the ratio of the internal kinetic energy after the
    collision to the internal kinetic energy before it, against the angle
    of separation, with the value 1 marked · no. Readout: the equal-mass
@@ -170,9 +184,9 @@ Extra simulations (rule 15), considered:
   opens a real view, but it belongs to 8.2, whose AP items set exactly
   that question, and this section is about two objects rather than an
   object and a wall. Left.
-- **The centre of mass of the two objects, moving in a straight line at a
+- **The center of mass of the two objects, moving in a straight line at a
   constant velocity through the collision.** Six exercises across 8.3 to
-  8.6 ask for a centre-of-mass velocity and nothing in this chapter's text
+  8.6 ask for a center-of-mass velocity and nothing in this chapter's text
   derives it. It would open a genuine view, but it is 8.3's to build, as
   `ch08/exploration.md` says, and putting it here would leave the
   one-dimensional sections without it. Left, and named again for the
@@ -194,7 +208,7 @@ book is a Sim.
   massive cube), Understand, an open item with an AI-written suggested
   approach, citing `two-dimensional` and carrying the book's figure on its
   card.
-- 2 AP items, both about the centre-of-mass velocity of a two-dimensional
+- 2 AP items, both about the center-of-mass velocity of a two-dimensional
   collision in which the objects stick together. `ap1` (fs-id2039335, two
   cars of equal mass at an intersection) is keyed "(b)" and is a graded
   choice with the book's four options, Understand. `ap2` (fs-id2218337,
@@ -229,7 +243,7 @@ book is a Sim.
   since the work is all in the two axis equations; `cq1` gives
   `point-mass` weight 2 and `elastic-collision` weight 2; both AP items
   give `center-of-mass` its full value and the section's own nodes
-  weight 2, since what they test is the centre of mass rather than the
+  weight 2, since what they test is the center of mass rather than the
   scattering.
 
 ## Views
@@ -280,7 +294,7 @@ as the book's own rules say.
   that are written in masses and velocity components
   ($m_1v_{1x} + m_2v_{2x} = m_1{v'}_{1x} + m_2{v'}_{2x}$ and the three
   like it) are set in plain LaTeX and stand in ink, while $\kvone$ and
-  the primed speeds beside them are coloured. Rows with the type
+  the primed speeds beside them are colored. Rows with the type
   `velocity` and macros `\kvonex`, `\kvtwox`, `\kvoney`, `\kvtwoy`,
   `\kvonexprime`, `\kvtwoxprime`, `\kvoneyprime` and `\kvtwoyprime`
   would let those four lines wear the velocity hue too; the text would
@@ -293,10 +307,10 @@ as the book's own rules say.
   `eq-momentum-x-masses`, `eq-momentum-x-at-rest`,
   `eq-momentum-y-masses` and `eq-momentum-y-at-rest`, all with
   `important: false`, anchored at `8.6-x-axis` and `8.6-y-axis`.
-- The centre-of-mass sim that `ch08/exploration.md` leaves for a later
+- The center-of-mass sim that `ch08/exploration.md` leaves for a later
   pass would serve both AP items of this section. The `cite` of an
   exercise must name a span of its own section's text, so neither item
-  can point at 8.3's sentence on the momentum of the centre of mass;
+  can point at 8.3's sentence on the momentum of the center of mass;
   both cite `two-dimensional` instead and their suggested approaches
   name that sentence in words.
 
@@ -305,21 +319,21 @@ nine equation anchors above are written.
 
 The eight velocity-component symbol rows (`v_1x`, `v_2x`, `v_1y`, `v_2y` and
 their primed forms) are **not** added. The plan calls them optional, and they
-would buy colour on four lines of a derivation the section does not keep as
+would buy color on four lines of a derivation the section does not keep as
 results: the four equations written in components have no row in `chapter.json`
-by the plan's own argument, so giving their symbols a hue would colour steps
-that lead nowhere the formula sheet goes. Rule 7 asks that a page colour only
+by the plan's own argument, so giving their symbols a hue would color steps
+that lead nowhere the formula sheet goes. Rule 7 asks that a page color only
 what it binds, and this page binds momentum and velocity through the symbols it
 does carry. The four intermediate equations stay without rows for the same
 reason.
 
 The `cite` of an exercise must name an id of the section the exercise is set in,
 which is why both AP items here cite `two-dimensional` rather than 8.3's
-sentence on the momentum of the centre of mass; their approaches name that
+sentence on the momentum of the center of mass; their approaches name that
 sentence in words and both tag 6.5's `center-of-mass`. The chapter pass keeps
 that, and 8.5's two items of the same kind keep no cite at all, since this
 section's opening passage is about the collision the items describe while 8.5's
-text never mentions the centre of mass.
+text never mentions the center of mass.
 
 The masculine ordinal stood in seventeen places in this section's `figures.js`,
 in the angle sliders' units, the arc labels, an axis label and the headlines,

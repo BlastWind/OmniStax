@@ -145,3 +145,19 @@ and a conical or physical pendulum (not in the text). One survivor:
 The arc length s is a displacement and takes the position hue; g is an
 acceleration and takes the acceleration hue. Two macros to add: `\ks`
 (class `kv-x`) and `\kg` (class `kv-a`). θ and L stay in ink. No new hue.
+
+Audit pass (2026-09-12): `sim-pendulum-force` draws seven labels that would
+ride the bob and cross one another as it swings, so under rule 26.7 they are
+off by default behind a Labels button, with the name of everything drawn still
+available under the pointer; the frame, the axis titles and the two curve
+labels stay. Its tension arrow is drawn in the force hue like the rest of the
+forces, and the band marking the small angles is shaded in ink rather than in
+the position hue, since a region takes no type. Its graph is fixed at plus and
+minus 2.4 m of arc and plus and minus 20 N, both read off the slider maxima,
+so the straight line and the true curve keep one frame to part company in.
+`sim-pendulum-period` fixes its period axis at 0 to 8 s, which covers the
+longest pendulum under the weakest gravity the sliders allow, so weakening
+gravity lifts the whole curve. `sim-measure-g` draws its time line from 0 to
+75 s, the longest ten swings the sliders allow, so a shorter pendulum plainly
+finishes sooner. All three are two-dimensional, with no 3D; labels are off
+behind a button on the first and on for the other two.

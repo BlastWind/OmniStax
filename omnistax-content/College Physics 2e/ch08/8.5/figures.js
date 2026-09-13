@@ -1,7 +1,7 @@
 /* Figures for section 8.5 Inelastic Collisions in One Dimension. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, nice, curve, spring, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, topline, strip, axes, nice, curve, spring, pinned, choice } = F;
 const sim = (id, H) => F.sim(root, id, H);
 /* the hollow companion marker: an ordinary hollow dot while it is inside the box, and the
    library's pinned marker once the fixed range can no longer hold it */
@@ -35,7 +35,7 @@ const sum = (a, b) => `${texnum(a)} ${b < 0 ? '-' : '+'} ${texnum(Math.abs(b))}`
 const span = (lo, hi, floor) => { const f = floor || 1e-3; return hi - lo < f ? nice(Math.min(lo, 0), Math.max(hi, lo + f), 4) : nice(lo, hi, 4); };
 
 /* ---------- the scene's pieces ---------- */
-/* a square object of mass m sitting on the ground line gy, centred on x, w wide */
+/* a square object of mass m sitting on the ground line gy, centered on x, w wide */
 function box(ctx, x, gy, w, label) {
   const y = gy - w / 2;
   ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
@@ -61,11 +61,26 @@ function vec(ctx, x, y, L, s, color, label) {
 ===================================================================== */
 (function () {
   const d = sim('sim-collision', 900);
+  /* The book draws this one scene three times, and each drawing brings its own numbers and its own
+     scales: two equal masses that stop dead in Figure 8.7, the puck and the goalie of Figure 8.8,
+     and the two carts a compressed spring pushes apart in Figure 8.9, whose numbers are the worked
+     example's. Choosing a figure sets the five sliders to its state and fixes both graph ranges and
+     both arrow scales from it, so that neither range moves as the sliders are afterward dragged. */
+  const PRESET = {
+    '8.7': { m1: 1, m2: 1, v1: 2, v2: -2, c: 0, plo: -3, phi: 3, khi: 5, vmax: 3, pmax: 3 },
+    '8.8': { m1: 0.15, m2: 70, v1: 35, v2: 0, c: 0, plo: -5, phi: 15, khi: 120, vmax: 40, pmax: 8 },
+    '8.9': { m1: 0.35, m2: 0.5, v1: 2, v2: -0.5, c: 3.08, plo: -2, phi: 2, khi: 8, vmax: 5, pmax: 2.5 },
+  };
+  const which = choice(d.controls, {
+    label: '\\text{figure}', value: '8.8', aria: 'which of the three book figures to show',
+    options: [{ value: '8.7', label: '8.7' }, { value: '8.8', label: '8.8' }, { value: '8.9', label: '8.9' }],
+    onInput: (v) => { const q = PRESET[v]; m1.set(q.m1); m2.set(q.m2); v1.set(q.v1); v2.set(q.v2); cc.set(q.c); reset(); },
+  });
   const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.05, max: 5, step: 0.05, value: 0.15, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the first object' });
   const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.05, max: 80, step: 0.05, value: 70, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the second object' });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: -40, max: 40, step: 0.05, value: 35, unit: 'm/s', dec: 2, onInput: reset });
   const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: -40, max: 40, step: 0.05, value: 0, unit: 'm/s', dec: 2, onInput: reset });
-  const cc = ctl(d.controls, { label: 'c', cls: '', min: 0, max: 3.5, step: 0.01, value: 0, unit: '', dec: 2, onInput: reset, aria: 'the speed the objects separate at divided by the speed they approached at' });
+  const cc = ctl(d.controls, { label: 'c', cls: '', min: 0, max: 3.5, step: 0.01, value: 0, unit: '', dec: 2, detents: [{ v: 0, label: '0' }, { v: 1, label: '1' }, { v: 3.08, label: '3.08' }], snap: true, onInput: reset, aria: 'the speed the objects separate at divided by the speed they approached at' });
   const TC = 2, T = 4, GY = 290;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
@@ -82,12 +97,14 @@ function vec(ctx, x, y, L, s, color, label) {
   function draw() {
     const { ctx } = begin(d.c);
     const s = state(), tau = REDUCED ? T : cy.now(), after = s.hits && tau >= TC;
-    const KHI = 120;                                  /* the fixed top of the energy graph, see below */
+    const P = PRESET[which.value];
+    const KHI = P.khi;                                /* the top of the energy graph, fixed by the chosen figure */
     const big = Math.max(m1.v, m2.v);
     const w1 = 34 + 46 * Math.cbrt(m1.v / big), w2 = 34 + 46 * Math.cbrt(m2.v / big);
     const cx = 700;
-    const vmax = Math.max(Math.abs(v1.v), Math.abs(v2.v), Math.abs(s.v1p), Math.abs(s.v2p), 0.05);
-    const SC = s.hits ? 470 / (vmax * TC) : 400 / (vmax * T);
+    /* the ground the objects cover is paced so that they meet at the same moment whatever their
+       speeds, on the scale the chosen figure sets */
+    const SC = s.hits ? 470 / (P.vmax * TC) : 400 / (P.vmax * T);
     const u1 = after ? s.v1p : v1.v, u2 = after ? s.v2p : v2.v;
     const p1 = m1.v * u1, p2 = m2.v * u2;
     /* two objects that never meet can drift a long way, so hold them on the track */
@@ -98,21 +115,21 @@ function vec(ctx, x, y, L, s, color, label) {
     if (cc.v > 1.001) spring(ctx, x1 + w1 / 2, GY - w1 / 2, x1 + w1 / 2 + (after ? 52 : 24), GY - w1 / 2, 5, 11, PAL.muted, 3);
     box(ctx, x1, GY, w1, 'm₁');
     box(ctx, x2, GY, w2, 'm₂');
-    const KV = 180 / vmax;
+    const KV = 180 / P.vmax;
     vec(ctx, x1, GY - 122, Math.abs(u1) * KV, u1 < 0 ? -1 : 1, C('velocity'), (after ? 'v₁′ = ' : 'v₁ = ') + sig(u1) + ' m/s');
     vec(ctx, x2, GY - 176, Math.abs(u2) * KV, u2 < 0 ? -1 : 1, C('velocity'), (after ? 'v₂′ = ' : 'v₂ = ') + sig(u2) + ' m/s');
-    const KP = 180 / Math.max(Math.abs(p1), Math.abs(p2), Math.abs(s.ptot), 1e-9);
+    const KP = 180 / P.pmax;
     vec(ctx, x1, GY + 62, Math.abs(p1) * KP, p1 < 0 ? -1 : 1, C('momentum'), (after ? 'p₁′ = ' : 'p₁ = ') + sig(p1) + ' kg·m/s');
     vec(ctx, x2, GY + 118, Math.abs(p2) * KP, p2 < 0 ? -1 : 1, C('momentum'), (after ? 'p₂′ = ' : 'p₂ = ') + sig(p2) + ' kg·m/s');
-    text(ctx, 'the total momentum is ' + sig(s.ptot) + ' kg·m/s, the same before the collision and after it', cx, 460, C('momentum'), { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'The total momentum is ' + sig(s.ptot) + ' kg·m/s, the same before the collision and after it.', cx, 460, C('momentum'), { size: 20, weight: 600, align: 'center' });
     /* graph, left: the two momenta and their total against time */
-    /* fixed axes. The run is the same 4 s whatever the sliders say. An 80 kg object at 40 m/s
-       carries thousands of kg·m/s, but the puck and goalie of the default state share only
-       5.25 kg·m/s and would be flat against the axis on a scale that big, so the momentum range is
-       fixed at −5 to 15 kg·m/s, ticked every 5, which holds the default state comfortably; a
-       heavier pair runs off the top, where the steps are clipped. Neither range moves. */
-    const bA = { l: 170, r: 640, t: 540, b: 780 }, PLO = -5, PHI = 15;
-    const A = axes(ctx, bA, [0, T], [PLO, PHI], { xl: 'time (s)', xc: PAL.ink, yl: 'momentum (kg·m/s)', yc: C('momentum'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => sig(v, 2) });
+    /* fixed axes. The run is the same 4 s whatever the sliders say, and the momentum range is the
+       one the chosen figure asks for: −3 to 3 kg·m/s for the two equal masses of Figure 8.7, −5 to
+       15 for the puck and the goalie of Figure 8.8, and −2 to 2 for the two carts of Figure 8.9. A
+       pair heavier or faster than the figure it was chosen for runs off the top, where the steps are
+       clipped. Neither range moves as the sliders are dragged. */
+    const bA = { l: 170, r: 640, t: 540, b: 780 }, PLO = P.plo, PHI = P.phi;
+    const A = axes(ctx, bA, [0, T], [PLO, PHI], { xl: 'time (s)', xc: C('time'), yl: 'momentum (kg·m/s)', yc: C('momentum'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => sig(v, 2) });
     const step = (S, before0, afterv0, color, w, dash) => {
       const end = s.hits ? TC : T, lo = S === A ? PLO : 0, hi = S === A ? PHI : KHI;
       const before = Math.min(Math.max(before0, lo), hi), afterv = Math.min(Math.max(afterv0, lo), hi);
@@ -128,21 +145,20 @@ function vec(ctx, x, y, L, s, color, label) {
     text(ctx, 'total', A.X(0.35), A.Y(clA(s.ptot)) - 22, C('momentum'), { size: 18, weight: 600 });
     line(ctx, A.X(Math.min(tau, T)), bA.t, A.X(Math.min(tau, T)), bA.b, PAL.ink, 2, [4, 8]);
     /* graph, right: the internal kinetic energy against time */
-    /* fixed axes, the same 4 s across: the sliders could put tens of thousands of joules into the
-       system, but the default puck brings 92 J, so the energy range is fixed at 0 to 120 J, ticked
-       every 30, which holds the default state comfortably and a larger one is clipped at the top
-       edge with its value pinned. Neither range moves. */
+    /* the energy range is likewise the chosen figure's: 5 J for Figure 8.7, 120 J for the 91.9 J
+       the puck of Figure 8.8 brings, and 8 J for the carts of Figure 8.9, whose spring adds energy
+       rather than taking it away. A larger state is clipped at the top edge with its value pinned. */
     const bB = { l: 850, r: 1300, t: 540, b: 780 };
-    const B = axes(ctx, bB, [0, T], [0, KHI], { xl: 'time (s)', xc: PAL.ink, yl: 'internal kinetic energy (J)', yc: C('energy'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => sig(v, 2) });
+    const B = axes(ctx, bB, [0, T], [0, KHI], { xl: 'time (s)', xc: C('time'), yl: 'internal kinetic energy (J)', yc: C('energy'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => sig(v, 2) });
     step(B, s.ke, s.kep, C('energy'), 5);
     hollowOrPinned(ctx, bB, B.X, B.Y, 0, s.ke, C('energy'), sig(s.ke, 2) + ' J');
     pinned(ctx, bB, B.X, B.Y, T, s.kep, C('energy'), sig(s.kep, 2) + ' J');
     line(ctx, B.X(Math.min(tau, T)), bB.t, B.X(Math.min(tau, T)), bB.b, PAL.ink, 2, [4, 8]);
     /* the headline */
     const lost = s.ke - s.kep;
-    headline(ctx, !s.hits ? 'the two objects are not approaching each other, so nothing collides: raise v₁ above v₂ and they will meet'
-      : !after ? 't = ' + fmt(tau, 2) + ' s · the two are still approaching, with ' + sig(s.ke) + ' J of internal kinetic energy between them'
-        : 't = ' + fmt(tau, 2) + ' s · they leave at ' + sig(s.v1p) + ' m/s and ' + sig(s.v2p) + ' m/s, and the internal kinetic energy has ' + (lost >= 0 ? 'fallen by ' + sig(lost) : 'risen by ' + sig(-lost)) + ' J');
+    topline(ctx, !s.hits ? 'The two objects are not approaching each other, so raise v₁ above v₂ and they will meet.'
+      : !after ? 'The two are still approaching, with ' + sig(s.ke) + ' J of internal kinetic energy between them.'
+        : 'They leave at ' + sig(s.v1p) + ' m/s and ' + sig(s.v2p) + ' m/s, and the internal kinetic energy has ' + (lost >= 0 ? 'fallen by ' + sig(lost) : 'risen by ' + sig(-lost)) + ' J.');
     readout(d.readout, `m_1\\kvone + m_2\\kvtwo = m_1\\kvoneprime + m_2\\kvtwoprime:\\quad ${sum(m1.v * v1.v, m2.v * v2.v)} = ${sum(m1.v * s.v1p, m2.v * s.v2p)} = ${texnum(s.ptot)}\\ \\text{kg}\\cdot\\text{m/s}`,
       !s.hits ? 'The two objects never meet, so nothing about the system changes and both graphs run flat.'
         : 'The internal kinetic energy is ' + sig(s.ke) + ' J before the collision and ' + sig(s.kep) + ' J after it, a change of ' + sig(s.kep - s.ke) + ' J. At c = 0 the two stick together and lose as much internal kinetic energy as conservation of momentum allows; at c = 1 they lose none; above c = 1 a compressed spring has given them more than they brought.');
@@ -185,19 +201,22 @@ function vec(ctx, x, y, L, s, color, label) {
     box(ctx, xb, GY, w2, 'm₂');
     vec(ctx, xa, GY - Math.max(w1, w2) - 40, (v / v1.v) * 150, 1, C('velocity'), 'v′ = ' + sig(v) + ' m/s');
     vec(ctx, xa, GY + 66, 150, 1, C('momentum'), 'p = ' + sig(p) + ' kg·m/s');
-    text(ctx, 'the momentum arrow has the same length on both sides; the velocity arrow does not', 700, 388, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'The momentum arrow has the same length on both sides, and the velocity arrow does not.', 700, 388, PAL.muted, { size: 19, align: 'center' });
     /* the curve: the recoil velocity against the catcher's mass, over three decades */
-    /* fixed axes: the catcher can never leave faster than the object arrives, and the object
-       arrives at no more than 60 m/s, so the graph is always 0.1 kg to 100 kg by 0 to 60 m/s,
-       ticked every 15 m/s, and never rescales as the sliders are dragged */
-    const VR = 60, g0 = { l: 200, r: 1280, t: 470, b: 700 };
-    const g = axes(ctx, g0, [0, 3], [0, VR], { xl: 'mass of the catcher m₂ (kg)', xc: PAL.ink, yl: 'recoil velocity v′ (m/s)', yc: C('velocity'), nx: 3, ny: 4, fx: (L) => sig(Math.pow(10, L - 1), 2), fy: (y) => sig(y, 3) });
-    curve(ctx, (L) => (m1.v / (m1.v + Math.pow(10, L - 1))) * v1.v, 0, 3, g.X, g.Y, C('velocity'), 5, 140);
-    const L2 = Math.log10(m2.v) + 1;
-    line(ctx, g.X(L2), g0.b, g.X(L2), g.Y(v), PAL.ink, 2, [4, 8]);
-    line(ctx, g0.l, g.Y(v), g.X(L2), g.Y(v), C('velocity'), 2, [4, 8]);
-    dot(ctx, g.X(L2), g.Y(v), C('velocity'), true, 10);
-    headline(ctx, 'a ' + fmt(m1.v, 2) + ' kg object at ' + fmt(v1.v, 1) + ' m/s leaves a ' + fmt(m2.v, 1) + ' kg catcher moving at ' + sig(v) + ' m/s, one part in ' + sig((m1.v + m2.v) / m1.v) + ' of the speed it came in at');
+    /* fixed axes, both of them in decades. The catcher's mass is the slider's own range, 0.1 kg to
+       100 kg. The recoil velocity runs from the 58.8 m/s of the lightest catcher down to the
+       0.0748 m/s of the goalie of the worked example, which would lie flat against the base line of
+       a plain scale, so the velocity axis is fixed in decades too, 0.001 m/s to 100 m/s, ticked
+       every decade, which holds every state the sliders can reach. Neither range moves. */
+    const VLO = -3, VHI = 2, g0 = { l: 200, r: 1280, t: 470, b: 700 };
+    const lg = (y) => Math.log10(Math.max(1e-9, y));
+    const g = axes(ctx, g0, [0, 3], [VLO, VHI], { xl: 'mass of the catcher m₂ (kg)', xc: PAL.ink, yl: 'recoil velocity v′ (m/s)', yc: C('velocity'), nx: 3, ny: 5, fx: (L) => sig(Math.pow(10, L - 1), 2), fy: (L) => sig(Math.pow(10, L), 3) });
+    curve(ctx, (L) => Math.max(VLO, lg((m1.v / (m1.v + Math.pow(10, L - 1))) * v1.v)), 0, 3, g.X, g.Y, C('velocity'), 5, 140);
+    const L2 = Math.log10(m2.v) + 1, LV = Math.max(VLO, lg(v));
+    line(ctx, g.X(L2), g0.b, g.X(L2), g.Y(LV), PAL.ink, 2, [4, 8]);
+    line(ctx, g0.l, g.Y(LV), g.X(L2), g.Y(LV), C('velocity'), 2, [4, 8]);
+    pinned(ctx, g0, g.X, g.Y, L2, lg(v), C('velocity'), sig(v, 3) + ' m/s');
+    topline(ctx, 'A ' + fmt(m1.v, 2) + ' kg object at ' + fmt(v1.v, 1) + ' m/s leaves a ' + fmt(m2.v, 1) + ' kg catcher moving at ' + sig(v) + ' m/s.');
     readout(d.readout, `\\kvprime = \\frac{m_1}{m_1 + m_2}\\kvone = \\left(\\frac{${fmt(m1.v, 2)}\\ \\text{kg}}{${fmt(m1.v, 2)}\\ \\text{kg} + ${fmt(m2.v, 1)}\\ \\text{kg}}\\right)(${fmt(v1.v, 1)}\\ \\text{m/s}) = ${texnum(v)}\\ \\text{m/s}`,
       'The pair carries ' + sig(p) + ' kg·m/s away from the catch, exactly what the moving object brought to it. The heavier the catcher, the smaller the share of the speed that is left.');
   }

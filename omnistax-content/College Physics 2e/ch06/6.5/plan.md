@@ -121,18 +121,27 @@ graph · 3D
    surface and the radius between the two centers of mass) ·
    g-from-gravitation, mass-from-g, center-of-mass · **still**: the figure
    answers its sliders, and nothing in $g = GM/r^2$ runs on a clock · the
-   body’s mass (0.01 to 320 Earth masses, default 1.00, ink), the body’s
-   radius (0.10 to 12.0 Earth radii, default 1.00, ink) · “a body of one
-   Earth mass and one Earth radius gives g = 9.80 m/s² at its surface,
-   where r = 6.38 × 10⁶ m is very nearly the distance to the center of
-   mass of a house standing on it” · graph beside the round scene:
+   body’s mass and the body’s radius, both as the power of ten of the ratio to
+   Earth’s, $\log_{10}(M/M_\oplus)$ from −2.00 to 2.60 and
+   $\log_{10}(r/r_\oplus)$ from −1.00 to 1.10, both default 0.00, both ink,
+   with soft detents on the Moon, on Earth, on twice Earth and on Jupiter · “With the mass and the radius of Earth, the surface acceleration is
+   g = 9.80 m/s².” · graph beside the round scene:
    $\kg$ against $\kr$ out to four radii, the inverse-square fall with the
-   surface value marked · no. Readout: $\kg = GM/\kr^2$ with the numbers;
+   surface value marked, on fixed axes of 1 to 4 radii by 0 to 10 m/s², a
+   stronger surface gravity being clipped at the top edge and read off a
+   pinned marker · 2D, a round body with a graph beside it · labels on,
+   there being six of them and none of them moving. Readout:
+   $\kg = GM/\kr^2$ with the numbers;
    small line turning it round, $M = \kg\kr^2/G$, which is how Earth’s
-   mass was first found. The sliders are ratios so that the AP items read
-   straight off them: 300 masses and 11 radii is Jupiter, and two masses
-   and two radii is the newly discovered planet. Draws acceleration,
-   position.
+   mass was first found. The bodies the section and its exercises ask about
+   span four and a half decades of mass, from the Moon at a hundredth of
+   Earth’s to Jupiter at three hundred times it, and on a linear slider
+   everything under ten Earth masses would crowd into the first tenth of the
+   track, so both sliders carry the power of ten of the ratio and the
+   headline and the readout write the mass and the radius themselves. The
+   AP items still read straight off the detents, Jupiter at 300 masses and
+   11 radii and the newly discovered planet at twice Earth’s in each.
+   Draws acceleration, position.
 3. `sim-earth-moon` · replaces Figure 6.20 (a) and (b) (Earth and the Moon
    turning about their common center of mass, and the wiggle in Earth’s
    path around the Sun) · gravity-as-centripetal-force, center-of-mass,
@@ -155,14 +164,25 @@ graph · 3D
    tides, universal-gravitation · **moves**: Earth turns under the tidal
    bulge once a day, which is why a coast passes through two high and two
    low tides, so the figure runs a cycle of one day and gets the transport
-   · the angle of the Sun from the Earth-Moon line (0º to 90º, default 0º,
-   ink) · “t = 6.2 h · the marked coast has turned a quarter turn since
-   high tide and the water there is at its lowest” · none: the scene is
-   the picture · no. Three arrows show the Moon’s pull on the near water,
-   on Earth and on the far water, longest on the near side and shortest on
-   the far one, which is the whole of the book’s argument for two bulges.
-   Readout: $\kF = G\,mM/\kr^2$ at the near and the far side with the
-   numbers; small line on the spring tides at 0º and the neap tides at
+   · the distance to the Moon $\kr$ (3.00 to 5.00 × 10⁸ m, default 3.84,
+   position) and the angle of the Sun from the Earth-Moon line (0º to 90º,
+   default 0º, ink) · “After 6.2 h Earth has turned 93° under the bulges,
+   and the marked coast is running toward low tide.” · a trace of the tide
+   at the marked coast beside the scene, on fixed axes of one day by the
+   largest tide the Sun can add · 2D, the plane of the Moon’s orbit being
+   the canvas · labels on, the three pulls, the two tidal forces and the
+   coast being placed by the labeller, which steps a label out and leaders
+   it when its slot is taken. Three arrows show the Moon’s pull on the near
+   water, on Earth and on the far water, longest on the near side and
+   shortest on the far one, which is the whole argument for two bulges. The
+   Sun is 390 times as far away as the Moon and cannot stand on the Moon’s
+   scale, so it is drawn at the edge of the picture along its true
+   direction, on a line with a break cut out of it, and the note beside it
+   says that this one distance is not to scale.
+   Readout: $\kF = G\,mM/\kr^2$, the force the Moon exerts on a parcel of
+   water of mass 1.00 kg at the near side, at Earth’s center and at the far
+   side, so that the readout states the same quantity the force-hued arrows
+   draw; small line on the spring tides at 0º and the neap tides at
    90º. Draws force, position.
 5. `sim-cavendish` · replaces Figure 6.25 (the torsion balance, the
    mirror, the light source and the scale) · cavendish-experiment,
@@ -171,20 +191,47 @@ graph · 3D
    takes up the twist, the mirror carries the beam to a new place on the
    scale and the balance rings down about its new rest · the mass on the
    stand $M$ (5 to 160 kg, default 30, ink), the distance between the
-   centers $\kr$ (0.20 to 0.60 m, default 0.20, position), and how many
-   times larger than life the twist is drawn (1 to 400, default 200, ink);
+   centers $\kr$ (0.20 to 0.60 m, default 0.20, position), how many
+   times larger than life the twist is drawn (1 to 300, default 150, ink),
+   and a Labels button (off by default);
    the suspended spheres are 0.73 kg, as Cavendish’s were, and every
    sphere is drawn at the size lead of its mass has · “Each pair attracts
-   with 3.65 × 10⁻⁸ N, the fibre holds a twist of 0.026° and the spot rests
-   1.44 mm from the zero mark, drawn 200 times larger than life” · none ·
-   yes, rebuilt 2026-09-12 at Chen’s request as a THREE.js scene (wooden
-   frame, brass fittings, lead spheres, a strand-textured fiber with a
-   close-up inset, the mirror, the lamp, its beam and the spot on an arc
-   scale), the headline, labels, $\kF$ arrow and $\kr$ line on the 2D
-   layer above it, a small drag to orbit with a reset, and the flat view
-   from above where WebGL is missing. Readout: $\kF = G\,mM/\kr^2$
-   with the numbers; small line on the twist and the spot’s travel in life
-   and how many times larger they are drawn. Draws force, position.
+   with 3.65 × 10⁻⁸ N, the fiber holds a twist of 0.024°, and the spot rests
+   0.61 mm from the zero mark.” · none, the scale on the floor carrying the
+   reading ·
+   **3D**, under root rule 28.3: the apparatus itself is the explanation, and
+   the fine fiber, the small rod, the mirror and the beam it throws across the
+   floor are an arrangement in space that a flat drawing would have to lie
+   about. Built on the app’s own viewer, `F.view3d`, so that it carries the
+   same chrome every other three-dimensional figure of the collection does:
+   three snap-to-view buttons (the side the book draws the balance from, a
+   look from above and a look along the scale) and zoom in and out with the
+   wheel doing the same. No auto-rotate button: a balance standing in a room
+   with a lamp and a scale has a front, and an idle spin would say nothing
+   about it. The orbit is bounded to the pitches between 8° and 70° above the
+   floor, so the bench is never seen from beneath, and to the yaws within 92°
+   of the side the book draws, which keeps the reader in front of the
+   apparatus where the lamp, the mirror and the scale show at once. The scene
+   is a wooden frame, brass fittings, lead spheres at the size their mass
+   gives them, a strand-textured fiber that takes up the twist, the mirror,
+   the lamp, its beam and the spot on a strip of scale laid along the path the
+   spot really travels, ticked in the true millimeters the readout gives. Wood,
+   brass, lead, the lamp’s warm light, the mirror’s glass and the grey room
+   the metal reflects are drawn in the colors those things have, which is a
+   physical fact and not a type’s hue; the scale takes the page’s grey and the
+   ticks its ink, and both follow a change of theme. The headline, the labels,
+   the $\kF$ arrow and the $\kr$ line are on a 2D layer above the scene, and
+   where WebGL is missing that same canvas draws the balance from above.
+   Labels are tiered by rule 26.7: ten names sit on the apparatus and half of
+   them ride the rod as it turns, so only $\kr$ and $\kF$, the two quantities
+   the readout writes, stay on the drawing, the names of the parts go behind
+   the Labels button, and the pointer names any part it rests on. Readout:
+   $\kF = G\,mM/\kr^2$
+   with the numbers; small line on the twist and the spot’s travel in life,
+   on how many times larger than life they are drawn, and on the time: the
+   balance swings freely once in seven minutes, so the scene runs the motion
+   175 times faster than life while the clock in the headline reads the true
+   minutes. Draws force, position.
 
 Photographs and artwork, each with keep or drop and the reason:
 
@@ -321,7 +368,13 @@ $\kac$ and $\kg$ and carries $\kr$ and $\kT$ on sliders and $\kw$ in its
 readout, and `sim-tides` draws the Moon’s pull on the near and the far
 water. The masses $m$ and $M$, the constant $G$, the angle of the Sun and
 the two slider ratios of `sim-surface-gravity` stay untyped and in ink, as
-the book’s rules say.
+the book’s rules say. `sim-cavendish` is the one figure of the chapter with
+colors that are neither a type’s hue nor ink: the wood of the frame, the
+brass of the fittings, the lead of the spheres, the warm light of the lamp,
+the glass of the mirror and the grey room the polished metal reflects are
+each the color that thing has, which is the third family of rule 7. The
+scale takes the page’s grey and its ticks the page’s ink, so both follow a
+change of theme.
 
 ## Wanted at chapter level
 

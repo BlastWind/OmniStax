@@ -154,3 +154,14 @@ renders in ink, and the window shares the time hue since it is a time.
 paragraph as its own block (the 16.1 note). 16.1's `source.md` was
 regenerated with the fix; the only change is that figure, plus three
 blank lines.
+
+Audit pass (2026-09-12): both figures keep fixed time scales. `sim-period`
+shows the last 8 s at every setting, which holds the widest counting window
+the slider reaches with three seconds of run before it, so lengthening the
+period stretches the wave instead of relabelling the ticks under it; the
+counting window is shaded in ink rather than in the time hue, since a region
+is not a typed quantity, and its edge carries the hue instead. `sim-count`
+draws its time line from 0 to 30 s, the longest run the elapsed-time slider
+reaches, with the run itself drawn solid along it, so a shorter run plainly
+reaches less far and leaves its marks closer together. Both are
+two-dimensional, with no 3D, and their labels on.

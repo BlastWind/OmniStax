@@ -28,17 +28,20 @@ function fbd(ctx, cx, cy, forces, title) {
   dot(ctx, cx, cy, PAL.ink, true, 8);
 }
 
-/* the forces along one axis added with their signs: one bar per force, then their sum */
-function balance(ctx, box, items, title) {
+/* The forces along one axis added with their signs: one bar per force, then their
+   sum. `top` is the full height of the column in newtons, fixed per figure from
+   the slider maxima and never from the values on show, so that raising a mass
+   lengthens the bars instead of leaving the picture unchanged. */
+function balance(ctx, box, items, title, top) {
   const total = items.reduce((s, it) => s + it.v, 0);
   const all = items.concat([{ label: 'net', v: total, c: PAL.ink }]);
-  const max = Math.max(1, ...all.map((it) => Math.abs(it.v)));
+  const max = top;
   const y0 = (box.t + box.b) / 2, hh = (box.b - box.t) / 2 - 40;
   const n = all.length, w = (box.r - box.l) / n;
   if (title) text(ctx, title, (box.l + box.r) / 2, box.t - 26, PAL.muted, { size: 18, align: 'center' });
   line(ctx, box.l, y0, box.r, y0, PAL.muted, 2);
   all.forEach((it, i) => {
-    const x = box.l + w * (i + 0.5), h = (it.v / max) * hh;
+    const x = box.l + w * (i + 0.5), h = (Math.max(-1, Math.min(1, it.v / max))) * hh;
     if (Math.abs(h) < 3) dot(ctx, x, y0, it.c, true, 8); else line(ctx, x, y0, x, y0 - h, it.c, 22);
     text(ctx, it.label, x, box.b + 6, it.c, { size: 18, weight: 600, align: 'center' });
     text(ctx, N0(it.v), x, y0 - h - (h >= 0 ? 22 : -22), it.c, { size: 17, align: 'center' });
@@ -98,11 +101,12 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
       { dx: 0, dy: -1, v: w, k: K, label: 'N', c: cf },
       { dx: 0, dy: 1, v: w, k: K, label: 'w', c: cf },
     ], 'the forces on the person and his pack');
+    /* the column runs to 1600 N, the heaviest person and pack the sliders reach */
     balance(ctx, { l: 1010, r: 1340, t: 200, b: 520 }, [
       { label: 'N', v: w, c: cf },
       { label: 'w', v: -w, c: cf },
-    ], 'the vertical forces, added with their signs');
-    headline(ctx, 'the ground pushes up with ' + N0(w) + ' N, exactly what he weighs, so the net external force is zero');
+    ], 'the vertical forces, added with their signs', 1600);
+    headline(ctx, 'The ground pushes up with ' + N0(w) + ' N, exactly what he weighs, so the net external force on him is zero.');
     readout(d.readout, `\\text{net}\\;\\kFy = \\kN - \\kwgt = ${NT(w)}\\ \\text{N} - ${NT(w)}\\ \\text{N} = 0`,
       'A mass of ' + fmt(mm.v + mp.v, 1) + ' kg weighs (' + fmt(mm.v + mp.v, 1) + ' kg)(9.80 m/s²) = ' + N0(w) + ' N, and because the person does not accelerate the ground must hold him up with exactly that much. Load him with a heavier pack and both arrows grow together: the two forces are always equal and opposite, and their sum is always zero.');
   }
@@ -134,35 +138,37 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
       arrow(ctx, cx - 110, 130, cx + 130, 130, cv, 5);
       text(ctx, 'v constant', cx + 10, 98, cv, { size: 21, weight: 600, align: 'center' });
     }
+    /* the book draws the support as four equal arrows, one at each tire, so each is a quarter of N */
     [-110, -62, 62, 110].forEach((o) => arrow(ctx, cx + o, gy + 34, cx + o, gy + 34 - LW / 4, cf, 4));
-    text(ctx, 'N', cx + 142, gy + 22, cf, { size: 20, weight: 600 });
+    text(ctx, 'a quarter of N at each tire', cx + 142, gy + 22, cf, { size: 20, weight: 600 });
     arrow(ctx, cx, gy - 40, cx, gy - 40 + LW, cf, 5);
     text(ctx, 'w = ' + N0(w) + ' N', cx, gy - 40 + LW + 28, cf, { size: 21, weight: 600, align: 'center' });
     arrow(ctx, cx - 150 - LFa, gy - 90, cx - 150, gy - 90, cf, 5);
-    text(ctx, 'F app = ' + N0(Fa.v) + ' N', cx - 150 - LFa, gy - 122, cf, { size: 20, weight: 600 });
+    text(ctx, 'F_app = ' + N0(Fa.v) + ' N', cx - 150 - LFa, gy - 122, cf, { size: 20, weight: 600 });
     arrow(ctx, cx + 150 + Lf, gy - 90, cx + 150, gy - 90, cf, 5);
     text(ctx, 'f = ' + N0(ff.v) + ' N', cx + 150 + Lf, gy - 122, cf, { size: 20, weight: 600, align: 'right' });
     fbd(ctx, 250, 720, [
-      { dx: 0, dy: -1, v: w, k: 130 / 15680, label: 'N s', c: cf },
+      { dx: 0, dy: -1, v: w, k: 130 / 15680, label: 'N', c: cf },
       { dx: 0, dy: 1, v: w, k: 130 / 15680, label: 'w', c: cf },
-      { dx: 1, dy: 0, v: Fa.v, k: 150 / 2000, label: 'F app', c: cf },
+      { dx: 1, dy: 0, v: Fa.v, k: 150 / 2000, label: 'F_app', c: cf },
       { dx: -1, dy: 0, v: ff.v, k: 150 / 2000, label: 'f', c: cf },
     ], 'the forces on the car');
-    text(ctx, 'the horizontal and the vertical forces are drawn to scales of their own', 700, 884, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'The horizontal and the vertical forces are drawn to scales of their own.', 700, 884, PAL.muted, { size: 17, align: 'center' });
+    /* the columns run to the slider maxima: 2000 N along the road, and 15,680 N across it, which a 1600 kg car weighs */
     balance(ctx, { l: 520, r: 880, t: 620, b: 840 }, [
-      { label: 'F app', v: Fa.v, c: cf },
+      { label: 'F_app', v: Fa.v, c: cf },
       { label: 'f', v: -ff.v, c: cf },
-    ], 'along the road');
+    ], 'along the road', 2000);
     balance(ctx, { l: 990, r: 1340, t: 620, b: 840 }, [
-      { label: 'N s', v: w, c: cf },
+      { label: 'N', v: w, c: cf },
       { label: 'w', v: -w, c: cf },
-    ], 'across the road');
+    ], 'across the road', 15680);
     headline(ctx, ok
-      ? 'the ' + N0(Fa.v) + ' N the tires apply and the ' + N0(ff.v) + ' N of air friction cancel, so the car keeps its velocity'
-      : 'the net external force along the road is ' + N0(net) + ' N, so the car ' + (net > 0 ? 'speeds up' : 'slows down') + ' and is not in equilibrium');
+      ? 'The ' + N0(Fa.v) + ' N the tires apply and the ' + N0(ff.v) + ' N of air friction cancel, so the car keeps its constant velocity.'
+      : 'The net external force along the road is ' + N0(net) + ' N, so the car ' + (net > 0 ? 'speeds up' : 'slows down') + ' and is not in equilibrium.');
     readout(d.readout, `\\text{net}\\;\\kFx = \\kFa - \\kff = ${NT(Fa.v)}\\ \\text{N} - ${NT(ff.v)}\\ \\text{N} = ${NT(net)}\\ \\text{N} \\qquad \\text{net}\\;\\kFy = \\kN - \\kwgt = ${NT(w)}\\ \\text{N} - ${NT(w)}\\ \\text{N} = 0`,
       ok
-        ? 'The car is in dynamic equilibrium: it is moving, and it is moving at a constant velocity, so its acceleration is zero and the net external force on it is zero in every direction. The weight of ' + N0(w) + ' N is carried by the four tires together, and the drive of the tires against the road is exactly undone by the air.'
+        ? 'The car is in dynamic equilibrium, because it is moving at a constant velocity, so its acceleration is zero and the net external force on it is zero in every direction. The weight of ' + N0(w) + ' N is carried by the four tires together, each of them pushing up with a quarter of the normal force N, and the drive of the tires against the road is exactly undone by the air.'
         : 'The vertical forces still cancel, since the car neither rises nor sinks, but along the road they do not: a net external force of ' + N0(net) + ' N is left over, the car accelerates, and the first condition for equilibrium is no longer met. Set the two horizontal forces equal again and the car returns to a constant velocity.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -199,18 +205,18 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
       vbracket(ctx, 310, yA, yB, PAL.muted, 'd = ' + fmt(dd.v, 2) + ' m', -1);
       turn(ctx, 690, mid, 258, -2.5, -0.9, PAL.muted);
       turn(ctx, 690, mid, 258, 0.64, 2.24, PAL.muted);
-      text(ctx, 'the stick turns', 690, 120, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, 'The stick turns.', 690, 120, PAL.muted, { size: 19, align: 'center' });
     } else {
-      text(ctx, 'the two forces act along one line, and the stick stays where it is', 620, 120, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, 'The two forces act along one line, and the stick stays where it is.', 620, 120, PAL.muted, { size: 19, align: 'center' });
     }
     fbd(ctx, 1140, 415, [
       { dx: 1, dy: 0, v: Fm.v, k: 150 / 60, label: 'F', c: cf },
       { dx: -1, dy: 0, v: Fm.v, k: 150 / 60, label: 'F', c: cf },
     ], 'the free-body diagram');
-    text(ctx, 'the same picture at every setting', 1140, 500, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'This drawing is the same at every setting.', 1140, 500, PAL.muted, { size: 17, align: 'center' });
     headline(ctx, off > 4
-      ? 'the two forces of ' + fmt(Fm.v, 1) + ' N still add to zero, but their lines of action are ' + fmt(dd.v, 2) + ' m apart'
-      : 'the two forces of ' + fmt(Fm.v, 1) + ' N act along one line, and the net external force is zero');
+      ? 'The two forces of ' + fmt(Fm.v, 1) + ' N still add to zero, but their lines of action are ' + fmt(dd.v, 2) + ' m apart.'
+      : 'The two forces of ' + fmt(Fm.v, 1) + ' N act along one line, and the net external force is zero.');
     readout(d.readout, `\\text{net}\\;\\kF = \\kF - \\kF = ${fmt(Fm.v, 1)}\\ \\text{N} - ${fmt(Fm.v, 1)}\\ \\text{N} = 0`,
       'The free-body diagram gathers both forces at one point, so it is the same drawing whether the two lines of action lie on top of each other or ' + fmt(dd.v, 2) + ' m apart. The net external force is zero in both cases, and yet only one of the two sticks stays where it is, which is why the first condition is necessary but not sufficient.');
   }
@@ -239,7 +245,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     block(ctx, cx, gy - 60, 150, 120, PAL.ink);
     text(ctx, fmt(mm.v, 0) + ' kg', cx, gy - 60, PAL.ink, { size: 22, weight: 600, align: 'center' });
     arrow(ctx, cx - 75 - LF, gy - 92, cx - 75, gy - 92, cf, 5);
-    text(ctx, 'F app = ' + N0(Fa.v) + ' N', cx - 75 - LF, gy - 124, cf, { size: 21, weight: 600 });
+    text(ctx, 'F_app = ' + N0(Fa.v) + ' N', cx - 75 - LF, gy - 124, cf, { size: 21, weight: 600 });
     arrow(ctx, cx - 75, gy - 24, cx - 75 - LF, gy - 24, cf, 5);
     text(ctx, 'f = ' + N0(Fa.v) + ' N', cx - 75 - LF, gy + 50, cf, { size: 21, weight: 600 });
     arrow(ctx, cx - 52, gy - 60, cx - 52, gy - 60 + LW, cf, 5);
@@ -250,27 +256,28 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
       arrow(ctx, cx + 150, gy - 200, cx + 150 + 30 + vv.v * 8, gy - 200, cv, 5);
       text(ctx, 'v = ' + fmt(vv.v, 1) + ' m/s, constant', cx + 150, gy - 232, cv, { size: 21, weight: 600 });
     } else {
-      text(ctx, 'the crate is not moving', cx + 170, gy - 200, PAL.muted, { size: 20 });
+      text(ctx, 'The crate is not moving.', cx + 170, gy - 200, PAL.muted, { size: 20 });
     }
     text(ctx, moving ? 'dynamic equilibrium' : 'static equilibrium', cx, 116, PAL.muted, { size: 20, align: 'center', weight: 600 });
     fbd(ctx, 1140, 300, [
       { dx: 0, dy: -1, v: w, k: 130 / 1470, label: 'N', c: cf },
       { dx: 0, dy: 1, v: w, k: 130 / 1470, label: 'w', c: cf },
-      { dx: 1, dy: 0, v: Fa.v, k: 150 / 400, label: 'F app', c: cf },
+      { dx: 1, dy: 0, v: Fa.v, k: 150 / 400, label: 'F_app', c: cf },
       { dx: -1, dy: 0, v: Fa.v, k: 150 / 400, label: 'f', c: cf },
     ], 'the forces on the crate');
-    text(ctx, 'not one of these arrows answers the speed', 1140, 490, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'Not one of these arrows answers the speed.', 1140, 490, PAL.muted, { size: 17, align: 'center' });
+    /* the columns run to the slider maxima: 400 N along the floor, and 1470 N across it, which a 150 kg crate weighs */
     balance(ctx, { l: 180, r: 560, t: 600, b: 820 }, [
-      { label: 'F app', v: Fa.v, c: cf },
+      { label: 'F_app', v: Fa.v, c: cf },
       { label: 'f', v: -Fa.v, c: cf },
-    ], 'along the floor');
+    ], 'along the floor', 400);
     balance(ctx, { l: 760, r: 1140, t: 600, b: 820 }, [
       { label: 'N', v: w, c: cf },
       { label: 'w', v: -w, c: cf },
-    ], 'across the floor');
+    ], 'across the floor', 1470);
     headline(ctx, moving
-      ? 'at ' + fmt(vv.v, 1) + ' m/s the crate is in dynamic equilibrium, and the four forces are the ones it had at rest'
-      : 'at rest the crate is in static equilibrium: the push and the friction cancel, and so do the weight and the floor');
+      ? 'At ' + fmt(vv.v, 1) + ' m/s the crate is in dynamic equilibrium, and the four forces on it are the ones it had at rest.'
+      : 'At rest the crate is in static equilibrium, because the push and the friction cancel and so do the weight and the floor.');
     readout(d.readout, `\\text{net}\\;\\kFx = \\kFa - \\kff = ${NT(Fa.v)}\\ \\text{N} - ${NT(Fa.v)}\\ \\text{N} = 0 \\qquad \\text{net}\\;\\kFy = \\kN - \\kwgt = ${NT(w)}\\ \\text{N} - ${NT(w)}\\ \\text{N} = 0`,
       'Neither equation mentions the speed. Raise it from zero to ' + fmt(Math.max(vv.v, 6), 1) + ' m/s and the push, the friction, the weight and the support of the floor keep the values they had, because what the first condition asks is that the velocity be constant and not that it be zero. At rest the crate is in static equilibrium and while it slides steadily it is in dynamic equilibrium, and the same four arrows describe both.');
   }

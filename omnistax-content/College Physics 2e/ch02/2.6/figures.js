@@ -27,21 +27,22 @@ const times = (n) => (WORDS[n] ?? String(n)) + ' times';
   let stride = 0;
   /* miles per hour as the book rounds them, to a whole number, with one decimal only for a walking pace */
   const mphOf = (v) => (v * MPH < 10 ? fmt(v * MPH, 1) : String(Math.round(v * MPH)));
-  /* the time axis ends at the set time, which is a multiple of 5 s, and is cut into round ticks */
-  const ticks = (tEnd) => [5, 4, 6, 3, 8, 7, 2].find((n) => tEnd % n === 0 && (tEnd / n <= 5 || (tEnd / n) % 5 === 0)) ?? 5;
-  /* the strip: the whole run from 0 to ½at², with room at the right for the velocity arrow */
+  /* Every scale here is fixed from the slider maxima and none of them follows the run: the strip
+     holds the 7200 m that 1.00 m/s² for 120 s covers, the time axis the 120 s of the slider, and
+     the velocity axis 50 m/s, which leaves the 10 m/s a person can run clearly above the axis. A
+     velocity past the top of that axis is drawn against it and its true value written out. */
+  const DMAX = 7200, TMAX = 120, VMAX = 50;
   const L = 120, R = 1120;
   function draw() {
     const { ctx } = begin(d.c);
     const a = A.v, tEnd = T.v, tau = cy.now(), done = tau >= tEnd - 1e-9;
     const v = a * tau, vEnd = a * tEnd, mph = mphOf(v), mphEnd = mphOf(vEnd);
     const D = 0.5 * a * tEnd * tEnd, dist = 0.5 * a * tau * tau;
-    const X = (m) => L + ((R - L) * m) / D;
+    const X = (m) => L + ((R - L) * m) / DMAX;
     /* the strip and its scale in meters */
     const ys = 190;
     strip(ctx, L, R, ys, 48);
-    const st = nice(0, D, 5); const step = Math.max(1, (st.hi - st.lo) / st.n);
-    scale(ctx, X, 0, Math.floor(D / step + 1e-9) * step, step, ys + 34, 'm', 1);
+    scale(ctx, X, 0, DMAX, 1200, ys + 34, 'm', 1);
     text(ctx, 'start', L - 34, ys, PAL.muted, { size: 17, align: 'right' });
     /* the runner, whose stride quickens with the speed */
     const rx = X(dist);
@@ -55,13 +56,15 @@ const times = (n) => (WORDS[n] ?? String(n)) + ' times';
     }
     /* the graph of v against t, with the level a person can run */
     const box = { l: L, r: 1280, t: 320, b: 580 };
-    const vt = nice(0, Math.max(vEnd, 12), 4), tt = { hi: tEnd, n: ticks(tEnd) };
-    const { X: GX, Y: GY } = axes(ctx, box, [0, tt.hi], [0, vt.hi], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: tt.n, ny: vt.n });
+    const { X: GX, Y: GY0 } = axes(ctx, box, [0, TMAX], [0, VMAX], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 6, ny: 5 });
+    const GY = (vv) => GY0(Math.min(VMAX, Math.max(0, vv)));
+    const over = vEnd > VMAX;
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(box.l, box.t, box.r - box.l, GY(RUN) - box.t); ctx.restore();
     line(ctx, box.l, GY(RUN), box.r, GY(RUN), PAL.ink, 3, [10, 10]);
     const right = vEnd > 20;   /* the label sits at the end of the level the line is farther from */
     text(ctx, 'about what a person can run, 10 m/s', right ? box.r - 8 : box.l + 12, GY(RUN) - 16, PAL.muted, { size: 17, align: right ? 'right' : 'left' });
-    text(ctx, 'faster than anyone runs', box.l + 12, box.t + 20, PAL.muted, { size: 17, align: 'left' });
+    /* the second note is drawn only where there is room for it above the level, so the two never overprint */
+    if (GY(RUN) - box.t > 66) text(ctx, 'faster than anyone runs', box.l + 12, box.t + 20, PAL.muted, { size: 17, align: 'left' });
     /* the whole planned run faintly, the part run so far in the velocity hue */
     line(ctx, GX(0), GY(0), GX(tEnd), GY(vEnd), C('velocity'), 3, [4, 8]);
     if (tau > 0) line(ctx, GX(0), GY(0), GX(tau), GY(v), C('velocity'), 5);
@@ -80,8 +83,9 @@ const times = (n) => (WORDS[n] ?? String(n)) + ' times';
     /* what the numbers say */
     const ratio = vEnd / RUN, n = Math.round(ratio);
     const verdict = ratio >= 1.5 ? 'about ' + times(n) + ' what a person can run' : ratio > 1.05 ? 'faster than a person can run' : 'which a person can run';
-    headline(ctx, done ? 'after ' + fmt(tEnd, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner would be at ' + fmt(vEnd, 1) + ' m/s, about ' + mphEnd + ' mph, ' + verdict
-      : 'after ' + fmt(tau, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner ' + (v > RUN * 1.05 ? 'would be at ' + fmt(v, 1) + ' m/s, about ' + mph + ' mph, faster than a person can run' : 'has reached ' + fmt(v, 1) + ' m/s, about ' + mph + ' mph, which is reasonable'));
+    headline(ctx, (done ? 'After ' + fmt(tEnd, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner would be at ' + fmt(vEnd, 1) + ' m/s, about ' + mphEnd + ' mph, ' + verdict
+      : 'After ' + fmt(tau, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner ' + (v > RUN * 1.05 ? 'would be at ' + fmt(v, 1) + ' m/s, about ' + mph + ' mph, faster than a person can run' : 'has reached ' + fmt(v, 1) + ' m/s, about ' + mph + ' mph, which is reasonable'))
+      + (over ? ', and the line runs past the top of the velocity scale.' : '.'));
     readout(d.readout, `\\kv = \\kvo + \\ka\\kt = 0 + (${fmt(a, 2)}\\ \\text{m/s}^2)(${fmt(tEnd, 0)}\\ \\text{s}) = ${fmt(vEnd, 1)}\\ \\text{m/s}`,
       ratio > 1.05
         ? fmt(vEnd, 1) + ' m/s is ' + mphEnd + ' mph, ' + verdict + ', so the result is unreasonable. The acceleration adds only ' + fmt(a, 2) + ' m/s each second, which a runner can manage, so the premise that fails is the time: nobody keeps up a constant acceleration for ' + fmt(tEnd, 0) + ' s.'

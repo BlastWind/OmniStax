@@ -134,11 +134,14 @@ headline · graph · 3D
    particle's inertia would carry it along drawn dashed, and the real
    force from the tube wall pointing at the axis; in the tube's own
    frame, the tube upright with its particles pressed to the outer end
-   under a fictitious centrifugal force · the angular velocity $\kw$ (20
+   under a fictitious centrifugal force. The inside of the tube is a body, so
+   it is filled in the page's soft grey and never in the force hue; the hue
+   stays on the two arrows and on the words that name them · the angular velocity $\kw$ (20
    to 400 rad/s, default 200, angular rate) and the radius $\kr$ (0.05 to
-   0.30 m, default 0.15, position) · "at 200 rad/s and 0.150 m the
-   contents of the tube are accelerated at 6.0 × 10³ m/s², which is 612
-   times the acceleration of gravity" · none · no. Readout:
+   0.30 m, default 0.15, position) · "At 200 rad/s, 0.150 m from the axis, the
+   tube's contents are accelerated at 612 g." · none · 2D, the rotor seen from
+   above and the tube seen from the side · labels on, there being six of them
+   and none of them moving. Readout:
    $\kac = \kr\kw^2$ with the numbers and the same acceleration in
    multiples of $\kg$, which is the size of the effect the text says
    grows with the angular velocity. Draws angular rate, position,
@@ -159,14 +162,20 @@ headline · graph · 3D
    south, with the straight path they would take without the deflection
    drawn faint beside them · the radius of the system $\kr$ (50 to 2,000
    km, default 1,000, position) and the wind speed $\kv$ (5 to 40 m/s,
-   default 20, velocity) · "the air takes 14 hours to reach the centre of
-   a 1,000 km low, and in that time Earth's rotation turns it through
-   more than a right angle, so it circles the low rather than blowing
-   into it" · none: the two panels are the picture · no. Readout: the
+   default 20, velocity) · "The air takes 13.9 h to reach the center, and
+   Earth turns it through 5.0 rad on the way, so it goes 0.8 times round the
+   low on the way in." · none: the two panels are the picture · 2D, the ground
+   seen from above being the canvas · labels on, there being four of them, one
+   to a panel and one under each. Each track is a logarithmic spiral whose
+   whole sweep about the low is the angle $\kt$ of crossing gives at the
+   Coriolis rate, so a 2,000 km system draws twice as many turns as a
+   1,000 km one; four complete turns is as tight a spiral as the drawing can
+   hold, and past that the headline says the drawing has stopped following.
+   Readout: the
    crossing time $\kt = \kr/\kv$ and the turning it gives at the rate of
    about 10⁻⁴ radian a second at which Earth's rotation turns a moving
    parcel, with a second line saying why the effect is nothing over a
-   street and everything over a thousand kilometres. Draws position,
+   street and everything over a thousand kilometers. Draws position,
    velocity, time.
 
 Every sketch the book prints is replaced. The one photographic figure is

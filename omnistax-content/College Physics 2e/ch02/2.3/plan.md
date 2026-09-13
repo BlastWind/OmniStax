@@ -83,9 +83,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    a count of some change · $\kto$ in s (0 to 60, step 0.5, default 10.0,
    time hue), $\ktf$ in s (0 to 120, step 0.5, default 40.0, time hue),
    the time of one swing in s (0.5 to 2.0, step 0.05, default 0.75, time
-   hue, since a period is a time) · "the clock read 10.0 s at the start
-   and 40.0 s at the end, so the elapsed time is 30.0 s, and the pendulum
-   swung 40 times" · none · no. Finite motion: the marker runs from
+   hue, since a period is a time) · "The clock read 10.0 s at the start
+   and 40.0 s at the end, so the elapsed time is 30.0 s and the pendulum
+   made 40 full swings." · none · 2D. The time line is a fixed 0 to 120 s,
+   the range of the two clock sliders. The stopwatch takes one turn of its
+   hand over the whole interval it times, which is the convention every
+   stopwatch on this page keeps. Labels on, six of them, none colliding.
+   Finite motion: the marker runs from
    $t_0$ to $t_f$ in about 5 real seconds and the loop restarts, so it
    gets the scrubber. When $t_f$ is set before $t_0$ the headline says
    the motion has not begun and nothing runs. Readout: $\kdt = \ktf -
@@ -103,10 +107,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    from $(0, x_0)$ to $(t, x_f)$ has slope $\bar v$ and the moving point
    rides along it · $\kxo$ in m (0 to 10, step 0.5, default 6.0, position
    hue), $\kxf$ in m (0 to 10, step 0.5, default 2.0, position hue),
-   $\kt$ in s (1 to 20, step 0.5, default 5.0, time hue) · "the
+   $\kt$ in s (1 to 20, step 0.5, default 5.0, time hue) · "The
    passenger moves −4.0 m in 5.0 s, an average velocity of −0.80 m/s, the
-   minus sign meaning toward the rear of the plane" · position against
-   time · no. Finite motion, one walk per set time in about 5 real
+   minus sign meaning toward the rear of the plane." · position against
+   time, on axes fixed at 0 to 20 s and 0 to 10 m from the slider maxima
+   so the line moves and the ticks stand still · 2D. Labels on, six of
+   them, and the two position labels step apart when they crowd. Finite
+   motion, one walk per set time in about 5 real
    seconds, so it gets the scrubber. Readout: $\kvb = \frac{\kdx}{\kt} =
    \frac{-4.0\ \text{m}}{5.0\ \text{s}} = -0.80\ \text{m/s}$; small line:
    velocity is a vector because displacement is one, and the sign of the
@@ -121,11 +128,14 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    against time, with the book's four segments (a, b, c forward, d) as the
    default cut; the instantaneous velocity at the current instant is the
    slope of the tangent, drawn on the graph and as the arrow on the
-   passenger · the width of one interval $\kdt$ in s (0.1 to 5.0, step
-   0.05, default 1.25, time hue), the time of the whole trip $\kt$ in s
-   (2 to 10, step 0.5, default 5.0, time hue) · "t = 2.3 s · over the
-   interval from 1.25 s to 2.50 s the average velocity is −1.2 m/s; at
-   this instant the velocity is −1.6 m/s" · position against time · no.
+   passenger · one slider only, the width of one interval $\kdt$ in s
+   (0.1 to 5.0, step 0.05, default 1.25, time hue). The trip keeps the
+   book's 5.0 s: a slider for the whole time only restretched the same
+   curve and changed no picture, so it is gone · "Over the interval from
+   1.25 s to 2.50 s the average velocity is −1.2 m/s, while at the
+   instant 2.30 s the velocity is −1.6 m/s." · position against time, on
+   axes fixed at 0 to 5 s and 0 to 8 m · 2D. Labels on, seven of them,
+   with the chord's label set on a panel so it never sits on the curve.
    Finite motion, one trip per loop in about 5 real seconds, so it gets
    the scrubber. Readout: the average velocity over the current interval,
    $\kvb = \kdx/\kdt$, with the numbers, and the instantaneous velocity
@@ -144,9 +154,12 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    3.0, ink, a length of the scene), the time of the trip $\kt$ in min (10
    to 120, step 5, default 30, time hue), how far back toward home the
    car drives, as a percentage of the way (0 to 100, step 10, default 100,
-   ink) · "the odometer reads 6.0 km after 30 min, an average speed of 12
+   ink) · "The odometer reads 6.0 km after 30 min, an average speed of 12
    km/h, but the car is back where it began, so its average velocity is
-   zero" · none · no. Finite motion, one trip per loop in about 5 real
+   zero." · none · 2D. The road is a fixed 0 to 10 km, the distance
+   slider's maximum, and the store stands at the distance set rather than
+   at the end of the road, so a short errand is drawn short. Labels on,
+   six of them. Finite motion, one trip per loop in about 5 real
    seconds, so it gets the scrubber. Readout: $\text{average speed} =
    \frac{6.0\ \text{km}}{0.50\ \text{h}} = 12\ \text{km/h}$ beside
    $\kvb = \frac{\kdx}{\kt} = \frac{0\ \text{km}}{0.50\ \text{h}} = 0$;
@@ -165,11 +178,21 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    back, the jump at the turn), speed against time (12 km/h throughout),
    with a time cursor and a moving point on each graph · the distance to
    the store in km (1.0 to 10.0, step 0.5, default 3.0, ink), the time of
-   the trip $\kt$ in min (10 to 120, step 5, default 30, time hue) · "t =
-   0.20 h · the car is 2.4 km from home, its velocity is +12 km/h and its
-   speed is 12 km/h" · three graphs side by side, position, velocity and
-   speed against time · no. Finite motion, one trip per loop in about 5
-   real seconds, so it gets the scrubber. Readout: $\kv = +12\ \text{km/h}$
+   the trip $\kt$ in min (10 to 120, step 5, default 30, time hue), and
+   how far back toward home the car drives, as a percentage of the way (0
+   to 100, step 10, default 100, ink). The third slider is what keeps this
+   figure from answering the same two questions as the errand a paragraph
+   above: bring the car only part of the way home and the position graph
+   ends above zero while the speed graph does not change at all · "After
+   0.20 h the car is 2.4 km from home, its velocity is +12 km/h and its
+   speed is 12 km/h." · three graphs side by side, position, velocity and
+   speed against time, on ranges fixed once at 0 to 2 h, 0 to 10 km and
+   0 to 40 km/h; a faster trip than the scale holds is drawn against the
+   top of it with the true number written beside the line and said in the
+   readout · 2D. The road is a fixed 0 to 10 km with the store at the
+   distance set. Labels on, eight of them across the three panels, none
+   of them riding a moving thing. Finite motion, one trip per loop in
+   about 5 real seconds, so it gets the scrubber. Readout: $\kv = +12\ \text{km/h}$
    on the way out and $-12\ \text{km/h}$ on the way back, while the speed
    is $12\ \text{km/h}$ throughout; small line: the speed graph is the
    velocity graph with its sign removed, which is what it means for

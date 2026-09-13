@@ -84,13 +84,19 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    electrons on circular orbits of increasing radius, filling shells of
    two, eight and eight, going round endlessly (an endless cycle, so the
    plain transport with no scrubber) · the number of electrons Z, 1 to
-   18, default 1 for hydrogen, ink, since a count has no type · "helium:
-   two electrons orbit a nucleus of two protons, in the picture the model
-   gives us" · none · no.
-   Readout: diameter of the atom ≈ 10⁻¹⁰ m. Small line: the nucleus is
-   about 10⁵ times smaller than the atom, so a drawing to scale would
-   show nothing but the orbits; the model is not a photograph but a
-   picture that helps explain what we can measure.
+   18, default 1 for hydrogen, ink, since a count has no type · "In this
+   picture two electrons go round the nucleus of a helium atom, which
+   holds two protons." · none · no (2D; the orbits are circles seen face
+   on and depth would add nothing). Labels on, since the drawing names
+   four kinds once each and nothing moves out from under its name.
+   Readout: the live count, so many electrons going round so many
+   protons, with the shells that hold them. Small line: the atom is about
+   10⁻¹⁰ m across and its nucleus about 10⁵ times smaller, so a drawing to
+   scale would show nothing but the orbits, and the model is a picture
+   that helps explain what we can measure rather than a photograph.
+   The nucleus is said to hold the protons rather than to be made of
+   them, since a helium nucleus holds two neutrons as well and the
+   section has not reached them.
    The section introduces no physical quantity, so the figure has one
    slider, and that is enough: what is variable in the idea is which
    atom the model is a picture of, and the point the book's caption makes

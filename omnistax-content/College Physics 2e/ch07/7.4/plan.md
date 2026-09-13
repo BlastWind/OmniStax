@@ -98,11 +98,16 @@ headline · graph · 3D
    $\kk$ (50 to 500 N/m, step 10, default 250, stiffness) and stretch
    $\kx$ (0 to 0.20 m, step 0.005, default 0.040, position), which are
    Example 7.8's numbers, so the figure opens on the spring of the worked
-   example · "stretched by 0.040 m a spring of force constant 250 N/m
-   pulls back with 10.0 N, and the work done on it, ½kx² = 0.200 J, is the
-   shaded triangle" · graph below the horizontal scene: the applied force
-   against the stretch, a line of slope $\kk$ with the triangle under it
-   shaded in the energy hue · no. Readout: $\kPEs = \tfrac{1}{2}\kk\kx^2$
+   example · "Stretched by 0.040 m, the spring pulls back with 10.0 N, and
+   the shaded triangle is the 0.200 J stored in it." · graph below the
+   horizontal scene: the applied force against the stretch, a line of slope
+   $\kk$ with the triangle under it shaded in the energy hue, on axes fixed
+   from that default state at 0 to 0.20 m by 0 to 25 N, since the slider
+   maxima would leave the default triangle a tenth of the box high; a
+   stiffer spring runs off the top, where the frame clips what it holds and
+   the force is read off a pinned marker · 2D. Labels are on: five of them,
+   and the area's own label steps aside when the triangle grows wide.
+   Readout: $\kPEs = \tfrac{1}{2}\kk\kx^2$
    with the numbers; small line on the average force $\kk\kx/2$ acting
    through $\kx$, which is the book's other route to the same answer.
    Draws energy, force, position, stiffness.
@@ -116,10 +121,15 @@ headline · graph · 3D
    no finite period to scrub, so the transport is play, stop and speed ·
    the pluck $\kx$ (0.002 to 0.02 m, step 0.001, default 0.010, position)
    and the string's force constant $\kk$ (200 to 2,000 N/m, step 50,
-   default 800, stiffness) · "the string is 0.006 m from its rest line, so
-   0.014 J is stored in it and 0.026 J is kinetic; the total stays 0.040 J"
-   · no separate graph: the two bars are the reading and the string is the
-   scene · no. Readout: $\kKE + \kPEs$ with the live numbers summing to the
+   default 800, stiffness) · "The string is 0.0060 m from its rest line, so
+   its shape holds 0.014 J and its motion carries 0.026 J." · no separate
+   graph: the two bars are the reading and the string is the scene · 2D. The
+   force constant sets the rate the string comes back at as well as the
+   energy it stores: a swing takes five seconds of the figure's own slowed
+   time at the default 800 N/m and goes by the square root of $\kk$, so a
+   stiffer string visibly returns sooner, and the readout says both the
+   swing time and that a real string does this hundreds of times a second.
+   Labels are on: four of them. Readout: $\kKE + \kPEs$ with the live numbers summing to the
    constant total. The small loss to sound the book's caption mentions is
    not drawn, since the section's whole point is the total that stays put
    when only conservative forces act, and the loss is 7.5's subject; the
@@ -138,10 +148,12 @@ headline · graph · 3D
    position), the force constant $\kk$ (100 to 500 N/m, step 10, default
    250, stiffness) and the height of the shelf $\khf$ (0 to 0.25 m, step
    0.01, default 0.18, position); the mass stays the example's 0.100 kg ·
-   "t = 0.62 s · the car on the gradual rise is 0.180 m up and moving at
-   0.687 m/s, and the car that went round the loop arrives at the same
-   speed" · below the scene, a stacked bar per car showing
-   $\kPEs$, $\kKE$ and $\kPEg$ against the constant total · no. Readout:
+   "At 0.62 s the car on the rise is 0.180 m up and moving at 0.687 m/s,
+   and the car round the loop is moving at 0.687 m/s." · below the scene, a
+   stacked bar per car showing $\kPEs$, $\kKE$ and $\kPEg$ against the
+   constant total · 2D. Labels are on: six of them, and the label of the car
+   on the dip is set below and behind it, since the two cars run side by
+   side at the start. Readout:
    $\tfrac{1}{2}\kk\kxi^2 = \tfrac{1}{2}m\kvf^2 + m\kg\khf$ with the
    numbers; small line on part (a), the speed at the bottom of the slope.
    Draws energy, velocity, position, stiffness, acceleration.
@@ -149,11 +161,14 @@ headline · graph · 3D
    energy · **still**: it compares two configurations and has no time in it
    · the force constant $\kk$ (50 to 500 N/m, step 10, default 250,
    stiffness) and the smaller compression $\kx$ (0.01 to 0.06 m, step
-   0.005, default 0.020, position) · "compressing by 0.040 m stores 0.200
-   J, four times the 0.050 J that 0.020 m stores, because the work is the
-   area of a triangle whose base and height both double" · the two
+   0.005, default 0.020, position) · "Compressing this spring by 0.040 m
+   stores 0.200 J, four times the 0.050 J that 0.020 m stores." · the two
    triangles are the graph, the larger one ruled into four copies of the
-   smaller · no. Readout: the ratio $\tfrac{1}{2}\kk(2\kx)^2 \big/
+   smaller, on axes fixed from that default state at 0 to 0.12 m by 0 to
+   25 N for the same reason the figure beside it fixes its own; a stiffer
+   spring is clipped by the frame and pinned · 2D. Labels are on: the four
+   copies are named inside the big triangle where it is wide enough to hold
+   them and once beside it where it is not. Readout: the ratio $\tfrac{1}{2}\kk(2\kx)^2 \big/
    \tfrac{1}{2}\kk\kx^2 = 4$ with the numbers. Draws energy, force,
    position, stiffness.
 

@@ -120,6 +120,12 @@ graph · 3D
    graph measures, and drawn broken once the fracture force is passed · no.
    Readout: $\kdL = \kF/\kk$ with the numbers; small line on the slope
    $1/\kk$ of the straight segment. Draws force, position, stiffness.
+   Revised in the figure-audit pass of 2026-09-12: the three regions of the
+   graph are banded in ink rather than in the position and force hues, since
+   a region is not a quantity, and the spring is drawn against the same
+   fixed 0 to 4 m the graph is ruled to, so a stiffer spring is drawn
+   stretching less instead of filling the same span. The headlines are one
+   capitalized sentence each.
 2. `sim-strings` · replaces Figure 5.12 (the three guitar strings) ·
    youngs-modulus, force-constant · **still**: one weight is hung and the
    three strings stretch by three different amounts, which answers the
@@ -132,6 +138,10 @@ graph · 3D
    $\kdL = \frac{1}{\kY}\frac{\kF}{A}\kLo$ for the thin nylon string; small
    line on why the thicker string and the steel one stretch less. Draws
    force, position, elastic-modulus.
+   Revised in the figure-audit pass of 2026-09-12: the stretch is drawn at a
+   fixed seven thousand units per meter, whatever the original length is set
+   to, so a longer string really is drawn stretching farther; the headline
+   is one capitalized sentence.
 3. `sim-rod` · replaces Figure 5.13 (a) and (b) (a rod in tension and the
    same rod in compression) · youngs-modulus · **still**: the rod holds
    whatever deformation the force gives it · the force $\kF$ (0 to 5,000 N,
@@ -145,6 +155,10 @@ graph · 3D
    steel, aluminum, bone in compression and nylon from Table 5.3 · no.
    Readout: $\kdL = \frac{1}{\kY}\frac{\kF}{A}\kLo$ with the numbers.
    Draws force, position, elastic-modulus.
+   Revised in the figure-audit pass of 2026-09-12: Young's modulus carries a
+   tick at every value Table 5.3 prints, two of them named on the track,
+   and the whole number the slider steps by lands on each exactly. The
+   headline is one capitalized sentence.
 4. `fig-gondolas` · Figure 5.14, the photograph of the gondolas at Gala
    Yuzawa · **kept**, because Example 5.3 points the reader at it ("See
    Figure 5.14") and it shows the cable the example is about. The book's
@@ -165,6 +179,13 @@ graph · 3D
    small line on what the strain amounts to in millimetres and on where
    $\text{stress} = \kY \times \text{strain}$ holds. Draws stress, position,
    elastic-modulus.
+   Revised in the figure-audit pass of 2026-09-12: the tendon is drawn in
+   PAL.soft and the regions of the graph banded in ink, since a body and a
+   region never take a type hue; the tangent follows the slope down through
+   zero in the failure region rather than lying flat; and the word stress in
+   the readout is set in the stress hue through \htmlClass{kv-stress}, since
+   the book gives stress no letter of its own. The headline is one
+   capitalized sentence.
 6. `sim-shear` · replaces Figure 5.16 (the sheared bookcase) ·
    shear-deformation · **still**: the bookcase leans as far as the force
    takes it and stays there · the shearing force $\kF$ (0 to 2,000 N,
@@ -177,6 +198,11 @@ graph · 3D
    of Table 5.3 marked along it, so the reader sees the 1/S fall and where
    bone and steel sit · no. Readout: $\kdx = \frac{1}{\kS}\frac{\kF}{A}\kLo$
    with the numbers. Draws force, position, elastic-modulus.
+   Revised in the figure-audit pass of 2026-09-12: the shear modulus carries
+   a tick at every value Table 5.3 prints, two of them named on the track;
+   the four marks on the curve the drawing leaves unnamed give their names
+   under the pointer through F.hover. The headline is one capitalized
+   sentence.
 7. `sim-nail` · replaces Figure 5.17 (the nail bent by the picture) ·
    shear-deformation · **still**: the picture hangs and the nail holds its
    flex · the mass of the picture $m$ (0.5 to 20.0 kg, default 5.2, ink),
@@ -189,6 +215,8 @@ graph · 3D
    magnification stated · no. Readout: $\kF = \frac{\kS A}{\kLo}\kdx$ with
    the numbers; small line on the mass the weight comes from. Draws force,
    position.
+   Revised in the figure-audit pass of 2026-09-12: the headline is one
+   capitalized sentence.
 8. `sim-cube` · replaces Figure 5.18 (the cube compressed on every face) ·
    bulk-deformation, stress · **still**: the cube is squeezed and stays
    squeezed · the force per unit area $\kF/A$ (0 to $1.0 \times 10^8\
@@ -235,6 +263,9 @@ Extra simulations (rule 15), considered and left:
   `sim-strings` already makes the comparison the text makes. Left.
 
 None built.
+   Revised in the figure-audit pass of 2026-09-12: the bulk modulus carries
+   a tick at every value Table 5.3 prints, two of them named on the track.
+   The headline is one capitalized sentence.
 
 ## Exercises
 

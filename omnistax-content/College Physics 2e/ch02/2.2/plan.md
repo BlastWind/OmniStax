@@ -69,25 +69,34 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    length of the arrow alone, 90 km/h, is the speed, which is a scalar.
    Draws velocity.
 2. `sim-axes` · replaces Figure 2.7 (the axes with right and up positive)
-   · coordinate-system, vector · moves: the jet flies a set distance to
-   the left along a strip, one flight in about 4 real seconds, and the
-   figure gets the scrubber. Above the strip is the coordinate line with
-   the usual choice, right positive, and below it the same line with left
-   positive, as is convenient for this jet; the origin is the same point
-   on both. Each line carries the jet's starting position as a hollow
-   mark, its current position as a filled mark and its displacement as an
-   arrow, with the numbers under each convention written in the position
-   hue · distance flown in km (0.5 to 8.0, step 0.5, default 5.0, ink);
-   origin, where the zero of the coordinate line is placed, in km from the
-   left edge of the strip (0 to 10, step 0.5, default 9.0, so that on
-   load the zero is at the jet's starting point, ink) · at the end of the
-   flight "the jet flew 5.0 km to the left, so its displacement is −5.0
-   km with right positive and +5.0 km with left positive" and during it
-   the distance flown so far · none · no. Readout: $\kdx = \kx - \kxo =
-   -5.0\ \text{km}$ with right positive and $+5.0\ \text{km}$ with left
-   positive; small line: moving the origin changes the positions but not
-   the displacement, and the choice of positive direction changes the
-   sign of both. Draws position.
+   · coordinate-system, vector · still: which direction is called
+   positive is a choice and has no time in it, so a drawing that answers
+   the two sliders is all the idea needs, and the figure carries no
+   transport. The jet stands on a strip at the end of a flight to the
+   left. Above the strip is the coordinate line with the usual choice,
+   right positive, and below it the same line with left positive, as is
+   convenient for this jet, and the origin is the same point on both.
+   Each line carries the jet's starting position as a hollow mark, the
+   position it reached as a filled mark and its displacement as an arrow,
+   with the numbers under each convention written in the position hue.
+   Beneath the two lines stands the pair of axes the book draws under
+   this number, with +x to the right, −x to the left, +y up and −y down,
+   so the figure carries the vertical convention the book states as well
+   as the horizontal one · distance flown in km (0.5 to 8.0, step 0.5,
+   default 5.0, ink); origin, where the zero of the coordinate line is
+   placed, in km from the left edge of the strip (0 to 10, step 0.5,
+   default 9.0, so that on load the zero is at the jet's starting point,
+   ink). The strip is a fixed 0 to 10 km and never rescales · "Flying 5.0
+   km to the left gives Δx = −5.0 km with right positive and +5.0 km with
+   left positive." · none · 2D. Labels on: the axis titles, the four
+   direction marks and the two positions, none of them colliding at any
+   slider value. Readout: $\kdx = \kx - \kxo = -5.0\ \text{km}$ with right
+   positive and $+5.0\ \text{km}$ with left positive; small line: moving
+   the origin changes the positions but not the displacement, and
+   choosing the other direction as positive turns each of the three
+   numbers into its opposite, which is said that way because at the
+   default origin the starting position is zero and zero has no sign to
+   change. Draws position.
 
 Photographs, one:
 

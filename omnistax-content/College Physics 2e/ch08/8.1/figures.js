@@ -1,7 +1,7 @@
 /* Figures for section 8.1 Linear Momentum and Force. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, scale, axes, nice, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, strip, scale, axes, nice, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -12,7 +12,7 @@ const commas = (s) => String(s).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const sig3 = (x) => { const a = Math.abs(x); const s = a.toPrecision(3); return (x < 0 ? '−' : '') + (a >= 1000 ? commas(Math.round(Number(s))) : s); };
 
 /* ---------- sprites, drawn in ink ---------- */
-/* a football lying on its long axis, centred on (x, y) */
+/* a football lying on its long axis, centered on (x, y) */
 function football(ctx, x, y, color, s = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
   ctx.fillStyle = color; ctx.beginPath(); ctx.ellipse(0, 0, 30, 17, 0, 0, TAU); ctx.fill();
@@ -20,7 +20,7 @@ function football(ctx, x, y, color, s = 1) {
   for (let i = -1; i <= 1; i++) { ctx.moveTo(i * 7, -6); ctx.lineTo(i * 7, 6); }
   ctx.stroke(); ctx.restore();
 }
-/* a tennis ball centred on (x, y) */
+/* a tennis ball centered on (x, y) */
 function tennisBall(ctx, x, y, color, r = 21, filled = true) {
   ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = color; ctx.fillStyle = filled ? color : PAL.panel;
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke();
@@ -38,7 +38,7 @@ function racquet(ctx, x, y, color) {
 
 /* =====================================================================
    SIM: momentum is mass times velocity. The football player and the
-   football of Example 8.1 run the same thirty metres of ground, each at
+   football of Example 8.1 run the same thirty meters of ground, each at
    its own speed, and a velocity bar and a momentum bar under each lane
    are drawn to one scale. The idea has a time in it, since a speed is
    ground covered in a time, so the figure moves: one crossing per loop,
@@ -47,11 +47,16 @@ function racquet(ctx, x, y, color) {
 (function () {
   const d = sim('sim-momentum', 670);
   const mp = ctl(d.controls, { label: 'm_{\\text{player}}', cls: '', min: 50, max: 150, step: 1, value: 110, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the player' });
-  const vp = ctl(d.controls, { label: '\\kv_{\\text{player}}', cls: 'velocity', min: 2, max: 15, step: 0.25, value: 8, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the player' });
+  /* the player's speed reaches down to a walk, so that the football can be given as much momentum as the player carries */
+  const vp = ctl(d.controls, { label: '\\kv_{\\text{player}}', cls: 'velocity', min: 1, max: 15, step: 0.25, value: 8, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the player' });
   const mb = ctl(d.controls, { label: 'm_{\\text{ball}}', cls: '', min: 0.1, max: 2, step: 0.01, value: 0.41, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the football' });
   const vb = ctl(d.controls, { label: '\\kv_{\\text{ball}}', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the football' });
-  const RUN = 30;                                   /* the strip is thirty metres of ground */
-  const VMAX = 40, BAR = 560, PBAR = 900;           /* the two bar scales, in logical units */
+  const RUN = 30;                                   /* the strip is thirty meters of ground */
+  /* Both bar scales are fixed from the slider maxima and never move: a velocity bar is 560 units at
+     40 m/s, and a momentum bar is 900 units at 2,250 kg·m/s, which is 150 kg at 15 m/s, the most the
+     sliders can reach. The football's bar is therefore a stub beside the player's, which is the point
+     of the example, and the numbers are written past the head of each bar. */
+  const VMAX = 40, PMAX = 2250, BAR = 560, PBAR = 900;
   const L = 60, Rt = 1350, X = (m) => L + (m / RUN) * (Rt - L);
   const cy = cycle(() => RUN / Math.max(vp.v, vb.v), 1.2);
   function reset() { cy.reset(); }
@@ -63,30 +68,30 @@ function racquet(ctx, x, y, color) {
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = cy.now(), pp = mp.v * vp.v, pb = mb.v * vb.v, pmax = Math.max(pp, pb);
+    const tau = cy.now(), pp = mp.v * vp.v, pb = mb.v * vb.v;
     const xp = Math.min(RUN, vp.v * tau), xb = Math.min(RUN, vb.v * tau);
     /* the player's lane */
     text(ctx, 'the football player', L, 82, PAL.ink, { size: 22, weight: 600 });
     strip(ctx, L, Rt, 175, 48);
     F.person(ctx, X(xp), 178, PAL.ink, { s: 0.85, lean: 0.25, phase: xp > 0 && xp < RUN ? xp * 1.4 : 0 });
     bar(ctx, 248, (vp.v / VMAX) * BAR, C('velocity'), 'v = ' + fmt(vp.v, 2) + ' m/s');
-    bar(ctx, 296, (pp / pmax) * PBAR, C('momentum'), 'p = ' + sig3(pp) + ' kg·m/s');
+    bar(ctx, 296, (pp / PMAX) * PBAR, C('momentum'), 'p = ' + sig3(pp) + ' kg·m/s');
     line(ctx, L, 342, Rt, 342, PAL.rule, 2);
     /* the football's lane */
     text(ctx, 'the hard-thrown football', L, 388, PAL.ink, { size: 22, weight: 600 });
     strip(ctx, L, Rt, 455, 48);
     football(ctx, X(xb), 455, PAL.ink);
     bar(ctx, 528, (vb.v / VMAX) * BAR, C('velocity'), 'v = ' + fmt(vb.v, 1) + ' m/s');
-    bar(ctx, 576, (pb / pmax) * PBAR, C('momentum'), 'p = ' + sig3(pb) + ' kg·m/s');
+    bar(ctx, 576, (pb / PMAX) * PBAR, C('momentum'), 'p = ' + sig3(pb) + ' kg·m/s');
     /* the ground both of them cover */
     scale(ctx, X, 0, RUN, 5, 626, 'm', 1);
     const ratio = pp >= pb ? pp / pb : pb / pp;
-    const who = Math.abs(pp - pb) / pmax < 0.005 ? 'the two carry the same momentum'
+    const who = Math.abs(pp - pb) / Math.max(pp, pb) < 0.005 ? 'the two carry the same momentum'
       : pp > pb ? 'the player carries ' + sig3(ratio) + ' times the momentum of the football'
       : 'the football carries ' + sig3(ratio) + ' times the momentum of the player';
-    headline(ctx, tau < 0.01
-      ? 'both set off from the same line, the player at ' + fmt(vp.v, 2) + ' m/s and the football at ' + fmt(vb.v, 1) + ' m/s'
-      : 't = ' + fmt(tau, 2) + ' s · the football has gone ' + fmt(xb, 1) + ' m and the player ' + fmt(xp, 1) + ' m, and ' + who);
+    topline(ctx, tau < 0.01
+      ? 'Both set off from the same line, the player at ' + fmt(vp.v, 2) + ' m/s and the football at ' + fmt(vb.v, 1) + ' m/s.'
+      : 'At t = ' + fmt(tau, 2) + ' s ' + who + '.');
     readout(d.readout,
       `\\kpplayer = m\\kv = (${fmt(mp.v, 0)}\\ \\text{kg})(${fmt(vp.v, 2)}\\ \\text{m/s}) = ${sig3(pp)}\\ \\text{kg}\\cdot\\text{m/s}`,
       'The football has p = (' + fmt(mb.v, 3) + ' kg)(' + fmt(vb.v, 1) + ' m/s) = ' + sig3(pb) + ' kg·m/s, so ' + who + ', even though the football is much the faster of the two.');
@@ -105,7 +110,8 @@ function racquet(ctx, x, y, color) {
   const d = sim('sim-force', 760);
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.02, max: 0.2, step: 0.001, value: 0.057, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the ball' });
   const vf = ctl(d.controls, { label: '\\kvf', cls: 'velocity', min: 10, max: 80, step: 1, value: 58, unit: 'm/s', dec: 0, onInput: reset, aria: 'speed just after impact' });
-  const dt = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 1, max: 40, step: 0.5, value: 5, unit: 'ms', dec: 1, onInput: reset, aria: 'contact time' });
+  /* the contact runs to 10 ms, the range of the time axis below, with a detent at the 5.00 ms of the example */
+  const dt = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 1, max: 10, step: 0.5, value: 5, unit: 'ms', dec: 1, detents: [{ v: 5, label: '5.0' }], snap: true, onInput: reset, aria: 'contact time' });
   const T = () => dt.v / 1000;                            /* the contact time in seconds */
   const cy = cycle(T, 1.2);
   function reset() { cy.reset(); }
@@ -125,32 +131,33 @@ function racquet(ctx, x, y, color) {
     arrow(ctx, X(s) + 30, YB + 68, X(s) + 30 + Math.max(8, (p / dp) * 280), YB + 68, C('momentum'), 5);
     text(ctx, 'p = ' + fmt(p, 2) + ' kg·m/s', X(s) + 30, YB + 104, C('momentum'), { size: 22, weight: 600 });
     /* the graph: the momentum the ball has taken up against the time */
-    /* fixed axes. The momentum the sliders can reach is 0.2 kg × 80 m/s = 16 kg·m/s, so that axis
-       is fixed at 0 to 16 kg·m/s, ticked every 4. The contact time runs to 40 ms, but the racquet
-       of the example is on the ball for 5 ms and would then be squeezed against the left-hand edge,
-       so the time axis is fixed at 0 to 10 ms, ticked every 2.5, which holds the example
-       comfortably; a longer contact is clipped at the right-hand edge and the running momentum is
-       pinned there. Neither range moves. */
-    const TR = 10, PR = 16, box = { l: 210, r: 1290, t: 448, b: 678 };
+    /* fixed axes. The contact time is the slider's own range, 0 to 10 ms, ticked every 2.5. The
+       sliders could reach 0.2 kg × 80 m/s = 16 kg·m/s, but the ball of the example takes up only
+       3.31 kg·m/s and would lie against the base line on a range that big, so the momentum axis is
+       fixed at 0 to 8 kg·m/s, ticked every 2, which holds the example comfortably; a heavier or
+       faster ball runs off the top, where the line is clipped and the running momentum is pinned.
+       Neither range moves. */
+    const TR = 10, PR = 8, box = { l: 210, r: 1290, t: 448, b: 678 };
     const sc = axes(ctx, box, [0, TR], [0, PR], { nx: 4, ny: 4, xl: 't (ms)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 0) });
-    const xE = Math.min(dt.v, TR), pE = dp * (xE / dt.v);
+    /* the line is drawn only as far as the fixed momentum range reaches */
+    const xE = Math.min(dt.v, dp > PR ? (dt.v * PR) / dp : dt.v), pE = dp * (xE / dt.v);
     line(ctx, sc.X(0), sc.Y(0), sc.X(xE), sc.Y(pE), C('momentum'), 5);
-    if (dt.v <= TR) {
+    if (dp <= PR) {
       line(ctx, sc.X(dt.v), sc.Y(0), sc.X(dt.v), sc.Y(dp), C('momentum'), 2.5, [10, 10]);
       text(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s', sc.X(dt.v) - 16, (sc.Y(0) + sc.Y(dp)) / 2, C('momentum'), { size: 20, weight: 600, align: 'right' });
-      text(ctx, 'Δt = ' + fmt(dt.v, 1) + ' ms', sc.X(dt.v) - 20, sc.Y(0) - 24, C('time'), { size: 20, weight: 600, align: 'right' });
     }
-    text(ctx, 'the slope of this line is the net force, ' + sig3(Fn) + ' N', sc.X(TR * 0.05), sc.Y(PR * 0.82), C('force'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'Δt = ' + fmt(dt.v, 1) + ' ms', sc.X(dt.v) - 20, sc.Y(0) - 24, C('time'), { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'The slope of this line is the net force, ' + sig3(Fn) + ' N.', sc.X(TR * 0.05), sc.Y(PR * 0.82), C('force'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
     const xNow = Math.min(dt.v * f, TR), pNow = Math.min(p, PR);
     line(ctx, sc.X(0), sc.Y(pNow), sc.X(xNow), sc.Y(pNow), PAL.muted, 2, [4, 8]);
     line(ctx, sc.X(xNow), sc.Y(0), sc.X(xNow), sc.Y(pNow), PAL.muted, 2, [4, 8]);
     pinned(ctx, box, sc.X, sc.Y, dt.v * f, p, C('momentum'), fmt(p, 2) + ' kg·m/s');
-    headline(ctx, f < 0.01
-      ? 'the ball is at rest against the strings, about to be given ' + fmt(dp, 2) + ' kg·m/s in ' + fmt(dt.v, 1) + ' ms'
-      : 't = ' + fmt(tau * 1000, 1) + ' ms · the ball has taken up ' + fmt(p, 2) + ' of the ' + fmt(dp, 2) + ' kg·m/s the racquet will give it, at a steady ' + sig3(Fn) + ' N');
+    topline(ctx, f < 0.01
+      ? 'The ball is at rest against the strings, about to be given ' + fmt(dp, 2) + ' kg·m/s in ' + fmt(dt.v, 1) + ' ms.'
+      : 'At t = ' + fmt(tau * 1000, 1) + ' ms the ball has taken up ' + fmt(p, 2) + ' of the ' + fmt(dp, 2) + ' kg·m/s the racquet will give it.');
     readout(d.readout,
       `\\begin{aligned}\\kFnet &= \\frac{\\kdp}{\\kdt} = \\frac{m(\\kvf - \\kvi)}{\\kdt} = \\frac{(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(vf.v, 0)}\\ \\text{m/s})}{${fmt(dt.v, 1)}\\times 10^{-3}\\ \\text{s}} = ${sig3(Fn)}\\ \\text{N}\\\\ &= m\\ka = (${fmt(m.v, 3)}\\ \\text{kg})(${sig3(a)}\\ \\text{m/s}^2) = ${sig3(Fn)}\\ \\text{N}\\end{aligned}`,
-      'The mass of the ball does not change, so the two forms agree. Spread the same change in momentum over four times the contact time and the force falls to a quarter of what it was, which is why a follow-through and a soft landing hurt less.');
+      'The mass of the ball does not change, so the two forms agree. Spread the same change in momentum over twice the contact time and the force falls to half of what it was, which is why a follow-through and a soft landing hurt less.');
   }
   register(d.fig, { update: (dt2) => cy.step(dt2, () => T() / 5), draw });
 })();

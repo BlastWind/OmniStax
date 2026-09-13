@@ -78,8 +78,9 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
   const vb = ctl(d.controls, { label: '\\kvboat', cls: 'velocity', min: 0.1, max: 3, step: 0.01, value: 0.75, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the boat relative to the water' });
   const vr = ctl(d.controls, { label: '\\kvriver', cls: 'velocity', min: 0, max: 3, step: 0.01, value: 1.2, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the river relative to the shore' });
   const ph = ctl(d.controls, { label: '\\text{heading}', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, onInput: reset, aria: 'heading of the boat, degrees from downstream' });
-  const W = 25;   /* the river's width in meters, which the book does not give */
-  const vx = () => vr.v + vb.v * Math.cos(ph.v * DEG), vy = () => vb.v * Math.sin(ph.v * DEG), T = () => W / vy();
+  /* The example gives no width for the river, so one is assumed here and the reader may set it. */
+  const WC = ctl(d.controls, { label: '\\text{river width}', cls: 'position', min: 10, max: 60, step: 1, value: 25, unit: 'm', dec: 0, onInput: reset, aria: 'width of the river' });
+  const vx = () => vr.v + vb.v * Math.cos(ph.v * DEG), vy = () => vb.v * Math.sin(ph.v * DEG), T = () => WC.v / vy();
   const cy = cycle(T, 1.2);
   function reset() { cy.reset(); }
   const L = 70, R = 770, PT = 100, PB = 580;
@@ -89,6 +90,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     const straight = ph.v === 90;
     /* the scene: one scale for both axes, chosen so the whole crossing fits the panel */
     const margin = 5, xmin = Math.min(0, drift) - margin, span = Math.max(drift, 0) - Math.min(drift, 0) + 2 * margin;
+    const W = WC.v;
     const s = Math.max(Math.min(430 / W, 700 / span), 130 / W), X = (m) => L + (m - xmin) * s, Y = (m) => 340 + (W / 2 - m) * s;
     ctx.save(); ctx.beginPath(); ctx.rect(L, PT, R - L, PB - PT); ctx.clip();
     ctx.fillStyle = PAL.soft2; ctx.fillRect(L, PT, R - L, PB - PT);
@@ -125,8 +127,8 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     /* what the numbers say */
     const where = Math.abs(drift) < 0.3 ? 'straight across from where it set out' : fmt(Math.abs(drift), 1) + ' m ' + (drift > 0 ? 'downstream' : 'upstream');
-    headline(ctx, done ? 'after ' + fmt(Tc, 1) + ' s the boat reaches the far bank ' + where + ', moving at ' + sf(vt) + ' m/s, ' + fmt(th, 1) + '° from the bank'
-      : 't = ' + fmt(tau, 1) + ' s · the boat has crossed ' + fmt(uy * tau, 1) + ' m of the ' + W + ' m river and is ' + fmt(Math.abs(ux * tau), 1) + ' m ' + (ux >= 0 ? 'downstream' : 'upstream') + ' of where it set out');
+    headline(ctx, done ? 'After ' + fmt(Tc, 1) + ' s the boat reaches the far bank ' + where + ', moving at ' + sf(vt) + ' m/s, ' + fmt(th, 1) + '° from the bank.'
+      : 'After ' + fmt(tau, 1) + ' s the boat has crossed ' + fmt(uy * tau, 1) + ' m of the ' + WC.v + ' m river and is ' + fmt(Math.abs(ux * tau), 1) + ' m ' + (ux >= 0 ? 'downstream' : 'upstream') + ' of where it set out.');
     const main = straight
       ? `\\kvtot = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{(${sf(vr.v)})^2 + (${sf(vb.v)})^2} = ${sf(vt)}\\ \\text{m/s}\\qquad \\theta = \\tan^{-1}(\\kvy/\\kvx) = \\tan^{-1}(${sf(vb.v)}/${sf(vr.v)}) = ${fmt(th, 1)}^\\circ`
       : `\\kvx = \\kvriver + \\kvboat\\cos ${ph.v}^\\circ = ${sf(ux)}\\ \\text{m/s},\\quad \\kvy = \\kvboat\\sin ${ph.v}^\\circ = ${sf(uy)}\\ \\text{m/s},\\quad \\kvtot = ${sf(vt)}\\ \\text{m/s at } ${fmt(th, 1)}^\\circ`;
@@ -190,8 +192,8 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     if (vt > 0.05) angleArc(ctx, Ox, Oy, 44, 0, Math.atan2(uy, ux) / DEG, PAL.ink, fmt(Math.atan2(uy, ux) / DEG, 1) + '°');
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     /* what the numbers say */
-    headline(ctx, done ? 'the plane points north at ' + sf(vp.v) + ' m/s but moves at ' + sf(vt) + ' m/s, ' + compass(ux, uy) + ', relative to the ground'
-      : 't = ' + fmt(tau, 1) + ' s · the plane points north, but its track over the ground runs ' + compass(ux, uy));
+    headline(ctx, done ? 'The plane points north at ' + sf(vp.v) + ' m/s but moves at ' + sf(vt) + ' m/s, ' + compass(ux, uy) + ', relative to the ground.'
+      : 'After ' + fmt(tau, 1) + ' s the plane still points north, but its track over the ground runs ' + compass(ux, uy) + '.');
     const words = windWords(vwx, vwy);
     readout(d.readout, `\\kvtotx = \\kvpx + \\kvwx = 0 + (${sf(vwx)}) = ${sf(ux)}\\ \\text{m/s},\\quad \\kvtoty = \\kvpy + \\kvwy = ${sf(vp.v)} + (${sf(vwy)}) = ${sf(uy)}\\ \\text{m/s},\\quad \\kvtot = ${sf(vt)}\\ \\text{m/s}`,
       vw.v < 0.02 ? 'With no wind, the plane moves over the ground exactly as it moves through the air, due north at ' + sf(vp.v) + ' m/s.'
@@ -225,7 +227,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     if (Math.abs(th.v) > 2) angleArc(ctx, Ox, Oy, 58, 0, th.v, PAL.ink, 'θ = ' + fmt(th.v, 1) + '°');
     dot(ctx, Ox, Oy, PAL.ink, true, 5); dot(ctx, Hx, Hy, C('velocity'), true, 7);
     /* what the numbers say */
-    headline(ctx, 'a velocity of ' + sf(v.v) + ' m/s at ' + fmt(th.v, 1) + '° has components ' + sf(vx) + ' m/s along x and ' + sf(vy) + ' m/s along y');
+    headline(ctx, 'A velocity of ' + sf(v.v) + ' m/s at ' + fmt(th.v, 1) + '° has components ' + sf(vx) + ' m/s along x and ' + sf(vy) + ' m/s along y.');
     const back = Math.hypot(vx, vy), calc = Math.abs(vx) < 1e-9 ? null : Math.atan(vy / vx) / DEG;
     const angleNote = calc === null ? ' Because the x component is zero here, the ratio of the y component to it is undefined, and the angle is ' + (vy > 0 ? '+90°' : '−90°') + ' by inspection.'
       : vx < 0 ? ' Because the x component is negative, the angle is 180° away from the ' + fmt(calc, 1) + '° a calculator’s tan⁻¹ returns.' : '';
@@ -270,8 +272,8 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     ];
     rows.forEach(([lab, val], i) => { text(ctx, lab, tx, 150 + i * 96, PAL.muted, { size: 17 }); text(ctx, val, tx, 150 + i * 96 + 30, C('velocity'), { size: 20, weight: 600 }); });
     /* what the numbers say */
-    headline(ctx, vw < 0.05 ? 'with the two velocities equal, no wind is needed to account for the plane’s track'
-      : 'the wind that accounts for the plane’s track is ' + sf(vw) + ' m/s toward ' + compass(vwx, vwy));
+    headline(ctx, vw < 0.05 ? 'With the two velocities equal, no wind is needed to account for the plane’s track.'
+      : 'The wind that accounts for the plane’s track is ' + sf(vw) + ' m/s toward ' + compass(vwx, vwy) + '.');
     const calc = Math.abs(vwx) < 1e-9 ? null : Math.atan(vwy / vwx) / DEG;
     readout(d.readout, `\\kvwx = \\kvtot\\cos ${fmt(a, 1)}^\\circ = ${sf(vwx)}\\ \\text{m/s},\\quad \\kvwy = \\kvtot\\sin ${fmt(a, 1)}^\\circ - \\kvp = ${sf(vwy)}\\ \\text{m/s},\\quad \\kvw = \\sqrt{\\kvwx^2 + \\kvwy^2} = ${sf(vw)}\\ \\text{m/s}`,
       vw < 0.05 ? 'The plane moves over the ground exactly as it moves through the air, so the air is not moving.'
@@ -287,7 +289,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
 (function () {
   const d = sim('sim-binoculars', 600);
   const vs = ctl(d.controls, { label: '\\kv_{\\text{ship}}', cls: 'velocity', min: 0, max: 15, step: 0.5, value: 6, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the ship' });
-  const h = ctl(d.controls, { label: 'h', cls: '', min: 4, max: 20, step: 0.5, value: 12, unit: 'm', dec: 1, onInput: reset, aria: 'height of the mast' });
+  const h = ctl(d.controls, { label: 'h', cls: 'position', min: 4, max: 20, step: 0.5, value: 12, unit: 'm', dec: 1, onInput: reset, aria: 'height of the mast' });
   const T = () => Math.sqrt(2 * h.v / G);
   const cy = cycle(T, 1.4);
   function reset() { cy.reset(); }
@@ -324,9 +326,9 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     });
     /* what the numbers say */
     headline(ctx, done
-      ? (vs.v < 0.05 ? 'the ship is at rest, so both observers see the same straight fall, ' + fmt(Tc, 2) + ' s to the deck at the base of the mast'
-        : 'the binoculars land at the base of the mast after ' + fmt(Tc, 2) + ' s, having moved ' + fmt(dShip, 1) + ' m forward with the ship')
-      : 't = ' + fmt(tau, 2) + ' s · the binoculars have fallen ' + fmt(drop, 1) + ' m and, seen from shore, moved ' + fmt(vs.v * tau, 1) + ' m forward with the ship');
+      ? (vs.v < 0.05 ? 'The ship is at rest, so both observers see the same straight fall, ' + fmt(Tc, 2) + ' s to the deck at the base of the mast.'
+        : 'The binoculars land at the base of the mast after ' + fmt(Tc, 2) + ' s, having moved ' + fmt(dShip, 1) + ' m forward with the ship.')
+      : 'After ' + fmt(tau, 2) + ' s the binoculars have fallen ' + fmt(drop, 1) + ' m and, seen from shore, moved ' + fmt(vs.v * tau, 1) + ' m forward with the ship.');
     readout(d.readout, `\\text{from shore: } \\kv = (${fmt(vs.v, 1)},\\ ${sf(vyLand)})\\ \\text{m/s}\\qquad \\text{from the ship: } \\kv = (0,\\ ${sf(vyLand)})\\ \\text{m/s}`,
       'Both observers find the vertical velocity at the deck to be −√(2gh) = ' + sf(vyLand) + ' m/s and disagree about the horizontal velocity by exactly the ship’s ' + fmt(vs.v, 1) + ' m/s, so both see the binoculars strike the deck at the base of the mast.');
   }
@@ -341,7 +343,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
 (function () {
   const d = sim('sim-coin', 620);
   const vp = ctl(d.controls, { label: '\\kv_{\\text{plane}}', cls: 'velocity', min: 50, max: 300, step: 1, value: 260, unit: 'm/s', dec: 0, onInput: reset, aria: 'speed of the plane' });
-  const h = ctl(d.controls, { label: 'h', cls: '', min: 0.5, max: 3, step: 0.05, value: 1.5, unit: 'm', dec: 2, onInput: reset, aria: 'height of the drop' });
+  const h = ctl(d.controls, { label: 'h', cls: 'position', min: 0.5, max: 3, step: 0.05, value: 1.5, unit: 'm', dec: 2, onInput: reset, aria: 'height of the drop' });
   const T = () => Math.sqrt(2 * h.v / G);
   const cy = cycle(T, 1.4);
   function reset() { cy.reset(); }
@@ -377,8 +379,8 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     arrow(ctx, ox, oy, tipx, tipy, C('velocity'), 5);
     text(ctx, 'v = ' + sf(v, 5) + ' m/s at ' + fmt(th, 2) + '°', ox, oy + 48, C('velocity'), { size: 20, weight: 600 });
     /* what the numbers say */
-    headline(ctx, done ? 'the coin lands after ' + fmt(Tc, 3) + ' s, ' + fmt(h.v, 2) + ' m below where it was dropped and ' + fmt(R, 0) + ' m along the ground, at ' + sf(v, 5) + ' m/s'
-      : 't = ' + fmt(tau, 2) + ' s · the coin has fallen ' + fmt(drop, 2) + ' m and moved ' + fmt(vp.v * tau, 0) + ' m along the ground, staying directly below the passenger');
+    headline(ctx, done ? 'The coin lands after ' + fmt(Tc, 3) + ' s, ' + fmt(h.v, 2) + ' m below where it was dropped and ' + fmt(R, 0) + ' m along the ground, at ' + sf(v, 5) + ' m/s.'
+      : 'After ' + fmt(tau, 2) + ' s the coin has fallen ' + fmt(drop, 2) + ' m and moved ' + fmt(vp.v * tau, 0) + ' m along the ground, staying directly below the passenger.');
     readout(d.readout, `\\kv = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{(${sf(vp.v)})^2 + (${sf(vy)})^2} = ${sf(v, 5)}\\ \\text{m/s}\\qquad \\theta = \\tan^{-1}(\\kvy/\\kvx) = \\tan^{-1}(${sf(vy)}/${sf(vp.v)}) = ${fmt(th, 2)}^\\circ`,
       'Relative to the plane the coin’s velocity at the floor is ' + sf(vy) + ' m/s alone, straight down, the same as if it had been dropped from rest on the ground.');
   }

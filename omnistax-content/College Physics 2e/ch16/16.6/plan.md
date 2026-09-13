@@ -128,3 +128,15 @@ the point P Figure 16.17 and the trace on paper Figure 16.18 (the numbers
 above are two high). `sim-turntable` keeps 16.16 as its number and lists
 16.18 under `folds`; its eyebrow reads "Figure 16.16 + 16.18", and the
 text's reference to Figure 16.18 links to the sim.
+
+Audit pass (2026-09-12): `sim-turntable` runs its paper down at a fixed 68
+units to the second rather than in units of the period, so it always carries a
+little under four seconds of trace and a longer period plainly stretches the
+wave out; the marks along its edge are seconds, not multiples of T. The lamps
+above the turntable are named, "light from above", and the shadow the ball
+casts is drawn in ink rather than in the time hue, since a beam of light is
+not a time. `sim-circle-triangles` draws its circle at a fixed 14 units to the
+centimeter, so the radius slider grows the circle all the way along instead of
+stopping at a cap partway, and its velocity arrow is drawn on one fixed scale
+set by the fastest the sliders allow rather than capped. Both are
+two-dimensional, with no 3D, and their labels on.

@@ -153,3 +153,17 @@ of the ruler) under its own number 16.2, and `sim-stored-energy` folds
 Figure 16.7 (the toy gun of Example 16.2) under 16.6; each row lists the
 folded number under `folds` and its eyebrow reads both, "Figure 16.2 +
 16.3" and "Figure 16.6 + 16.7".
+
+Audit pass (2026-09-12): the three figure lines above are corrected to what is
+built. `sim-ruler` now holds at t = 0 when motion is reduced rather than at
+rest, so the pull, the bracket and the restoring force are all in the still
+picture; its four labels stay on, since none of them collide at any setting.
+`sim-spring-scale` opens at m = 0.500 kg, not 0.300 kg, and its graph sits
+beside the vertical scene rather than below it; its stretch axis is fixed at 0
+to 0.50 m and its force axis at 0 to 5 N, both read off the slider maxima, and
+the scene draws a fixed 600 units to the meter, so a stiffer spring visibly
+stretches less instead of redrawing the same picture under new tick labels.
+`sim-stored-energy` fixes its deformation axis at 0 to 0.30 m and its force
+axis at 0 to 30 N; a spring stiffer than 100 N/m runs off the top and its live
+point is pinned at the edge with its value, so the shaded triangle now answers
+both sliders. All three are two-dimensional, with no 3D, and their labels on.

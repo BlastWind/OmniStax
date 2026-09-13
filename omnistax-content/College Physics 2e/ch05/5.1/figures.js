@@ -1,11 +1,14 @@
 /* Figures for section 5.1 Friction. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['5.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, block } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, hover, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, scale, axes, pinned, block } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 const RAD = Math.PI / 180;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+/* draws inside the graph box, so a line that runs past a fixed range is cut off at the frame
+   instead of the frame being stretched to hold it */
+const inbox = (ctx, box, f) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); };
 
 /* a wooden crate, centred on (x, y), with two slats across its face */
 function crate(ctx, x, y, w, h) {
@@ -66,6 +69,9 @@ function skier(ctx, x, y, theta) {
     text(ctx, 'N = ' + fmt(N, 0) + ' N', cx + 84, floorY - 92, C('force'), { size: 20, weight: 600 });
     arrow(ctx, cx + cw / 2 + 40, floorY - ch + 20, cx + cw / 2 + 250, floorY - ch + 20, PAL.muted, 3);
     text(ctx, sliding ? 'direction of motion' : 'direction of attempted motion', cx + cw / 2 + 40, floorY - ch - 12, PAL.muted, { size: 17 });
+    /* the coefficients the section's own passage gives for this crate on this floor, named on the
+       drawing so that the branch between holding and sliding is never decided by a hidden number */
+    text(ctx, 'this crate on this concrete floor: μ_s = ' + fmt(MU_S, 2) + ', μ_k = ' + fmt(MU_K, 2), cx + cw / 2 + 40, floorY - 52, PAL.ink, { size: 19, weight: 600 });
     /* the magnified interface under the near corner of the crate */
     const L = 190, R = 1230, top = 450, bot = 690, LOWBASE = 630;
     const corner = cx - cw / 2 + 12;
@@ -102,10 +108,10 @@ function skier(ctx, x, y, theta) {
     text(ctx, touching === 1 ? 'the surfaces touch at one high spot, drawn heavy' : 'the surfaces touch at ' + touching + ' high spots, drawn heavy',
       R - 16, bot - 22, PAL.ink, { size: 20, weight: 600, align: 'right' });
     headline(ctx, sliding
-      ? 'your ' + fmt(Fp.v, 0) + ' N push has passed the ' + fmt(fmax, 0) + ' N these surfaces can hold, so the crate slides against ' + fmt(fk, 0) + ' N'
-      : 'N = ' + fmt(N, 0) + ' N presses the surfaces together, and your ' + fmt(Fp.v, 0) + ' N push is answered by ' + fmt(fr, 0) + ' N of friction');
-    readout(d.readout, `\\kN = m\\kg = (${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(N, 0)}\\ \\text{N}`,
-      'The friction is parallel to the surface and points against the motion or the attempted motion. Press the two surfaces together harder and the actual area of contact, drawn heavy in the magnified view, grows; the friction grows with it, and the total area of the base never enters.');
+      ? 'Your ' + fmt(Fp.v, 0) + ' N push has passed the ' + fmt(fmax, 0) + ' N these surfaces can hold, so the crate slides against ' + fmt(fk, 0) + ' N'
+      : 'A normal force of ' + fmt(N, 0) + ' N presses the surfaces together, and your ' + fmt(Fp.v, 0) + ' N push is answered by ' + fmt(fr, 0) + ' N of friction');
+    readout(d.readout, `\\kN = m\\kg = (${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(N, 0)}\\ \\text{N},\\qquad \\kfsmax = \\mu_{\\text{s}}\\kN = (${fmt(MU_S, 2)})(${fmt(N, 0)}\\ \\text{N}) = ${fmt(fmax, 0)}\\ \\text{N}`,
+      'The coefficients are the ones the passage gives for this crate on this floor, 0.45 while it holds and 0.30 once it slides, so the crate breaks away at ' + fmt(fmax, 0) + ' N and then slides against ' + fmt(fk, 0) + ' N. The friction is parallel to the surface and points against the motion or the attempted motion. Press the two surfaces together harder and the actual area of contact, drawn heavy in the magnified view, grows; the friction grows with it, and the total area of the base never enters.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -123,55 +129,75 @@ function skier(ctx, x, y, theta) {
   const T = 6, TB = T * 0.625;                       /* the push reaches f_s(max) five eighths of the way through */
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
+  /* No pair of surfaces slides against more friction than it holds with, so the coefficient of
+     kinetic friction is never taken to be larger than the coefficient of static friction. */
+  const held = () => uk.v > us.v;
+  const ukv = () => Math.min(uk.v, us.v);
   const Nof = () => m.v * G, Fmax = () => 1.6 * us.v * Nof();
   const Fat = (t) => (Fmax() * t) / T;
   const kOf = () => Fmax() / (T * m.v);
   function xAt(t) {                                  /* how far it has slid: a = (F − f_k)/m, integrated twice */
     if (t <= TB) return 0;
     const s = t - TB;
-    return Math.max(0, (kOf() * s * s * s) / 6 + (kOf() * TB * s * s) / 2 - (uk.v * G * s * s) / 2);
+    return Math.max(0, (kOf() * s * s * s) / 6 + (kOf() * TB * s * s) / 2 - (ukv() * G * s * s) / 2);
   }
   function vAt(t) {
     if (t <= TB) return 0;
-    return Math.max(0, (kOf() * (t * t - TB * TB)) / 2 - uk.v * G * (t - TB));
+    return Math.max(0, (kOf() * (t * t - TB * TB)) / 2 - ukv() * G * (t - TB));
   }
   function draw() {
     const { ctx } = begin(d.c);
     const t = REDUCED ? T : cy.now();
-    const N = Nof(), fmax = us.v * N, fk = uk.v * N, Fn = Fat(t);
+    const N = Nof(), fmax = us.v * N, fk = ukv() * N, Fn = Fat(t);
     const moving = t > TB, fr = moving ? fk : Fn;
-    const run = Math.max(0.4, xAt(T)), cw = 180, ch = 130, floorY = 280;
+    const cw = 180, ch = 130, floorY = 280;
+    /* fixed scene scale: the floor is ruled 0 to 7 m and never rescales. The crate the figure opens
+       with slides 5.9 m in the run and so fills it, and a slicker floor carries it past the end,
+       where it is held at the last mark and the headline says how far it has really gone. */
+    const XMAX = 7, SC = 720 / XMAX, SX = (mtr) => 340 + mtr * SC;
     strip(ctx, 140, 1280, floorY + 16, 30);
-    const cx = 340 + (xAt(t) / run) * 720;
+    const slid = xAt(t), past = slid > XMAX;
+    const cx = SX(Math.min(slid, XMAX));
     crate(ctx, cx, floorY - ch / 2, cw, ch);
     text(ctx, fmt(m.v, 0) + ' kg', cx, floorY - ch + 28, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    const pl = 40 + 180 * (Fn / Math.max(1, Fmax())), fl = 40 + 180 * (fr / Math.max(1, Fmax()));
+    /* the arrows are drawn against the same fixed 800 N the graph is ruled to, so a harder push is a
+       longer arrow rather than the same arrow beside a larger number */
+    const ACAP = 800, pl = 40 + 180 * Math.min(1, Fn / ACAP), fl = 40 + 180 * Math.min(1, fr / ACAP);
     arrow(ctx, cx - cw / 2 - pl, floorY - 84, cx - cw / 2, floorY - 84, C('force'), 5);
     text(ctx, 'F = ' + fmt(Fn, 0) + ' N', cx - cw / 2 - pl, floorY - 112, C('force'), { size: 20, weight: 600 });
     arrow(ctx, cx - cw / 2 + 16, floorY - 12, cx - cw / 2 + 16 - fl, floorY - 12, C('force'), 5);
     text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 + 16 - fl, floorY - 42, C('force'), { size: 20, weight: 600 });
     text(ctx, moving ? 'sliding at ' + fmt(vAt(t), 2) + ' m/s' : 'not moving', 1270, 130, PAL.muted, { size: 20, align: 'right' });
+    scale(ctx, SX, 0, XMAX, 1, 340, 'm', 1);
     /* the graph: the friction that answers the push */
-    /* fixed axes: the push runs up to 1.6 μ_s m g, and the largest the sliders allow is
-       1.6 × 1 × 200 × 9.80 = 3,136 N, so both axes are always 0 to 3,200 N, ticked every 800 N.
-       Neither the push nor the friction can pass that, so nothing here ever leaves the frame, and
-       the range does not change as a slider moves. */
-    const SC = 3200, box = { l: 230, r: 1250, t: 420, b: 680 };
-    const { X, Y } = axes(ctx, box, [0, SC], [0, SC], { xl: 'the push F (N)', xc: C('force'), yl: 'the friction f (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
-    line(ctx, X(0), Y(0), X(fmax), Y(fmax), C('force'), 5);
-    line(ctx, X(fmax), Y(fmax), X(fmax), Y(fk), PAL.muted, 3, [10, 10]);
-    line(ctx, X(fmax), Y(fk), X(SC), Y(fk), C('force'), 5);
-    dot(ctx, X(fmax), Y(fmax), C('force'), false, 11);
-    text(ctx, 'f_s(max) = ' + fmt(fmax, 0) + ' N', X(fmax) - 18, Y(fmax) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'f_k = ' + fmt(fk, 0) + ' N', X(SC) - 12, Y(fk) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'while it is still, the friction is as large as the push', X(0) + 24, Y(SC) + 32, PAL.muted, { size: 17 });
-    line(ctx, X(Fn), box.b, X(Fn), Y(fr), PAL.muted, 2, [4, 8]);
-    dot(ctx, X(Fn), Y(fr), C('force'), true, 9);
+    /* fixed axes: both axes are always 0 to 800 N, ticked every 200 N, which is the range the crate
+       the figure opens with works in: it holds to 441 N and is pushed to 706 N. A heavier crate on a
+       rougher floor climbs past the corner, where the line leaves the frame and the live point is
+       pinned at the edge. Neither range changes as a slider moves. */
+    const FR = 800, box = { l: 230, r: 1250, t: 420, b: 680 };
+    const { X, Y } = axes(ctx, box, [0, FR], [0, FR], { xl: 'the push F (N)', xc: C('force'), yl: 'the friction f (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    inbox(ctx, box, () => {
+      line(ctx, X(0), Y(0), X(fmax), Y(fmax), C('force'), 5);
+      line(ctx, X(fmax), Y(fmax), X(fmax), Y(fk), PAL.muted, 3, [10, 10]);
+      line(ctx, X(fmax), Y(fk), X(Math.max(FR, Fmax())), Y(fk), C('force'), 5);
+      if (fmax <= FR) {
+        dot(ctx, X(fmax), Y(fmax), C('force'), false, 11);
+        text(ctx, 'f_s(max) = ' + fmt(fmax, 0) + ' N', X(fmax) - 18, Y(fmax) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
+      }
+      if (fk <= FR) text(ctx, 'f_k = ' + fmt(fk, 0) + ' N', X(FR) - 12, Y(fk) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
+      line(ctx, X(Fn), box.b, X(Fn), Y(fr), PAL.muted, 2, [4, 8]);
+    });
+    text(ctx, 'while it is still, the friction is as large as the push', X(0) + 24, Y(FR) + 32, PAL.muted, { size: 17 });
+    /* a row below the first note, so it keeps clear of the value the pinned marker writes at the corner */
+    if (fmax > FR) text(ctx, 'the break comes at ' + fmt(fmax, 0) + ' N, past the right edge of this graph', X(FR) - 16, Y(FR) + 70, PAL.muted, { size: 17, align: 'right' });
+    pinned(ctx, box, X, Y, Fn, fr, C('force'), fmt(fr, 0) + ' N');
     headline(ctx, moving
-      ? 'the crate broke away at ' + fmt(fmax, 0) + ' N, and the friction on it now stays at ' + fmt(fk, 0) + ' N however hard you push'
-      : 'the push has reached ' + fmt(Fn, 0) + ' N and the friction answers with ' + fmt(fr, 0) + ' N, so nothing moves until ' + fmt(fmax, 0) + ' N');
+      ? 'The crate broke away at ' + fmt(fmax, 0) + ' N, and the friction on it now stays at ' + fmt(fk, 0) + ' N however hard you push'
+      : 'The push has reached ' + fmt(Fn, 0) + ' N and the friction answers with ' + fmt(fr, 0) + ' N, so nothing moves until ' + fmt(fmax, 0) + ' N');
     readout(d.readout, `\\kfsmax = \\mu_{\\text{s}}\\kN = (${fmt(us.v, 2)})(${fmt(N, 0)}\\ \\text{N}) = ${fmt(fmax, 0)}\\ \\text{N}`,
-      'Once it is moving the friction is f_k = μ_k N = ' + fmt(fk, 0) + ' N, however hard you push, which is why the crate is easier to keep going than it was to start.');
+      'Once it is moving the friction is f_k = μ_k N = ' + fmt(fk, 0) + ' N, however hard you push, which is why the crate is easier to keep going than it was to start.'
+      + (held() ? ' No pair of surfaces slides against more friction than it holds with, so μ_k is taken here as ' + fmt(ukv(), 2) + ', the value of μ_s, rather than the larger number the slider is set to.' : '')
+      + (past ? ' The crate has slid ' + fmt(slid, 1) + ' m, past the ' + XMAX + ' m of floor drawn here.' : ''));
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
@@ -190,14 +216,23 @@ function skier(ctx, x, y, theta) {
   const T = 4;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
+  let hits = [];
   function draw() {
     const { ctx } = begin(d.c);
     const t = REDUCED ? T : cy.now();
     const a0 = th.v * RAD, cs = Math.cos(a0), sn = Math.sin(a0);
     const w = m.v * G, wp = w * cs, wx = w * sn, a = (wx - fk.v) / m.v, mu = fk.v / wp;
     const steady = Math.abs(a) < 0.02;
-    const frac = a > 0.02 ? (t * t) / (T * T) : t / T;
-    const v = a > 0.02 ? a * t : 0;
+    /* She starts from rest where the slope will accelerate her. Where the friction exactly balances
+       the weight along the slope she is already gliding, at the 2.0 m/s the constant-velocity case
+       of Example 5.4 is about, and where the friction is the larger she is gliding still and slides
+       to a stop rather than travelling down at a rate nothing accounts for. */
+    const V0 = a > 0.02 ? 0 : 2;
+    const tStop = a < -0.02 ? V0 / -a : Infinity;
+    const vOf = (q) => Math.max(0, V0 + a * Math.min(q, tStop));
+    const sOf = (q) => { const u = Math.min(q, tStop); return V0 * u + 0.5 * a * u * u; };
+    const frac = Math.min(1, sOf(t) / Math.max(0.01, sOf(T)));
+    const v = vOf(t);
     /* the slope, kept inside the canvas at every angle */
     const bx = 880, by = 540, L = Math.min(560, 270 / sn, 550 / cs);
     const tx = bx - L * cs, ty = by - L * sn;
@@ -206,45 +241,66 @@ function skier(ctx, x, y, theta) {
     line(ctx, tx, by, bx, by, PAL.rule, 2, [10, 10]);
     text(ctx, fmt(th.v, 0) + '°', bx - 86, by - 18, PAL.ink, { size: 20, weight: 600, align: 'right' });
     const sx = tx + (bx - tx) * frac, sy = ty + (by - ty) * frac;
-    /* the forces on her, drawn from her centre, with the skier over their tails */
+    /* The forces on her ride the skier down the slope, so each is drawn there as an arrow alone and
+       named once, on the free-body diagram beside it, where every value is read off; the pointer
+       names any arrow on the scene (rule 26.7). */
     const px = sx + 8 * sn, py = sy - 44 - 8 * cs, S = 100 / w;
     const lab = { size: 20, weight: 600, bg: PAL.panel };
     arrow(ctx, px, py, px, py + w * S, C('force'), 5);
-    text(ctx, 'w = ' + fmt(w, 0) + ' N', px, py + w * S + 24, C('force'), { ...lab, align: 'center' });
     arrow(ctx, px, py, px - wp * S * sn, py + wp * S * cs, C('force'), 4);
-    text(ctx, 'w⊥', px - wp * S * sn - 22, py + wp * S * cs + 14, C('force'), { ...lab, align: 'right' });
     arrow(ctx, px, py, px + wx * S * cs, py + wx * S * sn, C('force'), 4);
-    text(ctx, 'w∥', px + wx * S * cs + 22, py + wx * S * sn + 6, C('force'), lab);
     arrow(ctx, px, py, px + wp * S * sn, py - wp * S * cs, C('force'), 4);
-    text(ctx, 'N', px + wp * S * sn + 14, py - wp * S * cs - 16, C('force'), lab);
     const fl = Math.max(28, fk.v * S);
     arrow(ctx, px, py, px - fl * cs, py - fl * sn, C('force'), 4);
-    text(ctx, 'f = ' + fmt(fk.v, 1) + ' N', px - fl * cs - 18, py - fl * sn - 24, C('force'), { ...lab, align: 'right' });
+    hits = [
+      { x: px, y: py + w * S, r: 26, name: 'w, her whole weight' },
+      { x: px - wp * S * sn, y: py + wp * S * cs, r: 26, name: 'w perpendicular, the part of the weight into the slope' },
+      { x: px + wx * S * cs, y: py + wx * S * sn, r: 26, name: 'w parallel, the part of the weight along the slope' },
+      { x: px + wp * S * sn, y: py - wp * S * cs, r: 26, name: 'N, the normal force of the snow' },
+      { x: px - fl * cs, y: py - fl * sn, r: 26, name: 'f, the friction of the snow on her skis' },
+    ];
     if (v > 0.05) {
-      const vl = 40 + 80 * Math.min(1, v / Math.max(0.5, a * T));
+      const vl = 40 + 80 * Math.min(1, v / 28);
       arrow(ctx, sx + 96 * cs, sy + 96 * sn, sx + (96 + vl) * cs, sy + (96 + vl) * sn, C('velocity'), 5);
       text(ctx, 'v = ' + fmt(v, 1) + ' m/s', sx + (96 + vl) * cs + 14, sy + (96 + vl) * sn + 26, C('velocity'), { ...lab, align: 'center' });
     }
     skier(ctx, sx, sy, th.v);
-    /* the free-body diagram, beside the slope as the book draws it */
-    const fx = 1225, fy = 330, S2 = 100 / w;
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.strokeRect(1080, 150, 300, 380); ctx.restore();
-    text(ctx, 'free-body diagram', 1230, 182, PAL.muted, { size: 17, align: 'center' });
-    line(ctx, fx - 110 * cs, fy - 110 * sn, fx + 110 * cs, fy + 110 * sn, PAL.rule, 2, [8, 8]);
-    line(ctx, fx - 80 * sn, fy + 80 * cs, fx + 80 * sn, fy - 80 * cs, PAL.rule, 2, [8, 8]);
+    /* the free-body diagram, beside the slope as the book draws it, and the only place the five
+       forces are named and their values written */
+    const fx = 1225, fy = 300, S2 = 90 / w;
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.strokeRect(1060, 130, 330, 560); ctx.restore();
+    text(ctx, 'free-body diagram', 1225, 158, PAL.muted, { size: 17, align: 'center' });
+    line(ctx, fx - 100 * cs, fy - 100 * sn, fx + 100 * cs, fy + 100 * sn, PAL.rule, 2, [8, 8]);
+    line(ctx, fx - 74 * sn, fy + 74 * cs, fx + 74 * sn, fy - 74 * cs, PAL.rule, 2, [8, 8]);
     dot(ctx, fx, fy, PAL.ink, true, 8);
-    arrow(ctx, fx, fy, fx, fy + w * S2, C('force'), 4); text(ctx, 'w', fx + 12, fy + w * S2 + 16, C('force'), { size: 20, weight: 600 });
-    arrow(ctx, fx, fy, fx + wp * S2 * sn, fy - wp * S2 * cs, C('force'), 4); text(ctx, 'N', fx + wp * S2 * sn + 12, fy - wp * S2 * cs - 14, C('force'), { size: 20, weight: 600 });
-    const fl2 = Math.max(28, fk.v * S2);
-    arrow(ctx, fx, fy, fx - fl2 * cs, fy - fl2 * sn, C('force'), 4); text(ctx, 'f', fx - fl2 * cs - 12, fy - fl2 * sn - 16, C('force'), { size: 20, weight: 600, align: 'right' });
+    const fl2 = Math.max(24, fk.v * S2);
+    const FBD = [
+      { dx: 0, dy: w * S2, s: 'w', val: fmt(w, 0) + ' N', wid: 4 },
+      { dx: -wp * S2 * sn, dy: wp * S2 * cs, s: 'w⊥', val: fmt(wp, 0) + ' N', wid: 3 },
+      { dx: wx * S2 * cs, dy: wx * S2 * sn, s: 'w∥', val: fmt(wx, 0) + ' N', wid: 3 },
+      { dx: wp * S2 * sn, dy: -wp * S2 * cs, s: 'N', val: fmt(wp, 0) + ' N', wid: 4 },
+      { dx: -fl2 * cs, dy: -fl2 * sn, s: 'f', val: fmt(fk.v, 1) + ' N', wid: 3 },
+    ];
+    FBD.forEach((q) => {
+      arrow(ctx, fx, fy, fx + q.dx, fy + q.dy, C('force'), q.wid);
+      const L = Math.hypot(q.dx, q.dy) || 1;
+      text(ctx, q.s, fx + q.dx + (q.dx / L) * 18, fy + q.dy + (q.dy / L) * 18, C('force'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    });
+    FBD.forEach((q, i) => {
+      text(ctx, q.s, 1090, 470 + i * 36, C('force'), { size: 20, weight: 600 });
+      text(ctx, q.val, 1360, 470 + i * 36, C('force'), { size: 20, weight: 600, align: 'right' });
+    });
     headline(ctx, steady
-      ? 'the ' + fmt(fk.v, 1) + ' N of friction balances the ' + fmt(wx, 0) + ' N along the slope, so she slides at a constant velocity'
+      ? 'The ' + fmt(fk.v, 1) + ' N of friction balances the ' + fmt(wx, 0) + ' N along the slope, so she glides on down at a steady ' + fmt(V0, 1) + ' m/s'
       : a > 0
-        ? 'on a ' + fmt(th.v, 0) + '° slope her ' + fmt(w, 0) + ' N weight gives ' + fmt(wx, 0) + ' N along the slope and ' + fmt(wp, 0) + ' N into it, so μ_k = ' + fmt(mu, 3)
-        : 'the ' + fmt(fk.v, 1) + ' N of friction is more than the ' + fmt(wx, 0) + ' N along the slope, so she would slow down rather than speed up');
+        ? 'On a ' + fmt(th.v, 0) + '° slope her ' + fmt(w, 0) + ' N weight gives ' + fmt(wx, 0) + ' N along the slope and ' + fmt(wp, 0) + ' N into it, so μ_k = ' + fmt(mu, 3)
+        : v > 0.05
+          ? 'The ' + fmt(fk.v, 1) + ' N of friction is more than the ' + fmt(wx, 0) + ' N along the slope, so the ' + fmt(V0, 1) + ' m/s she was gliding at is falling away'
+          : 'The ' + fmt(fk.v, 1) + ' N of friction is more than the ' + fmt(wx, 0) + ' N along the slope, so she has slid to a stop');
     readout(d.readout, `\\mu_{\\text{k}} = \\frac{\\kfk}{\\kN} = \\frac{\\kfk}{m\\kg\\cos\\theta} = \\frac{${fmt(fk.v, 1)}\\ \\text{N}}{(${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(cs, 3)})} = ${fmt(mu, 3)}`,
       'The acceleration down the slope is a = g(sin θ − μ_k cos θ) = ' + fmt(a, 2) + ' m/s², and it is the same for a skier of any mass. She slides at a constant velocity on a slope of tan⁻¹ μ_k = ' + fmt(Math.atan(mu) / RAD, 1) + '°.');
   }
+  hover(d.stage, () => hits);
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 4.5), draw });
 })();
 
@@ -275,11 +331,14 @@ function skier(ctx, x, y, theta) {
       dot(ctx, ax + jx, ay + jy, r === 0 ? PAL.ink : PAL.muted, r === 0, 11);
     }
     text(ctx, 'the substrate, still ringing where the tip has passed', x0, surfaceY + 3 * SP + 56, PAL.muted, { size: 17 });
-    /* the probe: atoms in an inverted pyramid with a flattened peak, leaning back as it is dragged */
-    const hold = 1 + 2 * Math.min(2, Math.round((2 * N.v) / 40));
+    /* the probe: atoms in an inverted pyramid with a flattened peak, leaning back as it is dragged.
+       How many of the five atoms along its foot adhere follows the normal force one at a time, so
+       every step of the slider changes the count as well as the arrow and the lean. */
+    const hold = 1 + Math.round((4 * (N.v - 2)) / 38);
+    const ORDER = [0, -1, 1, -2, 2];                 /* they take hold from the middle of the tip outward */
     ctx.save(); ctx.translate(tipX, surfaceY - 26); ctx.transform(1, 0, Math.tan(lean * RAD), 1, 0, 0);
     for (let r = 0; r < ROWS.length; r++) for (let c = ROWS[r][0]; c <= ROWS[r][1]; c++) dot(ctx, c * SP * 0.82, -SP * 0.88 * (ROWS.length - r), PAL.ink, false, 11);
-    for (let c = -2; c <= 2; c++) dot(ctx, c * SP * 0.82, 0, PAL.ink, Math.abs(c) <= (hold - 1) / 2, 11);
+    for (let c = -2; c <= 2; c++) dot(ctx, c * SP * 0.82, 0, PAL.ink, ORDER.indexOf(c) < hold, 11);
     ctx.restore();
     const topX = tipX + Math.tan(lean * RAD) * -SP * 0.88 * 4;
     text(ctx, 'the probe', topX, surfaceY - 26 - SP * 0.88 * 4 - 44, PAL.ink, { size: 20, weight: 600, align: 'center' });
@@ -291,9 +350,9 @@ function skier(ctx, x, y, theta) {
     text(ctx, 'f = ' + fmt(f, 2) + ' nN', tipX - 110 - fl / 2, surfaceY - 64, C('force'), { size: 20, weight: 600, align: 'center' });
     arrow(ctx, topX, 104, topX, 174, C('force'), 5);
     text(ctx, 'N = ' + fmt(N.v, 0) + ' nN', topX - 14, 140, C('force'), { size: 20, weight: 600, align: 'right' });
-    headline(ctx, 'pressed on with N = ' + fmt(N.v, 0) + ' nN, the tip is dragged back by f = ' + fmt(f, 2) + ' nN and leans ' + fmt(lean, 1) + '° behind its base');
+    headline(ctx, 'Pressed on with N = ' + fmt(N.v, 0) + ' nN, the tip is dragged back by f = ' + fmt(f, 2) + ' nN, and it is drawn leaning behind its base by that much friction');
     readout(d.readout, `\\kfk = \\mu_{\\text{k}}\\kN = (${fmt(uk.v, 2)})(${fmt(N.v, 0)}\\ \\text{nN}) = ${fmt(f, 2)}\\ \\text{nN}`,
-      'Press the tip on harder and more of its atoms adhere to the surface, so the friction that leans it back is larger. The atoms the tip has passed over are left vibrating, and that vibration travels away as sound and becomes the heat of rubbing.');
+      'Press the tip on harder and more of its atoms adhere to the surface, so the friction that leans it back is larger. The lean is drawn in proportion to that friction to make it visible and is not a measured angle. The atoms the tip has passed over are left vibrating, and that vibration travels away as sound and becomes the heat of rubbing.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
@@ -338,7 +397,7 @@ function skier(ctx, x, y, theta) {
     ice(ctx, 20, '(a) pushing', false);
     line(ctx, 700, 100, 700, 500, PAL.rule, 2);
     ice(ctx, 730, '(b) pulling', true);
-    headline(ctx, 'the same 45.0 kg block of ice, pushed at 25° below the horizontal and pulled at 25° above it');
+    headline(ctx, 'The same 45.0 kg block of ice is pushed at 25° below the horizontal and pulled at 25° above it');
     readout(d.readout, '\\text{the block of ice: } m = 45.0\\ \\text{kg},\\quad \\theta = 25^\\circ');
   }
   register(d.fig, { update: () => {}, draw });

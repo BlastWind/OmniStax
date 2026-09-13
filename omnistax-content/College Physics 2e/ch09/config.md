@@ -24,7 +24,7 @@ unchanged unless marked.
 | Sim sliders | whatever is interesting and variable in the idea: the size of a force and where it is applied, the angle between the force and the lever arm, the position of a pivot, the two children's masses and distances, a tilt away from equilibrium, the height of a center of gravity and the width of a base of support, the two lever arms of a machine, the distance from a joint to where a muscle pulls |
 | Motion | none of the chapter's figures moves (new). Statics has no time in it: every scene here either stands still or moves at constant velocity, so each figure answers its sliders and nothing else, registers no cycle and gets no transport (rule 14). A section agent who wants a body to topple must say in the plan that the falling is the idea and not the illustration |
 | 3D | none; every scene of the chapter is planar and the plane of the rotation is the canvas |
-| Figures that serve exercises | copied over faithfully, no sliders, labelled Figure with no number: 9.2's five forces on an anchored object, 9.3's leaning horse, braced wall, chicken in the wind, drawbridge, sandwich board and athlete in the splits, 9.4's stack of overhanging books (which travels with its item to 9.3), and 9.6's Achilles tendon, knee, leg-exercise device, drafting board, erect head, foot on its toes, father lifting a child, clenched jaw and push-up |
+| Figures that serve exercises | the book's own rules give two ways of carrying an image an exercise refers to, and this chapter used both, which the chapter pass records here rather than changing either. 9.2 redrew its one exercise image, the five forces on an anchored object, as a figure of the text: `fig-forces`, a `figure` row with no number whose eyebrow reads "Figure", a faithful copy with no sliders and no animation, standing in a short closing block of its own, and the book's image travels with the item's card as well. 9.3 and 9.6 left theirs on the exercise cards, in the `figure` field of the item that refers to them, as Chapter 4 does: 9.3's leaning horse, braced wall, chicken in the wind, drawbridge, sandwich board and athlete in the splits, 9.4's stack of overhanging books (which travels with its item to 9.3), and 9.6's knee, drafting board, erect head, foot on its toes, clenched jaw and push-up. 9.6's Achilles tendon, leg-exercise device and father lifting a child belong to unkeyed problems that are left out, so their images are not copied at all (new) |
 | Extra simulations | agent proposes only those that open a view the required figures do not, builds the one or two that clearly earn their place, and says in the plan which were left (rule 15) |
 | Colour coding | one new type, `torque` (new), labelled torque with the dimension N·m, because the chapter's figures draw it and its readouts state it and rule 7 keeps a derived quantity its own type even where the dimension matches energy's; the lever arms $r$, $r_\perp$, $r_1$, $r_2$, $r_3$, $l_\text{i}$ and $l_\text{o}$ are positions, every $F$, $w$, $N$ and $T$ is a force, and the masses, the angle $\theta$ and the mechanical advantage MA stay untyped and in ink; twenty-seven symbol rows added to `book.json` (`τ`, `τ_1`, `τ_2`, `r_lever`, `r_perp`, `r_3`, `F_p`, `w_1`, `w_2`, `F_L`, `F_R`, `MA`, `F_i`, `F_o`, `F_nail`, `l_i`, `l_o`, `F_B`, `F_E`, `F_V`, `F_Vx`, `F_Vy`, `w_a`, `w_b`, `w_ub`, `w_box`, and `r_bperp`, the back muscles' own perpendicular lever arm, which the chapter pass added when 9.6's plan asked for it), and Chapter 6's `r_1` and `r_2` and Chapters 4 and 5's `F`, `F_net`, `F_x`, `F_y`, `F_app`, `w`, `N`, `T_force`, `f_fric`, `m` and `θ` used as they stand; the lever arm is keyed `r_lever` with the macro `\krlev` because Chapter 5 holds an untyped `r` and Chapter 6 holds `r_curv` with `\kr` |
 | Inline exercises | none: the chapter has no Check Your Understanding box |
@@ -62,3 +62,27 @@ and they are already corrected in it. Everything else stood.
 - **Motion.** The config's decision held for all twenty-six drawn figures: not one
   of them calls `cycle()`, and the headless pass found no transport on any
   page of the chapter.
+
+## What the figure audit changed (2026-09-12)
+
+A read-only pass over the built chapter found faults of three kinds, and
+they are fixed in the sections rather than in this table; each section's
+`plan.md` now says what stands.
+
+- **Scales that followed their sliders.** Every axis, scene scale, arrow
+  length and bar in the chapter now runs to a number fixed in the code with
+  a comment saying where it came from, taken either from the sliders' own
+  limits or, where that would leave the book's own state a sliver, from the
+  default state with the extremes clamped and the true value still printed.
+  The pole vaulter's scene no longer refits as the center of gravity moves,
+  so his hands stay where they are.
+- **Discrete states on sliders.** The number of cables in 9.5's pulley
+  system is a choice of one, two, three or four; the shape of 9.3's surface
+  and the lean of 9.6's back keep their sliders and gain soft detents on the
+  states the section names. 9.2's door gains a push-or-pull choice in place
+  of an angle that ran to 360º, which contradicted the book's own definition
+  of θ.
+- **Voice.** Every headline, readout line and drawn sentence of the chapter
+  is one capitalised sentence; 9.5's five figures now set their headlines
+  through the library's `topline()`, which breaks a long one over two lines
+  rather than shrinking the type, so the chapter sets them all the same way.

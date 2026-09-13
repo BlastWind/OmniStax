@@ -88,12 +88,18 @@ graph · 3D
    answers its sliders and registers no cycle (rule 14; the chapter's config
    makes the same decision for every figure of Chapter 9) · $\kF$ (0 to 60 N,
    default 40, force), $\krlev$ (0.05 to 0.90 m, default 0.800, position),
-   $\theta$ (0º to 180º, default 90, ink) · "pushing with 40 N at 0.800 m from
-   the hinges, square to the door, gives a torque of 32.0 N·m counterclockwise"
+   $\theta$ (0º to 180º, default 90, ink), and a choice of push or pull,
+   default push, because which side of the door the force is applied from is
+   a state and not a quantity (rule 26.1): the push is the book's panel (a)
+   and the pull its panel (d), the same force the other way about. The angle
+   stops at 180º because the book measures it between the force and the
+   vector from the point of application to the pivot, and that angle never
+   passes 180º · "A push of 40 N at 0.800 m from the hinges, at θ = 90°,
+   makes 32.0 N·m counterclockwise."
    · none: the overhead view of the door with the line of action and the
    perpendicular lever arm drawn on it is the whole picture · no. Readout:
-   $\ktau = \krlev\kF\sin\theta$ with the live numbers; small line on the
-   push that turns the door as well as the perpendicular one and on the pull
+   $\ktau = \krlev\kF\sin\theta$ with the live numbers, carrying a minus sign
+   on a pull; small line on the perpendicular lever arm and on the force
    along the hinges that does nothing. Draws force, position, torque.
 2. `sim-hockey-stick` · replaces Figure 9.7 (a) and (b), the same stick about
    pivot A and about pivot B · torque-depends-on-pivot, torque-sign-convention,
@@ -102,12 +108,17 @@ graph · 3D
    and not a motion; sliding the nail from A to B is the reader's choice of
    pivot, not the passage of time (rule 14) · the position of the pivot along
    the stick (0.10 to 1.30 m from the blade end, default 0.20, position, which
-   is A, with B at 1.15), $\kF$ (0 to 60 N, default 30, force), $\theta$ (20º
-   to 160º, default 70, ink) · "about the nail 0.20 m from the blade the
-   force turns the stick counterclockwise with 21.1 N·m; slide the nail past
-   the hand and the same force turns it the other way" · none · no. Readout:
-   $\ktau = \krperp\kF$ with the live numbers, signed by the convention; small
-   line saying that the torque is zero when the nail sits on the line of
+   is A, with B at 1.25), $\kF$ (0 to 60 N, default 30, force) and the
+   direction of the push measured from the horizontal (0º to 180º, default
+   160, ink). The angle $\theta$ the book names is not a slider but a reading,
+   since it depends on where the nail has been driven as well as on the push:
+   at the default it is 110º about A, and the same push read about B, above
+   the hand, gives 70º · "About the nail 0.20 m from the blade a push of 30 N
+   turns the stick counterclockwise with 25.4 N·m." · none · no. Readout:
+   $\ktau = \krperp\kF$ with the live numbers, the minus sign written into the
+   equation itself when the turn is clockwise, since $\krperp$ and $\kF$ are
+   both positive; small line on the counterclockwise-positive convention and
+   on the torque being zero when the nail sits on the line of
    action, because the lever arm is then nothing. Draws force, position, torque.
 3. `sim-seesaw` · replaces Figure 9.8, the two children on the seesaw ·
    balanced-seesaw, second-condition-equilibrium, center-of-gravity,
@@ -117,9 +128,9 @@ graph · 3D
    and by how much the torques differ, not how fast it gets there (rule 14) ·
    $m_1$ (10.0 to 50.0 kg, default 26.0, ink), $\krone$ (0.20 to 2.50 m,
    default 1.60, position), $m_2$ (10.0 to 50.0 kg, default 32.0, ink),
-   $\krtwo$ (0.20 to 2.50 m, default 1.30, position) · "the first child makes
-   408 N·m counterclockwise and the second 408 N·m clockwise, so the net
-   torque is zero and the seesaw balances" · none: the seesaw in side view
+   $\krtwo$ (0.20 to 2.50 m, default 1.30, position) · "Both torques come to
+   408 N·m, one counterclockwise and one clockwise, so the seesaw balances."
+   · none: the seesaw in side view
    with its weights, the supporting force and the two distances bracketed is
    the picture · no. Readout: $\krtwo = \krone m_1/m_2$ with the live numbers;
    small line giving the supporting force $\kFp = \kwone + \kwtwo$, which is
@@ -128,10 +139,13 @@ graph · 3D
    torque-depends-on-pivot, second-condition-equilibrium, balanced-seesaw ·
    **still**: it answers where the reader puts the pivot and nothing else ·
    the position of the pivot the torques are taken about (−2.50 to 2.50 m
-   from the fulcrum, default 0, position), $m_1$ (10.0 to 50.0 kg, default
-   26.0, ink), $m_2$ (10.0 to 50.0 kg, default 32.0, ink) · "about a point
+   from the fulcrum, default 0, position), $m_1$ (20.0 to 40.0 kg, default
+   26.0, ink) and $\krone$ (0.60 to 2.00 m, default 1.60, position); $m_2$ is
+   held at 32.0 kg and $\krtwo$ follows from it, so that the seesaw balances
+   by construction whatever the reader does and the sum of the torques is
+   always the thing on show · "About a point
    0.80 m to the right of the fulcrum the three torques are −188, +250 and
-   −62.4 N·m, and they still add to zero" · none: the balanced seesaw with a
+   −62.4 N·m." · none: the balanced seesaw with a
    movable pivot mark and a bar for each of the three torques beneath it · no.
    Readout: the three torques summed to zero, with the live numbers; small
    line saying that this is why part (b) of the example can also be done with
@@ -141,8 +155,9 @@ graph · 3D
    refers to, the five equal forces applied to an anchored object (the book
    gives it no number, so its eyebrow reads "Figure") · perpendicular-lever-arm,
    torque · **still**: the object is anchored and nothing in the question
-   moves · no sliders · no headline beyond the labelled point and arrows ·
-   none · no. Draws force, position. The book's own image travels with the
+   moves · no sliders · "Five forces of equal magnitude are applied to an
+   object that is anchored at the point P." ·
+   none · no. Draws force. The book's own image travels with the
    item's card as well, as 4.7's rescue image does.
 
 Photographs: the section has none, so none is kept and none is dropped.

@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.8'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket } = F;
+const { el, fmt, tex, C, PAL, alpha, choice, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -27,19 +27,22 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     { name: 'weak nuclear', p: -6, tex: '10^{-6}', label: '10^{-6}' },
     { name: 'strong nuclear', p: 0, tex: '1', label: '1' },
   ];
-  const A = ctl(d.controls, { label: '\\text{force A}', cls: '', min: 1, max: 4, step: 1, value: 4, unit: '', dec: 0, aria: 'the first force' });
-  const B = ctl(d.controls, { label: '\\text{force B}', cls: '', min: 1, max: 4, step: 1, value: 2, unit: '', dec: 0, aria: 'the second force' });
+  /* which two of the four forces are being compared is a choice among four named states, never a
+     number on a slider, so each is a row of buttons naming the force it picks */
+  const OPTS = FORCE.map((f, i) => ({ value: String(i), label: f.name }));
+  const A = choice(d.controls, { label: '\\text{force A}', aria: 'the first force', options: OPTS, value: '3' });
+  const B = choice(d.controls, { label: '\\text{force B}', aria: 'the second force', options: OPTS, value: '1' });
   const LO = -40, L = 340, R = 1330, X = (p) => L + ((R - L) * (p - LO)) / -LO;
   const rowY = (i) => 120 + i * 58;
   function draw() {
     const { ctx } = begin(d.c);
-    const a = Math.round(A.v) - 1, b = Math.round(B.v) - 1, fa = FORCE[a], fb = FORCE[b];
+    const a = +A.value, b = +B.value, fa = FORCE[a], fb = FORCE[b];
     /* one bar per force, running from the foot of the ladder to its own strength */
     FORCE.forEach((f, i) => {
       const y = rowY(i), on = i === a || i === b;
       ctx.save(); ctx.fillStyle = alpha(PAL.ink, on ? 0.26 : 0.09); ctx.fillRect(X(LO), y - 14, X(f.p) - X(LO), 28); ctx.restore();
       dot(ctx, X(f.p), y, PAL.ink, on, 10);
-      text(ctx, (i + 1) + '   ' + f.name, L - 26, y, PAL.ink, { align: 'right', weight: on ? 600 : 400 });
+      text(ctx, f.name, L - 26, y, PAL.ink, { align: 'right', weight: on ? 600 : 400 });
       text(ctx, f.p === 0 ? '1' : pow10(f.p), X(f.p) + 18, y, on ? PAL.ink : PAL.muted, { size: 17, weight: on ? 600 : 400 });
     });
     /* the ladder itself */
@@ -60,9 +63,9 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
       const lab = pow10(Math.abs(e)) + ' between them', mid = Math.min(1250, Math.max(160, (lo + hi) / 2));
       text(ctx, lab, mid, 404, PAL.ink, { weight: 600, align: 'center', bg: PAL.panel });
     }
-    headline(ctx, a === b ? 'force ' + (a + 1) + ' is being compared with itself, so the ratio is 1'
-      : e >= 0 ? 'the ' + fa.name + ' force is ' + pow10(e) + ' times the ' + fb.name + ' force'
-        : 'the ' + fa.name + ' force is ' + pow10(e) + ' of the ' + fb.name + ' force');
+    headline(ctx, a === b ? 'The ' + fa.name + ' force is being compared with itself, so the ratio is 1'
+      : e >= 0 ? 'The ' + fa.name + ' force is ' + pow10(e) + ' times the ' + fb.name + ' force'
+        : 'The ' + fa.name + ' force is ' + pow10(e) + ' of the ' + fb.name + ' force');
     readout(d.readout, `\\frac{\\text{${fa.name}}}{\\text{${fb.name}}} = \\frac{${fa.tex}}{${fb.tex}} = 10^{${e}}`,
       'The gravitational force is the weakest of the four by a very long way, and it is only because gravity is always attractive, and never cancels as the electromagnetic force does for a macroscopic object, that we notice it at all.');
   }
@@ -78,8 +81,8 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
 ===================================================================== */
 (function () {
   const d = sim('sim-field', 560);
-  const TX = ctl(d.controls, { label: 'x', cls: '', min: -2.4, max: 2.4, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'the test charge across the field' });
-  const TY = ctl(d.controls, { label: 'y', cls: '', min: -1.15, max: 1.15, step: 0.05, value: 0.7, unit: 'm', dec: 2, aria: 'the test charge up the field' });
+  const TX = ctl(d.controls, { label: '\\kx', cls: 'position', min: -2.4, max: 2.4, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'the test charge across the field' });
+  const TY = ctl(d.controls, { label: '\\ky', cls: 'position', min: -1.15, max: 1.15, step: 0.05, value: 0.7, unit: 'm', dec: 2, aria: 'the test charge up the field' });
   const TQ = ctl(d.controls, { label: 'q', cls: '', min: 1, max: 4, step: 0.5, value: 2, unit: 'units', dec: 1, aria: 'the size of the test charge' });
   const S = 190, CX = 700, CY = 305, SEP = 1;
   const px = (x) => CX + x * S, py = (y) => CY - y * S;
@@ -134,8 +137,8 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     line(ctx, px(SEP), py(0), px(x), py(y), alpha(PAL.ink, 0.4), 2.5, [5, 7]);
     const off = y >= 0 ? -15 : 15, at = (cx) => [cx + 0.45 * (px(x) - cx), py(0) + 0.45 * (py(y) - py(0)) + off];
     const [l1x, l1y] = at(px(-SEP)), [l2x, l2y] = at(px(SEP));
-    text(ctx, fmt(d1, 2) + ' m', l1x, l1y, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
-    text(ctx, fmt(d2, 2) + ' m', l2x, l2y, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
+    text(ctx, fmt(d1, 2) + ' m', l1x, l1y, C('position'), { size: 17, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, fmt(d2, 2) + ' m', l2x, l2y, C('position'), { size: 17, weight: 600, align: 'center', bg: PAL.panel });
     /* the test charge and the force on it */
     const near = Math.min(d1, d2) < 0.18;
     const ux = ex / mag, uy = ey / mag;
@@ -147,11 +150,11 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     }
     dot(ctx, px(x), py(y), PAL.ink, true, 7 + 3 * q);
     text(ctx, 'q = ' + fmt(q, 1), px(x), py(y) + (uy >= 0 ? 1 : -1) * (26 + 3 * q), PAL.ink, { size: 17, align: 'center', bg: PAL.panel });
-    headline(ctx, near ? 'move the test charge clear of the charge it is sitting on, where the field has no one direction'
-      : Math.abs(ang) < 1 ? 'the force on the test charge is ' + fmt(Fm, 2) + ' and runs straight along the axis, following the field line through it'
-        : 'the force on the test charge is ' + fmt(Fm, 2) + ' and points ' + fmt(Math.abs(ang), 0) + '° ' + (ang > 0 ? 'above' : 'below') + ' the axis');
-    readout(d.readout, `\\kF = qE = (${fmt(q, 1)})(${fmt(E, 2)}) = ${fmt(Fm, 2)}`,
-      'Here the field E is measured in units of its strength midway between the two charges. Raise q and the arrow grows with it, while the lines stay exactly where they are, because the field is a characteristic of the two charges that make it and not of the charge you place in it.');
+    headline(ctx, near ? 'Move the test charge clear of the charge it is sitting on, where the field has no one direction'
+      : Math.abs(ang) < 1 ? 'The force on the test charge is ' + fmt(Fm, 2) + ' units and runs straight along the axis, following the field line through it'
+        : 'The force on the test charge is ' + fmt(Fm, 2) + ' units and points ' + fmt(Math.abs(ang), 0) + '° ' + (ang > 0 ? 'above' : 'below') + ' the axis');
+    readout(d.readout, `\\kF = qE = (${fmt(q, 1)}\\ \\text{units})(${fmt(E, 2)}\\ \\text{units}) = ${fmt(Fm, 2)}\\ \\text{units}`,
+      'The charges here carry no coulombs and the field no newtons per coulomb, so both are counted in units of their own: the charge in units of the charge that makes the field, and the field in units of its strength midway between the two charges. Raise q and the arrow grows with it, while the lines stay exactly where they are, because the field is a characteristic of the two charges that make it and not of the charge you place in it.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -165,7 +168,9 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
 (function () {
   const d = sim('sim-exchange', 470);
   const FA = ctl(d.controls, { label: '\\kF', cls: 'force', min: 20, max: 200, step: 5, value: 80, unit: 'N', dec: 0, onInput: reset, aria: 'the force of the exchange' });
-  const D = ctl(d.controls, { label: 'd', cls: '', min: 3, max: 10, step: 0.5, value: 6, unit: 'm', dec: 1, onInput: reset, aria: 'the separation of the pair' });
+  /* the separation the pair began at changed nothing the reader could read off the figure, so it is
+     drawn at the one distance the scene needs and is not a slider */
+  const SEP_M = 6;
   const T = 4, THROW = 0.4, CATCH = 2.8, PUSH = 0.8;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
@@ -180,7 +185,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const t = cy.now(), f = FA.v, sep = D.v;
+    const t = cy.now(), f = FA.v, sep = SEP_M;
     const back = 0.36 * f;                                   /* how far one exchange pushes a partner, in logical units */
     const kick1 = t > THROW ? back * ease((t - THROW) / PUSH) : 0;
     const kick2 = t > CATCH ? back * ease((t - CATCH) / PUSH) : 0;
@@ -217,9 +222,9 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     if (flying) text(ctx, 'meson', mx, yn - 30, PAL.muted, { size: 17, align: 'center' });
     if (t > THROW && t < THROW + 1.6) arrow(ctx, xa - 30, yn, xa - 30 - (40 + 0.9 * f), yn, C('force'), 5);
     if (t > CATCH) arrow(ctx, xb + 30, yn, xb + 30 + (40 + 0.9 * f), yn, C('force'), 5);
-    headline(ctx, !flying && !caught ? 'the thrower is about to pass the ball across the ' + fmt(sep, 1) + ' m between the two'
-      : flying ? 'the ball is in flight, and the ' + fmt(f, 0) + ' N it carried away has pushed the thrower back from the catcher'
-        : 'the catcher has taken the ball and been pushed back in turn, so one exchange has driven the pair apart');
+    headline(ctx, !flying && !caught ? 'The thrower is about to pass the ball across the ' + fmt(sep, 1) + ' m between the two'
+      : flying ? 'The ball is in flight, and the ' + fmt(f, 0) + ' N it carried away has pushed the thrower back from the catcher'
+        : 'The catcher has taken the ball and been pushed back in turn, so one exchange has driven the pair apart');
     readout(d.readout, `\\kFone = \\kFtwo = ${fmt(f, 0)}\\ \\text{N}`,
       'The thrower is pushed back as the ball leaves and the catcher is pushed back as it arrives, so the exchange drives the two apart although neither of them touches the other. A meson exchanged between a proton and a neutron carries the strong nuclear force between them in the same way.');
   }

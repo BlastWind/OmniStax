@@ -88,8 +88,8 @@ function stopwatch(ctx, x, y, r, f) {
     /* the distance covered so far */
     if (dist > 0.02) hbracket(ctx, X(0), X(dist), 330, PAL.ink, 'd = ' + fmt(dist, 2) + ' m');
     const clause = Math.abs(dEnd - 1) < 0.005 ? 'which is what the meter is defined to be' : dEnd < 1 ? 'which falls short of the meter mark' : 'which runs past the meter mark';
-    headline(ctx, done ? 'in ' + fmt(T.v, 2) + ' ns light travels ' + fmt(dEnd, 2) + ' m, ' + clause
-      : 'after ' + fmt(tau, 2) + ' ns the light has traveled ' + fmt(dist, 2) + ' m and is still going');
+    headline(ctx, done ? 'In ' + fmt(T.v, 2) + ' ns light travels ' + fmt(dEnd, 2) + ' m, ' + clause + '.'
+      : 'After ' + fmt(tau, 2) + ' ns the light has traveled ' + fmt(dist, 2) + ' m and is still going.');
     readout(d.readout, `d = \\kc\\,\\kt = (299{,}792{,}458\\ \\text{m/s})(${fmt(T.v, 2)} \\times 10^{-9}\\ \\text{s}) = ${fmt(dEnd, 2)}\\ \\text{m}`,
       'The meter is the distance light travels in a vacuum in 1/299,792,458 of a second, so the speed of light is exact by definition and the meter is what is measured.');
   }
@@ -163,7 +163,7 @@ function stopwatch(ctx, x, y, r, f) {
       h = sci + ' is beyond what the largest prefix, exa, conveniently expresses, and its order of magnitude is ' + oom;
       r = `${sciTex} = ${fmt(m, 1)} \\times 10^{${n - 18}}\\ \\text{Em}`;
     }
-    headline(ctx, h);
+    headline(ctx, h + '.');
     readout(d.readout, r, 'Every number from 1 × ' + pow10(n) + ' to 9.9 × ' + pow10(n) + ' is of the same order of magnitude, ' + oom + ', just as 800 and 450 are.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -181,7 +181,11 @@ function stopwatch(ctx, x, y, r, f) {
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 5, max: 60, step: 1, value: 20, unit: 'min', dec: 1, onInput: reset, aria: 'time' });
   const cy = cycle(() => T.v, 1.2);
   function reset() { cy.reset(); }
-  const L = 220, R = 1180, X = (km) => L + ((R - L) * km) / D.v;
+  /* The road is fixed at 0 to 40 km, the distance slider's maximum, so a 2 km trip and a 40 km
+     trip are drawn at the same scale and look as different as they are. The house stands at the
+     end of the trip, not at the end of the road. */
+  const KM_MAX = 40, VMAX = (40 / 5) * 60;   /* the fastest the sliders allow, 40 km in 5 min */
+  const L = 220, R = 1180, X = (km) => L + ((R - L) * km) / KM_MAX;
   function draw() {
     const { ctx } = begin(d.c);
     const tau = cy.now(), done = tau >= T.v - 1e-9, pos = (D.v * tau) / T.v;
@@ -189,16 +193,16 @@ function stopwatch(ctx, x, y, r, f) {
     /* the road from school to home, marked in kilometers */
     const ys = 220;
     strip(ctx, L, R, ys, 48);
-    school(ctx, L - 90, ys + 24, PAL.ink); house(ctx, R + 80, ys + 24, PAL.ink);
-    text(ctx, 'school', L - 90, ys + 62, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'home', R + 80, ys + 62, PAL.muted, { size: 17, align: 'center' });
-    const step = D.v <= 15 ? 1 : 5, every = D.v <= 6 ? 1 : D.v <= 15 ? 2 : 1;
-    scale(ctx, X, 0, Math.floor(D.v / step) * step, step, ys + 34, 'km', every);
-    hbracket(ctx, X(0), X(D.v), ys - 96, PAL.ink, 'd = ' + fmt(D.v, 1) + ' km');
-    /* the car, with its speed drawn as an arrow */
+    const hx = X(D.v);
+    school(ctx, L - 90, ys + 24, PAL.ink); house(ctx, hx + 80, ys + 24, PAL.ink);
+    text(ctx, 'school', L - 90, ys + 62, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'home', hx + 80, ys + 62, PAL.muted, { size: 17, align: 'center' });
+    scale(ctx, X, 0, KM_MAX, 5, ys + 34, 'km', 1);
+    hbracket(ctx, X(0), hx, ys - 96, PAL.ink, 'd = ' + fmt(D.v, 1) + ' km');
+    /* the car, with its speed drawn as an arrow whose length is fixed from the fastest trip the sliders allow */
     const cx = X(pos);
     car(ctx, cx, ys - 6, PAL.ink, 1.2);
-    const end = Math.min(cx + Math.min(260, 40 + kmH * 1.2), R + 30);
-    if (end - cx > 40) arrow(ctx, cx, ys - 46, end, ys - 46, C('velocity'), 5);
+    const end = cx + 30 + (230 * kmH) / VMAX;
+    arrow(ctx, cx, ys - 46, end, ys - 46, C('velocity'), 5);
     const lx = (cx + end) / 2;
     text(ctx, sig3(kmH) + ' km/h', lx > R - 60 ? R + 30 : lx, ys - 68, C('velocity'), { weight: 600, size: 20, align: lx > R - 60 ? 'right' : 'center' });
     /* the stopwatch, one turn of the hand for the whole trip */
@@ -209,8 +213,8 @@ function stopwatch(ctx, x, y, r, f) {
     pair(ctx, 'average speed  =', sig3(kmMin) + ' km/min', 520, 350, C('velocity'));
     pair(ctx, 'which is', sig3(kmH) + ' km/h', 520, 396, C('velocity'));
     pair(ctx, 'or', sig3(mS) + ' m/s', 520, 442, C('velocity'));
-    headline(ctx, done ? fmt(D.v, 1) + ' km in ' + fmt(T.v, 1) + ' min is ' + sig3(kmMin) + ' km/min, which is ' + sig3(kmH) + ' km/h, or ' + sig3(mS) + ' m/s'
-      : 'after ' + fmt(tau, 1) + ' min the car has gone ' + fmt(pos, 1) + ' km of the ' + fmt(D.v, 1) + ' km');
+    headline(ctx, done ? 'Driving ' + fmt(D.v, 1) + ' km in ' + fmt(T.v, 1) + ' min is an average speed of ' + sig3(kmMin) + ' km/min, which is ' + sig3(kmH) + ' km/h, or ' + sig3(mS) + ' m/s.'
+      : 'After ' + fmt(tau, 1) + ' min the car has gone ' + fmt(pos, 1) + ' km of the ' + fmt(D.v, 1) + ' km.');
     readout(d.readout, `\\text{average speed} = \\frac{${fmt(D.v, 1)}\\ \\text{km}}{${fmt(T.v, 1)}\\ \\text{min}} \\times \\frac{60\\ \\text{min}}{1\\ \\text{h}} = ${sig3(kmH)}\\ \\text{km/h}`,
       'Two more conversion factors, one for hours to seconds and one for kilometers to meters, turn ' + sig3(kmH) + ' km/h into ' + sig3(mS) + ' m/s.');
   }

@@ -113,14 +113,15 @@ function trip(u) {
     const apart = Math.abs(X(tf.v) - X(t0.v)) > 150;
     text(ctx, 't₀ = ' + fmt(t0.v, 1) + ' s', X(t0.v), y + 62, C('time'), { align: apart ? 'center' : 'right', weight: 600, size: 22 });
     subLabel(ctx, 't', 'f', ' = ' + fmt(tf.v, 1) + ' s', X(tf.v), y + (apart ? 62 : 88), C('time'), apart ? 'center' : 'left');
-    /* the stopwatch, started at t₀ */
+    /* The stopwatch, started at t₀. Every stopwatch on this page takes one turn of the hand over the
+       whole interval it times, so a glance at the hand reads how much of the motion has gone by. */
     const sx = 1210, sy = 210, r = 86;
-    stopwatch(ctx, sx, sy, r, begun ? tau : 0, 60);
+    stopwatch(ctx, sx, sy, r, begun ? tau : 0, Math.max(0.001, dt));
     text(ctx, 'stopwatch ' + fmt(begun ? tau : 0, 1) + ' s', sx, sy + r + 34, C('time'), { weight: 600, size: 24, align: 'center' });
-    text(ctx, 'started at t₀, one turn per minute', sx, sy + r + 62, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, !begun ? 'the end at ' + fmt(tf.v, 1) + ' s comes before the beginning at ' + fmt(t0.v, 1) + ' s, so the motion has not begun; set t_f after t₀'
-      : done ? 'the clock read ' + fmt(t0.v, 1) + ' s at the start and ' + fmt(tf.v, 1) + ' s at the end, so the elapsed time is ' + fmt(dt, 1) + ' s, and the pendulum made ' + swings + ' full swings'
-      : 'the clock reads ' + fmt(clock, 1) + ' s; ' + fmt(tau, 1) + ' s have elapsed since the motion began at ' + fmt(t0.v, 1) + ' s, and the pendulum has made ' + swings + ' full swings');
+    text(ctx, 'started at t₀, one turn for the whole interval', sx, sy + r + 62, PAL.muted, { size: 17, align: 'center' });
+    headline(ctx, !begun ? 'The end at ' + fmt(tf.v, 1) + ' s comes before the beginning at ' + fmt(t0.v, 1) + ' s, so set t_f after t₀ and the motion will have a time to run in.'
+      : done ? 'The clock read ' + fmt(t0.v, 1) + ' s at the start and ' + fmt(tf.v, 1) + ' s at the end, so the elapsed time is ' + fmt(dt, 1) + ' s and the pendulum made ' + swings + ' full swings.'
+      : 'The clock reads ' + fmt(clock, 1) + ' s, which is ' + fmt(tau, 1) + ' s after the motion began at ' + fmt(t0.v, 1) + ' s, and the pendulum has made ' + swings + ' full swings.');
     readout(d.readout, `\\kdt = \\ktf - \\kto = ${fmt(tf.v, 1)}\\ \\text{s} - ${fmt(t0.v, 1)}\\ \\text{s} = ${fmt(tf.v - t0.v, 1)}\\ \\text{s}`,
       begun ? 'A stopwatch started at the same moment reads zero at t₀ and ' + fmt(dt, 1) + ' s at t<sub>f</sub>, which is why the text takes t₀ = 0 and writes t for the elapsed time.'
         : 'A negative elapsed time would mean the motion ended before it began, so the ending time has to come after the beginning time.');
@@ -168,16 +169,18 @@ function trip(u) {
     const sx = 1210, sy = 520, r = 72;
     stopwatch(ctx, sx, sy, r, tau, t.v);
     text(ctx, 't = ' + fmt(tau, 1) + ' s', sx, sy + r + 34, C('time'), { weight: 600, size: 24, align: 'center' });
-    /* position against time: the line from (0, x₀) to (t, x_f) has slope v̄ */
+    /* Position against time: the line from (0, x₀) to (t, x_f) has slope v̄. The axes are fixed at
+       0 to 20 s, the time slider's maximum, and 0 to 10 m, the aisle's length, so dragging a slider
+       moves the line and never the ticks. */
     const box = { l: 160, r: 1000, t: 430, b: 610 };
-    const { X: GX, Y: GY } = axes(ctx, box, [0, t.v], [0, 10], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 5, ny: 2, fx: (v) => fmt(v, 1) });
+    const { X: GX, Y: GY } = axes(ctx, box, [0, 20], [0, 10], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 5, ny: 2, fx: (v) => fmt(v, 1) });
     line(ctx, GX(0), GY(x0.v), GX(t.v), GY(xf.v), C('position'), 5);
     dot(ctx, GX(0), GY(x0.v), C('position'), false, 10); dot(ctx, GX(t.v), GY(xf.v), C('position'), true, 10);
     line(ctx, GX(tau), box.b, GX(tau), GY(xm), C('time'), 3, [4, 8]); dot(ctx, GX(tau), GY(xm), PAL.ink, true, 9);
     text(ctx, 'slope = v̄ = ' + signed(vb, 2) + ' m/s', GX(t.v * 0.78), GY(x0.v + 0.78 * dx) + (vb <= 0 ? 34 : -34), C('velocity'), { align: 'center', weight: 600, size: 20 });
     const where = dx < 0 ? ', the minus sign meaning toward the rear of the plane' : dx > 0 ? ', the plus sign meaning toward the front of the plane' : ', so his average velocity is zero however long he takes';
-    headline(ctx, done ? (dx === 0 ? 'the passenger ends where he began after ' + fmt(t.v, 1) + ' s' + where : 'the passenger moves ' + signed(dx, 1) + ' m in ' + fmt(t.v, 1) + ' s, an average velocity of ' + signed(vb, 2) + ' m/s' + where)
-      : 't = ' + fmt(tau, 1) + ' s · the passenger is at x = ' + fmt(xm, 1) + ' m, on his way from ' + fmt(x0.v, 1) + ' m to ' + fmt(xf.v, 1) + ' m');
+    headline(ctx, done ? (dx === 0 ? 'The passenger ends where he began after ' + fmt(t.v, 1) + ' s' + where + '.' : 'The passenger moves ' + signed(dx, 1) + ' m in ' + fmt(t.v, 1) + ' s, an average velocity of ' + signed(vb, 2) + ' m/s' + where + '.')
+      : 'After ' + fmt(tau, 1) + ' s the passenger is at x = ' + fmt(xm, 1) + ' m, on his way from ' + fmt(x0.v, 1) + ' m to ' + fmt(xf.v, 1) + ' m.');
     readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kt} = \\frac{${signed(dx, 1).replace('−', '-')}\\ \\text{m}}{${fmt(t.v, 1)}\\ \\text{s}} = ${signed(vb, 2).replace('−', '-')}\\ \\text{m/s}`,
       'Velocity is a vector because displacement is a vector, so the sign of the average velocity is the sign of the displacement.');
   }
@@ -194,23 +197,26 @@ function trip(u) {
 (function () {
   const d = sim('sim-segments', 720);
   const W = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.1, max: 5, step: 0.05, value: 1.25, unit: 's', dec: 2, onInput: reset, aria: 'width of one interval' });
-  const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 2, max: 10, step: 0.5, value: 5, unit: 's', dec: 1, onInput: reset, aria: 'time of the whole trip' });
-  const cy = cycle(() => T.v, 1.2); let ph = 0;
+  /* The trip the book draws under this number takes 5.0 s. A slider for the whole time only
+     restretched the same curve and changed no picture, so it is gone (rule 24.6) and the trip
+     keeps the book's 5.0 s; what is interesting and variable here is the width of one interval. */
+  const TOT = 5;
+  const cy = cycle(() => TOT, 1.2); let ph = 0;
   function reset() { cy.reset(); }
-  const at = (s) => { const p = trip((5 * s) / T.v); return { x: p.x, v: (p.v * 5) / T.v }; };
+  const at = (s) => trip(s);
   const L = 200, R = 1200, X = (m) => L + ((R - L) * m) / 10;
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = cy.now(), done = tau >= T.v - 1e-9, w = Math.min(W.v, T.v), n = Math.ceil(T.v / w - 1e-9);
-    const now = at(tau), x0 = at(0).x, xe = at(T.v).x, dxt = xe - x0;
-    const k = Math.min(n - 1, Math.floor(tau / w)), ta = k * w, tb = Math.min(T.v, (k + 1) * w), xa = at(ta).x, xb = at(tb).x, vb = (xb - xa) / (tb - ta);
+    const tau = cy.now(), done = tau >= TOT - 1e-9, w = Math.min(W.v, TOT), n = Math.ceil(TOT / w - 1e-9);
+    const now = at(tau), x0 = at(0).x, xe = at(TOT).x, dxt = xe - x0;
+    const k = Math.min(n - 1, Math.floor(tau / w)), ta = k * w, tb = Math.min(TOT, (k + 1) * w), xa = at(ta).x, xb = at(tb).x, vb = (xb - xa) / (tb - ta);
     /* the airplane and its aisle */
     const y = 215;
     fuselage(ctx, 90, 1310, y, 110, PAL.ink);
     strip(ctx, L, R, y + 10, 36);
     text(ctx, 'rear', 100, y + 92, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'front', 1330, y + 92, PAL.muted, { size: 17, align: 'center' });
     scale(ctx, X, 0, 10, 1, y + 92, 'm', 2);
-    hbracket(ctx, X(x0), X(xe), 100, C('position')); subLabel(ctx, 'Δx', 'tot', ' = ' + signed(dxt, 1) + ' m in ' + fmt(T.v, 1) + ' s', (X(x0) + X(xe)) / 2, 78, C('position'), 'center');
+    hbracket(ctx, X(x0), X(xe), 100, C('position')); subLabel(ctx, 'Δx', 'tot', ' = ' + signed(dxt, 1) + ' m in ' + fmt(TOT, 1) + ' s', (X(x0) + X(xe)) / 2, 78, C('position'), 'center');
     dot(ctx, X(x0), y + 10, C('position'), false, 10); dot(ctx, X(xe), y + 10, C('position'), true, 10);
     /* the displacement over the interval the clock is in */
     const iy = y + 150;
@@ -225,28 +231,29 @@ function trip(u) {
     } else text(ctx, 'v = 0, momentarily at rest', ax, y - 72, C('velocity'), { weight: 600, size: 20, align: 'center' });
     /* the stopwatch */
     const sx = 1210, sy = 540, r = 72;
-    stopwatch(ctx, sx, sy, r, tau, T.v);
+    stopwatch(ctx, sx, sy, r, tau, TOT);
     text(ctx, 't = ' + fmt(tau, 2) + ' s', sx, sy + r + 34, C('time'), { weight: 600, size: 24, align: 'center' });
     /* position against time: the curve, the chords over each interval, the tangent at this instant */
+    /* fixed axes: the trip is 5.0 s long and runs between 2 m and 6 m along a 0 to 8 m aisle */
     const box = { l: 160, r: 1000, t: 450, b: 630 };
-    const { X: GX, Y: GY } = axes(ctx, box, [0, T.v], [0, 8], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 5, ny: 4, fx: (v) => fmt(v, 1) });
-    curve(ctx, (s) => at(s).x, 0, T.v, GX, GY, C('position'), 5, 160);
+    const { X: GX, Y: GY } = axes(ctx, box, [0, 5], [0, 8], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 5, ny: 4, fx: (v) => fmt(v, 1) });
+    curve(ctx, (s) => at(s).x, 0, TOT, GX, GY, C('position'), 5, 160);
     for (let i = 0; i < n; i++) {
-      const a = i * w, b = Math.min(T.v, (i + 1) * w), cur = i === k;
+      const a = i * w, b = Math.min(TOT, (i + 1) * w), cur = i === k;
       line(ctx, GX(a), GY(at(a).x), GX(b), GY(at(b).x), cur ? C('velocity') : alpha(C('velocity'), 0.5), cur ? 5 : 3);
       if (n <= 12) dot(ctx, GX(b), GY(at(b).x), C('velocity'), true, 5);
     }
-    const h = T.v / 12;
-    line(ctx, GX(Math.max(0, tau - h)), GY(now.x - now.v * Math.min(h, tau)), GX(Math.min(T.v, tau + h)), GY(now.x + now.v * Math.min(h, T.v - tau)), C('velocity'), 3, [10, 10]);
+    const h = TOT / 12;
+    line(ctx, GX(Math.max(0, tau - h)), GY(now.x - now.v * Math.min(h, tau)), GX(Math.min(TOT, tau + h)), GY(now.x + now.v * Math.min(h, TOT - tau)), C('velocity'), 3, [10, 10]);
     line(ctx, GX(tau), box.b, GX(tau), GY(now.x), C('time'), 3, [4, 8]); dot(ctx, GX(tau), GY(now.x), PAL.ink, true, 9);
     text(ctx, 'over the interval v̄ = ' + signed(vb, 2) + ' m/s', GX((ta + tb) / 2), GY(Math.min(xa, xb)) + 34, C('velocity'), { align: 'center', weight: 600, size: 18, bg: alpha(PAL.panel, 0.8) });
     text(ctx, 'tangent: v = ' + signed(now.v, 2) + ' m/s', box.r - 12, box.t + 20, C('velocity'), { align: 'right', weight: 600, size: 18 });
-    headline(ctx, done ? 'in ' + fmt(T.v, 1) + ' s the passenger moved ' + signed(dxt, 1) + ' m, an average velocity of ' + signed(dxt / T.v, 2) + ' m/s over the whole trip, which is cut here into ' + n + (n === 1 ? ' interval' : ' intervals') + ' of ' + fmt(w, 2) + ' s'
-      : 't = ' + fmt(tau, 2) + ' s · over the interval from ' + fmt(ta, 2) + ' s to ' + fmt(tb, 2) + ' s the average velocity is ' + signed(vb, 2) + ' m/s; at this instant the velocity is ' + signed(now.v, 2) + ' m/s');
+    headline(ctx, done ? 'In ' + fmt(TOT, 1) + ' s the passenger moved ' + signed(dxt, 1) + ' m, an average velocity of ' + signed(dxt / TOT, 2) + ' m/s over the whole trip, which is cut here into ' + n + (n === 1 ? ' interval' : ' intervals') + ' of ' + fmt(w, 2) + ' s.'
+      : 'Over the interval from ' + fmt(ta, 2) + ' s to ' + fmt(tb, 2) + ' s the average velocity is ' + signed(vb, 2) + ' m/s, while at the instant ' + fmt(tau, 2) + ' s the velocity is ' + signed(now.v, 2) + ' m/s.');
     readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{${signed(xb - xa, 2).replace('−', '-')}\\ \\text{m}}{${fmt(tb - ta, 2)}\\ \\text{s}} = ${signed(vb, 2).replace('−', '-')}\\ \\text{m/s} \\qquad \\kv = ${signed(now.v, 2).replace('−', '-')}\\ \\text{m/s}`,
       'As the interval shrinks, the average velocity over it settles to the instantaneous velocity, which is what the text means by an infinitesimally small interval.');
   }
-  register(d.fig, { update: (dt) => { cy.step(dt, () => T.v / 5); if (cy.tau < T.v) ph += dt * 12; }, draw });
+  register(d.fig, { update: (dt) => { cy.step(dt, () => TOT / 5); if (cy.tau < TOT) ph += dt * 12; }, draw });
 })();
 
 /* =====================================================================
@@ -257,12 +264,14 @@ function trip(u) {
 ===================================================================== */
 (function () {
   const d = sim('sim-store', 520);
-  const D = ctl(d.controls, { label: 'd', cls: '', min: 1, max: 10, step: 0.5, value: 3, unit: 'km', dec: 1, onInput: reset, aria: 'distance to the store' });
+  const D = ctl(d.controls, { label: '\\text{distance to the store}', cls: '', min: 1, max: 10, step: 0.5, value: 3, unit: 'km', dec: 1, onInput: reset, aria: 'distance to the store' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 10, max: 120, step: 5, value: 30, unit: 'min', dec: 0, onInput: reset, aria: 'time of the trip' });
   const B = ctl(d.controls, { label: '\\text{of the way home}', cls: '', min: 0, max: 100, step: 10, value: 100, unit: '%', dec: 0, onInput: reset, aria: 'how far back toward home the car drives' });
   const cy = cycle(() => T.v, 1.2);
   function reset() { cy.reset(); }
-  const L = 200, R = 1200, X = (km) => L + ((R - L) * km) / D.v;
+  /* the road is a fixed 0 to 10 km, the distance slider's maximum, and the store stands at the
+     distance set rather than at the end of the road, so a short errand is drawn short */
+  const KM = 10, L = 200, R = 1200, X = (km) => L + ((R - L) * km) / KM;
   function draw() {
     const { ctx } = begin(d.c);
     const tau = cy.now(), done = tau >= T.v - 1e-9, f = B.v / 100, path = D.v * (1 + f), hours = T.v / 60, sp = path / hours;
@@ -271,9 +280,10 @@ function trip(u) {
     /* the road from home to the store */
     const y = 230;
     strip(ctx, L, R, y, 48);
-    house(ctx, L - 90, y + 24, PAL.ink); store(ctx, R + 90, y + 24, PAL.ink);
-    text(ctx, 'home', L - 90, y + 62, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', R + 90, y + 62, PAL.muted, { size: 17, align: 'center' });
-    scale(ctx, X, 0, Math.floor(D.v), 1, y + 34, 'km', D.v > 6 ? 2 : 1);
+    const stx = X(D.v) + 90;
+    house(ctx, L - 90, y + 24, PAL.ink); store(ctx, stx, y + 24, PAL.ink);
+    text(ctx, 'home', L - 90, y + 62, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', stx, y + 62, PAL.muted, { size: 17, align: 'center' });
+    scale(ctx, X, 0, KM, 1, y + 34, 'km', 1);
     if (Math.abs(pos) > 0.03) hbracket(ctx, X(0), X(pos), y - 96, C('position'), 'Δx = ' + fmt(pos, 1) + ' km from home');
     else text(ctx, 'Δx = 0, at home', X(0), y - 118, C('position'), { weight: 600, align: 'left' });
     /* the car, facing the way it drives, with its velocity as an arrow */
@@ -297,10 +307,10 @@ function trip(u) {
     pair(ctx, 'average velocity  =', (Math.abs(vbar) < 0.005 ? '0' : '+' + sig3(vbar)) + ' km/h', 520, 420, C('velocity'));
     const ending = f === 1 ? 'but the car is back where it began, so its average velocity is zero'
       : 'and the car ends ' + fmt(xf, 1) + ' km from home, so its average velocity is +' + sig3(vbar) + ' km/h away from home';
-    headline(ctx, done ? 'the odometer reads ' + fmt(path, 1) + ' km after ' + fmt(T.v, 0) + ' min, an average speed of ' + sig3(sp) + ' km/h, ' + ending
-      : 't = ' + fmt(tau, 0) + ' min · the odometer reads ' + fmt(gone, 1) + ' km and the car is ' + fmt(pos, 1) + ' km from home' + (back ? ', on its way back' : ', on its way out'));
+    headline(ctx, done ? 'The odometer reads ' + fmt(path, 1) + ' km after ' + fmt(T.v, 0) + ' min, an average speed of ' + sig3(sp) + ' km/h, ' + ending + '.'
+      : 'After ' + fmt(tau, 0) + ' min the odometer reads ' + fmt(gone, 1) + ' km and the car is ' + fmt(pos, 1) + ' km from home' + (back ? ', on its way back.' : ', on its way out.'));
     readout(d.readout, `\\text{average speed} = \\frac{${fmt(path, 1)}\\ \\text{km}}{${fmt(hours, 2)}\\ \\text{h}} = ${sig3(sp)}\\ \\text{km/h} \\qquad \\kvb = \\frac{\\kdx}{\\kt} = \\frac{${fmt(xf, 1)}\\ \\text{km}}{${fmt(hours, 2)}\\ \\text{h}} = ${Math.abs(vbar) < 0.005 ? '0' : sig3(vbar) + '\\ \\text{km/h}'}`,
-      'Average speed is not the magnitude of average velocity; the two agree only when the car never turns back.');
+      'Average speed is not the magnitude of average velocity. The two agree only when the car never turns back.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();
@@ -312,44 +322,58 @@ function trip(u) {
 ===================================================================== */
 (function () {
   const d = sim('sim-trip-graphs', 660);
-  const D = ctl(d.controls, { label: 'd', cls: '', min: 1, max: 10, step: 0.5, value: 3, unit: 'km', dec: 1, onInput: reset, aria: 'distance to the store' });
+  const D = ctl(d.controls, { label: '\\text{distance to the store}', cls: '', min: 1, max: 10, step: 0.5, value: 3, unit: 'km', dec: 1, onInput: reset, aria: 'distance to the store' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 10, max: 120, step: 5, value: 30, unit: 'min', dec: 0, onInput: reset, aria: 'time of the trip' });
+  /* The third slider is the one the errand figure carries: how far back toward home the car drives.
+     Without it these graphs answered the same two sliders as the errand a paragraph above and told
+     the reader nothing new, and with it the three graphs show what stopping short of home does. */
+  const B = ctl(d.controls, { label: '\\text{of the way home}', cls: '', min: 0, max: 100, step: 10, value: 100, unit: '%', dec: 0, onInput: reset, aria: 'how far back toward home the car drives' });
   const cy = cycle(() => T.v, 1.2);
   function reset() { cy.reset(); }
-  const L = 200, R = 1200, X = (km) => L + ((R - L) * km) / D.v;
+  /* every scale here is fixed from the slider maxima: the road 0 to 10 km, the time 0 to 2 h, and
+     the speed 0 to 40 km/h, which holds the errand's 12 km/h with room to spare; a faster trip is
+     drawn against the top of the scale with its true value written beside it */
+  const KM = 10, HMAX = 2, SPMAX = 40, L = 200, R = 1200, X = (km) => L + ((R - L) * km) / KM;
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = cy.now(), done = tau >= T.v - 1e-9, H = T.v / 60, th = tau / 60, sp = (2 * D.v) / H, half = H / 2;
-    const back = th > half, pos = back ? 2 * D.v - sp * th : sp * th, vel = back ? -sp : sp;
+    const tau = cy.now(), done = tau >= T.v - 1e-9, f = B.v / 100, H = T.v / 60, th = tau / 60;
+    const path = D.v * (1 + f), sp = path / H, tout = H / (1 + f), xf = D.v * (1 - f);
+    const back = th > tout, pos = back ? D.v - sp * (th - tout) : sp * th, vel = back ? -sp : sp;
     /* the road, short, with the car on it */
     const y = 150;
     strip(ctx, L, R, y, 40);
-    house(ctx, L - 80, y + 20, PAL.ink); store(ctx, R + 80, y + 20, PAL.ink);
-    text(ctx, 'home', L - 80, y + 58, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', R + 80, y + 58, PAL.muted, { size: 17, align: 'center' });
+    const stx = X(D.v) + 80;
+    house(ctx, L - 80, y + 20, PAL.ink); store(ctx, stx, y + 20, PAL.ink);
+    text(ctx, 'home', L - 80, y + 58, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', stx, y + 58, PAL.muted, { size: 17, align: 'center' });
     const cx = X(Math.max(0, Math.min(D.v, pos))), dir = back ? -1 : 1;
     ctx.save(); ctx.translate(cx, 0); ctx.scale(dir, 1); car(ctx, 0, y - 6, PAL.ink, 1.1); ctx.restore();
-    const len = dir * Math.min(220, 40 + sp * 6);
+    const len = dir * (40 + (180 * Math.min(sp, SPMAX)) / SPMAX);
     if (!done) { arrow(ctx, cx, y - 44, cx + len, y - 44, C('velocity'), 5); text(ctx, 'v = ' + (dir > 0 ? '+' : '−') + sig3(sp) + ' km/h', cx + len + dir * 14, y - 44, C('velocity'), { weight: 600, size: 20, align: dir > 0 ? 'left' : 'right' }); }
-    /* the three graphs */
-    const xr = nice(0, D.v, 3), vr = nice(0, sp, 3), top = 290, bot = 560;
-    const tick = (v) => fmt(v, 2), dec = (r) => ((r.hi / r.n) % 1 ? 1 : 0);
-    const P = axes(ctx, { l: 110, r: 420, t: top, b: bot }, [0, H], [0, xr.hi], { xl: 't (h)', xc: C('time'), yl: 'x (km)', yc: C('position'), nx: 2, ny: xr.n, fx: tick, fy: (v) => fmt(v, dec(xr)) });
-    const V = axes(ctx, { l: 590, r: 900, t: top, b: bot }, [0, H], [-vr.hi, vr.hi], { xl: 't (h)', xc: C('time'), yl: 'v (km/h)', yc: C('velocity'), nx: 2, ny: 2 * vr.n, fx: tick, fy: (v) => fmt(v, dec(vr)) });
-    const S = axes(ctx, { l: 1060, r: 1370, t: top, b: bot }, [0, H], [0, vr.hi], { xl: 't (h)', xc: C('time'), yl: 'speed (km/h)', yc: C('velocity'), nx: 2, ny: vr.n, fx: tick, fy: (v) => fmt(v, dec(vr)) });
+    /* the three graphs, on ranges that never follow the sliders */
+    const top = 290, bot = 560;
+    const tick = (v) => fmt(v, 2);
+    const P = axes(ctx, { l: 110, r: 420, t: top, b: bot }, [0, HMAX], [0, KM], { xl: 't (h)', xc: C('time'), yl: 'x (km)', yc: C('position'), nx: 2, ny: 5, fx: tick, fy: (v) => fmt(v, 0) });
+    const V = axes(ctx, { l: 590, r: 900, t: top, b: bot }, [0, HMAX], [-SPMAX, SPMAX], { xl: 't (h)', xc: C('time'), yl: 'v (km/h)', yc: C('velocity'), nx: 2, ny: 4, fx: tick, fy: (v) => fmt(v, 0) });
+    const S = axes(ctx, { l: 1060, r: 1370, t: top, b: bot }, [0, HMAX], [0, SPMAX], { xl: 't (h)', xc: C('time'), yl: 'speed (km/h)', yc: C('velocity'), nx: 2, ny: 4, fx: tick, fy: (v) => fmt(v, 0) });
     text(ctx, 'position', 420, top - 24, PAL.muted, { size: 17, align: 'right' }); text(ctx, 'velocity', 900, top - 24, PAL.muted, { size: 17, align: 'right' }); text(ctx, 'speed', 1370, top - 24, PAL.muted, { size: 17, align: 'right' });
-    line(ctx, P.X(0), P.Y(0), P.X(half), P.Y(D.v), C('position'), 5); line(ctx, P.X(half), P.Y(D.v), P.X(H), P.Y(0), C('position'), 5);
-    line(ctx, V.X(0), V.Y(sp), V.X(half), V.Y(sp), C('velocity'), 5); line(ctx, V.X(half), V.Y(sp), V.X(half), V.Y(-sp), PAL.muted, 2, [6, 6]); line(ctx, V.X(half), V.Y(-sp), V.X(H), V.Y(-sp), C('velocity'), 5);
-    line(ctx, S.X(0), S.Y(sp), S.X(H), S.Y(sp), C('velocity'), 5);
-    text(ctx, '+' + sig3(sp), V.X(half / 2), V.Y(sp) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
-    text(ctx, '−' + sig3(sp), V.X(half + half / 2), V.Y(-sp) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
-    text(ctx, sig3(sp) + ' throughout', S.X(half), S.Y(sp) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
-    for (const [G, val] of [[P, pos], [V, vel], [S, sp]]) {
-      line(ctx, G.X(th), bot, G.X(th), G.Y(val), C('time'), 3, [4, 8]); dot(ctx, G.X(th), G.Y(val), PAL.ink, true, 9);
+    const spd = Math.min(sp, SPMAX), over = sp > SPMAX;
+    line(ctx, P.X(0), P.Y(0), P.X(tout), P.Y(D.v), C('position'), 5);
+    if (f > 0) line(ctx, P.X(tout), P.Y(D.v), P.X(H), P.Y(xf), C('position'), 5);
+    line(ctx, V.X(0), V.Y(spd), V.X(tout), V.Y(spd), C('velocity'), 5);
+    if (f > 0) { line(ctx, V.X(tout), V.Y(spd), V.X(tout), V.Y(-spd), PAL.muted, 2, [6, 6]); line(ctx, V.X(tout), V.Y(-spd), V.X(H), V.Y(-spd), C('velocity'), 5); }
+    line(ctx, S.X(0), S.Y(spd), S.X(H), S.Y(spd), C('velocity'), 5);
+    text(ctx, '+' + sig3(sp), V.X(tout / 2), V.Y(spd) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
+    if (f > 0) text(ctx, '−' + sig3(sp), V.X((tout + H) / 2), V.Y(-spd) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
+    text(ctx, sig3(sp) + ' throughout', S.X(H / 2), S.Y(spd) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
+    for (const [G, val] of [[P, pos], [V, Math.max(-SPMAX, Math.min(SPMAX, vel))], [S, spd]]) {
+      line(ctx, G.X(th), bot, G.X(th), G.Y(val), C('time'), 3, [4, 8]); dot(ctx, G.X(th), G.Y(val), PAL.ink, over ? false : true, 9);
     }
-    topline(ctx, done ? 'in ' + fmt(H, 2) + ' h the car went out ' + fmt(D.v, 1) + ' km and back: its velocity was +' + sig3(sp) + ' km/h and then −' + sig3(sp) + ' km/h, while its speed was ' + sig3(sp) + ' km/h throughout'
-      : 't = ' + fmt(th, 2) + ' h · the car is ' + fmt(pos, 1) + ' km from home, its velocity is ' + (dir > 0 ? '+' : '−') + sig3(sp) + ' km/h and its speed is ' + sig3(sp) + ' km/h');
+    const ended = f === 1 ? 'ending back where it began' : f === 0 ? 'and it stayed at the store' : 'ending ' + fmt(xf, 1) + ' km from home';
+    topline(ctx, done ? 'In ' + fmt(H, 2) + ' h the car drove ' + fmt(path, 1) + ' km, ' + ended + ', so its speed was ' + sig3(sp) + ' km/h throughout while its velocity changed sign at the store.'
+      : 'After ' + fmt(th, 2) + ' h the car is ' + fmt(pos, 1) + ' km from home, its velocity is ' + (dir > 0 ? '+' : '−') + sig3(sp) + ' km/h and its speed is ' + sig3(sp) + ' km/h.');
     readout(d.readout, `\\kv = +${sig3(sp)}\\ \\text{km/h on the way out},\\quad \\kv = -${sig3(sp)}\\ \\text{km/h on the way back},\\quad \\text{speed} = ${sig3(sp)}\\ \\text{km/h throughout}`,
-      'The speed graph is the velocity graph with its sign removed, which is what it means for instantaneous speed to be the magnitude of instantaneous velocity.');
+      over ? 'At this speed the two velocity lines run past the top of their scales, which reach 40 km/h, and the numbers written beside them are the true ones.'
+        : 'The speed graph is the velocity graph with its sign removed, which is what it means for instantaneous speed to be the magnitude of instantaneous velocity.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();

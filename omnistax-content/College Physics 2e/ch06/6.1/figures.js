@@ -1,7 +1,7 @@
 /* Figures for section 6.1 Rotation Angle and Angular Velocity. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI, DEG = 180 / Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -39,13 +39,15 @@ function fly(ctx, x, y, color) {
 (function () {
   const d = sim('sim-rotation-angle', 760);
   const rOut = ctl(d.controls, { label: '\\kr', cls: 'position', min: 2, max: 6, step: 0.1, value: 6, unit: 'cm', dec: 1, onInput: reset, aria: 'radius of curvature of the outer pit' });
-  const rIn = ctl(d.controls, { label: 'r_1', cls: 'position', min: 1, max: 5, step: 0.1, value: 3, unit: 'cm', dec: 1, onInput: reset, aria: 'radius of the inner pit' });
+  /* the inner pit is set as a fraction of the outer one, so that no setting has to be clamped
+     and the slider's own value is always the one the drawing and the readout use */
+  const rIn = ctl(d.controls, { label: 'r_1/r', cls: '', min: 0.1, max: 0.9, step: 0.05, value: 0.5, unit: '', dec: 2, onInput: reset, aria: 'the radius of the inner pit as a fraction of the radius of the outer one' });
   const cy = cycle(() => 1, 1.1);
   function reset() { cy.reset(); }
   function draw() {
     const { ctx } = begin(d.c);
     const turn = REDUCED ? 1 : cy.now(), th = TAU * turn;
-    const R = rOut.v, r1 = Math.max(0.5, Math.min(rIn.v, R - 0.5));
+    const R = rOut.v, r1 = rIn.v * R;
     const PX = 40, cx = 400, cyc = 430, sOut = R * th, sIn = r1 * th;
     /* the disc */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(cx, cyc, PX * R, 0, TAU); ctx.fill();
@@ -83,7 +85,7 @@ function fly(ctx, x, y, color) {
       text(ctx, 'Δs = ' + fmt(s, 1) + ' cm', bx, by + 40, C('position'), { size: 19, weight: 600 });
     }
     for (const [i, ln] of ['Each band is one radius long, so the', 'number of bands is the rotation angle', 'in radians, the same on both bars.'].entries()) text(ctx, ln, bx, 600 + 26 * i, PAL.muted, { size: 17 });
-    headline(ctx, 'Δθ = ' + fmt(th, 2) + ' rad = ' + fmt(th * DEG, 0) + '°: the outer pit has run ' + fmt(sOut, 1) + ' cm and the inner pit ' + fmt(sIn, 1) + ' cm');
+    headline(ctx, 'Turning through Δθ = ' + fmt(th, 2) + ' rad carries the outer pit ' + fmt(sOut, 1) + ' cm and the inner pit ' + fmt(sIn, 1) + ' cm.');
     readout(d.readout, `\\Delta\\theta = \\frac{\\kds}{\\kr} = \\frac{${fmt(sOut, 1)}\\ \\text{cm}}{${fmt(R, 1)}\\ \\text{cm}} = \\frac{${fmt(sIn, 1)}\\ \\text{cm}}{${fmt(r1, 1)}\\ \\text{cm}} = ${fmt(th, 2)}\\ \\text{rad}`,
       'An arc as long as the radius subtends one radian, and the whole circumference subtends 2π rad, which is one revolution. The disc has turned through ' + fmt(turn, 2) + ' of a revolution, or ' + fmt(th * DEG, 0) + '°.');
   }
@@ -98,8 +100,12 @@ function fly(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-omega', 660);
-  const om = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 0.5, max: 12, step: 0.1, value: 4, unit: 'rad/s', dec: 1, onInput: reset, aria: 'angular velocity' });
-  const N = ctl(d.controls, { label: 'N', cls: '', min: 1, max: 4, step: 1, value: 2, unit: 'rev', dec: 0, onInput: reset, aria: 'revolutions to run' });
+  const om = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 2, max: 12, step: 0.1, value: 4, unit: 'rad/s', dec: 1, onInput: reset, aria: 'angular velocity' });
+  /* how many revolutions the wheel runs through is a count and not a quantity, so it is a row of
+     buttons rather than a slider (rule 26.1); three is as many as the fixed time axis will hold at
+     the slowest setting the angular velocity slider allows */
+  const Nc = choice(d.controls, { label: 'N', options: [{ value: '1', label: '1 rev' }, { value: '2', label: '2 rev' }, { value: '3', label: '3 rev' }], value: '2', aria: 'how many revolutions the wheel runs through', onInput: reset });
+  const N = { get v() { return +Nc.value; } };
   const total = () => (TAU * N.v) / om.v;
   const cy = cycle(total, 1.1);
   function reset() { cy.reset(); }
@@ -127,13 +133,13 @@ function fly(ctx, x, y, color) {
     text(ctx, 'Δt = ' + fmt(t, 2) + ' s', cx, cyc + RW + 54, C('time'), { size: 24, weight: 600, align: 'center' });
     text(ctx, 'Δθ = ' + fmt(th, 2) + ' rad', cx, cyc + RW + 92, PAL.ink, { size: 24, weight: 600, align: 'center' });
     /* the angle against the time */
-    /* fixed axes. The angle never passes 2πN = 2π × 4 = 25.1 rad, so the vertical range is 0 to
-       30 rad, ticked every 5 rad, and holds every setting. The run itself lasts 2πN/ω, which at the
-       slowest wheel is 50 s; an axis that long would leave the default 3.1 s run in a sixteenth of
-       the width, so the time axis is fixed instead to 0 to 4 s, which holds the default run
-       comfortably, and a longer run runs off the edge as a pinned marker. Neither range moves. */
-    const XR = 4, YR = 30, box = { l: 760, r: 1330, t: 150, b: 500 };
-    const { X, Y } = axes(ctx, box, [0, XR], [0, YR], { xl: 'Δt (s)', xc: C('time'), yl: 'Δθ (rad)', yc: PAL.ink, nx: 4, ny: 6, fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
+    /* fixed axes, from the slider maxima and the longest run the buttons allow. The angle never
+       passes 2πN = 2π × 3 = 18.8 rad, so the vertical range is 0 to 20 rad, ticked every 5 rad. The
+       run lasts 2πN/ω, which at the slowest wheel and the longest run is 9.4 s, so the time range is
+       0 to 10 s, ticked every 2 s. Every setting of the two controls fits inside both, and neither
+       range moves. */
+    const XR = 10, YR = 20, box = { l: 760, r: 1330, t: 150, b: 500 };
+    const { X, Y } = axes(ctx, box, [0, XR], [0, YR], { xl: 'Δt (s)', xc: C('time'), yl: 'Δθ (rad)', yc: PAL.ink, nx: 5, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
     for (let k = 1; k <= N.v; k++) {
       line(ctx, box.l, Y(TAU * k), box.r, Y(TAU * k), alpha(PAL.ink, 0.4), 2, [7, 7]);
       text(ctx, k === 1 ? '1 revolution' : k + ' revolutions', box.r - 8, Y(TAU * k) - 19, PAL.muted, { size: 16, align: 'right', bg: PAL.panel });
@@ -145,7 +151,7 @@ function fly(ctx, x, y, color) {
     line(ctx, box.l, Y(om.v * tNow), X(tNow), Y(om.v * tNow), PAL.muted, 2, [4, 8]);
     pinned(ctx, box, X, Y, t, th, PAL.ink, fmt(th, 1) + ' rad at ' + fmt(t, 2) + ' s');
     text(ctx, 'the slope is ω = ' + fmt(om.v, 1) + ' rad/s', X(tEnd * 0.5) - 14, Y(om.v * tEnd * 0.5) - 38, C('angular-rate'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
-    headline(ctx, 'Δt = ' + fmt(t, 2) + ' s: the wheel has turned through Δθ = ' + fmt(th, 2) + ' rad, and Δθ/Δt is ' + fmt(om.v, 2) + ' rad/s throughout');
+    headline(ctx, 'In ' + fmt(t, 2) + ' s the wheel turns through ' + fmt(th, 2) + ' rad, and Δθ/Δt is ' + fmt(om.v, 2) + ' rad/s throughout.');
     readout(d.readout, `\\kw = \\frac{\\Delta\\theta}{\\kdt} = \\frac{${fmt(th, 2)}\\ \\text{rad}}{${fmt(t, 2)}\\ \\text{s}} = ${fmt(om.v, 2)}\\ \\text{rad/s}`,
       'One complete revolution is 2π = 6.28 rad, so at this angular velocity the wheel goes round once every ' + fmt(TAU / om.v, 2) + ' s and takes ' + fmt(T, 2) + ' s over the ' + fmt(N.v, 0) + ' revolutions of the run.');
   }
@@ -200,7 +206,7 @@ function fly(ctx, x, y, color) {
     text(ctx, 'an earth mover, ' + fmt(v.v / 1.2, 1) + ' rad/s', X(1.2) - 16, Y(v.v / 1.2) - 26, PAL.muted, { size: 17, align: 'right' });
     pinned(ctx, box, X, Y, r.v, om, PAL.ink, fmt(om, 1) + ' rad/s');
     text(ctx, 'this tire, ' + fmt(om, 1) + ' rad/s', Math.min(X(r.v) + 18, box.r - 210), Y(om) - 26, PAL.ink, { size: 17 });
-    headline(ctx, 't = ' + fmt(t, 3) + ' s: the tire has turned ' + fmt(th, 2) + ' rad and the car has gone ' + fmt(r.v * th, 2) + ' m');
+    headline(ctx, 'In ' + fmt(t, 3) + ' s the tire has turned through ' + fmt(th, 2) + ' rad and laid down ' + fmt(r.v * th, 2) + ' m of road.');
     readout(d.readout, `\\kw = \\frac{\\kv}{\\kr} = \\frac{${fmt(v.v, 1)}\\ \\text{m/s}}{${fmt(r.v, 3)}\\ \\text{m}} = ${fmt(om, 1)}\\ \\text{rad/s}`,
       'An earth mover with tires 1.20 m in radius, moving at the same ' + fmt(v.v, 1) + ' m/s, would turn them at only ' + fmt(v.v / 1.2, 1) + ' rad/s, because the same speed is spread round a longer rim.');
   }
@@ -242,7 +248,7 @@ function fly(ctx, x, y, color) {
       text(ctx, 'v = ' + fmt(sp, 2) + ' m/s', px + (L + 22) * Math.sin(a), py + (L + 22) * Math.cos(a), C('velocity'), { size: 19, weight: 600, align: 'center', bg: PAL.bg });
       fly(ctx, px, py, PAL.ink);
     }
-    headline(ctx, 'The record turns clockwise at ω = ' + fmt(om.v, 2) + ' rad/s, so each fly moves at v = rω = ' + fmt(sp, 2) + ' m/s');
+    headline(ctx, 'The record turns clockwise at ω = ' + fmt(om.v, 2) + ' rad/s, so each fly moves at v = rω = ' + fmt(sp, 2) + ' m/s.');
     readout(d.readout, `\\kv = \\kr\\kw = (${fmt(r.v, 3)}\\ \\text{m})(${fmt(om.v, 2)}\\ \\text{rad/s}) = ${fmt(sp, 2)}\\ \\text{m/s}`,
       'The two flies share the one angular velocity of the record and move at the same speed, but their velocities point opposite ways at every instant, since each is tangent to the circle where its fly is standing. The record goes round once every ' + fmt(T, 2) + ' s.');
   }

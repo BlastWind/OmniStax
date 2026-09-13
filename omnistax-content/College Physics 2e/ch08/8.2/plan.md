@@ -83,9 +83,11 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    a time in it — the passenger travels and then stops — so it runs a
    finite loop and gets the scrubber · mass $m$ (40 to 120 kg, default
    75.0, ink), speed $\kv$ (5 to 30 m/s, default 20.0, velocity), contact
-   time $\kdt$ (0.005 to 0.500 s, default 0.020, time) · "Δt = 0.020 s ·
-   taking away 1,500 kg·m/s of momentum that quickly needs 75,000 N;
-   stretch the stop to 0.150 s and 10,000 N will do" · graph below: the
+   time $\kdt$ (0.02 to 0.50 s, default 0.10, time) · "After 0.020 s of
+   contact, 750 kg·m/s is left and the padding pushes back with 15,000 N." ·
+   the momentum arrow and the force arrow are on scales fixed from the
+   slider maxima, 320 units at 3,600 kg·m/s and 250 units at 180,000 N, so
+   neither is ever capped · graph below: the
    force against the contact time, the hyperbola $\kFnet = \kdp/\kdt$,
    with the current stop marked and the rectangle of area $\kdp$ under it
    shaded · no. Readout: $\kFnet = \kdp/\kdt$ with the numbers; small
@@ -101,9 +103,12 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    ball travels, so the figure runs a finite loop and gets the scrubber ·
    angle from the perpendicular $\theta$ (0º to 60º, default 30, ink),
    speed $\ku$ (1.0 to 10.0 m/s, default 5.0, velocity), mass $m$ (0.10 to
-   0.30 kg, default 0.16, ink) · "θ = 30.0º · the ball keeps the momentum
-   it had along the wall and reverses the part across it, so the impulse
-   is 1.39 kg·m/s straight into the wall" · none: the scene is the
+   0.30 kg, default 0.16, ink) · "The speed is the same on the way out, and
+   the impulse the wall gives the ball is 1.39 kg·m/s." The impulse on the
+   ball points away from the wall, which is the way its arrow is drawn, and
+   the force on the wall is drawn the other way. Every momentum arrow is on
+   one fixed scale, 83 units per kg·m/s, which holds the largest the sliders
+   can make without capping it · none: the scene is the
    picture · no. Readout: $\Delta p_x = -2m\ku\cos\theta$ with the
    numbers; small line on the ratio to the head-on strike,
    $1/\cos\theta$, which is the book's 1.155 at 30º. Draws momentum,
@@ -117,9 +122,9 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    $\kFeff$... the peak of the actual force $F$ (200 to 2,000 N, default
    1,000, force), the length of the contact $\kdt$ (0.02 to 0.30 s,
    default 0.10, time), the shape of the bump (1.0 to 6.0, default 1.6,
-   ink, since it is a dimensionless exponent) · "the ball pushes with up
-   to 1,000 N for 0.100 s, and an effective force of 553 N over the same
-   0.100 s gives the same impulse, 55.3 kg·m/s" · the graph is the
+   ink, since it is a dimensionless exponent) · "The ball pushes with up to
+   1,000 N, and a steady 553 N over the same 0.100 s would give the same
+   impulse." · the graph is the
    figure: force against time, the bell-shaped actual force with the
    area under it shaded, and the rectangle of the effective force over
    the same interval shaded to the same area · no. Readout:

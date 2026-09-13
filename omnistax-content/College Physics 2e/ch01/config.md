@@ -20,7 +20,10 @@ unless marked.
 | Sub-concept headers | agent decides per section, reported in the plan |
 | Figures | a sim per idea or result the section introduces; every sketch replaced by a sim (the planetary atom, the meter of light, the two bull's-eyes); a photograph kept when the text refers to it or it shows the thing the passage is about, dropped when it is a splash image (the geese, the Earth from the Moon, the two balances); each listed in the plan (rule 14) |
 | Sim sliders | whatever is interesting and variable in the idea: the number of electrons, a time for light, a power of ten, a distance and a time, a spread and an offset, a value and its uncertainty, a ruler's smallest division, stories and people |
-| Motion | the atom's electrons and the car run as an endless cycle; light along the meter, the estimates and the ruler are finite and get the scrubber |
+| Motion | the atom's electrons run as an endless cycle, and the car, the light along the meter, the estimates and the ruler are finite and get the scrubber; the bull's-eye, the percent uncertainty, the floor and the two rules are still and carry no transport |
+| Discrete states | the ruler's smallest division is a choice of 1 cm, 1 mm and 0.1 mm (rule 26.1); every other control in the chapter is a quantity and stays a slider (new) |
+| Depth | 2D throughout: nothing in the chapter is an arrangement in space, so no locked view and no 3D scene (rule 28, new) |
+| Fixed scales | every axis, strip and scene scale is fixed once from the slider maxima, or from the default state where the maxima would leave the default tiny, and a value past the end is pinned there and named (rule 24.6, new) |
 | Figures that serve exercises | none kept: the Salmonella photograph belongs to an unkeyed problem and goes with it |
 | Extra simulations | none proposed beyond the required figures; the chapter is qualitative and the required figures already open the views the text does not (rule 15) |
 | Colour coding | time and velocity hues from the global tier, for the two 1.2 sims that carry a time or a speed; every other quantity in the chapter (a length, a mass, a count, a value and its uncertainty) is untyped and in ink; `c` joins the symbol table under the velocity type (new) |

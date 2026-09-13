@@ -81,15 +81,23 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    of the center of gravity along the pole measured from the right hand
    $\krlev$ (0 to 3.00 m, default 0.30, position), the distance between the
    hands (0.30 to 1.50 m, default 0.90, position), the mass of the pole $m$
-   (1.00 to 10.00 kg, default 5.00, ink) · "the center of gravity is 0.600 m
-   from the left hand and the hands are 0.900 m apart, so the right hand
-   carries 32.7 N and the left hand 16.3 N" · graph below the horizontal
+   (1.00 to 10.00 kg, default 5.00, ink) · "The cg is 0.600 m
+   from the left hand, so the right hand carries 32.7 N and the left hand
+   16.3 N." · graph below the horizontal
    scene: $\kFL$ and $\kFR$ against the position of the center of gravity,
    two straight lines that cross where the hold is symmetric and one of
    which passes through zero and turns negative once the center of gravity
    goes beyond a hand · no 3D. Readout: the second condition about the left
    hand with the numbers in it, and a small line for the first condition
-   $\kFL + \kFR = \kwgt = mg$. Draws force, position, torque.
+   $\kFL + \kFR = \kwgt = mg$. Draws force and position; the figure states
+   torques in words and colours none of them, so it binds no torque hue.
+
+   The drawing is to a fixed scale, from −0.50 m to 3.30 m along the pole,
+   which holds every position the sliders reach, so that moving the center of
+   gravity no longer moves the hands. The force arrows are drawn to a fixed
+   100 N, which is the book's own pole comfortably; an arrow that would pass
+   it stops there and the labels go on printing the true forces, and the
+   scene says so.
 
    The three holds the book draws are the three settings of the one slider:
    0.45 m gives Figure 9.18, the center of gravity halfway between the
@@ -107,11 +115,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    and only the choice of pivot changes, which is not a motion, so no cycle
    and no transport · the pivot's position along the pole (0 to 3.00 m from
    the right hand, default 0.90, position), the position of the center of
-   gravity $\krlev$ (0 to 3.00 m, default 0.30, position) · "with the pivot
-   at the left hand the left hand's torque is zero, and the other two,
-   +29.4 N·m and −29.4 N·m, add to nothing" · graph below: the three
+   gravity $\krlev$ (0 to 3.00 m, default 0.30, position) · "With the pivot
+   at the left hand that hand's torque is zero, and the other two add to
+   nothing." · graph below: the three
    torques as signed bars with their sum, which stays at zero wherever the
-   pivot is put · no 3D. Readout: $\text{net}\;\ktau = \ktau_{\text{R}} +
+   pivot is put, drawn to a fixed 60 N·m so that the book's own hold is a
+   picture and not three slivers, with a bar that would pass it stopped there
+   and its true torque still printed · no 3D. Readout: $\text{net}\;\ktau = \ktau_{\text{R}} +
    \ktau_{\text{w}} + \ktau_{\text{L}} = 0$ with the numbers; a small line
    naming the hand whose torque the current pivot removes. Draws torque,
    force, position. This is the figure for step 3 of the strategy: the book

@@ -1,7 +1,7 @@
 /* Figures for section 7.8 Work, Energy, and Power in Humans. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.8'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -71,11 +71,11 @@ const width = (s, size) => s.length * size * 0.52;
     if (fat > 40) share(ctx, 'stored as fat, ' + kj(fat) + ' kJ, which is ' + fmt(grams, 0) + ' g', (xt + xe) / 2, ROWA, ce);
     else if (fat < -40) share(ctx, 'drawn from fat, ' + kj(-fat) + ' kJ, which is ' + fmt(grams, 0) + ' g', (xt + xe) / 2, ROWA, ce);
     /* the headline and the readout */
-    headline(ctx, Math.abs(fat) <= 40
-      ? 'you eat ' + kj(E) + ' kJ and spend the same, so nothing is stored as fat and nothing is drawn from it'
+    topline(ctx, Math.abs(fat) <= 40
+      ? 'You eat ' + kj(E) + ' kJ and spend the same, so nothing is stored as fat and nothing is drawn from it.'
       : fat > 0
-        ? 'you spend ' + kj(Ein) + ' kJ today, ' + kj(Wout) + ' kJ of it as useful work, and the ' + kj(fat) + ' kJ you eat beyond that is stored as ' + fmt(grams, 0) + ' g of fat'
-        : 'you spend ' + kj(Ein) + ' kJ today and eat only ' + kj(E) + ' kJ, so the body finds the missing ' + kj(-fat) + ' kJ by metabolising about ' + fmt(grams, 0) + ' g of fat');
+        ? 'You spend ' + kj(Ein) + ' kJ today, ' + kj(Wout) + ' kJ of it as useful work, and the ' + kj(fat) + ' kJ you eat beyond that is stored as ' + fmt(grams, 0) + ' g of fat.'
+        : 'You spend ' + kj(Ein) + ' kJ today and eat only ' + kj(E) + ' kJ, so the body finds the missing ' + kj(-fat) + ' kJ by metabolizing about ' + fmt(grams, 0) + ' g of fat.');
     readout(d.readout,
       `\\kOEi + \\kWnc = \\kOEf : \\quad (${tkj(E)}\\ \\text{kJ}) + (-${tkj(Wout)}\\ \\text{kJ}) = ${tkj(OEf)}\\ \\text{kJ}`,
       'The useful work is the efficiency, ' + fmt(eff * 100, 0) + ' percent, of the ' + kj(Ein) + ' kJ the body spends, and the rest of what it spends, ' + kj(therm) + ' kJ, leaves as thermal energy. '
@@ -154,10 +154,10 @@ const width = (s, size) => s.length * size * 0.52;
     text(ctx, 'an average day’s food energy, 12,000 kJ', Xe(TYPICAL), BARY + BARH + 36, PAL.muted, { size: 18, align: 'center' });
     if (spent > 900) text(ctx, kj(spent) + ' kJ', Xe(Math.min(spent, EMAX)) - 14, BARY + BARH / 2, ce, { size: 22, weight: 600, align: 'right' });
     /* the headline and the readout */
-    headline(ctx, clock(now) + ' · you are ' + here.verb + ' at ' + here.P + ' W, and the day has cost ' + kj(spent) + ' kJ so far');
+    topline(ctx, 'At ' + clock(now) + ' you are ' + here.verb + ' at ' + here.P + ' W, and the day has cost ' + kj(spent) + ' kJ so far.');
     readout(d.readout, `\\kE = \\sum \\kP\\kt = ${tkj(total)}\\ \\text{kJ}\\ \\text{in the day}`,
       'The day costs ' + runs.map((r) => kj(r.kJ) + ' kJ ' + r.verb).join(', ').replace(/, ([^,]*)$/, ' and $1')
-      + ', and that much energy takes about ' + kj(total / 20) + ' litres of oxygen, since roughly 20 kJ comes from each litre a person breathes in.');
+      + ', and that much energy takes about ' + kj(total / 20) + ' liters of oxygen, since roughly 20 kJ comes from each liter a person breathes in.');
   }
   register(d.fig, { update: (dt) => cyc.step(dt, () => 24 / 5), draw });
 })();

@@ -82,10 +82,14 @@ id · replaces · concepts · what moves · sliders · headline · graph or none
    pictures) · the friction $\kff$ on the eraser (2 to 20 N, default 8,
    force) and the detour, how far the eraser wanders from the straight line
    (0 to 14 cm, default 8, ink, since it is a length of the scene; at 14 cm
-   the wandering route is about half again as long) · "the wandering route
-   is 32 per cent longer, so it costs 4.23 J against the 3.20 J of the
-   straight one" · none: the two faces and their two work bars are the
-   picture · no. Readout: $\kWfr = \kff\kd$ with the wandering path's length
+   the wandering route is about half again as long) · "The wandering route
+   is 32 percent longer, so it costs 4.23 J against the 3.20 J of the
+   straight one." · none: the two faces and their two work bars are the
+   picture · 2D. Both bars are read against one fixed cap of 13.6 J, the
+   hardest rub the friction slider allows along the longest route the detour
+   slider allows, so raising the friction lengthens the bars instead of
+   raising the scale they are drawn against. Labels are on: six of them, and
+   they keep their places at every setting. Readout: $\kWfr = \kff\kd$ with the wandering path's length
    and the work it costs. Draws force, position and energy.
 2. `sim-spring-ground` · replaces Figure 7.14 (a) and (b) (the rock dropped
    onto a spring beside the rock dropped onto the ground) ·
@@ -98,9 +102,14 @@ id · replaces · concepts · what moves · sliders · headline · graph or none
    the ground as the rock lands · the drop height $\kh$ (0.5 to 3.0 m,
    default 1.5, position), the mass $m$ of the rock (0.5 to 5.0 kg, default
    2.0, ink) and the force constant $\kk$ of the spring (200 to 3,000 N/m,
-   default 900, stiffness) · "the rock falls with 29.4 J on both sides, and
-   both systems still hold all of it" · none: the two energy accounts are
-   the picture · no. Readout: $\kPEg = m\kg\kh$ with the numbers; small line
+   default 900, stiffness) · "The rock falls with 29.4 J on both sides, and
+   both systems still hold all of it." · none: the two energy accounts are
+   the picture · 2D. The two accounts share one fixed outline of 147 J, the
+   most the sliders can bring down, with a dashed rule across each for what
+   this drop brings, so a heavier rock fills more of the outline instead of
+   rescaling it. The spring is a body and is drawn in ink: the stiffness hue
+   stays on its slider and in the readout (rule 7). Labels are on: six of
+   them. Readout: $\kPEg = m\kg\kh$ with the numbers; small line
    on what the spring returns and what the ground keeps. The spring's
    fullest squeeze is taken as $\sqrt{2\kPEg/\kk}$, which is the
    idealisation the book's own sentence implies, that the spring can propel
@@ -114,11 +123,19 @@ id · replaces · concepts · what moves · sliders · headline · graph or none
    rises or falls by exactly $\kWnc$ · the push $\kFa$ (0 to 800 N, default
    400, force), the friction $\kff$ (0 to 400 N, default 120, force), the
    angle $\theta$ of the ramp (0 to 30$^\circ$, default 25, ink) and the mass
-   $m$ of the crate (10 to 120 kg, default 50, ink) · "the person has done
+   $m$ of the crate (10 to 120 kg, default 50, ink) · "The person has done
    261 J, friction has taken 78 J, and the mechanical energy has changed by
-   $\kWnc$ = +182 J" · none: the four accumulating bars are the picture, and
-   they stand beside the ramp rather than below it, since the ramp scene is
-   short and the width would otherwise go to waste · no. Readout:
+   +182 J." · none: the four accumulating bars are the picture, and they
+   stand beside the ramp rather than below it, since the ramp scene is short
+   and the width would otherwise go to waste. They are drawn on one fixed
+   scale, a tenth of a unit to the joule, taken from the longest bar the
+   sliders allow, 800 N through 4.00 m · 2D. The crate starts at 1.00 m/s
+   and the net force along the ramp decides the rest: while the push beats
+   friction and the pull of gravity it speeds up over the whole 4.00 m, and
+   when it does not it slows and stops where its kinetic energy runs out, so
+   a push of nothing leaves the crate standing where it began instead of
+   climbing at a steady pace. Labels are on: five of them, the speed among
+   them. Readout:
    $\kWnc = \kdKE + \kdPE$ with the numbers. Set the angle to zero and the
    push equal to the friction and the figure gives the third case the text
    names, the lawn mower pushed at a constant speed on level ground, where
@@ -133,13 +150,18 @@ id · replaces · concepts · what moves · sliders · headline · graph or none
    in it, so it loops once per slide and gets the scrubber · the starting
    speed $\kvi$ (2.00 to 10.00 m/s, default 6.00, velocity), the friction
    $\kff$ (200 to 800 N, default 450, force), the angle $\theta$ of the slope
-   (0 to 15$^\circ$, default 0, ink; set it to 5.00 for Figure 7.17) and the
-   mass $m$ of the player (40 to 110 kg, default 65.0, ink) · "he has slid
-   0.92 m of the 2.60 m it takes him to stop, and 414 J of his 1,170 J are
-   gone into friction" · graph below the strip: the kinetic energy, the
-   energy taken by friction and the gravitational potential energy against
-   the distance slid, the first falling to zero where the other two meet it ·
-   no. Readout: $\kd = \frac{\tfrac{1}{2}m{\kvi}^2}{\kff + m\kg\sin\theta}$
+   (0 to 15$^\circ$, default 0, ink, with soft detents at the section's own
+   two slopes, level ground and 5.00$^\circ$) and the mass $m$ of the player
+   (40 to 110 kg, default 65.0, ink) · "He has slid 0.92 m of the 2.60 m it
+   takes him to stop, and 414 J of his 1,170 J have gone into friction." ·
+   graph below the strip: the kinetic energy, the energy taken by friction
+   and the gravitational potential energy against the distance slid on fixed
+   axes of 0 to 4 m by 0 to 2,000 J, the first falling to zero where the
+   other two meet it · 2D. The drawn track carries the same four meters the
+   graph does, so the scene keeps one scale whatever the sliders make of the
+   slide; a longer slide runs off the end of the track and the graph's
+   pinned markers carry the numbers past it. Labels are on: five of them.
+   Readout: $\kd = \frac{\tfrac{1}{2}m{\kvi}^2}{\kff + m\kg\sin\theta}$
    with the numbers; small line comparing the level slide with the slide up
    the slope. Draws velocity, force, position, energy and acceleration.
 5. `sim-cup` · replaces Figure 7.18 (the marble rolled down a ruler into a
@@ -151,14 +173,19 @@ id · replaces · concepts · what moves · sliders · headline · graph or none
    default 10, position), the mass of the marble (2 to 30 g, default 5, ink;
    30 g is the steel ball the investigation asks about) and the coefficient
    of kinetic friction $\mu_{\text{k}}$ of the cup on the table (0.10 to
-   0.60, default 0.30, ink) · "the marble arrived with 2.45 mJ and has pushed
-   the cup 5.2 cm of the 10.4 cm friction allows" · graph below the run,
+   0.60, default 0.30, ink) · "The marble arrived with 2.45 mJ and has
+   pushed the cup 5.2 cm of the 10.4 cm friction allows." · graph below the run,
    not beside it, since the ruler and the table make a horizontal scene:
    the distance the cup moves against the release position, which is the
    plot the investigation asks for and which is a straight line through the
-   origin. A bar beside the scene holds the energy the marble brought and
-   empties as the cup slides, so that the figure states an energy as well as
-   a distance · no. Readout: $\kKE = m\kg\kh = \mu_{\text{k}}\kN\kd$ with
+   origin, on axes fixed from the default run at 0 to 30 cm of ruler by 0 to
+   50 cm of table, since the slider maxima would leave the default run at a
+   fourteenth of the box; a longer run is clipped and pinned. The drawn
+   table carries that same half meter, so the scene does not rescale either.
+   A bar beside the scene holds the energy the marble brought and empties as
+   the cup slides, read against a fixed cap of 44.1 mJ, so that the figure
+   states an energy as well as a distance · 2D. Labels are on: five of them.
+   Readout: $\kKE = m\kg\kh = \mu_{\text{k}}\kN\kd$ with
    the numbers. Draws position, energy, force and acceleration.
 6. `fig-skier` · the unnumbered figure the first problem refers to, copied
    faithfully with the book's numbers, no sliders and nothing moving; eyebrow
@@ -166,9 +193,10 @@ id · replaces · concepts · what moves · sliders · headline · graph or none
    the skier coasting at $\kvi$ toward a $35^\circ$ rise 2.50 m high, with
    $\kKEi$ at the bottom and $\kvf$ at the top · **still**: it answers
    nothing and shows the reader what the problem is about (rule 14) · no
-   sliders · "the skier meets the rise at 12.0 m/s and coasts to the top,
-   2.50 m up a slope of 35$^\circ$" · none · no. Draws velocity, position
-   and energy.
+   sliders · "The skier meets the rise at 12.0 m/s and coasts to the top,
+   2.50 m up a slope of 35$^\circ$." · none · 2D. Labels are on: seven of
+   them on a still drawing, none of which moves or collides. Draws velocity,
+   position and energy.
 
 Every book figure of the section is a sketch, so every one is replaced;
 there is no photograph to keep or drop. Figures 7.16 and 7.17 are one scene

@@ -107,6 +107,10 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    point on it · no. Readout: $\kapar = (m\kg\sin\theta - \kff)/m$ with the
    numbers; small line giving the frictionless value $\kg\sin\theta$, which
    is the same for every mass. Draws force, acceleration, velocity, time.
+   Revised in the figure-audit pass of 2026-09-12: the loop has no length at
+   all when the friction holds her where she is, so the transport has
+   nothing to play through and no dummy four seconds run; the headline is
+   one capitalized sentence.
 3. `sim-incline` · replaces Figure 4.13 (the weight resolved on an incline) ·
    weight-components-on-incline, normal-force · **still**: the figure is the
    geometry of the resolution and answers its sliders alone · the slope angle
@@ -129,6 +133,11 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    no. Readout: $\kTf = \kwgt = m\kg$ with the numbers; small line on the
    rope pulling equally on the hand and on the mass. Draws force,
    acceleration.
+   Revised in the figure-audit pass of 2026-09-12: the gravity slider steps
+   by 0.005 m/s² and carries ticks at the Moon's 1.625 and Earth's 9.80,
+   which the step lands on exactly; the two sit so far apart that a thumb
+   settling on the nearer of them would swallow most of the slider, so
+   nothing is snapped. The headline is one capitalized sentence.
 5. `sim-corners` · replaces Figure 4.15 (the tendon in the finger and the
    bicycle brake cable) · tension, tension-supports-weight · **still**: a
    cable at rest round two frictionless corners; nothing travels · mass of
@@ -138,6 +147,12 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    corners to the hand" · none · no. Readout: $\kTf = m\kg$ with the numbers;
    small line saying that a frictionless corner changes the direction of the
    pull and not its size. Draws force, acceleration.
+   Revised in the figure-audit pass of 2026-09-12: the corner stops at 60°
+   and the load hangs a clear length of cable below the second pulley at
+   every angle, so the pulley never comes down onto the load it carries; a
+   note names the finger tendon and the bicycle brake cable the book draws
+   under this number, which the scene stands for. The headline is one
+   capitalized sentence.
 6. `sim-tightrope` · replaces Figure 4.16 and folds Figure 4.17 (the walker
    on the sagging wire, and the same forces projected onto axes) ·
    tension-from-perpendicular-force, tension · **still**: the walker stands

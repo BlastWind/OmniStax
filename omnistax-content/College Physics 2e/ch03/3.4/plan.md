@@ -152,13 +152,16 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    book's (a) is reproduced by sliding $\kvo$ through 30, 40 and 50 m/s at
    45º and its (b) by sliding $\theta_0$ through 15º, 45º and 75º at 50
    m/s · initial speed $\kvo$ (10 to 60 m/s, default 50, velocity), launch
-   angle $\theta_0$ (5º to 85º, default 45º, ink) · "t = 3.61 s · at 45º a
-   50 m/s launch lands 255 m away, the farthest this speed can reach" ·
+   angle $\theta_0$ (5º to 85º, default 45º, ink) · "At 45º a 50 m/s
+   launch lands 255 m away, which is the farthest this speed can reach." ·
    graph below: $\kR$ against $\theta_0$ for the set speed, the arch of
    $\sin 2\theta_0$ with the current angle and its complement marked at
    the same height · no. Readout: $\kR = \kvo^2 \sin 2\theta_0 / \kg$
    with the numbers; small line naming the complementary angle and its
-   different maximum height. Draws position, velocity, acceleration, time.
+   different maximum height. Within six degrees of 45º the three arcs
+   share almost one highest point, so only the chosen angle is named
+   there and the other two labels are left off (rule 26.7). Draws
+   position, velocity, acceleration, time.
 6. `sim-orbit` · replaces Figure 3.39 (the tower and the satellite) ·
    range · **moves**: a projectile leaves a tall tower horizontally and
    falls around the Earth under gravity that always points at the centre,

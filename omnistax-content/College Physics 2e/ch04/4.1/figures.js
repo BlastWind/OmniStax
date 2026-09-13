@@ -45,9 +45,13 @@ function hook(ctx, x, y, color) {
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the two pushes' });
   const U = 2.5;                                  /* logical units per newton */
   const sub1 = 'F₁', sub2 = 'F₂';
-  /* a label set just beyond the head of an arrow that points along the angle a */
-  const beyond = (ctx, s, x, y, a, color, size, off) =>
-    text(ctx, s, x + (off || 32) * Math.cos(a), y - (off || 32) * Math.sin(a), color, { weight: 600, size: size || 24, align: 'center', bg: PAL.panel });
+  /* a label set just beyond the head of an arrow that points along the angle a, and
+     clamped so that the longest arrow the sliders allow still leaves its label on the canvas */
+  const beyond = (ctx, s, x, y, a, color, size, off) => {
+    const sz = size || 24, half = 0.3 * sz * s.length + 12;
+    const cx = Math.min(1400 - half, Math.max(half, x + (off || 32) * Math.cos(a)));
+    text(ctx, s, cx, y - (off || 32) * Math.sin(a), color, { weight: 600, size: sz, align: 'center', bg: PAL.panel });
+  };
   function draw() {
     const { ctx } = begin(d.c);
     const th = TH.v * RAD, fx = F1.v + F2.v * Math.cos(th), fy = F2.v * Math.sin(th);
@@ -69,7 +73,7 @@ function hook(ctx, x, y, color) {
     line(ctx, h1x, h1y, tx, ty, alpha(C('force'), 0.45), 4, [10, 10]);
     line(ctx, px, py, tx, ty, alpha(C('force'), 0.3), 10);
     arrow(ctx, px, py, tx, ty, C('force'), 5);
-    beyond(ctx, 'total force F', tx, ty, ang, C('force'), 22, 44);
+    beyond(ctx, 'total force F_tot', tx, ty, ang, C('force'), 22, 44);
     arrow(ctx, px, py, h1x, h1y, C('force'), 5);
     beyond(ctx, sub1, h1x, h1y, 0, C('force'));
     arrow(ctx, px, py, px + F2.v * U * Math.cos(th), py - F2.v * U * Math.sin(th), C('force'), 5);
@@ -87,7 +91,7 @@ function hook(ctx, x, y, color) {
     line(ctx, ex2, ey2, etx, ety, PAL.rule, 2, [8, 8]);
     line(ctx, bx, by, etx, ety, alpha(C('force'), 0.3), 10);
     arrow(ctx, bx, by, etx, ety, C('force'), 5);
-    beyond(ctx, fmt(tot, 1) + ' N', etx, ety, ang, C('force'), 22, 40);
+    beyond(ctx, 'F_tot = ' + fmt(tot, 1) + ' N', etx, ety, ang, C('force'), 22, 40);
     arrow(ctx, bx, by, ex1, ey1, C('force'), 5);
     beyond(ctx, sub1, ex1, ey1, 0, C('force'));
     arrow(ctx, bx, by, ex2, ey2, C('force'), 5);
@@ -96,7 +100,7 @@ function hook(ctx, x, y, color) {
     line(ctx, bx, by + 14, bx, by + 32, PAL.muted, 2);
     text(ctx, 'the body, as a single point', bx, by + 46, PAL.muted, { size: 17, align: 'center' });
 
-    headline(ctx, 'a push of ' + fmt(F1.v, 0) + ' N and a push of ' + fmt(F2.v, 0) + ' N, ' + fmt(TH.v, 0)
+    headline(ctx, 'A push of ' + fmt(F1.v, 0) + ' N and a push of ' + fmt(F2.v, 0) + ' N, ' + fmt(TH.v, 0)
       + '° apart, add to a total force of ' + fmt(tot, 1) + ' N at ' + fmt(ang / RAD, 1) + '° from the first push');
     readout(d.readout, `\\kFtot = \\sqrt{\\kFx^2 + \\kFy^2} = \\sqrt{(${fmt(fx, 1)}\\ \\text{N})^2 + (${fmt(fy, 1)}\\ \\text{N})^2} = ${fmt(tot, 1)}\\ \\text{N}`,
       'The two pushes are laid head to tail, so the total force runs from the tail of the first arrow to the head of the second. At the right angle the book draws, the components are the two pushes themselves and the total force is the square root of F₁² + F₂².');
@@ -139,7 +143,7 @@ function hook(ctx, x, y, color) {
     if (DX.v > 0.0001) {
       const al = 40 + 1600 * DX.v;
       arrow(ctx, pulled, 326, pulled - al, 326, C('force'), 5);
-      text(ctx, 'restoring force F', pulled - al - 14, 326, C('force'), { weight: 600, size: 20, align: 'right' });
+      text(ctx, 'restoring force F_restore', pulled - al - 14, 326, C('force'), { weight: 600, size: 20, align: 'right' });
       hbracket(ctx, rest, pulled, 430, C('position'), 'Δx = ' + fmt(DX.v * 100, 1) + ' cm');
     } else text(ctx, 'the spring is relaxed, so it pulls on nothing', pulled + 60, 430, PAL.muted, { size: 17 });
 
@@ -158,10 +162,10 @@ function hook(ctx, x, y, color) {
     text(ctx, 'the pull on the hook', 1266, fy + 72, PAL.muted, { size: 17, align: 'center' });
 
     headline(ctx, DX.v < 0.0001
-      ? 'the spring sits at its relaxed length of ' + fmt(X.v * 100, 0) + ' cm, so it exerts no restoring force and the scale reads nothing'
-      : 'the spring is stretched ' + fmt(DX.v * 100, 1) + ' cm past its relaxed length of ' + fmt(X.v * 100, 0) + ' cm, and the scale reads ' + fmt(r, 1) + ' units of the standard force');
-    readout(d.readout, `\\kFres = \\frac{\\kdx}{\\Delta x_{\\text{std}}}\\,F_{\\text{std}} = \\frac{${fmt(DX.v * 100, 1)}\\ \\text{cm}}{1.0\\ \\text{cm}}\\,F_{\\text{std}} = ${fmt(r, 1)}\\,F_{\\text{std}}`,
-      'The standard here is the restoring force of this spring stretched one centimeter, and the face of the scale in part (c) is marked off in those units, so a reading of six means the pull on the hook is six times the standard force.');
+      ? 'The spring sits at its relaxed length of ' + fmt(X.v * 100, 0) + ' cm, so it exerts no restoring force and the scale reads nothing'
+      : 'The spring is stretched ' + fmt(DX.v * 100, 1) + ' cm past its relaxed length of ' + fmt(X.v * 100, 0) + ' cm, and the scale reads ' + fmt(r, 1) + ' units of the standard force');
+    readout(d.readout, `\\kFres = \\frac{\\kdx}{\\htmlClass{kv-position}{\\Delta x_{\\text{std}}}}\\,\\htmlClass{kv-force}{F_{\\text{std}}} = \\frac{${fmt(DX.v * 100, 1)}\\ \\text{cm}}{1.0\\ \\text{cm}}\\,\\htmlClass{kv-force}{F_{\\text{std}}} = ${fmt(r, 1)}\\,\\htmlClass{kv-force}{F_{\\text{std}}}`,
+      'The standard here is the restoring force of this spring stretched one centimeter, and the face of the scale in part (c) is marked off in those units, so a reading of six means the pull on the hook is six times the standard force. The relaxed length changes where the spring ends and nothing else: the standard is fixed by the stretch past that length, so the same Δx always gives the same reading.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -85,6 +85,11 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    force, so the reader sees that only one force of the pair is on the diagram.
    Readout: $\ka = \kFnet/m$ with the numbers. Draws force, acceleration,
    velocity, time.
+   Revised in the figure-audit pass of 2026-09-12: the pool is ruled 0 to 5
+   m from the wall at a fixed scale with a meter scale along it, so a harder
+   push really does carry her farther; the push slider is labeled Δt, since
+   it is the length of the push and not the clock, and the headline is one
+   capitalized sentence.
 2. `sim-cart` · replaces Figure 4.10 (the professor, the cart and the two
    systems) · internal-forces-cancel, action-reaction-pairs · **moves**: the
    professor pushes the cart across the lecture room from rest, and the loop
@@ -106,6 +111,13 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    and reads $\ka = 1.50\ \text{m/s}^2$ and $\kFprof = 53\ \text{N}$. Readout:
    $\kFnet = \kFfloor - \kff$ and $\ka = \kFnet/m$ with the numbers; the small
    line gives $\kFprof = \kFnet + \kff$ for System 2. Draws force, acceleration.
+   Revised in the figure-audit pass of 2026-09-12: labels off by default.
+   The seven force labels ride a scene that crosses the room and two of them
+   share an origin at her hand, so they sit behind an F.choice labeled
+   Labels, off on load, and every arrow gives its name under the pointer
+   through F.hover; the two system boundaries are frame labels and stay, and
+   the free-body diagrams below carry every value. The headline is one
+   capitalized sentence.
 3. `sim-rocket` · **Sim**, replaces nothing in the book · thrust,
    newtons-third-law · **moves**: a rocket drifts in empty space, far from any
    ground and any air, and throws its exhaust gas backward; the force the rocket
@@ -145,6 +157,11 @@ Extra simulations (rule 15), considered and left:
 
 One built (`sim-rocket`), and it is built as a required figure for the `thrust`
 node rather than as an extra.
+   Revised in the figure-audit pass of 2026-09-12: the distance from the
+   point of release is ruled 0 to 80 m at a fixed scale with a meter scale
+   under it, the exhaust plume is drawn in ink rather than in the force hue,
+   since it is a body and not a force, and the headline is one capitalized
+   sentence.
 
 ## Exercises
 

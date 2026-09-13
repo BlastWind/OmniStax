@@ -63,8 +63,11 @@ function leanForces(ctx, o) {
 /* The torque range is fixed by the caller from the sliders' own limits, never from the curve as
    it stands, so the axis never rescales under a slider; the curve is clipped where it leaves the
    box and the current lean is drawn through pinned(). */
-function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel, lo, hi, ny, dec) {
+function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel, lo, hi, ny, dec, key) {
   const { X, Y } = axes(ctx, box, [0, thMax], [lo, hi], { xl: 'lean θ (°)', yl: yLabel, yc: C('torque'), nx: 5, ny, fy: (v) => fmt(v, dec) });
+  /* The readout prints the size of the torque and the axis prints its sign, so the axis says
+     which sign means which turn (rule 26.5). */
+  if (key) text(ctx, key, box.l, box.b + 58, PAL.muted, { size: 17 });
   curve(ctx, (t) => Math.min(Math.max(f(t), lo), hi), 0, thMax, X, Y, C('torque'), 5, 140);
   if (crit > 0.05 && crit < thMax) {
     line(ctx, X(crit), box.t, X(crit), box.b, PAL.muted, 2, [10, 10]);
@@ -103,7 +106,7 @@ function pencilLying(ctx, x, y, L, W, color) {
   ctx.restore();
 }
 /* A person standing, the middle of the base on the ground at the origin.
-   Lengths arrive in centimetres and SC scales them; the hip drops and the
+   Lengths arrive in centimeters and SC scales them; the hip drops and the
    knees bend outward as the center of gravity is lowered. */
 function person(ctx, d, h, SC, color) {
   const hip = Math.min(93, h * 0.95), sh = hip + 52, hd = sh + 16, bend = (93 - hip) * SC * 0.5;
@@ -164,10 +167,11 @@ function chicken(ctx, d, h, SC, color) {
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' mm', side: -1, arcR: 200, arc: !g.up });
     /* the sliders reach τ = 0.060 × 90 sin 25º = 2.17 mN·m one way and 0.060 × 40 = 2.4 mN·m the
        other, so the torque axis is fixed at −3 to 3 mN·m, ticked every 1, and never rescales */
-    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 25, (t) => W * (H * Math.sin(t * RAD) - A.v * Math.cos(t * RAD)), TH.v, g.crit, 'τ (mN·m)', -3, 3, 6, 1);
-    headline(ctx, g.up ? 'standing upright, the weight acts over the middle of the base, so the torque about any point is zero'
-      : topple ? 'leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(g.rp, 1) + ' mm outside the pivot and its torque carries the pencil over'
-        : 'leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(-g.rp, 1) + ' mm inside the pivot and its torque brings the pencil back upright');
+    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 25, (t) => W * (H * Math.sin(t * RAD) - A.v * Math.cos(t * RAD)), TH.v, g.crit, 'τ (mN·m)', -3, 3, 6, 1,
+      'τ > 0 carries the pencil over, τ < 0 brings it back');
+    headline(ctx, g.up ? 'Standing upright, the weight acts over the middle of the base, so the torque about any point is zero.'
+      : topple ? 'Leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(g.rp, 1) + ' mm outside the pivot and its torque carries the pencil over.'
+        : 'Leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(-g.rp, 1) + ' mm inside the pivot and its torque brings the pencil back upright.');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp), 1)}\\ \\text{mm})(${fmt(W, 3)}\\ \\text{N}) = ${fmt(tau, 2)}\\ \\text{mN·m}`,
       'The turn reverses at the lean that puts the weight straight over the edge of the base, which is ' + fmt(g.crit, 1) + '° for a flat end ' + fmt(2 * A.v, 0) + ' mm across and a center of gravity ' + fmt(H, 0) + ' mm up.');
   }
@@ -194,9 +198,10 @@ function chicken(ctx, d, h, SC, color) {
     leanForces(ctx, { px: BX, cgx, cgy, gy: GY, rpU: g.cx * SC, topple: true, rLabel: 'r⊥ = ' + fmt(g.rp, 1) + ' mm', side: -1, arcR: 200, arc: !g.up, nSide: -1 });
     /* the longest pencil the slider allows gives 0.060 × (200/180) × 100 mm × sin 20º = 2.28 mN·m,
        so the torque axis is fixed at 0 to 2.5 mN·m, ticked every 0.5, and never rescales */
-    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 20, (t) => W * h * Math.sin(t * RAD), TH.v, 0, 'τ (mN·m)', 0, 2.5, 5, 1);
-    headline(ctx, g.up ? 'balanced exactly upright, the weight and the normal force lie along one line and both conditions hold'
-      : 'leaned ' + fmt(TH.v, 1) + '°, the weight already acts ' + fmt(g.rp, 1) + ' mm outside the point and its torque leans the pencil further');
+    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 20, (t) => W * h * Math.sin(t * RAD), TH.v, 0, 'τ (mN·m)', 0, 2.5, 5, 1,
+      'every τ here is positive, and each one leans the pencil further');
+    headline(ctx, g.up ? 'Balanced exactly upright, the weight and the normal force lie along one line and both conditions hold.'
+      : 'Leaned ' + fmt(TH.v, 1) + '°, the weight already acts ' + fmt(g.rp, 1) + ' mm outside the point and its torque leans the pencil further.');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(g.rp, 1)}\\ \\text{mm})(${fmt(W, 3)}\\ \\text{N}) = ${fmt(tau, 2)}\\ \\text{mN·m}`,
       'The point gives the pencil no base to speak of, so nothing is subtracted from the lever arm: the torque is zero at one lean only, and every displacement from it leads away.');
   }
@@ -212,8 +217,10 @@ function chicken(ctx, d, h, SC, color) {
 (function () {
   const d = sim('sim-neutral', 510);
   const X = ctl(d.controls, { label: 'x', cls: '', min: -18, max: 18, step: 1, value: 12, unit: 'cm', dec: 0, aria: 'displacement along the surface' });
-  const R = ctl(d.controls, { label: 'r', cls: '', min: 2, max: 8, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'radius of the sphere' });
-  const SC = 11, GY = 350, AX = 370, BX = 1050;
+  /* The radius of the sphere was a slider once and is now fixed at 5 cm: changing it
+     moved nothing the figure is about, since the center of gravity of a sphere of any
+     size sits straight above the point of support (rule 24.6). */
+  const RAD_CM = 5, SC = 11, GY = 350, AX = 370, BX = 1050;
   function support(ctx, cx, cy, lx, ly) {
     line(ctx, cx, cy - 46, cx, GY + 64, PAL.muted, 2, [4, 8]);
     arrow(ctx, cx + 18, cy, cx + 18, cy + 112, C('force'), 5);
@@ -227,7 +234,7 @@ function chicken(ctx, d, h, SC, color) {
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const dx = X.v * SC, r = R.v * SC, roll = X.v / R.v;
+    const dx = X.v * SC, r = RAD_CM * SC, roll = X.v / RAD_CM;
     fixed(ctx, 60, GY, 620, 26); fixed(ctx, 730, GY, 630, 26);
     const sx = AX + dx;
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
@@ -239,8 +246,8 @@ function chicken(ctx, d, h, SC, color) {
     pencilLying(ctx, BX + dx - pl / 2, GY, pl, pw, PAL.ink);
     support(ctx, BX + dx, GY - pw / 2, 16, -30);
     text(ctx, '(b) a round pencil lying on its side', BX, 118, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    headline(ctx, X.v === 0 ? 'each body rests with its center of gravity straight above the point of support, so the torque about that point is zero'
-      : 'moved ' + fmt(Math.abs(X.v), 0) + ' cm along the surface, each body still has its center of gravity straight above the point of support');
+    headline(ctx, X.v === 0 ? 'Each body rests with its center of gravity straight above the point of support, so the torque about that point is zero.'
+      : 'Moved ' + fmt(Math.abs(X.v), 0) + ' cm along the surface, each body still has its center of gravity straight above the point of support.');
     readout(d.readout, '\\ktau = \\krperp\\kwgt = (0)\\,\\kwgt = 0',
       'The point of support travels with the body, so the lever arm of the weight about it is zero in every position. The equilibrium does not depend on where the body is put, and a body that is displaced simply stays where it is left.');
   }
@@ -254,10 +261,11 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-marble', 540);
-  const S = ctl(d.controls, { label: '\\text{shape}', cls: '', min: -1, max: 1, step: 0.05, value: 1, unit: '', dec: 2, aria: 'shape of the surface, a hill at minus one and a bowl at plus one' });
+  const S = ctl(d.controls, { label: '\\text{shape}', cls: '', min: -1, max: 1, step: 0.05, value: 1, unit: '', dec: 2, aria: 'shape of the surface, a hill at minus one and a bowl at plus one',
+    detents: [{ v: -1, label: 'a hill' }, { v: 0, label: 'flat' }, { v: 1, label: 'a bowl' }], snap: true });
   const X = ctl(d.controls, { label: 'x', cls: '', min: -40, max: 40, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'displacement of the ball' });
   const SC = 11, CX = 700, CY = 330, W = 1.96, RB = 30, FSC = 70;   /* a 0.200 kg ball; 70 units of arrow per newton */
-  const yOf = (s, x) => (s * x * x) / 160;                          /* centimetres above the level place */
+  const yOf = (s, x) => (s * x * x) / 160;                          /* centimeters above the level place */
   const px = (x) => CX + x * SC, py = (y) => CY - y * SC;
   function draw() {
     const { ctx } = begin(d.c);
@@ -278,6 +286,16 @@ function chicken(ctx, d, h, SC, color) {
     const nl = W * FSC * Math.cos(phi);
     arrow(ctx, bx, by, bx - nl * Math.sin(phi), by - nl * Math.cos(phi), C('force'), 5);
     text(ctx, 'N', bx - nl * Math.sin(phi) - 16, by - nl * Math.cos(phi) - 12, C('force'), { weight: 600, size: 24, align: 'right' });
+    /* the angle the readout takes the sine of, marked where the ball touches the surface */
+    const tx = px(x), ty = py(yOf(s, x));
+    if (Math.abs(phi) > 0.02) {
+      line(ctx, tx, ty, tx + 104, ty, PAL.rule, 2, [6, 8]);
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.arc(tx, ty, 64, 0, -phi, phi > 0); ctx.stroke(); ctx.restore();
+      text(ctx, 'θ = ' + fmt(Math.abs(phi) / RAD, 1) + '°', tx + 104 * Math.cos(-phi / 2), ty + 104 * Math.sin(-phi / 2), PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    } else {
+      text(ctx, 'θ = 0°', tx + 46, ty + 30, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    }
     const len = Math.abs(along) * FSC, dir = along > 0 ? 1 : -1;
     if (len > 14) {
       arrow(ctx, bx, by, bx + dir * len * Math.cos(phi), by - dir * len * Math.sin(phi), C('force'), 5);
@@ -285,9 +303,9 @@ function chicken(ctx, d, h, SC, color) {
         C('force'), { weight: 600, size: 20, align: dir > 0 ? 'left' : 'right' });
     }
     const kind = s > 0.03 ? 'stable' : s < -0.03 ? 'unstable' : 'neutral';
-    headline(ctx, kind === 'neutral' ? 'the surface is flat, so there is no force along it wherever the ball is put and the equilibrium is neutral'
-      : kind === 'stable' ? 'the force along the surface, ' + fmt(Math.abs(along), 2) + ' N, points back toward the bottom, so the equilibrium is stable'
-        : 'the force along the surface, ' + fmt(Math.abs(along), 2) + ' N, points away from the crest, so the equilibrium is unstable');
+    headline(ctx, kind === 'neutral' ? 'The surface is flat, so there is no force along it wherever the ball is put and the equilibrium is neutral.'
+      : kind === 'stable' ? 'The force along the surface, ' + fmt(Math.abs(along), 2) + ' N, points back toward the bottom, so the equilibrium is stable.'
+        : 'The force along the surface, ' + fmt(Math.abs(along), 2) + ' N, points away from the crest, so the equilibrium is unstable.');
     readout(d.readout, `\\kF_{\\parallel} = \\kwgt\\sin\\theta = (${fmt(W, 2)}\\ \\text{N})\\sin(${fmt(Math.abs(phi) / RAD, 1)}^\\circ) = ${fmt(Math.abs(along), 2)}\\ \\text{N}`,
       kind === 'neutral' ? 'A flat surface leaves the weight and the normal force in one line at every position, so the ball has no reason to go anywhere and stays where it is left.'
         : kind === 'stable' ? 'The force grows with the displacement and always points back toward the lowest place, which is what a restoring force is: displace the ball further and it is pushed back harder.'
@@ -319,10 +337,11 @@ function chicken(ctx, d, h, SC, color) {
     hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, PAL.ink, 'base of support, ' + fmt(D.v, 0) + ' cm');
     /* the sliders reach 7.00 × (110 sin 30º − 5 cos 30º) = 355 N·m one way and 7.00 × 45 = 315 N·m
        the other, so the torque axis is fixed at −400 to 400 N·m, ticked every 100, and never moves */
-    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 460 }, 30, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -400, 400, 8, 0);
-    headline(ctx, g.up ? 'standing straight, the weight acts through the middle of the base of support and neither foot carries more than the other'
-      : topple ? 'leaned ' + fmt(TH.v, 1) + '°, the weight falls outside the base of support and the person goes over'
-        : 'leaned ' + fmt(TH.v, 1) + '°, the weight still falls ' + fmt(-g.rp, 1) + ' cm inside the edge of the base, so the torque brings the person back');
+    tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 460 }, 30, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -400, 400, 8, 0,
+      'τ > 0 takes the person over, τ < 0 brings them back');
+    headline(ctx, g.up ? 'Standing straight, the weight acts through the middle of the base of support and neither foot carries more than the other.'
+      : topple ? 'Leaned ' + fmt(TH.v, 1) + '°, the weight falls outside the base of support and the person goes over.'
+        : 'Leaned ' + fmt(TH.v, 1) + '°, the weight still falls ' + fmt(-g.rp, 1) + ' cm inside the edge of the base, so the torque brings the person back.');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp) / 100, 3)}\\ \\text{m})(${fmt(W, 0)}\\ \\text{N}) = ${fmt(Math.abs(tau), 1)}\\ \\text{N·m}`,
       'The weight leaves the base of support at a lean of ' + fmt(g.crit, 1) + '°. Spreading the feet widens the base and bending the knees lowers the center of gravity, and each of them raises that lean.');
   }
@@ -351,13 +370,14 @@ function chicken(ctx, d, h, SC, color) {
     const box = { l: 820, r: 1340, t: 130, b: 460 };
     /* with feet 18 cm apart the sliders reach 0.245 × (28 − 9) sin 45º = 3.29 N·m one way and
        0.245 × 9 = 2.21 N·m the other, so the torque axis is fixed at −4 to 4 N·m, ticked every 1 */
-    tauGraph(ctx, box, 45, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -4, 4, 8, 1);
+    tauGraph(ctx, box, 45, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -4, 4, 8, 1,
+      'τ > 0 takes the chicken over, τ < 0 brings it back');
     const xp = box.l + ((box.r - box.l) * 7.1) / 45;
     line(ctx, xp, box.t, xp, box.b, PAL.rule, 2, [6, 8]);
-    text(ctx, 'a person is over by here', xp + 10, box.b - 54, PAL.muted, { size: 17 });
-    headline(ctx, g.up ? 'standing straight, the chicken has its weight through the middle of a base of support two broad feet wide'
-      : topple ? 'leaned ' + fmt(TH.v, 1) + '°, the chicken has its weight outside the base of support at last and goes over'
-        : 'leaned ' + fmt(TH.v, 1) + '°, the chicken still has its weight ' + fmt(-g.rp, 1) + ' cm inside the edge of its base, so the torque returns it');
+    text(ctx, 'A person is over by here.', xp + 10, box.b - 54, PAL.muted, { size: 17 });
+    headline(ctx, g.up ? 'Standing straight, the chicken has its weight through the middle of a base of support two broad feet wide.'
+      : topple ? 'Leaned ' + fmt(TH.v, 1) + '°, the chicken has its weight outside the base of support at last and goes over.'
+        : 'Leaned ' + fmt(TH.v, 1) + '°, the chicken still has its weight ' + fmt(-g.rp, 1) + ' cm inside the edge of its base, so the torque returns it.');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp) / 100, 3)}\\ \\text{m})(${fmt(W, 1)}\\ \\text{N}) = ${fmt(Math.abs(tau), 2)}\\ \\text{N·m}`,
       'With its center of gravity ' + fmt(HG.v, 0) + ' cm up and its feet ' + fmt(D, 0) + ' cm apart, the chicken can lean ' + fmt(g.crit, 1) + '° before its weight leaves the base of support, where an adult standing with the feet close together is over at about seven degrees.');
   }

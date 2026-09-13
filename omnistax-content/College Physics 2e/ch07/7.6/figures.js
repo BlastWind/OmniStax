@@ -1,11 +1,18 @@
 /* Figures for section 7.6 Conservation of Energy. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['7.6'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, hbracket, axes, runner, FONT } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, vbracket, hbracket, axes, runner, FONT } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
 /* ---------- small helpers shared by the figures ---------- */
+/* A row of one of the chapter's tables is a named state, not a quantity, so it is picked from a
+   list by its name rather than reached by sliding an index (rule 26.1). The figure still reads
+   the index it always read. */
+function pickRow(host, o) {
+  const c = F.select(host, { label: o.label, aria: o.aria, options: o.names.map((n, i) => ({ value: String(i), label: n })), value: String(o.value ?? 0), onInput: () => o.onInput?.() });
+  return { get v() { return +c.value; }, set(x) { c.set(String(x)); } };
+}
 const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
 const sup = (n) => String(n).split('').map((ch) => SUP[ch] ?? ch).join('');
 const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -108,9 +115,9 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     /* where the clock stands */
     line(ctx, X(Math.min(tau, TR)), box.t, X(Math.min(tau, TR)), box.b, C('time'), 3, [4, 8]);
     F.pinned(ctx, box, X, Y, tau, tot, C('energy'), fmt(tot, 1) + ' kJ');
-    headline(ctx, done
-      ? 'she has climbed the whole ' + fmt(H.v, 1) + ' m on ' + fmt(s.foodAll * kJ, 1) + ' kJ of food energy, ' + fmt(s.peAll * kJ, 1) + ' kJ of it now height'
-      : 't = ' + fmt(tau, 1) + ' s · she has climbed ' + fmt(s.y, 1) + ' m of the ' + fmt(H.v, 1) + ' m and spent ' + fmt(s.spent * kJ, 1) + ' kJ of the ' + fmt(s.foodAll * kJ, 1) + ' kJ');
+    topline(ctx, done
+      ? 'She has climbed the whole ' + fmt(H.v, 1) + ' m on ' + fmt(s.foodAll * kJ, 1) + ' kJ of food energy, ' + fmt(s.peAll * kJ, 1) + ' kJ of it now height.'
+      : 'At ' + fmt(tau, 1) + ' s she has climbed ' + fmt(s.y, 1) + ' m of the ' + fmt(H.v, 1) + ' m and spent ' + fmt(s.spent * kJ, 1) + ' kJ of the ' + fmt(s.foodAll * kJ, 1) + ' kJ.');
     readout(d.readout, `\\kKEi + \\kPEi + \\kWnc + \\kOEi = ${Jtex(s.ke)} + 0 + 0 + ${Jtex(s.foodAll)} = ${Jtex(s.total)}\\ \\text{J}`,
       'At this moment the other side of the equation reads ' + J(s.ke) + ' + ' + J(s.pe) + ' + ' + J(s.chem + s.th) + ' = ' + J(s.total)
       + ' J, the same total. No outside nonconservative force does work on the climber and the Earth together, so the work done by nonconservative forces is zero, her kinetic energy is the same at the end as at the start, and every joule that has left her food has gone into height or into heat.');
@@ -153,8 +160,8 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     ['a single electron in a TV tube beam', 4.0, -15, '4.0 × 10⁻¹⁵'],
     ['breaking one DNA strand', 1, -19, '10⁻¹⁹'],
   ];
-  const A = ctl(d.controls, { label: '\\text{row}', cls: '', min: 0, max: ROW.length - 1, step: 1, value: 11, unit: '', dec: 0, aria: 'the row of Table 7.1 to mark' });
-  const B = ctl(d.controls, { label: '\\text{compared with row}', cls: '', min: 0, max: ROW.length - 1, step: 1, value: 14, unit: '', dec: 0, aria: 'the row of Table 7.1 to compare it with' });
+  const A = pickRow(d.controls, { label: '\\text{this}', aria: 'the row of Table 7.1 to mark', names: ROW.map((r) => r[0]), value: 11 });
+  const B = pickRow(d.controls, { label: '\\text{compared with}', aria: 'the row of Table 7.1 to compare it with', names: ROW.map((r) => r[0]), value: 14 });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const LO = -20, HI = 70, L = 100, R = 1330;
   const pos = (r) => r[2] + Math.log10(r[1]);
@@ -197,11 +204,12 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     /* the distance between them, which is the ratio */
     const same = Math.abs(va - vb) < 1e-12 * Math.max(va, vb);
     if (!same) hbracket(ctx, Math.min(xa, xb), Math.max(xa, xb), 320, C('energy'), '× ' + ratio(Math.max(va, vb) / Math.min(va, vb)));
-    headline(ctx, same
-      ? a[0] + ' and ' + b[0] + ' carry the same energy, ' + a[3] + ' J'
+    const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+    topline(ctx, same
+      ? cap(a[0]) + ' and ' + b[0] + ' carry the same energy, ' + a[3] + ' J.'
       : va >= vb
-        ? a[0] + ' carries ' + a[3] + ' J, which is ' + ratio(va / vb) + ' times the energy of ' + b[0]
-        : a[0] + ' carries ' + a[3] + ' J, which is ' + ratio(vb / va) + ' times less than ' + b[0]);
+        ? cap(a[0]) + ' carries ' + a[3] + ' J, which is ' + ratio(va / vb) + ' times the energy of ' + b[0] + '.'
+        : cap(a[0]) + ' carries ' + a[3] + ' J, which is ' + ratio(vb / va) + ' times less than ' + b[0] + '.');
     readout(d.readout, same ? `${tx(a)} = ${tx(b)}`
       : `\\frac{${tx(va >= vb ? a : b)}}{${tx(va >= vb ? b : a)}} = ${ratioTex(Math.max(va, vb) / Math.min(va, vb))}`,
       'The table runs from the 10⁻¹⁹ J that breaks one strand of DNA to the 10⁶⁸ J of the Big Bang, eighty-seven powers of ten apart. In a column of figures a factor of a thousand looks much like a factor of ten; on the ladder the distance between two marks is the ratio between them.');
@@ -231,8 +239,8 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     ['a residential gas heater', 90], ['a solar cell', 10],
   ];
   const EIN = ctl(d.controls, { label: '\\kEin', cls: 'energy', min: 1, max: 100, step: 1, value: 10, unit: 'MJ', dec: 1, aria: 'the energy put in' });
-  const D1 = ctl(d.controls, { label: '\\text{device}', cls: '', min: 0, max: DEV.length - 1, step: 1, value: 9, unit: '', dec: 0, aria: 'the device of Table 7.2 the energy passes through' });
-  const D2 = ctl(d.controls, { label: '\\text{then through}', cls: '', min: 0, max: DEV.length, step: 1, value: 0, unit: '', dec: 0, aria: 'a second device of Table 7.2, or none' });
+  const D1 = pickRow(d.controls, { label: '\\text{device}', aria: 'the device of Table 7.2 the energy passes through', names: DEV.map((r) => r[0] + ', ' + r[1] + '%'), value: 9 });
+  const D2 = pickRow(d.controls, { label: '\\text{then through}', aria: 'a second device of Table 7.2, or none', names: ['nothing further'].concat(DEV.map((r) => r[0] + ', ' + r[1] + '%')), value: 0 });
   /* a still picture: it registers no cycle, so it gets no transport */
   const L = 120, W = 1160, TH = 56;
   /* one stage: the useful part of the bar, the rest of it, and what each is called */
@@ -267,9 +275,10 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
       text(ctx, 'Set a second device and the useful energy is sent on through that one as well,', L + W / 2, 420, PAL.muted, { size: 20, align: 'center' });
       text(ctx, 'as the electricity from a solar cell is sent on to an electric motor.', L + W / 2, 450, PAL.muted, { size: 20, align: 'center' });
     }
-    headline(ctx, two
-      ? DEV[D1.v][0] + ' turns ' + MJ(ein) + ' into ' + MJ(out1) + ', and ' + DEV[D2.v - 1][0] + ' turns that into ' + MJ(out2) + ', so ' + fmt(e1 * e2 * 100, 1) + '% of what went in is left'
-      : DEV[D1.v][0] + ' turns ' + MJ(ein) + ' into ' + MJ(out1) + ' of useful energy, and the other ' + MJ(ein - out1) + ' leaves as thermal energy');
+    const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+    topline(ctx, two
+      ? cap(DEV[D1.v][0]) + ' turns ' + MJ(ein) + ' into ' + MJ(out1) + ', and ' + DEV[D2.v - 1][0] + ' turns that into ' + MJ(out2) + ', so ' + fmt(e1 * e2 * 100, 1) + ' percent of what went in is left.'
+      : cap(DEV[D1.v][0]) + ' turns ' + MJ(ein) + ' into ' + MJ(out1) + ' of useful energy, and the other ' + MJ(ein - out1) + ' leaves as thermal energy.');
     readout(d.readout, `\\text{Eff} = \\frac{\\kWout}{\\kEin} = \\frac{${mj(two ? out2 : out1)}\\ \\text{MJ}}{${mj(ein)}\\ \\text{MJ}} = ${fmt(e1 * e2, 3)}`,
       two ? 'The efficiency of the pair is the product of the two, ' + fmt(e1, 2) + ' × ' + fmt(e2, 2) + ' = ' + fmt(e1 * e2, 3) + ', because the second device works only on what the first one passed to it.'
         : 'The ' + MJ(ein - out1) + ' that does not come out as useful energy has not been destroyed. It leaves as thermal energy, and the total is the same as it was before the conversion.');
@@ -324,7 +333,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
       if (ab - at > 14) arrow(ctx, x, at, x, ab, PAL.ink, 4);
       text(ctx, label, x, ly, PAL.ink, { size: 17, align: i === 0 ? 'left' : i === STOP.length - 1 ? 'right' : 'center', bg: PAL.panel });
     });
-    headline(ctx, 'the car accelerates down the first hill, runs out of gasoline, coasts over the crest and down again, and brakes to a stop');
+    topline(ctx, 'The car accelerates down the first hill, runs out of gasoline, coasts over the crest and down again, and brakes to a stop.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

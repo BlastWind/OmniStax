@@ -86,11 +86,17 @@ id · replaces · concepts · what moves or still · sliders · headline · grap
    force $\kF$ is drawn on the way up and the energy bar beside the clock
    fills as the weight rises and empties as it falls · mass $m$ (0.1 to
    2.0 kg, default 0.500, ink), height $\kh$ (0.2 to 2.0 m, default 1.00,
-   position) · "the weight is 0.62 m up: 3.04 J of the 4.90 J is stored,
-   and the rest is still to be wound in" · the scene is vertical, so the
-   graph stands beside it: $\kPEg$ against the height of the weight, a
-   straight line of slope $m\kg$ with the weight's present height marked ·
-   no. Readout: $\kdPEg = m\kg\kh$ with the book's numbers. Draws energy,
+   position) · "The clock is being wound, and the weight is 0.62 m up, so
+   3.04 J of the 4.90 J is stored." · the scene is vertical, so the graph
+   stands beside it: $\kPEg$ against the height of the weight on fixed axes
+   of 0 to 2.0 m by 0 to 6 J, a straight line of slope $m\kg$ with the
+   weight's present height marked and a heavier weight pinned at the top
+   edge · 2D. The bar beside the clock is read against a fixed cap of 39.2 J,
+   the most the two sliders can store, with a dashed rule across it for what
+   this winding will reach, so raising the mass lengthens the bar instead of
+   raising the scale it is drawn against. Labels are on: five of them, and
+   the mass label is held clear of the floor as the weight comes down.
+   Readout: $\kdPEg = m\kg\kh$ with the section's numbers. Draws energy,
    position, force, acceleration.
 2. `sim-ladder` · replaces nothing, so a **Sim** · pe-reference-level ·
    **still**: nothing travels; the figure answers its sliders and redraws,
@@ -102,12 +108,15 @@ id · replaces · concepts · what moves or still · sliders · headline · grap
    level moves, while the bracketed difference between the chosen rungs
    never changes, which is the book's own point about the first two rungs
    and the last two · the lower rung and the upper rung (1 to 8, ink,
-   counts), the height of the zero level (−2.0 to 3.0 m, default 0.0,
-   position) · "between rungs 1 and 2 the climb stores 11.8 J, and between
-   rungs 7 and 8 it stores the same 11.8 J, wherever the zero is put" ·
-   graph beside the vertical ladder: $\kPEg$ against height, the same line
-   shifted up or down by the zero level, with the two rungs marked and the
-   difference bracketed on the axis · no. Readout: $\kdPEg = m\kg\kh$ for
+   counts), the height of the zero level (−0.4 to 2.4 m, default 0.0,
+   position; it stops at −0.4 m because a zero a meter below the ground
+   would be drawn off the foot of the canvas) · "The climb from rung 1 to
+   rung 2 stores 11.8 J, wherever the zero is put." · graph beside the
+   vertical ladder: $\kPEg$ against height on fixed axes of −1.0 to 2.5 m by
+   −700 to 700 J, the same line shifted up or down by the zero level, with
+   the two rungs marked and the difference bracketed on the axis · 2D.
+   Labels are on: the rungs carry their own energies and nothing moves.
+   Readout: $\kdPEg = m\kg\kh$ for
    the chosen pair. Draws energy, position, acceleration (the readout writes
    $\kg$).
 3. `sim-paths` · replaces Figure 7.6, the television carried up the stairs
@@ -119,9 +128,12 @@ id · replaces · concepts · what moves or still · sliders · headline · grap
    at the same height · mass $m$ (5 to 40 kg, default 20, ink), the height
    of the landing $\kh$ (2.0 to 12.0 m, default 6.0, position), the run of
    the staircase (2.0 to 14.0 m, default 6.0, ink, a length of the scene) ·
-   "the carried set has gone 7.4 m along its path and the hoisted set
-   4.6 m, and both have gained 902 J" · none: the two paths and their two
-   bars are the picture · no. Readout: $\kdPEg = m\kg\kh$ once, with the
+   "The carried set has walked 7.4 m to be 4.1 m up, and the hoisted set
+   has taken 4.6 m of rope to be 4.6 m up." · none: the two paths and their
+   two bars are the picture · 2D. The two bars are read against the same
+   $m\kg\kh$, which is the point of the pair, and that total is drawn as a
+   dashed rule with its value beside it. Labels are on: six of them, and
+   they keep their places as the two sets travel. Readout: $\kdPEg = m\kg\kh$ once, with the
    small line saying that the two path lengths differ while the two
    changes in potential energy do not. Draws energy, position,
    acceleration.
@@ -140,14 +152,20 @@ id · replaces · concepts · what moves or still · sliders · headline · grap
    stop drawn slowly enough to be seen · height of the fall $\kh$ (0.5 to
    5.0 m, default 3.00, position), the distance the knees bend $\kd$ (0.005
    to 0.75 m, default 0.005, position), mass $m$ (20 to 120 kg, default
-   60.0, ink) · "the knees bend 0.500 cm, so the floor takes 1,760 J away
-   over that distance and pushes with 3.53 × 10⁵ N, 600 times the person's
-   weight" · graph below the scene: the stopping force against the
-   distance the knees bend, the hyperbola $\kF = m\kg\kh/\kd$, with the
-   weight $m\kg$ drawn as a dashed level so the reader can read off how
-   many times the weight the landing costs, the stiff landing and the
-   0.5 m bend both marked · no. Readout: $\kF = -m\kg\kh/\kd$ with the
-   book's numbers, and a small line on the hundredfold drop a bending
+   60.0, ink; the knee-bend slider carries soft detents at the two landings
+   the section works out, 0.005 m and 0.500 m, since the graph beside the
+   scene is a ratio scale and all the interesting ground lies at its
+   left-hand end) · "The knees bend 0.500 cm, so the floor takes 1,760 J
+   away over that distance and pushes with 3.53 × 10⁵ N, which is 600 times
+   the weight." · graph below the scene: the stopping force against the
+   distance the knees bend, the hyperbola $\kF = m\kg\kh/\kd$ on fixed
+   ratio scales of 1 mm to 1 m by 100 N to 10 MN, with the weight $m\kg$
+   drawn as a dashed level, and the stiff landing and the 0.5 m bend both
+   marked · 2D. The scene keeps one fixed scale, 42 units to the meter, so
+   that the person at the top of the longest fall the slider allows still
+   stops short of the headline band. Labels are on: five of them, and the
+   mass label is clamped below that band. Readout: $\kF = -m\kg\kh/\kd$
+   with the section's numbers, and a small line on the hundredfold drop a bending
    motion of 0.5 m gives. Draws energy, position, force, acceleration.
 6. `sim-coaster` · replaces Figure 7.8, the roller coaster running down the
    hill · pe-to-ke, gravitational-potential-energy · **moves**: the car
@@ -158,12 +176,15 @@ id · replaces · concepts · what moves or still · sliders · headline · grap
    kinetic energy · the height of the hill $\kh$ (5.0 to 40.0 m, default
    20.0, position), the initial speed $\kvo$ (0 to 10.0 m/s, default 0,
    velocity), mass $m$ (100 to 2,000 kg, default 500, ink, which changes
-   both energies and leaves the speed alone) · "20.0 m down the hill the
-   car is doing 19.8 m/s, and the 98.0 kJ the car has given up in height it
-   now carries as motion" · graph below the horizontal scene: energy
-   against the height fallen, the gravitational potential energy falling to
-   zero, the kinetic energy rising to meet it and their sum flat across the
-   top · no. Readout: $\kv = \sqrt{2\kg|\kh| + \kvo^2}$ with the numbers,
+   both energies and leaves the speed alone) · "The car has fallen 20.0 m
+   and is doing 19.8 m/s, so 98.0 kJ of the 98.0 kJ is now motion." · graph
+   below the horizontal scene: energy against the height fallen on fixed
+   axes of 0 to 40 m by 0 to 150 kJ, the gravitational potential energy
+   falling to zero, the kinetic energy rising to meet it and their sum flat
+   across the top · 2D. The speed arrow is drawn ahead of the car while
+   there is room and behind it once the car is past x = 1100, so neither the
+   arrow nor its label leaves the canvas on the last second of the run.
+   Labels are on: four of them. Readout: $\kv = \sqrt{2\kg|\kh| + \kvo^2}$ with the numbers,
    and a small line saying that the mass cancels, so the 5.00 m/s start
    adds only 0.6 m/s at the bottom. Draws energy, position, velocity,
    acceleration.
@@ -174,16 +195,21 @@ id · replaces · concepts · what moves or still · sliders · headline · grap
    time in it, so the figure loops through one run and gets the transport ·
    the release position along the ruler $\kd$ (5 to 30 cm, default 10,
    position), the angle of the incline (5º to 25º, default 15º, ink) ·
-   "released at 10 cm the marble drops 2.6 cm, reaches 0.71 m/s and takes
-   1.41 s to cross the metre" · graph below the scene: the square of the
-   speed on the level against the release position, the straight line
-   through the origin the investigation asks the reader to plot, with the
-   three positions the book names (10, 20 and 30 cm) marked and the present
-   run's point filled · no. Readout: $\kv = \sqrt{2\kg|\kh|}$ with the
-   numbers, and a small line saying that a straight line on the plot is
-   what shows the kinetic energy at the bottom to be proportional to the
-   potential energy at the release point. Draws energy, position, velocity,
-   acceleration.
+   "Released at 10 cm, the marble has 2.6 cm of ruler left and is doing
+   0.71 m/s." · graph below the scene: the square of the speed on the level
+   against the release position on fixed axes of 0 to 0.3 m by 0 to
+   2.5 m²/s², the straight line through the origin the investigation asks
+   the reader to plot, with the three release positions the section names
+   (10, 20 and 30 cm) marked and the present run's point filled · 2D.
+   Labels are on: four of them, none of which moves. Readout:
+   $\kv = \sqrt{2\kg|\kh|}$ with the numbers, and a small line saying that
+   a straight line on the plot is what shows the kinetic energy at the
+   bottom to be proportional to the potential energy at the release point,
+   and that a marble rolls rather than slides, so some of its energy goes
+   into spinning it and a real marble arrives about 15 percent slower than
+   $\sqrt{2\kg\kh}$ gives. The equation on the page is the section's own,
+   since a rolling body's share of energy belongs to a later chapter.
+   Draws energy, position, velocity, acceleration.
 
 Every sketch the section prints is replaced. The one photograph, the
 kangaroo, is kept and none is dropped: the section has no splash image.

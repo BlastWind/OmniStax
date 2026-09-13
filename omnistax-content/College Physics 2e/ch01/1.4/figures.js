@@ -51,7 +51,10 @@ function person(ctx, x, y, h, color) {
     const tau = REDUCED ? T : cy.now(), done = tau >= T - 1e-9;
     const story = P.v * S.v, total = N.v * story;
     const n = done ? N.v : Math.min(N.v, Math.floor((tau / T) * N.v + 1e-6)), up = n * story;
-    const G = 560, k = 440 / Math.max(total, 12);   /* the ground line, and canvas units per metre so the finished building fills the height */
+    /* The ground line, and a scale fixed once from the tallest the sliders allow: 100 stories of
+       2.0 m per person and 3 persons per story is 600 m, drawn 440 units high. It never follows the
+       building, so one story and a hundred stories are drawn as different as they are. */
+    const G = 560, MAX_M = 100 * 2 * 3, k = 440 / MAX_M;
     line(ctx, 60, G, 1340, G, PAL.muted, 3);
     /* the ground story, magnified, with its persons stacked inside */
     const ix0 = 90, ix1 = 370, it = 190, ih = G - it, ph = ih / S.v, icx = (ix0 + ix1) / 2;
@@ -77,8 +80,8 @@ function person(ctx, x, y, h, color) {
     const hp = P.v * k;
     person(ctx, 560, G, hp, PAL.ink);
     text(ctx, 'a person, ' + num(P.v) + ' m', 560, G - hp - 22, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, done ? N.v + (N.v === 1 ? ' story' : ' stories') + ' of about ' + num(story) + ' m each make a building about ' + Math.round(total) + ' m tall'
-      : n + ' of the ' + N.v + ' stories ' + (n === 1 ? 'is' : 'are') + ' up, and the building stands ' + Math.round(up) + ' m tall so far');
+    headline(ctx, done ? N.v + (N.v === 1 ? ' story' : ' stories') + ' of about ' + num(story) + ' m each make a building about ' + Math.round(total) + ' m tall.'
+      : n + ' of the ' + N.v + ' stories ' + (n === 1 ? 'is' : 'are') + ' up, and the building stands ' + Math.round(up) + ' m tall so far.');
     const exact = Math.abs(total - Math.round(total)) < 1e-9;
     readout(d.readout, `\\frac{${num(P.v)}\\ \\text{m}}{1\\ \\text{person}} \\times \\frac{${num(S.v)}\\ \\text{${S.v === 1 ? 'person' : 'persons'}}}{1\\ \\text{story}} \\times ${N.v}\\ \\text{${N.v === 1 ? 'story' : 'stories'}} ${exact ? '=' : '\\approx'} ${Math.round(total)}\\ \\text{m}`,
       'The estimate is only as good as its inputs. A person is between 1.5 and 2 m tall and a story holds between one and a half and three of them, so the height is known to within a factor of about two, which is what an approximation gives.');
@@ -97,8 +100,8 @@ function person(ctx, x, y, h, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-trillion', 640);
-  const A = ctl(d.controls, { label: '\\text{trillions}', cls: '', min: 0.1, max: 30, step: 0.1, value: 1, unit: '', dec: 1, onInput: reset, aria: 'amount in trillions of dollars' });
-  const TH = ctl(d.controls, { label: '\\text{stack}', cls: '', min: 0.3, max: 0.7, step: 0.05, value: 0.5, unit: 'in.', dec: 2, onInput: reset, aria: 'thickness of a stack of 100 bills' });
+  const A = ctl(d.controls, { label: '\\text{amount}', cls: '', min: 0.1, max: 30, step: 0.1, value: 1, unit: 'trillion dollars', dec: 1, onInput: reset, aria: 'amount in trillions of dollars' });
+  const TH = ctl(d.controls, { label: '\\text{stack thickness}', cls: '', min: 0.3, max: 0.7, step: 0.05, value: 0.5, unit: 'in.', dec: 2, onInput: reset, aria: 'thickness of a stack of 100 bills' });
   const T = 5, AREA = 6480000;   /* the field between the end zones, 100 yd by 50 yd, in square inches */
   const cy = cycle(() => T, 1.4);
   function reset() { cy.reset(); }
@@ -117,27 +120,30 @@ function person(ctx, x, y, h, color) {
     for (const yd of [0, 50, 100]) text(ctx, yd + ' yd', Xy(yd), G + 44, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'end zone', fx0 + ez / 2, G + 12, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'end zone', fx1 - ez / 2, G + 12, PAL.muted, { size: 17, align: 'center' });
-    /* the scale in feet on the left, drawn so the finished pile fits under the headline */
-    const ax = 200, top = 130, span = nice(0, Math.max(Hft * 1.15, 8), 4), step = span.hi / span.n;
-    const Y = (ft) => G - (ft / span.hi) * (G - top);
+    /* The scale in feet is fixed at 0 to 40 ft, which holds the example's pile of about 10 ft with
+       room to spare, and never follows the pile. A pile taller than the scale is drawn to the top of
+       it with its true height written above, so the reader is told it runs past the drawing. */
+    const ax = 200, top = 130, span = { hi: 40, n: 4 }, step = 10;
+    const Y = (ft) => G - (Math.min(ft, span.hi) / span.hi) * (G - top);
+    const over = h > span.hi;
     line(ctx, ax, G, ax, top, PAL.muted, 2);
-    for (let i = 0; i <= span.n; i++) { const v = i * step; line(ctx, ax - 8, Y(v), ax, Y(v), PAL.muted, 2); text(ctx, fmt(v, step < 1 ? 1 : 0) + ' ft', ax - 16, Y(v), PAL.muted, { size: 17, align: 'right' }); }
+    for (let i = 0; i <= span.n; i++) { const v = i * step; line(ctx, ax - 8, Y(v), ax, Y(v), PAL.muted, 2); text(ctx, fmt(v, 0) + ' ft', ax - 16, Y(v), PAL.muted, { size: 17, align: 'right' }); }
     /* the pile of stacks between the end zones */
     const py = Y(h);
     if (h > 0) {
       ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(gx0, py, gx1 - gx0, G - py); ctx.restore();
       const gap = 14; if (G - py > 2 * gap) for (let y = G - gap; y > py + 2; y -= gap) line(ctx, gx0, y, gx1, y, alpha(PAL.ink, 0.18), 1.5);
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(gx0, py, gx1 - gx0, G - py); ctx.restore();
-      text(ctx, dec(h * 12) + ' in., or ' + dec(h) + ' ft', (gx0 + gx1) / 2, py - 22, PAL.ink, { weight: 600 });
+      text(ctx, dec(h * 12) + ' in., or ' + dec(h) + ' ft' + (over ? ', which runs past the top of the scale' : ''), (gx0 + gx1) / 2, py - 22, PAL.ink, { weight: 600, align: 'center' });
     }
     /* a person 6 ft tall in the end zone, at the scale of the axis */
     const hp = (6 / span.hi) * (G - top), px = fx1 - ez / 2;
     person(ctx, px, G, hp, PAL.ink);
     text(ctx, 'a person', px, G - hp - 40, PAL.muted, { size: 17, align: 'center' });
     text(ctx, '6 ft tall', px, G - hp - 18, PAL.muted, { size: 17, align: 'center' });
-    const amount = A.v === 1 ? 'one trillion dollars' : fmt(A.v, 1) + ' trillion dollars';
-    headline(ctx, done ? amount + ' in $100 bills covers the field to a height of about ' + plain(H1) + ' in., ' + (F1 >= 1 ? 'or about ' + plain(F1) + ' ft' : 'which is less than a foot')
-      : 'the stacks are being laid down, and the pile is ' + dec(h) + ' ft high so far');
+    const amount = A.v === 1 ? 'One trillion dollars' : fmt(A.v, 1) + ' trillion dollars';
+    headline(ctx, done ? amount + ' in $100 bills covers the field to a height of about ' + plain(H1) + ' in., ' + (F1 >= 1 ? 'or about ' + plain(F1) + ' ft' : 'which is less than a foot') + (over ? ', which is taller than the scale on the left reaches.' : '.')
+      : 'The stacks are being laid down, and the pile is ' + dec(h) + ' ft high so far.');
     readout(d.readout, `\\text{height} = \\frac{${sci(vol)}\\ \\text{in.}^{3}}{6.48 \\times 10^{6}\\ \\text{in.}^{2}} = ${dec(Hin)}\\ \\text{in.} \\approx ${sci(H1)}\\ \\text{in.} = ${plain(F1)}\\ \\text{ft}`,
       'Before rounding, the pile is ' + dec(Hin) + ' in. or ' + dec(Hft) + ' ft high, and the example keeps only one significant figure because its inputs are that rough. Set the amount to 28 trillion, the federal debt of 2021 the example mentions, and the pile rises to about ' + plain(round1(round1(volumeOf(28) / AREA) / 12)) + ' ft, taller than most buildings.');
   }

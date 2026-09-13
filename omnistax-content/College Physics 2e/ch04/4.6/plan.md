@@ -152,6 +152,10 @@ and unknowns" sorter, where the reader drags the numbers of a problem
 into two lists and the usable equations light up, is a quiz rather than a
 simulation of anything physical, and Step 2 says the same thing in a
 sentence.
+   Revised in the figure-audit pass of 2026-09-12: the axes settle onto the
+   slope when the thumb is let go within a degree of it, which is the soft
+   detent a preset that moves with another slider cannot have as a tick on
+   the track; the headline is one capitalized sentence.
 
 ## Exercises
 

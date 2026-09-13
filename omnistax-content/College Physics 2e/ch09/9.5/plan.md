@@ -101,11 +101,14 @@ chapter config's reading of it).
    · the input lever arm $\kli$ (0.20 to 0.80 m, position, default 0.50),
    the output lever arm $\klo$ (0.010 to 0.080 m, position, default
    0.025), the input force $\kFi$ (10 to 120 N, force, default 50) ·
-   "A pull of 50 N on a handle 0.50 m from the pivot draws the nail with
-   1000 N, a mechanical advantage of 20.0" · a pair of bars below the
+   "A pull of 50 N at 0.50 m from the pivot draws the nail with
+   1000 N, so the mechanical advantage is 20.0." · a pair of bars below the
    scene, $\kFi$ and $\kFo$ on one scale, since two arrows twenty times
    apart cannot be drawn to one scale in the scene itself; the scene's
-   arrows show which way each force acts and the bars carry the sizes ·
+   arrows show which way each force acts and the bars carry the sizes. The
+   bars run to a fixed 1,200 N and a fixed 100 N·m, both a little over what
+   the book's own puller asks, so a heavier pull lengthens them; a bar that
+   would pass the end stops there and its label gives the true value ·
    no. Readout: $\text{MA} = \kFo/\kFi = \kli/\klo$ with the numbers;
    small line on the torque each force makes about the pivot and on the
    normal force $\kN = \kFi + \kFnail$. Draws force, position, torque.
@@ -119,9 +122,10 @@ chapter config's reading of it).
    travels · the output lever arm $\klo$ (0.05 to 1.40 m, position,
    default 0.075), the input lever arm $\kli$ (0.50 to 1.50 m, position,
    default 1.02), the combined mass $m$ (10 to 100 kg, ink, default 45.0)
-   · "The load sits 7.5 cm from the axle and your hands 1.02 m from it,
-   so a lift of 32.4 N supports a 441 N load: the mechanical advantage is
-   13.6" · none; beneath the wheelbarrow the same three forces are drawn
+   · "A lift of 32.4 N at 1.02 m from the axle holds 441 N acting at
+   0.075 m, so the mechanical advantage is 13.6." The three force arrows are
+   drawn to a fixed 1,000 N, the heaviest barrow the mass slider reaches, so
+   that loading the barrow lengthens the weight arrow · none; beneath the wheelbarrow the same three forces are drawn
    on a bare bar pivoted at one end, and sliding $\klo$ past $\kli$ carries
    that bar from the wheelbarrow, whose load is nearer the pivot than the
    hands, to the shovel, whose load is farther, where the mechanical
@@ -135,10 +139,13 @@ chapter config's reading of it).
    when the cart arrives · the angle of the ramp $\theta$ (5º to 60º, ink,
    default 20), the weight of the cart $\kwgt$ (100 to 1200 N, force,
    default 500), the height to be climbed $h$ (0.5 to 3.0 m, ink, default
-   1.5) · "A ramp at 20º needs a push of 171 N over 4.39 m, against a
-   lift of 500 N over 1.50 m: both do 750 J of work" · none; the ramp and
+   1.5) · "A ramp at 20° needs a push of 171 N over 4.39 m, where lifting
+   the cart straight up needs 500 N over 1.50 m." · none; the ramp and
    the vertical lift are drawn side by side with their two path lengths
-   bracketed and their two forces arrowed to one scale · no. Readout:
+   bracketed and their two forces arrowed to one scale, the forces to a
+   fixed 1,200 N and the distances to a fixed 8.00 m, so that the weight
+   slider lengthens the arrows and the bars instead of leaving the drawing
+   as it was · no. Readout:
    $\text{MA} = \kFo/\kFi = \kwgt/(\kwgt\sin\theta) = 1/\sin\theta$ with
    the numbers; small line on the two products being equal. Draws force.
 4. `sim-crank` · replaces Figure 9.23 (a), (b) and (c) (the crank, the
@@ -149,12 +156,15 @@ chapter config's reading of it).
    radius $r_\text{i}$ (0.02 to 0.50 m, position, default 0.24), the
    output radius $r_\text{o}$ (0.02 to 0.50 m, position, default 0.02),
    the input force $\kFi$ (100 to 12,000 N, force, default 1000) · "A
-   handle 24.0 cm from the axis turning a shaft 2.0 cm from it has a
-   mechanical advantage of 12.0; swap the two and the axle driving the
-   wheel has one of 0.083" · none; three panels, the crank with its
+   handle at 0.240 m turning a shaft at 0.020 m has a mechanical advantage
+   of 12.0, and the same two radii the other way round, as an axle driving
+   a wheel, give 0.083." · none; three panels, the crank with its
    input at the larger radius, the car axle with its input at the smaller,
    and the pulley, where the two radii are the same one and the
-   mechanical advantage is one whatever the radius · no. Readout:
+   mechanical advantage is one whatever the radius. The two radii change
+   places between panel (a) and panel (b), as the book's sentence about the
+   car axle does, so panel (b) names the small circle $r_\text{i}$, the
+   axle, and the large one $r_\text{o}$, the wheel · no. Readout:
    $\text{MA} = r_\text{i}/r_\text{o}$ with the numbers; small line on
    the output force each panel gives. Draws force, position. The book's
    own axle numbers, 2.0 cm and 24.0 cm, are the defaults, so the panel
@@ -164,12 +174,21 @@ chapter config's reading of it).
    combinations of pulleys, three panels under one number) ·
    pulley-mechanical-advantage, mechanical-advantage · **still**: the load
    hangs and the system is in equilibrium · the number of cables pulling
-   directly on the load $n$ (1 to 4, ink, default 2), the mass of the load
-   $m$ (20 to 200 kg, ink, default 115) · "Two cables pull up on the load,
-   so a tension of 564 N in the cord holds a 1130 N engine: the mechanical
-   advantage is about 2" · none; the ceiling, the fixed and movable
+   directly on the load $n$, a choice of 1, 2, 3 or 4 with 2 the default,
+   because a count of separate arrangements is a state and not a quantity
+   that slides (rule 26.1), and the mass of the load
+   $m$ (20 to 200 kg, ink, default 115) · "2 cables pull up on the load,
+   so 564 N of tension holds 1130 N and the mechanical
+   advantage is about 2." · none; the ceiling, the fixed and movable
    pulleys, the load and every cable segment with its tension are the
-   picture, and the count of cables on the load is what changes · no.
+   picture, and the count of cables on the load is what changes. One cord
+   runs through the whole tackle: its $n + 1$ straight legs stand a
+   sheave's diameter apart so that every one of them is vertical and
+   tangent to the sheave it runs onto, the movable and the fixed sheaves
+   alternate along it, and the dead end is tied to the ceiling when $n$ is
+   even and to the movable block when $n$ is odd, which is what makes the
+   count come out at $n$. At $n = 2$ the drawing is the book's own panel
+   (a) · no.
    Readout: $\kFo \approx n\kTf$ with the numbers; small line on the force
    the ceiling must supply. Draws force. At $n = 1$ the system is the
    ordinary pulley of Figure 9.23(c), which only turns the direction of
