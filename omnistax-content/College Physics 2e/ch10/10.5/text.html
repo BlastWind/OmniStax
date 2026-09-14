@@ -1,0 +1,153 @@
+<section id="angular-momentum">
+<h2>Angular momentum, the rotational analog of linear momentum</h2>
+<p class="cite-target">Why does Earth keep on spinning? What started it spinning to begin with? And how does an ice skater manage to spin faster and faster simply by pulling her arms in? Why does she not have to exert a torque to spin faster? Questions like these have answers based in angular momentum, the rotational analog to linear momentum.</p>
+<p>By now the pattern is clear—every rotational phenomenon has a direct translational analog. It seems quite reasonable, then, to define <strong>angular momentum</strong> $\kL$ as</p>
+$$\kL = \kI\kw.$$
+<p>This equation is an analog to the definition of linear momentum as $p = mv$. Units for linear momentum are $\text{kg}\cdot\text{m/s}$ while units for angular momentum are $\text{kg}\cdot\text{m}^2\text{/s}$. As we would expect, an object that has a large moment of inertia $\kI$, such as Earth, has a very large angular momentum. An object that has a large angular velocity $\kw$, such as a centrifuge, also has a rather large angular momentum.</p>
+<div class="note">
+<div class="eyebrow">Making Connections</div>
+<p>Angular momentum is completely analogous to linear momentum, first presented in Uniform Circular Motion and Gravitation. It has the same implications in terms of carrying rotation forward, and it is conserved when the net external torque is zero. Angular momentum, like linear momentum, is also a property of the atoms and subatomic particles.</p>
+</div>
+<div class="example" id="ex-earth">
+<h3>Example 10.11 · Calculating Angular Momentum of the Earth</h3>
+<h4>Strategy</h4>
+<p>No information is given in the statement of the problem; so we must look up pertinent data before we can calculate $\kL = \kI\kw$. First, according to Figure 10.12, the formula for the moment of inertia of a sphere is</p>
+$$\kI = \frac{2MR^2}{5}$$
+<p>so that</p>
+$$\kL = \kI\kw = \frac{2MR^2\kw}{5}.$$
+<p>Earth’s mass $M$ is $5.979 \times 10^{24}\ \text{kg}$ and its radius $R$ is $6.376 \times 10^{6}\ \text{m}$. The Earth’s angular velocity $\kw$ is, of course, exactly one revolution per day, but we must covert $\kw$ to radians per second to do the calculation in SI units.</p>
+<h4>Solution</h4>
+<p>Substituting $2\pi$ rad for rev and approximating 1 day as 24 hours or $8.64 \times 10^{4}\ \text{s}$ gives</p>
+$$\begin{aligned}\kL &= 0.4(5.979 \times 10^{24}\ \text{kg})(6.376 \times 10^{6}\ \text{m})^2\left(\frac{1\ \text{rev}}{\text{d}}\right)\\ &= 9.72 \times 10^{37}\ \text{kg}\cdot\text{m}^2\cdot\text{rev/d}.\end{aligned}$$
+<p>Substituting $2\pi$ rad for $1$ rev and $8.64 \times 10^{4}\ \text{s}$ for 1 day gives</p>
+$$\begin{aligned}\kL &= (9.72 \times 10^{37}\ \text{kg}\cdot\text{m}^2)\left(\frac{2\pi\ \text{rad/rev}}{8.64 \times 10^{4}\ \text{s/d}}\right)(1\ \text{rev/d})\\ &= 7.07 \times 10^{33}\ \text{kg}\cdot\text{m}^2\text{/s}.\end{aligned}$$
+<h4>Discussion</h4>
+<p>This number is large, demonstrating that Earth, as expected, has a tremendous angular momentum. The answer is approximate, because we have assumed a constant density for Earth in order to estimate its moment of inertia.</p>
+</div>
+</section>
+
+<section id="torque-and-angular-momentum">
+<h2>Torque changes angular momentum</h2>
+<p class="cite-target">When you push a merry-go-round, spin a bike wheel, or open a door, you exert a torque. If the torque you exert is greater than opposing torques, then the rotation accelerates, and angular momentum increases. The greater the net torque, the more rapid the increase in $\kL$. The relationship between torque and angular momentum is</p>
+$$\text{net}\;\ktau = \frac{\kdLang}{\kdt}.$$
+<p>This expression is exactly analogous to the relationship between force and linear momentum, $F = \Delta p/\Delta t$. The equation $\text{net}\;\ktau = \frac{\kdLang}{\kdt}$ is very fundamental and broadly applicable. It is, in fact, the rotational form of Newton’s second law.</p>
+<div class="example" id="ex-lazy-susan">
+<h3>Example 10.12 · Calculating the Torque Putting Angular Momentum Into a Rotating Food Tray</h3>
+<p>Figure 10.23 shows a rotating food tray, often called a lazy Susan, being turned by a person in quest of sustenance. Suppose the person exerts a 2.50 N force perpendicular to the lazy Susan’s 0.260-m radius for 0.150 s. (a) What is the final angular momentum of the lazy Susan if it starts from rest, assuming friction is negligible? (b) What is the final angular velocity of the lazy Susan, given that its mass is 4.00 kg and assuming its moment of inertia is that of a disk?</p>
+<figure class="sim" id="sim-lazy-susan" data-figure="10.23" data-original="/media/ch10/Figure_11_05_01a.jpg" data-original-width="250" data-original-caption="A partygoer exerts a torque on a lazy Susan to make it rotate. The equation net τ = ΔL/Δt gives the relationship between torque and the angular momentum produced.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.23</span><span>A lazy Susan, seen from above, starts at rest and a hand pushes at its rim for a short time, as in Example 10.12. While the push lasts the net torque is drawn as a turning arc and the angular momentum of the tray grows at a steady rate, and once the hand lets go the tray coasts with the angular momentum it has been given. The graph beneath follows the angular momentum against time. Change the torque, the time it acts or the moment of inertia of the tray and watch how the angular momentum imparted depends on the torque and the time alone, while the final angular velocity depends on the tray as well.</span></div>
+</figure>
+<h4>Strategy</h4>
+<p>We can find the angular momentum by solving $\text{net}\;\ktau = \frac{\kdLang}{\kdt}$ for $\kdLang$, and using the given information to calculate the torque. The final angular momentum equals the change in angular momentum, because the lazy Susan starts from rest. That is, $\kdLang = \kL$. To find the final velocity, we must calculate $\kw$ from the definition of $\kL$ in $\kL = \kI\kw$.</p>
+<h4>Solution for (a)</h4>
+<p>Solving $\text{net}\;\ktau = \frac{\kdLang}{\kdt}$ for $\kdLang$ gives</p>
+$$\kdLang = (\text{net}\;\ktau)\kdt.$$
+<p>Because the force is perpendicular to $r$, we see that $\text{net}\;\ktau = rF$, so that</p>
+$$\begin{aligned}\kL &= rF\kdt = (0.260\ \text{m})(2.50\ \text{N})(0.150\ \text{s})\\ &= 9.75 \times 10^{-2}\ \text{kg}\cdot\text{m}^2\text{/s}.\end{aligned}$$
+<h4>Solution for (b)</h4>
+<p>The final angular velocity can be calculated from the definition of angular momentum,</p>
+$$\kL = \kI\kw.$$
+<p>Solving for $\kw$ and substituting the formula for the moment of inertia of a disk into the resulting equation gives</p>
+$$\kw = \frac{\kL}{\kI} = \frac{\kL}{\frac{1}{2}MR^2}.$$
+<p>And substituting known values into the preceding equation yields</p>
+$$\kw = \frac{9.75 \times 10^{-2}\ \text{kg}\cdot\text{m}^2\text{/s}}{(0.500)(4.00\ \text{kg})(0.260\ \text{m})^2} = 0.721\ \text{rad/s}.$$
+<h4>Discussion</h4>
+<p>Note that the imparted angular momentum does not depend on any property of the object but only on torque and time. The final angular velocity is equivalent to one revolution in 8.71 s (determination of the time period is left as an exercise for the reader), which is about right for a lazy Susan.</p>
+</div>
+<div class="example" id="ex-kick">
+<h3>Example 10.13 · Calculating the Torque in a Kick</h3>
+<p>The person whose leg is shown in Figure 10.24 kicks his leg by exerting a 2000-N force with his upper leg muscle. The effective perpendicular lever arm is 2.20 cm. Given the moment of inertia of the lower leg is $1.25\ \text{kg}\cdot\text{m}^2$, (a) find the angular acceleration of the leg. (b) Neglecting the gravitational force, what is the rotational kinetic energy of the leg after it has rotated through $57.3^\circ$ (1.00 rad)?</p>
+<figure class="sim" id="sim-kick" data-figure="10.24" data-original="/media/ch10/Figure_11_05_02a.jpg" data-original-width="250" data-original-caption="The muscle in the upper leg gives the lower leg an angular acceleration and imparts rotational kinetic energy to it by exerting a torque about the knee. F is a vector that is perpendicular to r. This example examines the situation.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.24</span><span>The lower leg hangs from the knee and the upper leg muscle exerts a torque about it, as in Example 10.13. The leg starts from rest and swings forward through the angle you set, turning faster the whole way, and the graph beside it follows the rotational kinetic energy of the leg against the angle it has turned through. Change the torque or the moment of inertia of the leg and watch how quickly it swings and how much kinetic energy the torque gives it by the end of the kick.</span></div>
+</figure>
+<h4>Strategy</h4>
+<p>The angular acceleration can be found using the rotational analog to Newton’s second law, or $\alpha = \text{net}\;\ktau/\kI$. The moment of inertia $\kI$ is given and the torque can be found easily from the given force and perpendicular lever arm. Once the angular acceleration $\alpha$ is known, the final angular velocity and rotational kinetic energy can be calculated.</p>
+<h4>Solution to (a)</h4>
+<p>From the rotational analog to Newton’s second law, the angular acceleration $\alpha$ is</p>
+$$\alpha = \frac{\text{net}\;\ktau}{\kI}.$$
+<p>Because the force and the perpendicular lever arm are given and the leg is vertical so that its weight does not create a torque, the net torque is thus</p>
+$$\begin{aligned}\text{net}\;\ktau &= r_{\perp}F\\ &= (0.0220\ \text{m})(2000\ \text{N})\\ &= 44.0\ \text{N}\cdot\text{m}.\end{aligned}$$
+<p>Substituting this value for the torque and the given value for the moment of inertia into the expression for $\alpha$ gives</p>
+$$\alpha = \frac{44.0\ \text{N}\cdot\text{m}}{1.25\ \text{kg}\cdot\text{m}^2} = 35.2\ \text{rad/s}^2.$$
+<h4>Solution to (b)</h4>
+<p>The final angular velocity can be calculated from the kinematic expression</p>
+$$\kw^2 = \kwo^2 + 2\alpha\theta$$
+<p>or</p>
+$$\kw^2 = 2\alpha\theta$$
+<p>because the initial angular velocity is zero. The kinetic energy of rotation is</p>
+$$\kKErot = \frac{1}{2}\kI\kw^2$$
+<p>so it is most convenient to use the value of $\kw^2$ just found and the given value for the moment of inertia. The kinetic energy is then</p>
+$$\begin{aligned}\kKErot &= 0.5(1.25\ \text{kg}\cdot\text{m}^2)(70.4\ \text{rad}^2\text{/s}^2)\\ &= 44.0\ \text{J}.\end{aligned}$$
+<h4>Discussion</h4>
+<p>These values are reasonable for a person kicking his leg starting from the position shown. The weight of the leg can be neglected in part (a) because it exerts no torque when the center of gravity of the lower leg is directly beneath the pivot in the knee. In part (b), the force exerted by the upper leg is so large that its torque is much greater than that created by the weight of the lower leg as it rotates. The rotational kinetic energy given to the lower leg is enough that it could give a ball a significant velocity by transferring some of this energy in a kick.</p>
+</div>
+<div class="note">
+<div class="eyebrow">Making Connections: Conservation Laws</div>
+<p>Angular momentum, like energy and linear momentum, is conserved. This universally applicable law is another sign of underlying unity in physical laws. Angular momentum is conserved when net external torque is zero, just as linear momentum is conserved when the net external force is zero.</p>
+</div>
+</section>
+
+<section id="conservation">
+<h2>Conservation of Angular Momentum</h2>
+<p class="cite-target">We can now understand why Earth keeps on spinning. As we saw in the previous example, $\kdLang = (\text{net}\;\ktau)\kdt$. This equation means that, to change angular momentum, a torque must act over some period of time. Because Earth has a large angular momentum, a large torque acting over a long time is needed to change its rate of spin. So what external torques are there? Tidal friction exerts torque that is slowing Earth’s rotation, but tens of millions of years must pass before the change is very significant. Recent research indicates the length of the day was 18 h some 900 million years ago. Only the tides exert significant retarding torques on Earth, and so it will continue to spin, although ever more slowly, for many billions of years.</p>
+<p>What we have here is, in fact, another conservation law. If the net torque is <em>zero</em>, then angular momentum is constant or <em>conserved</em>. We can see this rigorously by considering $\text{net}\;\ktau = \frac{\kdLang}{\kdt}$ for the situation in which the net torque is zero. In that case,</p>
+$$\text{net}\;\ktau = 0$$
+<p>implying that</p>
+$$\frac{\kdLang}{\kdt} = 0.$$
+<p>If the change in angular momentum $\kdLang$ is zero, then the angular momentum is constant; thus,</p>
+$$\kL = \text{constant}\;(\text{net}\;\ktau = 0)$$
+<p>or</p>
+$$\kL = \kLprime\;(\text{net}\;\ktau = 0).$$
+<p>These expressions are the <strong>law of conservation of angular momentum</strong>. Conservation laws are as scarce as they are important.</p>
+</section>
+
+<section id="skater">
+<h2>The spinning skater: a smaller moment of inertia means a faster spin</h2>
+<p class="cite-target">An example of conservation of angular momentum is seen in Figure 10.25, in which an ice skater is executing a spin. The net torque on her is very close to zero, because there is relatively little friction between her skates and the ice and because the friction is exerted very close to the pivot point. (Both $F$ and $r$ are small, and so $\ktau$ is negligibly small.) Consequently, she can spin for quite some time. She can do something else, too. She can increase her rate of spin by pulling her arms and legs in. Why does pulling her arms and legs in increase her rate of spin? The answer is that her angular momentum is constant, so that</p>
+$$\kL = \kLprime.$$
+<p>Expressing this equation in terms of the moment of inertia,</p>
+$$\kI\kw = \kIprime\kwprime,$$
+<p>where the primed quantities refer to conditions after she has pulled in her arms and reduced her moment of inertia. Because $\kIprime$ is smaller, the angular velocity $\kwprime$ must increase to keep the angular momentum constant. The change can be dramatic, as the following example shows.</p>
+<figure class="photo" id="fig-skater" data-figure="10.25">
+  <img src="/media/ch10/Figure_11_05_03.jpg" data-width="275" alt="The image a shows an ice skater spinning on the tip of her skate with both her arms and one leg extended. The image b shows the ice skater spinning on the tip of one skate, with her arms crossed and one leg supported on another.">
+  <figcaption><span class="eyebrow">Figure 10.25</span><span>(a) An ice skater is spinning on the tip of her skate with her arms extended. Her angular momentum is conserved because the net torque on her is negligibly small. In the next image, her rate of spin increases greatly when she pulls in her arms, decreasing her moment of inertia. The work she does to pull in her arms results in an increase in rotational kinetic energy.</span></figcaption>
+</figure>
+<figure class="sim" id="sim-skater">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A skater spins with the angular momentum she started with, and beneath her four bars show her moment of inertia, her angular velocity, her angular momentum and her rotational kinetic energy. Drag the moment of inertia down from 2.34 kg·m² to 0.363 kg·m² to pull her arms in, as the skater of Example 10.14 does, and watch the angular velocity rise by exactly the factor the moment of inertia falls while the bar for the angular momentum does not move. The kinetic energy rises too, and the difference is the work she does in pulling her arms in.</span></div>
+</figure>
+<div class="example" id="ex-skater">
+<h3>Example 10.14 · Calculating the Angular Momentum of a Spinning Skater</h3>
+<p>Suppose an ice skater, such as the one in Figure 10.25, is spinning at 0.800 rev/ s with her arms extended. She has a moment of inertia of $2.34\ \text{kg}\cdot\text{m}^2$ with her arms extended and of $0.363\ \text{kg}\cdot\text{m}^2$ with her arms close to her body. (These moments of inertia are based on reasonable assumptions about a 60.0-kg skater.) (a) What is her angular velocity in revolutions per second after she pulls in her arms? (b) What is her rotational kinetic energy before and after she does this?</p>
+<h4>Strategy</h4>
+<p>In the first part of the problem, we are looking for the skater’s angular velocity $\kwprime$ after she has pulled in her arms. To find this quantity, we use the conservation of angular momentum and note that the moments of inertia and initial angular velocity are given. To find the initial and final kinetic energies, we use the definition of rotational kinetic energy given by</p>
+$$\kKErot = \frac{1}{2}\kI\kw^2.$$
+<h4>Solution for (a)</h4>
+<p>Because torque is negligible (as discussed above), the conservation of angular momentum given in $\kI\kw = \kIprime\kwprime$ is applicable. Thus,</p>
+$$\kL = \kLprime$$
+<p>or</p>
+$$\kI\kw = \kIprime\kwprime$$
+<p>Solving for $\kwprime$ and substituting known values into the resulting equation gives</p>
+$$\begin{aligned}\kwprime &= \frac{\kI}{\kIprime}\kw = \left(\frac{2.34\ \text{kg}\cdot\text{m}^2}{0.363\ \text{kg}\cdot\text{m}^2}\right)(0.800\ \text{rev/s})\\ &= 5.16\ \text{rev/s}.\end{aligned}$$
+<h4>Solution for (b)</h4>
+<p>Rotational kinetic energy is given by</p>
+$$\kKErot = \frac{1}{2}\kI\kw^2.$$
+<p>The initial value is found by substituting known values into the equation and converting the angular velocity to rad/s:</p>
+$$\begin{aligned}\kKErot &= (0.5)(2.34\ \text{kg}\cdot\text{m}^2)\left((0.800\ \text{rev/s})(2\pi\ \text{rad/rev})\right)^2\\ &= 29.6\ \text{J}.\end{aligned}$$
+<p>The final rotational kinetic energy is</p>
+$$\kKErotprime = \frac{1}{2}\kIprime\kwprime^2.$$
+<p>Substituting known values into this equation gives</p>
+$$\begin{aligned}\kKErotprime &= (0.5)(0.363\ \text{kg}\cdot\text{m}^2)\left[(5.16\ \text{rev/s})(2\pi\ \text{rad/rev})\right]^2\\ &= 191\ \text{J}.\end{aligned}$$
+<h4>Discussion</h4>
+<p>In both parts, there is an impressive increase. First, the final angular velocity is large, although most world-class skaters can achieve spin rates about this great. Second, the final kinetic energy is much greater than the initial kinetic energy. The increase in rotational kinetic energy comes from work done by the skater in pulling in her arms. This work is internal work that depletes some of the skater’s food energy.</p>
+</div>
+</section>
+
+<section id="collapse">
+<h2>Tornadoes, the Solar System and a floating astronaut</h2>
+<p class="cite-target">There are several other examples of objects that increase their rate of spin because something reduced their moment of inertia. Tornadoes are one example. Storm systems that create tornadoes are slowly rotating. When the radius of rotation narrows, even in a local region, angular velocity increases, sometimes to the furious level of a tornado. Earth is another example. Our planet was born from a huge cloud of gas and dust, the rotation of which came from turbulence in an even larger cloud. Gravitational forces caused the cloud to contract, and the rotation rate increased as a result. (See Figure 10.26.)</p>
+<figure class="sim" id="sim-cloud" data-figure="10.26" data-original="/media/ch10/Figure_11_05_04a.jpg" data-original-width="350" data-original-caption="The Solar System coalesced from a cloud of gas and dust that was originally rotating. The orbital motions and spins of the planets are in the same direction as the original spin and conserve the angular momentum of the parent cloud.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.26</span><span>A slowly turning cloud of gas and dust contracts under its own gravity, and as it draws in it turns faster, a central body forming where the cloud is densest. The three bars beneath the scene compare the moment of inertia and the angular velocity of the cloud with their starting values, and the bar for the angular momentum does not move. Set how far the cloud contracts and watch the angular velocity rise by the square of the factor the radius falls.</span></div>
+</figure>
+<p>In case of human motion, one would not expect angular momentum to be conserved when a body interacts with the environment as its foot pushes off the ground. Astronauts floating in space aboard the International Space Station have no angular momentum relative to the inside of the ship if they are motionless. Their bodies will continue to have this zero value no matter how they twist about as long as they do not give themselves a push off the side of the vessel.</p>
+<div class="exercises" data-place="collapse"></div>
+</section>

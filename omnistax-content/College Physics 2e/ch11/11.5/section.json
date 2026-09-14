@@ -1,0 +1,352 @@
+{
+ "id": "11.5",
+ "module": "m42193",
+ "chapter": "11",
+ "title": "Pascal’s Principle",
+ "short": "Pascal’s principle",
+ "lead": "Pressure is force per unit area, and a change in pressure applied to an enclosed fluid is transmitted undiminished to every part of the fluid and to the walls of its container. This section states that principle, which is Pascal’s, and follows it into the hydraulic system, where a force on a small piston becomes a larger force on a large one in the ratio of their areas; it works the brakes of a car as its example, and it shows why the larger force cannot do more work than was put in.",
+ "objectives": [
+  "Define pressure.",
+  "State Pascal’s principle.",
+  "Understand applications of Pascal’s principle.",
+  "Derive relationships between forces in a hydraulic system."
+ ],
+ "summary_html": "<ul><li>Pressure is force per unit area.</li><li>A change in pressure applied to an enclosed fluid is transmitted undiminished to all portions of the fluid and to the walls of its container.</li><li>A hydraulic system is an enclosed fluid system used to exert forces.</li></ul>",
+ "notes": "The two problems the book leaves unkeyed, the force on the pedal cylinder of a lift holding a 2000-kg car and the system designed to multiply force a hundredfold, are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights, hints and the suggested approach to the one conceptual question are AI-generated and marked as such; the answers to the three keyed problems and to the backhoe problem come from the book’s own answer key and nothing is computed here. Problems 2 (the force on the pedal cylinder of a hydraulic lift holding a 2000-kg car, fs-id2392885) and 4 (the system that exerts a force 100 times as large as the one put into it, fs-id3069160) have no keyed answer and are left out. The chapter prints no Check Your Understanding box and its AP items all sit in 11.2 and 11.3, so nothing is inline and every item is at the end. The backhoe’s hydraulics (fs-id3077567) is taken from 11.9 with source_section 11.9, since it is the force ratio of a hydraulic system with a lever in front of it, and the book’s image of the backhoe travels on its card. Nothing of this section’s own is held for a later page. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-hydraulic",
+   "kind": "sim",
+   "number": "11.11",
+   "originals": [
+    "/media/ch11/Figure_12_05_01a.jpg"
+   ],
+   "original_caption": "A typical hydraulic system with two fluid-filled cylinders, capped with pistons and connected by a tube called a hydraulic line. A downward force F1 on the left piston creates a pressure that is transmitted undiminished to all parts of the enclosed fluid. This results in an upward force F2 on the right piston that is larger than F1 because the right piston has a larger area.",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "pressure",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-brakes",
+   "kind": "sim",
+   "number": "11.12",
+   "originals": [
+    "/media/ch11/Figure_12_05_02a.jpg"
+   ],
+   "original_caption": "Hydraulic brakes use Pascal’s principle. The driver exerts a force of 100 N on the brake pedal. This force is increased by the simple lever and again by the hydraulic system. Each of the identical wheel cylinders receives the same pressure and, therefore, creates the same force output F2. The circular cross-sectional areas of the pedal and wheel cylinders are represented by A1 and A2, respectively",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "pressure",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-hydraulic-work",
+   "kind": "sim",
+   "draws": [
+    "force"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "pascals-principle",
+   "concept": "pascals-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "pascals-principle",
+   "concept": "pressures-add",
+   "verb": "introduces"
+  },
+  {
+   "span": "pascals-principle",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "pascals-principle",
+   "concept": "fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-system",
+   "concept": "hydraulic-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydraulic-system",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "hydraulic-force-ratio",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "lever",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "hydraulic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hydraulic-work",
+   "concept": "hydraulic-work-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydraulic-work",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-work",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-work",
+   "concept": "simple-machine",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1430946",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-forces",
+   "prompt": "Suppose the pedal cylinder in a hydraulic system is at a greater height than the wheel cylinder. Explain how this will affect the force produced at the wheel cylinder.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The relation $\\kFone/A_1 = \\kFtwo/A_2$ was derived for two pistons at the same height, so that no part of the pressure at either piston came from a difference in depth. Put the pedal cylinder higher and the fluid between the two pistons is a column of height $\\kh$, and the pressure at the lower wheel cylinder is greater than the pressure at the pedal cylinder by the weight of that column, $\\kh\\krho\\kg$, by the result of Variation of Pressure with Depth in a Fluid. Pascal’s principle still transmits the change the pedal makes undiminished, and pressures add, so the pressure at the wheel cylinder is $\\kFone/A_1 + \\kh\\krho\\kg$ and the force there is $\\kFtwo = A_2(\\kFone/A_1 + \\kh\\krho\\kg)$, a little larger than the same-height relation gives. For a car the extra term is small: a meter of brake fluid adds a pressure of roughly $10^4\\;\\text{N/m}^2$, against the $10^7\\;\\text{N/m}^2$ the pedal makes in Example 11.6. If the pedal cylinder were lower than the wheel cylinder instead, the same term would subtract."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2617779",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-forces",
+   "prompt": "How much pressure is transmitted in the hydraulic system considered in Example 11.6? Express your answer in pascals and in atmospheres.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "in pascals",
+      "value": 25500000.0,
+      "unit": "Pa",
+      "hint": "The pressure is the same everywhere in the fluid, so take it at whichever cylinder you like: the 500 N on the pedal cylinder over the area of a circle 0.500 cm across, with the area in square meters."
+     },
+     {
+      "part": "in atmospheres",
+      "value": 251,
+      "unit": "atm",
+      "hint": "One atmosphere is $1.01\\times 10^{5}\\;\\text{N/m}^2$."
+     }
+    ],
+    "solution": "$2.55\\times 10^{7}\\;\\text{Pa}$; or 251 atm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1397225",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-forces",
+   "prompt": "A crass host pours the remnants of several bottles of wine into a jug after a party. He then inserts a cork with a 2.00-cm diameter into the bottle, placing it in direct contact with the wine. He is amazed when he pounds the cork into place and the bottom of the jug (with a 14.0-cm diameter) breaks away. Calculate the extra force exerted against the bottom if he pounded the cork with a 120-N force.",
+   "answer": {
+    "type": "number",
+    "value": 5760,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "The cork and the bottom of the jug are the two pistons of a hydraulic system, and the wine is the enclosed fluid. The areas go as the squares of the diameters, so the ratio of the diameters is what you need.",
+    "solution": "$5.76\\times 10^{3}\\;\\text{N}$ extra force"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2452595",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-work",
+   "prompt": "(a) Verify that work input equals work output for a hydraulic system assuming no losses to friction. Do this by showing that the distance the output force moves is reduced by the same factor that the output force is increased. Assume the volume of the fluid is constant. (b) What effect would friction within the fluid and between components in the system have on the output force? How would this depend on whether or not the fluid is moving?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $V = d_{\\text{i}}A_{\\text{i}} = d_{\\text{o}}A_{\\text{o}} \\Rightarrow d_{\\text{o}} = d_{\\text{i}}\\left(\\frac{A_{\\text{i}}}{A_{\\text{o}}}\\right).$ Now, using equation: $\\frac{\\kFone}{A_1} = \\frac{\\kFtwo}{A_2} \\Rightarrow F_{\\text{o}} = F_{\\text{i}}\\left(\\frac{A_{\\text{o}}}{A_{\\text{i}}}\\right).$ Finally, $W_{\\text{o}} = F_{\\text{o}}d_{\\text{o}} = \\left(\\frac{F_{\\text{i}}A_{\\text{o}}}{A_{\\text{i}}}\\right)\\left(\\frac{d_{\\text{i}}A_{\\text{i}}}{A_{\\text{o}}}\\right) = F_{\\text{i}}d_{\\text{i}} = W_{\\text{i}}.$ In other words, the work output equals the work input. (b) If the system is not moving, friction would not play a role. With friction, we know there are losses, so that $W_{\\text{out}} = W_{\\text{in}} - W_{\\text{f}}$; therefore, the work output is less than the work input. In other words, with friction, you need to push harder on the input piston than was calculated for the nonfriction case."
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3077567",
+   "source_section": "11.9",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-forces",
+   "figure": {
+    "src": "/media/ch11/Figure_12_09_05a-4a71.jpg",
+    "alt": "Diagram of the arm and shovel of a backhoe lifting a load of dirt. The weight of the arm, w sub arm, is depicted as a vector extending vertically downward from the arm one point one zero meters from the top of the arm; w sub arm forms a thirty degree angle with the arm of the shovel. The weight of the load, w sub load, is depicted as a vector extending downward from the middle of the shovel one point seven zero meters from the top of the arm. Force F is a vector pushing the arm of the shovel zero point three zero meters from the top of the arm and perpendicular to the arm.",
+    "caption": "Hydraulic and mechanical lever systems are used in heavy machinery such as this back hoe."
+   },
+   "prompt": "The hydraulic system of a backhoe is used to lift a load as shown in the figure. (a) Calculate the force $\\kF$ the secondary cylinder must exert to support the 400-kg load and the 150-kg brace and shovel. (b) What is the pressure in the hydraulic fluid if the secondary cylinder is 2.50 cm in diameter? (c) What force would you have to exert on a lever with a mechanical advantage of 5.00 acting on a primary cylinder 0.800 cm in diameter to create this pressure?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 13800.0,
+      "unit": "N",
+      "hint": "Take torques about the top of the arm, where it pivots. The force $\\kF$ acts at right angles to the arm 0.30 m from the pivot, and the two weights act straight down at 1.10 m and 1.70 m along an arm that leans $30^\\circ$ from the vertical, so their lever arms are those distances times $\\sin 30^\\circ$."
+     },
+     {
+      "part": "(b)",
+      "value": 28100000.0,
+      "unit": "N/m²",
+      "hint": "The pressure is the force of part (a) over the area of a circle 2.50 cm across, in square meters."
+     },
+     {
+      "part": "(c)",
+      "value": 283,
+      "unit": "N",
+      "hint": "The same pressure on the primary cylinder’s area gives the force that cylinder needs, and the lever supplies it with a mechanical advantage of 5.00, so you push with a fifth of that."
+     }
+    ],
+    "solution": "(a) $1.38\\times 10^{4}\\;\\text{N}$ (b) $2.81\\times 10^{7}\\;\\text{N/m}^2$ (c) 283 N"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "hydraulic-force-ratio"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pressures-add",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "pascals-principle"
+  },
+  {
+   "exercise": "p1",
+   "concept": "pressure",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "atmospheric-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "hydraulic-force-ratio"
+  },
+  {
+   "exercise": "p3",
+   "concept": "pascals-principle",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "hydraulic-work-limit"
+  },
+  {
+   "exercise": "p5",
+   "concept": "hydraulic-force-ratio",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "conservation-of-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p6",
+   "concept": "hydraulic-force-ratio"
+  },
+  {
+   "exercise": "p6",
+   "concept": "second-condition-equilibrium",
+   "weight": 4
+  },
+  {
+   "exercise": "p6",
+   "concept": "force-from-pressure",
+   "weight": 3
+  },
+  {
+   "exercise": "p6",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  }
+ ]
+}

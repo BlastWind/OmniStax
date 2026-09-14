@@ -21,6 +21,9 @@
     "ch07",
     "ch08",
     "ch09",
+    "ch10",
+    "ch11",
+    "ch12",
     "ch16"
   ],
   "intro": {
@@ -97,6 +100,46 @@
       "id": "momentum",
       "label": "momentum, impulse",
       "dimension": "kg·m/s"
+    },
+    {
+      "id": "angular-acceleration",
+      "label": "angular acceleration",
+      "dimension": "rad/s²"
+    },
+    {
+      "id": "rotational-inertia",
+      "label": "moment of inertia",
+      "dimension": "kg·m²"
+    },
+    {
+      "id": "angular-momentum",
+      "label": "angular momentum",
+      "dimension": "kg·m²/s"
+    },
+    {
+      "id": "flow-rate",
+      "label": "flow rate",
+      "dimension": "m³/s"
+    },
+    {
+      "id": "viscosity",
+      "label": "viscosity",
+      "dimension": "Pa·s"
+    },
+    {
+      "id": "pressure",
+      "label": "pressure",
+      "dimension": "N/m²"
+    },
+    {
+      "id": "density",
+      "label": "density",
+      "dimension": "kg/m³"
+    },
+    {
+      "id": "surface-tension",
+      "label": "surface tension",
+      "dimension": "N/m"
     }
   ],
   "symbols": [
@@ -1393,6 +1436,340 @@
       "latex": "v_2",
       "type": "velocity",
       "macro": "\\kvtwo"
+    },
+    {
+      "sym": "α",
+      "latex": "\\alpha",
+      "type": "angular-acceleration",
+      "macro": "\\kalpha"
+    },
+    {
+      "sym": "Δω",
+      "latex": "\\Delta\\omega",
+      "type": "angular-rate",
+      "macro": "\\kdw"
+    },
+    {
+      "sym": "ω_0",
+      "latex": "\\omega_0",
+      "type": "angular-rate",
+      "macro": "\\kwo"
+    },
+    {
+      "sym": "ω̄",
+      "latex": "\\bar{\\omega}",
+      "type": "angular-rate",
+      "macro": "\\kwb"
+    },
+    {
+      "sym": "ω_prime",
+      "latex": "\\omega'",
+      "type": "angular-rate",
+      "macro": "\\kwprime"
+    },
+    {
+      "sym": "a_t",
+      "latex": "a_{\\text{t}}",
+      "type": "acceleration",
+      "macro": "\\kat"
+    },
+    {
+      "sym": "I",
+      "latex": "I",
+      "type": "rotational-inertia",
+      "macro": "\\kI"
+    },
+    {
+      "sym": "I_c",
+      "latex": "I_{\\text{c}}",
+      "type": "rotational-inertia",
+      "macro": "\\kIc"
+    },
+    {
+      "sym": "I_prime",
+      "latex": "I'",
+      "type": "rotational-inertia",
+      "macro": "\\kIprime"
+    },
+    {
+      "sym": "L",
+      "latex": "L",
+      "type": "angular-momentum",
+      "macro": "\\kL"
+    },
+    {
+      "sym": "ΔL_ang",
+      "latex": "\\Delta L",
+      "type": "angular-momentum",
+      "macro": "\\kdLang"
+    },
+    {
+      "sym": "L_prime",
+      "latex": "L'",
+      "type": "angular-momentum",
+      "macro": "\\kLprime"
+    },
+    {
+      "sym": "KE_rot",
+      "latex": "\\text{KE}_{\\text{rot}}",
+      "type": "energy",
+      "macro": "\\kKErot"
+    },
+    {
+      "sym": "KE_rotprime",
+      "latex": "{\\text{KE}'}_{\\text{rot}}",
+      "type": "energy",
+      "macro": "\\kKErotprime"
+    },
+    {
+      "sym": "KE_trans",
+      "latex": "\\text{KE}_{\\text{trans}}",
+      "type": "energy",
+      "macro": "\\kKEtrans"
+    },
+    {
+      "sym": "KE_prime",
+      "latex": "\\text{KE}'",
+      "type": "energy",
+      "macro": "\\kKEprime"
+    },
+    {
+      "sym": "PE_grav",
+      "latex": "\\text{PE}_{\\text{grav}}",
+      "type": "energy",
+      "macro": "\\kPEgrav"
+    },
+    {
+      "sym": "p_prime",
+      "latex": "p'",
+      "type": "momentum",
+      "macro": "\\kpprime"
+    },
+    {
+      "sym": "Q",
+      "latex": "Q",
+      "type": "flow-rate",
+      "macro": "\\kQ"
+    },
+    {
+      "sym": "Q_1",
+      "latex": "Q_1",
+      "type": "flow-rate",
+      "macro": "\\kQone"
+    },
+    {
+      "sym": "Q_2",
+      "latex": "Q_2",
+      "type": "flow-rate",
+      "macro": "\\kQtwo"
+    },
+    {
+      "sym": "η_visc",
+      "latex": "\\eta",
+      "type": "viscosity",
+      "macro": "\\keta"
+    },
+    {
+      "sym": "v_bar1",
+      "latex": "\\bar{v}_1",
+      "type": "velocity",
+      "macro": "\\kvbone"
+    },
+    {
+      "sym": "v_bar2",
+      "latex": "\\bar{v}_2",
+      "type": "velocity",
+      "macro": "\\kvbtwo"
+    },
+    {
+      "sym": "h_1",
+      "latex": "h_1",
+      "type": "position",
+      "macro": "\\khone"
+    },
+    {
+      "sym": "h_2",
+      "latex": "h_2",
+      "type": "position",
+      "macro": "\\khtwo"
+    },
+    {
+      "sym": "x_rms",
+      "latex": "x_{\\text{rms}}",
+      "type": "position",
+      "macro": "\\kxrms"
+    },
+    {
+      "sym": "n_1",
+      "latex": "n_1"
+    },
+    {
+      "sym": "n_2",
+      "latex": "n_2"
+    },
+    {
+      "sym": "l",
+      "latex": "l"
+    },
+    {
+      "sym": "R_flow",
+      "latex": "R"
+    },
+    {
+      "sym": "R_sphere",
+      "latex": "R"
+    },
+    {
+      "sym": "N_R",
+      "latex": "N_{\\text{R}}"
+    },
+    {
+      "sym": "N_Rprime",
+      "latex": "{N'}_{\\text{R}}"
+    },
+    {
+      "sym": "D_diff",
+      "latex": "D"
+    },
+    {
+      "sym": "P_press",
+      "latex": "P",
+      "type": "pressure",
+      "macro": "\\kPr"
+    },
+    {
+      "sym": "P_bar",
+      "latex": "\\bar{P}",
+      "type": "pressure",
+      "macro": "\\kPbar"
+    },
+    {
+      "sym": "P_abs",
+      "latex": "P_{\\text{abs}}",
+      "type": "pressure",
+      "macro": "\\kPabs"
+    },
+    {
+      "sym": "P_g",
+      "latex": "P_{\\text{g}}",
+      "type": "pressure",
+      "macro": "\\kPg"
+    },
+    {
+      "sym": "P_atm",
+      "latex": "P_{\\text{atm}}",
+      "type": "pressure",
+      "macro": "\\kPatm"
+    },
+    {
+      "sym": "P_1",
+      "latex": "P_1",
+      "type": "pressure",
+      "macro": "\\kProne"
+    },
+    {
+      "sym": "P_2",
+      "latex": "P_2",
+      "type": "pressure",
+      "macro": "\\kPrtwo"
+    },
+    {
+      "sym": "ΔP",
+      "latex": "\\Delta P",
+      "type": "pressure",
+      "macro": "\\kdPr"
+    },
+    {
+      "sym": "ρ_dens",
+      "latex": "\\rho",
+      "type": "density",
+      "macro": "\\krho"
+    },
+    {
+      "sym": "ρ_bar",
+      "latex": "\\bar{\\rho}",
+      "type": "density",
+      "macro": "\\krhobar"
+    },
+    {
+      "sym": "ρ_fl",
+      "latex": "\\rho_{\\text{fl}}",
+      "type": "density",
+      "macro": "\\krhofl"
+    },
+    {
+      "sym": "ρ_obj",
+      "latex": "\\bar{\\rho}_{\\text{obj}}",
+      "type": "density",
+      "macro": "\\krhoobj"
+    },
+    {
+      "sym": "ρ_w",
+      "latex": "\\rho_{\\text{w}}",
+      "type": "density",
+      "macro": "\\krhow"
+    },
+    {
+      "sym": "γ",
+      "latex": "\\gamma",
+      "type": "surface-tension",
+      "macro": "\\kgamma"
+    },
+    {
+      "sym": "w_fl",
+      "latex": "w_{\\text{fl}}",
+      "type": "force",
+      "macro": "\\kwfl"
+    },
+    {
+      "sym": "F_ST",
+      "latex": "F_{\\text{ST}}",
+      "type": "force",
+      "macro": "\\kFST"
+    },
+    {
+      "sym": "h_bar",
+      "latex": "\\bar{h}",
+      "type": "position",
+      "macro": "\\khbar"
+    },
+    {
+      "sym": "Δh",
+      "latex": "\\Delta h",
+      "type": "position",
+      "macro": "\\kdh"
+    },
+    {
+      "sym": "V",
+      "latex": "V"
+    },
+    {
+      "sym": "V_sub",
+      "latex": "V_{\\text{sub}}"
+    },
+    {
+      "sym": "V_obj",
+      "latex": "V_{\\text{obj}}"
+    },
+    {
+      "sym": "V_fl",
+      "latex": "V_{\\text{fl}}"
+    },
+    {
+      "sym": "V_w",
+      "latex": "V_{\\text{w}}"
+    },
+    {
+      "sym": "A_1",
+      "latex": "A_1"
+    },
+    {
+      "sym": "A_2",
+      "latex": "A_2"
+    },
+    {
+      "sym": "L_wire",
+      "latex": "L"
     }
   ],
   "exercise_kinds": [
@@ -4063,6 +4440,1055 @@
       "name": "A description and a cause",
       "why": "Kepler's laws describe how the planets move; Newton's universal law of gravitation says why, and that single equation describes every situation in which gravity acts. Before these discoveries the solar system was described by the Ptolemaic model, a list of facts with a different rule for each heavenly body and no cause and effect behind any of it, while the Copernican model needs a small set of rules and a single underlying force. The breadth and simplicity of the laws of physics is the argument the section's title makes.",
       "evidence": "The section calls Kepler's third law a descriptive equation only, derives it from gravitation to show the cause, sets the Ptolemaic model beside the Copernican in Figure 6.28, and the conceptual question asks whether Kepler's laws are purely descriptive or contain causal information."
+    },
+    {
+      "id": "nonuniform-circular-motion",
+      "kind": "idea",
+      "section": "10.1",
+      "name": "Non-uniform circular motion",
+      "why": "Uniform circular motion holds the angular velocity constant, but a skater who pulls in her arms, a merry-go-round a child starts from rest and a hard disk that slows to a halt when the computer is switched off all change their rate of spin. Motion in a circle at a changing angular velocity is non-uniform circular motion, and it is what the rest of this chapter describes.",
+      "evidence": "The section opens by recalling that Chapter 6 discussed only uniform circular motion, names the three everyday cases in which the angular velocity is not constant, and asks in its fourth conceptual question whether a piece of food on a microwave plate is accelerated when the plate starts to spin, turns steadily, and slows to a halt."
+    },
+    {
+      "id": "angular-acceleration",
+      "kind": "idea",
+      "section": "10.1",
+      "name": "Angular acceleration, $\\kalpha = \\frac{\\kdw}{\\kdt}$",
+      "why": "When the angular velocity changes, the faster the change occurs, the greater the angular acceleration. Angular acceleration is defined as the rate of change of angular velocity, exactly as linear acceleration is defined as the rate of change of velocity, and it is measured in radians per second squared. If the angular velocity increases the angular acceleration is positive, and if it decreases the angular acceleration is negative.",
+      "evidence": "The section states the definition as its first new equation, the glossary defines it, and the worked example of the bicycle wheel finds the angular acceleration of a wheel spun up from rest and then the time the brakes need to stop it, where the angular acceleration is negative.",
+      "eq": "eq-angular-acceleration"
+    },
+    {
+      "id": "tangential-acceleration",
+      "kind": "idea",
+      "section": "10.1",
+      "name": "Tangential acceleration, $\\kat = \\frac{\\kdv}{\\kdt}$",
+      "why": "In circular motion the linear acceleration is tangent to the circle at the point of interest, and so it is called tangential acceleration. It is defined as it was for straight-line motion, as the change in the magnitude of the velocity divided by the time taken, and it tells how fast a point on the rim is speeding up or slowing down along its path.",
+      "evidence": "The section names the quantity beside the figure of the semicircle with its tangent arrows, defines it with the same equation one-dimensional kinematics used, and the glossary carries it; the third conceptual question asks the reader to explain why a tangential acceleration changes the magnitude of the velocity but not its direction.",
+      "eq": "eq-tangential-acceleration"
+    },
+    {
+      "id": "tangential-and-centripetal-are-independent",
+      "kind": "idea",
+      "section": "10.1",
+      "name": "Tangential and centripetal acceleration are perpendicular and independent",
+      "why": "Centripetal acceleration changes the direction of the velocity but not its magnitude, and tangential acceleration changes the magnitude but not the direction. The two are perpendicular to each other, so a body in circular motion may have either, both or neither, and each may be considered on its own.",
+      "evidence": "The section draws both accelerations on one figure and states that they are perpendicular and independent of one another, and the fourth conceptual question asks which of the two a piece of food on a microwave plate has while the plate starts, turns steadily and stops."
+    },
+    {
+      "id": "tangential-angular-acceleration",
+      "kind": "result",
+      "section": "10.1",
+      "name": "Tangential and angular acceleration, $\\kat = \\kr\\kalpha$",
+      "why": "Because the radius is constant in circular motion, the change in the linear velocity is the radius times the change in the angular velocity, and so the tangential acceleration is the radius times the angular acceleration. The greater the angular acceleration, the greater the tangential acceleration, and the smaller the wheel, the smaller the tangential acceleration it gives for the same angular acceleration.",
+      "evidence": "The section derives the relation from the definition of tangential acceleration and $v = r\\omega$, prints it in both forms, and the worked example of the motorcycle finds the angular acceleration of its wheels from the linear acceleration of the machine and the radius of the tires.",
+      "eq": "eq-tangential-from-angular"
+    },
+    {
+      "id": "rotational-translational-analogy",
+      "kind": "idea",
+      "section": "10.1",
+      "name": "Rotational quantities and their translational analogs",
+      "why": "The angle of rotation, the angular velocity and the angular acceleration are the rotational counterparts of position, velocity and acceleration, and each pair is joined by the radius: the angle is the distance divided by the radius, the angular velocity is the velocity divided by the radius, and the angular acceleration is the tangential acceleration divided by the radius. Recognizing the analogy is what lets everything learned about straight-line motion be carried over to rotation.",
+      "evidence": "The section gathers the three pairs and the three relationships into a table of its own, and its first conceptual question asks the reader to name the rotational term analogous to acceleration, force, mass, work, kinetic energy, momentum and impulse."
+    },
+    {
+      "id": "rotational-kinematic-equations",
+      "kind": "result",
+      "section": "10.2",
+      "name": "The rotational kinematic equations, $\\kw = \\kwo + \\kalpha\\kt$",
+      "why": "Substituting $v = r\\omega$ and $a = r\\alpha$ into each of the four kinematic equations for straight-line motion makes the radius cancel, leaving four equations in the angle, the angular velocity, the angular acceleration and the time. They describe the motion without any reference to the forces or masses that produce it, and they hold whenever the angular acceleration is constant.",
+      "evidence": "The section derives the first of them from $v = v_0 + at$ and then prints all four beside their translational counterparts in a table, and every worked example of the section — the fishing reel spun up, the reel braked to a stop, the freight train's wheels — chooses one of them and solves it.",
+      "eq": "eq-omega-from-alpha-t"
+    },
+    {
+      "id": "average-angular-velocity",
+      "kind": "result",
+      "section": "10.2",
+      "name": "Average angular velocity, $\\kwb = \\frac{\\kwo + \\kw}{2}$",
+      "why": "When the angular acceleration is constant, the average angular velocity is halfway between the initial and the final value, just as the average velocity is halfway between the initial and the final velocity in straight-line motion. The angle turned through is then simply the average angular velocity multiplied by the time.",
+      "evidence": "The section defines the average angular velocity beside the average velocity and prints $\\theta = \\bar{\\omega}t$ as the first row of its table of kinematic equations; the example of the fly on the microwave plate finds the number of revolutions from the average angular velocity and the cooking time.",
+      "eq": "eq-theta-from-average"
+    },
+    {
+      "id": "linear-from-angular",
+      "kind": "result",
+      "section": "10.2",
+      "name": "Linear quantities from angular ones, $\\kx = \\kr\\theta$",
+      "why": "Something spinning in place still carries its rim through a distance, and that distance is the radius times the angle turned through, in radians. In the same way the speed of a point on the rim is the radius times the angular velocity. Radians must always be used in these relationships, and because a radian is dimensionless the product of a length and an angle is a length.",
+      "evidence": "The section converts revolutions to radians before every such calculation and warns that this must be done; the fishing reel example finds the speed at which line leaves the reel and the meters of line played out, and the fly on the microwave plate travels eleven meters without going anywhere.",
+      "eq": "eq-distance-from-angle"
+    },
+    {
+      "id": "rotational-kinematics-strategy",
+      "kind": "skill",
+      "section": "10.2",
+      "name": "Solving a rotational kinematics problem",
+      "why": "A rotational kinematics problem is solved the way a straight-line one is: check that rotation is involved and that forces and masses need not be, identify the unknown, list what is given, choose the equation that contains the unknown and nothing else unknown, substitute with units, and ask whether the answer is reasonable. Thinking in terms of the translational analog is useful, because that motion is already familiar.",
+      "evidence": "The section sets out the six steps as a strategy box of its own and then follows them through three worked examples, and every problem at the end of the section — the gyroscope spun up with a string, the car braking on its tires, the yo-yo unwinding — is solved by choosing among the four equations."
+    },
+    {
+      "id": "torque-on-a-point-mass",
+      "kind": "result",
+      "section": "10.3",
+      "name": "Torque on a point mass, $\\ktau = mr^2\\kalpha$",
+      "why": "A force applied perpendicular to the radius gives a point mass an acceleration $a = F/m$, and since $a = r\\alpha$ this is $F = mr\\alpha$. Multiplying both sides by the radius turns the left side into the torque, and the result is the rotational analog of Newton's second law for a single point mass, with $mr^2$ standing where the mass stands in $F = ma$.",
+      "evidence": "The section derives the relation from the figure of a mass on a frictionless table tethered to a pivot, and states that torque is analogous to force, angular acceleration to translational acceleration, and $mr^2$ to mass.",
+      "eq": "eq-torque-on-point-mass"
+    },
+    {
+      "id": "moment-of-inertia",
+      "kind": "idea",
+      "section": "10.3",
+      "name": "Moment of inertia, $\\kI = \\sum mr^2$",
+      "why": "To rotate anything other than a point mass, the idea of $mr^2$ is extended to a whole body: the moment of inertia is the sum of $mr^2$ over all the point masses of which the body is composed. It plays the part in rotation that mass plays in straight-line motion, it is measured in kilogram meters squared, and because the distance to the axis enters it, a body has a different moment of inertia about every axis.",
+      "evidence": "The section defines the quantity, gives the hoop as the one case simple enough to work out by hand, and prints a figure of ten shapes with their moments of inertia that every later section of the chapter sends the reader back to; the glossary carries both rotational inertia and moment of inertia.",
+      "eq": "eq-moment-of-inertia"
+    },
+    {
+      "id": "mass-distribution-and-inertia",
+      "kind": "idea",
+      "section": "10.3",
+      "name": "Moment of inertia depends on how the mass is distributed",
+      "why": "The moment of inertia depends not only on how much mass a body has but on where that mass sits relative to the axis. A merry-go-round full of children is much easier to accelerate when the children stand close to the axis than when they all stand at the rim, although the mass is the same in both cases, because the distance from the axis is squared in every term of the sum.",
+      "evidence": "The section states the point directly after defining the moment of inertia, the worked example finds the angular acceleration of a merry-go-round with and without a child sitting on it, and the take-home experiment asks the reader to change the moment of inertia of a cardboard circle and see how much putty is then needed to turn it."
+    },
+    {
+      "id": "newtons-second-law-rotation",
+      "kind": "result",
+      "section": "10.3",
+      "name": "Newton's second law for rotation, $\\text{net}\\;\\ktau = \\kI\\kalpha$",
+      "why": "The general relationship among torque, moment of inertia and angular acceleration is that the net torque equals the moment of inertia times the angular acceleration. The larger the torque the larger the angular acceleration, and the larger the moment of inertia the smaller it is. The relationship is valid for any torque, applied to any object, about any axis, which makes it the rotational form of Newton's second law.",
+      "evidence": "The section states it in both of its forms and says it is very generally applicable, the merry-go-round example uses it twice, and the problems of the section run from a grindstone to Earth's own rotation being slowed by a villain pushing at the equator.",
+      "eq": "eq-second-law-rotation"
+    },
+    {
+      "id": "choosing-a-moment-of-inertia",
+      "kind": "skill",
+      "section": "10.3",
+      "name": "Choosing the moment of inertia for a body and an axis",
+      "why": "Calculating a moment of inertia by integration is beyond this text, so the moment of inertia is read from the figure of shapes for the body and the axis at hand: a hoop about its axis, a disk, a rod about its end or about its center, a sphere. Where a system is made of several bodies turning about one axis, the moments of inertia add, since each is a sum of $mr^2$ over the same axis.",
+      "evidence": "The section prints the figure of ten shapes for this purpose and says that in all cases but the hoop the reader must consult it; the merry-go-round example adds the child's moment of inertia to the disk's, and later sections of the chapter send the reader back to the same figure for a rod, a sphere and a disk."
+    },
+    {
+      "id": "rotational-dynamics-strategy",
+      "kind": "skill",
+      "section": "10.3",
+      "name": "Solving a rotational dynamics problem",
+      "why": "A problem in rotational dynamics is set up by determining that torque and mass are involved, choosing the system of interest, drawing a free body diagram of the external forces on it, and applying the rotational form of Newton's second law about the point of rotation, with care taken over which moment of inertia belongs to the body and which axis the torques are taken about. As always, the answer is then checked for reasonableness.",
+      "evidence": "The section sets out the five steps as a strategy box, and the problem about slowing Earth's rotation asks the reader explicitly to show how the steps are followed."
+    },
+    {
+      "id": "rotational-work",
+      "kind": "result",
+      "section": "10.4",
+      "name": "Rotational work, $\\text{net}\\;\\kW = (\\text{net}\\;\\ktau)\\theta$",
+      "why": "When a net force is kept perpendicular to the radius of a turning disk, the force is parallel to the displacement and the net work is the force times the arc length travelled. Multiplying and dividing by the radius turns the force into a torque and the arc length into an angle, so that the net work is the net torque times the angle turned through. Torque is analogous to force here, and angle to distance.",
+      "evidence": "The section derives the expression from the figure of the disk turned by a perpendicular force and says it holds in general although it was derived for a special case; the grindstone example finds the work done through one radian of rotation and confirms that it equals the rotational kinetic energy gained.",
+      "eq": "eq-rotational-work"
+    },
+    {
+      "id": "rotational-kinetic-energy",
+      "kind": "result",
+      "section": "10.4",
+      "name": "Rotational kinetic energy, $\\kKErot = \\frac{1}{2}\\kI\\kw^2$",
+      "why": "A body has kinetic energy by turning as well as by travelling, and the rotational kinetic energy is half the moment of inertia times the square of the angular velocity. The expression is exactly analogous to the translational one, with the moment of inertia standing where the mass stands and the angular velocity where the velocity stands.",
+      "evidence": "The section defines the quantity by analogy after deriving the work-energy theorem for rotation, and the glossary carries it; the helicopter example finds that most of a flying helicopter's kinetic energy is in its blades rather than in its motion, and the flywheel bus stores its energy this way.",
+      "eq": "eq-rotational-kinetic-energy"
+    },
+    {
+      "id": "rotational-work-energy-theorem",
+      "kind": "result",
+      "section": "10.4",
+      "name": "The work-energy theorem for rotation, $\\text{net}\\;\\kW = \\frac{1}{2}\\kI\\kw^2 - \\frac{1}{2}\\kI{\\kwo}^2$",
+      "why": "Substituting the rotational form of Newton's second law into the expression for rotational work, and then using the kinematic relation between the angular velocity and the angle, gives the net work as the change in one half the moment of inertia times the square of the angular velocity. Net work changes the kinetic energy of a system, and for a turning body that kinetic energy is rotational.",
+      "evidence": "The section derives the theorem step by step and names it, the glossary carries the term, and the grindstone example verifies that the work done by the torque equals the rotational kinetic energy the stone ends with.",
+      "eq": "eq-rotational-work-energy-theorem"
+    },
+    {
+      "id": "rolling-splits-the-energy",
+      "kind": "result",
+      "section": "10.4",
+      "name": "A rolling body divides its energy, $\\kPEgrav = \\kKEtrans + \\kKErot$",
+      "why": "A body rolling down an incline without slipping converts its gravitational potential energy into kinetic energy of two kinds at once, translational and rotational. The greater its moment of inertia, the more of the energy goes into turning and the less is left to carry it down the slope, which is why a can of thick soup, whose contents turn with the can, loses the race to a can of thin soup, and why a can that slides without rolling wins.",
+      "evidence": "The section asks why cans of identical size and mass roll down an incline at different rates, answers it with the figure of the three racing cans, and the example of the solid cylinder shows that the mass and the radius cancel, so that every solid cylinder rolls at the same rate.",
+      "eq": "eq-energy-of-a-rolling-body"
+    },
+    {
+      "id": "rotational-energy-strategy",
+      "kind": "skill",
+      "section": "10.4",
+      "name": "Solving a rotational energy problem",
+      "why": "Energy problems that involve rotation are solved as other energy problems are: determine that work or energy is involved, choose the system, decide which kinds of work and energy are present, and for a closed system set the initial kinetic and potential energy equal to the final, remembering that the kinetic energy may have both a translational and a rotational part. For an open system the other forms of energy must be accounted for as well.",
+      "evidence": "The section sets out the seven steps as a strategy box, and the problem about the flywheel bus climbing a hill asks the reader explicitly to show how they are followed."
+    },
+    {
+      "id": "angular-momentum",
+      "kind": "idea",
+      "section": "10.5",
+      "name": "Angular momentum, $\\kL = \\kI\\kw$",
+      "why": "Every rotational phenomenon has a direct translational analog, and angular momentum is the analog of linear momentum: it is the moment of inertia times the angular velocity, as linear momentum is the mass times the velocity. It is measured in kilogram meters squared per second. A body with a very large moment of inertia, such as Earth, has an enormous angular momentum, and so does a body turning very fast, such as a centrifuge.",
+      "evidence": "The section defines the quantity in its first equation and the glossary carries it; the first worked example calculates the angular momentum of Earth spinning on its axis, and the problems ask for the angular momentum of the Moon, of a skater and of an engine crank.",
+      "eq": "eq-angular-momentum"
+    },
+    {
+      "id": "torque-changes-angular-momentum",
+      "kind": "result",
+      "section": "10.5",
+      "name": "Torque changes angular momentum, $\\text{net}\\;\\ktau = \\frac{\\kdLang}{\\kdt}$",
+      "why": "When you push a merry-go-round, spin a bike wheel or open a door, you exert a torque, and if that torque is greater than the torques opposing it the angular momentum increases. The net torque is the rate at which the angular momentum changes, exactly as the net force is the rate at which linear momentum changes, which makes this the rotational form of Newton's second law.",
+      "evidence": "The section states the relationship and calls it very fundamental and broadly applicable; the lazy Susan example finds the angular momentum a partygoer gives a tray by pushing for a seventh of a second, and notes that the angular momentum imparted depends on the torque and the time alone.",
+      "eq": "eq-torque-changes-angular-momentum"
+    },
+    {
+      "id": "conservation-of-angular-momentum",
+      "kind": "result",
+      "section": "10.5",
+      "name": "Conservation of angular momentum, $\\kL = \\kLprime$",
+      "why": "If the net torque on a system is zero, then its angular momentum does not change: this is the law of conservation of angular momentum, and it stands beside the conservation of energy and of linear momentum. It is why Earth keeps on spinning, since only the tides exert any significant retarding torque on it, and why a skater can spin for a long time on ice that opposes her very little.",
+      "evidence": "The section derives the law from the relation between torque and angular momentum by setting the net torque to zero, the glossary carries it, and the section's own boxed note places it beside the conservation of energy and of linear momentum as another sign of underlying unity in physical laws.",
+      "eq": "eq-conservation-of-angular-momentum"
+    },
+    {
+      "id": "spin-rate-from-moment-of-inertia",
+      "kind": "result",
+      "section": "10.5",
+      "name": "A smaller moment of inertia means a faster spin, $\\kI\\kw = \\kIprime\\kwprime$",
+      "why": "Because the angular momentum is conserved when no net torque acts, a body that reduces its moment of inertia must increase its angular velocity to keep the product the same. A skater pulling in her arms and her extended leg spins several times faster, an air mass whose radius narrows becomes a tornado, and the cloud of gas and dust that became the Solar System sped up as gravity drew it together.",
+      "evidence": "The section writes the conservation law in terms of the moment of inertia beside the two images of the spinning skater, and the worked example finds that a skater spinning at 0.800 rev/s with her arms out reaches 5.16 rev/s when she pulls them in; the tornado, Earth's formation and the merry-go-round problems all turn on the same step.",
+      "eq": "eq-spin-rate-from-inertia"
+    },
+    {
+      "id": "work-done-in-pulling-in",
+      "kind": "idea",
+      "section": "10.5",
+      "name": "Work done in pulling in raises the rotational kinetic energy",
+      "why": "The skater's angular momentum is unchanged when she pulls in her arms, but her rotational kinetic energy rises sharply, and the increase comes from the work she does pulling her arms inward against the force needed to hold them on their circles. Conserving angular momentum does not conserve rotational kinetic energy, because energy can be added from within the system while the angular momentum cannot.",
+      "evidence": "The worked example finds the skater's rotational kinetic energy rising from 29.6 J to 191 J while her angular momentum stays the same, the section says the increase comes from work that depletes some of her food energy, and a conceptual question asks the reader to identify the force she exerts on each arm and the distance it moves."
+    },
+    {
+      "id": "angular-momentum-in-collisions",
+      "kind": "result",
+      "section": "10.6",
+      "name": "Angular momentum in a collision, $\\kL = m\\kv r$",
+      "why": "Bowling pins fly and spin when the ball reaches them, and cars spin as they collide on ice, so angular momentum has to be carried into the account of a collision. A body moving in a straight line has an angular momentum about a chosen point, since taking it to be a point mass gives $I = mr^2$ and $\\omega = v/r$, and the product is the mass times the velocity times the distance to the point. Where the external force acts at the pivot its lever arm is zero, so it exerts no torque and the angular momentum of the system is conserved through the collision.",
+      "evidence": "The section works through a disk that strikes and adheres to a nailed stick on a frictionless surface, states that the force at the nail exerts no torque because its lever arm is zero, and uses the conservation of angular momentum to find how fast the two turn afterward.",
+      "eq": "eq-angular-momentum-of-a-point-mass"
+    },
+    {
+      "id": "solving-a-rotational-collision",
+      "kind": "skill",
+      "section": "10.6",
+      "name": "Solving a collision of extended bodies, $\\kwprime = \\frac{m\\kv r}{\\kIprime}$",
+      "why": "A collision in which a body is free to rotate is solved by setting the angular momentum before equal to the angular momentum after, both calculated about the same pivot point. The angular momentum before is that of the incoming body treated as a point mass, and the angular momentum after is the combined moment of inertia about the pivot times the angular velocity, where the combined moment of inertia is the sum of the separate ones about that axis.",
+      "evidence": "The section carries the disk-and-stick example through in full and the problems repeat it with the disk striking closer to the nail, with the disk already spinning, and with the stick free to travel as well as turn; the twin skaters who lock hands and the person who catches a ball on ice are solved the same way.",
+      "eq": "eq-angular-velocity-after-collision"
+    },
+    {
+      "id": "energy-and-momentum-in-a-rotational-collision",
+      "kind": "idea",
+      "section": "10.6",
+      "name": "Kinetic energy and linear momentum in a rotational collision",
+      "why": "Angular momentum may be conserved in a collision while kinetic energy is not, because the collision is inelastic, and linear momentum need not be conserved either, because the force at the pivot may have a component along the incoming body's path. In the disk and stick the kinetic energy falls from 22.5 J to 1.57 J while the linear momentum rises, which the nail explains: the stick pushes back on the nail and the nail pushes forward on the stick.",
+      "evidence": "The example calculates the kinetic energy and the linear momentum before and after the collision as well as the angular velocity, and its discussion works out why the momentum afterward is the greater of the two; the conceptual questions ask which quantities are likely to be conserved when a puck strikes a free hockey stick."
+    },
+    {
+      "id": "percussion-point",
+      "kind": "idea",
+      "section": "10.6",
+      "name": "The percussion point",
+      "why": "Striking the nailed stick at its far end pushes the nail backward and striking it near the nail pushes the nail forward, so there is a point in between at which no force is delivered to the pivot at all. That point is the percussion point. A tennis racquet and a baseball bat have one too, and a ball met there leaves little force and little vibration in the hand, which is what players call the sweet spot.",
+      "evidence": "The section reasons from the two extremes of the disk-and-stick collision to the point between them, names it, and draws the three cases for a racquet: struck near the end, struck far down the shaft, and struck at the percussion point."
+    },
+    {
+      "id": "right-hand-rule",
+      "kind": "skill",
+      "section": "10.7",
+      "name": "The right-hand rule for angular velocity and angular momentum",
+      "why": "Angular velocity and angular momentum are vectors, and their direction is found by curling the fingers of the right hand in the direction of the rotation: the thumb then points along the axis of rotation in the direction of both. Because the angular momentum is the moment of inertia times the angular velocity, and the moment of inertia is a positive number, the two point the same way.",
+      "evidence": "The section states the rule beside the figure of the turning disk with its arrow along the axis and the drawn right hand, and the glossary carries it; the direction of a torque is found the same way, by curling the fingers in the direction of the force."
+    },
+    {
+      "id": "torque-sets-the-direction-of-angular-momentum",
+      "kind": "result",
+      "section": "10.7",
+      "name": "A torque changes angular momentum in its own direction",
+      "why": "The net torque is the rate of change of angular momentum, so the change in angular momentum points the way the torque points. When the torque is perpendicular to the angular momentum already there, the two add head to tail to give a new angular momentum of the same size pointing in a new direction, and the axis of rotation moves perpendicular to the forces applied rather than the way they push.",
+      "evidence": "The section applies the rule to a bicycle wheel with handles that a person tries to tip, draws the vector sum of the angular momentum and its change, and notes that the wheel moves toward the person instead of the way she pushes it.",
+      "eq": "eq-torque-and-angular-momentum-vectors"
+    },
+    {
+      "id": "gyroscopic-precession",
+      "kind": "idea",
+      "section": "10.7",
+      "name": "Gyroscopic precession",
+      "why": "The weight of a spinning gyroscope and the force from its stand create a horizontal torque, always perpendicular to the angular momentum, so the direction of the angular momentum changes while its magnitude does not and the gyroscope precesses about a vertical axis instead of falling over. A gyroscope that is not spinning simply acquires angular momentum in the direction of the torque and falls. Earth precesses in the same way, once in about 26,000 years, under the torque of the Sun and the Moon on its nonspherical shape.",
+      "evidence": "The section draws the two forces on a spinning gyroscope and the vector diagram of the angular momentum turning, says that Earth's axis points at Polaris and slowly precesses, and the section's one problem finds the torque that produces that precession."
+    },
+    {
+      "id": "flow-rate",
+      "kind": "idea",
+      "section": "12.1",
+      "name": "Flow rate",
+      "why": "Flow rate is the volume of fluid that passes a location through an area during a period of time, and it is the quantity almost every question about a moving fluid is asked in: how much blood a heart pumps, how much water a hose delivers, how much air a duct carries. Because it counts volume rather than distance, it tells you nothing on its own about how fast the fluid is moving or how wide the conduit is, only about the product of the two.",
+      "evidence": "The section opens on the definition and its equation, the first worked example takes the resting heart’s 5.00 liters per minute and finds the volume of blood pumped in a 75-year lifetime, and the glossary carries the term.",
+      "eq": "eq-flow-rate"
+    },
+    {
+      "id": "flow-rate-units",
+      "kind": "skill",
+      "section": "12.1",
+      "name": "Converting flow rate to convenient units",
+      "why": "The SI unit of flow rate is the cubic meter per second, but almost nothing is quoted in it: a heart is measured in liters per minute, a fire hose in liters per second, a capillary in cubic centimeters per second. A liter is a thousandth of a cubic meter, and the section says plainly that whatever metric units are most convenient for a given situation are the ones to use, so converting between them is part of working almost every problem in the set.",
+      "evidence": "The section defines the liter beside the definition of flow rate, the first worked example carries four conversion factors in a single line, and the problem set asks for the same rate in cubic centimeters per second, in cubic meters per second and in liters per second."
+    },
+    {
+      "id": "flow-rate-velocity",
+      "kind": "result",
+      "section": "12.1",
+      "name": "Flow rate from area and speed, $\\kQ = A\\kvb$",
+      "why": "Flow rate and velocity are related but quite different physical quantities. The greater the velocity of a river the greater its flow rate, but flow rate also depends on the size of the river, which is why a rapid mountain stream carries far less water than the Amazon. The shaded cylinder of fluid that passes a point in a time has the volume of its cross-section times its length, and dividing that volume by the time gives the flow rate as the cross-sectional area times the average speed.",
+      "evidence": "The section derives the relation from the cylinder of fluid in Figure 12.2, the worked example on the garden hose uses it to find the speed of the water in the hose, the example on the aorta uses it again for blood, and the summary states it.",
+      "eq": "eq-flow-rate-velocity"
+    },
+    {
+      "id": "incompressible-fluid",
+      "kind": "idea",
+      "section": "12.1",
+      "name": "Incompressible fluid",
+      "why": "A fluid is incompressible when a given amount of it always occupies the same volume, however hard it is pressed. Since liquids are essentially incompressible, the equation of continuity is valid for all of them; gases are compressible, and the equation must be applied to them with caution if they are subjected to compression or expansion. Every result of this chapter, Bernoulli’s equation and Poiseuille’s law included, is written for an incompressible fluid.",
+      "evidence": "The section states the restriction immediately after deriving the equation of continuity, and one of the conceptual questions asks the reader to identify some substances that are incompressible and some that are not."
+    },
+    {
+      "id": "equation-of-continuity",
+      "kind": "result",
+      "section": "12.1",
+      "name": "Equation of continuity, $A_1\\kvbone = A_2\\kvbtwo$",
+      "why": "Because the fluid is incompressible, the same amount of fluid must flow past any point of a tube in a given time, so the flow rate is the same at all points along it. Where the cross-sectional area decreases the velocity must necessarily increase, and where it increases the velocity drops. That is the purpose of a nozzle, and it is why water slows considerably when a river empties into a reservoir and picks up speed again when it leaves.",
+      "evidence": "The section states it for points 1 and 2 of the narrowing tube of Figure 12.3, the worked example on the hose and the nozzle uses it to get 25.5 m/s from 1.96 m/s, the summary states it, and most of the problem set turns on it.",
+      "eq": "eq-continuity"
+    },
+    {
+      "id": "continuity-branching",
+      "kind": "result",
+      "section": "12.1",
+      "name": "Continuity where the flow branches, $n_1A_1\\kvbone = n_2A_2\\kvbtwo$",
+      "why": "In the cardiovascular system and in any other branching network the flow does not stay in one tube. Continuity still holds, but what is maintained is the sum of the flow rates in all the branches in any portion along the tube, so the number of branches enters the equation along with their areas and their speeds. Because the capillaries have an enormously greater total cross-section than the aorta, the blood in them moves at about a millimeter per second, which is slow enough for substances to be exchanged with the cells and still fast enough to avoid clotting.",
+      "evidence": "The section states the general form after describing how arteries subdivide into arterioles and then into capillaries, the third worked example uses it to count five billion capillaries in the body, and three problems ask by what factor the blood slows when a vessel branches.",
+      "eq": "eq-continuity-branching"
+    },
+    {
+      "id": "pressure-drops-in-fast-fluid",
+      "kind": "idea",
+      "section": "12.2",
+      "name": "Pressure drops in a rapidly moving fluid",
+      "why": "When a fluid flows into a narrower channel its speed increases, so its kinetic energy increases, and that energy comes from the net work done on the fluid to push it into the channel. Pressure times area is a force, so the work is done by a pressure difference, and the result is that the pressure drops in a rapidly moving fluid, whether or not the fluid is confined to a tube. A shower curtain bulges into the stall, a car passing a truck tends to veer towards it, and trains passing in opposite directions were found in the mid-1800s to tip precariously towards one another.",
+      "evidence": "The section opens on this argument, draws it as the air between the car and the truck in Figure 12.5, sets a Take-Home Investigation in which the reader blows over a sheet of paper, and returns to it in the conceptual questions about the roof of a house in a tornado and about standing close to a passing train."
+    },
+    {
+      "id": "bernoullis-equation",
+      "kind": "result",
+      "section": "12.2",
+      "name": "Bernoulli’s equation, $\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{constant}$",
+      "why": "Bernoulli’s equation states the relationship between pressure and velocity in a fluid quantitatively: for an incompressible, frictionless fluid the sum of the pressure, the term in the square of the speed and the term in the height is constant along the path a bit of fluid follows. Various quantities in the sum may change as the fluid moves, but the total does not, so a gain in speed or in height has to be paid for out of pressure.",
+      "evidence": "The section states it and then restates it for two points along the path, names it for Daniel Bernoulli, and the rest of the chapter is its application: the static fluid and Bernoulli’s principle in this section, Torricelli’s theorem and power in the next, and every worked example of both.",
+      "eq": "eq-bernoulli"
+    },
+    {
+      "id": "bernoulli-energy-per-volume",
+      "kind": "idea",
+      "section": "12.2",
+      "name": "Every term of Bernoulli’s equation is an energy per unit volume",
+      "why": "Bernoulli’s equation is a form of the conservation of energy principle. The second and third terms are the kinetic and the gravitational potential energy with the mass replaced by the density, so each is an energy divided by a volume, and the pressure is an energy per unit volume too, since a newton per square meter multiplied by meter over meter is a joule per cubic meter. Bernoulli’s equation is, in fact, just a convenient statement of conservation of energy for an incompressible fluid in the absence of friction.",
+      "evidence": "The section proves it for each of the three terms in turn, sets a Making Connections box on conservation of energy that says viscosity is what the equation leaves out, and the first problem of the set asks the reader to verify that pressure has units of energy per unit volume.",
+      "eq": "eq-ke-per-volume"
+    },
+    {
+      "id": "bernoulli-static-fluid",
+      "kind": "result",
+      "section": "12.2",
+      "name": "Bernoulli’s equation for a static fluid, $\\kPrtwo = \\kProne + \\krho\\kg\\khone$",
+      "why": "When the fluid is not moving, both terms in the speed vanish and Bernoulli’s equation says that pressure increases with depth: going down by a height adds the weight of that column of fluid to the pressure. In the simplest case the pressure at the top is zero and the familiar relationship for the pressure due to the weight of a fluid is recovered. Although Bernoulli’s equation is introduced for fluid flow, it includes much of what was studied for static fluids in the preceding chapter.",
+      "evidence": "The section takes the static case first, sets the lower height to zero and reads off the result, and the section’s first AP item asks at what depth beneath the surface of a lake the pressure is twice atmospheric.",
+      "eq": "eq-bernoulli-static"
+    },
+    {
+      "id": "bernoullis-principle",
+      "kind": "result",
+      "section": "12.2",
+      "name": "Bernoulli’s principle, $\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2$",
+      "why": "When a fluid moves but its depth is constant, the terms in the height subtract out and Bernoulli’s equation becomes a statement about pressure and speed alone. Situations of that kind are so important that the equation has a name of its own. It says what the opening of the section argued: if the speed at one point is greater, the pressure there must be less for the equality to hold.",
+      "evidence": "The section names it and derives it from Bernoulli’s equation, the worked example uses it to find the pressure in a hose from the pressure in its nozzle, the summary states it, and every application that follows, entrainment, wings and sails and velocity measurement, is worked from it.",
+      "eq": "eq-bernoullis-principle"
+    },
+    {
+      "id": "entrainment",
+      "kind": "idea",
+      "section": "12.2",
+      "name": "Entrainment",
+      "why": "People have long put Bernoulli’s principle to work by using the reduced pressure in a high-velocity fluid to move things about: with a higher pressure on the outside, the fast stream forces other fluids into itself. Entrainment devices have been in use since ancient times as pumps to raise water small heights, and the same trick runs a Bunsen burner, an atomizer, a paint sprayer, an aspirator and the chimney of a water heater.",
+      "evidence": "The section names the process and draws four devices that use it in Figure 12.6, and four conceptual questions turn on it: the Venturi constriction, the T-shaped chimney pipe, the limit to the height an entrainment device can raise a fluid, and how the perfume rises in an atomizer."
+    },
+    {
+      "id": "lift-from-bernoulli",
+      "kind": "idea",
+      "section": "12.2",
+      "name": "Lift on a wing and a sail",
+      "why": "The airplane wing is a beautiful example of Bernoulli’s principle in action. The wing is tilted upward at a small angle and its upper surface is longer, so air flows faster over the top, the pressure there is reduced, and the difference is a net upward force. A sail has the characteristic shape of a wing too: the pressure on its front is lower than the pressure on its back, which gives a forward force and even allows a boat to sail into the wind. Wings also gain lift by pushing air downward, and the deflected air pushes back on the wing by Newton’s third law.",
+      "evidence": "The section draws the wing and the sail in Figure 12.7 and names both pressures, and the conceptual questions ask why an airplane takes off into the wind and why a sailboat needs a keel; a problem asks how fast air must move over a wing’s upper surface to give the thousand newtons of lift per square meter that aircraft design assumes."
+    },
+    {
+      "id": "velocity-measurement",
+      "kind": "result",
+      "section": "12.2",
+      "name": "Measuring fluid speed with a manometer, $\\kvtwo \\propto \\sqrt{\\kh}$",
+      "why": "Two tubes small enough not to disturb the flow, joined by a manometer, measure the speed of a fluid. The tube facing the oncoming fluid creates a dead spot with zero velocity in front of it, while the fluid passing the other tube keeps its speed, so the pressure at the second opening is lower by the term in the square of the speed. The manometer fluid rises by a height proportional to that term, and the speed is therefore proportional to the square root of the height. The pitot tube built on this principle is the air speed indicator of an aircraft.",
+      "evidence": "The section draws the manometer and the pitot tube in Figure 12.8 and works the proportionality out from Bernoulli’s principle, and three problems use it: by what factor the wind speed must rise to double the height, what a pitot tube reads at 700 km/h given its reading at 200 km/h, and the derivation of the speed from a mercury manometer.",
+      "eq": "eq-speed-from-manometer"
+    },
+    {
+      "id": "torricellis-theorem",
+      "kind": "result",
+      "section": "12.3",
+      "name": "Torricelli’s theorem, $\\kvtwo^2 = \\kvone^2 + 2\\kg\\kh$",
+      "why": "Water gushing from a tube at the base of a dam emerges at just the speed it would have if it had fallen the distance from the surface of the reservoir, and the speed does not depend on the size of the opening. Both pressures are atmospheric and subtract out of Bernoulli’s equation, and the density cancels because the fluid is incompressible, leaving a kinematic equation for an object falling that height with negligible resistance. As with conservation of energy applied to falling objects, the result does not depend on the direction the water leaves in.",
+      "evidence": "The section derives the theorem from Bernoulli’s equation for the dam of Figure 12.11, and the conceptual question about the old boot with two leaks at the same height asks the reader to say how high the water from each can squirt and why.",
+      "eq": "eq-torricelli"
+    },
+    {
+      "id": "bernoulli-general-application",
+      "kind": "skill",
+      "section": "12.3",
+      "name": "Applying Bernoulli’s equation where pressure, speed and height all change",
+      "why": "Every earlier use of Bernoulli’s equation simplified it first, by holding the height constant or the pressure equal at both points. The general case keeps all three terms at both points: the speeds are found from the flow rate and the two cross-sections, the heights are measured from whichever point is taken as the reference, and the remaining pressure is what is solved for. A fire hose that runs ten meters up a ladder to a narrow nozzle is exactly this case, and its pressure falls for both reasons at once.",
+      "evidence": "The section sets out the general case before the worked example, and the example on the fire hose nozzle finds the speeds from the flow rate, takes the ground as the zero of height and solves for the pressure at the base of the hose; two of the section’s AP items ask the same of a pipe that rises into a building.",
+      "eq": "eq-bernoulli-two-points"
+    },
+    {
+      "id": "power-in-fluid-flow",
+      "kind": "result",
+      "section": "12.3",
+      "name": "Power in fluid flow, $\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power}$",
+      "why": "Power is the rate at which work is done or energy is used or supplied. Every term of Bernoulli’s equation is an energy per unit volume, so multiplying the whole equation by the flow rate, which is a volume per unit time, gives a power. Each term then has a clear physical meaning: one is the power supplied to give the fluid its pressure, one the power supplied to give it its kinetic energy, and one the power that goes to gravitational potential energy.",
+      "evidence": "The section derives it by considering the units, sets a Making Connections box on power beside it, and the summary states it; the problem on Hoover Dam asks for the power in a flow of 650 cubic meters per second taken from a depth of 150 meters, and the problem on the left ventricle asks for the total power output of a heart that raises pressure, speed and height at once.",
+      "eq": "eq-power-in-fluid-flow"
+    },
+    {
+      "id": "pump-power",
+      "kind": "skill",
+      "section": "12.3",
+      "name": "Finding the power a pump supplies, $\\text{power} = \\kPr\\kQ$",
+      "why": "A pump that takes fluid in and sends it out through a hose of the same diameter at the same height changes neither the speed nor the height of the fluid, so its kinetic and gravitational potential energy are unchanged and the only term left is the pressure. The power the pump supplies is then the pressure it adds multiplied by the flow rate. A pump that raises velocity and height as well, as the heart does, needs all three terms.",
+      "evidence": "The worked example on the fire truck finds 36.8 kW from a pressure rise of 0.920 million newtons per square meter at 40.0 liters per second and remarks that this is about 50 horsepower, and the discussion says what would have to change if the pump were a heart.",
+      "eq": "eq-power-from-pressure"
+    },
+    {
+      "id": "laminar-flow",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "Laminar flow",
+      "why": "Laminar flow is characterized by the smooth flow of a fluid in layers that do not mix. The lines drawn in the figures of this chapter are streamlines, the paths followed by small volumes of fluid, and in laminar flow they are smooth and continuous. The precise definition of viscosity is based on laminar flow, and so is Poiseuille’s law, so the whole of this section assumes it.",
+      "evidence": "The section defines the term against the photograph of rising smoke, which is laminar at first, draws the layers in Figure 12.15(a), and the glossary carries it; the Take-Home Experiment asks the reader to drop two sticks into a river, one near the edge and one near the middle, and say which travels faster."
+    },
+    {
+      "id": "turbulent-flow",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "Turbulent flow",
+      "why": "Turbulence is characterized by eddies and swirls that mix layers of fluid together, and its streamlines break up rather than running smoothly. It has two main causes: any obstruction or sharp corner imparts velocities perpendicular to the flow, and high speeds alone will do it, since the drag between adjacent layers and between the fluid and its surroundings forms swirls if the speed is great enough. Turbulent flow mixes the fluid, heats it more and resists more than laminar flow does.",
+      "evidence": "The section defines the term against the same photograph of smoke, where the rise slows once the flow becomes turbulent, draws an obstruction making eddies in Figure 12.15(b), and the glossary carries it; the whole of 12.5 is about predicting when it sets in."
+    },
+    {
+      "id": "viscosity",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "Viscosity",
+      "why": "Viscosity is fluid friction, both within the fluid and between the fluid and its surroundings: juice pours freely and syrup sticks to the pitcher. It is measured by shearing a fluid between two plates, one held fixed and one moved at a steady speed, and finding the force that keeps the top plate moving. That force grows with the speed, with the area of the plate and with the viscosity, and falls as the plates are moved apart, so the viscosity is the force times the separation divided by the speed times the area. Viscosities vary from one fluid to another by several orders of magnitude, gases being far less viscous than liquids, and most of them depend on temperature.",
+      "evidence": "The section defines it from the two plates of Figure 12.16, prints Table 12.1 of the coefficients of viscosity from air to honey, and the glossary carries it; two problems find a viscosity from the force needed to slide one microscope slide over another, and the first conceptual question asks why a liquid’s viscosity falls with temperature while a gas’s rises.",
+      "eq": "eq-viscosity-force"
+    },
+    {
+      "id": "velocity-profile-in-tube",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "The velocity profile across a tube",
+      "why": "If the flow in a tube has negligible resistance the speed is the same all across it. When a viscous fluid flows, the layer in contact with the wall does not move at all, and the speed increases steadily to its maximum at the center of the tube. The shape of a Bunsen burner flame is that velocity profile made visible, even though the viscosity of natural gas is small.",
+      "evidence": "The section draws the two profiles side by side in Figure 12.17 and puts the photograph of the flame beside them, and the conceptual question about paddling a canoe, near the shore going upstream and near the middle coming down, is the same profile in a river."
+    },
+    {
+      "id": "flow-resistance",
+      "kind": "result",
+      "section": "12.4",
+      "name": "Flow rate from pressure difference and resistance, $\\kQ = (\\kPrtwo - \\kProne)/R$",
+      "why": "What causes flow is a pressure difference, and the relationship between the two is very simple: the flow rate is the pressure difference divided by the resistance, and it is in the direction from high to low pressure. The resistance includes everything except pressure that affects the flow rate. It is greater for a long tube than for a short one, greater for a more viscous fluid, greatly increased by turbulence, and decreased by widening the tube; if the viscosity is zero the fluid is frictionless and the resistance is zero as well.",
+      "evidence": "The section states the relationship before Poiseuille’s law and discusses each thing the resistance depends on in turn, the summary states it, and the problem on the concrete pump asks for the resistance of a fifty-meter hose from the pressure at the pump and the flow rate.",
+      "eq": "eq-flow-from-resistance"
+    },
+    {
+      "id": "poiseuilles-law-resistance",
+      "kind": "result",
+      "section": "12.4",
+      "name": "Poiseuille’s law for resistance, $R = 8\\keta l/\\pi r^4$",
+      "why": "For laminar flow of an incompressible fluid through a horizontal tube of uniform radius, the resistance is eight times the viscosity times the length, divided by pi times the fourth power of the radius. Resistance directly proportional to viscosity and to length makes good intuitive sense, since both directly affect the amount of friction encountered. The fourth power of the radius is the surprise. J. L. Poiseuille derived the law in an attempt to understand the flow of blood.",
+      "evidence": "The section states it with the tube of Figure 12.18, the summary states it, and the problem set asks what happens to the flow when the length is quadrupled or the radius cut to a tenth.",
+      "eq": "eq-poiseuille-resistance"
+    },
+    {
+      "id": "poiseuilles-law",
+      "kind": "result",
+      "section": "12.4",
+      "name": "Poiseuille’s law, $\\kQ = (\\kPrtwo - \\kProne)\\pi r^4/8\\keta l$",
+      "why": "Putting the resistance into the relationship between flow rate and pressure difference gives one equation for laminar flow through a tube: the flow rate is the pressure difference times pi times the fourth power of the radius, divided by eight times the viscosity times the length. It is the working equation of the section, and of every medical application in the chapter.",
+      "evidence": "The section states it and the summary repeats it; the worked example on plaque deposits uses it to show that halving the flow in a coronary artery takes only a sixteen percent narrowing, the example on the intravenous needle uses it to find the pressure needed at the entrance to the needle, and a dozen problems are worked from it.",
+      "eq": "eq-poiseuille"
+    },
+    {
+      "id": "radius-fourth-power-sensitivity",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "Flow is extraordinarily sensitive to a tube’s radius",
+      "why": "Because the radius is raised to the fourth power, any change in it has a very large effect on the resistance: doubling the radius decreases the resistance by a factor of sixteen, and reducing a vessel’s radius by only five percent cuts the flow to about eighty-one percent of its original value. This is why the body regulates blood flow mostly by dilating and constricting vessels rather than by working the heart harder, and why plaque in an artery is dangerous out of all proportion to its thickness. The body may compensate by raising the blood pressure, but that puts the heart and any weakened vessel at risk.",
+      "evidence": "The section works the arithmetic out twice, once for a doubling and once for a five percent narrowing, and returns to it for the circulatory system of Figure 12.20; six problems turn on it, among them the arterioles that shut an organ down, the angioplasty that restores a tenfold flow, and the penguin standing on ice."
+    },
+    {
+      "id": "pressure-drop-from-resistance",
+      "kind": "result",
+      "section": "12.4",
+      "name": "Pressure drop from flow and resistance, $\\kPrtwo - \\kProne = R\\kQ$",
+      "why": "Rearranged, the relationship between flow rate, pressure difference and resistance says that flow through a resistance causes the pressure to drop along it. That is why the water pressure in a house is lower on a hot summer day when the neighborhood is drawing heavily: the flow rate in the main is large, so the drop along it is large, and what arrives is what is left. The relationship holds for turbulent as well as for laminar flow, and it can be applied to a system whose radius is not the same everywhere, where the drop is greatest at the narrowest place.",
+      "evidence": "The section derives it for the water main of Figure 12.19 and then applies it to an obstructed coronary artery and to the circulatory system as a whole, the summary states it, and the problem about a house whose supply falls from 20.0 to 8.00 liters per minute is worked from it.",
+      "eq": "eq-pressure-drop"
+    },
+    {
+      "id": "reynolds-number",
+      "kind": "result",
+      "section": "12.5",
+      "name": "Reynolds number for flow in a tube, $N_{\\text{R}} = 2\\krho\\kv r/\\keta$",
+      "why": "Sometimes it can be predicted whether flow will be laminar or turbulent. Flow in a very smooth tube is laminar at low velocity and turbulent at high velocity, and in between it is more difficult to say. The Reynolds number gathers the four quantities that decide it, the density and the speed of the fluid, the radius of the tube and the viscosity, into one unitless number, and experiments have shown that it is the number, and not any of the four on its own, that the onset of turbulence is related to.",
+      "evidence": "The section defines it, the worked example computes 523 for the intravenous needle of the previous section and concludes that the flow there is indeed laminar, the summary states it, and one problem asks the reader to show by substituting units that the number is unitless.",
+      "eq": "eq-reynolds-tube"
+    },
+    {
+      "id": "turbulence-onset-thresholds",
+      "kind": "result",
+      "section": "12.5",
+      "name": "When flow in a tube turns turbulent",
+      "why": "For a Reynolds number below about 2000 the flow is laminar, and above about 3000 it is turbulent. Between 2000 and 3000 the flow is unstable: it can be laminar, but small obstructions and surface roughness can make it turbulent, and it may oscillate randomly between the two. Most of the blood flow in the body is quiet and laminar; the exception is the aorta, where the speed rises above a critical value and the flow becomes turbulent.",
+      "evidence": "The section gives the two thresholds immediately after defining the Reynolds number and the summary repeats them, and most of the problem set is the same question asked of different fluids: an oil gusher that is barely laminar, a garden hose and its nozzle that are not, concrete in a pump that is, and the greatest speed of blood in an artery that keeps the flow laminar."
+    },
+    {
+      "id": "turbulence-in-circulation",
+      "kind": "idea",
+      "section": "12.5",
+      "name": "Turbulence in the circulatory system",
+      "why": "An occlusion or narrowing of an artery is likely to cause turbulence, both because of the irregularity of the blockage and because of the complexity of blood as a fluid. Turbulence in the circulatory system is noisy and can often be heard: the Korotkoff sounds heard through a stethoscope when a blood pressure cuff is released, the sounds of an aneurysm, and the heart murmurs made by damaged valves that do not close. Ultrasound detects the same turbulence in a way analogous to Doppler-shift radar detecting a storm.",
+      "evidence": "The section draws the occluded vessel in Figure 12.22 and lists the sounds a physician listens for, and the first conceptual question asks where blood speed is greatest at a constriction and what the two distinct causes of the higher resistance there are."
+    },
+    {
+      "id": "chaotic-flow",
+      "kind": "idea",
+      "section": "12.5",
+      "name": "Chaotic behavior",
+      "why": "A system is chaotic when its behavior is so sensitive to some factor that it is extremely difficult to predict. Flow with a Reynolds number between 2000 and 3000 is a good example: whether it is turbulent is difficult but not impossible to predict, and the difficulty lies in the extremely sensitive dependence on roughness and obstructions, where a tiny variation in one factor has an exaggerated effect on the flow. Phenomena as disparate as turbulence, the orbit of Pluto and the onset of irregular heartbeats are chaotic and can be analyzed with similar techniques.",
+      "evidence": "The section closes on the topic and names the three examples, and the conceptual question about the decorative wicker reeds on a ceiling fan asks the reader to judge whether such a fan is as quiet and efficient as one with smooth blades."
+    },
+    {
+      "id": "reynolds-number-object",
+      "kind": "result",
+      "section": "12.6",
+      "name": "Reynolds number for an object in a fluid, ${N'}_{\\text{R}} = \\krho\\kv L/\\keta$",
+      "why": "A moving object in a viscous fluid is equivalent to a stationary object in a flowing stream: riding a bicycle at ten meters a second in still air feels exactly like standing still in a ten-meter-a-second wind. Just as with flow in tubes, it is possible to predict when a moving object creates turbulence, and the indicator is another form of the Reynolds number, built from the fluid’s density and viscosity, the object’s speed and a characteristic length of the object such as a sphere’s diameter.",
+      "evidence": "The section defines it against the equivalence of a moving object and a flowing stream, and the worked example computes 2.11 × 10⁵ for a thrown ball 7.40 cm across and concludes that it must have a turbulent wake.",
+      "eq": "eq-reynolds-object"
+    },
+    {
+      "id": "flow-regimes-around-object",
+      "kind": "idea",
+      "section": "12.6",
+      "name": "How the flow around an object changes with its Reynolds number",
+      "why": "Below about 1 the flow around an object can be laminar, particularly if the object has a smooth shape. Between 1 and about 10 the flow turns turbulent, the exact point depending on surface roughness, and a turbulent wake forms behind the object while some laminar flow remains over its surface. Between 10 and a million the flow may be either and may oscillate between the two, and above a million it is turbulent everywhere, even at the surface. Laminar flow occurs mostly when the objects are small, such as raindrops, pollen and blood cells in plasma, so most large objects, airplanes and sailboats among them, create significant turbulence as they move.",
+      "evidence": "The section walks through the ranges in order and draws the three of them around one sphere in Figure 12.24, and the discussion of the worked example notes that Bernoulli’s principle gives only qualitatively correct results once the wake is turbulent."
+    },
+    {
+      "id": "viscous-drag",
+      "kind": "idea",
+      "section": "12.6",
+      "name": "Viscous drag",
+      "why": "One of the consequences of viscosity is a resistance force called viscous drag, exerted on an object moving through a fluid. Unlike simple friction it depends on the object’s speed, and how it depends on it changes with the Reynolds number: for laminar flow the drag is proportional to the speed, while between about 10 and a million it is proportional to the speed squared, which is why even a small headwind costs a bicycle racer so much and why cyclists take turns leading the pack. For laminar flow around a sphere the drag is proportional to the viscosity, the size of the object and its speed, all of which makes sense, since the more viscous the fluid and the larger the object the more drag is to be expected; Stokes’ law gives the constant.",
+      "evidence": "The section names the force, gives its dependence on speed in each range, restates Stokes’ law for a small sphere moving slowly, and draws the drag on the sphere at three speeds in Figure 12.24; the glossary carries the term."
+    },
+    {
+      "id": "sedimentation-rate",
+      "kind": "idea",
+      "section": "12.6",
+      "name": "Sedimentation and the centrifuge",
+      "why": "Because the viscous drag grows with speed, an object falling through a fluid does not accelerate indefinitely. The drag increases, the acceleration falls, and at the terminal speed the object continues to fall at a constant speed. This is the case for particles of sand falling in the ocean, cells falling in a centrifuge and sky divers falling through the air, and the terminal speed is greatest for low-viscosity fluids and for objects that are dense and small, which is why a skydiver falls more slowly with outspread limbs than in a pike position. Knowing it is useful for estimating how quickly small particles settle, and a centrifuge speeds that settling by replacing gravitational acceleration with a much greater centripetal acceleration.",
+      "evidence": "The section draws the weight, the viscous drag and the buoyant force on a falling object in Figure 12.25 and names the three things terminal speed depends on, the glossary carries the term, the Take-Home Experiment asks the reader to time a marble falling through syrup and through oil and compare the speeds with the viscosities in Table 12.1, and the conceptual questions ask about raindrops in warm and cold air and about marbles of two sizes."
+    },
+    {
+      "id": "diffusion",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Diffusion",
+      "why": "Atoms and molecules are in constant motion at any temperature, and in fluids they move about randomly even where there is no macroscopic flow. That motion is a random walk, and diffusion is the movement of substances that it produces. It explains how an ice cube picks up the odors of a freezer, and fluids can even diffuse through solids. It is a slow process over macroscopic distances, because the densities of common materials are great enough that a molecule cannot travel far before a collision scatters it in any direction, including straight backward.",
+      "evidence": "The section opens on the fishy ice cube and the sprained ankle soaked in Epsom salt, draws the random walk in Figure 12.26, and the glossary carries the term; the section closes by noting that single-celled organisms rely on diffusion alone while larger organisms had to evolve circulatory systems."
+    },
+    {
+      "id": "random-walk-distance",
+      "kind": "result",
+      "section": "12.7",
+      "name": "Distance travelled by diffusion, $\\kxrms = \\sqrt{2D\\kt}$",
+      "why": "It can be shown that the average distance a molecule travels by diffusion is proportional to the square root of the time, not to the time itself, which is what makes diffusion so slow over any distance worth speaking of. The distance is the root-mean-square distance, the statistical average for the process, and the constant in it is the diffusion constant for that molecule in that medium.",
+      "evidence": "The section states the relation before the table of diffusion constants, the worked example finds that a glucose molecule needs 21 hours to move a centimeter through water and remarks that this is why sugar is stirred rather than waited for, the summary states it, and every problem of the section is worked from it.",
+      "eq": "eq-rms-distance"
+    },
+    {
+      "id": "diffusion-constant",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "The diffusion constant",
+      "why": "The diffusion constant is determined experimentally and gathers into one number most of the things that set the rate: the molecule, the medium, the temperature and the cohesive and adhesive forces. It gets progressively smaller for more massive molecules, because the average molecular speed at a given temperature is inversely proportional to molecular mass, and it is far smaller in water than in air, because a molecule in water makes many more collisions in its random walk. It increases with temperature, since the average kinetic energy of the molecules is proportional to absolute temperature.",
+      "evidence": "The section prints Table 12.2 of the constants for hydrogen, oxygen, glucose, hemoglobin and DNA and then reads the table for what it shows, noting that an oxygen molecule moves only about forty micrometers in a second in water; two problems ask for the ratio of the distances oxygen diffuses in air and in water and for the time by which hydrogen outruns oxygen, which is how gas chromatography tells them apart."
+    },
+    {
+      "id": "diffusion-rate-direction",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "The rate and direction of diffusion",
+      "why": "A drop of food coloring placed carefully in still water spreads until its concentration is the same everywhere, which is free diffusion, since no barrier inhibits it. Molecular motion is random in direction, so simple chance dictates that more molecules leave a region of high concentration than enter it, and the net rate of diffusion is proportional to the difference in concentration; if the concentrations were the same there would be no net movement at all. The net rate is higher at the start than after the process is partly complete, and it is proportional to the diffusion constant as well.",
+      "evidence": "The section draws the concentration difference along a tube in Figure 12.27 and argues the direction and the rate from it, and it names diffusion as the dominant mechanism by which nutrients and wastes are exchanged between blood and tissue and between air and blood in the lungs."
+    },
+    {
+      "id": "semipermeable-membrane",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Semipermeable membranes",
+      "why": "Some of the most interesting examples of diffusion occur through barriers that affect the rates. Membranes are generally selectively permeable, or semipermeable: one type has small pores that allow only small molecules through, and in others the molecules dissolve in the membrane or react with molecules in it while moving across. Because membranes are only a few nanometers thick, diffusion rates through them can be high, and diffusion through membranes is an important method of transport; oxygen moves in, carbon dioxide moves out, nutrients go in and wastes go out.",
+      "evidence": "The section draws both kinds of membrane in Figure 12.28, gives the thickness of a membrane in meters, and the glossary carries the term; membrane function is named as the subject of much current research."
+    },
+    {
+      "id": "osmosis",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Osmosis",
+      "why": "Osmosis is the transport of water through a semipermeable membrane from a region of high concentration to a region of low concentration, and it is driven by the imbalance in water concentration. Water is more concentrated in the body than in Epsom salt, so soaking a swollen ankle in Epsom salt moves water out of the body into the lower-concentration region in the salt. Both osmosis and dialysis are used by the kidneys to cleanse the blood.",
+      "evidence": "The section defines the term against the Epsom salt of its opening question, draws two sugar solutions separated by a membrane that passes water but not sugar in Figure 12.29, and the glossary carries it; the second conceptual question asks how osmosis and dialysis are alike and how they differ."
+    },
+    {
+      "id": "dialysis",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Dialysis",
+      "why": "Dialysis is the transport of any molecule other than water through a semipermeable membrane because of its concentration difference. It is the same process as osmosis with a different substance moving, and like osmosis it can create substantial pressures. The kidneys use both.",
+      "evidence": "The section defines it immediately after osmosis and pairs the two in every sentence that follows, the glossary carries it, and the second conceptual question asks how the two are alike and how they differ."
+    },
+    {
+      "id": "osmotic-pressure",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Osmotic pressure and back pressure",
+      "why": "Osmosis can create a substantial pressure. Water moving through a membrane raises the solution on the low-concentration side, and the movement continues until the pressure created by the extra height of fluid is large enough to stop further osmosis. That back pressure is called the relative osmotic pressure if neither solution is pure water and the osmotic pressure if one of them is, and it can be very large: pure water and sea water separated by a membrane that passes no salt come to equilibrium at 25.9 atmospheres, which would raise the salt water 268 meters above the pure water. Turgor, the pressure of a plant cell’s fluid against its wall, is the same effect holding a plant up. Where the back pressure is sufficient to reverse the normal direction, the process becomes reverse osmosis or reverse dialysis, which is how water is desalinated and how a membrane is used to filter.",
+      "evidence": "The section draws the fluid rising until the back pressure balances in Figure 12.29(b), gives the figure for sea water, names turgor, and the glossary carries relative osmotic pressure, osmotic pressure, reverse osmosis and reverse dialysis."
+    },
+    {
+      "id": "active-transport",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Active transport",
+      "why": "Substances sometimes pass through a membrane in the direction opposite to the one expected. Cypress tree roots extract pure water from salt water although osmosis would move it the other way, and this is not reverse osmosis, because there is no back pressure to cause it. What is happening is active transport, a process in which a living membrane expends energy to move substances across it. Many living membranes do this, the kidneys among them, and it is estimated that at least a quarter of the body’s energy is expended on active transport at the cellular level.",
+      "evidence": "The section closes on it with the cypress roots and the kidneys, gives the share of the body’s energy it takes, and the glossary carries the term."
+    },
+    {
+      "id": "fluid",
+      "kind": "idea",
+      "section": "11.1",
+      "name": "Fluid",
+      "why": "A fluid is a state of matter that yields to a sideways, or shearing, force, while a solid resists one. Liquids, gases, and plasmas are all fluids, because in each of them the particles slide past one another and the substance flows. This one property is what the rest of the chapter rests on: because a fluid cannot withstand a shearing force, it cannot exert one either, and so the force it exerts on any surface is perpendicular to that surface.",
+      "evidence": "The section states the definition beside the figure of the three phases, the glossary carries the term, and the first conceptual question asks what physical characteristic distinguishes a fluid from a solid."
+    },
+    {
+      "id": "phases-of-matter",
+      "kind": "idea",
+      "section": "11.1",
+      "name": "The common phases of matter",
+      "why": "Matter most commonly exists as a solid, a liquid, a gas, or a plasma. A solid has a definite shape and a specific volume, a liquid has a definite volume but takes the shape of whatever holds it, and a gas or a plasma has neither, since its particles move to fill the container. Knowing which phase a substance is in tells you at once whether it will flow and whether it can be compressed.",
+      "evidence": "The section opens on the four phases and names them, its figure draws the atoms of each, and two conceptual questions ask which substances are fluids at room temperature and how gases differ from liquids."
+    },
+    {
+      "id": "atomic-arrangement-and-phase",
+      "kind": "idea",
+      "section": "11.1",
+      "name": "Atomic arrangement explains the phases",
+      "why": "The forces between atoms explain what we see. Atoms in a solid are in contact and held near their neighbors, so a solid keeps its shape and resists compression. Atoms in a liquid are also in close contact but can slide over one another, so a liquid flows and yet still resists compression. Atoms in a gas and charged particles in a plasma are far apart and pull on one another only weakly, so a gas both flows and compresses easily.",
+      "evidence": "The section devotes a paragraph to each phase, the Connections note names this submicroscopic explanation as a theme of the text, and a conceptual question asks why gases are easier to compress than liquids and solids."
+    },
+    {
+      "id": "density",
+      "kind": "idea",
+      "section": "11.2",
+      "name": "Density, $\\krho = m/V$",
+      "why": "Density is the mass per unit volume of a substance or object, and it is what the old riddle about a ton of feathers and a ton of bricks turns on: the two have the same mass, but the feathers occupy a far greater volume, so their density is much lower. Density is crucial in determining whether an object sinks or floats in a fluid, which is why the chapter defines it before it defines anything else.",
+      "evidence": "The section states $\\krho = m/V$ as its first equation and repeats it in a boxed note, Table 11.1 lists the density of solids, liquids and gases, and the problem set asks for the density of a rock, of a full gasoline can and of eighteen-karat gold.",
+      "eq": "eq-density"
+    },
+    {
+      "id": "density-identifies-substance",
+      "kind": "idea",
+      "section": "11.2",
+      "name": "Density identifies a substance",
+      "why": "Because every substance has its own density, a measured density helps say what an object is made of. Gold is about two and a half times as dense as iron, which is about two and a half times as dense as aluminum. Density also reveals something about the phase of matter and its substructure: liquids and solids have roughly comparable densities because their atoms are in close contact, while gases are far less dense because their atoms are separated by large amounts of empty space.",
+      "evidence": "The section reads Table 11.1 for exactly this purpose, a conceptual question asks for an example in which density is used to identify the substance composing an object, and a problem asks for the density of a nucleus and of a neutron star."
+    },
+    {
+      "id": "calculate-mass-from-density",
+      "kind": "skill",
+      "section": "11.2",
+      "name": "Finding a mass from a density and a volume",
+      "why": "Solving $\\krho = m/V$ for the mass gives $m = \\krho V$, so once the volume of a body is known from its dimensions and its density is looked up, its mass follows. This is how the chapter weighs the water behind a dam, and it is the first step of almost every buoyancy calculation later in the chapter.",
+      "evidence": "The worked example finds the mass of a reservoir from its surface area and its average depth, and the problem set asks for the volume of a troy ounce of gold, the volume of a flask of mercury, the mass of a deep breath of air and the depth of a gasoline tank.",
+      "eq": "eq-mass-from-density"
+    },
+    {
+      "id": "pressure",
+      "kind": "idea",
+      "section": "11.3",
+      "name": "Pressure, $\\kPr = \\kF/A$",
+      "why": "Pressure is the force divided by the area perpendicular to the force over which the force is applied. A given force can have a very different effect depending on the area it is spread over, which is why being poked with a finger is merely irritating while the same force applied through the sharp end of a needle breaks the skin. Pressure is defined for all states of matter, but it matters most in fluids.",
+      "evidence": "The section states $\\kPr = \\kF/A$ as its first equation and repeats it in a boxed note, the figure of the finger and the needle shows one force over two areas, and the conceptual questions ask about the sharpness of a knife, a dull hypodermic needle, padded shoes and toe dancing.",
+      "eq": "eq-pressure"
+    },
+    {
+      "id": "pascal-unit",
+      "kind": "idea",
+      "section": "11.3",
+      "name": "The pascal, $1\\;\\text{Pa} = 1\\;\\text{N/m}^2$",
+      "why": "The SI unit of pressure is the pascal, which is one newton per square meter. Everyday pressures run to large numbers of pascals, so several other units stay in common use: millibars in meteorology, pounds per square inch for tire pressure, and millimeters of mercury for blood pressure. Knowing what each is worth in pascals is what lets a measurement taken with one instrument be compared with another.",
+      "evidence": "The section gives the pascal and then the millibar and the pound per square inch, the summary states the unit again, and a conceptual question asks how to convert millimeters of mercury, centimeters of water and inches of mercury into newtons per meter squared without a table of conversion factors.",
+      "eq": "eq-pascal"
+    },
+    {
+      "id": "pressure-is-scalar",
+      "kind": "idea",
+      "section": "11.3",
+      "name": "Fluid pressure has no direction",
+      "why": "A static fluid cannot withstand a shearing force, and so it cannot exert one either. The force a fluid exerts on any surface is therefore perpendicular to that surface, and it is exerted on every surface at once: a swimmer feels pressure on all sides, and the air in a tire pushes outward on every part of it. The pressure itself is a scalar quantity and has no direction; only the forces it produces have one.",
+      "evidence": "The section argues this in a paragraph of its own, the figures of the tire and of the swimmer draw the forces perpendicular to every surface, and the conceptual questions ask why the force exerted by static fluids is always perpendicular to a surface and how the outward force on the end of an air tank is balanced."
+    },
+    {
+      "id": "force-from-pressure",
+      "kind": "skill",
+      "section": "11.3",
+      "name": "Finding a force from a pressure, $\\kF = \\kPr A$",
+      "why": "Rearranging the definition of pressure gives the force a pressure exerts on a surface, $\\kF = \\kPr A$. The force is directly proportional to the area acted upon as well as to the pressure itself, which is why the flat end of a gas cylinder must be strong and why a hammered nail can split wood.",
+      "evidence": "The worked example finds the force the air in a tank exerts on a disk 0.150 m in diameter, and the problem set asks for the pressure under a high heel, the pressure of a phonograph needle on a record and the force needed on the tip of a nail.",
+      "eq": "eq-force-from-pressure"
+    },
+    {
+      "id": "pressure-from-weight-of-fluid",
+      "kind": "result",
+      "section": "11.4",
+      "name": "Pressure due to the weight of a fluid, $\\kPr = \\kh\\krho\\kg$",
+      "why": "The bottom of a container supports the entire weight of the fluid in it, because the vertical sides cannot exert an upward force on a fluid. Writing that weight as $\\krho A\\kh\\kg$ and dividing by the area gives $\\kPr = \\kh\\krho\\kg$, and the area cancels. The result holds even where there is no container: the pressure at any depth in a fluid is the weight of the fluid above a unit area, and it depends on the depth and the density and on nothing else.",
+      "evidence": "The section derives the result step by step from the figure of the container, states it as the section's own equation, and repeats it in the summary; every worked example of the section and most of its problems use it.",
+      "eq": "eq-pressure-depth"
+    },
+    {
+      "id": "pressure-independent-of-container",
+      "kind": "idea",
+      "section": "11.4",
+      "name": "Pressure depends on depth, not on the shape of the container",
+      "why": "Because $\\kPr = \\kh\\krho\\kg$ contains no width and no length, the pressure at a point in a fluid does not depend on how much fluid there is or on the shape of what holds it. The pressure on a dam is set by the average depth of the water at the dam, not by how far the reservoir stretches behind it, and a small column of water inside a ring of sandbags can balance a whole flooded river.",
+      "evidence": "The discussion after the dam example says that the pressure is completely independent of the width and length of the lake, and a conceptual question asks how the small amount of water held by sandbags balances the much larger body of water behind a levee."
+    },
+    {
+      "id": "depth-in-a-liquid-versus-a-gas",
+      "kind": "idea",
+      "section": "11.4",
+      "name": "Where $\\kPr = \\kh\\krho\\kg$ can be used",
+      "why": "The result assumes the density is the same everywhere in the fluid. Liquids are nearly incompressible, so it holds in them to great depths. Gases are quite compressible, and their density falls with height, so the result can be applied to a gas only over a depth small enough that the density changes little, or with an average density standing in for the true one.",
+      "evidence": "The section states the restriction immediately after deriving the result, the worked example on the density of the atmosphere finds an average density about fifteen times smaller than the density at sea level, and a conceptual question asks why atmospheric pressure decreases more rapidly than linearly with altitude."
+    },
+    {
+      "id": "atmospheric-pressure",
+      "kind": "idea",
+      "section": "11.4",
+      "name": "Atmospheric pressure, $\\kPatm = 1.01\\times 10^{5}\\;\\text{N/m}^2$",
+      "why": "Atmospheric pressure is pressure due to the weight of a fluid like any other, in this case the weight of the air above a given height. On average at sea level a column of air standing on one square meter weighs $1.01\\times 10^{5}$ N, and that is one atmosphere. It falls as you climb, because there is less air above you, which is why your ears pop on a plane flight.",
+      "evidence": "The section states the standard value, draws the column of air over one square meter, and shows that 120 km of air and 10.3 m of water create the same pressure; the conceptual questions ask why you can get up from the beach with ten tons of air on you and why atmospheric pressure decreases with altitude.",
+      "eq": "eq-atmospheric-pressure"
+    },
+    {
+      "id": "force-on-a-dam",
+      "kind": "skill",
+      "section": "11.4",
+      "name": "Average pressure and the force on a wall, $\\kF = \\kPbar A$",
+      "why": "Pressure increases linearly with depth, so the average pressure on a vertical wall is the pressure at its average depth, and the force on the wall is that average pressure times the area of contact. This is how the force on a dam is found, and it is why a dam is built thicker at the bottom, where the pressure is greatest.",
+      "evidence": "The worked example finds the average pressure on a dam holding water 80.0 m deep and the force it must withstand, and shows that the force is less than a tenth of a percent of the weight of the water behind it; a problem asks the reader to show that the force on a rectangular dam increases with the square of the water depth.",
+      "eq": "eq-average-pressure-depth"
+    },
+    {
+      "id": "density-from-pressure-and-height",
+      "kind": "skill",
+      "section": "11.4",
+      "name": "Finding a density or a depth from a pressure",
+      "why": "Because $\\kPr = \\kh\\krho\\kg$ ties three quantities together, any one of them follows from the other two. Solving for the density gives the average density of a fluid from the pressure it exerts and the height of its column, and solving for the height gives the depth at which a fluid reaches a stated pressure.",
+      "evidence": "One worked example finds the average density of the atmosphere from atmospheric pressure and the 120 km height of the air, and another finds that 10.3 m of water creates a pressure of one atmosphere; the problems ask for the depth of mercury that creates 1.00 atm and for the height of a water tower that creates a stated gauge pressure.",
+      "eq": "eq-average-density-from-pressure"
+    },
+    {
+      "id": "pascals-principle",
+      "kind": "result",
+      "section": "11.5",
+      "name": "Pascal's principle",
+      "why": "A change in pressure applied to an enclosed fluid is transmitted undiminished to all portions of the fluid and to the walls of its container. The atoms in a fluid are free to move about, so they carry the change everywhere, and an enclosed fluid cannot flow away from the push as a river would. This experimentally verified fact is what makes pressure so important in fluids, since a pressure applied at one place is then known at every other.",
+      "evidence": "The section states the principle in the text and again in a boxed note, the glossary carries it, and every hydraulic calculation of the section begins by setting the pressure at one piston equal to the pressure at the other.",
+      "eq": "eq-hydraulic-pressures-equal"
+    },
+    {
+      "id": "pressures-add",
+      "kind": "result",
+      "section": "11.5",
+      "name": "Pressures from different sources add",
+      "why": "Because a change in pressure is transmitted undiminished, the total pressure in a fluid is the sum of the pressures from the different sources acting on it. The pressure 10.3 m down in a swimming pool is two atmospheres, half from the water above and half from the air above the water, and the pressure anywhere in a fluid open to the air is the fluid's own pressure plus atmospheric pressure.",
+      "evidence": "The section states that Pascal's principle implies that pressures add, 11.4 has already shown the water and the air adding at a depth of 10.3 m, and 11.6 rests the whole distinction between gauge and absolute pressure on it."
+    },
+    {
+      "id": "hydraulic-system",
+      "kind": "idea",
+      "section": "11.5",
+      "name": "A hydraulic system",
+      "why": "A hydraulic system is an enclosed fluid system used to exert forces. Pushing on one piston raises the pressure everywhere in the fluid, and that pressure pushes on every other piston in the system. The advantage over a lever is that the pressure can be sent through tortuously curved lines to several places at once, which is what lets one brake pedal work four wheels.",
+      "evidence": "The section names the term, draws the simple two-cylinder system and then the automobile brakes with four wheel cylinders, and takes the brake system as its worked example; a conceptual question asks what happens if the pedal cylinder sits higher than the wheel cylinder."
+    },
+    {
+      "id": "hydraulic-force-ratio",
+      "kind": "result",
+      "section": "11.5",
+      "name": "Forces in a hydraulic system, $\\kFone/A_1 = \\kFtwo/A_2$",
+      "why": "The two pistons of a simple hydraulic system are at the same height, so there is no difference in pressure due to a difference in depth and the pressure at one equals the pressure at the other. Writing each pressure as force over area gives $\\kFone/A_1 = \\kFtwo/A_2$: a force applied to a small piston comes out larger at a large one, in the ratio of their areas. A pedal cylinder five times narrower than a wheel cylinder multiplies the force twenty-five-fold, since the areas go as the square of the radii.",
+      "evidence": "The section derives the relation from Pascal's principle, the worked example finds the $1.25\\times 10^{4}$ N each wheel cylinder exerts when 500 N is applied to a pedal cylinder five times narrower, and the problems ask for the force needed to lift a car and for the area ratio of a system that multiplies force a hundredfold.",
+      "eq": "eq-hydraulic-force-ratio"
+    },
+    {
+      "id": "hydraulic-work-limit",
+      "kind": "idea",
+      "section": "11.5",
+      "name": "A hydraulic system cannot do more work than is done on it",
+      "why": "A hydraulic system increases force the way a simple machine does, and like a simple machine it obeys conservation of energy. Work is force times the distance moved, and the wheel cylinder moves through a smaller distance than the pedal cylinder by exactly the factor the force is multiplied by, so the work output equals the work input. The more wheel cylinders are added, the smaller the distance each one moves.",
+      "evidence": "The section says so in the paragraph after the brake example and again in the Making Connections note on conservation of energy, and a problem asks the reader to verify that the work input equals the work output when there are no losses to friction."
+    },
+    {
+      "id": "gauge-pressure",
+      "kind": "idea",
+      "section": "11.6",
+      "name": "Gauge pressure",
+      "why": "Pressure gauges are built to read zero at atmospheric pressure, which is why a tire with a gaping hole in it reads zero even though there is air inside. Gauge pressure is the pressure relative to atmospheric pressure: positive for pressures above atmospheric pressure and negative for pressures below it. It is the useful quantity for a tire and for blood, because what matters is how much greater the pressure is than the air outside.",
+      "evidence": "The section opens on the flat tire, states the definition in the text and again in a boxed note, and explains that atmospheric pressure has no net effect on blood flow because it adds to the pressure coming out of the heart and going back into it."
+    },
+    {
+      "id": "absolute-pressure",
+      "kind": "result",
+      "section": "11.6",
+      "name": "Absolute pressure, $\\kPabs = \\kPg + \\kPatm$",
+      "why": "Because pressures add, atmospheric pressure adds to the pressure in any fluid that is not enclosed in a rigid container. The total, or absolute, pressure is therefore the gauge pressure plus atmospheric pressure. Fluids push rather than pull, so in most cases the absolute pressure cannot be negative, and the smallest possible gauge pressure is $-\\kPatm$; there is no theoretical limit on how large a gauge pressure can be.",
+      "evidence": "The section states the relation and a boxed note repeats it, a tire gauge reading 34 psi is shown to be 48.7 psi absolute, and a problem asks for the gauge and the absolute pressures in a balloon and in a vacuum-packed peanut jar.",
+      "eq": "eq-absolute-pressure"
+    },
+    {
+      "id": "manometer",
+      "kind": "skill",
+      "section": "11.6",
+      "name": "Reading a gauge pressure from a manometer, $\\kPg = \\kh\\krho\\kg$",
+      "why": "A manometer is a U-shaped tube with one side open to the atmosphere. With both sides open the fluid stands at the same depth on each side, because atmospheric pressure pushes down equally on both. Connect one side to a source of pressure and the levels shift until the height difference balances the difference in pressure, so the gauge pressure is $\\kh\\krho\\kg$ and is found by measuring $\\kh$. The height difference is positive when the source is above atmospheric pressure and negative when it is below.",
+      "evidence": "The section draws the manometer level, raised by a toy balloon and lowered by a vacuum-packed jar, and reads each; the problems ask for the gauge and absolute pressures in both, and for how tall a water-filled manometer would have to be to measure 300 mm Hg.",
+      "eq": "eq-gauge-pressure-manometer"
+    },
+    {
+      "id": "barometer",
+      "kind": "idea",
+      "section": "11.6",
+      "name": "The barometer, $\\kh\\krho\\kg = \\kPatm$",
+      "why": "A barometer is a tube with a nearly pure vacuum above the fluid rather than air, so it measures absolute pressure rather than gauge pressure, and what it measures is the pressure of the atmosphere. The mercury stands at whatever height makes the pressure due to its weight equal to atmospheric pressure, which is why atmospheric pressure is so often quoted in millimeters of mercury and why a barometer also works as an altimeter.",
+      "evidence": "The section draws the mercury barometer and states that the atmosphere is able to force the mercury up because the pressure above it is zero, Table 11.2 gives 1.0 atm as 760 mm Hg, and a conceptual question asks why mercury rather than water is used.",
+      "eq": "eq-barometer"
+    },
+    {
+      "id": "blood-pressure-measurement",
+      "kind": "idea",
+      "section": "11.6",
+      "name": "Measuring blood pressure",
+      "why": "An inflatable cuff on the upper arm is squeezed until the pressure it applies cuts off blood flow below it, and a mercury manometer reads that pressure. As the applied pressure is slowly lowered, the value at which flow first begins is the systolic pressure, the maximum the heart produces, and the value at which blood flows without interruption is the diastolic pressure, the minimum between beats. A young adult's typical reading is 120 mm Hg over 80 mm Hg. Mercury is used because it is 13.6 times as dense as water and so gives a column short enough to read.",
+      "evidence": "The section describes the measurement beside the photograph of the cuff, defines systolic and diastolic pressure in boxed notes and in the glossary, and its problems convert a 120 over 80 reading into newtons per meter squared and ask what a cuff on the leg of a standing person would read."
+    },
+    {
+      "id": "buoyant-force",
+      "kind": "idea",
+      "section": "11.7",
+      "name": "Buoyant force",
+      "why": "Pressure increases with depth, so the fluid pushes up on the bottom of a submerged object harder than it pushes down on the top. The horizontal forces cancel, and what is left is a net upward force, the buoyant force. It acts on any object in any fluid, whether the object floats, sinks or hangs suspended, which is why your arms feel strangely heavy when you rise from a warm bath and why a helium balloon tugs upward on its string.",
+      "evidence": "The section opens on the warm bath and the helium balloons, draws the two unequal forces on the top and the bottom of a cylinder, states the definition in a boxed note and in the glossary, and a problem asks the reader to prove that the difference of the two forces is the weight of the fluid displaced.",
+      "eq": "eq-buoyant-force-difference"
+    },
+    {
+      "id": "float-sink-suspend",
+      "kind": "result",
+      "section": "11.7",
+      "name": "Whether an object floats, sinks or stays suspended",
+      "why": "The buoyant force competes with the object's weight. If the buoyant force is greater than the weight, the object rises to the surface and floats; if it is less, the object sinks; and if the two are equal, the object remains suspended at that depth. A submarine is built to move between the three by changing what it holds in its ballast tanks.",
+      "evidence": "The section states the three cases in the paragraph that defines the buoyant force and again in the summary, the figure of the anchor, the submarine and the balloons shows all three, and the worked example compares the buoyant force with the weight for a block of steel and for the same steel shaped into a boat."
+    },
+    {
+      "id": "archimedes-principle",
+      "kind": "result",
+      "section": "11.7",
+      "name": "Archimedes' principle, $\\kFB = \\kwfl$",
+      "why": "Take a submerged object out of a fluid and the space it occupied is filled by fluid instead, which the surrounding fluid holds up. The buoyant force must therefore equal the weight of that fluid, which is the weight of the fluid the object displaced. Archimedes stated this long before the concept of force was well established, and it is valid in general, for any object in any fluid, whether partially or totally submerged.",
+      "evidence": "The section argues it from the figure of the object and the fluid that replaces it, states it in the text, in a boxed note and in the glossary, and the worked example uses it to find the buoyant force on ten thousand metric tons of solid steel and on the same steel shaped into a hull.",
+      "eq": "eq-archimedes"
+    },
+    {
+      "id": "average-density-decides-floating",
+      "kind": "result",
+      "section": "11.7",
+      "name": "Average density decides whether an object floats",
+      "why": "An object floats when its average density is less than the density of the fluid around it. The fluid, having the higher density, contains more mass and hence more weight in the same volume, so the buoyant force, which is that weight, exceeds the object's own. This is why a lump of clay sinks and the same clay molded into the shape of a boat floats: the shape changes the average density, not the mass.",
+      "evidence": "The section opens its discussion of density with the clay and the steel ship, states the rule in a paragraph of its own, and lists oil on water, a hot-air balloon, an iceberg and mountain ranges floating on the denser mantle beneath them as examples of it."
+    },
+    {
+      "id": "fraction-submerged",
+      "kind": "result",
+      "section": "11.7",
+      "name": "The fraction submerged, $\\krhoobj/\\krhofl$",
+      "why": "For a floating object the volume submerged equals the volume of fluid displaced, and the object's mass equals the mass of that fluid. Putting $\\krho = m/V$ into the ratio of the volumes makes the masses cancel and leaves the fraction submerged equal to the average density of the object divided by the density of the fluid. A loaded ship therefore sits deeper than an unloaded one, and the same ship floats higher in sea water than in fresh water.",
+      "evidence": "The section derives the relation from the figure of the loaded and the unloaded ship, the worked example finds the average density of a woman who floats with 97.0 percent of her volume submerged, and the problems ask what fraction of ice is submerged in fresh water and how a hydrometer reads a fluid's density.",
+      "eq": "eq-fraction-submerged"
+    },
+    {
+      "id": "specific-gravity",
+      "kind": "idea",
+      "section": "11.7",
+      "name": "Specific gravity",
+      "why": "Specific gravity is the ratio of the density of an object to the density of a fluid, usually water, and it is dimensionless, so it comes out the same whatever units the densities are written in. A substance whose specific gravity is less than one floats, one greater than one sinks, and one exactly equal to one remains suspended, which is the state a scuba diver tries to reach. For a floating object the specific gravity is also the fraction submerged, which is what a hydrometer reads off directly.",
+      "evidence": "The section defines it in the text, in a boxed note and in the glossary, draws the hydrometer floating in a fluid of specific gravity 0.87, and a problem asks for the density of a fluid in which a hydrometer floats with 92.0 percent of its volume submerged.",
+      "eq": "eq-specific-gravity"
+    },
+    {
+      "id": "apparent-weight-loss",
+      "kind": "skill",
+      "section": "11.7",
+      "name": "Finding a density by weighing an object twice",
+      "why": "A submerged object appears to weigh less, and the apparent weight loss is exactly the weight of the fluid it displaces; on a balance that measures mass, the apparent mass loss is the mass of the fluid displaced. Weigh an object in air and again submerged in a fluid of known density, and its volume, and so its density, follow. The same two measurements give the density of the fluid instead when the density of the object is already known.",
+      "evidence": "The section states both forms and draws the coin weighed in air and then submerged, the worked example finds the density of an ancient Greek coin and identifies it as silver, and the problems do the same for a bird bone, a rock, a chunk of iron in an unknown liquid and a gold-plated tungsten ingot.",
+      "eq": "eq-apparent-weight-loss"
+    },
+    {
+      "id": "cohesive-forces",
+      "kind": "idea",
+      "section": "11.8",
+      "name": "Cohesive forces",
+      "why": "Cohesive forces are the attractive forces between molecules of the same type. They are what hold a liquid together in an open container, what draw its surface into the smallest area it can take, and what let a column of sap in a tree be pulled upward like a chain held together at every link.",
+      "evidence": "The section defines the term in the text, in a boxed note and in the glossary, opens on soap bubbles and an underwater spider's air supply, and a conceptual question asks whether surface tension is due to cohesive or adhesive forces, or both."
+    },
+    {
+      "id": "adhesive-forces",
+      "kind": "idea",
+      "section": "11.8",
+      "name": "Adhesive forces",
+      "why": "Adhesive forces are the attractive forces between molecules of different types. They are what make a drop cling to a window pane, what let water spread across bare paint but bead up on wax, and what draw blood into a small-diameter tube that merely touches a drop. The competition between adhesion and cohesion decides how a liquid meets a solid.",
+      "evidence": "The section defines the term in the text, in a boxed note and in the glossary, and the conceptual questions ask whether capillary action is due to cohesive or adhesive forces and why water beads up on an oily sunbather but not on her neighbor."
+    },
+    {
+      "id": "surface-tension",
+      "kind": "idea",
+      "section": "11.8",
+      "name": "Surface tension, $\\kgamma = \\kF/L$",
+      "why": "Molecules at the surface of a liquid are pulled inward by their neighbors below, while molecules inside the liquid feel no net force at all, so the surface contracts to the smallest area it can. The surface then behaves like a stretched elastic sheet: it dents under an insect's foot and holds up a steel needle although the needle is far denser than water. Surface tension $\\kgamma$ is the force per unit length exerted by that stretched membrane, and it is greater for a liquid whose cohesive forces are stronger.",
+      "evidence": "The section defines the term in the text, in a boxed note and in the glossary, states $\\kgamma = \\kF/L$, draws the insect and the needle and the sliding wire device that measures the force, and Table 11.3 lists the surface tension of fourteen liquids.",
+      "eq": "eq-surface-tension"
+    },
+    {
+      "id": "pressure-inside-a-bubble",
+      "kind": "result",
+      "section": "11.8",
+      "name": "Pressure inside a bubble, $\\kPr = 4\\kgamma/r$",
+      "why": "Surface tension pulls a bubble into a sphere and squeezes the gas inside, so the gauge pressure within a bubble is $4\\kgamma/r$. The smaller the bubble, the greater that excess pressure, which is why opening a valve between a small balloon and a large one empties the small one into the large one rather than the other way about.",
+      "evidence": "The section states the result and draws two balloons of unequal size joined by a tube, the worked example finds 740 Pa inside a soap bubble $2.00\\times 10^{-4}$ m in radius, and the problems ask for the pressure inside an alveolus and inside bubbles of water, alcohol and soapy water.",
+      "eq": "eq-bubble-pressure"
+    },
+    {
+      "id": "alveoli-and-surfactant",
+      "kind": "idea",
+      "section": "11.8",
+      "name": "Surface tension in the lungs",
+      "why": "The lungs end in hundreds of millions of mucus-lined sacs called alveoli, about 0.1 mm in diameter, and surface tension in their lining is enough to push air out without any muscle action at all. Because the pressure rises as a sac shrinks, small alveoli would empty into large ones and collapse; a lipoprotein surfactant in the lining prevents this by raising the wall tension as a sac stretches and lowering it as the sac contracts. An infant born without the surfactant has lungs that are very difficult to inflate.",
+      "evidence": "The section devotes three paragraphs to the alveoli, draws them and graphs surface tension against surface area for lung surfactant and for a detergent, and its problems ask for the pressure inside an alveolus and for the surface tension of its fluid lining."
+    },
+    {
+      "id": "contact-angle",
+      "kind": "idea",
+      "section": "11.8",
+      "name": "Contact angle",
+      "why": "Where a liquid meets a solid, the angle between the tangent to the liquid surface and the solid surface is the contact angle, and it says which of the two kinds of force is winning. A large angle means the cohesive forces are strong relative to the adhesive ones and the liquid draws itself into a droplet; a small angle means adhesion is flattening the drop against the solid. Water on waxed car paint stands at a large angle, water on bare paint at a small one.",
+      "evidence": "The section defines the term in the text, in a boxed note and in the glossary, shows water beaded on waxed paint and flattened on bare paint, and Table 11.4 lists contact angles for seven combinations of liquid and solid."
+    },
+    {
+      "id": "capillary-action",
+      "kind": "result",
+      "section": "11.8",
+      "name": "Capillary action, $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$",
+      "why": "Surface tension always works to flatten the curved surface of a liquid in a narrow tube, and that pull raises the liquid when the contact angle is less than $90^\\circ$ and suppresses it when the angle is greater, as it is for mercury in glass. How far the liquid goes is limited by the weight of the column it must lift, and the height works out to $2\\kgamma\\cos\\theta/\\krho\\kg r$: greater for a stronger surface tension, and greater for a narrower tube and a less dense liquid, since both mean less weight to hold up.",
+      "evidence": "The section defines the term in the text, in a boxed note and in the glossary, draws mercury suppressed and water raised in glass tubes and then four tubes of decreasing radius, and the worked example shows that capillary action alone cannot be solely responsible for raising sap 100 m to the top of a giant redwood.",
+      "eq": "eq-capillary-height"
+    },
+    {
+      "id": "pressures-in-the-body",
+      "kind": "idea",
+      "section": "11.9",
+      "name": "Pressures in the body",
+      "why": "The pressures measured in the body are gauge pressures, quoted in millimeters of mercury, and they are among the most useful indicators medicine has. Table 11.5 lists them: over a hundred millimeters of mercury in the large arteries at each beat, a few in the large veins, twelve to twenty-four in the eye, and pressures that are negative between the lungs and the ribs and in the esophagus.",
+      "evidence": "The section opens on how common a blood pressure measurement is, prints Table 11.5 of typical pressures in humans, and takes each system of that table in turn through the rest of the section."
+    },
+    {
+      "id": "blood-pressure-and-height",
+      "kind": "result",
+      "section": "11.9",
+      "name": "Blood pressure and height in the body, $\\kdPr = \\kdh\\krho\\kg$",
+      "why": "Blood is a fluid with weight, so the pressure in it varies with height in the body exactly as it does in any other fluid. Standing up puts the feet about 1.4 m below the heart, which raises the pressure there by 108 mm Hg, and standing still for a long time lets blood accumulate in the legs and the legs swell, which is why soldiers required to stand at attention have been known to faint and why doctors recommend tight stockings for long flights.",
+      "evidence": "The section works the 1.4 m calculation in the text and again in a boxed note, the figure of the circulatory system gives typical pressures around the body, and the problems ask what a cuff on the leg would read and what happens to the pressure at the brain when a person sits up.",
+      "eq": "eq-pressure-in-feet"
+    },
+    {
+      "id": "intraocular-pressure",
+      "kind": "idea",
+      "section": "11.9",
+      "name": "Pressure in the eye",
+      "why": "The shape of the eye is maintained by the pressure of the fluid inside it, normally in the range of 12.0 to 24.0 mm Hg. When the circulation of that fluid is blocked the pressure builds, a condition called glaucoma, and it can reach 85.0 mm Hg, which over the $6.0\\;\\text{cm}^2$ at the back of the eye is a force of 6.8 N, the weight of about a 680 g mass resting on the eye. That is enough to damage the optic nerve permanently.",
+      "evidence": "The section works the force out in the text and again in a boxed note, defines intraocular pressure and glaucoma in the glossary, and describes the tonometer that measures the pressure with a puff of air and a photograph of one in use.",
+      "eq": "eq-eye-force"
+    },
+    {
+      "id": "lung-pressures",
+      "kind": "idea",
+      "section": "11.9",
+      "name": "Pressures in the lungs and the chest",
+      "why": "The pressure inside the lungs drops below atmospheric pressure when muscle action in the diaphragm and the rib cage expands the chest, and that is what draws air in; it rises above atmospheric pressure when the muscles relax and surface tension in the alveoli contracts them, and that is what forces air out. The liquid attaching the lungs to the inside of the chest wall is at a negative gauge pressure of $-4$ to $-8$ mm Hg, and it is that attachment which keeps the lungs from collapsing; letting air into the chest cavity breaks it and a lung may collapse.",
+      "evidence": "The section devotes its passage on the lungs to this and draws inhalation and exhalation side by side, and its problems ask for the force the diaphragm creates during forced exhalation and for the greatest depth from which a person can breathe through a hollow reed."
+    },
+    {
+      "id": "bladder-pressure",
+      "kind": "idea",
+      "section": "11.9",
+      "name": "Bladder pressure and the micturition reflex",
+      "why": "Bladder pressure climbs steadily from zero to about 25 mm Hg as the bladder fills to its normal capacity of $500\\;\\text{cm}^3$. That pressure triggers the micturition reflex, which produces the feeling of needing to urinate and also contracts the muscles around the bladder, raising the pressure to over 100 mm Hg and accentuating the sensation. Coughing, straining, tight clothes and the weight of a fetus all add to the pressure and can trigger the reflex.",
+      "evidence": "The section gives the numbers and defines the micturition reflex in the glossary, and a problem asks whether the weight of a full-term fetus resting on an area of $90.0\\;\\text{cm}^2$ is by itself great enough to trigger it."
+    },
+    {
+      "id": "skeletal-pressures",
+      "kind": "idea",
+      "section": "11.9",
+      "name": "Pressures in the skeletal system",
+      "why": "The largest pressures in the body are in the joints and between the vertebrae, because large forces are applied over small areas. Lifting an object improperly can create 5000 N between two vertebrae over an area as small as $10\\;\\text{cm}^2$, which is $5.0\\times 10^{6}\\;\\text{N/m}^2$, about 50 atmospheres, and that is enough to damage the spinal discs and the bony vertebrae themselves.",
+      "evidence": "The section works the calculation in the text and says that even under normal circumstances the forces between vertebrae create pressures of several atmospheres, and the problems ask for the pressure a tooth creates on $1.00\\;\\text{mm}^2$ and for the pressure and the deformation of a spinal disc under a 5000 N compressional force."
     }
   ],
   "concept_prereqs": [
@@ -6705,6 +8131,1394 @@
     {
       "concept": "descriptive-versus-causal-law",
       "prereq": "model"
+    },
+    {
+      "concept": "nonuniform-circular-motion",
+      "prereq": "uniform-circular-motion"
+    },
+    {
+      "concept": "nonuniform-circular-motion",
+      "prereq": "angular-velocity"
+    },
+    {
+      "concept": "angular-acceleration",
+      "prereq": "angular-velocity"
+    },
+    {
+      "concept": "angular-acceleration",
+      "prereq": "nonuniform-circular-motion"
+    },
+    {
+      "concept": "angular-acceleration",
+      "prereq": "acceleration"
+    },
+    {
+      "concept": "tangential-acceleration",
+      "prereq": "acceleration"
+    },
+    {
+      "concept": "tangential-acceleration",
+      "prereq": "uniform-circular-motion"
+    },
+    {
+      "concept": "tangential-and-centripetal-are-independent",
+      "prereq": "centripetal-acceleration"
+    },
+    {
+      "concept": "tangential-and-centripetal-are-independent",
+      "prereq": "tangential-acceleration"
+    },
+    {
+      "concept": "tangential-and-centripetal-are-independent",
+      "prereq": "independence-of-perpendicular-motions"
+    },
+    {
+      "concept": "tangential-angular-acceleration",
+      "prereq": "tangential-acceleration"
+    },
+    {
+      "concept": "tangential-angular-acceleration",
+      "prereq": "angular-acceleration"
+    },
+    {
+      "concept": "tangential-angular-acceleration",
+      "prereq": "linear-angular-velocity"
+    },
+    {
+      "concept": "rotational-translational-analogy",
+      "prereq": "rotation-angle"
+    },
+    {
+      "concept": "rotational-translational-analogy",
+      "prereq": "angular-velocity"
+    },
+    {
+      "concept": "rotational-translational-analogy",
+      "prereq": "angular-acceleration"
+    },
+    {
+      "concept": "rotational-translational-analogy",
+      "prereq": "arc-length"
+    },
+    {
+      "concept": "rotational-kinematic-equations",
+      "prereq": "angular-acceleration"
+    },
+    {
+      "concept": "rotational-kinematic-equations",
+      "prereq": "tangential-angular-acceleration"
+    },
+    {
+      "concept": "rotational-kinematic-equations",
+      "prereq": "v-from-at"
+    },
+    {
+      "concept": "rotational-kinematic-equations",
+      "prereq": "x-quadratic"
+    },
+    {
+      "concept": "rotational-kinematic-equations",
+      "prereq": "v-squared"
+    },
+    {
+      "concept": "rotational-kinematic-equations",
+      "prereq": "const-a"
+    },
+    {
+      "concept": "average-angular-velocity",
+      "prereq": "vbar-midpoint"
+    },
+    {
+      "concept": "average-angular-velocity",
+      "prereq": "angular-velocity"
+    },
+    {
+      "concept": "linear-from-angular",
+      "prereq": "arc-length"
+    },
+    {
+      "concept": "linear-from-angular",
+      "prereq": "linear-angular-velocity"
+    },
+    {
+      "concept": "linear-from-angular",
+      "prereq": "rotation-angle"
+    },
+    {
+      "concept": "rotational-kinematics-strategy",
+      "prereq": "rotational-kinematic-equations"
+    },
+    {
+      "concept": "rotational-kinematics-strategy",
+      "prereq": "average-angular-velocity"
+    },
+    {
+      "concept": "rotational-kinematics-strategy",
+      "prereq": "linear-from-angular"
+    },
+    {
+      "concept": "rotational-kinematics-strategy",
+      "prereq": "choose-equation"
+    },
+    {
+      "concept": "rotational-kinematics-strategy",
+      "prereq": "problem-solving-steps"
+    },
+    {
+      "concept": "torque-on-a-point-mass",
+      "prereq": "newtons-second-law"
+    },
+    {
+      "concept": "torque-on-a-point-mass",
+      "prereq": "torque"
+    },
+    {
+      "concept": "torque-on-a-point-mass",
+      "prereq": "torque-from-lever-arm"
+    },
+    {
+      "concept": "torque-on-a-point-mass",
+      "prereq": "tangential-angular-acceleration"
+    },
+    {
+      "concept": "moment-of-inertia",
+      "prereq": "torque-on-a-point-mass"
+    },
+    {
+      "concept": "moment-of-inertia",
+      "prereq": "mass"
+    },
+    {
+      "concept": "moment-of-inertia",
+      "prereq": "inertia"
+    },
+    {
+      "concept": "mass-distribution-and-inertia",
+      "prereq": "moment-of-inertia"
+    },
+    {
+      "concept": "mass-distribution-and-inertia",
+      "prereq": "center-of-mass"
+    },
+    {
+      "concept": "newtons-second-law-rotation",
+      "prereq": "moment-of-inertia"
+    },
+    {
+      "concept": "newtons-second-law-rotation",
+      "prereq": "torque"
+    },
+    {
+      "concept": "newtons-second-law-rotation",
+      "prereq": "angular-acceleration"
+    },
+    {
+      "concept": "newtons-second-law-rotation",
+      "prereq": "newtons-second-law"
+    },
+    {
+      "concept": "newtons-second-law-rotation",
+      "prereq": "net-external-force"
+    },
+    {
+      "concept": "choosing-a-moment-of-inertia",
+      "prereq": "moment-of-inertia"
+    },
+    {
+      "concept": "choosing-a-moment-of-inertia",
+      "prereq": "mass-distribution-and-inertia"
+    },
+    {
+      "concept": "rotational-dynamics-strategy",
+      "prereq": "newtons-second-law-rotation"
+    },
+    {
+      "concept": "rotational-dynamics-strategy",
+      "prereq": "choosing-a-moment-of-inertia"
+    },
+    {
+      "concept": "rotational-dynamics-strategy",
+      "prereq": "free-body-diagram"
+    },
+    {
+      "concept": "rotational-dynamics-strategy",
+      "prereq": "system-of-interest"
+    },
+    {
+      "concept": "rotational-dynamics-strategy",
+      "prereq": "newtons-laws-problem-solving"
+    },
+    {
+      "concept": "rotational-work",
+      "prereq": "work"
+    },
+    {
+      "concept": "rotational-work",
+      "prereq": "calculate-work"
+    },
+    {
+      "concept": "rotational-work",
+      "prereq": "torque"
+    },
+    {
+      "concept": "rotational-work",
+      "prereq": "arc-length"
+    },
+    {
+      "concept": "rotational-kinetic-energy",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "rotational-kinetic-energy",
+      "prereq": "moment-of-inertia"
+    },
+    {
+      "concept": "rotational-kinetic-energy",
+      "prereq": "angular-velocity"
+    },
+    {
+      "concept": "rotational-work-energy-theorem",
+      "prereq": "rotational-work"
+    },
+    {
+      "concept": "rotational-work-energy-theorem",
+      "prereq": "rotational-kinetic-energy"
+    },
+    {
+      "concept": "rotational-work-energy-theorem",
+      "prereq": "work-energy-theorem"
+    },
+    {
+      "concept": "rotational-work-energy-theorem",
+      "prereq": "newtons-second-law-rotation"
+    },
+    {
+      "concept": "rotational-work-energy-theorem",
+      "prereq": "rotational-kinematic-equations"
+    },
+    {
+      "concept": "rolling-splits-the-energy",
+      "prereq": "rotational-kinetic-energy"
+    },
+    {
+      "concept": "rolling-splits-the-energy",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "rolling-splits-the-energy",
+      "prereq": "gravitational-potential-energy"
+    },
+    {
+      "concept": "rolling-splits-the-energy",
+      "prereq": "conservation-of-mechanical-energy"
+    },
+    {
+      "concept": "rolling-splits-the-energy",
+      "prereq": "linear-from-angular"
+    },
+    {
+      "concept": "rotational-energy-strategy",
+      "prereq": "rolling-splits-the-energy"
+    },
+    {
+      "concept": "rotational-energy-strategy",
+      "prereq": "rotational-kinetic-energy"
+    },
+    {
+      "concept": "rotational-energy-strategy",
+      "prereq": "choosing-a-moment-of-inertia"
+    },
+    {
+      "concept": "rotational-energy-strategy",
+      "prereq": "energy-problem-solving"
+    },
+    {
+      "concept": "angular-momentum",
+      "prereq": "linear-momentum"
+    },
+    {
+      "concept": "angular-momentum",
+      "prereq": "moment-of-inertia"
+    },
+    {
+      "concept": "angular-momentum",
+      "prereq": "angular-velocity"
+    },
+    {
+      "concept": "torque-changes-angular-momentum",
+      "prereq": "angular-momentum"
+    },
+    {
+      "concept": "torque-changes-angular-momentum",
+      "prereq": "newtons-second-law-momentum"
+    },
+    {
+      "concept": "torque-changes-angular-momentum",
+      "prereq": "impulse"
+    },
+    {
+      "concept": "torque-changes-angular-momentum",
+      "prereq": "torque"
+    },
+    {
+      "concept": "conservation-of-angular-momentum",
+      "prereq": "torque-changes-angular-momentum"
+    },
+    {
+      "concept": "conservation-of-angular-momentum",
+      "prereq": "conservation-of-momentum"
+    },
+    {
+      "concept": "conservation-of-angular-momentum",
+      "prereq": "isolated-system"
+    },
+    {
+      "concept": "spin-rate-from-moment-of-inertia",
+      "prereq": "conservation-of-angular-momentum"
+    },
+    {
+      "concept": "spin-rate-from-moment-of-inertia",
+      "prereq": "mass-distribution-and-inertia"
+    },
+    {
+      "concept": "spin-rate-from-moment-of-inertia",
+      "prereq": "angular-momentum"
+    },
+    {
+      "concept": "work-done-in-pulling-in",
+      "prereq": "spin-rate-from-moment-of-inertia"
+    },
+    {
+      "concept": "work-done-in-pulling-in",
+      "prereq": "rotational-kinetic-energy"
+    },
+    {
+      "concept": "work-done-in-pulling-in",
+      "prereq": "work"
+    },
+    {
+      "concept": "work-done-in-pulling-in",
+      "prereq": "work-transfers-energy"
+    },
+    {
+      "concept": "angular-momentum-in-collisions",
+      "prereq": "angular-momentum"
+    },
+    {
+      "concept": "angular-momentum-in-collisions",
+      "prereq": "conservation-of-angular-momentum"
+    },
+    {
+      "concept": "angular-momentum-in-collisions",
+      "prereq": "inelastic-collision"
+    },
+    {
+      "concept": "angular-momentum-in-collisions",
+      "prereq": "point-mass"
+    },
+    {
+      "concept": "solving-a-rotational-collision",
+      "prereq": "angular-momentum-in-collisions"
+    },
+    {
+      "concept": "solving-a-rotational-collision",
+      "prereq": "choosing-a-moment-of-inertia"
+    },
+    {
+      "concept": "solving-a-rotational-collision",
+      "prereq": "rotational-kinetic-energy"
+    },
+    {
+      "concept": "energy-and-momentum-in-a-rotational-collision",
+      "prereq": "solving-a-rotational-collision"
+    },
+    {
+      "concept": "energy-and-momentum-in-a-rotational-collision",
+      "prereq": "kinetic-energy-lost-in-collision"
+    },
+    {
+      "concept": "energy-and-momentum-in-a-rotational-collision",
+      "prereq": "conservation-of-momentum"
+    },
+    {
+      "concept": "energy-and-momentum-in-a-rotational-collision",
+      "prereq": "perfectly-inelastic-collision"
+    },
+    {
+      "concept": "percussion-point",
+      "prereq": "angular-momentum-in-collisions"
+    },
+    {
+      "concept": "percussion-point",
+      "prereq": "point-of-application"
+    },
+    {
+      "concept": "percussion-point",
+      "prereq": "center-of-gravity"
+    },
+    {
+      "concept": "right-hand-rule",
+      "prereq": "angular-momentum"
+    },
+    {
+      "concept": "right-hand-rule",
+      "prereq": "angular-velocity"
+    },
+    {
+      "concept": "right-hand-rule",
+      "prereq": "vector"
+    },
+    {
+      "concept": "torque-sets-the-direction-of-angular-momentum",
+      "prereq": "right-hand-rule"
+    },
+    {
+      "concept": "torque-sets-the-direction-of-angular-momentum",
+      "prereq": "torque-changes-angular-momentum"
+    },
+    {
+      "concept": "torque-sets-the-direction-of-angular-momentum",
+      "prereq": "head-to-tail-method"
+    },
+    {
+      "concept": "gyroscopic-precession",
+      "prereq": "torque-sets-the-direction-of-angular-momentum"
+    },
+    {
+      "concept": "gyroscopic-precession",
+      "prereq": "torque-from-lever-arm"
+    },
+    {
+      "concept": "gyroscopic-precession",
+      "prereq": "weight"
+    },
+    {
+      "concept": "flow-rate",
+      "prereq": "elapsed-time"
+    },
+    {
+      "concept": "flow-rate-units",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "flow-rate-units",
+      "prereq": "unit-conversion"
+    },
+    {
+      "concept": "flow-rate-units",
+      "prereq": "metric-prefixes"
+    },
+    {
+      "concept": "flow-rate-units",
+      "prereq": "derived-units"
+    },
+    {
+      "concept": "flow-rate-velocity",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "flow-rate-velocity",
+      "prereq": "average-velocity"
+    },
+    {
+      "concept": "equation-of-continuity",
+      "prereq": "flow-rate-velocity"
+    },
+    {
+      "concept": "equation-of-continuity",
+      "prereq": "incompressible-fluid"
+    },
+    {
+      "concept": "continuity-branching",
+      "prereq": "equation-of-continuity"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "equation-of-continuity"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "work-energy-theorem"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "force"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "pressure-drops-in-fast-fluid"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "conservation-of-energy"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "gravitational-potential-energy"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "incompressible-fluid"
+    },
+    {
+      "concept": "bernoulli-energy-per-volume",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "bernoulli-energy-per-volume",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "bernoulli-energy-per-volume",
+      "prereq": "gravitational-potential-energy"
+    },
+    {
+      "concept": "bernoulli-static-fluid",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "bernoullis-principle",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "entrainment",
+      "prereq": "bernoullis-principle"
+    },
+    {
+      "concept": "lift-from-bernoulli",
+      "prereq": "bernoullis-principle"
+    },
+    {
+      "concept": "lift-from-bernoulli",
+      "prereq": "newtons-third-law"
+    },
+    {
+      "concept": "velocity-measurement",
+      "prereq": "bernoullis-principle"
+    },
+    {
+      "concept": "torricellis-theorem",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "torricellis-theorem",
+      "prereq": "free-fall-kinematics"
+    },
+    {
+      "concept": "torricellis-theorem",
+      "prereq": "conservation-of-mechanical-energy"
+    },
+    {
+      "concept": "bernoulli-general-application",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "bernoulli-general-application",
+      "prereq": "flow-rate-velocity"
+    },
+    {
+      "concept": "bernoulli-general-application",
+      "prereq": "problem-solving-steps"
+    },
+    {
+      "concept": "power-in-fluid-flow",
+      "prereq": "bernoulli-energy-per-volume"
+    },
+    {
+      "concept": "power-in-fluid-flow",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "power-in-fluid-flow",
+      "prereq": "power"
+    },
+    {
+      "concept": "pump-power",
+      "prereq": "power-in-fluid-flow"
+    },
+    {
+      "concept": "pump-power",
+      "prereq": "calculate-power"
+    },
+    {
+      "concept": "laminar-flow",
+      "prereq": "friction"
+    },
+    {
+      "concept": "turbulent-flow",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "viscosity",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "viscosity",
+      "prereq": "friction"
+    },
+    {
+      "concept": "viscosity",
+      "prereq": "shear-deformation"
+    },
+    {
+      "concept": "velocity-profile-in-tube",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "velocity-profile-in-tube",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "flow-resistance",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "flow-resistance",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "poiseuilles-law-resistance",
+      "prereq": "flow-resistance"
+    },
+    {
+      "concept": "poiseuilles-law-resistance",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "poiseuilles-law-resistance",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "poiseuilles-law",
+      "prereq": "poiseuilles-law-resistance"
+    },
+    {
+      "concept": "poiseuilles-law",
+      "prereq": "flow-resistance"
+    },
+    {
+      "concept": "radius-fourth-power-sensitivity",
+      "prereq": "poiseuilles-law"
+    },
+    {
+      "concept": "pressure-drop-from-resistance",
+      "prereq": "flow-resistance"
+    },
+    {
+      "concept": "reynolds-number",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "reynolds-number",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "reynolds-number",
+      "prereq": "turbulent-flow"
+    },
+    {
+      "concept": "turbulence-onset-thresholds",
+      "prereq": "reynolds-number"
+    },
+    {
+      "concept": "turbulence-in-circulation",
+      "prereq": "turbulent-flow"
+    },
+    {
+      "concept": "turbulence-in-circulation",
+      "prereq": "radius-fourth-power-sensitivity"
+    },
+    {
+      "concept": "chaotic-flow",
+      "prereq": "turbulence-onset-thresholds"
+    },
+    {
+      "concept": "reynolds-number-object",
+      "prereq": "reynolds-number"
+    },
+    {
+      "concept": "reynolds-number-object",
+      "prereq": "relative-velocity"
+    },
+    {
+      "concept": "flow-regimes-around-object",
+      "prereq": "reynolds-number-object"
+    },
+    {
+      "concept": "flow-regimes-around-object",
+      "prereq": "turbulent-flow"
+    },
+    {
+      "concept": "flow-regimes-around-object",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "viscous-drag",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "viscous-drag",
+      "prereq": "drag-force"
+    },
+    {
+      "concept": "viscous-drag",
+      "prereq": "drag-force-equation"
+    },
+    {
+      "concept": "viscous-drag",
+      "prereq": "stokes-law"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "viscous-drag"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "terminal-velocity"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "size-and-terminal-velocity"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "centrifuge"
+    },
+    {
+      "concept": "diffusion",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "random-walk-distance",
+      "prereq": "diffusion"
+    },
+    {
+      "concept": "random-walk-distance",
+      "prereq": "distance"
+    },
+    {
+      "concept": "diffusion-constant",
+      "prereq": "random-walk-distance"
+    },
+    {
+      "concept": "diffusion-constant",
+      "prereq": "mass"
+    },
+    {
+      "concept": "diffusion-rate-direction",
+      "prereq": "diffusion"
+    },
+    {
+      "concept": "semipermeable-membrane",
+      "prereq": "diffusion"
+    },
+    {
+      "concept": "osmosis",
+      "prereq": "semipermeable-membrane"
+    },
+    {
+      "concept": "osmosis",
+      "prereq": "diffusion-rate-direction"
+    },
+    {
+      "concept": "dialysis",
+      "prereq": "semipermeable-membrane"
+    },
+    {
+      "concept": "dialysis",
+      "prereq": "diffusion-rate-direction"
+    },
+    {
+      "concept": "osmotic-pressure",
+      "prereq": "osmosis"
+    },
+    {
+      "concept": "active-transport",
+      "prereq": "osmosis"
+    },
+    {
+      "concept": "active-transport",
+      "prereq": "dialysis"
+    },
+    {
+      "concept": "flow-rate",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "incompressible-fluid",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "incompressible-fluid",
+      "prereq": "density"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "density"
+    },
+    {
+      "concept": "bernoulli-static-fluid",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "bernoulli-static-fluid",
+      "prereq": "pressure-independent-of-container"
+    },
+    {
+      "concept": "bernoullis-principle",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "velocity-measurement",
+      "prereq": "manometer"
+    },
+    {
+      "concept": "torricellis-theorem",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "bernoulli-general-application",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "pump-power",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "laminar-flow",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "viscosity",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "flow-resistance",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pressure-drop-from-resistance",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "turbulence-in-circulation",
+      "prereq": "blood-pressure-measurement"
+    },
+    {
+      "concept": "reynolds-number",
+      "prereq": "density"
+    },
+    {
+      "concept": "reynolds-number-object",
+      "prereq": "density"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "archimedes-principle"
+    },
+    {
+      "concept": "diffusion",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "osmotic-pressure",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "osmotic-pressure",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "fluid",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "fluid",
+      "prereq": "shear-deformation"
+    },
+    {
+      "concept": "fluid",
+      "prereq": "force"
+    },
+    {
+      "concept": "phases-of-matter",
+      "prereq": "mass"
+    },
+    {
+      "concept": "atomic-arrangement-and-phase",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "atomic-arrangement-and-phase",
+      "prereq": "force"
+    },
+    {
+      "concept": "atomic-arrangement-and-phase",
+      "prereq": "bulk-deformation"
+    },
+    {
+      "concept": "density",
+      "prereq": "mass"
+    },
+    {
+      "concept": "density",
+      "prereq": "units"
+    },
+    {
+      "concept": "density",
+      "prereq": "derived-units"
+    },
+    {
+      "concept": "density-identifies-substance",
+      "prereq": "density"
+    },
+    {
+      "concept": "density-identifies-substance",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "density-identifies-substance",
+      "prereq": "atomic-arrangement-and-phase"
+    },
+    {
+      "concept": "calculate-mass-from-density",
+      "prereq": "density"
+    },
+    {
+      "concept": "calculate-mass-from-density",
+      "prereq": "unit-conversion"
+    },
+    {
+      "concept": "pressure",
+      "prereq": "force"
+    },
+    {
+      "concept": "pressure",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "pascal-unit",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pascal-unit",
+      "prereq": "derived-units"
+    },
+    {
+      "concept": "pascal-unit",
+      "prereq": "newton-unit"
+    },
+    {
+      "concept": "pressure-is-scalar",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pressure-is-scalar",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "pressure-is-scalar",
+      "prereq": "scalar"
+    },
+    {
+      "concept": "force-from-pressure",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pressure-from-weight-of-fluid",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pressure-from-weight-of-fluid",
+      "prereq": "density"
+    },
+    {
+      "concept": "pressure-from-weight-of-fluid",
+      "prereq": "weight"
+    },
+    {
+      "concept": "pressure-from-weight-of-fluid",
+      "prereq": "calculate-mass-from-density"
+    },
+    {
+      "concept": "pressure-independent-of-container",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "depth-in-a-liquid-versus-a-gas",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "depth-in-a-liquid-versus-a-gas",
+      "prereq": "atomic-arrangement-and-phase"
+    },
+    {
+      "concept": "atmospheric-pressure",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "atmospheric-pressure",
+      "prereq": "weight"
+    },
+    {
+      "concept": "force-on-a-dam",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "force-on-a-dam",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "density-from-pressure-and-height",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "density-from-pressure-and-height",
+      "prereq": "density"
+    },
+    {
+      "concept": "pascals-principle",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pascals-principle",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "pressures-add",
+      "prereq": "pascals-principle"
+    },
+    {
+      "concept": "pressures-add",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "hydraulic-system",
+      "prereq": "pascals-principle"
+    },
+    {
+      "concept": "hydraulic-system",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "hydraulic-force-ratio",
+      "prereq": "pascals-principle"
+    },
+    {
+      "concept": "hydraulic-force-ratio",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "hydraulic-force-ratio",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "hydraulic-work-limit",
+      "prereq": "hydraulic-force-ratio"
+    },
+    {
+      "concept": "hydraulic-work-limit",
+      "prereq": "work"
+    },
+    {
+      "concept": "hydraulic-work-limit",
+      "prereq": "conservation-of-energy"
+    },
+    {
+      "concept": "hydraulic-work-limit",
+      "prereq": "simple-machine"
+    },
+    {
+      "concept": "gauge-pressure",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "gauge-pressure",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "absolute-pressure",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "absolute-pressure",
+      "prereq": "pressures-add"
+    },
+    {
+      "concept": "absolute-pressure",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "manometer",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "manometer",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "manometer",
+      "prereq": "pascals-principle"
+    },
+    {
+      "concept": "barometer",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "barometer",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "barometer",
+      "prereq": "absolute-pressure"
+    },
+    {
+      "concept": "blood-pressure-measurement",
+      "prereq": "manometer"
+    },
+    {
+      "concept": "blood-pressure-measurement",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "buoyant-force",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "buoyant-force",
+      "prereq": "force"
+    },
+    {
+      "concept": "float-sink-suspend",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "float-sink-suspend",
+      "prereq": "weight"
+    },
+    {
+      "concept": "float-sink-suspend",
+      "prereq": "first-condition-equilibrium"
+    },
+    {
+      "concept": "archimedes-principle",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "archimedes-principle",
+      "prereq": "weight"
+    },
+    {
+      "concept": "archimedes-principle",
+      "prereq": "calculate-mass-from-density"
+    },
+    {
+      "concept": "average-density-decides-floating",
+      "prereq": "archimedes-principle"
+    },
+    {
+      "concept": "average-density-decides-floating",
+      "prereq": "density"
+    },
+    {
+      "concept": "average-density-decides-floating",
+      "prereq": "weight"
+    },
+    {
+      "concept": "fraction-submerged",
+      "prereq": "average-density-decides-floating"
+    },
+    {
+      "concept": "fraction-submerged",
+      "prereq": "density"
+    },
+    {
+      "concept": "fraction-submerged",
+      "prereq": "archimedes-principle"
+    },
+    {
+      "concept": "specific-gravity",
+      "prereq": "density"
+    },
+    {
+      "concept": "specific-gravity",
+      "prereq": "fraction-submerged"
+    },
+    {
+      "concept": "apparent-weight-loss",
+      "prereq": "archimedes-principle"
+    },
+    {
+      "concept": "apparent-weight-loss",
+      "prereq": "weight"
+    },
+    {
+      "concept": "apparent-weight-loss",
+      "prereq": "density"
+    },
+    {
+      "concept": "cohesive-forces",
+      "prereq": "force"
+    },
+    {
+      "concept": "cohesive-forces",
+      "prereq": "atomic-arrangement-and-phase"
+    },
+    {
+      "concept": "adhesive-forces",
+      "prereq": "force"
+    },
+    {
+      "concept": "adhesive-forces",
+      "prereq": "atomic-arrangement-and-phase"
+    },
+    {
+      "concept": "surface-tension",
+      "prereq": "cohesive-forces"
+    },
+    {
+      "concept": "surface-tension",
+      "prereq": "force"
+    },
+    {
+      "concept": "pressure-inside-a-bubble",
+      "prereq": "surface-tension"
+    },
+    {
+      "concept": "pressure-inside-a-bubble",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "pressure-inside-a-bubble",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "alveoli-and-surfactant",
+      "prereq": "pressure-inside-a-bubble"
+    },
+    {
+      "concept": "alveoli-and-surfactant",
+      "prereq": "surface-tension"
+    },
+    {
+      "concept": "contact-angle",
+      "prereq": "cohesive-forces"
+    },
+    {
+      "concept": "contact-angle",
+      "prereq": "adhesive-forces"
+    },
+    {
+      "concept": "capillary-action",
+      "prereq": "surface-tension"
+    },
+    {
+      "concept": "capillary-action",
+      "prereq": "contact-angle"
+    },
+    {
+      "concept": "capillary-action",
+      "prereq": "adhesive-forces"
+    },
+    {
+      "concept": "capillary-action",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "capillary-action",
+      "prereq": "density"
+    },
+    {
+      "concept": "pressures-in-the-body",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "pressures-in-the-body",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "blood-pressure-and-height",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "blood-pressure-and-height",
+      "prereq": "blood-pressure-measurement"
+    },
+    {
+      "concept": "blood-pressure-and-height",
+      "prereq": "pressures-in-the-body"
+    },
+    {
+      "concept": "intraocular-pressure",
+      "prereq": "pressures-in-the-body"
+    },
+    {
+      "concept": "intraocular-pressure",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "intraocular-pressure",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "lung-pressures",
+      "prereq": "pressures-in-the-body"
+    },
+    {
+      "concept": "lung-pressures",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "lung-pressures",
+      "prereq": "alveoli-and-surfactant"
+    },
+    {
+      "concept": "lung-pressures",
+      "prereq": "surface-tension"
+    },
+    {
+      "concept": "bladder-pressure",
+      "prereq": "pressures-in-the-body"
+    },
+    {
+      "concept": "bladder-pressure",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "skeletal-pressures",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "skeletal-pressures",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "skeletal-pressures",
+      "prereq": "pressures-in-the-body"
     }
   ]
 }

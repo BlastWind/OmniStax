@@ -1,0 +1,394 @@
+{
+ "id": "10.4",
+ "module": "m42180",
+ "chapter": "10",
+ "title": "Rotational Kinetic Energy: Work and Energy Revisited",
+ "short": "Rotational kinetic energy",
+ "lead": "A motor must do work to set a grindstone spinning, and the stone keeps that work as energy of its own turning. This section derives the work done by a torque acting through an angle, defines rotational kinetic energy as one half the moment of inertia times the angular velocity squared, shows that the work-energy theorem holds for rotation as it does for translation, and follows three cans of soup down an incline to see why a body that rolls must divide its energy between moving forward and turning.",
+ "objectives": [
+  "Derive the equation for rotational work.",
+  "Calculate rotational kinetic energy.",
+  "Demonstrate the Law of Conservation of Energy."
+ ],
+ "summary_html": "<ul><li>The rotational kinetic energy $\\kKErot$ for an object with a moment of inertia $\\kI$ and an angular velocity $\\kw$ is given by $$\\kKErot = \\frac{1}{2}\\kI\\kw^2.$$</li><li>Helicopters store large amounts of rotational kinetic energy in their blades. This energy must be put into the blades before takeoff and maintained until the end of the flight. The engines do not have enough power to simultaneously provide lift and put significant rotational energy into the blades.</li><li>Work and energy in rotational motion are completely analogous to work and energy in translational motion.</li><li>The equation for the work-energy theorem for rotational motion is, $$\\text{net}\\;\\kW = \\frac{1}{2}\\kI\\kw^2 - \\frac{1}{2}\\kI{\\kwo}^2.$$</li></ul>",
+ "notes": "The nine problems the book leaves unkeyed are left out: the hoop rolling down a hill, the motorcycle wheel’s rotational kinetic energy, the punter’s leg, the ball rolling up a hill, the woman lifting a weight with her biceps, the two cylinders on two inclines, the moment of inertia as a multiple of MR², the motorcycle coasting up a hill and the Construct Your Own Problem item on the skater pulling his arms in.",
+ "ai": {
+  "text": "Claude Opus 5, with Claude Fable 5.1",
+  "figures": "Claude Opus 5, with Claude Fable 5.1"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. The Check Your Understanding on the analogy between rotational and translational kinetic energy is keyed by the book and set inline after the passage that defines rotational kinetic energy. Six of the fifteen problems are keyed and kept: the merry-go-round plus child of Example 10.7, whose third part the book keys as “W = 9.81 N” and which is kept as printed; the rotational kinetic energy of Earth on its axis and in its orbit; the pitcher’s forearm; the flywheel bus; the leg lifting a weight; and the softball pitcher’s arm. The nine unkeyed problems are left out and named in the section’s notes. All four AP items of this module ask how a torque changes an angular velocity, which Section 10.3 introduces, and they are set with 10.3 with source_section 10.4; 10.3’s notes say so as well. The three conceptual questions have no key, so each carries an AI-written suggested approach, marked as such, and the third takes the book’s photograph of the cloud of gas and dust on its card. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-grinder",
+   "kind": "photo",
+   "number": "10.16",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-disk-work",
+   "kind": "sim",
+   "number": "10.17",
+   "originals": [
+    "/media/ch10/Figure_11_04_02a.jpg"
+   ],
+   "original_caption": "The net force on this disk is kept perpendicular to its radius as the force causes the disk to rotate. The net work done is thus (net F)Δs. The net work goes into rotational kinetic energy.",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "energy"
+   ]
+  },
+  {
+   "id": "fig-flywheel-bus",
+   "kind": "photo",
+   "number": "10.18",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-grindstone",
+   "kind": "sim",
+   "number": "10.19",
+   "originals": [
+    "/media/ch10/Figure_11_04_04a.jpg"
+   ],
+   "original_caption": "A large grindstone is given a spin by a person grasping its outer edge.",
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "rotational-inertia",
+    "angular-rate",
+    "energy"
+   ]
+  },
+  {
+   "id": "fig-helicopter",
+   "kind": "photo",
+   "number": "10.20",
+   "draws": []
+  },
+  {
+   "id": "sim-helicopter",
+   "kind": "sim",
+   "draws": [
+    "angular-rate",
+    "rotational-inertia",
+    "velocity",
+    "energy",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-cans-race",
+   "kind": "sim",
+   "number": "10.21",
+   "originals": [
+    "/media/ch10/Figure_11_04_06a.jpg"
+   ],
+   "original_caption": "Three cans of soup with identical masses race down an incline. The first can has a low friction coating and does not roll but just slides down the incline. It wins because it converts its entire PE into translational KE. The second and third cans both roll down the incline without slipping. The second can contains thin soup and comes in second because part of its initial PE goes into rotating the can (but not the thin soup). The third can contains thick soup. It comes in third because the soup rotates along with the can, taking even more of the initial PE for rotational KE, leaving less for translational KE.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "energy",
+    "rotational-inertia",
+    "angular-rate"
+   ]
+  }
+ ],
+ "coverage": [
+  { "span": "rotational-work", "concept": "rotational-work", "verb": "introduces" },
+  { "span": "rotational-work", "concept": "work", "verb": "uses" },
+  { "span": "rotational-work", "concept": "calculate-work", "verb": "uses" },
+  { "span": "rotational-work", "concept": "torque", "verb": "uses" },
+  { "span": "rotational-work", "concept": "arc-length", "verb": "uses" },
+  { "span": "rotational-work", "concept": "linear-from-angular", "verb": "uses" },
+  { "span": "rotational-kinetic-energy", "concept": "rotational-work-energy-theorem", "verb": "introduces" },
+  { "span": "rotational-kinetic-energy", "concept": "rotational-kinetic-energy", "verb": "introduces" },
+  { "span": "rotational-kinetic-energy", "concept": "newtons-second-law-rotation", "verb": "uses" },
+  { "span": "rotational-kinetic-energy", "concept": "rotational-kinematic-equations", "verb": "uses" },
+  { "span": "rotational-kinetic-energy", "concept": "work-energy-theorem", "verb": "uses" },
+  { "span": "rotational-kinetic-energy", "concept": "kinetic-energy", "verb": "uses" },
+  { "span": "rotational-kinetic-energy", "concept": "moment-of-inertia", "verb": "uses" },
+  { "span": "rotational-kinetic-energy", "concept": "angular-velocity", "verb": "uses" },
+  { "span": "grindstone", "concept": "rotational-work", "verb": "reinforces" },
+  { "span": "grindstone", "concept": "rotational-work-energy-theorem", "verb": "reinforces" },
+  { "span": "grindstone", "concept": "rotational-kinetic-energy", "verb": "reinforces" },
+  { "span": "grindstone", "concept": "newtons-second-law-rotation", "verb": "uses" },
+  { "span": "grindstone", "concept": "rotational-kinematic-equations", "verb": "uses" },
+  { "span": "grindstone", "concept": "choosing-a-moment-of-inertia", "verb": "uses" },
+  { "span": "helicopter", "concept": "rotational-energy-strategy", "verb": "introduces" },
+  { "span": "helicopter", "concept": "rotational-kinetic-energy", "verb": "reinforces" },
+  { "span": "helicopter", "concept": "kinetic-energy", "verb": "uses" },
+  { "span": "helicopter", "concept": "gravitational-potential-energy", "verb": "uses" },
+  { "span": "helicopter", "concept": "energy-problem-solving", "verb": "uses" },
+  { "span": "helicopter", "concept": "conservation-of-mechanical-energy", "verb": "uses" },
+  { "span": "helicopter", "concept": "choosing-a-moment-of-inertia", "verb": "uses" },
+  { "span": "rolling", "concept": "rolling-splits-the-energy", "verb": "introduces" },
+  { "span": "rolling", "concept": "rotational-kinetic-energy", "verb": "reinforces" },
+  { "span": "rolling", "concept": "rotational-energy-strategy", "verb": "reinforces" },
+  { "span": "rolling", "concept": "conservation-of-mechanical-energy", "verb": "uses" },
+  { "span": "rolling", "concept": "gravitational-potential-energy", "verb": "uses" },
+  { "span": "rolling", "concept": "kinetic-energy", "verb": "uses" },
+  { "span": "rolling", "concept": "linear-from-angular", "verb": "uses" },
+  { "span": "rolling", "concept": "choosing-a-moment-of-inertia", "verb": "uses" }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2931518",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": { "at": "inline", "after": "rotational-kinetic-energy" },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "<strong>Analogy of Rotational and Translational Kinetic Energy</strong><br>Is rotational kinetic energy completely analogous to translational kinetic energy? What, if any, are their differences? Give an example of each type of kinetic energy.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes, rotational and translational kinetic energy are exact analogs. They both are the energy of motion involved with the coordinated (non-random) movement of mass relative to some reference frame. The only difference between rotational and translational kinetic energy is that translational is straight line motion while rotational is not. An example of both kinetic and translational kinetic energy is found in a bike tire while being ridden down a bike path. The rotational motion of the tire means it has rotational kinetic energy while the movement of the bike along the path means the tire also has translational kinetic energy. If you were to lift the front wheel of the bike and spin it while the bike is stationary, then the wheel would have only rotational kinetic energy relative to the Earth."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3026004",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "Describe the energy transformations involved when a yo-yo is thrown downward and then climbs back up its string to be caught in the user’s hand.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At the start the yo-yo is at rest in the hand, so its energy is gravitational potential energy $m\\kg\\kh$ measured from the bottom of the string, together with whatever kinetic energy the throw gives it. As it falls the string unwinds from the axle, so the yo-yo must turn as it descends, and the potential energy becomes both translational kinetic energy $\\frac{1}{2}m\\kv^2$ and rotational kinetic energy $\\kKErot = \\frac{1}{2}\\kI\\kw^2$, exactly as the rolling can of Figure 10.21 divides its energy. At the bottom of the string the yo-yo stops falling but keeps spinning, so for a moment nearly all of its energy is rotational; the string then winds back on, and the rotational kinetic energy is what pays for the climb, being converted back into gravitational potential energy as the yo-yo rises and slows its spin. It arrives in the hand a little lower in energy than it left, since friction at the axle and in the string has turned some of the energy into heat, which is why a yo-yo left to itself does not climb quite to the hand without a tug."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1428194",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "What energy transformations are involved when a dragster engine is revved, its clutch let out rapidly, its tires spun, and it starts to accelerate forward? Describe the source and transformation of energy at each step.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Follow the energy from its source. Revving the engine burns fuel, and the chemical energy released becomes rotational kinetic energy of the engine’s spinning parts, the crankshaft and flywheel, $\\kKErot = \\frac{1}{2}\\kI\\kw^2$, together with heat. When the clutch is let out rapidly, that stored rotational energy is passed along the drive train to the wheels and tires, which are set spinning; part of it is lost as heat and noise in the clutch as the two sides are brought to the same speed. While the tires spin against the track, friction does work on the rubber and the road and much of the rotational kinetic energy is turned into heat and smoke, which is why the tires get hot. Once the tires grip, the rotational motion of the wheels drives the car forward, and the engine’s continuing work becomes translational kinetic energy $\\frac{1}{2}m\\kv^2$ of the whole dragster, with the wheels keeping a share as rotational kinetic energy since they must turn faster as the car goes faster. At every step some energy leaves as heat, so the translational kinetic energy at the end of the run is less than the chemical energy the fuel gave up."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2640555",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "rotational-kinetic-energy",
+   "figure": {
+    "src": "/media/ch10/Figure_11_04_07a.jpg",
+    "alt": "The figure shows a closed view of a red planet in the sky, with a sun like object seen at the far right and the planet shown here being surrounded by circles of gas and dust.",
+    "caption": "An immense cloud of rotating gas and dust contracted under the influence of gravity to form the Earth and in the process rotational kinetic energy increased. (credit: NASA)"
+   },
+   "prompt": "The Earth has more rotational kinetic energy now than did the cloud of gas and dust from which it formed. Where did this energy come from?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The energy came from gravity. The cloud was spread out over an enormous volume, and every part of it was far from every other part, so the cloud held a great deal of gravitational potential energy. As gravity drew the gas and dust inward, that potential energy was released, and it went into the kinetic energy of the material falling toward the center, into heat, and into the rotation of the body that formed. The rotation grew for the reason Section 10.5 will make precise: a body that contracts while it turns spins faster, as a skater does when she pulls in her arms, and the work that gravity does in pulling the material inward is what raises the rotational kinetic energy $\\kKErot = \\frac{1}{2}\\kI\\kw^2$. The Earth turns once a day on a radius of a few thousand kilometers where the cloud turned slowly on a radius of millions, so the increase in rotational kinetic energy is paid for by the decrease in gravitational potential energy of the contracting cloud."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2402678",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "This problem considers energy and work aspects of Example 10.7—use data from that example as needed. (a) Calculate the rotational kinetic energy in the merry-go-round plus child when they have an angular velocity of 20.0 rpm. (b) Using energy considerations, find the number of revolutions the father will have to push to achieve this angular velocity starting from rest. (c) Again, using energy considerations, calculate the force the father must exert to stop the merry-go-round in two revolutions",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the rotational kinetic energy",
+      "value": 185,
+      "unit": "J",
+      "hint": "Convert 20.0 rpm to radians per second, and take the moment of inertia of the merry-go-round plus child from part (b) of Example 10.7, $84.38\\ \\text{kg}\\cdot\\text{m}^2$."
+     },
+     {
+      "part": "(b) the revolutions the father pushes through",
+      "value": 0.0785,
+      "unit": "rev",
+      "hint": "The work he does is $(\\text{net}\\;\\ktau)\\theta$ with his torque of $375\\ \\text{N}\\cdot\\text{m}$, and it must equal the rotational kinetic energy of part (a); then turn the angle in radians into revolutions."
+     },
+     {
+      "part": "(c) the force that stops it in two revolutions",
+      "value": 9.81,
+      "unit": "N",
+      "hint": "The work that removes the kinetic energy is the force times the radius of 1.50 m times the angle of two revolutions in radians."
+     }
+    ],
+    "solution": "(a) 185 J. (b) 0.0785 rev. (c) $W = 9.81\\ \\text{N}$."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3017926",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "(a) Calculate the rotational kinetic energy of Earth on its axis. (b) What is the rotational kinetic energy of Earth in its orbit around the Sun?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) on its axis",
+      "value": 2.57e29,
+      "unit": "J",
+      "hint": "Treat Earth as a uniform sphere, $\\kI = \\frac{2}{5}MR^2$, turning once in a day; the mass and radius are in the front matter."
+     },
+     {
+      "part": "(b) in its orbit",
+      "value": 2.65e33,
+      "unit": "J",
+      "hint": "In its orbit Earth is a point mass at the radius of the orbit, $\\kI = Mr^2$, turning once in a year."
+     }
+    ],
+    "solution": "(a) $2.57 \\times 10^{29}\\ \\text{J}$. (b) $\\kKErot = 2.65 \\times 10^{33}\\ \\text{J}$."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1580820",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "A baseball pitcher throws the ball in a motion where there is rotation of the forearm about the elbow joint as well as other movements. If the linear velocity of the ball relative to the elbow joint is 20.0 m/s at a distance of 0.480 m from the joint and the moment of inertia of the forearm is $0.500\\ \\text{kg}\\cdot\\text{m}^2$, what is the rotational kinetic energy of the forearm?",
+   "answer": {
+    "type": "number",
+    "value": 434,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "The angular velocity of the forearm is the ball’s speed divided by its distance from the elbow, $\\kw = \\kv/\\kr$; then $\\kKErot = \\frac{1}{2}\\kI\\kw^2$.",
+    "solution": "$\\kKErot = 434\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2662255",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "helicopter",
+   "prompt": "A bus contains a 1500 kg flywheel (a disk that has a 0.600 m radius) and has a total mass of 10,000 kg. (a) Calculate the angular velocity the flywheel must have to contain enough energy to take the bus from rest to a speed of 20.0 m/s, assuming 90.0% of the rotational kinetic energy can be transformed into translational energy. (b) How high a hill can the bus climb with this stored energy and still have a speed of 3.00 m/s at the top of the hill? Explicitly show how you follow the steps in the Problem-Solving Strategy for Rotational Energy.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angular velocity of the flywheel",
+      "value": 128,
+      "unit": "rad/s",
+      "hint": "The flywheel is a disk, $\\kI = \\frac{1}{2}MR^2$. Nine tenths of $\\frac{1}{2}\\kI\\kw^2$ must equal the bus’s $\\frac{1}{2}m\\kv^2$ at 20.0 m/s."
+     },
+     {
+      "part": "(b) the height of the hill",
+      "value": 19.9,
+      "unit": "m",
+      "hint": "The same nine tenths of the flywheel’s energy now becomes $m\\kg\\kh$ plus the kinetic energy the bus keeps at 3.00 m/s at the top."
+     }
+    ],
+    "solution": "(a) 128 rad/s. (b) 19.9 m."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2583778",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "rotational-work",
+   "prompt": "While exercising in a fitness center, a man lies face down on a bench and lifts a weight with one lower leg by contacting the muscles in the back of the upper leg. (a) Find the angular acceleration produced given the mass lifted is 10.0 kg at a distance of 28.0 cm from the knee joint, the moment of inertia of the lower leg is $0.900\\ \\text{kg}\\cdot\\text{m}^2$, the muscle force is 1500 N, and its effective perpendicular lever arm is 3.00 cm. (b) How much work is done if the leg rotates through an angle of $20.0^\\circ$ with a constant force exerted by the muscle?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angular acceleration",
+      "value": 10.4,
+      "unit": "rad/s²",
+      "hint": "The net torque is the muscle’s torque less the torque of the lifted weight about the knee, and the moment of inertia is the leg’s plus that of the 10.0 kg mass at 28.0 cm, treated as a point mass."
+     },
+     {
+      "part": "(b) the work done",
+      "value": 6.11,
+      "unit": "J",
+      "hint": "Net work is $(\\text{net}\\;\\ktau)\\theta$ with the angle in radians: $20.0^\\circ$ is 0.349 rad."
+     }
+    ],
+    "solution": "(a) $10.4\\ \\text{rad/s}^2$. (b) $\\text{net}\\;\\kW = 6.11\\ \\text{J}$."
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id3399194",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "In softball, the pitcher throws with the arm fully extended (straight at the elbow). In a fast pitch the ball leaves the hand with a speed of 139 km/h. (a) Find the rotational kinetic energy of the pitcher’s arm and ball together given that the arm's moment of inertia is $0.720\\ \\text{kg}\\cdot\\text{m}^2$ and the ball leaves the hand at a distance of 0.600 m from the pivot at the shoulder. (b) What force did the muscles exert to cause the arm to rotate if their effective perpendicular lever arm is 4.00 cm and the ball is 0.156 kg?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the rotational kinetic energy",
+      "value": 1.49,
+      "unit": "kJ",
+      "hint": "Convert 139 km/h to m/s and find the arm’s angular velocity from the speed of the hand, $\\kw = \\kv/\\kr$; then $\\kKErot = \\frac{1}{2}\\kI\\kw^2$ with the arm’s moment of inertia."
+     },
+     {
+      "part": "(b) the muscle force",
+      "value": 25200,
+      "unit": "N",
+      "hint": "The work the muscles do, $(\\text{net}\\;\\ktau)\\theta$, becomes the kinetic energy of part (a), where the torque is the force times the 4.00 cm lever arm and $\\theta$ is the angle through which the arm sweeps during the pitch."
+     }
+    ],
+    "solution": "(a) 1.49 kJ. (b) $2.52 \\times 10^4\\ \\text{N}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  { "exercise": "cyu1", "concept": "rotational-kinetic-energy" },
+  { "exercise": "cq1", "concept": "rotational-kinetic-energy" },
+  { "exercise": "cq1", "concept": "rolling-splits-the-energy", "weight": 2 },
+  { "exercise": "cq2", "concept": "rotational-kinetic-energy" },
+  { "exercise": "cq2", "concept": "rolling-splits-the-energy", "weight": 2 },
+  { "exercise": "cq3", "concept": "rotational-kinetic-energy" },
+  { "exercise": "p1", "concept": "rotational-work-energy-theorem" },
+  { "exercise": "p1", "concept": "rotational-kinetic-energy", "weight": 4 },
+  { "exercise": "p3", "concept": "rotational-kinetic-energy" },
+  { "exercise": "p5", "concept": "rotational-kinetic-energy" },
+  { "exercise": "p7", "concept": "rotational-energy-strategy" },
+  { "exercise": "p7", "concept": "rotational-kinetic-energy", "weight": 4 },
+  { "exercise": "p7", "concept": "rolling-splits-the-energy", "weight": 2 },
+  { "exercise": "p9", "concept": "rotational-work" },
+  { "exercise": "p9", "concept": "newtons-second-law-rotation", "weight": 3 },
+  { "exercise": "p14", "concept": "rotational-kinetic-energy" },
+  { "exercise": "p14", "concept": "rotational-work", "weight": 2 }
+ ]
+}

@@ -1,0 +1,158 @@
+{
+ "id": "10.2",
+ "module": "m42178",
+ "chapter": "10",
+ "title": "Kinematics of Rotational Motion",
+ "short": "Rotational kinematics",
+ "lead": "A wheel that is given a large angular acceleration for a long time ends up spinning rapidly and turns through many revolutions, just as a motorcycle with a large acceleration ends up moving fast and covering a large distance. This section makes that analogy exact: substituting the linear velocity and the linear acceleration as the radius times the angular velocity and the radius times the angular acceleration into the kinematic equations for straight-line motion gives four rotational kinematic equations relating the angle turned through, the angular velocity, the angular acceleration and the time, and a fishing reel, a freight train and a fly on a microwave plate show how the angular quantities are tied to the linear ones.",
+ "objectives": [
+  "Observe the kinematics of rotational motion.",
+  "Derive rotational kinematic equations.",
+  "Evaluate problem solving strategies for rotational kinematics."
+ ],
+ "summary_html": "<ul><li>Kinematics is the description of motion.</li><li>The kinematics of rotational motion describes the relationships among rotation angle, angular velocity, angular acceleration, and time.</li><li>Starting with the four kinematic equations we developed in the One-Dimensional Kinematics, we can derive the four rotational kinematic equations (presented together with their translational counterparts) seen in Table 10.2.</li><li>In these equations, the subscript 0 denotes initial values ($\\kxo$ and $\\kto$ are initial values), and the average angular velocity $\\kwb$ and average velocity $\\kvb$ are defined as follows: $\\kwb = \\frac{\\kwo + \\kw}{2}$ and $\\kvb = \\frac{\\kvo + \\kv}{2}$.</li></ul>",
+ "notes": "Problems 2 and 4, the dust on a spinning CD and the tires of a car in a quick stop, have no answer in the book’s key and are left out.",
+ "ai": {
+  "text": "Claude Opus 5, with Claude Fable 5.1",
+  "figures": "Claude Opus 5, with Claude Fable 5.1"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key; problems 2 (fs-id1815900, the dust on the CD) and 4 (fs-id3055432, the car’s tires in a quick stop) have no keyed answer and are left out. The book prints the units of parts (b) and (c) of problem 5 with a stray superscript, and the card writes them as rad/s and m/s². The photograph of the yo-yo, Figure 10.9, sits inside problem 4 in the source but shows the yo-yo of problem 5, so it travels on that problem’s card with the book’s caption and credit. The one Check Your Understanding box is keyed and is set inline at the end of the text, where the book prints it. The module has no conceptual questions and no AP test prep items; nothing is held for a later page and nothing is taken from another. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-reel",
+   "kind": "sim",
+   "number": "10.7",
+   "originals": ["/media/ch10/Figure_11_02_01a.jpg"],
+   "original_caption": "Fishing line coming off a rotating reel moves linearly. Example 10.3 and Example 10.4 consider relationships between rotational and linear quantities associated with a fishing reel.",
+   "widths": [275],
+   "draws": ["angular-rate", "angular-acceleration", "position", "velocity", "acceleration", "time"]
+  },
+  {
+   "id": "sim-fly",
+   "kind": "sim",
+   "number": "10.8",
+   "originals": ["/media/ch10/Figure_11_02_02a.jpg"],
+   "original_caption": "The image shows a microwave plate. The fly makes revolutions while the food is heated (along with the fly).",
+   "widths": [250],
+   "draws": ["angular-rate", "position", "time"]
+  }
+ ],
+ "coverage": [
+  {"span": "rotational-kinematics", "concept": "rotational-kinematic-equations", "verb": "introduces"},
+  {"span": "rotational-kinematics", "concept": "angular-acceleration", "verb": "uses"},
+  {"span": "rotational-kinematics", "concept": "tangential-angular-acceleration", "verb": "uses"},
+  {"span": "rotational-kinematics", "concept": "linear-angular-velocity", "verb": "uses"},
+  {"span": "rotational-kinematics", "concept": "v-from-at", "verb": "uses"},
+  {"span": "rotational-kinematics", "concept": "rotational-translational-analogy", "verb": "uses"},
+  {"span": "four-equations", "concept": "average-angular-velocity", "verb": "introduces"},
+  {"span": "four-equations", "concept": "rotational-kinematic-equations", "verb": "reinforces"},
+  {"span": "four-equations", "concept": "x-from-vbar", "verb": "uses"},
+  {"span": "four-equations", "concept": "vbar-midpoint", "verb": "uses"},
+  {"span": "four-equations", "concept": "x-quadratic", "verb": "uses"},
+  {"span": "four-equations", "concept": "v-squared", "verb": "uses"},
+  {"span": "strategy", "concept": "rotational-kinematics-strategy", "verb": "introduces"},
+  {"span": "strategy", "concept": "choose-equation", "verb": "uses"},
+  {"span": "strategy", "concept": "physical-solution", "verb": "uses"},
+  {"span": "ex-reel", "concept": "rotational-kinematic-equations", "verb": "uses"},
+  {"span": "ex-reel", "concept": "rotational-kinematics-strategy", "verb": "uses"},
+  {"span": "ex-reel", "concept": "linear-angular-velocity", "verb": "uses"},
+  {"span": "ex-reel", "concept": "radian", "verb": "uses"},
+  {"span": "ex-brake", "concept": "rotational-kinematic-equations", "verb": "uses"},
+  {"span": "ex-brake", "concept": "rotational-kinematics-strategy", "verb": "uses"},
+  {"span": "ex-train", "concept": "linear-from-angular", "verb": "introduces"},
+  {"span": "ex-train", "concept": "rotational-kinematic-equations", "verb": "uses"},
+  {"span": "ex-train", "concept": "rotation-angle", "verb": "uses"},
+  {"span": "ex-train", "concept": "linear-angular-velocity", "verb": "uses"},
+  {"span": "microwave", "concept": "linear-from-angular", "verb": "reinforces"},
+  {"span": "microwave", "concept": "average-angular-velocity", "verb": "uses"},
+  {"span": "microwave", "concept": "distance-traveled", "verb": "uses"},
+  {"span": "microwave", "concept": "displacement", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3076176",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {"at": "inline", "after": "microwave"},
+   "cite": "rotational-kinematics",
+   "prompt": "Rotational kinematics has many useful relationships, often expressed in equation form. Are these relationships laws of physics or are they simply descriptive? (Hint: the same question applies to linear kinematics.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Rotational kinematics (just like linear kinematics) is descriptive and does not represent laws of nature. With kinematics, we can describe many things to great precision but kinematics does not consider causes. For example, a large angular acceleration describes a very rapid change in angular velocity without any consideration of its cause."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3246708",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "four-equations",
+   "prompt": "With the aid of a string, a gyroscope is accelerated from rest to 32 rad/s in 0.40 s. (a) What is its angular acceleration in rad/s²? (b) How many revolutions does it go through in the process?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "a", "value": 80, "unit": "rad/s²", "hint": "The gyroscope starts from rest, so $\\kwo = 0$ and $\\kw = \\kwo + \\kalpha\\kt$ gives $\\kalpha$ directly."},
+     {"part": "b", "value": 1.0, "unit": "rev", "hint": "Find the angle in radians from $\\theta = \\kwo\\kt + \\tfrac{1}{2}\\kalpha\\kt^2$ or from $\\theta = \\kwb\\kt$, then divide by $2\\pi$ rad per revolution."}
+    ],
+    "solution": "(a) $80\\ \\text{rad/s}^2$ (b) 1.0 rev"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2673238",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "four-equations",
+   "prompt": "A gyroscope slows from an initial rate of 32.0 rad/s at a rate of $0.700\\ \\text{rad/s}^2$. (a) How long does it take to come to rest? (b) How many revolutions does it make before stopping?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "a", "value": 45.7, "unit": "s", "hint": "The gyroscope is slowing, so its angular acceleration is negative, and it comes to rest when $\\kw = 0$ in $\\kw = \\kwo + \\kalpha\\kt$."},
+     {"part": "b", "value": 116, "unit": "rev", "hint": "With $\\kw = 0$ the equation $\\kw^2 = \\kwo^2 + 2\\kalpha\\theta$ gives $\\theta$ without the time; remember to convert radians to revolutions."}
+    ],
+    "solution": "(a) 45.7 s (b) 116 rev"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2972882",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-train",
+   "figure": {
+    "src": "/media/ch10/Figure_11_02_03a.jpg",
+    "alt": "The figure shows the left arm of a man with tattoo imprints and wearing a glove. He is circulating a yo-yo toy, which is in mid air and connected by the string to his hand. Some people are standing in the background watching the yo-yo trick.",
+    "caption": "Yo-yos are amusing toys that display significant physics and are engineered to enhance performance based on physical laws. (credit: Beyond Neon, Flickr)"
+   },
+   "prompt": "Everyday application: Suppose a yo-yo has a center shaft that has a 0.250 cm radius and that its string is being pulled. (a) If the string is stationary and the yo-yo accelerates away from it at a rate of $1.50\\ \\text{m/s}^2$, what is the angular acceleration of the yo-yo? (b) What is the angular velocity after 0.750 s if it starts from rest? (c) The outside radius of the yo-yo is 3.50 cm. What is the tangential acceleration of a point on its edge?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "a", "value": 600, "unit": "rad/s²", "hint": "The string does not slip on the shaft, so the linear acceleration of the shaft’s rim is $\\ka = \\kr\\kalpha$ with $\\kr$ the shaft radius in meters."},
+     {"part": "b", "value": 450, "unit": "rad/s", "hint": "Starting from rest, $\\kw = \\kalpha\\kt$."},
+     {"part": "c", "value": 21.0, "unit": "m/s²", "hint": "The whole yo-yo shares one angular acceleration, so at the outer radius $\\kat = \\kr\\kalpha$ with the larger $\\kr$."}
+    ],
+    "solution": "(a) $600\\ \\text{rad/s}^2$ (b) 450 rad/s (c) $21.0\\ \\text{m/s}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "cyu1", "concept": "rotational-kinematic-equations"},
+  {"exercise": "p1", "concept": "rotational-kinematic-equations"},
+  {"exercise": "p1", "concept": "rotational-kinematics-strategy", "weight": 2},
+  {"exercise": "p3", "concept": "rotational-kinematic-equations"},
+  {"exercise": "p3", "concept": "rotational-kinematics-strategy", "weight": 2},
+  {"exercise": "p5", "concept": "rotational-kinematic-equations"},
+  {"exercise": "p5", "concept": "tangential-angular-acceleration", "weight": 2},
+  {"exercise": "p5", "concept": "linear-from-angular", "weight": 2}
+ ]
+}

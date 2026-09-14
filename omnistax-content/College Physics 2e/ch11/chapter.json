@@ -1,0 +1,786 @@
+{
+  "id": "11",
+  "dir": "ch11",
+  "title": "Fluid Statics",
+  "intro": {
+    "module": "m42185",
+    "slug": "11-introduction-to-fluid-statics"
+  },
+  "sections": [
+    {
+      "id": "11.1",
+      "module": "m42186",
+      "title": "What Is a Fluid?",
+      "slug": "11-1-what-is-a-fluid"
+    },
+    {
+      "id": "11.2",
+      "module": "m42187",
+      "title": "Density",
+      "slug": "11-2-density"
+    },
+    {
+      "id": "11.3",
+      "module": "m42189",
+      "title": "Pressure",
+      "slug": "11-3-pressure"
+    },
+    {
+      "id": "11.4",
+      "module": "m42192",
+      "title": "Variation of Pressure with Depth in a Fluid",
+      "slug": "11-4-variation-of-pressure-with-depth-in-a-fluid"
+    },
+    {
+      "id": "11.5",
+      "module": "m42193",
+      "title": "Pascal’s Principle",
+      "slug": "11-5-pascals-principle"
+    },
+    {
+      "id": "11.6",
+      "module": "m42195",
+      "title": "Gauge Pressure, Absolute Pressure, and Pressure Measurement",
+      "slug": "11-6-gauge-pressure-absolute-pressure-and-pressure-measurement"
+    },
+    {
+      "id": "11.7",
+      "module": "m42196",
+      "title": "Archimedes’ Principle",
+      "slug": "11-7-archimedes-principle"
+    },
+    {
+      "id": "11.8",
+      "module": "m42197",
+      "title": "Cohesion and Adhesion in Liquids: Surface Tension and Capillary Action",
+      "slug": "11-8-cohesion-and-adhesion-in-liquids-surface-tension-and-capillary-action"
+    },
+    {
+      "id": "11.9",
+      "module": "m42199",
+      "title": "Pressures in the Body",
+      "slug": "11-9-pressures-in-the-body"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "ρ_dens",
+      "type": "density",
+      "meaning": "the density of a substance or object, which is its mass per unit volume",
+      "unit": "kg/m³",
+      "section": "11.2"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of the substance or object",
+      "unit": "kg",
+      "section": "11.2"
+    },
+    {
+      "sym": "V",
+      "meaning": "the volume the substance or object occupies",
+      "unit": "m³",
+      "section": "11.2"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the pressure, which is the force divided by the area perpendicular to the force over which the force is applied",
+      "unit": "N/m²",
+      "section": "11.3"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the force applied to the surface, which is perpendicular to it",
+      "unit": "N",
+      "section": "11.3"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area the force is applied over, which is perpendicular to the force",
+      "unit": "m²",
+      "section": "11.3"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the pressure at a depth in a fluid, which is due to the weight of the fluid above that depth",
+      "unit": "N/m²",
+      "section": "11.4"
+    },
+    {
+      "sym": "h",
+      "type": "position",
+      "meaning": "the depth below the surface of the fluid",
+      "unit": "m",
+      "section": "11.4"
+    },
+    {
+      "sym": "ρ_dens",
+      "type": "density",
+      "meaning": "the average density of the fluid",
+      "unit": "kg/m³",
+      "section": "11.4"
+    },
+    {
+      "sym": "g",
+      "type": "acceleration",
+      "meaning": "the acceleration due to gravity, about 9.80 m/s² at the Earth’s surface",
+      "unit": "m/s²",
+      "section": "11.4"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of the fluid the bottom of the container supports",
+      "unit": "kg",
+      "section": "11.4"
+    },
+    {
+      "sym": "V",
+      "meaning": "the volume of that fluid, which is the area of the bottom times the depth",
+      "unit": "m³",
+      "section": "11.4"
+    },
+    {
+      "sym": "A",
+      "meaning": "the cross-sectional area the fluid presses on",
+      "unit": "m²",
+      "section": "11.4"
+    },
+    {
+      "sym": "P_bar",
+      "type": "pressure",
+      "meaning": "the average pressure on a surface, which is the pressure at its average depth because pressure increases linearly with depth",
+      "unit": "N/m²",
+      "section": "11.4"
+    },
+    {
+      "sym": "h_bar",
+      "type": "position",
+      "meaning": "the average depth of the surface below the surface of the fluid",
+      "unit": "m",
+      "section": "11.4"
+    },
+    {
+      "sym": "ρ_bar",
+      "type": "density",
+      "meaning": "the average density of a fluid whose density changes with height, such as the atmosphere",
+      "unit": "kg/m³",
+      "section": "11.4"
+    },
+    {
+      "sym": "P_atm",
+      "type": "pressure",
+      "meaning": "standard atmospheric pressure, the average pressure of the air at sea level",
+      "unit": "N/m²",
+      "section": "11.4"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the force a fluid exerts on a surface, which is the average pressure times the area of contact",
+      "unit": "N",
+      "section": "11.4"
+    },
+    {
+      "sym": "P_1",
+      "type": "pressure",
+      "meaning": "the pressure the first piston creates in the enclosed fluid",
+      "unit": "N/m²",
+      "section": "11.5"
+    },
+    {
+      "sym": "P_2",
+      "type": "pressure",
+      "meaning": "the pressure felt at the second piston, which equals the pressure at the first because the fluid transmits it undiminished",
+      "unit": "N/m²",
+      "section": "11.5"
+    },
+    {
+      "sym": "F_1",
+      "type": "force",
+      "meaning": "the force applied to the first piston",
+      "unit": "N",
+      "section": "11.5"
+    },
+    {
+      "sym": "F_2",
+      "type": "force",
+      "meaning": "the force the fluid exerts on the second piston",
+      "unit": "N",
+      "section": "11.5"
+    },
+    {
+      "sym": "A_1",
+      "meaning": "the cross-sectional area of the first piston",
+      "unit": "m²",
+      "section": "11.5"
+    },
+    {
+      "sym": "A_2",
+      "meaning": "the cross-sectional area of the second piston",
+      "unit": "m²",
+      "section": "11.5"
+    },
+    {
+      "sym": "P_g",
+      "type": "pressure",
+      "meaning": "the gauge pressure, which is the pressure relative to atmospheric pressure and is what a tire gauge or a blood pressure cuff reads",
+      "unit": "N/m²",
+      "section": "11.6"
+    },
+    {
+      "sym": "P_abs",
+      "type": "pressure",
+      "meaning": "the absolute pressure, which is the total pressure in the fluid",
+      "unit": "N/m²",
+      "section": "11.6"
+    },
+    {
+      "sym": "P_atm",
+      "type": "pressure",
+      "meaning": "atmospheric pressure, which a gauge is built to read as zero",
+      "unit": "N/m²",
+      "section": "11.6"
+    },
+    {
+      "sym": "h",
+      "type": "position",
+      "meaning": "the height of the column of fluid the pressure supports in the manometer or the barometer",
+      "unit": "m",
+      "section": "11.6"
+    },
+    {
+      "sym": "ρ_dens",
+      "type": "density",
+      "meaning": "the density of the fluid in the manometer or the barometer, which is usually mercury or water",
+      "unit": "kg/m³",
+      "section": "11.6"
+    },
+    {
+      "sym": "F_B",
+      "type": "force",
+      "meaning": "the buoyant force, which is the net upward force a fluid exerts on any object in it",
+      "unit": "N",
+      "section": "11.7"
+    },
+    {
+      "sym": "w_fl",
+      "type": "force",
+      "meaning": "the weight of the fluid the object displaces",
+      "unit": "N",
+      "section": "11.7"
+    },
+    {
+      "sym": "ρ_obj",
+      "type": "density",
+      "meaning": "the average density of the object",
+      "unit": "kg/m³",
+      "section": "11.7"
+    },
+    {
+      "sym": "ρ_fl",
+      "type": "density",
+      "meaning": "the density of the fluid the object is in",
+      "unit": "kg/m³",
+      "section": "11.7"
+    },
+    {
+      "sym": "ρ_bar",
+      "type": "density",
+      "meaning": "the average density of an object or substance, which its specific gravity is measured from",
+      "unit": "kg/m³",
+      "section": "11.7"
+    },
+    {
+      "sym": "ρ_w",
+      "type": "density",
+      "meaning": "the density of water at 4.00 °C, which specific gravity is measured against",
+      "unit": "kg/m³",
+      "section": "11.7"
+    },
+    {
+      "sym": "V_sub",
+      "meaning": "the volume of the object that lies below the surface of the fluid",
+      "unit": "m³",
+      "section": "11.7"
+    },
+    {
+      "sym": "V_obj",
+      "meaning": "the volume of the whole object",
+      "unit": "m³",
+      "section": "11.7"
+    },
+    {
+      "sym": "V_fl",
+      "meaning": "the volume of fluid the object displaces, which equals the volume submerged",
+      "unit": "m³",
+      "section": "11.7"
+    },
+    {
+      "sym": "V_w",
+      "meaning": "the volume of water the object displaces, which is the object’s own volume when it is completely submerged",
+      "unit": "m³",
+      "section": "11.7"
+    },
+    {
+      "sym": "γ",
+      "type": "surface-tension",
+      "meaning": "the surface tension of a liquid, which is the force per unit length exerted by its stretched surface",
+      "unit": "N/m",
+      "section": "11.8"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the force the stretched liquid surface exerts on the wire",
+      "unit": "N",
+      "section": "11.8"
+    },
+    {
+      "sym": "F_ST",
+      "type": "force",
+      "meaning": "the restoring force of the liquid surface, which acts parallel to the surface",
+      "unit": "N",
+      "section": "11.8"
+    },
+    {
+      "sym": "L_wire",
+      "meaning": "the length of the line the surface tension force is spread along",
+      "unit": "m",
+      "section": "11.8"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the gauge pressure of the gas inside a spherical bubble",
+      "unit": "N/m²",
+      "section": "11.8"
+    },
+    {
+      "sym": "r",
+      "meaning": "the radius of the bubble, or of the capillary tube",
+      "unit": "m",
+      "section": "11.8"
+    },
+    {
+      "sym": "h",
+      "type": "position",
+      "meaning": "the height the liquid is raised or suppressed in the capillary tube",
+      "unit": "m",
+      "section": "11.8"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the contact angle, which is the angle between the tangent to the liquid surface and the solid surface",
+      "unit": "°",
+      "section": "11.8"
+    },
+    {
+      "sym": "ρ_dens",
+      "type": "density",
+      "meaning": "the density of the liquid in the tube",
+      "unit": "kg/m³",
+      "section": "11.8"
+    },
+    {
+      "sym": "ΔP",
+      "type": "pressure",
+      "meaning": "the increase in blood pressure between the heart and a point below it",
+      "unit": "N/m²",
+      "section": "11.9"
+    },
+    {
+      "sym": "Δh",
+      "type": "position",
+      "meaning": "the height of the heart above that point, such as the 1.4 m between the heart and the feet of a person standing up",
+      "unit": "m",
+      "section": "11.9"
+    },
+    {
+      "sym": "ρ_dens",
+      "type": "density",
+      "meaning": "the density of the fluid, which for blood is about 1050 kg/m³",
+      "unit": "kg/m³",
+      "section": "11.9"
+    },
+    {
+      "sym": "P_g",
+      "type": "pressure",
+      "meaning": "the gauge pressure in a part of the body, which is what Table 11.5 lists and what a measurement reads",
+      "unit": "N/m²",
+      "section": "11.9"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the force a pressure creates on an area of the body, such as on the back of the eye or on the eardrum",
+      "unit": "N",
+      "section": "11.9"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area of the body the pressure acts on",
+      "unit": "m²",
+      "section": "11.9"
+    },
+    {
+      "sym": "h",
+      "type": "position",
+      "meaning": "the height of the column of fluid a body pressure supports",
+      "unit": "m",
+      "section": "11.9"
+    }
+  ],
+  "equations": [
+    {
+      "id": "eq-density",
+      "concept": "density",
+      "section": "11.2",
+      "latex": "\\rho = \\frac{m}{V}",
+      "ktex": "\\krho = \\frac{m}{V}",
+      "important": true
+    },
+    {
+      "id": "eq-mass-from-density",
+      "concept": "calculate-mass-from-density",
+      "section": "11.2",
+      "latex": "m = \\rho V",
+      "ktex": "m = \\krho V",
+      "important": true
+    },
+    {
+      "id": "eq-pressure",
+      "concept": "pressure",
+      "section": "11.3",
+      "latex": "P = \\frac{F}{A}",
+      "ktex": "\\kPr = \\frac{\\kF}{A}",
+      "important": true
+    },
+    {
+      "id": "eq-pascal",
+      "concept": "pascal-unit",
+      "section": "11.3",
+      "latex": "1\\;\\text{Pa} = 1\\;\\text{N/m}^2",
+      "important": true
+    },
+    {
+      "id": "eq-force-from-pressure",
+      "concept": "force-from-pressure",
+      "section": "11.3",
+      "latex": "F = PA",
+      "ktex": "\\kF = \\kPr A",
+      "important": true
+    },
+    {
+      "id": "eq-pressure-from-weight",
+      "concept": "pressure-from-weight-of-fluid",
+      "section": "11.4",
+      "latex": "P = \\frac{mg}{A}",
+      "ktex": "\\kPr = \\frac{m\\kg}{A}"
+    },
+    {
+      "id": "eq-mass-of-fluid-column",
+      "section": "11.4",
+      "latex": "m = \\rho Ah",
+      "ktex": "m = \\krho A\\kh"
+    },
+    {
+      "id": "eq-pressure-depth",
+      "concept": "pressure-from-weight-of-fluid",
+      "section": "11.4",
+      "latex": "P = h\\rho g",
+      "ktex": "\\kPr = \\kh\\krho\\kg",
+      "important": true
+    },
+    {
+      "id": "eq-average-pressure-depth",
+      "concept": "force-on-a-dam",
+      "section": "11.4",
+      "latex": "\\bar{P} = \\bar{h}\\rho g",
+      "ktex": "\\kPbar = \\khbar\\krho\\kg",
+      "important": true
+    },
+    {
+      "id": "eq-force-on-dam",
+      "concept": "force-on-a-dam",
+      "section": "11.4",
+      "latex": "F = \\bar{P}A",
+      "ktex": "\\kF = \\kPbar A",
+      "important": true
+    },
+    {
+      "id": "eq-atmospheric-pressure",
+      "concept": "atmospheric-pressure",
+      "section": "11.4",
+      "latex": "1\\;\\text{atm} = P_{\\text{atm}} = 1.01\\times 10^{5}\\;\\text{N/m}^2 = 101\\;\\text{kPa}",
+      "ktex": "1\\;\\text{atm} = \\kPatm = 1.01\\times 10^{5}\\;\\text{N/m}^2 = 101\\;\\text{kPa}",
+      "important": true
+    },
+    {
+      "id": "eq-average-density-from-pressure",
+      "concept": "density-from-pressure-and-height",
+      "section": "11.4",
+      "latex": "\\bar{\\rho} = \\frac{P}{hg}",
+      "ktex": "\\krhobar = \\frac{\\kPr}{\\kh\\kg}",
+      "important": true
+    },
+    {
+      "id": "eq-depth-from-pressure",
+      "section": "11.4",
+      "latex": "h = \\frac{P}{\\rho g}",
+      "ktex": "\\kh = \\frac{\\kPr}{\\krho\\kg}"
+    },
+    {
+      "id": "eq-hydraulic-pressures-equal",
+      "concept": "pascals-principle",
+      "section": "11.5",
+      "latex": "P_1 = P_2",
+      "ktex": "\\kProne = \\kPrtwo",
+      "important": true
+    },
+    {
+      "id": "eq-hydraulic-force-ratio",
+      "concept": "hydraulic-force-ratio",
+      "section": "11.5",
+      "latex": "\\frac{F_1}{A_1} = \\frac{F_2}{A_2}",
+      "ktex": "\\frac{\\kFone}{A_1} = \\frac{\\kFtwo}{A_2}",
+      "important": true
+    },
+    {
+      "id": "eq-hydraulic-output-force",
+      "section": "11.5",
+      "latex": "F_2 = \\frac{A_2}{A_1}F_1",
+      "ktex": "\\kFtwo = \\frac{A_2}{A_1}\\kFone"
+    },
+    {
+      "id": "eq-absolute-pressure",
+      "concept": "absolute-pressure",
+      "section": "11.6",
+      "latex": "P_{\\text{abs}} = P_{\\text{g}} + P_{\\text{atm}}",
+      "ktex": "\\kPabs = \\kPg + \\kPatm",
+      "important": true
+    },
+    {
+      "id": "eq-gauge-pressure-manometer",
+      "concept": "manometer",
+      "section": "11.6",
+      "latex": "P_{\\text{g}} = h\\rho g",
+      "ktex": "\\kPg = \\kh\\krho\\kg",
+      "important": true
+    },
+    {
+      "id": "eq-barometer",
+      "concept": "barometer",
+      "section": "11.6",
+      "latex": "h\\rho g = P_{\\text{atm}}",
+      "ktex": "\\kh\\krho\\kg = \\kPatm",
+      "important": true
+    },
+    {
+      "id": "eq-mm-hg",
+      "section": "11.6",
+      "latex": "1.0\\;\\text{mm Hg} = 133\\;\\text{Pa}",
+      "important": true
+    },
+    {
+      "id": "eq-archimedes",
+      "concept": "archimedes-principle",
+      "section": "11.7",
+      "latex": "F_{\\text{B}} = w_{\\text{fl}}",
+      "ktex": "\\kFB = \\kwfl",
+      "important": true
+    },
+    {
+      "id": "eq-buoyant-force-difference",
+      "concept": "buoyant-force",
+      "section": "11.7",
+      "latex": "F_{\\text{B}} = F_2 - F_1",
+      "ktex": "\\kFB = \\kFtwo - \\kFone"
+    },
+    {
+      "id": "eq-fraction-submerged-volumes",
+      "concept": "fraction-submerged",
+      "section": "11.7",
+      "latex": "\\text{fraction submerged} = \\frac{V_{\\text{sub}}}{V_{\\text{obj}}} = \\frac{V_{\\text{fl}}}{V_{\\text{obj}}}"
+    },
+    {
+      "id": "eq-fraction-submerged",
+      "concept": "fraction-submerged",
+      "section": "11.7",
+      "latex": "\\text{fraction submerged} = \\frac{\\bar{\\rho}_{\\text{obj}}}{\\rho_{\\text{fl}}}",
+      "ktex": "\\text{fraction submerged} = \\frac{\\krhoobj}{\\krhofl}",
+      "important": true
+    },
+    {
+      "id": "eq-specific-gravity",
+      "concept": "specific-gravity",
+      "section": "11.7",
+      "latex": "\\text{specific gravity} = \\frac{\\bar{\\rho}}{\\rho_{\\text{w}}}",
+      "ktex": "\\text{specific gravity} = \\frac{\\krhobar}{\\krhow}",
+      "important": true
+    },
+    {
+      "id": "eq-apparent-weight-loss",
+      "concept": "apparent-weight-loss",
+      "section": "11.7",
+      "latex": "\\text{apparent weight loss} = \\text{weight of fluid displaced}",
+      "important": true
+    },
+    {
+      "id": "eq-apparent-mass-loss",
+      "section": "11.7",
+      "latex": "\\text{apparent mass loss} = \\text{mass of fluid displaced}"
+    },
+    {
+      "id": "eq-surface-tension",
+      "concept": "surface-tension",
+      "section": "11.8",
+      "latex": "\\gamma = \\frac{F}{L}",
+      "ktex": "\\kgamma = \\frac{\\kF}{L}",
+      "important": true
+    },
+    {
+      "id": "eq-slide-wire-force",
+      "section": "11.8",
+      "latex": "F = \\gamma L = \\gamma(2l)",
+      "ktex": "\\kF = \\kgamma L = \\kgamma(2l)"
+    },
+    {
+      "id": "eq-insect-weight",
+      "section": "11.8",
+      "latex": "w = \\gamma L\\sin\\theta",
+      "ktex": "\\kwgt = \\kgamma L\\sin\\theta"
+    },
+    {
+      "id": "eq-bubble-pressure",
+      "concept": "pressure-inside-a-bubble",
+      "section": "11.8",
+      "latex": "P = \\frac{4\\gamma}{r}",
+      "ktex": "\\kPr = \\frac{4\\kgamma}{r}",
+      "important": true
+    },
+    {
+      "id": "eq-capillary-height",
+      "concept": "capillary-action",
+      "section": "11.8",
+      "latex": "h = \\frac{2\\gamma\\cos\\theta}{\\rho gr}",
+      "ktex": "\\kh = \\frac{2\\kgamma\\cos\\theta}{\\krho\\kg r}",
+      "important": true
+    },
+    {
+      "id": "eq-pressure-in-feet",
+      "concept": "blood-pressure-and-height",
+      "section": "11.9",
+      "latex": "\\Delta P = \\Delta h\\rho g",
+      "ktex": "\\kdPr = \\kdh\\krho\\kg",
+      "important": true
+    },
+    {
+      "id": "eq-eye-force",
+      "concept": "intraocular-pressure",
+      "section": "11.9",
+      "latex": "F = h\\rho gA",
+      "ktex": "\\kF = \\kh\\krho\\kg A",
+      "important": true
+    }
+  ],
+  "glossary": [
+    {
+      "section": "11.1",
+      "term": "fluids",
+      "definition": "liquids and gases; a fluid is a state of matter that yields to shearing forces"
+    },
+    {
+      "section": "11.2",
+      "term": "density",
+      "definition": "the mass per unit volume of a substance or object"
+    },
+    {
+      "section": "11.3",
+      "term": "pressure",
+      "definition": "the force per unit area perpendicular to the force, over which the force acts"
+    },
+    {
+      "section": "11.5",
+      "term": "Pascal’s principle",
+      "definition": "a change in pressure applied to an enclosed fluid is transmitted undiminished to all portions of the fluid and to the walls of its container"
+    },
+    {
+      "section": "11.6",
+      "term": "absolute pressure",
+      "definition": "the sum of gauge pressure and atmospheric pressure"
+    },
+    {
+      "section": "11.6",
+      "term": "diastolic pressure",
+      "definition": "the minimum blood pressure in the artery"
+    },
+    {
+      "section": "11.6",
+      "term": "gauge pressure",
+      "definition": "the pressure relative to atmospheric pressure"
+    },
+    {
+      "section": "11.6",
+      "term": "systolic pressure",
+      "definition": "the maximum blood pressure in the artery"
+    },
+    {
+      "section": "11.7",
+      "term": "Archimedes’ principle",
+      "definition": "the buoyant force on an object equals the weight of the fluid it displaces"
+    },
+    {
+      "section": "11.7",
+      "term": "buoyant force",
+      "definition": "the net upward force on any object in any fluid"
+    },
+    {
+      "section": "11.7",
+      "term": "specific gravity",
+      "definition": "the ratio of the density of an object to a fluid (usually water)"
+    },
+    {
+      "section": "11.8",
+      "term": "adhesive forces",
+      "definition": "the attractive forces between molecules of different types"
+    },
+    {
+      "section": "11.8",
+      "term": "capillary action",
+      "definition": "the tendency of a fluid to be raised or lowered in a narrow tube"
+    },
+    {
+      "section": "11.8",
+      "term": "cohesive forces",
+      "definition": "the attractive forces between molecules of the same type"
+    },
+    {
+      "section": "11.8",
+      "term": "contact angle",
+      "definition": "the angle $\\theta$ between the tangent to the liquid surface and the surface"
+    },
+    {
+      "section": "11.8",
+      "term": "surface tension",
+      "definition": "the cohesive forces between molecules which cause the surface of a liquid to contract to the smallest possible surface area"
+    },
+    {
+      "section": "11.9",
+      "term": "glaucoma",
+      "definition": "condition caused by the buildup of fluid pressure in the eye"
+    },
+    {
+      "section": "11.9",
+      "term": "intraocular pressure",
+      "definition": "fluid pressure in the eye"
+    },
+    {
+      "section": "11.9",
+      "term": "micturition reflex",
+      "definition": "stimulates the feeling of needing to urinate, triggered by bladder pressure"
+    }
+  ]
+}

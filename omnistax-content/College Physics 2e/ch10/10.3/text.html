@@ -1,0 +1,98 @@
+<section id="force-and-rotation">
+<h2>Force is needed to change a rotation</h2>
+<p class="cite-target">If you have ever spun a bike wheel or pushed a merry-go-round, you know that force is needed to change angular velocity as seen in Figure 10.10. In fact, your intuition is reliable in predicting many of the factors that are involved. For example, we know that a door opens slowly if we push too close to its hinges. Furthermore, we know that the more massive the door, the more slowly it opens. The first example implies that the farther the force is applied from the pivot, the greater the angular acceleration; another implication is that angular acceleration is inversely proportional to mass. These relationships should seem very similar to the familiar relationships among force, mass, and acceleration embodied in Newton’s second law of motion. There are, in fact, precise rotational analogs to both force and mass.</p>
+<figure class="sim" id="sim-bike-wheel" data-figure="10.10" data-original="/media/ch10/Figure_11_03_01a.jpg" data-original-width="200" data-original-caption="Force is required to spin the bike wheel. The greater the force, the greater the angular acceleration produced. The more massive the wheel, the smaller the angular acceleration. If you push on a spoke closer to the axle, the angular acceleration will be smaller.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.10</span><span>A bike wheel is free to turn on its axle, and a hand pulls on it with a force $\kF$ at a distance $\kr$ from the axle. The wheel starts from rest and spins up while the pull lasts, and the angular acceleration it gains and the angular velocity it reaches are read out as it goes. Pull harder and it spins up faster, make the wheel more massive and it spins up more slowly, and move the pull in toward the axle and the same force does less.</span></div>
+</figure>
+</section>
+
+<section id="point-mass">
+<h2>The rotational analog of Newton’s second law for a point mass</h2>
+<p class="cite-target">To develop the precise relationship among force, mass, radius, and angular acceleration, consider what happens if we exert a force $\kF$ on a point mass $m$ that is at a distance $\kr$ from a pivot point, as shown in Figure 10.11. Because the force is perpendicular to $\kr$, an acceleration $\ka = \frac{\kF}{m}$ is obtained in the direction of $\kF$. We can rearrange this equation such that $\kF = m\ka$ and then look for ways to relate this expression to expressions for rotational quantities. We note that $\ka = \kr\kalpha$, and we substitute this expression into $\kF = m\ka$, yielding</p>
+$$\kF = m\kr\kalpha.$$
+<p>Recall that <strong>torque</strong> is the turning effectiveness of a force. In this case, because $\kF$ is perpendicular to $\kr$, torque is simply $\ktau = \kF\kr$. So, if we multiply both sides of the equation above by $\kr$, we get torque on the left-hand side. That is,</p>
+$$\kr\kF = m\kr^2\kalpha$$
+<p>or</p>
+$$\ktau = m\kr^2\kalpha.$$
+<p>This last equation is the rotational analog of Newton’s second law ($\kF = m\ka$), where torque is analogous to force, angular acceleration is analogous to translational acceleration, and $m\kr^2$ is analogous to mass (or inertia). The quantity $m\kr^2$ is called the <strong>rotational inertia</strong> or <strong>moment of inertia</strong> of a point mass $m$ a distance $\kr$ from the center of rotation.</p>
+<figure class="sim" id="sim-point-mass" data-figure="10.11" data-original="/media/ch10/Figure_11_03_02a.jpg" data-original-width="200" data-original-caption="An object is supported by a horizontal frictionless table and is attached to a pivot point by a cord that supplies centripetal force. A force F is applied to the object perpendicular to the radius r, causing it to accelerate about the pivot point. The force is kept perpendicular to r.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.11</span><span>A point mass $m$ rests on a frictionless table, seen from above, tethered to a pivot by a cord of length $\kr$, and a force $\kF$ is applied to it perpendicular to the cord. The force gives the mass a linear acceleration $\ka = \kF/m$ along the force and an angular acceleration $\kalpha = \ka/\kr$ about the pivot, and the torque $\ktau = \kr\kF$ comes to $m\kr^2\kalpha$. Change the force, the mass or the length of the cord and watch all three quantities move together.</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">Making Connections: Rotational Motion Dynamics</div>
+<p>Dynamics for rotational motion is completely analogous to linear or translational dynamics. Dynamics is concerned with force and mass and their effects on motion. For rotational motion, we will find direct analogs to force and mass that behave just as we would expect from our earlier experiences.</p>
+</div>
+</section>
+
+<section id="moment-of-inertia">
+<h2>Rotational Inertia and Moment of Inertia</h2>
+<p class="cite-target">Before we can consider the rotation of anything other than a point mass like the one in Figure 10.11, we must extend the idea of rotational inertia to all types of objects. To expand our concept of rotational inertia, we define the <strong>moment of inertia</strong> $\kI$ of an object to be the sum of $m\kr^2$ for all the point masses of which it is composed. That is, $\kI = \sum m\kr^2$. Here $\kI$ is analogous to $m$ in translational motion. Because of the distance $\kr$, the moment of inertia for any object depends on the chosen axis. Actually, calculating $\kI$ is beyond the scope of this text except for one simple case—that of a hoop, which has all its mass at the same distance from its axis. A hoop’s moment of inertia around its axis is therefore $M\kR^2$, where $M$ is its total mass and $\kR$ its radius. (We use $M$ and $\kR$ for an entire object to distinguish them from $m$ and $\kr$ for point masses.) In all other cases, we must consult Figure 10.12 (note that the table is piece of artwork that has shapes as well as formulae) for formulas for $\kI$ that have been derived from integration over the continuous body. Note that $\kI$ has units of mass multiplied by distance squared ($\text{kg}\cdot\text{m}^2$), as we might expect from its definition.</p>
+</section>
+
+<section id="second-law-rotation">
+<h2>Newton’s second law for rotation</h2>
+<p class="cite-target">The general relationship among torque, moment of inertia, and angular acceleration is</p>
+$$\text{net}\;\ktau = \kI\kalpha$$
+<p>or</p>
+$$\kalpha = \frac{\text{net}\;\ktau}{\kI},$$
+<p>where net $\ktau$ is the total torque from all forces relative to a chosen axis. For simplicity, we will only consider torques exerted by forces in the plane of the rotation. Such torques are either positive or negative and add like ordinary numbers. The relationship in $\ktau = \kI\kalpha, \kalpha = \frac{\text{net}\;\ktau}{\kI}$ is the rotational analog to Newton’s second law and is very generally applicable. This equation is actually valid for <em>any</em> torque, applied to <em>any</em> object, relative to <em>any</em> axis.</p>
+<p>As we might expect, the larger the torque is, the larger the angular acceleration is. For example, the harder a child pushes on a merry-go-round, the faster it accelerates. Furthermore, the more massive a merry-go-round, the slower it accelerates for the same torque. The basic relationship between moment of inertia and angular acceleration is that the larger the moment of inertia, the smaller is the angular acceleration. But there is an additional twist. The moment of inertia depends not only on the mass of an object, but also on its <em>distribution</em> of mass relative to the axis around which it rotates. For example, it will be much easier to accelerate a merry-go-round full of children if they stand close to its axis than if they all stand at the outer edge. The mass is the same in both cases, but the moment of inertia is much larger when the children are at the edge.</p>
+<div class="note">
+<div class="eyebrow">Take-Home Experiment</div>
+<p>Cut out a circle that has about a 10 cm radius from stiff cardboard. Near the edge of the circle, write numbers 1 to 12 like hours on a clock face. Position the circle so that it can rotate freely about a horizontal axis through its center, like a wheel. (You could loosely nail the circle to a wall.) Hold the circle stationary and with the number 12 positioned at the top, attach a lump of blue putty (sticky material used for fixing posters to walls) at the number 3. How large does the lump need to be to just rotate the circle? Describe how you can change the moment of inertia of the circle. How does this change affect the amount of blue putty needed at the number 3 to just rotate the circle? Change the circle’s moment of inertia and then try rotating the circle by using different amounts of blue putty. Repeat this process several times.</p>
+</div>
+</section>
+
+<section id="strategy">
+<h2>Solving a rotational dynamics problem</h2>
+<div class="note">
+<div class="eyebrow">Problem-Solving Strategy for Rotational Dynamics</div>
+<ol>
+<li><em>Examine the situation to determine that torque and mass are involved in the rotation</em>. Draw a careful sketch of the situation.</li>
+<li><em>Determine the system of interest</em>.</li>
+<li><em>Draw a free body diagram</em>. That is, draw and label all external forces acting on the system of interest.</li>
+<li><em>Apply $\text{net}\;\ktau = \kI\kalpha, \kalpha = \frac{\text{net}\;\ktau}{\kI}$, the rotational equivalent of Newton’s second law, to solve the problem</em>. Care must be taken to use the correct moment of inertia and to consider the torque about the point of rotation.</li>
+<li><em>As always, check the solution to see if it is reasonable</em>.</li>
+</ol>
+</div>
+<div class="note">
+<div class="eyebrow">Making Connections</div>
+<p class="cite-target">In statics, the net torque is zero, and there is no angular acceleration. In rotational motion, net torque is the cause of angular acceleration, exactly as in Newton’s second law of motion for rotation.</p>
+<figure class="sim" id="sim-inertias" data-figure="10.12" data-original="/media/ch10/Figure_11_03_06.jpg" data-original-caption="Some rotational inertias.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.12</span><span>One body at a time is drawn with the axis it turns about, and its moment of inertia is worked from the formula the book gives for that shape. Choose the shape, then change its mass and its dimensions and watch the moment of inertia follow. The bar beside it compares the body’s moment of inertia with what the same mass would have if all of it sat at the point of the body farthest from the axis, so the bar says how far out, on the whole, the body’s mass sits; a hoop about its axis reaches the whole of it, because every bit of a hoop is at the rim.</span></div>
+</figure>
+</div>
+</section>
+
+<section id="merry-go-round">
+<h2>A father pushes a merry-go-round</h2>
+<div class="example" id="ex-merry-go-round">
+<h3>Example 10.7 · Calculating the Effect of Mass Distribution on a Merry-Go-Round</h3>
+<p class="cite-target">Consider the father pushing a playground merry-go-round in Figure 10.13. He exerts a force of 250 N at the edge of the 50.0-kg merry-go-round, which has a 1.50 m radius. Calculate the angular acceleration produced (a) when no one is on the merry-go-round and (b) when an 18.0-kg child sits 1.25 m away from the center. Consider the merry-go-round itself to be a uniform disk with negligible retarding friction.</p>
+<figure class="sim" id="sim-merry-go-round" data-figure="10.13" data-original="/media/ch10/Figure_11_03_03a.jpg" data-original-width="200" data-original-caption="A father pushes a playground merry-go-round at its edge and perpendicular to its radius to achieve maximum torque.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.13</span><span>The merry-go-round of the example is seen from above, a uniform disk of radius 1.50 m with a child sitting on it, and the father pushes at its edge and perpendicular to the radius with a force $\kF$. The platform starts from rest and spins up for 2.00 s, and the graph beside it plots its angular velocity against time, with a dashed line for the same push on the empty platform. Set the child’s mass to zero for part (a) of the example and to 18.0 kg for part (b), move the child in toward the center or out to the edge, and watch how much of the push goes into turning the platform.</span></div>
+</figure>
+<h4>Strategy</h4>
+<p>Angular acceleration is given directly by the expression $\kalpha = \frac{\text{net}\;\ktau}{\kI}$:</p>
+$$\kalpha = \frac{\ktau}{\kI}.$$
+<p>To solve for $\kalpha$, we must first calculate the torque $\ktau$ (which is the same in both cases) and moment of inertia $\kI$ (which is greater in the second case). To find the torque, we note that the applied force is perpendicular to the radius and friction is negligible, so that</p>
+$$\ktau = \kr\kF\sin\theta = (1.50\ \text{m})(250\ \text{N}) = 375\ \text{N}\cdot\text{m}.$$
+<h4>Solution for (a)</h4>
+<p>The moment of inertia of a solid disk about this axis is given in Figure 10.12 to be</p>
+$$\frac{1}{2}M\kR^2,$$
+<p>where $M = 50.0\ \text{kg}$ and $\kR = 1.50\ \text{m}$, so that</p>
+$$\kI = (0.500)(50.0\ \text{kg})(1.50\ \text{m})^2 = 56.25\ \text{kg}\cdot\text{m}^2.$$
+<p>Now, after we substitute the known values, we find the angular acceleration to be</p>
+$$\kalpha = \frac{\ktau}{\kI} = \frac{375\ \text{N}\cdot\text{m}}{56.25\ \text{kg}\cdot\text{m}^2} = 6.67\ \frac{\text{rad}}{\text{s}^2}.$$
+<h4>Solution for (b)</h4>
+<p>We expect the angular acceleration for the system to be less in this part, because the moment of inertia is greater when the child is on the merry-go-round. To find the total moment of inertia $\kI$, we first find the child’s moment of inertia $\kIc$ by considering the child to be equivalent to a point mass at a distance of 1.25 m from the axis. Then,</p>
+$$\kIc = M\kR^2 = (18.0\ \text{kg})(1.25\ \text{m})^2 = 28.13\ \text{kg}\cdot\text{m}^2.$$
+<p>The total moment of inertia is the sum of moments of inertia of the merry-go-round and the child (about the same axis). To justify this sum to yourself, examine the definition of $\kI$:</p>
+$$\kI = 28.13\ \text{kg}\cdot\text{m}^2 + 56.25\ \text{kg}\cdot\text{m}^2 = 84.38\ \text{kg}\cdot\text{m}^2.$$
+<p>Substituting known values into the equation for $\kalpha$ gives</p>
+$$\kalpha = \frac{\ktau}{\kI} = \frac{375\ \text{N}\cdot\text{m}}{84.38\ \text{kg}\cdot\text{m}^2} = 4.44\ \frac{\text{rad}}{\text{s}^2}.$$
+<h4>Discussion</h4>
+<p>The angular acceleration is less when the child is on the merry-go-round than when the merry-go-round is empty, as expected. The angular accelerations found are quite large, partly due to the fact that friction was considered to be negligible. If, for example, the father kept pushing perpendicularly for 2.00 s, he would give the merry-go-round an angular velocity of 13.3 rad/s when it is empty but only 8.89 rad/s when the child is on it. In terms of revolutions per second, these angular velocities are 2.12 rev/s and 1.41 rev/s, respectively. The father would end up running at about 50 km/h in the first case. Summer Olympics, here he comes! Confirmation of these numbers is left as an exercise for the reader.</p>
+</div>
+<div class="exercises" data-place="merry-go-round"></div>
+</section>

@@ -1,0 +1,1188 @@
+{
+ "id": "10.5",
+ "module": "m42182",
+ "chapter": "10",
+ "title": "Angular Momentum and Its Conservation",
+ "short": "Angular momentum",
+ "lead": "Every rotational quantity so far has had a translational twin, and this section gives rotation its momentum. Angular momentum is the product of the moment of inertia and the angular velocity, and it plays the part for a spinning body that linear momentum plays for a moving one: a net torque changes it at a rate equal to the torque, as a net force changes linear momentum, and when no external torque acts it is conserved. That conservation law is why the Earth keeps spinning, why a skater spins faster when she pulls in her arms, and why a cloud of gas and dust that slowly turned became a Solar System of planets that all orbit the same way.",
+ "objectives": [
+  "Understand the analogy between angular momentum and linear momentum.",
+  "Observe the relationship between torque and angular momentum.",
+  "Apply the law of conservation of angular momentum."
+ ],
+ "summary_html": "<ul><li>Every rotational phenomenon has a direct translational analog, likewise angular momentum $\\kL$ can be defined as $\\kL = \\kI\\kw.$</li><li>This equation is an analog to the definition of linear momentum as $p = mv$. The relationship between torque and angular momentum is $\\text{net}\\;\\ktau = \\frac{\\kdLang}{\\kdt}.$</li><li>Angular momentum, like energy and linear momentum, is conserved. This universally applicable law is another sign of underlying unity in physical laws. Angular momentum is conserved when net external torque is zero, just as linear momentum is conserved when the net external force is zero.</li></ul>",
+ "notes": "The four problems the book leaves unkeyed, the Moon in its orbit, the child who grabs the edge of the merry-go-round, the skater spinning at 6.00 rev/s and the Construct Your Own Problem item on the Earth-Moon system, are left out.",
+ "ai": {
+  "text": "Claude Opus 5, with Claude Fable 5.1",
+  "figures": "Claude Opus 5, with Claude Fable 5.1"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights, hints and the suggested approaches to the thirteen conceptual questions and to the nine unkeyed AP items are AI-generated and marked as such; the answers to the three problems, to the Check Your Understanding box and to the keyed AP items come from the book’s own answer key and nothing is computed here. Problems 2 (the Moon in its orbit), 4 (the child who grabs the edge), 6 (the skater at 6.00 rev/s) and the Construct Your Own Problem item on the Earth-Moon system have no keyed answer and are left out. The Check Your Understanding box, on whether angular momentum is completely analogous to linear momentum, is set inline after the last passage, and every other item is at the end. The two unkeyed AP items that print a choice of answers, the least helpful measurement and the best way to produce a measurable torque, are kept as open items with their options as the book prints them, since no answer may be invented for a graded choice. Three of 10.3’s AP items ask about angular momentum rather than about rotational inertia and are set here with source_section 10.3: the loaded Ferris wheel (fs-id438270), the lever and the rock (fs-id1500072) and the same lever as a setup for finding angular acceleration and angular momentum (fs-id2003821). Five of 10.6’s AP items ask how a torque changes angular momentum or why the shape of a body matters rather than about collisions and are set here with source_section 10.6: the cyclist’s gears (fs-id2159515), the electric screwdriver (fs-id1526286), why the shape of an object matters (fs-id1519591), the tabletop fan (fs-id1581467) and a rotational system under different torques (fs-id1686879), which the book answers itself. Nothing of this section’s own is held for a later one. The five drawings that exercises refer to, the child on the platform (Figure 10.27), the moon’s orbit (Figure 10.28), the four ways off a merry-go-round (Figure 10.29, carried on both of the conceptual questions that refer to it), the diver (Figure 10.30) and the rifled cannon barrel (Figure 10.31), travel on their cards. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-lazy-susan",
+   "kind": "sim",
+   "number": "10.23",
+   "originals": [
+    "/media/ch10/Figure_11_05_01a.jpg"
+   ],
+   "original_caption": "A partygoer exerts a torque on a lazy Susan to make it rotate. The equation net τ = ΔL/Δt gives the relationship between torque and the angular momentum produced.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "torque",
+    "time",
+    "rotational-inertia",
+    "angular-momentum",
+    "angular-rate"
+   ]
+  },
+  {
+   "id": "sim-kick",
+   "kind": "sim",
+   "number": "10.24",
+   "originals": [
+    "/media/ch10/Figure_11_05_02a.jpg"
+   ],
+   "original_caption": "The muscle in the upper leg gives the lower leg an angular acceleration and imparts rotational kinetic energy to it by exerting a torque about the knee. F is a vector that is perpendicular to r. This example examines the situation.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "torque",
+    "rotational-inertia",
+    "angular-rate",
+    "energy"
+   ]
+  },
+  {
+   "id": "fig-skater",
+   "kind": "photo",
+   "number": "10.25",
+   "originals": [
+    "/media/ch10/Figure_11_05_03.jpg"
+   ],
+   "original_caption": "(a) An ice skater is spinning on the tip of her skate with her arms extended. Her angular momentum is conserved because the net torque on her is negligibly small. In the next image, her rate of spin increases greatly when she pulls in her arms, decreasing her moment of inertia. The work she does to pull in her arms results in an increase in rotational kinetic energy.",
+   "widths": [
+    275
+   ]
+  },
+  {
+   "id": "sim-skater",
+   "kind": "sim",
+   "draws": [
+    "rotational-inertia",
+    "angular-rate",
+    "angular-momentum",
+    "energy"
+   ]
+  },
+  {
+   "id": "sim-cloud",
+   "kind": "sim",
+   "number": "10.26",
+   "originals": [
+    "/media/ch10/Figure_11_05_04a.jpg"
+   ],
+   "original_caption": "The Solar System coalesced from a cloud of gas and dust that was originally rotating. The orbital motions and spins of the planets are in the same direction as the original spin and conserve the angular momentum of the parent cloud.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "rotational-inertia",
+    "angular-rate",
+    "angular-momentum"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "angular-momentum",
+   "concept": "angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "angular-momentum",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-momentum",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-momentum",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-momentum",
+   "concept": "rotational-translational-analogy",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "torque-changes-angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "newtons-second-law-rotation",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "rotational-kinematic-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "rotational-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "conservation-of-angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservation",
+   "concept": "torque-changes-angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conservation",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "isolated-system",
+   "verb": "uses"
+  },
+  {
+   "span": "skater",
+   "concept": "spin-rate-from-moment-of-inertia",
+   "verb": "introduces"
+  },
+  {
+   "span": "skater",
+   "concept": "work-done-in-pulling-in",
+   "verb": "introduces"
+  },
+  {
+   "span": "skater",
+   "concept": "conservation-of-angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "skater",
+   "concept": "mass-distribution-and-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "skater",
+   "concept": "rotational-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "skater",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "skater",
+   "concept": "work-transfers-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "collapse",
+   "concept": "spin-rate-from-moment-of-inertia",
+   "verb": "reinforces"
+  },
+  {
+   "span": "collapse",
+   "concept": "conservation-of-angular-momentum",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3112286",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "collapse"
+   },
+   "cite": "angular-momentum",
+   "prompt": "Is angular momentum completely analogous to linear momentum? What, if any, are their differences?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes, angular and linear momentums are completely analogous. While they are exact analogs they have different units and are not directly inter-convertible like forms of energy are."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1520916",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "Which rotational system would be best to use as a model to measure how angular momentum changes when forces on the system are changed?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "a fishing reel",
+     "a planet and its moon",
+     "a figure skater spinning",
+     "a person's lower leg"
+    ],
+    "correct": 0,
+    "hint": "Ask of each system whether you can set the force, the lever arm and the time the force acts, and then read the angular velocity that results, since $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$ is what is being tested.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1798043",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "You are collecting data to study changes in the angular momentum of a bicycle wheel when a force is applied to it. Which of the following measurements would be least helpful to you?<ol type=\"a\"><li>the time for which the force is applied</li><li>the radius at which the force is applied</li><li>the angular velocity of the wheel when the force is applied</li><li>the direction of the force</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write down what changes the angular momentum of the wheel, $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$, and then ask which of the four measurements enters it. The time for which the force is applied is $\\kdt$ itself. The radius at which the force is applied and the direction of the force together fix the lever arm, and the torque is the force times its perpendicular lever arm, so both are needed to find $\\text{net}\\;\\ktau$. The angular velocity of the wheel at the moment the force is applied is the one measurement that does not appear: the change in angular momentum a torque produces does not depend on how fast the wheel was already turning, as Example 10.12 notes when it says that the imparted angular momentum depends only on torque and time. That measurement is the least helpful."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1545671",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "Which torque applied to a disk with radius 7.0 cm for 3.5 s will produce an angular momentum of 25 N·m·s?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "7.1 N·m",
+     "357.1 N·m",
+     "3.6 N·m",
+     "612.5 N·m"
+    ],
+    "correct": 0,
+    "hint": "Solve $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$ for the torque; the radius of the disk is not needed, since the angular momentum imparted depends only on the torque and the time.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2840694",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "Which of the following would be the best way to produce measurable amounts of torque on a system to test the relationship between the angular momentum of the system, the average torque applied to the system, and the time for which the torque is applied?<ol type=\"a\"><li>having different numbers of people push on a merry-go-round</li><li>placing known masses on one end of a seesaw</li><li>touching the outer edge of a bicycle wheel to a treadmill that is moving at different speeds</li><li>hanging known masses from a string that is wound around a spool suspended horizontally on an axle</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The relationship to be tested is $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$, so the setup has to let you know the torque, time how long it acts and then measure the angular momentum it produced. Ask of each choice whether the torque is known. People pushing on a merry-go-round push with forces no one has measured, and a seesaw with a mass on one end tips over rather than turning steadily, so its angular momentum is hard to follow. A bicycle wheel touched to a treadmill is driven by a friction force whose size depends on how hard the wheel is pressed. A known mass hanging from a string wound around a spool pulls on the string with a force close to its weight, at a lever arm equal to the radius of the spool, so the torque is known from the start; you can let it act for a measured time and then find the angular momentum of the spool from its angular velocity and moment of inertia. That is the setup that gives a measurable and repeatable torque."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1597661",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_08a.jpg",
+    "alt": "The figure is an illustration of the top view of a circular platform that is rotating counterclockwise. The location of a child is shown as a black dot, and the path traced by the child is shown as a dashed circle whose radius is smaller than the radius of the platform.",
+    "caption": "Figure 10.27 A curved arrow lies at the side of a gray disk. There is a point at the center of the disk, and around the point there is a dashed circle. There is a point labeled “Child” on the dashed circle. Below the disc is a label saying “Top View”."
+   },
+   "prompt": "The diagram above shows a top view of a child of mass <em>M</em> on a circular platform of mass 2<em>M</em> that is rotating counterclockwise. Assume the platform rotates without friction. Which of the following describes an action by the child that will increase the angular speed of the platform-child system and why?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The child moves toward the center of the platform, increasing the total angular momentum of the system.",
+     "The child moves toward the center of the platform, decreasing the rotational inertia of the system.",
+     "The child moves away from the center of the platform, increasing the total angular momentum of the system.",
+     "The child moves away from the center of the platform, decreasing the rotational inertia of the system."
+    ],
+    "correct": 1,
+    "hint": "No external torque acts on the platform and child, so their angular momentum cannot change; think about what the child can change in $\\kI\\kw = \\kIprime\\kwprime$, and remember that a mass closer to the axis contributes less to the moment of inertia.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1631548",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_09a.jpg",
+    "alt": "The figure illustrates the elliptical orbit of a moon around a planet. The moon orbits clockwise. The planet is at one focus of the ellipse. Points A and B are the end points of the major axis of the ellipse. Point A is shown at the vertex farthest from the planet, and point B is shown at the vertex closest to the planet.",
+    "caption": "Figure 10.28 A point labeled “Moon” lies on a dashed ellipse. Two other points, labeled “A” and “B”, lie at opposite ends of the ellipse. A point labeled “Planet” lies inside the ellipse."
+   },
+   "prompt": "A moon is in an elliptical orbit about a planet as shown above. At point <em>A</em> the moon has speed <em>u<sub>A</sub></em> and is at distance <em>R<sub>A</sub></em> from the planet. At point <em>B</em> the moon has speed <em>u<sub>B</sub></em>. Has the moon's angular momentum changed? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Ask what torque acts on the moon about the planet. The only force on the moon is the gravitational pull of the planet, and that force points straight along the line from the moon to the planet, so its lever arm about the planet is zero and it exerts no torque. With the net torque zero, $\\kdLang/\\kdt = 0$ and the angular momentum of the moon about the planet is the same at every point of the orbit, including <em>A</em> and <em>B</em>. What changes is how that angular momentum is made up: for a body moving at right angles to the line to the center, as the moon does at both ends of the major axis, the angular momentum is the mass times the speed times the distance, so the moon has the same value of the product of speed and distance at <em>A</em>, where it is far from the planet, as at <em>B</em>, where it is near. It therefore moves faster at <em>B</em> than at <em>A</em>, but its angular momentum has not changed."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1445572",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "A hamster sits 0.10 m from the center of a lazy Susan of negligible mass. The wheel spins with a frequency of 1.0 rev/s. How will the frequency of the lazy Susan change if the hamster walks to 0.30 m from the center of rotation? Assume zero friction and no external torque.",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "It will speed up to 2.0 rev/s.",
+     "It will speed up to 9.0 rev/s.",
+     "It will slow to 0.11 rev/s.",
+     "It will slow to 0.22 rev/s."
+    ],
+    "correct": 2,
+    "hint": "The lazy Susan has negligible mass, so the moment of inertia is the hamster's alone, $\\kI = mr^2$, and tripling $r$ multiplies it by nine; then use $\\kI\\kw = \\kIprime\\kwprime$.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1722786",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "Earth has a mass of $6.0 \\times 10^{24}\\ \\text{kg}$, a radius of $6.4 \\times 10^{6}\\ \\text{m}$, and a rotational frequency of $1.2 \\times 10^{-5}\\ \\text{rev/s}$. How would the planet's rotational frequency change if a layer of Earth with mass $1.0 \\times 10^{23}\\ \\text{kg}$ broke off of the Earth, decreasing Earth's radius by $0.2 \\times 10^{6}\\ \\text{m}$? Assume no friction.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Treat the Earth as a uniform sphere, as Example 10.11 does, so that its moment of inertia is $\\kI = \\frac{2}{5}MR^2$, and work out that moment of inertia twice: once with the mass and radius given, and once with the mass reduced by $1.0 \\times 10^{23}\\ \\text{kg}$ and the radius reduced by $0.2 \\times 10^{6}\\ \\text{m}$. The question says to assume no friction, which is to say no external torque, so the angular momentum of what remains is taken to be what it was and $\\kI\\kw = \\kIprime\\kwprime$ applies; the rotational frequency in revolutions per second is proportional to the angular velocity, so the new frequency is the old one multiplied by the ratio $\\kI/\\kIprime$. Because the radius enters squared, losing three percent of the radius reduces the moment of inertia by more than losing under two percent of the mass does, so the ratio is greater than one and the planet turns somewhat faster, by a factor of about 1.08. It is worth noticing what the question passes over: a layer that breaks off carries its own angular momentum away with it, so the assumption that the remaining planet keeps all of the original angular momentum is an idealization."
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id1665126",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "Consider system A, consisting of two disks of radius <em>R</em>, with both rotating clockwise. Now consider system B, consisting of one disk of radius <em>R</em> rotating counterclockwise and another disk of radius 2<em>R</em> rotating clockwise. All of the disks have the same mass, and all have the same magnitude of angular velocity.\nWhich system has the greatest angular momentum?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A",
+     "B",
+     "They're equal.",
+     "Not enough information"
+    ],
+    "correct": 1,
+    "hint": "A disk's moment of inertia is $\\frac{1}{2}MR^2$, so the disk of radius $2R$ has four times the moment of inertia and four times the angular momentum of a disk of radius $R$ at the same angular velocity; add the angular momenta of each system with their signs.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id2019185",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "Assume that a baseball bat being swung at 3π rad/s by a batting machine is equivalent to a 1.1 m thin rod with a mass of 1.0 kg. How fast would a 0.15 kg baseball that squarely hits the very tip of the bat have to be going for the net angular momentum of the bat-ball system to be zero?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Find the angular momentum of the bat first. It swings about the end the machine holds, so its moment of inertia is that of a thin rod about one end, $\\kI = M\\ell^2/3$ from Figure 10.12, with $M = 1.0\\ \\text{kg}$ and $\\ell = 1.1\\ \\text{m}$, and its angular momentum is $\\kL = \\kI\\kw$ with $\\kw = 3\\pi\\ \\text{rad/s}$. The ball is a single mass moving in a straight line, and its angular momentum about the same pivot is its mass times its speed times its perpendicular distance from the pivot, which is the full length of the bat because the ball strikes the very tip; this is the same form, $\\kL = mvr$, that the disk in Section 10.6 carries toward the nailed stick. For the net angular momentum of the bat and ball to be zero, the ball's angular momentum must be equal in size and opposite in sense to the bat's, so set $mv\\ell$ equal to $\\kI\\kw$ and solve for $v$, remembering that the ball has to be travelling against the swing of the bat, not with it. The speed that comes out is a little over 20 m/s, which is a slow pitch."
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id438270",
+   "source_section": "10.3",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "A Ferris wheel is loaded with people in the chairs at the following positions: 4 o'clock, 1 o'clock, 9 o'clock, and 6 o'clock. As the wheel begins to turn, what forces are acting on the system? How will each force affect the angular velocity and angular momentum?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "List the forces on the wheel and its riders and then ask of each what torque it exerts about the axle, because only a net torque changes the angular momentum, $\\text{net}\\;\\ktau = \\kdLang/\\kdt$. The motor drives the wheel with a torque, and that torque increases the angular momentum and so the angular velocity for as long as it acts. Friction at the axle exerts a torque the other way, which slows the wheel. The axle itself pushes on the wheel to hold it up, but that force acts at the axis and has no lever arm, so it changes nothing. The weight of the wheel acts at its center, on the axis, and exerts no torque either, and the weight of each loaded chair exerts a torque equal to the weight times the horizontal distance of the chair from the axle: the chair at 6 o'clock hangs straight below the axle and exerts none, the chair at 9 o'clock has the full radius as its lever arm and tends to turn the wheel one way, and the chairs at 1 o'clock and 4 o'clock lie on the other side and tend to turn it the other way, the one at 4 o'clock with the longer lever arm. Add these torques with their signs to find whether the riders help or hinder the motor at the start; as the wheel turns, the chairs change position and the torques of the weights change with them, so their effect on the angular velocity comes and goes while the motor's torque and the friction go on."
+   }
+  },
+  {
+   "id": "ap12",
+   "source_id": "fs-id1500072",
+   "source_section": "10.3",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "A lever is placed on a fulcrum. A rock is placed on the left end of the lever and a downward (clockwise) force is applied to the right end of the lever. What measurements would be most effective to help you determine the angular momentum of the system? (Assume the lever itself has negligible mass.)",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "the angular velocity and mass of the rock",
+     "the angular velocity and mass of the rock, and the radius of the lever",
+     "the velocity of the force, the radius of the lever, and the mass of the rock",
+     "the mass of the rock, the length of the lever on both sides of the fulcrum, and the force applied on the right side of the lever"
+    ],
+    "correct": 3,
+    "hint": "The angular momentum of the system is what the net torque has given it, $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$, and the net torque is the applied force times its lever arm less the weight of the rock times its lever arm; ask which set of measurements lets you find both torques.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap13",
+   "source_id": "fs-id2003821",
+   "source_section": "10.3",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "You can use the following setup to determine angular acceleration and angular momentum: A lever is placed on a fulcrum. A rock is placed on the left end of the lever and a known downward (clockwise) force is applied to the right end of the lever. What calculations would you perform? How would you account for gravity in your calculations?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Begin with the net torque about the fulcrum. The applied force acts at the right end, so its torque is the force times the distance from the fulcrum to that end, and it turns the lever clockwise. Gravity acts on the rock at the left end, and its torque is the rock's weight $mg$ times the distance from the fulcrum to the left end; that torque turns the lever counterclockwise, so it is subtracted from the applied torque, which is how gravity enters the calculation. If the lever has any mass of its own, its weight acts at its center and exerts a torque too unless the fulcrum is at that center. With the net torque in hand, the angular acceleration is $\\alpha = \\text{net}\\;\\ktau/\\kI$, as in Example 10.13, where the moment of inertia is that of the rock treated as a point mass at its distance $r$ from the fulcrum, $\\kI = mr^2$, plus the lever's own if it is not negligible. The angular momentum after the force has acted for a time $\\kdt$ is $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$, and you can check it against $\\kL = \\kI\\kw$ by measuring the angular velocity the lever has reached at that moment."
+   }
+  },
+  {
+   "id": "ap14",
+   "source_id": "fs-id2159515",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "A cyclist pedals to exert a torque on the rear wheel of the bicycle. When the cyclist changes to a higher gear, the torque increases. Which of the following would be the most effective strategy to help you determine the change in angular momentum of the bicycle wheel?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "multiplying the ratio between the two torques by the mass of the bicycle and rider",
+     "adding the two torques together, and multiplying by the time for which both torques are applied",
+     "multiplying the difference in the two torques by the time for which the new torque is applied",
+     "multiplying both torques by the mass of the bicycle and rider"
+    ],
+    "correct": 2,
+    "hint": "A change in angular momentum is a net torque times the time it acts, $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$; the question asks for the change that the change of gear brings, so think about which torque is the extra one and for how long it acts.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap15",
+   "source_id": "fs-id1526286",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "An electric screwdriver has two speeds, each of which exerts a different torque on a screw. Describe what calculations you could use to help you compare the angular momentum of a screw at each speed. What measurements would you need to make in order to calculate this?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "There are two roads to the angular momentum of the screw, and either will do. The first is the definition, $\\kL = \\kI\\kw$: measure the angular velocity of the screw at each speed, by counting turns in a measured time, and find its moment of inertia from its mass and radius, treating the screw as a solid cylinder about its own axis so that $\\kI = \\frac{1}{2}MR^2$ from Figure 10.12; the angular momentum at each speed is then the product, and the two compare as the two angular velocities do, since the moment of inertia is the same screw both times. The second road is the torque, $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$: if you know the torque the screwdriver exerts at each setting, from its specifications or from a measurement of the force it exerts at a known lever arm, time how long it takes to bring the screw from rest to its running speed, and the product of the torque and that time is the angular momentum imparted. Doing both lets you check one against the other, and any friction in the wood would show up as a difference between them."
+   }
+  },
+  {
+   "id": "ap16",
+   "source_id": "fs-id1519591",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "Why is it important to consider the shape of an object when determining the object's angular momentum?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The shape determines the location of the center of mass. The location of the center of mass in turn determines the angular velocity of the object.",
+     "The shape helps you determine the location of the object's outer edge, where rotational velocity will be greatest.",
+     "The shape helps you determine the location of the center of rotation.",
+     "The shape determines the location of the center of mass. The location of the center of mass contributes to the object's rotational inertia, which contributes to its angular momentum."
+    ],
+    "correct": 3,
+    "hint": "Angular momentum is $\\kL = \\kI\\kw$, and the moment of inertia depends on how the mass of the object is distributed about the axis, which is what the shape decides.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap17",
+   "source_id": "fs-id1581467",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "How could you collect and analyze data to test the difference between the torques provided by two speeds on a tabletop fan?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Use the relationship $\\text{net}\\;\\ktau = \\kdLang/\\kdt$ and measure the two things on its right-hand side. For the change in angular momentum, find the moment of inertia of the blades once, from their mass and length, treating each blade as a thin rod turning about one end so that Figure 10.12 gives $\\kI = M\\ell^2/3$ for each; then, at each speed setting, start the fan from rest, time how long it takes to reach its steady speed, and measure that speed by counting revolutions in a known time, with a strobe light or a video played slowly. The angular momentum at full speed is $\\kL = \\kI\\kw$, and the fan started from rest, so that is the change. Dividing it by the time to reach full speed gives the average net torque at each setting, and the two averages are what you compare. Repeat each run several times and average, because the time to reach speed is short and hard to judge. Note that what you get is the net torque, the motor's torque less the drag of the air on the blades, and that the drag grows with the speed, so the difference between the motor's torques is somewhat larger than the difference you measure."
+   }
+  },
+  {
+   "id": "ap18",
+   "source_id": "fs-id1686879",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "Describe a rotational system you could use to demonstrate the effect on the system's angular momentum of applying different amounts of external torque.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "A door on hinges is a rotational system. When you push or pull on the door handle, the angular momentum of the system changes. If a weight is hung on the door handle, then pushing on the door with the same force will cause a different increase in angular momentum. If you push or pull near the hinges with the same force, the resulting angular momentum of the system will also be different."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2410017",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "When you start the engine of your car with the transmission in neutral, you notice that the car rocks in the opposite sense of the engine’s rotation. Explain in terms of conservation of angular momentum. Is the angular momentum of the car conserved for long (for more than a few seconds)?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the car and its engine together as the system. Before the starter turns, the angular momentum of the system is zero, and in the first instant of starting no torque from outside the car has had time to act, so the total stays zero. The engine's crankshaft and flywheel gain angular momentum in one sense as they spin up, and the only way the total can remain zero is for the rest of the car to gain an equal angular momentum in the opposite sense, which is the rock you notice. It does not last, because the car is not an isolated system: it stands on its tires, and as soon as the body tilts, the road pushes harder on one side than the other and the suspension and the tires exert a torque on the body that brings it back to rest. That external torque changes the car's angular momentum within a second or two, so the angular momentum of the car is not conserved for long, and the engine goes on turning while the body stands still."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2640407",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_07a.jpg",
+    "alt": "In figure A, there is a merry go round. A child is jumping radially outward. In figure B, a child is jumping backward to the direction of motion of merry go round. In figure C, a child is jumping from it to hang from the branch of the tree. In figure D, a child is jumping from the merry go round tangentially to its circumference.",
+    "caption": "Figure 10.29 A child may jump off a merry-go-round in a variety of directions."
+   },
+   "prompt": "Suppose a child walks from the outer edge of a rotating merry-go round to the inside. Does the angular velocity of the merry-go-round increase, decrease, or remain the same? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Treat the child and the merry-go-round as one system. The child's feet push on the platform and the platform pushes back, but those forces are internal to the system, and if the bearing is nearly frictionless no external torque acts, so the angular momentum $\\kL = \\kI\\kw$ of the system is conserved. When the child walks inward, his mass sits closer to the axis, and the moment of inertia of the system falls, just as the skater's does when she pulls in her arms. With $\\kI\\kw = \\kIprime\\kwprime$ and $\\kIprime$ smaller, the angular velocity must increase, so the merry-go-round turns faster. Figure 10.29 draws the opposite move, a child leaving the platform in several ways, and the next question asks about those."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1994709",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_07a.jpg",
+    "alt": "In figure A, there is a merry go round. A child is jumping radially outward. In figure B, a child is jumping backward to the direction of motion of merry go round. In figure C, a child is jumping from it to hang from the branch of the tree. In figure D, a child is jumping from the merry go round tangentially to its circumference.",
+    "caption": "Figure 10.29 A child may jump off a merry-go-round in a variety of directions."
+   },
+   "prompt": "Suppose a child gets off a rotating merry-go-round. Does the angular velocity of the merry-go-round increase, decrease, or remain the same if: (a) He jumps off radially? (b) He jumps backward to land motionless? (c) He jumps straight up and hangs onto an overhead tree branch? (d) He jumps off forward, tangential to the edge? Explain your answers. (Refer to Figure 10.29).",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In every case the angular momentum of the child and the merry-go-round together is conserved as he leaves, because the push between his feet and the platform is internal, so ask in each case how much angular momentum the child takes with him; whatever he does not take, the merry-go-round keeps. (a) Jumping off radially adds only a velocity along the radius, which has no lever arm about the axis and carries no angular momentum, so the child leaves with exactly the angular momentum he had while riding, and the merry-go-round's angular velocity remains the same. (b) To land motionless, the child has to leave with no velocity relative to the ground, so he takes no angular momentum with him; the angular momentum he had while riding stays with the merry-go-round, which speeds up. (c) Jumping straight up adds only a vertical velocity, so, as in (a), he leaves with the angular momentum he had, and the merry-go-round's angular velocity remains the same; the branch then stops him, but the torque the branch exerts acts on him, not on the merry-go-round. (d) Jumping off forward, along the tangent, gives the child more velocity in the direction he was already moving and so more angular momentum than he had while riding; the extra comes from the merry-go-round, which slows down."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2052739",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "Helicopters have a small propeller on their tail to keep them from rotating in the opposite direction of their main lifting blades. Explain in terms of Newton’s third law why the helicopter body rotates in the opposite direction to the blades.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The engine, which is bolted to the body of the helicopter, exerts a torque on the main blades to turn them one way. By Newton's third law the blades exert an equal and opposite torque back on the engine and, through it, on the body, so the body is pushed to turn the other way. The same conclusion comes from angular momentum: before the blades turn, the angular momentum of the helicopter is zero, and the torque between the engine and the blades is internal to the helicopter, so as the blades gain angular momentum in one sense the body must gain it in the opposite sense to keep the total at zero. The tail propeller pushes sideways on the air, and the air pushes back on the tail; that push, at the long lever arm of the tail boom, is an external torque on the body that cancels the reaction torque of the main blades and keeps the body from turning."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3180885",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "Whenever a helicopter has two sets of lifting blades, they rotate in opposite directions (and there will be no tail propeller). Explain why it is best to have the blades rotate in opposite directions.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Think of the angular momentum of the whole helicopter, which starts at zero and can be changed only by an external torque. With one set of blades, the angular momentum the blades gain in one sense has to be balanced by the body turning in the other sense, which is why a tail propeller is needed (see the previous question). With two sets of blades turning in opposite directions, the angular momentum of one set is opposite to that of the other, and if the two are matched the blades together carry no net angular momentum at all. The body then has nothing to balance, so it does not tend to turn, and the reaction torques the two sets exert on the body through their engines cancel one another instead of having to be cancelled by a tail propeller."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2446255",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "Describe how work is done by a skater pulling in her arms during a spin. In particular, identify the force she exerts on each arm to pull it in and the distance each moves, noting that a component of the force is in the direction moved. Why is angular momentum not increased by this action?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "While she spins, each of her arms is moving in a circle, and to keep it there her shoulder must pull inward on it along the arm, toward the axis of her spin; that is the centripetal force her muscles supply. To pull the arm in she pulls harder than the circle requires, and the arm moves inward, from the radius of her outstretched hand to the radius of her hand at her chest. The force is inward and the arm moves inward, so a component of the force lies along the displacement and the force does work, $W = Fd\\cos\\theta$ with a positive cosine. That work is what raises her rotational kinetic energy, from 29.6 J to 191 J in Example 10.14, and it comes from her muscles, that is, from her food energy. Her angular momentum does not increase because the forces she exerts on her arms are internal to her body, and every internal force has its equal and opposite partner within the same body, so the pair exerts no net torque on her; moreover each inward pull acts along a line through the axis and so has no lever arm about it. With no external torque, $\\kL = \\kLprime$, and pulling her arms in only trades a smaller moment of inertia for a larger angular velocity."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2595479",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "When there is a global heating trend on Earth, the atmosphere expands and the length of the day increases very slightly. Explain why the length of a day increases.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The atmosphere turns with the Earth and is part of the Earth's angular momentum, and nothing outside the Earth exerts a torque on it as it warms, so the angular momentum of the Earth and its atmosphere together is conserved. When the atmosphere expands, some of its mass moves farther from the axis of rotation, and the moment of inertia of the Earth and atmosphere increases, the reverse of the skater pulling in her arms. By $\\kI\\kw = \\kIprime\\kwprime$, a larger moment of inertia means a smaller angular velocity, so the Earth turns a little more slowly and takes a little longer to complete one revolution, which is a longer day. The atmosphere is a tiny fraction of the Earth's mass, so the change is very slight, but it is measurable."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1985120",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "Nearly all conventional piston engines have flywheels on them to smooth out engine vibrations caused by the thrust of individual piston firings. Why does the flywheel have this effect?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each piston firing delivers a torque to the crankshaft for a short time, and by $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$ it adds a small pulse of angular momentum; between firings, the load on the engine exerts a torque the other way and takes angular momentum out. The angular velocity that goes with a given angular momentum is $\\kw = \\kL/\\kI$, so the change in angular velocity that one pulse produces is the pulse divided by the moment of inertia. A flywheel is a heavy rim far from the axis, chosen for its large moment of inertia, and with it on the crankshaft the same pulses of angular momentum produce much smaller changes in angular velocity: the flywheel stores angular momentum through the gaps between firings and gives it back, so the shaft turns at a nearly steady rate instead of surging with every firing."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3450198",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "Jet turbines spin rapidly. They are designed to fly apart if something makes them seize suddenly, rather than transfer angular momentum to the plane’s wing, possibly tearing it off. Explain how flying apart conserves angular momentum without transferring it to the wing.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A spinning turbine carries a large angular momentum, and that angular momentum cannot disappear; it can only be passed on by a torque. If the turbine seized, its bearings would exert a large torque on it to bring it to rest, and by Newton's third law it would exert an equal torque on the engine mount and the wing, transferring all of its angular momentum to the plane in a fraction of a second. If instead the turbine breaks into fragments that fly outward, each fragment leaves with the velocity it had on the rim and keeps moving in a straight line past the axis; a mass moving in a straight line still has angular momentum about the axis, its mass times its speed times its perpendicular distance from the axis, and the fragments together carry away exactly the angular momentum the turbine had. The angular momentum is conserved among the fragments, and because no large torque ever acted at the bearings, none of it reaches the wing."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3093611",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "An astronaut tightens a bolt on a satellite in orbit. He rotates in a direction opposite to that of the bolt, and the satellite rotates in the same direction as the bolt. Explain why. If a handhold is available on the satellite, can this counter-rotation be prevented? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "To turn the bolt, the astronaut exerts a torque on it, and by Newton's third law the bolt exerts an equal and opposite torque on him. Floating free, he has nothing to hold him still, so that reaction torque turns him the opposite way to the bolt, just as the angular momentum of the astronaut and bolt together, which was zero, must stay zero. The bolt, meanwhile, is threaded into the satellite, and the friction of its threads drags the satellite around in the same sense as the bolt, so the satellite turns with it, slowly, because its moment of inertia is large. With a handhold the astronaut can brace himself against the satellite, so that the torque he exerts on the bolt is balanced by an opposite torque he exerts on the satellite through the handhold; he and the satellite then form one rigid system, the reaction torques act within it and cancel, and neither he nor the satellite turns relative to the other. The total angular momentum of astronaut, bolt and satellite is still conserved and still zero, but it is now shared out so that nothing visibly rotates."
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id1080849",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_05a.jpg",
+    "alt": "The given figure shows a diver who curls her body while flipping and then fully extends her limbs to enter straight down into water.",
+    "caption": "Figure 10.30 The diver spins rapidly when curled up and slows when she extends her limbs before entering the water."
+   },
+   "prompt": "Competitive divers pull their limbs in and curl up their bodies when they do flips. Just before entering the water, they fully extend their limbs to enter straight down. Explain the effect of both actions on their angular velocities. Also explain the effect on their angular momenta.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Once the diver has left the board, the only force on her is gravity, which acts at her center of mass and exerts no torque about it, so her angular momentum is conserved for the whole flight. Curling up brings her limbs close to the axis she turns about and reduces her moment of inertia, and by $\\kI\\kw = \\kIprime\\kwprime$ her angular velocity rises, which is how she completes several flips in the second or so that she is in the air. Extending her limbs just before she enters the water raises her moment of inertia again and her angular velocity falls, so she stops turning quickly enough to enter the water straight. Neither action changes her angular momentum, because the forces she uses to curl and to extend are internal to her body; both actions change only how that angular momentum is shared between moment of inertia and angular velocity, as Figure 10.30 shows."
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id1860696",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "Draw a free body diagram to show how a diver gains angular momentum when leaving the diving board.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Draw the diver as a body with her center of mass marked, standing on the end of the board at the moment before she leaves it. Two forces act on her: her weight, drawn downward from her center of mass, and the force of the board on her feet, drawn upward from the point where her feet press on it. If she stood straight, the two forces would lie along one vertical line and would produce no torque about her center of mass. A diver about to flip leans forward, so that her center of mass is ahead of her feet; then the upward push of the board acts at a lever arm from her center of mass and exerts a torque about it, and since her weight acts at the center of mass itself, that torque is the net torque. Over the short time her feet stay on the board, $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$ gives her the angular momentum she carries through the dive. Mark the lever arm on the diagram, the horizontal distance from her center of mass to her feet, and note the sense of rotation the torque produces, which is forward, over her toes."
+   }
+  },
+  {
+   "id": "cq13",
+   "source_id": "eip-746",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_06a.jpg",
+    "alt": "A close-up view looking down the rifled barrel of a large artillery piece or cannon, showcasing the distinct spiral grooves inside its muzzle.",
+    "caption": "Figure 10.31 The image shows a view down the barrel of a cannon, emphasizing its rifling. Rifling in the barrel of a canon causes the projectile to spin just as is the case for rifles (hence the name for the grooves in the barrel). (credit: Elsie esq., Flickr)"
+   },
+   "prompt": "In terms of angular momentum, what is the advantage of giving a football or a rifle bullet a spin when throwing or releasing it?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A spinning projectile carries angular momentum along its axis of spin. In flight the air exerts only small torques on it, so by the law of conservation of angular momentum that angular momentum keeps both its size and its direction, and the axis of the projectile keeps pointing the way it did when it left the hand or the barrel. A football or a bullet released without spin has no such angular momentum to hold its axis steady, and the slightest uneven push of the air starts it tumbling, which makes it wobble, slow down and stray from its path. The spin keeps the point forward, so the projectile flies farther and straighter and lands where it was aimed; the rifling in Figure 10.31 is there to give the projectile that spin as it leaves the barrel."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1615758",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "(a) Calculate the angular momentum of the Earth in its orbit around the Sun.\n(b) Compare this angular momentum with the angular momentum of Earth on its axis.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 2.66e+40,
+      "unit": "kg·m²/s",
+      "hint": "In its orbit the Earth is a point mass at the radius of the orbit, so $\\kI = MR^2$ with $R$ the Earth-Sun distance, and $\\kw$ is one revolution per year in rad/s."
+     },
+     {
+      "part": "b",
+      "value": 7.07e+33,
+      "unit": "kg·m²/s",
+      "hint": "The angular momentum of the Earth on its axis is worked out in Example 10.11; the part asks for that value and for how many times larger the orbital angular momentum is."
+     }
+    ],
+    "solution": "(a) $2.66 \\times 10^{40}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$\n(b) $7.07 \\times 10^{33}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$\nThe angular momentum of the Earth in its orbit around the Sun is $3.77 \\times 10^{6}$ times larger than the angular momentum of the Earth around its axis."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1426438",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "Suppose you start an antique car by exerting a force of 300 N on its crank for 0.250 s. What angular momentum is given to the engine if the handle of the crank is 0.300 m from the pivot and the force is exerted to create maximum torque the entire time?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 22.5,
+    "unit": "kg·m²/s",
+    "hint": "Maximum torque means the force is perpendicular to the crank, so $\\text{net}\\;\\ktau = rF$, and then $\\kdLang = (\\text{net}\\;\\ktau)\\kdt$ as in Example 10.12.",
+    "solution": "$22.5\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3173435",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "Three children are riding on the edge of a merry-go-round that is 100 kg, has a 1.60-m radius, and is spinning at 20.0 rpm. The children have masses of 22.0, 28.0, and 33.0 kg. If the child who has a mass of 28.0 kg moves to the center of the merry-go-round, what is the new angular velocity in rpm?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 25.3,
+    "unit": "rpm",
+    "hint": "The merry-go-round is a disk, $\\frac{1}{2}MR^2$, and each child at the edge is a point mass $mR^2$; a child at the center contributes nothing, so find $\\kI$ before and $\\kIprime$ after and use $\\kI\\kw = \\kIprime\\kwprime$, which works in rpm as it does in rad/s.",
+    "solution": "25.3 rpm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "linear-momentum",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "torque",
+   "weight": 1
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "torque",
+   "weight": 1
+  },
+  {
+   "exercise": "ap5",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "torque",
+   "weight": 1
+  },
+  {
+   "exercise": "ap7",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "moment-of-inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "ap8",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap9",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap11",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "ap12",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "torque-changes-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap13",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap13",
+   "concept": "newtons-second-law-rotation",
+   "weight": 2
+  },
+  {
+   "exercise": "ap14",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap15",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap15",
+   "concept": "angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap16",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "ap16",
+   "concept": "mass-distribution-and-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap17",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap17",
+   "concept": "moment-of-inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "ap18",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "torque-changes-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "spin-rate-from-moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "work-done-in-pulling-in"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq9",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq11",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq12",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "cq13",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "moment-of-inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "torque",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "p5",
+   "concept": "angular-momentum",
+   "weight": 2
+  }
+ ]
+}

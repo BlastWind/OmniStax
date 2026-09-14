@@ -1,0 +1,855 @@
+{
+ "id": "12",
+ "dir": "ch12",
+ "title": "Fluid Dynamics and Its Biological and Medical Applications",
+ "intro": {
+  "module": "m42204",
+  "slug": "12-introduction-to-fluid-dynamics-and-its-biological-and-medical-applications"
+ },
+ "sections": [
+  {
+   "id": "12.1",
+   "module": "m42205",
+   "title": "Flow Rate and Its Relation to Velocity",
+   "slug": "12-1-flow-rate-and-its-relation-to-velocity"
+  },
+  {
+   "id": "12.2",
+   "module": "m42206",
+   "title": "Bernoulli’s Equation",
+   "slug": "12-2-bernoullis-equation"
+  },
+  {
+   "id": "12.3",
+   "module": "m42208",
+   "title": "The Most General Applications of Bernoulli’s Equation",
+   "slug": "12-3-the-most-general-applications-of-bernoullis-equation"
+  },
+  {
+   "id": "12.4",
+   "module": "m42209",
+   "title": "Viscosity and Laminar Flow; Poiseuille’s Law",
+   "slug": "12-4-viscosity-and-laminar-flow-poiseuilles-law"
+  },
+  {
+   "id": "12.5",
+   "module": "m42210",
+   "title": "The Onset of Turbulence",
+   "slug": "12-5-the-onset-of-turbulence"
+  },
+  {
+   "id": "12.6",
+   "module": "m42211",
+   "title": "Motion of an Object in a Viscous Fluid",
+   "slug": "12-6-motion-of-an-object-in-a-viscous-fluid"
+  },
+  {
+   "id": "12.7",
+   "module": "m42212",
+   "title": "Molecular Transport Phenomena: Diffusion, Osmosis, and Related Processes",
+   "slug": "12-7-molecular-transport-phenomena-diffusion-osmosis-and-related-processes"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "Q",
+   "type": "flow-rate",
+   "meaning": "the flow rate, the volume of fluid that passes a location through an area during a period of time",
+   "unit": "m³/s",
+   "section": "12.1"
+  },
+  {
+   "sym": "V",
+   "meaning": "the volume of fluid that passes the location in the elapsed time",
+   "unit": "m³",
+   "section": "12.1"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "the elapsed time over which the volume passes the location",
+   "unit": "s",
+   "section": "12.1"
+  },
+  {
+   "sym": "A",
+   "meaning": "the cross-sectional area of the river, pipe or other conduit the fluid flows through",
+   "unit": "m²",
+   "section": "12.1"
+  },
+  {
+   "sym": "v̄",
+   "type": "velocity",
+   "meaning": "the average velocity of the fluid across that area, which the text refers to after this as the speed",
+   "unit": "m/s",
+   "section": "12.1"
+  },
+  {
+   "sym": "A_1",
+   "meaning": "the cross-sectional area of the tube at point 1",
+   "unit": "m²",
+   "section": "12.1"
+  },
+  {
+   "sym": "A_2",
+   "meaning": "the cross-sectional area of the tube at point 2, which is smaller where the tube narrows",
+   "unit": "m²",
+   "section": "12.1"
+  },
+  {
+   "sym": "v_bar1",
+   "type": "velocity",
+   "meaning": "the average speed of the fluid at point 1",
+   "unit": "m/s",
+   "section": "12.1"
+  },
+  {
+   "sym": "v_bar2",
+   "type": "velocity",
+   "meaning": "the average speed of the fluid at point 2, which must be greater for the same volume to pass in the same time",
+   "unit": "m/s",
+   "section": "12.1"
+  },
+  {
+   "sym": "Q_1",
+   "type": "flow-rate",
+   "meaning": "the flow rate past point 1",
+   "unit": "m³/s",
+   "section": "12.1"
+  },
+  {
+   "sym": "Q_2",
+   "type": "flow-rate",
+   "meaning": "the flow rate past point 2, which equals the flow rate past point 1 because the fluid is incompressible",
+   "unit": "m³/s",
+   "section": "12.1"
+  },
+  {
+   "sym": "n_1",
+   "meaning": "the number of branches the tube has at point 1",
+   "section": "12.1"
+  },
+  {
+   "sym": "n_2",
+   "meaning": "the number of branches at point 2, such as the capillaries an artery divides into",
+   "section": "12.1"
+  },
+  {
+   "sym": "r",
+   "meaning": "the radius of the hose, the nozzle or the vessel, which the cross-sectional area is computed from",
+   "unit": "m",
+   "section": "12.1"
+  },
+  {
+   "sym": "P_press",
+   "type": "pressure",
+   "meaning": "the absolute pressure in the fluid, which is the first term of Bernoulli’s equation",
+   "unit": "N/m²",
+   "section": "12.2"
+  },
+  {
+   "sym": "ρ_dens",
+   "type": "density",
+   "meaning": "the density of the fluid, which Bernoulli’s equation takes to be the same at every point",
+   "unit": "kg/m³",
+   "section": "12.2"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the velocity of the fluid at the point",
+   "unit": "m/s",
+   "section": "12.2"
+  },
+  {
+   "sym": "h",
+   "type": "position",
+   "meaning": "the height of the point above some reference point",
+   "unit": "m",
+   "section": "12.2"
+  },
+  {
+   "sym": "g",
+   "type": "acceleration",
+   "meaning": "the acceleration due to gravity, which gives the fluid the weight the third term accounts for",
+   "unit": "m/s²",
+   "section": "12.2"
+  },
+  {
+   "sym": "P_1",
+   "type": "pressure",
+   "meaning": "the pressure at point 1 along the path the bit of fluid follows",
+   "unit": "N/m²",
+   "section": "12.2"
+  },
+  {
+   "sym": "P_2",
+   "type": "pressure",
+   "meaning": "the pressure at point 2 along the same path",
+   "unit": "N/m²",
+   "section": "12.2"
+  },
+  {
+   "sym": "v_1",
+   "type": "velocity",
+   "meaning": "the speed of the fluid at point 1",
+   "unit": "m/s",
+   "section": "12.2"
+  },
+  {
+   "sym": "v_2",
+   "type": "velocity",
+   "meaning": "the speed of the fluid at point 2",
+   "unit": "m/s",
+   "section": "12.2"
+  },
+  {
+   "sym": "h_1",
+   "type": "position",
+   "meaning": "the height of point 1 above the reference point",
+   "unit": "m",
+   "section": "12.2"
+  },
+  {
+   "sym": "h_2",
+   "type": "position",
+   "meaning": "the height of point 2 above the reference point, which is often chosen to be zero",
+   "unit": "m",
+   "section": "12.2"
+  },
+  {
+   "sym": "KE",
+   "type": "energy",
+   "meaning": "the kinetic energy of a volume of fluid, which divided by that volume is the second term of Bernoulli’s equation",
+   "unit": "J",
+   "section": "12.2"
+  },
+  {
+   "sym": "PE_g",
+   "type": "energy",
+   "meaning": "the gravitational potential energy of a volume of fluid, which divided by that volume is the third term",
+   "unit": "J",
+   "section": "12.2"
+  },
+  {
+   "sym": "V",
+   "meaning": "the volume of the bit of fluid each energy is divided by",
+   "unit": "m³",
+   "section": "12.2"
+  },
+  {
+   "sym": "W_net",
+   "type": "energy",
+   "meaning": "the net work done on the fluid to push it into a narrower channel, which is where the increased kinetic energy comes from",
+   "unit": "J",
+   "section": "12.2"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the bit of fluid, which the density replaces when each term is taken per unit volume",
+   "unit": "kg",
+   "section": "12.2"
+  },
+  {
+   "sym": "P_1",
+   "type": "pressure",
+   "meaning": "the pressure at the first point, which for Torricelli’s theorem is the surface of the reservoir",
+   "unit": "N/m²",
+   "section": "12.3"
+  },
+  {
+   "sym": "P_2",
+   "type": "pressure",
+   "meaning": "the pressure at the second point, which for Torricelli’s theorem is the outlet, where the emerging water is surrounded by the atmosphere",
+   "unit": "N/m²",
+   "section": "12.3"
+  },
+  {
+   "sym": "v_1",
+   "type": "velocity",
+   "meaning": "the speed of the fluid at the first point",
+   "unit": "m/s",
+   "section": "12.3"
+  },
+  {
+   "sym": "v_2",
+   "type": "velocity",
+   "meaning": "the speed of the fluid at the second point",
+   "unit": "m/s",
+   "section": "12.3"
+  },
+  {
+   "sym": "h_1",
+   "type": "position",
+   "meaning": "the height of the first point",
+   "unit": "m",
+   "section": "12.3"
+  },
+  {
+   "sym": "h_2",
+   "type": "position",
+   "meaning": "the height of the second point",
+   "unit": "m",
+   "section": "12.3"
+  },
+  {
+   "sym": "h",
+   "type": "position",
+   "meaning": "the height the water drops, the difference between the two heights",
+   "unit": "m",
+   "section": "12.3"
+  },
+  {
+   "sym": "ρ_dens",
+   "type": "density",
+   "meaning": "the density of the fluid, which cancels out of Torricelli’s theorem because the fluid is incompressible",
+   "unit": "kg/m³",
+   "section": "12.3"
+  },
+  {
+   "sym": "g",
+   "type": "acceleration",
+   "meaning": "the acceleration due to gravity",
+   "unit": "m/s²",
+   "section": "12.3"
+  },
+  {
+   "sym": "Q",
+   "type": "flow-rate",
+   "meaning": "the flow rate, which multiplies each term of Bernoulli’s equation to turn an energy per unit volume into a power",
+   "unit": "m³/s",
+   "section": "12.3"
+  },
+  {
+   "sym": "P_press",
+   "type": "pressure",
+   "meaning": "the pressure a pump supplies to the fluid, so that the product of pressure and flow rate is the power the pump supplies",
+   "unit": "N/m²",
+   "section": "12.3"
+  },
+  {
+   "sym": "η_visc",
+   "type": "viscosity",
+   "meaning": "the coefficient of viscosity, the friction within a fluid, which is greater the greater the force needed to shear the fluid",
+   "unit": "Pa·s",
+   "section": "12.4"
+  },
+  {
+   "sym": "F",
+   "type": "force",
+   "meaning": "the force required to keep the top plate moving at a constant velocity against the fluid’s viscosity",
+   "unit": "N",
+   "section": "12.4"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the speed of the top plate, and of the layer of fluid in contact with it",
+   "unit": "m/s",
+   "section": "12.4"
+  },
+  {
+   "sym": "A",
+   "meaning": "the area of the plate in contact with the fluid",
+   "unit": "m²",
+   "section": "12.4"
+  },
+  {
+   "sym": "L",
+   "meaning": "the distance between the two plates, across which the speed of the fluid falls from that of the top plate to zero",
+   "unit": "m",
+   "section": "12.4"
+  },
+  {
+   "sym": "Q",
+   "type": "flow-rate",
+   "meaning": "the flow rate through the tube, which is in the direction from high to low pressure",
+   "unit": "m³/s",
+   "section": "12.4"
+  },
+  {
+   "sym": "P_1",
+   "type": "pressure",
+   "meaning": "the pressure at the low-pressure end of the tube",
+   "unit": "N/m²",
+   "section": "12.4"
+  },
+  {
+   "sym": "P_2",
+   "type": "pressure",
+   "meaning": "the pressure at the high-pressure end of the tube",
+   "unit": "N/m²",
+   "section": "12.4"
+  },
+  {
+   "sym": "R_flow",
+   "meaning": "the resistance to flow, which includes everything except pressure that affects the flow rate",
+   "section": "12.4"
+  },
+  {
+   "sym": "l",
+   "meaning": "the length of the tube, which the resistance is directly proportional to",
+   "unit": "m",
+   "section": "12.4"
+  },
+  {
+   "sym": "r",
+   "meaning": "the radius of the tube, which the resistance depends on through the fourth power, so that a small change in it has a very large effect",
+   "unit": "m",
+   "section": "12.4"
+  },
+  {
+   "sym": "N_R",
+   "meaning": "the Reynolds number for flow in a tube, a unitless quantity that reveals whether the flow is laminar or turbulent",
+   "section": "12.5"
+  },
+  {
+   "sym": "ρ_dens",
+   "type": "density",
+   "meaning": "the density of the fluid",
+   "unit": "kg/m³",
+   "section": "12.5"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the speed of the fluid in the tube",
+   "unit": "m/s",
+   "section": "12.5"
+  },
+  {
+   "sym": "r",
+   "meaning": "the radius of the tube",
+   "unit": "m",
+   "section": "12.5"
+  },
+  {
+   "sym": "η_visc",
+   "type": "viscosity",
+   "meaning": "the viscosity of the fluid, which the Reynolds number is inversely proportional to",
+   "unit": "Pa·s",
+   "section": "12.5"
+  },
+  {
+   "sym": "N_Rprime",
+   "meaning": "the Reynolds number for an object moving in a fluid, which indicates whether the flow around the object is laminar or turbulent",
+   "section": "12.6"
+  },
+  {
+   "sym": "ρ_dens",
+   "type": "density",
+   "meaning": "the density of the fluid the object moves through",
+   "unit": "kg/m³",
+   "section": "12.6"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the object’s speed in the fluid",
+   "unit": "m/s",
+   "section": "12.6"
+  },
+  {
+   "sym": "L",
+   "meaning": "a characteristic length of the object, a sphere’s diameter for example",
+   "unit": "m",
+   "section": "12.6"
+  },
+  {
+   "sym": "η_visc",
+   "type": "viscosity",
+   "meaning": "the viscosity of the fluid",
+   "unit": "Pa·s",
+   "section": "12.6"
+  },
+  {
+   "sym": "F_V",
+   "type": "force",
+   "meaning": "the viscous drag, the resistance force the fluid’s viscosity exerts on the moving object, which grows with speed",
+   "unit": "N",
+   "section": "12.6"
+  },
+  {
+   "sym": "F_s",
+   "type": "force",
+   "meaning": "the drag force on a small sphere moving slowly in a fluid, given by Stokes’ law",
+   "unit": "N",
+   "section": "12.6"
+  },
+  {
+   "sym": "R_sphere",
+   "meaning": "the radius of the small sphere Stokes’ law applies to",
+   "unit": "m",
+   "section": "12.6"
+  },
+  {
+   "sym": "F_B",
+   "type": "force",
+   "meaning": "the buoyant force on the falling object, which depends on the density of the object relative to the fluid",
+   "unit": "N",
+   "section": "12.6"
+  },
+  {
+   "sym": "w",
+   "type": "force",
+   "meaning": "the weight of the object falling through the fluid",
+   "unit": "N",
+   "section": "12.6"
+  },
+  {
+   "sym": "v_t",
+   "type": "velocity",
+   "meaning": "the terminal speed, the constant speed a falling object reaches once the drag and the buoyant force balance its weight and its acceleration becomes zero",
+   "unit": "m/s",
+   "section": "12.6"
+  },
+  {
+   "sym": "x_rms",
+   "type": "position",
+   "meaning": "the root-mean-square distance, the statistical average of the distance a molecule travels by diffusion in a given time",
+   "unit": "m",
+   "section": "12.7"
+  },
+  {
+   "sym": "D_diff",
+   "meaning": "the diffusion constant for the particular molecule in a specific medium, which gets progressively smaller for more massive molecules",
+   "unit": "m²/s",
+   "section": "12.7"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "the time the molecule has had to diffuse",
+   "unit": "s",
+   "section": "12.7"
+  }
+ ],
+ "equations": [
+  {
+   "id": "eq-flow-rate",
+   "concept": "flow-rate",
+   "section": "12.1",
+   "latex": "Q = \\frac{V}{t}",
+   "ktex": "\\kQ = \\frac{V}{\\kt}",
+   "important": true
+  },
+  {
+   "id": "eq-flow-rate-velocity",
+   "concept": "flow-rate-velocity",
+   "section": "12.1",
+   "latex": "Q = A\\bar{v}",
+   "ktex": "\\kQ = A\\kvb",
+   "important": true
+  },
+  {
+   "id": "eq-continuity",
+   "concept": "equation-of-continuity",
+   "section": "12.1",
+   "latex": "Q_1 = Q_2,\\quad A_1\\bar{v}_1 = A_2\\bar{v}_2",
+   "ktex": "\\kQone = \\kQtwo,\\quad A_1\\kvbone = A_2\\kvbtwo",
+   "condition": "incompressible fluid",
+   "important": true
+  },
+  {
+   "id": "eq-continuity-branching",
+   "concept": "continuity-branching",
+   "section": "12.1",
+   "latex": "n_1A_1\\bar{v}_1 = n_2A_2\\bar{v}_2",
+   "ktex": "n_1A_1\\kvbone = n_2A_2\\kvbtwo",
+   "condition": "incompressible fluid that branches",
+   "important": true
+  },
+  {
+   "id": "eq-work-energy-fluid",
+   "section": "12.2",
+   "latex": "W_{\\text{net}} = \\frac{1}{2}mv^2 - \\frac{1}{2}mv_0^2",
+   "ktex": "\\kWnet = \\frac{1}{2}m\\kv^2 - \\frac{1}{2}m\\kvo^2",
+   "important": false
+  },
+  {
+   "id": "eq-bernoulli",
+   "concept": "bernoullis-equation",
+   "section": "12.2",
+   "latex": "P + \\frac{1}{2}\\rho v^2 + \\rho gh = \\text{constant}",
+   "ktex": "\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{constant}",
+   "condition": "incompressible, frictionless fluid",
+   "important": true
+  },
+  {
+   "id": "eq-bernoulli-two-points",
+   "section": "12.2",
+   "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho gh_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho gh_2",
+   "ktex": "\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo",
+   "condition": "incompressible, frictionless fluid",
+   "important": true
+  },
+  {
+   "id": "eq-ke-per-volume",
+   "concept": "bernoulli-energy-per-volume",
+   "section": "12.2",
+   "latex": "\\frac{1}{2}\\rho v^2 = \\frac{\\frac{1}{2}mv^2}{V} = \\frac{\\text{KE}}{V}",
+   "ktex": "\\frac{1}{2}\\krho\\kv^2 = \\frac{\\frac{1}{2}m\\kv^2}{V} = \\frac{\\kKE}{V}",
+   "important": true
+  },
+  {
+   "id": "eq-pe-per-volume",
+   "section": "12.2",
+   "latex": "\\rho gh = \\frac{mgh}{V} = \\frac{\\text{PE}_{\\text{g}}}{V}",
+   "ktex": "\\krho\\kg\\kh = \\frac{m\\kg\\kh}{V} = \\frac{\\kPEg}{V}",
+   "important": true
+  },
+  {
+   "id": "eq-bernoulli-static",
+   "concept": "bernoulli-static-fluid",
+   "section": "12.2",
+   "latex": "P_2 = P_1 + \\rho gh_1",
+   "ktex": "\\kPrtwo = \\kProne + \\krho\\kg\\khone",
+   "condition": "static fluid, with the lower point taken as the reference height",
+   "important": true
+  },
+  {
+   "id": "eq-bernoullis-principle",
+   "concept": "bernoullis-principle",
+   "section": "12.2",
+   "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 = P_2 + \\frac{1}{2}\\rho v_2^2",
+   "ktex": "\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2",
+   "condition": "constant depth",
+   "important": true
+  },
+  {
+   "id": "eq-manometer-height",
+   "section": "12.2",
+   "latex": "h \\propto \\frac{1}{2}\\rho v_2^2",
+   "ktex": "\\kh \\propto \\frac{1}{2}\\krho\\kvtwo^2",
+   "important": false
+  },
+  {
+   "id": "eq-speed-from-manometer",
+   "concept": "velocity-measurement",
+   "section": "12.2",
+   "latex": "v_2 \\propto \\sqrt{h}",
+   "ktex": "\\kvtwo \\propto \\sqrt{\\kh}",
+   "important": true
+  },
+  {
+   "id": "eq-torricelli",
+   "concept": "torricellis-theorem",
+   "section": "12.3",
+   "latex": "v_2^2 = v_1^2 + 2gh",
+   "ktex": "\\kvtwo^2 = \\kvone^2 + 2\\kg\\kh",
+   "important": true
+  },
+  {
+   "id": "eq-power-in-fluid-flow",
+   "concept": "power-in-fluid-flow",
+   "section": "12.3",
+   "latex": "\\left(P + \\frac{1}{2}\\rho v^2 + \\rho gh\\right)Q = \\text{power}",
+   "ktex": "\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power}",
+   "important": true
+  },
+  {
+   "id": "eq-power-from-pressure",
+   "concept": "pump-power",
+   "section": "12.3",
+   "latex": "\\text{power} = PQ",
+   "ktex": "\\text{power} = \\kPr\\kQ",
+   "important": true
+  },
+  {
+   "id": "eq-viscosity-force",
+   "concept": "viscosity",
+   "section": "12.4",
+   "latex": "F = \\eta\\frac{vA}{L}",
+   "ktex": "\\kF = \\keta\\frac{\\kv A}{L}",
+   "condition": "laminar flow",
+   "important": true
+  },
+  {
+   "id": "eq-viscosity-definition",
+   "section": "12.4",
+   "latex": "\\eta = \\frac{FL}{vA}",
+   "ktex": "\\keta = \\frac{\\kF L}{\\kv A}",
+   "important": false
+  },
+  {
+   "id": "eq-flow-from-resistance",
+   "concept": "flow-resistance",
+   "section": "12.4",
+   "latex": "Q = \\frac{P_2 - P_1}{R}",
+   "ktex": "\\kQ = \\frac{\\kPrtwo - \\kProne}{R}",
+   "important": true
+  },
+  {
+   "id": "eq-poiseuille-resistance",
+   "concept": "poiseuilles-law-resistance",
+   "section": "12.4",
+   "latex": "R = \\frac{8\\eta l}{\\pi r^4}",
+   "ktex": "R = \\frac{8\\keta l}{\\pi r^4}",
+   "condition": "laminar flow in a horizontal tube of uniform radius",
+   "important": true
+  },
+  {
+   "id": "eq-poiseuille",
+   "concept": "poiseuilles-law",
+   "section": "12.4",
+   "latex": "Q = \\frac{(P_2 - P_1)\\pi r^4}{8\\eta l}",
+   "ktex": "\\kQ = \\frac{(\\kPrtwo - \\kProne)\\pi r^4}{8\\keta l}",
+   "condition": "laminar flow in a horizontal tube of uniform radius",
+   "important": true
+  },
+  {
+   "id": "eq-pressure-drop",
+   "concept": "pressure-drop-from-resistance",
+   "section": "12.4",
+   "latex": "P_2 - P_1 = RQ",
+   "ktex": "\\kPrtwo - \\kProne = R\\kQ",
+   "important": true
+  },
+  {
+   "id": "eq-reynolds-tube",
+   "concept": "reynolds-number",
+   "section": "12.5",
+   "latex": "N_{\\text{R}} = \\frac{2\\rho vr}{\\eta}",
+   "ktex": "N_{\\text{R}} = \\frac{2\\krho\\kv r}{\\keta}",
+   "condition": "flow in a tube of uniform diameter",
+   "important": true
+  },
+  {
+   "id": "eq-reynolds-object",
+   "concept": "reynolds-number-object",
+   "section": "12.6",
+   "latex": "{N'}_{\\text{R}} = \\frac{\\rho vL}{\\eta}",
+   "ktex": "{N'}_{\\text{R}} = \\frac{\\krho\\kv L}{\\keta}",
+   "condition": "object moving in a fluid",
+   "important": true
+  },
+  {
+   "id": "eq-stokes-sphere",
+   "section": "12.6",
+   "latex": "F_{\\text{S}} = 6\\pi R\\eta v",
+   "ktex": "\\kFs = 6\\pi R\\keta\\kv",
+   "condition": "a small sphere moving slowly in a fluid",
+   "important": true
+  },
+  {
+   "id": "eq-rms-distance",
+   "concept": "random-walk-distance",
+   "section": "12.7",
+   "latex": "x_{\\text{rms}} = \\sqrt{2Dt}",
+   "ktex": "\\kxrms = \\sqrt{2D\\kt}",
+   "important": true
+  }
+ ],
+ "glossary": [
+  {
+   "section": "12.1",
+   "term": "fluid dynamics",
+   "definition": "the physics of fluids in motion"
+  },
+  {
+   "section": "12.1",
+   "term": "flow rate",
+   "definition": "abbreviated Q, it is the volume V that flows past a particular point during a time t, or Q = V/t"
+  },
+  {
+   "section": "12.1",
+   "term": "liter",
+   "definition": "a unit of volume, equal to 10⁻³ m³"
+  },
+  {
+   "section": "12.2",
+   "term": "Bernoulli’s equation",
+   "definition": "the equation resulting from applying conservation of energy to an incompressible frictionless fluid: P + 1/2ρv² + ρgh = constant, through the fluid"
+  },
+  {
+   "section": "12.2",
+   "term": "Bernoulli’s principle",
+   "definition": "Bernoulli’s equation applied at constant depth: P₁ + 1/2ρv₁² = P₂ + 1/2ρv₂²"
+  },
+  {
+   "section": "12.4",
+   "term": "laminar",
+   "definition": "a type of fluid flow in which layers do not mix"
+  },
+  {
+   "section": "12.4",
+   "term": "turbulence",
+   "definition": "fluid flow in which layers mix together via eddies and swirls"
+  },
+  {
+   "section": "12.4",
+   "term": "viscosity",
+   "definition": "the friction in a fluid, defined in terms of the friction between layers"
+  },
+  {
+   "section": "12.4",
+   "term": "Poiseuille’s law for resistance",
+   "definition": "the resistance to laminar flow of an incompressible fluid in a tube: R = 8ηl/πr⁴"
+  },
+  {
+   "section": "12.4",
+   "term": "Poiseuille’s law",
+   "definition": "the rate of laminar flow of an incompressible fluid in a tube: Q = (P₂ − P₁)πr⁴/8ηl"
+  },
+  {
+   "section": "12.5",
+   "term": "Reynolds number",
+   "definition": "a dimensionless parameter that can reveal whether a particular flow is laminar or turbulent"
+  },
+  {
+   "section": "12.6",
+   "term": "viscous drag",
+   "definition": "a resistance force exerted on a moving object, with a nontrivial dependence on velocity"
+  },
+  {
+   "section": "12.6",
+   "term": "terminal speed",
+   "definition": "the speed at which the viscous drag of an object falling in a viscous fluid is equal to the other forces acting on the object (such as gravity), so that the acceleration of the object is zero"
+  },
+  {
+   "section": "12.7",
+   "term": "diffusion",
+   "definition": "the movement of substances due to random thermal molecular motion"
+  },
+  {
+   "section": "12.7",
+   "term": "semipermeable",
+   "definition": "a type of membrane that allows only certain small molecules to pass through"
+  },
+  {
+   "section": "12.7",
+   "term": "osmosis",
+   "definition": "the transport of water through a semipermeable membrane from a region of high concentration to one of low concentration"
+  },
+  {
+   "section": "12.7",
+   "term": "dialysis",
+   "definition": "the transport of any molecule other than water through a semipermeable membrane from a region of high concentration to one of low concentration"
+  },
+  {
+   "section": "12.7",
+   "term": "relative osmotic pressure",
+   "definition": "the back pressure which stops the osmotic process if neither solution is pure water"
+  },
+  {
+   "section": "12.7",
+   "term": "osmotic pressure",
+   "definition": "the back pressure which stops the osmotic process if one solution is pure water"
+  },
+  {
+   "section": "12.7",
+   "term": "reverse osmosis",
+   "definition": "the process that occurs when back pressure is sufficient to reverse the normal direction of osmosis through membranes"
+  },
+  {
+   "section": "12.7",
+   "term": "reverse dialysis",
+   "definition": "the process that occurs when back pressure is sufficient to reverse the normal direction of dialysis through membranes"
+  },
+  {
+   "section": "12.7",
+   "term": "active transport",
+   "definition": "the process in which a living membrane expends energy to move substances across"
+  }
+ ]
+}

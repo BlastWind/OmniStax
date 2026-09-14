@@ -1,0 +1,525 @@
+{
+ "id": "11.4",
+ "module": "m42192",
+ "chapter": "11",
+ "title": "Variation of Pressure with Depth in a Fluid",
+ "short": "Pressure and depth",
+ "lead": "The pressure in a fluid at rest comes from the weight of the fluid above, and this section finds it. The weight of a column of fluid divided by the area it stands on gives the pressure due to the weight of any fluid at any depth below its surface, which is the depth times the density times the acceleration due to gravity. The result is worked out on a dam, where the average pressure at the average depth gives the force on the wall, and on the atmosphere, where the weight of 120 km of air over one square meter is one atmosphere, the same pressure that 10.3 m of water creates.",
+ "objectives": [
+  "Define pressure in terms of weight.",
+  "Explain the variation of pressure with depth in a fluid.",
+  "Calculate density given pressure and altitude."
+ ],
+ "summary_html": "<ul><li>Pressure is the weight of the fluid $m\\kg$ divided by the area $A$ supporting it (the area of the bottom of the container): $\\kPr = \\frac{m\\kg}{A}.$</li><li>Pressure due to the weight of a liquid is given by $\\kPr = \\kh\\krho\\kg,$ where $\\kPr$ is the pressure, $\\kh$ is the height of the liquid, $\\krho$ is the density of the liquid, and $\\kg$ is the acceleration due to gravity.</li></ul>",
+ "notes": "The four problems the book leaves unkeyed, the Marianas Trench, the water tower, the sheet of paper under the atmosphere and the shot-putter’s palm, are left out, and the question on swimming in the Great Salt Lake is held for Archimedes’ Principle.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Four problems have no keyed answer and are left out: the pressure at the bottom of the Marianas Trench, the height of a water tower, the force of the atmosphere on a sheet of paper and the pressure of a shot on a shot-putter’s palm. The problem that asks the reader to show that the force on a rectangular dam grows with the square of the water depth is a derivation with no number to key, so it is kept as an open item with an AI-marked suggested approach, and it refers to Figure 11.9 rather than carrying an image of its own. The conceptual question on why it is difficult to swim under water in the Great Salt Lake is held for Archimedes’ Principle, since it is buoyancy in a denser fluid. The AP item on the drum of petroleum ether is taken from Pressure, since it asks for the pressure on the floor of the drum, which is the pressure due to the weight of a fluid; it is unkeyed and is an open item with an AI-marked approach. The problem on the aqueous humor asks for millimeters of mercury, whose conversion the section on pressure measurement supplies, but the calculation is a force over an area and it stays here as the chapter’s config decides. The suggested approaches to the seven conceptual questions are AI-written and marked.",
+ "figures": [
+  {
+   "id": "sim-column",
+   "kind": "sim",
+   "number": "11.8",
+   "originals": [
+    "/media/ch11/Figure_12_04_01a.jpg"
+   ],
+   "original_caption": "The bottom of this container supports the entire weight of the fluid in it. The vertical sides cannot exert an upward force on the fluid (since it cannot withstand a shearing force), and so the bottom must support it all.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "pressure",
+    "density",
+    "position",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-dam",
+   "kind": "sim",
+   "number": "11.9",
+   "originals": [
+    "/media/ch11/Figure_12_04_02a-dacf.jpg"
+   ],
+   "original_caption": "The dam must withstand the force exerted against it by the water it retains. This force is small compared with the weight of the water behind the dam.",
+   "widths": [],
+   "draws": [
+    "pressure",
+    "density",
+    "position",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-atmosphere",
+   "kind": "sim",
+   "number": "11.10",
+   "originals": [
+    "/media/ch11/Figure_12_04_03a.jpg"
+   ],
+   "original_caption": "Atmospheric pressure at sea level averages 1.01 × 10⁵ Pa (equivalent to 1 atm), since the column of air over this 1 m², extending to the top of the atmosphere, weighs 1.01 × 10⁵ N.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "pressure",
+    "density",
+    "position",
+    "force"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "weight-of-fluid",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "depth-in-a-liquid-versus-a-gas",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "calculate-mass-from-density",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "atomic-arrangement-and-phase",
+   "verb": "uses"
+  },
+  {
+   "span": "dam",
+   "concept": "force-on-a-dam",
+   "verb": "introduces"
+  },
+  {
+   "span": "dam",
+   "concept": "pressure-independent-of-container",
+   "verb": "introduces"
+  },
+  {
+   "span": "dam",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "dam",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "dam",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "atmospheric-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "density-from-pressure-and-height",
+   "verb": "introduces"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "depth-in-a-liquid-versus-a-gas",
+   "verb": "reinforces"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "water-and-air",
+   "concept": "density-from-pressure-and-height",
+   "verb": "reinforces"
+  },
+  {
+   "span": "water-and-air",
+   "concept": "atmospheric-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "water-and-air",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "water-and-air",
+   "concept": "depth-in-a-liquid-versus-a-gas",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3073220",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "atmosphere",
+   "prompt": "Atmospheric pressure exerts a large force (equal to the weight of the atmosphere above your body—about 10 tons) on the top of your body when you are lying on the beach sunbathing. Why are you able to get up?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The atmosphere does press down on you with about $10^{5}$ N for every square meter of your body, but it does not press on the top of you alone. Air is a fluid, and it presses on every surface it touches, so the same pressure acts on your sides, and the fluids inside your body, the blood in your vessels and the air in your lungs, are at very nearly the same pressure and push outward just as hard. The forces on you from the atmosphere therefore very nearly cancel, and the net force it leaves is far too small to hold you down. What you lift when you get up is your own weight, not the weight of the air."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2598964",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "Why does atmospheric pressure decrease more rapidly than linearly with altitude?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The pressure at a height is the weight of the air above that height, and $\\kPr = \\kh\\krho\\kg$ would make it fall in a straight line with altitude only if the density of the air were the same all the way up. It is not. Air is compressible, so the air near the ground is squeezed by everything above it and is densest there, and the density falls as you climb. Each meter you rise takes away a layer of air that weighs less than the layer below it, so the pressure drops quickly near the surface and more and more slowly higher up. Example 11.4 shows how large the effect is: the average density of the whole column is about fifteen times smaller than the density at sea level."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3045581",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "water-and-air",
+   "prompt": "What are two reasons why mercury rather than water is used in barometers?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A barometer balances the atmosphere against a column of liquid, so the column must be tall enough that $\\kh\\krho\\kg$ reaches one atmosphere. Solving $\\kh = \\kPr/(\\krho\\kg)$ for water gives 10.3 m, which is the height of a three-story building, while mercury, which is 13.6 times as dense as water, needs only 0.760 m, so a mercury barometer fits on a wall. The second reason is that mercury hardly evaporates at room temperature, so the space above the column stays very nearly empty and the column stands at the height the atmosphere alone sets; water evaporates readily, and its vapor above the column would press down on it and lower the reading."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1381740",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dam",
+   "figure": {
+    "src": "/media/ch11/Figure_12_04_04a.jpg",
+    "alt": "The figure shows a flooding river on the extreme right, with a levee set up on its left, and sandbags are stacked on the left of the levee. The height of the levee and that of the stacked sandbags is greater than the water level of the flooding river, so the water does not flow over their tops, but a leak under the levee allows some water to flow under it and reach the sandbags.",
+    "caption": "Because the river level is very high, it has started to leak under the levee. Sandbags are placed around the leak, and the water held by them rises until it is the same level as the river, at which point the water there stops rising."
+   },
+   "prompt": "The figure shows how sandbags placed around a leak outside a river levee can effectively stop the flow of water under the levee. Explain how the small amount of water inside the column formed by the sandbags is able to balance the much larger body of water behind the levee.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The pressure at any point in a fluid at rest depends only on how far that point lies below the free surface, $\\kPr = \\kh\\krho\\kg$, and not on how much fluid there is. At the leak under the levee, the river's water is at a depth $\\kh$ below the river's surface and presses with $\\kh\\krho\\kg$. Water forced through the leak fills the column inside the sandbags and rises, and as it rises the pressure at the bottom of the column grows. When the water inside the sandbags stands at the same level as the river, the depth of the leak below the surface is the same on both sides, the two pressures are equal, and nothing pushes the water through any more. The river's enormous horizontal extent adds nothing to its pressure at that depth, which is why a column no wider than the ring of sandbags can hold it."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "eip-29",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dam",
+   "prompt": "Is there a net force on a dam due to atmospheric pressure? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No, or very nearly none. The atmosphere presses on the water behind the dam, and the closing paragraph of the section says that this pressure is passed on through the water and acts on the wet face of the dam in addition to $\\kh\\krho\\kg$. The atmosphere presses just as hard on the dry face of the dam, however, and on the same area at the same height, since air is a fluid and reaches every surface. The two forces due to the atmosphere are equal in size and opposite in direction, so they cancel, and the net force the dam must withstand is the one Example 11.3 finds from the weight of the water alone."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3042305",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "water-and-air",
+   "prompt": "Does atmospheric pressure add to the gas pressure in a rigid tank? In a toy balloon? When, in general, does atmospheric pressure <em>not</em> affect the total pressure in a fluid?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In a rigid tank it does not. The atmosphere pushes on the outside of the tank, but the rigid walls carry that push and pass none of it to the gas inside, whose pressure is whatever it was when the tank was sealed. In a toy balloon it does. The rubber is flexible, so the atmosphere's push on the outside is passed straight through to the gas, and the pressure inside is the atmospheric pressure plus the small extra pressure the stretched rubber adds. In general, atmospheric pressure fails to affect the pressure in a fluid only when the fluid is enclosed by rigid walls that keep the outside from pressing on it; wherever the fluid has a free surface open to the air, or a flexible boundary, the atmosphere's pressure is added to the pressure inside, as it is at the bottom of the swimming pool."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1355852",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "You can break a strong wine bottle by pounding a cork into it with your fist, but the cork must press directly against the liquid filling the bottle—there can be no air between the cork and liquid. Explain why the bottle breaks, and why it will not if there is air between the cork and liquid.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A liquid is nearly incompressible, so when the cork is driven against it the liquid cannot get out of the way, and even a small movement of the cork raises the pressure in the liquid enormously. That raised pressure acts on the whole inside surface of the bottle at once, and a large pressure over the large area of the glass is a large force, enough to shatter it. If there is air between the cork and the liquid, the blow compresses the air instead. A gas is easily compressed, so the cork moves in with only a small rise in pressure, and the liquid and the glass never feel the blow."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2402162",
+   "source_section": "11.3",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "A cylindrical drum of radius 0.5 m is used to hold 400 liters of petroleum ether (density = .68 g/mL or 680 kg/m<sup>3</sup>). (Note: 1 liter = 0.001 m<sup>3</sup>) (a) Determine the amount of pressure applied to the walls of the drum if the petroleum ether fills the drum to its top. (b) Determine the amount of pressure applied to the floor of the drum if the petroleum ether fills the drum to its top. (c) If the drum were redesigned to hold 800 liters of petroleum ether:<ol><li>How would the pressure on the walls change? Would it increase, decrease, or stay the same?</li><li>How would the pressure on the floor change? Would it increase, decrease, or stay the same?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Begin with the depth of the liquid, since every pressure here is $\\kh\\krho\\kg$. The drum holds $400\\ \\text{L} = 0.400\\ \\text{m}^3$ over a floor of area $\\pi(0.5\\ \\text{m})^2 = 0.785\\ \\text{m}^2$, so when it is full the petroleum ether stands $\\kh = 0.400/0.785 = 0.509\\ \\text{m}$ deep. (b) The pressure on the floor is the pressure at that full depth, $\\kPr = \\kh\\krho\\kg = (0.509\\ \\text{m})(680\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = 3.39\\times 10^{3}\\ \\text{N/m}^2$. (a) The pressure on the walls is not one number: it is zero at the surface and grows in a straight line to the floor's $3.39\\times 10^{3}\\ \\text{N/m}^2$ at the bottom, so its average over the wall is the pressure at the average depth of 0.255 m, $1.70\\times 10^{3}\\ \\text{N/m}^2$, as Example 11.3 does for the dam. (c) Both pressures depend on the depth of the liquid and on nothing else. If the drum keeps its radius and is made taller to hold 800 L, the liquid stands twice as deep and both the average pressure on the walls and the pressure on the floor double. If instead the drum were made wider so that 800 L stood no deeper than before, neither pressure would change, since the pressure at a depth does not depend on how much liquid there is beside it."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3210042",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "water-and-air",
+   "prompt": "What depth of mercury creates a pressure of 1.00 atm?",
+   "answer": {
+    "type": "number",
+    "value": 0.76,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "Solve $\\kPr = \\kh\\krho\\kg$ for the depth as Example 11.5 does, with the density of mercury from Table 11.1 in place of the density of water.",
+    "solution": "0.760 m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1844231",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "Verify that the SI unit of $\\kh\\krho\\kg$ is $\\text{N/m}^2$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$\\begin{aligned}(\\kh\\krho\\kg)_{\\text{units}} &= (\\text{m})(\\text{kg/m}^3)(\\text{m/s}^2) = (\\text{kg}\\cdot\\text{m}^2)/(\\text{m}^3\\cdot\\text{s}^2)\\\\ &= (\\text{kg}\\cdot\\text{m/s}^2)(1/\\text{m}^2)\\\\ &= \\text{N/m}^2\\end{aligned}$$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1931094",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "The aqueous humor in a person’s eye is exerting a force of 0.300 N on the $1.10\\text{-cm}^2$ area of the cornea. (a) What pressure is this in mm Hg? (b) Is this value within the normal range for pressures in the eye?",
+   "answer": {
+    "type": "number",
+    "value": 20.5,
+    "unit": "mm Hg",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "The pressure is the force divided by the area, with the area in square meters; the factor that turns N/m² into mm Hg is in Gauge Pressure, Absolute Pressure, and Pressure Measurement, and the normal range of pressures in the eye is in Pressures in the Body.",
+    "solution": "(a) 20.5 mm Hg. (b) The range of pressures in the eye is 12–24 mm Hg, so the result in part (a) is within that range."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2437095",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "What pressure is exerted on the bottom of a 0.500-m-wide by 0.900-m-long gas tank that can hold 50.0 kg of gasoline by the weight of the gasoline in it when it is full?",
+   "answer": {
+    "type": "number",
+    "value": 1090,
+    "unit": "N/m²",
+    "generated_by": "source",
+    "hint": "The pressure on the bottom is the weight of the gasoline divided by the area of the bottom, which is the first form of the section's result, $\\kPr = m\\kg/A$; the depth of the tank is not needed.",
+    "solution": "$1.09\\times 10^{3}\\ \\text{N/m}^2$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1946824",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "The left side of the heart creates a pressure of 120 mm Hg by exerting a force directly on the blood over an effective area of $15.0\\ \\text{cm}^2.$ What force does it exert to accomplish this?",
+   "answer": {
+    "type": "number",
+    "value": 24.0,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "The force is the pressure times the area, $\\kF = \\kPr A$, once the pressure is written in N/m² and the area in square meters.",
+    "solution": "24.0 N"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id3357018",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dam",
+   "prompt": "Show that the total force on a rectangular dam due to the water behind it increases with the <em>square</em> of the water depth. In particular, show that this force is given by $\\kF = \\krho\\kg\\kh^2 L/2$, where $\\krho$ is the density of water, $\\kh$ is its depth at the dam, and $L$ is the length of the dam. You may assume the face of the dam is vertical. (Hint: Calculate the average pressure exerted and multiply this by the area in contact with the water. (See Figure 11.9.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Follow the hint and Example 11.3. The pressure on the face grows in a straight line with depth, from zero at the surface to $\\kh\\krho\\kg$ at the bottom, so the average pressure over the face is the pressure at the average depth $\\khbar = \\kh/2$, which is $\\kPbar = \\khbar\\krho\\kg = \\krho\\kg\\kh/2$. The area of the face in contact with the water is its depth times its length, $A = \\kh L$. The force is the average pressure times that area, $\\kF = \\kPbar A = (\\krho\\kg\\kh/2)(\\kh L) = \\krho\\kg\\kh^2 L/2$. The depth enters twice, once through the average pressure and once through the area of the face, which is why the force grows with the square of the depth: doubling the depth of the water quadruples the force on the dam. Entering the numbers of Example 11.3, $\\krho = 10^3\\ \\text{kg/m}^3$, $\\kh = 80.0\\ \\text{m}$ and $L = 500\\ \\text{m}$, gives $1.57\\times 10^{10}\\ \\text{N}$, the force the example found."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "atmospheric-pressure"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "depth-in-a-liquid-versus-a-gas"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "atmospheric-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "density-from-pressure-and-height"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pressure-independent-of-container"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "atmospheric-pressure"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "force-on-a-dam",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "atmospheric-pressure"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "depth-in-a-liquid-versus-a-gas"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "pressure-from-weight-of-fluid"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "pressure-independent-of-container",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "density-from-pressure-and-height"
+  },
+  {
+   "exercise": "p1",
+   "concept": "atmospheric-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "pressure-from-weight-of-fluid"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pressure"
+  },
+  {
+   "exercise": "p7",
+   "concept": "pressure-from-weight-of-fluid"
+  },
+  {
+   "exercise": "p9",
+   "concept": "force-from-pressure"
+  },
+  {
+   "exercise": "p10",
+   "concept": "force-on-a-dam"
+  },
+  {
+   "exercise": "p10",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  }
+ ]
+}

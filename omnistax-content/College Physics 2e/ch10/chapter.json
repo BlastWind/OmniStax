@@ -1,0 +1,1054 @@
+{
+ "id": "10",
+ "dir": "ch10",
+ "title": "Rotational Motion and Angular Momentum",
+ "intro": {
+  "module": "m42176",
+  "slug": "10-introduction-to-rotational-motion-and-angular-momentum"
+ },
+ "sections": [
+  {
+   "id": "10.1",
+   "module": "m42177",
+   "title": "Angular Acceleration",
+   "slug": "10-1-angular-acceleration"
+  },
+  {
+   "id": "10.2",
+   "module": "m42178",
+   "title": "Kinematics of Rotational Motion",
+   "slug": "10-2-kinematics-of-rotational-motion"
+  },
+  {
+   "id": "10.3",
+   "module": "m42179",
+   "title": "Dynamics of Rotational Motion: Rotational Inertia",
+   "slug": "10-3-dynamics-of-rotational-motion-rotational-inertia"
+  },
+  {
+   "id": "10.4",
+   "module": "m42180",
+   "title": "Rotational Kinetic Energy: Work and Energy Revisited",
+   "slug": "10-4-rotational-kinetic-energy-work-and-energy-revisited"
+  },
+  {
+   "id": "10.5",
+   "module": "m42182",
+   "title": "Angular Momentum and Its Conservation",
+   "slug": "10-5-angular-momentum-and-its-conservation"
+  },
+  {
+   "id": "10.6",
+   "module": "m42183",
+   "title": "Collisions of Extended Bodies in Two Dimensions",
+   "slug": "10-6-collisions-of-extended-bodies-in-two-dimensions"
+  },
+  {
+   "id": "10.7",
+   "module": "m42184",
+   "title": "Gyroscopic Effects: Vector Aspects of Angular Momentum",
+   "slug": "10-7-gyroscopic-effects-vector-aspects-of-angular-momentum"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "θ",
+   "meaning": "the angle of rotation of the object about its axis",
+   "unit": "rad",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "ω",
+   "type": "angular-rate",
+   "meaning": "the angular velocity, the rate at which the angle of rotation changes",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "Δω",
+   "type": "angular-rate",
+   "meaning": "the change in angular velocity, the difference between the final and initial values",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-angular-acceleration"
+  },
+  {
+   "sym": "Δt",
+   "type": "time",
+   "meaning": "the change in time over which the angular velocity changes",
+   "unit": "s",
+   "section": "10.1",
+   "anchor": "10.1-angular-acceleration"
+  },
+  {
+   "sym": "α",
+   "type": "angular-acceleration",
+   "meaning": "the angular acceleration, the rate of change of angular velocity",
+   "unit": "rad/s²",
+   "section": "10.1",
+   "anchor": "10.1-angular-acceleration"
+  },
+  {
+   "sym": "a_t",
+   "type": "acceleration",
+   "meaning": "the tangential acceleration, the linear acceleration tangent to the circle at the point of interest",
+   "unit": "m/s²",
+   "section": "10.1",
+   "anchor": "10.1-tangential-acceleration"
+  },
+  {
+   "sym": "a_c",
+   "type": "acceleration",
+   "meaning": "the centripetal acceleration, which changes the direction of the velocity but not its magnitude",
+   "unit": "m/s²",
+   "section": "10.1",
+   "anchor": "10.1-tangential-acceleration"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the linear velocity of a point on the rotating object",
+   "unit": "m/s",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "Δv",
+   "type": "velocity",
+   "meaning": "the change in the magnitude of the linear velocity",
+   "unit": "m/s",
+   "section": "10.1",
+   "anchor": "10.1-tangential-acceleration"
+  },
+  {
+   "sym": "r_curv",
+   "type": "position",
+   "meaning": "the radius of curvature, the distance from the axis of rotation to the point of interest",
+   "unit": "m",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "θ",
+   "meaning": "the angle through which the object rotates",
+   "unit": "rad",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "ω_0",
+   "type": "angular-rate",
+   "meaning": "the initial angular velocity",
+   "unit": "rad/s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "ω",
+   "type": "angular-rate",
+   "meaning": "the final angular velocity",
+   "unit": "rad/s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "ω̄",
+   "type": "angular-rate",
+   "meaning": "the average angular velocity, halfway between the initial and the final value when the angular acceleration is constant",
+   "unit": "rad/s",
+   "section": "10.2",
+   "anchor": "10.2-four-equations"
+  },
+  {
+   "sym": "α",
+   "type": "angular-acceleration",
+   "meaning": "the angular acceleration, which these equations take to be constant",
+   "unit": "rad/s²",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "the time over which the rotation lasts",
+   "unit": "s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "x",
+   "type": "position",
+   "meaning": "the distance a point at the rim travels, such as the length of line that comes off a reel",
+   "unit": "m",
+   "section": "10.2",
+   "anchor": "10.2-ex-train"
+  },
+  {
+   "sym": "v0",
+   "type": "velocity",
+   "meaning": "the initial linear velocity",
+   "unit": "m/s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the final linear velocity",
+   "unit": "m/s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "v̄",
+   "type": "velocity",
+   "meaning": "the average linear velocity",
+   "unit": "m/s",
+   "section": "10.2",
+   "anchor": "10.2-four-equations"
+  },
+  {
+   "sym": "a",
+   "type": "acceleration",
+   "meaning": "the tangential acceleration, which these equations take to be constant",
+   "unit": "m/s²",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "r_curv",
+   "type": "position",
+   "meaning": "the radius at which the linear quantities are measured",
+   "unit": "m",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "F",
+   "type": "force",
+   "meaning": "the force applied to the object, perpendicular to the radius",
+   "unit": "N",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of a point mass",
+   "unit": "kg",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "M",
+   "meaning": "the total mass of an extended object",
+   "unit": "kg",
+   "section": "10.3",
+   "anchor": "10.3-moment-of-inertia"
+  },
+  {
+   "sym": "r_curv",
+   "type": "position",
+   "meaning": "the distance from the pivot point to the point where the force is applied",
+   "unit": "m",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "R",
+   "type": "position",
+   "meaning": "the radius of an extended object",
+   "unit": "m",
+   "section": "10.3",
+   "anchor": "10.3-moment-of-inertia"
+  },
+  {
+   "sym": "a",
+   "type": "acceleration",
+   "meaning": "the linear acceleration of the point mass in the direction of the force",
+   "unit": "m/s²",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "α",
+   "type": "angular-acceleration",
+   "meaning": "the angular acceleration produced about the axis of rotation",
+   "unit": "rad/s²",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "τ",
+   "type": "torque",
+   "meaning": "the torque, the turning effectiveness of the force about the axis of rotation",
+   "unit": "N·m",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "I",
+   "type": "rotational-inertia",
+   "meaning": "the moment of inertia of the object about the chosen axis, the sum of $mr^2$ for all the point masses of which it is composed",
+   "unit": "kg·m²",
+   "section": "10.3",
+   "anchor": "10.3-moment-of-inertia"
+  },
+  {
+   "sym": "I_c",
+   "type": "rotational-inertia",
+   "meaning": "the moment of inertia of the child, taken to be a point mass at her distance from the axis",
+   "unit": "kg·m²",
+   "section": "10.3",
+   "anchor": "10.3-merry-go-round"
+  },
+  {
+   "sym": "W",
+   "type": "energy",
+   "meaning": "the net work done on the rotating object",
+   "unit": "J",
+   "section": "10.4",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "τ",
+   "type": "torque",
+   "meaning": "the net torque doing the work",
+   "unit": "N·m",
+   "section": "10.4",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "θ",
+   "meaning": "the angle through which the object rotates while the torque acts",
+   "unit": "rad",
+   "section": "10.4",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "Δs",
+   "type": "position",
+   "meaning": "the arc length travelled by the point at which the force is applied",
+   "unit": "m",
+   "section": "10.4",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "I",
+   "type": "rotational-inertia",
+   "meaning": "the moment of inertia of the rotating object about its axis",
+   "unit": "kg·m²",
+   "section": "10.4",
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "sym": "ω_0",
+   "type": "angular-rate",
+   "meaning": "the initial angular velocity",
+   "unit": "rad/s",
+   "section": "10.4",
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "sym": "ω",
+   "type": "angular-rate",
+   "meaning": "the final angular velocity",
+   "unit": "rad/s",
+   "section": "10.4",
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "sym": "KE_rot",
+   "type": "energy",
+   "meaning": "the rotational kinetic energy, the kinetic energy due to the rotation of an object",
+   "unit": "J",
+   "section": "10.4",
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "sym": "KE_trans",
+   "type": "energy",
+   "meaning": "the translational kinetic energy of the object as a whole",
+   "unit": "J",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "PE_grav",
+   "type": "energy",
+   "meaning": "the gravitational potential energy the object starts with at the top of the incline",
+   "unit": "J",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the rolling or spinning object",
+   "unit": "kg",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "h",
+   "type": "position",
+   "meaning": "the height through which the object descends",
+   "unit": "m",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the linear velocity of the object's center of mass",
+   "unit": "m/s",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "g",
+   "type": "acceleration",
+   "meaning": "the acceleration due to gravity",
+   "unit": "m/s²",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "L",
+   "type": "angular-momentum",
+   "meaning": "the angular momentum, the product of moment of inertia and angular velocity",
+   "unit": "kg·m²/s",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "I",
+   "type": "rotational-inertia",
+   "meaning": "the moment of inertia of the rotating object about its axis",
+   "unit": "kg·m²",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "ω",
+   "type": "angular-rate",
+   "meaning": "the angular velocity of the rotating object",
+   "unit": "rad/s",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "τ",
+   "type": "torque",
+   "meaning": "the net torque on the object, which changes its angular momentum",
+   "unit": "N·m",
+   "section": "10.5",
+   "anchor": "10.5-torque-and-angular-momentum"
+  },
+  {
+   "sym": "ΔL_ang",
+   "type": "angular-momentum",
+   "meaning": "the change in angular momentum produced by the net torque",
+   "unit": "kg·m²/s",
+   "section": "10.5",
+   "anchor": "10.5-torque-and-angular-momentum"
+  },
+  {
+   "sym": "Δt",
+   "type": "time",
+   "meaning": "the time over which the net torque acts",
+   "unit": "s",
+   "section": "10.5",
+   "anchor": "10.5-torque-and-angular-momentum"
+  },
+  {
+   "sym": "L_prime",
+   "type": "angular-momentum",
+   "meaning": "the angular momentum after the change, when the net torque is zero and it equals the angular momentum before",
+   "unit": "kg·m²/s",
+   "section": "10.5",
+   "anchor": "10.5-conservation"
+  },
+  {
+   "sym": "I_prime",
+   "type": "rotational-inertia",
+   "meaning": "the moment of inertia after the object has changed its shape, as the skater does when she pulls in her arms",
+   "unit": "kg·m²",
+   "section": "10.5",
+   "anchor": "10.5-skater"
+  },
+  {
+   "sym": "ω_prime",
+   "type": "angular-rate",
+   "meaning": "the angular velocity after the moment of inertia has changed",
+   "unit": "rad/s",
+   "section": "10.5",
+   "anchor": "10.5-skater"
+  },
+  {
+   "sym": "KE_rot",
+   "type": "energy",
+   "meaning": "the rotational kinetic energy before the change",
+   "unit": "J",
+   "section": "10.5",
+   "anchor": "10.5-skater"
+  },
+  {
+   "sym": "KE_rotprime",
+   "type": "energy",
+   "meaning": "the rotational kinetic energy after the change, which is greater because the skater does work pulling her arms in",
+   "unit": "J",
+   "section": "10.5",
+   "anchor": "10.5-skater"
+  },
+  {
+   "sym": "M",
+   "meaning": "the mass of the rotating body",
+   "unit": "kg",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "R",
+   "type": "position",
+   "meaning": "the radius of the rotating body",
+   "unit": "m",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "L",
+   "type": "angular-momentum",
+   "meaning": "the angular momentum of the system before the collision, calculated about the pivot point",
+   "unit": "kg·m²/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "L_prime",
+   "type": "angular-momentum",
+   "meaning": "the angular momentum of the system after the collision",
+   "unit": "kg·m²/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "I",
+   "type": "rotational-inertia",
+   "meaning": "the moment of inertia of the incoming disk about the pivot point",
+   "unit": "kg·m²",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "I_prime",
+   "type": "rotational-inertia",
+   "meaning": "the moment of inertia of the stick and disk stuck together about the pivot point",
+   "unit": "kg·m²",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "ω",
+   "type": "angular-rate",
+   "meaning": "the angular velocity of the disk about the pivot point just before it strikes",
+   "unit": "rad/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "ω_prime",
+   "type": "angular-rate",
+   "meaning": "the angular velocity of the stick and disk after the collision",
+   "unit": "rad/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the disk",
+   "unit": "kg",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "M",
+   "meaning": "the mass of the stick",
+   "unit": "kg",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "r_curv",
+   "type": "position",
+   "meaning": "the distance from the nail to the point where the disk strikes",
+   "unit": "m",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the velocity of the disk before the collision",
+   "unit": "m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "v_prime",
+   "type": "velocity",
+   "meaning": "the velocity of the disk after the collision",
+   "unit": "m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "v_cm",
+   "type": "velocity",
+   "meaning": "the velocity of the stick's center of mass after the collision, which is half the velocity of the struck end",
+   "unit": "m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "p",
+   "type": "momentum",
+   "meaning": "the total linear momentum of the system before the collision",
+   "unit": "kg·m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "p_prime",
+   "type": "momentum",
+   "meaning": "the total linear momentum of the system after the collision",
+   "unit": "kg·m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "KE",
+   "type": "energy",
+   "meaning": "the kinetic energy before the collision, which is the translational kinetic energy of the disk",
+   "unit": "J",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "KE_prime",
+   "type": "energy",
+   "meaning": "the kinetic energy after the collision, which is the rotational kinetic energy of the stick and disk together",
+   "unit": "J",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "L",
+   "type": "angular-momentum",
+   "meaning": "the angular momentum of the spinning object, which points along the axis of rotation in the direction the right-hand rule gives",
+   "unit": "kg·m²/s",
+   "section": "10.7",
+   "anchor": "10.7-right-hand-rule"
+  },
+  {
+   "sym": "ΔL_ang",
+   "type": "angular-momentum",
+   "meaning": "the change in angular momentum, which points in the direction of the torque that creates it",
+   "unit": "kg·m²/s",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "ω",
+   "type": "angular-rate",
+   "meaning": "the angular velocity, which points along the axis of rotation in the same direction as the angular momentum",
+   "unit": "rad/s",
+   "section": "10.7",
+   "anchor": "10.7-right-hand-rule"
+  },
+  {
+   "sym": "τ",
+   "type": "torque",
+   "meaning": "the net torque, perpendicular to the plane formed by $r$ and $F$",
+   "unit": "N·m",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "Δt",
+   "type": "time",
+   "meaning": "the time over which the torque acts",
+   "unit": "s",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "F",
+   "type": "force",
+   "meaning": "the force that creates the torque",
+   "unit": "N",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "r_curv",
+   "type": "position",
+   "meaning": "the distance from the axis to the point where the force is applied",
+   "unit": "m",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "r_curv",
+   "type": "position",
+   "unit": "m",
+   "section": "10.4",
+   "meaning": "the radius of the disk, at which the perpendicular force is applied",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "R",
+   "type": "position",
+   "unit": "m",
+   "section": "10.4",
+   "meaning": "the radius of the rolling cylinder",
+   "anchor": "10.4-rolling"
+  }
+ ],
+ "equations": [
+  {
+   "id": "eq-angular-velocity-recalled",
+   "section": "10.1",
+   "latex": "\\omega = \\frac{\\Delta\\theta}{\\Delta t}",
+   "ktex": "\\kw = \\frac{\\Delta\\theta}{\\kdt}",
+   "important": false,
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "id": "eq-omega-from-v",
+   "section": "10.1",
+   "latex": "v = r\\omega \\quad\\text{or}\\quad \\omega = \\frac{v}{r}",
+   "ktex": "\\kv = \\kr\\kw \\quad\\text{or}\\quad \\kw = \\frac{\\kv}{\\kr}",
+   "important": false,
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "id": "eq-angular-acceleration",
+   "concept": "angular-acceleration",
+   "section": "10.1",
+   "latex": "\\alpha = \\frac{\\Delta\\omega}{\\Delta t}",
+   "ktex": "\\kalpha = \\frac{\\kdw}{\\kdt}",
+   "important": true,
+   "anchor": "10.1-angular-acceleration"
+  },
+  {
+   "id": "eq-tangential-acceleration",
+   "concept": "tangential-acceleration",
+   "section": "10.1",
+   "latex": "a_{\\text{t}} = \\frac{\\Delta v}{\\Delta t}",
+   "ktex": "\\kat = \\frac{\\kdv}{\\kdt}",
+   "important": true,
+   "anchor": "10.1-tangential-acceleration"
+  },
+  {
+   "id": "eq-tangential-from-angular",
+   "concept": "tangential-angular-acceleration",
+   "section": "10.1",
+   "latex": "a_{\\text{t}} = r\\alpha",
+   "ktex": "\\kat = \\kr\\kalpha",
+   "important": true,
+   "anchor": "10.1-linear-angular"
+  },
+  {
+   "id": "eq-angular-from-tangential",
+   "section": "10.1",
+   "latex": "\\alpha = \\frac{a_{\\text{t}}}{r}",
+   "ktex": "\\kalpha = \\frac{\\kat}{\\kr}",
+   "important": true,
+   "anchor": "10.1-linear-angular"
+  },
+  {
+   "id": "eq-theta-from-average",
+   "concept": "average-angular-velocity",
+   "section": "10.2",
+   "latex": "\\theta = \\bar{\\omega}t",
+   "ktex": "\\theta = \\kwb\\kt",
+   "important": true,
+   "anchor": "10.2-four-equations"
+  },
+  {
+   "id": "eq-omega-from-alpha-t",
+   "concept": "rotational-kinematic-equations",
+   "section": "10.2",
+   "latex": "\\omega = \\omega_0 + \\alpha t",
+   "ktex": "\\kw = \\kwo + \\kalpha\\kt",
+   "condition": "constant angular acceleration",
+   "important": true,
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "id": "eq-theta-quadratic",
+   "section": "10.2",
+   "latex": "\\theta = \\omega_0 t + \\frac{1}{2}\\alpha t^2",
+   "ktex": "\\theta = \\kwo\\kt + \\frac{1}{2}\\kalpha\\kt^2",
+   "condition": "constant angular acceleration",
+   "important": true,
+   "anchor": "10.2-four-equations"
+  },
+  {
+   "id": "eq-omega-squared",
+   "section": "10.2",
+   "latex": "\\omega^2 = {\\omega_0}^2 + 2\\alpha\\theta",
+   "ktex": "\\kw^2 = {\\kwo}^2 + 2\\kalpha\\theta",
+   "condition": "constant angular acceleration",
+   "important": true,
+   "anchor": "10.2-four-equations"
+  },
+  {
+   "id": "eq-average-angular-velocity",
+   "section": "10.2",
+   "latex": "\\bar{\\omega} = \\frac{\\omega_0 + \\omega}{2}",
+   "ktex": "\\kwb = \\frac{\\kwo + \\kw}{2}",
+   "important": true,
+   "anchor": "10.2-four-equations"
+  },
+  {
+   "id": "eq-distance-from-angle",
+   "concept": "linear-from-angular",
+   "section": "10.2",
+   "latex": "\\theta = \\frac{x}{r} \\quad\\text{or}\\quad x = r\\theta",
+   "ktex": "\\theta = \\frac{\\kx}{\\kr} \\quad\\text{or}\\quad \\kx = \\kr\\theta",
+   "important": true,
+   "anchor": "10.2-ex-train"
+  },
+  {
+   "id": "eq-force-on-point-mass",
+   "section": "10.3",
+   "latex": "F = mr\\alpha",
+   "ktex": "\\kF = mr\\kalpha",
+   "important": false,
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "id": "eq-torque-on-point-mass",
+   "concept": "torque-on-a-point-mass",
+   "section": "10.3",
+   "latex": "\\tau = mr^2\\alpha",
+   "ktex": "\\ktau = mr^2\\kalpha",
+   "important": true,
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "id": "eq-moment-of-inertia",
+   "concept": "moment-of-inertia",
+   "section": "10.3",
+   "latex": "I = \\sum mr^2",
+   "ktex": "\\kI = \\sum mr^2",
+   "important": true,
+   "anchor": "10.3-moment-of-inertia"
+  },
+  {
+   "id": "eq-second-law-rotation",
+   "concept": "newtons-second-law-rotation",
+   "section": "10.3",
+   "latex": "\\text{net}\\;\\tau = I\\alpha",
+   "ktex": "\\text{net}\\;\\ktau = \\kI\\kalpha",
+   "important": true,
+   "anchor": "10.3-second-law-rotation"
+  },
+  {
+   "id": "eq-angular-acceleration-from-torque",
+   "section": "10.3",
+   "latex": "\\alpha = \\frac{\\text{net}\\;\\tau}{I}",
+   "ktex": "\\kalpha = \\frac{\\text{net}\\;\\ktau}{\\kI}",
+   "important": true,
+   "anchor": "10.3-second-law-rotation"
+  },
+  {
+   "id": "eq-rotational-work",
+   "concept": "rotational-work",
+   "section": "10.4",
+   "latex": "\\text{net}\\;W = (\\text{net}\\;\\tau)\\theta",
+   "ktex": "\\text{net}\\;\\kW = (\\text{net}\\;\\ktau)\\theta",
+   "important": true,
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "id": "eq-rotational-work-energy-theorem",
+   "concept": "rotational-work-energy-theorem",
+   "section": "10.4",
+   "latex": "\\text{net}\\;W = \\frac{1}{2}I\\omega^2 - \\frac{1}{2}I{\\omega_0}^2",
+   "ktex": "\\text{net}\\;\\kW = \\frac{1}{2}\\kI\\kw^2 - \\frac{1}{2}\\kI{\\kwo}^2",
+   "important": true,
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "id": "eq-rotational-kinetic-energy",
+   "concept": "rotational-kinetic-energy",
+   "section": "10.4",
+   "latex": "\\text{KE}_{\\text{rot}} = \\frac{1}{2}I\\omega^2",
+   "ktex": "\\kKErot = \\frac{1}{2}\\kI\\kw^2",
+   "important": true,
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "id": "eq-energy-of-a-rolling-body",
+   "concept": "rolling-splits-the-energy",
+   "section": "10.4",
+   "latex": "\\text{PE}_{\\text{grav}} = \\text{KE}_{\\text{trans}} + \\text{KE}_{\\text{rot}}",
+   "ktex": "\\kPEgrav = \\kKEtrans + \\kKErot",
+   "important": true,
+   "anchor": "10.4-rolling"
+  },
+  {
+   "id": "eq-rolling-down-an-incline",
+   "section": "10.4",
+   "latex": "mgh = \\frac{1}{2}mv^2 + \\frac{1}{2}I\\omega^2",
+   "ktex": "m\\kg\\kh = \\frac{1}{2}m\\kv^2 + \\frac{1}{2}\\kI\\kw^2",
+   "important": true,
+   "anchor": "10.4-rolling"
+  },
+  {
+   "id": "eq-angular-momentum",
+   "concept": "angular-momentum",
+   "section": "10.5",
+   "latex": "L = I\\omega",
+   "ktex": "\\kL = \\kI\\kw",
+   "important": true,
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "id": "eq-torque-changes-angular-momentum",
+   "concept": "torque-changes-angular-momentum",
+   "section": "10.5",
+   "latex": "\\text{net}\\;\\tau = \\frac{\\Delta L}{\\Delta t}",
+   "ktex": "\\text{net}\\;\\ktau = \\frac{\\kdLang}{\\kdt}",
+   "important": true,
+   "anchor": "10.5-torque-and-angular-momentum"
+  },
+  {
+   "id": "eq-conservation-of-angular-momentum",
+   "concept": "conservation-of-angular-momentum",
+   "section": "10.5",
+   "latex": "L = L'",
+   "ktex": "\\kL = \\kLprime",
+   "condition": "zero net external torque",
+   "important": true,
+   "anchor": "10.5-conservation"
+  },
+  {
+   "id": "eq-spin-rate-from-inertia",
+   "concept": "spin-rate-from-moment-of-inertia",
+   "section": "10.5",
+   "latex": "I\\omega = I'\\omega'",
+   "ktex": "\\kI\\kw = \\kIprime\\kwprime",
+   "condition": "zero net external torque",
+   "important": true,
+   "anchor": "10.5-skater"
+  },
+  {
+   "id": "eq-angular-momentum-of-a-point-mass",
+   "concept": "angular-momentum-in-collisions",
+   "section": "10.6",
+   "latex": "L = mr^2\\frac{v}{r} = mvr",
+   "ktex": "\\kL = mr^2\\frac{\\kv}{r} = m\\kv r",
+   "important": true,
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "id": "eq-angular-velocity-after-collision",
+   "concept": "solving-a-rotational-collision",
+   "section": "10.6",
+   "latex": "\\omega' = \\frac{mvr}{I'}",
+   "ktex": "\\kwprime = \\frac{m\\kv r}{\\kIprime}",
+   "important": true,
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "id": "eq-moment-of-inertia-after-collision",
+   "section": "10.6",
+   "latex": "I' = mr^2 + \\frac{Mr^2}{3} = \\left(m + \\frac{M}{3}\\right)r^2",
+   "ktex": "\\kIprime = mr^2 + \\frac{Mr^2}{3} = \\left(m + \\frac{M}{3}\\right)r^2",
+   "important": false,
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "id": "eq-linear-momentum-after-collision",
+   "section": "10.6",
+   "latex": "p' = \\left(m + \\frac{M}{2}\\right)r\\omega'",
+   "ktex": "\\kpprime = \\left(m + \\frac{M}{2}\\right)r\\kwprime",
+   "important": false,
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "id": "eq-torque-and-angular-momentum-vectors",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "section": "10.7",
+   "latex": "\\text{net}\\;\\boldsymbol{\\tau} = \\frac{\\Delta\\mathbf{L}}{\\Delta t}",
+   "important": true,
+   "anchor": "10.7-torque-direction"
+  }
+ ],
+ "glossary": [
+  {
+   "section": "10.1",
+   "term": "angular acceleration",
+   "definition": "the rate of change of angular velocity with time"
+  },
+  {
+   "section": "10.1",
+   "term": "change in angular velocity",
+   "definition": "the difference between final and initial values of angular velocity"
+  },
+  {
+   "section": "10.1",
+   "term": "tangential acceleration",
+   "definition": "the acceleration in a direction tangent to the circle at the point of interest in circular motion"
+  },
+  {
+   "section": "10.2",
+   "term": "kinematics of rotational motion",
+   "definition": "describes the relationships among rotation angle, angular velocity, angular acceleration, and time"
+  },
+  {
+   "section": "10.3",
+   "term": "torque",
+   "definition": "the turning effectiveness of a force"
+  },
+  {
+   "section": "10.3",
+   "term": "rotational inertia",
+   "definition": "resistance to change of rotation. The more rotational inertia an object has, the harder it is to rotate"
+  },
+  {
+   "section": "10.3",
+   "term": "moment of inertia",
+   "definition": "mass times the square of perpendicular distance from the rotation axis; for a point mass, it is $I = mr^2$ and, because any object can be built up from a collection of point masses, this relationship is the basis for all other moments of inertia"
+  },
+  {
+   "section": "10.4",
+   "term": "work-energy theorem",
+   "definition": "if one or more external forces act upon a rigid object, causing its kinetic energy to change from $\\text{KE}_1$ to $\\text{KE}_2$, then the work $W$ done by the net force is equal to the change in kinetic energy"
+  },
+  {
+   "section": "10.4",
+   "term": "rotational kinetic energy",
+   "definition": "the kinetic energy due to the rotation of an object. This is part of its total kinetic energy"
+  },
+  {
+   "section": "10.5",
+   "term": "angular momentum",
+   "definition": "the product of moment of inertia and angular velocity"
+  },
+  {
+   "section": "10.5",
+   "term": "law of conservation of angular momentum",
+   "definition": "angular momentum is conserved, i.e., the initial angular momentum is equal to the final angular momentum when no external torque is applied to the system"
+  },
+  {
+   "section": "10.7",
+   "term": "right-hand rule",
+   "definition": "direction of angular velocity $\\omega$ and angular momentum $L$ in which the thumb of your right hand points when you curl your fingers in the direction of the disk's rotation"
+  }
+ ]
+}

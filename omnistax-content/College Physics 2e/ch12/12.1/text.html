@@ -1,0 +1,91 @@
+<section id="flow-rate">
+<h2>Flow rate and its units</h2>
+<p class="cite-target"><strong>Flow rate</strong> $\kQ$ is defined to be the volume of fluid passing by some location through an area during a period of time, as seen in Figure 12.2. In symbols, this can be written as</p>
+$$\kQ = \frac{V}{\kt},$$
+<p>where $V$ is the volume and $\kt$ is the elapsed time.</p>
+<p>The SI unit for flow rate is $\text{m}^3\text{/s}$, but a number of other units for $\kQ$ are in common use. For example, the heart of a resting adult pumps blood at a rate of 5.00 liters per minute (L/min). Note that a <strong>liter</strong> (L) is 1/1000 of a cubic meter or 1000 cubic centimeters ($10^{-3}\;\text{m}^3$ or $10^{3}\;\text{cm}^3$). In this text we shall use whatever metric units are most convenient for a given situation.</p>
+<figure class="sim" id="sim-flow-cylinder" data-figure="12.2" data-original="/media/ch12/Figure_13_01_01a.jpg" data-original-width="275" data-original-caption="Flow rate is the volume of fluid per unit time flowing past a point through the area A. Here the shaded cylinder of fluid flows past point P in a uniform pipe in time t. The volume of the cylinder is Ad and the average velocity is v̄ = d/t so that the flow rate is Q = Ad/t = Av̄.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.2</span><span>Fluid flows through a uniform pipe of radius $r$ at an average speed $\kvb$, and the shaded cylinder is the fluid that has passed the point $\text{P}$ in the time $\kt$. Its length is $d = \kvb\kt$, its cross-section is the area $A$ of the pipe, and its volume divided by the time is the flow rate $\kQ = A\kvb$. Change the speed, the radius of the pipe or the time, and watch the cylinder lengthen or fatten while the readout follows it in cubic meters per second and in liters per second.</span></div>
+</figure>
+<div class="example" id="ex-heart">
+<h3>Example 12.1 · Calculating Volume from Flow Rate: The Heart Pumps a Lot of Blood in a Lifetime</h3>
+<p>How many cubic meters of blood does the heart pump in a 75-year lifetime, assuming the average flow rate is 5.00 L/min?</p>
+<h4>Strategy</h4>
+<p>Time and flow rate $\kQ$ are given, and so the volume $V$ can be calculated from the definition of flow rate.</p>
+<h4>Solution</h4>
+<p>Solving $\kQ = V/\kt$ for volume gives</p>
+$$V = \kQ\kt.$$
+<p>Substituting known values yields</p>
+$$\begin{aligned}V &= \left(\frac{5.00\ \text{L}}{1\ \text{min}}\right)(75\ \text{y})\left(\frac{1\ \text{m}^3}{10^3\ \text{L}}\right)\left(5.26\times10^{5}\frac{\text{min}}{\text{y}}\right)\\ &= 2.0\times10^{5}\ \text{m}^3.\end{aligned}$$
+<h4>Discussion</h4>
+<p>This amount is about 200,000 tons of blood. For comparison, this value is equivalent to about 200 times the volume of water contained in a 6-lane 50-m lap pool.</p>
+</div>
+</section>
+
+<section id="flow-rate-velocity">
+<h2>Flow rate and velocity</h2>
+<p class="cite-target">Flow rate and velocity are related, but quite different, physical quantities. To make the distinction clear, think about the flow rate of a river. The greater the velocity of the water, the greater the flow rate of the river. But flow rate also depends on the size of the river. A rapid mountain stream carries far less water than the Amazon River in Brazil, for example. The precise relationship between flow rate $\kQ$ and velocity $\kvb$ is</p>
+$$\kQ = A\kvb,$$
+<p>where $A$ is the cross-sectional area and $\kvb$ is the average velocity. This equation seems logical enough. The relationship tells us that flow rate is directly proportional to both the magnitude of the average velocity (hereafter referred to as the speed) and the size of a river, pipe, or other conduit. The larger the conduit, the greater its cross-sectional area. Figure 12.2 illustrates how this relationship is obtained. The shaded cylinder has a volume</p>
+$$V = Ad,$$
+<p>which flows past the point $\text{P}$ in a time $\kt$. Dividing both sides of this relationship by $\kt$ gives</p>
+$$\frac{V}{\kt} = \frac{Ad}{\kt}.$$
+<p>We note that $\kQ = V/\kt$ and the average speed is $\kvb = d/\kt$. Thus the equation becomes $\kQ = A\kvb$.</p>
+</section>
+
+<section id="continuity">
+<h2>The equation of continuity</h2>
+<p class="cite-target">Figure 12.3 shows an incompressible fluid flowing along a pipe of decreasing radius. Because the fluid is incompressible, the same amount of fluid must flow past any point in the tube in a given time to ensure continuity of flow. In this case, because the cross-sectional area of the pipe decreases, the velocity must necessarily increase. This logic can be extended to say that the flow rate must be the same at all points along the pipe. In particular, for points 1 and 2,</p>
+$$\left.\begin{aligned}\kQone &= \kQtwo\\ A_1\kvbone &= A_2\kvbtwo\end{aligned}\right\}.$$
+<p>This is called the equation of continuity and is valid for any incompressible fluid. The consequences of the equation of continuity can be observed when water flows from a hose into a narrow spray nozzle: it emerges with a large speed—that is the purpose of the nozzle. Conversely, when a river empties into one end of a reservoir, the water slows considerably, perhaps picking up speed again when it leaves the other end of the reservoir. In other words, speed increases when cross-sectional area decreases, and speed decreases when cross-sectional area increases.</p>
+<figure class="sim" id="sim-continuity" data-figure="12.3" data-original="/media/ch12/Figure_13_01_02a.jpg" data-original-width="450" data-original-caption="When a tube narrows, the same volume occupies a greater length. For the same volume to pass points 1 and 2 in a given time, the speed must be greater at point 2. The process is exactly reversible. If the fluid flows in the opposite direction, its speed will decrease when the tube widens. (Note that the relative volumes of the two cylinders and the corresponding velocity vector arrows are not drawn to scale.)">
+  <div class="sim-head"><span class="eyebrow">Figure 12.3</span><span>An incompressible fluid flows from the wide part of a tube, of radius $r_1$, into the narrow part, of radius $r_2$, at a flow rate $\kQ$ that is the same at both points. The two shaded cylinders are the same volume of fluid, drawn to scale, so the fluid that was a short slab at point 1 is a long cylinder at point 2 and must be moving faster to pass in the same time. Change the flow rate or either radius and watch the cylinders and the speed arrows answer; the graph beneath shows how the speed climbs as the square of the radius shrinks. Set $r_2$ larger than $r_1$ and the tube widens instead, and the fluid slows.</span></div>
+</figure>
+<p>Since liquids are essentially incompressible, the equation of continuity is valid for all liquids. However, gases are compressible, and so the equation must be applied with caution to gases if they are subjected to compression or expansion.</p>
+<div class="example" id="ex-nozzle">
+<h3>Example 12.2 · Calculating Fluid Speed: Speed Increases When a Tube Narrows</h3>
+<p>A nozzle with a radius of 0.250 cm is attached to a garden hose with a radius of 0.900 cm. The flow rate through hose and nozzle is 0.500 L/s. Calculate the speed of the water (a) in the hose and (b) in the nozzle.</p>
+<h4>Strategy</h4>
+<p>We can use the relationship between flow rate and speed to find both velocities. We will use the subscript 1 for the hose and 2 for the nozzle.</p>
+<h4>Solution for (a)</h4>
+<p>First, we solve $\kQ = A\kvb$ for $\kvone$ and note that the cross-sectional area is $A = \pi r^2$, yielding</p>
+$$\kvbone = \frac{\kQ}{A_1} = \frac{\kQ}{\pi r_1^2}.$$
+<p>Substituting known values and making appropriate unit conversions yields</p>
+$$\kvbone = \frac{(0.500\ \text{L/s})(10^{-3}\ \text{m}^3/\text{L})}{\pi(9.00\times10^{-3}\ \text{m})^2} = 1.96\ \text{m/s}.$$
+<h4>Solution for (b)</h4>
+<p>We could repeat this calculation to find the speed in the nozzle $\kvbtwo$, but we will use the equation of continuity to give a somewhat different insight. Using the equation which states</p>
+$$A_1\kvbone = A_2\kvbtwo,$$
+<p>solving for $\kvbtwo$ and substituting $\pi r^2$ for the cross-sectional area yields</p>
+$$\kvbtwo = \frac{A_1}{A_2}\kvbone = \frac{\pi r_1^2}{\pi r_2^2}\kvbone = \frac{r_1^2}{r_2^2}\kvbone.$$
+<p>Substituting known values,</p>
+$$\kvbtwo = \frac{(0.900\ \text{cm})^2}{(0.250\ \text{cm})^2}\,1.96\ \text{m/s} = 25.5\ \text{m/s}.$$
+<h4>Discussion</h4>
+<p>A speed of 1.96 m/s is about right for water emerging from a nozzleless hose. The nozzle produces a considerably faster stream merely by constricting the flow to a narrower tube.</p>
+</div>
+<p>The solution to the last part of the example shows that speed is inversely proportional to the <em>square</em> of the radius of the tube, making for large effects when radius varies. We can blow out a candle at quite a distance, for example, by pursing our lips, whereas blowing on a candle with our mouth wide open is quite ineffective.</p>
+</section>
+
+<section id="branching">
+<h2>Continuity where the flow branches</h2>
+<p class="cite-target">In many situations, including in the cardiovascular system, branching of the flow occurs. The blood is pumped from the heart into arteries that subdivide into smaller arteries (arterioles) which branch into very fine vessels called capillaries. In this situation, continuity of flow is maintained but it is the <em>sum</em> of the flow rates in each of the branches in any portion along the tube that is maintained. The equation of continuity in a more general form becomes</p>
+$$n_1A_1\kvbone = n_2A_2\kvbtwo,$$
+<p>where $n_1$ and $n_2$ are the number of branches in each of the sections along the tube.</p>
+<figure class="sim" id="sim-branching">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A single vessel of radius $r_1$ divides into $n_2$ branches, each of radius $r_2$, and the same flow rate $\kQ$ passes through the one vessel and through all the branches together. The two bars compare the cross-section of the vessel with the total cross-section of its branches, and the speed in a branch follows from that total. Change the number of branches or their radius and watch the blood slow where the total cross-section grows and quicken where it shrinks; the readout carries the arithmetic of the aorta and the capillaries.</span></div>
+</figure>
+<div class="example" id="ex-aorta">
+<h3>Example 12.3 · Calculating Flow Speed and Vessel Diameter: Branching in the Cardiovascular System</h3>
+<p>The aorta is the principal blood vessel through which blood leaves the heart in order to circulate around the body. (a) Calculate the average speed of the blood in the aorta if the flow rate is 5.0 L/min. The aorta has a radius of 10 mm. (b) Blood also flows through smaller blood vessels known as capillaries. When the rate of blood flow in the aorta is 5.0 L/min, the speed of blood in the capillaries is about 0.33 mm/s. Given that the average diameter of a capillary is $8.0\;\mu\text{m}$, calculate the number of capillaries in the blood circulatory system.</p>
+<h4>Strategy</h4>
+<p>We can use $\kQ = A\kvb$ to calculate the speed of flow in the aorta and then use the general form of the equation of continuity to calculate the number of capillaries as all of the other variables are known.</p>
+<h4>Solution for (a)</h4>
+<p>The flow rate is given by $\kQ = A\kvb$ or $\kvb = \frac{\kQ}{\pi r^2}$ for a cylindrical vessel.</p>
+<p>Substituting the known values (converted to units of meters and seconds) gives</p>
+$$\kvb = \frac{(5.0\ \text{L/min})(10^{-3}\ \text{m}^3\text{/L})(1\ \text{min/}60\ \text{s})}{\pi(0.010\ \text{m})^2} = 0.27\ \text{m/s}.$$
+<h4>Solution for (b)</h4>
+<p>Using $n_1A_1\kvbone = n_2A_2\kvbone$, assigning the subscript 1 to the aorta and 2 to the capillaries, and solving for $n_2$ (the number of capillaries) gives $n_2 = \frac{n_1A_1\kvbone}{A_2\kvbtwo}$. Converting all quantities to units of meters and seconds and substituting into the equation above gives</p>
+$$n_2 = \frac{(1)(\pi)(10\times10^{-3}\ \text{m})^2(0.27\ \text{m/s})}{(\pi)(4.0\times10^{-6}\ \text{m})^2(0.33\times10^{-3}\ \text{m/s})} = 5.0\times10^{9}\ \text{capillaries}.$$
+<h4>Discussion</h4>
+<p>Note that the speed of flow in the capillaries is considerably reduced relative to the speed in the aorta due to the significant increase in the total cross-sectional area at the capillaries. This low speed is to allow sufficient time for effective exchange to occur although it is equally important for the flow not to become stationary in order to avoid the possibility of clotting. Does this large number of capillaries in the body seem reasonable? In active muscle, one finds about 200 capillaries per $\text{mm}^3$, or about $200\times10^{6}$ per 1 kg of muscle. For 20 kg of muscle, this amounts to about $4\times10^{9}$ capillaries.</p>
+</div>
+</section>

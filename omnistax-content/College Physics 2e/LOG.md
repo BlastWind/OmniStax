@@ -2686,3 +2686,91 @@ of the two routes the book's `RULES.md` now records. Each section's `plan.md`
 carries a dated note bringing its figure lines to what is built: the ranges now
 fixed, the labels on or behind a button, and every figure of the chapter still
 flat, with no 3D anywhere in it.
+
+
+### Pass 35 (2026-09-14): Chapter 10, Rotational Motion and Angular Momentum, is built
+
+Chapter 10 was prepared and its seven sections built in one wave on
+2026-09-14, an earlier agent beginning every section and being cut off, and
+a second finishing each where the first left it. This is the chapter pass
+over them: the wants of the seven plans, the cross-section checks, one
+reading of every page and every `figures.js`, and the full checks.
+
+What stands. Seven section pages and the introduction page, with 31 figure
+rows over them: 24 drawn figures, of which 21 transform a book figure and 3
+are Sims of OmniStax's own (the bicycle wheel spun up and braked in 10.1,
+the helicopter's two energies in 10.4, the skater's see-saw of bars in
+10.5), and 7 kept photographs (the tornado and the spinning skater that open
+the chapter, the worker at the grindstone, the flywheel bus, the rescue
+helicopter, the skater's two poses, the bowling ball among the pins). One
+fold does the work of two drawings, the point on a circle with its
+tangential acceleration alone and then with the centripetal acceleration
+beside it, Figure 10.4 + 10.5. This chapter numbers every figure, the ones
+inside exercises too, so the numbers run 10.1 to 10.41: 29 on rows, 10 on
+the cards of the exercises that refer to them (the four ways off a
+merry-go-round on both of the questions that cite it), and two nowhere,
+10.15 the motorcycle wheel and 10.36 the skater catching a ball, whose
+problems are unkeyed and left out and whose sections' notes say so. Motion
+was decided per figure and the chapter has clocks in it: 17 of the 24 drawn
+figures call `cycle()` and carry the transport, the 7 that answer their
+sliders alone do not, and the precessing gyroscope of 10.7 is the chapter's
+one full 3D scene, argued in its plan against root rule 28.3 and mounted on
+`F.view3d` with snap views, a bounded pitch and the spin drawn at a stated
+fraction of its true rate. 91 exercises: 25 problems, 29 conceptual
+questions, 30 AP items and the 7 Check Your Understanding boxes, one per
+module and every one set inline where the book prints it; 13 exercises sit
+with a section other than the one that printed them, each with
+`source_section` and both sections' notes; 44 open items carry an AI-marked
+suggested approach and 23 unkeyed problems are left out and named. 182
+coverage rows against 33 concept nodes with 115 prerequisite edges, 12
+glossary terms, 84 variable rows, 31 equation rows, and three new types,
+`angular-acceleration`, `rotational-inertia` and `angular-momentum`, each
+because the chapter's figures draw it.
+
+What the chapter pass wrote. The 112 anchors the seven plans asked for, on
+every variable and equation row of `chapter.json`, each a span or an example
+of its section's own `text.html`, and two variable rows 10.4 wanted, `r_curv`
+for the radius of the disk its two figures turn and `R` for the radius of
+the rolling cylinder of Example 10.10, both anchored; no symbol row changed.
+10.1's third problem, the grindstone slowed by an axe, finds its angular
+acceleration through a torque and the moment of inertia of a disk, which
+10.3 introduces, so it is set with 10.3 as `p12` with `source_section:
+"10.1"`, its hints rewritten and both notes corrected. 10.6's first
+conceptual question, the two collisions, was recorded as set with 10.7 and
+was set nowhere, since 10.7 prints only the handlebar and the guidance
+gyroscope; it is 10.6's own, and it now sits there before the hockey puck
+with an AI-marked approach, and 10.6's notes name the handlebar as the one
+question 10.7 takes. `ch10/COLOR.md`'s rows for 10.3, 10.4 and 10.6 are
+widened to the types the pages draw, `config.md` carries a "What the build
+changed" block and `exploration.md` says which five of 10.6's AP items went
+to 10.5, which is what the tables held all along.
+
+Two questions the plans left were settled. 10.7 asked whether its $r$, the
+distance from the axis to the point of application, should be 9.2's
+`r_lever` rather than `r_curv`; it keeps `r_curv`, because 10.3 and 10.6 use
+that key for the same meaning and both keys print as $r$ in the position
+hue, so the chapter is consistent with itself. 10.7 also asked for an anchor
+on its glossary row, and the glossary table has no `anchor` field, so none
+is written. Root rule 20's `weights_by` field is likewise not in the schema,
+and the AI mark on the 80 weighted rows lives in each section's
+`exercise_notes`, as every earlier chapter has it.
+
+What the reading found. Every headline, topline and readout line is a full
+sentence, no figure carries a hex colour, no still figure a cycle, no
+discrete state a slider, and no ordinal `º` or bare dollar sign stands
+anywhere in the chapter. Two leads, 10.2's and 10.3's, carried `$…$` math
+with `\k` macros, and the app does not sweep the lead for math, so the raw
+LaTeX printed under the title; both are rewritten in words, and the same
+fault stands in the leads of 6.5 and 7.4 for a later pass or for the app.
+The moment-of-inertia figure of 10.3 wrote its percentages with a space
+before the sign, which the book does not, and does not now.
+
+Checks: `check:content` with 13 chapters, 76 sections and 14 introduction
+pages and no errors; 405 unit tests; `astro check` clean; a build of 93
+pages; and a headless pass over all eight pages of the chapter in light and
+dark with no console error, every image loading, every `figure.sim` booting
+its canvas, the gyroscope's WebGL scene rendering, every eyebrow reading Sim
+or its figure number, the transport on the 17 moving figures only, every
+inline Check Your Understanding host rendering its card, and every
+end-of-section card rendering, the moved grindstone and the two-collisions
+question among them.

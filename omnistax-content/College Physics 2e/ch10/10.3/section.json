@@ -1,0 +1,912 @@
+{
+ "id": "10.3",
+ "module": "m42179",
+ "chapter": "10",
+ "title": "Dynamics of Rotational Motion: Rotational Inertia",
+ "short": "Rotational inertia",
+ "lead": "A door swings slowly when it is pushed near its hinges, and a heavy door swings more slowly still, so force, mass and the point where the force is applied all have a say in how a rotation changes. This section works out the rotational form of Newton’s second law, first for a single point mass on a tether, where the torque comes to the mass times the square of the radius times the angular acceleration, and then for any body at all, whose moment of inertia is that sum taken over every bit of it. The relation between the net torque, the moment of inertia and the angular acceleration is applied to a father pushing a merry-go-round with and without a child on it, which shows that the moment of inertia depends on where the mass sits and not only on how much there is.",
+ "objectives": [
+  "Understand the relationship between force, mass and acceleration.",
+  "Study the turning effect of force.",
+  "Study the analogy between force and torque, mass and moment of inertia, and linear acceleration and angular acceleration."
+ ],
+ "summary_html": "<ul><li>The farther the force is applied from the pivot, the greater is the angular acceleration; angular acceleration is inversely proportional to mass.</li><li>If we exert a force $\\kF$ on a point mass $m$ that is at a distance $\\kr$ from a pivot point and because the force is perpendicular to $\\kr$, an acceleration $\\ka = \\kF/m$ is obtained in the direction of $\\kF$. We can rearrange this equation such that $$\\kF = m\\ka,$$ and then look for ways to relate this expression to expressions for rotational quantities. We note that $\\ka = \\kr\\kalpha$, and we substitute this expression into $\\kF = m\\ka$, yielding $$\\kF = m\\kr\\kalpha.$$</li><li>Torque is the turning effectiveness of a force. In this case, because $\\kF$ is perpendicular to $\\kr$, torque is simply $\\ktau = \\kr\\kF$. If we multiply both sides of the equation above by $\\kr$, we get torque on the left-hand side. That is, $$\\kr\\kF = m\\kr^2\\kalpha$$ or $$\\ktau = m\\kr^2\\kalpha.$$</li><li>The moment of inertia $\\kI$ of an object is the sum of $M\\kR^2$ for all the point masses of which it is composed. That is, $$\\kI = \\sum m\\kr^2.$$</li><li>The general relationship among torque, moment of inertia, and angular acceleration is $$\\ktau = \\kI\\kalpha$$ or $$\\kalpha = \\frac{\\text{net}\\;\\ktau}{\\kI}.$$</li></ul>",
+ "notes": "The four problems the book leaves unkeyed, the skater as a cylinder with rod arms, the soccer player’s kick, the motorcycle wheel as an annular ring and the automobile drive train, are left out, and the drawing of the motorcycle wheel, Figure 10.15, leaves with the third; the book’s key to the AP item on the two sizes of disk carries the stem of the item that follows it, and that stray sentence is left off.",
+ "ai": {
+  "text": "Claude Opus 5, with Claude Fable 5.1",
+  "figures": "Claude Opus 5, with Claude Fable 5.1"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights, hints and the suggested approaches to the five conceptual questions and to the three unkeyed AP items are AI-generated and marked as such; the answers to the eight problems, to the Check Your Understanding box and to the four keyed AP items come from the book’s own answer key and nothing is computed here. Problems 2 (the skater as a cylinder with rod arms), 4 (the soccer player’s kick), 6 (the motorcycle wheel as an annular ring, with Figure 10.15) and 8 (the automobile drive train) have no keyed answer and are left out. The Check Your Understanding box, on whether torque and moment of inertia depend on one factor, is set inline after the merry-go-round example, and every other item is at the end. Three of the section’s six AP items ask about angular momentum and are set with 10.5 with source_section 10.3: the loaded Ferris wheel (fs-id438270), the lever whose angular momentum is to be measured (fs-id1500072) and the lever setup for determining angular acceleration and angular momentum (fs-id2003821). All four of 10.4’s AP items ask how a torque changes an angular velocity and are set here with source_section 10.4: the two meshing gears (fs-id2004322), doubling the torque against halving the radius (fs-id1292713), the fishing reel (fs-id1543406) and two people pushing a merry-go-round (fs-id1628274). 10.1’s third problem, the grindstone slowed by an axe (fs-id3225958), finds its angular acceleration through the torque of the friction force and the moment of inertia of a disk, which this section introduces, and is set here with source_section 10.1; 10.1’s notes say so. The book’s key to the AP item on the two sizes of disk carries the stem of the item that follows, and that sentence is left off; the item on the rod with two lead weights repeats a clause of its own question and is kept as the book prints it. The photograph of the racing bicycle, Figure 10.14, travels on the card of the conceptual question that refers to it. Problem 11, the flywheel car, turns on rotational kinetic energy, which Section 10.4 introduces; it is set here where the book prints it and its hint says so. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-bike-wheel",
+   "kind": "sim",
+   "number": "10.10",
+   "originals": [
+    "/media/ch10/Figure_11_03_01a.jpg"
+   ],
+   "original_caption": "Force is required to spin the bike wheel. The greater the force, the greater the angular acceleration produced. The more massive the wheel, the smaller the angular acceleration. If you push on a spoke closer to the axle, the angular acceleration will be smaller.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "rotational-inertia",
+    "angular-acceleration",
+    "torque",
+    "angular-rate",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-point-mass",
+   "kind": "sim",
+   "number": "10.11",
+   "originals": [
+    "/media/ch10/Figure_11_03_02a.jpg"
+   ],
+   "original_caption": "An object is supported by a horizontal frictionless table and is attached to a pivot point by a cord that supplies centripetal force. A force F is applied to the object perpendicular to the radius r, causing it to accelerate about the pivot point. The force is kept perpendicular to r.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "acceleration",
+    "angular-acceleration",
+    "torque",
+    "rotational-inertia"
+   ]
+  },
+  {
+   "id": "sim-inertias",
+   "kind": "sim",
+   "number": "10.12",
+   "originals": [
+    "/media/ch10/Figure_11_03_06.jpg"
+   ],
+   "original_caption": "Some rotational inertias.",
+   "draws": [
+    "rotational-inertia",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-merry-go-round",
+   "kind": "sim",
+   "number": "10.13",
+   "originals": [
+    "/media/ch10/Figure_11_03_03a.jpg"
+   ],
+   "original_caption": "A father pushes a playground merry-go-round at its edge and perpendicular to its radius to achieve maximum torque.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "rotational-inertia",
+    "angular-acceleration",
+    "torque",
+    "angular-rate",
+    "time"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "force-and-rotation",
+   "concept": "angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "force-and-rotation",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "force-and-rotation",
+   "concept": "inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "force-and-rotation",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "torque-on-a-point-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "point-mass",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "tangential-angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "point-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "rotational-translational-analogy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "moment-of-inertia",
+   "concept": "moment-of-inertia",
+   "verb": "introduces"
+  },
+  {
+   "span": "moment-of-inertia",
+   "concept": "torque-on-a-point-mass",
+   "verb": "reinforces"
+  },
+  {
+   "span": "moment-of-inertia",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "moment-of-inertia",
+   "concept": "inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "newtons-second-law-rotation",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "mass-distribution-and-inertia",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "rotational-translational-analogy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strategy",
+   "concept": "rotational-dynamics-strategy",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "choosing-a-moment-of-inertia",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "newtons-second-law-rotation",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "newtons-second-law-rotation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "mass-distribution-and-inertia",
+   "verb": "reinforces"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "choosing-a-moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "torque-on-a-point-mass",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2404667",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "merry-go-round"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "Torque is the analog of force and moment of inertia is the analog of mass. Force and mass are physical quantities that depend on only one factor. For example, mass is related solely to the numbers of atoms of various types in an object. Are torque and moment of inertia similarly simple?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No. Torque depends on three factors: force magnitude, force direction, and point of application. Moment of inertia depends on both mass and its distribution relative to the axis of rotation. So, while the analogies are precise, these rotational quantities depend on more factors."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2655227",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "The moment of inertia of a long rod spun around an axis through one end perpendicular to its length is $ML^2/3$. Why is this moment of inertia greater than it would be if you spun a point mass $M$ at the location of the center of mass of the rod (at $L/2$)? (That would be $ML^2/4$.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Begin with the definition, $\\kI = \\sum m\\kr^2$: the rod is a row of small pieces, each contributing its own mass times the square of its own distance from the end. Half of the rod's mass lies beyond the center of mass, out to a distance $L$, and half lies short of it, in toward the pivot. Because the distance is squared, the far half gains more than the near half loses. For example, a piece at $3L/4$ contributes $(3L/4)^2 = 9L^2/16$ per unit mass while a piece at $L/4$ contributes only $L^2/16$, and the two together average $5L^2/16$, which is more than the $4L^2/16$ that both would contribute if they sat at $L/2$. Summing over the whole rod gives $ML^2/3$ rather than $ML^2/4$. A point mass at the center of mass reproduces the rod's mass but not its spread, and it is the spread of mass away from the axis that the moment of inertia measures."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2450048",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "Why is the moment of inertia of a hoop that has a mass $M$ and a radius $R$ greater than the moment of inertia of a disk that has the same mass and radius? Why is the moment of inertia of a spherical shell that has a mass $M$ and a radius $R$ greater than that of a solid sphere that has the same mass and radius?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Ask where the mass sits in each body. Every bit of a hoop is at the full distance $\\kR$ from the axis, so its moment of inertia is $M\\kR^2$, the largest a body of that mass and radius can have. A disk of the same mass and radius spreads that mass over the whole face, and most of it lies closer to the axis than the rim; each of those bits contributes less than $m\\kR^2$ to the sum, so the total comes to $\\frac{1}{2}M\\kR^2$. The same reasoning applies to the spheres. The mass of a thin spherical shell is all at the surface, as far from the center as it can be, while a solid sphere of the same mass has most of its mass inside, nearer the axis, so the shell's $\\frac{2}{3}M\\kR^2$ exceeds the solid sphere's $\\frac{2}{5}M\\kR^2$. Neither sphere reaches $M\\kR^2$ because the axis is a diameter, and even the mass on the surface is at a distance $\\kR$ from the axis only at the equator."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1222304",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "point-mass",
+   "prompt": "Give an example in which a small force exerts a large torque. Give another example in which a large force exerts a small torque.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Torque is the product of the force and its perpendicular lever arm, so a small force makes a large torque when its lever arm is long. For example, a light push at the outer edge of a heavy door swings it, and a modest pull on the end of a long wrench frees a nut that a hard pull on a short wrench cannot. A large force makes a small torque when its lever arm is short or when it is directed along a line through the axis. For example, pushing hard on a door right beside its hinges barely moves it, and a large force directed straight toward the pivot, as when you push a merry-go-round radially inward, produces no torque at all, however large the force."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2680047",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "figure": {
+    "src": "/media/ch10/Figure_11_03_04a.jpg",
+    "alt": "The given figure shows a racing bicycle leaning on a door.",
+    "caption": "Figure 10.14 The image shows a side view of a racing bicycle. Can you see evidence in the design of the wheels on this racing bicycle that their moment of inertia has been purposely reduced? (credit: Jesús Rodriguez)"
+   },
+   "prompt": "While reducing the mass of a racing bike, the greatest benefit is realized from reducing the mass of the tires and wheel rims. Why does this allow a racer to achieve greater accelerations than would an identical reduction in the mass of the bicycle’s frame?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Consider what the racer's force has to do. Every kilogram removed from the bicycle, wherever it sits, reduces the mass that must be accelerated along the road. A kilogram removed from a tire or a rim does something more, because the wheels must also be spun up as the bicycle gains speed, and the torque that spins them has to overcome their moment of inertia. The rim and tire are the parts of a wheel farthest from the axle, so their mass enters the moment of inertia $\\kI = \\sum m\\kr^2$ with the largest possible $\\kr^2$, much as the mass of a hoop does. Taking mass from the frame lowers only the mass; taking the same mass from the rims lowers the mass and the moment of inertia of both wheels at once, so the same force from the racer produces a greater acceleration. Figure 10.14 shows the design that follows: thin rims and tires and a few slender spokes, with the hub carrying what mass the wheel must have."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1401566",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "A ball slides up a frictionless ramp. It is then rolled without slipping and with the same initial velocity up another frictionless ramp (with the same slope angle). In which case does it reach a greater height, and why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Ask what can change the ball's spin on the way up. On a frictionless ramp the only forces on the ball are its weight and the normal force, and both act through the center of the ball or along a line through it, so neither exerts a torque about the ball's center. With no net torque there is no angular acceleration, by $\\text{net}\\;\\ktau = \\kI\\kalpha$, and the rolling ball keeps spinning at the rate it started with all the way up. The energy in its spin therefore stays in its spin and does nothing to lift it. Only the motion of the ball's center is traded for height, and that motion is the same in both cases because the initial velocities are the same, so the two balls reach the same height. The rolling ball carries more energy in total, but on a frictionless ramp it has no way to convert the extra part; only if the ramp had friction could a torque slow the spin and let that energy raise the ball higher."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1721000",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "A piece of wood can be carved by spinning it on a motorized lathe and holding a sharp chisel to the edge of the wood as it spins. How does the angular velocity of a piece of wood with a radius of 0.2 m spinning on a lathe change when a chisel is held to the wood's edge with a force of 50 N?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "It increases by 10 N·m multiplied by the moment of inertia of the wood.",
+     "It decreases by 10 N·m divided by the moment of inertia of the wood-and-lathe system.",
+     "It decreases by 10 N·m multiplied by the moment of inertia of the wood.",
+     "It decreases by 10 m/s²."
+    ],
+    "correct": 1,
+    "hint": "The chisel's force at the edge acts against the spin with a lever arm equal to the radius, so its torque is $\\ktau = \\kr\\kF = (0.2\\ \\text{m})(50\\ \\text{N})$. The angular acceleration that torque produces is $\\kalpha = \\ktau/\\kI$, where $\\kI$ is the moment of inertia of everything that turns together.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2004322",
+   "source_section": "10.4",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "Gear A, which turns clockwise, meshes with gear B, which turns counterclockwise. When more force is applied through gear A, torque is created. How does the angular velocity of gear B change as a result?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "It increases in magnitude.",
+     "It decreases in magnitude.",
+     "It changes direction.",
+     "It stays the same."
+    ],
+    "correct": 0,
+    "hint": "The teeth of gear A push on the teeth of gear B at B's rim, and that force makes a torque on B in the direction B already turns. A torque produces an angular acceleration, $\\kalpha = \\text{net}\\;\\ktau/\\kI$, in its own direction.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1292713",
+   "source_section": "10.4",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "Which will cause a greater increase in the angular velocity of a disk: doubling the torque applied or halving the radius at which the torque is applied? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Begin with $\\kalpha = \\text{net}\\;\\ktau/\\kI$. The disk's moment of inertia is fixed by its mass and its radius, so the angular acceleration, and with it the rate at which the angular velocity grows, is set by the torque alone. Doubling the torque doubles the angular acceleration. Halving the radius at which a given torque is applied changes nothing, because the torque is already the product of the force and its lever arm; if instead it is the force that stays the same and is applied at half the radius, then the torque is halved and the angular velocity grows only half as fast. Either way, doubling the torque produces the greater increase in angular velocity. Note that the radius at which a force is applied matters only through the torque it makes, and the disk's own radius matters only through its moment of inertia."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1543406",
+   "source_section": "10.4",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "Which measure would not be useful to help you determine the change in angular velocity when the torque on a fishing reel is increased?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "the radius of the reel",
+     "the amount of line that unspools",
+     "the angular momentum of the fishing line",
+     "the time it takes the line to unspool"
+    ],
+    "correct": 2,
+    "hint": "The change in angular velocity is the angular acceleration times the time it acts, and the angular acceleration follows from the torque and the reel's moment of inertia. Ask which of the four measures tells you something about the reel's turning, and which is a property of the line rather than of the reel.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1669125",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "Consider two sizes of disk, both of mass $M$. One size of disk has radius $R$; the other has radius $2R$. System A consists of two of the larger disks rigidly connected to each other with a common axis of rotation. System B consists of one of the larger disks and a number of the smaller disks rigidly connected with a common axis of rotation. If the moment of inertia for system A equals the moment of inertia for system B, how many of the smaller disks are in system B?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "correct": 3,
+    "hint": "The moment of inertia of a disk about its axis is $\\frac{1}{2}M\\kR^2$, so doubling the radius at the same mass makes it four times as large, and the moments of inertia of bodies sharing one axis add. Write the total for each system and set them equal.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1338880",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "You are given a thin rod of length 1.0 m and mass 2.0 kg, a small lead weight of 0.50 kg, and a not-so-small lead weight of 1.0 kg. The rod has three holes, one in each end and one through the middle, which may either hold a pivot point or one of the small lead weights. How do you arrange these objects so that the resulting system has the maximum possible moment of inertia? What is that moment of inertia? do you arrange these objects so that the resulting system has the maximum possible moment of inertia? What is that moment of inertia?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The moment of inertia grows with the square of the distance from the axis, so put the pivot where the rod and the weights can be as far from it as possible, and put the heavier weight farthest out. Pivot the rod at one end. The rod then turns about an axis through one end, and Figure 10.12 gives its moment of inertia as $\\frac{1}{3}M\\ell^2 = \\frac{1}{3}(2.0\\ \\text{kg})(1.0\\ \\text{m})^2 = 0.67\\ \\text{kg}\\cdot\\text{m}^2$. Hang the 1.0 kg weight in the hole at the far end, a point mass 1.0 m from the axis, which adds $m\\kr^2 = (1.0\\ \\text{kg})(1.0\\ \\text{m})^2 = 1.0\\ \\text{kg}\\cdot\\text{m}^2$, and the 0.50 kg weight in the middle hole, 0.50 m from the axis, which adds $(0.50\\ \\text{kg})(0.50\\ \\text{m})^2 = 0.13\\ \\text{kg}\\cdot\\text{m}^2$. The moments of inertia about the one axis add, so the system's total is about $1.8\\ \\text{kg}\\cdot\\text{m}^2$. Compare this with the pivot through the middle, where the rod contributes only $\\frac{1}{12}M\\ell^2 = 0.17\\ \\text{kg}\\cdot\\text{m}^2$ and the two weights, each 0.50 m from the axis, add $0.38\\ \\text{kg}\\cdot\\text{m}^2$ between them, for a total of about $0.54\\ \\text{kg}\\cdot\\text{m}^2$; the end pivot gives more than three times as much."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1628274",
+   "source_section": "10.4",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "What data could you collect to study the change in angular velocity when two people push a merry-go-round instead of one, providing twice as much torque? How would you use the data you collect?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Measure how the angular velocity grows with time under each push. For example, mark one point on the rim and record with a video camera, or with a stopwatch and a counter, the time at which each revolution is completed while one person pushes steadily at the edge, starting from rest, and then repeat the trial with two people pushing at the edge in the same direction. From the times, find the angular velocity after each revolution, plot it against the time, and take the slope of each line as the angular acceleration. Since the merry-go-round and whoever rides it are the same in both trials, the moment of inertia is the same, and $\\text{net}\\;\\ktau = \\kI\\kalpha$ predicts that twice the torque gives twice the angular acceleration. Comparing the two slopes tests that prediction, and measuring the pushing force with a spring scale and the radius at which it is applied lets you check the torque itself; friction at the axle would show up as a slope somewhat less than doubled."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1198532",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "merry-go-round",
+   "prompt": "This problem considers additional aspects of example Calculating the Effect of Mass Distribution on a Merry-Go-Round. (a) Consider part b of that example, when the child is sitting on the merry-go-round. How long does it take the father to give the merry-go-round an angular velocity of 1.50 rad/s? (b) How many revolutions must he go through to generate this velocity? (c) If he exerts a slowing force of 300 N at a radius of 1.35 m, how long would it take him to stop them?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.338,
+      "unit": "s",
+      "hint": "Part (b) of the example already gives the angular acceleration with the child on board. Starting from rest, the angular velocity grows as $\\kw = \\kalpha\\kt$, so the time is the angular velocity wanted divided by that angular acceleration."
+     },
+     {
+      "part": "(b)",
+      "value": 0.0403,
+      "unit": "rev",
+      "hint": "With a constant angular acceleration from rest, the angle turned is $\\theta = \\frac{1}{2}\\kalpha\\kt^2$, as the kinematics of Section 10.2 gives it. Convert radians to revolutions by dividing by $2\\pi$."
+     },
+     {
+      "part": "(c)",
+      "value": 0.313,
+      "unit": "s",
+      "hint": "The slowing force makes a new torque, $\\ktau = \\kr\\kF$ with the new force and radius, and the moment of inertia is the same as in part (b) of the example. The angular acceleration it produces takes the angular velocity of 1.50 rad/s back to zero in a time found the same way as in part (a)."
+     }
+    ],
+    "solution": "(a) $0.338\\ \\text{s}$ (b) $0.0403\\ \\text{rev}$ (c) $0.313\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2669875",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "The triceps muscle in the back of the upper arm extends the forearm. This muscle in a professional boxer exerts a force of $2.00 \\times 10^3\\ \\text{N}$ with an effective perpendicular lever arm of 3.00 cm, producing an angular acceleration of the forearm of $120\\ \\text{rad/s}^2$. What is the moment of inertia of the boxer’s forearm?",
+   "answer": {
+    "type": "number",
+    "value": 0.5,
+    "unit": "kg·m²",
+    "generated_by": "source",
+    "hint": "The torque of the muscle is its force times its perpendicular lever arm, with the lever arm in meters. Then $\\text{net}\\;\\ktau = \\kI\\kalpha$ gives the moment of inertia as the torque divided by the angular acceleration.",
+    "solution": "$0.50\\ \\text{kg}\\cdot\\text{m}^2$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2449638",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "Suppose you exert a force of 180 N tangential to a 0.280-m-radius 75.0-kg grindstone (a solid disk). (a) What torque is exerted? (b) What is the angular acceleration assuming negligible opposing friction? (c) What is the angular acceleration if there is an opposing frictional force of 20.0 N exerted 1.50 cm from the axis?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 50.4,
+      "unit": "N·m",
+      "hint": "A tangential force at the rim has the radius as its perpendicular lever arm, so $\\ktau = \\kr\\kF$."
+     },
+     {
+      "part": "(b)",
+      "value": 17.1,
+      "unit": "rad/s²",
+      "hint": "The grindstone is a solid disk, so Figure 10.12 gives $\\kI = \\frac{1}{2}M\\kR^2$, and $\\kalpha = \\text{net}\\;\\ktau/\\kI$."
+     },
+     {
+      "part": "(c)",
+      "value": 17.0,
+      "unit": "rad/s²",
+      "hint": "The friction force makes its own torque about the axis, with 1.50 cm as its lever arm, and it opposes your push, so the net torque is your torque less the friction's. Divide the net torque by the same moment of inertia."
+     }
+    ],
+    "solution": "(a) $50.4\\ \\text{N}\\cdot\\text{m}$ (b) $17.1\\ \\text{rad/s}^2$ (c) $17.0\\ \\text{rad/s}^2$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3064540",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategy",
+   "prompt": "Zorch, an archenemy of Superman, decides to slow Earth’s rotation to once per 28.0 h by exerting an opposing force at and parallel to the equator. Superman is not immediately concerned, because he knows Zorch can only exert a force of $4.00 \\times 10^7\\ \\text{N}$ (a little greater than a Saturn V rocket’s thrust). How long must Zorch push with this force to accomplish his goal? (This period gives Superman time to devote to other villains.) Explicitly show how you follow the steps found in Problem-Solving Strategy for Rotational Dynamics.",
+   "answer": {
+    "type": "number",
+    "value": 3.96e+18,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "Follow the strategy. The system is Earth, taken as a uniform solid sphere whose moment of inertia Figure 10.12 gives as $\\frac{2}{5}M\\kR^2$; the one external torque is Zorch's force times Earth's radius, since he pushes at the equator and parallel to it. The angular velocity must fall from one revolution per 24.0 h to one per 28.0 h, so find that change in angular velocity, find the angular acceleration from $\\kalpha = \\text{net}\\;\\ktau/\\kI$, and the time is the change divided by the angular acceleration. Check that the answer is enormous compared with any human span of time, as it should be.",
+    "solution": "$3.96 \\times 10^{18}\\ \\text{s}$ or $1.26 \\times 10^{11}\\ \\text{y}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2962557",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategy",
+   "prompt": "Starting with the formula for the moment of inertia of a rod rotated around an axis through one end perpendicular to its length $(\\kI = M\\ell^2/3)$, prove that the moment of inertia of a rod rotated about an axis through its center perpendicular to its length is $\\kI = M\\ell^2/12$. You will find the graphics in Figure 10.12 useful in visualizing these rotations.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$I_{\\text{end}} = I_{\\text{center}} + m\\left(\\frac{l}{2}\\right)^2$. Thus, $I_{\\text{center}} = I_{\\text{end}} - \\frac{1}{4}ml^2 = \\frac{1}{3}ml^2 - \\frac{1}{4}ml^2 = \\frac{1}{12}ml^2$."
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id2514768",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Unreasonable Results",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "A gymnast doing a forward flip lands on the mat and exerts a 500-N·m torque to slow their angular velocity to zero. Their initial angular velocity is 10.0 rad/s, and their moment of inertia is $0.050\\ \\text{kg}\\cdot\\text{m}^2$. (a) What time is required for the gymnast to exactly stop their spin? (b) What is unreasonable about the result? (c) Which premises are unreasonable or inconsistent?",
+   "answer": {
+    "type": "number",
+    "value": 2.0,
+    "unit": "ms",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "The torque produces an angular acceleration $\\kalpha = \\text{net}\\;\\ktau/\\kI$ that opposes the spin, and the time to bring the angular velocity to zero is the initial angular velocity divided by that angular acceleration. Then ask whether a body can stop turning in that time, and which of the given numbers is out of scale for a person.",
+    "solution": "(a) 2.0 ms (b) The time interval is too short. (c) The moment of inertia is much too small, by one to two orders of magnitude. A torque of $500\\ \\text{N}\\cdot\\text{m}$ is reasonable."
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1930191",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Unreasonable Results",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "An advertisement claims that an 800-kg car is aided by its 20.0-kg flywheel, which can accelerate the car from rest to a speed of 30.0 m/s. The flywheel is a disk with a 0.150-m radius. (a) Calculate the angular velocity the flywheel must have if 95.0% of its rotational energy is used to get the car up to speed. (b) What is unreasonable about the result? (c) Which premise is unreasonable or which premises are inconsistent?",
+   "answer": {
+    "type": "number",
+    "value": 17500,
+    "unit": "rpm",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "The flywheel is a disk, so Figure 10.12 gives its moment of inertia as $\\frac{1}{2}M\\kR^2$. The energy stored in its spin is the rotational kinetic energy $\\frac{1}{2}\\kI\\kw^2$, which the next section introduces; set 95.0% of it equal to the car's kinetic energy $\\frac{1}{2}m\\kv^2$ at 30.0 m/s, solve for the angular velocity, and convert radians per second to revolutions per minute.",
+    "solution": "(a) 17,500 rpm (b) This angular velocity is very high for a disk of this size and mass. The radial acceleration at the edge of the disk is > 50,000 gs. (c) Flywheel mass and radius should both be much greater, allowing for a lower spin rate (angular velocity)."
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id3225958",
+   "source_section": "10.1",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "You have a grindstone (a disk) that is 90.0 kg, has a 0.340-m radius, and is turning at 90.0 rpm, and you press a steel axe against it with a radial force of 20.0 N. (a) Assuming the kinetic coefficient of friction between steel and stone is 0.20, calculate the angular acceleration of the grindstone. (b) How many turns will the stone make before coming to rest?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -0.26,
+      "unit": "rad/s²",
+      "hint": "The friction force on the rim is the coefficient of friction times the radial force, and it acts tangent to the rim, so its torque about the axle is that force times the radius. Divide the torque by the moment of inertia of a disk, $\\frac{1}{2}MR^2$, to find the angular acceleration; the stone is slowing, so the sign is negative."
+     },
+     {
+      "part": "(b)",
+      "value": 27,
+      "unit": "rev",
+      "hint": "Convert 90.0 rpm to radians per second, then find the angle turned through while a constant angular acceleration brings that angular velocity to zero, as the kinematic equations of Section 10.2 do, and divide by $2\\pi$ for the number of turns."
+     }
+    ],
+    "solution": "(a) $-0.26\\ \\text{rad/s}^2$ (b) $27\\ \\text{rev}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "mass-distribution-and-inertia"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "mass-distribution-and-inertia"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "mass-distribution-and-inertia"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "torque"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "mass-distribution-and-inertia"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque-on-a-point-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque-on-a-point-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "torque-on-a-point-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "choosing-a-moment-of-inertia"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "mass-distribution-and-inertia",
+   "weight": 3
+  },
+  {
+   "exercise": "ap6",
+   "concept": "choosing-a-moment-of-inertia"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "mass-distribution-and-inertia",
+   "weight": 3
+  },
+  {
+   "exercise": "ap7",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rotational-dynamics-strategy",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rotational-dynamics-strategy",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rotational-dynamics-strategy"
+  },
+  {
+   "exercise": "p9",
+   "concept": "choosing-a-moment-of-inertia"
+  },
+  {
+   "exercise": "p10",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p10",
+   "concept": "rotational-dynamics-strategy",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "choosing-a-moment-of-inertia"
+  },
+  {
+   "exercise": "p11",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p12",
+   "concept": "choosing-a-moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "rotational-kinematic-equations",
+   "weight": 2
+  }
+ ]
+}

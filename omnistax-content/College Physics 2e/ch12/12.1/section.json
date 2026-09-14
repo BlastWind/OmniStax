@@ -1,0 +1,569 @@
+{
+ "id": "12.1",
+ "module": "m42205",
+ "chapter": "12",
+ "title": "Flow Rate and Its Relation to Velocity",
+ "short": "Flow rate",
+ "lead": "Flow rate is the volume of fluid that passes a point in a given time, and it is a different thing from how fast the fluid is moving: a wide, slow river carries far more water than a rapid mountain stream. This section defines flow rate and its units, relates it to the average speed through the cross-sectional area, and follows an incompressible fluid through a tube that narrows and through one that branches, where the same flow must pass every cross-section and the speed rises wherever the area shrinks.",
+ "objectives": [
+  "Calculate flow rate.",
+  "Define units of volume.",
+  "Describe incompressible fluids.",
+  "Explain the consequences of the equation of continuity."
+ ],
+ "summary_html": "<ul><li>Flow rate $\\kQ$ is defined to be the volume $V$ flowing past a point in time $\\kt$, or $\\kQ = \\frac{V}{\\kt}$ where $V$ is volume and $\\kt$ is time.</li><li>The SI unit of volume is $\\text{m}^3$.</li><li>Another common unit is the liter (L), which is $10^{-3}\\;\\text{m}^3$.</li><li>Flow rate and velocity are related by $\\kQ = A\\kvb$ where $A$ is the cross-sectional area of the flow and $\\kvb$ is its average velocity.</li><li>For incompressible fluids, flow rate at various points is constant. That is, $$\\begin{aligned}\\kQone &= \\kQtwo\\\\ A_1\\kvbone &= A_2\\kvbtwo\\\\ n_1A_1\\kvbone &= n_2A_2\\kvbtwo.\\end{aligned}$$</li></ul>",
+ "notes": "The eight problems the book leaves unkeyed are left out: the heart’s rate converted to other units, the 2 mm artery, the artery that branches into 18 smaller ones, the speed in each of a billion capillaries, the flow through one capillary, the heater’s air duct, the proof about the Venturi constriction and the Unreasonable Results mountain stream.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Eight problems have no keyed answer and are left out: the heart’s 5.00 L/min converted to cm³/s and m³/s, the 2 mm artery’s flow rate and volume, the artery that branches into 18 smaller arteries, the average speed in each of a billion capillaries, the speed and number of capillaries from one capillary’s flow rate, the heater’s air duct, the proof that the speed through a constriction rises as the square of the factor by which the diameter falls, and the Unreasonable Results mountain stream. The fire hose problem keys parts (a) and (b) as numbers and part (c) in words, so the card checks the two numbers and carries the book’s answer to (c) in its solution. The Huka Falls problem keeps the book’s photograph on its card. The section’s first AP item, the pipe whose diameter doubles, is keyed (b) and is set as a graded choice; its second, the pool toy’s opening, has no key and no options and is kept as an open item with an AI-written suggested approach, marked as such. The suggested approaches to the three conceptual questions are AI-written and marked. Nothing is taken from another section and nothing of this section’s own is held for a later page. All items sit at the end, since the chapter has no Check Your Understanding box. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-flow-cylinder",
+   "kind": "sim",
+   "number": "12.2",
+   "originals": [
+    "/media/ch12/Figure_13_01_01a.jpg"
+   ],
+   "original_caption": "Flow rate is the volume of fluid per unit time flowing past a point through the area A. Here the shaded cylinder of fluid flows past point P in a uniform pipe in time t. The volume of the cylinder is Ad and the average velocity is v̄ = d/t so that the flow rate is Q = Ad/t = Av̄.",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "flow-rate",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-continuity",
+   "kind": "sim",
+   "number": "12.3",
+   "originals": [
+    "/media/ch12/Figure_13_01_02a.jpg"
+   ],
+   "original_caption": "When a tube narrows, the same volume occupies a greater length. For the same volume to pass points 1 and 2 in a given time, the speed must be greater at point 2. The process is exactly reversible. If the fluid flows in the opposite direction, its speed will decrease when the tube widens. (Note that the relative volumes of the two cylinders and the corresponding velocity vector arrows are not drawn to scale.)",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "flow-rate",
+    "velocity"
+   ]
+  },
+  {
+   "id": "sim-branching",
+   "kind": "sim",
+   "draws": [
+    "flow-rate",
+    "velocity"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "flow-rate",
+   "concept": "flow-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "flow-rate-units",
+   "verb": "introduces"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "metric-prefixes",
+   "verb": "uses"
+  },
+  {
+   "span": "flow-rate-velocity",
+   "concept": "flow-rate-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "flow-rate-velocity",
+   "concept": "flow-rate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "flow-rate-velocity",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "continuity",
+   "concept": "equation-of-continuity",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuity",
+   "concept": "incompressible-fluid",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuity",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "continuity",
+   "concept": "flow-rate-units",
+   "verb": "reinforces"
+  },
+  {
+   "span": "branching",
+   "concept": "continuity-branching",
+   "verb": "introduces"
+  },
+  {
+   "span": "branching",
+   "concept": "equation-of-continuity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "branching",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1549295",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate-velocity",
+   "prompt": "What is the difference between flow rate and fluid velocity? How are they related?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Flow rate is the volume of fluid that passes a point in a given time, $\\kQ = V/\\kt$, measured in cubic meters per second or in liters per minute. Fluid velocity is how fast the fluid itself is moving past that point, measured in meters per second. A wide, slow river and a narrow, fast stream can carry the same flow rate, so neither quantity fixes the other on its own. They are related through the cross-sectional area of the flow: the fluid that passes in a time $\\kt$ is a cylinder of length $\\kvb\\kt$ and cross-section $A$, so $\\kQ = A\\kvb$. For a given flow rate the speed is large where the area is small, which is what a nozzle does, and small where the area is large, which is what a reservoir does."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1917833",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "Many figures in the text show streamlines. Explain why fluid velocity is greatest where streamlines are closest together. (Hint: Consider the relationship between fluid velocity and the cross-sectional area through which it flows.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Streamlines are lines the fluid moves along, so fluid never crosses one, and the fluid between two neighboring streamlines stays between them all the way along. That means the space between two streamlines is a tube of its own, and the same flow rate passes every cross-section of that tube. Where the streamlines draw close together the cross-sectional area of the tube between them is small, and by the equation of continuity, $A_1\\kvbone = A_2\\kvbtwo$, the same flow rate through a smaller area means a greater speed. Where the streamlines spread apart the area grows and the fluid slows. Closely spaced streamlines are therefore the picture of fast flow, exactly as a narrow part of a pipe is."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1434712",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "Identify some substances that are incompressible and some that are not.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Liquids are essentially incompressible: water, blood, gasoline, oil, mercury and alcohol all keep very nearly the same volume however hard they are pressed, which is why the equation of continuity holds for all of them. Solids such as steel, rock and glass are incompressible in the same sense, though they do not flow. Gases are compressible: air, helium, steam, carbon dioxide and natural gas can be squeezed into a much smaller volume or allowed to expand into a larger one, so the equation of continuity must be applied to them with caution whenever they are being compressed or are expanding, as in the cylinder of an engine or a pump."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1500776",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "Water flows through a small horizontal pipe with a speed of 12 m/s into a larger part of the pipe for which the diameter of the pipe is doubled. What is the speed of the water in the larger part of the pipe?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "0.75 m/s",
+     "3.0 m/s",
+     "6.0 m/s",
+     "12 m/s"
+    ],
+    "correct": 1,
+    "hint": "The cross-sectional area goes as the square of the diameter, so doubling the diameter multiplies the area by four, and the equation of continuity says the same flow rate must pass through it.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2019349",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "A popular pool toy allows the user to push a plunger to compress water in a barrel with a diameter of 3.0 cm. The water is compressed with a speed of 1.2 m/s and emerges from a small opening with a speed of 15 m/s. What is the diameter of the opening? Assume the toy is oriented horizontally.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Water is incompressible, so the flow rate the plunger drives through the barrel is the flow rate that leaves the opening, and the equation of continuity applies: $A_1\\kvbone = A_2\\kvbtwo$, with the subscript 1 for the barrel and 2 for the opening. Each area is $\\pi d^2/4$ for its diameter $d$, so the factor $\\pi/4$ cancels and $d_1^2\\kvbone = d_2^2\\kvbtwo$. Solve for the diameter of the opening, $d_2 = d_1\\sqrt{\\kvbone/\\kvbtwo}$, and put in the barrel’s 3.0 cm, the plunger’s 1.2 m/s and the stream’s 15 m/s. The speed grows by a factor of 12.5, so the area shrinks by 12.5 and the diameter by the square root of that, about 3.5, which puts the opening a little under a centimeter across."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2115593",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate",
+   "prompt": "What is the average flow rate in $\\text{cm}^3\\text{/s}$ of gasoline to the engine of a car traveling at 100 km/h if it averages 10.0 km/L?",
+   "answer": {
+    "type": "number",
+    "value": 2.78,
+    "unit": "cm³/s",
+    "generated_by": "source",
+    "hint": "At 100 km/h the car covers 100 km in an hour, and at 10.0 km/L that hour uses 10.0 L of gasoline. The flow rate is that volume divided by the time, converted to cubic centimeters and seconds.",
+    "solution": "$2.78\\;\\text{cm}^3\\text{/s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2017637",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate-velocity",
+   "prompt": "Blood is pumped from the heart at a rate of 5.0 L/min into the aorta (of radius 1.0 cm). Determine the speed of blood through the aorta.",
+   "answer": {
+    "type": "number",
+    "value": 27,
+    "unit": "cm/s",
+    "generated_by": "source",
+    "hint": "Use $\\kQ = A\\kvb$ with $A = \\pi r^2$. Convert the 5.0 L/min to cubic centimeters per second first, and the area is then in square centimeters.",
+    "solution": "27 cm/s"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2438354",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate-velocity",
+   "figure": {
+    "src": "/media/ch12/Figure_13_01_04a.jpg",
+    "alt": "Water rushes over a fall.",
+    "caption": "The Huka Falls in Taupo, New Zealand, demonstrate flow rate. (credit: RaviGogna, Flickr)"
+   },
+   "prompt": "The Huka Falls on the Waikato River is one of New Zealand’s most visited natural tourist attractions (see Figure 12.4). On average the river has a flow rate of about 300,000 L/s. At the gorge, the river narrows to 20 m wide and averages 20 m deep. (a) What is the average speed of the river in the gorge? (b) What is the average speed of the water in the river downstream of the falls when it widens to 60 m and its depth increases to an average of 40 m?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.75,
+      "unit": "m/s",
+      "hint": "The cross-section of the river in the gorge is its width times its depth. Convert 300,000 L/s to cubic meters per second and divide by that area."
+     },
+     {
+      "part": "(b)",
+      "value": 0.13,
+      "unit": "m/s",
+      "hint": "The flow rate is the same downstream, so the same volume per second passes through the larger cross-section of 60 m by 40 m."
+     }
+    ],
+    "solution": "(a) 0.75 m/s (b) 0.13 m/s"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2677825",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "branching",
+   "prompt": "(a) As blood passes through the capillary bed in an organ, the capillaries join to form venules (small veins). If the blood speed increases by a factor of 4.00 and the total cross-sectional area of the venules is $10.0\\;\\text{cm}^2$, what is the total cross-sectional area of the capillaries feeding these venules? (b) How many capillaries are involved if their average diameter is $10.0\\;\\mu\\text{m}$?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 40,
+      "unit": "cm²",
+      "hint": "The total flow rate is the same in the capillaries and in the venules, so $n_1A_1\\kvbone = n_2A_2\\kvbtwo$. If the speed rises by a factor of 4.00 on joining the venules, the total cross-section must fall by the same factor."
+     },
+     {
+      "part": "(b)",
+      "value": 50900000,
+      "unit": "",
+      "hint": "Each capillary of diameter 10.0 μm has a cross-section of $\\pi(5.0\\times10^{-6}\\ \\text{m})^2$. Divide the total area of part (a), converted to square meters, by that."
+     }
+    ],
+    "solution": "(a) $40.0\\;\\text{cm}^2$ (b) $5.09\\times10^{7}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1580788",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate",
+   "prompt": "(a) Estimate the time it would take to fill a private swimming pool with a capacity of 80,000 L using a garden hose delivering 60 L/min. (b) How long would it take to fill if you could divert a moderate size river, flowing at $5000\\;\\text{m}^3\\text{/s}$, into it?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 22,
+      "unit": "h",
+      "hint": "From $\\kQ = V/\\kt$ the time is $\\kt = V/\\kQ$: 80,000 L at 60 L/min, then converted from minutes to hours."
+     },
+     {
+      "part": "(b)",
+      "value": 0.016,
+      "unit": "s",
+      "hint": "The same $\\kt = V/\\kQ$, but the pool’s 80,000 L must first be written in cubic meters to match the river’s flow rate."
+     }
+    ],
+    "solution": "(a) 22 h (b) 0.016 s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3048002",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate-velocity",
+   "prompt": "(a) What is the fluid speed in a fire hose with a 9.00-cm diameter carrying 80.0 L of water per second? (b) What is the flow rate in cubic meters per second? (c) Would your answers be different if salt water replaced the fresh water in the fire hose?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 12.6,
+      "unit": "m/s",
+      "hint": "The hose’s radius is half its 9.00 cm diameter. Write the 80.0 L/s in cubic meters per second and divide by $\\pi r^2$."
+     },
+     {
+      "part": "(b)",
+      "value": 0.08,
+      "unit": "m³/s",
+      "hint": "A liter is $10^{-3}\\;\\text{m}^3$, so this part is a unit conversion of the given 80.0 L/s."
+     }
+    ],
+    "solution": "(a) 12.6 m/s (b) $0.0800\\;\\text{m}^3\\text{/s}$ (c) No, independent of density."
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3079662",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "Water is moving at a velocity of 2.00 m/s through a hose with an internal diameter of 1.60 cm. (a) What is the flow rate in liters per second? (b) The fluid velocity in this hose’s nozzle is 15.0 m/s. What is the nozzle’s inside diameter?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.402,
+      "unit": "L/s",
+      "hint": "$\\kQ = A\\kvb$ with $A = \\pi r^2$ and $r$ half of 1.60 cm; then convert the cubic meters per second to liters per second."
+     },
+     {
+      "part": "(b)",
+      "value": 0.584,
+      "unit": "cm",
+      "hint": "The same flow rate passes the nozzle, so $A_1\\kvbone = A_2\\kvbtwo$ gives the nozzle’s area, and the diameter follows from $A = \\pi d^2/4$."
+     }
+    ],
+    "solution": "(a) 0.402 L/s (b) 0.584 cm"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2421219",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "Water emerges straight down from a faucet with a 1.80-cm diameter at a speed of 0.500 m/s. (Because of the construction of the faucet, there is no variation in speed across the stream.) (a) What is the flow rate in $\\text{cm}^3\\text{/s}$? (b) What is the diameter of the stream 0.200 m below the faucet? Neglect any effects due to surface tension.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 127,
+      "unit": "cm³/s",
+      "hint": "$\\kQ = A\\kvb$ with the area of a 1.80 cm circle and the speed written in centimeters per second."
+     },
+     {
+      "part": "(b)",
+      "value": 0.89,
+      "unit": "cm",
+      "hint": "The falling water speeds up under gravity, so first find its speed 0.200 m down from $\\kv^2 = \\kvo^2 + 2\\kg\\kh$; the flow rate is unchanged, so the stream’s area, and with it its diameter, shrinks as the speed grows."
+     }
+    ],
+    "solution": "(a) $127\\;\\text{cm}^3\\text{/s}$ (b) 0.890 cm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "flow-rate-velocity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "flow-rate",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "incompressible-fluid"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "flow-rate-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "flow-rate"
+  },
+  {
+   "exercise": "p1",
+   "concept": "flow-rate-units",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "flow-rate-velocity"
+  },
+  {
+   "exercise": "p5",
+   "concept": "flow-rate-velocity"
+  },
+  {
+   "exercise": "p5",
+   "concept": "flow-rate-units",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "continuity-branching"
+  },
+  {
+   "exercise": "p7",
+   "concept": "equation-of-continuity",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "flow-rate"
+  },
+  {
+   "exercise": "p9",
+   "concept": "flow-rate-units",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "flow-rate-velocity"
+  },
+  {
+   "exercise": "p11",
+   "concept": "flow-rate-units",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "incompressible-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "p13",
+   "concept": "flow-rate-velocity",
+   "weight": 3
+  },
+  {
+   "exercise": "p15",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "p15",
+   "concept": "flow-rate-velocity",
+   "weight": 3
+  },
+  {
+   "exercise": "p15",
+   "concept": "v-squared",
+   "weight": 2
+  }
+ ]
+}
