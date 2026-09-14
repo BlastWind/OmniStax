@@ -1,0 +1,355 @@
+{
+ "id": "15.5",
+ "module": "m42236",
+ "chapter": "15",
+ "title": "Applications of Thermodynamics: Heat Pumps and Refrigerators",
+ "short": "Heat pumps and refrigerators",
+ "lead": "A heat engine run backward takes heat transfer from a cold reservoir and, with work put in, delivers more than that work to a hot one. This section shows how a heat pump, an air conditioner and a refrigerator are that one machine, follows its working fluid through the condenser, the expansion valve, the evaporator and the compressor, defines the coefficient of performance as the ratio of what you get to what you spend, in its heat pump form and its refrigerator form, works out the best a heat pump can do between two temperatures, and closes with the book’s strategy for thermodynamics problems.",
+ "objectives": [
+  "Describe the use of heat engines in heat pumps and refrigerators.",
+  "Demonstrate how a heat pump works to warm an interior space.",
+  "Explain the differences between heat pumps and refrigerators.",
+  "Calculate a heat pump’s coefficient of performance."
+ ],
+ "summary_html": "<ul><li>An artifact of the second law of thermodynamics is the ability to heat an interior space using a heat pump. Heat pumps compress cold ambient air and, in so doing, heat it to room temperature without violation of conservation principles.</li><li>To calculate the heat pump’s coefficient of performance, use the equation $\\text{COP}_{\\text{hp}} = \\frac{\\kQH}{\\kW}$.</li><li>A refrigerator is a heat pump; it takes warm ambient air and expands it to chill it.</li></ul>",
+ "notes": "The photograph of the refrigerators in an appliance store that opens the section is left out, as are the five problems the book leaves unkeyed, among them the derivation that the coefficient of performance of a refrigerator is one less than that of a heat pump, which the text points the reader at, and the caption of Figure 15.26, which refers to the Carnot cycle of Figure 15.27 where the book means the cycle of Section 15.4, is kept as printed.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Problems 2, 4, 6, 8 and 10 have no keyed answer and are left out: the ideal refrigerator between −20.0 °C and 50.0 °C, the mild-winter heat pump that asks the reader to follow the problem-solving strategy, the refrigerator between −30.0 °C and 45.0 °C with its cost, the cold reservoir temperature for a heat pump of coefficient of performance 12.0, and the derivation of $\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1$, which the text points the reader at. Problem 5 keys parts (a) and (b), and the book’s cost comparison of part (c) is carried in the solution; Problem 9 keys parts (a) and (b), with the book’s discussion of part (c) in the solution. The section has no AP items of its own; Section 15.1’s item on what happens inside a closed refrigerator or freezer is a refrigerator, which this section introduces, so it is set here with source_section 15.1, unkeyed, as an open item with an AI-written suggested approach, marked as such, and 15.1’s notes say so too. The suggested approaches to the five conceptual questions are AI-written and marked. The chapter has no Check Your Understanding box, so nothing is set inline. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-heat-pump-backward",
+   "kind": "sim",
+   "number": "15.26",
+   "originals": [
+    "/media/ch15/Figure_16_05_01.jpg"
+   ],
+   "original_caption": "Heat pumps, air conditioners, and refrigerators are heat engines operated backward. The one shown here is based on a Carnot (reversible) engine. (a) Schematic diagram showing heat transfer from a cold reservoir to a warm reservoir with a heat pump. The directions of W, Q_h, and Q_c are opposite what they would be in a heat engine. (b) PV diagram for a Carnot cycle similar to that in Figure 15.27 but reversed, following path ADCBA. The area inside the loop is negative, meaning there is a net work input. There is heat transfer Q_c into the system from a cold reservoir along path DC, and heat transfer Q_h out of the system into a hot reservoir along path BA.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy",
+    "temperature",
+    "pressure"
+   ]
+  },
+  {
+   "id": "sim-heat-pump-components",
+   "kind": "sim",
+   "number": "15.27",
+   "originals": [
+    "/media/ch15/Figure_16_05_02.jpg"
+   ],
+   "original_caption": "A simple heat pump has four basic components: (1) condenser, (2) expansion valve, (3) evaporator, and (4) compressor. In the heating mode, heat transfer Q_c occurs to the working fluid in the evaporator (3) from the colder outdoor air, turning it into a gas. The electrically driven compressor (4) increases the temperature and pressure of the gas and forces it into the condenser coils (1) inside the heated space. Because the temperature of the gas is higher than the temperature in the room, heat transfer from the gas to the room occurs as the gas condenses to a liquid. The working fluid is then cooled as it flows back through an expansion valve (2) to the outdoor evaporator coils.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "energy"
+   ]
+  },
+  {
+   "id": "sim-friction",
+   "kind": "sim",
+   "number": "15.28",
+   "originals": [
+    "/media/ch15/Figure_16_05_03.jpg"
+   ],
+   "original_caption": "When a real heat engine is run backward, some of the intended work input (W) goes into heat transfer before it gets into the heat engine, thereby reducing its coefficient of performance COP_hp. In this figure, W′ represents the portion of W that goes into the heat pump, while the remainder of W is lost in the form of frictional heat (Q_f) to the cold reservoir. If all of W had gone into the heat pump, then Q_h would have been greater. The best heat pump uses adiabatic and isothermal processes, since, in theory, there would be no dissipative processes to reduce the heat transfer to the hot reservoir.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "energy",
+    "temperature"
+   ]
+  },
+  {
+   "id": "sim-heat-pump-house",
+   "kind": "sim",
+   "number": "15.29",
+   "originals": [
+    "/media/ch15/Figure_16_05_04.jpg"
+   ],
+   "original_caption": "Heat transfer from the outside to the inside, along with work done to run the pump, takes place in the heat pump of the example above. Note that the cold temperature produced by the heat pump is lower than the outside temperature, so that heat transfer into the working fluid occurs. The pump’s compressor produces a temperature greater than the indoor temperature in order for heat transfer into the house to occur.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "energy",
+    "temperature"
+   ]
+  },
+  {
+   "id": "fig-reverse-cycle",
+   "kind": "photo",
+   "number": "15.30",
+   "widths": [
+    150
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-two-ratios",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "temperature"
+   ]
+  }
+ ],
+ "coverage": [
+  {"span": "heat-engines-backward", "concept": "heat-pump", "verb": "introduces"},
+  {"span": "heat-engines-backward", "concept": "heat-engine", "verb": "uses"},
+  {"span": "heat-engines-backward", "concept": "carnot-cycle", "verb": "uses"},
+  {"span": "heat-engines-backward", "concept": "reversible-process", "verb": "uses"},
+  {"span": "heat-engines-backward", "concept": "heat-engine-work-output", "verb": "uses"},
+  {"span": "heat-engines-backward", "concept": "second-law-heat-flow-direction", "verb": "uses"},
+  {"span": "heat-pumps", "concept": "heat-pump-components", "verb": "introduces"},
+  {"span": "heat-pumps", "concept": "heat-pump", "verb": "reinforces"},
+  {"span": "heat-pumps", "concept": "second-law-heat-flow-direction", "verb": "uses"},
+  {"span": "coefficient-of-performance", "concept": "coefficient-of-performance-heat-pump", "verb": "introduces"},
+  {"span": "coefficient-of-performance", "concept": "heat-pumps-and-temperature-difference", "verb": "introduces"},
+  {"span": "coefficient-of-performance", "concept": "heat-engine-efficiency", "verb": "uses"},
+  {"span": "coefficient-of-performance", "concept": "carnot-efficiency", "verb": "uses"},
+  {"span": "coefficient-of-performance", "concept": "real-engines-below-carnot", "verb": "uses"},
+  {"span": "coefficient-of-performance", "concept": "friction", "verb": "uses"},
+  {"span": "best-heat-pump", "concept": "calculate-coefficient-of-performance", "verb": "introduces"},
+  {"span": "best-heat-pump", "concept": "coefficient-of-performance-heat-pump", "verb": "reinforces"},
+  {"span": "best-heat-pump", "concept": "heat-pumps-and-temperature-difference", "verb": "reinforces"},
+  {"span": "best-heat-pump", "concept": "carnot-efficiency", "verb": "uses"},
+  {"span": "best-heat-pump", "concept": "convert-temperature-scales", "verb": "uses"},
+  {"span": "refrigerators", "concept": "coefficient-of-performance-refrigerator", "verb": "introduces"},
+  {"span": "refrigerators", "concept": "energy-efficiency-rating", "verb": "introduces"},
+  {"span": "refrigerators", "concept": "heat-pump", "verb": "reinforces"},
+  {"span": "refrigerators", "concept": "coefficient-of-performance-heat-pump", "verb": "reinforces"},
+  {"span": "refrigerators", "concept": "power", "verb": "uses"},
+  {"span": "problem-solving", "concept": "thermodynamics-problem-solving", "verb": "introduces"},
+  {"span": "problem-solving", "concept": "system-of-interest", "verb": "uses"},
+  {"span": "problem-solving", "concept": "first-law-of-thermodynamics", "verb": "uses"},
+  {"span": "problem-solving", "concept": "heat-engine-efficiency", "verb": "uses"},
+  {"span": "problem-solving", "concept": "carnot-efficiency", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737786809",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "coefficient-of-performance",
+   "prompt": "Explain why heat pumps do not work as well in very cold climates as they do in milder ones. Is the same true of refrigerators?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The best a heat pump can do is the reversed Carnot engine, with $\\text{COP}_{\\text{hp}} = 1/\\text{Eff}_{\\text{C}} = 1/(1 - \\kTempc/\\kTemph)$. In a very cold climate the cold reservoir temperature $\\kTempc$, which must be below the outdoor air, falls far beneath the hot reservoir temperature $\\kTemph$, which must stay above room temperature; the Carnot efficiency of that engine grows, so its reciprocal, the coefficient of performance, shrinks. The pump then delivers less heat transfer $\\kQH$ for every joule of work it is paid, and at some point burning fuel is cheaper. The same is true of a refrigerator, since $\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1$ falls with it: a refrigerator that must hold its inside far below the temperature of a hot kitchen, or make liquid nitrogen at $-200^\\circ\\text{C}$, removes little heat transfer for each joule of work."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738105425",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "heat-pumps",
+   "prompt": "In some Northern European nations, homes are being built without heating systems of any type. They are very well insulated and are kept warm by the body heat of the residents. However, when the residents are not at home, it is still warm in these houses. What is a possible explanation?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Every appliance in the house that runs on electrical energy ends by converting that energy to heat transfer inside the house: lights, a refrigerator, a freezer, a water heater, a computer left on. A refrigerator is the clearest case, because it is a heat pump whose hot reservoir is the kitchen. It takes heat transfer $\\kQC$ from its own inside and delivers $\\kQH = \\kQC + \\kW$ to the room through its coils, so the room receives not only the work $\\kW$ it was paid but the heat transfer removed from the food as well, and the net effect of a refrigerator on the room it stands in is always to warm it. With the house so well insulated that little heat transfer escapes, those small sources are enough to hold the temperature while nobody is home, and the residents’ body heat adds to them when they return."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738105385",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "coefficient-of-performance",
+   "prompt": "Why do refrigerators, air conditioners, and heat pumps operate most cost-effectively for cycles with a small difference between $\\kTemph$ and $\\kTempc$? (Note that the temperatures of the cycle employed are crucial to its $\\text{COP}$.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "All three are heat engines run backward, and the best of them is the reversed Carnot engine, so the coefficient of performance is at most the reciprocal of the Carnot efficiency, $\\text{COP}_{\\text{hp}} = 1/\\text{Eff}_{\\text{C}} = 1/(1 - \\kTempc/\\kTemph)$, with $\\text{COP}_{\\text{ref}}$ one less. When $\\kTempc$ and $\\kTemph$ are close, the ratio $\\kTempc/\\kTemph$ is close to 1, the Carnot efficiency is small, and its reciprocal is large: a great deal of heat transfer is moved for every joule of work. The work is what you pay for, so the cost of moving a given amount of heat transfer falls as the temperature difference of the cycle shrinks. That is why a heat pump does best in a mild climate, why a refrigerator should not be set colder than it needs to be, and why an air conditioner costs more to run on the hottest days."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738008505",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {"at": "end"},
+   "cite": "refrigerators",
+   "prompt": "Grocery store managers contend that there is <em>less</em> total energy consumption in the summer if the store is kept at a <em>low</em> temperature. Make arguments to support or refute this claim, taking into account that there are numerous refrigerators and freezers in the store.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "There is an argument for the claim. Each refrigerator and freezer is a heat pump whose hot reservoir is the store, and its coefficient of performance $\\text{COP}_{\\text{ref}} = \\kQC/\\kW$ is largest when the difference between its inside and the store is small; a cool store therefore lets every one of them remove its heat transfer with less work, and there is less heat transfer into them through their doors and walls in the first place. There is also an argument against it. Keeping the store cool in summer is itself the work of an air conditioner, another heat pump, which must move all the heat transfer that enters the building from outside plus everything the refrigerators reject into the store, $\\kQH = \\kQC + \\kW$ from each of them, and the cooler the store is held against a hot day the larger its own temperature difference and the smaller its coefficient of performance. Which effect wins depends on the numbers: how much of the store’s load is the refrigerators, how well insulated they are, and how hot it is outside. A fair answer says that the refrigerators alone favor a cool store, that the air conditioning alone favors a warm one, and that the total is least at some temperature between."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737965613",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "heat-engines-backward",
+   "prompt": "Can you cool a kitchen by leaving the refrigerator door open?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. A refrigerator is a heat pump whose cold reservoir is its inside and whose hot reservoir is the kitchen. With the door open it takes heat transfer $\\kQC$ from the kitchen air that flows into it and delivers $\\kQH = \\kQC + \\kW$ back into the kitchen through the coils at its back. The kitchen therefore gets back everything that was taken out of it plus the work $\\kW$ the compressor was paid, which has also become heat transfer, so the net effect is to warm the kitchen by $\\kW$ for every cycle. To cool a room the hot reservoir must be somewhere else, which is exactly what an air conditioner arranges by putting its condenser coils outside the window."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id3826091",
+   "source_section": "15.1",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "heat-engines-backward",
+   "prompt": "Describe what happens to the system inside of a refrigerator or freezer in terms of heat transfer, work, and conservation of energy. Confine yourself to time periods in which the door is closed.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the system to be the inside of the refrigerator, its food and air. While the door is closed, heat transfer leaks into it from the warmer kitchen through the walls and the door seal, which would raise its internal energy and its temperature. The refrigerator is a heat engine run backward: its compressor does work $\\kW$ on the working fluid, and the fluid takes heat transfer $\\kQC$ from the inside at the evaporator and gives $\\kQH = \\kQC + \\kW$ to the kitchen at the condenser coils. Over any period in which the inside holds its temperature, the heat transfer removed, $\\kQC$, equals the heat transfer that leaked in, so the internal energy of the system does not change and the first law reads $\\Delta E_{\\text{int}} = 0$ for it. Energy is conserved overall: the kitchen receives the heat transfer that leaked into the refrigerator plus the work the compressor was paid, and the electrical energy that supplied that work is what has been used up."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737753692",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "best-heat-pump",
+   "prompt": "What is the coefficient of performance of an ideal heat pump that has heat transfer from a cold temperature of $-25.0^\\circ\\text{C}$ to a hot temperature of $40.0^\\circ\\text{C}$?",
+   "answer": {
+    "type": "number",
+    "value": 4.82,
+    "generated_by": "source",
+    "hint": "An ideal heat pump is a Carnot engine reversed, so $\\text{COP}_{\\text{hp}} = 1/\\text{Eff}_{\\text{C}}$ with the Carnot efficiency taken from the two temperatures in kelvins.",
+    "solution": "4.82"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737827636",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "refrigerators",
+   "prompt": "What is the best coefficient of performance possible for a hypothetical refrigerator that could make liquid nitrogen at $-200^\\circ\\text{C}$ and has heat transfer to the environment at $35.0^\\circ\\text{C}$?",
+   "answer": {
+    "type": "number",
+    "value": 0.311,
+    "generated_by": "source",
+    "hint": "The best refrigerator is a Carnot engine reversed. Find $\\text{COP}_{\\text{hp}} = 1/\\text{Eff}_{\\text{C}}$ from the temperatures in kelvins, then $\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1$; with so large a temperature difference the result is less than 1.",
+    "solution": "0.311"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737787858",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "best-heat-pump",
+   "prompt": "(a) What is the best coefficient of performance for a heat pump that has a hot reservoir temperature of $50.0^\\circ\\text{C}$ and a cold reservoir temperature of $-20.0^\\circ\\text{C}$? (b) How much heat transfer occurs into the warm environment if $3.60 \\times 10^{7}\\ \\text{J}$ of work ($10.0\\ \\text{kW}\\cdot\\text{h}$) is put into it? (c) If the cost of this work input is $10.0\\ \\text{cents/kW}\\cdot\\text{h}$, how does its cost compare with the direct heat transfer achieved by burning natural gas at a cost of 85.0 cents per therm. (A therm is a common unit of energy for natural gas and equals $1.055 \\times 10^{8}\\ \\text{J}$.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.61,
+      "hint": "The best heat pump is a Carnot engine reversed, so $\\text{COP}_{\\text{hp}} = 1/(1 - \\kTempc/\\kTemph)$ with both temperatures in kelvins."
+     },
+     {
+      "part": "(b)",
+      "value": 1.66e8,
+      "unit": "J",
+      "hint": "The coefficient of performance is $\\kQH/\\kW$, so the heat transfer into the warm environment is the coefficient times the work put in."
+     }
+    ],
+    "solution": "(a) 4.61. (b) $1.66 \\times 10^{8}\\ \\text{J}$ or $3.97 \\times 10^{4}\\ \\text{kcal}$. (c) To transfer $1.66 \\times 10^{8}\\ \\text{J}$, the heat pump costs ＄1.00 and natural gas costs ＄1.34."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737792679",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "refrigerators",
+   "prompt": "Suppose you want to operate an ideal refrigerator with a cold temperature of $-10.0^\\circ\\text{C}$, and you would like it to have a coefficient of performance of 7.00. What is the hot reservoir temperature for such a refrigerator?",
+   "answer": {
+    "type": "number",
+    "value": 27.6,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "For an ideal refrigerator $\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1$ and $\\text{COP}_{\\text{hp}} = 1/(1 - \\kTempc/\\kTemph)$. Set $\\text{COP}_{\\text{hp}} = 8.00$, solve for $\\kTemph$ in kelvins, then convert back to degrees Celsius.",
+    "solution": "$27.6^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738091163",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "refrigerators",
+   "prompt": "A 4-ton air conditioner removes $5.06 \\times 10^{7}\\ \\text{J}$ (48,000 British thermal units) from a cold environment in 1.00 h. (a) What energy input in joules is necessary to do this if the air conditioner has an energy efficiency rating ($\\text{EER}$) of 12.0? (b) What is the cost of doing this if the work costs 10.0 cents per $3.60 \\times 10^{6}\\ \\text{J}$ (one kilowatt-hour)? (c) Discuss whether this cost seems realistic. Note that the energy efficiency rating ($\\text{EER}$) of an air conditioner or refrigerator is defined to be the number of British thermal units of heat transfer from a cold environment per hour divided by the watts of power input.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.44e7,
+      "unit": "J",
+      "hint": "The EER is the British thermal units removed per hour divided by the power input in watts. Divide 48,000 Btu/h by 12.0 to get the power in watts, then multiply by the 3600 s of one hour to get the energy input in joules."
+     },
+     {
+      "part": "(b)",
+      "value": 40,
+      "unit": "cents",
+      "hint": "Divide the energy input by $3.60 \\times 10^{6}\\ \\text{J}$ to get the number of kilowatt-hours, then multiply by 10.0 cents."
+     }
+    ],
+    "solution": "(a) $1.44 \\times 10^{7}\\ \\text{J}$. (b) 40 cents. (c) This cost seems quite realistic; it says that running an air conditioner all day would cost ＄9.59 (if it ran continuously)."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "cq1", "concept": "heat-pumps-and-temperature-difference"},
+  {"exercise": "cq1", "concept": "coefficient-of-performance-refrigerator", "weight": 2},
+  {"exercise": "cq2", "concept": "heat-pump"},
+  {"exercise": "cq2", "concept": "first-law-of-thermodynamics", "weight": 2},
+  {"exercise": "cq3", "concept": "heat-pumps-and-temperature-difference"},
+  {"exercise": "cq3", "concept": "coefficient-of-performance-heat-pump", "weight": 2},
+  {"exercise": "cq4", "concept": "coefficient-of-performance-refrigerator"},
+  {"exercise": "cq4", "concept": "heat-pumps-and-temperature-difference", "weight": 3},
+  {"exercise": "cq5", "concept": "heat-pump"},
+  {"exercise": "cq5", "concept": "coefficient-of-performance-refrigerator", "weight": 2},
+  {"exercise": "ap1", "concept": "heat-pump"},
+  {"exercise": "ap1", "concept": "first-law-of-thermodynamics", "weight": 3},
+  {"exercise": "p1", "concept": "calculate-coefficient-of-performance"},
+  {"exercise": "p1", "concept": "coefficient-of-performance-heat-pump", "weight": 3},
+  {"exercise": "p1", "concept": "carnot-efficiency", "weight": 2},
+  {"exercise": "p3", "concept": "calculate-coefficient-of-performance"},
+  {"exercise": "p3", "concept": "coefficient-of-performance-refrigerator", "weight": 3},
+  {"exercise": "p5", "concept": "calculate-coefficient-of-performance"},
+  {"exercise": "p5", "concept": "coefficient-of-performance-heat-pump", "weight": 3},
+  {"exercise": "p5", "concept": "thermodynamics-problem-solving", "weight": 2},
+  {"exercise": "p7", "concept": "calculate-coefficient-of-performance"},
+  {"exercise": "p7", "concept": "coefficient-of-performance-refrigerator", "weight": 3},
+  {"exercise": "p7", "concept": "convert-temperature-scales", "weight": 2},
+  {"exercise": "p9", "concept": "energy-efficiency-rating"},
+  {"exercise": "p9", "concept": "coefficient-of-performance-refrigerator", "weight": 2}
+ ]
+}

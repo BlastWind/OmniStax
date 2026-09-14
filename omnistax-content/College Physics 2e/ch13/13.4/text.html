@@ -1,0 +1,135 @@
+<section id="collisions">
+<h2>Pressure from molecular collisions</h2>
+<p class="cite-target">We have developed macroscopic definitions of pressure and temperature. Pressure is the force divided by the area on which the force is exerted, and temperature is measured with a thermometer. We gain a better understanding of pressure and temperature from the kinetic theory of gases, which assumes that atoms and molecules are in continuous random motion.</p>
+<figure class="sim" id="sim-box" data-figure="13.21 + 13.22" data-original="/media/ch13/Figure_14_04_01.jpg,/media/ch13/Figure_14_04_02.jpg" data-original-width="200,250" data-original-caption="When a molecule collides with a rigid wall, the component of its momentum perpendicular to the wall is reversed. A force is thus exerted on the wall, creating pressure.">
+  <div class="sim-head"><span class="eyebrow">Figure 13.21 + 13.22</span><span>A box 10 nm on a side, seen in section, holds $N$ molecules of the gas you choose, each moving with a velocity drawn from the distribution at the temperature $\kTemp$ and bouncing off the rigid walls without touching one another. One molecule is followed with a ring: when it strikes the right wall, only the component of its velocity perpendicular to the wall is reversed, its momentum changes by $\kdp = 2m\kvx$, and the force on the wall flashes up. The bar beside the wall meters the momentum the wall receives per unit time against the average the derivation predicts; watch it jump about with a few molecules and settle with many. Add molecules or raise the temperature and watch the pressure in the readout rise.</span></div>
+</figure>
+<p>Figure 13.21 shows an elastic collision of a gas molecule with the wall of a container, so that it exerts a force on the wall (by Newton’s third law). Because a huge number of molecules will collide with the wall in a short time, we observe an average force per unit area. These collisions are the source of pressure in a gas. As the number of molecules increases, the number of collisions and thus the pressure increase. Similarly, the gas pressure is higher if the average velocity of molecules is higher. The actual relationship is derived in the Things Great and Small feature below. The following relationship is found:</p>
+$$\kPr V = \frac{1}{3}Nm\overline{v^2},$$
+<p>where $\kPr$ is the pressure (average force per unit area), $V$ is the volume of gas in the container, $N$ is the number of molecules in the container, $m$ is the mass of a molecule, and $\overline{v^2}$ is the average of the molecular speed squared.</p>
+<div class="exercises" data-place="collisions"></div>
+</section>
+
+<section id="derivation">
+<h2>The ideal gas law from the molecules</h2>
+<p class="cite-target">What can we learn from this atomic and molecular version of the ideal gas law? We can derive a relationship between temperature and the average translational kinetic energy of molecules in a gas. Recall the previous expression of the ideal gas law:</p>
+$$\kPr V = Nk\kTemp.$$
+<p>Equating the right-hand side of this equation with the right-hand side of $\kPr V = \frac{1}{3}Nm\overline{v^2}$ gives</p>
+$$\frac{1}{3}Nm\overline{v^2} = Nk\kTemp.$$
+<div class="note">
+<div class="eyebrow">Making Connections: Things Great and Small—Atomic and Molecular Origin of Pressure in a Gas</div>
+<p>Figure 13.22 shows a box filled with a gas. We know from our previous discussions that putting more gas into the box produces greater pressure, and that increasing the temperature of the gas also produces a greater pressure. But why should increasing the temperature of the gas increase the pressure in the box? A look at the atomic and molecular scale gives us some answers, and an alternative expression for the ideal gas law.</p>
+<p>The figure shows an expanded view of an elastic collision of a gas molecule with the wall of a container. Calculating the average force exerted by such molecules will lead us to the ideal gas law, and to the connection between temperature and molecular kinetic energy. We assume that a molecule is small compared with the separation of molecules in the gas, and that its interaction with other molecules can be ignored. We also assume the wall is rigid and that the molecule’s direction changes, but that its speed remains constant (and hence its kinetic energy and the magnitude of its momentum remain constant as well). This assumption is not always valid, but the same result is obtained with a more detailed description of the molecule’s exchange of energy and momentum with the wall.</p>
+<p>If the molecule’s velocity changes in the $x$-direction, its momentum changes from $-m\kvx$ to $+m\kvx$. Thus, its change in momentum is $\Delta(m\kv) = +m\kvx - (-m\kvx) = 2m\kvx$. The force exerted on the molecule is given by</p>
+$$\kF = \frac{\kdp}{\Delta t} = \frac{2m\kvx}{\Delta t}.$$
+<p>There is no force between the wall and the molecule until the molecule hits the wall. During the short time of the collision, the force between the molecule and wall is relatively large. We are looking for an average force; we take $\Delta t$ to be the average time between collisions of the molecule with this wall. It is the time it would take the molecule to go across the box and back (a distance $2l$) at a speed of $\kvx$. Thus $\Delta t = 2l/\kvx$, and the expression for the force becomes</p>
+$$\kF = \frac{2m\kvx}{2l/\kvx} = \frac{m\kvx^2}{l}.$$
+<p>This force is due to <em>one</em> molecule. We multiply by the number of molecules $N$ and use their average squared velocity to find the force</p>
+$$\kF = N\frac{m\overline{v_x^2}}{l},$$
+<p>where the bar over a quantity means its average value. We would like to have the force in terms of the speed $\kv$, rather than the $x$-component of the velocity. We note that the total velocity squared is the sum of the squares of its components, so that</p>
+$$\overline{v^2} = \overline{v_x^2} + \overline{v_y^2} + \overline{v_z^2}.$$
+<p>Because the velocities are random, their average components in all directions are the same:</p>
+$$\overline{v_x^2} = \overline{v_y^2} = \overline{v_z^2}.$$
+<p>Thus,</p>
+$$\overline{v^2} = 3\overline{v_x^2},$$
+<p>or</p>
+$$\overline{v_x^2} = \frac{1}{3}\overline{v^2}.$$
+<p>Substituting $\frac{1}{3}\overline{v^2}$ into the expression for $\kF$ gives</p>
+$$\kF = N\frac{m\overline{v^2}}{3l}.$$
+<p>The pressure is $\kF/A,$ so that we obtain</p>
+$$\kPr = \frac{\kF}{A} = N\frac{m\overline{v^2}}{3Al} = \frac{1}{3}\frac{Nm\overline{v^2}}{V},$$
+<p>where we used $V = Al$ for the volume. This gives the important result.</p>
+$$\kPr V = \frac{1}{3}Nm\overline{v^2}$$
+<p>This equation is another expression of the ideal gas law.</p>
+</div>
+</section>
+
+<section id="thermal-energy">
+<h2>Temperature and the average kinetic energy of a molecule</h2>
+<p class="cite-target">We can get the average kinetic energy of a molecule, $\frac{1}{2}m\kv^2$, from the right-hand side of the equation by canceling $N$ and multiplying by 3/2. This calculation produces the result that the average kinetic energy of a molecule is directly related to absolute temperature.</p>
+$$\kKEbar = \frac{1}{2}m\overline{v^2} = \frac{3}{2}k\kTemp$$
+<p>The average translational kinetic energy of a molecule, $\kKEbar$, is called <strong>thermal energy</strong>. The equation $\kKEbar = \frac{1}{2}m\overline{v^2} = \frac{3}{2}k\kTemp$ is a molecular interpretation of temperature, and it has been found to be valid for gases and reasonably accurate in liquids and solids. It is another definition of temperature based on an expression of the molecular energy.</p>
+<p>It is sometimes useful to rearrange $\kKEbar = \frac{1}{2}m\overline{v^2} = \frac{3}{2}k\kTemp$, and solve for the average speed of molecules in a gas in terms of temperature,</p>
+$$\sqrt{\overline{v^2}} = \kvrms = \sqrt{\frac{3k\kTemp}{m}},$$
+<p>where $\kvrms$ stands for root-mean-square (rms) speed.</p>
+<div class="example" id="ex-kinetic-energy">
+<h3>Example 13.8 · Calculating Kinetic Energy and Speed of a Gas Molecule</h3>
+<p>(a) What is the average kinetic energy of a gas molecule at $20.0^\circ\text{C}$ (room temperature)? (b) Find the rms speed of a nitrogen molecule $(\text{N}_2)$ at this temperature.</p>
+<h4>Strategy for (a)</h4>
+<p>The known in the equation for the average kinetic energy is the temperature.</p>
+$$\kKEbar = \frac{1}{2}m\overline{v^2} = \frac{3}{2}k\kTemp$$
+<p>Before substituting values into this equation, we must convert the given temperature to kelvins. This conversion gives $\kTemp = (20.0 + 273)\ \text{K} = 293\ \text{K}.$</p>
+<h4>Solution for (a)</h4>
+<p>The temperature alone is sufficient to find the average translational kinetic energy. Substituting the temperature into the translational kinetic energy equation gives</p>
+$$\kKEbar = \frac{3}{2}k\kTemp = \frac{3}{2}(1.38\times10^{-23}\ \text{J/K})(293\ \text{K}) = 6.07\times10^{-21}\ \text{J}.$$
+<h4>Strategy for (b)</h4>
+<p>Finding the rms speed of a nitrogen molecule involves a straightforward calculation using the equation</p>
+$$\sqrt{\overline{v^2}} = \kvrms = \sqrt{\frac{3k\kTemp}{m}},$$
+<p>but we must first find the mass of a nitrogen molecule. Using the molecular mass of nitrogen $\text{N}_2$ from the periodic table,</p>
+$$m = \frac{2(14.0067)\times10^{-3}\ \text{kg/mol}}{6.02\times10^{23}\ \text{mol}^{-1}} = 4.65\times10^{-26}\ \text{kg}.$$
+<h4>Solution for (b)</h4>
+<p>Substituting this mass and the value for $k$ into the equation for $\kvrms$ yields</p>
+$$\kvrms = \sqrt{\frac{3k\kTemp}{m}} = \sqrt{\frac{3(1.38\times10^{-23}\ \text{J/K})(293\ \text{K})}{4.65\times10^{-26}\ \text{kg}}} = 511\ \text{m/s}.$$
+<h4>Discussion</h4>
+<p>Note that the average kinetic energy of the molecule is independent of the type of molecule. The average translational kinetic energy depends only on absolute temperature. The kinetic energy is very small compared to macroscopic energies, so that we do not feel when an air molecule is hitting our skin. The rms velocity of the nitrogen molecule is surprisingly large. These large molecular velocities do not yield macroscopic movement of air, since the molecules move in all directions with equal likelihood. The <em>mean free path</em> (the distance a molecule can move on average between collisions) of molecules in air is very small, and so the molecules move rapidly but do not get very far in a second. The high value for rms speed is reflected in the speed of sound, however, which is about 340 m/s at room temperature. The faster the rms speed of air molecules, the faster that sound vibrations can be transferred through the air. The speed of sound increases with temperature and is greater in gases with small molecular masses, such as helium. (See Figure 13.23.)</p>
+</div>
+<figure class="sim" id="sim-speeds" data-figure="13.23" data-original="/media/ch13/Figure_14_04_03.jpg" data-original-width="250" data-original-caption="(a) There are many molecules moving so fast in an ordinary gas that they collide a billion times every second. (b) Individual molecules do not move very far in a small amount of time, but disturbances like sound waves are transmitted at speeds related to the molecular speeds.">
+  <div class="sim-head"><span class="eyebrow">Figure 13.23</span><span>Forty molecules of the gas you choose sit in a box with their velocities drawn as arrows, some slow, some fast, in every direction alike. Beside the box, the bar shows the average kinetic energy $\kKEbar$ of one molecule and the arrow shows the rms speed $\kvrms$. Raise the temperature and every arrow grows; change the gas at the same temperature and the bar does not move, because the average kinetic energy depends on the temperature alone, while the arrow shortens for a heavier molecule and lengthens for a lighter one.</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">Making Connections: Historical Note—Kinetic Theory of Gases</div>
+<p>The kinetic theory of gases was developed by Daniel Bernoulli (1700–1782), who is best known in physics for his work on fluid flow (hydrodynamics). Bernoulli’s work predates the atomistic view of matter established by Dalton.</p>
+</div>
+</section>
+
+<section id="distribution">
+<h2>Distribution of Molecular Speeds</h2>
+<p class="cite-target">The motion of molecules in a gas is random in magnitude and direction for individual molecules, but a gas of many molecules has a predictable distribution of molecular speeds. This distribution is called the <em>Maxwell-Boltzmann distribution</em>, after its originators, who calculated it based on kinetic theory, and has since been confirmed experimentally. (See Figure 13.24.) The distribution has a long tail, because a few molecules may go several times the rms speed. The most probable speed $\kvp$ is less than the rms speed $\kvrms$. Figure 13.25 shows that the curve is shifted to higher speeds at higher temperatures, with a broader range of speeds.</p>
+<figure class="sim" id="sim-distribution" data-figure="13.24 + 13.25" data-original="/media/ch13/OSX_CP2e_Figure_14_04_04.jpg,/media/ch13/OSX_CP2e_Figure_14_04_05.jpg" data-original-width="350,250" data-original-caption="The Maxwell-Boltzmann distribution of molecular speeds in an ideal gas. The most likely speed v_p is less than the rms speed v_rms. Although very high speeds are possible, only a tiny fraction of the molecules have speeds that are an order of magnitude greater than v_rms.">
+  <div class="sim-head"><span class="eyebrow">Figure 13.24 + 13.25</span><span>The Maxwell-Boltzmann distribution of molecular speeds for the gas you choose is drawn at two temperatures, $\kTempone$ and $\kTemptwo$. On each curve the most probable speed $\kvp$ sits at the peak and the rms speed $\kvrms$ a little to its right, and the long tail on the right holds the few molecules moving at several times the rms speed. Set the two temperatures equal and the curves lie on one another; raise either and watch its curve move out to higher speeds and flatten as the range of speeds broadens.</span></div>
+</figure>
+<p>The distribution of thermal speeds depends strongly on temperature. As temperature increases, the speeds are shifted to higher values and the distribution is broadened.</p>
+<p>What is the implication of the change in distribution with temperature shown in Figure 13.25 for humans? All other things being equal, if a person has a fever, they are likely to lose more water molecules, particularly from linings along moist cavities such as the lungs and mouth, creating a dry sensation in the mouth.</p>
+</section>
+
+<section id="escape">
+<h2>Escape velocity and the loss of an atmosphere</h2>
+<div class="example" id="ex-escape">
+<h3>Example 13.9 · Calculating Temperature: Escape Velocity of Helium Atoms</h3>
+<p class="cite-target">In order to escape Earth’s gravity, an object near the top of the atmosphere (at an altitude of 100 km) must travel away from Earth at 11.1 km/s. This speed is called the <em>escape velocity</em>. At what temperature would helium atoms have an rms speed equal to the escape velocity?</p>
+<figure class="sim" id="sim-escape">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The rms speed of hydrogen, helium, nitrogen and oxygen molecules is plotted against temperature, with the escape velocity of Earth or of the Moon drawn as a level across the graph. Slide the temperature to where helium’s curve meets Earth’s escape velocity, which is the temperature Example 13.9 finds, and note how much farther the heavier molecules have to go; then switch to the Moon and watch how far the temperature at which each gas reaches the escape velocity falls.</span></div>
+</figure>
+<h4>Strategy</h4>
+<p>Identify the knowns and unknowns and determine which equations to use to solve the problem.</p>
+<h4>Solution</h4>
+<ol>
+<li>Identify the knowns: $\kv$ is the escape velocity, 11.1 km/s.</li>
+<li>Identify the unknowns: We need to solve for temperature, $\kTemp$. We also need to solve for the mass $m$ of the helium atom.</li>
+<li>Determine which equations are needed.
+<ul>
+<li>To solve for mass $m$ of the helium atom, we can use information from the periodic table:
+$$m = \frac{\text{molar mass}}{\text{number of atoms per mole}}.$$
+</li>
+<li>To solve for temperature $\kTemp$, we can rearrange either
+$$\kKEbar = \frac{1}{2}m\overline{v^2} = \frac{3}{2}k\kTemp$$
+or
+$$\sqrt{\overline{v^2}} = \kvrms = \sqrt{\frac{3k\kTemp}{m}}$$
+to yield
+$$\kTemp = \frac{m\overline{v^2}}{3k},$$
+where $k$ is the Boltzmann constant and $m$ is the mass of a helium atom.</li>
+</ul>
+</li>
+<li>Plug the known values into the equations and solve for the unknowns.
+$$m = \frac{\text{molar mass}}{\text{number of atoms per mole}} = \frac{4.0026\times10^{-3}\ \text{kg/mol}}{6.02\times10^{23}\ \text{mol}} = 6.65\times10^{-27}\ \text{kg}$$
+$$\kTemp = \frac{(6.65\times10^{-27}\ \text{kg})(11.1\times10^{3}\ \text{m/s})^2}{3(1.38\times10^{-23}\ \text{J/K})} = 1.98\times10^{4}\ \text{K}$$
+</li>
+</ol>
+<h4>Discussion</h4>
+<p>This temperature is much higher than atmospheric temperature, which is approximately 250 K ($-25^\circ\text{C}$ or $-10^\circ\text{F}$) at high altitude. Very few helium atoms are left in the atmosphere, but there were many when the atmosphere was formed. The reason for the loss of helium atoms is that there are a small number of helium atoms with speeds higher than Earth’s escape velocity even at normal temperatures. The speed of a helium atom changes from one instant to the next, so that at any instant, there is a small, but nonzero chance that the speed is greater than the escape speed and the molecule escapes from Earth’s gravitational pull. Heavier molecules, such as oxygen, nitrogen, and water (very little of which reach a very high altitude), have smaller rms speeds, and so it is much less likely that any of them will have speeds greater than the escape velocity. In fact, so few have speeds above the escape velocity that billions of years are required to lose significant amounts of the atmosphere. Figure 13.26 shows the impact of a lack of an atmosphere on the Moon. Because the gravitational pull of the Moon is much weaker, it has lost almost its entire atmosphere. The comparison between Earth and the Moon is discussed in this chapter’s Problems and Exercises.</p>
+</div>
+<figure class="photo" id="fig-rover" data-figure="13.26">
+  <img src="/media/ch13/Figure_14_04_06.jpg" alt="Photograph of the lunar rover on the Moon. The photo looks like it was taken at night with a powerful spotlight shining on the rover from the left: light reflects off the rover, the astronaut, and the Moon’s surface, but the sky is black. The shadow of the rover is very sharp." data-width="250">
+  <figcaption><span class="eyebrow">Figure 13.26</span><span>This photograph of Apollo 17 Commander Eugene Cernan driving the lunar rover on the Moon in 1972 looks as though it was taken at night with a large spotlight. In fact, the light is coming from the Sun. Because the acceleration due to gravity on the Moon is so low (about 1/6 that of Earth), the Moon’s escape velocity is much smaller. As a result, gas molecules escape very easily from the Moon, leaving it with virtually no atmosphere. Even during the daytime, the sky is black because there is no gas to scatter sunlight. (credit: Harrison H. Schmitt/NASA)</span></figcaption>
+</figure>
+</section>

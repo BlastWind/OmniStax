@@ -1,0 +1,955 @@
+{
+  "types": [
+    {
+      "id": "temperature",
+      "label": "temperature",
+      "dimension": "K"
+    }
+  ],
+  "symbols": [
+    {
+      "sym": "T_temp",
+      "latex": "T",
+      "type": "temperature",
+      "macro": "\\kTemp"
+    },
+    {
+      "sym": "ΔT",
+      "latex": "\\Delta T",
+      "type": "temperature",
+      "macro": "\\kdTemp"
+    },
+    {
+      "sym": "T_0temp",
+      "latex": "T_0",
+      "type": "temperature",
+      "macro": "\\kTempo"
+    },
+    {
+      "sym": "T_ftemp",
+      "latex": "T_{\\text{f}}",
+      "type": "temperature",
+      "macro": "\\kTempf"
+    },
+    {
+      "sym": "T_1temp",
+      "latex": "T_1",
+      "type": "temperature",
+      "macro": "\\kTempone"
+    },
+    {
+      "sym": "T_2temp",
+      "latex": "T_2",
+      "type": "temperature",
+      "macro": "\\kTemptwo"
+    },
+    {
+      "sym": "T_c",
+      "latex": "T_{\\text{c}}",
+      "type": "temperature",
+      "macro": "\\kTempc"
+    },
+    {
+      "sym": "T_C",
+      "latex": "T_{{}^\\circ\\text{C}}",
+      "type": "temperature",
+      "macro": "\\kTempC"
+    },
+    {
+      "sym": "T_F",
+      "latex": "T_{{}^\\circ\\text{F}}",
+      "type": "temperature",
+      "macro": "\\kTempF"
+    },
+    {
+      "sym": "T_K",
+      "latex": "T_{\\text{K}}",
+      "type": "temperature",
+      "macro": "\\kTempK"
+    },
+    {
+      "sym": "P_0",
+      "latex": "P_0",
+      "type": "pressure",
+      "macro": "\\kPro"
+    },
+    {
+      "sym": "P_f",
+      "latex": "P_{\\text{f}}",
+      "type": "pressure",
+      "macro": "\\kPrf"
+    },
+    {
+      "sym": "KE_bar",
+      "latex": "\\overline{\\text{KE}}",
+      "type": "energy",
+      "macro": "\\kKEbar"
+    },
+    {
+      "sym": "v_rms",
+      "latex": "v_{\\text{rms}}",
+      "type": "velocity",
+      "macro": "\\kvrms"
+    },
+    {
+      "sym": "v2_bar",
+      "latex": "\\overline{v^2}"
+    },
+    {
+      "sym": "N_count",
+      "latex": "N"
+    },
+    {
+      "sym": "n",
+      "latex": "n"
+    },
+    {
+      "sym": "N_A",
+      "latex": "N_{\\text{A}}"
+    },
+    {
+      "sym": "k_boltz",
+      "latex": "k"
+    },
+    {
+      "sym": "R_gas",
+      "latex": "R"
+    },
+    {
+      "sym": "α_exp",
+      "latex": "\\alpha"
+    },
+    {
+      "sym": "β",
+      "latex": "\\beta"
+    },
+    {
+      "sym": "ΔA",
+      "latex": "\\Delta A"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "temperature",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "Temperature is what a thermometer measures",
+      "why": "Temperature is operationally defined to be what we measure with a thermometer. Your senses of hot and cold are relative, since tepid water feels cool to a hand that was in hot water and warm to a hand that was in cold water, but two accurate thermometers placed in the same water give the same reading. Many physical quantities are defined solely in terms of how they are measured, and the section promises the more physical explanation, that temperature is related to the kinetic energies of atoms and molecules, for later in the chapter.",
+      "evidence": "The section opens on the two hands in tepid water, states the definition twice, and the Misconception Alert about the wooden and metal benches asks the reader to separate what feels hot from what is hot; the first conceptual question asks what it means for two systems to be in thermal equilibrium."
+    },
+    {
+      "id": "thermometer",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "Any reproducible property that depends on temperature makes a thermometer",
+      "why": "Any physical property that depends on temperature, and whose response to temperature is reproducible, can be used as the basis of a thermometer. Volume increases with temperature for most substances, which is the basis for the alcohol thermometer, the mercury thermometer and the bimetallic strip; electrical resistance, color and the emission of infrared radiation are used as well. Because so many properties depend on temperature, the variety of thermometers is remarkable.",
+      "evidence": "Figures 13.3 to 13.6 show four thermometers built on four different properties, the second conceptual question asks the reader to name a property that varies with temperature and describe how it is used, and the third asks why the column of a cold alcohol thermometer dips before it rises."
+    },
+    {
+      "id": "temperature-scales",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "The Celsius, Fahrenheit and Kelvin scales",
+      "why": "A temperature scale is created by identifying two easily reproducible temperatures, commonly the freezing and boiling points of water at standard atmospheric pressure. The Celsius scale puts them at 0 °C and 100 °C, the Fahrenheit scale at 32 °F and 212 °F, so that one Celsius degree is 1.8 times the size of one Fahrenheit degree. The Kelvin scale is the absolute scale used in science: its zero is absolute zero, its unit is the kelvin with no degree sign, and the size of a kelvin equals the size of a degree Celsius, so water freezes at 273.15 K and boils at 373.15 K.",
+      "evidence": "The Temperature Scales header, Figure 13.7 laying the three scales side by side, and the Reaumur example, which builds a fourth scale from the same two fixed points to show how a scale is made."
+    },
+    {
+      "id": "convert-temperature-scales",
+      "kind": "skill",
+      "section": "13.1",
+      "name": "Converting a temperature between scales",
+      "why": "Temperatures on the three common scales are converted with the equations of Table 13.1. Celsius to Fahrenheit multiplies by nine fifths and adds 32, Celsius to Kelvin adds 273.15, and the conversions between Fahrenheit and Kelvin, which look complicated, are simple combinations of those two. A temperature difference converts differently from a temperature: a change of one degree Celsius is a change of one kelvin and of nine fifths of a Fahrenheit degree, with no offset.",
+      "evidence": "Example 13.1 converts room temperature to Fahrenheit and to kelvins, Table 13.1 gives all six conversions, and the problem set is entirely conversions: a fever, frost damage, a tungsten filament, the surface of the Sun, Death Valley, and a cold front whose keyed part (b) shows that any change in Fahrenheit degrees is nine fifths the change in Celsius degrees.",
+      "eq": "eq-celsius-to-fahrenheit"
+    },
+    {
+      "id": "absolute-zero",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "Absolute zero is the lowest possible temperature",
+      "why": "The concept of absolute zero arises from the behavior of gases. The pressure of a gas kept at constant volume falls in a straight line as its temperature falls, and the lines for different gases all extrapolate to zero pressure at the same temperature, −273.15 °C. This suggests that there is a lowest temperature, and other thermodynamic relationships lead to the same conclusion. At absolute zero, 0 K, molecular motion is at the minimum energy possible; most gases liquefy and then freeze before it is reached, and it is not actually possible to reach it.",
+      "evidence": "The Making Connections box on absolute zero, Figure 13.10 with its lines extrapolating to −273.15 °C, and the Temperature Ranges in the Universe passage with Figure 13.9, which sets the lowest temperatures ever produced in a laboratory against the Boomerang Nebula and Vostok."
+    },
+    {
+      "id": "thermal-equilibrium",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "Thermal equilibrium",
+      "why": "Any two systems placed in thermal contact but isolated from the rest of the environment will reach the same temperature: heat flows from the hotter object to the cooler one until they have exactly the same temperature, and then no further heat flow or change in temperature occurs. That is why a thermometer, which actually takes its own temperature, reads the temperature of the object it touches once enough time has passed. A single object is in internal thermal equilibrium when no heat flows within it and its temperature is uniform.",
+      "evidence": "The Thermal Equilibrium header, the glossary term, the Check Your Understanding box asking whether the temperature of a body in internal equilibrium depends on its size, and the conceptual questions about two systems in equilibrium and about boiling water added to a cup at room temperature."
+    },
+    {
+      "id": "zeroth-law-of-thermodynamics",
+      "kind": "result",
+      "section": "13.1",
+      "name": "The zeroth law of thermodynamics",
+      "why": "If two systems, A and B, are in thermal equilibrium with each other, and B is in thermal equilibrium with a third system, C, then A is also in thermal equilibrium with C. The conclusion may seem obvious, because all three have the same temperature, but it is basic to thermodynamics, and it was named the zeroth law because it comes logically before the first and second laws although it was postulated after them. It is what lets two thermometers, each touching a different block on the same plate, be trusted to read the same number, and so it is what establishes temperature as a meaningful concept.",
+      "evidence": "The boxed statement of the law, the example of the cold block, the hot block and the plate, and the Check Your Understanding box, whose answer divides a body into parts and uses the zeroth law to show that they all share one temperature."
+    },
+    {
+      "id": "thermal-expansion",
+      "kind": "idea",
+      "section": "13.2",
+      "name": "Thermal expansion",
+      "why": "Thermal expansion is the change in size or volume of a given mass with temperature. It is why hot air rises, since air that expands has a smaller density than the air around it and a larger buoyant force on a given mass, and it is why railroad tracks and bridges need expansion joints. Its cause is that an increase in temperature increases the kinetic energy of the atoms, whose small, rapid vibrations push their neighbors slightly farther apart on average, and that slightly greater spacing adds up to a larger body. For most substances there is no preferred direction, and the body grows by the same fraction in every dimension.",
+      "evidence": "The opening paragraphs on the thermometer, rising air and expansion joints, the paragraph on the underlying cause, and the last conceptual question, which asks why some materials shrink with increasing temperature."
+    },
+    {
+      "id": "linear-thermal-expansion",
+      "kind": "result",
+      "section": "13.2",
+      "name": "Linear thermal expansion $\\Delta L = \\alpha L\\Delta T$",
+      "why": "The change in length of a body is proportional to its length and to the change in temperature, with a coefficient of linear expansion that depends on the material and varies slightly with temperature. Because a kelvin and a degree Celsius are the same size, the coefficient and the temperature change may be expressed in either. The equation is accurate for small changes in temperature and serves for large ones if an average value of the coefficient is used.",
+      "evidence": "The boxed result, Table 13.2 of coefficients, Example 13.3 finding that the Golden Gate Bridge grows 0.84 m between its coldest and hottest days, and the problems on the Washington Monument, the Eiffel Tower, a column of mercury, a railroad gap, a steel and an invar meter stick, and a column of ocean water.",
+      "eq": "eq-linear-expansion"
+    },
+    {
+      "id": "area-thermal-expansion",
+      "kind": "result",
+      "section": "13.2",
+      "name": "Thermal expansion in two dimensions $\\Delta A = 2\\alpha A\\Delta T$",
+      "why": "Objects expand in all dimensions, so an area grows because both its length and its width grow. For small temperature changes the change in area is twice the coefficient of linear expansion times the area times the change in temperature, since each of two dimensions contributes the linear fraction.",
+      "evidence": "The boxed two-dimensional result, panel (a) of Figure 13.12, and the Hong Kong land problem, whose keyed answer is that a steel tape measure, expanded on a warm day, reads the parcel about ＄17,000 smaller.",
+      "eq": "eq-area-expansion"
+    },
+    {
+      "id": "holes-expand-too",
+      "kind": "idea",
+      "section": "13.2",
+      "name": "A hole expands as the plug that filled it would",
+      "why": "If you cut a hole in a metal plate, the remaining material expands exactly as it would if the plug were still in place. The plug would get bigger, and so the hole must get bigger too: the ring of neighboring atoms on the wall of the hole push each other farther apart as the temperature rises, and the ring gets slightly larger. Holes do not close up when a body is heated.",
+      "evidence": "Panel (b) of Figure 13.12 and its caption, the paragraph on cutting a hole in a plate, and the conceptual questions about fitting a peg into a hole in a block and about running hot water over a tight metal lid on a glass jar."
+    },
+    {
+      "id": "volume-thermal-expansion",
+      "kind": "result",
+      "section": "13.2",
+      "name": "Thermal expansion in three dimensions $\\Delta V = \\beta V\\Delta T$, with $\\beta \\approx 3\\alpha$",
+      "why": "The change in volume is very nearly three times the linear coefficient times the volume times the temperature change, and the equation is usually written with a coefficient of volume expansion that is approximately three times the coefficient of linear expansion, as the values in Table 13.2 show almost exactly. Liquids and gases have no coefficient of linear expansion, only a volume coefficient, and the coefficient for gases is the largest of all and nearly the same for every gas.",
+      "evidence": "The boxed three-dimensional result, panel (c) of Figure 13.12, the volume column of Table 13.2, and the keyed problem that derives β ≈ 3α by expanding the cube of a length with the binomial expansion.",
+      "eq": "eq-volume-expansion"
+    },
+    {
+      "id": "differential-thermal-expansion",
+      "kind": "skill",
+      "section": "13.2",
+      "name": "Finding what spills when a liquid expands more than its container",
+      "why": "When a full container and the liquid in it warm together, both expand, but the liquid expands more, and the amount that spills is the difference of their volume changes. Because the original volumes are equal, the three equations combine into one: the spill is the difference of the two volume coefficients times the volume times the temperature change. The same difference is why a gasoline gauge reads empty with less mass in the tank in summer than in winter, and why a beaker filled to the brim overflows as it warms.",
+      "evidence": "Example 13.4, in which 1.10 L of gasoline spills from a 60.0 L steel tank that warms by 20 °C, the Filling the Tank box, and the problems on the beaker of ethyl alcohol, the copper radiator, and the confirmation that 60.0 L of gasoline becomes 61.1 L.",
+      "eq": "eq-spill-volume"
+    },
+    {
+      "id": "anomalous-expansion-of-water",
+      "kind": "idea",
+      "section": "13.2",
+      "name": "Water is densest at 4 °C",
+      "why": "Water is the most important exception to the rule that objects expand with increasing temperature. Above 4 °C it expands as its temperature rises, but between 4 °C and 0 °C it expands as its temperature falls, so that it is densest at 4 °C. The most striking effect is the freezing of a pond: water at the surface cools to 4 °C, sinks, and turns the pond over until the whole of it is at 4 °C; a surface layer that cools further is less dense than the water below and stays on top, so the surface freezes over and the ice insulates the water beneath, where fish survive the winter.",
+      "evidence": "Figure 13.13, the density of water against temperature, and the paragraph on the turnover and freezing of a pond, which the caption's numbers (0.0075% and 0.012%) put in proportion."
+    },
+    {
+      "id": "thermal-stress",
+      "kind": "result",
+      "section": "13.2",
+      "name": "Thermal stress $P = \\dfrac{\\Delta V}{V_0}B$",
+      "why": "Thermal stress is created when thermal expansion or contraction is constrained. The pressure a heated body would exert if it were not allowed to expand is found by taking the volume change it would have made at fixed pressure and asking, through the bulk modulus, what pressure is needed to squeeze that volume back out. Such pressures are typically enormous: gasoline held at fixed volume through a 20 °C rise would reach 1.83 × 10⁷ Pa, about 2500 lb/in², far more than a tank can hold. Thermal stress buckles rails, snaps power lines, cracks glass cooled unevenly, weathers rock and pavement, and bursts biological cells when food is frozen.",
+      "evidence": "The Thermal Stress header, Example 13.5 on the pressure in the gasoline tank, Figure 13.15 of a pothole, the paragraphs on rails, power lines, cookware, reactor vessels, implants and dental fillings, and the conceptual question on why Pyrex resists cracking.",
+      "eq": "eq-thermal-stress"
+    },
+    {
+      "id": "ideal-gas",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "An ideal gas",
+      "why": "Atoms and molecules in a gas are widely separated compared with their sizes, so the forces between them can be ignored except when they collide, and the gas expands to fill whatever volume it can reach. That is why gases have the largest coefficients of volume expansion and why they all have nearly the same one, when liquids and solids differ widely: the properties of a gas depend on how many molecules there are per unit volume and on temperature, not on what kind of molecule it is. A gas whose particles have negligible volume and interact only through perfectly elastic collisions is called an ideal gas, and room temperature air is one in most circumstances.",
+      "evidence": "The opening paragraphs on why gases share one expansion coefficient, Figure 13.18 of widely separated molecules, the Check Your Understanding box on why gases are a thousand times less dense than liquids and solids, and the conceptual question on when a gas behaves differently from the ideal gas law."
+    },
+    {
+      "id": "ideal-gas-law",
+      "kind": "result",
+      "section": "13.3",
+      "name": "The ideal gas law $PV = NkT$",
+      "why": "The ideal gas law relates the absolute pressure of a gas, the volume it occupies, the number of atoms and molecules in it and its absolute temperature through the Boltzmann constant. It is an equation of state, a relation among the thermodynamic properties of a system, and it was originally deduced from experiment: Charles' law that volume is proportional to temperature at fixed pressure, and Boyle's law that the product of pressure and volume is constant at fixed temperature. It describes the behavior of real gases under most conditions, and it holds for any gas or mixture of gases, since only the total number of molecules enters. Absolute pressure and absolute temperature must be used.",
+      "evidence": "The boxed law, the tire of Figure 13.19 whose pressure rises first with the number of molecules and then with temperature, Example 13.5 counting 2.68 × 10²⁵ molecules in a cubic meter at STP, the Problem-Solving Strategy, and the problems on tires, light bulbs, a vacuum system, the space above the planet and a leaking gas cylinder.",
+      "eq": "eq-ideal-gas-law"
+    },
+    {
+      "id": "boltzmann-constant",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "The Boltzmann constant $k$",
+      "why": "The constant that turns the count of molecules and the absolute temperature into the product of pressure and volume is the Boltzmann constant, named for Ludwig Boltzmann, with the value 1.38 × 10⁻²³ J/K. Its unit says what it does: it relates an energy to a temperature, so that kT is an energy per molecule.",
+      "evidence": "The boxed value beside the ideal gas law, the glossary term, and every substitution into the law in Examples 13.5 and 13.6.",
+      "eq": "eq-boltzmann-constant"
+    },
+    {
+      "id": "ideal-gas-ratio-method",
+      "kind": "skill",
+      "section": "13.3",
+      "name": "Using the ideal gas law twice and taking a ratio",
+      "why": "When a gas changes state and some of its properties are fixed, the law is written once for the initial state and once for the final state and the two are divided. Whatever is held constant cancels, and so does the Boltzmann constant, leaving a relation among the quantities that changed. For a tire whose volume and contents do not change, the ratio of final to initial pressure equals the ratio of final to initial absolute temperature, which is why the temperatures must be in kelvins.",
+      "evidence": "Example 13.4, the bicycle tire that goes from 7.00 × 10⁵ Pa to 7.41 × 10⁵ Pa when it warms from 18.0 °C to 35.0 °C, Step 5 of the Problem-Solving Strategy, the Check Your Understanding box on halving the density of air at constant temperature, and the problems on car tires on a ferry to Alaska, a hot light bulb, an airplane passenger's stomach and the cooled gas cylinder.",
+      "eq": "eq-ideal-gas-ratio"
+    },
+    {
+      "id": "mole",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "The mole and molar mass",
+      "why": "The mole is the SI unit for the amount of a substance, and it is convenient because the number of molecules in any ordinary object is enormous. One mole contains Avogadro's number of particles, whatever the substance, and a mole of any substance has a mass in grams equal to its molecular mass, which is read off the periodic table. The number of moles is the number of molecules divided by Avogadro's number.",
+      "evidence": "The Moles and Avogadro's Number header, the Avogadro's Number box, the Check Your Understanding box that finds the molar mass of acetaminophen and the number of molecules in a pill, and the conceptual question on whether there is a mole of people on Earth.",
+      "eq": "eq-moles-from-molecules"
+    },
+    {
+      "id": "avogadros-number",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "Avogadro's number $N_\\text{A}$",
+      "why": "Avogadro's number is the number of particles in one mole, 6.02 × 10²³ per mole to three significant figures, named for Amedeo Avogadro, whose hypothesis that equal volumes of gas at the same pressure and temperature contain equal numbers of molecules has been confirmed. Since 2019 the mole is defined as exactly 6.02214076 × 10²³ elementary entities. The number is so large that a mole of table tennis balls would cover the Earth to a depth of about 40 km.",
+      "evidence": "The boxed value, Figure 13.20 of the table tennis balls over Everest, and the problems on Avogadro's number of sand grains and of table tennis balls, the second keyed at 41 km.",
+      "eq": "eq-avogadros-number"
+    },
+    {
+      "id": "ideal-gas-law-moles",
+      "kind": "result",
+      "section": "13.3",
+      "name": "The ideal gas law in moles $PV = nRT$",
+      "why": "Multiplying and dividing the ideal gas law by Avogadro's number turns the count of molecules into a number of moles and the Boltzmann constant into the universal gas constant, which is Avogadro's number times the Boltzmann constant, 8.31 J/(mol·K) in SI units, 1.99 cal/(mol·K) or 0.0821 L·atm/(mol·K) in others. Which form of the law to use depends on whether the number of molecules or the number of moles is known, and whichever value of the gas constant matches the units of the problem is the convenient one.",
+      "evidence": "The Ideal Gas Law Restated Using Moles header and its box, Example 13.7 finding 0.579 mol of gas in a bike tire, Step 4 of the Problem-Solving Strategy, and the problems on the air in the lungs, moles in 2.00 L under 7.41 × 10⁷ N/m², the gauge pressure of a tire holding 3.60 mol, and the keyed confirmation that nRT has the units of energy for each value of R.",
+      "eq": "eq-ideal-gas-law-moles"
+    },
+    {
+      "id": "molar-volume-at-stp",
+      "kind": "result",
+      "section": "13.3",
+      "name": "A cubic meter of gas at STP holds $2.68\\times10^{25}$ molecules, and a mole fills 22.4 L",
+      "why": "Standard temperature and pressure are 0 °C and atmospheric pressure, and at STP the ideal gas law gives 2.68 × 10²⁵ molecules in every cubic meter of any gas, 44.5 mol per cubic meter, and 22.5 L per mole to the precision of three-figure inputs (the accepted value is 22.4 L/mol). Because the count is the same for every gas, the mass of a cubic meter follows from the molar mass alone: dry air at 28.8 g/mol weighs 1.28 kg per cubic meter, so a living room holds about 90 kg of air, the mass of a person.",
+      "evidence": "Example 13.5 and Example 13.6, the discussion that finds the mass of the air in a living room, and the problems that convert 2.68 × 10²⁵ m⁻³ to cm⁻³ and ask how many atoms sit in a cubic micrometer.",
+      "eq": "eq-molar-volume-stp"
+    },
+    {
+      "id": "ideal-gas-law-energy",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "Both sides of the ideal gas law are energies",
+      "why": "The dimensions on both sides of the ideal gas law are those of energy, joules in SI units. Pressure is force per unit area, so pressure times volume is force times displacement, which is work; and the right-hand side is proportional to the translational kinetic energy of the molecules at that temperature, as the next section shows. There is energy in a gas related to both its pressure and its volume, and the ideal gas law can be seen as another manifestation of the conservation of energy: the work of pumping up a tire goes into the pressure of the air and into warming the pump and the air.",
+      "evidence": "The Ideal Gas Law and Energy header, the paragraph on inflating a tire by hand, and the keyed problem confirming that nRT is an energy for each value of the gas constant."
+    },
+    {
+      "id": "kinetic-theory",
+      "kind": "idea",
+      "section": "13.4",
+      "name": "Kinetic theory: pressure comes from molecular collisions",
+      "why": "Kinetic theory assumes that atoms and molecules are in continuous random motion, and it explains pressure and temperature from that assumption. When a molecule collides elastically with a rigid wall, the component of its momentum perpendicular to the wall is reversed, so the wall exerts a force on it and, by Newton's third law, it exerts a force on the wall. A huge number of molecules strike the wall in a short time, and we observe the average force per unit area. More molecules mean more collisions and more pressure; faster molecules mean harder collisions and more pressure.",
+      "evidence": "The opening paragraph, Figure 13.21 of the molecule striking the wall, the conceptual question on how momentum is related to the pressure a gas exerts, and the Check Your Understanding box on whether a grain of pollen feels the statistical fluctuations of the collisions, whose answer names the Brownian effect."
+    },
+    {
+      "id": "molecular-origin-of-pressure",
+      "kind": "result",
+      "section": "13.4",
+      "name": "The ideal gas law from molecules $PV = \\tfrac{1}{3}Nm\\overline{v^2}$",
+      "why": "Following one molecule in a box gives the pressure of the gas. Its momentum changes by twice its perpendicular momentum at each collision, the average time between collisions with one wall is the time to cross the box and back, so the average force from one molecule is its mass times the square of its perpendicular speed over the length of the box. Multiplying by the number of molecules, replacing the perpendicular component by a third of the mean square speed because the motion is random and the three directions are alike, and dividing by the area of the wall gives the pressure. The result, PV = ⅓Nm v̄², is another expression of the ideal gas law, now in terms of the mass and speed of the molecules.",
+      "evidence": "The Things Great and Small box that carries the derivation step by step with Figure 13.22, the statement of the result in the main text and in the summary, and the AP item comparing the average speed and the average force of two gases of different molecular mass.",
+      "eq": "eq-pressure-from-molecules"
+    },
+    {
+      "id": "thermal-energy",
+      "kind": "result",
+      "section": "13.4",
+      "name": "Temperature measures average kinetic energy $\\overline{\\text{KE}} = \\tfrac{3}{2}kT$",
+      "why": "Setting the molecular form of the ideal gas law equal to PV = NkT and rearranging shows that the average translational kinetic energy of a molecule is three halves of the Boltzmann constant times the absolute temperature. This average kinetic energy is called thermal energy, and the equation is a molecular interpretation of temperature, valid for gases and reasonably accurate in liquids and solids: it is another definition of temperature, in terms of the energy of molecular motion, and it is the same for every kind of molecule at a given temperature.",
+      "evidence": "The derivation from the two forms of the ideal gas law, Example 13.8(a) finding 6.07 × 10⁻²¹ J for a molecule at room temperature, the glossary term, the AP item on how the kinetic energy changes when the temperature rises from 20 °C to 313 °C, and the problems on hydrogen at the surface of the Sun, helium in the corona and the kinetic energy needed for fusion.",
+      "eq": "eq-thermal-energy"
+    },
+    {
+      "id": "rms-speed",
+      "kind": "result",
+      "section": "13.4",
+      "name": "The rms speed $v_\\text{rms} = \\sqrt{3kT/m}$",
+      "why": "Solving the thermal energy equation for speed gives the root-mean-square speed of the molecules, the square root of the average of the speed squared, which grows with the square root of the absolute temperature and falls with the square root of the mass of the molecule. It is surprisingly large, 511 m/s for nitrogen at room temperature, yet it produces no wind, because the molecules move in every direction alike and travel only a tiny mean free path between collisions. The speed of sound, about 340 m/s at room temperature, reflects it, which is why sound is faster in hot air and in light gases such as helium.",
+      "evidence": "Example 13.8(b) finding 511 m/s for nitrogen, Figure 13.23 on molecular speeds and sound, and the problems on argon near a filament, helium at 5.00 K, carbon dioxide in a flame, hydrogen at 193 m/s, hydrogen near the Sun, the separation of uranium hexafluoride isotopes, and the supernova whose rms speed exceeds the speed of light.",
+      "eq": "eq-rms-speed"
+    },
+    {
+      "id": "molecular-mass-from-molar-mass",
+      "kind": "skill",
+      "section": "13.4",
+      "name": "Finding the mass of one molecule from the molar mass",
+      "why": "The mass of a single atom or molecule is the molar mass, read from the periodic table in grams per mole and converted to kilograms, divided by the number of particles in a mole. A nitrogen molecule is two atoms of 14.0067 g/mol, so it has a mass of 4.65 × 10⁻²⁶ kg; a helium atom has 6.65 × 10⁻²⁷ kg. Every calculation of an rms speed or of a temperature from a speed passes through this step.",
+      "evidence": "Example 13.8, which finds the mass of a nitrogen molecule, Example 13.9, which finds the mass of a helium atom, and the problems that give molecular masses in grams per mole for oxygen, hydrogen, carbon dioxide and uranium hexafluoride.",
+      "eq": "eq-molecular-mass"
+    },
+    {
+      "id": "maxwell-boltzmann-distribution",
+      "kind": "idea",
+      "section": "13.4",
+      "name": "The Maxwell-Boltzmann distribution of molecular speeds",
+      "why": "The motion of any one molecule is random in magnitude and direction, but a gas of many molecules has a predictable distribution of speeds, the Maxwell-Boltzmann distribution, calculated from kinetic theory and confirmed by experiment. The distribution has a long tail, since a few molecules move at several times the rms speed, and its peak, the most probable speed, lies below the rms speed. As the temperature rises the whole distribution shifts to higher speeds and broadens, which is why a person with a fever loses more water from the linings of the mouth and lungs.",
+      "evidence": "The Distribution of Molecular Speeds header, Figure 13.24 for oxygen at 300 K, Figure 13.25 at two temperatures, the paragraph on fever, and the AP item asking which statement about two distribution curves is false."
+    },
+    {
+      "id": "atmospheric-escape",
+      "kind": "idea",
+      "section": "13.4",
+      "name": "Why light gases leave an atmosphere",
+      "why": "To escape Earth's gravity from the top of the atmosphere an object must travel at 11.1 km/s, and helium would need a temperature near 2 × 10⁴ K for its rms speed to reach that. Yet very little helium is left in the air, because the speed of an atom changes from instant to instant and at any instant a small fraction in the tail of the distribution exceeds the escape velocity; over billions of years that fraction leaks away. Heavier molecules, oxygen, nitrogen and water, have smaller rms speeds and so few of them ever reach escape speed that the atmosphere is kept. The Moon's gravity is so much weaker that it has lost almost all of its atmosphere, and its daytime sky is black.",
+      "evidence": "Example 13.9, which finds the temperature at which helium's rms speed would equal the escape velocity and discusses why the helium is gone anyway, Figure 13.26 of the lunar rover under a black sky, and the problems on oxygen at Earth's escape velocity and hydrogen at the Moon's."
+    },
+    {
+      "id": "real-gas-condensation",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "A real gas condenses when it is cooled",
+      "why": "Real gases behave like ideal gases at high temperatures, but at lower temperatures the interactions between molecules and the volumes of the molecules can no longer be ignored. The molecules come very close, the gas condenses, and the volume drops precipitously as the substance becomes a liquid; cooled further it becomes a solid, and the volume shrinks a little more but never reaches zero, because the molecules themselves have volume. High pressure can also liquefy a gas, which is how liquid carbon dioxide and liquid nitrogen are made.",
+      "evidence": "The opening paragraph and Figure 13.27, the sketch of volume against temperature whose straight part extrapolates to absolute zero and whose vertical drop is liquefaction, and the paragraph on dry ice and liquid nitrogen."
+    },
+    {
+      "id": "pv-diagram",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "$PV$ diagrams and isotherms",
+      "why": "A graph of pressure against volume is a PV diagram. For an ideal gas at fixed temperature and number of molecules the product PV is constant, so each isotherm, a curve at one temperature, is a hyperbola, and the upper curves are the hotter ones. At lower temperatures the curves stop looking like hyperbolas, since the gas no longer behaves ideally and may contain liquid; along the flat part of a low isotherm the pressure stays constant while the volume changes, because the substance is changing phase.",
+      "evidence": "The PV Diagrams header, the two equations PV = NkT and PV = constant, Figure 13.28 with its family of isotherms and its expanded low-temperature portion, and 13.3's Check Your Understanding on halving the density of air, which is a step along an isotherm.",
+      "eq": "eq-isotherm"
+    },
+    {
+      "id": "critical-point",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "The critical temperature and pressure",
+      "why": "Above a substance's critical temperature the liquid phase cannot exist at any pressure: the isotherm at that temperature is the highest one to show a flat, two-phase part, and above it a gas compressed hard enough may reach the density of a liquid without condensing. The critical pressure is the minimum pressure needed for the liquid to exist at the critical temperature. Carbon dioxide cannot be liquefied above 31 °C, oxygen above −118 °C, which is why oxygen cannot be liquefied at room temperature however hard it is squeezed.",
+      "evidence": "The glossary terms, Table 13.3 of critical temperatures and pressures, the critical isotherm of Figure 13.28 and the critical point that ends the liquid-vapor curve of Figure 13.29, and the conceptual questions on liquefying carbon dioxide and oxygen at room temperature."
+    },
+    {
+      "id": "phase-diagram",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "The phase diagram",
+      "why": "A graph of pressure against temperature is a phase diagram: there are well-defined regions in which the substance is solid, liquid or gas, and the solid lines between them are the temperatures and pressures at which two phases coexist. For water the liquid-vapor curve gives the boiling point at each pressure, 100 °C at 1.00 atm rising to 374 °C at 218 atm, which is why a pressure cooker cooks faster; the solid-liquid curve gives the melting point, and for water it leans so that the melting temperature falls with increasing pressure, which is why a snowball packs and why tires melt snow into an ice layer. Knowing the pressure and temperature, you can read the phase off the diagram.",
+      "evidence": "The Phase Diagrams header, Figure 13.29 for water with its nonlinear axes, the paragraphs on the pressure cooker, the snowball and the car on snow, the unnumbered carbon dioxide diagram inside the conceptual questions, and the questions on the pressure cooker and on dry ice."
+    },
+    {
+      "id": "sublimation",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "Sublimation",
+      "why": "At sufficiently low pressures there is no liquid phase, and the substance goes directly between solid and gas. The phase change from solid to gas is sublimation; it accounts for snow pack that is lost without ever running into a river, for the automatic defrosting of a freezer and for freeze-drying. For water there is no liquid below 0.00600 atm, while carbon dioxide sublimates at ordinary atmospheric pressure, which is why solid carbon dioxide is dry ice: it does not melt.",
+      "evidence": "The paragraph on low pressures and the glossary term, the conceptual question on the vapor pressure of dry ice at −78.5 °C with the carbon dioxide diagram, and 13.6's Check Your Understanding on freeze-drying."
+    },
+    {
+      "id": "triple-point",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "The triple point",
+      "why": "The three curves of a phase diagram meet at a single point, the triple point, where solid, liquid and gas all exist in equilibrium. For water it is at 273.16 K and 0.00600 atm, and because it is a single well-defined temperature and pressure it is a more accurate calibration temperature than the melting point at 1.00 atm, which is 273.15 K. Every substance has one, and Table 13.4 lists several.",
+      "evidence": "The paragraph on the triple point, its glossary entry, Table 13.4 of triple point temperatures and pressures, and the triple point marked on Figure 13.29 and on the carbon dioxide diagram."
+    },
+    {
+      "id": "phase-equilibrium",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "Liquid and gas in equilibrium at the boiling temperature",
+      "why": "Liquid and gas are in equilibrium at the boiling temperature: in a closed container the liquid boils and the gas condenses at the same rate, with no net change in their amounts, because molecules leave the liquid as gas at the same rate as gas molecules stick to the liquid. At a higher temperature the boiling rate is faster, more molecules are in the gas, the gas pressure is higher and the condensation rate is faster to match, so the pair is in equilibrium again at the new pressure. An open pot of water at 100 °C boils away, and an open glass at 20 °C evaporates, because the gas above them is air rather than pure water vapor; a gas below its boiling temperature is called a vapor.",
+      "evidence": "The Equilibrium header, Figure 13.30 of the closed container at two boiling points, the paragraphs on the open pot and the open glass, the Check Your Understanding box on why ice water stays at 0 °C, and the conceptual question on the distinction between a gas and a vapor."
+    },
+    {
+      "id": "vapor-pressure",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "Vapor pressure",
+      "why": "Vapor pressure is the pressure at which a gas coexists with its solid or liquid phase. It is created by the faster molecules that break away from the liquid or solid and enter the gas, so it depends on the substance and on its temperature, and an increase in temperature increases it. Water evaporates and ice sublimates when their vapor pressure exceeds the partial pressure of water vapor in the surrounding gas, and droplets or frost form when it is less.",
+      "evidence": "The Vapor Pressure, Partial Pressure, and Dalton's Law header, the glossary term, the Check Your Understanding box on whether energy is transferred in a phase change, and the conceptual question on why condensation forms first on the coldest object in a room."
+    },
+    {
+      "id": "daltons-law",
+      "kind": "result",
+      "section": "13.5",
+      "name": "Dalton's law of partial pressures",
+      "why": "The partial pressure of a gas is the pressure it would create if it alone occupied the total volume available, and in a mixture of gases the total pressure is the sum of the partial pressures of the components, assuming ideal gas behavior and no chemical reactions. This is Dalton's law, and it follows from kinetic theory: each gas creates its pressure by its own molecular collisions, independent of the other gases present, and pressures add as Pascal's principle says they do.",
+      "evidence": "The paragraph stating the law and its glossary terms, the summary, and the problems moved here from 13.6 on the partial pressure of nitrogen in dry air and the oxygen a deep-sea diver's mixture must carry."
+    },
+    {
+      "id": "relative-humidity",
+      "kind": "idea",
+      "section": "13.6",
+      "name": "Relative humidity and saturation",
+      "why": "Relative humidity tells how much water vapor is in the air compared with the maximum possible. At the maximum, saturation, the relative humidity is 100%, evaporation is inhibited and we feel hotter, because sweat no longer cools us. The amount of water vapor the air can carry depends on temperature through the vapor pressure of water: at 100% humidity the partial pressure of water vapor equals the vapor pressure, below it evaporation goes on, above it condensation. The water is not held by the air; the amount of water in air is set by the vapor pressure of water alone and has nothing to do with the properties of air.",
+      "evidence": "The opening paragraphs on heat and humidity, the glossary terms, the paragraph correcting the everyday phrase that air holds water, and the conceptual question on whether the saturation values hold in an atmosphere of helium."
+    },
+    {
+      "id": "vapor-density-from-vapor-pressure",
+      "kind": "skill",
+      "section": "13.6",
+      "name": "Finding the saturation vapor density from the vapor pressure",
+      "why": "Water vapor behaves like an ideal gas, so the density of vapor that creates a given partial pressure follows from PV = nRT solved for the moles per cubic meter and converted to grams with the molar mass of water, 18.0 g/mol. At 20.0 °C the vapor pressure of 2.33 × 10³ Pa gives 17.2 g/m³, exactly the saturation vapor density in Table 13.5, so the table's densities are the maximum amounts of water vapor a cubic meter can carry at each temperature.",
+      "evidence": "Example 13.10, Table 13.5 of vapor pressures and saturation vapor densities from −50 °C to 220 °C, and the problems that repeat the calculation at 40.0 °C and compare the vapor in the lungs with its vapor pressure.",
+      "eq": "eq-vapor-density"
+    },
+    {
+      "id": "percent-relative-humidity",
+      "kind": "result",
+      "section": "13.6",
+      "name": "Percent relative humidity",
+      "why": "Percent relative humidity is the ratio of the vapor density actually in the air to the saturation vapor density at that temperature, times 100. With Table 13.5 it answers many questions about a day's weather: air at 25.0 °C holding 9.40 g/m³ has a relative humidity of 40.9%, and the same air with a dew point of −10.0 °C has only 10.3%.",
+      "evidence": "The Percent Relative Humidity box, Example 13.11(a) and (c), and the problems on a 25.0 °C day with 18.0 g/m³, a desert day at 6.00%, a muggy morning that warms, an autumn evening that cools, and the Unreasonable Results item whose humidity comes out above 100%.",
+      "eq": "eq-percent-relative-humidity"
+    },
+    {
+      "id": "dew-point",
+      "kind": "idea",
+      "section": "13.6",
+      "name": "The dew point",
+      "why": "The dew point is the temperature at which the air's water vapor would be the saturation density, so that the relative humidity would be 100%: the temperature at which water starts to condense out of the air, as dew, fog or frost. Its importance is that the air temperature cannot fall below it without water condensing, and condensation releases considerable heat, which holds the temperature up; that is why farmers watch the dew point, why desert nights are so cold and why fog forms as the evening cools.",
+      "evidence": "Example 13.11(b), which reads a dew point of 10.0 °C off Table 13.5, the discussion of why condensation stops a temperature from dropping, the glossary term, and the problems on the dew point of a 20.0 °C day at 39.0% humidity and on the grams of water that condense when 25.0 °C air cools to 15.0 °C."
+    },
+    {
+      "id": "humidity-from-the-table",
+      "kind": "skill",
+      "section": "13.6",
+      "name": "Reading humidity and dew point from the saturation table",
+      "why": "Every humidity problem is worked with Table 13.5. The vapor density in the air, the saturation density at the air temperature and the saturation density at the dew point are three entries of the same column, and any one of humidity, vapor density, dew point and temperature follows from the others: the humidity is the ratio of two densities, the dew point is the temperature whose saturation density equals the vapor density in the air, and the water that condenses when air cools is the difference of two saturation densities. Where a temperature falls between rows, the answer is read by interpolation.",
+      "evidence": "Example 13.11 in all three parts, and the whole of the problem set from the relative humidity on a 25.0 °C day to the fog that forms when 25.0 °C air at 90.0% cools to 15.0 °C."
+    },
+    {
+      "id": "boiling",
+      "kind": "idea",
+      "section": "13.6",
+      "name": "Why water boils at 100 °C, and elsewhere at other temperatures",
+      "why": "Water boils at 100 °C because that is where its vapor pressure reaches 1.01 × 10⁵ Pa, one atmosphere, so that it can evaporate without limit. Bubbles form because water holds dissolved air: a bubble at the bottom of a pot contains air and water vapor at a total pressure of 1.00 atm, and as the temperature rises the water vapor in it increases and the bubble expands to keep its pressure; at 100 °C vapor enters continuously, the bubble grows, its buoyant force grows, and it breaks away and rises. Where the pressure on the water is different the boiling temperature is different: higher in a pressure cooker or at depth, lower at altitude and in a vacuum chamber.",
+      "evidence": "The paragraph on why water boils, Figure 13.33 of the bubble at 20 °C, 50 °C and 100 °C, the Check Your Understanding box on freeze-drying, the conceptual question on a beaker of 40.0 °C water in a vacuum chamber, and the problems on pressure cookers, boiling at altitude, atop Everest, in the Andes and at 38.3 m depth."
+    },
+    {
+      "id": "evaporative-cooling",
+      "kind": "idea",
+      "section": "13.6",
+      "name": "Evaporation cools what it leaves",
+      "why": "We keep cool in hot weather by evaporating sweat from our skin and water from our breathing passages, and high humidity inhibits that evaporation, which is why humid heat is worse. The molecules most likely to escape a liquid are those with the greatest speeds, so the molecules that remain have a lower average speed and a lower temperature; lowering the surrounding pressure lowers the partial pressure of water, speeds evaporation, and can cool food until it freezes, which is what a freeze-dryer does. Blowing hot air dries hair faster because the higher temperature raises the rate of evaporation.",
+      "evidence": "The opening paragraph on sweat and humidity, the sentence on drying hair, the Check Your Understanding box on freeze-drying, and the conceptual questions on why rubbing alcohol evaporates faster than water and on the drying of breathing passages at altitude."
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "temperature",
+      "prereq": "physical-quantity"
+    },
+    {
+      "concept": "thermometer",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "temperature-scales",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "temperature-scales",
+      "prereq": "units"
+    },
+    {
+      "concept": "convert-temperature-scales",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "convert-temperature-scales",
+      "prereq": "unit-conversion"
+    },
+    {
+      "concept": "absolute-zero",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "absolute-zero",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "absolute-zero",
+      "prereq": "straight-line-graph"
+    },
+    {
+      "concept": "thermal-equilibrium",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "zeroth-law-of-thermodynamics",
+      "prereq": "thermal-equilibrium"
+    },
+    {
+      "concept": "thermal-expansion",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "thermal-expansion",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "thermal-expansion",
+      "prereq": "density"
+    },
+    {
+      "concept": "thermal-expansion",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "linear-thermal-expansion",
+      "prereq": "thermal-expansion"
+    },
+    {
+      "concept": "linear-thermal-expansion",
+      "prereq": "convert-temperature-scales"
+    },
+    {
+      "concept": "area-thermal-expansion",
+      "prereq": "linear-thermal-expansion"
+    },
+    {
+      "concept": "holes-expand-too",
+      "prereq": "linear-thermal-expansion"
+    },
+    {
+      "concept": "volume-thermal-expansion",
+      "prereq": "linear-thermal-expansion"
+    },
+    {
+      "concept": "differential-thermal-expansion",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "anomalous-expansion-of-water",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "anomalous-expansion-of-water",
+      "prereq": "density"
+    },
+    {
+      "concept": "anomalous-expansion-of-water",
+      "prereq": "average-density-decides-floating"
+    },
+    {
+      "concept": "thermal-stress",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "thermal-stress",
+      "prereq": "stress"
+    },
+    {
+      "concept": "thermal-stress",
+      "prereq": "bulk-deformation"
+    },
+    {
+      "concept": "thermal-stress",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "ideal-gas",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "ideal-gas",
+      "prereq": "atomic-arrangement-and-phase"
+    },
+    {
+      "concept": "ideal-gas",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "ideal-gas"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "absolute-pressure"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "absolute-zero"
+    },
+    {
+      "concept": "boltzmann-constant",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "ideal-gas-ratio-method",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "ideal-gas-ratio-method",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "mole",
+      "prereq": "fundamental-units"
+    },
+    {
+      "concept": "avogadros-number",
+      "prereq": "mole"
+    },
+    {
+      "concept": "ideal-gas-law-moles",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "ideal-gas-law-moles",
+      "prereq": "avogadros-number"
+    },
+    {
+      "concept": "molar-volume-at-stp",
+      "prereq": "ideal-gas-law-moles"
+    },
+    {
+      "concept": "molar-volume-at-stp",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "molar-volume-at-stp",
+      "prereq": "density"
+    },
+    {
+      "concept": "ideal-gas-law-energy",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "ideal-gas-law-energy",
+      "prereq": "work"
+    },
+    {
+      "concept": "ideal-gas-law-energy",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "kinetic-theory",
+      "prereq": "ideal-gas"
+    },
+    {
+      "concept": "kinetic-theory",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "kinetic-theory",
+      "prereq": "newtons-third-law"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "kinetic-theory"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "change-in-momentum"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "impulse"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "newtons-second-law-momentum"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "elastic-collision"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "thermal-energy",
+      "prereq": "molecular-origin-of-pressure"
+    },
+    {
+      "concept": "thermal-energy",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "thermal-energy",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "rms-speed",
+      "prereq": "thermal-energy"
+    },
+    {
+      "concept": "molecular-mass-from-molar-mass",
+      "prereq": "mole"
+    },
+    {
+      "concept": "molecular-mass-from-molar-mass",
+      "prereq": "avogadros-number"
+    },
+    {
+      "concept": "maxwell-boltzmann-distribution",
+      "prereq": "rms-speed"
+    },
+    {
+      "concept": "atmospheric-escape",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "atmospheric-escape",
+      "prereq": "rms-speed"
+    },
+    {
+      "concept": "atmospheric-escape",
+      "prereq": "universal-gravitation"
+    },
+    {
+      "concept": "real-gas-condensation",
+      "prereq": "ideal-gas"
+    },
+    {
+      "concept": "real-gas-condensation",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "real-gas-condensation",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "pv-diagram",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "critical-point",
+      "prereq": "pv-diagram"
+    },
+    {
+      "concept": "critical-point",
+      "prereq": "real-gas-condensation"
+    },
+    {
+      "concept": "phase-diagram",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "phase-diagram",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "phase-diagram",
+      "prereq": "critical-point"
+    },
+    {
+      "concept": "sublimation",
+      "prereq": "phase-diagram"
+    },
+    {
+      "concept": "triple-point",
+      "prereq": "phase-diagram"
+    },
+    {
+      "concept": "phase-equilibrium",
+      "prereq": "thermal-equilibrium"
+    },
+    {
+      "concept": "phase-equilibrium",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "vapor-pressure",
+      "prereq": "phase-equilibrium"
+    },
+    {
+      "concept": "vapor-pressure",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "daltons-law",
+      "prereq": "kinetic-theory"
+    },
+    {
+      "concept": "daltons-law",
+      "prereq": "pascals-principle"
+    },
+    {
+      "concept": "daltons-law",
+      "prereq": "pressures-add"
+    },
+    {
+      "concept": "daltons-law",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "relative-humidity",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "relative-humidity",
+      "prereq": "daltons-law"
+    },
+    {
+      "concept": "vapor-density-from-vapor-pressure",
+      "prereq": "ideal-gas-law-moles"
+    },
+    {
+      "concept": "vapor-density-from-vapor-pressure",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "vapor-density-from-vapor-pressure",
+      "prereq": "density"
+    },
+    {
+      "concept": "percent-relative-humidity",
+      "prereq": "relative-humidity"
+    },
+    {
+      "concept": "percent-relative-humidity",
+      "prereq": "vapor-density-from-vapor-pressure"
+    },
+    {
+      "concept": "dew-point",
+      "prereq": "relative-humidity"
+    },
+    {
+      "concept": "dew-point",
+      "prereq": "phase-equilibrium"
+    },
+    {
+      "concept": "humidity-from-the-table",
+      "prereq": "percent-relative-humidity"
+    },
+    {
+      "concept": "humidity-from-the-table",
+      "prereq": "dew-point"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "daltons-law"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "phase-diagram"
+    },
+    {
+      "concept": "evaporative-cooling",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "evaporative-cooling",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "evaporative-cooling",
+      "prereq": "thermal-energy"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+<section id="entropy-defined">
+<h2>Entropy, a property of state</h2>
+<p class="cite-target">There is yet another way of expressing the second law of thermodynamics. This version relates to a concept called <strong>entropy</strong>. By examining it, we shall see that the directions associated with the second law—heat transfer from hot to cold, for example—are related to the tendency in nature for systems to become disordered and for less energy to be available for use as work. The entropy of a system can in fact be shown to be a measure of its disorder and of the unavailability of energy to do work.</p>
+<div class="note">
+<div class="eyebrow">Making Connections: Entropy, Energy, and Work</div>
+<p>Recall that the simple definition of energy is the ability to do work. Entropy is a measure of how much energy is not available to do work. Although all forms of energy are interconvertible, and all can be used to do work, it is not always possible, even in principle, to convert the entire available energy into work. That unavailable energy is of interest in thermodynamics, because the field of thermodynamics arose from efforts to convert heat to work.</p>
+</div>
+<p>We can see how entropy is defined by recalling our discussion of the Carnot engine. We noted that for a Carnot cycle, and hence for any reversible processes, $\kQC/\kQH = \kTempc/\kTemph$. Rearranging terms yields</p>
+$$\frac{\kQC}{\kTempc} = \frac{\kQH}{\kTemph}$$
+<p>for any reversible process. $\kQC$ and $\kQH$ are absolute values of the heat transfer at temperatures $\kTempc$ and $\kTemph$, respectively. This ratio of $\kQh/\kTemp$ is defined to be the <strong>change in entropy</strong> $\kdS$ for a reversible process,</p>
+$$\kdS = \left(\frac{\kQh}{\kTemp}\right)_{\text{rev}},$$
+<p>where $\kQh$ is the heat transfer, which is positive for heat transfer into and negative for heat transfer out of, and $\kTemp$ is the absolute temperature at which the reversible process takes place. The SI unit for entropy is joules per kelvin (J/K). If temperature changes during the process, then it is usually a good approximation (for small changes in temperature) to take $\kTemp$ to be the average temperature, avoiding the need to use integral calculus to find $\kdS$.</p>
+<p>The definition of $\kdS$ is strictly valid only for reversible processes, such as used in a Carnot engine. However, we can find $\kdS$ precisely even for real, irreversible processes. The reason is that the entropy $s$ of a system, like internal energy $\kEint$, depends only on the state of the system and not how it reached that condition. Entropy is a property of state. Thus the change in entropy $\kdS$ of a system between state 1 and state 2 is the same no matter how the change occurs. We just need to find or imagine a reversible process that takes us from state 1 to state 2 and calculate $\kdS$ for that process. That will be the change in entropy for any process going from state 1 to state 2. (See Figure 15.32.)</p>
+<figure class="sim" id="sim-state-paths" data-figure="15.32" data-original="/media/ch15/Figure_16_06_02.jpg" data-original-width="300" data-original-caption="When a system goes from state 1 to state 2, its entropy changes by the same amount ΔS, whether a hypothetical reversible path is followed or a real irreversible path is taken.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.32</span><span>A system goes from state 1 to state 2 by two paths: a hypothetical reversible process drawn straight across, along which a heat transfer $\kQh$ takes place at the temperature $\kTemp$, and a real irreversible process drawn as the looping path beneath. The gauge in each state shows its entropy, and the level in state 2 stands above or below the level in state 1 by $\kdS = (\kQh/\kTemp)_{\text{rev}}$, the same whichever path the system took, because entropy is a property of state. Set the heat transfer and the temperature of the reversible path and watch the level in state 2 move.</span></div>
+</figure>
+</section>
+
+<section id="entropy-second-law">
+<h2>Entropy in reversible and irreversible processes</h2>
+<p class="cite-target">Now let us take a look at the change in entropy of a Carnot engine and its heat reservoirs for one full cycle. The hot reservoir has a loss of entropy $\kdSh = -\kQH/\kTemph$, because heat transfer occurs out of it (remember that when heat transfers out, then $\kQh$ has a negative sign). The cold reservoir has a gain of entropy $\kdSc = \kQC/\kTempc$, because heat transfer occurs into it. (We assume the reservoirs are sufficiently large that their temperatures are constant.) So the total change in entropy is</p>
+$$\kdStot = \kdSh + \kdSc.$$
+<p>Thus, since we know that $\kQH/\kTemph = \kQC/\kTempc$ for a Carnot engine,</p>
+$$\kdStot = -\frac{\kQH}{\kTemph} + \frac{\kQC}{\kTempc} = 0.$$
+<p>This result, which has general validity, means that <em>the total change in entropy for a system in any reversible process is zero.</em></p>
+<p>The entropy of various parts of the system may change, but the total change is zero. Furthermore, the system does not affect the entropy of its surroundings, since heat transfer between them does not occur. Thus the reversible process changes neither the total entropy of the system nor the entropy of its surroundings. Sometimes this is stated as follows: <em>Reversible processes do not affect the total entropy of the universe.</em> Real processes are not reversible, though, and they do change total entropy. We can, however, use hypothetical reversible processes to determine the value of entropy in real, irreversible processes. The following example illustrates this point.</p>
+<div class="example" id="ex-irreversible-transfer">
+<h3>Example 15.6 · Entropy Increases in an Irreversible (Real) Process</h3>
+<p>Spontaneous heat transfer from hot to cold is an irreversible process. Calculate the total change in entropy if 4000 J of heat transfer occurs from a hot reservoir at $\kTemph = 600\ \text{K}\ (327^\circ\text{C})$ to a cold reservoir at $\kTempc = 250\ \text{K}\ (-23^\circ\text{C})$, assuming there is no temperature change in either reservoir. (See Figure 15.33.)</p>
+<h4>Strategy</h4>
+<p>How can we calculate the change in entropy for an irreversible process when $\kdStot = \kdSh + \kdSc$ is valid only for reversible processes? Remember that the total change in entropy of the hot and cold reservoirs will be the same whether a reversible or irreversible process is involved in heat transfer from hot to cold. So we can calculate the change in entropy of the hot reservoir for a hypothetical reversible process in which 4000 J of heat transfer occurs from it; then we do the same for a hypothetical reversible process in which 4000 J of heat transfer occurs to the cold reservoir. This produces the same changes in the hot and cold reservoirs that would occur if the heat transfer were allowed to occur irreversibly between them, and so it also produces the same changes in entropy.</p>
+<h4>Solution</h4>
+<p>We now calculate the two changes in entropy using $\kdStot = \kdSh + \kdSc$. First, for the heat transfer from the hot reservoir,</p>
+$$\kdSh = \frac{-\kQH}{\kTemph} = \frac{-4000\ \text{J}}{600\ \text{K}} = -6.67\ \text{J/K}.$$
+<p>And for the cold reservoir,</p>
+$$\kdSc = \frac{\kQC}{\kTempc} = \frac{4000\ \text{J}}{250\ \text{K}} = 16.0\ \text{J/K}.$$
+<p>Thus the total is</p>
+$$\begin{array}{lll}\kdStot & = & \kdSh + \kdSc \\ & = & (-6.67 + 16.0)\ \text{J/K} \\ & = & 9.33\ \text{J/K}.\end{array}$$
+<h4>Discussion</h4>
+<p>There is an <em>increase</em> in entropy for the system of two heat reservoirs undergoing this irreversible heat transfer. We will see that this means there is a loss of ability to do work with this transferred energy. Entropy has increased, and energy has become unavailable to do work.</p>
+<figure class="sim" id="sim-irreversible-transfer" data-figure="15.33" data-original="/media/ch15/Figure_16_06_03.jpg" data-original-width="350" data-original-caption="(a) Heat transfer from a hot object to a cold one is an irreversible process that produces an overall increase in entropy. (b) The same final state and, thus, the same change in entropy is achieved for the objects if reversible heat transfer processes occur between the two objects whose temperatures are the same as the temperatures of the corresponding objects in the irreversible process.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.33</span><span>A heat transfer $\kQh$ leaves a hot reservoir at $\kTemph$ and enters a cold reservoir at $\kTempc$, either directly, which is irreversible, or by two reversible processes that take the same heat out of the one and into the other. Beside the reservoirs, the bars show the entropy the hot reservoir loses, $-\kQH/\kTemph$, the entropy the cold reservoir gains, $\kQC/\kTempc$, and their total. Because the same heat transfer makes a larger change at the lower temperature, the cold reservoir's gain is always the larger and the total increases. Choose the direct transfer or its reversible stand-in, set the heat transfer and the two temperatures, and bring the temperatures together to watch the total shrink toward zero, which is the reversible limit.</span></div>
+</figure>
+</div>
+<p>It is reasonable that entropy increases for heat transfer from hot to cold. Since the change in entropy is $\kQh/\kTemp$, there is a larger change at lower temperatures. The decrease in entropy of the hot object is therefore less than the increase in entropy of the cold object, producing an overall increase, just as in the previous example. This result is very general:</p>
+<p><em>There is an increase in entropy for any system undergoing an irreversible process.</em></p>
+<p>With respect to entropy, there are only two possibilities: entropy is constant for a reversible process, and it increases for an irreversible process. There is a fourth version of <strong>the second law of thermodynamics stated in terms of entropy</strong>:</p>
+<p><em>The total entropy of a system either increases or remains constant in any process; it never decreases.</em></p>
+<p>For example, heat transfer cannot occur spontaneously from cold to hot, because entropy would decrease.</p>
+<p>Entropy is very different from energy. Entropy is <em>not</em> conserved but increases in all real processes. Reversible processes (such as in Carnot engines) are the processes in which the most heat transfer to work takes place and are also the ones that keep entropy constant. Thus we are led to make a connection between entropy and the availability of energy to do work.</p>
+</section>
+
+<section id="unavailable-work">
+<h2>Entropy and the Unavailability of Energy to Do Work</h2>
+<p class="cite-target">What does a change in entropy mean, and why should we be interested in it? One reason is that entropy is directly related to the fact that not all heat transfer can be converted into work. The next example gives some indication of how an increase in entropy results in less heat transfer into work.</p>
+<div class="example" id="ex-two-engines">
+<h3>Example 15.7 · Less Work is Produced by a Given Heat Transfer When Entropy Change is Greater</h3>
+<p>(a) Calculate the work output of a Carnot engine operating between temperatures of 600 K and 100 K for 4000 J of heat transfer to the engine. (b) Now suppose that the 4000 J of heat transfer occurs first from the 600 K reservoir to a 250 K reservoir (without doing any work, and this produces the increase in entropy calculated above) before transferring into a Carnot engine operating between 250 K and 100 K. What work output is produced? (See Figure 15.34.)</p>
+<h4>Strategy</h4>
+<p>In both parts, we must first calculate the Carnot efficiency and then the work output.</p>
+<h4>Solution (a)</h4>
+<p>The Carnot efficiency is given by</p>
+$$\text{Eff}_{\text{C}} = 1 - \frac{\kTempc}{\kTemph}.$$
+<p>Substituting the given temperatures yields</p>
+$$\text{Eff}_{\text{C}} = 1 - \frac{100\ \text{K}}{600\ \text{K}} = 0.833.$$
+<p>Now the work output can be calculated using the definition of efficiency for any heat engine as given by</p>
+$$\text{Eff} = \frac{\kW}{\kQH}.$$
+<p>Solving for $\kW$ and substituting known terms gives</p>
+$$\begin{array}{lll}\kW & = & \text{Eff}_{\text{C}}\kQH \\ & = & (0.833)(4000\ \text{J}) = 3333\ \text{J}.\end{array}$$
+<h4>Solution (b)</h4>
+<p>Similarly,</p>
+$${\text{Eff}'}_{\text{C}} = 1 - \frac{\kTempc}{\kTempcprime} = 1 - \frac{100\ \text{K}}{250\ \text{K}} = 0.600,$$
+<p>so that</p>
+$$\begin{array}{lll}\kW & = & {\text{Eff}'}_{\text{C}}\kQH \\ & = & (0.600)(4000\ \text{J}) = 2400\ \text{J}.\end{array}$$
+<h4>Discussion</h4>
+<p>There is 933 J less work from the same heat transfer in the second process. This result is important. The same heat transfer into two perfect engines produces different work outputs, because the entropy change differs in the two cases. In the second case, entropy is greater and less work is produced. Entropy is associated with the <em>un</em>availability of energy to do work.</p>
+<figure class="sim" id="sim-two-engines" data-figure="15.34" data-original="/media/ch15/Figure_16_06_04.jpg" data-original-width="400" data-original-caption="(a) A Carnot engine working at between 600 K and 100 K has 4000 J of heat transfer and performs 3333 J of work. (b) The 4000 J of heat transfer occurs first irreversibly to a 250 K reservoir and then goes into a Carnot engine. The increase in entropy caused by the heat transfer to a colder reservoir results in a smaller work output of 2400 J. There is a permanent loss of 933 J of energy for the purpose of doing work.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.34</span><span>Two Carnot engines are fed the same heat transfer $\kQH$. Engine (a) takes it straight from the hot reservoir at $\kTemph$ and rejects $\kQC$ to the cold reservoir at $\kTempc$; engine (b) takes it only after it has fallen irreversibly to a reservoir at $\kTemphprime$, which increases the entropy by $\kdS$. Each arrow is as wide as the energy it carries, and the work arrow of engine (b) is the thinner by $\kWunavail = \kdS \cdot \kTempo$, where $\kTempo$ is the lowest temperature used. Set the heat transfer and the three temperatures and watch how much work the fall to the colder reservoir costs.</span></div>
+</figure>
+</div>
+<p>When entropy increases, a certain amount of energy becomes <em>permanently</em> unavailable to do work. The energy is not lost, but its character is changed, so that some of it can never be converted to doing work—that is, to an organized force acting through a distance. For instance, in the previous example, 933 J less work was done after an increase in entropy of 9.33 J/K occurred in the 4000 J heat transfer from the 600 K reservoir to the 250 K reservoir. It can be shown that the amount of energy that becomes unavailable for work is</p>
+$$\kWunavail = \kdS \cdot \kTempo,$$
+<p>where $\kTempo$ is the lowest temperature utilized. In the previous example,</p>
+$$\kWunavail = (9.33\ \text{J/K})(100\ \text{K}) = 933\ \text{J}$$
+<p>as found.</p>
+</section>
+
+<section id="heat-death">
+<h2>Heat Death of the Universe: An Overdose of Entropy</h2>
+<p class="cite-target">In the early, energetic universe, all matter and energy were easily interchangeable and identical in nature. Gravity played a vital role in the young universe. Although it may have <em>seemed</em> disorderly, and therefore, superficially entropic, in fact, there was enormous potential energy available to do work—all the future energy in the universe.</p>
+<p>As the universe matured, temperature differences arose, which created more opportunity for work. Stars are hotter than planets, for example, which are warmer than icy asteroids, which are warmer still than the vacuum of the space between them.</p>
+<p>Most of these are cooling down from their usually violent births, at which time they were provided with energy of their own—nuclear energy in the case of stars, volcanic energy on Earth and other planets, and so on. Without additional energy input, however, their days are numbered.</p>
+<p>As entropy increases, less and less energy in the universe is available to do work. On Earth, we still have great stores of energy such as fossil and nuclear fuels; large-scale temperature differences, which can provide wind energy; geothermal energies due to differences in temperature in Earth’s layers; and tidal energies owing to our abundance of liquid water. As these are used, a certain fraction of the energy they contain can never be converted into doing work. Eventually, all fuels will be exhausted, all temperatures will equalize, and it will be impossible for heat engines to function, or for work to be done.</p>
+<p>Entropy increases in a closed system, such as the universe. But in parts of the universe, for instance, in the Solar system, it is not a locally closed system. Energy flows from the Sun to the planets, replenishing Earth’s stores of energy. The Sun will continue to supply us with energy for about another five billion years. We will enjoy direct solar energy, as well as side effects of solar energy, such as wind power and biomass energy from photosynthetic plants. The energy from the Sun will keep our water at the liquid state, and the Moon’s gravitational pull will continue to provide tidal energy. But Earth’s geothermal energy will slowly run down and won’t be replenished.</p>
+<p>But in terms of the universe, and the very long-term, very large-scale picture, the entropy of the universe is increasing, and so the availability of energy to do work is constantly decreasing. Eventually, when all stars have died, all forms of potential energy have been utilized, and all temperatures have equalized (depending on the mass of the universe, either at a very high temperature following a universal contraction, or a very low one, just before all activity ceases) there will be no possibility of doing work.</p>
+<p>Either way, the universe is destined for thermodynamic equilibrium—maximum entropy. This is often called the <em>heat death of the universe</em>, and will mean the end of all activity. However, whether the universe contracts and heats up, or continues to expand and cools down, the end is not near. Calculations of black holes suggest that entropy can easily continue for at least $10^{100}$ years.</p>
+</section>
+
+<section id="order-to-disorder">
+<h2>Order to Disorder</h2>
+<p class="cite-target">Entropy is related not only to the unavailability of energy to do work—it is also a measure of disorder. This notion was initially postulated by Ludwig Boltzmann in the 1800s. For example, melting a block of ice means taking a highly structured and orderly system of water molecules and converting it into a disorderly liquid in which molecules have no fixed positions. (See Figure 15.35.) There is a large increase in entropy in the process, as seen in the following example.</p>
+<div class="example" id="ex-melting-ice">
+<h3>Example 15.8 · Entropy Associated with Disorder</h3>
+<p>Find the increase in entropy of 1.00 kg of ice originally at $0^\circ\text{C}$ that is melted to form water at $0^\circ\text{C}$.</p>
+<h4>Strategy</h4>
+<p>As before, the change in entropy can be calculated from the definition of $\kdS$ once we find the energy $\kQh$ needed to melt the ice.</p>
+<h4>Solution</h4>
+<p>The change in entropy is defined as:</p>
+$$\kdS = \frac{\kQh}{\kTemp}.$$
+<p>Here $\kQh$ is the heat transfer necessary to melt 1.00 kg of ice and is given by</p>
+$$\kQh = mL_{\text{f}},$$
+<p>where $m$ is the mass and $L_{\text{f}}$ is the latent heat of fusion. $L_{\text{f}} = 334\ \text{kJ/kg}$ for water, so that</p>
+$$\kQh = (1.00\ \text{kg})(334\ \text{kJ/kg}) = 3.34\times10^{5}\ \text{J}.$$
+<p>Now the change in entropy is positive, since heat transfer occurs into the ice to cause the phase change; thus,</p>
+$$\kdS = \frac{\kQh}{\kTemp} = \frac{3.34\times10^{5}\ \text{J}}{\kTemp}.$$
+<p>$\kTemp$ is the melting temperature of ice. That is, $\kTemp = 0^\circ\text{C} = 273\ \text{K}$. So the change in entropy is</p>
+$$\begin{array}{lll}\kdS & = & \frac{3.34\times10^{5}\ \text{J}}{273\ \text{K}} \\ & = & 1.22\times10^{3}\ \text{J/K}.\end{array}$$
+<h4>Discussion</h4>
+<p>This is a significant increase in entropy accompanying an increase in disorder.</p>
+</div>
+<figure class="sim" id="sim-melting-ice" data-figure="15.35" data-original="/media/ch15/Figure_16_06_06.jpg" data-original-width="400" data-original-caption="When ice melts, it becomes more disordered and less structured. The systematic arrangement of molecules in a crystal structure is replaced by a more random and less orderly movement of molecules without fixed locations or orientations. Its entropy increases because heat transfer occurs into it. Entropy is a measure of disorder.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.35</span><span>On the left the water molecules of ice sit in a crystal, each in a fixed place with a fixed orientation; on the right the molecules of the water it melts into have no fixed positions or orientations. The heat transfer $\kQh = mL_{\text{f}}$ that melts the ice enters at $\kTemp = 273\ \text{K}$, and the bar shows the entropy the water gains, $\kdS = \kQh/\kTemp$. Set the mass of ice and how much of it has melted, and watch molecules leave the lattice for the liquid as the entropy rises.</span></div>
+</figure>
+<p>In another easily imagined example, suppose we mix equal masses of water originally at two different temperatures, say $20.0^\circ\text{C}$ and $40.0^\circ\text{C}$. The result is water at an intermediate temperature of $30.0^\circ\text{C}$. Three outcomes have resulted: entropy has increased, some energy has become unavailable to do work, and the system has become less orderly. Let us think about each of these results.</p>
+<p>First, entropy has increased for the same reason that it did in the example above. Mixing the two bodies of water has the same effect as heat transfer from the hot one and the same heat transfer into the cold one. The mixing decreases the entropy of the hot water but increases the entropy of the cold water by a greater amount, producing an overall increase in entropy.</p>
+<p>Second, once the two masses of water are mixed, there is only one temperature—you cannot run a heat engine with them. The energy that could have been used to run a heat engine is now unavailable to do work.</p>
+<p>Third, the mixture is less orderly, or to use another term, less structured. Rather than having two masses at different temperatures and with different distributions of molecular speeds, we now have a single mass with a uniform temperature.</p>
+<p>These three results—entropy, unavailability of energy, and disorder—are not only related but are in fact essentially equivalent.</p>
+</section>
+
+<section id="life-and-evolution">
+<h2>Life, Evolution, and the Second Law of Thermodynamics</h2>
+<p class="cite-target">Some people misunderstand the second law of thermodynamics, stated in terms of entropy, to say that the process of the evolution of life violates this law. Over time, complex organisms evolved from much simpler ancestors, representing a large decrease in entropy of the Earth’s biosphere. It is a fact that living organisms have evolved to be highly structured, and much lower in entropy than the substances from which they grow. But it is <em>always</em> possible for the entropy of one part of the universe to decrease, provided the total change in entropy of the universe increases. In equation form, we can write this as</p>
+$$\kdStot = \kdSsyst + \kdSenvir > 0.$$
+<p>Thus $\kdSsyst$ can be negative as long as $\kdSenvir$ is positive and greater in magnitude.</p>
+<p>How is it possible for a system to decrease its entropy? Energy transfer is necessary. If I pick up marbles that are scattered about the room and put them into a cup, my work has decreased the entropy of that system. If I gather iron ore from the ground and convert it into steel and build a bridge, my work has decreased the entropy of that system. Energy coming from the Sun can decrease the entropy of local systems on Earth—that is, $\kdSsyst$ is negative. But the overall entropy of the rest of the universe increases by a greater amount—that is, $\kdSenvir$ is positive and greater in magnitude. Thus, $\kdStot = \kdSsyst + \kdSenvir > 0$, and the second law of thermodynamics is <em>not</em> violated.</p>
+<p>Every time a plant stores some solar energy in the form of chemical potential energy, or an updraft of warm air lifts a soaring bird, the Earth can be viewed as a heat engine operating between a hot reservoir supplied by the Sun and a cold reservoir supplied by dark outer space—a heat engine of high complexity, causing local decreases in entropy as it uses part of the heat transfer from the Sun into deep space. There is a large total increase in entropy resulting from this massive heat transfer. A small part of this heat transfer is stored in structured systems on Earth, producing much smaller local decreases in entropy. (See Figure 15.36.)</p>
+<figure class="sim" id="sim-sun-earth" data-figure="15.36" data-original="/media/ch15/Figure_16_06_07.jpg" data-original-width="400" data-original-caption="Earth’s entropy may decrease in the process of intercepting a small part of the heat transfer from the Sun into deep space. Entropy for the entire process increases greatly while Earth becomes more structured with living systems and stored energy in various forms.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.36</span><span>A heat transfer $\kQh$ leaves the Sun at $\kTemph$ and ends in deep space at $\kTempc = 3\ \text{K}$, and the Earth, in its path, keeps a small part of it as $\kdEint$ and may lower its own entropy by $\kdSsyst$ as it does. The bars beneath show the Sun's small loss of entropy, the Earth's decrease and the enormous gain of deep space, and their total, $\kdStot = \kdSsyst + \kdSenvir$, which stays positive however far the Earth's entropy is pushed down. Set the heat transfer, the Sun's temperature and the Earth's change in entropy, and watch the total.</span></div>
+</figure>
+</section>

@@ -2983,3 +2983,344 @@ among them, every book table standing, and the hover card opened on all 46
 of the chapter's concepts, 43 from the chips of their exercise cards and 3
 from the concept map, each rendering its `why` and `evidence` with no KaTeX
 error and no raw `\text` or `\times` left in it.
+
+
+### Pass 38 (2026-09-14): Chapter 13, Temperature, Kinetic Theory, and the Gas Laws, is built
+
+Chapter 13 was prepared and its six sections built in one wave on
+2026-09-14, one agent to a section, with Chapters 14 and 15 built beside it
+in the same checkout. This is the chapter pass over them: the wants of the
+six plans, the cross-section checks, one reading of every page and every
+`figures.js`, and the full checks.
+
+What stands. Six section pages and the introduction page, with 34 figure
+rows over them: 25 drawn figures, of which 18 transform a book figure and 7
+are Sims of OmniStax's own (the two blocks and the plate of 13.1, the
+expanding span, the spilling tank and the sealed tank of 13.2, the escape
+graph of 13.4, the two gases sharing a box of 13.5, the humidity curve of
+13.6), and 9 kept photographs, the two of the introduction, the four
+thermometers of 13.1, the expansion joint and the pothole of 13.2 and the
+lunar rover of 13.4. Two figures fold, as `config.md` foresaw: the molecule
+at the wall and the box it lives in are one moving scene, "Figure 13.21 +
+13.22", and the distribution at one temperature and at two are one graph,
+"Figure 13.24 + 13.25". The numbers run 13.1 to 13.33 with three dropped
+photographs named in the sections' notes (the fuel gauge, the balloon, the
+dew) and one exercise figure, 13.16, on the card of the box that refers to
+it; the three unnumbered exercise images travel on their cards the same
+way. Motion was decided per figure: 5 of the 25 drawn figures call
+`cycle()`, the blocks and the plate coming to one temperature, the tire
+whose gauge reads the strikes on its wall, the box whose bar meters the
+momentum the wall receives, the liquid and its vapor trading molecules at
+equal rates, and the container that is sealed at the start of its loop;
+the other 20 answer their sliders and carry no transport, and no figure is
+a 3D scene, since every scene of the chapter is a box, a strip, a graph or
+a plane. Every molecule drawn anywhere wears the element palette, the
+first use of `F.el` in this book, and no body wears a tint for its
+temperature. 76 exercises: 37 problems, 22 conceptual questions, 8 AP items
+and 9 Check Your Understanding boxes, every box keyed and set inline after
+the passage it tests, 13.3's third moved up from after the strategy to the
+opening passage it tests; seven problems the book prints at the end of 13.6
+range over the chapter, five are set in the sections that introduce what
+they test with `source_section` 13.6 and the two unkeyed ones in neither,
+and every section's notes say so; 26 open items carry an AI-marked
+suggested approach and 35 unkeyed problems are left out and named. 154
+coverage rows against 47 concept nodes with 106 prerequisite edges, 33
+glossary terms, 61 variable rows, 32 equation rows, five book tables
+rebuilt by hand (the conversions, the expansion coefficients with their
+three group rows and footnote, the critical points and the triple points
+with their two-row headers, the saturation vapor density with its 100 °C
+row bold) and two more in exercise prompts, and one new type,
+`temperature`, because every figure of the chapter carries it on a slider
+and states it in a readout and Chapters 14 and 15 draw it again; its symbol
+rows stand beside the taken `T`, `k`, `R`, `N` and `α` with LaTeX of their
+own and no macro of Chapter 16's, 4's, 3's or 10's borrowed.
+
+What the chapter pass wrote. The 93 anchors the six plans asked for, on
+every variable and equation row of `chapter.json`, each a span of its
+section's own `text.html`; the chapter had none, since the validator
+refuses an anchor into an unbuilt section. Four evidence rows of 13.2,
+through `book-rows.json` and `ost merge`: the worked examples take the
+publisher's numbers 13.3, 13.4 and 13.5, since 13.1 prints two, and the
+Hong Kong parcel's row says that the tape expanded on a warm day reads the
+parcel about ＄17,000 smaller, which is what the key's decrease means.
+13.6's `exercise_notes` names each item that left it by its id and the
+section it is set in. The `draws` row of Figure 13.12 claimed `position`
+and its code names only `temperature`, which is what its plan line says;
+the row is narrowed. `ch13/COLOR.md`'s paragraph on what each page binds is
+brought into line with the pages: 13.1 binds time on its one moving graph
+and 13.2 density on Figure 13.13, while 13.4 does not bind time and 13.5
+does not bind density. The book's `COLOR.md` table, which stopped at
+Chapter 10, gains the seven types declared since, pressure, density,
+surface tension, flow rate, viscosity, entropy and temperature, in the
+shape of its existing rows; nothing else in that file was touched, and its
+sentence that the element palette does not arise in the book is now untrue
+and is left for a book-level pass. `config.md` carries a "What the build
+changed" block, chief among its lines that 13.1's blocks-and-plate Sim
+moves where the Motion line had foreseen no fourth moving figure, and that
+the app prints a graded choice's option strings raw, so 13.4 writes its
+subscripts as Unicode. `exploration.md`'s errata gain the caption of
+Figure 13.13, which puts the density of water at 4 °C 0.0075% above that
+at 2 °C where the figure's own numbers give about 0.003%; the original
+caption keeps the book's number and the page's own caption and readout
+carry the true ones. The key to 13.5's diver problem, 2.12 × 10⁴ Pa, is
+20.9% of 1.013 × 10⁵ Pa where the prompt states 1.01 × 10⁵ N/m²; both pass
+the card's tolerance and the section's notes say so.
+
+Three things are left for Fable. No equation row of this chapter carries a
+`ktex`, although every chapter from 2 to 16 does; 13.2's plan asked for one
+on its five rows and the pass wrote none, because a `ktex` on one section's
+rows would colour one page of the formula sheet and not the chapter's, and
+whether the chapter's thirty-two rows get one is a decision for the whole
+chapter. With twenty-four types declared the scheme gives `pressure` a pale
+yellow on the light theme that is nearly illegible on an axis title, a
+gauge, a slider and a readout, though it reads well on the dark theme, and
+it gives `temperature` and `elastic-modulus` violets that cannot be told
+apart where 13.2's sealed tank puts them on neighbouring sliders; no hue
+was invented (root rules 7 and 22), every figure labels its values in
+words beside the colour, and the scheme is left to the app. Root rule 20's
+`weights_by` field is not in the schema, so no row writes it and the AI
+mark on the 60 weighted rows lives in each section's `exercise_notes`, as
+every earlier chapter has it. A glossary row carries no anchor, so 13.4's
+wish for one on "thermal energy" is recorded in its plan and not applied.
+
+What the reading found. Every headline, topline and readout line is a full
+sentence, no figure carries a hex colour, no still figure a cycle, no
+discrete state a slider (the thirteen solids, six liquids, eight and seven
+substances and the gases are dropdowns or segmented choices), no page the
+word demo, and no ordinal `º` or bare dollar sign stands anywhere in the
+chapter; the one dollar amount of the chapter is the fullwidth ＄ in 13.2's
+exercise strings. Two captions of 13.4 opened on a fragment, the
+distribution's "The Maxwell-Boltzmann distribution … drawn at two
+temperatures" and the escape Sim's "The rms speed … against temperature",
+and both are sentences now. Figure 13.28's caption named the set isotherm
+"the colored curve", which says nothing with colour off; it names it by
+its weight and its label. Every figure's `draws` row matches the hues its
+code names or its readout states.
+
+Checks: `check:content` with 16 chapters, 99 sections and 17 introduction
+pages and no errors; 405 unit tests; `astro check` clean; a build of 118
+pages; and a headless pass over all seven pages of the chapter in light and
+dark with no console error, every image loading, every `figure.sim` booting
+its canvas, every eyebrow reading Sim or its figure number, the transport
+on the 5 moving figures only, all five book tables standing, every inline
+host rendering its card, 13.2's with Figure 13.16 on it, every
+end-of-section card rendering, the 67 of them with the piston, the
+two-temperature graph and the carbon dioxide diagram on their cards, and
+the hover card opened from the chips of every exercise on 46 of the
+chapter's 47 concepts (absolute zero has no exercise of its own, as its
+plan says), each rendering its `why` and `evidence` with no KaTeX error
+and no raw macro left in it.
+
+
+### Pass 39 (2026-09-14): Chapter 15, Thermodynamics, is built
+
+Chapter 15 was prepared and its seven sections built in one wave on
+2026-09-14, one agent to a section, and this is the chapter pass over them:
+the wants of the seven plans, the cross-section checks, one reading of every
+page and every `figures.js`, and the full checks.
+
+What stands. Seven section pages and the introduction page, with 38 figure
+rows over them: 33 drawn figures, of which 26 transform 28 book figures (two
+folds, the isobaric cylinder with its graph as Figure 15.9 + 15.10 and the
+two Otto cycles as Figure 15.18 + 15.19), 5 are Sims of OmniStax's own (the
+four simple processes of Table 15.2 from one state in 15.2, the Carnot
+efficiency drawn against the hot reservoir temperature in 15.4, the two
+coefficients of performance as bars in 15.5, and the coins tossed onto a
+histogram and the change in entropy between two macrostates in 15.7), and 2
+are faithful copies of the unnumbered loops and parallelogram that 15.2's
+exercises read; and 5 kept photographs, every one pointed at by the text or
+by a question. The numbers run 15.1 to 15.38 with no gap but the five
+splash photographs dropped, and the book's five tables stay in the text as
+tables, Table 15.5 beside the problem that points at it. Eight of the drawn
+figures have a clock in them and move: the piston of 15.8, the rectangle
+walked round in 15.12, the three one-way processes of 15.15, the four
+strokes of 15.17, the Otto cycle, the Carnot cycle, the coin tosses, and
+the gas dispersing from its corner in 15.38 while its entropy is counted
+live; the other 25 answer their sliders, register no cycle and carry no
+transport. Every kind of process, every direction of a cycle and every
+engine against heat pump is a choice, never a slider. 85 exercises: 32
+problems, every one keyed, 37 conceptual questions and 16 AP items, of
+which 8 are keyed choices and 8 open; 45 open items carry an AI-marked
+suggested approach, 32 unkeyed problems are left out and named, 15.1's
+refrigerator item is set in 15.5 with `source_section`, 15.2's unkeyed
+engine that needs 15.4 is left out of both and both notes say so, and the
+bricks question the book prints in 15.6 and again in 15.7 is kept in both,
+each note naming the other. The chapter has no Check Your Understanding
+box, so nothing sits inline. 220 coverage rows against 53 concept nodes
+with 165 prerequisite edges, 24 glossary terms, 92 variable rows, 31
+equation rows, 44 symbol rows, and one new type, `entropy` (J/K), because
+15.6's and 15.7's figures draw it as bars, their sliders change it and
+their readouts state it, and it is neither the energy nor the temperature
+it is the quotient of (rule 7).
+
+What the chapter pass wrote. The 121 anchors the seven plans asked for, on
+every variable and equation row of `chapter.json`, each a span of its
+section's own `text.html`; the chapter had none, since the validator
+refuses an anchor into an unbuilt section. Two variable rows 15.6 asked
+for, `T_hprime` and `T_cprime` on its `unavailable-work` span, so the
+definitions view lists the intermediate reservoir of Example 15.7 under
+both names the book gives it. The errata of `exploration.md` corrected and
+extended: the prep pass had read Figure 15.12(b) as printing
+1.2 × 10⁵ N/m², and 15.2 found the printed panel reads 2 × 10⁵ and agrees
+with Example 15.2, the slip being in the alt text alone; the caption of
+Figure 15.26, which names Figure 15.27 where the book means the Carnot
+cycle of 15.4, and Example 15.7's $T'_\text{c}$ for the reservoir Figure
+15.34 calls $T'_\text{h}$ are recorded beside the lowercase entropy $s$.
+`config.md` records, in a "What the build changed" block, that 15.2's
+isothermal and adiabatic passage and Figure 15.13 sit inside the
+`<example>` element in the CNXML and are set as narrative after Example
+15.2's Discussion, words unchanged; that eight figures move where the Motion
+line had foreseen three ideas; and which folds and photographs stood.
+`ch15/COLOR.md` now carries `time` in its table, bound by 15.7 alone for
+the horizontal axis of the entropy graph of Figure 15.38, and says that the
+water molecules of Figure 15.35 are the chapter's one use of the element
+palette and that the categorical palette is not used. Root rule 20's
+`weights_by` field is not in the schema, so the AI mark on the 95 weighted
+rows lives in each section's `exercise_notes`, as every earlier chapter has
+it, and the rule is left as it stands.
+
+What the reading found. Every headline, topline and readout line is a full
+sentence, no still figure carries a cycle, no discrete state sits on a
+slider, no ordinal `º`, bare dollar sign, hex colour or leftover marker
+stands anywhere in the chapter, and every figure's `draws` row matches the
+hues its code names or its readout states. The five strokes of Figure
+15.17 had label-headed toplines ("Intake stroke: the intake valve is
+open…") and read as sentences now; one phrase of a caption in 15.7 spoke of
+the reader and speaks to you; and three fields the app prints as plain
+text, the lead of 15.7 and the notes of 15.5 and 15.7, carried math that
+rendered as raw dollars and are in words. 15.3's five primed symbols stand
+in the tables on the `otto` span though the page writes none of them, the
+caption of Figure 15.19 where the book writes them not being shown by the
+fold; the plan says so.
+
+Two things are left for Fable and Chen, since a chapter may not invent a
+hue (root rule 22), and the headless pass confirms both: the scheme gives
+`pressure` a pale yellow that is close to illegible on the light theme,
+where it stands on the axis title, ticks and labels of every $PV$ diagram
+of the chapter; and `entropy` comes out a pink so near the magenta of
+`energy` that 15.6's figures, where an energy arrow stands beside three
+entropy bars, tell the two apart by their labels more than by their hues.
+The book's `COLOR.md` also still says the element palette does not arise
+in the chapters built, and 11.1 and now 15.6 use it.
+
+Checks: `check:content` with 16 chapters, 105 sections and 17 introduction
+pages and no errors; 405 unit tests; `astro check` clean; a build of 124
+pages; and a headless pass over all eight pages of the chapter in light and
+dark with no console error, every image loading, every `figure.sim` booting
+its canvas, every eyebrow reading Sim, Figure or its figure number, the
+transport on the eight moving figures only, every book table standing, and
+no KaTeX error on any page.
+
+
+### Pass 40 (2026-09-14): Chapter 14, Heat and Heat Transfer Methods, is built
+
+Chapter 14 was prepared and its seven sections built in one wave on
+2026-09-14, one agent to a section, and this is the chapter pass over them:
+the wants of the seven plans, the cross-section checks, one reading of every
+page and every `figures.js`, and the full checks.
+
+What stands. Seven section pages and the introduction page, with 35 figure
+rows over them: 20 drawn figures, of which 13 transform a book figure and 7
+are Sims of OmniStax's own (the hot pan and the cold water meeting on a
+temperature axis in 14.2, the ice cubes melting in a soda in 14.3, the
+leaking house drawn as a row of light bulbs, the wind-chill table read as two
+thermometers and the sweat that sheds a given power in 14.6, the fourth-power
+curve and the person in a room radiating to its walls in 14.7), one faithful
+copy (the thermos bottle of 14.4, which its conceptual question asks the
+reader to explain part by part) and 14 kept photographs, every one pointed at
+by the text or showing the thing its passage is about. One fold does the work
+of two drawings, the gravity furnace and the pot on the stove as one
+convective loop (Figure 14.21 + 14.22); the numbers run 14.1 to 14.34 with
+the gaps the config foresaw, two photographs dropped with unkeyed problems
+(14.6, 14.20), one splash image (14.15) and three images that travel on the
+cards of the items that refer to them (14.19, 14.27, 14.35); the four tables
+of the book stay in the text as tables. Heat is a flow and this chapter moves
+more than Chapters 9 to 13 did: six drawn figures have a clock in them, the
+two bodies coming to equilibrium and Joule's falling weights in 14.1, the
+collisions at a contact surface and the heat current through a slab in 14.5,
+and the convective loop and the loops in fur in 14.6, and each registers a
+cycle and carries the transport; the fourteen others answer their sliders and
+carry none. No scene turns: every figure of the chapter is a body, a slab, a
+loop or a graph, and the slab and the blocks of 14.7 use a locked view where
+the book prints them in perspective. 86 exercises: 41 problems, 28 conceptual
+questions, 10 AP items and 7 Check Your Understanding boxes, one inline on
+every page; two Unreasonable Results items sit with 14.2 and 14.5 rather than
+the 14.7 that printed them, each with `source_section` and both sections'
+notes; 33 open items carry an AI-marked suggested approach, 46 are keyed from
+the book, and 40 unkeyed problems are left out and named, the two Construct
+Your Own Problem items among them. Two ids the book prints twice (the fan
+box in 14.5 and 14.6, the lake problem in 14.2 and 14.6) are kept once each
+where they are keyed and named in both sections' notes. 183 coverage rows
+against 44 concept nodes with 119 prerequisite edges into Chapters 1, 4, 7,
+11, 12, 13 and 16, 18 glossary terms, 52 variable rows, 19 equation rows,
+and no new type: heat is `energy`, its rate is `power`, temperature is
+Chapter 13's, and the specific heat, the latent heats, the conductivity, the
+emissivity and the Stefan-Boltzmann constant stay in ink, the case made in
+`exploration.md`. Twenty symbol rows were staged, `Q_heat` (`\kQh`) chief
+among them, since the book's `Q` is Chapter 12's flow rate; no existing row
+was changed.
+
+What the chapter pass wrote. The 71 anchors the plans asked for, on every
+variable and equation row of `chapter.json`, each a span of its section's
+own `text.html`; 14.4 has no row to anchor. One variable row dropped, 14.2's
+`PE_g`, since the page writes the truck's lost potential energy as $Mgh$ as
+the book does and never prints the symbol. The worked examples carry the
+publisher's numbers: the CNXML numbers none, the publisher counts nine
+through the chapter, and 14.5 had numbered its two 14.6 and 14.7 and 14.7 its
+one 14.10; they are Examples 14.5, 14.6 and 14.9 now on the pages, in the
+stove-top problem that cites the pan, in the slab's caption and the
+balance's, and in the nine concept rows that name them, 14.6's two included,
+which had named 14.8 and 14.9 for its own 14.7 and 14.8.
+`conduction-rate-scaling`'s evidence says its box is set after the rate
+equation it tests, where the book prints it after the pan example. 14.2's
+lead carried two pieces of math, and the lead is not swept for math, so it is
+rewritten in words. `ch14/COLOR.md` is brought into line with the pages: it
+had said the arrows on Figure 14.8's molecules animate where the config keeps
+the figure still, and the page follows the config; and its summary line now
+says 14.7 binds energy and time through its readouts as well as power and
+temperature, under its own rule that a rate is written $\kQh/\kt$. The
+config's "What the build changed" block records these, that Figure 14.29 has
+one original carrying both panels rather than two, and that its Prose line's
+"Errata" section of `exploration.md` had not been written; it is there now,
+with 14.2's "27.0 × 10⁴ J", 14.5's "1 g of water melts in one second",
+14.6's "is used the body", the axis of Figure 14.9 that reads kJ/kg with
+numbers in thousands of kJ/kg, and the two AP items of 14.5 that cite an
+experiment this edition does not print. No page writes `\kTf`, Chapter 4's
+tension, for a temperature. Root rule 20's `weights_by` field is not in the
+schema, so the AI mark on the 94 weighted rows lives in each section's
+`exercise_notes`, as every earlier chapter has it.
+
+What the reading found. No leftover marker, ordinal `º`, bare dollar sign,
+hex hue that is not the physical fact (the flames of 14.4 and 14.6, the
+visible band and the glow of 14.29, the Sun's disc of 14.33) or the word demo
+stands anywhere in the chapter; no still figure calls `cycle()`, and every
+substance chosen from a table is a choice, never a slider. Four sentences
+OmniStax had written spoke of the book or the page rather than the subject,
+the caption of Figure 14.29 twice, the glow label under it and the last
+sentence of Figure 14.33's caption, and each is reworded; the headline of
+Figure 14.16 was a clipped clause with a middle dot and is a sentence now,
+and Figure 14.17's ends with a full stop; the caption of Figure 14.14 is
+spelled the American way. 14.3's plan said its heating curve ran to 3500
+kJ/kg and 140 °C; the figure runs to 3200 kJ/kg and 180 °C, and the plan says
+so now. Every figure's `draws` row matches the hues its code names or its
+readout states.
+
+Left for Fable and Chen. The book's `RULES.md` still lists twelve built
+chapters and twenty-two types; with Chapters 13 and 15 landing in the same
+wave it wants 13, 14 and 15 added and `temperature` and `entropy` counted,
+which is the orchestrator's edit. The chapter prints four tables of material
+constants and Chapter 13 prints coefficients of expansion, and together they
+are the sheet the book's rules foresee; each stays in its section's text for
+now.
+
+Checks: `check:content` with 16 chapters and no errors; 405 unit tests;
+`astro check` clean; a build of 122 pages; and a headless pass over all
+eight pages of the chapter in light and dark with no console error, every
+image loading, every `figure.sim` booting its canvas, every eyebrow reading
+Sim or its figure number, the transport on the six moving figures only,
+every inline host rendering its card, every book table standing, and the
+hover card opened on all 44 of the chapter's concepts, 40 from the chips of
+their exercise cards and 4 from the concept map (the units of heat, the final
+temperature of an exchange, the R factor and the spectrum of a radiator),
+each rendering its `why` and `evidence` with no KaTeX error and no raw macro
+left in it.

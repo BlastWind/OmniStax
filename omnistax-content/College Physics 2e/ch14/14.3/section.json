@@ -1,0 +1,616 @@
+{
+ "id": "14.3",
+ "module": "m42225",
+ "chapter": "14",
+ "title": "Phase Change and Latent Heat",
+ "short": "Phase change and latent heat",
+ "lead": "Heat that melts ice or boils water changes no temperature at all: it goes into pulling the molecules apart, and the same energy comes back out when the vapor condenses or the liquid freezes. This section names that hidden energy the latent heat, gives the heat of a phase change as the mass times a latent heat coefficient, follows a sample of ice up the heating curve to steam, and works a calorimetry example in which ice cubes melt in a soda before closing with the strategy for any problem that mixes temperature changes and phase changes.",
+ "objectives": [
+  "Examine heat transfer.",
+  "Calculate final temperature from heat transfer."
+ ],
+ "summary_html": "<ul><li>Most substances can exist either in solid, liquid, and gas forms, which are referred to as “phases.”</li><li>Phase changes occur at fixed temperatures for a given substance at a given pressure, and these temperatures are called boiling and freezing (or melting) points.</li><li>During phase changes, heat absorbed or released is given by: $$\\kQh = mL,$$ where $L$ is the latent heat coefficient.</li></ul>",
+ "notes": "The nine problems the book leaves unkeyed are left out: the bag of ice against the bag of water, the condensation that melts ice, the swimming pool that keeps its temperature by evaporating, the Ross Ice Shelf iceberg, the thunderstorm's condensation, the bowl of soup in the freezer, the water poured onto a block of ice, the hot pan of the preceding section with evaporation, and the lead bullets.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. The Check Your Understanding box on snow that stays on a slope above freezing carries the book’s answer and is set inline at the end of the passage on latent heat coefficients. The eleven conceptual questions have no key and are open items with AI-written suggested approaches, marked as such. The module prints no AP test prep items. Ten of the nineteen problems are keyed and kept, named by their position in the book’s list; the crude-oil problem keys only part (a), so the card checks that number and carries the book’s own answer to part (b) in its solution, and the problem that takes 0.200 kg of ice from −20.0 °C to 130 °C keys parts (a) and (b) while part (c), the graph, is the heating curve the section’s figure draws. Nine problems have no keyed answer and are left out: the bag of ice against the bag of water, the condensation that melts ice, the swimming pool that evaporates, the iceberg, the thunderstorm, the bowl of soup in the freezer, the water poured onto a block of ice, the hot pan of 14.2 with evaporation, and the lead bullets. Nothing is taken from another section and nothing of this section’s own is held for a later page. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-icicle",
+   "kind": "photo",
+   "number": "14.7",
+   "originals": [
+    "/media/ch14/Figure_15_03_01a.jpg"
+   ],
+   "original_caption": "Heat from the air transfers to the ice causing it to melt. (credit: Mike Brand)",
+   "widths": [
+    272
+   ]
+  },
+  {
+   "id": "sim-phases",
+   "kind": "sim",
+   "number": "14.8",
+   "originals": [
+    "/media/ch14/Figure_15_03_02a.jpg"
+   ],
+   "original_caption": "(a) Energy is required to partially overcome the attractive forces between molecules in a solid to form a liquid. That same energy must be removed for freezing to take place. (b) Molecules are separated by large distances when going from liquid to vapor, requiring significant energy to overcome molecular attraction. The same energy must be removed for condensation to take place. There is no temperature change until a phase change is complete.",
+   "widths": [
+    425
+   ],
+   "draws": [
+    "energy"
+   ]
+  },
+  {
+   "id": "sim-heating-curve",
+   "kind": "sim",
+   "number": "14.9",
+   "originals": [
+    "/media/ch14/Figure_15_03_03a.jpg"
+   ],
+   "original_caption": "A graph of temperature versus energy added. The system is constructed so that no vapor evaporates while ice warms to become liquid water, and so that, when vaporization occurs, the vapor remains in of the system. The long stretches of constant temperature values at 0 °C and 100 °C reflect the large latent heat of melting and vaporization, respectively.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy",
+    "temperature"
+   ]
+  },
+  {
+   "id": "sim-ice-soda",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "temperature"
+   ]
+  },
+  {
+   "id": "fig-iced-tea",
+   "kind": "photo",
+   "number": "14.10",
+   "originals": [
+    "/media/ch14/Figure_15_03_04a.jpg"
+   ],
+   "original_caption": "Condensation forms on this glass of iced tea because the temperature of the nearby air is reduced to below the dew point. The rate at which water molecules join together exceeds the rate at which they separate, and so water condenses. Energy is released when the water condenses, speeding the melting of the ice in the glass. (credit: Jenny Downing)",
+   "widths": [
+    286
+   ]
+  },
+  {
+   "id": "fig-orchard-ice",
+   "kind": "photo",
+   "number": "14.11",
+   "originals": [
+    "/media/ch14/Figure_15_03_05a.jpg"
+   ],
+   "original_caption": "The ice on these trees released large amounts of energy when it froze, helping to prevent the temperature of the trees from dropping below 0 °C. Water is intentionally sprayed on orchards to help prevent hard frosts. (credit: Hermann Hammer)",
+   "widths": [
+    350
+   ]
+  },
+  {
+   "id": "fig-dry-ice-frost",
+   "kind": "photo",
+   "number": "14.12",
+   "originals": [
+    "/media/ch14/Figure_15_03_06aa.jpg"
+   ],
+   "original_caption": "Direct transitions between solid and vapor are common, sometimes useful, and even beautiful. (a) Dry ice sublimates directly to carbon dioxide gas. The visible vapor is made of water droplets. (credit: Windell Oskay) (b) Frost forms patterns on a very cold window, an example of a solid formed directly from a vapor. (credit: Liz West)"
+  }
+ ],
+ "coverage": [
+  { "span": "phase-change", "concept": "latent-heat", "verb": "introduces" },
+  { "span": "phase-change", "concept": "heat-of-fusion", "verb": "introduces" },
+  { "span": "phase-change", "concept": "heat-of-vaporization", "verb": "introduces" },
+  { "span": "phase-change", "concept": "heat", "verb": "uses" },
+  { "span": "phase-change", "concept": "heat-vs-temperature", "verb": "uses" },
+  { "span": "phase-change", "concept": "phases-of-matter", "verb": "uses" },
+  { "span": "phase-change", "concept": "atomic-arrangement-and-phase", "verb": "uses" },
+  { "span": "phase-change", "concept": "cohesive-forces", "verb": "uses" },
+  { "span": "latent-heat-coefficients", "concept": "latent-heat", "verb": "reinforces" },
+  { "span": "latent-heat-coefficients", "concept": "heat-of-fusion", "verb": "reinforces" },
+  { "span": "latent-heat-coefficients", "concept": "heat-of-vaporization", "verb": "reinforces" },
+  { "span": "latent-heat-coefficients", "concept": "heat-and-temperature-change", "verb": "uses" },
+  { "span": "latent-heat-coefficients", "concept": "evaporative-cooling", "verb": "uses" },
+  { "span": "latent-heat-coefficients", "concept": "dew-point", "verb": "uses" },
+  { "span": "heating-curve", "concept": "heating-curve", "verb": "introduces" },
+  { "span": "heating-curve", "concept": "heat-of-fusion", "verb": "uses" },
+  { "span": "heating-curve", "concept": "heat-of-vaporization", "verb": "uses" },
+  { "span": "heating-curve", "concept": "heat-and-temperature-change", "verb": "uses" },
+  { "span": "heating-curve", "concept": "specific-heat", "verb": "uses" },
+  { "span": "heating-curve", "concept": "boiling", "verb": "uses" },
+  { "span": "evaporation", "concept": "evaporation-below-boiling", "verb": "introduces" },
+  { "span": "evaporation", "concept": "heat-of-vaporization", "verb": "uses" },
+  { "span": "evaporation", "concept": "evaporative-cooling", "verb": "uses" },
+  { "span": "evaporation", "concept": "relative-humidity", "verb": "uses" },
+  { "span": "cooling-soda", "concept": "phase-change-calorimetry", "verb": "introduces" },
+  { "span": "cooling-soda", "concept": "heat-of-fusion", "verb": "uses" },
+  { "span": "cooling-soda", "concept": "calorimetry", "verb": "uses" },
+  { "span": "cooling-soda", "concept": "final-temperature-from-heat-exchange", "verb": "uses" },
+  { "span": "cooling-soda", "concept": "heat-and-temperature-change", "verb": "uses" },
+  { "span": "condensation", "concept": "condensation-and-freezing-release-heat", "verb": "introduces" },
+  { "span": "condensation", "concept": "heat-of-vaporization", "verb": "reinforces" },
+  { "span": "condensation", "concept": "heat-of-fusion", "verb": "reinforces" },
+  { "span": "condensation", "concept": "dew-point", "verb": "uses" },
+  { "span": "sublimation", "concept": "heat-of-sublimation", "verb": "introduces" },
+  { "span": "sublimation", "concept": "latent-heat", "verb": "reinforces" },
+  { "span": "sublimation", "concept": "sublimation", "verb": "uses" },
+  { "span": "sublimation", "concept": "vapor-pressure", "verb": "uses" },
+  { "span": "strategies", "concept": "phase-change-calorimetry", "verb": "reinforces" },
+  { "span": "strategies", "concept": "latent-heat", "verb": "reinforces" },
+  { "span": "strategies", "concept": "heat-and-temperature-change", "verb": "uses" },
+  { "span": "strategies", "concept": "temperature-rise-from-work", "verb": "uses" }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2408137",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": { "at": "inline", "after": "latent-heat-coefficients" },
+   "cite": "latent-heat-coefficients",
+   "prompt": "Why does snow remain on mountain slopes even when daytime temperatures are higher than the freezing temperature?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Snow is formed from ice crystals and thus is the solid phase of water. Because enormous heat is necessary for phase changes, it takes a certain amount of time for this heat to be accumulated from the air, even if the air is above $0^\\circ\\text{C}$. The warmer the air is, the faster this heat exchange occurs and the faster the snow melts."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1412690",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "strategies",
+   "prompt": "Heat transfer can cause temperature and phase changes. What else can cause these changes?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Work can. Heat transfer is one way of putting energy into a system, and work is the other: Joule’s paddles warmed water with no flame under it, the brakes of a car warm because friction does work on them, and a gas that is compressed warms as the piston does work on it. Enough work done on a body raises its temperature, and enough of it carried past a melting or boiling point changes its phase, exactly as the same energy delivered as heat would. The problem-solving strategy says so in its closing sentence, that heat transfer and work can cause both temperature and phase changes."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2621789",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "condensation",
+   "prompt": "How does the latent heat of fusion of water help slow the decrease of air temperatures, perhaps preventing temperatures from falling significantly below $0^\\circ\\text{C}$, in the vicinity of large bodies of water?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "When the air near a lake cools to the freezing point, the water at its surface begins to freeze, and every kilogram that freezes releases 334 kJ into its surroundings, the heat of fusion given back. That energy warms the air above the water, so the air cannot fall much below $0^\\circ\\text{C}$ until a great deal of water has frozen, and a large body of water holds an enormous mass. The same thing keeps the water itself at $0^\\circ\\text{C}$ while it freezes: its temperature will not drop until the phase change is complete. This is the effect the orchard growers use on purpose when they spray their trees before a frost."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3449946",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": { "at": "end" },
+   "cite": "phase-change",
+   "prompt": "What is the temperature of ice right after it is formed by freezing water?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It is $0^\\circ\\text{C}$, the freezing point. Freezing is a phase change, and there is no temperature change until a phase change is complete: the water sits at $0^\\circ\\text{C}$ while it gives up its heat of fusion, and the ice that forms is at that same temperature the instant it forms. Only after the ice exists can further cooling take it below $0^\\circ\\text{C}$, and that is a temperature change governed by the specific heat of ice, not by the latent heat."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3225958",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "phase-change",
+   "prompt": "If you place $0^\\circ\\text{C}$ ice into $0^\\circ\\text{C}$ water in an insulated container, what will happen? Will some ice melt, will more water freeze, or will neither take place?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Neither will take place. Heat is the transfer of energy due to a temperature difference, and here there is none: the ice and the water are both at $0^\\circ\\text{C}$, and the container lets nothing in from outside. Melting some ice would require heat to flow into it, and that heat could come only from the water, which would then have to cool below $0^\\circ\\text{C}$; freezing some water would require heat to flow out of it into ice that is no colder than it is. Neither flow can happen without a temperature difference, so the mixture stays as it is, ice and water together at $0^\\circ\\text{C}$."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1933185",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "condensation",
+   "prompt": "What effect does condensation on a glass of ice water have on the rate at which the ice melts? Will the condensation speed up the melting process or slow it down?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It speeds the melting up. When water vapor from the air condenses on the cold glass, each kilogram of it gives up its heat of vaporization, 2256 kJ, to the glass, and that energy passes through the glass into the ice water. The heat of vaporization is nearly seven times the heat of fusion, so every gram that condenses on the outside carries enough energy to melt almost seven grams of ice on the inside. Condensation is therefore an extra source of heat for the ice, over and above what the warm air delivers by contact, and the ice melts faster than it would in dry air."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3105447",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "evaporation",
+   "prompt": "In very humid climates where there are numerous bodies of water, such as in Florida, it is unusual for temperatures to rise above about $35^\\circ\\text{C}\\ (95^\\circ\\text{F})$. In deserts, however, temperatures can rise far above this. Explain how the evaporation of water helps limit high temperatures in humid climates.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Water evaporates at temperatures well below its boiling point, and every kilogram that evaporates takes about 2430 kJ from its surroundings, the heat of vaporization at those temperatures. Where there is plenty of water, most of the energy the Sun delivers goes into evaporating it rather than into raising the temperature of the ground and the air, so the air warms only slowly and stops near $35^\\circ\\text{C}$. In a desert there is little water to evaporate, so the same sunlight goes almost entirely into temperature change, and the air climbs far higher. The evaporation is the same mechanism that cools your skin when you sweat."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2677751",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "evaporation",
+   "prompt": "In winters, it is often warmer in San Francisco than in nearby Sacramento, 150 km inland. In summers, it is nearly always hotter in Sacramento. Explain how the bodies of water surrounding San Francisco moderate its extreme temperatures.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The ocean and the bay work in both directions. In summer, sunlight that falls on San Francisco goes largely into evaporating water, which takes about 2430 kJ from the surroundings for every kilogram that leaves, so the air does not warm as far as the dry air over Sacramento, where almost all of the same sunlight goes into temperature change. In winter, the air over the water cools to its dew point and water vapor condenses, and every kilogram that condenses gives its heat of vaporization back to the air, which keeps the temperature from falling much further. Behind both effects is the large specific heat of the water itself, which changes temperature far less than land does for the same heat transfer, so the water is cooler than the land in summer and warmer in winter and the air over it follows. Sacramento, 150 km inland, has none of this."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2595298",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "condensation",
+   "prompt": "Putting a lid on a boiling pot greatly reduces the heat transfer necessary to keep it boiling. Explain why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Boiling water loses energy chiefly through the steam that leaves it: every kilogram that boils away carries off 2256 kJ, its heat of vaporization, and that is the energy the stove must keep supplying. With a lid on, the steam is held in the pot. Much of it condenses on the underside of the lid and drips back, and when it condenses it gives its heat of vaporization back to the water, so the energy is not lost after all. The lid also traps the layer of vapor above the water, so that less evaporates in the first place. What the stove then has to make up is only the heat that escapes through the walls and the lid, which is far less than the latent heat that open boiling carries away."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1926483",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "sublimation",
+   "prompt": "Freeze-dried foods have been dehydrated in a vacuum. During the process, the food freezes and must be heated to facilitate dehydration. Explain both how the vacuum speeds up dehydration and why the food freezes as a result.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In a vacuum there is no air above the food and no water vapor either, so the water in the food evaporates as fast as it can: molecules that leave the surface are pumped away rather than returning, and nothing holds the vapor pressure of the water back. Each kilogram that evaporates takes its heat of vaporization, about 2430 kJ at ordinary temperatures, from the food itself, since there is no air to supply it. The food therefore cools rapidly, and it keeps cooling until it freezes, because evaporation goes on removing energy with nothing coming in. Once the food is frozen, the water in it leaves by sublimation, straight from ice to vapor, which also takes energy, and so the food must be heated to keep the drying going without letting it thaw."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id1215980",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "condensation",
+   "prompt": "When still air cools by radiating at night, it is unusual for temperatures to fall below the dew point. Explain why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The dew point is the temperature at which the water vapor in the air is at its saturation density, so that any further cooling makes vapor condense. As soon as the air reaches it, water begins to condense out as dew or fog, and every kilogram that condenses releases 2256 kJ, its heat of vaporization, into the air around it. That energy replaces what the air is radiating away, so the temperature stops falling, or falls only very slowly, while the condensation goes on. The air can drop below the dew point only after most of its vapor has already condensed, and on a still night there is usually enough vapor to hold the temperature there until morning."
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id2449057",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "sublimation",
+   "prompt": "In a physics classroom demonstration, an instructor inflates a balloon by mouth and then cools it in liquid nitrogen. When cold, the shrunken balloon has a small amount of light blue liquid in it, as well as some snow-like crystals. As it warms up, the liquid boils, and part of the crystals sublimate, with some crystals lingering for awhile and then producing a liquid. Identify the blue liquid and the two solids in the cold balloon. Justify your identifications using data from Table 14.2.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The balloon holds exhaled breath, which is mostly nitrogen and oxygen with water vapor and carbon dioxide added by the lungs. Liquid nitrogen sits at its own boiling point, $-195.8^\\circ\\text{C}$ by Table 14.2, and that is below the boiling point of oxygen, $-183.0^\\circ\\text{C}$, so the oxygen in the balloon condenses while the nitrogen in it need not: the light blue liquid is liquid oxygen, which is pale blue. The water vapor freezes long before that, since water melts at $0^\\circ\\text{C}$, and the carbon dioxide freezes too, into the solid that dry ice is made of. On warming, the oxygen boils away first, at $-183.0^\\circ\\text{C}$. The crystals that sublimate are the carbon dioxide, which at atmospheric pressure passes straight from solid to vapor and never forms a liquid, as the section says of dry ice. The crystals that linger and then produce a liquid are the water ice, which stays solid up to $0^\\circ\\text{C}$ and then melts, taking its heat of fusion from the room."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2668191",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "latent-heat-coefficients",
+   "prompt": "How much heat transfer (in kilocalories) is required to thaw a 0.450-kg package of frozen vegetables originally at $0^\\circ\\text{C}$ if their heat of fusion is the same as that of water?",
+   "answer": {
+    "type": "number",
+    "value": 35.9,
+    "unit": "kcal",
+    "generated_by": "source",
+    "hint": "The vegetables are already at the melting point, so no temperature change is involved: the heat is $\\kQh = mL_{\\text{f}}$, and Table 14.2 gives $L_{\\text{f}}$ for water in kcal/kg as well as in kJ/kg.",
+    "solution": "35.9 kcal"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2011381",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "heating-curve",
+   "prompt": "(a) How much heat transfer is required to raise the temperature of a 0.750-kg aluminum pot containing 2.50 kg of water from $30.0^\\circ\\text{C}$ to the boiling point and then boil away 0.750 kg of water? (b) How long does this take if the rate of heat transfer is 500 W $(1\\ \\text{watt} = 1\\ \\text{joule/second}\\ (1\\ \\text{W} = 1\\ \\text{J/s}))$?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 591,
+      "unit": "kcal",
+      "hint": "Three terms: the pot warms through $70.0^\\circ\\text{C}$ with aluminum’s specific heat, all 2.50 kg of water warms through the same $70.0^\\circ\\text{C}$, and then only 0.750 kg of it boils away at $L_{\\text{v}}$."
+     },
+     {
+      "part": "(b)",
+      "value": 4940,
+      "unit": "s",
+      "hint": "Convert the heat of part (a) to joules and divide by the rate, 500 J every second."
+     }
+    ],
+    "solution": "(a) 591 kcal (b) $4.94 \\times 10^{3}\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-id1169190623482",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "latent-heat-coefficients",
+   "prompt": "On a trip, you notice that a 3.50-kg bag of ice lasts an average of one day in your cooler. What is the average power in watts entering the ice if it starts at $0^\\circ\\text{C}$ and completely melts to $0^\\circ\\text{C}$ water in exactly one day $(1\\ \\text{watt} = 1\\ \\text{joule/second}\\ (1\\ \\text{W} = 1\\ \\text{J/s}))$?",
+   "answer": {
+    "type": "number",
+    "value": 13.5,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "The heat that melts the whole bag is $\\kQh = mL_{\\text{f}}$ in joules; a day is $8.64 \\times 10^{4}\\ \\text{s}$, and the power is the heat divided by the time.",
+    "solution": "13.5 W"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "eip-200",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "heating-curve",
+   "prompt": "(a) How much heat transfer is necessary to raise the temperature of a 0.200-kg piece of ice from $-20.0^\\circ\\text{C}$ to $130^\\circ\\text{C}$, including the energy needed for phase changes?<br>(b) How much time is required for each stage, assuming a constant 20.0 kJ/s rate of heat transfer?<br>(c) Make a graph of temperature versus time for this process.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 148,
+      "unit": "kcal",
+      "hint": "Five stages in order: warm the ice through $20.0^\\circ\\text{C}$, melt it, warm the water through $100^\\circ\\text{C}$, boil it, warm the steam through $30^\\circ\\text{C}$. The specific heats of ice, water and steam are in Table 14.1 and the latent heats in Table 14.2."
+     },
+     {
+      "part": "(b) warming the ice",
+      "value": 0.418,
+      "unit": "s",
+      "hint": "Each stage’s time is its heat in joules divided by $2.00 \\times 10^{4}\\ \\text{J/s}$."
+     },
+     {
+      "part": "(b) melting the ice",
+      "value": 3.34,
+      "unit": "s"
+     },
+     {
+      "part": "(b) warming the water",
+      "value": 4.19,
+      "unit": "s"
+     },
+     {
+      "part": "(b) boiling the water",
+      "value": 22.6,
+      "unit": "s"
+     },
+     {
+      "part": "(b) warming the steam",
+      "value": 0.456,
+      "unit": "s"
+     }
+    ],
+    "solution": "(a) 148 kcal (b) 0.418 s, 3.34 s, 4.19 s, 22.6 s, 0.456 s"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2400640",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "evaporation",
+   "prompt": "How many grams of coffee must evaporate from 350 g of coffee in a 100-g glass cup to cool the coffee from $95.0^\\circ\\text{C}$ to $45.0^\\circ\\text{C}$? You may assume the coffee has the same thermal properties as water and that the average heat of vaporization is 2340 kJ/kg (560 cal/g). (You may neglect the change in mass of the coffee as it cools, which will give you an answer that is slightly larger than correct.)",
+   "answer": {
+    "type": "number",
+    "value": 33,
+    "unit": "g",
+    "generated_by": "source",
+    "hint": "The heat the coffee and the glass give up in cooling through $50.0^\\circ\\text{C}$, with water’s specific heat for the coffee and glass’s for the cup, is the heat the evaporating mass carries away at 2340 kJ/kg.",
+    "solution": "33.0 g"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id3180433",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "heating-curve",
+   "prompt": "(a) It is difficult to extinguish a fire on a crude oil tanker, because each liter of crude oil releases $2.80 \\times 10^{7}\\ \\text{J}$ of energy when burned. To illustrate this difficulty, calculate the number of liters of water that must be expended to absorb the energy released by burning 1.00 L of crude oil, if the water has its temperature raised from $20.0^\\circ\\text{C}$ to $100^\\circ\\text{C}$, it boils, and the resulting steam is raised to $300^\\circ\\text{C}$. (b) Discuss additional complications caused by the fact that crude oil has a smaller density than water.",
+   "answer": {
+    "type": "number",
+    "value": 9.67,
+    "unit": "L",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "One kilogram of water, which is one liter, absorbs three amounts in turn: warming through $80.0^\\circ\\text{C}$ as water, boiling at $L_{\\text{v}}$, and warming through $200^\\circ\\text{C}$ as steam. Divide the energy of the oil by the sum.",
+    "solution": "(a) 9.67 L (b) Crude oil is less dense than water, so it floats on top of the water, thereby exposing it to the oxygen in the air, which it uses to burn. Also, if the water is under the oil, it is less efficient in absorbing the heat generated by the oil."
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id3452480",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "condensation",
+   "prompt": "To help prevent frost damage, 4.00 kg of $0^\\circ\\text{C}$ water is sprayed onto a fruit tree.<br>(a) How much heat transfer occurs as the water freezes?<br>(b) How much would the temperature of the 200-kg tree decrease if this amount of heat transferred from the tree? Take the specific heat to be $3.35\\ \\text{kJ/kg}\\cdot{}^\\circ\\text{C}$, and assume that no phase change occurs.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 319,
+      "unit": "kcal",
+      "hint": "The water is already at $0^\\circ\\text{C}$, so the heat it gives up in freezing is $mL_{\\text{f}}$, with water’s $L_{\\text{f}}$ in kcal/kg from Table 14.2."
+     },
+     {
+      "part": "(b)",
+      "value": 2,
+      "unit": "°C",
+      "hint": "Set the heat of part (a), in kJ, equal to $mc\\kdTemp$ for the tree and solve for $\\kdTemp$."
+     }
+    ],
+    "solution": "a) 319 kcal b) $2.00^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id3085487",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "cooling-soda",
+   "prompt": "A 0.0500-kg ice cube at $-30.0^\\circ\\text{C}$ is placed in 0.400 kg of $35.0^\\circ\\text{C}$ water in a very well-insulated container. What is the final temperature?",
+   "answer": {
+    "type": "number",
+    "value": 20.6,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "The ice takes heat in three steps, warming through $30.0^\\circ\\text{C}$ as ice, melting, and warming as water from $0^\\circ\\text{C}$ to $\\kTempf$; the water gives up $m c_{\\text{W}}(35.0^\\circ\\text{C} - \\kTempf)$. Set the two equal and solve for $\\kTempf$, as Example 14.4 does with one more term.",
+    "solution": "$20.6^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "fs-id1479060",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "cooling-soda",
+   "prompt": "Indigenous people sometimes cook in watertight baskets by placing hot rocks into water to bring it to a boil. What mass of $500^\\circ\\text{C}$ rock must be placed in 4.00 kg of $15.0^\\circ\\text{C}$ water to bring its temperature to $100^\\circ\\text{C}$, if 0.0250 kg of water escapes as vapor from the initial sizzle? You may neglect the effects of the surroundings and take the average specific heat of the rocks to be that of granite.",
+   "answer": {
+    "type": "number",
+    "value": 4.38,
+    "unit": "kg",
+    "generated_by": "source",
+    "hint": "The rocks cool through $400^\\circ\\text{C}$ with granite’s specific heat from Table 14.1. That heat warms all 4.00 kg of water through $85.0^\\circ\\text{C}$ and boils 0.0250 kg of it at $L_{\\text{v}}$. Solve the balance for the mass of rock.",
+    "solution": "4.38 kg"
+   }
+  },
+  {
+   "id": "p18",
+   "source_id": "fs-id3449621",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "latent-heat-coefficients",
+   "prompt": "In some countries, liquid nitrogen is used on dairy trucks instead of mechanical refrigerators. A 3.00-hour delivery trip requires 200 L of liquid nitrogen, which has a density of $808\\ \\text{kg/m}^{3}$.<br>(a) Calculate the heat transfer necessary to evaporate this amount of liquid nitrogen and raise its temperature to $3.00^\\circ\\text{C}$. (Use $c_{\\text{p}}$ and assume it is constant over the temperature range.) This value is the amount of cooling the liquid nitrogen supplies.<br>(b) What is this heat transfer rate in kilowatt-hours?<br>(c) Compare the amount of cooling obtained from melting an identical mass of $0^\\circ\\text{C}$ ice with that from evaporating the liquid nitrogen.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 15700,
+      "unit": "kcal",
+      "hint": "The mass is the density times 0.200 m³. It boils at $-195.8^\\circ\\text{C}$ with nitrogen’s $L_{\\text{v}}$ from Table 14.2, and the gas then warms through $198.8^\\circ\\text{C}$ with the $c_{\\text{p}}$ of nitrogen from Table 14.1."
+     },
+     {
+      "part": "(b)",
+      "value": 18.3,
+      "unit": "kW·h",
+      "hint": "Convert the heat of part (a) to joules; one kilowatt-hour is $3.60 \\times 10^{6}\\ \\text{J}$."
+     },
+     {
+      "part": "(c)",
+      "value": 12900,
+      "unit": "kcal",
+      "hint": "The same mass of ice at $0^\\circ\\text{C}$ absorbs $mL_{\\text{f}}$ in melting, with water’s $L_{\\text{f}}$ in kcal/kg."
+     }
+    ],
+    "solution": "(a) $1.57 \\times 10^{4}\\ \\text{kcal}$ (b) $18.3\\ \\text{kW}\\cdot\\text{h}$ (c) $1.29 \\times 10^{4}\\ \\text{kcal}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  { "exercise": "cyu1", "concept": "latent-heat" },
+  { "exercise": "cyu1", "concept": "heat-of-fusion", "weight": 2 },
+  { "exercise": "cq1", "concept": "latent-heat" },
+  { "exercise": "cq1", "concept": "temperature-rise-from-work", "weight": 3 },
+  { "exercise": "cq2", "concept": "condensation-and-freezing-release-heat" },
+  { "exercise": "cq2", "concept": "heat-of-fusion", "weight": 3 },
+  { "exercise": "cq3", "concept": "latent-heat" },
+  { "exercise": "cq3", "concept": "condensation-and-freezing-release-heat", "weight": 1 },
+  { "exercise": "cq4", "concept": "latent-heat" },
+  { "exercise": "cq4", "concept": "heat", "weight": 2 },
+  { "exercise": "cq5", "concept": "condensation-and-freezing-release-heat" },
+  { "exercise": "cq5", "concept": "heat-of-vaporization", "weight": 2 },
+  { "exercise": "cq6", "concept": "evaporation-below-boiling" },
+  { "exercise": "cq6", "concept": "heat-of-vaporization", "weight": 2 },
+  { "exercise": "cq7", "concept": "evaporation-below-boiling" },
+  { "exercise": "cq7", "concept": "condensation-and-freezing-release-heat", "weight": 3 },
+  { "exercise": "cq7", "concept": "water-moderates-temperature", "weight": 2 },
+  { "exercise": "cq8", "concept": "heat-of-vaporization" },
+  { "exercise": "cq8", "concept": "condensation-and-freezing-release-heat", "weight": 3 },
+  { "exercise": "cq9", "concept": "heat-of-sublimation" },
+  { "exercise": "cq9", "concept": "evaporation-below-boiling", "weight": 3 },
+  { "exercise": "cq9", "concept": "vapor-pressure", "weight": 2 },
+  { "exercise": "cq10", "concept": "condensation-and-freezing-release-heat" },
+  { "exercise": "cq10", "concept": "dew-point", "weight": 2 },
+  { "exercise": "cq11", "concept": "heat-of-sublimation" },
+  { "exercise": "cq11", "concept": "heat-of-vaporization", "weight": 3 },
+  { "exercise": "cq11", "concept": "sublimation", "weight": 2 },
+  { "exercise": "p1", "concept": "heat-of-fusion" },
+  { "exercise": "p3", "concept": "heat-of-vaporization" },
+  { "exercise": "p3", "concept": "heat-and-temperature-change", "weight": 3 },
+  { "exercise": "p3", "concept": "power", "weight": 1 },
+  { "exercise": "p5", "concept": "heat-of-fusion" },
+  { "exercise": "p5", "concept": "power", "weight": 2 },
+  { "exercise": "p7", "concept": "heating-curve" },
+  { "exercise": "p7", "concept": "heat-of-fusion", "weight": 2 },
+  { "exercise": "p7", "concept": "heat-of-vaporization", "weight": 2 },
+  { "exercise": "p7", "concept": "heat-and-temperature-change", "weight": 2 },
+  { "exercise": "p9", "concept": "evaporation-below-boiling" },
+  { "exercise": "p9", "concept": "heat-and-temperature-change", "weight": 3 },
+  { "exercise": "p10", "concept": "heat-of-vaporization" },
+  { "exercise": "p10", "concept": "heating-curve", "weight": 3 },
+  { "exercise": "p10", "concept": "heat-and-temperature-change", "weight": 2 },
+  { "exercise": "p12", "concept": "condensation-and-freezing-release-heat" },
+  { "exercise": "p12", "concept": "heat-of-fusion", "weight": 3 },
+  { "exercise": "p12", "concept": "heat-and-temperature-change", "weight": 2 },
+  { "exercise": "p14", "concept": "phase-change-calorimetry" },
+  { "exercise": "p14", "concept": "heat-of-fusion", "weight": 2 },
+  { "exercise": "p14", "concept": "calorimetry", "weight": 2 },
+  { "exercise": "p16", "concept": "phase-change-calorimetry" },
+  { "exercise": "p16", "concept": "heat-of-vaporization", "weight": 2 },
+  { "exercise": "p16", "concept": "calorimetry", "weight": 2 },
+  { "exercise": "p18", "concept": "heat-of-vaporization" },
+  { "exercise": "p18", "concept": "heat-of-fusion", "weight": 2 },
+  { "exercise": "p18", "concept": "heat-and-temperature-change", "weight": 2 }
+ ]
+}

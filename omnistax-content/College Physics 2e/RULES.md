@@ -70,9 +70,11 @@ Motion and Gravitation, `ch06`), 7 (Work, Energy, and Energy Resources,
 `ch07`), 8 (Linear Momentum and Collisions, `ch08`), 9 (Statics and
 Torque, `ch09`), 10 (Rotational Motion and Angular Momentum, `ch10`), 11
 (Fluid Statics, `ch11`), 12 (Fluid Dynamics and Its Biological and
-Medical Applications, `ch12`) and 16 (Oscillatory Motion and Waves,
-`ch16`). Chapters 4 to 9 were built in one job on 2026-09-11 (LOG passes
-27 to 33) and 10 to 12 on 2026-09-14 (LOG passes 35 to 37), both under
+Medical Applications, `ch12`), 13 (Temperature, Kinetic Theory, and the
+Gas Laws, `ch13`), 14 (Heat and Heat Transfer Methods, `ch14`), 15
+(Thermodynamics, `ch15`) and 16 (Oscillatory Motion and Waves, `ch16`).
+Chapters 4 to 9 were built in one job on 2026-09-11 (LOG passes 27 to
+33) and 10 to 15 on 2026-09-14 (LOG passes 35 to 40), both under
 `Plan.md` at the repository root. A chapter
 folder is `ch` followed by the two-digit chapter number. The whole table
 of contents is in `toc.md`. Every built chapter's introduction and the
@@ -149,12 +151,16 @@ its figures draw and its readouts colour, staged in its `book-rows.json`
 and merged: stress and elastic modulus (5), power (7), torque (9),
 momentum (8), angular acceleration, moment of inertia and angular
 momentum (10), pressure, density and surface tension (11), flow rate and
-viscosity (12), twenty-two in all. Mass, length, angle, count and a
-dimensionless coefficient are not typed and stay in ink. With this many
-types the scheme's hues crowd (Chapters 11 and 12 report pressure, density,
-energy and position drawn in near-identical magentas and surface tension
-in a pale yellow); a page binds only the types it draws, which keeps most
-pages to three or four hues, and the scheme itself is the app's matter.
+viscosity (12), temperature (13), entropy (15), twenty-four in all. Mass,
+length, angle, count, amount of substance and every material constant
+(a specific heat, a latent heat, a conductivity, an emissivity, an
+expansion coefficient) are not typed and stay in ink; heat is an energy
+and a rate of heat transfer is a power. With this many types the scheme's
+hues crowd (Chapters 11 to 15 report pressure, density, energy, position,
+temperature and entropy drawn in near-identical magentas, pressure and
+surface tension in pale yellows on the light theme); a page binds only the
+types it draws, which keeps most pages to three or four hues, and the
+scheme itself is the app's matter.
 
 Variants of one type share its hue and differ by decoration: an initial
 value (subscript 0) is hollow or dashed, an average (bar) is dashed, a

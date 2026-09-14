@@ -1,0 +1,720 @@
+{
+ "id": "14",
+ "dir": "ch14",
+ "title": "Heat and Heat Transfer Methods",
+ "intro": {
+  "module": "m42221",
+  "slug": "14-introduction-to-heat-and-heat-transfer-methods"
+ },
+ "sections": [
+  {
+   "id": "14.1",
+   "module": "m42223",
+   "title": "Heat",
+   "slug": "14-1-heat"
+  },
+  {
+   "id": "14.2",
+   "module": "m42224",
+   "title": "Temperature Change and Heat Capacity",
+   "slug": "14-2-temperature-change-and-heat-capacity"
+  },
+  {
+   "id": "14.3",
+   "module": "m42225",
+   "title": "Phase Change and Latent Heat",
+   "slug": "14-3-phase-change-and-latent-heat"
+  },
+  {
+   "id": "14.4",
+   "module": "m42226",
+   "title": "Heat Transfer Methods",
+   "slug": "14-4-heat-transfer-methods"
+  },
+  {
+   "id": "14.5",
+   "module": "m42228",
+   "title": "Conduction",
+   "slug": "14-5-conduction"
+  },
+  {
+   "id": "14.6",
+   "module": "m42229",
+   "title": "Convection",
+   "slug": "14-6-convection"
+  },
+  {
+   "id": "14.7",
+   "module": "m42230",
+   "title": "Radiation",
+   "slug": "14-7-radiation"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "Q_heat",
+   "type": "energy",
+   "meaning": "heat, the spontaneous transfer of energy due to a temperature difference",
+   "unit": "J",
+   "section": "14.1",
+   "anchor": "14.1-heat"
+  },
+  {
+   "sym": "T_1temp",
+   "type": "temperature",
+   "meaning": "the temperature of the soft drink before it is placed in contact with the ice",
+   "unit": "°C",
+   "section": "14.1",
+   "anchor": "14.1-heat"
+  },
+  {
+   "sym": "T_2temp",
+   "type": "temperature",
+   "meaning": "the temperature of the ice before it is placed in contact with the soft drink",
+   "unit": "°C",
+   "section": "14.1",
+   "anchor": "14.1-heat"
+  },
+  {
+   "sym": "T_primetemp",
+   "type": "temperature",
+   "meaning": "the common temperature the soft drink and the ice reach at thermal equilibrium",
+   "unit": "°C",
+   "section": "14.1",
+   "anchor": "14.1-heat"
+  },
+  {
+   "sym": "W",
+   "type": "energy",
+   "meaning": "the work that produces the same effects as a heat transfer, in Joule's experiment the work done by the falling weights",
+   "unit": "J",
+   "section": "14.1",
+   "anchor": "14.1-mechanical-equivalent"
+  },
+  {
+   "sym": "Q_heat",
+   "type": "energy",
+   "meaning": "the heat transferred to change the temperature of a body",
+   "unit": "J",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the substance whose temperature changes",
+   "unit": "kg",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "c_spec",
+   "meaning": "the specific heat, the heat needed to change the temperature of 1.00 kg of the substance by 1.00 °C; it depends on the material and its phase",
+   "unit": "J/(kg·°C)",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "c_v",
+   "meaning": "the specific heat of a gas at constant volume",
+   "unit": "J/(kg·°C)",
+   "section": "14.2",
+   "anchor": "14.2-specific-heats"
+  },
+  {
+   "sym": "c_p",
+   "meaning": "the specific heat of a gas at constant pressure",
+   "unit": "J/(kg·°C)",
+   "section": "14.2",
+   "anchor": "14.2-specific-heats"
+  },
+  {
+   "sym": "ΔT",
+   "type": "temperature",
+   "meaning": "the change in temperature of the body, the same in kelvin and in degrees Celsius",
+   "unit": "°C",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "T_ftemp",
+   "type": "temperature",
+   "meaning": "the final temperature, after the heat transfer or at thermal equilibrium",
+   "unit": "°C",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "T_itemp",
+   "type": "temperature",
+   "meaning": "the initial temperature, before the heat transfer",
+   "unit": "°C",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "Q_hot",
+   "type": "energy",
+   "meaning": "the heat lost by the hotter body in a calorimetry problem, a negative quantity",
+   "unit": "J",
+   "section": "14.2",
+   "anchor": "14.2-calorimetry"
+  },
+  {
+   "sym": "Q_cold",
+   "type": "energy",
+   "meaning": "the heat gained by the colder body in a calorimetry problem, a positive quantity",
+   "unit": "J",
+   "section": "14.2",
+   "anchor": "14.2-calorimetry"
+  },
+  {
+   "sym": "Q_heat",
+   "type": "energy",
+   "meaning": "the heat required to change the phase of a sample, or released when it changes back",
+   "unit": "J",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the sample that changes phase",
+   "unit": "kg",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "L_f",
+   "meaning": "the latent heat of fusion, the heat per kilogram that melts a substance at its melting point and is released when it freezes",
+   "unit": "J/kg",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "L_v",
+   "meaning": "the latent heat of vaporization, the heat per kilogram that vaporizes a substance at its boiling point and is released when it condenses",
+   "unit": "J/kg",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "L_s",
+   "meaning": "the heat of sublimation, the heat per kilogram that changes a substance from the solid phase directly to the vapor phase",
+   "unit": "J/kg",
+   "section": "14.3",
+   "anchor": "14.3-sublimation"
+  },
+  {
+   "sym": "L_latent",
+   "meaning": "the latent heat coefficient, standing for whichever of the heats of fusion, vaporization or sublimation the phase change calls for",
+   "unit": "J/kg",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "T_ftemp",
+   "type": "temperature",
+   "meaning": "the final temperature once the ice has melted and the water and the soda have reached thermal equilibrium",
+   "unit": "°C",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda"
+  },
+  {
+   "sym": "c_spec",
+   "meaning": "the specific heat of the liquid that warms after the phase change, water's in the worked example",
+   "unit": "J/(kg·°C)",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda"
+  },
+  {
+   "sym": "Q_heat",
+   "type": "energy",
+   "meaning": "the heat conducted through the slab in the time t",
+   "unit": "J",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "the time over which the heat is conducted",
+   "unit": "s",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "k_cond",
+   "meaning": "the thermal conductivity of the material, the property of its ability to conduct heat",
+   "unit": "J/(s·m·°C)",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "A",
+   "meaning": "the surface area of the slab through which heat is conducted",
+   "unit": "m²",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "d_thick",
+   "meaning": "the thickness of the slab, the distance the heat is conducted through",
+   "unit": "m",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "T_2temp",
+   "type": "temperature",
+   "meaning": "the temperature of the hotter face of the slab",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "T_1temp",
+   "type": "temperature",
+   "meaning": "the temperature of the colder face of the slab",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "T_hottemp",
+   "type": "temperature",
+   "meaning": "the temperature of the hotter body, in the temperature difference that drives the heat flux",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-collisions"
+  },
+  {
+   "sym": "T_coldtemp",
+   "type": "temperature",
+   "meaning": "the temperature of the colder body, in the temperature difference that drives the heat flux",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-collisions"
+  },
+  {
+   "sym": "ΔT",
+   "type": "temperature",
+   "meaning": "the temperature difference between the hot body and the cold body, which the heat flux depends on",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-collisions"
+  },
+  {
+   "sym": "R_factor",
+   "meaning": "the R factor of an insulator, the ratio of its thickness to its conductivity; the larger it is, the better the insulation",
+   "unit": "ft²·°F·h/Btu",
+   "section": "14.5",
+   "anchor": "14.5-r-factor"
+  },
+  {
+   "sym": "L_f",
+   "meaning": "the heat of fusion of the ice the conducted heat melts in the ice-box example",
+   "unit": "J/kg",
+   "section": "14.5",
+   "anchor": "14.5-ice-box"
+  },
+  {
+   "sym": "Q_heat",
+   "type": "energy",
+   "meaning": "the heat carried by the mass of fluid that convection moves",
+   "unit": "J",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "the time in which the fluid is moved or replaced",
+   "unit": "s",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of fluid that convection moves, or the mass of water that evaporates",
+   "unit": "kg",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "c_spec",
+   "meaning": "the specific heat of the fluid, for air the specific heat at constant pressure",
+   "unit": "J/(kg·°C)",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "ΔT",
+   "type": "temperature",
+   "meaning": "the temperature change the moved fluid undergoes",
+   "unit": "°C",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "ρ_dens",
+   "type": "density",
+   "meaning": "the density of the fluid, from which its mass follows for a given volume",
+   "unit": "kg/m³",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "V",
+   "meaning": "the volume of fluid moved, the volume of the house in the worked example",
+   "unit": "m³",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "L_v",
+   "meaning": "the heat of vaporization of the sweat that evaporates from the skin, 2430 kJ/kg at body temperature",
+   "unit": "J/kg",
+   "section": "14.6",
+   "anchor": "14.6-phase-change"
+  },
+  {
+   "sym": "Q_heat",
+   "type": "energy",
+   "meaning": "the heat radiated by an object in the time t",
+   "unit": "J",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "Q_net",
+   "type": "energy",
+   "meaning": "the net heat transferred to an object by radiation, its absorption minus its emission",
+   "unit": "J",
+   "section": "14.7",
+   "anchor": "14.7-net-rate"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "the time over which the radiation is emitted or absorbed",
+   "unit": "s",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "σ_SB",
+   "meaning": "the Stefan-Boltzmann constant, 5.67 × 10⁻⁸ J/(s·m²·K⁴)",
+   "unit": "J/(s·m²·K⁴)",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "e_emis",
+   "meaning": "the emissivity of the object, a measure of how well it radiates, 1 for a black body and 0 for a perfect reflector",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "A",
+   "meaning": "the surface area of the radiating object",
+   "unit": "m²",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "T_temp",
+   "type": "temperature",
+   "meaning": "the absolute temperature of the radiating object, in kelvin",
+   "unit": "K",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "T_1temp",
+   "type": "temperature",
+   "meaning": "the absolute temperature of the object",
+   "unit": "K",
+   "section": "14.7",
+   "anchor": "14.7-net-rate"
+  },
+  {
+   "sym": "T_2temp",
+   "type": "temperature",
+   "meaning": "the uniform absolute temperature of the object's surroundings",
+   "unit": "K",
+   "section": "14.7",
+   "anchor": "14.7-net-rate"
+  }
+ ],
+ "equations": [
+  {
+   "id": "eq-mechanical-equivalent",
+   "concept": "mechanical-equivalent-of-heat",
+   "section": "14.1",
+   "latex": "1.000\\;\\text{kcal} = 4186\\;\\text{J}",
+   "condition": "the 15 °C calorie",
+   "important": true,
+   "anchor": "14.1-mechanical-equivalent"
+  },
+  {
+   "id": "eq-heat-temperature-change",
+   "concept": "heat-and-temperature-change",
+   "section": "14.2",
+   "latex": "Q = mc\\Delta T",
+   "ktex": "\\kQh = m\\,c\\,\\kdTemp",
+   "condition": "no phase change and no work done",
+   "important": true,
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "id": "eq-temperature-difference",
+   "section": "14.2",
+   "latex": "\\Delta T = T_{\\text{f}} - T_{\\text{i}}",
+   "ktex": "\\kdTemp = \\kTempf - \\kTempi",
+   "important": false,
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "id": "eq-temperature-change-from-heat",
+   "concept": "temperature-rise-from-work",
+   "section": "14.2",
+   "latex": "\\Delta T = \\frac{Q}{mc}",
+   "ktex": "\\kdTemp = \\frac{\\kQh}{m\\,c}",
+   "important": true,
+   "anchor": "14.2-work-into-heat"
+  },
+  {
+   "id": "eq-calorimetry",
+   "concept": "calorimetry",
+   "section": "14.2",
+   "latex": "Q_{\\text{cold}} + Q_{\\text{hot}} = 0",
+   "ktex": "\\kQcold + \\kQhot = 0",
+   "condition": "no heat exchanged with the surroundings",
+   "important": true,
+   "anchor": "14.2-calorimetry"
+  },
+  {
+   "id": "eq-heat-balance",
+   "section": "14.2",
+   "latex": "m_W c_W (T_{\\text{f}} - T_{\\text{i},W}) = -m_{\\text{Al}} c_{\\text{Al}} (T_{\\text{f}} - T_{\\text{i},\\text{Al}})",
+   "important": false,
+   "anchor": "14.2-calorimetry"
+  },
+  {
+   "id": "eq-final-temperature",
+   "concept": "final-temperature-from-heat-exchange",
+   "section": "14.2",
+   "latex": "T_{\\text{f}} = \\frac{m_{\\text{Al}} c_{\\text{Al}} T_{\\text{i},\\text{Al}} + m_W c_W T_{\\text{i},W}}{m_{\\text{Al}} c_{\\text{Al}} + m_W c_W}",
+   "condition": "two bodies exchanging heat with no phase change",
+   "important": true,
+   "anchor": "14.2-calorimetry"
+  },
+  {
+   "id": "eq-heat-fusion",
+   "concept": "heat-of-fusion",
+   "section": "14.3",
+   "latex": "Q = mL_{\\text{f}}",
+   "ktex": "\\kQh = m\\,L_{\\text{f}}",
+   "condition": "melting or freezing",
+   "important": true,
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "id": "eq-heat-vaporization",
+   "concept": "heat-of-vaporization",
+   "section": "14.3",
+   "latex": "Q = mL_{\\text{v}}",
+   "ktex": "\\kQh = m\\,L_{\\text{v}}",
+   "condition": "vaporization or condensation",
+   "important": true,
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "id": "eq-heat-sublimation",
+   "concept": "heat-of-sublimation",
+   "section": "14.3",
+   "latex": "Q = mL_{\\text{s}}",
+   "ktex": "\\kQh = m\\,L_{\\text{s}}",
+   "condition": "solid to vapor, or vapor to solid",
+   "important": true,
+   "anchor": "14.3-sublimation"
+  },
+  {
+   "id": "eq-latent-heat",
+   "concept": "latent-heat",
+   "section": "14.3",
+   "latex": "Q = mL",
+   "ktex": "\\kQh = m\\,L",
+   "condition": "during a phase change",
+   "important": true,
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "id": "eq-ice-soda-balance",
+   "concept": "phase-change-calorimetry",
+   "section": "14.3",
+   "latex": "m_{\\text{ice}} L_{\\text{f}} + m_{\\text{ice}} c_W (T_{\\text{f}} - 0^\\circ\\text{C}) = -m_{\\text{soda}} c_W (T_{\\text{f}} - 20^\\circ\\text{C})",
+   "condition": "the soda and the ice exchange heat with nothing else",
+   "important": false,
+   "anchor": "14.3-cooling-soda"
+  },
+  {
+   "id": "eq-conduction-rate",
+   "concept": "rate-of-conductive-heat-transfer",
+   "section": "14.5",
+   "latex": "\\frac{Q}{t} = \\frac{kA(T_2 - T_1)}{d}",
+   "ktex": "\\frac{\\kQh}{\\kt} = \\frac{k\\,A\\,(\\kTemptwo - \\kTempone)}{d}",
+   "condition": "steady conduction through a slab",
+   "important": true,
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "id": "eq-conduction-temperature-difference",
+   "concept": "temperature-difference-from-conduction",
+   "section": "14.5",
+   "latex": "T_2 - T_1 = \\frac{Q}{t}\\left(\\frac{d}{kA}\\right)",
+   "ktex": "\\kTemptwo - \\kTempone = \\frac{\\kQh}{\\kt}\\left(\\frac{d}{k\\,A}\\right)",
+   "important": true,
+   "anchor": "14.5-pan"
+  },
+  {
+   "id": "eq-heat-flux-temperature-difference",
+   "section": "14.5",
+   "latex": "\\Delta T = T_{\\text{hot}} - T_{\\text{cold}}",
+   "ktex": "\\kdTemp = \\kTemphot - \\kTempcold",
+   "important": false,
+   "anchor": "14.5-collisions"
+  },
+  {
+   "id": "eq-convection-heat-rate",
+   "concept": "convection-heat-rate",
+   "section": "14.6",
+   "latex": "\\frac{Q}{t} = \\frac{mc\\Delta T}{t}",
+   "ktex": "\\frac{\\kQh}{\\kt} = \\frac{m\\,c\\,\\kdTemp}{\\kt}",
+   "condition": "the mass m of fluid is moved or replaced in the time t",
+   "important": true,
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "id": "eq-evaporation-rate",
+   "concept": "convection-with-phase-change",
+   "section": "14.6",
+   "latex": "\\frac{m}{t} = \\frac{Q/t}{L_{\\text{v}}}",
+   "ktex": "\\frac{m}{\\kt} = \\frac{\\kQh/\\kt}{L_{\\text{v}}}",
+   "condition": "the heat is carried away by evaporation alone",
+   "important": true,
+   "anchor": "14.6-phase-change"
+  },
+  {
+   "id": "eq-stefan-boltzmann",
+   "concept": "stefan-boltzmann-law",
+   "section": "14.7",
+   "latex": "\\frac{Q}{t} = \\sigma e A T^4",
+   "ktex": "\\frac{\\kQh}{\\kt} = \\sigma\\,e\\,A\\,\\kTemp^4",
+   "condition": "T in kelvin",
+   "important": true,
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "id": "eq-net-radiation",
+   "concept": "net-radiation-rate",
+   "section": "14.7",
+   "latex": "\\frac{Q_{\\text{net}}}{t} = \\sigma e A (T_2^4 - T_1^4)",
+   "ktex": "\\frac{\\kQnet}{\\kt} = \\sigma\\,e\\,A\\,(\\kTemptwo^4 - \\kTempone^4)",
+   "condition": "an object at T_1 in surroundings of uniform temperature T_2, both in kelvin",
+   "important": true,
+   "anchor": "14.7-net-rate"
+  }
+ ],
+ "glossary": [
+  {
+   "section": "14.1",
+   "term": "heat",
+   "definition": "the spontaneous transfer of energy due to a temperature difference"
+  },
+  {
+   "section": "14.1",
+   "term": "kilocalorie",
+   "definition": "1 kilocalorie = 1000 calories"
+  },
+  {
+   "section": "14.1",
+   "term": "mechanical equivalent of heat",
+   "definition": "the work needed to produce the same effects as heat transfer"
+  },
+  {
+   "section": "14.2",
+   "term": "specific heat",
+   "definition": "the amount of heat necessary to change the temperature of 1.00 kg of a substance by 1.00 °C"
+  },
+  {
+   "section": "14.3",
+   "term": "heat of sublimation",
+   "definition": "the energy required to change a substance from the solid phase to the vapor phase"
+  },
+  {
+   "section": "14.3",
+   "term": "latent heat coefficient",
+   "definition": "a physical constant equal to the amount of heat transferred for every 1 kg of a substance during the change in phase of the substance"
+  },
+  {
+   "section": "14.3",
+   "term": "sublimation",
+   "definition": "the transition from the solid phase to the vapor phase"
+  },
+  {
+   "section": "14.4",
+   "term": "conduction",
+   "definition": "heat transfer through stationary matter by physical contact"
+  },
+  {
+   "section": "14.4",
+   "term": "convection",
+   "definition": "heat transfer by the macroscopic movement of fluid"
+  },
+  {
+   "section": "14.4",
+   "term": "radiation",
+   "definition": "heat transfer which occurs when microwaves, infrared radiation, visible light, or other electromagnetic radiation is emitted or absorbed"
+  },
+  {
+   "section": "14.5",
+   "term": "R factor",
+   "definition": "the ratio of thickness to the conductivity of a material"
+  },
+  {
+   "section": "14.5",
+   "term": "rate of conductive heat transfer",
+   "definition": "rate of heat transfer from one material to another"
+  },
+  {
+   "section": "14.5",
+   "term": "thermal conductivity",
+   "definition": "the property of a material’s ability to conduct heat"
+  },
+  {
+   "section": "14.7",
+   "term": "emissivity",
+   "definition": "measure of how well an object radiates"
+  },
+  {
+   "section": "14.7",
+   "term": "greenhouse effect",
+   "definition": "warming of the Earth that is due to gases such as carbon dioxide and methane that absorb infrared radiation from the Earth’s surface and reradiate it in all directions, thus sending a fraction of it back toward the surface of the Earth"
+  },
+  {
+   "section": "14.7",
+   "term": "net rate of heat transfer by radiation",
+   "definition": "is Q_net/t = σeA(T₂⁴ − T₁⁴)"
+  },
+  {
+   "section": "14.7",
+   "term": "radiation",
+   "definition": "energy transferred by electromagnetic waves directly as a result of a temperature difference"
+  },
+  {
+   "section": "14.7",
+   "term": "Stefan-Boltzmann law of radiation",
+   "definition": "Q/t = σeAT⁴, where σ is the Stefan-Boltzmann constant, A is the surface area of the object, T is the absolute temperature, and e is the emissivity"
+  }
+ ]
+}

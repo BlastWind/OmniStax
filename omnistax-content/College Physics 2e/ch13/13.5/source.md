@@ -1,0 +1,169 @@
+# Phase Changes
+
+## Learning Objectives {section:learning-objectives}
+By the end of this section, you will be able to:
+- Interpret a phase diagram.
+- State Dalton’s law.
+- Identify and describe the triple point of a gas from its phase diagram.
+- Describe the state of equilibrium between a liquid and a gas, a liquid and a solid, and a gas and a solid.
+Up to now, we have considered the behavior of ideal gases. Real gases are like ideal gases at high temperatures. At lower temperatures, however, the interactions between the molecules and their volumes cannot be ignored. The molecules are very close (condensation occurs) and there is a dramatic decrease in volume, as seen in [ref:import-auto-id1661806]. The substance changes from a gas to a liquid. When a liquid is cooled to even lower temperatures, it becomes a solid. The volume never reaches zero because of the finite volume of the molecules.
+
+> FIGURE {fig:import-auto-id1661806} src=../../media/Figure_14_05_01.jpg
+> alt: Line graph of volume versus temperature showing the relationship for an ideal gas and a real gas. The line for an ideal gas is linear starting at absolute zero showing a linear increase in volume with temperature. The line for a real gas is linear above a temperature of negative one hundred ninety degrees Celsius and follows that of the ideal gas. But below that temperature, the graph shows an almost vertical drop in volume with temperature as the temperature drops and the gas condenses.
+> width: 250
+> caption: A sketch of volume versus temperature for a real gas at constant pressure. The linear (straight line) part of the graph represents ideal gas behavior—volume and temperature are directly and positively related and the line extrapolates to zero volume at $-\text{273}\text{.}\text{15}\text{º}\text{C}$, or absolute zero. When the gas becomes a liquid, however, the volume actually decreases precipitously at the liquefaction point. The volume decreases slightly once the substance is solid, but it never becomes zero.
+
+High pressure may also cause a gas to change phase to a liquid. Carbon dioxide, for example, is a gas at room temperature and atmospheric pressure, but becomes a liquid under sufficiently high pressure. If the pressure is reduced, the temperature drops and the liquid carbon dioxide solidifies into a snow-like substance at the temperature $-\text{78}\text{º}\text{C}$. Solid ${\text{CO}}_{2}$ is called “dry ice.” Another example of a gas that can be in a liquid phase is liquid nitrogen $({\text{LN}}_{2})$. ${\text{LN}}_{2}$ is made by liquefaction of atmospheric air (through compression and cooling). It boils at 77 K $(–\text{196}\text{º}\text{C})$ at atmospheric pressure. ${\text{LN}}_{2}$ is useful as a refrigerant and allows for the preservation of blood, sperm, and other biological materials. It is also used to reduce noise in electronic sensors and equipment, and to help cool down their current-carrying wires. In dermatology, ${\text{LN}}_{2}$ is used to freeze and painlessly remove warts and other growths from the skin.
+
+## *PV* Diagrams
+We can examine aspects of the behavior of a substance by plotting a graph of pressure versus volume, called a {term:*PV* diagram}. When the substance behaves like an ideal gas, the ideal gas law describes the relationship between its pressure and volume. That is,
+
+$$ \;\text{PV}=\;\text{NkT}\;(\text{ideal gas})\text{.} $$  {eq:import-auto-id2669968}
+
+Now, assuming the number of molecules and the temperature are fixed,
+
+$$ \text{PV}=\text{constant}\;(\text{ideal gas, constant temperature})\text{.} $$  {eq:import-auto-id1013186}
+
+For example, the volume of the gas will decrease as the pressure increases. If you plot the relationship $\text{PV}=\text{constant}$ on a $\text{PV}$ diagram, you find a hyperbola. [ref:import-auto-id1935285] shows a graph of pressure versus volume. The hyperbolas represent ideal-gas behavior at various fixed temperatures, and are called *isotherms*. At lower temperatures, the curves begin to look less like hyperbolas—the gas is not behaving ideally and may even contain liquid. There is a {term:critical point}—that is, a {term:critical temperature}—above which liquid cannot exist. At sufficiently high pressure above the critical point, the gas will have the density of a liquid but will not condense. Carbon dioxide, for example, cannot be liquefied at a temperature above $\text{31}\text{.}0\text{º}\text{C}$. {term:Critical pressure} is the minimum pressure needed for liquid to exist at the critical temperature. [ref:import-auto-id2709714] lists representative critical temperatures and pressures.
+
+> FIGURE {fig:import-auto-id1935285} src=../../media/Figure_14_05_04.jpg
+> alt: Graphs of pressure versus volume at six different temperatures, T one through T five and T critical. T one is the lowest temperature and T five is the highest. T critical is in the middle. Graphs show that pressure per unit volume is greater for greater temperatures. Pressure decreases with increasing volume for all temperatures, except at low temperatures when pressure is constant with increasing volume during a phase change.
+> width: 600
+> caption: $\text{PV}$ diagrams. (a) Each curve (isotherm) represents the relationship between $P$ and $V$ at a fixed temperature; the upper curves are at higher temperatures. The lower curves are not hyperbolas, because the gas is no longer an ideal gas. (b) An expanded portion of the $\text{PV}$ diagram for low temperatures, where the phase can change from a gas to a liquid. The term “vapor” refers to the gas phase when it exists at a temperature below the boiling temperature.
+
+> TABLE {tab:import-auto-id2709714} cols=5 irregular
+> title: Critical Temperatures and Pressures
+> summary: Table gives the critical temperature and critical pressure values for various substances. Each temperature value is given in kelvin and degrees Celsius. Each pressure value is given in pascals and atmospheres.
+
+| Substance | {span=2} Critical temperature | {span=2} Critical pressure |
+|  | $\text{K}$ | $\text{º}\text{C}$ | $\text{Pa}$ | $\text{atm}$ **** |
+| Water | 647.4 | 374.3 | $\text{22}\text{.}\text{12}\times {\text{10}}^{6}$ | 219.0 |
+| Sulfur dioxide | 430.7 | 157.6 | $7\text{.}\text{88}\times {\text{10}}^{6}$ | 78.0 |
+| Ammonia | 405.5 | 132.4 | $\text{11}\text{.}\text{28}\times {\text{10}}^{6}$ | 111.7 |
+| Carbon dioxide | 304.2 | 31.1 | $7\text{.}\text{39}\times {\text{10}}^{6}$ | 73.2 |
+| Oxygen | 154.8 | −118.4 | $5\text{.}\text{08}\times {\text{10}}^{6}$ | 50.3 |
+| Nitrogen | 126.2 | −146.9 | $3\text{.}\text{39}\times {\text{10}}^{6}$ | 33.6 |
+| Hydrogen | 33.3 | −239.9 | $1\text{.}\text{30}\times {\text{10}}^{6}$ | 12.9 |
+| Helium | 5.3 | −267.9 | $0\text{.}\text{229}\times {\text{10}}^{6}$ | 2.27 |
+
+## Phase Diagrams
+The plots of pressure versus temperatures provide considerable insight into thermal properties of substances. There are well-defined regions on these graphs that correspond to various phases of matter, so $\text{PT}$ graphs are called {term:phase diagrams}. [ref:import-auto-id2045521] shows the phase diagram for water. Using the graph, if you know the pressure and temperature you can determine the phase of water. The solid lines—boundaries between phases—indicate temperatures and pressures at which the phases coexist (that is, they exist together in ratios, depending on pressure and temperature). For example, the boiling point of water is $\text{100}\text{º}\text{C}$ at 1.00 atm. As the pressure increases, the boiling temperature rises steadily to $\text{374}\text{º}\text{C}$ at a pressure of 218 atm. A pressure cooker (or even a covered pot) will cook food faster because the water can exist as a liquid at temperatures greater than $\text{100}\text{º}\text{C}$ without all boiling away. The curve ends at a point called the *critical point*, because at higher temperatures the liquid phase does not exist at any pressure. The critical point occurs at the critical temperature, as you can see for water from [ref:import-auto-id2709714]. The critical temperature for oxygen is $-\text{118}\text{º}\text{C}$, so oxygen cannot be liquefied above this temperature.
+
+> FIGURE {fig:import-auto-id2045521} src=../../media/Figure_14_05_05.jpg
+> alt: Graph of pressure versus temperature showing the boundaries of the three phases of water, along with the triple point and critical point. The triple point, where all three phases exist, is at 0 point 006 atmospheres and 0 point 01 degrees C. The critical point is at two hundred eighteen atmospheres and three hundred seventy four degrees C. Solid water is in the P T region generally to the left (lower temperature, lower or higher pressure, from the triple point). Liquid water is generally above and to the right of the triple point (higher pressure, higher temperature). The region of water vapor is to the lower right of the triple point (lower pressure and temperature to higher temperature and pressure).
+> width: 250
+> caption: The phase diagram ($\text{PT}$ graph) for water. Note that the axes are nonlinear and the graph is not to scale. This graph is simplified—there are several other exotic phases of ice at higher pressures.
+
+Similarly, the curve between the solid and liquid regions in [ref:import-auto-id2045521] gives the melting temperature at various pressures. For example, the melting point is $0\text{º}\text{C}$ at 1.00 atm, as expected. Note that, at a fixed temperature, you can change the phase from solid (ice) to liquid (water) by increasing the pressure. Ice melts from pressure in the hands of a snowball maker. From the phase diagram, we can also say that the melting temperature of ice falls with increased pressure. When a car is driven over snow, the increased pressure from the tires melts the snowflakes; afterwards the water refreezes and forms an ice layer.
+At sufficiently low pressures there is no liquid phase, but the substance can exist as either gas or solid. For water, there is no liquid phase at pressures below 0.00600 atm. The phase change from solid to gas is called {term:sublimation}. It accounts for large losses of snow pack that never make it into a river, the routine automatic defrosting of a freezer, and the freeze-drying process applied to many foods. Carbon dioxide, on the other hand, sublimates at standard atmospheric pressure of 1 atm. (The solid form of ${\text{CO}}_{2}$ is known as dry ice because it does not melt. Instead, it moves directly from the solid to the gas state.)
+All three curves on the phase diagram meet at a single point, the {term:triple point}, where all three phases exist in equilibrium. For water, the triple point occurs at 273.16 K $(0\text{.}\text{01}\text{º}\text{C})$, and is a more accurate calibration temperature than the melting point of water at 1.00 atm, or 273.15 K $(0\text{.}0\text{º}\text{C})$. See [ref:import-auto-id2387893] for the triple point values of other substances.
+
+## Equilibrium
+Liquid and gas phases are in equilibrium at the boiling temperature. (See [ref:import-auto-id2705569].) If a substance is in a closed container at the boiling point, then the liquid is boiling and the gas is condensing at the same rate without net change in their relative amount. Molecules in the liquid escape as a gas at the same rate at which gas molecules stick to the liquid, or form droplets and become part of the liquid phase. The combination of temperature and pressure has to be “just right”; if the temperature and pressure are increased, equilibrium is maintained by the same increase of boiling and condensation rates.
+
+> FIGURE {fig:import-auto-id2705569} src=../../media/Figure_14_05_06.jpg
+> alt: Figure a shows a closed system containing a liquid and a gas. A thermometer with one end in the liquid indicates an unspecified temperature, and a pressure gauge indicates an unspecified pressure. A vector from the liquid to the gas represents the rate of vaporization, and a vector from the gas into the liquid represents the rate of condensation. The two vectors are equal in length, illustrating that the two rates are equal. Figure b is essentially the same as figure a, except that the pressure, temperature, and rates of condensation and vaporization are all greater than in figure a. The rates of vaporization and condensation in figure b are equal to each other, even though they are greater than the rates in figure a.
+> width: 250
+> caption: Equilibrium between liquid and gas at two different boiling points inside a closed container. (a) The rates of boiling and condensation are equal at this combination of temperature and pressure, so the liquid and gas phases are in equilibrium. (b) At a higher temperature, the boiling rate is faster and the rates at which molecules leave the liquid and enter the gas are also faster. Because there are more molecules in the gas, the gas pressure is higher and the rate at which gas molecules condense and enter the liquid is faster. As a result the gas and liquid are in equilibrium at this higher temperature.
+
+> TABLE {tab:import-auto-id2387893} cols=5 irregular
+> title: Triple Point Temperatures and Pressures
+> summary: Table gives the temperature and pressure values for the triple points of various substances. Each temperature value is given in kelvin and degrees Celsius. Each pressure value is given in pascals and atmospheres.
+
+| Substance | {span=2} Temperature | {span=2} Pressure |
+|  | $\text{K}$ | $\text{º}\text{C}$ | $\text{Pa}$ | $\text{atm}$ |
+| Water | 273.16 | 0.01 | $6\text{.}\text{10}\times {\text{10}}^{2}$ | 0.00600 |
+| Carbon dioxide | 216.55 | −56.60 | $5\text{.}\text{16}\times {\text{10}}^{5}$ | 5.11 |
+| Sulfur dioxide | 197.68 | −75.47 | $1\text{.}\text{67}\times {\text{10}}^{3}$ | 0.0167 |
+| Ammonia | 195.40 | −77.75 | $6\text{.}\text{06}\times {\text{10}}^{3}$ | 0.0600 |
+| Nitrogen | 63.18 | −210.0 | $1\text{.}\text{25}\times {\text{10}}^{4}$ | 0.124 |
+| Oxygen | 54.36 | −218.8 | $1\text{.}\text{52}\times {\text{10}}^{2}$ | 0.00151 |
+| Hydrogen | 13.84 | −259.3 | $7\text{.}\text{04}\times {\text{10}}^{3}$ | 0.0697 |
+
+One example of equilibrium between liquid and gas is that of water and steam at $\text{100}\text{º}\text{C}$ and 1.00 atm. This temperature is the boiling point at that pressure, so they should exist in equilibrium. Why does an open pot of water at $\text{100}\text{º}\text{C}$ boil completely away? The gas surrounding an open pot is not pure water: it is mixed with air. If pure water and steam are in a closed container at $\text{100}\text{º}\text{C}$ and 1.00 atm, they would coexist—but with air over the pot, there are fewer water molecules to condense, and water boils. What about water at $\text{20}\text{.}0\text{º}\text{C}$ and 1.00 atm? This temperature and pressure correspond to the liquid region, yet an open glass of water at this temperature will completely evaporate. Again, the gas around it is air and not pure water vapor, so that the reduced evaporation rate is greater than the condensation rate of water from dry air. If the glass is sealed, then the liquid phase remains. We call the gas phase a {term:vapor} when it exists, as it does for water at $\text{20}\text{.}0\text{º}\text{C}$, at a temperature below the boiling temperature.
+
+:::exercise {fs-id2259406} type=check-understanding Check Your Understanding
+
+PROBLEM:
+Explain why a cup of water (or soda) with ice cubes stays at $0\text{º}\text{C}$, even on a hot summer day.
+SOLUTION:
+The ice and liquid water are in thermal equilibrium, so that the temperature stays at the freezing temperature as long as ice remains in the liquid. (Once all of the ice melts, the water temperature will start to rise.)
+:::
+
+## Vapor Pressure, Partial Pressure, and Dalton’s Law
+{term:Vapor pressure} is defined as the pressure at which a gas coexists with its solid or liquid phase. Vapor pressure is created by faster molecules that break away from the liquid or solid and enter the gas phase. The vapor pressure of a substance depends on both the substance and its temperature—an increase in temperature increases the vapor pressure.
+{term:Partial pressure} is defined as the pressure a gas would create if it occupied the total volume available. In a mixture of gases, *the total pressure is the sum of partial pressures of the component gases*, assuming ideal gas behavior and no chemical reactions between the components. This law is known as {term:Dalton’s law of partial pressures}, after the English scientist John Dalton (1766–1844), who proposed it. Dalton’s law is based on kinetic theory, where each gas creates its pressure by molecular collisions, independent of other gases present. It is consistent with the fact that pressures add according to [Pascal’s Principle](module:m42193). Thus water evaporates and ice sublimates when their vapor pressures exceed the partial pressure of water vapor in the surrounding mixture of gases. If their vapor pressures are less than the partial pressure of water vapor in the surrounding gas, liquid droplets or ice crystals (frost) form.
+
+:::exercise {fs-id2635559} type=check-understanding Check Your Understanding
+
+PROBLEM:
+Is energy transfer involved in a phase change? If so, will energy have to be supplied to change phase from solid to liquid and liquid to gas? What about gas to liquid and liquid to solid? Why do they spray the orange trees with water in Florida when the temperatures are near or just below freezing?
+SOLUTION:
+Yes, energy transfer is involved in a phase change. We know that atoms and molecules in solids and liquids are bound to each other because we know that force is required to separate them. So in a phase change from solid to liquid and liquid to gas, a force must be exerted, perhaps by collision, to separate atoms and molecules. Force exerted through a distance is work, and energy is needed to do work to go from solid to liquid and liquid to gas. This is intuitively consistent with the need for energy to melt ice or boil water. The converse is also true. Going from gas to liquid or liquid to solid involves atoms and molecules pushing together, doing work and releasing energy.
+:::
+
+:::note [interactive] States of Matter—Basics
+Heat, cool, and compress atoms and molecules and watch as they change between solid, liquid, and gas phases in [this simulation](https://openstax.org/l/02states_of_matter).
+:::
+
+## Section Summary {section:section-summary}
+- Most substances have three distinct phases: gas, liquid, and solid.
+- Phase changes among the various phases of matter depend on temperature and pressure.
+- The existence of the three phases with respect to pressure and temperature can be described in a phase diagram.
+- Two phases coexist (i.e., they are in thermal equilibrium) at a set of pressures and temperatures. These are described as a line on a phase diagram.
+- The three phases coexist at a single pressure and temperature. This is known as the triple point and is described by a single point on a phase diagram.
+- A gas at a temperature below its boiling point is called a vapor.
+- Vapor pressure is the pressure at which a gas coexists with its solid or liquid phase.
+- Partial pressure is the pressure a gas would create if it existed alone.
+- Dalton’s law states that the total pressure is the sum of the partial pressures of all of the gases present.
+
+## Conceptual Questions {section:conceptual-questions}
+
+:::exercise {fs-id1060374} type=conceptual-questions 
+PROBLEM:
+A pressure cooker contains water and steam in equilibrium at a pressure greater than atmospheric pressure. How does this greater pressure increase cooking speed?
+:::
+
+:::exercise {eip-id3197306} type=conceptual-questions 
+PROBLEM:
+Why does condensation form most rapidly on the coldest object in a room—for example, on a glass of ice water?
+:::
+
+:::exercise {fs-id2808785} type=conceptual-questions 
+PROBLEM:
+What is the vapor pressure of solid carbon dioxide (dry ice) at $-\text{78}\text{.}5\text{º}\text{C}$?
+
+> FIGURE {fig:import-auto-id2298789} src=../../media/Figure_14_05_08.jpg
+> alt: The phase diagram (pressure versus temperature graph showing the three phases) for carbon dioxide. The triple point is five point one one atmospheres and negative fifty-six point six degrees Celsius. The critical point is seventy-three atmospheres and thirty-one degrees C. The phase change from solid to vapor at standard pressure of one atmosphere is negative seventy-eight point five degrees C.
+> width: 250
+> caption: The phase diagram for carbon dioxide. The axes are nonlinear, and the graph is not to scale. Dry ice is solid carbon dioxide and has a sublimation temperature of $-\text{78}\text{.}5\text{º}\text{C}$.
+
+:::
+
+:::exercise {fs-id1847607} type=conceptual-questions 
+PROBLEM:
+Can carbon dioxide be liquefied at room temperature ($\text{20}\text{º}\text{C}$)? If so, how? If not, why not? (See [ref:import-auto-id2298789].)
+:::
+
+:::exercise {fs-id1592769} type=conceptual-questions 
+PROBLEM:
+Oxygen cannot be liquefied at room temperature by placing it under a large enough pressure to force its molecules together. Explain why this is.
+:::
+
+:::exercise {fs-id2404335} type=conceptual-questions 
+PROBLEM:
+What is the distinction between gas and vapor?
+:::
+
+## Glossary
+- {def} ***PV* diagram**: a graph of pressure vs. volume
+- {def} **critical point**: the temperature above which a liquid cannot exist
+- {def} **critical temperature**: the temperature above which a liquid cannot exist
+- {def} **critical pressure**: the minimum pressure needed for a liquid to exist at the critical temperature
+- {def} **vapor**: a gas at a temperature below the boiling temperature
+- {def} **vapor pressure**: the pressure at which a gas coexists with its solid or liquid phase
+- {def} **phase diagram**: a graph of pressure vs. temperature of a particular substance, showing at which pressures and temperatures the three phases of the substance occur
+- {def} **triple point**: the pressure and temperature at which a substance exists in equilibrium as a solid, liquid, and gas
+- {def} **sublimation**: the phase change from solid to gas
+- {def} **partial pressure**: the pressure a gas would create if it occupied the total volume of space available
+- {def} **Dalton’s law of partial pressures**: the physical law that states that the total pressure of a gas is the sum of partial pressures of the component gases

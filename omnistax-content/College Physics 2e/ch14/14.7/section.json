@@ -1,0 +1,487 @@
+{
+ "id": "14.7",
+ "module": "m42230",
+ "chapter": "14",
+ "title": "Radiation",
+ "short": "Radiation",
+ "lead": "Heat reaches you from a fire and from the Sun across space that holds nothing to conduct or convect it, carried by electromagnetic waves that every object emits and absorbs. This section says that a hotter body radiates more and at shorter wavelengths, that a good absorber is a good emitter, and that the rate goes as the fourth power of the absolute temperature, which is the Stefan-Boltzmann law with its emissivity; it then writes the net rate of exchange between an object and its surroundings, works it for a person in a dark room, and follows the same balance between the Sun, the Earth and the dark sky to the greenhouse effect, before closing the chapter with the problem-solving strategies for all three methods of heat transfer.",
+ "objectives": [
+  "Discuss heat transfer by radiation.",
+  "Explain the power of different materials."
+ ],
+ "summary_html": "<ul><li>Radiation is the rate of heat transfer through the emission or absorption of electromagnetic waves.</li><li>The rate of heat transfer depends on the surface area and the fourth power of the absolute temperature: $$\\frac{\\kQh}{\\kt} = \\sigma e A \\kTemp^4,$$ where $\\sigma = 5.67 \\times 10^{-8}\\;\\text{J/s}\\cdot\\text{m}^2\\cdot\\text{K}^4$ is the Stefan-Boltzmann constant and $e$ is the emissivity of the body. For a black body, $e = 1$ whereas a shiny white or perfect reflector has $e = 0$, with real objects having values of $e$ between 1 and 0. The net rate of heat transfer by radiation is $$\\frac{\\kQnet}{\\kt} = \\sigma e A\\left(\\kTemptwo^4 - \\kTempone^4\\right)$$ where $\\kTempone$ is the temperature of an object surrounded by an environment with uniform temperature $\\kTemptwo$ and $e$ is the emissivity of the <em>object</em>.</li></ul>",
+ "notes": "The fourteen problems the book leaves unkeyed are left out, among them the fireplace embers, the car radiator, the sauna, the Sun’s surface temperature, the effective temperature of the sky, five of the Integrated Concepts items, two of the Unreasonable Results items and both Construct Your Own Problem items; the Unreasonable Results items on the person who consumes 2500 kcal and on the 1.46 kW window are set in 14.2 and 14.5, whose ideas they test.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Fourteen items have no keyed answer and are left out: the fireplace embers, the car radiator, the sauna, the Sun’s surface temperature and the solar constant, the effective temperature of the sky, the Integrated Concepts items on condensation from humid air, the frozen waste from an airplane, the Stairmaster, the hot granite and Niagara Falls, the Unreasonable Results items on the Arctic inventor and the radiating meteorite, and the two Construct Your Own Problem items. Two Unreasonable Results items the book prints here turn on one earlier section alone and are set there with source_section 14.7: the person who consumes 2500 kcal in a day in 14.2, and the 1.46 kW window in 14.5. The circus-tent problem keys only part (a), so the card checks that number and carries the book’s own answer to part (b) in its solution; the cooling-tower item keys part (a) and carries the book’s discussion of part (b). The Check Your Understanding box is keyed in words, about 30 percent, and is set as an open item inline after the passage on the fourth-power dependence; the first AP item is keyed and is a graded choice, and the second has no key and is an open item with an AI-written suggested approach, marked as such, as are the approaches to the five conceptual questions. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-campfire",
+   "kind": "photo",
+   "number": "14.28",
+   "widths": [350],
+   "draws": []
+  },
+  {
+   "id": "sim-spectrum",
+   "kind": "sim",
+   "number": "14.29",
+   "originals": ["/media/ch14/Figure_15_07_02a.jpg"],
+   "original_caption": "(a) A graph of the spectra of electromagnetic waves emitted from an ideal radiator at three different temperatures. The intensity or rate of radiation emission increases dramatically with temperature, and the spectrum shifts toward the visible and ultraviolet parts of the spectrum. The shaded portion denotes the visible part of the spectrum. It is apparent that the shift toward the ultraviolet with temperature makes the visible appearance shift from red to white to blue as temperature increases. (b) The upper part of the flame is orange due to black body radiation. (The lower part is blue due to the chemical composition of the flame, alcohol in this case.) (credit: Tuohirulla)",
+   "widths": [350],
+   "draws": ["temperature", "energy", "time"]
+  },
+  {
+   "id": "fig-pavement-ice",
+   "kind": "photo",
+   "number": "14.30",
+   "widths": [230],
+   "draws": []
+  },
+  {
+   "id": "sim-blocks",
+   "kind": "sim",
+   "number": "14.31",
+   "originals": ["/media/ch14/Figure_15_07_04a.jpg"],
+   "original_caption": "A black object is a good absorber and a good radiator, while a white (or silver) object is a poor absorber and a poor radiator. It is as if radiation from the inside is reflected back into the silver object, whereas radiation from the inside of the black object is “absorbed” when it hits the surface and finds itself on the outside and is strongly emitted.",
+   "draws": ["power"]
+  },
+  {
+   "id": "fig-building-thermograph",
+   "kind": "photo",
+   "number": "14.32",
+   "widths": [350],
+   "draws": []
+  },
+  {
+   "id": "sim-fourth-power",
+   "kind": "sim",
+   "draws": ["temperature", "power", "energy", "time"]
+  },
+  {
+   "id": "sim-radiation-balance",
+   "kind": "sim",
+   "draws": ["power", "temperature", "energy", "time"]
+  },
+  {
+   "id": "sim-greenhouse",
+   "kind": "sim",
+   "number": "14.33",
+   "originals": ["/media/ch14/Figure_15_07_06a.jpg"],
+   "original_caption": "The greenhouse effect is a name given to the trapping of energy in the Earth’s atmosphere by a process similar to that used in greenhouses. The atmosphere, like window glass, is transparent to incoming visible radiation and most of the Sun’s infrared. These wavelengths are absorbed by the Earth and re-emitted as infrared. Since Earth’s temperature is much lower than that of the Sun, the infrared radiated by the Earth has a much longer wavelength. The atmosphere, like glass, traps these longer infrared rays, keeping the Earth warmer than it would otherwise be. The amount of trapping depends on concentrations of trace gases like carbon dioxide, and a change in the concentration of these gases is believed to affect the Earth’s surface temperature.",
+   "widths": [345],
+   "draws": ["power", "temperature"]
+  },
+  {
+   "id": "fig-solar-cooker",
+   "kind": "photo",
+   "number": "14.34",
+   "widths": [350],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {"span": "radiation-across-space", "concept": "radiation-spectrum-and-temperature", "verb": "introduces"},
+  {"span": "radiation-across-space", "concept": "radiation-heat-transfer", "verb": "uses"},
+  {"span": "radiation-across-space", "concept": "frequency", "verb": "uses"},
+  {"span": "absorbers-emitters", "concept": "absorbers-and-emitters", "verb": "introduces"},
+  {"span": "absorbers-emitters", "concept": "radiation-heat-transfer", "verb": "uses"},
+  {"span": "stefan-boltzmann", "concept": "stefan-boltzmann-law", "verb": "introduces"},
+  {"span": "stefan-boltzmann", "concept": "emissivity", "verb": "introduces"},
+  {"span": "stefan-boltzmann", "concept": "absorbers-and-emitters", "verb": "uses"},
+  {"span": "stefan-boltzmann", "concept": "temperature-scales", "verb": "uses"},
+  {"span": "stefan-boltzmann", "concept": "absolute-zero", "verb": "uses"},
+  {"span": "stefan-boltzmann", "concept": "power", "verb": "uses"},
+  {"span": "fourth-power", "concept": "radiation-fourth-power", "verb": "introduces"},
+  {"span": "fourth-power", "concept": "stefan-boltzmann-law", "verb": "reinforces"},
+  {"span": "fourth-power", "concept": "emissivity", "verb": "reinforces"},
+  {"span": "net-rate", "concept": "net-radiation-rate", "verb": "introduces"},
+  {"span": "net-rate", "concept": "stefan-boltzmann-law", "verb": "uses"},
+  {"span": "net-rate", "concept": "emissivity", "verb": "uses"},
+  {"span": "net-rate", "concept": "temperature-scales", "verb": "uses"},
+  {"span": "greenhouse", "concept": "greenhouse-effect", "verb": "introduces"},
+  {"span": "greenhouse", "concept": "net-radiation-rate", "verb": "uses"},
+  {"span": "greenhouse", "concept": "absorbers-and-emitters", "verb": "reinforces"},
+  {"span": "greenhouse", "concept": "emissivity", "verb": "reinforces"},
+  {"span": "greenhouse", "concept": "radiation-spectrum-and-temperature", "verb": "reinforces"},
+  {"span": "heat-transfer-strategy", "concept": "heat-transfer-methods-strategy", "verb": "introduces"},
+  {"span": "heat-transfer-strategy", "concept": "rate-of-conductive-heat-transfer", "verb": "uses"},
+  {"span": "heat-transfer-strategy", "concept": "convection-heat-rate", "verb": "uses"},
+  {"span": "heat-transfer-strategy", "concept": "heat-and-temperature-change", "verb": "uses"},
+  {"span": "heat-transfer-strategy", "concept": "heat-of-fusion", "verb": "uses"},
+  {"span": "heat-transfer-strategy", "concept": "heat-of-vaporization", "verb": "uses"},
+  {"span": "heat-transfer-strategy", "concept": "net-radiation-rate", "verb": "reinforces"},
+  {"span": "heat-transfer-strategy", "concept": "energy-problem-solving", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3153791",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {"at": "inline", "after": "fourth-power"},
+   "cite": "fourth-power",
+   "prompt": "What is the change in the rate of the radiated heat by a body at the temperature $\\kTempone = 20^\\circ\\text{C}$ compared to when the body is at the temperature $\\kTemptwo = 40^\\circ\\text{C}$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The radiated heat is proportional to the fourth power of the <em>absolute temperature</em>. Because $\\kTempone = 293\\;\\text{K}$ and $\\kTemptwo = 313\\;\\text{K}$, the rate of heat transfer increases by about 30 percent of the original rate."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1484614",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "stefan-boltzmann",
+   "prompt": "Two ideal, black-body radiators have temperatures of 275 K and 1100 K. The rate of heat transfer from the latter radiator is how many times greater than the rate of the former radiator?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["4", "16", "64", "256"],
+    "correct": 3,
+    "hint": "The rate goes as the fourth power of the absolute temperature, and 1100 K is four times 275 K.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2278122",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "greenhouse",
+   "prompt": "On a warm, sunny day, a car is parked along a street where there is no shade. The car’s windows are closed. The air inside the car becomes noticeably warmer than the air outside. What factors contribute to the higher temperature?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The car is a small greenhouse. Sunlight, which is mostly visible light and short-wavelength infrared, passes through the glass and is absorbed by the seats, the dashboard and the floor, which warm up. Being much cooler than the Sun, they radiate at much longer infrared wavelengths, and to those wavelengths the glass is nearly opaque, so most of that radiation is absorbed by the glass or returned to the interior rather than escaping. The closed windows also stop convection: the air warmed by contact with the hot interior surfaces cannot be carried away and replaced by cooler outside air, as it would be with the windows open. Conduction through the glass and the body of the car is slow. So energy arrives by radiation faster than it can leave by radiation, convection or conduction, and the interior settles at a temperature well above the outside air. A dark interior absorbs more of the sunlight and makes the effect stronger; a reflective sunshade in the windshield or lighter upholstery reduces it."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id953571",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "absorbers-emitters",
+   "prompt": "When watching a daytime circus in a large, dark-colored tent, you sense significant heat transfer from the tent. Explain why this occurs.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A dark surface is a good absorber, so the sunlit canvas absorbs most of the sunlight that falls on it and warms well above the air temperature. A good absorber is also a good emitter, so the warm dark canvas radiates strongly, and much of that radiation is infrared directed into the tent. Your skin has an emissivity of 0.97 in the infrared and absorbs nearly all of it, which is why you feel the heat from the roof without touching it, just as you feel a fire. A white tent would absorb far less sunlight, stay cooler, and radiate far less to the people inside."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3491348",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "net-rate",
+   "prompt": "Satellites designed to observe the radiation from cold (3 K) dark space have sensors that are shaded from the Sun, Earth, and Moon and that are cooled to very low temperatures. Why must the sensors be at low temperature?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A sensor emits its own radiation at the rate $\\sigma e A \\kTemp^4$, and what it measures is the net exchange between itself and what it looks at. The radiation from 3 K space is extraordinarily faint, since the rate goes as the fourth power of the absolute temperature: a sensor at room temperature, about 300 K, emits $(300/3)^4 = 10^8$ times more than the sky it is trying to see, and the sky’s signal is buried in the sensor’s own glow and its fluctuations. Cooling the sensor to a few kelvin brings its own emission down toward that of the sky so that the net signal it registers is the sky’s, and shading it from the Sun, the Earth and the Moon keeps their far stronger radiation from warming it and from swamping the measurement."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1332236",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "greenhouse",
+   "prompt": "Why are cloudy nights generally warmer than clear ones?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At night the ground radiates infrared upward, and the net rate of heat transfer depends on the temperature of what the ground faces. On a clear night the ground faces dark space at about 3 K, so it radiates freely and absorbs almost nothing back, and it cools quickly; that is why frost can form on a clear evening even in warm latitudes. On a cloudy night the ground faces the underside of the clouds, which are at a temperature not far below its own; the clouds absorb the ground’s infrared and radiate infrared back down, so the net rate of transfer from the ground is much smaller and the ground stays warmer. The clouds act as the atmosphere does in the greenhouse effect, returning a large share of the infrared to the surface."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1405666",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "net-rate",
+   "prompt": "Why are thermometers that are used in weather stations shielded from the sunshine? What does a thermometer measure if it is shielded from the sunshine and also if it is not?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A thermometer reads its own temperature, and that settles where the heat it gains balances the heat it loses. In the shade its only exchanges are conduction and convection with the surrounding air and a radiation exchange with surroundings near the air temperature, so it settles at the air temperature, which is what a weather station wants to record. In direct sunshine it also absorbs radiation from the Sun, whose surface is at about 6000 K, at a rate far larger than anything the air supplies, and it must warm above the air temperature until its extra losses by radiation and convection carry that energy away. An unshielded thermometer therefore reads something higher than the air temperature that depends on how dark and how large it is, on the wind and on the angle of the Sun, a number that is neither the air temperature nor the temperature of anything else in particular. The Take-Home Experiment shows the difference, and the handkerchief soaked in nail polish remover shows a third reading, lowered by evaporation."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1187288",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "greenhouse",
+   "prompt": "On average, would Earth be warmer or cooler without the atmosphere? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Cooler. The Earth’s surface temperature is set by a balance between the sunlight it absorbs and the infrared it radiates. The atmosphere is nearly transparent to the incoming sunlight, so it changes little on the absorbing side, but the carbon dioxide and water vapor in it absorb much of the long-wavelength infrared the surface emits and radiate part of it back down. With that return the surface must radiate more, and so stand warmer, before what escapes to space balances the sunlight absorbed. Without an atmosphere every bit of infrared the surface emitted would go straight to dark space, and the surface would settle about 40 °C lower than it does, as the text states; the Moon, which has no atmosphere, shows how cold a body at the Earth’s distance from the Sun becomes. Clouds complicate the average, since they reflect sunlight as well as returning infrared, but the net effect of the atmosphere is to warm the surface."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1411839",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "net-rate",
+   "prompt": "At what net rate does heat radiate from a $275\\text{-m}^2$ black roof on a night when the roof’s temperature is $30.0^\\circ\\text{C}$ and the surrounding temperature is $15.0^\\circ\\text{C}$? The emissivity of the roof is 0.900.",
+   "answer": {
+    "type": "number",
+    "value": -21.7,
+    "unit": "kW",
+    "generated_by": "source",
+    "hint": "Convert both temperatures to kelvin before raising them to the fourth power; the roof is $\\kTempone$ and the surroundings $\\kTemptwo$, so the net rate comes out negative, heat leaving the roof.",
+    "solution": "$-21.7\\;\\text{kW}$. Note that the negative answer implies heat loss to the surroundings."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1237994",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "net-rate",
+   "prompt": "Radiation makes it impossible to stand close to a hot lava flow. Calculate the rate of heat transfer by radiation from $1.00\\;\\text{m}^2$ of $1200^\\circ\\text{C}$ fresh lava into $30.0^\\circ\\text{C}$ surroundings, assuming lava’s emissivity is 1.00.",
+   "answer": {
+    "type": "number",
+    "value": -266,
+    "unit": "kW",
+    "generated_by": "source",
+    "hint": "The lava is at 1473 K and the surroundings at 303 K; with the fourth power the surroundings’ term is less than a thousandth of the lava’s.",
+    "solution": "$-266\\;\\text{kW}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2581360",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "net-rate",
+   "prompt": "Find the net rate of heat transfer by radiation from a skier standing in the shade, given the following. She is completely clothed in white (head to foot, including a ski mask), the clothes have an emissivity of 0.200 and a surface temperature of $10.0^\\circ\\text{C}$, the surroundings are at $-15.0^\\circ\\text{C}$, and her surface area is $1.60\\;\\text{m}^2$.",
+   "answer": {
+    "type": "number",
+    "value": -36.0,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "The emissivity in the net-rate equation is the skier’s own, 0.200 for her white clothing; the temperatures are 283 K and 258 K.",
+    "solution": "$-36.0\\;\\text{W}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1378944",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "fourth-power",
+   "figure": {
+    "src": "/media/ch14/Figure_15_07_09a-e4f4.jpg",
+    "alt": "A thermograph of the chest area of a patient is shown. There are different colors showing different thermal regions.",
+    "caption": "Artist’s rendition of a thermograph of a patient’s upper body, showing the distribution of heat represented by different colors."
+   },
+   "prompt": "Thermography is a technique for measuring radiant heat and detecting variations in surface temperatures that may be medically, environmentally, or militarily meaningful.(a) What is the percent increase in the rate of heat transfer by radiation from a given area at a temperature of $34.0^\\circ\\text{C}$ compared with that at $33.0^\\circ\\text{C}$, such as on a person’s skin? (b) What is the percent increase in the rate of heat transfer by radiation from a given area at a temperature of $34.0^\\circ\\text{C}$ compared with that at $20.0^\\circ\\text{C}$, such as for warm and cool automobile hoods?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "(a)", "value": 1.31, "unit": "%", "hint": "The ratio of the two rates is the fourth power of the ratio of the absolute temperatures, $(307.15/306.15)^4$; the percent increase is that ratio less one, times 100."},
+     {"part": "(b)", "value": 20.5, "unit": "%", "hint": "Now the ratio is $(307.15/293.15)^4$."}
+    ],
+    "solution": "(a) 1.31% (b) 20.5%"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1940871",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "heat-transfer-strategy",
+   "prompt": "A large body of lava from a volcano has stopped flowing and is slowly cooling. The interior of the lava is at $1200^\\circ\\text{C}$, its surface is at $450^\\circ\\text{C}$, and the surroundings are at $27.0^\\circ\\text{C}$. (a) Calculate the rate at which energy is transferred by radiation from $1.00\\;\\text{m}^2$ of surface lava into the surroundings, assuming the emissivity is 1.00. (b) Suppose heat conduction to the surface occurs at the same rate. What is the thickness of the lava between the $450^\\circ\\text{C}$ surface and the $1200^\\circ\\text{C}$ interior, assuming that the lava’s conductivity is the same as that of brick?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "(a)", "value": -15.0, "unit": "kW", "hint": "The surface radiates at 723 K into surroundings at 300 K; use the net-rate equation with $e = 1$ and $A = 1.00\\;\\text{m}^2$."},
+     {"part": "(b)", "value": 4.2, "unit": "cm", "hint": "Set the conduction rate $kA(\\kTemptwo - \\kTempone)/d$ equal to the magnitude of the radiation rate, with brick’s conductivity from Table 14.3 and a temperature difference of 750 °C, and solve for $d$."}
+    ],
+    "solution": "(a) $-15.0\\;\\text{kW}$ (b) 4.2 cm"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1920945",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "net-rate",
+   "prompt": "(a) A shirtless rider under a circus tent feels the heat radiating from the sunlit portion of the tent. Calculate the temperature of the tent canvas based on the following information: The shirtless rider’s skin temperature is $34.0^\\circ\\text{C}$ and has an emissivity of 0.970. The exposed area of skin is $0.400\\;\\text{m}^2$. He receives radiation at the rate of 20.0 W—half what you would calculate if the entire region behind him was hot. The rest of the surroundings are at $34.0^\\circ\\text{C}$. (b) Discuss how this situation would change if the sunlit side of the tent was nearly pure white and if the rider was covered by a white tunic.",
+   "answer": {
+    "type": "number",
+    "value": 48.5,
+    "unit": "°C",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Take the net rate into the rider as 40.0 W, twice what he receives since only half his surroundings are the hot canvas, and solve the net-rate equation for $\\kTemptwo$ with $\\kTempone = 307\\;\\text{K}$; then convert the kelvin answer back to degrees Celsius.",
+    "solution": "(a) $48.5^\\circ\\text{C}$ (b) A pure white object reflects more of the radiant energy that hits it, so a white tent would prevent more of the sunlight from heating up the inside of the tent, and the white tunic would prevent that heat which entered the tent from heating the rider. Therefore, with a white tent, the temperature would be lower than $48.5^\\circ\\text{C}$, and the rate of radiant heat transferred to the rider would be less than 20.0 W."
+   }
+  },
+  {
+   "id": "ic2",
+   "source_id": "fs-id3176909",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {"at": "end"},
+   "cite": "heat-transfer-strategy",
+   "prompt": "Large meteors sometimes strike the Earth, converting most of their kinetic energy into thermal energy. (a) What is the kinetic energy of a $10^9\\;\\text{kg}$ meteor moving at 25.0 km/s? (b) If this meteor lands in a deep ocean and $80\\%$ of its kinetic energy goes into heating water, how many kilograms of water could it raise by $5.0^\\circ\\text{C}$? (c) Discuss how the energy of the meteor is more likely to be deposited in the ocean and the likely effects of that energy.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "(a)", "value": 3e17, "unit": "J", "hint": "$\\tfrac{1}{2}mv^2$ with the speed in meters per second."},
+     {"part": "(b)", "value": 1e13, "unit": "kg", "hint": "Set 80% of the kinetic energy equal to $mc\\kdTemp$ for water and solve for the mass."}
+    ],
+    "solution": "(a) $3 \\times 10^{17}\\;\\text{J}$ (b) $1 \\times 10^{13}\\;\\text{kg}$ (c) When a large meteor hits the ocean, it causes great tidal waves, dissipating large amount of its energy in the form of kinetic energy of the water."
+   }
+  },
+  {
+   "id": "ic4",
+   "source_id": "fs-id3353126",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {"at": "end"},
+   "cite": "heat-transfer-strategy",
+   "prompt": "(a) A large electrical power facility produces 1600 MW of “waste heat,” which is dissipated to the environment in cooling towers by warming air flowing through the towers by $5.00^\\circ\\text{C}$. What is the necessary flow rate of air in $\\text{m}^3\\text{/s}$? (b) Is your result consistent with the large cooling towers used by many large electrical power plants?",
+   "answer": {
+    "type": "number",
+    "value": 3.44e5,
+    "unit": "m³/s",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "The heat carried off each second is $(m/t)\\,c\\,\\kdTemp$ with air’s specific heat at constant pressure from Table 14.1; the mass per second is the density of air times the volume per second.",
+    "solution": "(a) $3.44 \\times 10^5\\;\\text{m}^3\\text{/s}$ (b) This is equivalent to 12 million cubic feet of air per second. That is tremendous. This is too large to be dissipated by heating the air by only $5^\\circ\\text{C}$. Many of these cooling towers use the circulation of cooler air over warmer water to increase the rate of evaporation. This would allow much smaller amounts of air necessary to remove such a large amount of heat because evaporation removes larger quantities of heat than was considered in part (a)."
+   }
+  },
+  {
+   "id": "ic6",
+   "source_id": "fs-id2400920",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "Integrated Concepts",
+   "place": {"at": "end"},
+   "cite": "heat-transfer-strategy",
+   "prompt": "A 76.0-kg person suffering from hypothermia comes indoors and shivers vigorously. How long does it take the heat transfer to increase the person’s body temperature by $2.00^\\circ\\text{C}$ if all other forms of heat transfer are balanced?",
+   "answer": {
+    "type": "number",
+    "value": 20.9,
+    "unit": "min",
+    "generated_by": "source",
+    "hint": "The heat needed is $mc\\kdTemp$ with the specific heat of the human body from Table 14.1; divide it by the power of shivering from the table of energy consumption rates in Work, Energy, and Energy Resources.",
+    "solution": "20.9 min"
+   }
+  },
+  {
+   "id": "ic8",
+   "source_id": "fs-id3012447",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {"at": "end"},
+   "cite": "heat-transfer-strategy",
+   "prompt": "Heat transfers from your lungs and breathing passages by evaporating water. (a) Calculate the maximum number of grams of water that can be evaporated when you inhale 1.50 L of $37^\\circ\\text{C}$ air with an original relative humidity of 40.0%. (Assume that body temperature is also $37^\\circ\\text{C}$.) (b) How many joules of energy are required to evaporate this amount? (c) What is the rate of heat transfer in watts from this method, if you breathe at a normal resting rate of 10.0 breaths per minute?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "(a)", "value": 0.0396, "unit": "g", "hint": "The air leaves saturated, so the water evaporated is 60.0% of the saturation vapor density at 37 °C, from the table in Temperature, Kinetic Theory, and the Gas Laws, times 1.50 L."},
+     {"part": "(b)", "value": 96.2, "unit": "J", "hint": "$Q = mL_{\\text{v}}$ with the heat of vaporization at body temperature, 2430 kJ/kg."},
+     {"part": "(c)", "value": 16.0, "unit": "W", "hint": "Ten breaths a minute is one every 6.00 s."}
+    ],
+    "solution": "(a) $3.96 \\times 10^{-2}\\;\\text{g}$ (b) 96.2 J (c) 16.0 W"
+   }
+  },
+  {
+   "id": "ic10",
+   "source_id": "fs-id1945562",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {"at": "end"},
+   "cite": "heat-transfer-strategy",
+   "prompt": "Hot air rises because it has expanded. It then displaces a greater volume of cold air, which increases the buoyant force on it. (a) Calculate the ratio of the buoyant force to the weight of $50.0^\\circ\\text{C}$ air surrounded by $20.0^\\circ\\text{C}$ air. (b) What energy is needed to cause $1.00\\;\\text{m}^3$ of air to go from $20.0^\\circ\\text{C}$ to $50.0^\\circ\\text{C}$? (c) What gravitational potential energy is gained by this volume of air if it rises 1.00 m? Will this cause a significant cooling of the air?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "(a)", "value": 1.102, "unit": "", "hint": "At constant pressure the density of a gas is inversely proportional to its absolute temperature, so the ratio of the buoyant force to the weight is the ratio of the two densities, $323.15/293.15$."},
+     {"part": "(b)", "value": 2.79e4, "unit": "J", "hint": "The mass is the density of air times $1.00\\;\\text{m}^3$; use the specific heat of air at constant pressure from Table 14.1 and $Q = mc\\kdTemp$."},
+     {"part": "(c)", "value": 12.6, "unit": "J", "hint": "$mgh$ for the same mass rising 1.00 m; compare it with the heat of part (b)."}
+    ],
+    "solution": "(a) 1.102 (b) $2.79 \\times 10^4\\;\\text{J}$ (c) 12.6 J. This will not cause a significant cooling of the air because it is much less than the energy found in part (b), which is the energy required to warm the air from $20.0^\\circ\\text{C}$ to $50.0^\\circ\\text{C}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "cyu1", "concept": "radiation-fourth-power"},
+  {"exercise": "cyu1", "concept": "stefan-boltzmann-law", "weight": 2},
+  {"exercise": "ap1", "concept": "stefan-boltzmann-law"},
+  {"exercise": "ap1", "concept": "radiation-fourth-power", "weight": 3},
+  {"exercise": "ap2", "concept": "greenhouse-effect"},
+  {"exercise": "ap2", "concept": "absorbers-and-emitters", "weight": 2},
+  {"exercise": "cq1", "concept": "absorbers-and-emitters"},
+  {"exercise": "cq1", "concept": "emissivity", "weight": 2},
+  {"exercise": "cq2", "concept": "net-radiation-rate"},
+  {"exercise": "cq2", "concept": "radiation-fourth-power", "weight": 2},
+  {"exercise": "cq3", "concept": "greenhouse-effect"},
+  {"exercise": "cq3", "concept": "net-radiation-rate", "weight": 2},
+  {"exercise": "cq4", "concept": "net-radiation-rate"},
+  {"exercise": "cq4", "concept": "absorbers-and-emitters", "weight": 2},
+  {"exercise": "cq5", "concept": "greenhouse-effect"},
+  {"exercise": "cq5", "concept": "net-radiation-rate", "weight": 2},
+  {"exercise": "p1", "concept": "net-radiation-rate"},
+  {"exercise": "p1", "concept": "emissivity", "weight": 2},
+  {"exercise": "p3", "concept": "net-radiation-rate"},
+  {"exercise": "p3", "concept": "stefan-boltzmann-law", "weight": 2},
+  {"exercise": "p5", "concept": "net-radiation-rate"},
+  {"exercise": "p5", "concept": "emissivity", "weight": 3},
+  {"exercise": "p7", "concept": "radiation-fourth-power"},
+  {"exercise": "p7", "concept": "stefan-boltzmann-law", "weight": 3},
+  {"exercise": "p9", "concept": "net-radiation-rate"},
+  {"exercise": "p9", "concept": "rate-of-conductive-heat-transfer", "weight": 3},
+  {"exercise": "p9", "concept": "heat-transfer-methods-strategy", "weight": 3},
+  {"exercise": "p11", "concept": "net-radiation-rate"},
+  {"exercise": "p11", "concept": "absorbers-and-emitters", "weight": 2},
+  {"exercise": "ic2", "concept": "heat-transfer-methods-strategy"},
+  {"exercise": "ic2", "concept": "kinetic-energy", "weight": 2},
+  {"exercise": "ic2", "concept": "heat-and-temperature-change", "weight": 3},
+  {"exercise": "ic4", "concept": "heat-transfer-methods-strategy"},
+  {"exercise": "ic4", "concept": "convection-heat-rate", "weight": 3},
+  {"exercise": "ic6", "concept": "heat-transfer-methods-strategy"},
+  {"exercise": "ic6", "concept": "heat-and-temperature-change", "weight": 3},
+  {"exercise": "ic6", "concept": "power", "weight": 2},
+  {"exercise": "ic8", "concept": "heat-transfer-methods-strategy"},
+  {"exercise": "ic8", "concept": "heat-of-vaporization", "weight": 3},
+  {"exercise": "ic8", "concept": "relative-humidity", "weight": 2},
+  {"exercise": "ic10", "concept": "heat-transfer-methods-strategy"},
+  {"exercise": "ic10", "concept": "buoyant-force", "weight": 2},
+  {"exercise": "ic10", "concept": "heat-and-temperature-change", "weight": 2}
+ ]
+}

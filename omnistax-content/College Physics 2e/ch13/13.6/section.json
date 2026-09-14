@@ -1,0 +1,501 @@
+{
+ "id": "13.6",
+ "module": "m42219",
+ "chapter": "13",
+ "title": "Humidity, Evaporation, and Boiling",
+ "short": "Humidity and boiling",
+ "lead": "Sweat cools you only if it evaporates, and how fast it evaporates depends on how much water vapor the air already carries compared with the most it can carry at that temperature. This section defines relative humidity, saturation and the dew point, reads them from the vapor pressure of water and its saturation vapor density in Table 13.5, finds the density of vapor that a given vapor pressure creates with the ideal gas law, and explains why water boils at 100 °C under one atmosphere and at other temperatures under other pressures.",
+ "objectives": [
+  "Explain the relationship between vapor pressure of water and the capacity of air to hold water vapor.",
+  "Explain the relationship between relative humidity and partial pressure of water vapor in the air.",
+  "Calculate vapor density using vapor pressure.",
+  "Calculate humidity and dew point."
+ ],
+ "summary_html": "<ul><li>Relative humidity is the fraction of water vapor in a gas compared to the saturation value.</li><li>The saturation vapor density can be determined from the vapor pressure for a given temperature.</li><li>Percent relative humidity is defined to be $$\\text{percent relative humidity} = \\frac{\\text{vapor density}}{\\text{saturation vapor density}}\\times 100.$$</li><li>The dew point is the temperature at which air reaches 100% relative humidity.</li></ul>",
+ "notes": "The photograph of dew drops on a banana leaf, Figure 13.31, and the PhET note on states of matter are left out, and the seven problems at the end of the section that test other sections’ ideas are set in those sections.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. The Check Your Understanding box on freeze drying is keyed and sits inline after the passage on boiling. The suggested approaches to the three conceptual questions are AI-written and marked. Ten problems have no keyed answer and are left out: the vapor pressure of water at 20.0 °C as a share of atmospheric pressure, the boiling points at 1500 m and 3000 m, the pressure in the high Andes, the vapor density on a dry desert day, the vapor density at 40.0 °C from the ideal gas law, the muggy summer morning, the oxygen atop Mt. Everest, the dew or fog when 25.0 °C air cools to 15.0 °C, the pressure cooker at 150 °C, and the Unreasonable Results item on 80% humidity. Seven of the Integrated Concepts and Unreasonable Results problems the book prints here test what earlier sections introduce and go to those sections with this section named as their source: the copper block in cold and hot water (fs-id1543836) is set in 13.2, the moles per cubic meter at $1.00\\times10^{14}\\ \\text{N/m}^2$ (fs-id1582923) in 13.3, the rms speed in a supernova (fs-id2705483) in 13.4, and the partial pressure of nitrogen (fs-id1893897) and the diver’s oxygen (fs-id2377418) in 13.5; the aluminum rod in its hole (fs-id1669904), which belongs with 13.2, and the critical pressure at depth (fs-id2298434), which belongs with 13.5, have no keyed answer and are set in neither section. The pressure cooker at 120.0 °C and the water in exhaled air key both parts. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-evaporation",
+   "kind": "sim",
+   "number": "13.32",
+   "originals": [
+    "/media/ch13/Figure_14_06_01.jpg"
+   ],
+   "original_caption": "(a) Because of the distribution of speeds and kinetic energies, some water molecules can break away to the vapor phase even at temperatures below the ordinary boiling point. (b) If the container is sealed, evaporation will continue until there is enough vapor density for the condensation rate to equal the evaporation rate. This vapor density and the partial pressure it creates are the saturation values. They increase with temperature and are independent of the presence of other gases, such as air. They depend only on the vapor pressure of water.",
+   "widths": [
+    331
+   ],
+   "draws": [
+    "temperature",
+    "pressure",
+    "density"
+   ]
+  },
+  {
+   "id": "sim-humidity",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "density"
+   ]
+  },
+  {
+   "id": "sim-boiling",
+   "kind": "sim",
+   "number": "13.33",
+   "originals": [
+    "/media/ch13/graphics4-cef9.jpg"
+   ],
+   "original_caption": "(a) An air bubble in water starts out saturated with water vapor at 20 °C. (b) As the temperature rises, water vapor enters the bubble because its vapor pressure increases. The bubble expands to keep its pressure at 1.00 atm. (c) At 100 °C, water vapor enters the bubble continuously because water’s vapor pressure exceeds its partial pressure in the bubble, which must be less than 1.00 atm. The bubble grows and rises to the surface.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "temperature",
+    "pressure"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "humidity",
+   "concept": "relative-humidity",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity",
+   "concept": "evaporative-cooling",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity",
+   "concept": "dew-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "vapor-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "phase-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "daltons-law",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "maxwell-boltzmann-distribution",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "relative-humidity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vapor-density",
+   "concept": "vapor-density-from-vapor-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "vapor-density",
+   "concept": "ideal-gas-law-moles",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-density",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-density",
+   "concept": "vapor-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "percent-humidity",
+   "concept": "percent-relative-humidity",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity-example",
+   "concept": "humidity-from-the-table",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity-example",
+   "concept": "percent-relative-humidity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "humidity-example",
+   "concept": "dew-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "boiling",
+   "concept": "boiling",
+   "verb": "introduces"
+  },
+  {
+   "span": "boiling",
+   "concept": "vapor-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "boiling",
+   "concept": "daltons-law",
+   "verb": "uses"
+  },
+  {
+   "span": "boiling",
+   "concept": "atmospheric-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "boiling",
+   "concept": "buoyant-force",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2722050",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "boiling"
+   },
+   "cite": "boiling",
+   "prompt": "Freeze drying is a process in which substances, such as foods, are dried by placing them in a vacuum chamber and lowering the atmospheric pressure around them. How does the lowered atmospheric pressure speed the drying process, and why does it cause the temperature of the food to drop?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Decreased the atmospheric pressure results in decreased partial pressure of water, hence a lower humidity. So evaporation of water from food, for example, will be enhanced. The molecules of water most likely to break away from the food will be those with the greatest velocities. Those remaining thus have a lower average velocity and a lower temperature. This can (and does) result in the freezing and drying of the food; hence the process is aptly named freeze drying."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1439139",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vapor-pressure",
+   "prompt": "Because humidity depends only on water’s vapor pressure and temperature, are the saturation vapor densities listed in Table 13.5 valid in an atmosphere of helium at a pressure of $1.01\\times10^{5}\\ \\text{N/m}^2$, rather than air? Are those values affected by altitude on Earth?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes, the values are valid in helium. The saturation vapor density is the density of water vapor whose partial pressure equals the vapor pressure of water at that temperature, and the vapor pressure of water depends on the temperature alone. The caption of Figure 13.32 says as much: the saturation values are independent of the presence of other gases, such as air. The helium adds its own partial pressure to the total, by Dalton’s law, but it does not change how much water vapor can be present. For the same reason the values are not affected by altitude as such. Air at altitude is thinner, but the water vapor in it still saturates at the density Table 13.5 gives for its temperature. What altitude does change is the temperature, which is usually lower, so the saturation vapor density there is usually smaller, and it changes the pressure at which water boils, which the boiling problems take up."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1438869",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "boiling",
+   "prompt": "Why does a beaker of 40.0 °C water placed in a vacuum chamber start to boil as the chamber is evacuated (air is pumped out of the chamber)? At what pressure does the boiling begin? Would food cook any faster in such a beaker?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Water boils when its vapor pressure equals the pressure over it, because then water vapor can enter a bubble without limit, and the bubble grows, breaks away and rises. At 40.0 °C the vapor pressure of water is $7.34\\times10^{3}\\ \\text{Pa}$ by Table 13.5, so the water begins to boil when the pump has brought the pressure in the chamber down to $7.34\\times10^{3}\\ \\text{N/m}^2$, about 7% of atmospheric pressure. Food would not cook any faster. Cooking depends on the temperature of the water, and this water is at 40.0 °C, far below the 100 °C of water boiling at atmospheric pressure. If anything the boiling cools the water, since the molecules that escape are the fastest ones, which is the idea behind freeze drying in the Check Your Understanding box."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1854910",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "humidity",
+   "prompt": "Why does rubbing alcohol evaporate much more rapidly than water at STP (standard temperature and pressure)?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A liquid evaporates because some of its molecules have enough speed and kinetic energy to break away from the attraction of their neighbors, and the rate at which they do so is set by the liquid’s vapor pressure at that temperature. The molecules of rubbing alcohol attract one another less strongly than water molecules attract one another, so at the same temperature a larger share of them have the energy to escape, and the vapor pressure of the alcohol is several times that of water at 0 °C. More molecules leave each second, so the alcohol evaporates much more rapidly, and it takes its heat from your skin faster too, which is why it feels colder than water."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2720918",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "boiling",
+   "prompt": "Pressure cookers increase cooking speed by raising the boiling temperature of water above its value at atmospheric pressure. (a) What pressure is necessary to raise the boiling point to 120.0 °C? (b) What gauge pressure does this correspond to?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 199000.0,
+      "unit": "Pa",
+      "hint": "Water boils when its vapor pressure equals the pressure over it, so the pressure needed is the vapor pressure of water at 120 °C, which Table 13.5 gives."
+     },
+     {
+      "part": "(b)",
+      "value": 0.97,
+      "unit": "atm",
+      "hint": "Gauge pressure is the absolute pressure less atmospheric pressure, $1.01\\times10^{5}\\ \\text{Pa}$, and the book states it in atmospheres."
+     }
+    ],
+    "solution": "(a) $1.99\\times10^{5}\\ \\text{Pa}$ (b) 0.97 atm"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2385042",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "boiling",
+   "prompt": "What is the atmospheric pressure on top of Mt. Everest on a day when water boils there at a temperature of 70.0 °C?",
+   "answer": {
+    "type": "number",
+    "value": 31200.0,
+    "unit": "Pa",
+    "generated_by": "source",
+    "hint": "Water boils where its vapor pressure equals the atmospheric pressure over it, so read the vapor pressure at 70 °C from Table 13.5.",
+    "solution": "$3.12\\times10^{4}\\ \\text{Pa}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2378107",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "percent-humidity",
+   "prompt": "What is the relative humidity on a 25.0 °C day when the air contains $18.0\\ \\text{g/m}^3$ of water vapor?",
+   "answer": {
+    "type": "number",
+    "value": 78.3,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "Percent relative humidity is the vapor density divided by the saturation vapor density at 25.0 °C, from Table 13.5, times 100.",
+    "solution": "78.3%"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id2094936",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vapor-density",
+   "prompt": "Air in human lungs has a temperature of 37.0 °C and a saturation vapor density of $44.0\\ \\text{g/m}^3$. (a) If 2.00 L of air is exhaled and very dry air inhaled, what is the maximum loss of water vapor by the person? (b) Calculate the partial pressure of water vapor having this density, and compare it with the vapor pressure of $6.31\\times10^{3}\\ \\text{N/m}^2$.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.088,
+      "unit": "g",
+      "hint": "The mass of vapor in 2.00 L of saturated air is the saturation vapor density times the volume in cubic meters, $2.00\\times10^{-3}\\ \\text{m}^3$."
+     },
+     {
+      "part": "(b)",
+      "value": 6300.0,
+      "unit": "Pa",
+      "hint": "Run Example 13.10 backwards: the density in g/m³ divided by 18.0 g/mol is $n/V$, and $\\kPr = (n/V)R\\kTemp$ with the temperature in kelvins."
+     }
+    ],
+    "solution": "(a) $8.80\\times10^{-2}\\ \\text{g}$ (b) $6.30\\times10^{3}\\ \\text{Pa}$; the two values are nearly identical."
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2599998",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "humidity-example",
+   "prompt": "Late on an autumn day, the relative humidity is 45.0% and the temperature is 20.0 °C. What will the relative humidity be that evening when the temperature has dropped to 10.0 °C, assuming constant water vapor density?",
+   "answer": {
+    "type": "number",
+    "value": 82.3,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "The vapor density in the air is 45.0% of the saturation vapor density at 20.0 °C. That same density, divided by the saturation vapor density at 10.0 °C, is the evening’s humidity.",
+    "solution": "82.3%"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1509093",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "humidity-example",
+   "prompt": "What is the dew point (the temperature at which 100% relative humidity would occur) on a day when relative humidity is 39.0% at a temperature of 20.0 °C?",
+   "answer": {
+    "type": "number",
+    "value": 4.77,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "The vapor density is 39.0% of the saturation vapor density at 20.0 °C. The dew point is the temperature at which that density is the saturation value, read from Table 13.5 in a straight line between the rows at 0 °C and 5 °C.",
+    "solution": "$4.77^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id2386969",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "tag": "Integrated Concepts",
+   "cite": "boiling",
+   "prompt": "The boiling point of water increases with depth because pressure increases with depth. At what depth will fresh water have a boiling point of 150 °C, if the surface of the water is at sea level?",
+   "answer": {
+    "type": "number",
+    "value": 38.3,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "Water boils at 150 °C where the pressure equals its vapor pressure at 150 °C from Table 13.5. That pressure is atmospheric pressure plus the pressure due to the weight of the water, $\\kh\\krho\\kg$, so solve for the depth with the density of fresh water.",
+    "solution": "$38.3\\ \\text{m}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "evaporative-cooling"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "relative-humidity",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "relative-humidity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "vapor-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "boiling"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "humidity-from-the-table",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "vapor-pressure"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "evaporative-cooling",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "boiling"
+  },
+  {
+   "exercise": "p3",
+   "concept": "humidity-from-the-table",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "gauge-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "boiling"
+  },
+  {
+   "exercise": "p5",
+   "concept": "humidity-from-the-table",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "percent-relative-humidity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "humidity-from-the-table",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "vapor-density-from-vapor-pressure"
+  },
+  {
+   "exercise": "p11",
+   "concept": "ideal-gas-law-moles",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "percent-relative-humidity"
+  },
+  {
+   "exercise": "p13",
+   "concept": "humidity-from-the-table",
+   "weight": 3
+  },
+  {
+   "exercise": "p15",
+   "concept": "dew-point"
+  },
+  {
+   "exercise": "p15",
+   "concept": "humidity-from-the-table",
+   "weight": 3
+  },
+  {
+   "exercise": "p17",
+   "concept": "boiling"
+  },
+  {
+   "exercise": "p17",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+<section id="natural-convection">
+<h2>Natural convection and the convective loop</h2>
+<p class="cite-target">Convection is driven by large-scale flow of matter. In the case of Earth, the atmospheric circulation is caused by the flow of hot air from the tropics to the poles, and the flow of cold air from the poles toward the tropics. (Note that Earth’s rotation causes the observed easterly flow of air in the northern hemisphere). Car engines are kept cool by the flow of water in the cooling system, with the water pump maintaining a flow of cool water to the pistons. The circulatory system is used the body: when the body overheats, the blood vessels in the skin expand (dilate), which increases the blood flow to the skin where it can be cooled by sweating. These vessels become smaller when it is cold outside and larger when it is hot (so more fluid flows, and more energy is transferred).</p>
+<p>The body also loses a significant fraction of its heat through the breathing process.</p>
+<p>While convection is usually more complicated than conduction, we can describe convection and do some straightforward, realistic calculations of its effects. Natural convection is driven by buoyant forces: hot air rises because density decreases as temperature increases. The house in Figure 14.21 is kept warm in this manner, as is the pot of water on the stove in Figure 14.22. Ocean currents and large-scale atmospheric circulation transfer energy from one part of the globe to another. Both are examples of natural convection.</p>
+<figure class="sim" id="sim-convective-loop" data-figure="14.21 + 14.22" data-original="/media/ch14/Figure_15_06_01a.jpg,/media/ch14/Figure_15_06_02a.jpg" data-original-width="275,200" data-original-caption="Air heated by the so-called gravity furnace expands and rises, forming a convective loop that transfers energy to other parts of the room. As the air is cooled at the ceiling and outside walls, it contracts, eventually becoming denser than room air and sinking to the floor. A properly designed heating system using natural convection, like this one, can be quite efficient in uniformly heating a home. (Figure 14.22) Convection plays an important role in heat transfer inside this pot of water. Once conducted to the inside, heat transfer to other parts of the pot is mostly by convection. The hotter water expands, decreases in density, and rises to transfer heat to other regions of the water, while colder water sinks to the bottom. This process keeps repeating.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.21 + 14.22</span><span>A gravity furnace warms the air beside it, and a burner warms the water at the bottom of a pot. In each case the warmed fluid expands, becomes less dense than the fluid around it, and is pushed upward by the buoyant force, while the fluid that has cooled at the ceiling or at the walls of the pot sinks to take its place. The parcels ride that loop, and the two bars compare the density of the warmed fluid with the density of the rest. Choose the room or the pot, raise the temperature of the fluid at the heater, and watch the loop turn faster as the warmed fluid becomes lighter.</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">Take-Home Experiment: Convection Rolls in a Heated Pan</div>
+<p>Take two small pots of water and use an eye dropper to place a drop of food coloring near the bottom of each. Leave one on a bench top and heat the other over a stovetop. Watch how the color spreads and how long it takes the color to reach the top. Watch how convective loops form.</p>
+</div>
+</section>
+
+<section id="moving-mass">
+<h2>The heat carried by a mass of fluid</h2>
+<div class="example" id="ex-house">
+<h3>Example 14.7 · Calculating Heat Transfer by Convection: Convection of Air Through the Walls of a House</h3>
+<p class="cite-target">Most houses are not airtight: air goes in and out around doors and windows, through cracks and crevices, following wiring to switches and outlets, and so on. The air in a typical house is completely replaced in less than an hour. Suppose that a moderately-sized house has inside dimensions $12.0\ \text{m} \times 18.0\ \text{m} \times 3.00\ \text{m}$ high, and that all air is replaced in 30.0 min. Calculate the heat transfer per unit time in watts needed to warm the incoming cold air by $10.0^\circ\text{C}$, thus replacing the heat transferred by convection alone.</p>
+<h4>Strategy</h4>
+<p>Heat is used to raise the temperature of air so that $\kQh = mc\kdTemp$. The rate of heat transfer is then $\kQh/\kt$, where $\kt$ is the time for air turnover. We are given that $\kdTemp$ is $10.0^\circ\text{C}$, but we must still find values for the mass of air and its specific heat before we can calculate $\kQh$. The specific heat of air is a weighted average of the specific heats of nitrogen and oxygen, which gives $c = c_{\text{p}} \cong 1000\ \text{J/kg}\cdot{}^\circ\text{C}$ from Table 14.1 (note that the specific heat at constant pressure must be used for this process).</p>
+<h4>Solution</h4>
+<ol>
+<li>Determine the mass of air from its density and the given volume of the house. The density is given from the density $\krho$ and the volume
+$$m = \krho V = (1.29\ \text{kg/m}^3)(12.0\ \text{m} \times 18.0\ \text{m} \times 3.00\ \text{m}) = 836\ \text{kg.}$$</li>
+<li>Calculate the heat transferred from the change in air temperature: $\kQh = mc\kdTemp$ so that
+$$\kQh = (836\ \text{kg})(1000\ \text{J/kg}\cdot{}^\circ\text{C})(10.0^\circ\text{C}) = 8.36 \times 10^{6}\ \text{J.}$$</li>
+<li>Calculate the heat transfer from the heat $\kQh$ and the turnover time $\kt$. Since air is turned over in $\kt = 0.500\ \text{h} = 1800\ \text{s}$, the heat transferred per unit time is
+$$\frac{\kQh}{\kt} = \frac{8.36 \times 10^{6}\ \text{J}}{1800\ \text{s}} = 4.64\ \text{kW.}$$</li>
+</ol>
+<h4>Discussion</h4>
+<p>This rate of heat transfer is equal to the power consumed by about forty-six 100-W light bulbs. Newly constructed homes are designed for a turnover time of 2 hours or more, rather than 30 minutes for the house of this example. Weather stripping, caulking, and improved window seals are commonly employed. More extreme measures are sometimes taken in very cold (or hot) climates to achieve a tight standard of more than 6 hours for one air turnover. Still longer turnover times are unhealthy, because a minimum amount of fresh air is necessary to supply oxygen for breathing and to dilute household pollutants. The term used for the process by which outside air leaks into the house from cracks around windows, doors, and the foundation is called “air infiltration.”</p>
+</div>
+<figure class="sim" id="sim-house-turnover">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The house of Example 14.7 leaks: cold air comes in around the doors and windows and warm air goes out, so that all of its air is replaced once in the turnover time. Every kilogram that comes in must be warmed by the same temperature change, and the heat that takes, divided by the turnover time, is the rate at which the heating must run. The bar states that rate in watts, and the row beside it shows it as the number of 100 W light bulbs it would light. Lengthen the turnover time to the 2 hours of a new home or the 6 hours of a tight one and watch the bulbs go out.</span></div>
+</figure>
+</section>
+
+<section id="wind-chill">
+<h2>Wind chill</h2>
+<p class="cite-target">A cold wind is much more chilling than still cold air, because convection combines with conduction in the body to increase the rate at which energy is transferred away from the body. The table below gives approximate wind-chill factors, which are the temperatures of still air that produce the same rate of cooling as air of a given temperature and speed. Wind-chill factors are a dramatic reminder of convection’s ability to transfer heat faster than conduction. For example, a 15.0 m/s wind at $0^\circ\text{C}$ has the chilling equivalent of still air at about $-18^\circ\text{C}$.</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">Table 14.4</span><span>Wind-Chill Factors</span></div>
+  <table>
+    <thead>
+      <tr><th>Moving air temperature</th><th colspan="5">Wind speed (m/s)</th></tr>
+      <tr><th>$({}^\circ\text{C})$</th><th>$2$</th><th>$5$</th><th>$10$</th><th>$15$</th><th>$20$</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>$5$</td><td>$3$</td><td>$-1$</td><td>$-8$</td><td>$-10$</td><td>$-12$</td></tr>
+      <tr><td>$2$</td><td>$0$</td><td>$-7$</td><td>$-12$</td><td>$-16$</td><td>$-18$</td></tr>
+      <tr><td>$0$</td><td>$-2$</td><td>$-9$</td><td>$-15$</td><td>$-18$</td><td>$-20$</td></tr>
+      <tr><td>$-5$</td><td>$-7$</td><td>$-15$</td><td>$-22$</td><td>$-26$</td><td>$-29$</td></tr>
+      <tr><td>$-10$</td><td>$-12$</td><td>$-21$</td><td>$-29$</td><td>$-34$</td><td>$-36$</td></tr>
+      <tr><td>$-20$</td><td>$-23$</td><td>$-34$</td><td>$-44$</td><td>$-50$</td><td>$-52$</td></tr>
+      <tr><td>$-40$</td><td>$-44$</td><td>$-59$</td><td>$-73$</td><td>$-82$</td><td>$-84$</td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="sim-wind-chill">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A person stands in a wind, and two thermometers read the air. The first reads the temperature of the moving air itself, and the second reads the wind-chill factor of Table 14.4, the temperature of still air that would carry heat away from the body at the same rate. The graph beside the scene draws every row of the table against the wind speed, with the row for the chosen air temperature picked out and the reader’s point on it. Set the air temperature and the wind speed to the table’s values, or to any value between them, and read how much colder the wind feels than the still air.</span></div>
+</figure>
+<div class="exercises" data-place="wind-chill"></div>
+</section>
+
+<section id="trapped-air">
+<h2>Air that cannot move is an insulator</h2>
+<p class="cite-target">Although air can transfer heat rapidly by convection, it is a poor conductor and thus a good insulator. The amount of available space for airflow determines whether air acts as an insulator or conductor. The space between the inside and outside walls of a house, for example, is about 9 cm (3.5 in) —large enough for convection to work effectively. The addition of wall insulation prevents airflow, so heat loss (or gain) is decreased. Similarly, the gap between the two panes of a double-paned window is about 1 cm, which prevents convection and takes advantage of air’s low conductivity to prevent greater loss. Fur, fiber, and fiberglass also take advantage of the low conductivity of air by trapping it in spaces too small to support convection, as shown in the figure. Fur and feathers are lightweight and thus ideal for the protection of animals.</p>
+<figure class="sim" id="sim-fur" data-figure="14.23" data-original="/media/ch14/Figure_15_06_03a.jpg" data-original-caption="Fur is filled with air, breaking it up into many small pockets. Convection is very slow here, because the loops are so small. The low conductivity of air makes fur a very good lightweight insulator.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.23</span><span>A warm body is covered by a layer of fur, and cold air lies outside it. The fur breaks the air of the layer into many small pockets, and in each pocket the air next to the body is warmer and lighter than the air next to the cold side, so a convection loop would form if it could. Whether it can depends on the size of the pocket: the buoyant force on a pocket of warm air grows with the pocket’s volume, while the viscosity of the air resists any motion, so that in a small pocket the air stands still and heat crosses the fur only by conduction through air, which is a poor conductor. Enlarge the pockets to the 1 cm gap of a double-paned window or the 9 cm cavity of a house wall and watch the loops begin to turn.</span></div>
+</figure>
+</section>
+
+<section id="phase-change">
+<h2>Convection with a phase change</h2>
+<p class="cite-target">Some interesting phenomena happen <em>when convection is accompanied by a phase change</em>. It allows us to cool off by sweating, even if the temperature of the surrounding air exceeds body temperature. Heat from the skin is required for sweat to evaporate from the skin, but without air flow, the air becomes saturated and evaporation stops. Air flow caused by convection replaces the saturated air by dry air and evaporation continues.</p>
+<div class="example" id="ex-sweat">
+<h3>Example 14.8 · Calculate the Flow of Mass during Convection: Sweat-Heat Transfer away from the Body</h3>
+<p>The average person produces heat at the rate of about 120 W when at rest. At what rate must water evaporate from the body to get rid of all this energy? (This evaporation might occur when a person is sitting in the shade and surrounding temperatures are the same as skin temperature, eliminating heat transfer by other methods.)</p>
+<h4>Strategy</h4>
+<p>Energy is needed for a phase change ($\kQh = mL_{\text{v}}$). Thus, the energy loss per unit time is</p>
+$$\frac{\kQh}{\kt} = \frac{mL_{\text{v}}}{\kt} = 120\ \text{W} = 120\ \text{J/s.}$$
+<p>We divide both sides of the equation by $L_{\text{v}}$ to find that the mass evaporated per unit time is</p>
+$$\frac{m}{\kt} = \frac{120\ \text{J/s}}{L_{\text{v}}}.$$
+<h4>Solution</h4>
+<p>(1) Insert the value of the latent heat from Table 14.2, $L_{\text{v}} = 2430\ \text{kJ/kg} = 2430\ \text{J/g}$. This yields</p>
+$$\frac{m}{\kt} = \frac{120\ \text{J/s}}{2430\ \text{J/g}} = 0.0494\ \text{g/s} = 2.96\ \text{g/min.}$$
+<h4>Discussion</h4>
+<p>Evaporating about 3 g/min seems reasonable. This would be about 180 g (about 7 oz) per hour. If the air is very dry, the sweat may evaporate without even being noticed. A significant amount of evaporation also takes place in the lungs and breathing passages.</p>
+</div>
+<figure class="sim" id="sim-sweat">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A person sits in the shade with the air as warm as the skin, so that sweat is the only way heat leaves the body, as in Example 14.8. Every gram of sweat that evaporates carries away the heat of vaporization of a gram of water, so the rate at which water must evaporate is the power to be shed divided by the heat of vaporization. The bar states that rate in grams a minute, and the cup collects the water evaporated in the time chosen. Raise the power from the 83 W of sleep to the 210 W of sitting and watch how much more water it takes.</span></div>
+</figure>
+<p>Another important example of the combination of phase change and convection occurs when water evaporates from the oceans. Heat is removed from the ocean when water evaporates. If the water vapor condenses in liquid droplets as clouds form, heat is released in the atmosphere. Thus, there is an overall transfer of heat from the ocean to the atmosphere. This process is the driving power behind thunderheads, those great cumulus clouds that rise as much as 20.0 km into the stratosphere. Water vapor carried in by convection condenses, releasing tremendous amounts of energy. This energy causes the air to expand and rise, where it is colder. More condensation occurs in these colder regions, which in turn drives the cloud even higher. Such a mechanism is called positive feedback, since the process reinforces and accelerates itself. These systems sometimes produce violent storms, with lightning and hail, and constitute the mechanism driving hurricanes.</p>
+<figure class="photo" id="fig-cumulus" data-figure="14.24">
+  <img src="/media/ch14/Figure_15_06_04a.jpg" alt="The figure shows a cumulus cloud in a blue sky.">
+  <figcaption><span class="eyebrow">Figure 14.24</span><span>Cumulus clouds are caused by water vapor that rises because of convection. The rise of clouds is driven by a positive feedback mechanism. (credit: Mike Love)</span></figcaption>
+</figure>
+<figure class="photo" id="fig-thunderhead" data-figure="14.25">
+  <img src="/media/ch14/Figure_15_06_05a.jpg" alt="The figure shows lightning strikes from thunderclouds above an urban area." data-width="213">
+  <figcaption><span class="eyebrow">Figure 14.25</span><span>Convection accompanied by a phase change releases the energy needed to drive this thunderhead into the stratosphere. (credit: Gerardo García Moretti )</span></figcaption>
+</figure>
+<figure class="photo" id="fig-icebergs" data-figure="14.26">
+  <img src="/media/ch14/Figure_15_06_06a.jpg" alt="The figure shows some blue-colored icebergs floating in the water beneath snow-capped mountains and a cloudy sky. Some of the icebergs at front are melting." data-width="227">
+  <figcaption><span class="eyebrow">Figure 14.26</span><span>The phase change that occurs when this iceberg melts involves tremendous heat transfer. (credit: Dominic Alves)</span></figcaption>
+</figure>
+<p>The movement of icebergs is another example of convection accompanied by a phase change. Suppose an iceberg drifts from Greenland into warmer Atlantic waters. Heat is removed from the warm ocean water when the ice melts and heat is released to the land mass when the iceberg forms on Greenland.</p>
+</section>

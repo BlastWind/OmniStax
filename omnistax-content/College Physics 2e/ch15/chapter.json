@@ -1,0 +1,1186 @@
+{
+  "id": "15",
+  "dir": "ch15",
+  "title": "Thermodynamics",
+  "intro": {
+    "module": "m42231",
+    "slug": "15-introduction-to-thermodynamics"
+  },
+  "sections": [
+    {
+      "id": "15.1",
+      "module": "m42232",
+      "title": "The First Law of Thermodynamics",
+      "slug": "15-1-the-first-law-of-thermodynamics"
+    },
+    {
+      "id": "15.2",
+      "module": "m42233",
+      "title": "The First Law of Thermodynamics and Some Simple Processes",
+      "slug": "15-2-the-first-law-of-thermodynamics-and-some-simple-processes"
+    },
+    {
+      "id": "15.3",
+      "module": "m42234",
+      "title": "Introduction to the Second Law of Thermodynamics: Heat Engines and Their Efficiency",
+      "slug": "15-3-introduction-to-the-second-law-of-thermodynamics-heat-engines-and-their-efficiency"
+    },
+    {
+      "id": "15.4",
+      "module": "m42235",
+      "title": "Carnot’s Perfect Heat Engine: The Second Law of Thermodynamics Restated",
+      "slug": "15-4-carnots-perfect-heat-engine-the-second-law-of-thermodynamics-restated"
+    },
+    {
+      "id": "15.5",
+      "module": "m42236",
+      "title": "Applications of Thermodynamics: Heat Pumps and Refrigerators",
+      "slug": "15-5-applications-of-thermodynamics-heat-pumps-and-refrigerators"
+    },
+    {
+      "id": "15.6",
+      "module": "m42237",
+      "title": "Entropy and the Second Law of Thermodynamics: Disorder and the Unavailability of Energy",
+      "slug": "15-6-entropy-and-the-second-law-of-thermodynamics-disorder-and-the-unavailability-of-energy"
+    },
+    {
+      "id": "15.7",
+      "module": "m42238",
+      "title": "Statistical Interpretation of Entropy and the Second Law of Thermodynamics: The Underlying Explanation",
+      "slug": "15-7-statistical-interpretation-of-entropy-and-the-second-law-of-thermodynamics-the-underlying-explanation"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "ΔE_int",
+      "type": "energy",
+      "meaning": "the change in internal energy of the system",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "E_int",
+      "type": "energy",
+      "meaning": "the internal energy of a system, the sum of the kinetic and potential energies of its atoms and molecules",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-internal-energy"
+    },
+    {
+      "sym": "E_int1",
+      "type": "energy",
+      "meaning": "the internal energy of the system in State 1, which does not depend on how the system got there",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "E_int2",
+      "type": "energy",
+      "meaning": "the internal energy of the system in State 2",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "Q_heat",
+      "type": "energy",
+      "meaning": "the net heat transferred into the system, the sum of all heat transfer into and out of the system; positive for net heat transfer into the system",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "W",
+      "type": "energy",
+      "meaning": "the net work done by the system, the sum of all work done on or by the system; positive for net work done by the system",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "Q_in",
+      "type": "energy",
+      "meaning": "heat transfer into the system",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "Q_out",
+      "type": "energy",
+      "meaning": "heat transfer out of the system",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "W_out",
+      "type": "energy",
+      "meaning": "work done by the system on the outside world",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "W_in",
+      "type": "energy",
+      "meaning": "work done on the system",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "Q_heat1",
+      "type": "energy",
+      "meaning": "the net heat transfer in the first step of the two-step process",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "Q_heat2",
+      "type": "energy",
+      "meaning": "the net heat transfer in the second step of the two-step process",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "W_1",
+      "type": "energy",
+      "meaning": "the net work done by the system in the first step",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "W_2",
+      "type": "energy",
+      "meaning": "the net work done by the system in the second step",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "W",
+      "type": "energy",
+      "meaning": "the work done by a gas on a piston, positive when the gas expands and does work on the outside world",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the pressure of the gas inside the cylinder, which is constant in an isobaric process",
+      "unit": "N/m²",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "ΔV",
+      "meaning": "the change in volume of the gas, positive for an expansion",
+      "unit": "m³",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the force the gas exerts on the piston, F = PA",
+      "unit": "N",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "A",
+      "meaning": "the cross-sectional area of the cylinder",
+      "unit": "m²",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "d",
+      "type": "position",
+      "meaning": "the distance the piston moves",
+      "unit": "m",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "P_ext",
+      "type": "pressure",
+      "meaning": "the pressure outside the tank, against which an expanding gas works in the sign convention many other texts use",
+      "unit": "N/m²",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "W_AB",
+      "type": "energy",
+      "meaning": "the work done along the isobaric path AB of the cycle ABCDA",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "W_BC",
+      "type": "energy",
+      "meaning": "the work done along the isochoric path BC, which is zero",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "W_CD",
+      "type": "energy",
+      "meaning": "the work done along the isobaric path CD, negative because the volume decreases",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "W_DA",
+      "type": "energy",
+      "meaning": "the work done along the isochoric path DA, which is zero",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "P_AB",
+      "type": "pressure",
+      "meaning": "the pressure along the path AB of the cycle",
+      "unit": "N/m²",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "P_CD",
+      "type": "pressure",
+      "meaning": "the pressure along the path CD of the cycle",
+      "unit": "N/m²",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "E_int",
+      "type": "energy",
+      "meaning": "the total internal energy of a monatomic ideal gas, the kinetic energy of its atoms",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "v̄",
+      "type": "velocity",
+      "meaning": "the average speed of an atom in the gas",
+      "unit": "m/s",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of one atom of the gas",
+      "unit": "kg",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "T_temp",
+      "type": "temperature",
+      "meaning": "the absolute temperature of the gas, which is constant in an isothermal process",
+      "unit": "K",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "Q_heat",
+      "type": "energy",
+      "meaning": "the net heat transfer into the gas, which is zero in an adiabatic process",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "N_count",
+      "meaning": "the number of atoms in the gas",
+      "unit": "",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "k_boltz",
+      "meaning": "Boltzmann’s constant, 1.38 × 10⁻²³ J/K",
+      "unit": "J/K",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "Q_h",
+      "type": "energy",
+      "meaning": "the heat transfer from the hot object, the hot reservoir, into the engine",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines"
+    },
+    {
+      "sym": "Q_c",
+      "type": "energy",
+      "meaning": "the heat transfer from the engine into the cold object, the cold reservoir",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines"
+    },
+    {
+      "sym": "W",
+      "type": "energy",
+      "meaning": "the net work done by the engine in one cycle",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines"
+    },
+    {
+      "sym": "T_h",
+      "type": "temperature",
+      "meaning": "the temperature of the hot reservoir",
+      "unit": "K",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines"
+    },
+    {
+      "sym": "T_c",
+      "type": "temperature",
+      "meaning": "the temperature of the cold reservoir",
+      "unit": "K",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines"
+    },
+    {
+      "sym": "Q_heat",
+      "type": "energy",
+      "meaning": "the net heat transfer during the cycle, Q_h minus Q_c",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-cyclical"
+    },
+    {
+      "sym": "ΔE_int",
+      "type": "energy",
+      "meaning": "the change in internal energy over a complete cycle, which is zero",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-cyclical"
+    },
+    {
+      "sym": "Eff",
+      "meaning": "the conversion efficiency of a heat engine, its net work output divided by the heat transfer to the engine",
+      "unit": "",
+      "section": "15.3",
+      "anchor": "15.3-efficiency"
+    },
+    {
+      "sym": "Q_hprime",
+      "type": "energy",
+      "meaning": "the heat transfer into the engine of the Otto cycle with the greater temperature range",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-otto"
+    },
+    {
+      "sym": "Q_cprime",
+      "type": "energy",
+      "meaning": "the heat transfer out of the engine of the Otto cycle with the greater temperature range",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-otto"
+    },
+    {
+      "sym": "W_prime",
+      "type": "energy",
+      "meaning": "the greater net work output of the Otto cycle with the greater temperature range",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-otto"
+    },
+    {
+      "sym": "T_hprime",
+      "type": "temperature",
+      "meaning": "the higher hot reservoir temperature of the second Otto cycle",
+      "unit": "K",
+      "section": "15.3",
+      "anchor": "15.3-otto"
+    },
+    {
+      "sym": "T_cprime",
+      "type": "temperature",
+      "meaning": "the lower cold reservoir temperature of the second Otto cycle",
+      "unit": "K",
+      "section": "15.3",
+      "anchor": "15.3-otto"
+    },
+    {
+      "sym": "Eff_C",
+      "meaning": "the Carnot efficiency, the maximum theoretical efficiency of a heat engine operating between two temperatures",
+      "unit": "",
+      "section": "15.4",
+      "anchor": "15.4-maximum-efficiency"
+    },
+    {
+      "sym": "T_h",
+      "type": "temperature",
+      "meaning": "the temperature of the hot reservoir in kelvins",
+      "unit": "K",
+      "section": "15.4",
+      "anchor": "15.4-maximum-efficiency"
+    },
+    {
+      "sym": "T_c",
+      "type": "temperature",
+      "meaning": "the temperature of the cold reservoir in kelvins",
+      "unit": "K",
+      "section": "15.4",
+      "anchor": "15.4-maximum-efficiency"
+    },
+    {
+      "sym": "Q_h",
+      "type": "energy",
+      "meaning": "the heat transfer into the working substance during the isothermal path AB",
+      "unit": "J",
+      "section": "15.4",
+      "anchor": "15.4-carnot-cycle"
+    },
+    {
+      "sym": "Q_c",
+      "type": "energy",
+      "meaning": "the heat transfer out of the working substance during the isothermal path CD, often called waste heat",
+      "unit": "J",
+      "section": "15.4",
+      "anchor": "15.4-carnot-cycle"
+    },
+    {
+      "sym": "W",
+      "type": "energy",
+      "meaning": "the net work output of the Carnot engine, the area inside the path ABCDA",
+      "unit": "J",
+      "section": "15.4",
+      "anchor": "15.4-carnot-cycle"
+    },
+    {
+      "sym": "Q_f",
+      "type": "energy",
+      "meaning": "the heat transfer to the cold reservoir from friction and other dissipative processes in the output mechanisms",
+      "unit": "J",
+      "section": "15.4",
+      "anchor": "15.4-real-engines"
+    },
+    {
+      "sym": "Q_h",
+      "type": "energy",
+      "meaning": "the heat transfer into the hot reservoir, the warm space a heat pump heats",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-heat-engines-backward"
+    },
+    {
+      "sym": "Q_c",
+      "type": "energy",
+      "meaning": "the heat transfer from the cold reservoir, the cold outdoor air or the inside of a refrigerator",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-heat-engines-backward"
+    },
+    {
+      "sym": "W",
+      "type": "energy",
+      "meaning": "the work input required to move heat transfer from cold to hot",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-heat-engines-backward"
+    },
+    {
+      "sym": "W_prime",
+      "type": "energy",
+      "meaning": "the portion of the work input that reaches the heat pump after friction takes its share",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "Q_f",
+      "type": "energy",
+      "meaning": "the frictional heat lost to the cold reservoir before the work reaches the heat pump",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "COP_hp",
+      "meaning": "the coefficient of performance of a heat pump, the heat transfer into the warm space divided by the work input",
+      "unit": "",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "COP_ref",
+      "meaning": "the coefficient of performance of an air conditioner or refrigerator, the heat transfer from the cold environment divided by the work input",
+      "unit": "",
+      "section": "15.5",
+      "anchor": "15.5-refrigerators"
+    },
+    {
+      "sym": "Eff_C",
+      "meaning": "the efficiency of a Carnot engine operating between the same two temperatures, whose reciprocal is the best coefficient of performance",
+      "unit": "",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "T_h",
+      "type": "temperature",
+      "meaning": "the hot reservoir temperature of the heat pump, above the indoor temperature",
+      "unit": "K",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "T_c",
+      "type": "temperature",
+      "meaning": "the cold reservoir temperature of the heat pump, below the outdoor temperature",
+      "unit": "K",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "EER",
+      "meaning": "the energy efficiency rating, the British thermal units of heat transfer from the cold environment per hour divided by the watts of power input",
+      "unit": "Btu/(h·W)",
+      "section": "15.5",
+      "anchor": "15.5-refrigerators"
+    },
+    {
+      "sym": "S_ent",
+      "type": "entropy",
+      "meaning": "the entropy of a system, a measure of its disorder and of the unavailability of its energy to do work; a property of state",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "sym": "ΔS",
+      "type": "entropy",
+      "meaning": "the change in entropy of a system for a reversible process, the heat transfer divided by the absolute temperature at which it takes place",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "sym": "Q_heat",
+      "type": "energy",
+      "meaning": "the heat transfer, positive into the system and negative out of it",
+      "unit": "J",
+      "section": "15.6",
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "sym": "T_temp",
+      "type": "temperature",
+      "meaning": "the absolute temperature at which the reversible process takes place, or the average temperature where the temperature changes little",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "sym": "ΔS_h",
+      "type": "entropy",
+      "meaning": "the change in entropy of the hot reservoir, a loss because heat transfer occurs out of it",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "sym": "ΔS_c",
+      "type": "entropy",
+      "meaning": "the change in entropy of the cold reservoir, a gain because heat transfer occurs into it",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "sym": "ΔS_tot",
+      "type": "entropy",
+      "meaning": "the total change in entropy of the system and its surroundings",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "sym": "Q_h",
+      "type": "energy",
+      "meaning": "the heat transfer out of the hot reservoir, taken as an absolute value",
+      "unit": "J",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "sym": "Q_c",
+      "type": "energy",
+      "meaning": "the heat transfer into the cold reservoir, taken as an absolute value",
+      "unit": "J",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "sym": "T_h",
+      "type": "temperature",
+      "meaning": "the temperature of the hot reservoir",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "sym": "T_c",
+      "type": "temperature",
+      "meaning": "the temperature of the cold reservoir",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "sym": "W_unavail",
+      "type": "energy",
+      "meaning": "the amount of energy that becomes unavailable to do work when entropy increases",
+      "unit": "J",
+      "section": "15.6",
+      "anchor": "15.6-unavailable-work"
+    },
+    {
+      "sym": "T_0temp",
+      "type": "temperature",
+      "meaning": "the lowest temperature utilized",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-unavailable-work"
+    },
+    {
+      "sym": "ΔS_syst",
+      "type": "entropy",
+      "meaning": "the change in entropy of one part of the universe, the system, which can be negative",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-life-and-evolution"
+    },
+    {
+      "sym": "ΔS_envir",
+      "type": "entropy",
+      "meaning": "the change in entropy of the environment, which is positive and greater in magnitude",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-life-and-evolution"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of ice melted",
+      "unit": "kg",
+      "section": "15.6",
+      "anchor": "15.6-order-to-disorder"
+    },
+    {
+      "sym": "L_f",
+      "meaning": "the latent heat of fusion, 334 kJ/kg for water",
+      "unit": "J/kg",
+      "section": "15.6",
+      "anchor": "15.6-order-to-disorder"
+    },
+    {
+      "sym": "S_ent",
+      "type": "entropy",
+      "meaning": "the entropy of a system in a given macrostate",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-disorder-in-a-gas"
+    },
+    {
+      "sym": "W_micro",
+      "meaning": "the number of microstates corresponding to the given macrostate, proportional to the probability that the macrostate will occur",
+      "unit": "",
+      "section": "15.7",
+      "anchor": "15.7-coin-tosses"
+    },
+    {
+      "sym": "ΔS",
+      "type": "entropy",
+      "meaning": "the change in entropy between an initial and a final macrostate",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change"
+    },
+    {
+      "sym": "S_i",
+      "type": "entropy",
+      "meaning": "the entropy of the initial macrostate",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change"
+    },
+    {
+      "sym": "S_f",
+      "type": "entropy",
+      "meaning": "the entropy of the final macrostate",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change"
+    },
+    {
+      "sym": "W_microi",
+      "meaning": "the number of microstates of the initial macrostate",
+      "unit": "",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change"
+    },
+    {
+      "sym": "W_microf",
+      "meaning": "the number of microstates of the final macrostate",
+      "unit": "",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change"
+    },
+    {
+      "sym": "k_boltz",
+      "meaning": "Boltzmann’s constant, 1.38 × 10⁻²³ J/K",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-disorder-in-a-gas"
+    },
+    {
+      "sym": "T_hprime",
+      "type": "temperature",
+      "meaning": "the temperature of the cooler reservoir that the heat transfer falls to irreversibly before it enters the second Carnot engine",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-unavailable-work"
+    },
+    {
+      "sym": "T_cprime",
+      "type": "temperature",
+      "meaning": "the 250 K reservoir temperature that sets the Carnot efficiency of the second engine in part (b) of Example 15.7",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-unavailable-work"
+    }
+  ],
+  "equations": [
+    {
+      "id": "eq-first-law",
+      "concept": "first-law-of-thermodynamics",
+      "section": "15.1",
+      "latex": "\\Delta E_{\\text{int}} = Q - W",
+      "ktex": "\\kdEint = \\kQh - \\kW",
+      "important": true,
+      "anchor": "15.1-first-law"
+    },
+    {
+      "id": "eq-internal-energy-change",
+      "concept": "internal-energy-is-a-state-function",
+      "section": "15.1",
+      "latex": "\\Delta E_{\\text{int}} = E_{\\text{int2}} - E_{\\text{int1}}",
+      "ktex": "\\kdEint = \\kEinttwo - \\kEintone",
+      "important": true,
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "id": "eq-work-force-distance",
+      "section": "15.2",
+      "latex": "W = Fd",
+      "ktex": "\\kW = \\kF\\kd",
+      "important": false,
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "id": "eq-isobaric-work",
+      "concept": "isobaric-work",
+      "section": "15.2",
+      "latex": "W = P\\Delta V",
+      "ktex": "\\kW = \\kPr\\Delta V",
+      "condition": "isobaric process",
+      "important": true,
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "id": "eq-external-pressure-work",
+      "section": "15.2",
+      "latex": "W = -P_{\\text{ext}}\\Delta V",
+      "ktex": "\\kW = -\\kPrext\\Delta V",
+      "condition": "isobaric process, in the sign convention of texts that define work against the external pressure",
+      "important": false,
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "id": "eq-isochoric-work",
+      "concept": "isochoric-process",
+      "section": "15.2",
+      "latex": "W = 0",
+      "ktex": "\\kW = 0",
+      "condition": "isochoric process, constant volume",
+      "important": true,
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "id": "eq-average-kinetic-energy",
+      "section": "15.2",
+      "latex": "\\tfrac{1}{2}m\\bar{v}^2 = \\tfrac{3}{2}kT",
+      "ktex": "\\tfrac{1}{2}m\\kvb^2 = \\tfrac{3}{2}k\\kTemp",
+      "condition": "monatomic ideal gas",
+      "important": false,
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "id": "eq-internal-energy-monatomic",
+      "concept": "internal-energy-monatomic-ideal-gas",
+      "section": "15.2",
+      "latex": "E_{\\text{int}} = N\\tfrac{1}{2}m\\bar{v}^2 = \\tfrac{3}{2}NkT",
+      "ktex": "\\kEint = N\\tfrac{1}{2}m\\kvb^2 = \\tfrac{3}{2}Nk\\kTemp",
+      "condition": "monatomic ideal gas",
+      "important": true,
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "id": "eq-isothermal",
+      "concept": "isothermal-process",
+      "section": "15.2",
+      "latex": "Q = W",
+      "ktex": "\\kQh = \\kW",
+      "condition": "isothermal process of an ideal gas, constant temperature",
+      "important": true,
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "id": "eq-adiabatic",
+      "concept": "adiabatic-process",
+      "section": "15.2",
+      "latex": "\\Delta E_{\\text{int}} = -W",
+      "ktex": "\\kdEint = -\\kW",
+      "condition": "adiabatic process, no heat transfer",
+      "important": true,
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "id": "eq-cycle-first-law",
+      "concept": "cyclical-process",
+      "section": "15.3",
+      "latex": "0 = Q - W",
+      "ktex": "0 = \\kQh - \\kW",
+      "condition": "cyclical process, the internal energy the same at the start and end of every cycle",
+      "important": false,
+      "anchor": "15.3-cyclical"
+    },
+    {
+      "id": "eq-cycle-work",
+      "concept": "heat-engine-work-output",
+      "section": "15.3",
+      "latex": "W = Q_{\\text{h}} - Q_{\\text{c}}",
+      "ktex": "\\kW = \\kQH - \\kQC",
+      "condition": "cyclical process",
+      "important": true,
+      "anchor": "15.3-cyclical"
+    },
+    {
+      "id": "eq-efficiency",
+      "concept": "heat-engine-efficiency",
+      "section": "15.3",
+      "latex": "\\text{Eff} = \\frac{W}{Q_{\\text{h}}}",
+      "ktex": "\\text{Eff} = \\frac{\\kW}{\\kQH}",
+      "important": true,
+      "anchor": "15.3-efficiency"
+    },
+    {
+      "id": "eq-efficiency-heats",
+      "section": "15.3",
+      "latex": "\\text{Eff} = \\frac{Q_{\\text{h}} - Q_{\\text{c}}}{Q_{\\text{h}}} = 1 - \\frac{Q_{\\text{c}}}{Q_{\\text{h}}}",
+      "ktex": "\\text{Eff} = \\frac{\\kQH - \\kQC}{\\kQH} = 1 - \\frac{\\kQC}{\\kQH}",
+      "condition": "cyclical process",
+      "important": true,
+      "anchor": "15.3-efficiency"
+    },
+    {
+      "id": "eq-carnot-heat-ratio",
+      "concept": "carnot-efficiency",
+      "section": "15.4",
+      "latex": "\\frac{Q_{\\text{c}}}{Q_{\\text{h}}} = \\frac{T_{\\text{c}}}{T_{\\text{h}}}",
+      "ktex": "\\frac{\\kQC}{\\kQH} = \\frac{\\kTempc}{\\kTemph}",
+      "condition": "Carnot engine, temperatures in kelvins",
+      "important": true,
+      "anchor": "15.4-maximum-efficiency"
+    },
+    {
+      "id": "eq-carnot-efficiency",
+      "concept": "carnot-efficiency",
+      "section": "15.4",
+      "latex": "\\text{Eff}_{\\text{C}} = 1 - \\frac{T_{\\text{c}}}{T_{\\text{h}}}",
+      "ktex": "\\text{Eff}_{\\text{C}} = 1 - \\frac{\\kTempc}{\\kTemph}",
+      "condition": "temperatures in kelvins or any other absolute scale",
+      "important": true,
+      "anchor": "15.4-maximum-efficiency"
+    },
+    {
+      "id": "eq-heat-pump-balance",
+      "concept": "heat-pump",
+      "section": "15.5",
+      "latex": "Q_{\\text{h}} = Q_{\\text{c}} + W",
+      "ktex": "\\kQH = \\kQC + \\kW",
+      "condition": "heat pump, refrigerator or air conditioner; all three quantities positive",
+      "important": true,
+      "anchor": "15.5-heat-engines-backward"
+    },
+    {
+      "id": "eq-cop-heat-pump",
+      "concept": "coefficient-of-performance-heat-pump",
+      "section": "15.5",
+      "latex": "\\text{COP}_{\\text{hp}} = \\frac{Q_{\\text{h}}}{W}",
+      "ktex": "\\text{COP}_{\\text{hp}} = \\frac{\\kQH}{\\kW}",
+      "important": true,
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "id": "eq-cop-heat-pump-efficiency",
+      "section": "15.5",
+      "latex": "\\text{COP}_{\\text{hp}} = \\frac{1}{\\text{Eff}}",
+      "important": true,
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "id": "eq-cop-refrigerator",
+      "concept": "coefficient-of-performance-refrigerator",
+      "section": "15.5",
+      "latex": "\\text{COP}_{\\text{ref}} = \\frac{Q_{\\text{c}}}{W}",
+      "ktex": "\\text{COP}_{\\text{ref}} = \\frac{\\kQC}{\\kW}",
+      "important": true,
+      "anchor": "15.5-refrigerators"
+    },
+    {
+      "id": "eq-cop-relation",
+      "section": "15.5",
+      "latex": "\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1",
+      "condition": "the same heat engine used as an air conditioner or a heat pump between the same two temperatures",
+      "important": true,
+      "anchor": "15.5-refrigerators"
+    },
+    {
+      "id": "eq-eer",
+      "concept": "energy-efficiency-rating",
+      "section": "15.5",
+      "latex": "\\text{EER} = \\frac{Q_{\\text{c}}/t_1}{W/t_2}",
+      "condition": "Q_c in British thermal units, t_1 in hours, W in joules, t_2 in seconds",
+      "important": true,
+      "anchor": "15.5-refrigerators"
+    },
+    {
+      "id": "eq-reversible-heat-ratio",
+      "section": "15.6",
+      "latex": "\\frac{Q_{\\text{c}}}{T_{\\text{c}}} = \\frac{Q_{\\text{h}}}{T_{\\text{h}}}",
+      "ktex": "\\frac{\\kQC}{\\kTempc} = \\frac{\\kQH}{\\kTemph}",
+      "condition": "any reversible process",
+      "important": true,
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "id": "eq-entropy-change",
+      "concept": "change-in-entropy",
+      "section": "15.6",
+      "latex": "\\Delta S = \\left(\\frac{Q}{T}\\right)_{\\text{rev}}",
+      "ktex": "\\kdS = \\left(\\frac{\\kQh}{\\kTemp}\\right)_{\\text{rev}}",
+      "condition": "reversible process, or any process whose end states a reversible process could join",
+      "important": true,
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "id": "eq-total-entropy",
+      "section": "15.6",
+      "latex": "\\Delta S_{\\text{tot}} = \\Delta S_{\\text{h}} + \\Delta S_{\\text{c}}",
+      "ktex": "\\kdStot = \\kdSh + \\kdSc",
+      "important": true,
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "id": "eq-reversible-total-entropy",
+      "concept": "second-law-entropy-statement",
+      "section": "15.6",
+      "latex": "\\Delta S_{\\text{tot}} = -\\frac{Q_{\\text{h}}}{T_{\\text{h}}} + \\frac{Q_{\\text{c}}}{T_{\\text{c}}} = 0",
+      "ktex": "\\kdStot = -\\frac{\\kQH}{\\kTemph} + \\frac{\\kQC}{\\kTempc} = 0",
+      "condition": "Carnot engine, and any reversible process",
+      "important": true,
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "id": "eq-unavailable-work",
+      "concept": "unavailable-energy",
+      "section": "15.6",
+      "latex": "W_{\\text{unavail}} = \\Delta S \\cdot T_0",
+      "ktex": "\\kWunavail = \\kdS \\cdot \\kTempo",
+      "important": true,
+      "anchor": "15.6-unavailable-work"
+    },
+    {
+      "id": "eq-melting-heat",
+      "section": "15.6",
+      "latex": "Q = mL_{\\text{f}}",
+      "ktex": "\\kQh = mL_{\\text{f}}",
+      "condition": "melting at the melting temperature",
+      "important": false,
+      "anchor": "15.6-order-to-disorder"
+    },
+    {
+      "id": "eq-entropy-system-environment",
+      "concept": "entropy-and-life",
+      "section": "15.6",
+      "latex": "\\Delta S_{\\text{tot}} = \\Delta S_{\\text{syst}} + \\Delta S_{\\text{envir}} > 0",
+      "ktex": "\\kdStot = \\kdSsyst + \\kdSenvir > 0",
+      "condition": "any real process",
+      "important": true,
+      "anchor": "15.6-life-and-evolution"
+    },
+    {
+      "id": "eq-boltzmann-entropy",
+      "concept": "boltzmann-entropy",
+      "section": "15.7",
+      "latex": "S = k\\ln W",
+      "ktex": "\\kSent = k\\ln W",
+      "condition": "k the Boltzmann constant, W the number of microstates of the macrostate",
+      "important": true,
+      "anchor": "15.7-disorder-in-a-gas"
+    },
+    {
+      "id": "eq-entropy-change-microstates",
+      "concept": "calculate-entropy-from-microstates",
+      "section": "15.7",
+      "latex": "\\Delta S = S_{\\text{f}} - S_{\\text{i}} = k\\ln W_{\\text{f}} - k\\ln W_{\\text{i}}",
+      "ktex": "\\kdS = \\kSf - \\kSi = k\\ln W_{\\text{f}} - k\\ln W_{\\text{i}}",
+      "important": true,
+      "anchor": "15.7-entropy-change"
+    }
+  ],
+  "glossary": [
+    {
+      "section": "15.1",
+      "term": "first law of thermodynamics",
+      "definition": "states that the change in internal energy of a system equals the net heat transfer into the system minus the net work done by the system"
+    },
+    {
+      "section": "15.1",
+      "term": "internal energy",
+      "definition": "the sum of the kinetic and potential energies of a system’s atoms and molecules"
+    },
+    {
+      "section": "15.1",
+      "term": "human metabolism",
+      "definition": "conversion of food into heat transfer, work, and stored fat"
+    },
+    {
+      "section": "15.2",
+      "term": "heat engine",
+      "definition": "a machine that uses heat transfer to do work"
+    },
+    {
+      "section": "15.2",
+      "term": "isobaric process",
+      "definition": "constant-pressure process in which a gas does work"
+    },
+    {
+      "section": "15.2",
+      "term": "isochoric process",
+      "definition": "a constant-volume process"
+    },
+    {
+      "section": "15.2",
+      "term": "isothermal process",
+      "definition": "a constant-temperature process"
+    },
+    {
+      "section": "15.2",
+      "term": "adiabatic process",
+      "definition": "a process in which no heat transfer takes place"
+    },
+    {
+      "section": "15.2",
+      "term": "reversible process",
+      "definition": "a process in which both the heat engine system and the external environment theoretically can be returned to their original states"
+    },
+    {
+      "section": "15.3",
+      "term": "irreversible process",
+      "definition": "any process that depends on path direction"
+    },
+    {
+      "section": "15.3",
+      "term": "second law of thermodynamics",
+      "definition": "heat transfer flows from a hotter to a cooler object, never the reverse, and some heat energy in any process is lost to available work in a cyclical process"
+    },
+    {
+      "section": "15.3",
+      "term": "cyclical process",
+      "definition": "a process in which the path returns to its original state at the end of every cycle"
+    },
+    {
+      "section": "15.3",
+      "term": "Otto cycle",
+      "definition": "a thermodynamic cycle, consisting of a pair of adiabatic processes and a pair of isochoric processes, that converts heat into work, e.g., the four-stroke engine cycle of intake, compression, ignition, and exhaust"
+    },
+    {
+      "section": "15.4",
+      "term": "Carnot cycle",
+      "definition": "a cyclical process that uses only reversible processes, the adiabatic and isothermal processes"
+    },
+    {
+      "section": "15.4",
+      "term": "Carnot engine",
+      "definition": "a heat engine that uses a Carnot cycle"
+    },
+    {
+      "section": "15.4",
+      "term": "Carnot efficiency",
+      "definition": "the maximum theoretical efficiency for a heat engine"
+    },
+    {
+      "section": "15.5",
+      "term": "heat pump",
+      "definition": "a machine that generates heat transfer from cold to hot"
+    },
+    {
+      "section": "15.5",
+      "term": "coefficient of performance",
+      "definition": "for a heat pump, it is the ratio of heat transfer at the output (the hot reservoir) to the work supplied; for a refrigerator or air conditioner, it is the ratio of heat transfer from the cold reservoir to the work supplied"
+    },
+    {
+      "section": "15.6",
+      "term": "entropy",
+      "definition": "a measurement of a system's disorder and its inability to do work in a system"
+    },
+    {
+      "section": "15.6",
+      "term": "change in entropy",
+      "definition": "the ratio of heat transfer to temperature Q/T"
+    },
+    {
+      "section": "15.6",
+      "term": "second law of thermodynamics stated in terms of entropy",
+      "definition": "the total entropy of a system either increases or remains constant; it never decreases"
+    },
+    {
+      "section": "15.7",
+      "term": "macrostate",
+      "definition": "an overall property of a system"
+    },
+    {
+      "section": "15.7",
+      "term": "microstate",
+      "definition": "each sequence within a larger macrostate"
+    },
+    {
+      "section": "15.7",
+      "term": "statistical analysis",
+      "definition": "using statistics to examine data, such as counting microstates and macrostates"
+    }
+  ]
+}

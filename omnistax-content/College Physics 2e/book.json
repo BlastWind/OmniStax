@@ -24,6 +24,9 @@
     "ch10",
     "ch11",
     "ch12",
+    "ch13",
+    "ch14",
+    "ch15",
     "ch16"
   ],
   "intro": {
@@ -140,6 +143,16 @@
       "id": "viscosity",
       "label": "viscosity",
       "dimension": "Pa·s"
+    },
+    {
+      "id": "entropy",
+      "label": "entropy",
+      "dimension": "J/K"
+    },
+    {
+      "id": "temperature",
+      "label": "temperature",
+      "dimension": "K"
     }
   ],
   "symbols": [
@@ -1774,6 +1787,472 @@
     {
       "sym": "L_len",
       "latex": "L"
+    },
+    {
+      "sym": "E_int",
+      "latex": "E_{\\text{int}}",
+      "type": "energy",
+      "macro": "\\kEint"
+    },
+    {
+      "sym": "ΔE_int",
+      "latex": "\\Delta E_{\\text{int}}",
+      "type": "energy",
+      "macro": "\\kdEint"
+    },
+    {
+      "sym": "E_int1",
+      "latex": "E_{\\text{int1}}",
+      "type": "energy",
+      "macro": "\\kEintone"
+    },
+    {
+      "sym": "E_int2",
+      "latex": "E_{\\text{int2}}",
+      "type": "energy",
+      "macro": "\\kEinttwo"
+    },
+    {
+      "sym": "Q_heat1",
+      "latex": "Q_1",
+      "type": "energy",
+      "macro": "\\kQheatone"
+    },
+    {
+      "sym": "Q_heat2",
+      "latex": "Q_2",
+      "type": "energy",
+      "macro": "\\kQheattwo"
+    },
+    {
+      "sym": "W_1",
+      "latex": "W_1",
+      "type": "energy",
+      "macro": "\\kWone"
+    },
+    {
+      "sym": "W_2",
+      "latex": "W_2",
+      "type": "energy",
+      "macro": "\\kWtwo"
+    },
+    {
+      "sym": "Q_in",
+      "latex": "Q_{\\text{in}}",
+      "type": "energy",
+      "macro": "\\kQin"
+    },
+    {
+      "sym": "Q_out",
+      "latex": "Q_{\\text{out}}",
+      "type": "energy",
+      "macro": "\\kQout"
+    },
+    {
+      "sym": "W_in",
+      "latex": "W_{\\text{in}}",
+      "type": "energy",
+      "macro": "\\kWin"
+    },
+    {
+      "sym": "W_AB",
+      "latex": "W_{\\text{AB}}",
+      "type": "energy",
+      "macro": "\\kWAB"
+    },
+    {
+      "sym": "W_BC",
+      "latex": "W_{\\text{BC}}",
+      "type": "energy",
+      "macro": "\\kWBC"
+    },
+    {
+      "sym": "W_CD",
+      "latex": "W_{\\text{CD}}",
+      "type": "energy",
+      "macro": "\\kWCD"
+    },
+    {
+      "sym": "W_DA",
+      "latex": "W_{\\text{DA}}",
+      "type": "energy",
+      "macro": "\\kWDA"
+    },
+    {
+      "sym": "P_AB",
+      "latex": "P_{\\text{AB}}",
+      "type": "pressure",
+      "macro": "\\kPrAB"
+    },
+    {
+      "sym": "P_CD",
+      "latex": "P_{\\text{CD}}",
+      "type": "pressure",
+      "macro": "\\kPrCD"
+    },
+    {
+      "sym": "P_ext",
+      "latex": "P_{\\text{ext}}",
+      "type": "pressure",
+      "macro": "\\kPrext"
+    },
+    {
+      "sym": "Q_h",
+      "latex": "Q_{\\text{h}}",
+      "type": "energy",
+      "macro": "\\kQH"
+    },
+    {
+      "sym": "Q_c",
+      "latex": "Q_{\\text{c}}",
+      "type": "energy",
+      "macro": "\\kQC"
+    },
+    {
+      "sym": "Q_hprime",
+      "latex": "Q'_{\\text{h}}",
+      "type": "energy",
+      "macro": "\\kQHprime"
+    },
+    {
+      "sym": "Q_cprime",
+      "latex": "Q'_{\\text{c}}",
+      "type": "energy",
+      "macro": "\\kQCprime"
+    },
+    {
+      "sym": "Q_f",
+      "latex": "Q_{\\text{f}}",
+      "type": "energy",
+      "macro": "\\kQf"
+    },
+    {
+      "sym": "W_prime",
+      "latex": "W'",
+      "type": "energy",
+      "macro": "\\kWprime"
+    },
+    {
+      "sym": "W_unavail",
+      "latex": "W_{\\text{unavail}}",
+      "type": "energy",
+      "macro": "\\kWunavail"
+    },
+    {
+      "sym": "T_h",
+      "latex": "T_{\\text{h}}",
+      "type": "temperature",
+      "macro": "\\kTemph"
+    },
+    {
+      "sym": "T_hprime",
+      "latex": "T'_{\\text{h}}",
+      "type": "temperature",
+      "macro": "\\kTemphprime"
+    },
+    {
+      "sym": "T_cprime",
+      "latex": "T'_{\\text{c}}",
+      "type": "temperature",
+      "macro": "\\kTempcprime"
+    },
+    {
+      "sym": "S_ent",
+      "latex": "S",
+      "type": "entropy",
+      "macro": "\\kSent"
+    },
+    {
+      "sym": "ΔS",
+      "latex": "\\Delta S",
+      "type": "entropy",
+      "macro": "\\kdS"
+    },
+    {
+      "sym": "ΔS_h",
+      "latex": "\\Delta S_{\\text{h}}",
+      "type": "entropy",
+      "macro": "\\kdSh"
+    },
+    {
+      "sym": "ΔS_c",
+      "latex": "\\Delta S_{\\text{c}}",
+      "type": "entropy",
+      "macro": "\\kdSc"
+    },
+    {
+      "sym": "ΔS_tot",
+      "latex": "\\Delta S_{\\text{tot}}",
+      "type": "entropy",
+      "macro": "\\kdStot"
+    },
+    {
+      "sym": "ΔS_syst",
+      "latex": "\\Delta S_{\\text{syst}}",
+      "type": "entropy",
+      "macro": "\\kdSsyst"
+    },
+    {
+      "sym": "ΔS_envir",
+      "latex": "\\Delta S_{\\text{envir}}",
+      "type": "entropy",
+      "macro": "\\kdSenvir"
+    },
+    {
+      "sym": "S_i",
+      "latex": "S_{\\text{i}}",
+      "type": "entropy",
+      "macro": "\\kSi"
+    },
+    {
+      "sym": "S_f",
+      "latex": "S_{\\text{f}}",
+      "type": "entropy",
+      "macro": "\\kSf"
+    },
+    {
+      "sym": "Eff_C",
+      "latex": "\\text{Eff}_{\\text{C}}"
+    },
+    {
+      "sym": "COP_hp",
+      "latex": "\\text{COP}_{\\text{hp}}"
+    },
+    {
+      "sym": "COP_ref",
+      "latex": "\\text{COP}_{\\text{ref}}"
+    },
+    {
+      "sym": "EER",
+      "latex": "\\text{EER}"
+    },
+    {
+      "sym": "W_micro",
+      "latex": "W"
+    },
+    {
+      "sym": "W_microi",
+      "latex": "W_{\\text{i}}"
+    },
+    {
+      "sym": "W_microf",
+      "latex": "W_{\\text{f}}"
+    },
+    {
+      "sym": "T_temp",
+      "latex": "T",
+      "type": "temperature",
+      "macro": "\\kTemp"
+    },
+    {
+      "sym": "ΔT",
+      "latex": "\\Delta T",
+      "type": "temperature",
+      "macro": "\\kdTemp"
+    },
+    {
+      "sym": "T_0temp",
+      "latex": "T_0",
+      "type": "temperature",
+      "macro": "\\kTempo"
+    },
+    {
+      "sym": "T_ftemp",
+      "latex": "T_{\\text{f}}",
+      "type": "temperature",
+      "macro": "\\kTempf"
+    },
+    {
+      "sym": "T_1temp",
+      "latex": "T_1",
+      "type": "temperature",
+      "macro": "\\kTempone"
+    },
+    {
+      "sym": "T_2temp",
+      "latex": "T_2",
+      "type": "temperature",
+      "macro": "\\kTemptwo"
+    },
+    {
+      "sym": "T_c",
+      "latex": "T_{\\text{c}}",
+      "type": "temperature",
+      "macro": "\\kTempc"
+    },
+    {
+      "sym": "T_C",
+      "latex": "T_{{}^\\circ\\text{C}}",
+      "type": "temperature",
+      "macro": "\\kTempC"
+    },
+    {
+      "sym": "T_F",
+      "latex": "T_{{}^\\circ\\text{F}}",
+      "type": "temperature",
+      "macro": "\\kTempF"
+    },
+    {
+      "sym": "T_K",
+      "latex": "T_{\\text{K}}",
+      "type": "temperature",
+      "macro": "\\kTempK"
+    },
+    {
+      "sym": "P_0",
+      "latex": "P_0",
+      "type": "pressure",
+      "macro": "\\kPro"
+    },
+    {
+      "sym": "P_f",
+      "latex": "P_{\\text{f}}",
+      "type": "pressure",
+      "macro": "\\kPrf"
+    },
+    {
+      "sym": "KE_bar",
+      "latex": "\\overline{\\text{KE}}",
+      "type": "energy",
+      "macro": "\\kKEbar"
+    },
+    {
+      "sym": "v_rms",
+      "latex": "v_{\\text{rms}}",
+      "type": "velocity",
+      "macro": "\\kvrms"
+    },
+    {
+      "sym": "v2_bar",
+      "latex": "\\overline{v^2}"
+    },
+    {
+      "sym": "N_count",
+      "latex": "N"
+    },
+    {
+      "sym": "n",
+      "latex": "n"
+    },
+    {
+      "sym": "N_A",
+      "latex": "N_{\\text{A}}"
+    },
+    {
+      "sym": "k_boltz",
+      "latex": "k"
+    },
+    {
+      "sym": "R_gas",
+      "latex": "R"
+    },
+    {
+      "sym": "α_exp",
+      "latex": "\\alpha"
+    },
+    {
+      "sym": "β",
+      "latex": "\\beta"
+    },
+    {
+      "sym": "ΔA",
+      "latex": "\\Delta A"
+    },
+    {
+      "sym": "Q_heat",
+      "latex": "Q",
+      "type": "energy",
+      "macro": "\\kQh"
+    },
+    {
+      "sym": "Q_hot",
+      "latex": "Q_{\\text{hot}}",
+      "type": "energy",
+      "macro": "\\kQhot"
+    },
+    {
+      "sym": "Q_cold",
+      "latex": "Q_{\\text{cold}}",
+      "type": "energy",
+      "macro": "\\kQcold"
+    },
+    {
+      "sym": "Q_net",
+      "latex": "Q_{\\text{net}}",
+      "type": "energy",
+      "macro": "\\kQnet"
+    },
+    {
+      "sym": "T_itemp",
+      "latex": "T_{\\text{i}}",
+      "type": "temperature",
+      "macro": "\\kTempi"
+    },
+    {
+      "sym": "T_primetemp",
+      "latex": "T'",
+      "type": "temperature",
+      "macro": "\\kTemppr"
+    },
+    {
+      "sym": "T_hottemp",
+      "latex": "T_{\\text{hot}}",
+      "type": "temperature",
+      "macro": "\\kTemphot"
+    },
+    {
+      "sym": "T_coldtemp",
+      "latex": "T_{\\text{cold}}",
+      "type": "temperature",
+      "macro": "\\kTempcold"
+    },
+    {
+      "sym": "c_spec",
+      "latex": "c"
+    },
+    {
+      "sym": "c_p",
+      "latex": "c_{\\text{p}}"
+    },
+    {
+      "sym": "c_v",
+      "latex": "c_{\\text{v}}"
+    },
+    {
+      "sym": "L_f",
+      "latex": "L_{\\text{f}}"
+    },
+    {
+      "sym": "L_v",
+      "latex": "L_{\\text{v}}"
+    },
+    {
+      "sym": "L_s",
+      "latex": "L_{\\text{s}}"
+    },
+    {
+      "sym": "L_latent",
+      "latex": "L"
+    },
+    {
+      "sym": "k_cond",
+      "latex": "k"
+    },
+    {
+      "sym": "d_thick",
+      "latex": "d"
+    },
+    {
+      "sym": "R_factor",
+      "latex": "R"
+    },
+    {
+      "sym": "e_emis",
+      "latex": "e"
+    },
+    {
+      "sym": "σ_SB",
+      "latex": "\\sigma"
     }
   ],
   "exercise_kinds": [
@@ -5493,6 +5972,1213 @@
       "name": "Active transport",
       "why": "Substances sometimes pass through a membrane in the direction opposite to the one expected. Cypress tree roots extract pure water from salt water although osmosis would move it the other way, and this is not reverse osmosis, because there is no back pressure to cause it. What is happening is active transport, a process in which a living membrane expends energy to move substances across it. Many living membranes do this, the kidneys among them, and it is estimated that at least a quarter of the body’s energy is expended on active transport at the cellular level.",
       "evidence": "The section closes on it with the cypress roots and the kidneys, gives the share of the body’s energy it takes, and the glossary carries the term."
+    },
+    {
+      "id": "first-law-of-thermodynamics",
+      "kind": "result",
+      "section": "15.1",
+      "name": "The first law of thermodynamics, $\\kdEint = \\kQh - \\kW$",
+      "why": "The first law is the law of conservation of energy stated in the form most useful when heat transfer and doing work are the ways energy enters and leaves a system. The change in internal energy of a system equals the net heat transfer into the system minus the net work done by the system, so that positive heat transfer adds energy to the system and positive work takes energy from it, and whatever comes in and is not spent as work is stored as internal energy.",
+      "evidence": "The section states the law as its first equation and returns to it in the Making Connections box, Figure 15.3 draws the system with heat in and work out, Example 15.1 applies it twice, and every problem of the section, from the gasoline in the tank to the woman climbing the Washington Monument, is a rearrangement of it.",
+      "eq": "eq-first-law"
+    },
+    {
+      "id": "heat-and-work-sign-convention",
+      "kind": "idea",
+      "section": "15.1",
+      "name": "Sign conventions for heat transfer and work",
+      "why": "In the first law, heat transfer is positive when it is into the system and work is positive when it is done by the system. The convention matters because the same physical event, heat leaving a body or work being done on it, enters the equation with a minus sign, and a reader who mixes the two conventions will find the internal energy going the wrong way. Some texts define work against the external pressure and so write the law with a plus sign; this book does not.",
+      "evidence": "The paragraph after the first equation spells the convention out, Figure 15.3 draws the in and out arrows for both quantities, Example 15.1 turns heat out and work in into negative numbers before adding, and the keyed AP item on 300 J of work done on a system with a heat transfer of −320 J tests exactly this."
+    },
+    {
+      "id": "heat-and-work-are-energy-in-transit",
+      "kind": "idea",
+      "section": "15.1",
+      "name": "Heat transfer and work are both energy in transit",
+      "why": "Heat transfer and doing work are the two everyday means of bringing energy into or taking energy out of a system, and they are different processes: heat transfer is driven by a temperature difference and is disorganized, while work is a macroscopic force exerted through a distance and is organized. Yet both can produce the same result, a warmer tire whether the Sun heated it or the pump compressed it, and once the temperature has risen there is no telling which did it. Neither is stored as such in a system; both change the internal energy, which is a different kind of thing.",
+      "evidence": "The section's Heat Q and Work W passage makes the argument with the bicycle tire, Table 15.1 sets the three terms side by side, and three conceptual questions ask the reader to give an example of each kind of energy and to say which can be stored."
+    },
+    {
+      "id": "internal-energy",
+      "kind": "idea",
+      "section": "15.1",
+      "name": "Internal energy $\\kEint$",
+      "why": "The internal energy of a system is the sum of the kinetic and potential energies of its atoms and molecules, which is to say the sum of their mechanical energy. Because no one can keep track of every atom, the section deals with averages and distributions and, macroscopically, with a few quantities such as pressure, volume and temperature that the internal energy turns out to depend on. It is the account that heat transfer and work pay into and draw from.",
+      "evidence": "The Internal Energy passage defines it in the atomic and molecular view and then in the macroscopic view, the second Making Connections box says which view is used for what, and the conceptual question on food energy as molecular potential energy tests the atomic picture."
+    },
+    {
+      "id": "internal-energy-is-a-state-function",
+      "kind": "result",
+      "section": "15.1",
+      "name": "The change in internal energy is independent of path, $\\kdEint = \\kEinttwo - \\kEintone$",
+      "why": "Experiment shows that the internal energy of a system depends only on the state of the system and not on how it reached that state. The change in internal energy between State 1 and State 2 is therefore the same for every path between them, while the heat transfer and the work done each depend on the path taken. This is what makes internal energy easier to work with than either heat or work: if the state is known, the change in internal energy follows from a few macroscopic variables.",
+      "evidence": "The passage on going from State 1 to State 2 states the result, Example 15.1 produces the same 9.00 J change by two quite different processes and Figure 15.4 draws both, and the conceptual questions on how heat transfer and internal energy differ turn on it.",
+      "eq": "eq-internal-energy-change"
+    },
+    {
+      "id": "calculate-internal-energy-change",
+      "kind": "skill",
+      "section": "15.1",
+      "name": "Find the change in internal energy from the net heat transfer and the net work",
+      "why": "A problem gives heat transfer into and out of a system and work done on and by it; the net heat transfer is heat in minus heat out, the net work is work by minus work on, and the first law gives the change in internal energy. The same procedure, run the other way, finds an unknown heat transfer from a known change in internal energy and a known work, which is how the section's problems about the human body are solved.",
+      "evidence": "Example 15.1 works the procedure step by step and then as a single sum, and the keyed problems on the gasoline in the tank, the system that does work while heat leaves it, the woman who does 500 J of work and the man who metabolizes 10,500 kJ in a day all use it."
+    },
+    {
+      "id": "human-metabolism-first-law",
+      "kind": "idea",
+      "section": "15.1",
+      "name": "Human metabolism and the first law",
+      "why": "Human metabolism is the conversion of food into heat transfer, work and stored fat. Taking the body as the system, heat transfer to the surroundings makes Q negative and the work the body does on the world makes W positive, so the body loses internal energy and food, which enters as chemical potential energy and may be counted as work done on the body, replaces it. Eating too much makes the change in internal energy positive and the surplus is stored as fat; eating too little makes it negative and the body metabolizes its own fat. The body also shows that many thermodynamic processes are irreversible, since fat can be turned into work and heat but work and heat cannot be turned back into fat.",
+      "evidence": "The Human Metabolism passage and Figure 15.5 set the body up as a first-law system, the paragraphs on the Calorie and on the basal metabolic rate follow, and the problems on the woman's efficiency, the man's daily metabolic rate, the cup of yogurt and the Washington Monument climb all apply the law to the body."
+    },
+    {
+      "id": "heat-engine",
+      "kind": "idea",
+      "section": "15.2",
+      "name": "Heat engine",
+      "why": "A heat engine is a machine that uses heat transfer to do work. Car engines and steam turbines are examples. Heat transfer into a gas in a cylinder raises its pressure, the gas pushes a piston through a distance and so does work on the outside world, and to repeat the process heat must leave the gas so that its pressure falls and the piston can be returned. The first law governs every step of it, and the section's simple processes are the pieces every heat engine is built from.",
+      "evidence": "The section opens on the term, Figure 15.7 draws the engine as a system with heat in and work out, Figure 15.8 walks the piston through its three panels, and the problems on the steam locomotive's piston and on the engine following the path ABCDA compute what such an engine does."
+    },
+    {
+      "id": "isobaric-work",
+      "kind": "result",
+      "section": "15.2",
+      "name": "Work done at constant pressure, $\\kW = \\kPr\\Delta V$",
+      "why": "A process in which a gas does work on a piston at constant pressure is an isobaric process. The force on the piston is the pressure times the piston's area, the work is that force times the distance the piston moves, and the area times the distance is the change in volume, so the work done is the pressure times the change in volume. A positive change in volume means work done by the gas on the outside world. Pressure is an energy per unit volume, as the fluids chapters noted, and here some of that energy becomes work.",
+      "evidence": "The PV Diagrams passage derives the result from W = Fd, Figure 15.9 draws the expanding cylinder with every symbol on it, Table 15.2 lists it as the isobaric entry, and the keyed problem on the steam locomotive's piston asks the reader to find the same work both ways.",
+      "eq": "eq-isobaric-work"
+    },
+    {
+      "id": "pv-diagram-work-as-area",
+      "kind": "result",
+      "section": "15.2",
+      "name": "Work is the area under the curve on a $PV$ diagram",
+      "why": "A graph of pressure against volume shows a process as a path, and the work done on or by a system in going from one state to another is the area under that path. For a constant pressure the area is a rectangle, the pressure times the change in volume; for a pressure that varies, the area is approximated by strips each of average pressure times its small change in volume and the total work is their sum. A path walked toward smaller volume has a negative area, which is work done on the system.",
+      "evidence": "Figure 15.10 shades the rectangle under the isobaric line, Figure 15.11 divides a varying-pressure curve into strips and then reverses it, and the keyed AP item asking how much work the system does in process AB reads an area off a diagram in the problems."
+    },
+    {
+      "id": "work-depends-on-path",
+      "kind": "idea",
+      "section": "15.2",
+      "name": "The work done depends on the path taken, not only on the endpoints",
+      "why": "Two paths between the same two states on a PV diagram enclose different areas, so the work done along them differs, and more work is done along the path that runs at higher pressure. This is the path dependence that the first law's Q and W both have and that the internal energy does not, made visible: the endpoints fix the change in internal energy, and the path fixes how much of it arrives as work.",
+      "evidence": "Figure 15.12(a) compares the paths ABC and ADC between the same endpoints, the passage names the greater work along the higher path, and the AP item that asks the reader to sketch a cycle closed by an isotherm or an adiabat and to say which does more net work tests the idea."
+    },
+    {
+      "id": "isochoric-process",
+      "kind": "result",
+      "section": "15.2",
+      "name": "Isochoric process, $\\kW = 0$",
+      "why": "A process at constant volume is isochoric. The volume does not change, so the gas moves no piston and no work is done, and any heat transfer goes entirely into the internal energy. On a PV diagram an isochoric process is a vertical path, and it encloses no area.",
+      "evidence": "The passage names the vertical paths of Figure 15.12 as isochoric, Table 15.2 lists the process with W = 0, Example 15.2 sets the work along BC and DA to zero, and the conceptual question asking whether the piston question makes sense for an isochoric process tests it.",
+      "eq": "eq-isochoric-work"
+    },
+    {
+      "id": "net-work-of-a-cycle",
+      "kind": "result",
+      "section": "15.2",
+      "name": "The net work of a cyclical process is the area inside its loop on a $PV$ diagram",
+      "why": "A cyclical process returns the system to its starting point, and its net work is the area inside the closed loop it forms on a PV diagram, because the positive area under the outward legs and the negative area under the return legs leave only the interior. The loop must be traversed clockwise for the net work to be positive, that is, for the engine to put work out; traversed counterclockwise, the same loop takes work in. The area is often easier to compute than the work along each leg, and comparing the areas of different loops shows which process produces the most work.",
+      "evidence": "Example 15.2 finds the work around the rectangle ABCDA leg by leg and then as an area and gets 650 J both ways, Figure 15.12(b) and (c) draw the rectangle and a general loop, the keyed problem on the engine following ABCDA asks for the same calculation on a parallelogram, and three AP items ask which of several loops has the greatest net work."
+    },
+    {
+      "id": "isothermal-process",
+      "kind": "result",
+      "section": "15.2",
+      "name": "Isothermal process of an ideal gas, $\\kQh = \\kW$",
+      "why": "An isothermal process is one at constant temperature. For an ideal gas, PV is then constant, and because the internal energy of a monatomic ideal gas depends on temperature alone it does not change, so the net heat transfer into the gas must equal the net work done by the gas: just enough heat comes in to replace the work done. An isothermal process is inherently slow, since heat must flow continuously and spread through the gas so that no region is hotter than another.",
+      "evidence": "The passage on Figure 15.13(a) defines the process and derives Q = W from the internal energy of a monatomic gas, Table 15.2 lists it, and the conceptual questions on whether the change in internal energy is zero across a phase change and on why an isothermal process must be slow test it.",
+      "eq": "eq-isothermal"
+    },
+    {
+      "id": "adiabatic-process",
+      "kind": "result",
+      "section": "15.2",
+      "name": "Adiabatic process, $\\kQh = 0$ and $\\kdEint = -\\kW$",
+      "why": "An adiabatic process is one in which no heat transfer takes place, achieved by very effective insulation or by running the process so fast that heat has no time to flow. Because Q is zero, the work the gas does comes entirely from its internal energy, so the temperature falls during an adiabatic expansion and the pressure with it. The adiabatic path from a point therefore lies below the isothermal path from the same point, and less work is done along it.",
+      "evidence": "The passage on the curve AC of Figure 15.13 states the result and explains why the gas released from a pressurized cylinder is cold, Table 15.2 lists the process, and the conceptual questions on why a rapidly expanding gas cools and on how a short time helps a process be adiabatic test it.",
+      "eq": "eq-adiabatic"
+    },
+    {
+      "id": "internal-energy-monatomic-ideal-gas",
+      "kind": "result",
+      "section": "15.2",
+      "name": "Internal energy of a monatomic ideal gas, $\\kEint = \\tfrac{3}{2}Nk\\kTemp$",
+      "why": "The average kinetic energy of an atom in a monatomic ideal gas is three halves of Boltzmann's constant times the absolute temperature, and kinetic energy is the only internal energy such a gas has, so its total internal energy is N times that average. The internal energy of an ideal gas therefore depends on its temperature alone, which is what makes the isothermal and adiabatic arguments work. Diatomic gases such as air have different formulas.",
+      "evidence": "The passage on the isothermal process states the result from the kinetic theory, the adiabatic passage restates it, and the keyed problem on the nitrogen in a car tire, which uses the diatomic five halves, and the problem on the helium-filled ball apply it.",
+      "eq": "eq-internal-energy-monatomic"
+    },
+    {
+      "id": "reversible-process",
+      "kind": "idea",
+      "section": "15.2",
+      "name": "Reversible process",
+      "why": "A reversible process is one in which both the system and its environment can return to exactly the states they were in by following the reverse path. Isothermal and adiabatic processes are reversible in principle, but real macroscopic processes never are, because any dissipative mechanism such as friction or turbulence produces heat transfer to the environment in both directions of the piston's travel, and reversibility would require the direction of heat transfer to reverse. That real processes cannot be reversed points to a second law of thermodynamics, which the following sections state.",
+      "evidence": "The Reversible Processes passage defines the term and argues from friction, the summary restates it, and the conceptual question on the perpetual-motion machine reaches toward it."
+    },
+    {
+      "id": "irreversible-process",
+      "kind": "idea",
+      "section": "15.3",
+      "name": "Irreversible process",
+      "why": "An irreversible process is one that depends on path: it goes in one direction only under a given set of conditions, and the reverse path differs fundamentally. Heat transfer from hot to cold, the conversion of kinetic energy to heat by friction and the spread of a puff of gas through a vacuum chamber are all one-way, and none of them violates the first law, so some other law must forbid their reverse. That law is the second law of thermodynamics.",
+      "evidence": "The section opens on the term with the broken glass and the three processes of Figure 15.15, the summary restates it, and 15.6's conceptual question on why a hot reservoir losing heat to a cold one is irreversible reaches back to it."
+    },
+    {
+      "id": "second-law-heat-flow-direction",
+      "kind": "result",
+      "section": "15.3",
+      "name": "The second law of thermodynamics, first expression: heat transfer occurs spontaneously from hotter to colder bodies and never spontaneously in the reverse direction",
+      "why": "The familiar direction of heat transfer is the first form of the second law. Heat transfer occurs spontaneously from higher- to lower-temperature bodies but never spontaneously in the reverse direction; put another way, no process can have as its sole result heat transfer from a cooler to a hotter object. A cold object in contact with a hot one never gets colder.",
+      "evidence": "The boxed first expression states it, Figure 15.16(a) draws the spontaneous transfer from the hot reservoir to the cold, and 15.5 leans on it when it says that moving heat from cold to hot requires work input."
+    },
+    {
+      "id": "second-law-no-perfect-engine",
+      "kind": "result",
+      "section": "15.3",
+      "name": "The second law of thermodynamics, second expression: no cyclical process can convert heat transfer from a reservoir completely to work",
+      "why": "It is impossible in any system for heat transfer from a reservoir to convert completely to work in a cyclical process in which the system returns to its initial state. Every heat engine must therefore reject some heat to a cold reservoir; the wish that the work output equal the heat input, with nothing lost to the environment, cannot be granted. This is the form of the second law that limits the efficiency of every engine.",
+      "evidence": "The boxed second expression states it after the heat engine is drawn, Figure 15.7 in the previous section already says that an engine with no heat out is impossible, and the keyed Unreasonable Results problem of 15.2 on an engine whose numbers do not balance and the conceptual question on whether a temperature difference is necessary test it."
+    },
+    {
+      "id": "cyclical-process",
+      "kind": "idea",
+      "section": "15.3",
+      "name": "Cyclical process",
+      "why": "A cyclical process brings a system, such as the gas in a cylinder, back to its original state at the end of every cycle. Most heat engines, reciprocating pistons and turbines alike, use cyclical processes. Because the internal energy depends only on the state, it is the same at the start and end of every cycle, so its change over a cycle is zero and the first law reduces to the statement that the net work done equals the net heat transfer.",
+      "evidence": "The passage after the second expression defines the term and sets the change in internal energy to zero, the first-law equations that follow do the reduction, and the summary restates it.",
+      "eq": "eq-cycle-first-law"
+    },
+    {
+      "id": "heat-engine-work-output",
+      "kind": "result",
+      "section": "15.3",
+      "name": "Work output of a heat engine, $\\kW = \\kQH - \\kQC$",
+      "why": "Over a complete cycle the internal energy of the engine does not change, so the net work done by the engine equals the net heat transfer into it, which is the heat transfer from the hot reservoir minus the heat transfer into the cold reservoir. The trouble with every engine is that the heat transfer to the cold reservoir is never zero and is usually large.",
+      "evidence": "The equations that follow the definition of a cyclical process derive it, Figure 15.16(b) draws the three arrows, Example 15.3 uses it to find a coal-fired power station's daily work, and the keyed problems on the engine that does 10.0 kJ of work and on the ship's engine apply it.",
+      "eq": "eq-cycle-work"
+    },
+    {
+      "id": "heat-engine-efficiency",
+      "kind": "result",
+      "section": "15.3",
+      "name": "Efficiency of a heat engine, $\\text{Eff} = \\kW/\\kQH = 1 - \\kQC/\\kQH$",
+      "why": "The conversion efficiency is the ratio of what we get to what we spend: for a heat engine, the net work output divided by the heat transfer into the engine. Since the work is the difference of the two heat transfers, the efficiency is also one minus the ratio of the heat transfer to the cold reservoir to the heat transfer from the hot one, which shows that an efficiency of one would need no heat transfer to the environment at all. All the Q's are positive, with direction shown by sign or on the schematic.",
+      "evidence": "The passage defines conversion efficiency and writes both forms, Example 15.3 finds 40.8% for a coal-fired station, and the keyed problems on the engine with 22.0% efficiency, the ship's engine at 5.00% and the upgraded turbines apply it.",
+      "eq": "eq-efficiency"
+    },
+    {
+      "id": "calculate-engine-efficiency",
+      "kind": "skill",
+      "section": "15.3",
+      "name": "Find an engine's work, waste heat or efficiency from the other two",
+      "why": "Given any two of the heat transfer into an engine, the heat transfer to the environment and the work output, the cycle's energy balance gives the third, and the efficiency follows as work over heat in. Run the other way, a stated efficiency and a heat input give the work and the waste heat. A large power station is a heat engine, so the same arithmetic gives its daily output, its efficiency and, with the fuel's energy content, the fuel it burns and the carbon dioxide it releases.",
+      "evidence": "Example 15.3 works all three parts for a coal-fired station, and the six problems of the section, from the engine that does 10.0 kJ of work to the two nuclear stations of different efficiency, are all of this kind."
+    },
+    {
+      "id": "otto-cycle",
+      "kind": "idea",
+      "section": "15.3",
+      "name": "The Otto cycle",
+      "why": "The Otto cycle is the thermodynamic cycle of the four-stroke gasoline engine, two adiabatic processes and two isochoric ones. An adiabatic compression corresponds to the compression stroke, heat transfer in at constant volume to the burning of the fuel, an adiabatic expansion to the power stroke, and heat transfer out at constant volume to the exhaust and intake. The work out along the expansion exceeds the work in along the compression because the pressure is higher, so there is a net work output, and the cooler the compression and the hotter the expansion the larger the loop and the more efficient the engine, which points to the reservoir temperatures as what sets the limit.",
+      "evidence": "Figure 15.17 draws the four strokes, Figure 15.18 draws the cycle on a PV diagram with its schematic, Figure 15.19 shows the larger loop of a wider temperature range, and the glossary defines the term."
+    },
+    {
+      "id": "carnot-cycle",
+      "kind": "idea",
+      "section": "15.4",
+      "name": "The Carnot cycle and the Carnot engine",
+      "why": "Sadi Carnot devised in 1824 a theoretical cycle that is the most efficient cyclical process possible, made of two isothermal and two adiabatic processes, all of them reversible. Any heat engine that uses it is a Carnot engine. What defines the cycle is that only reversible processes are used, since irreversible processes involve dissipative factors such as friction and turbulence that increase the heat transfer to the environment and lower the efficiency. The ideal Carnot engine has zero power, like the drinking bird, which is why it is a limit and not a design.",
+      "evidence": "The section opens on Carnot and the cycle, Figure 15.21 draws it on a PV diagram beside its engine schematic, the drinking bird of Figure 15.20 is its concrete example, and the conceptual question on what dissipative processes stop the bird tests the idea."
+    },
+    {
+      "id": "second-law-carnot-statement",
+      "kind": "result",
+      "section": "15.4",
+      "name": "The second law of thermodynamics, third expression: a Carnot engine has the greatest possible efficiency between two given temperatures",
+      "why": "Stated in terms of reversible processes, the second law has a third form: a Carnot engine operating between two given temperatures has the greatest possible efficiency of any heat engine operating between them, and all engines employing only reversible processes have this same maximum efficiency between the same temperatures. What Carnot discovered in his study of steam engines was this law.",
+      "evidence": "The boxed Carnot Engine statement gives the form, the caption of Figure 15.21 repeats that any reversible engine between the same temperatures has the same efficiency, and the conceptual question on whether reversible engines should be more efficient asks for the reason."
+    },
+    {
+      "id": "carnot-efficiency",
+      "kind": "result",
+      "section": "15.4",
+      "name": "Carnot efficiency, $\\text{Eff}_{\\text{C}} = 1 - \\kTempc/\\kTemph$",
+      "why": "For a perfect heat engine the ratio of the heat transfer to the cold reservoir to the heat transfer from the hot one equals the ratio of the absolute temperatures of the two reservoirs, so the maximum efficiency is one minus the cold temperature over the hot, both in kelvins. An efficiency of 100% would need a cold reservoir at absolute zero, which is impossible in practice and in theory, and the greatest efficiencies come from the hottest possible hot reservoir and the coldest possible cold one. No real engine reaches the Carnot efficiency.",
+      "evidence": "The passage states the ratio and the efficiency, Example 15.4 finds 47.6% for a pressurized-water reactor, and the keyed problems on the gasoline engine's hot reservoir, the two-stage steam engine and the inventor's suspicious device apply it.",
+      "eq": "eq-carnot-efficiency"
+    },
+    {
+      "id": "calculate-carnot-efficiency",
+      "kind": "skill",
+      "section": "15.4",
+      "name": "Find a maximum efficiency, or a reservoir temperature, from the two reservoir temperatures",
+      "why": "The reservoir temperatures are converted to kelvins and the Carnot efficiency follows; or a stated efficiency and one reservoir temperature give the other. A real engine reaching some fraction of the maximum is handled the same way, and two engines run in series, the second on the exhaust of the first, have an overall Carnot efficiency equal to that of one engine between the outer temperatures.",
+      "evidence": "Example 15.4 converts 300 °C and 27 °C to kelvins and finds the maximum efficiency, and the keyed problems on the gasoline engine at 30.0%, the Carnot engine at 42.0%, the two steam engines in series and the steam engine whose cold reservoir comes out below freezing are all of this kind."
+    },
+    {
+      "id": "real-engines-below-carnot",
+      "kind": "idea",
+      "section": "15.4",
+      "name": "Real engines fall short of the Carnot efficiency",
+      "why": "All real processes are irreversible, so no real engine is as efficient as a Carnot engine between the same reservoirs; a nuclear station's 35% is a little better than 0.7 of its maximum, and coal, oil and gas stations reach about 42% because their boilers run hotter. Even the best engine has dissipative processes in its peripheral equipment, such as transformers and transmissions, which convert some of the work output back into heat transfer to the environment and lower the overall efficiency further.",
+      "evidence": "Example 15.4's discussion compares actual and maximum efficiencies, Figure 15.24 draws a real engine against a Carnot engine and the friction in the output, and the conceptual questions on whether better materials can eliminate heat transfer to the environment and on the drinking bird's dissipative processes test the idea."
+    },
+    {
+      "id": "heat-pump",
+      "kind": "idea",
+      "section": "15.5",
+      "name": "Heat pump, $\\kQH = \\kQC + \\kW$",
+      "why": "Heat pumps, air conditioners and refrigerators move heat transfer from cold to hot. They are heat engines run backward: heat transfer occurs from a cold reservoir and into a hot one, and this requires a work input, which is itself converted to heat transfer, so the heat transfer to the hot reservoir is the heat from the cold reservoir plus the work. A heat pump's mission is the heat delivered to a warm space; a refrigerator's or an air conditioner's is the heat removed from a cold one. The reader pays only for the work and gets the heat from the cold outdoors at no cost.",
+      "evidence": "The section opens on the three devices and their energy balance, Figure 15.26 draws the backward engine and the reversed Carnot cycle, the Heat Pumps passage explains the advantage over burning fuel, and the conceptual question on whether leaving the refrigerator door open cools the kitchen tests the idea.",
+      "eq": "eq-heat-pump-balance"
+    },
+    {
+      "id": "heat-pump-components",
+      "kind": "idea",
+      "section": "15.5",
+      "name": "The four components of a heat pump",
+      "why": "A heat pump has a condenser, an expansion valve, an evaporator and a compressor, joined in a loop that a working fluid runs round. In the outdoor evaporator the fluid takes heat from the cold air and becomes a gas; the electrically driven compressor raises its temperature and pressure and forces it into the indoor condenser coils, where, being hotter than the room, it gives up heat and condenses; the liquid then passes back through the expansion valve and cools as it expands. In a cooling cycle the two coils exchange roles and the fluid runs the other way.",
+      "evidence": "Figure 15.27 draws the four components and its caption walks through them, the passage that follows repeats the cycle, and the caption of Figure 15.30 explains the reverse-cycle unit."
+    },
+    {
+      "id": "coefficient-of-performance-heat-pump",
+      "kind": "result",
+      "section": "15.5",
+      "name": "Coefficient of performance of a heat pump, $\\text{COP}_{\\text{hp}} = \\kQH/\\kW$",
+      "why": "A heat pump is judged by how much heat transfer it delivers to the warm space compared with the work it takes, so its coefficient of performance is the heat transfer to the hot reservoir divided by the work input. Since a heat engine's efficiency is the work over that same heat transfer, the coefficient of performance is the reciprocal of the efficiency, and because every efficiency is less than one the coefficient is always greater than one: a heat pump always delivers more heat than the work put into it.",
+      "evidence": "The Heat Pumps passage defines it and derives the reciprocal, Example 15.5 finds 5.30 for a pump between −15.0 °C and 45.0 °C, and the keyed problems on the ideal heat pump between −25.0 °C and 40.0 °C and on the pump whose 3.60 × 10⁷ J of work is costed against natural gas apply it.",
+      "eq": "eq-cop-heat-pump"
+    },
+    {
+      "id": "heat-pumps-and-temperature-difference",
+      "kind": "idea",
+      "section": "15.5",
+      "name": "Heat pumps work best when the temperature difference is small",
+      "why": "Because the coefficient of performance is the reciprocal of the efficiency and the Carnot efficiency shrinks as the two reservoir temperatures approach one another, a heat pump does best when the difference between outdoors and indoors is small and worst in very cold climates. Friction and other irreversible processes do not help a heat pump as they lower an engine's efficiency; they take part of the work input as heat before it reaches the pump and lower the coefficient of performance. Real heat pumps reach values from about 2 to 4, and they are most economical where winters are mild and summers warm.",
+      "evidence": "The passage after the reciprocal argues it, Figure 15.28 draws the frictional loss, the paragraph on real heat pumps gives the range, and the conceptual questions on why heat pumps fail in very cold climates and on why small temperature differences are cheapest test it."
+    },
+    {
+      "id": "coefficient-of-performance-refrigerator",
+      "kind": "result",
+      "section": "15.5",
+      "name": "Coefficient of performance of a refrigerator or air conditioner, $\\text{COP}_{\\text{ref}} = \\kQC/\\kW = \\text{COP}_{\\text{hp}} - 1$",
+      "why": "An air conditioner or refrigerator is judged by how much heat transfer it removes from the cold environment compared with the work input, so its coefficient of performance is the heat transfer from the cold reservoir divided by the work. What a heat pump counts as its benefit a refrigerator counts as waste heat. Because the heat to the hot reservoir is the heat from the cold one plus the work, the refrigerator's coefficient is the heat pump's minus one for the same engine between the same temperatures, and real refrigerators reach values from 2 to 6 because their temperature differences are small.",
+      "evidence": "The Air Conditioners and Refrigerators passage defines it and states the relation, the last problem of the section asks the reader to prove the relation from the definitions, and the keyed problems on the refrigerator that makes liquid nitrogen and on the refrigerator with a coefficient of 7.00 apply it.",
+      "eq": "eq-cop-refrigerator"
+    },
+    {
+      "id": "calculate-coefficient-of-performance",
+      "kind": "skill",
+      "section": "15.5",
+      "name": "Find the best coefficient of performance from the two reservoir temperatures",
+      "why": "A Carnot engine reversed gives the best possible heat pump or refrigerator, so the best coefficient of performance follows from the Carnot efficiency between the two reservoir temperatures in kelvins: the reciprocal for a heat pump, and one less than that for a refrigerator. With a work input given, the heat delivered or removed follows, and with a price per kilowatt-hour so does the cost, which is how the section compares a heat pump with burning natural gas.",
+      "evidence": "Example 15.5 finds the best coefficient for a home heat pump and reads off that the pump delivers 5.30 times the work put in, and the keyed problems on the ideal heat pump, the liquid-nitrogen refrigerator, the costed heat pump and the refrigerator with a coefficient of 7.00 all follow the procedure."
+    },
+    {
+      "id": "energy-efficiency-rating",
+      "kind": "idea",
+      "section": "15.5",
+      "name": "The energy efficiency rating",
+      "why": "The energy efficiency rating is a coefficient of performance in mixed units, the British thermal units of heat transfer from the cold environment per hour divided by the watts of power input, still used for room air conditioners in several countries. Room units come with ratings from 6 to 12, and though the rating is not the same as the coefficient of performance it serves for comparison: the greater the rating, the cheaper the unit is to run and the more it is likely to cost to buy.",
+      "evidence": "The passage on the EER defines it and states its formula, and the keyed problem on the 4-ton air conditioner with a rating of 12.0 finds its energy input and its cost per hour from it.",
+      "eq": "eq-eer"
+    },
+    {
+      "id": "thermodynamics-problem-solving",
+      "kind": "skill",
+      "section": "15.5",
+      "name": "Work a problem through the problem-solving strategy for thermodynamics",
+      "why": "The book's strategy has seven steps: decide whether heat, work or internal energy is involved; identify the system and draw a labeled diagram of the energy flow; list the unknowns, remembering that a maximum efficiency means a Carnot engine and that efficiency is not the same as coefficient of performance; list the knowns, distinguishing heat in from heat out and work in from work out and naming the kind of process; solve the appropriate equation; substitute with units; and check that the answer is reasonable, an efficiency below one and a coefficient of performance above one.",
+      "evidence": "The boxed Problem-Solving Strategies for Thermodynamics states the steps, and problems in 15.1, 15.2, 15.4 and this section ask the reader to show explicitly how they follow them."
+    },
+    {
+      "id": "entropy",
+      "kind": "idea",
+      "section": "15.6",
+      "name": "Entropy $\\kSent$",
+      "why": "Entropy is a measure of a system's disorder and of the unavailability of its energy to do work. Although all forms of energy can be used to do work, it is not always possible, even in principle, to convert all of a system's energy into work, and entropy measures how much cannot be. Like internal energy it is a property of state: the entropy of a system depends only on its state and not on how it got there, which is what lets its change be computed for any process, real or imagined.",
+      "evidence": "The section opens on the term and the Making Connections box, the passage after the definition says that entropy is a property of state, Figure 15.32 draws the two paths from state 1 to state 2 with the same change, and the glossary carries the term."
+    },
+    {
+      "id": "change-in-entropy",
+      "kind": "result",
+      "section": "15.6",
+      "name": "Change in entropy, $\\kdS = (\\kQh/\\kTemp)_{\\text{rev}}$",
+      "why": "For a Carnot cycle, and hence for any reversible process, the heat transfers at the two reservoirs are in the ratio of their absolute temperatures, so the ratio of heat transfer to temperature is the same at both. That ratio is defined to be the change in entropy for a reversible process: the heat transfer, positive into the system and negative out of it, divided by the absolute temperature at which it takes place, in joules per kelvin. Where the temperature changes a little during the process, the average temperature serves. The definition is strictly for reversible processes, but because entropy is a property of state the change for any real process is found by imagining a reversible one between the same two states.",
+      "evidence": "The passage rearranges the Carnot ratio into the definition, Figure 15.32 makes the state-function argument, Example 15.8 finds the entropy increase of melting ice, and the keyed problems on the volcanic rock, the water condensing on a mirror and the house losing heat on a winter day apply it.",
+      "eq": "eq-entropy-change"
+    },
+    {
+      "id": "irreversible-process-increases-entropy",
+      "kind": "result",
+      "section": "15.6",
+      "name": "There is an increase in entropy for any system undergoing an irreversible process",
+      "why": "Spontaneous heat transfer from hot to cold is irreversible, and its total entropy change is found by imagining a reversible loss from the hot reservoir and a reversible gain by the cold one. Because the change in entropy is the heat over the temperature, the same heat makes a larger change at the lower temperature: the hot reservoir's loss is smaller than the cold reservoir's gain, and the total increases. The result is general: every irreversible process increases the entropy of the system.",
+      "evidence": "Example 15.6 computes 9.33 J/K for 4000 J falling from 600 K to 250 K and Figure 15.33 draws the direct transfer beside its reversible stand-in, the passage after the example states the general result, and the keyed problems on the house, the Sun's radiation into deep space and the power station's cooling towers apply it.",
+      "eq": "eq-total-entropy"
+    },
+    {
+      "id": "second-law-entropy-statement",
+      "kind": "result",
+      "section": "15.6",
+      "name": "The second law of thermodynamics stated in terms of entropy: the total entropy of a system either increases or remains constant in any process; it never decreases",
+      "why": "The total change in entropy over a Carnot cycle is the hot reservoir's loss plus the cold reservoir's gain, and because the two heat transfers are in the ratio of the temperatures the total is zero; this holds for any reversible process, which changes neither the entropy of the system nor that of its surroundings. Real processes are irreversible and increase the total entropy. So there are only two possibilities, and the fourth form of the second law says so: entropy is constant in a reversible process and increases in an irreversible one, and it never decreases. Heat cannot flow spontaneously from cold to hot because entropy would decrease. Entropy, unlike energy, is not conserved.",
+      "evidence": "The passage derives the zero total for the Carnot engine and states the italic results for reversible and irreversible processes and the fourth form of the law, the summary repeats them, and the conceptual question on the entropy change in an adiabatic process and whether it implies reversibility tests the statement.",
+      "eq": "eq-reversible-total-entropy"
+    },
+    {
+      "id": "unavailable-energy",
+      "kind": "result",
+      "section": "15.6",
+      "name": "Energy made unavailable by an increase in entropy, $\\kWunavail = \\kdS\\cdot\\kTempo$",
+      "why": "When entropy increases, a certain amount of energy becomes permanently unavailable to do work. The energy is not lost, but its character is changed, so that some of it can never again be converted into an organized force acting through a distance. The amount that becomes unavailable is the increase in entropy times the lowest temperature utilized. Two perfect engines fed the same heat give different work when one is fed after the heat has already fallen to a colder reservoir, and the difference is exactly this quantity.",
+      "evidence": "Example 15.7 finds 3333 J from a Carnot engine between 600 K and 100 K and 2400 J after the same 4000 J has fallen to 250 K first, Figure 15.34 draws the two engines, the passage states the formula and recovers the 933 J, and the keyed problems on the Sun's radiation and the power station's cooling towers ask how much work is made unavailable.",
+      "eq": "eq-unavailable-work"
+    },
+    {
+      "id": "heat-death-of-the-universe",
+      "kind": "idea",
+      "section": "15.6",
+      "name": "The heat death of the universe",
+      "why": "As entropy increases, less and less of the energy in the universe is available to do work. Temperature differences, which are what heat engines run on, arose as the universe matured and are being used up; on Earth the stores of fuel and the differences in temperature that give wind, geothermal and tidal energy will be spent, and though the Sun replenishes some of them for another five billion years, in the very long run all stars will die and all temperatures will equalize. The universe is destined for thermodynamic equilibrium, maximum entropy, when no work can be done, though calculations suggest that is at least 10¹⁰⁰ years away.",
+      "evidence": "The Heat Death of the Universe passage makes the argument in five paragraphs, the summary states the likely fate of the universe, and the conceptual question on the entropy of a radiating star and of the space it radiates into tests the reasoning."
+    },
+    {
+      "id": "entropy-and-disorder",
+      "kind": "idea",
+      "section": "15.6",
+      "name": "Entropy is a measure of disorder",
+      "why": "Entropy is related not only to the unavailability of energy but to disorder, as Boltzmann first proposed. Melting a block of ice turns a structured arrangement of molecules into a liquid in which they have no fixed positions, and the entropy rises by a large amount. Mixing equal masses of warm and cool water produces three results at once: the entropy increases, some energy becomes unavailable to do work because there is no longer a temperature difference to run an engine on, and the single mass at one temperature is less orderly than two masses at two. These three results are essentially equivalent.",
+      "evidence": "Example 15.8 finds the entropy of melting 1.00 kg of ice and Figure 15.35 draws the ordered and disordered molecules, the passage on mixing water at 20.0 °C and 40.0 °C lists the three results, and the conceptual questions on a liquefying gas, on a uniform-temperature gas and on the summer cottage test the idea."
+    },
+    {
+      "id": "entropy-and-life",
+      "kind": "idea",
+      "section": "15.6",
+      "name": "Local decreases in entropy, $\\kdStot = \\kdSsyst + \\kdSenvir > 0$",
+      "why": "Living organisms are highly structured and much lower in entropy than what they grow from, and some take this to mean that evolution violates the second law. It does not: the entropy of one part of the universe can always decrease provided the total change is positive, so the system's change can be negative as long as the environment's is positive and larger in magnitude. Picking up scattered marbles or building a bridge lowers the entropy of those systems by energy transfer, and the Earth, intercepting a small part of the Sun's heat transfer into deep space, is a heat engine of high complexity that produces small local decreases in entropy at the cost of a large total increase.",
+      "evidence": "The Life, Evolution passage states the inequality and makes the argument, Figure 15.36 draws the Sun, the Earth and deep space, and the conceptual question on how water's entropy can decrease when it freezes tests it.",
+      "eq": "eq-entropy-system-environment"
+    },
+    {
+      "id": "calculate-entropy-change",
+      "kind": "skill",
+      "section": "15.6",
+      "name": "Find an entropy change from a heat transfer and a temperature",
+      "why": "The heat transfer and the absolute temperature at which it takes place give the change in entropy; where the temperature changes a little, the average temperature in kelvins serves, and where the heat transfer is a phase change it is the mass times the latent heat. The total change for a transfer between two bodies is the sum of a negative change at the hotter temperature and a positive one at the colder, and the energy made unavailable follows by multiplying the total by the lowest temperature.",
+      "evidence": "Examples 15.6 and 15.8 work the two kinds, and the keyed problems on the house losing 5.00 × 10⁸ J, the cooling volcanic rock, the Sun's daily radiation, the water condensing on a mirror and the power station's cooling towers all follow the procedure."
+    },
+    {
+      "id": "macrostate-and-microstate",
+      "kind": "idea",
+      "section": "15.7",
+      "name": "Macrostate and microstate",
+      "why": "A macrostate is an overall property of a system, such as the total number of heads and tails in a toss or the pressure, volume and temperature of a gas; it does not specify the details. A microstate is a detailed description of every element of the system, such as the order in which the heads and tails came up or the positions and velocities of every atom. Each macrostate can be reached by some number of microstates, and the analysis assumes that every microstate is equally probable, which requires the coins to be fair.",
+      "evidence": "The Coin Tosses passage defines both terms on the six macrostates of five coins, Table 15.3 lists every microstate of each, the Disorder in a Gas passage carries the terms over to a gas, and the conceptual question on the bricks and the pile asks the reader to count microstates."
+    },
+    {
+      "id": "disorder-is-more-probable",
+      "kind": "result",
+      "section": "15.7",
+      "name": "Disorder is vastly more likely than order",
+      "why": "The most orderly macrostates, all heads or all tails, have the fewest microstates and are the least likely; the most disorderly, an even split, have the most and are the most likely. With five coins the odds are 30 to 2 that a toss leaves an orderly array less orderly; with a hundred, there is one way to get all heads and 10²⁹ ways to get fifty, and a toss a second would produce all heads once in 2 × 10²² years, a trillion times the age of the universe. The growth in the odds favoring disorder continues as the system grows, so for the atoms of a gas the orderly macrostate, all in one corner, is so unlikely that it never happens.",
+      "evidence": "Table 15.3 and Table 15.4 count the microstates of 5 and 100 coins, the passages between them draw the conclusions, Figure 15.38 shows a gas in its likely and its highly unlikely state, and the keyed problems on how often 100 coins all come up heads and on the three most likely macrostates apply the count."
+    },
+    {
+      "id": "boltzmann-entropy",
+      "kind": "result",
+      "section": "15.7",
+      "name": "Boltzmann's entropy, $\\kSent = k\\ln W$",
+      "why": "Boltzmann proved that the entropy of a system in a given macrostate is Boltzmann's constant times the natural logarithm of the number of microstates corresponding to that macrostate, and that this expression is equivalent to the definition of the change in entropy as heat transfer over temperature. Because the number of microstates is proportional to the probability of the macrostate, entropy is directly related to probability: the more likely the state, the greater its entropy. The second law then has its explanation at the most basic level, since a decrease in entropy is a move to a less probable state, and for a macroscopic system the odds against it are so long that it is never observed.",
+      "evidence": "The Disorder in a Gas passage states the formula and its meaning, the summary repeats it, and Example 15.9 and the keyed problems on 10 coins and on the three most likely macrostates of 100 use it.",
+      "eq": "eq-boltzmann-entropy"
+    },
+    {
+      "id": "calculate-entropy-from-microstates",
+      "kind": "skill",
+      "section": "15.7",
+      "name": "Find a change in entropy from counts of microstates, $\\kdS = k\\ln W_{\\text{f}} - k\\ln W_{\\text{i}}$",
+      "why": "The change in entropy between two macrostates is Boltzmann's constant times the difference of the logarithms of their numbers of microstates, read from a table or counted. The ratio of the two numbers of microstates is how much more likely one macrostate is than the other, and it says whether a given decrease in entropy could ever be seen: a change of 10⁻²¹ J/K is a one in 10³⁰ chance, so a macroscopic decrease of the order of 10³ J/K is an utter impossibility.",
+      "evidence": "Example 15.9 finds 2.7 × 10⁻²³ J/K for 100 coins going from 60 heads to 50 and reads the odds of a decrease from the table, and the keyed problems on 10 coins going from 5 heads to 2 and on the odds of 252 to 45 follow the same steps.",
+      "eq": "eq-entropy-change-microstates"
+    },
+    {
+      "id": "statistical-second-law",
+      "kind": "idea",
+      "section": "15.7",
+      "name": "The statistical explanation of the second law",
+      "why": "The several formulations of the second law say what happens; the statistical view says why. Heat transfer goes only from hot to cold, energy becomes ever less available and the universe grows more disorderly because disorder is vastly more probable than order, and a macroscopic system has so many atoms that the improbable never occurs. The gas that fills its container will never gather in one corner; with energy transfer from outside it could be forced there and its entropy lowered, but at the cost of a larger increase elsewhere, and left alone it disperses again. Entropy can decrease, but for any macroscopic system the outcome is so unlikely that it will never be observed.",
+      "evidence": "The opening passage on rain and the Disorder in a Gas passage make the argument, Figure 15.38 draws the two states of the gas, Example 15.9's discussion turns the odds into an impossibility for a milligram of ice, and the keyed AP item on the flash-heated layer of gas tests the picture of energy spreading by collisions."
+    },
+    {
+      "id": "entropy-problem-solving",
+      "kind": "skill",
+      "section": "15.7",
+      "name": "Work a problem through the problem-solving strategy for entropy",
+      "why": "The book's strategy has seven steps: decide whether entropy is involved; identify the system and draw a labeled diagram of the energy flow; list the unknowns; list the knowns, identifying the heat transfer, the temperature at which it takes place and the initial and final states; solve the appropriate equation, remembering that the change in entropy between any two states can be found from a reversible process joining them; substitute with units; and check that the answer is reasonable, the total entropy increasing for any real process and disordered states being the more probable.",
+      "evidence": "The boxed Problem-Solving Strategies for Entropy states the steps, and two of 15.6's problems, on the water reaching equilibrium and on the mixing of 20.0 kg of water at two temperatures, ask the reader to show explicitly how they follow them."
+    },
+    {
+      "id": "temperature",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "Temperature is what a thermometer measures",
+      "why": "Temperature is operationally defined to be what we measure with a thermometer. Your senses of hot and cold are relative, since tepid water feels cool to a hand that was in hot water and warm to a hand that was in cold water, but two accurate thermometers placed in the same water give the same reading. Many physical quantities are defined solely in terms of how they are measured, and the section promises the more physical explanation, that temperature is related to the kinetic energies of atoms and molecules, for later in the chapter.",
+      "evidence": "The section opens on the two hands in tepid water, states the definition twice, and the Misconception Alert about the wooden and metal benches asks the reader to separate what feels hot from what is hot; the first conceptual question asks what it means for two systems to be in thermal equilibrium."
+    },
+    {
+      "id": "thermometer",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "Any reproducible property that depends on temperature makes a thermometer",
+      "why": "Any physical property that depends on temperature, and whose response to temperature is reproducible, can be used as the basis of a thermometer. Volume increases with temperature for most substances, which is the basis for the alcohol thermometer, the mercury thermometer and the bimetallic strip; electrical resistance, color and the emission of infrared radiation are used as well. Because so many properties depend on temperature, the variety of thermometers is remarkable.",
+      "evidence": "Figures 13.3 to 13.6 show four thermometers built on four different properties, the second conceptual question asks the reader to name a property that varies with temperature and describe how it is used, and the third asks why the column of a cold alcohol thermometer dips before it rises."
+    },
+    {
+      "id": "temperature-scales",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "The Celsius, Fahrenheit and Kelvin scales",
+      "why": "A temperature scale is created by identifying two easily reproducible temperatures, commonly the freezing and boiling points of water at standard atmospheric pressure. The Celsius scale puts them at 0 °C and 100 °C, the Fahrenheit scale at 32 °F and 212 °F, so that one Celsius degree is 1.8 times the size of one Fahrenheit degree. The Kelvin scale is the absolute scale used in science: its zero is absolute zero, its unit is the kelvin with no degree sign, and the size of a kelvin equals the size of a degree Celsius, so water freezes at 273.15 K and boils at 373.15 K.",
+      "evidence": "The Temperature Scales header, Figure 13.7 laying the three scales side by side, and the Reaumur example, which builds a fourth scale from the same two fixed points to show how a scale is made."
+    },
+    {
+      "id": "convert-temperature-scales",
+      "kind": "skill",
+      "section": "13.1",
+      "name": "Converting a temperature between scales",
+      "why": "Temperatures on the three common scales are converted with the equations of Table 13.1. Celsius to Fahrenheit multiplies by nine fifths and adds 32, Celsius to Kelvin adds 273.15, and the conversions between Fahrenheit and Kelvin, which look complicated, are simple combinations of those two. A temperature difference converts differently from a temperature: a change of one degree Celsius is a change of one kelvin and of nine fifths of a Fahrenheit degree, with no offset.",
+      "evidence": "Example 13.1 converts room temperature to Fahrenheit and to kelvins, Table 13.1 gives all six conversions, and the problem set is entirely conversions: a fever, frost damage, a tungsten filament, the surface of the Sun, Death Valley, and a cold front whose keyed part (b) shows that any change in Fahrenheit degrees is nine fifths the change in Celsius degrees.",
+      "eq": "eq-celsius-to-fahrenheit"
+    },
+    {
+      "id": "absolute-zero",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "Absolute zero is the lowest possible temperature",
+      "why": "The concept of absolute zero arises from the behavior of gases. The pressure of a gas kept at constant volume falls in a straight line as its temperature falls, and the lines for different gases all extrapolate to zero pressure at the same temperature, −273.15 °C. This suggests that there is a lowest temperature, and other thermodynamic relationships lead to the same conclusion. At absolute zero, 0 K, molecular motion is at the minimum energy possible; most gases liquefy and then freeze before it is reached, and it is not actually possible to reach it.",
+      "evidence": "The Making Connections box on absolute zero, Figure 13.10 with its lines extrapolating to −273.15 °C, and the Temperature Ranges in the Universe passage with Figure 13.9, which sets the lowest temperatures ever produced in a laboratory against the Boomerang Nebula and Vostok."
+    },
+    {
+      "id": "thermal-equilibrium",
+      "kind": "idea",
+      "section": "13.1",
+      "name": "Thermal equilibrium",
+      "why": "Any two systems placed in thermal contact but isolated from the rest of the environment will reach the same temperature: heat flows from the hotter object to the cooler one until they have exactly the same temperature, and then no further heat flow or change in temperature occurs. That is why a thermometer, which actually takes its own temperature, reads the temperature of the object it touches once enough time has passed. A single object is in internal thermal equilibrium when no heat flows within it and its temperature is uniform.",
+      "evidence": "The Thermal Equilibrium header, the glossary term, the Check Your Understanding box asking whether the temperature of a body in internal equilibrium depends on its size, and the conceptual questions about two systems in equilibrium and about boiling water added to a cup at room temperature."
+    },
+    {
+      "id": "zeroth-law-of-thermodynamics",
+      "kind": "result",
+      "section": "13.1",
+      "name": "The zeroth law of thermodynamics",
+      "why": "If two systems, A and B, are in thermal equilibrium with each other, and B is in thermal equilibrium with a third system, C, then A is also in thermal equilibrium with C. The conclusion may seem obvious, because all three have the same temperature, but it is basic to thermodynamics, and it was named the zeroth law because it comes logically before the first and second laws although it was postulated after them. It is what lets two thermometers, each touching a different block on the same plate, be trusted to read the same number, and so it is what establishes temperature as a meaningful concept.",
+      "evidence": "The boxed statement of the law, the example of the cold block, the hot block and the plate, and the Check Your Understanding box, whose answer divides a body into parts and uses the zeroth law to show that they all share one temperature."
+    },
+    {
+      "id": "thermal-expansion",
+      "kind": "idea",
+      "section": "13.2",
+      "name": "Thermal expansion",
+      "why": "Thermal expansion is the change in size or volume of a given mass with temperature. It is why hot air rises, since air that expands has a smaller density than the air around it and a larger buoyant force on a given mass, and it is why railroad tracks and bridges need expansion joints. Its cause is that an increase in temperature increases the kinetic energy of the atoms, whose small, rapid vibrations push their neighbors slightly farther apart on average, and that slightly greater spacing adds up to a larger body. For most substances there is no preferred direction, and the body grows by the same fraction in every dimension.",
+      "evidence": "The opening paragraphs on the thermometer, rising air and expansion joints, the paragraph on the underlying cause, and the last conceptual question, which asks why some materials shrink with increasing temperature."
+    },
+    {
+      "id": "linear-thermal-expansion",
+      "kind": "result",
+      "section": "13.2",
+      "name": "Linear thermal expansion $\\Delta L = \\alpha L\\Delta T$",
+      "why": "The change in length of a body is proportional to its length and to the change in temperature, with a coefficient of linear expansion that depends on the material and varies slightly with temperature. Because a kelvin and a degree Celsius are the same size, the coefficient and the temperature change may be expressed in either. The equation is accurate for small changes in temperature and serves for large ones if an average value of the coefficient is used.",
+      "evidence": "The boxed result, Table 13.2 of coefficients, Example 13.3 finding that the Golden Gate Bridge grows 0.84 m between its coldest and hottest days, and the problems on the Washington Monument, the Eiffel Tower, a column of mercury, a railroad gap, a steel and an invar meter stick, and a column of ocean water.",
+      "eq": "eq-linear-expansion"
+    },
+    {
+      "id": "area-thermal-expansion",
+      "kind": "result",
+      "section": "13.2",
+      "name": "Thermal expansion in two dimensions $\\Delta A = 2\\alpha A\\Delta T$",
+      "why": "Objects expand in all dimensions, so an area grows because both its length and its width grow. For small temperature changes the change in area is twice the coefficient of linear expansion times the area times the change in temperature, since each of two dimensions contributes the linear fraction.",
+      "evidence": "The boxed two-dimensional result, panel (a) of Figure 13.12, and the Hong Kong land problem, whose keyed answer is that a steel tape measure, expanded on a warm day, reads the parcel about ＄17,000 smaller.",
+      "eq": "eq-area-expansion"
+    },
+    {
+      "id": "holes-expand-too",
+      "kind": "idea",
+      "section": "13.2",
+      "name": "A hole expands as the plug that filled it would",
+      "why": "If you cut a hole in a metal plate, the remaining material expands exactly as it would if the plug were still in place. The plug would get bigger, and so the hole must get bigger too: the ring of neighboring atoms on the wall of the hole push each other farther apart as the temperature rises, and the ring gets slightly larger. Holes do not close up when a body is heated.",
+      "evidence": "Panel (b) of Figure 13.12 and its caption, the paragraph on cutting a hole in a plate, and the conceptual questions about fitting a peg into a hole in a block and about running hot water over a tight metal lid on a glass jar."
+    },
+    {
+      "id": "volume-thermal-expansion",
+      "kind": "result",
+      "section": "13.2",
+      "name": "Thermal expansion in three dimensions $\\Delta V = \\beta V\\Delta T$, with $\\beta \\approx 3\\alpha$",
+      "why": "The change in volume is very nearly three times the linear coefficient times the volume times the temperature change, and the equation is usually written with a coefficient of volume expansion that is approximately three times the coefficient of linear expansion, as the values in Table 13.2 show almost exactly. Liquids and gases have no coefficient of linear expansion, only a volume coefficient, and the coefficient for gases is the largest of all and nearly the same for every gas.",
+      "evidence": "The boxed three-dimensional result, panel (c) of Figure 13.12, the volume column of Table 13.2, and the keyed problem that derives β ≈ 3α by expanding the cube of a length with the binomial expansion.",
+      "eq": "eq-volume-expansion"
+    },
+    {
+      "id": "differential-thermal-expansion",
+      "kind": "skill",
+      "section": "13.2",
+      "name": "Finding what spills when a liquid expands more than its container",
+      "why": "When a full container and the liquid in it warm together, both expand, but the liquid expands more, and the amount that spills is the difference of their volume changes. Because the original volumes are equal, the three equations combine into one: the spill is the difference of the two volume coefficients times the volume times the temperature change. The same difference is why a gasoline gauge reads empty with less mass in the tank in summer than in winter, and why a beaker filled to the brim overflows as it warms.",
+      "evidence": "Example 13.4, in which 1.10 L of gasoline spills from a 60.0 L steel tank that warms by 20 °C, the Filling the Tank box, and the problems on the beaker of ethyl alcohol, the copper radiator, and the confirmation that 60.0 L of gasoline becomes 61.1 L.",
+      "eq": "eq-spill-volume"
+    },
+    {
+      "id": "anomalous-expansion-of-water",
+      "kind": "idea",
+      "section": "13.2",
+      "name": "Water is densest at 4 °C",
+      "why": "Water is the most important exception to the rule that objects expand with increasing temperature. Above 4 °C it expands as its temperature rises, but between 4 °C and 0 °C it expands as its temperature falls, so that it is densest at 4 °C. The most striking effect is the freezing of a pond: water at the surface cools to 4 °C, sinks, and turns the pond over until the whole of it is at 4 °C; a surface layer that cools further is less dense than the water below and stays on top, so the surface freezes over and the ice insulates the water beneath, where fish survive the winter.",
+      "evidence": "Figure 13.13, the density of water against temperature, and the paragraph on the turnover and freezing of a pond, which the caption's numbers (0.0075% and 0.012%) put in proportion."
+    },
+    {
+      "id": "thermal-stress",
+      "kind": "result",
+      "section": "13.2",
+      "name": "Thermal stress $P = \\dfrac{\\Delta V}{V_0}B$",
+      "why": "Thermal stress is created when thermal expansion or contraction is constrained. The pressure a heated body would exert if it were not allowed to expand is found by taking the volume change it would have made at fixed pressure and asking, through the bulk modulus, what pressure is needed to squeeze that volume back out. Such pressures are typically enormous: gasoline held at fixed volume through a 20 °C rise would reach 1.83 × 10⁷ Pa, about 2500 lb/in², far more than a tank can hold. Thermal stress buckles rails, snaps power lines, cracks glass cooled unevenly, weathers rock and pavement, and bursts biological cells when food is frozen.",
+      "evidence": "The Thermal Stress header, Example 13.5 on the pressure in the gasoline tank, Figure 13.15 of a pothole, the paragraphs on rails, power lines, cookware, reactor vessels, implants and dental fillings, and the conceptual question on why Pyrex resists cracking.",
+      "eq": "eq-thermal-stress"
+    },
+    {
+      "id": "ideal-gas",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "An ideal gas",
+      "why": "Atoms and molecules in a gas are widely separated compared with their sizes, so the forces between them can be ignored except when they collide, and the gas expands to fill whatever volume it can reach. That is why gases have the largest coefficients of volume expansion and why they all have nearly the same one, when liquids and solids differ widely: the properties of a gas depend on how many molecules there are per unit volume and on temperature, not on what kind of molecule it is. A gas whose particles have negligible volume and interact only through perfectly elastic collisions is called an ideal gas, and room temperature air is one in most circumstances.",
+      "evidence": "The opening paragraphs on why gases share one expansion coefficient, Figure 13.18 of widely separated molecules, the Check Your Understanding box on why gases are a thousand times less dense than liquids and solids, and the conceptual question on when a gas behaves differently from the ideal gas law."
+    },
+    {
+      "id": "ideal-gas-law",
+      "kind": "result",
+      "section": "13.3",
+      "name": "The ideal gas law $PV = NkT$",
+      "why": "The ideal gas law relates the absolute pressure of a gas, the volume it occupies, the number of atoms and molecules in it and its absolute temperature through the Boltzmann constant. It is an equation of state, a relation among the thermodynamic properties of a system, and it was originally deduced from experiment: Charles' law that volume is proportional to temperature at fixed pressure, and Boyle's law that the product of pressure and volume is constant at fixed temperature. It describes the behavior of real gases under most conditions, and it holds for any gas or mixture of gases, since only the total number of molecules enters. Absolute pressure and absolute temperature must be used.",
+      "evidence": "The boxed law, the tire of Figure 13.19 whose pressure rises first with the number of molecules and then with temperature, Example 13.5 counting 2.68 × 10²⁵ molecules in a cubic meter at STP, the Problem-Solving Strategy, and the problems on tires, light bulbs, a vacuum system, the space above the planet and a leaking gas cylinder.",
+      "eq": "eq-ideal-gas-law"
+    },
+    {
+      "id": "boltzmann-constant",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "The Boltzmann constant $k$",
+      "why": "The constant that turns the count of molecules and the absolute temperature into the product of pressure and volume is the Boltzmann constant, named for Ludwig Boltzmann, with the value 1.38 × 10⁻²³ J/K. Its unit says what it does: it relates an energy to a temperature, so that kT is an energy per molecule.",
+      "evidence": "The boxed value beside the ideal gas law, the glossary term, and every substitution into the law in Examples 13.5 and 13.6.",
+      "eq": "eq-boltzmann-constant"
+    },
+    {
+      "id": "ideal-gas-ratio-method",
+      "kind": "skill",
+      "section": "13.3",
+      "name": "Using the ideal gas law twice and taking a ratio",
+      "why": "When a gas changes state and some of its properties are fixed, the law is written once for the initial state and once for the final state and the two are divided. Whatever is held constant cancels, and so does the Boltzmann constant, leaving a relation among the quantities that changed. For a tire whose volume and contents do not change, the ratio of final to initial pressure equals the ratio of final to initial absolute temperature, which is why the temperatures must be in kelvins.",
+      "evidence": "Example 13.4, the bicycle tire that goes from 7.00 × 10⁵ Pa to 7.41 × 10⁵ Pa when it warms from 18.0 °C to 35.0 °C, Step 5 of the Problem-Solving Strategy, the Check Your Understanding box on halving the density of air at constant temperature, and the problems on car tires on a ferry to Alaska, a hot light bulb, an airplane passenger's stomach and the cooled gas cylinder.",
+      "eq": "eq-ideal-gas-ratio"
+    },
+    {
+      "id": "mole",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "The mole and molar mass",
+      "why": "The mole is the SI unit for the amount of a substance, and it is convenient because the number of molecules in any ordinary object is enormous. One mole contains Avogadro's number of particles, whatever the substance, and a mole of any substance has a mass in grams equal to its molecular mass, which is read off the periodic table. The number of moles is the number of molecules divided by Avogadro's number.",
+      "evidence": "The Moles and Avogadro's Number header, the Avogadro's Number box, the Check Your Understanding box that finds the molar mass of acetaminophen and the number of molecules in a pill, and the conceptual question on whether there is a mole of people on Earth.",
+      "eq": "eq-moles-from-molecules"
+    },
+    {
+      "id": "avogadros-number",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "Avogadro's number $N_\\text{A}$",
+      "why": "Avogadro's number is the number of particles in one mole, 6.02 × 10²³ per mole to three significant figures, named for Amedeo Avogadro, whose hypothesis that equal volumes of gas at the same pressure and temperature contain equal numbers of molecules has been confirmed. Since 2019 the mole is defined as exactly 6.02214076 × 10²³ elementary entities. The number is so large that a mole of table tennis balls would cover the Earth to a depth of about 40 km.",
+      "evidence": "The boxed value, Figure 13.20 of the table tennis balls over Everest, and the problems on Avogadro's number of sand grains and of table tennis balls, the second keyed at 41 km.",
+      "eq": "eq-avogadros-number"
+    },
+    {
+      "id": "ideal-gas-law-moles",
+      "kind": "result",
+      "section": "13.3",
+      "name": "The ideal gas law in moles $PV = nRT$",
+      "why": "Multiplying and dividing the ideal gas law by Avogadro's number turns the count of molecules into a number of moles and the Boltzmann constant into the universal gas constant, which is Avogadro's number times the Boltzmann constant, 8.31 J/(mol·K) in SI units, 1.99 cal/(mol·K) or 0.0821 L·atm/(mol·K) in others. Which form of the law to use depends on whether the number of molecules or the number of moles is known, and whichever value of the gas constant matches the units of the problem is the convenient one.",
+      "evidence": "The Ideal Gas Law Restated Using Moles header and its box, Example 13.7 finding 0.579 mol of gas in a bike tire, Step 4 of the Problem-Solving Strategy, and the problems on the air in the lungs, moles in 2.00 L under 7.41 × 10⁷ N/m², the gauge pressure of a tire holding 3.60 mol, and the keyed confirmation that nRT has the units of energy for each value of R.",
+      "eq": "eq-ideal-gas-law-moles"
+    },
+    {
+      "id": "molar-volume-at-stp",
+      "kind": "result",
+      "section": "13.3",
+      "name": "A cubic meter of gas at STP holds $2.68\\times10^{25}$ molecules, and a mole fills 22.4 L",
+      "why": "Standard temperature and pressure are 0 °C and atmospheric pressure, and at STP the ideal gas law gives 2.68 × 10²⁵ molecules in every cubic meter of any gas, 44.5 mol per cubic meter, and 22.5 L per mole to the precision of three-figure inputs (the accepted value is 22.4 L/mol). Because the count is the same for every gas, the mass of a cubic meter follows from the molar mass alone: dry air at 28.8 g/mol weighs 1.28 kg per cubic meter, so a living room holds about 90 kg of air, the mass of a person.",
+      "evidence": "Example 13.5 and Example 13.6, the discussion that finds the mass of the air in a living room, and the problems that convert 2.68 × 10²⁵ m⁻³ to cm⁻³ and ask how many atoms sit in a cubic micrometer.",
+      "eq": "eq-molar-volume-stp"
+    },
+    {
+      "id": "ideal-gas-law-energy",
+      "kind": "idea",
+      "section": "13.3",
+      "name": "Both sides of the ideal gas law are energies",
+      "why": "The dimensions on both sides of the ideal gas law are those of energy, joules in SI units. Pressure is force per unit area, so pressure times volume is force times displacement, which is work; and the right-hand side is proportional to the translational kinetic energy of the molecules at that temperature, as the next section shows. There is energy in a gas related to both its pressure and its volume, and the ideal gas law can be seen as another manifestation of the conservation of energy: the work of pumping up a tire goes into the pressure of the air and into warming the pump and the air.",
+      "evidence": "The Ideal Gas Law and Energy header, the paragraph on inflating a tire by hand, and the keyed problem confirming that nRT is an energy for each value of the gas constant."
+    },
+    {
+      "id": "kinetic-theory",
+      "kind": "idea",
+      "section": "13.4",
+      "name": "Kinetic theory: pressure comes from molecular collisions",
+      "why": "Kinetic theory assumes that atoms and molecules are in continuous random motion, and it explains pressure and temperature from that assumption. When a molecule collides elastically with a rigid wall, the component of its momentum perpendicular to the wall is reversed, so the wall exerts a force on it and, by Newton's third law, it exerts a force on the wall. A huge number of molecules strike the wall in a short time, and we observe the average force per unit area. More molecules mean more collisions and more pressure; faster molecules mean harder collisions and more pressure.",
+      "evidence": "The opening paragraph, Figure 13.21 of the molecule striking the wall, the conceptual question on how momentum is related to the pressure a gas exerts, and the Check Your Understanding box on whether a grain of pollen feels the statistical fluctuations of the collisions, whose answer names the Brownian effect."
+    },
+    {
+      "id": "molecular-origin-of-pressure",
+      "kind": "result",
+      "section": "13.4",
+      "name": "The ideal gas law from molecules $PV = \\tfrac{1}{3}Nm\\overline{v^2}$",
+      "why": "Following one molecule in a box gives the pressure of the gas. Its momentum changes by twice its perpendicular momentum at each collision, the average time between collisions with one wall is the time to cross the box and back, so the average force from one molecule is its mass times the square of its perpendicular speed over the length of the box. Multiplying by the number of molecules, replacing the perpendicular component by a third of the mean square speed because the motion is random and the three directions are alike, and dividing by the area of the wall gives the pressure. The result, PV = ⅓Nm v̄², is another expression of the ideal gas law, now in terms of the mass and speed of the molecules.",
+      "evidence": "The Things Great and Small box that carries the derivation step by step with Figure 13.22, the statement of the result in the main text and in the summary, and the AP item comparing the average speed and the average force of two gases of different molecular mass.",
+      "eq": "eq-pressure-from-molecules"
+    },
+    {
+      "id": "thermal-energy",
+      "kind": "result",
+      "section": "13.4",
+      "name": "Temperature measures average kinetic energy $\\overline{\\text{KE}} = \\tfrac{3}{2}kT$",
+      "why": "Setting the molecular form of the ideal gas law equal to PV = NkT and rearranging shows that the average translational kinetic energy of a molecule is three halves of the Boltzmann constant times the absolute temperature. This average kinetic energy is called thermal energy, and the equation is a molecular interpretation of temperature, valid for gases and reasonably accurate in liquids and solids: it is another definition of temperature, in terms of the energy of molecular motion, and it is the same for every kind of molecule at a given temperature.",
+      "evidence": "The derivation from the two forms of the ideal gas law, Example 13.8(a) finding 6.07 × 10⁻²¹ J for a molecule at room temperature, the glossary term, the AP item on how the kinetic energy changes when the temperature rises from 20 °C to 313 °C, and the problems on hydrogen at the surface of the Sun, helium in the corona and the kinetic energy needed for fusion.",
+      "eq": "eq-thermal-energy"
+    },
+    {
+      "id": "rms-speed",
+      "kind": "result",
+      "section": "13.4",
+      "name": "The rms speed $v_\\text{rms} = \\sqrt{3kT/m}$",
+      "why": "Solving the thermal energy equation for speed gives the root-mean-square speed of the molecules, the square root of the average of the speed squared, which grows with the square root of the absolute temperature and falls with the square root of the mass of the molecule. It is surprisingly large, 511 m/s for nitrogen at room temperature, yet it produces no wind, because the molecules move in every direction alike and travel only a tiny mean free path between collisions. The speed of sound, about 340 m/s at room temperature, reflects it, which is why sound is faster in hot air and in light gases such as helium.",
+      "evidence": "Example 13.8(b) finding 511 m/s for nitrogen, Figure 13.23 on molecular speeds and sound, and the problems on argon near a filament, helium at 5.00 K, carbon dioxide in a flame, hydrogen at 193 m/s, hydrogen near the Sun, the separation of uranium hexafluoride isotopes, and the supernova whose rms speed exceeds the speed of light.",
+      "eq": "eq-rms-speed"
+    },
+    {
+      "id": "molecular-mass-from-molar-mass",
+      "kind": "skill",
+      "section": "13.4",
+      "name": "Finding the mass of one molecule from the molar mass",
+      "why": "The mass of a single atom or molecule is the molar mass, read from the periodic table in grams per mole and converted to kilograms, divided by the number of particles in a mole. A nitrogen molecule is two atoms of 14.0067 g/mol, so it has a mass of 4.65 × 10⁻²⁶ kg; a helium atom has 6.65 × 10⁻²⁷ kg. Every calculation of an rms speed or of a temperature from a speed passes through this step.",
+      "evidence": "Example 13.8, which finds the mass of a nitrogen molecule, Example 13.9, which finds the mass of a helium atom, and the problems that give molecular masses in grams per mole for oxygen, hydrogen, carbon dioxide and uranium hexafluoride.",
+      "eq": "eq-molecular-mass"
+    },
+    {
+      "id": "maxwell-boltzmann-distribution",
+      "kind": "idea",
+      "section": "13.4",
+      "name": "The Maxwell-Boltzmann distribution of molecular speeds",
+      "why": "The motion of any one molecule is random in magnitude and direction, but a gas of many molecules has a predictable distribution of speeds, the Maxwell-Boltzmann distribution, calculated from kinetic theory and confirmed by experiment. The distribution has a long tail, since a few molecules move at several times the rms speed, and its peak, the most probable speed, lies below the rms speed. As the temperature rises the whole distribution shifts to higher speeds and broadens, which is why a person with a fever loses more water from the linings of the mouth and lungs.",
+      "evidence": "The Distribution of Molecular Speeds header, Figure 13.24 for oxygen at 300 K, Figure 13.25 at two temperatures, the paragraph on fever, and the AP item asking which statement about two distribution curves is false."
+    },
+    {
+      "id": "atmospheric-escape",
+      "kind": "idea",
+      "section": "13.4",
+      "name": "Why light gases leave an atmosphere",
+      "why": "To escape Earth's gravity from the top of the atmosphere an object must travel at 11.1 km/s, and helium would need a temperature near 2 × 10⁴ K for its rms speed to reach that. Yet very little helium is left in the air, because the speed of an atom changes from instant to instant and at any instant a small fraction in the tail of the distribution exceeds the escape velocity; over billions of years that fraction leaks away. Heavier molecules, oxygen, nitrogen and water, have smaller rms speeds and so few of them ever reach escape speed that the atmosphere is kept. The Moon's gravity is so much weaker that it has lost almost all of its atmosphere, and its daytime sky is black.",
+      "evidence": "Example 13.9, which finds the temperature at which helium's rms speed would equal the escape velocity and discusses why the helium is gone anyway, Figure 13.26 of the lunar rover under a black sky, and the problems on oxygen at Earth's escape velocity and hydrogen at the Moon's."
+    },
+    {
+      "id": "real-gas-condensation",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "A real gas condenses when it is cooled",
+      "why": "Real gases behave like ideal gases at high temperatures, but at lower temperatures the interactions between molecules and the volumes of the molecules can no longer be ignored. The molecules come very close, the gas condenses, and the volume drops precipitously as the substance becomes a liquid; cooled further it becomes a solid, and the volume shrinks a little more but never reaches zero, because the molecules themselves have volume. High pressure can also liquefy a gas, which is how liquid carbon dioxide and liquid nitrogen are made.",
+      "evidence": "The opening paragraph and Figure 13.27, the sketch of volume against temperature whose straight part extrapolates to absolute zero and whose vertical drop is liquefaction, and the paragraph on dry ice and liquid nitrogen."
+    },
+    {
+      "id": "pv-diagram",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "$PV$ diagrams and isotherms",
+      "why": "A graph of pressure against volume is a PV diagram. For an ideal gas at fixed temperature and number of molecules the product PV is constant, so each isotherm, a curve at one temperature, is a hyperbola, and the upper curves are the hotter ones. At lower temperatures the curves stop looking like hyperbolas, since the gas no longer behaves ideally and may contain liquid; along the flat part of a low isotherm the pressure stays constant while the volume changes, because the substance is changing phase.",
+      "evidence": "The PV Diagrams header, the two equations PV = NkT and PV = constant, Figure 13.28 with its family of isotherms and its expanded low-temperature portion, and 13.3's Check Your Understanding on halving the density of air, which is a step along an isotherm.",
+      "eq": "eq-isotherm"
+    },
+    {
+      "id": "critical-point",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "The critical temperature and pressure",
+      "why": "Above a substance's critical temperature the liquid phase cannot exist at any pressure: the isotherm at that temperature is the highest one to show a flat, two-phase part, and above it a gas compressed hard enough may reach the density of a liquid without condensing. The critical pressure is the minimum pressure needed for the liquid to exist at the critical temperature. Carbon dioxide cannot be liquefied above 31 °C, oxygen above −118 °C, which is why oxygen cannot be liquefied at room temperature however hard it is squeezed.",
+      "evidence": "The glossary terms, Table 13.3 of critical temperatures and pressures, the critical isotherm of Figure 13.28 and the critical point that ends the liquid-vapor curve of Figure 13.29, and the conceptual questions on liquefying carbon dioxide and oxygen at room temperature."
+    },
+    {
+      "id": "phase-diagram",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "The phase diagram",
+      "why": "A graph of pressure against temperature is a phase diagram: there are well-defined regions in which the substance is solid, liquid or gas, and the solid lines between them are the temperatures and pressures at which two phases coexist. For water the liquid-vapor curve gives the boiling point at each pressure, 100 °C at 1.00 atm rising to 374 °C at 218 atm, which is why a pressure cooker cooks faster; the solid-liquid curve gives the melting point, and for water it leans so that the melting temperature falls with increasing pressure, which is why a snowball packs and why tires melt snow into an ice layer. Knowing the pressure and temperature, you can read the phase off the diagram.",
+      "evidence": "The Phase Diagrams header, Figure 13.29 for water with its nonlinear axes, the paragraphs on the pressure cooker, the snowball and the car on snow, the unnumbered carbon dioxide diagram inside the conceptual questions, and the questions on the pressure cooker and on dry ice."
+    },
+    {
+      "id": "sublimation",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "Sublimation",
+      "why": "At sufficiently low pressures there is no liquid phase, and the substance goes directly between solid and gas. The phase change from solid to gas is sublimation; it accounts for snow pack that is lost without ever running into a river, for the automatic defrosting of a freezer and for freeze-drying. For water there is no liquid below 0.00600 atm, while carbon dioxide sublimates at ordinary atmospheric pressure, which is why solid carbon dioxide is dry ice: it does not melt.",
+      "evidence": "The paragraph on low pressures and the glossary term, the conceptual question on the vapor pressure of dry ice at −78.5 °C with the carbon dioxide diagram, and 13.6's Check Your Understanding on freeze-drying."
+    },
+    {
+      "id": "triple-point",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "The triple point",
+      "why": "The three curves of a phase diagram meet at a single point, the triple point, where solid, liquid and gas all exist in equilibrium. For water it is at 273.16 K and 0.00600 atm, and because it is a single well-defined temperature and pressure it is a more accurate calibration temperature than the melting point at 1.00 atm, which is 273.15 K. Every substance has one, and Table 13.4 lists several.",
+      "evidence": "The paragraph on the triple point, its glossary entry, Table 13.4 of triple point temperatures and pressures, and the triple point marked on Figure 13.29 and on the carbon dioxide diagram."
+    },
+    {
+      "id": "phase-equilibrium",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "Liquid and gas in equilibrium at the boiling temperature",
+      "why": "Liquid and gas are in equilibrium at the boiling temperature: in a closed container the liquid boils and the gas condenses at the same rate, with no net change in their amounts, because molecules leave the liquid as gas at the same rate as gas molecules stick to the liquid. At a higher temperature the boiling rate is faster, more molecules are in the gas, the gas pressure is higher and the condensation rate is faster to match, so the pair is in equilibrium again at the new pressure. An open pot of water at 100 °C boils away, and an open glass at 20 °C evaporates, because the gas above them is air rather than pure water vapor; a gas below its boiling temperature is called a vapor.",
+      "evidence": "The Equilibrium header, Figure 13.30 of the closed container at two boiling points, the paragraphs on the open pot and the open glass, the Check Your Understanding box on why ice water stays at 0 °C, and the conceptual question on the distinction between a gas and a vapor."
+    },
+    {
+      "id": "vapor-pressure",
+      "kind": "idea",
+      "section": "13.5",
+      "name": "Vapor pressure",
+      "why": "Vapor pressure is the pressure at which a gas coexists with its solid or liquid phase. It is created by the faster molecules that break away from the liquid or solid and enter the gas, so it depends on the substance and on its temperature, and an increase in temperature increases it. Water evaporates and ice sublimates when their vapor pressure exceeds the partial pressure of water vapor in the surrounding gas, and droplets or frost form when it is less.",
+      "evidence": "The Vapor Pressure, Partial Pressure, and Dalton's Law header, the glossary term, the Check Your Understanding box on whether energy is transferred in a phase change, and the conceptual question on why condensation forms first on the coldest object in a room."
+    },
+    {
+      "id": "daltons-law",
+      "kind": "result",
+      "section": "13.5",
+      "name": "Dalton's law of partial pressures",
+      "why": "The partial pressure of a gas is the pressure it would create if it alone occupied the total volume available, and in a mixture of gases the total pressure is the sum of the partial pressures of the components, assuming ideal gas behavior and no chemical reactions. This is Dalton's law, and it follows from kinetic theory: each gas creates its pressure by its own molecular collisions, independent of the other gases present, and pressures add as Pascal's principle says they do.",
+      "evidence": "The paragraph stating the law and its glossary terms, the summary, and the problems moved here from 13.6 on the partial pressure of nitrogen in dry air and the oxygen a deep-sea diver's mixture must carry."
+    },
+    {
+      "id": "relative-humidity",
+      "kind": "idea",
+      "section": "13.6",
+      "name": "Relative humidity and saturation",
+      "why": "Relative humidity tells how much water vapor is in the air compared with the maximum possible. At the maximum, saturation, the relative humidity is 100%, evaporation is inhibited and we feel hotter, because sweat no longer cools us. The amount of water vapor the air can carry depends on temperature through the vapor pressure of water: at 100% humidity the partial pressure of water vapor equals the vapor pressure, below it evaporation goes on, above it condensation. The water is not held by the air; the amount of water in air is set by the vapor pressure of water alone and has nothing to do with the properties of air.",
+      "evidence": "The opening paragraphs on heat and humidity, the glossary terms, the paragraph correcting the everyday phrase that air holds water, and the conceptual question on whether the saturation values hold in an atmosphere of helium."
+    },
+    {
+      "id": "vapor-density-from-vapor-pressure",
+      "kind": "skill",
+      "section": "13.6",
+      "name": "Finding the saturation vapor density from the vapor pressure",
+      "why": "Water vapor behaves like an ideal gas, so the density of vapor that creates a given partial pressure follows from PV = nRT solved for the moles per cubic meter and converted to grams with the molar mass of water, 18.0 g/mol. At 20.0 °C the vapor pressure of 2.33 × 10³ Pa gives 17.2 g/m³, exactly the saturation vapor density in Table 13.5, so the table's densities are the maximum amounts of water vapor a cubic meter can carry at each temperature.",
+      "evidence": "Example 13.10, Table 13.5 of vapor pressures and saturation vapor densities from −50 °C to 220 °C, and the problems that repeat the calculation at 40.0 °C and compare the vapor in the lungs with its vapor pressure.",
+      "eq": "eq-vapor-density"
+    },
+    {
+      "id": "percent-relative-humidity",
+      "kind": "result",
+      "section": "13.6",
+      "name": "Percent relative humidity",
+      "why": "Percent relative humidity is the ratio of the vapor density actually in the air to the saturation vapor density at that temperature, times 100. With Table 13.5 it answers many questions about a day's weather: air at 25.0 °C holding 9.40 g/m³ has a relative humidity of 40.9%, and the same air with a dew point of −10.0 °C has only 10.3%.",
+      "evidence": "The Percent Relative Humidity box, Example 13.11(a) and (c), and the problems on a 25.0 °C day with 18.0 g/m³, a desert day at 6.00%, a muggy morning that warms, an autumn evening that cools, and the Unreasonable Results item whose humidity comes out above 100%.",
+      "eq": "eq-percent-relative-humidity"
+    },
+    {
+      "id": "dew-point",
+      "kind": "idea",
+      "section": "13.6",
+      "name": "The dew point",
+      "why": "The dew point is the temperature at which the air's water vapor would be the saturation density, so that the relative humidity would be 100%: the temperature at which water starts to condense out of the air, as dew, fog or frost. Its importance is that the air temperature cannot fall below it without water condensing, and condensation releases considerable heat, which holds the temperature up; that is why farmers watch the dew point, why desert nights are so cold and why fog forms as the evening cools.",
+      "evidence": "Example 13.11(b), which reads a dew point of 10.0 °C off Table 13.5, the discussion of why condensation stops a temperature from dropping, the glossary term, and the problems on the dew point of a 20.0 °C day at 39.0% humidity and on the grams of water that condense when 25.0 °C air cools to 15.0 °C."
+    },
+    {
+      "id": "humidity-from-the-table",
+      "kind": "skill",
+      "section": "13.6",
+      "name": "Reading humidity and dew point from the saturation table",
+      "why": "Every humidity problem is worked with Table 13.5. The vapor density in the air, the saturation density at the air temperature and the saturation density at the dew point are three entries of the same column, and any one of humidity, vapor density, dew point and temperature follows from the others: the humidity is the ratio of two densities, the dew point is the temperature whose saturation density equals the vapor density in the air, and the water that condenses when air cools is the difference of two saturation densities. Where a temperature falls between rows, the answer is read by interpolation.",
+      "evidence": "Example 13.11 in all three parts, and the whole of the problem set from the relative humidity on a 25.0 °C day to the fog that forms when 25.0 °C air at 90.0% cools to 15.0 °C."
+    },
+    {
+      "id": "boiling",
+      "kind": "idea",
+      "section": "13.6",
+      "name": "Why water boils at 100 °C, and elsewhere at other temperatures",
+      "why": "Water boils at 100 °C because that is where its vapor pressure reaches 1.01 × 10⁵ Pa, one atmosphere, so that it can evaporate without limit. Bubbles form because water holds dissolved air: a bubble at the bottom of a pot contains air and water vapor at a total pressure of 1.00 atm, and as the temperature rises the water vapor in it increases and the bubble expands to keep its pressure; at 100 °C vapor enters continuously, the bubble grows, its buoyant force grows, and it breaks away and rises. Where the pressure on the water is different the boiling temperature is different: higher in a pressure cooker or at depth, lower at altitude and in a vacuum chamber.",
+      "evidence": "The paragraph on why water boils, Figure 13.33 of the bubble at 20 °C, 50 °C and 100 °C, the Check Your Understanding box on freeze-drying, the conceptual question on a beaker of 40.0 °C water in a vacuum chamber, and the problems on pressure cookers, boiling at altitude, atop Everest, in the Andes and at 38.3 m depth."
+    },
+    {
+      "id": "evaporative-cooling",
+      "kind": "idea",
+      "section": "13.6",
+      "name": "Evaporation cools what it leaves",
+      "why": "We keep cool in hot weather by evaporating sweat from our skin and water from our breathing passages, and high humidity inhibits that evaporation, which is why humid heat is worse. The molecules most likely to escape a liquid are those with the greatest speeds, so the molecules that remain have a lower average speed and a lower temperature; lowering the surrounding pressure lowers the partial pressure of water, speeds evaporation, and can cool food until it freezes, which is what a freeze-dryer does. Blowing hot air dries hair faster because the higher temperature raises the rate of evaporation.",
+      "evidence": "The opening paragraph on sweat and humidity, the sentence on drying hair, the Check Your Understanding box on freeze-drying, and the conceptual questions on why rubbing alcohol evaporates faster than water and on the drying of breathing passages at altitude."
+    },
+    {
+      "id": "heat",
+      "kind": "idea",
+      "section": "14.1",
+      "name": "Heat",
+      "why": "Heat is the spontaneous transfer of energy due to a temperature difference. When two objects at different temperatures are brought into contact, energy passes from the hotter to the colder one until they reach the same temperature, and no force acts through a distance while it does, so the transfer is not work. Heat is therefore a form of energy in transit: it exists only while the temperature difference drives it, and it ceases once the temperatures are equal.",
+      "evidence": "The section opens on the soft drink and the ice cube of Figure 14.2, which have different temperatures apart and one temperature in contact, and states the definition in a sentence of its own; the glossary carries the term, and the conceptual questions ask how heat transfer is related to temperature and for a situation in which it occurs."
+    },
+    {
+      "id": "heat-vs-temperature",
+      "kind": "idea",
+      "section": "14.1",
+      "name": "Heat is energy, temperature is not",
+      "why": "We may say the heat was unbearable when we mean the temperature was high, and the section names the confusion in order to end it. Heat is a form of energy and is measured in joules; temperature is not an energy but a measure of the average kinetic energy of the atoms and molecules. The misconception arises because we are sensitive to the flow of heat rather than to the temperature itself, and keeping the two apart is what lets the rest of the chapter say that adding heat need not raise a temperature at all.",
+      "evidence": "The paragraph on the common confusion between heat and temperature, and the conceptual question asking whether the energy is stored as heat once it has entered a system."
+    },
+    {
+      "id": "units-of-heat",
+      "kind": "skill",
+      "section": "14.1",
+      "name": "Joules, calories and kilocalories",
+      "why": "Because heat is a form of energy, its SI unit is the joule, but heat is also measured in the calorie, the energy needed to warm 1.00 g of water by 1.00 °C, and most often in the kilocalorie, which warms 1.00 kg of water by the same amount. A food calorie is a kilocalorie, a fact not easily determined from package labeling, and converting among these units is part of almost every problem in the chapter.",
+      "evidence": "The paragraph defining the calorie between 14.5 °C and 15.5 °C, the kilocalorie and the food calorie, the summary's statement that any energy unit can be used for heat transfer, and 14.2's problem asking the reader to show that 1 cal/(g·°C) equals 1 kcal/(kg·°C)."
+    },
+    {
+      "id": "mechanical-equivalent-of-heat",
+      "kind": "result",
+      "section": "14.1",
+      "name": "Mechanical equivalent of heat, $1.000\\;\\text{kcal} = 4186\\;\\text{J}$",
+      "why": "It is also possible to change the temperature of a substance by doing work, and James Prescott Joule's experiments established the mechanical equivalent of heat, the work needed to produce the same effects as heat transfer. The best modern value is 1.000 kcal = 4186 J, which we treat as the conversion between two units of energy. In Joule's apparatus falling weights turn paddles in water, gravitational potential energy becomes kinetic energy and is randomized by viscosity into the motion of the molecules, and the thermometer rises exactly as it would have had heat been added instead.",
+      "evidence": "The equation is the section's one displayed result; Figure 14.3 is Joule's apparatus and the paragraph beneath it walks the energy from the weights to the water; 14.2's problem on rubbing the hands together and its example on truck brakes apply the equivalence.",
+      "eq": "eq-mechanical-equivalent"
+    },
+    {
+      "id": "internal-energy-changed-by-heat-or-work",
+      "kind": "idea",
+      "section": "14.1",
+      "name": "Heat and work both change internal energy",
+      "why": "Heat added to a system changes its internal energy and usually its temperature, and so does work done on the system, by stirring or by rubbing. A system has a well-defined internal energy, but it does not have a heat content or a work content: once the energy is inside, nothing about the sample says which way it came. This is why the book says heat transfer rather than heat, and it is the idea Chapter 15 will build the first law of thermodynamics on.",
+      "evidence": "The closing paragraph of the section, and the Check Your Understanding box asking how to tell which of two samples received 10 kJ as heat and which as work, whose answer is that it is impossible."
+    },
+    {
+      "id": "three-factors-of-heat-transfer",
+      "kind": "idea",
+      "section": "14.2",
+      "name": "Heat transfer depends on temperature change, mass and substance",
+      "why": "Experiments show that the heat transferred to change a body's temperature depends on three factors: the change in temperature, the mass of the body, and the substance and its phase. Doubling the temperature change of a given mass takes twice the heat, doubling the mass takes twice the heat for the same change, and the same change in the same mass of water takes 10.8 times the heat it takes in copper. The first two follow from the internal energy being proportional to the absolute temperature and to the number of molecules; the third is a property of the material.",
+      "evidence": "Figure 14.4's three pairs of cylinders draw the three factors one at a time, the paragraph beneath it explains the first two from kinetic theory, and the first conceptual question asks for the three factors by name."
+    },
+    {
+      "id": "heat-and-temperature-change",
+      "kind": "result",
+      "section": "14.2",
+      "name": "Heat and temperature change, $Q = mc\\Delta T$",
+      "why": "The quantitative relationship between heat transfer and temperature change contains all three factors: the heat transferred is the mass times the specific heat times the change in temperature, provided there is no phase change and no work is done. The temperature change is the same in kelvin and in degrees Celsius, so either may be used, and if the heat is measured in kilocalories the specific heat is in kcal/(kg·°C). The relation is the working equation of the whole chapter, since every later method of heat transfer is asked how much temperature change it produces.",
+      "evidence": "The boxed note Heat Transfer and Temperature Change states the equation; Example 14.1 heats water in an aluminum pan with it, the swimming pool, baby bottle and copper-to-water problems apply it directly, and the Check Your Understanding box asks whether the same heat warms a block by the same 5 °C from a different starting temperature.",
+      "eq": "eq-heat-temperature-change"
+    },
+    {
+      "id": "specific-heat",
+      "kind": "idea",
+      "section": "14.2",
+      "name": "Specific heat",
+      "why": "The specific heat is the amount of heat necessary to change the temperature of 1.00 kg of a substance by 1.00 °C. It depends on the material and its phase, must generally be looked up in a table because there is no simple way to calculate it, and varies little with temperature for most solids and liquids. Water's is among the largest of any material, five times that of glass and ten times that of iron, which is important for sustaining life on Earth.",
+      "evidence": "The definition in the boxed note, Table 14.1 with its values for solids, liquids and gases, the paragraph comparing water to glass and iron, and the problem asking the reader to compute a specific heat from 4.35 kJ and identify the substance."
+    },
+    {
+      "id": "temperature-rise-from-work",
+      "kind": "skill",
+      "section": "14.2",
+      "name": "Temperature increase from work done on a substance",
+      "why": "When work is converted into internal energy, the temperature rise follows from the same equation solved for the temperature change: the energy delivered divided by the mass and the specific heat of what absorbs it. Truck brakes on a downhill run convert the gravitational potential energy the truck loses into the internal energy of the brake material, and because the brakes are small compared with the truck, even a tenth of that energy warms them quickly. It is the mechanical equivalent of heat made into a calculation.",
+      "evidence": "Example 14.2 finds the 9.2 °C rise of 100 kg of brake material from a 10,000 kg truck descending 75.0 m; the problem on rubbing the hands together with a frictional force and the conceptual question on brakes stopping a car from twice the speed test the same reasoning.",
+      "eq": "eq-temperature-change-from-heat"
+    },
+    {
+      "id": "calorimetry",
+      "kind": "result",
+      "section": "14.2",
+      "name": "Calorimetry, $Q_{\\text{cold}} + Q_{\\text{hot}} = 0$",
+      "why": "When two bodies at different temperatures are brought into contact in an insulated container, heat passes from the hotter to the colder until they reach a common temperature, and because no heat leaves the pair, the heat lost by the hot body is the heat gained by the cold one. Written with signs, the heat into the cold body is positive, the heat out of the hot body is negative, and the two sum to zero. This is a calorimetry problem, and it is the way the heat content of foods and the specific heats of materials are measured.",
+      "evidence": "Example 14.3 pours cold water into a hot pan and writes the balance in step 3; the peanut-burning problem and 14.3's final-temperature problems rest on the same balance.",
+      "eq": "eq-calorimetry"
+    },
+    {
+      "id": "final-temperature-from-heat-exchange",
+      "kind": "skill",
+      "section": "14.2",
+      "name": "Final temperature when heat is transferred between two bodies",
+      "why": "Solving the calorimetry balance for the final temperature gives a weighted average of the two starting temperatures, each weighted by its body's mass times specific heat. The pan at 150 °C and the water at 20.0 °C meet at 59.1 °C, much closer to the water, because water's specific heat is more than four times aluminum's and its mass times specific heat is the larger weight. The skill is to write the heat lost and the heat gained in terms of the one unknown temperature and then collect the terms.",
+      "evidence": "Example 14.3's steps 4 and 5 derive and evaluate the final temperature; 14.3's problems on the ice cube in warm water, the water poured onto ice and the hot rocks in a basket extend the same solution to include a phase change.",
+      "eq": "eq-final-temperature"
+    },
+    {
+      "id": "water-moderates-temperature",
+      "kind": "idea",
+      "section": "14.2",
+      "name": "Water's large specific heat moderates temperatures",
+      "why": "Because water has a greater specific heat than most common substances, it undergoes a small temperature change for a given heat transfer. A large body of water such as a lake needs a great deal of heat to warm appreciably, so its temperature stays nearly constant through a day even when the air's changes a great deal, while it does change over the longer times from summer to winter. Land warms and cools faster than water, which is what drives land breezes and sea breezes.",
+      "evidence": "The discussion of Example 14.3, the Take-Home Experiment on the temperature change of land and water, and 14.6's AP item on how sea breezes form by day and reverse at night."
+    },
+    {
+      "id": "latent-heat",
+      "kind": "idea",
+      "section": "14.3",
+      "name": "Latent heat, $Q = mL$",
+      "why": "No temperature change occurs from heat transfer while a substance changes phase: the energy goes into breaking the cohesive bonds between molecules rather than into their kinetic energy, so ice at 0 °C stays at 0 °C until all of it has melted, and energy is released, usually as thermal energy, when the bonds form again in freezing or condensation. The heat required to change the phase of a mass is that mass times a latent heat coefficient, a material constant that is called latent, or hidden, because the energy enters or leaves without changing the temperature.",
+      "evidence": "The opening paragraphs on why melting and vaporizing take energy, Figure 14.8's molecules of a solid, a liquid and a gas, the definition of the latent heat coefficients, the summary's $Q = mL$, and the glossary term; the Check Your Understanding box asks why snow stays on a slope when the air is above freezing.",
+      "eq": "eq-latent-heat"
+    },
+    {
+      "id": "heat-of-fusion",
+      "kind": "result",
+      "section": "14.3",
+      "name": "Heat of fusion, $Q = mL_{\\text{f}}$",
+      "why": "The latent heat of fusion is the heat that melts a kilogram of a substance at its melting point, and the same heat is released when the kilogram freezes. For water it is 334 kJ/kg, which is the energy that would warm a kilogram of liquid water from 0 °C to 79.8 °C, so a bag of ice at 0 °C absorbs far more energy than a bag of water at the same temperature and an orchard sprayed with water before a frost is warmed by the water freezing.",
+      "evidence": "The first displayed equation of the section, the water row of Table 14.2, the worked comparison with warming water to 79.8 °C, the Real-World Application on orchards, and the problems on thawing frozen vegetables, a bag of ice in a cooler and the frost-damage spray.",
+      "eq": "eq-heat-fusion"
+    },
+    {
+      "id": "heat-of-vaporization",
+      "kind": "result",
+      "section": "14.3",
+      "name": "Heat of vaporization, $Q = mL_{\\text{v}}$",
+      "why": "The latent heat of vaporization is the heat that turns a kilogram of liquid into vapor at the boiling point, and the same heat is released when the vapor condenses. For water it is 2256 kJ/kg, nearly seven times its heat of fusion, so boiling away a kilogram of water costs more than raising it from ice-cold to boiling, and the condensation that forms on a glass of iced tea releases energy into the glass and speeds the melting of the ice.",
+      "evidence": "The second displayed equation, the 2256 kJ figure in the text and in Table 14.2, the paragraph on condensation with Figure 14.10, and the problems on boiling away water in a pot, condensation on a glass of ice water and the crude-oil fire.",
+      "eq": "eq-heat-vaporization"
+    },
+    {
+      "id": "heating-curve",
+      "kind": "idea",
+      "section": "14.3",
+      "name": "Temperature against heat added through the phases of water",
+      "why": "Adding heat to ice at −20 °C traces a graph with slopes and plateaus. The temperature rises linearly while the ice warms, stops at 0 °C while the ice melts and every joule goes into the phase change, rises again more slowly through the liquid because water's specific heat is twice ice's, stops at 100 °C for a much longer plateau while the water boils, and rises once more as steam. The plateaus are the latent heats, and their lengths beside the slopes show that the energy of a phase change is enormous compared with that of a temperature change.",
+      "evidence": "Figure 14.9 draws the graph and the paragraph before it walks each segment with its specific heat or latent heat in cal/g; the problem on taking 0.200 kg of ice from −20.0 °C to 130 °C, with the time for each stage at a fixed rate, asks the reader to construct the same graph."
+    },
+    {
+      "id": "evaporation-below-boiling",
+      "kind": "idea",
+      "section": "14.3",
+      "name": "Evaporation below the boiling point",
+      "why": "Water evaporates at temperatures below its boiling point, and it costs more energy per kilogram to do so, because the molecules have less kinetic energy to draw on: at body temperature the heat of vaporization is 2430 kJ/kg, about ten percent higher than at 100 °C. Perspiration takes this heat from the skin, which is why sweating cools, and high humidity slows evaporation so that the sweat stays on your brow. The same evaporation is why air temperatures in humid climates rarely rise above 35 °C.",
+      "evidence": "The paragraph on evaporation at body temperature and the one on humid climates, the footnote to Table 14.2 giving the value at 37 °C, and the conceptual questions on Florida's temperatures, a lid on a boiling pot and freeze-dried food."
+    },
+    {
+      "id": "condensation-and-freezing-release-heat",
+      "kind": "idea",
+      "section": "14.3",
+      "name": "Condensation and freezing release heat",
+      "why": "Energy must be removed from vapor to make it condense and from liquid to make it freeze, exactly the energy the phase change absorbed in the other direction, and the surroundings receive it. This is why condensation on a cold glass speeds the melting of the ice inside, why temperatures in humid weather rarely fall below the dew point, why an orchard sprayed with water is protected from a hard frost, and why the moment water freezes it is at 0 °C and no colder.",
+      "evidence": "The paragraph on condensation with Figure 14.10, the Real-World Application on orchards with Figure 14.11, and the conceptual questions on the temperature of newly frozen ice, on condensation and melting, and on still air cooling at night."
+    },
+    {
+      "id": "heat-of-sublimation",
+      "kind": "result",
+      "section": "14.3",
+      "name": "Heat of sublimation, $Q = mL_{\\text{s}}$",
+      "why": "Sublimation is the transition from the solid phase directly to the vapor phase, as when snow disappears without a trace of liquid, dry ice makes its smoke, or frost forms on a cold window from vapor alone. It occurs because the equilibrium vapor pressure of a solid is not zero. The energy required is the mass times the heat of sublimation, a constant of the same order as the other latent heats, so dry ice is an effective coolant and frosting releases energy.",
+      "evidence": "The paragraph on sublimation with Figure 14.12, the equation for the heat of sublimation, and the glossary terms; the conceptual question on the balloon cooled in liquid nitrogen asks the reader to identify a sublimating solid from Table 14.2."
+    },
+    {
+      "id": "phase-change-calorimetry",
+      "kind": "skill",
+      "section": "14.3",
+      "name": "Final temperature with a phase change",
+      "why": "When a phase change takes part in a heat exchange, the problem is done in stages: the heat that melts the ice, then the heat that warms the melted water, set against the heat the other body gives up, with all the terms in the one unknown final temperature. The problem-solving strategy says to try the problem without a phase change first and, if the temperature change would carry a body past a melting or boiling point, to go back and do it in steps, checking at the end that no phase change has been missed.",
+      "evidence": "Example 14.4 cools a soda with three ice cubes and solves for the final temperature; the seven-step Problem-Solving Strategies for the Effects of Heat Transfer; the problems on the ice cube at −30.0 °C in warm water, the water poured onto a block of ice, the hot rocks in a basket and the aluminum pot with evaporation."
+    },
+    {
+      "id": "heat-transfer-methods",
+      "kind": "idea",
+      "section": "14.4",
+      "name": "Three methods of heat transfer",
+      "why": "Whenever there is a temperature difference, heat transfer occurs, and every process by which it does takes place by only three methods: conduction, convection and radiation. All three have one thing in common, that they transfer heat solely because of a temperature difference, and we control their rates by choosing materials, controlling the movement of air and choosing colors. A fireplace shows all three at once.",
+      "evidence": "The section's opening paragraph and its numbered list of the three methods, Figure 14.13's fireplace with a labelled arrow for each, and the Check Your Understanding box asking for an everyday example of each mechanism."
+    },
+    {
+      "id": "conduction",
+      "kind": "idea",
+      "section": "14.4",
+      "name": "Conduction",
+      "why": "Conduction is heat transfer through stationary matter by physical contact. The matter is stationary on the large scale, though its atoms and molecules are in thermal motion at any temperature above absolute zero, and the heat passes between the electric burner of a stove and the bottom of a pan, or from a hot floor into the sole of a foot, without anything moving from one place to the other.",
+      "evidence": "The first item of the section's list, the glossary term, the conduction arrow into the floor in Figure 14.13, and the Check Your Understanding box's example of holding a hot cup of coffee."
+    },
+    {
+      "id": "convection",
+      "kind": "idea",
+      "section": "14.4",
+      "name": "Convection",
+      "why": "Convection is heat transfer by the macroscopic movement of a fluid. The fluid itself carries the energy from one place to another, as the air does in a forced-air furnace, in the draft up a chimney and in the weather, and as water does in the cooling system of a car.",
+      "evidence": "The second item of the section's list, the glossary term, the convection arrows into the room and up the chimney in Figure 14.13, and the conceptual question on how heat leaves a person in a hot tub."
+    },
+    {
+      "id": "radiation-heat-transfer",
+      "kind": "idea",
+      "section": "14.4",
+      "name": "Radiation",
+      "why": "Heat transfer by radiation occurs when microwaves, infrared radiation, visible light or another form of electromagnetic radiation is emitted or absorbed. The Sun warms the Earth this way across empty space, a fire warms the room mostly this way, and the human body radiates infrared whether or not anything touches it.",
+      "evidence": "The third item of the section's list, the glossary term, the radiation arrows from the flames in Figure 14.13, and the conceptual questions on how heat leaves Earth's surface for space and on the silvered walls of a thermos bottle."
+    },
+    {
+      "id": "conduction-by-molecular-collisions",
+      "kind": "idea",
+      "section": "14.5",
+      "name": "Conduction by molecular collisions",
+      "why": "The molecules of a hotter body have the greater average kinetic energy, and when a fast molecule and a slow one collide at the surface where two bodies touch, energy passes from the faster to the slower. The cumulative effect of all the collisions is a net flux of heat from the hot body to the cold one that grows with the temperature difference and with the area of contact, and that falls to zero when the temperatures are equal. Because it relies on random motion, conduction is slow over distances larger than a molecule's reach.",
+      "evidence": "The paragraph on why a tile floor feels colder than a carpet at the same temperature, Figure 14.16's molecules at a contact surface, the sentences on boiling water and on touching a wall with the palm rather than a fingertip, and the closing remark of Example 14.6 that conduction alone could not temper Earth's days and nights."
+    },
+    {
+      "id": "rate-of-conductive-heat-transfer",
+      "kind": "result",
+      "section": "14.5",
+      "name": "Rate of conductive heat transfer, $Q/t = kA(T_2 - T_1)/d$",
+      "why": "The rate at which heat is conducted through a slab of material is proportional to the temperature difference across it and to its area, inversely proportional to its thickness, and set by a constant of the material, its thermal conductivity. The four factors were deduced from experiment and are confirmed by it, and the equation holds whether the slab is window glass or walrus blubber. It is the rate, in watts, that the section's problems ask for.",
+      "evidence": "Figure 14.17's slab between a hot face and a cold face, the displayed equation and its glossary term, the summary, and the problems on a house wall, a window, the tissue of the human body, an animal's fur and a double-paned window; the AP item asking which statement describes the rate correctly.",
+      "eq": "eq-conduction-rate"
+    },
+    {
+      "id": "thermal-conductivity",
+      "kind": "idea",
+      "section": "14.5",
+      "name": "Thermal conductivity",
+      "why": "The thermal conductivity is the property of a material's ability to conduct heat, and it spans more than four orders of magnitude across common substances. The best thermal conductors, silver, copper, gold and aluminum, are also the best electrical conductors, because of the density of free electrons in them, and cooking utensils are made of them; Styrofoam, fiberglass, wool and down are poor conductors because they trap many small pockets of air, whose own conductivity is among the lowest of all.",
+      "evidence": "Table 14.3 and the paragraphs around it, the discussion of Example 14.5 on why Styrofoam insulates, the remark on metals and free electrons, and the AP item on designing a saucepan that conducts as fast as silver; the conceptual question on ceramic stove tops."
+    },
+    {
+      "id": "r-factor",
+      "kind": "idea",
+      "section": "14.5",
+      "name": "The R factor of an insulator",
+      "why": "A good insulator combines a small conductivity with a large thickness, and the ratio of thickness to conductivity is called the R factor. The rate of conductive heat transfer is inversely proportional to it, so the larger the R factor the better the insulation. It is the figure quoted for household insulation, still in non-metric units, with 3.5-inch fiberglass batts rated at 11 and 6.5-inch batts at 19.",
+      "evidence": "The paragraph defining the R factor beside Figure 14.18's batts, the glossary term, and the problems on adding insulation to an attic and on the payback time of doing so."
+    },
+    {
+      "id": "conduction-with-phase-change",
+      "kind": "skill",
+      "section": "14.5",
+      "name": "Heat conducted over a time melts a mass",
+      "why": "The conduction equation gives a rate; multiplying it by a time gives the heat, and that heat may be spent on a phase change. A Styrofoam ice box in a hot car trunk lets heat in at a rate set by its walls, and over a day that heat melts a mass of ice equal to the total heat divided by the heat of fusion. The skill is to carry a rate into an amount and an amount into a mass, keeping each step's units.",
+      "evidence": "Example 14.5, which finds that 3.44 kg of ice melts in one day in a Styrofoam box at 35.0 °C; the problem on the man who evaporates 2.59 kg of water in a day and the walrus and fur problems that end on a food intake."
+    },
+    {
+      "id": "temperature-difference-from-conduction",
+      "kind": "skill",
+      "section": "14.5",
+      "name": "Temperature difference maintained by a heat flow",
+      "why": "Solved the other way, the conduction equation gives the temperature difference that a known rate of heat transfer keeps across a slab. Through the aluminum bottom of a pan boiling away a gram of water a second, 2.26 kW crosses with a difference of only 5.33 °C, because aluminum conducts so well; across a ceramic stove top of the same area the same rate would need a thousand degrees. A small temperature difference with a large heat flow is the mark of a good conductor.",
+      "evidence": "Example 14.6 on the aluminum pan, and the problems on the ceramic stove top, the wool clothing that carries 50.0 W and the lava crust that conducts as fast as it radiates.",
+      "eq": "eq-conduction-temperature-difference"
+    },
+    {
+      "id": "conduction-rate-scaling",
+      "kind": "result",
+      "section": "14.5",
+      "name": "How the conduction rate scales with size",
+      "why": "Because area is the product of two lengths and thickness is one, doubling every dimension of a slab quadruples the area and only doubles the thickness, and the rate of conductive heat transfer doubles. Comparisons of this kind, a thin window against a thick wall, a callus against a bare sole, are answered by ratios of the four factors without evaluating either rate.",
+      "evidence": "The Check Your Understanding box on doubling all spatial dimensions, which the book prints after Example 14.6 and the page sets inline after the rate equation it tests, and the problems comparing a window to a wall (35 to 1) and a double pane to a single one (24 times)."
+    },
+    {
+      "id": "natural-convection",
+      "kind": "idea",
+      "section": "14.6",
+      "name": "Natural convection",
+      "why": "Natural convection is driven by buoyant forces: a fluid that is heated expands, its density falls, and it rises through the cooler, denser fluid around it, which sinks to take its place, so that a loop forms and carries heat with the moving matter. A gravity furnace heats a house this way, a pot of water on a stove circulates this way, and ocean currents and the atmosphere carry energy across the globe this way. Forced convection, in a car's cooling system or the blood vessels of the skin, is the same transport driven by a pump.",
+      "evidence": "The opening paragraphs on atmospheric circulation, engines and the body, Figures 14.21 and 14.22 with their convective loops, the Take-Home Experiment on convection rolls, and the AP item asking under which two conditions convection is greatest."
+    },
+    {
+      "id": "convection-heat-rate",
+      "kind": "skill",
+      "section": "14.6",
+      "name": "Heat transfer by the mass of fluid moved",
+      "why": "To calculate the heat convection carries, determine the amount of matter moved and use the temperature-change equation for it: the mass of fluid, from its density and volume, times its specific heat times the temperature change it undergoes, divided by the time in which that mass is replaced. The air of a house that is replaced every half hour must be warmed by 10.0 °C at 4.64 kW, the power of forty-six 100 W bulbs, which is why houses are weather-stripped.",
+      "evidence": "Example 14.7 on the convection of air through the walls of a house, and the problems on a classroom's excess cold air, Kilauea's lava, the blood pumped to the skin and the air a person breathes."
+    },
+    {
+      "id": "wind-chill",
+      "kind": "idea",
+      "section": "14.6",
+      "name": "Wind chill",
+      "why": "A cold wind is much more chilling than still cold air, because convection combines with conduction in the body to increase the rate at which energy leaves it. Wind-chill factors are the temperatures of still air that would produce the same rate of cooling as air of a given temperature and speed, and they are a dramatic reminder of convection's ability to transfer heat faster than conduction: a 15.0 m/s wind at 0 °C chills like still air at about −18 °C.",
+      "evidence": "The paragraph introducing Table 14.4 and the table itself, the summary, the Check Your Understanding box on why a fan feels refreshing, and the problems reading the table for a wind speed and a still-air temperature."
+    },
+    {
+      "id": "air-as-insulator",
+      "kind": "idea",
+      "section": "14.6",
+      "name": "Trapped air is an insulator",
+      "why": "Air transfers heat rapidly by convection but conducts poorly, so whether it insulates depends on whether it can flow. The 9 cm space inside a house wall is large enough for convection to work, and insulation is added to stop the air moving; the 1 cm gap of a double-paned window is too small for convection and takes advantage of air's low conductivity. Fur, feathers and fiberglass all trap air in pockets too small to support convection, which is why they are light and warm.",
+      "evidence": "The paragraph on wall spaces and double panes, Figure 14.23's convection cells in fur, and 14.5's discussion of Example 14.5 on Styrofoam, fiberglass, wool and down."
+    },
+    {
+      "id": "convection-with-phase-change",
+      "kind": "result",
+      "section": "14.6",
+      "name": "Evaporation rate that carries a given power, $m/t = (Q/t)/L_{\\text{v}}$",
+      "why": "When convection is accompanied by a phase change, the moving fluid carries the latent heat with it, and the rate at which mass evaporates to remove a given power is that power divided by the heat of vaporization. Sweat evaporating from the skin can carry away a resting body's 120 W at about 3 g per minute, even when the air is as warm as the skin, provided air flow replaces the saturated air. The same process carries heat from the ocean into the atmosphere, drives thunderheads 20 km into the stratosphere by positive feedback, and lets a melting iceberg cool the sea it drifts through.",
+      "evidence": "Example 14.8 on sweat, the paragraphs on evaporation from the oceans and on icebergs with Figures 14.24 to 14.26, the summary's sentence that convection with a phase change can carry energy from cold regions to warm ones, and the problems on coffee cooled by evaporation and the water evaporated from a lake and from the lungs.",
+      "eq": "eq-evaporation-rate"
+    },
+    {
+      "id": "radiation-spectrum-and-temperature",
+      "kind": "idea",
+      "section": "14.7",
+      "name": "A hotter body radiates more, at shorter wavelengths",
+      "why": "A hot body emits electromagnetic waves that need no medium to travel, and the energy of the radiation depends on its wavelength: shorter wavelengths carry more energy. Because more heat is radiated at higher temperatures, a change of temperature is accompanied by a change of color, from the infrared you feel from a stove element that has not yet begun to glow, to red, to the yellow and white of steel in a blast furnace. The spectrum of an ideal radiator rises dramatically with temperature and its peak shifts toward the visible and the ultraviolet.",
+      "evidence": "The opening paragraphs on feeling heat from a fire and from the Sun across empty space, Figure 14.29's spectra at 3000 K, 4000 K and 6000 K with the visible band shaded, and the campfire of Figure 14.28 whose caption says that most of its heat arrives as infrared."
+    },
+    {
+      "id": "absorbers-and-emitters",
+      "kind": "idea",
+      "section": "14.7",
+      "name": "A good absorber is a good emitter",
+      "why": "The rate of heat transfer by radiation is largely determined by the color of the object. Black absorbs best and radiates best, so black asphalt is hotter than gray sidewalk by day and colder by night; white and silver absorb poorly and radiate poorly, reflecting radiation like a mirror. An ideal radiator is the same color as an ideal absorber, and the balance of radiation into and out of an object depends only on how well the object itself emits and absorbs.",
+      "evidence": "The paragraph on black and white objects, Figure 14.30's ice on two pavements, Figure 14.31's black and silver blocks, and the conceptual questions on a dark circus tent and on the white tent and tunic of the rider problem."
+    },
+    {
+      "id": "emissivity",
+      "kind": "idea",
+      "section": "14.7",
+      "name": "Emissivity",
+      "why": "The emissivity is a measure of how well an object radiates. An ideal jet-black radiator, a black body, has an emissivity of 1, a perfect reflector has 0, and real objects fall between: tungsten filaments about 0.5, carbon black about 0.99, and skin 0.97 in the infrared, so that we are all nearly black in the infrared whatever our visible color. The Earth's average emissivity is about 0.65, complicated by its varying cloud cover.",
+      "evidence": "The definition beside the Stefan-Boltzmann law, the paragraph on skin's emissivity and night scopes, the glossary term, and the emissivities given in every radiation problem of the set."
+    },
+    {
+      "id": "stefan-boltzmann-law",
+      "kind": "result",
+      "section": "14.7",
+      "name": "Stefan-Boltzmann law, $Q/t = \\sigma e A T^4$",
+      "why": "The rate of heat transfer by emitted radiation is the Stefan-Boltzmann constant times the emissivity times the surface area times the fourth power of the absolute temperature in kelvin. The radiation rate goes as the surface area, which is why knocking apart the coals of a fire makes it noticeably hotter to stand near, and it goes as the fourth power of the temperature, a remarkably strong dependence that the next two results turn on. The temperature must be absolute; a Celsius value in this equation is wrong.",
+      "evidence": "The displayed law and its glossary term, the paragraph beneath it on the fourth power and on surface area, the summary, and the AP item on 275 K against 1100 K.",
+      "eq": "eq-stefan-boltzmann"
+    },
+    {
+      "id": "radiation-fourth-power",
+      "kind": "result",
+      "section": "14.7",
+      "name": "The fourth-power dependence",
+      "why": "Because the radiated power goes as the fourth power of the absolute temperature, small temperature differences produce detectable differences in radiation: a body at 40 °C radiates about 30 percent more than the same body at 20 °C, and skin at 34.0 °C radiates 1.31 percent more than at 33.0 °C, enough for a thermograph to map. At larger ratios the effect is enormous, a radiator at four times the absolute temperature emitting 256 times the power.",
+      "evidence": "The Check Your Understanding box comparing 20 °C with 40 °C, the paragraph on thermographs with Figure 14.32, the thermography problem with Figure 14.35, and the AP item on two black-body radiators."
+    },
+    {
+      "id": "net-radiation-rate",
+      "kind": "result",
+      "section": "14.7",
+      "name": "Net rate of heat transfer by radiation, $Q_{\\text{net}}/t = \\sigma e A (T_2^4 - T_1^4)$",
+      "why": "All objects emit and absorb radiation, so the net rate is the absorption minus the emission, which for an object at one temperature surrounded by an environment at another is the Stefan-Boltzmann expression in the difference of the two fourth powers, with the emissivity of the object alone. It does not matter whether the surroundings are white, gray or black; when the surroundings are hotter the net transfer is into the object, and when they are colder it is out. An unclothed person in a 22.0 °C room loses about 99 W this way.",
+      "evidence": "The displayed equation and its glossary term, Example 14.9 on the person in a dark room, the Problem-Solving Strategies for the Methods of Heat Transfer, and the problems on a black roof at night, fresh lava, a skier in white and the circus tent.",
+      "eq": "eq-net-radiation"
+    },
+    {
+      "id": "greenhouse-effect",
+      "kind": "idea",
+      "section": "14.7",
+      "name": "The greenhouse effect",
+      "why": "The Earth receives almost all its energy as radiation from the Sun and radiates energy back into a dark sky at about 3 K, and its steady temperature is the balance of the two. The atmosphere is transparent to the Sun's visible light and most of its infrared, but the infrared the cooler Earth emits is at longer wavelengths that carbon dioxide and water vapor absorb and re-radiate, part of it back to the surface, which keeps the Earth about 40 °C warmer than it would be with no atmosphere. Eunice Newton Foote first measured this in flasks of carbon dioxide left in the sun, and the effect is central to global warming from the gases that industry and farming emit.",
+      "evidence": "The paragraphs on the Earth's energy balance and on Foote's experiment, Figure 14.33 of the greenhouse effect, the glossary term, the paragraph on clouds and frost on clear nights, and the conceptual questions on cloudy nights, on the Earth without an atmosphere and on cold sensors observing dark space."
+    },
+    {
+      "id": "heat-transfer-methods-strategy",
+      "kind": "skill",
+      "section": "14.7",
+      "name": "Solving problems across the methods of heat transfer",
+      "why": "A problem in heat transfer is worked by identifying which of the three methods is at work, then reaching for the right relation: the conduction equation with a conductivity from the table, the temperature-change or latent-heat equation for the mass a convection carries, the net radiation equation for exchange with the surroundings. The knowns and unknowns are listed, the equation solved for the unknown before the numbers go in, and the answer checked for sense, since a person cannot warm by 36 °C in a day and a window cannot lose 1.46 kW.",
+      "evidence": "The boxed Problem-Solving Strategies for the Methods of Heat Transfer, and the Integrated Concepts and Unreasonable Results problems that close the chapter: the meteor in the ocean, the cooling towers, the shivering person, the lungs, the rising hot air and the radiating meteorite."
     }
   ],
   "concept_prereqs": [
@@ -9523,6 +11209,1566 @@
     {
       "concept": "osmotic-pressure",
       "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "first-law-of-thermodynamics",
+      "prereq": "conservation-of-energy"
+    },
+    {
+      "concept": "first-law-of-thermodynamics",
+      "prereq": "work"
+    },
+    {
+      "concept": "first-law-of-thermodynamics",
+      "prereq": "net-work"
+    },
+    {
+      "concept": "first-law-of-thermodynamics",
+      "prereq": "forms-of-energy"
+    },
+    {
+      "concept": "first-law-of-thermodynamics",
+      "prereq": "heat"
+    },
+    {
+      "concept": "first-law-of-thermodynamics",
+      "prereq": "internal-energy-changed-by-heat-or-work"
+    },
+    {
+      "concept": "heat-and-work-sign-convention",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "heat-and-work-sign-convention",
+      "prereq": "work-sign"
+    },
+    {
+      "concept": "heat-and-work-are-energy-in-transit",
+      "prereq": "work"
+    },
+    {
+      "concept": "heat-and-work-are-energy-in-transit",
+      "prereq": "energy-transformation"
+    },
+    {
+      "concept": "heat-and-work-are-energy-in-transit",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "heat-and-work-are-energy-in-transit",
+      "prereq": "heat"
+    },
+    {
+      "concept": "heat-and-work-are-energy-in-transit",
+      "prereq": "heat-vs-temperature"
+    },
+    {
+      "concept": "heat-and-work-are-energy-in-transit",
+      "prereq": "internal-energy-changed-by-heat-or-work"
+    },
+    {
+      "concept": "internal-energy",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "internal-energy",
+      "prereq": "potential-energy"
+    },
+    {
+      "concept": "internal-energy",
+      "prereq": "forms-of-energy"
+    },
+    {
+      "concept": "internal-energy-is-a-state-function",
+      "prereq": "internal-energy"
+    },
+    {
+      "concept": "internal-energy-is-a-state-function",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "calculate-internal-energy-change",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "calculate-internal-energy-change",
+      "prereq": "heat-and-work-sign-convention"
+    },
+    {
+      "concept": "human-metabolism-first-law",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "human-metabolism-first-law",
+      "prereq": "energy-conversion-in-humans"
+    },
+    {
+      "concept": "human-metabolism-first-law",
+      "prereq": "metabolic-rate"
+    },
+    {
+      "concept": "human-metabolism-first-law",
+      "prereq": "body-efficiency"
+    },
+    {
+      "concept": "human-metabolism-first-law",
+      "prereq": "efficiency"
+    },
+    {
+      "concept": "human-metabolism-first-law",
+      "prereq": "units-of-heat"
+    },
+    {
+      "concept": "heat-engine",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "heat-engine",
+      "prereq": "work"
+    },
+    {
+      "concept": "heat-engine",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "isobaric-work",
+      "prereq": "work"
+    },
+    {
+      "concept": "isobaric-work",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "isobaric-work",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "isobaric-work",
+      "prereq": "bernoulli-energy-per-volume"
+    },
+    {
+      "concept": "isobaric-work",
+      "prereq": "ideal-gas-law-energy"
+    },
+    {
+      "concept": "pv-diagram-work-as-area",
+      "prereq": "isobaric-work"
+    },
+    {
+      "concept": "pv-diagram-work-as-area",
+      "prereq": "work-as-area"
+    },
+    {
+      "concept": "pv-diagram-work-as-area",
+      "prereq": "pv-diagram"
+    },
+    {
+      "concept": "work-depends-on-path",
+      "prereq": "pv-diagram-work-as-area"
+    },
+    {
+      "concept": "work-depends-on-path",
+      "prereq": "internal-energy-is-a-state-function"
+    },
+    {
+      "concept": "isochoric-process",
+      "prereq": "isobaric-work"
+    },
+    {
+      "concept": "net-work-of-a-cycle",
+      "prereq": "pv-diagram-work-as-area"
+    },
+    {
+      "concept": "net-work-of-a-cycle",
+      "prereq": "work-depends-on-path"
+    },
+    {
+      "concept": "net-work-of-a-cycle",
+      "prereq": "isochoric-process"
+    },
+    {
+      "concept": "isothermal-process",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "isothermal-process",
+      "prereq": "internal-energy-monatomic-ideal-gas"
+    },
+    {
+      "concept": "isothermal-process",
+      "prereq": "pv-diagram-work-as-area"
+    },
+    {
+      "concept": "isothermal-process",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "isothermal-process",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "adiabatic-process",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "adiabatic-process",
+      "prereq": "internal-energy-monatomic-ideal-gas"
+    },
+    {
+      "concept": "adiabatic-process",
+      "prereq": "isothermal-process"
+    },
+    {
+      "concept": "internal-energy-monatomic-ideal-gas",
+      "prereq": "internal-energy"
+    },
+    {
+      "concept": "internal-energy-monatomic-ideal-gas",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "internal-energy-monatomic-ideal-gas",
+      "prereq": "thermal-energy"
+    },
+    {
+      "concept": "internal-energy-monatomic-ideal-gas",
+      "prereq": "boltzmann-constant"
+    },
+    {
+      "concept": "internal-energy-monatomic-ideal-gas",
+      "prereq": "ideal-gas"
+    },
+    {
+      "concept": "reversible-process",
+      "prereq": "isothermal-process"
+    },
+    {
+      "concept": "reversible-process",
+      "prereq": "adiabatic-process"
+    },
+    {
+      "concept": "reversible-process",
+      "prereq": "friction-dissipates-mechanical-energy"
+    },
+    {
+      "concept": "reversible-process",
+      "prereq": "kinetic-friction"
+    },
+    {
+      "concept": "irreversible-process",
+      "prereq": "reversible-process"
+    },
+    {
+      "concept": "irreversible-process",
+      "prereq": "friction-dissipates-mechanical-energy"
+    },
+    {
+      "concept": "irreversible-process",
+      "prereq": "heat"
+    },
+    {
+      "concept": "second-law-heat-flow-direction",
+      "prereq": "irreversible-process"
+    },
+    {
+      "concept": "second-law-heat-flow-direction",
+      "prereq": "thermal-equilibrium"
+    },
+    {
+      "concept": "second-law-heat-flow-direction",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "second-law-heat-flow-direction",
+      "prereq": "heat"
+    },
+    {
+      "concept": "second-law-no-perfect-engine",
+      "prereq": "heat-engine"
+    },
+    {
+      "concept": "second-law-no-perfect-engine",
+      "prereq": "irreversible-process"
+    },
+    {
+      "concept": "cyclical-process",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "cyclical-process",
+      "prereq": "internal-energy-is-a-state-function"
+    },
+    {
+      "concept": "cyclical-process",
+      "prereq": "net-work-of-a-cycle"
+    },
+    {
+      "concept": "heat-engine-work-output",
+      "prereq": "cyclical-process"
+    },
+    {
+      "concept": "heat-engine-work-output",
+      "prereq": "heat-engine"
+    },
+    {
+      "concept": "heat-engine-efficiency",
+      "prereq": "heat-engine-work-output"
+    },
+    {
+      "concept": "heat-engine-efficiency",
+      "prereq": "efficiency"
+    },
+    {
+      "concept": "calculate-engine-efficiency",
+      "prereq": "heat-engine-efficiency"
+    },
+    {
+      "concept": "calculate-engine-efficiency",
+      "prereq": "heat-engine-work-output"
+    },
+    {
+      "concept": "calculate-engine-efficiency",
+      "prereq": "power"
+    },
+    {
+      "concept": "otto-cycle",
+      "prereq": "adiabatic-process"
+    },
+    {
+      "concept": "otto-cycle",
+      "prereq": "isochoric-process"
+    },
+    {
+      "concept": "otto-cycle",
+      "prereq": "net-work-of-a-cycle"
+    },
+    {
+      "concept": "otto-cycle",
+      "prereq": "heat-engine-work-output"
+    },
+    {
+      "concept": "carnot-cycle",
+      "prereq": "isothermal-process"
+    },
+    {
+      "concept": "carnot-cycle",
+      "prereq": "adiabatic-process"
+    },
+    {
+      "concept": "carnot-cycle",
+      "prereq": "reversible-process"
+    },
+    {
+      "concept": "carnot-cycle",
+      "prereq": "heat-engine"
+    },
+    {
+      "concept": "second-law-carnot-statement",
+      "prereq": "carnot-cycle"
+    },
+    {
+      "concept": "second-law-carnot-statement",
+      "prereq": "second-law-no-perfect-engine"
+    },
+    {
+      "concept": "carnot-efficiency",
+      "prereq": "heat-engine-efficiency"
+    },
+    {
+      "concept": "carnot-efficiency",
+      "prereq": "second-law-carnot-statement"
+    },
+    {
+      "concept": "carnot-efficiency",
+      "prereq": "absolute-zero"
+    },
+    {
+      "concept": "carnot-efficiency",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "calculate-carnot-efficiency",
+      "prereq": "carnot-efficiency"
+    },
+    {
+      "concept": "calculate-carnot-efficiency",
+      "prereq": "calculate-engine-efficiency"
+    },
+    {
+      "concept": "calculate-carnot-efficiency",
+      "prereq": "convert-temperature-scales"
+    },
+    {
+      "concept": "real-engines-below-carnot",
+      "prereq": "carnot-efficiency"
+    },
+    {
+      "concept": "real-engines-below-carnot",
+      "prereq": "irreversible-process"
+    },
+    {
+      "concept": "real-engines-below-carnot",
+      "prereq": "friction-dissipates-mechanical-energy"
+    },
+    {
+      "concept": "real-engines-below-carnot",
+      "prereq": "energy-degradation"
+    },
+    {
+      "concept": "heat-pump",
+      "prereq": "heat-engine"
+    },
+    {
+      "concept": "heat-pump",
+      "prereq": "heat-engine-work-output"
+    },
+    {
+      "concept": "heat-pump",
+      "prereq": "second-law-heat-flow-direction"
+    },
+    {
+      "concept": "heat-pump-components",
+      "prereq": "heat-pump"
+    },
+    {
+      "concept": "coefficient-of-performance-heat-pump",
+      "prereq": "heat-pump"
+    },
+    {
+      "concept": "coefficient-of-performance-heat-pump",
+      "prereq": "heat-engine-efficiency"
+    },
+    {
+      "concept": "heat-pumps-and-temperature-difference",
+      "prereq": "coefficient-of-performance-heat-pump"
+    },
+    {
+      "concept": "heat-pumps-and-temperature-difference",
+      "prereq": "carnot-efficiency"
+    },
+    {
+      "concept": "coefficient-of-performance-refrigerator",
+      "prereq": "heat-pump"
+    },
+    {
+      "concept": "coefficient-of-performance-refrigerator",
+      "prereq": "coefficient-of-performance-heat-pump"
+    },
+    {
+      "concept": "calculate-coefficient-of-performance",
+      "prereq": "coefficient-of-performance-heat-pump"
+    },
+    {
+      "concept": "calculate-coefficient-of-performance",
+      "prereq": "coefficient-of-performance-refrigerator"
+    },
+    {
+      "concept": "calculate-coefficient-of-performance",
+      "prereq": "carnot-efficiency"
+    },
+    {
+      "concept": "calculate-coefficient-of-performance",
+      "prereq": "convert-temperature-scales"
+    },
+    {
+      "concept": "energy-efficiency-rating",
+      "prereq": "coefficient-of-performance-refrigerator"
+    },
+    {
+      "concept": "energy-efficiency-rating",
+      "prereq": "power"
+    },
+    {
+      "concept": "thermodynamics-problem-solving",
+      "prereq": "first-law-of-thermodynamics"
+    },
+    {
+      "concept": "thermodynamics-problem-solving",
+      "prereq": "heat-engine-efficiency"
+    },
+    {
+      "concept": "thermodynamics-problem-solving",
+      "prereq": "carnot-efficiency"
+    },
+    {
+      "concept": "thermodynamics-problem-solving",
+      "prereq": "coefficient-of-performance-heat-pump"
+    },
+    {
+      "concept": "thermodynamics-problem-solving",
+      "prereq": "system-of-interest"
+    },
+    {
+      "concept": "entropy",
+      "prereq": "irreversible-process"
+    },
+    {
+      "concept": "entropy",
+      "prereq": "internal-energy-is-a-state-function"
+    },
+    {
+      "concept": "change-in-entropy",
+      "prereq": "entropy"
+    },
+    {
+      "concept": "change-in-entropy",
+      "prereq": "carnot-efficiency"
+    },
+    {
+      "concept": "change-in-entropy",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "change-in-entropy",
+      "prereq": "heat"
+    },
+    {
+      "concept": "irreversible-process-increases-entropy",
+      "prereq": "change-in-entropy"
+    },
+    {
+      "concept": "irreversible-process-increases-entropy",
+      "prereq": "second-law-heat-flow-direction"
+    },
+    {
+      "concept": "second-law-entropy-statement",
+      "prereq": "change-in-entropy"
+    },
+    {
+      "concept": "second-law-entropy-statement",
+      "prereq": "irreversible-process-increases-entropy"
+    },
+    {
+      "concept": "second-law-entropy-statement",
+      "prereq": "carnot-cycle"
+    },
+    {
+      "concept": "unavailable-energy",
+      "prereq": "irreversible-process-increases-entropy"
+    },
+    {
+      "concept": "unavailable-energy",
+      "prereq": "carnot-efficiency"
+    },
+    {
+      "concept": "heat-death-of-the-universe",
+      "prereq": "second-law-entropy-statement"
+    },
+    {
+      "concept": "heat-death-of-the-universe",
+      "prereq": "unavailable-energy"
+    },
+    {
+      "concept": "heat-death-of-the-universe",
+      "prereq": "energy-degradation"
+    },
+    {
+      "concept": "entropy-and-disorder",
+      "prereq": "entropy"
+    },
+    {
+      "concept": "entropy-and-disorder",
+      "prereq": "change-in-entropy"
+    },
+    {
+      "concept": "entropy-and-disorder",
+      "prereq": "heat-of-fusion"
+    },
+    {
+      "concept": "entropy-and-life",
+      "prereq": "second-law-entropy-statement"
+    },
+    {
+      "concept": "entropy-and-life",
+      "prereq": "heat-engine"
+    },
+    {
+      "concept": "calculate-entropy-change",
+      "prereq": "change-in-entropy"
+    },
+    {
+      "concept": "calculate-entropy-change",
+      "prereq": "irreversible-process-increases-entropy"
+    },
+    {
+      "concept": "calculate-entropy-change",
+      "prereq": "unavailable-energy"
+    },
+    {
+      "concept": "calculate-entropy-change",
+      "prereq": "convert-temperature-scales"
+    },
+    {
+      "concept": "calculate-entropy-change",
+      "prereq": "heat-of-fusion"
+    },
+    {
+      "concept": "calculate-entropy-change",
+      "prereq": "latent-heat"
+    },
+    {
+      "concept": "calculate-entropy-change",
+      "prereq": "heat-and-temperature-change"
+    },
+    {
+      "concept": "macrostate-and-microstate",
+      "prereq": "entropy-and-disorder"
+    },
+    {
+      "concept": "disorder-is-more-probable",
+      "prereq": "macrostate-and-microstate"
+    },
+    {
+      "concept": "boltzmann-entropy",
+      "prereq": "disorder-is-more-probable"
+    },
+    {
+      "concept": "boltzmann-entropy",
+      "prereq": "change-in-entropy"
+    },
+    {
+      "concept": "boltzmann-entropy",
+      "prereq": "boltzmann-constant"
+    },
+    {
+      "concept": "calculate-entropy-from-microstates",
+      "prereq": "boltzmann-entropy"
+    },
+    {
+      "concept": "statistical-second-law",
+      "prereq": "disorder-is-more-probable"
+    },
+    {
+      "concept": "statistical-second-law",
+      "prereq": "boltzmann-entropy"
+    },
+    {
+      "concept": "statistical-second-law",
+      "prereq": "second-law-entropy-statement"
+    },
+    {
+      "concept": "statistical-second-law",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "statistical-second-law",
+      "prereq": "kinetic-theory"
+    },
+    {
+      "concept": "statistical-second-law",
+      "prereq": "conduction-by-molecular-collisions"
+    },
+    {
+      "concept": "entropy-problem-solving",
+      "prereq": "change-in-entropy"
+    },
+    {
+      "concept": "entropy-problem-solving",
+      "prereq": "calculate-entropy-change"
+    },
+    {
+      "concept": "entropy-problem-solving",
+      "prereq": "boltzmann-entropy"
+    },
+    {
+      "concept": "temperature",
+      "prereq": "physical-quantity"
+    },
+    {
+      "concept": "thermometer",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "temperature-scales",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "temperature-scales",
+      "prereq": "units"
+    },
+    {
+      "concept": "convert-temperature-scales",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "convert-temperature-scales",
+      "prereq": "unit-conversion"
+    },
+    {
+      "concept": "absolute-zero",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "absolute-zero",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "absolute-zero",
+      "prereq": "straight-line-graph"
+    },
+    {
+      "concept": "thermal-equilibrium",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "zeroth-law-of-thermodynamics",
+      "prereq": "thermal-equilibrium"
+    },
+    {
+      "concept": "thermal-expansion",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "thermal-expansion",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "thermal-expansion",
+      "prereq": "density"
+    },
+    {
+      "concept": "thermal-expansion",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "linear-thermal-expansion",
+      "prereq": "thermal-expansion"
+    },
+    {
+      "concept": "linear-thermal-expansion",
+      "prereq": "convert-temperature-scales"
+    },
+    {
+      "concept": "area-thermal-expansion",
+      "prereq": "linear-thermal-expansion"
+    },
+    {
+      "concept": "holes-expand-too",
+      "prereq": "linear-thermal-expansion"
+    },
+    {
+      "concept": "volume-thermal-expansion",
+      "prereq": "linear-thermal-expansion"
+    },
+    {
+      "concept": "differential-thermal-expansion",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "anomalous-expansion-of-water",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "anomalous-expansion-of-water",
+      "prereq": "density"
+    },
+    {
+      "concept": "anomalous-expansion-of-water",
+      "prereq": "average-density-decides-floating"
+    },
+    {
+      "concept": "thermal-stress",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "thermal-stress",
+      "prereq": "stress"
+    },
+    {
+      "concept": "thermal-stress",
+      "prereq": "bulk-deformation"
+    },
+    {
+      "concept": "thermal-stress",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "ideal-gas",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "ideal-gas",
+      "prereq": "atomic-arrangement-and-phase"
+    },
+    {
+      "concept": "ideal-gas",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "ideal-gas"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "absolute-pressure"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "ideal-gas-law",
+      "prereq": "absolute-zero"
+    },
+    {
+      "concept": "boltzmann-constant",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "ideal-gas-ratio-method",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "ideal-gas-ratio-method",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "mole",
+      "prereq": "fundamental-units"
+    },
+    {
+      "concept": "avogadros-number",
+      "prereq": "mole"
+    },
+    {
+      "concept": "ideal-gas-law-moles",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "ideal-gas-law-moles",
+      "prereq": "avogadros-number"
+    },
+    {
+      "concept": "molar-volume-at-stp",
+      "prereq": "ideal-gas-law-moles"
+    },
+    {
+      "concept": "molar-volume-at-stp",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "molar-volume-at-stp",
+      "prereq": "density"
+    },
+    {
+      "concept": "ideal-gas-law-energy",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "ideal-gas-law-energy",
+      "prereq": "work"
+    },
+    {
+      "concept": "ideal-gas-law-energy",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "kinetic-theory",
+      "prereq": "ideal-gas"
+    },
+    {
+      "concept": "kinetic-theory",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "kinetic-theory",
+      "prereq": "newtons-third-law"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "kinetic-theory"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "change-in-momentum"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "impulse"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "newtons-second-law-momentum"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "elastic-collision"
+    },
+    {
+      "concept": "molecular-origin-of-pressure",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "thermal-energy",
+      "prereq": "molecular-origin-of-pressure"
+    },
+    {
+      "concept": "thermal-energy",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "thermal-energy",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "rms-speed",
+      "prereq": "thermal-energy"
+    },
+    {
+      "concept": "molecular-mass-from-molar-mass",
+      "prereq": "mole"
+    },
+    {
+      "concept": "molecular-mass-from-molar-mass",
+      "prereq": "avogadros-number"
+    },
+    {
+      "concept": "maxwell-boltzmann-distribution",
+      "prereq": "rms-speed"
+    },
+    {
+      "concept": "atmospheric-escape",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "atmospheric-escape",
+      "prereq": "rms-speed"
+    },
+    {
+      "concept": "atmospheric-escape",
+      "prereq": "universal-gravitation"
+    },
+    {
+      "concept": "real-gas-condensation",
+      "prereq": "ideal-gas"
+    },
+    {
+      "concept": "real-gas-condensation",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "real-gas-condensation",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "pv-diagram",
+      "prereq": "ideal-gas-law"
+    },
+    {
+      "concept": "critical-point",
+      "prereq": "pv-diagram"
+    },
+    {
+      "concept": "critical-point",
+      "prereq": "real-gas-condensation"
+    },
+    {
+      "concept": "phase-diagram",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "phase-diagram",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "phase-diagram",
+      "prereq": "critical-point"
+    },
+    {
+      "concept": "sublimation",
+      "prereq": "phase-diagram"
+    },
+    {
+      "concept": "triple-point",
+      "prereq": "phase-diagram"
+    },
+    {
+      "concept": "phase-equilibrium",
+      "prereq": "thermal-equilibrium"
+    },
+    {
+      "concept": "phase-equilibrium",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "vapor-pressure",
+      "prereq": "phase-equilibrium"
+    },
+    {
+      "concept": "vapor-pressure",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "daltons-law",
+      "prereq": "kinetic-theory"
+    },
+    {
+      "concept": "daltons-law",
+      "prereq": "pascals-principle"
+    },
+    {
+      "concept": "daltons-law",
+      "prereq": "pressures-add"
+    },
+    {
+      "concept": "daltons-law",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "relative-humidity",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "relative-humidity",
+      "prereq": "daltons-law"
+    },
+    {
+      "concept": "vapor-density-from-vapor-pressure",
+      "prereq": "ideal-gas-law-moles"
+    },
+    {
+      "concept": "vapor-density-from-vapor-pressure",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "vapor-density-from-vapor-pressure",
+      "prereq": "density"
+    },
+    {
+      "concept": "percent-relative-humidity",
+      "prereq": "relative-humidity"
+    },
+    {
+      "concept": "percent-relative-humidity",
+      "prereq": "vapor-density-from-vapor-pressure"
+    },
+    {
+      "concept": "dew-point",
+      "prereq": "relative-humidity"
+    },
+    {
+      "concept": "dew-point",
+      "prereq": "phase-equilibrium"
+    },
+    {
+      "concept": "humidity-from-the-table",
+      "prereq": "percent-relative-humidity"
+    },
+    {
+      "concept": "humidity-from-the-table",
+      "prereq": "dew-point"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "daltons-law"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "boiling",
+      "prereq": "phase-diagram"
+    },
+    {
+      "concept": "evaporative-cooling",
+      "prereq": "maxwell-boltzmann-distribution"
+    },
+    {
+      "concept": "evaporative-cooling",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "evaporative-cooling",
+      "prereq": "thermal-energy"
+    },
+    {
+      "concept": "heat",
+      "prereq": "work"
+    },
+    {
+      "concept": "heat",
+      "prereq": "forms-of-energy"
+    },
+    {
+      "concept": "heat",
+      "prereq": "energy-transformation"
+    },
+    {
+      "concept": "heat",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "heat",
+      "prereq": "thermal-equilibrium"
+    },
+    {
+      "concept": "heat",
+      "prereq": "thermal-energy"
+    },
+    {
+      "concept": "heat-vs-temperature",
+      "prereq": "heat"
+    },
+    {
+      "concept": "heat-vs-temperature",
+      "prereq": "temperature"
+    },
+    {
+      "concept": "heat-vs-temperature",
+      "prereq": "thermal-energy"
+    },
+    {
+      "concept": "units-of-heat",
+      "prereq": "heat"
+    },
+    {
+      "concept": "units-of-heat",
+      "prereq": "joule"
+    },
+    {
+      "concept": "units-of-heat",
+      "prereq": "unit-conversion"
+    },
+    {
+      "concept": "mechanical-equivalent-of-heat",
+      "prereq": "heat"
+    },
+    {
+      "concept": "mechanical-equivalent-of-heat",
+      "prereq": "units-of-heat"
+    },
+    {
+      "concept": "mechanical-equivalent-of-heat",
+      "prereq": "work-transfers-energy"
+    },
+    {
+      "concept": "mechanical-equivalent-of-heat",
+      "prereq": "gravitational-potential-energy"
+    },
+    {
+      "concept": "mechanical-equivalent-of-heat",
+      "prereq": "friction-dissipates-mechanical-energy"
+    },
+    {
+      "concept": "mechanical-equivalent-of-heat",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "mechanical-equivalent-of-heat",
+      "prereq": "turbulent-flow"
+    },
+    {
+      "concept": "internal-energy-changed-by-heat-or-work",
+      "prereq": "heat"
+    },
+    {
+      "concept": "internal-energy-changed-by-heat-or-work",
+      "prereq": "mechanical-equivalent-of-heat"
+    },
+    {
+      "concept": "internal-energy-changed-by-heat-or-work",
+      "prereq": "conservation-of-energy"
+    },
+    {
+      "concept": "three-factors-of-heat-transfer",
+      "prereq": "heat"
+    },
+    {
+      "concept": "three-factors-of-heat-transfer",
+      "prereq": "mass"
+    },
+    {
+      "concept": "three-factors-of-heat-transfer",
+      "prereq": "thermal-energy"
+    },
+    {
+      "concept": "heat-and-temperature-change",
+      "prereq": "three-factors-of-heat-transfer"
+    },
+    {
+      "concept": "heat-and-temperature-change",
+      "prereq": "heat"
+    },
+    {
+      "concept": "specific-heat",
+      "prereq": "heat-and-temperature-change"
+    },
+    {
+      "concept": "temperature-rise-from-work",
+      "prereq": "heat-and-temperature-change"
+    },
+    {
+      "concept": "temperature-rise-from-work",
+      "prereq": "mechanical-equivalent-of-heat"
+    },
+    {
+      "concept": "temperature-rise-from-work",
+      "prereq": "gravitational-potential-energy"
+    },
+    {
+      "concept": "temperature-rise-from-work",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "calorimetry",
+      "prereq": "heat-and-temperature-change"
+    },
+    {
+      "concept": "calorimetry",
+      "prereq": "conservation-of-energy"
+    },
+    {
+      "concept": "final-temperature-from-heat-exchange",
+      "prereq": "calorimetry"
+    },
+    {
+      "concept": "water-moderates-temperature",
+      "prereq": "specific-heat"
+    },
+    {
+      "concept": "water-moderates-temperature",
+      "prereq": "heat-and-temperature-change"
+    },
+    {
+      "concept": "latent-heat",
+      "prereq": "heat"
+    },
+    {
+      "concept": "latent-heat",
+      "prereq": "heat-vs-temperature"
+    },
+    {
+      "concept": "latent-heat",
+      "prereq": "phases-of-matter"
+    },
+    {
+      "concept": "latent-heat",
+      "prereq": "atomic-arrangement-and-phase"
+    },
+    {
+      "concept": "latent-heat",
+      "prereq": "cohesive-forces"
+    },
+    {
+      "concept": "heat-of-fusion",
+      "prereq": "latent-heat"
+    },
+    {
+      "concept": "heat-of-vaporization",
+      "prereq": "latent-heat"
+    },
+    {
+      "concept": "heat-of-vaporization",
+      "prereq": "boiling"
+    },
+    {
+      "concept": "heating-curve",
+      "prereq": "latent-heat"
+    },
+    {
+      "concept": "heating-curve",
+      "prereq": "heat-of-fusion"
+    },
+    {
+      "concept": "heating-curve",
+      "prereq": "heat-of-vaporization"
+    },
+    {
+      "concept": "heating-curve",
+      "prereq": "heat-and-temperature-change"
+    },
+    {
+      "concept": "evaporation-below-boiling",
+      "prereq": "heat-of-vaporization"
+    },
+    {
+      "concept": "evaporation-below-boiling",
+      "prereq": "evaporative-cooling"
+    },
+    {
+      "concept": "evaporation-below-boiling",
+      "prereq": "relative-humidity"
+    },
+    {
+      "concept": "evaporation-below-boiling",
+      "prereq": "vapor-pressure"
+    },
+    {
+      "concept": "condensation-and-freezing-release-heat",
+      "prereq": "heat-of-vaporization"
+    },
+    {
+      "concept": "condensation-and-freezing-release-heat",
+      "prereq": "heat-of-fusion"
+    },
+    {
+      "concept": "condensation-and-freezing-release-heat",
+      "prereq": "dew-point"
+    },
+    {
+      "concept": "heat-of-sublimation",
+      "prereq": "latent-heat"
+    },
+    {
+      "concept": "heat-of-sublimation",
+      "prereq": "sublimation"
+    },
+    {
+      "concept": "phase-change-calorimetry",
+      "prereq": "calorimetry"
+    },
+    {
+      "concept": "phase-change-calorimetry",
+      "prereq": "final-temperature-from-heat-exchange"
+    },
+    {
+      "concept": "phase-change-calorimetry",
+      "prereq": "heat-of-fusion"
+    },
+    {
+      "concept": "phase-change-calorimetry",
+      "prereq": "heat-of-vaporization"
+    },
+    {
+      "concept": "heat-transfer-methods",
+      "prereq": "heat"
+    },
+    {
+      "concept": "conduction",
+      "prereq": "heat-transfer-methods"
+    },
+    {
+      "concept": "convection",
+      "prereq": "heat-transfer-methods"
+    },
+    {
+      "concept": "convection",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "radiation-heat-transfer",
+      "prereq": "heat-transfer-methods"
+    },
+    {
+      "concept": "conduction-by-molecular-collisions",
+      "prereq": "conduction"
+    },
+    {
+      "concept": "conduction-by-molecular-collisions",
+      "prereq": "heat-vs-temperature"
+    },
+    {
+      "concept": "conduction-by-molecular-collisions",
+      "prereq": "kinetic-theory"
+    },
+    {
+      "concept": "conduction-by-molecular-collisions",
+      "prereq": "thermal-energy"
+    },
+    {
+      "concept": "rate-of-conductive-heat-transfer",
+      "prereq": "conduction-by-molecular-collisions"
+    },
+    {
+      "concept": "rate-of-conductive-heat-transfer",
+      "prereq": "power"
+    },
+    {
+      "concept": "rate-of-conductive-heat-transfer",
+      "prereq": "watt"
+    },
+    {
+      "concept": "thermal-conductivity",
+      "prereq": "rate-of-conductive-heat-transfer"
+    },
+    {
+      "concept": "r-factor",
+      "prereq": "rate-of-conductive-heat-transfer"
+    },
+    {
+      "concept": "r-factor",
+      "prereq": "thermal-conductivity"
+    },
+    {
+      "concept": "conduction-with-phase-change",
+      "prereq": "rate-of-conductive-heat-transfer"
+    },
+    {
+      "concept": "conduction-with-phase-change",
+      "prereq": "heat-of-fusion"
+    },
+    {
+      "concept": "conduction-with-phase-change",
+      "prereq": "energy-from-power"
+    },
+    {
+      "concept": "temperature-difference-from-conduction",
+      "prereq": "rate-of-conductive-heat-transfer"
+    },
+    {
+      "concept": "temperature-difference-from-conduction",
+      "prereq": "heat-of-vaporization"
+    },
+    {
+      "concept": "conduction-rate-scaling",
+      "prereq": "rate-of-conductive-heat-transfer"
+    },
+    {
+      "concept": "natural-convection",
+      "prereq": "convection"
+    },
+    {
+      "concept": "natural-convection",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "natural-convection",
+      "prereq": "density"
+    },
+    {
+      "concept": "natural-convection",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "natural-convection",
+      "prereq": "volume-thermal-expansion"
+    },
+    {
+      "concept": "convection-heat-rate",
+      "prereq": "natural-convection"
+    },
+    {
+      "concept": "convection-heat-rate",
+      "prereq": "heat-and-temperature-change"
+    },
+    {
+      "concept": "convection-heat-rate",
+      "prereq": "density"
+    },
+    {
+      "concept": "convection-heat-rate",
+      "prereq": "power"
+    },
+    {
+      "concept": "wind-chill",
+      "prereq": "natural-convection"
+    },
+    {
+      "concept": "wind-chill",
+      "prereq": "conduction-by-molecular-collisions"
+    },
+    {
+      "concept": "air-as-insulator",
+      "prereq": "natural-convection"
+    },
+    {
+      "concept": "air-as-insulator",
+      "prereq": "thermal-conductivity"
+    },
+    {
+      "concept": "convection-with-phase-change",
+      "prereq": "natural-convection"
+    },
+    {
+      "concept": "convection-with-phase-change",
+      "prereq": "heat-of-vaporization"
+    },
+    {
+      "concept": "convection-with-phase-change",
+      "prereq": "evaporation-below-boiling"
+    },
+    {
+      "concept": "convection-with-phase-change",
+      "prereq": "power"
+    },
+    {
+      "concept": "radiation-spectrum-and-temperature",
+      "prereq": "radiation-heat-transfer"
+    },
+    {
+      "concept": "radiation-spectrum-and-temperature",
+      "prereq": "frequency"
+    },
+    {
+      "concept": "absorbers-and-emitters",
+      "prereq": "radiation-heat-transfer"
+    },
+    {
+      "concept": "emissivity",
+      "prereq": "absorbers-and-emitters"
+    },
+    {
+      "concept": "stefan-boltzmann-law",
+      "prereq": "emissivity"
+    },
+    {
+      "concept": "stefan-boltzmann-law",
+      "prereq": "radiation-spectrum-and-temperature"
+    },
+    {
+      "concept": "stefan-boltzmann-law",
+      "prereq": "power"
+    },
+    {
+      "concept": "stefan-boltzmann-law",
+      "prereq": "temperature-scales"
+    },
+    {
+      "concept": "stefan-boltzmann-law",
+      "prereq": "absolute-zero"
+    },
+    {
+      "concept": "radiation-fourth-power",
+      "prereq": "stefan-boltzmann-law"
+    },
+    {
+      "concept": "net-radiation-rate",
+      "prereq": "stefan-boltzmann-law"
+    },
+    {
+      "concept": "greenhouse-effect",
+      "prereq": "net-radiation-rate"
+    },
+    {
+      "concept": "greenhouse-effect",
+      "prereq": "absorbers-and-emitters"
+    },
+    {
+      "concept": "greenhouse-effect",
+      "prereq": "emissivity"
+    },
+    {
+      "concept": "heat-transfer-methods-strategy",
+      "prereq": "rate-of-conductive-heat-transfer"
+    },
+    {
+      "concept": "heat-transfer-methods-strategy",
+      "prereq": "convection-heat-rate"
+    },
+    {
+      "concept": "heat-transfer-methods-strategy",
+      "prereq": "net-radiation-rate"
+    },
+    {
+      "concept": "heat-transfer-methods-strategy",
+      "prereq": "phase-change-calorimetry"
+    },
+    {
+      "concept": "heat-transfer-methods-strategy",
+      "prereq": "energy-problem-solving"
     }
   ]
 }

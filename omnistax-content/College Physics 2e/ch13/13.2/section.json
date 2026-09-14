@@ -1,0 +1,377 @@
+{
+ "id": "13.2",
+ "module": "m42215",
+ "chapter": "13",
+ "title": "Thermal Expansion of Solids and Liquids",
+ "short": "Thermal expansion",
+ "lead": "Almost everything grows a little as it warms, by a fraction that depends on the material and on how much the temperature changes. This section states that fraction for a length, doubles it for an area and triples it for a volume, shows why a hole grows along with the plate around it, sets out the one important exception, water near 4 °C, works out how much gasoline spills from a full tank on a warm day, and finds the enormous pressure a liquid exerts when it is warmed but not allowed to expand.",
+ "objectives": [
+  "Define and describe thermal expansion.",
+  "Calculate the linear expansion of an object given its initial length, change in temperature, and coefficient of linear expansion.",
+  "Calculate the volume expansion of an object given its initial volume, change in temperature, and coefficient of volume expansion.",
+  "Calculate thermal stress on an object given its original volume, temperature change, volume change, and bulk modulus."
+ ],
+ "summary_html": "<ul><li>Thermal expansion is the increase, or decrease, of the size (length, area, or volume) of a body due to a change in temperature.</li><li>Thermal expansion is large for gases, and relatively small, but not negligible, for liquids and solids.</li><li>Linear thermal expansion is $$\\kdL = \\alpha L\\kdTemp,$$ where $\\kdL$ is the change in length $L$, $\\kdTemp$ is the change in temperature, and $\\alpha$ is the coefficient of linear expansion, which varies slightly with temperature.</li><li>The change in area due to thermal expansion is $$\\Delta A = 2\\alpha A\\kdTemp,$$ where $\\Delta A$ is the change in area.</li><li>The change in volume due to thermal expansion is $$\\Delta V = \\beta V\\kdTemp,$$ where $\\beta$ is the coefficient of volume expansion and $\\beta \\approx 3\\alpha$. Thermal stress is created when thermal expansion is constrained.</li></ul>",
+ "notes": "The photograph of a fuel gauge inside the Filling the Tank note is left out, and the seven problems the book leaves unkeyed, the Eiffel Tower, the railroad gap, the steel and invar meter sticks, the column of ocean water, the copper radiator, the pressure that stops ice expanding, and the aluminum rod from 13.6, are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Seven problems have no keyed answer and are left out: the Eiffel Tower, the expansion gap between railroad rails, the steel and invar meter sticks, the 1.00 km column of ocean water, the copper radiator, the pressure needed to keep ice from expanding, and 13.6’s Unreasonable Results item on an aluminum rod in an aluminum engine block, which would otherwise have been set here. The Hong Kong problem’s key is read from the CNXML, since the converter mangles it; its answer is checked as the size of the decrease. The problem asking the reader to show that 60.0 L of gasoline becomes 61.1 L is checked as that number and carries the book’s derivation, and the problem asking the reader to show that β ≈ 3α is an open item carrying the book’s derivation. 13.6’s Integrated Concepts problem on the fraction of a copper block’s weight the buoyant force supports in cold and in hot water turns on the volume expansion of water and is set here with source_section 13.6, keyed 1.02; 13.6’s notes say so as well. The suggested approaches to the five conceptual questions are AI-written and marked. The Check Your Understanding on the two blocks is keyed with the book’s answer and set inline after the passage on expansion in two and three dimensions, with the book’s figure on its card. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-expansion-joint",
+   "kind": "photo",
+   "number": "13.11",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-linear-expansion",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-expanding-plate",
+   "kind": "sim",
+   "number": "13.12",
+   "originals": [
+    "/media/ch13/Figure_14_02_02.jpg"
+   ],
+   "original_caption": "In general, objects expand in all directions as temperature increases. In these drawings, the original boundaries of the objects are shown with solid lines, and the expanded boundaries with dashed lines. (a) Area increases because both length and width increase. The area of a circular plug also increases. (b) If the plug is removed, the hole it leaves becomes larger with increasing temperature, just as if the expanding plug were still in place. (c) Volume also increases, because all three dimensions increase.",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "temperature"
+   ]
+  },
+  {
+   "id": "sim-water-density",
+   "kind": "sim",
+   "number": "13.13",
+   "originals": [
+    "/media/ch13/Figure_14_02_03.jpg"
+   ],
+   "original_caption": "The density of water as a function of temperature. Note that the thermal expansion is actually very small. The maximum density at +4 °C is only 0.0075% greater than the density at 2 °C, and 0.012% greater than that at 0 °C.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "temperature",
+    "density"
+   ]
+  },
+  {
+   "id": "sim-tank-spill",
+   "kind": "sim",
+   "draws": [
+    "temperature"
+   ]
+  },
+  {
+   "id": "sim-thermal-stress",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "pressure",
+    "elastic-modulus"
+   ]
+  },
+  {
+   "id": "fig-pothole",
+   "kind": "photo",
+   "number": "13.15",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  { "span": "thermal-expansion", "concept": "thermal-expansion", "verb": "introduces" },
+  { "span": "thermal-expansion", "concept": "temperature", "verb": "uses" },
+  { "span": "thermal-expansion", "concept": "kinetic-energy", "verb": "uses" },
+  { "span": "thermal-expansion", "concept": "density", "verb": "uses" },
+  { "span": "thermal-expansion", "concept": "buoyant-force", "verb": "uses" },
+  { "span": "linear-expansion", "concept": "linear-thermal-expansion", "verb": "introduces" },
+  { "span": "linear-expansion", "concept": "thermal-expansion", "verb": "uses" },
+  { "span": "linear-expansion", "concept": "temperature-scales", "verb": "uses" },
+  { "span": "two-and-three-dimensions", "concept": "area-thermal-expansion", "verb": "introduces" },
+  { "span": "two-and-three-dimensions", "concept": "holes-expand-too", "verb": "introduces" },
+  { "span": "two-and-three-dimensions", "concept": "volume-thermal-expansion", "verb": "introduces" },
+  { "span": "two-and-three-dimensions", "concept": "linear-thermal-expansion", "verb": "uses" },
+  { "span": "water", "concept": "anomalous-expansion-of-water", "verb": "introduces" },
+  { "span": "water", "concept": "volume-thermal-expansion", "verb": "uses" },
+  { "span": "water", "concept": "density", "verb": "uses" },
+  { "span": "water", "concept": "average-density-decides-floating", "verb": "uses" },
+  { "span": "filling-the-tank", "concept": "differential-thermal-expansion", "verb": "introduces" },
+  { "span": "filling-the-tank", "concept": "volume-thermal-expansion", "verb": "uses" },
+  { "span": "filling-the-tank", "concept": "density", "verb": "uses" },
+  { "span": "thermal-stress", "concept": "thermal-stress", "verb": "introduces" },
+  { "span": "thermal-stress", "concept": "differential-thermal-expansion", "verb": "uses" },
+  { "span": "thermal-stress", "concept": "stress", "verb": "uses" },
+  { "span": "thermal-stress", "concept": "bulk-deformation", "verb": "uses" },
+  { "span": "thermal-stress", "concept": "pressure", "verb": "uses" },
+  { "span": "thermal-stress", "concept": "linear-thermal-expansion", "verb": "reinforces" }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-264",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": { "at": "inline", "after": "two-and-three-dimensions" },
+   "cite": "two-and-three-dimensions",
+   "figure": {
+    "src": "/media/ch13/Figure_14_02_04a.jpg",
+    "alt": "There are two rectangular blocks. Block A has its dimensions labeled length equals L, width equals two times L, height equals L. Block B has its dimensions labeled length, width, and height all equal to two times L."
+   },
+   "prompt": "Two blocks, A and B, are made of the same material. Block A has dimensions $l \\times w \\times h = L \\times 2L \\times L$ and Block B has dimensions $2L \\times 2L \\times 2L$. If the temperature changes, what is (a) the change in ratio of the volumes ($V_{\\text{B}}/V_{\\text{A}}$) of the two blocks, (b) the change in the ratio of the cross-sectional areas $l_{\\text{B}} \\times w_{\\text{B}}/l_{\\text{A}} \\times w_{\\text{A}}$, and (c) the change in the ratio of the heights $h_{\\text{B}}/h_{\\text{A}}$ of the two blocks?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) The change in volume is proportional to the original volume. Block A has a volume of $L \\times 2L \\times L = 2L^3$. Block B has a volume of $2L \\times 2L \\times 2L = 8L^3$, which is 4 times that of Block A. Thus the change in volume of Block B should be 4 times the change in volume of Block A. (b) The change in area is proportional to the area. The cross-sectional area of Block A is $L \\times 2L = 2L^2$, while that of Block B is $2L \\times 2L = 4L^2$. Because cross-sectional area of Block B is twice that of Block A, the change in the cross-sectional area of Block B is twice that of Block A. (c) The change in height is proportional to the original height. Because the original height of Block B is twice that of A, the change in the height of Block B is twice that of Block A."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2182761",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "thermal-stress",
+   "prompt": "Thermal stresses caused by uneven cooling can easily break glass cookware. Explain why Pyrex®, a glass with a small coefficient of linear expansion, is less susceptible.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "When a hot glass dish is cooled unevenly, the part that cools first contracts while the part still hot does not, and the two parts pull against each other. The stress that results is set by the difference in contraction, which by $\\kdL = \\alpha L\\kdTemp$ is proportional to the coefficient of linear expansion. Table 13.2 gives ordinary glass $\\alpha = 9 \\times 10^{-6}/^\\circ\\text{C}$ and Pyrex $3 \\times 10^{-6}/^\\circ\\text{C}$, so for the same uneven cooling a Pyrex dish contracts only a third as much across the same temperature difference, the mismatch between its cool and hot parts is a third as large, and the thermal stress it must bear is far smaller than what would crack ordinary glass."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1806401",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": { "at": "end" },
+   "cite": "thermal-stress",
+   "prompt": "Water expands significantly when it freezes: a volume increase of about 9% occurs. As a result of this expansion and because of the formation and growth of crystals as water freezes, anywhere from 10% to 30% of biological cells are burst when animal or plant material is frozen. Discuss the implications of this cell damage for the prospect of preserving human bodies by freezing so that they can be thawed at some future date when it is hoped that all diseases are curable.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A cell is a small rigid container full of water, and when that water freezes it tries to grow by about 9% in volume. The cell wall cannot stretch that far, so the thermal stress of the expanding ice, together with the sharp crystals that grow as it freezes, bursts a large fraction of the cells, as the section says happens to frozen food. A body frozen whole would suffer the same damage in every tissue, so that what is thawed is not the body that was frozen but one in which perhaps a tenth to a third of the cells, in the brain and the organs as much as anywhere, have been ruptured. Curing the diseases the person had would not repair that, and so preservation by freezing would also require some way of preventing the expansion damage, for example by replacing the water in the cells or freezing so fast that large crystals cannot form, and a way of undoing whatever damage remained. The physics of expansion makes the prospect far harder than the word freezing suggests."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1803094",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "two-and-three-dimensions",
+   "prompt": "One method of getting a tight fit, say of a metal peg in a hole in a metal block, is to manufacture the peg slightly larger than the hole. The peg is then inserted when at a different temperature than the block. Should the block be hotter or colder than the peg during insertion? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The block should be hotter than the peg. A hole expands with temperature exactly as the plug that would fill it, so heating the block makes the hole larger, and cooling the peg makes the peg smaller; either change, or both together, opens up enough room for the oversized peg to slide in. Once the peg is in place and the two come to the same temperature, the hole shrinks back and the peg grows back, and the peg is gripped tightly, which is the fit that was wanted. Heating the block while the peg stays cold is the same idea as the manufacturing process the section describes, in which one part is heated, slipped over the other, and allowed to cool."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2233261",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "two-and-three-dimensions",
+   "prompt": "Does it really help to run hot water over a tight metal lid on a glass jar before trying to open it? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes, for two reasons that both come from the way things expand. First, the metal of the lid has a larger coefficient of linear expansion than the glass of the jar, so when the two are warmed by the same amount the lid grows more than the mouth of the jar it grips, and the grip loosens. Second, the hot water warms the thin lid quickly while the thicker glass lags behind, so for a short while the lid has warmed more than the jar, and the difference in expansion is larger still. The lid is a ring, and a ring expands as a solid disc would, so its opening grows with temperature just as a hole in a plate does. The effect is small in millimeters but the fit of a screw lid is small too, and a little loosening is often enough."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1332028",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "thermal-expansion",
+   "prompt": "Liquids and solids expand with increasing temperature, because the kinetic energy of a body’s atoms and molecules increases. Explain why some materials <em>shrink</em> with increasing temperature.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The section explains expansion by the atoms vibrating more vigorously and pushing their neighbors slightly farther apart on average, which assumes that a larger vibration always means a larger average spacing. That is not true of every arrangement of atoms. In some materials the atoms are held in a structure with open space in it, and a larger vibration lets them settle into that space, so the average spacing along some direction, or the volume as a whole, gets smaller as the temperature rises. Water between 0 °C and 4 °C is the example the section gives: as it warms, the open structure left over from ice collapses faster than the ordinary expansion grows, and the water contracts. A material shrinks when the rearrangement of its structure with temperature outweighs the ordinary push of the vibrations."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1469982",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "linear-expansion",
+   "prompt": "The height of the Washington Monument is measured to be 170 m on a day when the temperature is $35.0^\\circ\\text{C}$. What will its height be on a day when the temperature falls to $-10.0^\\circ\\text{C}$? Although the monument is made of limestone, assume that its thermal coefficient of expansion is the same as marble’s.",
+   "answer": {
+    "type": "number",
+    "value": 169.98,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "The temperature falls by 45.0 °C, so $\\kdL = \\alpha L\\kdTemp$ is negative and the monument is shorter; use marble’s $\\alpha$ from Table 13.2 and add the change to 170 m.",
+    "solution": "169.98 m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1945010",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "linear-expansion",
+   "prompt": "What is the change in length of a 3.00-cm-long column of mercury if its temperature changes from $37.0^\\circ\\text{C}$ to $40.0^\\circ\\text{C}$, assuming the mercury is unconstrained?",
+   "answer": {
+    "type": "number",
+    "value": 5.4e-6,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "Table 13.2 gives mercury only a coefficient of volume expansion; since $\\beta \\approx 3\\alpha$, its coefficient of linear expansion is a third of that, and the column changes by $\\kdL = \\alpha L\\kdTemp$ over a rise of 3.0 °C.",
+    "solution": "$5.4 \\times 10^{-6}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1463358",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "two-and-three-dimensions",
+   "prompt": "You are looking to purchase a small piece of land in Hong Kong. The price is “only” ＄60,000 per square meter! The land title says the dimensions are $20\\ \\text{m} \\times 30\\ \\text{m}$. By how much would the total price change if you measured the parcel with a steel tape measure on a day when the temperature was $20^\\circ\\text{C}$ above normal?",
+   "answer": {
+    "type": "number",
+    "value": 17000,
+    "unit": "$",
+    "generated_by": "source",
+    "hint": "The tape has expanded, so every meter it marks is a little longer than a true meter and the parcel measures smaller. The area it reads is smaller by $\\Delta A = 2\\alpha A\\kdTemp$ with steel’s $\\alpha$; multiply that area by the price of a square meter.",
+    "solution": "Because the area gets smaller, the price of the land DECREASES by $\\sim$＄17,000."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1251302",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "filling-the-tank",
+   "prompt": "Show that 60.0 L of gasoline originally at $15.0^\\circ\\text{C}$ will expand to 61.1 L when it warms to $35.0^\\circ\\text{C}$, as claimed in Example 13.4.",
+   "answer": {
+    "type": "number",
+    "value": 61.1,
+    "unit": "L",
+    "generated_by": "source",
+    "hint": "The final volume is the original volume plus its change, $V = V_0 + \\Delta V = V_0(1 + \\beta\\kdTemp)$, with gasoline’s $\\beta$ from Table 13.2 and a rise of 20.0 °C.",
+    "solution": "$$\\begin{aligned}V &= V_0 + \\Delta V = V_0(1 + \\beta\\kdTemp)\\\\ &= (60.00\\ \\text{L})[1 + (950 \\times 10^{-6}/^\\circ\\text{C})(35.0^\\circ\\text{C} - 15.0^\\circ\\text{C})]\\\\ &= 61.1\\ \\text{L}\\end{aligned}$$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2192379",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "filling-the-tank",
+   "prompt": "(a) If a 500-mL glass beaker is filled to the brim with ethyl alcohol at a temperature of $5.00^\\circ\\text{C}$, how much will overflow when its temperature reaches $22.0^\\circ\\text{C}$? (b) How much less water would overflow under the same conditions?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     { "part": "(a)", "value": 9.35, "unit": "mL", "hint": "The overflow is the difference of the two volume changes, $V_{\\text{spill}} = (\\beta_{\\text{alcohol}} - \\beta_{\\text{glass}})V\\kdTemp$, with ordinary glass and a rise of 17.0 °C." },
+     { "part": "(b)", "value": 7.56, "unit": "mL", "hint": "Repeat with water’s $\\beta$ in place of ethyl alcohol’s, and subtract the smaller overflow from the larger." }
+    ],
+    "solution": "(a) 9.35 mL (b) 7.56 mL"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1378164",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "filling-the-tank",
+   "prompt": "A physicist makes a cup of instant coffee and notices that, as the coffee cools, its level drops 3.00 mm in the glass cup. Show that this decrease cannot be due to thermal contraction by calculating the decrease in level if the $350\\ \\text{cm}^3$ of coffee is in a 7.00-cm-diameter cup and decreases in temperature from $95.0^\\circ\\text{C}$ to $45.0^\\circ\\text{C}$. (Most of the drop in level is actually due to escaping bubbles of air.)",
+   "answer": {
+    "type": "number",
+    "value": 0.832,
+    "unit": "mm",
+    "generated_by": "source",
+    "hint": "Treat the coffee as water and the cup as ordinary glass: the coffee contracts by $\\beta_{\\text{water}}V\\kdTemp$ and the cup by $\\beta_{\\text{glass}}V\\kdTemp$, and it is the difference that lowers the level. Divide that volume by the area of the cup’s mouth, $\\pi r^2$, to get the drop in level.",
+    "solution": "0.832 mm"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1565294",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "two-and-three-dimensions",
+   "prompt": "Show that $\\beta \\approx 3\\alpha$, by calculating the change in volume $\\Delta V$ of a cube with sides of length $L$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "We know how the length changes with temperature: $\\kdL = \\alpha L_0\\kdTemp$. Also we know that the volume of a cube is related to its length by $V = L^3$, so the final volume is then $V = V_0 + \\Delta V = (L_0 + \\kdL)^3$. Substituting for $\\kdL$ gives $$V = (L_0 + \\alpha L_0\\kdTemp)^3 = L_0^3(1 + \\alpha\\kdTemp)^3.$$ Now, because $\\alpha\\kdTemp$ is small, we can use the binomial expansion: $$V \\approx L_0^3(1 + 3\\alpha\\kdTemp) = L_0^3 + 3\\alpha L_0^3\\kdTemp.$$ So writing the length terms in terms of volumes gives $V = V_0 + \\Delta V \\approx V_0 + 3\\alpha V_0\\kdTemp$, and so $$\\Delta V = \\beta V_0\\kdTemp \\approx 3\\alpha V_0\\kdTemp,\\ \\text{or}\\ \\beta \\approx 3\\alpha.$$"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1543836",
+   "source_section": "13.6",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": { "at": "end" },
+   "cite": "water",
+   "prompt": "To get an idea of the small effect that temperature has on Archimedes’ principle, calculate the fraction of a copper block’s weight that is supported by the buoyant force in $0^\\circ\\text{C}$ water and compare this fraction with the fraction supported in $95.0^\\circ\\text{C}$ water.",
+   "answer": {
+    "type": "number",
+    "value": 1.02,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "The fraction of the block’s weight the buoyant force supports is the ratio of the water’s density to copper’s. Between 0 °C and 95.0 °C the water expands by $\\beta_{\\text{water}}\\kdTemp$ and its density falls by the same fraction, while the copper changes by far less; the answer asked for is the ratio of the two fractions, cold over hot.",
+    "solution": "$\\dfrac{(F_{\\text{B}}/w_{\\text{Cu}})}{(F_{\\text{B}}/w_{\\text{Cu}})'} = 1.02$. The buoyant force supports nearly the exact same amount of force on the copper block in both circumstances."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  { "exercise": "cyu1", "concept": "volume-thermal-expansion" },
+  { "exercise": "cyu1", "concept": "area-thermal-expansion", "weight": 3 },
+  { "exercise": "cyu1", "concept": "linear-thermal-expansion", "weight": 2 },
+  { "exercise": "cq1", "concept": "thermal-stress" },
+  { "exercise": "cq1", "concept": "linear-thermal-expansion", "weight": 2 },
+  { "exercise": "cq2", "concept": "thermal-stress" },
+  { "exercise": "cq2", "concept": "volume-thermal-expansion", "weight": 2 },
+  { "exercise": "cq3", "concept": "holes-expand-too" },
+  { "exercise": "cq3", "concept": "linear-thermal-expansion", "weight": 2 },
+  { "exercise": "cq4", "concept": "holes-expand-too" },
+  { "exercise": "cq4", "concept": "linear-thermal-expansion", "weight": 2 },
+  { "exercise": "cq5", "concept": "thermal-expansion" },
+  { "exercise": "p1", "concept": "linear-thermal-expansion" },
+  { "exercise": "p3", "concept": "linear-thermal-expansion" },
+  { "exercise": "p3", "concept": "volume-thermal-expansion", "weight": 2 },
+  { "exercise": "p5", "concept": "area-thermal-expansion" },
+  { "exercise": "p7", "concept": "volume-thermal-expansion" },
+  { "exercise": "p9", "concept": "differential-thermal-expansion" },
+  { "exercise": "p9", "concept": "volume-thermal-expansion", "weight": 3 },
+  { "exercise": "p11", "concept": "differential-thermal-expansion" },
+  { "exercise": "p11", "concept": "volume-thermal-expansion", "weight": 3 },
+  { "exercise": "p13", "concept": "volume-thermal-expansion" },
+  { "exercise": "p14", "concept": "volume-thermal-expansion" },
+  { "exercise": "p14", "concept": "archimedes-principle", "weight": 3 },
+  { "exercise": "p14", "concept": "density", "weight": 2 }
+ ]
+}

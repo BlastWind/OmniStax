@@ -1,0 +1,382 @@
+# Radiation
+
+## Learning Objectives {section:learning-objectives}
+By the end of this section, you will be able to:
+- Discuss heat transfer by radiation.
+- Explain the power of different materials.
+You can feel the heat transfer from a fire and from the Sun. Similarly, you can sometimes tell that the oven is hot without touching its door or looking inside—it may just warm you as you walk by. The space between the Earth and the Sun is largely empty, without any possibility of heat transfer by convection or conduction. In these examples, heat is transferred by radiation. That is, the hot body emits electromagnetic waves that are absorbed by our skin: no medium is required for electromagnetic waves to propagate. Different names are used for electromagnetic waves of different wavelengths: radio waves, microwaves, infrared {term:radiation}, visible light, ultraviolet radiation, X-rays, and gamma rays.
+
+> FIGURE {fig:import-auto-id1506960} src=../../media/Figure_15_07_01a.jpg
+> alt: The figure shows a campfire. Some small logs are burning and the flames above them are visible against a dark background.
+> width: 350
+> caption: Most of the heat transfer from this fire to the observers is through infrared radiation. The visible light, although dramatic, transfers relatively little thermal energy. Convection transfers energy away from the observers as hot air rises, while conduction is negligibly slow here. Skin is very sensitive to infrared radiation, so that you can sense the presence of a fire without looking at it directly. (credit: Daniel X. O’Neil)
+
+The energy of electromagnetic radiation depends on the wavelength (color) and varies over a wide range: a smaller wavelength (or higher frequency) corresponds to a higher energy. Because more heat is radiated at higher temperatures, a temperature change is accompanied by a color change. Take, for example, an electrical element on a stove, which glows from red to orange, while the higher-temperature steel in a blast furnace glows from yellow to white. The radiation you feel is mostly infrared, which corresponds to a lower temperature than that of the electrical element and the steel. The radiated energy depends on its intensity, which is represented in the figure below by the height of the distribution.
+[Electromagnetic Waves](module:m42437) explains more about the electromagnetic spectrum and [Introduction to Quantum Physics](module:m42554) discusses how the decrease in wavelength corresponds to an increase in energy.
+
+> FIGURE {fig:import-auto-id2436227} src=../../media/Figure_15_07_02a.jpg
+> alt: Figure a shows a graph of the intensity of electromagnetic radiation versus wavelength in nano meters. There are three curves on the graph labeled, from top to bottom, six thousand K, four thousand K, and three thousand K. The top curve peaks sharply at the beginning near about five hundred nano meters in what is labeled the visible range (violet to red). After the peak, this curve decays strongly by three thousand nano meters. The middle curve peaks more softly near nine hundred nano meters at a height about one third that of the first curve, and decays by three thousand nano meters. The lowest curve peaks very softly near one thousand nano meters curve and decreases slowly for higher wavelengths. The region between one thousand to two thousand nano meters is labeled the infrared range. Figure b shows two burners of a gas stove. One burner is closer and the other is in the background. The flame of the near burner is blue at the bottom and gradually changes to orange as you approach the top of the flame. The flame of the background burner is smaller and is essentially completely blue.
+> width: 350
+> caption: (a) A graph of the spectra of electromagnetic waves emitted from an ideal radiator at three different temperatures. The intensity or rate of radiation emission increases dramatically with temperature, and the spectrum shifts toward the visible and ultraviolet parts of the spectrum. The shaded portion denotes the visible part of the spectrum. It is apparent that the shift toward the ultraviolet with temperature makes the visible appearance shift from red to white to blue as temperature increases. (b) The upper part of the flame is orange due to black body radiation. (The lower part is blue due to the chemical composition of the flame, alcohol in this case.) (credit: Tuohirulla)
+
+All objects absorb and emit electromagnetic radiation. The rate of heat transfer by radiation is largely determined by the color of the object. Black is the most effective, and white is the least effective. People living in hot climates generally avoid wearing black clothing, for instance. Similarly, black asphalt in a parking lot will be hotter than adjacent gray sidewalk on a summer day, because black absorbs better than gray. The reverse is also true—black radiates better than gray. Thus, on a clear summer night, the asphalt will be colder than the gray sidewalk, because black radiates the energy more rapidly than gray. An *ideal radiator* is the same color as an *ideal absorber*, and captures all the radiation that falls on it. In contrast, white is a poor absorber and is also a poor radiator. A white object reflects all radiation, like a mirror. (A perfect, polished white surface is mirror-like in appearance, and a crushed mirror looks white.)
+
+> FIGURE {fig:import-auto-id1945572} src=../../media/Figure_15_07_03a.jpg
+> alt: The figure shows a close up of two sets of ice cubes. The ice on the left is on a light-colored pavement and is relatively unmelted. The ice on the right is on a darker pavement and is noticeably more melted.
+> width: 230
+> caption: This illustration shows that the darker pavement is hotter than the lighter pavement (much more of the ice on the right has melted), although both have been in the sunlight for the same time. The thermal conductivities of the pavements are the same.
+
+Gray objects have a uniform ability to absorb all parts of the electromagnetic spectrum. Colored objects behave in similar but more complex ways, which gives them a particular color in the visible range and may make them special in other ranges of the nonvisible spectrum. Take, for example, the strong absorption of infrared radiation by the skin, which allows us to be very sensitive to it.
+
+> FIGURE {fig:import-auto-id3397174} src=../../media/Figure_15_07_04a.jpg
+> alt: In the figure two black and two silver polished blocks are shown. Radiant energy is incident on the first black block. Most of the energy is absorbed and only a small amount is shown as reflected. On the second black block more of the energy from inside the block is emitted than is retained. On the first silver polished block the incident energy is mostly reflected and only a small portion is absorbed. On the second silver polished block the energy from inside is mostly retained and only a small amount of energy is emitted.
+> caption: A black object is a good absorber and a good radiator, while a white (or silver) object is a poor absorber and a poor radiator. It is as if radiation from the inside is reflected back into the silver object, whereas radiation from the inside of the black object is “absorbed” when it hits the surface and finds itself on the outside and is strongly emitted.
+
+The rate of heat transfer by emitted radiation is determined by the {term:Stefan-Boltzmann law of radiation}:
+
+$$ \frac{Q}{t}=σeA{T}^{4}\text{,} $$  {eq:eip-535}
+
+where $σ=5\text{.}\text{67}\times {\text{10}}^{-8}\;\text{J/s}⋅{\text{m}}^{2}⋅{\text{K}}^{4}$ is the Stefan-Boltzmann constant, $A$ is the surface area of the object, and $T$ is its absolute temperature in kelvin. The symbol $e$ stands for the {term:emissivity} of the object, which is a measure of how well it radiates. An ideal jet-black (or black body) radiator has $e=1$, whereas a perfect reflector has $e=0$. Real objects fall between these two values. Take, for example, tungsten light bulb filaments which have an $e$ of about $0\text{.}5$, and carbon black (a material used in printer toner), which has the (greatest known) emissivity of about $\text{0.99}$.
+The radiation rate is directly proportional to the *fourth power* of the absolute temperature—a remarkably strong temperature dependence. Furthermore, the radiated heat is proportional to the surface area of the object. If you knock apart the coals of a fire, there is a noticeable increase in radiation due to an increase in radiating surface area.
+
+> FIGURE {fig:import-auto-id3417990} src=../../media/Figure_15_07_05a.jpg
+> alt: A thermograph of part of a building is shown. The temperature variations are shown in different colors. The region near the windows is more yellowish green, with reddish frames, showing that the windows are major regions of radiative heat transfer.
+> width: 350
+> caption: A thermograph of part of a building shows temperature variations, indicating where heat transfer to the outside is most severe. Windows are a major region of heat transfer to the outside of homes. (credit: U.S. Army)
+
+Skin is a remarkably good absorber and emitter of infrared radiation, having an emissivity of 0.97 in the infrared spectrum. Thus, we are all nearly (jet) black in the infrared, in spite of the obvious variations in skin color. This high infrared emissivity is why we can so easily feel radiation on our skin. It is also the basis for the use of night scopes used by law enforcement and the military to detect human beings. Even small temperature variations can be detected because of the ${T}^{4}$ dependence. Images, called *thermographs*, can be used medically to detect regions of abnormally high temperature in the body, perhaps indicative of disease. Similar techniques can be used to detect heat leaks in homes [ref:import-auto-id3417990], optimize performance of blast furnaces, improve comfort levels in work environments, and even remotely map the Earth’s temperature profile.
+All objects emit and absorb radiation. The *net* rate of heat transfer by radiation (absorption minus emission) is related to both the temperature of the object and the temperature of its surroundings. Assuming that an object with a temperature ${T}_{1}$ is surrounded by an environment with uniform temperature ${T}_{2}$, the {term:net rate of heat transfer by radiation} is
+
+$$ \frac{{Q}_{\text{net}}}{t}=σeA({T}_{2}^{4}-{T}_{1}^{4})\text{,} $$  {eq:eip-71}
+
+where $e$ is the emissivity of the object alone. In other words, it does not matter whether the surroundings are white, gray, or black; the balance of radiation into and out of the object depends on how well it emits and absorbs radiation. When ${T}_{2}>{T}_{1}$, the quantity ${Q}_{\text{net}}/t$ is positive; that is, the net heat transfer is from hot to cold.
+
+:::note [] Take-Home Experiment: Temperature in the Sun
+
+Place a thermometer out in the sunshine and shield it from direct sunlight using an aluminum foil. What is the reading? Now remove the shield, and note what the thermometer reads. Take a handkerchief soaked in nail polish remover, wrap it around the thermometer and place it in the sunshine. What does the thermometer read?
+:::
+
+:::example {ex:fs-id1413553} Calculate the Net Heat Transfer of a Person: Heat Transfer by Radiation
+What is the rate of heat transfer by radiation, with an unclothed person standing in a dark room whose ambient temperature is $\text{22}\text{.}0º\text{C}$. The person has a normal skin temperature of $\text{33}\text{.}0º\text{C}$ and a surface area of $1\text{.}\text{50}\;{\text{m}}^{2}$. The emissivity of skin is 0.97 in the infrared, where the radiation takes place.
+**Strategy**
+We can solve this by using the equation for the rate of radiative heat transfer.
+**Solution**
+Insert the temperatures values ${T}_{2}=\text{295 K}$ and ${T}_{1}=\text{306 K}$, so that
+
+$$ \frac{Q}{t}\text{=}σeA({T}_{2}^{4}-{T}_{1}^{4}) $$  {eq:eip-80}
+
+$$ =(5\text{.}\text{67}\times {\text{10}}^{-8}\text{J/s}⋅{\text{m}}^{\text{2}}⋅{\text{K}}^{\text{4}})(0\text{.}\text{97})(1\text{.}\text{50}{\text{m}}^{2})[{(\text{295}\text{K})}^{4}-{(\text{306 K})}^{4}] $$  {eq:eip-911}
+
+$$ =-\text{99}\text{J/s}=-\text{99 W.} $$  {eq:eip-742}
+
+**Discussion**
+This value is a significant rate of heat transfer to the environment (note the minus sign), considering that a person at rest may produce energy at the rate of 125 W and that conduction and convection will also be transferring energy to the environment. Indeed, we would probably expect this person to feel cold. Clothing significantly reduces heat transfer to the environment by many methods, because clothing slows down both conduction and convection, and has a lower emissivity (especially if it is white) than skin.
+:::
+The Earth receives almost all its energy from radiation of the Sun and reflects some of it back into outer space. Because the Sun is hotter than the Earth, the net energy flux is from the Sun to the Earth. However, the rate of energy transfer is less than the equation for the radiative heat transfer would predict because the Sun does not fill the sky. The average emissivity ($e$) of the Earth is about 0.65, but the calculation of this value is complicated by the fact that the highly reflective cloud coverage varies greatly from day to day. There is a negative feedback (one in which a change produces an effect that opposes that change) between clouds and heat transfer; greater temperatures evaporate more water to form more clouds, which reflect more radiation back into space, reducing the temperature. The often mentioned {term:greenhouse effect} is directly related to the variation of the Earth’s emissivity with radiation type (see the figure given below). The greenhouse effect is a natural phenomenon responsible for providing temperatures suitable for life on Earth. The Earth’s relatively constant temperature is a result of the energy balance between the incoming solar radiation and the energy radiated from the Earth. Most of the infrared radiation emitted from the Earth is absorbed by carbon dioxide (${\text{CO}}_{2}$) and water (${\text{H}}_{2}\text{O}$) in the atmosphere and then re-radiated back to the Earth or into outer space. Re-radiation back to the Earth maintains its surface temperature about $\text{40º}\text{C}$ higher than it would be if there was no atmosphere, similar to the way glass increases temperatures in a greenhouse.
+The greenhouse effect and its causes were first predicted by Eunice Newton Foote after she designed and conducted experiments on heating of different gases. After filling flasks with carbon dioxide, hydrogen, and regular air, then also modifying moisture, she placed them in the sun and carefully measured their heating and, especially, their heat retention. She discovered that the CO<sub>2</sub> flask gained the most temperature and held it the longest. After subsequent research, her paper "Circumstances affecting the Heat of the Sun’s Rays" included conclusions that an atmosphere consisting of more carbon dioxide would be hotter resulting from the gas trapping radiation.
+
+> FIGURE {fig:import-auto-id2628682} src=../../media/Figure_15_07_06a.jpg
+> alt: A drawing of a portion of the Earth’s surface is shown, with both ocean and continents visible. Different rays such as ultraviolet, visible, and infrared are shown penetrating the atmosphere and impinging on the Earth’s surface. Infrared rays re-emitted by the Earth’s surface are trapped by the atmosphere of the Earth and are scattered back to the Earth.
+> width: 345
+> caption: The greenhouse effect is a name given to the trapping of energy in the Earth’s atmosphere by a process similar to that used in greenhouses. The atmosphere, like window glass, is transparent to incoming visible radiation and most of the Sun’s infrared. These wavelengths are absorbed by the Earth and re-emitted as infrared. Since Earth’s temperature is much lower than that of the Sun, the infrared radiated by the Earth has a much longer wavelength. The atmosphere, like glass, traps these longer infrared rays, keeping the Earth warmer than it would otherwise be. The amount of trapping depends on concentrations of trace gases like carbon dioxide, and a change in the concentration of these gases is believed to affect the Earth’s surface temperature.
+
+The greenhouse effect is also central to the discussion of global warming due to emission of carbon dioxide and methane (and other so-called greenhouse gases) into the Earth’s atmosphere from industrial production and farming. Changes in global climate could lead to more intense storms, precipitation changes (affecting agriculture), reduction in rain forest biodiversity, and rising sea levels.
+Heating and cooling are often significant contributors to energy use in individual homes. Mária Telkes, a Hungarian-born American scientist, was among the foremost developers of solar energy applications in industrial and community use. After inventing a widely deployed solar seawater distiller used on World War II life rafts, she partnered with architect Eleanor Raymond to design the first modern home to be completely heated by solar power. Air warmed on rooftop collectors transferred heat to salts, which stored the heat for later use. Telkes later worked with the Department of Energy to develop the first solar-electrically powered home. Current research efforts into developing environmentally friendly homes quite often focus on reducing conventional heating and cooling through better building materials, strategically positioning windows to optimize radiation gain from the Sun, and opening spaces to allow convection. It is possible to build a zero-energy house that allows for comfortable living in most parts of the United States with hot and humid summers and cold winters.
+
+> FIGURE {fig:import-auto-id1840539} src=../../media/Figure_15_07_08a.jpg
+> alt: A solar cooker is shown. There is a pot of food inside the solar cooker. The sunlight is incident on the solar cooker and the food is being cooked.
+> width: 350
+> caption: This simple but effective solar cooker uses the greenhouse effect and reflective material to trap and retain solar energy. Made of inexpensive, durable materials, it saves money and labor, and is of particular economic value in countries with lower energy availability. Mária Telkes, a pioneering innovator in solar applications, developed some of the earliest models of these cookers in the 1950s. (credit: E.B. Kauai)
+
+Conversely, dark space is very cold, about $\text{3K}(-\text{454º}\text{F)}$, so that the Earth radiates energy into the dark sky. Owing to the fact that clouds have lower emissivity than either oceans or land masses, they reflect some of the radiation back to the surface, greatly reducing heat transfer into dark space, just as they greatly reduce heat transfer into the atmosphere during the day. The rate of heat transfer from soil and grasses can be so rapid that frost may occur on clear summer evenings, even in warm latitudes.
+
+:::exercise {fs-id3153791} type=check-understanding Check Your Understanding
+
+PROBLEM:
+What is the change in the rate of the radiated heat by a body at the temperature ${T}_{1}=\text{20º}\text{C}$ compared to when the body is at the temperature ${T}_{2}=\text{40º}\text{C}$?
+SOLUTION:
+The radiated heat is proportional to the fourth power of the *absolute temperature*. Because ${T}_{1}=\text{293}\text{K}$ and ${T}_{2}=\text{313}\text{K}$, the rate of heat transfer increases by about 30 percent of the original rate.
+:::
+
+:::note [] Career Connection: Energy Conservation Consultation
+
+The cost of energy is generally believed to remain very high for the foreseeable future. Thus, passive control of heat loss in both commercial and domestic housing will become increasingly important. Energy consultants measure and analyze the flow of energy into and out of houses and ensure that a healthy exchange of air is maintained inside the house. The job prospects for an energy consultant are strong.
+:::
+
+:::note [] Problem-Solving Strategies for the Methods of Heat Transfer
+
+1. *Examine the situation to determine what type of heat transfer is involved.*
+2. *Identify the type(s) of heat transfer—conduction, convection, or radiation.*
+3. *Identify exactly what needs to be determined in the problem (identify the unknowns). A written list is very useful.*
+4. *Make a list of what is given or can be inferred from the problem as stated (identify the knowns).*
+5. *Solve the appropriate equation for the quantity to be determined (the unknown).*
+6. For conduction, equation $\frac{Q}{t}=\frac{\text{kA}({T}_{2}-{T}_{1})}{d}$ is appropriate. [ref:import-auto-id1245788](module:m42228) lists thermal conductivities. For convection, determine the amount of matter moved and use equation $Q=\text{mc}\text{Δ}T$, to calculate the heat transfer involved in the temperature change of the fluid. If a phase change accompanies convection, equation $Q={\text{mL}}_{\text{f}}$ or $Q={\text{mL}}_{\text{v}}$ is appropriate to find the heat transfer involved in the phase change. [ref:import-auto-id3260303](module:m42225) lists information relevant to phase change. For radiation, equation     $\frac{{Q}_{\text{net}}}{t}=σeA({T}_{2}^{4}-{T}_{1}^{4})$
+ gives the net heat transfer rate.
+7. *Insert the knowns along with their units into the appropriate equation and obtain numerical solutions complete with units.*
+8. *Check the answer to see if it is reasonable. Does it make sense?*
+:::
+
+## Test Prep for AP Courses {section:ap-test-prep}
+
+:::exercise {fs-id1484614} type=ap-test-prep 
+PROBLEM:
+Two ideal, black-body radiators have temperatures of 275 K and 1100 K. The rate of heat transfer from the latter radiator is how many times greater than the rate of the former radiator?
+a. 4
+b. 16
+c. 64
+d. 256
+SOLUTION:
+(d)
+:::
+
+:::exercise {fs-id2278122} type=ap-test-prep 
+PROBLEM:
+On a warm, sunny day, a car is parked along a street where there is no shade. The car’s windows are closed. The air inside the car becomes noticeably warmer than the air outside. What factors contribute to the higher temperature?
+:::
+
+## Summary {section:section-summary}
+- Radiation is the rate of heat transfer through the emission or absorption of electromagnetic waves.
+- The rate of heat transfer depends on the surface area and the fourth power of the absolute temperature:
+    
+
+$$ \frac{Q}{t}=σeA{T}^{4}\text{,} $$  {eq:eip-61}
+
+where $σ=5\text{.67}\times {\text{10}}^{-8}\;\text{J/s}⋅{\text{m}}^{2}⋅{\text{K}}^{4}$ is the Stefan-Boltzmann constant and $e$ is the emissivity of the body. For a black body, $e=1$ whereas a shiny white or perfect reflector has $e=0$, with real objects having values of $e$ between 1 and 0. The net rate of heat transfer by radiation is
+
+$$ \frac{{Q}_{\text{net}}}{t}=σeA({T}_{2}^{4}-{T}_{1}^{4}) $$  {eq:eip-626}
+
+where ${T}_{1}$ is the temperature of an object surrounded by an environment with uniform temperature ${T}_{2}$ and $e$ is the emissivity of the *object*.
+
+## Conceptual Questions {section:conceptual-questions}
+
+:::exercise {fs-id953571} type=conceptual-questions 
+PROBLEM:
+When watching a daytime circus in a large, dark-colored tent, you sense significant heat transfer from the tent. Explain why this occurs.
+:::
+
+:::exercise {fs-id3491348} type=conceptual-questions 
+PROBLEM:
+Satellites designed to observe the radiation from cold (3 K) dark space have sensors that are shaded from the Sun, Earth, and Moon and that are cooled to very low temperatures. Why must the sensors be at low temperature?
+:::
+
+:::exercise {fs-id1332236} type=conceptual-questions 
+PROBLEM:
+Why are cloudy nights generally warmer than clear ones?
+:::
+
+:::exercise {fs-id1405666} type=conceptual-questions 
+PROBLEM:
+Why are thermometers that are used in weather stations shielded from the sunshine? What does a thermometer measure if it is shielded from the sunshine and also if it is not?
+:::
+
+:::exercise {fs-id1187288} type=conceptual-questions 
+PROBLEM:
+On average, would Earth be warmer or cooler without the atmosphere? Explain your answer.
+:::
+
+## Problems & Exercises {section:problems-exercises}
+
+:::exercise {fs-id1411839} type=problems-exercises 
+PROBLEM:
+At what net rate does heat radiate from a $\text{275}{\text{-m}}^{2}$ black roof on a night when the roof’s temperature is $\text{30.}0º\text{C}$ and the surrounding temperature is $\text{15.}0º\text{C}$? The emissivity of the roof is 0.900.
+SOLUTION:
+$-\text{21}\text{.}7\text{kW}$
+Note that the negative answer implies heat loss to the surroundings.
+:::
+
+:::exercise {fs-id1323270} type=problems-exercises 
+PROBLEM:
+(a) Cherry-red embers in a fireplace are at $\text{850º}\text{C}$ and have an exposed area of $0\text{.}\text{200}\;{\text{m}}^{2}$ and an emissivity of 0.980. The surrounding room has a temperature of $\text{18}\text{.}0º\text{C}$. If 50% of the radiant energy enters the room, what is the net rate of radiant heat transfer in kilowatts? (b) Does your answer support the contention that most of the heat transfer into a room by a fireplace comes from infrared radiation?
+:::
+
+:::exercise {fs-id1237994} type=problems-exercises 
+PROBLEM:
+Radiation makes it impossible to stand close to a hot lava flow. Calculate the rate of heat transfer by radiation from $1\text{.}\text{00}\;{\text{m}}^{2}$ of $\text{1200º}\text{C}$ fresh lava into $\text{30}\text{.}0º\text{C}$ surroundings, assuming lava’s emissivity is 1.00.
+SOLUTION:
+$-\text{266}\text{kW}$
+:::
+
+:::exercise {fs-id1234214} type=problems-exercises 
+PROBLEM:
+(a) Calculate the rate of heat transfer by radiation from a car radiator at  $110°\text{C}$ into a  $50.0º\text{C}$ environment, if the radiator has an emissivity of 0.750 and a $1.20{-m}^{2}$ surface area. (b) Is this a significant fraction of the heat transfer by an automobile engine? To answer this, assume a horsepower of $200\;\text{hp}\;(1.5\;\text{kW})$ and the efficiency of automobile engines as 25%.
+:::
+
+:::exercise {fs-id2581360} type=problems-exercises 
+PROBLEM:
+Find the net rate of heat transfer by radiation from a skier standing in the shade, given the following. She is completely clothed in white (head to foot, including a ski mask), the clothes have an emissivity of 0.200 and a surface temperature of $\text{10}\text{.}0º\text{C}$, the surroundings are at $-\text{15}\text{.}\text{0ºC}$, and her surface area is $1\text{.}\text{60}\;{\text{m}}^{2}$.
+SOLUTION:
+$-\text{36}\text{.}0\text{W}$
+:::
+
+:::exercise {fs-id3596067} type=problems-exercises 
+PROBLEM:
+Suppose you walk into a sauna that has an ambient temperature of $\text{50}\text{.0ºC}$. (a) Calculate the rate of heat transfer to you by radiation given your skin temperature is $\text{37}\text{.0ºC}$, the emissivity of skin is 0.98, and the surface area of your body is $1\text{.50}\;{\text{m}}^{2}$. (b) If all other forms of heat transfer are balanced (the net heat transfer is zero), at what rate will your body temperature increase if your mass is 75.0 kg?
+:::
+
+:::exercise {fs-id1378944} type=problems-exercises 
+PROBLEM:
+Thermography is a technique for measuring radiant heat and detecting variations in surface temperatures that may be medically, environmentally, or militarily meaningful.(a) What is the percent increase in the rate of heat transfer by radiation from a given area at a temperature of $\text{34.0ºC}$ compared with that at $\text{33}\text{.}\text{0ºC}$, such as on a person’s skin? (b) What is the percent increase in the rate of heat transfer by radiation from a given area at a temperature of $\text{34.0ºC}$ compared with that at $\text{20.0ºC}$, such as for warm and cool automobile hoods?
+
+> FIGURE {fig:import-auto-id3110349} src=../../media/Figure_15_07_09a-e4f4.jpg
+> alt: A thermograph of the chest area of a patient is shown. There are different colors showing different thermal regions.
+> caption: Artist’s rendition of a thermograph of a patient’s upper body, showing the distribution of heat represented by different colors.
+
+SOLUTION:
+(a) 1.31%
+(b) 20.5%
+:::
+
+:::exercise {fs-id1102779} type=problems-exercises 
+PROBLEM:
+The Sun radiates like a perfect black body with an emissivity of exactly 1. (a) Calculate the surface temperature of the Sun, given that it is a sphere with a $7\text{.}\text{00}\times {\text{10}}^{8}\text{-m}$ radius that radiates $3\text{.}\text{80}\times {\text{10}}^{\text{26}}\text{W}$ into 3-K space. (b) How much power does the Sun radiate per square meter of its surface? (c) How much power in watts per square meter is that value at the distance of Earth, $1\text{.}\text{50}\times {\text{10}}^{\text{11}}\text{m}$ away? (This number is called the solar constant.)
+:::
+
+:::exercise {fs-id1940871} type=problems-exercises 
+PROBLEM:
+A large body of lava from a volcano has stopped flowing and is slowly cooling. The interior of the lava is at $\text{1200ºC}$, its surface is at $\text{450ºC}$, and the surroundings are at $\text{27}\text{.}\text{0ºC}$. (a) Calculate the rate at which energy is transferred by radiation from $1\text{.}\text{00}\;{\text{m}}^{2}$ of surface lava into the surroundings, assuming the emissivity is 1.00. (b) Suppose heat conduction to the surface occurs at the same rate. What is the thickness of the lava between the $\text{450ºC}$ surface and the $\text{1200ºC}$ interior, assuming that the lava’s conductivity is the same as that of brick?
+SOLUTION:
+(a) $-\text{15.0}\text{kW}$
+(b) 4.2 cm
+:::
+
+:::exercise {fs-id2969111} type=problems-exercises 
+PROBLEM:
+Calculate the temperature the entire sky would have to be in order to transfer energy by radiation at $\text{1000}\;{\text{W/m}}^{2}$ —about the rate at which the Sun radiates when it is directly overhead on a clear day. This value is the effective temperature of the sky, a kind of average that takes account of the fact that the Sun occupies only a small part of the sky but is much hotter than the rest. Assume that the body receiving the energy has a temperature of $\text{27}\text{.}\text{0ºC}$.
+:::
+
+:::exercise {fs-id1920945} type=problems-exercises 
+PROBLEM:
+(a) A shirtless rider under a circus tent feels the heat radiating from the sunlit portion of the tent. Calculate the temperature of the tent canvas based on the following information: The shirtless rider’s skin temperature is $\text{34}\text{.}\text{0ºC}$ and has an emissivity of 0.970. The exposed area of skin is $0\text{.}\text{400}\;{\text{m}}^{2}$. He receives radiation at the rate of 20.0 W—half what you would calculate if the entire region behind him was hot. The rest of the surroundings are at $\text{34}\text{.}\text{0ºC}$. (b) Discuss how this situation would change if the sunlit side of the tent was nearly pure white and if the rider was covered by a white tunic.
+SOLUTION:
+(a) $\text{48}\text{.}5º\text{C}$
+(b) A pure white object reflects more of the radiant energy that hits it, so a white tent would prevent more of the sunlight from heating up the inside of the tent, and the white tunic would prevent that heat which entered the tent from heating the rider. Therefore, with a white tent, the temperature would be lower than $\text{48}\text{.}5º\text{C}$, and the rate of radiant heat transferred to the rider would be less than 20.0 W.
+:::
+
+:::exercise {fs-id2392831} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+One $\text{30}\text{.}\text{0ºC}$ day the relative humidity is $\text{75}\text{.}\text{0\%}$, and that evening the temperature drops to $\text{20}\text{.}\text{0ºC}$, well below the dew point. (a) How many grams of water condense from each cubic meter of air? (b) How much heat transfer occurs by this condensation? (c) What temperature increase could this cause in dry air?
+:::
+
+:::exercise {fs-id3176909} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+Large meteors sometimes strike the Earth, converting most of their kinetic energy into thermal energy. (a) What is the kinetic energy of a ${\text{10}}^{9}\text{kg}$ meteor moving at 25.0 km/s? (b) If this meteor lands in a deep ocean and $\text{80\%}$ of its kinetic energy goes into heating water, how many kilograms of water could it raise by $5\text{.}\text{0ºC?}$ (c) Discuss how the energy of the meteor is more likely to be deposited in the ocean and the likely effects of that energy.
+SOLUTION:
+(a) $3\times {\text{10}}^{\text{17}}\text{J}$
+(b) $1\times {\text{10}}^{\text{13}}\text{kg}$
+(c) When a large meteor hits the ocean, it causes great tidal waves, dissipating large amount of its energy in the form of kinetic energy of the water.
+:::
+
+:::exercise {fs-id1942766} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+Frozen waste from airplane toilets has sometimes been accidentally ejected at high altitude. Ordinarily it breaks up and disperses over a large area, but sometimes it holds together and strikes the ground. Calculate the mass of $\text{0ºC}$ ice that can be melted by the conversion of kinetic and gravitational potential energy when a $\text{20}\text{.0 kg}$ piece of frozen waste is released at 12.0 km altitude while moving at 250 m/s and strikes the ground at 100 m/s (since less than 20.0 kg melts, a significant mess results).
+:::
+
+:::exercise {fs-id3353126} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+(a) A large electrical power facility produces 1600 MW of “waste heat,” which is dissipated to the environment in cooling towers by warming air flowing through the towers by $5\text{.}\text{00ºC}$. What is the necessary flow rate of air in ${\text{m}}^{3}\text{/s}$? (b) Is your result consistent with the large cooling towers used by many large electrical power plants?
+SOLUTION:
+(a) $3\text{.}\text{44}\times {\text{10}}^{5}{\text{m}}^{3}\text{/s}$
+(b) This is equivalent to 12 million cubic feet of air per second. That is tremendous. This is too large to be dissipated by heating the air by only $5º\text{C}$. Many of these cooling towers use the circulation of cooler air over warmer water to increase the rate of evaporation. This would allow much smaller amounts of air necessary to remove such a large amount of heat because evaporation removes larger quantities of heat than was considered in part (a).
+:::
+
+:::exercise {fs-id3415324} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+(a) Suppose you start a workout on a Stairmaster, producing power at the same rate as climbing 116 stairs per minute. Assuming your mass is 76.0 kg and your efficiency is $\text{20}\text{.}\text{0\%}$, how long will it take for your body temperature to rise $1\text{.}\text{00ºC}$ if all other forms of heat transfer in and out of your body are balanced? (b) Is this consistent with your experience in getting warm while exercising?
+:::
+
+:::exercise {fs-id2400920} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+A 76.0-kg person suffering from hypothermia comes indoors and shivers vigorously. How long does it take the heat transfer to increase the person’s body temperature by $2\text{.}\text{00ºC}$ if all other forms of heat transfer are balanced?
+SOLUTION:
+20.9 min
+:::
+
+:::exercise {fs-id2677957} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+In certain large geographic regions, the underlying rock is hot. Wells can be drilled and water circulated through the rock for heat transfer for the generation of electricity. (a) Calculate the heat transfer that can be extracted by cooling $1\text{.00}\;{\text{km}}^{3}$ of granite by $\text{100ºC}$. (b) How long will this take if heat is transferred at a rate of 300 MW, assuming no heat transfers back into the 1.00 km of rock by its surroundings?
+:::
+
+:::exercise {fs-id3012447} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+Heat transfers from your lungs and breathing passages by evaporating water. (a) Calculate the maximum number of grams of water that can be evaporated when you inhale 1.50 L of $37º\text{C}$ air with an original relative humidity of 40.0%. (Assume that body temperature is also $37º\text{C}$.) (b) How many joules of energy are required to evaporate this amount? (c) What is the rate of heat transfer in watts from this method, if you breathe at a normal resting rate of 10.0 breaths per minute?
+SOLUTION:
+(a) 3.96×10<sup>-2</sup> g
+(b) 96.2 J
+(c) 16.0 W
+:::
+
+:::exercise {fs-id2074669} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+(a) What is the temperature increase of water falling 55.0 m over Niagara Falls? (b) What fraction must evaporate to keep the temperature constant?
+:::
+
+:::exercise {fs-id1945562} type=problems-exercises 
+PROBLEM:
+**Integrated Concepts**
+Hot air rises because it has expanded. It then displaces a greater volume of cold air, which increases the buoyant force on it. (a) Calculate the ratio of the buoyant force to the weight of $50.0º\text{C}$ air surrounded by $20.0º\text{C}$ air. (b) What energy is needed to cause $1.00\;{\text{m}}^{3}$ of air to go from $20.0º\text{C}$ to $50.0º\text{C}$? (c) What gravitational potential energy is gained by this volume of air if it rises 1.00 m? Will this cause a significant cooling of the air?
+SOLUTION:
+(a) 1.102
+(b) $2.79\times {10}^{4}\;\text{J}$
+(c) 12.6 J. This will not cause a significant cooling of the air because it is much less than the energy found in part (b), which is the energy required to warm the air from $20.0º\text{C}$ to  $50.0º\text{C}$.
+:::
+
+:::exercise {fs-id2604660} type=problems-exercises 
+PROBLEM:
+**Unreasonable Results**
+(a) What is the temperature increase of an 80.0 kg person who consumes 2500 kcal of food in one day with 95.0% of the energy transferred as heat to the body? (b) What is unreasonable about this result? (c) Which premise or assumption is responsible?
+SOLUTION:
+(a) $\text{36º}\text{C}$
+(b) Any temperature increase greater than about $3º\text{C}$ would be unreasonably large. In this case the final temperature of the person would rise to $73º\text{C}\;(\text{163º}\text{F})$.
+(c) The assumption of $\text{95\%}$ heat retention is unreasonable.
+:::
+
+:::exercise {fs-id742357} type=problems-exercises 
+PROBLEM:
+**Unreasonable Results**
+An Arctic inventor surrounded by ice thinks it would be much less mechanically complex to cool a car engine by melting ice on it than by having a water-cooled system with a radiator, water pump, antifreeze, and so on. (a) If $\text{80}\text{.}\text{0\%}$ of the energy in 1.00 gal of gasoline is converted into “waste heat” in a car engine, how many kilograms of $\text{0ºC}$ ice could it melt? (b) Is this a reasonable amount of ice to carry around to cool the engine for 1.00 gal of gasoline consumption? (c) What premises or assumptions are unreasonable?
+:::
+
+:::exercise {fs-id2663242} type=problems-exercises 
+PROBLEM:
+**Unreasonable Results**
+(a) Calculate the rate of heat transfer by conduction through a window with an area of $1\text{.00}\;{\text{m}}^{2}$ that is 0.750 cm thick, if its inner surface is at $\text{22.0ºC}$ and its outer surface is at $\text{35.0ºC}$. (b) What is unreasonable about this result? (c) Which premise or assumption is responsible?
+SOLUTION:
+(a) 1.46 kW
+(b) Very high power loss through a window. An electric heater of this power can keep an entire room warm.
+(c) The surface temperatures of the window do not differ by as great an amount as assumed. The inner surface will be warmer, and the outer surface will be cooler.
+:::
+
+:::exercise {fs-id1447650} type=problems-exercises 
+PROBLEM:
+**Unreasonable Results**
+A meteorite 1.20 cm in diameter is so hot immediately after penetrating the atmosphere that it radiates 20.0 kW of power. (a) What is its temperature, if the surroundings are at $\text{20.0ºC}$ and it has an emissivity of 0.800? (b) What is unreasonable about this result? (c) Which premise or assumption is responsible?
+:::
+
+:::exercise {fs-id1421900} type=problems-exercises 
+PROBLEM:
+**Construct Your Own Problem**
+Consider a new model of commercial airplane having its brakes tested as a part of the initial flight permission procedure. The airplane is brought to takeoff speed and then stopped with the brakes alone. Construct a problem in which you calculate the temperature increase of the brakes during this process. You may assume most of the kinetic energy of the airplane is converted to thermal energy in the brakes and surrounding materials, and that little escapes. Note that the brakes are expected to become so hot in this procedure that they ignite and, in order to pass the test, the airplane must be able to withstand the fire for some time without a general conflagration.
+:::
+
+:::exercise {fs-id742311} type=problems-exercises 
+PROBLEM:
+**Construct Your Own Problem**
+Consider a person outdoors on a cold night. Construct a problem in which you calculate the rate of heat transfer from the person by all three heat transfer methods. Make the initial circumstances such that at rest the person will have a net heat transfer and then decide how much physical activity of a chosen type is necessary to balance the rate of heat transfer. Among the things to consider are the size of the person, type of clothing, initial metabolic rate, sky conditions, amount of water evaporated, and volume of air breathed. Of course, there are many other factors to consider and your instructor may wish to guide you in the assumptions made as well as the detail of analysis and method of presenting your results.
+:::
+
+## Glossary
+- {def} **emissivity**: measure of how well an object radiates
+- {def} **greenhouse effect**: warming of the Earth that is due to gases such as carbon dioxide and methane that absorb infrared radiation from the Earth’s surface and reradiate it in all directions, thus sending a fraction of it back toward the surface of the Earth
+- {def} **net rate of heat transfer by radiation**: is
+    $\frac{{Q}_{\text{net}}}{t}=σeA({T}_{2}^{4}-{T}_{1}^{4})$
+- {def} **radiation**: energy transferred by electromagnetic waves directly as a result of a temperature difference
+- {def} **Stefan-Boltzmann law of radiation**: $\frac{Q}{t}=σeA{T}^{4},$ where $σ$ is the Stefan-Boltzmann constant, $A$ is the surface area of the object, $T$ is the absolute temperature, and $e$ is the emissivity

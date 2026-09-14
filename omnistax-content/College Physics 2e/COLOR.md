@@ -33,6 +33,13 @@ symbol on that page is ink, and the page's plan lists what it binds.
 | `angular-acceleration` | Angular acceleration | Chapter 10 |
 | `rotational-inertia` | Moment of inertia | Chapter 10 |
 | `angular-momentum` | Angular momentum | Chapter 10 |
+| `pressure` | Pressure: absolute, gauge, atmospheric and average, a pressure difference, a vapor pressure and a partial pressure | Chapter 11 |
+| `density` | Density, average density, the density of a fluid, of an object and of water, a vapor density | Chapter 11 |
+| `surface-tension` | Surface tension | Chapter 11 |
+| `flow-rate` | Flow rate and a branch's share of it | Chapter 12 |
+| `viscosity` | Viscosity | Chapter 12 |
+| `entropy` | Entropy and its changes | Chapter 15 |
+| `temperature` | Temperature on any scale, a temperature change, an initial, final, critical, hot-reservoir or cold-reservoir temperature | Chapter 13 |
 
 Mass, length, angle, a count, a revolution, a percent and every
 dimensionless ratio — a coefficient of friction, a mechanical advantage, an
@@ -48,17 +55,20 @@ energy's. A variant of one type keeps the hue and differs by decoration: an
 initial value is hollow or dashed, an average is dashed, a maximum and a
 value after a change are told by their subscript or their prime.
 
-Of root rule 7's four families this book uses two. Type hues from the
-scheme, bound per page, carry almost everything it draws. The categorical
-palette `F.cat(i)` tells apart instances that carry no type and must be
-distinguished — two cars in a collision, two cans racing down an incline,
-the four hands on a rope — and it is never used in a hue the page has
-bound. The element palette does not arise, because the book names no atom,
-ion or molecule in the chapters built so far, and a colour that is the
-physical fact arises only where a page draws light, which is later in the
-book than anything built. A body never wears a type hue: a phase, a
-material and a temperature are told by shape, label and packing, not by a
-tint on the body.
+Of root rule 7's four families this book uses all four, three of them
+sparingly. Type hues from the scheme, bound per page, carry almost
+everything it draws. The categorical palette `F.cat(i)` tells apart
+instances that carry no type and must be distinguished — two cars in a
+collision, two cans racing down an incline, the four hands on a rope, the
+metals of a bimetallic strip — and it is never used in a hue the page has
+bound. The element palette `F.el(symbol)` arises wherever a page draws a
+named atom or molecule: the phases of 11.1, the gas boxes and speed
+distributions of Chapter 13, the water lattice of 15.6, the molecules of
+Chapter 12's random walk. A colour that is the physical fact is drawn only
+where the plan names it: a flame, the visible band of a spectrum, mercury
+and a colourless liquid in a manometer, blood. A body never wears a type
+hue: a phase, a material and a temperature are told by shape, label and
+packing, not by a tint on the body.
 
 The test for one figure is root rule 7's: everything in it with an identity
 is coloured, or the whole figure is ink. Colour-off drops the type hues and

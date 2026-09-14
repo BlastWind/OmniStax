@@ -1,0 +1,136 @@
+<section id="why-disorder">
+<h2>Why disorder is more likely than order</h2>
+<p class="cite-target">The various ways of formulating the second law of thermodynamics tell what happens rather than why it happens. Why should heat transfer occur only from hot to cold? Why should energy become ever less available to do work? Why should the universe become increasingly disorderly? The answer is that it is a matter of overwhelming probability. Disorder is simply vastly more likely than order.</p>
+<p>When you watch an emerging rain storm begin to wet the ground, you will notice that the drops fall in a disorganized manner both in time and in space. Some fall close together, some far apart, but they never fall in straight, orderly rows. It is not impossible for rain to fall in an orderly pattern, just highly unlikely, because there are many more disorderly ways than orderly ones. To illustrate this fact, we will examine some random processes, starting with coin tosses.</p>
+</section>
+
+<section id="coin-tosses">
+<h2>Coin Tosses</h2>
+<p class="cite-target">What are the possible outcomes of tossing 5 coins? Each coin can land either heads or tails. On the large scale, we are concerned only with the total heads and tails and not with the order in which heads and tails appear. The following possibilities exist:</p>
+$$\begin{array}{l}\text{5 heads, 0 tails} \\ \text{4 heads, 1 tail} \\ \text{3 heads, 2 tails} \\ \text{2 heads, 3 tails} \\ \text{1 head, 4 tails} \\ \text{0 head, 5 tails}\end{array}$$
+<p>These are what we call macrostates. A <strong>macrostate</strong> is an overall property of a system. It does not specify the details of the system, such as the order in which heads and tails occur or which coins are heads or tails.</p>
+<p>Using this nomenclature, a system of 5 coins has the 6 possible macrostates just listed. Some macrostates are more likely to occur than others. For instance, there is only one way to get 5 heads, but there are several ways to get 3 heads and 2 tails, making the latter macrostate more probable. Table 15.3 lists of all the ways in which 5 coins can be tossed, taking into account the order in which heads and tails occur. Each sequence is called a <strong>microstate</strong>—a detailed description of every element of a system.</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">Table 15.3</span><span>5-Coin Toss</span></div>
+  <table>
+    <thead><tr><th></th><th>Individual microstates</th><th>Number of microstates</th></tr></thead>
+    <tbody>
+      <tr><td>5 heads, 0 tails</td><td>HHHHH</td><td>1</td></tr>
+      <tr><td>4 heads, 1 tail</td><td>HHHHT, HHHTH, HHTHH, HTHHH, THHHH</td><td>5</td></tr>
+      <tr><td>3 heads, 2 tails</td><td>HTHTH, THTHH, HTHHT, THHTH, THHHT HTHTH, THTHH, HTHHT, THHTH, THHHT</td><td>10</td></tr>
+      <tr><td>2 heads, 3 tails</td><td>TTTHH, TTHHT, THHTT, HHTTT, TTHTH, THTHT, HTHTT, THTTH, HTTHT, HTTTH</td><td>10</td></tr>
+      <tr><td>1 head, 4 tails</td><td>TTTTH, TTTHT, TTHTT, THTTT, HTTTT</td><td>5</td></tr>
+      <tr><td>0 heads, 5 tails</td><td>TTTTT</td><td>1</td></tr>
+      <tr><td></td><td></td><td>Total: 32</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>The macrostate of 3 heads and 2 tails can be achieved in 10 ways and is thus 10 times more probable than the one having 5 heads. Not surprisingly, it is equally probable to have the reverse, 2 heads and 3 tails. Similarly, it is equally probable to get 5 tails as it is to get 5 heads. Note that all of these conclusions are based on the crucial assumption that each microstate is equally probable. With coin tosses, this requires that the coins not be asymmetric in a way that favors one side over the other, as with loaded dice. With any system, the assumption that all microstates are equally probable must be valid, or the analysis will be erroneous.</p>
+<p>The two most orderly possibilities are 5 heads or 5 tails. (They are more structured than the others.) They are also the least likely, only 2 out of 32 possibilities. The most disorderly possibilities are 3 heads and 2 tails and its reverse. (They are the least structured.) The most disorderly possibilities are also the most likely, with 20 out of 32 possibilities for the 3 heads and 2 tails and its reverse. If we start with an orderly array like 5 heads and toss the coins, it is very likely that we will get a less orderly array as a result, since 30 out of the 32 possibilities are less orderly. So even if you start with an orderly state, there is a strong tendency to go from order to disorder, from low entropy to high entropy. The reverse can happen, but it is unlikely.</p>
+<figure class="sim" id="sim-coin-tosses">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The coins are tossed again and again, and each toss lands as one more tally on the macrostate it produced, the number of heads that came up. Behind the tally is the count of microstates of each macrostate from Table 15.3 and Table 15.4, scaled to the number of tosses, and the tally settles onto it because every microstate is equally probable; beneath is the entropy $\kSent = k\ln W$ of each macrostate, which is greatest in the middle where the microstates are most numerous. Set the number of coins and watch the ends of the histogram empty out as the coins grow more numerous, or load the coins so that heads is favored and watch the tally slide off the count of microstates, since the microstates are then no longer equally probable.</span></div>
+</figure>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">Table 15.4</span><span>100-Coin Toss</span></div>
+  <table>
+    <thead>
+      <tr><th colspan="2">Macrostate</th><th>Number of microstates</th></tr>
+      <tr><th>Heads</th><th>Tails</th><th>($W$)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>100</td><td>0</td><td>1</td></tr>
+      <tr><td>99</td><td>1</td><td>$1.0\times10^{2}$</td></tr>
+      <tr><td>95</td><td>5</td><td>$7.5\times10^{7}$</td></tr>
+      <tr><td>90</td><td>10</td><td>$1.7\times10^{13}$</td></tr>
+      <tr><td>75</td><td>25</td><td>$2.4\times10^{23}$</td></tr>
+      <tr><td>60</td><td>40</td><td>$1.4\times10^{28}$</td></tr>
+      <tr><td>55</td><td>45</td><td>$6.1\times10^{28}$</td></tr>
+      <tr><td>51</td><td>49</td><td>$9.9\times10^{28}$</td></tr>
+      <tr><td>50</td><td>50</td><td>$1.0\times10^{29}$</td></tr>
+      <tr><td>49</td><td>51</td><td>$9.9\times10^{28}$</td></tr>
+      <tr><td>45</td><td>55</td><td>$6.1\times10^{28}$</td></tr>
+      <tr><td>40</td><td>60</td><td>$1.4\times10^{28}$</td></tr>
+      <tr><td>25</td><td>75</td><td>$2.4\times10^{23}$</td></tr>
+      <tr><td>10</td><td>90</td><td>$1.7\times10^{13}$</td></tr>
+      <tr><td>5</td><td>95</td><td>$7.5\times10^{7}$</td></tr>
+      <tr><td>1</td><td>99</td><td>$1.0\times10^{2}$</td></tr>
+      <tr><td>0</td><td>100</td><td>1</td></tr>
+      <tr><td></td><td></td><td>Total: $1.27\times10^{30}$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>This result becomes dramatic for larger systems. Consider what happens if you have 100 coins instead of just 5. The most orderly arrangements (most structured) are 100 heads or 100 tails. The least orderly (least structured) is that of 50 heads and 50 tails. There is only 1 way (1 microstate) to get the most orderly arrangement of 100 heads. There are 100 ways (100 microstates) to get the next most orderly arrangement of 99 heads and 1 tail (also 100 to get its reverse). And there are $1.0\times10^{29}$ ways to get 50 heads and 50 tails, the least orderly arrangement. Table 15.4 is an abbreviated list of the various macrostates and the number of microstates for each macrostate. The total number of microstates—the total number of different ways 100 coins can be tossed—is an impressively large $1.27\times10^{30}$. Now, if we start with an orderly macrostate like 100 heads and toss the coins, there is a virtual certainty that we will get a less orderly macrostate. If we keep tossing the coins, it is possible, but exceedingly unlikely, that we will ever get back to the most orderly macrostate. If you tossed the coins once each second, you could expect to get either 100 heads or 100 tails once in $2\times10^{22}$ years! This period is 1 trillion ($10^{12}$) times longer than the age of the universe, and so the chances are essentially zero. In contrast, there is an 8% chance of getting 50 heads, a 73% chance of getting from 45 to 55 heads, and a 96% chance of getting from 40 to 60 heads. Disorder is highly likely.</p>
+</section>
+
+<section id="disorder-in-a-gas">
+<h2>Disorder in a Gas</h2>
+<p class="cite-target">The fantastic growth in the odds favoring disorder that we see in going from 5 to 100 coins continues as the number of entities in the system increases. Let us now imagine applying this approach to perhaps a small sample of gas. Because counting microstates and macrostates involves statistics, this is called <strong>statistical analysis</strong>. The macrostates of a gas correspond to its macroscopic properties, such as volume, temperature, and pressure; and its microstates correspond to the detailed description of the positions and velocities of its atoms. Even a small amount of gas has a huge number of atoms: $1.0\ \text{cm}^3$ of an ideal gas at 1.0 atm and $0^\circ\text{C}$ has $2.7\times10^{19}$ atoms. So each macrostate has an immense number of microstates. In plain language, this means that there are an immense number of ways in which the atoms in a gas can be arranged, while still having the same pressure, temperature, and so on.</p>
+<p>The most likely conditions (or macrostates) for a gas are those we see all the time—a random distribution of atoms in space with a Maxwell-Boltzmann distribution of speeds in random directions, as predicted by kinetic theory. This is the most disorderly and least structured condition we can imagine. In contrast, one type of very orderly and structured macrostate has all of the atoms in one corner of a container with identical velocities. There are very few ways to accomplish this (very few microstates corresponding to it), and so it is exceedingly unlikely ever to occur. (See Figure 15.38(b).) Indeed, it is so unlikely that we have a law saying that it is impossible, which has never been observed to be violated—the second law of thermodynamics.</p>
+<figure class="sim" id="sim-gas-disorder" data-figure="15.38" data-original="/media/ch15/Figure_16_07_02.jpg" data-original-width="220" data-original-caption="(a) The ordinary state of gas in a container is a disorderly, random distribution of atoms or molecules with a Maxwell-Boltzmann distribution of speeds. It is so unlikely that these atoms or molecules would ever end up in one corner of the container that it might as well be impossible. (b) With energy transfer, the gas can be forced into one corner and its entropy greatly reduced. But left alone, it will spontaneously increase its entropy and return to the normal conditions, because they are immensely more likely.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.38</span><span>The atoms of a gas are released from one corner of a container, all with the same speed but in random directions, and they collide with one another and with the walls until they are spread through the whole container with a range of speeds. The container is divided into four quarters and the number of atoms in each is counted; the number of microstates $W$ is the number of ways the atoms could be assigned to the quarters in those numbers, and the entropy of the arrangement, $\kSent = k\ln W$, is drawn as the bar beside the container and traced against time in the graph. It rises from zero as the atoms disperse and then stays near its maximum, flickering a little beneath it and never returning to zero. Start with the gas already spread out and the entropy only flickers near its maximum, since the atoms never gather in a corner of their own accord. Set the number of atoms and watch how much less the entropy wanders as there are more of them.</span></div>
+</figure>
+<p>The disordered condition is one of high entropy, and the ordered one has low entropy. With a transfer of energy from another system, we could force all of the atoms into one corner and have a local decrease in entropy, but at the cost of an overall increase in entropy of the universe. If the atoms start out in one corner, they will quickly disperse and become uniformly distributed and will never return to the orderly original state (Figure 15.38(b)). Entropy will increase. With such a large sample of atoms, it is possible—but unimaginably unlikely—for entropy to decrease. Disorder is vastly more likely than order.</p>
+<p>The arguments that disorder and high entropy are the most probable states are quite convincing. The great Austrian physicist Ludwig Boltzmann (1844–1906)—who, along with Maxwell, made so many contributions to kinetic theory—proved that the entropy of a system in a given state (a macrostate) can be written as</p>
+$$\kSent = k\ln W,$$
+<p>where $k = 1.38\times10^{-23}\ \text{J/K}$ is Boltzmann’s constant, and $\ln W$ is the natural logarithm of the number of microstates $W$ corresponding to the given macrostate. $W$ is proportional to the probability that the macrostate will occur. Thus entropy is directly related to the probability of a state—the more likely the state, the greater its entropy. Boltzmann proved that this expression for $s$ is equivalent to the definition $\kdS = \kQh/\kTemp$, which we have used extensively.</p>
+<p>Thus the second law of thermodynamics is explained on a very basic level: entropy either remains the same or increases in every process. This phenomenon is due to the extraordinarily small probability of a decrease, based on the extraordinarily larger number of microstates in systems with greater entropy. Entropy <em>can</em> decrease, but for any macroscopic system, this outcome is so unlikely that it will never be observed.</p>
+</section>
+
+<section id="entropy-change">
+<h2>The change in entropy between two macrostates</h2>
+<div class="example" id="ex-coin-toss-entropy">
+<h3>Example 15.9 · Entropy Increases in a Coin Toss</h3>
+<p class="cite-target">Suppose you toss 100 coins starting with 60 heads and 40 tails, and you get the most likely result, 50 heads and 50 tails. What is the change in entropy?</p>
+<h4>Strategy</h4>
+<p>Noting that the number of microstates is labeled $W$ in Table 15.4 for the 100-coin toss, we can use $\kdS = \kSf - \kSi = k\ln W_{\text{f}} - k\ln W_{\text{i}}$ to calculate the change in entropy.</p>
+<h4>Solution</h4>
+<p>The change in entropy is</p>
+$$\kdS = \kSf - \kSi = k\ln W_{\text{f}} - k\ln W_{\text{i}},$$
+<p>where the subscript i stands for the initial 60 heads and 40 tails state, and the subscript f for the final 50 heads and 50 tails state. Substituting the values for $W$ from Table 15.4 gives</p>
+$$\begin{array}{lll}\kdS & = & (1.38\times10^{-23}\ \text{J/K})[\ln(1.0\times10^{29}) - \ln(1.4\times10^{28})] \\ & = & 2.7\times10^{-23}\ \text{J/K}\end{array}$$
+<h4>Discussion</h4>
+<p>This increase in entropy means we have moved to a less orderly situation. It is not impossible for further tosses to produce the initial state of 60 heads and 40 tails, but it is less likely. There is about a 1 in 90 chance for that decrease in entropy ($-2.7\times10^{-23}\ \text{J/K}$) to occur. If we calculate the decrease in entropy to move to the most orderly state, we get $\kdS = -92\times10^{-23}\ \text{J/K}$. There is about a $1\ \text{in}\ 10^{30}$ chance of this change occurring. So while very small decreases in entropy are unlikely, slightly greater decreases are impossibly unlikely. These probabilities imply, again, that for a macroscopic system, a decrease in entropy is impossible. For example, for heat transfer to occur spontaneously from 1.00 kg of $0^\circ\text{C}$ ice to its $0^\circ\text{C}$ environment, there would be a decrease in entropy of $1.22\times10^{3}\ \text{J/K}$. Given that a $\kdS\ \text{of}\ 10^{-21}\ \text{J/K}$ corresponds to about a $1\ \text{in}\ 10^{30}$ chance, a decrease of this size ($10^{3}\ \text{J/K}$) is an <em>utter</em> impossibility. Even for a milligram of melted ice to spontaneously refreeze is impossible.</p>
+</div>
+<figure class="sim" id="sim-entropy-change">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Every macrostate of the coins stands as a column whose height is its entropy $\kSent = k\ln W$, and the two you choose, the initial and the final, are filled and bracketed by the change $\kdS = \kSf - \kSi = k\ln W_{\text{f}} - k\ln W_{\text{i}}$. The ratio of the two counts of microstates says how much more likely the final macrostate is than the initial one, which is what the odds of a toss come to. Set the number of coins and the two macrostates, and watch the change grow with the difference in height and turn negative when the final macrostate is the more orderly of the two.</span></div>
+</figure>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">Table 15.5</span><span>10-Coin Toss</span></div>
+  <table>
+    <thead>
+      <tr><th colspan="2">Macrostate</th><th>Number of Microstates ($W$)</th></tr>
+      <tr><th>Heads</th><th>Tails</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr><td>10</td><td>0</td><td>1</td></tr>
+      <tr><td>9</td><td>1</td><td>10</td></tr>
+      <tr><td>8</td><td>2</td><td>45</td></tr>
+      <tr><td>7</td><td>3</td><td>120</td></tr>
+      <tr><td>6</td><td>4</td><td>210</td></tr>
+      <tr><td>5</td><td>5</td><td>252</td></tr>
+      <tr><td>4</td><td>6</td><td>210</td></tr>
+      <tr><td>3</td><td>7</td><td>120</td></tr>
+      <tr><td>2</td><td>8</td><td>45</td></tr>
+      <tr><td>1</td><td>9</td><td>10</td></tr>
+      <tr><td>0</td><td>10</td><td>1</td></tr>
+      <tr><td></td><td></td><td>Total: 1024</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section id="entropy-strategy">
+<h2>Solving problems that involve entropy</h2>
+<div class="note">
+<div class="eyebrow">Problem-Solving Strategies for Entropy</div>
+<ol class="cite-target">
+<li><em>Examine the situation to determine if entropy is involved.</em></li>
+<li><em>Identify the system of interest and draw a labeled diagram of the system showing energy flow.</em></li>
+<li><em>Identify exactly what needs to be determined in the problem (identify the unknowns).</em> A written list is useful.</li>
+<li><em>Make a list of what is given or can be inferred from the problem as stated (identify the knowns).</em> You must carefully identify the heat transfer, if any, and the temperature at which the process takes place. It is also important to identify the initial and final states.</li>
+<li><em>Solve the appropriate equation for the quantity to be determined (the unknown).</em> Note that the change in entropy can be determined between any states by calculating it for a reversible process.</li>
+<li><em>Substitute the known value along with their units into the appropriate equation, and obtain numerical solutions complete with units.</em></li>
+<li><em>To see if it is reasonable: Does it make sense?</em> For example, total entropy should increase for any real process or be constant for a reversible process. Disordered states should be more probable and have greater entropy than ordered states.</li>
+</ol>
+</div>
+</section>

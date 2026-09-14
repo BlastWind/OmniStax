@@ -1,0 +1,946 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "Q_heat",
+   "latex": "Q",
+   "type": "energy",
+   "macro": "\\kQh"
+  },
+  {
+   "sym": "Q_hot",
+   "latex": "Q_{\\text{hot}}",
+   "type": "energy",
+   "macro": "\\kQhot"
+  },
+  {
+   "sym": "Q_cold",
+   "latex": "Q_{\\text{cold}}",
+   "type": "energy",
+   "macro": "\\kQcold"
+  },
+  {
+   "sym": "Q_net",
+   "latex": "Q_{\\text{net}}",
+   "type": "energy",
+   "macro": "\\kQnet"
+  },
+  {
+   "sym": "T_itemp",
+   "latex": "T_{\\text{i}}",
+   "type": "temperature",
+   "macro": "\\kTempi"
+  },
+  {
+   "sym": "T_primetemp",
+   "latex": "T'",
+   "type": "temperature",
+   "macro": "\\kTemppr"
+  },
+  {
+   "sym": "T_hottemp",
+   "latex": "T_{\\text{hot}}",
+   "type": "temperature",
+   "macro": "\\kTemphot"
+  },
+  {
+   "sym": "T_coldtemp",
+   "latex": "T_{\\text{cold}}",
+   "type": "temperature",
+   "macro": "\\kTempcold"
+  },
+  {
+   "sym": "c_spec",
+   "latex": "c"
+  },
+  {
+   "sym": "c_p",
+   "latex": "c_{\\text{p}}"
+  },
+  {
+   "sym": "c_v",
+   "latex": "c_{\\text{v}}"
+  },
+  {
+   "sym": "L_f",
+   "latex": "L_{\\text{f}}"
+  },
+  {
+   "sym": "L_v",
+   "latex": "L_{\\text{v}}"
+  },
+  {
+   "sym": "L_s",
+   "latex": "L_{\\text{s}}"
+  },
+  {
+   "sym": "L_latent",
+   "latex": "L"
+  },
+  {
+   "sym": "k_cond",
+   "latex": "k"
+  },
+  {
+   "sym": "d_thick",
+   "latex": "d"
+  },
+  {
+   "sym": "R_factor",
+   "latex": "R"
+  },
+  {
+   "sym": "e_emis",
+   "latex": "e"
+  },
+  {
+   "sym": "σ_SB",
+   "latex": "\\sigma"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "heat",
+   "kind": "idea",
+   "section": "14.1",
+   "name": "Heat",
+   "why": "Heat is the spontaneous transfer of energy due to a temperature difference. When two objects at different temperatures are brought into contact, energy passes from the hotter to the colder one until they reach the same temperature, and no force acts through a distance while it does, so the transfer is not work. Heat is therefore a form of energy in transit: it exists only while the temperature difference drives it, and it ceases once the temperatures are equal.",
+   "evidence": "The section opens on the soft drink and the ice cube of Figure 14.2, which have different temperatures apart and one temperature in contact, and states the definition in a sentence of its own; the glossary carries the term, and the conceptual questions ask how heat transfer is related to temperature and for a situation in which it occurs."
+  },
+  {
+   "id": "heat-vs-temperature",
+   "kind": "idea",
+   "section": "14.1",
+   "name": "Heat is energy, temperature is not",
+   "why": "We may say the heat was unbearable when we mean the temperature was high, and the section names the confusion in order to end it. Heat is a form of energy and is measured in joules; temperature is not an energy but a measure of the average kinetic energy of the atoms and molecules. The misconception arises because we are sensitive to the flow of heat rather than to the temperature itself, and keeping the two apart is what lets the rest of the chapter say that adding heat need not raise a temperature at all.",
+   "evidence": "The paragraph on the common confusion between heat and temperature, and the conceptual question asking whether the energy is stored as heat once it has entered a system."
+  },
+  {
+   "id": "units-of-heat",
+   "kind": "skill",
+   "section": "14.1",
+   "name": "Joules, calories and kilocalories",
+   "why": "Because heat is a form of energy, its SI unit is the joule, but heat is also measured in the calorie, the energy needed to warm 1.00 g of water by 1.00 °C, and most often in the kilocalorie, which warms 1.00 kg of water by the same amount. A food calorie is a kilocalorie, a fact not easily determined from package labeling, and converting among these units is part of almost every problem in the chapter.",
+   "evidence": "The paragraph defining the calorie between 14.5 °C and 15.5 °C, the kilocalorie and the food calorie, the summary's statement that any energy unit can be used for heat transfer, and 14.2's problem asking the reader to show that 1 cal/(g·°C) equals 1 kcal/(kg·°C)."
+  },
+  {
+   "id": "mechanical-equivalent-of-heat",
+   "kind": "result",
+   "section": "14.1",
+   "name": "Mechanical equivalent of heat, $1.000\\;\\text{kcal} = 4186\\;\\text{J}$",
+   "why": "It is also possible to change the temperature of a substance by doing work, and James Prescott Joule's experiments established the mechanical equivalent of heat, the work needed to produce the same effects as heat transfer. The best modern value is 1.000 kcal = 4186 J, which we treat as the conversion between two units of energy. In Joule's apparatus falling weights turn paddles in water, gravitational potential energy becomes kinetic energy and is randomized by viscosity into the motion of the molecules, and the thermometer rises exactly as it would have had heat been added instead.",
+   "evidence": "The equation is the section's one displayed result; Figure 14.3 is Joule's apparatus and the paragraph beneath it walks the energy from the weights to the water; 14.2's problem on rubbing the hands together and its example on truck brakes apply the equivalence.",
+   "eq": "eq-mechanical-equivalent"
+  },
+  {
+   "id": "internal-energy-changed-by-heat-or-work",
+   "kind": "idea",
+   "section": "14.1",
+   "name": "Heat and work both change internal energy",
+   "why": "Heat added to a system changes its internal energy and usually its temperature, and so does work done on the system, by stirring or by rubbing. A system has a well-defined internal energy, but it does not have a heat content or a work content: once the energy is inside, nothing about the sample says which way it came. This is why the book says heat transfer rather than heat, and it is the idea Chapter 15 will build the first law of thermodynamics on.",
+   "evidence": "The closing paragraph of the section, and the Check Your Understanding box asking how to tell which of two samples received 10 kJ as heat and which as work, whose answer is that it is impossible."
+  },
+  {
+   "id": "three-factors-of-heat-transfer",
+   "kind": "idea",
+   "section": "14.2",
+   "name": "Heat transfer depends on temperature change, mass and substance",
+   "why": "Experiments show that the heat transferred to change a body's temperature depends on three factors: the change in temperature, the mass of the body, and the substance and its phase. Doubling the temperature change of a given mass takes twice the heat, doubling the mass takes twice the heat for the same change, and the same change in the same mass of water takes 10.8 times the heat it takes in copper. The first two follow from the internal energy being proportional to the absolute temperature and to the number of molecules; the third is a property of the material.",
+   "evidence": "Figure 14.4's three pairs of cylinders draw the three factors one at a time, the paragraph beneath it explains the first two from kinetic theory, and the first conceptual question asks for the three factors by name."
+  },
+  {
+   "id": "heat-and-temperature-change",
+   "kind": "result",
+   "section": "14.2",
+   "name": "Heat and temperature change, $Q = mc\\Delta T$",
+   "why": "The quantitative relationship between heat transfer and temperature change contains all three factors: the heat transferred is the mass times the specific heat times the change in temperature, provided there is no phase change and no work is done. The temperature change is the same in kelvin and in degrees Celsius, so either may be used, and if the heat is measured in kilocalories the specific heat is in kcal/(kg·°C). The relation is the working equation of the whole chapter, since every later method of heat transfer is asked how much temperature change it produces.",
+   "evidence": "The boxed note Heat Transfer and Temperature Change states the equation; Example 14.1 heats water in an aluminum pan with it, the swimming pool, baby bottle and copper-to-water problems apply it directly, and the Check Your Understanding box asks whether the same heat warms a block by the same 5 °C from a different starting temperature.",
+   "eq": "eq-heat-temperature-change"
+  },
+  {
+   "id": "specific-heat",
+   "kind": "idea",
+   "section": "14.2",
+   "name": "Specific heat",
+   "why": "The specific heat is the amount of heat necessary to change the temperature of 1.00 kg of a substance by 1.00 °C. It depends on the material and its phase, must generally be looked up in a table because there is no simple way to calculate it, and varies little with temperature for most solids and liquids. Water's is among the largest of any material, five times that of glass and ten times that of iron, which is important for sustaining life on Earth.",
+   "evidence": "The definition in the boxed note, Table 14.1 with its values for solids, liquids and gases, the paragraph comparing water to glass and iron, and the problem asking the reader to compute a specific heat from 4.35 kJ and identify the substance."
+  },
+  {
+   "id": "temperature-rise-from-work",
+   "kind": "skill",
+   "section": "14.2",
+   "name": "Temperature increase from work done on a substance",
+   "why": "When work is converted into internal energy, the temperature rise follows from the same equation solved for the temperature change: the energy delivered divided by the mass and the specific heat of what absorbs it. Truck brakes on a downhill run convert the gravitational potential energy the truck loses into the internal energy of the brake material, and because the brakes are small compared with the truck, even a tenth of that energy warms them quickly. It is the mechanical equivalent of heat made into a calculation.",
+   "evidence": "Example 14.2 finds the 9.2 °C rise of 100 kg of brake material from a 10,000 kg truck descending 75.0 m; the problem on rubbing the hands together with a frictional force and the conceptual question on brakes stopping a car from twice the speed test the same reasoning.",
+   "eq": "eq-temperature-change-from-heat"
+  },
+  {
+   "id": "calorimetry",
+   "kind": "result",
+   "section": "14.2",
+   "name": "Calorimetry, $Q_{\\text{cold}} + Q_{\\text{hot}} = 0$",
+   "why": "When two bodies at different temperatures are brought into contact in an insulated container, heat passes from the hotter to the colder until they reach a common temperature, and because no heat leaves the pair, the heat lost by the hot body is the heat gained by the cold one. Written with signs, the heat into the cold body is positive, the heat out of the hot body is negative, and the two sum to zero. This is a calorimetry problem, and it is the way the heat content of foods and the specific heats of materials are measured.",
+   "evidence": "Example 14.3 pours cold water into a hot pan and writes the balance in step 3; the peanut-burning problem and 14.3's final-temperature problems rest on the same balance.",
+   "eq": "eq-calorimetry"
+  },
+  {
+   "id": "final-temperature-from-heat-exchange",
+   "kind": "skill",
+   "section": "14.2",
+   "name": "Final temperature when heat is transferred between two bodies",
+   "why": "Solving the calorimetry balance for the final temperature gives a weighted average of the two starting temperatures, each weighted by its body's mass times specific heat. The pan at 150 °C and the water at 20.0 °C meet at 59.1 °C, much closer to the water, because water's specific heat is more than four times aluminum's and its mass times specific heat is the larger weight. The skill is to write the heat lost and the heat gained in terms of the one unknown temperature and then collect the terms.",
+   "evidence": "Example 14.3's steps 4 and 5 derive and evaluate the final temperature; 14.3's problems on the ice cube in warm water, the water poured onto ice and the hot rocks in a basket extend the same solution to include a phase change.",
+   "eq": "eq-final-temperature"
+  },
+  {
+   "id": "water-moderates-temperature",
+   "kind": "idea",
+   "section": "14.2",
+   "name": "Water's large specific heat moderates temperatures",
+   "why": "Because water has a greater specific heat than most common substances, it undergoes a small temperature change for a given heat transfer. A large body of water such as a lake needs a great deal of heat to warm appreciably, so its temperature stays nearly constant through a day even when the air's changes a great deal, while it does change over the longer times from summer to winter. Land warms and cools faster than water, which is what drives land breezes and sea breezes.",
+   "evidence": "The discussion of Example 14.3, the Take-Home Experiment on the temperature change of land and water, and 14.6's AP item on how sea breezes form by day and reverse at night."
+  },
+  {
+   "id": "latent-heat",
+   "kind": "idea",
+   "section": "14.3",
+   "name": "Latent heat, $Q = mL$",
+   "why": "No temperature change occurs from heat transfer while a substance changes phase: the energy goes into breaking the cohesive bonds between molecules rather than into their kinetic energy, so ice at 0 °C stays at 0 °C until all of it has melted, and energy is released, usually as thermal energy, when the bonds form again in freezing or condensation. The heat required to change the phase of a mass is that mass times a latent heat coefficient, a material constant that is called latent, or hidden, because the energy enters or leaves without changing the temperature.",
+   "evidence": "The opening paragraphs on why melting and vaporizing take energy, Figure 14.8's molecules of a solid, a liquid and a gas, the definition of the latent heat coefficients, the summary's $Q = mL$, and the glossary term; the Check Your Understanding box asks why snow stays on a slope when the air is above freezing.",
+   "eq": "eq-latent-heat"
+  },
+  {
+   "id": "heat-of-fusion",
+   "kind": "result",
+   "section": "14.3",
+   "name": "Heat of fusion, $Q = mL_{\\text{f}}$",
+   "why": "The latent heat of fusion is the heat that melts a kilogram of a substance at its melting point, and the same heat is released when the kilogram freezes. For water it is 334 kJ/kg, which is the energy that would warm a kilogram of liquid water from 0 °C to 79.8 °C, so a bag of ice at 0 °C absorbs far more energy than a bag of water at the same temperature and an orchard sprayed with water before a frost is warmed by the water freezing.",
+   "evidence": "The first displayed equation of the section, the water row of Table 14.2, the worked comparison with warming water to 79.8 °C, the Real-World Application on orchards, and the problems on thawing frozen vegetables, a bag of ice in a cooler and the frost-damage spray.",
+   "eq": "eq-heat-fusion"
+  },
+  {
+   "id": "heat-of-vaporization",
+   "kind": "result",
+   "section": "14.3",
+   "name": "Heat of vaporization, $Q = mL_{\\text{v}}$",
+   "why": "The latent heat of vaporization is the heat that turns a kilogram of liquid into vapor at the boiling point, and the same heat is released when the vapor condenses. For water it is 2256 kJ/kg, nearly seven times its heat of fusion, so boiling away a kilogram of water costs more than raising it from ice-cold to boiling, and the condensation that forms on a glass of iced tea releases energy into the glass and speeds the melting of the ice.",
+   "evidence": "The second displayed equation, the 2256 kJ figure in the text and in Table 14.2, the paragraph on condensation with Figure 14.10, and the problems on boiling away water in a pot, condensation on a glass of ice water and the crude-oil fire.",
+   "eq": "eq-heat-vaporization"
+  },
+  {
+   "id": "heating-curve",
+   "kind": "idea",
+   "section": "14.3",
+   "name": "Temperature against heat added through the phases of water",
+   "why": "Adding heat to ice at −20 °C traces a graph with slopes and plateaus. The temperature rises linearly while the ice warms, stops at 0 °C while the ice melts and every joule goes into the phase change, rises again more slowly through the liquid because water's specific heat is twice ice's, stops at 100 °C for a much longer plateau while the water boils, and rises once more as steam. The plateaus are the latent heats, and their lengths beside the slopes show that the energy of a phase change is enormous compared with that of a temperature change.",
+   "evidence": "Figure 14.9 draws the graph and the paragraph before it walks each segment with its specific heat or latent heat in cal/g; the problem on taking 0.200 kg of ice from −20.0 °C to 130 °C, with the time for each stage at a fixed rate, asks the reader to construct the same graph."
+  },
+  {
+   "id": "evaporation-below-boiling",
+   "kind": "idea",
+   "section": "14.3",
+   "name": "Evaporation below the boiling point",
+   "why": "Water evaporates at temperatures below its boiling point, and it costs more energy per kilogram to do so, because the molecules have less kinetic energy to draw on: at body temperature the heat of vaporization is 2430 kJ/kg, about ten percent higher than at 100 °C. Perspiration takes this heat from the skin, which is why sweating cools, and high humidity slows evaporation so that the sweat stays on your brow. The same evaporation is why air temperatures in humid climates rarely rise above 35 °C.",
+   "evidence": "The paragraph on evaporation at body temperature and the one on humid climates, the footnote to Table 14.2 giving the value at 37 °C, and the conceptual questions on Florida's temperatures, a lid on a boiling pot and freeze-dried food."
+  },
+  {
+   "id": "condensation-and-freezing-release-heat",
+   "kind": "idea",
+   "section": "14.3",
+   "name": "Condensation and freezing release heat",
+   "why": "Energy must be removed from vapor to make it condense and from liquid to make it freeze, exactly the energy the phase change absorbed in the other direction, and the surroundings receive it. This is why condensation on a cold glass speeds the melting of the ice inside, why temperatures in humid weather rarely fall below the dew point, why an orchard sprayed with water is protected from a hard frost, and why the moment water freezes it is at 0 °C and no colder.",
+   "evidence": "The paragraph on condensation with Figure 14.10, the Real-World Application on orchards with Figure 14.11, and the conceptual questions on the temperature of newly frozen ice, on condensation and melting, and on still air cooling at night."
+  },
+  {
+   "id": "heat-of-sublimation",
+   "kind": "result",
+   "section": "14.3",
+   "name": "Heat of sublimation, $Q = mL_{\\text{s}}$",
+   "why": "Sublimation is the transition from the solid phase directly to the vapor phase, as when snow disappears without a trace of liquid, dry ice makes its smoke, or frost forms on a cold window from vapor alone. It occurs because the equilibrium vapor pressure of a solid is not zero. The energy required is the mass times the heat of sublimation, a constant of the same order as the other latent heats, so dry ice is an effective coolant and frosting releases energy.",
+   "evidence": "The paragraph on sublimation with Figure 14.12, the equation for the heat of sublimation, and the glossary terms; the conceptual question on the balloon cooled in liquid nitrogen asks the reader to identify a sublimating solid from Table 14.2."
+  },
+  {
+   "id": "phase-change-calorimetry",
+   "kind": "skill",
+   "section": "14.3",
+   "name": "Final temperature with a phase change",
+   "why": "When a phase change takes part in a heat exchange, the problem is done in stages: the heat that melts the ice, then the heat that warms the melted water, set against the heat the other body gives up, with all the terms in the one unknown final temperature. The problem-solving strategy says to try the problem without a phase change first and, if the temperature change would carry a body past a melting or boiling point, to go back and do it in steps, checking at the end that no phase change has been missed.",
+   "evidence": "Example 14.4 cools a soda with three ice cubes and solves for the final temperature; the seven-step Problem-Solving Strategies for the Effects of Heat Transfer; the problems on the ice cube at −30.0 °C in warm water, the water poured onto a block of ice, the hot rocks in a basket and the aluminum pot with evaporation."
+  },
+  {
+   "id": "heat-transfer-methods",
+   "kind": "idea",
+   "section": "14.4",
+   "name": "Three methods of heat transfer",
+   "why": "Whenever there is a temperature difference, heat transfer occurs, and every process by which it does takes place by only three methods: conduction, convection and radiation. All three have one thing in common, that they transfer heat solely because of a temperature difference, and we control their rates by choosing materials, controlling the movement of air and choosing colors. A fireplace shows all three at once.",
+   "evidence": "The section's opening paragraph and its numbered list of the three methods, Figure 14.13's fireplace with a labelled arrow for each, and the Check Your Understanding box asking for an everyday example of each mechanism."
+  },
+  {
+   "id": "conduction",
+   "kind": "idea",
+   "section": "14.4",
+   "name": "Conduction",
+   "why": "Conduction is heat transfer through stationary matter by physical contact. The matter is stationary on the large scale, though its atoms and molecules are in thermal motion at any temperature above absolute zero, and the heat passes between the electric burner of a stove and the bottom of a pan, or from a hot floor into the sole of a foot, without anything moving from one place to the other.",
+   "evidence": "The first item of the section's list, the glossary term, the conduction arrow into the floor in Figure 14.13, and the Check Your Understanding box's example of holding a hot cup of coffee."
+  },
+  {
+   "id": "convection",
+   "kind": "idea",
+   "section": "14.4",
+   "name": "Convection",
+   "why": "Convection is heat transfer by the macroscopic movement of a fluid. The fluid itself carries the energy from one place to another, as the air does in a forced-air furnace, in the draft up a chimney and in the weather, and as water does in the cooling system of a car.",
+   "evidence": "The second item of the section's list, the glossary term, the convection arrows into the room and up the chimney in Figure 14.13, and the conceptual question on how heat leaves a person in a hot tub."
+  },
+  {
+   "id": "radiation-heat-transfer",
+   "kind": "idea",
+   "section": "14.4",
+   "name": "Radiation",
+   "why": "Heat transfer by radiation occurs when microwaves, infrared radiation, visible light or another form of electromagnetic radiation is emitted or absorbed. The Sun warms the Earth this way across empty space, a fire warms the room mostly this way, and the human body radiates infrared whether or not anything touches it.",
+   "evidence": "The third item of the section's list, the glossary term, the radiation arrows from the flames in Figure 14.13, and the conceptual questions on how heat leaves Earth's surface for space and on the silvered walls of a thermos bottle."
+  },
+  {
+   "id": "conduction-by-molecular-collisions",
+   "kind": "idea",
+   "section": "14.5",
+   "name": "Conduction by molecular collisions",
+   "why": "The molecules of a hotter body have the greater average kinetic energy, and when a fast molecule and a slow one collide at the surface where two bodies touch, energy passes from the faster to the slower. The cumulative effect of all the collisions is a net flux of heat from the hot body to the cold one that grows with the temperature difference and with the area of contact, and that falls to zero when the temperatures are equal. Because it relies on random motion, conduction is slow over distances larger than a molecule's reach.",
+   "evidence": "The paragraph on why a tile floor feels colder than a carpet at the same temperature, Figure 14.16's molecules at a contact surface, the sentences on boiling water and on touching a wall with the palm rather than a fingertip, and the closing remark of Example 14.6 that conduction alone could not temper Earth's days and nights."
+  },
+  {
+   "id": "rate-of-conductive-heat-transfer",
+   "kind": "result",
+   "section": "14.5",
+   "name": "Rate of conductive heat transfer, $Q/t = kA(T_2 - T_1)/d$",
+   "why": "The rate at which heat is conducted through a slab of material is proportional to the temperature difference across it and to its area, inversely proportional to its thickness, and set by a constant of the material, its thermal conductivity. The four factors were deduced from experiment and are confirmed by it, and the equation holds whether the slab is window glass or walrus blubber. It is the rate, in watts, that the section's problems ask for.",
+   "evidence": "Figure 14.17's slab between a hot face and a cold face, the displayed equation and its glossary term, the summary, and the problems on a house wall, a window, the tissue of the human body, an animal's fur and a double-paned window; the AP item asking which statement describes the rate correctly.",
+   "eq": "eq-conduction-rate"
+  },
+  {
+   "id": "thermal-conductivity",
+   "kind": "idea",
+   "section": "14.5",
+   "name": "Thermal conductivity",
+   "why": "The thermal conductivity is the property of a material's ability to conduct heat, and it spans more than four orders of magnitude across common substances. The best thermal conductors, silver, copper, gold and aluminum, are also the best electrical conductors, because of the density of free electrons in them, and cooking utensils are made of them; Styrofoam, fiberglass, wool and down are poor conductors because they trap many small pockets of air, whose own conductivity is among the lowest of all.",
+   "evidence": "Table 14.3 and the paragraphs around it, the discussion of Example 14.5 on why Styrofoam insulates, the remark on metals and free electrons, and the AP item on designing a saucepan that conducts as fast as silver; the conceptual question on ceramic stove tops."
+  },
+  {
+   "id": "r-factor",
+   "kind": "idea",
+   "section": "14.5",
+   "name": "The R factor of an insulator",
+   "why": "A good insulator combines a small conductivity with a large thickness, and the ratio of thickness to conductivity is called the R factor. The rate of conductive heat transfer is inversely proportional to it, so the larger the R factor the better the insulation. It is the figure quoted for household insulation, still in non-metric units, with 3.5-inch fiberglass batts rated at 11 and 6.5-inch batts at 19.",
+   "evidence": "The paragraph defining the R factor beside Figure 14.18's batts, the glossary term, and the problems on adding insulation to an attic and on the payback time of doing so."
+  },
+  {
+   "id": "conduction-with-phase-change",
+   "kind": "skill",
+   "section": "14.5",
+   "name": "Heat conducted over a time melts a mass",
+   "why": "The conduction equation gives a rate; multiplying it by a time gives the heat, and that heat may be spent on a phase change. A Styrofoam ice box in a hot car trunk lets heat in at a rate set by its walls, and over a day that heat melts a mass of ice equal to the total heat divided by the heat of fusion. The skill is to carry a rate into an amount and an amount into a mass, keeping each step's units.",
+   "evidence": "Example 14.5, which finds that 3.44 kg of ice melts in one day in a Styrofoam box at 35.0 °C; the problem on the man who evaporates 2.59 kg of water in a day and the walrus and fur problems that end on a food intake."
+  },
+  {
+   "id": "temperature-difference-from-conduction",
+   "kind": "skill",
+   "section": "14.5",
+   "name": "Temperature difference maintained by a heat flow",
+   "why": "Solved the other way, the conduction equation gives the temperature difference that a known rate of heat transfer keeps across a slab. Through the aluminum bottom of a pan boiling away a gram of water a second, 2.26 kW crosses with a difference of only 5.33 °C, because aluminum conducts so well; across a ceramic stove top of the same area the same rate would need a thousand degrees. A small temperature difference with a large heat flow is the mark of a good conductor.",
+   "evidence": "Example 14.6 on the aluminum pan, and the problems on the ceramic stove top, the wool clothing that carries 50.0 W and the lava crust that conducts as fast as it radiates.",
+   "eq": "eq-conduction-temperature-difference"
+  },
+  {
+   "id": "conduction-rate-scaling",
+   "kind": "result",
+   "section": "14.5",
+   "name": "How the conduction rate scales with size",
+   "why": "Because area is the product of two lengths and thickness is one, doubling every dimension of a slab quadruples the area and only doubles the thickness, and the rate of conductive heat transfer doubles. Comparisons of this kind, a thin window against a thick wall, a callus against a bare sole, are answered by ratios of the four factors without evaluating either rate.",
+   "evidence": "The Check Your Understanding box on doubling all spatial dimensions, which the book prints after Example 14.6 and the page sets inline after the rate equation it tests, and the problems comparing a window to a wall (35 to 1) and a double pane to a single one (24 times)."
+  },
+  {
+   "id": "natural-convection",
+   "kind": "idea",
+   "section": "14.6",
+   "name": "Natural convection",
+   "why": "Natural convection is driven by buoyant forces: a fluid that is heated expands, its density falls, and it rises through the cooler, denser fluid around it, which sinks to take its place, so that a loop forms and carries heat with the moving matter. A gravity furnace heats a house this way, a pot of water on a stove circulates this way, and ocean currents and the atmosphere carry energy across the globe this way. Forced convection, in a car's cooling system or the blood vessels of the skin, is the same transport driven by a pump.",
+   "evidence": "The opening paragraphs on atmospheric circulation, engines and the body, Figures 14.21 and 14.22 with their convective loops, the Take-Home Experiment on convection rolls, and the AP item asking under which two conditions convection is greatest."
+  },
+  {
+   "id": "convection-heat-rate",
+   "kind": "skill",
+   "section": "14.6",
+   "name": "Heat transfer by the mass of fluid moved",
+   "why": "To calculate the heat convection carries, determine the amount of matter moved and use the temperature-change equation for it: the mass of fluid, from its density and volume, times its specific heat times the temperature change it undergoes, divided by the time in which that mass is replaced. The air of a house that is replaced every half hour must be warmed by 10.0 °C at 4.64 kW, the power of forty-six 100 W bulbs, which is why houses are weather-stripped.",
+   "evidence": "Example 14.7 on the convection of air through the walls of a house, and the problems on a classroom's excess cold air, Kilauea's lava, the blood pumped to the skin and the air a person breathes."
+  },
+  {
+   "id": "wind-chill",
+   "kind": "idea",
+   "section": "14.6",
+   "name": "Wind chill",
+   "why": "A cold wind is much more chilling than still cold air, because convection combines with conduction in the body to increase the rate at which energy leaves it. Wind-chill factors are the temperatures of still air that would produce the same rate of cooling as air of a given temperature and speed, and they are a dramatic reminder of convection's ability to transfer heat faster than conduction: a 15.0 m/s wind at 0 °C chills like still air at about −18 °C.",
+   "evidence": "The paragraph introducing Table 14.4 and the table itself, the summary, the Check Your Understanding box on why a fan feels refreshing, and the problems reading the table for a wind speed and a still-air temperature."
+  },
+  {
+   "id": "air-as-insulator",
+   "kind": "idea",
+   "section": "14.6",
+   "name": "Trapped air is an insulator",
+   "why": "Air transfers heat rapidly by convection but conducts poorly, so whether it insulates depends on whether it can flow. The 9 cm space inside a house wall is large enough for convection to work, and insulation is added to stop the air moving; the 1 cm gap of a double-paned window is too small for convection and takes advantage of air's low conductivity. Fur, feathers and fiberglass all trap air in pockets too small to support convection, which is why they are light and warm.",
+   "evidence": "The paragraph on wall spaces and double panes, Figure 14.23's convection cells in fur, and 14.5's discussion of Example 14.5 on Styrofoam, fiberglass, wool and down."
+  },
+  {
+   "id": "convection-with-phase-change",
+   "kind": "result",
+   "section": "14.6",
+   "name": "Evaporation rate that carries a given power, $m/t = (Q/t)/L_{\\text{v}}$",
+   "why": "When convection is accompanied by a phase change, the moving fluid carries the latent heat with it, and the rate at which mass evaporates to remove a given power is that power divided by the heat of vaporization. Sweat evaporating from the skin can carry away a resting body's 120 W at about 3 g per minute, even when the air is as warm as the skin, provided air flow replaces the saturated air. The same process carries heat from the ocean into the atmosphere, drives thunderheads 20 km into the stratosphere by positive feedback, and lets a melting iceberg cool the sea it drifts through.",
+   "evidence": "Example 14.8 on sweat, the paragraphs on evaporation from the oceans and on icebergs with Figures 14.24 to 14.26, the summary's sentence that convection with a phase change can carry energy from cold regions to warm ones, and the problems on coffee cooled by evaporation and the water evaporated from a lake and from the lungs.",
+   "eq": "eq-evaporation-rate"
+  },
+  {
+   "id": "radiation-spectrum-and-temperature",
+   "kind": "idea",
+   "section": "14.7",
+   "name": "A hotter body radiates more, at shorter wavelengths",
+   "why": "A hot body emits electromagnetic waves that need no medium to travel, and the energy of the radiation depends on its wavelength: shorter wavelengths carry more energy. Because more heat is radiated at higher temperatures, a change of temperature is accompanied by a change of color, from the infrared you feel from a stove element that has not yet begun to glow, to red, to the yellow and white of steel in a blast furnace. The spectrum of an ideal radiator rises dramatically with temperature and its peak shifts toward the visible and the ultraviolet.",
+   "evidence": "The opening paragraphs on feeling heat from a fire and from the Sun across empty space, Figure 14.29's spectra at 3000 K, 4000 K and 6000 K with the visible band shaded, and the campfire of Figure 14.28 whose caption says that most of its heat arrives as infrared."
+  },
+  {
+   "id": "absorbers-and-emitters",
+   "kind": "idea",
+   "section": "14.7",
+   "name": "A good absorber is a good emitter",
+   "why": "The rate of heat transfer by radiation is largely determined by the color of the object. Black absorbs best and radiates best, so black asphalt is hotter than gray sidewalk by day and colder by night; white and silver absorb poorly and radiate poorly, reflecting radiation like a mirror. An ideal radiator is the same color as an ideal absorber, and the balance of radiation into and out of an object depends only on how well the object itself emits and absorbs.",
+   "evidence": "The paragraph on black and white objects, Figure 14.30's ice on two pavements, Figure 14.31's black and silver blocks, and the conceptual questions on a dark circus tent and on the white tent and tunic of the rider problem."
+  },
+  {
+   "id": "emissivity",
+   "kind": "idea",
+   "section": "14.7",
+   "name": "Emissivity",
+   "why": "The emissivity is a measure of how well an object radiates. An ideal jet-black radiator, a black body, has an emissivity of 1, a perfect reflector has 0, and real objects fall between: tungsten filaments about 0.5, carbon black about 0.99, and skin 0.97 in the infrared, so that we are all nearly black in the infrared whatever our visible color. The Earth's average emissivity is about 0.65, complicated by its varying cloud cover.",
+   "evidence": "The definition beside the Stefan-Boltzmann law, the paragraph on skin's emissivity and night scopes, the glossary term, and the emissivities given in every radiation problem of the set."
+  },
+  {
+   "id": "stefan-boltzmann-law",
+   "kind": "result",
+   "section": "14.7",
+   "name": "Stefan-Boltzmann law, $Q/t = \\sigma e A T^4$",
+   "why": "The rate of heat transfer by emitted radiation is the Stefan-Boltzmann constant times the emissivity times the surface area times the fourth power of the absolute temperature in kelvin. The radiation rate goes as the surface area, which is why knocking apart the coals of a fire makes it noticeably hotter to stand near, and it goes as the fourth power of the temperature, a remarkably strong dependence that the next two results turn on. The temperature must be absolute; a Celsius value in this equation is wrong.",
+   "evidence": "The displayed law and its glossary term, the paragraph beneath it on the fourth power and on surface area, the summary, and the AP item on 275 K against 1100 K.",
+   "eq": "eq-stefan-boltzmann"
+  },
+  {
+   "id": "radiation-fourth-power",
+   "kind": "result",
+   "section": "14.7",
+   "name": "The fourth-power dependence",
+   "why": "Because the radiated power goes as the fourth power of the absolute temperature, small temperature differences produce detectable differences in radiation: a body at 40 °C radiates about 30 percent more than the same body at 20 °C, and skin at 34.0 °C radiates 1.31 percent more than at 33.0 °C, enough for a thermograph to map. At larger ratios the effect is enormous, a radiator at four times the absolute temperature emitting 256 times the power.",
+   "evidence": "The Check Your Understanding box comparing 20 °C with 40 °C, the paragraph on thermographs with Figure 14.32, the thermography problem with Figure 14.35, and the AP item on two black-body radiators."
+  },
+  {
+   "id": "net-radiation-rate",
+   "kind": "result",
+   "section": "14.7",
+   "name": "Net rate of heat transfer by radiation, $Q_{\\text{net}}/t = \\sigma e A (T_2^4 - T_1^4)$",
+   "why": "All objects emit and absorb radiation, so the net rate is the absorption minus the emission, which for an object at one temperature surrounded by an environment at another is the Stefan-Boltzmann expression in the difference of the two fourth powers, with the emissivity of the object alone. It does not matter whether the surroundings are white, gray or black; when the surroundings are hotter the net transfer is into the object, and when they are colder it is out. An unclothed person in a 22.0 °C room loses about 99 W this way.",
+   "evidence": "The displayed equation and its glossary term, Example 14.9 on the person in a dark room, the Problem-Solving Strategies for the Methods of Heat Transfer, and the problems on a black roof at night, fresh lava, a skier in white and the circus tent.",
+   "eq": "eq-net-radiation"
+  },
+  {
+   "id": "greenhouse-effect",
+   "kind": "idea",
+   "section": "14.7",
+   "name": "The greenhouse effect",
+   "why": "The Earth receives almost all its energy as radiation from the Sun and radiates energy back into a dark sky at about 3 K, and its steady temperature is the balance of the two. The atmosphere is transparent to the Sun's visible light and most of its infrared, but the infrared the cooler Earth emits is at longer wavelengths that carbon dioxide and water vapor absorb and re-radiate, part of it back to the surface, which keeps the Earth about 40 °C warmer than it would be with no atmosphere. Eunice Newton Foote first measured this in flasks of carbon dioxide left in the sun, and the effect is central to global warming from the gases that industry and farming emit.",
+   "evidence": "The paragraphs on the Earth's energy balance and on Foote's experiment, Figure 14.33 of the greenhouse effect, the glossary term, the paragraph on clouds and frost on clear nights, and the conceptual questions on cloudy nights, on the Earth without an atmosphere and on cold sensors observing dark space."
+  },
+  {
+   "id": "heat-transfer-methods-strategy",
+   "kind": "skill",
+   "section": "14.7",
+   "name": "Solving problems across the methods of heat transfer",
+   "why": "A problem in heat transfer is worked by identifying which of the three methods is at work, then reaching for the right relation: the conduction equation with a conductivity from the table, the temperature-change or latent-heat equation for the mass a convection carries, the net radiation equation for exchange with the surroundings. The knowns and unknowns are listed, the equation solved for the unknown before the numbers go in, and the answer checked for sense, since a person cannot warm by 36 °C in a day and a window cannot lose 1.46 kW.",
+   "evidence": "The boxed Problem-Solving Strategies for the Methods of Heat Transfer, and the Integrated Concepts and Unreasonable Results problems that close the chapter: the meteor in the ocean, the cooling towers, the shivering person, the lungs, the rising hot air and the radiating meteorite."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "heat",
+   "prereq": "work"
+  },
+  {
+   "concept": "heat",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "heat",
+   "prereq": "energy-transformation"
+  },
+  {
+   "concept": "heat",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "heat",
+   "prereq": "thermal-equilibrium"
+  },
+  {
+   "concept": "heat",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "heat-vs-temperature",
+   "prereq": "heat"
+  },
+  {
+   "concept": "heat-vs-temperature",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "heat-vs-temperature",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "units-of-heat",
+   "prereq": "heat"
+  },
+  {
+   "concept": "units-of-heat",
+   "prereq": "joule"
+  },
+  {
+   "concept": "units-of-heat",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "heat"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "units-of-heat"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "work-transfers-energy"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "friction-dissipates-mechanical-energy"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "viscosity"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "turbulent-flow"
+  },
+  {
+   "concept": "internal-energy-changed-by-heat-or-work",
+   "prereq": "heat"
+  },
+  {
+   "concept": "internal-energy-changed-by-heat-or-work",
+   "prereq": "mechanical-equivalent-of-heat"
+  },
+  {
+   "concept": "internal-energy-changed-by-heat-or-work",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "three-factors-of-heat-transfer",
+   "prereq": "heat"
+  },
+  {
+   "concept": "three-factors-of-heat-transfer",
+   "prereq": "mass"
+  },
+  {
+   "concept": "three-factors-of-heat-transfer",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "heat-and-temperature-change",
+   "prereq": "three-factors-of-heat-transfer"
+  },
+  {
+   "concept": "heat-and-temperature-change",
+   "prereq": "heat"
+  },
+  {
+   "concept": "specific-heat",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "temperature-rise-from-work",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "temperature-rise-from-work",
+   "prereq": "mechanical-equivalent-of-heat"
+  },
+  {
+   "concept": "temperature-rise-from-work",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "temperature-rise-from-work",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "calorimetry",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "calorimetry",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "final-temperature-from-heat-exchange",
+   "prereq": "calorimetry"
+  },
+  {
+   "concept": "water-moderates-temperature",
+   "prereq": "specific-heat"
+  },
+  {
+   "concept": "water-moderates-temperature",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "heat"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "heat-vs-temperature"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "phases-of-matter"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "atomic-arrangement-and-phase"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "cohesive-forces"
+  },
+  {
+   "concept": "heat-of-fusion",
+   "prereq": "latent-heat"
+  },
+  {
+   "concept": "heat-of-vaporization",
+   "prereq": "latent-heat"
+  },
+  {
+   "concept": "heat-of-vaporization",
+   "prereq": "boiling"
+  },
+  {
+   "concept": "heating-curve",
+   "prereq": "latent-heat"
+  },
+  {
+   "concept": "heating-curve",
+   "prereq": "heat-of-fusion"
+  },
+  {
+   "concept": "heating-curve",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "heating-curve",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "evaporation-below-boiling",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "evaporation-below-boiling",
+   "prereq": "evaporative-cooling"
+  },
+  {
+   "concept": "evaporation-below-boiling",
+   "prereq": "relative-humidity"
+  },
+  {
+   "concept": "evaporation-below-boiling",
+   "prereq": "vapor-pressure"
+  },
+  {
+   "concept": "condensation-and-freezing-release-heat",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "condensation-and-freezing-release-heat",
+   "prereq": "heat-of-fusion"
+  },
+  {
+   "concept": "condensation-and-freezing-release-heat",
+   "prereq": "dew-point"
+  },
+  {
+   "concept": "heat-of-sublimation",
+   "prereq": "latent-heat"
+  },
+  {
+   "concept": "heat-of-sublimation",
+   "prereq": "sublimation"
+  },
+  {
+   "concept": "phase-change-calorimetry",
+   "prereq": "calorimetry"
+  },
+  {
+   "concept": "phase-change-calorimetry",
+   "prereq": "final-temperature-from-heat-exchange"
+  },
+  {
+   "concept": "phase-change-calorimetry",
+   "prereq": "heat-of-fusion"
+  },
+  {
+   "concept": "phase-change-calorimetry",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "heat-transfer-methods",
+   "prereq": "heat"
+  },
+  {
+   "concept": "conduction",
+   "prereq": "heat-transfer-methods"
+  },
+  {
+   "concept": "convection",
+   "prereq": "heat-transfer-methods"
+  },
+  {
+   "concept": "convection",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "radiation-heat-transfer",
+   "prereq": "heat-transfer-methods"
+  },
+  {
+   "concept": "conduction-by-molecular-collisions",
+   "prereq": "conduction"
+  },
+  {
+   "concept": "conduction-by-molecular-collisions",
+   "prereq": "heat-vs-temperature"
+  },
+  {
+   "concept": "conduction-by-molecular-collisions",
+   "prereq": "kinetic-theory"
+  },
+  {
+   "concept": "conduction-by-molecular-collisions",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "rate-of-conductive-heat-transfer",
+   "prereq": "conduction-by-molecular-collisions"
+  },
+  {
+   "concept": "rate-of-conductive-heat-transfer",
+   "prereq": "power"
+  },
+  {
+   "concept": "rate-of-conductive-heat-transfer",
+   "prereq": "watt"
+  },
+  {
+   "concept": "thermal-conductivity",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "r-factor",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "r-factor",
+   "prereq": "thermal-conductivity"
+  },
+  {
+   "concept": "conduction-with-phase-change",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "conduction-with-phase-change",
+   "prereq": "heat-of-fusion"
+  },
+  {
+   "concept": "conduction-with-phase-change",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "temperature-difference-from-conduction",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "temperature-difference-from-conduction",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "conduction-rate-scaling",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "convection"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "buoyant-force"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "density"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "flow-rate"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "volume-thermal-expansion"
+  },
+  {
+   "concept": "convection-heat-rate",
+   "prereq": "natural-convection"
+  },
+  {
+   "concept": "convection-heat-rate",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "convection-heat-rate",
+   "prereq": "density"
+  },
+  {
+   "concept": "convection-heat-rate",
+   "prereq": "power"
+  },
+  {
+   "concept": "wind-chill",
+   "prereq": "natural-convection"
+  },
+  {
+   "concept": "wind-chill",
+   "prereq": "conduction-by-molecular-collisions"
+  },
+  {
+   "concept": "air-as-insulator",
+   "prereq": "natural-convection"
+  },
+  {
+   "concept": "air-as-insulator",
+   "prereq": "thermal-conductivity"
+  },
+  {
+   "concept": "convection-with-phase-change",
+   "prereq": "natural-convection"
+  },
+  {
+   "concept": "convection-with-phase-change",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "convection-with-phase-change",
+   "prereq": "evaporation-below-boiling"
+  },
+  {
+   "concept": "convection-with-phase-change",
+   "prereq": "power"
+  },
+  {
+   "concept": "radiation-spectrum-and-temperature",
+   "prereq": "radiation-heat-transfer"
+  },
+  {
+   "concept": "radiation-spectrum-and-temperature",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "absorbers-and-emitters",
+   "prereq": "radiation-heat-transfer"
+  },
+  {
+   "concept": "emissivity",
+   "prereq": "absorbers-and-emitters"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "emissivity"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "radiation-spectrum-and-temperature"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "power"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "absolute-zero"
+  },
+  {
+   "concept": "radiation-fourth-power",
+   "prereq": "stefan-boltzmann-law"
+  },
+  {
+   "concept": "net-radiation-rate",
+   "prereq": "stefan-boltzmann-law"
+  },
+  {
+   "concept": "greenhouse-effect",
+   "prereq": "net-radiation-rate"
+  },
+  {
+   "concept": "greenhouse-effect",
+   "prereq": "absorbers-and-emitters"
+  },
+  {
+   "concept": "greenhouse-effect",
+   "prereq": "emissivity"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "convection-heat-rate"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "net-radiation-rate"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "phase-change-calorimetry"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "energy-problem-solving"
+  }
+ ]
+}

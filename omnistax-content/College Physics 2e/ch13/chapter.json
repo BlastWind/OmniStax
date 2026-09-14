@@ -1,0 +1,952 @@
+{
+  "id": "13",
+  "dir": "ch13",
+  "title": "Temperature, Kinetic Theory, and the Gas Laws",
+  "intro": {
+    "module": "m42213",
+    "slug": "13-introduction-to-temperature-kinetic-theory-and-the-gas-laws"
+  },
+  "sections": [
+    {
+      "id": "13.1",
+      "module": "m42214",
+      "title": "Temperature",
+      "slug": "13-1-temperature"
+    },
+    {
+      "id": "13.2",
+      "module": "m42215",
+      "title": "Thermal Expansion of Solids and Liquids",
+      "slug": "13-2-thermal-expansion-of-solids-and-liquids"
+    },
+    {
+      "id": "13.3",
+      "module": "m42216",
+      "title": "The Ideal Gas Law",
+      "slug": "13-3-the-ideal-gas-law"
+    },
+    {
+      "id": "13.4",
+      "module": "m42217",
+      "title": "Kinetic Theory: Atomic and Molecular Explanation of Pressure and Temperature",
+      "slug": "13-4-kinetic-theory-atomic-and-molecular-explanation-of-pressure-and-temperature"
+    },
+    {
+      "id": "13.5",
+      "module": "m42218",
+      "title": "Phase Changes",
+      "slug": "13-5-phase-changes"
+    },
+    {
+      "id": "13.6",
+      "module": "m42219",
+      "title": "Humidity, Evaporation, and Boiling",
+      "slug": "13-6-humidity-evaporation-and-boiling"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "T_temp",
+      "type": "temperature",
+      "meaning": "temperature, the quantity measured by a thermometer",
+      "unit": "K",
+      "section": "13.1",
+      "anchor": "13.1-temperature-defined"
+    },
+    {
+      "sym": "T_C",
+      "type": "temperature",
+      "meaning": "a temperature on the Celsius scale, on which water freezes at 0 °C and boils at 100 °C",
+      "unit": "°C",
+      "section": "13.1",
+      "anchor": "13.1-temperature-scales"
+    },
+    {
+      "sym": "T_F",
+      "type": "temperature",
+      "meaning": "a temperature on the Fahrenheit scale, on which water freezes at 32 °F and boils at 212 °F",
+      "unit": "°F",
+      "section": "13.1",
+      "anchor": "13.1-temperature-scales"
+    },
+    {
+      "sym": "T_K",
+      "type": "temperature",
+      "meaning": "a temperature on the Kelvin scale, the absolute scale whose zero is absolute zero and whose unit is the SI unit of temperature",
+      "unit": "K",
+      "section": "13.1",
+      "anchor": "13.1-temperature-scales"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the pressure of a gas kept at constant volume, which falls in a straight line with temperature and extrapolates to zero at −273.15 °C",
+      "unit": "Pa",
+      "section": "13.1",
+      "anchor": "13.1-temperature-ranges"
+    },
+    {
+      "sym": "ΔL",
+      "type": "position",
+      "meaning": "the change in length of a body when its temperature changes",
+      "unit": "m",
+      "section": "13.2",
+      "anchor": "13.2-linear-expansion"
+    },
+    {
+      "sym": "L_len",
+      "meaning": "the length of the body before the temperature change, such as the 1275 m span of the Golden Gate Bridge",
+      "unit": "m",
+      "section": "13.2",
+      "anchor": "13.2-linear-expansion"
+    },
+    {
+      "sym": "ΔT",
+      "type": "temperature",
+      "meaning": "the change in temperature, which is the same number in kelvins and in degrees Celsius",
+      "unit": "°C",
+      "section": "13.2",
+      "anchor": "13.2-linear-expansion"
+    },
+    {
+      "sym": "α_exp",
+      "meaning": "the coefficient of linear expansion, the change in length per unit length per degree, which depends on the material and varies slightly with temperature",
+      "unit": "1/°C",
+      "section": "13.2",
+      "anchor": "13.2-linear-expansion"
+    },
+    {
+      "sym": "ΔA",
+      "meaning": "the change in area of a plate or of a hole when its temperature changes",
+      "unit": "m²",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area before the temperature change",
+      "unit": "m²",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "ΔV",
+      "meaning": "the change in volume of a body, or of the gasoline and the tank that holds it, when its temperature changes",
+      "unit": "m³",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "V",
+      "meaning": "the volume before the temperature change",
+      "unit": "m³",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "β",
+      "meaning": "the coefficient of volume expansion, the change in volume per unit volume per degree, which is very nearly three times the coefficient of linear expansion",
+      "unit": "1/°C",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the pressure created when a body that would have expanded is held at its original volume, which is the thermal stress",
+      "unit": "N/m²",
+      "section": "13.2",
+      "anchor": "13.2-thermal-stress"
+    },
+    {
+      "sym": "B_bulk",
+      "type": "elastic-modulus",
+      "meaning": "the bulk modulus of the material, which relates a change in volume to the pressure that produces it",
+      "unit": "N/m²",
+      "section": "13.2",
+      "anchor": "13.2-thermal-stress"
+    },
+    {
+      "sym": "V_0",
+      "meaning": "the original volume of the gasoline before it is heated",
+      "unit": "m³",
+      "section": "13.2",
+      "anchor": "13.2-thermal-stress"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the force on the walls of the container, which divided by their area is the pressure",
+      "unit": "N",
+      "section": "13.2",
+      "anchor": "13.2-thermal-stress"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the absolute pressure of the gas",
+      "unit": "Pa",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "V",
+      "meaning": "the volume the gas occupies",
+      "unit": "m³",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "N_count",
+      "meaning": "the number of atoms and molecules in the gas, which is the same for every kind of gas at the same pressure, volume and temperature",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "k_boltz",
+      "meaning": "the Boltzmann constant, which relates energy to temperature and has the value 1.38 × 10⁻²³ J/K",
+      "unit": "J/K",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "T_temp",
+      "type": "temperature",
+      "meaning": "the absolute temperature of the gas, which must be in kelvins in the ideal gas law",
+      "unit": "K",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "P_0",
+      "type": "pressure",
+      "meaning": "the initial pressure of the gas in the tire, before its temperature rises",
+      "unit": "Pa",
+      "section": "13.3",
+      "anchor": "13.3-tire-pressure"
+    },
+    {
+      "sym": "P_f",
+      "type": "pressure",
+      "meaning": "the final pressure of the gas after its temperature has risen at constant volume",
+      "unit": "Pa",
+      "section": "13.3",
+      "anchor": "13.3-tire-pressure"
+    },
+    {
+      "sym": "T_0temp",
+      "type": "temperature",
+      "meaning": "the initial absolute temperature of the gas",
+      "unit": "K",
+      "section": "13.3",
+      "anchor": "13.3-tire-pressure"
+    },
+    {
+      "sym": "T_ftemp",
+      "type": "temperature",
+      "meaning": "the final absolute temperature of the gas",
+      "unit": "K",
+      "section": "13.3",
+      "anchor": "13.3-tire-pressure"
+    },
+    {
+      "sym": "n",
+      "meaning": "the number of moles of gas",
+      "unit": "mol",
+      "section": "13.3",
+      "anchor": "13.3-moles"
+    },
+    {
+      "sym": "N_A",
+      "meaning": "Avogadro's number, the number of particles in one mole of any substance, 6.02 × 10²³ mol⁻¹",
+      "unit": "mol⁻¹",
+      "section": "13.3",
+      "anchor": "13.3-moles"
+    },
+    {
+      "sym": "R_gas",
+      "meaning": "the universal gas constant, the product of Avogadro's number and the Boltzmann constant, 8.31 J/(mol·K)",
+      "unit": "J/(mol·K)",
+      "section": "13.3",
+      "anchor": "13.3-moles-form"
+    },
+    {
+      "sym": "M",
+      "meaning": "the molar mass of a substance, the mass of one mole of it, such as 28.8 g/mol for dry air",
+      "unit": "g/mol",
+      "section": "13.3",
+      "anchor": "13.3-molar-volume"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the pressure of the gas, the average force per unit area its molecules exert on the walls",
+      "unit": "Pa",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "V",
+      "meaning": "the volume of gas in the container",
+      "unit": "m³",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "N_count",
+      "meaning": "the number of molecules in the container",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of one molecule, found by dividing the molar mass by Avogadro's number",
+      "unit": "kg",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "v2_bar",
+      "meaning": "the average of the molecular speed squared",
+      "unit": "m²/s²",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "KE_bar",
+      "type": "energy",
+      "meaning": "the average translational kinetic energy of a molecule, which is the thermal energy and is proportional to the absolute temperature",
+      "unit": "J",
+      "section": "13.4",
+      "anchor": "13.4-thermal-energy"
+    },
+    {
+      "sym": "k_boltz",
+      "meaning": "the Boltzmann constant",
+      "unit": "J/K",
+      "section": "13.4",
+      "anchor": "13.4-thermal-energy"
+    },
+    {
+      "sym": "T_temp",
+      "type": "temperature",
+      "meaning": "the absolute temperature of the gas",
+      "unit": "K",
+      "section": "13.4",
+      "anchor": "13.4-thermal-energy"
+    },
+    {
+      "sym": "v_rms",
+      "type": "velocity",
+      "meaning": "the root-mean-square speed of the molecules, the square root of the average of the speed squared",
+      "unit": "m/s",
+      "section": "13.4",
+      "anchor": "13.4-thermal-energy"
+    },
+    {
+      "sym": "v_p",
+      "type": "velocity",
+      "meaning": "the most probable speed, at the peak of the Maxwell-Boltzmann distribution, which is less than the rms speed",
+      "unit": "m/s",
+      "section": "13.4",
+      "anchor": "13.4-distribution"
+    },
+    {
+      "sym": "v_x",
+      "type": "velocity",
+      "meaning": "the component of a molecule's velocity perpendicular to the wall, which is reversed by the collision",
+      "unit": "m/s",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "Δp",
+      "type": "momentum",
+      "meaning": "the change in a molecule's momentum when it bounces off the wall, 2mv_x",
+      "unit": "kg·m/s",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "Δt",
+      "type": "time",
+      "meaning": "the average time between a molecule's collisions with one wall, the time to cross the box and back",
+      "unit": "s",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the force the wall exerts on a molecule during a collision, and by Newton's third law the force the molecule exerts on the wall",
+      "unit": "N",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "l",
+      "meaning": "the length of the box, so that a molecule travels 2l between collisions with the same wall",
+      "unit": "m",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area of the wall, so that the volume of the box is Al",
+      "unit": "m²",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "T_1temp",
+      "type": "temperature",
+      "meaning": "the lower of two temperatures at which the distribution of molecular speeds is drawn",
+      "unit": "K",
+      "section": "13.4",
+      "anchor": "13.4-distribution"
+    },
+    {
+      "sym": "T_2temp",
+      "type": "temperature",
+      "meaning": "the higher temperature, at which the distribution is shifted to higher speeds and broadened",
+      "unit": "K",
+      "section": "13.4",
+      "anchor": "13.4-distribution"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the pressure of the substance, one axis of a PV diagram and of a phase diagram",
+      "unit": "Pa",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "V",
+      "meaning": "the volume of the substance, the other axis of a PV diagram",
+      "unit": "m³",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "T_temp",
+      "type": "temperature",
+      "meaning": "the temperature of the substance, fixed along an isotherm and one axis of a phase diagram",
+      "unit": "K",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "N_count",
+      "meaning": "the number of molecules, held fixed along an isotherm",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "k_boltz",
+      "meaning": "the Boltzmann constant",
+      "unit": "J/K",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "T_c",
+      "type": "temperature",
+      "meaning": "the critical temperature, above which the liquid phase cannot exist at any pressure",
+      "unit": "K",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the vapor pressure of water at the given temperature, which is the partial pressure of water vapor when the air is saturated",
+      "unit": "Pa",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "n",
+      "meaning": "the number of moles of water vapor",
+      "unit": "mol",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "V",
+      "meaning": "the volume the vapor occupies",
+      "unit": "m³",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "R_gas",
+      "meaning": "the universal gas constant, 8.31 J/(mol·K)",
+      "unit": "J/(mol·K)",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "T_temp",
+      "type": "temperature",
+      "meaning": "the absolute temperature of the air",
+      "unit": "K",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "ρ_dens",
+      "type": "density",
+      "meaning": "the vapor density, the mass of water vapor per cubic meter of air, which at saturation is the saturation vapor density of Table 13.5",
+      "unit": "g/m³",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    }
+  ],
+  "equations": [
+    {
+      "id": "eq-celsius-to-fahrenheit",
+      "concept": "convert-temperature-scales",
+      "section": "13.1",
+      "latex": "T_{{}^\\circ\\text{F}} = \\frac{9}{5}T_{{}^\\circ\\text{C}} + 32",
+      "important": true,
+      "anchor": "13.1-temperature-scales",
+      "ktex": "\\kTempF = \\frac{9}{5}\\kTempC + 32"
+    },
+    {
+      "id": "eq-fahrenheit-to-celsius",
+      "concept": "convert-temperature-scales",
+      "section": "13.1",
+      "latex": "T_{{}^\\circ\\text{C}} = \\frac{5}{9}\\left(T_{{}^\\circ\\text{F}} - 32\\right)",
+      "important": true,
+      "anchor": "13.1-temperature-scales",
+      "ktex": "\\kTempC = \\frac{5}{9}\\left(\\kTempF - 32\\right)"
+    },
+    {
+      "id": "eq-celsius-to-kelvin",
+      "concept": "convert-temperature-scales",
+      "section": "13.1",
+      "latex": "T_{\\text{K}} = T_{{}^\\circ\\text{C}} + 273.15",
+      "important": true,
+      "anchor": "13.1-temperature-scales",
+      "ktex": "\\kTempK = \\kTempC + 273.15"
+    },
+    {
+      "id": "eq-kelvin-to-celsius",
+      "concept": "convert-temperature-scales",
+      "section": "13.1",
+      "latex": "T_{{}^\\circ\\text{C}} = T_{\\text{K}} - 273.15",
+      "important": true,
+      "anchor": "13.1-temperature-scales",
+      "ktex": "\\kTempC = \\kTempK - 273.15"
+    },
+    {
+      "id": "eq-fahrenheit-to-kelvin",
+      "section": "13.1",
+      "latex": "T_{\\text{K}} = \\frac{5}{9}\\left(T_{{}^\\circ\\text{F}} - 32\\right) + 273.15",
+      "important": false,
+      "anchor": "13.1-temperature-scales",
+      "ktex": "\\kTempK = \\frac{5}{9}\\left(\\kTempF - 32\\right) + 273.15"
+    },
+    {
+      "id": "eq-kelvin-to-fahrenheit",
+      "section": "13.1",
+      "latex": "T_{{}^\\circ\\text{F}} = \\frac{9}{5}\\left(T_{\\text{K}} - 273.15\\right) + 32",
+      "important": false,
+      "anchor": "13.1-temperature-scales",
+      "ktex": "\\kTempF = \\frac{9}{5}\\left(\\kTempK - 273.15\\right) + 32"
+    },
+    {
+      "id": "eq-linear-expansion",
+      "concept": "linear-thermal-expansion",
+      "section": "13.2",
+      "latex": "\\Delta L = \\alpha L\\Delta T",
+      "condition": "small changes in temperature",
+      "important": true,
+      "anchor": "13.2-linear-expansion",
+      "ktex": "\\kdL = \\alpha L\\kdTemp"
+    },
+    {
+      "id": "eq-area-expansion",
+      "concept": "area-thermal-expansion",
+      "section": "13.2",
+      "latex": "\\Delta A = 2\\alpha A\\Delta T",
+      "condition": "small changes in temperature",
+      "important": true,
+      "anchor": "13.2-two-and-three-dimensions",
+      "ktex": "\\Delta A = 2\\alpha A\\kdTemp"
+    },
+    {
+      "id": "eq-volume-expansion",
+      "concept": "volume-thermal-expansion",
+      "section": "13.2",
+      "latex": "\\Delta V = \\beta V\\Delta T",
+      "important": true,
+      "anchor": "13.2-two-and-three-dimensions",
+      "ktex": "\\Delta V = \\beta V\\kdTemp"
+    },
+    {
+      "id": "eq-beta-three-alpha",
+      "concept": "volume-thermal-expansion",
+      "section": "13.2",
+      "latex": "\\beta \\approx 3\\alpha",
+      "important": true,
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "id": "eq-spill-volume",
+      "concept": "differential-thermal-expansion",
+      "section": "13.2",
+      "latex": "V_{\\text{spill}} = \\left(\\beta_{\\text{gas}} - \\beta_{\\text{s}}\\right)V\\Delta T",
+      "important": true,
+      "anchor": "13.2-filling-the-tank",
+      "ktex": "V_{\\text{spill}} = \\left(\\beta_{\\text{gas}} - \\beta_{\\text{s}}\\right)V\\kdTemp"
+    },
+    {
+      "id": "eq-bulk-volume-change",
+      "section": "13.2",
+      "latex": "\\Delta V = \\frac{1}{B}\\frac{F}{A}V_0",
+      "important": false,
+      "anchor": "13.2-thermal-stress",
+      "ktex": "\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0"
+    },
+    {
+      "id": "eq-thermal-stress",
+      "concept": "thermal-stress",
+      "section": "13.2",
+      "latex": "P = \\frac{F}{A} = \\frac{\\Delta V}{V_0}B",
+      "important": true,
+      "anchor": "13.2-thermal-stress",
+      "ktex": "\\kPr = \\frac{\\kF}{A} = \\frac{\\Delta V}{V_0}\\kBb"
+    },
+    {
+      "id": "eq-ideal-gas-law",
+      "concept": "ideal-gas-law",
+      "section": "13.3",
+      "latex": "PV = NkT",
+      "important": true,
+      "anchor": "13.3-ideal-gas-law",
+      "ktex": "\\kPr V = Nk\\kTemp"
+    },
+    {
+      "id": "eq-boltzmann-constant",
+      "concept": "boltzmann-constant",
+      "section": "13.3",
+      "latex": "k = 1.38\\times10^{-23}\\ \\text{J/K}",
+      "important": true,
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "id": "eq-ideal-gas-ratio",
+      "concept": "ideal-gas-ratio-method",
+      "section": "13.3",
+      "latex": "\\frac{P_{\\text{f}}}{P_0} = \\frac{T_{\\text{f}}}{T_0}",
+      "condition": "constant volume and number of molecules",
+      "important": true,
+      "anchor": "13.3-tire-pressure",
+      "ktex": "\\frac{\\kPrf}{\\kPro} = \\frac{\\kTempf}{\\kTempo}"
+    },
+    {
+      "id": "eq-avogadros-number",
+      "concept": "avogadros-number",
+      "section": "13.3",
+      "latex": "N_{\\text{A}} = 6.02\\times10^{23}\\ \\text{mol}^{-1}",
+      "important": true,
+      "anchor": "13.3-moles"
+    },
+    {
+      "id": "eq-moles-from-molecules",
+      "concept": "mole",
+      "section": "13.3",
+      "latex": "n = \\frac{N}{N_{\\text{A}}}",
+      "important": true,
+      "anchor": "13.3-moles"
+    },
+    {
+      "id": "eq-ideal-gas-law-moles",
+      "concept": "ideal-gas-law-moles",
+      "section": "13.3",
+      "latex": "PV = nRT",
+      "important": true,
+      "anchor": "13.3-moles-form",
+      "ktex": "\\kPr V = nR\\kTemp"
+    },
+    {
+      "id": "eq-gas-constant",
+      "concept": "ideal-gas-law-moles",
+      "section": "13.3",
+      "latex": "R = N_{\\text{A}}k = 8.31\\ \\text{J/(mol·K)}",
+      "important": true,
+      "anchor": "13.3-moles-form"
+    },
+    {
+      "id": "eq-gas-constant-other-units",
+      "section": "13.3",
+      "latex": "R = 1.99\\ \\text{cal/(mol·K)} = 0.0821\\ \\text{L·atm/(mol·K)}",
+      "important": false,
+      "anchor": "13.3-moles-form"
+    },
+    {
+      "id": "eq-molar-volume-stp",
+      "concept": "molar-volume-at-stp",
+      "section": "13.3",
+      "latex": "\\frac{N}{V} = 2.68\\times10^{25}\\ \\text{m}^{-3},\\quad 22.4\\ \\text{L/mol}",
+      "condition": "at standard temperature and pressure, 0 °C and 1 atm",
+      "important": true,
+      "anchor": "13.3-stp"
+    },
+    {
+      "id": "eq-pressure-from-molecules",
+      "concept": "molecular-origin-of-pressure",
+      "section": "13.4",
+      "latex": "PV = \\frac{1}{3}Nm\\overline{v^2}",
+      "important": true,
+      "anchor": "13.4-collisions",
+      "ktex": "\\kPr V = \\frac{1}{3}Nm\\overline{v^2}"
+    },
+    {
+      "id": "eq-force-one-molecule",
+      "section": "13.4",
+      "latex": "F = \\frac{\\Delta p}{\\Delta t} = \\frac{2mv_x}{\\Delta t} = \\frac{mv_x^2}{l}",
+      "important": false,
+      "anchor": "13.4-derivation",
+      "ktex": "\\kF = \\frac{\\kdp}{\\kdt} = \\frac{2m\\kvx}{\\kdt} = \\frac{m\\kvx^2}{l}"
+    },
+    {
+      "id": "eq-mean-square-components",
+      "section": "13.4",
+      "latex": "\\overline{v^2} = \\overline{v_x^2} + \\overline{v_y^2} + \\overline{v_z^2} = 3\\overline{v_x^2}",
+      "important": false,
+      "anchor": "13.4-derivation",
+      "ktex": "\\overline{v^2} = \\overline{\\kvx^2} + \\overline{\\kvy^2} + \\overline{v_z^2} = 3\\overline{\\kvx^2}"
+    },
+    {
+      "id": "eq-thermal-energy",
+      "concept": "thermal-energy",
+      "section": "13.4",
+      "latex": "\\overline{\\text{KE}} = \\frac{1}{2}m\\overline{v^2} = \\frac{3}{2}kT",
+      "important": true,
+      "anchor": "13.4-thermal-energy",
+      "ktex": "\\kKEbar = \\frac{1}{2}m\\overline{v^2} = \\frac{3}{2}k\\kTemp"
+    },
+    {
+      "id": "eq-rms-speed",
+      "concept": "rms-speed",
+      "section": "13.4",
+      "latex": "v_{\\text{rms}} = \\sqrt{\\overline{v^2}} = \\sqrt{\\frac{3kT}{m}}",
+      "important": true,
+      "anchor": "13.4-thermal-energy",
+      "ktex": "\\kvrms = \\sqrt{\\overline{v^2}} = \\sqrt{\\frac{3k\\kTemp}{m}}"
+    },
+    {
+      "id": "eq-temperature-from-speed",
+      "section": "13.4",
+      "latex": "T = \\frac{m\\overline{v^2}}{3k}",
+      "important": false,
+      "anchor": "13.4-ex-escape",
+      "ktex": "\\kTemp = \\frac{m\\overline{v^2}}{3k}"
+    },
+    {
+      "id": "eq-molecular-mass",
+      "concept": "molecular-mass-from-molar-mass",
+      "section": "13.4",
+      "latex": "m = \\frac{\\text{molar mass}}{\\text{number of atoms per mole}}",
+      "important": true,
+      "anchor": "13.4-ex-kinetic-energy"
+    },
+    {
+      "id": "eq-isotherm",
+      "concept": "pv-diagram",
+      "section": "13.5",
+      "latex": "PV = \\text{constant}",
+      "condition": "ideal gas, constant temperature and number of molecules",
+      "important": true,
+      "anchor": "13.5-pv-diagrams",
+      "ktex": "\\kPr V = \\text{constant}"
+    },
+    {
+      "id": "eq-vapor-density",
+      "concept": "vapor-density-from-vapor-pressure",
+      "section": "13.6",
+      "latex": "\\frac{n}{V} = \\frac{P}{RT}",
+      "important": true,
+      "anchor": "13.6-vapor-density",
+      "ktex": "\\frac{n}{V} = \\frac{\\kPr}{R\\kTemp}"
+    },
+    {
+      "id": "eq-percent-relative-humidity",
+      "concept": "percent-relative-humidity",
+      "section": "13.6",
+      "latex": "\\text{percent relative humidity} = \\frac{\\text{vapor density}}{\\text{saturation vapor density}}\\times 100",
+      "important": true,
+      "anchor": "13.6-percent-humidity"
+    }
+  ],
+  "glossary": [
+    {
+      "section": "13.1",
+      "term": "temperature",
+      "definition": "the quantity measured by a thermometer"
+    },
+    {
+      "section": "13.1",
+      "term": "Celsius scale",
+      "definition": "temperature scale in which the freezing point of water is 0 °C and the boiling point of water is 100 °C"
+    },
+    {
+      "section": "13.1",
+      "term": "degree Celsius",
+      "definition": "unit on the Celsius temperature scale"
+    },
+    {
+      "section": "13.1",
+      "term": "Fahrenheit scale",
+      "definition": "temperature scale in which the freezing point of water is 32 °F and the boiling point of water is 212 °F"
+    },
+    {
+      "section": "13.1",
+      "term": "degree Fahrenheit",
+      "definition": "unit on the Fahrenheit temperature scale"
+    },
+    {
+      "section": "13.1",
+      "term": "Kelvin scale",
+      "definition": "temperature scale in which 0 K is the lowest possible temperature, representing absolute zero"
+    },
+    {
+      "section": "13.1",
+      "term": "absolute zero",
+      "definition": "the lowest possible temperature; the temperature at which all molecular motion ceases"
+    },
+    {
+      "section": "13.1",
+      "term": "thermal equilibrium",
+      "definition": "the condition in which heat no longer flows between two objects that are in contact; the two objects have the same temperature"
+    },
+    {
+      "section": "13.1",
+      "term": "zeroth law of thermodynamics",
+      "definition": "law that states that if two objects are in thermal equilibrium, and a third object is in thermal equilibrium with one of those objects, it is also in thermal equilibrium with the other object"
+    },
+    {
+      "section": "13.2",
+      "term": "thermal expansion",
+      "definition": "the change in size or volume of an object with change in temperature"
+    },
+    {
+      "section": "13.2",
+      "term": "coefficient of linear expansion",
+      "definition": "α, the change in length, per unit length, per 1 °C change in temperature; a constant used in the calculation of linear expansion; the coefficient of linear expansion depends on the material and to some degree on the temperature of the material"
+    },
+    {
+      "section": "13.2",
+      "term": "coefficient of volume expansion",
+      "definition": "β, the change in volume, per unit volume, per 1 °C change in temperature"
+    },
+    {
+      "section": "13.2",
+      "term": "thermal stress",
+      "definition": "stress caused by thermal expansion or contraction"
+    },
+    {
+      "section": "13.3",
+      "term": "ideal gas law",
+      "definition": "the physical law that relates the pressure and volume of a gas to the number of gas molecules or number of moles of gas and the temperature of the gas"
+    },
+    {
+      "section": "13.3",
+      "term": "Boltzmann constant",
+      "definition": "k, a physical constant that relates energy to temperature; k = 1.38 × 10⁻²³ J/K"
+    },
+    {
+      "section": "13.3",
+      "term": "Avogadro's number",
+      "definition": "N_A, the number of molecules or atoms in one mole of a substance; N_A = 6.02 × 10²³ particles/mole"
+    },
+    {
+      "section": "13.3",
+      "term": "mole",
+      "definition": "the quantity of a substance whose mass (in grams) is equal to its molecular mass"
+    },
+    {
+      "section": "13.4",
+      "term": "thermal energy",
+      "definition": "the average translational kinetic energy of a molecule"
+    },
+    {
+      "section": "13.5",
+      "term": "PV diagram",
+      "definition": "a graph of pressure vs. volume"
+    },
+    {
+      "section": "13.5",
+      "term": "critical point",
+      "definition": "the temperature above which a liquid cannot exist"
+    },
+    {
+      "section": "13.5",
+      "term": "critical temperature",
+      "definition": "the temperature above which a liquid cannot exist"
+    },
+    {
+      "section": "13.5",
+      "term": "critical pressure",
+      "definition": "the minimum pressure needed for a liquid to exist at the critical temperature"
+    },
+    {
+      "section": "13.5",
+      "term": "vapor",
+      "definition": "a gas at a temperature below the boiling temperature"
+    },
+    {
+      "section": "13.5",
+      "term": "vapor pressure",
+      "definition": "the pressure at which a gas coexists with its solid or liquid phase"
+    },
+    {
+      "section": "13.5",
+      "term": "phase diagram",
+      "definition": "a graph of pressure vs. temperature of a particular substance, showing at which pressures and temperatures the three phases of the substance occur"
+    },
+    {
+      "section": "13.5",
+      "term": "triple point",
+      "definition": "the pressure and temperature at which a substance exists in equilibrium as a solid, liquid, and gas"
+    },
+    {
+      "section": "13.5",
+      "term": "sublimation",
+      "definition": "the phase change from solid to gas"
+    },
+    {
+      "section": "13.5",
+      "term": "partial pressure",
+      "definition": "the pressure a gas would create if it occupied the total volume of space available"
+    },
+    {
+      "section": "13.5",
+      "term": "Dalton's law of partial pressures",
+      "definition": "the physical law that states that the total pressure of a gas is the sum of partial pressures of the component gases"
+    },
+    {
+      "section": "13.6",
+      "term": "dew point",
+      "definition": "the temperature at which relative humidity is 100%; the temperature at which water starts to condense out of the air"
+    },
+    {
+      "section": "13.6",
+      "term": "saturation",
+      "definition": "the condition of 100% relative humidity"
+    },
+    {
+      "section": "13.6",
+      "term": "percent relative humidity",
+      "definition": "the ratio of vapor density to saturation vapor density"
+    },
+    {
+      "section": "13.6",
+      "term": "relative humidity",
+      "definition": "the amount of water in the air relative to the maximum amount the air can hold"
+    }
+  ]
+}
