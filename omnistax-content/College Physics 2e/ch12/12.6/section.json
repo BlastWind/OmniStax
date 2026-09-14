@@ -1,0 +1,283 @@
+{
+ "id": "12.6",
+ "module": "m42211",
+ "chapter": "12",
+ "title": "Motion of an Object in a Viscous Fluid",
+ "short": "Object in a viscous fluid",
+ "lead": "An object moving through a fluid feels the same flow as a fixed object in a moving stream, so the ideas of laminar and turbulent flow carry over from tubes to balls, raindrops and skydivers. This section defines a Reynolds number for an object in a fluid, uses it to tell when the flow around the object stays smooth and when a turbulent wake forms behind it, describes how the viscous drag grows with speed in each case, and follows a falling object to the terminal speed at which the drag and the buoyant force balance its weight.",
+ "objectives": [
+  "Calculate the Reynolds number for an object moving through a fluid.",
+  "Explain whether the Reynolds number indicates laminar or turbulent flow.",
+  "Describe the conditions under which an object has a terminal speed."
+ ],
+ "summary_html": "<ul><li>When an object moves in a fluid, there is a different form of the Reynolds number ${N'}_{\\text{R}} = \\frac{\\krho\\kv L}{\\keta}\\ \\text{(object in fluid),}$ which indicates whether flow is laminar or turbulent.</li><li>For ${N'}_{\\text{R}}$ less than about one, flow is laminar.</li><li>For ${N'}_{\\text{R}}$ greater than $10^6$, flow is entirely turbulent.</li></ul>",
+ "notes": "Two problems the book sets in Viscosity and Laminar Flow; Poiseuille’s Law that belong here, the derivation of the terminal speed of a sphere and the spread-eagle skydiver, have no answer in the book’s key and are left out, and the worked example’s stray 1.00 beside the viscosity of air is kept as the book prints it.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. The section has no problem set of its own. Three problems of Viscosity and Laminar Flow; Poiseuille’s Law are about an object moving through a viscous fluid rather than about Poiseuille’s law and belong here, so the keyed one, the viscosity of motor oil from a falling steel ball, is set here with source_section 12.4; its hint carries the terminal-speed relation of the derivation problem it refers to, since that problem has no keyed answer and is left out, as is the spread-eagle skydiver. The suggested approaches to the three conceptual questions are AI-written and marked. The section has no AP item and no Check Your Understanding box, so every item sits at the end. The numeric answer accepts 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-wake",
+   "kind": "sim",
+   "number": "12.24",
+   "originals": [
+    "/media/ch12/Figure_13_06_01.jpg"
+   ],
+   "original_caption": "(a) Motion of this sphere to the right is equivalent to fluid flow to the left. Here the flow is laminar with N′R less than 1. There is a force, called viscous drag F_V, to the left on the ball due to the fluid’s viscosity. (b) At a higher speed, the flow becomes partially turbulent, creating a wake starting where the flow lines separate from the surface. Pressure in the wake is less than in front of the sphere, because fluid speed is less, creating a net force to the left F′_V that is significantly greater than for laminar flow. Here N′R is greater than 10. (c) At much higher speeds, where N′R is greater than 10⁶, flow becomes turbulent everywhere on the surface and behind the sphere. Drag increases dramatically.",
+   "widths": [
+    425
+   ],
+   "draws": [
+    "velocity",
+    "density",
+    "viscosity",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-terminal",
+   "kind": "sim",
+   "number": "12.25",
+   "originals": [
+    "/media/ch12/Figure_13_06_02.jpg"
+   ],
+   "original_caption": "There are three forces acting on an object falling through a viscous fluid: its weight w, the viscous drag F_V, and the buoyant force F_B.",
+   "widths": [
+    232
+   ],
+   "draws": [
+    "force",
+    "density",
+    "viscosity",
+    "velocity"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "reynolds-object",
+   "concept": "reynolds-number-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "flow-regimes-around-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "reynolds-number",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "laminar-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "turbulent-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "viscosity",
+   "verb": "uses"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "viscous-drag",
+   "verb": "introduces"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "drag-force",
+   "verb": "uses"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "drag-force-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "stokes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "flow-regimes-around-object",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "sedimentation-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "terminal-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "viscous-drag",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "buoyant-force",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "archimedes-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "size-and-terminal-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "centrifuge",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1576284",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal-speed",
+   "prompt": "What direction will a helium balloon move inside a car that is slowing down—toward the front or back? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Toward the back. The air in the car is much denser than the helium in the balloon, and when the car slows down everything in it tends to keep moving forward, the air included. The air therefore crowds toward the front of the car, so the pressure there is greater than at the back, just as the pressure at the bottom of a room is greater than at the top under the ordinary pull of gravity. The balloon, being less dense than the air around it, is pushed by that pressure difference toward the lower pressure, which is the back of the car, exactly as it rises toward the lower pressure above it when the car is at rest. In the accelerated frame of the slowing car the effective gravity points toward the front, and the balloon moves “up” against it, toward the back."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1418508",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal-speed",
+   "prompt": "Will identical raindrops fall more rapidly in 5 °C air or 25 °C air, neglecting any differences in air density? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "They fall more rapidly in the 5 °C air. Table 12.1 shows that the viscosity of air rises with temperature, from 0.0171 mPa·s at 0 °C to 0.0190 mPa·s at 40 °C, the opposite of what a liquid does as it warms. A raindrop reaches its terminal speed when the viscous drag, together with the small buoyant force, balances its weight, and because the drag at a given speed grows with the viscosity of the air, that balance is reached at a lower speed in the warmer, more viscous air. With the density of the air taken to be the same at both temperatures, the cooler air offers less drag, so the drops in it fall faster."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3068984",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal-speed",
+   "prompt": "If you took two marbles of different sizes, what would you expect to observe about the relative magnitudes of their terminal velocities?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The larger marble reaches the greater terminal velocity. Its weight grows with its volume, as the cube of its radius, and so does the buoyant force, so the net downward force on it also grows as the cube of the radius. The viscous drag grows more slowly, only in proportion to the radius for slow, laminar flow, where Stokes’ law $\\kFs = 6\\pi R\\keta\\kv$ holds, or in proportion to the cross-sectional area, the square of the radius, for faster flow. The drag must rise to balance the larger net force, and it can do that only at a higher speed, so the bigger marble falls faster. In the laminar case the terminal speed grows as the square of the radius, so a marble twice as wide settles about four times as fast."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1427261",
+   "source_section": "12.4",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal-speed",
+   "prompt": "Using the equation of the previous problem, find the viscosity of motor oil in which a steel ball of radius 0.8 mm falls with a terminal speed of 4.32 cm/s. The densities of the ball and the oil are 7.86 and 0.88 g/mL, respectively.",
+   "answer": {
+    "type": "number",
+    "value": 225,
+    "unit": "mPa·s",
+    "generated_by": "source",
+    "hint": "At terminal speed the weight of the ball is balanced by the buoyant force and Stokes’ drag, which gives $\\kvt = \\frac{2R^2\\kg}{9\\keta}(\\rho_{\\text{s}} - \\rho_{1})$, where $\\rho_{\\text{s}}$ is the density of the ball and $\\rho_{1}$ that of the oil. Solve it for $\\keta$, with the densities in kg/m³ and the radius in meters.",
+    "solution": "$\\keta = 225\\ \\text{mPa} \\cdot \\text{s}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "sedimentation-rate"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "buoyant-force",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "viscous-drag"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sedimentation-rate",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "viscosity",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "sedimentation-rate"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "viscous-drag",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "size-and-terminal-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "viscous-drag"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sedimentation-rate"
+  },
+  {
+   "exercise": "p1",
+   "concept": "buoyant-force",
+   "weight": 1
+  }
+ ]
+}

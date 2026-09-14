@@ -1,0 +1,624 @@
+{
+ "id": "12.4",
+ "module": "m42209",
+ "chapter": "12",
+ "title": "Viscosity and Laminar Flow; Poiseuille’s Law",
+ "short": "Viscosity and Poiseuille’s law",
+ "lead": "Juice pours freely and syrup clings to the pitcher, and the difference is friction within the fluid, which the sections before this one left out. This section defines laminar and turbulent flow, measures viscosity by shearing a fluid between two plates, relates the flow through a tube to the pressure difference that drives it and the resistance that opposes it, and states Poiseuille’s law, in which the resistance falls as the fourth power of the radius, so that a small narrowing of a blood vessel or a water main costs a great deal of flow or of pressure.",
+ "objectives": [
+  "Define laminar flow and turbulent flow.",
+  "Explain what viscosity is.",
+  "Calculate flow and resistance with Poiseuille’s law.",
+  "Explain how pressure drops due to resistance."
+ ],
+ "summary_html": "<ul><li>Laminar flow is characterized by smooth flow of the fluid in layers that do not mix.</li><li>Turbulence is characterized by eddies and swirls that mix layers of fluid together.</li><li>Fluid viscosity $\\keta$ is due to friction within a fluid. Representative values are given in Table 12.1. Viscosity has units of $(\\text{N/m}^2)\\text{s}$ or $\\text{Pa}\\cdot\\text{s}$.</li><li>Flow is proportional to pressure difference and inversely proportional to resistance: $$\\kQ = \\frac{\\kPrtwo - \\kProne}{R}.$$</li><li>For laminar flow in a tube, Poiseuille’s law for resistance states that $$R = \\frac{8\\keta l}{\\pi r^4}.$$</li><li>Poiseuille’s law for flow in a tube is $$\\kQ = \\frac{(\\kPrtwo - \\kProne)\\pi r^4}{8\\keta l}.$$</li><li>The pressure drop caused by flow and resistance is given by $$\\kPrtwo - \\kProne = R\\kQ.$$</li></ul>",
+ "notes": "The ten problems the book leaves unkeyed are left out, among them the two Construct Your Own Problem items, and of the three problems on an object moving through a viscous fluid, which 12.6 introduces, the keyed one is set there and the two unkeyed ones are left out of both sections.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Ten problems have no keyed answer and are left out: the microscope slides with water between them, the net force and power on a section of artery, the five changes to a flow of 100 cm³/s, the angioplasty, the verification of the 19.0 percent decrease, the clot with a 20.0 percent rise in pressure difference, the water main whose supply falls from 20.0 to 8.00 L/min, the concrete pump, and the two Construct Your Own Problem items. Three problems the book prints here test what 12.6 introduces: the viscosity of motor oil from a falling steel ball is keyed and is set in 12.6 with this section named as its source, and the terminal speed of a sphere from Stokes’ law and the spread-eagle skydiver have no keyed answer and are left out of both sections. The problem on the air track cart keys both parts, and the problem on the plaque-narrowed vessel keys part (a) as a number and part (b) in words, so its card checks the number and carries the book’s words in its solution. The oil between microscope slides is keyed as a viscosity and the book names the oil, which the solution repeats. The fourth conceptual question keeps the book’s photograph of the air tube beside the faucet on its card. The suggested approaches to the four conceptual questions are AI-written and marked. All items sit at the end, since the chapter has no Check Your Understanding box. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-smoke",
+   "kind": "photo",
+   "number": "12.14",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-laminar-turbulent",
+   "kind": "sim",
+   "number": "12.15",
+   "originals": [
+    "/media/ch12/Figure_13_04_02a.jpg"
+   ],
+   "original_caption": "(a) Laminar flow occurs in layers without mixing. Notice that viscosity causes drag between layers as well as with the fixed surface. (b) An obstruction in the vessel produces turbulence. Turbulent flow mixes the fluid. There is more interaction, greater heating, and more resistance than in laminar flow.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "velocity"
+   ]
+  },
+  {
+   "id": "sim-viscosity-plates",
+   "kind": "sim",
+   "number": "12.16",
+   "originals": [
+    "/media/ch12/Figure_13_04_03a.jpg"
+   ],
+   "original_caption": "The graphic shows laminar flow of fluid between two plates of area A. The bottom plate is fixed. When the top plate is pushed to the right, it drags the fluid along with it.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "viscosity"
+   ]
+  },
+  {
+   "id": "sim-velocity-profile",
+   "kind": "sim",
+   "number": "12.17",
+   "originals": [
+    "/media/ch12/Figure_13_04_04a.jpg"
+   ],
+   "original_caption": "(a) If fluid flow in a tube has negligible resistance, the speed is the same all across the tube. (b) When a viscous fluid flows through a tube, its speed at the walls is zero, increasing steadily to its maximum at the center of the tube. (c) The shape of the Bunsen burner flame is due to the velocity profile across the tube. (credit: Jason Woodhead)",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "flow-rate",
+    "velocity",
+    "viscosity"
+   ]
+  },
+  {
+   "id": "sim-poiseuille",
+   "kind": "sim",
+   "number": "12.18",
+   "originals": [
+    "/media/ch12/Figure_13_04_05a.jpg"
+   ],
+   "original_caption": "Poiseuille’s law applies to laminar flow of an incompressible fluid of viscosity η through a tube of length l and radius r. The direction of flow is from greater to lower pressure. Flow rate Q is directly proportional to the pressure difference P₂ − P₁, and inversely proportional to the length l of the tube and viscosity η of the fluid. Flow rate increases with r⁴, the fourth power of the radius.",
+   "widths": [
+    313
+   ],
+   "draws": [
+    "flow-rate",
+    "viscosity",
+    "pressure",
+    "velocity"
+   ]
+  },
+  {
+   "id": "sim-water-main",
+   "kind": "sim",
+   "number": "12.19",
+   "originals": [
+    "/media/ch12/Figure_13_04_06a.jpg"
+   ],
+   "original_caption": "During times of heavy use, there is a significant pressure drop in a water main, and P₁ supplied to users is significantly less than P₂ created at the water works. If the flow is very small, then the pressure drop is negligible, and P₂ ≈ P₁.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "pressure",
+    "flow-rate"
+   ]
+  },
+  {
+   "id": "sim-circulation",
+   "kind": "sim",
+   "number": "12.20",
+   "originals": [
+    "/media/ch12/Figure_13_04_07a.jpg"
+   ],
+   "original_caption": "Schematic of the circulatory system. Pressure difference is created by the two pumps in the heart and is reduced by resistance in the vessels. Branching of vessels into capillaries allows blood to reach individual cells and exchange substances, such as oxygen and waste products, with them. The system has an impressive ability to regulate flow to individual organs, accomplished largely by varying vessel diameters.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "pressure",
+    "flow-rate"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "laminar-viscosity",
+   "concept": "laminar-flow",
+   "verb": "introduces"
+  },
+  {
+   "span": "laminar-viscosity",
+   "concept": "turbulent-flow",
+   "verb": "introduces"
+  },
+  {
+   "span": "laminar-viscosity",
+   "concept": "viscosity",
+   "verb": "introduces"
+  },
+  {
+   "span": "laminar-viscosity",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "laminar-viscosity",
+   "concept": "shear-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "velocity-profile-in-tube",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "flow-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "poiseuilles-law-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "poiseuilles-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "radius-fourth-power-sensitivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "viscosity",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "laminar-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "turbulent-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "flow-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "gauge-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "pressure-drop-from-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "flow-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "radius-fourth-power-sensitivity",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "turbulent-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "continuity-branching",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2016654",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laminar-viscosity",
+   "prompt": "Explain why the viscosity of a liquid decreases with temperature—that is, how might increased temperature reduce the effects of cohesive forces in a liquid? Also explain why the viscosity of a gas increases with temperature—that is, how does increased gas temperature create more collisions between atoms and molecules?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Viscosity is the friction between layers of a fluid sliding past one another. In a liquid the molecules are close together and the cohesive forces between them are what one layer uses to drag on the next. Raising the temperature gives the molecules more energy of motion, so each one spends less of its time held against its neighbors and breaks away from them more easily; the cohesive forces then have less hold, the layers slide past one another more freely, and the viscosity falls. Table 12.1 shows water going from 1.792 mPa·s at 0 °C to 0.282 mPa·s at 100 °C. In a gas the molecules are far apart and the cohesive forces between them are negligible, so what drags one layer on the next is the molecules themselves wandering from one layer into the other and colliding with the molecules there, carrying their motion across. Hotter gas molecules move faster, cross between layers more often and collide more often, so the layers drag on one another more and the viscosity rises, which is why the viscosity of air in Table 12.1 climbs from 0.0171 mPa·s at 0 °C to 0.0218 mPa·s at 100 °C."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1390466",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "When paddling a canoe upstream, it is wisest to travel as near to the shore as possible. When canoeing downstream, it may be best to stay near the middle. Explain why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A river is a viscous fluid flowing in a channel, so its speed has the profile of Figure 12.17(b) turned on its side: the water touching the banks and the bed is held back by them and hardly moves, and the speed rises steadily toward the middle, where it is greatest. Paddling upstream you are working against the current, so you want the slowest water, which is near the shore. Paddling downstream the current carries you, so you want the fastest water, which is near the middle. The two sticks of the take-home experiment show the same thing: the one dropped near the middle pulls ahead of the one dropped near the edge."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2442163",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-drops",
+   "prompt": "Why does flow decrease in your shower when someone flushes the toilet?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The shower and the toilet are fed by the same supply pipe, and that pipe has a resistance. When the toilet tank begins to refill, the flow rate $\\kQ$ through the shared pipe rises, and the pressure drop along it, $\\kPrtwo - \\kProne = R\\kQ$, rises with it. The pressure $\\kProne$ where the pipe reaches the shower is therefore lower than it was, and since the flow through the shower head is that pressure divided by the shower’s own resistance, the shower delivers less water until the tank is full and the flow in the shared pipe falls back."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1528282",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-drops",
+   "figure": {
+    "src": "/media/ch12/Figure_13_04_08a.jpg",
+    "alt": "The picture shows water gushing out of a water tap. The faucet in the tap is marked. A pipe connected vertically filled with air is shown at an opening on the water pipe before the tap.",
+    "caption": "The vertical tube near the water tap remains full of air and serves a useful purpose."
+   },
+   "prompt": "Plumbing usually includes air-filled tubes near water faucets, as shown in Figure 12.21. Explain why they are needed and how they work.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "When a faucet is running, a whole column of water is moving through the pipe, and when the faucet is shut quickly that column has to be brought to rest. Water is very nearly incompressible, so stopping it suddenly would raise the pressure in the pipe sharply, in the same way that a large force is needed to stop a moving mass in a short time; the pipes would bang and their joints would be strained. The vertical tube is a dead end that points upward, so the water cannot push the air out of it and the tube stays full of air. Air is compressible, so when the faucet closes the moving water runs on into the tube and squeezes the air, which acts as a cushion: the water is slowed over a longer time, the rise in pressure is far smaller, and the pipes are spared. The tube works the same way against any sudden change in the flow, such as a washing machine valve snapping shut."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1011276",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laminar-viscosity",
+   "prompt": "(a) Calculate the retarding force due to the viscosity of the air layer between a cart and a level air track given the following information—air temperature is 20 °C, the cart is moving at 0.400 m/s, its surface area is $2.50\\times10^{-2}\\ \\text{m}^2$, and the thickness of the air layer is $6.00\\times10^{-5}\\ \\text{m}$. (b) What is the ratio of this force to the weight of the 0.300-kg cart?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.00302,
+      "unit": "N",
+      "hint": "The air layer is the fluid between two plates: $\\kF = \\keta\\kv A/L$ with the viscosity of air at 20 °C from Table 12.1, $0.0181\\ \\text{mPa}\\cdot\\text{s}$, written in Pa·s."
+     },
+     {
+      "part": "(b)",
+      "value": 0.00103,
+      "unit": "",
+      "hint": "Divide the force by the cart’s weight $m\\kg$."
+     }
+    ],
+    "solution": "(a) $3.02\\times10^{-3}\\ \\text{N}$ (b) $1.03\\times10^{-3}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1585889",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "A glucose solution being administered with an IV has a flow rate of $4.00\\ \\text{cm}^3\\text{/min}$. What will the new flow rate be if the glucose is replaced by whole blood having the same density but a viscosity 2.50 times that of the glucose? All other factors remain constant.",
+   "answer": {
+    "type": "number",
+    "value": 1.6,
+    "unit": "cm³/min",
+    "generated_by": "source",
+    "hint": "In Poiseuille’s law the flow rate is inversely proportional to the viscosity, so multiplying $\\keta$ by 2.50 divides $\\kQ$ by 2.50.",
+    "solution": "$1.60\\ \\text{cm}^3\\text{/min}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2392198",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "A small artery has a length of $1.1\\times10^{-3}\\ \\text{m}$ and a radius of $2.5\\times10^{-5}\\ \\text{m}$. If the pressure drop across the artery is 1.3 kPa, what is the flow rate through the artery? (Assume that the temperature is 37 °C.)",
+   "answer": {
+    "type": "number",
+    "value": 8.7e-11,
+    "unit": "m³/s",
+    "generated_by": "source",
+    "hint": "Poiseuille’s law, $\\kQ = (\\kPrtwo - \\kProne)\\pi r^4/8\\keta l$, with the viscosity of whole blood at 37 °C from Table 12.1, $2.084\\ \\text{mPa}\\cdot\\text{s}$, and the pressure drop in N/m².",
+    "solution": "$8.7\\times10^{-11}\\ \\text{m}^3\\text{/s}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3385463",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "The arterioles (small arteries) leading to an organ, constrict in order to decrease flow to the organ. To shut down an organ, blood flow is reduced naturally to 1.00% of its original value. By what factor did the radii of the arterioles constrict? Penguins do this when they stand on ice to reduce the blood flow to their feet.",
+   "answer": {
+    "type": "number",
+    "value": 0.316,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "With the pressure difference, length and viscosity unchanged, $\\kQ$ is proportional to $r^4$, so the ratio of the radii is the fourth root of the ratio of the flow rates, $(0.0100)^{1/4}$.",
+    "solution": "0.316"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2639230",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "(a) Suppose a blood vessel’s radius is decreased to 90.0% of its original value by plaque deposits and the body compensates by increasing the pressure difference along the vessel to keep the flow rate constant. By what factor must the pressure difference increase? (b) If turbulence is created by the obstruction, what additional effect would it have on the flow rate?",
+   "answer": {
+    "type": "number",
+    "value": 1.52,
+    "unit": "",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Keeping $\\kQ$ the same in Poiseuille’s law while $r^4$ falls to $(0.900)^4$ of its value means the pressure difference must rise by the inverse of that factor.",
+    "solution": "(a) 1.52 (b) Turbulence will decrease the flow rate of the blood, which would require an even larger increase in the pressure difference, leading to higher blood pressure."
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3034936",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laminar-viscosity",
+   "prompt": "A layer of oil 1.50 mm thick is placed between two microscope slides. Researchers find that a force of $5.50\\times10^{-4}\\ \\text{N}$ is required to glide one over the other at a speed of 1.00 cm/s when their contact area is $6.00\\ \\text{cm}^2$. What is the oil’s viscosity? What type of oil might it be?",
+   "answer": {
+    "type": "number",
+    "value": 0.138,
+    "unit": "Pa·s",
+    "generated_by": "source",
+    "hint": "The slides are the two plates of Figure 12.16, so $\\keta = \\kF L/\\kv A$ with every quantity in SI units; then look the value up in Table 12.1.",
+    "solution": "$0.138\\ \\text{Pa}\\cdot\\text{s}$, or olive oil."
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2683828",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "Example 12.8 dealt with the flow of saline solution in an IV system. (a) Verify that a pressure of $1.62\\times10^{4}\\ \\text{N/m}^2$ is created at a depth of 1.61 m in a saline solution, assuming its density to be that of sea water. (b) Calculate the new flow rate if the height of the saline solution is decreased to 1.50 m. (c) At what height would the direction of flow be reversed? (This reversal can be a problem when patients stand up.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 16200.0,
+      "unit": "N/m²",
+      "hint": "The pressure due to the weight of a fluid is $\\kh\\krho\\kg$, with the density of sea water from Table 11.1."
+     },
+     {
+      "part": "(b)",
+      "value": 0.111,
+      "unit": "cm³/s",
+      "hint": "The new entrance pressure is $\\kh\\krho\\kg$ at 1.50 m; the vein is still at $1.066\\times10^{3}\\ \\text{N/m}^2$, and $\\kQ$ is proportional to the new pressure difference, so compare it with the example’s."
+     },
+     {
+      "part": "(c)",
+      "value": 10.6,
+      "unit": "cm",
+      "hint": "The flow reverses when the pressure at the entrance of the needle equals the pressure in the vein, so set $\\kh\\krho\\kg$ equal to $1.066\\times10^{3}\\ \\text{N/m}^2$."
+     }
+    ],
+    "solution": "(a) $1.62\\times10^{4}\\ \\text{N/m}^2$ (b) $0.111\\ \\text{cm}^3\\text{/s}$ (c) 10.6 cm"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id742312",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "During a marathon race, a runner’s blood flow increases to 10.0 times her resting rate. Her blood’s viscosity has dropped to 95.0% of its normal value, and the blood pressure difference across the circulatory system has increased by 50.0%. By what factor has the average radii of her blood vessels increased?",
+   "answer": {
+    "type": "number",
+    "value": 1.59,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "Write Poiseuille’s law for the resting and the running states and divide one by the other: the ratio of the radii to the fourth power is $\\kQ$’s factor times $\\keta$’s factor divided by the pressure difference’s factor, and the answer is its fourth root.",
+    "solution": "1.59"
+   }
+  },
+  {
+   "id": "p19",
+   "source_id": "fs-id2400972",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "An oil gusher shoots crude oil 25.0 m into the air through a pipe with a 0.100-m diameter. Neglecting air resistance but not the resistance of the pipe, and assuming laminar flow, calculate the gauge pressure at the entrance of the 50.0-m-long vertical pipe. Take the density of the oil to be $900\\ \\text{kg/m}^3$ and its viscosity to be $1.00\\ (\\text{N/m}^2)\\cdot\\text{s}$ (or $1.00\\ \\text{Pa}\\cdot\\text{s}$). Note that you must take into account the pressure due to the 50.0-m column of oil in the pipe.",
+   "answer": {
+    "type": "number",
+    "value": 2950000.0,
+    "unit": "N/m²",
+    "generated_by": "source",
+    "hint": "The speed at the top of the pipe is the speed that rises 25.0 m against gravity, and the flow rate is that speed times the pipe’s area. The entrance pressure is the pressure of the 50.0 m column of oil plus the drop $R\\kQ$ along the pipe, with $R = 8\\keta l/\\pi r^4$.",
+    "solution": "$2.95\\times10^{6}\\ \\text{N/m}^2$ (gauge pressure)"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "viscosity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "velocity-profile-in-tube"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "laminar-flow",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "pressure-drop-from-resistance"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "flow-resistance",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pressure-drop-from-resistance"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "flow-resistance",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "viscosity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "poiseuilles-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "viscosity",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "poiseuilles-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "viscosity",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "radius-fourth-power-sensitivity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "poiseuilles-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "radius-fourth-power-sensitivity"
+  },
+  {
+   "exercise": "p9",
+   "concept": "poiseuilles-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "turbulent-flow",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "viscosity"
+  },
+  {
+   "exercise": "p15",
+   "concept": "poiseuilles-law"
+  },
+  {
+   "exercise": "p15",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  },
+  {
+   "exercise": "p17",
+   "concept": "radius-fourth-power-sensitivity"
+  },
+  {
+   "exercise": "p17",
+   "concept": "poiseuilles-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p19",
+   "concept": "poiseuilles-law"
+  },
+  {
+   "exercise": "p19",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  }
+ ]
+}

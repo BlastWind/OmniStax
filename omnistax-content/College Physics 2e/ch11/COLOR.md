@@ -35,7 +35,7 @@ readouts state. The introduction binds none.
 | 11.3 | `pressure`, `force` |
 | 11.4 | `pressure`, `density`, `position`, `force` |
 | 11.5 | `pressure`, `force` |
-| 11.6 | `pressure`, `density`, `position` |
+| 11.6 | `pressure`, `density`, `position`, `force` (widened in the chapter pass: the aneroid gauge of Figure 11.13 draws the force the pressure makes on its bellows) |
 | 11.7 | `force`, `density` |
 | 11.8 | `surface-tension`, `pressure`, `force`, `density`, `position` |
 | 11.9 | `pressure`, `position`, `force` |
@@ -46,23 +46,34 @@ it binds.
 ## Families of rule 7 the chapter uses
 
 - **Type hues from the scheme**, bound per page as the table above says.
-  A field of little arrows drawn on the surfaces of a submerged body takes
-  the `pressure` hue, since a pressure is what each of them states; the one
-  arrow that is their net effect takes the `force` hue, since a buoyant
-  force is a force. That change of hue between the many small arrows and the
-  one large one is the whole content of Figure 11.18 and is deliberate.
-- **The element palette `F.el`** for the atoms and molecules of 11.1 and for
-  the gases and liquids a figure names by substance: mercury, water, ethyl
-  alcohol and glycerin in 11.6's manometer and 11.8's capillary tubes are
-  drawn as themselves and never as an anonymous grey column.
-- **A colour that is the physical fact** for the mercury of a barometer and
-  a sphygmomanometer, which is silver, and for blood, which is red, in
-  11.6's cuff and 11.9's circulatory diagram. The book prints them that way
-  and so does the page.
+  Where a page binds `pressure`, a field of little arrows drawn on the walls
+  of a tire, on a swimmer's skin, on the sides of a tank or under the pistons
+  of a hydraulic system takes the `pressure` hue, since a pressure is what
+  each of them states, and the one arrow that is their effect on a chosen
+  patch takes the `force` hue; that change of hue between the many small
+  arrows and the one large one is the content of Figures 11.6, 11.7, 11.8
+  and 11.11 and is deliberate. 11.7 binds `force` and `density` only, as the
+  table says, and its Figure 11.18 draws the two pushes on the cylinder's
+  faces and their difference as the book draws them, three forces in the
+  `force` hue, with no arrow field on the body.
+- **The element palette `F.el`** for the atoms and molecules of 11.1, the
+  iron of the crystal, the oxygen and hydrogen of the water and the oxygen
+  molecules of the gas, so that no phase box holds anonymous grey dots. No
+  other page of the chapter names an atom, and the liquids of 11.6 and 11.8
+  are told apart by their labels, not by the element palette.
+- **A colour that is the physical fact** for the mercury of a manometer and
+  a barometer, which is silver, for the pale blue a colourless liquid is
+  drawn in, and for blood, which is red, bright leaving the heart and dark
+  returning, in 11.9's circulatory diagram and standing person. The book
+  prints them that way and so does the page, and those are the only hexes
+  the chapter's figures carry (11.6 and 11.9); the mercury of 11.8's
+  capillary tube is a grey tint of the page's ink.
 - **The categorical palette `F.cat(i)`** for instances a figure must tell
-  apart that carry no type and no element: the several liquids ranked on one
-  axis in 11.8's table figure, and the body systems listed in 11.9's
-  Table 11.5, never in a hue the page has bound.
+  apart that carry no type and no element: the solids, liquids and gases of
+  Table 11.1 on 11.2's density axis, and the three linings of an alveolus on
+  11.8's Figure 11.29, never in a hue the page has bound. The bars of 11.9's
+  Table 11.5 figure are pressures and take the pressure hue, told apart by
+  their names.
 
 A phase is told by packing and by motion, never by a tint on the fluid, and
 no body in this chapter wears a type hue: a block floating in water is ink

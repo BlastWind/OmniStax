@@ -32,7 +32,7 @@ marked.
 | Exercise placement | an exercise goes with the section that introduces what it tests; eight move, each with `source_section` and a line in both sections' `exercise_notes`: the polystyrene cube (11.2 → 11.7), the drum of petroleum ether (11.3 → 11.4), the iceberg and the glacier (11.3 → 11.7), swimming in the Great Salt Lake (11.4 → 11.7), the loaded oil tanker (11.8 → 11.7), the capillary tube and its energy (11.9 → 11.8), the device that reaches −25 atm (11.9 → 11.8) and the backhoe's hydraulics (11.9 → 11.5). Three that could move stay where the book prints them and say so in `exercise_notes`: 11.2's ranking of densities from four spring stretches, 11.4's aqueous humor problem, and 11.9's hammer-and-nail problem |
 | AP test prep | included; the chapter prints five items, all of them in 11.2 and 11.3, and only two are keyed; an unkeyed AP choice item is kept as an open item with its options as the book prints them and an AI-marked suggested approach, never as a graded choice |
 | PhET interactive links | dropped (States of Matter—Basics in 11.1, Gas Properties in 11.3), and named in `notes`. 11.3's note also carries an empty `> IMAGE {img:} src=` line the converter wrote from an `<image>` with no source, which goes with it |
-| Cross-references to other chapters | plain text where the target is unbuilt. Chapter 12 (Fluid Dynamics and Its Biological and Medical Applications, m42205) is referred to by the introduction and by 11.1, 11.9 and 11.4, and is built by another agent in this same job: every one of those references is plain text in the prep and section passes, because the validator refuses a link into a chapter that is not yet in `book.json`, and the chapter pass links them once Chapter 12 is merged. References to Chapters 4, 5, 7, 8, 9 and 16 are linked; references to sections of Chapter 11 itself may be plain text |
+| Cross-references to other chapters | plain text, every one of them, as every built page of this book writes a cross reference: the book's title of the target section in the running sentence, no link. Chapter 12 (Fluid Dynamics and Its Biological and Medical Applications, m42205) is referred to by the introduction and by 11.1, 11.4 and 11.9 and is built by another agent in this same job, and those references are plain text like the rest; references to Chapters 4, 5, 7, 8, 9 and 16 and to sections of Chapter 11 itself are plain text as well (corrected in the chapter pass; the line had said the built chapters were linked, and no page of the book links one) |
 | Answers to book problems | book answer key only; never generated; 40 of the chapter's 87 problems and 3 of its 5 AP items are unkeyed, and the ones a page does not need are left out and named in the notes, among them 11.9's two Construct Your Own Problem items and its repeat of the Marianas Trench problem with a bulk modulus part |
 | Suggested approaches for open questions | generated, marked AI: all 39 conceptual questions of the chapter and the 3 unkeyed AP items |
 | Generated questions | none; a node with no book exercise of its own is noted in the plan, no question generated |
@@ -40,3 +40,64 @@ marked.
 | Formulas | `ch11/chapter.json`: 34 equations, the stated and named ones important (the definition of density, the definition of pressure and the pascal, the pressure due to the weight of a fluid, standard atmospheric pressure, the equality of the two hydraulic pressures and the ratio of force to area, absolute pressure, the manometer and the barometer, Archimedes' principle, the fraction submerged, specific gravity, the apparent weight loss, the definition of surface tension, the pressure inside a bubble, the capillary rise and the increase of blood pressure in the feet) and the worked substitution steps not; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass writes them from the section plans |
 | Glossary | 19 rows. The book defines **pressure** twice, in 11.3 and again in 11.4, and **systolic pressure** and **diastolic pressure** twice, in 11.6 and again in 11.9; only the first definition of each is written, under the section that introduces the term, since the second is a restatement rather than a second meaning |
 | Book manifest | `ch11` after `ch10` in `book.json` chapters, merged with `ost merge college-physics-2e 11` |
+
+## What the build changed (chapter pass, 2026-09-14)
+
+A few lines of the table above needed a word after the nine sections were
+built. The cross-reference line is corrected in place; the rest stood as
+written and is qualified here.
+
+- **Motion.** Three figures move, and not the three the Motion line named.
+  11.1's Figure 11.2 moves, because the idea of the figure is the three
+  kinds of motion the book's arrows stand for and the plan argues it under
+  rule 24.1; it registers an unbounded cycle and carries play, stop and
+  speed with no scrubber. 11.8's two balloons (Figure 11.27) and 11.9's
+  breath (Figure 11.36) move as the line allowed. The capillary column of
+  Figure 11.31 does not: its plan says the rise would need a drag model the
+  book never gives, so it stands at its equilibrium height and answers its
+  sliders. The other 30 drawn figures register no cycle and carry no
+  transport.
+- **Inline exercises.** The chapter has no Check Your Understanding box,
+  and four conceptual questions are set inline all the same, each a short
+  Understand check on the passage it follows, as rule 12 allows and as 9.2
+  sets its first question: 11.2's density identifying a substance (after
+  `identify`), 11.3's dull hypodermic needle (after `units`), 11.6's level
+  manometer (after `manometer`) and 11.7's ship in salt water (after
+  `density-and-archimedes`). 11.2's host was missing from its `text.html`
+  and the chapter pass added it.
+- **Exercise placement.** Seven of the eight listed moves were made; the
+  device that reaches −25 atm (fs-id2392422, 11.9 → 11.8) is unkeyed and is
+  left out of both sections, named in both sections' notes.
+- **Symbols.** The twenty-six rows stand. One variable row was added in the
+  chapter pass without a symbol row: 11.8's sliding wire writes its
+  half-length as $l$, and Chapter 12 staged an untyped `l` for the length of
+  a tube, so `11.8/l` sits on that shared row as `A`, `h` and `r` sit on
+  theirs. The `eq-slide-wire-force` row keeps its plain `2l`.
+- **Colour.** `COLOR.md`'s row for 11.6 is widened to `force`, which the
+  aneroid gauge draws, and its families paragraph is rewritten to the
+  figures that draw an arrow field in the pressure hue (11.3, 11.4, 11.5)
+  and to where `F.el` (11.1 alone) and `F.cat` (11.2's density axis, 11.8's
+  three linings) are actually used. Two complaints from the section
+  builders are recorded here for Fable and Chen, since a chapter may not
+  invent a hue (root rule 22): the scheme gives `pressure` a hue very close
+  to `force` in both themes, and 11.3, 11.4, 11.5, 11.6 and 11.9 draw the
+  two side by side; and `surface-tension` is a pale yellow that is nearly
+  illegible on the light theme, where 11.8 puts it on two sliders and in
+  every readout. Both are a scheme decision, not a chapter one.
+- **The book's own slips.** The discussion of Example 11.8 prints the
+  steel's weight as $m_{\text{s}}w$ where $m_{\text{s}}g$ is meant; the
+  page keeps the book's printing, in ink, with nothing said, as the Chapter
+  4 pass kept that chapter's slips. The key to 11.9's spinal manometer
+  problem prints part (a) as "13.6 m water" where the problem asks for cm
+  of water and 10.0 mm Hg is 13.6 cm of water; the card writes centimeters
+  with the book's number, and `exercise_notes` says so. Figure 11.22's
+  caption keeps the book's "hydrostatis".
+- **Photographs and originals.** Eight photographs kept as the line says;
+  Figure 11.30 is transformed with the photograph as its original, as the
+  line allowed, and the alveoli illustration of Figure 11.28 is a `photo`
+  row with the book's caption. The backhoe image rides on 11.5's card with
+  the problem it belongs to; the piston-under-tension image travels nowhere,
+  since its problem is left out.
+- **Weights.** Root rule 20's `weights_by` field is not in the schema, so
+  the AI mark on every weighted `exercise_concepts` row lives in each
+  section's `exercise_notes`, as every earlier chapter has it.

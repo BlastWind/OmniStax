@@ -251,3 +251,10 @@ hue: the cubes and the water are soft panels with labelled outlines.
 - Nothing else: no concept or symbol row of the section needs a fix, and the
   third AP item (fs-id889976) is expected on 11.7's page with
   `source_section` 11.2.
+
+Applied in the chapter pass (2026-09-14). The three variable anchors and
+the two equation anchors are written as listed. The inline `cq2` had no host
+in `text.html`, so `<div class="exercises" data-place="identify"></div>` now
+closes the `identify` span, after the Sugar and Salt note, and the card
+renders there. The third AP item (fs-id889976) is on 11.7's page with
+`source_section` 11.2, and both sections' `exercise_notes` say so.

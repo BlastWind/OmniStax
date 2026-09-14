@@ -386,3 +386,18 @@ page carries a hex.
 - 11.8's `exercise_notes` should say that fs-id2382586 and fs-id2392422 come
   from 11.9, and 11.5's that fs-id3077567 does, as this page's notes say they
   went.
+
+Applied in the chapter pass (2026-09-14). The seven variable anchors and
+the two equation anchors are written as listed. The three concept rows are
+clean in `book.json` and in `book-rows.json`, with `\text` and `\times`
+spelled out, and the hover renders every `why` and `evidence` of the
+chapter's 46 concepts. The three references to Fluid Dynamics and Its
+Biological and Medical Applications stay plain text, since no built page of
+the book links a cross reference; `ch11/config.md` is corrected to say so.
+11.8's and 11.5's `exercise_notes` name their items as taken from here;
+this section's own `notes` and `exercise_notes` had counted the −25.0 atm
+device (fs-id2392422) as set with 11.8, and now say it is unkeyed and left
+out of both. The key to `p8` is confirmed as the slip: the problem asks for
+the reading in cm of water, and 10.0 mm Hg is 13.6 cm of water, so the card
+writes centimeters with the book's number. The caption of the body-pressures
+Sim named the book and now names the table.

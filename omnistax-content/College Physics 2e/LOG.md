@@ -2774,3 +2774,212 @@ or its figure number, the transport on the 17 moving figures only, every
 inline Check Your Understanding host rendering its card, and every
 end-of-section card rendering, the moved grindstone and the two-collisions
 question among them.
+
+
+### Pass 36 (2026-09-14): Chapter 12, Fluid Dynamics and Its Biological and Medical Applications, is built
+
+Chapter 12 was prepared and its seven sections built in one wave on
+2026-09-14, one agent to a section, with Chapter 11 built beside it in the
+same checkout. This is the chapter pass over them: the wants of the seven
+plans, the cross-section checks, one reading of every page and every
+`figures.js`, and the full checks.
+
+What stands. Seven section pages and the introduction page, with 26 figure
+rows over them: 24 drawn figures, of which 21 transform a book figure and 3
+are Sims of OmniStax's own (the vessel that divides into branches in 12.1,
+the three terms of Bernoulli's equation as bars in 12.2, the pump's three
+powers in 12.3), and 2 kept photographs (the firefighters that open the
+chapter, the smoke that first turns turbulent). Nothing folds: the book's
+own pairs and triples, the two tubes and the Prandtl tube, the three
+sphere panels, the wing and the sail, are one number each with one image
+or two. The chapter numbers its exercise figures too, so the numbers run
+12.1 to 12.29: 26 on rows and 6 on the cards of the exercises that refer
+to them, the Huka Falls, the Venturi, the perfume bottle, the leaking boot,
+the air tube beside the faucet and the sink-drain insert, with no number
+left nowhere. Motion was decided per figure, and the chapter is almost
+still: 3 of the 24 drawn figures call `cycle()`, the plaque-narrowed artery
+whose dye threads break into eddies in 12.5, the wake behind a ball in
+12.6, and the random walk of 12.7, whose circle grows as the square root of
+the time; the other 21 answer their sliders and carry no transport, and no
+figure is a 3D scene, since every flow of the chapter is clearest in
+section. 76 exercises: 33 problems, 33 conceptual questions and 10 AP items,
+no Check Your Understanding box anywhere in the chapter and so nothing
+inline; one problem sits with a section other than the one that printed it,
+the steel ball falling through motor oil, set in 12.6 with `source_section`
+12.4 and both sections' notes; 38 open items carry an AI-marked suggested
+approach and 33 unkeyed problems are left out and named, among them the two
+that would have travelled to 12.6 with the ball. 144 coverage rows against
+44 concept nodes with 115 prerequisite edges, 22 glossary terms, 71
+variable rows, 26 equation rows, two book tables rebuilt by hand (the
+coefficients of viscosity, irregular, with its two footnotes on blood; the
+diffusion constants), and two new types, `flow-rate` and `viscosity`, each
+because the chapter's figures draw it, its sliders carry it and its
+readouts state it; pressure and density are Chapter 11's and are used by
+name.
+
+What the chapter pass wrote. The 97 anchors the seven plans asked for, on
+every variable and equation row of `chapter.json`, each a span of its
+section's own `text.html`. One symbol row, `L_len`, LaTeX $L$, untyped and
+without a macro, for the plate separation of 12.4 and the characteristic
+length of 12.6, because the only `L` in the book was Chapter 10's angular
+momentum with the macro `\kL` and the two variables rows named it; both
+rows point at `L_len` now, neither page ever wrote `\kL`, and `config.md`,
+which had called `L` Chapter 11's row, is corrected. The evidence of
+`lift-from-bernoulli` cited the aircraft-wing problem, which is 12.3's; it
+names 12.2's figure, its two conceptual questions and its sail problem
+instead, through `book-rows.json` and `ost merge`. Two pages had linked a
+worked example on another page by hand, 12.2 to Example 12.2 and 12.5 to
+Example 12.8, and no other page of the book does: both are plain text now,
+the app linking figure numbers and same-page examples as it always has, and
+`config.md` records the decision for the chapter. 12.4's notes said three
+problems were set in 12.6 when one was and two were left out; they say so.
+`config.md` no longer calls Figure 12.12 dropped, since 12.3 built the fire
+hose on its ladder with the book's drawing as the original, and it carries
+a "What the build changed" block. `exploration.md` gathers the chapter's
+four errata, all kept as printed: 12.1's Example 12.3 with $\bar{v}_1$ on
+both sides of the branching equation, 12.2's AP item that asks about a lake
+its stem never introduces, 12.3's AP key of 12 m/s where the item's numbers
+reach about 19, and 12.6's stray `1.00` beside the viscosity of air, which
+the prep pass had proposed dropping and the section kept.
+
+Two things are left for Fable. The section builders report that with
+twenty-two types declared the scheme lays position, pressure, density and
+energy in four magentas that are hard to tell apart, which bites where a
+pressure bar stands beside two energy bars and a height bracket, and that
+surface tension in Chapter 11 comes out pale; no hue was invented here, the
+Bernoulli figures part their segments with an ink rule and label every
+value beside the bar, and the note stands in `config.md`. Root rule 20's
+`weights_by` field is not in the schema, so no row writes it and the AI mark
+on the 71 weighted rows lives in each section's `exercise_notes`, as every
+earlier chapter has it.
+
+What the reading found. Every headline, topline and readout line is a full
+sentence, no figure carries a hex colour, no still figure a cycle, no
+discrete state a slider, no page the word demo, and no ordinal `º` or bare
+dollar sign stands anywhere in the chapter. Two captions spoke of the book
+where the page should speak of the subject, the circulation's "the
+pressures the book gives them" and the wake's "where the book gives a law
+for it", and both say the thing itself now. Table 12.1's header wrote
+$\eta$ without its macro on a page that binds viscosity, and writes
+`\keta`. The branching vessel of 12.1 opened on four branches of 5.0 mm,
+whose total cross-section equals the vessel's own, so the page opened on a
+headline saying nothing had changed; it opens on six. Four slider lines of
+12.4's plan were brought to the ranges the figures were built with.
+
+Checks: `check:content` with 13 chapters, 85 sections and 14 introduction
+pages and no errors; 405 unit tests; `astro check` clean; a build of 101
+pages; and a headless pass over all eight pages of the chapter in light and
+dark with no console error, every image loading, every `figure.sim` booting
+its canvas, every eyebrow reading Sim or its figure number, the transport on
+the 3 moving figures only, both book tables standing, and every
+end-of-section card rendering, the 76 of them with the six exercise images
+on their cards and the falling steel ball among 12.6's.
+
+
+### Pass 37 (2026-09-14): Chapter 11, Fluid Statics, is built
+
+Chapter 11 was prepared and its nine sections built in one wave on
+2026-09-14, one agent to a section, and this is the chapter pass over them:
+the wants of the nine plans, the cross-section checks, one reading of every
+page and every `figures.js`, and the full checks.
+
+What stands. Nine section pages and the introduction page, with 41 figure
+rows over them: 33 drawn figures, of which 26 transform a book figure and 7
+are Sims of OmniStax's own (Table 11.1 on one density axis and the reservoir
+behind the dam in 11.2, the small piston pushed down in 11.5, the block with
+two density sliders in 11.7, and the pressures of the body on one axis, the
+column of blood in a standing person and the force on the back of the eye in
+11.9), and 8 kept photographs, every one of them pointed at by the text.
+Two folds do the work of four drawings, the cylinder with its two forces and
+the fluid that replaces it (Figure 11.18 + 11.19) and the capillary tube
+with its liquids, angles and radii (Figure 11.31 + 11.32), so the numbers
+run 11.1 to 11.36 without a gap, and the five tables of the book stay in the
+text as tables. Fluid statics has almost no clock in it and the chapter is
+almost entirely still: 30 of the 33 drawn figures answer their sliders and
+carry no transport, and the three that move have a genuine time in them, the
+atoms of the four phases in 11.1, the small balloon emptying into the large
+one in 11.8 and the breath in 11.9. Where the book prints a tank, a dam, a
+cylinder or a piston in perspective the figure uses a locked view, and no
+scene turns. 92 exercises: 48 problems, 39 conceptual questions and 5 AP
+items; 4 conceptual questions sit inline as short checks on the passage
+they follow, the chapter having no Check Your Understanding box; 7
+exercises sit with a section other than the one that printed them, each
+with `source_section` and both sections' notes; 43 open items carry an
+AI-marked suggested approach and 39 unkeyed problems are left out and named.
+175 coverage rows against 46 concept nodes with 117 prerequisite edges, 19
+glossary terms, 56 variable rows, 34 equation rows, and three new types,
+`pressure`, `density` and `surface-tension`, each because the chapter's
+figures draw it and its readouts state it, each kept apart from the type
+whose dimension it shares (`stress`, `stiffness`) as rule 7 asks.
+
+What the chapter pass wrote. The 90 anchors the nine plans asked for, on
+every variable and equation row of `chapter.json`, each a span of its
+section's own `text.html`; the chapter had none, since the validator refuses
+an anchor into an unbuilt section. One variable row, `11.8/l`, for the
+half-length of the sliding wire, on the untyped symbol `l` that Chapter 12
+staged for the length of a tube, as `A`, `h` and `r` are shared; the
+equation keeps its plain `2l` and no symbol row was changed. 11.2's inline
+question had no host in its `text.html`, so the card never rendered; the
+host closes the `identify` span now and the card renders. The eight moves of
+the config were checked in both directions: every receiving and giving
+section's `exercise_notes` names its item, and 11.9's two notes, which had
+counted the −25 atm device among the problems set with 11.8, now say it is
+unkeyed and left out of both, which is what 11.8's notes said all along.
+`ch11/COLOR.md` is brought into line with the pages: its row for 11.6 is
+widened to `force`, which the aneroid gauge draws; its paragraph that put an
+arrow field in the pressure hue on Figure 11.18 now names the figures that
+do draw one (the tire, the swimmer, the tank and the hydraulic cylinders)
+and says the cylinder of 11.7 draws three forces; and its families paragraph
+says where `F.el` (11.1 alone) and `F.cat` (11.2's density axis, the three
+linings of Figure 11.29) are actually used. `config.md`'s cross-reference
+line said the built chapters were linked, and no page of the book links a
+cross reference, so it says plain text now; the config carries a "What the
+build changed" block for the rest, chief among them that 11.1's Figure 11.2
+moves where the Motion line had foreseen no motion for that section.
+
+Three questions the plans left were settled. The discussion of Example 11.8
+prints the steel's weight as $m_{\text{s}}w$, a slip for $m_{\text{s}}g$ in
+the book itself; the page keeps the book's printing, in ink, with nothing
+said, as Pass 32 kept Chapter 4's slips. The key to 11.9's spinal manometer
+problem prints part (a) as "13.6 m water" where the problem asks for cm of
+water and 10.0 mm Hg is 13.6 cm of water; the card writes centimeters with
+the book's number and `exercise_notes` says so. Root rule 20's `weights_by`
+field is not in the schema, so the AI mark on the 88 weighted rows lives in
+each section's `exercise_notes`, as every earlier chapter has it.
+
+What the reading found. Every headline, topline and readout line is a full
+sentence, no still figure carries a cycle, no discrete state sits on a
+slider, no ordinal `º`, bare dollar sign or leftover marker stands anywhere
+in the chapter, and the only hexes in the figures are the physical fact of
+rule 7's third family, mercury's silver, the pale blue of a colourless
+liquid and the two reds of blood. Four sentences OmniStax had written spoke
+of the book rather than the subject, the first sentence of Figure 11.2's
+caption, the last of Figure 11.31 + 11.32's, the representative-values
+sentence of Figure 11.29's caption and readout, and the range clause of the
+body-pressures Sim's caption, and each is reworded. 11.7's plan said its
+cylinder's depth slider ran to 0.80 m in a tank 1.00 m deep; the figure runs
+to 0.35 m in a tank 0.60 m deep, and the plan says so now. Every figure's
+`draws` row matches the hues its code names or its readout states.
+
+Two things are left for Fable and Chen, since a chapter may not invent a
+hue (root rule 22): the scheme gives `pressure` a hue very close to `force`
+in both themes, and five sections draw the two side by side; and
+`surface-tension` is a pale yellow that is nearly illegible on the light
+theme, where 11.8 puts it on two sliders and in every readout. One thing is
+left for the app: a concept chip on an exercise card whose concept belongs
+to the book but is not reachable from the chapter's own concepts through the
+prerequisite edges (11.2's Hooke's law, 11.5's second condition for
+equilibrium and mechanical advantage) opens no hover card, because the
+chapter's `concepts.json` does not carry it and the practice catalog has not
+loaded that chapter; every other chip of the chapter opens its card.
+
+Checks: `check:content` with 13 chapters, 84 sections and 14 introduction
+pages and no errors; 405 unit tests; `astro check` clean; a build of 101
+pages; and a headless pass over all ten pages of the chapter in light and
+dark with no console error, every image loading, every `figure.sim` booting
+its canvas, every eyebrow reading Sim or its figure number, the transport on
+the three moving figures only, every inline host rendering its card, 11.2's
+among them, every book table standing, and the hover card opened on all 46
+of the chapter's concepts, 43 from the chips of their exercise cards and 3
+from the concept map, each rendering its `why` and `evidence` with no KaTeX
+error and no raw `\text` or `\times` left in it.

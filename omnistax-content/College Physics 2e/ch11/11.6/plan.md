@@ -291,3 +291,10 @@ scheme, and the two hexes are named in the figure lines above.
   chapter pass links same-chapter references, it points at 11.5.
 - Nothing is wanted of the concept rows: the five nodes and their edges
   stand as the prep pass wrote them.
+
+Applied in the chapter pass (2026-09-14). The five variable anchors and
+the four equation anchors are written as listed. The reference to Pascal's
+Principle stays plain text, as every cross reference of the built book is;
+`ch11/config.md` now says so. The two hexes the figures carry, mercury's
+silver and the pale blue of a colourless liquid, are the physical fact of
+root rule 7's third family and stand.

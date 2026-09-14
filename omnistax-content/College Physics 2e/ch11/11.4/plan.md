@@ -311,3 +311,9 @@ are ink and muted.
 - equations `eq-depth-from-pressure` → 11.4-water-and-air
 - The forward reference to Pascal's Principle in the closing paragraph is
   plain text and may be linked to 11.5 once that page is merged.
+
+Applied in the chapter pass (2026-09-14). The twelve variable anchors and
+the eight equation anchors are written as listed. The forward reference to
+Pascal's Principle stays plain text: no built page of this book links a
+cross reference, within a chapter or across one, and `ch11/config.md`'s
+cross-reference line is corrected to say so.

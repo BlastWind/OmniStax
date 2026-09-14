@@ -1,0 +1,538 @@
+{
+ "id": "12.2",
+ "module": "m42206",
+ "chapter": "12",
+ "title": "Bernoulli’s Equation",
+ "short": "Bernoulli’s equation",
+ "lead": "When a fluid speeds up its pressure falls, and the reason is conservation of energy: the work that pushes a bit of fluid into a narrower channel is what raises its kinetic energy. This section writes that bookkeeping as Bernoulli’s equation, shows that each of its three terms is an energy per unit volume, reduces it to the pressure of a static fluid and to Bernoulli’s principle for flow at constant depth, and follows the principle into entrainment, the lift on a wing and a sail, and the manometer and pitot tube that measure how fast a fluid moves.",
+ "objectives": [
+  "Explain the terms in Bernoulli’s equation.",
+  "Explain how Bernoulli’s equation is related to conservation of energy.",
+  "Explain how to derive Bernoulli’s principle from Bernoulli’s equation.",
+  "Calculate with Bernoulli’s principle.",
+  "List some applications of Bernoulli’s principle."
+ ],
+ "summary_html": "<ul><li>Bernoulli’s equation states that the sum on each side of the following equation is constant, or the same at any two points in an incompressible frictionless fluid: $\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo.$</li><li>Bernoulli’s principle is Bernoulli’s equation applied to situations in which depth is constant. The terms involving depth (or height $\\kh$) subtract out, yielding $\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2.$</li><li>Bernoulli’s principle has many applications, including entrainment, wings and sails, and velocity measurement.</li></ul>",
+ "notes": "The four problems the book leaves unkeyed are left out: the factor by which a wind speed must rise to double a manometer’s height, the greatest height the hose of Example 12.2 can squirt, the force on a square meter of sail, and the speed a pitot tube with a mercury manometer measures. The Venturi and the perfume bottle the conceptual questions refer to travel on those questions’ cards.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Four problems have no keyed answer and are left out: the factor by which a wind speed must increase to double the height in a pitot tube’s manometer, the maximum height the water of Example 12.2 can be squirted with and without the nozzle, the force on a square meter of sail with air at 6.00 m/s along its front and 3.50 m/s along its back, and the derivation of the speed a pitot tube measures from the height of its mercury manometer. The first problem asks the reader to verify that pressure has units of energy per unit volume and is keyed with the book’s derivation, so it is set as an open item carrying that derivation. The section’s first AP item asks at what depth beneath the surface of the lake the pressure is twice atmospheric; the stem that once introduced the lake is missing from the book and the item is kept as the book prints it. It is keyed (a) and set as a graded choice, as is the third, on constant pressure and rising kinetic energy per unit volume. The second and fourth AP items, the pump that lifts water to a house on a hill and the two circumstances along a fluid path, have no key and are kept as open items with AI-written suggested approaches, marked as such. The suggested approaches to the fourteen conceptual questions are AI-written and marked; the Venturi question keeps the book’s drawing of the Venturi on its card and the atomizer question keeps the book’s photograph of the perfume bottle. Nothing is taken from another section and nothing of this section’s own is held for a later page. All items sit at the end, since the chapter has no Check Your Understanding box. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-car-truck",
+   "kind": "sim",
+   "number": "12.5",
+   "originals": [
+    "/media/ch12/Figure_13_02_01a.jpg"
+   ],
+   "original_caption": "An overhead view of a car passing a truck on a highway. Air passing between the vehicles flows in a narrower channel and must increase its speed (v_2 is greater than v_1), causing the pressure between them to drop (P_i is less than P_o). Greater pressure on the outside pushes the car and truck together.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "velocity",
+    "pressure",
+    "density"
+   ]
+  },
+  {
+   "id": "sim-bernoulli",
+   "kind": "sim",
+   "draws": [
+    "pressure",
+    "energy",
+    "velocity",
+    "position",
+    "density",
+    "acceleration"
+   ]
+  },
+  {
+   "id": "sim-entrainment",
+   "kind": "sim",
+   "number": "12.6",
+   "originals": [
+    "/media/ch12/Figure_13_02_02a.jpg"
+   ],
+   "original_caption": "Examples of entrainment devices that use increased fluid speed to create low pressures, which then entrain one fluid into another. (a) A Bunsen burner uses an adjustable gas nozzle, entraining air for proper combustion. (b) An atomizer uses a squeeze bulb to create a jet of air that entrains drops of perfume. Paint sprayers and carburetors use very similar techniques to move their respective liquids. (c) A common aspirator uses a high-speed stream of water to create a region of lower pressure. Aspirators may be used as suction pumps in dental and surgical situations or for draining a flooded basement or producing a reduced pressure in a vessel. (d) The chimney of a water heater is designed to entrain air into the pipe leading through the ceiling.",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "velocity",
+    "pressure",
+    "density",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-wing-sail",
+   "kind": "sim",
+   "number": "12.7",
+   "originals": [
+    "/media/ch12/Figure_13_02_03.jpg"
+   ],
+   "original_caption": "(a) The Bernoulli principle helps explain lift generated by a wing. (b) Sails use the same technique to generate part of their thrust.",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "velocity",
+    "pressure",
+    "density"
+   ]
+  },
+  {
+   "id": "sim-manometer",
+   "kind": "sim",
+   "number": "12.8",
+   "originals": [
+    "/media/ch12/Figure_13_02_04a.jpg"
+   ],
+   "original_caption": "Measurement of fluid speed based on Bernoulli’s principle. (a) A manometer is connected to two tubes that are close together and small enough not to disturb the flow. Tube 1 is open at the end facing the flow. A dead spot having zero speed is created there. Tube 2 has an opening on the side, and so the fluid has a speed v across the opening; thus, pressure there drops. The difference in pressure at the manometer is ½ρv_2², and so h is proportional to ½ρv_2². (b) This type of velocity measuring device is a Prandtl tube, also known as a pitot tube.",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "velocity",
+    "pressure",
+    "position",
+    "density",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  { "span": "pressure-drop", "concept": "pressure-drops-in-fast-fluid", "verb": "introduces" },
+  { "span": "pressure-drop", "concept": "equation-of-continuity", "verb": "uses" },
+  { "span": "pressure-drop", "concept": "work-energy-theorem", "verb": "uses" },
+  { "span": "pressure-drop", "concept": "kinetic-energy", "verb": "uses" },
+  { "span": "pressure-drop", "concept": "force-from-pressure", "verb": "uses" },
+  { "span": "bernoullis-equation", "concept": "bernoullis-equation", "verb": "introduces" },
+  { "span": "bernoullis-equation", "concept": "bernoulli-energy-per-volume", "verb": "introduces" },
+  { "span": "bernoullis-equation", "concept": "pressure", "verb": "uses" },
+  { "span": "bernoullis-equation", "concept": "density", "verb": "uses" },
+  { "span": "bernoullis-equation", "concept": "incompressible-fluid", "verb": "uses" },
+  { "span": "bernoullis-equation", "concept": "conservation-of-energy", "verb": "uses" },
+  { "span": "bernoullis-equation", "concept": "kinetic-energy", "verb": "uses" },
+  { "span": "bernoullis-equation", "concept": "gravitational-potential-energy", "verb": "uses" },
+  { "span": "static-fluids", "concept": "bernoulli-static-fluid", "verb": "introduces" },
+  { "span": "static-fluids", "concept": "bernoullis-equation", "verb": "uses" },
+  { "span": "static-fluids", "concept": "pressure-from-weight-of-fluid", "verb": "reinforces" },
+  { "span": "bernoullis-principle", "concept": "bernoullis-principle", "verb": "introduces" },
+  { "span": "bernoullis-principle", "concept": "bernoullis-equation", "verb": "uses" },
+  { "span": "bernoullis-principle", "concept": "pressure-drops-in-fast-fluid", "verb": "reinforces" },
+  { "span": "bernoullis-principle", "concept": "equation-of-continuity", "verb": "uses" },
+  { "span": "entrainment", "concept": "entrainment", "verb": "introduces" },
+  { "span": "entrainment", "concept": "bernoullis-principle", "verb": "uses" },
+  { "span": "wings-and-sails", "concept": "lift-from-bernoulli", "verb": "introduces" },
+  { "span": "wings-and-sails", "concept": "bernoullis-principle", "verb": "uses" },
+  { "span": "wings-and-sails", "concept": "newtons-third-law", "verb": "uses" },
+  { "span": "velocity-measurement", "concept": "velocity-measurement", "verb": "introduces" },
+  { "span": "velocity-measurement", "concept": "bernoullis-principle", "verb": "uses" },
+  { "span": "velocity-measurement", "concept": "manometer", "verb": "uses" }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1292491",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "static-fluids",
+   "prompt": "At what depth beneath the surface of the lake is the pressure in the water equal to twice atmospheric pressure?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "10 m",
+     "100 m",
+     "1000 m",
+     "10,000 m"
+    ],
+    "correct": 0,
+    "hint": "For a fluid at rest Bernoulli’s equation gives $\\kPrtwo = \\kProne + \\krho\\kg\\khone$, with $\\kProne$ the atmospheric pressure at the surface. Twice atmospheric means the weight of the water above has to add one more atmosphere, $1.01 \\times 10^5\\ \\text{N/m}^2$, so ask what depth of water has $\\krho\\kg\\kh$ equal to that.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1479037",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "bernoullis-equation",
+   "prompt": "A pump provides pressure to the lower end of a long pipeline that supplies water from a reservoir to a house located on a hill 150 m vertically upward from the lower end of the pipe (where the water is initially at rest before being pumped). The pipeline has a constant diameter of 3.5 cm, and the upper end of the pipeline is open to the atmosphere. What pressure must the pump provide for water to flow from the upper end of the pipeline at a rate of 5.0 m/s?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take point 1 at the lower end of the pipe, where the pump acts and the water is at rest, and point 2 at the open upper end, 150 m higher, where the water leaves at 5.0 m/s and the pressure is atmospheric. Bernoulli’s equation between the two points is $\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo$ with $\\kvone = 0$, $\\khone = 0$, $\\kvtwo = 5.0\\ \\text{m/s}$, $\\khtwo = 150\\ \\text{m}$ and $\\kPrtwo = 1.01 \\times 10^5\\ \\text{N/m}^2$. Solving for the pump’s pressure, $\\kProne = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo$. The height term is $(1000\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(150\\ \\text{m}) = 1.47 \\times 10^6\\ \\text{N/m}^2$, the speed term is $\\frac{1}{2}(1000\\ \\text{kg/m}^3)(5.0\\ \\text{m/s})^2 = 1.25 \\times 10^4\\ \\text{N/m}^2$, and with the atmospheric pressure at the top the pump must supply about $1.6 \\times 10^6\\ \\text{N/m}^2$, roughly sixteen atmospheres. Note that the diameter of the pipe does not enter, since it is the same at both ends; it is the height that costs the most, and the speed comparatively little."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1497466",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "bernoullis-equation",
+   "prompt": "According to Bernoulli's equation, if the pressure in a given fluid is constant and the kinetic energy per unit volume of a fluid increases, which of the following is true?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The potential energy per unit volume of the fluid decreases.",
+     "The potential energy per unit volume of the fluid increases.",
+     "The fluid must no longer be considered incompressible.",
+     "The flow rate of the fluid increases."
+    ],
+    "correct": 0,
+    "hint": "The sum $\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh$ stays constant along the path. If the first term does not change and the second grows, what must the third do?",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1727123",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "bernoullis-equation",
+   "prompt": "Consider the following circumstances within a fluid, and determine the answer using Bernoulli's equation. (a) The pressure and kinetic energy per unit volume along a fluid path increases. What must be true about the potential energy per unit volume of the fluid along the fluid path? Explain. (b) The pressure along a fluid path increases, and the kinetic energy per unit volume remains constant. What must be true about the potential energy per unit volume of the fluid along the fluid path? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Bernoulli’s equation says that $\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh$ has the same value at every point along the path, so whatever two of the terms do between them, the third must make up. (a) If the pressure and the kinetic energy per unit volume both increase, their sum has grown, and the potential energy per unit volume $\\krho\\kg\\kh$ must decrease by the same amount to keep the total fixed; the fluid has moved to a lower height. (b) If the pressure increases while the kinetic energy per unit volume stays the same, the pressure’s gain must again be paid for by the potential energy per unit volume, which decreases by exactly the increase in pressure; the fluid has descended, and since its speed has not changed, the whole of the height it lost has gone into pressure, which is the static case $\\kPrtwo = \\kProne + \\krho\\kg\\khone$ of the section."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3078884",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "bernoullis-principle",
+   "prompt": "You can squirt water a considerably greater distance by placing your thumb over the end of a garden hose and then releasing, than by leaving it completely uncovered. Explain how this works.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Your thumb narrows the opening, and the equation of continuity says that the same flow through a smaller area must leave at a greater speed, so the water emerges faster and travels farther before it falls to the ground. Bernoulli’s principle says where the extra kinetic energy comes from: while your thumb covers the end, the water in the hose slows and its pressure rises toward the supply pressure, and that pressure does the work of accelerating the water through the small opening, the pressure drop from inside the hose to the open air being $\\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2)$. With the end uncovered the water leaves at the hose’s own speed and the pressure inside is barely above atmospheric, so there is little to push it out any faster."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1596349",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "bernoullis-equation",
+   "prompt": "Water is shot nearly vertically upward in a decorative fountain and the stream is observed to broaden as it rises. Conversely, a stream of water falling straight down from a faucet narrows. Explain why, and discuss whether surface tension enhances or reduces the effect in each case.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both effects follow from the equation of continuity together with the exchange of speed for height that Bernoulli’s equation describes. The rising water slows as it climbs, its kinetic energy per unit volume going into potential energy per unit volume, and since the same flow rate must pass every level, $A\\kv$ is constant and the slower stream must be wider. The falling water speeds up as it drops, so the same flow rate passes through a smaller area and the stream narrows. Surface tension pulls the surface of the stream toward the smallest area it can have, which works against the broadening of the rising stream and helps it break into drops, and works with the narrowing of the falling stream, drawing it thinner and eventually into drops as well. So surface tension reduces the effect in the fountain and enhances it under the faucet."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2968273",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "pressure-drop",
+   "prompt": "Look back to Figure 12.5. Answer the following two questions. Why is $P_\\text{o}$ less than atmospheric? Why is $P_\\text{o}$ greater than $P_\\text{i}$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Think in the frame of the vehicles, in which the air streams past them. Far from the road the air is at rest and at atmospheric pressure, but beside the outer sides of the car and the truck it is moving, since the bodies push it aside and it must flow around them, and by Bernoulli’s principle moving air has a lower pressure than the same air at rest. That is why $P_\\text{o}$, the pressure on the outside of the vehicles, is less than atmospheric. Between the vehicles the same air is squeezed into a narrower channel, so by the equation of continuity it moves faster still, and its pressure $P_\\text{i}$ falls further below $P_\\text{o}$ by $\\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2)$. The greater pressure on the outside then pushes the car and the truck toward each other."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3454946",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "entrainment",
+   "prompt": "Give an example of entrainment not mentioned in the text.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Any device in which a fast stream of one fluid draws a second fluid into itself is an example. A garden hose attachment that mixes fertilizer or soap into the water does it, the water rushing past a small opening at the top of the bottle and drawing the liquid up into the stream. A spray bottle for cleaning fluid, an airbrush, and the venturi on a scuba diver’s regulator or a chemistry laboratory’s water-jet vacuum pump work the same way, and a fireplace draws air into the room’s flue as the wind blows across the chimney top. In each case the fast fluid has the lower pressure, and the fluid at rest, at the higher pressure outside, is pushed in."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3387506",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "entrainment",
+   "figure": {
+    "src": "/media/ch12/Figure_13_02_05a.jpg",
+    "alt": "Figure shows a venturi tube, a cylindrical tube broader at both the ends and narrow in the middle. The narrow part is labeled as venturi constriction. The flow of fluid is shown as horizontal arrows along the length of the tube toward the right. The flow lines are closer in the center and spread apart at both the ends. There is an opening on the top portion of the narrow section for the entrained fluid to enter.",
+    "caption": "A tube with a narrow segment designed to enhance entrainment is called a Venturi. These are very commonly used in carburetors and aspirators."
+   },
+   "prompt": "Many entrainment devices have a constriction, called a Venturi, such as shown in Figure 12.9. How does this bolster entrainment?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The constriction makes the fluid move faster where the entrained fluid is let in. By the equation of continuity the same flow through the smaller area of the Venturi must have a greater speed, and by Bernoulli’s principle the pressure there is lower than in the wide part of the tube by $\\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2)$. The opening for the entrained fluid is placed at the constriction, so it sees the lowest pressure the device makes, and the difference between that and the pressure outside is what pushes the second fluid in. Without the constriction the stream would have to be driven much faster along its whole length to make the same low pressure at the opening."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "eip-411",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "entrainment",
+   "prompt": "Some chimney pipes have a T-shape, with a crosspiece on top that helps draw up gases whenever there is even a slight breeze. Explain how this works in terms of Bernoulli’s principle.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The crosspiece is a short horizontal pipe open at both ends, and any breeze blows through it. Air moving through the crosspiece has a lower pressure than the still air in the room below, by Bernoulli’s principle, so the greater pressure at the bottom of the chimney pushes the gases up the pipe and into the moving stream, which carries them away. This is entrainment: the breeze in the crosspiece is the fast fluid and the chimney gases are the fluid it draws in. The crosspiece also keeps the wind from blowing straight down the open top of the chimney, which would push the gases back into the room."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2931718",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "entrainment",
+   "prompt": "Is there a limit to the height to which an entrainment device can raise a fluid? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. An entrainment device lifts a fluid because the pressure in its fast stream is lower than the atmospheric pressure on the fluid’s surface, and the difference pushes the fluid up the tube until the weight of the raised column, $\\krho\\kg\\kh$, makes up that difference. The pressure in the stream can be reduced no further than zero, so the greatest difference available is atmospheric pressure itself, about $1.01 \\times 10^5\\ \\text{N/m}^2$, and the greatest height is $\\kh = \\kPr/\\krho\\kg$, which for water is about 10 m. In practice the limit is lower, since the stream would have to move very fast to bring its pressure anywhere near zero, and a real device raises water only a few meters."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3415476",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "wings-and-sails",
+   "prompt": "Why is it preferable for airplanes to take off into the wind rather than with the wind?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Lift depends on how fast the air moves over the wings, not on how fast the airplane moves over the ground. Taking off into the wind adds the wind’s speed to the airplane’s speed through the air, so the air flows over the wing faster at any ground speed, the pressure above the wing falls further below the pressure beneath it, and the lift needed to leave the ground is reached at a lower ground speed and after a shorter run. Taking off with the wind subtracts the wind’s speed instead, and the airplane must run farther and faster over the ground before the air over its wings moves fast enough to lift it."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1128778",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "pressure-drop",
+   "prompt": "Roofs are sometimes pushed off vertically during a tropical cyclone, and buildings sometimes explode outward when hit by a tornado. Use Bernoulli’s principle to explain these phenomena.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The air inside a building is nearly at rest, so its pressure stays close to the atmospheric pressure it had before the storm arrived. Outside, the wind moves very fast, and by Bernoulli’s principle its pressure is lower than that of still air by $\\frac{1}{2}\\krho\\kv^2$. Over a roof the wind is fastest, so the pressure above the roof is well below the pressure of the still air beneath it, and the net upward force on the whole area of the roof can be enough to lift it off. A tornado’s winds are faster still and the pressure at its core is far below atmospheric, so when it passes over a building the higher pressure of the air trapped inside pushes the walls and windows outward, and the building bursts rather than being crushed."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3006966",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "wings-and-sails",
+   "prompt": "Why does a sailboat need a keel?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The force the wind makes on a sail acts perpendicular to the sail, from its back toward its front, and when a boat sails across or into the wind that force points largely sideways rather than along the boat’s length. Without a keel the boat would simply slide sideways through the water in the direction of the push. The keel is a large flat surface under the hull that resists motion sideways much more than motion forward, since it must push a great deal of water aside to move sideways and very little to move ahead. The water’s reaction on the keel cancels the sideways part of the wind’s force, and what remains is the forward part, which drives the boat along. The keel also carries weight low down, which keeps the boat from being tipped over by the same sideways push on the sail."
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id1427122",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "pressure-drop",
+   "prompt": "It is dangerous to stand close to railroad tracks when a rapidly moving commuter train passes. Explain why atmospheric pressure would push you toward the moving train.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The passing train drags the air beside it along at high speed, and by Bernoulli’s principle air that is moving fast has a lower pressure than air at rest. The air between you and the train is therefore at a pressure below atmospheric, while the still air on your other side is at full atmospheric pressure. The difference in pressure over the area of your body is a net force toward the train, exactly as the greater pressure outside pushes the car and the truck together in the text. The faster the train, the greater the drop in pressure, since it grows as the square of the speed, and the harder the push."
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id2437386",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "bernoullis-equation",
+   "prompt": "What assumptions are made in Bernoulli’s equation? Are these assumptions reasonably valid in the example of water flowing in a hose?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Bernoulli’s equation assumes that the fluid is incompressible, so that its density is the same at every point, and that it is frictionless, so that no energy is lost to viscosity as it flows; it is then a statement of conservation of energy for a small volume of fluid followed along its path. Water is very nearly incompressible, so the first assumption holds well in a hose. Water does have some viscosity, and some energy is dissipated as heat against the walls of a long hose, so the second assumption is an approximation; for a short hose and a smooth flow the loss is small compared with the changes in pressure and speed the equation describes, and the result for the pressure in the hose is a good one. The Making Connections box notes that the equation can be modified to include thermal energy dissipated by viscosity when that matters."
+   }
+  },
+  {
+   "id": "cq13",
+   "source_id": "fs-id2621156",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "entrainment",
+   "figure": {
+    "src": "/media/ch12/Figure_13_02_06a.jpg",
+    "alt": "A perfume bottle with a spray cap.",
+    "caption": "Atomizer: perfume bottle with tube to carry perfume up through the bottle. (credit: Antonia Foy, Flickr)"
+   },
+   "prompt": "A perfume bottle or atomizer sprays a fluid that is in the bottle. (Figure 12.10.) How does the fluid rise up in the vertical tube in the bottle?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Squeezing the bulb or pressing the cap sends a fast jet of air across the top of the vertical tube. By Bernoulli’s principle the pressure in that fast-moving air is lower than atmospheric, while the surface of the perfume in the bottle, which is open to the air, is at full atmospheric pressure. The greater pressure on the surface pushes the perfume up the tube toward the low pressure at its top, and when it reaches the jet it is broken into fine drops and carried out with the air. This is entrainment, and it is the same mechanism as the aspirator and the carburetor in the text."
+   }
+  },
+  {
+   "id": "cq14",
+   "source_id": "fs-id1931767",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "pressure-drop",
+   "prompt": "If you lower the window on a car while moving, an empty plastic bag can sometimes fly out the window. Why does this happen?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The air outside the window is rushing past the car at the car’s speed, while the air inside the car is nearly at rest. By Bernoulli’s principle the fast air outside has a lower pressure than the still air inside, so there is a net push from the inside of the car toward the open window, and a light object such as an empty bag that comes near the window is carried out by it. Once in the moving air outside, the bag is swept away. The same drop in pressure is what makes the shower curtain bulge inward and the roof lift in a high wind."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3176552",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "bernoullis-equation",
+   "prompt": "Verify that pressure has units of energy per unit volume.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{lll}\\kPr & = & \\frac{\\text{Force}}{\\text{Area}}, \\\\ (\\kPr)_{\\text{units}} & = & \\text{N/m}^2 = \\text{N}\\cdot\\text{m/m}^3 = \\text{J/m}^3 \\\\ & = & \\text{energy/volume}\\end{array}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3200825",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "velocity-measurement",
+   "prompt": "If the pressure reading of your pitot tube is 15.0 mm Hg at a speed of 200 km/h, what will it be at 700 km/h at the same altitude?",
+   "answer": {
+    "type": "number",
+    "value": 184,
+    "unit": "mm Hg",
+    "generated_by": "source",
+    "hint": "The reading is the difference in pressure between the two openings, $\\frac{1}{2}\\krho\\kvtwo^2$, so it grows as the square of the speed. The speed has risen by the factor 700/200, so multiply the reading by the square of that factor; there is no need to convert the speeds to meters per second.",
+    "solution": "184 mm Hg"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2423711",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "bernoullis-principle",
+   "prompt": "Every few years, winds in Boulder, Colorado, attain sustained speeds of 45.0 m/s (about 100 mi/h) when the jet stream descends during early spring. Approximately what is the force due to the Bernoulli effect on a roof having an area of $220\\ \\text{m}^2$? Typical air density in Boulder is $1.14\\ \\text{kg/m}^3$, and the corresponding atmospheric pressure is $8.89 \\times 10^4\\ \\text{N/m}^2$. (Bernoulli’s principle as stated in the text assumes laminar flow. Using the principle here produces only an approximate result, because there is significant turbulence.)",
+   "answer": {
+    "type": "number",
+    "value": 254000,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "The air inside the house is at rest and the air over the roof moves at 45.0 m/s, so Bernoulli’s principle gives the drop in pressure over the roof as $\\frac{1}{2}\\krho\\kv^2$ with Boulder’s density of air. A pressure difference times the area it acts on is a force; the atmospheric pressure itself does not enter, since it acts on both sides.",
+    "solution": "$2.54 \\times 10^5\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1909948",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "bernoullis-principle",
+   "prompt": "(a) What is the pressure drop due to the Bernoulli effect as water goes into a 3.00-cm-diameter nozzle from a 9.00-cm-diameter fire hose while carrying a flow of 40.0 L/s? (b) To what maximum height above the nozzle can this water rise? (The actual height will be significantly smaller due to air resistance.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1580000,
+      "unit": "N/m²",
+      "hint": "Find the speed in the hose and in the nozzle from the flow rate and the two cross-sectional areas, remembering that the diameters are given and the areas need radii, then put both speeds into Bernoulli’s principle, $\\kProne - \\kPrtwo = \\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2)$."
+     },
+     {
+      "part": "(b)",
+      "value": 163,
+      "unit": "m",
+      "hint": "Follow the water from the nozzle, where it moves at $\\kvtwo$, to the top of its rise, where it is momentarily at rest and the pressure is again atmospheric. Bernoulli’s equation then trades the whole of $\\frac{1}{2}\\krho\\kvtwo^2$ for $\\krho\\kg\\kh$."
+     }
+    ],
+    "solution": "(a) $1.58 \\times 10^6\\ \\text{N/m}^2$ (b) 163 m"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  { "exercise": "ap1", "concept": "bernoulli-static-fluid" },
+  { "exercise": "ap1", "concept": "pressure-from-weight-of-fluid", "weight": 3 },
+  { "exercise": "ap2", "concept": "bernoullis-equation" },
+  { "exercise": "ap2", "concept": "equation-of-continuity", "weight": 2 },
+  { "exercise": "ap3", "concept": "bernoulli-energy-per-volume" },
+  { "exercise": "ap3", "concept": "bernoullis-equation", "weight": 2 },
+  { "exercise": "ap4", "concept": "bernoullis-equation" },
+  { "exercise": "ap4", "concept": "bernoulli-energy-per-volume", "weight": 3 },
+  { "exercise": "cq1", "concept": "equation-of-continuity" },
+  { "exercise": "cq1", "concept": "bernoullis-principle", "weight": 3 },
+  { "exercise": "cq2", "concept": "equation-of-continuity" },
+  { "exercise": "cq2", "concept": "bernoullis-equation", "weight": 3 },
+  { "exercise": "cq2", "concept": "surface-tension", "weight": 2 },
+  { "exercise": "cq3", "concept": "pressure-drops-in-fast-fluid" },
+  { "exercise": "cq3", "concept": "bernoullis-principle", "weight": 3 },
+  { "exercise": "cq4", "concept": "entrainment" },
+  { "exercise": "cq5", "concept": "entrainment" },
+  { "exercise": "cq5", "concept": "equation-of-continuity", "weight": 2 },
+  { "exercise": "cq5", "concept": "bernoullis-principle", "weight": 2 },
+  { "exercise": "cq6", "concept": "entrainment" },
+  { "exercise": "cq6", "concept": "bernoullis-principle", "weight": 2 },
+  { "exercise": "cq7", "concept": "entrainment" },
+  { "exercise": "cq7", "concept": "pressure-from-weight-of-fluid", "weight": 3 },
+  { "exercise": "cq8", "concept": "lift-from-bernoulli" },
+  { "exercise": "cq9", "concept": "pressure-drops-in-fast-fluid" },
+  { "exercise": "cq9", "concept": "bernoullis-principle", "weight": 3 },
+  { "exercise": "cq10", "concept": "lift-from-bernoulli" },
+  { "exercise": "cq11", "concept": "pressure-drops-in-fast-fluid" },
+  { "exercise": "cq12", "concept": "bernoullis-equation" },
+  { "exercise": "cq12", "concept": "incompressible-fluid", "weight": 2 },
+  { "exercise": "cq13", "concept": "entrainment" },
+  { "exercise": "cq14", "concept": "pressure-drops-in-fast-fluid" },
+  { "exercise": "cq14", "concept": "bernoullis-principle", "weight": 2 },
+  { "exercise": "p1", "concept": "bernoulli-energy-per-volume" },
+  { "exercise": "p3", "concept": "velocity-measurement" },
+  { "exercise": "p3", "concept": "bernoullis-principle", "weight": 2 },
+  { "exercise": "p5", "concept": "bernoullis-principle" },
+  { "exercise": "p5", "concept": "pressure-drops-in-fast-fluid", "weight": 2 },
+  { "exercise": "p5", "concept": "force-from-pressure", "weight": 2 },
+  { "exercise": "p7", "concept": "bernoullis-principle" },
+  { "exercise": "p7", "concept": "equation-of-continuity", "weight": 3 },
+  { "exercise": "p7", "concept": "bernoullis-equation", "weight": 2 }
+ ]
+}

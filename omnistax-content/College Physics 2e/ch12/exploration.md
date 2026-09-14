@@ -211,8 +211,23 @@ Two faults in the source that a section agent will meet:
   $1.81\times10^{-5}\;1.00\;\text{Pa}\cdot\text{s}$, where the second number
   is left over from an earlier edition; the viscosity of air at 20 °C is
   $1.81\times10^{-5}\;\text{Pa}\cdot\text{s}$ and the answer, $2.11\times10^5$,
-  is the one that value gives. The stray `1.00` is dropped and 12.6's
-  `notes` says so.
+  is the one that value gives. The prep pass proposed dropping the stray
+  `1.00`; the section kept it as printed, since the prose is verbatim, and
+  12.6's `notes` says so.
+
+Two more the section builders found, recorded here by the chapter pass so that
+the chapter's errata stand in one place:
+
+- **12.1's Example 12.3 prints $\bar{v}_1$ on both sides.** The branching
+  equation in part (b) reads $n_1A_1\bar{v}_1 = n_2A_2\bar{v}_1$ where the
+  right-hand side should carry $\bar{v}_2$, as the equation the section
+  states does; the arithmetic that follows uses the capillary speed and is
+  right. Kept as printed.
+- **12.3's first AP item is keyed 12 m/s.** The plunger pushes with 440 N on
+  a pipe 5.6 cm across, and Bernoulli's principle with the pipe's full
+  cross-section gives a speed nearer 19 m/s, which is option (b); the key
+  gives (a). The key is kept as printed and 12.3's `exercise_notes` says that
+  a reader who works the item will land nearer (b).
 
 ## Prerequisite edges into built chapters
 

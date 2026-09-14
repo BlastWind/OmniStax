@@ -261,3 +261,8 @@ type hue; the book names no substance for it.
 - equations `eq-hydraulic-force-ratio` → 11.5-hydraulic-forces
 - equations `eq-hydraulic-output-force` → 11.5-hydraulic-forces
 - 11.9's `exercise_notes` should say that the backhoe problem (fs-id3077567) is set with 11.5.
+
+Applied in the chapter pass (2026-09-14). The six variable anchors and
+the three equation anchors are written as listed. 11.9's `exercise_notes`
+says the backhoe (fs-id3077567) is set here with `source_section` 11.9, and
+this section's says where it came from.

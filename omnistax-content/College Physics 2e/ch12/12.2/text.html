@@ -1,0 +1,103 @@
+<section id="pressure-drop">
+<h2>Pressure drops in a rapidly moving fluid</h2>
+<p class="cite-target">When a fluid flows into a narrower channel, its speed increases. That means its kinetic energy also increases. Where does that change in kinetic energy come from? The increased kinetic energy comes from the net work done on the fluid to push it into the channel and the work done on the fluid by the gravitational force, if the fluid changes vertical position. Recall the work-energy theorem,</p>
+$$\kWnet = \frac{1}{2}m\kv^2 - \frac{1}{2}m\kvo^2.$$
+<p>There is a pressure difference when the channel narrows. This pressure difference results in a net force on the fluid: recall that pressure times area equals force. The net work done increases the fluid’s kinetic energy. As a result, the <em>pressure will drop in a rapidly-moving fluid</em>, whether or not the fluid is confined to a tube.</p>
+<p>There are a number of common examples of pressure dropping in rapidly-moving fluids. Shower curtains have a disagreeable habit of bulging into the shower stall when the shower is on. The high-velocity stream of water and air creates a region of lower pressure inside the shower, and standard atmospheric pressure on the other side. The pressure difference results in a net force inward pushing the curtain in. You may also have noticed that when passing a truck on the highway, your car tends to veer toward it. The reason is the same—the high velocity of the air between the car and the truck creates a region of lower pressure, and the vehicles are pushed together by greater pressure on the outside. (See Figure 12.5.) This effect was observed as far back as the mid-1800s, when it was found that trains passing in opposite directions tipped precariously toward one another.</p>
+<figure class="sim" id="sim-car-truck" data-figure="12.5" data-original="/media/ch12/Figure_13_02_01a.jpg" data-original-width="225" data-original-caption="An overhead view of a car passing a truck on a highway. Air passing between the vehicles flows in a narrower channel and must increase its speed (v_2 is greater than v_1), causing the pressure between them to drop (P_i is less than P_o). Greater pressure on the outside pushes the car and truck together.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.5</span><span>A car passes a truck, seen from overhead, and the air streams past both at $\kvone$. The air that passes between them is squeezed into the gap, so by the equation of continuity it moves faster there, at $\kvtwo$, and its pressure $P_\text{i}$ falls below the pressure $P_\text{o}$ on the outside of the vehicles. Change the speed of the air and the width of the gap, and watch the streamlines bunch, the speed between the vehicles rise, and the inward push on each of them, drawn to the scale of the pressure difference, grow.</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">Making Connections: Take-Home Investigation with a Sheet of Paper</div>
+<p>Hold the short edge of a sheet of paper parallel to your mouth with one hand on each side of your mouth. The page should slant downward over your hands. Blow over the top of the page. Describe what happens and explain the reason for this behavior.</p>
+</div>
+</section>
+
+<section id="bernoullis-equation">
+<h2>Bernoulli’s Equation</h2>
+<p class="cite-target">The relationship between pressure and velocity in fluids is described quantitatively by <strong>Bernoulli’s equation</strong>, named after its discoverer, the Swiss scientist Daniel Bernoulli (1700–1782). Bernoulli’s equation states that for an incompressible, frictionless fluid, the following sum is constant:</p>
+$$\kPr + \frac{1}{2}\krho\kv^2 + \krho\kg\kh = \text{constant,}$$
+<p>where $\kPr$ is the absolute pressure, $\krho$ is the fluid density, $\kv$ is the velocity of the fluid, $\kh$ is the height above some reference point, and $\kg$ is the acceleration due to gravity. If we follow a small volume of fluid along its path, various quantities in the sum may change, but the total remains constant. Let the subscripts 1 and 2 refer to any two points along the path that the bit of fluid follows; Bernoulli’s equation becomes</p>
+$$\kProne + \frac{1}{2}\krho\kvone^2 + \krho\kg\khone = \kPrtwo + \frac{1}{2}\krho\kvtwo^2 + \krho\kg\khtwo.$$
+<figure class="sim" id="sim-bernoulli">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A bit of water is followed from point 1 to point 2 of a tube that changes its height and its width, with the pressure at point 1 held at $1.50 \times 10^5\ \text{N/m}^2$. Beneath the tube the three terms of Bernoulli’s equation are drawn as bars for each point, the pressure $\kPr$ in its own color and the kinetic and gravitational potential energy per unit volume, $\frac{1}{2}\krho\kv^2$ and $\krho\kg\kh$, in the color of energy, and the total each bar comes to is ruled across in ink. Change the speed or the height at either point and watch the terms trade against one another while the total never moves; choose the static fluid to see the pressure of Chapter 11 come out of the equation, or constant depth to see Bernoulli’s principle.</span></div>
+</figure>
+<p>Bernoulli’s equation is a form of the conservation of energy principle. Note that the second and third terms are the kinetic and potential energy with $m$ replaced by $\krho$. In fact, each term in the equation has units of energy per unit volume. We can prove this for the second term by substituting $\krho = m/V$ into it and gathering terms:</p>
+$$\frac{1}{2}\krho\kv^2 = \frac{\frac{1}{2}m\kv^2}{V} = \frac{\kKE}{V}.$$
+<p>So $\frac{1}{2}\krho\kv^2$ is the kinetic energy per unit volume. Making the same substitution into the third term in the equation, we find</p>
+$$\krho\kg\kh = \frac{m\kg\kh}{V} = \frac{\kPEg}{V},$$
+<p>so $\krho\kg\kh$ is the gravitational potential energy per unit volume. Note that pressure $\kPr$ has units of energy per unit volume, too. Since <em>$\kPr = \kF/A$</em>, its units are $\text{N/m}^2$. If we multiply these by m/m, we obtain $\text{N}\cdot\text{m/m}^3 = \text{J/m}^3$, or energy per unit volume. Bernoulli’s equation is, in fact, just a convenient statement of conservation of energy for an incompressible fluid in the absence of friction.</p>
+<div class="note">
+<div class="eyebrow">Making Connections: Conservation of Energy</div>
+<p>Conservation of energy applied to fluid flow produces Bernoulli’s equation. The net work done by the fluid’s pressure results in changes in the fluid’s $\kKE$ and $\kPEg$ per unit volume. If other forms of energy are involved in fluid flow, Bernoulli’s equation can be modified to take these forms into account. Such forms of energy include thermal energy dissipated because of fluid viscosity.</p>
+</div>
+<p>The general form of Bernoulli’s equation has three terms in it, and it is broadly applicable. To understand it better, we will look at a number of specific situations that simplify and illustrate its use and meaning.</p>
+</section>
+
+<section id="static-fluids">
+<h2>Bernoulli’s Equation for Static Fluids</h2>
+<p class="cite-target">Let us first consider the very simple situation where the fluid is static—that is, $\kvone = \kvtwo = 0$. Bernoulli’s equation in that case is</p>
+$$\kProne + \krho\kg\khone = \kPrtwo + \krho\kg\khtwo.$$
+<p>We can further simplify the equation by taking $\khtwo = 0$ (we can always choose some height to be zero, just as we often have done for other situations involving the gravitational force, and take all other heights to be relative to this). In that case, we get</p>
+$$\kPrtwo = \kProne + \krho\kg\khone.$$
+<p>This equation tells us that, in static fluids, pressure increases with depth. As we go from point 1 to point 2 in the fluid, the depth increases by $\khone$, and consequently, $\kPrtwo$ is greater than $\kProne$ by an amount $\krho\kg\khone$. In the very simplest case, $\kProne$ is zero at the top of the fluid, and we get the familiar relationship $\kPr = \krho\kg\kh$. (Recall that $\kPr = \krho\kg\kh$ and $\kdPEg = m\kg\kh.$) Bernoulli’s equation includes the fact that the pressure due to the weight of a fluid is $\krho\kg\kh$. Although we introduce Bernoulli’s equation for fluid flow, it includes much of what we studied for static fluids in the preceding chapter.</p>
+</section>
+
+<section id="bernoullis-principle">
+<h2>Bernoulli’s Principle—Bernoulli’s Equation at Constant Depth</h2>
+<p class="cite-target">Another important situation is one in which the fluid moves but its depth is constant—that is, $\khone = \khtwo$. Under that condition, Bernoulli’s equation becomes</p>
+$$\kProne + \frac{1}{2}\krho\kvone^2 = \kPrtwo + \frac{1}{2}\krho\kvtwo^2.$$
+<p>Situations in which fluid flows at a constant depth are so important that this equation is often called <strong>Bernoulli’s principle</strong>. It is Bernoulli’s equation for fluids at constant depth. (Note again that this applies to a small volume of fluid as we follow it along its path.) As we have just discussed, pressure drops as speed increases in a moving fluid. We can see this from Bernoulli’s principle. For example, if $\kvtwo$ is greater than $\kvone$ in the equation, then $\kPrtwo$ must be less than $\kProne$ for the equality to hold.</p>
+<div class="example" id="ex-hose-pressure">
+<h3>Example 12.4 · Calculating Pressure: Pressure Drops as a Fluid Speeds Up</h3>
+<p>In Example 12.2, we found that the speed of water in a hose increased from 1.96 m/s to 25.5 m/s going from the hose to the nozzle. Calculate the pressure in the hose, given that the absolute pressure in the nozzle is $1.01 \times 10^{5}\ \text{N/m}^2$ (atmospheric, as it must be) and assuming level, frictionless flow.</p>
+<h4>Strategy</h4>
+<p>Level flow means constant depth, so Bernoulli’s principle applies. We use the subscript 1 for values in the hose and 2 for those in the nozzle. We are thus asked to find $\kProne$.</p>
+<h4>Solution</h4>
+<p>Solving Bernoulli’s principle for $\kProne$ yields</p>
+$$\kProne = \kPrtwo + \frac{1}{2}\krho\kvtwo^2 - \frac{1}{2}\krho\kvone^2 = \kPrtwo + \frac{1}{2}\krho(\kvtwo^2 - \kvone^2).$$
+<p>Substituting known values,</p>
+$$\begin{aligned}\kProne &= 1.01 \times 10^{5}\ \text{N/m}^2\\ &\quad + \frac{1}{2}(10^{3}\ \text{kg/m}^3)[(25.5\ \text{m/s})^2 - (1.96\ \text{m/s})^2]\\ &= 4.24 \times 10^{5}\ \text{N/m}^2.\end{aligned}$$
+<h4>Discussion</h4>
+<p>This absolute pressure in the hose is greater than in the nozzle, as expected since $\kv$ is greater in the nozzle. The pressure $\kPrtwo$ in the nozzle must be atmospheric since it emerges into the atmosphere without other changes in conditions.</p>
+</div>
+</section>
+
+<section id="applications">
+<h2>Applications of Bernoulli’s Principle</h2>
+<p class="cite-target">There are a number of devices and situations in which fluid flows at a constant height and, thus, can be analyzed with Bernoulli’s principle.</p>
+</section>
+
+<section id="entrainment">
+<h2>Entrainment</h2>
+<p class="cite-target">People have long put the Bernoulli principle to work by using reduced pressure in high-velocity fluids to move things about. With a higher pressure on the outside, the high-velocity fluid forces other fluids into the stream. This process is called <em>entrainment</em>. Entrainment devices have been in use since ancient times, particularly as pumps to raise water small heights, as in draining swamps, fields, or other low-lying areas. Some other devices that use the concept of entrainment are shown in Figure 12.6.</p>
+<figure class="sim" id="sim-entrainment" data-figure="12.6" data-original="/media/ch12/Figure_13_02_02a.jpg" data-original-width="475" data-original-caption="Examples of entrainment devices that use increased fluid speed to create low pressures, which then entrain one fluid into another. (a) A Bunsen burner uses an adjustable gas nozzle, entraining air for proper combustion. (b) An atomizer uses a squeeze bulb to create a jet of air that entrains drops of perfume. Paint sprayers and carburetors use very similar techniques to move their respective liquids. (c) A common aspirator uses a high-speed stream of water to create a region of lower pressure. Aspirators may be used as suction pumps in dental and surgical situations or for draining a flooded basement or producing a reduced pressure in a vessel. (d) The chimney of a water heater is designed to entrain air into the pipe leading through the ceiling.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.6</span><span>Every entrainment device works the same way, and the mechanism is drawn here once. A stream of air enters a tube at $\kvone$ and is squeezed through a narrower part, where the equation of continuity makes it move faster, at $\kvtwo$, and Bernoulli’s principle makes its pressure fall below the pressure of the air outside. A side tube from the narrow part dips into water that is open to the atmosphere, and the greater pressure outside pushes the water up the side tube by a height $\kh$. Change the speed of the stream and how much the tube narrows, and watch the water climb; once it reaches the stream it is carried away as a spray, which is how an atomizer, an aspirator and a carburetor work, and a Bunsen burner and the chimney of a water heater draw in air the same way.</span></div>
+</figure>
+</section>
+
+<section id="wings-and-sails">
+<h2>Wings and Sails</h2>
+<p class="cite-target">The airplane wing is a beautiful example of Bernoulli’s principle in action. Figure 12.7(a) shows the characteristic shape of a wing. The wing is tilted upward at a small angle and the upper surface is longer, causing air to flow faster over it. The pressure on top of the wing is therefore reduced, creating a net upward force or lift. (Wings can also gain lift by pushing air downward, utilizing the conservation of momentum principle. The deflected air molecules result in an upward force on the wing — Newton’s third law.) Sails also have the characteristic shape of a wing. (See Figure 12.7(b).) The pressure on the front side of the sail, $P_\text{front}$, is lower than the pressure on the back of the sail, $P_\text{back}$. This results in a forward force and even allows you to sail into the wind.</p>
+<figure class="sim" id="sim-wing-sail" data-figure="12.7" data-original="/media/ch12/Figure_13_02_03.jpg" data-original-width="475" data-original-caption="(a) The Bernoulli principle helps explain lift generated by a wing. (b) Sails use the same technique to generate part of their thrust.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.7</span><span>Air streams past a wing seen in profile, or past a sail seen from above, faster along one surface than along the other. By Bernoulli’s principle the pressure is lower where the air moves faster, so the wing is pushed up and the sail is pushed forward, and the net pressure on the surface is drawn to scale and written as the force on each square meter of it. Change the speed of the air along either surface and watch the streamlines on the faster side bunch and the push grow, shrink, and reverse if the slower side becomes the faster one.</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">Making Connections: Take-Home Investigation with Two Strips of Paper</div>
+<p>For a good illustration of Bernoulli’s principle, make two strips of paper, each about 15 cm long and 4 cm wide. Hold the small end of one strip up to your lips and let it drape over your finger. Blow across the paper. What happens? Now hold two strips of paper up to your lips, separated by your fingers. Blow between the strips. What happens?</p>
+</div>
+</section>
+
+<section id="velocity-measurement">
+<h2>Velocity Measurement</h2>
+<p class="cite-target">Figure 12.8 shows two devices that measure fluid velocity based on Bernoulli’s principle. The manometer in Figure 12.8(a) is connected to two tubes that are small enough not to appreciably disturb the flow. The tube facing the oncoming fluid creates a dead spot having zero velocity ($\kvone = 0$) in front of it, while fluid passing the other tube has velocity $\kvtwo$. This means that Bernoulli’s principle as stated in $\kProne + \frac{1}{2}\krho\kvone^2 = \kPrtwo + \frac{1}{2}\krho\kvtwo^2$ becomes</p>
+$$\kProne = \kPrtwo + \frac{1}{2}\krho\kvtwo^2.$$
+<p>Thus pressure $\kPrtwo$ over the second opening is reduced by $\frac{1}{2}\krho\kvtwo^2$, and so the fluid in the manometer rises by $\kh$ on the side connected to the second opening, where</p>
+$$\kh \propto \frac{1}{2}\krho\kvtwo^2.$$
+<p>(Recall that the symbol $\propto$ means “proportional to.”) Solving for $\kvtwo$, we see that</p>
+$$\kvtwo \propto \sqrt{\kh}.$$
+<p>Figure 12.8(b) shows a version of this device that is in common use for measuring various fluid velocities; such devices are frequently used as air speed indicators in aircraft.</p>
+<figure class="sim" id="sim-manometer" data-figure="12.8" data-original="/media/ch12/Figure_13_02_04a.jpg" data-original-width="475" data-original-caption="Measurement of fluid speed based on Bernoulli’s principle. (a) A manometer is connected to two tubes that are close together and small enough not to disturb the flow. Tube 1 is open at the end facing the flow. A dead spot having zero speed is created there. Tube 2 has an opening on the side, and so the fluid has a speed v across the opening; thus, pressure there drops. The difference in pressure at the manometer is ½ρv_2², and so h is proportional to ½ρv_2². (b) This type of velocity measuring device is a Prandtl tube, also known as a pitot tube.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.8</span><span>Air streams past two small tubes joined by a manometer, or past the one coaxial tube of a Prandtl tube, which is the same instrument folded into itself. The opening that faces the flow sits in a dead spot where the air is at rest, and the opening on the side has air moving past it at $\kvtwo$, so the pressure there is lower by $\frac{1}{2}\krho\kvtwo^2$ and the manometer’s fluid stands higher on that side by $\kh$. Change the speed of the air and watch the height grow as the square of it; change the fluid in the manometer from mercury to water and see why an instrument for air speeds is filled with mercury.</span></div>
+</figure>
+</section>

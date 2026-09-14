@@ -117,16 +117,6 @@
       "dimension": "kg·m²/s"
     },
     {
-      "id": "flow-rate",
-      "label": "flow rate",
-      "dimension": "m³/s"
-    },
-    {
-      "id": "viscosity",
-      "label": "viscosity",
-      "dimension": "Pa·s"
-    },
-    {
       "id": "pressure",
       "label": "pressure",
       "dimension": "N/m²"
@@ -140,6 +130,16 @@
       "id": "surface-tension",
       "label": "surface tension",
       "dimension": "N/m"
+    },
+    {
+      "id": "flow-rate",
+      "label": "flow rate",
+      "dimension": "m³/s"
+    },
+    {
+      "id": "viscosity",
+      "label": "viscosity",
+      "dimension": "Pa·s"
     }
   ],
   "symbols": [
@@ -1546,92 +1546,6 @@
       "macro": "\\kpprime"
     },
     {
-      "sym": "Q",
-      "latex": "Q",
-      "type": "flow-rate",
-      "macro": "\\kQ"
-    },
-    {
-      "sym": "Q_1",
-      "latex": "Q_1",
-      "type": "flow-rate",
-      "macro": "\\kQone"
-    },
-    {
-      "sym": "Q_2",
-      "latex": "Q_2",
-      "type": "flow-rate",
-      "macro": "\\kQtwo"
-    },
-    {
-      "sym": "η_visc",
-      "latex": "\\eta",
-      "type": "viscosity",
-      "macro": "\\keta"
-    },
-    {
-      "sym": "v_bar1",
-      "latex": "\\bar{v}_1",
-      "type": "velocity",
-      "macro": "\\kvbone"
-    },
-    {
-      "sym": "v_bar2",
-      "latex": "\\bar{v}_2",
-      "type": "velocity",
-      "macro": "\\kvbtwo"
-    },
-    {
-      "sym": "h_1",
-      "latex": "h_1",
-      "type": "position",
-      "macro": "\\khone"
-    },
-    {
-      "sym": "h_2",
-      "latex": "h_2",
-      "type": "position",
-      "macro": "\\khtwo"
-    },
-    {
-      "sym": "x_rms",
-      "latex": "x_{\\text{rms}}",
-      "type": "position",
-      "macro": "\\kxrms"
-    },
-    {
-      "sym": "n_1",
-      "latex": "n_1"
-    },
-    {
-      "sym": "n_2",
-      "latex": "n_2"
-    },
-    {
-      "sym": "l",
-      "latex": "l"
-    },
-    {
-      "sym": "R_flow",
-      "latex": "R"
-    },
-    {
-      "sym": "R_sphere",
-      "latex": "R"
-    },
-    {
-      "sym": "N_R",
-      "latex": "N_{\\text{R}}"
-    },
-    {
-      "sym": "N_Rprime",
-      "latex": "{N'}_{\\text{R}}"
-    },
-    {
-      "sym": "D_diff",
-      "latex": "D"
-    },
-    {
       "sym": "P_press",
       "latex": "P",
       "type": "pressure",
@@ -1769,6 +1683,96 @@
     },
     {
       "sym": "L_wire",
+      "latex": "L"
+    },
+    {
+      "sym": "Q",
+      "latex": "Q",
+      "type": "flow-rate",
+      "macro": "\\kQ"
+    },
+    {
+      "sym": "Q_1",
+      "latex": "Q_1",
+      "type": "flow-rate",
+      "macro": "\\kQone"
+    },
+    {
+      "sym": "Q_2",
+      "latex": "Q_2",
+      "type": "flow-rate",
+      "macro": "\\kQtwo"
+    },
+    {
+      "sym": "η_visc",
+      "latex": "\\eta",
+      "type": "viscosity",
+      "macro": "\\keta"
+    },
+    {
+      "sym": "v_bar1",
+      "latex": "\\bar{v}_1",
+      "type": "velocity",
+      "macro": "\\kvbone"
+    },
+    {
+      "sym": "v_bar2",
+      "latex": "\\bar{v}_2",
+      "type": "velocity",
+      "macro": "\\kvbtwo"
+    },
+    {
+      "sym": "h_1",
+      "latex": "h_1",
+      "type": "position",
+      "macro": "\\khone"
+    },
+    {
+      "sym": "h_2",
+      "latex": "h_2",
+      "type": "position",
+      "macro": "\\khtwo"
+    },
+    {
+      "sym": "x_rms",
+      "latex": "x_{\\text{rms}}",
+      "type": "position",
+      "macro": "\\kxrms"
+    },
+    {
+      "sym": "n_1",
+      "latex": "n_1"
+    },
+    {
+      "sym": "n_2",
+      "latex": "n_2"
+    },
+    {
+      "sym": "l",
+      "latex": "l"
+    },
+    {
+      "sym": "R_flow",
+      "latex": "R"
+    },
+    {
+      "sym": "R_sphere",
+      "latex": "R"
+    },
+    {
+      "sym": "N_R",
+      "latex": "N_{\\text{R}}"
+    },
+    {
+      "sym": "N_Rprime",
+      "latex": "{N'}_{\\text{R}}"
+    },
+    {
+      "sym": "D_diff",
+      "latex": "D"
+    },
+    {
+      "sym": "L_len",
       "latex": "L"
     }
   ],
@@ -4726,379 +4730,6 @@
       "evidence": "The section draws the two forces on a spinning gyroscope and the vector diagram of the angular momentum turning, says that Earth's axis points at Polaris and slowly precesses, and the section's one problem finds the torque that produces that precession."
     },
     {
-      "id": "flow-rate",
-      "kind": "idea",
-      "section": "12.1",
-      "name": "Flow rate",
-      "why": "Flow rate is the volume of fluid that passes a location through an area during a period of time, and it is the quantity almost every question about a moving fluid is asked in: how much blood a heart pumps, how much water a hose delivers, how much air a duct carries. Because it counts volume rather than distance, it tells you nothing on its own about how fast the fluid is moving or how wide the conduit is, only about the product of the two.",
-      "evidence": "The section opens on the definition and its equation, the first worked example takes the resting heart’s 5.00 liters per minute and finds the volume of blood pumped in a 75-year lifetime, and the glossary carries the term.",
-      "eq": "eq-flow-rate"
-    },
-    {
-      "id": "flow-rate-units",
-      "kind": "skill",
-      "section": "12.1",
-      "name": "Converting flow rate to convenient units",
-      "why": "The SI unit of flow rate is the cubic meter per second, but almost nothing is quoted in it: a heart is measured in liters per minute, a fire hose in liters per second, a capillary in cubic centimeters per second. A liter is a thousandth of a cubic meter, and the section says plainly that whatever metric units are most convenient for a given situation are the ones to use, so converting between them is part of working almost every problem in the set.",
-      "evidence": "The section defines the liter beside the definition of flow rate, the first worked example carries four conversion factors in a single line, and the problem set asks for the same rate in cubic centimeters per second, in cubic meters per second and in liters per second."
-    },
-    {
-      "id": "flow-rate-velocity",
-      "kind": "result",
-      "section": "12.1",
-      "name": "Flow rate from area and speed, $\\kQ = A\\kvb$",
-      "why": "Flow rate and velocity are related but quite different physical quantities. The greater the velocity of a river the greater its flow rate, but flow rate also depends on the size of the river, which is why a rapid mountain stream carries far less water than the Amazon. The shaded cylinder of fluid that passes a point in a time has the volume of its cross-section times its length, and dividing that volume by the time gives the flow rate as the cross-sectional area times the average speed.",
-      "evidence": "The section derives the relation from the cylinder of fluid in Figure 12.2, the worked example on the garden hose uses it to find the speed of the water in the hose, the example on the aorta uses it again for blood, and the summary states it.",
-      "eq": "eq-flow-rate-velocity"
-    },
-    {
-      "id": "incompressible-fluid",
-      "kind": "idea",
-      "section": "12.1",
-      "name": "Incompressible fluid",
-      "why": "A fluid is incompressible when a given amount of it always occupies the same volume, however hard it is pressed. Since liquids are essentially incompressible, the equation of continuity is valid for all of them; gases are compressible, and the equation must be applied to them with caution if they are subjected to compression or expansion. Every result of this chapter, Bernoulli’s equation and Poiseuille’s law included, is written for an incompressible fluid.",
-      "evidence": "The section states the restriction immediately after deriving the equation of continuity, and one of the conceptual questions asks the reader to identify some substances that are incompressible and some that are not."
-    },
-    {
-      "id": "equation-of-continuity",
-      "kind": "result",
-      "section": "12.1",
-      "name": "Equation of continuity, $A_1\\kvbone = A_2\\kvbtwo$",
-      "why": "Because the fluid is incompressible, the same amount of fluid must flow past any point of a tube in a given time, so the flow rate is the same at all points along it. Where the cross-sectional area decreases the velocity must necessarily increase, and where it increases the velocity drops. That is the purpose of a nozzle, and it is why water slows considerably when a river empties into a reservoir and picks up speed again when it leaves.",
-      "evidence": "The section states it for points 1 and 2 of the narrowing tube of Figure 12.3, the worked example on the hose and the nozzle uses it to get 25.5 m/s from 1.96 m/s, the summary states it, and most of the problem set turns on it.",
-      "eq": "eq-continuity"
-    },
-    {
-      "id": "continuity-branching",
-      "kind": "result",
-      "section": "12.1",
-      "name": "Continuity where the flow branches, $n_1A_1\\kvbone = n_2A_2\\kvbtwo$",
-      "why": "In the cardiovascular system and in any other branching network the flow does not stay in one tube. Continuity still holds, but what is maintained is the sum of the flow rates in all the branches in any portion along the tube, so the number of branches enters the equation along with their areas and their speeds. Because the capillaries have an enormously greater total cross-section than the aorta, the blood in them moves at about a millimeter per second, which is slow enough for substances to be exchanged with the cells and still fast enough to avoid clotting.",
-      "evidence": "The section states the general form after describing how arteries subdivide into arterioles and then into capillaries, the third worked example uses it to count five billion capillaries in the body, and three problems ask by what factor the blood slows when a vessel branches.",
-      "eq": "eq-continuity-branching"
-    },
-    {
-      "id": "pressure-drops-in-fast-fluid",
-      "kind": "idea",
-      "section": "12.2",
-      "name": "Pressure drops in a rapidly moving fluid",
-      "why": "When a fluid flows into a narrower channel its speed increases, so its kinetic energy increases, and that energy comes from the net work done on the fluid to push it into the channel. Pressure times area is a force, so the work is done by a pressure difference, and the result is that the pressure drops in a rapidly moving fluid, whether or not the fluid is confined to a tube. A shower curtain bulges into the stall, a car passing a truck tends to veer towards it, and trains passing in opposite directions were found in the mid-1800s to tip precariously towards one another.",
-      "evidence": "The section opens on this argument, draws it as the air between the car and the truck in Figure 12.5, sets a Take-Home Investigation in which the reader blows over a sheet of paper, and returns to it in the conceptual questions about the roof of a house in a tornado and about standing close to a passing train."
-    },
-    {
-      "id": "bernoullis-equation",
-      "kind": "result",
-      "section": "12.2",
-      "name": "Bernoulli’s equation, $\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{constant}$",
-      "why": "Bernoulli’s equation states the relationship between pressure and velocity in a fluid quantitatively: for an incompressible, frictionless fluid the sum of the pressure, the term in the square of the speed and the term in the height is constant along the path a bit of fluid follows. Various quantities in the sum may change as the fluid moves, but the total does not, so a gain in speed or in height has to be paid for out of pressure.",
-      "evidence": "The section states it and then restates it for two points along the path, names it for Daniel Bernoulli, and the rest of the chapter is its application: the static fluid and Bernoulli’s principle in this section, Torricelli’s theorem and power in the next, and every worked example of both.",
-      "eq": "eq-bernoulli"
-    },
-    {
-      "id": "bernoulli-energy-per-volume",
-      "kind": "idea",
-      "section": "12.2",
-      "name": "Every term of Bernoulli’s equation is an energy per unit volume",
-      "why": "Bernoulli’s equation is a form of the conservation of energy principle. The second and third terms are the kinetic and the gravitational potential energy with the mass replaced by the density, so each is an energy divided by a volume, and the pressure is an energy per unit volume too, since a newton per square meter multiplied by meter over meter is a joule per cubic meter. Bernoulli’s equation is, in fact, just a convenient statement of conservation of energy for an incompressible fluid in the absence of friction.",
-      "evidence": "The section proves it for each of the three terms in turn, sets a Making Connections box on conservation of energy that says viscosity is what the equation leaves out, and the first problem of the set asks the reader to verify that pressure has units of energy per unit volume.",
-      "eq": "eq-ke-per-volume"
-    },
-    {
-      "id": "bernoulli-static-fluid",
-      "kind": "result",
-      "section": "12.2",
-      "name": "Bernoulli’s equation for a static fluid, $\\kPrtwo = \\kProne + \\krho\\kg\\khone$",
-      "why": "When the fluid is not moving, both terms in the speed vanish and Bernoulli’s equation says that pressure increases with depth: going down by a height adds the weight of that column of fluid to the pressure. In the simplest case the pressure at the top is zero and the familiar relationship for the pressure due to the weight of a fluid is recovered. Although Bernoulli’s equation is introduced for fluid flow, it includes much of what was studied for static fluids in the preceding chapter.",
-      "evidence": "The section takes the static case first, sets the lower height to zero and reads off the result, and the section’s first AP item asks at what depth beneath the surface of a lake the pressure is twice atmospheric.",
-      "eq": "eq-bernoulli-static"
-    },
-    {
-      "id": "bernoullis-principle",
-      "kind": "result",
-      "section": "12.2",
-      "name": "Bernoulli’s principle, $\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2$",
-      "why": "When a fluid moves but its depth is constant, the terms in the height subtract out and Bernoulli’s equation becomes a statement about pressure and speed alone. Situations of that kind are so important that the equation has a name of its own. It says what the opening of the section argued: if the speed at one point is greater, the pressure there must be less for the equality to hold.",
-      "evidence": "The section names it and derives it from Bernoulli’s equation, the worked example uses it to find the pressure in a hose from the pressure in its nozzle, the summary states it, and every application that follows, entrainment, wings and sails and velocity measurement, is worked from it.",
-      "eq": "eq-bernoullis-principle"
-    },
-    {
-      "id": "entrainment",
-      "kind": "idea",
-      "section": "12.2",
-      "name": "Entrainment",
-      "why": "People have long put Bernoulli’s principle to work by using the reduced pressure in a high-velocity fluid to move things about: with a higher pressure on the outside, the fast stream forces other fluids into itself. Entrainment devices have been in use since ancient times as pumps to raise water small heights, and the same trick runs a Bunsen burner, an atomizer, a paint sprayer, an aspirator and the chimney of a water heater.",
-      "evidence": "The section names the process and draws four devices that use it in Figure 12.6, and four conceptual questions turn on it: the Venturi constriction, the T-shaped chimney pipe, the limit to the height an entrainment device can raise a fluid, and how the perfume rises in an atomizer."
-    },
-    {
-      "id": "lift-from-bernoulli",
-      "kind": "idea",
-      "section": "12.2",
-      "name": "Lift on a wing and a sail",
-      "why": "The airplane wing is a beautiful example of Bernoulli’s principle in action. The wing is tilted upward at a small angle and its upper surface is longer, so air flows faster over the top, the pressure there is reduced, and the difference is a net upward force. A sail has the characteristic shape of a wing too: the pressure on its front is lower than the pressure on its back, which gives a forward force and even allows a boat to sail into the wind. Wings also gain lift by pushing air downward, and the deflected air pushes back on the wing by Newton’s third law.",
-      "evidence": "The section draws the wing and the sail in Figure 12.7 and names both pressures, and the conceptual questions ask why an airplane takes off into the wind and why a sailboat needs a keel; a problem asks how fast air must move over a wing’s upper surface to give the thousand newtons of lift per square meter that aircraft design assumes."
-    },
-    {
-      "id": "velocity-measurement",
-      "kind": "result",
-      "section": "12.2",
-      "name": "Measuring fluid speed with a manometer, $\\kvtwo \\propto \\sqrt{\\kh}$",
-      "why": "Two tubes small enough not to disturb the flow, joined by a manometer, measure the speed of a fluid. The tube facing the oncoming fluid creates a dead spot with zero velocity in front of it, while the fluid passing the other tube keeps its speed, so the pressure at the second opening is lower by the term in the square of the speed. The manometer fluid rises by a height proportional to that term, and the speed is therefore proportional to the square root of the height. The pitot tube built on this principle is the air speed indicator of an aircraft.",
-      "evidence": "The section draws the manometer and the pitot tube in Figure 12.8 and works the proportionality out from Bernoulli’s principle, and three problems use it: by what factor the wind speed must rise to double the height, what a pitot tube reads at 700 km/h given its reading at 200 km/h, and the derivation of the speed from a mercury manometer.",
-      "eq": "eq-speed-from-manometer"
-    },
-    {
-      "id": "torricellis-theorem",
-      "kind": "result",
-      "section": "12.3",
-      "name": "Torricelli’s theorem, $\\kvtwo^2 = \\kvone^2 + 2\\kg\\kh$",
-      "why": "Water gushing from a tube at the base of a dam emerges at just the speed it would have if it had fallen the distance from the surface of the reservoir, and the speed does not depend on the size of the opening. Both pressures are atmospheric and subtract out of Bernoulli’s equation, and the density cancels because the fluid is incompressible, leaving a kinematic equation for an object falling that height with negligible resistance. As with conservation of energy applied to falling objects, the result does not depend on the direction the water leaves in.",
-      "evidence": "The section derives the theorem from Bernoulli’s equation for the dam of Figure 12.11, and the conceptual question about the old boot with two leaks at the same height asks the reader to say how high the water from each can squirt and why.",
-      "eq": "eq-torricelli"
-    },
-    {
-      "id": "bernoulli-general-application",
-      "kind": "skill",
-      "section": "12.3",
-      "name": "Applying Bernoulli’s equation where pressure, speed and height all change",
-      "why": "Every earlier use of Bernoulli’s equation simplified it first, by holding the height constant or the pressure equal at both points. The general case keeps all three terms at both points: the speeds are found from the flow rate and the two cross-sections, the heights are measured from whichever point is taken as the reference, and the remaining pressure is what is solved for. A fire hose that runs ten meters up a ladder to a narrow nozzle is exactly this case, and its pressure falls for both reasons at once.",
-      "evidence": "The section sets out the general case before the worked example, and the example on the fire hose nozzle finds the speeds from the flow rate, takes the ground as the zero of height and solves for the pressure at the base of the hose; two of the section’s AP items ask the same of a pipe that rises into a building.",
-      "eq": "eq-bernoulli-two-points"
-    },
-    {
-      "id": "power-in-fluid-flow",
-      "kind": "result",
-      "section": "12.3",
-      "name": "Power in fluid flow, $\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power}$",
-      "why": "Power is the rate at which work is done or energy is used or supplied. Every term of Bernoulli’s equation is an energy per unit volume, so multiplying the whole equation by the flow rate, which is a volume per unit time, gives a power. Each term then has a clear physical meaning: one is the power supplied to give the fluid its pressure, one the power supplied to give it its kinetic energy, and one the power that goes to gravitational potential energy.",
-      "evidence": "The section derives it by considering the units, sets a Making Connections box on power beside it, and the summary states it; the problem on Hoover Dam asks for the power in a flow of 650 cubic meters per second taken from a depth of 150 meters, and the problem on the left ventricle asks for the total power output of a heart that raises pressure, speed and height at once.",
-      "eq": "eq-power-in-fluid-flow"
-    },
-    {
-      "id": "pump-power",
-      "kind": "skill",
-      "section": "12.3",
-      "name": "Finding the power a pump supplies, $\\text{power} = \\kPr\\kQ$",
-      "why": "A pump that takes fluid in and sends it out through a hose of the same diameter at the same height changes neither the speed nor the height of the fluid, so its kinetic and gravitational potential energy are unchanged and the only term left is the pressure. The power the pump supplies is then the pressure it adds multiplied by the flow rate. A pump that raises velocity and height as well, as the heart does, needs all three terms.",
-      "evidence": "The worked example on the fire truck finds 36.8 kW from a pressure rise of 0.920 million newtons per square meter at 40.0 liters per second and remarks that this is about 50 horsepower, and the discussion says what would have to change if the pump were a heart.",
-      "eq": "eq-power-from-pressure"
-    },
-    {
-      "id": "laminar-flow",
-      "kind": "idea",
-      "section": "12.4",
-      "name": "Laminar flow",
-      "why": "Laminar flow is characterized by the smooth flow of a fluid in layers that do not mix. The lines drawn in the figures of this chapter are streamlines, the paths followed by small volumes of fluid, and in laminar flow they are smooth and continuous. The precise definition of viscosity is based on laminar flow, and so is Poiseuille’s law, so the whole of this section assumes it.",
-      "evidence": "The section defines the term against the photograph of rising smoke, which is laminar at first, draws the layers in Figure 12.15(a), and the glossary carries it; the Take-Home Experiment asks the reader to drop two sticks into a river, one near the edge and one near the middle, and say which travels faster."
-    },
-    {
-      "id": "turbulent-flow",
-      "kind": "idea",
-      "section": "12.4",
-      "name": "Turbulent flow",
-      "why": "Turbulence is characterized by eddies and swirls that mix layers of fluid together, and its streamlines break up rather than running smoothly. It has two main causes: any obstruction or sharp corner imparts velocities perpendicular to the flow, and high speeds alone will do it, since the drag between adjacent layers and between the fluid and its surroundings forms swirls if the speed is great enough. Turbulent flow mixes the fluid, heats it more and resists more than laminar flow does.",
-      "evidence": "The section defines the term against the same photograph of smoke, where the rise slows once the flow becomes turbulent, draws an obstruction making eddies in Figure 12.15(b), and the glossary carries it; the whole of 12.5 is about predicting when it sets in."
-    },
-    {
-      "id": "viscosity",
-      "kind": "idea",
-      "section": "12.4",
-      "name": "Viscosity",
-      "why": "Viscosity is fluid friction, both within the fluid and between the fluid and its surroundings: juice pours freely and syrup sticks to the pitcher. It is measured by shearing a fluid between two plates, one held fixed and one moved at a steady speed, and finding the force that keeps the top plate moving. That force grows with the speed, with the area of the plate and with the viscosity, and falls as the plates are moved apart, so the viscosity is the force times the separation divided by the speed times the area. Viscosities vary from one fluid to another by several orders of magnitude, gases being far less viscous than liquids, and most of them depend on temperature.",
-      "evidence": "The section defines it from the two plates of Figure 12.16, prints Table 12.1 of the coefficients of viscosity from air to honey, and the glossary carries it; two problems find a viscosity from the force needed to slide one microscope slide over another, and the first conceptual question asks why a liquid’s viscosity falls with temperature while a gas’s rises.",
-      "eq": "eq-viscosity-force"
-    },
-    {
-      "id": "velocity-profile-in-tube",
-      "kind": "idea",
-      "section": "12.4",
-      "name": "The velocity profile across a tube",
-      "why": "If the flow in a tube has negligible resistance the speed is the same all across it. When a viscous fluid flows, the layer in contact with the wall does not move at all, and the speed increases steadily to its maximum at the center of the tube. The shape of a Bunsen burner flame is that velocity profile made visible, even though the viscosity of natural gas is small.",
-      "evidence": "The section draws the two profiles side by side in Figure 12.17 and puts the photograph of the flame beside them, and the conceptual question about paddling a canoe, near the shore going upstream and near the middle coming down, is the same profile in a river."
-    },
-    {
-      "id": "flow-resistance",
-      "kind": "result",
-      "section": "12.4",
-      "name": "Flow rate from pressure difference and resistance, $\\kQ = (\\kPrtwo - \\kProne)/R$",
-      "why": "What causes flow is a pressure difference, and the relationship between the two is very simple: the flow rate is the pressure difference divided by the resistance, and it is in the direction from high to low pressure. The resistance includes everything except pressure that affects the flow rate. It is greater for a long tube than for a short one, greater for a more viscous fluid, greatly increased by turbulence, and decreased by widening the tube; if the viscosity is zero the fluid is frictionless and the resistance is zero as well.",
-      "evidence": "The section states the relationship before Poiseuille’s law and discusses each thing the resistance depends on in turn, the summary states it, and the problem on the concrete pump asks for the resistance of a fifty-meter hose from the pressure at the pump and the flow rate.",
-      "eq": "eq-flow-from-resistance"
-    },
-    {
-      "id": "poiseuilles-law-resistance",
-      "kind": "result",
-      "section": "12.4",
-      "name": "Poiseuille’s law for resistance, $R = 8\\keta l/\\pi r^4$",
-      "why": "For laminar flow of an incompressible fluid through a horizontal tube of uniform radius, the resistance is eight times the viscosity times the length, divided by pi times the fourth power of the radius. Resistance directly proportional to viscosity and to length makes good intuitive sense, since both directly affect the amount of friction encountered. The fourth power of the radius is the surprise. J. L. Poiseuille derived the law in an attempt to understand the flow of blood.",
-      "evidence": "The section states it with the tube of Figure 12.18, the summary states it, and the problem set asks what happens to the flow when the length is quadrupled or the radius cut to a tenth.",
-      "eq": "eq-poiseuille-resistance"
-    },
-    {
-      "id": "poiseuilles-law",
-      "kind": "result",
-      "section": "12.4",
-      "name": "Poiseuille’s law, $\\kQ = (\\kPrtwo - \\kProne)\\pi r^4/8\\keta l$",
-      "why": "Putting the resistance into the relationship between flow rate and pressure difference gives one equation for laminar flow through a tube: the flow rate is the pressure difference times pi times the fourth power of the radius, divided by eight times the viscosity times the length. It is the working equation of the section, and of every medical application in the chapter.",
-      "evidence": "The section states it and the summary repeats it; the worked example on plaque deposits uses it to show that halving the flow in a coronary artery takes only a sixteen percent narrowing, the example on the intravenous needle uses it to find the pressure needed at the entrance to the needle, and a dozen problems are worked from it.",
-      "eq": "eq-poiseuille"
-    },
-    {
-      "id": "radius-fourth-power-sensitivity",
-      "kind": "idea",
-      "section": "12.4",
-      "name": "Flow is extraordinarily sensitive to a tube’s radius",
-      "why": "Because the radius is raised to the fourth power, any change in it has a very large effect on the resistance: doubling the radius decreases the resistance by a factor of sixteen, and reducing a vessel’s radius by only five percent cuts the flow to about eighty-one percent of its original value. This is why the body regulates blood flow mostly by dilating and constricting vessels rather than by working the heart harder, and why plaque in an artery is dangerous out of all proportion to its thickness. The body may compensate by raising the blood pressure, but that puts the heart and any weakened vessel at risk.",
-      "evidence": "The section works the arithmetic out twice, once for a doubling and once for a five percent narrowing, and returns to it for the circulatory system of Figure 12.20; six problems turn on it, among them the arterioles that shut an organ down, the angioplasty that restores a tenfold flow, and the penguin standing on ice."
-    },
-    {
-      "id": "pressure-drop-from-resistance",
-      "kind": "result",
-      "section": "12.4",
-      "name": "Pressure drop from flow and resistance, $\\kPrtwo - \\kProne = R\\kQ$",
-      "why": "Rearranged, the relationship between flow rate, pressure difference and resistance says that flow through a resistance causes the pressure to drop along it. That is why the water pressure in a house is lower on a hot summer day when the neighborhood is drawing heavily: the flow rate in the main is large, so the drop along it is large, and what arrives is what is left. The relationship holds for turbulent as well as for laminar flow, and it can be applied to a system whose radius is not the same everywhere, where the drop is greatest at the narrowest place.",
-      "evidence": "The section derives it for the water main of Figure 12.19 and then applies it to an obstructed coronary artery and to the circulatory system as a whole, the summary states it, and the problem about a house whose supply falls from 20.0 to 8.00 liters per minute is worked from it.",
-      "eq": "eq-pressure-drop"
-    },
-    {
-      "id": "reynolds-number",
-      "kind": "result",
-      "section": "12.5",
-      "name": "Reynolds number for flow in a tube, $N_{\\text{R}} = 2\\krho\\kv r/\\keta$",
-      "why": "Sometimes it can be predicted whether flow will be laminar or turbulent. Flow in a very smooth tube is laminar at low velocity and turbulent at high velocity, and in between it is more difficult to say. The Reynolds number gathers the four quantities that decide it, the density and the speed of the fluid, the radius of the tube and the viscosity, into one unitless number, and experiments have shown that it is the number, and not any of the four on its own, that the onset of turbulence is related to.",
-      "evidence": "The section defines it, the worked example computes 523 for the intravenous needle of the previous section and concludes that the flow there is indeed laminar, the summary states it, and one problem asks the reader to show by substituting units that the number is unitless.",
-      "eq": "eq-reynolds-tube"
-    },
-    {
-      "id": "turbulence-onset-thresholds",
-      "kind": "result",
-      "section": "12.5",
-      "name": "When flow in a tube turns turbulent",
-      "why": "For a Reynolds number below about 2000 the flow is laminar, and above about 3000 it is turbulent. Between 2000 and 3000 the flow is unstable: it can be laminar, but small obstructions and surface roughness can make it turbulent, and it may oscillate randomly between the two. Most of the blood flow in the body is quiet and laminar; the exception is the aorta, where the speed rises above a critical value and the flow becomes turbulent.",
-      "evidence": "The section gives the two thresholds immediately after defining the Reynolds number and the summary repeats them, and most of the problem set is the same question asked of different fluids: an oil gusher that is barely laminar, a garden hose and its nozzle that are not, concrete in a pump that is, and the greatest speed of blood in an artery that keeps the flow laminar."
-    },
-    {
-      "id": "turbulence-in-circulation",
-      "kind": "idea",
-      "section": "12.5",
-      "name": "Turbulence in the circulatory system",
-      "why": "An occlusion or narrowing of an artery is likely to cause turbulence, both because of the irregularity of the blockage and because of the complexity of blood as a fluid. Turbulence in the circulatory system is noisy and can often be heard: the Korotkoff sounds heard through a stethoscope when a blood pressure cuff is released, the sounds of an aneurysm, and the heart murmurs made by damaged valves that do not close. Ultrasound detects the same turbulence in a way analogous to Doppler-shift radar detecting a storm.",
-      "evidence": "The section draws the occluded vessel in Figure 12.22 and lists the sounds a physician listens for, and the first conceptual question asks where blood speed is greatest at a constriction and what the two distinct causes of the higher resistance there are."
-    },
-    {
-      "id": "chaotic-flow",
-      "kind": "idea",
-      "section": "12.5",
-      "name": "Chaotic behavior",
-      "why": "A system is chaotic when its behavior is so sensitive to some factor that it is extremely difficult to predict. Flow with a Reynolds number between 2000 and 3000 is a good example: whether it is turbulent is difficult but not impossible to predict, and the difficulty lies in the extremely sensitive dependence on roughness and obstructions, where a tiny variation in one factor has an exaggerated effect on the flow. Phenomena as disparate as turbulence, the orbit of Pluto and the onset of irregular heartbeats are chaotic and can be analyzed with similar techniques.",
-      "evidence": "The section closes on the topic and names the three examples, and the conceptual question about the decorative wicker reeds on a ceiling fan asks the reader to judge whether such a fan is as quiet and efficient as one with smooth blades."
-    },
-    {
-      "id": "reynolds-number-object",
-      "kind": "result",
-      "section": "12.6",
-      "name": "Reynolds number for an object in a fluid, ${N'}_{\\text{R}} = \\krho\\kv L/\\keta$",
-      "why": "A moving object in a viscous fluid is equivalent to a stationary object in a flowing stream: riding a bicycle at ten meters a second in still air feels exactly like standing still in a ten-meter-a-second wind. Just as with flow in tubes, it is possible to predict when a moving object creates turbulence, and the indicator is another form of the Reynolds number, built from the fluid’s density and viscosity, the object’s speed and a characteristic length of the object such as a sphere’s diameter.",
-      "evidence": "The section defines it against the equivalence of a moving object and a flowing stream, and the worked example computes 2.11 × 10⁵ for a thrown ball 7.40 cm across and concludes that it must have a turbulent wake.",
-      "eq": "eq-reynolds-object"
-    },
-    {
-      "id": "flow-regimes-around-object",
-      "kind": "idea",
-      "section": "12.6",
-      "name": "How the flow around an object changes with its Reynolds number",
-      "why": "Below about 1 the flow around an object can be laminar, particularly if the object has a smooth shape. Between 1 and about 10 the flow turns turbulent, the exact point depending on surface roughness, and a turbulent wake forms behind the object while some laminar flow remains over its surface. Between 10 and a million the flow may be either and may oscillate between the two, and above a million it is turbulent everywhere, even at the surface. Laminar flow occurs mostly when the objects are small, such as raindrops, pollen and blood cells in plasma, so most large objects, airplanes and sailboats among them, create significant turbulence as they move.",
-      "evidence": "The section walks through the ranges in order and draws the three of them around one sphere in Figure 12.24, and the discussion of the worked example notes that Bernoulli’s principle gives only qualitatively correct results once the wake is turbulent."
-    },
-    {
-      "id": "viscous-drag",
-      "kind": "idea",
-      "section": "12.6",
-      "name": "Viscous drag",
-      "why": "One of the consequences of viscosity is a resistance force called viscous drag, exerted on an object moving through a fluid. Unlike simple friction it depends on the object’s speed, and how it depends on it changes with the Reynolds number: for laminar flow the drag is proportional to the speed, while between about 10 and a million it is proportional to the speed squared, which is why even a small headwind costs a bicycle racer so much and why cyclists take turns leading the pack. For laminar flow around a sphere the drag is proportional to the viscosity, the size of the object and its speed, all of which makes sense, since the more viscous the fluid and the larger the object the more drag is to be expected; Stokes’ law gives the constant.",
-      "evidence": "The section names the force, gives its dependence on speed in each range, restates Stokes’ law for a small sphere moving slowly, and draws the drag on the sphere at three speeds in Figure 12.24; the glossary carries the term."
-    },
-    {
-      "id": "sedimentation-rate",
-      "kind": "idea",
-      "section": "12.6",
-      "name": "Sedimentation and the centrifuge",
-      "why": "Because the viscous drag grows with speed, an object falling through a fluid does not accelerate indefinitely. The drag increases, the acceleration falls, and at the terminal speed the object continues to fall at a constant speed. This is the case for particles of sand falling in the ocean, cells falling in a centrifuge and sky divers falling through the air, and the terminal speed is greatest for low-viscosity fluids and for objects that are dense and small, which is why a skydiver falls more slowly with outspread limbs than in a pike position. Knowing it is useful for estimating how quickly small particles settle, and a centrifuge speeds that settling by replacing gravitational acceleration with a much greater centripetal acceleration.",
-      "evidence": "The section draws the weight, the viscous drag and the buoyant force on a falling object in Figure 12.25 and names the three things terminal speed depends on, the glossary carries the term, the Take-Home Experiment asks the reader to time a marble falling through syrup and through oil and compare the speeds with the viscosities in Table 12.1, and the conceptual questions ask about raindrops in warm and cold air and about marbles of two sizes."
-    },
-    {
-      "id": "diffusion",
-      "kind": "idea",
-      "section": "12.7",
-      "name": "Diffusion",
-      "why": "Atoms and molecules are in constant motion at any temperature, and in fluids they move about randomly even where there is no macroscopic flow. That motion is a random walk, and diffusion is the movement of substances that it produces. It explains how an ice cube picks up the odors of a freezer, and fluids can even diffuse through solids. It is a slow process over macroscopic distances, because the densities of common materials are great enough that a molecule cannot travel far before a collision scatters it in any direction, including straight backward.",
-      "evidence": "The section opens on the fishy ice cube and the sprained ankle soaked in Epsom salt, draws the random walk in Figure 12.26, and the glossary carries the term; the section closes by noting that single-celled organisms rely on diffusion alone while larger organisms had to evolve circulatory systems."
-    },
-    {
-      "id": "random-walk-distance",
-      "kind": "result",
-      "section": "12.7",
-      "name": "Distance travelled by diffusion, $\\kxrms = \\sqrt{2D\\kt}$",
-      "why": "It can be shown that the average distance a molecule travels by diffusion is proportional to the square root of the time, not to the time itself, which is what makes diffusion so slow over any distance worth speaking of. The distance is the root-mean-square distance, the statistical average for the process, and the constant in it is the diffusion constant for that molecule in that medium.",
-      "evidence": "The section states the relation before the table of diffusion constants, the worked example finds that a glucose molecule needs 21 hours to move a centimeter through water and remarks that this is why sugar is stirred rather than waited for, the summary states it, and every problem of the section is worked from it.",
-      "eq": "eq-rms-distance"
-    },
-    {
-      "id": "diffusion-constant",
-      "kind": "idea",
-      "section": "12.7",
-      "name": "The diffusion constant",
-      "why": "The diffusion constant is determined experimentally and gathers into one number most of the things that set the rate: the molecule, the medium, the temperature and the cohesive and adhesive forces. It gets progressively smaller for more massive molecules, because the average molecular speed at a given temperature is inversely proportional to molecular mass, and it is far smaller in water than in air, because a molecule in water makes many more collisions in its random walk. It increases with temperature, since the average kinetic energy of the molecules is proportional to absolute temperature.",
-      "evidence": "The section prints Table 12.2 of the constants for hydrogen, oxygen, glucose, hemoglobin and DNA and then reads the table for what it shows, noting that an oxygen molecule moves only about forty micrometers in a second in water; two problems ask for the ratio of the distances oxygen diffuses in air and in water and for the time by which hydrogen outruns oxygen, which is how gas chromatography tells them apart."
-    },
-    {
-      "id": "diffusion-rate-direction",
-      "kind": "idea",
-      "section": "12.7",
-      "name": "The rate and direction of diffusion",
-      "why": "A drop of food coloring placed carefully in still water spreads until its concentration is the same everywhere, which is free diffusion, since no barrier inhibits it. Molecular motion is random in direction, so simple chance dictates that more molecules leave a region of high concentration than enter it, and the net rate of diffusion is proportional to the difference in concentration; if the concentrations were the same there would be no net movement at all. The net rate is higher at the start than after the process is partly complete, and it is proportional to the diffusion constant as well.",
-      "evidence": "The section draws the concentration difference along a tube in Figure 12.27 and argues the direction and the rate from it, and it names diffusion as the dominant mechanism by which nutrients and wastes are exchanged between blood and tissue and between air and blood in the lungs."
-    },
-    {
-      "id": "semipermeable-membrane",
-      "kind": "idea",
-      "section": "12.7",
-      "name": "Semipermeable membranes",
-      "why": "Some of the most interesting examples of diffusion occur through barriers that affect the rates. Membranes are generally selectively permeable, or semipermeable: one type has small pores that allow only small molecules through, and in others the molecules dissolve in the membrane or react with molecules in it while moving across. Because membranes are only a few nanometers thick, diffusion rates through them can be high, and diffusion through membranes is an important method of transport; oxygen moves in, carbon dioxide moves out, nutrients go in and wastes go out.",
-      "evidence": "The section draws both kinds of membrane in Figure 12.28, gives the thickness of a membrane in meters, and the glossary carries the term; membrane function is named as the subject of much current research."
-    },
-    {
-      "id": "osmosis",
-      "kind": "idea",
-      "section": "12.7",
-      "name": "Osmosis",
-      "why": "Osmosis is the transport of water through a semipermeable membrane from a region of high concentration to a region of low concentration, and it is driven by the imbalance in water concentration. Water is more concentrated in the body than in Epsom salt, so soaking a swollen ankle in Epsom salt moves water out of the body into the lower-concentration region in the salt. Both osmosis and dialysis are used by the kidneys to cleanse the blood.",
-      "evidence": "The section defines the term against the Epsom salt of its opening question, draws two sugar solutions separated by a membrane that passes water but not sugar in Figure 12.29, and the glossary carries it; the second conceptual question asks how osmosis and dialysis are alike and how they differ."
-    },
-    {
-      "id": "dialysis",
-      "kind": "idea",
-      "section": "12.7",
-      "name": "Dialysis",
-      "why": "Dialysis is the transport of any molecule other than water through a semipermeable membrane because of its concentration difference. It is the same process as osmosis with a different substance moving, and like osmosis it can create substantial pressures. The kidneys use both.",
-      "evidence": "The section defines it immediately after osmosis and pairs the two in every sentence that follows, the glossary carries it, and the second conceptual question asks how the two are alike and how they differ."
-    },
-    {
-      "id": "osmotic-pressure",
-      "kind": "idea",
-      "section": "12.7",
-      "name": "Osmotic pressure and back pressure",
-      "why": "Osmosis can create a substantial pressure. Water moving through a membrane raises the solution on the low-concentration side, and the movement continues until the pressure created by the extra height of fluid is large enough to stop further osmosis. That back pressure is called the relative osmotic pressure if neither solution is pure water and the osmotic pressure if one of them is, and it can be very large: pure water and sea water separated by a membrane that passes no salt come to equilibrium at 25.9 atmospheres, which would raise the salt water 268 meters above the pure water. Turgor, the pressure of a plant cell’s fluid against its wall, is the same effect holding a plant up. Where the back pressure is sufficient to reverse the normal direction, the process becomes reverse osmosis or reverse dialysis, which is how water is desalinated and how a membrane is used to filter.",
-      "evidence": "The section draws the fluid rising until the back pressure balances in Figure 12.29(b), gives the figure for sea water, names turgor, and the glossary carries relative osmotic pressure, osmotic pressure, reverse osmosis and reverse dialysis."
-    },
-    {
-      "id": "active-transport",
-      "kind": "idea",
-      "section": "12.7",
-      "name": "Active transport",
-      "why": "Substances sometimes pass through a membrane in the direction opposite to the one expected. Cypress tree roots extract pure water from salt water although osmosis would move it the other way, and this is not reverse osmosis, because there is no back pressure to cause it. What is happening is active transport, a process in which a living membrane expends energy to move substances across it. Many living membranes do this, the kidneys among them, and it is estimated that at least a quarter of the body’s energy is expended on active transport at the cellular level.",
-      "evidence": "The section closes on it with the cypress roots and the kidneys, gives the share of the body’s energy it takes, and the glossary carries the term."
-    },
-    {
       "id": "fluid",
       "kind": "idea",
       "section": "11.1",
@@ -5489,6 +5120,379 @@
       "name": "Pressures in the skeletal system",
       "why": "The largest pressures in the body are in the joints and between the vertebrae, because large forces are applied over small areas. Lifting an object improperly can create 5000 N between two vertebrae over an area as small as $10\\;\\text{cm}^2$, which is $5.0\\times 10^{6}\\;\\text{N/m}^2$, about 50 atmospheres, and that is enough to damage the spinal discs and the bony vertebrae themselves.",
       "evidence": "The section works the calculation in the text and says that even under normal circumstances the forces between vertebrae create pressures of several atmospheres, and the problems ask for the pressure a tooth creates on $1.00\\;\\text{mm}^2$ and for the pressure and the deformation of a spinal disc under a 5000 N compressional force."
+    },
+    {
+      "id": "flow-rate",
+      "kind": "idea",
+      "section": "12.1",
+      "name": "Flow rate",
+      "why": "Flow rate is the volume of fluid that passes a location through an area during a period of time, and it is the quantity almost every question about a moving fluid is asked in: how much blood a heart pumps, how much water a hose delivers, how much air a duct carries. Because it counts volume rather than distance, it tells you nothing on its own about how fast the fluid is moving or how wide the conduit is, only about the product of the two.",
+      "evidence": "The section opens on the definition and its equation, the first worked example takes the resting heart’s 5.00 liters per minute and finds the volume of blood pumped in a 75-year lifetime, and the glossary carries the term.",
+      "eq": "eq-flow-rate"
+    },
+    {
+      "id": "flow-rate-units",
+      "kind": "skill",
+      "section": "12.1",
+      "name": "Converting flow rate to convenient units",
+      "why": "The SI unit of flow rate is the cubic meter per second, but almost nothing is quoted in it: a heart is measured in liters per minute, a fire hose in liters per second, a capillary in cubic centimeters per second. A liter is a thousandth of a cubic meter, and the section says plainly that whatever metric units are most convenient for a given situation are the ones to use, so converting between them is part of working almost every problem in the set.",
+      "evidence": "The section defines the liter beside the definition of flow rate, the first worked example carries four conversion factors in a single line, and the problem set asks for the same rate in cubic centimeters per second, in cubic meters per second and in liters per second."
+    },
+    {
+      "id": "flow-rate-velocity",
+      "kind": "result",
+      "section": "12.1",
+      "name": "Flow rate from area and speed, $\\kQ = A\\kvb$",
+      "why": "Flow rate and velocity are related but quite different physical quantities. The greater the velocity of a river the greater its flow rate, but flow rate also depends on the size of the river, which is why a rapid mountain stream carries far less water than the Amazon. The shaded cylinder of fluid that passes a point in a time has the volume of its cross-section times its length, and dividing that volume by the time gives the flow rate as the cross-sectional area times the average speed.",
+      "evidence": "The section derives the relation from the cylinder of fluid in Figure 12.2, the worked example on the garden hose uses it to find the speed of the water in the hose, the example on the aorta uses it again for blood, and the summary states it.",
+      "eq": "eq-flow-rate-velocity"
+    },
+    {
+      "id": "incompressible-fluid",
+      "kind": "idea",
+      "section": "12.1",
+      "name": "Incompressible fluid",
+      "why": "A fluid is incompressible when a given amount of it always occupies the same volume, however hard it is pressed. Since liquids are essentially incompressible, the equation of continuity is valid for all of them; gases are compressible, and the equation must be applied to them with caution if they are subjected to compression or expansion. Every result of this chapter, Bernoulli’s equation and Poiseuille’s law included, is written for an incompressible fluid.",
+      "evidence": "The section states the restriction immediately after deriving the equation of continuity, and one of the conceptual questions asks the reader to identify some substances that are incompressible and some that are not."
+    },
+    {
+      "id": "equation-of-continuity",
+      "kind": "result",
+      "section": "12.1",
+      "name": "Equation of continuity, $A_1\\kvbone = A_2\\kvbtwo$",
+      "why": "Because the fluid is incompressible, the same amount of fluid must flow past any point of a tube in a given time, so the flow rate is the same at all points along it. Where the cross-sectional area decreases the velocity must necessarily increase, and where it increases the velocity drops. That is the purpose of a nozzle, and it is why water slows considerably when a river empties into a reservoir and picks up speed again when it leaves.",
+      "evidence": "The section states it for points 1 and 2 of the narrowing tube of Figure 12.3, the worked example on the hose and the nozzle uses it to get 25.5 m/s from 1.96 m/s, the summary states it, and most of the problem set turns on it.",
+      "eq": "eq-continuity"
+    },
+    {
+      "id": "continuity-branching",
+      "kind": "result",
+      "section": "12.1",
+      "name": "Continuity where the flow branches, $n_1A_1\\kvbone = n_2A_2\\kvbtwo$",
+      "why": "In the cardiovascular system and in any other branching network the flow does not stay in one tube. Continuity still holds, but what is maintained is the sum of the flow rates in all the branches in any portion along the tube, so the number of branches enters the equation along with their areas and their speeds. Because the capillaries have an enormously greater total cross-section than the aorta, the blood in them moves at about a millimeter per second, which is slow enough for substances to be exchanged with the cells and still fast enough to avoid clotting.",
+      "evidence": "The section states the general form after describing how arteries subdivide into arterioles and then into capillaries, the third worked example uses it to count five billion capillaries in the body, and three problems ask by what factor the blood slows when a vessel branches.",
+      "eq": "eq-continuity-branching"
+    },
+    {
+      "id": "pressure-drops-in-fast-fluid",
+      "kind": "idea",
+      "section": "12.2",
+      "name": "Pressure drops in a rapidly moving fluid",
+      "why": "When a fluid flows into a narrower channel its speed increases, so its kinetic energy increases, and that energy comes from the net work done on the fluid to push it into the channel. Pressure times area is a force, so the work is done by a pressure difference, and the result is that the pressure drops in a rapidly moving fluid, whether or not the fluid is confined to a tube. A shower curtain bulges into the stall, a car passing a truck tends to veer towards it, and trains passing in opposite directions were found in the mid-1800s to tip precariously towards one another.",
+      "evidence": "The section opens on this argument, draws it as the air between the car and the truck in Figure 12.5, sets a Take-Home Investigation in which the reader blows over a sheet of paper, and returns to it in the conceptual questions about the roof of a house in a tornado and about standing close to a passing train."
+    },
+    {
+      "id": "bernoullis-equation",
+      "kind": "result",
+      "section": "12.2",
+      "name": "Bernoulli’s equation, $\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{constant}$",
+      "why": "Bernoulli’s equation states the relationship between pressure and velocity in a fluid quantitatively: for an incompressible, frictionless fluid the sum of the pressure, the term in the square of the speed and the term in the height is constant along the path a bit of fluid follows. Various quantities in the sum may change as the fluid moves, but the total does not, so a gain in speed or in height has to be paid for out of pressure.",
+      "evidence": "The section states it and then restates it for two points along the path, names it for Daniel Bernoulli, and the rest of the chapter is its application: the static fluid and Bernoulli’s principle in this section, Torricelli’s theorem and power in the next, and every worked example of both.",
+      "eq": "eq-bernoulli"
+    },
+    {
+      "id": "bernoulli-energy-per-volume",
+      "kind": "idea",
+      "section": "12.2",
+      "name": "Every term of Bernoulli’s equation is an energy per unit volume",
+      "why": "Bernoulli’s equation is a form of the conservation of energy principle. The second and third terms are the kinetic and the gravitational potential energy with the mass replaced by the density, so each is an energy divided by a volume, and the pressure is an energy per unit volume too, since a newton per square meter multiplied by meter over meter is a joule per cubic meter. Bernoulli’s equation is, in fact, just a convenient statement of conservation of energy for an incompressible fluid in the absence of friction.",
+      "evidence": "The section proves it for each of the three terms in turn, sets a Making Connections box on conservation of energy that says viscosity is what the equation leaves out, and the first problem of the set asks the reader to verify that pressure has units of energy per unit volume.",
+      "eq": "eq-ke-per-volume"
+    },
+    {
+      "id": "bernoulli-static-fluid",
+      "kind": "result",
+      "section": "12.2",
+      "name": "Bernoulli’s equation for a static fluid, $\\kPrtwo = \\kProne + \\krho\\kg\\khone$",
+      "why": "When the fluid is not moving, both terms in the speed vanish and Bernoulli’s equation says that pressure increases with depth: going down by a height adds the weight of that column of fluid to the pressure. In the simplest case the pressure at the top is zero and the familiar relationship for the pressure due to the weight of a fluid is recovered. Although Bernoulli’s equation is introduced for fluid flow, it includes much of what was studied for static fluids in the preceding chapter.",
+      "evidence": "The section takes the static case first, sets the lower height to zero and reads off the result, and the section’s first AP item asks at what depth beneath the surface of a lake the pressure is twice atmospheric.",
+      "eq": "eq-bernoulli-static"
+    },
+    {
+      "id": "bernoullis-principle",
+      "kind": "result",
+      "section": "12.2",
+      "name": "Bernoulli’s principle, $\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2$",
+      "why": "When a fluid moves but its depth is constant, the terms in the height subtract out and Bernoulli’s equation becomes a statement about pressure and speed alone. Situations of that kind are so important that the equation has a name of its own. It says what the opening of the section argued: if the speed at one point is greater, the pressure there must be less for the equality to hold.",
+      "evidence": "The section names it and derives it from Bernoulli’s equation, the worked example uses it to find the pressure in a hose from the pressure in its nozzle, the summary states it, and every application that follows, entrainment, wings and sails and velocity measurement, is worked from it.",
+      "eq": "eq-bernoullis-principle"
+    },
+    {
+      "id": "entrainment",
+      "kind": "idea",
+      "section": "12.2",
+      "name": "Entrainment",
+      "why": "People have long put Bernoulli’s principle to work by using the reduced pressure in a high-velocity fluid to move things about: with a higher pressure on the outside, the fast stream forces other fluids into itself. Entrainment devices have been in use since ancient times as pumps to raise water small heights, and the same trick runs a Bunsen burner, an atomizer, a paint sprayer, an aspirator and the chimney of a water heater.",
+      "evidence": "The section names the process and draws four devices that use it in Figure 12.6, and four conceptual questions turn on it: the Venturi constriction, the T-shaped chimney pipe, the limit to the height an entrainment device can raise a fluid, and how the perfume rises in an atomizer."
+    },
+    {
+      "id": "lift-from-bernoulli",
+      "kind": "idea",
+      "section": "12.2",
+      "name": "Lift on a wing and a sail",
+      "why": "The airplane wing is a beautiful example of Bernoulli’s principle in action. The wing is tilted upward at a small angle and its upper surface is longer, so air flows faster over the top, the pressure there is reduced, and the difference is a net upward force. A sail has the characteristic shape of a wing too: the pressure on its front is lower than the pressure on its back, which gives a forward force and even allows a boat to sail into the wind. Wings also gain lift by pushing air downward, and the deflected air pushes back on the wing by Newton’s third law.",
+      "evidence": "The section draws the wing and the sail in Figure 12.7 and names the pressure on each surface, and the conceptual questions ask why an airplane takes off into the wind and why a sailboat needs a keel; the book’s problem on the force the wind exerts on a square meter of sail turns on the same difference in pressure between the two sides."
+    },
+    {
+      "id": "velocity-measurement",
+      "kind": "result",
+      "section": "12.2",
+      "name": "Measuring fluid speed with a manometer, $\\kvtwo \\propto \\sqrt{\\kh}$",
+      "why": "Two tubes small enough not to disturb the flow, joined by a manometer, measure the speed of a fluid. The tube facing the oncoming fluid creates a dead spot with zero velocity in front of it, while the fluid passing the other tube keeps its speed, so the pressure at the second opening is lower by the term in the square of the speed. The manometer fluid rises by a height proportional to that term, and the speed is therefore proportional to the square root of the height. The pitot tube built on this principle is the air speed indicator of an aircraft.",
+      "evidence": "The section draws the manometer and the pitot tube in Figure 12.8 and works the proportionality out from Bernoulli’s principle, and three problems use it: by what factor the wind speed must rise to double the height, what a pitot tube reads at 700 km/h given its reading at 200 km/h, and the derivation of the speed from a mercury manometer.",
+      "eq": "eq-speed-from-manometer"
+    },
+    {
+      "id": "torricellis-theorem",
+      "kind": "result",
+      "section": "12.3",
+      "name": "Torricelli’s theorem, $\\kvtwo^2 = \\kvone^2 + 2\\kg\\kh$",
+      "why": "Water gushing from a tube at the base of a dam emerges at just the speed it would have if it had fallen the distance from the surface of the reservoir, and the speed does not depend on the size of the opening. Both pressures are atmospheric and subtract out of Bernoulli’s equation, and the density cancels because the fluid is incompressible, leaving a kinematic equation for an object falling that height with negligible resistance. As with conservation of energy applied to falling objects, the result does not depend on the direction the water leaves in.",
+      "evidence": "The section derives the theorem from Bernoulli’s equation for the dam of Figure 12.11, and the conceptual question about the old boot with two leaks at the same height asks the reader to say how high the water from each can squirt and why.",
+      "eq": "eq-torricelli"
+    },
+    {
+      "id": "bernoulli-general-application",
+      "kind": "skill",
+      "section": "12.3",
+      "name": "Applying Bernoulli’s equation where pressure, speed and height all change",
+      "why": "Every earlier use of Bernoulli’s equation simplified it first, by holding the height constant or the pressure equal at both points. The general case keeps all three terms at both points: the speeds are found from the flow rate and the two cross-sections, the heights are measured from whichever point is taken as the reference, and the remaining pressure is what is solved for. A fire hose that runs ten meters up a ladder to a narrow nozzle is exactly this case, and its pressure falls for both reasons at once.",
+      "evidence": "The section sets out the general case before the worked example, and the example on the fire hose nozzle finds the speeds from the flow rate, takes the ground as the zero of height and solves for the pressure at the base of the hose; two of the section’s AP items ask the same of a pipe that rises into a building.",
+      "eq": "eq-bernoulli-two-points"
+    },
+    {
+      "id": "power-in-fluid-flow",
+      "kind": "result",
+      "section": "12.3",
+      "name": "Power in fluid flow, $\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power}$",
+      "why": "Power is the rate at which work is done or energy is used or supplied. Every term of Bernoulli’s equation is an energy per unit volume, so multiplying the whole equation by the flow rate, which is a volume per unit time, gives a power. Each term then has a clear physical meaning: one is the power supplied to give the fluid its pressure, one the power supplied to give it its kinetic energy, and one the power that goes to gravitational potential energy.",
+      "evidence": "The section derives it by considering the units, sets a Making Connections box on power beside it, and the summary states it; the problem on Hoover Dam asks for the power in a flow of 650 cubic meters per second taken from a depth of 150 meters, and the problem on the left ventricle asks for the total power output of a heart that raises pressure, speed and height at once.",
+      "eq": "eq-power-in-fluid-flow"
+    },
+    {
+      "id": "pump-power",
+      "kind": "skill",
+      "section": "12.3",
+      "name": "Finding the power a pump supplies, $\\text{power} = \\kPr\\kQ$",
+      "why": "A pump that takes fluid in and sends it out through a hose of the same diameter at the same height changes neither the speed nor the height of the fluid, so its kinetic and gravitational potential energy are unchanged and the only term left is the pressure. The power the pump supplies is then the pressure it adds multiplied by the flow rate. A pump that raises velocity and height as well, as the heart does, needs all three terms.",
+      "evidence": "The worked example on the fire truck finds 36.8 kW from a pressure rise of 0.920 million newtons per square meter at 40.0 liters per second and remarks that this is about 50 horsepower, and the discussion says what would have to change if the pump were a heart.",
+      "eq": "eq-power-from-pressure"
+    },
+    {
+      "id": "laminar-flow",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "Laminar flow",
+      "why": "Laminar flow is characterized by the smooth flow of a fluid in layers that do not mix. The lines drawn in the figures of this chapter are streamlines, the paths followed by small volumes of fluid, and in laminar flow they are smooth and continuous. The precise definition of viscosity is based on laminar flow, and so is Poiseuille’s law, so the whole of this section assumes it.",
+      "evidence": "The section defines the term against the photograph of rising smoke, which is laminar at first, draws the layers in Figure 12.15(a), and the glossary carries it; the Take-Home Experiment asks the reader to drop two sticks into a river, one near the edge and one near the middle, and say which travels faster."
+    },
+    {
+      "id": "turbulent-flow",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "Turbulent flow",
+      "why": "Turbulence is characterized by eddies and swirls that mix layers of fluid together, and its streamlines break up rather than running smoothly. It has two main causes: any obstruction or sharp corner imparts velocities perpendicular to the flow, and high speeds alone will do it, since the drag between adjacent layers and between the fluid and its surroundings forms swirls if the speed is great enough. Turbulent flow mixes the fluid, heats it more and resists more than laminar flow does.",
+      "evidence": "The section defines the term against the same photograph of smoke, where the rise slows once the flow becomes turbulent, draws an obstruction making eddies in Figure 12.15(b), and the glossary carries it; the whole of 12.5 is about predicting when it sets in."
+    },
+    {
+      "id": "viscosity",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "Viscosity",
+      "why": "Viscosity is fluid friction, both within the fluid and between the fluid and its surroundings: juice pours freely and syrup sticks to the pitcher. It is measured by shearing a fluid between two plates, one held fixed and one moved at a steady speed, and finding the force that keeps the top plate moving. That force grows with the speed, with the area of the plate and with the viscosity, and falls as the plates are moved apart, so the viscosity is the force times the separation divided by the speed times the area. Viscosities vary from one fluid to another by several orders of magnitude, gases being far less viscous than liquids, and most of them depend on temperature.",
+      "evidence": "The section defines it from the two plates of Figure 12.16, prints Table 12.1 of the coefficients of viscosity from air to honey, and the glossary carries it; two problems find a viscosity from the force needed to slide one microscope slide over another, and the first conceptual question asks why a liquid’s viscosity falls with temperature while a gas’s rises.",
+      "eq": "eq-viscosity-force"
+    },
+    {
+      "id": "velocity-profile-in-tube",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "The velocity profile across a tube",
+      "why": "If the flow in a tube has negligible resistance the speed is the same all across it. When a viscous fluid flows, the layer in contact with the wall does not move at all, and the speed increases steadily to its maximum at the center of the tube. The shape of a Bunsen burner flame is that velocity profile made visible, even though the viscosity of natural gas is small.",
+      "evidence": "The section draws the two profiles side by side in Figure 12.17 and puts the photograph of the flame beside them, and the conceptual question about paddling a canoe, near the shore going upstream and near the middle coming down, is the same profile in a river."
+    },
+    {
+      "id": "flow-resistance",
+      "kind": "result",
+      "section": "12.4",
+      "name": "Flow rate from pressure difference and resistance, $\\kQ = (\\kPrtwo - \\kProne)/R$",
+      "why": "What causes flow is a pressure difference, and the relationship between the two is very simple: the flow rate is the pressure difference divided by the resistance, and it is in the direction from high to low pressure. The resistance includes everything except pressure that affects the flow rate. It is greater for a long tube than for a short one, greater for a more viscous fluid, greatly increased by turbulence, and decreased by widening the tube; if the viscosity is zero the fluid is frictionless and the resistance is zero as well.",
+      "evidence": "The section states the relationship before Poiseuille’s law and discusses each thing the resistance depends on in turn, the summary states it, and the problem on the concrete pump asks for the resistance of a fifty-meter hose from the pressure at the pump and the flow rate.",
+      "eq": "eq-flow-from-resistance"
+    },
+    {
+      "id": "poiseuilles-law-resistance",
+      "kind": "result",
+      "section": "12.4",
+      "name": "Poiseuille’s law for resistance, $R = 8\\keta l/\\pi r^4$",
+      "why": "For laminar flow of an incompressible fluid through a horizontal tube of uniform radius, the resistance is eight times the viscosity times the length, divided by pi times the fourth power of the radius. Resistance directly proportional to viscosity and to length makes good intuitive sense, since both directly affect the amount of friction encountered. The fourth power of the radius is the surprise. J. L. Poiseuille derived the law in an attempt to understand the flow of blood.",
+      "evidence": "The section states it with the tube of Figure 12.18, the summary states it, and the problem set asks what happens to the flow when the length is quadrupled or the radius cut to a tenth.",
+      "eq": "eq-poiseuille-resistance"
+    },
+    {
+      "id": "poiseuilles-law",
+      "kind": "result",
+      "section": "12.4",
+      "name": "Poiseuille’s law, $\\kQ = (\\kPrtwo - \\kProne)\\pi r^4/8\\keta l$",
+      "why": "Putting the resistance into the relationship between flow rate and pressure difference gives one equation for laminar flow through a tube: the flow rate is the pressure difference times pi times the fourth power of the radius, divided by eight times the viscosity times the length. It is the working equation of the section, and of every medical application in the chapter.",
+      "evidence": "The section states it and the summary repeats it; the worked example on plaque deposits uses it to show that halving the flow in a coronary artery takes only a sixteen percent narrowing, the example on the intravenous needle uses it to find the pressure needed at the entrance to the needle, and a dozen problems are worked from it.",
+      "eq": "eq-poiseuille"
+    },
+    {
+      "id": "radius-fourth-power-sensitivity",
+      "kind": "idea",
+      "section": "12.4",
+      "name": "Flow is extraordinarily sensitive to a tube’s radius",
+      "why": "Because the radius is raised to the fourth power, any change in it has a very large effect on the resistance: doubling the radius decreases the resistance by a factor of sixteen, and reducing a vessel’s radius by only five percent cuts the flow to about eighty-one percent of its original value. This is why the body regulates blood flow mostly by dilating and constricting vessels rather than by working the heart harder, and why plaque in an artery is dangerous out of all proportion to its thickness. The body may compensate by raising the blood pressure, but that puts the heart and any weakened vessel at risk.",
+      "evidence": "The section works the arithmetic out twice, once for a doubling and once for a five percent narrowing, and returns to it for the circulatory system of Figure 12.20; six problems turn on it, among them the arterioles that shut an organ down, the angioplasty that restores a tenfold flow, and the penguin standing on ice."
+    },
+    {
+      "id": "pressure-drop-from-resistance",
+      "kind": "result",
+      "section": "12.4",
+      "name": "Pressure drop from flow and resistance, $\\kPrtwo - \\kProne = R\\kQ$",
+      "why": "Rearranged, the relationship between flow rate, pressure difference and resistance says that flow through a resistance causes the pressure to drop along it. That is why the water pressure in a house is lower on a hot summer day when the neighborhood is drawing heavily: the flow rate in the main is large, so the drop along it is large, and what arrives is what is left. The relationship holds for turbulent as well as for laminar flow, and it can be applied to a system whose radius is not the same everywhere, where the drop is greatest at the narrowest place.",
+      "evidence": "The section derives it for the water main of Figure 12.19 and then applies it to an obstructed coronary artery and to the circulatory system as a whole, the summary states it, and the problem about a house whose supply falls from 20.0 to 8.00 liters per minute is worked from it.",
+      "eq": "eq-pressure-drop"
+    },
+    {
+      "id": "reynolds-number",
+      "kind": "result",
+      "section": "12.5",
+      "name": "Reynolds number for flow in a tube, $N_{\\text{R}} = 2\\krho\\kv r/\\keta$",
+      "why": "Sometimes it can be predicted whether flow will be laminar or turbulent. Flow in a very smooth tube is laminar at low velocity and turbulent at high velocity, and in between it is more difficult to say. The Reynolds number gathers the four quantities that decide it, the density and the speed of the fluid, the radius of the tube and the viscosity, into one unitless number, and experiments have shown that it is the number, and not any of the four on its own, that the onset of turbulence is related to.",
+      "evidence": "The section defines it, the worked example computes 523 for the intravenous needle of the previous section and concludes that the flow there is indeed laminar, the summary states it, and one problem asks the reader to show by substituting units that the number is unitless.",
+      "eq": "eq-reynolds-tube"
+    },
+    {
+      "id": "turbulence-onset-thresholds",
+      "kind": "result",
+      "section": "12.5",
+      "name": "When flow in a tube turns turbulent",
+      "why": "For a Reynolds number below about 2000 the flow is laminar, and above about 3000 it is turbulent. Between 2000 and 3000 the flow is unstable: it can be laminar, but small obstructions and surface roughness can make it turbulent, and it may oscillate randomly between the two. Most of the blood flow in the body is quiet and laminar; the exception is the aorta, where the speed rises above a critical value and the flow becomes turbulent.",
+      "evidence": "The section gives the two thresholds immediately after defining the Reynolds number and the summary repeats them, and most of the problem set is the same question asked of different fluids: an oil gusher that is barely laminar, a garden hose and its nozzle that are not, concrete in a pump that is, and the greatest speed of blood in an artery that keeps the flow laminar."
+    },
+    {
+      "id": "turbulence-in-circulation",
+      "kind": "idea",
+      "section": "12.5",
+      "name": "Turbulence in the circulatory system",
+      "why": "An occlusion or narrowing of an artery is likely to cause turbulence, both because of the irregularity of the blockage and because of the complexity of blood as a fluid. Turbulence in the circulatory system is noisy and can often be heard: the Korotkoff sounds heard through a stethoscope when a blood pressure cuff is released, the sounds of an aneurysm, and the heart murmurs made by damaged valves that do not close. Ultrasound detects the same turbulence in a way analogous to Doppler-shift radar detecting a storm.",
+      "evidence": "The section draws the occluded vessel in Figure 12.22 and lists the sounds a physician listens for, and the first conceptual question asks where blood speed is greatest at a constriction and what the two distinct causes of the higher resistance there are."
+    },
+    {
+      "id": "chaotic-flow",
+      "kind": "idea",
+      "section": "12.5",
+      "name": "Chaotic behavior",
+      "why": "A system is chaotic when its behavior is so sensitive to some factor that it is extremely difficult to predict. Flow with a Reynolds number between 2000 and 3000 is a good example: whether it is turbulent is difficult but not impossible to predict, and the difficulty lies in the extremely sensitive dependence on roughness and obstructions, where a tiny variation in one factor has an exaggerated effect on the flow. Phenomena as disparate as turbulence, the orbit of Pluto and the onset of irregular heartbeats are chaotic and can be analyzed with similar techniques.",
+      "evidence": "The section closes on the topic and names the three examples, and the conceptual question about the decorative wicker reeds on a ceiling fan asks the reader to judge whether such a fan is as quiet and efficient as one with smooth blades."
+    },
+    {
+      "id": "reynolds-number-object",
+      "kind": "result",
+      "section": "12.6",
+      "name": "Reynolds number for an object in a fluid, ${N'}_{\\text{R}} = \\krho\\kv L/\\keta$",
+      "why": "A moving object in a viscous fluid is equivalent to a stationary object in a flowing stream: riding a bicycle at ten meters a second in still air feels exactly like standing still in a ten-meter-a-second wind. Just as with flow in tubes, it is possible to predict when a moving object creates turbulence, and the indicator is another form of the Reynolds number, built from the fluid’s density and viscosity, the object’s speed and a characteristic length of the object such as a sphere’s diameter.",
+      "evidence": "The section defines it against the equivalence of a moving object and a flowing stream, and the worked example computes 2.11 × 10⁵ for a thrown ball 7.40 cm across and concludes that it must have a turbulent wake.",
+      "eq": "eq-reynolds-object"
+    },
+    {
+      "id": "flow-regimes-around-object",
+      "kind": "idea",
+      "section": "12.6",
+      "name": "How the flow around an object changes with its Reynolds number",
+      "why": "Below about 1 the flow around an object can be laminar, particularly if the object has a smooth shape. Between 1 and about 10 the flow turns turbulent, the exact point depending on surface roughness, and a turbulent wake forms behind the object while some laminar flow remains over its surface. Between 10 and a million the flow may be either and may oscillate between the two, and above a million it is turbulent everywhere, even at the surface. Laminar flow occurs mostly when the objects are small, such as raindrops, pollen and blood cells in plasma, so most large objects, airplanes and sailboats among them, create significant turbulence as they move.",
+      "evidence": "The section walks through the ranges in order and draws the three of them around one sphere in Figure 12.24, and the discussion of the worked example notes that Bernoulli’s principle gives only qualitatively correct results once the wake is turbulent."
+    },
+    {
+      "id": "viscous-drag",
+      "kind": "idea",
+      "section": "12.6",
+      "name": "Viscous drag",
+      "why": "One of the consequences of viscosity is a resistance force called viscous drag, exerted on an object moving through a fluid. Unlike simple friction it depends on the object’s speed, and how it depends on it changes with the Reynolds number: for laminar flow the drag is proportional to the speed, while between about 10 and a million it is proportional to the speed squared, which is why even a small headwind costs a bicycle racer so much and why cyclists take turns leading the pack. For laminar flow around a sphere the drag is proportional to the viscosity, the size of the object and its speed, all of which makes sense, since the more viscous the fluid and the larger the object the more drag is to be expected; Stokes’ law gives the constant.",
+      "evidence": "The section names the force, gives its dependence on speed in each range, restates Stokes’ law for a small sphere moving slowly, and draws the drag on the sphere at three speeds in Figure 12.24; the glossary carries the term."
+    },
+    {
+      "id": "sedimentation-rate",
+      "kind": "idea",
+      "section": "12.6",
+      "name": "Sedimentation and the centrifuge",
+      "why": "Because the viscous drag grows with speed, an object falling through a fluid does not accelerate indefinitely. The drag increases, the acceleration falls, and at the terminal speed the object continues to fall at a constant speed. This is the case for particles of sand falling in the ocean, cells falling in a centrifuge and sky divers falling through the air, and the terminal speed is greatest for low-viscosity fluids and for objects that are dense and small, which is why a skydiver falls more slowly with outspread limbs than in a pike position. Knowing it is useful for estimating how quickly small particles settle, and a centrifuge speeds that settling by replacing gravitational acceleration with a much greater centripetal acceleration.",
+      "evidence": "The section draws the weight, the viscous drag and the buoyant force on a falling object in Figure 12.25 and names the three things terminal speed depends on, the glossary carries the term, the Take-Home Experiment asks the reader to time a marble falling through syrup and through oil and compare the speeds with the viscosities in Table 12.1, and the conceptual questions ask about raindrops in warm and cold air and about marbles of two sizes."
+    },
+    {
+      "id": "diffusion",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Diffusion",
+      "why": "Atoms and molecules are in constant motion at any temperature, and in fluids they move about randomly even where there is no macroscopic flow. That motion is a random walk, and diffusion is the movement of substances that it produces. It explains how an ice cube picks up the odors of a freezer, and fluids can even diffuse through solids. It is a slow process over macroscopic distances, because the densities of common materials are great enough that a molecule cannot travel far before a collision scatters it in any direction, including straight backward.",
+      "evidence": "The section opens on the fishy ice cube and the sprained ankle soaked in Epsom salt, draws the random walk in Figure 12.26, and the glossary carries the term; the section closes by noting that single-celled organisms rely on diffusion alone while larger organisms had to evolve circulatory systems."
+    },
+    {
+      "id": "random-walk-distance",
+      "kind": "result",
+      "section": "12.7",
+      "name": "Distance travelled by diffusion, $\\kxrms = \\sqrt{2D\\kt}$",
+      "why": "It can be shown that the average distance a molecule travels by diffusion is proportional to the square root of the time, not to the time itself, which is what makes diffusion so slow over any distance worth speaking of. The distance is the root-mean-square distance, the statistical average for the process, and the constant in it is the diffusion constant for that molecule in that medium.",
+      "evidence": "The section states the relation before the table of diffusion constants, the worked example finds that a glucose molecule needs 21 hours to move a centimeter through water and remarks that this is why sugar is stirred rather than waited for, the summary states it, and every problem of the section is worked from it.",
+      "eq": "eq-rms-distance"
+    },
+    {
+      "id": "diffusion-constant",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "The diffusion constant",
+      "why": "The diffusion constant is determined experimentally and gathers into one number most of the things that set the rate: the molecule, the medium, the temperature and the cohesive and adhesive forces. It gets progressively smaller for more massive molecules, because the average molecular speed at a given temperature is inversely proportional to molecular mass, and it is far smaller in water than in air, because a molecule in water makes many more collisions in its random walk. It increases with temperature, since the average kinetic energy of the molecules is proportional to absolute temperature.",
+      "evidence": "The section prints Table 12.2 of the constants for hydrogen, oxygen, glucose, hemoglobin and DNA and then reads the table for what it shows, noting that an oxygen molecule moves only about forty micrometers in a second in water; two problems ask for the ratio of the distances oxygen diffuses in air and in water and for the time by which hydrogen outruns oxygen, which is how gas chromatography tells them apart."
+    },
+    {
+      "id": "diffusion-rate-direction",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "The rate and direction of diffusion",
+      "why": "A drop of food coloring placed carefully in still water spreads until its concentration is the same everywhere, which is free diffusion, since no barrier inhibits it. Molecular motion is random in direction, so simple chance dictates that more molecules leave a region of high concentration than enter it, and the net rate of diffusion is proportional to the difference in concentration; if the concentrations were the same there would be no net movement at all. The net rate is higher at the start than after the process is partly complete, and it is proportional to the diffusion constant as well.",
+      "evidence": "The section draws the concentration difference along a tube in Figure 12.27 and argues the direction and the rate from it, and it names diffusion as the dominant mechanism by which nutrients and wastes are exchanged between blood and tissue and between air and blood in the lungs."
+    },
+    {
+      "id": "semipermeable-membrane",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Semipermeable membranes",
+      "why": "Some of the most interesting examples of diffusion occur through barriers that affect the rates. Membranes are generally selectively permeable, or semipermeable: one type has small pores that allow only small molecules through, and in others the molecules dissolve in the membrane or react with molecules in it while moving across. Because membranes are only a few nanometers thick, diffusion rates through them can be high, and diffusion through membranes is an important method of transport; oxygen moves in, carbon dioxide moves out, nutrients go in and wastes go out.",
+      "evidence": "The section draws both kinds of membrane in Figure 12.28, gives the thickness of a membrane in meters, and the glossary carries the term; membrane function is named as the subject of much current research."
+    },
+    {
+      "id": "osmosis",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Osmosis",
+      "why": "Osmosis is the transport of water through a semipermeable membrane from a region of high concentration to a region of low concentration, and it is driven by the imbalance in water concentration. Water is more concentrated in the body than in Epsom salt, so soaking a swollen ankle in Epsom salt moves water out of the body into the lower-concentration region in the salt. Both osmosis and dialysis are used by the kidneys to cleanse the blood.",
+      "evidence": "The section defines the term against the Epsom salt of its opening question, draws two sugar solutions separated by a membrane that passes water but not sugar in Figure 12.29, and the glossary carries it; the second conceptual question asks how osmosis and dialysis are alike and how they differ."
+    },
+    {
+      "id": "dialysis",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Dialysis",
+      "why": "Dialysis is the transport of any molecule other than water through a semipermeable membrane because of its concentration difference. It is the same process as osmosis with a different substance moving, and like osmosis it can create substantial pressures. The kidneys use both.",
+      "evidence": "The section defines it immediately after osmosis and pairs the two in every sentence that follows, the glossary carries it, and the second conceptual question asks how the two are alike and how they differ."
+    },
+    {
+      "id": "osmotic-pressure",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Osmotic pressure and back pressure",
+      "why": "Osmosis can create a substantial pressure. Water moving through a membrane raises the solution on the low-concentration side, and the movement continues until the pressure created by the extra height of fluid is large enough to stop further osmosis. That back pressure is called the relative osmotic pressure if neither solution is pure water and the osmotic pressure if one of them is, and it can be very large: pure water and sea water separated by a membrane that passes no salt come to equilibrium at 25.9 atmospheres, which would raise the salt water 268 meters above the pure water. Turgor, the pressure of a plant cell’s fluid against its wall, is the same effect holding a plant up. Where the back pressure is sufficient to reverse the normal direction, the process becomes reverse osmosis or reverse dialysis, which is how water is desalinated and how a membrane is used to filter.",
+      "evidence": "The section draws the fluid rising until the back pressure balances in Figure 12.29(b), gives the figure for sea water, names turgor, and the glossary carries relative osmotic pressure, osmotic pressure, reverse osmosis and reverse dialysis."
+    },
+    {
+      "id": "active-transport",
+      "kind": "idea",
+      "section": "12.7",
+      "name": "Active transport",
+      "why": "Substances sometimes pass through a membrane in the direction opposite to the one expected. Cypress tree roots extract pure water from salt water although osmosis would move it the other way, and this is not reverse osmosis, because there is no back pressure to cause it. What is happening is active transport, a process in which a living membrane expends energy to move substances across it. Many living membranes do this, the kidneys among them, and it is estimated that at least a quarter of the body’s energy is expended on active transport at the cellular level.",
+      "evidence": "The section closes on it with the cypress roots and the kidneys, gives the share of the body’s energy it takes, and the glossary carries the term."
     }
   ],
   "concept_prereqs": [
@@ -8593,466 +8597,6 @@
       "prereq": "weight"
     },
     {
-      "concept": "flow-rate",
-      "prereq": "elapsed-time"
-    },
-    {
-      "concept": "flow-rate-units",
-      "prereq": "flow-rate"
-    },
-    {
-      "concept": "flow-rate-units",
-      "prereq": "unit-conversion"
-    },
-    {
-      "concept": "flow-rate-units",
-      "prereq": "metric-prefixes"
-    },
-    {
-      "concept": "flow-rate-units",
-      "prereq": "derived-units"
-    },
-    {
-      "concept": "flow-rate-velocity",
-      "prereq": "flow-rate"
-    },
-    {
-      "concept": "flow-rate-velocity",
-      "prereq": "average-velocity"
-    },
-    {
-      "concept": "equation-of-continuity",
-      "prereq": "flow-rate-velocity"
-    },
-    {
-      "concept": "equation-of-continuity",
-      "prereq": "incompressible-fluid"
-    },
-    {
-      "concept": "continuity-branching",
-      "prereq": "equation-of-continuity"
-    },
-    {
-      "concept": "pressure-drops-in-fast-fluid",
-      "prereq": "equation-of-continuity"
-    },
-    {
-      "concept": "pressure-drops-in-fast-fluid",
-      "prereq": "kinetic-energy"
-    },
-    {
-      "concept": "pressure-drops-in-fast-fluid",
-      "prereq": "work-energy-theorem"
-    },
-    {
-      "concept": "pressure-drops-in-fast-fluid",
-      "prereq": "force"
-    },
-    {
-      "concept": "bernoullis-equation",
-      "prereq": "pressure-drops-in-fast-fluid"
-    },
-    {
-      "concept": "bernoullis-equation",
-      "prereq": "conservation-of-energy"
-    },
-    {
-      "concept": "bernoullis-equation",
-      "prereq": "kinetic-energy"
-    },
-    {
-      "concept": "bernoullis-equation",
-      "prereq": "gravitational-potential-energy"
-    },
-    {
-      "concept": "bernoullis-equation",
-      "prereq": "incompressible-fluid"
-    },
-    {
-      "concept": "bernoulli-energy-per-volume",
-      "prereq": "bernoullis-equation"
-    },
-    {
-      "concept": "bernoulli-energy-per-volume",
-      "prereq": "kinetic-energy"
-    },
-    {
-      "concept": "bernoulli-energy-per-volume",
-      "prereq": "gravitational-potential-energy"
-    },
-    {
-      "concept": "bernoulli-static-fluid",
-      "prereq": "bernoullis-equation"
-    },
-    {
-      "concept": "bernoullis-principle",
-      "prereq": "bernoullis-equation"
-    },
-    {
-      "concept": "entrainment",
-      "prereq": "bernoullis-principle"
-    },
-    {
-      "concept": "lift-from-bernoulli",
-      "prereq": "bernoullis-principle"
-    },
-    {
-      "concept": "lift-from-bernoulli",
-      "prereq": "newtons-third-law"
-    },
-    {
-      "concept": "velocity-measurement",
-      "prereq": "bernoullis-principle"
-    },
-    {
-      "concept": "torricellis-theorem",
-      "prereq": "bernoullis-equation"
-    },
-    {
-      "concept": "torricellis-theorem",
-      "prereq": "free-fall-kinematics"
-    },
-    {
-      "concept": "torricellis-theorem",
-      "prereq": "conservation-of-mechanical-energy"
-    },
-    {
-      "concept": "bernoulli-general-application",
-      "prereq": "bernoullis-equation"
-    },
-    {
-      "concept": "bernoulli-general-application",
-      "prereq": "flow-rate-velocity"
-    },
-    {
-      "concept": "bernoulli-general-application",
-      "prereq": "problem-solving-steps"
-    },
-    {
-      "concept": "power-in-fluid-flow",
-      "prereq": "bernoulli-energy-per-volume"
-    },
-    {
-      "concept": "power-in-fluid-flow",
-      "prereq": "flow-rate"
-    },
-    {
-      "concept": "power-in-fluid-flow",
-      "prereq": "power"
-    },
-    {
-      "concept": "pump-power",
-      "prereq": "power-in-fluid-flow"
-    },
-    {
-      "concept": "pump-power",
-      "prereq": "calculate-power"
-    },
-    {
-      "concept": "laminar-flow",
-      "prereq": "friction"
-    },
-    {
-      "concept": "turbulent-flow",
-      "prereq": "laminar-flow"
-    },
-    {
-      "concept": "viscosity",
-      "prereq": "laminar-flow"
-    },
-    {
-      "concept": "viscosity",
-      "prereq": "friction"
-    },
-    {
-      "concept": "viscosity",
-      "prereq": "shear-deformation"
-    },
-    {
-      "concept": "velocity-profile-in-tube",
-      "prereq": "viscosity"
-    },
-    {
-      "concept": "velocity-profile-in-tube",
-      "prereq": "laminar-flow"
-    },
-    {
-      "concept": "flow-resistance",
-      "prereq": "flow-rate"
-    },
-    {
-      "concept": "flow-resistance",
-      "prereq": "viscosity"
-    },
-    {
-      "concept": "poiseuilles-law-resistance",
-      "prereq": "flow-resistance"
-    },
-    {
-      "concept": "poiseuilles-law-resistance",
-      "prereq": "viscosity"
-    },
-    {
-      "concept": "poiseuilles-law-resistance",
-      "prereq": "laminar-flow"
-    },
-    {
-      "concept": "poiseuilles-law",
-      "prereq": "poiseuilles-law-resistance"
-    },
-    {
-      "concept": "poiseuilles-law",
-      "prereq": "flow-resistance"
-    },
-    {
-      "concept": "radius-fourth-power-sensitivity",
-      "prereq": "poiseuilles-law"
-    },
-    {
-      "concept": "pressure-drop-from-resistance",
-      "prereq": "flow-resistance"
-    },
-    {
-      "concept": "reynolds-number",
-      "prereq": "viscosity"
-    },
-    {
-      "concept": "reynolds-number",
-      "prereq": "laminar-flow"
-    },
-    {
-      "concept": "reynolds-number",
-      "prereq": "turbulent-flow"
-    },
-    {
-      "concept": "turbulence-onset-thresholds",
-      "prereq": "reynolds-number"
-    },
-    {
-      "concept": "turbulence-in-circulation",
-      "prereq": "turbulent-flow"
-    },
-    {
-      "concept": "turbulence-in-circulation",
-      "prereq": "radius-fourth-power-sensitivity"
-    },
-    {
-      "concept": "chaotic-flow",
-      "prereq": "turbulence-onset-thresholds"
-    },
-    {
-      "concept": "reynolds-number-object",
-      "prereq": "reynolds-number"
-    },
-    {
-      "concept": "reynolds-number-object",
-      "prereq": "relative-velocity"
-    },
-    {
-      "concept": "flow-regimes-around-object",
-      "prereq": "reynolds-number-object"
-    },
-    {
-      "concept": "flow-regimes-around-object",
-      "prereq": "turbulent-flow"
-    },
-    {
-      "concept": "flow-regimes-around-object",
-      "prereq": "laminar-flow"
-    },
-    {
-      "concept": "viscous-drag",
-      "prereq": "viscosity"
-    },
-    {
-      "concept": "viscous-drag",
-      "prereq": "drag-force"
-    },
-    {
-      "concept": "viscous-drag",
-      "prereq": "drag-force-equation"
-    },
-    {
-      "concept": "viscous-drag",
-      "prereq": "stokes-law"
-    },
-    {
-      "concept": "sedimentation-rate",
-      "prereq": "viscous-drag"
-    },
-    {
-      "concept": "sedimentation-rate",
-      "prereq": "terminal-velocity"
-    },
-    {
-      "concept": "sedimentation-rate",
-      "prereq": "size-and-terminal-velocity"
-    },
-    {
-      "concept": "sedimentation-rate",
-      "prereq": "centrifuge"
-    },
-    {
-      "concept": "diffusion",
-      "prereq": "kinetic-energy"
-    },
-    {
-      "concept": "random-walk-distance",
-      "prereq": "diffusion"
-    },
-    {
-      "concept": "random-walk-distance",
-      "prereq": "distance"
-    },
-    {
-      "concept": "diffusion-constant",
-      "prereq": "random-walk-distance"
-    },
-    {
-      "concept": "diffusion-constant",
-      "prereq": "mass"
-    },
-    {
-      "concept": "diffusion-rate-direction",
-      "prereq": "diffusion"
-    },
-    {
-      "concept": "semipermeable-membrane",
-      "prereq": "diffusion"
-    },
-    {
-      "concept": "osmosis",
-      "prereq": "semipermeable-membrane"
-    },
-    {
-      "concept": "osmosis",
-      "prereq": "diffusion-rate-direction"
-    },
-    {
-      "concept": "dialysis",
-      "prereq": "semipermeable-membrane"
-    },
-    {
-      "concept": "dialysis",
-      "prereq": "diffusion-rate-direction"
-    },
-    {
-      "concept": "osmotic-pressure",
-      "prereq": "osmosis"
-    },
-    {
-      "concept": "active-transport",
-      "prereq": "osmosis"
-    },
-    {
-      "concept": "active-transport",
-      "prereq": "dialysis"
-    },
-    {
-      "concept": "flow-rate",
-      "prereq": "fluid"
-    },
-    {
-      "concept": "incompressible-fluid",
-      "prereq": "fluid"
-    },
-    {
-      "concept": "incompressible-fluid",
-      "prereq": "density"
-    },
-    {
-      "concept": "pressure-drops-in-fast-fluid",
-      "prereq": "pressure"
-    },
-    {
-      "concept": "pressure-drops-in-fast-fluid",
-      "prereq": "force-from-pressure"
-    },
-    {
-      "concept": "bernoullis-equation",
-      "prereq": "pressure"
-    },
-    {
-      "concept": "bernoullis-equation",
-      "prereq": "density"
-    },
-    {
-      "concept": "bernoulli-static-fluid",
-      "prereq": "pressure-from-weight-of-fluid"
-    },
-    {
-      "concept": "bernoulli-static-fluid",
-      "prereq": "pressure-independent-of-container"
-    },
-    {
-      "concept": "bernoullis-principle",
-      "prereq": "pressure"
-    },
-    {
-      "concept": "velocity-measurement",
-      "prereq": "manometer"
-    },
-    {
-      "concept": "torricellis-theorem",
-      "prereq": "atmospheric-pressure"
-    },
-    {
-      "concept": "bernoulli-general-application",
-      "prereq": "gauge-pressure"
-    },
-    {
-      "concept": "pump-power",
-      "prereq": "pressure"
-    },
-    {
-      "concept": "laminar-flow",
-      "prereq": "fluid"
-    },
-    {
-      "concept": "viscosity",
-      "prereq": "fluid"
-    },
-    {
-      "concept": "flow-resistance",
-      "prereq": "pressure"
-    },
-    {
-      "concept": "pressure-drop-from-resistance",
-      "prereq": "pressure"
-    },
-    {
-      "concept": "turbulence-in-circulation",
-      "prereq": "blood-pressure-measurement"
-    },
-    {
-      "concept": "reynolds-number",
-      "prereq": "density"
-    },
-    {
-      "concept": "reynolds-number-object",
-      "prereq": "density"
-    },
-    {
-      "concept": "sedimentation-rate",
-      "prereq": "buoyant-force"
-    },
-    {
-      "concept": "sedimentation-rate",
-      "prereq": "archimedes-principle"
-    },
-    {
-      "concept": "diffusion",
-      "prereq": "fluid"
-    },
-    {
-      "concept": "osmotic-pressure",
-      "prereq": "pressure"
-    },
-    {
-      "concept": "osmotic-pressure",
-      "prereq": "pressure-from-weight-of-fluid"
-    },
-    {
       "concept": "fluid",
       "prereq": "phases-of-matter"
     },
@@ -9519,6 +9063,466 @@
     {
       "concept": "skeletal-pressures",
       "prereq": "pressures-in-the-body"
+    },
+    {
+      "concept": "flow-rate",
+      "prereq": "elapsed-time"
+    },
+    {
+      "concept": "flow-rate-units",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "flow-rate-units",
+      "prereq": "unit-conversion"
+    },
+    {
+      "concept": "flow-rate-units",
+      "prereq": "metric-prefixes"
+    },
+    {
+      "concept": "flow-rate-units",
+      "prereq": "derived-units"
+    },
+    {
+      "concept": "flow-rate-velocity",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "flow-rate-velocity",
+      "prereq": "average-velocity"
+    },
+    {
+      "concept": "equation-of-continuity",
+      "prereq": "flow-rate-velocity"
+    },
+    {
+      "concept": "equation-of-continuity",
+      "prereq": "incompressible-fluid"
+    },
+    {
+      "concept": "continuity-branching",
+      "prereq": "equation-of-continuity"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "equation-of-continuity"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "work-energy-theorem"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "force"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "pressure-drops-in-fast-fluid"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "conservation-of-energy"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "gravitational-potential-energy"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "incompressible-fluid"
+    },
+    {
+      "concept": "bernoulli-energy-per-volume",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "bernoulli-energy-per-volume",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "bernoulli-energy-per-volume",
+      "prereq": "gravitational-potential-energy"
+    },
+    {
+      "concept": "bernoulli-static-fluid",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "bernoullis-principle",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "entrainment",
+      "prereq": "bernoullis-principle"
+    },
+    {
+      "concept": "lift-from-bernoulli",
+      "prereq": "bernoullis-principle"
+    },
+    {
+      "concept": "lift-from-bernoulli",
+      "prereq": "newtons-third-law"
+    },
+    {
+      "concept": "velocity-measurement",
+      "prereq": "bernoullis-principle"
+    },
+    {
+      "concept": "torricellis-theorem",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "torricellis-theorem",
+      "prereq": "free-fall-kinematics"
+    },
+    {
+      "concept": "torricellis-theorem",
+      "prereq": "conservation-of-mechanical-energy"
+    },
+    {
+      "concept": "bernoulli-general-application",
+      "prereq": "bernoullis-equation"
+    },
+    {
+      "concept": "bernoulli-general-application",
+      "prereq": "flow-rate-velocity"
+    },
+    {
+      "concept": "bernoulli-general-application",
+      "prereq": "problem-solving-steps"
+    },
+    {
+      "concept": "power-in-fluid-flow",
+      "prereq": "bernoulli-energy-per-volume"
+    },
+    {
+      "concept": "power-in-fluid-flow",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "power-in-fluid-flow",
+      "prereq": "power"
+    },
+    {
+      "concept": "pump-power",
+      "prereq": "power-in-fluid-flow"
+    },
+    {
+      "concept": "pump-power",
+      "prereq": "calculate-power"
+    },
+    {
+      "concept": "laminar-flow",
+      "prereq": "friction"
+    },
+    {
+      "concept": "turbulent-flow",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "viscosity",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "viscosity",
+      "prereq": "friction"
+    },
+    {
+      "concept": "viscosity",
+      "prereq": "shear-deformation"
+    },
+    {
+      "concept": "velocity-profile-in-tube",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "velocity-profile-in-tube",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "flow-resistance",
+      "prereq": "flow-rate"
+    },
+    {
+      "concept": "flow-resistance",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "poiseuilles-law-resistance",
+      "prereq": "flow-resistance"
+    },
+    {
+      "concept": "poiseuilles-law-resistance",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "poiseuilles-law-resistance",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "poiseuilles-law",
+      "prereq": "poiseuilles-law-resistance"
+    },
+    {
+      "concept": "poiseuilles-law",
+      "prereq": "flow-resistance"
+    },
+    {
+      "concept": "radius-fourth-power-sensitivity",
+      "prereq": "poiseuilles-law"
+    },
+    {
+      "concept": "pressure-drop-from-resistance",
+      "prereq": "flow-resistance"
+    },
+    {
+      "concept": "reynolds-number",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "reynolds-number",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "reynolds-number",
+      "prereq": "turbulent-flow"
+    },
+    {
+      "concept": "turbulence-onset-thresholds",
+      "prereq": "reynolds-number"
+    },
+    {
+      "concept": "turbulence-in-circulation",
+      "prereq": "turbulent-flow"
+    },
+    {
+      "concept": "turbulence-in-circulation",
+      "prereq": "radius-fourth-power-sensitivity"
+    },
+    {
+      "concept": "chaotic-flow",
+      "prereq": "turbulence-onset-thresholds"
+    },
+    {
+      "concept": "reynolds-number-object",
+      "prereq": "reynolds-number"
+    },
+    {
+      "concept": "reynolds-number-object",
+      "prereq": "relative-velocity"
+    },
+    {
+      "concept": "flow-regimes-around-object",
+      "prereq": "reynolds-number-object"
+    },
+    {
+      "concept": "flow-regimes-around-object",
+      "prereq": "turbulent-flow"
+    },
+    {
+      "concept": "flow-regimes-around-object",
+      "prereq": "laminar-flow"
+    },
+    {
+      "concept": "viscous-drag",
+      "prereq": "viscosity"
+    },
+    {
+      "concept": "viscous-drag",
+      "prereq": "drag-force"
+    },
+    {
+      "concept": "viscous-drag",
+      "prereq": "drag-force-equation"
+    },
+    {
+      "concept": "viscous-drag",
+      "prereq": "stokes-law"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "viscous-drag"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "terminal-velocity"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "size-and-terminal-velocity"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "centrifuge"
+    },
+    {
+      "concept": "diffusion",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "random-walk-distance",
+      "prereq": "diffusion"
+    },
+    {
+      "concept": "random-walk-distance",
+      "prereq": "distance"
+    },
+    {
+      "concept": "diffusion-constant",
+      "prereq": "random-walk-distance"
+    },
+    {
+      "concept": "diffusion-constant",
+      "prereq": "mass"
+    },
+    {
+      "concept": "diffusion-rate-direction",
+      "prereq": "diffusion"
+    },
+    {
+      "concept": "semipermeable-membrane",
+      "prereq": "diffusion"
+    },
+    {
+      "concept": "osmosis",
+      "prereq": "semipermeable-membrane"
+    },
+    {
+      "concept": "osmosis",
+      "prereq": "diffusion-rate-direction"
+    },
+    {
+      "concept": "dialysis",
+      "prereq": "semipermeable-membrane"
+    },
+    {
+      "concept": "dialysis",
+      "prereq": "diffusion-rate-direction"
+    },
+    {
+      "concept": "osmotic-pressure",
+      "prereq": "osmosis"
+    },
+    {
+      "concept": "active-transport",
+      "prereq": "osmosis"
+    },
+    {
+      "concept": "active-transport",
+      "prereq": "dialysis"
+    },
+    {
+      "concept": "flow-rate",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "incompressible-fluid",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "incompressible-fluid",
+      "prereq": "density"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pressure-drops-in-fast-fluid",
+      "prereq": "force-from-pressure"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "bernoullis-equation",
+      "prereq": "density"
+    },
+    {
+      "concept": "bernoulli-static-fluid",
+      "prereq": "pressure-from-weight-of-fluid"
+    },
+    {
+      "concept": "bernoulli-static-fluid",
+      "prereq": "pressure-independent-of-container"
+    },
+    {
+      "concept": "bernoullis-principle",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "velocity-measurement",
+      "prereq": "manometer"
+    },
+    {
+      "concept": "torricellis-theorem",
+      "prereq": "atmospheric-pressure"
+    },
+    {
+      "concept": "bernoulli-general-application",
+      "prereq": "gauge-pressure"
+    },
+    {
+      "concept": "pump-power",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "laminar-flow",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "viscosity",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "flow-resistance",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "pressure-drop-from-resistance",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "turbulence-in-circulation",
+      "prereq": "blood-pressure-measurement"
+    },
+    {
+      "concept": "reynolds-number",
+      "prereq": "density"
+    },
+    {
+      "concept": "reynolds-number-object",
+      "prereq": "density"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "buoyant-force"
+    },
+    {
+      "concept": "sedimentation-rate",
+      "prereq": "archimedes-principle"
+    },
+    {
+      "concept": "diffusion",
+      "prereq": "fluid"
+    },
+    {
+      "concept": "osmotic-pressure",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "osmotic-pressure",
+      "prereq": "pressure-from-weight-of-fluid"
     }
   ]
 }

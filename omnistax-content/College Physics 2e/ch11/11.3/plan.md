@@ -238,3 +238,8 @@ or acceleration.
   section's `exercise_notes` says so, and theirs should.
 - No concept or symbol row needs changing: `P_press`, `F` and `A` are used
   as they stand.
+
+Applied in the chapter pass (2026-09-14). The three variable anchors and
+the three equation anchors are written as listed. 11.4's `exercise_notes`
+names the drum of petroleum ether as taken from this section and 11.7's
+names the iceberg and the glacier; no row was changed.

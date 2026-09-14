@@ -1,0 +1,438 @@
+{
+ "id": "12.3",
+ "module": "m42208",
+ "chapter": "12",
+ "title": "The Most General Applications of Bernoulli’s Equation",
+ "short": "General applications of Bernoulli",
+ "lead": "Bernoulli’s equation is used here without the simplifications of the last section. When the height changes but both pressures are atmospheric, the speed of water leaving a hole in a dam comes out as the speed of a body that has fallen the same distance, which is Torricelli’s theorem. When pressure, speed and height all change at once, as they do in a fire hose run up a ladder, the equation gives the pressure at the base that pays for the speed and the height at the nozzle. And when every term is multiplied by the flow rate, each product is a power, so the same equation says what a pump supplies.",
+ "objectives": [
+  "Calculate using Torricelli’s theorem.",
+  "Calculate power in fluid flow."
+ ],
+ "summary_html": "<ul><li>Power in fluid flow is given by the equation $\\left(\\kProne + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power},$ where the first term is power associated with pressure, the second is power associated with velocity, and the third is power associated with height.</li></ul>",
+ "notes": "The two problems the book leaves unkeyed, the aircraft wing and its lift per square meter and the sump pump draining a basement, are left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Problems 2 and 4 have no keyed answer and are left out: the aircraft wing that must produce 1000 N of lift per square meter, and the sump pump whose hose rises over a foundation wall. Problem 1, Hoover Dam, keys both of its parts and is set as two numbers; problem 3, the left ventricle, keys one. Of the four AP items, the first (the plunger in the horizontal pipe) and the third (the hole 5 m below the surface) are keyed and set as graded choices; the second (the pump pushing water 21 m up a building) and the fourth (the tapered pipe) have no key and are kept as open items with AI-written suggested approaches, marked as such. The key to the first AP item gives (a) 12 m/s and is kept as the book prints it; a reader who divides the plunger’s 440 N by the pipe’s full cross-section and applies Bernoulli’s principle will find a speed nearer option (b). The suggested approaches to the four conceptual questions are AI-written and marked; the third carries the book’s Figure 12.13, the leaking boot, on its card. The section has no Check Your Understanding box, so nothing is set inline, and nothing is taken from or held for another section. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-torricelli",
+   "kind": "sim",
+   "number": "12.11",
+   "originals": [
+    "/media/ch12/Figure_13_03_01a.jpg"
+   ],
+   "original_caption": "(a) Water gushes from the base of the Studen Kladenetz dam in Bulgaria. (credit: Kiril Kapustin; http://www.ImagesFromBulgaria.com) (b) In the absence of significant resistance, water flows from the reservoir with the same speed it would have if it fell the distance h without friction. This is an example of Torricelli’s theorem.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "velocity",
+    "position",
+    "acceleration",
+    "pressure",
+    "flow-rate"
+   ]
+  },
+  {
+   "id": "sim-fire-hose",
+   "kind": "sim",
+   "number": "12.12",
+   "originals": [
+    "/media/ch12/Figure_13_03_02a.jpg"
+   ],
+   "original_caption": "Pressure in the nozzle of this fire hose is less than at ground level for two reasons: the water has to go uphill to get to the nozzle, and speed increases in the nozzle. In spite of its lowered pressure, the water can exert a large force on anything it strikes, by virtue of its kinetic energy. Pressure in the water stream becomes equal to atmospheric pressure once it emerges into the air.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "pressure",
+    "density",
+    "velocity",
+    "position",
+    "acceleration",
+    "energy",
+    "flow-rate"
+   ]
+  },
+  {
+   "id": "sim-fluid-power",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "pressure",
+    "flow-rate",
+    "velocity",
+    "position",
+    "density",
+    "acceleration"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "torricellis-theorem",
+   "concept": "torricellis-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "torricellis-theorem",
+   "concept": "bernoullis-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "torricellis-theorem",
+   "concept": "atmospheric-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "torricellis-theorem",
+   "concept": "free-fall-kinematics",
+   "verb": "uses"
+  },
+  {
+   "span": "torricellis-theorem",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "general-application",
+   "concept": "bernoulli-general-application",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-application",
+   "concept": "bernoullis-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "general-application",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "general-application",
+   "concept": "gauge-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-fluid-flow",
+   "concept": "power-in-fluid-flow",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-fluid-flow",
+   "concept": "bernoulli-energy-per-volume",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-fluid-flow",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-fluid-flow",
+   "concept": "flow-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "pump-power",
+   "concept": "pump-power",
+   "verb": "introduces"
+  },
+  {
+   "span": "pump-power",
+   "concept": "power-in-fluid-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "pump-power",
+   "concept": "calculate-power",
+   "verb": "uses"
+  },
+  {
+   "span": "pump-power",
+   "concept": "pressure",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2443622",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-fluid-flow",
+   "prompt": "Based on Bernoulli’s equation, what are three forms of energy in a fluid? (Note that these forms are conservative, unlike heat transfer and other dissipative forms not included in Bernoulli’s equation.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The three terms of Bernoulli’s equation are each an energy per unit volume, so they name the three forms. $\\frac{1}{2}\\krho\\kv^2$ is the kinetic energy per unit volume, $\\krho\\kg\\kh$ is the gravitational potential energy per unit volume, and $\\kPr$, the pressure, is the energy per unit volume associated with the work done in pushing the fluid along, which is why a pump that only raises the pressure still supplies power. All three are conservative and can be traded for one another without loss, which is what the equation says; the heat produced by viscosity is left out of it."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1412050",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "Water that has emerged from a hose into the atmosphere has a gauge pressure of zero. Why? When you put your hand in front of the emerging stream you feel a force, yet the water’s gauge pressure is zero. Explain where the force comes from in terms of energy.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Once the water is in the air it is surrounded by the atmosphere on every side and can have no pressure other than atmospheric, so its gauge pressure is zero, just as $\\kPrtwo$ was in the fire hose example. The force you feel does not come from pressure in the stream but from its kinetic energy, $\\frac{1}{2}\\krho\\kv^2$ per unit volume: the water arrives fast and your hand brings it nearly to rest, and the work done in stopping it is the force you feel times the distance over which it stops. In the terms of Bernoulli’s equation, the kinetic energy the water carries is turned back into pressure against your hand, where the stream is slowed."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2401508",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torricellis-theorem",
+   "figure": {
+    "src": "/media/ch12/Figure_13_03_03a.jpg",
+    "alt": "The picture shows a boot filled with water. The water is shown emerging from two leaks in the old boot, one in front and another at the back. The leaks are at the same height. The leaks are labeled as Leak 1 and Leak 2 respectively.",
+    "caption": "Water emerges from two leaks in an old boot."
+   },
+   "prompt": "The old rubber boot shown in Figure 12.13 has two leaks. To what maximum height can the water squirt from Leak 1? How does the velocity of water emerging from Leak 2 differ from that of leak 1? Explain your responses in terms of energy.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take point 1 at the water’s surface in the boot and point 2 at a leak, both at atmospheric pressure. Torricelli’s theorem gives the speed at the leak as $\\kvtwo = \\sqrt{2\\kg\\kh}$, where $\\kh$ is the depth of the leak below the surface, and a jet leaving straight up with that speed would rise until its kinetic energy had turned back into gravitational potential energy, that is, to the level of the surface, a height $\\kh$ above the leak. In practice it rises a little less, since some energy is lost to friction at the leak and in the air. Leak 2 is at the same depth as Leak 1, so the water leaves it at the same speed; only the direction of the jet differs, and Torricelli’s theorem says nothing about direction. The energy per unit volume is $\\krho\\kg\\kh$ at the surface for both leaks, so the same $\\frac{1}{2}\\krho\\kvtwo^2$ comes out at each."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1389535",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "Water pressure inside a hose nozzle can be less than atmospheric pressure due to the Bernoulli effect. Explain in terms of energy how the water can emerge from the nozzle against the opposing atmospheric pressure.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Inside the nozzle the water moves fast, and Bernoulli’s equation says that where the speed is high the pressure is low, so the pressure there can fall below atmospheric. The water still comes out because it is not the pressure in the nozzle that pushes it: the water arrives carrying kinetic energy per unit volume, $\\frac{1}{2}\\krho\\kv^2$, that was paid for by the higher pressure farther back in the hose, and that kinetic energy carries it on into the air against the atmosphere. Once it is outside, the atmosphere presses on it from every side and its gauge pressure is zero, but its speed, and so its kinetic energy, is what it had in the nozzle."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2174516",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "A horizontally oriented pipe has a diameter of 5.6 cm and is filled with water. The pipe draws water from a reservoir that is initially at rest. A manually operated plunger provides a force of 440 N in the pipe. Assuming that the other end of the pipe is open to the air, with what speed does the water emerge from the pipe?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "12 m/s",
+     "19 m/s",
+     "150 m/s",
+     "190 m/s"
+    ],
+    "correct": 0,
+    "hint": "The plunger’s force spread over the pipe’s cross-section is a pressure. The pipe is horizontal and the water starts from rest, so Bernoulli’s principle turns that pressure into $\\frac{1}{2}\\krho\\kv^2$ at the open end.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1527124",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "A 3.5-cm-diameter pipe contains a pumping mechanism that provides a force of 320 N to push water up into a tall building. Upon entering the piston mechanism, the water is flowing at a rate of 2.5 m/s. The water is then pumped to a level 21 m higher where the other end of the pipe is open to the air. With what speed does water leave the pipe?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Start by turning the pump’s force into a pressure. The force of 320 N acts over the pipe’s cross-section, $A = \\pi(1.75 \\times 10^{-2}\\ \\text{m})^2 = 9.62 \\times 10^{-4}\\ \\text{m}^2$, so it raises the pressure of the water entering the piston by $\\kProne - \\kPrtwo = F/A = 3.33 \\times 10^5\\ \\text{N/m}^2$ above the pressure at the open end, which is atmospheric. Then use Bernoulli’s equation with point 1 at the piston and point 2 at the open end 21 m higher, $\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo$, taking $\\khone = 0$, $\\khtwo = 21\\ \\text{m}$, $\\kvone = 2.5\\ \\text{m/s}$ and $\\krho = 1000\\ \\text{kg/m}^3$. Solving for the speed at the top gives $\\frac{1}{2}\\krho\\kvtwo^2 = (\\kProne - \\kPrtwo) + \\frac{1}{2}\\krho\\kvone^2 - \\krho\\kg\\khtwo = 3.33 \\times 10^5 + 3.1 \\times 10^3 - 2.06 \\times 10^5\\ \\text{N/m}^2 = 1.30 \\times 10^5\\ \\text{N/m}^2$, so $\\kvtwo$ is about 16 m/s. Most of the pressure the pump supplies is spent lifting the water 21 m, and only the remainder goes into speed. Note that the pipe keeps one diameter, so the equation of continuity would strictly keep the speed the same all the way up; the item means you to treat the pump as the source of the pressure and to find the speed the water leaves with from Bernoulli’s equation alone."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2103327",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torricellis-theorem",
+   "prompt": "A large container of water is open to the air, and it develops a hole of area 10 cm<sup>2</sup> at a point 5 m below the surface of the water. What is the flow rate (m<sup>3</sup>⁄s) of the water emerging from this hole?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "99 m<sup>3</sup>⁄s",
+     "9.9 m<sup>3</sup>⁄s",
+     "0.099 m<sup>3</sup>⁄s",
+     "0.0099 m<sup>3</sup>⁄s"
+    ],
+    "correct": 3,
+    "hint": "Torricelli’s theorem gives the speed at the hole from the 5 m of depth, and the flow rate is that speed times the area of the hole, with the area in square meters.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1816086",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "A pipe is tapered so that the large end has a diameter twice as large as the small end. What must be the gauge pressure (the difference between pressure at the large end and pressure at the small end) in order for water to emerge from the small end with a speed of 12 m/s if the small end is elevated 8 m above the large end of the pipe?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let point 1 be the large end and point 2 the small end. The large end has twice the diameter and so four times the area, and the equation of continuity, $A_1\\kvone = A_2\\kvtwo$, gives $\\kvone = \\kvtwo/4 = 3.0\\ \\text{m/s}$. Bernoulli’s equation with $\\khone = 0$ and $\\khtwo = 8\\ \\text{m}$ then gives the pressure difference: $\\kProne - \\kPrtwo = \\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2) + \\krho\\kg\\khtwo = \\frac{1}{2}(1000\\ \\text{kg/m}^3)[(12\\ \\text{m/s})^2 - (3.0\\ \\text{m/s})^2] + (1000\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(8\\ \\text{m}) = 6.75 \\times 10^4 + 7.84 \\times 10^4\\ \\text{N/m}^2$, which is about $1.46 \\times 10^5\\ \\text{N/m}^2$. A little more than half of the difference lifts the water 8 m, and the rest speeds it up in the narrow end."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1404775",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-fluid-flow",
+   "prompt": "Hoover Dam on the Colorado River is the highest dam in the United States at 221 m, with a maximum output of 1300 MW. The dam generates electricity with water taken from a depth of 150 m and an average flow rate of $650\\ \\text{m}^3\\text{/s}$. (a) Calculate the power in this flow. (b) What is the ratio of this power to the facility’s average of 680 MW?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 956000000.0,
+      "unit": "W",
+      "hint": "Only the height term is at work: the power in the flow is $\\krho\\kg\\kh\\kQ$ with $\\kh$ the 150 m the water falls, since the water starts and ends at rest and at atmospheric pressure."
+     },
+     {
+      "part": "(b)",
+      "value": 1.41,
+      "hint": "Divide the power in the flow by the facility’s average output, 680 MW, keeping both in watts."
+     }
+    ],
+    "solution": "(a) $9.56 \\times 10^8\\ \\text{W}$ (b) 1.41"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2603396",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pump-power",
+   "prompt": "The left ventricle of a resting adult’s heart pumps blood at a flow rate of $83.0\\ \\text{cm}^3\\text{/s}$, increasing its pressure by 110 mm Hg, its speed from zero to 30.0 cm/s, and its height by 5.00 cm. (All numbers are averaged over the entire heartbeat.) Calculate the total power output of the left ventricle. Note that most of the power is used to increase blood pressure.",
+   "answer": {
+    "type": "number",
+    "value": 1.26,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "Multiply each of the three increases, in pressure, in $\\frac{1}{2}\\krho\\kv^2$ and in $\\krho\\kg\\kh$, by the flow rate in cubic meters per second and add them. Convert 110 mm Hg to N/m² first (1.00 mm Hg is 133 N/m²) and take the density of blood as 1050 kg/m³.",
+    "solution": "1.26 W"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "bernoulli-energy-per-volume"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "power-in-fluid-flow",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "bernoulli-energy-per-volume",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "torricellis-theorem"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "bernoulli-energy-per-volume",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "bernoullis-principle",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torricellis-theorem"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "flow-rate-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "equation-of-continuity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "power-in-fluid-flow"
+  },
+  {
+   "exercise": "p3",
+   "concept": "power-in-fluid-flow"
+  },
+  {
+   "exercise": "p3",
+   "concept": "pump-power",
+   "weight": 3
+  }
+ ]
+}

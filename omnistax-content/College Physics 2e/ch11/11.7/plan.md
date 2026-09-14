@@ -112,8 +112,9 @@ headline · graph · 3D
    cylinder held at a depth has no time in it, and the figure answers its
    controls and registers no cycle (rule 14; the chapter's config makes the
    same decision for every figure of fluid statics) · the depth $h_1$ of the
-   top face (0 to 0.80 m, default 0.200, ink, since this page binds no
-   position, `ch11/COLOR.md`), the fluid's density $\krhofl$ (600 to
+   top face (0 to 0.35 m, default 0.200, ink, since this page binds no
+   position, `ch11/COLOR.md`; the tank is 0.60 m deep, so the 20.0 cm
+   cylinder's bottom face reaches 0.55 m at most and stays off the floor), the fluid's density $\krhofl$ (600 to
    1400 kg/m³, default 1000, density, with soft detents at Table 11.1's
    liquids, gasoline, ethyl alcohol, olive oil, water, sea water, blood and
    glycerin), the cylinder's average density $\krhoobj$ (100 to 3000 kg/m³,
@@ -130,8 +131,8 @@ headline · graph · 3D
    diagram beside it are the picture · locked view (root rule 28.2): the book
    prints the tank and the cylinder in perspective, so the scene is
    projected on `view()` from the book's own viewpoint, straight on and a
-   little above, with no orbit. The scene scale is fixed from the slider
-   maximum, 1.00 m of tank depth, and never follows a slider; the force
+   little above, with no orbit. The scene scale is fixed from the tank's
+   0.60 m of depth, and never follows a slider; the force
    arrows share one fixed scale so that $\kFB$ can be seen to stay the same
    length while $\kFone$ and $\kFtwo$ grow. Readout: $\kFB = \kFtwo - \kFone
    = (h_2 - h_1)\krhofl g A = \kwfl$ with the live numbers; small line on the
@@ -394,3 +395,17 @@ $\kFtwo$ as forces, and so does the page.
   into line with it.
 - No concept or symbol row of the section needs a fix. The `F_B` symbol row
   is Chapter 9's and is used as it stands.
+
+Applied in the chapter pass (2026-09-14). The ten variable anchors and
+the seven equation anchors are written as listed. `ch11/COLOR.md`'s
+paragraph on the arrow field is rewritten to the pages that bind pressure
+(11.3, 11.4 and 11.5) and says that Figure 11.18 draws three forces and no
+arrow field, which is what `sim-cylinder` does. Two things settled beyond
+the list: the discussion of Example 11.8 prints the steel's weight as
+$m_{\text{s}}w$, a slip for $m_{\text{s}}g$ in the book itself, and the
+page keeps the book's printing in ink with nothing said, as Chapter 4's pass
+kept that chapter's slips (LOG pass on Chapter 4, "the book's own
+typographical slips in the running text … are the book's and stay"); and
+the cylinder's depth slider runs to 0.35 m in a tank 0.60 m deep, which the
+figure line above now says in place of the 0.80 m and 1.00 m first
+planned.

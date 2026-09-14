@@ -140,14 +140,16 @@ reason · sliders and choices with their types · headline · graph · 3D
    total cross-section and the speed in a branch answer, which the text
    gives only as one equation and one worked number · **still**: it answers
    its sliders and nothing else · $\kQ$ (2.0 to 10.0 L/min, default 5.0,
-   flow-rate), $r_1$ (4.0 to 15.0 mm, default 10.0, ink), $n_2$ (1 to 12,
-   default 8, ink, a count), $r_2$ (1.0 to 8.0 mm, default 5.0, ink). The
+   flow-rate), $r_1$ (6.0 to 15.0 mm, default 10.0, ink), $n_2$ (2 to 6,
+   default 6, ink, a count; more branches than six would not fan across the
+   canvas at their largest radius), $r_2$ (2.0 to 8.0 mm, default 5.0, ink). The
    defaults are the aorta of Example 12.3, 5.0 L/min through 10 mm, so that
    $\kvbone$ comes to its 0.27 m/s; the branches are a stand-in for the
    arteries the aorta divides into, since five billion capillaries cannot be
    drawn and the small line does that arithmetic instead · "One vessel of
-   10.0 mm radius divides into 8 branches of 5.0 mm, so the total
-   cross-section doubles and the blood slows from 0.27 m/s to 0.13 m/s." ·
+   10.0 mm radius divides into 6 branches of 5.0 mm, so the total
+   cross-section is 1.50 times the vessel's and the blood slows from 0.27 m/s
+   to 0.18 m/s." ·
    none: the vessel in section, its branches fanning out to the right, two
    bars beneath on one fixed cap (0 to 25 cm²) for $A_1$ and $n_2A_2$, and
    the two speed arrows, are the picture · 2D. Labels: one branch carries
@@ -283,3 +285,10 @@ or position.
   $v_1$ of Example 12.2 with the existing `v_1` row (`\kvone`), as the book
   prints it without a bar there, and every other speed with `\kvb`, `\kvbone`
   and `\kvbtwo`.
+
+Applied in the chapter pass (2026-09-14): every anchor above is written on its
+row; no concept or symbol row of the section was changed. The branching
+figure's default was raised from four branches to six so that the page opens
+on a vessel whose total cross-section grows and the blood visibly slows; at
+four branches of 5.0 mm the total equalled the vessel's own and the headline
+said nothing had changed.

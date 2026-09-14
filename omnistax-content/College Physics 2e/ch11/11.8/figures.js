@@ -90,7 +90,7 @@ function freeBody(ctx, x, y, arrows, title) {
     const D = breaks ? DENT : DENT * Math.sin(th * RAD), yc = Y0 + D;      /* the dent bottom, where the body's equator sits */
     const cosT = Math.cos(th * RAD), sinT = Math.sin(th * RAD), k = 0.35 * (CX - R - XL);
     /* the liquid: flat far away, dented to the contact points, or closed over a body that has sunk */
-    const sunk = { x: CX, y: Y0 + 170 };
+    const sunk = { x: CX, y: Y0 + 110 };
     shape(ctx, (c) => {
       c.moveTo(XL, YB); c.lineTo(XL, Y0);
       if (breaks) { c.lineTo(XR, Y0); }
@@ -277,8 +277,8 @@ function freeBody(ctx, x, y, arrows, title) {
       : !open ? 'With the valve closed ' + nm[0] + ' holds ' + sigz(P(g, rs), 3) + ' Pa above the air outside and ' + nm[1] + ' ' + sigz(P(g, rl), 3) + ' Pa, so air will flow from the small one to the large one.'
       : prog < 1 ? 'The valve is open and air runs from ' + nm[0] + ' into ' + nm[1] + ': the small balloon shrinks, its pressure climbs, and the large one grows.'
       : nm[0][0].toUpperCase() + nm[0].slice(1) + ' has emptied into ' + nm[1] + ', which now has a radius of ' + fmt(rln, 2) + ' cm and holds ' + sigz(P(g, rln), 3) + ' Pa.');
-    const one = r1 < 0.03 ? '\\kProne\\ \\text{undefined, balloon 1 empty}' : `\\kProne = \\frac{4\\kgamma}{r_1} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r1 / 100, 3)}\\ \\text{m}} = ${sigz(p1, 3)}\\ \\text{Pa}`;
-    const two = r2 < 0.03 ? '\\kPrtwo\\ \\text{undefined, balloon 2 empty}' : `\\kPrtwo = \\frac{4\\kgamma}{r_2} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r2 / 100, 3)}\\ \\text{m}} = ${sigz(p2, 3)}\\ \\text{Pa}`;
+    const one = r1 < 0.03 ? '\\kProne:\\ \\text{balloon 1 is empty}' : `\\kProne = \\frac{4\\kgamma}{r_1} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r1 / 100, 3)}\\ \\text{m}} = ${sigz(p1, 3)}\\ \\text{Pa}`;
+    const two = r2 < 0.03 ? '\\kPrtwo:\\ \\text{balloon 2 is empty}' : `\\kPrtwo = \\frac{4\\kgamma}{r_2} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r2 / 100, 3)}\\ \\text{m}} = ${sigz(p2, 3)}\\ \\text{Pa}`;
     readout(d.readout, `${one},\\qquad ${two}`,
       'The pressure inside a balloon is inversely proportional to its radius, so the smaller balloon holds the greater pressure and air moves from it to the larger one, which is the opposite of what a balloon full of air seems to promise. As the small one shrinks its pressure rises further, so the flow does not stop until it is empty; the total volume of air is kept throughout.');
   }
@@ -330,7 +330,7 @@ function freeBody(ctx, x, y, arrows, title) {
     const [s, dg, tf] = vals;
     topline(ctx, 'At a radius of ' + fmt(r, 3) + ' mm the surfactant’s surface tension is ' + sigz(s.g, 3) + ' N/m and the pressure inside the sac is ' + sigz(s.p / 1000, 3) + ' kPa, against ' + sigz(dg.p / 1000, 3) + ' kPa for a detergent and ' + sigz(tf.p / 1000, 3) + ' kPa for tissue fluid.');
     readout(d.readout, `\\kPr = \\frac{4\\kgamma}{r} = \\frac{4(${sigz(s.g, 3)}\\ \\text{N/m})}{${sciTex(r / 1000, 3)}\\ \\text{m}} = ${sigz(s.p / 1000, 3)}\\ \\text{kPa}\\ \\text{for the surfactant}`,
-      'A lining whose surface tension does not change makes the pressure climb as 1/r when the sac shrinks, so a small alveolus would empty into a large one; the surfactant’s surface tension falls with the area, and the pressure inside stays nearly level from the largest sac to the smallest. The values here are representative, since the book prints none on this graph.');
+      'A lining whose surface tension does not change makes the pressure climb as 1/r when the sac shrinks, so a small alveolus would empty into a large one; the surfactant’s surface tension falls with the area, and the pressure inside stays nearly level from the largest sac to the smallest. The values here are representative of the three linings rather than measured ones.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -406,14 +406,14 @@ function freeBody(ctx, x, y, arrows, title) {
     shape(ctx, (c) => { c.moveTo(TX - bw, BB - 30); c.lineTo(TX - bw, ytop); c.quadraticCurveTo(TX, ytop + 2 * dep, TX + bw, ytop); c.lineTo(TX + bw, BB - 30); c.closePath(); }, fill);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(TX - bw, ytop); ctx.quadraticCurveTo(TX, ytop + 2 * dep, TX + bw, ytop); ctx.stroke(); ctx.restore();
     glass(ctx, TX - bw - wall / 2, TT, TX - bw - wall / 2, BB - 30, wall); glass(ctx, TX + bw + wall / 2, TT, TX + bw + wall / 2, BB - 30, wall);
-    text(ctx, 'glass tube, r = ' + fmt(r, 2) + ' mm', TX + bw + 24, TT + 16, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'glass tube, r = ' + fmt(r, 2) + ' mm', TX, BB + 26, PAL.ink, { size: 18, align: 'center' });
     /* the pulls of the surface at the edge of the meniscus, and their net */
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
-    const cs = Math.cos(th * RAD), sn = Math.sin(th * RAD), len = 50 + 180 * L.g;
+    const cs = Math.cos(th * RAD), sn = Math.sin(th * RAD), len = Math.max(30, Math.min(50 + 180 * L.g, ytop - 120));
     if (Math.abs(cs) > 0.02) {
-      for (const s of [-1, 1]) { const x0 = TX + s * bw, ux = s * sn, uy = -cs; arrow(ctx, x0, ytop, x0 + ux * len, ytop + uy * len, fc, 4); lab.add('F_ST', x0 + ux * len, ytop + uy * len, s * 0.8, uy * 0.6, fc, 19, 22); }
-      const nl = Math.min(150, len * 1.3 * Math.abs(cs));
-      arrow(ctx, TX, ytop + dep, TX, ytop + dep - Math.sign(cs) * nl, fc, 5); lab.add('net F_ST', TX, ytop + dep - Math.sign(cs) * nl, 0.7, -Math.sign(cs) * 0.7, fc, 19, 22);
+      for (const s of [-1, 1]) { const x0 = TX + s * bw, ux = s * sn, uy = -cs; arrow(ctx, x0, ytop, x0 + ux * len, ytop + uy * len, fc, 4); lab.add('F_ST', x0 + ux * len, ytop + uy * len, s, 0.2, fc, 19, 22); }
+      const nl = Math.max(24, Math.min(150, len * 1.3 * Math.abs(cs), cs > 0 ? ytop + dep - 140 : 150));
+      arrow(ctx, TX, ytop + dep, TX, ytop + dep - Math.sign(cs) * nl, fc, 5); lab.add('net F_ST', TX, ytop + dep - Math.sign(cs) * nl, 1, -0.3 * Math.sign(cs), fc, 19, 22);
     }
     /* the height, bracketed from the level in the container to the column */
     if (Math.abs(hcm) > 0.15) vbracket(ctx, TX + bw + 60, Math.min(Y0, ytop), Math.max(Y0, ytop), hc, 'h = ' + (out ? sigz(hcm, 3) + ' cm, beyond the frame' : sigz(hcm, 3) + ' cm'), 1);
@@ -484,7 +484,7 @@ function freeBody(ctx, x, y, arrows, title) {
     const aL = V.P([-R, YL + 14, 0]);
     text(ctx, 'A = ' + fmt(A, 2) + ' cm²', aL[0] - 18, aL[1], PAL.ink, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     const pL = V.P([0, parts ? -100 : (YB + YL) / 2, 0]);
-    if (Fv > 0) text(ctx, 'P = −F/A = ' + minus(sigz(atm, 3)) + ' atm', pL[0], pL[1], pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (Fv > 0 && !parts) text(ctx, 'P = −F/A = ' + minus(sigz(atm, 3)) + ' atm', pL[0], pL[1], pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the height of water a pull this size could hold up, stated beside the cylinder */
     const hw = -P / (1000 * G);
     topline(ctx, Fv === 0 ? 'With no pull on the piston the water is under no tension, and its pressure is simply the pressure of the air above the piston.'

@@ -121,7 +121,9 @@ headline · graph · 3D
    dents the surface until its pull rises at 24° and holds the foot up." ·
    none: the cross-section of the dented surface with the two $\kFST$
    arrows, their net and $\kwgt$, and the book's free-body diagram beside it,
-   is the picture · 2D. Readout: $\kwgt = \kgamma L\sin\theta$ with the live
+   is the picture; the force arrows are drawn at 220 units per millinewton so
+   that the book's own weights, a fraction of a millinewton, are readable,
+   and every arrow is capped at 250 units and carries its number · 2D. Readout: $\kwgt = \kgamma L\sin\theta$ with the live
    numbers and the angle it solves for; small line on the largest weight the
    surface can hold, $\kgamma L$, and on the surface breaking past it. Labels
    on: four arrows and two names. Draws force, surface-tension.
@@ -163,8 +165,10 @@ headline · graph · 3D
    Pa above the air outside and the large one 2.47 Pa, so air will flow from
    the small one to the large one." · none: the two balloons on the tube with
    the valve and the flow arrow are the picture, and a pressure bar under
-   each states the two pressures on one fixed scale (0 to 40 Pa, the
-   pressure of the smallest balloon at the largest surface tension) · 2D.
+   each states the two pressures on one fixed scale (0 to 20 Pa, half the
+   pressure of the smallest balloon at the largest surface tension, so that
+   the book's own balloons read as more than slivers; a pressure past the
+   cap fills the bar and is written as greater than 20 Pa) · 2D.
    Readout: $\kPr_1 = 4\kgamma/r_1$ and $\kPr_2 = 4\kgamma/r_2$ with the live
    numbers; small line on the air moving from the higher pressure to the
    lower until the small balloon is empty, and on the total volume being
@@ -185,8 +189,9 @@ headline · graph · 3D
    surfactant · **still**: the graph and the sac answer the slider and have
    no clock · the radius $r$ of the alveolus (0.020 to 0.100 mm, ink, default
    0.050 mm, the book's 0.1 mm diameter) · "At a radius of 0.050 mm the
-   surfactant's surface tension is 0.030 N/m and the pressure inside the sac
-   is 2.40 kPa, against 4.00 kPa for tissue fluid." · the graph is the idea
+   surfactant's surface tension is 0.0188 N/m and the pressure inside the
+   sac is 1.50 kPa, against 2.96 kPa for a detergent and 4.00 kPa for tissue
+   fluid." · the graph is the idea
    and stands at the left with the book's axes (surface tension across,
    surface area up), the three lines told apart by `F.cat(i)` with a legend,
    and the sac with three pressure bars beside it; the axes are fixed at 0 to
@@ -256,10 +261,10 @@ headline · graph · 3D
    locked view (rule 28.2), since the book prints it in perspective.
    Readout: $\kPr = -\kF/A$ in pascals and atmospheres; small line on the
    height of water such a negative pressure could hold up, $\kh =
-   |\kPr|/\krho\kg$, which is what lets sap reach the top of a tall tree. The
-   limit at which the liquid separates is set at 25.0 atm, the value the
-   book itself states for this device in the problem that 11.9 prints.
-   Draws pressure, force, position.
+   |\kPr|/\krho\kg$, written in plain text, which is what lets sap reach the
+   top of a tall tree. The limit at which the liquid separates is set at
+   25.0 atm, the value the book itself states for this device in the problem
+   that 11.9 prints. Draws pressure, force.
 
 Photographs: two, both kept and both pointed at by the text: the soap
 bubbles (11.24) and the alveoli illustration (11.28), which is not a
@@ -360,12 +365,12 @@ Extra simulations (rule 15), thought through, judged and decided:
 ## Colour
 
 The page binds surface-tension, pressure, force, density and position, the
-five `ch11/COLOR.md` allows it. Surface tension is on the slider of three
+five `ch11/COLOR.md` allows it. Surface tension is on the slider of two
 figures and in every readout; pressure is stated in the balloons, the
 alveolus and the piston; force is the weight on the sheet, the restoring
 forces of the surface, the pull on the wire and on the piston; density and
 position are the liquid's density and the height it climbs in the capillary
-tube, and the depth a negative pressure could hold up. The contact angle,
+tube. The contact angle,
 every length and radius, an area, a mass and a volume stay untyped and in
 ink, as `ch11/config.md` decided. The three linings of `sim-surfactant`
 and nothing else take the categorical palette; no liquid wears a type hue,
@@ -399,3 +404,19 @@ and mercury's grey is a tint of the page's ink.
   symbol row; the text and the figure write it the same way, in plain LaTeX
   and in ink, as $m_1$ and $m_2$ are written in 9.2. Nothing is wanted
   unless the chapter pass would rather have a row for it.
+
+Applied in the chapter pass (2026-09-14). The nine variable anchors and
+the five equation anchors are written as listed. The half-length $l$ of the
+sliding wire now has a variable row of its own, `11.8/l`, anchored at
+`surface-tension`, on the untyped symbol `l` that Chapter 12 staged for the
+length of a tube in 12.4: the symbol row is an untyped length with no
+meaning of its own, like the shared `A`, `h` and `r`, and each chapter's
+variable row says what its $l$ is, so the equation's plain `2l` is
+unchanged and the Definitions view names the wire. 11.7's `exercise_notes`
+names the oil tanker as taken from here and 11.9's names the capillary
+problem as set here; 11.9's notes, which had counted the −25.0 atm device
+among the problems set elsewhere, now say it is unkeyed and left out of
+both. Two sentences that named the book are reworded: the last sentence of
+Figure 11.31 + 11.32's caption, and the sentence on representative values in
+Figure 11.29's caption and readout, which now states the three values taken
+instead.

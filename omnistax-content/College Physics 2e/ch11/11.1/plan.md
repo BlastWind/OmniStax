@@ -182,3 +182,10 @@ No new hue, no new macro, no new symbol.
 - Nothing. The section has no variable and no equation, so no anchor is
   wanted, and its concept rows and glossary row stand as the prep pass
   wrote them.
+
+Applied in the chapter pass (2026-09-14). Nothing was wanted and no row
+was written. The one change to the page is the first sentence of Figure
+11.2's caption, which named the book and now names the four samples. The
+figure moves, which `ch11/config.md` had not foreseen for this section; the
+plan's reason stands and the config's "What the build changed" block records
+it.

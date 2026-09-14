@@ -168,7 +168,7 @@ function bar(ctx, x0, y, w, share, color, label, value) {
   const d = sim('sim-branching', 740);
   const Qs = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 2, max: 10, step: 0.1, value: 5, unit: 'L/min', dec: 1, aria: 'the flow rate through the vessel' });
   const r1s = ctl(d.controls, { label: 'r_1', cls: '', min: 6, max: 15, step: 0.1, value: 10, unit: 'mm', dec: 1, aria: 'the radius of the vessel' });
-  const ns = ctl(d.controls, { label: 'n_2', cls: '', min: 2, max: 6, step: 1, value: 4, unit: '', dec: 0, aria: 'the number of branches' });
+  const ns = ctl(d.controls, { label: 'n_2', cls: '', min: 2, max: 6, step: 1, value: 6, unit: '', dec: 0, aria: 'the number of branches' });
   const r2s = ctl(d.controls, { label: 'r_2', cls: '', min: 2, max: 8, step: 0.1, value: 5, unit: 'mm', dec: 1, aria: 'the radius of each branch' });
   /* radii at 4 units to the millimeter, so six branches of 8 mm fan across 444 units; speed arrows at 120 units
      per m/s and pinned at 560 with a hollow head, which the largest speed the sliders reach, 6.6 m/s, overruns; the area bars sit on a cap of 12.5 cm² */

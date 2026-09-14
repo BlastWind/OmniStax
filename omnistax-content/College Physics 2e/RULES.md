@@ -68,9 +68,12 @@ Physics, `ch01`), 2 (Kinematics, `ch02`), 3 (Two-Dimensional Kinematics,
 (Further Applications of Newton's Laws, `ch05`), 6 (Uniform Circular
 Motion and Gravitation, `ch06`), 7 (Work, Energy, and Energy Resources,
 `ch07`), 8 (Linear Momentum and Collisions, `ch08`), 9 (Statics and
-Torque, `ch09`) and 16 (Oscillatory Motion and Waves, `ch16`), built in
-one job on 2026-09-11 (LOG passes 27 and 28, `Plan.md` at the
-repository root). A chapter
+Torque, `ch09`), 10 (Rotational Motion and Angular Momentum, `ch10`), 11
+(Fluid Statics, `ch11`), 12 (Fluid Dynamics and Its Biological and
+Medical Applications, `ch12`) and 16 (Oscillatory Motion and Waves,
+`ch16`). Chapters 4 to 9 were built in one job on 2026-09-11 (LOG passes
+27 to 33) and 10 to 12 on 2026-09-14 (LOG passes 35 to 37), both under
+`Plan.md` at the repository root. A chapter
 folder is `ch` followed by the two-digit chapter number. The whole table
 of contents is in `toc.md`. Every built chapter's introduction and the
 Preface (m42955) are pages of their own in their `intro/` folders. A
@@ -138,10 +141,20 @@ typeface, not a change of writer.
 
 ## Types
 
-The book declares nine types in `book.json`, in the order the colour
-scheme lays its hues along: time, position, velocity, acceleration, force,
-energy, frequency, stiffness, angular rate. Mass, length and angle are not
-typed and stay in ink.
+The book declares its types in `book.json`, in the order the colour
+scheme lays its hues along. The first nine came with Chapters 1 to 3 and
+16: time, position, velocity, acceleration, force, energy, frequency,
+stiffness, angular rate. Each later chapter added the kinds of quantity
+its figures draw and its readouts colour, staged in its `book-rows.json`
+and merged: stress and elastic modulus (5), power (7), torque (9),
+momentum (8), angular acceleration, moment of inertia and angular
+momentum (10), pressure, density and surface tension (11), flow rate and
+viscosity (12), twenty-two in all. Mass, length, angle, count and a
+dimensionless coefficient are not typed and stay in ink. With this many
+types the scheme's hues crowd (Chapters 11 and 12 report pressure, density,
+energy and position drawn in near-identical magentas and surface tension
+in a pale yellow); a page binds only the types it draws, which keeps most
+pages to three or four hues, and the scheme itself is the app's matter.
 
 Variants of one type share its hue and differ by decoration: an initial
 value (subscript 0) is hollow or dashed, an average (bar) is dashed, a

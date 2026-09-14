@@ -1,0 +1,73 @@
+<section id="torricellis-theorem">
+<h2>Torricelli’s Theorem</h2>
+<p class="cite-target">Figure 12.11 shows water gushing from a large tube through a dam. What is its speed as it emerges? Interestingly, if resistance is negligible, the speed is just what it would be if the water fell a distance $\kh$ from the surface of the reservoir; the water’s speed is independent of the size of the opening. Let us check this out. Bernoulli’s equation must be used since the depth is not constant. We consider water flowing from the surface (point 1) to the tube’s outlet (point 2). Bernoulli’s equation as stated in previously is</p>
+$$\kProne + \frac{1}{2}\krho\kvone^2 + \krho\kg\khone = \kPrtwo + \frac{1}{2}\krho\kvtwo^2 + \krho\kg\khtwo.$$
+<p>Both $\kProne$ and $\kPrtwo$ equal atmospheric pressure ($\kProne$ is atmospheric pressure because it is the pressure at the top of the reservoir. $\kPrtwo$ must be atmospheric pressure, since the emerging water is surrounded by the atmosphere and cannot have a pressure different from atmospheric pressure.) and subtract out of the equation, leaving</p>
+$$\frac{1}{2}\krho\kvone^2 + \krho\kg\khone = \frac{1}{2}\krho\kvtwo^2 + \krho\kg\khtwo.$$
+<p>Solving this equation for $\kvtwo^2$, noting that the density $\krho$ cancels (because the fluid is incompressible), yields</p>
+$$\kvtwo^2 = \kvone^2 + 2\kg(\khone - \khtwo).$$
+<p>We let $\kh = \khone - \khtwo$; the equation then becomes</p>
+$$\kvtwo^2 = \kvone^2 + 2\kg\kh$$
+<p>where $\kh$ is the height dropped by the water. This is simply a kinematic equation for any object falling a distance $\kh$ with negligible resistance. In fluids, this last equation is called <em>Torricelli’s theorem</em>. Note that the result is independent of the velocity’s direction, just as we found when applying conservation of energy to falling objects.</p>
+<figure class="sim" id="sim-torricelli" data-figure="12.11" data-original="/media/ch12/Figure_13_03_01a.jpg" data-original-width="300" data-original-caption="(a) Water gushes from the base of the Studen Kladenetz dam in Bulgaria. (credit: Kiril Kapustin; http://www.ImagesFromBulgaria.com) (b) In the absence of significant resistance, water flows from the reservoir with the same speed it would have if it fell the distance h without friction. This is an example of Torricelli’s theorem.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.11</span><span>A reservoir stands behind a dam, and water leaves through an opening near the base a depth $\kh$ below the surface. The pressure is atmospheric both at the surface and in the emerging jet, so only the height and the two speeds remain in Bernoulli’s equation. Drag the depth of the opening and watch the jet, the point on the curve and the readout move together, with the speed growing as the square root of the depth; widen the opening and watch the flow rate grow while the speed stays exactly where it was.</span></div>
+</figure>
+</section>
+
+<section id="general-application">
+<h2>Pressure, speed and height changing together</h2>
+<p class="cite-target">All preceding applications of Bernoulli’s equation involved simplifying conditions, such as constant height or constant pressure. The next example is a more general application of Bernoulli’s equation in which pressure, velocity, and height all change. (See Figure 12.12.)</p>
+<figure class="sim" id="sim-fire-hose" data-figure="12.12" data-original="/media/ch12/Figure_13_03_02a.jpg" data-original-width="300" data-original-caption="Pressure in the nozzle of this fire hose is less than at ground level for two reasons: the water has to go uphill to get to the nozzle, and speed increases in the nozzle. In spite of its lowered pressure, the water can exert a large force on anything it strikes, by virtue of its kinetic energy. Pressure in the water stream becomes equal to atmospheric pressure once it emerges into the air.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.12</span><span>A fire hose of 6.40 cm inside diameter runs from the pump at ground level up a ladder to a nozzle a height $\khtwo$ above the ground, where it narrows and the water leaves into the air at atmospheric pressure. The two columns beside the scene stack the three terms of Bernoulli’s equation at the base and in the nozzle, and their totals stand at the same height, because the pressure the pump supplies at the base is what pays for the speed and the height at the top. Change the flow rate, the height of the nozzle or its bore and watch the pressure needed at the base follow.</span></div>
+</figure>
+<div class="example" id="ex-fire-hose">
+<h3>Example 12.5 · Calculating Pressure: A Fire Hose Nozzle</h3>
+<p>Fire hoses used in major structure fires have inside diameters of 6.40 cm. Suppose such a hose carries a flow of 40.0 L/s starting at a gauge pressure of $1.62 \times 10^6\ \text{N/m}^2$. The hose goes 10.0 m up a ladder to a nozzle having an inside diameter of 3.00 cm. Assuming negligible resistance, what is the initial water pressure at the base of the hose?</p>
+<h4>Strategy</h4>
+<p>Here we must use Bernoulli’s equation to solve for the pressure, since depth is not constant.</p>
+<h4>Solution</h4>
+<p>Bernoulli’s equation states</p>
+$$\kProne + \frac{1}{2}\krho\kvone^2 + \krho\kg\khone = \kPrtwo + \frac{1}{2}\krho\kvtwo^2 + \krho\kg\khtwo,$$
+<p>where the subscripts 1 and 2 refer to the initial conditions at ground level and the final conditions inside the nozzle, respectively. We must first find the speeds $\kvone$ and $\kvtwo$. Since $\kQ = A_1\kvone$, we get</p>
+$$\kvone = \frac{\kQ}{A_1} = \frac{40.0 \times 10^{-3}\ \text{m}^3\text{/s}}{\pi(3.20 \times 10^{-2}\ \text{m})^2} = 12.434\ \text{m/s}.$$
+<p>Similarly, we find</p>
+$$\kvtwo = 56.588\ \text{m/s}.$$
+<p>(This rather large speed is helpful in reaching the fire.) Now, taking $\khone$ to be zero, we solve Bernoulli’s equation for $\kPrtwo$:</p>
+$$\kPrtwo = \kProne + \frac{1}{2}\krho(\kvone^2 - \kvtwo^2) - \krho\kg\khtwo.$$
+<p>In the proposed solution, $\kPrtwo = 0$, so</p>
+$$\begin{aligned}\kProne - \kPrtwo = \kProne &= \frac{1}{2}(1000\ \text{kg/m}^3)[(12.434\ \text{m/s})^2 - (56.588\ \text{m/s})^2] - (1000\ \text{kg/m}^3)(9.80\ \text{m/s}^2)(10.0\ \text{m})\\ &\approx 1.62 \times 10^6\ \text{N/m}^2.\end{aligned}$$
+<h4>Discussion</h4>
+<p>This value is a gauge pressure, since the initial pressure was given as a gauge pressure. Thus the nozzle pressure is very close to atmospheric pressure, as it must because the water exits into the atmosphere without changes in its conditions.</p>
+</div>
+</section>
+
+<section id="power-in-fluid-flow">
+<h2>Power in Fluid Flow</h2>
+<p class="cite-target">Power is the <em>rate</em> at which work is done or energy in any form is used or supplied. To see the relationship of power to fluid flow, consider Bernoulli’s equation:</p>
+$$\kPr + \frac{1}{2}\krho\kv^2 + \krho\kg\kh = \text{constant}.$$
+<p>All three terms have units of energy per unit volume, as discussed in the previous section. Now, considering units, if we multiply energy per unit volume by flow rate (volume per unit time), we get units of power. That is, $(E/V)(V/t) = E/t$. This means that if we multiply Bernoulli’s equation by flow rate <em>$\kQ$</em>, we get power. In equation form, this is</p>
+$$\left(\kPr + \frac{1}{2}\krho\kv^2 + \krho\kg\kh\right)\kQ = \text{power}.$$
+<p>Each term has a clear physical meaning. For example, <em>$\kPr\kQ$</em> is the power supplied to a fluid, perhaps by a pump, to give it its pressure <em>$\kPr$</em>. Similarly, $\frac{1}{2}\krho\kv^2\kQ$ is the power supplied to a fluid to give it its kinetic energy. And $\krho\kg\kh\kQ$ is the power going to gravitational potential energy.</p>
+<figure class="sim" id="sim-fluid-power">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A pump draws water from a hydrant and sends it out with a pressure $\kPr$, a speed $\kv$ and a height $\kh$ that you set, at a flow rate $\kQ$. Each term of Bernoulli’s equation multiplied by the flow rate is a power, and the three bars beside the pump show how the power it supplies divides among pressure, kinetic energy and gravitational potential energy. At the settings shown the pump raises only the pressure, which is the pump of Example 12.6; give the water a speed or a height as well and watch the other two bars rise.</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">Making Connections: Power</div>
+<p>Power is defined as the rate of energy transferred, or <em>$E/t$</em>. Fluid flow involves several types of power. Each type of power is identified with a specific type of energy being expended or changed in form.</p>
+</div>
+</section>
+
+<section id="pump-power">
+<h2>The power a pump supplies</h2>
+<div class="example" id="ex-pump-power">
+<h3>Example 12.6 · Calculating Power in a Moving Fluid</h3>
+<p class="cite-target">Suppose the fire hose in the previous example is fed by a pump that receives water through a hose with a 6.40-cm diameter coming from a hydrant with a pressure of $0.700 \times 10^6\ \text{N/m}^2$. What power does the pump supply to the water?</p>
+<h4>Strategy</h4>
+<p>Here we must consider energy forms as well as how they relate to fluid flow. Since the input and output hoses have the same diameters and are at the same height, the pump does not change the speed of the water nor its height, and so the water’s kinetic energy and gravitational potential energy are unchanged. That means the pump only supplies power to increase water pressure by $0.92 \times 10^6\ \text{N/m}^2$ (from $0.700 \times 10^6\ \text{N/m}^2$ to $1.62 \times 10^6\ \text{N/m}^2$).</p>
+<h4>Solution</h4>
+<p>As discussed above, the power associated with pressure is</p>
+$$\begin{aligned}\text{power} &= \kPr\kQ\\ &= (0.920 \times 10^6\ \text{N/m}^2)(40.0 \times 10^{-3}\ \text{m}^3\text{/s})\\ &= 3.68 \times 10^4\ \text{W} = 36.8\ \text{kW}.\end{aligned}$$
+<h4>Discussion</h4>
+<p>Such a substantial amount of power requires a large pump, such as is found on some fire trucks. (This kilowatt value converts to about 50 hp.) The pump in this example increases only the water’s pressure. If a pump—such as the heart—directly increases velocity and height as well as pressure, we would have to calculate all three terms to find the power it supplies.</p>
+</div>
+</section>
