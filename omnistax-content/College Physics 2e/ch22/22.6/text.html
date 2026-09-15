@@ -1,0 +1,44 @@
+<section id="carriers">
+<h2>Charges pushed to one side of a conductor</h2>
+<p>We have seen effects of a magnetic field on free-moving charges. The magnetic field also affects charges moving in a conductor. One result is the Hall effect, which has important implications and applications.</p>
+<p>Figure 22.26 shows what happens to charges moving through a conductor in a magnetic field. The field is perpendicular to the electron drift velocity and to the width of the conductor. Note that conventional current is to the right in both parts of the figure. In part (a), electrons carry the current and move to the left. In part (b), positive charges carry the current and move to the right. Moving electrons feel a magnetic force toward one side of the conductor, leaving a net positive charge on the other side. This separation of charge <em>creates a voltage $\kemfhall$</em>, known as the <strong>Hall emf</strong>, <em>across</em> the conductor. The creation of a voltage <em>across</em> a current-carrying conductor by a magnetic field is known as the <strong>Hall effect</strong>, after Edwin Hall, the American physicist who discovered it in 1879.</p>
+<figure class="sim" id="sim-hall-carriers" data-figure="22.26" data-original="/media/ch22/Figure_23_06_01a.jpg" data-original-width="380" data-original-caption="The Hall effect. (a) Electrons move to the left in this flat conductor (conventional current to the right). The magnetic field is directly out of the page, represented by circled dots; it exerts a force on the moving charges, causing a voltage ε, the Hall emf, across the conductor. (b) Positive charges moving to the right (conventional current also to the right) are moved to the side, producing a Hall emf of the opposite sign, –ε. Thus, if the direction of the field and current are known, the sign of the charge carriers can be determined from the Hall effect.">
+  <div class="sim-head"><span class="eyebrow">Figure 22.26</span><span>A current runs to the right along a flat conductor while a magnetic field comes straight out of the page. Choose what carries the current and set the field and the drift speed, and watch where the magnetic force sends the carriers. The conventional current runs the same way whichever sign is chosen, but the face that collects the carriers collects the opposite charge, so the Hall emf changes sign with them.</span></div>
+</figure>
+<p>One very important use of the Hall effect is to determine whether positive or negative charges carries the current. Note that in Figure 22.26(b), where positive charges carry the current, the Hall emf has the sign opposite to when negative charges carry the current. Historically, the Hall effect was used to show that electrons carry current in metals and it also shows that positive charges carry current in some semiconductors. The Hall effect is used today as a research tool to probe the movement of charges, their drift velocities and densities, and so on, in materials. In 1980, it was discovered that the Hall effect is quantized, an example of quantum behavior in a macroscopic object.</p>
+</section>
+
+<section id="balance">
+<h2>The balance of forces and the Hall emf</h2>
+<p>The Hall effect has other uses that range from the determination of blood flow rate to precision measurement of magnetic field strength. To examine these quantitatively, we need an expression for the Hall emf, $\kemfhall$, across a conductor. Consider the balance of forces on a moving charge in a situation where $\kBmag$, $\kv$, and $l$ are mutually perpendicular, such as shown in Figure 22.27. Although the magnetic force moves negative charges to one side, they cannot build up without limit. The electric field caused by their separation opposes the magnetic force, $\kF = \kq\kv\kBmag$, and the electric force, $\kF_{\text{e}} = \kq\kEf$, eventually grows to equal it. That is,</p>
+$$\kq\kEf = \kq\kv\kBmag$$
+<p>or</p>
+$$\kEf = \kv\kBmag.$$
+<p>Note that the electric field $\kEf$ is uniform across the conductor because the magnetic field $\kBmag$ is uniform, as is the conductor. For a uniform electric field, the relationship between electric field and voltage is $\kEf = \kemfhall/l$, where $l$ is the width of the conductor and $\kemfhall$ is the Hall emf. Entering this into the last expression gives</p>
+$$\frac{\kemfhall}{l} = \kv\kBmag.$$
+<p>Solving this for the Hall emf yields</p>
+$$\kemfhall = \kBmag l \kv \quad (\kBmag,\ \kv,\ \text{and}\ l,\ \text{mutually perpendicular}),$$
+<p>where $\kemfhall$ is the Hall effect voltage across a conductor of width $l$ through which charges move at a speed $\kv$.</p>
+<figure class="sim" id="sim-hall-balance" data-figure="22.27" data-original="/media/ch22/Figure_23_06_02a.jpg" data-original-width="300" data-original-caption="The Hall emf ε produces an electric force that balances the magnetic force on the moving charges. The magnetic force produces charge separation, which builds up until it is balanced by the electric force, an equilibrium that is quickly reached.">
+  <div class="sim-head"><span class="eyebrow">Figure 22.27</span><span>The magnetic force drives the carriers toward one face of the conductor until the charge gathered there pushes back on them just as hard, and the pile-up stops. Set the field, the speed of the carriers and the width of the conductor, and watch the two forces on one electron stay equal at every setting while the electric field between the faces, and the Hall emf that field amounts to across the width, rise and fall with them.</span></div>
+</figure>
+</section>
+
+<section id="probes">
+<h2>Hall probes and flow meters</h2>
+<p>One of the most common uses of the Hall effect is in the measurement of magnetic field strength $\kBmag$. Such devices, called <em>Hall probes</em>, can be made very small, allowing fine position mapping. Hall probes can also be made very accurate, usually accomplished by careful calibration. Another application of the Hall effect is to measure fluid flow in any fluid that has free charges (most do). (See Figure 22.28.) A magnetic field applied perpendicular to the flow direction produces a Hall emf $\kemfhall$ as shown. Note that the sign of $\kemfhall$ depends not on the sign of the charges, but only on the directions of $\kBmag$ and $\kv$. The magnitude of the Hall emf is $\kemfhall = \kBmag l \kv$, where $l$ is the pipe diameter, so that the average velocity $\kv$ can be determined from $\kemfhall$ providing the other factors are known.</p>
+<figure class="sim" id="sim-flow-probe" data-figure="22.28" data-original="/media/ch22/Figure_23_06_03a.jpg" data-original-width="350" data-original-caption="The Hall effect can be used to measure fluid flow in any fluid having free charges, such as blood. The Hall emf ε is measured across the tube perpendicular to the applied magnetic field and is proportional to the average velocity v.">
+  <div class="sim-head"><span class="eyebrow">Figure 22.28</span><span>A magnet is placed across a vessel and the flow inside it carries free charges of both signs out of the page. Set the field, the average speed of the flow and the bore of the vessel, and read the Hall emf the probe gives. The scale beneath the magnet puts that reading beside the voltages the beating heart itself produces, which is what makes the measurement difficult.</span></div>
+</figure>
+<div class="example" id="ex-flow-probe">
+<h3>Example 22.3 · Calculating the Hall emf: Hall Effect for Blood Flow</h3>
+<p>A Hall effect flow probe is placed on an artery, applying a 0.100-T magnetic field across it, in a setup similar to that in Figure 22.28. What is the Hall emf, given the vessel’s inside diameter is 4.00 mm and the average blood velocity is 20.0 cm/s?</p>
+<h4>Strategy</h4>
+<p>Because $\kBmag$, $\kv$, and $l$ are mutually perpendicular, the equation $\kemfhall = \kBmag l \kv$ can be used to find $\kemfhall$.</p>
+<h4>Solution</h4>
+<p>Entering the given values for $\kBmag$, $\kv$, and <em>$l$</em> gives</p>
+$$\begin{aligned}\kemfhall &= \kBmag l \kv = (0.100\ \text{T})(4.00 \times 10^{-3}\ \text{m})(0.200\ \text{m/s})\\ &= 80.0\ \mu\text{V}.\end{aligned}$$
+<h4>Discussion</h4>
+<p>This is the average voltage output. Instantaneous voltage varies with pulsating blood flow. The voltage is small in this type of measurement. $\kemfhall$ is particularly difficult to measure, because there are voltages associated with heart action (ECG voltages) that are on the order of millivolts. In practice, this difficulty is overcome by applying an AC magnetic field, so that the Hall emf is AC with the same frequency. An amplifier can be very selective in picking out only the appropriate frequency, eliminating signals and noise at other frequencies.</p>
+</div>
+</section>

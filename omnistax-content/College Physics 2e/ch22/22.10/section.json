@@ -1,0 +1,293 @@
+{
+ "id": "22.10",
+ "module": "m42386",
+ "chapter": "22",
+ "title": "Magnetic Force between Two Parallel Conductors",
+ "short": "Force between Two Parallel Conductors",
+ "lead": "Two things this chapter has already settled are enough to say what two parallel wires do to each other: a current makes a magnetic field that circles it, and a current lying in a magnetic field feels a force. Putting the one into the other gives the force per unit length between two long parallel currents, the permeability of free space times the two currents, divided by two pi times the distance between them. The direction follows from the two right hand rules, and it is the reverse of what you will expect if you remember that like charges repel: currents running the same way pull together, and currents running opposite ways push apart. Because the current in an electric arc is a great many parallel currents, that same attraction squeezes the arc into a narrower tube, which is the pinch effect, and in a large circuit breaker it can concentrate the arc and burn holes in the plates that are trying to interrupt it. The same force, measured between two conductors, is what the ampere itself is defined by.",
+ "objectives": [
+  "Describe the effects of the magnetic force between two conductors.",
+  "Calculate the force between two parallel conductors."
+ ],
+ "summary_html": "<ul><li>The force between two parallel currents $\\kIcurone$ and $\\kIcurtwo$, separated by a distance $\\kr$, has a magnitude per unit length given by $\\frac{\\kF}{l} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr}.$</li><li>The force is attractive if the currents are in the same direction, repulsive if they are in opposite directions.</li></ul>",
+ "notes": "The four problems the book leaves unkeyed are left out: the current in a jumper cable given the force per meter between its wires, the separation of the wires that supply a commuter train’s motor and its headlight, the force on a rectangular loop lying beside a long straight wire, and the four parallel wires at the corners of a square. Nothing else in the module is left out: its one drawing is redrawn as an interactive figure with the book’s own image beside it, the boxed note The Ampere is kept where the book stands it, and the three drawings the kept exercises refer to travel on their cards. The module prints no Check Your Understanding box and no PhET link.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. The section’s six conceptual questions carry no key, so their suggested approaches are AI-written and marked as such, as is the approach to the second AP test prep item, which the book prints with no options and no answer. Four problems have no keyed answer and are left out: the jumper cable, the two wires of a commuter train, the rectangular loop beside a long straight wire, and the four wires at the corners of a square. The book’s own drawings travel on the cards of the exercises that refer to them, the two loops riding on both of the questions that use them. No exercise is held here for a later section and none arrives from an earlier one. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-parallel-wires",
+   "kind": "sim",
+   "number": "22.40",
+   "originals": ["/media/ch22/Figure_23_10_01a.jpg"],
+   "original_caption": "(a) The magnetic field produced by a long straight conductor is perpendicular to a parallel conductor, as indicated by RHR-2. (b) A view from above of the two wires shown in (a), with one magnetic field line shown for each wire. RHR-1 shows that the force between the parallel conductors is attractive when the currents are in the same direction. A similar analysis shows that the force is repulsive between currents in opposite directions.",
+   "widths": [350],
+   "draws": ["magnetic-field", "current", "force", "position"]
+  },
+  {
+   "id": "sim-pinch-effect",
+   "kind": "sim",
+   "draws": ["current", "force"]
+  },
+  {
+   "id": "sim-current-balance",
+   "kind": "sim",
+   "draws": ["current", "force", "position"]
+  }
+ ],
+ "coverage": [
+  {"span": "force-between-two-wires", "concept": "force-between-parallel-currents", "verb": "introduces"},
+  {"span": "force-between-two-wires", "concept": "attraction-and-repulsion-of-currents", "verb": "introduces"},
+  {"span": "force-between-two-wires", "concept": "field-of-a-long-straight-wire", "verb": "uses"},
+  {"span": "force-between-two-wires", "concept": "magnetic-force-on-a-current-carrying-wire", "verb": "uses"},
+  {"span": "force-between-two-wires", "concept": "force-per-unit-length-on-a-wire", "verb": "uses"},
+  {"span": "force-between-two-wires", "concept": "right-hand-rule-2", "verb": "uses"},
+  {"span": "force-between-two-wires", "concept": "direction-of-force-on-a-current", "verb": "uses"},
+  {"span": "force-between-two-wires", "concept": "newtons-third-law", "verb": "uses"},
+  {"span": "the-pinch-effect", "concept": "pinch-effect", "verb": "introduces"},
+  {"span": "the-pinch-effect", "concept": "force-between-parallel-currents", "verb": "reinforces"},
+  {"span": "the-pinch-effect", "concept": "attraction-and-repulsion-of-currents", "verb": "reinforces"},
+  {"span": "defining-the-ampere", "concept": "definition-of-the-ampere", "verb": "introduces"},
+  {"span": "defining-the-ampere", "concept": "permeability-of-free-space", "verb": "uses"},
+  {"span": "defining-the-ampere", "concept": "force-between-parallel-currents", "verb": "reinforces"}
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2228629",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "force-between-two-wires",
+   "prompt": "Is the force attractive or repulsive between the hot and neutral lines hung from power poles? Why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It is repulsive. The hot line carries the current out toward the houses and the neutral line carries the same current back again, so at every instant the two currents in a pair of lines on one pole are running in opposite directions. Currents in opposite directions push apart, and the two lines are therefore pushed away from each other rather than drawn together. The force is small for the currents an ordinary street draws and the lines hang well apart, so nothing comes of it in practice, but its sense is worth noticing: a pair of conductors carrying a current out and back is never in danger of being pulled into contact by its own magnetic force."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2334083",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "force-between-two-wires",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_03a.jpg",
+    "alt": "Diagram showing three wires parallel to each other and in the same plane. The currents in wire 1 on the left side of the diagram and wire 3 on the right side of the diagram run opposite each other: I 1 runs form the top right to the lower left; I 3 runs from the lower left to the top right. Wire 2 is between the two, slightly closer to wire 3 than to wire 1.",
+    "caption": "Three parallel coplanar wires with currents in the outer two in opposite directions."
+   },
+   "prompt": "If you have three parallel wires in the same plane, as in the figure below, with currents in the outer two running in opposite directions, is it possible for the middle wire to be repelled by both? Attracted by both? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Neither is possible. The middle wire carries its current one way or the other, and whichever way that is, it runs the same way as one of the outer currents and the opposite way to the other, because the outer two are opposite to each other. So the middle wire is attracted by one outer wire and repelled by the other, and there is no setting of the currents that makes both forces pulls or both pushes. What is worth noticing is that the two forces do not oppose each other. The wire that attracts the middle one pulls it toward that side, and the wire that repels it pushes it away from the other side, which is the same side; the two forces point the same way and add. The middle wire is therefore driven toward whichever outer wire carries its current the same way, and no position between the two outer wires makes the net force on it vanish."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2521716",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "force-between-two-wires",
+   "prompt": "Suppose two long straight wires run perpendicular to one another without touching. Does one exert a net force on the other? If so, what is its direction? Does one exert a net torque on the other? If so, what is its direction? Justify your responses by using the right hand rules.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "There is no net force, but there is a net torque. Take the first wire to run east and west and the second to run north and south, a little above it. The field of the first wire circles it, so at points on the second wire north of the crossing the field points one way across that wire, and at points south of the crossing it points the other way. Apply RHR-1 at each of those points with the thumb along the current in the second wire: the piece to the north is pushed one way along the first wire’s direction and the piece to the south is pushed the opposite way, by an equal amount at equal distances from the crossing. Adding the pushes over the whole length gives nothing, so there is no net force. Adding their moments about the line that runs perpendicular to both wires does not give nothing, because the two pushes are in opposite directions and act on opposite sides of that line: they make a couple. The torque is about the common perpendicular, and it turns the second wire toward lying parallel to the first with the two currents running the same way, which is the arrangement in which the two wires attract."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1893895",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "force-between-two-wires",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_04a.jpg",
+    "alt": "Diagram showing two current-carrying loops. The planes of the loops are parallel and horizontal, one above the other. In both loops, the current runs counterclockwise.",
+    "caption": "Two loops of wire carrying currents can exert forces and torques on one another."
+   },
+   "prompt": "Use the right hand rules to show that the force between the two loops in the figure below is attractive if the currents are in the same direction and repulsive if they are in opposite directions. Is this consistent with like poles of the loops repelling and unlike poles of the loops attracting? Draw sketches to justify your answers.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A sketch of the two loops one above the other, with a short piece of the upper loop marked and the piece of the lower loop directly beneath it marked as well, shows it in one step. Those two pieces are short parallel currents, and when both loops carry their current the same way round the two run in the same direction, so by this section’s rule they are pulled together. The same is true of every such pair all the way round the loops, so the loops attract. Reverse the current in one loop and every pair becomes a pair of opposite currents, every pair pushes apart, and the loops repel. It agrees with what the loops do as magnets. RHR-2 applied to a loop puts its north pole on the face from which the current is seen to run counterclockwise, so when both loops circulate the same way their north poles point the same way, and the south face of the upper loop is turned toward the north face of the lower one. Unlike poles face each other, which is attraction. Reverse one current and two like faces meet, which is repulsion."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1555849",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "force-between-two-wires",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_04a.jpg",
+    "alt": "Diagram showing two current-carrying loops. The planes of the loops are parallel and horizontal, one above the other. In both loops, the current runs counterclockwise.",
+    "caption": "Two loops of wire carrying currents can exert forces and torques on one another."
+   },
+   "prompt": "If one of the loops in the figure below is tilted slightly relative to the other and their currents are in the same direction, what are the directions of the torques they exert on each other? Does this imply that the poles of the bar magnet-like fields they create will line up with each other if the loops are allowed to rotate?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each loop sits in the field of the other, and a current loop in a magnetic field feels a torque that turns it until its own field runs the same way as the field it sits in. Tilt the upper loop a little and the lower loop’s field no longer runs along the upper loop’s axis; the torque on the upper loop is about the line where the two planes would meet, and it turns the upper loop back toward the plane of the lower one. The lower loop feels a torque about the same line and in the opposite sense, as the third law requires, and it turns toward the plane of the upper one. So yes: if the loops were free to rotate they would turn until their axes were parallel and their fields ran the same way through both of them, which puts the north face of one against the south face of the other. It is the same thing two bar magnets do when they are free to swing, and for the same reason."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1798773",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {"at": "end"},
+   "cite": "defining-the-ampere",
+   "prompt": "Electric field lines can be shielded by the Faraday cage effect. Can we have magnetic shielding? Can we have gravitational shielding?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "There is a kind of magnetic shielding, although it does not work the way a Faraday cage does. A Faraday cage works because a conductor holds charges that are free to move, and they move until the field inside the cage is zero. There is no magnetic charge to move in the same way, so that trick is not available. What can be done is to surround the space with a material through which field lines pass far more readily than through air, such as soft iron or mu-metal: nearly all of the lines take the easy path round the enclosure and very few cross the space inside it. It is a diversion rather than a cancellation and it is never complete, but it is good enough that sensitive instruments are routinely housed in such shields. Gravitational shielding is another matter. Mass comes with one sign only, so there is no arrangement of matter whose attraction cancels the attraction of everything outside it, and no material offers gravity an easier path than empty space does. Nothing that screens gravity has ever been found, and nothing in what is known of gravity suggests that anything could."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1745122",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "sim-parallel-wires",
+   "prompt": "(a) The hot and neutral wires supplying DC power to a light-rail commuter train carry 800 A and are separated by 75.0 cm. What is the magnitude and direction of the force between 50.0 m of these wires? (b) Discuss the practical consequences of this force, if any.",
+   "answer": {
+    "type": "number",
+    "value": 8.53,
+    "unit": "N",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Work out the force per unit length first, then multiply by the 50.0 m of wire the question asks about. The hot and neutral wires carry the current out and back, so the currents run in opposite directions.",
+    "solution": "(a) 8.53 N, repulsive\n(b) This force is repulsive and therefore there is never a risk that the two wires will touch and short circuit."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2007732",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "sim-parallel-wires",
+   "prompt": "A 2.50-m segment of wire supplying current to the motor of a submerged submarine carries 1000 A and feels a 4.00-N repulsive force from a parallel wire 5.00 cm away. What is the direction and magnitude of the current in the other wire?",
+   "answer": {
+    "type": "number",
+    "value": 400,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "Divide the 4.00 N by the 2.50 m to get the force on every meter, then solve the force per unit length for the one current that is not given. The force is repulsive, which settles the direction.",
+    "solution": "400 A in the opposite direction"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2099909",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "sim-parallel-wires",
+   "prompt": "An AC appliance cord has its hot and neutral wires separated by 3.00 mm and carries a 5.00-A current. (a) What is the average force per meter between the wires in the cord? (b) What is the maximum force per meter between the wires? (c) Are the forces attractive or repulsive? (d) Do appliance cords need any special design features to compensate for these forces?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "(a)", "value": 0.00167, "unit": "N/m", "hint": "Put both currents equal to the 5.00 A the cord carries and the separation at 3.00 mm, which is 0.00300 m."},
+     {"part": "(b)", "value": 0.00333, "unit": "N/m", "hint": "The 5.00 A is an rms current, so the peak current is larger by the square root of two, and the force goes as the square of the current."}
+    ],
+    "solution": "(a) $1.67\\times 10^{-3}\\;\\text{N/m}$\n(b) $3.33\\times 10^{-3}\\;\\text{N/m}$\n(c) Repulsive\n(d) No, these are very small forces"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2009199",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "sim-parallel-wires",
+   "figure": {
+    "src": "/media/ch22/Figure_23_11_10a-c140.jpg",
+    "alt": "Figure a shows the cross sections of three wires that are parallel to each other and arranged in an equilateral triangle. The bottom left wire has current of ten point zero amps into the page. The bottom right wire has a current of twenty point zero amps also into the page. The wire at the top of the triangle has current five point zero amps out of the page. The triangle that the wires make with each other is ten point zero centimeters on each side. Figure b shows four parallel wires arranged in a square that is twenty point zero centimeters on a side. The top two wires have current of ten point zero amps out of the page. The bottom two wires have current of five point zero amps into the page.",
+    "caption": ""
+   },
+   "prompt": "Find the direction and magnitude of the force that each wire experiences in part (a) of the figure below, using vector addition.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) Top wire: 2.65 × 10⁻⁴ N/m, 10.9° to left of up\n(b) Lower left wire: 3.61 × 10⁻⁴ N/m, 13.9° down from right\n(c) Lower right wire: 3.46 × 10⁻⁴ N/m, 30.0° down from left"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1555084",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "sim-parallel-wires",
+   "prompt": "Two parallel wires carry equal currents in the same direction and are separated by a small distance. What is the direction of the magnetic force exerted by the two wires on each other?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "No force since the wires are parallel.",
+     "No force since the currents are in the same direction.",
+     "The force is attractive.",
+     "The force is repulsive."
+    ],
+    "correct": 2,
+    "hint": "Follow the two right hand rules round. RHR-2 gives the field the first wire makes where the second one stands, and RHR-1 gives the force that field puts on the second current.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3298204",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "force-between-two-wires",
+   "prompt": "A wire along the <em>y</em>-axis carries current in the +<em>y</em>-direction. An experimenter would like to arrange a second wire parallel to the first wire and crossing the <em>x</em>-axis at the coordinate $x = 2.0\\;\\text{m}$ so that the total magnetic field at the coordinate $x = 1.0\\;\\text{m}$ is zero. In what direction must the current flow in the second wire, assuming it is equal in magnitude to the current in the first wire? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The current in the second wire must run in the same direction as the first, the $+y$ direction. The point at $x = 1.0\\;\\text{m}$ lies one meter from each wire, so the two fields there are equal in size whenever the two currents are, and all that is left to arrange is that they point opposite ways. Take the first wire, on the $y$-axis, and apply RHR-2 with the thumb along its current: the fingers curl so that at a point on the $+x$ side of it the field points in the $-z$ direction. Now go to the second wire, at $x = 2.0\\;\\text{m}$. The point of interest lies on its $-x$ side, so a current running in the $+y$ direction there gives a field in the $+z$ direction at that point, which is exactly opposite to the first. The two cancel and the total field is zero. The result is easier to remember than to derive: midway between two equal currents running the same way, the two fields are opposite and cancel, which is why the region between two such wires is the quiet one."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "cq1", "concept": "attraction-and-repulsion-of-currents"},
+  {"exercise": "cq1", "concept": "force-between-parallel-currents", "weight": 2, "weights_by": "ai"},
+  {"exercise": "cq2", "concept": "attraction-and-repulsion-of-currents"},
+  {"exercise": "cq2", "concept": "force-between-parallel-currents", "weight": 3, "weights_by": "ai"},
+  {"exercise": "cq3", "concept": "attraction-and-repulsion-of-currents"},
+  {"exercise": "cq3", "concept": "right-hand-rule-2", "weight": 3, "weights_by": "ai"},
+  {"exercise": "cq3", "concept": "direction-of-force-on-a-current", "weight": 3, "weights_by": "ai"},
+  {"exercise": "cq4", "concept": "attraction-and-repulsion-of-currents"},
+  {"exercise": "cq4", "concept": "field-at-the-centre-of-a-loop", "weight": 3, "weights_by": "ai"},
+  {"exercise": "cq4", "concept": "right-hand-rule-2", "weight": 2, "weights_by": "ai"},
+  {"exercise": "cq5", "concept": "torque-on-a-current-loop"},
+  {"exercise": "cq5", "concept": "attraction-and-repulsion-of-currents", "weight": 3, "weights_by": "ai"},
+  {"exercise": "cq6", "concept": "magnetic-field"},
+  {"exercise": "cq6", "concept": "ferromagnetic-materials", "weight": 3, "weights_by": "ai"},
+  {"exercise": "p1", "concept": "force-between-parallel-currents"},
+  {"exercise": "p1", "concept": "attraction-and-repulsion-of-currents", "weight": 2, "weights_by": "ai"},
+  {"exercise": "p3", "concept": "force-between-parallel-currents"},
+  {"exercise": "p3", "concept": "attraction-and-repulsion-of-currents", "weight": 2, "weights_by": "ai"},
+  {"exercise": "p5", "concept": "force-between-parallel-currents"},
+  {"exercise": "p5", "concept": "attraction-and-repulsion-of-currents", "weight": 2, "weights_by": "ai"},
+  {"exercise": "p7", "concept": "force-between-parallel-currents"},
+  {"exercise": "p7", "concept": "attraction-and-repulsion-of-currents", "weight": 3, "weights_by": "ai"},
+  {"exercise": "ap1", "concept": "attraction-and-repulsion-of-currents"},
+  {"exercise": "ap2", "concept": "field-of-a-long-straight-wire"},
+  {"exercise": "ap2", "concept": "right-hand-rule-2", "weight": 3, "weights_by": "ai"}
+ ]
+}

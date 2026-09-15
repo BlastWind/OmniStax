@@ -40,6 +40,15 @@ symbol on that page is ink, and the page's plan lists what it binds.
 | `viscosity` | Viscosity | Chapter 12 |
 | `entropy` | Entropy and its changes | Chapter 15 |
 | `temperature` | Temperature on any scale, a temperature change, an initial, final, critical, hot-reservoir or cold-reservoir temperature | Chapter 13 |
+| `charge` | Electric charge, the charge on a body or a carrier, the elementary charge | Chapter 18 |
+| `electric-field` | The electric field and its components, field lines and arrows | Chapter 18 |
+| `voltage` | Electric potential, a potential difference, an emf, the Hall emf | Chapter 19 |
+| `capacitance` | Capacitance, single or combined | Chapter 19 |
+| `current` | Electric current, its rms and peak values, a drift's current | Chapter 20 |
+| `resistance` | Resistance, and the reactances and impedance that stand where it stands in Ohm's law | Chapter 20 |
+| `magnetic-field` | The magnetic field strength, its lines and arrows, an amplitude | Chapter 22 |
+| `magnetic-flux` | Magnetic flux and its change | Chapter 23 |
+| `inductance` | Self and mutual inductance | Chapter 23 |
 
 Mass, length, angle, a count, a revolution, a percent and every
 dimensionless ratio — a coefficient of friction, a mechanical advantage, an

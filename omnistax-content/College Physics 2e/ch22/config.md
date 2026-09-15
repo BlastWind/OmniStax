@@ -20,11 +20,11 @@ marked.
 | Sub-concept headers | 22.2 (Ferromagnets, Electromagnets, Current: The Source of All Magnetism), 22.4 (Right Hand Rule 1), 22.9 (Magnetic Field Created by a Long Straight Current-Carrying Wire: Right Hand Rule 2, Ampere's Law and Others, Magnetic Field Produced by a Current-Carrying Circular Loop, Magnetic Field Produced by a Current-Carrying Solenoid) and 22.11 (Mass Spectrometry, Cathode Ray Tubes—CRTs—and the Like, Magnetic Resonance Imaging, Other Medical Uses of Magnetic Fields) print headers of their own and those are kept as the book writes them; 22.1, 22.3, 22.5, 22.6, 22.7, 22.8 and 22.10 print none, so their headers are the agent's |
 | Figures | a sim per idea or result the section introduces; every diagram replaced by a sim with the book's image kept as its original; a photograph kept where the text points at it or it shows the thing the passage is about, dropped where it is decoration; each listed in the plan (rule 14). The chapter's numbered figures run 22.1 to 22.42, the book's numbers, although the bundle names the files `Figure_23_…` from the AP edition |
 | Photographs kept | four: the aurora over Bear Lake that opens the chapter (Figure 22.1, kept by rule 21), the assortment of magnets that is the evidence for the section's first claim (22.3), the MRI machine the passage points at (22.9) and the Fermilab accelerator whose orange magnets the passage names (22.24). The iPods of the introduction (22.2) are dropped as decoration and named in the introduction's `notes`. The iron filings of 22.10 are a photograph and are kept, since a drawing of filings would be a worse witness than the photograph of them; a section agent who folds them into the field engine must keep the photograph as one of the row's `originals`. The tokamak of 22.25 is a photograph and a diagram under one number: the diagram becomes the figure and the photograph stays as an `original` |
-| Folds | judged per section. The cases are 22.4's Figures 22.16 and 22.17, one vector trio with the book's glass rod as a state of it; 22.9's Figures 22.37, 22.38 and 22.39, one field engine with a choice of straight wire, loop or solenoid, which is the chapter's strongest fold; 22.8's Figures 22.33, 22.34 and 22.35, one turning motor whose four top views are snap-to-view buttons and whose brushes are a choice; 22.5's Figures 22.20, 22.21, 22.22 and 22.23, which are one story about a charge spiralling along a field line and may fold in two or three, the bubble chamber (22.18) and the circular motion (22.19) standing as one radius engine of their own; and 22.10's Figure 22.40, whose two panels are one number with two originals, not a fold. Sub-figures under one number, (a) and (b), are never folds |
+| Folds | judged per section. The cases are 22.4's Figures 22.16 and 22.17, one vector trio with the book's glass rod as a state of it; 22.9's Figures 22.37, 22.38 and 22.39, one field engine with a choice of straight wire, loop or solenoid, which is the chapter's strongest fold; 22.8's Figures 22.33, 22.34 and 22.35, one turning motor whose four top views are snap-to-view buttons and whose brushes are a choice; 22.5's Figures 22.20, 22.21, 22.22 and 22.23, which are one story about a charge spiralling along a field line and may fold in two or three, the bubble chamber (22.18) and the circular motion (22.19) standing as one radius engine of their own; and 22.10's Figure 22.40, which is one number and not a fold, and whose two panels turn out to ship as a single image file, so the row carries one original and not two. Sub-figures under one number, (a) and (b), are never folds |
 | Sim sliders | whatever is interesting and variable in the idea: the speed of a charge and the angle its velocity makes with the field, the field strength, the sign and size of the charge, the mass of an ion and the radius of its circle, the width of a Hall conductor and the drift speed across it, the current in a wire and its length in the field, the number of turns and the area of a loop and the angle it makes with the field, the turns per metre of a solenoid, the distance from a wire, the separation of two wires and the direction of each current. A choice, never a slider, for the sign of the charge carriers, for the arrangement (straight wire, loop, solenoid), for which way a current runs, for the brushes on or off, and for the material of a magnetized bar (rule 26.1) |
 | Motion | decided per figure (rule 14). Most of the chapter is still: the vector trio, the field a current makes, the Hall slab at balance, the force on a wire, the two parallel wires and the meter each answer their sliders, register no cycle and get no transport. Five ideas have a clock in them and may move, and the plan line must say so and why: the motor of 22.8, whose loop turns and whose brushes reverse the current twice a revolution; the charge circling in a uniform field in 22.5, whose period is the cycle; the helix walking into a converging field and turning back, the magnetic mirror of 22.5; the domains of 22.2 growing and swinging into line as the external field rises, which is a process in time and not a state; and the ions of 22.11 separating along two arcs in the mass spectrometer. A compass needle settling onto a field line is a state that answers its slider, not a clock |
 | 3D | three full 3D scenes, more than any chapter of the book so far, because this chapter's lessons are arrangements in space and the book draws them in perspective (rule 28.3): 22.4's vector trio, where the force is perpendicular to a plane and no flat drawing can say so; 22.9's wire, loop and solenoid, where the field is a shape in space and the solenoid's uniform interior is the point; and 22.8's motor, the chapter's one moving 3D scene. Each carries the buttons rule 26.2 asks for and each plan line states the bound on the orbit and the reason. Locked views (rule 28.2) for the figures the book prints in perspective that do not turn: the Hall slab of 22.6, the wire between the poles and the MHD duct of 22.7, the two parallel wires of 22.10, the electromagnet on its core in 22.2 and the toroid of 22.25. Everything else is flat, the graphs and maps and cross-sections included (new) |
-| Figures that serve exercises | the second of the book's two ways, as Chapters 4, 9, 12, 15 and 19 used it: an image an exercise refers to travels on the `figure` field of that exercise's card. This chapter has 27 of them and most belong to keyed direction problems that are kept, so most are copied: 22.4's three, 22.7's four, 22.10's four and 22.11's six. 22.2's eight arrow panels are not copied, since the AP item they serve carries their content in its prompt as a table described in words |
+| Figures that serve exercises | the second of the book's two ways, as Chapters 4, 9, 12, 15 and 19 used it: an image an exercise refers to travels on the `figure` field of that exercise's card. The chapter prints 27 of them, and the ones that belong to problems the book keys are copied: 14 images on 18 cards, 22.4's three, 22.5's two, 22.7's two, 22.10's three and 22.11's five, with one image serving a card in 22.10 and another in 22.11 and one image of 22.5 serving two of its questions. The rest belong to problems the book leaves unkeyed and go out with them. 22.2's eight arrow panels are not copied, since the AP item they serve carries their content in its prompt as a table described in words |
 | Colour coding | one new type, `magnetic-field` (T), because every figure of the chapter draws it, its sliders carry it and its readouts state it; `current` and the emf are Chapter 20's and 21's, staged in the same wave and used by name, never restaged; `charge`, `electric-field` and `voltage` are Chapters 18's and 19's; the force on a charge or a wire is Chapter 4's `force` and the torque on a loop is Chapter 9's `torque`; the permeability of free space $\mu_0$, the area $A$, the number of turns $N$, the turns per metre $n$, the mass $m$, the width $l$ of a conductor and the angle $\theta$ stay untyped and in ink; the radius of a charge's circle and the distance to a wire are positions on the rows the book holds. Symbol rows added are listed under "Symbols" below |
 | Inline exercises | none: no module of this chapter prints a Check Your Understanding box |
 | Exercises tab | end-of-module problems, conceptual questions, AP test prep |
@@ -32,8 +32,8 @@ marked.
 | AP test prep | included; the chapter's 16 AP items sit in 22.2, 22.4, 22.5, 22.6, 22.9 and 22.10. An unkeyed AP item is kept as an open item with its options as the book prints them and an AI-marked suggested approach, never as a graded choice |
 | PhET interactive links | dropped (Magnets and Electromagnets in 22.2, Generator in 22.9, Magnet and Compass in 22.11) and named in `notes`, as is the introduction's link to the publisher's video trailer |
 | Cross-references | plain text throughout, as every other page of the book writes them: a reference to another section or another chapter (Current, Oscillatory Motion and Waves, More Applications of Magnetism) is the book's words with no link, and the app links "Figure 22.19" and an "Example 22.3" that sits on the same page by itself |
-| Answers to book problems | book answer key only; never generated; the 76 unkeyed problems are left out and named in the notes, among them 22.11's two Construct Your Own Problem items and the four sketching and drawing problems of 22.7, 22.8, 22.9 and 22.11 |
-| Suggested approaches for open questions | generated, marked AI: all 26 conceptual questions of the chapter and the 8 unkeyed AP items |
+| Answers to book problems | book answer key only; never generated; the chapter prints 92 problems and keys 48 of them, so the 44 unkeyed ones are left out, together with one keyed problem of 22.5 that asks for a radius in a field the book never states, 45 in all, each named in its section's notes; among them are 22.11's two Construct Your Own Problem items and the two sketching and drawing problems, which are 22.7's and 22.8's (22.9 prints no problems at all, so the chapter has two of these and not four) |
+| Suggested approaches for open questions | generated, marked AI: all 32 conceptual questions of the chapter (31 typed in the CNXML and 22.9's, which is classed by the header it sits under) and the 8 unkeyed AP items of the 16 |
 | Generated questions | none; a node with no book exercise of its own is noted in the plan, no question generated |
 | Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 50 nodes written into `book.json` before the sections were built (3 for 22.1, 5 for 22.2, 3 for 22.3, 5 for 22.4, 6 for 22.5, 4 for 22.6, 4 for 22.7, 5 for 22.8, 6 for 22.9, 4 for 22.10, 5 for 22.11) with edges into Chapters 2, 4, 6, 7, 9, 13, 18 and 19 and within the chapter |
 | Formulas | `ch22/chapter.json`: the stated and named results important (the magnetic force on a moving charge, the field strength solved from it, the tesla's identity, the radius of curvature, the Hall emf, the force on a current-carrying wire, the force per unit length, the torque on a loop, the field of a long straight wire, the field at the centre of a loop and of a coil of $N$ loops, the field inside a solenoid, the force per unit length between two parallel currents and the ampere's definition, and the velocity selector) and the worked substitution steps not; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass writes them from the section plans |
@@ -94,3 +94,73 @@ Rows used as they stand: `F` (`\kF`), `v` (`\kv`), `q` (`\kq`), `q_e`
 (`\kr`), `τ` (`\ktau`), `E_field` (`\kEf`), `V_volt` (`\kV`), and Chapter 20's
 and 21's `I_curr`, `I_onecurr` and `I_twocurr` by the keys their
 `book-rows.json` staged.
+
+## What the build changed (chapter pass, 2026-09-15)
+
+The eleven sections were built in one wave and the table above is corrected
+where a line of it turned out to be wrong; what follows says what changed and
+why, so that the record and the pages agree.
+
+- **Counts.** The chapter prints 92 problems, 32 conceptual questions and 16
+  AP test prep items. The config had 26 conceptual questions and 76 unkeyed
+  problems; the true figures are 32 and 44. Forty-seven problems are kept,
+  every one of them with the book's own key, and 45 are left out, 44 for want
+  of a key and one, 22.5's radius of an electron's circle, because the field it
+  needs is the answer to a problem the book never keys. The line on answers and
+  the line on suggested approaches now carry those numbers.
+- **The Problems line.** 22.9 prints no problems at all, so the chapter has two
+  sketching and drawing problems, 22.7's and 22.8's, and not the four the
+  config named.
+- **Folds.** Seven folds were built, covering seventeen of the chapter's
+  numbers. The config named four cases and the sections took them all: 22.4's
+  22.16 + 22.17, 22.8's 22.33 + 22.34 + 22.35 and 22.9's 22.37 + 22.38 + 22.39
+  as they stood, and 22.5's four figures in two pairs, 22.20 + 22.21 for the
+  spiral and the mirror and 22.22 + 22.23 for the cosmic ray and the belts,
+  with 22.18 + 22.19 as the radius engine the config set beside them. One fold
+  the config did not name was taken: 22.7's 22.31 + 22.32, the laboratory pump
+  and the submarine duct, which are the same force on the same fluid drawn
+  twice, so the one drawing carries both with the duct as a choice.
+- **One image, two panels.** Two of the book's numbers ship as a single file
+  rather than as one file per panel: Figure 22.38, which rides inside 22.9's
+  fold, and Figure 22.40, which is 22.10's own number. Each row therefore
+  carries one original where the panel count would have suggested two.
+- **The two AP items with keys commented out.** 22.4's fs-id2770151 and 22.6's
+  fs-id2336649 carry a worked solution in the CNXML that the publisher left
+  commented out, so the book prints neither. Both are kept unkeyed, as an open
+  item with an AI-marked approach, since a key the book does not print is not
+  the book's answer. 22.6's commented solution reads 0.13 V from the whole
+  45 µT of the Earth's field; the approach takes the component perpendicular to
+  the flow and reaches 0.11 V, and `exploration.md` records the difference.
+  22.4's approach agrees with what the publisher commented out.
+- **Images copied.** Fourteen of the book's twenty-seven exercise images are
+  copied and ride on eighteen cards; the rest belong to problems the book
+  leaves unkeyed and go out with them. Every file in `media/ch22/` is reached
+  from a page: 55 files, none orphaned.
+- **Types bound beyond `COLOR.md`'s list.** Three pages bind a type the colour
+  plan did not give them, each a type the book already declares: `temperature`
+  in 22.2, for the slider that carries the iron past its Curie temperature;
+  `force` in 22.6, where the section is the balance of two forces and both are
+  drawn; and `force` and `charge` in 22.11, for the velocity selector's two
+  opposed forces and the charge that cancels between them. `ch22/COLOR.md` now
+  lists the bindings as built.
+- **Two hues that sit close, for the figure pass.** `force` and `current` come
+  out near one another in the app's scheme, and 22.8's motor draws both on the
+  same loop: the current runs round the wire and the force stands on each of
+  its vertical sides. 22.7 and 22.10 draw the same pair. No hue is invented
+  here, since the scheme is the app's own matter and the list of pairs it holds
+  apart (force with pressure, position with velocity and acceleration, energy
+  with temperature and entropy, voltage and current with the electric field and
+  resistance) does not name force with current. It is recorded so that the
+  figure pass can look at the three pages and say whether the pair wants adding
+  to that list.
+- **Motion.** Five of the chapter's thirty-four drawn figures register a cycle,
+  which is what the config's motion line asked for and no more: 22.2's domains,
+  22.5's circling charge and its magnetic mirror, 22.8's motor and 22.11's mass
+  spectrometer. The other twenty-nine answer their controls and carry no
+  transport.
+- **3D.** The three full scenes were built as planned, on 22.4, 22.8 and 22.9,
+  each with the buttons root rule 26.2 asks for, a bounded orbit argued in its
+  plan line and a flat fallback drawn where WebGL is missing. `F.view3d`'s
+  `stub()` carries no `part()`, so each fallback is a flat drawing of the same
+  arrangement rather than a stubbed scene, and 22.4's is a view from above with
+  the force drawn as a dot or a cross.

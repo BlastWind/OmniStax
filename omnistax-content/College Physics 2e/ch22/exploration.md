@@ -315,3 +315,41 @@ own, `time` reads at 4.05 against the white page where the floor is 4.5,
 neighbour rule asks for 60°. No chapter can fix this, since the list of hues
 lives in `omnistax-web/src/lib/colours/palettes.ts`; the scheme wants two more
 hues laid into the order, or the test wants the count it now checks against.
+
+## Errata: what the book gets wrong, gathered by the chapter pass (2026-09-15)
+
+Every one of these is carried as the book writes it, since the book's words and
+the book's key are what the pages print; each is named in the `notes` or the
+`exercise_notes` of the section it sits in, and they are gathered here so that
+the chapter's slips can be read in one place.
+
+- **Example 22.5, the area of the loop.** The worked substitution writes
+  $(0.100\;\text{m}^2)$ for a square loop 10.0 cm on a side, whose area is
+  $0.0100\;\text{m}^2$. The book's own answer, 30.0 N·m, is the answer for
+  $0.0100\;\text{m}^2$, so the slip is in the printed line and not in the
+  result. 22.8 prints the line as the book prints it.
+- **The last problem of 22.8, "Repeat".** It says to repeat
+  `fs-id1615066` with the loop lying flat on the ground, and `fs-id1615066` is
+  not the problem it means. The pointer is kept as printed, and the problem is
+  carried with the prompt the book gives it.
+- **The summary of 22.9, $n$ for $N$.** The section's summary writes the field
+  at the center of a flat coil of $n$ loops where the body of the section
+  writes $N$ loops and reserves $n$ for the turns per unit length of a
+  solenoid. The summary is kept as printed.
+- **22.11's Critical Thinking key, the electron mass.** Two lines of the key
+  print the mass of the electron as $9.11 \times 10^{-11}$ where the value the
+  arithmetic uses is $9.11 \times 10^{-31}$ kg. Kept as printed.
+- **22.9's conceptual question is untyped.** Its `:::exercise` block carries
+  `type=` with no word after it, so it is classed a conceptual question by the
+  header it sits under.
+- **22.9's AP item fs-id2346142 opens on the answer to the item before it.**
+  Its first paragraph is a paragraph of solution belonging to the previous
+  item, printed at the head of this one. It is kept where the book puts it.
+- **Two AP keys commented out of the CNXML.** 22.4's fs-id2770151 and 22.6's
+  fs-id2336649 each carry a worked solution that the publisher has commented
+  out, so neither is printed. Both items are kept unkeyed, with an AI-marked
+  approach, since a solution the book does not print is not the book's answer.
+  22.4's approach agrees with what is commented out. 22.6's does not: the
+  commented solution takes the whole 45 µT of the Earth's field and reaches
+  0.13 V, while the Hall emf asks for the component of the field perpendicular
+  to the flow and to the width, which gives 0.11 V, and the approach says so.

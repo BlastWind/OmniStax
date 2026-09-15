@@ -3883,3 +3883,116 @@ headless pass over all seven pages of the chapter in light and dark, every figur
 at its defaults, at both ends of every slider and at every one of its choices,
 which found no blank canvas, no KaTeX error, no unswept dollar sign and no
 NaN in any readout.
+
+
+### Pass 47 (2026-09-15): Chapter 22, Magnetism, is built and passed
+
+The chapter's introduction and eleven sections are twelve pages, built from the
+modules m42365, m42366, m42368, m42370, m42372, m42375, m42377, m42398, m42380,
+m42382, m42386 and m42388. Thirty-nine figures stand on them: thirty-four drawn
+simulations and five kept photographs, the aurora over Bear Lake that opens the
+chapter, the assortment of magnets that is the evidence for the first claim any
+section of the chapter makes, the MRI machine the passage points at, the iron
+filings that answer a coil and a magnet alike, and the orange magnets of the
+Fermilab ring. Five of the thirty-four move, because their idea has a clock in
+it: the domains of a piece of iron growing and swinging into line as the
+external field rises, the electron going round its circle at a period that has
+no speed in it, the charge spiralling into a converging field until it is turned
+back, the loop of a motor turning while its brushes reverse the current twice a
+revolution, and the two isotopes of oxygen parting along two arcs in a mass
+spectrometer. Seven fold the book's numbers into one live drawing: 22.16 + 22.17
+for the right hand rule, 22.18 + 22.19 for the circle a charge runs, 22.20 +
+22.21 for the spiral and the magnetic mirror, 22.22 + 22.23 for the cosmic ray
+and the belts that trap it, 22.31 + 22.32 for the pump with no moving part,
+22.33 + 22.34 + 22.35 for the motor and 22.37 + 22.38 + 22.39 for one current
+wound three ways. Every number the book prints from 22.1 to 22.42 is drawn or
+kept except 22.2, the iPods of the introduction, which is decoration and is
+named in that page's notes.
+
+Three of the chapter's figures are full 3D scenes, more than any chapter of the
+book has carried before, because three of its lessons are arrangements in space
+that a flat drawing would have to lie about: the vector trio of 22.4, where the
+force leaves the plane the velocity and the field lie in and no flat picture can
+say so; the wire, the loop and the solenoid of 22.9, where the shape of the
+winding is the whole argument and the uniform interior of the solenoid is the
+result; and the motor of 22.8, the chapter's one moving scene, whose four top
+views become snap-to-view buttons and whose brushes become a choice. Each
+carries auto-rotate, its snap-to-view buttons and zoom, each bounds its orbit to
+the views that mean something, and each falls back to a flat drawing where WebGL
+is missing. The fallback was found not to fire in a browser that defines
+`WebGLRenderingContext` and still refuses a context, which left the figure
+blank; all three now ask for a context before they attempt a scene. Everything
+else in the chapter is flat, or, where the book prints it in perspective, drawn
+from a locked view: the Hall slab, the wire between the poles, the duct of the
+magnetohydrodynamic pump, the two parallel wires, the electromagnet on its core
+and the toroid.
+
+The chapter declares one type, `magnetic-field` in teslas, because every figure
+of it draws the field, its sliders carry it and its readouts state it. It stages
+five symbol rows, four of them because the letter the chapter wants belongs to
+another quantity already: the field is `B_mag` because `B` is a position and
+`B_bulk` a bulk modulus, the field of the first of two wires is `B_1mag`, the
+Hall emf is `emf_hall` because the book writes it $\varepsilon$ where Chapter 21
+writes $\mathcal{E}$, and the loop's width is `w_loop` because `w` is a weight;
+the fifth is $\mu_0$, untyped and without a macro, as every constant of this
+book is. The current is Chapter 20's and Chapter 21's, used by name and never
+restaged, and the magnetic force is Chapter 4's force, because a magnetic force
+is a force and wears that hue. Fifty concepts, 151 prerequisite edges, 144
+coverage anchors, thirty-five glossary terms, nineteen variables and
+twenty-three equations, every one of the last two now anchored to the passage
+that introduces it. Ninety-five exercises: forty-seven problems, every one with
+the book's own key, thirty-two conceptual questions and sixteen AP test prep
+items, eight of them keyed as choices and eight kept open with an approach that
+says it is OmniStax's. Forty-five problems are left out, forty-four for want of
+a key and one because the field it asks for is the answer to a problem the book
+never keys, and each is named in its section's notes.
+
+Three things the chapter pass settled and wrote down. The chapter draws three
+kinds of small body and `ch22/COLOR.md` now tells them apart once for all eleven
+pages: a particle the page names wears the element palette, a carrier the page
+does not name wears the charge hue with its sign lettered on it, since what
+carries a current is the very question the Hall effect answers, and two isotopes
+of one element wear the categorical palette, because they would otherwise share
+one colour. The rule that a closed field line carries no arrowhead has gained
+its exception: a magnet has an N and an S to say which way its lines run and a
+current has neither, so every closed line drawn round a current carries its
+sense, by an arrowhead as 22.10 draws it, by a field vector tangent to the line
+as 22.9 draws it, or by a compass standing on it as 22.3 draws it. And three
+pages bind a type the colour plan had not given them, each of them a type the
+book already declares: temperature in 22.2, for the slider that carries the iron
+past its Curie point; force in 22.6, where the section is the balance of two
+forces and both are drawn; and force and charge in 22.11, for the two opposed
+forces of the velocity selector and the charge that cancels between them.
+
+Six of the book's own slips are carried as the book writes them and gathered in
+`ch22/exploration.md`: Example 22.5 writes 0.100 m² for a loop 10.0 cm on a side
+whose area is 0.0100 m², and its own answer is the answer for the smaller
+number; the last problem of 22.8 says to repeat a problem that is not the one it
+means; the summary of 22.9 writes $n$ loops where the body writes $N$; 22.11's
+Critical Thinking key prints the electron mass as 9.11 × 10⁻¹¹; 22.9's
+conceptual question is left untyped in the CNXML and is classed by the header it
+sits under; and 22.9's AP item fs-id2346142 opens with a paragraph that answers
+the item before it. Two more AP items, 22.4's and 22.6's, carry a worked
+solution that the publisher has commented out of the CNXML and so does not
+print; both are kept unkeyed with an approach of OmniStax's, and 22.6's differs
+from the commented answer, which takes the whole of the Earth's field where the
+Hall emf asks for the component perpendicular to the flow.
+
+The pass also corrected `ch22/config.md`, which had counted twenty-six
+conceptual questions where the chapter prints thirty-two and seventy-six unkeyed
+problems where it leaves forty-four, and had named a sketching problem in 22.9,
+which prints no problems at all. A percent sign inside math in one of 22.11's
+answers opened a TeX comment and swallowed the rest of the line, and is now
+escaped. A dozen reader-facing strings named the book or the reader where the
+page should talk about the subject, and as many again were written in British
+spelling; all are corrected. A dot operator typed as a bare Unicode character in
+22.7 is now `\cdot`, as the rest of the book writes it.
+
+Checks: `check:content` over the whole book, with no errors; 426 unit tests, all
+passing, the failure Chapter 21's pass reported having gone with this chapter's
+types; `astro check` clean; a build; and a headless pass over all twelve pages
+of the chapter in light and dark, every figure scrolled into view and drawn,
+which found no blank canvas, no KaTeX error, no console error and no page that
+scrolls sideways, and a transport on exactly the five figures that have a clock
+in them. The three 3D scenes were opened with WebGL and with WebGL refused, and
+each was checked for its buttons, its bounded orbit and its flat fallback.

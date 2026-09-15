@@ -1,0 +1,40 @@
+<section id="torque-on-a-loop">
+<h2>The torque on a current loop</h2>
+<p><strong>Motors</strong> are the most common application of magnetic force on current-carrying wires. Motors have loops of wire in a magnetic field. When current is passed through the loops, the magnetic field exerts torque on the loops, which rotates a shaft. Electrical energy is converted to mechanical work in the process. (See Figure 22.33.)</p>
+<figure class="sim" id="sim-motor" data-figure="22.33 + 22.34 + 22.35" data-original="/media/ch22/Figure_23_08_01a.jpg,/media/ch22/Figure_23_08_02a.jpg,/media/ch22/Figure_23_08_03a.jpg" data-original-width="330,600,400" data-original-caption="(Figure 22.33) Torque on a current loop. A current-carrying loop of wire attached to a vertically rotating shaft feels magnetic forces that produce a clockwise torque as viewed from above. (Figure 22.34) Top views of a current-carrying loop in a magnetic field. (a) The equation for torque is derived using this view. Note that the perpendicular to the loop makes an angle θ with the field that is the same as the angle between w/2 and F. (b) The maximum torque occurs when θ is a right angle and sin θ = 1. (c) Zero (minimum) torque occurs when θ is zero and sin θ = 0. (d) The torque reverses once the loop rotates past θ = 0. (Figure 22.35) (a) As the angular momentum of the coil carries it through θ = 0, the brushes reverse the current to keep the torque clockwise. (b) The coil will rotate continuously in the clockwise direction, with the current reversing each half revolution to maintain the clockwise torque.">
+  <div class="sim-head"><span class="eyebrow">Figure 22.33 + 22.34 + 22.35</span><span>A square loop of wire hangs on a vertical shaft between the poles of a magnet, and the current in it is pushed one way on the side that is coming toward you and the other way on the side that is going away, so the loop turns. Set the current, the field, the number of turns and the size of the loop, and watch the torque rise and fall with the angle as the loop comes round. Turn the brushes off and the loop can no longer get past the position where its face is square to the field: it swings back and forth instead of turning. Stop the motion with the transport and drag the scrubber to reach any angle, and use the view buttons to look down on the loop from above.</span></div>
+</figure>
+<p>Let us examine the force on each segment of the loop in Figure 22.33 to find the torques produced about the axis of the vertical shaft. (This will lead to a useful equation for the torque on the loop.) We take the magnetic field to be uniform over the rectangular loop, which has width $w$ and height $l$. First, we note that the forces on the top and bottom segments are vertical and, therefore, parallel to the shaft, producing no torque. Those vertical forces are equal in magnitude and opposite in direction, so that they also produce no net force on the loop. Figure 22.34 shows views of the loop from above. Torque is defined as $\ktau = r\kF\sin\theta$, where $\kF$ is the force, $r$ is the distance from the pivot that the force is applied, and $\theta$ is the angle between $r$ and $\kF$. As seen in Figure 22.34(a), right hand rule 1 gives the forces on the sides to be equal in magnitude and opposite in direction, so that the net force is again zero. However, each force produces a clockwise torque. Since $r = w/2$, the torque on each vertical segment is $(w/2)\kF\sin\theta$, and the two add to give a total torque.</p>
+$$\ktau = \frac{w}{2}\kF\sin\theta + \frac{w}{2}\kF\sin\theta = w\kF\sin\theta$$
+<p>Now, each vertical segment has a length $l$ that is perpendicular to $\kBmag$, so that the force on each is $\kF = \kIcur l\kBmag$. Entering $\kF$ into the expression for torque yields</p>
+$$\ktau = w\kIcur l\kBmag\sin\theta .$$
+<p>If we have a multiple loop of $N$ turns, we get $N$ times the torque of one loop. Finally, note that the area of the loop is $A = wl$; the expression for the torque becomes</p>
+$$\ktau = N\kIcur A\kBmag\sin\theta .$$
+<p>This is the torque on a current-carrying loop in a uniform magnetic field. This equation can be shown to be valid for a loop of any shape. The loop carries a current $\kIcur$, has $N$ turns, each of area $A$, and the perpendicular to the loop makes an angle $\theta$ with the field $\kBmag$. The net force on the loop is zero.</p>
+<div class="example" id="ex-torque-on-a-loop">
+<h3>Example 22.5 · Calculating Torque on a Current-Carrying Loop in a Strong Magnetic Field</h3>
+<p>Find the maximum torque on a 100-turn square loop of a wire of 10.0 cm on a side that carries 15.0 A of current in a 2.00-T field.</p>
+<h4>Strategy</h4>
+<p>Torque on the loop can be found using $\ktau = N\kIcur A\kBmag\sin\theta$. Maximum torque occurs when $\theta = 90^\circ$ and $\sin\theta = 1$.</p>
+<h4>Solution</h4>
+<p>For $\sin\theta = 1$, the maximum torque is</p>
+$$\ktau_{\text{max}} = N\kIcur A\kBmag .$$
+<p>Entering known values yields</p>
+$$\begin{array}{lll}\ktau_{\text{max}} & = & (100)(15.0\;\text{A})(0.100\;{\text{m}}^{2})(2.00\;\text{T}) \\ & = & 30.0\;\text{N}\cdot\text{m}.\end{array}$$
+<h4>Discussion</h4>
+<p>This torque is large enough to be useful in a motor.</p>
+</div>
+</section>
+
+<section id="keeping-the-coil-turning">
+<h2>Keeping the coil turning</h2>
+<p>The torque found in the preceding example is the maximum. As the coil rotates, the torque decreases to zero at $\theta = 0$. The torque then <em>reverses</em> its direction once the coil rotates past $\theta = 0$. (See Figure 22.34(d).) This means that, unless we do something, the coil will oscillate back and forth about equilibrium at $\theta = 0$. To get the coil to continue rotating in the same direction, we can reverse the current as it passes through $\theta = 0$ with automatic switches called <em>brushes</em>. (See Figure 22.35.)</p>
+</section>
+
+<section id="meters">
+<h2>Meters and galvanometers</h2>
+<p><strong>Meters</strong>, such as those in analog fuel gauges on a car, are another common application of magnetic torque on a current-carrying loop. Figure 22.36 shows that a meter is very similar in construction to a motor. The meter in the figure has its magnets shaped to limit the effect of $\theta$ by making $\kBmag$ perpendicular to the loop over a large angular range. Thus the torque is proportional to $\kIcur$ and not $\theta$. A linear spring exerts a counter-torque that balances the current-produced torque. This makes the needle deflection proportional to $\kIcur$. If an exact proportionality cannot be achieved, the gauge reading can be calibrated. To produce a galvanometer for use in analog voltmeters and ammeters that have a low resistance and respond to small currents, we use a large loop area $A$, high magnetic field $\kBmag$, and low-resistance coils.</p>
+<figure class="sim" id="sim-meter" data-figure="22.36" data-original="/media/ch22/Figure_23_08_04a.jpg" data-original-width="350" data-original-caption="Meters are very similar to motors but only rotate through a part of a revolution. The magnetic poles of this meter are shaped to keep the component of B perpendicular to the loop constant, so that the torque does not depend on θ and the deflection against the return spring is proportional only to the current I.">
+  <div class="sim-head"><span class="eyebrow">Figure 22.36</span><span>The same loop between the same poles, but with a spring on its shaft and a needle on its end, so that it turns only as far as the spring will let it and then stands still. Set the current, the number of turns and the field, and watch the needle take up the deflection at which the spring’s counter-torque balances the magnetic torque. Shape the pole faces and the field stays perpendicular to the loop, so the deflection is proportional to the current and the scale is evenly divided; flatten them and the torque falls away as the coil turns, and the divisions at the top of the scale close up.</span></div>
+</figure>
+</section>
