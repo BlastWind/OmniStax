@@ -1,0 +1,790 @@
+{
+  "id": "20.4",
+  "module": "m42714",
+  "chapter": "20",
+  "title": "Electric Power and Energy",
+  "short": "Power and energy",
+  "lead": "Power is the rate at which energy is used or converted, and in an electric circuit the energy comes from moving charge through a voltage. Since the potential energy a charge carries is qV and the charge per second is the current, the electric power is simply the current times the voltage, which is why a 60-W bulb and a 25-W bulb working from the same voltage cannot have the same resistance. Substituting Ohm's law into that product gives two more expressions, one in the voltage and the resistance and one in the current and the resistance, and although they appear to disagree about what happens when the resistance rises, each of them holds a different quantity fixed and each is the right one to reach for in its own circumstance. The second half of the section is the reader's own electric bill: a device using a power P for a time t uses an energy Pt, the kilowatt-hour is the unit it is billed in, and the fastest way to use less of it is to replace a bulb that makes its light by being hot.",
+  "objectives": [
+    "Calculate the power dissipated by a resistor and power supplied by a power supply.",
+    "Calculate the cost of electricity under various circumstances."
+  ],
+  "summary_html": "<ul><li>Electric power $\\kP$ is the rate (in watts) that energy is supplied by a source or dissipated by a device.</li><li>Three expressions for electrical power are $\\kP = \\kIcur\\kV$, $\\kP = \\kV^{2}/\\kRes$ and $\\kP = \\kIcur^{2}\\kRes$.</li><li>The energy used by a device with a power $\\kP$ over a time $\\kt$ is $\\kE = \\kP\\kt$.</li></ul>",
+  "notes": "Eighteen problems the book leaves without an answer are left out: the truck's starter motor, the calculator's solar cells, the flashlight, the two problems that ask for the units of the volt-ampere and of the ampere-squared ohm, the X-ray tube, the toaster, the headlight in a 6.00-V system, the surgical cauterizer, the thinning filament of an old bulb, the Integrated Concepts problems on the cold vaporizer, the bottle warmer, the Hoover dam generators, the light-rail train, the immersion heater and the hot tub, the second Unreasonable Results problem on transmitting 100 MW at 10.0 kV, and the Construct Your Own Problem item on an immersion heater for a cup of tea. The photographs those problems refer to are left out with them. The first AP test prep item draws its four answers as four small graphs, and since a card carries one image, the four are written out in words exactly as the book draws them and the card keeps the circuit and its energy graph. The module prints no Check Your Understanding box and no link to a PhET simulation.",
+  "ai": {
+    "text": "Claude Opus 5",
+    "figures": "Claude Opus 5"
+  },
+  "built": "2026-09-14",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book's answer key. Eighteen problems have no keyed answer and are left out, among them the Construct Your Own Problem item and one of the two Unreasonable Results items; the section's notes list them. The defibrillator problem the book prints in Current is set here instead, since its second half is read straight off $\\kP = \\kIcur^{2}\\kRes$, which this section states and that one does not, and both sections' notes say so. The first AP item has no answer in the book and is kept as an open item with its four options in words and an AI-marked suggested approach, rather than as a graded choice, as are both conceptual questions.",
+  "figures": [
+    {
+      "id": "fig-bulbs",
+      "kind": "photo",
+      "number": "20.13",
+      "originals": [
+        "/media/ch20/Figure_21_04_01a.jpg"
+      ],
+      "original_caption": "(a) Which of these lightbulbs, the 25-W bulb (upper left) or the 60-W bulb (upper right), has the higher resistance? Which draws more current? Which uses the most energy? Can you tell from the color that the 25-W filament is cooler? Is the brighter bulb a different color and if so why? (credits: Dickbauch, Wikimedia Commons; Greg Westfall, Flickr) (b) This compact fluorescent light (CFL) puts out the same intensity of light as the 60-W bulb, but at 1/4 to 1/10 the input power. (credit: dbgg1979, Flickr)",
+      "widths": [
+        200
+      ]
+    },
+    {
+      "id": "sim-power-in-a-circuit",
+      "kind": "sim",
+      "draws": [
+        "power",
+        "current",
+        "voltage",
+        "resistance"
+      ]
+    },
+    {
+      "id": "sim-cost-of-lighting",
+      "kind": "sim",
+      "draws": [
+        "power",
+        "energy",
+        "time"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "electric-power",
+      "verb": "introduces"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "power-and-resistance",
+      "verb": "introduces"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "power-supplied-equals-dissipated",
+      "verb": "introduces"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "power",
+      "verb": "uses"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "watt",
+      "verb": "uses"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "electric-current",
+      "verb": "uses"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "ampere",
+      "verb": "uses"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "energy-from-potential-difference",
+      "verb": "uses"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "ohms-law",
+      "verb": "uses"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "simple-circuit",
+      "verb": "uses"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "resistance",
+      "verb": "uses"
+    },
+    {
+      "span": "power-in-electric-circuits",
+      "concept": "conservation-of-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "cost-of-electricity",
+      "concept": "electrical-energy-and-cost",
+      "verb": "introduces"
+    },
+    {
+      "span": "cost-of-electricity",
+      "concept": "lighting-efficiency",
+      "verb": "introduces"
+    },
+    {
+      "span": "cost-of-electricity",
+      "concept": "electric-power",
+      "verb": "uses"
+    },
+    {
+      "span": "cost-of-electricity",
+      "concept": "energy-from-power",
+      "verb": "uses"
+    },
+    {
+      "span": "cost-of-electricity",
+      "concept": "cost-of-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "cost-of-electricity",
+      "concept": "efficiency",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-hot-and-cold-power",
+      "concept": "electric-power",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-hot-and-cold-power",
+      "concept": "power-and-resistance",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-hot-and-cold-power",
+      "concept": "ohms-law",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-hot-and-cold-power",
+      "concept": "resistance-and-temperature",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-cfl-cost-effectiveness",
+      "concept": "electrical-energy-and-cost",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-cfl-cost-effectiveness",
+      "concept": "lighting-efficiency",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-cfl-cost-effectiveness",
+      "concept": "electric-power",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id2409786",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cost-of-electricity",
+      "prompt": "Why do incandescent lightbulbs grow dim late in their lives, particularly just before their filaments break?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The filament of an incandescent bulb evaporates slowly all the while it is hot, and the tungsten that leaves it darkens the inside of the glass and thins the wire. A thinner wire has a smaller cross-sectional area, so by $\\kRes = \\rho L/A$ its resistance rises, and the bulb is worked from the fixed voltage of the mains, so by $\\kP = \\kV^{2}/\\kRes$ the power it takes falls. Less power means less light, and the darkened glass lets less of what light there is out. The thinning is fastest where the filament is already thinnest, because that is where it is hottest, so the resistance climbs and the bulb dims most quickly in the last hours before the wire parts. Marked as an AI suggestion, not as a graded answer."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id1401443",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "prompt": "The power dissipated in a resistor is given by $\\kP = \\kV^{2}/\\kRes$, which means power decreases if resistance increases. Yet this power is also given by $\\kP = \\kIcur^{2}\\kRes$, which means power increases if resistance increases. Explain why there is no contradiction here.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The two expressions answer two different questions, because each of them holds a different quantity fixed while the resistance changes. $\\kP = \\kV^{2}/\\kRes$ is the one to use when the voltage across the resistor is fixed, as it is for a lamp on the mains: raising the resistance then lowers the current and the power falls. $\\kP = \\kIcur^{2}\\kRes$ is the one to use when the current through the resistor is fixed, as it is for a transmission line carrying a given current: raising the resistance then raises the voltage across it and the power rises. Both come from $\\kP = \\kIcur\\kV$ with Ohm's law put in, so for any one circuit they give exactly the same number of watts; what differs is which of the two quantities the circuit is keeping constant. Marked as an AI suggestion, not as a graded answer."
+      }
+    },
+    {
+      "id": "ap1",
+      "source_id": "fs-id3270504",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "figure": {
+        "src": "/media/ch20/CNX_APPhysics_20_M4_S05_img.jpg",
+        "alt": "A circuit drawn as a rectangle with a cell on the left side and a jagged-line resistor labeled R on the right side. Beside it is a graph of total energy E dissipated by the resistance against time t, a straight line from the origin reaching E sub 1 at time t sub 1.",
+        "caption": "A resistor R connected to a voltage supply, and the total energy it dissipates as a function of time."
+      },
+      "prompt": "The circuit shown contains a resistor $\\kRes$ connected to a voltage supply. The graph shows the total energy $\\kE$ dissipated by the resistance as a function of time. Which of the following shows the corresponding graph for double resistance, that is, if $\\kRes$ is replaced by $2\\kRes$? (a) A straight line from the origin reaching $2\\kE_1$ at $\\kt_1$. (b) A straight line from the origin reaching $\\kE_1$ at $\\kt_1$. (c) A straight line from the origin reaching $\\kE_1/2$ at $\\kt_1$. (d) A straight line from the origin reaching $\\kE_1/4$ at $\\kt_1$.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The answer is (c). The resistor is across a fixed supply voltage, so the power it dissipates is $\\kP = \\kV^{2}/\\kRes$, and doubling the resistance halves the power. The energy dissipated is $\\kE = \\kP\\kt$, so the graph is still a straight line through the origin, since the power is steady, but its slope is half what it was and at the time $\\kt_1$ it has reached half the energy, $\\kE_1/2$. Marked as an AI suggestion, not as a graded answer."
+      }
+    },
+    {
+      "id": "ap2",
+      "source_id": "fs-id2032037",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "prompt": "What will be the ratio of the resistance of a 120 W, 220 V lamp to that of a 100 W, 110 V lamp?",
+      "answer": {
+        "type": "number",
+        "value": 3.33,
+        "unit": "",
+        "generated_by": "source",
+        "hint": "Each lamp works from a fixed voltage, so take the resistance of each from $\\kRes = \\kV^{2}/\\kP$ and divide one by the other.",
+        "solution": "10:3 or 3.33"
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id3223947",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "prompt": "What is the power of a $1.00 \\times 10^{2}\\ \\text{MV}$ lightning bolt having a current of $2.00 \\times 10^{4}\\ \\text{A}$?",
+      "answer": {
+        "type": "number",
+        "value": 2000000000000.0,
+        "unit": "W",
+        "generated_by": "source",
+        "hint": "The power is the current times the voltage, and a megavolt is $10^{6}$ V.",
+        "solution": "$2.00 \\times 10^{12}\\ \\text{W}$"
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id2023489",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "prompt": "Find the power dissipated in each of these extension cords: (a) an extension cord having a $0.0600\\ \\Omega$ resistance and through which 5.00 A is flowing; (b) a cheaper cord utilizing thinner wire and with a resistance of $0.300\\ \\Omega$.",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 1.5,
+            "unit": "W",
+            "hint": "The current is given rather than the voltage, so use $\\kP = \\kIcur^{2}\\kRes$."
+          },
+          {
+            "part": "(b)",
+            "value": 7.5,
+            "unit": "W",
+            "hint": "The same current flows, so the power goes up in proportion to the resistance."
+          }
+        ],
+        "solution": "(a) 1.50 W (b) 7.50 W"
+      }
+    },
+    {
+      "id": "p7",
+      "source_id": "fs-id1577565",
+      "kind": "problem",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "prompt": "Show that the units $1\\ \\text{V}^{2}/\\Omega = 1\\ \\text{W}$, as implied by the equation $\\kP = \\kV^{2}/\\kRes$.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\frac{\\text{V}^{2}}{\\Omega} = \\frac{\\text{V}^{2}}{\\text{V/A}} = \\text{A}\\cdot\\text{V} = \\left(\\frac{\\text{C}}{\\text{s}}\\right)\\left(\\frac{\\text{J}}{\\text{C}}\\right) = \\frac{\\text{J}}{\\text{s}} = 1\\ \\text{W}$"
+      }
+    },
+    {
+      "id": "p9",
+      "source_id": "fs-id3244624",
+      "kind": "problem",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cost-of-electricity",
+      "prompt": "Verify the energy unit equivalence that $1\\ \\text{kW}\\cdot\\text{h} = 3.60 \\times 10^{6}\\ \\text{J}$.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$1\\ \\text{kW}\\cdot\\text{h} = \\left(\\frac{1 \\times 10^{3}\\ \\text{J}}{1\\ \\text{s}}\\right)(1\\ \\text{h})\\left(\\frac{3600\\ \\text{s}}{1\\ \\text{h}}\\right) = 3.60 \\times 10^{6}\\ \\text{J}$"
+      }
+    },
+    {
+      "id": "p11",
+      "source_id": "fs-id2670173",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cost-of-electricity",
+      "figure": {
+        "src": "/media/ch20/Figure_21_04_03a.jpg",
+        "alt": "Photograph of an electric hot water heater connected to the electric and water supply.",
+        "caption": "On-demand electric hot water heater. Heat is supplied to water only when needed. (credit: aviddavid, Flickr)"
+      },
+      "prompt": "An electric water heater consumes 5.00 kW for 2.00 h per day. What is the cost of running it for one year if electricity costs 12.0 cents/kW·h?",
+      "answer": {
+        "type": "number",
+        "value": 438,
+        "unit": "dollars per year",
+        "generated_by": "source",
+        "hint": "Find the kilowatt-hours used in one day from $\\kE = \\kP\\kt$, multiply by 365 days, and then by the price.",
+        "solution": "＄438/y"
+      }
+    },
+    {
+      "id": "p13",
+      "source_id": "fs-id3146477",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cost-of-electricity",
+      "prompt": "What would be the maximum cost of a CFL such that the total cost (investment plus operating) would be the same for both CFL and incandescent 60-W bulbs? Assume the cost of the incandescent bulb is 25 cents and that electricity costs 10 cents/kWh. Calculate the cost for 1000 hours, as in the cost effectiveness of CFL example.",
+      "answer": {
+        "type": "number",
+        "value": 6.25,
+        "unit": "dollars",
+        "generated_by": "source",
+        "hint": "Work out the total cost of the incandescent bulb for 1000 hours, take away the electricity the 15-W CFL uses over those hours, and remember that only a tenth of the CFL's price is used up in 1000 of its 10,000 hours.",
+        "solution": "＄6.25"
+      }
+    },
+    {
+      "id": "p15",
+      "source_id": "fs-id1616012",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cost-of-electricity",
+      "prompt": "Alkaline batteries have the advantage of putting out constant voltage until very nearly the end of their life. How long will an alkaline battery rated at $1.00\\ \\text{A}\\cdot\\text{h}$ and 1.58 V keep a 1.00-W flashlight bulb burning?",
+      "answer": {
+        "type": "number",
+        "value": 1.58,
+        "unit": "h",
+        "generated_by": "source",
+        "hint": "An ampere-hour at 1.58 V is an energy: multiply the two to get watt-hours, then divide by the power of the bulb.",
+        "solution": "1.58 h"
+      }
+    },
+    {
+      "id": "p17",
+      "source_id": "fs-id2383748",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cost-of-electricity",
+      "prompt": "The average television is said to be on 6 hours per day. Estimate the yearly cost of electricity to operate 100 million TVs, assuming their power consumption averages 150 W and the cost of electricity averages 12.0 cents/kW·h.",
+      "answer": {
+        "type": "number",
+        "value": 3.94,
+        "unit": "billion dollars per year",
+        "generated_by": "source",
+        "hint": "Find the energy one set uses in a year from $\\kE = \\kP\\kt$, multiply by the price, and then by a hundred million.",
+        "solution": "＄3.94 billion/year"
+      }
+    },
+    {
+      "id": "p19",
+      "source_id": "fs-id2409598",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "prompt": "00-gauge copper wire has a diameter of 9.266 mm. Calculate the power loss in a kilometer of such wire when it carries $1.00 \\times 10^{2}\\ \\text{A}$.",
+      "answer": {
+        "type": "number",
+        "value": 25.5,
+        "unit": "W",
+        "generated_by": "source",
+        "hint": "Find the resistance of the kilometer from $\\kRes = \\rho L/A$ with the resistivity of copper, then use $\\kP = \\kIcur^{2}\\kRes$, since it is the current that is given.",
+        "solution": "25.5 W"
+      }
+    },
+    {
+      "id": "p21",
+      "source_id": "fs-id2616676",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "tag": "Integrated Concepts",
+      "prompt": "(a) What energy is dissipated by a lightning bolt having a 20,000-A current, a voltage of $1.00 \\times 10^{2}\\ \\text{MV}$, and a length of 1.00 ms? (b) What mass of tree sap could be raised from $18.0\\ ^\\circ\\text{C}$ to its boiling point and then evaporated by this energy, assuming sap has the same thermal characteristics as water?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 2000000000.0,
+            "unit": "J",
+            "hint": "The power is $\\kIcur\\kV$ and the energy is $\\kP\\kt$ with the time in seconds."
+          },
+          {
+            "part": "(b)",
+            "value": 769,
+            "unit": "kg",
+            "hint": "The energy has to raise the sap by 82.0 °C and then boil it away, so it goes into $mc\\kdTemp$ and $mL_{\\text{v}}$ together."
+          }
+        ],
+        "solution": "(a) $2.00 \\times 10^{9}\\ \\text{J}$ (b) 769 kg"
+      }
+    },
+    {
+      "id": "p23",
+      "source_id": "fs-id2382586",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "tag": "Integrated Concepts",
+      "prompt": "How much time is needed for a surgical cauterizer to raise the temperature of 1.00 g of tissue from $37.0\\ ^\\circ\\text{C}$ to $100\\ ^\\circ\\text{C}$ and then boil away 0.500 g of water, if it puts out 2.00 mA at 15.0 kV? Ignore heat transfer to the surroundings.",
+      "answer": {
+        "type": "number",
+        "value": 45.0,
+        "unit": "s",
+        "generated_by": "source",
+        "hint": "Add the heat that raises the tissue to the heat that boils the water away, then divide by the power $\\kIcur\\kV$ the cauterizer puts out.",
+        "solution": "45.0 s"
+      }
+    },
+    {
+      "id": "p25",
+      "source_id": "fs-id3149527",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "tag": "Integrated Concepts",
+      "figure": {
+        "src": "/media/ch20/OSX_CP2e_Figure_21_04_06.jpg",
+        "alt": "An electric car being recharged at the kerb from a post on a city street.",
+        "caption": "This REVAi, an electric car, gets recharged on a street in London. (credit: Frank Hebbert)"
+      },
+      "prompt": "Assuming 95.0% efficiency for the conversion of electrical power by the motor, what current must the 12.0-V batteries of a 750-kg electric car be able to supply: (a) To accelerate from rest to 25.0 m/s in 1.00 min? (b) To climb a $2.00 \\times 10^{2}$-m-high hill in 2.00 min at a constant 25.0-m/s speed while exerting $5.00 \\times 10^{2}\\ \\text{N}$ of force to overcome air resistance and friction? (c) To travel at a constant 25.0-m/s speed, exerting a $5.00 \\times 10^{2}\\ \\text{N}$ force to overcome air resistance and friction?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 343,
+            "unit": "A",
+            "hint": "The car gains kinetic energy $\\frac{1}{2}m\\kv^{2}$ in a minute; divide by the time for the power, by the efficiency, and then by 12.0 V."
+          },
+          {
+            "part": "(b)",
+            "value": 2170.0,
+            "unit": "A",
+            "hint": "The climb needs $mgh$ as well as the work done against the 500 N of drag over the distance traveled."
+          },
+          {
+            "part": "(c)",
+            "value": 1100.0,
+            "unit": "A",
+            "hint": "On the level at a steady speed the power is just the force times the speed."
+          }
+        ],
+        "solution": "(a) 343 A (b) $2.17 \\times 10^{3}\\ \\text{A}$ (c) $1.10 \\times 10^{3}\\ \\text{A}$"
+      }
+    },
+    {
+      "id": "p27",
+      "source_id": "fs-id3233297",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "tag": "Integrated Concepts",
+      "prompt": "(a) An aluminum power transmission line has a resistance of $0.0580\\ \\Omega/\\text{km}$. What is its mass per kilometer? (b) What is the mass per kilometer of a copper line having the same resistance?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 1230.0,
+            "unit": "kg",
+            "hint": "Get the cross-sectional area from $\\kRes = \\rho L/A$ with the resistivity of aluminium, then the mass from the area, the length and the density."
+          },
+          {
+            "part": "(b)",
+            "value": 2640.0,
+            "unit": "kg",
+            "hint": "Copper's lower resistivity needs less area, but its far greater density more than makes up for it."
+          }
+        ],
+        "solution": "(a) $1.23 \\times 10^{3}\\ \\text{kg}$ (b) $2.64 \\times 10^{3}\\ \\text{kg}$"
+      }
+    },
+    {
+      "id": "p30",
+      "source_id": "fs-id1546272",
+      "kind": "problem",
+      "bloom": "Evaluate",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "tag": "Unreasonable Results",
+      "prompt": "(a) What current is needed to transmit $1.00 \\times 10^{2}\\ \\text{MW}$ of power at 480 V? (b) What power is dissipated by the transmission lines if they have a $1.00\\ \\Omega$ resistance? (c) What is unreasonable about this result? (d) Which assumptions are unreasonable, or which premises are inconsistent?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 208000.0,
+            "unit": "A",
+            "hint": "The power sent and the voltage it is sent at give the current from $\\kP = \\kIcur\\kV$."
+          },
+          {
+            "part": "(b)",
+            "value": 43300.0,
+            "unit": "MW",
+            "hint": "The current in the line is fixed by part (a), so the loss is $\\kIcur^{2}\\kRes$."
+          }
+        ],
+        "solution": "(a) $2.08 \\times 10^{5}\\ \\text{A}$ (b) $4.33 \\times 10^{4}\\ \\text{MW}$ (c) The transmission lines dissipate more power than they are supposed to transmit. (d) A voltage of 480 V is unreasonably low for a transmission voltage. Long-distance transmission lines are kept at much higher voltages (often hundreds of kilovolts) to reduce power losses."
+      }
+    },
+    {
+      "id": "p31",
+      "source_id": "fs-id2397006",
+      "source_section": "20.1",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "power-in-electric-circuits",
+      "figure": {
+        "src": "/media/ch20/Figure_21_01_07a.jpg",
+        "alt": "A defibrillation unit used on a patient, with its circuit drawn beside it: a capacitor with plates marked plus Q and minus Q drives a current clockwise round the connecting wires and through the chest of the patient, the electrons moving the other way.",
+        "caption": "The capacitor in a defibrillation unit drives a current through the heart of a patient."
+      },
+      "prompt": "(a) A defibrillator sends a 6.00-A current through the chest of a patient by applying a 10,000-V potential as in the figure below. What is the resistance of the path? (b) The defibrillator paddles make contact with the patient through a conducting gel that greatly reduces the path resistance. Discuss the difficulties that would ensue if a larger voltage were used to produce the same current through the patient, but with the path having perhaps 50 times the resistance. (Hint: The current must be about the same, so a higher voltage would imply greater power. Use this equation for power: $\\kP = \\kIcur^{2}\\kRes$.)",
+      "answer": {
+        "type": "number",
+        "value": 1.67,
+        "unit": "kΩ",
+        "part": "(a)",
+        "generated_by": "source",
+        "hint": "Part (a) is Ohm's law; part (b) is $\\kP = \\kIcur^{2}\\kRes$ with the current held the same and the resistance fifty times larger.",
+        "solution": "(a) $1.67\\ \\text{k}\\Omega$ (b) If a 50 times larger resistance existed, keeping the current about the same, the power would be increased by a factor of about 50 (based on the equation $\\kP = \\kIcur^{2}\\kRes$), causing much more energy to be transferred to the skin, which could cause serious burns. The gel used reduces the resistance, and therefore reduces the power transferred to the skin."
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cq1",
+      "concept": "lighting-efficiency"
+    },
+    {
+      "exercise": "cq1",
+      "concept": "power-and-resistance",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "power-and-resistance"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "electric-power",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "power-and-resistance"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "electrical-energy-and-cost",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "power-and-resistance"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "electric-power",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p1",
+      "concept": "electric-power"
+    },
+    {
+      "exercise": "p5",
+      "concept": "power-and-resistance"
+    },
+    {
+      "exercise": "p5",
+      "concept": "electric-power",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p7",
+      "concept": "power-and-resistance"
+    },
+    {
+      "exercise": "p9",
+      "concept": "electrical-energy-and-cost"
+    },
+    {
+      "exercise": "p11",
+      "concept": "electrical-energy-and-cost"
+    },
+    {
+      "exercise": "p11",
+      "concept": "electric-power",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p13",
+      "concept": "lighting-efficiency"
+    },
+    {
+      "exercise": "p13",
+      "concept": "electrical-energy-and-cost",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p15",
+      "concept": "electrical-energy-and-cost"
+    },
+    {
+      "exercise": "p15",
+      "concept": "electric-power",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p17",
+      "concept": "electrical-energy-and-cost"
+    },
+    {
+      "exercise": "p17",
+      "concept": "electric-power",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p19",
+      "concept": "power-and-resistance"
+    },
+    {
+      "exercise": "p19",
+      "concept": "electric-power",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p21",
+      "concept": "electric-power"
+    },
+    {
+      "exercise": "p21",
+      "concept": "electrical-energy-and-cost",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p23",
+      "concept": "electric-power"
+    },
+    {
+      "exercise": "p23",
+      "concept": "electrical-energy-and-cost",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p25",
+      "concept": "electric-power"
+    },
+    {
+      "exercise": "p25",
+      "concept": "electrical-energy-and-cost",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p27",
+      "concept": "electric-power"
+    },
+    {
+      "exercise": "p27",
+      "concept": "power-and-resistance",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p30",
+      "concept": "power-and-resistance"
+    },
+    {
+      "exercise": "p30",
+      "concept": "power-supplied-equals-dissipated",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p31",
+      "concept": "power-and-resistance"
+    },
+    {
+      "exercise": "p31",
+      "concept": "electric-power",
+      "weight": 3,
+      "weights_by": "ai"
+    }
+  ]
+}

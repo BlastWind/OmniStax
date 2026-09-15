@@ -1,0 +1,47 @@
+<section id="voltage-sources">
+<h2>Voltage sources and the current they drive</h2>
+<p class="cite-target">What drives current? We can think of various devices—such as batteries, generators, wall outlets, and so on—which are necessary to maintain a current. All such devices create a potential difference and are loosely referred to as voltage sources. When a voltage source is connected to a conductor, it applies a potential difference $\kV$ that creates an electric field. The electric field in turn exerts force on charges, causing current.</p>
+</section>
+
+<section id="ohms-law">
+<h2>Ohm’s Law</h2>
+<p class="cite-target">The current that flows through most substances is directly proportional to the voltage $\kV$ applied to it. The German physicist Georg Simon Ohm (1787–1854) was the first to demonstrate experimentally that the current in a metal wire is <em>directly proportional to the voltage applied</em>:</p>
+$$\kIcur \propto \kV\text{.}$$
+<p>This important relationship is known as <strong>Ohm’s law</strong>. It can be viewed as a cause-and-effect relationship, with voltage the cause and current the effect. This is an empirical law like that for friction—an experimentally observed phenomenon. Such a linear relationship doesn’t always occur.</p>
+</section>
+
+<section id="resistance-circuits">
+<h2>Resistance and Simple Circuits</h2>
+<p class="cite-target">If voltage drives current, what impedes it? The electric property that impedes current (crudely similar to friction and air resistance) is called <strong>resistance</strong> $\kRes$. Collisions of moving charges with atoms and molecules in a substance transfer energy to the substance and limit current. Resistance is defined as inversely proportional to current, or</p>
+$$\kIcur \propto \frac{1}{\kRes}\text{.}$$
+<p>Thus, for example, current is cut in half if resistance doubles. Combining the relationships of current to voltage and current to resistance gives</p>
+$$\kIcur = \frac{\kV}{\kRes}\text{.}$$
+<p>This relationship is also called Ohm’s law. Ohm’s law in this form really defines resistance for certain materials. Ohm’s law (like Hooke’s law) is not universally valid. The many substances for which Ohm’s law holds are called <strong>ohmic</strong>. These include good conductors like copper and aluminum, and some poor conductors under certain circumstances. Ohmic materials have a resistance $\kRes$ that is independent of voltage $\kV$ and current $\kIcur$. An object that has simple resistance is called a <em>resistor</em>, even if its resistance is small. The unit for resistance is an <strong>ohm</strong> and is given the symbol $\Omega$ (upper case Greek omega). Rearranging $\kIcur = \kV/\kRes$ gives $\kRes = \kV/\kIcur$, and so the units of resistance are 1 ohm = 1 volt per ampere:</p>
+$$1\;\Omega = 1\;\frac{\text{V}}{\text{A}}\text{.}$$
+<figure class="sim" id="sim-ohmic">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The current through a material is measured at one voltage after another and plotted against the voltage that drove it. For an ohmic resistor the measurements fall on a straight line through the origin whose slope is one over the resistance, so that the same resistance is read off at every point; for the filament of an incandescent bulb, which heats as the current rises, the line bends and the resistance read off the graph grows with the voltage. Change the resistance and watch the line tilt, and walk the voltage along it to see what each measurement would give.</span></div>
+</figure>
+<p>Figure 20.8 shows the schematic for a simple circuit. A <strong>simple circuit</strong> has a single voltage source and a single resistor. The wires connecting the voltage source to the resistor can be assumed to have negligible resistance, or their resistance can be included in $\kRes$.</p>
+<figure class="sim" id="sim-simple-circuit" data-figure="20.8 + 20.9" data-original="/media/ch20/Figure_21_02_01a.jpg,/media/ch20/Figure_21_02_02a.jpg" data-original-width="225,300" data-original-caption="(Figure 20.8) A simple electric circuit in which a closed path for current to flow is supplied by conductors (usually metal wires) connecting a load to the terminals of a battery, represented by the red parallel lines. The zigzag symbol represents the single resistor and includes any resistance in the connections to the voltage source. (Figure 20.9) The voltage drop across a resistor in a simple circuit equals the voltage output of the battery.">
+  <div class="sim-head"><span class="eyebrow">Figure 20.8 + 20.9</span><span>A battery drives a current round a loop through a single resistor, and the free electrons that carry it run the other way, faster when the current is larger. Raise the voltage of the source and the current rises with it; raise the resistance and the current falls. Put a voltmeter across the resistor and it reads the whole voltage of the source, since the source supplies the energy and the resistor converts all of it. The third state draws the pump and the narrow pipe the text compares the circuit with.</span></div>
+</figure>
+<div class="example" id="ex-headlight">
+<h3>Example 20.4 · Calculating Resistance: An Automobile Headlight</h3>
+<p>What is the resistance of an automobile headlight through which 2.50 A flows when 12.0 V is applied to it?</p>
+<h4>Strategy</h4>
+<p>We can rearrange Ohm’s law as stated by $\kIcur = \kV/\kRes$ and use it to find the resistance.</p>
+<h4>Solution</h4>
+<p>Rearranging $\kIcur = \kV/\kRes$ and substituting known values gives</p>
+$$\kRes = \frac{\kV}{\kIcur} = \frac{\text{12}\text{.}\text{0 V}}{2\text{.}\text{50 A}} = \text{4}\text{.}\text{80 }\Omega\text{.}$$
+<h4>Discussion</h4>
+<p>This is a relatively small resistance, but it is larger than the cold resistance of the headlight. As we shall see in Resistance and Resistivity, resistance usually increases with temperature, and so the bulb has a lower resistance when it is first switched on and will draw considerably more current during its brief warm-up period.</p>
+</div>
+<p>Resistances range over many orders of magnitude. Some ceramic insulators, such as those used to support power lines, have resistances of ${\text{10}}^{\text{12}}\;\Omega$ or more. A dry person may have a hand-to-foot resistance of ${\text{10}}^{5}\;\Omega$, whereas the resistance of the human heart is about ${\text{10}}^{3}\;\Omega$. A meter-long piece of large-diameter copper wire may have a resistance of ${\text{10}}^{-5}\;\Omega$, and superconductors have no resistance at all (they are non-ohmic). Resistance is related to the shape of an object and the material of which it is composed, as will be seen in Resistance and Resistivity.</p>
+<p>Additional insight is gained by solving $\kIcur = \kV/\kRes$ for $\kV,\;$ yielding</p>
+$$\kV = \kIcur\kRes\text{.}$$
+<p>This expression for $\kV$ can be interpreted as the <em>voltage drop across a resistor produced by the flow of current</em> $\kIcur$. The phrase $\kIcur\kRes$ <em>drop</em> is often used for this voltage. For instance, the headlight in Example 20.4 has an $\kIcur\kRes$ drop of 12.0 V. If voltage is measured at various points in a circuit, it will be seen to increase at the voltage source and decrease at the resistor. Voltage is similar to fluid pressure. The voltage source is like a pump, creating a pressure difference, causing current—the flow of charge. The resistor is like a pipe that reduces pressure and limits flow because of its resistance. Conservation of energy has important consequences here. The voltage source supplies energy (causing an electric field and a current), and the resistor converts it to another form (such as thermal energy). In a simple circuit (one with a single simple resistor), the voltage supplied by the source equals the voltage drop across the resistor, since $\text{PE} = \kq\kdV$, and the same $\kq$ flows through each. Thus the energy supplied by the voltage source and the energy converted by the resistor are equal. (See Figure 20.9.)</p>
+<div class="note">
+<div class="eyebrow">Making Connections: Conservation of Energy</div>
+<p>In a simple electrical circuit, the sole resistor converts energy supplied by the source into another form. Conservation of energy is evidenced here by the fact that all of the energy supplied by the source is converted to another form by the resistor alone. We will find that conservation of energy has other important applications in circuits and is a powerful tool in circuit analysis.</p>
+</div>
+</section>

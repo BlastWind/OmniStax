@@ -1,0 +1,378 @@
+{
+ "id": "20.2",
+ "module": "m42344",
+ "chapter": "20",
+ "title": "Ohm’s Law: Resistance and Simple Circuits",
+ "short": "Ohm’s law and simple circuits",
+ "lead": "A current has to be driven, and it has to be impeded. This section names both. Georg Simon Ohm found that the current in a metal wire is directly proportional to the voltage applied to it, and the electric property that opposes the current is called resistance, so that the two proportionalities together give $I = V/R$, the relation the rest of the chapter rests on. The section defines the ohm, says which materials the law holds for and which it does not, draws the simplest circuit there is, one voltage source and one resistor, and works out the voltage drop the current produces across that resistor.",
+ "objectives": [
+  "Explain the origin of Ohm’s law.",
+  "Calculate voltages, currents, or resistances with Ohm’s law.",
+  "Explain what an ohmic material is.",
+  "Describe a simple circuit."
+ ],
+ "summary_html": "<ul><li>A simple circuit <em>is</em> one in which there is a single voltage source and a single resistance.</li><li>One statement of Ohm’s law gives the relationship between current $\\kIcur$, voltage $\\kV$, and resistance $\\kRes$ in a simple circuit to be $\\kIcur = \\frac{\\kV}{\\kRes}.$</li><li>Resistance has units of ohms ($\\Omega$), related to volts and amperes by $1\\;\\Omega = 1$ V/A.</li><li>There is a voltage or $IR$ drop across a resistor, caused by the current flowing through it, given by $\\kV = \\kIcur\\kRes$.</li></ul>",
+ "notes": "The publisher's link to the PhET simulation Ohm's Law is left out, as the book's other interactive links are. Three problems have no keyed answer and are left out: the effective resistance of a pocket calculator, the voltage supplied to a DVD player's indicator light, and the current through a glass insulator on a transmission tower.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book's answer key. Three problems have no keyed answer and are left out: the pocket calculator, the DVD player's indicator light and the glass insulator. The second AP item, which the book leaves unkeyed, is kept as an open item with the book's own table of voltages and currents in its prompt and an AI-marked suggested approach. The two conceptual questions are open items with AI-marked suggested approaches. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-ohmic",
+   "kind": "sim",
+   "draws": [
+    "current",
+    "voltage",
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-simple-circuit",
+   "kind": "sim",
+   "number": "20.8",
+   "folds": [
+    "20.9"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_02_01a.jpg",
+    "/media/ch20/Figure_21_02_02a.jpg"
+   ],
+   "original_caption": "(Figure 20.8) A simple electric circuit in which a closed path for current to flow is supplied by conductors (usually metal wires) connecting a load to the terminals of a battery, represented by the red parallel lines. The zigzag symbol represents the single resistor and includes any resistance in the connections to the voltage source. (Figure 20.9) The voltage drop across a resistor in a simple circuit equals the voltage output of the battery.",
+   "widths": [
+    225,
+    300
+   ],
+   "draws": [
+    "current",
+    "resistance",
+    "voltage"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "voltage-sources",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-sources",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "ohms-law",
+   "concept": "ohms-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "ohms-law",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "ohm",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "ohmic-material",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "simple-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "ir-drop",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "ohms-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "potential-difference",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2556054",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ohms-law",
+   "prompt": "If the voltage across a fixed resistance is doubled, what happens to the current?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "It doubles.",
+     "It halves.",
+     "It stays the same.",
+     "The current cannot be determined."
+    ],
+    "correct": 0,
+    "hint": "Ohm’s law says the current is the voltage divided by the resistance, and the resistance here does not change, so the current follows the voltage in direct proportion.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2382064",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-ohmic",
+   "prompt": "The table below gives the voltages and currents recorded across a resistor.<table class=\"data\"><tr><th>Voltage (V)</th><td>2.50</td><td>5.00</td><td>7.50</td><td>10.00</td><td>12.50</td></tr><tr><th>Current (A)</th><td>0.69</td><td>1.38</td><td>2.09</td><td>2.76</td><td>3.49</td></tr></table>(a) Plot the graph and comment on the shape. (b) Calculate the value of the resistor.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) Plotting the current up the vertical axis against the voltage along the horizontal axis gives five points that lie on a straight line through the origin. That is the shape an ohmic material gives: the current is directly proportional to the voltage, so the ratio of voltage to current is the same wherever it is measured, and the line has no curvature and no intercept. (b) The resistance is the voltage divided by the current, which is the reciprocal of the slope of that line. Each pair gives nearly the same number, 2.50/0.69 = 3.62 Ω, 5.00/1.38 = 3.62 Ω, 7.50/2.09 = 3.59 Ω, 10.00/2.76 = 3.62 Ω and 12.50/3.49 = 3.58 Ω, so the resistor is about 3.6 Ω. Taking the slope of the best straight line through all five points, 3.49 A over 12.50 V, gives the same answer."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2314598",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "What is the resistance of a bulb if the current in it is 1.25 A when a 4 V voltage supply is connected to it? If the voltage supply is increased to 7 V, what will be the current in the bulb?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the resistance",
+      "value": 3.2,
+      "unit": "Ω",
+      "hint": "Rearranging Ohm’s law gives the resistance as the voltage divided by the current."
+     },
+     {
+      "part": "the current at 7 V",
+      "value": 2.19,
+      "unit": "A",
+      "hint": "Take the resistance you have just found as fixed and put the new voltage into $I = V/R$."
+     }
+    ],
+    "solution": "3.2 Ω, 2.19 A"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3008822",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "The $IR$ drop across a resistor means that there is a change in potential or voltage across the resistor. Is there any change in current as it passes through a resistor? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "There is no change in the current. The same charge that enters the resistor leaves it, since charge is neither created nor destroyed in the resistor and there is nowhere else for it to go in a simple circuit, so the rate at which charge passes every point of the loop is the same. What changes is the energy each coulomb of that charge carries: the source raises the potential of the charge, the resistor converts that potential energy into thermal energy, and the fall in potential across the resistor is the $IR$ drop. The current is what flows through, and the voltage is what is used up."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2392111",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-simple-circuit",
+   "prompt": "How is the $IR$ drop in a resistor similar to the pressure drop in a fluid flowing through a pipe?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In both cases something is driven through something that impedes it, and the driving quantity falls across the impediment. A pump raises the pressure of the fluid, and the fluid loses that pressure again as it is forced through a narrow or rough pipe, which resists the flow; a voltage source raises the potential of the charge, and the charge loses that potential again as it is driven through the resistor. The flow rate is the same everywhere along the pipe, as the current is the same everywhere round the loop, so what the pipe and the resistor take is not the flow but the pressure and the voltage that drove it. In both cases the energy the pump or the source supplied is converted, in the pipe into heat through viscous friction and in the resistor into thermal energy through the collisions of the moving charges."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3045633",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "What current flows through the bulb of a 3.00-V flashlight when its hot resistance is $3\\text{.}\\text{60}\\;\\Omega$?",
+   "answer": {
+    "type": "number",
+    "value": 0.833,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "Ohm’s law in the form $I = V/R$ takes the voltage of the cells and the resistance of the bulb straight to the current.",
+    "solution": "0.833 A"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3172806",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "What is the effective resistance of a car’s starter motor when 150 A flows through it as the car battery applies 11.0 V to the motor?",
+   "answer": {
+    "type": "number",
+    "value": 0.0733,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "Rearrange Ohm’s law to $R = V/I$; a very large current for a very ordinary voltage means a very small resistance.",
+    "solution": "$7\\text{.}\\text{33}\\times{\\text{10}}^{-2}\\;\\Omega$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2930974",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "(a) Find the voltage drop in an extension cord having a $0\\text{.}\\text{0600-}\\Omega$ resistance and through which 5.00 A is flowing. (b) A cheaper cord utilizes thinner wire and has a resistance of $0\\text{.}\\text{300}\\;\\Omega$. What is the voltage drop in it when 5.00 A flows? (c) Why is the voltage to whatever appliance is being used reduced by this amount? What is the effect on the appliance?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.3,
+      "unit": "V",
+      "hint": "The voltage drop across a resistance carrying a current is $V = IR$."
+     },
+     {
+      "part": "(b)",
+      "value": 1.5,
+      "unit": "V",
+      "hint": "The same current through five times the resistance drops five times the voltage."
+     }
+    ],
+    "solution": "(a) 0.300 V (b) 1.50 V (c) The voltage supplied to whatever appliance is being used is reduced because the total voltage drop from the wall to the final output of the appliance is fixed. Thus, if the voltage drop across the extension cord is large, the voltage drop across the appliance is significantly decreased, so the power output by the appliance can be significantly decreased, reducing the ability of the appliance to work properly."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "ohms-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "resistance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ohmic-material"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ohms-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "ohms-law"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ir-drop"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "simple-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ir-drop"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "resistance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ohms-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ohms-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ohm",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "ir-drop"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "ohms-law",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

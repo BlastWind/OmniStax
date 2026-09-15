@@ -1,0 +1,680 @@
+{
+ "id": "20.3",
+ "module": "m42346",
+ "chapter": "20",
+ "title": "Resistance and Resistivity",
+ "short": "Resistance and resistivity",
+ "lead": "The resistance of an object is settled by two things: what it is made of and what shape it is cut to. This section defines the resistivity that carries the material half of the answer, gives the resistance of a uniform cylinder as $\\kRes = \\rho L/A$, sorts the materials of the book's table into conductors, semiconductors and insulators, and then adds temperature, which changes a resistivity and with it the resistance of the object made from it.",
+ "objectives": [
+  "Explain the concept of resistivity.",
+  "Use resistivity to calculate the resistance of specified configurations of material.",
+  "Use the thermal coefficient of resistivity to calculate the change of resistance with temperature."
+ ],
+ "summary_html": "<ul><li>The resistance $\\kRes$ of a cylinder of length $L$ and cross-sectional area $A$ is $\\kRes = \\frac{\\rho L}{A}$, where $\\rho$ is the resistivity of the material.</li><li>Values of $\\rho$ in Table 20.1 show that materials fall into three groups—<em>conductors, semiconductors, and insulators</em>.</li><li>Temperature affects resistivity; for relatively small temperature changes $\\kdTemp$, resistivity is $\\rho = \\rho_0(1 + \\alpha\\kdTemp)$, where $\\rho_0$ is the original resistivity and $\\alpha$ is the temperature coefficient of resistivity.</li><li>Table 20.2 gives values for $\\alpha$, the temperature coefficient of resistivity.</li><li>The resistance $\\kRes$ of an object also varies with temperature: $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$, where $\\kReso$ is the original resistance, and $\\kRes$ is the resistance after the temperature change.</li></ul>",
+ "notes": "The book's link to the PhET simulation Resistance in a Wire is left out. Eight problems have no keyed answer and are left out: the resistance of a kilometer of 0-gauge copper wire, the ratio of the diameters of aluminum and copper wire of the same resistance per unit length, the temperature that doubles the resistance of a copper wire, the material whose resistance is 40.0 percent greater at 100 °C than at 20.0 °C, the wire identified from its dimensions and its resistance, the wire drawn to four times its length, the thermistor read at 82.0 percent of its resistance at 37.0 °C, and the Unreasonable Results item on constantan. The book's own slips are kept as it prints them: Table 20.1 is titled Resistivities of Various materials and Table 20.2 Tempature Coefficients of Resistivity; the fourth AP item asks for the resistivity of the 1 Ω wire where its stem gives resistances of 3 Ω and 11 Ω, and the answer key is the one for the 11 Ω wire; and the Integrated Concepts problem points its reader back at the preceding problem where its keyed answer is the one for Example 20.6, so the item is set against that example.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book's answer key. The eight problems the book leaves unkeyed are left out and are named in the section's notes. The second AP item asks for two of four answers, which a graded choice cannot take, so it is kept as an open item carrying the book's own key. The first, third and fifth AP items have no key and are kept as open items with their options as the book prints them and an AI-written suggested approach, marked as such, never as graded choices; the four conceptual questions are open in the same way. The Nichrome problem is keyed to a range of temperatures rather than to one number, so it too is open with the book's answer.",
+ "figures": [
+  {
+   "id": "sim-cylinder",
+   "kind": "sim",
+   "number": "20.10",
+   "originals": [
+    "/media/ch20/Figure_21_03_01a.jpg"
+   ],
+   "original_caption": "A uniform cylinder of length L and cross-sectional area A. Its resistance to the flow of current is similar to the resistance posed by a pipe to fluid flow. The longer the cylinder, the greater its resistance. The larger its cross-sectional area A, the smaller its resistance.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "resistance",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-resistivity-scale",
+   "kind": "sim",
+   "draws": [
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-mercury-superconductor",
+   "kind": "sim",
+   "number": "20.11",
+   "originals": [
+    "/media/ch20/Figure_21_03_02a.jpg"
+   ],
+   "original_caption": "The resistance of a sample of mercury is zero at very low temperatures—it is a superconductor up to about 4.2 K. Above that critical temperature, its resistance makes a sudden jump and then increases nearly linearly with temperature.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "resistance",
+    "temperature"
+   ]
+  },
+  {
+   "id": "fig-thermometers",
+   "kind": "photo",
+   "number": "20.12",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-temperature-resistance",
+   "kind": "sim",
+   "draws": [
+    "resistance",
+    "temperature"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "material-and-shape",
+   "concept": "resistivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "material-and-shape",
+   "concept": "resistance-of-cylinder",
+   "verb": "introduces"
+  },
+  {
+   "span": "material-and-shape",
+   "concept": "resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "material-and-shape",
+   "concept": "charge-carriers",
+   "verb": "uses"
+  },
+  {
+   "span": "resistivity-table",
+   "concept": "conductors-semiconductors-insulators",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistivity-table",
+   "concept": "resistivity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resistivity-table",
+   "concept": "resistance-of-cylinder",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resistivity-table",
+   "concept": "charge-carriers",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "superconductivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "temperature-coefficient-of-resistivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "resistivity-and-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "resistivity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "charge-carriers",
+   "verb": "uses"
+  },
+  {
+   "span": "resistance-with-temperature",
+   "concept": "resistance-and-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-with-temperature",
+   "concept": "resistivity-and-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "resistance-with-temperature",
+   "concept": "resistance-of-cylinder",
+   "verb": "uses"
+  },
+  {
+   "span": "resistance-with-temperature",
+   "concept": "resistance",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1973763",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "Which of the following affect the resistivity of a wire?<ol type=\"a\"><li>length</li><li>area of cross section</li><li>material</li><li>all of the above</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The resistivity is a property of the material alone. It is defined so that the resistance of an object is proportional to it, and the section says in so many words that it is an intrinsic property of a material, independent of the object's shape or size. The length and the cross-sectional area of the wire do change its resistance, through $\\kRes = \\rho L/A$, but they leave the resistivity where it was: a long thin copper wire and a short thick one are both copper, and Table 20.1 gives copper one number. So the answer is the material, option (c), and not option (d)."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2856008",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "figure": {
+    "src": "/media/ch20/CNX_APPhysics_20_M3_S03_img.jpg",
+    "alt": "Four cylinders representing sections of wire. Wire 1 is long and thin, of length 2L and diameter D. Wire 2 is short and thin, of length L and diameter D. Wire 3 is long and thick, of length 2L and diameter 2D. Wire 4 is short and thick, of length L and diameter 2D.",
+    "caption": "The lengths and diameters of four wires."
+   },
+   "prompt": "The lengths and diameters of four wires are given as shown. If the four wires are made from the same material, which of the following is true? Select <em>two</em> answers.<ol type=\"a\"><li>Resistance of Wire 3 &gt; Resistance of Wire 2</li><li>Resistance of Wire 1 &gt; Resistance of Wire 2</li><li>Resistance of Wire 1 &lt; Resistance of Wire 4</li><li>Resistance of Wire 4 &lt; Resistance of Wire 3</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(b), (d)"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1981700",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "Suppose the resistance of a wire is <em>R</em> Ω. What will be the resistance of another wire of the same material having the same length but double the diameter?<ol type=\"a\"><li><em>R</em>/2</li><li>2<em>R</em></li><li><em>R</em>/4</li><li>4<em>R</em></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Work through $\\kRes = \\rho L/A$. The material is the same, so $\\rho$ is the same, and the length is the same, so only the area changes. The area of a circular cross-section is $A = \\pi \\kD^2/4$, which goes as the square of the diameter, so doubling the diameter multiplies the area by four. Since the resistance is inversely proportional to the area, it falls to a quarter of what it was, which is option (c)."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1742954",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "The resistances of two wires having the same lengths and cross section areas are 3 Ω and 11 Ω. If the resistivity of the 3 Ω wire is 2.65 × 10<sup>−8</sup> Ω∙m, find the resistivity of the 1 Ω wire.",
+   "answer": {
+    "type": "number",
+    "value": 9.72e-08,
+    "unit": "Ω·m",
+    "generated_by": "source",
+    "hint": "With the same length and the same area, $\\kRes = \\rho L/A$ makes the resistance proportional to the resistivity, so the two resistivities stand in the same ratio as the two resistances.",
+    "solution": "9.72 × 10⁻⁸ Ω∙m"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2387820",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "The lengths and diameters of three wires are given below. If they all have the same resistance, find the ratio of their resistivities.<table><thead><tr><th><em>Wire</em></th><th><em>Length</em></th><th><em>Diameter</em></th></tr></thead><tbody><tr><td>Wire 1</td><td>2 m</td><td>1 cm</td></tr><tr><td>Wire 2</td><td>1 m</td><td>0.5 cm</td></tr><tr><td>Wire 3</td><td>1 m</td><td>1 cm</td></tr></tbody></table>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Rearrange $\\kRes = \\rho L/A$ into $\\rho = \\kRes A/L$. The three wires have the same resistance, so the resistivity of each is proportional to its area divided by its length, and the areas go as the square of the diameter: take $A \\propto \\kD^2$ and there is no need for the factor $\\pi/4$, since it is the same for all three and cancels in a ratio. Wire 1 has $\\kD^2/L = 1/2$, Wire 2 has $0.25/1$, and Wire 3 has $1/1$, in units of cm² per meter. Dividing through by the smallest gives the ratio of the resistivities as 2 : 1 : 4. The wire that is thin for its length must be made of the most resistive material if it is to come to the same resistance as the others."
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2595784",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "Suppose the resistance of a wire is 2 Ω. If the wire is stretched to three times its length, what will be its resistance? Assume that the volume does not change.",
+   "answer": {
+    "type": "number",
+    "value": 18,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "Stretching at constant volume lengthens the wire and thins it at the same time, so both the $L$ and the $A$ of $\\kRes = \\rho L/A$ change. If the length is three times what it was, what must the area be for the volume $AL$ to stay the same?",
+    "solution": "18 Ω"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2446582",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistivity-table",
+   "prompt": "In which of the three semiconducting materials listed in Table 20.1 do impurities supply free charges? (Hint: Examine the range of resistivity for each and determine whether the pure semiconductor has the higher or lower conductivity.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Compare each pure semiconductor with the range the book gives for the ordinary material. Carbon runs from 3.5 × 10⁻⁵ to 60 × 10⁻⁵ Ω·m and the pure form sits at the bottom of that range, so impurities there make carbon a poorer conductor, not a better one. Germanium runs from 1 × 10⁻³ to 600 × 10⁻³ Ω·m and pure germanium sits at the top; silicon runs from 0.1 to 2300 Ω·m and pure silicon sits at the top. For germanium and silicon, then, the impure material is the better conductor, by as much as a factor of six hundred for germanium and twenty thousand for silicon, and that can only be because the impurities are supplying free charges of their own. Those are the two, and they are the two that modern electronics is built on."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1575560",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "Does the resistance of an object depend on the path current takes through it? Consider, for example, a rectangular bar—is its resistance the same along its length as across its width? (See the figure below.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It does. The resistance is not a property of the object alone but of the object together with the path the current is asked to take through it, because $\\kRes = \\rho L/A$ needs a length and an area, and both are read along that path. Taken along the bar, the length is the long dimension and the area is the small end face, which makes the resistance large. Taken across the width, the length is short and the area is the large side face, which makes the resistance small. The material is the same in both cases and so the resistivity is the same, which is exactly why the resistivity, and not the resistance, is the property the book tabulates."
+   },
+   "figure": {
+    "src": "/media/ch20/Figure_21_03_04a.jpg",
+    "alt": "Part a of the figure shows a voltage V applied along the length of a rectangular bar using a battery. The current is shown to emerge from the positive terminal, pass along the length of the rectangular bar, and enter the negative terminal of the battery. The resistance of the rectangular bar along the length is shown as R and the current is shown as I. Part b of the figure shows a voltage V applied along the width of the same rectangular bar using a battery. The current is shown to emerge from the positive terminal, pass along the width of the rectangular bar, and enter the negative terminal of the battery. The resistance of the rectangular bar along the width is shown as R prime, and the current is shown as I prime.",
+    "caption": "Does current taking two different paths through the same object encounter different resistance?"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2452298",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistivity-table",
+   "prompt": "If aluminum and copper wires of the same length have the same resistance, which has the larger diameter? Why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The aluminum wire. From $\\kRes = \\rho L/A$, two wires of the same length and the same resistance must have areas in the same proportion as their resistivities. Table 20.1 gives aluminum 2.65 × 10⁻⁸ Ω·m and copper 1.72 × 10⁻⁸ Ω·m, so aluminum's resistivity is about 1.54 times copper's and the aluminum wire needs about 1.54 times the cross-sectional area. Since the area goes as the square of the diameter, its diameter must be larger by a factor of about $\\sqrt{1.54}$, or about 1.24. The more resistive material has to be made thicker to carry a current as easily."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1404656",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "Explain why $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$ for the temperature variation of the resistance $\\kRes$ of an object is not as accurate as $\\rho = \\rho_0(1 + \\alpha\\kdTemp)$, which gives the temperature variation of resistivity $\\rho$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The expression for resistivity carries one approximation and the expression for resistance carries two. The first is that the resistivity varies linearly with the temperature change, which holds well over changes of about 100 °C or less and less well beyond them. The expression for resistance then assumes on top of that that the length and the cross-sectional area of the object do not change as it is heated, since $\\kRes = \\rho L/A$ depends on both. They do change: the object expands. The section makes the case that this second approximation is a mild one, because coefficients of linear expansion are about two orders of magnitude smaller than typical temperature coefficients of resistivity, so the error it brings in is about a hundredth of the effect being calculated. Mild is not nothing, though, and the Integrated Concepts problem shows the size of it: taking the thermal expansion of the filament into account changes the answer by three percent."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2442974",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "What is the resistance of a 20.0-m-long piece of 12-gauge copper wire having a 2.053-mm diameter?",
+   "answer": {
+    "type": "number",
+    "value": 0.104,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "Find the cross-sectional area from the diameter first, $A = \\pi \\kD^2/4$, and take the resistivity of copper from Table 20.1.",
+    "solution": "0.104 Ω"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2668793",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "If the 0.010-mm diameter tungsten filament in a light bulb is to have a resistance of 0.200 Ω at $20.00^\\circ\\text{C}$, how long should it be?",
+   "answer": {
+    "type": "number",
+    "value": 0.000281,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "Rearrange $\\kRes = \\rho L/A$ for the length, and remember that the diameter is given in millimeters while the resistivity is in ohm-meters.",
+    "solution": "$2.81\\times 10^{-4}$ m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2396605",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistivity-table",
+   "prompt": "What current flows through a 2.54-cm-diameter rod of pure silicon that is 20.0 cm long, when $1.00\\times 10^{3}$ V is applied to it? (Such a rod may be used to make nuclear-particle detectors, for example.)",
+   "answer": {
+    "type": "number",
+    "value": 0.0011,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "This is two steps: the resistance of the rod from $\\kRes = \\rho L/A$ with the resistivity of pure silicon from Table 20.1, and then Ohm's law.",
+    "solution": "$1.10\\times 10^{-3}$ A"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2681436",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "A resistor made of Nichrome wire is used in an application where its resistance cannot change more than 1.00% from its value at $20.0^\\circ\\text{C}$. Over what temperature range can it be used?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-5^\\circ\\text{C}$ to $45^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3201853",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "An electronic device designed to operate at any temperature in the range from $-10.0^\\circ\\text{C}$ to $55.0^\\circ\\text{C}$ contains pure carbon resistors. By what factor does their resistance increase over this range?",
+   "answer": {
+    "type": "number",
+    "value": 1.03,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "Work out the resistance at each end of the range from $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$, taking the coefficient of pure carbon from Table 20.2, and divide the larger by the smaller. Watch the sign of the coefficient.",
+    "solution": "1.03"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3103900",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "Assuming a constant temperature coefficient of resistivity, what is the maximum percent decrease in the resistance of a constantan wire starting at $20.0^\\circ\\text{C}$?",
+   "answer": {
+    "type": "number",
+    "value": 0.06,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "The coefficient of constantan is positive, so the resistance is smallest at the lowest temperature the wire could reach. How cold can anything get?",
+    "solution": "0.06%"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2448773",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "A copper wire has a resistance of $0.500\\;\\Omega$ at $20.0^\\circ\\text{C}$, and an iron wire has a resistance of $0.525\\;\\Omega$ at the same temperature. At what temperature are their resistances equal?",
+   "answer": {
+    "type": "number",
+    "value": -17,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "Write $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$ for each wire with the same $\\kdTemp$, set the two expressions equal and solve for $\\kdTemp$. Iron's coefficient is the larger, so the two curves meet below 20 °C.",
+    "solution": "$-17^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id3189568",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "<strong>Integrated Concepts</strong> (a) Redo Example 20.6 taking into account the thermal expansion of the tungsten filament. You may assume a thermal expansion coefficient of $12\\times 10^{-6}/^\\circ\\text{C}$. (b) By what percentage does your answer differ from that in the example?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 4.7,
+      "unit": "Ω",
+      "hint": "The filament lengthens and thickens as it is heated. Both $L$ and $A$ in $\\kRes = \\rho L/A$ change, and the area goes as the square of the linear expansion."
+     },
+     {
+      "part": "b",
+      "value": 3.0,
+      "unit": "%",
+      "hint": "Compare the resistance you have just found with the 4.8 Ω of the example."
+     }
+    ],
+    "solution": "(a) 4.7 Ω (total)  (b) 3.0% decrease"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "resistivity"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "resistance-of-cylinder",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "resistivity"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "resistance-of-cylinder",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conductors-semiconductors-insulators"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "resistivity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "resistivity-and-temperature",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "resistance-of-cylinder",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "p1",
+   "concept": "resistivity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "p2",
+   "concept": "resistivity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "p3",
+   "concept": "conductors-semiconductors-insulators",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ohms-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p4",
+   "concept": "temperature-coefficient-of-resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p5",
+   "concept": "temperature-coefficient-of-resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p6",
+   "concept": "temperature-coefficient-of-resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p7",
+   "concept": "temperature-coefficient-of-resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p8",
+   "concept": "resistance-of-cylinder",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

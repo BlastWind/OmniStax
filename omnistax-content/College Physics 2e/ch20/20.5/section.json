@@ -1,0 +1,240 @@
+{
+ "id": "20.5",
+ "module": "m42348",
+ "chapter": "20",
+ "title": "Alternating Current versus Direct Current",
+ "short": "AC versus DC",
+ "lead": "A battery holds its voltage steady and the current it drives runs one way, which is direct current. The power that comes out of a wall socket does not: its voltage rises and falls sinusoidally and the current reverses with it, which is alternating current. This section writes the voltage and the current of an AC source as sine functions of the time, shows that their product, the power, is never negative and averages half its peak, and defines the root mean square current and voltage, which are the values a meter reads and the values a simple resistance circuit would need in direct current to do the same work. With those averages in hand, Ohm's law and the expressions for power carry over unchanged, and they explain why power is sent across the country at hundreds of thousands of volts.",
+ "objectives": [
+  "Explain the differences and similarities between AC and DC current.",
+  "Calculate rms voltage, current, and average power.",
+  "Explain why AC current is used for power transmission."
+ ],
+ "summary_html": "<ul><li>Direct current (DC) is the flow of electric current in only one direction. It refers to systems where the source voltage is constant.</li><li>The voltage source of an alternating current (AC) system puts out $\\kV = \\kVo\\sin 2\\pi \\kf\\kt$, where $\\kV$ is the voltage at time $\\kt$, $\\kVo$ is the peak voltage, and $\\kf$ is the frequency in hertz.</li><li>In a simple circuit, $\\kIcur = \\kV/\\kRes$ and AC current is $\\kIcur = \\kIocur\\sin 2\\pi \\kf\\kt$, where $\\kIcur$ is the current at time $\\kt$, and $\\kIocur = \\kVo/\\kRes$ is the peak current.</li><li>The average AC power is $\\kPave = \\frac{1}{2}\\kIocur\\kVo$.</li><li>Average (rms) current $\\kIrms$ and average (rms) voltage $\\kVrms$ are $\\kIrms = \\frac{\\kIocur}{\\sqrt{2}}$ and $\\kVrms = \\frac{\\kVo}{\\sqrt{2}}$, where rms stands for root mean square.</li><li>Thus, $\\kPave = \\kIrms\\kVrms$.</li><li>Ohm's law for AC is $\\kIrms = \\frac{\\kVrms}{\\kRes}$.</li><li>Expressions for the average power of an AC circuit are $\\kPave = \\kIrms\\kVrms$, $\\kPave = \\frac{\\kVrms^{2}}{\\kRes}$, and $\\kPave = \\kIrms^{2}\\kRes$, analogous to the expressions for DC circuits.</li></ul>",
+ "notes": "The link to the PhET simulation Generator is left out, and so are the seven problems the book prints no answer for: the hot resistance of a 25-W bulb and its resistance a hundred degrees cooler, the peak current of a breaker that trips at 15.0 A, the razor plugged into 240 V, the air conditioner's effective resistance and monthly cost, the peak current of a 500-W heater, the Nichrome radiative heater, and the two times at which 60-Hz voltage equals the rms voltage.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book's answer key, and the seven problems the book leaves unkeyed are left out and named in the section's notes. The three conceptual questions are open items with an AI-written suggested approach, marked as such. The section has no Check Your Understanding box and no AP test prep items, nothing of it is held for a later page, and nothing of another section is set here. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-ac-versus-dc",
+   "kind": "sim",
+   "number": "20.14",
+   "folds": ["20.15"],
+   "originals": ["/media/ch20/Figure_21_05_01.jpg", "/media/ch20/Figure_21_05_03.jpg"],
+   "original_caption": "(a) DC voltage and current are constant in time, once the current is established. (b) A graph of voltage and current versus time for 60-Hz AC power. The voltage and current are sinusoidal and are in phase for a simple resistance circuit. The frequencies and peak voltages of AC sources differ greatly.",
+   "widths": [200, 200],
+   "draws": ["voltage", "current", "resistance", "frequency"]
+  },
+  {
+   "id": "sim-ac-power",
+   "kind": "sim",
+   "number": "20.16",
+   "originals": ["/media/ch20/Figure_21_05_04.jpg"],
+   "original_caption": "AC power as a function of time. Since the voltage and current are in phase here, their product is non-negative and fluctuates between zero and I_0 V_0. Average power is (1/2) I_0 V_0.",
+   "widths": [225],
+   "draws": ["voltage", "current", "power", "resistance", "frequency"]
+  },
+  {
+   "id": "sim-transmission",
+   "kind": "sim",
+   "draws": ["power", "voltage", "current", "resistance"]
+  },
+  {
+   "id": "fig-transformers",
+   "kind": "photo",
+   "number": "20.17",
+   "widths": [225],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  { "span": "alternating-current", "concept": "direct-current", "verb": "introduces" },
+  { "span": "alternating-current", "concept": "alternating-current", "verb": "introduces" },
+  { "span": "alternating-current", "concept": "electric-current", "verb": "uses" },
+  { "span": "alternating-current", "concept": "ohms-law", "verb": "uses" },
+  { "span": "ac-power", "concept": "ac-power", "verb": "introduces" },
+  { "span": "ac-power", "concept": "alternating-current", "verb": "uses" },
+  { "span": "ac-power", "concept": "electric-power", "verb": "uses" },
+  { "span": "rms-values", "concept": "rms-values", "verb": "introduces" },
+  { "span": "rms-values", "concept": "ac-power", "verb": "uses" },
+  { "span": "ac-ohms-law", "concept": "ac-ohms-law", "verb": "introduces" },
+  { "span": "ac-ohms-law", "concept": "rms-values", "verb": "uses" },
+  { "span": "ac-ohms-law", "concept": "ohms-law", "verb": "uses" },
+  { "span": "ac-ohms-law", "concept": "electric-power", "verb": "uses" },
+  { "span": "transmission", "concept": "high-voltage-transmission", "verb": "introduces" },
+  { "span": "transmission", "concept": "ac-ohms-law", "verb": "uses" },
+  { "span": "transmission", "concept": "power-and-resistance", "verb": "uses" }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1687500",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "alternating-current",
+   "prompt": "Give an example of a use of AC power other than in the household. Similarly, give an example of a use of DC power other than that supplied by batteries.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Alternating current runs almost everything that is fed from a large distribution system rather than from a cell: the motors of a factory, the lights and air conditioning of an office building, the pumps of a water works, and the overhead wires of many electric railways. Direct current that does not come from a battery is just as common once you look inside a machine: the power supply of a computer or a television rectifies the alternating current of the socket and delivers direct current to the circuits, a car's alternator does the same for its electrical system, a solar panel puts out direct current from the start, and electroplating and aluminum smelting need a steady current in one direction because the chemistry depends on which way the charge moves."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1913213",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "ac-power",
+   "prompt": "Why do voltage, current, and power go through zero 120 times per second for 60-Hz AC electricity?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The voltage is $\\kV = \\kVo\\sin 2\\pi \\kf\\kt$, and a sine passes through zero twice in each of its cycles, once on the way down and once on the way back up. At 60 Hz there are 60 cycles in a second, so there are 120 of those crossings each second. The current is $\\kV/\\kRes$ and so vanishes at the same instants, and the power, being the product of the two, vanishes there as well. The power does not change sign at those instants, as the voltage and the current do; it merely touches zero and rises again, which is why the light of a fluorescent bulb dims 120 times a second rather than 60."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3131936",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "ac-power",
+   "prompt": "You are riding in a train, gazing into the distance through its window. As close objects streak by, you notice that the nearby fluorescent lights make *dashed* streaks. Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A fluorescent lamp on alternating current is not lit steadily. Its power rises and falls with the square of the sine, so it brightens and dims 120 times a second on 60-Hz power, going out briefly each time the current passes through zero. When you are still, your eye averages those flashes and the lamp looks steady. When the lamp is sweeping across your field of view because the train is moving, each flash lands on a different part of your retina, and the dark intervals between them land there too, so what you see is a row of bright patches with gaps between them rather than a continuous streak. An incandescent headlight makes an unbroken streak under the same conditions, because its filament stays hot through the moments when the current is zero."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1825974",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "rms-values",
+   "prompt": "Certain heavy industrial equipment uses AC power that has a peak voltage of 679 V. What is the rms voltage?",
+   "answer": {
+    "type": "number",
+    "value": 480,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "The rms voltage is the peak voltage divided by $\\sqrt{2}$.",
+    "solution": "480 V"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id808814",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "alternating-current",
+   "prompt": "Military aircraft use 400-Hz AC power, because it is possible to design lighter-weight equipment at this higher frequency. What is the time for one complete cycle of this power?",
+   "answer": {
+    "type": "number",
+    "value": 2.5,
+    "unit": "ms",
+    "generated_by": "source",
+    "hint": "The frequency is the number of cycles each second, so the time for one cycle is its reciprocal.",
+    "solution": "2.50 ms"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1481055",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "transmission",
+   "prompt": "In this problem, you will verify statements made at the end of the power losses for Example 20.10. (a) What current is needed to transmit 100 MW of power at a voltage of 25.0 kV? (b) Find the power loss in a $1.00\\text{-}\\Omega$ transmission line. (c) What percent loss does this represent?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     { "part": "(a)", "value": 4, "unit": "kA", "hint": "Rearrange $\\kPave = \\kIrms\\kVrms$ for the current, keeping the power in watts and the voltage in volts." },
+     { "part": "(b)", "value": 16, "unit": "MW", "hint": "The line turns $\\kPave = \\kIrms^{2}\\kRes$ into heat, with the current you found in part (a)." },
+     { "part": "(c)", "value": 16, "unit": "%", "hint": "Take the ratio of the power lost to the 100 MW sent and multiply by 100." }
+    ],
+    "solution": "(a) 4.00 kA (b) 16.0 MW (c) 16.0%"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2942325",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "rms-values",
+   "prompt": "What is the peak power consumption of a 120-V AC microwave oven that draws 10.0 A?",
+   "answer": {
+    "type": "number",
+    "value": 2.4,
+    "unit": "kW",
+    "generated_by": "source",
+    "hint": "The quoted values are rms, so their product is the average power, and the peak power is twice the average.",
+    "solution": "2.40 kW"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1244041",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "ac-ohms-law",
+   "prompt": "Two different electrical devices have the same power consumption, but one is meant to be operated on 120-V AC and the other on 240-V AC. (a) What is the ratio of their resistances? (b) What is the ratio of their currents? (c) Assuming its resistance is unaffected, by what factor will the power increase if a 120-V AC device is connected to 240-V AC?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     { "part": "(a)", "value": 4, "hint": "For a given power, $\\kRes = \\kVrms^{2}/\\kPave$, so the resistance goes as the square of the voltage. Take the ratio of the 240-V device to the 120-V one." },
+     { "part": "(b)", "value": 0.5, "hint": "For a given power, $\\kIrms = \\kPave/\\kVrms$, so the current goes as the reciprocal of the voltage." },
+     { "part": "(c)", "value": 4, "hint": "With the resistance fixed, $\\kPave = \\kVrms^{2}/\\kRes$, so doubling the voltage does to the power what squaring the factor two does." }
+    ],
+    "solution": "(a) 4.0 (b) 0.50 (c) 4.0"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1993162",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "alternating-current",
+   "prompt": "Find the time after $\\kt = 0$ when the instantaneous voltage of 60-Hz AC first reaches the following values: (a) $\\kVo/2$ (b) $\\kVo$ (c) 0.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     { "part": "(a)", "value": 1.39, "unit": "ms", "hint": "Set $\\kVo\\sin 2\\pi \\kf\\kt$ equal to $\\kVo/2$ and solve for the first time at which the sine is one half." },
+     { "part": "(b)", "value": 4.17, "unit": "ms", "hint": "The sine first reaches one a quarter of the way through a cycle." },
+     { "part": "(c)", "value": 8.33, "unit": "ms", "hint": "After the peak, the sine next returns to zero half a cycle after the start." }
+    ],
+    "solution": "(a) 1.39 ms (b) 4.17 ms (c) 8.33 ms"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  { "exercise": "cq1", "concept": "alternating-current" },
+  { "exercise": "cq1", "concept": "direct-current" },
+  { "exercise": "cq2", "concept": "ac-power" },
+  { "exercise": "cq2", "concept": "alternating-current", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq3", "concept": "ac-power" },
+  { "exercise": "cq3", "concept": "alternating-current", "weight": 2, "weights_by": "ai" },
+  { "exercise": "p1", "concept": "rms-values" },
+  { "exercise": "p2", "concept": "alternating-current" },
+  { "exercise": "p3", "concept": "high-voltage-transmission" },
+  { "exercise": "p3", "concept": "ac-ohms-law", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p4", "concept": "ac-power" },
+  { "exercise": "p4", "concept": "rms-values", "weight": 2, "weights_by": "ai" },
+  { "exercise": "p5", "concept": "ac-ohms-law" },
+  { "exercise": "p6", "concept": "alternating-current" }
+ ]
+}

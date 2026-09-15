@@ -1,0 +1,600 @@
+{
+ "id": "20.6",
+ "module": "m42350",
+ "chapter": "20",
+ "title": "Electric Hazards and the Human Body",
+ "short": "Electric hazards",
+ "lead": "Electricity is dangerous in two quite different ways, and the two are governed by different quantities. A thermal hazard is a matter of power: a short circuit lays a resistance of a fraction of an ohm across a source, and since the power dissipated is the voltage squared divided by that resistance, a household 120 V can deliver 144 kW into a few centimeters of cord. A shock hazard is a matter of the current through a person, and because that current is the voltage divided by the body’s resistance, the same 120 V passes harmlessly through dry skin and holds the hand shut on the wire when the skin is wet. This section works both cases in numbers, sets out what each level of current does to the body, and explains what fuses and circuit breakers do about the first of the two.",
+ "objectives": [
+  "Define thermal hazard, shock hazard, and short circuit.",
+  "Explain what effects various levels of current have on the human body."
+ ],
+ "summary_html": "<ul><li>The two types of electric hazards are thermal (excessive power) and shock (current through a person).</li><li>Shock severity is determined by current, path, duration, and AC frequency.</li><li>Table 20.3 lists shock hazards as a function of current.</li><li>Figure 20.22 graphs the threshold current for two hazards as a function of frequency.</li></ul>",
+ "notes": "The five problems the book leaves unkeyed are left out: the voltage involved in a 1.44-kW short, the smallest voltage on the case of a radio that could cause ventricular fibrillation, the smallest voltage that poses a danger when 20.0 µA is applied directly to the heart, the four parts of the heart defibrillator problem, and the Construct Your Own Problem item on the insulation needed to protect a worker.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. The twelve conceptual questions have no keyed answer, so each carries an AI-written suggested approach rather than a graded answer. Five of the ten problems are unkeyed and are left out, and the section’s notes name them. The section prints no Check Your Understanding box and no AP test prep item, so every exercise sits in the Exercises document.",
+ "figures": [
+  {
+   "id": "sim-short-circuit",
+   "kind": "sim",
+   "number": "20.18",
+   "originals": [
+    "/media/ch20/Figure_21_06_01a.jpg"
+   ],
+   "original_caption": "A short circuit is an undesired low-resistance path across a voltage source. (a) Worn insulation on the wires of a toaster allow them to come into contact with a low resistance $r$. Since $P={V}^{2}/r$, thermal power is created so rapidly that the cord melts or burns. (b) A schematic of the short circuit.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "power",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-fuse-breaker",
+   "kind": "sim",
+   "number": "20.19",
+   "folds": [
+    "20.20"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_06_02a.jpg",
+    "/media/ch20/Figure_21_06_03a.jpg"
+   ],
+   "original_caption": "(a) A fuse has a metal strip with a low melting point that, when overheated by an excessive current, permanently breaks the connection of a circuit to a voltage source. (b) A circuit breaker is an automatic but restorable electric switch. The one shown here has a bimetallic strip that bends to the right and into the notch if overheated. The spring then forces the metal strip downward, breaking the electrical connection at the points.",
+   "widths": [
+    300,
+    175
+   ],
+   "draws": [
+    "current",
+    "resistance",
+    "power"
+   ]
+  },
+  {
+   "id": "sim-shock",
+   "kind": "sim",
+   "number": "20.21",
+   "originals": [
+    "/media/ch20/Figure_21_06_04a.jpg"
+   ],
+   "original_caption": "An electric current can cause muscular contractions with varying effects. (a) The victim is “thrown” backward by involuntary muscle contractions that extend the legs and torso. (b) The victim can’t let go of the wire that is stimulating all the muscles in the hand. Those that close the fingers are stronger than those that open them.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "current",
+    "voltage",
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-frequency-sensitivity",
+   "kind": "sim",
+   "number": "20.22",
+   "originals": [
+    "/media/ch20/Figure_21_06_05a.jpg"
+   ],
+   "original_caption": "Graph of average values for the threshold of sensation and the “can’t let go” current as a function of frequency. The lower the value, the more sensitive the body is at that frequency.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "current",
+    "frequency"
+   ]
+  },
+  {
+   "id": "photo-electric-arc",
+   "kind": "photo",
+   "number": "20.23",
+   "originals": [
+    "/media/ch20/Figure_21_06_06a.jpg"
+   ],
+   "original_caption": "Is this electric arc dangerous? The answer depends on the AC frequency and the power involved. (credit: Khimich Alex, Wikimedia Commons)",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "hazards",
+   "concept": "thermal-hazard",
+   "verb": "introduces"
+  },
+  {
+   "span": "hazards",
+   "concept": "shock-hazard",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-hazards",
+   "concept": "thermal-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-hazards",
+   "concept": "short-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-hazards",
+   "concept": "overloaded-wires",
+   "verb": "introduces"
+  },
+  {
+   "span": "shock-hazards",
+   "concept": "shock-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "shock-hazards",
+   "concept": "shock-severity-factors",
+   "verb": "introduces"
+  },
+  {
+   "span": "body-resistance",
+   "concept": "body-resistance-and-microshock",
+   "verb": "introduces"
+  },
+  {
+   "span": "body-resistance",
+   "concept": "shock-severity-factors",
+   "verb": "uses"
+  },
+  {
+   "span": "path-duration-frequency",
+   "concept": "shock-severity-factors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "path-duration-frequency",
+   "concept": "shock-hazard",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3013869",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "Using an ohmmeter, a student measures the resistance between various points on his body. They find that the resistance between two points on the same finger is about the same as the resistance between two points on opposite hands—both are several hundred thousand ohms. Furthermore, the resistance decreases when more skin is brought into contact with the probes of the ohmmeter. Finally, there is a dramatic drop in resistance (to a few thousand ohms) when the skin is wet. Explain these observations and their implications regarding skin and internal resistance of the human body.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Nearly all of the resistance the meter reads is in the skin, and almost none of it is in the body between the probes. That is why two points on one finger read much the same as two hands: in both cases the current crosses the skin twice and then travels through the ionic solutions and fluids of the interior, which conduct well. Pressing more skin against the probes puts more paths in parallel, and parallel paths carry more current for the same voltage, so the measured resistance falls. Wetting the skin puts salts into ion form on its surface, and the resistance drops to a few thousand ohms. The implication is the one the section draws for safety: a person who is wet, or whose skin is broken or bypassed, offers far less resistance to the same voltage and so takes far more current."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2626129",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hazards",
+   "prompt": "What are the two major hazards of electricity?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The thermal hazard and the shock hazard. A thermal hazard is one in which excessive electric power converts electric energy to thermal energy faster than it can safely be dissipated, so that wires or the materials around them melt or catch fire. A shock hazard is one in which electric current passes through a person, with effects that range from a shock that is merely felt to ventricular fibrillation and death."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3091714",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "Why isn’t a short circuit a shock hazard?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A short circuit is a very low resistance path laid straight across the source, and the current takes it rather than any path of much greater resistance beside it. A person is a path of thousands of ohms at least, so almost none of the current goes through them. The danger of a short is the power it dissipates, $P = V^2/r$, which is enormous because $r$ is so small, and that power raises the temperature of the surrounding materials until they melt or burn. The hazard is thermal, not electrical shock."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2384713",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "What determines the severity of a shock? Can you say that a certain voltage is hazardous without further information?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The severity is determined by the current through the person, the path the current takes, the duration of the shock and the frequency of the current. No, a voltage cannot be called hazardous by itself. Since $I = V/R$, the current depends on the resistance as well as the voltage, and 120 V through the 200 kΩ of dry skin passes an unfelt 0.6 mA while the same 120 V through the 10.0 kΩ of a person soaking wet passes 12 mA, which is above the can’t-let-go threshold. The path matters too, since a current through the brain leaves the heart unaffected, and so do the duration and the frequency."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3190812",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shock-hazards",
+   "prompt": "An electrified needle is used to burn off warts, with the circuit being completed by having the patient sit on a large butt plate. Why is this plate large?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The same current flows through the needle and through the plate, but the burning depends on how concentrated that current is. At the needle the current is gathered into a very small area, which is exactly what is wanted, since the wart is to be burned. At the plate a large area spreads the same current out, so that nowhere on the patient is it concentrated enough to burn. This is the same reason the paddles of a defibrillator are made large."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3013708",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-duration-frequency",
+   "prompt": "Some surgery is performed with high-voltage electricity passing from a metal scalpel through the tissue being cut. Considering the nature of electric fields at the surface of conductors, why would you expect most of the current to flow from the sharp edge of the scalpel? Do you think high- or low-frequency AC is used?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The electric field at the surface of a conductor is greatest where the surface curves most sharply, so the field is largest at the thin edge of the blade. The largest field drives the largest current density, and so almost all the current leaves the scalpel along its edge, which is where the cutting and cauterizing are wanted. High-frequency alternating current is used. The section notes that the body becomes progressively less sensitive at higher frequencies, because nerves can only fire so fast, and that at very high frequencies the current travels only on the surface of a person, so a high-frequency current can cut and burn without stimulating nerves or stopping the heart."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3407779",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "Some devices often used in bathrooms, such as hairdryers, often have safety messages saying “Do not use when the bathtub or basin is full of water.” Why is this so?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Water standing in a tub or a basin offers a low-resistance path from the appliance to the plumbing and so to earth, and a wet person in or beside that water is part of it. Wet skin has a resistance of a few thousand ohms rather than the several hundred thousand of dry skin, so if the appliance is faulty, or if it falls into the water, the same 120 V drives a current tens of times larger through the person than it would on dry land, easily enough to reach the can’t-let-go and fibrillation levels of Table 20.3."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2677167",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "We are often advised to not flick electric switches with wet hands, dry your hand first. We are also advised to never throw water on an electric fire. Why is this so?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Wet skin has a much smaller resistance than dry skin, because the salts on the skin go into ion form, so the same voltage at a faulty switch would drive a far larger current through a wet hand than through a dry one. Water thrown on an electric fire is worse still: it is a conductor, and the stream itself can carry current from the live parts back to the person holding the container, putting them in the circuit."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id2428881",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shock-hazards",
+   "prompt": "Before working on a power transmission line, experts will touch the line with the back of the hand as a final check that the voltage is zero. Why the back of the hand?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Because of the can’t-let-go effect. At 10 to 20 mA and above, a current holds the muscles contracted, and the muscles that close the fingers are stronger than those that open them, so a hand laid palm down on a live wire closes on it and cannot be pulled away. The back of the hand carries no such risk: the same contraction curls the fingers away from the wire, so the hand is thrown clear rather than held."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3179465",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "Why is the resistance of wet skin so much smaller than dry, and why do blood and other bodily fluids have low resistances?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "When the skin is wet, the salts on it go into ion form, and those ions are free charges that can carry a current, so the skin’s resistance falls from several hundred thousand ohms to a few thousand. Blood and the other fluids of the body are ionic solutions for the same reason, and they are full of mobile ions throughout, so the interior of the body is a much better conductor than dry skin."
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id3009000",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "Could a person on intravenous infusion (an IV) be microshock sensitive?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. An intravenous line is a conducting path of salt solution that runs through the skin and into the body, so the skin resistance, which is nearly all of the body’s resistance, is bypassed. A person in that condition is microshock sensitive, and currents about a thousandth of those in Table 20.3 produce the same effects, which is why the electrical safety requirements in hospitals are so stringent."
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id2409820",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "In view of the small currents that cause shock hazards and the larger currents that circuit breakers and fuses interrupt, how do they play a role in preventing shock hazards?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "They do not act on the current through a person, which at a few milliamperes is far below any rating they carry. What they do is open the circuit when a fault first draws a large current, and most shock hazards begin as a fault: worn insulation that lets a live wire touch a grounded case, or a short that has begun to melt a cord. The device removes the voltage from the faulty appliance before a person can come into contact with it, and it stops the thermal damage that would expose more live metal. Preventing shock is therefore an indirect service, and it is why devices that do sense the small currents themselves are needed as well."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2952945",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "(a) How much power is dissipated in a short circuit of 220-V AC through a resistance of $0.250\\ \\Omega$? (b) What current flows?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 194,
+      "unit": "kW",
+      "hint": "The power dissipated in a short is $\\kP = \\kV^2/\\krshort$, with the voltage the source supplies and the resistance of the short."
+     },
+     {
+      "part": "(b)",
+      "value": 880,
+      "unit": "A",
+      "hint": "Ohm’s law gives the current through the short, $\\kIcur = \\kV/\\krshort$; the power may also be checked as $\\kP = \\kIcur\\kV$."
+     }
+    ],
+    "solution": "(a) 194 kW (b) 880 A"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1071853",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "Find the current through a person and identify the likely effect on her if she touches a 120-V AC source: (a) if she is standing on a rubber mat and offers a total resistance of $300\\ \\text{k}\\Omega$; (b) if she is standing barefoot on wet grass and has a resistance of only $4500\\ \\Omega$.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.4,
+      "unit": "mA",
+      "hint": "Use $\\kIcur = \\kV/\\kRes$ and then read the current against Table 20.3, remembering that the threshold of sensation is 1 mA."
+     },
+     {
+      "part": "(b)",
+      "value": 26.7,
+      "unit": "mA",
+      "hint": "Use the same relation with the much smaller resistance, and read the answer against the 10 to 20 mA row of Table 20.3."
+     }
+    ],
+    "solution": "(a) 0.400 mA, no effect (b) 26.7 mA, muscular contraction for duration of the shock (can't let go)"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2930233",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "Foolishly trying to fish a burning piece of bread from a toaster with a metal butter knife, a man comes into contact with 120-V AC. He does not even feel it since, luckily, he is wearing rubber-soled shoes. What is the minimum resistance of the path the current follows through the person?",
+   "answer": {
+    "type": "number",
+    "value": 120000,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "He feels nothing, so the current is at most the 1-mA threshold of sensation. The smallest resistance that keeps the current that small is $\\kRes = \\kV/\\kIcur$.",
+    "solution": "$1.20\\times{10}^{5}\\ \\Omega$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1371721",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "(a) What is the resistance of a 220-V AC short circuit that generates a peak power of 96.8 kW? (b) What would the average power be if the voltage was 120 V AC?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.0,
+      "unit": "Ω",
+      "hint": "A stated AC voltage is the rms voltage, and the peak power is twice the average, so $\\kPo = \\kVrms^2\\cdot 2/\\krshort$. Solve that for the resistance."
+     },
+     {
+      "part": "(b)",
+      "value": 14.4,
+      "unit": "kW",
+      "hint": "With the resistance known, the average power at a new rms voltage is $\\kPave = \\kVrms^2/\\krshort$."
+     }
+    ],
+    "solution": "(a) $1.00\\ \\Omega$ (b) 14.4 kW"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2438452",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "<strong>Integrated Concepts</strong> A short circuit in a 120-V appliance cord has a $0.500\\text{-}\\Omega$ resistance. Calculate the temperature rise of the 2.00 g of surrounding materials, assuming their specific heat capacity is $0.200\\ \\text{cal/g}\\cdot^\\circ\\text{C}$ and that it takes 0.0500 s for a circuit breaker to interrupt the current. Is this likely to be damaging?",
+   "answer": {
+    "type": "number",
+    "value": 860,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "Find the power in the short from $\\kP = \\kV^2/\\krshort$, multiply by the time to get the energy delivered, convert that energy to calories, and then use $Q = mc\\kdTemp$ with the given specific heat capacity.",
+    "solution": "Temperature increases $860^\\circ\\text{C}$. It is very likely to be damaging."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "thermal-hazard"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "shock-hazard"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "short-circuit"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "shock-hazard",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "shock-hazard",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "overloaded-wires"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "shock-hazard",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "short-circuit"
+  },
+  {
+   "exercise": "p3",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "p3",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "p5",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "p5",
+   "concept": "shock-severity-factors",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "short-circuit"
+  },
+  {
+   "exercise": "p9",
+   "concept": "short-circuit"
+  },
+  {
+   "exercise": "p9",
+   "concept": "overloaded-wires",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ]
+}

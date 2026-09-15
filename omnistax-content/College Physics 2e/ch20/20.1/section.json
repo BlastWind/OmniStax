@@ -1,0 +1,851 @@
+{
+ "id": "20.1",
+ "module": "m42341",
+ "chapter": "20",
+ "title": "Current",
+ "short": "Current",
+ "lead": "Electric current is the rate at which charge flows, and its unit, the ampere, is one coulomb per second. This section defines the current, fixes the direction of conventional current as the direction in which positive charge would move whatever the carriers actually are, and notes that a conductor carrying a current has an electric field in it and is not in static equilibrium. It then separates two speeds that are easily confused: the signal that travels down a wire at nearly the speed of light, and the drift velocity of the charges themselves, which is a crawl. Counting the free charges in a segment of wire ties the two pictures together in the relation $\\kIcur = n\\kq A\\kvd$.",
+ "objectives": [
+  "Define electric current, ampere, and drift velocity",
+  "Describe the direction of charge flow in conventional current.",
+  "Use drift velocity to calculate current and vice versa."
+ ],
+ "summary_html": "<ul><li>Electric current $\\kIcur$ is the rate at which charge flows, given by$$\\kIcur = \\frac{\\kdQch}{\\kdt},$$where $\\kdQch$ is the amount of charge passing through an area in time $\\kdt$.</li><li>The direction of conventional current is taken as the direction in which positive charge moves.</li><li>The SI unit for current is the ampere (A), where $1\\ \\text{A} = 1\\ \\text{C/s.}$</li><li>Current is the flow of free charges, such as electrons and ions.</li><li>Drift velocity $\\kvd$ is the average speed at which these charges move.</li><li>Current $\\kIcur$ is proportional to drift velocity $\\kvd$, as expressed in the relationship $\\kIcur = n\\kq A\\kvd$. Here, $\\kIcur$ is the current through a wire of cross-sectional area $A$. The wire’s material has a free-charge density $n$, and each carrier has charge $\\kq$ and a drift velocity $\\kvd$.</li><li>Electrical signals travel at speeds about $10^{12}$ times greater than the drift velocity of free electrons.</li></ul>",
+ "notes": "Eight problems the book leaves without an answer are left out: the flashlight’s average current, the current between comb and hair, the spark plug, the voltage for an open-heart defibrillator, the clock battery, the electron gun of an X-ray tube, the silver wire and the 14-gauge copper wire. The defibrillator problem that asks for the resistance of the path is set in Electric Power and Energy, where Ohm’s law has been given.",
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Eight problems have no keyed answer and are left out: the flashlight’s average current, the current between comb and hair, the spark plug, the voltage for an open-heart defibrillator, the clock battery, the electron gun of an X-ray tube, the silver wire and the 14-gauge copper wire. The defibrillator problem that asks for the resistance of the path is held for Electric Power and Energy, which introduces the power it turns on, and it carries source_section 20.1 there. Two AP items, the one that asks for the charge a 2.5 A current carries in 0.5 s and the one that compares two students’ calculations, have no key either, so each is kept as an open item with the book’s own options and an AI-marked suggested approach rather than as a graded choice.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "figures": [
+  {
+   "id": "sim-current-in-a-wire",
+   "kind": "sim",
+   "number": "20.2",
+   "folds": [
+    "20.4"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_01_01a.jpg",
+    "/media/ch20/Figure_21_01_03a.jpg"
+   ],
+   "original_caption": "The rate of flow of charge is current. An ampere is the flow of one coulomb through an area in one second.",
+   "widths": [
+    225,
+    225
+   ],
+   "draws": [
+    "current",
+    "charge",
+    "time",
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-simple-circuit",
+   "kind": "sim",
+   "number": "20.3",
+   "originals": [
+    "/media/ch20/Figure_21_01_02a.jpg"
+   ],
+   "original_caption": "(a) A simple electric circuit. A closed path for current to flow through is supplied by conducting wires connecting a load to the terminals of a battery. (b) In this schematic, the battery is represented by the two parallel red lines, conducting wires are shown as straight lines, and the zigzag represents the load. The schematic represents a wide variety of similar circuits.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "current",
+    "charge",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-drift-and-signal",
+   "kind": "sim",
+   "number": "20.5",
+   "folds": [
+    "20.6"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_01_04a.jpg",
+    "/media/ch20/Figure_21_01_05a.jpg"
+   ],
+   "original_caption": "When charged particles are forced into this volume of a conductor, an equal number are quickly forced to leave. The repulsion between like charges makes it difficult to increase the number of charges in a volume. Thus, as one charge enters, another leaves almost immediately, carrying the signal rapidly forward.",
+   "widths": [
+    250,
+    400
+   ],
+   "draws": [
+    "velocity",
+    "current",
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-drift-count",
+   "kind": "sim",
+   "number": "20.7",
+   "originals": [
+    "/media/ch20/Figure_21_01_06a.jpg"
+   ],
+   "original_caption": "All the charges in the shaded volume of this wire move out in a time t, having a drift velocity of magnitude v_d = x/t. See text for further discussion.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "current",
+    "velocity",
+    "charge"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "electric-current",
+   "concept": "electric-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-current",
+   "concept": "ampere",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-current",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-current",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "circuit-schematics",
+   "concept": "circuit-schematic",
+   "verb": "introduces"
+  },
+  {
+   "span": "circuit-schematics",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "circuit-schematics",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "conventional-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "charge-carriers",
+   "verb": "introduces"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "circuit-schematic",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "charge-of-electron-and-proton",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "electrostatic-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "field-inside-conductor-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "electric-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "count-charges-from-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "drift-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "signal-speed-versus-drift",
+   "verb": "introduces"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "charge-carriers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "insulator",
+   "verb": "uses"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "conventional-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "current-and-drift-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "electric-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "drift-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "charge-carriers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "signal-speed-versus-drift",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2221393",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "Which of the following can be explained on the basis of conservation of charge in a closed circuit consisting of a battery, resistor, and metal wires?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "The number of electrons leaving the battery will be equal to the number of electrons entering the battery.",
+     "The number of electrons leaving the battery will be less than the number of electrons entering the battery.",
+     "The number of protons leaving the battery will be equal to the number of protons entering the battery.",
+     "The number of protons leaving the battery will be less than the number of protons entering the battery."
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "hint": "Ask which particles actually move in a metal wire, and then ask what conservation of charge requires of a closed loop.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2408913",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "When a battery is connected to a bulb, there is 2.5 A of current in the circuit. What amount of charge will flow though the circuit in a time of 0.5 s? The options the book prints are (a) 0.5 C, (b) 1 C, (c) 1.25 C and (d) 1.5 C.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book prints no answer for this item, so work it through for yourself rather than taking one on trust. Current is the rate at which charge flows, $\\kIcur = \\kdQch/\\kdt$, so the charge that flows in a time $\\kdt$ is $\\kdQch = \\kIcur\\kdt$. Entering the given values, $\\kdQch = (2.5\\ \\text{A})(0.5\\ \\text{s}) = 1.25\\ \\text{C}$, since an ampere is one coulomb per second. That is option (c)."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2826587",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "If 0.625 × 10<sup>20</sup> electrons flow through a circuit each second, what is the current in the circuit?",
+   "answer": {
+    "type": "number",
+    "value": 10,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "Multiply the number of electrons each second by the charge on one electron to get the charge each second, which is the current.",
+    "solution": "10 A"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id3741390",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "Two students calculate the charge flowing through a circuit. The first student concludes that 300 C of charge flows in 1 minute. The second student concludes that 3.125 × 10<sup>19</sup> electrons flow per second. If the current measured in the circuit is 5 A, which of the two students (if any) have performed the calculations correctly?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book prints no answer for this item, so check each student's arithmetic against the definition of current for yourself. A current of 5 A carries 5 C past a point each second, since an ampere is one coulomb per second. In one minute that is $\\kdQch = \\kIcur\\kdt = (5\\ \\text{A})(60\\ \\text{s}) = 300\\ \\text{C}$, so the first student is right. The number of electrons each second is the charge each second divided by the charge on one electron, $(5\\ \\text{C})/(1.60 \\times 10^{-19}\\ \\text{C}) = 3.125 \\times 10^{19}$ electrons, so the second student is right as well. The two answers are the same current stated in two ways."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2392409",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "Can a wire carry a current and still be neutral—that is, have a total charge of zero? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. A current is free charges moving, not extra charge sitting in the wire. Each atom of the metal keeps its nucleus and its inner electrons, and the free electrons that drift through the lattice are exactly as many as the positive ions they were shed from. As many electrons enter one end of the wire each second as leave the other end, so the total charge in any length of the wire does not change, and it stays zero. The density of charge in a system cannot easily be increased, as the section says of the signal, and that is the same fact stated the other way about."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2600992",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "Car batteries are rated in ampere-hours ($\\text{A}\\cdot\\text{h}$). To what physical quantity do ampere-hours correspond (voltage, charge, . . .), and what relationship do ampere-hours have to energy content?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An ampere-hour is a current times a time, and $\\kdQch = \\kIcur\\kdt$, so an ampere-hour is a charge: one ampere flowing for one hour moves $(1\\ \\text{A})(3600\\ \\text{s}) = 3600\\ \\text{C}$. The rating therefore says how much charge the battery can move before it is exhausted. The energy the battery can deliver is that charge times the voltage it moves the charge through, since the potential energy a charge loses in going from one terminal to the other is $\\kq\\kdV$. A 12 V battery rated at 50 A·h can move $1.8 \\times 10^{5}$ C and so can deliver about $2.2 \\times 10^{6}$ J. Two batteries with the same ampere-hour rating but different voltages do not hold the same energy."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1365959",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "current-from-drift",
+   "prompt": "If two different wires having identical cross-sectional areas carry the same current, will the drift velocity be higher or lower in the better conductor? Explain in terms of the equation ${v}_{\\text{d}}=\\frac{I}{\\text{nqA}}$, by considering how the density of charge carriers $n$ relates to whether or not a material is a good conductor.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It will be lower in the better conductor. A good conductor is one with large numbers of free charges in it, so its free-charge density $n$ is large. Rearranged, the drift velocity is $\\kvd = \\kIcur/(n\\kq A)$, and with $\\kIcur$, $\\kq$ and $A$ the same for the two wires the drift velocity varies as $1/n$. The better conductor has more carriers to share the same current between, so each one need creep along more slowly. This is the same point the section makes when it says that drift velocity is quite small since there are so many free charges, and that the larger the density, the lower the velocity required for a given current."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1019372",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circuit-schematics",
+   "prompt": "Why are two conducting paths from a voltage source to an electrical device needed to operate the device?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Because a current will only flow round a closed path. Charge is not used up in the device, so as much charge must return to the source each second as leaves it; if there is only one wire, the charge has nowhere to go and no steady current can be maintained. One path carries the charge from the source to the device and the other carries it back, which is why the schematic of Figure 20.3 is a closed loop with the source in one side of it and the load in the other."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2611504",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circuit-schematics",
+   "prompt": "In cars, one battery terminal is connected to the metal body. How does this allow a single wire to supply current to electrical devices rather than two wires?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The metal body is itself a conductor, and connecting one battery terminal to it makes the whole body one of the two conducting paths the circuit needs. A lamp or a motor anywhere in the car is then reached by a single wire from the other terminal, and the return path is through the metal it is bolted to. The circuit is still a closed loop, and the schematic is still the loop of Figure 20.3; only one side of the loop has been replaced by the body of the car, which saves a great deal of wire."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3154476",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circuit-schematics",
+   "prompt": "Why isn’t a bird sitting on a high-voltage power line electrocuted? Contrast this with the situation in which a large bird hits two wires simultaneously with its wings.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A bird with both feet on one wire is not part of any closed path. Its two feet are on the same conductor, so there is no conducting path through the bird from one side of the circuit to the other and almost no current flows through it, however high above the ground the wire may be. A large bird that touches two wires at once with its wings bridges two different conductors, and a current then has a closed path from one wire, through the bird, to the other. The current that path carries can be large enough to kill it."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1599422",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "What is the current in milliamperes produced by the solar cells of a pocket calculator through which 4.00 C of charge passes in 4.00 h?",
+   "answer": {
+    "type": "number",
+    "value": 0.278,
+    "unit": "mA",
+    "generated_by": "source",
+    "hint": "Put the time into seconds before dividing, since an ampere is one coulomb per second.",
+    "solution": "0.278 mA"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2408383",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "What is the current when a typical static charge of $0.250\\ \\mu\\text{C}$ moves from your finger to a metal doorknob in $1.00\\ \\mu\\text{s}$?",
+   "answer": {
+    "type": "number",
+    "value": 0.25,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "Both the charge and the time carry the same prefix, so the prefixes cancel in the ratio.",
+    "solution": "0.250 A"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3077567",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "A large lightning bolt had a 20,000-A current and moved 30.0 C of charge. What was its duration?",
+   "answer": {
+    "type": "number",
+    "value": 0.0015,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "Solve the definition of current for the time before entering the numbers.",
+    "solution": "1.50 ms"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2660448",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "figure": {
+    "src": "/media/ch20/Figure_21_01_07a.jpg",
+    "alt": "Figure represents a defibrillation unit used on a patient. The circuit is also represented. It shows a capacitor driving a current through the chest of a patient. The opposite plates of the capacitor are marked as positive Q and negative Q. The direction of current in the connecting wires from the capacitor to the defibrillation unit is shown in a clockwise direction with an arrow on the wire, and the direction of electrons is shown opposite to this direction with an arrow.",
+    "caption": "The capacitor in a defibrillation unit drives a current through the heart of a patient."
+   },
+   "prompt": "(a) A defibrillator passes 12.0 A of current through the torso of a person for 0.0100 s. How much charge moves? (b) How many electrons pass through the wires connected to the patient? (See the figure below.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.12,
+      "unit": "C",
+      "hint": "The charge that moves is the current times the time it flows for."
+     },
+     {
+      "part": "b",
+      "value": 7.5e+17,
+      "unit": "electrons",
+      "hint": "Divide the charge by the magnitude of the charge on one electron."
+     }
+    ],
+    "solution": "(a) 0.120 C\n(b) $7.50 \\times 10^{17}$ electrons"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3008630",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "The batteries of a submerged non-nuclear submarine supply 1000 A at full speed ahead. How long does it take to move Avogadro’s number ($6.02 \\times 10^{23}$) of electrons at this rate?",
+   "answer": {
+    "type": "number",
+    "value": 96.3,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "Turn the number of electrons into a charge first, then divide by the current.",
+    "solution": "96.3 s"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1827821",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "A large cyclotron directs a beam of ${\\text{He}}^{++}$ nuclei onto a target with a beam current of 0.250 mA. (a) How many ${\\text{He}}^{++}$ nuclei per second is this? (b) How long does it take for 1.00 C to strike the target? (c) How long before 1.00 mol of ${\\text{He}}^{++}$ nuclei strike the target?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 781000000000000.0,
+      "unit": "nuclei/s",
+      "hint": "Each nucleus carries twice the fundamental charge, so divide the charge each second by $2\\kqe$."
+     },
+     {
+      "part": "b",
+      "value": 4000.0,
+      "unit": "s",
+      "hint": "Solve the definition of current for the time."
+     },
+     {
+      "part": "c",
+      "value": 771000000.0,
+      "unit": "s",
+      "hint": "A mole is Avogadro’s number of nuclei, and part (a) says how many arrive each second."
+     }
+    ],
+    "solution": "(a) $7.81 \\times 10^{14}$ He$^{++}$ nuclei/s\n(b) $4.00 \\times 10^{3}$ s\n(c) $7.71 \\times 10^{8}$ s"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2041523",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "current-from-drift",
+   "prompt": "Using the results of the above example on Example 20.3, find the drift velocity in a copper wire of twice the diameter and carrying 20.0 A.",
+   "answer": {
+    "type": "number",
+    "value": -0.000113,
+    "unit": "m/s",
+    "generated_by": "source",
+    "hint": "Doubling the diameter makes the cross-sectional area four times as large, and the drift velocity varies as $1/A$.",
+    "solution": "$-1.13 \\times 10^{-4}$ m/s"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1602358",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "figure": {
+    "src": "/media/ch20/Figure_21_01_08a-2cfa.jpg",
+    "alt": "The circuit shows a doughnut shaped storage ring called SPEAR. The cross sections of ring are marked as A and are represented as dotted circular sections. The diameter of storage ring as measured between diametrically opposite cross sections on both ends is seventy two meters. The current in the ring is given as twenty amps. The direction of current I is shown opposite to the direction of movement of electrons e using arrows.",
+    "caption": "Electrons circulating in the storage ring called SPEAR constitute a 20.0-A current. Because they travel close to the speed of light, each electron completes many orbits in each second."
+   },
+   "prompt": "SPEAR, a storage ring about 72.0 m in diameter at the Stanford Linear Accelerator (closed in 2009), has a 20.0-A circulating beam of electrons that are moving at nearly the speed of light. (See the figure below.) How many electrons are in the beam?",
+   "answer": {
+    "type": "number",
+    "value": 94200000000000.0,
+    "unit": "electrons",
+    "generated_by": "source",
+    "hint": "Work out how long one electron takes to go once round at nearly the speed of light, and ask how much charge passes a point in that time.",
+    "solution": "$9.42 \\times 10^{13}$ electrons"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "conventional-current"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "charge-carriers",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ampere",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "elementary-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "ampere"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "charge-carriers",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conservation-of-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ampere"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "energy-from-potential-difference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "current-and-drift-velocity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "drift-velocity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "circuit-schematic"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "conventional-current"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "electric-current",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "circuit-schematic"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "circuit-schematic"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "conventional-current"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "charge-carriers",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ampere",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p2",
+   "concept": "ampere",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p4",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p4",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "p4",
+   "concept": "elementary-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p5",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "p5",
+   "concept": "elementary-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p6",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "p6",
+   "concept": "conventional-current",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "current-and-drift-velocity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "drift-velocity"
+  },
+  {
+   "exercise": "p8",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p8",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "p8",
+   "concept": "current-and-drift-velocity",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

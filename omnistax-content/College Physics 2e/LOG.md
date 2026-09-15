@@ -3681,3 +3681,108 @@ Checks: `check:content` over the whole book, 19 chapters, 132 sections and 20
 introduction pages, with no errors; the unit tests, 419 of them; `astro
 check` clean; a build; and a headless pass over all eight pages of the
 chapter in light and dark, which found no fault in either theme.
+
+
+### Pass 45 (2026-09-15): Chapter 20, Electric Current, Resistance, and Ohm's Law, is built and passed
+
+The chapter's introduction and seven sections are eight pages, built from the
+modules m42339, m42341, m42344, m42346, m42714, m42348, m42350 and m42352.
+Thirty-one figures stand on them: twenty-five drawn simulations and six kept
+photographs, the Srisailam power station that opens the chapter, the two
+digital thermometers that read a thermistor, the 25-W and 60-W bulbs beside a
+compact fluorescent, the transformers on a transmission line, the electric arc
+between two wires and the electric eel. Nine of the twenty-five move, because
+their idea has a clock in it: the charge crossing the marked area of a wire
+while a counter fills to it, the crowd of free electrons drifting while each
+electron rattles and the push that runs the length of the wire ahead of them,
+the current going round the simple circuit of 20.2, the alternating source
+reversing and its power curve sweeping, and the four figures of 20.7, the ions
+crossing a membrane until the Coulomb force halts them, the action potential
+rising and falling, the impulse running down an axon, and the depolarization
+wave crossing the heart beside the trace it writes. Seven fold the book's
+numbers into one live drawing: 20.2 + 20.4, 20.5 + 20.6, 20.8 + 20.9,
+20.14 + 20.15, 20.19 + 20.20, 20.27 + 20.28 and 20.30 + 20.31. Every number
+the book prints from 20.1 to 20.32 is drawn or kept, with no gap, and the
+chapter's three numbered tables, the resistivities, the temperature
+coefficients and the effects of electrical shock, are rebuilt as tables in the
+text with the book's own eyebrows and its own titles, misspelling and all.
+
+The chapter declares two types, `current` in amperes and `resistance` in
+ohms, because its figures draw them, its sliders carry them and its readouts
+state them. It stages fifteen symbol rows, most of them because the letter the
+chapter wants is already another quantity's: the current is `I_curr` because
+`I` is a moment of inertia, the resistance `R_res` because `R` is a radius of
+curvature, and the resistivity is the book's existing untyped `ρ`, which this
+chapter's `chapter.json` gives its electric meaning. The resistivity and its
+temperature coefficient stay in ink, as every material constant of this book
+does; what wears the resistance hue is the resistance the figure computes from
+them, which is the distinction 20.3 is teaching. Forty-three concepts, 109
+prerequisite edges, 133 coverage anchors, twenty-five glossary terms and
+ninety-four exercises: forty-seven problems, all of them the ones the book
+keys, thirty-two conceptual questions and fifteen AP items, each open item
+carrying an AI-marked suggested approach.
+
+What the chapter pass applied. Every variable row and every equation row of
+the seven sections now carries an anchor into its own page, thirty-three and
+twenty-eight of them, written from the section plans and extended to the rows
+no plan had named. The three glossary anchors two plans asked for cannot be
+written, because the `glossary` table has `section`, `term` and `definition`
+and no `anchor`; `config.md` says so now. `COLOR.md` is brought to the
+bindings as built: 20.5 binds resistance, which its plan asked for, since Ohm's
+law for alternating current is its own result and the resistance is a slider
+on all three of its figures; 20.3 binds neither current nor voltage, because
+no figure of it measures a resistance from them; and 20.4 binds time as well,
+on the hours its two lamps are left burning. `config.md` is brought to what
+was built in every line the build settled differently, among them the folds
+the sections chose, the nine figures that move, the images the exercise cards
+carry, the two items whose keys a card cannot check, and three settings the
+proposal had not named: the numbering of the worked examples, the way an ohm
+is written inside math, and the anchors.
+
+The reading found four things the validator does not see. The chapter's ten
+worked examples had been numbered twice over, 20.2's Example 20.4 and 20.3's
+Example 20.4, and 20.4's Example 20.8 and 20.5's Example 20.8, because three
+sections had counted from the start of their own pages; the book numbers its
+examples straight through the chapter, so 20.3's two are now Examples 20.5 and
+20.6 and 20.5's are Examples 20.9 and 20.10, and every reference to them, in
+two headings, three captions, two problem stems, a section's notes and eight
+concepts' evidence, was changed with them. The second conceptual question of
+20.3, which ends "(See the figure below.)", had no figure: the rectangular bar
+measured along its length and across its width was copied into `media/ch20/`
+but never set on the card, and it is there now. `sim-ecg` shades the
+depolarized part of the heart in the charge hue and had not said so in its
+`draws`. And ten reader-facing words were in British spelling, a square
+millimetre in a caption, three more in canvas text and in a readout, and two
+kilometres, a metre, two millimetres and a travelled in the notes, the
+solutions and the hints of 20.3 and 20.4; all are now American, as the book
+writes them.
+
+The book's own slips are kept as printed and gathered in `exploration.md`: the
+missing $n$ in Example 20.3's solution, the two table titles, "Resistivities
+$\rho$ of Various materials" and "Tempature Coefficients of Resistivity", the
+AP item that asks for the resistivity of the 1 Ω wire where its stem gives 3 Ω
+and 11 Ω, the unlabelled part (a) of Example 20.7, the problem that names its
+example twice over, and the Critical Thinking key of 20.7 that writes
+$3.25\times10^{-3}$ J/s for a stem of 3.25 MJ. An ohm inside math is
+`\Omega` everywhere in the chapter, in the prose, in a prompt, in an equation
+row and in every readout a figure writes; the literal Ω is for plain text
+alone, which is where a caption attribute, a slider's unit and a glossary
+definition live.
+
+One thing to know about the tools. `ost merge` lifts a chapter's rows out of
+each table and appends them at the end, so merging a chapter a second time
+after a later chapter has already merged moves that later chapter's rows up
+the declared order of types, and the order of types is what the colour scheme
+deals its hues along. Merging `ch20` after `ch21` and `ch22` had been prepared
+put `magnetic-field` ahead of `current` and `resistance` and failed the
+scheme's own test, which wants the magnetic field and the force far apart.
+`book.json` was put back to the order it had and the pass's eight changed
+lines written into it in place. A merge that is only a rewrite wants to leave
+the order alone.
+
+Checks: `check:content` over the whole book, with no errors; the unit tests,
+of which the one failure names 22.7 and belongs to the chapter being built
+beside this one; `astro check` clean; a build; and a headless pass over all
+eight pages of the chapter and their Exercises documents in light and dark,
+which found no fault in either theme, no blank canvas, no KaTeX error and no
+unswept dollar sign.

@@ -119,7 +119,7 @@ own module.
 |---|---|---|
 | 20.1 | the Srisailam hydroelectric station | keep; it is the introduction's opening photograph, which root rule 21 keeps with its number, caption and credit |
 | 20.12 | two digital thermometers | keep; the passage points at it for the thermistor, which is the application the temperature coefficient is taught for |
-| 20.13 | the 25-W bulb, the 60-W bulb and a compact fluorescent | keep; the section opens on it and its caption asks the reader the questions the section answers, and Example 20.5's comparison of the two bulbs is the section's arithmetic |
+| 20.13 | the 25-W bulb, the 60-W bulb and a compact fluorescent | keep; the section opens on it and its caption asks the reader the questions the section answers, and Example 20.7's comparison of the hot and the cold headlight is the section's arithmetic |
 | 20.17 | transformers on a transmission line | keep; the passage points at it where it explains why power travels at high voltage |
 | 20.23 | an electric arc between two wires | keep; the passage points at it and asks whether it is dangerous, which is the section's closing question about frequency |
 | 20.29 | an electric eel | keep; the passage names it as muscles ganged so that their voltages add |
@@ -179,18 +179,33 @@ options and is never presented as a graded choice.
 
 ## Errata kept as printed
 
+Gathered again in the chapter pass of 2026-09-15, when the sections' own
+notes were read together; the example numbers here are the publisher's,
+which run 20.1 to 20.10 straight through the chapter.
+
 - **20.1, Example 20.3.** The solution's first sentence reads "Therefore,
   is the same as the number of copper atoms per $\text{m}^3$", with the
   symbol $n$ missing from the sentence. The text is kept as printed and
   20.1's `notes` says so.
-- **20.4, Example 20.6.** The example's statement begins "(a) Consider the
+- **20.1, the seventh problem.** It opens "Using the results of the above
+  example on [Example 20.3]", naming the example twice over; the sentence
+  is kept as printed with the reference written out as plain text.
+- **20.4, Example 20.7.** The example's statement begins "(a) Consider the
   examples" but has no "(a)" labelled part in its prompt before
   "**Strategy for (a)**"; the book's own labelling is kept.
+- **20.3, Table 20.1.** The book's title is printed as "Resistivities
+  $\rho$ of Various materials at 20 °C", with "materials" in lower case
+  where the other words of the title are capitalised. The table's caption
+  is written as the book prints it, and 20.3's `notes` records it.
 - **20.3, Table 20.2.** The book's title is printed as "Tempature
   Coefficients of Resistivity", with the spelling as shown. The table's
   eyebrow carries the book's number and its title is written as the book
   prints it, and 20.3's `notes` records the spelling.
-- **20.3, the sixteenth problem.** "Redo [Example 20.4]" is printed as a
+- **20.3, the fourth AP item.** The stem gives two wires of 3 Ω and 11 Ω
+  and then asks for "the resistivity of the 1 Ω wire", where the answer
+  key works the 11 Ω wire. The prompt is kept as printed and the book's
+  key is kept with it, and 20.3's `notes` records both.
+- **20.3, the sixteenth problem.** "Redo [Example 20.6]" is printed as a
   reference to the hot-filament example; the reference is kept as plain
   text.
 - **20.5.** The book skips `Figure_21_05_02` in its media, so its three
@@ -223,8 +238,12 @@ options and is never presented as a graded choice.
 
 ## Wanted at chapter level
 
-Nothing yet; each section's plan writes its own line under this heading
-and the chapter pass applies them.
+Each section's plan writes its own line under this heading, and the chapter
+pass of 2026-09-15 applied them all and recorded what it decided under the
+same heading in each plan: the anchors on every variable and equation row,
+the glossary rows 20.3 asked anchors for and could not have, the line of
+`ch20/COLOR.md` 20.5 asked to be corrected, and the amendment of
+`ch20/config.md` 20.4 asked for over its first AP item.
 
 ## BE INSPIRING (rule 23)
 
