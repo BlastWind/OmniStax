@@ -3,7 +3,7 @@
    answers its sliders: none registers a cycle and none carries a transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed, pinned, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const RAD = Math.PI / 180;
@@ -105,24 +105,16 @@ function pencilLying(ctx, x, y, L, W, color) {
   ctx.fillStyle = alpha(color, 0.22); ctx.fillRect(0, -W, Math.min(26, L * 0.14), W);
   ctx.restore();
 }
-/* A person standing, the middle of the base on the ground at the origin.
-   Lengths arrive in centimeters and SC scales them; the hip drops and the
-   knees bend outward as the center of gravity is lowered. */
+/* A person standing, the middle of the base on the ground at the origin, seen from the front.
+   Lengths arrive in centimeters and SC scales them: the feet are d apart, the hips sit at the
+   height the center of gravity asks, and the library's silhouette bends the knees outward as
+   the hips are lowered. The joints are given in the silhouette's own 150-unit frame. */
 function person(ctx, d, h, SC, color) {
-  const hip = Math.min(93, h * 0.95), sh = hip + 52, hd = sh + 16, bend = (93 - hip) * SC * 0.5;
-  const foot = (d / 2) * SC, Y = (cm) => -cm * SC;
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 6;
-  ctx.beginPath();
-  ctx.moveTo(-foot - 16, 0); ctx.lineTo(-foot + 22, 0);
-  ctx.moveTo(foot - 22, 0); ctx.lineTo(foot + 16, 0);
-  ctx.moveTo(-foot, 0); ctx.lineTo(-foot - bend, Y(hip / 2)); ctx.lineTo(0, Y(hip));
-  ctx.moveTo(foot, 0); ctx.lineTo(foot + bend, Y(hip / 2)); ctx.lineTo(0, Y(hip));
-  ctx.moveTo(0, Y(hip)); ctx.lineTo(0, Y(sh));
-  ctx.moveTo(0, Y(sh)); ctx.lineTo(-19 * SC, Y(hip + 8));
-  ctx.moveTo(0, Y(sh)); ctx.lineTo(19 * SC, Y(hip + 8));
-  ctx.stroke();
-  ctx.beginPath(); ctx.arc(0, Y(hd), 8.5 * SC, 0, Math.PI * 2); ctx.fill();
-  ctx.restore();
+  const HT = 170, s = (HT * SC) / 150, k = 150 / HT;                    /* a 170 cm adult */
+  const hip = Math.max(82, Math.min(93, h * 0.95)), foot = (d / 2) * k;   /* the knees bend a little as the cg is lowered; the cg dot itself follows h exactly */
+  silhouette(ctx, { x: 0, y: 0, s, color, pose: 'stand',
+    feet: [{ x: foot, y: 0 }, { x: -foot, y: 0 }], hip: { x: 0, y: -hip * k }, shoulder: { x: 0, y: -(hip + 50) * k }, head: { x: 0, y: -(hip + 68) * k },
+    hands: [{ x: 24, y: -(hip - 22) * k }, { x: -24, y: -(hip - 22) * k }], kneeSide: -1, elbowSide: -1 });
 }
 /* A chicken standing on two broad feet, the middle of the base on the ground
    at the origin; the body hangs from the hips, which sit above its cg. */
@@ -220,13 +212,13 @@ function chicken(ctx, d, h, SC, color) {
   /* The radius of the sphere was a slider once and is now fixed at 5 cm: changing it
      moved nothing the figure is about, since the center of gravity of a sphere of any
      size sits straight above the point of support (rule 24.6). */
-  const RAD_CM = 5, SC = 11, GY = 350, AX = 370, BX = 1050;
+  const RAD_CM = 5, SC = 15, GY = 350, AX = 370, BX = 1050;
   function support(ctx, cx, cy, lx, ly) {
-    line(ctx, cx, cy - 46, cx, GY + 64, PAL.muted, 2, [4, 8]);
-    arrow(ctx, cx + 18, cy, cx + 18, cy + 112, C('force'), 5);
-    text(ctx, 'w', cx + 32, cy + 84, C('force'), { weight: 600, size: 24 });
-    arrow(ctx, cx - 18, GY, cx - 18, GY - 112, C('force'), 5);
-    text(ctx, 'N', cx - 32, GY - 88, C('force'), { weight: 600, size: 24, align: 'right' });
+    line(ctx, cx, cy - 46, cx, GY + 64, alpha(PAL.ink, 0.4), 2, [4, 8]);
+    arrow(ctx, cx + 22, cy, cx + 22, cy + 112, C('force'), 5);
+    text(ctx, 'w', cx + 38, cy + 90, C('force'), { weight: 600, size: 24, bg: PAL.panel });
+    arrow(ctx, cx - 22, GY, cx - 22, GY - 112, C('force'), 5);
+    text(ctx, 'N', cx - 38, GY - 94, C('force'), { weight: 600, size: 24, align: 'right', bg: PAL.panel });
     dot(ctx, cx, cy, PAL.ink, true, 9);
     text(ctx, 'cg', cx + lx, cy + ly, PAL.ink, { size: 17 });
     dot(ctx, cx, GY, PAL.ink, true, 7);
@@ -242,7 +234,7 @@ function chicken(ctx, d, h, SC, color) {
     line(ctx, sx, GY - r, sx + r * 0.78 * Math.sin(roll), GY - r - r * 0.78 * Math.cos(roll), PAL.muted, 3);
     support(ctx, sx, GY - r, r + 12, 0);
     text(ctx, '(a) a sphere on a flat surface', AX, 118, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    const pl = 220, pw = 30;
+    const pl = 260, pw = 36;
     pencilLying(ctx, BX + dx - pl / 2, GY, pl, pw, PAL.ink);
     support(ctx, BX + dx, GY - pw / 2, 16, -30);
     text(ctx, '(b) a round pencil lying on its side', BX, 118, PAL.ink, { size: 20, weight: 600, align: 'center' });

@@ -181,6 +181,20 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-rotation-angle` now draws the
+disc as a CD, with its clear hub, its hole and faint rings of pits, and names
+O, Δθ and the two pits through `labeller()` so no label sits on a radius or
+an arc at any point of the turn. `sim-omega` keeps its spokes inside the rim
+(rule: a spoke stops at the rim's inner edge less half its stroke, the rim
+stroked over it) and draws them firmer; the slope's label sits below and to
+the right of the line, clear of the axis. `sim-tire` gained the front of a
+car drawn about the turning wheel, cropped at the left as the book crops
+its car (a whole car is fifteen tire radii long), the wheel arch cut out
+of the body and the wheel drawn over it; r is named beside its spoke, v is
+named beyond its head, and the graph's "this tire" label steps below its
+point on large tires so it never meets the earth mover's. `sim-record`
+names r beside the radius, not on it.
+
 ## Exercises
 
 - No Check Your Understanding box; nothing inline. The section's own problem

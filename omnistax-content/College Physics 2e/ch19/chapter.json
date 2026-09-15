@@ -1,0 +1,934 @@
+{
+  "id": "19",
+  "dir": "ch19",
+  "title": "Electric Potential and Electric Field",
+  "intro": {
+    "module": "m42320",
+    "slug": "19-introduction-to-electric-potential-and-electric-energy"
+  },
+  "sections": [
+    {
+      "id": "19.1",
+      "module": "m42324",
+      "title": "Electric Potential Energy: Potential Difference",
+      "slug": "19-1-electric-potential-energy-potential-difference"
+    },
+    {
+      "id": "19.2",
+      "module": "m42326",
+      "title": "Electric Potential in a Uniform Electric Field",
+      "slug": "19-2-electric-potential-in-a-uniform-electric-field"
+    },
+    {
+      "id": "19.3",
+      "module": "m42328",
+      "title": "Electrical Potential Due to a Point Charge",
+      "slug": "19-3-electrical-potential-due-to-a-point-charge"
+    },
+    {
+      "id": "19.4",
+      "module": "m42331",
+      "title": "Equipotential Lines",
+      "slug": "19-4-equipotential-lines"
+    },
+    {
+      "id": "19.5",
+      "module": "m42333",
+      "title": "Capacitors and Dielectrics",
+      "slug": "19-5-capacitors-and-dielectrics"
+    },
+    {
+      "id": "19.6",
+      "module": "m42336",
+      "title": "Capacitors in Series and Parallel",
+      "slug": "19-6-capacitors-in-series-and-parallel"
+    },
+    {
+      "id": "19.7",
+      "module": "m42395",
+      "title": "Energy Stored in Capacitors",
+      "slug": "19-7-energy-stored-in-capacitors"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "q",
+      "type": "charge",
+      "meaning": "the charge, positive or negative, that is moved through the field; the test charge whose potential energy is divided out",
+      "unit": "C",
+      "section": "19.1"
+    },
+    {
+      "sym": "E_field",
+      "type": "electric-field",
+      "meaning": "the electric field that accelerates the charge, so that the force on it is qE",
+      "unit": "N/C",
+      "section": "19.1"
+    },
+    {
+      "sym": "W",
+      "type": "energy",
+      "meaning": "the work done on the charge by the electric field, which is the negative of the change in its potential energy",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "PE",
+      "type": "energy",
+      "meaning": "the electric potential energy of the charge, defined because the Coulomb force is conservative; found at any point by taking one point as a reference",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "ΔPE",
+      "type": "energy",
+      "meaning": "the change in electric potential energy of a charge moved from one point to another, negative when the charge speeds up",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "V_volt",
+      "type": "voltage",
+      "meaning": "the electric potential, the potential energy per unit charge, which does not depend on the test charge",
+      "unit": "V",
+      "section": "19.1"
+    },
+    {
+      "sym": "ΔV_volt",
+      "type": "voltage",
+      "meaning": "the potential difference, or voltage, between two points: the change in potential energy of a charge moved between them, divided by the charge",
+      "unit": "V",
+      "section": "19.1"
+    },
+    {
+      "sym": "V_A",
+      "type": "voltage",
+      "meaning": "the potential at point A, the point the charge is moved from",
+      "unit": "V",
+      "section": "19.1"
+    },
+    {
+      "sym": "V_B",
+      "type": "voltage",
+      "meaning": "the potential at point B, the point the charge is moved to",
+      "unit": "V",
+      "section": "19.1"
+    },
+    {
+      "sym": "ΔPE_cycle",
+      "type": "energy",
+      "meaning": "the energy delivered by the motorcycle battery of Example 19.1, the charge it moves times its voltage",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "ΔPE_car",
+      "type": "energy",
+      "meaning": "the energy delivered by the car battery of Example 19.1",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "n_e",
+      "meaning": "the number of electrons that pass through the headlight each second, the total charge divided by the charge per electron",
+      "section": "19.1"
+    },
+    {
+      "sym": "KE",
+      "type": "energy",
+      "meaning": "the kinetic energy of the charged particle, which grows as its electric potential energy falls",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "KE_i",
+      "type": "energy",
+      "meaning": "the kinetic energy at the start, zero for a charge accelerated from rest",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "KE_f",
+      "type": "energy",
+      "meaning": "the kinetic energy at the end, mv²/2",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "PE_i",
+      "type": "energy",
+      "meaning": "the electric potential energy at the start, qV for a charge at potential V",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "PE_f",
+      "type": "energy",
+      "meaning": "the electric potential energy at the end, zero where the reference is taken",
+      "unit": "J",
+      "section": "19.1"
+    },
+    {
+      "sym": "v",
+      "type": "velocity",
+      "meaning": "the final speed of the charge accelerated through the potential difference",
+      "unit": "m/s",
+      "section": "19.1"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of the accelerated particle, 9.11 × 10⁻³¹ kg for an electron",
+      "unit": "kg",
+      "section": "19.1"
+    },
+    {
+      "sym": "E_field",
+      "type": "electric-field",
+      "meaning": "the uniform electric field between two parallel metal plates, a vector whose magnitude is written E",
+      "unit": "V/m",
+      "section": "19.2"
+    },
+    {
+      "sym": "ΔV_volt",
+      "type": "voltage",
+      "meaning": "the potential difference across the plates, a scalar most closely tied to energy",
+      "unit": "V",
+      "section": "19.2"
+    },
+    {
+      "sym": "V_AB",
+      "type": "voltage",
+      "meaning": "the voltage between points A and B, the opposite of the potential difference: V_A − V_B, positive for a charge moved from the higher potential to the lower",
+      "unit": "V",
+      "section": "19.2"
+    },
+    {
+      "sym": "V_A",
+      "type": "voltage",
+      "meaning": "the potential of plate A, the positive plate at higher potential",
+      "unit": "V",
+      "section": "19.2"
+    },
+    {
+      "sym": "V_B",
+      "type": "voltage",
+      "meaning": "the potential of plate B, the negative plate at lower potential",
+      "unit": "V",
+      "section": "19.2"
+    },
+    {
+      "sym": "W",
+      "type": "energy",
+      "meaning": "the work done by the electric field in moving a positive charge from plate A to plate B, qV_AB or qEd",
+      "unit": "J",
+      "section": "19.2"
+    },
+    {
+      "sym": "q",
+      "type": "charge",
+      "meaning": "the positive charge moved from A to B, which cancels from the relation between voltage and field",
+      "unit": "C",
+      "section": "19.2"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the force on the charge, qE, the same anywhere between the plates because the field is uniform",
+      "unit": "N",
+      "section": "19.2"
+    },
+    {
+      "sym": "d",
+      "type": "position",
+      "meaning": "the distance from A to B, the separation of the plates",
+      "unit": "m",
+      "section": "19.2"
+    },
+    {
+      "sym": "Δs",
+      "type": "position",
+      "meaning": "the distance over which the change in potential takes place",
+      "unit": "m",
+      "section": "19.2"
+    },
+    {
+      "sym": "V_volt",
+      "type": "voltage",
+      "meaning": "the electric potential of a point charge at a distance r from it, with the potential at infinity chosen to be zero",
+      "unit": "V",
+      "section": "19.3"
+    },
+    {
+      "sym": "Q_charge",
+      "type": "charge",
+      "meaning": "the point charge, or the charge on a metal sphere, that produces the potential",
+      "unit": "C",
+      "section": "19.3"
+    },
+    {
+      "sym": "q",
+      "type": "charge",
+      "meaning": "the test charge moved in from a large distance to a distance r from the point charge",
+      "unit": "C",
+      "section": "19.3"
+    },
+    {
+      "sym": "r_curv",
+      "type": "position",
+      "meaning": "the distance from the point charge, or from the center of the charged sphere, to the point where the potential is taken",
+      "unit": "m",
+      "section": "19.3"
+    },
+    {
+      "sym": "k_coul",
+      "meaning": "Coulomb's constant, 8.99 × 10⁹ N·m²/C²",
+      "unit": "N·m²/C²",
+      "section": "19.3"
+    },
+    {
+      "sym": "E_field",
+      "type": "electric-field",
+      "meaning": "the electric field of the point charge, the force per unit charge, which falls as 1/r² where the potential falls as 1/r",
+      "unit": "N/C",
+      "section": "19.3"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the Coulomb force on the test charge",
+      "unit": "N",
+      "section": "19.3"
+    },
+    {
+      "sym": "PE_g",
+      "type": "energy",
+      "meaning": "the gravitational potential energy mgh, whose zero at sea level is the analogy for the zero of electric potential",
+      "unit": "J",
+      "section": "19.3"
+    },
+    {
+      "sym": "h",
+      "type": "position",
+      "meaning": "the height above sea level in the gravitational analogy",
+      "unit": "m",
+      "section": "19.3"
+    },
+    {
+      "sym": "V_volt",
+      "type": "voltage",
+      "meaning": "the electric potential, constant along an equipotential line or surface",
+      "unit": "V",
+      "section": "19.4"
+    },
+    {
+      "sym": "ΔV_volt",
+      "type": "voltage",
+      "meaning": "the potential difference between two points on an equipotential, which is zero",
+      "unit": "V",
+      "section": "19.4"
+    },
+    {
+      "sym": "Q_charge",
+      "type": "charge",
+      "meaning": "the isolated point charge whose equipotentials are spheres, or the charged sphere that can replace it",
+      "unit": "C",
+      "section": "19.4"
+    },
+    {
+      "sym": "q",
+      "type": "charge",
+      "meaning": "the charge moved along an equipotential, on which no work is done",
+      "unit": "C",
+      "section": "19.4"
+    },
+    {
+      "sym": "W",
+      "type": "energy",
+      "meaning": "the work done in moving a charge along an equipotential, zero because the force is perpendicular to the motion",
+      "unit": "J",
+      "section": "19.4"
+    },
+    {
+      "sym": "E_field",
+      "type": "electric-field",
+      "meaning": "the electric field, whose lines are perpendicular to the equipotential lines in every case",
+      "unit": "N/C",
+      "section": "19.4"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the magnitude of the force on the charge, in the direction of the field",
+      "unit": "N",
+      "section": "19.4"
+    },
+    {
+      "sym": "d",
+      "type": "position",
+      "meaning": "the distance the charge is moved along the equipotential",
+      "unit": "m",
+      "section": "19.4"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the angle between the force and the motion, which must be 90° along an equipotential",
+      "section": "19.4"
+    },
+    {
+      "sym": "Q_charge",
+      "type": "charge",
+      "meaning": "the charge a capacitor stores: +Q on one plate and −Q on the other, the capacitor staying neutral overall",
+      "unit": "C",
+      "section": "19.5"
+    },
+    {
+      "sym": "V_volt",
+      "type": "voltage",
+      "meaning": "the voltage applied across the capacitor's plates",
+      "unit": "V",
+      "section": "19.5"
+    },
+    {
+      "sym": "E_field",
+      "type": "electric-field",
+      "meaning": "the electric field between the plates, proportional to the charge on them; in a dielectric, the reduced field",
+      "unit": "V/m",
+      "section": "19.5"
+    },
+    {
+      "sym": "E_0field",
+      "type": "electric-field",
+      "meaning": "the electric field between the plates with a vacuum between them, for the same charge",
+      "unit": "V/m",
+      "section": "19.5"
+    },
+    {
+      "sym": "C_cap",
+      "type": "capacitance",
+      "meaning": "the capacitance, the amount of charge stored per volt, set by the capacitor's physical characteristics",
+      "unit": "F",
+      "section": "19.5"
+    },
+    {
+      "sym": "C_air",
+      "type": "capacitance",
+      "meaning": "the capacitance of the same plates with air between them, before the dielectric is inserted",
+      "unit": "F",
+      "section": "19.5"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area of one plate in square meters",
+      "unit": "m²",
+      "section": "19.5"
+    },
+    {
+      "sym": "d",
+      "type": "position",
+      "meaning": "the distance between the plates in meters",
+      "unit": "m",
+      "section": "19.5"
+    },
+    {
+      "sym": "ε_0",
+      "meaning": "the permittivity of free space, 8.85 × 10⁻¹² F/m, whose small value is related to the large size of the farad",
+      "unit": "F/m",
+      "section": "19.5"
+    },
+    {
+      "sym": "κ",
+      "meaning": "the dielectric constant, the factor by which a dielectric raises the capacitance; the ratio of the field in vacuum to the field in the material, exactly 1 for vacuum",
+      "section": "19.5"
+    },
+    {
+      "sym": "C_1",
+      "type": "capacitance",
+      "meaning": "the capacitance of the first capacitor of the combination",
+      "unit": "F",
+      "section": "19.6"
+    },
+    {
+      "sym": "C_2",
+      "type": "capacitance",
+      "meaning": "the capacitance of the second capacitor of the combination",
+      "unit": "F",
+      "section": "19.6"
+    },
+    {
+      "sym": "C_3",
+      "type": "capacitance",
+      "meaning": "the capacitance of the third capacitor of the combination",
+      "unit": "F",
+      "section": "19.6"
+    },
+    {
+      "sym": "C_S",
+      "type": "capacitance",
+      "meaning": "the total capacitance of capacitors in series, less than any of the individual capacitances",
+      "unit": "F",
+      "section": "19.6"
+    },
+    {
+      "sym": "C_p",
+      "type": "capacitance",
+      "meaning": "the total capacitance of capacitors in parallel, the sum of the individual capacitances",
+      "unit": "F",
+      "section": "19.6"
+    },
+    {
+      "sym": "C_tot",
+      "type": "capacitance",
+      "meaning": "the total capacitance of a combination of series and parallel connections",
+      "unit": "F",
+      "section": "19.6"
+    },
+    {
+      "sym": "C_cap",
+      "type": "capacitance",
+      "meaning": "the capacitance of the equivalent single capacitor, Q/V",
+      "unit": "F",
+      "section": "19.6"
+    },
+    {
+      "sym": "Q_charge",
+      "type": "charge",
+      "meaning": "the magnitude of the charge on each plate of capacitors in series, or the total charge of capacitors in parallel",
+      "unit": "C",
+      "section": "19.6"
+    },
+    {
+      "sym": "Q_1charge",
+      "type": "charge",
+      "meaning": "the charge on the first capacitor in parallel, C₁V",
+      "unit": "C",
+      "section": "19.6"
+    },
+    {
+      "sym": "Q_2charge",
+      "type": "charge",
+      "meaning": "the charge on the second capacitor in parallel, C₂V",
+      "unit": "C",
+      "section": "19.6"
+    },
+    {
+      "sym": "Q_3charge",
+      "type": "charge",
+      "meaning": "the charge on the third capacitor in parallel, C₃V",
+      "unit": "C",
+      "section": "19.6"
+    },
+    {
+      "sym": "V_volt",
+      "type": "voltage",
+      "meaning": "the voltage applied to the combination; the same across each capacitor in parallel, the sum of the individual voltages in series",
+      "unit": "V",
+      "section": "19.6"
+    },
+    {
+      "sym": "V_1volt",
+      "type": "voltage",
+      "meaning": "the voltage across the first capacitor in series, Q/C₁",
+      "unit": "V",
+      "section": "19.6"
+    },
+    {
+      "sym": "V_2volt",
+      "type": "voltage",
+      "meaning": "the voltage across the second capacitor in series, Q/C₂",
+      "unit": "V",
+      "section": "19.6"
+    },
+    {
+      "sym": "V_3volt",
+      "type": "voltage",
+      "meaning": "the voltage across the third capacitor in series, Q/C₃",
+      "unit": "V",
+      "section": "19.6"
+    },
+    {
+      "sym": "d",
+      "type": "position",
+      "meaning": "the larger plate separation of the capacitor equivalent to a series connection",
+      "unit": "m",
+      "section": "19.6"
+    },
+    {
+      "sym": "E_cap",
+      "type": "energy",
+      "meaning": "the energy stored in a capacitor, the electrical potential energy of its separated charge",
+      "unit": "J",
+      "section": "19.7"
+    },
+    {
+      "sym": "Q_charge",
+      "type": "charge",
+      "meaning": "the charge on the capacitor with a voltage V applied",
+      "unit": "C",
+      "section": "19.7"
+    },
+    {
+      "sym": "V_volt",
+      "type": "voltage",
+      "meaning": "the voltage on the capacitor, which rises from zero to its full value as the capacitor is charged",
+      "unit": "V",
+      "section": "19.7"
+    },
+    {
+      "sym": "ΔV_volt",
+      "type": "voltage",
+      "meaning": "the change in voltage a charge placed on the capacitor experiences: zero for the first charge, V for the last",
+      "unit": "V",
+      "section": "19.7"
+    },
+    {
+      "sym": "C_cap",
+      "type": "capacitance",
+      "meaning": "the capacitance of the capacitor, which relates its charge and voltage by Q = CV",
+      "unit": "F",
+      "section": "19.7"
+    },
+    {
+      "sym": "ΔPE",
+      "type": "energy",
+      "meaning": "the potential energy of a charge q going through a voltage ΔV, which must be applied with care to a capacitor",
+      "unit": "J",
+      "section": "19.7"
+    },
+    {
+      "sym": "q",
+      "type": "charge",
+      "meaning": "the full charge placed on the capacitor during charging, taken as passing through the average voltage V/2",
+      "unit": "C",
+      "section": "19.7"
+    }
+  ],
+  "equations": [
+    {
+      "id": "eq-work-and-pe",
+      "concept": "electric-potential-energy",
+      "section": "19.1",
+      "latex": "W = -\\Delta\\text{PE}",
+      "ktex": "\\kW = -\\kdPE",
+      "important": true
+    },
+    {
+      "id": "eq-electric-potential",
+      "concept": "electric-potential",
+      "section": "19.1",
+      "latex": "V = \\frac{\\text{PE}}{q}",
+      "ktex": "\\kV = \\frac{\\kPEtot}{\\kq}",
+      "important": true
+    },
+    {
+      "id": "eq-potential-difference",
+      "concept": "potential-difference",
+      "section": "19.1",
+      "latex": "\\Delta V = V_{\\text{B}} - V_{\\text{A}} = \\frac{\\Delta\\text{PE}}{q}",
+      "ktex": "\\kdV = \\kVB - \\kVA = \\frac{\\kdPE}{\\kq}",
+      "important": true
+    },
+    {
+      "id": "eq-volt",
+      "concept": "potential-difference",
+      "section": "19.1",
+      "latex": "1\\ \\text{V} = 1\\ \\frac{\\text{J}}{\\text{C}}",
+      "important": true
+    },
+    {
+      "id": "eq-pe-from-voltage",
+      "concept": "energy-from-potential-difference",
+      "section": "19.1",
+      "latex": "\\Delta V = \\frac{\\Delta\\text{PE}}{q}\\ \\text{and}\\ \\Delta\\text{PE} = q\\Delta V",
+      "ktex": "\\kdV = \\frac{\\kdPE}{\\kq}\\ \\text{and}\\ \\kdPE = \\kq\\kdV",
+      "important": true
+    },
+    {
+      "id": "eq-electron-volt",
+      "concept": "electron-volt",
+      "section": "19.1",
+      "latex": "1\\ \\text{eV} = (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{V}) = (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{J/C}) = 1.60 \\times 10^{-19}\\ \\text{J}",
+      "important": true
+    },
+    {
+      "id": "eq-mechanical-energy-constant",
+      "concept": "energy-conservation-for-charges",
+      "section": "19.1",
+      "latex": "\\text{KE} + \\text{PE} = \\text{constant}",
+      "ktex": "\\kKE + \\kPEtot = \\text{constant}",
+      "condition": "conservative forces only",
+      "important": true
+    },
+    {
+      "id": "eq-energy-conservation-charge",
+      "concept": "energy-conservation-for-charges",
+      "section": "19.1",
+      "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}}",
+      "ktex": "\\kKEi + \\kPEi = \\kKEf + \\kPEf",
+      "condition": "conservative forces only",
+      "important": true
+    },
+    {
+      "id": "eq-speed-from-voltage",
+      "concept": "speed-from-potential-difference",
+      "section": "19.1",
+      "latex": "v = \\sqrt{\\frac{2qV}{m}}",
+      "ktex": "\\kv = \\sqrt{\\frac{2\\kq\\kV}{m}}",
+      "condition": "a charge accelerated from rest, non-relativistic",
+      "important": true
+    },
+    {
+      "id": "eq-work-in-uniform-field",
+      "concept": "voltage-across-uniform-field",
+      "section": "19.2",
+      "latex": "W = -\\Delta\\text{PE} = -q\\Delta V = qV_{\\text{AB}}",
+      "ktex": "\\kW = -\\kdPE = -\\kq\\kdV = \\kq\\kVAB",
+      "important": false
+    },
+    {
+      "id": "eq-uniform-field-voltage",
+      "concept": "voltage-across-uniform-field",
+      "section": "19.2",
+      "latex": "V_{\\text{AB}} = Ed \\quad E = \\frac{V_{\\text{AB}}}{d}",
+      "ktex": "\\kVAB = \\kEf\\kd \\quad \\kEf = \\frac{\\kVAB}{\\kd}",
+      "condition": "uniform electric field only",
+      "important": true
+    },
+    {
+      "id": "eq-field-units",
+      "concept": "volts-per-meter",
+      "section": "19.2",
+      "latex": "1\\ \\text{N/C} = 1\\ \\text{V/m}",
+      "important": true
+    },
+    {
+      "id": "eq-field-gradient",
+      "concept": "field-is-potential-gradient",
+      "section": "19.2",
+      "latex": "E = -\\frac{\\Delta V}{\\Delta s}",
+      "ktex": "\\kEf = -\\frac{\\kdV}{\\kds}",
+      "important": true
+    },
+    {
+      "id": "eq-point-charge-potential",
+      "concept": "potential-of-point-charge",
+      "section": "19.3",
+      "latex": "V = \\frac{kQ}{r}",
+      "ktex": "\\kV = \\frac{k\\kQch}{\\kr}",
+      "condition": "point charge, with V = 0 at infinity",
+      "important": true
+    },
+    {
+      "id": "eq-point-charge-field",
+      "concept": "potential-versus-field-of-point-charge",
+      "section": "19.3",
+      "latex": "E = \\frac{F}{q} = \\frac{kQ}{r^2}",
+      "ktex": "\\kEf = \\frac{\\kF}{\\kq} = \\frac{k\\kQch}{\\kr^2}",
+      "condition": "point charge",
+      "important": false
+    },
+    {
+      "id": "eq-work-along-equipotential",
+      "concept": "equipotentials-perpendicular-to-field",
+      "section": "19.4",
+      "latex": "W = -\\Delta\\text{PE} = -q\\Delta V = 0",
+      "ktex": "\\kW = -\\kdPE = -\\kq\\kdV = 0",
+      "condition": "motion along an equipotential",
+      "important": true
+    },
+    {
+      "id": "eq-work-perpendicular-to-field",
+      "concept": "equipotentials-perpendicular-to-field",
+      "section": "19.4",
+      "latex": "W = Fd\\cos\\theta = qEd\\cos\\theta = 0",
+      "ktex": "\\kW = \\kF\\kd\\cos\\theta = \\kq\\kEf\\kd\\cos\\theta = 0",
+      "condition": "motion along an equipotential",
+      "important": false
+    },
+    {
+      "id": "eq-charge-proportional-to-voltage",
+      "concept": "capacitance",
+      "section": "19.5",
+      "latex": "E \\propto Q, \\quad V \\propto E, \\quad Q \\propto V",
+      "ktex": "\\kEf \\propto \\kQch, \\quad \\kV \\propto \\kEf, \\quad \\kQch \\propto \\kV",
+      "important": false
+    },
+    {
+      "id": "eq-charge-stored",
+      "concept": "capacitance",
+      "section": "19.5",
+      "latex": "Q = CV",
+      "ktex": "\\kQch = \\kCap\\kV",
+      "important": true
+    },
+    {
+      "id": "eq-capacitance",
+      "concept": "capacitance",
+      "section": "19.5",
+      "latex": "C = \\frac{Q}{V}",
+      "ktex": "\\kCap = \\frac{\\kQch}{\\kV}",
+      "important": true
+    },
+    {
+      "id": "eq-farad",
+      "concept": "capacitance",
+      "section": "19.5",
+      "latex": "1\\ \\text{F} = \\frac{1\\ \\text{C}}{1\\ \\text{V}}",
+      "important": true
+    },
+    {
+      "id": "eq-parallel-plate-capacitance",
+      "concept": "parallel-plate-capacitance",
+      "section": "19.5",
+      "latex": "C = \\varepsilon_0\\frac{A}{d}",
+      "ktex": "\\kCap = \\varepsilon_0\\frac{A}{\\kd}",
+      "condition": "parallel plates separated by air or free space",
+      "important": true
+    },
+    {
+      "id": "eq-parallel-plate-dielectric",
+      "concept": "capacitance-with-dielectric",
+      "section": "19.5",
+      "latex": "C = \\kappa\\varepsilon_0\\frac{A}{d}",
+      "ktex": "\\kCap = \\kappa\\varepsilon_0\\frac{A}{\\kd}",
+      "condition": "parallel plate capacitor with dielectric",
+      "important": true
+    },
+    {
+      "id": "eq-dielectric-constant",
+      "concept": "dielectric-polarization",
+      "section": "19.5",
+      "latex": "\\kappa = \\frac{E_0}{E}",
+      "ktex": "\\kappa = \\frac{\\kEfo}{\\kEf}",
+      "important": true
+    },
+    {
+      "id": "eq-series-voltages",
+      "concept": "series-capacitance",
+      "section": "19.6",
+      "latex": "V = V_1 + V_2 + V_3",
+      "ktex": "\\kV = \\kVone + \\kVtwo + \\kVthree",
+      "condition": "capacitors in series",
+      "important": false
+    },
+    {
+      "id": "eq-series-capacitance",
+      "concept": "series-capacitance",
+      "section": "19.6",
+      "latex": "\\frac{1}{C_{\\text{S}}} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\frac{1}{C_3} + \\ldots",
+      "ktex": "\\frac{1}{\\kCS} = \\frac{1}{\\kCone} + \\frac{1}{\\kCtwo} + \\frac{1}{\\kCthree} + \\ldots",
+      "condition": "capacitors in series",
+      "important": true
+    },
+    {
+      "id": "eq-parallel-charges",
+      "concept": "parallel-capacitance",
+      "section": "19.6",
+      "latex": "Q = Q_1 + Q_2 + Q_3",
+      "ktex": "\\kQch = \\kQchone + \\kQchtwo + \\kQchthree",
+      "condition": "capacitors in parallel",
+      "important": false
+    },
+    {
+      "id": "eq-parallel-capacitance",
+      "concept": "parallel-capacitance",
+      "section": "19.6",
+      "latex": "C_{\\text{p}} = C_1 + C_2 + C_3 + \\ldots",
+      "ktex": "\\kCp = \\kCone + \\kCtwo + \\kCthree + \\ldots",
+      "condition": "capacitors in parallel",
+      "important": true
+    },
+    {
+      "id": "eq-capacitor-energy-qv",
+      "concept": "capacitor-energy",
+      "section": "19.7",
+      "latex": "E_{\\text{cap}} = \\frac{QV}{2}",
+      "ktex": "\\kEcap = \\frac{\\kQch\\kV}{2}",
+      "important": false
+    },
+    {
+      "id": "eq-capacitor-energy",
+      "concept": "capacitor-energy",
+      "section": "19.7",
+      "latex": "E_{\\text{cap}} = \\frac{QV}{2} = \\frac{CV^2}{2} = \\frac{Q^2}{2C}",
+      "ktex": "\\kEcap = \\frac{\\kQch\\kV}{2} = \\frac{\\kCap\\kV^2}{2} = \\frac{\\kQch^2}{2\\kCap}",
+      "important": true
+    }
+  ],
+  "glossary": [
+    {
+      "section": "19.1",
+      "term": "electric potential",
+      "definition": "potential energy per unit charge"
+    },
+    {
+      "section": "19.1",
+      "term": "potential difference (or voltage)",
+      "definition": "change in potential energy of a charge moved from one point to another, divided by the charge; units of potential difference are joules per coulomb, known as volt"
+    },
+    {
+      "section": "19.1",
+      "term": "electron volt",
+      "definition": "the energy given to a fundamental charge accelerated through a potential difference of one volt"
+    },
+    {
+      "section": "19.1",
+      "term": "mechanical energy",
+      "definition": "sum of the kinetic energy and potential energy of a system; this sum is a constant"
+    },
+    {
+      "section": "19.2",
+      "term": "scalar",
+      "definition": "physical quantity with magnitude but no direction"
+    },
+    {
+      "section": "19.2",
+      "term": "vector",
+      "definition": "physical quantity with both magnitude and direction"
+    },
+    {
+      "section": "19.4",
+      "term": "equipotential line",
+      "definition": "a line along which the electric potential is constant"
+    },
+    {
+      "section": "19.4",
+      "term": "grounding",
+      "definition": "fixing a conductor at zero volts by connecting it to the earth or ground"
+    },
+    {
+      "section": "19.5",
+      "term": "capacitor",
+      "definition": "a device that stores electric charge"
+    },
+    {
+      "section": "19.5",
+      "term": "capacitance",
+      "definition": "amount of charge stored per unit volt"
+    },
+    {
+      "section": "19.5",
+      "term": "dielectric",
+      "definition": "an insulating material"
+    },
+    {
+      "section": "19.5",
+      "term": "dielectric strength",
+      "definition": "the maximum electric field above which an insulating material begins to break down and conduct"
+    },
+    {
+      "section": "19.5",
+      "term": "parallel plate capacitor",
+      "definition": "two identical conducting plates separated by a distance"
+    },
+    {
+      "section": "19.5",
+      "term": "polar molecule",
+      "definition": "a molecule with inherent separation of charge"
+    },
+    {
+      "section": "19.7",
+      "term": "defibrillator",
+      "definition": "a machine used to provide an electrical shock to a heart attack victim's heart in order to restore the heart's normal rhythmic pattern"
+    }
+  ]
+}

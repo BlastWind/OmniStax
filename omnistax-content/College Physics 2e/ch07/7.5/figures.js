@@ -48,35 +48,32 @@ function rock(ctx, x, y, r, color) {
   ctx.lineTo(x + r, y - 0.15 * r); ctx.lineTo(x + 0.65 * r, y + 0.85 * r); ctx.lineTo(x - 0.45 * r, y + r);
   ctx.closePath(); ctx.fill(); ctx.restore();
 }
-/* a crate whose base is centred on (x, y), turned through `rot` */
-function crate(ctx, x, y, w, h, rot, color) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
-  ctx.fillRect(-w / 2, -h, w, h); ctx.strokeRect(-w / 2, -h, w, h);
-  ctx.beginPath(); ctx.moveTo(-w / 2, -h); ctx.lineTo(w / 2, 0); ctx.moveTo(w / 2, -h); ctx.lineTo(-w / 2, 0); ctx.stroke(); ctx.restore();
+/* a baseball player sliding feet first along the ground, his hip over (x, y) and the ground under him
+   turned through `rot`: a silhouette laid nearly flat, legs out ahead, one arm trailing on the ground
+   and the other thrown up, so the slide reads without its label */
+function slidingPlayer(ctx, x, y, rot) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
+  F.silhouette(ctx, { x: 0, y: 0, s: 0.9, hip: { x: 0, y: -18 }, shoulder: { x: -44, y: -44 }, head: { x: -58, y: -64 },
+    feet: [{ x: 64, y: -6 }, { x: 56, y: -16 }], hands: [{ x: -88, y: -6 }, { x: -34, y: -84 }], kneeSide: 1, elbowSide: -1 });
+  ctx.restore();
 }
-/* a baseball player sliding feet first, his contact with the ground at (x, y) */
-function slidingPlayer(ctx, x, y, rot, color) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(-56, -60, 11, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(-48, -50); ctx.lineTo(-8, -20);
-  ctx.moveTo(-8, -20); ctx.lineTo(36, -26); ctx.lineTo(58, -4);
-  ctx.moveTo(-8, -20); ctx.lineTo(32, -2);
-  ctx.moveTo(-38, -42); ctx.lineTo(-62, -82); ctx.stroke(); ctx.restore();
-}
-/* a foam cup standing upside down on its lip, the lip on (x, y) */
+/* a foam cup lying on its side on the table, its open mouth at (x, y) facing the ruler: the mouth is
+   the wide end with a rolled lip, and the cup narrows to its base on the right */
 function foamCup(ctx, x, y, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 4;
-  ctx.beginPath(); ctx.moveTo(x - 34, y); ctx.lineTo(x - 24, y - 58); ctx.lineTo(x + 24, y - 58); ctx.lineTo(x + 34, y); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.arc(x - 27, y - 14, 10, 0, TAU); ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - 66); ctx.lineTo(x + 84, y - 52); ctx.lineTo(x + 84, y); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(x + 4, y - 2); ctx.lineTo(x + 4, y - 64); ctx.stroke();
+  ctx.lineWidth = 2; ctx.strokeStyle = PAL.muted; ctx.beginPath(); ctx.moveTo(x + 72, y - 50); ctx.lineTo(x + 72, y - 2); ctx.stroke();
+  ctx.restore();
 }
-/* a skier on her skis, the base of the skis at (x, y) */
-function skierSprite(ctx, x, y, color) {
-  ctx.save(); ctx.translate(x, y); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(4, -86, 11, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(2, -76); ctx.lineTo(-4, -38); ctx.lineTo(14, -4);
-  ctx.moveTo(-4, -38); ctx.lineTo(-18, -4);
-  ctx.moveTo(0, -66); ctx.lineTo(32, -50);
-  ctx.moveTo(-46, -2); ctx.lineTo(46, -2); ctx.stroke(); ctx.restore();
+/* a skier on her skis, the base of the skis at (x, y): crouched over the skis with a pole in each hand */
+function skierSprite(ctx, x, y) {
+  ctx.save(); ctx.translate(x, y);
+  line(ctx, -50, 0, 50, 0, PAL.ink, 5);
+  const hands = [{ x: 34, y: -60 }, { x: 38, y: -54 }];
+  hands.forEach((h) => line(ctx, h.x * 0.85, h.y * 0.85, h.x * 0.85 - 36, -2, PAL.muted, 3));
+  F.silhouette(ctx, { x: 0, y: -2, s: 0.85, hip: { x: -8, y: -58 }, shoulder: { x: 18, y: -98 }, head: { x: 30, y: -116 }, feet: [{ x: 10, y: 0 }, { x: -10, y: 0 }], hands });
+  ctx.restore();
 }
 
 /* =====================================================================
@@ -262,24 +259,39 @@ function skierSprite(ctx, x, y, color) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(s0x, YBASE); ctx.lineTo(s1x, s1y); ctx.lineTo(s1x, YBASE); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, s0x, YBASE, s1x, s1y, PAL.muted, 5);
     line(ctx, s0x, YBASE, s1x, YBASE, PAL.rule, 2, [8, 8]);
-    if (th.v > 0) text(ctx, fmt(th.v, 0) + '\u00b0', s0x + 86, YBASE - 20, PAL.ink, { size: 20, weight: 600 });
     const cx = X0 + s * SC * ca, cyy = y0 - s * SC * sa;
-    crate(ctx, cx, cyy, 96, 74, -a, PAL.ink);
-    ctx.save(); ctx.translate(cx - 120 * ca, cyy + 120 * sa); ctx.rotate(-a);
-    F.person(ctx, 0, 0, PAL.ink, { lean: 0.35, reach: { x: 70, y: -40 }, phase: s > 0.02 && s < D - 0.02 ? s * 4 : 0 });
+    const lab = F.labeller(ctx, 580);
+    if (th.v > 0) F.angleArc(ctx, { x: s0x, y: YBASE }, 70, 0, a, fmt(th.v, 0) + '°', lab);
+    /* the crate and the person, both standing on the ramp: the crate is 96 by 80 on the slope, and the
+       person walks behind it with both hands on its back face, so the push is seen to come from her */
+    const CW = 96, CH = 80, PS = 0.9;
+    const walking = s > 0.02 && s < tr.end - 0.02, sw = walking ? Math.sin(s * 5) : 0;
+    ctx.save(); ctx.translate(cx, cyy); ctx.rotate(-a);
+    F.crate(ctx, 0, -CH / 2, CW, CH, PAL.ink);
+    F.silhouette(ctx, { x: -CW / 2 - 54 * PS, y: 0, s: PS, pose: 'push', hands: [{ x: 54, y: -58 / PS }, { x: 56, y: -48 / PS }],
+      feet: [{ x: 8 + 14 * sw, y: 0 }, { x: -34 - 14 * sw, y: 0 }] });
     ctx.restore();
-    text(ctx, fmt(m.v, 0) + ' kg', cx - 40 * sa, cyy - 40 * ca, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    if (vNow > 0.02) text(ctx, 'v = ' + fmt(vNow, 2) + ' m/s', cx + 4 * ca, cyy - 96 * ca, C('velocity'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    lab.add(fmt(m.v, 0) + ' kg', cx - (CH + 6) * sa, cyy - (CH + 6) * ca, -sa, -ca, PAL.ink, 18, 14);
+    if (vNow > 0.02) {
+      const vx = cx + 10 * ca - (CH + 12) * sa, vy = cyy - 10 * sa - (CH + 12) * ca, vl = 40 + 60 * Math.min(1, vNow / 3);
+      arrow(ctx, vx, vy, vx + vl * ca, vy - vl * sa, C('velocity'), 5);
+      lab.add('v = ' + fmt(vNow, 2) + ' m/s', vx + vl * ca, vy - vl * sa, ca, -sa - 0.6, C('velocity'), 18, 18);
+    }
     if (fa.v > 0) {
-      const L = 50 + (fa.v / 800) * 120, tipx = cx - 20 * ca - 124 * sa, tipy = cyy + 20 * sa - 124 * ca;
-      arrow(ctx, tipx - L * ca, tipy + L * sa, tipx, tipy, C('force'), 5);
-      text(ctx, 'F_app = ' + num(fa.v, 0) + ' N', tipx - 0.5 * L * ca, tipy + 0.5 * L * sa - 36, C('force'), { size: 18, weight: 600, align: 'center' });
+      /* the push lands on the back face at the height of the hands, and its tail runs back along the
+         slope, over her arms, with a thin halo of the panel colour so it stays legible across the body */
+      const L = 60 + (fa.v / 800) * 130, hx = cx - (CW / 2) * ca - 54 * sa, hy = cyy + (CW / 2) * sa - 54 * ca;
+      line(ctx, hx - L * ca, hy + L * sa, hx, hy, PAL.panel, 9);
+      arrow(ctx, hx - L * ca, hy + L * sa, hx, hy, C('force'), 5);
+      lab.add('F_app = ' + num(fa.v, 0) + ' N', hx - L * ca, hy + L * sa, -ca - 0.3, -1, C('force'), 18, 22);
     }
     if (ff.v > 0) {
-      const L = 40 + (ff.v / 400) * 90, tx = cx + 46 * ca + 16 * sa, ty = cyy - 46 * sa + 16 * ca;
+      /* friction acts along the base of the crate, at its front edge, back down the ramp */
+      const L = 40 + (ff.v / 400) * 90, tx = cx + (CW / 2) * ca - 6 * sa, ty = cyy - (CW / 2) * sa - 6 * ca;
       arrow(ctx, tx, ty, tx - L * ca, ty + L * sa, C('force'), 5);
-      text(ctx, 'f = ' + num(ff.v, 0) + ' N', tx - L * ca - 12, ty + L * sa + 24, C('force'), { size: 18, weight: 600, align: 'center' });
+      lab.add('f = ' + num(ff.v, 0) + ' N', tx - L * ca * 0.5, ty + L * sa * 0.5 + 8, sa * 0.3, 1, C('force'), 18, 26);
     }
+    lab.flush();
     hbracket(ctx, X0, cx, YBASE + 40, C('position'), 'd = ' + fmt(s, 2) + ' m');
     /* the four accounts, drawn beside the scene from a common zero, on a fixed scale: the longest
        bar the sliders allow is the person's own, 800 N through 4.00 m, which is 3200 J, and that
@@ -342,15 +354,18 @@ function skierSprite(ctx, x, y, color) {
     const sx = x0 + dDraw * SC * ca, sy = y0 - dDraw * SC * sa;
     line(ctx, sx, sy, sx, y0 + 76 + 60 * ta, C('position'), 2, [6, 8]);
     dot(ctx, x0, y0, C('position'), false, 10);
-    slidingPlayer(ctx, px, py, -a, PAL.ink);
+    slidingPlayer(ctx, px, py, -a);
+    const lab = F.labeller(ctx, 730);
     if (v > 0.05) {
-      const L = 40 + 130 * (v / vi.v);
-      arrow(ctx, px + 44 * ca, py - 98 - 44 * sa, px + 44 * ca + L * ca, py - 98 - 44 * sa - L * sa, C('velocity'), 5);
-      text(ctx, 'v = ' + fmt(v, 2) + ' m/s', px + 50 * ca + L * ca, py - 122 - 44 * sa, C('velocity'), { size: 18, weight: 600 });
+      const L = 40 + 130 * (v / vi.v), ax = px + 10 * ca - 96 * sa, ay = py - 10 * sa - 96 * ca;
+      arrow(ctx, ax, ay, ax + L * ca, ay - L * sa, C('velocity'), 5);
+      lab.add('v = ' + fmt(v, 2) + ' m/s', ax + L * ca, ay - L * sa, ca, -sa - 0.5, C('velocity'), 18, 18);
     }
-    const fl = 50 + 90 * (ff.v / 800);
-    arrow(ctx, px + 24 * ca - 18 * sa, py - 24 * sa - 18 * ca, px + 24 * ca - 18 * sa - fl * ca, py - 24 * sa - 18 * ca + fl * sa, C('force'), 5);
-    text(ctx, 'f = ' + num(ff.v, 0) + ' N', px + 34 * ca - fl * ca, py + 16 - 24 * sa, C('force'), { size: 18, weight: 600, align: 'right' });
+    /* friction acts on him where he meets the ground, under his hip and legs, and points back down the slide */
+    const fl = 50 + 90 * (ff.v / 800), fx = px + 24 * ca + 6 * sa, fy = py - 24 * sa + 6 * ca;
+    arrow(ctx, fx, fy, fx - fl * ca, fy + fl * sa, C('force'), 5);
+    lab.add('f = ' + num(ff.v, 0) + ' N', fx - fl * ca, fy + fl * sa, -ca, 0.9, C('force'), 18, 22);
+    lab.flush();
     hbracket(ctx, x0, px, y0 + 86 + 60 * ta, C('position'), 'd = ' + fmt(s, 2) + ' m');
     /* the energy account along the slide */
     /* fixed axes. The sliders reach ½ × 110 kg × (10 m/s)² = 5500 J, and with only 200 N against
@@ -395,7 +410,7 @@ function skierSprite(ctx, x, y, color) {
   const rel = ctl(d.controls, { label: '\\text{release}', cls: 'position', min: 5, max: 30, step: 1, value: 10, unit: 'cm', dec: 0, onInput: reset, aria: 'release position of the marble on the ruler' });
   const mm = ctl(d.controls, { label: 'm', cls: '', min: 2, max: 30, step: 1, value: 5, unit: 'g', dec: 0, onInput: reset, aria: 'mass of the marble' });
   const mu = ctl(d.controls, { label: '\\mu_{\\text{k}}', cls: '', min: 0.1, max: 0.6, step: 0.01, value: 0.3, unit: '', dec: 2, onInput: reset, aria: 'coefficient of kinetic friction of the cup on the table' });
-  const ANG = 30 * RAD, MCUP = 0.003, TABLE = 350, SCR = 10, LIP = 560, CUP0 = LIP + 130;
+  const ANG = 30 * RAD, MCUP = 0.003, TABLE = 350, SCR = 10, LIP = 560, CUP0 = LIP + 110;
   const mkg = () => mm.v / 1000;
   const hgt = (cm) => (cm / 100) * Math.sin(ANG);
   const run = (cm) => (mkg() * hgt(cm)) / (mu.v * (MCUP + mkg()));
@@ -425,15 +440,16 @@ function skierSprite(ctx, x, y, color) {
     dot(ctx, rx(rel.v) - 7, ry(rel.v) - 12, C('position'), false, 11);
     foamCup(ctx, cupX, TABLE, PAL.ink);
     if (rolling) dot(ctx, rx(along) - 7, ry(along) - 12, PAL.ink, true, 13);
-    else dot(ctx, cupX - 18, TABLE - 18, PAL.ink, true, 13);
+    else dot(ctx, cupX + 22, TABLE - 14, PAL.ink, true, 13);
     line(ctx, rx(rel.v), ry(rel.v), LIP + 46, ry(rel.v), C('position'), 2, [8, 8]);
     vbracket(ctx, LIP + 46, TABLE, ry(rel.v), C('position'));
     text(ctx, 'h = ' + fmt(hgt(rel.v) * 100, 1) + ' cm', LIP + 38, ry(rel.v) - 18, C('position'), { size: 18, weight: 600, align: 'right' });
     if (!rolling) {
-      arrow(ctx, cupX + 96, TABLE - 26, cupX + 8, TABLE - 26, C('force'), 5);
-      text(ctx, 'f = \u03bc\u2096N = ' + fmt(mu.v * N * 1000, 1) + ' mN', cupX + 52, TABLE - 52, C('force'), { size: 18, weight: 600, align: 'center' });
+      /* friction on the cup acts where it meets the table and points back toward the ruler */
+      arrow(ctx, cupX + 180, TABLE - 8, cupX + 88, TABLE - 8, C('force'), 5);
+      F.label(ctx, 'f = \u03bc\u2096N = ' + fmt(mu.v * N * 1000, 1) + ' mN', cupX + 134, TABLE - 8, { side: 'above', color: C('force'), size: 18, gap: 24, H: 700 });
     }
-    hbracket(ctx, CUP0, cupX, TABLE + 70, C('position'), 'd = ' + fmt(moved * 100, 1) + ' cm');
+    hbracket(ctx, CUP0, cupX, TABLE + 70, C('position'), 'd = ' + fmt(moved * 100, 1) + ' cm', { side: 'below' });
     /* the bar is read against a fixed cap, 44.1 mJ: the heaviest marble the slider allows,
        released at the far end of the ruler. The dashed rule is what this marble brings. */
     const KEMAX = 0.030 * G * hgt(30);
@@ -484,8 +500,8 @@ function skierSprite(ctx, x, y, color) {
     line(ctx, xt, yt, 1270, yt, PAL.muted, 5);
     line(ctx, xb, y0, xt + 90, y0, PAL.rule, 2, [8, 8]);
     text(ctx, '35\u00b0', xb + 56, y0 - 20, PAL.ink, { size: 20, weight: 600 });
-    skierSprite(ctx, xa, y0, PAL.ink);
-    skierSprite(ctx, xt + 190, yt, PAL.ink);
+    skierSprite(ctx, xa, y0);
+    skierSprite(ctx, xt + 190, yt);
     arrow(ctx, xa + 60, y0 - 56, xa + 226, y0 - 56, C('velocity'), 5);
     text(ctx, 'v_i = 12.0 m/s', xa + 240, y0 - 56, C('velocity'), { size: 20, weight: 600 });
     arrow(ctx, xt + 254, yt - 56, xt + 350, yt - 56, C('velocity'), 5);

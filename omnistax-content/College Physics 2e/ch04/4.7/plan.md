@@ -186,6 +186,14 @@ None built beyond the four the triggers of rule 14 call for.
    and the name of the building are moved clear of the ropes, so no line is
    crossed by a word, and the headline is one capitalized sentence.
 
+Figure pass of 2026-09-14 (Claude Fable 5.1): in `sim-barge` the two pushes floated in the
+water between the tugs and the hull (Chen's item 11); each tug now has its bow against the hull
+and its push is drawn from that point of contact on through the barge, so the arrow lies on the
+body it pushes, with the acceleration leaving the barge's forward corner and the barge named
+inside its outline. In `sim-soccer` the push of the ground floated above the player's head; it
+now leaves his body at the hips and the velocity leaves his chest. `sim-traffic-light`,
+`sim-elevator-scale` and `fig-rescue` were looked at in both themes and left as built.
+
 ## Exercises
 
 - Both conceptual questions are placed inline after `scale`, since each is a

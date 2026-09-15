@@ -1,0 +1,761 @@
+{
+ "id": "19.5",
+ "module": "m42333",
+ "chapter": "19",
+ "title": "Capacitors and Dielectrics",
+ "short": "Capacitors and dielectrics",
+ "lead": "A capacitor is two conductors held close together but not touching, and a battery connected across them separates a charge onto one and an equal charge of the opposite sign onto the other. This section defines the capacitance as the charge stored per volt and the farad as its unit, shows that for a parallel plate capacitor the capacitance is set by the area of the plates and the distance between them and by nothing else, and then puts an insulator between the plates: the dielectric raises the capacitance by its own factor, lets the plates be brought closer without breaking down, and does both because its molecules polarize.",
+ "objectives": [
+  "Describe the action of a capacitor and define capacitance.",
+  "Explain parallel plate capacitors and their capacitances.",
+  "Discuss the process of increasing the capacitance of a dielectric.",
+  "Determine capacitance given charge and voltage."
+ ],
+ "summary_html": "<ul><li>A capacitor is a device used to store charge.</li><li>The amount of charge $\\kQch$ a capacitor can store depends on two major factors—the voltage applied and the capacitor’s physical characteristics, such as its size.</li><li>The capacitance $\\kCap$ is the amount of charge stored per volt, or $\\kCap = \\frac{\\kQch}{\\kV}$.</li><li>The capacitance of a parallel plate capacitor is $\\kCap = \\varepsilon_0\\frac{A}{\\kd}$, when the plates are separated by air or free space. $\\varepsilon_0$ is called the permittivity of free space.</li><li>A parallel plate capacitor with a dielectric between its plates has a capacitance given by $\\kCap = \\kappa\\varepsilon_0\\frac{A}{\\kd}$, where $\\kappa$ is the dielectric constant of the material.</li><li>The maximum electric field strength above which an insulating material begins to break down and conduct is called dielectric strength.</li></ul>",
+ "notes": "The book prints Figure 19.19, the cell membrane, among the conceptual questions, which leave the text for the Exercises tab; it is set here beside the paragraph on the membrane’s −70 mV, which is the passage it illustrates. The link to the PhET Capacitor Lab is left out. Five problems the book leaves unkeyed are left out: the charge stored when 5.50 V is applied to an 8.00 pF capacitor, the voltage on a 2.00 µF capacitor holding 3.10 µC, the capacitance needed to store 3.00 µC at 120 V, the capacitance of 5.00 m² plates separated by 0.100 mm of Teflon, and the Integrated Concepts problem in which a prankster’s capacitor burns a finger, which needs the energy stored in a capacitor from Section 19.7 and the specific heat of Chapter 14 as well. The book’s answer key gives the charge stored in the capacitor of Example 19.8 as 80.0 mC, where the example itself works it out as 26.6 µC; the key is printed as the book prints it. The empty emphasis marks the converter carries out of the section summary and two problem stems are markup and are dropped.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated, and answers come from the book’s answer key. The section prints no Check Your Understanding box, so every exercise is set at the end. All seven conceptual questions are open and carry an AI-written suggested approach, marked as such. Of the section’s six AP items, three are keyed and set as graded choices and three have no key and are kept as open items with an AI-written approach. Section 19.2’s AP item on two plates carrying ±0.225 C over 0.75 m² needs the permittivity of free space and this section’s parallel plate capacitance, so it is set here with source_section 19.2, unkeyed and open; 19.2’s notes say so as well. Nothing of this section’s own is held for a later page. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-capacitor",
+   "kind": "sim",
+   "number": "19.12",
+   "originals": [
+    "/media/ch19/Figure_20_05_01a.jpg"
+   ],
+   "original_caption": "Both capacitors shown here were initially uncharged before being connected to a battery. They now have separated charges of +Q and −Q on their two halves. (a) A parallel plate capacitor. (b) A rolled capacitor with an insulating material between its two conducting sheets.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge"
+   ]
+  },
+  {
+   "id": "sim-field-charge",
+   "kind": "sim",
+   "number": "19.13",
+   "originals": [
+    "/media/ch19/Figure_20_05_02a.jpg"
+   ],
+   "original_caption": "Electric field lines in this parallel plate capacitor, as always, start on positive charges and end on negative charges. Since the electric field strength is proportional to the density of field lines, it is also proportional to the amount of charge on the capacitor.",
+   "widths": [
+    150
+   ],
+   "draws": [
+    "charge",
+    "capacitance",
+    "voltage",
+    "electric-field"
+   ]
+  },
+  {
+   "id": "fig-typical-capacitors",
+   "kind": "photo",
+   "number": "19.14",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-parallel-plate",
+   "kind": "sim",
+   "number": "19.15",
+   "originals": [
+    "/media/ch19/Figure_20_05_04a.jpg"
+   ],
+   "original_caption": "Parallel plate capacitor with plates separated by a distance d. Each plate has an area A.",
+   "widths": [
+    150
+   ],
+   "draws": [
+    "capacitance",
+    "charge",
+    "position",
+    "voltage"
+   ]
+  },
+  {
+   "id": "sim-dielectric",
+   "kind": "sim",
+   "number": "19.16",
+   "originals": [
+    "/media/ch19/Figure_20_05_05a.jpg"
+   ],
+   "original_caption": "(a) The molecules in the insulating material between the plates of a capacitor are polarized by the charged plates. This produces a layer of opposite charge on the surface of the dielectric that attracts more charge onto the plate, increasing its capacitance. (b) The dielectric reduces the electric field strength inside the capacitor, resulting in a smaller voltage between the plates for the same charge. The capacitor stores the same charge for a smaller voltage, implying that it has a larger capacitance because of the dielectric.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "capacitance",
+    "charge",
+    "electric-field",
+    "position",
+    "voltage"
+   ]
+  },
+  {
+   "id": "sim-polarized-atom",
+   "kind": "sim",
+   "number": "19.17",
+   "originals": [
+    "/media/ch19/Figure_20_05_06(a)a.jpg"
+   ],
+   "original_caption": "Artist’s conception of a polarized atom. The orbits of electrons around the nucleus are shifted slightly by the external charges (shown exaggerated). The resulting separation of charge within the atom means that it is polarized. Note that the unlike charge is now closer to the external charges, causing the polarization.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge"
+   ]
+  },
+  {
+   "id": "sim-water-molecule",
+   "kind": "sim",
+   "number": "19.18",
+   "originals": [
+    "/media/ch19/Figure_20_05_06(b)a.jpg"
+   ],
+   "original_caption": "Artist’s conception of a water molecule. There is an inherent separation of charge, and so water is a polar molecule. Electrons in the molecule are attracted to the oxygen nucleus and leave an excess of positive charge near the two hydrogen nuclei. (Note that the schematic on the right is a rough illustration of the distribution of electrons in the water molecule. It does not show the actual numbers of protons and electrons involved in the structure.)",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "charge"
+   ]
+  },
+  {
+   "id": "sim-membrane",
+   "kind": "sim",
+   "number": "19.19",
+   "originals": [
+    "/media/ch19/Figure_20_05_07a-a478.jpg"
+   ],
+   "original_caption": "The semipermeable membrane of a cell has different concentrations of ions inside and out. Diffusion moves the K+ (potassium) and Cl– (chloride) ions in the directions shown, until the Coulomb force halts further transfer. This results in a layer of positive charge on the outside, a layer of negative charge on the inside, and thus a voltage across the cell membrane. The membrane is normally impermeable to Na+ (sodium ions).",
+   "widths": [],
+   "draws": [
+    "charge",
+    "electric-field",
+    "position",
+    "voltage"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "capacitor-defined",
+   "concept": "capacitor",
+   "verb": "introduces"
+  },
+  {
+   "span": "charge-and-voltage",
+   "concept": "capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "charge-and-voltage",
+   "concept": "capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel-plate",
+   "concept": "parallel-plate-capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel-plate",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "membrane",
+   "concept": "capacitor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "membrane",
+   "concept": "parallel-plate-capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "dielectric",
+   "concept": "dielectric",
+   "verb": "introduces"
+  },
+  {
+   "span": "dielectric",
+   "concept": "capacitance-with-dielectric",
+   "verb": "introduces"
+  },
+  {
+   "span": "dielectric",
+   "concept": "dielectric-strength",
+   "verb": "introduces"
+  },
+  {
+   "span": "dielectric",
+   "concept": "parallel-plate-capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "polarization",
+   "concept": "dielectric-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarization",
+   "concept": "capacitance-with-dielectric",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polarization",
+   "concept": "capacitance",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1964776",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-and-voltage",
+   "prompt": "Does the capacitance of a device depend on the applied voltage? What about the charge stored in it?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The capacitance does not depend on the applied voltage. It is the amount of charge stored per volt, $\\kCap = \\kQch/\\kV$, and for a parallel plate capacitor it is $\\kCap = \\kappa\\varepsilon_0 A/\\kd$, which names only the physical characteristics of the device: the area of the plates, the distance between them and the material between them. Raising the voltage raises the charge in exactly the same proportion, so the ratio is unchanged. The charge stored does depend on the applied voltage, and directly: $\\kQch = \\kCap\\kV$, so the greater the voltage applied to any capacitor, the greater the charge stored in it."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1511858",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "Use the characteristics of the Coulomb force to explain why capacitance should be proportional to the plate area of a capacitor. Similarly, explain why capacitance should be inversely proportional to the separation between plates.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Like charges repel, so the charge already on a plate opposes the arrival of more. The bigger the plate, the farther apart that charge can spread, the weaker the repulsion each new charge meets, and the more charge the plate will hold at the same voltage; so the capacitance grows with the area $A$. Unlike charges attract, and the Coulomb force between them grows as they are brought closer. The closer the two plates, the stronger the attraction the charge on one plate exerts on the opposite charge on the other, the more firmly each plate holds what it has, and again the more charge the capacitor stores at the same voltage; so the capacitance grows as the separation $\\kd$ shrinks. Both proportionalities are in $\\kCap = \\varepsilon_0 A/\\kd$."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2753579",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "Give the reason why a dielectric material increases capacitance compared with what it would be with air between the plates of a capacitor. What is the independent reason that a dielectric material also allows a greater voltage to be applied to a capacitor? (The dielectric thus increases $\\kCap$ and permits a greater $\\kV$.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The dielectric polarizes. Its molecules turn so that each presents a layer of charge of the opposite sign to the plate nearest it, and the Coulomb force between those surface layers and the plates is strong because they are very close together, so more charge is drawn onto the plates for the same voltage. Seen the other way, the field lines end on the surface charges of the dielectric, fewer of them cross from one plate to the other, and the field, and with it the voltage $\\kV = \\kEf\\kd$, is smaller for the same charge; since $\\kCap = \\kQch/\\kV$, the capacitance is greater, by the factor $\\kappa$. The independent reason a greater voltage may be applied is the dielectric strength: many insulators withstand a far greater electric field than air before they break down and conduct, and since the field between the plates is $\\kV/\\kd$, a material that tolerates a greater field tolerates a greater voltage at the same separation. Teflon at 1.00 mm takes 60,000 V where air takes 3000 V."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3361548",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization",
+   "prompt": "How does the polar character of water molecules help to explain water’s relatively large dielectric constant? (Figure 19.18)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A dielectric constant measures how easily the material polarizes. Most molecules have to be pulled out of shape by the external charges before they present any separated charge at all. A water molecule already has its charge separated: it is not symmetric, its electrons gather about the oxygen nucleus, and so the oxygen end is slightly negative and the two hydrogen ends slightly positive. Such a molecule need only turn to line up with the field between the plates, which it does readily, so water presents a large surface layer of charge to each plate for a modest field. That is why its dielectric constant is 80, where most of the materials in Table 19.1 are between 2 and 7."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3139942",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization",
+   "prompt": "Sparks will occur between the plates of an air-filled capacitor at lower voltage when the air is humid than when dry. Explain why, considering the polar character of water molecules.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Humid air carries water molecules, and a water molecule is polar. In the field between the plates each one turns to line up with the field, and, being already charged at both ends, it is pulled towards the plates and is easily torn apart by a field that would leave a symmetric molecule of nitrogen or oxygen alone. Once a molecule is ionized the air has free charges in it and begins to conduct, which is what a spark is. So the dielectric strength of humid air is lower than that of dry air, and since the field between the plates is $\\kEf = \\kV/\\kd$, breakdown is reached at a lower voltage."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1311685",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "Water has a large dielectric constant, but it is rarely used in capacitors. Explain why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A dielectric has to be an insulator, and water is a poor one. Its polar molecules gather ions very effectively, so ordinary water always carries dissolved ions and conducts; charge put on one plate simply leaks across to the other and the capacitor does not hold it. Table 19.1 gives water no dielectric strength at all for that reason. Water is also a liquid, which has to be contained and which evaporates, where the materials actually used are solid sheets that can be made very thin and rolled up with the foil. The large dielectric constant is worth nothing if the charge will not stay on the plates."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2601615",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "membrane",
+   "prompt": "Membranes in living cells, including those in humans, are characterized by a separation of charge across the membrane. Effectively, the membranes are thus charged capacitors with important functions related to the potential difference across the membrane. Is energy required to separate these charges in living membranes and, if so, is its source the metabolization of food energy or some other source?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Energy is required. Separating charge across a membrane is the same work a battery does in charging a capacitor: the charges attract one another across the membrane, and pulling them apart and holding them apart against that Coulomb attraction costs energy, which is then stored as electric potential energy in the membrane. Diffusion carries the first ions across for nothing, but the cell holds the separation against leakage, and against concentration gradients, by pumping ions back the way they came, and that pumping is work done by the cell. The energy for it comes from the metabolization of food, which is the source of very nearly all the energy a cell spends."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1793317",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "Two parallel plate capacitors are otherwise identical, except the second one has twice the distance between the plates of the first. If placed in otherwise identical circuits, how much charge will the second plate have on it compared to the first?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "four times as much",
+     "twice as much",
+     "the same",
+     "half as much"
+    ],
+    "correct": 3,
+    "hint": "The circuits are identical, so both capacitors take the same voltage. The capacitance is $\\kCap = \\varepsilon_0 A/\\kd$, so doubling the separation halves it, and $\\kQch = \\kCap\\kV$ halves the charge with it.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1669592",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "In a very simple circuit consisting of a battery and a capacitor with an adjustable distance between the plates, how does the voltage vary as the distance is altered?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It does not vary. The battery sets the voltage across whatever is connected to it, so the voltage across the capacitor stays at the battery’s value however the plates are moved. What changes is the capacitance, $\\kCap = \\varepsilon_0 A/\\kd$, which falls as the plates are drawn apart, and with it the charge, $\\kQch = \\kCap\\kV$: charge flows back into the battery as the separation grows and out of it as the separation shrinks. Only if the battery were first disconnected, leaving the charge fixed, would the voltage change, and then it would grow in proportion to the separation."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1673098",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "A parallel plate capacitor with adjustable-size square plates is placed in a circuit. How does the charge on the capacitor change as the length of the sides of the plates is increased?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "it grows proportional to length$^2$",
+     "it grows proportional to length",
+     "it shrinks proportional to length",
+     "it shrinks proportional to length$^2$"
+    ],
+    "correct": 0,
+    "hint": "The plates are square, so the area is the side length squared, and the capacitance $\\kCap = \\varepsilon_0 A/\\kd$ goes with the area. The circuit holds the voltage fixed, so $\\kQch = \\kCap\\kV$ follows the capacitance.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1742648",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "Design an experiment to test the relative permittivities of various materials, and briefly describe some basic features of the results.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Build one parallel plate capacitor and change nothing about it but what fills the space between the plates. Two square metal plates held at a fixed small separation by an insulating frame will do, with sheets of the materials to be tested cut to the same thickness as the gap. Measure the capacitance with nothing between the plates, which gives $\\kCair = \\varepsilon_0 A/\\kd$, then slide in each sheet in turn and measure again; the relative permittivity of that material is the ratio $\\kappa = \\kCap/\\kCair$. A capacitance meter reads the capacitance directly, and without one the capacitor may be charged to a known voltage and its charge measured, since $\\kCap = \\kQch/\\kV$. The results should give a ratio of exactly 1 for a vacuum and very nearly 1 for air; a few for the common plastics and glasses, around 2 for Teflon and around 5 or 6 for Bakelite and Pyrex; and a very large number for a polar material, about 80 for water, because a molecule whose charge is already separated needs only to turn to line up with the field. The sheet must fill the gap, or the air left beside it lowers the reading."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1622873",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "A student was changing one of the dimensions of a square parallel plate capacitor and measuring the resultant charge in a circuit with a battery. However, the student forgot which dimension was being varied, and didn’t write it or any units down. Given the table, which dimension was it?<table class=\"data\"><tr><th>Dimension</th><th>Charge (µC)</th></tr><tr><td>1.00</td><td>0.50</td></tr><tr><td>1.10</td><td>0.61</td></tr><tr><td>1.20</td><td>0.71</td></tr><tr><td>1.30</td><td>0.86</td></tr></table>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The distance between the plates",
+     "The area",
+     "The length of a side",
+     "Both the area and the length of a side"
+    ],
+    "correct": 2,
+    "hint": "The battery holds the voltage fixed, so the charge follows the capacitance. Compare how fast the charge grows with how fast the dimension grows: the charge rises faster than the dimension, and for square plates the area is the side squared.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1768328",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "In an experiment in which a circular parallel plate capacitor in a circuit with a battery has the radius and plate separation grow at the same relative rate, what will happen to the total charge on the capacitor?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It will grow in proportion to that rate. Write the two dimensions as $\\kr$ and $\\kd$ multiplied by the same factor $f$. The plates are circular, so the area is $\\pi\\kr^2$ and grows as $f^2$, while the separation grows as $f$; the capacitance $\\kCap = \\varepsilon_0 A/\\kd$ therefore grows as $f^2/f = f$. The battery holds the voltage fixed, so $\\kQch = \\kCap\\kV$ grows as $f$ too: doubling both dimensions doubles the charge on the capacitor."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id2337566",
+   "source_section": "19.2",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "Two parallel conducting plates are 15 cm apart, each with an area of 0.75 m². The left one has a charge of −0.225 C placed on it, while the right has a charge of 0.225 C. What is the magnitude and direction of the electric field between the two?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Find the capacitance of the plates first, $\\kCap = \\varepsilon_0 A/\\kd = (8.85 \\times 10^{-12}\\ \\text{F/m})(0.75\\ \\text{m}^2)/(0.15\\ \\text{m}) = 4.4 \\times 10^{-11}\\ \\text{F}$. The voltage across them follows from $\\kQch = \\kCap\\kV$, which gives $\\kV = 0.225\\ \\text{C} / (4.4 \\times 10^{-11}\\ \\text{F}) = 5.1 \\times 10^{9}\\ \\text{V}$, and the field between parallel plates is $\\kEf = \\kV/\\kd = 3.4 \\times 10^{10}\\ \\text{V/m}$. It points from the positive plate to the negative one, so from the right plate towards the left. A field this large is far beyond the dielectric strength of air, so the arrangement would break down long before such a charge could be placed on the plates."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1338876",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-and-voltage",
+   "prompt": "What charge is stored in a 180 µF capacitor when 120 V is applied to it?",
+   "answer": {
+    "type": "number",
+    "value": 21.6,
+    "unit": "mC",
+    "generated_by": "source",
+    "hint": "The charge stored in any capacitor is $\\kQch = \\kCap\\kV$.",
+    "solution": "$21.6\\ \\text{mC}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2511345",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-parallel-plate",
+   "prompt": "What charge is stored in the capacitor in Example 19.8?",
+   "answer": {
+    "type": "number",
+    "value": 80.0,
+    "unit": "mC",
+    "generated_by": "source",
+    "hint": "The example gives the capacitance of the plates, and the charge stored follows from $\\kQch = \\kCap\\kV$ at the voltage the example applies.",
+    "solution": "$80.0\\ \\text{mC}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1326374",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-and-voltage",
+   "prompt": "What voltage must be applied to an 8.00 nF capacitor to store 0.160 mC of charge?",
+   "answer": {
+    "type": "number",
+    "value": 20.0,
+    "unit": "kV",
+    "generated_by": "source",
+    "hint": "Rearrange $\\kQch = \\kCap\\kV$ for the voltage, and keep the charge in coulombs and the capacitance in farads.",
+    "solution": "20.0 kV"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2756080",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-and-voltage",
+   "prompt": "What is the capacitance of a large Van de Graaff generator’s terminal, given that it stores 8.00 mC of charge at a voltage of 12.0 MV?",
+   "answer": {
+    "type": "number",
+    "value": 667,
+    "unit": "pF",
+    "generated_by": "source",
+    "hint": "Capacitance is the charge stored per volt, $\\kCap = \\kQch/\\kV$.",
+    "solution": "$667\\ \\text{pF}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1949350",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "(a) What is the capacitance of a parallel plate capacitor having plates of area $1.50\\ \\text{m}^2$ that are separated by 0.0200 mm of neoprene rubber? (b) What charge does it hold when 9.00 V is applied to it?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.4,
+      "unit": "µF",
+      "hint": "Neoprene rubber is a dielectric, so use $\\kCap = \\kappa\\varepsilon_0 A/\\kd$ with the dielectric constant Table 19.1 gives for it."
+     },
+     {
+      "part": "(b)",
+      "value": 4e-05,
+      "unit": "C",
+      "hint": "With the capacitance in hand, the charge stored is $\\kQch = \\kCap\\kV$."
+     }
+    ],
+    "solution": "(a) $4.4\\ \\mu\\text{F}$ (b) $4.0 \\times 10^{-5}\\ \\text{C}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2723762",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Unreasonable Results",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "(a) A certain parallel plate capacitor has plates of area $4.00\\ \\text{m}^2$, separated by 0.0100 mm of nylon, and stores 0.170 C of charge. What is the applied voltage? (b) What is unreasonable about this result? (c) Which assumptions are responsible or inconsistent?",
+   "answer": {
+    "type": "number",
+    "value": 14.2,
+    "unit": "kV",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Find the capacitance from $\\kCap = \\kappa\\varepsilon_0 A/\\kd$ with nylon’s dielectric constant, then get the voltage from $\\kQch = \\kCap\\kV$. Compare the field $\\kV/\\kd$ that voltage implies with nylon’s dielectric strength.",
+    "solution": "(a) 14.2 kV (b) The voltage is unreasonably large, more than 100 times the breakdown voltage of nylon. (c) The assumed charge is unreasonably large and cannot be stored in a capacitor of these dimensions."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "capacitor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "capacitance-with-dielectric"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "dielectric-polarization"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "dielectric-strength"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "dielectric-polarization"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "dielectric-strength"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "dielectric-polarization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "dielectric"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "dielectric-polarization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "capacitor"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "capacitance",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "capacitance-with-dielectric"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "dielectric-polarization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "p2",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "p2",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "p4",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capacitance-with-dielectric"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "capacitance-with-dielectric"
+  },
+  {
+   "exercise": "p6",
+   "concept": "dielectric-strength",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

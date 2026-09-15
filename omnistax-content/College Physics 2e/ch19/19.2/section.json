@@ -1,0 +1,562 @@
+{
+ "id": "19.2",
+ "module": "m42326",
+ "chapter": "19",
+ "title": "Electric Potential in a Uniform Electric Field",
+ "short": "Uniform field",
+ "lead": "A potential difference across two parallel metal plates produces a uniform electric field between them, and following a charge from one plate to the other ties the two descriptions together. Because the work done on the charge can be written both as the charge times the voltage and as the force times the distance, the charge cancels and the voltage between the plates is the field strength times their separation. That result says that a field measured in newtons per coulomb may equally be quoted in volts per meter, and it sets a limit on how much voltage a gap of air will hold before it sparks over. The last part of the section states the general form, which holds whether or not the field is uniform: the field is the gradient of the potential, its magnitude the rate at which the potential falls with distance and its direction the direction in which the potential decreases.",
+ "objectives": [
+  "Describe the relationship between voltage and electric field.",
+  "Derive an expression for the electric potential and electric field.",
+  "Calculate electric field strength given distance and voltage."
+ ],
+ "summary_html": "<ul><li>The voltage between points A and B is$$\\begin{aligned}\\kVAB &= \\kEf\\kd\\\\ \\kEf &= \\frac{\\kVAB}{\\kd}\\end{aligned}\\quad\\text{(uniform }E\\text{ - field only),}$$where $\\kd$ is the distance from A to B, or the distance between the plates.</li><li>In equation form, the general relationship between voltage and electric field is$$\\kEf = -\\frac{\\kdV}{\\kds},$$where $\\kds$ is the distance over which the change in potential, $\\kdV$, takes place. The minus sign tells us that $\\kEf$ points in the direction of decreasing potential.) The electric field is said to be the <em>gradient</em> (as in grade or slope) of the electric potential.</li></ul>",
+ "notes": "Six problems the book leaves without an answer are left out: showing that volts per meter and newtons per coulomb are equivalent, the field between plates 1.00 cm apart at 1.50 × 10⁴ V, how far apart plates are at 4.50 × 10³ V/m, the field across a 9.00 nm cell wall at 80.0 mV, the plates 10.0 cm apart with 450 V at 8.00 cm, and the doubly charged ion accelerated to 32.0 keV. Two AP items that read equipotential isolines are set in Equipotential Lines and one on two plates carrying ±0.225 C is set in Capacitors and Dielectrics, since each needs a result a later section states. The book's own slips are kept as it prints them: the narrative denotes the opposite of the potential difference as $V_{\\text{AB}'}$, with a prime the equation beside it does not carry, and the second bullet of the section summary closes with a parenthesis that opens nowhere. The link to the publisher's PhET interactive is left out.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Six problems have no keyed answer and are left out: showing that volts per meter and newtons per coulomb are equivalent, the field between plates 1.00 cm apart, how far apart plates are at 4.50 × 10³ V/m, the field across a 9.00 nm cell wall, the plates 10.0 cm apart with 450 V at 8.00 cm, and the doubly charged ion accelerated to 32.0 keV. Three AP items the book prints here are set elsewhere: the one on six 5.0 V isolines across a 40 cm path and the one on how the isolines between two plates change with their separation are set in Equipotential Lines, which introduces them, and the one on two plates carrying ±0.225 C over 0.75 m² is set in Capacitors and Dielectrics, which gives the capacitance it needs. The AP items that have no answer in the book are kept as open items with the options the book prints and an AI-written suggested approach.",
+ "figures": [
+  {
+   "id": "sim-plates-voltage-field",
+   "kind": "sim",
+   "number": "19.5",
+   "originals": [
+    "/media/ch19/Figure_20_02_01a.jpg"
+   ],
+   "original_caption": "The relationship between V and E for parallel conducting plates is E = V/d. (Note that ΔV = V_AB in magnitude. For a charge that is moved from plate A at higher potential to plate B at lower potential, a minus sign needs to be included as follows: –ΔV = V_A − V_B = V_AB. See the text for details.)",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "voltage",
+    "electric-field",
+    "position",
+    "charge",
+    "force"
+   ]
+  },
+  {
+   "id": "photo-spark-chamber",
+   "kind": "photo",
+   "number": "19.6",
+   "originals": [
+    "/media/ch19/Figure_20_02_02a.jpg"
+   ],
+   "original_caption": "A spark chamber is used to trace the paths of high-energy particles. Ionization created by the particles as they pass through the gas between the plates allows a spark to jump. The sparks are perpendicular to the plates, following electric field lines between them. The potential difference between adjacent plates is not high enough to cause sparks without the ionization produced by particles from accelerator experiments (or cosmic rays). (credit: Daderot, Wikimedia Commons)",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-potential-gradient",
+   "kind": "sim",
+   "draws": [
+    "voltage",
+    "electric-field",
+    "position"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "potential-and-field",
+   "concept": "potential-scalar-field-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "potential-and-field",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-and-field",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-and-field",
+   "concept": "uniform-field-between-plates",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-and-field",
+   "concept": "vector-in-two-dimensions",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "voltage-across-uniform-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "volts-per-meter",
+   "verb": "introduces"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "electric-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "charge-sign-and-potential",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-highest-voltage",
+   "concept": "dielectric-breakdown-of-air",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-highest-voltage",
+   "concept": "voltage-across-uniform-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-electron-gun-field",
+   "concept": "voltage-across-uniform-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-electron-gun-field",
+   "concept": "force-from-electric-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-electron-gun-field",
+   "concept": "volts-per-meter",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-electron-gun-field",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "field-as-gradient",
+   "concept": "field-is-potential-gradient",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-as-gradient",
+   "concept": "electric-field-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "field-as-gradient",
+   "concept": "potential-difference",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1570612",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-as-gradient",
+   "prompt": "Discuss how potential difference and electric field strength are related. Give an example.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The electric field is the gradient of the potential: its magnitude is the rate at which the potential falls with distance, $\\kEf = -\\kdV/\\kds$, and it points in the direction in which the potential decreases. The faster the potential changes over a given distance, the stronger the field. The simplest example is a pair of parallel plates held at a potential difference, where the potential falls evenly across the gap and the field is the same everywhere between them, $\\kEf = \\kVAB/\\kd$. Two plates 2.5 cm apart with 75 kV between them carry a field of $3.0 \\times 10^{6}$ V/m, which is as much as dry air will hold; the same 75 kV across 5 cm would give half that field."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3080509",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-as-gradient",
+   "prompt": "What is the strength of the electric field in a region where the electric potential is constant?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The field there is zero. The field is the rate at which the potential changes with distance, $\\kEf = -\\kdV/\\kds$, so a potential that is the same everywhere in the region gives $\\kdV = 0$ over every step $\\kds$ taken inside it, and the field vanishes. Put the other way, a charge moved anywhere within the region has no change in potential energy, so no force acts along any path it takes."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2558866",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "Will a negative charge, initially at rest, move toward higher or lower potential? Explain why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It moves toward higher potential. The force on a charge in a field is $\\kF = \\kq\\kEf$, and for a negative charge that force is opposite to the field; since the field points toward decreasing potential, the force on a negative charge points toward increasing potential. The same answer comes from energy: a charge released from rest moves so as to lower its potential energy, and $\\kdPE = \\kq\\kdV$ is negative for a negative charge only when $\\kdV$ is positive, that is, when it moves to a higher potential."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1418320",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-plates-voltage-field",
+   "prompt": "A negatively charged massive particle is dropped from above the two plates in Figure 19.5 into the space between them. Which best describes the trajectory it takes?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A rightward-curving parabola",
+     "A leftward-curving parabola",
+     "A rightward-curving section of a circle",
+     "A leftward-curving section of a circle"
+    ],
+    "correct": 1,
+    "hint": "The field between the plates is uniform, so the force on the particle is constant, and a constant force at right angles to the initial motion gives the same path a projectile takes. A negative charge is pushed opposite to the field, that is, toward the positive plate A on the left.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1392626",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-plates-voltage-field",
+   "prompt": "Two massive particles with identical charge are launched into the uniform field between two plates from the same launch point with the same velocity. They both impact the positively charged plate, but the second one does so four times as far as the first. What sign is the charge? What physical difference would give them different impact points (quantify as a relative percent)? How does this compare to the gravitational projectile motion case?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The charge is negative, since the particles are pushed toward the positive plate and the force on a charge is $\\kF = \\kq\\kEf$, which is opposite to the field for a negative charge. With the charge, the field and the launch velocity all the same, the only thing left to differ is the mass. The sideways travel of a projectile launched along the plates is proportional to the square of the time of flight and the time of flight, for a fixed gap, goes as the square root of the mass, since the acceleration is $\\kq\\kEf/m$. A range four times as large therefore needs a mass four times as large, an increase of 300 percent. The comparison with gravitational projectile motion is that the two cases are identical in form but not in what the mass does: a constant force gives a parabola in both, but the gravitational acceleration $\\kg$ is the same for every mass, so two projectiles launched alike land alike, whereas here a heavier particle accelerates less and so travels farther before it reaches the plate."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1837856",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "Two plates are lying horizontally, but stacked with one 10.0 cm above the other. If the upper plate is held at +100 V, what is the magnitude and direction of the electric field between the plates if the lower is held at +50.0 V? -50.0 V?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "500 V/m, 1500 V/m, down",
+     "500 V/m, 1500 V/m, up",
+     "1500 V/m, 500 V/m, down",
+     "1500 V/m, 500 V/m, up"
+    ],
+    "correct": 0,
+    "hint": "The field is the potential difference divided by the separation, $\\kEf = \\kVAB/\\kd$, with $\\kd = 0.100$ m, and it points from the higher potential to the lower, which here is downward in both cases.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1764873",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "Consider three parallel conducting plates, with a space of 3.0 cm between them. The leftmost one is at a potential of +45 V, the middle one is held at ground, and the rightmost is at a potential of -75 V. What is the magnitude of the average electric field on an electron traveling between the plates? (Assume that the middle one has holes for the electron to go through.)",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1500 V/m",
+     "2500 V/m",
+     "4000 V/m",
+     "2000 V/m"
+    ],
+    "correct": 3,
+    "hint": "The average field over a path is the total drop in potential divided by the total distance, $\\kEf = -\\kdV/\\kds$. The potential falls from +45 V to −75 V over the two 3.0 cm gaps together.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1893948",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-electron-gun-field",
+   "prompt": "A new kind of electron gun has a rear plate at −25.0 kV, a grounded plate 2.00 cm in front of that, and a +25.0 kV plate 4.00 cm in front of that. What is the magnitude of the average electric field?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The average field along a path is the whole change in potential divided by the whole distance, $\\kEf = -\\kdV/\\kds$. The potential rises from −25.0 kV at the rear plate to +25.0 kV at the front one, a change of 50.0 kV, over 2.00 cm plus 4.00 cm, which is 0.0600 m. The average field is therefore $(5.00 \\times 10^{4}\\ \\text{V})/(0.0600\\ \\text{m}) = 8.33 \\times 10^{5}$ V/m, directed from the positive plate toward the negative one, so that an electron is accelerated forward through the gun. The field is not the same in the two gaps: it is $1.25 \\times 10^{6}$ V/m across the first 2.00 cm and $6.25 \\times 10^{5}$ V/m across the next 4.00 cm."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2635926",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "The electric field strength between two parallel conducting plates separated by 4.00 cm is $7.50 \\times 10^{4}\\ \\text{V/m}$. (a) What is the potential difference between the plates? (b) The plate with the lowest potential is taken to be at zero volts. What is the potential 1.00 cm from that plate (and 3.00 cm from the other)?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3000,
+      "unit": "V",
+      "hint": "The voltage between the plates is the field strength times the separation, $\\kVAB = \\kEf\\kd$."
+     },
+     {
+      "part": "(b)",
+      "value": 750,
+      "unit": "V",
+      "hint": "The field is uniform, so the potential rises evenly from the zero-volt plate: over 1.00 cm it rises by $\\kEf$ times 0.0100 m."
+     }
+    ],
+    "solution": "(a) $3.00\\ \\text{kV}$ (b) $750\\ \\text{V}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2956436",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-highest-voltage",
+   "prompt": "(a) Will the electric field strength between two parallel conducting plates exceed the breakdown strength for air ($3.0 \\times 10^{6}\\ \\text{V/m}$) if the plates are separated by 2.00 mm and a potential difference of $5.0 \\times 10^{3}\\ \\text{V}$ is applied? (b) How close together can the plates be with this applied voltage?",
+   "answer": {
+    "type": "number",
+    "value": 1.7,
+    "unit": "mm",
+    "part": "(b)",
+    "generated_by": "source",
+    "hint": "Find the field from $\\kEf = \\kVAB/\\kd$ and compare it with the breakdown strength; then set the field equal to the breakdown strength and solve the same relation for the separation.",
+    "solution": "(a) No. The electric field strength between the plates is $2.5 \\times 10^{6}\\ \\text{V/m,}$ which is lower than the breakdown strength for air ($3.0 \\times 10^{6}\\ \\text{V/m}$). (b) 1.7 mm"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2573954",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "Membrane walls of living cells have surprisingly large electric fields across them due to separation of ions. (Membranes are discussed in some detail in Nerve Conduction—Electrocardiograms.) What is the voltage across an 8.00 nm–thick membrane if the electric field strength across it is 5.50 MV/m? You may assume a uniform electric field.",
+   "answer": {
+    "type": "number",
+    "value": 0.044,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "The field is uniform, so the voltage is the field strength times the thickness, $\\kVAB = \\kEf\\kd$, with $\\kd = 8.00 \\times 10^{-9}$ m.",
+    "solution": "44.0 mV"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2705714",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-highest-voltage",
+   "prompt": "Find the maximum potential difference between two parallel conducting plates separated by 0.500 cm of air, given the maximum sustainable electric field strength in air to be $3.0 \\times 10^{6}\\ \\text{V/m}$.",
+   "answer": {
+    "type": "number",
+    "value": 15000,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "The largest voltage the gap will hold is the breakdown field times the separation, $\\kVAB = \\kEf\\kd$, as in Example 19.4.",
+    "solution": "$15\\ \\text{kV}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1948894",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "An electron is to be accelerated in a uniform electric field having a strength of $2.00 \\times 10^{6}\\ \\text{V/m}$. (a) What energy in keV is given to the electron if it is accelerated through 0.400 m? (b) Over what distance would it have to be accelerated to increase its energy by 50.0 GeV?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 800,
+      "unit": "keV",
+      "hint": "The voltage across the distance is $\\kVAB = \\kEf\\kd$, and a single charge accelerated through that voltage gains the same number of electron volts as there are volts."
+     },
+     {
+      "part": "(b)",
+      "value": 25.0,
+      "unit": "km",
+      "hint": "Turn 50.0 GeV back into a voltage, since one electron gains one electron volt per volt, and then find the distance from $\\kd = \\kVAB/\\kEf$."
+     }
+    ],
+    "solution": "(a) $800\\ \\text{KeV}$ (b) $25.0\\ \\text{km}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "field-is-potential-gradient"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "voltage-across-uniform-field",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "field-is-potential-gradient"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "charge-sign-and-potential"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "field-is-potential-gradient",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "projectile-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "projectile-analysis",
+   "weight": 3
+  },
+  {
+   "exercise": "ap2",
+   "concept": "voltage-across-uniform-field",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electric-field-direction",
+   "weight": 3
+  },
+  {
+   "exercise": "ap4",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "field-is-potential-gradient",
+   "weight": 3
+  },
+  {
+   "exercise": "ap5",
+   "concept": "field-is-potential-gradient"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "voltage-across-uniform-field",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "p5",
+   "concept": "dielectric-breakdown-of-air"
+  },
+  {
+   "exercise": "p5",
+   "concept": "voltage-across-uniform-field",
+   "weight": 4
+  },
+  {
+   "exercise": "p7",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "p7",
+   "concept": "volts-per-meter",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "dielectric-breakdown-of-air"
+  },
+  {
+   "exercise": "p9",
+   "concept": "voltage-across-uniform-field",
+   "weight": 4
+  },
+  {
+   "exercise": "p11",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "p11",
+   "concept": "energy-from-potential-difference",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "electron-volt",
+   "weight": 2
+  }
+ ]
+}

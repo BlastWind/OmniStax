@@ -1,7 +1,7 @@
 /* Figures for section 2.3 Time, Velocity, and Speed. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, axes, nice, curve, runner, car, fixed, topline, FONT } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, axes, nice, curve, person, car, fixed, topline, labeller, LW, FONT } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -152,18 +152,18 @@ function trip(u) {
     strip(ctx, L, R, y + 10, 36);
     text(ctx, 'rear', 100, y + 92, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'front', 1330, y + 92, PAL.muted, { size: 17, align: 'center' });
     scale(ctx, X, 0, 10, 1, y + 92, 'm', 2);
-    if (Math.abs(dx) >= 0.5) hbracket(ctx, X(x0.v), X(xf.v), 100, C('position'), 'Δx = ' + signed(dx, 1) + ' m');
-    else text(ctx, 'Δx = 0', X(x0.v), 78, C('position'), { align: 'center', weight: 600 });
+    if (Math.abs(dx) >= 0.5) hbracket(ctx, X(x0.v), X(xf.v), 126, C('position'), 'Δx = ' + signed(dx, 1) + ' m');
+    else text(ctx, 'Δx = 0', X(x0.v), 104, C('position'), { align: 'center', weight: 600 });
     dot(ctx, X(x0.v), y + 10, C('position'), false, 10); dot(ctx, X(xf.v), y + 10, C('position'), true, 10);
     const apart = Math.abs(X(xf.v) - X(x0.v)) > 130;
-    text(ctx, 'x₀ = ' + fmt(x0.v, 1) + ' m', X(x0.v), y + 150, C('position'), { align: apart ? 'center' : 'right', weight: 600, size: 22 });
-    subLabel(ctx, 'x', 'f', ' = ' + fmt(xf.v, 1) + ' m', X(xf.v), y + (apart ? 150 : 178), C('position'), apart ? 'center' : 'left');
-    /* the passenger and his average velocity as an arrow */
-    runner(ctx, X(xm), y + 4, PAL.ink, ph);
+    text(ctx, 'x_0 = ' + fmt(x0.v, 1) + ' m', X(x0.v), y + 150, C('position'), { align: apart ? 'center' : 'right', weight: 600, size: 22 });
+    text(ctx, 'x_f = ' + fmt(xf.v, 1) + ' m', X(xf.v), y + (apart ? 150 : 178), C('position'), { align: apart ? 'center' : 'left', weight: 600, size: 22 });
+    /* the passenger walking the aisle, facing the way he goes, and his average velocity as an arrow over his head */
+    person(ctx, X(xm), y + 28, PAL.ink, { face: dx < 0 ? -1 : 1, phase: done || dx === 0 ? 0 : ph });
     const ax = X(xm), len = Math.max(-300, Math.min(300, vb * 70));
     if (Math.abs(len) > 6) {
       arrow(ctx, ax, y - 72, ax + len, y - 72, C('velocity'), 5);
-      text(ctx, 'v̄ = ' + signed(vb, 2) + ' m/s', ax + len + (len > 0 ? 14 : -14), y - 72, C('velocity'), { weight: 600, size: 20, align: len > 0 ? 'left' : 'right' });
+      text(ctx, 'v̄ = ' + signed(vb, 2) + ' m/s', Math.min(LW - 120, Math.max(120, ax + len / 2)), y - 100, C('velocity'), { weight: 600, size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     } else text(ctx, 'v̄ = 0', ax, y - 72, C('velocity'), { weight: 600, size: 20, align: 'center' });
     /* the stopwatch */
     const sx = 1210, sy = 520, r = 72;
@@ -177,7 +177,10 @@ function trip(u) {
     line(ctx, GX(0), GY(x0.v), GX(t.v), GY(xf.v), C('position'), 5);
     dot(ctx, GX(0), GY(x0.v), C('position'), false, 10); dot(ctx, GX(t.v), GY(xf.v), C('position'), true, 10);
     line(ctx, GX(tau), box.b, GX(tau), GY(xm), C('time'), 3, [4, 8]); dot(ctx, GX(tau), GY(xm), PAL.ink, true, 9);
-    text(ctx, 'slope = v̄ = ' + signed(vb, 2) + ' m/s', GX(t.v * 0.78), GY(x0.v + 0.78 * dx) + (vb <= 0 ? 34 : -34), C('velocity'), { align: 'center', weight: 600, size: 20 });
+    const lab = labeller(ctx, 690);
+    lab.block(GX(0) - 12, Math.min(GY(x0.v), GY(xf.v)) - 12, GX(t.v) + 12, Math.max(GY(x0.v), GY(xf.v)) + 12);
+    lab.add('slope = v̄ = ' + signed(vb, 2) + ' m/s', GX(t.v * 0.6), GY(x0.v + 0.6 * dx), 0.3, vb <= 0 ? 1 : -1, C('velocity'), 20, 30);
+    lab.flush();
     const where = dx < 0 ? ', the minus sign meaning toward the rear of the plane' : dx > 0 ? ', the plus sign meaning toward the front of the plane' : ', so his average velocity is zero however long he takes';
     headline(ctx, done ? (dx === 0 ? 'The passenger ends where he began after ' + fmt(t.v, 1) + ' s' + where + '.' : 'The passenger moves ' + signed(dx, 1) + ' m in ' + fmt(t.v, 1) + ' s, an average velocity of ' + signed(vb, 2) + ' m/s' + where + '.')
       : 'After ' + fmt(tau, 1) + ' s the passenger is at x = ' + fmt(xm, 1) + ' m, on his way from ' + fmt(x0.v, 1) + ' m to ' + fmt(xf.v, 1) + ' m.');
@@ -216,18 +219,18 @@ function trip(u) {
     strip(ctx, L, R, y + 10, 36);
     text(ctx, 'rear', 100, y + 92, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'front', 1330, y + 92, PAL.muted, { size: 17, align: 'center' });
     scale(ctx, X, 0, 10, 1, y + 92, 'm', 2);
-    hbracket(ctx, X(x0), X(xe), 100, C('position')); subLabel(ctx, 'Δx', 'tot', ' = ' + signed(dxt, 1) + ' m in ' + fmt(TOT, 1) + ' s', (X(x0) + X(xe)) / 2, 78, C('position'), 'center');
+    hbracket(ctx, X(x0), X(xe), 126, C('position')); subLabel(ctx, 'Δx', 'tot', ' = ' + signed(dxt, 1) + ' m in ' + fmt(TOT, 1) + ' s', (X(x0) + X(xe)) / 2, 104, C('position'), 'center');
     dot(ctx, X(x0), y + 10, C('position'), false, 10); dot(ctx, X(xe), y + 10, C('position'), true, 10);
     /* the displacement over the interval the clock is in */
     const iy = y + 150;
     if (Math.abs(X(xb) - X(xa)) > 6) arrow(ctx, X(xa), iy, X(xb), iy, C('position'), 4); else dot(ctx, X(xa), iy, C('position'), true, 6);
     text(ctx, 'over this interval Δx = ' + signed(xb - xa, 2) + ' m', (X(xa) + X(xb)) / 2, iy + 30, C('position'), { align: 'center', weight: 600, size: 20 });
     /* the passenger and his instantaneous velocity */
-    runner(ctx, X(now.x), y + 4, PAL.ink, ph);
+    person(ctx, X(now.x), y + 28, PAL.ink, { face: now.v < 0 ? -1 : 1, phase: done || Math.abs(now.v) < 0.05 ? 0 : ph });
     const ax = X(now.x), len = Math.max(-300, Math.min(300, now.v * 70));
     if (Math.abs(len) > 6) {
       arrow(ctx, ax, y - 72, ax + len, y - 72, C('velocity'), 5);
-      text(ctx, 'v = ' + signed(now.v, 2) + ' m/s', ax + len + (len > 0 ? 14 : -14), y - 72, C('velocity'), { weight: 600, size: 20, align: len > 0 ? 'left' : 'right' });
+      text(ctx, 'v = ' + signed(now.v, 2) + ' m/s', Math.min(LW - 120, Math.max(120, ax + len / 2)), y - 100, C('velocity'), { weight: 600, size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     } else text(ctx, 'v = 0, momentarily at rest', ax, y - 72, C('velocity'), { weight: 600, size: 20, align: 'center' });
     /* the stopwatch */
     const sx = 1210, sy = 540, r = 72;
@@ -246,9 +249,12 @@ function trip(u) {
     const h = TOT / 12;
     line(ctx, GX(Math.max(0, tau - h)), GY(now.x - now.v * Math.min(h, tau)), GX(Math.min(TOT, tau + h)), GY(now.x + now.v * Math.min(h, TOT - tau)), C('velocity'), 3, [10, 10]);
     line(ctx, GX(tau), box.b, GX(tau), GY(now.x), C('time'), 3, [4, 8]); dot(ctx, GX(tau), GY(now.x), PAL.ink, true, 9);
-    text(ctx, 'over the interval v̄ = ' + signed(vb, 2) + ' m/s', GX((ta + tb) / 2), GY(Math.min(xa, xb)) + 34, C('velocity'), { align: 'center', weight: 600, size: 18, bg: alpha(PAL.panel, 0.8) });
-    text(ctx, 'tangent: v = ' + signed(now.v, 2) + ' m/s', box.r - 12, box.t + 20, C('velocity'), { align: 'right', weight: 600, size: 18 });
-    headline(ctx, done ? 'In ' + fmt(TOT, 1) + ' s the passenger moved ' + signed(dxt, 1) + ' m, an average velocity of ' + signed(dxt / TOT, 2) + ' m/s over the whole trip, which is cut here into ' + n + (n === 1 ? ' interval' : ' intervals') + ' of ' + fmt(w, 2) + ' s.'
+    const lab = labeller(ctx, 720);
+    lab.block(box.l, box.b, box.r, box.b + 40);
+    lab.add('tangent: v = ' + signed(now.v, 2) + ' m/s', GX(tau), GY(now.x), tau > TOT / 2 ? -0.5 : 0.5, -1, C('velocity'), 18, 26);
+    lab.add('over the interval v̄ = ' + signed(vb, 2) + ' m/s', GX((ta + tb) / 2), GY((xa + xb) / 2), 0, 1, C('velocity'), 18, 26);
+    lab.flush();
+    topline(ctx, done ? 'In ' + fmt(TOT, 1) + ' s the passenger moved ' + signed(dxt, 1) + ' m, an average velocity of ' + signed(dxt / TOT, 2) + ' m/s over the whole trip, which is cut here into ' + n + (n === 1 ? ' interval' : ' intervals') + ' of ' + fmt(w, 2) + ' s.'
       : 'Over the interval from ' + fmt(ta, 2) + ' s to ' + fmt(tb, 2) + ' s the average velocity is ' + signed(vb, 2) + ' m/s, while at the instant ' + fmt(tau, 2) + ' s the velocity is ' + signed(now.v, 2) + ' m/s.');
     readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{${signed(xb - xa, 2).replace('−', '-')}\\ \\text{m}}{${fmt(tb - ta, 2)}\\ \\text{s}} = ${signed(vb, 2).replace('−', '-')}\\ \\text{m/s} \\qquad \\kv = ${signed(now.v, 2).replace('−', '-')}\\ \\text{m/s}`,
       'As the interval shrinks, the average velocity over it settles to the instantaneous velocity, which is what the text means by an infinitesimally small interval.');
@@ -280,12 +286,14 @@ function trip(u) {
     /* the road from home to the store */
     const y = 230;
     strip(ctx, L, R, y, 48);
-    const stx = X(D.v) + 90;
-    house(ctx, L - 90, y + 24, PAL.ink); store(ctx, stx, y + 24, PAL.ink);
-    text(ctx, 'home', L - 90, y + 62, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', stx, y + 62, PAL.muted, { size: 17, align: 'center' });
+    /* the house and the store stand behind the road, on its far edge, with their names over their roofs, so
+       neither the buildings nor their names sit on the scale under the road */
+    const stx = X(D.v) + 80;
+    house(ctx, L - 80, y - 26, PAL.ink); store(ctx, stx, y - 26, PAL.ink);
+    text(ctx, 'home', L - 80, y - 130, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', stx, y - 112, PAL.muted, { size: 17, align: 'center' });
     scale(ctx, X, 0, KM, 1, y + 34, 'km', 1);
-    if (Math.abs(pos) > 0.03) hbracket(ctx, X(0), X(pos), y - 96, C('position'), 'Δx = ' + fmt(pos, 1) + ' km from home');
-    else text(ctx, 'Δx = 0, at home', X(0), y - 118, C('position'), { weight: 600, align: 'left' });
+    if (Math.abs(pos) > 0.03) hbracket(ctx, X(0), X(pos), y + 106, C('position'), 'Δx = ' + fmt(pos, 1) + ' km from home');
+    else text(ctx, 'Δx = 0, at home', X(0), y + 84, C('position'), { weight: 600, align: 'left' });
     /* the car, facing the way it drives, with its velocity as an arrow */
     const cx = X(pos), dir = back ? -1 : 1;
     ctx.save(); ctx.translate(cx, 0); ctx.scale(dir, 1); car(ctx, 0, y - 6, PAL.ink, 1.2); ctx.restore();
@@ -307,7 +315,7 @@ function trip(u) {
     pair(ctx, 'average velocity  =', (Math.abs(vbar) < 0.005 ? '0' : '+' + sig3(vbar)) + ' km/h', 520, 420, C('velocity'));
     const ending = f === 1 ? 'but the car is back where it began, so its average velocity is zero'
       : 'and the car ends ' + fmt(xf, 1) + ' km from home, so its average velocity is +' + sig3(vbar) + ' km/h away from home';
-    headline(ctx, done ? 'The odometer reads ' + fmt(path, 1) + ' km after ' + fmt(T.v, 0) + ' min, an average speed of ' + sig3(sp) + ' km/h, ' + ending + '.'
+    topline(ctx, done ? 'The odometer reads ' + fmt(path, 1) + ' km after ' + fmt(T.v, 0) + ' min, an average speed of ' + sig3(sp) + ' km/h, ' + ending + '.'
       : 'After ' + fmt(tau, 0) + ' min the odometer reads ' + fmt(gone, 1) + ' km and the car is ' + fmt(pos, 1) + ' km from home' + (back ? ', on its way back.' : ', on its way out.'));
     readout(d.readout, `\\text{average speed} = \\frac{${fmt(path, 1)}\\ \\text{km}}{${fmt(hours, 2)}\\ \\text{h}} = ${sig3(sp)}\\ \\text{km/h} \\qquad \\kvb = \\frac{\\kdx}{\\kt} = \\frac{${fmt(xf, 1)}\\ \\text{km}}{${fmt(hours, 2)}\\ \\text{h}} = ${Math.abs(vbar) < 0.005 ? '0' : sig3(vbar) + '\\ \\text{km/h}'}`,
       'Average speed is not the magnitude of average velocity. The two agree only when the car never turns back.');
@@ -340,11 +348,11 @@ function trip(u) {
     const path = D.v * (1 + f), sp = path / H, tout = H / (1 + f), xf = D.v * (1 - f);
     const back = th > tout, pos = back ? D.v - sp * (th - tout) : sp * th, vel = back ? -sp : sp;
     /* the road, short, with the car on it */
-    const y = 150;
+    const y = 168;   /* low enough that a house's roof clears a two-line headline */
     strip(ctx, L, R, y, 40);
     const stx = X(D.v) + 80;
     house(ctx, L - 80, y + 20, PAL.ink); store(ctx, stx, y + 20, PAL.ink);
-    text(ctx, 'home', L - 80, y + 58, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', stx, y + 58, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'home', L - 80, y + 56, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', stx, y + 56, PAL.muted, { size: 17, align: 'center' });
     const cx = X(Math.max(0, Math.min(D.v, pos))), dir = back ? -1 : 1;
     ctx.save(); ctx.translate(cx, 0); ctx.scale(dir, 1); car(ctx, 0, y - 6, PAL.ink, 1.1); ctx.restore();
     const len = dir * (40 + (180 * Math.min(sp, SPMAX)) / SPMAX);
@@ -362,9 +370,10 @@ function trip(u) {
     line(ctx, V.X(0), V.Y(spd), V.X(tout), V.Y(spd), C('velocity'), 5);
     if (f > 0) { line(ctx, V.X(tout), V.Y(spd), V.X(tout), V.Y(-spd), PAL.muted, 2, [6, 6]); line(ctx, V.X(tout), V.Y(-spd), V.X(H), V.Y(-spd), C('velocity'), 5); }
     line(ctx, S.X(0), S.Y(spd), S.X(H), S.Y(spd), C('velocity'), 5);
-    text(ctx, '+' + sig3(sp), V.X(tout / 2), V.Y(spd) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
-    if (f > 0) text(ctx, '−' + sig3(sp), V.X((tout + H) / 2), V.Y(-spd) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
-    text(ctx, sig3(sp) + ' throughout', S.X(H / 2), S.Y(spd) - 22, C('velocity'), { align: 'center', weight: 600, size: 18 });
+    const inTop = (yy) => Math.max(top + 16, yy), bgp = alpha(PAL.panel, 0.85);
+    text(ctx, '+' + sig3(sp), V.X(tout) + 10, inTop(V.Y(spd) - 20), C('velocity'), { align: 'left', weight: 600, size: 18, bg: bgp });
+    if (f > 0) text(ctx, '−' + sig3(sp), V.X(tout) - 10, Math.min(bot - 16, V.Y(-spd) + 22), C('velocity'), { align: 'right', weight: 600, size: 18, bg: bgp });
+    text(ctx, sig3(sp) + ' throughout', S.X(H) + 10, inTop(S.Y(spd) - 20), C('velocity'), { align: 'left', weight: 600, size: 18, bg: bgp });
     for (const [G, val] of [[P, pos], [V, Math.max(-SPMAX, Math.min(SPMAX, vel))], [S, spd]]) {
       line(ctx, G.X(th), bot, G.X(th), G.Y(val), C('time'), 3, [4, 8]); dot(ctx, G.X(th), G.Y(val), PAL.ink, over ? false : true, 9);
     }

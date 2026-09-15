@@ -178,6 +178,12 @@ Extra simulations (rule 15). Thought of, judged, and only one built:
    two F.choice rows naming the four forces, not number sliders, and the
    ladder names each force once; the headline is one capitalized sentence.
 
+Figure pass of 2026-09-14 (Claude Fable 5.1): in `sim-field` the two distance lines were faint
+ink and the names of the charges lay in the field lines (Chen's item 12); the distances are now
+3 px dashed lines in the position hue, and the two charges are named above the field where no
+line runs through the words, on a canvas 620 tall. `sim-exchange` and `sim-strengths` were
+looked at and left as built.
+
 ## Tables
 
 One, Table 4.1 Properties of the Four Basic Forces, in `four-forces`, as

@@ -26,14 +26,15 @@ function fvec(ctx, x, y, dx, dy, color, label, size) {
   const ux = dx / L, uy = dy / L;
   text(ctx, label, x + dx + ux * 18, y + dy + uy * 18, color, {
     weight: 600, size: size || 22, align: ux < -0.25 ? 'right' : ux > 0.25 ? 'left' : 'center',
-    base: uy > 0.25 ? 'top' : uy < -0.25 ? 'bottom' : 'middle',
+    base: uy > 0.25 ? 'top' : uy < -0.25 ? 'bottom' : 'middle', bg: PAL.panel,
   });
 }
 /* an arrow of a set length along the unit direction (ux, uy), its label beside the shaft */
-function tvec(ctx, x, y, ux, uy, len, color, label, side, size) {
-  arrow(ctx, x, y, x + ux * len, y + uy * len, color, 5);
-  const s = side === undefined ? 1 : side;
-  text(ctx, label, x + ux * len * 0.5 - uy * 30 * s, y + uy * len * 0.5 + ux * 30 * s, color,
+function tvec(ctx, x, y, ux, uy, len, color, label, side, size, off) {
+  const s = side === undefined ? 1 : side, o = off || 0;
+  const ox = -uy * o * s, oy = ux * o * s;                 /* the arrow shifted to the label's side of the line */
+  arrow(ctx, x + ox, y + oy, x + ux * len + ox, y + uy * len + oy, color, 5);
+  text(ctx, label, x + ux * len * 0.5 - uy * (30 + o) * s, y + uy * len * 0.5 + ux * (30 + o) * s, color,
     { weight: 600, size: size || 21, align: 'center', bg: PAL.panel });
 }
 /* the arc of an angle at (x, y) between two directions given in degrees, with its label */
@@ -44,17 +45,49 @@ function angleArc(ctx, x, y, r, a0, a1, label, size) {
   text(ctx, label, x + (r + 30) * Math.cos(mid), y + (r + 30) * Math.sin(mid), PAL.ink,
     { size: size || 20, weight: 600, align: 'center', bg: PAL.panel });
 }
-/* an open hand, palm up, its fingers just under (x, y) */
+/* an open hand seen from the side, palm up, cupping whatever rests on it at (x, y), the
+   forearm running away to the lower left: the palm, a thumb up the near side and the four
+   fingers curling up the far side, all in outline the colour of the page */
 function palm(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
-  ctx.beginPath(); ctx.ellipse(x, y + 36, 62, 28, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(x - 44, y + 20); ctx.lineTo(x - 44, y - 2);
-  ctx.moveTo(x - 16, y + 12); ctx.lineTo(x - 16, y - 8);
-  ctx.moveTo(x + 12, y + 12); ctx.lineTo(x + 12, y - 8);
-  ctx.moveTo(x + 40, y + 20); ctx.lineTo(x + 40, y - 2);
-  ctx.moveTo(x - 60, y + 46); ctx.lineTo(x - 104, y + 62);
-  ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  /* the forearm */
+  ctx.beginPath(); ctx.moveTo(x - 60, y + 26); ctx.lineTo(x - 150, y + 92); ctx.lineTo(x - 130, y + 118); ctx.lineTo(x - 40, y + 56); ctx.closePath(); ctx.fill(); ctx.stroke();
+  /* the palm, a shallow cup under the load */
+  ctx.beginPath(); ctx.moveTo(x - 72, y + 8); ctx.quadraticCurveTo(x - 76, y + 60, x - 20, y + 62);
+  ctx.lineTo(x + 40, y + 62); ctx.quadraticCurveTo(x + 84, y + 60, x + 84, y + 14); ctx.lineTo(x + 84, y + 2); ctx.lineTo(x - 72, y + 2); ctx.closePath(); ctx.fill(); ctx.stroke();
+  /* the fingers, curling up the far side, and the thumb up the near side */
+  for (let i = 0; i < 4; i++) { const fx = x + 84 - i * 3, fy = y + 4 - i * 2; ctx.beginPath(); ctx.moveTo(fx - 8, fy + 14); ctx.quadraticCurveTo(fx + 16, fy - 4, fx + 4, fy - 30 + i * 6); ctx.stroke(); }
+  ctx.beginPath(); ctx.moveTo(x - 66, y + 10); ctx.quadraticCurveTo(x - 82, y - 12, x - 56, y - 30); ctx.stroke();
+  ctx.restore();
+}
+/* a sack of dog food standing on (cx, base): a full bag with a gathered top and its name on the front */
+function sack(ctx, cx, base, color) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(cx - 80, base); ctx.lineTo(cx + 80, base); ctx.lineTo(cx + 84, base - 96);
+  ctx.quadraticCurveTo(cx + 40, base - 112, cx + 30, base - 130); ctx.lineTo(cx - 30, base - 130);
+  ctx.quadraticCurveTo(cx - 40, base - 112, cx - 84, base - 96); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx - 84, base - 96); ctx.quadraticCurveTo(cx, base - 82, cx + 84, base - 96); ctx.stroke();
+  ctx.restore();
+  text(ctx, 'DOG FOOD', cx, base - 44, color, { size: 19, weight: 600, align: 'center' });
+}
+/* a hand closed round a vertical rope, seen from the side: the forearm comes down from the top
+   of the picture to a fist whose bottom is at (x, y); the fingers are the three lines across it */
+function hand(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(x - 20, 80); ctx.lineTo(x + 20, 80); ctx.lineTo(x + 24, y - 60); ctx.lineTo(x - 24, y - 60); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x - 30, y - 62); ctx.lineTo(x + 34, y - 62); ctx.quadraticCurveTo(x + 46, y - 30, x + 34, y);
+  ctx.lineTo(x - 26, y); ctx.quadraticCurveTo(x - 42, y - 30, x - 30, y - 62); ctx.closePath(); ctx.fill(); ctx.stroke();
+  for (let i = 0; i < 3; i++) { const fy = y - 46 + i * 15; ctx.beginPath(); ctx.moveTo(x - 34, fy); ctx.quadraticCurveTo(x + 4, fy + 8, x + 40, fy); ctx.stroke(); }
+  ctx.restore();
+}
+/* a fist closed round a horizontal cable, pulling it to the left: the fist's left face is at (x, y)
+   on the cable and the forearm runs down and away to the left */
+function fistPull(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(x - 6, y + 14); ctx.lineTo(x - 96, y + 96); ctx.lineTo(x - 66, y + 118); ctx.lineTo(x + 24, y + 30); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x, y - 26); ctx.lineTo(x + 70, y - 32); ctx.quadraticCurveTo(x + 84, y, x + 70, y + 30); ctx.lineTo(x, y + 26); ctx.closePath(); ctx.fill(); ctx.stroke();
+  for (let i = 0; i < 3; i++) { const fx = x + 14 + i * 17; ctx.beginPath(); ctx.moveTo(fx, y - 30); ctx.quadraticCurveTo(fx + 8, y, fx, y + 28); ctx.stroke(); }
+  ctx.restore();
 }
 /* a small pulley at (x, y) */
 function pulley(ctx, x, y) {
@@ -84,41 +117,38 @@ function walker(ctx, x, y, color) {
   const M = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 30, step: 0.5, value: 10, unit: 'kg', dec: 1, aria: 'mass of the bag' });
   const K = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 2000, max: 40000, step: 500, value: 5000, unit: 'N/m', dec: 0, aria: 'stiffness of the table' });
   const WMAX = 30 * G;
-  function bag(ctx, cx, cy) {
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.ellipse(cx, cy, 108, 32, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'dog food', cx, cy, PAL.ink, { size: 19, align: 'center' });
-  }
   function draw() {
     const { ctx } = begin(d.c);
-    const w = M.v * G, L = 50 + 120 * (w / WMAX), sagCm = 100 * w / K.v, sag = Math.min(90, sagCm * 8), col = C('force');
-    const TOP = 340, AX = 380, BX = 1020;
-    text(ctx, '(a) held in the hand', AX, 108, PAL.muted, { size: 20, align: 'center' });
-    text(ctx, '(b) resting on the table', BX, 108, PAL.muted, { size: 20, align: 'center' });
-    /* (a) the hand holds the bag up */
-    bag(ctx, AX, 300);
-    palm(ctx, AX - 46, 334, PAL.ink);
-    fvec(ctx, AX + 54, 268, 0, -L, col, 'F_hand = ' + num(w, 1) + ' N');
-    fvec(ctx, AX + 54, 332, 0, L, col, 'w = ' + num(w, 1) + ' N');
-    /* (b) the table sags under the bag until it pushes back with the weight */
+    /* the sag is drawn at 14 units to the centimetre, capped so the deepest sag the sliders
+       allow, 14.7 cm, still leaves the top on its legs; the bracket carries the true number */
+    const w = M.v * G, L = 56 + 96 * (w / WMAX), sagCm = 100 * w / K.v, sag = Math.min(72, sagCm * 14), col = C('force');
+    const TOP = 400, AX = 360, BX = 1020;
+    text(ctx, '(a) held in the hand', AX, 92, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, '(b) resting on the table', BX, 92, PAL.muted, { size: 20, align: 'center' });
+    /* (a) the hand holds the sack up: the palm under it, the forearm running off to the left */
+    palm(ctx, AX - 6, 396, PAL.ink);
+    sack(ctx, AX, 398, PAL.ink);
+    fvec(ctx, AX + 110, 304, 0, -L, col, 'F_hand = ' + num(w, 1) + ' N');
+    fvec(ctx, AX + 110, 332, 0, L, col, 'w = ' + num(w, 1) + ' N');
+    /* (b) the table, seen from the side: two legs and a top that sags under the sack until it
+       pushes back with the weight; the dashed line is where the top lies unloaded */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
-    /* the two legs, then the top: a slab that sags under the bag */
-    ctx.beginPath(); ctx.rect(BX - 190, TOP + 8, 20, 150); ctx.rect(BX + 170, TOP + 8, 20, 150); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(BX - 210, TOP); ctx.quadraticCurveTo(BX, TOP + 2 * sag, BX + 210, TOP);
-    ctx.lineTo(BX + 210, TOP + 16); ctx.quadraticCurveTo(BX, TOP + 16 + 2 * sag, BX - 210, TOP + 16); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.rect(BX - 196, TOP + 14, 22, 150); ctx.rect(BX + 174, TOP + 14, 22, 150); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(BX - 226, TOP); ctx.quadraticCurveTo(BX, TOP + 2 * sag, BX + 226, TOP);
+    ctx.lineTo(BX + 226, TOP + 18); ctx.quadraticCurveTo(BX, TOP + 18 + 2 * sag, BX - 226, TOP + 18); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.restore();
-    text(ctx, 'table', BX - 180, TOP + 178, PAL.muted, { size: 18, align: 'center' });
-    bag(ctx, BX, TOP + sag - 34);
-    fvec(ctx, BX, TOP + sag - 66, 0, -L, col, 'N = ' + num(w, 1) + ' N');
-    fvec(ctx, BX, TOP + sag - 2, 0, L, col, 'w = ' + num(w, 1) + ' N');
-    /* the sag, measured on the left where nothing else is drawn: the level of the
-       unloaded top, the level of the loaded one, and the note between them */
-    line(ctx, BX - 210, TOP, BX - 270, TOP, PAL.muted, 2, [8, 8]);
+    line(ctx, BX - 226, TOP, BX + 226, TOP, PAL.muted, 2, [8, 8]);
+    text(ctx, 'the table', BX + 150, TOP + 186, PAL.muted, { size: 18, align: 'center' });
+    sack(ctx, BX, TOP + sag + 2, PAL.ink);
+    fvec(ctx, BX + 110, TOP + sag - 30, 0, -L, col, 'N = ' + num(w, 1) + ' N');
+    fvec(ctx, BX + 110, TOP + sag + 6, 0, L, col, 'w = ' + num(w, 1) + ' N');
+    /* the sag, bracketed at the left end of the top between the unloaded level and the loaded one */
+    line(ctx, BX - 226, TOP, BX - 300, TOP, PAL.muted, 2, [8, 8]);
     if (sag > 5) {
-      line(ctx, BX - 108, TOP + sag, BX - 270, TOP + sag, PAL.muted, 2, [8, 8]);
-      vbracket(ctx, BX - 258, TOP, TOP + sag, PAL.ink);
+      line(ctx, BX - 100, TOP + sag, BX - 300, TOP + sag, PAL.muted, 2, [8, 8]);
+      vbracket(ctx, BX - 286, TOP, TOP + sag, PAL.ink);
     }
-    text(ctx, 'it sags ' + fmt(sagCm, 1) + ' cm', BX - 276, TOP + Math.max(sag / 2, 14), PAL.ink, { weight: 600, size: 20, align: 'right', bg: PAL.panel });
+    text(ctx, sag > 5 ? 'the top sags ' + fmt(sagCm, 1) + ' cm' : 'the top sags ' + fmt(sagCm, 2) + ' cm, too little to see', BX - 306, TOP + Math.max(sag / 2, 14), PAL.ink, { weight: 600, size: 20, align: 'right', bg: PAL.panel });
     /* the free-body diagrams */
     text(ctx, 'Free-body diagrams', 700, 626, PAL.muted, { size: 20, align: 'center' });
     [[AX, 'F_hand'], [BX, 'N']].forEach(function (row) {
@@ -158,13 +188,19 @@ function walker(ctx, x, y, color) {
      nothing moves */
   const T = () => (moving() ? Math.sqrt((2 * SLOPE) / acc()) : 0);
   /* a skier on skis at (x, y), the skis lying along the slope */
+  /* the skier crouched over her skis, drawn at half again the size of a sprite so that she reads
+     as a person: head, a filled torso leaning down the slope, one arm forward with its pole, bent
+     legs and the skis lying along the slope */
   function skier(ctx, x, y, ang) {
-    ctx.save(); ctx.translate(x, y); ctx.rotate(ang);
-    ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 5;
-    ctx.beginPath(); ctx.arc(-8, -76, 13, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(-6, -64); ctx.lineTo(2, -28); ctx.lineTo(-8, -6);
-    ctx.moveTo(-4, -56); ctx.lineTo(-38, -44);
-    ctx.moveTo(-58, 6); ctx.lineTo(60, 6); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.translate(x, y); ctx.rotate(ang); ctx.scale(1.5, 1.5);
+    ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.arc(-22, -70, 11, 0, Math.PI * 2); ctx.fill();
+    ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(-14, -58); ctx.lineTo(6, -32); ctx.stroke();
+    ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(-8, -50); ctx.lineTo(-34, -40); ctx.lineTo(-40, -22); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-40, -50); ctx.lineTo(-42, 4); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(6, -32); ctx.lineTo(-6, -14); ctx.lineTo(-8, 2); ctx.moveTo(6, -32); ctx.lineTo(10, -14); ctx.lineTo(8, 2); ctx.stroke();
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(-46, 4); ctx.lineTo(44, 4); ctx.moveTo(-40, 6); ctx.lineTo(50, 6); ctx.stroke();
+    ctx.restore();
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -204,34 +240,37 @@ function walker(ctx, x, y, color) {
     line(ctx, HIX + ux * q0 + nx * 10, HIY + uy * q0 + ny * 10, sx + nx * 10, sy + ny * 10, alpha(PAL.ink, 0.38), 3, [11, 9]);
     dot(ctx, HIX + ux * q0 + nx * 12, HIY + uy * q0 + ny * 12, PAL.ink, false, 10);
     skier(ctx, sx, sy, -th);
-    const bx = sx + nx * 30, by = sy + ny * 30;
+    const bx = sx + nx * 70, by = sy + ny * 70;
     if (moving() && speed > 0.05) {
       const LV = Math.min(120, 44 + 2.6 * speed);
       arrow(ctx, bx, by, bx + ux * LV, by + uy * LV, C('velocity'), 5);
       lab.add('v = ' + fmt(speed, 1) + ' m/s', bx + ux * LV, by + uy * LV, ux, uy, C('velocity'), 20);
     }
     /* ---------- the same forces, drawn a second time from one point ---------- */
-    const FX = 1090, FY = 380, S = 150 / w;                     /* the weight is always 150 units long */
+    /* the weight is always 180 units long; a short piece of the slope is drawn under the point so
+       the directions read, and each label is sent off in a direction of its own so that no two of
+       the five crowd the same corner */
+    const FX = 1090, FY = 390, S = 180 / w;
     text(ctx, 'the forces on the skier, drawn from one point', FX, 126, PAL.muted, { size: 20, align: 'center' });
     lab.block(FX - 250, 106, FX + 250, 146);
-    line(ctx, FX - ux * 150, FY - uy * 150, FX + ux * 150, FY + uy * 150, alpha(PAL.ink, 0.32), 3, [12, 10]);
+    line(ctx, FX - ux * 120 - nx * 18, FY - uy * 120 - ny * 18, FX + ux * 120 - nx * 18, FY + uy * 120 - ny * 18, alpha(PAL.ink, 0.5), 4);
     const hw = [FX, FY + w * S], hpar = [FX + ux * wpar * S, FY + uy * wpar * S];
     const hperp = [FX - nx * wperp * S, FY - ny * wperp * S], hN = [FX + nx * wperp * S, FY + ny * wperp * S];
-    const fL = Math.min(190, FR.v * S), hf = [FX - ux * fL, FY - uy * fL];
+    const fL = Math.min(200, FR.v * S), hf = [FX - ux * fL, FY - uy * fL];
     /* the parallelogram that resolves the weight: guide lines, under the arrows */
-    line(ctx, hpar[0], hpar[1], hw[0], hw[1], alpha(col, 0.45), 2.5, [9, 7]);
-    line(ctx, hperp[0], hperp[1], hw[0], hw[1], alpha(col, 0.45), 2.5, [9, 7]);
+    line(ctx, hpar[0], hpar[1], hw[0], hw[1], alpha(col, 0.5), 2.5, [9, 7]);
+    line(ctx, hperp[0], hperp[1], hw[0], hw[1], alpha(col, 0.5), 2.5, [9, 7]);
     arrow(ctx, FX, FY, hw[0], hw[1], col, 5);
     arrow(ctx, FX, FY, hpar[0], hpar[1], col, 5);
     arrow(ctx, FX, FY, hperp[0], hperp[1], col, 5);
     arrow(ctx, FX, FY, hN[0], hN[1], col, 5);
     if (fL > 3) arrow(ctx, FX, FY, hf[0], hf[1], col, 5);
     dot(ctx, FX, FY, PAL.ink, true, 8);
-    lab.add('w = ' + num(w, 0) + ' N', hw[0], hw[1], 0, 1, col, 20);
-    lab.add('N = ' + num(wperp, 0) + ' N', hN[0], hN[1], nx, ny, col, 20);
-    lab.add('w∥ = ' + num(wpar, 0) + ' N', hpar[0], hpar[1], ux, uy, col, 20);
-    lab.add('w⊥ = ' + num(wperp, 0) + ' N', hperp[0], hperp[1], -nx, -ny, col, 20);
-    if (fL > 3) lab.add('f = ' + num(FR.v, 0) + ' N', hf[0], hf[1], -ux, -uy, col, 20);
+    lab.add('w = ' + num(w, 0) + ' N', hw[0], hw[1], -0.5, 0.87, col, 21, 26);
+    lab.add('N = ' + num(wperp, 0) + ' N', hN[0], hN[1], 0.3, -0.95, col, 21, 26);
+    lab.add('w∥ = ' + num(wpar, 0) + ' N', hpar[0], hpar[1], -1, 0.2, col, 21, 26);
+    lab.add('w⊥ = ' + num(wperp, 0) + ' N', hperp[0], hperp[1], 1, 0.1, col, 21, 26);
+    if (fL > 3) lab.add('f = ' + num(FR.v, 0) + ' N', hf[0], hf[1], 0.9, -0.45, col, 21, 26);
     /* ---------- the graph: the speed she has reached against the time ---------- */
     /* fixed axes: the 40 m of slope is covered at v = √(2 × 40 × a), and the steepest slope with no
        friction gives a = 9.80 sin 40° = 6.30 m/s², so she can never pass √(80 × 6.30) = 22.4 m/s and
@@ -290,11 +329,13 @@ function walker(ctx, x, y, color) {
     const S = 175 / w;
     fvec(ctx, mx, my, 0, w * S, col, 'w = ' + num(w, 0) + ' N', 20);
     fvec(ctx, mx, my, -ux * wpar * S, -uy * wpar * S, col, 'w∥ = ' + num(wpar, 0) + ' N', 20);
-    fvec(ctx, mx, my, -nx * wperp * S, -ny * wperp * S, col, 'w⊥ = ' + num(wperp, 0) + ' N', 20);
+    fvec(ctx, mx, my, -nx * wperp * S, -ny * wperp * S, col, '', 20);
+    /* named to the right of its head, clear of the face of the incline it points into */
+    text(ctx, 'w⊥ = ' + num(wperp, 0) + ' N', mx - nx * wperp * S + 26, my - ny * wperp * S + 4, col, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
     fvec(ctx, mx, my, nx * wperp * S, ny * wperp * S, col, 'N', 20);
     line(ctx, mx - ux * wpar * S, my - uy * wpar * S, mx, my + w * S, PAL.rule, 2, [8, 8]);
     line(ctx, mx - nx * wperp * S, my - ny * wperp * S, mx, my + w * S, PAL.rule, 2, [8, 8]);
-    if (TH.v > 4) angleArc(ctx, mx, my, 58, 90 - TH.v, 90, 'θ', 19);
+    if (TH.v > 4 && TH.v < 50) angleArc(ctx, mx, my, 58, 90 - TH.v, 90, 'θ', 19);   /* on a steep incline this arc runs into the corner's own label */
     /* the graph: the two components against the angle */
     /* fixed axes: the angle slider covers 0° to 60° and the curves are drawn across the whole
        quadrant, so the angle runs 0 to 90°. The heaviest object the mass slider allows, 60 kg, weighs
@@ -326,7 +367,7 @@ function walker(ctx, x, y, color) {
    describes.
 ===================================================================== */
 (function () {
-  const d = sim('sim-rope', 720);
+  const d = sim('sim-rope', 790);
   const M = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 20, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass hanging from the rope' });
   /* the two values the chapter names are ticked on the slider, and the step lands on either exactly;
      they sit so far apart that a thumb settling on the nearer of them would swallow most of the
@@ -334,19 +375,23 @@ function walker(ctx, x, y, color) {
   const GG = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.6, max: 11, step: 0.005, value: 9.8, unit: 'm/s²', dec: 3, aria: 'acceleration due to gravity', detents: [{ v: 1.625, label: 'Moon' }, { v: 9.8, label: 'Earth' }], snap: false });
   function draw() {
     const { ctx } = begin(d.c);
-    const T = M.v * GG.v, L = 44 + 66 * (T / 220), col = C('force'), X = 380, stretch = 24 * (T / 220);
-    /* the person on a ledge who holds the rope, and the rope with a spring cut into it */
-    fixed(ctx, X + 30, 300, 190, 26);
-    F.person(ctx, X + 50, 300, PAL.ink, { s: 1.5, face: -1, reach: { x: X, y: 210 } });
-    line(ctx, X, 210, X, 300, PAL.ink, 5);
+    const T = M.v * GG.v, L = 44 + 66 * (T / 220), col = C('force'), X = 420, stretch = 24 * (T / 220);
+    /* the hand that holds the rope, reaching down from the top of the picture: a forearm, a fist
+       closed round the rope with its fingers drawn across the front, and the rope leaving the
+       bottom of the fist with a spring cut into it above the mass */
+    hand(ctx, X, 232, PAL.ink);
+    line(ctx, X, 250, X, 300, PAL.ink, 5);
     spring(ctx, X, 300, X, 366 + stretch, 7, 18, PAL.ink, 4);
     line(ctx, X, 366 + stretch, X, 466, PAL.ink, 5);
     block(ctx, X, 524, 170, 116, PAL.ink);
     text(ctx, 'm', X, 524, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    fvec(ctx, X - 70, 196, 0, L, col, 'T');
-    fvec(ctx, X - 70, 460, 0, -L, col, 'T');
+    /* the rope pulls down on the hand and up on the mass with the same tension */
+    fvec(ctx, X - 70, 236, 0, L, col, '');
+    text(ctx, 'T, on the hand', X - 88, 236 + L / 2, col, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
+    fvec(ctx, X - 70, 462, 0, -L, col, '');
+    text(ctx, 'T, on the mass', X - 88, 462 - L / 2, col, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
     fvec(ctx, X, 582, 0, L + 16, col, 'w = ' + num(T, 1) + ' N');
-    text(ctx, 'the spring reads ' + num(T, 1) + ' N', X - 58, 340, C('force'), { size: 19, weight: 600, align: 'right' });
+    text(ctx, 'the spring reads ' + num(T, 1) + ' N', X + 34, 340, C('force'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
     /* the free-body diagram of the mass */
     text(ctx, 'the free-body diagram of the mass', 1010, 160, PAL.muted, { size: 20, align: 'center' });
     dot(ctx, 1010, 400, PAL.ink, true, 9);
@@ -374,24 +419,31 @@ function walker(ctx, x, y, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const T = M.v * G, col = C('force'), ph = PH.v * RAD;
-    const P1 = [560, 220], P2 = [P1[0] + 300 * Math.cos(ph), P1[1] + 300 * Math.sin(ph)];
+    const R = 22, P1 = [560, 240], P2 = [P1[0] + 300 * Math.cos(ph), P1[1] + 300 * Math.sin(ph)];
     /* the load always hangs a clear length of cable below the second pulley, whatever the corner */
-    const HX = 220, LOADY = Math.max(570, P2[1] + 180);
-    line(ctx, 300, P1[1], P1[0], P1[1], PAL.ink, 5);
-    line(ctx, P1[0], P1[1], P2[0], P2[1], PAL.ink, 5);
-    line(ctx, P2[0], P2[1], P2[0], LOADY - 46, PAL.ink, 5);
+    const LOADY = Math.max(590, P2[1] + 190), LX = P2[0] + R;
+    /* the cable runs round the outside of each pulley: along the top of the first, off it at the
+       corner angle, round the right of the second and straight down to the load */
+    const n2 = [Math.sin(ph), -Math.cos(ph)];
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.beginPath();
+    ctx.moveTo(300, P1[1] - R); ctx.lineTo(P1[0], P1[1] - R);
+    ctx.arc(P1[0], P1[1], R, -Math.PI / 2, ph - Math.PI / 2);
+    ctx.lineTo(P2[0] + R * n2[0], P2[1] + R * n2[1]);
+    ctx.arc(P2[0], P2[1], R, ph - Math.PI / 2, 0);
+    ctx.lineTo(LX, LOADY - 46); ctx.stroke(); ctx.restore();
     pulley(ctx, P1[0], P1[1]); pulley(ctx, P2[0], P2[1]);
-    fixed(ctx, 130, 330, 210, 26);
-    F.person(ctx, 250, 330, PAL.ink, { s: 1.6, lean: -0.2, reach: { x: 300, y: P1[1] + 2 } });
-    block(ctx, P2[0], LOADY, 140, 92, PAL.ink);
-    text(ctx, 'm', P2[0], LOADY, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    fvec(ctx, P2[0], LOADY + 46, 0, 62, col, 'w = ' + num(T, 1) + ' N', 20);
-    /* the same tension along all three segments, drawn at the same length */
-    tvec(ctx, 300, P1[1], 1, 0, 100, col, 'T = ' + num(T, 1) + ' N', 1);
-    tvec(ctx, P1[0] + 200 * Math.cos(ph), P1[1] + 200 * Math.sin(ph), -Math.cos(ph), -Math.sin(ph), 100, col, 'T = ' + num(T, 1) + ' N', 1);
-    tvec(ctx, P2[0], LOADY - 62, 0, -1, 76, col, 'T = ' + num(T, 1) + ' N', 1);
+    fistPull(ctx, 300, P1[1] - R, PAL.ink);
+    block(ctx, LX, LOADY, 140, 92, PAL.ink);
+    text(ctx, 'm', LX, LOADY, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    fvec(ctx, LX, LOADY + 46, 0, 62, col, 'w = ' + num(T, 1) + ' N', 20);
+    /* the same tension along all three segments, drawn at the same length beside the cable */
+    tvec(ctx, 380, P1[1] - R, 1, 0, 100, col, 'T = ' + num(T, 1) + ' N', -1, 21, 22);
+    const m2 = [P1[0] + R * n2[0] + 270 * Math.cos(ph), P1[1] + R * n2[1] + 270 * Math.sin(ph)];
+    tvec(ctx, m2[0], m2[1], -Math.cos(ph), -Math.sin(ph), 100, col, 'T = ' + num(T, 1) + ' N', 1, 21, 22);
+    tvec(ctx, LX, LOADY - 62, 0, -1, 76, col, '', -1, 21, 22);
+    text(ctx, 'T = ' + num(T, 1) + ' N', LX - 40, LOADY - 100, col, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
     angleArc(ctx, P1[0], P1[1], 64, 0, PH.v, deg(PH.v, 0));
-    text(ctx, 'the cable is pulled here', 240, 392, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the cable is pulled here', 250, P1[1] + 150, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'the same corner carries a finger tendon and a bicycle brake cable', 120, 744, PAL.muted, { size: 18 });
     headline(ctx, 'The ' + fmt(M.v, 2) + ' kg load makes a tension of ' + num(T, 1)
       + ' N, and the same ' + num(T, 1) + ' N is carried round both corners to the hand');

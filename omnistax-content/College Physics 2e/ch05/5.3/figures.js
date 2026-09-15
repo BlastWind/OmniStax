@@ -186,11 +186,12 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const dl = (force, Yg) => (force * L0.v) / (Yg * 1e9 * area());   /* metres */
   function draw() {
     const { ctx } = begin(d.c);
-    const x = dl(Fa.v, YY.v), len = 100 + 180 * (L0.v / 3), wRod = 26 + 44 * (rr.v / 5);
+    const x = dl(Fa.v, YY.v), len = 100 + 160 * (L0.v / 3), wRod = 26 + 44 * (rr.v / 5);
     const MAG = x > 0 ? Math.min(90, x * 4e5) / x : 0;              /* units per metre of change, kept readable at every setting */
-    /* the rod, its stretch and the longest arrow all sit above CAPY, so the
-       caption is never crossed by a force arrow */
-    const grow = x * MAG, yTop = 200, aL = 24 + Fa.v * 0.010, CAPY = 700;
+    /* the rod, its stretch and the longest arrow all end above the notes at 640 and the captions at
+       CAPY, so neither is ever crossed by a force arrow: the longest rod with the largest stretch and
+       the largest force ends at 610 */
+    const grow = x * MAG, yTop = 170, aL = 24 + Fa.v * 0.010, CAPY = 700;
     ['tension', 'compression'].forEach((mode, i) => {
       const cx = 200 + i * 320, pull = mode === 'tension' ? 1 : -1;
       const bot = yTop + len + pull * grow;
@@ -207,8 +208,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     ['tension', 'compression'].forEach((mode, i) => {
       text(ctx, '(' + (i ? 'b' : 'a') + ') ' + mode, 200 + i * 320, CAPY, PAL.ink, { size: 20, align: 'center', weight: 600, bg: PAL.panel });
     });
-    text(ctx, x > 0 ? 'ΔL = ' + fmt(x * 1000, 3) + ' mm, drawn about ' + timesLarger(MAG, len / L0.v) + ' times larger than it is' : 'with no force applied the rod keeps its original length', 110, 620, PAL.muted, { size: 18 });
-    text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m, r = ' + fmt(rr.v, 1) + ' cm, A = πr² = ' + plain(area(), 2) + ' m²', 110, 648, PAL.muted, { size: 18 });
+    text(ctx, x > 0 ? 'ΔL = ' + fmt(x * 1000, 3) + ' mm, drawn about ' + timesLarger(MAG, len / L0.v) + ' times larger than it is' : 'with no force applied the rod keeps its original length', 110, 640, PAL.muted, { size: 18 });
+    text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m, r = ' + fmt(rr.v, 1) + ' cm, A = πr² = ' + plain(area(), 2) + ' m²', 110, 668, PAL.muted, { size: 18 });
     /* the graph beside the two vertical rods: the change in length against the force, with four materials of Table 5.3 */
     /* The range is fixed. At the slider extremes (L₀ = 3.0 m, r = 0.5 cm and Y = 1 × 10⁹ N/m²) a
        5000 N force changes the length by 191 mm, and an axis that tall would press the default state
@@ -316,7 +317,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const MAG = x > 0 ? Math.min(96, x * 1.6e8) / x : 0;
     const lean = x * MAG;
     /* the book's viewpoint: a little to the left of the bookcase and a little above it, so its left side and its top show */
-    const V = view({ yaw: -0.42, pitch: 0.2, dist: 2400, cx: 400, cy: 380 });
+    const V = view({ yaw: -0.42, pitch: 0.2, dist: 2400, cx: 400, cy: 350 });
     /* a point of the box in its own units (each of sx, sy, sz runs from -1 to 1; the origin is the centre of the box), sheared by sh at the top and not at all at the bottom */
     const pt = (sx, sy, sz, sh) => V.P([sx * W / 2 + sh * (sy + 1) / 2, sy * H / 2, sz * D / 2]);
     const quad = (a, b, c, e, sh) => [pt(...a, sh), pt(...b, sh), pt(...c, sh), pt(...e, sh)];
@@ -324,7 +325,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const kFront = V.shade([0, 0, 1]), kTop = V.shade([0, 1, 0]), kLeft = V.shade([-1, 0, 0]);
     const t = 0.07, ty = t * W / H;                                    /* the thickness of the case's walls and shelves, in box units */
     const floor = pt(-1, -1, 1, 0);
-    fixed(ctx, floor[0] - 60, Math.max(floor[1], pt(1, -1, 1, 0)[1]), W + 120, 34);
+    const floorY = Math.max(floor[1], pt(1, -1, 1, 0)[1]);
+    fixed(ctx, floor[0] - 60, floorY, W + 120, 34);
     /* the solid case: its front, then the inside seen through the open front (back wall, right wall, shelves), then its left side and top */
     face(ctx, quad([-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1], lean), kFront, 3);
     face(ctx, quad([-1 + 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, -1], [1 - 2 * t, 1 - ty, -1], [-1 + 2 * t, 1 - ty, -1], lean), kFront + 0.2);
@@ -343,8 +345,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     dashed(quad([-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1], 0));
     const tl = pt(-1, 1, 1, lean), tl0 = pt(-1, 1, 1, 0), br = pt(1, -1, 1, 0), bl = pt(-1, -1, 1, 0), topC = pt(0, 1, -1, lean);
     const fl = 40 + Fa.v * 0.055;
-    arrow(ctx, tl[0] - 16 - fl, tl[1] + 22, tl[0] - 16, tl[1] + 22, C('force'), 5);
-    text(ctx, 'F = ' + fmt(Fa.v, 0) + ' N', tl[0] - 16, tl[1] + 52, C('force'), { align: 'right', weight: 600, size: 21 });
+    arrow(ctx, tl[0] - 16 - fl, tl[1] + 30, tl[0] - 16, tl[1] + 30, C('force'), 5);
+    text(ctx, 'F = ' + fmt(Fa.v, 0) + ' N', tl[0] - 16 - fl / 2, tl[1] + 2, C('force'), { align: 'center', weight: 600, size: 21, bg: PAL.panel });
     arrow(ctx, br[0] + 24 + fl, br[1] - 14, br[0] + 24, br[1] - 14, C('force'), 5);
     text(ctx, 'F', br[0] + 24 + fl + 12, br[1] - 14, C('force'), { weight: 600, size: 21 });
     text(ctx, 'A = ' + fmt(AA.v, 2) + ' m²', topC[0] + 20, topC[1] - 30, PAL.ink, { align: 'center', weight: 600, size: 18 });
@@ -352,7 +354,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     vbracket(ctx, lx, tl0[1], bl[1], C('position'), '', -1);
     text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m', lx - 12, (tl0[1] + bl[1]) / 2, C('position'), { align: 'right', weight: 600, size: 20 });
     if (lean > 5) hbracket(ctx, tl0[0], tl[0], tl0[1] - 40, C('position'), 'Δx');
-    text(ctx, x > 0 ? 'Δx = ' + fmt(x * 1e6, 3) + ' µm, drawn about ' + timesLarger(MAG, H / L0.v) + ' times larger than it is' : 'with no force applied the bookcase stands square', 110, 636, PAL.muted, { size: 18 });
+    text(ctx, x > 0 ? 'Δx = ' + fmt(x * 1e6, 3) + ' µm, drawn about ' + timesLarger(MAG, H / L0.v) + ' times larger than it is' : 'with no force applied the bookcase stands square', 110, Math.min(676, floorY + 66), PAL.muted, { size: 18 });
     /* the graph beside the vertical scene: the deformation falls as 1/S, with the materials of Table 5.3 along it */
     /* The range is fixed. At the slider extremes (F = 2000 N, L₀ = 2.5 m and A = 0.05 m²) a material
        of shear modulus 1 × 10⁹ N/m² deforms by 100 µm, and an axis that tall would leave the default
@@ -400,40 +402,50 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const x = dx(), w = force();
     const len = 150 + 400 * (L0.v / 20), thick = 12 + 30 * (rr.v / 2);
     const wallR = 420, y = 220, MAG = x > 0 ? Math.min(110, x * 2.2e7) / x : 0, flex = x * MAG;
-    fixed(ctx, 120, y - 140, 300, 360);
-    line(ctx, wallR, y - 200, wallR, y + 230, PAL.rule, 2);
-    /* the nail: straight inside the wall, bending to its flex at the free end */
-    /* a steel nail: the point driven into the wall, the shank straight inside it
-       and bending to its flex outside, and the head at the free end. A light
-       stripe along the top gives the metal its shine. */
-    const x0 = wallR - 140, half = thick / 2, taper = 60;
+    /* the wall: a solid slab whose face is at wallR; the part of the nail driven into it shows through faintly */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(120, y - 140, 300, 360); ctx.restore();
+    line(ctx, wallR, y - 140, wallR, y + 220, PAL.ink, 3);
+    text(ctx, 'the wall', 270, y + 196, PAL.muted, { size: 17, align: 'center' });
+    /* the nail: a sharp point buried in the wall, a round shank that is straight inside the wall and
+       bends to its flex outside, a band of shading along its underside for its roundness, and a flat
+       head at the free end that the picture's wire cannot slip past */
+    const x0 = wallR - 150, half = thick / 2, taper = 3.2 * thick, hx0 = wallR + len;
     const cen = (xx) => (xx <= wallR ? y : y + flex * Math.pow((xx - wallR) / len, 2));
     const width = (xx) => (xx < x0 + taper ? half * ((xx - x0) / taper) : half);
-    const pts = []; for (let i = 0; i <= 60; i++) pts.push(x0 + ((wallR + len - x0) * i) / 60);
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
-    ctx.beginPath(); pts.forEach((xx, i) => (i ? ctx.lineTo(xx, cen(xx) - width(xx)) : ctx.moveTo(xx, cen(xx))));
-    pts.slice().reverse().forEach((xx) => ctx.lineTo(xx, cen(xx) + width(xx))); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.strokeStyle = PAL.panel; ctx.lineWidth = Math.max(2, thick * 0.22); ctx.lineCap = 'round';
-    ctx.beginPath(); pts.filter((xx) => xx > x0 + taper + 10 && xx < wallR + len - 6).forEach((xx, i) => (i ? ctx.lineTo(xx, cen(xx) - half * 0.45) : ctx.moveTo(xx, cen(xx) - half * 0.45))); ctx.stroke();
-    /* the head: a flat disc across the end of the shank */
-    const hx0 = wallR + len, hy0 = cen(hx0);
-    ctx.fillStyle = PAL.muted; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.rect(hx0 - 2, hy0 - half * 2.1, 9, half * 4.2); ctx.fill(); ctx.stroke();
+    const outline = (xa, xb) => {
+      const n = 40; ctx.beginPath();
+      for (let i = 0; i <= n; i++) { const xx = xa + ((xb - xa) * i) / n; if (i) ctx.lineTo(xx, cen(xx) - width(xx)); else ctx.moveTo(xx, cen(xx) - width(xx)); }
+      for (let i = n; i >= 0; i--) { const xx = xa + ((xb - xa) * i) / n; ctx.lineTo(xx, cen(xx) + width(xx)); }
+      ctx.closePath();
+    };
+    ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.globalAlpha = 0.45; ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; outline(x0, wallR); ctx.fill(); ctx.stroke();
+    ctx.globalAlpha = 1; outline(wallR, hx0); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = alpha(PAL.ink, 0.22); ctx.lineWidth = Math.max(3, thick * 0.3);
+    ctx.beginPath(); for (let i = 0; i <= 40; i++) { const xx = wallR + 4 + ((hx0 - wallR - 8) * i) / 40; if (i) ctx.lineTo(xx, cen(xx) + half * 0.45); else ctx.moveTo(xx, cen(xx) + half * 0.45); } ctx.stroke();
+    const hy0 = cen(hx0), hh = Math.max(20, half * 2.6);
+    ctx.fillStyle = alpha(PAL.ink, 0.3); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(hx0 - 2, hy0 - hh, 10, 2 * hh, 3); ctx.fill(); ctx.stroke();
     ctx.restore();
     text(ctx, 'steel nail', wallR + len / 2, y - 62, PAL.ink, { size: 18, align: 'center', weight: 600 });
     line(ctx, wallR, y - 90, wallR + len, y - 90, PAL.muted, 2, [6, 6]);
     hbracket(ctx, wallR, wallR + len, y - 112, C('position'), 'L₀ = ' + fmt(L0.v, 2) + ' mm');
-    text(ctx, '2r = ' + fmt(2 * rr.v, 2) + ' mm', wallR + 16, y + thick / 2 + 26, PAL.muted, { size: 18 });
-    /* the picture hanging from the free end, and the two equal and opposite forces */
-    const px = wallR + len, py = y + flex;
-    line(ctx, px - 8 - half, py, px - 8 - half, py + 60, PAL.muted, 3);
-    block(ctx, px, py + 150, 210, 170, PAL.ink);
-    text(ctx, fmt(mm.v, 1) + ' kg', px, py + 150, PAL.ink, { size: 22, align: 'center', weight: 600 });
-    arrow(ctx, px + 130, py + 150, px + 130, py + 150 + 40 + w * 0.6, C('force'), 5);
-    text(ctx, 'w = ' + fmt(w, 1) + ' N', px + 144, py + 170, C('force'), { weight: 600, size: 20 });
-    arrow(ctx, wallR - 80, y + 44, wallR - 80, y + 44 - 40 - w * 0.6, C('force'), 5);
-    text(ctx, 'w', wallR - 96, y + 6, C('force'), { weight: 600, size: 20, align: 'right', bg: PAL.panel });
-    if (flex > 4) vbracket(ctx, px + 46, y, py, C('position'), 'Δx', 1);
+    text(ctx, '2r = ' + fmt(2 * rr.v, 2) + ' mm', wallR + 40, y + half + 26, PAL.muted, { size: 18 });
+    /* the picture: a frame with its mat, hung from the nail by a wire that hooks over the shank just behind the head */
+    const wx = hx0 - 14, wy = cen(wx) + width(wx), ft = wy + 74, fw = 210, fh = 170;
+    line(ctx, wx, wy, wx - 80, ft + 12, PAL.muted, 2); line(ctx, wx, wy, wx + 80, ft + 12, PAL.muted, 2);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.fillRect(wx - fw / 2, ft, fw, fh); ctx.strokeRect(wx - fw / 2, ft, fw, fh);
+    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(wx - fw / 2 + 22, ft + 22, fw - 44, fh - 44); ctx.restore();
+    text(ctx, fmt(mm.v, 1) + ' kg', wx, ft + fh / 2, PAL.ink, { size: 22, align: 'center', weight: 600 });
+    /* the two equal and opposite forces on the nail: the picture's weight pulling down where the wire
+       hangs, and the wall pushing up where the nail leaves it */
+    const aL = 40 + w * 0.6;
+    arrow(ctx, wx, wy + 2, wx, wy + 2 + aL, C('force'), 5);
+    text(ctx, 'w = ' + fmt(w, 1) + ' N', wx + 16, wy + 14 + Math.min(aL, 60) / 2, C('force'), { weight: 600, size: 20, bg: PAL.panel });
+    arrow(ctx, wallR + 6, y - half - 2, wallR + 6, y - half - 2 - aL, C('force'), 5);
+    text(ctx, 'w', wallR + 22, y - half - 2 - aL / 2, C('force'), { weight: 600, size: 20, bg: PAL.panel });
+    if (flex > 4) vbracket(ctx, hx0 + 40, y, hy0, C('position'), 'Δx', 1);
     text(ctx, 'the flex is drawn about ' + timesLarger(MAG, len / (L0.v / 1000)) + ' times larger than it is', 120, 560, PAL.muted, { size: 18 });
     text(ctx, 'the nail is steel, so its shear modulus is 80 × 10⁹ N/m²', 120, 588, PAL.muted, { size: 18 });
     headline(ctx, 'A ' + fmt(mm.v, 1) + ' kg picture weighs ' + fmt(w, 0) + ' N and bends the nail ' + fmt(x * 1e6, 2) + ' µm, which is far too small to see');
@@ -499,7 +511,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const topTail = tops[0];
     text(ctx, 'F/A on every surface', topTail[0], topTail[1] - 34, C('stress'), { size: 20, align: 'center', weight: 600 });
     const lo = pt(h0)([-1, -1, 1]), ctr = pt(h2)([0, 0, 1]);   /* the ghost's front bottom left corner, whose foot has room for the volume label */
-    text(ctx, 'A', pt(h0)([0, 1, 0])[0] - 70, pt(h0)([0, 1, 0])[1] - 6, PAL.ink, { size: 20, align: 'right', weight: 600 });
+    const aq = pt(h0)([-0.55, 1, -0.55]);
+    text(ctx, 'A', aq[0], aq[1] + 2, PAL.ink, { size: 20, align: 'center', weight: 600 });
     text(ctx, 'V₀ = ' + fmt(V0.v, 1) + ' L', lo[0] - 6, lo[1] + 30, PAL.muted, { size: 19, align: 'right' });
     text(ctx, 'V₀ − ΔV', ctr[0], ctr[1], PAL.ink, { size: 21, align: 'center', weight: 600 });
     text(ctx, 'ΔV = ' + fmt(dV * 1000, 1) + ' mL, which is ' + fmt(f * 100, 2) + '% of the volume', 120, 560, PAL.muted, { size: 18 });

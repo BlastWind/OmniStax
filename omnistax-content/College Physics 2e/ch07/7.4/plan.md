@@ -200,6 +200,8 @@ Extra simulations (rule 15), thought through and judged:
   `path-independence-of-gravity` and its Figure 7.6, already built there.
   Left.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): `sim-guitar` gets a guitar: a figure-of-eight body in classical proportions, a fretted neck running onto it, a rosette round the sound hole and a bridge with its pins, set clear of the energy bars. `sim-spring-energy`, `sim-double` (its axes were already fixed) and `sim-toy-car` unchanged.
+
 ## Exercises
 
 - No Check Your Understanding box anywhere in the chapter. One conceptual

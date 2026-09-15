@@ -1,7 +1,7 @@
 /* Figures for section 2.4 Acceleration. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, scale, axes, nice, curve, car, FONT } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, scale, axes, nice, curve, car, topline, labeller, LW, FONT } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -49,13 +49,20 @@ function train(ctx, x, y, color, s = 1, hollow = false) {
 /* a racehorse running on the ground at y, facing dir (+1 right, −1 left), legs swung by phase */
 function horse(ctx, x, y, color, phase, dir) {
   ctx.save(); ctx.translate(x, y); ctx.scale(dir, 1); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 6; ctx.lineCap = 'round';
-  const sw = Math.sin(phase) * 14;
-  ctx.fillRect(-40, -62, 84, 30);
-  ctx.beginPath(); ctx.moveTo(34, -60); ctx.lineTo(56, -96); ctx.lineTo(78, -92); ctx.lineTo(72, -78); ctx.lineTo(52, -40); ctx.closePath(); ctx.fill();
-  ctx.beginPath();
-  ctx.moveTo(-32, -34); ctx.lineTo(-40 - sw, 0); ctx.moveTo(-20, -34); ctx.lineTo(-10 + sw, 0);
-  ctx.moveTo(24, -34); ctx.lineTo(18 - sw, 0); ctx.moveTo(38, -34); ctx.lineTo(48 + sw, 0);
-  ctx.moveTo(-40, -58); ctx.lineTo(-64, -40); ctx.stroke();
+  const sw = Math.sin(phase) * 16;
+  /* legs first, so the body covers their tops: a gallop swings the front pair against the back pair */
+  ctx.lineWidth = 6; ctx.beginPath();
+  ctx.moveTo(-36, -40); ctx.lineTo(-44 - sw, -18); ctx.lineTo(-48 - sw * 1.4, 0);
+  ctx.moveTo(-24, -40); ctx.lineTo(-18 + sw * 0.6, -18); ctx.lineTo(-14 + sw, 0);
+  ctx.moveTo(26, -40); ctx.lineTo(22 - sw * 0.6, -18); ctx.lineTo(16 - sw, 0);
+  ctx.moveTo(40, -40); ctx.lineTo(48 + sw, -18); ctx.lineTo(54 + sw * 1.4, 0); ctx.stroke();
+  /* the body, a rounded barrel, then the neck rising to the head and the ears */
+  ctx.beginPath(); ctx.roundRect(-46, -66, 92, 32, 14); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(30, -62); ctx.quadraticCurveTo(48, -80, 58, -104); ctx.lineTo(72, -108); ctx.lineTo(84, -96); ctx.lineTo(84, -86); ctx.lineTo(66, -84); ctx.quadraticCurveTo(56, -72, 46, -46); ctx.closePath(); ctx.fill();
+  ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(64, -106); ctx.lineTo(60, -118); ctx.moveTo(72, -108); ctx.lineTo(74, -120); ctx.stroke();
+  /* the mane and the tail */
+  ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(40, -74); ctx.quadraticCurveTo(48, -88, 60, -104); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-44, -60); ctx.quadraticCurveTo(-66, -56, -72, -30 + sw * 0.3); ctx.stroke();
   ctx.restore();
 }
 /* the library car, facing dir */
@@ -63,7 +70,11 @@ function carDir(ctx, x, y, color, s, dir) { ctx.save(); ctx.translate(x, y); ctx
 /* a car seen from above, its nose pointing along heading (0 is to the right, a positive heading turns toward the top of the canvas) */
 function topCar(ctx, x, y, heading, color) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(-heading); ctx.fillStyle = color;
-  ctx.fillRect(-38, -19, 76, 38); ctx.fillStyle = PAL.panel; ctx.fillRect(8, -14, 11, 28); ctx.fillRect(-28, -14, 7, 28); ctx.restore();
+  /* four tyres under a rounded body, the windscreen and rear window as light bands, the bonnet forward */
+  ctx.fillRect(-30, -24, 14, 48); ctx.fillRect(16, -24, 14, 48);
+  ctx.beginPath(); ctx.roundRect(-40, -19, 80, 38, 9); ctx.fill();
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.roundRect(8, -14, 10, 28, 3); ctx.fill(); ctx.beginPath(); ctx.roundRect(-28, -13, 7, 26, 3); ctx.fill();
+  ctx.fillStyle = alpha(PAL.panel, 0.5); ctx.fillRect(-12, -15, 18, 30); ctx.restore();
 }
 
 /* =====================================================================
@@ -102,14 +113,23 @@ function topCar(ctx, x, y, heading, color) {
     const box = { l: 160, r: 1240, t: 380, b: 580 };
     const { X: GX, Y: GY } = axes(ctx, box, [0, T], [-25, 45], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 5, ny: 7 });
     line(ctx, GX(0), GY(v0.v), GX(T), GY(vend), C('velocity'), 5);
+    /* the whole-second readings sit on the side of the line away from the bracket, and every label
+       goes through the labeller so none lands on another at any slope */
+    const lab = labeller(ctx, 640);
+    lab.block(box.l, box.b, box.r, box.b + 40);
     for (let k = 1; k <= T; k++) {
       dot(ctx, GX(k), GY(vel(k)), C('velocity'), true, 7);
-      text(ctx, num(vel(k), 1), GX(k), GY(vel(k)) + (a.v >= 0 ? -26 : 26), C('velocity'), { size: 17, align: 'center', weight: 600 });
+      lab.add(num(vel(k), 1), GX(k), GY(vel(k)), 0, a.v >= 0 ? 1 : -1, C('velocity'), 17, 22);
     }
-    if (Math.abs(a.v) > 0.05) vbracket(ctx, GX(3) + 26, GY(vel(2)), GY(vel(3)), C('velocity'), 'Δv in 1 s = ' + signed(a.v, 1) + ' m/s', 1);
+    if (Math.abs(a.v) > 0.05) {
+      line(ctx, GX(2), GY(vel(2)), GX(3), GY(vel(2)), C('velocity'), 2, [4, 6]);
+      vbracket(ctx, GX(3) + 22, GY(vel(2)), GY(vel(3)), C('velocity'));
+      lab.add('Δv in 1 s = ' + signed(a.v, 1) + ' m/s', GX(3) + 22, (GY(vel(2)) + GY(vel(3))) / 2, 1, a.v >= 0 ? -0.6 : 0.6, C('velocity'), 18, 22);
+    }
     dot(ctx, GX(0), GY(v0.v), C('velocity'), false, 10); dot(ctx, GX(T), GY(vend), C('velocity'), true, 10);
     line(ctx, GX(tau), box.b, GX(tau), GY(vv), C('time'), 3, [4, 8]); dot(ctx, GX(tau), GY(vv), PAL.ink, true, 9);
-    headline(ctx, done ? 'In ' + fmt(T, 1) + ' s the velocity has changed by ' + fmt(T, 0) + ' × ' + signed(a.v, 1) + ' = ' + signed(vend - v0.v, 1) + ' m/s, from ' + num(v0.v, 1) + ' to ' + num(vend, 1) + ' m/s.'
+    lab.flush();
+    topline(ctx, done ? 'In ' + fmt(T, 1) + ' s the velocity has changed by ' + fmt(T, 0) + ' × ' + signed(a.v, 1) + ' = ' + signed(vend - v0.v, 1) + ' m/s, from ' + num(v0.v, 1) + ' to ' + num(vend, 1) + ' m/s.'
       : 'After ' + fmt(tau, 1) + ' s the velocity has changed by ' + fmt(tau, 1) + ' × ' + signed(a.v, 1) + ' = ' + signed(vv - v0.v, 1) + ' m/s, to ' + num(vv, 1) + ' m/s.');
     readout(d.readout, `\\kab = \\frac{\\kdv}{\\kdt} = \\frac{(${tnum(vend, 1)} - ${tnum(v0.v, 1)})\\ \\text{m/s}}{${fmt(T, 1)}\\ \\text{s}} = ${tnum(a.v, 1)}\\ \\text{m/s}^2`,
       'The unit m/s² means that the velocity changes by ' + signed(a.v, 1) + ' m/s every second, whichever second you pick.');
@@ -157,8 +177,8 @@ function topCar(ctx, x, y, heading, color) {
     topCar(ctx, at.x, at.y, at.h, PAL.ink);
     const vl = v.v * 12, ux = Math.cos(at.h), uy = -Math.sin(at.h), tx = at.x + ux * vl, ty = at.y + uy * vl;
     arrow(ctx, at.x, at.y, tx, ty, C('velocity'), 5);
-    if (at.h < Math.PI / 3) text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', tx + 14, ty, C('velocity'), { weight: 600, size: 20 });
-    else text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', tx, ty - 22, C('velocity'), { weight: 600, size: 20, align: 'center' });
+    if (at.h < Math.PI / 3) text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', tx + 14, Math.max(100, ty), C('velocity'), { weight: 600, size: 20 });
+    else text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', tx + 16, Math.max(100, ty + 6), C('velocity'), { weight: 600, size: 20, align: 'left' });
     /* the two velocities tail to tail, and their difference */
     const ox = 1080, oy = 330, hb = at.phase === 'in' ? 0 : at.h, dvx = Math.cos(hb) - 1, dvy = -Math.sin(hb), dvm = 2 * v.v * Math.sin(hb / 2);
     const tb = at.phase === 'in' ? 0 : Math.min(s * K - Lin, arc()) / K / v.v;   /* the time spent on the bend so far */
@@ -184,7 +204,7 @@ function topCar(ctx, x, y, heading, color) {
     }
     dot(ctx, ox, oy, PAL.ink, true, 5);
     const deg = fmt((hb * 180) / Math.PI, 0);
-    headline(ctx, at.phase === 'in' ? 'On the straight the velocity is ' + fmt(v.v, 1) + ' m/s to the right and is not changing, so the acceleration is zero.'
+    topline(ctx, at.phase === 'in' ? 'On the straight the velocity is ' + fmt(v.v, 1) + ' m/s to the right and is not changing, so the acceleration is zero.'
       : at.phase === 'bend' ? 'On the bend the speed stays ' + fmt(v.v, 1) + ' m/s while the direction has turned ' + deg + '°, so the velocity has changed by ' + fmt(dvm, 1) + ' m/s and the car is accelerating.'
         : 'After the bend the velocity is ' + fmt(v.v, 1) + ' m/s upward, and although the speed never changed, the velocity changed by ' + fmt(dvm, 1) + ' m/s.');
     readout(d.readout, `|\\kdv| = ${fmt(dvm, 1)}\\ \\text{m/s}\\quad (\\kv = ${fmt(v.v, 1)}\\ \\text{m/s}\\ \\text{throughout})` + (tb > 0.01 ? `\\qquad \\kab = \\frac{${fmt(dvm, 1)}\\ \\text{m/s}}{${fmt(tb, 2)}\\ \\text{s}} = ${fmt(dvm / tb, 1)}\\ \\text{m/s}^2` : ''),
@@ -241,11 +261,11 @@ function topCar(ctx, x, y, heading, color) {
       next.push({ x: px, y: y - 20, r: 60, name: 'Car ' + lab + ', ' + what });
     });
     hits = next;
-    headline(ctx, done ? 'After ' + fmt(T(), 1) + ' s cars (b) and (c) have stopped, while (a) and (d) are still speeding up.'
+    topline(ctx, done ? 'After ' + fmt(T(), 1) + ' s cars (b) and (c) have stopped, while (a) and (d) are still speeding up.'
       : 'After ' + fmt(tau, 1) + ' s cars (b) and (c) are decelerating, while (b) and (d) are the ones whose acceleration is negative.');
     /* the live velocities, written as v = v₀ + at for each of the four cars */
     const row = ([lab, sv, sa]) => `\\text{${lab}}\\ \\kv = ${tsigned(sv * v0.v, 1)} + (${tsigned(sa * am.v, 1)})(${fmt(tau, 1)}) = ${tsigned(sv * v0.v + sa * am.v * tau, 1)}\\ \\text{m/s}`;
-    readout(d.readout, `\\begin{aligned} ${row(CARS[0])} &\\qquad ${row(CARS[1])} \\\\ ${row(CARS[2])} &\\qquad ${row(CARS[3])} \\end{aligned}`,
+    readout(d.readout, `\\begin{aligned} ${row(CARS[0])} \\\\ ${row(CARS[1])} \\\\ ${row(CARS[2])} \\\\ ${row(CARS[3])} \\end{aligned}`,
       'A car is decelerating when its acceleration is opposite to its velocity, as in (b) and (c). Its acceleration is negative when the acceleration points to the left, as in (b) and (d), whether or not it is slowing down.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
@@ -303,13 +323,15 @@ function accelSim(o) {
     line(ctx, GX(0), GY(v0.v), GX(dt.v), GY(vf.v), C('velocity'), 5);
     dot(ctx, GX(0), GY(v0.v), C('velocity'), false, 10); dot(ctx, GX(dt.v), GY(vf.v), C('velocity'), true, 10);
     /* the endpoint labels sit on the far side of the line from each other and stay inside the box, clear of the tick labels */
-    const inBox = (yy) => Math.max(box.t + 18, Math.min(box.b - 18, yy));
-    text(ctx, 'v₀', GX(0) + 26, inBox(GY(v0.v) + (vf.v >= v0.v ? 30 : -30)), C('velocity'), { weight: 600, size: 24 });
-    sub(ctx, 'v', 'f', GX(dt.v) - 30, inBox(GY(vf.v) + (vf.v >= v0.v ? -30 : 30)), C('velocity'), 24, 'center');
-    text(ctx, 'slope = ā', GX(dt.v / 2) + 20, GY(vel(dt.v / 2)) + (vf.v >= v0.v ? 34 : -34), C('acceleration'), { weight: 600, size: 20 });
+    const lab = labeller(ctx, 650), up = vf.v >= v0.v ? -1 : 1;
+    lab.block(box.l, box.b, box.r, box.b + 40); lab.block(box.l - 60, box.t, box.l, box.b); lab.block(box.l - 20, box.t - 40, box.l + 110, box.t - 6);
+    lab.add('v_0', GX(0), GY(v0.v), 0.4, -up, C('velocity'), 24, 24);
+    lab.add('v_f', GX(dt.v), GY(vf.v), -0.4, up, C('velocity'), 24, 24);
+    lab.add('slope = ā', GX(dt.v / 2), GY(vel(dt.v / 2)), 0.3, -up, C('acceleration'), 20, 24);
     line(ctx, GX(tau), box.b, GX(tau), GY(vv), C('time'), 3, [4, 8]); dot(ctx, GX(tau), GY(vv), PAL.ink, true, 9);
+    lab.flush();
     const st = story(a);
-    headline(ctx, 'After ' + fmt(tau, o.dtdec) + ' s the velocity is ' + num(vv, 1) + ' ' + o.unit + ', and ' + st.short + (off ? ', and the sprite is held at the end of the road it is drawn on.' : '.'));
+    topline(ctx, 'After ' + fmt(tau, o.dtdec) + ' s the velocity is ' + num(vv, 1) + ' ' + o.unit + ', and ' + st.short + (off ? ', and the sprite is held at the end of the road it is drawn on.' : '.'));
     readout(d.readout, o.readout(v0.v, vf.v, dt.v, aSI), o.small ? o.small(aSI, st) : st.long);
   }
   register(d.fig, { update: (dt2) => { cy.step(dt2, () => dt.v / 5); if (cy.tau < dt.v && Math.abs(vel(cy.tau)) > 0.05) ph += dt2 * 12; }, draw });
@@ -400,14 +422,14 @@ accelSim({ ...TRAIN, id: 'sim-subway-deceleration', v0: -20, vf: 0, dt: 10, xlo:
     if (Math.abs(dx) > 0.15) { arrow(ctx, X(a), y - 100, X(b), y - 100, C('position'), 5); text(ctx, 'Δx' + prime + ' = ' + signed(dx, 2) + ' km', (X(a) + X(b)) / 2, y - 126, C('position'), { align: 'center', weight: 600 }); }
     else text(ctx, 'Δx' + prime + ' = ' + signed(dx, 2) + ' km', X(a), y - 126, C('position'), { align: 'center', weight: 600 });
     line(ctx, X(a), y - 88, X(a), y + 62, C('position'), 2, [4, 8]); line(ctx, X(b), y - 88, X(b), y + 88, C('position'), 2, [4, 8]);
-    text(ctx, 'x' + prime + '₀ = ' + fmt(a, 2) + ' km', X(a), y + 66, C('position'), { weight: 600, size: 20, align: 'center', bg: PAL.panel });
-    sub(ctx, 'x' + prime, 'f', X(b) - 58, y + 94, C('position'), 20); text(ctx, ' = ' + fmt(b, 2) + ' km', X(b) - 30, y + 94, C('position'), { weight: 600, size: 20 });
+    text(ctx, 'x' + prime + '_0 = ' + fmt(a, 2) + ' km', X(a), y + 66, C('position'), { weight: 600, size: 20, align: 'center', bg: PAL.panel });
+    text(ctx, 'x' + prime + '_f = ' + fmt(b, 2) + ' km', X(b), y + 96, C('position'), { weight: 600, size: 20, align: 'center', bg: PAL.panel });
     return dx;
   }
   function draw() {
     const { ctx } = begin(d.c);
     const dxa = trip(ctx, '(a)', x0.v, xf.v, 215, ''), dxb = trip(ctx, '(b)', x0p.v, xfp.v, 470, '′');
-    headline(ctx, 'Trip (a) has Δx = ' + fmt(xf.v, 2) + ' − ' + fmt(x0.v, 2) + ' = ' + signed(dxa, 2) + ' km, and trip (b) has Δx′ = ' + fmt(xfp.v, 2) + ' − ' + fmt(x0p.v, 2) + ' = ' + signed(dxb, 2) + ' km.');
+    topline(ctx, 'Trip (a) has Δx = ' + fmt(xf.v, 2) + ' − ' + fmt(x0.v, 2) + ' = ' + signed(dxa, 2) + ' km, and trip (b) has Δx′ = ' + fmt(xfp.v, 2) + ' − ' + fmt(x0p.v, 2) + ' = ' + signed(dxb, 2) + ' km.');
     readout(d.readout, `\\kdx = ${fmt(xf.v, 2)} - ${fmt(x0.v, 2)} = ${tsigned(dxa, 2)}\\ \\text{km} \\qquad \\kdx' = ${fmt(xfp.v, 2)} - ${fmt(x0p.v, 2)} = ${tsigned(dxb, 2)}\\ \\text{km}`,
       'The distance traveled is the magnitude of the displacement, ' + fmt(Math.abs(dxa), 2) + ' km in (a) and ' + fmt(Math.abs(dxb), 2) + ' km in (b), and it has no sign to indicate direction.');
   }
@@ -470,7 +492,7 @@ accelSim({ ...TRAIN, id: 'sim-subway-deceleration', v0: -20, vf: 0, dt: 10, xlo:
     text(ctx, 'speeding up', GX(t1.v / 2), 296, PAL.muted, { size: 17, align: 'center' });
     if (t2.v > 4) text(ctx, 'constant velocity', GX(t1.v + t2.v / 2), 296, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'stopping', GX(t1.v + t2.v + t3.v / 2), 296, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, done ? 'In ' + fmt(T(), 1) + ' s the train covers ' + fmt(xT, 0) + ' m, speeding up for ' + fmt(t1.v, 1) + ' s, running steady for ' + fmt(t2.v, 1) + ' s and stopping in ' + fmt(t3.v, 2) + ' s.'
+    topline(ctx, done ? 'In ' + fmt(T(), 1) + ' s the train covers ' + fmt(xT, 0) + ' m, speeding up for ' + fmt(t1.v, 1) + ' s, running steady for ' + fmt(t2.v, 1) + ' s and stopping in ' + fmt(t3.v, 2) + ' s.'
       : phase === 'up' ? 'After ' + fmt(tau, 1) + ' s the train is speeding up, so the position curves upward and the acceleration is ' + sig3s(a1()) + ' m/s².'
         : phase === 'steady' ? 'After ' + fmt(tau, 1) + ' s the velocity is constant, so the acceleration is zero and the position grows at a steady rate.'
           : 'After ' + fmt(tau, 1) + ' s the train is braking, so the velocity falls and the acceleration is ' + sig3s(a3()) + ' m/s².');
@@ -500,27 +522,30 @@ accelSim({ ...TRAIN, id: 'sim-subway-deceleration', v0: -20, vf: 0, dt: 10, xlo:
   function draw() {
     const { ctx } = begin(d.c);
     const tau = cy.now(), done = tau >= dt.v - 1e-9, dx = xf.v - x0.v, xm = pos(tau), v = vb();
-    const y = 250;
+    const y = 268;   /* low enough that the average-velocity label clears a two-line headline */
     strip(ctx, L, R, y, 44); scale(ctx, X, 0, 10, 1, y + 22, 'km', 2);
     dot(ctx, X(x0.v), y, C('position'), false, 9); dot(ctx, X(xf.v), y, C('position'), true, 9);
     line(ctx, X(x0.v), y - 60, X(x0.v), y + 62, C('position'), 2, [4, 8]); line(ctx, X(xf.v), y - 60, X(xf.v), y + 88, C('position'), 2, [4, 8]);
-    text(ctx, 'x′₀ = ' + fmt(x0.v, 2) + ' km', X(x0.v), y + 66, C('position'), { weight: 600, size: 20, align: 'center', bg: PAL.panel });
-    sub(ctx, 'x′', 'f', X(xf.v) - 58, y + 94, C('position'), 20); text(ctx, ' = ' + fmt(xf.v, 2) + ' km', X(xf.v) - 30, y + 94, C('position'), { weight: 600, size: 20 });
+    text(ctx, 'x′_0 = ' + fmt(x0.v, 2) + ' km', X(x0.v), y + 66, C('position'), { weight: 600, size: 20, align: 'center', bg: PAL.panel });
+    text(ctx, 'x′_f = ' + fmt(xf.v, 2) + ' km', X(xf.v), y + 96, C('position'), { weight: 600, size: 20, align: 'center', bg: PAL.panel });
     if (Math.abs(dx) > 0.15) hbracket(ctx, X(x0.v), X(xf.v), y - 70, C('position'), 'Δx′ = ' + signed(dx, 2) + ' km');
     const px = X(xm);
     /* the train faces the way it is going, so a trip to the left is not drawn driving backwards */
     ctx.save(); ctx.translate(px, 0); ctx.scale(dx < 0 ? -1 : 1, 1); train(ctx, 0, y + 6, PAL.ink, 0.9); ctx.restore();
-    if (Math.abs(v) > 0.2) arrow(ctx, px, y - 128, px + v * 4, y - 128, C('velocity'), 5);
-    text(ctx, 'v̄ = ' + num(v, 1) + ' km/h', px + (v >= 0 ? -6 : 6), y - 158, C('velocity'), { align: v >= 0 ? 'left' : 'right', weight: 600 });
+    if (Math.abs(v) > 0.2) arrow(ctx, px, y - 120, px + v * 4, y - 120, C('velocity'), 5);
+    text(ctx, 'v̄ = ' + num(v, 1) + ' km/h', Math.min(LW - 16, Math.max(16, px + (v >= 0 ? -6 : 6))), y - 150, C('velocity'), { align: v >= 0 ? 'left' : 'right', weight: 600 });
     /* x against t, on axes fixed at 0 to 15 min and the 0 to 10 km of the strip above, so the graph
        and the strip are read on one scale and neither follows the sliders */
     const box = { l: 160, r: 1240, t: 420, b: 600 };
     const { X: GX, Y: GY } = axes(ctx, box, [0, 15], [0, 10], { xl: 't (min)', xc: C('time'), yl: 'x (km)', yc: C('position'), nx: 5, ny: 5, fx: (t) => fmt(t, 0), fy: (v2) => fmt(v2, 0) });
     line(ctx, GX(0), GY(x0.v), GX(dt.v), GY(xf.v), C('position'), 5);
     dot(ctx, GX(0), GY(x0.v), C('position'), false, 10); dot(ctx, GX(dt.v), GY(xf.v), C('position'), true, 10);
-    text(ctx, 'slope = v̄ = ' + num(v, 1) + ' km/h', GX(dt.v / 2) + 20, GY(pos(dt.v / 2)) + (dx <= 0 ? 34 : -34), C('velocity'), { weight: 600, size: 20 });
+    const lab = labeller(ctx, 670);
+    lab.block(box.l, box.b, box.r, box.b + 40);
+    lab.add('slope = v̄ = ' + num(v, 1) + ' km/h', GX(dt.v * 0.6), GY(pos(dt.v * 0.6)), 0.4, dx <= 0 ? 1 : -1, C('velocity'), 20, 28);
     line(ctx, GX(tau), box.b, GX(tau), GY(xm), C('time'), 3, [4, 8]); dot(ctx, GX(tau), GY(xm), PAL.ink, true, 9);
-    headline(ctx, done ? 'In ' + fmt(dt.v, 2) + ' min the train goes from ' + fmt(x0.v, 2) + ' km to ' + fmt(xf.v, 2) + ' km, a displacement of ' + signed(dx, 2) + ' km, so its average velocity is ' + num(v, 1) + ' km/h.'
+    lab.flush();
+    topline(ctx, done ? 'In ' + fmt(dt.v, 2) + ' min the train goes from ' + fmt(x0.v, 2) + ' km to ' + fmt(xf.v, 2) + ' km, a displacement of ' + signed(dx, 2) + ' km, so its average velocity is ' + num(v, 1) + ' km/h.'
       : 'After ' + fmt(tau, 2) + ' min the train is at ' + fmt(xm, 2) + ' km, ' + fmt((100 * tau) / dt.v, 0) + ' percent of the way along a trip of ' + signed(dx, 2) + ' km.');
     readout(d.readout, `\\kvb = \\frac{\\kdx'}{\\kdt} = \\left(\\frac{${tnum(dx, 2)}\\ \\text{km}}{${fmt(dt.v, 2)}\\ \\text{min}}\\right)\\left(\\frac{60\\ \\text{min}}{1\\ \\text{h}}\\right) = ${tnum(v, 1)}\\ \\text{km/h}`,
       v < 0 ? 'The negative velocity indicates motion to the left.' : v > 0 ? 'The positive velocity indicates motion to the right.' : 'The train ends where it began, so its average velocity is zero.');

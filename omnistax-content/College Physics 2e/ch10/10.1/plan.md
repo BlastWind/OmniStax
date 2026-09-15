@@ -190,6 +190,8 @@ Extra simulations (rule 15), thought through and decided:
 - The tornado of problem 1. Left: it is $\kw = \kv/\kr$, which `sim-uniform`
   already carries on its sliders, and the intro page keeps the photograph.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-uniform`: the swept-angle label went through the labeller, so it no longer lands on the radius label at a quarter turn. `sim-motorcycle`: the machine is redrawn as a motorcycle (swing arm, fork, engine, tank, seat, fenders, headlight, bars, exhaust, footpeg) and the rider is `F.silhouette()` seated with both hands on the bars; the acceleration arrow leaves the machine's centre and runs through its body, the velocity arrow leaves its nose, both labels sit above their arrows, and the road is 700 units for 160 m so the nose and its arrow stay on the canvas at the end of the longest run. The motorcycle is drawn in this file (`motorcycle()`), not the library. `sim-spin-up` and `sim-accelerations` were looked at in both themes and at every slider extreme and left as built.
+
 ## Exercises
 
 - 1 Check Your Understanding box, keyed by the book: `cyu1` (fs-id1870686,

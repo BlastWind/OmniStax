@@ -213,6 +213,8 @@ Extra simulations (rule 15), thought about and left:
   components. The two-leg sim already shows that components along one
   axis add like numbers; a seventh slider adds nothing to the idea. Left.
 
+Figure pass (2026-09-14, Claude Fable 5.1): in `sim-components` and `sim-resultant` the $A_y$ label sits outside the triangle beside the dashed component at every angle, and the numbers panel moved right to make room. In `sim-add` and `sim-subtract` the component rows and columns are spaced 52 units apart with each label beside its dashed arrow rather than on it, and the canvas grew to 760; the scale of these two still follows the sliders, because the two legs may point anywhere and a scale fixed from the 160 m reach would draw the book's walk at a third of the frame. Headlines wrap through `topline()`.
+
 ## Exercises
 
 - No Check Your Understanding boxes and no AP items in the section, and

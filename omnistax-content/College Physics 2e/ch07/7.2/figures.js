@@ -28,20 +28,26 @@ function belt(ctx, x1, x2, y) {
   ctx.restore();
   line(ctx, x1, y + 34, x2, y + 34, PAL.rule, 3);
 }
-/* a package of side w centred on (x, y), its flaps taped across the top */
+/* a cardboard package centred on (x, y), w by h on its front face and seen a little from above: the
+   side and the top recede, the two top flaps meet along the middle under a strip of tape that runs
+   down the front, and a shipping label sits on the front face, which is what says parcel at a glance */
 function package_(ctx, x, y, w, h, color) {
   const l = x - w / 2, r = x + w / 2, t = y - h / 2, b = y + h / 2, dp = 18;
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
-  /* the front, the side and the top of a cardboard box, seen a little from above */
   ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.rect(l, t, w, h); ctx.fill(); ctx.stroke();
-  ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.moveTo(r, t); ctx.lineTo(r + dp, t - dp); ctx.lineTo(r + dp, b - dp); ctx.lineTo(r, b); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.fillStyle = PAL.soft2; ctx.beginPath(); ctx.moveTo(l, t); ctx.lineTo(l + dp, t - dp); ctx.lineTo(r + dp, t - dp); ctx.lineTo(r, t); ctx.closePath(); ctx.fill(); ctx.stroke();
-  /* the two top flaps meet along the middle, and a strip of tape holds them shut */
+  ctx.fillStyle = alpha(color, 0.35); ctx.beginPath(); ctx.moveTo(r, t); ctx.lineTo(r + dp, t - dp); ctx.lineTo(r + dp, b - dp); ctx.lineTo(r, b); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = alpha(color, 0.12); ctx.beginPath(); ctx.moveTo(l, t); ctx.lineTo(l + dp, t - dp); ctx.lineTo(r + dp, t - dp); ctx.lineTo(r, t); ctx.closePath(); ctx.fill(); ctx.stroke();
+  /* the seam where the flaps meet, and the tape across it and down the front */
   ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(l + dp / 2, t - dp / 2); ctx.lineTo(r + dp / 2, t - dp / 2); ctx.stroke();
-  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.moveTo(x - 7, t); ctx.lineTo(x - 7 + dp, t - dp); ctx.lineTo(x + 7 + dp, t - dp); ctx.lineTo(x + 7, t); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.rect(x - 7, t, 14, 12); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = PAL.panel; ctx.strokeStyle = alpha(color, 0.6); ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(x - 7, t); ctx.lineTo(x - 7 + dp, t - dp); ctx.lineTo(x + 7 + dp, t - dp); ctx.lineTo(x + 7, t); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.rect(x - 7, t, 14, h); ctx.fill(); ctx.stroke();
+  /* the shipping label, low on the front face beside the tape, with two ruled address lines */
+  ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.rect(x + 12, y + 2, w / 2 - 22, h / 2 - 12); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle = alpha(color, 0.6); ctx.beginPath();
+  ctx.moveTo(x + 17, y + 11); ctx.lineTo(x + w / 2 - 15, y + 11); ctx.moveTo(x + 17, y + 19); ctx.lineTo(x + w / 2 - 22, y + 19); ctx.stroke();
   ctx.restore();
-  text(ctx, 'package', x, y + 6, color, { size: 16, align: 'center', weight: 600 });
 }
 
 /* =====================================================================
@@ -134,15 +140,16 @@ function package_(ctx, x, y, w, h, color) {
     arrow(ctx, px - 26, yB - 4, px - 26, 214, cF, 5); text(ctx, 'N', px - 40, 208, cF, { size: 20, weight: 600, align: 'right' });
     arrow(ctx, px + 26, yB - 4, px + 26, 446, cF, 5); text(ctx, 'w', px + 40, 452, cF, { size: 20, weight: 600 });
     package_(ctx, px, py, 96, 72, PAL.ink);
-    arrow(ctx, px + 48, py, px + 48 + fa.v * FSC, py, cF, 5);
-    text(ctx, 'F_app = ' + sig3(fa.v) + ' N', px + 48 + (fa.v * FSC) / 2, py - 26, cF, { size: 20, weight: 600, align: 'center' });
+    arrow(ctx, px + 48, py + 8, px + 48 + fa.v * FSC, py + 8, cF, 5);
+    text(ctx, 'F_app = ' + sig3(fa.v) + ' N', px + 74, py - 16, cF, { size: 20, weight: 600, bg: PAL.panel });
     if (fr.v > 0.01) {
-      arrow(ctx, px - 48, py + 26, px - 48 - fr.v * FSC, py + 26, cF, 5);
-      text(ctx, 'f = ' + sig3(fr.v) + ' N', px - 56 - fr.v * FSC, py + 26, cF, { size: 20, weight: 600, align: 'right' });
+      const fl = Math.max(30, fr.v * FSC);        /* a small friction still gets an arrow long enough to read */
+      arrow(ctx, px - 48, py + 26, px - 48 - fl, py + 26, cF, 5);
+      text(ctx, 'f = ' + sig3(fr.v) + ' N', px - 58 - fl, py + 26, cF, { size: 20, weight: 600, align: 'right' });
     }
     arrow(ctx, px, py - 74, px + Math.max(24, v * 34), py - 74, cV, 5);
     text(ctx, 'v = ' + fmt(v, 2) + ' m/s', px + Math.max(24, v * 34) + 12, py - 74, cV, { size: 20, weight: 600 });
-    dot(ctx, X(0), yB - 72, cD, false, 10);
+    dot(ctx, X(0), yB - 8, cD, false, 10);
     hbracket(ctx, X(0), Math.max(X(0) + 2, px), 500, cD, 'd = ' + fmt(x, 2) + ' m');
     text(ctx, 'The weight and the normal force are perpendicular to the motion, so neither does any work.', 700, 552, PAL.muted, { size: 17, align: 'center' });
     /* the graph: the kinetic energy against the distance travelled */
@@ -226,7 +233,7 @@ function package_(ctx, x, y, w, h, color) {
       ctx.save(); ctx.fillStyle = alpha(cE, i ? 0.85 : 0.35); ctx.fillRect(bx[i] - bw / 2, h, bw, base - h); ctx.restore();
       line(ctx, bx[i] - bw / 2, h, bx[i] + bw / 2, h, cE, over ? 5 : 3, over ? [8, 8] : undefined);
       text(ctx, joules(ke(u)), bx[i], over ? h + 24 : h - 22, cE, { size: 20, weight: 600, align: 'center', bg: over ? alpha(PAL.panel, 0.85) : undefined });
-      text(ctx, fmt(u, 1) + ' m/s', bx[i], base + 26, cV, { size: 18, weight: 600, align: 'center' });
+      text(ctx, fmt(u, 1) + ' m/s', bx[i], base + 34, cV, { size: 18, weight: 600, align: 'center' });
     });
     line(ctx, 985, base, 1310, base, PAL.muted, 2);
     text(ctx, 'the same two energies side by side, against the same ' + fmt(KR, 0) + ' kJ', 1148, base + 58, PAL.muted, { size: 17, align: 'center' });

@@ -71,14 +71,15 @@ function racquet(ctx, x, y, color) {
     const tau = cy.now(), pp = mp.v * vp.v, pb = mb.v * vb.v;
     const xp = Math.min(RUN, vp.v * tau), xb = Math.min(RUN, vb.v * tau);
     /* the player's lane */
-    text(ctx, 'the football player', L, 82, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'the football player', L, 70, PAL.ink, { size: 22, weight: 600 });
     strip(ctx, L, Rt, 175, 48);
-    F.person(ctx, X(xp), 178, PAL.ink, { s: 0.85, lean: 0.25, phase: xp > 0 && xp < RUN ? xp * 1.4 : 0 });
+    /* a filled body, 84 units tall, running while the ground is still passing under it */
+    F.silhouette(ctx, { x: Math.min(X(xp) + 20, Rt - 40), y: 180, s: 0.56, pose: xp > 0 && xp < RUN ? 'run' : 'stand' });
     bar(ctx, 248, (vp.v / VMAX) * BAR, C('velocity'), 'v = ' + fmt(vp.v, 2) + ' m/s');
     bar(ctx, 296, (pp / PMAX) * PBAR, C('momentum'), 'p = ' + sig3(pp) + ' kg·m/s');
     line(ctx, L, 342, Rt, 342, PAL.rule, 2);
     /* the football's lane */
-    text(ctx, 'the hard-thrown football', L, 388, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'the hard-thrown football', L, 380, PAL.ink, { size: 22, weight: 600 });
     strip(ctx, L, Rt, 455, 48);
     football(ctx, X(xb), 455, PAL.ink);
     bar(ctx, 528, (vb.v / VMAX) * BAR, C('velocity'), 'v = ' + fmt(vb.v, 1) + ' m/s');
@@ -142,12 +143,15 @@ function racquet(ctx, x, y, color) {
     /* the line is drawn only as far as the fixed momentum range reaches */
     const xE = Math.min(dt.v, dp > PR ? (dt.v * PR) / dp : dt.v), pE = dp * (xE / dt.v);
     line(ctx, sc.X(0), sc.Y(0), sc.X(xE), sc.Y(pE), C('momentum'), 5);
+    /* the two labels sit on the side of the dashed line away from the rising line, and swap to the
+       left only where the dashed line stands near the right-hand edge */
+    const side = sc.X(dt.v) > box.r - 260 ? 'left' : 'right';
     if (dp <= PR) {
       line(ctx, sc.X(dt.v), sc.Y(0), sc.X(dt.v), sc.Y(dp), C('momentum'), 2.5, [10, 10]);
-      text(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s', sc.X(dt.v) - 16, (sc.Y(0) + sc.Y(dp)) / 2, C('momentum'), { size: 20, weight: 600, align: 'right' });
+      F.label(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s', sc.X(dt.v), (sc.Y(0) + sc.Y(dp)) / 2, { side, color: C('momentum'), gap: 14, leader: false, H: 760 });
     }
-    text(ctx, 'Δt = ' + fmt(dt.v, 1) + ' ms', sc.X(dt.v) - 20, sc.Y(0) - 24, C('time'), { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'The slope of this line is the net force, ' + sig3(Fn) + ' N.', sc.X(TR * 0.05), sc.Y(PR * 0.82), C('force'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    F.label(ctx, 'Δt = ' + fmt(dt.v, 1) + ' ms', sc.X(dt.v), sc.Y(0) - 22, { side, color: C('time'), gap: 14, leader: false, H: 760 });
+    text(ctx, 'The slope of this line is the net force, ' + sig3(Fn) + ' N.', (box.l + box.r) / 2, 738, C('force'), { size: 22, weight: 600, align: 'center' });
     const xNow = Math.min(dt.v * f, TR), pNow = Math.min(p, PR);
     line(ctx, sc.X(0), sc.Y(pNow), sc.X(xNow), sc.Y(pNow), PAL.muted, 2, [4, 8]);
     line(ctx, sc.X(xNow), sc.Y(0), sc.X(xNow), sc.Y(pNow), PAL.muted, 2, [4, 8]);

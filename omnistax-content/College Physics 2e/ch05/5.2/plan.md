@@ -179,6 +179,20 @@ sliders with their types · headline · graph · 3D
    $\kvt \propto \sqrt{k}$ with the two speeds; small line on the weight
    falling as $k^3$ and the area only as $k^2$. Draws velocity, time.
 
+   Figure pass of 2026-09-14 (Claude Fable 5.1): the skydiver of `sim-terminal`
+   and `sim-size` is a spread-eagled silhouette seen from below (round head,
+   solid torso, arms and legs thrown out and bent), drawn in this file, so she
+   reads as a skydiver without her label; her weight leaves her centre and
+   the drag meets her from below. `sim-terminal`'s column of air is fixed at
+   0 to 1000 m and never rescales, a longer fall held at the last mark with
+   a note saying how far she has really gone. `sim-drag`'s quarter-drag note
+   sits under its point on a panel, off the curve at every coefficient;
+   `sim-size` moves the smaller body's name to the right end of its line
+   when the two terminal velocities lie within a label of each other; and
+   `sim-stokes` wraps its headline through `topline()`, keeps its smooth-flow
+   note at the foot of the graph and drops the square-law note when the live
+   point is pinned in the corner it would occupy.
+
 The drag coefficient has no figure of its own: the wind tunnel that measures
 it is Figure 5.8, which is kept, and `sim-drag` carries $C$ on a slider and
 names the body of Table 5.2 it matches, which is what a separate figure

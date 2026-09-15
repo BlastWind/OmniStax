@@ -157,6 +157,15 @@ scientific-method flowchart and a speed ladder for the 1% limit were
 considered; both would be static diagrams of a definition and open no
 view the text does not give.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1): the electrons and the protons of
+`sim-atom-model` were drawn in ink, which root rule 7 does not allow for a
+particle with an identity; they now take `F.el('e-')` and `F.el('p+')`, so
+the reader tells an electron from a proton without the legend. A filled
+orbit is a solid ring at 0.4 alpha and an empty one a dashed ring, and the
+legend says so. The readout was a bare count ("1 electrons go round 1
+protons"); it is now a sentence in the book's voice. The page still binds
+no type: the element palette is not a type hue.
+
 ## Exercises
 
 - 1 Check Your Understanding (`cyu1`, fs-id2634383), open, inline after

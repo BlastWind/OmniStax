@@ -1,0 +1,776 @@
+{
+ "id": "18",
+ "dir": "ch18",
+ "title": "Electric Charge and Electric Field",
+ "intro": {
+  "module": "m42299",
+  "slug": "18-introduction-to-electric-charge-and-electric-field"
+ },
+ "sections": [
+  {
+   "id": "18.1",
+   "module": "m42300",
+   "title": "Static Electricity and Charge: Conservation of Charge",
+   "slug": "18-1-static-electricity-and-charge-conservation-of-charge"
+  },
+  {
+   "id": "18.2",
+   "module": "m42306",
+   "title": "Conductors and Insulators",
+   "slug": "18-2-conductors-and-insulators"
+  },
+  {
+   "id": "18.3",
+   "module": "m42308",
+   "title": "Coulomb’s Law",
+   "slug": "18-3-coulombs-law"
+  },
+  {
+   "id": "18.4",
+   "module": "m42310",
+   "title": "Electric Field: Concept of a Field Revisited",
+   "slug": "18-4-electric-field-concept-of-a-field-revisited"
+  },
+  {
+   "id": "18.5",
+   "module": "m42312",
+   "title": "Electric Field Lines: Multiple Charges",
+   "slug": "18-5-electric-field-lines-multiple-charges"
+  },
+  {
+   "id": "18.6",
+   "module": "m42315",
+   "title": "Electric Forces in Biology",
+   "slug": "18-6-electric-forces-in-biology"
+  },
+  {
+   "id": "18.7",
+   "module": "m42317",
+   "title": "Conductors and Electric Fields in Static Equilibrium",
+   "slug": "18-7-conductors-and-electric-fields-in-static-equilibrium"
+  },
+  {
+   "id": "18.8",
+   "module": "m42329",
+   "title": "Applications of Electrostatics",
+   "slug": "18-8-applications-of-electrostatics"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "q",
+   "type": "charge",
+   "meaning": "electric charge, the physical quantity whose two types, positive and negative, explain the effects of static electricity",
+   "unit": "C",
+   "section": "18.1",
+   "anchor": "18.1-electrons-and-protons"
+  },
+  {
+   "sym": "q_e",
+   "type": "charge",
+   "meaning": "the charge of a single electron (or, with the opposite sign, of a single proton), the basic unit of which all observed charges are integral multiples",
+   "unit": "C",
+   "section": "18.1",
+   "anchor": "18.1-electrons-and-protons"
+  },
+  {
+   "sym": "Δm",
+   "meaning": "the mass created from energy in a particle accelerator, or converted to energy when matter and antimatter annihilate",
+   "unit": "kg",
+   "section": "18.1",
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "sym": "E",
+   "type": "energy",
+   "meaning": "the energy converted into the mass of a created particle pair, or released when a pair annihilates",
+   "unit": "J",
+   "section": "18.1",
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "sym": "c",
+   "type": "velocity",
+   "meaning": "the speed of light",
+   "unit": "m/s",
+   "section": "18.1",
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "sym": "m_e",
+   "meaning": "the electron’s mass",
+   "unit": "kg",
+   "section": "18.1",
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "sym": "F",
+   "type": "force",
+   "meaning": "the magnitude of the electrostatic (Coulomb) force between two point charges",
+   "unit": "N",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "sym": "q_1",
+   "type": "charge",
+   "meaning": "the first of two point charges",
+   "unit": "C",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "sym": "q_2",
+   "type": "charge",
+   "meaning": "the second of two point charges",
+   "unit": "C",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "sym": "r",
+   "meaning": "the distance separating two point charges",
+   "unit": "m",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "sym": "k_coul",
+   "meaning": "Coulomb’s constant, 8.99 × 10⁹ N·m²/C²",
+   "unit": "N·m²/C²",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "sym": "F_G",
+   "type": "force",
+   "meaning": "the gravitational force between two masses, from Newton’s universal law of gravitation",
+   "unit": "N",
+   "section": "18.3",
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "sym": "G",
+   "meaning": "the gravitational constant, 6.67 × 10⁻¹¹ N·m²/kg²",
+   "unit": "N·m²/kg²",
+   "section": "18.3",
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the electron in Example 18.1",
+   "unit": "kg",
+   "section": "18.3",
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "sym": "M",
+   "meaning": "the mass of the proton in Example 18.1",
+   "unit": "kg",
+   "section": "18.3",
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "sym": "E_field",
+   "type": "electric-field",
+   "meaning": "the electric field, the ratio of the Coulomb force to the positive test charge it acts on",
+   "unit": "N/C",
+   "section": "18.4",
+   "anchor": "18.4-electric-field-defined"
+  },
+  {
+   "sym": "F",
+   "type": "force",
+   "meaning": "the electrostatic or Coulomb force exerted on a test charge",
+   "unit": "N",
+   "section": "18.4",
+   "anchor": "18.4-electric-field-defined"
+  },
+  {
+   "sym": "q",
+   "type": "charge",
+   "meaning": "a test charge, small enough not to alter the charge distribution creating the field",
+   "unit": "C",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field"
+  },
+  {
+   "sym": "Q_charge",
+   "type": "charge",
+   "meaning": "a point charge, the charge creating the electric field",
+   "unit": "C",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field"
+  },
+  {
+   "sym": "r",
+   "meaning": "the distance from the point charge to the point where the field is found",
+   "unit": "m",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field"
+  },
+  {
+   "sym": "E_field",
+   "type": "electric-field",
+   "meaning": "the electric field, a vector drawn as arrows or as continuous field lines",
+   "unit": "N/C",
+   "section": "18.5",
+   "anchor": "18.5-field-lines"
+  },
+  {
+   "sym": "E_field1",
+   "type": "electric-field",
+   "meaning": "the electric field at a point due to the charge q₁",
+   "unit": "N/C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "E_field2",
+   "type": "electric-field",
+   "meaning": "the electric field at the same point due to the charge q₂",
+   "unit": "N/C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "E_tot",
+   "type": "electric-field",
+   "meaning": "the total electric field at a point, the vector sum of the fields of the individual charges",
+   "unit": "N/C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "q_1",
+   "type": "charge",
+   "meaning": "the first of two point charges whose fields are added",
+   "unit": "C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "q_2",
+   "type": "charge",
+   "meaning": "the second of two point charges whose fields are added",
+   "unit": "C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "r_1",
+   "meaning": "the distance from q₁ to the point where the field is found",
+   "unit": "m",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "r_2",
+   "meaning": "the distance from q₂ to the point where the field is found",
+   "unit": "m",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "θ",
+   "meaning": "the direction of the total field, measured from the axis",
+   "unit": "°",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "q_e",
+   "type": "charge",
+   "meaning": "the fundamental charge; DNA carries about two of them per 0.3 nm",
+   "unit": "C",
+   "section": "18.6",
+   "anchor": "18.6-charged-molecules"
+  },
+  {
+   "sym": "E_field",
+   "type": "electric-field",
+   "meaning": "an electric field applied to a conductor, or the field of a charged conductor",
+   "unit": "N/C",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "E_par",
+   "type": "electric-field",
+   "meaning": "the component of the electric field parallel to a conductor’s surface, which moves free charge until it is zero",
+   "unit": "N/C",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "E_perp",
+   "type": "electric-field",
+   "meaning": "the component of the electric field perpendicular to a conductor’s surface",
+   "unit": "N/C",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "F_par",
+   "type": "force",
+   "meaning": "the force the parallel component of the field exerts on a free charge in a conductor",
+   "unit": "N",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "q",
+   "type": "charge",
+   "meaning": "a free charge in a conductor, or the charge at the center of the square of the section’s conceptual questions and problems",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "q_a",
+   "type": "charge",
+   "meaning": "the charge on one corner of a square",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-four-charges"
+  },
+  {
+   "sym": "q_b",
+   "type": "charge",
+   "meaning": "the charge on a second corner of a square",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-four-charges"
+  },
+  {
+   "sym": "q_c",
+   "type": "charge",
+   "meaning": "the charge on a third corner of a square",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-four-charges"
+  },
+  {
+   "sym": "q_d",
+   "type": "charge",
+   "meaning": "the charge on the fourth corner of a square",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-four-charges"
+  },
+  {
+   "sym": "w",
+   "type": "force",
+   "meaning": "the weight of the charged drop of gasoline",
+   "unit": "N",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "m",
+   "meaning": "the mass of the charged drop",
+   "unit": "kg",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "F",
+   "type": "force",
+   "meaning": "the electric force on the charged drop in the field",
+   "unit": "N",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "q",
+   "type": "charge",
+   "meaning": "the charge on the drop",
+   "unit": "C",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "E_field",
+   "type": "electric-field",
+   "meaning": "the upward electric field due to other static electricity in the vicinity",
+   "unit": "N/C",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "F_net",
+   "type": "force",
+   "meaning": "the net force on the drop, the electric force less the weight",
+   "unit": "N",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "a",
+   "type": "acceleration",
+   "meaning": "the acceleration of the drop from Newton’s second law",
+   "unit": "m/s²",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  }
+ ],
+ "equations": [
+  {
+   "id": "eq-elementary-charge",
+   "concept": "elementary-charge",
+   "section": "18.1",
+   "latex": "|q_{\\text{e}}| = 1.60 \\times 10^{-19}\\ \\text{C}",
+   "ktex": "|\\kqe| = 1.60 \\times 10^{-19}\\ \\text{C}",
+   "important": true,
+   "anchor": "18.1-electrons-and-protons"
+  },
+  {
+   "id": "eq-protons-per-coulomb",
+   "concept": "count-charges-from-charge",
+   "section": "18.1",
+   "latex": "1.00\\ \\text{C} \\times \\frac{1\\ \\text{proton}}{1.60 \\times 10^{-19}\\ \\text{C}} = 6.25 \\times 10^{18}\\ \\text{protons}",
+   "important": false,
+   "anchor": "18.1-electrons-and-protons"
+  },
+  {
+   "id": "eq-mass-from-energy",
+   "section": "18.1",
+   "latex": "\\Delta m = \\frac{E}{c^2}",
+   "ktex": "\\Delta m = \\frac{\\kE}{\\kc^2}",
+   "important": false,
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "id": "eq-coulombs-law",
+   "concept": "coulombs-law",
+   "section": "18.3",
+   "latex": "F = k\\frac{|q_1 q_2|}{r^2}",
+   "ktex": "\\kF = k\\frac{|\\kqone \\kqtwo|}{r^2}",
+   "condition": "two point charges",
+   "important": true,
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "id": "eq-coulomb-constant",
+   "concept": "coulomb-constant",
+   "section": "18.3",
+   "latex": "k = 8.988 \\times 10^{9}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{C}^2} \\approx 8.99 \\times 10^{9}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{C}^2}",
+   "important": true,
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "id": "eq-gravitational-force",
+   "section": "18.3",
+   "latex": "F_{\\text{G}} = G\\frac{mM}{r^2}",
+   "ktex": "\\kFG = G\\frac{mM}{r^2}",
+   "important": false,
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "id": "eq-coulomb-gravity-ratio",
+   "concept": "coulomb-versus-gravity",
+   "section": "18.3",
+   "latex": "\\frac{F}{F_{\\text{G}}} = 2.27 \\times 10^{39}",
+   "ktex": "\\frac{\\kF}{\\kFG} = 2.27 \\times 10^{39}",
+   "condition": "an electron and a proton, at any separation",
+   "important": false,
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "id": "eq-electric-field",
+   "concept": "electric-field",
+   "section": "18.4",
+   "latex": "E = \\frac{F}{q}",
+   "ktex": "\\kEf = \\frac{\\kF}{\\kq}",
+   "important": true,
+   "anchor": "18.4-electric-field-defined"
+  },
+  {
+   "id": "eq-force-from-field",
+   "concept": "force-from-electric-field",
+   "section": "18.4",
+   "latex": "F = qE",
+   "ktex": "\\kF = \\kq\\kEf",
+   "important": true,
+   "anchor": "18.4-electric-field-defined"
+  },
+  {
+   "id": "eq-field-of-point-charge-derivation",
+   "section": "18.4",
+   "latex": "E = \\left|\\frac{F}{q}\\right| = k\\left|\\frac{qQ}{qr^2}\\right| = k\\frac{|Q|}{r^2}",
+   "ktex": "\\kEf = \\left|\\frac{\\kF}{\\kq}\\right| = k\\left|\\frac{\\kq\\kQch}{\\kq r^2}\\right| = k\\frac{|\\kQch|}{r^2}",
+   "important": false,
+   "anchor": "18.4-field-of-point-charge"
+  },
+  {
+   "id": "eq-field-of-point-charge",
+   "concept": "field-of-point-charge",
+   "section": "18.4",
+   "latex": "E = k\\frac{|Q|}{r^2}",
+   "ktex": "\\kEf = k\\frac{|\\kQch|}{r^2}",
+   "condition": "a point charge",
+   "important": true,
+   "anchor": "18.4-field-of-point-charge"
+  },
+  {
+   "id": "eq-total-field-perpendicular",
+   "concept": "add-electric-fields",
+   "section": "18.5",
+   "latex": "E_{\\text{tot}} = \\left(E_1^2 + E_2^2\\right)^{1/2}",
+   "ktex": "\\kEftot = \\left(\\kEfone^2 + \\kEftwo^2\\right)^{1/2}",
+   "condition": "two perpendicular fields",
+   "important": false,
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "id": "eq-total-field-direction",
+   "section": "18.5",
+   "latex": "\\theta = \\tan^{-1}\\!\\left(\\frac{E_1}{E_2}\\right)",
+   "ktex": "\\theta = \\tan^{-1}\\!\\left(\\frac{\\kEfone}{\\kEftwo}\\right)",
+   "condition": "two perpendicular fields",
+   "important": false,
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "id": "eq-parallel-force",
+   "concept": "field-perpendicular-to-conductor",
+   "section": "18.7",
+   "latex": "F_{\\parallel} = qE_{\\parallel}",
+   "ktex": "\\kFpar = \\kq\\kEfpar",
+   "important": false,
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "id": "eq-weight-of-drop",
+   "section": "18.8",
+   "latex": "w = mg",
+   "ktex": "\\kwgt = m\\kg",
+   "important": false,
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "id": "eq-electric-force-on-drop",
+   "concept": "integrated-electrostatics",
+   "section": "18.8",
+   "latex": "F = qE",
+   "ktex": "\\kF = \\kq\\kEf",
+   "important": false,
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "id": "eq-acceleration-of-drop",
+   "section": "18.8",
+   "latex": "a = \\frac{F_{\\text{net}}}{m}",
+   "ktex": "\\ka = \\frac{\\kFnet}{m}",
+   "important": false,
+   "anchor": "18.8-integrated-concepts"
+  }
+ ],
+ "glossary": [
+  {
+   "section": "18.1",
+   "term": "static electricity",
+   "definition": "a buildup of electric charge on the surface of an object"
+  },
+  {
+   "section": "18.1",
+   "term": "electromagnetic force",
+   "definition": "one of the four fundamental forces of nature; the electromagnetic force consists of static electricity, moving electricity and magnetism"
+  },
+  {
+   "section": "18.1",
+   "term": "electric charge",
+   "definition": "a physical property of an object that causes it to be attracted toward or repelled from another charged object; each charged object generates and is influenced by a force called an electromagnetic force"
+  },
+  {
+   "section": "18.1",
+   "term": "law of conservation of charge",
+   "definition": "states that whenever a charge is created, an equal amount of charge with the opposite sign is created simultaneously"
+  },
+  {
+   "section": "18.1",
+   "term": "electron",
+   "definition": "a particle orbiting the nucleus of an atom and carrying the smallest unit of negative charge"
+  },
+  {
+   "section": "18.1",
+   "term": "proton",
+   "definition": "a particle in the nucleus of an atom and carrying a positive charge equal in magnitude and opposite in sign to the amount of negative charge carried by an electron"
+  },
+  {
+   "section": "18.2",
+   "term": "free electron",
+   "definition": "an electron that is free to move away from its atomic orbit"
+  },
+  {
+   "section": "18.2",
+   "term": "conductor",
+   "definition": "a material that allows electrons to move separately from their atomic orbits"
+  },
+  {
+   "section": "18.2",
+   "term": "insulator",
+   "definition": "a material that holds electrons securely within their atomic orbits"
+  },
+  {
+   "section": "18.2",
+   "term": "grounded",
+   "definition": "when a conductor is connected to the Earth, allowing charge to freely flow to and from Earth’s unlimited reservoir"
+  },
+  {
+   "section": "18.2",
+   "term": "induction",
+   "definition": "the process by which an electrically charged object brought near a neutral object creates a charge in that object"
+  },
+  {
+   "section": "18.2",
+   "term": "polarization",
+   "definition": "slight shifting of positive and negative charges to opposite sides of an atom or molecule"
+  },
+  {
+   "section": "18.2",
+   "term": "electrostatic repulsion",
+   "definition": "the phenomenon of two objects with like charges repelling each other"
+  },
+  {
+   "section": "18.3",
+   "term": "Coulomb’s law",
+   "definition": "the mathematical equation calculating the electrostatic force vector between two charged particles"
+  },
+  {
+   "section": "18.3",
+   "term": "Coulomb force",
+   "definition": "another term for the electrostatic force"
+  },
+  {
+   "section": "18.3",
+   "term": "electrostatic force",
+   "definition": "the amount and direction of attraction or repulsion between two charged bodies"
+  },
+  {
+   "section": "18.4",
+   "term": "field",
+   "definition": "a map of the amount and direction of a force acting on other objects, extending out into space"
+  },
+  {
+   "section": "18.4",
+   "term": "point charge",
+   "definition": "A charged particle, designated $Q$, generating an electric field"
+  },
+  {
+   "section": "18.4",
+   "term": "test charge",
+   "definition": "A particle (designated $q$) with either a positive or negative charge set down within an electric field generated by a point charge"
+  },
+  {
+   "section": "18.5",
+   "term": "electric field",
+   "definition": "a three-dimensional map of the electric force extended out into space from a point charge"
+  },
+  {
+   "section": "18.5",
+   "term": "electric field lines",
+   "definition": "a series of lines drawn from a point charge representing the magnitude and direction of force exerted by that charge"
+  },
+  {
+   "section": "18.5",
+   "term": "vector",
+   "definition": "a quantity with both magnitude and direction"
+  },
+  {
+   "section": "18.5",
+   "term": "vector addition",
+   "definition": "mathematical combination of two or more vectors, including their magnitudes, directions, and positions"
+  },
+  {
+   "section": "18.6",
+   "term": "dipole",
+   "definition": "a molecule’s lack of symmetrical charge distribution, causing one side to be more positive and another to be more negative"
+  },
+  {
+   "section": "18.6",
+   "term": "polar molecule",
+   "definition": "a molecule with an asymmetrical distribution of positive and negative charge"
+  },
+  {
+   "section": "18.6",
+   "term": "screening",
+   "definition": "the dilution or blocking of an electrostatic force on a charged object by the presence of other charges nearby"
+  },
+  {
+   "section": "18.6",
+   "term": "Coulomb interaction",
+   "definition": "the interaction between two charged particles generated by the Coulomb forces they exert on one another"
+  },
+  {
+   "section": "18.7",
+   "term": "conductor",
+   "definition": "an object with properties that allow charges to move about freely within it"
+  },
+  {
+   "section": "18.7",
+   "term": "free charge",
+   "definition": "an electrical charge (either positive or negative) which can move about separately from its base molecule"
+  },
+  {
+   "section": "18.7",
+   "term": "electrostatic equilibrium",
+   "definition": "an electrostatically balanced state in which all free electrical charges have stopped moving about"
+  },
+  {
+   "section": "18.7",
+   "term": "polarized",
+   "definition": "a state in which the positive and negative charges within an object have collected in separate locations"
+  },
+  {
+   "section": "18.7",
+   "term": "ionosphere",
+   "definition": "a layer of charged particles located around 100 km above the surface of Earth, which is responsible for a range of phenomena including the electric field surrounding Earth"
+  },
+  {
+   "section": "18.7",
+   "term": "Faraday cage",
+   "definition": "a metal shield which prevents electric charge from penetrating its surface"
+  },
+  {
+   "section": "18.8",
+   "term": "Van de Graaff generator",
+   "definition": "a machine that produces a large amount of excess charge, used for experiments with high voltage"
+  },
+  {
+   "section": "18.8",
+   "term": "electrostatics",
+   "definition": "the study of electric forces that are static or slow-moving"
+  },
+  {
+   "section": "18.8",
+   "term": "photoconductor",
+   "definition": "a substance that is an insulator until it is exposed to light, when it becomes a conductor"
+  },
+  {
+   "section": "18.8",
+   "term": "xerography",
+   "definition": "a dry copying process based on electrostatics"
+  },
+  {
+   "section": "18.8",
+   "term": "grounded",
+   "definition": "connected to the ground with a conductor, so that charge flows freely to and from the Earth to the grounded object"
+  },
+  {
+   "section": "18.8",
+   "term": "laser printer",
+   "definition": "uses a laser to create a photoconductive image on a drum, which attracts dry ink particles that are then rolled onto a sheet of paper to print a high-quality copy of the image"
+  },
+  {
+   "section": "18.8",
+   "term": "ink-jet printer",
+   "definition": "small ink droplets sprayed with an electric charge are controlled by electrostatic plates to create images on paper"
+  },
+  {
+   "section": "18.8",
+   "term": "electrostatic precipitators",
+   "definition": "filters that apply charges to particles in the air, then attract those charges to a filter, removing them from the airstream"
+  }
+ ]
+}

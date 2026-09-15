@@ -202,6 +202,14 @@ Extra simulations (rule 15), thought through and judged:
 
 None built.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-ellipse` draws the pencil
+a quarter larger and the planet at 24 units, both named ("the pencil",
+"m, the planet") through `labeller()` with the headline band blocked, and
+the two curves sit lower so the pencil never reaches the headline.
+`sim-frames` is 660 tall with its panel titles at 150 and its headline
+shortened, so no text meets the border or the titles. `sim-third-law`
+draws the satellite as a small craft with two panels rather than a dot.
+
 ## Exercises
 
 - No Check Your Understanding box; nothing inline.

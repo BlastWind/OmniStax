@@ -179,6 +179,8 @@ Extra simulations (rule 15), considered and left:
 
 Built: none beyond the three figures the section's own ideas call for above.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): `sim-account` climber is a silhouette to the stairs' scale, front foot on the step above, the speed arrow raised above her head. Other figures unchanged.
+
 ## Exercises
 
 - The chapter prints no Check Your Understanding box anywhere, so nothing of

@@ -223,6 +223,8 @@ Extra simulations (rule 15), proposed and judged:
 
 None built.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-jet-xt`: with both chosen times near zero the intercept's label, the two coordinate labels and the triangle's rise and run all printed on one another; every label of the figure now goes through `labeller()`, and `triangle()` queues its labels there when given one. `sim-jet-top`: the velocity reading and the rise label collided once the tangent went flat and go through `labeller()` too. `sim-line`, `sim-jet-graphs` and `sim-tangent` unchanged.
+
 ## Exercises
 
 - 1 Check Your Understanding, open, inline after `reading-graphs`, with

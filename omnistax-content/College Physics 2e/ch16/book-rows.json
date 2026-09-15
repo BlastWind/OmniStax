@@ -1,0 +1,862 @@
+{
+  "types": [],
+  "symbols": [
+    {
+      "sym": "f_0",
+      "latex": "f_0",
+      "type": "frequency",
+      "macro": "\\kfo"
+    },
+    {
+      "sym": "f_ave",
+      "latex": "f_{\\text{ave}}",
+      "type": "frequency",
+      "macro": "\\kfave"
+    },
+    {
+      "sym": "x_1",
+      "latex": "x_1",
+      "type": "position",
+      "macro": "\\kxone"
+    },
+    {
+      "sym": "x_2",
+      "latex": "x_2",
+      "type": "position",
+      "macro": "\\kxtwo"
+    },
+    {
+      "sym": "λ_1",
+      "latex": "\\lambda_1",
+      "type": "position",
+      "macro": "\\klamone"
+    },
+    {
+      "sym": "λ_2",
+      "latex": "\\lambda_2",
+      "type": "position",
+      "macro": "\\klamtwo"
+    },
+    {
+      "sym": "I_intensprime",
+      "latex": "I'",
+      "type": "intensity",
+      "macro": "\\kIntensprime"
+    },
+    {
+      "sym": "X_prime",
+      "latex": "X'",
+      "type": "position",
+      "macro": "\\kXprime"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "restoring-force",
+      "kind": "idea",
+      "section": "16.1",
+      "name": "Restoring force",
+      "why": "When an object is displaced from its equilibrium position, the deformation creates a force in the opposite direction, which pushes the object back. Without such a force there is no oscillation, because the object would simply move in a straight line at constant speed.",
+      "evidence": "Glossary term; Check Your Understanding 1; the AP question on the meaning of the minus sign."
+    },
+    {
+      "id": "force-constant",
+      "kind": "idea",
+      "section": "16.1",
+      "name": "Force constant $\\kk$",
+      "why": "The force constant tells how stiff a system is. The larger $\\kk$ is, the greater the restoring force for the same displacement, and the stiffer the system. It is the slope of the graph of restoring force against displacement, in newtons per meter.",
+      "evidence": "Glossary term; every problem in the section asks for the force constant; Check Your Understanding 1 asks how to make the ruler stiffer."
+    },
+    {
+      "id": "hookes-law",
+      "kind": "result",
+      "section": "16.1",
+      "name": "Hooke’s law, $\\kF = -\\kk\\kx$",
+      "why": "The simplest oscillations occur when the restoring force is directly proportional to the displacement. This is Hooke’s law, and the minus sign says that the force points opposite to the displacement. Knowing the force and the displacement gives the force constant, which is what most problems in this section ask for.",
+      "evidence": "Example 16.1; problems 1, 3 and 5; the AP question on the minus sign. The book names the law in section 5.3 for stress and strain; the node is introduced here and will be reinforced by 5.3 when that section is built.",
+      "eq": "eq-hooke"
+    },
+    {
+      "id": "periodic-motion",
+      "kind": "idea",
+      "section": "16.2",
+      "name": "Periodic motion",
+      "why": "A motion that repeats itself at regular time intervals, such as a plucked guitar string or a mass on a spring moving up and down, is periodic. Each repetition takes the same time as the one before it, which is what makes a period and a frequency meaningful.",
+      "evidence": "Glossary term; Check Your Understanding asks for an event in your life that occurs regularly."
+    },
+    {
+      "id": "period",
+      "kind": "idea",
+      "section": "16.2",
+      "name": "Period $\\kT$",
+      "why": "The period is the time to complete one oscillation. Its units are usually seconds, but may be any convenient unit of time. The word applies to the time for any event, repetitive or not, but here it is the time for one cycle of a periodic motion.",
+      "evidence": "Glossary term; Check Your Understanding; the AP item; problems 1, 2 and 3."
+    },
+    {
+      "id": "frequency",
+      "kind": "idea",
+      "section": "16.2",
+      "name": "Frequency $\\kf$",
+      "why": "Frequency is the number of events per unit time. For periodic motion it is the number of oscillations per unit time, measured in hertz, where one hertz is one cycle per second. A count of cycles divided by the time they took gives the frequency, whether or not the count is made over one second.",
+      "evidence": "Glossary term; Check Your Understanding; the AP item; problems 2, 4, 5 and 6."
+    },
+    {
+      "id": "period-frequency",
+      "kind": "result",
+      "section": "16.2",
+      "name": "Period and frequency, $\\kf = 1/\\kT$",
+      "why": "If one cycle takes a time $\\kT$, then $1/\\kT$ cycles fit into each unit of time, so the frequency is the reciprocal of the period and the period is the reciprocal of the frequency. Given either one, the other follows at once.",
+      "evidence": "Example 16.3; the AP item; problems 1 to 4.",
+      "eq": "eq-period-frequency"
+    },
+    {
+      "id": "simple-harmonic-motion",
+      "kind": "idea",
+      "section": "16.3",
+      "name": "Simple harmonic motion",
+      "why": "When the net force on a system can be described by Hooke’s law and there is no damping, the system oscillates with equal displacement on either side of equilibrium. This is simple harmonic motion, the simplest and most common kind of oscillation, and the system is a simple harmonic oscillator.",
+      "evidence": "Glossary terms simple harmonic motion and simple harmonic oscillator; conceptual questions 1 and 3; Check Your Understanding 1."
+    },
+    {
+      "id": "amplitude",
+      "kind": "idea",
+      "section": "16.3",
+      "name": "Amplitude $\\kX$",
+      "why": "The amplitude is the maximum displacement from equilibrium. It has the units of the displacement, meters for an object on a spring, and it is related to the energy in the oscillation. In one full period the object covers four amplitudes of ground.",
+      "evidence": "Glossary term; Check Your Understanding 1 and 2; the AP item on the distance covered in one period, placed here from 16.1."
+    },
+    {
+      "id": "shm-period",
+      "kind": "result",
+      "section": "16.3",
+      "name": "Period of a simple harmonic oscillator, $\\kT = 2\\pi\\sqrt{m/\\kk}$",
+      "why": "The period and frequency of a simple harmonic oscillator depend on the mass and the force constant alone, not on the amplitude. A stiffer system has a shorter period and a more massive one a longer period. Because the period is constant, a simple harmonic oscillator can be used as a clock.",
+      "evidence": "Example 16.4; AP question 2; problems 1, 3, 6 and 9; conceptual questions 2, 4, 5 and 6; Check Your Understanding 1 for the independence of amplitude.",
+      "eq": "eq-shm-period"
+    },
+    {
+      "id": "shm-kinematics",
+      "kind": "result",
+      "section": "16.3",
+      "name": "Position, velocity and acceleration in simple harmonic motion",
+      "why": "The displacement in any simple harmonic motion is a cosine of time, $\\kx(t) = \\kX\\cos(2\\pi\\kt/\\kT)$. The velocity is a sine with maximum $\\kvmax = 2\\pi\\kX/\\kT = \\kX\\sqrt{\\kk/m}$, zero at the turning points and greatest through equilibrium, and the acceleration is a cosine opposite in direction to the displacement. These are the sine waves that link simple harmonic motion to waves.",
+      "evidence": "Check Your Understanding 2; the graphs of Figure 16.12.",
+      "eq": "eq-shm-x"
+    },
+    {
+      "id": "simple-pendulum",
+      "kind": "idea",
+      "section": "16.4",
+      "name": "Simple pendulum",
+      "why": "A simple pendulum is a small mass, the bob, hung from a light string. Displaced along its arc, it feels a net force of $-m\\kg\\sin\\theta$ back toward the lowest point, because the tension cancels the part of the weight along the string. For small displacements it is a simple harmonic oscillator.",
+      "evidence": "Glossary term; Check Your Understanding; AP question 3."
+    },
+    {
+      "id": "pendulum-restoring-force",
+      "kind": "result",
+      "section": "16.4",
+      "name": "Restoring force on a pendulum, $\\kF \\approx -\\frac{m\\kg}{L}\\ks$",
+      "why": "For angles below about 15°, $\\sin\\theta$ and $\\theta$ differ by 1% or less, so the restoring force $-m\\kg\\sin\\theta$ becomes $-m\\kg\\theta$, and with $\\ks = L\\theta$ it is $-\\frac{m\\kg}{L}\\ks$. That is Hooke’s law with a force constant $\\kk = m\\kg/L$, which is what makes the pendulum a simple harmonic oscillator.",
+      "evidence": "Check Your Understanding (a 12° swing is within the small-angle range); the derivation that Example 16.5 rests on.",
+      "eq": "eq-pendulum-force"
+    },
+    {
+      "id": "pendulum-period",
+      "kind": "result",
+      "section": "16.4",
+      "name": "Period of a simple pendulum, $\\kT = 2\\pi\\sqrt{L/\\kg}$",
+      "why": "Putting $\\kk = m\\kg/L$ into $\\kT = 2\\pi\\sqrt{m/\\kk}$ cancels the mass and leaves $\\kT = 2\\pi\\sqrt{L/\\kg}$. Only the length and the acceleration due to gravity affect the period; the mass does not, and the amplitude hardly does for small swings. This is why a pendulum keeps time.",
+      "evidence": "Example 16.5; AP questions 2 and 3; conceptual question 1; every problem in the section.",
+      "eq": "eq-pendulum-period"
+    },
+    {
+      "id": "measuring-g",
+      "kind": "skill",
+      "section": "16.4",
+      "name": "Measuring $\\kg$ with a pendulum",
+      "why": "Squaring the period formula and solving for $\\kg$ gives $\\kg = 4\\pi^2 L/\\kT^2$. If the length is known precisely and the period is timed over many swings at a small angle, this gives the local acceleration due to gravity to several digits, which matters in geological exploration.",
+      "evidence": "The section’s learning objective; Example 16.5; AP question 2; the Take-Home Experiment; problems 7 and 13.",
+      "eq": "eq-g-from-pendulum"
+    },
+    {
+      "id": "shm-energy",
+      "kind": "result",
+      "section": "16.5",
+      "name": "Energy of a simple harmonic oscillator, $\\tfrac{1}{2}m\\kv^2 + \\tfrac{1}{2}\\kk\\kx^2 = \\text{constant}$",
+      "why": "A simple harmonic oscillator has no dissipative forces, so its energy is shared between elastic potential energy and kinetic energy with the total constant. The energy goes completely from one form to the other as the system oscillates: all potential at the turning points, all kinetic through equilibrium. Started from rest at $\\kx = \\kX$, the total is $\\tfrac{1}{2}\\kk\\kX^2$.",
+      "evidence": "The AP item on the internal energy of a 1 kg oscillator; AP question 4 of section 16.3 (the energy at the centre), placed here; conceptual question 1; problem 2(b); problem 1(b), with gravity.",
+      "eq": "eq-shm-energy"
+    },
+    {
+      "id": "shm-max-speed",
+      "kind": "result",
+      "section": "16.5",
+      "name": "Speed in simple harmonic motion, $\\kv = \\pm\\kvmax\\sqrt{1 - \\kx^2/\\kX^2}$",
+      "why": "Solving the conservation of energy for the velocity gives the speed at every position, greatest at equilibrium and zero at the turning points, with $\\kvmax = \\kX\\sqrt{\\kk/m}$. The maximum velocity is proportional to the amplitude, greater for stiffer systems, and smaller for larger masses.",
+      "evidence": "The section’s learning objective; Example 16.6; Check Your Understanding 1 and 2; problem 1(a) through the frequency.",
+      "eq": "eq-v-of-x"
+    },
+    {
+      "id": "ucm-shm-projection",
+      "kind": "idea",
+      "section": "16.6",
+      "name": "The projection of uniform circular motion is simple harmonic motion",
+      "why": "A point moving round a circle at constant angular velocity $\\kw$ has a projection on a fixed axis at $\\kx = \\kX\\cos\\kw\\kt$, and with $\\kw = 2\\pi/\\kT$ this is exactly the position of a simple harmonic oscillator. The shadow of a ball on a turntable therefore moves in simple harmonic motion, and the speed and the period of any simple harmonic oscillator can be read off the circle: the similar triangles give $\\kv = \\kvmax\\sqrt{1 - \\kx^2/\\kX^2}$, and one revolution gives $\\kT = 2\\pi\\kX/\\kvmax = 2\\pi\\sqrt{m/\\kk}$.",
+      "evidence": "Check Your Understanding; the section summary. The AP item on the range of $x = A\\sin\\omega t$ is unkeyed and left out.",
+      "eq": "eq-omega-T"
+    },
+    {
+      "id": "damped-harmonic-motion",
+      "kind": "idea",
+      "section": "16.7",
+      "name": "Damped harmonic motion",
+      "why": "Completely undamped motion is rare, because friction and other non-conservative forces are seldom negligible; a guitar string stops a few seconds after it is plucked. For a system with a small amount of damping, the period and frequency are nearly the same as for simple harmonic motion, but the amplitude gradually decreases, because the damping force removes energy from the system, usually as thermal energy. As the damping is increased the period and frequency begin to be affected, since damping opposes and hence slows the back and forth motion, and with very large damping the system does not oscillate at all.",
+      "evidence": "Figure 16.20, the displacement of a lightly damped oscillator against time; Check Your Understanding 1, why undamped oscillators are so rare; the first AP item, on the form the removed energy takes; conceptual questions 1 and 3."
+    },
+    {
+      "id": "nonconservative-work-damping",
+      "kind": "result",
+      "section": "16.7",
+      "name": "Energy removed by damping, $\\kWnc = \\Delta(\\kKE + \\kPEtot)$",
+      "why": "Energy removal by non-conservative forces is described by $\\kWnc = \\Delta(\\kKE + \\kPEtot)$, where $\\kWnc$ is the work done by the non-conservative force, here the damping force. For a damped harmonic oscillator this work is negative, because it removes mechanical energy from the system, so the mechanical energy of a damped oscillator can only fall with time.",
+      "evidence": "The section's one general equation; the second AP item, on the sign of the rate of change of mechanical energy; the problem on the fraction of the energy lost per cycle when the amplitude falls by 3.0 %.",
+      "eq": "eq-wnc-damping"
+    },
+    {
+      "id": "critical-damping",
+      "kind": "idea",
+      "section": "16.7",
+      "name": "Critical damping",
+      "why": "Critical damping is the condition in which the damping of an oscillator results in it returning as quickly as possible to its equilibrium position. The critically damped system may overshoot the equilibrium position, but if it does, it will do so only once. It is often what is wanted, as in the suspension of a car or the needle of a bathroom scale, because such a system returns to equilibrium rapidly and remains there, and a constant force moves it to a new equilibrium in the shortest time possible without oscillating about it.",
+      "evidence": "Curve A of Figure 16.21; the glossary term; Check Your Understanding 2 and conceptual question 2, which ask the reader to tell the three regimes apart."
+    },
+    {
+      "id": "underdamping",
+      "kind": "idea",
+      "section": "16.7",
+      "name": "Underdamping",
+      "why": "With less than critical damping, the system returns toward equilibrium faster than a critically damped one but overshoots and crosses the equilibrium position one or more times, its amplitude gradually decreasing to zero. Such a system is underdamped, and the lightly damped oscillator whose amplitude slowly decays while its period stays almost the same is the common case.",
+      "evidence": "Figure 16.20; the glossary term; Check Your Understanding 2; conceptual question 2 on how a car bounces after a bump; the discussion of Example 16.7, whose object crosses equilibrium about sixteen times."
+    },
+    {
+      "id": "overdamping",
+      "kind": "idea",
+      "section": "16.7",
+      "name": "Overdamping",
+      "why": "An overdamped system, curve B, returns to equilibrium without oscillating, and does so over a longer time than a critically damped one; like the critically damped system it may overshoot, but it reaches equilibrium slowly. Heavy damping is wanted where small-amplitude motion matters more than a quick return, and its cost is the slowness.",
+      "evidence": "Curve B of Figure 16.21; the glossary term; Check Your Understanding 2; conceptual question 2; the discussion of Example 16.7, where a damping force twenty times greater would not cross equilibrium once."
+    },
+    {
+      "id": "friction-damped-oscillator",
+      "kind": "skill",
+      "section": "16.7",
+      "name": "Finding how far a friction-damped oscillator travels",
+      "why": "When the damping is simple friction, the work it does is $-\\kff\\kd$, with $\\kff = \\mu_{\\text{k}} m\\kg$ and $\\kd$ the total distance travelled, and the motion stops where the friction balances the force of the spring, at $\\kx = \\mu_{\\text{k}} m\\kg/\\kk$. Equating the work done by friction to the change in stored elastic energy gives the total distance the object travels before it stops. This is an integrated concepts problem: friction from Newton's laws, then work and the conservation of energy.",
+      "evidence": "Example 16.7, the 0.200-kg object released 0.100 m from equilibrium, which travels 1.59 m; the third AP item, the same calculation with the book's answer 1.698 m; 16.8's problem 4 (unkeyed).",
+      "eq": "eq-friction-distance"
+    },
+    {
+      "id": "natural-frequency",
+      "kind": "idea",
+      "section": "16.8",
+      "name": "Natural frequency $\\kfo$",
+      "why": "The natural frequency is the frequency at which a system would oscillate if there were no driving and no damping force. Objects can be forced to oscillate, but they oscillate best at their natural frequency; a piano's strings sing back the note you sing at them because their frequencies match your voice.",
+      "evidence": "The glossary term; the piano of the opening paragraph; the label $f_0$ on Figures 16.24 and 16.25; Check Your Understanding on the singer and the glass."
+    },
+    {
+      "id": "resonance",
+      "kind": "idea",
+      "section": "16.8",
+      "name": "Resonance",
+      "why": "Driving a system with a frequency equal to its natural frequency is called resonance, and a system driven that way is said to resonate. When you drive the paddle ball at its natural frequency its oscillations increase in amplitude with each oscillation for as long as you drive it; at driving frequencies well above or below, energy is transferred to the ball less efficiently and it responds with lower-amplitude oscillations. Radios, MRI, a child on a swing and the Tacoma Narrows Bridge are all cases of it.",
+      "evidence": "Figure 16.24, the paddle ball driven slowly, at $f_0$ and fast; Figure 16.26, the bridge; the glossary terms resonance and resonate; Check Your Understanding on the shattered glass; the AP item on how constant amplitude is sustained; the conceptual question on soldiers crossing a bridge."
+    },
+    {
+      "id": "resonance-curve-damping",
+      "kind": "result",
+      "section": "16.8",
+      "name": "The resonance curve and damping",
+      "why": "A graph of the amplitude of a damped harmonic oscillator against the frequency of the periodic force driving it peaks where the driving frequency equals the natural frequency, for every amount of damping. The highest peak is for the least damping, because less energy is removed by the damping force, and the less the damping the narrower the resonance. So a driven oscillator that must resonate at a very specific frequency, a piano string or a radio, needs as little damping as possible, while a car's suspension wants heavy damping, which reduces the amplitude at the cost of responding at more frequencies.",
+      "evidence": "Figure 16.25, the three curves for small, medium and heavy damping; the paragraphs on the width of the resonance and on radios, MRI and suspensions; the section summary's third point."
+    },
+    {
+      "id": "energy-removed-by-damping",
+      "kind": "skill",
+      "section": "16.8",
+      "name": "Finding the energy a damper must remove",
+      "why": "The energy a shock absorber must dissipate to damp a bounce is the mechanical energy of the oscillation, $\\tfrac{1}{2}m\\kv^2$ at the equilibrium position or $\\tfrac{1}{2}\\kk\\kX^2$ at maximum displacement, and the energy a driving force must supply to raise an amplitude is the difference between two such stores. At resonance the driver puts energy in at a steady rate, so the time to reach a larger amplitude is that difference divided by the rate.",
+      "evidence": "Problems 1 and 2, the energy a car's shocks remove; problem 3, the hanging object whose gravitational energy is partly stored in the spring; problem 5, the suspension bridge driven by marching soldiers."
+    },
+    {
+      "id": "wave",
+      "kind": "idea",
+      "section": "16.9",
+      "name": "Wave",
+      "why": "A wave is a disturbance that propagates, or moves from the place it was created. For water waves the disturbance is in the surface of the water, for sound it is a change in air pressure, for earthquakes it is the ground itself. The simplest waves repeat for several cycles and are associated with simple harmonic motion: the gull bobs up and down as the crests and troughs pass under it, while the wave itself, the disturbance and not the water, moves on.",
+      "evidence": "The glossary term; Figure 16.28; the Misconception Alert, that the water stays in place while the energy moves; the opening paragraphs on water, sound, earthquake and radio waves."
+    },
+    {
+      "id": "wave-velocity",
+      "kind": "idea",
+      "section": "16.9",
+      "name": "Wave velocity $\\kvw$",
+      "why": "The wave velocity is the speed at which the disturbance moves, sometimes called the propagation velocity or propagation speed. It is the speed of the wave, not the speed at which the gull moves up and down: for water waves it is the speed of a surface wave, for sound the speed of sound, for visible light the speed of light.",
+      "evidence": "The glossary term; Example 16.8, the gull whose crests are 10.0 m apart and pass every 5.00 s, so $v_\\text{w}$ = 2.00 m/s; problems 1, 2 and 9, which use the speed to find a time or a distance; the second conceptual question."
+    },
+    {
+      "id": "wavelength",
+      "kind": "idea",
+      "section": "16.9",
+      "name": "Wavelength $\\klam$",
+      "why": "The wavelength is the distance between adjacent identical parts of a wave, measured parallel to the direction of propagation. The size of the disturbance, its amplitude, is a different length and is completely independent of the speed of propagation.",
+      "evidence": "The glossary term; the brackets on Figure 16.28; the AP item on the graph whose wavelength is 2π m; problems 6 and 7; the Take-Home Experiment, which asks whether the wavelength depends on how high the cork is dropped."
+    },
+    {
+      "id": "wave-speed-wavelength-frequency",
+      "kind": "result",
+      "section": "16.9",
+      "name": "Wave speed, wavelength and frequency, $\\kvw = \\klam/\\kT = \\kf\\klam$",
+      "why": "The speed of propagation is the distance the wave travels in a given time, which is one wavelength in the time of one period, so $\\kvw = \\klam/\\kT$, or $\\kvw = \\kf\\klam$. This fundamental relationship holds for all types of waves: water waves, sound and light alike.",
+      "evidence": "Example 16.8; problems 3 to 8, each of which gives two of speed, wavelength and frequency or period and asks for the third; the section summary.",
+      "eq": "eq-wave-speed-period"
+    },
+    {
+      "id": "transverse-wave",
+      "kind": "idea",
+      "section": "16.9",
+      "name": "Transverse wave",
+      "why": "In a transverse, or shear, wave the disturbance is perpendicular to the direction of propagation: the cord is moved up and down while the wave travels horizontally along it. The waves on the strings of musical instruments are transverse, and so are electromagnetic waves such as visible light.",
+      "evidence": "Figure 16.29; the glossary term; Check Your Understanding, why the two kinds must be told apart; the AP items on the tuning fork against electromagnetic waves and on the motion of the particles; the first conceptual question."
+    },
+    {
+      "id": "longitudinal-wave",
+      "kind": "idea",
+      "section": "16.9",
+      "name": "Longitudinal wave",
+      "why": "In a longitudinal, or compressional, wave the disturbance is parallel to the direction of propagation: the cord is pushed and pulled along its own length. Sound waves in air and water are longitudinal, because fluids have no appreciable shear strength and so can carry only periodic variations in pressure; sound in solids, and earthquake waves, can be both longitudinal and transverse.",
+      "evidence": "Figure 16.30; the guitar and the rattling sheet of paper of Figure 16.31; the glossary term; the paragraph on P-waves and S-waves; the AP item on the tuning fork; the first conceptual question."
+    },
+    {
+      "id": "superposition",
+      "kind": "idea",
+      "section": "16.10",
+      "name": "Superposition, $\\kx = \\kxone + \\kxtwo$",
+      "why": "When two or more waves arrive at the same point, their disturbances are superimposed on one another. Each disturbance corresponds to a force, and forces add, so if the disturbances are along the same line the resulting wave is a simple addition of the disturbances of the individual waves: their amplitudes add. Most waves look complex because they are several simple waves added together, and the rules for adding them are this simple.",
+      "evidence": "The glossary term; Figures 16.33 to 16.35; Figure 16.32, the river's surface; the AP item that asks the reader to explain the principle with figures; the conceptual question on speakers wired in opposite senses.",
+      "eq": "eq-superposition-sum"
+    },
+    {
+      "id": "constructive-interference",
+      "kind": "idea",
+      "section": "16.10",
+      "name": "Constructive interference",
+      "why": "Two identical waves that arrive at the same point exactly in phase, crest aligned with crest and trough with trough, produce pure constructive interference: a wave with twice the amplitude of the individual waves but the same wavelength. It is one end of what superposition can do, and most real superpositions are a mixture of it and its opposite that varies from place to place and time to time.",
+      "evidence": "Figure 16.33; the glossary term; Check Your Understanding 3, the loud corner of the room; the AP item on two waves 180° apart, whose answer is the destructive case; 16.11's Example 16.10, which takes the factor of four in intensity from it."
+    },
+    {
+      "id": "destructive-interference",
+      "kind": "idea",
+      "section": "16.10",
+      "name": "Destructive interference",
+      "why": "Two identical waves that arrive exactly out of phase, precisely aligned crest to trough, produce pure destructive interference: the disturbances are in opposite directions and the resulting amplitude is zero, so the waves completely cancel. Sound from a stereo that is loud in one spot and quiet in another is the two kinds of interference at different places in the same room.",
+      "evidence": "Figure 16.34; the glossary term; Check Your Understanding 3, the dull corner; the AP item on two waves 180° apart, keyed (c) zero; the conceptual question on speaker wiring."
+    },
+    {
+      "id": "standing-wave",
+      "kind": "idea",
+      "section": "16.10",
+      "name": "Standing wave",
+      "why": "Two identical waves moving in opposite directions superimpose to a wave that seems to stand in place: they alternate between constructive and destructive interference as they move through each other, and the resultant oscillates at fixed locations without travelling. The waves on a glass of milk in a refrigerator, on guitar strings and in organ pipes are standing waves, formed by reflections from the sides or the ends.",
+      "evidence": "Figure 16.36, the two waves and their sum at five instants; the glossary term; Check Your Understanding 1, the jump rope shaken from both ends; the AP items on the string snapped from both ends; problem 5, the Slinky with three antinodes."
+    },
+    {
+      "id": "nodes-and-antinodes-on-a-string",
+      "kind": "idea",
+      "section": "16.10",
+      "name": "Nodes and antinodes",
+      "why": "Nodes are the points where the string does not move; more generally, nodes are where the wave disturbance is zero in a standing wave. The fixed ends of a string must be nodes, because the string cannot move there. An antinode is the location of maximum amplitude in a standing wave.",
+      "evidence": "Figures 16.37 and 16.38, with their nodes and antinodes marked; the two glossary terms; Check Your Understanding 2, which asks for the definitions; the last AP item; problem 5, which counts three antinodes and four nodes."
+    },
+    {
+      "id": "string-harmonics",
+      "kind": "result",
+      "section": "16.10",
+      "name": "Fundamental and overtones of a string, $\\kfone = \\kvw/2L$, $\\kftwo = 2\\kfone$, $\\kfthree = 3\\kfone$",
+      "why": "On a string fixed at both ends the longest wavelength is $\\klamone = 2L$, so the lowest frequency, the fundamental, is $\\kfone = \\kvw/\\klamone = \\kvw/2L$. The overtones, or harmonics, are multiples of the fundamental: $\\klamtwo = L$ gives $\\kftwo = 2\\kfone$, and $\\kfthree = 3\\kfone$, and so on. All of these frequencies rise together when the tension is raised, because the greater the tension the greater $\\kvw$ is, which is what anyone who has watched a string instrument being tuned has seen.",
+      "evidence": "Figures 16.37 and 16.38; the glossary terms fundamental frequency and overtones; the first AP item on a guitar string's natural frequencies; problem 5, the Slinky's standing wave at 1.25 Hz.",
+      "eq": "eq-string-fundamental"
+    },
+    {
+      "id": "beats",
+      "kind": "idea",
+      "section": "16.10",
+      "name": "Beats",
+      "why": "The superposition of two waves of similar but not identical frequencies goes in and out of phase, alternately constructive and destructive, so the resultant has the average frequency of the two and an amplitude that rises and falls: it beats. Two adjacent piano keys warble and the twin engines of a taxiing jet swell and fade for this reason, and the product form $\\kx = 2\\kX\\cos(\\pi\\kfB\\kt)\\cos(2\\pi\\kfave\\kt)$ shows the slow cosine that carries the amplitude and the fast one that is the wave.",
+      "evidence": "Figure 16.39; the derivation from adding two cosines; the Making Career Connections box on piano tuners; problems 1 to 4 and 6.",
+      "eq": "eq-beats-product"
+    },
+    {
+      "id": "beat-frequency",
+      "kind": "result",
+      "section": "16.10",
+      "name": "Beat frequency, $\\kfB = \\lvert\\kfone - \\kftwo\\rvert$",
+      "why": "The frequency at which the amplitude of the resultant fluctuates is the beat frequency, the absolute value of the difference of the two frequencies. It is the same for all types of waves; for sound, provided the two frequencies are similar, what is heard is the average frequency getting louder and softer at the beat frequency. Listening for beats is a very useful way to compare similar frequencies, which is how a piano is tuned against a fork.",
+      "evidence": "The glossary term; the equation and its derivation; problems 1, 3, 4 and 6 on horns, tuning forks, jet engines and three piano keys; problem 2, the two frequencies a string could have when it beats at 1.50 Hz against 260.00 Hz.",
+      "eq": "eq-beat-frequency"
+    },
+    {
+      "id": "wave-energy-amplitude",
+      "kind": "result",
+      "section": "16.11",
+      "name": "The energy of a wave is proportional to its amplitude squared",
+      "why": "All waves carry energy, and the amount is related to the amplitude: a wave is a displacement resisted by a restoring force, the larger the displacement $\\kx$ the larger the force $\\kF = \\kk\\kx$ needed to create it, and since the energy is put in by the work done to create the wave, $\\kW \\propto \\kF\\kx = \\kk\\kx^2$. The intensity, being an energy per unit time and area, is proportional to the amplitude squared too, which is why two identical waves that interfere perfectly constructively have four times the intensity of one, not twice.",
+      "evidence": "The opening paragraphs and the equation; Example 16.10, the combined intensity of two waves; Check Your Understanding, which measurement matters most; problems 3, 6 and 8; the first conceptual question.",
+      "eq": "eq-wave-energy-amplitude"
+    },
+    {
+      "id": "intensity",
+      "kind": "idea",
+      "section": "16.11",
+      "name": "Intensity $\\kIntens = \\kP/A$",
+      "why": "Intensity is defined as power per unit area, $\\kIntens = \\kP/A$, where $\\kP$ is the power carried by the wave through the area $A$; its SI unit is the watt per square metre. The definition is valid for any energy in transit, including that carried by waves. It gathers the three things the energy effects of a wave depend on, the amplitude, the time and the area the wave covers: sunlight arrives above the atmosphere at 1300 W/m², and a 90 decibel sound is only 10⁻³ W/m².",
+      "evidence": "The glossary term; the definition and its paragraph; Example 16.9 (a); problems 1, 2 and 4, the ultrasound head, the speaker and the insolation meter; the second conceptual question, why circular waves weaken as they spread.",
+      "eq": "eq-intensity"
+    },
+    {
+      "id": "energy-from-intensity",
+      "kind": "skill",
+      "section": "16.11",
+      "name": "Finding the energy that falls on an area, $\\kE = \\kIntens A\\kt$",
+      "why": "Because power is energy per unit time, $\\kP = \\kE/\\kt$, the definition of intensity can be written $\\kIntens = (\\kE/\\kt)/A$ and solved for the energy, $\\kE = \\kIntens A\\kt$, or for the time. The longer a wave is applied and the larger the area it falls on, the more energy it delivers, which is why deep-heat ultrasound is timed and a solar collector is sized.",
+      "evidence": "Example 16.9 (a), the 5.04 × 10⁶ J on a 0.500 m² collector in 4.00 h; problem 5, the 16.0 d for 1.8 × 10⁹ J to arrive on one square metre; problems 7 and 9.",
+      "eq": "eq-energy-from-intensity"
+    },
+    {
+      "id": "intensity-area-ratio",
+      "kind": "skill",
+      "section": "16.11",
+      "name": "Concentrating or spreading a wave, $\\kIntensprime/\\kIntens = A/A'$",
+      "why": "Waves can be concentrated or spread out, and changing the area they cover changes the intensity while the power stays the same. Taking the ratio of the new intensity to the old, and using primes for the new quantities, the powers cancel and the ratio of intensities is the inverse ratio of the areas: sunlight focused by a magnifying glass onto an area 200 times smaller is 200 times as intense, enough to start a fire.",
+      "evidence": "Example 16.9 (b), the magnifying glass; the paragraph on sunlight focused to burn wood and earthquakes that spread out; problem 2, the speaker that projects sound uniformly.",
+      "eq": "eq-intensity-area-ratio"
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "restoring-force",
+      "prereq": "displacement"
+    },
+    {
+      "concept": "restoring-force",
+      "prereq": "newtons-first-law"
+    },
+    {
+      "concept": "force-constant",
+      "prereq": "restoring-force"
+    },
+    {
+      "concept": "hookes-law",
+      "prereq": "restoring-force"
+    },
+    {
+      "concept": "hookes-law",
+      "prereq": "force-constant"
+    },
+    {
+      "concept": "period",
+      "prereq": "periodic-motion"
+    },
+    {
+      "concept": "frequency",
+      "prereq": "periodic-motion"
+    },
+    {
+      "concept": "period-frequency",
+      "prereq": "period"
+    },
+    {
+      "concept": "period-frequency",
+      "prereq": "frequency"
+    },
+    {
+      "concept": "simple-harmonic-motion",
+      "prereq": "hookes-law"
+    },
+    {
+      "concept": "simple-harmonic-motion",
+      "prereq": "restoring-force"
+    },
+    {
+      "concept": "amplitude",
+      "prereq": "displacement"
+    },
+    {
+      "concept": "amplitude",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "shm-period",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "shm-period",
+      "prereq": "force-constant"
+    },
+    {
+      "concept": "shm-period",
+      "prereq": "period-frequency"
+    },
+    {
+      "concept": "shm-kinematics",
+      "prereq": "amplitude"
+    },
+    {
+      "concept": "shm-kinematics",
+      "prereq": "shm-period"
+    },
+    {
+      "concept": "shm-kinematics",
+      "prereq": "instantaneous-velocity"
+    },
+    {
+      "concept": "shm-kinematics",
+      "prereq": "acceleration"
+    },
+    {
+      "concept": "shm-kinematics",
+      "prereq": "newtons-second-law"
+    },
+    {
+      "concept": "simple-pendulum",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "simple-pendulum",
+      "prereq": "restoring-force"
+    },
+    {
+      "concept": "pendulum-restoring-force",
+      "prereq": "simple-pendulum"
+    },
+    {
+      "concept": "pendulum-restoring-force",
+      "prereq": "hookes-law"
+    },
+    {
+      "concept": "pendulum-restoring-force",
+      "prereq": "tension"
+    },
+    {
+      "concept": "pendulum-restoring-force",
+      "prereq": "acceleration-due-to-gravity"
+    },
+    {
+      "concept": "pendulum-period",
+      "prereq": "pendulum-restoring-force"
+    },
+    {
+      "concept": "pendulum-period",
+      "prereq": "shm-period"
+    },
+    {
+      "concept": "measuring-g",
+      "prereq": "pendulum-period"
+    },
+    {
+      "concept": "shm-energy",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "shm-energy",
+      "prereq": "elastic-potential-energy"
+    },
+    {
+      "concept": "shm-energy",
+      "prereq": "kinetic-energy"
+    },
+    {
+      "concept": "shm-energy",
+      "prereq": "conservation-of-energy"
+    },
+    {
+      "concept": "shm-max-speed",
+      "prereq": "shm-energy"
+    },
+    {
+      "concept": "shm-max-speed",
+      "prereq": "amplitude"
+    },
+    {
+      "concept": "ucm-shm-projection",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "ucm-shm-projection",
+      "prereq": "shm-kinematics"
+    },
+    {
+      "concept": "ucm-shm-projection",
+      "prereq": "uniform-circular-motion"
+    },
+    {
+      "concept": "ucm-shm-projection",
+      "prereq": "angular-velocity"
+    },
+    {
+      "concept": "damped-harmonic-motion",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "damped-harmonic-motion",
+      "prereq": "amplitude"
+    },
+    {
+      "concept": "damped-harmonic-motion",
+      "prereq": "period-frequency"
+    },
+    {
+      "concept": "damped-harmonic-motion",
+      "prereq": "nonconservative-force"
+    },
+    {
+      "concept": "damped-harmonic-motion",
+      "prereq": "friction-dissipates-mechanical-energy"
+    },
+    {
+      "concept": "nonconservative-work-damping",
+      "prereq": "damped-harmonic-motion"
+    },
+    {
+      "concept": "nonconservative-work-damping",
+      "prereq": "work-by-nonconservative-forces"
+    },
+    {
+      "concept": "nonconservative-work-damping",
+      "prereq": "shm-energy"
+    },
+    {
+      "concept": "critical-damping",
+      "prereq": "damped-harmonic-motion"
+    },
+    {
+      "concept": "underdamping",
+      "prereq": "damped-harmonic-motion"
+    },
+    {
+      "concept": "overdamping",
+      "prereq": "damped-harmonic-motion"
+    },
+    {
+      "concept": "overdamping",
+      "prereq": "critical-damping"
+    },
+    {
+      "concept": "friction-damped-oscillator",
+      "prereq": "nonconservative-work-damping"
+    },
+    {
+      "concept": "friction-damped-oscillator",
+      "prereq": "kinetic-friction-magnitude"
+    },
+    {
+      "concept": "friction-damped-oscillator",
+      "prereq": "elastic-potential-energy"
+    },
+    {
+      "concept": "friction-damped-oscillator",
+      "prereq": "hookes-law"
+    },
+    {
+      "concept": "friction-damped-oscillator",
+      "prereq": "solve-with-friction"
+    },
+    {
+      "concept": "natural-frequency",
+      "prereq": "frequency"
+    },
+    {
+      "concept": "natural-frequency",
+      "prereq": "shm-period"
+    },
+    {
+      "concept": "natural-frequency",
+      "prereq": "damped-harmonic-motion"
+    },
+    {
+      "concept": "resonance",
+      "prereq": "natural-frequency"
+    },
+    {
+      "concept": "resonance",
+      "prereq": "amplitude"
+    },
+    {
+      "concept": "resonance-curve-damping",
+      "prereq": "resonance"
+    },
+    {
+      "concept": "resonance-curve-damping",
+      "prereq": "damped-harmonic-motion"
+    },
+    {
+      "concept": "energy-removed-by-damping",
+      "prereq": "shm-energy"
+    },
+    {
+      "concept": "energy-removed-by-damping",
+      "prereq": "nonconservative-work-damping"
+    },
+    {
+      "concept": "energy-removed-by-damping",
+      "prereq": "elastic-potential-energy"
+    },
+    {
+      "concept": "energy-removed-by-damping",
+      "prereq": "resonance"
+    },
+    {
+      "concept": "wave",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "wave",
+      "prereq": "periodic-motion"
+    },
+    {
+      "concept": "wave-velocity",
+      "prereq": "wave"
+    },
+    {
+      "concept": "wave-velocity",
+      "prereq": "average-speed"
+    },
+    {
+      "concept": "wavelength",
+      "prereq": "wave"
+    },
+    {
+      "concept": "wavelength",
+      "prereq": "amplitude"
+    },
+    {
+      "concept": "wave-speed-wavelength-frequency",
+      "prereq": "wave-velocity"
+    },
+    {
+      "concept": "wave-speed-wavelength-frequency",
+      "prereq": "wavelength"
+    },
+    {
+      "concept": "wave-speed-wavelength-frequency",
+      "prereq": "period-frequency"
+    },
+    {
+      "concept": "transverse-wave",
+      "prereq": "wave"
+    },
+    {
+      "concept": "longitudinal-wave",
+      "prereq": "wave"
+    },
+    {
+      "concept": "longitudinal-wave",
+      "prereq": "pressure"
+    },
+    {
+      "concept": "superposition",
+      "prereq": "wave"
+    },
+    {
+      "concept": "superposition",
+      "prereq": "amplitude"
+    },
+    {
+      "concept": "constructive-interference",
+      "prereq": "superposition"
+    },
+    {
+      "concept": "destructive-interference",
+      "prereq": "superposition"
+    },
+    {
+      "concept": "standing-wave",
+      "prereq": "superposition"
+    },
+    {
+      "concept": "standing-wave",
+      "prereq": "constructive-interference"
+    },
+    {
+      "concept": "standing-wave",
+      "prereq": "destructive-interference"
+    },
+    {
+      "concept": "nodes-and-antinodes-on-a-string",
+      "prereq": "standing-wave"
+    },
+    {
+      "concept": "string-harmonics",
+      "prereq": "nodes-and-antinodes-on-a-string"
+    },
+    {
+      "concept": "string-harmonics",
+      "prereq": "wave-speed-wavelength-frequency"
+    },
+    {
+      "concept": "string-harmonics",
+      "prereq": "wavelength"
+    },
+    {
+      "concept": "beats",
+      "prereq": "superposition"
+    },
+    {
+      "concept": "beats",
+      "prereq": "shm-kinematics"
+    },
+    {
+      "concept": "beats",
+      "prereq": "frequency"
+    },
+    {
+      "concept": "beat-frequency",
+      "prereq": "beats"
+    },
+    {
+      "concept": "wave-energy-amplitude",
+      "prereq": "wave"
+    },
+    {
+      "concept": "wave-energy-amplitude",
+      "prereq": "hookes-law"
+    },
+    {
+      "concept": "wave-energy-amplitude",
+      "prereq": "elastic-potential-energy"
+    },
+    {
+      "concept": "wave-energy-amplitude",
+      "prereq": "constructive-interference"
+    },
+    {
+      "concept": "intensity",
+      "prereq": "power"
+    },
+    {
+      "concept": "intensity",
+      "prereq": "wave-energy-amplitude"
+    },
+    {
+      "concept": "energy-from-intensity",
+      "prereq": "intensity"
+    },
+    {
+      "concept": "energy-from-intensity",
+      "prereq": "energy-from-power"
+    },
+    {
+      "concept": "intensity-area-ratio",
+      "prereq": "intensity"
+    }
+  ]
+}

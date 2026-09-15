@@ -78,6 +78,8 @@ train adds no quantity the reel does not show, and the fly's example is
 No extra simulations are proposed: a figure for Table 10.2 would repeat the
 reel's graph, and the train's wheel would repeat the reel.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). Both figures were screenshot in both themes at every slider extreme and three points of the cycle; the reel, its paid-out line and the fly on its plate read without their labels, nothing clips or collides, and they are left as built.
+
 ## Exercises
 
 - Inline: `cyu1` (fs-id3076176, Understand, after `microwave`, keyed, open).

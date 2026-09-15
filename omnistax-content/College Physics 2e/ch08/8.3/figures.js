@@ -74,31 +74,33 @@ function bar(ctx, x1, x2, y, color, h) {
   function draw() {
     const { ctx } = begin(d.c);
     const f = model(), tau = cy.now(), touching = f.hits && tau >= f.tc && tau <= f.tc + DT;
-    /* the road is fixed at ninety-six meters, the farthest the lead car can be down it after the
-       four seconds of the pass at the fastest the sliders allow, so the scale never moves */
-    const SPAN = 96;
-    const SC = 1100 / SPAN, X = (m) => 150 + (m + LCAR / 2) * SC, s = (LCAR * SC) / 82;
-    const yRoad = 265;
+    /* one fixed scale, 25 units to the meter, so a car is 112 units long; the picture rides with
+       the center of mass of the pair, which moves at one steady velocity whatever the bumpers do,
+       so the road and its marks slide under the cars while the cars stay in view and full size */
+    const SC = 25, xcm = (f.M1 * f.x1(tau) + M2 * f.x2(tau)) / (f.M1 + M2);
+    const X = (m) => 700 + (m - xcm) * SC, s = (LCAR * SC) / 82;
+    const yRoad = 265, PMAX = 40000;
     strip(ctx, 70, 1340, yRoad + 26, 30);
-    scale(ctx, X, 0, 90, 10, yRoad + 56, 'm', 3);
+    const mk0 = Math.ceil((xcm - 26) / 10) * 10, mk1 = Math.floor((xcm + 26) / 10) * 10;
+    scale(ctx, X, mk0, mk1, 10, yRoad + 58, 'm', 1);
     const px1 = X(f.x1(tau)), px2 = X(f.x2(tau)), P1 = f.p1(tau), P2 = f.p2(tau);
-    /* the momentum arrows are on a scale fixed from the slider maxima, 240 units at 40,000 kg·m/s */
-    const LP = (p) => 240 * (p / 40000);
+    /* the momentum arrows are on a scale fixed from the slider maxima, 320 units at 40,000 kg·m/s */
+    const LP = (p) => 320 * (p / PMAX);
     car(ctx, px1, yRoad, PAL.ink, s); car(ctx, px2, yRoad, PAL.muted, s);
-    text(ctx, 'm₁ = ' + whole(f.M1) + ' kg', px1, yRoad - 54, PAL.ink, { size: 19, align: 'center' });
-    text(ctx, 'm₂ = 1,000 kg', px2, yRoad - 54, PAL.muted, { size: 19, align: 'center' });
+    F.label(ctx, 'm₁ = ' + whole(f.M1) + ' kg', px1, yRoad + 96, { side: 'below', gap: 14, leader: false, weight: 400, size: 19, H: 800 });
+    F.label(ctx, 'm₂ = 1,000 kg', px2, yRoad + 124, { side: 'below', gap: 14, leader: false, weight: 400, size: 19, color: PAL.muted, H: 800 });
     /* the momentum each car carries, the lead car's on the upper row so the two never meet */
     arrow(ctx, px2 - LP(P2) / 2, 120, px2 + LP(P2) / 2, 120, C('momentum'), 5);
-    text(ctx, 'p₂ = ' + whole(P2) + ' kg·m/s', px2, 92, C('momentum'), { size: 20, weight: 600, align: 'center' });
-    arrow(ctx, px1 - LP(P1) / 2, 178, px1 + LP(P1) / 2, 178, C('momentum'), 5);
-    text(ctx, 'p₁ = ' + whole(P1) + ' kg·m/s', px1, 150, C('momentum'), { size: 20, weight: 600, align: 'center' });
-    /* while the bumpers touch, the two forces are drawn equal and opposite */
+    F.label(ctx, 'p₂ = ' + whole(P2) + ' kg·m/s', px2, 120, { side: 'above', gap: 24, leader: false, color: C('momentum'), H: 800 });
+    arrow(ctx, px1 - LP(P1) / 2, 186, px1 + LP(P1) / 2, 186, C('momentum'), 5);
+    F.label(ctx, 'p₁ = ' + whole(P1) + ' kg·m/s', px1, 186, { side: 'above', gap: 24, leader: false, color: C('momentum'), H: 800 });
+    /* while the bumpers touch, the two forces are drawn equal and opposite from the point of contact */
     if (touching) {
-      const xm = (px1 + px2) / 2;
-      arrow(ctx, xm - 20, 385, xm - 150, 385, C('force'), 5);
-      arrow(ctx, xm + 20, 385, xm + 150, 385, C('force'), 5);
-      text(ctx, 'F₁ = ' + whole(f.Fc) + ' N', xm - 160, 385, C('force'), { size: 19, weight: 600, align: 'right' });
-      text(ctx, 'F₂ = ' + whole(f.Fc) + ' N', xm + 160, 385, C('force'), { size: 19, weight: 600 });
+      const xm = (px1 + px2) / 2, yF = yRoad - 8;
+      arrow(ctx, xm - 6, yF, xm - 140, yF, C('force'), 5);
+      arrow(ctx, xm + 6, yF, xm + 140, yF, C('force'), 5);
+      F.label(ctx, 'F₁ = ' + whole(f.Fc) + ' N', xm - 148, yF, { side: 'left', gap: 8, leader: false, color: C('force'), size: 19, H: 800 });
+      F.label(ctx, 'F₂ = ' + whole(f.Fc) + ' N', xm + 148, yF, { side: 'right', gap: 8, leader: false, color: C('force'), size: 19, H: 800 });
     }
     /* the graph: the two momenta and their total against time */
     const box = { l: 200, r: 1280, t: 440, b: 700 };
@@ -154,14 +156,16 @@ function bar(ctx, x1, x2, y, color, h) {
   function draw() {
     const { ctx } = begin(d.c);
     const f = model(), tau = cy.now(), after = tau >= f.ts;
-    const box = { l: 150, r: 1300, t: 115, b: 425 };
-    /* the sky is fixed at eighty kilometers across by thirty-four kilometers high, which holds every
-       flight the sliders can launch, so a faster probe draws a longer arc rather than the same one */
-    const xhi = 80000, yhi = 34000;
-    const X = (m) => box.l + (m / xhi) * (box.r - box.l), Y = (m) => box.b - (m / yhi) * (box.b - box.t);
-    line(ctx, box.l - 70, box.b, box.r + 40, box.b, PAL.muted, 3);
-    scale(ctx, X, 0, 80000, 10000, box.b + 26, '', 2);
-    text(ctx, 'horizontal distance (m)', box.r + 40, box.b + 70, PAL.muted, { size: 17, align: 'right' });
+    /* the sky is drawn at one true scale, 0.0182 units to the meter, sixty kilometers across and
+       seventeen high. That holds the flight of the example twice over; a faster or steeper launch
+       than the picture holds is clipped at its edge, where the center of mass is pinned with its
+       reading, rather than shrinking the picture the example is drawn in. */
+    const box = { l: 150, r: 1244, t: 130, b: 440 }, xhi = 60000, yhi = 17000;
+    const SK = (box.r - box.l) / xhi;
+    const X = (m) => box.l + m * SK, Y = (m) => box.b - m * SK;
+    line(ctx, box.l - 70, box.b, box.r + 60, box.b, PAL.muted, 3);
+    scale(ctx, (km) => X(km * 1000), 0, 60, 10, box.b + 26, 'km', 1);
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l - 60, box.t - 40, box.r - box.l + 120, box.b - box.t + 40); ctx.clip();
     /* the parabola the whole probe would have followed, which is the path of the center of mass */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.setLineDash([9, 9]); ctx.beginPath();
     for (let i = 0; i <= 90; i++) { const t = (f.T * i) / 90; if (i) ctx.lineTo(X(f.x(t)), Y(f.y(t))); else ctx.moveTo(X(f.x(t)), Y(f.y(t))); }
@@ -174,22 +178,34 @@ function bar(ctx, x1, x2, y, color, h) {
     trail(f.x, 0, Math.min(tau, f.ts), PAL.ink, 4);
     if (after) { trail(f.xf, f.ts, tau, PAL.ink, 3); trail(f.xr, f.ts, tau, PAL.ink, 3); }
     const ang = Math.atan2(-(f.vy - G * tau), f.vx);
-    if (!after) rocket(ctx, X(f.x(tau)), Y(f.y(tau)), ang, PAL.ink, 1);
-    else { rocket(ctx, X(f.xf(tau)), Y(f.y(tau)), ang, PAL.ink, 0.8); rocket(ctx, X(f.xr(tau)), Y(f.y(tau)), ang, PAL.ink, 0.8); }
-    cross(ctx, X(f.x(tau)), Y(f.y(tau)), C('position'), 15);
-    text(ctx, 'CM', X(f.x(tau)) + 22, Y(f.y(tau)) - 28, C('position'), { size: 19, weight: 600 });
-    /* the momentum of the whole system, drawn once in the corner the path leaves free */
-    /* the momentum arrows are on a scale fixed from the maxima, 200 units at 800,000 kg·m/s */
-    const ax = 250, ay = 205, LP = 200 / 800000;
-    arrow(ctx, ax, ay, ax + f.px * LP, ay, C('momentum'), 5);
-    arrow(ctx, ax, ay, ax, ay - f.py(tau) * LP, C('momentum'), 5);
-    text(ctx, 'the momentum of the system', ax - 8, ay - 148, C('momentum'), { size: 18, weight: 600 });
+    if (!after) rocket(ctx, X(f.x(tau)), Y(f.y(tau)), ang, PAL.ink, 1.5);
+    else { rocket(ctx, X(f.xf(tau)), Y(f.y(tau)), ang, PAL.ink, 1.1); rocket(ctx, X(f.xr(tau)), Y(f.y(tau)), ang, PAL.ink, 1.1); }
+    /* the momentum of the whole system, drawn from its center of mass: the horizontal part is the same
+       arrow all flight long and the vertical part shrinks, reverses and grows. Both are on a scale fixed
+       from the maxima, 260 units at 800,000 kg·m/s. */
+    const cmx = X(f.x(tau)), cmy = Y(f.y(tau)), LP = 260 / 800000;
+    const inSky = cmx <= box.r && cmy >= box.t;
+    cross(ctx, cmx, cmy, C('position'), 15);
+    /* a vertical arrow that would run into the ground is held at the ground line */
+    const pyL = f.py(tau) * LP, pyDrawn = pyL < 0 ? Math.max(pyL, -(box.b - cmy) + 4) : pyL;
+    arrow(ctx, cmx, cmy, cmx + f.px * LP, cmy, C('momentum'), 5);
+    if (Math.abs(pyDrawn) > 6) arrow(ctx, cmx, cmy, cmx, cmy - pyDrawn, C('momentum'), 5);
+    ctx.restore();
+    const lab = F.labeller(ctx, 800);
+    lab.block(0, 0, 1400, 100);                     /* the headline's rows are never written over */
+    if (inSky) {
+      lab.add('center of mass', cmx, cmy, -0.7, -0.7, C('position'), 18, 26);
+      lab.add('pₓ = ' + whole(f.px) + ' kg·m/s', cmx + f.px * LP, cmy, 0.6, -0.8, C('momentum'), 19, 22);
+      if (Math.abs(pyDrawn) > 6) lab.add('pᵧ = ' + whole(f.py(tau)) + ' kg·m/s', cmx, cmy - pyDrawn / 2, 1, 0, C('momentum'), 19, 22);
+      lab.flush();
+    }
+    if (!inSky) pinned(ctx, box, X, Y, f.x(tau), f.y(tau), C('position'), 'center of mass, ' + fmt(f.x(tau) / 1000, 1) + ' km out, ' + fmt(f.y(tau) / 1000, 1) + ' km up');
     /* the graph: the two components of the system's momentum against time */
     /* fixed axes: the probe masses 1000 kg and is launched at no more than 800 m/s, so neither
        component of its momentum passes 800,000 kg·m/s, and the longest flight, 2 × 800 × sin 80º /
        9.80, is 161 s. The graph is therefore always 0 to 200 s by −800,000 to 800,000 kg·m/s,
        ticked every 50 s and every 200,000 kg·m/s, and neither range moves with the sliders. */
-    const gb = { l: 200, r: 1280, t: 520, b: 710 }, TR = 200, PR = 800000;
+    const gb = { l: 200, r: 1280, t: 530, b: 715 }, TR = 200, PR = 800000;
     const { X: GX, Y: GY } = axes(ctx, gb, [0, TR], [-PR, PR], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: 8, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
     line(ctx, GX(f.ts), gb.t, GX(f.ts), gb.b, PAL.muted, 2, [4, 8]);
     text(ctx, 'the probe separates', GX(f.ts) + 10, gb.t + 18, PAL.muted, { size: 17 });
@@ -243,8 +259,15 @@ function bar(ctx, x1, x2, y, color, h) {
     text(ctx, 'e⁻', xe, ye - 36, PAL.ink, { size: 20, weight: 600, align: 'center' });
     /* the velocity arrows too are on a fixed scale, 6 units per Mm/s, from the same maximum */
     const LV = 6;
-    arrow(ctx, xe, ye + 32, xe + (after ? f.w1 : v1.v) * LV, ye + 32, C('velocity'), 4);
-    if (after) { arrow(ctx, xtn, yIn - 74, xtn + Math.sign(f.w2) * Math.max(8, Math.abs(f.w2) * LV), yIn - 74, C('velocity'), 4); }
+    const ve = after ? f.w1 : v1.v;
+    arrow(ctx, xe, ye + 32, xe + ve * LV, ye + 32, C('velocity'), 4);
+    F.label(ctx, (after ? "v′₁ = " : 'v₁ = ') + fmt(Math.abs(ve), 2) + ' Mm/s', xe + (ve * LV) / 2, ye + 32, { side: 'below', gap: 18, leader: false, color: C('velocity'), size: 18, H: 680 });
+    if (after) {
+      /* the target's arrow is held inside the canvas, and its speed is written whatever its length */
+      const L2 = Math.min(Math.sign(f.w2) * Math.max(8, Math.abs(f.w2) * LV), 1340 - xtn);
+      arrow(ctx, xtn, yIn - 74, xtn + L2, yIn - 74, C('velocity'), 4);
+      F.label(ctx, "v′₂ = " + fmt(f.w2, f.w2 < 0.1 ? 4 : 2) + ' Mm/s', xtn + L2 / 2, yIn - 74, { side: 'above', gap: 18, leader: false, color: C('velocity'), size: 18, H: 680 });
+    }
     /* the momenta, all measured off one origin, so that the target's bar overshoots
        the electron's original bar by exactly what the electron carries backward */
     /* and the momentum bars, 21.5 units per unit of momentum, so the slider lengthens every bar */
@@ -307,9 +330,19 @@ function bar(ctx, x1, x2, y, color, h) {
     const SC = 1180 / (hi - lo), X = (m) => 110 + (m - lo) * SC, yT = 215;
     strip(ctx, 80, 1340, yT + 40, 26);
     const a = f.s1(tau), b = f.s2(tau), c = f.cm(tau);
-    block(ctx, X(a), yT, LC * SC, 56, PAL.ink); block(ctx, X(b), yT, LC * SC, 56, PAL.ink);
-    text(ctx, fmt(f.M1, 1) + ' kg', X(a), yT, PAL.ink, { size: 18, align: 'center' });
-    text(ctx, fmt(f.M2, 1) + ' kg', X(b), yT, PAL.ink, { size: 18, align: 'center' });
+    /* a cart: a body no narrower than the eye can read, on two wheels that sit on the track */
+    const cart = (x, w, color) => {
+      const ww = Math.max(w, 44);
+      block(ctx, x, yT - 6, ww, 48, color);
+      ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x - ww / 2 + 10, yT + 20, 7, 0, TAU); ctx.arc(x + ww / 2 - 10, yT + 20, 7, 0, TAU); ctx.fill(); ctx.restore();
+    };
+    cart(X(a), LC * SC, PAL.ink); cart(X(b), LC * SC, PAL.ink);
+    text(ctx, 'm₁', X(a), yT - 6, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    text(ctx, 'm₂', X(b), yT - 6, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    /* the masses read above the velocity arrows, the second stepped up a row where the carts are close */
+    const close = Math.abs(X(b) - X(a)) < 200;
+    F.label(ctx, 'm₁ = ' + fmt(f.M1, 1) + ' kg', X(a), yT - 76, { side: 'above', gap: 10, leader: false, size: 18, weight: 400, H: 810 });
+    F.label(ctx, 'm₂ = ' + fmt(f.M2, 1) + ' kg', X(b), yT - (close ? 104 : 76), { side: 'above', gap: 10, leader: false, size: 18, weight: 400, H: 810 });
     const LV = 13;
     arrow(ctx, X(a), yT - 54, X(a) + (tau < f.tc ? f.u1 : f.vcm) * LV, yT - 54, C('velocity'), 4);
     arrow(ctx, X(b), yT - 54, X(b) + (tau < f.tc ? f.u2 : f.vcm) * LV, yT - 54, C('velocity'), 4);

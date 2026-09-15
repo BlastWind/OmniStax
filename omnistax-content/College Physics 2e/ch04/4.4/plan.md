@@ -163,6 +163,11 @@ node rather than as an extra.
    since it is a body and not a force, and the headline is one capitalized
    sentence.
 
+Figure pass of 2026-09-14 (Claude Fable 5.1): the swimmer was four thin sticks; she is now a
+filled torso with the head ahead, both arms stretched out in front and the legs kicking behind.
+`sim-cart` and `sim-rocket` were looked at in both themes and at their extremes and left as
+built.
+
 ## Exercises
 
 - Inline: `cq3` (fs-id2846557, describe a situation in which one system exerts a

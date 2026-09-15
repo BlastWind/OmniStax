@@ -1,0 +1,804 @@
+{
+ "id": "19.1",
+ "module": "m42324",
+ "chapter": "19",
+ "title": "Electric Potential Energy: Potential Difference",
+ "short": "Potential difference",
+ "lead": "A charge in an electric field has a potential energy, just as a mass in a gravitational field does, because the Coulomb force is conservative. This section defines the electric potential as that energy per unit charge and the potential difference, or voltage, as the change in potential energy per unit charge moved between two points, measured in volts; shows that a battery's voltage is not its energy, since the energy it delivers is the charge it moves times its voltage; introduces the electron volt, the energy a fundamental charge gains across one volt, as the natural energy unit for the submicroscopic world; and uses conservation of energy to find the speed a charge gains from a potential difference.",
+ "objectives": [
+  "Define electric potential and electric potential energy.",
+  "Describe the relationship between potential difference and electrical potential energy.",
+  "Explain electron volt and its usage in submicroscopic process.",
+  "Determine electric potential energy given potential difference and amount of charge."
+ ],
+ "summary_html": "<ul><li>Electric potential is potential energy per unit charge.</li><li>The potential difference between points A and B, $\\kVB - \\kVA$, defined to be the change in potential energy of a charge $\\kq$ moved from A to B, is equal to the change in potential energy divided by the charge, Potential difference is commonly called voltage, represented by the symbol $\\kdV$.$$\\kdV = \\frac{\\kdPE}{\\kq}\\ \\text{and}\\ \\kdPE = \\kq\\kdV.$$</li><li>An electron volt is the energy given to a fundamental charge accelerated through a potential difference of 1 V. In equation form,$$\\begin{aligned}1\\ \\text{eV} &= (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{V}) =\\\\ &(1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{J/C})\\\\ &= 1.60 \\times 10^{-19}\\ \\text{J}.\\end{aligned}$$</li><li>Mechanical energy is the sum of the kinetic energy and potential energy of a system, that is, $\\kKE + \\kPEtot$. This sum is a constant.</li></ul>",
+ "notes": "Six problems the book leaves without an answer are left out: the 40 kV x-ray tube, the helium nucleus at 2.00% of the speed of light, the singly charged ion at the temperature of the Sun's center, the lightning bolt that strikes a tree, the fusion problem, which also needs the potential of a point charge, and the Construct Your Own Problem item on a cellular phone battery. The Unreasonable Results problem on the charged sphere and the last seven AP items, which need the potential of a point charge, are set in Electrical Potential Due to a Point Charge, and the first four AP items, which test the force on a charge in an electric field from Electric Charge and Electric Field, are kept here as the book prints them.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Six problems have no keyed answer and are left out: the 40 kV x-ray tube, the helium nucleus at 2.00% of the speed of light, the singly charged ion at the temperature of the Sun's center, the lightning bolt that strikes a tree, the fusion problem (which also needs the potential of a point charge, and is left out of 19.3 as well) and the Construct Your Own Problem item on a cellular phone battery. The Unreasonable Results problem on the 10.0 cm sphere carrying 8.00 C and the last seven AP items (the internal energy of two and three point charges, of a square of charges and of a charge moving between two others) need the potential of a point charge and are set in 19.3 with source_section 19.1. The first four AP items test the force on a charge in an electric field, from Chapter 18, and are kept here as the book prints them, the two keyed ones graded and the two open ones with AI-written approaches. The defibrillator problem keys only part (a), so the card checks that number and carries the book’s own answer to part (b) in its solution. Of the nine AP items kept, four are keyed and set as graded choices; the other five have no key and are kept as open items with AI-written suggested approaches, marked as such, as are the approaches to the five conceptual questions. The chapter has no Check Your Understanding box, so nothing is set inline. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-electrical-hill",
+   "kind": "sim",
+   "number": "19.2",
+   "originals": [
+    "/media/ch19/Figure_20_01_01a.jpg"
+   ],
+   "original_caption": "A charge accelerated by an electric field is analogous to a mass going down a hill. In both cases potential energy is converted to another form. Work is done by a force, but since this force is conservative, we can write W = –ΔPE.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "charge",
+    "energy"
+   ]
+  },
+  {
+   "id": "sim-battery-headlight",
+   "kind": "sim",
+   "number": "19.3",
+   "originals": [
+    "/media/ch19/Figure_20_01_02a.jpg"
+   ],
+   "original_caption": "A battery moves negative charge from its negative terminal through a headlight to its positive terminal. Appropriate combinations of chemicals in the battery separate charges so that the negative terminal has an excess of negative charge, which is repelled by it and attracted to the excess positive charge on the other terminal. In terms of potential, the positive terminal is at a higher voltage than the negative. Inside the battery, both positive and negative charges move.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "energy",
+    "charge"
+   ]
+  },
+  {
+   "id": "sim-electron-gun",
+   "kind": "sim",
+   "number": "19.4",
+   "originals": [
+    "/media/ch19/Figure_20_01_03a.jpg"
+   ],
+   "original_caption": "A typical electron gun accelerates electrons using a potential difference between two metal plates. The energy of the electron in electron volts is numerically the same as the voltage between the plates. For example, a 5000 V potential difference produces 5000 eV electrons.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "charge",
+    "energy",
+    "velocity"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "electric-potential-energy",
+   "concept": "electric-potential-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "conservative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "path-independence-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential",
+   "concept": "electric-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-potential",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential",
+   "concept": "test-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-difference",
+   "concept": "potential-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "potential-difference",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage",
+   "concept": "zero-of-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "voltage",
+   "concept": "pe-reference-level",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-from-voltage",
+   "concept": "energy-from-potential-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-from-voltage",
+   "concept": "potential-difference",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-batteries",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "charge-sign",
+   "concept": "charge-sign-and-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "charge-sign",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "charge-sign",
+   "concept": "like-charges-repel",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-headlight",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-headlight",
+   "concept": "count-charges-from-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-headlight",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-volt",
+   "concept": "electron-volt",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-volt",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-volt",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-volt",
+   "concept": "charge-sign-and-potential",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "energy-conservation-for-charges",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "pe-to-ke",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-electron-speed",
+   "concept": "speed-from-potential-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-electron-speed",
+   "concept": "energy-conservation-for-charges",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-electron-speed",
+   "concept": "speed-from-work-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-electron-speed",
+   "concept": "coulomb-versus-gravity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2660782",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage",
+   "prompt": "Voltage is the common word for potential difference. Which term is more descriptive, voltage or potential difference?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Potential difference is the more descriptive term, because it says what the quantity is: the difference in electric potential between two points, which is the change in potential energy per unit charge moved between them. Voltage is a name taken from the unit, the volt, and says nothing about the two points it is measured between, though it does remind you that the quantity is measured in volts."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2681166",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "potential-difference",
+   "prompt": "If the voltage between two points is zero, can a test charge be moved between them with zero net work being done? Can this necessarily be done without exerting a force? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes to the first question. The work done by the electrostatic force is $\\kW = -\\kdPE = -\\kq\\kdV$, so when $\\kdV = 0$ the change in potential energy is zero and no net work is done on the charge between the two points, whatever path it takes, because the Coulomb force is conservative. No to the second. Zero net work does not mean zero force: the force may do positive work along one part of the path and an equal negative work along another, as when a charge is carried away from a plate and brought back to the same potential. A force may well have to be exerted; it simply does no net work."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1350416",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "What is the relationship between voltage and energy? More precisely, what is the relationship between potential difference and electric potential energy?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Voltage is energy per unit charge. The potential difference between two points is the change in the electric potential energy of a charge moved between them, divided by the charge: $\\kdV = \\kdPE/\\kq$, or $\\kdPE = \\kq\\kdV$. A voltage on its own is not an energy. The energy depends on how much charge moves through the potential difference, which is why a car battery and a motorcycle battery at the same 12 V can store very different amounts of energy."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2339284",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage",
+   "prompt": "Voltages are always measured between two points. Why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Because only differences in potential have physical meaning. The zero of electric potential is arbitrary, as the zero of gravitational potential energy is, so the potential at one point alone can be given any value by the choice of reference. What moves charge and stores or releases energy is the change in potential energy, $\\kdPE = \\kq\\kdV$, and that depends on the difference in potential between where the charge starts and where it ends. A voltmeter accordingly has two leads."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2000410",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-volt",
+   "prompt": "How are units of volts and electron volts related? How do they differ?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A volt is a unit of potential difference, one joule per coulomb. An electron volt is a unit of energy, the energy a fundamental charge gains when it is accelerated through one volt: $1\\ \\text{eV} = (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{V}) = 1.60 \\times 10^{-19}\\ \\text{J}$. The two are related through $\\kdPE = \\kq\\kdV$. A particle carrying one fundamental charge accelerated through $V$ volts gains $V$ electron volts, so the numbers match while the units differ: one is energy per unit charge and the other is energy."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1345616",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-potential",
+   "prompt": "An electron is placed in an electric field of 12.0 N/C to the right. What is the resulting force on the electron?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$1.33 \\times 10^{-20}\\ \\text{N}$ right",
+     "$1.33 \\times 10^{-20}\\ \\text{N}$ left",
+     "$1.92 \\times 10^{-18}\\ \\text{N}$ right",
+     "$1.92 \\times 10^{-18}\\ \\text{N}$ left"
+    ],
+    "correct": 3,
+    "hint": "The force on a charge in a field is $\\kF = \\kq\\kEf$, and the electron's negative charge sends the force opposite to the field.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1368476",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-potential",
+   "prompt": "A positively charged object in a certain electric field is currently being pushed west by the resulting force. How will the force change if the charge grows? What if it becomes negative?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The force on a charge in an electric field is $\\kF = \\kq\\kEf$, so its magnitude is proportional to the charge. If the charge grows, the force grows in the same proportion and still points west, the way the field points, since a positive charge is pushed along the field. If the charge becomes negative, the force reverses and points east, because a negative charge is pushed opposite to the field, with a magnitude again set by the size of the charge."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2627165",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-potential",
+   "prompt": "A −5.0 C charge is being forced south by a 60 N force. What are the magnitude and direction of the local electric field?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "12 N/C south",
+     "12 N/C north",
+     "300 N/C south",
+     "300 N/C north"
+    ],
+    "correct": 1,
+    "hint": "The magnitude of the field is $\\kEf = \\kF/\\kq$, and for a negative charge the field points opposite to the force on it.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1649035",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-potential",
+   "prompt": "A charged object has a net force of 100 N east acting on it due to an electric field of 50 N/C pointing north. How is this possible? If not, why not?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It is not possible. The force on a charge is $\\kF = \\kq\\kEf$, and $\\kq$ is a number, so the force always lies along the line of the field: in the direction of the field for a positive charge and opposite to it for a negative one. A field pointing north can push a charge north or south, never east, whatever the size or sign of the charge. A force to the east would need a field with an eastward component."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id3080988",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-sign",
+   "prompt": "How many electrons have to be moved by a car battery containing $7.20 \\times 10^{5}\\ \\text{J}$ at 12 V to reduce the energy by 1%?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$4.80 \\times 10^{27}$",
+     "$4.00 \\times 10^{26}$",
+     "$3.75 \\times 10^{21}$",
+     "$3.13 \\times 10^{20}$"
+    ],
+    "correct": 2,
+    "hint": "One percent of the energy is $7.20 \\times 10^{3}\\ \\text{J}$. The charge that carries it is $\\kq = \\kdPE/\\kdV$, and the number of electrons is that charge divided by $1.60 \\times 10^{-19}\\ \\text{C}$, as in Example 19.2.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2544423",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "Most of the electricity in the power grid is generated by powerful turbines spinning around. Why don’t these turbines slow down from the work they do moving electrons?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "They would slow down if nothing kept them turning. Moving charge through a potential difference takes energy, $\\kdPE = \\kq\\kdV$ for every charge moved, and that energy has to come from somewhere; in a generator it comes from the rotation of the turbine. The turbines keep their speed because something drives them continuously, steam from a boiler, falling water or the wind, doing work on them at the same rate that electrical energy is drawn off. Energy is conserved: the work the turbine does in moving electrons is replaced by the work done on the turbine."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id2013214",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "A typical AAA battery can move 2000 C of charge at 1.5 V. How long will this run a 50 mW LED?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1000 minutes",
+     "120,000 seconds",
+     "15 hours",
+     "250 minutes"
+    ],
+    "correct": 0,
+    "hint": "The energy the battery can deliver is $\\kdPE = \\kq\\kdV$. Divide it by the energy the LED uses each second, 0.050 J, to get the time in seconds, and then convert to minutes.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1935369",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "Find an example car (or other vehicle) battery, and compute how many of the AAA batteries in the previous problem it would take to equal the energy stored in it. Which is more compact?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A vehicle battery is usually rated in ampere-hours, and one ampere-hour is 3600 C of charge, so the charge a 12 V battery rated at $N$ ampere-hours can move is $3600N$ coulombs and the energy it stores is $\\kdPE = \\kq\\kdV = (3600N\\ \\text{C})(12\\ \\text{V})$. Each AAA battery of the previous problem stores $(2000\\ \\text{C})(1.5\\ \\text{V}) = 3000\\ \\text{J}$, so divide the vehicle battery's energy by 3000 J to find how many AAA cells match it; for a battery of a few tens of ampere-hours the count runs to several hundred. Then compare the volume of that many AAA cells with the volume of the vehicle battery to decide which stores its energy more compactly."
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id2506228",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation-of-energy",
+   "prompt": "What is the velocity of an electron that goes through a 10 V potential after initially being at rest?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Follow Example 19.3. All of the electrical potential energy becomes kinetic energy, so $\\kq\\kV = m\\kv^2/2$ and $\\kv = \\sqrt{2\\kq\\kV/m}$, with $\\kq = -1.60 \\times 10^{-19}\\ \\text{C}$, $\\kV = -10\\ \\text{V}$ (the electron starts at the lower potential) and $m = 9.11 \\times 10^{-31}\\ \\text{kg}$. Since the speed grows as the square root of the voltage, the result is $\\sqrt{10/100} = 0.316$ times the $5.93 \\times 10^{6}\\ \\text{m/s}$ found in Example 19.3 for 100 V, and the velocity is directed from the lower potential toward the higher one."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1350363",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-electron-speed",
+   "prompt": "Find the ratio of speeds of an electron and a negative hydrogen ion (one having an extra electron) accelerated through the same voltage, assuming non-relativistic final speeds. Take the mass of the hydrogen ion to be $1.67 \\times 10^{-27}\\ \\text{kg}$.",
+   "answer": {
+    "type": "number",
+    "value": 42.8,
+    "generated_by": "source",
+    "hint": "Both carry the same charge and cross the same voltage, so both gain the same kinetic energy, and $\\kv = \\sqrt{2\\kq\\kV/m}$ makes the ratio of the speeds the square root of the inverse ratio of the masses.",
+    "solution": "42.8"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2574445",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "Singly charged gas ions are accelerated from rest through a voltage of 13.0 V. At what temperature will the average kinetic energy of gas molecules be the same as that given these ions?",
+   "answer": {
+    "type": "number",
+    "value": 100000,
+    "unit": "K",
+    "generated_by": "source",
+    "hint": "The ions gain $\\kdPE = \\kq\\kdV$, which is 13.0 eV each. Set that equal to the average kinetic energy of a molecule, $\\tfrac{3}{2}kT$ from Temperature, Kinetic Theory, and the Gas Laws, and solve for the temperature.",
+    "solution": "$1.00 \\times 10^{5}\\ \\text{K}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2677893",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "(a) What is the average power output of a heart defibrillator that dissipates 400 J of energy in 10.0 ms? (b) Considering the high-power output, why doesn’t the defibrillator produce serious burns?",
+   "answer": {
+    "type": "number",
+    "value": 40000,
+    "unit": "W",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Power is energy divided by the time it is delivered in, and 10.0 ms is $1.00 \\times 10^{-2}\\ \\text{s}$.",
+    "solution": "(a) $4 \\times 10^{4}\\ \\text{W}$ (b) A defibrillator does not cause serious burns because the skin conducts electricity well at high voltages, like those used in defibrillators. The gel used aids in the transfer of energy to the body, and the skin doesn’t absorb the energy, but rather lets it pass through to the heart."
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2003316",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-sign",
+   "prompt": "A 12.0 V battery-operated bottle warmer heats 50.0 g of glass, $2.50 \\times 10^{2}\\ \\text{g}$ of baby formula, and $2.00 \\times 10^{2}\\ \\text{g}$ of aluminum from $20.0^\\circ\\text{C}$ to $90.0^\\circ\\text{C}$. (a) How much charge is moved by the battery? (b) How many electrons per second flow if it takes 5.00 min to warm the formula? (Hint: Assume that the specific heat of baby formula is about the same as the specific heat of water.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 7400,
+      "unit": "C",
+      "hint": "The heat needed is $Q = mc\\Delta T$ summed over the glass, the formula and the aluminum, with the specific heats from Heat and Heat Transfer Methods. That energy is $\\kq\\kdV$, so the charge is $\\kq = \\kdPE/\\kdV$."
+     },
+     {
+      "part": "(b)",
+      "value": 1.54e+20,
+      "unit": "electrons per second",
+      "hint": "Divide the charge by the time in seconds to get the charge that flows each second, then by $1.60 \\times 10^{-19}\\ \\text{C}$ per electron, as in Example 19.2."
+     }
+    ],
+    "solution": "(a) $7.40 \\times 10^{3}\\ \\text{C}$ (b) $1.54 \\times 10^{20}\\ \\text{electrons per second}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2606659",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "A battery-operated car utilizes a 12.0 V system. Find the charge the batteries must be able to move in order to accelerate the 750 kg car from rest to 25.0 m/s, make it climb a $2.00 \\times 10^{2}\\ \\text{m}$ high hill, and then cause it to travel at a constant 25.0 m/s by exerting a $5.00 \\times 10^{2}\\ \\text{N}$ force for an hour.",
+   "answer": {
+    "type": "number",
+    "value": 3890000,
+    "unit": "C",
+    "generated_by": "source",
+    "hint": "Add the three energies the batteries must supply, the kinetic energy $\\tfrac{1}{2}m\\kv^2$, the gravitational potential energy $m\\kg\\kh$ and the work $\\kF\\kd$ of the force over the distance the car covers in an hour at 25.0 m/s, then divide the total by the voltage, since $\\kq = \\kdPE/\\kdV$.",
+    "solution": "$3.89 \\times 10^{6}\\ \\text{C}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "potential-difference"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-potential",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "potential-difference"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "potential-difference",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "zero-of-potential"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "potential-difference",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "electron-volt"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "potential-difference",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "electric-field-direction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "electric-field-direction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electric-field-direction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "electric-field-direction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "count-charges-from-charge",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "calculate-power",
+   "weight": 1
+  },
+  {
+   "exercise": "ap8",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "speed-from-potential-difference"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "energy-conservation-for-charges",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "speed-from-potential-difference"
+  },
+  {
+   "exercise": "p1",
+   "concept": "energy-conservation-for-charges",
+   "weight": 2
+  },
+  {
+   "exercise": "p4",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "p4",
+   "concept": "thermal-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p6",
+   "concept": "calculate-power"
+  },
+  {
+   "exercise": "p8",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "p8",
+   "concept": "heat-and-temperature-change",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "count-charges-from-charge",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "p9",
+   "concept": "kinetic-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "gravitational-potential-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "calculate-work",
+   "weight": 1
+  }
+ ]
+}

@@ -166,6 +166,8 @@ Extra simulations (rule 15), thought through and judged:
   figure of Chapter 9 a still one, and an accelerating rotation drawn here
   would promise a quantity (torque) that 9.1 does not yet have.
 
+**Figure pass (2026-09-14, Claude Fable 5.1).** `sim-person` now draws the library's silhouette (`F.silhouette`, stand) with a pack strapped to the back, the weight from a center-of-gravity dot and both force labels set beside their arrows through `label()`. `sim-car` draws the car larger, the weight from its center of gravity, the tires' drive anchored where the rear tire meets the road and the air's drag at the nose, and its free-body title just above the longest arrow. `sim-equilibrium` draws `F.crate` with a silhouette in the push pose, hands on the crate's face, the push anchored at the hands, the friction along the floor and the mass named above the crate. `sim-stick` draws the stick as one filled shape with a blade and stops each arrow at the shaft's edge.
+
 ## Exercises
 
 - The section prints no problem set, no AP item and no Check Your

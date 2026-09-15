@@ -253,3 +253,5 @@ config line is corrected to say what the chapter built.
 The six items of this section that the book labels "Professional Application"
 had the label dropped altogether rather than kept; all six now carry it as a
 `tag`, which is the chapter's convention.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). Both figures looked at in light and dark at every extreme and left as built.

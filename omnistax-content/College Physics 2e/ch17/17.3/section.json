@@ -1,0 +1,642 @@
+{
+ "id": "17.3",
+ "module": "m42257",
+ "chapter": "17",
+ "title": "Sound Intensity and Sound Level",
+ "short": "Sound intensity and sound level",
+ "lead": "Loudness is a familiar experience, and the physical quantity behind it is the intensity of the sound, the power it carries across each square meter. This section defines intensity, relates it to the square of the pressure amplitude of the wave, and then, because the ear responds to the logarithm of the intensity rather than to the intensity itself, defines the sound intensity level in decibels against the threshold of hearing, so that a factor of ten in intensity is a step of 10 dB and a factor of two is about 3 dB.",
+ "objectives": [
+  "Define intensity, sound intensity, and sound pressure level.",
+  "Calculate sound intensity levels in decibels (dB)."
+ ],
+ "summary_html": "<ul><li>Intensity is the same for a sound wave as was defined for all waves; it is $\\kIntens = \\frac{\\kP}{A},$ where $\\kP$ is the power crossing area $A$. The SI unit for $\\kIntens$ is watts per meter squared. The intensity of a sound wave is also related to the pressure amplitude $\\kdpamp$ $\\kIntens = \\frac{(\\kdpamp)^2}{2\\krho\\kvw},$ where $\\krho$ is the density of the medium in which the sound wave travels and $\\kvw$ is the speed of sound in the medium.</li><li>Sound intensity level in units of decibels (dB) is $\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\frac{\\kIntens}{\\kIo}\\right),$ where $\\kIo = 10^{-12}\\ \\text{W/m}^2$ is the threshold intensity of hearing.</li></ul>",
+ "notes": "The photograph of the road in Delhi that opens the section is left out as a splash image, and the nine problems the book leaves unkeyed are left out. The book’s own slips are kept as printed: the square misplaced on the intensity formula in Example 17.2’s strategy, where the book also writes pv_w for ρv_w, and in the paragraph before Table 17.3.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Nine problems have no keyed answer and are left out: the lawn mower’s 91.0 dB in watts per meter squared, the intensity level of the 0.5 Pa wave, 10⁻¹² W/m² shown to be 10⁻¹⁶ W/cm², the intensities 7.00 dB lower and 3.00 dB higher than 4.00 × 10⁻⁹ W/m², the −8.00 dB sound, the ten cars at the boom box competition, the maximum gauge pressures of a 60 dB and a 120 dB sound, the ear trumpet, and the loudspeaker’s power input. The section’s first AP item, on the alarm clock whose volume is tripled, is keyed with (e) and is set as a graded choice; its second, on the guitar string vibrating with twice the amplitude, has no key and is kept as an open item with an AI-written suggested approach, marked as such. The suggested approaches to the two conceptual questions are AI-written and marked. The two Check Your Understanding boxes are set inline after the passages they test, the first after the pressure amplitude and the second after the decibel table; everything else is at the end. Nothing is taken from another section and nothing of this section’s own is held for a later page; 17.7’s three decibel problems on ultrasound stay in 17.7 and tag this section’s sound intensity level from there. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-pressure-amplitude",
+   "kind": "sim",
+   "number": "17.12",
+   "originals": [
+    "/media/ch17/Figure_18_03_01ab.jpg"
+   ],
+   "original_caption": "Graphs of the gauge pressures in two sound waves of different intensities. The more intense sound is produced by a source that has larger-amplitude oscillations and has greater pressure maxima and minima. Because pressures are higher in the greater-intensity sound, it can exert larger forces on the objects it encounters.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "pressure",
+    "intensity",
+    "density",
+    "velocity"
+   ]
+  },
+  {
+   "id": "sim-decibel-ladder",
+   "kind": "sim",
+   "draws": [
+    "intensity"
+   ]
+  },
+  {
+   "id": "sim-many-sources",
+   "kind": "sim",
+   "draws": [
+    "intensity"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "intensity",
+   "concept": "sound-intensity",
+   "verb": "introduces"
+  },
+  {
+   "span": "intensity",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "intensity",
+   "concept": "energy-from-power",
+   "verb": "uses"
+  },
+  {
+   "span": "intensity",
+   "concept": "sound",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "intensity-and-pressure-amplitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "sound-intensity",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "gauge-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "speed-of-sound-in-media",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "sound-longitudinal-pressure-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "decibels",
+   "concept": "sound-intensity-level",
+   "verb": "introduces"
+  },
+  {
+   "span": "decibels",
+   "concept": "sound-intensity",
+   "verb": "uses"
+  },
+  {
+   "span": "decibels",
+   "concept": "order-of-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "threshold",
+   "concept": "threshold-of-hearing",
+   "verb": "introduces"
+  },
+  {
+   "span": "threshold",
+   "concept": "sound-intensity-level",
+   "verb": "reinforces"
+  },
+  {
+   "span": "threshold",
+   "concept": "order-of-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ratios",
+   "concept": "decibel-ratios",
+   "verb": "introduces"
+  },
+  {
+   "span": "ratios",
+   "concept": "sound-intensity-level",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ratios",
+   "concept": "intensity-and-pressure-amplitude",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ratios",
+   "concept": "speed-of-sound-in-media",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-level",
+   "concept": "sound-pressure-level",
+   "verb": "introduces"
+  },
+  {
+   "span": "pressure-level",
+   "concept": "sound-intensity-level",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-level",
+   "concept": "intensity-and-pressure-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "many-sources",
+   "concept": "combining-sound-sources",
+   "verb": "introduces"
+  },
+  {
+   "span": "many-sources",
+   "concept": "decibel-ratios",
+   "verb": "uses"
+  },
+  {
+   "span": "many-sources",
+   "concept": "sound-intensity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3022970",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "pressure-amplitude"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "Describe how amplitude is related to the loudness of a sound.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Amplitude is directly proportional to the experience of loudness. As amplitude increases, loudness increases."
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id1282140",
+   "kind": "check-understanding",
+   "bloom": "Remember",
+   "place": {
+    "at": "inline",
+    "after": "decibels"
+   },
+   "cite": "decibels",
+   "prompt": "Identify common sounds at the levels of 10 dB, 50 dB, and 100 dB.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "10 dB: Running fingers through your hair.<br>50 dB: Inside a quiet home with no television or radio.<br>100 dB: Take-off of a jet plane."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1373955",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "In order to waken a sleeping child, the volume on an alarm clock is tripled. Under this new scenario, how much more energy will be striking the child’s ear drums each second?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "twice as much",
+     "three times as much",
+     "approximately 4.8 times as much",
+     "six times as much",
+     "nine times as much"
+    ],
+    "correct": 4,
+    "hint": "The energy striking the eardrum each second is the intensity times the area of the eardrum, and the intensity goes as the square of the pressure amplitude. Tripling the volume triples the amplitude.",
+    "solution": "(e)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1725922",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "decibels",
+   "prompt": "A musician strikes the strings of a guitar such that they vibrate with twice the amplitude.<br>(a) Explain why this requires an energy input greater than twice the original value.<br>(b) Explain why the sound leaving the string will not result in a decibel level that is twice as great.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) The energy of an oscillating string, like the energy of an oscillating element of air, is proportional to the square of its amplitude, so a string vibrating with twice the amplitude carries four times the energy. The musician must put in four times the energy, not twice, to set it going that way. (b) The sound wave the string sends out has twice the pressure amplitude, and by $\\kIntens = (\\kdpamp)^2/2\\krho\\kvw$ that is four times the intensity. The sound intensity level is a logarithm of the intensity, $\\beta = 10\\log_{10}(\\kIntens/\\kIo)$, so multiplying the intensity by four adds $10\\log_{10}4 \\approx 6\\ \\text{dB}$ to the level rather than doubling it. A 60 dB note played with twice the amplitude becomes a 66 dB note, not a 120 dB one."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2023489",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "Six members of a synchronized swim team wear earplugs to protect themselves against water pressure at depths, but they can still hear the music and perform the combinations in the water perfectly. One day, they were asked to leave the pool so the dive team could practice a few dives, and they tried to practice on a mat, but seemed to have a lot more difficulty. Why might this be?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Think about how the sound reaches the inner ear in each case. In air, sound arrives as a pressure wave in the air that must pass down the ear canal to the eardrum, and an earplug stops most of it, so on the mat the swimmers hear the music faintly. In water, the body is nearly the same density as the water around it, so the sound wave passes into the head and reaches the inner ear directly through the tissue and bone without needing the ear canal at all; the earplugs make little difference there. There is also the matter of the medium: the density and speed of sound in water are far greater than in air, so a sound of the same pressure amplitude carries a different intensity, and underwater speakers are built to make the music loud enough to be heard through the body. On the mat, with plugged ears and only the air to carry the sound, the music is much harder to follow."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2010060",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratios",
+   "prompt": "A community is concerned about a plan to bring train service to their downtown from the town’s outskirts. The current sound intensity level, even though the rail yard is blocks away, is 70 dB downtown. The mayor assures the public that there will be a difference of only 30 dB in sound in the downtown area. Should the townspeople be concerned? Why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. A difference of 30 dB sounds modest as a number, but the decibel scale is logarithmic, and by $\\beta_2 - \\beta_1 = 10\\log_{10}(\\kItwo/\\kIone)$ a difference of 30 dB is three factors of ten, so the sound would be $10^3 = 1000$ times as intense as it is now. The level would go from 70 dB, which Table 17.2 lists as a noisy office or busy traffic, to 100 dB, the level of a noisy factory or a siren at 30 m, at which damage to hearing results from exposure of 8 hours a day. The word “only” hides a thousandfold increase in the intensity of the sound."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3387710",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "decibels",
+   "prompt": "What is the intensity in watts per meter squared of 85.0-dB sound?",
+   "answer": {
+    "type": "number",
+    "value": 0.000316,
+    "unit": "W/m²",
+    "generated_by": "source",
+    "hint": "Solve the definition of the sound intensity level for the intensity: $\\kIntens = \\kIo\\,10^{\\beta/10}$.",
+    "solution": "$3.16 \\times 10^{-4}\\ \\text{W/m}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2450132",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "A sound wave traveling in $20^\\circ\\text{C}$ air has a pressure amplitude of 0.5 Pa. What is the intensity of the wave?",
+   "answer": {
+    "type": "number",
+    "value": 0.000304,
+    "unit": "W/m²",
+    "generated_by": "source",
+    "hint": "Use $\\kIntens = (\\kdpamp)^2/2\\krho\\kvw$ with the density of air at $20^\\circ\\text{C}$, about $1.20\\ \\text{kg/m}^3$, and the speed of sound at that temperature, 343 m/s.",
+    "solution": "$3.04 \\times 10^{-4}\\ \\text{W/m}^2$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1947000",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "decibels",
+   "prompt": "What sound intensity level in dB is produced by earphones that create an intensity of $4.00 \\times 10^{-2}\\ \\text{W/m}^2$?",
+   "answer": {
+    "type": "number",
+    "value": 106,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "Enter the intensity and $\\kIo = 10^{-12}\\ \\text{W/m}^2$ into $\\beta = 10\\log_{10}(\\kIntens/\\kIo)$.",
+    "solution": "106 dB"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3028387",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratios",
+   "prompt": "(a) What is the decibel level of a sound that is twice as intense as a 90.0-dB sound? (b) What is the decibel level of a sound that is one-fifth as intense as a 90.0-dB sound?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 93,
+      "unit": "dB",
+      "hint": "A factor of two in intensity is a difference of $10\\log_{10}2 \\approx 3$ dB, as Example 17.3 shows; add it to 90.0 dB."
+     },
+     {
+      "part": "(b)",
+      "value": 83,
+      "unit": "dB",
+      "hint": "A factor of one-fifth is $10\\log_{10}(1/5) \\approx -7$ dB; Table 17.3 gives the factor of five as 7.0 dB."
+     }
+    ],
+    "solution": "(a) 93 dB<br>(b) 83 dB"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3076842",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratios",
+   "prompt": "(a) How much more intense is a sound that has a level 17.0 dB higher than another? (b) If one sound has a level 23.0 dB less than another, what is the ratio of their intensities?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 50.1,
+      "hint": "Solve $\\beta_2 - \\beta_1 = 10\\log_{10}(\\kItwo/\\kIone)$ for the ratio: $\\kItwo/\\kIone = 10^{(\\beta_2 - \\beta_1)/10}$ with a difference of 17.0 dB."
+     },
+     {
+      "part": "(b)",
+      "value": 0.00501,
+      "hint": "The same relation with a difference of $-23.0$ dB gives a ratio less than one."
+     }
+    ],
+    "solution": "(a) 50.1<br>(b) $5.01 \\times 10^{-3}$ or $\\frac{1}{200}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3017588",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "many-sources",
+   "prompt": "If a large housefly 3.0 m away from you makes a noise of 40.0 dB, what is the noise level of 1000 flies at that distance, assuming interference has a negligible effect?",
+   "answer": {
+    "type": "number",
+    "value": 70.0,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "With interference neglected the intensities add, so a thousand flies make a thousand times the intensity of one; a factor of 1000 is three factors of ten, or 30 dB.",
+    "solution": "70.0 dB"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3356163",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "The amplitude of a sound wave is measured in terms of its maximum gauge pressure. By what factor does the amplitude of a sound wave increase if the sound intensity level goes up by 40.0 dB?",
+   "answer": {
+    "type": "number",
+    "value": 100,
+    "generated_by": "source",
+    "hint": "A rise of 40.0 dB is a factor of $10^4$ in intensity, and the intensity goes as the square of the pressure amplitude, so the amplitude grows by the square root of that factor.",
+    "solution": "100"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2448344",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "intensity",
+   "prompt": "An 8-hour exposure to a sound intensity level of 90.0 dB may cause hearing damage. What energy in joules falls on a 0.800-cm-diameter eardrum so exposed?",
+   "answer": {
+    "type": "number",
+    "value": 0.00145,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "Find the intensity from 90.0 dB, multiply by the area of the eardrum, $\\pi r^2$ with $r = 0.400$ cm, to get the power falling on it, and multiply by the time, 8 hours in seconds.",
+    "solution": "$1.45 \\times 10^{-3}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id1382514",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "intensity",
+   "prompt": "Sound is more effectively transmitted into a stethoscope by direct contact than through the air, and it is further intensified by being concentrated on the smaller area of the eardrum. It is reasonable to assume that sound is transmitted into a stethoscope 100 times as effectively compared with transmission though the air. What, then, is the gain in decibels produced by a stethoscope that has a sound gathering area of $15.0\\ \\text{cm}^2$, and concentrates the sound onto two eardrums with a total area of $0.900\\ \\text{cm}^2$ with an efficiency of 40.0%?",
+   "answer": {
+    "type": "number",
+    "value": 28.2,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "The power gathered over $15.0\\ \\text{cm}^2$ is delivered, at 40.0% efficiency and with the factor of 100 for direct contact, onto $0.900\\ \\text{cm}^2$; the ratio of the intensity at the eardrums to the intensity in the air is $100 \\times 0.400 \\times (15.0/0.900)$, and the gain in decibels is ten times its logarithm.",
+    "solution": "28.2 dB"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "sound-intensity-level"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "threshold-of-hearing",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "sound-intensity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "sound-intensity-level"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "intensity-and-pressure-amplitude",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "decibel-ratios",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "sound-pressure-level",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "decibel-ratios"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sound-intensity-level",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sound-intensity-level"
+  },
+  {
+   "exercise": "p1",
+   "concept": "threshold-of-hearing",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "p3",
+   "concept": "sound-intensity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "sound-intensity-level"
+  },
+  {
+   "exercise": "p5",
+   "concept": "threshold-of-hearing",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "decibel-ratios"
+  },
+  {
+   "exercise": "p7",
+   "concept": "sound-intensity-level",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "decibel-ratios"
+  },
+  {
+   "exercise": "p9",
+   "concept": "sound-intensity-level",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "combining-sound-sources"
+  },
+  {
+   "exercise": "p11",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "p13",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "sound-intensity"
+  },
+  {
+   "exercise": "p15",
+   "concept": "sound-intensity-level",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p17",
+   "concept": "sound-intensity"
+  },
+  {
+   "exercise": "p17",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

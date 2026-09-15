@@ -167,6 +167,8 @@ headline · graph · 2D or 3D
    initial value everywhere else on this page. Labels on, seven of them.
    Draws acceleration, position, time, velocity.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-avg`: the average-velocity label sat on the moving point and now sits at the left end of its dashed level. `sim-jogger`: the jogger is the library's `person()` walking, with the velocity arrow over his head, and the final-position label is held inside the canvas. `sim-plane`: the headline wraps through `topline()`, the arrows and their labels are clamped to the canvas when the plane runs to the end of the runway, the landing point's label sits above the strip clear of the tick labels, and the final velocity marker was hollow when it should have been filled. `sim-dragster`: the dragster was three rectangles and two circles and is redrawn with a long low body, a wing, big rear slicks and small front wheels (a new sprite, drawn here); the three track labels go through `labeller()`, since a short run put all three on the start. `sim-braking`: the headline wraps. `sim-merge`: the headline wraps, and the ramp's labels and the two roots' labels go through `labeller()`, since a short ramp put them on each other and on the scale.
+
 ## Photographs
 
 - Figure 2.24, the kayaks racing in Newbury (credit: Barry Skeates,

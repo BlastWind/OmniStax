@@ -173,6 +173,16 @@ Extra simulations (rule 15): none proposed. The chapter config says the
 required figures already open the views the text does not, and the five
 above cover every idea and result the section introduces.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-target`: the restaurant
+was a lump at the centre; it is now a shopfront drawn here (an awning, a
+door, a window and a sign), named in ink below the target, and the line
+from the attempts' centre to it is ink rather than muted. `sim-percent`:
+the labels of the four weekly weights touched at 0.1 lb spacing; they now
+sit on three rows with leaders and panels, and the band is 0.16 alpha
+rather than 0.10. `sim-area`: the ring was too faint to see at 2%; it and
+its key swatch are 0.18 alpha. `sim-ruler` and `sim-calc` were looked at
+in every state and left as built.
+
 ## Exercises
 
 - 3 Check Your Understanding, inline, with the book's answers: the

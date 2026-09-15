@@ -226,6 +226,8 @@ Extra simulations (rule 15), considered:
   question is worth more asked than answered, and the nail puller figure
   already carries the single lever it is analogous to.
 
+**Figure pass (2026-09-14, Claude Fable 5.1).** `sim-nail-puller` draws a nail with a head, the claw of the puller closed under it and a hand with its wrist on the handle, the input force labelled below its arrow. `sim-wheelbarrow` adds the person who lifts, the library's silhouette in the lean pose with both hands on the handles, and anchors the lift at the hands; the shovel state keeps its rear hand at the pivot. The side-view hand (`grip`) is drawn here because the library has none. The incline, crank and pulleys stand as they were.
+
 ## Exercises
 
 - No Check Your Understanding boxes; nothing inline.

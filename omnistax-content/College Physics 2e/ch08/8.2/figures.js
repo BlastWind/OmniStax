@@ -10,32 +10,19 @@ const RAD = Math.PI / 180, TAU = 2 * Math.PI;
 const whole = (x) => String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 /* ---------- sprites drawn here, in ink ---------- */
-/* a seated passenger facing right, the foot of their seat at (x, y) */
-function passenger(ctx, x, y, color) {
-  ctx.save();
-  ctx.strokeStyle = PAL.muted; ctx.lineWidth = 6;
-  ctx.beginPath(); ctx.moveTo(x - 32, y - 64); ctx.lineTo(x - 26, y + 12); ctx.lineTo(x + 22, y + 14); ctx.stroke();
-  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(x + 4, y - 78, 13, 0, TAU); ctx.fill();
-  ctx.beginPath();
-  ctx.moveTo(x - 2, y - 64); ctx.lineTo(x - 8, y - 18);
-  ctx.moveTo(x - 8, y - 18); ctx.lineTo(x + 34, y - 14);
-  ctx.moveTo(x + 34, y - 14); ctx.lineTo(x + 30, y + 14);
-  ctx.moveTo(x - 1, y - 54); ctx.lineTo(x + 32, y - 36);
-  ctx.stroke(); ctx.restore();
+/* a seat facing right, its foot at (x, y): a cushion and a backrest, in the muted ink of the scene's furniture */
+function seat(ctx, x, y) {
+  ctx.save(); ctx.fillStyle = PAL.muted; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  ctx.fillRect(x - 34, y - 46, 46, 12);                       /* the cushion, under the hips */
+  ctx.fillRect(x - 40, y - 98, 10, 64);                        /* the backrest */
+  ctx.beginPath(); ctx.moveTo(x - 28, y - 34); ctx.lineTo(x - 28, y); ctx.moveTo(x + 6, y - 34); ctx.lineTo(x + 6, y); ctx.stroke();   /* the legs */
+  ctx.restore();
 }
 /* a billiard ball centered on (x, y) */
 function ball(ctx, x, y, color, r = 18) {
   ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
   ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(x - r * 0.3, y - r * 0.3, r * 0.28, 0, TAU); ctx.fill(); ctx.restore();
 }
-/* an angle arc at (x, y) between two canvas angles, with its label beyond the arc */
-function arc(ctx, x, y, r, a1, a2, label, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r, a1, a2); ctx.stroke(); ctx.restore();
-  const a = (a1 + a2) / 2;
-  if (label) text(ctx, label, x + (r + 34) * Math.cos(a), y + (r + 34) * Math.sin(a), color, { size: 20, weight: 600, align: 'center' });
-}
-
 /* =====================================================================
    SIM: the passenger brought to rest by the padding. The momentum has to
    go whatever the padding is like, and the contact time is what sets the
@@ -68,21 +55,27 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
     text(ctx, 'the padding', wallX + depth / 2, 474, PAL.muted, { size: 17, align: 'center' });
     const squash = c * c * (3 - 2 * c) * depth * 0.7;
     const px = hit ? wallX - 44 + squash : startX + (wallX - 44 - startX) * (tau / APPROACH);
-    passenger(ctx, px, y, PAL.ink);
-    text(ctx, fmt(m.v, 0) + ' kg', px + 2, y + 46, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    /* the passenger sits facing the padding, a filled body 0.85 of the library's height; the
+       shoulder, where the momentum is drawn from and where the padding's push is drawn to, is at
+       (px − 5, y − 78) in the sit pose at this scale */
+    seat(ctx, px, y);
+    F.silhouette(ctx, { x: px, y, s: 0.85, pose: 'sit' });
+    const sx = px - 5, sy = y - 78;
+    text(ctx, fmt(m.v, 0) + ' kg', px - 14, y + 66, PAL.ink, { size: 20, weight: 600, align: 'center' });
     /* the momentum still to be taken away, and the force the padding pushes back with. Both arrows
        are on scales fixed from the slider maxima and never move: 320 units at 3,600 kg·m/s, which is
        120 kg at 30 m/s, and 250 units at 180,000 N, which is that momentum taken away in 0.02 s. */
     const PMAX = 120 * 30, FMAX = PMAX / 0.02;
     const len = (320 * left) / PMAX;
     if (left > 1) {
-      arrow(ctx, px, 125, px + len, 125, cp, 5);
-      text(ctx, 'p = ' + whole(left) + ' kg·m/s', px - 16, 125, cp, { size: 21, weight: 600, align: 'right' });
-    } else text(ctx, 'p = 0, and the passenger is at rest', px - 16, 125, cp, { size: 21, weight: 600, align: 'right' });
+      arrow(ctx, sx, sy - 40, sx + len, sy - 40, cp, 5);
+      F.label(ctx, 'p = ' + whole(left) + ' kg·m/s', sx + len / 2, sy - 40, { side: 'above', color: cp, gap: 22, leader: false, H: 860 });
+    } else F.label(ctx, 'p = 0, and the passenger is at rest', sx, sy - 40, { side: 'above', color: cp, gap: 22, leader: false, H: 860 });
     if (hit && !done) {
+      /* the padding's push, drawn from the padding into the passenger's chest */
       const fl = 70 + 180 * Math.min(1, Fn / FMAX);
-      arrow(ctx, px + 50, 190, px + 50 - fl, 190, cf, 5);
-      text(ctx, 'F = ' + whole(Fn) + ' N', px + 38 - fl, 190, cf, { size: 21, weight: 600, align: 'right' });
+      arrow(ctx, sx + 46 + fl, sy, sx + 46, sy, cf, 5);
+      F.label(ctx, 'F = ' + whole(Fn) + ' N', sx + 46 + fl / 2, sy, { side: 'above', color: cf, gap: 22, leader: false, H: 860 });
     }
     /* the graph: the force the stop needs against the time it is given */
     const box = { l: 230, r: 1290, t: 560, b: 750 };
@@ -115,7 +108,9 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
    SIM: the billiard ball of Example 8.3 bouncing off the rigid wall. The
    momentum along the wall is untouched and the momentum across it is
    reversed, so the impulse is normal to the wall. The ball travels, so
-   the figure runs a finite loop and takes the transport.
+   the figure runs a finite loop and takes the transport. The scene is on
+   the left; on the right the two momenta are drawn from one tail and the
+   change between them closes the triangle.
 ===================================================================== */
 (function () {
   const d = sim('sim-billiard', 820);
@@ -125,40 +120,59 @@ function arc(ctx, x, y, r, a1, a2, label, color) {
   const IN = 1.8, OUT = 1.8;
   const cy = cycle(() => IN + OUT, 1.2);
   function reset() { cy.reset(); }
-  /* the momentum arrows are on one scale fixed from the slider maxima and never move: 83 units per
-     kg·m/s, so the largest momentum the sliders reach, 0.3 kg at 10 m/s, is 249 units and the largest
-     change in momentum, twice that at the perpendicular, is 498 units. Neither arrow is ever capped. */
-  const K = 83;
+  /* the momentum arrows are on one scale fixed from the slider maxima and never move: 80 units per
+     kg·m/s, so the largest momentum the sliders reach, 0.3 kg at 10 m/s, is 300 units, and the
+     largest change in momentum, twice that at the perpendicular, is 600 units. No arrow is capped. */
+  const K = 100;
   function draw() {
     const { ctx } = begin(d.c);
     const a = th.v * RAD, p = m.v * u.v, dp = 2 * p * Math.cos(a);
     const tau = cy.now(), hit = tau >= IN, q = hit ? (tau - IN) / OUT : 1 - tau / IN;
-    const cx = 1120, cyy = 380, run = Math.min(680, 240 / Math.max(Math.sin(a), 0.02));
     const cp = C('momentum'), cf = C('force');
-    fixed(ctx, cx, 80, 110, 600);
-    line(ctx, cx - 320, cyy, cx, cyy, PAL.muted, 2, [10, 10]);
-    text(ctx, 'the perpendicular', cx - 330, cyy, PAL.muted, { size: 17, align: 'right' });
-    /* the two lines the ball runs along, and the ball on one of them */
+    const lab = F.labeller(ctx, 820);
+    /* the scene: the wall, the perpendicular, and the two legs of the ball's path */
+    const cx = 760, cyy = 380, run = Math.min(560, 250 / Math.max(Math.sin(a), 0.02));
+    fixed(ctx, cx, 90, 100, 580);
+    text(ctx, 'a rigid wall', cx + 50, 694, PAL.muted, { size: 17, align: 'center' });
+    line(ctx, cx - 560, cyy, cx, cyy, PAL.muted, 2, [10, 10]);
+    text(ctx, 'the perpendicular to the wall', cx - 556, cyy - 30, PAL.muted, { size: 17 });
     line(ctx, cx - run * Math.cos(a), cyy - run * Math.sin(a), cx, cyy, PAL.rule, 3, [8, 8]);
     line(ctx, cx, cyy, cx - run * Math.cos(a), cyy + run * Math.sin(a), PAL.rule, 3, [8, 8]);
-    ball(ctx, cx - q * run * Math.cos(a), hit ? cyy + q * run * Math.sin(a) : cyy - q * run * Math.sin(a), PAL.ink);
-    /* the momentum before, the momentum after, and the change between them */
+    /* the momentum on the way in, drawn to the point of contact, and on the way out, drawn from it */
     const L = p * K;
-    arrow(ctx, cx - L * Math.cos(a), cyy - L * Math.sin(a), cx, cyy, cp, 5);
-    text(ctx, 'p before = ' + fmt(p, 2) + ' kg·m/s', cx - L * Math.cos(a) - 14, cyy - L * Math.sin(a) - 26, cp, { size: 21, weight: 600, align: 'right' });
-    if (th.v > 4) arc(ctx, cx, cyy, 86, Math.PI, Math.PI + a, 'θ = ' + fmt(th.v, 0) + '°', PAL.ink);
-    if (hit) {
-      arrow(ctx, cx, cyy, cx - L * Math.cos(a), cyy + L * Math.sin(a), cp, 5);
-      text(ctx, 'p after = ' + fmt(p, 2) + ' kg·m/s', cx - L * Math.cos(a) - 14, cyy + L * Math.sin(a) + 28, cp, { size: 21, weight: 600, align: 'right' });
-      if (th.v > 4) arc(ctx, cx, cyy, 130, Math.PI - a, Math.PI, 'θ = ' + fmt(th.v, 0) + '°', PAL.ink);
-      const dl = dp * K;
-      arrow(ctx, cx - 40, 710, cx - 40 - dl, 710, cp, 7);
-      text(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s, straight away from the wall', cx - 54 - dl, 710, cp, { size: 22, weight: 600, align: 'right' });
-      arrow(ctx, cx + 12, 650, cx + 146, 650, cf, 5);
-      text(ctx, 'the force on the wall', cx + 14, 618, cf, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    arrow(ctx, cx - L * Math.cos(a), cyy - L * Math.sin(a), cx - 22 * Math.cos(a), cyy - 22 * Math.sin(a), cp, 5);
+    if (hit) arrow(ctx, cx - 22 * Math.cos(a), cyy + 22 * Math.sin(a), cx - L * Math.cos(a), cyy + L * Math.sin(a), cp, 5);
+    /* the angle between each leg and the perpendicular, measured counterclockwise from +x on the page */
+    if (th.v > 4) {
+      F.angleArc(ctx, { x: cx, y: cyy }, 118, Math.PI - a, Math.PI, 'θ = ' + fmt(th.v, 0) + '°', lab);
+      if (hit) F.angleArc(ctx, { x: cx, y: cyy }, 118, Math.PI, Math.PI + a, 'θ = ' + fmt(th.v, 0) + '°', lab);
     }
+    /* the ball, drawn last so that it rides over its own path */
+    ball(ctx, cx - (22 + q * (run - 22)) * Math.cos(a), cyy + (hit ? 1 : -1) * (22 + q * (run - 22)) * Math.sin(a), PAL.ink, 22);
+    if (hit) {
+      arrow(ctx, cx + 2, cyy, cx + 92, cyy, cf, 5);
+      F.label(ctx, 'the force on the wall', cx + 50, cyy + 12, { side: 'below', color: cf, gap: 30, leader: false, H: 820 });
+    }
+    /* the triangle: both momenta from one tail, and the change from the head of one to the head of the other */
+    const ox = 1110, oy = 270;
+    text(ctx, 'the two momenta, and the change between them', ox, 140, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    const bx = ox + L * Math.cos(a), by = oy + L * Math.sin(a), ax = ox - L * Math.cos(a), ay = by;
+    dot(ctx, ox, oy, PAL.ink, true, 5);
+    arrow(ctx, ox, oy, bx, by, cp, 5);
+    lab.beside({ x1: ox, y1: oy, x2: bx, y2: by }, 'left', 'p before = ' + fmt(p, 2) + ' kg·m/s', cp, 20);
+    if (hit) {
+      arrow(ctx, ox, oy, ax, ay, cp, 5);
+      lab.beside({ x1: ox, y1: oy, x2: ax, y2: ay }, 'right', 'p after = ' + fmt(p, 2) + ' kg·m/s', cp, 20);
+      /* the change is drawn a row under the two heads, with a faint drop from each, so that it never
+         lies along the momenta themselves when the ball comes in along the perpendicular */
+      const dy = ay + 44;
+      line(ctx, bx, by + 8, bx, dy, alpha(PAL.ink, 0.4), 1.5, [4, 6]); line(ctx, ax, ay + 8, ax, dy, alpha(PAL.ink, 0.4), 1.5, [4, 6]);
+      arrow(ctx, bx, dy, ax, dy, cp, 7);
+      F.label(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s, straight away from the wall', (ax + bx) / 2, dy + 8, { side: 'below', color: cp, gap: 22, leader: false, H: 820 });
+    }
+    lab.flush();
     text(ctx, 'Along the wall the momentum keeps its ' + fmt(p * Math.sin(a), 2) + ' kg·m/s, and across the wall ' + fmt(p * Math.cos(a), 2) + ' kg·m/s is reversed.',
-      120, 780, PAL.ink, { size: 20 });
+      700, 780, PAL.ink, { size: 20, align: 'center' });
     topline(ctx, !hit
       ? 'The ball comes in at ' + fmt(u.v, 1) + ' m/s, ' + fmt(th.v, 0) + '° from the perpendicular.'
       : 'The speed is the same on the way out, and the impulse the wall gives the ball is ' + fmt(dp, 2) + ' kg·m/s.');

@@ -10,20 +10,51 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
    instead of the frame being stretched to hold it */
 const inbox = (ctx, box, f) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); };
 
-/* a wooden crate, centred on (x, y), with two slats across its face */
+/* a wooden crate, centred on (x, y): a framed box of horizontal planks with a batten down each end */
 function crate(ctx, x, y, w, h) {
-  block(ctx, x, y, w, h, PAL.ink);
-  ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(x - w / 2, y - h / 2); ctx.lineTo(x + w / 2, y + h / 2);
-  ctx.moveTo(x - w / 2, y + h / 2); ctx.lineTo(x + w / 2, y - h / 2); ctx.stroke(); ctx.restore();
+  const l = x - w / 2, t = y - h / 2;
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+  ctx.fillRect(l, t, w, h); ctx.strokeRect(l, t, w, h);
+  ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
+  ctx.beginPath(); for (let i = 1; i < 4; i++) { ctx.moveTo(l + 4, t + (h * i) / 4); ctx.lineTo(l + w - 4, t + (h * i) / 4); } ctx.stroke();
+  ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(l + 22, t + 2); ctx.lineTo(l + 22, t + h - 2); ctx.moveTo(l + w - 22, t + 2); ctx.lineTo(l + w - 22, t + h - 2); ctx.stroke();
+  ctx.restore();
 }
-/* a skier at (x, y) on a slope of θ degrees, facing downhill */
+/* the bend of a two-segment limb from a to b, lengths l1 and l2, the joint thrown to the side given */
+function joint(a, b, l1, l2, side) {
+  const dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy) || 1;
+  if (L >= l1 + l2) return { x: a.x + (dx * l1) / (l1 + l2), y: a.y + (dy * l1) / (l1 + l2) };
+  const p = (l1 * l1 - l2 * l2 + L * L) / (2 * L), h = Math.sqrt(Math.max(0, l1 * l1 - p * p));
+  return { x: a.x + (dx * p) / L - (dy * h * side) / L, y: a.y + (dy * p) / L + (dx * h * side) / L };
+}
+/* A person drawn as a filled silhouette rather than a stick figure: a round head, a solid torso, and
+   limbs as thick rounded strokes that bend at the knee and the elbow. Joints are given in a frame
+   about 150 units tall with the feet at the origin and the person facing +x; s scales the drawing
+   and face = -1 turns it round. P: hip, shoulder, head, feet[2], hands[2], and optional knee/elbow
+   sides. Its limbs are bodies, not lines, so they are drawn wider than the force arrows beside them. */
+function silhouette(ctx, x, y, s, face, P) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s * face, s); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  const limb = (a, b, l1, l2, side, w) => { const k = joint(a, b, l1, l2, side); ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(k.x, k.y); ctx.lineTo(b.x, b.y); ctx.stroke(); };
+  const ks = P.kneeSide ?? -1, es = P.elbowSide ?? 1;
+  limb(P.hip, P.feet[1], 38, 38, ks, 9); limb(P.shoulder, P.hands[1], 30, 30, es, 7);
+  const tx = P.shoulder.x - P.hip.x, ty = P.shoulder.y - P.hip.y, L = Math.hypot(tx, ty) || 1, nx = -ty / L, ny = tx / L;
+  ctx.lineWidth = 10; ctx.beginPath();
+  ctx.moveTo(P.hip.x + nx * 7, P.hip.y + ny * 7); ctx.lineTo(P.shoulder.x + nx * 11, P.shoulder.y + ny * 11);
+  ctx.lineTo(P.shoulder.x - nx * 11, P.shoulder.y - ny * 11); ctx.lineTo(P.hip.x - nx * 7, P.hip.y - ny * 7); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(P.shoulder.x, P.shoulder.y); ctx.lineTo(P.head.x, P.head.y); ctx.stroke();
+  ctx.beginPath(); ctx.arc(P.head.x, P.head.y, 12, 0, Math.PI * 2); ctx.fill();
+  limb(P.hip, P.feet[0], 38, 38, ks, 10); limb(P.shoulder, P.hands[0], 30, 30, es, 8);
+  ctx.restore();
+}
+/* a skier at (x, y) on a slope of θ degrees, facing downhill: crouched over her skis with a pole in each hand */
 function skier(ctx, x, y, theta) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(theta * RAD); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.moveTo(-54, 0); ctx.lineTo(46, 0); ctx.stroke();
-  ctx.beginPath(); ctx.arc(10, -76, 12, 0, Math.PI * 2); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(6, -64); ctx.lineTo(-8, -34); ctx.lineTo(-4, -4);
-  ctx.moveTo(6, -64); ctx.lineTo(34, -52); ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.translate(x, y); ctx.rotate(theta * RAD);
+  line(ctx, -58, 2, 54, 2, PAL.ink, 5);
+  const hands = [{ x: 42, y: -68 }, { x: 46, y: -62 }];
+  hands.forEach((h) => line(ctx, h.x, h.y, h.x - 44, 0, PAL.muted, 3));
+  silhouette(ctx, 0, 0, 1, 1, { hip: { x: -8, y: -58 }, shoulder: { x: 18, y: -98 }, head: { x: 30, y: -116 }, feet: [{ x: 10, y: -2 }, { x: -10, y: -2 }], hands });
+  ctx.restore();
 }
 
 /* =====================================================================
@@ -62,11 +93,11 @@ function skier(ctx, x, y, theta) {
     const pl = 50 + 180 * (Fp.v / 800), fl = 50 + 180 * (fr / 800);
     arrow(ctx, cx - cw / 2 - pl, floorY - 92, cx - cw / 2, floorY - 92, C('force'), 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', cx - cw / 2 - pl, floorY - 120, C('force'), { size: 20, weight: 600 });
-    /* friction acts at the surface, so the arrow leaves the crate's edge, not its inside */
-    arrow(ctx, cx - cw / 2, floorY - 12, cx - cw / 2 - fl, floorY - 12, C('force'), 5);
-    text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 - fl, floorY - 42, C('force'), { size: 20, weight: 600, bg: PAL.panel });
-    arrow(ctx, cx + 70, floorY - 6, cx + 70, floorY - 110, C('force'), 5);
-    text(ctx, 'N = ' + fmt(N, 0) + ' N', cx + 84, floorY - 92, C('force'), { size: 20, weight: 600 });
+    /* friction acts at the surface, so the arrow leaves the crate's bottom corner along the floor */
+    arrow(ctx, cx - cw / 2, floorY - 3, cx - cw / 2 - fl, floorY - 3, C('force'), 5);
+    text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 - fl, floorY - 32, C('force'), { size: 20, weight: 600, bg: PAL.panel });
+    arrow(ctx, cx + 70, floorY - 2, cx + 70, floorY - 110, C('force'), 5);
+    text(ctx, 'N = ' + fmt(N, 0) + ' N', cx + 88, floorY - 24, C('force'), { size: 20, weight: 600, bg: PAL.panel });
     arrow(ctx, cx + cw / 2 + 40, floorY - ch + 20, cx + cw / 2 + 250, floorY - ch + 20, PAL.muted, 3);
     text(ctx, sliding ? 'direction of motion' : 'direction of attempted motion', cx + cw / 2 + 40, floorY - ch - 12, PAL.muted, { size: 17 });
     /* the coefficients the section's own passage gives for this crate on this floor, named on the
@@ -165,8 +196,9 @@ function skier(ctx, x, y, theta) {
     const ACAP = 800, pl = 40 + 180 * Math.min(1, Fn / ACAP), fl = 40 + 180 * Math.min(1, fr / ACAP);
     arrow(ctx, cx - cw / 2 - pl, floorY - 84, cx - cw / 2, floorY - 84, C('force'), 5);
     text(ctx, 'F = ' + fmt(Fn, 0) + ' N', cx - cw / 2 - pl, floorY - 112, C('force'), { size: 20, weight: 600 });
-    arrow(ctx, cx - cw / 2 + 16, floorY - 12, cx - cw / 2 + 16 - fl, floorY - 12, C('force'), 5);
-    text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 + 16 - fl, floorY - 42, C('force'), { size: 20, weight: 600 });
+    /* friction acts at the surface, so the arrow leaves the crate's bottom corner along the floor */
+    arrow(ctx, cx - cw / 2, floorY - 3, cx - cw / 2 - fl, floorY - 3, C('force'), 5);
+    text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 - fl, floorY - 32, C('force'), { size: 20, weight: 600, bg: PAL.panel });
     text(ctx, moving ? 'sliding at ' + fmt(vAt(t), 2) + ' m/s' : 'not moving', 1270, 130, PAL.muted, { size: 20, align: 'right' });
     scale(ctx, SX, 0, XMAX, 1, 340, 'm', 1);
     /* the graph: the friction that answers the push */
@@ -184,12 +216,13 @@ function skier(ctx, x, y, theta) {
         dot(ctx, X(fmax), Y(fmax), C('force'), false, 11);
         text(ctx, 'f_s(max) = ' + fmt(fmax, 0) + ' N', X(fmax) - 18, Y(fmax) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
       }
-      if (fk <= FR) text(ctx, 'f_k = ' + fmt(fk, 0) + ' N', X(FR) - 12, Y(fk) - 26, C('force'), { size: 20, weight: 600, align: 'right' });
+      /* under its line, so the live point pinned at the right edge never sits on the name */
+      if (fk <= FR) text(ctx, 'f_k = ' + fmt(fk, 0) + ' N', X(FR) - 40, Y(fk) + 28, C('force'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
       line(ctx, X(Fn), box.b, X(Fn), Y(fr), PAL.muted, 2, [4, 8]);
     });
     text(ctx, 'while it is still, the friction is as large as the push', X(0) + 24, Y(FR) + 32, PAL.muted, { size: 17 });
-    /* a row below the first note, so it keeps clear of the value the pinned marker writes at the corner */
-    if (fmax > FR) text(ctx, 'the break comes at ' + fmt(fmax, 0) + ' N, past the right edge of this graph', X(FR) - 16, Y(FR) + 70, PAL.muted, { size: 17, align: 'right' });
+    /* in the bottom corner, the one place the sloping line never crosses when it runs to the top right */
+    if (fmax > FR) text(ctx, 'the break comes at ' + fmt(fmax, 0) + ' N, past the right edge of this graph', X(FR) - 16, Y(0) - 26, PAL.muted, { size: 17, align: 'right', bg: PAL.panel });
     pinned(ctx, box, X, Y, Fn, fr, C('force'), fmt(fr, 0) + ' N');
     headline(ctx, moving
       ? 'The crate broke away at ' + fmt(fmax, 0) + ' N, and the friction on it now stays at ' + fmt(fk, 0) + ' N however hard you push'
@@ -244,27 +277,30 @@ function skier(ctx, x, y, theta) {
     /* The forces on her ride the skier down the slope, so each is drawn there as an arrow alone and
        named once, on the free-body diagram beside it, where every value is read off; the pointer
        names any arrow on the scene (rule 26.7). */
-    const px = sx + 8 * sn, py = sy - 44 - 8 * cs, S = 100 / w;
+    /* the weight and its two parts leave her centre of mass, in her hips; the normal force and the
+       friction act where the skis meet the snow, so they leave the skis */
+    const loc = (ux, uy) => ({ x: sx + ux * cs - uy * sn, y: sy + ux * sn + uy * cs });
+    const cm = loc(4, -72), ski = loc(0, 2), skiB = loc(-34, 2), S = 100 / w;
     const lab = { size: 20, weight: 600, bg: PAL.panel };
-    arrow(ctx, px, py, px, py + w * S, C('force'), 5);
-    arrow(ctx, px, py, px - wp * S * sn, py + wp * S * cs, C('force'), 4);
-    arrow(ctx, px, py, px + wx * S * cs, py + wx * S * sn, C('force'), 4);
-    arrow(ctx, px, py, px + wp * S * sn, py - wp * S * cs, C('force'), 4);
+    skier(ctx, sx, sy, th.v);
+    arrow(ctx, cm.x, cm.y, cm.x, cm.y + w * S, C('force'), 5);
+    arrow(ctx, cm.x, cm.y, cm.x - wp * S * sn, cm.y + wp * S * cs, C('force'), 4);
+    arrow(ctx, cm.x, cm.y, cm.x + wx * S * cs, cm.y + wx * S * sn, C('force'), 4);
+    arrow(ctx, ski.x, ski.y, ski.x + wp * S * sn, ski.y - wp * S * cs, C('force'), 5);
     const fl = Math.max(28, fk.v * S);
-    arrow(ctx, px, py, px - fl * cs, py - fl * sn, C('force'), 4);
+    arrow(ctx, skiB.x, skiB.y, skiB.x - fl * cs, skiB.y - fl * sn, C('force'), 5);
     hits = [
-      { x: px, y: py + w * S, r: 26, name: 'w, her whole weight' },
-      { x: px - wp * S * sn, y: py + wp * S * cs, r: 26, name: 'w perpendicular, the part of the weight into the slope' },
-      { x: px + wx * S * cs, y: py + wx * S * sn, r: 26, name: 'w parallel, the part of the weight along the slope' },
-      { x: px + wp * S * sn, y: py - wp * S * cs, r: 26, name: 'N, the normal force of the snow' },
-      { x: px - fl * cs, y: py - fl * sn, r: 26, name: 'f, the friction of the snow on her skis' },
+      { x: cm.x, y: cm.y + w * S, r: 26, name: 'w, her whole weight' },
+      { x: cm.x - wp * S * sn, y: cm.y + wp * S * cs, r: 26, name: 'w perpendicular, the part of the weight into the slope' },
+      { x: cm.x + wx * S * cs, y: cm.y + wx * S * sn, r: 26, name: 'w parallel, the part of the weight along the slope' },
+      { x: ski.x + wp * S * sn, y: ski.y - wp * S * cs, r: 26, name: 'N, the normal force of the snow' },
+      { x: skiB.x - fl * cs, y: skiB.y - fl * sn, r: 26, name: 'f, the friction of the snow on her skis' },
     ];
     if (v > 0.05) {
       const vl = 40 + 80 * Math.min(1, v / 28);
       arrow(ctx, sx + 96 * cs, sy + 96 * sn, sx + (96 + vl) * cs, sy + (96 + vl) * sn, C('velocity'), 5);
       text(ctx, 'v = ' + fmt(v, 1) + ' m/s', sx + (96 + vl) * cs + 14, sy + (96 + vl) * sn + 26, C('velocity'), { ...lab, align: 'center' });
     }
-    skier(ctx, sx, sy, th.v);
     /* the free-body diagram, beside the slope as the book draws it, and the only place the five
        forces are named and their values written */
     const fx = 1225, fy = 300, S2 = 90 / w;
@@ -281,11 +317,15 @@ function skier(ctx, x, y, theta) {
       { dx: wp * S2 * sn, dy: -wp * S2 * cs, s: 'N', val: fmt(wp, 0) + ' N', wid: 4 },
       { dx: -fl2 * cs, dy: -fl2 * sn, s: 'f', val: fmt(fk.v, 1) + ' N', wid: 3 },
     ];
+    /* the names step out along their arrows and away from one another, so a short arrow on a
+       shallow slope is still named beside its head rather than on the point */
+    const lb = F.labeller(ctx, 740);
     FBD.forEach((q) => {
       arrow(ctx, fx, fy, fx + q.dx, fy + q.dy, C('force'), q.wid);
       const L = Math.hypot(q.dx, q.dy) || 1;
-      text(ctx, q.s, fx + q.dx + (q.dx / L) * 18, fy + q.dy + (q.dy / L) * 18, C('force'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+      lb.add(q.s, fx + q.dx, fy + q.dy, q.dx / L, q.dy / L, C('force'), 20, 20);
     });
+    lb.flush();
     FBD.forEach((q, i) => {
       text(ctx, q.s, 1090, 470 + i * 36, C('force'), { size: 20, weight: 600 });
       text(ctx, q.val, 1360, 470 + i * 36, C('force'), { size: 20, weight: 600, align: 'right' });
@@ -341,7 +381,7 @@ function skier(ctx, x, y, theta) {
     for (let c = -2; c <= 2; c++) dot(ctx, c * SP * 0.82, 0, PAL.ink, ORDER.indexOf(c) < hold, 11);
     ctx.restore();
     const topX = tipX + Math.tan(lean * RAD) * -SP * 0.88 * 4;
-    text(ctx, 'the probe', topX, surfaceY - 26 - SP * 0.88 * 4 - 44, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'the probe', topX - 5 * SP * 0.82 - 30, surfaceY - 26 - SP * 0.88 * 4, PAL.ink, { size: 20, weight: 600, align: 'right' });
     text(ctx, hold === 1 ? 'one atom of the tip adheres' : hold + ' atoms of the tip adhere', tipX + 120, surfaceY - 34, PAL.ink, { size: 17 });
     arrow(ctx, topX + 60, 150, topX + 220, 150, PAL.muted, 3);
     text(ctx, 'dragged this way', topX + 232, 150, PAL.muted, { size: 17 });
@@ -373,22 +413,31 @@ function skier(ctx, x, y, theta) {
     block(ctx, bx, iceY - bh / 2, bw, bh, PAL.ink);
     text(ctx, '45.0 kg', bx, iceY - bh / 2, PAL.ink, { size: 19, weight: 600, align: 'center' });
     if (pulling) {
-      const cxp = bx + bw / 2, cyp = iceY - bh + 16;
+      /* the rope is tied round the block and runs up over his shoulder to his hands; he leans
+         forward and strides away from the block, so the drawing says he is dragging it */
+      const cxp = bx + bw / 2, cyp = iceY - bh / 2, px = x0 + 400, S = 1.2;
+      const P = { hip: { x: 4, y: -64 }, shoulder: { x: 22, y: -108 }, head: { x: 34, y: -126 }, feet: [{ x: 30, y: 0 }, { x: -34, y: 0 }], hands: [{ x: 50, y: -96 }, { x: 54, y: -90 }] };
+      const W = (q) => ({ x: px + q.x * S, y: iceY + q.y * S });
+      const sh = W(P.shoulder), hd = W(P.hands[0]);
+      line(ctx, cxp, cyp, sh.x, sh.y - 6, PAL.ink, 3);
+      line(ctx, sh.x, sh.y - 6, hd.x, hd.y, PAL.ink, 3);
       const hx = cxp + len * Math.cos(A), hy = cyp - len * Math.sin(A);
-      F.person(ctx, x0 + 470, iceY, PAL.ink, { s: 2, face: -1, lean: -0.3, phase: 1.3, reach: { x: hx + 30, y: hy - 10 } });
-      line(ctx, cxp, cyp, hx + 30, hy - 10, PAL.ink, 3);
       arrow(ctx, cxp, cyp, hx, hy, C('force'), 5);
-      text(ctx, 'F', (cxp + hx) / 2 + 6, (cyp + hy) / 2 - 26, C('force'), { size: 22, weight: 600, align: 'center' });
+      text(ctx, 'F', (cxp + hx) / 2 - 4, (cyp + hy) / 2 - 28, C('force'), { size: 22, weight: 600, align: 'center' });
       line(ctx, cxp, cyp, cxp + 120, cyp, PAL.rule, 2, [8, 8]);
-      text(ctx, fmt(ANG, 0) + '°', cxp + 72, cyp - 24, PAL.ink, { size: 19, align: 'center' });
+      text(ctx, fmt(ANG, 0) + '°', cxp + 74, cyp - 20, PAL.ink, { size: 19, align: 'center' });
+      silhouette(ctx, px, iceY, S, 1, P);
     } else {
-      const cxp = bx - bw / 2, cyp = iceY - bh + 16;
+      /* he leans into the block with both hands high on its face, so the push runs down into it */
+      const cxp = bx - bw / 2, cyp = iceY - bh + 16, S = 1.2;
       const hx = cxp - len * Math.cos(A), hy = cyp - len * Math.sin(A);
-      F.person(ctx, x0 + 150, iceY, PAL.ink, { s: 2, lean: 0.35, phase: 1.3, reach: { x: hx, y: hy } });
+      const px = hx - 95;
+      const P = { hip: { x: 10, y: -66 }, shoulder: { x: 40, y: -112 }, head: { x: 50, y: -130 }, feet: [{ x: 12, y: 0 }, { x: -40, y: 0 }], hands: [{ x: (hx - px) / S, y: (hy - iceY) / S }, { x: (hx - px) / S + 3, y: (hy - iceY) / S + 4 }] };
+      silhouette(ctx, px, iceY, S, 1, P);
       arrow(ctx, hx, hy, cxp, cyp, C('force'), 5);
-      text(ctx, 'F', hx - 16, hy - 12, C('force'), { size: 22, weight: 600, align: 'right' });
+      text(ctx, 'F', (hx + cxp) / 2 + 8, (hy + cyp) / 2 - 24, C('force'), { size: 22, weight: 600, align: 'center' });
       line(ctx, cxp, cyp, cxp - 120, cyp, PAL.rule, 2, [8, 8]);
-      text(ctx, fmt(ANG, 0) + '°', cxp - 76, cyp - 24, PAL.ink, { size: 19, align: 'center' });
+      text(ctx, fmt(ANG, 0) + '°', cxp - 76, cyp - 20, PAL.ink, { size: 19, align: 'center' });
     }
     text(ctx, label, x0 + 24, 120, PAL.ink, { size: 24, weight: 700 });
   }

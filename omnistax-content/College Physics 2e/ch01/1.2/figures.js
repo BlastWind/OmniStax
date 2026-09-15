@@ -71,22 +71,22 @@ function stopwatch(ctx, x, y, r, f) {
     const { ctx } = begin(d.c);
     const tau = cy.now(), done = tau >= T.v - 1e-9, dist = CNS * tau, dEnd = CNS * T.v;
     /* the meter stick, 1.5 m of it, with a tick every 10 cm and the meter mark called out */
-    const ys = 250, yp = 150;
+    const ys = 250, yp = 196;   /* the pulse runs just above the stick's face, out of the flashlight's lens */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
     ctx.fillRect(X(0), ys - 24, X(LEN) - X(0), 32); ctx.strokeRect(X(0), ys - 24, X(LEN) - X(0), 32); ctx.restore();
     scale(ctx, (cm) => X(cm / 100), 0, 150, 10, ys, 'cm', 5);
-    line(ctx, X(1), ys - 24, X(1), ys - 44, PAL.ink, 3);
-    text(ctx, 'the meter mark', X(1), ys - 60, PAL.ink, { size: 17, align: 'center' });
+    line(ctx, X(1), ys + 40, X(1), ys + 58, PAL.ink, 3);
+    text(ctx, 'the meter mark', X(1), ys + 76, PAL.ink, { size: 20, weight: 600, align: 'center' });
     /* the flashlight and the pulse of light */
-    flashlight(ctx, X(0) - 6, yp, PAL.ink);
+    flashlight(ctx, X(0) - 4, yp, PAL.ink);
     if (dist > 0.002) {
       ctx.save(); ctx.fillStyle = alpha(C('velocity'), 0.18); ctx.fillRect(X(0), yp - 14, X(dist) - X(0), 28); ctx.restore();
       line(ctx, X(0), yp, X(dist), yp, C('velocity'), 6);
     }
     dot(ctx, X(dist), yp, C('velocity'), true, 9);
-    text(ctx, 't = ' + fmt(tau, 2) + ' ns', X(dist), yp - 44, C('time'), { weight: 600, align: 'center' });
+    text(ctx, 't = ' + fmt(tau, 2) + ' ns', Math.min(X(dist), R - 60), yp - 48, C('time'), { weight: 600, align: 'center', bg: PAL.panel });
     /* the distance covered so far */
-    if (dist > 0.02) hbracket(ctx, X(0), X(dist), 330, PAL.ink, 'd = ' + fmt(dist, 2) + ' m');
+    if (dist > 0.02) hbracket(ctx, X(0), X(dist), 118, PAL.ink, 'd = ' + fmt(dist, 2) + ' m');
     const clause = Math.abs(dEnd - 1) < 0.005 ? 'which is what the meter is defined to be' : dEnd < 1 ? 'which falls short of the meter mark' : 'which runs past the meter mark';
     headline(ctx, done ? 'In ' + fmt(T.v, 2) + ' ns light travels ' + fmt(dEnd, 2) + ' m, ' + clause + '.'
       : 'After ' + fmt(tau, 2) + ' ns the light has traveled ' + fmt(dist, 2) + ' m and is still going.');
@@ -103,7 +103,7 @@ function stopwatch(ctx, x, y, r, f) {
    shaded: every number in it has the same order of magnitude. No motion.
 ===================================================================== */
 (function () {
-  const d = sim('sim-ladder', 420);
+  const d = sim('sim-ladder', 440);
   const M = ctl(d.controls, { label: '\\text{mantissa } m', cls: '', min: 1, max: 9.9, step: 0.1, value: 4.5, unit: '', dec: 1, aria: 'mantissa' });
   const N = ctl(d.controls, { label: '\\text{exponent } n', cls: '', min: -18, max: 26, step: 1, value: 2, unit: '', dec: 0, aria: 'exponent' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
@@ -133,8 +133,8 @@ function stopwatch(ctx, x, y, r, f) {
     for (let k = -18; k <= 26; k++) { const big = k % 3 === 0; line(ctx, X(k), yl - (big ? 12 : 7), X(k), yl + (big ? 12 : 7), PAL.ink, 2); if (big) text(ctx, pow10(k), X(k), yl + 30, PAL.muted, { size: 17, align: 'center' }); }
     /* the prefixes under their powers, on three rows where they crowd */
     for (const [p, name] of PREFIX) {
-      const row = Math.abs(p) === 2 ? 1 : Math.abs(p) === 1 ? 2 : 0, y = yl + 96 + 26 * row, on = p === lit;
-      if (row) line(ctx, X(p), yl + 14, X(p), y - 12, PAL.rule, 1.5);
+      const row = Math.abs(p) === 2 ? 1 : Math.abs(p) === 1 ? 2 : 0, y = yl + 104 + 26 * row, on = p === lit;
+      if (row) line(ctx, X(p), yl + 44, X(p), y - 12, alpha(PAL.ink, 0.35), 1.5);
       text(ctx, name, X(p), y, on ? PAL.ink : PAL.muted, { size: 17, align: 'center', weight: on ? 600 : 400 });
     }
     /* the known lengths above the ladder */
@@ -145,7 +145,7 @@ function stopwatch(ctx, x, y, r, f) {
     }
     /* the marker */
     dot(ctx, x, yl, PAL.ink, true, 10);
-    text(ctx, fmt(m, 1) + ' × ' + pow10(n) + ' m', x, yl + 64, PAL.ink, { weight: 600, align: x > 1250 ? 'right' : x < 150 ? 'left' : 'center', bg: PAL.panel });
+    text(ctx, fmt(m, 1) + ' × ' + pow10(n) + ' m', x, yl + 72, PAL.ink, { weight: 600, align: x > 1250 ? 'right' : x < 150 ? 'left' : 'center', bg: PAL.panel });
     /* what the value is, in words and in the readout */
     const sci = fmt(m, 1) + ' × ' + pow10(n) + ' m', oom = pow10(n);
     const sciTex = `${fmt(m, 1)} \\times 10^{${n}}\\ \\text{m}`;
@@ -191,28 +191,33 @@ function stopwatch(ctx, x, y, r, f) {
     const tau = cy.now(), done = tau >= T.v - 1e-9, pos = (D.v * tau) / T.v;
     const kmMin = D.v / T.v, kmH = kmMin * 60, mS = (kmH * 1000) / 3600;
     /* the road from school to home, marked in kilometers */
-    const ys = 220;
-    strip(ctx, L, R, ys, 48);
+    /* The school and the house stand on the far side of the road, at its far kerb, so the car drives
+       in front of them and never through them; each is named above its roof, clear of the kilometer ticks. */
+    const ys = 236, kerb = ys - 24;
     const hx = X(D.v);
-    school(ctx, L - 90, ys + 24, PAL.ink); house(ctx, hx + 80, ys + 24, PAL.ink);
-    text(ctx, 'school', L - 90, ys + 62, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'home', hx + 80, ys + 62, PAL.muted, { size: 17, align: 'center' });
+    school(ctx, L - 70, kerb, PAL.ink); house(ctx, hx + 60, kerb, PAL.ink);
+    text(ctx, 'school', L - 70, kerb - 116, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'home', hx + 60, kerb - 106, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    strip(ctx, L, R, ys, 48);
     scale(ctx, X, 0, KM_MAX, 5, ys + 34, 'km', 1);
-    hbracket(ctx, X(0), hx, ys - 96, PAL.ink, 'd = ' + fmt(D.v, 1) + ' km');
-    /* the car, with its speed drawn as an arrow whose length is fixed from the fastest trip the sliders allow */
+    hbracket(ctx, X(0), hx, ys - 138, PAL.ink, 'd = ' + fmt(D.v, 1) + ' km');
+    /* the car on the near lane, with its speed drawn as an arrow from its front bumper whose length is
+       fixed per km/h from the fastest trip the sliders allow, and held short of the canvas edge */
     const cx = X(pos);
-    car(ctx, cx, ys - 6, PAL.ink, 1.2);
-    const end = cx + 30 + (230 * kmH) / VMAX;
-    arrow(ctx, cx, ys - 46, end, ys - 46, C('velocity'), 5);
-    const lx = (cx + end) / 2;
-    text(ctx, sig3(kmH) + ' km/h', lx > R - 60 ? R + 30 : lx, ys - 68, C('velocity'), { weight: 600, size: 20, align: lx > R - 60 ? 'right' : 'center' });
+    car(ctx, cx, ys + 4, PAL.ink, 1.2);
+    const end = Math.min(cx + 56 + (230 * kmH) / VMAX, R + 90);
+    arrow(ctx, cx + 52, ys - 8, end, ys - 8, C('velocity'), 5);
+    /* the speed is written just past the arrow's tip, or, when the tip is near the end of the road, on the empty road behind the car */
+    if (end < R - 130) text(ctx, sig3(kmH) + ' km/h', end + 12, ys - 8, C('velocity'), { weight: 600, size: 20, align: 'left', bg: PAL.panel });
+    else text(ctx, sig3(kmH) + ' km/h', cx - 64, ys - 8, C('velocity'), { weight: 600, size: 20, align: 'right', bg: PAL.panel });
     /* the stopwatch, one turn of the hand for the whole trip */
-    const sx = 330, sy = 390, r = 72;
+    const sx = 330, sy = 404, r = 66;
     stopwatch(ctx, sx, sy, r, tau / T.v);
     text(ctx, 't = ' + fmt(tau, 1) + ' min', sx, sy + r + 34, C('time'), { weight: 600, size: 26, align: 'center' });
     /* the speed, in the three units of the example */
-    pair(ctx, 'average speed  =', sig3(kmMin) + ' km/min', 520, 350, C('velocity'));
-    pair(ctx, 'which is', sig3(kmH) + ' km/h', 520, 396, C('velocity'));
-    pair(ctx, 'or', sig3(mS) + ' m/s', 520, 442, C('velocity'));
+    pair(ctx, 'average speed  =', sig3(kmMin) + ' km/min', 520, 364, C('velocity'));
+    pair(ctx, 'which is', sig3(kmH) + ' km/h', 520, 410, C('velocity'));
+    pair(ctx, 'or', sig3(mS) + ' m/s', 520, 456, C('velocity'));
     headline(ctx, done ? 'Driving ' + fmt(D.v, 1) + ' km in ' + fmt(T.v, 1) + ' min is an average speed of ' + sig3(kmMin) + ' km/min, which is ' + sig3(kmH) + ' km/h, or ' + sig3(mS) + ' m/s.'
       : 'After ' + fmt(tau, 1) + ' min the car has gone ' + fmt(pos, 1) + ' km of the ' + fmt(D.v, 1) + ' km.');
     readout(d.readout, `\\text{average speed} = \\frac{${fmt(D.v, 1)}\\ \\text{km}}{${fmt(T.v, 1)}\\ \\text{min}} \\times \\frac{60\\ \\text{min}}{1\\ \\text{h}} = ${sig3(kmH)}\\ \\text{km/h}`,

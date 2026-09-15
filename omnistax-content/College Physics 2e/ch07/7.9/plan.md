@@ -209,6 +209,8 @@ book prints them, with no sliders and no number, as 7.1 and 3.2 do:
 The graph of $W$ against $x$ inside the Critical Thinking item's solution
 (`OSX_CP2e_Figure_07_09Sol_CTQ01c.jpg`) goes to 7.2 with that item.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): all four figures looked at in light and dark at every extreme; nothing to change.
+
 ## Table
 
 One, Table 7.6 Energy Consumption—Selected Countries (2020), in

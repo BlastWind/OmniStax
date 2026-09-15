@@ -202,6 +202,8 @@ Extra simulations (rule 15): thought about and judged:
 - The hockey player of one-dimensional addition. Left: two numbers add
   and there is nothing to see that the sentence does not say.
 
+Figure pass (2026-09-14, Claude Fable 5.1): `sim-boat` is at a fixed 14 units to the metre with the river width narrowed to 10 to 30 m (25 m stays the default); a landing beyond the panel is pinned at its edge and named; the boat is a rowing boat with oars and its labels go through `labeller()`, while its velocity triangle still fits its box because the ratio of the two speeds, not their size, is what it shows. `sim-plane` draws its triangle at a fixed 4.2 units per m/s; `sim-components` at 110 units per m/s with $v$ narrowed to 0.2 to 3 m/s; `sim-wind` at 6 units per m/s with the plane small at the origin instead of a ghost under the axes. `sim-binoculars` is at 13 units to the metre and its observers are the drawing layer's `person()`. `sim-coin` draws an airliner cabin (curved wall, bins, windows) with a passenger of the drawing layer holding the coin at the drop height, at 150 units to the metre with $h$ narrowed to 0.5 to 2.0 m, and its graph fixed at 0 to 200 m and 0 to −2 m. The galaxies' longest arrow no longer runs off the canvas. Every headline wraps through `topline()`.
+
 ## Exercises
 
 - No Check Your Understanding boxes and no AP items in the section, and

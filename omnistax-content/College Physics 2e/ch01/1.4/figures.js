@@ -1,7 +1,7 @@
 /* Figures for section 1.4 Approximation. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.4'] = function (root, F) {
-const { el, fmt, tex, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, text, headline, vbracket, nice } = F;
+const { el, fmt, tex, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, text, headline, topline, vbracket, nice } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -19,16 +19,9 @@ function sci(x) {
   return `${String(m)} \\times 10^{${e}}`;
 }
 
-/* a standing person of height h with their feet at (x, y): a head, a body, two legs and two arms, in ink */
-function person(ctx, x, y, h, color) {
-  const w = Math.min(8, Math.max(2, h * 0.05)), r = h * 0.09;
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = w;
-  ctx.beginPath(); ctx.arc(x, y - h + r, r, 0, Math.PI * 2); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(x, y - h + 2 * r); ctx.lineTo(x, y - h * 0.42);
-  ctx.moveTo(x, y - h * 0.42); ctx.lineTo(x - h * 0.14, y); ctx.moveTo(x, y - h * 0.42); ctx.lineTo(x + h * 0.14, y);
-  ctx.moveTo(x, y - h * 0.74); ctx.lineTo(x - h * 0.17, y - h * 0.5); ctx.moveTo(x, y - h * 0.74); ctx.lineTo(x + h * 0.17, y - h * 0.5);
-  ctx.stroke(); ctx.restore();
-}
+/* a standing person of height h with their feet at (x, y): the library's jointed figure, which stands 97 units tall at s = 1 */
+const PERSON_H = 97;
+function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSON_H }); }
 
 /* =====================================================================
    SIM 1: the height of a building. A person stands beside a building
@@ -71,16 +64,24 @@ function person(ctx, x, y, h, color) {
     if (n > 0) {
       ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(bx0, top, bx1 - bx0, G - top); ctx.restore();
       if (sh >= 7) for (let i = 1; i < n; i++) line(ctx, bx0, G - i * sh, bx1, G - i * sh, PAL.muted, 1.5);
+      if (sh >= 14) {   /* windows, a row per story, and a door on the ground story, once a story is tall enough to hold them */
+        ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.35);
+        const wh = Math.min(sh * 0.45, 22), ww = 18;
+        for (let i = 0; i < n; i++) for (let c = 0; c < 6; c++) { const wx = bx0 + 28 + c * 40, wy = G - i * sh - sh / 2 - wh / 2; if (i === 0 && c === 2) continue; ctx.fillRect(wx, wy, ww, wh); }
+        ctx.fillStyle = PAL.ink; ctx.fillRect(bx0 + 28 + 2 * 40 - 4, G - Math.min(sh * 0.8, 30), 26, Math.min(sh * 0.8, 30));
+        ctx.restore();
+      }
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(bx0, top, bx1 - bx0, G - top); ctx.restore();
       line(ctx, bx0 - 8, top, bx1 + 8, top, PAL.ink, 4);
-      vbracket(ctx, 950, G, top, PAL.ink, Math.round(up) + ' m');
+      if (G - top >= 40) vbracket(ctx, 950, G, top, PAL.ink, Math.round(up) + ' m');
+      else { vbracket(ctx, 950, G, top, PAL.ink); text(ctx, Math.round(up) + ' m', 966, top - 22, PAL.ink, { weight: 600 }); }
     }
     text(ctx, N.v + (N.v === 1 ? ' story' : ' stories'), (bx0 + bx1) / 2, G + 30, PAL.muted, { size: 17, align: 'center' });
     /* the person beside it, at the same scale as the building */
     const hp = P.v * k;
     person(ctx, 560, G, hp, PAL.ink);
-    text(ctx, 'a person, ' + num(P.v) + ' m', 560, G - hp - 22, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, done ? N.v + (N.v === 1 ? ' story' : ' stories') + ' of about ' + num(story) + ' m each make a building about ' + Math.round(total) + ' m tall.'
+    text(ctx, 'a person, ' + num(P.v) + ' m', 560, G - hp - 24, PAL.ink, { size: 17, weight: 600, align: 'center' });
+    headline(ctx, done ? (N.v === 1 ? 'One story of about ' + num(story) + ' m makes a building about ' + Math.round(total) + ' m tall.' : N.v + ' stories of about ' + num(story) + ' m each make a building about ' + Math.round(total) + ' m tall.')
       : n + ' of the ' + N.v + ' stories ' + (n === 1 ? 'is' : 'are') + ' up, and the building stands ' + Math.round(up) + ' m tall so far.');
     const exact = Math.abs(total - Math.round(total)) < 1e-9;
     readout(d.readout, `\\frac{${num(P.v)}\\ \\text{m}}{1\\ \\text{person}} \\times \\frac{${num(S.v)}\\ \\text{${S.v === 1 ? 'person' : 'persons'}}}{1\\ \\text{story}} \\times ${N.v}\\ \\text{${N.v === 1 ? 'story' : 'stories'}} ${exact ? '=' : '\\approx'} ${Math.round(total)}\\ \\text{m}`,
@@ -123,7 +124,7 @@ function person(ctx, x, y, h, color) {
     /* The scale in feet is fixed at 0 to 40 ft, which holds the example's pile of about 10 ft with
        room to spare, and never follows the pile. A pile taller than the scale is drawn to the top of
        it with its true height written above, so the reader is told it runs past the drawing. */
-    const ax = 200, top = 130, span = { hi: 40, n: 4 }, step = 10;
+    const ax = 200, top = 150, span = { hi: 40, n: 4 }, step = 10;
     const Y = (ft) => G - (Math.min(ft, span.hi) / span.hi) * (G - top);
     const over = h > span.hi;
     line(ctx, ax, G, ax, top, PAL.muted, 2);
@@ -139,10 +140,10 @@ function person(ctx, x, y, h, color) {
     /* a person 6 ft tall in the end zone, at the scale of the axis */
     const hp = (6 / span.hi) * (G - top), px = fx1 - ez / 2;
     person(ctx, px, G, hp, PAL.ink);
-    text(ctx, 'a person', px, G - hp - 40, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, '6 ft tall', px, G - hp - 18, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'a person', px, G - hp - 44, PAL.ink, { size: 17, weight: 600, align: 'center' });
+    text(ctx, '6 ft tall', px, G - hp - 24, PAL.ink, { size: 17, weight: 600, align: 'center' });
     const amount = A.v === 1 ? 'One trillion dollars' : fmt(A.v, 1) + ' trillion dollars';
-    headline(ctx, done ? amount + ' in $100 bills covers the field to a height of about ' + plain(H1) + ' in., ' + (F1 >= 1 ? 'or about ' + plain(F1) + ' ft' : 'which is less than a foot') + (over ? ', which is taller than the scale on the left reaches.' : '.')
+    topline(ctx, done ? amount + ' in $100 bills covers the field to a height of about ' + plain(H1) + ' in., ' + (F1 >= 1 ? 'or about ' + plain(F1) + ' ft' : 'which is less than a foot') + (over ? ', which is taller than the scale on the left reaches.' : '.')
       : 'The stacks are being laid down, and the pile is ' + dec(h) + ' ft high so far.');
     readout(d.readout, `\\text{height} = \\frac{${sci(vol)}\\ \\text{in.}^{3}}{6.48 \\times 10^{6}\\ \\text{in.}^{2}} = ${dec(Hin)}\\ \\text{in.} \\approx ${sci(H1)}\\ \\text{in.} = ${plain(F1)}\\ \\text{ft}`,
       'Before rounding, the pile is ' + dec(Hin) + ' in. or ' + dec(Hft) + ' ft high, and the example keeps only one significant figure because its inputs are that rough. Set the amount to 28 trillion, the federal debt of 2021 the example mentions, and the pile rises to about ' + plain(round1(round1(volumeOf(28) / AREA) / 12)) + ' ft, taller than most buildings.');

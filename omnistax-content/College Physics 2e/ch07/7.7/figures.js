@@ -50,16 +50,21 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     const tau = cy.now(), done = tau >= T.v - 1e-9, f = T.v > 0 ? tau / T.v : 1;
     const KE = 0.5 * m.v * vf.v * vf.v, PE = m.v * G * h.v, W = KE + PE, P = W / T.v;
     /* the scene: a flight of stairs on a fixed scale, so a taller flight really is drawn taller */
-    const x0 = 150, y0 = 560, SC = 380 / Math.max(h.v, 2), rise = h.v * SC, run = 1.2 * rise, n = clamp(Math.round(h.v / 0.2), 5, 30);
+    const x0 = 150, y0 = 560, SC = 310 / Math.max(h.v, 2), rise = h.v * SC, run = 1.2 * rise, n = clamp(Math.round(h.v / 0.2), 5, 30);
     line(ctx, 60, y0, 800, y0, PAL.muted, 3);
     stairs(ctx, x0, y0, rise, run, n);
     vbracket(ctx, x0 + run + 40, y0, y0 - rise, C('position'), 'h = ' + fmt(h.v, 2) + ' m', 1);
     dot(ctx, x0 - 8, y0 - 12, PAL.ink, false, 10);
     text(ctx, 'she starts from rest', x0 - 20, y0 + 36, PAL.muted, { size: 17 });
     const tread = Math.min(n - 1, Math.floor(f * n));
-    F.person(ctx, x0 + f * run, y0 - ((tread + 1) * rise) / n, PAL.ink, { lean: 0.2, phase: done ? 0 : tau * 9 });
+    /* she runs to the flight's own scale, about 1.7 m, her front foot already on the step above and her arms swinging */
+    const PS = clamp((1.7 * SC) / 150, 0.5, 0.95), sw = done ? 0 : Math.sin(tau * 9), stepUp = rise / n;
+    const at = { x: x0 + f * run, y: y0 - ((tread + 1) * rise) / n, s: PS };
+    F.silhouette(ctx, done ? { ...at, pose: 'stand' } : { ...at, pose: 'run',
+      feet: [{ x: 26 + 6 * sw, y: -stepUp / PS }, { x: -24 - 6 * sw, y: 0 }],
+      hands: [{ x: 30 + 14 * sw, y: -96 }, { x: -20 - 14 * sw, y: -92 }] });
     if (vf.v > 0.05) {
-      const ax = x0 + run - 90, ay = y0 - rise - 36;
+      const ax = x0 + run + 110, ay = y0 - rise - 22;   /* beside the landing, clear of the bracket and of her */
       arrow(ctx, ax, ay, ax + vf.v * 26, ay, C('velocity'), 5);
       text(ctx, fmt(vf.v, 2) + ' m/s at the top', ax, ay - 28, C('velocity'), { size: 17, weight: 600 });
     }

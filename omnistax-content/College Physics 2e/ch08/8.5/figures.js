@@ -44,10 +44,10 @@ function box(ctx, x, gy, w, label) {
 }
 /* an arrow of length L from (x, y) in the direction s, with its label beyond the head and never off the canvas */
 function vec(ctx, x, y, L, s, color, label) {
-  if (!(L > 8)) { dot(ctx, x, y, color, true, 6); text(ctx, label, Math.min(x + 16, 1210), y, color, { size: 19, weight: 600 }); return; }
+  if (!(L > 8)) { dot(ctx, x, y, color, true, 6); F.label(ctx, label, x, y, { side: 'right', gap: 14, leader: false, color, size: 19, H: 900 }); return; }
   arrow(ctx, x, y, x + s * L, y, color, 5);
-  const lx = Math.max(190, Math.min(1210, x + s * (L + 14)));
-  text(ctx, label, lx, y, color, { size: 19, weight: 600, align: s < 0 ? 'right' : 'left' });
+  /* the label sits past the head and is held inside the canvas, however long the arrow */
+  F.label(ctx, label, x + s * L, y, { side: s < 0 ? 'left' : 'right', gap: 14, leader: false, color, size: 19, H: 900 });
 }
 
 /* =====================================================================
@@ -116,6 +116,11 @@ function vec(ctx, x, y, L, s, color, label) {
     box(ctx, x1, GY, w1, 'm₁');
     box(ctx, x2, GY, w2, 'm₂');
     const KV = 180 / P.vmax;
+    /* each arrow starts over or under its own object, and a faint leader ties the row to the body,
+       since the two velocity rows and the two momentum rows cannot share a line once the objects touch */
+    const tie = (x, ya, yb) => line(ctx, x, ya, x, yb, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    tie(x1, GY - w1 - 8, GY - 112); tie(x2, GY - w2 - 8, GY - 166);
+    tie(x1, GY + 28, GY + 52); tie(x2, GY + 28, GY + 108);
     vec(ctx, x1, GY - 122, Math.abs(u1) * KV, u1 < 0 ? -1 : 1, C('velocity'), (after ? 'v₁′ = ' : 'v₁ = ') + sig(u1) + ' m/s');
     vec(ctx, x2, GY - 176, Math.abs(u2) * KV, u2 < 0 ? -1 : 1, C('velocity'), (after ? 'v₂′ = ' : 'v₂ = ') + sig(u2) + ' m/s');
     const KP = 180 / P.pmax;
@@ -140,9 +145,12 @@ function vec(ctx, x, y, L, s, color, label) {
     step(A, m1.v * v1.v, m1.v * s.v1p, C('momentum'), 4);
     step(A, m2.v * v2.v, m2.v * s.v2p, C('momentum'), 4, [10, 10]);
     const clA = (v) => Math.min(Math.max(v, PLO), PHI);
-    text(ctx, 'p₁', A.X(T) - 8, A.Y(clA(m1.v * s.v1p)) - 22, C('momentum'), { size: 18, weight: 600, align: 'right' });
-    text(ctx, 'p₂', A.X(T) - 8, A.Y(clA(m2.v * s.v2p)) + 22, C('momentum'), { size: 18, weight: 600, align: 'right' });
-    text(ctx, 'total', A.X(0.35), A.Y(clA(s.ptot)) - 22, C('momentum'), { size: 18, weight: 600 });
+    /* the three names take their turn at the right-hand ends of the lines, stepped out where two ends meet */
+    const lab = F.labeller(ctx, 900);
+    lab.add('total', A.X(T), A.Y(clA(s.ptot)), 0.3, -1, C('momentum'), 18, 18);
+    lab.add('p₁', A.X(T), A.Y(clA(m1.v * s.v1p)), 0.3, -1, C('momentum'), 18, 18);
+    lab.add('p₂', A.X(T), A.Y(clA(m2.v * s.v2p)), 0.3, 1, C('momentum'), 18, 18);
+    lab.flush();
     line(ctx, A.X(Math.min(tau, T)), bA.t, A.X(Math.min(tau, T)), bA.b, PAL.ink, 2, [4, 8]);
     /* graph, right: the internal kinetic energy against time */
     /* the energy range is likewise the chosen figure's: 5 J for Figure 8.7, 120 J for the 91.9 J

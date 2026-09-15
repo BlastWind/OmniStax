@@ -154,6 +154,8 @@ Extra simulations (rule 15), considered and judged:
 
 None built.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): `sim-work` redrawn. The person is now `F.silhouette` in the push pose, both hands on the mower's grip and striding while it moves, the mower a third larger, the force arrow headed at the grip with its tail back along the line of the push (a thin panel halo where it crosses her arms), the component and the angle drawn with `F.angleArc` at the tail, and every label placed by `F.labeller` so nothing collides at either end of the force or angle sliders; the canvas grew to 840 and the graph moved down with it. `sim-joule` unchanged.
+
 ## Exercises
 
 - Nothing inline: the chapter prints no Check Your Understanding box, and

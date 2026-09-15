@@ -161,6 +161,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+**Figure pass (2026-09-14, Claude Fable 5.1).** `sim-pole` draws the vaulter as the library's silhouette facing the reader, shoulders at the pole and hands on the two grips, and moves the note about a capped arrow above the labels it collided with. `sim-pivot` is unchanged.
+
 ## Exercises
 
 - No Check Your Understanding boxes; nothing inline.

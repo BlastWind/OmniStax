@@ -199,6 +199,8 @@ Extra simulations (rule 15), thought through, judged and decided:
 - A rod on a pivot with two lead weights in its holes, which is the last AP
   item. Left: it would answer the question the reader is asked.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-bike-wheel`: the mitten is now a fist on a forearm (`fist()` in this file) and the hand's label moved beyond the forearm. `sim-inertias`: the headline takes "An" before a vowel. `sim-merry-go-round`: the child is a person seen from above (shoulders and head, `personAbove()` in this file) facing the way the platform carries her, the father stands outside the rim behind his push with both hands on the edge, and the child's and the angular acceleration's labels go through the labeller, blocked from the headline and the graph. `sim-point-mass` looked at and left as built.
+
 ## Exercises
 
 - The Check Your Understanding (fs-id2404667, torque and moment of inertia

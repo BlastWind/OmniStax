@@ -23,11 +23,6 @@ function sci(x, dec) {
   const e = Math.floor(Math.log10(Math.abs(x)));
   return e >= -2 && e <= 3 ? sig3(x) : sgn(x) + fmt(Math.abs(x) / Math.pow(10, e), dec) + ' × 10' + sup(e);
 }
-/* an angle arc at (x, y) opening from the horizontal down to th degrees, its label beyond the arc */
-function angleArc(ctx, x, y, r, th, label, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r, 0, th * RAD); ctx.stroke(); ctx.restore();
-  const a = (th / 2) * RAD; text(ctx, label, x + (r + 32) * Math.cos(a), y + (r + 32) * Math.sin(a), color, { size: 20, weight: 600, align: 'center' });
-}
 
 /* ---------- sprites, in ink ---------- */
 /* a lawn mower standing on the ground at (x, y), its handle reaching up and back */
@@ -56,58 +51,64 @@ function crate(ctx, x, y, w, color) {
    angle and the displacement.
 ===================================================================== */
 (function () {
-  const d = sim('sim-work', 780);
+  const d = sim('sim-work', 840);
   const Fc = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 150, step: 2.5, value: 75, unit: 'N', dec: 1, onInput: reset, aria: 'force' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 35, unit: 'º', dec: 0, onInput: reset, aria: 'angle between the force and the displacement' });
+  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 35, unit: '°', dec: 0, onInput: reset, aria: 'angle between the force and the displacement' });
   const dd = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0, max: 40, step: 0.5, value: 25, unit: 'm', dec: 1, onInput: reset, aria: 'displacement' });
   const cy = cycle(() => 1, 1.2);            /* one trip per loop, counted as the fraction of it that is done */
   function reset() { cy.reset(); }
-  const SC = 22, X0 = 180, GY = 360;         /* logical units to the metre, the start of the trip, the ground */
+  const SC = 22, X0 = 260, GY = 420;         /* logical units to the metre, the start of the trip, the ground */
+  const MS = 1.3, PS = 1.0;                  /* the mower's scale and the person's; she stands 150 units, the mower's handle reaches 135 */
   function draw() {
     const { ctx } = begin(d.c);
-    const Fv = Fc.v, ang = th.v, D = dd.v, cs = Math.cos(ang * RAD);
+    const Fv = Fc.v, ang = th.v, D = dd.v, cs = Math.cos(ang * RAD), sn = Math.sin(ang * RAD);
     const s = D * cy.now(), W = Fv * s * cs, Wtot = Fv * D * cs;
+    const lab = F.labeller(ctx, 840);
     /* the ground and the mower on it */
-    line(ctx, 120, GY, 1340, GY, PAL.muted, 3);
+    line(ctx, 60, GY, 1370, GY, PAL.muted, 3);
     const mx = X0 + s * SC;
-    mower(ctx, mx, GY, PAL.ink, 0.9, -1);
-    /* the person behind the mower, her hands on the handle and her feet on the ground; she walks while the mower moves */
-    const gx = mx - 86, gy = GY - 94, L = 60 + Fv * 0.6;
-    F.person(ctx, mx - 150, GY, PAL.ink, { lean: 0.25, reach: { x: gx - 2, y: gy + 4 }, phase: s > 0.05 && s < D - 0.05 ? s * 0.5 : 0 });
-    /* the force at the handle, its tail up and behind, with the angle it makes with the
-       direction of motion. Nothing of the force is drawn once the slider reaches zero: an
-       arrow of the shaft's own length standing where no one is pushing would say that a
+    mower(ctx, mx, GY, PAL.ink, MS, -1);
+    /* the person behind the mower, both hands on the grip and her feet on the ground; she strides while it moves */
+    const gx = mx - 96 * MS, gy = GY - 104 * MS;
+    const walking = s > 0.05 && s < D - 0.05, sw = walking ? Math.sin(s * 1.6) : 0;
+    const px = gx - 58 * PS;
+    F.silhouette(ctx, { x: px, y: GY, s: PS, pose: 'push', hands: [{ x: (gx - px) / PS, y: (gy - GY) / PS + 2 }, { x: (gx - px) / PS - 4, y: (gy - GY) / PS + 8 }],
+      feet: [{ x: 10 + 18 * sw, y: 0 }, { x: -30 - 18 * sw, y: 0 }] });
+    /* the force at the grip, its head where the hands push and its tail back along the line of the push,
+       with the angle it makes with the direction of motion drawn at the tail. Nothing of the force is
+       drawn once the slider reaches zero: an arrow standing where no one is pushing would say that a
        force is there, so below 0.05 N the arrow, its component and the angle all go. */
     const pushing = Fv >= 0.05;
-    const tx = gx - L * cs, ty = gy - L * Math.sin(ang * RAD);
+    const L = 80 + Fv * 0.7, tx = gx - L * cs, ty = gy - L * sn;
     if (pushing) {
-      line(ctx, tx, ty, Math.min(1370, tx + Math.max(120, L * 0.9)), ty, PAL.rule, 2, [10, 10]);
-      if (ang > 6) angleArc(ctx, tx, ty, 46, ang, 'θ = ' + fmt(ang, 0) + 'º', PAL.ink);
-      arrow(ctx, tx, ty, gx, gy, C('force'), 5);
-      /* kept inside the canvas wherever the mower has got to */
-      text(ctx, 'F = ' + fmt(Fv, 1) + ' N', Math.max(110, tx - 18), ty - 28, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+      /* a thin halo of the panel colour under the arrow keeps it legible where it crosses the body */
+      line(ctx, tx, ty, gx, gy, PAL.panel, 9);
       /* the component of the force along the motion, which is the part of it that does the work */
-      line(ctx, gx, ty, gx, gy, C('force'), 2, [4, 8]);
-      arrow(ctx, tx, ty, gx, ty, C('force'), 4);
-      /* the label goes above the reference line, to the right of the tail, since the angle's
-         arc and its own label take the wedge below it */
-      text(ctx, 'F cos θ = ' + fmt(Fv * cs, 1) + ' N', Math.min(tx + 54, 1150), ty - 32, C('force'), { size: 20, weight: 600, align: 'left' });
+      if (Math.abs(cs) > 0.02) {
+        line(ctx, gx, ty, gx, gy, C('force'), 2, [4, 8]);
+        arrow(ctx, tx, ty, gx, ty, C('force'), 4);
+        lab.add('F cos θ = ' + fmt(Fv * cs, 1) + ' N', (tx + gx) / 2, ty, 0, cs > 0 ? -1 : -1, C('force'), 20, 18);
+      }
+      arrow(ctx, tx, ty, gx, gy, C('force'), 5);
+      if (ang > 4 && ang < 176) F.angleArc(ctx, { x: tx, y: ty }, 40, -ang * RAD, 0, 'θ = ' + fmt(ang, 0) + '°', lab);
+      lab.add('F = ' + fmt(Fv, 1) + ' N', tx - 10 * cs, ty - 10 * sn, -cs, -sn - 0.4, C('force'), 22, 26);
     } else {
-      text(ctx, 'F = 0 N', Math.max(110, gx - 18), gy - 40, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+      lab.add('F = 0 N', gx, gy - 12, 0, -1, C('force'), 22, 30);
     }
     /* the displacement the force acts through */
-    line(ctx, X0, GY, X0, GY + 66, PAL.rule, 2, [4, 8]);
+    line(ctx, X0, GY, X0, GY + 70, PAL.rule, 2, [4, 8]);
     if (D > 0.05) {
-      line(ctx, X0 + D * SC, GY, X0 + D * SC, GY + 66, PAL.rule, 2, [4, 8]);
-      hbracket(ctx, X0, X0 + D * SC, 420, C('position'), 'd = ' + fmt(D, 1) + ' m');
+      line(ctx, X0 + D * SC, GY, X0 + D * SC, GY + 70, PAL.rule, 2, [4, 8]);
+      hbracket(ctx, X0, X0 + D * SC, 480, C('position'), 'd = ' + fmt(D, 1) + ' m');
     }
+    lab.flush();
     /* the graph: the work done against the distance the mower has travelled */
     /* fixed axes. The distance axis is the slider's own range, 0 to 40 m, ticked every 10 m. The
        work can reach 150 N × 40 m = 6000 J either way, but the default push does 1.5 kJ and would
        then sit in an eighth of the height, so the work axis is fixed at −3000 to 3000 J, ticked
        every 1000, which holds the default run comfortably; beyond that the line is drawn only as
        far as the box reaches and the work so far is pinned at the edge. Neither range moves. */
-    const XR = 40, WR = 3000, box = { l: 200, r: 1290, t: 500, b: 690 };
+    const XR = 40, WR = 3000, box = { l: 200, r: 1290, t: 560, b: 750 };
     const { X, Y } = axes(ctx, box, [0, XR], [-WR, WR], {
       xl: 'distance traveled (m)', xc: C('position'), yl: 'work done (J)', yc: C('energy'),
       nx: 4, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => sig3(v),

@@ -339,3 +339,5 @@ The masculine ordinal stood in seventeen places in this section's `figures.js`,
 in the angle sliders' units, the arc labels, an axis label and the headlines,
 and is now the degree sign; the two angle units in the exercise answers went
 with it.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). All three figures use `F.angleArc` and the labeller for their angle names and their velocity and momentum labels, so no name sits on an arrow at any angle. `sim-scatter`: the scene is half again as large (radius 250) and the momentum arrows are on 240 units per kg·m/s. `sim-dark-room`: the room is 400 by 420 and the arrows on 32 units per m/s. `sim-billiards`: the balls are 26 in radius, the arrows leave from the rim on 18 units per m/s, and the guide lines stop at the cushions.

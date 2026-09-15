@@ -129,6 +129,8 @@ item. The first only redraws the walk sim with a longer path, the second
 needs a drag model the book does not give until Chapter 5, and the third
 adds a ball 2.7 has already shown. None built.
 
+Figure pass (2026-09-14, Claude Fable 5.1): `sim-walk` now draws its grid at a fixed 50 units to the block, anchored at the start, so the scene no longer rescales when a leg changes; the walker is the drawing layer's `person()`, upright on the east leg and turned to walk up the page on the north leg; the helicopter is a new top-view sprite (cabin, boom, tail rotor, two blades over a faint rotor disc); the θ, b, start and destination labels go through `labeller()` so none lands on the helicopter or on one another at a one-block leg. `sim-two-balls` is at a fixed 130 units to the metre and 12 units per m/s of arrow, which needed the sliders narrowed to $y_0$ 1.0 to 3.0 m and $v_{0x}$ 0.5 to 4.0 m/s (the book's 1.5 m and 3.0 m/s stay the defaults); the velocities are named once, on the thrown ball, in panels beside their arrows; the strobe copies are darker; the graph labels sit off their curves. Both headlines wrap through `topline()`.
+
 ## Exercises
 
 - 0 Check Your Understanding: the chapter has none.

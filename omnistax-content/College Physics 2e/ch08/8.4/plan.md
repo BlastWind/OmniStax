@@ -271,3 +271,5 @@ nothing on the page changes.
 
 The caption of Figure 8.6 said the objects "collide elastically, as in Figure
 8.6", the figure pointing at itself; the clause is gone.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). Both figures looked at in light and dark at every extreme and left as built: the blocks, arrows and bars of `sim-elastic-collision` read cleanly and the plane of `sim-two-solutions` has no collisions.

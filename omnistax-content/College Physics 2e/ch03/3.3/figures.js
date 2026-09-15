@@ -3,7 +3,7 @@
    none registers a cycle and none gets a transport; each redraws when a slider moves. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, FONT } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, topline, FONT } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -74,7 +74,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
     const { ctx } = begin(d.c);
     const a = A.v, th = TH.v, ax = a * cos(th), ay = a * sin(th);
     const tx = OX + ax * S, ty = OY - ay * S, pos = C('position');
-    frame(ctx, OX, OY, OX - 330, OX + 330, OY - 325, OY + 315);
+    frame(ctx, OX, OY, OX - 330, OX + 340, OY - 325, OY + 315);
     compass(ctx, 120, 170);
     /* the components, dashed, and the right angle where they meet */
     if (Math.abs(ax) > 0.05) darrow(ctx, OX, OY, tx, OY, pos, 3);
@@ -87,9 +87,9 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
     dot(ctx, OX, OY, PAL.ink, true, 5);
     /* the component labels: the x-component under the axis, the y-component beside its arrow */
     if (Math.abs(ax) > 0.05) text(ctx, 'Ax = ' + fmt(ax, 1) + ' blocks', (OX + tx) / 2, OY + (ay >= 0 ? 30 : -30), pos, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    const lft = ax >= 0 && tx < 740; if (Math.abs(ay) > 0.05) text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', tx + (lft ? 16 : -16), (OY + ty) / 2, pos, { size: 20, weight: 600, align: lft ? 'left' : 'right', bg: PAL.panel });
+    const lft = ax >= 0; if (Math.abs(ay) > 0.05) text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', tx + (lft ? 16 : -16), (OY + ty) / 2, pos, { size: 20, weight: 600, align: lft ? 'left' : 'right', bg: PAL.panel });
     /* the numbers, at the right */
-    const px = 970, py = 280;
+    const px = 1060, py = 280;
     text(ctx, 'magnitude', px, py, PAL.muted, { size: 17 }); text(ctx, 'A = ' + fmt(a, 1) + ' blocks', px, py + 30, pos, { size: 24, weight: 600 });
     text(ctx, 'direction', px, py + 80, PAL.muted, { size: 17 }); text(ctx, 'θ = ' + fmt(th, 1) + '°', px, py + 110, PAL.ink, { size: 24, weight: 600 });
     text(ctx, 'components', px, py + 160, PAL.muted, { size: 17 });
@@ -97,7 +97,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
     text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', px, py + 224, pos, { size: 24, weight: 600 });
     const axis = Math.abs(ax) < 0.05 || Math.abs(ay) < 0.05;
     text(ctx, axis ? 'one component is zero, so the other is A itself' : 'the magnitudes do not add: ' + fmt(Math.abs(ax), 1) + ' + ' + fmt(Math.abs(ay), 1) + ' ≠ ' + fmt(a, 1), px, py + 270, PAL.muted, { size: 17 });
-    headline(ctx, 'A vector of ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '° has the components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks.');
+    topline(ctx, 'A vector of ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '° has the components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks.');
     readout(d.readout, `\\begin{aligned}\\kAx &= \\kA\\cos\\theta = (${fmt(a, 1)}\\ \\text{blocks})(\\cos ${fmt(th, 1)}^\\circ) = ${fmt(ax, 1)}\\ \\text{blocks}\\\\ \\kAy &= \\kA\\sin\\theta = (${fmt(a, 1)}\\ \\text{blocks})(\\sin ${fmt(th, 1)}^\\circ) = ${fmt(ay, 1)}\\ \\text{blocks}\\end{aligned}`,
       axis ? 'A vector along one of the axes has a component of zero along the other, and its remaining component is as long as the vector itself.'
         : 'The component vectors add to A, but their magnitudes do not: ' + fmt(Math.abs(ax), 1) + ' blocks + ' + fmt(Math.abs(ay), 1) + ' blocks is not ' + fmt(a, 1) + ' blocks, and neither component is longer than A itself.');
@@ -119,7 +119,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
     const { ctx } = begin(d.c);
     const ax = AX.v, ay = AY.v, a = Math.hypot(ax, ay), th = a > 0 ? angleOf(ax, ay) : 0, atn = ax !== 0 ? Math.atan(ay / ax) / RAD : (ay >= 0 ? 90 : -90);
     const tx = OX + ax * S, ty = OY - ay * S, pos = C('position');
-    frame(ctx, OX, OY, OX - 330, OX + 330, OY - 325, OY + 315);
+    frame(ctx, OX, OY, OX - 330, OX + 340, OY - 325, OY + 315);
     compass(ctx, 120, 170);
     if (Math.abs(ax) > 0.05) darrow(ctx, OX, OY, tx, OY, pos, 3);
     if (Math.abs(ay) > 0.05) darrow(ctx, tx, OY, tx, ty, pos, 3);
@@ -128,9 +128,9 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
     if (a > 0.05) angleArc(ctx, OX, OY, th, Math.min(56, Math.max(30, a * S * 0.45)), 'θ', PAL.ink);
     dot(ctx, OX, OY, PAL.ink, true, 5);
     if (Math.abs(ax) > 0.05) text(ctx, 'Ax = ' + fmt(ax, 1) + ' blocks', (OX + tx) / 2, OY + (ay >= 0 ? 30 : -30), pos, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    const lft = ax >= 0 && tx < 740; if (Math.abs(ay) > 0.05) text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', tx + (lft ? 16 : -16), (OY + ty) / 2, pos, { size: 20, weight: 600, align: lft ? 'left' : 'right', bg: PAL.panel });
+    const lft = ax >= 0; if (Math.abs(ay) > 0.05) text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', tx + (lft ? 16 : -16), (OY + ty) / 2, pos, { size: 20, weight: 600, align: lft ? 'left' : 'right', bg: PAL.panel });
     /* the numbers, at the right */
-    const px = 970, py = 280;
+    const px = 1060, py = 280;
     text(ctx, 'components', px, py, PAL.muted, { size: 17 });
     text(ctx, 'Ax = ' + fmt(ax, 1) + ' blocks', px, py + 30, pos, { size: 24, weight: 600 });
     text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', px, py + 64, pos, { size: 24, weight: 600 });
@@ -148,7 +148,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
       small = ax > 0 ? 'The direction ' + fmt(th, 1) + '° from the +x axis is ' + bearing(th) + ', as the problems state it.'
         : 'The inverse tangent gives ' + fmt(atn, 1) + '°, the angle of the line the vector lies along; the arrow points the other way along that line, at ' + fmt(th, 1) + '° from the +x axis, which is ' + bearing(th) + '.';
     }
-    headline(ctx, a > 0.05 ? 'The components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks add to A = ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '°, which is ' + bearing(th) + '.'
+    topline(ctx, a > 0.05 ? 'The components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks add to A = ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '°, which is ' + bearing(th) + '.'
       : 'Both components are zero, so A has no length and no direction.');
     readout(d.readout, `\\begin{aligned}\\kA &= \\sqrt{\\kAx^2 + \\kAy^2} = ${sq} = ${fmt(a, 1)}\\ \\text{blocks}\\\\ ${dir}\\end{aligned}`, small);
   }
@@ -163,7 +163,7 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
    Still: a sum of displacements has no time in it.
 ===================================================================== */
 function walk(id, sign) {
-  const d = sim(id, 720);
+  const d = sim(id, 760);
   const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 80, step: 0.5, value: 53, unit: 'm', dec: 1, aria: 'magnitude of A' });
   const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: -180, max: 180, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'angle of A' });
   const B = ctl(d.controls, { label: '\\kB', cls: 'position', min: 5, max: 80, step: 0.5, value: 34, unit: 'm', dec: 1, aria: 'magnitude of B' });
@@ -177,7 +177,7 @@ function walk(id, sign) {
     /* The names of the three arrows ride the arrows themselves, and at θ_B = θ_A the three lie along
        one line and their labels would land on one another. They go through a labeller instead, which
        steps a label out and leaders it when the slot beside its arrow is already taken (rule 26.7). */
-    const lab = F.labeller(ctx, 720);
+    const lab = F.labeller(ctx, 760);
     lab.block(900, 160, 1400, 520);   /* the table on the right is not a place for a stepped-out label */
     const side = (s, x1, y1, x2, y2, color, sgn2, size) => {
       const L = Math.hypot(x2 - x1, y2 - y1) || 1, nx = ((y2 - y1) / L) * sgn2, ny = (-(x2 - x1) / L) * sgn2;
@@ -196,19 +196,19 @@ function walk(id, sign) {
     const OX = L + (W - dx * S) / 2 - xmin * S, OY = T + (Hh - dy * S) / 2 + ymax * S;
     const X = (m) => OX + m * S, Y = (m) => OY - m * S;
     const yRow = Y(ymin), xCol = X(xmin);            /* the lowest and the leftmost point of the drawing */
-    frame(ctx, OX, OY, Math.min(xCol - 150, OX - 60), R + 30, T - 30, Math.max(yRow + 150, OY + 40));
+    frame(ctx, OX, OY, Math.min(xCol - 170, OX - 60), R + 30, T - 30, Math.max(yRow + 170, OY + 40));
     compass(ctx, 70, 640, 26);
     /* the x-components, on rows below the drawing: A's, then B's from where A's ends, then the resultant's as a bracket */
-    const r1 = yRow + 28, r2 = yRow + 66, r3 = yRow + 112;
+    const r1 = yRow + 30, r2 = yRow + 82, r3 = yRow + 134;
     line(ctx, X(ax), Y(ay), X(ax), r2, PAL.rule, 1.5, [4, 8]); line(ctx, X(rx), Y(ry), X(rx), r3, PAL.rule, 1.5, [4, 8]); line(ctx, OX, OY, OX, r3, PAL.rule, 1.5, [4, 8]);
-    if (Math.abs(ax) > 0.3) { darrow(ctx, X(0), r1, X(ax), r1, pos, 3); text(ctx, 'Ax = ' + fmt(ax, 1) + ' m', X(ax / 2), r1, pos, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
-    if (Math.abs(bx) > 0.3) { darrow(ctx, X(ax), r2, X(rx), r2, pos, 3); text(ctx, bl + 'x = ' + fmt(bx, 1) + ' m', X(ax + bx / 2), r2, pos, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
+    if (Math.abs(ax) > 0.3) { darrow(ctx, X(0), r1, X(ax), r1, pos, 3); text(ctx, 'Ax = ' + fmt(ax, 1) + ' m', X(ax / 2), r1 + 22, pos, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
+    if (Math.abs(bx) > 0.3) { darrow(ctx, X(ax), r2, X(rx), r2, pos, 3); text(ctx, bl + 'x = ' + fmt(bx, 1) + ' m', X(ax + bx / 2), r2 + 22, pos, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
     if (Math.abs(rx) > 0.3) { arrow(ctx, X(0), r3, X(rx), r3, PAL.ink, 3); text(ctx, 'Rx = Ax + ' + (sign > 0 ? 'Bx' : '(−Bx)') + ' = ' + fmt(rx, 1) + ' m', X(rx / 2), r3 + 24, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
     /* the y-components, on columns left of the drawing, the same way */
-    const c1 = xCol - 28, c2 = xCol - 66, c3 = xCol - 112;
+    const c1 = xCol - 30, c2 = xCol - 82, c3 = xCol - 134;
     line(ctx, X(ax), Y(ay), c2, Y(ay), PAL.rule, 1.5, [4, 8]); line(ctx, X(rx), Y(ry), c3, Y(ry), PAL.rule, 1.5, [4, 8]); line(ctx, OX, OY, c3, OY, PAL.rule, 1.5, [4, 8]);
-    if (Math.abs(ay) > 0.3) { darrow(ctx, c1, Y(0), c1, Y(ay), pos, 3); vlabel('Ay = ' + fmt(ay, 1) + ' m', c1, Y(ay / 2), pos); }
-    if (Math.abs(by) > 0.3) { darrow(ctx, c2, Y(ay), c2, Y(ry), pos, 3); vlabel(bl + 'y = ' + fmt(by, 1) + ' m', c2, Y(ay + by / 2), pos); }
+    if (Math.abs(ay) > 0.3) { darrow(ctx, c1, Y(0), c1, Y(ay), pos, 3); vlabel('Ay = ' + fmt(ay, 1) + ' m', c1 - 22, Y(ay / 2), pos); }
+    if (Math.abs(by) > 0.3) { darrow(ctx, c2, Y(ay), c2, Y(ry), pos, 3); vlabel(bl + 'y = ' + fmt(by, 1) + ' m', c2 - 22, Y(ay + by / 2), pos); }
     if (Math.abs(ry) > 0.3) { arrow(ctx, c3, Y(0), c3, Y(ry), PAL.ink, 3); vlabel('Ry = Ay + ' + (sign > 0 ? 'By' : '(−By)') + ' = ' + fmt(ry, 1) + ' m', c3 - 24, Y(ry / 2), PAL.ink); }
     /* the ghost of B when the walk subtracts it */
     if (sign < 0) { line(ctx, X(ax), Y(ay), X(ax + bx0), Y(ay + by0), PAL.muted, 3, [10, 10]); side('B', X(ax), Y(ay), X(ax + bx0), Y(ay + by0), PAL.muted, -1, 22); }
@@ -243,7 +243,7 @@ function walk(id, sign) {
       : rx < 0 ? 'The inverse tangent gives the angle of the line the resultant lies along; the arrow points the other way along it, at ' + fmt(th, 1) + '° from the +x axis, which is ' + bearing(th) + '.'
       : sign > 0 ? 'The components of A and B along each axis add like ordinary numbers, and the resultant is ' + bearing(th) + '.'
       : 'The components of −B are the negatives of the components of B, and the resultant A − B is ' + bearing(th) + '.';
-    headline(ctx, r > 0.05 ? 'A vector of ' + fmt(a, 1) + ' m at ' + fmt(ta, 1) + '° and ' + bl + ' = ' + fmt(b, 1) + ' m at ' + fmt(sign > 0 ? tb : angleOf(bx, by), 1) + '° ' + (sign > 0 ? 'add to' : 'give') + ' R = ' + fmt(r, 1) + ' m at ' + fmt(th, 1) + '°, which is ' + bearing(th) + '.'
+    topline(ctx, r > 0.05 ? 'A vector of ' + fmt(a, 1) + ' m at ' + fmt(ta, 1) + '° and ' + bl + ' = ' + fmt(b, 1) + ' m at ' + fmt(sign > 0 ? tb : angleOf(bx, by), 1) + '° ' + (sign > 0 ? 'add to' : 'give') + ' R = ' + fmt(r, 1) + ' m at ' + fmt(th, 1) + '°, which is ' + bearing(th) + '.'
       : 'The two legs cancel, so the walk ends where it began and R is zero.');
     readout(d.readout, eq, small);
   }

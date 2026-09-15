@@ -241,6 +241,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): `sim-ramp` puts the person on the ramp behind the crate with both hands on its back face (`F.silhouette` push pose, `F.crate`), the push headed where the hands are, friction at the crate's front edge, the angle with `F.angleArc`, labels by `F.labeller`. `sim-slide` draws the player as a silhouette laid flat and sliding feet first, friction anchored where he meets the ground. `sim-cup` lays the foam cup on its side, mouth to the ruler, marble inside, friction at the table. `fig-skier` uses the crouched silhouette on skis with poles. `sim-erasure` and `sim-spring-ground` unchanged.
+
 ## Exercises
 
 - No Check Your Understanding box; the chapter has none at all, so nothing

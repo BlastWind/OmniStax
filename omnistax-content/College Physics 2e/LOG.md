@@ -3324,3 +3324,266 @@ their exercise cards and 4 from the concept map (the units of heat, the final
 temperature of an exchange, the R factor and the spectrum of a radiator),
 each rendering its `why` and `evidence` with no KaTeX error and no raw macro
 left in it.
+
+
+### Pass 41 (2026-09-14): Chapter 16 was begun in September and its introduction and first six
+
+sections were built then; its last five sections were built in one wave on
+2026-09-14, one agent to a section, and this is the chapter pass over them.
+With it the chapter is whole: eleven section pages and the introduction,
+every module of Oscillatory Motion and Waves transformed.
+
+What the five add. Seventeen figure rows over five pages: 14 drawn figures
+and 3 kept photographs. Eleven of the drawn figures transform sixteen book
+figures, four of them folds, the paddle ball with its resonance curves as
+Figure 16.24 + 16.25, the transverse and longitudinal cords as
+Figure 16.29 + 16.30, the three superpositions as
+Figure 16.33 + 16.34 + 16.35, and the fundamental with its two overtones as
+Figure 16.37 + 16.38; the other three are Sims of OmniStax's own, the
+bridge whose store of energy fills while soldiers march across it in 16.8,
+the restoring force with the work shaded under it in 16.11, and the beam
+whose intensity climbs as the collector shrinks in 16.11. The three
+photographs are the ones the text points at: the Tacoma Narrows bridge, the
+sheet of paper rattling in front of a guitar amplifier, and the ripples on
+a river. The numbers run 16.20 to 16.41 with no gap but the four splash
+photographs the sections dropped, 16.19, 16.23, 16.27 and 16.40. Ten of the
+drawn figures have a clock in them and move: the amplitude falling away,
+the three regimes released together, the friction-damped object and its
+odometer, the driven paddle ball, the bridge filling, the ocean wave under
+its gull, the cord shaken two ways, the standing wave, the string's
+harmonics and the beats; the other four answer their sliders, register no
+cycle and carry no transport. 49 exercises: 16 problems, every one keyed,
+9 conceptual questions, 16 AP items and 8 Check Your Understanding boxes
+set inline after the passage they test; 15 unkeyed problems are left out
+and named in the notes, and the eight unkeyed AP items are kept as open
+items with the options the book prints and an AI-marked suggested approach
+rather than as graded choices. 74 coverage rows against 28 new concept
+nodes with 64 prerequisite edges, 19 glossary terms, 47 variable rows, 19
+equation rows and 8 new symbol rows, among them $I'$ as `I_intensprime`,
+since `I_prime` is Chapter 10's moment of inertia. No new type: the five
+bind the types the book already declares, and Chapter 17's `intensity` is
+used in 16.11 by name.
+
+What the chapter pass wrote. The 66 anchors the five plans asked for, on
+every variable and every equation row of the five, each a span of its
+section's own `text.html`; the chapter had none on these rows, since the
+validator refuses an anchor into an unbuilt section. `ch16/COLOR.md` now
+records what the pages bound as built against what the colour plan
+expected: 16.8 binds `stiffness`, `power` and `energy` beyond the
+frequency, position and time foreseen for it, because the bridge draws the
+store $\tfrac{1}{2}kX^2$ the marching fills; 16.11 binds `force` and
+`stiffness` beyond its five, because the amplitude figure draws $F = kx$
+and shades the work under it; and 16.9 binds no frequency at all, because
+both of its figures set a period and read a speed from it. `config.md`
+carries a "What the build changed" block: that 16.11 prints no AP test
+prep, so the eight open AP items sit in 16.7 to 16.10 alone; the colour
+lines above; the anchors; and that the chapter keeps no `figure` row
+without a number, the two images that serve exercises travelling on their
+own cards. No concept, symbol or glossary row needed changing: the five
+plans asked for none, and the rows the prep pass staged are right as they
+stand.
+
+What the reading found. Every headline, topline and readout line is a full
+sentence, no still figure carries a cycle, no discrete state sits on a
+slider, and no ordinal `º`, bare dollar sign, hex colour or leftover marker
+stands anywhere in the five; every figure's `draws` row matches the hues
+its code names; the categorical palette tells apart the three resonance
+curves of 16.8 and is used nowhere else; and no exercise is kept twice. The
+book's own slips are kept as the book prints them and named in the notes:
+the glossary's "over damping" and "under damping" against the text's
+"overdamped" and "underdamped", the sentence in 16.7 that defines critical
+damping and runs two sentences together, and the parenthesis in 16.11 that
+is opened and never closed.
+
+Two things are left for Fable and Chen. Math inside a caption attribute
+breaks the page and nothing catches it: a `$…$` written into
+`data-original-caption` is swept into KaTeX markup carrying quotes, the
+attribute ends early, and the rest of the caption spills into the page as
+text while both `check:content` and the build report nothing. Three
+builders of this wave met it, every caption attribute of the five now
+writes its symbols as plain text, and the gap is recorded in `config.md`.
+And root rule 20's `weights_by` mark cannot be written: the field is in the
+app's schema and in `docs/content-format.md`, but the `exercise_concepts`
+shape in `omnistax-content/tools/ost.py` lists only `exercise`, `concept`
+and `weight`, so the tool refuses it as an unknown field. Twenty-eight rows
+of the five carry a weight and none can carry the mark until the tool's
+table is widened; the AI mark lives in each section's `exercise_notes`, as
+it does in every earlier chapter, and the rule stands as it is.
+
+Checks: `check:content` over the whole book, 19 chapters, 125 sections and
+20 introduction pages, with no errors; the unit tests; `astro check` clean;
+a build; and a headless pass over the five pages in light and dark.
+
+
+### Pass 42 (2026-09-15): Chapter 18, Electric Charge and Electric Field, is built
+
+The chapter's introduction and its eight sections are pages, nine in all,
+built in one wave from the modules m42299, m42300, m42306, m42308, m42310,
+m42312, m42315, m42317 and m42329. Forty figures are drawn: thirty
+simulations, seven kept photographs and three faithful copies that carry the
+labels several exercises read, the square W X Y Z and the field of the three
+objects R, S and T in 18.5 and the square of four charges in 18.7. Seven of
+the thirty move, because their idea has a clock in it: the pair created and
+annihilated in 18.1, the electroscope and the charging by induction in 18.2,
+the free charges settling inside a conductor in 18.7, and the belt, the ink
+jet and the precipitator of 18.8. Four figures fold two of the book's
+numbers into one live drawing, 18.19 + 18.20 and 18.22 + 18.23 in 18.5,
+18.31 + 18.32 in 18.7 and 18.35 + 18.36 in 18.8, and every number the book
+prints from 18.1 to 18.38 is drawn or kept but the two splash photographs
+the config drops, the laptop adapter and the galaxies of Arp 87.
+
+The chapter declares the first two types of electricity, `charge` in
+coulombs and `electric-field` in newtons per coulomb, which brings the book
+to twenty-six, and stages twenty symbol rows for them, among them $Q$ as
+`Q_charge` with `\kQch`, since `Q` is Chapter 12's flow rate, and the field
+as `E_field` with `\kEf`, since `E` is Chapter 7's energy. Fifty concept
+nodes with 147 prerequisite edges, 147 coverage rows, 41 glossary terms, 46
+variable rows and 17 equation rows. A hundred exercises: 26 problems, 32
+conceptual questions, 41 AP items and one Check Your Understanding box set
+inline after the passage on polarization with the book's own photograph of
+the bent stream of water. The 45 problems the book leaves unkeyed are left
+out and named in the notes, and the 20 unkeyed AP items are kept as open
+items with the options the book prints and an AI-marked suggested approach.
+
+What the chapter pass wrote. An anchor on every variable and every equation
+row of the chapter, 63 in all, each a span of its section's own `text.html`;
+18.2 has neither kind of row and wanted none. The mark root rule 20 asks for
+on all 119 weighted `exercise_concepts` rows, which the schema and `ost`
+began accepting on 2026-09-14 and which no earlier chapter could carry.
+`ch18/COLOR.md` is corrected to the particle keys the app added the same
+day: an electron is `F.el('e-')`, a proton `F.el('p+')` and a neutron
+`F.el('n0')`, and the instruction to draw a proton as hydrogen and an
+electron as an ink dot is superseded; the palette names no antiparticle, so
+Figure 18.9 draws the antielectron in the electron's hue, hollow, and the
+app is asked for an `e+` key the figure would then take. `COLOR.md` also
+records the bindings as built: 18.5 binds `charge` and `electric-field` and
+not `force`, since no figure of that page draws a force arrow, and 18.6
+binds `force` as well, for the attraction between a water molecule and the
+ion it surrounds. `config.md` carries a "What the build changed" block: that
+Figure 18.38's two panels come in one image file, so the figure has one
+original and the chapter keeps seven photographs rather than eight; the two
+faithful copies of 18.5; the antielectron; the folds and the moving figures;
+and the two problems that leave 18.3, the keyed one set in 18.5 with
+`source_section` 18.3 and the unkeyed one left out there, which both
+sections' notes now say the same way. The two concept ids 18.5 named and the
+book has no row for are settled without staging one: vector addition is
+`head-to-tail-method` of 3.2, which the section's coverage names, and the
+inverse square is carried by `coulombs-law` and `field-of-point-charge`,
+which the section already uses.
+
+What the reading found. Every headline and readout is a full sentence, no
+still figure carries a cycle, no discrete state sits on a slider, and no
+ordinal, hex colour or leftover marker stands anywhere in the nine pages;
+every figure's `draws` row matches the hues its code names; no exercise is
+kept twice, and the two exercises that share the CNXML id `fs-id2384303` are
+different exercises in different modules of the bundle, one a problem of
+18.3 and one a conceptual question of 18.7. One fault was found and fixed:
+the app sweeps `summary_html`, `exercise_notes` and the text for math but
+not a section's `lead` or its `notes`, so the powers of ten written there in
+LaTeX reached the reader as dollar signs; the lead of 18.3 and the notes of
+18.2 and 18.4 are written in words and Unicode digits, as Chapters 14 and 15
+write theirs, and `config.md` records the gap. The book's own slips are kept
+as the book prints them and named in the notes: Example 18.3's 7.20 × 10⁵
+N/C for the 7.19 × 10⁵ N/C Example 18.2 finds, the 63.4° above the $x$-axis
+that Figure 18.21 draws in the second quadrant, and the comma inside the
+fraction in 18.4's summary.
+
+Checks: `check:content` over the whole book, 19 chapters, 128 sections and
+20 introduction pages, with no errors; the unit tests, 409 of them; `astro
+check` clean; a build; and a headless pass over all nine pages of the
+chapter in light and dark, which found the dollar signs above and, after the
+fix, nothing.
+
+
+### Pass 43 (2026-09-15): Chapter 17, Physics of Hearing, is built
+
+The chapter's introduction and its seven sections are pages, eight in all,
+built in one wave from the modules m42254, m42255, m42256, m42257, m42712,
+m42296, m42297 and m42298. Forty figures are drawn: twenty-five simulations
+and fifteen kept photographs, among them the fallen tree that opens the
+chapter and the duck's bow wake, the Cerenkov glow and the six ultrasound
+images the text says to see. Eleven of the twenty-five move, because their
+idea has a clock in it: the string that makes a compression and then another
+and the wave that arrives at an eardrum in 17.1, the bat's echo, the woofer
+and the tweeter abreast and the wave crossing into a second medium in 17.2,
+the car sounding its horn, the source outrunning its own sound and the
+aircraft's two booms in 17.4, the second sound turned against the noise and
+the pulse reflecting in a closed tube in 17.5, and the echo train of 17.7.
+Four figures fold the book's numbers into one live drawing: the vibrating
+string of 17.3 + 17.4 + 17.5, the Doppler scene of 17.13 + 17.14 + 17.15,
+the resonating tube of 17.22 + 17.23 + 17.24 + 17.25 + 17.26, whose fourth
+image is the one the bundle files as 03ad and the CNXML mistakenly repeats,
+and the harmonic ladders of 17.27 + 17.28 + 17.30. Every number the book
+prints from 17.1 to 17.46 is drawn or kept but the four splash photographs
+the config drops: the fireworks, the Delhi traffic, the headphones and the
+band. No image inside an exercise is redrawn, since this chapter carries
+every image an exercise refers to on the exercise card's own field, as
+Chapters 4, 9, 12 and 15 do.
+
+The chapter declares one type, `intensity` in watts per meter squared,
+because 17.3's bar and ladder draw it, 17.6's phon curves carry it and
+17.7's boundary divides it; the book now has twenty-five. It stages
+twenty-three symbol rows, among them $I$ as `I_intens` with `\kIntens`,
+since `I` is Chapter 10's moment of inertia, the source frequency as
+`f_src`, since `f_s` is Chapter 5's static friction, and the pressure
+amplitude as `Δp_press`, since `Δp` is Chapter 8's impulse; the sound
+intensity level $\beta$, the acoustic impedance $Z$, the reflection
+coefficient $a$, the harmonic number and the length of a tube stay untyped
+and in ink. Forty-three concept nodes with 132 prerequisite edges, 171
+coverage rows, 25 glossary terms, 64 variable rows and 20 equation rows.
+Ninety-one exercises: 44 problems, 15 conceptual questions, 22 AP items and
+ten Check Your Understanding boxes set inline after the passages they test.
+The 40 problems the book leaves unkeyed are left out and named in the notes,
+and the ten unkeyed AP items are kept as open items with the options the
+book prints and an AI-marked suggested approach.
+
+What the chapter pass wrote. An anchor on every variable and every equation
+row of the chapter, 84 in all, each a span of its section's own `text.html`;
+17.5's eleven variable rows, which its plan did not list, are anchored where
+the text first gives each its meaning. Six variable rows are added for the
+middle ear's lever, $P_1$, $P_2$, $F_1$, $F_2$, $A_1$ and $A_2$, which
+17.6's figure draws and its readout colours with symbols the book already
+carries; no symbol row was changed and none was added. The mark root rule 20
+asks for is now on all 68 weighted `exercise_concepts` rows. The eleven
+prerequisite edges `exploration.md` had left for a later pass are placed,
+now that 16.8 to 16.11 are built: 17.2's speed-frequency-wavelength on
+wavelength and wave velocity, 17.3's sound intensity on intensity, and
+17.5's interference, air-column resonance, nodes and antinodes and
+fundamental and overtones on superposition, constructive and destructive
+interference, beats, standing waves, resonance, nodes and antinodes on a
+string and string harmonics. Two concept rows gained the evidence their
+sections asked for, the Sim of many sources sounding together and the Sim of
+a beam meeting a boundary. `COLOR.md` records the bindings as built: four
+pages bound a type the expectation had not named, each because a figure
+draws it, and 17.3 does not bind power, since it writes the power of
+$I = P/A$ in ink. `config.md` carries a "What the build changed" block: the
+shattered glass kept where the table had listed it as a drop, the bindings,
+the edges into Chapter 16 and the six new variable rows.
+
+What the reading found. Every headline and readout is a full sentence, no
+still figure carries a cycle and none of the eleven that move lacks one, no
+discrete state sits on a slider, and no ordinal, hex colour, dollar sign or
+leftover marker stands anywhere in the eight pages; no exercise is kept
+twice and no figure number is missing but the four the config drops. Three
+faults were found and fixed. Eight places in 17.7's exercises and notes
+wrote a stray backslash where a sentence should have ended or joined, and
+they now read as sentences. 17.4's folded caption joined the book's three
+captions in a form no other fold of the chapter used, and it now reads
+"(Figure 17.13) … (Figure 17.14) … (Figure 17.15) …" as the other three do.
+A few reader-facing words were written in British spelling, and the meter
+rule, the meters and the canceling of noise are now American, as the book
+writes them. The gap Chapter 18 reported is still there and caught one more
+page: a section's `notes` is not swept for math, so 17.7's note on the
+book's two spellings of the beat frequency reached the reader as dollar
+signs and is now written in words. The book's own slips are kept as printed
+and named: the square misplaced twice on 17.3's intensity formula, the
+paragraph there that points at Figure 17.12 for a screaming cartoon, the
+capital F on 17.7's beat frequency, the minus-sign sentence printed twice in
+Example 17.8, the parenthesis 17.4's bow-wake paragraph never closes, and
+the credit on Figure 17.2, whose photographer's name really is `||read||`.
+
+Checks: `check:content` over the whole book, 19 chapters, 131 sections and
+20 introduction pages, with no errors; the unit tests, 409 of them; `astro
+check` clean; a build; and a headless pass over all eight pages of the
+chapter in light and dark, which found the dollar signs above and, after the
+fix, nothing.

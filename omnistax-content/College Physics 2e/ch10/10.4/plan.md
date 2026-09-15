@@ -217,6 +217,8 @@ Extra simulations (rule 15), thought through and decided:
   `sim-cans-race` already shows the sliding body ahead, and the problem is
   left out for want of a key.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-grindstone`: the stick figure is `F.silhouette()` in the reach pose with the hands on the point of application. `sim-helicopter`: the black blob is redrawn as an outlined machine on a light fill (cabin with a window, tail boom, fin, tail rotor, skids, mast). `sim-cans-race`: the lane names moved from the top of each incline, where the can covered them at the start, to under the foot of the incline. `sim-disk-work` looked at and left as built.
+
 ## Exercises
 
 - One Check Your Understanding (fs-id2931518, `cyu1`), keyed by the book,

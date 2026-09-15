@@ -1,0 +1,479 @@
+{
+ "id": "18.4",
+ "module": "m42310",
+ "chapter": "18",
+ "title": "Electric Field: Concept of a Field Revisited",
+ "short": "Electric field",
+ "lead": "A charged comb picks up bits of paper without touching them, and the way physics accounts for that is to say that the charge fills the space around it with a field. This section explains what a force field is, shows that the Coulomb force field is not the same at a point for every charge set down there, and then defines the electric field as the force per unit of positive test charge, which does depend on nothing but the charge creating it. From that definition follow the force on any charge placed in a known field and the field of a point charge itself, which falls as the square of the distance.",
+ "objectives": [
+  "Describe a force field and calculate the strength of an electric field due to a point charge.",
+  "Calculate the force exerted on a test charge by an electric field.",
+  "Explain the relationship between electrical force (F) on a test charge and electrical field strength (E)."
+ ],
+ "summary_html": "<ul><li>The electrostatic force field surrounding a charged object extends out into space in all directions.</li><li>The electrostatic force exerted by a point charge on a test charge at a distance $r$ depends on the charge of both charges, as well as the distance between the two.</li><li>The electric field $\\kEf$ is defined to be $$\\kEf = \\frac{\\kF}{\\kq,}$$ where $\\kF$ is the Coulomb or electrostatic force exerted on a small positive test charge $\\kq$. $\\kEf$ has units of N/C.</li><li>The magnitude of the electric field $\\kEf$ created by a point charge $\\kQch$ is $$\\kEf = k\\frac{|\\kQch|}{r^2}.$$ where $r$ is the distance from $\\kQch$. The electric field $\\kEf$ is a vector and fields due to multiple charges add like vectors.</li></ul>",
+ "notes": "The PhET simulation Electric Field of Dreams is left out, as are the three problems the book leaves unkeyed: the field that exerts an upward force of 2.00 × 10⁻⁵ N on a −1.75 μC charge, the field 2.00 m from a 5.00 mC point charge, and the initial acceleration of a proton in a 5.00 × 10⁶ N/C field. Two slips of the book are kept as printed: Example 18.3 uses 7.20 × 10⁵ N/C for the field Example 18.2 finds as 7.19 × 10⁵ N/C, and the section summary writes the definition of the field with the comma inside the fraction. The first objective's \"electrical field strength\" and the second's \"electrical force\" are the book's words as well.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Three of the six problems have no keyed answer and are left out: the field that exerts an upward force on a $-1.75\\ \\mu\\text{C}$ charge, the field 2.00 m from a 5.00 mC point charge, and the acceleration of a proton in a $5.00 \\times 10^{6}$ N/C field. Of the seven AP items, four are keyed: three are set as graded choices and the item on the electron in a field of unknown strength checks the two numbers the book keys and carries its answers to the two directions in the solution. The three unkeyed AP items are open items with their options as the book prints them, or with no options where the book asks for a number, and an AI-written suggested approach, marked as such. The item the book introduces with “Use this information to answer questions 31–32” is followed by an item that leans on the same setup, and that setup is repeated in the second item’s own prompt, since each item stands on its own card. The suggested approaches to the two conceptual questions are AI-written and marked. The first conceptual question is a short check on the passage that defines the field and is set inline after it; everything else is at the end. Nothing is taken from another section and nothing is held for a later page. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-force-field",
+   "kind": "sim",
+   "number": "18.18",
+   "originals": [
+    "/media/ch18/Figure_19_04_02a.jpg"
+   ],
+   "original_caption": "The Coulomb force field due to a positive charge Q is shown acting on two different charges. Both charges are the same distance from Q. (a) Since q₁ is positive, the force F₁ acting on it is repulsive. (b) The charge q₂ is negative and greater in magnitude than q₁, and so the force F₂ acting on it is attractive and stronger than F₁. The Coulomb force field is thus not unique at any point in space, because it depends on the test charges q₁ and q₂ as well as the charge Q.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-point-charge-field",
+   "kind": "sim",
+   "draws": [
+    "charge",
+    "electric-field",
+    "force"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "force-field",
+   "concept": "coulomb-force-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "concept-of-a-field",
+   "concept": "coulomb-force-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "concept-of-a-field",
+   "concept": "test-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "electric-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "electric-field-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "force-from-electric-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "test-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "field-of-point-charge",
+   "concept": "field-of-point-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-of-point-charge",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "field-of-point-charge",
+   "concept": "force-from-electric-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "field-of-point-charge",
+   "concept": "electric-field-direction",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3047767",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "electric-field-defined"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "Why must the test charge $\\kq$ in the definition of the electric field be vanishingly small?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The field at a point is meant to be a property of the charges that create it, and of nothing else. A test charge is itself a charge, so it exerts forces of its own on those charges and can push them about, and the charge distribution whose field is being measured is then no longer the one the measurement was meant to describe. The smaller the test charge, the smaller that disturbance is, and the ratio $\\kF/\\kq$ approaches the field the charges would have had with no test charge there at all. The ratio itself does not depend on the size of the test charge, since the force is proportional to it; what the vanishingly small test charge buys is the guarantee that nothing has been moved by the act of measuring."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2668714",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "concept-of-a-field",
+   "prompt": "Are the direction and magnitude of the Coulomb force unique at a given point in space? What about the electric field?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The Coulomb force at a point is not unique, because it is a force on something and there is nothing at the point until a charge is put there. Set down a larger test charge and the force is larger; set down a charge of the opposite sign and the force reverses; set down no charge and there is no force at all. The electric field is unique at every point, because it is the force divided by the charge it acts on, and the test charge cancels out of that ratio. Whatever charge is put at the point, the field there has the same magnitude and the same direction, and the force follows from it as $\\kF = \\kq\\kEf$."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1541667",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-of-point-charge",
+   "prompt": "Two particles with charges $+2q$ and $+q$ are separated by a distance $r$. The $+2q$ particle has an electric field $E$ at distance $r$ and exerts a force $F$ on the $+q$ particle. Use this information to answer questions 31–32. What is the electric field of the $+q$ particle at the same distance and what force does it exert on the $+2q$ particle?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$E/2$, $F/2$",
+     "$E$, $F/2$",
+     "$E/2$, $F$",
+     "$E$, $F$"
+    ],
+    "correct": 2,
+    "hint": "The field of a point charge is proportional to that charge alone, so halving the charge halves the field. The force between the two particles is proportional to the product of both charges, and that product is the same whichever of the two is called the source.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2454673",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-of-point-charge",
+   "prompt": "Two particles with charges $+2q$ and $+q$ are separated by a distance $r$. The $+2q$ particle has an electric field $E$ at distance $r$ and exerts a force $F$ on the $+q$ particle. When the $+q$ particle is replaced by a $+3q$ particle, what will be the electric field and force from the $+2q$ particle experienced by the $+3q$ particle?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book prints this item with the options $E/3$ and $3F$; $E$ and $3F$; $E/3$ and $F$; $E$ and $F$, and gives no answer, so the approach is suggested rather than graded. The field at the distance $r$ is made by the $+2q$ particle alone, and the definition $\\kEf = \\kF/\\kq$ was arranged so that the field does not depend on the charge set down in it; replacing the $+q$ particle by a $+3q$ particle therefore leaves the field at that point equal to $E$. The force, on the other hand, is $\\kF = \\kq\\kEf$, so tripling the charge in the field triples the force to $3F$. That is the second option."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1451013",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "The direction of the electric field of a negative charge is",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "inward for both positive and negative charges.",
+     "outward for both positive and negative charges.",
+     "inward for other positive charges and outward for other negative charges.",
+     "outward for other positive charges and inward for other negative charges."
+    ],
+    "correct": 0,
+    "hint": "The field is defined by the force on a positive test charge, and it belongs to the charge that creates it, not to whatever is set down in it.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1737728",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-field",
+   "prompt": "The force responsible for holding an atom together is",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book prints this item with the options frictional, electric, gravitational and magnetic, and gives no answer, so the approach is suggested rather than graded. An atom is a positive nucleus with negative electrons about it, and what holds one to the other is the attraction between unlike charges, which is the Coulomb force. Friction is itself a contact force explained by the charges in atoms in close proximity, so it cannot be what holds an atom together; gravitation acts between the same particles but is smaller than the Coulomb force between them by more than thirty orders of magnitude, as Example 18.1 works out; and a magnetic force acts on moving charge and is not what binds the electron to the nucleus. The electric force is the answer."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2204572",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "When a positively charged particle exerts an inward force on another particle $P$, what will be the charge of $P$?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "positive",
+     "negative",
+     "neutral",
+     "cannot be determined"
+    ],
+    "correct": 1,
+    "hint": "An inward force is a force towards the charge that exerts it, which is an attraction. Like charges repel and unlike charges attract.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1105673",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "concept-of-a-field",
+   "prompt": "Find the force exerted due to a particle having a charge of $3.2 \\times 10^{-19}$ C on another identical particle 5 cm away.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book gives no answer to this item, so the approach is suggested rather than graded. The two particles are point charges, so Coulomb's law applies directly: the magnitude of the force is $\\kF = k|\\kqone\\kqtwo|/r^2$, with $k = 8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2\\text{/C}^2$. The particles are identical, so the product of the charges is the square of $3.2 \\times 10^{-19}$ C, and the separation must be written in metres, $5\\ \\text{cm} = 5 \\times 10^{-2}$ m, before it is squared. The same number can be reached through the field: the first particle makes a field $\\kEf = k|\\kQch|/r^2$ at the second, and the force on the second is $\\kF = \\kq\\kEf$. Both charges have the same sign, so the force is a repulsion, and each particle is pushed directly away from the other."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1434631",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "Suppose that the force exerted on an electron is $5.6 \\times 10^{-17}$ N, directed to the east. (a) Find the magnitude of the electric field that exerts the force. (b) What will be the direction of the electric field? (c) If the electron is replaced by a proton, what will be the magnitude of force exerted? (d) What will be the direction of force on the proton?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 350,
+      "unit": "N/C",
+      "hint": "The field is the force divided by the charge it acts on, and the charge on an electron has the magnitude $1.60 \\times 10^{-19}$ C."
+     },
+     {
+      "part": "(c)",
+      "value": 5.6e-17,
+      "unit": "N",
+      "hint": "A proton carries the same amount of charge as an electron, with the opposite sign, and the same field acts on it."
+     }
+    ],
+    "solution": "(a) 350 N/C, (b) west, (c) 5.6×10⁻¹⁷ N, (d) west."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2989956",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "What is the magnitude and direction of the force exerted on a $3.50\\ \\mu\\text{C}$ charge by a 250 N/C electric field that points due east?",
+   "answer": {
+    "type": "number",
+    "value": 0.000875,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "The force on a charge in a known field is the charge times the field, and the charge here is positive, so the force is along the field.",
+    "solution": "$8.75 \\times 10^{-4}$ N, due east, since the charge is positive and the force on a positive charge is in the direction of the field."
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1537546",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-of-point-charge",
+   "prompt": "(a) What magnitude point charge creates a 10,000 N/C electric field at a distance of 0.250 m? (b) How large is the field at 10.0 m?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6.94e-08,
+      "unit": "C",
+      "hint": "Turn $\\kEf = k|\\kQch|/r^2$ around to give the charge, and remember to square the distance."
+     },
+     {
+      "part": "(b)",
+      "value": 6.25,
+      "unit": "N/C",
+      "hint": "The distance is forty times greater, and the field falls as the square of the distance."
+     }
+    ],
+    "solution": "(a) $6.94 \\times 10^{-8}\\ \\text{C}$ (b) $6.25\\ \\text{N/C}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2937300",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "(a) Find the magnitude and direction of an electric field that exerts a $4.80 \\times 10^{-17}\\ \\text{N}$ westward force on an electron. (b) What magnitude and direction force does this field exert on a proton?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 300,
+      "unit": "N/C",
+      "hint": "Divide the force by the magnitude of the electron's charge, and remember that the force on a negative charge is opposite to the field."
+     },
+     {
+      "part": "(b)",
+      "value": 4.8e-17,
+      "unit": "N",
+      "hint": "A proton carries the same amount of charge with the opposite sign, so the force on it has the same magnitude and the direction of the field itself."
+     }
+    ],
+    "solution": "(a) $300\\ \\text{N/C}\\ (\\text{east})$ (b) $4.80 \\times 10^{-17}\\ \\text{N}\\ (\\text{east})$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "test-charge"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "coulomb-force-field"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "field-of-point-charge"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "force-from-electric-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "electric-field"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "force-from-electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electric-field-direction"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "coulomb-force-field"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "electric-field-direction"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "coulomb-force-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "field-of-point-charge"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "coulomb-force-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "electric-field"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "force-from-electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "electric-field-direction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-of-point-charge"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electric-field"
+  },
+  {
+   "exercise": "p3",
+   "concept": "force-from-electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electric-field-direction",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ]
+}

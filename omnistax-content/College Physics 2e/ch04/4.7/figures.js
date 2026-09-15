@@ -55,19 +55,20 @@ function trafficLight(ctx, x, y, color) {
     const bx = 440, by = 330, S = 22;
     text(ctx, '(a) seen from above', 110, 116, PAL.muted, { size: 19 });
     block(ctx, bx, by, 250, 104, PAL.ink);
-    text(ctx, 'barge', bx, by, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    /* each push runs from its tugboat into the hull it presses on */
-    const tailx = bx - 125 - fx.v * S, taily = by + 52 + fy.v * S;
-    tug(ctx, tailx - 56, by, 1, 0, PAL.muted);
-    tug(ctx, bx, taily + 56, 0, -1, PAL.muted);
-    arrow(ctx, tailx, by, bx - 125, by, fc, 5);
-    text(ctx, 'F_x = ' + fmt(fx.v, 1) + ' × 10⁵ N', (tailx + bx - 125) / 2, by + 40, fc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    arrow(ctx, bx, taily, bx, by + 52, fc, 5);
-    text(ctx, 'F_y = ' + fmt(fy.v, 1) + ' × 10⁵ N', bx + 148, (taily + by + 52) / 2, fc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'the barge', bx + 110, by + 34, PAL.ink, { size: 19, weight: 600, align: 'right' });
+    /* each tug has its bow against the hull, and its push is drawn from that point of contact
+       on into the barge, so the arrow lies on the body it pushes */
+    tug(ctx, bx - 125 - 48, by, 1, 0, PAL.muted);
+    tug(ctx, bx, by + 52 + 48, 0, -1, PAL.muted);
+    const Lx = 60 + fx.v * 30, Ly = 60 + fy.v * 30;
+    arrow(ctx, bx - 125, by, bx - 125 + Lx, by, fc, 5);
+    text(ctx, 'F_x = ' + fmt(fx.v, 1) + ' × 10⁵ N', bx - 190, by + 78, fc, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+    arrow(ctx, bx, by + 52, bx, by + 52 - Ly, fc, 5);
+    text(ctx, 'F_y = ' + fmt(fy.v, 1) + ' × 10⁵ N', bx, by + 52 - Ly - 22, fc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     if (ac.v > 0.0001) {
-      const al = 56 + 620 * ac.v;
-      arrow(ctx, bx, by, bx + al * cos(th), by - al * sin(th), acc, 5);
-      text(ctx, 'a = ' + fmt(ac.v, 3) + ' m/s²', bx + (al + 12) * cos(th), by - (al + 12) * sin(th) - 16, acc, { size: 20, weight: 600 });
+      const al = 56 + 620 * ac.v, cx0 = bx + 125, cy0 = by - 52;
+      arrow(ctx, cx0, cy0, cx0 + al * cos(th), cy0 - al * sin(th), acc, 5);
+      text(ctx, 'a = ' + fmt(ac.v, 3) + ' m/s²', cx0 + (al + 12) * cos(th), cy0 - (al + 12) * sin(th) - 16, acc, { size: 20, weight: 600 });
     }
     /* (b) the free-body diagram: the two pushes, their resultant and the drag back along it */
     const ox = 1010, oy = 360, S2 = 36;
@@ -283,12 +284,14 @@ function trafficLight(ctx, x, y, color) {
     const px = X(s);
     F.person(ctx, px, 300, PAL.ink, { s: 1.35, lean: 0.2, phase: t > 0 && t < el1.v ? t * 8 : 0 });
     const late = px > 760, fl = 70 + 130 * (Fn / 1200), vl = 180 * (v / vf.v);
-    arrow(ctx, px + 36, 122, px + 36 + fl, 122, fc, 5);
-    text(ctx, 'F_net = ' + fmt(Fn, 0) + ' N, the forward push of the ground', late ? px + 24 : px + 48 + fl, 122, fc,
-      { size: 20, weight: 600, align: late ? 'right' : 'left' });
+    /* the push of the ground is drawn from his body, at the height of his hips, and the velocity
+       from his chest, ahead of him */
+    arrow(ctx, px + 14, 246, px + 14 + fl, 246, fc, 5);
+    text(ctx, 'F_net = ' + fmt(Fn, 0) + ' N, the forward push of the ground', late ? px - 30 : px + 26 + fl, 246, fc,
+      { size: 20, weight: 600, align: late ? 'right' : 'left', bg: PAL.panel });
     if (v > 0.02) {
-      arrow(ctx, px + 36, 182, px + 36 + vl, 182, vc, 4);
-      text(ctx, 'v = ' + fmt(v, 2) + ' m/s', late ? px + 24 : px + 48 + vl, 182, vc, { size: 20, weight: 600, align: late ? 'right' : 'left' });
+      arrow(ctx, px + 30, 190, px + 30 + vl, 190, vc, 4);
+      text(ctx, 'v = ' + fmt(v, 2) + ' m/s', late ? px - 30 : px + 42 + vl, 190, vc, { size: 20, weight: 600, align: late ? 'right' : 'left', bg: PAL.panel });
     }
     /* the graph: the velocity against time, whose slope is the average acceleration */
     /* fixed axes: the two sliders stop at 5 s and 12 m/s, so the graph is always 0 to 5 s by

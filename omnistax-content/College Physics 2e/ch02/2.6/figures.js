@@ -1,7 +1,7 @@
 /* Figures for section 2.6 Problem-Solving Basics for One-Dimensional Kinematics. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.6'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, scale, axes, nice, runner } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, scale, axes, nice, person, topline, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const WORDS = ['', '', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
@@ -47,12 +47,12 @@ const times = (n) => (WORDS[n] ?? String(n)) + ' times';
     /* the runner, whose stride quickens with the speed */
     const rx = X(dist);
     if (!done && v > 0) stride += 0.25 + 0.3 * Math.min(1, v / RUN);
-    runner(ctx, rx, ys + 6, PAL.ink, stride);
+    person(ctx, rx, ys + 24, PAL.ink, { face: 1, phase: done || v <= 0 ? 0 : stride, lean: 0.12 });
     /* the velocity arrow over the runner, its length proportional to v */
     if (v > 0.05) {
-      const len = Math.min(240, 24 + 5.4 * v), ax = rx + 18;
-      arrow(ctx, ax, ys - 64, ax + len, ys - 64, C('velocity'), 5);
-      text(ctx, 'v = ' + fmt(v, 1) + ' m/s', ax + len / 2, ys - 90, C('velocity'), { weight: 600, size: 20, align: 'center' });
+      const len = Math.min(240, 24 + 5.4 * v), ax = rx + 8;
+      arrow(ctx, ax, ys - 84, ax + len, ys - 84, C('velocity'), 5);
+      text(ctx, 'v = ' + fmt(v, 1) + ' m/s', ax + len / 2, ys - 110, C('velocity'), { weight: 600, size: 20, align: 'center' });
     }
     /* the graph of v against t, with the level a person can run */
     const box = { l: L, r: 1280, t: 320, b: 580 };
@@ -76,14 +76,17 @@ const times = (n) => (WORDS[n] ?? String(n)) + ' times';
     }
     line(ctx, GX(tau), GY(v), GX(tau), box.b, C('time'), 2, [4, 8]);
     dot(ctx, GX(tau), GY(v), C('velocity'), true, 9);
-    /* the present time under the point, where the line climbs too gently to reach it, or beside the point while it is still near the axis */
-    const low = GY(v) > box.b - 52, atRight = GX(tau) + 110 > box.r;
-    if (low) text(ctx, 't = ' + fmt(tau, 0) + ' s', GX(tau) + (atRight ? -16 : 16), box.b - 22, C('time'), { weight: 600, size: 20, align: atRight ? 'right' : 'left' });
-    else text(ctx, 't = ' + fmt(tau, 0) + ' s', Math.min(Math.max(GX(tau), box.l + 44), box.r - 44), GY(v) + 30, C('time'), { weight: 600, size: 20, align: 'center' });
+    /* the present time sits below and to the right of its point, which is under a rising line, and the
+       labeller steps it away from the level, the crossing's label and the tick labels when they are close */
+    const lab = labeller(ctx, 660);
+    lab.block(box.l, box.b, box.r, box.b + 40); lab.block(box.l, GY(RUN) - 30, box.r, GY(RUN) + 6);
+    if (tc < tEnd - 1e-9) lab.block(GX(tc) - 100, GY(RUN) - 36, GX(tc), GY(RUN) - 8);
+    lab.add('t = ' + fmt(tau, 0) + ' s', GX(tau), GY(v), GX(tau) + 110 > box.r ? -0.6 : 0.6, 1, C('time'), 20, 24);
+    lab.flush();
     /* what the numbers say */
     const ratio = vEnd / RUN, n = Math.round(ratio);
     const verdict = ratio >= 1.5 ? 'about ' + times(n) + ' what a person can run' : ratio > 1.05 ? 'faster than a person can run' : 'which a person can run';
-    headline(ctx, (done ? 'After ' + fmt(tEnd, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner would be at ' + fmt(vEnd, 1) + ' m/s, about ' + mphEnd + ' mph, ' + verdict
+    topline(ctx, (done ? 'After ' + fmt(tEnd, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner would be at ' + fmt(vEnd, 1) + ' m/s, about ' + mphEnd + ' mph, ' + verdict
       : 'After ' + fmt(tau, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner ' + (v > RUN * 1.05 ? 'would be at ' + fmt(v, 1) + ' m/s, about ' + mph + ' mph, faster than a person can run' : 'has reached ' + fmt(v, 1) + ' m/s, about ' + mph + ' mph, which is reasonable'))
       + (over ? ', and the line runs past the top of the velocity scale.' : '.'));
     readout(d.readout, `\\kv = \\kvo + \\ka\\kt = 0 + (${fmt(a, 2)}\\ \\text{m/s}^2)(${fmt(tEnd, 0)}\\ \\text{s}) = ${fmt(vEnd, 1)}\\ \\text{m/s}`,

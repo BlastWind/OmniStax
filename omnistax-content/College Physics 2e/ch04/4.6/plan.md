@@ -157,6 +157,14 @@ sentence.
    detent a preset that moves with another slider cannot have as a tick on
    the track; the headline is one capitalized sentence.
 
+Figure pass of 2026-09-14 (Claude Fable 5.1): in `sim-tarzan` the force arrows were drawn
+through the man's body at the body's own width (Chen's item 10), and the library's person could
+not raise its hands to the vine, so the man appeared to hang from nothing. He is now drawn by the
+figure with both arms up along the vine to his hands, a filled torso and free legs, and every
+arrow stands beside the body at 5 px with a faint leader to the point where the force acts: the
+tension and his pull on the vine at the hands, the weight at the middle of the body. The canvas
+is 720 tall to hold the longer arrows. `sim-axes` was looked at and left as built.
+
 ## Exercises
 
 - 3 AP test prep items, all at the end. `ap1` (fs-id1642540, the toboggan

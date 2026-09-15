@@ -45,6 +45,8 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
 Photograph of the cyclists (splash) dropped.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-displacement`: the professor and the passenger were a running stick figure standing on the axis under an empty band; the frame is now a room with a floor, the whiteboard on the wall or the cabin's row of windows, the library's `person()` standing on the floor at $x_f$ with a faint trace of them at $x_0$, the displacement an arrow at chest height and both positions dropped onto the axis below; the headline wraps through `topline()` and the subscript labels use the drawing layer's `x_f` form. `sim-path`: the same labels and headline wrap; the bicycle sprite stands. `fig-paths` unchanged.
+
 ## Exercises
 
 - 1 Check Your Understanding, three numeric parts (inline, after block 4).

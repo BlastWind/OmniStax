@@ -1,0 +1,666 @@
+{
+ "id": "18.7",
+ "module": "m42317",
+ "chapter": "18",
+ "title": "Conductors and Electric Fields in Static Equilibrium",
+ "short": "Conductors in static equilibrium",
+ "lead": "A conductor has charges in it that are free to move, and they keep moving as long as anything pushes them. This section follows them to the state they settle into, in which no field is left inside the conductor, the field just outside it stands perpendicular to the surface and every bit of excess charge has been driven onto the surface. Those three properties are then used: to make a very uniform field between two plates, to read Earth’s own field and the storms that reverse it, to see why excess charge crowds onto the sharpest part of a conductor, and to explain the lightning rod, the Faraday cage and the car that is safe to sit in during a storm.",
+ "objectives": [
+  "List the three properties of a conductor in electrostatic equilibrium.",
+  "Explain the effect of an electric field on free charges in a conductor.",
+  "Explain why no electric field may exist inside a conductor.",
+  "Describe the electric field surrounding Earth.",
+  "Explain what happens to an electric field applied to an irregular conductor.",
+  "Describe how a lightning rod works.",
+  "Explain how a metal car may protect passengers inside from the dangerous electric fields caused by a downed line touching the car."
+ ],
+ "summary_html": "<ul><li>A conductor allows free charges to move about within it.</li><li>The electrical forces around a conductor will cause free charges to move around inside the conductor until static equilibrium is reached.</li><li>Any excess charge will collect along the surface of a conductor.</li><li>Conductors with sharp corners or points will collect more charge at those points.</li><li>A lightning rod is a conductor with sharply pointed ends that collect excess charge on the building caused by an electrical storm and allow it to dissipate back into the air.</li><li>Electrical storms result when the electrical field of Earth’s surface in certain locations becomes more strongly charged, due to changes in the insulating effect of the air.</li><li>A Faraday cage acts like a shield around an object, preventing electric charge from penetrating inside.</li></ul>",
+ "notes": "The nine problems the book leaves unkeyed are left out: the four that ask for a sketch of the field lines around an oblong conductor, between two tilted plates and around a nonuniformly charged insulating rod; the force on the charge at 8.00 cm on the x-axis; the field at 5.00 cm on the x-axis with its five parts; the field at the location of the corner charge of the square; the field at the corner of the equilateral triangle; and the two-part item on the direction and the magnitude of the force on the charge at the center of the square when the four corner charges are ±7.50 μC. The book’s answer to the total Coulomb force on the charge at the center of the square ends with three empty display-math pairs between the words, an artifact of the source, and the words alone are kept.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Nine of the fourteen problems have no keyed answer and are left out, and the section’s notes name them. Of the four AP items, the one asking where the field of a charged sphere is weakest is keyed and is set as a graded choice, and the one asking for the percentage change in the field is keyed and checked as a number; the item on where the field between two parallel plates is strongest and the Millikan oil drop item are unkeyed and are kept as open items, the first with its four options as the book prints them, each with an AI-written suggested approach marked as such. The suggested approaches to all sixteen conceptual questions are AI-written and marked. The conceptual question on whether the belt of a Van de Graaff accelerator can be a conductor is answered by 18.8’s account of the generator, but the properties of a conductor this section states are what answer it, so it stays here and is tagged with 18.8’s van-de-graaff-generator as well. Nothing of this section’s own is held for a later page, and nothing is taken from another. Every exercise is set at the end with the problem set, since the section prints no Check Your Understanding box. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-parallel-component",
+   "kind": "sim",
+   "number": "18.26",
+   "originals": [
+    "/media/ch18/Figure_19_07_02a.jpg"
+   ],
+   "original_caption": "When an electric field $\\text{E}$ is applied to a conductor, free charges inside the conductor move until the field is perpendicular to the surface. (a) The electric field is a vector quantity, with both parallel and perpendicular components. The parallel component (${\\text{E}}_{∥}$) exerts a force (${\\text{F}}_{∥}$) on the free charge $q$, which moves the charge until ${\\text{F}}_{∥}=0$. (b) The resulting field is perpendicular to the surface. The free charge has been brought to the conductor’s surface, leaving electrostatic forces in equilibrium.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-sphere-in-field",
+   "kind": "sim",
+   "number": "18.27",
+   "originals": [
+    "/media/ch18/Figure_19_07_03a.jpg"
+   ],
+   "original_caption": "This illustration shows a spherical conductor in static equilibrium with an originally uniform electric field. Free charges move within the conductor, polarizing it, until the electric field lines are perpendicular to the surface. The field lines end on excess negative charge on one section of the surface and begin again on excess positive charge on the opposite side. No electric field exists inside the conductor, since free charges in the conductor would continue moving in response to any field until it was neutralized.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-charged-sphere",
+   "kind": "sim",
+   "number": "18.28",
+   "originals": [
+    "/media/ch18/Figure_19_07_04a.jpg"
+   ],
+   "original_caption": "The mutual repulsion of excess positive charges on a spherical conductor distributes them uniformly on its surface. The resulting electric field is perpendicular to the surface and zero inside. Outside the conductor, the field is identical to that of a point charge at the center equal to the excess charge.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-parallel-plates",
+   "kind": "sim",
+   "number": "18.29",
+   "originals": [
+    "/media/ch18/Figure_19_07_05a.jpg"
+   ],
+   "original_caption": "Two metal plates with equal, but opposite, excess charges. The field between them is uniform in strength and direction except near the edges. One use of such a field is to produce uniform acceleration of charges between the plates, such as in the electron gun of an old-fashioned CRT TV (one with a cathode ray tube instead of LCD screen).",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "charge",
+    "electric-field"
+   ]
+  },
+  {
+   "id": "fig-earths-field",
+   "kind": "photo",
+   "number": "18.30",
+   "originals": [
+    "/media/ch18/Figure_19_07_06a.jpg"
+   ],
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "sim-sharp-end",
+   "kind": "sim",
+   "number": "18.31",
+   "folds": [
+    "18.32"
+   ],
+   "originals": [
+    "/media/ch18/Figure_19_07_07a.jpg",
+    "/media/ch18/Figure_19_07_08a.jpg"
+   ],
+   "original_caption": "(Figure 18.31) Excess charge on a nonuniform conductor becomes most concentrated at the location of greatest curvature. (a) The forces between identical pairs of charges at either end of the conductor are identical, but the components of the forces parallel to the surface are different. It is ${\\text{F}}_{∥}$ that moves the charges apart once they have reached the surface. (b) ${\\text{F}}_{∥}$ is smallest at the more pointed end, the charges are left closer together, producing the electric field shown. (c) An uncharged conductor in an originally uniform electric field is polarized, with the most concentrated charge at its most pointed end. (Figure 18.32) A very pointed conductor has a large charge concentration at the point. The electric field is very strong at the point and can exert a force large enough to transfer charge on or off the conductor. Lightning rods are used to prevent the buildup of large excess charges on structures and, thus, are pointed.",
+   "widths": [
+    350,
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "force"
+   ]
+  },
+  {
+   "id": "fig-rod-and-sphere",
+   "kind": "photo",
+   "number": "18.33",
+   "originals": [
+    "/media/ch18/Figure_19_07_09a.jpg"
+   ],
+   "widths": [
+    350
+   ]
+  },
+  {
+   "id": "fig-square",
+   "kind": "figure",
+   "originals": [
+    "/media/ch18/Figure_19_07_12a.jpg"
+   ],
+   "original_caption": "Four point charges ${q}_{a}$, ${q}_{b}$, ${q}_{c}$, and ${q}_{d}$ lie on the corners of a square and $q$ is located at its center.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge"
+   ]
+  }
+ ],
+ "coverage": [
+  { "span": "free-charges-and-equilibrium", "concept": "electrostatic-equilibrium", "verb": "introduces" },
+  { "span": "free-charges-and-equilibrium", "concept": "field-perpendicular-to-conductor", "verb": "introduces" },
+  { "span": "free-charges-and-equilibrium", "concept": "conductor", "verb": "uses" },
+  { "span": "free-charges-and-equilibrium", "concept": "electric-field", "verb": "uses" },
+  { "span": "free-charges-and-equilibrium", "concept": "force-from-electric-field", "verb": "uses" },
+  { "span": "polarized-conductor", "concept": "field-inside-conductor-zero", "verb": "introduces" },
+  { "span": "polarized-conductor", "concept": "excess-charge-on-surface", "verb": "introduces" },
+  { "span": "polarized-conductor", "concept": "field-perpendicular-to-conductor", "verb": "reinforces" },
+  { "span": "polarized-conductor", "concept": "polarization", "verb": "uses" },
+  { "span": "polarized-conductor", "concept": "electric-field-lines", "verb": "uses" },
+  { "span": "polarized-conductor", "concept": "field-of-point-charge", "verb": "uses" },
+  { "span": "polarized-conductor", "concept": "like-charges-repel", "verb": "uses" },
+  { "span": "parallel-plates", "concept": "uniform-field-between-plates", "verb": "introduces" },
+  { "span": "parallel-plates", "concept": "excess-charge-on-surface", "verb": "uses" },
+  { "span": "parallel-plates", "concept": "field-perpendicular-to-conductor", "verb": "uses" },
+  { "span": "parallel-plates", "concept": "field-line-properties", "verb": "uses" },
+  { "span": "earths-field", "concept": "earths-electric-field", "verb": "introduces" },
+  { "span": "earths-field", "concept": "uniform-field-between-plates", "verb": "reinforces" },
+  { "span": "earths-field", "concept": "electric-field-direction", "verb": "uses" },
+  { "span": "uneven-surfaces", "concept": "charge-concentrates-at-points", "verb": "introduces" },
+  { "span": "uneven-surfaces", "concept": "excess-charge-on-surface", "verb": "reinforces" },
+  { "span": "uneven-surfaces", "concept": "field-perpendicular-to-conductor", "verb": "reinforces" },
+  { "span": "uneven-surfaces", "concept": "coulombs-law", "verb": "uses" },
+  { "span": "uneven-surfaces", "concept": "polarization", "verb": "uses" },
+  { "span": "applications", "concept": "lightning-rod", "verb": "introduces" },
+  { "span": "applications", "concept": "faraday-cage", "verb": "introduces" },
+  { "span": "applications", "concept": "charge-concentrates-at-points", "verb": "reinforces" },
+  { "span": "applications", "concept": "field-inside-conductor-zero", "verb": "reinforces" },
+  { "span": "applications", "concept": "electrostatic-screening", "verb": "uses" },
+  { "span": "four-charges", "concept": "superposition-of-electric-fields", "verb": "uses" },
+  { "span": "four-charges", "concept": "superposition-of-coulomb-forces", "verb": "uses" }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3201948",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "polarized-conductor",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_11a.jpg",
+    "alt": "External field lines entering the object from one end and emerging from another are shown by lines."
+   },
+   "prompt": "Is the object in the figure a conductor or an insulator? Justify your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It is an insulator. The field lines run straight through the object and meet its surface at whatever angle they happen to arrive at, and neither of those things can happen at a conductor in electrostatic equilibrium. In a conductor the free charges would move until no field was left inside, so no line could cross the body at all, and until the field just outside stood perpendicular to the surface, so every line would meet the surface at a right angle and stop there on a charge."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2671695",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "polarized-conductor",
+   "prompt": "If the electric field lines in the figure above were perpendicular to the object, would it necessarily be a conductor? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. Lines meeting the surface at right angles is something a conductor in equilibrium must show, but it is not something only a conductor can show. An insulator whose surface charge happened to be arranged in the right way would give the same picture outside, and so would a charged insulator of a symmetrical shape. What settles the question is whether any field is left inside the body: a conductor in electrostatic equilibrium has none, because any field there would go on moving its free charges, and an insulator may have as much as it likes."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3088694",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "parallel-plates",
+   "prompt": "The discussion of the electric field between two parallel conducting plates, in this module states that edge effects are less important if the plates are close together. What does close mean? That is, is the actual plate separation crucial, or is the ratio of plate separation to plate area crucial?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It is the ratio that matters, not the separation on its own. The field bows outward within roughly one separation of the edge of the plates, so the spoiled region is a band whose width is set by the separation while the whole field is as wide as the plates are. Two plates a millimetre apart and a millimetre across are not close together in the sense the text means, and two plates a centimetre apart and a metre across are. Close therefore means that the separation is small compared with the size of the plates, which for square plates is the same as saying that the separation is small compared with the square root of their area."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1871378",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "applications",
+   "prompt": "Would the self-created electric field at the end of a pointed conductor, such as a lightning rod, remove positive or negative charge from the conductor? Would the same sign charge be removed from a neutral pointed conductor by the application of a similar externally created electric field? (The answers to both questions have implications for charge transfer utilizing points.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The field at the point removes whichever sign of charge the conductor is carrying, since that is the charge the field is pushing outward: a positively charged rod loses positive charge to the air and a negatively charged one loses negative charge. A neutral pointed conductor in an externally applied field is a different case. It has no excess charge of its own, and the applied field has driven charge of one sign to the point and charge of the other sign to the far end; what leaves the point is therefore the sign the applied field has gathered there, which is set by the direction of that field and not by the conductor. Either sign can be carried away from a point, which is what makes points useful for moving charge in both directions."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1487810",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "applications",
+   "prompt": "Why is a golfer with a metal club over her shoulder vulnerable to lightning in an open fairway? Would she be any safer under a tree?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "On an open fairway she is the tallest conductor for some distance, and the club raises her higher still and ends in a metal point. Charge induced on her by the storm cloud is concentrated at that point, the field there is large, and the air near it is the first to break down, so the strike comes to her. Standing under a tree does not make her safer. The tree is taller and takes the strike instead, but a large part of the current then travels down the wet outside of the trunk and can jump the short gap to a person standing beside it, and the ground around the tree carries dangerous currents as well. The safe place is a building or a car, both of which act as a Faraday cage."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3228630",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "polarized-conductor",
+   "prompt": "Can the belt of a Van de Graaff accelerator be a conductor? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The belt has to carry charge up to the sphere and hold onto it on the way, and a conductor cannot do that. Excess charge placed on a conductor moves at once until it is spread over the whole surface, so charge put on a conducting belt would run back down the belt and away through whatever the belt touches instead of riding up to the sphere. The belt is made of an insulator for that reason: the charge sprayed onto it stays where it is put and is carried up mechanically, and it is taken off again at the top by a comb of points."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3286362",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "applications",
+   "prompt": "Are you relatively safe from lightning inside an automobile? Give two reasons.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes, provided you stay entirely inside it. The first reason is that the metal body of the car is a Faraday cage: any charge it takes up resides on its outside surface and there is no electric field within the shell, so a strike to the car is felt on the outside and the inside is unaffected. The second is that the metal is a far better conductor than a person is, so the current of a strike runs through the body of the car around you and into the ground rather than through you. The same two reasons hold if a live wire falls onto the car."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2400128",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": { "at": "end" },
+   "cite": "applications",
+   "prompt": "Discuss pros and cons of a lightning rod being grounded versus simply being attached to a building.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A grounded rod is connected to the earth by a thick conductor, so charge induced on the building by the storm cloud is drawn up to the point and bled continually into the air, and if a strike does come the current has a path to ground that does not pass through the building. Its cost is the installation itself, and the fact that a poor connection or a corroded one is worse than none at all, since it invites the strike and then cannot carry it. A rod merely attached to the building can still concentrate charge at its point and bleed some of it away, but the charge it moves has to come from the building, which is a poor conductor, so it works far less well; and when a strike arrives the current must find its own way down through the structure, which is how fires start. The grounded rod is the better arrangement whenever it can be properly made."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3408279",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "four-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_12a.jpg",
+    "alt": "Four point charges, one is q a, second is q b, third is q c, and fourth is q d, lie on the corners of a square. q is located at its center.",
+    "caption": "Four point charges q_a, q_b, q_c, and q_d lie on the corners of a square and q is located at its center."
+   },
+   "prompt": "Using the symmetry of the arrangement, show that the net Coulomb force on the charge $\\kq$ at the center of the square below is zero if the charges on the four corners are exactly equal.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The center of a square is the same distance from all four corners, so four equal charges at the corners each exert a force of the same magnitude on the charge at the center. Take them in the two diagonal pairs. The two charges of a pair lie on opposite ends of a line through the center, so the forces they exert on the charge at the center are equal in magnitude and opposite in direction, and they cancel. The same is true of the other pair, so all four forces cancel and the net Coulomb force is zero. Nothing in the argument depends on the sign of the charges or on the size of the square, only on the four being equal and the center being equidistant from them."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id2678000",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "four-charges",
+   "prompt": "(a) Using the symmetry of the arrangement, show that the electric field at the center of the square is zero if the charges on the four corners are exactly equal. (b) Show that this is also true for any combination of charges in which $\\kqa = \\kqd$ and $\\kqb = \\kqc$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) Each corner charge is the same distance from the center, so each makes a field of the same magnitude there. The charges at opposite ends of a diagonal make fields along that diagonal in opposite directions, so each diagonal pair cancels and the total is zero. (b) The charges $\\kqa$ and $\\kqd$ lie at opposite ends of one diagonal, and $\\kqb$ and $\\kqc$ at opposite ends of the other. If $\\kqa = \\kqd$ the two fields they make at the center are equal in magnitude and opposite in direction and cancel by themselves, whatever their common value; the same holds for $\\kqb$ and $\\kqc$. The four need not be equal to one another, only equal within each diagonal pair."
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id3397088",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "four-charges",
+   "prompt": "(a) What is the direction of the total Coulomb force on $\\kq$ if $\\kq$ is negative, $\\kqa = \\kqc$ and both are negative, and $\\kqb = \\kqd$ and both are positive? (b) What is the direction of the electric field at the center of the square in this situation?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The two negative charges $\\kqa$ and $\\kqc$ are the two left-hand corners and the two positive charges $\\kqb$ and $\\kqd$ are the two right-hand corners, so the arrangement is symmetric about the horizontal line through the center and everything vertical cancels. (b) The field points away from a positive charge and toward a negative one, so the field at the center points to the left, from the positive right-hand side toward the negative left-hand side. (a) The force on a negative charge is opposite to the field, so the total Coulomb force on $\\kq$ points to the right, toward the two positive charges. Both answers are horizontal, and both are unchanged by the size of the square."
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id1368317",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": { "at": "end" },
+   "cite": "four-charges",
+   "prompt": "Suppose that $\\kqa = \\kqd$ and $\\kqb = \\kqc$. First show that $\\kq$ is in static equilibrium. (You may neglect the gravitational force.) Then discuss whether the equilibrium is stable or unstable, noting that this may depend on the signs of the charges and the direction of displacement of $\\kq$ from the center of the square.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The charges $\\kqa$ and $\\kqd$ are the ends of one diagonal and $\\kqb$ and $\\kqc$ the ends of the other. Equal charges at the two ends of a diagonal are the same distance from the center and pull or push the charge there in exactly opposite directions, so each pair cancels on its own and the net force on $\\kq$ is zero: it is in static equilibrium. Whether the equilibrium is stable depends on the signs. If the corner charges have the same sign as $\\kq$, they repel it, and moving $\\kq$ a little toward one corner brings it closer to that corner and farther from the opposite one, so the near charge pushes harder and drives it back: that displacement is stable. If the corner charges have the opposite sign to $\\kq$, they attract it, and the same small displacement is pulled further in the direction it was moved: that displacement is unstable. In general no arrangement of fixed charges gives an equilibrium that is stable against displacement in every direction, so with mixed signs the charge is stable along one diagonal and unstable along the other."
+   }
+  },
+  {
+   "id": "cq13",
+   "source_id": "fs-id1383011",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "four-charges",
+   "prompt": "If $\\kqa = 0$, under what conditions will there be no net Coulomb force on $\\kq$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With nothing at the corner $\\kqa$, the charge at the opposite end of that diagonal, $\\kqd$, has nothing to cancel it, so it too must be zero. The other diagonal is then left to cancel itself, which it does when $\\kqb = \\kqc$. So the condition is $\\kqd = 0$ with $\\kqb = \\kqc$, of any common value and either sign. The only other way to have no net force is for $\\kq$ itself to be zero, which is not an arrangement of the corner charges at all."
+   }
+  },
+  {
+   "id": "cq14",
+   "source_id": "fs-id2384303",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "uneven-surfaces",
+   "prompt": "In regions of low humidity, one develops a special “grip” when opening car doors, or touching metal door knobs. This involves placing as much of the hand on the device as possible, not just the ends of one’s fingers. Discuss the induced charge and explain why this is done.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In dry air a person picks up an excess charge and keeps it, and as the hand approaches the metal the charge on the person induces the opposite charge on the near part of the metal. The charge on the hand crowds onto its sharpest part, which is a fingertip, so the field there is large and the air breaks down while the gap is still wide: the whole of the charge crosses in one small spark, and that is what hurts. Laying the flat of the hand on the metal presents a surface of much larger radius, so the charge is spread thinly, the field near it stays small, and contact is made before any spark can start. The charge then flows across quietly and no discharge is felt."
+   }
+  },
+  {
+   "id": "cq15",
+   "source_id": "fs-id1985635",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "applications",
+   "prompt": "Tollbooth stations on roadways and bridges usually have a piece of wire stuck in the pavement before them that will touch a car as it approaches. Why is this done?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A car running along a road picks up an excess charge, and a charged car arriving at a window would discharge through the attendant or through the money or ticket being passed. The wire in the pavement is a conductor that runs into the ground, so when the car touches it the excess charge on the car flows away into the earth, harmlessly and before the car reaches the booth. It is the same grounding that a lightning rod’s connection to earth provides, done deliberately and in advance."
+   }
+  },
+  {
+   "id": "cq16",
+   "source_id": "fs-id2603645",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": { "at": "end" },
+   "cite": "applications",
+   "prompt": "Suppose a person carries an excess charge. To maintain their charged status can they be standing on ground wearing just any pair of shoes? How would you discharge them? What are the consequences if they simply walk away?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The shoes have to be insulators, and dry ones. A conducting sole, or a wet one, connects the person to the ground and the excess charge runs away at once, since ground is a conductor large enough to take any charge offered to it. To discharge the person deliberately, connect them to ground through something that carries the charge away gradually rather than in one spark: a hand laid flat on a large grounded metal surface, or a wire through a resistance. If they simply walk away they stay charged, and the charge will find its own way off at the first thing they touch, which means a spark at a fingertip, a shock, and, near anything flammable or near delicate electronics, real damage."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1329828",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "polarized-conductor",
+   "figure": {
+    "src": "/media/ch18/image040.jpg",
+    "alt": "A gold sphere with eight equally spaced black +'s around the outside of the sphere point to eight blue arrows pointing outward. Four of the arrows point directly up, right, down, and left of the sphere and four arrows are equally spaced between these other four arrows at 45 degree angles. The arrow between the left and top arrow is labeled A. The arrow between the top and right arrow is labeled B. The arrow between the right and down arrow is labeled C.",
+    "caption": "A sphere conductor."
+   },
+   "prompt": "An electric field due to a positively charged spherical conductor is shown above. Where will the electric field be weakest?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Point A",
+     "Point B",
+     "Point C",
+     "Same at all points"
+    ],
+    "correct": 2,
+    "hint": "Outside a charged spherical conductor the field is the field of a point charge at the center, so it depends on nothing but the distance from the center. Compare the lengths of the three arrows.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1773817",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": { "at": "end" },
+   "cite": "parallel-plates",
+   "figure": {
+    "src": "/media/ch18/image042.jpg",
+    "alt": "There is a gray long thin rectangle at the top of the figure with black pluses. The same size gray long thin rectangle is at the bottom of the figure with minuses below the positives. There are blue lines with an arrow in the middle connecting each + to each -. The two arrows on the left start at the same first + are curved toward the left and hit the first bottom -. The two lines on the right are curved toward the right and connect the last + and -. The six center arrows are vertical. Between line three and four near the + rectangle is an A. A B is between lines four and five near the – rectangle. C is halfway between the + and – rectangle between lines six and seven.",
+    "caption": "Electric field between two parallel metal plates."
+   },
+   "prompt": "The electric field created by two parallel metal plates is shown above. Where will the electric field be strongest? (a) Point A (b) Point B (c) Point C (d) Same at all points",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "All three points lie in the region where the lines run straight, parallel and evenly spaced, which is what a uniform field looks like: the same strength and the same direction everywhere in it. The closeness of the lines is the strength of the field, and it is the same at A, near the positive plate, at B, near the negative plate, and at C, halfway between them. The field is stronger nowhere among the three, so the answer is (d), the same at all points. The lines that bow outward at the two ends of the plates are the edge effect, and none of the three points is out there."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1909331",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "polarized-conductor",
+   "prompt": "Suppose that the electric field experienced due to a positively charged small spherical conductor at a certain distance is $\\kEf$. What will be the percentage change in electric field experienced at thrice the distance if the charge on the conductor is doubled?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -77.78,
+    "unit": "%",
+    "hint": "Outside the conductor the field is that of a point charge at the center, $\\kEf = k|\\kq|/r^{2}$. Doubling the charge doubles it, and trebling the distance divides it by nine.",
+    "solution": "decrease by 77.78%."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2149406",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "parallel-plates",
+   "figure": {
+    "src": "/media/ch18/image044.jpg",
+    "alt": "The diagram shows an eye, microscope and then a gray bar with five +'s at the top, 5 arrows pointing directly down to 5 –‘s in a gray bar. In the center of the bars between the + and – bars is a gold drop.",
+    "caption": "Millikan oil drop experiment."
+   },
+   "prompt": "The classic Millikan oil drop experiment setup is shown above. In this experiment oil drops are suspended in a vertical electric field against the gravitational force to measure their charge. If the mass of a negatively charged drop suspended in an electric field of 1.18×10<sup>−4</sup> N/C strength is 3.85×10<sup>−21</sup> g, find the number of excess electrons in the drop.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A drop that hangs still has no net force on it, so the electric force on it balances its weight: $\\kq\\kEf = m\\kg$. Put the mass in kilograms first, $3.85 \\times 10^{-21}\\ \\text{g} = 3.85 \\times 10^{-24}\\ \\text{kg}$, so the weight is $(3.85 \\times 10^{-24})(9.80) = 3.77 \\times 10^{-23}\\ \\text{N}$. The charge that the field of $1.18 \\times 10^{-4}\\ \\text{N/C}$ needs in order to hold that up is $\\kq = m\\kg/\\kEf = 3.77 \\times 10^{-23}/1.18 \\times 10^{-4} = 3.20 \\times 10^{-19}\\ \\text{C}$. Every excess electron carries $1.60 \\times 10^{-19}\\ \\text{C}$, so the drop carries two of them."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id694467",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "parallel-plates",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_17a.jpg",
+    "alt": "Three point charges are shown on the scaling line. First charge plus q is at three point zero, second charge minus two q is at eight point zero, and third charge plus q is eleven point zero centimeters along the x axis. Four charges are placed on a scaling line. First is minus two q at one point zero, second is plus q at five point zero, third is plus three q is at eight point zero, and fourth is minus q placed at fourteen point zero centimeter along the x axis.",
+    "caption": "(a) Point charges located at 3.00, 8.00, and 11.0 cm along the x-axis. (b) Point charges located at 1.00, 5.00, 8.00, and 14.0 cm along the x-axis."
+   },
+   "prompt": "(a) Find the total electric field at $x = 1.00$ cm in the figure (b) given that $\\kq = 5.00$ nC. (b) Find the total electric field at $x = 11.00$ cm in the figure (b) given that $\\kq = 5.00$ nC. (c) If the charges are allowed to move and eventually be brought to rest by friction, what will the final charge configuration be? (That is, will there be a single charge, double charge, etc., and what will its value(s) be?)",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 212000,
+    "unit": "N/C",
+    "part": "a",
+    "hint": "Add the fields of the four charges as vectors along the axis, each of magnitude $k|\\kq|/r^{2}$, counting a field that points in the $+x$ direction as positive. For part (c), add the charges up.",
+    "solution": "(a) $2\\text{.}\\text{12}\\times {\\text{10}}^{5}\\;\\text{N/C}$\n(b) one charge of $+\\kq$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id956458",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "parallel-plates",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_17a.jpg",
+    "alt": "Three point charges are shown on the scaling line. First charge plus q is at three point zero, second charge minus two q is at eight point zero, and third charge plus q is eleven point zero centimeters along the x axis. Four charges are placed on a scaling line. First is minus two q at one point zero, second is plus q at five point zero, third is plus three q is at eight point zero, and fourth is minus q placed at fourteen point zero centimeter along the x axis.",
+    "caption": "(a) Point charges located at 3.00, 8.00, and 11.0 cm along the x-axis. (b) Point charges located at 1.00, 5.00, 8.00, and 14.0 cm along the x-axis."
+   },
+   "prompt": "(a) Find the total Coulomb force on a charge of 2.00 nC located at $x = 4.00$ cm in the figure (b), given that $\\kq = 1.00\\ \\mu\\text{C}$. (b) Find the $x$-position at which the electric field is zero in the figure (b).",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     { "part": "a", "value": 0.252, "unit": "N", "hint": "Add the four Coulomb forces as vectors along the axis. The answer is to the left." },
+     { "part": "b", "value": 6.07, "unit": "cm", "hint": "Look between the two positive charges at 5.00 and 8.00 cm, where the fields of the nearest charges oppose one another." }
+    ],
+    "solution": "(a) 0.252 N to the left\n(b) $x = 6.07$ cm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3091835",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "four-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_12a.jpg",
+    "alt": "Four point charges, one is q a, second is q b, third is q c, and fourth is q d, lie on the corners of a square. q is located at its center."
+   },
+   "prompt": "(a) Using the symmetry of the arrangement, determine the direction of the electric field at the center of the square, given that $\\kqa = \\kqb = -1.00\\ \\mu\\text{C}$ and $\\kqc = \\kqd = +1.00\\ \\mu\\text{C}$. (b) Calculate the magnitude of the electric field at the location of $\\kq$, given that the square is 5.00 cm on a side.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 20400000,
+    "unit": "N/C",
+    "part": "b",
+    "hint": "Each corner is half a diagonal from the center, so $r = (5.00\\ \\text{cm})/\\sqrt{2}$ over 2. Add the four fields as vectors; the horizontal parts cancel and the vertical parts add.",
+    "solution": "(a) The electric field at the center of the square will be straight up, since $\\kqa$ and $\\kqb$ are positive and $\\kqc$ and $\\kqd$ are negative and all have the same magnitude.\n(b) $2\\text{.}\\text{04}\\times {\\text{10}}^{7}\\;\\text{N/C}\\;(\\text{upward})$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id3165180",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "four-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_12a.jpg",
+    "alt": "Four point charges, one is q a, second is q b, third is q c, and fourth is q d, lie on the corners of a square. q is located at its center."
+   },
+   "prompt": "Find the total Coulomb force on the charge $\\kq$ at the center of the square, given that $\\kq = 1.00\\ \\mu\\text{C}$, $\\kqa = 2.00\\ \\mu\\text{C}$, $\\kqb = -3.00\\ \\mu\\text{C}$, $\\kqc = -4.00\\ \\mu\\text{C}$, and $\\kqd = +1.00\\ \\mu\\text{C}$. The square is 50.0 cm on a side.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.102,
+    "unit": "N",
+    "hint": "Every corner is the same distance from the center, $r = (50.0\\ \\text{cm})\\sqrt{2}/2$. Work out the four forces, resolve each along the diagonals, and add.",
+    "solution": "$0\\text{.}\\text{102}\\;\\text{N},$ in the $-y$ direction"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2625961",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "four-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_18a.jpg",
+    "alt": "Three point charges located at the corners of an equilateral triangle.",
+    "caption": "Point charges located at the corners of an equilateral triangle 25.0 cm on a side."
+   },
+   "prompt": "(a) Find the electric field at the center of the triangular configuration of charges, given that $\\kqa = +2.50$ nC, $\\kqb = -8.00$ nC, and $\\kqc = +1.50$ nC. (b) Is there any combination of charges, other than $\\kqa = \\kqb = \\kqc$, that will produce a zero strength electric field at the center of the triangular configuration?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4360,
+    "unit": "N/C",
+    "part": "a",
+    "hint": "The center of an equilateral triangle of side $d$ is $d/\\sqrt{3}$ from each corner. Add the three fields as vectors.",
+    "solution": "(a) $\\vec{E} = 4.36\\times {\\text{10}}^{3}\\;\\text{N/C}$, $35.0^\\circ$ below the horizontal.\n(b) No"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  { "exercise": "cq1", "concept": "field-inside-conductor-zero" },
+  { "exercise": "cq1", "concept": "field-perpendicular-to-conductor", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq1", "concept": "insulator", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq2", "concept": "field-perpendicular-to-conductor" },
+  { "exercise": "cq2", "concept": "field-inside-conductor-zero", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq3", "concept": "uniform-field-between-plates" },
+  { "exercise": "cq4", "concept": "charge-concentrates-at-points" },
+  { "exercise": "cq4", "concept": "lightning-rod", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq4", "concept": "polarization", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq5", "concept": "lightning-rod" },
+  { "exercise": "cq5", "concept": "charge-concentrates-at-points", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq6", "concept": "excess-charge-on-surface" },
+  { "exercise": "cq6", "concept": "conductor", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq6", "concept": "van-de-graaff-generator", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq7", "concept": "faraday-cage" },
+  { "exercise": "cq7", "concept": "field-inside-conductor-zero", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq8", "concept": "lightning-rod" },
+  { "exercise": "cq8", "concept": "grounding", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq9", "concept": "superposition-of-coulomb-forces" },
+  { "exercise": "cq9", "concept": "coulomb-force-direction", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq10", "concept": "superposition-of-electric-fields" },
+  { "exercise": "cq10", "concept": "electric-field-direction", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq11", "concept": "superposition-of-electric-fields" },
+  { "exercise": "cq11", "concept": "superposition-of-coulomb-forces", "weight": 4, "weights_by": "ai" },
+  { "exercise": "cq11", "concept": "electric-field-direction", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq12", "concept": "superposition-of-coulomb-forces" },
+  { "exercise": "cq12", "concept": "coulomb-force-direction", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq13", "concept": "superposition-of-coulomb-forces" },
+  { "exercise": "cq14", "concept": "charge-concentrates-at-points" },
+  { "exercise": "cq14", "concept": "polarization", "weight": 3, "weights_by": "ai" },
+  { "exercise": "cq15", "concept": "grounding" },
+  { "exercise": "cq15", "concept": "faraday-cage", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq16", "concept": "grounding" },
+  { "exercise": "cq16", "concept": "insulator", "weight": 3, "weights_by": "ai" },
+  { "exercise": "ap1", "concept": "excess-charge-on-surface" },
+  { "exercise": "ap1", "concept": "field-of-point-charge", "weight": 3, "weights_by": "ai" },
+  { "exercise": "ap2", "concept": "uniform-field-between-plates" },
+  { "exercise": "ap2", "concept": "field-line-properties", "weight": 3, "weights_by": "ai" },
+  { "exercise": "ap3", "concept": "excess-charge-on-surface" },
+  { "exercise": "ap3", "concept": "field-of-point-charge", "weight": 4, "weights_by": "ai" },
+  { "exercise": "ap4", "concept": "uniform-field-between-plates" },
+  { "exercise": "ap4", "concept": "force-from-electric-field", "weight": 4, "weights_by": "ai" },
+  { "exercise": "p1", "concept": "superposition-of-electric-fields" },
+  { "exercise": "p1", "concept": "field-of-point-charge", "weight": 4, "weights_by": "ai" },
+  { "exercise": "p1", "concept": "conservation-of-charge", "weight": 2, "weights_by": "ai" },
+  { "exercise": "p2", "concept": "superposition-of-coulomb-forces" },
+  { "exercise": "p2", "concept": "superposition-of-electric-fields", "weight": 4, "weights_by": "ai" },
+  { "exercise": "p3", "concept": "superposition-of-electric-fields" },
+  { "exercise": "p3", "concept": "electric-field-direction", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p4", "concept": "superposition-of-coulomb-forces" },
+  { "exercise": "p4", "concept": "coulombs-law", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p5", "concept": "superposition-of-electric-fields" },
+  { "exercise": "p5", "concept": "add-electric-fields", "weight": 4, "weights_by": "ai" }
+ ]
+}

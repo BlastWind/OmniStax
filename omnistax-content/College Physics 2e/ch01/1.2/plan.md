@@ -165,6 +165,20 @@ and the three figures already open the views the text does not give
 (light covering the meter in a set time, a value placed on the ladder of
 powers of 10, a speed carried through a chain of conversion factors).
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-light-meter`: the
+flashlight floated above the stick with the pulse in the air; the lens now
+rests at the stick's left end and the pulse runs along its face, the
+distance bracket sits above the pulse, and the meter-mark callout hangs
+below the tick labels instead of crossing "100 cm". `sim-ladder`: the
+marker's label sat on the leader lines of centi and hecto; the prefix rows
+moved down, the leaders start below the tick labels, and the canvas grew
+to 440. `sim-drive`: the car drove through the house and "home" landed on
+the 15 km tick; the school and the house now stand at the far kerb with
+their names above their roofs, the car drives the near lane in front of
+them, the velocity arrow leaves the front bumper and is held inside the
+canvas, and the speed is written past its tip, or behind the car when the
+tip is near the end of the road.
+
 ## Tables
 
 Three, written from the CNXML with their spanned headers, every cell as

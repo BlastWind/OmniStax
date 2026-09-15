@@ -284,4 +284,8 @@ to this book:
   because the entity is decoded into a bare `$` before the math sweep
   reads the string and the sweep then takes the rest of the sentence for
   an equation; a display equation that needs the sign writes the
-  fullwidth character inside `\text{}` for the same reason.
+  fullwidth character inside `\text{}` for the same reason. No math at all
+  goes inside an attribute: a `$…$` in `data-original-caption` is swept
+  into KaTeX markup with quotes, the attribute breaks and the caption
+  spills into the page as text, and the validator does not catch it, so
+  a caption attribute writes its symbols as plain text (f₀, ΔL).

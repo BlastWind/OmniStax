@@ -202,6 +202,8 @@ Extra simulations (rule 15), considered:
   sentence and no drawing, and the chapter config keeps the whole chapter
   planar.
 
+**Figure pass (2026-09-14, Claude Fable 5.1).** `sim-stance` draws the person as the library's silhouette seen from the front, its feet the base of support apart and its hips at the height the center of gravity asks, so the knees bend outward as the body is lowered. `sim-neutral` draws the sphere and the lying pencil larger, with the weight and the normal force beside the outline on panels. The pencil figures, the marble and the chicken stand as they were.
+
 ## Exercises
 
 - No Check Your Understanding box, so nothing is inline; every item is in the

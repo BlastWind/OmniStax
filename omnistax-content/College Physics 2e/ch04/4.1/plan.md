@@ -148,6 +148,12 @@ None built.
    relaxed length changes where the spring ends and nothing else, since the
    standard is fixed by the stretch past that length.
 
+Figure pass of 2026-09-14 (Claude Fable 5.1): the skaters seen from above were rings with two
+sticks and read as nothing; each is now a shoulder bar with the head on it, two arms reaching
+ahead and two skates trailing, drawn at a quarter more than sprite size, and the two pushers
+stand close enough that their hands rest on the third skater's shoulders where the pushes act.
+`sim-spring` was looked at in both themes and at both extremes and left as built.
+
 ## Exercises
 
 - One inline item: the hawk AP item, `ap2` (fs-id1470278), keyed by the

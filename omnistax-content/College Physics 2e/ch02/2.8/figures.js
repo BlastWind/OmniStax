@@ -1,7 +1,7 @@
 /* Figures for section 2.8 Graphical Analysis of One-Dimensional Motion. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.8'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, dot, text, headline, vbracket, axes, nice, curve } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, dot, text, headline, topline, vbracket, axes, nice, curve, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const sgn = (v) => (v < 0 ? '−' : '+');
@@ -12,12 +12,18 @@ const drop = (ctx, x1, y1, x2, y2, color) => line(ctx, x1, y1, x2, y2, color, 3,
 /* draw inside a graph box only */
 function clipped(ctx, box, f) { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); }
 /* the rise-and-run triangle between two points of a line: the run along the bottom, the rise up the right side */
-function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, box) {
+function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, box, lab) {
   const x1 = X(p1[0]), x2 = X(p2[0]), y1 = Y(p1[1]), y2 = Y(p2[1]);
   clipped(ctx, box, () => { drop(ctx, x1, y1, x2, y1, runColor); drop(ctx, x2, y1, x2, y2, riseColor); });
   const inBox = (y) => Math.min(box.b - 14, Math.max(box.t + 14, y));
-  text(ctx, runLabel, (x1 + x2) / 2, inBox(y1 + (y2 < y1 ? 26 : -26)), runColor, { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
   const right = x2 > (box.l + box.r) / 2 && x2 + 200 > box.r;
+  /* given a labeller the two labels queue on it and step clear of whatever else is near the corner */
+  if (lab) {
+    lab.add(runLabel, (x1 + x2) / 2, y1, 0, y2 < y1 ? 1 : -1, runColor, 22, 26);
+    lab.add(riseLabel, x2, (y1 + y2) / 2, right ? -1 : 1, 0, riseColor, 22, 16);
+    return;
+  }
+  text(ctx, runLabel, (x1 + x2) / 2, inBox(y1 + (y2 < y1 ? 26 : -26)), runColor, { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
   text(ctx, riseLabel, x2 + (right ? -16 : 16), inBox((y1 + y2) / 2), riseColor, { align: right ? 'right' : 'left', weight: 600, bg: alpha(PAL.panel, 0.85) });
 }
 
@@ -77,18 +83,25 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     line(ctx, X(0), Y(pos(0)), X(8), Y(pos(8)), C('position'), 5);
     /* the intercept, hollow, and the two chosen points, filled */
     dot(ctx, X(0), Y(x0.v), C('position'), false, 10);
-    text(ctx, 'x₀ = ' + fmt(x0.v, 0) + ' m', X(0) - 16, Y(x0.v) - 58, C('position'), { weight: 600, size: 22, align: 'left' });   /* high enough to clear a chosen point near the axis */
+    /* the intercept, the two chosen points and the triangle's sides all crowd the lower left corner when
+       the chosen times are small, so every label here goes through the labeller */
+    const lab = labeller(ctx, 560);
+    lab.block(box.l, box.b, box.r, box.b + 40); lab.block(box.l - 70, box.t - 30, box.l, box.b);
+    /* the intercept's label is dropped when a chosen point sits on the intercept and already names it */
+    if (Math.min(t1.v, t2.v) > 0.3) lab.add('x_0 = ' + fmt(x0.v, 0) + ' m', X(0), Y(x0.v), -0.3, -1, C('position'), 22, 30);
     if (Math.abs(dt) > 0.05) {
-      triangle(ctx, X, Y, [t1.v, xa], [t2.v, xb], 'Δt = ' + neg(fmt(dt, 2)) + ' s', 'Δx = ' + neg(fmt(dx, 0)) + ' m', C('time'), C('position'), box);
+      triangle(ctx, X, Y, [t1.v, xa], [t2.v, xb], 'Δt = ' + neg(fmt(dt, 2)) + ' s', 'Δx = ' + neg(fmt(dx, 0)) + ' m', C('time'), C('position'), box, lab);
       drop(ctx, X(t1.v), Y(xa), X(t1.v), box.b, C('time')); drop(ctx, X(t2.v), Y(xb), X(t2.v), box.b, C('time'));
     }
     for (const [t, x] of [[t1.v, xa], [t2.v, xb]]) {
       dot(ctx, X(t), Y(x), C('position'), true, 10);
-      const low = t < 1.6;   /* a point near the axis is labelled under the line, clear of the intercept's label */
-      text(ctx, '(' + fmt(t, 2) + ' s, ' + fmt(x, 0) + ' m)', X(t) + (low ? 16 : -14), Y(x) + (low ? 34 : -30), PAL.ink, { align: low ? 'left' : 'right', size: 20, bg: alpha(PAL.panel, 0.85) });
+      /* the earlier point is labelled under the line and the later one above it, so the two never meet */
+      const under = t === Math.min(t1.v, t2.v);
+      lab.add('(' + fmt(t, 2) + ' s, ' + fmt(x, 0) + ' m)', X(t), Y(x), under ? 0.6 : -0.6, under ? 1 : -1, PAL.ink, 20, 26);
     }
     /* the slope named on the line */
-    text(ctx, 'slope = v̄ = Δx / Δt', X(3.6), Y(pos(3.6)) - 40, C('velocity'), { align: 'right', weight: 600, size: 22, bg: alpha(PAL.panel, 0.85) });
+    lab.add('slope = v̄ = Δx / Δt', X(3.6), Y(pos(3.6)), -0.3, -1, C('velocity'), 22, 30);
+    lab.flush();
     if (Math.abs(dt) > 0.05) {
       headline(ctx, 'Between ' + fmt(t1.v, 2) + ' s and ' + fmt(t2.v, 2) + ' s the car goes from ' + fmt(xa, 0) + ' m to ' + fmt(xb, 0) + ' m, a rise of ' + neg(fmt(dx, 0)) + ' m over a run of ' + neg(fmt(dt, 2)) + ' s, so the slope is ' + fmt(vb.v, 0) + ' m/s.');
       readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{${fmt(xb, 0)}\\ \\text{m} - ${fmt(xa, 0)}\\ \\text{m}}{${fmt(t2.v, 2)}\\ \\text{s} - ${fmt(t1.v, 2)}\\ \\text{s}} = ${fmt(vb.v, 0)}\\ \\text{m/s}`,
@@ -243,11 +256,14 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     curve(ctx, vel, 0, 70, g1.X, g1.Y, C('velocity'), 5, 140);
     const lo = Math.min(t1.v, t2.v) - 2, hi = Math.max(t1.v, t2.v) + 2;
     clipped(ctx, b1, () => line(ctx, g1.X(lo), g1.Y(vQ + aQ * (lo - tQ.v)), g1.X(hi), g1.Y(vQ + aQ * (hi - tQ.v)), PAL.ink, 3));
-    if (Math.abs(dt) > 0.05) triangle(ctx, g1.X, g1.Y, [t1.v, v1], [t2.v, v2], 'Δt = ' + neg(fmt(dt, 1)) + ' s', 'Δv = ' + neg(fmt(dv, 0)) + ' m/s', C('time'), C('velocity'), b1);
+    const lab = labeller(ctx, 800);
+    lab.block(b1.l, b1.b, b1.r, b1.b + 40); lab.block(b1.l - 70, b1.t - 30, b1.l, b1.b); lab.block(g1.X(tQ.v) - 16, g1.Y(vQ) - 16, g1.X(tQ.v) + 16, g1.Y(vQ) + 16);
+    if (Math.abs(dt) > 0.05) triangle(ctx, g1.X, g1.Y, [t1.v, v1], [t2.v, v2], 'Δt = ' + neg(fmt(dt, 1)) + ' s', 'Δv = ' + neg(fmt(dv, 0)) + ' m/s', C('time'), C('velocity'), b1, lab);
     clipped(ctx, b1, () => { dot(ctx, g1.X(t1.v), g1.Y(v1), PAL.ink, false, 8); dot(ctx, g1.X(t2.v), g1.Y(v2), PAL.ink, false, 8); });
     drop(ctx, g1.X(tQ.v), b1.t, g1.X(tQ.v), b2.b, C('time'));
     dot(ctx, g1.X(tQ.v), g1.Y(vQ), PAL.ink, true, 10);
-    text(ctx, 'v = ' + fmt(vQ, 0) + ' m/s at ' + fmt(tQ.v, 1) + ' s', g1.X(tQ.v) + (tQ.v > 45 ? -20 : 20), g1.Y(vQ) + 34, C('velocity'), { weight: 600, size: 20, align: tQ.v > 45 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+    lab.add('v = ' + fmt(vQ, 0) + ' m/s at ' + fmt(tQ.v, 1) + ' s', g1.X(tQ.v), g1.Y(vQ), tQ.v > 45 ? -0.5 : 0.5, 1, C('velocity'), 20, 30);
+    lab.flush();
     text(ctx, 'slope = a', b1.r - 30, b1.b - 34, C('acceleration'), { align: 'right', weight: 600, size: 22 });
     /* (b) the acceleration, falling to zero at 55 s */
     curve(ctx, acc, 0, 70, g2.X, g2.Y, C('acceleration'), 5, 140);

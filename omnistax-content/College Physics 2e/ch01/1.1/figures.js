@@ -2,6 +2,8 @@
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline } = F;
+/* Electrons and protons are particles with an identity, so they take the element palette (root rule 7), never ink. */
+const E_COLOR = () => F.el('e-'), P_COLOR = () => F.el('p+');
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -30,7 +32,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   const fill = (z) => SHELL.map((cap, i) => Math.max(0, Math.min(cap, z - SHELL.slice(0, i).reduce((a, b) => a + b, 0))));
   /* the nucleus: z protons packed round the centre */
   function nucleus(ctx, x, y, z, r) {
-    for (let i = 0; i < z; i++) { const rho = i === 0 ? 0 : 1.18 * r * Math.sqrt(i), a = i * GOLD; dot(ctx, x + rho * Math.cos(a), y + rho * Math.sin(a), PAL.ink, true, r); }
+    for (let i = 0; i < z; i++) { const rho = i === 0 ? 0 : 1.18 * r * Math.sqrt(i), a = i * GOLD; dot(ctx, x + rho * Math.cos(a), y + rho * Math.sin(a), P_COLOR(), true, r); }
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -38,13 +40,13 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const z = Z.v, shells = fill(z);
     /* the orbits, faint, with the empty ones fainter still */
     ctx.save(); ctx.lineWidth = 3;
-    shells.forEach((n, s) => { ctx.strokeStyle = n ? PAL.rule : alpha(PAL.rule, 0.45); ctx.beginPath(); ctx.arc(cx, cy0, RAD[s], 0, Math.PI * 2); ctx.stroke(); });
+    shells.forEach((n, s) => { ctx.strokeStyle = n ? alpha(PAL.ink, 0.4) : PAL.rule; if (!n) ctx.setLineDash([6, 10]); else ctx.setLineDash([]); ctx.beginPath(); ctx.arc(cx, cy0, RAD[s], 0, Math.PI * 2); ctx.stroke(); });
     ctx.restore();
     /* the nucleus */
     nucleus(ctx, cx, cy0, z, 8);
     /* the electrons, spaced evenly round each shell and going round together */
     shells.forEach((n, s) => {
-      for (let k = 0; k < n; k++) { const a = OMEGA[s] * tau + (2 * Math.PI * k) / n + s * 0.6; dot(ctx, cx + RAD[s] * Math.cos(a), cy0 + RAD[s] * Math.sin(a), PAL.ink, true, 9); }
+      for (let k = 0; k < n; k++) { const a = OMEGA[s] * tau + (2 * Math.PI * k) / n + s * 0.6; dot(ctx, cx + RAD[s] * Math.cos(a), cy0 + RAD[s] * Math.sin(a), E_COLOR(), true, 9); }
     });
     /* the element, named at the left */
     text(ctx, SYMB[z - 1], 230, 330, PAL.ink, { weight: 700, size: 88, align: 'center' });
@@ -52,13 +54,15 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     text(ctx, z + (z === 1 ? ' electron' : ' electrons'), 230, 434, PAL.muted, { size: 17, align: 'center' });
     /* what the drawing shows, at the right */
     const lx = 1010;
-    dot(ctx, lx, 170, PAL.ink, true, 9); text(ctx, 'an electron', lx + 26, 170, PAL.muted);
+    dot(ctx, lx, 170, E_COLOR(), true, 9); text(ctx, 'an electron', lx + 26, 170, PAL.muted);
     nucleus(ctx, lx, 226, 3, 6); text(ctx, 'the nucleus, which holds ' + z + (z === 1 ? ' proton' : ' protons'), lx + 26, 226, PAL.muted);
-    line(ctx, lx - 14, 274, lx + 14, 274, PAL.rule, 3); text(ctx, 'one orbit for each shell', lx + 26, 274, PAL.muted);
+    line(ctx, lx - 14, 274, lx + 14, 274, alpha(PAL.ink, 0.4), 3); text(ctx, 'an orbit, dashed while its shell is empty', lx + 26, 274, PAL.muted);
     shells.forEach((n, s) => text(ctx, ORD[s] + ' shell, ' + n + ' of ' + SHELL[s] + (n === 1 ? ' electron' : ' electrons'), lx - 14, 340 + 40 * s, n ? PAL.ink : PAL.muted, { size: 20, weight: n ? 600 : 400 }));
     const an = /^[aeiou]/.test(NAMES[z - 1]) ? 'an ' : 'a ';
     headline(ctx, 'In this picture ' + WORDS[z - 1] + (z === 1 ? ' electron goes' : ' electrons go') + ' round the nucleus of ' + an + NAMES[z - 1] + ' atom, which holds ' + WORDS[z - 1] + (z === 1 ? ' proton' : ' protons') + '.');
-    readout(d.readout, z + '\\ \\text{electrons go round } ' + z + '\\ \\text{protons, and the shells hold } ' + shells.join(' + ') + '\\ \\text{of them}',
+    const cap = (w) => w[0].toUpperCase() + w.slice(1), held = shells.filter((n) => n > 0);
+    const where = held.length > 1 ? 'and the shells hold ' + held.join(' + ') + ' of them' : 'and the first shell holds ' + (z === 1 ? 'it' : 'both');
+    readout(d.readout, '\\text{' + cap(WORDS[z - 1]) + (z === 1 ? ' electron goes round ' : ' electrons go round ') + WORDS[z - 1] + (z === 1 ? ' proton, ' : ' protons, ') + where + '.}',
       'The atom is about 10⁻¹⁰ m across and its nucleus is about 10⁵ times smaller, so a drawing to scale would show nothing but the orbits. The model is not a photograph. It is a picture that helps explain what we can measure, such as the light a hot gas gives off.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });

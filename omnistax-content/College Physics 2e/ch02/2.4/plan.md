@@ -310,6 +310,8 @@ opens the one view the section's text gives and its figures do not, a
 change in velocity that is entirely a change in direction. Left: the
 other two.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-average-acceleration`: the whole-second readings and the one-second bracket's label overprinted each other, so all of them go through `labeller()` and the bracket is drawn as a step. `sim-turning`: the headline wraps through `topline()`, the velocity label is kept under it, and the car seen from above is redrawn with tyres, a bonnet and windows (a new sprite, drawn here). `sim-four-cars`: the four velocity lines of the readout ran off the right of the panel in two columns and now stand one to a row. `sim-racehorse` and the three subway sketches: the horse was a box with a wedge for a neck and is redrawn with a barrel, a neck, a head with ears, a mane, a tail and four galloping legs (a new sprite, drawn here); the graph's $v_0$, $v_f$ and slope labels go through `labeller()`. `sim-subway-displacement` and `sim-subway-velocity`: the subscript labels use the drawing layer's `x_f` form on a panel, the slope label goes through `labeller()`, the average-velocity label stays inside the canvas, and every headline wraps. `sim-instantaneous` and `sim-subway-graphs` unchanged except the wrap.
+
 ## Exercises
 
 - 1 Check Your Understanding, open, inline after `sign-direction`,

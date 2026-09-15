@@ -1,0 +1,676 @@
+{
+ "id": "19.7",
+ "module": "m42395",
+ "chapter": "19",
+ "title": "Energy Stored in Capacitors",
+ "short": "Energy stored in capacitors",
+ "lead": "A capacitor holds its energy in the charge it keeps separated, and the amount it holds is not simply the charge times the voltage. The voltage across a capacitor starts at zero and climbs as the charge goes on, so the charge as a whole passes through only the average of the two, which is half the final voltage, and the energy stored is half the product of the charge and the voltage. This section reasons that result out from the first charge placed on the capacitor to the last, writes it in the three equivalent forms that follow from the relation between charge, voltage and capacitance, and then asks what the stored energy is for. The answer that matters most is the heart defibrillator, whose capacitor is charged to ten thousand volts and discharged in a single burst across a patient's chest.",
+ "objectives": [
+  "List some uses of capacitors.",
+  "Express in equation form the energy stored in a capacitor.",
+  "Explain the function of a defibrillator."
+ ],
+ "summary_html": "<ul><li>Capacitors are used in a variety of devices, including defibrillators, microelectronics such as calculators, and flash lamps, to supply energy.</li><li>The energy stored in a capacitor can be expressed in three ways: $\\kEcap = \\frac{\\kQch\\kV}{2} = \\frac{\\kCap\\kV^2}{2} = \\frac{\\kQch^2}{2\\kCap}$, where $\\kQch$ is the charge, $\\kV$ is the voltage, and $\\kCap$ is the capacitance of the capacitor. The energy is in joules when the charge is in coulombs, voltage is in volts, and capacitance is in farads.</li></ul>",
+ "notes": "The three problems the book leaves unkeyed are left out: the energy stored in a 165 µF motor capacitor with 119 V applied, the demonstration that the greatest energy a capacitor can store is proportional to the volume of its dielectric, and the Construct Your Own Problem item on the defibrillator.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book's answer key. The section's three unkeyed problems are left out: the 165 µF motor capacitor at 119 V, the demonstration that the greatest energy is proportional to the volume of dielectric, and the Construct Your Own Problem item. Four of the eight AP items are keyed and are set as graded choices; the other four print no options and have no key, so each is an open item with an AI-written suggested approach, marked as such. Section 19.6's one conceptual question, which asks whether a bank of capacitors that must store a large energy should be wired in series or in parallel, is answered by this section's energy of a capacitor and is set here with source_section 19.6; 19.6's notes say so as well. Nothing of this section's own is held for a later page. The suggested approaches to the three conceptual questions are AI-written and marked. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-calculator",
+   "kind": "photo",
+   "number": "19.23",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-capacitor-energy",
+   "kind": "sim",
+   "draws": [
+    "capacitance",
+    "voltage",
+    "charge",
+    "energy"
+   ]
+  },
+  {
+   "id": "fig-aed",
+   "kind": "photo",
+   "number": "19.24",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-defibrillator",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "voltage",
+    "capacitance",
+    "charge"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "capacitor-uses",
+   "concept": "capacitor-energy-applications",
+   "verb": "introduces"
+  },
+  {
+   "span": "capacitor-uses",
+   "concept": "capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "average-voltage-while-charging",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "capacitor-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "defibrillator",
+   "concept": "capacitor-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "defibrillator",
+   "concept": "capacitor-energy-applications",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1579143",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "How does the energy contained in a charged capacitor change when a dielectric is inserted, assuming the capacitor is isolated and its charge is constant? Does this imply that work was done?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The capacitor is isolated, so no charge can leave or reach its plates and $\\kQch$ is fixed. Of the three forms of the energy, the one written in the quantities that are known here is $\\kEcap = \\kQch^2/2\\kCap$. Inserting the dielectric raises the capacitance from $\\kCap$ to $\\kappa\\kCap$, and since the charge does not change, the energy falls by the factor $\\kappa$; the voltage across the capacitor falls by the same factor, because $\\kV = \\kQch/\\kCap$. The energy has to go somewhere, and where it goes is into the work done on the slab: the polarized dielectric is attracted into the region between the plates, so the capacitor pulls it in and does work on it, and the slab has to be held back rather than pushed. Work was done, but by the capacitor on the dielectric, not by you on the capacitor."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "eip-482",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "What happens to the energy stored in a capacitor connected to a battery when a dielectric is inserted? Was work done in the process?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The battery holds the voltage across the capacitor fixed, so the form to use is $\\kEcap = \\kCap\\kV^2/2$. The dielectric raises the capacitance from $\\kCap$ to $\\kappa\\kCap$ while $\\kV$ stays where the battery puts it, so the stored energy rises by the factor $\\kappa$, and the charge on the plates rises by the same factor, since $\\kQch = \\kCap\\kV$. The extra charge comes from the battery, and the battery does work in driving it onto the plates; it supplies more energy than the capacitor gains, because it also does the work the capacitor does in pulling the slab in. So work was done, and it was done by the battery. Note how differently the two cases run: holding the charge fixed lowers the energy, while holding the voltage fixed raises it, and the whole answer turns on which of the two the circuit holds."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3075419",
+   "source_section": "19.6",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "If you wish to store a large amount of energy in a capacitor bank, would you connect capacitors in series or parallel? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Connect them in parallel. Capacitors in parallel add, $\\kCp = \\kCone + \\kCtwo + \\kCthree + \\ldots$, so the bank has a larger capacitance than any one of its members, while capacitors in series combine as $1/\\kCS = 1/\\kCone + 1/\\kCtwo + \\ldots$ and give a total smaller than the smallest of them. The energy stored at a given voltage is $\\kEcap = \\kCap\\kV^2/2$, which grows with the capacitance, so the parallel bank stores far more energy than the series one at the same voltage. The series connection has a use of its own, though: each capacitor then carries only a share of the total voltage, so a series string can be charged to a voltage that would break down any one capacitor on its own."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1679446",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "Consider a parallel plate capacitor, with no dielectric material, attached to a battery with a fixed voltage. What happens when a dielectric is inserted into the capacitor?<ol type=\"a\"><li>Nothing changes, except now there is a dielectric in the capacitor.</li><li>The energy in the system decreases, making it very easy to move the dielectric in.</li><li>You have to do work to move the dielectric, increasing the energy in the system.</li><li>The reversed polarity destroys the battery.</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Nothing changes, except now there is a dielectric in the capacitor.",
+     "The energy in the system decreases, making it very easy to move the dielectric in.",
+     "You have to do work to move the dielectric, increasing the energy in the system.",
+     "The reversed polarity destroys the battery."
+    ],
+    "correct": 2,
+    "hint": "The battery holds the voltage fixed, so ask what $\\kEcap = \\kCap\\kV^2/2$ does when the dielectric raises the capacitance and the voltage stays where it is.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1635118",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "Consider a parallel plate capacitor with no dielectric material. It was attached to a battery with a fixed voltage to charge up, but now the battery has been disconnected. What happens to the energy of the system and the dielectric material when a dielectric is inserted into the capacitor?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With the battery disconnected the charge on the plates can no longer change, so $\\kQch$ is the quantity held fixed and the form to reason with is $\\kEcap = \\kQch^2/2\\kCap$. The dielectric raises the capacitance by the factor $\\kappa$, so the stored energy falls by that same factor, and the voltage across the capacitor falls with it, since $\\kV = \\kQch/\\kCap$. The energy the capacitor loses is spent on the dielectric: the field between the plates polarizes the slab and then pulls the polarized slab into the gap, so the capacitor draws the dielectric in and does work on it, and you would have to hold the slab back rather than push it. This is the opposite of what happens with the battery left connected, where the voltage is fixed instead of the charge and the stored energy rises."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1381555",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "What happens to the energy stored in a circuit as you increase the number of capacitors connected in parallel? Series?<ol type=\"a\"><li>increases, increases</li><li>increases, decreases</li><li>decreases, increases</li><li>decreases, decreases</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "increases, increases",
+     "increases, decreases",
+     "decreases, increases",
+     "decreases, decreases"
+    ],
+    "correct": 1,
+    "hint": "At a given voltage the energy goes with the total capacitance, and capacitances in parallel add while capacitances in series combine as reciprocals.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2643905",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defibrillator",
+   "prompt": "What would the capacitance of a capacitor with the same total internal energy as the car battery in Example 19.1 have to be? Can you explain why we use batteries instead of capacitors for this application?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take from Example 19.1 the energy the car battery moves through its 12.0 V and the voltage it works at, and put them into $\\kEcap = \\kCap\\kV^2/2$ solved for the capacitance, $\\kCap = 2\\kEcap/\\kV^2$. With an energy of the order of $10^6\\ \\text{J}$ and a voltage of only 12.0 V, the capacitance comes out in the tens of thousands of farads, where the largest capacitor in this chapter is measured in microfarads. Two things are responsible, and both are worth naming. The energy goes as the square of the voltage, so a device that works at 12 V rather than at thousands of volts is at a crushing disadvantage; and a capacitor stores its energy in separated charge on two plates, which takes enormous plate area to do in quantity, while a battery stores its energy in a chemical reaction and can hold far more of it in the same volume. A capacitor gives its energy back in a burst, which is what a defibrillator wants; a car wants a steady supply over hours, which is what a battery gives."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2646945",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "Consider a parallel plate capacitor with metal plates, each of square shape of 1.00 m on a side, separated by 1.00 mm. What is the energy of this capacitor with $3.00\\times 10^{3}\\ \\text{V}$ applied to it?<ol type=\"a\"><li>$3.98\\times 10^{-2}\\ \\text{J}$</li><li>$5.08\\times 10^{14}\\ \\text{J}$</li><li>$1.33\\times 10^{-5}\\ \\text{J}$</li><li>$1.69\\times 10^{11}\\ \\text{J}$</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$3.98\\times 10^{-2}\\ \\text{J}$",
+     "$5.08\\times 10^{14}\\ \\text{J}$",
+     "$1.33\\times 10^{-5}\\ \\text{J}$",
+     "$1.69\\times 10^{11}\\ \\text{J}$"
+    ],
+    "correct": 0,
+    "hint": "Find the capacitance first from $\\kCap = \\varepsilon_0 A/\\kd$ with nothing between the plates, then put it and the voltage into $\\kEcap = \\kCap\\kV^2/2$.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1222456",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "Consider a parallel plate capacitor with metal plates, each of square shape of 1.00 m on a side, separated by 1.00 mm. What is the internal energy stored in this system if the charge on the capacitor is 30.0 µC?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The charge is given and the voltage is not, so the form to use is $\\kEcap = \\kQch^2/2\\kCap$. First find the capacitance of the plates from $\\kCap = \\varepsilon_0 A/\\kd$, with $A = 1.00\\ \\text{m}^2$, $\\kd = 1.00\\times 10^{-3}\\ \\text{m}$ and $\\varepsilon_0 = 8.85\\times 10^{-12}\\ \\text{C}^2/\\text{N}\\cdot\\text{m}^2$, which gives a capacitance of about $8.85\\ \\text{nF}$. Then square the charge, $\\kQch = 3.00\\times 10^{-5}\\ \\text{C}$, and divide by twice that capacitance. The result is of the order of $5\\times 10^{-2}\\ \\text{J}$, a few hundredths of a joule, which is the same order as the energy of the previous item, and it should be: a capacitor of this size charged to 30.0 µC sits at a voltage of a few thousand volts."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1368915",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "Consider a parallel plate capacitor with metal plates, each of square shape of 1.00 m on a side, separated by 1.00 mm. If the plates grow in area while the voltage is held fixed, the capacitance ___ and the stored energy ___.<ol type=\"a\"><li>decreases, decreases</li><li>decreases, increases</li><li>increases, decreases</li><li>increases, increases</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "decreases, decreases",
+     "decreases, increases",
+     "increases, decreases",
+     "increases, increases"
+    ],
+    "correct": 3,
+    "hint": "The capacitance of parallel plates is $\\varepsilon_0 A/\\kd$, and with the voltage held fixed the energy is $\\kCap\\kV^2/2$, so both answers follow from what the area does to $\\kCap$.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id3530911",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "Consider a parallel plate capacitor with metal plates, each of square shape of 1.00 m on a side, separated by 1.00 mm. What happens to the energy of this system if the area of the plates increases while the charge remains fixed?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Growing the plates raises the capacitance, since $\\kCap = \\varepsilon_0 A/\\kd$ and the area is in the numerator. What that does to the energy depends on which quantity is held while the area changes, and here it is the charge, so the form to reason with is $\\kEcap = \\kQch^2/2\\kCap$: with $\\kQch$ fixed and $\\kCap$ rising, the stored energy falls, and the voltage across the plates falls with it, since $\\kV = \\kQch/\\kCap$. Compare this with the previous item, where the voltage was held instead and the same growth in area raised the energy. The area does the same thing to the capacitance in both cases; it is the quantity the circuit holds fixed that decides whether the energy goes up or down."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "eip-838",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defibrillator",
+   "prompt": "(a) What is the energy stored in the $10.0\\ \\mu\\text{F}$ capacitor of a heart defibrillator charged to $9.00\\times 10^{3}\\ \\text{V}$? (b) Find the amount of stored charge.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kEcap$",
+      "value": 405,
+      "unit": "J",
+      "hint": "The capacitance and the voltage are given, so use $\\kEcap = \\kCap\\kV^2/2$."
+     },
+     {
+      "part": "(b) $\\kQch$",
+      "value": 90.0,
+      "unit": "mC",
+      "hint": "The charge a capacitor holds at a given voltage is $\\kQch = \\kCap\\kV$."
+     }
+    ],
+    "solution": "(a) 405 J. (b) 90.0 mC."
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2657760",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defibrillator",
+   "prompt": "In open heart surgery, a much smaller amount of energy will defibrillate the heart. (a) What voltage is applied to the $8.00\\ \\mu\\text{F}$ capacitor of a heart defibrillator that stores 40.0 J of energy? (b) Find the amount of stored charge.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kV$",
+      "value": 3.16,
+      "unit": "kV",
+      "hint": "Solve $\\kEcap = \\kCap\\kV^2/2$ for the voltage, which gives $\\kV = \\sqrt{2\\kEcap/\\kCap}$."
+     },
+     {
+      "part": "(b) $\\kQch$",
+      "value": 25.3,
+      "unit": "mC",
+      "hint": "Once the voltage is known, the charge follows from $\\kQch = \\kCap\\kV$."
+     }
+    ],
+    "solution": "(a) 3.16 kV. (b) 25.3 mC."
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "eip-981",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "Suppose you have a 9.00 V battery, a $2.00\\ \\mu\\text{F}$ capacitor, and a $7.40\\ \\mu\\text{F}$ capacitor. (a) Find the charge and energy stored if the capacitors are connected to the battery in series. (b) Do the same for a parallel connection.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kQch$ in series",
+      "value": 1.42e-05,
+      "unit": "C",
+      "hint": "Find the series capacitance first from $1/\\kCS = 1/\\kCone + 1/\\kCtwo$, then use $\\kQch = \\kCS\\kV$ with the battery's 9.00 V."
+     },
+     {
+      "part": "(a) $\\kEcap$ in series",
+      "value": 6.38e-05,
+      "unit": "J",
+      "hint": "Use $\\kEcap = \\kCS\\kV^2/2$ with the series capacitance."
+     },
+     {
+      "part": "(b) $\\kQch$ in parallel",
+      "value": 8.46e-05,
+      "unit": "C",
+      "hint": "Capacitances in parallel add, $\\kCp = \\kCone + \\kCtwo$, and the charge is $\\kQch = \\kCp\\kV$."
+     },
+     {
+      "part": "(b) $\\kEcap$ in parallel",
+      "value": 0.000381,
+      "unit": "J",
+      "hint": "Use $\\kEcap = \\kCp\\kV^2/2$ with the parallel capacitance, and note how much more energy the same two capacitors hold this way."
+     }
+    ],
+    "solution": "(a) $1.42\\times 10^{-5}\\ \\text{C}$, $6.38\\times 10^{-5}\\ \\text{J}$. (b) $8.46\\times 10^{-5}\\ \\text{C}$, $3.81\\times 10^{-4}\\ \\text{J}$."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id832930",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "A nervous physicist worries that the two metal shelves of his wood frame bookcase might obtain a high voltage if charged by static electricity, perhaps produced by friction. (a) What is the capacitance of the empty shelves if they have area $1.00\\times 10^{2}\\ \\text{m}^{2}$ and are 0.200 m apart? (b) What is the voltage between them if opposite charges of magnitude 2.00 nC are placed on them? (c) To show that this voltage poses a small hazard, calculate the energy stored.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kCap$",
+      "value": 4.43e-09,
+      "unit": "F",
+      "hint": "The shelves are a parallel plate capacitor with air between them, so $\\kCap = \\varepsilon_0 A/\\kd$."
+     },
+     {
+      "part": "(b) $\\kV$",
+      "value": 0.452,
+      "unit": "V",
+      "hint": "The charge and the capacitance give the voltage from $\\kV = \\kQch/\\kCap$."
+     },
+     {
+      "part": "(c) $\\kEcap$",
+      "value": 4.52e-10,
+      "unit": "J",
+      "hint": "With the charge and the capacitance both known, $\\kEcap = \\kQch^2/2\\kCap$ is the quickest of the three forms."
+     }
+    ],
+    "solution": "(a) $4.43\\times 10^{-9}\\ \\text{F}$. (b) $0.452\\ \\text{V}$. (c) $4.52\\times 10^{-10}\\ \\text{J}$."
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id3088661",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Unreasonable Results",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defibrillator",
+   "prompt": "<strong>Unreasonable Results</strong> (a) On a particular day, it takes $9.60\\times 10^{3}\\ \\text{J}$ of electric energy to start a truck’s engine. Calculate the capacitance of a capacitor that could store that amount of energy at 12.0 V. (b) What is unreasonable about this result? (c) Which assumptions are responsible?",
+   "answer": {
+    "type": "number",
+    "value": 133,
+    "unit": "F",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Solve $\\kEcap = \\kCap\\kV^2/2$ for the capacitance, $\\kCap = 2\\kEcap/\\kV^2$, and remember that the voltage is squared, so 12.0 V is a very small voltage to ask this of.",
+    "solution": "(a) 133 F. (b) Such a capacitor would be too large to carry with a truck. The size of the capacitor would be enormous. (c) It is unreasonable to assume that a capacitor can store the amount of energy needed."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "capacitance-with-dielectric",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "capacitance-with-dielectric",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "parallel-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "series-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "capacitance-with-dielectric",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "capacitance-with-dielectric",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "parallel-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "series-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "capacitor-energy-applications",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "average-voltage-while-charging",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "average-voltage-while-charging",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "capacitor-energy-applications",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "capacitor-energy-applications",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p4",
+   "concept": "series-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "parallel-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "parallel-plate-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p8",
+   "concept": "capacitor-energy-applications",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ]
+}

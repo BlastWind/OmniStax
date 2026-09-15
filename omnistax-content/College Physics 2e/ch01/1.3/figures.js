@@ -23,9 +23,16 @@ const ATTEMPTS = (() => {
   return raw.map(([x, y]) => ({ x: x / rms, y: y / rms }));
 })();
 /* sprites */
-function house(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.moveTo(x - 16, y + 12); ctx.lineTo(x - 16, y - 4); ctx.lineTo(x, y - 18); ctx.lineTo(x + 16, y - 4); ctx.lineTo(x + 16, y + 12); ctx.closePath(); ctx.fill();
-  ctx.fillStyle = PAL.panel; ctx.fillRect(x - 4, y, 8, 12); ctx.restore();
+/* the restaurant, a shopfront centred on (x, y): a scalloped awning over a door and a window, and a sign above */
+function restaurant(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.fillRect(x - 30, y - 14, 60, 40); ctx.strokeRect(x - 30, y - 14, 60, 40);          /* the front */
+  ctx.fillStyle = color; ctx.fillRect(x - 34, y - 30, 68, 12);                              /* the sign */
+  ctx.beginPath(); for (let i = 0; i < 4; i++) ctx.arc(x - 25 + 17 * i, y - 4, 8.5, 0, Math.PI); ctx.fill();   /* the awning */
+  ctx.fillRect(x - 8, y + 4, 16, 22);                                                        /* the door */
+  ctx.strokeRect(x + 12, y + 6, 12, 10);                                                     /* the window */
+  ctx.fillStyle = PAL.panel; ctx.font = '700 9px ' + FONT; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('CAFÉ', x, y - 24);
+  ctx.restore();
 }
 function bar(ctx, x, y, w, h, filled) {
   ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = filled ? PAL.ink : PAL.panel; ctx.fillRect(x, y - h / 2, w, h); ctx.strokeRect(x, y - h / 2, w, h); ctx.restore();
@@ -54,11 +61,11 @@ function runs(ctx, parts, x, y, size) {
     /* the target: five rings about the restaurant */
     for (let i = 5; i >= 1; i--) { ctx.save(); ctx.beginPath(); ctx.arc(CX, CY, i * RING, 0, Math.PI * 2); ctx.fillStyle = i % 2 ? PAL.soft : PAL.panel; ctx.fill(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.stroke(); ctx.restore(); }
     line(ctx, CX - 5 * RING - 16, CY, CX + 5 * RING + 16, CY, PAL.rule, 1.5); line(ctx, CX, CY - 5 * RING - 16, CX, CY + 5 * RING + 16, PAL.rule, 1.5);
-    house(ctx, CX, CY, PAL.ink);
-    text(ctx, 'the restaurant', CX, CY + 5 * RING + 40, PAL.muted, { size: 17, align: 'center' });
+    restaurant(ctx, CX, CY, PAL.ink);
+    text(ctx, 'the restaurant, at the center', CX, CY + 5 * RING + 40, PAL.ink, { size: 20, weight: 600, align: 'center' });
     /* the attempts about their centre, and the centre against the restaurant */
     const mx = CX + O.v * RING * Math.cos(ANG), my = CY + O.v * RING * Math.sin(ANG);
-    line(ctx, mx, my, CX, CY, PAL.muted, 2, [6, 8]);
+    line(ctx, mx, my, CX, CY, PAL.ink, 2.5, [6, 8]);
     for (const p of ATTEMPTS) dot(ctx, mx + S.v * RING * p.x, my + S.v * RING * p.y, PAL.ink, true, 9);
     dot(ctx, mx, my, PAL.ink, false, 11);
     /* the legend */
@@ -69,7 +76,7 @@ function runs(ctx, parts, x, y, size) {
     text(ctx, lowA ? 'their center is far from the restaurant' : 'their center is close to the restaurant', lx, 344, PAL.muted, { size: 20 });
     dot(ctx, lx + 10, 440, PAL.ink, true, 9); text(ctx, 'one attempt of the GPS to locate the restaurant', lx + 34, 440, PAL.muted, { size: 20 });
     dot(ctx, lx + 10, 482, PAL.ink, false, 11); text(ctx, 'the center of the eight attempts', lx + 34, 482, PAL.muted, { size: 20 });
-    line(ctx, lx, 524, lx + 20, 524, PAL.muted, 2, [6, 8]); text(ctx, 'from that center to the restaurant', lx + 34, 524, PAL.muted, { size: 20 });
+    line(ctx, lx, 524, lx + 20, 524, PAL.ink, 2.5, [6, 8]); text(ctx, 'from that center to the restaurant', lx + 34, 524, PAL.muted, { size: 20 });
     headline(ctx, 'A spread of ' + fmt(S.v, 1) + ' rings means ' + (lowP ? 'low' : 'high') + ' precision, and an offset of ' + fmt(O.v, 1) + ' rings means ' + (lowA ? 'low' : 'high') + ' accuracy.');
     readout(d.readout, `\\text{spread} = ${fmt(S.v, 1)}\\ \\text{rings}, \\quad \\text{offset of the center} = ${fmt(O.v, 1)}\\ \\text{rings}`,
       'Precision is about how closely the attempts agree with one another, and accuracy about how close they are to the correct value. A system can have either without the other.');
@@ -105,11 +112,11 @@ function runs(ctx, parts, x, y, size) {
     for (const ln of lines) {
       const { y, a } = ln;
       text(ctx, ln.title, L, y - 104, PAL.ink, { size: 22, weight: 600 });
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(Xc(a - dA.v), y - 16, Xc(a + dA.v) - Xc(a - dA.v), 32); ctx.restore();
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.fillRect(Xc(a - dA.v), y - 16, Xc(a + dA.v) - Xc(a - dA.v), 32); ctx.restore();
       line(ctx, L, y, R, y, PAL.muted, 3);
       for (let m = span.lo; m <= span.hi + 1e-9; m += step) { line(ctx, X(m), y - 8, X(m), y + 8, PAL.muted, 2); text(ctx, fmt(m, 0) + ' lb', X(m), y + 28, PAL.muted, { size: 17, align: 'center' }); }
       if (ln.weeks && atExample) {
-        WEEKS.slice().sort((u, v) => u - v).forEach((w, i) => { line(ctx, X(w), y - 28, X(w), y - 4, PAL.ink, 3); text(ctx, fmt(w, 1) + ' lb', X(w), y - (i % 2 ? 66 : 42), PAL.ink, { size: 17, align: 'center' }); });
+        WEEKS.slice().sort((u, v) => u - v).forEach((w, i) => { const ty = y - 42 - 24 * (i % 3); line(ctx, X(w), ty + 12, X(w), y - 4, PAL.ink, 3); text(ctx, fmt(w, 1) + ' lb', X(w), ty, PAL.ink, { size: 17, weight: 600, align: 'center', bg: PAL.panel }); });
         text(ctx, 'the four weekly weights of Example 1.2', R, y - 104, PAL.muted, { size: 17, align: 'right' });
       }
       dot(ctx, Xc(a), y, PAL.ink, true, 10);
@@ -141,7 +148,7 @@ function runs(ctx, parts, x, y, size) {
     const a = LEN * (1 + pL.v / 100), b = WID * (1 + pW.v / 100), a2 = LEN * (1 - pL.v / 100), b2 = WID * (1 - pW.v / 100);
     const pA = pL.v + pW.v, dArea = (LEN * WID * pA) / 100;
     /* the ring between the largest and the smallest floor */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.beginPath(); ctx.rect(CX - (a * K) / 2, CY - (b * K) / 2, a * K, b * K); ctx.rect(CX - (a2 * K) / 2, CY - (b2 * K) / 2, a2 * K, b2 * K); ctx.fill('evenodd'); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.beginPath(); ctx.rect(CX - (a * K) / 2, CY - (b * K) / 2, a * K, b * K); ctx.rect(CX - (a2 * K) / 2, CY - (b2 * K) / 2, a2 * K, b2 * K); ctx.fill('evenodd'); ctx.restore();
     outline(ctx, a * K, b * K, 2.5, [10, 10]); outline(ctx, a2 * K, b2 * K, 2.5, [10, 10]); outline(ctx, LEN * K, WID * K, 4);
     text(ctx, '12.0 m²', CX, CY, PAL.ink, { size: 26, weight: 600, align: 'center' });
     const bot = CY + (b * K) / 2, rgt = CX + (a * K) / 2;
@@ -154,7 +161,7 @@ function runs(ctx, parts, x, y, size) {
     row(150, (y) => line(ctx, px, y, px + 30, y, PAL.ink, 4), 'the floor as measured', '4.00 m by 3.00 m, 12.0 m²');
     row(250, dashed, 'the largest floor allowed', '(' + fmt(a, 2) + ' m)(' + fmt(b, 2) + ' m) = ' + fmt(a * b, 1) + ' m²');
     row(350, dashed, 'the smallest floor allowed', '(' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m²');
-    row(450, (y) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(px, y - 12, 30, 24); ctx.restore(); }, 'the uncertainty in the area', '± ' + pc(pA) + ' of 12.0 m², or ± ' + fmt(dArea, 1) + ' m²');
+    row(450, (y) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fillRect(px, y - 12, 30, 24); ctx.restore(); }, 'the uncertainty in the area', '± ' + pc(pA) + ' of 12.0 m², or ± ' + fmt(dArea, 1) + ' m²');
     headline(ctx, 'A floor 4.00 m by 3.00 m, known to ' + pc(pL.v) + ' and ' + pc(pW.v) + ', has an area of 12.0 m² known to ' + pc(pA) + '.');
     readout(d.readout, `12.0\\ \\text{m}^2 \\pm ${pcTex(pA)} = 12.0\\ \\text{m}^2 \\pm ${fmt(dArea, 1)}\\ \\text{m}^2`,
       'The largest floor the uncertainties allow is (' + fmt(a, 2) + ' m)(' + fmt(b, 2) + ' m) = ' + fmt(a * b, 1) + ' m² and the smallest (' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m², so '

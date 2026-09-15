@@ -112,6 +112,19 @@ Extra simulations (rule 15): none proposed. The chapter config says the
 required figures already open the views the text does not, and the
 two sims here are the two examples made live.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). Both figures drew their own
+stick figure; they now call the library's `F.person()` scaled to the
+height the scene gives it. `sim-building`: the building was a bare grey
+box; it carries a door and a row of windows per story once a story is
+tall enough to hold them (the fixed scale keeps the 39-story default too
+short for them, which is the point of the magnified story), the height
+label of a building under 40 units is written above the top instead of on
+the ground line, and the one-story headline reads "One story of about 4 m
+makes a building about 4 m tall". `sim-trillion`: the headline at 30
+trillion ran off both edges of the canvas; it wraps through `topline()`,
+and the scale's top moved down to 150 so the pile's label clears the
+second line; the person's label is ink.
+
 ## Exercises
 
 - 1 Check Your Understanding (`cyu1`, the basketball court), open with

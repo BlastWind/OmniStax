@@ -1,0 +1,378 @@
+{
+ "id": "17.7",
+ "module": "m42298",
+ "chapter": "17",
+ "title": "Ultrasound",
+ "short": "Ultrasound",
+ "lead": "Ultrasound is any sound above 20,000 Hz, and medicine puts it to two quite different uses. Focused to high intensity it shatters gallstones, pulverizes tissue and heats a muscle deep below the skin, and at intensities ten million times smaller it forms an image, because a wave is partly reflected wherever the acoustic impedance of the material changes. This section defines that impedance and the fraction of the intensity a boundary returns, shows how the time an echo takes gives the depth of its reflector and how the wavelength limits the detail a probe can resolve, and closes on Doppler-shifted ultrasound, whose double shift is measured as the beats the echo makes against the broadcast.",
+ "objectives": [
+  "Define acoustic impedance and intensity reflection coefficient.",
+  "Describe medical and other uses of ultrasound technology.",
+  "Calculate acoustic impedance using density values and the speed of ultrasound.",
+  "Calculate the velocity of a moving object using Doppler-shifted ultrasound."
+ ],
+ "summary_html": "<ul><li>The acoustic impedance is defined as $Z = \\krho\\kv,$ where $\\krho$ is the density of a medium through which the sound travels and $\\kv$ is the speed of sound through that medium.</li><li>The intensity reflection coefficient $a$, a measure of the ratio of the intensity of the wave reflected off a boundary between two media relative to the intensity of the incident wave, is given by $a = \\frac{(Z_2 - Z_1)^2}{(Z_1 + Z_2)^2}.$</li><li>The intensity reflection coefficient is a unitless quantity.</li></ul>",
+ "notes": "The six problems the book leaves unkeyed are left out. The book’s own slips are kept as printed: the sentence “The minus sign is used because the motion is toward the observer.” appears twice in Example 17.8’s Solution for (b), and the beat frequency is written with a capital F with the subscript B in the paragraph on mixing the echo, where the rest of the section and the summary write a lower-case f with the same subscript.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. The book prefaces its problem set with the instruction that, unless otherwise indicated, the speed of sound through human tissues is to be taken as 1540 m/s. Six problems have no keyed answer and are left out: whether 155-dB ultrasound is in the range used for deep heating, the depth of the reflection that answered after 0.13 ms in fat tissue, the minimum frequency for 0.250 mm detail and the depth it reaches, the difference in echo times from 3.50 and 3.60 cm, the bat that can detect echoes 1.00 ms apart, and the velocity of blood that returns a 500 Hz shift. The suggested approaches to the four conceptual questions are AI-written and marked as such, because the book keys none of them. The section prints no AP test prep items. The one Check Your Understanding box is set inline at the end of the narrative, where the book prints it. Nothing is taken from another section and nothing of this section’s own is held for a later page, and the three problems that ask for a sound intensity level tag 17.3’s sound intensity level beside this section’s own concepts. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-fetus",
+   "kind": "photo",
+   "number": "17.40",
+   "widths": [300],
+   "draws": []
+  },
+  {
+   "id": "fig-probe",
+   "kind": "photo",
+   "number": "17.41",
+   "widths": [200],
+   "draws": []
+  },
+  {
+   "id": "sim-acoustic-boundary",
+   "kind": "sim",
+   "draws": ["intensity", "density", "velocity"]
+  },
+  {
+   "id": "sim-echo-ranging",
+   "kind": "sim",
+   "number": "17.42",
+   "originals": ["/media/ch17/Figure_18_07_03a.jpg"],
+   "original_caption": "(a) An ultrasound speaker doubles as a microphone. Brief bleeps are broadcast, and echoes are recorded from various depths. (b) Graph of echo intensity versus time. The time for echoes to return is directly proportional to the distance of the reflector, yielding this information noninvasively.",
+   "widths": [150],
+   "draws": ["position", "velocity", "intensity", "time"]
+  },
+  {
+   "id": "fig-abdominal",
+   "kind": "photo",
+   "number": "17.43",
+   "widths": [300],
+   "draws": []
+  },
+  {
+   "id": "fig-3d-fetus",
+   "kind": "photo",
+   "number": "17.44",
+   "widths": [300],
+   "draws": []
+  },
+  {
+   "id": "sim-resolution-depth",
+   "kind": "sim",
+   "draws": ["frequency", "position", "velocity"]
+  },
+  {
+   "id": "fig-artery",
+   "kind": "photo",
+   "number": "17.45",
+   "widths": [300],
+   "draws": []
+  },
+  {
+   "id": "sim-doppler-ultrasound",
+   "kind": "sim",
+   "draws": ["velocity", "frequency", "time"]
+  },
+  {
+   "id": "fig-hand-probe",
+   "kind": "photo",
+   "number": "17.46",
+   "widths": [150],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  { "span": "ultrasound", "concept": "audible-range", "verb": "uses" },
+  { "span": "ultrasound", "concept": "sound", "verb": "uses" },
+  { "span": "therapy", "concept": "ultrasound-therapy", "verb": "introduces" },
+  { "span": "therapy", "concept": "sound-intensity", "verb": "uses" },
+  { "span": "therapy", "concept": "sound-intensity-level", "verb": "uses" },
+  { "span": "therapy", "concept": "sound-pressure-level", "verb": "uses" },
+  { "span": "therapy", "concept": "wave-energy-amplitude", "verb": "uses" },
+  { "span": "diagnostics", "concept": "sound-longitudinal-pressure-wave", "verb": "uses" },
+  { "span": "diagnostics", "concept": "echo-ranging", "verb": "uses" },
+  { "span": "impedance", "concept": "acoustic-impedance", "verb": "introduces" },
+  { "span": "impedance", "concept": "density", "verb": "uses" },
+  { "span": "impedance", "concept": "speed-of-sound-in-media", "verb": "uses" },
+  { "span": "reflection", "concept": "intensity-reflection-coefficient", "verb": "introduces" },
+  { "span": "reflection", "concept": "acoustic-impedance", "verb": "reinforces" },
+  { "span": "reflection", "concept": "sound-intensity", "verb": "uses" },
+  { "span": "reflection", "concept": "ultrasound-therapy", "verb": "reinforces" },
+  { "span": "imaging", "concept": "ultrasound-imaging-resolution", "verb": "introduces" },
+  { "span": "imaging", "concept": "speed-of-sound-frequency-wavelength", "verb": "uses" },
+  { "span": "imaging", "concept": "echo-ranging", "verb": "uses" },
+  { "span": "imaging", "concept": "acoustic-impedance", "verb": "reinforces" },
+  { "span": "imaging", "concept": "density", "verb": "uses" },
+  { "span": "doppler", "concept": "doppler-shifted-ultrasound", "verb": "introduces" },
+  { "span": "doppler", "concept": "doppler-effect", "verb": "uses" },
+  { "span": "doppler", "concept": "doppler-shift-moving-observer", "verb": "uses" },
+  { "span": "doppler", "concept": "doppler-shift-moving-source", "verb": "uses" },
+  { "span": "doppler", "concept": "doppler-shift-source-and-observer", "verb": "uses" },
+  { "span": "doppler", "concept": "beats", "verb": "uses" },
+  { "span": "doppler", "concept": "beat-frequency", "verb": "uses" },
+  { "span": "applications", "concept": "ultrasound-therapy", "verb": "reinforces" },
+  { "span": "applications", "concept": "echo-ranging", "verb": "reinforces" },
+  { "span": "applications", "concept": "density", "verb": "uses" }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2706418",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": { "at": "inline", "after": "applications" },
+   "cite": "therapy",
+   "prompt": "Why is it possible to use ultrasound both to observe a fetus in the womb and also to destroy cancerous tumors in the body?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Ultrasound can be used medically at different intensities. Lower intensities do not cause damage and are used for medical imaging. Higher intensities can pulverize and destroy targeted substances in the body, such as tumors."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1355290",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "imaging",
+   "prompt": "If audible sound follows a rule of thumb similar to that for ultrasound, in terms of its absorption, would you expect the high or low frequencies from your neighbor’s stereo to penetrate into your house? How does this expectation compare with your experience?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Start from the rule of thumb the section gives for ultrasound, that a wave penetrates to a depth of about 500 wavelengths, and remember that a wavelength is $\\klam = \\kvw/\\kf$, so a high frequency has a short wavelength and therefore a short reach. Applied to audible sound, the rule says that the low frequencies should travel farthest through a wall, and the high ones should be absorbed within it. That is exactly what you hear: what comes through the wall from a neighbor’s stereo is the bass, the thump of the drum and the lowest notes, while the cymbals, the words and the higher instruments are lost. The agreement between the rule and the experience is good, which is one reason to trust the rule for ultrasound as well."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3045900",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "imaging",
+   "prompt": "Elephants and whales are known to use infrasound to communicate over very large distances. What are the advantages of infrasound for long distance communication?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Infrasound is sound below 20 Hz, so its wavelength in air or in water is very long, tens of meters or more, and the same rule of thumb that limits ultrasound to a few hundred wavelengths gives infrasound an enormous reach. A long wave is absorbed only weakly by the medium it travels through, so it loses little of its intensity over a great distance. A long wavelength also passes around obstacles, a hill, a stand of trees or a ridge on the sea floor, that would reflect or scatter a short wave, so the signal is not blocked by whatever lies between the animals. The price is the one this section names for a long wavelength everywhere: no fine detail can be carried, which is why infrasound serves for a call and not for an image."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3044088",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "reflection",
+   "prompt": "It is more difficult to obtain a high-resolution ultrasound image in the abdominal region of someone who is overweight than for someone who has a slight build. Explain why this statement is accurate.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Think of both things the section says settle an image: how deep the probe must reach, and how much of its intensity survives the journey. The organs of interest lie farther below the skin in a heavier patient, so the ultrasound must travel through more tissue there and back, and it is partly absorbed on both journeys, which leaves a weaker echo to record. Reaching deeper also means choosing a lower frequency, since the useful depth is only about 500 wavelengths, and a lower frequency has a longer wavelength and so resolves less detail. There is a third effect: fat and muscle have different acoustic impedances, $1.34 \\times 10^{6}$ and $1.70 \\times 10^{6}\\ \\text{kg/}(\\text{m}^2\\cdot\\text{s})$, so every layer of fat is another boundary that reflects a little of the beam and scatters it out of the path. All three work the same way, and the image is dimmer and coarser."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3105144",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": { "at": "end" },
+   "cite": "therapy",
+   "prompt": "Suppose you read that 210-dB ultrasound is being used to pulverize cancerous tumors. You calculate the intensity in watts per centimeter squared and find it is unreasonably high ($10^5\\ \\text{W/cm}^2$). What is a possible explanation?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Check the figure against the intensities the section gives for this use. Ultrasound pulverizes tissue at $10^3$ to $10^5\\ \\text{W/m}^2$, and $10^5\\ \\text{W/cm}^2$ is $10^9\\ \\text{W/m}^2$, ten thousand times larger than the largest of them, so the number as read cannot be the sound intensity level this text uses. The explanation is the other decibel scale: in water and in biological tissue, sound is often quoted as a sound pressure level, and those numbers run 60 to 70 dB higher than the sound intensity level for the same sound. Subtracting that amount leaves about 140 to 150 dB, which is $10^2$ to $10^3\\ \\text{W/m}^2$, squarely in the range the section quotes for surgical ultrasound. The figure is not wrong; it is quoted on a scale that has to be named before it can be read."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1426250",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "therapy",
+   "prompt": "What is the sound intensity level in decibels of ultrasound of intensity $10^5\\ \\text{W/m}^2$, used to pulverize tissue during surgery?",
+   "answer": {
+    "type": "number",
+    "value": 170,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "Enter the intensity and the threshold $\\kIo = 10^{-12}\\ \\text{W/m}^2$ into $\\beta = 10\\log_{10}(\\kIntens/\\kIo)$. The ratio is a power of ten, so the logarithm is an exponent.",
+    "solution": "170 dB"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2999852",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": { "at": "end" },
+   "cite": "therapy",
+   "prompt": "Find the sound intensity level in decibels of $2.00 \\times 10^{-2}\\ \\text{W/m}^2$ ultrasound used in medical diagnostics.",
+   "answer": {
+    "type": "number",
+    "value": 103,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "Use $\\beta = 10\\log_{10}(\\kIntens/\\kIo)$ with $\\kIo = 10^{-12}\\ \\text{W/m}^2$. The ratio is $2.00 \\times 10^{10}$.",
+    "solution": "103 dB"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3157929",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "reflection",
+   "prompt": "In the clinical use of ultrasound, transducers are always coupled to the skin by a thin layer of gel or oil, replacing the air that would otherwise exist between the transducer and the skin. (a) Using the values of acoustic impedance given in Table 17.5, calculate the intensity reflection coefficient between transducer material and air. (b) Calculate the intensity reflection coefficient between transducer material and gel (assuming for this problem that its acoustic impedance is identical to that of water). (c) Based on the results of your calculations, explain why the gel is used.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.0,
+      "hint": "Table 17.5 gives 429 for air and $30.8 \\times 10^{6}\\ \\text{kg/}(\\text{m}^2\\cdot\\text{s})$ for barium titanate. Put them into $a = (Z_2 - Z_1)^2/(Z_1 + Z_2)^2$ and notice how little the 429 changes either the difference or the sum."
+     },
+     {
+      "part": "(b)",
+      "value": 0.823,
+      "hint": "The same formula with the impedance of water, $1.5 \\times 10^{6}\\ \\text{kg/}(\\text{m}^2\\cdot\\text{s})$, in place of the air."
+     }
+    ],
+    "solution": "(a) 1.00<br>(b) 0.823<br>(c) Gel is used to facilitate the transmission of the ultrasound between the transducer and the patient’s body."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2406620",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "imaging",
+   "prompt": "(a) Find the size of the smallest detail observable in human tissue with 20.0-MHz ultrasound. (b) Is its effective penetration depth great enough to examine the entire eye (about 3.00 cm is needed)? (c) What is the wavelength of such ultrasound in $0^\\circ\\text{C}$ air?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.000077,
+      "unit": "m",
+      "hint": "The smallest detail is the wavelength, $\\klam = \\kvw/\\kf$, with the speed of sound in tissue taken as 1540 m/s."
+     },
+     {
+      "part": "(b)",
+      "value": 3.85,
+      "unit": "cm",
+      "hint": "The effective depth is about $500\\klam$. Compare it with the 3.00 cm the eye needs."
+     },
+     {
+      "part": "(c)",
+      "value": 0.0000166,
+      "unit": "m",
+      "hint": "The same relation with the speed of sound in air at $0^\\circ\\text{C}$, 331 m/s."
+     }
+    ],
+    "solution": "(a) $77.0\\ \\mu\\text{m}$<br>(b) Effective penetration depth = 3.85 cm, which is enough to examine the eye.<br>(c) $16.6\\ \\mu\\text{m}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1405914",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "imaging",
+   "prompt": "(a) How far apart are two layers of tissue that produce echoes having round-trip times (used to measure distances) that differ by $0.750\\ \\mu\\text{s}$? (b) What minimum frequency must the ultrasound have to see detail this small?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.000578,
+      "unit": "m",
+      "hint": "The extra time is a round trip, so the sound covers twice the separation in it: the separation is $\\kvw t/2$ with 1540 m/s."
+     },
+     {
+      "part": "(b)",
+      "value": 2670000,
+      "unit": "Hz",
+      "hint": "Detail this small needs a wavelength no larger than the separation, so $\\kf = \\kvw/\\klam$."
+     }
+    ],
+    "solution": "(a) $5.78 \\times 10^{-4}\\ \\text{m}$<br>(b) $2.67 \\times 10^{6}\\ \\text{Hz}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1998767",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "imaging",
+   "prompt": "A dolphin is able to tell in the dark that the ultrasound echoes received from two sharks come from two different objects only if the sharks are separated by 3.50 m, one being that much farther away than the other. (a) If the ultrasound has a frequency of 100 kHz, show this ability is not limited by its wavelength. (b) If this ability is due to the dolphin’s ability to detect the arrival times of echoes, what is the minimum time difference the dolphin can perceive?",
+   "answer": {
+    "type": "number",
+    "value": 4.55,
+    "unit": "ms",
+    "part": "(b)",
+    "generated_by": "source",
+    "hint": "For (a) find the wavelength from $\\kvw = \\kf\\klam$ and compare it with 3.50 m. For (b) the extra 3.50 m is covered twice, once out and once back, at 1540 m/s.",
+    "solution": "(a) $\\kvw = 1540\\ \\text{m/s} = \\kf\\klam \\Rightarrow \\klam = \\frac{1540\\ \\text{m/s}}{100 \\times 10^{3}\\ \\text{Hz}} = 0.0154\\ \\text{m} < 3.50\\ \\text{m}.$ Because the wavelength is much shorter than the distance in question, the wavelength is not the limiting factor.<br>(b) 4.55 ms"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2423508",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": { "at": "end" },
+   "cite": "doppler",
+   "prompt": "Ultrasound reflected from an oncoming bloodstream that is moving at 30.0 cm/s is mixed with the original frequency of 2.50 MHz to produce beats. What is the beat frequency? (Assume that the frequency of 2.50 MHz is accurate to seven significant figures.)",
+   "answer": {
+    "type": "number",
+    "value": 974,
+    "unit": "Hz",
+    "generated_by": "source",
+    "hint": "Shift the frequency twice, as Example 17.8 does: once for the blood as a moving observer and once for the blood as a moving source, then take $\\kfB = |\\kfobs - \\kfsrc|$. Keep every digit through the two shifts, since the difference is small.",
+    "solution": "974 Hz<br>(Note: extra digits were retained in order to show the difference.)"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  { "exercise": "cyu1", "concept": "ultrasound-therapy" },
+  { "exercise": "cyu1", "concept": "ultrasound-imaging-resolution", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq1", "concept": "ultrasound-imaging-resolution" },
+  { "exercise": "cq1", "concept": "speed-of-sound-frequency-wavelength", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq2", "concept": "ultrasound-imaging-resolution" },
+  { "exercise": "cq2", "concept": "audible-range", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq3", "concept": "intensity-reflection-coefficient" },
+  { "exercise": "cq3", "concept": "ultrasound-imaging-resolution", "weight": 2, "weights_by": "ai" },
+  { "exercise": "cq4", "concept": "sound-pressure-level" },
+  { "exercise": "cq4", "concept": "ultrasound-therapy", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p1", "concept": "ultrasound-therapy" },
+  { "exercise": "p1", "concept": "sound-intensity-level", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p3", "concept": "ultrasound-therapy" },
+  { "exercise": "p3", "concept": "sound-intensity-level", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p5", "concept": "intensity-reflection-coefficient" },
+  { "exercise": "p5", "concept": "acoustic-impedance", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p7", "concept": "ultrasound-imaging-resolution" },
+  { "exercise": "p7", "concept": "speed-of-sound-frequency-wavelength", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p9", "concept": "ultrasound-imaging-resolution" },
+  { "exercise": "p9", "concept": "speed-of-sound-frequency-wavelength", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p11", "concept": "ultrasound-imaging-resolution" },
+  { "exercise": "p11", "concept": "echo-ranging", "weight": 3, "weights_by": "ai" },
+  { "exercise": "p13", "concept": "doppler-shifted-ultrasound" },
+  { "exercise": "p13", "concept": "beat-frequency", "weight": 3, "weights_by": "ai" }
+ ]
+}

@@ -161,27 +161,31 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     /* the scene: a guitar lying on its side, the string running from the nut on the headstock,
        along the neck and over the sound hole to the bridge on the body, plucked at its middle */
     const y = 270, nut = 150, bridge = 900, mid = (nut + bridge) / 2, dy = -xv * SC;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.lineJoin = 'round';
-    /* the body: an upper bout at the neck, a waist, and a larger lower bout that carries the bridge */
-    ctx.beginPath(); ctx.moveTo(640, y - 88);
-    ctx.bezierCurveTo(700, y - 108, 740, y - 108, 760, y - 76);
-    ctx.bezierCurveTo(780, y - 44, 820, y - 40, 860, y - 76);
-    ctx.bezierCurveTo(920, y - 130, 1060, y - 120, 1060, y);
-    ctx.bezierCurveTo(1060, y + 120, 920, y + 130, 860, y + 76);
-    ctx.bezierCurveTo(820, y + 40, 780, y + 44, 760, y + 76);
-    ctx.bezierCurveTo(740, y + 108, 700, y + 108, 640, y + 88);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    /* the body, a figure of eight lying on its side: a rounded upper bout where the neck joins, a
+       waist, and a larger lower bout that carries the bridge, in the proportions of a classical guitar */
+    const bl = 560, br = 1040;
+    ctx.beginPath(); ctx.moveTo(bl + 26, y - 70);
+    ctx.bezierCurveTo(bl - 10, y - 70, bl - 10, y + 70, bl + 26, y + 70);
+    ctx.bezierCurveTo(bl + 90, y + 100, bl + 150, y + 100, bl + 200, y + 66);
+    ctx.bezierCurveTo(bl + 250, y + 40, bl + 300, y + 40, bl + 340, y + 80);
+    ctx.bezierCurveTo(bl + 400, y + 135, br + 30, y + 110, br, y);
+    ctx.bezierCurveTo(br + 30, y - 110, bl + 400, y - 135, bl + 340, y - 80);
+    ctx.bezierCurveTo(bl + 300, y - 40, bl + 250, y - 40, bl + 200, y - 66);
+    ctx.bezierCurveTo(bl + 150, y - 100, bl + 90, y - 100, bl + 26, y - 70);
     ctx.closePath(); ctx.fill(); ctx.stroke();
     /* the headstock, its three tuning pegs and the nut */
     ctx.beginPath(); ctx.moveTo(150, y - 22); ctx.lineTo(78, y - 32); ctx.lineTo(66, y - 18); ctx.lineTo(66, y + 18); ctx.lineTo(78, y + 32); ctx.lineTo(150, y + 22); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.lineWidth = 2; [86, 108, 130].forEach((px) => { ctx.beginPath(); ctx.moveTo(px, y - 26); ctx.lineTo(px, y - 46); ctx.moveTo(px - 6, y - 46); ctx.lineTo(px + 6, y - 46); ctx.stroke(); });
-    /* the neck with its frets and position dots */
-    ctx.lineWidth = 3; ctx.beginPath(); ctx.rect(150, y - 19, 500, 38); ctx.fill(); ctx.stroke();
-    ctx.lineWidth = 2; for (let i = 1; i <= 12; i++) { const fx = 150 + 500 * (1 - Math.pow(2, -i / 12)) * 1.0; ctx.beginPath(); ctx.moveTo(fx, y - 19); ctx.lineTo(fx, y + 19); ctx.stroke(); }
-    ctx.fillStyle = PAL.muted; [3, 5, 7, 9].forEach((i) => { const fx = 150 + 500 * (1 - Math.pow(2, -(i - 0.5) / 12)); ctx.beginPath(); ctx.arc(fx, y + 9, 3, 0, TAU); ctx.fill(); });
-    /* the sound hole, and the nut and the bridge that hold the string */
-    ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(760, y, 40, 0, TAU); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = PAL.muted; ctx.fillRect(nut - 5, y - 24, 10, 48); ctx.fillRect(bridge - 8, y - 46, 16, 92);
-    ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(bridge, y - 32, 3, 0, TAU); ctx.arc(bridge, y + 32, 3, 0, TAU); ctx.fill();
+    /* the neck with its frets and position dots, running onto the body to the sound hole */
+    ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.beginPath(); ctx.rect(150, y - 19, 500, 38); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 2; for (let i = 1; i <= 14; i++) { const fx = 150 + 520 * (1 - Math.pow(2, -i / 12)); ctx.beginPath(); ctx.moveTo(fx, y - 19); ctx.lineTo(fx, y + 19); ctx.stroke(); }
+    ctx.fillStyle = PAL.muted; [3, 5, 7, 9, 12].forEach((i) => { const fx = 150 + 520 * (1 - Math.pow(2, -(i - 0.5) / 12)); ctx.beginPath(); ctx.arc(fx, y + 9, 3, 0, TAU); ctx.fill(); });
+    /* the sound hole with its rosette, and the nut and the bridge that hold the string */
+    ctx.fillStyle = alpha(PAL.ink, 0.55); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(722, y, 42, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(722, y, 36, 0, TAU); ctx.fill();
+    ctx.fillStyle = PAL.ink; ctx.fillRect(nut - 5, y - 24, 10, 48); ctx.fillRect(bridge - 10, y - 50, 20, 100);
+    ctx.fillStyle = PAL.panel; [-36, -18, 0, 18, 36].forEach((o) => { ctx.beginPath(); ctx.arc(bridge, y + o, 3, 0, TAU); ctx.fill(); });
     ctx.restore();
     line(ctx, nut, y, bridge, y, PAL.muted, 2, [10, 10]);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(78, y - 8); ctx.lineTo(nut, y); ctx.lineTo(mid, y + dy); ctx.lineTo(bridge, y); ctx.stroke(); ctx.restore();

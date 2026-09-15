@@ -229,6 +229,22 @@ Extra simulations (rule 15), thought through and judged:
   diagram is what the reader needs to start it, and a slider would only
   hand the answer over. Left.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-radius`, `sim-banked` and
+`sim-loop` place their force, velocity and radius labels through
+`labeller()`; the banked car's forces start at a marked point in the car,
+the free-body diagram's normal force is drawn a fixed 150 units whatever
+the angle so its labels never reach the headline, and a small arrow under
+the bank says which way the center of the curve lies. `sim-loop` draws the
+loop as a rail with its approach and run-out crossing at the bottom, the
+car riding the inside of the rail. Of the faithful copies: `fig-loop-ride`
+now has the book's trestle, a train of four cars with riders climbing the
+right side and the arrow ahead of them (a `coasterCar` sprite of this
+file); `fig-merry-go-round` is redrawn on a locked `view()` from a little
+above, as the book prints it, with a carousel horse and rider (a `horse`
+sprite of this file, the rider from `person()`), the point P and the three
+paths A, B, C drawn as curves in the platform's plane; `fig-centrifuge`
+seats a `person()` in the cage in place of the stick rider.
+
 ## Exercises
 
 - No Check Your Understanding boxes in this chapter. One conceptual

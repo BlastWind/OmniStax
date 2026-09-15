@@ -41,6 +41,25 @@ function house(ctx, x, y, a, color) {
   ctx.beginPath(); ctx.moveTo(-16, 0); ctx.lineTo(-16, -20); ctx.lineTo(0, -32); ctx.lineTo(16, -20); ctx.lineTo(16, 0); ctx.closePath();
   ctx.fill(); ctx.stroke(); ctx.restore();
 }
+/* a world: a sphere with two masses of land on it, so that it reads as a planet and not a ball */
+function world(ctx, x, y, r, color) {
+  sphere(ctx, x, y, r, color);
+  ctx.save(); ctx.beginPath(); ctx.arc(x, y, r - 1.5, 0, TAU); ctx.clip(); ctx.fillStyle = alpha(color, 0.38);
+  ctx.beginPath(); ctx.moveTo(x - 0.55 * r, y - 0.55 * r); ctx.bezierCurveTo(x - 0.1 * r, y - 0.7 * r, x + 0.2 * r, y - 0.35 * r, x - 0.05 * r, y - 0.05 * r);
+  ctx.bezierCurveTo(x - 0.15 * r, y + 0.3 * r, x - 0.5 * r, y + 0.1 * r, x - 0.55 * r, y - 0.55 * r); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(x + 0.25 * r, y + 0.05 * r); ctx.bezierCurveTo(x + 0.7 * r, y - 0.1 * r, x + 0.75 * r, y + 0.45 * r, x + 0.35 * r, y + 0.6 * r);
+  ctx.bezierCurveTo(x + 0.1 * r, y + 0.5 * r, x + 0.05 * r, y + 0.2 * r, x + 0.25 * r, y + 0.05 * r); ctx.fill(); ctx.restore();
+}
+/* a building of three storeys standing on (x, y), h tall, rotated so that up is along the angle a from straight up */
+function building(ctx, x, y, h, a, color) {
+  const w = h * 0.62;
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.fillStyle = alpha(color, 0.16); ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.rect(-w / 2, -h, w, h); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = PAL.panel;
+  for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) { ctx.beginPath(); ctx.rect(-w / 2 + w * (0.12 + 0.3 * j), -h * (0.9 - 0.3 * i), w * 0.17, h * 0.17); ctx.fill(); ctx.stroke(); }
+  ctx.beginPath(); ctx.moveTo(-w * 0.5 - 4, -h); ctx.lineTo(w * 0.5 + 4, -h); ctx.stroke();
+  ctx.restore();
+}
 /* the Moon: a disc with three craters */
 function moon(ctx, x, y, r, color) {
   sphere(ctx, x, y, r, color);
@@ -135,38 +154,48 @@ function sun(ctx, x, y, r, color) {
     const M = Mr * M_EARTH, R = Rr * R_EARTH;
     const gs = (G_THREE * M) / (R * R);
     /* the scene: the body, its center of mass, the radius out to a house on the surface */
-    const cx = 340, cy = 330, Rpx = 46 + 132 * Math.sqrt(Math.min(1, Rr / 12));
-    sphere(ctx, cx, cy, Rpx, PAL.ink);
+    /* the body, drawn as the book draws Earth: a world with land on it, a quarter cut away to
+       show the layers down to the center of mass, and the radius drawn from that center out to
+       the building on the surface */
+    const cx = 330, cy = 330, Rpx = 60 + 118 * Math.sqrt(Math.min(1, Rr / 12));
+    world(ctx, cx, cy, Rpx, PAL.ink);
+    const a = -50 * RAD;
+    ctx.save(); ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, Rpx + 1, -Math.PI / 2, 0); ctx.closePath(); ctx.clip();
+    ctx.fillStyle = PAL.panel; ctx.fillRect(cx - 2, cy - Rpx - 4, Rpx + 8, Rpx + 8);
+    [[1, 0.1], [0.62, 0.22], [0.3, 0.4]].forEach(([k, al]) => { ctx.fillStyle = alpha(PAL.ink, al); ctx.beginPath(); ctx.arc(cx, cy, Rpx * k, 0, TAU); ctx.fill(); });
+    ctx.restore();
+    line(ctx, cx, cy, cx, cy - Rpx, PAL.ink, 2); line(ctx, cx, cy, cx + Rpx, cy, PAL.ink, 2);
     dot(ctx, cx, cy, PAL.ink, true, 7);
-    text(ctx, 'center of mass', cx, cy + 26, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    /* the house on the surface, and the radius drawn from the center of mass out to
-       it, as the book draws r_e: the distance between the two centers of mass */
-    const a = -50 * RAD, hx = cx + Rpx * Math.cos(a), hy = cy + Rpx * Math.sin(a);
-    arrow(ctx, cx, cy, hx - 6 * Math.cos(a), hy - 6 * Math.sin(a), C('position'), 4);
-    text(ctx, 'r = ' + sci(R, 2) + ' m', cx, cy + Rpx + 26, C('position'), { weight: 600, align: 'center' });
-    house(ctx, hx, hy, a + Math.PI / 2, PAL.ink);
-    /* the magnified view the book puts beside its Earth: the house on a curved
-       surface, and the radius reaching, through a break, to the house's own
-       center of mass */
-    const ix = 655, iy = 236, ir = 84;
-    line(ctx, hx, hy, ix, iy - ir, PAL.rule, 1.5); line(ctx, hx, hy, ix, iy + ir, PAL.rule, 1.5);
+    text(ctx, 'center of mass', cx - 12, cy + 24, PAL.ink, { size: 17, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    const hx = cx + Rpx * Math.cos(a), hy = cy + Rpx * Math.sin(a);
+    /* the radius, from the center of mass to the building's own center of mass, an arrowhead at each end */
+    const BH = 34, bcx = hx + (BH / 2) * Math.cos(a), bcy = hy + (BH / 2) * Math.sin(a);
+    arrow(ctx, cx + 12 * Math.cos(a), cy + 12 * Math.sin(a), bcx, bcy, C('position'), 4);
+    arrow(ctx, bcx, bcy, cx + 12 * Math.cos(a), cy + 12 * Math.sin(a), C('position'), 4);
+    { const mx = cx + Rpx * 0.5 * Math.cos(a), my = cy + Rpx * 0.5 * Math.sin(a); text(ctx, 'r', mx + 22 * Math.sin(a) * -1 + 0, my + 22 * Math.cos(a), C('position'), { weight: 600, size: 22, align: 'center', bg: alpha(PAL.panel, 0.85) }); }
+    text(ctx, 'r = ' + sci(R, 2) + ' m', cx, cy + Rpx + 30, C('position'), { weight: 600, align: 'center' });
+    building(ctx, hx, hy, BH, a + Math.PI / 2, PAL.ink);
+    dot(ctx, bcx, bcy, C('position'), true, 4);
+    /* the magnified view the book puts beside its Earth: the building on a curved surface, and the
+       radius reaching up to it, through a break, from the center of mass far below */
+    const ix = 690, iy = 236, ir = 92;
+    line(ctx, hx, hy, ix - ir * 0.7, iy - ir * 0.7, PAL.rule, 1.5); line(ctx, hx, hy, ix - ir * 0.7, iy + ir * 0.7, PAL.rule, 1.5);
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2;
     ctx.beginPath(); ctx.arc(ix, iy, ir, 0, TAU); ctx.fill(); ctx.stroke(); ctx.clip();
     ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(ix, iy + 16 + 520, 520, 0, TAU); ctx.fill(); ctx.stroke();
-    ctx.translate(ix, iy + 16); ctx.scale(2.6, 2.6); ctx.translate(-ix, -(iy + 16));
-    house(ctx, ix, iy + 16, 0, PAL.ink);
+    ctx.beginPath(); ctx.arc(ix, iy + 10 + 520, 520, 0, TAU); ctx.fill(); ctx.stroke();
+    building(ctx, ix, iy + 10, 90, 0, PAL.ink);
     ctx.restore();
-    arrow(ctx, ix, iy + ir, ix, iy + 16 - 34, C('position'), 3);
-    line(ctx, ix - 12, iy + 52, ix + 12, iy + 44, PAL.panel, 6); line(ctx, ix - 12, iy + 52, ix + 12, iy + 44, C('position'), 2);
-    line(ctx, ix - 12, iy + 60, ix + 12, iy + 52, C('position'), 2);
-    dot(ctx, ix, iy + 16 - 34, C('position'), true, 5);
-    text(ctx, 'r', ix + 12, iy + 72, C('position'), { weight: 600, size: 20 });
-    text(ctx, 'the house, magnified', ix, iy + ir + 24, PAL.muted, { size: 15, align: 'center' });
-    text(ctx, 'r reaches its center of mass', ix, iy + ir + 44, PAL.muted, { size: 15, align: 'center' });
-    const tx = -Math.sin(a), ty = Math.cos(a), ox = hx + 74 * tx, oy = hy + 74 * ty;
-    arrow(ctx, ox + 44 * Math.cos(a), oy + 44 * Math.sin(a), ox - 34 * Math.cos(a), oy - 34 * Math.sin(a), C('acceleration'), 5);
-    text(ctx, 'g = ' + fmt(gs, 2) + ' m/s\u00B2', ox + 58 * Math.cos(a), oy + 58 * Math.sin(a), C('acceleration'), { weight: 600 });
+    arrow(ctx, ix, iy + ir, ix, iy + 10 - 45 + 4, C('position'), 3);
+    dot(ctx, ix, iy + 10 - 45, C('position'), true, 5);
+    line(ctx, ix - 12, iy + 62, ix + 12, iy + 54, PAL.panel, 8); line(ctx, ix - 12, iy + 62, ix + 12, iy + 54, C('position'), 2);
+    line(ctx, ix - 12, iy + 70, ix + 12, iy + 62, C('position'), 2);
+    text(ctx, 'r', ix + 14, iy + 40, C('position'), { weight: 600, size: 20 });
+    text(ctx, 'the building, magnified: r reaches its center of mass', ix, iy + ir + 26, PAL.muted, { size: 15, align: 'center' });
+    /* the acceleration at the surface, drawn beside the building, straight down toward the center */
+    const tx = -Math.sin(a), ty = Math.cos(a), ox = hx + 46 * tx, oy = hy + 46 * ty;
+    arrow(ctx, ox + 40 * Math.cos(a), oy + 40 * Math.sin(a), ox - 40 * Math.cos(a), oy - 40 * Math.sin(a), C('acceleration'), 5);
+    text(ctx, 'g = ' + fmt(gs, 2) + ' m/s\u00B2', ox + 52 * Math.cos(a) + 40 * tx, oy + 52 * Math.sin(a) + 40 * ty, C('acceleration'), { weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the graph beside the scene: how g falls away above the surface */
     const box = { l: 860, r: 1330, t: 150, b: 440 };
     /* fixed axes. The sliders reach 320 Earth masses at a tenth of an Earth radius, where g would be
@@ -216,12 +245,12 @@ function sun(ctx, x, y, r, color) {
     const ex = cx - off * Math.cos(th), ey = cyy - offY * Math.sin(th);
     const mx = cx + Rpx * Math.cos(th), my = cyy + ry * Math.sin(th);
     line(ctx, ex, ey, mx, my, PAL.rule, 2, [10, 10]);
-    sphere(ctx, ex, ey, 54, PAL.ink); moon(ctx, mx, my, 22, PAL.ink);
+    world(ctx, ex, ey, 54, PAL.ink); moon(ctx, mx, my, 22, PAL.ink);
     text(ctx, 'Earth', ex, ey + 80, PAL.ink, { weight: 600, align: 'center' });
     /* the centripetal acceleration, drawn from the Moon toward Earth */
     const dx = ex - mx, dy = ey - my, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L;
     arrow(ctx, mx, my, mx + 82 * ux, my + 82 * uy, C('acceleration'), 5);
-    text(ctx, 'the Moon', mx - 48 * ux, my - 48 * uy, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the Moon', mx - 64 * ux, my - 64 * uy, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'a\u1D04 = ' + sci(ac, 2) + ' m/s\u00B2', mx + 46 * ux - 46 * uy, my + 46 * uy + 46 * ux, C('acceleration'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     dot(ctx, cx, cyy, PAL.ink, false, 9);
     text(ctx, 'center of mass', cx, cyy - 26, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
@@ -237,10 +266,10 @@ function sun(ctx, x, y, r, color) {
     };
     trace(0, 1, PAL.rule, 2); trace(0, u, PAL.muted, 3);
     const p = wob(u);
-    dot(ctx, X(u), sy, PAL.ink, false, 9); sphere(ctx, p.x, p.y, 15, PAL.ink);
+    dot(ctx, X(u), sy, PAL.ink, false, 9); world(ctx, p.x, p.y, 15, PAL.ink);
     text(ctx, 'the center of mass travels on smoothly', x0, sy + 66, PAL.muted, { size: 17 });
     text(ctx, 'Earth wiggles about it', x1, sy + 66, PAL.muted, { size: 17, align: 'right' });
-    headline(ctx, 'At ' + sci(R, 2) + ' m gravity gives ' + sci(gm, 2) + ' m/s\u00B2, and the orbit needs ' + sci(ac, 2) + ' m/s\u00B2.');
+    headline(ctx, 'At r = ' + sci(R, 2) + ' meters, gravity gives ' + sci(gm, 2) + ' m/s\u00B2 and the orbit needs ' + sci(ac, 2) + ' m/s\u00B2.');
     readout(d.readout, `\\kac = \\kr\\kw^2 = (${texSci(R, 2)}\\ \\text{m})(${texSci(om, 2)}\\ \\text{rad/s})^2 = ${texSci(ac, 2)}\\ \\text{m/s}^2`,
       'The acceleration due to Earth\u2019s gravity at that distance is g = GM/r\u00B2 = ' + sci(gm, 2) + ' m/s\u00B2, which differs from what the orbit needs by ' + fmt(Math.abs(100 * (ac - gm)) / gm, 1) + ' percent. Newton found that the two agreed pretty nearly, and concluded that Earth\u2019s gravitational force causes the Moon to orbit Earth.');
   }
@@ -261,7 +290,7 @@ function sun(ctx, x, y, r, color) {
 (function () {
   const d = sim('sim-tides', 700);
   const rM = ctl(d.controls, { label: '\\kr', cls: 'position', min: 3, max: 5, step: 0.01, value: 3.84, unit: '\u00D7 10\u2078 m', dec: 2, aria: 'the distance from Earth to the Moon' });
-  const phi = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 0, unit: '\u00BA', dec: 0, aria: 'the angle of the Sun from the Earth-Moon line, zero for a spring tide and ninety for a neap tide' });
+  const phi = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 0, unit: '°', dec: 0, aria: 'the angle of the Sun from the Earth-Moon line, zero for a spring tide and ninety for a neap tide' });
   const cy = cycle(() => 24, 1.2);
   const pull = (dist) => (G_MEASURED * M_MOON) / (dist * dist);
   /* the arrows are forces, so the readout writes the force the Moon exerts on a named parcel of
@@ -316,7 +345,7 @@ function sun(ctx, x, y, r, color) {
     arrow(ctx, oa.x, oa.y, ob.x, ob.y, PAL.ink, 3);
     moon(ctx, m.x, m.y, 34, PAL.ink);
     text(ctx, 'the Moon', m.x, m.y + 62, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'moves ' + fmt((lineA / RAD), 1) + '\u00BA along its orbit', m.x, m.y + 88, PAL.muted, { size: 15, align: 'center' });
+    text(ctx, 'moves ' + fmt((lineA / RAD), 1) + '° along its orbit', m.x, m.y + 88, PAL.muted, { size: 15, align: 'center' });
     /* the Sun, swung round from the far end of the Earth-Moon line by theta. It is 390 times as far
        away as the Moon, so it cannot stand on the Moon's own scale: it is drawn at the edge of the
        picture along its true direction, on a line with a break cut out of it, and the note beside it

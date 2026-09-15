@@ -194,6 +194,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). All four figures were screenshot in both themes at every slider extreme and three points of the cycle; the lazy Susan's hand, the leg with its foot, the skater and the contracting cloud read without their labels and nothing clips or collides, so they are left as built.
+
 ## Exercises
 
 - Check Your Understanding `cyu-analogy` (fs-id3112286), Understand, open,

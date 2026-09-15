@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, choice, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, strip, scale, axes, curve, pinned, runner, person, car, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, choice, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, strip, scale, axes, curve, pinned, runner, person, car, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -44,14 +44,27 @@ function fbd(ctx, cx, cy, horiz, vert, k, title) {
 }
 
 /* ---------- sprites, in ink ---------- */
-/* a wagon carrying a child, its bed centred on (x, y) */
+/* a wagon with a child sitting in it, its wheels on the ground at y and its bed centred on x:
+   an open bed with a raised rim, two spoked wheels, a handle raised toward the front, and the
+   rider seated in the bed with one hand on the handle, drawn large enough to be read */
 function wagon(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 4;
-  ctx.beginPath(); ctx.moveTo(x - 56, y - 16); ctx.lineTo(x + 56, y - 16); ctx.lineTo(x + 46, y + 16); ctx.lineTo(x - 46, y + 16); ctx.closePath(); ctx.fill();
-  ctx.beginPath(); ctx.arc(x - 34, y + 30, 14, 0, TAU); ctx.arc(x + 34, y + 30, 14, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(x + 54, y - 6); ctx.lineTo(x + 96, y - 34); ctx.stroke();
-  ctx.beginPath(); ctx.arc(x - 6, y - 58, 15, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(x - 6, y - 42); ctx.lineTo(x - 6, y - 18); ctx.moveTo(x - 6, y - 34); ctx.lineTo(x + 20, y - 26); ctx.stroke();
+  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineCap = 'round';
+  /* the rider, behind the near side of the bed */
+  ctx.beginPath(); ctx.arc(x - 18, y - 118, 15, 0, TAU); ctx.fill();
+  ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(x - 18, y - 102); ctx.lineTo(x - 18, y - 60); ctx.stroke();
+  ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(x - 18, y - 94); ctx.lineTo(x + 22, y - 76); ctx.lineTo(x + 58, y - 84); ctx.stroke();
+  /* the bed, drawn over the rider's lap so the child sits inside it */
+  ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(x - 84, y - 66); ctx.lineTo(x + 84, y - 66); ctx.lineTo(x + 74, y - 30); ctx.lineTo(x - 74, y - 30); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.moveTo(x - 74, y - 62); ctx.lineTo(x + 74, y - 62); ctx.lineTo(x + 68, y - 42); ctx.lineTo(x - 68, y - 42); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = color;
+  /* the handle, up from the front of the bed */
+  ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(x + 80, y - 56); ctx.lineTo(x + 128, y - 104); ctx.moveTo(x + 118, y - 112); ctx.lineTo(x + 138, y - 96); ctx.stroke();
+  /* the wheels, hubs and rims, under the bed */
+  [x - 48, x + 48].forEach((wx) => {
+    ctx.beginPath(); ctx.arc(wx, y - 18, 18, 0, TAU); ctx.fill();
+    ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(wx, y - 18, 11, 0, TAU); ctx.fill(); ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(wx, y - 18, 4, 0, TAU); ctx.fill();
+  });
   ctx.restore();
 }
 /* a basketball centred on (x, y) */
@@ -112,28 +125,33 @@ function bathScale(ctx, x, y, w, color) {
        with covers 11.5 m in its four seconds and so fills it, and the hardest push the sliders allow
        runs far past the end, where the wagon is held at the last meter mark and the headline says how
        far it has really gone. */
-    const gy = 300, x0 = 320, XMAX = 14, SC = 1000 / XMAX, SX = (mtr) => x0 + mtr * SC;
+    const gy = 300, x0 = 300, XMAX = 14, SC = 880 / XMAX, SX = (mtr) => x0 + mtr * SC;   /* the wagon's handle stays on the canvas at the last mark */
     strip(ctx, 60, 1340, gy + 22, 44);
     const past = x > XMAX;
-    const wx = SX(Math.min(x, XMAX)), wy = gy - 30, K = 3, cf = C('force');
-    wagon(ctx, wx, wy, PAL.ink);
-    /* the two children who push: feet on the ground, leaning into the back of the
-       wagon with both hands on it, walking whenever the wagon rolls */
+    const wx = SX(Math.min(x, XMAX)), wy = gy, K = 3, cf = C('force');
+    /* the two children who push, one a step behind the other: feet on the ground, leaning into
+       the back of the wagon with both hands on its rim, walking whenever the wagon rolls. The
+       farther child is drawn in the muted ink so the two read as two. */
     const walk = v > 0.02 ? (wx - x0) / 28 + 0.6 : 0;
-    person(ctx, wx - 128, gy + 22, PAL.ink, { face: 1, s: 0.78, lean: 0.55, phase: walk, reach: { x: wx - 58, y: wy + 4 } });
-    person(ctx, wx - 96, gy + 22, PAL.ink, { face: 1, s: 0.7, lean: 0.5, phase: walk ? walk + 2.2 : 0, reach: { x: wx - 56, y: wy - 8 } });
-    [[F1.v, 'F_1', wy - 148], [F2.v, 'F_2', wy - 104]].forEach(([val, lab, y]) => {
+    person(ctx, wx - 130, gy, PAL.muted, { face: 1, s: 1.0, lean: 0.5, phase: walk ? walk + 2.2 : 0, reach: { x: wx - 86, y: wy - 44 } });
+    person(ctx, wx - 106, gy, PAL.ink, { face: 1, s: 1.12, lean: 0.45, phase: walk, reach: { x: wx - 84, y: wy - 54 } });
+    wagon(ctx, wx, wy, PAL.ink);
+    /* the two pushes, anchored at the back of the wagon where the hands are, one row each */
+    [[F1.v, 'F_1', wy - 158], [F2.v, 'F_2', wy - 132]].forEach(([val, lab, y]) => {
       const L = alen(val, K, 10);
-      arrow(ctx, wx - 70, y, wx - 70 + L, y, cf, 5);
-      headLabel(ctx, lab + ' = ' + fmt(val, 1) + ' N', wx - 70, wx - 70 + L, y, cf);
+      line(ctx, wx - 84, y, wx - 84, wy - 66, alpha(cf, 0.35), 2, [4, 6]);
+      arrow(ctx, wx - 84, y, wx - 84 + L, y, cf, 5);
+      headLabel(ctx, lab + ' = ' + fmt(val, 1) + ' N', wx - 84, wx - 84 + L, y, cf);
     });
+    /* the friction acts where the wheels meet the ground, so it is drawn on the ground */
     const Lf = alen(ff.v, K, 10);
-    arrow(ctx, wx - 70, wy - 60, wx - 70 - Lf, wy - 60, cf, 5);
-    text(ctx, 'f = ' + fmt(ff.v, 1) + ' N', wx - 82 - Lf, wy - 60, cf, { size: 20, weight: 600, align: 'right' });
+    arrow(ctx, wx - 48, gy + 12, wx - 48 - Lf, gy + 12, cf, 5);
+    text(ctx, 'f = ' + fmt(ff.v, 1) + ' N', wx - 60 - Lf, gy + 12, cf, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
+    /* the acceleration is a third row above the pushes, so it never runs off the right edge */
     if (a > 0.01) {
       const La = Math.min(200, 30 + a * 60);
-      arrow(ctx, wx + 130, wy - 34, wx + 130 + La, wy - 34, C('acceleration'), 5);
-      headLabel(ctx, 'a = ' + fmt(a, 2) + ' m/s²', wx + 130, wx + 130 + La, wy - 60, C('acceleration'));
+      arrow(ctx, wx - 84, wy - 190, wx - 84 + La, wy - 190, C('acceleration'), 5);
+      headLabel(ctx, 'a = ' + fmt(a, 2) + ' m/s²', wx - 84, wx - 84 + La, wy - 190, C('acceleration'));
     }
     dot(ctx, x0, gy + 22, C('position'), false, 8);
     if (wx - x0 > 34) {
@@ -277,13 +295,14 @@ function bathScale(ctx, x, y, w, color) {
     F.person(ctx, px - 156, gy, PAL.ink, { lean: 0.22, reach: { x: px - 116, y: py - 78 }, phase: tau > 0 && tau < T ? tau * 6 : 0 });
     mower(ctx, px, py, PAL.ink);
     const La = Math.min(230, 30 + a * 48), LF = Fn.v * 3.2, Lv = Math.min(240, v * 22);
-    arrow(ctx, px + 60, py - 116, px + 60 + La, py - 116, C('acceleration'), 5);
-    headLabel(ctx, 'a = ' + fmt(a, 2) + ' m/s²', px + 60, px + 60 + La, py - 116, C('acceleration'), 21);
-    arrow(ctx, px + 60, py - 62, px + 60 + LF, py - 62, cf, 5);
-    headLabel(ctx, 'F_net = ' + fmt(Fn.v, 0) + ' N', px + 60, px + 60 + LF, py - 62, cf, 21);
+    /* the net force is drawn from the deck it acts on, the acceleration and the velocity above it */
+    arrow(ctx, px + 20, py - 96, px + 20 + La, py - 96, C('acceleration'), 5);
+    headLabel(ctx, 'a = ' + fmt(a, 2) + ' m/s²', px + 20, px + 20 + La, py - 96, C('acceleration'), 21);
+    arrow(ctx, px + 44, py - 12, px + 44 + LF, py - 12, cf, 5);
+    headLabel(ctx, 'F_net = ' + fmt(Fn.v, 0) + ' N', px + 44, px + 44 + LF, py - 12, cf, 21);
     if (v > 0.02) {
-      arrow(ctx, px + 60, py - 8, px + 60 + Lv, py - 8, C('velocity'), 5);
-      headLabel(ctx, 'v = ' + fmt(v, 2) + ' m/s', px + 60, px + 60 + Lv, py - 8, C('velocity'), 21);
+      arrow(ctx, px + 20, py - 54, px + 20 + Lv, py - 54, C('velocity'), 5);
+      headLabel(ctx, 'v = ' + fmt(v, 2) + ' m/s', px + 20, px + 20 + Lv, py - 54, C('velocity'), 21);
     }
     dot(ctx, x0, gy + 22, C('position'), false, 8);
     if (px - x0 > 34) {
@@ -333,8 +352,9 @@ function bathScale(ctx, x, y, w, color) {
     const past = x > XMAX;
     const sx = SX(Math.min(x, XMAX)), sy = gy - 34, cf = C('force'), K = 170 / 40000;
     sled(ctx, sx, sy, PAL.ink, n);
-    for (let i = 0; i < n; i++) arrow(ctx, sx + 10, sy - 92 - i * 26, sx + 10 + alen(Tt.v, K, 20), sy - 92 - i * 26, cf, 4);
-    headLabel(ctx, n + 'T = ' + sig3(n * Tt.v) + ' N', sx + 10, sx + 10 + alen(Tt.v, K, 20), sy - 92 - (n - 1) * 26 - 28, cf);
+    /* one thrust per burning rocket, drawn from its rocket forward, the row stacked just over the sled */
+    for (let i = 0; i < n; i++) arrow(ctx, sx - 66 + i * 38, sy - 56 - i * 22, sx - 66 + i * 38 + alen(Tt.v, K, 20), sy - 56 - i * 22, cf, 4);
+    headLabel(ctx, n + 'T = ' + sig3(n * Tt.v) + ' N', sx - 66 + (n - 1) * 38, sx - 66 + (n - 1) * 38 + alen(Tt.v, K, 20), sy - 56 - (n - 1) * 22 - 26, cf);
     const Lf = alen(ff.v, K, 24);
     arrow(ctx, sx - 20, sy - 56, sx - 20 - Lf, sy - 56, cf, 4);
     text(ctx, 'f = ' + commas(fmt(ff.v, 0)) + ' N', sx - 32 - Lf, sy - 56, cf, { size: 20, weight: 600, align: 'right' });

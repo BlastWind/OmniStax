@@ -279,6 +279,16 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-surface-gravity` is
+redrawn after the book's Figure 6.19: a `world` sprite (a sphere with land
+on it) with a quarter cut away down to the center of mass, a three-storey
+`building` on the surface, the radius drawn between the two centers of
+mass with a head at each end, and the inset of the magnified building with
+the break in its radius. `sim-earth-moon` draws Earth with the same sprite
+and writes the distance's unit as a word in the headline, where the
+superscript ran the "m" into the number. `sim-tides` and `sim-cavendish`
+were reworked on Chen's request earlier and keep their design.
+
 ## Exercises
 
 - No Check Your Understanding box; nothing inline.

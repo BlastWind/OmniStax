@@ -3,7 +3,7 @@
    held at rest has no time in it, so nothing registers a cycle and nothing carries a transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, pinned, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -32,18 +32,14 @@ function pole(ctx, y) {
   line(ctx, 0, y - 6, 1400, y - 6, PAL.ink, 3);
   line(ctx, 0, y + 6, 1400, y + 6, PAL.ink, 3);
 }
-/* the vaulter standing between his hands, in muted ink so that the free body diagram reads over him */
+/* the vaulter standing between his hands and facing us, in muted ink so that the free body
+   diagram reads over him: the library's silhouette with its shoulders at the height of the pole
+   and its hands on the two grips, drawn in its own 150-unit frame */
 function vaulter(ctx, xR, xL, yPole, yFeet) {
-  const cx = (xR + xL) / 2, yHead = yPole - 108, yHip = yPole + 70;
-  ctx.save(); ctx.strokeStyle = PAL.muted; ctx.fillStyle = PAL.muted; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(cx, yHead, 17, 0, TAU); ctx.fill();
-  ctx.beginPath();
-  ctx.moveTo(cx, yHead + 17); ctx.lineTo(cx, yHip);
-  ctx.moveTo(cx, yHip); ctx.lineTo(cx - 26, yFeet);
-  ctx.moveTo(cx, yHip); ctx.lineTo(cx + 26, yFeet);
-  ctx.moveTo(cx, yHead + 44); ctx.lineTo(xR, yPole);
-  ctx.moveTo(cx, yHead + 44); ctx.lineTo(xL, yPole);
-  ctx.stroke(); ctx.restore();
+  const cx = (xR + xL) / 2, s = (yFeet - yPole) / 118;
+  silhouette(ctx, { x: cx, y: yFeet, s, color: PAL.muted, pose: 'stand',
+    feet: [{ x: 16, y: 0 }, { x: -16, y: 0 }], hip: { x: 0, y: -72 }, shoulder: { x: 0, y: -118 }, head: { x: 0, y: -140 },
+    hands: [{ x: (xL - cx) / s, y: -118 }, { x: (xR - cx) / s, y: -118 }], elbowSide: -1 });
 }
 /* the center of gravity, marked where the book marks it */
 function cgMark(ctx, x, y) {
@@ -81,13 +77,13 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
     const over = Math.max(w, Math.abs(FL), Math.abs(FR)) > FCAP;
     const X = along();
     /* the scene */
-    vaulter(ctx, X(0), X(s), YP, 470);
+    vaulter(ctx, X(0), X(s), YP, 500);
     pole(ctx, YP);
     forceArrow(ctx, X(0), YP, L(FR), FR >= 0, 'F_R = ' + signed(FR, 1) + ' N', C('force'), -1);
     forceArrow(ctx, X(s), YP, L(FL), FL >= 0, 'F_L = ' + signed(FL, 1) + ' N', C('force'), 1);
     arrow(ctx, X(p), YP, X(p), YP + L(w), C('force'), 5);
     text(ctx, 'w = ' + fmt(w, 1) + ' N', X(p) + 18, YP + L(w) / 2, C('force'), { size: 22, weight: 600, bg: PAL.panel });
-    if (over) text(ctx, 'An arrow stops at 100 N, and the labels go on giving the true forces.', 700, 128, PAL.muted, { size: 17, align: 'center' });
+    if (over) text(ctx, 'An arrow stops at 100 N, and the labels go on giving the true forces.', 700, 92, PAL.muted, { size: 17, align: 'center' });
     cgMark(ctx, X(p), YP);
     text(ctx, 'right hand', X(0), YP + 32, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
     text(ctx, 'left hand', X(s), YP + 32, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });

@@ -4,7 +4,7 @@
    rotor at 7.5 × 10⁴ rev/min turns more than a thousand times a second and no drawing can follow it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, car, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, nice, curve, car, pinned, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -72,50 +72,54 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const th = A0 + (tau / T) * TAU, dt = dth.v * RAD, a1 = th - dt, am = th - dt / 2;
     const dv = 2 * v.v * Math.sin(dt / 2), ds = r.v * dt, chord = 2 * r.v * Math.sin(dt / 2);
     const pos = C('position'), vel = C('velocity');
-    const cx = 430, cyc = 400, R = 128 + 21 * r.v, Lv = 50 + 5 * v.v;
+    /* the circle is drawn 180 to 260 units in radius across the slider, and the velocity arrows
+       100 to 180, so the triangle of velocities at the right stands as large as the circle */
+    const cx = 400, cyc = 420, R = 170 + 22 * r.v, Lv = 90 + 9 * v.v;
+    const L = labeller(ctx, 740); L.block(0, 0, 1400, 90);
     /* the circle, the two points on it, and the arc and chord between them */
-    arcpath(ctx, cx, cyc, R, 0, TAU, PAL.rule, 3);
+    arcpath(ctx, cx, cyc, R, 0, TAU, PAL.muted, 3);
     dot(ctx, cx, cyc, PAL.muted, true, 6);
     const x1 = cxa(cx, R, a1), y1 = cya(cyc, R, a1), x2 = cxa(cx, R, th), y2 = cya(cyc, R, th);
     line(ctx, cx, cyc, x1, y1, pos, 3); line(ctx, cx, cyc, x2, y2, pos, 3);
-    beside(ctx, 'r = ' + fmt(r.v, 1) + ' m', cx, cyc, R * 0.74, a1, -32, pos);
+    { const t = tang(a1); L.add('r = ' + fmt(r.v, 1) + ' m', cxa(cx, R * 0.6, a1), cya(cyc, R * 0.6, a1), -t[0], -t[1], pos, 20, 22); }
     line(ctx, x1, y1, x2, y2, PAL.muted, 2, [8, 8]);
     arcpath(ctx, cx, cyc, R, a1, th, pos, 7);
-    beside(ctx, 'Δs = ' + fmt(ds, 2) + ' m', cx, cyc, R + 46, am, 0, pos);
+    L.add('Δs = ' + fmt(ds, 2) + ' m', cxa(cx, R, am), cya(cyc, R, am), Math.cos(am), -Math.sin(am), pos, 20, 30);
     /* the angle at the center */
-    const ra = 0.26 * R;
+    const ra = Math.min(0.26 * R, 60);
     arcpath(ctx, cx, cyc, ra, a1, th, PAL.ink, 2.5);
-    beside(ctx, 'Δθ = ' + fmt(dth.v, 0) + 'º', cx, cyc, ra + 26, am, 0, PAL.ink);
+    L.add('Δθ = ' + fmt(dth.v, 0) + '°', cxa(cx, ra, am), cya(cyc, ra, am), Math.cos(am), -Math.sin(am), PAL.ink, 20, 24);
     /* the change of velocity, laid on the circle at the point the object has reached. It runs along
        the inward radius of the middle of the arc, so it stands at half of Δθ from the radius drawn to
        the object and swings onto that radius as Δθ is taken down toward zero, which is the book's
        argument that the acceleration is centripetal. */
-    const La = 0.40 * R, dvx = -Math.cos(am), dvy = Math.sin(am);
+    const La = Math.min(0.40 * R, Lv * 0.9), dvx = -Math.cos(am), dvy = Math.sin(am);
     arrow(ctx, x2, y2, x2 + dvx * La, y2 + dvy * La, vel, 5);
-    text(ctx, 'Δv', x2 + dvx * (La + 28), y2 + dvy * (La + 28), vel, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    L.add('Δv', x2 + dvx * La, y2 + dvy * La, dvx, dvy, vel, 22, 24);
     /* the two velocities, along the tangents */
     const t1 = tang(a1), t2 = tang(th);
     arrow(ctx, x1, y1, x1 + t1[0] * Lv, y1 + t1[1] * Lv, alpha(vel, 0.55), 4);
-    text(ctx, 'v₁', x1 + t1[0] * (Lv + 26), y1 + t1[1] * (Lv + 26), vel, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    L.add('v₁', x1 + t1[0] * Lv, y1 + t1[1] * Lv, t1[0], t1[1], vel, 22, 24);
     arrow(ctx, x2, y2, x2 + t2[0] * Lv, y2 + t2[1] * Lv, vel, 5);
-    text(ctx, 'v₂', x2 + t2[0] * (Lv + 26), y2 + t2[1] * (Lv + 26), vel, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    L.add('v₂', x2 + t2[0] * Lv, y2 + t2[1] * Lv, t2[0], t2[1], vel, 22, 24);
     dot(ctx, x1, y1, pos, false, 10); dot(ctx, x2, y2, PAL.ink, true, 11);
-    /* the velocity triangle, the same two arrows laid tail to tail at the right */
-    const tx = 1090, ty = 410;
-    text(ctx, 'the same two velocities, laid tail to tail', tx, 240, PAL.muted, { size: 19, align: 'center' });
+    /* the velocity triangle, the same two arrows laid tail to tail at the right, drawn at the same scale */
+    const tx = 1060, ty = 430;
+    text(ctx, 'the same two velocities, laid tail to tail', tx, 150, PAL.muted, { size: 19, align: 'center' });
     const e1 = [tx + t1[0] * Lv, ty + t1[1] * Lv], e2 = [tx + t2[0] * Lv, ty + t2[1] * Lv];
     ctx.save(); ctx.fillStyle = alpha(vel, 0.12); ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(e1[0], e1[1]); ctx.lineTo(e2[0], e2[1]); ctx.closePath(); ctx.fill(); ctx.restore();
     arrow(ctx, tx, ty, e1[0], e1[1], alpha(vel, 0.55), 4);
-    text(ctx, 'v₁', tx + t1[0] * (Lv + 28), ty + t1[1] * (Lv + 28), vel, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    L.add('v₁', e1[0], e1[1], t1[0], t1[1], vel, 22, 24);
     arrow(ctx, tx, ty, e2[0], e2[1], vel, 5);
-    text(ctx, 'v₂', tx + t2[0] * (Lv + 28), ty + t2[1] * (Lv + 28), vel, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    L.add('v₂', e2[0], e2[1], t2[0], t2[1], vel, 22, 24);
     arrow(ctx, e1[0], e1[1], e2[0], e2[1], vel, 5);
     const mx = (e1[0] + e2[0]) / 2, my = (e1[1] + e2[1]) / 2, mn = Math.hypot(mx - tx, my - ty) || 1;
-    text(ctx, 'Δv = ' + fmt(dv, 2) + ' m/s', mx + ((mx - tx) / mn) * 52, my + ((my - ty) / mn) * 52, vel, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    L.add('Δv = ' + fmt(dv, 2) + ' m/s', mx, my, (mx - tx) / mn, (my - ty) / mn, vel, 20, 26);
     dot(ctx, tx, ty, PAL.muted, true, 6);
+    L.flush();
     headline(ctx, 'Over Δθ = ' + fmt(dth.v, 0) + '° the velocity changes by Δv = ' + fmt(dv, 2) + ' m/s, standing ' + fmt(dth.v / 2, 0) + '° from the radius.');
     readout(d.readout, `\\frac{\\kdv}{\\kv} = \\frac{\\kds}{\\kr}\\quad\\Longrightarrow\\quad \\frac{${fmt(dv, 2)}}{${fmt(v.v, 1)}} = ${fmt(dv / v.v, 3)} \\quad\\text{and}\\quad \\frac{${fmt(ds, 2)}}{${fmt(r.v, 1)}} = ${fmt(ds / r.v, 3)}`,
-      'The triangle of the two velocities and the triangle of the two radii are similar, so Δv/v is exactly the chord, ' + fmt(chord, 2) + ' m, divided by r. The book puts the arc Δs in place of the chord, which at Δθ = ' + fmt(dth.v, 0) + 'º is ' + fmt(100 * (ds / chord - 1), 1) + '% longer. Take Δθ down toward zero and the two agree, and Δv comes to point straight at the center.');
+      'The triangle of the two velocities and the triangle of the two radii are similar, so Δv/v is exactly the chord, ' + fmt(chord, 2) + ' m, divided by r. The book puts the arc Δs in place of the chord, which at Δθ = ' + fmt(dth.v, 0) + '° is ' + fmt(100 * (ds / chord - 1), 1) + '% longer. Take Δθ down toward zero and the two agree, and Δv comes to point straight at the center.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => per() / 5), draw });
 })();
@@ -146,16 +150,19 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     arcpath(ctx, cx, cyc, R, 0, TAU, PAL.panel, 3, [24, 20]);
     dot(ctx, cx, cyc, PAL.muted, true, 6);
     const bx = cxa(cx, R, th), by = cya(cyc, R, th);
+    const L = labeller(ctx, 650); L.block(0, 0, 1400, 90);
     line(ctx, cx, cyc, bx, by, pos, 3, [6, 8]);
-    beside(ctx, 'r = ' + fmt(r.v, 0) + ' m', cx, cyc, R * 0.5, th, -28, pos);
+    /* the radius is named beside its own line, behind the car, where the acceleration arrow is not */
+    { const t = tang(th); L.add('r = ' + fmt(r.v, 0) + ' m', cxa(cx, R * 0.45, th), cya(cyc, R * 0.45, th), -t[0], -t[1], pos, 20, 22); }
     /* the car, nose along the tangent, with its velocity and its acceleration */
     const tv = tang(th);
-    ctx.save(); ctx.translate(bx, by); ctx.rotate(Math.atan2(tv[1], tv[0])); car(ctx, 0, 0, PAL.ink, 0.72); ctx.restore();
-    const Lv = 45 + 2.4 * v.v, La = Math.min(0.55 * R, 40 + 100 * Math.min(1, ac / 8));
+    ctx.save(); ctx.translate(bx, by); ctx.rotate(Math.atan2(tv[1], tv[0])); car(ctx, 0, 0, PAL.ink, 1); ctx.restore();
+    const Lv = 60 + 2.4 * v.v, La = Math.min(0.55 * R, 50 + 100 * Math.min(1, ac / 8));
     arrow(ctx, bx, by, bx + tv[0] * Lv, by + tv[1] * Lv, vel, 5);
-    text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', bx + tv[0] * (Lv + 30), by + tv[1] * (Lv + 30), vel, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    L.add('v = ' + fmt(v.v, 1) + ' m/s', bx + tv[0] * Lv, by + tv[1] * Lv, tv[0], tv[1], vel, 20, 24);
     arrow(ctx, bx, by, cxa(cx, R - La, th), cya(cyc, R - La, th), acc, 5);
-    beside(ctx, 'a_c = ' + fmt(ac, 2) + ' m/s²', cx, cyc, R - La, th, 34, acc);
+    L.add('a_c = ' + fmt(ac, 2) + ' m/s²', cxa(cx, R - La, th), cya(cyc, R - La, th), tv[0], tv[1], acc, 20, 26);
+    L.flush();
     /* the graph: a_c against the speed, for the radius set */
     /* fixed axes. The speed axis is the slider's own range, 0 to 40 m/s. The acceleration the
        sliders can reach is 40²/50 = 32 m/s², but on the default 500 m curve the whole curve would
@@ -208,17 +215,20 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     dot(ctx, ox, oy, PAL.muted, true, 13);
     dot(ctx, cx, cyc, PAL.panel, true, 9);
     dot(ctx, sx, sy, PAL.ink, true, 15);
-    text(ctx, 'm', sx + 22 * Math.cos(a0), sy - 22 * Math.sin(a0), PAL.ink, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    beside(ctx, 'r = ' + fmt(r.v, 2) + ' cm', cx, cyc, Rr * 0.58, a0, -48, pos);
+    const L = labeller(ctx, 660); L.block(0, 0, 1400, 90);
+    L.add('m', sx, sy, Math.cos(a0), -Math.sin(a0), PAL.ink, 22, 26);
+    { const t = tang(a0); L.add('r = ' + fmt(r.v, 2) + ' cm', cxa(cx, Rr * 0.5, a0), cya(cyc, Rr * 0.5, a0), -t[0], -t[1], pos, 20, 26); }
     curl(ctx, cx, cyc, HOUSE + 24, ang);
     text(ctx, 'ω = ' + Math.round(w) + ' rad/s', cx, cyc - HOUSE - 40, ang, { size: 22, weight: 600, align: 'center' });
     /* the acceleration toward the axis, and the velocity the sample would keep without it */
     const La = Math.min(0.55 * Rr, 100);
-    arrow(ctx, sx, sy, cxa(cx, Rr - La, a0), cya(cyc, Rr - La, a0), acc, 5);
-    beside(ctx, 'a_c', cx, cyc, Rr - La / 2, a0, 34, acc, 22);
-    const tv = tang(a0);
+    /* the acceleration is drawn beside the bar rather than on it, from the sample's near edge */
+    const tv = tang(a0), side = 12;
+    arrow(ctx, sx + tv[0] * side, sy + tv[1] * side, cxa(cx, Rr - La, a0) + tv[0] * side, cya(cyc, Rr - La, a0) + tv[1] * side, acc, 5);
+    L.add('a_c', cxa(cx, Rr - La, a0) + tv[0] * side, cya(cyc, Rr - La, a0) + tv[1] * side, tv[0], tv[1], acc, 22, 24);
     arrow(ctx, sx, sy, sx + tv[0] * 120, sy + tv[1] * 120, vel, 4);
-    text(ctx, 'v = ' + count3(rm * w) + ' m/s', sx + tv[0] * 152, sy + tv[1] * 152, vel, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    L.add('v = ' + count3(rm * w) + ' m/s', sx + tv[0] * 120, sy + tv[1] * 120, tv[0], tv[1], vel, 20, 24);
+    L.flush();
     /* the graph: the acceleration in multiples of g, against the angular velocity, for the radius set */
     /* fixed axes: the sliders reach r = 0.15 m and ω = 9 × 10⁴ rev/min = 9425 rad/s, so a_c/g is at
        most 0.15 × 9425² / 9.80 = 1.36 × 10⁶. The graph is always 0 to 9 × 10⁴ rev/min by 0 to

@@ -1,0 +1,83 @@
+<section id="combinations">
+<h2>Several capacitors, one equivalent capacitance</h2>
+<p class="cite-target">Several capacitors may be connected together in a variety of applications. Multiple connections of capacitors act like a single equivalent capacitor. The total capacitance of this equivalent single capacitor depends both on the individual capacitors and how they are connected. There are two simple and common types of connections, called <em>series</em> and <em>parallel</em>, for which we can easily calculate the total capacitance. Certain more complicated connections can also be related to combinations of series and parallel.</p>
+</section>
+
+<section id="series">
+<h2>Capacitance in Series</h2>
+<p class="cite-target">Figure 19.20(a) shows a series connection of three capacitors with a voltage applied. As for any capacitor, the capacitance of the combination is related to charge and voltage by $\kCap = \frac{\kQch}{\kV}$.</p>
+<p>Note in Figure 19.20 that opposite charges of magnitude $\kQch$ flow to either side of the originally uncharged combination of capacitors when the voltage $\kV$ is applied. Conservation of charge requires that equal-magnitude charges be created on the plates of the individual capacitors, since charge is only being separated in these originally neutral devices. The end result is that the combination resembles a single capacitor with an effective plate separation greater than that of the individual capacitors alone. (See Figure 19.20(b).) Larger plate separation means smaller capacitance. It is a general feature of series connections of capacitors that the total capacitance is less than any of the individual capacitances.</p>
+<figure class="sim" id="sim-series-parallel" data-figure="19.20 + 19.21" data-original="/media/ch19/Figure_20_06_01a.jpg,/media/ch19/Figure_20_06_02a.jpg" data-original-width="185,300" data-original-caption="(Figure 19.20) (a) Capacitors connected in series. The magnitude of the charge on each plate is Q. (b) An equivalent capacitor has a larger plate separation d. Series connections produce a total capacitance that is less than that of any of the individual capacitors. (Figure 19.21) (a) Capacitors in parallel. Each is connected directly to the voltage source just as if it were all alone, and so the total capacitance in parallel is just the sum of the individual capacitances. (b) The equivalent capacitor has a larger plate area and can therefore hold more charge than the individual capacitors.">
+  <div class="sim-head"><span class="eyebrow">Figure 19.20 + 19.21</span><span>Three capacitors are connected to one voltage source, and beside the circuit stands the single capacitor the combination is equivalent to. Choose the series connection and the same charge is separated in every capacitor while the source voltage is shared out among them, and the equivalent capacitor has its plates driven farther apart; choose the parallel connection and every capacitor has the whole voltage across it while the charges add, and the equivalent capacitor has a larger plate area. Change the three capacitances and the voltage and watch the total fall below the smallest of them in series and rise to the sum of all three in parallel.</span></div>
+</figure>
+<p>We can find an expression for the total capacitance by considering the voltage across the individual capacitors shown in Figure 19.20. Solving $\kCap = \frac{\kQch}{\kV}$ for $\kV$ gives $\kV = \frac{\kQch}{\kCap}$. The voltages across the individual capacitors are thus $\kVone = \frac{\kQch}{\kCone}$, $\kVtwo = \frac{\kQch}{\kCtwo}$, and $\kVthree = \frac{\kQch}{\kCthree}$. The total voltage is the sum of the individual voltages:</p>
+$$\kV = \kVone + \kVtwo + \kVthree.$$
+<p>Now, calling the total capacitance $\kCS$ for series capacitance, consider that</p>
+$$\kV = \frac{\kQch}{\kCS} = \kVone + \kVtwo + \kVthree.$$
+<p>Entering the expressions for $\kVone$, $\kVtwo$, and $\kVthree$, we get</p>
+$$\frac{\kQch}{\kCS} = \frac{\kQch}{\kCone} + \frac{\kQch}{\kCtwo} + \frac{\kQch}{\kCthree}.$$
+<p>Canceling the $\kQch$s, we obtain the equation for the total capacitance in series $\kCS$ to be</p>
+$$\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} + \frac{1}{\kCthree} + \text{.}\text{.}\text{.},$$
+<p>where “...” indicates that the expression is valid for any number of capacitors connected in series. An expression of this form always results in a total capacitance $\kCS$ that is less than any of the individual capacitances $\kCone$, $\kCtwo$, ..., as the next example illustrates.</p>
+<div class="note">
+<div class="eyebrow">Total Capacitance in Series</div>
+<p>Total capacitance in series:</p>
+$$\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} + \frac{1}{\kCthree} + \text{.}\text{.}\text{.}$$
+</div>
+<div class="example" id="ex-series-capacitance">
+<h3>Example 19.9 · What Is the Series Capacitance?</h3>
+<p>Find the total capacitance for three capacitors connected in series, given their individual capacitances are 1.000, 5.000, and 8.000 $\text{µF}$.</p>
+<h4>Strategy</h4>
+<p>With the given information, the total capacitance can be found using the equation for capacitance in series.</p>
+<h4>Solution</h4>
+<p>Entering the given capacitances into the expression for $\frac{1}{\kCS}$ gives $\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} + \frac{1}{\kCthree}$.</p>
+$$\frac{1}{\kCS} = \frac{1}{1\text{.}\text{000 µF}} + \frac{1}{5\text{.}\text{000 µF}} + \frac{1}{8\text{.}\text{000 µF}} = \frac{1\text{.}\text{325}}{\text{µF}}$$
+<p>Inverting to find $\kCS$ yields $\kCS = \frac{\text{µF}}{1\text{.}\text{325}} = 0\text{.}\text{755 µF}$.</p>
+<h4>Discussion</h4>
+<p>The total series capacitance $\kCS$ is less than the smallest individual capacitance, as promised. In series connections of capacitors, the sum is less than the parts. In fact, it is less than any individual. Note that it is sometimes possible, and more convenient, to solve an equation like the above by finding the least common denominator, which in this case (showing only whole-number calculations) is 40. Thus,</p>
+$$\frac{1}{\kCS} = \frac{\text{40}}{\text{40 µF}} + \frac{8}{\text{40 µF}} + \frac{5}{\text{40 µF}} = \frac{\text{53}}{\text{40 µF}},$$
+<p>so that</p>
+$$\kCS = \frac{\text{40 µF}}{\text{53}} = 0\text{.}\text{755 µF}.$$
+</div>
+</section>
+
+<section id="parallel">
+<h2>Capacitors in Parallel</h2>
+<p class="cite-target">Figure 19.21(a) shows a parallel connection of three capacitors with a voltage applied. Here the total capacitance is easier to find than in the series case. To find the equivalent total capacitance $\kCp$, we first note that the voltage across each capacitor is $\kV$, the same as that of the source, since they are connected directly to it through a conductor. (Conductors are equipotentials, and so the voltage across the capacitors is the same as that across the voltage source.) Thus the capacitors have the same charges on them as they would have if connected individually to the voltage source. The total charge $\kQch$ is the sum of the individual charges:</p>
+$$\kQch = \kQchone + \kQchtwo + \kQchthree.$$
+<p>Using the relationship $\kQch = \kCap\kV$, we see that the total charge is $\kQch = \kCp\kV$, and the individual charges are $\kQchone = \kCone\kV$, $\kQchtwo = \kCtwo\kV$, and $\kQchthree = \kCthree\kV$. Entering these into the previous equation gives</p>
+$$\kCp\kV = \kCone\kV + \kCtwo\kV + \kCthree\kV.$$
+<p>Canceling $\kV$ from the equation, we obtain the equation for the total capacitance in parallel $\kCp$:</p>
+$$\kCp = \kCone + \kCtwo + \kCthree + \text{.}\text{.}\text{.}.$$
+<p>Total capacitance in parallel is simply the sum of the individual capacitances. (Again the “...” indicates the expression is valid for any number of capacitors connected in parallel.) So, for example, if the capacitors in the example above were connected in parallel, their capacitance would be</p>
+$$\kCp = 1\text{.}\text{000 µF} + 5\text{.}\text{000 µF} + 8\text{.}\text{000 µF} = \text{14}\text{.}000\ \text{µF}.$$
+<p>The equivalent capacitor for a parallel connection has an effectively larger plate area and, thus, a larger capacitance, as illustrated in Figure 19.21(b).</p>
+<div class="note">
+<div class="eyebrow">Total Capacitance in Parallel</div>
+<p>Total capacitance in parallel:</p>
+$$\kCp = \kCone + \kCtwo + \kCthree + \text{.}\text{.}\text{.}$$
+</div>
+</section>
+
+<section id="mixed">
+<h2>Series and parallel in one circuit</h2>
+<p class="cite-target">More complicated connections of capacitors can sometimes be combinations of series and parallel. (See Figure 19.22.) To find the total capacitance of such combinations, we identify series and parallel parts, compute their capacitances, and then find the total.</p>
+<figure class="sim" id="sim-mixed" data-figure="19.22" data-original="/media/ch19/Figure_20_06_03a.jpg" data-original-width="500" data-original-caption="(a) This circuit contains both series and parallel connections of capacitors. See Example 19.10 for the calculation of the overall capacitance of the circuit. (b) C₁ and C₂ are in series; their equivalent capacitance C_S is less than either of them. (c) Note that C_S is in parallel with C₃. The total capacitance is, thus, the sum of C_S and C₃.">
+  <div class="sim-head"><span class="eyebrow">Figure 19.22</span><span>A circuit with both kinds of connection in it is reduced in two steps, drawn here side by side: the two capacitors in series are replaced by the one capacitor equivalent to them, and that one is then added to the capacitor it stands in parallel with. Change any of the three capacitances and watch both steps follow, so that the same method carries whatever numbers the circuit is given.</span></div>
+</figure>
+<div class="example" id="ex-mixed-capacitance">
+<h3>Example 19.10 · A Mixture of Series and Parallel Capacitance</h3>
+<p>Find the total capacitance of the combination of capacitors shown in Figure 19.22. Assume the capacitances in Figure 19.22 are known to three decimal places ($\kCone = 1.000\ \text{µF}$, $\kCtwo = 5.000\ \text{µF}$, and $\kCthree = 8.000\ \text{µF}$), and round your answer to three decimal places.</p>
+<h4>Strategy</h4>
+<p>To find the total capacitance, we first identify which capacitors are in series and which are in parallel. Capacitors $\kCone$ and $\kCtwo$ are in series. Their combination, labeled $\kCS$ in the figure, is in parallel with $\kCthree$.</p>
+<h4>Solution</h4>
+<p>Since $\kCone$ and $\kCtwo$ are in series, their total capacitance is given by $\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} + \frac{1}{\kCthree}$. Entering their values into the equation gives</p>
+$$\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} = \frac{1}{1\text{.}\text{000}\;\mu\text{F}} + \frac{1}{5\text{.}\text{000}\;\mu\text{F}} = \frac{1\text{.}\text{200}}{\mu\text{F}}.$$
+<p>Inverting gives</p>
+$$\kCS = 0\text{.}\text{833 µF}.$$
+<p>This equivalent series capacitance is in parallel with the third capacitor; thus, the total is the sum</p>
+$$\begin{aligned}\kCtot &= \kCS + \kCthree\\ &= 0.833\;\mu\text{F} + 8.000\;\mu\text{F}\\ &= 8.833\;\mu\text{F}.\end{aligned}$$
+<h4>Discussion</h4>
+<p>This technique of analyzing the combinations of capacitors piece by piece until a total is obtained can be applied to larger combinations of capacitors.</p>
+</div>
+</section>

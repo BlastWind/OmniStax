@@ -203,6 +203,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass (2026-09-14, Claude Fable 5.1): every scene is now at one fixed scale stated in a comment, and the sliders were narrowed where the old maximum would have drawn the book's flight tiny: `sim-displacement` and `sim-components` $v_0$ 10 to 30 m/s at 7.4 and 7.2 units to the metre; `sim-fireworks` $v_0$ 40 to 90 m/s at 1.21 units to the metre on a 720-unit canvas, its graph fixed at 0 to 100 m/s and 0 to 10 s; `sim-rock` $v_0$ 10 to 30 m/s, $\theta_0$ 0 to 60° and $y$ −40 to −5 m at 4.5 units to the metre, its graph fixed at −2 to 6 s and −40 to 40 m, and its volcano given a crater behind the rim; `sim-range` $v_0$ 20 to 60 m/s at 1.54 units to the metre with the R graph fixed at 0 to 400 m; `sim-orbit` $v_0$ 1 to 8 km/s and the tower 200 to 1,500 km with the Earth at a fixed 140 units to its radius. The book's numbers stay the defaults everywhere. Velocity arrows in `sim-components` are 9 units per m/s; the launch, angle, velocity and acceleration labels of every figure go through `labeller()`; the soccer ball is a white ball with a pentagon and seams and the tower has stages and a platform. Headlines wrap through `topline()`.
+
 ## Exercises
 
 - No Check Your Understanding boxes; nothing inline.

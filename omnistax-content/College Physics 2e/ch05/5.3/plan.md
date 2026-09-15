@@ -231,6 +231,21 @@ graph · 3D
    marked · no. Readout: $\frac{\Delta V}{V_0} = \frac{1}{\kBb}\frac{\kF}{A}$
    with the numbers. Draws stress, elastic-modulus, position.
 
+   Figure pass of 2026-09-14 (Claude Fable 5.1): `sim-rod` sits higher and a
+   little shorter so the longest force arrow ends above its notes and the
+   captions (a) and (b) at every setting (todolist 17). `sim-shear` names F
+   above its arrow on a panel rather than across it, and its Δx note sits
+   under the floor whatever the height. `sim-nail` is redrawn as a nail
+   (todolist 18): a sharp point driven into a solid wall and showing faintly
+   through it, a round shank shaded along its underside that is straight
+   inside the wall and bends to its flex outside, and a flat head at the free
+   end; the picture is a frame with a mat hung by a wire hooked over the
+   shank behind the head, and the two equal and opposite forces on the nail
+   leave the nail itself, the weight where the wire hangs and the wall's push
+   where the nail leaves the wall. `sim-cube` names the area inside the
+   ghost's top face rather than on its edge. The bookcase and the cube stay
+   on their locked `view()`, as todolist 19 asks.
+
 Every sketch figure of the section is replaced and the one photograph is
 kept, so there is no Sim on this page: every figure carries a book number.
 The three deformations stay three figures rather than one fold, as the

@@ -188,6 +188,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   `sim-seesaw` and `sim-any-pivot` with more arrows, and neither the text nor
   the exercises ask for more than three torques at once.
 
+**Figure pass (2026-09-14, Claude Fable 5.1).** `sim-door` gains a handle, names the hinges above them, marks the turn `τ`, and sets its `r⊥`, `F` and `θ` labels through `label()` so a push close to the hinges no longer piles them up. `sim-hockey-stick` draws a hand round the grip and places the names near it (`F`, `θ`, `r⊥`, the hand, the nail) through the labeller, with the markers A and B moved to the free side of the stick. `sim-seesaw` and `sim-any-pivot` seat the children as the library's silhouette in the sit pose, set the weight and torque labels beside their arrows, stop the pivot's line at the plank and fill the torque bars solid. `fig-forces` is unchanged.
+
 ## Exercises
 
 - All nine items are set at the end except the first conceptual question,

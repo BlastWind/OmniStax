@@ -226,3 +226,5 @@ wrote the label three different ways—in bold at the head of the prompt, in
 italics, and as "Professional Application:" in plain text—and all twenty-one
 items of the chapter that carry the label in the book now carry it as a `tag`
 with the label gone from the prompt.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-momentum`: the player is now a filled `F.silhouette` in the run pose, standing still at the line and at the far end, and the lane titles sit clear of the head. `sim-force`: the Δp and Δt labels sit on the side of the dashed line away from the rising line through `F.label`, swapping to the left only when the line stands near the right-hand edge, and the sentence naming the slope moved under the graph, where no state of the line can cross it.

@@ -163,6 +163,8 @@ Extra simulations (rule 15), thought through and judged:
   heat. Left: it is an efficiency, which is 7.6's idea and 7.6's figure, and
   the numbers are two sentences of the text.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): `sim-stairs` runner is a silhouette to the flight's scale (the flight now 310 tall so she clears the headline), front foot on the step above, and the speed arrow sits beside the landing clear of her and the bracket. `sim-power-ladder` and `sim-bill` unchanged.
+
 ## Exercises
 
 - The chapter has no Check Your Understanding box, so nothing of the book's

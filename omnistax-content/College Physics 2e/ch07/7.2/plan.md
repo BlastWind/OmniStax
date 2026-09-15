@@ -186,6 +186,8 @@ Extra simulations (rule 15). Thought about first, then judged:
   chapter rather than to this section, and `exploration.md` leaves it for a
   later pass.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): `sim-package` gets a package that reads as one, a cardboard box seen a little from above with taped flaps and a shipping label, no word on it; the applied-force label sits clear of the box faces and the friction arrow has a floor length so 5 N still shows. The start marker sits on the belt rather than in the air. `sim-ke` speed labels dropped clear of the bar baseline. `sim-area` unchanged.
+
 ## Exercises
 
 - Nothing of the book's own is inline, since the chapter prints no Check

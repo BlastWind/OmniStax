@@ -21,12 +21,8 @@ function disc(ctx, x, y, r, color, filled) {
 }
 /* the radius that shows a mass without swamping the scene */
 const rad = (m) => Math.max(11, Math.min(26, 15 * Math.cbrt(m / 0.25)));
-/* an angle arc at (x, y) from the x-axis round to th degrees, its label beyond the arc */
-function angleArc(ctx, x, y, r, th, label, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r, 0, -th * RAD, th > 0); ctx.stroke(); ctx.restore();
-  const a = (th / 2) * RAD;
-  text(ctx, label, x + (r + 34) * Math.cos(a), y - (r + 34) * Math.sin(a), color, { size: 20, weight: 600, align: 'center' });
-}
+/* the angle from the x-axis round to th degrees, its name queued with the figure's labeller */
+function angleArc(ctx, x, y, r, th, label, lab) { F.angleArc(ctx, { x, y }, r, 0, th * RAD, label, lab); }
 /* one bar of a ledger, growing right from (x, y) */
 function bar(ctx, x, y, w, h, color, a) {
   ctx.save(); ctx.fillStyle = alpha(color, a); ctx.strokeStyle = color; ctx.lineWidth = 2.5;
@@ -69,30 +65,31 @@ function bar(ctx, x, y, w, h, color, a) {
   function draw() {
     const { ctx } = begin(d.c);
     const s = state(), tau = cy.now(), hit = tau >= TA;
-    const OX = 430, OY = 370, R = 180, cm = C('momentum'), ce = C('energy');
+    const OX = 400, OY = 360, R = 250, cm = C('momentum'), ce = C('energy');
+    const lab = F.labeller(ctx, 700);
     /* the ground the objects cover is paced so that the incoming one reaches the origin at the same
        moment whatever its speed; the momentum arrows are on a scale fixed from the slider maxima,
-       120 units per kg·m/s, and no arrow is drawn longer than 300 units */
+       240 units per kg·m/s, and no arrow is drawn longer than 320 units */
     const S = R / Math.max(v1.v * TA, s.v1p * TB, s.v2p * TB, 1e-6);
-    const pScale = 120, cap = (L) => Math.min(300, L);
+    const pScale = 240, cap = (L) => Math.min(320, L);
     const on = labs.value === 'on';
     /* the axes the section chooses: x along the incoming velocity */
-    line(ctx, OX - 260, OY, OX + 250, OY, PAL.muted, 2);
-    text(ctx, 'x', OX + 262, OY, PAL.ink, { size: 22, weight: 600 });
-    line(ctx, OX, OY + 210, OX, OY - 230, PAL.muted, 2);
-    text(ctx, 'y', OX, OY - 250, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    line(ctx, OX - 330, OY, OX + 320, OY, PAL.muted, 2);
+    text(ctx, 'x', OX + 334, OY, PAL.ink, { size: 22, weight: 600 });
+    line(ctx, OX, OY + 270, OX, OY - 280, PAL.muted, 2);
+    text(ctx, 'y', OX, OY - 300, PAL.ink, { size: 22, weight: 600, align: 'center' });
     /* the two directions the reader has set */
-    line(ctx, OX, OY, OX + 230 * Math.cos(s.a1), OY - 230 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
-    line(ctx, OX, OY, OX + 230 * Math.cos(s.a2), OY - 230 * Math.sin(s.a2), PAL.rule, 2, [10, 10]);
-    angleArc(ctx, OX, OY, 64, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + '°', PAL.ink);
-    angleArc(ctx, OX, OY, 96, t2.v, 'θ₂ = ' + num(t2.v, 1) + '°', PAL.ink);
+    line(ctx, OX, OY, OX + 300 * Math.cos(s.a1), OY - 300 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
+    line(ctx, OX, OY, OX + 300 * Math.cos(s.a2), OY - 300 * Math.sin(s.a2), PAL.rule, 2, [10, 10]);
+    angleArc(ctx, OX, OY, 80, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + '°', lab);
+    angleArc(ctx, OX, OY, 120, t2.v, 'θ₂ = ' + num(t2.v, 1) + '°', lab);
     /* where each object is, and the momentum it carries */
     const r1 = rad(M1), r2 = rad(m2.v);
     if (!hit) {
       const x = OX - (TA - tau) * v1.v * S, L = cap(s.p1 * pScale);
       disc(ctx, x, OY, r1, PAL.ink, true);
       arrow(ctx, x, OY, x + L, OY, cm, 5);
-      if (on) text(ctx, 'p₁ = ' + fmt(s.p1, 3), x + L + 10, OY - 26, cm, { size: 20, weight: 600 });
+      if (on) lab.add('p₁ = ' + fmt(s.p1, 3), x + L / 2, OY, 0, -1, cm, 20, 22);
       disc(ctx, OX, OY, r2, PAL.muted, false);
       text(ctx, 'at rest', OX + r2 + 12, OY + 34, PAL.muted, { size: 18 });
       hits = [{ x, y: OY, r: r1 + 8, name: 'the incoming object, m₁' }, { x: OX, y: OY, r: r2 + 8, name: 'the struck object, m₂' }];
@@ -103,16 +100,17 @@ function bar(ctx, x, y, w, h, color, a) {
       const L1 = cap(s.p1p * pScale), L2 = cap(s.p2p * pScale);
       disc(ctx, x1, y1, r1, PAL.ink, true);
       arrow(ctx, x1, y1, x1 + L1 * Math.cos(s.a1), y1 - L1 * Math.sin(s.a1), cm, 5);
-      if (on) text(ctx, "p′₁ = " + fmt(s.p1p, 3), x1 + L1 * Math.cos(s.a1) + 12, y1 - L1 * Math.sin(s.a1) - 20, cm, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+      if (on) lab.beside({ x1, y1, x2: x1 + L1 * Math.cos(s.a1), y2: y1 - L1 * Math.sin(s.a1) }, 'left', "p′₁ = " + fmt(s.p1p, 3), cm, 20);
       disc(ctx, x2, y2, r2, PAL.ink, false);
       arrow(ctx, x2, y2, x2 + L2 * Math.cos(s.a2), y2 - L2 * Math.sin(s.a2), cm, 5);
-      if (on) text(ctx, "p′₂ = " + fmt(s.p2p, 3), x2 + L2 * Math.cos(s.a2) + 12, y2 - L2 * Math.sin(s.a2) + 24, cm, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+      if (on) lab.beside({ x1: x2, y1: y2, x2: x2 + L2 * Math.cos(s.a2), y2: y2 - L2 * Math.sin(s.a2) }, 'right', "p′₂ = " + fmt(s.p2p, 3), cm, 20);
       hits = [{ x: x1, y: y1, r: r1 + 8, name: "the first object afterward, p′₁ = " + fmt(s.p1p, 3) + ' kg·m/s' },
         { x: x2, y: y2, r: r2 + 8, name: "the struck object afterward, p′₂ = " + fmt(s.p2p, 3) + ' kg·m/s' }];
     }
-    if (!on) text(ctx, 'each arrow is a momentum', 150, 612, cm, { size: 18, weight: 600 });
-    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 150, 640, PAL.ink, { size: 19 });
-    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg', 150, 668, PAL.ink, { size: 19 });
+    lab.flush();
+    if (!on) text(ctx, 'each arrow is a momentum', 60, 612, cm, { size: 18, weight: 600 });
+    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 640, PAL.ink, { size: 19 });
+    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg', 60, 668, PAL.ink, { size: 19 });
     /* momentum alone allows pairs of angles that would need energy from somewhere, so the figure says so */
     const gained = s.kep - s.ke;
     text(ctx, gained > 0.002
@@ -188,30 +186,31 @@ function bar(ctx, x, y, w, h, color, a) {
   function draw() {
     const { ctx } = begin(d.c);
     const s = state(), tau = cy.now(), hit = tau >= TA;
-    const OX = 700, OY = 380, R = 200, cv = C('velocity');
-    /* the velocity arrows are on a scale fixed from the slider maxima, 21 units per m/s, and no
-       arrow is drawn longer than 260 units; the travel is paced so that the object reaches the
+    const OX = 700, OY = 400, R = 280, cv = C('velocity');
+    const lab = F.labeller(ctx, 700);
+    /* the velocity arrows are on a scale fixed from the slider maxima, 32 units per m/s, and no
+       arrow is drawn longer than 300 units; the travel is paced so that the object reaches the
        room at the same moment whatever its speed */
-    const S = R / Math.max(v1.v * TA, v1p.v * TB, s.v2p * TB, 1e-6), K = 21, cap = (L) => Math.min(260, L);
+    const S = R / Math.max(v1.v * TA, v1p.v * TB, s.v2p * TB, 1e-6), K = 32, cap = (L) => Math.min(300, L);
     /* the dark room */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.13); ctx.fillRect(OX - 140, OY - 150, 280, 280); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.strokeRect(OX - 140, OY - 150, 280, 280); ctx.restore();
-    text(ctx, 'a dark room', OX, OY - 168, PAL.muted, { size: 19, align: 'center' });
-    line(ctx, OX - 400, OY, OX + 330, OY, PAL.rule, 2, [10, 10]);
-    text(ctx, 'x', OX + 342, OY, PAL.ink, { size: 22, weight: 600 });
-    line(ctx, OX, OY + 190, OX, OY - 230, PAL.rule, 2, [10, 10]);
-    text(ctx, 'y', OX, OY - 250, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    line(ctx, OX, OY, OX + 300 * Math.cos(s.a1), OY - 300 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
-    angleArc(ctx, OX, OY, 70, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + '°', PAL.ink);
-    angleArc(ctx, OX, OY, 110, s.a2 / RAD, 'θ₂ = ' + fmt(s.deg, 1) + '°', PAL.ink);
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.13); ctx.fillRect(OX - 200, OY - 225, 400, 420); ctx.restore();
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.strokeRect(OX - 200, OY - 225, 400, 420); ctx.restore();
+    text(ctx, 'a dark room', OX, OY - 243, PAL.muted, { size: 19, align: 'center' });
+    line(ctx, OX - 560, OY, OX + 480, OY, PAL.rule, 2, [10, 10]);
+    text(ctx, 'x', OX + 492, OY, PAL.ink, { size: 22, weight: 600 });
+    line(ctx, OX, OY + 250, OX, OY - 290, PAL.rule, 2, [10, 10]);
+    text(ctx, 'y', OX, OY - 310, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    line(ctx, OX, OY, OX + 400 * Math.cos(s.a1), OY - 400 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
+    angleArc(ctx, OX, OY, 90, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + '°', lab);
+    angleArc(ctx, OX, OY, 140, s.a2 / RAD, 'θ₂ = ' + fmt(s.deg, 1) + '°', lab);
     const r1 = rad(M1), r2 = rad(m2.v);
     if (!hit) {
       const x = OX - (TA - tau) * v1.v * S;
       disc(ctx, x, OY, r1, PAL.ink, true);
       arrow(ctx, x, OY, x + cap(v1.v * K), OY, cv, 5);
-      text(ctx, 'v₁ = ' + fmt(v1.v, 2) + ' m/s', x + cap(v1.v * K) + 10, OY - 26, cv, { size: 20, weight: 600 });
+      lab.add('v₁ = ' + fmt(v1.v, 2) + ' m/s', x + cap(v1.v * K) / 2, OY, 0, -1, cv, 20, 22);
       disc(ctx, OX, OY, r2, PAL.muted, false);
-      text(ctx, 'something at rest, unseen', OX + 8, OY + r2 + 30, PAL.muted, { size: 18, align: 'center' });
+      lab.add('something at rest, unseen', OX, OY + r2, 0, 1, PAL.muted, 18, 22);
     } else {
       const q = tau - TA;
       const x1 = OX + v1p.v * q * S * Math.cos(s.a1), y1 = OY - v1p.v * q * S * Math.sin(s.a1);
@@ -219,16 +218,17 @@ function bar(ctx, x, y, w, h, color, a) {
       disc(ctx, x1, y1, r1, PAL.ink, true);
       const A1 = cap(v1p.v * K);
       arrow(ctx, x1, y1, x1 + A1 * Math.cos(s.a1), y1 - A1 * Math.sin(s.a1), cv, 5);
-      text(ctx, "v′₁ = " + fmt(v1p.v, 2) + ' m/s', x1 + A1 * Math.cos(s.a1) + 12, y1 - A1 * Math.sin(s.a1) - 20, cv, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+      lab.beside({ x1, y1, x2: x1 + A1 * Math.cos(s.a1), y2: y1 - A1 * Math.sin(s.a1) }, 'left', "v′₁ = " + fmt(v1p.v, 2) + ' m/s', cv, 20);
       ctx.save(); ctx.setLineDash([9, 9]);
       disc(ctx, x2, y2, r2, PAL.muted, false);
       ctx.restore();
       const A2 = cap(s.v2p * K);
       arrow(ctx, x2, y2, x2 + A2 * Math.cos(s.a2), y2 - A2 * Math.sin(s.a2), alpha(cv, 0.75), 5);
-      text(ctx, "v′₂ = " + fmt(s.v2p, 3) + ' m/s', x2 + A2 * Math.cos(s.a2) + 12, y2 - A2 * Math.sin(s.a2) + 24, cv, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+      lab.beside({ x1: x2, y1: y2, x2: x2 + A2 * Math.cos(s.a2), y2: y2 - A2 * Math.sin(s.a2) }, 'right', "v′₂ = " + fmt(s.v2p, 3) + ' m/s', cv, 20);
     }
-    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 120, 620, PAL.ink, { size: 19 });
-    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg, the one mass you know', 120, 650, PAL.ink, { size: 19 });
+    lab.flush();
+    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 620, PAL.ink, { size: 19 });
+    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg, the one mass you know', 60, 650, PAL.ink, { size: 19 });
     topline(ctx, hit
       ? 'The unseen object leaves at ' + fmt(s.v2p, 3) + ' m/s and ' + fmt(s.deg, 1) + '°.'
       : 'The ' + fmt(M1, 3) + ' kg object slides in at ' + fmt(v1.v, 2) + ' m/s, carrying all ' + fmt(s.ke, 3) + ' J of the internal kinetic energy.');
@@ -272,36 +272,44 @@ function bar(ctx, x, y, w, h, color, a) {
     const s = speeds(t1.v, t2.v, v1.v), sep = t1.v - t2.v;
     const ke = 0.5 * v1.v * v1.v, kep = 0.5 * (s.v1p * s.v1p + s.v2p * s.v2p);
     const extra = s.v1p * s.v2p * Math.cos(sep * RAD);
-    const OX = 540, OY = 300, R = 170;
+    const OX = 560, OY = 320, R = 210;
     const S = R / Math.max(v1.v * TA, s.v1p * TB, s.v2p * TB, 1e-6);
-    /* one fixed scale for the velocity arrows, 8.5 units per m/s from the slider's own maximum */
-    const K = 8.5;
+    /* one fixed scale for the velocity arrows, 18 units per m/s, from the slider's own maximum;
+       the struck ball can leave faster than the cue ball came in, up to 12 m/s at the widest angles */
+    const K = 18;
+    const lab = F.labeller(ctx, 900);
     /* the table */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(90, 110, 1220, 450); ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.strokeRect(90, 110, 1220, 450); ctx.restore();
+    /* the guide lines stop at the cushions */
+    ctx.save(); ctx.beginPath(); ctx.rect(92, 112, 1216, 446); ctx.clip();
     line(ctx, 110, OY, 1290, OY, PAL.rule, 2, [10, 10]);
-    line(ctx, OX, OY, OX + 260 * Math.cos(t1.v * RAD), OY - 260 * Math.sin(t1.v * RAD), PAL.rule, 2, [10, 10]);
-    line(ctx, OX, OY, OX + 260 * Math.cos(t2.v * RAD), OY - 260 * Math.sin(t2.v * RAD), PAL.rule, 2, [10, 10]);
-    angleArc(ctx, OX, OY, 62, t1.v, 'θ₁ = ' + fmt(t1.v, 0) + '°', PAL.ink);
-    angleArc(ctx, OX, OY, 94, t2.v, 'θ₂ = ' + num(t2.v, 0) + '°', PAL.ink);
+    line(ctx, OX, OY, OX + 300 * Math.cos(t1.v * RAD), OY - 300 * Math.sin(t1.v * RAD), PAL.rule, 2, [10, 10]);
+    line(ctx, OX, OY, OX + 300 * Math.cos(t2.v * RAD), OY - 300 * Math.sin(t2.v * RAD), PAL.rule, 2, [10, 10]);
+    ctx.restore();
+    angleArc(ctx, OX, OY, 84, t1.v, 'θ₁ = ' + fmt(t1.v, 0) + '°', lab);
+    angleArc(ctx, OX, OY, 126, t2.v, 'θ₂ = ' + num(t2.v, 0) + '°', lab);
     if (!hit) {
       const x = OX - (TA - tau) * v1.v * S;
-      disc(ctx, x, OY, 20, PAL.ink, true);
-      arrow(ctx, x, OY, x + v1.v * K, OY, cv, 5);
-      text(ctx, 'v₁ = ' + fmt(v1.v, 2) + ' m/s', x + v1.v * K + 10, OY - 28, cv, { size: 20, weight: 600 });
-      disc(ctx, OX, OY, 20, PAL.ink, false);
-      text(ctx, 'at rest', OX + 30, OY + 36, PAL.muted, { size: 18 });
+      disc(ctx, x, OY, 26, PAL.ink, true);
+      arrow(ctx, x + 26, OY, x + 26 + v1.v * K, OY, cv, 5);
+      lab.add('v₁ = ' + fmt(v1.v, 2) + ' m/s', x + 26 + (v1.v * K) / 2, OY, 0, -1, cv, 20, 22);
+      disc(ctx, OX, OY, 26, PAL.ink, false);
+      lab.add('at rest', OX, OY + 26, 0, 1, PAL.muted, 18, 22);
     } else {
       const q = tau - TA, a1 = t1.v * RAD, a2 = t2.v * RAD;
       const x1 = OX + s.v1p * q * S * Math.cos(a1), y1 = OY - s.v1p * q * S * Math.sin(a1);
       const x2 = OX + s.v2p * q * S * Math.cos(a2), y2 = OY - s.v2p * q * S * Math.sin(a2);
-      disc(ctx, x1, y1, 20, PAL.ink, true);
-      arrow(ctx, x1, y1, x1 + s.v1p * K * Math.cos(a1), y1 - s.v1p * K * Math.sin(a1), cv, 5);
-      text(ctx, "v′₁ = " + fmt(s.v1p, 2) + ' m/s', x1 + s.v1p * K * Math.cos(a1) + 12, y1 - s.v1p * K * Math.sin(a1) - 20, cv, { size: 20, weight: 600, bg: alpha(PAL.soft, 0.9) });
-      disc(ctx, x2, y2, 20, PAL.ink, false);
-      arrow(ctx, x2, y2, x2 + s.v2p * K * Math.cos(a2), y2 - s.v2p * K * Math.sin(a2), cv, 5);
-      text(ctx, "v′₂ = " + fmt(s.v2p, 2) + ' m/s', x2 + s.v2p * K * Math.cos(a2) + 12, y2 - s.v2p * K * Math.sin(a2) + 24, cv, { size: 20, weight: 600, bg: alpha(PAL.soft, 0.9) });
+      /* each arrow leaves from the rim of its ball */
+      const e1 = { x: x1 + 26 * Math.cos(a1), y: y1 - 26 * Math.sin(a1) }, e2 = { x: x2 + 26 * Math.cos(a2), y: y2 - 26 * Math.sin(a2) };
+      disc(ctx, x1, y1, 26, PAL.ink, true);
+      arrow(ctx, e1.x, e1.y, e1.x + s.v1p * K * Math.cos(a1), e1.y - s.v1p * K * Math.sin(a1), cv, 5);
+      lab.beside({ x1: e1.x, y1: e1.y, x2: e1.x + s.v1p * K * Math.cos(a1), y2: e1.y - s.v1p * K * Math.sin(a1) }, 'left', "v′₁ = " + fmt(s.v1p, 2) + ' m/s', cv, 20);
+      disc(ctx, x2, y2, 26, PAL.ink, false);
+      arrow(ctx, e2.x, e2.y, e2.x + s.v2p * K * Math.cos(a2), e2.y - s.v2p * K * Math.sin(a2), cv, 5);
+      lab.beside({ x1: e2.x, y1: e2.y, x2: e2.x + s.v2p * K * Math.cos(a2), y2: e2.y - s.v2p * K * Math.sin(a2) }, 'right', "v′₂ = " + fmt(s.v2p, 2) + ' m/s', cv, 20);
     }
+    lab.flush();
     text(ctx, 'the two balls have the same mass m', 110, 592, PAL.ink, { size: 19 });
     text(ctx, 'angle of separation θ₁ − θ₂ = ' + fmt(sep, 0) + '°', 110, 620, PAL.ink, { size: 19, weight: 600 });
     /* the graph: the internal kinetic energy after the collision against the angle of separation */

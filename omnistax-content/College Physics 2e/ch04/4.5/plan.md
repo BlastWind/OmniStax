@@ -218,6 +218,28 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass of 2026-09-14 (Claude Fable 5.1). `sim-normal` (Chen's item 7) is redrawn: the
+bag was an ellipse and the hand a blob, and the table's sag could not be seen. The bag is now a
+sack with a gathered top and its name on the front, the hand a palm cupping it from below with a
+forearm running off to the left and fingers curling up its far side, and the table a side view
+with two legs and a top that sags fourteen units to the centimetre, capped so it stays on its
+legs, against a dashed line at the unloaded level with the sag bracketed and named at the left
+end of the top; the free-body diagrams are unchanged. `sim-skier` (item 8): the force diagram
+was five arrows from one point with their labels crowded into two corners; the weight is drawn
+180 units long, a short piece of the slope is drawn under the point instead of a dashed line
+across the whole diagram, and each label is sent off in a direction of its own by the labeller
+so no two share a corner. The skier herself is drawn half again as large, crouched over her skis
+with one pole. `sim-rope` (item 9): the library's person could not reach the rope and the hand
+did not show; the rope is now held by a hand reaching down from the top of the picture, a fist
+closed round it with its fingers drawn across the front, and the two tension arrows are named
+"T, on the hand" and "T, on the mass" beside their arrows. `sim-corners` (item 9): the cable
+ran through the pulley centres and a stick figure held its end; the cable now wraps the outside
+of each pulley and is pulled by a fist with the forearm running down and away, and every tension
+arrow is drawn beside its segment of cable rather than on it (the `tvec` helper gained an
+offset). `sim-incline`: the label of the perpendicular component lay across the face of the
+incline and now sits to the right of its head; every `fvec` label is on a panel the colour of
+the page. `sim-tightrope` and `sim-chain` were looked at and left as built.
+
 ## Exercises
 
 - No Check Your Understanding box in the section; nothing is inline.

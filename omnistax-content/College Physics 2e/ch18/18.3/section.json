@@ -1,0 +1,557 @@
+{
+ "id": "18.3",
+ "module": "m42308",
+ "chapter": "18",
+ "title": "Coulomb’s Law",
+ "short": "Coulomb’s law",
+ "lead": "The two kinds of charge, the repulsion of like charges and the weakening of the force with distance are three statements that one formula holds together. This section states Coulomb’s law for the force between two point charges, gives the constant that fixes its size in SI units, shows that the force lies along the line joining the charges and obeys Newton’s third law, and then sets the Coulomb force beside the gravitational force for an electron and a proton, where the ratio between them is more than 10³⁹.",
+ "objectives": [
+  "State Coulomb’s law in terms of how the electrostatic force changes with the distance between two objects.",
+  "Calculate the electrostatic force between two charged point forces, such as electrons or protons.",
+  "Compare the electrostatic force to the gravitational attraction for a proton and an electron; for a human and the Earth."
+ ],
+ "summary_html": "<ul><li>Frenchman Charles Coulomb was the first to publish the mathematical equation that describes the electrostatic force between two objects.</li><li>Coulomb’s law gives the magnitude of the force between point charges. It is $\\kF = k\\frac{|\\kqone\\kqtwo|}{r^2},$ where $\\kqone$ and $\\kqtwo$ are two point charges separated by a distance $r$, and $k \\approx 8.99\\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2$</li><li>This Coulomb force is extremely basic, since most charges are due to point-like particles. It is responsible for all electrostatic effects and underlies most macroscopic forces.</li><li>The Coulomb force is extraordinarily strong compared with the gravitational force, another basic force—but unlike gravitational force it can cancel, since it can be either attractive or repulsive.</li><li>The electrostatic force between two subatomic particles is far greater than the gravitational force between the same two particles.</li></ul>",
+ "notes": "The galaxies of Arp 87, the photograph at the head of the module, are left out as a splash image, and the contrast their caption draws is the discussion of Example 18.1, which the page carries in the book’s own words.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Nine unkeyed problems are left out and are named here: the two pith balls 8.00 cm apart, the two point charges whose separation is tripled, the separation that gives two 75.0 nC charges a force of 1.00 N, the two charges of 1 C a kilometer apart, the splitting of a total charge $\\kqtot$ for the greatest force, the ratio of the electrostatic to the gravitational force for two electrons and for two protons, the distance at which the force between two protons equals the weight of one, the two charges totaling $8.00\\ \\mu\\text{C}$, and the two charges 3.00 m apart whose total is $20\\ \\mu\\text{C}$. The keyed problem on where a third charge feels no net force and the unkeyed one on a test charge halfway between $+6\\ \\mu\\text{C}$ and $+4\\ \\mu\\text{C}$ both need two Coulomb forces added as vectors, which section 18.5 introduces, so both belong there: the keyed one is set in 18.5 with source_section 18.3, and the unkeyed one is left out there, as every unkeyed problem of the chapter is. Section 18.5’s notes say so as well. Problems 1, 4 and 5 key only part (a), so each card checks that number and carries the book’s own words for the other part in its solution. Three of the six AP items are keyed and are set as graded choices or, for the two charges of 1 C, as a keyed pair of numbers; the other three have no key and are kept as open items with their options as the book prints them and an AI-written suggested approach, marked as such. The items introduced by “for questions 25–27” refer to the AP edition’s numbering; the words are kept and the shared setup is repeated in the item that needs it. The suggested approaches to the three conceptual questions are AI-written and marked; all three read Coulomb’s law through the polar water molecule that section 18.6 defines, so they are tagged with that concept as well, and the book’s own image of the molecule rides on the first card. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-coulomb-pair",
+   "kind": "sim",
+   "number": "18.17",
+   "originals": [
+    "/media/ch18/Figure_19_03_02a.jpg"
+   ],
+   "original_caption": "The magnitude of the electrostatic force F between point charges q_1 and q_2 separated by a distance r is given by Coulomb’s law. Note that Newton’s third law (every force exerted creates an equal and opposite force) applies as usual—the force on q_1 is equal in magnitude and opposite in direction to the force it exerts on q_2. (a) Like charges. (b) Unlike charges.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "charge",
+    "force"
+   ]
+  },
+  {
+   "id": "sim-coulomb-versus-gravity",
+   "kind": "sim",
+   "draws": [
+    "charge",
+    "force"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "electrostatic-force",
+   "concept": "coulombs-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "coulomb-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "coulomb-force-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "like-charges-repel",
+   "verb": "uses"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-square",
+   "concept": "coulomb-force-scaling",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-square",
+   "concept": "coulombs-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "coulomb-versus-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "coulomb-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "universal-gravitation",
+   "verb": "uses"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "gravitational-constant",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2543029",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "cite": "inverse-square",
+   "prompt": "For questions 25–27, suppose that the electrostatics force between two charges is $F$. What will be the force if the distance between them is halved?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "$4F$",
+     "$2F$",
+     "$F/4$",
+     "$F/2$"
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "solution": "The force is inversely proportional to the square of the separation, so halving the distance divides $r^2$ by four and multiplies the force by four. The answer is $4F$."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2453947",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "cite": "electrostatic-force",
+   "prompt": "Suppose that the electrostatics force between two charges is $F$. Which of the following is false? (a) If the charge of one of the particles is doubled and that of the second is unchanged, the force will become $2F$. (b) If the charge of one of the particles is doubled and that of the second is halved, the force will remain $F$. (c) If the charge of both the particles is doubled, the force will become $4F$. (d) None of the above.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Read each statement against $F = k|q_1 q_2|/r^2$, in which the force is proportional to the product of the two charges. Doubling one charge and leaving the other alone doubles the product and so doubles the force, which makes (a) a true statement. Doubling one and halving the other leaves the product where it was, so the force is unchanged, and (b) is true as well. Doubling both multiplies the product by four and so multiplies the force by four, which makes (c) true. Since all three statements hold, the one that is false is (d)."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1185370",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "cite": "against-gravity",
+   "prompt": "For questions 25–27, suppose that the electrostatics force between two charges is $F$. Which of the following is true about the gravitational force between the particles?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "It will be $3.25\\times 10^{-38}F$.",
+     "It will be $3.25\\times 10^{38}F$.",
+     "It will be equal to $F$.",
+     "It is not possible to determine the gravitational force as the masses of the particles are not given."
+    ],
+    "correct": 3,
+    "generated_by": "source",
+    "solution": "Newton’s law of gravitation is $F_{\\text{G}} = GmM/r^2$, which needs the two masses. The question gives only the charges and the electrostatic force between them, and a charge fixes no mass, so the gravitational force cannot be found."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1758033",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "cite": "inverse-square",
+   "prompt": "Two massive, positively charged particles are initially held a fixed distance apart. When they are moved farther apart, the magnitude of their mutual gravitational force changes by a factor of $n$. Which of the following indicates the factor by which the magnitude of their mutual electrostatic force changes? (a) $1/n^2$ (b) $1/n$ (c) $n$ (d) $n^2$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both laws fall off in the same way. The gravitational force is $GmM/r^2$ and the electrostatic force is $k|q_1q_2|/r^2$, and neither the masses nor the charges change when the particles are moved, so each force is changed only by the factor $r_{\\text{old}}^2/r_{\\text{new}}^2$. That factor is the same for both, so if the gravitational force changes by a factor of $n$ the electrostatic force changes by a factor of $n$ as well, which is option (c)."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1469886",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "cite": "electrostatic-force",
+   "prompt": "(a) What is the electrostatic force between two charges of 1 C each, separated by a distance of 0.5 m? (b) How will this force change if the distance is increased to 1 m?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 36000000000.0,
+      "unit": "N",
+      "hint": "Put $q_1 = q_2 = 1\\ \\text{C}$ and $r = 0.5\\ \\text{m}$ into $F = k|q_1q_2|/r^2$."
+     },
+     {
+      "part": "b",
+      "value": 8990000000.0,
+      "unit": "N",
+      "hint": "Doubling the separation divides the force by four."
+     }
+    ],
+    "solution": "(a) $3.60\\times 10^{10}$ N. (b) It will become $1/4$ of the original value; hence it will be equal to $8.99\\times 10^{9}$ N."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id3202845",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "cite": "against-gravity",
+   "prompt": "(a) Find the ratio of the electrostatic force to the gravitational force between two electrons. (b) Will this ratio change if the two electrons are replaced by protons? If yes, find the new ratio.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Follow Example 18.1 and take the ratio before putting any numbers in. For two particles of charge $q$ and mass $m$ at a separation $r$, $\\frac{F}{F_{\\text{G}}} = \\frac{k|q^2|/r^2}{Gm^2/r^2} = \\frac{kq^2}{Gm^2}$, and the separation cancels, so the ratio is a property of the pair of particles and nothing else. (a) For two electrons put $q = 1.60\\times 10^{-19}$ C and the electron mass $9.11\\times 10^{-31}$ kg into that expression. (b) The ratio does change, because the proton has the same size of charge but a mass about 1836 times larger; since the mass enters squared, replacing the electrons by protons divides the ratio by roughly $1836^2$. Work out the second number by putting the proton mass $1.67\\times 10^{-27}$ kg into the same expression."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3146449",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "electrostatic-force",
+   "figure": {
+    "src": "/media/ch18/Figure_19_03_03a.jpg",
+    "alt": "A schematic representation of the outer electron cloud of a neutral water molecule is shown. Three atoms are placed on the vertices of a triangle. The hydrogen atom has positive q charge and the oxygen atom has minus two q charge, and the angle between the line joining each hydrogen atom with the oxygen atom is one hundred and four degrees. The cloud density is shown more at the oxygen atom.",
+    "caption": "Schematic representation of the outer electron cloud of a neutral water molecule. The electrons spend more time near the oxygen than the hydrogens, giving a permanent charge separation as shown. Water is thus a polar molecule. It is more easily affected by electrostatic forces than molecules with uniform charge distributions."
+   },
+   "prompt": "The figure shows the charge distribution in a water molecule, which is called a polar molecule because it has an inherent separation of charge. Given water’s polar character, explain what effect humidity has on removing excess charge from objects.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Humid air carries a great many water molecules, and each of them has its negative end near the oxygen and its positive ends at the hydrogens. When such a molecule comes near a charged object, the end of opposite sign is attracted and the end of the same sign is repelled, so the molecule turns to present its attracted end and is pulled in by Coulomb’s law, which is stronger on the nearer end because the force falls off with distance. Water molecules therefore collect on a charged surface, pick up part of the excess charge and carry it away. On a humid day the charge on an object leaks off through the air in this way almost as fast as it is put there, which is why static electricity is difficult to build up in summer and easy in dry winter air."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2420925",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "electrostatic-force",
+   "prompt": "Using the figure of the water molecule above, explain, in terms of Coulomb’s law, why a polar molecule is attracted by both positive and negative charges.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The molecule as a whole is neutral, but its charge is not spread evenly: one end is negative and the other is positive. Bring a positive charge up to it and the molecule turns so that its negative end is nearer; the attraction on that end and the repulsion on the far end are equal in size only if the two ends are the same distance away, and they are not. Coulomb’s law makes the force on the nearer end the larger one, because the force goes as $1/r^2$, so the attraction wins and the molecule is drawn in. Bring a negative charge up instead and the molecule simply turns the other way about, putting its positive end nearest, and the same argument gives an attraction again. A polar molecule is therefore attracted by a charge of either sign."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1215964",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "electrostatic-force",
+   "prompt": "Given the polar character of water molecules, explain how ions in the air form nucleation centers for rain droplets.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An ion in the air carries a net charge, and a water molecule in the vapor around it is polar. The ion turns each molecule that comes near so that the end of opposite sign faces it, and then attracts that end more strongly than it repels the far end, since the nearer end is closer and the Coulomb force falls off as the square of the distance. Water molecules are therefore pulled in towards the ion and held there, and the little cluster that gathers is easier for further molecules to join than a droplet that would have to start from bare vapor. The ion is in this way a nucleation center: droplets form around ions at a humidity at which they would not form in clean air at all."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2670145",
+   "kind": "problem",
+   "bloom": "Apply",
+   "cite": "electrostatic-force",
+   "prompt": "(a) How strong is the attractive force between a glass rod with a $0.700\\ \\mu\\text{C}$ charge and a silk cloth with a $–0.600\\ \\mu\\text{C}$ charge, which are 12.0 cm apart, using the approximation that they act like point charges? (b) Discuss how the answer to this problem might be affected if the charges are distributed over some area and do not act like point charges.",
+   "answer": {
+    "type": "number",
+    "value": 0.263,
+    "unit": "N",
+    "part": "a",
+    "generated_by": "source",
+    "hint": "Put the two charges in coulombs and the separation in meters into $F = k|q_1q_2|/r^2$.",
+    "solution": "(a) 0.263 N. (b) If the charges are distributed over some area, there will be a concentration of charge along the side closest to the oppositely charged object. This effect will increase the net force."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1411839",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "cite": "inverse-square",
+   "prompt": "Two point charges are brought closer together, increasing the force between them by a factor of 25. By what factor was their separation decreased?",
+   "answer": {
+    "type": "number",
+    "value": 5,
+    "generated_by": "source",
+    "hint": "The force goes as $1/r^2$, so a change in the force by a factor of 25 needs a change in the separation by the square root of 25.",
+    "solution": "The separation decreased by a factor of 5."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2384303",
+   "kind": "problem",
+   "bloom": "Apply",
+   "cite": "electrostatic-force",
+   "prompt": "Bare free charges do not remain stationary when close together. To illustrate this, calculate the acceleration of two isolated protons separated by 2.00 nm (a typical distance between gas atoms). Explicitly show how you follow the steps in the Problem-Solving Strategy for electrostatics.",
+   "answer": {
+    "type": "number",
+    "value": 3.45e+16,
+    "unit": "m/s^2",
+    "generated_by": "source",
+    "hint": "Find the Coulomb force between the two protons, then divide by the mass of one proton, as Newton’s second law asks.",
+    "solution": "$\\begin{array}{lll}F & = & k\\frac{|q_1q_2|}{r^2} = ma \\Rightarrow a = \\frac{kq^2}{mr^2} \\\\ & = & \\frac{(9.00\\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)(1.60\\times 10^{-19}\\ \\text{m})^2}{(1.67\\times 10^{-27}\\ \\text{kg})(2.00\\times 10^{-9}\\ \\text{m})^2} \\\\ & = & 3.45\\times 10^{16}\\ \\text{m/}\\text{s}^2\\end{array}$"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2595116",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "cite": "inverse-square",
+   "prompt": "(a) By what factor must you change the distance between two point charges to change the force between them by a factor of 10? (b) Explain how the distance can either increase or decrease by this factor and still cause a factor of 10 change in the force.",
+   "answer": {
+    "type": "number",
+    "value": 3.2,
+    "part": "a",
+    "generated_by": "source",
+    "hint": "A change in the force by a factor of 10 needs a change in the separation by $\\sqrt{10}$.",
+    "solution": "(a) 3.2. (b) If the distance increases by 3.2, then the force will decrease by a factor of 10; if the distance decreases by 3.2, then the force will increase by a factor of 10. Either way, the force changes by a factor of 10."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3123949",
+   "kind": "problem",
+   "bloom": "Apply",
+   "cite": "electrostatic-force",
+   "prompt": "(a) Common transparent tape becomes charged when pulled from a dispenser. If one piece is placed above another, the repulsive force can be great enough to support the top piece’s weight. Assuming equal point charges (only an approximation), calculate the magnitude of the charge if electrostatic force is great enough to support the weight of a 10.0 mg piece of tape held 1.00 cm above another. (b) Discuss whether the magnitude of this charge is consistent with what is typical of static electricity.",
+   "answer": {
+    "type": "number",
+    "value": 1.04e-09,
+    "unit": "C",
+    "part": "a",
+    "generated_by": "source",
+    "hint": "Set the Coulomb repulsion $kq^2/r^2$ equal to the weight $mg$ of the upper piece and solve for $q$.",
+    "solution": "(a) $1.04\\times 10^{-9}$ C. (b) This charge is approximately 1 nC, which is consistent with the magnitude of charge typical for static electricity."
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2604205",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "cite": "against-gravity",
+   "prompt": "A certain five cent coin contains 5.00 g of nickel. What fraction of the nickel atoms’ electrons, removed and placed 1.00 m above it, would support the weight of this coin? The atomic mass of nickel is 58.7, and each nickel atom contains 28 electrons and 28 protons.",
+   "answer": {
+    "type": "number",
+    "value": 1.02e-11,
+    "generated_by": "source",
+    "hint": "Count the electrons the coin holds, let a fraction of them sit a meter above it, and set the Coulomb attraction equal to the coin’s weight.",
+    "solution": "$1.02\\times 10^{-11}$"
+   },
+   "place": {
+    "at": "end"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "coulomb-force-scaling"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "coulomb-force-scaling",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "coulomb-versus-gravity"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "universal-gravitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "coulomb-force-scaling"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "universal-gravitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "coulomb-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "coulomb-versus-gravity"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "polar-molecule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "polar-molecule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "polar-molecule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "coulomb-constant",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "coulomb-force-scaling"
+  },
+  {
+   "exercise": "p3",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-second-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "coulomb-force-scaling"
+  },
+  {
+   "exercise": "p5",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "weight",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "p6",
+   "concept": "count-charges-from-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "weight",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ]
+}

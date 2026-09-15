@@ -80,11 +80,11 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
    charges, so the picture is still: no cycle, no transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-field', 560);
+  const d = sim('sim-field', 620);
   const TX = ctl(d.controls, { label: '\\kx', cls: 'position', min: -2.4, max: 2.4, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'the test charge across the field' });
   const TY = ctl(d.controls, { label: '\\ky', cls: 'position', min: -1.15, max: 1.15, step: 0.05, value: 0.7, unit: 'm', dec: 2, aria: 'the test charge up the field' });
   const TQ = ctl(d.controls, { label: 'q', cls: '', min: 1, max: 4, step: 0.5, value: 2, unit: 'units', dec: 1, aria: 'the size of the test charge' });
-  const S = 190, CX = 700, CY = 305, SEP = 1;
+  const S = 190, CX = 700, CY = 360, SEP = 1;
   const px = (x) => CX + x * S, py = (y) => CY - y * S;
   /* the field of the two charges, in units where one charge at one metre gives one */
   function field(x, y) {
@@ -129,16 +129,16 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     dot(ctx, px(SEP), py(0), PAL.ink, false, 22);
     text(ctx, '+', px(-SEP), py(0) - 1, PAL.panel, { size: 26, weight: 600, align: 'center' });
     text(ctx, '−', px(SEP), py(0) - 1, PAL.ink, { size: 26, weight: 600, align: 'center' });
-    /* on a panel the colour of the page, so no field line runs through the letters */
-    text(ctx, 'the positive charge', px(-SEP), py(0) + 44, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
-    text(ctx, 'the negative charge', px(SEP), py(0) + 44, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
-    /* the two distances, so the reader can see where in the field the charge sits */
-    line(ctx, px(-SEP), py(0), px(x), py(y), alpha(PAL.ink, 0.4), 2.5, [5, 7]);
-    line(ctx, px(SEP), py(0), px(x), py(y), alpha(PAL.ink, 0.4), 2.5, [5, 7]);
+    /* the two charges are named above the field, where no line runs through the words */
+    text(ctx, 'the positive charge', px(-SEP), 92, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'the negative charge', px(SEP), 92, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    /* the two distances, in the position hue, so the reader can see where in the field the charge sits */
+    line(ctx, px(-SEP), py(0), px(x), py(y), C('position'), 3, [9, 6]);
+    line(ctx, px(SEP), py(0), px(x), py(y), C('position'), 3, [9, 6]);
     const off = y >= 0 ? -15 : 15, at = (cx) => [cx + 0.45 * (px(x) - cx), py(0) + 0.45 * (py(y) - py(0)) + off];
     const [l1x, l1y] = at(px(-SEP)), [l2x, l2y] = at(px(SEP));
-    text(ctx, fmt(d1, 2) + ' m', l1x, l1y, C('position'), { size: 17, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, fmt(d2, 2) + ' m', l2x, l2y, C('position'), { size: 17, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, fmt(d1, 2) + ' m', l1x, l1y, C('position'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, fmt(d2, 2) + ' m', l2x, l2y, C('position'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     /* the test charge and the force on it */
     const near = Math.min(d1, d2) < 0.18;
     const ux = ex / mag, uy = ey / mag;

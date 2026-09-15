@@ -191,6 +191,8 @@ Extra simulations (rule 15), thought through and judged:
   gravity over the feet (Figure 9.27). Left: the photograph says it, the
   base of support is 9.3's node and 9.3 proposes its own sim for it.
 
+**Figure pass (2026-09-14, Claude Fable 5.1).** `sim-forearm` draws a rounded upper arm, a biceps that bulges from the upper arm to its tendon, a hand round a book drawn as a book. `sim-posture` and `sim-lift` draw the whole body as the library's silhouette with its joints set from the scene (hips as pivot, trunk along the spine, hands on the box in `sim-lift`) in place of a line and a circle. `sim-lever-arm-trade` is unchanged.
+
 ## Exercises
 
 - No Check Your Understanding boxes; nothing is placed inline.

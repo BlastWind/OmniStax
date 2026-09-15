@@ -185,6 +185,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-torque-direction`: the person on the platform is `F.silhouette()` in the push pose with the hands on the handle. `sim-bike-wheel`: the woman is `F.silhouette()` standing, drawn in two clipped halves as before so each arm reaches its own handle. `sim-gyroscope`: the headline hangs from the top of the stage instead of rising above it (its two-line form was clipped), and the spinning readout is shortened to one line; the scene itself is kept. `sim-right-hand-rule` looked at and left as built.
+
 ## Exercises
 
 - `cyu1` (fs-id1446925): the Check Your Understanding box, rotational

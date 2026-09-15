@@ -1,0 +1,689 @@
+{
+  "id": "19.3",
+  "module": "m42328",
+  "chapter": "19",
+  "title": "Electrical Potential Due to a Point Charge",
+  "short": "Point charge",
+  "lead": "A point charge is the simplest thing that can produce an electric potential, and because the charge on a metal sphere spreads out and acts from the center, it is also the most useful. Bringing a test charge in from a great distance to a distance r from a charge Q gives a potential of kQ/r, with the potential taken to be zero infinitely far away. Set beside the field of the same charge, which falls as one over the distance squared, the result marks the difference between the two descriptions: the potential is a scalar that falls more slowly and that adds as an ordinary number, while the field is a vector that falls faster and that must be added as a vector. The two worked examples read the result in both directions, finding the voltage a small static charge produces near a metal sphere and the excess charge a demonstration Van de Graaff generator carries at a hundred kilovolts, and the section closes by returning to the question of what the potential is measured from.",
+  "objectives": [
+    "Explain point charges and express the equation for electric potential of a point charge.",
+    "Distinguish between electric potential and electric field.",
+    "Determine the electric potential of a point charge given charge and distance."
+  ],
+  "summary_html": "<ul><li>Electric potential of a point charge is $\\kV = k\\kQch/\\kr$.</li><li>Electric potential is a scalar, and electric field is a vector. Addition of voltages as numbers gives the voltage due to a combination of point charges, whereas addition of individual fields as vectors gives the total electric field.</li></ul>",
+  "notes": "Six problems the book leaves without an answer are left out: the potential 0.530 × 10⁻¹⁰ m from a proton, how far from a 1.00 µC charge the potential is 100 V and where it is 2.00 × 10² V, the sign and magnitude of a charge that gives 5.00 × 10² V at 15.0 m, the research Van de Graaff generator carrying 5.00 mC, how close an alpha particle of 5.00 MeV comes to a gold nucleus, and the potential between two points 10 cm and 20 cm from a 3.0 µC charge. Seven AP items and one Unreasonable Results problem that the book prints in Electric Potential Energy: Potential Difference are set here, since each of them needs the potential of a point charge, which this section states and that one does not. The fusion problem the book prints there needs the same result and has no keyed answer, so it is left out of both pages. The module defines no glossary term and prints no Check Your Understanding box.",
+  "ai": {
+    "text": "Claude Opus 5",
+    "figures": "Claude Opus 5"
+  },
+  "built": "2026-09-14",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Six problems have no keyed answer and are left out: the potential 0.530 × 10⁻¹⁰ m from a proton, how far from a 1.00 µC charge the potential is 100 V, the sign and magnitude of a charge that gives 5.00 × 10² V at 15.0 m, the research Van de Graaff generator with 5.00 mC, the alpha particle and the gold nucleus, and the potential between two points 10 cm and 20 cm from a 3.0 µC charge. Eight items the book prints in Electric Potential Energy: Potential Difference are set here instead: the seven AP items on the stored energy of systems of point charges and the Unreasonable Results problem on the voltage near a 10.0 cm sphere carrying 8.00 C, each of which needs the potential of a point charge that this section states. The AP items that have no answer in the book are kept as open items with an AI-marked suggested approach rather than as graded choices, as are both conceptual questions.",
+  "figures": [
+    {
+      "id": "sim-point-charge-potential",
+      "kind": "sim",
+      "draws": [
+        "voltage",
+        "charge",
+        "position",
+        "electric-field"
+      ]
+    },
+    {
+      "id": "sim-potentials-add",
+      "kind": "sim",
+      "draws": [
+        "voltage",
+        "charge",
+        "position",
+        "electric-field",
+        "energy"
+      ]
+    },
+    {
+      "id": "sim-van-de-graaff",
+      "kind": "sim",
+      "number": "19.7",
+      "originals": [
+        "/media/ch19/Figure_20_03_01a.jpg"
+      ],
+      "original_caption": "The voltage of this demonstration Van de Graaff generator is measured between the charged sphere and ground. Earth’s potential is taken to be zero as a reference. The potential of the charged conducting sphere is the same as that of an equal point charge at its center.",
+      "widths": [
+        200
+      ],
+      "draws": [
+        "voltage",
+        "charge",
+        "position",
+        "electric-field"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "point-charge-potential",
+      "concept": "potential-of-point-charge",
+      "verb": "introduces"
+    },
+    {
+      "span": "point-charge-potential",
+      "concept": "test-charge",
+      "verb": "uses"
+    },
+    {
+      "span": "point-charge-potential",
+      "concept": "coulomb-constant",
+      "verb": "uses"
+    },
+    {
+      "span": "point-charge-potential",
+      "concept": "electric-potential",
+      "verb": "uses"
+    },
+    {
+      "span": "point-charge-potential",
+      "concept": "potential-difference",
+      "verb": "uses"
+    },
+    {
+      "span": "point-charge-potential",
+      "concept": "excess-charge-on-surface",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-and-vector",
+      "concept": "potential-versus-field-of-point-charge",
+      "verb": "introduces"
+    },
+    {
+      "span": "scalar-and-vector",
+      "concept": "superposition-of-potential",
+      "verb": "introduces"
+    },
+    {
+      "span": "scalar-and-vector",
+      "concept": "potential-energy-of-point-charges",
+      "verb": "introduces"
+    },
+    {
+      "span": "scalar-and-vector",
+      "concept": "zero-of-potential",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-and-vector",
+      "concept": "field-of-point-charge",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-and-vector",
+      "concept": "electric-field",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-and-vector",
+      "concept": "superposition-of-electric-fields",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-and-vector",
+      "concept": "potential-scalar-field-vector",
+      "verb": "uses"
+    },
+    {
+      "span": "charged-spheres",
+      "concept": "sphere-potential-as-point-charge",
+      "verb": "introduces"
+    },
+    {
+      "span": "ex-metal-sphere-voltage",
+      "concept": "potential-of-point-charge",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-metal-sphere-voltage",
+      "concept": "excess-charge-on-surface",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-van-de-graaff-charge",
+      "concept": "van-de-graaff-generator",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-van-de-graaff-charge",
+      "concept": "potential-of-point-charge",
+      "verb": "uses"
+    },
+    {
+      "span": "charged-spheres",
+      "concept": "gravitational-potential-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "charged-spheres",
+      "concept": "pe-reference-level",
+      "verb": "uses"
+    },
+    {
+      "span": "charged-spheres",
+      "concept": "zero-of-potential",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id2705937",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "charged-spheres",
+      "prompt": "In what region of space is the potential due to a uniformly charged sphere the same as that of a point charge? In what region does it differ from that of a point charge?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Everywhere outside the sphere, at any distance from its center greater than its radius, the potential is exactly that of a point charge of the same total charge sitting at the center, $\\kV = k\\kQch/\\kr$. That is why Example 19.6 can treat a 1 cm sphere as a point charge 5.00 cm away. Inside the sphere it differs. The excess charge on a conductor resides on its surface and the field within the metal is zero, so no work is done in carrying a test charge about inside, and the potential there is constant at the value it has at the surface rather than continuing to rise as $k\\kQch/\\kr$ would."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id2511493",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "charged-spheres",
+      "prompt": "Can the potential of a non-uniformly charged sphere be the same as that of a point charge? Explain.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Only far away from it. The potential of any collection of charge is the sum of the potentials of its parts, each one a number $k\\kQch/\\kr$, and at a distance much greater than the radius of the sphere every part is at very nearly the same distance, so the sum is the total charge divided by that distance and the sphere is indistinguishable from a point charge. Close to a sphere whose charge is bunched on one side the distances to the parts differ a great deal, the near side contributes more than the far side, and the potential depends on which way around the sphere the point lies, which the potential of a point charge never does."
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id1677295",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "point-charge-potential",
+      "prompt": "A 0.500 cm diameter plastic sphere, used in a static electricity demonstration, has a uniformly distributed 40.0 pC charge on its surface. What is the potential near its surface?",
+      "answer": {
+        "type": "number",
+        "value": 144,
+        "unit": "V",
+        "generated_by": "source",
+        "hint": "The charge acts as though it were all at the center, so take $\\kr$ to be the radius of the sphere, 0.250 cm, in $\\kV = k\\kQch/\\kr$.",
+        "solution": "144 V"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id1516605",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "point-charge-potential",
+      "prompt": "(a) A sphere has a surface uniformly charged with 1.00 C. At what distance from its center is the potential 5.00 MV? (b) What does your answer imply about the practical aspect of isolating such a large charge?",
+      "answer": {
+        "type": "number",
+        "value": 1800,
+        "unit": "m",
+        "part": "(a)",
+        "generated_by": "source",
+        "hint": "Solve $\\kV = k\\kQch/\\kr$ for the distance, $\\kr = k\\kQch/\\kV$, with $\\kQch = 1.00$ C and $\\kV = 5.00 \\times 10^{6}$ V.",
+        "solution": "(a) 1.80 km (b) A charge of 1 C is a very large amount of charge; a sphere of radius 1.80 km is not practical."
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id963449",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "point-charge-potential",
+      "prompt": "What are the sign and magnitude of a point charge that produces a potential of $-2.00\\ \\text{V}$ at a distance of 1.00 mm?",
+      "answer": {
+        "type": "number",
+        "value": -2.22e-13,
+        "unit": "C",
+        "generated_by": "source",
+        "hint": "Solve $\\kV = k\\kQch/\\kr$ for the charge, $\\kQch = \\kr\\kV/k$. A negative potential means a negative charge.",
+        "solution": "$-2.22 \\times 10^{-13}\\ \\text{C}$"
+      }
+    },
+    {
+      "id": "p7",
+      "source_id": "fs-id2554432",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "scalar-and-vector",
+      "prompt": "In nuclear fission, a nucleus splits roughly in half. (a) What is the potential $2.00 \\times 10^{-14}\\ \\text{m}$ from a fragment that has 46 protons in it? (b) What is the potential energy in MeV of a similarly charged fragment at this distance?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 3310000.0,
+            "unit": "V",
+            "hint": "The fragment carries 46 elementary charges, so $\\kQch = 46(1.60 \\times 10^{-19}\\ \\text{C})$, and the potential is $k\\kQch/\\kr$."
+          },
+          {
+            "part": "(b)",
+            "value": 152,
+            "unit": "MeV",
+            "hint": "The energy of a charge at a place where the potential is $\\kV$ is $\\kPEtot = \\kq\\kV$, and the second fragment also carries 46 elementary charges, so the answer in electron volts is 46 times the potential in volts."
+          }
+        ],
+        "solution": "(a) $3.31 \\times 10^{6}\\ \\text{V}$ (b) 152 MeV"
+      }
+    },
+    {
+      "id": "p9",
+      "source_id": "fs-id1320070",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "charged-spheres",
+      "prompt": "An electrostatic paint sprayer has a 0.200-m-diameter metal sphere at a potential of 25.0 kV that repels paint droplets onto a grounded object. (a) What charge is on the sphere? (b) What charge must a 0.100-mg drop of paint have to arrive at the object with a speed of 10.0 m/s?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 2.78e-07,
+            "unit": "C",
+            "hint": "The sphere is at the potential of a point charge at its center, 0.100 m away, so $\\kQch = \\kr\\kV/k$."
+          },
+          {
+            "part": "(b)",
+            "value": 2e-10,
+            "unit": "C",
+            "hint": "The drop falls through the whole 25.0 kV, and all of that energy becomes kinetic energy: set $\\kq\\kV = \\frac{1}{2}m\\kv^2$ and solve for the charge."
+          }
+        ],
+        "solution": "(a) $2.78 \\times 10^{-7}\\ \\text{C}$ (b) $2.00 \\times 10^{-10}\\ \\text{C}$"
+      }
+    },
+    {
+      "id": "p12",
+      "source_id": "eip-200",
+      "kind": "problem",
+      "bloom": "Evaluate",
+      "place": {
+        "at": "end"
+      },
+      "cite": "charged-spheres",
+      "prompt": "<strong>Unreasonable Results</strong> (a) What is the final speed of an electron accelerated from rest through a voltage of 25.0 MV by a negatively charged Van de Graaff terminal? (b) What is unreasonable about this result? (c) Which assumptions are responsible?",
+      "answer": {
+        "type": "number",
+        "value": 2960000000.0,
+        "unit": "m/s",
+        "part": "(a)",
+        "generated_by": "source",
+        "hint": "Put all of the electrical potential energy into kinetic energy, $\\kq\\kV = \\frac{1}{2}m\\kv^2$, and solve for the speed; then compare what comes out with the speed of light.",
+        "solution": "(a) $2.96 \\times 10^{9}\\ \\text{m/s}$ (b) This velocity is far too great. It is faster than the speed of light. (c) The assumption that the speed of the electron is far less than that of light and that the problem does not require a relativistic treatment produces an answer greater than the speed of light."
+      }
+    },
+    {
+      "id": "p13",
+      "source_id": "fs-id2723641",
+      "kind": "problem",
+      "bloom": "Evaluate",
+      "place": {
+        "at": "end"
+      },
+      "cite": "charged-spheres",
+      "prompt": "<strong>Unreasonable Results</strong> (a) Find the voltage near a 10.0 cm diameter metal sphere that has 8.00 C of excess positive charge on it. (b) What is unreasonable about this result? (c) Which assumptions are responsible?",
+      "answer": {
+        "type": "number",
+        "value": 1440000000000.0,
+        "unit": "V",
+        "part": "(a)",
+        "generated_by": "source",
+        "hint": "The sphere is at the potential of a point charge at its center, 5.00 cm away, so $\\kV = k\\kQch/\\kr$ with $\\kr = 0.0500$ m.",
+        "solution": "(a) $1.44 \\times 10^{12}\\ \\text{V}$ (b) This voltage is very high. A 10.0 cm diameter sphere could never maintain this voltage; it would discharge. (c) An 8.00 C charge is more charge than can reasonably be accumulated on a sphere of that size."
+      },
+      "source_section": "19.1"
+    },
+    {
+      "id": "ap1",
+      "source_id": "fs-id1830876",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "sim-potentials-add",
+      "prompt": "What is the internal energy of a system consisting of two point charges, one 2.0 µC, and the other −3.0 µC, placed 1.2 m away from each other?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "$-3.8 \\times 10^{-2}\\ \\text{J}$",
+          "$-4.5 \\times 10^{-2}\\ \\text{J}$",
+          "$4.5 \\times 10^{-2}\\ \\text{J}$",
+          "$3.8 \\times 10^{-2}\\ \\text{J}$"
+        ],
+        "correct": 1,
+        "hint": "The energy of a pair is the charge of one times the potential the other makes where it sits, $k\\kQch_1\\kQch_2/\\kr$. Unlike charges give a negative energy.",
+        "solution": "(b)"
+      },
+      "source_section": "19.1"
+    },
+    {
+      "id": "ap2",
+      "source_id": "fs-id1773635",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "sim-potentials-add",
+      "prompt": "A system of three point charges has a 1.00 µC charge at the origin, a −2.00 µC charge at $x = 30$ cm, and a 3.00 µC charge at $x = 70$ cm. What is the total stored potential energy of this configuration?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Add the energy of each pair, since the energy of a pair of point charges is $k\\kQch_1\\kQch_2/\\kr$ and energies are numbers that add. The three pairs are separated by 0.30 m, 0.70 m and 0.40 m, so the total is $k[(1.00)(-2.00)/0.30 + (1.00)(3.00)/0.70 + (-2.00)(3.00)/0.40] \\times 10^{-12}$, which comes to about $-0.15$ J. The energy is negative because the two attracting pairs are close together and the repelling pair is the far one, so work would have to be done on the system to pull it apart."
+      },
+      "source_section": "19.1"
+    },
+    {
+      "id": "ap3",
+      "source_id": "fs-id1872138",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "sim-potentials-add",
+      "prompt": "A system has 2.00 µC charges at (50 cm, 0) and (−50 cm, 0) and a −1.00 µC charge at (0, 70 cm). As the $y$-coordinate of the −1.00 µC charge increases, the potential energy ___. As the $y$-coordinate of the −1.00 µC charge decreases, the potential energy ___.",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "increases, increases",
+          "increases, decreases",
+          "decreases, increases",
+          "decreases, decreases"
+        ],
+        "correct": 1,
+        "hint": "The negative charge is attracted to both positive ones, so its energy with them is negative and grows more negative as it comes nearer. Moving it away makes that negative number smaller in size, which is an increase.",
+        "solution": "(b)"
+      },
+      "source_section": "19.1"
+    },
+    {
+      "id": "ap4",
+      "source_id": "fs-id1944533",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "sim-potentials-add",
+      "prompt": "A system of three point charges has a 1.00 µC charge at the origin, a −2.00 µC charge at $x = 30$ cm, and a 3.00 µC charge at $x = 70$ cm. What happens to the total potential energy of this system if the −2.00 µC charge and the 3.00 µC charge trade places?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "It rises. Only the separations that each pair sits at change, and the pair energies $k\\kQch_1\\kQch_2/\\kr$ change with them. After the trade the 1.00 µC and 3.00 µC charges, which repel, are the close pair at 0.30 m while the 1.00 µC and −2.00 µC charges, which attract, are the far pair at 0.70 m; the outer pair keeps its 0.40 m separation and its energy. Bringing a repelling pair closer and letting an attracting pair apart both raise the energy, and the total goes from about $-0.15$ J to about $+0.02$ J."
+      },
+      "source_section": "19.1"
+    },
+    {
+      "id": "ap5",
+      "source_id": "fs-id3081143",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "sim-potentials-add",
+      "prompt": "Take a square configuration of point charges, two positive and two negative, all of the same magnitude, with like charges sharing diagonals. What will happen to the internal energy of this system if one of the negative charges becomes a positive charge of the same magnitude?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "increase",
+          "decrease",
+          "no change",
+          "not enough information"
+        ],
+        "correct": 0,
+        "hint": "Count the pairs. Changing one sign turns the two attracting pairs that charge belonged to on the sides of the square into repelling ones, and turns its repelling diagonal pair into an attracting one; the sides are nearer than the diagonal, so the pairs that gain outweigh the one that loses.",
+        "solution": "(a)"
+      },
+      "source_section": "19.1"
+    },
+    {
+      "id": "ap6",
+      "source_id": "fs-id2794286",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "sim-potentials-add",
+      "prompt": "Take a square configuration of point charges, two positive and two negative, all of the same magnitude, with like charges sharing diagonals. What will happen to the internal energy of this system if the sides of the square decrease in length?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "It becomes more negative. Every pair energy is $k\\kQch_1\\kQch_2/\\kr$, and shrinking the square divides every separation, the sides and the diagonals alike, by the same factor, so the whole sum is multiplied by that factor. In this arrangement each charge has two unlike neighbors on the sides and one like charge across the diagonal, and because the sides are shorter than the diagonals the attracting pairs already dominate and the total is negative. Multiplying a negative total by a number greater than one makes it more negative still, which is to say the charges are bound more tightly and work would have to be done to pull the square open again."
+      },
+      "source_section": "19.1"
+    },
+    {
+      "id": "ap7",
+      "source_id": "fs-id3350954",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "sim-potentials-add",
+      "prompt": "A system has 2.00 µC charges at (50 cm, 0) and (−50 cm, 0) and a −1.00 µC charge at (0, 70 cm), with a velocity in the –$y$-direction. When the −1.00 µC charge is at (0, 0) the potential energy is at a ___ and the kinetic energy is ___.",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "maximum, maximum",
+          "maximum, minimum",
+          "minimum, maximum",
+          "minimum, minimum"
+        ],
+        "correct": 2,
+        "hint": "At the origin the negative charge is as close to both positive charges as it can get along that path, so its energy with them is as negative as it becomes. The sum of kinetic and potential energy does not change, so where one is least the other is greatest.",
+        "solution": "(c)"
+      },
+      "source_section": "19.1"
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cq1",
+      "concept": "sphere-potential-as-point-charge"
+    },
+    {
+      "exercise": "cq1",
+      "concept": "potential-of-point-charge",
+      "weight": 3
+    },
+    {
+      "exercise": "cq2",
+      "concept": "sphere-potential-as-point-charge"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "superposition-of-potential",
+      "weight": 3
+    },
+    {
+      "exercise": "p1",
+      "concept": "potential-of-point-charge"
+    },
+    {
+      "exercise": "p1",
+      "concept": "sphere-potential-as-point-charge",
+      "weight": 4
+    },
+    {
+      "exercise": "p3",
+      "concept": "potential-of-point-charge"
+    },
+    {
+      "exercise": "p3",
+      "concept": "sphere-potential-as-point-charge",
+      "weight": 3
+    },
+    {
+      "exercise": "p5",
+      "concept": "potential-of-point-charge"
+    },
+    {
+      "exercise": "p7",
+      "concept": "potential-of-point-charge"
+    },
+    {
+      "exercise": "p7",
+      "concept": "potential-energy-of-point-charges",
+      "weight": 4
+    },
+    {
+      "exercise": "p7",
+      "concept": "electron-volt",
+      "weight": 2
+    },
+    {
+      "exercise": "p9",
+      "concept": "potential-of-point-charge"
+    },
+    {
+      "exercise": "p9",
+      "concept": "sphere-potential-as-point-charge",
+      "weight": 3
+    },
+    {
+      "exercise": "p9",
+      "concept": "energy-conservation-for-charges",
+      "weight": 3
+    },
+    {
+      "exercise": "p12",
+      "concept": "speed-from-potential-difference"
+    },
+    {
+      "exercise": "p12",
+      "concept": "energy-from-potential-difference",
+      "weight": 3
+    },
+    {
+      "exercise": "p13",
+      "concept": "potential-of-point-charge"
+    },
+    {
+      "exercise": "p13",
+      "concept": "sphere-potential-as-point-charge",
+      "weight": 4
+    },
+    {
+      "exercise": "ap1",
+      "concept": "potential-energy-of-point-charges"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "superposition-of-potential",
+      "weight": 4
+    },
+    {
+      "exercise": "ap2",
+      "concept": "potential-energy-of-point-charges"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "superposition-of-potential",
+      "weight": 4
+    },
+    {
+      "exercise": "ap3",
+      "concept": "potential-energy-of-point-charges"
+    },
+    {
+      "exercise": "ap3",
+      "concept": "superposition-of-potential",
+      "weight": 4
+    },
+    {
+      "exercise": "ap4",
+      "concept": "potential-energy-of-point-charges"
+    },
+    {
+      "exercise": "ap4",
+      "concept": "superposition-of-potential",
+      "weight": 4
+    },
+    {
+      "exercise": "ap5",
+      "concept": "potential-energy-of-point-charges"
+    },
+    {
+      "exercise": "ap5",
+      "concept": "superposition-of-potential",
+      "weight": 4
+    },
+    {
+      "exercise": "ap6",
+      "concept": "potential-energy-of-point-charges"
+    },
+    {
+      "exercise": "ap6",
+      "concept": "superposition-of-potential",
+      "weight": 4
+    },
+    {
+      "exercise": "ap7",
+      "concept": "potential-energy-of-point-charges"
+    },
+    {
+      "exercise": "ap7",
+      "concept": "superposition-of-potential",
+      "weight": 4
+    },
+    {
+      "exercise": "ap1",
+      "concept": "potential-of-point-charge",
+      "weight": 3
+    },
+    {
+      "exercise": "ap2",
+      "concept": "potential-of-point-charge",
+      "weight": 3
+    },
+    {
+      "exercise": "ap4",
+      "concept": "potential-of-point-charge",
+      "weight": 3
+    },
+    {
+      "exercise": "ap7",
+      "concept": "energy-conservation-for-charges",
+      "weight": 4
+    }
+  ]
+}

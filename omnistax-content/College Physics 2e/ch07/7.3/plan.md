@@ -240,6 +240,8 @@ not extras but the figures rule 14 asks for, since each is the one picture
 of an idea the section introduces and neither replaces anything the book
 draws.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): `sim-paths` redrawn with `F.silhouette`, both people to the scene's own scale, the climber's front foot on the step above so no body runs through the stairs, the hoister leaning back on the rope, and a television sprite with a bezel, a screen and a stand. `sim-ladder` uses the library crate, no text across it. `sim-landing` blends the standing and crouching silhouettes as the knees give. `sim-cuckoo`, `sim-coaster`, `sim-marble` unchanged.
+
 ## Exercises
 
 - No Check Your Understanding box anywhere in the chapter, and neither

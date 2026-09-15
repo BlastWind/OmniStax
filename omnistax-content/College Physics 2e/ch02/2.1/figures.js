@@ -1,9 +1,8 @@
 /* Figures for section 2.1 Displacement. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.1'] = function (root, F) {
-const { fmt, tex, C, PAL, REDUCED, LW, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, scale, runner } = F;
+const { fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, scale, person } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function xfLabel(ctx, x, y, color) { text(ctx, 'x', x - 6, y, color, { align: 'center', weight: 600, size: 24 }); text(ctx, 'f', x + 8, y + 8, color, { align: 'center', weight: 600, size: 16 }); }
 function twoLine(host, a, b) { if (!host._a) { host._a = document.createElement('div'); host._b = document.createElement('small'); host.replaceChildren(host._a, host._b); } tex(host._a, a); tex(host._b, b); }
 const sgn = (n, d) => (n > 0 ? '+' : n < 0 ? '−' : '') + fmt(Math.abs(n), d);
 
@@ -28,7 +27,7 @@ function bike(ctx, x, y, color, dir, phase) {
    time in it, so nothing moves and the figure carries no transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-displacement', 440);
+  const d = sim('sim-displacement', 460);
   const WHO = {
     professor: { x0: 1.5, xf: 3.5, frame: 'whiteboard (reference frame)', who: 'the professor', pron: 'she' },
     passenger: { x0: 6, xf: 2, frame: 'airplane cabin (reference frame)', who: 'the passenger', pron: 'he' },
@@ -40,23 +39,40 @@ function bike(ctx, x, y, color, dir, phase) {
   /* the axis is a fixed 0 to 8 m, the range of the two position sliders, and never follows their values */
   function draw() {
     const { ctx } = begin(d.c);
-    const w = WHO[W.value] ?? WHO.professor, dx = xf.v - x0.v;
-    const L = 110, R = 1290, y = 300; const X = (m) => L + (R - L) * m / 8;
-    // the reference frame the section names: the whiteboard, or the cabin of the airplane
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(L - 30, 90, R - L + 60, 130); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.strokeRect(L - 30, 90, R - L + 60, 130); ctx.restore();
-    if (W.value === 'passenger') for (let sx = L + 10; sx < R; sx += 96) { line(ctx, sx, 150, sx, 216, PAL.rule, 3); line(ctx, sx, 150, sx + 34, 150, PAL.rule, 3); }
-    text(ctx, w.frame, L - 10, 108, PAL.muted, { size: 17 });
+    const w = WHO[W.value] ?? WHO.professor, dx = xf.v - x0.v, face = dx < 0 ? -1 : 1;
+    const L = 110, R = 1290, y = 336; const X = (m) => L + (R - L) * m / 8;
+    /* the reference frame the section names, drawn as a room: the professor's wall with its whiteboard,
+       or the cabin of the airplane with its row of windows; the person stands on its floor */
+    const top = 92, floor = 252;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(L - 30, top, R - L + 60, floor - top); ctx.restore();
+    if (W.value === 'passenger') {
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2;
+      for (let sx = L + 10; sx < R; sx += 96) { ctx.beginPath(); ctx.roundRect(sx, top + 18, 44, 40, 10); ctx.fill(); ctx.stroke(); }
+      ctx.restore();
+      /* overhead bins run above the windows */
+      line(ctx, L - 30, top + 8, R + 30, top + 8, PAL.rule, 3);
+    } else {
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.fillRect(L + 60, top + 16, 520, 96); ctx.strokeRect(L + 60, top + 16, 520, 96); ctx.restore();
+      [40, 62, 84].forEach((dy, i) => line(ctx, L + 84, top + dy, L + 84 + [300, 220, 360][i], top + dy, PAL.rule, 2));
+    }
+    line(ctx, L - 30, floor, R + 30, floor, PAL.muted, 3);
+    text(ctx, w.frame, R + 30, top - 14, PAL.muted, { size: 17, align: 'right' });
+    /* the person where the motion ended, and a faint trace of them where it began */
+    ctx.save(); ctx.globalAlpha = 0.3; person(ctx, X(x0.v), floor, PAL.ink, { face }); ctx.restore();
+    person(ctx, X(xf.v), floor, PAL.ink, { face });
+    /* the displacement, an arrow at chest height from where the person was to where they are */
+    const ay = floor - 62;
+    if (Math.abs(dx) >= 0.25) { arrow(ctx, X(x0.v), ay, X(xf.v), ay, C('position'), 5); text(ctx, 'Δx = ' + sgn(dx, 1) + ' m', (X(x0.v) + X(xf.v)) / 2, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) }); }
+    else text(ctx, 'Δx = 0', X(x0.v) + 40, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
+    /* the axis under the floor, the two positions dropped onto it */
     line(ctx, L - 30, y, R + 30, y, PAL.muted, 3); scale(ctx, X, 0, 8, 1, y, 'm', 1);
-    // displacement arrow above the axis
-    if (Math.abs(dx) >= 0.25) { arrow(ctx, X(x0.v), y - 56, X(xf.v), y - 56, C('position'), 5); text(ctx, 'Δx = ' + sgn(dx, 1) + ' m', (X(x0.v) + X(xf.v)) / 2, y - 84, C('position'), { align: 'center', weight: 600 }); }
-    else text(ctx, 'Δx = 0', X(x0.v), y - 84, C('position'), { align: 'center', weight: 600 });
+    line(ctx, X(x0.v), floor, X(x0.v), y, C('position'), 2, [4, 8]); line(ctx, X(xf.v), floor, X(xf.v), y, C('position'), 2, [4, 8]);
     dot(ctx, X(x0.v), y, C('position'), false, 11); dot(ctx, X(xf.v), y, C('position'), true, 11);
-    text(ctx, 'x₀', X(x0.v), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
-    xfLabel(ctx, X(xf.v), y + 66, C('position'));
-    // the person, standing at the position reached
-    runner(ctx, X(xf.v), y - 8, PAL.ink, 0);
+    const apart = Math.abs(X(xf.v) - X(x0.v)) > 60;
+    text(ctx, 'x_0', X(x0.v) + (apart ? 0 : -22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
+    text(ctx, 'x_f', X(xf.v) + (apart ? 0 : 22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
     const dir = dx > 0 ? 'to the right' : 'to the left';
-    headline(ctx, Math.abs(dx) < 0.25
+    topline(ctx, Math.abs(dx) < 0.25
       ? 'The displacement is zero, since ' + w.who + ' ends where ' + w.pron + ' started, whatever path ' + w.pron + ' took.'
       : 'The displacement of ' + w.who + ' is ' + fmt(xf.v, 1) + ' m − ' + fmt(x0.v, 1) + ' m = ' + sgn(dx, 1) + ' m, which is ' + fmt(Math.abs(dx), 1) + ' m ' + dir + '.');
     tex(d.readout, `\\kdx = \\kxf - \\kxo = ${fmt(xf.v, 1)}\\ \\text{m} - ${fmt(x0.v, 1)}\\ \\text{m} = ${dx >= 0 ? '+' : ''}${fmt(dx, 1)}\\ \\text{m}`);
@@ -93,7 +109,8 @@ function bike(ctx, x, y, color, dir, phase) {
     bike(ctx, X(px), py - 22, PAL.ink, dir, s * 4);
     // displacement bracket below the axis, start and end markers on it
     dot(ctx, X(x0.v), y, C('position'), false, 11); dot(ctx, X(xf.v), y, C('position'), true, 11);
-    text(ctx, 'x₀', X(x0.v), y + 66, C('position'), { align: 'center', weight: 600, size: 24 }); xfLabel(ctx, X(xf.v), y + 66, C('position'));
+    const apart = Math.abs(X(xf.v) - X(x0.v)) > 60;
+    text(ctx, 'x_0', X(x0.v) + (apart ? 0 : -22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 }); text(ctx, 'x_f', X(xf.v) + (apart ? 0 : 22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
     if (Math.abs(dx) >= 0.25) hbracket(ctx, X(x0.v), X(xf.v), y + 150, C('position'), 'displacement Δx = ' + sgn(dx, 1) + ' km');
     else text(ctx, 'displacement Δx = 0', X(x0.v), y + 130, C('position'), { align: 'center', weight: 600 });
     // odometer
@@ -103,7 +120,7 @@ function bike(ctx, x, y, color, dir, phase) {
     /* A leg of zero length makes the ride a straight run, so the path length and the magnitude of
        the displacement are the same number and the headline says why. */
     const straight = leg1() < 1e-6 || leg2() < 1e-6;
-    headline(ctx, straight
+    topline(ctx, straight
       ? 'The cyclist rides straight through without turning back, so the ' + fmt(total(), 1) + ' km traveled is also the magnitude of the ' + sgn(dx, 1) + ' km displacement.'
       : 'The cyclist travels ' + fmt(total(), 1) + ' km along the path, but the displacement is only ' + sgn(dx, 1) + ' km, whose magnitude is ' + fmt(Math.abs(dx), 1) + ' km.');
     twoLine(d.readout, `\\kdx = \\kxf - \\kxo = ${sgn(dx, 1).replace('−', '-')}\\ \\text{km}`, `\\text{distance traveled} = |${fmt(xt.v, 1)} - ${fmt(x0.v, 1)}| + |${fmt(xf.v, 1)} - (${fmt(xt.v, 1)})| = ${fmt(total(), 1)}\\ \\text{km}`);

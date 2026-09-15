@@ -262,3 +262,5 @@ is gone. The masculine ordinal the CNXML writes for degrees stood in six places
 in `figures.js`, in the angle slider's unit and in the arc labels and headlines
 of `sim-billiard`; outside math it is now the degree sign, which is what
 Chapters 4, 9 and 16 write.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-impulse`: the stick passenger is now an `F.silhouette` in the sit pose on a drawn seat, the momentum arrow leaves from the chest and the padding's push is drawn from the padding into the chest, both labelled through `F.label`. `sim-billiard` redrawn: the scene keeps the left of the canvas with the wall at 760, the two momenta are drawn along the ball's path to and from the point of contact, the angles through `F.angleArc` with the labeller, and the right of the canvas carries the vector triangle, both momenta from one tail with the change drawn a row under their heads so that it never lies along them at the perpendicular; one fixed scale of 100 units per kg·m/s, and the force on the wall is drawn at the point of contact. `sim-effective-force`, `fig-bounce` and `fig-collision` looked at and left.

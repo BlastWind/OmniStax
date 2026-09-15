@@ -1,0 +1,535 @@
+{
+ "id": "18.5",
+ "module": "m42312",
+ "chapter": "18",
+ "title": "Electric Field Lines: Multiple Charges",
+ "short": "Electric field lines",
+ "lead": "An electric field is a vector at every point of space, and the way to see one whole is to draw it. This section replaces the arrows of the last one with continuous field lines, which point the way the field points and crowd together where it is strong, and it shows how the fields of several charges are added at a point, working the sum for two charges set at right angles. It then draws what two charges make together, weak between two like charges and strong between two unlike ones, and closes with the five properties every field-line drawing obeys, among them that the lines can never cross.",
+ "objectives": [
+  "Calculate the total force (magnitude and direction) exerted on a test charge from more than one charge",
+  "Describe an electric field diagram of a positive point charge; of a negative point charge with twice the magnitude of positive charge",
+  "Draw the electric field lines between two points of the same charge; between two points of opposite charge."
+ ],
+ "summary_html": "<ul><li>Drawings of electric field lines are useful visual tools. The properties of electric field lines for any charge distribution are that:<ul><li>Field lines must begin on positive charges and terminate on negative charges, or at infinity in the hypothetical case of isolated charges.</li><li>The number of field lines leaving a positive charge or entering a negative charge is proportional to the magnitude of the charge.</li><li>The strength of the field is proportional to the closeness of the field lines—more precisely, it is proportional to the number of lines per unit area perpendicular to the lines.</li><li>The direction of the electric field is tangent to the field line at any point in space.</li><li>Field lines can never cross.</li></ul></li></ul>",
+ "notes": "The PhET simulation Charges and Fields is left out. The book keys none of this section's four problems, and two of them are left out: the sketch of the two charge distributions of Figure 18.23 at a long distance, and the sketch of two opposite charges where the negative charge is three times the positive. Coulomb's law is written with the separation r, which is Chapter 5's untyped symbol, and the distances r₁ and r₂ to the origin are written plain for the same reason. The text reads the resultant of Example 18.4 as 63.4° above the x-axis where Figure 18.21 draws it in the second quadrant; the book's words and the book's arrows are both kept.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book's answer key. Of the four AP items, two are keyed: the force object W exerts on object Z is set as a graded choice, and the item on the three objects R, S and T carries the book's own four-part answer with its graph. The two unkeyed AP items are open items with their options as the book prints them and an AI-written suggested approach, marked as such. The two conceptual questions carry an AI-written suggested approach as well. The book keys none of this section's problems, so the two kept here are open items whose answer is the drawing the reader makes. Two problems the book sets in 18.3 need the vector sum of two Coulomb forces, which is this section's first objective: the keyed one, on where a third charge feels no net force, is set here with its source recorded, and the unkeyed one, on a test charge halfway between two charges, is left out.",
+ "figures": [
+  {
+   "id": "sim-one-charge",
+   "kind": "sim",
+   "number": "18.19",
+   "folds": [
+    "18.20"
+   ],
+   "originals": [
+    "/media/ch18/Figure_19_05_02a.jpg",
+    "/media/ch18/Figure_19_05_03a.jpg"
+   ],
+   "original_caption": "(Figure 18.19) Two equivalent representations of the electric field due to a positive charge $Q$. (a) Arrows representing the electric field's magnitude and direction. (b) In the standard representation, the arrows are replaced by continuous field lines having the same direction at any point as the electric field. The closeness of the lines is directly related to the strength of the electric field. A test charge placed anywhere will feel a force in the direction of the field line; this force will have a strength proportional to the density of the lines (being greater near the charge, for example). (Figure 18.20) The electric field surrounding three different point charges. (a) A positive charge. (b) A negative charge of equal magnitude. (c) A larger negative charge.",
+   "widths": [
+    300,
+    325
+   ],
+   "draws": [
+    "charge",
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-adding-fields",
+   "kind": "sim",
+   "number": "18.21",
+   "originals": [
+    "/media/ch18/Figure_19_05_04a.jpg"
+   ],
+   "original_caption": "The electric fields ${\\text{E}}_{1}$ and ${\\text{E}}_{2}$ at the origin O add to ${\\text{E}}_{\\text{tot}}$.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-two-charges",
+   "kind": "sim",
+   "number": "18.22",
+   "folds": [
+    "18.23"
+   ],
+   "originals": [
+    "/media/ch18/Figure_19_05_05a.jpg",
+    "/media/ch18/Figure_19_05_06a.jpg"
+   ],
+   "original_caption": "(Figure 18.22) Two positive point charges ${q}_{1}$ and ${q}_{2}$ produce the resultant electric field shown. The field is calculated at representative points and then smooth field lines drawn following the rules outlined in the text. (Figure 18.23) (a) Two negative charges produce the fields shown. It is very similar to the field produced by two positive charges, except that the directions are reversed. The field is clearly weaker between the charges. The individual forces on a test charge in that region are in opposite directions. (b) Two opposite charges produce the field shown, which is stronger in the region between the charges.",
+   "widths": [
+    200,
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field"
+   ]
+  },
+  {
+   "id": "fig-square-wxyz",
+   "kind": "figure",
+   "originals": [
+    "/media/ch18/image022.jpg"
+   ],
+   "original_caption": "A dashed square with four dots is shown. The dot w is in the upper left corner, x is center top, y is upper right corner and z is center bottom. A double-headed vertical line points to short horizontal lines even with the top and bottom of the grid and is on the right side.",
+   "draws": [
+    "charge"
+   ]
+  },
+  {
+   "id": "fig-three-objects",
+   "kind": "figure",
+   "originals": [
+    "/media/ch18/image025.jpg"
+   ],
+   "original_caption": "Electric field with three charged objects.",
+   "draws": [
+    "charge",
+    "electric-field"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "field-lines",
+   "concept": "electric-field-lines",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-lines",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "field-lines",
+   "concept": "field-of-point-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "field-lines",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "field-lines",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "superposition-of-electric-fields",
+   "verb": "introduces"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "add-electric-fields",
+   "verb": "introduces"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "superposition-of-coulomb-forces",
+   "verb": "introduces"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "field-of-point-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "electric-field-lines",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-charges",
+   "concept": "field-of-two-charges",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-charges",
+   "concept": "superposition-of-electric-fields",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-charges",
+   "concept": "like-charges-repel",
+   "verb": "uses"
+  },
+  {
+   "span": "two-charges",
+   "concept": "electric-field-lines",
+   "verb": "reinforces"
+  },
+  {
+   "span": "field-line-rules",
+   "concept": "field-line-properties",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-line-rules",
+   "concept": "sketch-field-lines",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-line-rules",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "field-line-rules",
+   "concept": "field-of-two-charges",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exercise-figures",
+   "concept": "superposition-of-coulomb-forces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exercise-figures",
+   "concept": "field-of-two-charges",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exercise-figures",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2679234",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "field-line-rules"
+   },
+   "cite": "field-line-rules",
+   "prompt": "Compare and contrast the Coulomb force field and the electric field. To do this, make a list of five properties for the Coulomb force field analogous to the five properties listed for electric field lines. Compare each item in your list of Coulomb force field properties with those of the electric field—are they the same or different? (For example, electric field lines cannot cross. Is the same true for Coulomb field lines?)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Draw the force on a test charge $q$ at every point instead of the field, and the map looks the same but says something different. The five properties become these. Force lines begin on positive charges and end on negative charges, or at infinity, exactly as field lines do, but which end they begin at depends on the sign of the test charge, so a negative test charge reverses every line. The number of lines leaving a charge is proportional to the magnitude of that charge, as before, but it is also proportional to the magnitude of the test charge, so the whole picture must be redrawn for a different $q$. The closeness of the lines is proportional to the strength of the force, as it was to the strength of the field. The direction of the force is tangent to the line at every point, as the field was. And force lines cannot cross either, since the total force at a point is a single vector and would otherwise have two directions at once. The difference that matters is the second and the first: the electric field is a property of the charges that make it and of nothing else, while the Coulomb force field depends on the test charge you choose to draw it for. That is why the field is the more useful map, and why $E = F/q$ was worth defining."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3034762",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "two-charges"
+   },
+   "cite": "two-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_05_07a.jpg",
+    "alt": "Five field lines represented by long arrows horizontally from left to right are shown. Two arrows diverge from other three, one arrow runs straight toward right and two arrows end abruptly."
+   },
+   "prompt": "The figure shows an electric field extending over three regions, labeled I, II, and III. Answer the following questions. (a) Are there any isolated charges? If so, in what region and what are their signs? (b) Where is the field strongest? (c) Where is it weakest? (d) Where is the field the most uniform?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) Yes. Lines begin on positive charges and end on negative ones, so wherever a line starts or stops there is a charge. Two lines end abruptly in region III, so there is negative charge there, and the two lines that diverge in region I start on positive charge in region I. (b) In region II, where the five lines run closest together, since the strength of the field is proportional to the closeness of the lines. (c) In region I above and below the middle, where the diverging lines are farthest apart. (d) In region II, where the lines are parallel and evenly spaced, which is what a uniform field looks like: the same direction and the same closeness at every point."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1522982",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding-fields",
+   "figure": {
+    "src": "/media/ch18/image016.jpg",
+    "alt": "An arrangement of three point charges: -2q and +2q positioned at the top corners, and -q situated below, forming a triangular configuration."
+   },
+   "prompt": "An electric dipole (with +2<em>q</em> and –2<em>q</em> as the two charges) is shown in the figure above. A third charge, −<em>q</em> is placed equidistant from the dipole charges. What will be the direction of the net force on the third charge?<ol type=\"a\"><li>→</li><li>←</li><li>↓</li><li>↑</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book sets no answer to this item, so what follows is a suggested approach rather than a graded one. Draw the two Coulomb forces on the third charge separately and add them as vectors. The third charge is negative, so it is attracted to the positive charge $+2q$ and repelled by the negative charge $-2q$; each force lies along the line joining the third charge to that dipole charge. Because the third charge is equidistant from the two and the two are equal in magnitude, the two forces are equal in magnitude, and their components along the line joining the dipole charges add while their components perpendicular to that line cancel. The sum therefore points parallel to the dipole axis, from the negative charge toward the positive one, which is the direction the field of the dipole points at that place. Read off the figure which of the four arrows that is."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1532965",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "figure": {
+    "src": "/media/ch18/image022.jpg",
+    "alt": "A dashed square with four dots is shown. The dot w is in the upper left corner, x is center top, y is upper right corner and z is center bottom. A double-headed vertical line points to short horizontal lines even with the top and bottom of the grid and is on the right side."
+   },
+   "prompt": "Four objects, each with charge +<em>q</em>, are held fixed on a square with sides of length <em>d</em>, as shown in the figure. Objects <em>X</em> and <em>Z</em> are at the midpoints of the sides of the square. The electrostatic force exerted by object <em>W</em> on object <em>X</em> is <em>F</em>. Use this information to answer questions 39–40.<br>What is the magnitude of force exerted by object <em>W</em> on <em>Z</em>?<ol type=\"a\"><li><em>F</em>/7</li><li><em>F</em>/5</li><li><em>F</em>/3</li><li><em>F</em>/2</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "<em>F</em>/7",
+     "<em>F</em>/5",
+     "<em>F</em>/3",
+     "<em>F</em>/2"
+    ],
+    "correct": 1,
+    "hint": "Coulomb's law falls off as the square of the separation, so compare the distance from W to Z with the distance from W to X.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2015726",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "prompt": "Four objects, each with charge +<em>q</em>, are held fixed on a square with sides of length <em>d</em>, with objects <em>X</em> and <em>Z</em> at the midpoints of the sides of the square, and the electrostatic force exerted by object <em>W</em> on object <em>X</em> is <em>F</em>. What is the magnitude of the net force exerted on object <em>X</em> by objects <em>W</em>, <em>Y</em>, and <em>Z</em>?<ol type=\"a\"><li><em>F</em>/4</li><li><em>F</em>/2</li><li>9<em>F</em>/4</li><li>3<em>F</em></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book sets no answer to this item, so what follows is a suggested approach rather than a graded one. Take the three forces on <em>X</em> one at a time and add them as vectors, which is what the total force on a charge always is. <em>W</em> and <em>Y</em> sit the same distance from <em>X</em>, one on either side along the upper side of the square, and both carry the same charge, so the two forces they exert are equal in magnitude, each of them <em>F</em>, and opposite in direction: they cancel exactly. Only the force from <em>Z</em> is left. <em>Z</em> lies directly below <em>X</em> at a distance <em>d</em>, while <em>W</em> lies beside <em>X</em> at a distance <em>d</em>/2, so by Coulomb's law the force from <em>Z</em> is smaller than <em>F</em> by the square of the ratio of those distances. Work that factor out and the net force is the force from <em>Z</em> alone, directed away from <em>Z</em>."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id953643",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "figure": {
+    "src": "/media/ch18/image025.jpg",
+    "alt": "There is a horizontal x line and vertical y line splitting each other at their centers and marked 0 at the intersection. A large white circle seems to bend dashes centered on the 0 and is marked S. To the left center of the horizontal line is a dot surrounded by a white circle marked R above the line and -d below the line. On the right center of the line is a dot surrounded by a white circle marked T above the line at the dot and d below the line around the dot. There are evenly closely spaced dashes in the entire grid except where the two small circles R and T and larger circle S are. The dashed seemed to be pushed away from the center of each circle and lines appear to form in elliptical patterns with R and T on the right and left edges of the ellipses.",
+    "caption": "Electric field with three charged objects."
+   },
+   "prompt": "The figure above represents the electric field in the vicinity of three small charged objects, <em>R</em>, <em>S</em>, and <em>T</em>. The objects have charges −<em>q</em>, +2<em>q</em>, and −<em>q</em>, respectively, and are located on the <em>x</em>-axis at −<em>d</em>, 0, and <em>d</em>. Field vectors of very large magnitude are omitted for clarity.<br>(a) i) Briefly describe the characteristics of the field diagram that indicate that the sign of the charges of objects <em>R</em> and <em>T</em> is negative and that the sign of the charge of object <em>S</em> is positive.<br>ii) Briefly describe the characteristics of the field diagram that indicate that the magnitudes of the charges of objects <em>R</em> and <em>T</em> are equal and that the magnitude of the charge of object <em>S</em> is about twice that of objects <em>R</em> and <em>T</em>.<br>For the following parts, an electric field directed to the right is defined to be positive.<br>(b) On the axes below, sketch a graph of the electric field <em>E</em> along the <em>x</em>-axis as a function of position <em>x</em>.<figure class=\"photo\"><img src=\"/media/ch18/image026.jpg\" alt=\"There is an arrow pointing up in the center of the diagram labeled E above the arrow. A horizontal ticked line shows bisects the E line and 0 marks the intersection. X is the label on the to the right of the horizontal line. –d appears below the x line about 2/3 of the length from the 0 on the left and d appears about 2/3 of the length from the 0 to the right.\"><figcaption>An Electric field (E) axis and Position (x) axis.</figcaption></figure>(c) Write an expression for the electric field <em>E</em> along the <em>x</em>-axis as a function of position <em>x</em> in the region between objects <em>S</em> and <em>T</em> in terms of <em>q</em>, <em>d</em>, and fundamental constants, as appropriate.<br>(d) Your classmate tells you there is a point between <em>S</em> and <em>T</em> where the electric field is zero. Determine whether this statement is true, and explain your reasoning using two of the representations from parts (a), (b), or (c).",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) i) Field vectors near objects point toward negatively charged objects and away from positively charged objects.<br>(a) ii) The vectors closest to <em>R</em> and <em>T</em> are about the same length and start at about the same distance. We have that ${q}_{R}/{d}^{2}={q}_{T}/{d}^{2}$, so the charge on <em>R</em> is about the same as the charge on <em>T</em>. The closest vectors around <em>S</em> are about the same length as those around <em>R</em> and <em>T</em>. The vectors near <em>S</em> start at about 6 units away, while vectors near <em>R</em> and <em>T</em> start at about 4 units. We have that ${q}_{R}/{d}^{2}={q}_{S}/{D}^{2}$, so ${q}_{S}/{q}_{R}={D}^{2}/{d}^{2}=36/16=2.25$, and so the charge on <em>S</em> is about twice that on <em>R</em> and <em>T</em>.<br>(b) <figure class=\"photo\"><img src=\"/media/ch18/image034.jpg\" alt=\"A horizontal line divides the top and bottom half of the picture. Three equally spaced vertical lines bisect the horizontal line. The lines divide the figure into eight sections, where the top first and third sections have curves. The bottom second and fourth sections also have curves.\"><figcaption>A vector diagram.</figcaption></figure>(c) $E=k\\left[-\\frac{q}{{(d+x)}^{2}}+\\frac{2q}{{x}^{2}}+\\frac{q}{{(d-x)}^{2}}\\right]$<br>(d) The statement is not true. The vector diagram shows field vectors in this region with nonzero length, and the vectors not shown have even greater lengths. The equation in part (c) shows that, when $0<x<d$, the denominator of the negative term is always greater than the denominator of the third term, but the numerator is the same. So the negative term always has a smaller magnitude than the third term and since the second term is positive the sum of the terms is always positive."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1368682",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-line-rules",
+   "prompt": "(a) Sketch the electric field lines near a point charge $+\\kq$. (b) Do the same for a point charge $-3.00\\kq$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book sets no answer to this item, so what follows is a suggested approach rather than a graded one. Both drawings are built from the five properties. (a) Draw straight lines radiating from the charge in every direction, evenly spaced, with an arrowhead on each one pointing away from the charge, since lines begin on positive charge. Use whatever number you like, say eight, and keep the spacing even so that the closeness of the lines falls off with distance in the same way the field does. (b) Draw lines that point inward, since the charge is negative and lines terminate on negative charge, and draw three times as many of them as in part (a), since the number of lines is proportional to the magnitude of the charge. The figure above this exercise draws exactly these two pictures: set the charge to $+q$ and then to $-3q$ and compare."
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1994588",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_05_08a.jpg",
+    "alt": "Field lines between a positive and a negative charge represented by curved lines is shown",
+    "caption": "The electric field near two charges."
+   },
+   "prompt": "The figure shows the electric field lines near two charges ${q}_{1}$ and ${q}_{2}$. What is the ratio of their magnitudes? (b) Sketch the electric field lines a long distance from the charges shown in the figure.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book sets no answer to this item, so what follows is a suggested approach rather than a graded one. (a) Count the lines. The number of lines leaving or entering a charge is proportional to its magnitude, so the ratio of the magnitudes is the ratio of the counts: count the lines that meet the one charge, count the lines that meet the other, and divide. (b) Far from the pair, the two charges are so close together compared with the distance that only their total charge matters. Add the two charges with their signs. If the total is not zero, the far field is that of a single point charge of that size and sign, so draw straight radial lines, as many as the total charge deserves, pointing outward for a positive total and inward for a negative one. If the two charges are equal and opposite, the total is zero and the far field falls away faster than a point charge's; the few lines that reach out that far loop back from the positive charge to the negative one."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2622925",
+   "source_section": "18.3",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding-fields",
+   "prompt": "Point charges of $5.00\\ \\mu\\text{C}$ and $-3.00\\ \\mu\\text{C}$ are placed 0.250 m apart. (a) Where can a third charge be placed so that the net force on it is zero? (b) What if both charges are positive?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.859,
+      "unit": "m beyond the negative charge, on the line joining the two charges",
+      "hint": "The net force is zero where the two Coulomb forces are equal in magnitude and opposite in direction. For charges of unlike sign that point lies outside the pair, beyond the smaller charge."
+     },
+     {
+      "part": "(b)",
+      "value": 0.109,
+      "unit": "m from the lesser charge, on the line joining the two charges",
+      "hint": "For two charges of like sign the point lies between them, nearer the smaller charge; set $k|q_1|/r_1^2 = k|q_2|/r_2^2$ with $r_1 + r_2 = 0.250$ m."
+     }
+    ],
+    "solution": "(a) 0.859 m beyond negative charge on line connecting two charges (b) 0.109 m from lesser charge on line connecting two charges"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "electric-field-lines"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-field"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "field-line-properties",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "field-line-properties"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-field-lines"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "field-of-two-charges",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "head-to-tail-method",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "superposition-of-coulomb-forces",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "head-to-tail-method",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "field-of-two-charges"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "superposition-of-electric-fields"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "electric-field-lines",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "field-of-point-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sketch-field-lines"
+  },
+  {
+   "exercise": "p1",
+   "concept": "field-line-properties",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "sketch-field-lines"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-line-properties"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-of-two-charges",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "p3",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

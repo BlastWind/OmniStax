@@ -162,6 +162,8 @@ Extra simulations (rule 15), considered and judged:
   fat bar is exactly the example's 26 g, so a second figure would only repeat
   it. Left.
 
+- 2026-09-15, figure pass (Claude Fable 5.1): both figures looked at in light and dark at every extreme; nothing to change.
+
 ## Exercises
 
 - 4 conceptual questions, `cq1` to `cq4`, Understand, none of them keyed, so

@@ -237,6 +237,17 @@ by the test of rule 14.
    1.625 and Earth's 9.80, which the step lands on exactly, and the headline
    is one capitalized sentence.
 
+Figure pass of 2026-09-14 (Claude Fable 5.1): in `sim-wagon` the wagon and its rider were a
+blob and the two children a pair of tiny sticks (Chen's item 4); the wagon is redrawn whole as an
+open bed with a rim, spoked wheels and a raised handle, the rider sits in it with a hand on the
+handle, and the two children stand behind it at full sprite size, the farther one in the muted
+ink, both leaning with their hands on the rim. The two pushes now leave from the back of the
+wagon where the hands are, on two rows above it with a faint leader down to the rim, and the
+friction is drawn on the ground at the wheels, since that is where it acts. In `sim-mower` and
+`sim-sled` the arrows floated far above their bodies; the mower's net force now leaves the deck
+and its acceleration and velocity sit just above it, and each thrust of the sled leaves its own
+rocket. `sim-mass` and `sim-weight` were looked at and left as built.
+
 ## Exercises
 
 - No Check Your Understanding box in the section. Two short conceptual

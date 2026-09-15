@@ -1,0 +1,1038 @@
+{
+ "types": [
+  {
+   "id": "voltage",
+   "label": "voltage",
+   "dimension": "V"
+  },
+  {
+   "id": "capacitance",
+   "label": "capacitance",
+   "dimension": "F"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "V_volt",
+   "latex": "V",
+   "type": "voltage",
+   "macro": "\\kV"
+  },
+  {
+   "sym": "ΔV_volt",
+   "latex": "\\Delta V",
+   "type": "voltage",
+   "macro": "\\kdV"
+  },
+  {
+   "sym": "V_A",
+   "latex": "V_{\\text{A}}",
+   "type": "voltage",
+   "macro": "\\kVA"
+  },
+  {
+   "sym": "V_B",
+   "latex": "V_{\\text{B}}",
+   "type": "voltage",
+   "macro": "\\kVB"
+  },
+  {
+   "sym": "V_AB",
+   "latex": "V_{\\text{AB}}",
+   "type": "voltage",
+   "macro": "\\kVAB"
+  },
+  {
+   "sym": "V_1volt",
+   "latex": "V_1",
+   "type": "voltage",
+   "macro": "\\kVone"
+  },
+  {
+   "sym": "V_2volt",
+   "latex": "V_2",
+   "type": "voltage",
+   "macro": "\\kVtwo"
+  },
+  {
+   "sym": "V_3volt",
+   "latex": "V_3",
+   "type": "voltage",
+   "macro": "\\kVthree"
+  },
+  {
+   "sym": "C_cap",
+   "latex": "C",
+   "type": "capacitance",
+   "macro": "\\kCap"
+  },
+  {
+   "sym": "C_air",
+   "latex": "C_{\\text{air}}",
+   "type": "capacitance",
+   "macro": "\\kCair"
+  },
+  {
+   "sym": "C_1",
+   "latex": "C_1",
+   "type": "capacitance",
+   "macro": "\\kCone"
+  },
+  {
+   "sym": "C_2",
+   "latex": "C_2",
+   "type": "capacitance",
+   "macro": "\\kCtwo"
+  },
+  {
+   "sym": "C_3",
+   "latex": "C_3",
+   "type": "capacitance",
+   "macro": "\\kCthree"
+  },
+  {
+   "sym": "C_S",
+   "latex": "C_{\\text{S}}",
+   "type": "capacitance",
+   "macro": "\\kCS"
+  },
+  {
+   "sym": "C_p",
+   "latex": "C_{\\text{p}}",
+   "type": "capacitance",
+   "macro": "\\kCp"
+  },
+  {
+   "sym": "C_tot",
+   "latex": "C_{\\text{tot}}",
+   "type": "capacitance",
+   "macro": "\\kCtot"
+  },
+  {
+   "sym": "Q_1charge",
+   "latex": "Q_1",
+   "type": "charge",
+   "macro": "\\kQchone"
+  },
+  {
+   "sym": "Q_2charge",
+   "latex": "Q_2",
+   "type": "charge",
+   "macro": "\\kQchtwo"
+  },
+  {
+   "sym": "Q_3charge",
+   "latex": "Q_3",
+   "type": "charge",
+   "macro": "\\kQchthree"
+  },
+  {
+   "sym": "E_0field",
+   "latex": "E_0",
+   "type": "electric-field",
+   "macro": "\\kEfo"
+  },
+  {
+   "sym": "E_cap",
+   "latex": "E_{\\text{cap}}",
+   "type": "energy",
+   "macro": "\\kEcap"
+  },
+  {
+   "sym": "ΔPE_cycle",
+   "latex": "\\Delta\\text{PE}_{\\text{cycle}}",
+   "type": "energy",
+   "macro": "\\kdPEcycle"
+  },
+  {
+   "sym": "ΔPE_car",
+   "latex": "\\Delta\\text{PE}_{\\text{car}}",
+   "type": "energy",
+   "macro": "\\kdPEcar"
+  },
+  {
+   "sym": "n_e",
+   "latex": "n_{\\text{e}}"
+  },
+  {
+   "sym": "ε_0",
+   "latex": "\\varepsilon_0"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "electric-potential-energy",
+   "kind": "idea",
+   "section": "19.1",
+   "name": "Electric potential energy and the work of the Coulomb force, $\\kW = -\\kdPE$",
+   "why": "The electrostatic or Coulomb force is conservative, which means that the work done on a charge is independent of the path taken, exactly as for gravity in the absence of friction. When a force is conservative, it is possible to define a potential energy associated with the force, and it is usually easier to deal with the potential energy, because it depends only on position, than to calculate the work directly. The work done by a conservative force is the negative of the change in potential energy, so work done to accelerate a positive charge from rest is positive and results from a loss in PE.",
+   "evidence": "The section opens on a charge accelerated by a field beside a mass rolling down a hill (Figure 19.2), states $W = -\\Delta\\text{PE}$ in its first box, and every later result of the chapter, from the definition of potential to the energy stored in a capacitor, is a rearrangement of it.",
+   "eq": "eq-work-and-pe"
+  },
+  {
+   "id": "electric-potential",
+   "kind": "result",
+   "section": "19.1",
+   "name": "Electric potential, $\\kV = \\kPEtot/\\kq$",
+   "why": "Calculating the work directly is generally difficult, since the direction and magnitude of the force can be complex for multiple charges, for odd-shaped objects, and along arbitrary paths. But since $F = qE$, the work, and hence the change in potential energy, is proportional to the test charge. To have a physical quantity that is independent of the test charge, the electric potential is defined to be the potential energy per unit charge, so that the dependence on the test charge cancels and $V$ does not depend on $q$.",
+   "evidence": "The definition is the section's first numbered equation and its second box, the first learning objective asks the reader to define it, and the conceptual questions ask which term, voltage or potential difference, is the more descriptive and what the relationship between voltage and energy is.",
+   "eq": "eq-electric-potential"
+  },
+  {
+   "id": "potential-difference",
+   "kind": "result",
+   "section": "19.1",
+   "name": "Potential difference and the volt, $\\kdV = \\kVB - \\kVA = \\kdPE/\\kq$",
+   "why": "Since the change in potential energy is what matters, the quantity of interest is the difference in potential between two points. The potential difference between points A and B is defined to be the change in potential energy of a charge moved from A to B, divided by the charge, and its unit, the joule per coulomb, is given the name volt after Alessandro Volta. The familiar term voltage is the common name for potential difference, and whenever a voltage is quoted it is understood to be the potential difference between two points. Voltage is not the same as energy: a motorcycle battery and a car battery can both be 12 V and yet one stores much more energy than the other.",
+   "evidence": "The definition and the volt are stated and boxed together, Example 19.1 computes the energy each of two 12.0 V batteries delivers and finds them very different, and the AP items on the AAA battery and the car battery, the conceptual questions on voltage against energy and on why voltages are measured between two points, and the summary's second bullet all turn on it.",
+   "eq": "eq-potential-difference"
+  },
+  {
+   "id": "energy-from-potential-difference",
+   "kind": "skill",
+   "section": "19.1",
+   "name": "Energy from a potential difference, $\\kdPE = \\kq\\kdV$",
+   "why": "The relationship between potential difference and electrical potential energy can be read either way: the potential difference is the change in potential energy per unit charge, and the change in potential energy is the charge times the potential difference. To find the energy a battery delivers, multiply the charge it moves by its voltage; to find the charge that moved, divide the energy by the voltage. The energies so found are absolute values, and the change in potential energy of a battery that loses energy is negative.",
+   "evidence": "Example 19.1 multiplies 5000 C and 60,000 C by 12.0 V, Example 19.2 divides 30.0 J by 12.0 V to find the charge through a headlight each second and then counts the electrons, and the problems on the defibrillator, the lightning bolt, the bottle warmer and the battery-operated car all begin by turning a voltage and a charge into an energy or back.",
+   "eq": "eq-pe-from-voltage"
+  },
+  {
+   "id": "charge-sign-and-potential",
+   "kind": "idea",
+   "section": "19.1",
+   "name": "A positive charge moves toward lower potential and a negative charge toward higher potential",
+   "why": "Downhill for the electron is uphill for a positive charge. A battery repels electrons from its negative terminal and attracts them to its positive terminal, so the negative charge moves from A to B through a change in potential of +12 V, and since the charge is negative, $\\Delta\\text{PE} = q\\Delta V$ is negative and the potential energy of the battery has decreased. In terms of potential, the positive terminal is at a higher voltage than the negative, whichever sign of charge moves.",
+   "evidence": "The paragraph after Example 19.1 works the signs through for the battery of Figure 19.3, the electron gun of Figure 19.4 notes that downhill for the electron is uphill for a positive charge, Example 19.3 enters a negative charge and a negative voltage, and 19.2's conceptual question asks whether a negative charge initially at rest moves toward higher or lower potential."
+  },
+  {
+   "id": "zero-of-potential",
+   "kind": "idea",
+   "section": "19.1",
+   "name": "The zero of potential is arbitrary, and only differences matter",
+   "why": "The point you choose to be zero volts is arbitrary, exactly as gravitational potential energy has an arbitrary zero such as sea level or a lecture hall floor. Every battery has two terminals, and its voltage is the potential difference between them; a potential quoted for a single point assumes a reference, usually infinity for a point charge or the ground for a meter, and it is the potential difference between two points that is of importance.",
+   "evidence": "19.1 states the arbitrariness beside the definition of voltage and the conceptual question asks why voltages are always measured between two points; 19.3 returns to it after the Van de Graaff example, where the reference is set at infinity and a meter would compare with ground, and 19.4's grounding fixes a conductor at zero volts."
+  },
+  {
+   "id": "electron-volt",
+   "kind": "result",
+   "section": "19.1",
+   "name": "The electron volt, $1\\ \\text{eV} = 1.60 \\times 10^{-19}\\ \\text{J}$",
+   "why": "On the submicroscopic scale the energy per particle is a tiny fraction of a joule and yet can be enough to break up organic molecules and harm living tissue, so it is convenient to define an energy unit related to submicroscopic effects. The electron volt is the energy given to a fundamental charge accelerated through a potential difference of 1 V, so that an electron accelerated through 50 V is given 50 eV and a doubly charged ion accelerated through 100 V is given 200 eV. The energy of the electron in electron volts is numerically the same as the voltage between the plates.",
+   "evidence": "The electron gun of Figure 19.4 sets the unit up, the definition is stated and boxed, the Connections box places it among the special energy units of other subjects, the problems on the helium nucleus and the 40 kV x-ray tube convert between joules and electron volts, and the conceptual question asks how volts and electron volts are related.",
+   "eq": "eq-electron-volt"
+  },
+  {
+   "id": "energy-conservation-for-charges",
+   "kind": "result",
+   "section": "19.1",
+   "name": "Conservation of energy for a charge, $\\kKEi + \\kPEi = \\kKEf + \\kPEf$",
+   "why": "The total energy of a system is conserved if there is no net addition or subtraction of work or heat transfer, and for conservative forces such as the electrostatic force, conservation of energy states that mechanical energy, the sum of the kinetic energy and the potential energy, is a constant. A loss of PE of a charged particle becomes an increase in its KE, where PE is now the electric potential energy. As many times before, considering energy gives insight and makes problems easier than following the force.",
+   "evidence": "The Conservation of Energy header states the law in both forms, Example 19.3 applies it to an electron accelerated from rest through 100 V, the AP items on the −1.00 µC charge moving between two others ask where its potential and kinetic energies are greatest, and the ratio-of-speeds problem and the paint-sprayer problem of 19.3 rest on it.",
+   "eq": "eq-energy-conservation-charge"
+  },
+  {
+   "id": "speed-from-potential-difference",
+   "kind": "skill",
+   "section": "19.1",
+   "name": "Speed of a charge accelerated through a voltage, $\\kv = \\sqrt{2\\kq\\kV/m}$",
+   "why": "With only conservative forces acting, all of the electrical potential energy of a charge accelerated from rest in a vacuum is converted into kinetic energy, so that $qV = mv^2/2$ and the final speed follows. The large final speed of an electron confirms that the gravitational force is negligible and shows how easy it is to accelerate electrons with small voltages because of their very small mass; voltages much higher than 100 V produce speeds so great that relativistic effects must be taken into account.",
+   "evidence": "Example 19.3 solves for the speed of an electron accelerated through 100 V and reaches $5.93 \\times 10^6$ m/s, the AP item asks for the speed of an electron through 10 V, the first problem asks for the ratio of speeds of an electron and a hydrogen ion, and 19.3's Unreasonable Results problem finds a speed faster than light for 25.0 MV.",
+   "eq": "eq-speed-from-voltage"
+  },
+  {
+   "id": "voltage-across-uniform-field",
+   "kind": "result",
+   "section": "19.2",
+   "name": "Voltage and field between parallel plates, $\\kVAB = \\kEf\\kd$ and $\\kEf = \\kVAB/\\kd$",
+   "why": "The relationship between potential difference and the electric field is revealed by calculating the work done by the force in moving a charge from point A to point B, which is complex for arbitrary charge distributions but simple in a uniform field. The work done by the field on a positive charge moved from the positive plate to the negative plate is $W = qV_\\text{AB}$, and since the path is parallel to the field it is also $W = qEd$; the charge cancels and the voltage between the plates is the field strength times the distance between them. Either the potential difference or the field can be used to describe any charge distribution; the potential difference is most closely tied to energy, and the field to force.",
+   "evidence": "The result is derived in the section's first five equations from Figure 19.5, boxed, and applied in Example 19.4 to the highest voltage two plates in dry air can hold and in Example 19.5 to the field in an electron gun; the problems on the cell membrane, the x-ray tube plates and the plates 1.00 cm apart all use it, and the AP items on the stacked plates and the three-plate electron gun read it as an average field.",
+   "eq": "eq-uniform-field-voltage"
+  },
+  {
+   "id": "potential-scalar-field-vector",
+   "kind": "idea",
+   "section": "19.2",
+   "name": "Potential is a scalar tied to energy; the electric field is a vector tied to force",
+   "why": "From a physicist's point of view either the potential difference or the electric field can be used to describe any charge distribution. The potential difference is most closely tied to energy and is a scalar quantity with no direction, whereas the field is most closely related to force and is a vector having both magnitude and direction. The distinction matters when several charges act: voltages are added as numbers, whereas fields must be added as vectors.",
+   "evidence": "19.2's opening paragraph draws the distinction and the glossary defines scalar and vector there; 19.3 recalls it when it compares the potential and the field of a point charge and states that the voltage due to a combination of point charges is found by adding the individual voltages as numbers, while the total field is found by adding the fields as vectors."
+  },
+  {
+   "id": "volts-per-meter",
+   "kind": "result",
+   "section": "19.2",
+   "name": "Units of the electric field, $1\\ \\text{N/C} = 1\\ \\text{V/m}$",
+   "why": "The relation $E = V_\\text{AB}/d$ implies that the units for electric field are volts per meter, and the units already known from the definition of the field are newtons per coulomb, so the two must be the same unit. Which of the two is written depends on whether the field is being read from a force or from a voltage; the force on a charge in Example 19.5 comes out in newtons because 1 V/m is 1 N/C.",
+   "evidence": "The identity is stated as the section's sixth equation, the discussion of Example 19.5 rests on it, and the first problem of the section asks the reader to show that the two units are indeed equivalent.",
+   "eq": "eq-field-units"
+  },
+  {
+   "id": "dielectric-breakdown-of-air",
+   "kind": "idea",
+   "section": "19.2",
+   "name": "Dry air breaks down at about $3.0 \\times 10^{6}$ V/m, which limits the voltage across a gap",
+   "why": "Dry air will support a maximum electric field strength of about $3.0 \\times 10^6$ V/m; above that value the field creates enough ionization in the air to make the air a conductor, allowing a discharge or spark that reduces the field. It therefore takes about 75 kV to make a spark jump across a 2.5 cm gap, which limits the voltages that can exist between conductors, perhaps on a power transmission line. Points on a surface create greater fields than smooth surfaces and so spark at a smaller voltage, and humid air breaks down at a lower field strength than dry.",
+   "evidence": "Example 19.4 computes the maximum voltage between plates 2.5 cm apart, the spark chamber of Figure 19.6 follows it, the problems on the 2.00 mm gap and the 0.500 cm gap ask whether the breakdown strength is exceeded and how close the plates can be, and 19.5 returns to it as the dielectric strength of air."
+  },
+  {
+   "id": "field-is-potential-gradient",
+   "kind": "result",
+   "section": "19.2",
+   "name": "The field is the gradient of the potential, $\\kEf = -\\kdV/\\kds$",
+   "why": "In more general situations, whether or not the electric field is uniform, it points in the direction of decreasing potential, because the force on a positive charge is in the direction of the field and also in the direction of lower potential. Furthermore, the magnitude of the field equals the rate of decrease of the potential with distance: the faster the potential decreases over distance, the greater the field. The minus sign says that the field points toward decreasing potential, and for continually changing potentials the differences become infinitesimals and differential calculus must be employed.",
+   "evidence": "The general relationship is stated, boxed and restated in the summary, the AP item on six 5.0 V isolines across a 40 cm path reads an average field from it, the conceptual questions ask how potential difference and field strength are related and what the field is where the potential is constant, and 19.4 rests its perpendicularity of equipotentials and field lines on it.",
+   "eq": "eq-field-gradient"
+  },
+  {
+   "id": "potential-of-point-charge",
+   "kind": "result",
+   "section": "19.3",
+   "name": "Electric potential of a point charge, $\\kV = k\\kQch/\\kr$",
+   "why": "Point charges such as electrons are among the fundamental building blocks of matter, and spherical charge distributions create external fields exactly like a point charge, so the potential due to a point charge is a case that must be considered. Using calculus to find the work needed to move a test charge from a large distance away to a distance $r$ from a point charge, and noting that $W = -q\\Delta V$, it can be shown that the potential is $kQ/r$, with the potential at infinity chosen to be zero. A negative value means a positive charge would be attracted from a larger distance, since the potential there is lower than at larger distances.",
+   "evidence": "The equation is stated and boxed at the head of the section, Example 19.6 finds −539 V near a charged sphere and Example 19.7 finds the charge on a Van de Graaff generator from its 100 kV, and every problem of the section, from the plastic sphere to the fission fragment, the paint sprayer and the alpha particle, evaluates or inverts it.",
+   "eq": "eq-point-charge-potential"
+  },
+  {
+   "id": "potential-versus-field-of-point-charge",
+   "kind": "idea",
+   "section": "19.3",
+   "name": "The potential of a point charge falls as $1/r$ where its field falls as $1/r^2$",
+   "why": "The potential of a point charge decreases with distance, whereas the field of a point charge decreases with distance squared, since the field is the force per unit charge and Coulomb's law is an inverse square law. The two describe the same charge in two ways, and the difference in their fall-off is the difference between an energy per charge, which accumulates over the whole path in from infinity, and a force per charge, which acts at one point.",
+   "evidence": "The section states the field of a point charge directly under the potential so that the two can be compared, and the problem on the potential between points 10 cm and 20 cm from a charge, and where the far point must move to double that difference, tests the $1/r$ fall-off on its own.",
+   "eq": "eq-point-charge-field"
+  },
+  {
+   "id": "superposition-of-potential",
+   "kind": "result",
+   "section": "19.3",
+   "name": "Potentials add as numbers; fields add as vectors",
+   "why": "To find the voltage due to a combination of point charges, add the individual voltages as numbers. To find the total electric field, add the individual fields as vectors, taking magnitude and direction into account. This is consistent with the fact that the potential is closely associated with energy, a scalar, whereas the field is closely associated with force, a vector, and it is what makes the potential the easier quantity to work with when several charges are present.",
+   "evidence": "The rule is stated in the section's third paragraph and repeated in the summary's second bullet, and the AP items held from 19.1 on the potential energy of two and three point charges and of a square of charges are answered by summing potentials one pair at a time."
+  },
+  {
+   "id": "sphere-potential-as-point-charge",
+   "kind": "idea",
+   "section": "19.3",
+   "name": "Outside a charged sphere the potential is that of a point charge at its center",
+   "why": "Charge on a metal sphere spreads out uniformly and produces a field like that of a point charge located at its center, so the potential on the surface and outside the sphere is that of an equal point charge at the center, and the potential near the surface is read at the sphere's radius. That is why a Van de Graaff terminal's voltage is fixed by its charge and its radius, and why it is difficult to store isolated charge: a relatively small charge produces a rather large voltage.",
+   "evidence": "Examples 19.6 and 19.7 both treat a metal sphere as a point charge at its center, Figure 19.7 draws the Van de Graaff generator with its voltmeter, and the conceptual questions ask in what region the potential of a uniformly charged sphere is the same as a point charge's and whether a non-uniformly charged sphere can share it; the problems on the 1.00 C sphere, the research Van de Graaff and 19.1's Unreasonable Results sphere apply it."
+  },
+  {
+   "id": "potential-energy-of-point-charges",
+   "kind": "skill",
+   "section": "19.3",
+   "name": "Potential energy of two point charges, $\\kPEtot = \\kq\\kV = k\\kq\\kQch/\\kr$",
+   "why": "The potential energy of a pair of point charges is found by taking the potential of one at the position of the other and multiplying by the second charge, since the potential is the potential energy per unit charge. The energy of a system of several charges is the sum over every pair, and it is negative for unlike charges, which attract, and positive for like charges, which repel; bringing like charges closer raises it and bringing unlike charges closer lowers it.",
+   "evidence": "19.1's fusion problem states the method in so many words, the fission-fragment problem asks for the energy of a similarly charged fragment at $2.00 \\times 10^{-14}$ m, the alpha-particle problem inverts it to find the distance of closest approach to a gold nucleus, and the seven AP items held from 19.1 on the internal energy of two, three and four point charges test it directly."
+  },
+  {
+   "id": "equipotential-lines",
+   "kind": "idea",
+   "section": "19.4",
+   "name": "Equipotential lines and equipotential surfaces",
+   "why": "Electric potentials can be represented pictorially, just as electric fields are drawn with field lines. Lines along which the electric potential is constant are called equipotential lines in two dimensions, or equipotential surfaces in three; the term equipotential is also used as a noun. The potential of a point charge is the same anywhere on a sphere of radius $r$ surrounding the charge, since it is given by $kQ/r$, so an equipotential surface of a point charge is a sphere and, in the plane, a circle. No work is required to move a charge anywhere along one of these lines, and work is needed to move a charge from one equipotential to another.",
+   "evidence": "Figure 19.8 draws the circles round an isolated point charge, the term is defined there and in the glossary, the summary's first two bullets restate it, and the conceptual questions ask what an equipotential line and surface are and whether different equipotential lines can cross."
+  },
+  {
+   "id": "equipotentials-perpendicular-to-field",
+   "kind": "result",
+   "section": "19.4",
+   "name": "Equipotential lines are perpendicular to electric field lines, since $\\kW = -\\kq\\kdV = 0$ along one",
+   "why": "No work is required to move a charge along an equipotential, since the potential difference along it is zero, and work is zero only if the force is perpendicular to the motion. The force on a charge is in the direction of the field, so motion along an equipotential must be perpendicular to the field: with neither the charge, the field nor the distance zero, the cosine of the angle between them must vanish and the angle must be 90°. The rule holds in every case, and it is what lets the equipotential lines be drawn from the field lines and the field lines from the equipotentials.",
+   "evidence": "The two equations of the section derive it, the caption of Figure 19.8 and the summary's third bullet state it, the conceptual question asks the reader to explain it in their own words, and the AP item on the work needed to keep a positive charge in orbit round a negative one is answered by noticing that the orbit is an isoline.",
+   "eq": "eq-work-along-equipotential"
+  },
+  {
+   "id": "conductor-is-equipotential",
+   "kind": "idea",
+   "section": "19.4",
+   "name": "A conductor is an equipotential surface in static situations",
+   "why": "One of the rules for static electric fields and conductors is that the electric field must be perpendicular to the surface of any conductor, and since equipotentials are perpendicular to the field, a conductor is an equipotential surface in static situations. There can be no voltage difference across the surface of a conductor, or charges would flow. Because a conductor is an equipotential it can replace any equipotential surface: a charged spherical conductor can replace the point charge at the center of its equipotential spheres and leave the field and the potential outside unchanged, and conducting plates placed at the equipotential lines between two plates would maintain the same field.",
+   "evidence": "The paragraph on conductors states the rule and uses it to explain grounding, the paragraph after it replaces the point charge of Figure 19.8 by a charged sphere, the caption of Figure 19.11 says the same field could be maintained by plates at the equipotentials, and the AP item on two plates at right angles asks for the equipotentials of a system of conductors."
+  },
+  {
+   "id": "sketch-equipotentials",
+   "kind": "skill",
+   "section": "19.4",
+   "name": "Draw equipotential lines from field lines, and field lines from equipotentials",
+   "why": "Given the electric field lines, the equipotential lines can be drawn simply by making them perpendicular to the field lines; conversely, given the equipotential lines, as might be measured with a voltmeter in a laboratory experiment, the field lines can be drawn by making them perpendicular to the equipotentials. The potential is greatest near a positive charge and least near a negative one, so the direction of increasing potential can be marked as well, and the field lines point from higher to lower potential.",
+   "evidence": "Figure 19.9 draws both sets of lines for two equal and opposite charges, Figure 19.10 starts from measured equipotentials and draws the field lines of two equal negative charges, the AP items ask how Figure 19.10 would change with positive charges and which of the two figures resembles the gravitational field between two masses, and every problem of the section asks for a sketch of the equipotentials of a given arrangement."
+  },
+  {
+   "id": "equipotential-spacing-and-field",
+   "kind": "idea",
+   "section": "19.4",
+   "name": "Closely spaced equipotentials mean a strong field; between parallel plates they are evenly spaced and parallel",
+   "why": "Between two parallel conducting plates the equipotentials are evenly spaced and parallel, because the field is uniform and the potential falls at a constant rate across the gap. Where the field is stronger the potential changes faster with distance, so equipotentials drawn at equal steps of voltage crowd together; where it is weaker they spread apart. As the isolines of potential get closer together the field gets stronger, as a hill is steeper where the contours of gravitational potential crowd.",
+   "evidence": "Figure 19.11 draws the evenly spaced equipotentials between two plates at 100 V steps, the AP item on six 5.0 V isolines across a 40 cm path and the one on what happens to the isolines between plates as their separation changes, both held from 19.2, test the spacing, and the AP item on the shape of a hill whose isolines crowd makes the gravitational analogy explicit."
+  },
+  {
+   "id": "capacitor",
+   "kind": "idea",
+   "section": "19.5",
+   "name": "A capacitor stores separated charge, $+Q$ and $-Q$, on two conductors",
+   "why": "A capacitor is a device used to store electric charge, with applications ranging from filtering static out of radio reception to energy storage in heart defibrillators. Typically a commercial capacitor has two conducting parts close to one another but not touching, usually with an insulator between them. When battery terminals are connected to an initially uncharged capacitor, equal amounts of positive and negative charge are separated onto its two plates; the capacitor remains neutral overall, but it is said to store a charge $Q$. The amount of charge it can store depends on the voltage applied and on its physical characteristics, such as its size.",
+   "evidence": "Figure 19.12 draws a parallel plate capacitor and a rolled capacitor on a battery, the two boxes at the head of the section define the device and what its stored charge depends on, Figure 19.14 shows typical capacitors, and the conceptual question on whether the stored charge depends on the applied voltage and the membrane question that reads a cell as a charged capacitor test the idea."
+  },
+  {
+   "id": "capacitance",
+   "kind": "result",
+   "section": "19.5",
+   "name": "Capacitance, $\\kCap = \\kQch/\\kV$, and the farad",
+   "why": "Each field line in a parallel plate capacitor starts on a positive charge and ends on a negative one, so the field strength is proportional to the charge, and since the voltage across parallel plates is $V = Ed$ the voltage is proportional to the charge too; this is true in general, and the greater the voltage applied to any capacitor, the greater the charge stored in it. Different capacitors store different charges for the same voltage, and their capacitance is defined so that the charge stored is proportional to it: capacitance is the amount of charge stored per volt. Its unit, the farad, is a coulomb per volt, which is a very large capacitance, and typical capacitors run from picofarads to millifarads.",
+   "evidence": "The chain from $E \\propto Q$ to $Q = CV$ is the section's first four equations, the definition is boxed, the farad follows, Example 19.8 finds the charge a 3.00 kV capacitor stores, and the problems on the 180 µF, 8.00 pF, 2.00 µF and 8.00 nF capacitors and the Van de Graaff terminal each turn one of the three quantities into another.",
+   "eq": "eq-capacitance"
+  },
+  {
+   "id": "parallel-plate-capacitance",
+   "kind": "result",
+   "section": "19.5",
+   "name": "Capacitance of a parallel plate capacitor, $\\kCap = \\varepsilon_0 A/\\kd$",
+   "why": "A parallel plate capacitor is two identical conducting plates of area $A$ separated by a distance $d$. Since like charges repel, unlike charges attract and the force between charges decreases with distance, the bigger the plates the more charge they can store, because the charges can spread out more, and the closer the plates the greater the attraction of the opposite charges on them; so the capacitance should grow with the area and shrink with the separation, and it can be shown that these are the only two factors. The constant is the permittivity of free space, $8.85 \\times 10^{-12}$ F/m, whose small value is related to the large size of the farad: a parallel plate capacitor must have a large area to approach a farad.",
+   "evidence": "The result is argued from the Coulomb force under Figure 19.15, stated and boxed, and applied in Example 19.8 to plates of 1.00 m² separated by 1.00 mm; the AP items on doubling the separation, growing the plates and the student's unlabelled table test its scaling, and the conceptual question asks the reader to explain the two proportionalities from the Coulomb force.",
+   "eq": "eq-parallel-plate-capacitance"
+  },
+  {
+   "id": "dielectric",
+   "kind": "idea",
+   "section": "19.5",
+   "name": "A dielectric between the plates lets the separation be small and withstands a larger field than air",
+   "why": "If the separation is made smaller to produce a larger capacitance, the maximum voltage must be reduced proportionally to avoid breakdown, since $E = V/d$. An important solution to this difficulty is to put an insulating material, called a dielectric, between the plates and allow the separation to be as small as possible: not only does the smaller separation make the capacitance greater, but many insulators can withstand greater electric fields than air before breaking down. Water has a large dielectric constant but is rarely used, and humid air sparks at a lower voltage than dry.",
+   "evidence": "The Dielectric header opens with the difficulty Example 19.8 raised and the two benefits of a dielectric, the Take-Home Experiment builds a capacitor from a gum wrapper, and the conceptual questions ask why a dielectric raises the capacitance and independently allows a greater voltage, why water is rarely used, and why humid air sparks sooner."
+  },
+  {
+   "id": "capacitance-with-dielectric",
+   "kind": "result",
+   "section": "19.5",
+   "name": "Capacitance with a dielectric, $\\kCap = \\kappa\\varepsilon_0 A/\\kd$",
+   "why": "Depending on the material used, the capacitance with a dielectric between the plates is greater than that of the same plates in vacuum by a factor $\\kappa$, called the dielectric constant. The constant for vacuum is exactly 1 and for air very close to it, so air-filled capacitors act much like those with vacuum between their plates except that air can become conductive if the field grows too great; Teflon's is 2.1, water's 80 and strontium titanate's 233. The same capacitor filled with Teflon has a greater capacitance and can be subjected to a much greater voltage, and so stores 42 times the charge.",
+   "evidence": "The equation is stated with Table 19.1's dielectric constants, the Teflon-filled version of Example 19.8's capacitor is worked in the text, the problems on Teflon, neoprene and nylon between plates evaluate it, and the AP item asks for an experiment to measure the relative permittivities of various materials.",
+   "eq": "eq-parallel-plate-dielectric"
+  },
+  {
+   "id": "dielectric-strength",
+   "kind": "idea",
+   "section": "19.5",
+   "name": "Dielectric strength limits the voltage a capacitor can take for a given separation",
+   "why": "The maximum electric field strength above which an insulating material begins to break down and conduct is called its dielectric strength. Since the field between parallel plates is the voltage over the separation, the dielectric strength imposes a limit on the voltage that can be applied for a given plate separation: for 1.00 mm of air the limit is 3000 V, and for 1.00 mm of Teflon, whose strength is $60 \\times 10^6$ V/m, it is 60,000 V.",
+   "evidence": "Table 19.1 lists the strengths beside the constants, the voltage limits for air and Teflon at 1.00 mm are worked in the text, the Dielectric Strength box and the glossary define the term, and the Unreasonable Results problem finds a voltage more than 100 times nylon's breakdown voltage."
+  },
+  {
+   "id": "dielectric-polarization",
+   "kind": "idea",
+   "section": "19.5",
+   "name": "Polarization of the dielectric reduces the field inside the capacitor and raises its capacitance, $\\kappa = \\kEfo/\\kEf$",
+   "why": "Microscopically, a dielectric increases capacitance because it is polarized: the more easily its molecules are polarized, the greater its dielectric constant. The Coulomb force between the closest ends of the polarized molecules and the charge on the plates is attractive and very strong, since they are very close together, and it attracts more charge onto the plates than if the space were empty. Seen the other way, the field lines end on the surface charges of the dielectric, so fewer of them cross from one plate to the other, the field inside is less than in vacuum for the same charge, the voltage $V = Ed$ is smaller for the same charge, and since $C = Q/V$ the capacitance is greater. The dielectric constant is generally defined as the ratio of the field in vacuum to the field in the material, and it is intimately related to the polarizability of the material. An atom polarizes because its electron cloud is shifted by the external charges, and a polar molecule such as water carries an inherent separation of charge and so polarizes more readily.",
+   "evidence": "Figure 19.16 draws the polarized molecules and the reduced field in its two panels, the two paragraphs after it give both accounts, the Things Great and Small box and Figures 19.17 and 19.18 show the polarized atom and the water molecule, and the conceptual questions ask the reader to give the reason a dielectric increases capacitance and how the polar character of water explains its large dielectric constant.",
+   "eq": "eq-dielectric-constant"
+  },
+  {
+   "id": "equivalent-capacitance",
+   "kind": "idea",
+   "section": "19.6",
+   "name": "Several capacitors connected together act as one equivalent capacitor",
+   "why": "Several capacitors may be connected together in a variety of applications, and multiple connections of capacitors act like a single equivalent capacitor whose total capacitance depends both on the individual capacitors and on how they are connected. There are two simple and common types of connection, series and parallel, for which the total capacitance is easily calculated, and certain more complicated connections can be related to combinations of the two.",
+   "evidence": "The section's opening paragraph states the idea, each of Figures 19.20, 19.21 and 19.22 draws the equivalent capacitor beside the combination it replaces, and the problems on the capacitor bank of 1.50 mF units and on the two capacitances a 5.00 µF and an 8.00 µF capacitor can make together test it."
+  },
+  {
+   "id": "series-capacitance",
+   "kind": "result",
+   "section": "19.6",
+   "name": "Total capacitance in series, $1/\\kCS = 1/\\kCone + 1/\\kCtwo + 1/\\kCthree + \\ldots$",
+   "why": "When a voltage is applied across a series connection of capacitors, opposite charges of magnitude $Q$ flow to either side of the originally uncharged combination, and conservation of charge requires equal-magnitude charges on the plates of each individual capacitor, since charge is only being separated in these originally neutral devices. The voltages across the individual capacitors are $Q/C_1$, $Q/C_2$ and $Q/C_3$, and the total voltage is their sum; writing the total as $Q/C_\\text{S}$ and cancelling the charge gives the sum of reciprocals. The combination resembles a single capacitor with an effective plate separation greater than any of the individual ones, so the total capacitance in series is less than any of the individual capacitances.",
+   "evidence": "The result is derived in four equations from Figure 19.20, boxed, and worked in Example 19.9 for 1.000, 5.000 and 8.000 µF, where the total is less than the smallest; the problems on the 0.750 F bank, the two capacitors that make 3.08 µF in series, and the negative capacitance of the Unreasonable Results item all rest on it.",
+   "eq": "eq-series-capacitance"
+  },
+  {
+   "id": "parallel-capacitance",
+   "kind": "result",
+   "section": "19.6",
+   "name": "Total capacitance in parallel, $\\kCp = \\kCone + \\kCtwo + \\kCthree + \\ldots$",
+   "why": "In a parallel connection the voltage across each capacitor is the same as that of the source, since each is connected directly to it through a conductor and conductors are equipotentials, so each capacitor holds the charge it would hold alone. The total charge is the sum of the individual charges, $C_\\text{p}V = C_1V + C_2V + C_3V$, and cancelling the voltage gives the total capacitance in parallel as simply the sum of the individual capacitances. The equivalent capacitor has an effectively larger plate area and so a larger capacitance.",
+   "evidence": "The result is derived in three equations from Figure 19.21, boxed, and evaluated for the same three capacitors as 14.000 µF; Example 19.10 and the three circuit problems combine it with the series rule, and 19.7's problem on a 2.00 µF and a 7.40 µF capacitor on a 9.00 V battery compares the charge and energy of the two connections.",
+   "eq": "eq-parallel-capacitance"
+  },
+  {
+   "id": "reduce-series-parallel-combinations",
+   "kind": "skill",
+   "section": "19.6",
+   "name": "Reduce a mixed circuit by identifying its series and parallel parts",
+   "why": "More complicated connections of capacitors can sometimes be combinations of series and parallel. To find the total capacitance of such a combination, identify the series and parallel parts, compute their capacitances, and then find the total: two capacitors in series are replaced by their series capacitance, which is then in parallel with a third, and the technique of analyzing the combination piece by piece until a total is obtained can be applied to larger combinations.",
+   "evidence": "Figure 19.22 reduces one circuit in three panels, Example 19.10 works it to 8.833 µF, the summary's third bullet states the procedure, and three of the section's problems give a circuit drawing and ask for its total capacitance."
+  },
+  {
+   "id": "capacitor-energy",
+   "kind": "result",
+   "section": "19.7",
+   "name": "Energy stored in a capacitor, $\\kEcap = \\kQch\\kV/2 = \\kCap\\kV^2/2 = \\kQch^2/2\\kCap$",
+   "why": "Energy stored in a capacitor is electrical potential energy and is related to the charge and voltage on the capacitor, but $\\Delta\\text{PE} = q\\Delta V$ must be applied with care, because the capacitor starts with zero voltage and comes up to its full voltage as it is charged. The average voltage during charging is half the final voltage, so the energy stored is half the product of the charge and the voltage, not the whole product, and since $Q = CV$ the same energy can be written in terms of any two of the charge, the voltage and the capacitance. The energy is in joules for a charge in coulombs, a voltage in volts and a capacitance in farads.",
+   "evidence": "The three forms are derived, stated and boxed, Example 19.11 finds the 8.00 µF of a defibrillator that delivers 400 J at 10.0 kV, the AP items on the 1.00 m² capacitor at 3.00 kV and at 30.0 µC evaluate two of the forms, and the problems on the two defibrillators, the motor capacitor, the bookcase shelves and the truck-starting capacitor use all three.",
+   "eq": "eq-capacitor-energy"
+  },
+  {
+   "id": "average-voltage-while-charging",
+   "kind": "idea",
+   "section": "19.7",
+   "name": "The voltage across a capacitor rises from zero as it charges, so the average voltage the charge passes through is $V/2$",
+   "why": "The first charge placed on a capacitor experiences a change in voltage of zero, since the capacitor has zero voltage when uncharged, and the final charge experiences the full voltage, since the capacitor now has its full voltage on it. The voltage rises in proportion to the charge, so the average voltage on the capacitor during the charging process is half the final voltage, and that is the voltage the full charge is to be taken as having passed through. This is why the energy is $QV/2$ and not $QV$.",
+   "evidence": "The paragraph that introduces the energy reasons through the first and the last charge placed on the capacitor and the average between them, and the parenthesis after the first equation warns that the energy is not $QV$; the AP items on what happens to the stored energy when the plate area grows at fixed voltage and at fixed charge turn on which quantity is held while the other changes."
+  },
+  {
+   "id": "capacitor-energy-applications",
+   "kind": "idea",
+   "section": "19.7",
+   "name": "Capacitors supply stored energy in a burst: defibrillators, calculator memory and camera flashes",
+   "why": "The energy delivered by a defibrillator is stored in a capacitor and can be adjusted to fit the situation, and the delivery of a large charge in a short burst to a set of paddles across a person's chest can terminate the fast, irregular beating of cardiac or ventricular fibrillation and allow the body's pacemaker to resume normal patterns. Automated external defibrillators found in many public places diagnose the patient's heart condition and apply the shock with appropriate energy and waveform. Less dramatically, capacitors in microelectronics supply energy when batteries are changed, and they supply the energy for flash lamps on cameras.",
+   "evidence": "The section opens on the defibrillator scene and the calculator's capacitor of Figure 19.23, the paragraph on fibrillation and Figure 19.24 describe the AED, the first learning objective asks the reader to list some uses of capacitors, the summary's first bullet lists them, and the Construct Your Own Problem item and the open-heart-surgery problem are set on the defibrillator."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "conservative-force"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "path-independence-of-gravity"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "work"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "electric-potential",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "electric-potential",
+   "prereq": "test-charge"
+  },
+  {
+   "concept": "electric-potential",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "electric-potential",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "potential-difference",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "potential-difference",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "potential-difference",
+   "prereq": "joule"
+  },
+  {
+   "concept": "potential-difference",
+   "prereq": "pe-reference-level"
+  },
+  {
+   "concept": "energy-from-potential-difference",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "energy-from-potential-difference",
+   "prereq": "count-charges-from-charge"
+  },
+  {
+   "concept": "energy-from-potential-difference",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "charge-sign-and-potential",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "charge-sign-and-potential",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "charge-sign-and-potential",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "charge-sign-and-potential",
+   "prereq": "electric-field-direction"
+  },
+  {
+   "concept": "zero-of-potential",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "zero-of-potential",
+   "prereq": "pe-reference-level"
+  },
+  {
+   "concept": "electron-volt",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "electron-volt",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "electron-volt",
+   "prereq": "joule"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "mechanical-energy"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "conservation-of-mechanical-energy"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "pe-to-ke"
+  },
+  {
+   "concept": "speed-from-potential-difference",
+   "prereq": "energy-conservation-for-charges"
+  },
+  {
+   "concept": "speed-from-potential-difference",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "speed-from-potential-difference",
+   "prereq": "speed-from-work-energy"
+  },
+  {
+   "concept": "speed-from-potential-difference",
+   "prereq": "solve-with-mechanical-energy"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "calculate-work"
+  },
+  {
+   "concept": "potential-scalar-field-vector",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "potential-scalar-field-vector",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "potential-scalar-field-vector",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "potential-scalar-field-vector",
+   "prereq": "vector"
+  },
+  {
+   "concept": "volts-per-meter",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "volts-per-meter",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "dielectric-breakdown-of-air",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "dielectric-breakdown-of-air",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "dielectric-breakdown-of-air",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "field-is-potential-gradient",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "field-is-potential-gradient",
+   "prereq": "electric-field-direction"
+  },
+  {
+   "concept": "field-is-potential-gradient",
+   "prereq": "charge-sign-and-potential"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "coulomb-constant"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "zero-of-potential"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "field-of-point-charge"
+  },
+  {
+   "concept": "potential-versus-field-of-point-charge",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "potential-versus-field-of-point-charge",
+   "prereq": "field-of-point-charge"
+  },
+  {
+   "concept": "potential-versus-field-of-point-charge",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "superposition-of-potential",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "superposition-of-potential",
+   "prereq": "potential-scalar-field-vector"
+  },
+  {
+   "concept": "superposition-of-potential",
+   "prereq": "superposition-of-electric-fields"
+  },
+  {
+   "concept": "superposition-of-potential",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "sphere-potential-as-point-charge",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "sphere-potential-as-point-charge",
+   "prereq": "excess-charge-on-surface"
+  },
+  {
+   "concept": "sphere-potential-as-point-charge",
+   "prereq": "van-de-graaff-generator"
+  },
+  {
+   "concept": "potential-energy-of-point-charges",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "potential-energy-of-point-charges",
+   "prereq": "superposition-of-potential"
+  },
+  {
+   "concept": "potential-energy-of-point-charges",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "potential-energy-of-point-charges",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "equipotential-lines",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "equipotential-lines",
+   "prereq": "electric-field-lines"
+  },
+  {
+   "concept": "equipotential-lines",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "equipotential-lines"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "field-is-potential-gradient"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "calculate-work"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "equipotentials-perpendicular-to-field"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "field-perpendicular-to-conductor"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "electrostatic-equilibrium"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "grounding"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "excess-charge-on-surface"
+  },
+  {
+   "concept": "sketch-equipotentials",
+   "prereq": "equipotentials-perpendicular-to-field"
+  },
+  {
+   "concept": "sketch-equipotentials",
+   "prereq": "sketch-field-lines"
+  },
+  {
+   "concept": "sketch-equipotentials",
+   "prereq": "field-of-two-charges"
+  },
+  {
+   "concept": "sketch-equipotentials",
+   "prereq": "charge-sign-and-potential"
+  },
+  {
+   "concept": "equipotential-spacing-and-field",
+   "prereq": "equipotential-lines"
+  },
+  {
+   "concept": "equipotential-spacing-and-field",
+   "prereq": "field-is-potential-gradient"
+  },
+  {
+   "concept": "equipotential-spacing-and-field",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "equipotential-spacing-and-field",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "capacitance",
+   "prereq": "capacitor"
+  },
+  {
+   "concept": "capacitance",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "capacitance",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "capacitance",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "parallel-plate-capacitance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "parallel-plate-capacitance",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "parallel-plate-capacitance",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "parallel-plate-capacitance",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "dielectric",
+   "prereq": "parallel-plate-capacitance"
+  },
+  {
+   "concept": "dielectric",
+   "prereq": "dielectric-breakdown-of-air"
+  },
+  {
+   "concept": "dielectric",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "capacitance-with-dielectric",
+   "prereq": "parallel-plate-capacitance"
+  },
+  {
+   "concept": "capacitance-with-dielectric",
+   "prereq": "dielectric"
+  },
+  {
+   "concept": "dielectric-strength",
+   "prereq": "dielectric"
+  },
+  {
+   "concept": "dielectric-strength",
+   "prereq": "dielectric-breakdown-of-air"
+  },
+  {
+   "concept": "dielectric-strength",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "capacitance-with-dielectric"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "polarization"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "polar-molecule"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "equivalent-capacitance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "series-capacitance",
+   "prereq": "equivalent-capacitance"
+  },
+  {
+   "concept": "series-capacitance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "series-capacitance",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "series-capacitance",
+   "prereq": "parallel-plate-capacitance"
+  },
+  {
+   "concept": "parallel-capacitance",
+   "prereq": "equivalent-capacitance"
+  },
+  {
+   "concept": "parallel-capacitance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "parallel-capacitance",
+   "prereq": "conductor-is-equipotential"
+  },
+  {
+   "concept": "parallel-capacitance",
+   "prereq": "parallel-plate-capacitance"
+  },
+  {
+   "concept": "reduce-series-parallel-combinations",
+   "prereq": "series-capacitance"
+  },
+  {
+   "concept": "reduce-series-parallel-combinations",
+   "prereq": "parallel-capacitance"
+  },
+  {
+   "concept": "capacitor-energy",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "capacitor-energy",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "capacitor-energy",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "capacitor-energy",
+   "prereq": "work-as-area"
+  },
+  {
+   "concept": "average-voltage-while-charging",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "average-voltage-while-charging",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "capacitor-energy-applications",
+   "prereq": "capacitor-energy"
+  },
+  {
+   "concept": "capacitor-energy-applications",
+   "prereq": "capacitor"
+  }
+ ]
+}

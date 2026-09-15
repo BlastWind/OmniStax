@@ -26,12 +26,15 @@ function panel(ctx, l, t, r, b) { ctx.save(); ctx.strokeStyle = PAL.rule; ctx.li
 /* ---------- sprites, in ink ---------- */
 /* a swimmer lying in the water, head to the left and feet to the right; kick swings the legs */
 function swimmerSprite(ctx, x, y, color, kick) {
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 6;
-  ctx.beginPath(); ctx.arc(x - 52, y - 8, 13, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(x - 40, y - 2); ctx.lineTo(x + 44, y + 2);
-  ctx.moveTo(x - 40, y - 2); ctx.lineTo(x - 94, y - 20);
-  ctx.moveTo(x + 44, y + 2); ctx.lineTo(x + 80, y - 14 + kick);
-  ctx.moveTo(x + 44, y + 2); ctx.lineTo(x + 80, y + 20 - kick); ctx.stroke(); ctx.restore();
+  /* a filled torso, the head ahead of it, both arms stretched out in front and the legs behind */
+  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 6; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.arc(x - 58, y - 10, 13, 0, TAU); ctx.fill();
+  ctx.lineWidth = 16; ctx.beginPath(); ctx.moveTo(x - 40, y - 2); ctx.lineTo(x + 36, y + 2); ctx.stroke();
+  ctx.lineWidth = 6; ctx.beginPath();
+  ctx.moveTo(x - 40, y - 8); ctx.lineTo(x - 104, y - 24);
+  ctx.moveTo(x - 40, y + 4); ctx.lineTo(x - 100, y - 4);
+  ctx.moveTo(x + 36, y - 3); ctx.lineTo(x + 84, y - 14 + kick);
+  ctx.moveTo(x + 36, y + 7); ctx.lineTo(x + 84, y + 20 - kick); ctx.stroke(); ctx.restore();
 }
 /* a cart of demonstration equipment standing on the floor at y, its handle to the left */
 function cartSprite(ctx, x, y, color) {

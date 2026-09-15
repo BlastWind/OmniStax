@@ -6,7 +6,7 @@
    gyroscope), the chapter's one, argued in plan.md under root rule 28.3. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, labeller, person, view, face, hover } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, labeller, silhouette, view, face, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -180,7 +180,8 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     /* the person stands a step behind the handle, against the push, and reaches to it */
     const stand = add(hp, tangent, -0.42 * S);
     const feet = V.P(stand);
-    person(ctx, feet[0], feet[1], PAL.ink, { face: tangent[0] >= 0 ? 1 : -1, lean: 0.35 * (tangent[0] >= 0 ? 1 : -1), s: 2.0, reach: { x: q1[0], y: q1[1] } });
+    const pf = tangent[0] >= 0 ? 1 : -1, PS = 2.0, phx = (q1[0] - feet[0]) / (PS * pf), phy = (q1[1] - feet[1]) / PS;
+    silhouette(ctx, { x: feet[0], y: feet[1], s: PS, face: pf, pose: 'push', hands: [{ x: phx, y: phy }, { x: phx - 3, y: phy + 5 }] });
     line(ctx, q0[0], q0[1], q1[0], q1[1], PAL.muted, 8);
     /* r from the axis to the handle, along the platform */
     arrow(ctx, o[0], o[1], q0[0], q0[1], C('position'), 4);
@@ -253,9 +254,11 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     const stand = V.P([0, floorY, -0.42 * S]);
     /* her right arm goes to the far handle and her left to the near one: the sprite is
        drawn twice, each half clipped at her midline, so each arm reaches its own handle */
+    const WS = 2.7;
     const drawHalf = (side, reach) => {
+      const lh = { x: (reach[0] - stand[0]) / WS, y: (reach[1] - stand[1]) / WS };
       ctx.save(); ctx.beginPath(); ctx.rect(side < 0 ? 0 : stand[0], 0, side < 0 ? stand[0] : 1400 - stand[0], H); ctx.clip();
-      person(ctx, stand[0], stand[1], PAL.ink, { s: 3.6, reach: { x: reach[0], y: reach[1] } });
+      silhouette(ctx, { x: stand[0], y: stand[1], s: WS, pose: 'stand', hands: [lh, lh], elbowSide: side });
       ctx.restore();
     };
     drawHalf(-1, pf[0] < stand[0] ? pf : pn); drawHalf(1, pf[0] < stand[0] ? pn : pf);
@@ -452,7 +455,7 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     if (S) apply(st);
     const spin = mode.value === 'spin', theta = st.theta, tauv = m * G * r * Math.sin(theta), L = I * w.v, P = TAU / OMEGA();
     readout(d.readout, spin
-      ? `\\ktau = mgr\\sin\\theta = (${fmt(m, 2)}\\ \\text{kg})(${fmt(G, 2)}\\ \\text{m/s}^2)(${fmt(r, 3)}\\ \\text{m})\\sin ${fmt(th.v, 0)}^\\circ = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}, \\qquad \\kL = I\\kw = ${fmt(L, 4)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`
+      ? `\\ktau = mgr\\sin\\theta = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}\\ \\text{at}\\ ${fmt(th.v, 0)}^\\circ, \\qquad \\kL = I\\kw = ${fmt(L, 4)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`
       : `\\kL = \\kdLang = \\ktau\\,\\Delta t, \\qquad \\ktau = mgr\\sin\\theta = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}\\ \\text{at a tilt of}\\ ${fmt(theta / RAD, 0)}^\\circ`,
       spin
         ? `The torque turns L through the small horizontal change ΔL = τΔt every Δt, so the tip of L goes round the circle once every 2πIω/(mgr) = ${fmt(P, 2)} s without the tilt changing. The arrow ΔL is the change in ${fmt(DT, 2)} s. The flywheel is a ${fmt(m, 2)} kg disk of radius ${fmt(R, 3)} m, so I = ½mR² = ${fmt(I, 6)} kg·m², and its center is ${fmt(r, 3)} m from the pivot; its spin is drawn at one twentieth of its true rate so the spokes can be followed.`
@@ -467,7 +470,7 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     if (!V.scene) V = null;
     else {
       V.setView(0.6, 16 * RAD);
-      head = el('div', 'lab3d'); head.style.left = '50%'; head.style.top = '38px'; head.style.whiteSpace = 'normal'; head.style.maxWidth = '92%'; head.style.textAlign = 'center'; head.style.fontWeight = '400'; V.wrap.appendChild(head);
+      head = el('div', 'lab3d'); head.style.left = '50%'; head.style.top = '12px'; head.style.transform = 'translate(-50%, 0)'; head.style.whiteSpace = 'normal'; head.style.maxWidth = '92%'; head.style.textAlign = 'center'; head.style.fontWeight = '400'; V.wrap.appendChild(head);
     }
   } else {
     d.stage.appendChild(el('p', 'lab3d', 'This figure needs WebGL, which this browser does not provide.'));

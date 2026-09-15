@@ -5,7 +5,7 @@
    moves. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, pinned, labeller, strip, scale, person } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, pinned, labeller, strip, scale, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -49,6 +49,31 @@ function wheel(ctx, x, y, R, phi, spokes = 8) {
   for (let i = 0; i < spokes; i++) { const a = phi + (i * TAU) / spokes; ctx.moveTo(x, y); ctx.lineTo(x + (R * 0.8 - 1) * Math.cos(a), y + (R * 0.8 - 1) * Math.sin(a)); }
   ctx.stroke(); ctx.restore();
   dot(ctx, x, y, PAL.ink, true, Math.max(5, R * 0.08));
+}
+/* a motorcycle in side view facing right, in ink with light panels: the hubs at rear and front on the line y = hub,
+   the wheels of radius rw drawn by the caller. The frame hangs from the hub line, so it rides higher on larger wheels.
+   Swing arm and fork, an engine block, a tank, a seat, two fenders, a headlight, handlebars, an exhaust and a footpeg. */
+function motorcycle(ctx, bx, hub, rw, rear, front) {
+  const ink = PAL.ink;
+  ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  line(ctx, rear, hub, bx - 46, hub - 34, ink, 7);                                   /* the swing arm */
+  line(ctx, front, hub, front - 34, hub - 116, ink, 7);                              /* the fork */
+  ctx.strokeStyle = ink; ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.arc(rear, hub, rw + 12, -2.55, -0.75); ctx.stroke();          /* the rear fender */
+  ctx.beginPath(); ctx.arc(front, hub, rw + 12, -2.45, -0.55); ctx.stroke();         /* the front fender */
+  line(ctx, bx - 4, hub - 12, rear + 34, hub - 2, ink, 8);                            /* the exhaust */
+  ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.roundRect(bx - 62, hub - 74, 104, 64, 12); ctx.fill(); ctx.stroke();   /* the engine */
+  ctx.beginPath(); ctx.moveTo(bx - 32, hub - 84); ctx.lineTo(bx - 32, hub - 100); ctx.quadraticCurveTo(bx + 14, hub - 134, bx + 84, hub - 106);
+  ctx.lineTo(bx + 78, hub - 84); ctx.closePath(); ctx.fill(); ctx.stroke();                  /* the tank */
+  ctx.fillStyle = ink;
+  ctx.beginPath(); ctx.moveTo(bx - 30, hub - 100); ctx.lineTo(bx - 138, hub - 92); ctx.quadraticCurveTo(bx - 152, hub - 108, bx - 130, hub - 112);
+  ctx.lineTo(bx - 34, hub - 110); ctx.closePath(); ctx.fill();                              /* the seat */
+  ctx.fillStyle = PAL.soft; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(front - 40, hub - 126, 13, 0, TAU); ctx.fill(); ctx.stroke();      /* the headlight */
+  ctx.restore();
+  line(ctx, front - 66, hub - 118, front - 14, hub - 128, ink, 6);                    /* the handlebars */
+  line(ctx, bx - 4, hub + 4, bx + 24, hub + 4, ink, 5);                               /* the footpeg */
 }
 /* a label direction that never leads into the headline band: a tip near the top of the canvas whose arrow points
    upward gets its label to the side instead, the way it was already heading, and a label on an arrow pointing
@@ -95,8 +120,7 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     if (th > 0.05) {
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(CX, CY, Math.min(52, R * 0.45), 0, -th, true); ctx.stroke(); ctx.restore();
     }
-    const am = -th / 2, ar = Math.min(52, R * 0.45) + 34;
-    text(ctx, 'Δθ = ' + fmt(th, 2) + ' rad', CX + ar * Math.cos(am), CY + ar * Math.sin(am), PAL.ink, { size: 20, weight: 600, align: Math.cos(am) < -0.3 ? 'right' : Math.cos(am) > 0.3 ? 'left' : 'center', bg: alpha(PAL.panel, 0.85) });
+    const am = -th / 2, ar = Math.min(52, R * 0.45) + 10;
     /* the sense of rotation, inside the disk and clear of the radius */
     turnArc(ctx, CX, CY, R * 0.68, true, PAL.ink, Math.PI * 0.75, 3, 0.5);
     /* the velocity of the rim point, tangent to the circle: hollow at the start, filled now */
@@ -109,6 +133,7 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     lab.block(0, 0, 1400, 96);
     lab.add('v = ' + fmt(v, 2) + ' m/s' + (cut ? ' (arrow shortened)' : ''), px + L * ux, py + L * uy, ...away(py + L * uy, ux, uy), vc, 21, 24);
     lab.add('r = ' + fmt(r, 2) + ' m', (CX + px) / 2, (CY + py) / 2, Math.sin(th), Math.cos(th), pc, 21, 22);
+    lab.add('Δθ = ' + fmt(th, 2) + ' rad', CX + ar * Math.cos(am), CY + ar * Math.sin(am), Math.cos(am), Math.sin(am), PAL.ink, 20, 24);
     lab.flush();
     /* the clock sits in the corner, clear of the disk at every radius */
     text(ctx, 't = ' + fmt(t, 2) + ' s', 70, 140, tc, { size: 22, weight: 600 });
@@ -277,7 +302,7 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
   /* the road is fixed from the slider extremes: the longest run, 160 m, is 850 units starting 250 in, so the machine
      and its widest wheels stay on the canvas at both ends of it; a wheel of 1 m radius is 200 units and the wheelbase
      is 1.40 m; 1 m/s of velocity is 5 units and 1 m/s² of acceleration 14 */
-  const X0 = 250, RY = 400, SC = 850 / 160, WS = 200, KV = 5, KA = 14;
+  const X0 = 250, RY = 400, SC = 700 / 160, WS = 200, KV = 5, KA = 14;   /* the longest run, 160 m, is 700 units, so the machine's nose and its velocity arrow stay on the canvas at the end of it */
   const box = { l: 160, r: 1300, t: 556, b: 776 };
   function draw() {
     const { ctx } = begin(d.c);
@@ -286,32 +311,35 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     const a = vf / T, al = a / r, v = a * t, x = 0.5 * a * t * t, w = v / r, phi = x / r, rw = r * WS;
     const wOf = (s) => (a * s) / r;
     /* the road, with its distance marks */
-    strip(ctx, 60, 1340, RY + 10, 20);
+    strip(ctx, 60, 1300, RY + 10, 20);
     const RX = (m) => X0 + m * SC;
     scale(ctx, RX, 0, 160, 20, RY + 42, 'm', 2);
     /* the motorcycle, in ink, facing right: the swing arm and the fork first, then the seat, tank and engine over
        them, the handlebars, a footpeg, and the rider drawn with the library's person sprite, feet on the peg, leaning
        forward with both hands on the bars */
     const bx = RX(x), rear = bx - 140, front = bx + 140, hub = RY - rw;
-    const bars = { x: front - 50, y: hub - 116 }, peg = { x: bx + 10, y: hub + 4 };
-    line(ctx, rear, hub, rear + 50, hub - 22, PAL.ink, 6);                          /* the swing arm to the rear hub */
-    line(ctx, front, hub, bars.x, bars.y, PAL.ink, 6);                               /* the fork to the front hub */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
-    ctx.beginPath();                                                                 /* the seat, the tank and the engine, filled light so the rider in ink stands out against them */
-    ctx.moveTo(rear + 10, hub - 70); ctx.lineTo(rear + 60, hub - 78); ctx.lineTo(bx - 20, hub - 70); ctx.lineTo(bx + 10, hub - 92); ctx.lineTo(bx + 70, hub - 88);
-    ctx.lineTo(front - 40, hub - 54); ctx.lineTo(front - 56, hub - 20); ctx.lineTo(bx + 50, hub + 2); ctx.lineTo(bx - 40, hub + 2); ctx.lineTo(rear + 40, hub - 26); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.restore();
-    line(ctx, bars.x - 26, bars.y, bars.x + 26, bars.y - 4, PAL.ink, 6);             /* the handlebars */
-    line(ctx, peg.x - 12, peg.y, peg.x + 12, peg.y, PAL.ink, 5);                     /* the footpeg */
-    person(ctx, peg.x, peg.y, PAL.ink, { s: 1.8, crouch: 0.4, lean: 0.6, reach: { x: bars.x, y: bars.y } });
+    const bars = { x: front - 40, y: hub - 120 }, peg = { x: bx + 10, y: hub + 4 };
+    motorcycle(ctx, bx, hub, rw, rear, front);
+    /* the rider sits on the seat, feet on the peg and both hands on the bars: the silhouette's joints are given in its
+       own frame, 1/1.6 of the canvas, so the hands land on the bars whatever the wheel radius */
+    const RS = 1.6, hand = { x: (bars.x - peg.x) / RS, y: (bars.y - peg.y) / RS };
+    silhouette(ctx, { x: peg.x, y: peg.y, s: RS, pose: 'sit', hip: { x: -30, y: -65 }, shoulder: { x: 12, y: -112 }, head: { x: 24, y: -134 }, feet: [{ x: 0, y: 0 }, { x: -6, y: 2 }], hands: [hand, { x: hand.x - 4, y: hand.y + 4 }], kneeSide: 1, elbowSide: -1 });
     wheel(ctx, rear, hub, rw, phi, 6); wheel(ctx, front, hub, rw, phi, 6);
     /* the linear acceleration of the machine and its velocity, stacked under the headline and pointing the way it
        goes, moved left where their tips would leave the canvas; the angular acceleration of the wheels, on arcs round
        both, named under the rear wheel below the distance marks; the radius drawn on the front wheel and named under it */
-    const ax0 = Math.min(bx - 40, 1330 - a * KA - 170);
-    arrow(ctx, ax0, 110, ax0 + a * KA, 110, acc, 5);
-    text(ctx, 'a_t = ' + fmt(a, 2) + ' m/s²', ax0 + a * KA + 14, 110, acc, { size: 21, weight: 600 });
-    if (v > 0.2) { const vx0 = Math.min(bx - 40, 1330 - v * KV - 150); arrow(ctx, vx0, 142, vx0 + v * KV, 142, vc, 5); text(ctx, 'v = ' + fmt(v, 1) + ' m/s', vx0 + v * KV + 14, 142, vc, { size: 21, weight: 600 }); }
+    /* the acceleration leaves the machine's centre and runs through its body; the velocity leaves its nose, ahead of the
+       front wheel at headlight height; both labels sit above their arrows so the tips stay on the canvas */
+    const cm = { x: bx, y: hub - 46 }, nose = { x: front + rw + 10, y: hub - 104 };
+    const lab = labeller(ctx, 860); lab.block(0, 0, 1400, 96);
+    dot(ctx, cm.x, cm.y, PAL.ink, true, 7);
+    arrow(ctx, cm.x, cm.y, cm.x + a * KA, cm.y, acc, 5);
+    lab.add('a_t = ' + fmt(a, 2) + ' m/s²', cm.x + a * KA / 2, cm.y, 0, -1, acc, 21, 30);
+    if (v > 0.2) {
+      arrow(ctx, nose.x, nose.y, nose.x + v * KV, nose.y, vc, 5);
+      lab.add('v = ' + fmt(v, 1) + ' m/s', nose.x + v * KV / 2, nose.y, 0, -1, vc, 21, 24);
+    }
+    lab.flush();
     for (const cxw of [rear, front]) turnArc(ctx, cxw, hub, rw + 26, false, ac, Math.PI / 2, 4, 0.6);
     text(ctx, 'α = ' + fmt(al, 1) + ' rad/s²', rear, RY + 100, ac, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     line(ctx, front, hub, front + rw * 0.7, hub - rw * 0.7, pc, 3);

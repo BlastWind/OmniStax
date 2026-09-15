@@ -1,7 +1,7 @@
 /* Figures for section 6.3 Centripetal Force. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, car, view, face, FONT, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, car, view, face, FONT, pinned, labeller, person } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -62,6 +62,32 @@ function planCar(ctx, x, y, a, color, s = 1) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(s, s); ctx.fillStyle = color;
   ctx.beginPath(); ctx.moveTo(30, 0); ctx.lineTo(18, -13); ctx.lineTo(-24, -13); ctx.lineTo(-30, 0); ctx.lineTo(-24, 13); ctx.lineTo(18, 13); ctx.closePath(); ctx.fill(); ctx.restore();
 }
+/* a carousel horse standing on (x, y), facing along the sign `face`, drawn s times its 90-unit length:
+   body, neck and head, four legs and a tail, with the pole through the saddle and a rider on it */
+function horse(ctx, x, y, color, s = 1, face = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s * face, s); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3 / s; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  /* the legs behind, the body, the legs in front */
+  ctx.beginPath(); ctx.moveTo(-26, -34); ctx.lineTo(-30, -4); ctx.lineTo(-34, 0); ctx.moveTo(20, -34); ctx.lineTo(24, -4); ctx.lineTo(28, 0); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(0, -44, 36, 15, 0, 0, TAU); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-18, -34); ctx.lineTo(-20, -4); ctx.lineTo(-16, 0); ctx.moveTo(26, -36); ctx.lineTo(30, -4); ctx.lineTo(34, 0); ctx.stroke();
+  /* the neck and head, the ear, the tail */
+  ctx.beginPath(); ctx.moveTo(24, -52); ctx.lineTo(44, -84); ctx.lineTo(58, -80); ctx.lineTo(62, -70); ctx.lineTo(50, -66); ctx.lineTo(34, -44); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(48, -86); ctx.lineTo(50, -94); ctx.lineTo(54, -86); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-34, -48); ctx.quadraticCurveTo(-52, -40, -50, -18); ctx.stroke();
+  ctx.restore();
+  /* the pole, and the rider astride the saddle */
+  line(ctx, x + 2 * face * s, y - 130 * s, x + 2 * face * s, y - 6 * s, color, 3);
+  person(ctx, x + 2 * face * s, y - 50 * s, color, { s: 0.62 * s, face, crouch: 0.9 });
+}
+/* a roller-coaster car with one rider, its wheels on the rail at (x, y) and its floor along the unit vector (ux, uy) */
+function coasterCar(ctx, x, y, ux, uy, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux)); ctx.scale(s, s); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3 / s; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(-30, -6); ctx.lineTo(-26, -34); ctx.lineTo(26, -34); ctx.lineTo(30, -6); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.arc(-18, -4, 5, 0, TAU); ctx.arc(18, -4, 5, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.arc(2, -48, 8, 0, TAU); ctx.fill();
+  ctx.lineWidth = 3.5 / s; ctx.beginPath(); ctx.moveTo(2, -40); ctx.lineTo(2, -30); ctx.stroke();
+  ctx.restore();
+}
 /* a seated rider, the seat at (x, y) */
 function rider(ctx, x, y, color, s = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 3;
@@ -88,6 +114,7 @@ function rider(ctx, x, y, color, s = 1) {
   function draw() {
     const { ctx } = begin(d.c);
     const [r1, r2] = radii(), tau = cy.now(), SC = 215 / Math.max(r1, r2);
+    const L = labeller(ctx, 640); L.block(0, 0, 1400, 90);
     const one = (cx, cyy, r, Fc, sym, rsym) => {
       const R = r * SC, phi = (v.v * tau) / r;            /* both travel at the same speed, so the tighter circle turns faster */
       const px = cx + R * Math.sin(phi), py = cyy - R * Math.cos(phi);
@@ -95,15 +122,19 @@ function rider(ctx, x, y, color, s = 1) {
       ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.stroke(); ctx.restore();
       dot(ctx, cx, cyy, PAL.muted, true, 6);
       line(ctx, cx, cyy, px, py, C('position'), 3);
-      const off = Math.min(30, R * 0.26);
-      lab(ctx, rsym + ' = ' + fmt(r, 2) + ' m', cx + (px - cx) * 0.3 + tx * off, cyy + (py - cyy) * 0.3 + ty * off, C('position'), { size: 20, bg: alpha(PAL.panel, 0.8) });
-      vecSide(ctx, px, py, (cx - px) / R, (cyy - py) / R, Math.min(R * 0.58, 34 + Fc / 18), C('force'), sym, -1, 0.6, off);
-      vec(ctx, px, py, tx, ty, 80, C('velocity'), 'v', 22);
+      /* the radius is named behind the object, the force beside its head and the velocity beyond its head */
+      L.add(rsym + ' = ' + fmt(r, 2) + ' m', cx + (px - cx) * 0.45, cyy + (py - cyy) * 0.45, -tx, -ty, C('position'), 20, 22);
+      const FL = Math.min(R * 0.58, 34 + Fc / 18), fx = px + ((cx - px) / R) * FL, fy = py + ((cyy - py) / R) * FL;
+      arrow(ctx, px, py, fx, fy, C('force'), 5);
+      L.add(sym, fx, fy, tx, ty, C('force'), 21, 22);
+      arrow(ctx, px, py, px + tx * 80, py + ty * 80, C('velocity'), 5);
+      L.add('v', px + tx * 80, py + ty * 80, tx, ty, C('velocity'), 21, 22);
       dot(ctx, px, py, PAL.ink, true, 11);
       lab(ctx, sym + ' = ' + sig3(Fc) + ' N', cx, 616, C('force'), { size: 21 });
     };
     one(400, 340, r1, f1.v, 'F_c', 'r');
     one(1040, 340, r2, f2.v, "F_c'", "r'");
+    L.flush();
     headline(ctx, 'At ' + fmt(v.v, 1) + ' m/s, ' + sig3(f1.v) + ' N bends the path into a circle of ' + fmt(r1, 2) + ' m and ' + sig3(f2.v) + ' N into one of ' + fmt(r2, 2) + ' m.');
     readout(d.readout, `\\kr = \\frac{m\\kv^2}{\\kFc} = \\frac{(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})^2}{${sig3(f1.v)}\\ \\text{N}} = ${fmt(r1, 2)}\\ \\text{m}`,
       'The two objects move at the same speed, so the one on the tighter circle sweeps round faster: its angular velocity is ω = v/r = ' + fmt(v.v / r2, 1) + ' rad/s against ' + fmt(v.v / r1, 1) + ' rad/s for the other, which is why the same force can also be written F_c = mrω².');
@@ -174,6 +205,7 @@ function rider(ctx, x, y, color, s = 1) {
   function draw() {
     const { ctx } = begin(d.c);
     const t = th.v * RAD, vi = ideal(), N = (m.v * G) / Math.cos(t), w = m.v * G;
+    const LB = labeller(ctx, 830); LB.block(0, 0, 1400, 90);
     /* on the right, the road sloping up and away, so that the center of the curve lies to the left */
     const ox = 800, oy = 450, L = Math.min(470 / Math.cos(t), 320 / Math.sin(t));
     const ex = ox + L * Math.cos(t), ey = oy - L * Math.sin(t);
@@ -181,34 +213,46 @@ function rider(ctx, x, y, color, s = 1) {
     line(ctx, ox, oy, ex, oy, PAL.muted, 2, [10, 10]);
     line(ctx, ox, oy, ex, ey, PAL.muted, 5);
     angleArc(ctx, ox, oy, 84, 0, th.v, null, PAL.ink);
-    lab(ctx, 'θ = ' + fmt(th.v, 1) + 'º', ox + 146, oy + 32, PAL.ink, { size: 20 });
+    lab(ctx, 'θ = ' + fmt(th.v, 1) + '°', ox + 146, oy + 32, PAL.ink, { size: 20 });
+    /* the car sits on the slope with its wheels on the road and its body tilted with it */
     const s = 0.55, px = ox + L * s * Math.cos(t), py = oy - L * s * Math.sin(t);
-    ctx.save(); ctx.translate(px, py); ctx.rotate(-t); ctx.translate(0, -52); rearCar(ctx, 0, 0, 166, PAL.ink); ctx.restore();
+    ctx.save(); ctx.translate(px, py); ctx.rotate(-t); ctx.translate(0, -44); rearCar(ctx, 0, 0, 140, PAL.ink); ctx.restore();
     const nx = -Math.sin(t), ny = -Math.cos(t);                      /* the outward normal of the road */
-    const ccx = px + nx * 52, ccy = py + ny * 52;
-    vec(ctx, ccx, ccy, nx, ny, 96, C('force'), 'N');
-    vec(ctx, ccx, ccy, 0, 1, 66, C('force'), 'w');
+    const ccx = px + nx * 44, ccy = py + ny * 44;
+    arrow(ctx, ox + 60, oy + 80, ox - 40, oy + 80, PAL.muted, 3);
+    text(ctx, 'toward the center of the curve', ox + 70, oy + 80, PAL.muted, { size: 17 });
+    dot(ctx, ccx, ccy, PAL.ink, true, 6);
+    arrow(ctx, ccx, ccy, ccx + nx * 120, ccy + ny * 120, C('force'), 5);
+    LB.add('N', ccx + nx * 120, ccy + ny * 120, nx, ny, C('force'), 22, 22);
+    arrow(ctx, ccx, ccy, ccx, ccy + 84, C('force'), 5);
+    LB.add('w', ccx, ccy + 84, 0, 1, C('force'), 22, 22);
+    LB.flush();
     /* on the left, the same two forces with the normal force taken apart */
-    const x0 = 440, y0 = 250, NL = 190, hx = x0 + nx * NL, hy = y0 + ny * NL;
-    text(ctx, 'free-body diagram', x0, 104, PAL.muted, { size: 19, align: 'center' });
+    /* the normal force is drawn 150 units long whatever the angle, its two components as dashed drops */
+    const x0 = 470, y0 = 300, NL = 150, hx = x0 + nx * NL, hy = y0 + ny * NL;
+    text(ctx, 'free-body diagram', x0, 112, PAL.muted, { size: 19, align: 'center' });
+    LB.block(x0 - 110, 98, x0 + 110, 126);
     line(ctx, hx, y0, hx, hy, PAL.rule, 2, [6, 8]);
     line(ctx, x0, hy, hx, hy, PAL.rule, 2, [6, 8]);
     arrow(ctx, x0, y0, hx, y0, C('force'), 5);
     arrow(ctx, x0, y0, x0, hy, C('force'), 5);
-    vec(ctx, x0, y0, nx, ny, NL, C('force'), 'N = ' + sig3(N) + ' N');
-    vec(ctx, x0, y0, 0, 1, 120, C('force'), 'w = ' + sig3(w) + ' N');
-    lab(ctx, 'N sin θ = ' + sig3(N * Math.sin(t)) + ' N', x0 - 8, y0 + 36, C('force'), { size: 20, align: 'right' });
-    lab(ctx, 'N cos θ = ' + sig3(N * Math.cos(t)) + ' N', x0 + 18, hy + 20, C('force'), { size: 20, align: 'left' });
+    arrow(ctx, x0, y0, hx, hy, C('force'), 5);
+    arrow(ctx, x0, y0, x0, y0 + 110, C('force'), 5);
+    LB.add('N = ' + sig3(N) + ' N', hx, hy, nx, ny, C('force'), 20, 24);
+    LB.add('w = ' + sig3(w) + ' N', x0, y0 + 110, 0, 1, C('force'), 20, 24);
+    LB.add('N sin θ = ' + sig3(N * Math.sin(t)) + ' N', hx, y0, -1, 0.15, C('force'), 19, 22);
+    LB.add('N cos θ = ' + sig3(N * Math.cos(t)) + ' N', x0, hy, 1, -0.2, C('force'), 19, 22);
     dot(ctx, x0, y0, PAL.ink, true, 8);
-    text(ctx, 'the horizontal component points at the center of the curve', 400, 470, PAL.muted, { size: 19, align: 'center' });
+    LB.flush();
+    text(ctx, 'the horizontal component points at the center of the curve', 400, 476, PAL.muted, { size: 19, align: 'center' });
     /* the graph: the ideal angle against the speed, for the radius that is set */
-    /* fixed axes. The angle axis is the whole of its own range, 0 to 90º. The ideal speed the
-       sliders can reach is (1500 × 9.80 × tan 80º)^(1/2) = 289 m/s, but on the default 100 m curve
+    /* fixed axes. The angle axis is the whole of its own range, 0 to 90°. The ideal speed the
+       sliders can reach is (1500 × 9.80 × tan 80°)^(1/2) = 289 m/s, but on the default 100 m curve
        the marker would then sit in the first sixth of the width, so the speed axis is fixed at
        0 to 60 m/s, ticked every 15, which holds the default 45.8 m/s comfortably; a faster ideal
        speed is pinned at the right-hand edge. Neither range moves with the sliders. */
     const VR = 60, box = { l: 180, r: 1240, t: 540, b: 750 };
-    const { X, Y } = axes(ctx, box, [0, VR], [0, 90], { xl: 'v (m/s)', yl: 'θ (º)', xc: C('velocity'), yc: PAL.ink, nx: 4, ny: 3, fy: (q) => String(Math.round(q)) });
+    const { X, Y } = axes(ctx, box, [0, VR], [0, 90], { xl: 'v (m/s)', yl: 'θ (°)', xc: C('velocity'), yc: PAL.ink, nx: 4, ny: 3, fy: (q) => String(Math.round(q)) });
     curve(ctx, (q) => Math.atan((q * q) / (r.v * G)) / RAD, 0, VR, X, Y, PAL.ink, 5, 140);
     const vC = Math.min(vi, VR);
     line(ctx, X(vC), box.b, X(vC), Y(th.v), C('velocity'), 2, [4, 8]);
@@ -217,7 +261,7 @@ function rider(ctx, x, y, color, s = 1) {
     text(ctx, 'the ideal angle for a ' + sig3(r.v) + ' m curve', box.l + 14, box.t + 26, PAL.muted, { size: 19 });
     headline(ctx, 'Banked at ' + fmt(th.v, 1) + '°, a curve of ' + sig3(r.v) + ' m is ideal for ' + fmt(vi, 1) + ' m/s, which is about ' + sig3(vi * 3.6) + ' km/h.');
     readout(d.readout, `\\kv = (\\kr\\kg\\tan\\theta)^{1/2} = ((${sig3(r.v)}\\ \\text{m})(9.80\\ \\text{m/s}^2)(${fmt(Math.tan(t), 2)}))^{1/2} = ${fmt(vi, 1)}\\ \\text{m/s}`,
-      'Read the other way, the same relation gives the angle, θ = tan⁻¹(v²/rg) = ' + fmt(th.v, 1) + 'º. The normal force is N = mg/cos θ = ' + sig3(N) + ' N, whose horizontal part supplies the whole centripetal force while its vertical part balances the weight, and neither the angle nor the ideal speed depends on the mass of the car.');
+      'Read the other way, the same relation gives the angle, θ = tan⁻¹(v²/rg) = ' + fmt(th.v, 1) + '°. The normal force is N = mg/cos θ = ' + sig3(N) + ' N, whose horizontal part supplies the whole centripetal force while its vertical part balances the weight, and neither the angle nor the ideal speed depends on the mass of the car.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -243,38 +287,48 @@ function rider(ctx, x, y, color, s = 1) {
      and says in words that contact is lost. */
   const asked = (phi) => (m.v * v.v * v.v) / r.v + m.v * G * Math.cos(phi);
   const normal = (phi) => Math.max(0, asked(phi));
-  /* the angle from the bottom at which contact is lost, or 180º where it is never lost */
+  /* the angle from the bottom at which contact is lost, or 180° where it is never lost */
   const loseAt = () => { const c = -(v.v * v.v) / (G * r.v); return c <= -1 ? Math.PI : Math.acos(c); };
   function draw() {
     const { ctx } = begin(d.c);
     const phi = (v.v * cy.now()) / r.v, Nb = normal(0), Nt = asked(Math.PI), Nnow = normal(phi), vmin = Math.sqrt(G * r.v);
     const phiLose = loseAt(), inContact = Nnow > 0;
-    const cx = 350, cyy = 320, R = 235;
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 9; ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.stroke(); ctx.restore();
-    ground(ctx, 50, 680, cyy + R + 70);
+    const cx = 350, cyy = 300, R = 225;
+    const L = labeller(ctx, 700); L.block(0, 0, 1400, 90);
+    /* the track: a rail round the loop, with the approach and the run-out meeting the ground at the bottom */
+    const gy = cyy + R + 40;
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 8; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(40, gy); ctx.lineTo(150, gy); ctx.quadraticCurveTo(cx - 40, gy, cx + 50, cyy + R - 6); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(660, gy); ctx.lineTo(550, gy); ctx.quadraticCurveTo(cx + 40, gy, cx - 50, cyy + R - 6); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.stroke();
+    ctx.strokeStyle = PAL.panel; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.stroke(); ctx.restore();
+    ground(ctx, 30, 680, gy + 8);
     const px = cx + R * Math.sin(phi), py = cyy + R * Math.cos(phi);
     const tx = Math.cos(phi), ty = -Math.sin(phi);                              /* along the track */
     line(ctx, cx, cyy, px, py, C('position'), 2, [6, 8]);
-    lab(ctx, 'r = ' + fmt(r.v, 1) + ' m', cx + (px - cx) / 2 + tx * 28, cyy + (py - cyy) / 2 + ty * 28, C('position'), { size: 20, bg: alpha(PAL.panel, 0.8) });
+    L.add('r = ' + fmt(r.v, 1) + ' m', cx + (px - cx) * 0.5, cyy + (py - cyy) * 0.5, -tx, -ty, C('position'), 20, 24);
     /* the stretch of the loop the car cannot keep contact along, drawn broken */
     if (phiLose < Math.PI) {
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 9; ctx.setLineDash([12, 14]);
       ctx.beginPath(); ctx.arc(cx, cyy, R, Math.PI / 2 - phiLose, Math.PI / 2 - (TAU - phiLose), true); ctx.stroke(); ctx.restore();
-      text(ctx, 'The car cannot keep contact along the broken stretch of the loop.', cx, 660, PAL.muted, { size: 17, align: 'center' });
+      text(ctx, 'The car cannot keep contact along the broken stretch of the loop.', cx, gy + 48, PAL.muted, { size: 17, align: 'center' });
     }
-    ctx.save(); ctx.translate(px, py); ctx.rotate(-phi); car(ctx, 0, 0, PAL.ink, 1); ctx.restore();
-    if (inContact) vecSide(ctx, px, py, (cx - px) / R, (cyy - py) / R, 40 + (Nnow / Math.max(Nb, 1)) * 92, C('force'), 'N', -1);
-    vec(ctx, px, py, 0, 1, 66, C('force'), 'w', 22);
-    vec(ctx, px, py, tx, ty, 72, C('velocity'), 'v', 22);
+    /* the car rides on the inside of the rail, its wheels on the track, the forces drawn from its centre */
+    const ix = (cx - px) / R, iy = (cyy - py) / R, ccx = px + ix * 14, ccy = py + iy * 14;
+    ctx.save(); ctx.translate(px, py); ctx.rotate(-phi); ctx.translate(0, -8); car(ctx, 0, 0, PAL.ink, 1); ctx.restore();
+    if (inContact) { const NL = 40 + (Nnow / Math.max(Nb, 1)) * 92; arrow(ctx, ccx, ccy, ccx + ix * NL, ccy + iy * NL, C('force'), 5); L.add('N', ccx + ix * NL, ccy + iy * NL, ix, iy, C('force'), 22, 22); }
+    arrow(ctx, ccx, ccy, ccx, ccy + 66, C('force'), 5); L.add('w', ccx, ccy + 66, 0, 1, C('force'), 22, 22);
+    arrow(ctx, ccx, ccy, ccx + tx * 72, ccy + ty * 72, C('velocity'), 5); L.add('v', ccx + tx * 72, ccy + ty * 72, tx, ty, C('velocity'), 22, 22);
     dot(ctx, cx, cyy, PAL.muted, true, 6);
+    L.flush();
     /* the graph: the normal force all the way round the loop */
-    /* fixed axes. The angle axis is the whole loop, 0 to 360º. The force at the bottom can reach
+    /* fixed axes. The angle axis is the whole loop, 0 to 360°. The force at the bottom can reach
        800 × 22²/4 + 800 × 9.80 = 105,000 N, but at the default setting the curve would then keep
        to the bottom eighth of the box, so the force axis is fixed at −4000 to 16,000 N, ticked
        every 4000, which holds the default 4100 N to 13,900 N comfortably. A larger force is
        clipped at the top edge and read off the pinned marker; neither range moves. */
     const box = { l: 820, r: 1330, t: 170, b: 550 }, NLO = 0, NHI = 16000;
-    const { X, Y } = axes(ctx, box, [0, 360], [NLO, NHI], { xl: 'angle from the bottom of the loop (º)', yl: 'N (N)', xc: PAL.ink, yc: C('force'), nx: 4, ny: 4, fy: (q) => commas(String(Math.round(q))) });
+    const { X, Y } = axes(ctx, box, [0, 360], [NLO, NHI], { xl: 'angle from the bottom of the loop (°)', yl: 'N (N)', xc: PAL.ink, yc: C('force'), nx: 4, ny: 4, fy: (q) => commas(String(Math.round(q))) });
     curve(ctx, (q) => Math.min(normal(q * RAD), NHI), 0, 360, X, Y, C('force'), 5, 140);
     pinned(ctx, box, X, Y, (phi / TAU) * 360, Nnow, C('force'), sig3(Nnow) + ' N');
     headline(ctx, inContact
@@ -318,25 +372,33 @@ function rider(ctx, x, y, color, s = 1) {
   const d = sim('fig-loop-ride', 580);
   function draw() {
     const { ctx } = begin(d.c);
-    const cx = 700, cyy = 240, R = 185;
-    ground(ctx, 80, 1320, 524);
-    for (let x = 210; x <= 1190; x += 140) { ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.strokeRect(x - 16, 478, 32, 46); ctx.restore(); }
+    const cx = 700, cyy = 230, R = 180, TY = 470;
+    /* the trestle: posts and cross-braces under the level track and up under the loop, as the book draws it */
+    ctx.save(); ctx.strokeStyle = alpha(PAL.muted, 0.45); ctx.lineWidth = 3;
+    for (let x = 120; x <= 1280; x += 80) { ctx.beginPath(); ctx.moveTo(x, TY); ctx.lineTo(x, 540); ctx.stroke(); }
+    for (let x = 120; x < 1280; x += 80) { ctx.beginPath(); ctx.moveTo(x, TY); ctx.lineTo(x + 80, 540); ctx.moveTo(x + 80, TY); ctx.lineTo(x, 540); ctx.stroke(); }
+    for (let x = cx - 200; x <= cx + 200; x += 80) { ctx.beginPath(); ctx.moveTo(x, TY); ctx.lineTo(x, cyy + 70); ctx.stroke(); }
+    for (let y = cyy + 70; y < TY; y += 80) for (let x = cx - 200; x < cx + 200; x += 80) { ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 80, y + 80); ctx.moveTo(x + 80, y); ctx.lineTo(x, y + 80); ctx.stroke(); }
+    ctx.restore();
+    ground(ctx, 60, 1340, 540);
     /* the two legs cross under the loop, which is what makes the shape a loop and not a hill */
     const rt = [cx + R * Math.cos(28 * RAD), cyy + R * Math.sin(28 * RAD)];
     const lt = [cx + R * Math.cos(152 * RAD), cyy + R * Math.sin(152 * RAD)];
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 7; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(140, 478); ctx.lineTo(420, 478); ctx.bezierCurveTo(640, 476, 800, 456, rt[0], rt[1]); ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx, cyy, R, 28 * RAD, 152 * RAD, true); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(lt[0], lt[1]); ctx.bezierCurveTo(596, 456, 760, 476, 980, 478); ctx.lineTo(1260, 478); ctx.stroke();
-    ctx.restore();
-    /* the boat with four people in it, climbing the left side of the loop */
-    const a = 205 * RAD, bx = cx + R * Math.cos(a), by = cyy + R * Math.sin(a);
-    ctx.save(); ctx.translate(bx, by); ctx.rotate(a - Math.PI / 2); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.moveTo(-58, 0); ctx.lineTo(-46, -26); ctx.lineTo(46, -26); ctx.lineTo(58, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
-    for (let i = 0; i < 4; i++) rider(ctx, -33 + i * 22, -28, PAL.ink, 0.8);
-    ctx.restore();
-    arrow(ctx, 190, 438, 300, 438, PAL.ink, 4);
-    text(ctx, 'the cars are fastened to the rails so that they cannot fall off', 700, 560, PAL.muted, { size: 19, align: 'center' });
+    const rail = (w, color) => {
+      ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(80, TY); ctx.lineTo(420, TY); ctx.bezierCurveTo(640, TY - 2, 800, TY - 22, rt[0], rt[1]); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cyy, R, 28 * RAD, 152 * RAD, true); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(lt[0], lt[1]); ctx.bezierCurveTo(596, TY - 22, 760, TY - 2, 980, TY); ctx.lineTo(1320, TY); ctx.stroke();
+      ctx.restore();
+    };
+    rail(9, PAL.ink); rail(3, PAL.panel);
+    /* the train of four cars climbing the right side of the loop, each with a rider, fastened to the rail's inside */
+    for (let i = 0; i < 4; i++) {
+      const a = (62 - i * 12) * RAD, bx = cx + R * Math.cos(a), by = cyy + R * Math.sin(a);
+      coasterCar(ctx, bx - 8 * Math.cos(a), by - 8 * Math.sin(a), Math.sin(a), -Math.cos(a), PAL.ink, 0.85);
+    }
+    { const a = 6 * RAD, hx = cx + (R + 44) * Math.cos(a), hy = cyy + (R + 44) * Math.sin(a); arrow(ctx, hx, hy + 70, hx - 20, hy - 30, PAL.ink, 4); }
+    text(ctx, 'the cars are fastened to the rails so that they cannot fall off', 700, 566, PAL.muted, { size: 19, align: 'center' });
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -346,26 +408,45 @@ function rider(ctx, x, y, color, s = 1) {
   const d = sim('fig-merry-go-round', 620);
   function draw() {
     const { ctx } = begin(d.c);
-    const cx = 520, cyy = 310, R = 230;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.fill(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.stroke(); ctx.restore();
-    line(ctx, cx, cyy - R, cx, cyy + R, PAL.rule, 2, [10, 10]);
-    line(ctx, cx - R, cyy, cx + R, cyy, PAL.rule, 2, [10, 10]);
-    dot(ctx, cx, cyy, PAL.muted, true, 7);
-    const RA = R + 38;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(cx, cyy, RA, -160 * RAD, -52 * RAD, false); ctx.stroke(); ctx.restore();
-    arrow(ctx, cx + RA * Math.cos(-60 * RAD), cyy + RA * Math.sin(-60 * RAD), cx + RA * Math.cos(-52 * RAD), cyy + RA * Math.sin(-52 * RAD), PAL.ink, 4);
-    text(ctx, 'the merry-go-round turns clockwise', 1090, 130, PAL.ink, { size: 21, align: 'center' });
-    const px = cx + R * 0.52, py = cyy;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(px - 28, py + 16); ctx.lineTo(px - 28, py - 18); ctx.lineTo(px + 8, py - 26); ctx.lineTo(px + 28, py - 6); ctx.lineTo(px + 24, py + 16); ctx.stroke(); ctx.restore();
-    rider(ctx, px - 4, py - 34, PAL.ink, 1.2);
-    dot(ctx, px, py, PAL.ink, true, 9);
-    text(ctx, 'P', px - 32, py + 34, PAL.ink, { size: 23, weight: 600, align: 'center' });
-    [['A', -18], ['B', -54], ['C', -90]].forEach(([labl, deg]) => {
-      const a = deg * RAD, ex = px + 235 * Math.cos(a), ey = py - 235 * Math.sin(a);
-      arrow(ctx, px, py, ex, ey, PAL.ink, 4);
-      text(ctx, labl, ex + 26 * Math.cos(a), ey - 26 * Math.sin(a), PAL.ink, { size: 23, weight: 600, align: 'center' });
+    /* the book's viewpoint: a little above the platform and in front of it, so the disc reads as an
+       ellipse and the horse stands up out of it; the view is locked (root rule 28.2) */
+    const V = view({ yaw: 0.0, pitch: 0.62, dist: 2600, cx: 620, cy: 330 }), P = V.P;
+    const RP = 330, on = (rr, a, h = 0) => P([rr * Math.cos(a), h, -rr * Math.sin(a)]);   /* a point on the platform at radius rr and bearing a, counterclockwise seen from above */
+    const ring = (rr, color, w, fill) => {
+      ctx.save(); ctx.beginPath(); for (let i = 0; i <= 120; i++) { const q = on(rr, (i / 120) * TAU); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); } ctx.closePath();
+      if (fill) { ctx.fillStyle = fill; ctx.fill(); } ctx.strokeStyle = color; ctx.lineWidth = w; ctx.stroke(); ctx.restore();
+    };
+    /* the platform: its rim, its deck and the star of boards, then the mast */
+    const rimTop = (a) => on(RP, a), rimBot = (a) => on(RP, a, -26);
+    ctx.save(); ctx.beginPath(); for (let i = 0; i <= 60; i++) { const q = rimBot(Math.PI + (i / 60) * Math.PI); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); }
+    for (let i = 60; i >= 0; i--) { const q = rimTop(Math.PI + (i / 60) * Math.PI); ctx.lineTo(q[0], q[1]); } ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.22); ctx.fill(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    ring(RP, PAL.muted, 3, PAL.soft);
+    ring(RP * 0.72, alpha(PAL.muted, 0.5), 2);
+    for (let k = 0; k < 12; k++) { const q0 = on(0, 0), q1 = on(RP * 0.72, (k * TAU) / 12); line(ctx, q0[0], q0[1], q1[0], q1[1], alpha(PAL.muted, 0.35), 2); }
+    { const c = on(0, 0); dot(ctx, c[0], c[1], PAL.muted, true, 6); }
+    /* the turning arrow along the far rim, clockwise seen from above */
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); for (let i = 0; i <= 40; i++) { const q = on(RP + 30, (150 - i * 1.5) * RAD); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); } ctx.stroke(); ctx.restore();
+    { const a = on(RP + 30, 92 * RAD), b = on(RP + 30, 86 * RAD); arrow(ctx, a[0], a[1], b[0], b[1], PAL.ink, 4); }
+    text(ctx, 'the merry-go-round turns clockwise, seen from above', 1080, 150, PAL.ink, { size: 20, align: 'center' });
+    /* the child on her horse, a little way in from the rim on the near right, and the point P beside her */
+    const aH = -24 * RAD, rH = RP * 0.55, hq = on(rH, aH);
+    horse(ctx, hq[0], hq[1], PAL.ink, 1.25, -1);
+    const aP = -10 * RAD, rPt = RP * 0.72, pq = on(rPt, aP);
+    dot(ctx, pq[0], pq[1], PAL.ink, true, 9);
+    text(ctx, 'P', pq[0] + 24, pq[1] - 18, PAL.ink, { size: 23, weight: 600, align: 'center' });
+    /* the three paths from P, drawn on the platform's plane: one bends left, one runs straight, one bends right */
+    [['A', 0.9], ['B', 0], ['C', -0.9]].forEach(([labl, bend]) => {
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.beginPath();
+      let last = null;
+      for (let i = 0; i <= 30; i++) {
+        const u = (i / 30) * 300, w = bend * u * u / 300;                 /* along the outward radial, and across it */
+        const px3 = rPt * Math.cos(aP) + u * Math.cos(aP) - w * Math.sin(aP), pz3 = -(rPt * Math.sin(aP) + u * Math.sin(aP) + w * Math.cos(aP));
+        const q = P([px3, 0, pz3]); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); if (i === 29) last = q;
+        if (i === 30) { ctx.stroke(); arrow(ctx, last[0], last[1], q[0], q[1], PAL.ink, 4); text(ctx, labl, q[0] + 26, q[1] + 10, PAL.ink, { size: 23, weight: 600, align: 'center' }); }
+      }
+      ctx.restore();
     });
-    text(ctx, 'seen from above', 180, 598, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the box leaves the child’s hand at P; the platform is seen from a little above', 700, 598, PAL.muted, { size: 19, align: 'center' });
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -432,7 +513,10 @@ function rider(ctx, x, y, color, s = 1) {
     line(ctx, pvx, pvy, kx, ky, PAL.ink, 5);
     angleArc(ctx, pvx, pvy, 170, 0, -26, 'θ', PAL.ink);
     ctx.save(); ctx.translate(kx, ky); ctx.rotate(th); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.rect(-54, -10, 108, 126); ctx.fill(); ctx.stroke(); rider(ctx, -4, 74, PAL.ink, 1.7); ctx.restore();
+    ctx.beginPath(); ctx.rect(-54, -10, 108, 126); ctx.fill(); ctx.stroke();
+    /* the seat and the rider on it, facing the axis */
+    ctx.beginPath(); ctx.moveTo(-40, 60); ctx.lineTo(-40, 100); ctx.lineTo(0, 100); ctx.stroke();
+    person(ctx, 8, 104, PAL.ink, { s: 0.8, face: -1, crouch: 0.85 }); ctx.restore();
     text(ctx, 'the cage', kx + 118, ky + 128, PAL.ink, { size: 20, align: 'center' });
     const fx = kx, fy = ky + 54;
     vec(ctx, fx, fy, -1, 0, 150, C('force'), 'F_c');

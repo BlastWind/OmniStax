@@ -198,6 +198,23 @@ headline · graph · 3D
    image carries both parts, so both are drawn. Eyebrow "Figure", no
    number, no sliders, no motion. Draws nothing.
 
+   Figure pass of 2026-09-14 (Claude Fable 5.1): the crate is now a framed box
+   of planks rather than an X-braced square, and in both `sim-interface` and
+   `sim-breakaway` the friction arrow leaves the crate's bottom corner along
+   the floor, where the surfaces touch, with the normal-force label clear of
+   its arrow (todolist 13); `sim-breakaway` names f_k under its line so the
+   pinned point never sits on it, and its off-graph note sits in the corner
+   the sloping line never crosses. `sim-skier` and `fig-ice` draw people as
+   filled silhouettes drawn in this file (round head, solid torso, limbs bent
+   at knee and elbow), not the library's stick figure: the skier crouches over
+   her skis with poles, her weight and its parts leave her hips and the normal
+   force and the friction leave the skis, and the free-body labels step out
+   through `labeller()` so a short arrow on a shallow slope is still named
+   beside its head; the contestant pushes leaning into the block with both
+   hands high on its face, and drags it with the rope tied round the block,
+   over his shoulder and into his hands as he strides away (todolist 14).
+   `sim-probe` names the probe beside its top row, off the normal-force arrow.
+
 Photographs: one in the section, the knee X-ray of Figure 5.3, and it is
 kept (above). No splash image to drop. The figures inside the problems: the
 block of ice is kept and copied (above); the two ice skaters of

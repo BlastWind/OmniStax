@@ -1,8 +1,21 @@
 /* Figures for section 2.5. Boots against a root element (the section's text article). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, LW, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, scale, axes, nice, curve, runner, car, plane, dragster } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, LW, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, scale, axes, nice, curve, person, car, plane, topline, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
+/* a dragster, its nose to the right: a long low body with the engine and the wing behind the driver,
+   two big slick tyres at the back and two small wheels at the front, about 130 units long */
+function dragster(ctx, x, y, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(-62, 8); ctx.lineTo(-62, -14); ctx.lineTo(-40, -22); ctx.lineTo(-16, -22); ctx.lineTo(-6, -10); ctx.lineTo(50, -6); ctx.lineTo(68, 0); ctx.lineTo(68, 8); ctx.closePath(); ctx.fill();
+  ctx.fillRect(-70, -40, 26, 5); ctx.fillRect(-52, -36, 4, 14);           /* the wing on its strut */
+  ctx.beginPath(); ctx.arc(-40, 8, 16, 0, Math.PI * 2); ctx.fill();       /* the rear slick */
+  ctx.beginPath(); ctx.arc(52, 12, 7, 0, Math.PI * 2); ctx.fill();         /* the front wheel */
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(-40, 8, 6, 0, Math.PI * 2); ctx.arc(52, 12, 2.5, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-14, -22); ctx.lineTo(-8, -30); ctx.lineTo(-2, -22); ctx.closePath(); ctx.fill();   /* the driver's helmet */
+  ctx.restore();
+}
+
 /* =====================================================================
    SIM 1: notation. A number line, two positions, one stopwatch.
 ===================================================================== */
@@ -65,7 +78,7 @@ const sim = (id, H) => F.sim(root, id, H);
     dot(ctx, X(0), Y(v0.v), C('velocity'), false, 11); dot(ctx, X(t.v), Y(v.v), C('velocity'), true, 11);
     dot(ctx, X(tau), Y(vel(tau)), PAL.ink, true, 9);
     vbracket(ctx, X(t.v) + 40, Y(v.v), Y(v0.v), C('velocity'), 'v − v₀', 1);
-    text(ctx, 'v̄ = ' + fmt(vb, 1) + ' m/s', X(t.v / 2), Y(vb) - 22, C('velocity'), { align: 'center', weight: 600 });
+    text(ctx, 'v̄ = ' + fmt(vb, 1) + ' m/s', X(0) + 16, Y(vb) + (v.v >= v0.v ? 24 : -24), C('velocity'), { align: 'left', weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Δx = area = ' + fmt(area(tau), 0) + ' m', X(tau / 2), Y(Math.min(v0.v, vel(tau)) / 2), C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.7) });
     text(ctx, 'v₀', X(0) + 24, Y(v0.v) - 22, C('velocity'), { weight: 600, size: 24 });
     text(ctx, 'v', X(t.v), Y(v.v) - 30, C('velocity'), { align: 'center', weight: 600, size: 24 });
@@ -93,9 +106,9 @@ const sim = (id, H) => F.sim(root, id, H);
     strip(ctx, L, R, y, 44); scale(ctx, X, 0, 1600, 200, y + 22, 'm', 2);
     dot(ctx, X(x0.v), y, C('position'), false, 10); text(ctx, 'x₀', X(x0.v), y + 76, C('position'), { align: 'center', weight: 600, size: 24 });
     if (Math.abs(x - x0.v) > 20) hbracket(ctx, X(x0.v), X(x), y - 100, C('position'), 'Δx = v̄ t = ' + fmt(x - x0.v, 0) + ' m');
-    runner(ctx, X(xm), y, PAL.ink, ph);
-    dot(ctx, X(x), y, C('position'), true, 10); text(ctx, 'x = ' + fmt(x, 0) + ' m', X(x), y + 76, C('position'), { align: 'center', weight: 600, size: 22 });
-    arrow(ctx, X(xm) + 24, y - 60, X(xm) + 24 + vb.v * 22, y - 60, C('velocity'), 4); text(ctx, 'v̄', X(xm) + 34 + vb.v * 22, y - 60, C('velocity'), { weight: 600, size: 24 });
+    person(ctx, X(xm), y + 22, PAL.ink, { face: 1, phase: cy.tau < t.v && vb.v > 0 ? ph : 0 });
+    dot(ctx, X(x), y, C('position'), true, 10); text(ctx, 'x = ' + fmt(x, 0) + ' m', Math.min(X(x), 1250), y + 76, C('position'), { align: 'center', weight: 600, size: 22 });
+    arrow(ctx, X(xm) + 14, y - 82, X(xm) + 14 + vb.v * 22, y - 82, C('velocity'), 4); text(ctx, 'v̄', X(xm) + 24 + vb.v * 22, y - 82, C('velocity'), { weight: 600, size: 24 });
     // final position against average velocity, a straight line of slope t; the axes are fixed at the
     // slider range of v̄ and at the stretch of road the strip above already draws, so neither rescales
     const box = { l: 160, r: 1240, t: 360, b: 590 };
@@ -139,11 +152,14 @@ const sim = (id, H) => F.sim(root, id, H);
     scale(ctx, X, 0, XMAX, 500, y + 34, 'm', 1);
     const xend = pos(t.v), far = xend > XMAX;
     dot(ctx, X(0), y + 28, C('position'), false, 7); text(ctx, 'x₀ = 0', X(0), y + 78, C('position'), { align: 'center', size: 18, weight: 600 });
-    line(ctx, X(xend), y - 28, X(xend), y + 28, C('position'), 3); text(ctx, fmt(xend, 0) + ' m', X(xend), y + 78, C('position'), { align: 'center', size: 18, weight: 600 });
+    line(ctx, X(xend), y - 28, X(xend), y + 28, C('position'), 3);
+    text(ctx, (far ? 'stops at ' : '') + fmt(xend, 0) + ' m', Math.min(X(xend), 1300), y - 44, C('position'), { align: far ? 'right' : 'center', size: 18, weight: 600, bg: alpha(PAL.panel, 0.85) });
     const px = X(pos(tau)), vv = vel(tau), rest = vv <= 1e-9 && a.v < 0;
     plane(ctx, px, y - 2, PAL.ink, 1.1);
-    arrow(ctx, px, y - 110, px + vv * 3.2, y - 110, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 1) + ' m/s', px + (vv >= 0 ? -10 : 10), y - 142, C('velocity'), { align: vv >= 0 ? 'left' : 'right', weight: 600 });
-    arrow(ctx, px, y + 110, px + a.v * 60, y + 110, C('acceleration'), 5); text(ctx, 'a = ' + fmt(a.v, 2) + ' m/s²', px + (a.v >= 0 ? -10 : 10), y + 142, C('acceleration'), { align: a.v >= 0 ? 'left' : 'right', weight: 600 });
+    /* the arrows are anchored on the plane and clamped to the canvas, and each label sits on the arrow's side that has room */
+    const vtip = Math.min(1380, px + vv * 3.2), atip = Math.max(20, Math.min(1380, px + a.v * 60));
+    arrow(ctx, px, y - 110, vtip, y - 110, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 1) + ' m/s', px > 1100 ? px + 10 : px - 10, y - 142, C('velocity'), { align: px > 1100 ? 'right' : 'left', weight: 600 });
+    arrow(ctx, px, y + 110, atip, y + 110, C('acceleration'), 5); text(ctx, 'a = ' + fmt(a.v, 2) + ' m/s²', px > 1100 ? px + 10 : px - 10, y + 142, C('acceleration'), { align: px > 1100 ? 'right' : 'left', weight: 600 });
     // v against t, on axes fixed at the time slider's range and a 0 to 100 m/s scale
     const box = { l: 160, r: 1240, t: 430, b: 610 };
     const vend = vel(t.v), over = vend > VMAX;
@@ -152,13 +168,13 @@ const sim = (id, H) => F.sim(root, id, H);
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     curve(ctx, vel, 0, t.v, GX, Yc, C('velocity'), 5, 120);
     ctx.restore();
-    dot(ctx, GX(0), Yc(v0.v), C('velocity'), false, 10); dot(ctx, GX(t.v), Yc(vend), C('velocity'), over, 10);
+    dot(ctx, GX(0), Yc(v0.v), C('velocity'), false, 10); dot(ctx, GX(t.v), Yc(vend), C('velocity'), !over, 10);
     line(ctx, GX(tau), box.b, GX(tau), Yc(vv), C('time'), 3, [4, 8]); dot(ctx, GX(tau), Yc(vv), PAL.ink, true, 9);
     text(ctx, 'v₀', GX(0) + 26, Yc(v0.v) + (a.v < 0 ? 30 : -30), C('velocity'), { weight: 600, size: 22 });
     const what = a.v < 0 ? 'the velocity arrow shrinks by ' + fmt(-a.v, 2) + ' m/s every second'
       : a.v > 0 ? 'the velocity arrow grows by ' + fmt(a.v, 2) + ' m/s every second'
         : 'the velocity arrow keeps its length, since the acceleration is zero';
-    headline(ctx, 'After ' + fmt(tau, 1) + ' s ' + what + ', while the acceleration arrow never changes'
+    topline(ctx, 'After ' + fmt(tau, 1) + ' s ' + what + ', while the acceleration arrow never changes'
       + (rest ? ', and the plane has already come to rest.' : over ? ', and the velocity runs past the top of the scale at ' + fmt(vend, 0) + ' m/s.' : far ? ', and the plane has run past the end of the runway drawn here.' : '.'));
     tex(d.readout, `\\kv = \\kvo + \\ka\\kt = ${fmt(v0.v, 1)} + (${fmt(a.v, 2)})(${fmt(Math.min(t.v, stopAt()), 1)}) = ${fmt(vend, 1)}\\ \\text{m/s}`);
   }
@@ -184,13 +200,17 @@ const sim = (id, H) => F.sim(root, id, H);
     const XMAX = 1200;
     const L = 80, R = 1320, y = 230; const X = (m) => L + ((R - L) * m) / XMAX;
     strip(ctx, L, R, y, 56);
-    line(ctx, X(0), y - 40, X(0), y + 40, PAL.muted, 4); text(ctx, 'start', X(0), y + 66, PAL.muted, { align: 'center', size: 18 });
-    line(ctx, X(xe), y - 40, X(xe), y + 40, C('position'), 4); text(ctx, 'x = ' + fmt(xe, 0) + ' m', X(xe), y + 66, C('position'), { align: 'center', size: 20, weight: 600 });
-    dot(ctx, X(xh), y + 28, C('position'), false, 9); text(ctx, 'at t/2: ' + fmt(xh, 0) + ' m, ' + fmt(100 * xh / (xe || 1), 0) + '% of the way', X(xh), y + 66, C('position'), { align: 'center', size: 18, weight: 600 });
+    /* the three marks on the track are labelled through the labeller, since a short run puts all three
+       within a few units of the start */
+    const lab = labeller(ctx, 680);
+    line(ctx, X(0), y - 40, X(0), y + 40, PAL.muted, 4); lab.add('start', X(0), y + 40, 0, 1, PAL.muted, 18, 26);
+    line(ctx, X(xe), y - 40, X(xe), y + 40, C('position'), 4); lab.add('x = ' + fmt(xe, 0) + ' m', X(xe), y + 40, 0, 1, C('position'), 20, 26);
+    dot(ctx, X(xh), y + 28, C('position'), false, 9); lab.add('at t/2: ' + fmt(xh, 0) + ' m, ' + fmt(100 * xh / (xe || 1), 0) + '% of the way', X(xh), y + 40, 0, 1, C('position'), 18, 26);
     const px = X(pos(tau)), vv = v0.v + a.v * tau;
-    dragster(ctx, px, y - 4, PAL.ink, 1);
+    dragster(ctx, px, y - 8, PAL.ink, 1);
     arrow(ctx, px, y - 100, px + vv * 1.6, y - 100, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 0) + ' m/s', px, y - 132, C('velocity'), { weight: 600 });
     arrow(ctx, px, y - 62, px + a.v * 3, y - 62, C('acceleration'), 5); text(ctx, 'a', px + a.v * 3 + 14, y - 62, C('acceleration'), { weight: 600, size: 24 });
+    lab.flush();
     // x against t
     const box = { l: 160, r: 1240, t: 420, b: 610 };
     const { X: GX, Y: GY } = axes(ctx, box, [0, 8], [0, XMAX], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
@@ -248,7 +268,7 @@ const sim = (id, H) => F.sim(root, id, H);
       car(ctx, X(pos(a, tau)), y + 20, PAL.ink, 0.7);
     });
     line(ctx, X(0), 96, X(0), 320, C('position'), 3, [4, 8]); text(ctx, 'light turns red', X(0), 344, PAL.muted, { align: 'center', size: 16 });
-    headline(ctx, 'After ' + fmt(tau, 2) + ' s the two cars are this far down the road, and since the speed and the driver are the same, only the road surface separates them'
+    topline(ctx, 'After ' + fmt(tau, 2) + ' s the two cars are this far down the road, and since the speed and the driver are the same, only the road surface separates them'
       + (off ? ', and the longer stop runs past the 200 m of road drawn here.' : '.'));
     tex(d.readout, `\\kx_{\\text{braking}} = \\frac{\\kv^2 - \\kvo^2}{2\\ka}:\\quad \\text{dry } \\frac{0 - (${fmt(v0.v, 1)})^2}{2(${fmt(ad.v, 2)})} = ${fmt(bd, 1)}\\ \\text{m},\\quad \\text{wet } ${fmt(bw, 1)}\\ \\text{m}`);
     d.readout.appendChild(el('small', null, 'The driver covers ' + fmt(rd, 1) + ' m while reacting, so the whole stop takes ' + fmt(rd + bd, 1) + ' m on dry concrete and ' + fmt(rd + bw, 1) + ' m on wet, a difference of ' + fmt(bw - bd, 1) + ' m.'));
@@ -275,11 +295,14 @@ const sim = (id, H) => F.sim(root, id, H);
     const L = 80, R = 1320, y = 170; const X = (m) => L + ((R - L) * Math.min(RMAX, Math.max(0, m))) / RMAX;
     strip(ctx, L, R, y, 50);
     scale(ctx, X, 0, RMAX, 50, y + 30, 'm', 2);
-    dot(ctx, X(0), y + 25, C('position'), false, 7); text(ctx, 'x₀ = 0', X(0), y + 62, C('position'), { align: 'center', size: 18, weight: 600 });
-    line(ctx, X(x.v), y - 36, X(x.v), y + 36, C('position'), 4); text(ctx, 'end of ramp, x = ' + x.v + ' m', X(x.v) - 14, y + 62, C('position'), { align: 'right', size: 18, weight: 600 });
+    const lab = labeller(ctx, 700);
+    lab.block(L, y + 46, R, y + 74);   /* the scale's tick labels */
+    dot(ctx, X(0), y + 25, C('position'), false, 7); lab.add('x_0 = 0', X(0), y + 36, 0, 1, C('position'), 18, 44);
+    line(ctx, X(x.v), y - 36, X(x.v), y + 36, C('position'), 4); lab.add('end of ramp, x = ' + x.v + ' m', X(x.v), y - 36, 0, -1, C('position'), 18, 22);
     const px = X(pos(tau)), vv = v0.v + a.v * tau;
     car(ctx, px, y - 6, PAL.ink, 1);
-    arrow(ctx, px, y - 64, px + vv * 5, y - 64, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 1) + ' m/s', px + vv * 5 + 16, y - 64, C('velocity'), { weight: 600, size: 20 });
+    const vt = Math.min(1380, px + vv * 5);
+    arrow(ctx, px, y - 64, vt, y - 64, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 1) + ' m/s', vt > 1180 ? px - 16 : vt + 16, y - 64, C('velocity'), { weight: 600, size: 20, align: vt > 1180 ? 'right' : 'left' });
     /* The axes are fixed at −40 to 40 s and −500 to 1000 m, which hold every root the sliders can
        produce; the parabola is clipped to the box rather than the box stretched round it. */
     const t0 = -40, t1 = 40;
@@ -298,10 +321,12 @@ const sim = (id, H) => F.sim(root, id, H);
     line(ctx, GX(rm) - 8, GY(x.v) - 8, GX(rm) + 8, GY(x.v) + 8, PAL.panel, 3);
     line(ctx, GX(rm) - 8, GY(x.v) + 8, GX(rm) + 8, GY(x.v) - 8, PAL.panel, 3);
     dot(ctx, GX(tau), GY(pos(tau)), PAL.ink, true, 9);
-    text(ctx, 't = ' + fmt(rp, 1) + ' s', GX(rp) + 16, GY(0) - 22, C('time'), { weight: 600, size: 20 });
-    text(ctx, 't = ' + fmt(rm, 1) + ' s, before the motion began', GX(rm) + 16, GY(0) + 26, PAL.muted, { weight: 600, size: 18 });
+    lab.block(GX(rp) - 12, GY(x.v) - 12, GX(rp) + 12, GY(x.v) + 12); lab.block(GX(rm) - 12, GY(x.v) - 12, GX(rm) + 12, GY(x.v) + 12);
+    lab.add('t = ' + fmt(rp, 1) + ' s', GX(rp), GY(x.v), 1, 0.5, C('time'), 20, 24);
+    lab.add('t = ' + fmt(rm, 1) + ' s, before the motion began', GX(rm), GY(x.v), -0.3, 1, PAL.muted, 18, 30);
     text(ctx, 'past', GX(0) - 14, box.b - 22, PAL.muted, { size: 17, align: 'right' }); text(ctx, 'future', GX(0) + 14, box.b - 22, PAL.muted, { size: 17 });
-    headline(ctx, 'After ' + fmt(tau, 1) + ' s the car is on its way, and the parabola crosses the length of the ramp twice, although only the crossing at ' + fmt(rp, 1) + ' s lies in the future.');
+    lab.flush();
+    topline(ctx, 'After ' + fmt(tau, 1) + ' s the car is on its way, and the parabola crosses the length of the ramp twice, although only the crossing at ' + fmt(rp, 1) + ' s lies in the future.');
     tex(d.readout, `\\tfrac{1}{2}\\ka\\kt^2 + \\kvo\\kt - \\kx = 0 \\;\\Rightarrow\\; \\kt = \\frac{-\\kvo \\pm \\sqrt{\\kvo^2 + 2\\ka\\kx}}{\\ka} = ${fmt(rp, 1)}\\ \\text{s}\\ \\text{or}\\ ${fmt(rm, 1)}\\ \\text{s}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => roots()[0] / 5), draw });

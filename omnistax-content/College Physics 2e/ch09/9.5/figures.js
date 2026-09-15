@@ -3,7 +3,7 @@
    in it, so none of them registers a cycle and none carries a transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, ctl, choice, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, fixed, block } = F;
+const { el, fmt, tex, C, PAL, ctl, choice, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, fixed, block, silhouette, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -28,12 +28,15 @@ function bar(ctx, x0, y, wmax, v, full, h, color, label, value) {
   text(ctx, label, x0 - 16, y, color, { size: 20, weight: 600, align: 'right' });
   text(ctx, value, x0 + width + 16, y, PAL.muted, { size: 18, align: 'left' });
 }
-/* a hand gripping a bar at (x, y) */
-function grip(ctx, x, y) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
-  ctx.arc(x, y - 18, 15, 0, Math.PI * 2); ctx.moveTo(x - 9, y - 3); ctx.lineTo(x + 9, y - 3); ctx.stroke(); ctx.restore();
+/* a hand closed round a bar at (x, y), seen from the side: a rounded palm with the fingers
+   curled over the bar, the wrist running off upward and away from the bar's free end */
+function grip(ctx, x, y, dir = 1) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.roundRect(x - 22, y - 24, 44, 40, 12); ctx.fill(); ctx.stroke();
+  ctx.lineWidth = 2; ctx.beginPath(); for (const dx of [-10, 0, 10]) { ctx.moveTo(x + dx, y - 24); ctx.lineTo(x + dx, y + 8); } ctx.stroke();
+  ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(x - dir * 14, y - 22); ctx.lineTo(x - dir * 40, y - 70); ctx.stroke();   /* the wrist */
+  ctx.restore();
 }
-
 /* =====================================================================
    FIGURE 9.21: the nail puller. The hand presses down on the handle, the
    nail pulls back on the claw and the plank pushes up at the pivot. The
@@ -56,16 +59,19 @@ function grip(ctx, x, y) {
     const hx = PX - SC * li.v, nx = PX + SC * lo.v;
 
     fixed(ctx, 220, PY, 1120, 34);                                       /* the plank */
-    line(ctx, nx, PY + 40, nx, 338, PAL.muted, 6);                       /* the nail */
-    dot(ctx, nx, 336, PAL.muted, true, 8);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 9; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(hx, HY); ctx.lineTo(PX, PY); ctx.lineTo(nx + 8, 348); ctx.stroke(); ctx.restore();
+    line(ctx, nx, PY + 44, nx, 330, PAL.muted, 5);                       /* the nail, its head just clear of the plank */
+    line(ctx, nx - 9, 330, nx + 9, 330, PAL.muted, 5);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(hx, HY); ctx.lineTo(PX, PY); ctx.stroke();                          /* the handle */
+    ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(PX, PY); ctx.quadraticCurveTo(nx - 4, PY + 14, nx - 10, 336); ctx.stroke();   /* the claw under the head */
+    ctx.beginPath(); ctx.moveTo(PX, PY); ctx.quadraticCurveTo(nx + 14, PY + 4, nx + 10, 336); ctx.stroke();
+    ctx.restore();
     dot(ctx, PX, PY, PAL.ink, false, 11);                                /* the pivot */
     text(ctx, 'pivot', PX, PY + 62, PAL.muted, { size: 17, align: 'center' });
-    grip(ctx, hx, HY);
+    grip(ctx, hx, HY, 1);
 
-    arrow(ctx, hx, HY + 22, hx, HY + 110, C('force'), 5);                /* the three external forces on the puller */
-    text(ctx, 'Fᵢ = ' + sig3(Fi.v) + ' N', hx - 18, HY + 66, C('force'), { size: 21, weight: 600, align: 'right' });
+    arrow(ctx, hx, HY + 18, hx, HY + 110, C('force'), 5);                /* the three external forces on the puller */
+    label(ctx, 'Fᵢ = ' + sig3(Fi.v) + ' N', hx, HY + 110, { side: 'below', color: C('force'), gap: 20, size: 21 });
     arrow(ctx, nx, 254, nx, 338, C('force'), 5);
     text(ctx, 'Fₙ = ' + sig3(Fo) + ' N', nx + 20, 240, C('force'), { size: 21, weight: 600, align: 'left' });
     arrow(ctx, PX, PY, PX, PY - 148, C('force'), 5);
@@ -136,8 +142,11 @@ function grip(ctx, x, y) {
 
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 8; ctx.lineCap = 'round';   /* the frame of the barrow, or the shaft of the shovel */
     ctx.beginPath(); ctx.moveTo(left, 296); ctx.lineTo(PX, PY); ctx.stroke(); ctx.restore();
-    if (shovel) { blade(ctx, xo); grip(ctx, PX - 10, PY - 6); } else { tray(ctx, xo); wheel(ctx, PX, PY); line(ctx, 120, GY, 1360, GY, PAL.muted, 3); }
-    grip(ctx, xi, 300);
+    if (shovel) { blade(ctx, xo); grip(ctx, PX - 10, PY - 6, -1); } else { tray(ctx, xo); wheel(ctx, PX, PY); line(ctx, 120, GY, 1360, GY, PAL.muted, 3); }
+    /* the person who lifts, standing behind the handles with both hands on them */
+    const ps = 1.6, px = xi - 30;
+    silhouette(ctx, { x: px, y: GY, s: ps, pose: 'lean', color: PAL.ink, hands: [{ x: (xi - px) / ps, y: (300 - GY) / ps }, { x: (xi - px) / ps + 2, y: (300 - GY) / ps + 4 }] });
+    dot(ctx, xi, 300, PAL.ink, true, 7);
     dot(ctx, PX, PY, PAL.ink, false, 10);
     text(ctx, shovel ? 'the pivot, at the rear hand' : 'the pivot, at the wheel’s axle', PX + 40, PY + 58, PAL.muted, { size: 17, align: 'right' });
 
@@ -147,9 +156,9 @@ function grip(ctx, x, y) {
     const FULL = 1000, alen = (f) => 26 + 110 * Math.min(1, Math.abs(f) / FULL);
     dot(ctx, xo, 312, PAL.ink, true, 9);                                   /* the centre of gravity and the weight that acts there */
     arrow(ctx, xo, 312, xo, 312 + alen(w), C('force'), 5);
-    text(ctx, 'w = ' + sig3(w) + ' N', xo - 18, 312 + alen(w) - 16, C('force'), { size: 21, weight: 600, align: 'right', bg: PAL.panel });
-    arrow(ctx, xi, 258, xi, 258 - alen(Fi), C('force'), 5);                /* the lift */
-    text(ctx, 'Fᵢ = ' + sig3(Fi) + ' N', xi, 258 - alen(Fi) - 24, C('force'), { size: 21, weight: 600, align: 'center' });
+    label(ctx, 'w = ' + sig3(w) + ' N', xo, 312 + alen(w), { side: 'below', color: C('force'), gap: 20, size: 21 });
+    arrow(ctx, xi, 290, xi, 290 - alen(Fi), C('force'), 5);                /* the lift, from the hands */
+    label(ctx, 'Fᵢ = ' + sig3(Fi) + ' N', xi, 290 - alen(Fi), { side: 'right', color: C('force'), gap: 18, size: 21 });
     if (!shovel) {                                                         /* the wheel carries the rest of the weight */
       arrow(ctx, PX, PY, PX, PY - alen(N), C('force'), 5);
       text(ctx, 'N = ' + sig3(N) + ' N', PX + 18, PY - alen(N) + 14, C('force'), { size: 21, weight: 600, align: 'left' });

@@ -26,7 +26,7 @@ function jet(ctx, x, y, heading, s) {
 (function () {
   const d = sim('sim-vector-scalar', 430);
   const V = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: -120, max: 120, step: 5, value: 90, unit: 'km/h', dec: 0, aria: 'velocity, east positive' });
-  const T = ctl(d.controls, { label: '\\text{temperature}', cls: '', min: -40, max: 40, step: 1, value: 20, unit: 'ºC', dec: 0, aria: 'temperature' });
+  const T = ctl(d.controls, { label: '\\text{temperature}', cls: '', min: -40, max: 40, step: 1, value: 20, unit: '°C', dec: 0, aria: 'temperature' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const jx = 400, jy = 262;                 /* where the jet sits on its strip */
   const tx = 1060, tTop = 150, tBot = 366;  /* the thermometer's tube and the scale along it */
@@ -51,14 +51,14 @@ function jet(ctx, x, y, heading, s) {
     ctx.fillStyle = alpha(PAL.muted, 0.35); ctx.fillRect(tx - 7, Y(temp), 14, tBot + 10 - Y(temp)); ctx.restore();
     for (let deg = -40; deg <= 40; deg += 10) {
       line(ctx, tx + 16, Y(deg), tx + (deg % 20 ? 26 : 34), Y(deg), PAL.muted, 2);
-      if (deg % 20 === 0) text(ctx, reading(deg, 0) + ' ºC', tx + 44, Y(deg), PAL.muted, { size: 17 });
+      if (deg % 20 === 0) text(ctx, reading(deg, 0) + ' °C', tx + 44, Y(deg), PAL.muted, { size: 17 });
     }
     line(ctx, tx - 26, Y(0), tx - 16, Y(0), PAL.muted, 2);
     dot(ctx, tx, Y(temp), PAL.ink, true, 10);
-    text(ctx, reading(temp, 0) + ' ºC', tx - 28, Y(temp), PAL.ink, { weight: 600, size: 24, align: 'right' });
+    text(ctx, reading(temp, 0) + ' °C', tx - 28, Y(temp), PAL.ink, { weight: 600, size: 24, align: 'right' });
     text(ctx, temp < 0 ? 'the minus sign is a point below zero, not a direction' : temp > 0 ? 'a point above zero on the scale' : 'the zero of the scale', 1060, jy + 140, PAL.ink, { size: 17, align: 'center' });
     headline(ctx, (mag > 0 ? 'A velocity of ' + fmt(mag, 0) + ' km/h ' + (east ? 'east' : 'west') + ' is an arrow' : 'A velocity of 0 km/h has no arrow')
-      + ', and a temperature of ' + reading(temp, 0) + ' ºC is a point on a scale.');
+      + ', and a temperature of ' + reading(temp, 0) + ' °C is a point on a scale.');
     readout(d.readout, `\\kv = ${signedTex(v, 0)}\\ \\text{km/h}${mag > 0 ? `\\ (\\text{${east ? 'east' : 'west'}})` : ''} \\qquad \\text{temperature} = ${readingTex(temp, 0)}^{\\circ}\\text{C}`,
       'The length of the arrow alone, ' + fmt(mag, 0) + ' km/h, is the speed, which is a scalar, and the sign of the temperature is a point on a scale rather than a direction.');
   }

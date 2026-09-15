@@ -223,6 +223,8 @@ Extra simulations (rule 15), thought about and judged:
 
 None built.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-average-velocity` and `sim-segments`: the passenger was a running stick figure floating above the aisle and is now the library's `person()` walking on it, facing the way he goes; his velocity label no longer leaves the canvas at the fastest setting, the graph's slope and tangent labels go through `labeller()` so they never sit on the line or on each other, and the long headlines wrap through `topline()`. `sim-store` and `sim-trip-graphs`: the house and the store stood on the road over the scale, so the store's name printed across a tick label; both buildings now stand behind the road on its far edge with their names over their roofs, the displacement bracket sits under the scale, and the headline wraps. `sim-trip-graphs`: the velocity and speed readings sit at the ends of their segments on a panel and are held inside the boxes, so a fast trip no longer prints its number over the axis title.
+
 ## Exercises
 
 - 1 Check Your Understanding, `cyu1` (the commuter train, Baltimore to

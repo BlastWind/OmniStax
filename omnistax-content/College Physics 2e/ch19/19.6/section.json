@@ -1,0 +1,296 @@
+{
+ "id": "19.6",
+ "module": "m42336",
+ "chapter": "19",
+ "title": "Capacitors in Series and Parallel",
+ "short": "Capacitors in series and parallel",
+ "lead": "Capacitors are seldom used one at a time. Several of them wired into one circuit behave as a single equivalent capacitor, and how they are connected decides what that one capacitance is. This section works out the total capacitance of capacitors joined in series, where the same charge is separated in every one of them and the total is less than any of the parts, and of capacitors joined in parallel, where every capacitor has the whole source voltage across it and the total is simply the sum. It then takes a circuit that has both connections in it and reduces it a piece at a time.",
+ "objectives": [
+  "Derive expressions for total capacitance in series and in parallel.",
+  "Identify series and parallel parts in the combination of connection of capacitors.",
+  "Calculate the effective capacitance in series and parallel given individual capacitances."
+ ],
+ "summary_html": "<ul><li>Total capacitance in series $\\frac{1}{\\kCS} = \\frac{1}{\\kCone} + \\frac{1}{\\kCtwo} + \\frac{1}{\\kCthree} + \\text{.}\\text{.}\\text{.}$</li><li>Total capacitance in parallel $\\kCp = \\kCone + \\kCtwo + \\kCthree + \\text{.}\\text{.}\\text{.}$</li><li>If a circuit contains a combination of capacitors in series and parallel, identify series and parallel parts, compute their capacitances, and then find the total.</li></ul>",
+ "notes": "The two problems the book leaves unkeyed are left out: the capacitor bank of 0.750 F to be built from 1.50 mF capacitors, and the five-capacitor circuit, whose image is not kept with it. The section's one conceptual question, on whether a capacitor bank meant to store a large amount of energy should be connected in series or in parallel, is set on the page for Energy Stored in Capacitors, where the energy it turns on is introduced.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-14",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book's answer key. The section's conceptual question, which asks whether capacitors should be connected in series or in parallel to store a large amount of energy, is held for Energy Stored in Capacitors, since the energy it turns on is introduced there; that section sets it with source_section 19.6 and says so in its own notes. Two problems have no keyed answer and are left out: the capacitor bank of 0.750 F built from 1.50 mF capacitors, and the combination of five capacitors drawn in the third circuit. The book's own circuit drawings travel on the cards of the two circuit problems that are kept. The Unreasonable Results item keys only its first part, so the card checks that number and carries the book's own answers to the other two parts in its solution. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-series-parallel",
+   "kind": "sim",
+   "number": "19.20",
+   "folds": [
+    "19.21"
+   ],
+   "originals": [
+    "/media/ch19/Figure_20_06_01a.jpg",
+    "/media/ch19/Figure_20_06_02a.jpg"
+   ],
+   "original_caption": "(Figure 19.20) (a) Capacitors connected in series. The magnitude of the charge on each plate is Q. (b) An equivalent capacitor has a larger plate separation d. Series connections produce a total capacitance that is less than that of any of the individual capacitors. (Figure 19.21) (a) Capacitors in parallel. Each is connected directly to the voltage source just as if it were all alone, and so the total capacitance in parallel is just the sum of the individual capacitances. (b) The equivalent capacitor has a larger plate area and can therefore hold more charge than the individual capacitors.",
+   "widths": [
+    185,
+    300
+   ],
+   "draws": [
+    "capacitance",
+    "voltage",
+    "charge",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-mixed",
+   "kind": "sim",
+   "number": "19.22",
+   "originals": [
+    "/media/ch19/Figure_20_06_03a.jpg"
+   ],
+   "original_caption": "(a) This circuit contains both series and parallel connections of capacitors. See Example 19.10 for the calculation of the overall capacitance of the circuit. (b) C₁ and C₂ are in series; their equivalent capacitance C_S is less than either of them. (c) Note that C_S is in parallel with C₃. The total capacitance is, thus, the sum of C_S and C₃.",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "capacitance"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "combinations",
+   "concept": "equivalent-capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "combinations",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "series",
+   "concept": "series-capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "series",
+   "concept": "equivalent-capacitance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "series",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "series",
+   "concept": "parallel-plate-capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "series",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "conductor-is-equipotential",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-plate-capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "equivalent-capacitance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mixed",
+   "concept": "reduce-series-parallel-combinations",
+   "verb": "introduces"
+  },
+  {
+   "span": "mixed",
+   "concept": "series-capacitance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mixed",
+   "concept": "parallel-capacitance",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "p1",
+   "source_id": "fs-id1656785",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mixed",
+   "figure": {
+    "src": "/media/ch19/Figure_20_05_08a.jpg",
+    "alt": "A circuit is shown with three capacitors. Two capacitors, of ten microfarad and two point five microfarad capacitance, are in parallel to each other, and their combination is in series with a zero point three zero microfarad capacitor.",
+    "caption": "A combination of series and parallel connections of capacitors."
+   },
+   "prompt": "Find the total capacitance of the combination of capacitors in the circuit shown below.",
+   "answer": {
+    "type": "number",
+    "value": 0.293,
+    "unit": "µF",
+    "generated_by": "source",
+    "hint": "Take the parallel pair first, since the two capacitors joined side by side simply add, and then put that one capacitance in series with the third.",
+    "solution": "0.293 µF"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1290190",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "What total capacitances can you make by connecting a $5\\text{.}\\text{00 µF}$ and an $8\\text{.}\\text{00 µF}$ capacitor together?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "in series",
+      "value": 3.08,
+      "unit": "µF",
+      "hint": "Two capacitors in series give a total less than either of them, and for two the reciprocals add."
+     },
+     {
+      "part": "in parallel",
+      "value": 13.0,
+      "unit": "µF",
+      "hint": "Two capacitors in parallel give a total larger than either of them, and for two the capacitances add."
+     }
+    ],
+    "solution": "3.08 µF in series combination, 13.0 µF in parallel combination"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2607784",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mixed",
+   "figure": {
+    "src": "/media/ch19/Figure_20_05_09a.jpg",
+    "alt": "The circuit includes three capacitors. A zero point three zero microfarad capacitor and a ten microfarad capacitor are connected in series, and together they are connected in parallel with a two point five microfarad capacitor.",
+    "caption": "A combination of series and parallel connections of capacitors."
+   },
+   "prompt": "Find the total capacitance of the combination of capacitors shown below.",
+   "answer": {
+    "type": "number",
+    "value": 2.79,
+    "unit": "µF",
+    "generated_by": "source",
+    "hint": "Take the series pair first, which comes to a little less than the smaller of the two, and then add the capacitor that stands in parallel with the pair.",
+    "solution": "2.79 µF"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2605419",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "prompt": "<strong>Unreasonable Results</strong> (a) An $8\\text{.}\\text{00 µF}$ capacitor is connected in parallel to another capacitor, producing a total capacitance of $5\\text{.}\\text{00 µF}$. What is the capacitance of the second capacitor? (b) What is unreasonable about this result? (c) Which assumptions are unreasonable or inconsistent?",
+   "answer": {
+    "type": "number",
+    "value": -3.0,
+    "unit": "µF",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Take the parallel formula at its word and solve for the second capacitance, then ask whether the number it gives you could belong to a real capacitor.",
+    "solution": "(a) –3.00 µF (b) You cannot have a negative value of capacitance. (c) The assumption that the capacitors were hooked up in parallel, rather than in series, was incorrect. A parallel connection always produces a greater capacitance, while here a smaller capacitance was assumed. This could happen only if the capacitors are connected in series."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "p1",
+   "concept": "reduce-series-parallel-combinations"
+  },
+  {
+   "exercise": "p1",
+   "concept": "parallel-capacitance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "series-capacitance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "series-capacitance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "parallel-capacitance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "equivalent-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "reduce-series-parallel-combinations"
+  },
+  {
+   "exercise": "p4",
+   "concept": "series-capacitance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "parallel-capacitance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "parallel-capacitance"
+  },
+  {
+   "exercise": "p6",
+   "concept": "series-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

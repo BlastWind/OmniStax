@@ -6,7 +6,7 @@
    register no cycle and carry no transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, select, hover, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, axes, curve, pinned, view, face } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, select, hover, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, axes, curve, pinned, view, face, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -29,6 +29,28 @@ function hand(ctx, x, y, ux, uy, color) {
   ctx.moveTo(x + px * 16, y + py * 16); ctx.lineTo(x + ux * 30 + px * 18, y + uy * 30 + py * 18); ctx.lineTo(x + ux * 62 + px * 12, y + uy * 62 + py * 12);
   ctx.lineTo(x + ux * 62 - px * 12, y + uy * 62 - py * 12); ctx.lineTo(x + ux * 30 - px * 18, y + uy * 30 - py * 18); ctx.lineTo(x - px * 16, y - py * 16); ctx.closePath(); ctx.fill(); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(x + ux * 30 + px * 18, y + uy * 30 + py * 18); ctx.lineTo(x + ux * 8 + px * 26, y + uy * 8 + py * 26); ctx.lineTo(x + px * 14, y + py * 14); ctx.stroke();
+  ctx.restore();
+}
+/* a fist gripping at (x, y) with the forearm reaching back along (ux, uy): a tapered forearm, a rounded fist,
+   the knuckles along its leading edge and a thumb closed over the grip, in ink on a light fill */
+function fist(ctx, x, y, ux, uy, color) {
+  const px = -uy, py = ux, P = (a, b) => [x + ux * a + px * b, y + uy * a + py * b], ang = Math.atan2(uy, ux);
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3.5; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(...P(26, 15)); ctx.lineTo(...P(112, 12)); ctx.lineTo(...P(112, -12)); ctx.lineTo(...P(26, -15)); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(...P(12, 0), 23, 19, ang, 0, TAU); ctx.fill(); ctx.stroke();
+  for (const b of [-11, 0, 11]) { ctx.beginPath(); ctx.arc(...P(-8, b), 5, ang + Math.PI / 2, ang + 3 * Math.PI / 2); ctx.stroke(); }
+  ctx.beginPath(); ctx.moveTo(...P(14, -16)); ctx.quadraticCurveTo(...P(-6, -22), ...P(-10, -4)); ctx.stroke();
+  ctx.restore();
+}
+/* a person seen from above at (x, y), s times the base size: the shoulders as a lens across the heading, the head on
+   them, and the arms reaching to the two points given, if any */
+function personAbove(ctx, x, y, s, heading, color, reach) {
+  const ux = Math.cos(heading), uy = Math.sin(heading), px = -uy, py = ux;
+  const L = { x: x + px * 24 * s, y: y + py * 24 * s }, R = { x: x - px * 24 * s, y: y - py * 24 * s };
+  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineCap = 'round'; ctx.lineWidth = 3;
+  if (reach) { for (const [sh, to] of [[L, reach[0]], [R, reach[1]]]) { ctx.lineWidth = 7 * Math.min(1, s); ctx.beginPath(); ctx.moveTo(sh.x, sh.y); ctx.lineTo(to.x, to.y); ctx.stroke(); } }
+  ctx.beginPath(); ctx.ellipse(x, y, 26 * s, 11 * s, heading, 0, TAU); ctx.fill();
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(x + ux * 3 * s, y + uy * 3 * s, 12 * s, 0, TAU); ctx.fill(); ctx.stroke();
   ctx.restore();
 }
 /* a clock and a reading, stacked in a panel at (x, y): the label in muted ink and the value in its type colour */
@@ -70,11 +92,11 @@ function reading(ctx, x, y, label, value, color) {
     text(ctx, 'axle', CX + 34, CY - 2, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.9) });
     /* the distance from the axle to the pull, then the hand and its pull, backward along the tire */
     line(ctx, CX, CY, px, py, pc, 3, [6, 8]);
-    hand(ctx, px, py, 1, 0, PAL.ink);
-    text(ctx, 'the hand', px + 84, py + 4, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.9) });
-    /* the distance label sits beside the dashed line, or beside the hand when the pull is close to the axle */
+    fist(ctx, px, py, 1, 0, PAL.ink);
+    text(ctx, 'the hand', px + 130, py + 4, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.9) });
+    /* the distance label sits beside the dashed line, or above the forearm when the pull is close to the axle */
     if (rs.v * S > 90) text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', CX + 14, (CY + py) / 2 + 20, pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) });
-    else text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', px + 84, py - 26, pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) });
+    else text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', px + 130, py - 26, pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) });
     if (Fs.v > 0) {
       arrow(ctx, px, py, px - Fs.v * KF, py, fc, 5);
       text(ctx, 'F = ' + fmt(Fs.v, 1) + ' N', px - Fs.v * KF - 14, py - 26, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
@@ -299,7 +321,7 @@ function reading(ctx, x, y, label, value, color) {
     line(ctx, bx + bw, by - 6, bx + bw, by + 36, PAL.muted, 2);
     text(ctx, fmt(100 * share, 0) + '%', bx + bw * Math.min(1, share) + (share > 0.8 ? -10 : 10), by + 60, ic, { size: 20, weight: 600, align: share > 0.8 ? 'right' : 'left' });
     text(ctx, 'a hoop about its axis reaches 100%, because every bit of it is at the rim', PX, by + 100, PAL.muted, { size: 17 });
-    topline(ctx, 'A ' + s.label.charAt(0).toLowerCase() + s.label.slice(1).replace(' (or disk)', '').replace(' (or ring)', '') + ' of ' + fmt(M, 1) + ' kg has a moment of inertia of ' + fmt(I, I < 10 ? 3 : 1) + ' kg·m², ' + fmt(100 * share, 0) + '% of what all its mass at ' + fmt(far, 2) + ' m would give.');
+    topline(ctx, (/^[aeiou]/i.test(s.label) ? 'An ' : 'A ') + s.label.charAt(0).toLowerCase() + s.label.slice(1).replace(' (or disk)', '').replace(' (or ring)', '') + ' of ' + fmt(M, 1) + ' kg has a moment of inertia of ' + fmt(I, I < 10 ? 3 : 1) + ' kg·m², ' + fmt(100 * share, 0) + '% of what all its mass at ' + fmt(far, 2) + ' m would give.');
     const nums = s.value === 'annular' ? `\\frac{${fmt(M, 1)}\\ \\text{kg}}{2}\\left[(${fmt(R1, 2)}\\ \\text{m})^2 + (${fmt(R, 2)}\\ \\text{m})^2\\right]`
       : s.value === 'disk-diameter' ? `\\frac{(${fmt(M, 1)}\\ \\text{kg})(${fmt(R, 2)}\\ \\text{m})^2}{4} + \\frac{(${fmt(M, 1)}\\ \\text{kg})(${fmt(l, 2)}\\ \\text{m})^2}{12}`
       : s.value === 'slab' ? `\\frac{(${fmt(M, 1)}\\ \\text{kg})\\left[(${fmt(l, 2)}\\ \\text{m})^2 + (${fmt(R, 2)}\\ \\text{m})^2\\right]}{12}`
@@ -334,10 +356,11 @@ function reading(ctx, x, y, label, value, color) {
   let childAt = { x: 0, y: 0 };
   hover(d.stage, () => (mc.v > 0 ? [{ x: childAt.x, y: childAt.y, r: 24, name: 'the child, ' + fmt(mc.v, 1) + ' kg at ' + fmt(rc.v, 2) + ' m from the center' }] : []));
   function draw() {
-    const { ctx } = begin(d.c);
+    const { ctx, H } = begin(d.c);
     const fc = C('force'), pc = C('position'), ic = C('rotational-inertia'), ac = C('angular-acceleration'), wc = C('angular-rate'), tc = C('time'), qc = C('torque');
     const m = model(), t = cy.now(), th = 0.5 * m.al * t * t, w = m.al * t, done = t >= T - 1e-9, loaded = mc.v > 0;
     const Rp = R * S;
+    const L = labeller(ctx, H); L.block(0, 0, 1400, 96); L.block(BOX.l - 80, BOX.t - 60, 1400, H);
     /* the platform from above, its handrails turning counterclockwise, and the child on it */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(CX, CY, Rp, 0, TAU); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4;
@@ -353,19 +376,23 @@ function reading(ctx, x, y, label, value, color) {
     if (loaded) {
       const ca = -th + Math.PI / 2 - 1.1, cx = CX + rc.v * S * Math.cos(ca), cyy = CY + rc.v * S * Math.sin(ca);
       childAt = { x: cx, y: cyy };
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(cx, cyy, 18, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
       if (rc.v > 0.1) line(ctx, CX, CY, cx, cyy, pc, 2, [4, 8]);
-      const right = cx > CX;
-      text(ctx, 'child, ' + fmt(mc.v, 1) + ' kg at ' + fmt(rc.v, 2) + ' m', Math.min(780, Math.max(60, cx + (right ? 28 : -28))), Math.min(590, Math.max(96, cyy - 26)), PAL.ink, { size: 19, weight: 600, align: right ? 'left' : 'right', bg: alpha(PAL.panel, 0.9) });
+      personAbove(ctx, cx, cyy, 0.8, ca + Math.PI / 2, PAL.ink);   /* the child sits facing the way the platform carries her */
+      const rx = cx - CX, ry = cyy - CY, rl = Math.hypot(rx, ry) || 1;
+      L.add('child, ' + fmt(mc.v, 1) + ' kg at ' + fmt(rc.v, 2) + ' m', cx, cyy, rx / rl, ry / rl, PAL.ink, 19, 30);
     } else text(ctx, 'no one is on the platform', CX, CY + 60, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.soft, 0.9) });
     /* the father's push at the edge, perpendicular to the radius, and the turn it makes */
     if (Fs.v > 0) {
       arrow(ctx, ex, ey, ex - Fs.v * KF, ey, fc, 5);
       text(ctx, 'F = ' + fmt(Fs.v, 0) + ' N', ex - Fs.v * KF - 12, ey + 30, fc, { size: 21, weight: 600, align: Fs.v * KF > 120 ? 'left' : 'right', bg: alpha(PAL.panel, 0.9) });
-      text(ctx, 'the father pushes here', ex + 18, ey + 36, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.9) });
+      /* the father stands outside the rim behind his push, seen from above, both hands on the edge */
+      const fx = ex + 58, fy = ey + 34, fh = Math.atan2(ey - fy, ex - fx);
+      personAbove(ctx, fx, fy, 1, fh, PAL.ink, [{ x: ex + 2, y: ey + 2 }, { x: ex + 14, y: ey + 10 }]);
+      text(ctx, 'the father', fx + 40, fy + 4, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.9) });
       turnArc(ctx, CX, CY, Rp + 40, ac, -Math.PI / 2);
-      text(ctx, 'α = ' + fmt(m.al, 2) + ' rad/s²', CX + (Rp + 40) * Math.cos(-0.87) + 14, CY + (Rp + 40) * Math.sin(-0.87) + 6, ac, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
+      L.add('α = ' + fmt(m.al, 2) + ' rad/s²', CX + (Rp + 40) * Math.cos(-0.87), CY + (Rp + 40) * Math.sin(-0.87), 0.7, -0.5, ac, 21, 24);
     }
+    L.flush();
     /* the graph beside: the angular velocity against time, the loaded platform solid and the empty one dashed */
     const g = axes(ctx, BOX, [0, T], [0, WMAX], { xl: 't (s)', xc: tc, yl: 'ω (rad/s)', yc: wc, nx: 4, ny: 3, fx: (v) => fmt(v, 1) });
     ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => Math.min(WMAX, m.al0 * s), 0, T, g.X, g.Y, alpha(wc, 0.55), 3, 40); ctx.restore();

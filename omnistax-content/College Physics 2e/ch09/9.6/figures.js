@@ -1,7 +1,7 @@
 /* Figures for section 9.6 Forces and Torques in Muscles and Joints. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.6'] = function (root, F) {
-const { el, fmt, tex, C, PAL, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, pinned, silhouette, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const G = 9.80;                        /* the acceleration due to gravity, as the chapter takes it */
@@ -17,13 +17,17 @@ function turn(ctx, cx, cy, r, a0, a1, color, w) {
   const tx = cx + r * Math.cos(a1), ty = cy + r * Math.sin(a1);
   arrow(ctx, tx - 16 * Math.cos(tan), ty - 16 * Math.sin(tan), tx, ty, color, lw);
 }
-/* a rectangle standing for a book or a box, drawn in ink on the page's own panel */
-function crate(ctx, cx, top, w, h) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
-  ctx.fillRect(cx - w / 2, top, w, h); ctx.strokeRect(cx - w / 2, top, w, h); ctx.restore();
-  line(ctx, cx - w / 2 + 14, top + h / 2, cx + w / 2 - 14, top + h / 2, PAL.rule, 2);
+/* a closed book lying flat, its top edge centred on (cx, top): the cover with the block of pages under it */
+function book(ctx, cx, top, w, h) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  ctx.fillRect(cx - w / 2, top, w, h); ctx.strokeRect(cx - w / 2, top, w, h);
+  ctx.fillStyle = PAL.ink; ctx.fillRect(cx - w / 2, top, w, 8);                                     /* the cover */
+  ctx.strokeStyle = PAL.muted; ctx.lineWidth = 1.5; ctx.beginPath();
+  for (let y = top + 16; y < top + h - 4; y += 7) { ctx.moveTo(cx - w / 2 + 6, y); ctx.lineTo(cx + w / 2 - 6, y); } ctx.stroke();   /* the pages */
+  ctx.restore();
 }
-
+/* a box carried in the hands, drawn as the library's crate */
+function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
 /* =====================================================================
    FIGURE 9.25: the forearm holding a book, with the equivalent lever
    system drawn over it. The elbow is the pivot, the biceps pulls up a
@@ -53,11 +57,13 @@ function crate(ctx, cx, top, w, h) {
     const x1 = PX + r1 * S, x2 = PX + R2 * S, x3 = PX + r3 * S, hand = x3 + 52;
 
     /* the upper arm, the biceps and the forearm with the book in the hand */
-    line(ctx, PX, PY, PX, 200, PAL.muted, 16);
-    line(ctx, PX + 13, 218, x1, PY - 6, PAL.soft2, 14);
-    line(ctx, PX, PY, hand, PY, PAL.ink, 11);
+    line(ctx, PX, PY, PX, 170, PAL.muted, 22);                                                     /* the upper arm */
+    ctx.save(); ctx.fillStyle = alpha(C('force'), 0.25); ctx.strokeStyle = C('force'); ctx.lineWidth = 2.5;   /* the biceps, from the upper arm to its tendon on the forearm */
+    ctx.beginPath(); ctx.moveTo(PX + 11, 200); ctx.quadraticCurveTo(PX + 60, 236, x1, PY - 8); ctx.quadraticCurveTo(PX + 34, 250, PX + 11, 200); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+    line(ctx, PX, PY, hand, PY, PAL.ink, 12);                                                       /* the forearm */
+    ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.roundRect(hand - 14, PY - 12, 44, 34, 10); ctx.fill(); ctx.restore();   /* the hand */
     dot(ctx, PX, PY, PAL.ink, true, 11);
-    crate(ctx, x3, PY + 26, 96, 48);
+    book(ctx, x3, PY + 22, 100, 46);
 
     /* the four forces on the forearm */
     const lB = Math.min(K * FB, 240);
@@ -68,8 +74,8 @@ function crate(ctx, cx, top, w, h) {
     text(ctx, 'w_a = ' + fmt(wa, 1) + ' N', x2 + 14, PY + la + 18, C('force'), { size: 20, weight: 600, align: 'left' });
     if (wb > 0) {
       const lb = Math.max(K * wb, 26);
-      arrow(ctx, x3, PY + 74, x3, PY + 74 + lb, C('force'), 5);
-      text(ctx, 'w_b = ' + fmt(wb, 1) + ' N', x3 + 14, PY + 74 + lb + 18, C('force'), { size: 20, weight: 600, align: 'left' });
+      arrow(ctx, x3, PY + 68, x3, PY + 68 + lb, C('force'), 5);
+      text(ctx, 'w_b = ' + fmt(wb, 1) + ' N', x3 + 14, PY + 68 + lb + 18, C('force'), { size: 20, weight: 600, align: 'left' });
     }
     const le = Math.min(K * FE, 180);
     if (le > 4) {
@@ -148,12 +154,11 @@ function crate(ctx, cx, top, w, h) {
     /* the ground, the legs and the base of support */
     line(ctx, 70, GY, 640, GY, PAL.muted, 3);
     hbracket(ctx, FX - 46, FX + 52, GY + 34, PAL.muted, 'base of support');
-    line(ctx, hip[0], hip[1], FX - 12, GY, PAL.ink, 10);
-    line(ctx, hip[0], hip[1], FX + 16, GY, PAL.ink, 10);
-    /* the upper body, pivoted at the hips */
-    line(ctx, hip[0], hip[1], top[0], top[1], PAL.ink, 12);
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath();
-    ctx.arc(top[0] + 26 * u[0], top[1] + 26 * u[1], 26, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    /* the whole body, the legs planted and the trunk pivoted at the hips, in the silhouette's own frame */
+    const ps = 2.4, J = (q) => ({ x: (q[0] - FX) / ps, y: (q[1] - GY) / ps });
+    const sh = [hip[0] + 160 * u[0], hip[1] + 160 * u[1]], hd = [hip[0] + (TRUNK + 14) * u[0], hip[1] + (TRUNK + 14) * u[1]];
+    const hnd = [sh[0] - 50 * n[0] + 10 * u[0], sh[1] - 50 * n[1] + 10 * u[1]];
+    silhouette(ctx, { x: FX, y: GY, s: ps, color: PAL.ink, pose: 'stand', feet: [J([FX + 16, GY]), J([FX - 12, GY])], hip: J(hip), shoulder: J(sh), head: J(hd), hands: [J(hnd), J([hnd[0] - 10, hnd[1] + 8])], kneeSide: 1, elbowSide: -1 });
     dot(ctx, hip[0], hip[1], PAL.ink, true, 11);
     text(ctx, 'hips', hip[0] - 22, hip[1] + 8, PAL.muted, { size: 17, align: 'right' });
 
@@ -245,13 +250,10 @@ function crate(ctx, cx, top, w, h) {
 
     /* the ground, the legs, the spine and the arms holding the box */
     line(ctx, 60, GY, 780, GY, PAL.muted, 3);
-    line(ctx, HX, HY, HX - 16, GY, PAL.ink, 10);
-    line(ctx, HX, HY, HX + 18, GY, PAL.ink, 10);
-    const head = [HX + 330 * u[0], HY + 330 * u[1]];
-    line(ctx, HX, HY, head[0], head[1], PAL.ink, 12);
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(head[0] + 24 * u[0], head[1] + 24 * u[1], 25, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-    const sh = [HX + 288 * u[0], HY + 288 * u[1]];
-    line(ctx, sh[0], sh[1], xbox, 410, PAL.ink, 8);
+    /* the whole body bent over the box, the arms down to its top, in the silhouette's own frame */
+    const ps = 2.4, J = (q) => ({ x: (q[0] - HX) / ps, y: (q[1] - GY) / ps });
+    const sh = [HX + 288 * u[0], HY + 288 * u[1]], head = [HX + 354 * u[0], HY + 354 * u[1]];
+    silhouette(ctx, { x: HX, y: GY, s: ps, color: PAL.ink, pose: 'stand', feet: [J([HX + 18, GY]), J([HX - 16, GY])], hip: J([HX, HY]), shoulder: J(sh), head: J(head), hands: [J([xbox - 30, 412]), J([xbox + 30, 412])], kneeSide: 1, elbowSide: 1 });
     crate(ctx, xbox, 410, 92, 62);
     dot(ctx, HX, HY, PAL.ink, true, 11);
 

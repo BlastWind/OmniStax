@@ -44,17 +44,13 @@ function coneWeight(ctx, x, y, color) {
   ctx.moveTo(x, y); ctx.lineTo(x + 17, y + 16); ctx.lineTo(x + 13, y + 48); ctx.lineTo(x, y + 64);
   ctx.lineTo(x - 13, y + 48); ctx.lineTo(x - 17, y + 16); ctx.closePath(); ctx.fill(); ctx.restore();
 }
-/* a crate resting with its base centred on (x, y) */
-function crate(ctx, x, y, w, h, color) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
-  ctx.fillRect(x - w / 2, y - h, w, h); ctx.strokeRect(x - w / 2, y - h, w, h);
-  ctx.beginPath(); ctx.moveTo(x - w / 2, y - h); ctx.lineTo(x + w / 2, y); ctx.moveTo(x + w / 2, y - h); ctx.lineTo(x - w / 2, y); ctx.stroke(); ctx.restore();
-}
-/* a television set, its base centred on (x, y) */
+/* a television set, its base centred on (x, y): a bezel round a screen, a pedestal stand */
 function tv(ctx, x, y, color, s = 1) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
-  ctx.fillRect(-30, -46, 60, 42); ctx.strokeRect(-30, -46, 60, 42);
-  ctx.beginPath(); ctx.moveTo(-14, -4); ctx.lineTo(-18, 0); ctx.lineTo(18, 0); ctx.lineTo(14, -4); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+  ctx.fillStyle = color; ctx.beginPath(); ctx.rect(-34, -50, 68, 44); ctx.fill();
+  ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.rect(-29, -45, 58, 32); ctx.fill();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.rect(-4, -6, 8, 6); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-20, 0); ctx.lineTo(20, 0); ctx.stroke(); ctx.restore();
 }
 /* a roller-coaster car centred on (x, y) and turned through `rot` radians */
 function coasterCar(ctx, x, y, rot, color) {
@@ -149,8 +145,7 @@ function coasterCar(ctx, x, y, rot, color) {
       text(ctx, fmt(M * G * (n * RISE - z.v), 1) + ' J', 424, y, on ? C('energy') : PAL.muted, { size: 17, weight: on ? 600 : 400 });
       text(ctx, String(n), 232, y, on ? C('position') : PAL.muted, { size: 17, align: 'right' });
     }
-    crate(ctx, 325, Yp(yHi), 84, 56, PAL.ink);
-    text(ctx, M + ' kg', 325, Yp(yHi) - 28, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    F.crate(ctx, 325, Yp(yHi) - 19, 72, 38, PAL.ink);
     dot(ctx, 325, Yp(yLo), C('position'), false, 10);
     vbracket(ctx, 196, Yp(yLo), Yp(yHi), C('position'), 'h = ' + fmt(yHi - yLo, 2) + ' m', -1);
     line(ctx, 150, Yp(z.v), 700, Yp(z.v), C('energy'), 3, [10, 10]);
@@ -212,15 +207,24 @@ function coasterCar(ctx, x, y, rot, color) {
     line(ctx, Xp(run.v), Yp(h.v), 1150, Yp(h.v), PAL.muted, 5);
     line(ctx, Xp(0), Yp(0), Xp(0), Yp(h.v), PAL.rule, 2, [8, 8]);
     vbracket(ctx, 116, Yp(0), Yp(h.v), C('position'), 'h = ' + fmt(h.v, 1) + ' m', 1);
-    /* the pulley, its rope and the two sets */
-    const px = 1040;
+    /* the people stand to the scene's own scale, 1.75 m tall, within limits that keep them readable */
+    const PS = Math.max(0.42, Math.min(0.8, (1.75 * SC) / 150));
+    /* the pulley, its rope and the hoisted set; the hoister leans back on the rope with both hands */
+    const px = 1040, hy = Yp(0) - 118 * PS;
     dot(ctx, px, Yp(h.v) - 26, PAL.ink, false, 18);
-    line(ctx, px - 18, Yp(h.v) - 26, px - 18, Yp(s2) - 52, PAL.ink, 3);
-    line(ctx, px + 18, Yp(h.v) - 26, px + 18, Yp(0) - 90, PAL.ink, 3);
-    F.person(ctx, px + 50, Yp(0), PAL.ink, { face: -1, lean: -0.15, reach: { x: px + 18, y: Yp(0) - 90 } });
-    tv(ctx, px - 18, Yp(s2), PAL.ink);
-    F.person(ctx, Xp(p1.x), Yp(p1.y), PAL.ink, { lean: 0.15, phase: s1 > 0 && s1 < L1() ? s1 * 3 : 0, reach: { x: Xp(p1.x) + 18, y: Yp(p1.y) - 52 } });
-    tv(ctx, Xp(p1.x) + 30, Yp(p1.y) - 52, PAL.ink, 0.8);
+    line(ctx, px - 18, Yp(h.v) - 26, px - 18, Yp(s2) - 52 * PS, PAL.ink, 3);
+    line(ctx, px + 18, Yp(h.v) - 26, px + 18, hy, PAL.ink, 3);
+    const hx = px + 18 + 46 * PS;
+    F.silhouette(ctx, { x: hx, y: Yp(0), s: PS, face: -1, pose: 'pull', hands: [{ x: 46, y: -118 }, { x: 50, y: -110 }], feet: [{ x: 26, y: 0 }, { x: -30, y: 0 }] });
+    tv(ctx, px - 18, Yp(s2), PAL.ink, PS * 1.25);
+    /* the carried set: the climber walks the treads, her front foot already on the step above, the set held at her chest */
+    const riser = (h.v / 8) * SC;
+    const climbing = s1 > 0 && s1 < L1(), sw = climbing ? Math.sin(s1 * 2.4) : 0;
+    const cxp = Xp(p1.x), cyp = Yp(p1.y);
+    const frontUp = climbing ? -riser / PS : 0;
+    F.silhouette(ctx, { x: cxp, y: cyp, s: PS, pose: 'walk', hands: [{ x: 30, y: -96 }, { x: 26, y: -88 }],
+      feet: [{ x: 16 + 8 * sw, y: frontUp }, { x: -18 - 6 * sw, y: 0 }] });
+    tv(ctx, cxp + 44 * PS, cyp - 84 * PS, PAL.ink, PS * 1.1);
     text(ctx, 'up the stairs', Xp(run.v / 2), ground + 62, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'straight up', px, ground + 62, PAL.muted, { size: 18, align: 'center' });
     /* the two accounts */
@@ -261,8 +265,12 @@ function coasterCar(ctx, x, y, rot, color) {
        height the person's head and the mass label still stop short of the headline band. */
     const floorY = 430, SC = 42, feet = falling ? floorY - h.v * SC * (1 - tau * tau) : floorY;
     strip(ctx, 100, 660, floorY + 14, 26);
-    F.person(ctx, 330, feet, PAL.ink, { crouch: p });
-    text(ctx, fmt(m.v, 1) + ' kg', 330, Math.max(104, feet - 112), PAL.ink, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* he falls standing and his knees give on landing: the joints run from the standing pose to the crouch as p goes 0 to 1 */
+    const A = F.silhouette.pose('stand'), B = F.silhouette.pose('crouch'), mix = (u, w) => ({ x: u.x + (w.x - u.x) * p, y: u.y + (w.y - u.y) * p });
+    const LS = 0.62;
+    F.silhouette(ctx, { x: 330, y: feet, s: LS, hip: mix(A.hip, B.hip), shoulder: mix(A.shoulder, B.shoulder), head: mix(A.head, B.head),
+      feet: [mix(A.feet[0], B.feet[0]), mix(A.feet[1], B.feet[1])], hands: [mix(A.hands[0], B.hands[0]), mix(A.hands[1], B.hands[1])] });
+    text(ctx, fmt(m.v, 1) + ' kg', 330, Math.max(104, feet - 150 * LS - 22), PAL.ink, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     if (h.v * SC > 40) vbracket(ctx, 168, floorY, floorY - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     line(ctx, 150, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
     if (!falling) {

@@ -110,6 +110,8 @@ open a view the text does not give of step 4; but it is a quiz rather
 than a simulation of anything physical, and the section's two conceptual
 questions ask the same thing in words. Not built.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-runner`: the headline ran past both edges at the fastest setting and now wraps through `topline()`; the runner is the library's `person()` leaning into the run, and the present-time label goes through `labeller()` so it never sits on the velocity line, the level or the crossing's label.
+
 ## Exercises
 
 - 2 conceptual questions, both open with AI-written suggested

@@ -4,7 +4,7 @@
    redraws it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, fixed, silhouette, label, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -47,20 +47,24 @@ function foot(px, py, ax, ay, ux, uy) {
 }
 
 /* ---------- sprites, in ink ---------- */
-/* a child sitting on a plank at (x, y), facing the way `face` points */
+/* a child sitting on a plank at (x, y), facing the way `face` points: the library's seated
+   figure, scaled to a child and with the seat rather than the feet on the plank */
 function child(ctx, x, y, color, s, face) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round';
-  ctx.beginPath(); ctx.arc(0, -76, 15, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(0, -61); ctx.lineTo(0, -8);
-  ctx.moveTo(0, -8); ctx.lineTo(face * 32, -8); ctx.lineTo(face * 32, 14);
-  ctx.moveTo(0, -46); ctx.lineTo(face * 28, -28);
-  ctx.stroke(); ctx.restore();
+  const k = s * 0.9;
+  silhouette(ctx, { x: x - face * 10 * k, y: y + 46 * k, s: k, face, pose: 'sit', color, hands: [{ x: 14, y: -56 }, { x: 8, y: -54 }] });
 }
 /* an ice hockey stick standing on its blade, the shaft from (x, yb) up to (x, yt) */
 function hockeyStick(ctx, x, yb, yt, color) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 11; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.moveTo(x, yt); ctx.lineTo(x, yb); ctx.lineTo(x + 104, yb + 16); ctx.stroke();
   ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(x - 9, yt + 30); ctx.lineTo(x + 9, yt + 30); ctx.stroke();
+  ctx.restore();
+}
+/* a hand closed round a vertical shaft at (x, y): a rounded palm with the fingers over the shaft */
+function grip(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.roundRect(x - 20, y - 22, 40, 44, 12); ctx.fill(); ctx.stroke();
+  ctx.lineWidth = 2; ctx.beginPath(); for (const dy of [-10, 0, 10]) { ctx.moveTo(x - 20, y + dy); ctx.lineTo(x + 16, y + dy); } ctx.stroke();
   ctx.restore();
 }
 /* the fulcrum a plank is balanced on, its point at (x, y) and h tall */
@@ -100,6 +104,7 @@ function fulcrum(ctx, x, y, h) {
     /* the wall, the hinges and the door seen from overhead */
     fixed(ctx, 70, HY - 30, 180, 60);
     text(ctx, 'the wall', 128, HY + 50, PAL.muted, { size: 19, align: 'center' });
+    dot(ctx, HX + 0.82 * S, HY, PAL.ink, true, 5);                                         /* the handle */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.fillRect(HX, HY - 12, LEN * S, 24); ctx.strokeRect(HX, HY - 12, LEN * S, 24); ctx.restore();
     for (let k = 0; k <= 9; k++) { const x = HX + (k / 10) * S; line(ctx, x, HY + 12, x, HY + 26, PAL.muted, 2); if (k % 2 === 0) text(ctx, fmt(k / 10, 1) + ' m', x, HY + 50, PAL.muted, { size: 17, align: 'center' }); }
@@ -109,20 +114,21 @@ function fulcrum(ctx, x, y, h) {
       line(ctx, px - 520 * ux, py - 520 * uy, px + 520 * ux, py + 520 * uy, PAL.rule, 2, [10, 10]);
       if (rp > 0.012) {
         line(ctx, HX, HY, fp.x, fp.y, pc, 3, [6, 8]);
-        const lx = (HX + fp.x) / 2 - 12, near = lx < 340;
-        text(ctx, 'r⊥ = ' + fmt(rp, 3) + ' m', near ? 340 : lx, (HY + fp.y) / 2 - 36, pc, { size: 20, weight: 600, align: near ? 'left' : 'right', bg: alpha(PAL.panel, 0.85) });
+        const mx = (HX + fp.x) / 2, my = (HY + fp.y) / 2, flat = Math.abs(fp.y - HY) < 30;
+        label(ctx, 'r⊥ = ' + fmt(rp, 3) + ' m', flat ? Math.max(mx, 420) : mx, flat ? HY - 14 : my, { side: flat || fp.y < HY - 30 ? 'above' : 'below', color: pc, gap: flat ? 22 : 30, size: 20 });
       }
       arrow(ctx, px, py, px + Fv * KF * ux, py + Fv * KF * uy, fc, 5);
-      text(ctx, 'F = ' + fmt(Fv, 0) + ' N', px + (Fv * KF + 16) * ux, py + (Fv * KF + 16) * uy - 18, fc, { size: 21, weight: 600, align: ux < -0.2 ? 'right' : 'left' });
-      betweenArc(ctx, px, py, Math.PI, sgn * th, 66, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
+      label(ctx, 'F = ' + fmt(Fv, 0) + ' N', px + Fv * KF * ux, py + Fv * KF * uy, { side: Math.abs(uy) > 0.7 ? (uy < 0 ? 'above' : 'below') : ux < 0 ? 'left' : 'right', color: fc, gap: 18, size: 21 });
+      if (th > 12 && th < 168) betweenArc(ctx, px, py, Math.PI, sgn * th, 66, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
+      else label(ctx, 'θ = ' + fmt(th, 0) + '°', px, py - sgn * 70, { side: sgn > 0 ? 'above' : 'below', gap: 10, size: 20 });
     }
     /* the distance from the hinges to the point of application */
     hbracket(ctx, HX, px, HY + 130, pc, 'r = ' + fmt(r, 3) + ' m');
     dot(ctx, px, py, PAL.ink, true, 9);
     dot(ctx, HX, HY, PAL.ink, false, 11);
-    text(ctx, 'hinges', HX - 24, HY, PAL.ink, { size: 19, align: 'right', bg: alpha(PAL.panel, 0.9) });
+    text(ctx, 'the hinges', HX, HY - 46, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
     /* which way the door turns */
-    if (Math.abs(tau) > 0.005) turnArc(ctx, HX, HY, 92, tau > 0, tc, Math.PI / 2);
+    if (Math.abs(tau) > 0.005) { turnArc(ctx, HX, HY, 92, tau > 0, tc, Math.PI / 2); text(ctx, 'τ', HX, HY + 124, tc, { size: 24, weight: 600, align: 'center' }); }
     const act = sgn > 0 ? 'push' : 'pull';
     headline(ctx, Fv === 0 ? 'With no force on the door there is no torque about the hinges at all.'
       : Math.abs(tau) < 0.005 ? 'The force runs straight along the line to the hinges, so its lever arm is nothing and it makes no torque.'
@@ -160,24 +166,30 @@ function fulcrum(ctx, x, y, h) {
     /* the ice, the stick, and the two pivots the book names */
     strip(ctx, 360, 820, YB + 40, 24);
     hockeyStick(ctx, X, YB, yOf(1.36), PAL.ink);
-    for (const [s, nm] of [[0.2, 'A'], [1.25, 'B']]) { const y = yOf(s); line(ctx, X - 46, y, X - 24, y, PAL.muted, 2); text(ctx, nm, X - 54, y, PAL.muted, { size: 20, weight: 600, align: 'right' }); }
-    /* the line along which the force acts, the lever arm, and the push itself */
+    for (const [s, nm] of [[0.2, 'A'], [1.25, 'B']]) { const y = yOf(s); line(ctx, X + 24, y, X + 46, y, PAL.muted, 2); text(ctx, nm, X + 54, y, PAL.muted, { size: 20, weight: 600, align: 'left' }); }
+    /* the line along which the force acts, the lever arm, and the push itself; the names near the
+       hand are placed against one another, so that a nail driven close to the hand does not pile them up */
+    const lab = labeller(ctx, 700);
+    lab.block(0, 0, 1400, 80);
+    lab.block(PX - 20, 130, 1400, 350);
+    grip(ctx, X, hy, PAL.ink);
     if (Fv > 0) {
-      line(ctx, X - 420 * ux, hy - 420 * uy, X + 420 * ux, hy + 420 * uy, PAL.rule, 2, [10, 10]);
+      line(ctx, X - 420 * ux, hy - 420 * uy, X + 420 * ux, hy + 420 * uy, alpha(PAL.ink, 0.35), 2, [10, 10]);
       if (rp > 0.012) {
         line(ctx, X, qy, fp.x, fp.y, pc, 3, [6, 8]);
-        text(ctx, 'r⊥ = ' + fmt(rp, 2) + ' m', (X + fp.x) / 2 + 16, (qy + fp.y) / 2 + 10, pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+        lab.beside({ x1: X, y1: qy, x2: fp.x, y2: fp.y }, fp.y < qy ? 'right' : 'left', 'r⊥ = ' + fmt(rp, 2) + ' m', pc, 20);
       }
       arrow(ctx, X, hy, X + Fv * KF * ux, hy + Fv * KF * uy, fc, 5);
-      text(ctx, 'F = ' + fmt(Fv, 0) + ' N', X + (Fv * KF + 16) * ux, hy + (Fv * KF + 16) * uy - 20, fc, { size: 21, weight: 600, align: ux < -0.2 ? 'right' : 'left' });
-      if (r > 0.02) { const a0 = up > 0 ? Math.PI / 2 : -Math.PI / 2; betweenArc(ctx, X, hy, a0, wrap(Math.atan2(uy, ux) / RAD - a0 / RAD), 58, PAL.ink, 'θ = ' + fmt(th, 0) + '°'); }
+      lab.add('F = ' + fmt(Fv, 0) + ' N', X + Fv * KF * ux, hy + Fv * KF * uy, ux, uy, fc, 21, 18);
+      if (r > 0.02) { const a0 = up > 0 ? Math.PI / 2 : -Math.PI / 2; betweenArc(ctx, X, hy, a0, wrap(Math.atan2(uy, ux) / RAD - a0 / RAD), 58, PAL.ink); const m = a0 + wrap(Math.atan2(uy, ux) / RAD - a0 / RAD) * RAD / 2; lab.add('θ = ' + fmt(th, 0) + '°', X + 58 * Math.cos(m), hy + 58 * Math.sin(m), Math.cos(m), Math.sin(m), PAL.ink, 20, 22); }
     }
-    dot(ctx, X, hy, PAL.ink, true, 10);
-    text(ctx, 'the hand', X + 28, hy + 36, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
+    dot(ctx, X, hy, PAL.ink, true, 8);
+    lab.add('the hand', X, hy, 1, 0.3, PAL.ink, 19, 34);
     /* the distance from the nail to the hand, and the way the stick turns */
     if (r > 0.02) vbracket(ctx, X - 104, Math.min(qy, hy), Math.max(qy, hy), pc, 'r = ' + fmt(r, 2) + ' m', -1);
     dot(ctx, X, qy, PAL.ink, false, 11);
-    text(ctx, 'the nail', X - 26, qy + 36, PAL.ink, { size: 19, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    lab.add('the nail', X, qy, -1, 0.3, PAL.ink, 19, 30);
+    lab.flush();
     if (Math.abs(tau) > 0.02) turnArc(ctx, X, qy, 78, tau > 0, tc, 0);
     /* what the nail you have chosen makes of the push */
     text(ctx, 'about the nail you have chosen', PX, 152, PAL.muted, { size: 19 });
@@ -226,9 +238,9 @@ function fulcrum(ctx, x, y, h) {
       const s = on(u), tip = s.y + 16 + w * KW;
       child(ctx, s.x, s.y - 8, PAL.ink, 0.86, face);
       arrow(ctx, s.x, s.y + 16, s.x, tip, fc, 5);
-      text(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', s.x, tip + 24, fc, { size: 20, weight: 600, align: 'center' });
+      label(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', s.x, tip, { side: 'below', color: fc, gap: 22, size: 20 });
       const side = s.x > 1110 ? -1 : s.x < 300 ? 1 : -face;
-      text(ctx, 'τ_' + nm + ' = ' + plus(t, 0) + ' N·m', s.x + side * 18, (s.y + 16 + tip) / 2, tc, { size: 20, weight: 600, align: side > 0 ? 'left' : 'right' });
+      label(ctx, 'τ_' + nm + ' = ' + plus(t, 0) + ' N·m', s.x, (s.y + 16 + tip) / 2, { side: side > 0 ? 'right' : 'left', color: tc, gap: 18, size: 20 });
     }
     /* the supporting force at the pivot, which has no lever arm of its own */
     arrow(ctx, FX, FY - 6, FX, FY - 6 - Fp * KW, fc, 5);
@@ -274,15 +286,15 @@ function fulcrum(ctx, x, y, h) {
       child(ctx, X(u), FY - 8, PAL.ink, 0.78, face);
       arrow(ctx, X(u), FY + 14, X(u), FY + 14 + w * KW, fc, 5);
       const side = X(u) > 1110 ? -1 : X(u) < 300 ? 1 : -face;
-      text(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', X(u) + side * 16, FY + 26 + w * KW, fc, { size: 20, weight: 600, align: side > 0 ? 'left' : 'right' });
+      label(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', X(u), FY + 14 + w * KW, { side: side > 0 ? 'right' : 'left', color: fc, gap: 16, size: 20 });
     }
     arrow(ctx, FX, FY - 6, FX, FY - 6 - Fp * KW, fc, 5);
     text(ctx, 'F_p = ' + fmt(Fp, 0) + ' N', FX + 16, FY - 22 - Fp * KW, fc, { size: 21, weight: 600 });
     /* the point the torques are taken about */
-    line(ctx, X(p), 116, X(p), 452, pc, 3, [10, 10]);
+    line(ctx, X(p), FY + 8, X(p), 560, pc, 3, [10, 10]);
     dot(ctx, X(p), FY, pc, true, 11);
     text(ctx, p === 0 ? 'The torques are taken about the fulcrum.' : 'The torques are taken ' + fmt(Math.abs(p), 2) + ' m to the ' + (p > 0 ? 'right' : 'left') + ' of the fulcrum.',
-      X(p), 92, pc, { size: 20, weight: 600, align: X(p) > 1060 ? 'right' : X(p) < 340 ? 'left' : 'center', bg: alpha(PAL.panel, 0.85) });
+      X(p), 96, pc, { size: 20, weight: 600, align: X(p) > 1060 ? 'right' : X(p) < 340 ? 'left' : 'center', bg: alpha(PAL.panel, 0.85) });
     /* the lever arm each force has about that point */
     const arms = [[X(-rs.v), 470, Math.abs(rs.v + p)], [X(rr2), 506, Math.abs(rr2 - p)], [FX, 542, Math.abs(p)]];
     for (const [x, y, v] of arms) if (Math.abs(x - X(p)) > 6) hbracket(ctx, Math.min(x, X(p)), Math.max(x, X(p)), y, pc, fmt(v, 2) + ' m');
@@ -291,7 +303,7 @@ function fulcrum(ctx, x, y, h) {
     line(ctx, FX, y0 - 26, FX, y0 + 3 * 40 + 26, PAL.muted, 2);
     bars.forEach(([nm, v], i) => {
       const y = y0 + i * 40, w = eps(v, 1) * KT, last = i === 3;
-      ctx.save(); ctx.fillStyle = alpha(tc, last ? 0.55 : 0.3); ctx.fillRect(FX, y - 14, w, 28); ctx.restore();
+      ctx.save(); ctx.fillStyle = alpha(tc, last ? 0.9 : 0.6); ctx.fillRect(FX, y - 14, w, 28); ctx.restore();
       line(ctx, FX + w, y - 14, FX + w, y + 14, tc, 3);
       text(ctx, nm, 200, y, last ? PAL.ink : PAL.muted, { size: 20, weight: last ? 600 : 400 });
       text(ctx, num(v, 1) + ' N·m', 290, y, tc, { size: 20, weight: 600 });

@@ -4,7 +4,7 @@
    energies only answer their sliders, so they are still pictures with no transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, labeller, pinned, person } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, labeller, pinned, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -54,11 +54,16 @@ function forceLabel(L, s, cx, hx, hy, ux, uy, color) {
 }
 /* a helicopter in side view, nose to the right, centred on its cabin at (x, y); the rotor is drawn by the caller */
 function helicopter(ctx, x, y, color, s = 1) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 3;
-  ctx.beginPath(); ctx.moveTo(-40, -22); ctx.lineTo(36, -22); ctx.quadraticCurveTo(70, -18, 66, 8); ctx.quadraticCurveTo(50, 26, 10, 26); ctx.lineTo(-40, 20);
-  ctx.lineTo(-130, 4); ctx.lineTo(-130, -8); ctx.lineTo(-44, -8); ctx.closePath(); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(-130, -8); ctx.lineTo(-136, -40); ctx.lineTo(-118, -40); ctx.lineTo(-124, -8); ctx.fill();   /* the fin */
-  ctx.beginPath(); ctx.moveTo(-20, 26); ctx.lineTo(-30, 44); ctx.lineTo(50, 44); ctx.moveTo(30, 26); ctx.lineTo(40, 44); ctx.moveTo(-2, -22); ctx.lineTo(-2, -36); ctx.stroke();   /* skids and mast */
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(-40, -12); ctx.lineTo(-152, -2); ctx.lineTo(-152, 8); ctx.lineTo(-36, 20); ctx.closePath(); ctx.fill(); ctx.stroke();   /* the tail boom */
+  ctx.beginPath(); ctx.moveTo(-150, -2); ctx.lineTo(-162, -44); ctx.lineTo(-142, -44); ctx.lineTo(-136, -2); ctx.closePath(); ctx.fill(); ctx.stroke();   /* the fin */
+  ctx.beginPath(); ctx.moveTo(-152, -26); ctx.lineTo(-152, -62); ctx.stroke();                                                   /* the tail rotor */
+  ctx.beginPath(); ctx.arc(-152, -44, 3, 0, TAU); ctx.fillStyle = color; ctx.fill(); ctx.fillStyle = PAL.soft;
+  ctx.beginPath(); ctx.moveTo(-48, -30); ctx.quadraticCurveTo(20, -42, 60, -12); ctx.quadraticCurveTo(80, 10, 52, 28);        /* the cabin */
+  ctx.lineTo(-30, 30); ctx.quadraticCurveTo(-58, 22, -48, -30); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = alpha(color, 0.28); ctx.beginPath(); ctx.moveTo(6, -32); ctx.quadraticCurveTo(46, -30, 64, -8); ctx.lineTo(6, -8); ctx.closePath(); ctx.fill();   /* the window */
+  ctx.beginPath(); ctx.moveTo(-20, 30); ctx.lineTo(-26, 46); ctx.moveTo(28, 30); ctx.lineTo(34, 46); ctx.moveTo(-46, 46); ctx.lineTo(56, 46); ctx.stroke();   /* the skids */
+  ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(-2, -34); ctx.lineTo(-2, -37); ctx.stroke();                                    /* the mast */
   ctx.restore();
 }
 
@@ -161,8 +166,8 @@ function helicopter(ctx, x, y, color, s = 1) {
     L.add('r = ' + fmt(rc.v, 3) + ' m', cx + (R / 2) * Math.cos(-phi), cyy + (R / 2) * Math.sin(-phi), -Math.sin(-phi), Math.cos(-phi), C('position'), 20, 22);
     angleArc(ctx, L, cx, cyy, 46, phi, 'θ = ' + fmt(phi, 2) + ' rad', PAL.ink);
     /* the person at the stone's edge, her hands on the point of application; she stands to the right of the mount */
-    const ppx = cx + R + 60, S = 2.3;
-    person(ctx, ppx, ground, PAL.ink, { face: -1, s: S, lean: 0.15, reach: { x: px, y: py } });
+    const ppx = cx + R + 78, S = 2.2, hx = (px - ppx) / -S, hy = (py - ground) / S;
+    silhouette(ctx, { x: ppx, y: ground, s: S, face: -1, pose: 'reach', hands: [{ x: hx, y: hy }, { x: hx + 3, y: hy + 4 }] });
     /* the force, tangent to the rim in the direction of the turn */
     const ux = Math.sin(-phi), uy = -Math.cos(-phi), Lf = 30 + Fc.v * 0.25;
     arrow(ctx, px, py, px + ux * Lf, py + uy * Lf, C('force'), 5);
@@ -304,7 +309,7 @@ function helicopter(ctx, x, y, color, s = 1) {
       const px = x0 + f * run + nx * CR, py = top + f * rise + ny * CR;
       const phi = l.beta > 0 ? (f * Math.hypot(run, rise)) / CR : 0;
       can(ctx, px, py, CR, phi, col, l.beta > 0);
-      text(ctx, String(i + 1) + '  ' + l.name, x0 - 40 + 0, top - 22, col, { size: 20, weight: 600, align: 'left' });
+      text(ctx, String(i + 1) + '  ' + l.name, x0, bot + 26, col, { size: 20, weight: 600, align: 'left' });
       if (v > 0.3) { const Lv = v * 14; arrow(ctx, px + nx * 30, py + ny * 30, px + nx * 30 + ux * Lv, py + ny * 30 + uy * Lv, C('velocity'), 4); L.add('v = ' + fmt(v, 2) + ' m/s', px + nx * 30 + ux * Lv, py + ny * 30 + uy * Lv, ux, uy, C('velocity'), 18, 18); }
       if (t >= l.T - 1e-9) { text(ctx, fmt(l.T, 2) + ' s', x1 + 50, bot - 30, PAL.ink, { size: 18, weight: 600, align: 'left', bg: PAL.panel }); finals.push(l); }
       /* the bar: the can's starting energy divided at this instant */

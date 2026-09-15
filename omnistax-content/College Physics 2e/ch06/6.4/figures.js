@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI, DEG = 180 / Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -50,6 +50,14 @@ function carTop(ctx, x, y, ux, uy, color, s = 1) {
   ctx.beginPath(); ctx.moveTo(-44, -52); ctx.lineTo(44, -52); ctx.moveTo(-44, 20); ctx.lineTo(44, 20); ctx.stroke();
   ctx.restore();
 }
+/* a person seen from above at (x, y): the shoulders as a rounded bar and the head over them, facing along (ux, uy) */
+function personTop(ctx, x, y, ux, uy, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux)); ctx.scale(s, s); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.roundRect ? ctx.roundRect(-10, -30, 20, 60, 9) : ctx.rect(-10, -30, 20, 60); ctx.fill();
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(2, 0, 13, 0, TAU); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.arc(-1, 0, 8, 0, TAU); ctx.fill();
+  ctx.restore();
+}
 /* a test tube whose mouth is at (x, y) and whose rounded end is `len` along (ux, uy) */
 function tube(ctx, x, y, ux, uy, len, half, color) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux)); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
@@ -84,12 +92,15 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
 
     /* ---- left: the car stands still and the driver slides toward the door ---- */
     carTop(ctx, SEATX, SEATY, 0, -1, PAL.ink, 1.2);
+    const LB = labeller(ctx, 640); LB.block(0, 0, 1400, 90);
     const slide = Math.min(1, lateral / DOOR), px = SEATX - slide * 40;
-    dot(ctx, px, SEATY - 24, PAL.ink, true, 12);
-    text(ctx, 'the driver', SEATX + 76, SEATY - 24, PAL.ink, { size: 17 });
+    /* the seat she slides along, then the driver herself, facing forward */
+    line(ctx, SEATX - 48, SEATY - 24, SEATX + 48, SEATY - 24, alpha(PAL.muted, 0.5), 2, [6, 6]);
+    personTop(ctx, px, SEATY - 24, 0, -1, PAL.ink, 1);
+    LB.add('the driver', px, SEATY - 24, 1, 0, PAL.ink, 17, 26);
     const L = 40 + 96 * Math.min(1, (V.v * V.v) / R.v / 15);
-    arrow(ctx, px - 22, SEATY - 24, px - 22 - L, SEATY - 24, C('force'), 5);
-    text(ctx, 'fictitious force', px - 26 - L / 2, SEATY - 56, C('force'), { size: 18, weight: 600, align: 'center', bg: PAL.bg });
+    arrow(ctx, px - 18, SEATY - 24, px - 18 - L, SEATY - 24, C('force'), 5);
+    LB.add('fictitious force', px - 18 - L, SEATY - 24, -1, 0, C('force'), 18, 22);
     text(ctx, slide >= 1 ? 'she is against the door' : 'she has slid ' + fmt(lateral * 100, 0) + ' cm across the seat',
       SEATX, 512, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'and nothing real is pushing her', SEATX, 542, PAL.muted, { size: 17, align: 'center' });
@@ -102,16 +113,18 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     const th = Math.PI + a, cxp = OX + Rp * Math.cos(th), cyp = OY + Rp * Math.sin(th);
     line(ctx, OX, OY, cxp, cyp, C('position'), 2, [10, 10]);
     const ux = -Math.sin(th), uy = Math.cos(th);
-    text(ctx, 'r = ' + fmt(R.v, 0) + ' m', OX + Rp * 0.25 * Math.cos(th) - 26 * ux, OY + Rp * 0.25 * Math.sin(th) - 26 * uy, C('position'), { size: 18, weight: 600, align: 'center', bg: PAL.bg });
+    LB.add('r = ' + fmt(R.v, 0) + ' m', OX + Rp * 0.3 * Math.cos(th), OY + Rp * 0.3 * Math.sin(th), -ux, -uy, C('position'), 18, 22);
     carTop(ctx, cxp, cyp, ux, uy, PAL.ink, 0.55);
+    personTop(ctx, cxp - 8 * ux + 6 * uy, cyp - 8 * uy - 6 * ux, ux, uy, PAL.ink, 0.5);
     const fx = cxp + (OX - cxp) * 0.5, fy = cyp + (OY - cyp) * 0.5;
     arrow(ctx, cxp, cyp, fx, fy, C('force'), 5);
-    text(ctx, 'the road’s real force', fx + 36 * ux, fy + 36 * uy, C('force'), { size: 18, weight: 600, align: 'center', bg: PAL.bg });
+    LB.add('the road’s real force', fx, fy, (OX - cxp) / Rp, (OY - cyp) / Rp, C('force'), 18, 22);
     const sx = OX - Rp, sy = OY, dy = sy - V.v * t * k;
     line(ctx, sx, sy, sx, dy, C('velocity'), 3, [12, 10]);
     dot(ctx, sx, sy, PAL.muted, false, 9);
-    dot(ctx, sx, dy, C('velocity'), true, 11);
-    text(ctx, 'her straight line', sx - 16, (sy + dy) / 2, C('velocity'), { size: 18, weight: 600, align: 'right', bg: PAL.bg });
+    personTop(ctx, sx, dy, 0, -1, C('velocity'), 0.5);
+    LB.add('her straight line', sx, (sy + dy) / 2, -1, 0, C('velocity'), 18, 22);
+    LB.flush();
 
     headline(ctx, 'The car has come ' + fmt(a * DEG, 0) + '° round the bend, and the driver ' + fmt(V.v * t, 1) + ' m in a straight line.');
     readout(d.readout, `\\kv = ${fmt(V.v, 0)}\\ \\text{m/s},\\quad \\kr = ${fmt(R.v, 0)}\\ \\text{m}\\ \\Rightarrow\\ \\text{the car has come } ${fmt(a * DEG, 0)}°\\ \\text{round the bend}`,
@@ -154,15 +167,15 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     const gx0 = LX + rr * c0, gy0 = CY - rr * s0;
     const cap = Math.max(0, Math.min(1.2 * RP, (gy0 - 168) / c0, (gx0 - 70) / s0));
     const glen = Math.min(cap, rr * W.v * t), gx = gx0 - glen * s0, gy = gy0 - glen * c0;
+    const LB = labeller(ctx, 800); LB.block(0, 0, 1400, 90);
     line(ctx, gx0, gy0, gx, gy, PAL.muted, 2, [8, 8]);
-    dot(ctx, gx, gy, PAL.muted, false, 12);
-    text(ctx, 'Fnet = 0', gx - 18, gy, PAL.muted, { size: 17, weight: 600, align: 'right', bg: PAL.bg });
+    ctx.save(); ctx.globalAlpha = 0.45; personTop(ctx, gx, gy, -s0, -c0, PAL.muted, 0.7); ctx.restore();
+    LB.add('F_net = 0', gx, gy, -c0, s0, PAL.muted, 17, 26);
     /* the rider, held on his circle by a real force toward the middle */
     const rx = LX + rr * Math.cos(phi + A0), ry = CY - rr * Math.sin(phi + A0);
     line(ctx, LX, CY, rx, ry, C('position'), 2, [8, 8]);
-    dot(ctx, rx, ry, PAL.ink, true, 12);
-    arrow(ctx, rx, ry, rx + (LX - rx) * 0.46, ry + (CY - ry) * 0.46, C('force'), 5);
-    text(ctx, 'he must hang on', rx + (LX - rx) * 0.54, ry + (CY - ry) * 0.54 - 22, C('force'), { size: 17, weight: 600, align: 'center', bg: PAL.bg });
+    personTop(ctx, rx, ry, -Math.sin(phi + A0), -Math.cos(phi + A0), PAL.ink, 0.7);
+    { const hx = rx + (LX - rx) * 0.46, hy = ry + (CY - ry) * 0.46; arrow(ctx, rx, ry, hx, hy, C('force'), 5); LB.add('he must hang on', hx, hy, (LX - rx) / rr, (CY - ry) / rr, C('force'), 17, 22); }
     /* the ball, dead straight over the ground */
     line(ctx, LX, CY, LX + br * S, CY, C('velocity'), 5);
     dot(ctx, LX + br * S, CY, C('velocity'), true, 10);
@@ -172,16 +185,16 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     text(ctx, 'B', LX + RP + 8, CY + 26, PAL.muted, { size: 20, weight: 600 });
     const bx = LX + RP * Math.cos(phi), by = CY - RP * Math.sin(phi);
     dot(ctx, bx, by, PAL.ink, false, 10);
-    text(ctx, 'B′', bx + 24 * Math.cos(phi), by - 24 * Math.sin(phi), PAL.ink, { size: 20, weight: 600, align: 'center' });
+    LB.add('B′', bx, by, Math.cos(phi), -Math.sin(phi), PAL.ink, 20, 22);
 
     /* ---- right: the boards' own frame ---- */
     disc(ctx, RX, CY, RP, 0);
     const qx = RX + rr * Math.cos(A0), qy = CY - rr * Math.sin(A0);
     line(ctx, RX, CY, RX + RP, CY, PAL.muted, 2, [8, 8]);
-    dot(ctx, qx, qy, PAL.ink, true, 12);
+    personTop(ctx, qx, qy, -Math.sin(A0), -Math.cos(A0), PAL.ink, 0.7);
     const ax2 = qx + 78 * Math.cos(A0), ay2 = qy - 78 * Math.sin(A0);
     arrow(ctx, qx, qy, ax2, ay2, C('force'), 5);
-    text(ctx, 'centrifugal force', (qx + ax2) / 2 - 20, (qy + ay2) / 2 - 26, C('force'), { size: 17, weight: 600, align: 'center', bg: PAL.bg });
+    LB.add('centrifugal force', ax2, ay2, Math.cos(A0), -Math.sin(A0), C('force'), 17, 22);
     /* the ball's trail in the dust: straight over the ground, curved to the right here */
     ctx.save(); ctx.strokeStyle = C('velocity'); ctx.lineWidth = 5; ctx.beginPath();
     const n = 120;
@@ -194,6 +207,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     dot(ctx, RX + RP, CY, PAL.ink, false, 10);
     text(ctx, 'B', RX + RP + 24, CY + 22, PAL.ink, { size: 20, weight: 600 });
     text(ctx, 'the trail in the dust curves to the right', RX, CY + RP + 48, PAL.muted, { size: 18, align: 'center' });
+    LB.flush();
 
     headline(ctx, 'In the ' + fmt(T(), 2) + ' s the ball takes to cross, the boards turn ' + fmt(W.v * T() * DEG, 0) + '° and its trail bends that far.');
     readout(d.readout, `\\kt = \\frac{${fmt(RD, 2)}\\ \\text{m}}{\\kv} = \\frac{${fmt(RD, 2)}\\ \\text{m}}{${fmt(V.v, 2)}\\ \\text{m/s}} = ${fmt(T(), 2)}\\ \\text{s},\\qquad \\kw\\kt = ${fmt(W.v * T(), 2)}\\ \\text{rad} = ${fmt(W.v * T() * DEG, 0)}°`,
@@ -279,7 +293,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
   const FC = 1.0e-4;                                          /* Earth turns a moving parcel about this many radians each second */
   const cy = cycle(() => 1, 1.2);
   function reset() { cy.reset(); }
-  const LX = 370, RX = 1030, CY = 440, RP = 250, EYE = 0.08;
+  const LX = 370, RX = 1030, CY = 460, RP = 240, EYE = 0.08;
   const secs = () => (R.v * 1000) / V.v;
   /* the angle Earth turns a parcel through on its way in, which is the angle the drawn track sweeps
      about the low. The track is a logarithmic spiral whose whole sweep is that angle, so 2000 km and
@@ -294,7 +308,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
   }
   function panel(ctx, cx, sgn, title) {
     const ang = sweepOf(), tau = cy.now();
-    panelTitle(ctx, title, cx, 98);
+    panelTitle(ctx, title, cx, 130);
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([12, 12]); ctx.beginPath(); ctx.arc(cx, CY, RP, 0, TAU); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.beginPath(); ctx.arc(cx, CY, 40, 0, TAU); ctx.fill(); ctx.restore();
     for (let q = 0; q < 4; q++) {
@@ -317,7 +331,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     const t = secs(), turn = FC * t, hours = t / 3600;
     panel(ctx, LX, 1, 'Northern hemisphere');
     panel(ctx, RX, -1, 'Southern hemisphere');
-    divider(ctx, 700, 128, 742);
+    divider(ctx, 700, 150, 742);
     const clause = turn < 0.3 ? 'so it blows almost straight in.'
       : turn < 1.5 ? 'so it spirals in rather than blowing straight in.'
         : 'so it goes ' + fmt(turn / TAU, 1) + ' times round the low on the way in.';

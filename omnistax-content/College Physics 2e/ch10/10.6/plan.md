@@ -153,6 +153,8 @@ Extra simulations (rule 15), thought through and decided:
   pair already shows it as $\kpprime - \kp$, and `sim-percussion` is that
   force on its own.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). Both figures were screenshot in both themes at every slider extreme, every choice and three points of the cycle; the stick, nail and disk on the table and the stick beside the racquet read as what they are, and they are left as built.
+
 ## Exercises
 
 - `cyu1` (fs-id2672292, check-understanding): is rotational kinetic energy a

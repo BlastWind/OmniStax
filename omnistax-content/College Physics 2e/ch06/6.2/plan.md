@@ -153,6 +153,15 @@ Extra simulations (rule 15), thought about, judged, and what became of them:
   against speed. The text says the speed enters squared and the radius
   divides, and one graph plus a radius slider carries both. Left.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-triangles` was small and
+its labels collided: the circle is now 180 to 260 units in radius, the
+velocity arrows 100 to 180, the triangle at the right is drawn at the same
+scale, and every label (r, Δs, Δθ, v₁, v₂, Δv, both places) is placed by
+`labeller()`. `sim-curve` draws the car at full size and names r behind the
+car, a_c and v beyond their heads through the labeller. `sim-centrifuge`
+draws a_c beside the rotor bar rather than along it, and names m, r, a_c
+and v through the labeller. Every angle sign in the figures is ° now.
+
 ## Exercises
 
 - No Check Your Understanding boxes, so nothing is set inline; every item goes

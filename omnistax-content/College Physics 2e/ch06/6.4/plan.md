@@ -205,6 +205,14 @@ Extra simulations (rule 15), considered:
   in one dimension instead of two, and `sim-turn` already draws the
   fictitious force beside the real one.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). A `personTop` sprite (head and
+shoulders seen from above) of this file replaces the dots that stood for
+the driver in `sim-turn` and the riders in `sim-merry`, the driver drawn
+on her seat in both frames and at the head of her straight line; labels of
+both figures go through `labeller()` so the radius, the road's force and
+the straight line never meet. `sim-cyclone` keeps its two-line headline
+and its panel titles apart.
+
 ## Exercises
 
 - No Check Your Understanding box and no problem set: the section's only

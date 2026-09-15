@@ -244,6 +244,8 @@ Extra simulations (rule 15), thought through and judged:
   animate that comparison.
 - The Vomit Comet: **left**. The book defers it to a later chapter.
 
+Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-hammer-feather`: the hammer read as a T and is redrawn as a claw hammer (a new sprite, drawn here); the release line moved down so an object standing on it clears a two-line headline, the hammer and the feather stand farther apart with the release label on a panel between them, and the headline wraps through `topline()`. `sim-rock-up` and `sim-rock-down`: the thrower was a five-line stick figure and is the library's `person()` with an arm raised toward the throw; the highest-point, $y_0$, velocity, acceleration, $v_0$ and slope labels go through `labeller()`, since the rock, its arrows and the start swap places in one column as the flight runs; the scene tops moved down so a rock held at the top of the scale clears the headline, which wraps. `sim-well`: the listener's head stood in the headline; the scene moved down, the listener is the library's `person()` leaning over the shaft, and the two brackets sit under the curve's start with the sound's label beside its bracket, since a shallow shaft leaves no room above. `sim-drop` unchanged.
+
 ## Tables
 
 Table 2.1, Results (four columns: time, position, velocity,

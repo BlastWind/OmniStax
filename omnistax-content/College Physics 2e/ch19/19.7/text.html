@@ -1,0 +1,50 @@
+<section id="capacitor-uses">
+<h2>What a capacitor's stored energy is used for</h2>
+<p class="cite-target">Most of us have seen dramatizations in which medical personnel use a <strong>defibrillator</strong> to pass an electric current through a patient’s heart to get it to beat normally. (Review Figure 19.23.) Often realistic in detail, the person applying the shock directs another person to “make it 400 joules this time.” The energy delivered by the defibrillator is stored in a capacitor and can be adjusted to fit the situation. SI units of joules are often employed. Less dramatic is the use of capacitors in microelectronics, such as certain handheld calculators, to supply energy when batteries are charged. (See Figure 19.23.) Capacitors are also used to supply energy for flash lamps on cameras.</p>
+<figure class="photo" id="fig-calculator" data-figure="19.23">
+  <img src="/media/ch19/Figure_20_07_01a.jpg" alt="In an electronic calculator circuit the memory is preserved using large capacitors which store energy when the batteries are charged." data-width="250">
+  <figcaption><span class="eyebrow">Figure 19.23</span><span>Energy stored in the large capacitor is used to preserve the memory of an electronic calculator when its batteries are charged. (credit: Kucharek, Wikimedia Commons)</span></figcaption>
+</figure>
+</section>
+
+<section id="energy-stored">
+<h2>The energy stored in a capacitor</h2>
+<p class="cite-target">Energy stored in a capacitor is electrical potential energy, and it is thus related to the charge $\kQch$ and voltage $\kV$ on the capacitor. We must be careful when applying the equation for electrical potential energy $\kdPE = \kq\kdV$ to a capacitor. Remember that $\kdPE$ is the potential energy of a charge $\kq$ going through a voltage $\kdV$. But the capacitor starts with zero voltage and gradually comes up to its full voltage as it is charged. The first charge placed on a capacitor experiences a change in voltage $\kdV = 0$, since the capacitor has zero voltage when uncharged. The final charge placed on a capacitor experiences $\kdV = \kV$, since the capacitor now has its full voltage $\kV$ on it. The average voltage on the capacitor during the charging process is $\kV/2$, and so the average voltage experienced by the full charge $\kq$ is $\kV/2$. Thus the energy stored in a capacitor, $\kEcap$, is</p>
+$$\kEcap = \frac{\kQch\kV}{2},$$
+<p>where $\kQch$ is the charge on a capacitor with a voltage $\kV$ applied. (Note that the energy is not $\kQch\kV$, but $\kQch\kV/2$.) Charge and voltage are related to the capacitance $\kCap$ of a capacitor by $\kQch = \kCap\kV$, and so the expression for $\kEcap$ can be algebraically manipulated into three equivalent expressions:</p>
+$$\kEcap = \frac{\kQch\kV}{2} = \frac{\kCap\kV^2}{2} = \frac{\kQch^2}{2\kCap},$$
+<p>where $\kQch$ is the charge and $\kV$ the voltage on a capacitor $\kCap$. The energy is in joules for a charge in coulombs, voltage in volts, and capacitance in farads.</p>
+<figure class="sim" id="sim-capacitor-energy">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The voltage on a capacitor is plotted against the charge already on it, and because $\kQch = \kCap\kV$ that plot is a straight line from the origin whose slope is one over the capacitance. The first charge arrives at no voltage at all and the last arrives at the full voltage $\kV$, so the average voltage the whole charge passes through is $\kV/2$, drawn here as the dashed line halfway up. The shaded triangle under the line is the energy stored. Set the capacitance and the voltage and watch the triangle grow, and note that it is always half of the rectangle $\kQch\kV$ drawn around it.</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">Energy Stored in Capacitors</div>
+<p>The energy stored in a capacitor can be expressed in three ways:</p>
+$$\kEcap = \frac{\kQch\kV}{2} = \frac{\kCap\kV^2}{2} = \frac{\kQch^2}{2\kCap},$$
+<p>where $\kQch$ is the charge, $\kV$ is the voltage, and $\kCap$ is the capacitance of the capacitor. The energy is in joules for a charge in coulombs, voltage in volts, and capacitance in farads.</p>
+</div>
+</section>
+
+<section id="defibrillator">
+<h2>The defibrillator</h2>
+<p class="cite-target">In a defibrillator, the delivery of a large charge in a short burst to a set of paddles across a person’s chest can be a lifesaver. The person’s heart attack might have arisen from the onset of fast, irregular beating of the heart—cardiac or ventricular fibrillation. The application of a large shock of electrical energy can terminate the arrhythmia and allow the body’s pacemaker to resume normal patterns. Today it is common for ambulances to carry a defibrillator, which also uses an electrocardiogram to analyze the patient’s heartbeat pattern. Automated external defibrillators (AED) are found in many public places (Figure 19.24). These are designed to be used by lay persons. The device automatically diagnoses the patient’s heart condition and then applies the shock with appropriate energy and waveform. CPR is recommended in many cases before use of an AED.</p>
+<figure class="photo" id="fig-aed" data-figure="19.24">
+  <img src="/media/ch19/Figure_20_07_02a.jpg" alt="Photograph of an automated external defibrillator." data-width="250">
+  <figcaption><span class="eyebrow">Figure 19.24</span><span>Automated external defibrillators are found in many public places. These portable units provide verbal instructions for use in the important first few minutes for a person suffering a cardiac attack. (credit: Owain Davies, Wikimedia Commons)</span></figcaption>
+</figure>
+<figure class="sim" id="sim-defibrillator">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A defibrillator is set to deliver a chosen energy, and its capacitor is charged to a chosen voltage before the shock. Since $\kEcap = \kCap\kV^2/2$, the capacitance the machine needs falls as the square of the voltage it charges to, which is the curve drawn below the paddles. Set the energy and the voltage and watch how large a capacitor the machine would have to carry, and why a defibrillator charges to thousands of volts rather than to hundreds.</span></div>
+</figure>
+<div class="example" id="ex-defibrillator">
+<h3>Example 19.11 · Capacitance in a Heart Defibrillator</h3>
+<p>A heart defibrillator delivers $4.00\times 10^{2}\ \text{J}$ of energy by discharging a capacitor initially at $1.00\times 10^{4}\ \text{V}$. What is its capacitance?</p>
+<h4>Strategy</h4>
+<p>We are given $\kEcap$ and $\kV$, and we are asked to find the capacitance $\kCap$. Of the three expressions in the equation for $\kEcap$, the most convenient relationship is</p>
+$$\kEcap = \frac{\kCap\kV^2}{2}.$$
+<h4>Solution</h4>
+<p>Solving this expression for $\kCap$ and entering the given values yields</p>
+$$\begin{aligned}\kCap &= \frac{2\kEcap}{\kV^2} = \frac{2(4.00\times 10^{2}\ \text{J})}{(1.00\times 10^{4}\ \text{V})^2} = 8.00\times 10^{-6}\ \text{F}\\ &= 8.00\ \mu\text{F}.\end{aligned}$$
+<h4>Discussion</h4>
+<p>This is a fairly large, but manageable, capacitance at $1.00\times 10^{4}\ \text{V}$.</p>
+</div>
+</section>

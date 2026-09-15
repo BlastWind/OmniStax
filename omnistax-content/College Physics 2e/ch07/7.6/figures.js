@@ -74,11 +74,14 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     /* the climber, her feet on the tread she has reached and her body leaning into the climb */
     const step = Math.min(N - 1, Math.floor(s.f * N)), within = done ? 1 : s.f * N - step, tread = (x1 - x0) / N;
     const cx = done ? x1 + 24 : x0 + tread * (step + 0.3 + 0.4 * within), cyy = done ? yt : yb - ((yb - yt) * step) / N;
-    F.person(ctx, cx, cyy, PAL.ink, done ? { lean: 0 } : { phase: within * Math.PI, lean: 0.22 });
+    /* the climber stands to the stairs' own scale, her front foot on the step above while she climbs */
+    const stepUp = (yb - yt) / N, PS = 0.66, sw = done ? 0 : Math.sin(within * Math.PI);
+    F.silhouette(ctx, done ? { x: cx, y: cyy, s: PS, pose: 'stand' } : { x: cx, y: cyy, s: PS, pose: 'walk', hands: [{ x: 18 + 10 * sw, y: -78 }, { x: -14 - 10 * sw, y: -80 }],
+      feet: [{ x: 16 + 8 * sw, y: -stepUp / PS }, { x: -18 - 6 * sw, y: 0 }] });
     /* her speed, along the stairs */
     const ax = 78, ay = -78 * ((yb - yt) / (x1 - x0));
-    arrow(ctx, cx + 14, cyy - 54, cx + 14 + ax, cyy - 54 + ay, C('velocity'), 5);
-    text(ctx, fmt(V.v, 1) + ' m/s', cx + 20 + ax, cyy - 62 + ay, C('velocity'), { weight: 600, size: 20 });
+    arrow(ctx, cx + 20, cyy - 108, cx + 20 + ax, cyy - 108 + ay, C('velocity'), 5);
+    text(ctx, fmt(V.v, 1) + ' m/s', cx + 26 + ax, cyy - 116 + ay, C('velocity'), { weight: 600, size: 20 });
     /* the height gained so far, bracketed against the full climb */
     line(ctx, x0, yt, 660, yt, PAL.rule, 2, [10, 10]);
     line(ctx, x0, yb, 660, yb, PAL.rule, 2, [10, 10]);

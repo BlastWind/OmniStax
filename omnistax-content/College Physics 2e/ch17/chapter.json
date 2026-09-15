@@ -1,0 +1,862 @@
+{
+  "id": "17",
+  "dir": "ch17",
+  "title": "Physics of Hearing",
+  "intro": {
+    "module": "m42254",
+    "slug": "17-introduction-to-the-physics-of-hearing"
+  },
+  "sections": [
+    {
+      "id": "17.1",
+      "module": "m42255",
+      "title": "Sound",
+      "slug": "17-1-sound"
+    },
+    {
+      "id": "17.2",
+      "module": "m42256",
+      "title": "Speed of Sound, Frequency, and Wavelength",
+      "slug": "17-2-speed-of-sound-frequency-and-wavelength"
+    },
+    {
+      "id": "17.3",
+      "module": "m42257",
+      "title": "Sound Intensity and Sound Level",
+      "slug": "17-3-sound-intensity-and-sound-level"
+    },
+    {
+      "id": "17.4",
+      "module": "m42712",
+      "title": "Doppler Effect and Sonic Booms",
+      "slug": "17-4-doppler-effect-and-sonic-booms"
+    },
+    {
+      "id": "17.5",
+      "module": "m42296",
+      "title": "Sound Interference and Resonance: Standing Waves in Air Columns",
+      "slug": "17-5-sound-interference-and-resonance-standing-waves-in-air-columns"
+    },
+    {
+      "id": "17.6",
+      "module": "m42297",
+      "title": "Hearing",
+      "slug": "17-6-hearing"
+    },
+    {
+      "id": "17.7",
+      "module": "m42298",
+      "title": "Ultrasound",
+      "slug": "17-7-ultrasound"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "P_press",
+      "type": "pressure",
+      "meaning": "the sound wave's pressure at the eardrum, which differs from the atmospheric pressure behind it",
+      "unit": "Pa",
+      "section": "17.1",
+      "anchor": "17.1-fading"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area of the eardrum",
+      "unit": "m²",
+      "section": "17.1",
+      "anchor": "17.1-fading"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the net force on the eardrum, the pressure difference across it times its area",
+      "unit": "N",
+      "section": "17.1",
+      "anchor": "17.1-fading"
+    },
+    {
+      "sym": "v_w",
+      "type": "velocity",
+      "meaning": "the speed of sound, the speed at which the disturbance propagates through the medium",
+      "unit": "m/s",
+      "section": "17.2",
+      "anchor": "17.2-wave-relation"
+    },
+    {
+      "sym": "f",
+      "type": "frequency",
+      "meaning": "the frequency of the sound, the same as that of the source, the number of waves that pass a point per unit time",
+      "unit": "Hz",
+      "section": "17.2",
+      "anchor": "17.2-wave-relation"
+    },
+    {
+      "sym": "λ",
+      "type": "position",
+      "meaning": "the wavelength of the sound, the distance between adjacent identical parts of the wave, for example between adjacent compressions",
+      "unit": "m",
+      "section": "17.2",
+      "anchor": "17.2-wave-relation"
+    },
+    {
+      "sym": "T_temp",
+      "type": "temperature",
+      "meaning": "the temperature of the air, in kelvin",
+      "unit": "K",
+      "section": "17.2",
+      "anchor": "17.2-temperature"
+    },
+    {
+      "sym": "v_rms",
+      "type": "velocity",
+      "meaning": "the average speed of the particles in a gas, to which the speed of sound in the gas is related",
+      "unit": "m/s",
+      "section": "17.2",
+      "anchor": "17.2-temperature"
+    },
+    {
+      "sym": "k_boltz",
+      "meaning": "the Boltzmann constant, 1.38 × 10⁻²³ J/K",
+      "unit": "J/K",
+      "section": "17.2",
+      "anchor": "17.2-temperature"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of each (identical) particle in the gas",
+      "unit": "kg",
+      "section": "17.2",
+      "anchor": "17.2-temperature"
+    },
+    {
+      "sym": "I_intens",
+      "type": "intensity",
+      "meaning": "the intensity of the sound wave, the power per unit area carried by the wave",
+      "unit": "W/m²",
+      "section": "17.3",
+      "anchor": "17.3-intensity"
+    },
+    {
+      "sym": "P",
+      "type": "power",
+      "meaning": "the power through an area, the rate at which energy is transferred by the wave",
+      "unit": "W",
+      "section": "17.3",
+      "anchor": "17.3-intensity"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area the power passes through",
+      "unit": "m²",
+      "section": "17.3",
+      "anchor": "17.3-intensity"
+    },
+    {
+      "sym": "Δp_press",
+      "type": "pressure",
+      "meaning": "the pressure variation or pressure amplitude, half the difference between the maximum and minimum pressure in the sound wave",
+      "unit": "Pa",
+      "section": "17.3",
+      "anchor": "17.3-pressure-amplitude"
+    },
+    {
+      "sym": "ρ_dens",
+      "type": "density",
+      "meaning": "the density of the material in which the sound wave travels",
+      "unit": "kg/m³",
+      "section": "17.3",
+      "anchor": "17.3-pressure-amplitude"
+    },
+    {
+      "sym": "v_w",
+      "type": "velocity",
+      "meaning": "the speed of sound in the medium",
+      "unit": "m/s",
+      "section": "17.3",
+      "anchor": "17.3-pressure-amplitude"
+    },
+    {
+      "sym": "β_dB",
+      "meaning": "the sound intensity level in decibels, a unitless quantity telling you the level of the sound relative to a fixed standard",
+      "unit": "dB",
+      "section": "17.3",
+      "anchor": "17.3-decibels"
+    },
+    {
+      "sym": "I_0",
+      "type": "intensity",
+      "meaning": "the reference intensity, 10⁻¹² W/m², the lowest or threshold intensity of sound a person with normal hearing can perceive at a frequency of 1000 Hz",
+      "unit": "W/m²",
+      "section": "17.3",
+      "anchor": "17.3-decibels"
+    },
+    {
+      "sym": "I_1",
+      "type": "intensity",
+      "meaning": "the intensity of the first of two sounds being compared",
+      "unit": "W/m²",
+      "section": "17.3",
+      "anchor": "17.3-ratios"
+    },
+    {
+      "sym": "I_2",
+      "type": "intensity",
+      "meaning": "the intensity of the second of two sounds being compared",
+      "unit": "W/m²",
+      "section": "17.3",
+      "anchor": "17.3-ratios"
+    },
+    {
+      "sym": "f_obs",
+      "type": "frequency",
+      "meaning": "the frequency received by the observer",
+      "unit": "Hz",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "f_src",
+      "type": "frequency",
+      "meaning": "the frequency of the source",
+      "unit": "Hz",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "v_s",
+      "type": "velocity",
+      "meaning": "the speed of the source along a line joining the source and observer",
+      "unit": "m/s",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "v_obs",
+      "type": "velocity",
+      "meaning": "the speed of the observer along a line joining the source and observer",
+      "unit": "m/s",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "v_w",
+      "type": "velocity",
+      "meaning": "the speed of sound, the same in the medium whether the source is moving or not",
+      "unit": "m/s",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the angle of the cone of constructive interference behind a source moving faster than sound; the faster the source, the smaller the angle",
+      "unit": "°",
+      "section": "17.4",
+      "anchor": "17.4-sonic-boom"
+    },
+    {
+      "sym": "c",
+      "type": "velocity",
+      "meaning": "the speed of light in a vacuum, 3.00 × 10⁸ m/s",
+      "unit": "m/s",
+      "section": "17.4",
+      "anchor": "17.4-bow-wake"
+    },
+    {
+      "sym": "L_len",
+      "meaning": "the length of the tube",
+      "unit": "m",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "λ",
+      "type": "position",
+      "meaning": "the wavelength of the fundamental; for a tube closed at one end, λ = 4L",
+      "unit": "m",
+      "section": "17.5",
+      "anchor": "17.5-nodes-antinodes"
+    },
+    {
+      "sym": "λ_prime",
+      "type": "position",
+      "meaning": "the wavelength of the first overtone of a tube closed at one end, λ′ = 4L/3",
+      "unit": "m",
+      "section": "17.5",
+      "anchor": "17.5-overtones"
+    },
+    {
+      "sym": "f",
+      "type": "frequency",
+      "meaning": "the fundamental frequency of the tube, the lowest resonant frequency",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "f_prime",
+      "type": "frequency",
+      "meaning": "the frequency of the first overtone, 3f for a tube closed at one end",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "f_n",
+      "type": "frequency",
+      "meaning": "the nth resonant frequency of the tube",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "n",
+      "meaning": "the harmonic number: 1, 3, 5, … for a tube closed at one end and 1, 2, 3, … for a tube open at both ends",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "f_1",
+      "type": "frequency",
+      "meaning": "the fundamental, the first harmonic",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "f_2",
+      "type": "frequency",
+      "meaning": "the first overtone of a tube open at both ends, its second harmonic",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-open-tube"
+    },
+    {
+      "sym": "f_3",
+      "type": "frequency",
+      "meaning": "the first overtone of a tube closed at one end, its third harmonic",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "v_w",
+      "type": "velocity",
+      "meaning": "the speed of sound in air, which depends on temperature",
+      "unit": "m/s",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "I_intens",
+      "type": "intensity",
+      "meaning": "the intensity of the sound; the lowest audible intensity or threshold is about 10⁻¹² W/m², or 0 dB",
+      "unit": "W/m²",
+      "section": "17.6",
+      "anchor": "17.6-loudness-perception"
+    },
+    {
+      "sym": "β_dB",
+      "meaning": "the sound intensity level in decibels, which is taken to be numerically equal to the loudness in phons at 1000 Hz",
+      "unit": "dB",
+      "section": "17.6",
+      "anchor": "17.6-loudness-perception"
+    },
+    {
+      "sym": "Z",
+      "meaning": "the acoustic impedance of a medium, the property that makes the propagation of sound waves more difficult",
+      "unit": "kg/(m²·s)",
+      "section": "17.7",
+      "anchor": "17.7-impedance"
+    },
+    {
+      "sym": "ρ_dens",
+      "type": "density",
+      "meaning": "the density of the medium",
+      "unit": "kg/m³",
+      "section": "17.7",
+      "anchor": "17.7-impedance"
+    },
+    {
+      "sym": "v",
+      "type": "velocity",
+      "meaning": "the speed of sound through the medium",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-impedance"
+    },
+    {
+      "sym": "Z_1",
+      "meaning": "the acoustic impedance of the first of the two media making up a boundary",
+      "unit": "kg/(m²·s)",
+      "section": "17.7",
+      "anchor": "17.7-reflection"
+    },
+    {
+      "sym": "Z_2",
+      "meaning": "the acoustic impedance of the second of the two media making up a boundary",
+      "unit": "kg/(m²·s)",
+      "section": "17.7",
+      "anchor": "17.7-reflection"
+    },
+    {
+      "sym": "a_refl",
+      "meaning": "the intensity reflection coefficient, the ratio of the intensity of the reflected wave relative to the incident wave; zero when the acoustic impedances of the two media are the same",
+      "section": "17.7",
+      "anchor": "17.7-reflection"
+    },
+    {
+      "sym": "λ",
+      "type": "position",
+      "meaning": "the wavelength of the ultrasound, which limits the fineness of detail it can detect",
+      "unit": "m",
+      "section": "17.7",
+      "anchor": "17.7-imaging"
+    },
+    {
+      "sym": "f",
+      "type": "frequency",
+      "meaning": "the frequency of the ultrasound",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-imaging"
+    },
+    {
+      "sym": "v_w",
+      "type": "velocity",
+      "meaning": "the speed of sound in tissue, about 1540 m/s",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-imaging"
+    },
+    {
+      "sym": "I_intens",
+      "type": "intensity",
+      "meaning": "the intensity of the ultrasound, which sets whether it images tissue or destroys it",
+      "unit": "W/m²",
+      "section": "17.7",
+      "anchor": "17.7-therapy"
+    },
+    {
+      "sym": "f_src",
+      "type": "frequency",
+      "meaning": "the frequency broadcast by the transducer",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "f_obs",
+      "type": "frequency",
+      "meaning": "the frequency received, first by the moving blood as an observer and then by the transducer from the blood as a moving source",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "v_obs",
+      "type": "velocity",
+      "meaning": "the speed of the reflector, the blood, when it receives the ultrasound as a moving observer",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "v_s",
+      "type": "velocity",
+      "meaning": "the speed of the reflector when it returns the ultrasound as a moving source",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "v_blood",
+      "type": "velocity",
+      "meaning": "the velocity of the blood in the artery",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "f_B",
+      "type": "frequency",
+      "meaning": "the beat frequency, the absolute value of the difference between the broadcast and the returning frequencies, directly proportional to the reflector's velocity",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "f_1",
+      "type": "frequency",
+      "meaning": "the first of the two frequencies mixed to produce beats",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "f_2",
+      "type": "frequency",
+      "meaning": "the second of the two frequencies mixed to produce beats",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "P_1",
+      "type": "pressure",
+      "meaning": "the pressure the sound wave exerts on the eardrum",
+      "unit": "Pa",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism"
+    },
+    {
+      "sym": "F_1",
+      "type": "force",
+      "meaning": "the force that pressure exerts on the eardrum, the product of the pressure and the eardrum's area",
+      "unit": "N",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism"
+    },
+    {
+      "sym": "A_1",
+      "meaning": "the area of the eardrum, on which the sound pressure acts",
+      "unit": "m²",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism"
+    },
+    {
+      "sym": "F_2",
+      "type": "force",
+      "meaning": "the force the lever system of the middle ear applies to the oval window",
+      "unit": "N",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism"
+    },
+    {
+      "sym": "A_2",
+      "meaning": "the area of the oval window, which is much smaller than the area of the eardrum",
+      "unit": "m²",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism"
+    },
+    {
+      "sym": "P_2",
+      "type": "pressure",
+      "meaning": "the pressure the stirrup creates at the oval window, about 40 times the pressure on the eardrum",
+      "unit": "Pa",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism"
+    }
+  ],
+  "equations": [
+    {
+      "id": "eq-speed-frequency-wavelength",
+      "concept": "speed-of-sound-frequency-wavelength",
+      "section": "17.2",
+      "latex": "v_{\\text{w}} = f\\lambda",
+      "ktex": "\\kvw = \\kf\\klam",
+      "important": true,
+      "anchor": "17.2-wave-relation"
+    },
+    {
+      "id": "eq-speed-of-sound-air",
+      "concept": "speed-of-sound-temperature",
+      "section": "17.2",
+      "latex": "v_{\\text{w}} = (331\\ \\text{m/s})\\sqrt{\\frac{T}{273\\ \\text{K}}}",
+      "ktex": "\\kvw = (331\\ \\text{m/s})\\sqrt{\\frac{\\kTemp}{273\\ \\text{K}}}",
+      "condition": "air at sea level, T in kelvin",
+      "important": true,
+      "anchor": "17.2-temperature"
+    },
+    {
+      "id": "eq-rms-speed",
+      "section": "17.2",
+      "latex": "v_{\\text{rms}} = \\sqrt{\\frac{3kT}{m}}",
+      "ktex": "\\kvrms = \\sqrt{\\frac{3k\\kTemp}{m}}",
+      "important": false,
+      "anchor": "17.2-temperature"
+    },
+    {
+      "id": "eq-wavelength-from-speed",
+      "section": "17.2",
+      "latex": "\\lambda = \\frac{v_{\\text{w}}}{f}",
+      "ktex": "\\klam = \\frac{\\kvw}{\\kf}",
+      "important": false,
+      "anchor": "17.2-ex-wavelengths"
+    },
+    {
+      "id": "eq-intensity",
+      "concept": "sound-intensity",
+      "section": "17.3",
+      "latex": "I = \\frac{P}{A}",
+      "ktex": "\\kIntens = \\frac{\\kP}{A}",
+      "important": true,
+      "anchor": "17.3-intensity"
+    },
+    {
+      "id": "eq-intensity-pressure-amplitude",
+      "concept": "intensity-and-pressure-amplitude",
+      "section": "17.3",
+      "latex": "I = \\frac{(\\Delta p)^2}{2\\rho v_{\\text{w}}}",
+      "ktex": "\\kIntens = \\frac{(\\kdpamp)^2}{2\\krho\\kvw}",
+      "important": true,
+      "anchor": "17.3-pressure-amplitude"
+    },
+    {
+      "id": "eq-sound-intensity-level",
+      "concept": "sound-intensity-level",
+      "section": "17.3",
+      "latex": "\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\frac{I}{I_0}\\right)",
+      "ktex": "\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\frac{\\kIntens}{\\kIo}\\right)",
+      "condition": "I₀ = 10⁻¹² W/m²",
+      "important": true,
+      "anchor": "17.3-decibels"
+    },
+    {
+      "id": "eq-sound-level-difference",
+      "concept": "decibel-ratios",
+      "section": "17.3",
+      "latex": "\\beta_2 - \\beta_1 = 10\\log_{10}\\left(\\frac{I_2}{I_1}\\right)",
+      "ktex": "\\beta_2 - \\beta_1 = 10\\log_{10}\\left(\\frac{\\kItwo}{\\kIone}\\right)",
+      "important": true,
+      "anchor": "17.3-ratios"
+    },
+    {
+      "id": "eq-log-of-ratio",
+      "section": "17.3",
+      "latex": "\\log_{10} b - \\log_{10} a = \\log_{10}\\left(\\frac{b}{a}\\right)",
+      "important": false,
+      "anchor": "17.3-ratios"
+    },
+    {
+      "id": "eq-doppler-moving-source",
+      "concept": "doppler-shift-moving-source",
+      "section": "17.4",
+      "latex": "f_{\\text{obs}} = f_{\\text{s}}\\left(\\frac{v_{\\text{w}}}{v_{\\text{w}} \\pm v_{\\text{s}}}\\right)",
+      "ktex": "\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)",
+      "condition": "stationary observer, moving source; minus for motion toward the observer, plus for motion away",
+      "important": true,
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "id": "eq-doppler-moving-observer",
+      "concept": "doppler-shift-moving-observer",
+      "section": "17.4",
+      "latex": "f_{\\text{obs}} = f_{\\text{s}}\\left(\\frac{v_{\\text{w}} \\pm v_{\\text{obs}}}{v_{\\text{w}}}\\right)",
+      "ktex": "\\kfobs = \\kfsrc\\left(\\frac{\\kvw \\pm \\kvobs}{\\kvw}\\right)",
+      "condition": "stationary source, moving observer; plus for motion toward the source, minus for motion away",
+      "important": true,
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "id": "eq-doppler-source-and-observer",
+      "concept": "doppler-shift-source-and-observer",
+      "section": "17.4",
+      "latex": "f_{\\text{obs}} = \\left[f_{\\text{s}}\\left(\\frac{v_{\\text{w}} \\pm v_{\\text{obs}}}{v_{\\text{w}}}\\right)\\right]\\left(\\frac{v_{\\text{w}}}{v_{\\text{w}} \\pm v_{\\text{s}}}\\right)",
+      "ktex": "\\kfobs = \\left[\\kfsrc\\left(\\frac{\\kvw \\pm \\kvobs}{\\kvw}\\right)\\right]\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)",
+      "condition": "both source and observer moving",
+      "important": true,
+      "anchor": "17.4-ex-train-horn"
+    },
+    {
+      "id": "eq-closed-tube-fundamental",
+      "section": "17.5",
+      "latex": "f = \\frac{v_{\\text{w}}}{\\lambda} = \\frac{v_{\\text{w}}}{4L}",
+      "ktex": "\\kf = \\frac{\\kvw}{\\klam} = \\frac{\\kvw}{4L}",
+      "condition": "tube closed at one end, λ = 4L",
+      "important": false,
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "id": "eq-closed-tube-first-overtone",
+      "section": "17.5",
+      "latex": "f' = 3\\frac{v_{\\text{w}}}{4L} = 3f",
+      "ktex": "\\kfprime = 3\\frac{\\kvw}{4L} = 3\\kf",
+      "condition": "tube closed at one end, λ′ = 4L/3",
+      "important": false,
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "id": "eq-closed-tube-harmonics",
+      "concept": "closed-tube-resonances",
+      "section": "17.5",
+      "latex": "f_n = n\\frac{v_{\\text{w}}}{4L},\\ n = 1, 3, 5, \\ldots",
+      "ktex": "\\kfn = n\\frac{\\kvw}{4L},\\ n = 1, 3, 5, \\ldots",
+      "condition": "tube closed at one end",
+      "important": true,
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "id": "eq-open-tube-harmonics",
+      "concept": "open-tube-resonances",
+      "section": "17.5",
+      "latex": "f_n = n\\frac{v_{\\text{w}}}{2L},\\ n = 1, 2, 3, \\ldots",
+      "ktex": "\\kfn = n\\frac{\\kvw}{2L},\\ n = 1, 2, 3, \\ldots",
+      "condition": "tube open at both ends",
+      "important": true,
+      "anchor": "17.5-open-tube"
+    },
+    {
+      "id": "eq-tube-length",
+      "concept": "tube-length-from-resonance",
+      "section": "17.5",
+      "latex": "L = \\frac{v_{\\text{w}}}{4f_1}",
+      "ktex": "L = \\frac{\\kvw}{4\\kfone}",
+      "condition": "tube closed at one end",
+      "important": false,
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "id": "eq-acoustic-impedance",
+      "concept": "acoustic-impedance",
+      "section": "17.7",
+      "latex": "Z = \\rho v",
+      "ktex": "Z = \\krho\\kv",
+      "important": true,
+      "anchor": "17.7-impedance"
+    },
+    {
+      "id": "eq-intensity-reflection-coefficient",
+      "concept": "intensity-reflection-coefficient",
+      "section": "17.7",
+      "latex": "a = \\frac{(Z_2 - Z_1)^2}{(Z_1 + Z_2)^2}",
+      "important": true,
+      "anchor": "17.7-reflection"
+    },
+    {
+      "id": "eq-beat-frequency-echo",
+      "concept": "doppler-shifted-ultrasound",
+      "section": "17.7",
+      "latex": "f_{\\text{B}} = |f_{\\text{obs}} - f_{\\text{s}}|",
+      "ktex": "\\kfB = |\\kfobs - \\kfsrc|",
+      "important": true,
+      "anchor": "17.7-doppler"
+    }
+  ],
+  "glossary": [
+    {
+      "section": "17.1",
+      "term": "sound",
+      "definition": "a disturbance of matter that is transmitted from its source outward"
+    },
+    {
+      "section": "17.1",
+      "term": "hearing",
+      "definition": "the perception of sound"
+    },
+    {
+      "section": "17.2",
+      "term": "pitch",
+      "definition": "the perception of the frequency of a sound"
+    },
+    {
+      "section": "17.3",
+      "term": "intensity",
+      "definition": "the power per unit area carried by a wave"
+    },
+    {
+      "section": "17.3",
+      "term": "sound intensity level",
+      "definition": "a unitless quantity telling you the level of the sound relative to a fixed standard"
+    },
+    {
+      "section": "17.3",
+      "term": "sound pressure level",
+      "definition": "the ratio of the pressure amplitude to a reference pressure"
+    },
+    {
+      "section": "17.4",
+      "term": "Doppler effect",
+      "definition": "an alteration in the observed frequency of a sound due to motion of either the source or the observer"
+    },
+    {
+      "section": "17.4",
+      "term": "Doppler shift",
+      "definition": "the actual change in frequency due to relative motion of source and observer"
+    },
+    {
+      "section": "17.4",
+      "term": "sonic boom",
+      "definition": "a constructive interference of sound created by an object moving faster than sound"
+    },
+    {
+      "section": "17.4",
+      "term": "bow wake",
+      "definition": "V-shaped disturbance created when the wave source moves faster than the wave propagation speed"
+    },
+    {
+      "section": "17.5",
+      "term": "antinode",
+      "definition": "point of maximum displacement"
+    },
+    {
+      "section": "17.5",
+      "term": "node",
+      "definition": "point of zero displacement"
+    },
+    {
+      "section": "17.5",
+      "term": "fundamental",
+      "definition": "the lowest-frequency resonance"
+    },
+    {
+      "section": "17.5",
+      "term": "overtones",
+      "definition": "all resonant frequencies higher than the fundamental"
+    },
+    {
+      "section": "17.5",
+      "term": "harmonics",
+      "definition": "the term used to refer collectively to the fundamental and its overtones"
+    },
+    {
+      "section": "17.6",
+      "term": "loudness",
+      "definition": "the perception of sound intensity"
+    },
+    {
+      "section": "17.6",
+      "term": "timbre",
+      "definition": "number and relative intensity of multiple sound frequencies"
+    },
+    {
+      "section": "17.6",
+      "term": "note",
+      "definition": "basic unit of music with specific names, combined to generate tunes"
+    },
+    {
+      "section": "17.6",
+      "term": "tone",
+      "definition": "number and relative intensity of multiple sound frequencies"
+    },
+    {
+      "section": "17.6",
+      "term": "phon",
+      "definition": "the numerical unit of loudness"
+    },
+    {
+      "section": "17.6",
+      "term": "ultrasound",
+      "definition": "sounds above 20,000 Hz"
+    },
+    {
+      "section": "17.6",
+      "term": "infrasound",
+      "definition": "sounds below 20 Hz"
+    },
+    {
+      "section": "17.7",
+      "term": "acoustic impedance",
+      "definition": "property of medium that makes the propagation of sound waves more difficult"
+    },
+    {
+      "section": "17.7",
+      "term": "intensity reflection coefficient",
+      "definition": "a measure of the ratio of the intensity of the wave reflected off a boundary between two media relative to the intensity of the incident wave"
+    },
+    {
+      "section": "17.7",
+      "term": "Doppler-shifted ultrasound",
+      "definition": "a medical technique to detect motion and determine velocity through the Doppler shift of an echo"
+    }
+  ]
+}

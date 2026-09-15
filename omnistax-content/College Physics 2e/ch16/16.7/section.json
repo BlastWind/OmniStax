@@ -1,0 +1,392 @@
+{
+  "id": "16.7",
+  "module": "m42246",
+  "chapter": "16",
+  "title": "Damped Harmonic Motion",
+  "short": "Damped harmonic motion",
+  "lead": "Real oscillations do not go on forever, because friction and other non-conservative forces take energy out of them. This section follows the amplitude down as that energy leaves, names the three ways a system can return to equilibrium—underdamped, critically damped and overdamped—and works out how far an object on a spring travels before friction brings it to rest.",
+  "objectives": [
+    "Compare and discuss underdamped and overdamped oscillating systems.",
+    "Explain critically damped system."
+  ],
+  "summary_html": "<ul><li>Damped harmonic oscillators have non-conservative forces that dissipate their energy.</li><li>Critical damping returns the system to equilibrium as fast as possible without overshooting.</li><li>An underdamped system will oscillate through the equilibrium position.</li><li>An overdamped system moves more slowly toward equilibrium than one that is critically damped.</li></ul>",
+  "notes": "The photograph of a mother pushing a child on a swing is the splash image at the head of the section and is left out. Problem 1, on the amplitude that falls three percent a cycle, has no answer in the book’s key and is left out. The book’s own wording is kept as it stands: the glossary writes “over damping” and “under damping” as two words where the text writes “overdamped” and “underdamped”, and the sentence that defines critical damping runs two sentences together.",
+  "ai": {
+    "text": "Claude Opus 5",
+    "figures": "Claude Opus 5"
+  },
+  "built": "2026-09-14",
+  "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s answer key; problem 1 has no keyed answer and is left out. The second AP item has no keyed answer either, so it is kept as an open question with the options the book prints and an AI-written suggested approach rather than as a graded choice. The third conceptual question turns on the second law of thermodynamics and is tagged to that result in section 15.6 as well as to damped harmonic motion. Suggested approaches for open questions are AI-written and marked. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "sim-damped-amplitude",
+      "kind": "sim",
+      "number": "16.20",
+      "originals": [
+        "/media/ch16/Figure_17_07_02a.jpg"
+      ],
+      "original_caption": "In this graph of displacement versus time for a harmonic oscillator with a small amount of damping, the amplitude slowly decreases, but the period and frequency are nearly the same as if the system were completely undamped.",
+      "widths": [
+        400
+      ],
+      "draws": [
+        "energy",
+        "position",
+        "time"
+      ]
+    },
+    {
+      "id": "sim-damping-regimes",
+      "kind": "sim",
+      "number": "16.21",
+      "originals": [
+        "/media/ch16/Figure_17_07_03a.jpg"
+      ],
+      "original_caption": "Displacement versus time for a critically damped harmonic oscillator (A) and an overdamped harmonic oscillator (B). The critically damped oscillator returns to equilibrium at X = 0 in the smallest time possible without overshooting.",
+      "widths": [
+        250
+      ],
+      "draws": [
+        "position",
+        "time"
+      ]
+    },
+    {
+      "id": "sim-friction-damped",
+      "kind": "sim",
+      "number": "16.22",
+      "originals": [
+        "/media/ch16/Figure_17_07_04a.jpg"
+      ],
+      "original_caption": "The transformation of energy in simple harmonic motion is illustrated for an object attached to a spring on a frictionless surface.",
+      "widths": [
+        450
+      ],
+      "draws": [
+        "energy",
+        "force",
+        "position",
+        "stiffness",
+        "time"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "damping",
+      "concept": "damped-harmonic-motion",
+      "verb": "introduces"
+    },
+    {
+      "span": "damping",
+      "concept": "nonconservative-work-damping",
+      "verb": "introduces"
+    },
+    {
+      "span": "damping",
+      "concept": "simple-harmonic-motion",
+      "verb": "uses"
+    },
+    {
+      "span": "damping",
+      "concept": "amplitude",
+      "verb": "uses"
+    },
+    {
+      "span": "damping",
+      "concept": "period-frequency",
+      "verb": "uses"
+    },
+    {
+      "span": "damping",
+      "concept": "nonconservative-force",
+      "verb": "uses"
+    },
+    {
+      "span": "damping",
+      "concept": "friction-dissipates-mechanical-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "damping",
+      "concept": "work-by-nonconservative-forces",
+      "verb": "reinforces"
+    },
+    {
+      "span": "regimes",
+      "concept": "critical-damping",
+      "verb": "introduces"
+    },
+    {
+      "span": "regimes",
+      "concept": "underdamping",
+      "verb": "introduces"
+    },
+    {
+      "span": "regimes",
+      "concept": "overdamping",
+      "verb": "introduces"
+    },
+    {
+      "span": "regimes",
+      "concept": "damped-harmonic-motion",
+      "verb": "reinforces"
+    },
+    {
+      "span": "regimes",
+      "concept": "period-frequency",
+      "verb": "uses"
+    },
+    {
+      "span": "friction-example",
+      "concept": "friction-damped-oscillator",
+      "verb": "introduces"
+    },
+    {
+      "span": "friction-example",
+      "concept": "nonconservative-work-damping",
+      "verb": "reinforces"
+    },
+    {
+      "span": "friction-example",
+      "concept": "kinetic-friction-magnitude",
+      "verb": "uses"
+    },
+    {
+      "span": "friction-example",
+      "concept": "elastic-potential-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "friction-example",
+      "concept": "hookes-law",
+      "verb": "uses"
+    },
+    {
+      "span": "friction-example",
+      "concept": "shm-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "friction-example",
+      "concept": "underdamping",
+      "verb": "reinforces"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cyu1",
+      "source_id": "fs-id3256580",
+      "kind": "check-understanding",
+      "bloom": "Understand",
+      "place": {
+        "at": "inline",
+        "after": "damping"
+      },
+      "cite": "damping",
+      "prompt": "Why are completely undamped harmonic oscillators so rare?",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Friction often comes into play whenever an object is moving. Friction causes damping in a harmonic oscillator."
+      }
+    },
+    {
+      "id": "cyu2",
+      "source_id": "fs-id2611418",
+      "kind": "check-understanding",
+      "bloom": "Understand",
+      "place": {
+        "at": "inline",
+        "after": "regimes"
+      },
+      "cite": "regimes",
+      "prompt": "Describe the difference between overdamping, underdamping, and critical damping.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "An overdamped system moves slowly toward equilibrium. An underdamped system moves quickly to equilibrium, but will oscillate about the equilibrium point as it does so. A critically damped system moves as quickly as possible toward equilibrium without oscillating."
+      }
+    },
+    {
+      "id": "ap1",
+      "source_id": "fs-id1927486",
+      "kind": "ap-test-prep",
+      "bloom": "Remember",
+      "place": {
+        "at": "end"
+      },
+      "cite": "damping",
+      "prompt": "The non-conservative damping force removes energy from a system in which form?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "Mechanical energy",
+          "Electrical energy",
+          "Thermal energy",
+          "None of the above"
+        ],
+        "correct": 2,
+        "hint": "The section says what the damping force usually turns the energy of the oscillation into."
+      }
+    },
+    {
+      "id": "ap2",
+      "source_id": "fs-id3337953",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "damping",
+      "prompt": "The time rate of change of mechanical energy for a damped oscillator is always: (a) 0, (b) Negative, (c) Positive, (d) Undefined.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Think about the sign of $\\kWnc$ for a damped oscillator. The damping force acts against the motion at every moment, so the work it does is negative and the mechanical energy $\\kKE + \\kPEtot$ can only fall as time passes. A quantity that only falls has a negative rate of change, so option (b) is the one to argue for. The book gives no answer to this item, so check your reasoning against the statement $\\kWnc = \\Delta(\\kKE + \\kPEtot)$ rather than against a key."
+      }
+    },
+    {
+      "id": "ap3",
+      "source_id": "fs-id1548549",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "friction-example",
+      "prompt": "A 0.5-kg object is connected to a spring that undergoes oscillatory motion. There is friction between the object and the surface it is kept on given by coefficient of friction $\\mu_{\\text{k}} = 0.06$. If the object is released 0.2 m from equilibrium, what is the distance that the object travels? Given that the force constant of the spring is 50 N⋅m⁻¹ and the frictional force between the objects is 0.294 N.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 1.698,
+        "unit": "m",
+        "hint": "Use $\\kd = \\frac{\\kk}{2\\mu_{\\text{k}} m\\kg}\\left(\\kX^2 - \\left(\\frac{\\mu_{\\text{k}} m\\kg}{\\kk}\\right)^2\\right)$ with $\\kX = 0.2\\ \\text{m}$.",
+        "solution": "$\\kd = \\frac{50\\ \\text{N}\\cdot\\text{m}^{-1}}{2 \\times 0.06 \\times 9.8\\ \\text{m}\\cdot\\text{s}^{-2}}\\left((0.2)^2 - \\frac{(0.06 \\times 0.5\\ \\text{kg} \\times 9.8\\ \\text{m}\\cdot\\text{s}^{-2})^2}{(50\\ \\text{N}\\cdot\\text{m}^{-1})^2}\\right) = 1.698\\ \\text{m}$"
+      }
+    },
+    {
+      "id": "cq1",
+      "source_id": "fs-id990795",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "damping",
+      "prompt": "Give an example of a damped harmonic oscillator. (They are more common than undamped or simple harmonic oscillators.)",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "A plucked guitar string is one: it oscillates at its own frequency and falls silent within a few seconds because the air and the body of the guitar carry the energy away. A child on a swing is another, which is why the swing has to be pushed to keep going, and the suspension of a car is a third, built so that the bouncing stops quickly after a bump."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id1352100",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "regimes",
+      "prompt": "How would a car bounce after a bump under each of these conditions? (a) overdamping, (b) underdamping, (c) critical damping.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "An overdamped car would sink slowly back to its resting height without bouncing, taking longer to get there than it needs to, and the ride would feel sluggish over the next bump. An underdamped car would bounce up and down through its resting height several times before settling, which is what a car with worn shock absorbers does. A critically damped car would return to its resting height in the shortest time it can without bouncing through it, which is what the suspension is designed to do."
+      }
+    },
+    {
+      "id": "cq3",
+      "source_id": "fs-id1941660",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "damping",
+      "prompt": "Most harmonic oscillators are damped and, if undriven, eventually come to a stop. How is this observation related to the second law of thermodynamics?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The damping force turns the ordered mechanical energy of the oscillation into thermal energy spread through the object and its surroundings, and the total entropy rises as it does so. The second law says that such a change goes one way only: the thermal energy scattered among the molecules never gathers itself back up and sets the oscillator swinging again. That is why an undriven oscillator always runs down and never runs up."
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cyu1",
+      "concept": "damped-harmonic-motion"
+    },
+    {
+      "exercise": "cyu1",
+      "concept": "nonconservative-force"
+    },
+    {
+      "exercise": "cyu2",
+      "concept": "critical-damping"
+    },
+    {
+      "exercise": "cyu2",
+      "concept": "underdamping"
+    },
+    {
+      "exercise": "cyu2",
+      "concept": "overdamping"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "nonconservative-work-damping"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "damped-harmonic-motion",
+      "weight": 2
+    },
+    {
+      "exercise": "ap2",
+      "concept": "nonconservative-work-damping"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "damped-harmonic-motion",
+      "weight": 2
+    },
+    {
+      "exercise": "ap3",
+      "concept": "friction-damped-oscillator"
+    },
+    {
+      "exercise": "ap3",
+      "concept": "nonconservative-work-damping",
+      "weight": 3
+    },
+    {
+      "exercise": "cq1",
+      "concept": "damped-harmonic-motion"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "critical-damping"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "underdamping"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "overdamping"
+    },
+    {
+      "exercise": "cq3",
+      "concept": "damped-harmonic-motion"
+    },
+    {
+      "exercise": "cq3",
+      "concept": "second-law-entropy-statement",
+      "weight": 3
+    }
+  ]
+}

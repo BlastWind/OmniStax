@@ -9,14 +9,20 @@ const RAD = Math.PI / 180;
 /* ---------- sprites, in ink ---------- */
 /* an ice skater seen from above, centred on (x, y), the arms reaching toward the angle a measured as the canvas measures it */
 function skater(ctx, x, y, a, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(x, y, 24, 0, Math.PI * 2); ctx.stroke();
-  ctx.beginPath(); ctx.arc(x, y, 11, 0, Math.PI * 2); ctx.fill();
+  /* seen from above: a shoulder bar across the facing direction with the head on it, the two
+     arms reaching out ahead along the facing direction, and the two skates trailing behind */
+  ctx.save(); ctx.translate(x, y); ctx.scale(1.25, 1.25); ctx.translate(-x, -y);
+  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round';
   const c = Math.cos(a), s = Math.sin(a), px = -s, py = c;
-  ctx.beginPath();
-  ctx.moveTo(x + px * 18, y + py * 18); ctx.lineTo(x + c * 40 + px * 11, y + s * 40 + py * 11);
-  ctx.moveTo(x - px * 18, y - py * 18); ctx.lineTo(x + c * 40 - px * 11, y + s * 40 - py * 11);
-  ctx.stroke(); ctx.restore();
+  ctx.lineWidth = 4; ctx.beginPath();
+  ctx.moveTo(x - c * 14 + px * 9, y - s * 14 + py * 9); ctx.lineTo(x - c * 44 + px * 9, y - s * 44 + py * 9);
+  ctx.moveTo(x - c * 14 - px * 9, y - s * 14 - py * 9); ctx.lineTo(x - c * 44 - px * 9, y - s * 44 - py * 9); ctx.stroke();
+  ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(x + px * 22, y + py * 22); ctx.lineTo(x - px * 22, y - py * 22); ctx.stroke();
+  ctx.lineWidth = 5; ctx.beginPath();
+  ctx.moveTo(x + px * 22, y + py * 22); ctx.lineTo(x + c * 46 + px * 12, y + s * 46 + py * 12);
+  ctx.moveTo(x - px * 22, y - py * 22); ctx.lineTo(x + c * 46 - px * 12, y + s * 46 - py * 12); ctx.stroke();
+  ctx.beginPath(); ctx.arc(x, y, 12, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
 }
 /* a hand gripping the end of a spring at (x, y), pulling to the right */
 function grip(ctx, x, y, color) {
@@ -62,7 +68,7 @@ function hook(ctx, x, y, color) {
     text(ctx, '(b) the free-body diagram of the third skater', 1060, 112, PAL.muted, { size: 17, align: 'center' });
 
     /* ---- the scene: the third skater, a pusher behind each arrow, and the head-to-tail construction ---- */
-    const px = 250, py = 400, R = 152;
+    const px = 250, py = 400, R = 112;   /* the pushers' hands reach the third skater's shoulders */
     skater(ctx, px - R, py, 0, PAL.ink);
     skater(ctx, px - R * Math.cos(th), py + R * Math.sin(th), -th, PAL.ink);
     skater(ctx, px, py, Math.PI / 2, PAL.ink);
@@ -80,7 +86,10 @@ function hook(ctx, x, y, color) {
     beyond(ctx, sub2, px + F2.v * U * Math.cos(th), py - F2.v * U * Math.sin(th), th, C('force'));
     const arcR = Math.min(64, 0.7 * Math.min(F1.v, F2.v) * U);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, arcR, -th, 0); ctx.stroke(); ctx.restore();
-    text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px + arcR + 12, py + 30, PAL.ink, { size: 20, weight: 600 });
+    /* the angle is named on its bisector, except when the pushes are so far apart that the total
+       force runs along that bisector, when it is named below the first skater's arms instead */
+    if (TH.v <= 110) text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px + (arcR + 34) * Math.cos(th / 2), py - (arcR + 34) * Math.sin(th / 2), PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    else text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px - 124, py + 54, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
 
     /* ---- the free-body diagram: the body as a single point, the outside forces leaving it ---- */
     const bx = 940, by = 400;

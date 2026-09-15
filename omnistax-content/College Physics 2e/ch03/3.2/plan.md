@@ -219,6 +219,8 @@ vectors, but the three-leg walk and the order sim already show it for
 three, and the sentence in the text says the rest. Nothing else opens a
 view the eight figures do not give.
 
+Figure pass (2026-09-14, Claude Fable 5.1): the runner in `sim-head-to-tail` and `sim-walk` is the drawing layer's `person()`, turned to walk along each leg; `sim-walk` drops the metre labels the ruler covered and says instead that a tick is 10 m. `sim-order` is redrawn at 5.2 units to the metre on a 940-unit canvas (the 80 m reach still fits in every direction) with the leg names, R and the start through `labeller()`, and the reference walk in half-strength ink. `sim-subtraction` is redrawn at 6 units to the metre on a 780-unit canvas, with the legs narrowed to 5 to 35 m so the reach fits (the book's 27.5 m and 30.0 m stay the defaults), every label through `labeller()`, and a larger dock and sailing boat. `sim-scalar` is at 3.4 units to the metre with $A$ narrowed to 5 to 30 m, both arrows carrying an angle arc, labels through `labeller()`. `fig-paths` gains a bottom margin. Every headline wraps through `topline()`.
+
 ## Exercises
 
 - No Check Your Understanding boxes; nothing inline.
