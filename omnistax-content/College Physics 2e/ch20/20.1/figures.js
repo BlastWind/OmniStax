@@ -36,10 +36,12 @@ function wireBody(ctx, l, r, t, b) {
   ctx.ellipse(l, cy, 16, ry, 0, Math.PI / 2, -Math.PI / 2); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 /* the plane of a cross-section, drawn as the ellipse the wire cuts there */
-function crossSection(ctx, x, t, b, color) {
+function crossSection(ctx, x, t, b, color, fill) {
   const ry = (b - t) / 2, cy = (t + b) / 2;
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.setLineDash([9, 8]);
-  ctx.beginPath(); ctx.ellipse(x, cy, 16, ry, 0, 0, TAU); ctx.stroke(); ctx.restore();
+  ctx.beginPath(); ctx.ellipse(x, cy, 16, ry, 0, 0, TAU);
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  ctx.stroke(); ctx.restore();
 }
 /* a panel of readings under a figure, with its heading */
 function panel(ctx, x, y, w, h) {
@@ -74,8 +76,8 @@ function panel(ctx, x, y, w, h) {
     const I = dQ.v / dT.v, u = Math.min(1, cy.now() / dT.v), mode = who.value;
     /* the wire, the marked cross-section and the field that drives the carriers */
     wireBody(ctx, WL, WR, WT, WB);
-    crossSection(ctx, AX, WT, WB, PAL.ink);
-    text(ctx, 'the area A', AX, WT - 16, PAL.ink, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    crossSection(ctx, AX, WT, WB, qc, alpha(qc, 0.28));
+    text(ctx, 'the area A', AX, WT - 16, qc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     arrow(ctx, 300, 176, 470, 176, ec, 5);
     text(ctx, 'E, the electric field in the wire', 486, 176, ec, { size: 21, weight: 600, base: 'middle' });
     /* the carriers, crossing the marked area once each loop. The two signs are
@@ -165,11 +167,15 @@ function panel(ctx, x, y, w, h) {
     text(ctx, '(a) ' + cell + ' and ' + lamp, 90, 122, PAL.ink, { size: 22, weight: 600 });
     const bl = big ? 110 : 150, br = big ? 300 : 260, bt = 330, bb = big ? 470 : 420;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
-    ctx.fillRect(bl, bt, br - bl, bb - bt); ctx.strokeRect(bl, bt, br - bl, bb - bt); ctx.restore();
+    ctx.beginPath(); ctx.roundRect(bl, bt, br - bl, bb - bt, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(bl, bt, br - bl, 22); ctx.strokeRect(bl, bt, br - bl, 22);   /* the lid */
+    ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.fillRect(bl + 12, bt + 40, br - bl - 24, (bb - bt) * 0.28);       /* the label band */
+    ctx.restore();
     text(ctx, cell, (bl + br) / 2, bb + 30, PAL.muted, { size: 18, align: 'center' });
     const pA = bl + 34, pB = br - 34;
     [[pA, '+'], [pB, '−']].forEach(([x, s]) => {
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(x - 15, bt - 18, 30, 20); ctx.strokeRect(x - 15, bt - 18, 30, 20); ctx.restore();
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(x - 13, bt - 18, 26, 20, 4); ctx.fill(); ctx.stroke(); ctx.restore();
       text(ctx, s, x, bt - 8, PAL.ink, { size: 22, weight: 600, align: 'center', base: 'middle' });
     });
     const lx = 560, ly = 246, R = big ? 66 : 38;
@@ -179,18 +185,34 @@ function panel(ctx, x, y, w, h) {
       const a = w[1], b = w[2], mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy);
       arrow(ctx, mx - (dx / L) * 28, my - (dy / L) * 28, mx + (dx / L) * 28, my + (dy / L) * 28, cc, 6);
     });
-    /* the lamp: a reflector opening to the right with a filament at the wires' end */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
-    ctx.moveTo(lx - R + 14, ly - R); ctx.quadraticCurveTo(lx - R - 34, ly, lx - R + 14, ly + R);
-    ctx.lineTo(lx + R, ly + R * 1.5); ctx.quadraticCurveTo(lx + R * 1.6, ly, lx + R, ly - R * 1.5); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(lx - R + 4, ly - 12);
-    for (let i = 0; i < 4; i++) ctx.lineTo(lx - R + 12 + (i % 2 ? 0 : 14), ly - 12 + i * 8); ctx.stroke(); ctx.restore();
-    const rays = 7, rl = 34 + 96 * (I / 12);
-    for (let i = 0; i < rays; i++) {
-      const a = -0.55 + (1.1 * i) / (rays - 1), x0 = lx + R * 1.68, y0 = ly + R * 1.2 * Math.sin(a);
-      line(ctx, x0 + 8 * Math.cos(a), y0, x0 + rl * Math.cos(a), y0 + rl * 0.5 * Math.sin(a), alpha(PAL.ink, 0.4), 3);
+    /* the lamp: a parabolic reflector open to the right, its lens across the mouth, a bulb at
+       the focus on the two leads, and a beam that widens and lengthens with the current */
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.fillStyle = PAL.soft;
+    ctx.beginPath(); ctx.moveTo(lx + R, ly - R * 1.5);
+    ctx.quadraticCurveTo(lx - R - 40, ly - R * 1.1, lx - R - 40, ly);
+    ctx.quadraticCurveTo(lx - R - 40, ly + R * 1.1, lx + R, ly + R * 1.5);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.beginPath(); ctx.moveTo(lx + R, ly - R * 1.5);
+    ctx.quadraticCurveTo(lx + R + 26, ly, lx + R, ly + R * 1.5); ctx.lineTo(lx + R - 10, ly + R * 1.5); ctx.lineTo(lx + R - 10, ly - R * 1.5); ctx.closePath(); ctx.fill(); ctx.stroke();
+    for (let k = -1; k <= 1; k++) line(ctx, lx + R - 4 + k * 5, ly - R * 1.42, lx + R - 4 + k * 5, ly + R * 1.42, alpha(PAL.ink, 0.35), 1.5);
+    ctx.restore();
+    /* the bulb, on the two leads that come through the back of the reflector */
+    const bx = lx - R * 0.35, bR = Math.max(10, R * 0.22);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(bx, ly, bR * 1.4, bR, 0, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(bx - bR * 0.9, ly - bR * 0.5);
+    for (let i = 0; i < 5; i++) ctx.lineTo(bx - bR * 0.9 + (i + 0.5) * (bR * 1.8 / 5), ly + (i % 2 ? bR * 0.5 : -bR * 0.5));
+    ctx.lineTo(bx + bR * 0.9, ly + bR * 0.5); ctx.stroke(); ctx.restore();
+    line(ctx, lx - R - 6, ly - 12, bx - bR * 1.2, ly - 6, PAL.ink, 3);
+    line(ctx, lx - R - 6, ly + 12, bx - bR * 1.2, ly + 6, PAL.ink, 3);
+    /* the beam: a soft wedge whose reach grows with the current, drawn as the fact it is */
+    const rl = 70 + 210 * (I / 12), x0 = lx + R + 22;
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.beginPath(); ctx.moveTo(x0, ly - R * 1.35); ctx.lineTo(x0 + rl, ly - R * 1.35 - rl * 0.28); ctx.lineTo(x0 + rl, ly + R * 1.35 + rl * 0.28); ctx.lineTo(x0, ly + R * 1.35); ctx.closePath(); ctx.fill(); ctx.restore();
+    for (let i = 0; i < 5; i++) {
+      const a = -0.26 + (0.52 * i) / 4, y0 = ly + R * 1.2 * Math.sin(a * 2.2);
+      line(ctx, x0 + 6, y0, x0 + rl * 0.9, y0 + rl * 0.9 * Math.sin(a), alpha(PAL.ink, 0.35), 2.5);
     }
-    text(ctx, lamp, lx + 20, ly + R * 1.5 + 44, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, lamp, lx + 10, ly + R * 1.5 + 44, PAL.muted, { size: 18, align: 'center' });
     /* (b) the schematic: the same circuit in the standard symbols */
     text(ctx, '(b) the schematic, which is the same for both', 800, 122, PAL.ink, { size: 22, weight: 600 });
     const sl = 830, sr = 1290, st = 200, sb = 470;
@@ -298,10 +320,11 @@ function panel(ctx, x, y, w, h) {
       }
       const ix = WR + 60 - 100 * Math.min(1, t / 0.5);
       carrier(ctx, ix, cyc, F.el('e-'), 13);
-      text(ctx, 'one electron pushed in here', WR + 10, 150, PAL.ink, { size: 19, align: 'right' });
+      label(ctx, 'one electron pushed in here', ix, cyc + 14, { side: 'below', gap: 40, size: 19, color: PAL.ink });
       if (front >= 1) {
-        carrier(ctx, WL - 6 - 70 * Math.min(1, (t - 0.18) / 0.5), cyc, F.el('e-'), 13);
-        text(ctx, 'and one leaves here, at once', WL - 10, 150, PAL.ink, { size: 19 });
+        const ox = WL - 6 - 70 * Math.min(1, (t - 0.18) / 0.5);
+        carrier(ctx, ox, cyc, F.el('e-'), 13);
+        label(ctx, 'and one leaves here, at once', ox, cyc + 14, { side: 'below', gap: 40, size: 19, color: PAL.ink });
       }
       text(ctx, 'The push travels at about ' + sci(VSIG, 0) + ' m/s, so the far end answers at once though no electron has gone anywhere.', WL, 530, PAL.muted, { size: 19 });
     }
@@ -354,15 +377,16 @@ function panel(ctx, x, y, w, h) {
       const x = XL + ((i + 0.5) * (sx - XL)) / cols, y = t + ((j + 0.5) * (b - t)) / rows;
       if (sx - XL > 30) carrier(ctx, x, y, F.el('e-'), 8);
     }
-    /* the drift, above the wire, with its arrow inside it */
-    arrow(ctx, XL + 26, CY, XL + 26 + 190, CY, vc, 6);
-    text(ctx, 'v_d = ' + sci(vd, 2) + ' m/s, the drift velocity', XL, CY - (4 * KY) / 2 - 30, vc, { size: 21, weight: 600 });
-    F.vbracket(ctx, XR - 60, t, b, PAL.ink, 'D = ' + fmt(D, 3) + ' mm', 1);
+    /* the drift, as an arrow above the wire starting over the segment, its name beside it */
+    const ay = CY - (4 * KY) / 2 - 36;
+    arrow(ctx, XL, ay, XL + 190, ay, vc, 6);
+    text(ctx, 'v_d = ' + sci(vd, 2) + ' m/s, the drift velocity', XL + 206, ay, vc, { size: 21, weight: 600, base: 'middle' });
+    F.vbracket(ctx, XR + 44, t, b, PAL.ink, 'D = ' + fmt(D, 3) + ' mm', 1);
     /* the segment's length, and the area it crosses, below the wire */
     hbracket(ctx, XL, sx, BMAX + 46, qc, 'x = v_d Δt = ' + fmt(xm, 3) + ' mm');
     text(ctx, 'A = ' + sci(A, 3) + ' m², the area of the cross-section', XL, BMAX + 128, PAL.ink, { size: 21, weight: 600 });
     text(ctx, 'Every free charge in the shaded volume Ax leaves it in Δt = 1.00 s.', XL, BMAX + 166, PAL.muted, { size: 19 });
-    text(ctx, 'The wire is drawn 220 units to the millimeter along its length and 62 units to the millimeter across it.', XL, BMAX + 200, PAL.muted, { size: 19 });
+    text(ctx, 'The length along the wire is drawn at 3.5 times the scale of its diameter, so the segment reads longer than it is.', XL, BMAX + 200, PAL.muted, { size: 19 });
     arrow(ctx, 1000, BMAX + 128, 1200, BMAX + 128, cc, 6);
     text(ctx, 'I = ' + fmt(I, 1) + ' A', 986, BMAX + 128, cc, { size: 21, weight: 600, align: 'right', base: 'middle' });
     headline(ctx, 'A current of ' + fmt(I, 1) + ' A in a wire ' + fmt(D, 3) + ' mm across, with ' + fmt(ns.v, 3) + ' × 10²⁸ free charges in each cubic meter, drifts at ' + sci(vd, 2) + ' m/s.');

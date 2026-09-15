@@ -85,6 +85,8 @@ sim-frequency-sensitivity · Figure 20.22 · shock-severity-factors · value add
 
 photo-electric-arc · Figure 20.23 · kept · the book's caption asks the closing question of the section, whether the arc is dangerous, and answers that it depends on the frequency and the power, which is exactly what the two figures before it measure; it is not a splash image and the passage points at it ("See Figure 20.23")
 
+Figure pass of 2026-09-15 (Claude Fable 5.1), what is built now. `sim-short-circuit`: the toaster has two slots with a slice of bread standing in each, feet and a lever, and the cord is a sheath worn through in the middle where the two bare conductors touch, drawn here since the library has no toaster or cord. `sim-fuse-breaker`: the breaker's mechanism sits in a housing, its movable strip pivots at the left, a coil spring pulls it down to the floor, the contacts are two pads and the notch sits on a rail. `sim-shock`: the live current reading stands above the band names, never on them, and the scale's title is ink. `sim-frequency-sensitivity`: the two curve names sit in the gap between the curves, the frequency name goes inside the frame when it would meet the axis title, and the current level is named at the right, below its line when the line runs along the top.
+
 Photographs and images, one line each. Figure 20.18 (`Figure_21_06_01a.jpg`,
 width 225): a drawing, replaced by `sim-short-circuit` and kept as its
 original. Figure 20.19 (`Figure_21_06_02a.jpg`, width 300) and Figure 20.20

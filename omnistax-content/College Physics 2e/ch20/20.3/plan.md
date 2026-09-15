@@ -49,6 +49,8 @@ sim-mercury-superconductor · Figure 20.11 · superconductivity · value add: va
 fig-thermometers · Figure 20.12, photograph · resistance-and-temperature · kept: the passage names the thermistor and the automated measurement of its temperature-dependent resistance, and the photograph shows the instrument the relation is used in, which config.md lists among the six photographs the chapter keeps
 ```
 
+Figure pass of 2026-09-15 (Claude Fable 5.1), what is built now. `sim-cylinder`: the body is shaded from its lit top to its dark underside so it reads as a solid. `sim-temperature-resistance`: the R_0 label sits below the line where the line climbs and above it where it falls, off the line at every setting. `sim-resistivity-scale` and `sim-mercury-superconductor` were looked at in both themes at every extreme and left as built.
+
 Images the exercises refer to travel on their cards, as `config.md` settles
 for this chapter: `CNX_APPhysics_20_M3_S03_img.jpg`, the four wires of the
 second AP item, and `Figure_21_03_04a.jpg`, the rectangular bar of the second

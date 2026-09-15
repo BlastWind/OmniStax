@@ -1,0 +1,680 @@
+{
+ "id": "21.2",
+ "module": "m42357",
+ "chapter": "21",
+ "title": "Electromotive Force: Terminal Voltage",
+ "short": "Electromotive force and terminal voltage",
+ "lead": "A battery is not simply a number of volts. It is a source of electrical energy with a resistance of its own, and the two together decide what the reader actually measures across its terminals. This section defines the electromotive force as the potential difference of a source when no current flows, puts the internal resistance in series behind it, works out the terminal voltage and the current a load receives, and then joins sources in series and in parallel, which is how a flashlight, a battery charger, a diesel car and an array of solar cells are each put together.",
+ "objectives": [
+  "Compare and contrast the voltage and the electromagnetic force of an electric power source.",
+  "Describe what happens to the terminal voltage, current, and power delivered to a load as internal resistance of the voltage source increases (due to aging of batteries, for example).",
+  "Explain why it is beneficial to use more than one voltage source connected in parallel."
+ ],
+ "summary_html": "<ul><li>All voltage sources have two fundamental parts—a source of electrical energy that has a characteristic electromotive force (emf), and an internal resistance $\\krint$.</li><li>The emf is the potential difference of a source when no current is flowing.</li><li>The numerical value of the emf depends on the source of potential difference.</li><li>The internal resistance $\\krint$ of a voltage source affects the output voltage when a current flows.</li><li>The voltage output of a device is called its terminal voltage $\\kV$ and is given by $\\kV = \\kemf - \\kIcur\\krint$, where $\\kIcur$ is the electric current and is positive when flowing away from the positive terminal of the voltage source.</li><li>When multiple voltage sources are in series, their internal resistances add and their emfs add algebraically.</li><li>Solar cells can be wired in series or parallel to provide increased voltage or current, respectively.</li></ul>",
+ "notes": "The ten problems the book leaves without a keyed answer are left out, and so is the old print of single cells combined into a battery, which the text does not point the reader at.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercises_lead": "Data taken from figures can be assumed to be accurate to three significant digits.",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Seven of the seventeen problems are keyed and are set here; the other ten are left out: the number of carbon-zinc cells in a 9-V battery, the terminal voltage and power of a 1.54-V cell supplying 2.00 A, the motorcycle battery being charged, the car battery charged at 60 A, the radio run on nicad and on alkaline cells, the child’s toy on four cells, the 20.0-kV power supply grasped by hand, the electric eel’s electroplaques, the integrated-concepts battery whose temperature rises, and the unreasonable dry cell supplying 1.00 W. The six conceptual questions carry an AI-marked suggested approach rather than a graded answer. Both AP items are keyed in the source: the choice item is graded against the book’s key, and the multi-part item is an open item with the book’s key as its solution.",
+ "figures": [
+  {
+   "id": "fig-sources",
+   "kind": "photo",
+   "number": "21.8",
+   "widths": [
+    271
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-source-parts",
+   "kind": "sim",
+   "number": "21.9",
+   "originals": [
+    "/media/ch21/Figure_22_02_02.jpg"
+   ],
+   "original_caption": "Any voltage source (in this case, an alkaline dry cell) has an emf related to its source of potential difference, and an internal resistance r related to its construction. (Note that the script E stands for emf.) Also shown are the output terminals across which the terminal voltage V is measured. Since V = emf − Ir, terminal voltage equals emf only if there is no current flowing.",
+   "widths": [
+    229
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ]
+  },
+  {
+   "id": "fig-lead-acid-cell",
+   "kind": "figure",
+   "number": "21.10",
+   "originals": [
+    "/media/ch21/Figure_22_02_03.jpg"
+   ],
+   "original_caption": "Artist’s conception of a lead-acid cell. Chemical reactions in a lead-acid cell separate charge, sending negative charge to the anode, which is connected to the lead plates. The lead oxide plates are connected to the positive or cathode terminal of the cell. Sulfuric acid conducts the charge as well as participating in the chemical reaction.",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-charge-separation",
+   "kind": "figure",
+   "number": "21.11",
+   "originals": [
+    "/media/ch21/Figure_22_02_04.jpg"
+   ],
+   "original_caption": "Artist’s conception of two electrons being forced onto the anode of a cell and two electrons being removed from the cathode of the cell. The chemical reaction in a lead-acid battery places two electrons on the anode and removes two from the cathode. It requires a closed circuit to proceed, since the two electrons must be supplied to the cathode.",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-load",
+   "kind": "sim",
+   "number": "21.12",
+   "originals": [
+    "/media/ch21/Figure_22_02_05.jpg"
+   ],
+   "original_caption": "Schematic of a voltage source and its load R_load. Since the internal resistance r is in series with the load, it can significantly affect the terminal voltage and current delivered to the load. (Note that the script E stands for emf.)",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current",
+    "power"
+   ]
+  },
+  {
+   "id": "fig-battery-testers",
+   "kind": "photo",
+   "number": "21.13",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-charger",
+   "kind": "figure",
+   "number": "21.14",
+   "originals": [
+    "/media/ch21/Figure_22_02_07.jpg"
+   ],
+   "original_caption": "A car battery charger reverses the normal direction of current through a battery, reversing its chemical reaction and replenishing its chemical potential.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "current"
+   ]
+  },
+  {
+   "id": "sim-series-sources",
+   "kind": "sim",
+   "number": "21.15",
+   "originals": [
+    "/media/ch21/Figure_22_02_08.jpg"
+   ],
+   "original_caption": "A series connection of two voltage sources. The emfs (each labeled with a script E) and internal resistances add, giving a total emf of emf₁ + emf₂ and a total internal resistance of r₁ + r₂.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-charging",
+   "kind": "sim",
+   "number": "21.17",
+   "originals": [
+    "/media/ch21/Figure_22_02_10.jpg"
+   ],
+   "original_caption": "These two voltage sources are connected in series with their emfs in opposition. Current flows in the direction of the greater emf and is limited by the sum of the internal resistances. (Note that each emf is represented by script E in the figure.) A battery charger connected to a battery is an example of such a connection. The charger must have a larger emf than the battery to reverse current through it.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-flashlight",
+   "kind": "sim",
+   "number": "21.18",
+   "originals": [
+    "/media/ch21/Figure_22_02_11.jpg"
+   ],
+   "original_caption": "This schematic represents a flashlight with two cells (voltage sources) and a single bulb (load resistance) in series. The current that flows is the sum of the emfs divided by the sum of the two internal resistances and the load resistance. (Note that each emf is represented by script E in the figure.)",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current",
+    "power"
+   ]
+  },
+  {
+   "id": "sim-parallel-sources",
+   "kind": "sim",
+   "number": "21.19",
+   "originals": [
+    "/media/ch21/Figure_22_02_12.jpg"
+   ],
+   "original_caption": "Two voltage sources with identical emfs (each labeled by script E) connected in parallel produce the same emf but have a smaller total internal resistance than the individual sources. Parallel combinations are often used to deliver more current.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current",
+    "power"
+   ]
+  },
+  {
+   "id": "fig-shark",
+   "kind": "photo",
+   "number": "21.20",
+   "widths": [
+    400
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "dimming",
+   "concept": "internal-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "emf-defined",
+   "concept": "emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "internal",
+   "concept": "internal-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "internal",
+   "concept": "battery-voltage-from-chemistry",
+   "verb": "introduces"
+  },
+  {
+   "span": "internal",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal",
+   "concept": "terminal-voltage",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal",
+   "concept": "current-with-load",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal",
+   "concept": "charging-reverses-the-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal",
+   "concept": "internal-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "multiple-sources",
+   "concept": "sources-in-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "multiple-sources",
+   "concept": "sources-in-parallel",
+   "verb": "introduces"
+  },
+  {
+   "span": "multiple-sources",
+   "concept": "charging-reverses-the-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "multiple-sources",
+   "concept": "current-with-load",
+   "verb": "uses"
+  },
+  {
+   "span": "animals",
+   "concept": "sources-in-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "animals",
+   "concept": "sources-in-parallel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "animals",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "solar-cells",
+   "concept": "sources-in-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "solar-cells",
+   "concept": "sources-in-parallel",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3188757",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "emf-defined",
+   "prompt": "Is every emf a potential difference? Is every potential difference an emf? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Every emf is a potential difference, because an emf is measured in volts and is the potential difference of a source when no current is flowing. Not every potential difference is an emf, however. The voltage drop across a resistor is a potential difference, and so is the terminal voltage of a battery that is delivering current, and neither of these is a source of electrical energy. An emf belongs to a device that separates charge and drives current, while a potential difference is simply the difference in electric potential between two points."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2968688",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "Explain which battery is doing the charging and which is being charged in the figure below.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The two sources are connected with their positive terminals facing each other, so their emfs are in opposition and the current runs in the direction of the greater emf. The source of 18 V is the greater, so it drives the current and it is the charger; the source of 12 V has current driven backward through it and is the one being charged. The current is $\\kIcur = (\\kemfone - \\kemftwo)/(\\krintone + \\krinttwo)$, which comes to 4 A here, and while the 12-V source is being charged its terminal voltage stands above its own emf."
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_02_14.jpg",
+    "alt": "The diagram shows two cells of e m f script E sub one equals twelve volts and internal resistance r sub one equals one ohm, and e m f script E sub two equals eighteen volts and internal resistance r sub two equals zero point five ohms, connected. The cells are connected with their positive terminals facing each other in a closed circuit.",
+    "caption": "Two voltage sources connected in a loop with their positive terminals facing each other, one of emf 12 V and internal resistance 1 Ω and the other of emf 18 V and internal resistance 0.5 Ω."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3199702",
+   "kind": "conceptual-question",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "internal",
+   "prompt": "Given a battery, an assortment of resistors, and a variety of voltage and current measuring devices, describe how you would determine the internal resistance of the battery.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Measure the terminal voltage of the battery with a voltmeter while no load is connected, which gives the emf, since no current is then flowing. Then connect one of the resistors across the battery as a load and measure both the terminal voltage and the current with the ammeter in series with the load. The terminal voltage has fallen, and $\\kV = \\kemf - \\kIcur\\krint$ gives the internal resistance as the drop divided by the current, $\\krint = (\\kemf - \\kV)/\\kIcur$. Repeating the measurement with several different load resistances and taking the values together guards against a single bad reading, and it also shows whether the internal resistance is itself changing with the current."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2017484",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "Two different 12-V automobile batteries on a store shelf are rated at 600 and 850 “cold cranking amps.” Which has the smallest internal resistance?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The one rated at 850 cold cranking amps has the smaller internal resistance. A cold cranking rating is the current the battery can deliver into the very low resistance of a starter motor, and the current a source can drive is $\\kIcur = \\kemf/(\\kRload + \\krint)$. The two batteries have the same emf of 12 V and are asked to drive the same starter, so the one that delivers the larger current must be the one whose internal resistance is smaller."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3192560",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "multiple-sources",
+   "prompt": "What are the advantages and disadvantages of connecting batteries in series? In parallel?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In series the emfs add, so a row of cells produces a larger total emf than one cell can, which is how a flashlight or a toy reaches the voltage it needs. The disadvantage is that the internal resistances add as well, so the combination cannot deliver as large a current, and a cell put in backward takes its emf away from the total. In parallel the total emf is the emf of one source alone, so nothing is gained in voltage, but the internal resistances are in parallel and come to less than either of them, so the combination can deliver a larger current. The disadvantage is that the sources must have the same emf, or the stronger one will drive current backward through the weaker."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2406665",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "multiple-sources",
+   "prompt": "Semitractor trucks use four large 12-V batteries. The starter system requires 24 V, while normal operation of the truck’s other electrical components utilizes 12 V. How could the four batteries be connected to produce 24 V? To produce 12 V? Why is 24 V better than 12 V for starting the truck’s engine (a very heavy load)?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For 24 V, connect the batteries as two series pairs, each pair giving 24 V, and put the two pairs in parallel. For 12 V, connect all four in parallel, which keeps the emf at 12 V. The starter is a very heavy load, so the current is large and the drop across the internal resistances is large with it. At 24 V the same starter draws about twice the current and receives about four times the power, and the emf is large enough that the drop inside the batteries is a smaller fraction of it, so more of what the batteries produce reaches the motor."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1798228",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "Suppose there are two voltage sources – Sources A and B – with the same emfs but different internal resistances, i.e., the internal resistance of Source A is lower than Source B. If they both supply the same current in their circuits, which of the following statements is true?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "External resistance in Source A’s circuit is more than Source B’s circuit.",
+     "External resistance in Source A’s circuit is less than Source B’s circuit.",
+     "External resistance in Source A’s circuit is the same as Source B’s circuit.",
+     "The relationship between external resistances in the two circuits can’t be determined."
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "hint": "The current a source delivers is $\\kIcur = \\kemf/(\\kRload + \\krint)$, so equal emfs and equal currents mean the load and the internal resistance together come to the same total in both circuits.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1801021",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "Calculate the internal resistance of a voltage source if the terminal voltage of the source increases by 1 V when the current supplied decreases by 4 A? Suppose this source is connected in series (in the same direction) to another source with a different voltage but same internal resistance. What will be the total internal resistance? How will the total internal resistance change if the sources are connected in the opposite direction?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0.25 Ω, 0.50 Ω, no change"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2035108",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "multiple-sources",
+   "prompt": "Standard automobile batteries have six lead-acid cells in series, creating a total emf of 12.0 V. What is the emf of an individual lead-acid cell?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "2.00 V"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3258411",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "What is the output voltage of a 3.0000-V lithium cell in a digital wristwatch that draws 0.300 mA, if the cell’s internal resistance is 2.00 Ω?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "2.9994 V"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2449779",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "What is the internal resistance of an automobile battery that has an emf of 12.0 V and a terminal voltage of 15.0 V while a current of 8.00 A is charging it?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0.375 Ω"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1245690",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "The hot resistance of a flashlight bulb is 2.30 Ω, and it is run by a 1.58-V alkaline cell having a 0.100-Ω internal resistance. (a) What current flows? (b) Calculate the power supplied to the bulb using $\\kIcur^{2}\\kRes$. (c) Is this power the same as calculated using $\\kV^{2}/\\kRes$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) 0.658 A\n(b) 0.997 W\n(c) 0.997 W; yes"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1997028",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "An automobile starter motor has an equivalent resistance of 0.0500 Ω and is supplied by a 12.0-V battery with a 0.0100-Ω internal resistance. (a) What is the current to the motor? (b) What voltage is applied to it? (c) What power is supplied to the motor? (d) Repeat these calculations for when the battery connections are corroded and add 0.0900 Ω to the circuit. (Significant problems are caused by even small amounts of unwanted resistance in low-voltage, high-current applications.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) 200 A\n(b) 10.0 V\n(c) 2.00 kW\n(d) 0.1000 Ω; 80.0 A, 4.0 V, 320 W"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1845197",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "(a) What is the internal resistance of a voltage source if its terminal voltage drops by 2.00 V when the current supplied increases by 5.00 A? (b) Can the emf of the voltage source be found with the information supplied?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) 0.400 Ω\n(b) No, there is only one independent equation, so only $\\krint$ can be found."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1386234",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "Unreasonable Results. A 1.58-V alkaline cell with a 0.200-Ω internal resistance is supplying 8.50 A to a load. (a) What is its terminal voltage? (b) What is the value of the load resistance? (c) What is unreasonable about these results? (d) Which assumptions are unreasonable or inconsistent?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) –0.120 V\n(b) $-1.41 \\times 10^{-2}\\ Ω$\n(c) Negative terminal voltage; negative load resistance.\n(d) The assumption that such a cell could provide 8.50 A is inconsistent with its internal resistance."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "emf"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "charging-reverses-the-current"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sources-in-series",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "internal-resistance"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "internal-resistance"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "current-with-load",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "sources-in-series"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "sources-in-parallel"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "sources-in-series"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "sources-in-parallel"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "current-with-load"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "internal-resistance"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "sources-in-series",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sources-in-series"
+  },
+  {
+   "exercise": "p1",
+   "concept": "emf",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "p3",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "p3",
+   "concept": "charging-reverses-the-current",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "current-with-load"
+  },
+  {
+   "exercise": "p4",
+   "concept": "terminal-voltage",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "current-with-load"
+  },
+  {
+   "exercise": "p5",
+   "concept": "terminal-voltage",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "p6",
+   "concept": "internal-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "p7",
+   "concept": "internal-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  }
+ ]
+}

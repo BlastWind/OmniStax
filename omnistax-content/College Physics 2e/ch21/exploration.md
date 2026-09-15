@@ -41,16 +41,18 @@ rather than results.
 | Section | Module | Ex. | Fig. | Tables | Eq. | Defs | CYU | AP | CQ | Prob. | Sol. |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Intro | m42354 | 0 | 1 photo | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| 21.1 Resistors in Series and Parallel | m42356 | 3 | 6 diagrams + 5 in exercises | 0 | 44 | 9 | 1 | 5 | 12 | 13 | 10 |
-| 21.2 Electromotive Force: Terminal Voltage | m42357 | 1 | 13 (9 diagrams, 4 photographs) + 1 in a question | 0 | 10 | 4 | 0 | 2 | 6 | 17 | 8 |
-| 21.3 Kirchhoff's Rules | m42359 | 1 | 5 diagrams + 14 in exercises | 0 | 17 | 4 | 1 | 4 | 5 | 11 | 7 |
+| 21.1 Resistors in Series and Parallel | m42356 | 3 | 6 diagrams + 5 in exercises | 0 | 44 | 9 | 1 | 5 | 12 | 13 | 7 |
+| 21.2 Electromotive Force: Terminal Voltage | m42357 | 1 | 13 (9 diagrams, 4 photographs) + 1 in a question | 0 | 10 | 4 | 0 | 2 | 6 | 17 | 7 |
+| 21.3 Kirchhoff's Rules | m42359 | 1 | 5 diagrams + 14 in exercises | 0 | 17 | 4 | 1 | 4 | 5 | 11 | 5 |
 | 21.4 DC Voltmeters and Ammeters | m42360 | 0 | 7 (6 diagrams, 1 photograph) + 3 in exercises | 0 | 4 | 8 | 1 | 0 | 4 | 15 | 8 |
 | 21.5 Null Measurements | m42362 | 0 | 4 diagrams | 0 | 7 | 5 | 1 | 0 | 2 | 6 | 4 |
-| 21.6 DC Circuits Containing Resistors and Capacitors | m42363 | 2 | 4 (3 diagrams, 1 photograph) + 2 in exercises | 0 | 13 | 3 | 1 | 2 | 10 | 18 | 10 |
+| 21.6 DC Circuits Containing Resistors and Capacitors | m42363 | 2 | 4 (3 diagrams, 1 photograph) + 2 in exercises | 0 | 13 | 3 | 1 | 2 | 10 | 18 | 9 |
 
-The chapter has 80 problems, of which 47 carry an inline solution and 33 do not,
-13 AP items, none keyed, 39 conceptual questions, none keyed, and 5 Check Your
-Understanding boxes, every one of them keyed. The worked examples are numbered 21.1 to 21.7 in
+The chapter has 80 problems, of which 40 carry an inline solution and 40 do not,
+13 AP items, of which 11 are keyed, 39 conceptual questions, none keyed, and 5
+Check Your Understanding boxes, every one of them keyed. (The counts in the two
+sentences above and in the Sol. and AP columns were corrected by the chapter pass;
+see the errata below.) The worked examples are numbered 21.1 to 21.7 in
 book order: three in 21.1, one each in 21.2 and 21.3, none in 21.4 or 21.5, and
 two in 21.6. No module of the chapter prints a table, and no module prints a
 header of its own beyond the narrative headers listed above.
@@ -213,10 +215,46 @@ should put the numbers on the schematic and let the reader move them.
   curve draws itself against a time axis marked in multiples of $\tau$, with the
   0.632 and 0.368 steps drawn as the ladder they are.
 
+## Errata found while the chapter was built
+
+Gathered by the chapter pass on 2026-09-15, after every page had been read and
+every figure looked at in both themes.
+
+- **The AP items are keyed.** This file and `config.md` both say that none of the
+  chapter's thirteen AP test prep items is keyed. The CNXML keys eleven of them: all
+  five in 21.1, both in 21.2, three of the four in 21.3, and the second of the two
+  in 21.6. Only the first item of 21.3 and the first of 21.6 have no key. The four
+  pages that had treated a keyed item as unkeyed were corrected, and `config.md`
+  records the change.
+- **An opposed pair sits with the sources in series.** 21.2's plan asked for
+  `eq-sources-opposed` to be anchored in the `terminal` span; the module prints it
+  in `multiple-sources`, beside the two sources in series, and that is where the
+  anchor went.
+- **A symbol with no row.** 21.1 names a fourth resistance, the resistance of her
+  shoes, and its first figure carries it on a slider, but the prep pass staged the
+  symbol `R_resfour` without a variable row to give it a meaning. The row was added.
+- **The book's generic letters in a passage about the movement.** 21.4 writes the
+  voltage across a bare galvanometer as V = IR, and the page had coloured that R as
+  the resistance wired to the meter and that I as the current in the measured
+  branch. Both are the movement's own, and the page now says so.
+- **A caption with a bare angle bracket.** Figure 21.31's caption, as the book
+  prints it, contains "R_Voltmeter >> R", and the two greater-than signs inside an
+  HTML attribute break any reader of the markup. They are written as the
+  much-greater-than sign instead.
+- **The exercise counts were wrong.** This file first said that 47 of the 80
+  problems carry an inline solution and that none of the thirteen AP items is
+  keyed. Counting the `<solution>` elements inside the problem sections of the six
+  modules gives 7, 7, 5, 8, 4 and 9 keyed problems, forty in all, so the other forty
+  are the ones left out, which is what each section's plan and notes already record.
+  The table above is corrected.
+- **Figure 21.16 has no number in the page.** The old print of cells combined into a
+  battery is decoration and was dropped, so the chapter's figures run 21.1 to 21.40
+  with that one gap, which is intended and is recorded in `config.md`.
+
 ## Wanted at chapter level
 
-Nothing yet. The two types this chapter uses without declaring, `current` and
-`resistance`, are Chapter 20's, and the symbols `I_curr` and `R_res` are staged
-there; Chapter 21 stages the rest. If Chapter 20's concept ids differ from the
-names assumed for the prerequisite edges of 21.1 and 21.2 (an electric current,
-Ohm's law, resistance and electric power), the chapter pass corrects the edges.
+Nothing outstanding. The two types this chapter uses without declaring, `current`
+and `resistance`, are Chapter 20's, and the symbols `I_curr` and `R_res` are staged
+there; Chapter 21 staged the rest, and the chapter pass added one more row,
+`R_resfour`. The prerequisite edges into Chapters 19 and 20 all resolve as they were
+written, so none needed correcting.

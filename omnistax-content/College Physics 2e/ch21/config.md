@@ -38,3 +38,16 @@ value. Lines that repeat the earlier configs are unchanged unless marked.
 | Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 38 nodes written into `book.json` before the sections were built (9 for 21.1, 8 for 21.2, 5 for 21.3, 6 for 21.4, 4 for 21.5, 6 for 21.6) with prerequisite edges into Chapters 2, 7, 18, 19 and 20 and within the chapter |
 | Formulas | `ch21/chapter.json`: the stated and named results important (the two combination rules, the voltage and current divisions, terminal voltage, the current through a load, the sources in series and in parallel, the junction and loop rules, the voltmeter's and the ammeter's resistances, the potentiometer's ratio, the bridge's balance, the charging and discharging exponentials and the time constant) and the worked substitution steps not; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass writes them from the section plans |
 | Book manifest | `ch21` after `ch20` in `book.json` chapters, merged with `ost merge college-physics-2e 21` |
+
+## What the build changed
+
+Written by the chapter pass on 2026-09-15. Every line above held except these.
+
+| Setting | What the build found |
+|---|---|
+| AP test prep | The line "none of the chapter's thirteen AP items is keyed" is wrong. The CNXML keys eleven of the thirteen: all five in 21.1, both in 21.2, three of the four in 21.3 and the second of the two in 21.6. Only the first AP item of 21.3 and the first of 21.6 carry no key, and those two alone keep an AI-marked suggested approach. A keyed item whose answer is one of its printed options is a graded choice (three in 21.1, one in 21.2); a keyed item that answers in several parts, or that asks for two of its options, stays an open item with the book's own key as its solution |
+| Sim sliders | 21.3's two-loop circuit holds the two internal resistances and the third load resistance at the book's 1.00 Ω, so that four sliders carry the figure; they are drawn and labelled all the same |
+| Colour coding | The chapter uses two of root rule 7's four families, but not the two `COLOR.md` named: the element palette colours the two electrons of Figure 21.11 in 21.2, and the categorical palette, which `COLOR.md` offered to the branches of a network and the arms of a bridge, was needed by no figure in the end. A galvanometer's current sensitivity is a current and wears that hue, which `COLOR.md` had left in ink |
+| Anchors | `config.md` left every equation row without an anchor for the chapter pass to write. All twenty-one were written, and so was an anchor on every one of the chapter's sixty-two variable rows. `eq-sources-opposed` went to `21.2-multiple-sources` rather than the `21.2-terminal` its section's plan asked for, because the text prints it in the `multiple-sources` span |
+| Symbols | One more variable row than the prep pass staged: `R_resfour`, which 21.1's text and its first figure both carry, had a symbol but no row of its own |
+

@@ -107,6 +107,8 @@ headline · graph · depth
    tier: still simulation. Readout: $\kRes = \kV/\kIcur$ with the live
    numbers. Draws current, voltage, resistance.
 
+Figure pass of 2026-09-15 (Claude Fable 5.1), what is built now. `sim-simple-circuit`: the conventional-current arrowheads sit just outside the loop so they never land on the electrons riding the wire; in the pump-and-pipe state the pipe really narrows through two tapers at the right side, the water dots shrink through it, and the pump is a casing with a turning impeller. `sim-ohmic`: the drop lines are legible ink, and the resistance read at the point steps above the point when the point sits near the axis.
+
 Both figures are legible with colour off: the current is told by the
 arrowheads round the loop and the moving carriers, the resistance by the
 zigzag it labels, and the two characteristics by a solid and a dashed

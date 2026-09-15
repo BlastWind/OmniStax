@@ -8,7 +8,7 @@
    a hue. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, ctl, choice, register, begin, cycle, line, arrow, dot, text, headline, axes, curve, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, cycle, line, arrow, dot, text, headline, axes, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -101,10 +101,10 @@ function loop(pts) {
     text(ctx, 'R = ' + fmt(Rv, 2) + ' Ω', R - 52, MY, rc, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, 'the resistor', R - 52, MY + 36, PAL.muted, { size: 18, align: 'right', bg: PAL.panel });
     /* the conventional current, out of the positive terminal and round the loop */
-    for (const x of [520, 700, 880]) arrow(ctx, x - 34, T, x + 34, T, ic, 5);
-    for (const x of [880, 700, 520]) arrow(ctx, x + 34, B, x - 34, B, ic, 5);
-    text(ctx, 'I = ' + fmt(I, 2) + ' A', 700, T - 54, ic, { size: 24, weight: 600, align: 'center' });
-    text(ctx, 'the conventional current', 700, T - 24, PAL.muted, { size: 18, align: 'center' });
+    for (const x of [520, 700, 880]) arrow(ctx, x - 34, T - 26, x + 34, T - 26, ic, 5);
+    for (const x of [880, 700, 520]) arrow(ctx, x + 34, B + 26, x - 34, B + 26, ic, 5);
+    text(ctx, 'I = ' + fmt(I, 2) + ' A', 700, T - 84, ic, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'the conventional current', 700, T - 54, PAL.muted, { size: 18, align: 'center' });
     /* the free electrons, drifting the other way round the loop */
     const off = cy.now() * speed(I);
     for (let i = 0; i < NDOT; i++) {
@@ -136,14 +136,25 @@ function loop(pts) {
      quantities it stands for wear a hue */
   function pipe(ctx, V, Rv, I, ic, rc, vc) {
     const wide = 44, narrow = Math.max(7, 40 - 34 * (Rv - 0.5) / 19.5);
-    const pts = [[L, T], [R, T], [R, B], [L, B]];
-    wire(ctx, [...pts, pts[0]], PAL.muted, wide + 6);
-    wire(ctx, [...pts, pts[0]], PAL.soft, wide);
-    wire(ctx, [[R, MY - 90], [R, MY + 90]], PAL.muted, narrow + 6);
-    wire(ctx, [[R, MY - 90], [R, MY + 90]], PAL.soft, narrow);
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3.5;
-    ctx.beginPath(); ctx.arc(L, MY, 54, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-    arrow(ctx, L - 22, MY + 20, L + 22, MY - 20, PAL.ink, 4);
+    /* the wide pipe everywhere but the right side's middle, where it tapers to the narrow section */
+    const pipeRun = (path, w) => { wire(ctx, path, PAL.muted, w + 6); wire(ctx, path, PAL.soft, w); };
+    pipeRun([[R, MY + 120], [R, B], [L, B], [L, T], [R, T], [R, MY - 120]], wide);
+    const taper = (y0, y1) => {
+      const hw = wide / 2 + 3, hn = narrow / 2 + 3, hw2 = wide / 2, hn2 = narrow / 2;
+      ctx.save(); ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.moveTo(R - hw, y0); ctx.lineTo(R + hw, y0); ctx.lineTo(R + hn, y1); ctx.lineTo(R - hn, y1); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(R - hw2, y0); ctx.lineTo(R + hw2, y0); ctx.lineTo(R + hn2, y1); ctx.lineTo(R - hn2, y1); ctx.closePath(); ctx.fill(); ctx.restore();
+    };
+    taper(MY - 122, MY - 90); taper(MY + 122, MY + 90);
+    wire(ctx, [[R, MY - 92], [R, MY + 92]], PAL.muted, narrow + 6);
+    wire(ctx, [[R, MY - 94], [R, MY + 94]], PAL.soft, narrow);
+    /* the pump: a round casing with a turning impeller inside it */
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3.5;
+    ctx.beginPath(); ctx.arc(L, MY, 54, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    const spin = cy.now() * 3;
+    ctx.lineWidth = 3; ctx.strokeStyle = PAL.muted;
+    for (let k = 0; k < 6; k++) { const a = spin + (k * Math.PI) / 3; ctx.beginPath(); ctx.moveTo(L, MY); ctx.quadraticCurveTo(L + 26 * Math.cos(a + 0.5), MY + 26 * Math.sin(a + 0.5), L + 42 * Math.cos(a), MY + 42 * Math.sin(a)); ctx.stroke(); }
+    ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(L, MY, 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    arrow(ctx, L - 74, MY + 30, L - 74, MY - 30, PAL.ink, 4);
     text(ctx, 'the pump', 400, B + 62, PAL.ink, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'it raises the pressure, as the source', 400, B + 92, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'raises the voltage to ' + fmt(V, 1) + ' V', 400, B + 118, vc, { size: 18, weight: 600, align: 'center' });
@@ -154,9 +165,10 @@ function loop(pts) {
     const off = cy.now() * speed(I);
     for (let i = 0; i < NDOT; i++) {
       const p = path.at(off + (path.total * i) / NDOT);
-      dot(ctx, p[0], p[1], PAL.ink, true, Math.abs(p[0] - R) < 6 && Math.abs(p[1] - MY) < 92 ? 5 : 7);
+      if (Math.abs(p[0] - L) < 6 && Math.abs(p[1] - MY) < 54) continue;      /* inside the pump */
+      dot(ctx, p[0], p[1], PAL.ink, true, Math.abs(p[0] - R) < 6 && Math.abs(p[1] - MY) < 122 ? 4 : 7);
     }
-    for (const x of [560, 760, 900]) arrow(ctx, x - 34, T, x + 34, T, PAL.ink, 4);
+    for (const x of [560, 760, 900]) arrow(ctx, x - 34, T - 40, x + 34, T - 40, PAL.ink, 4);
     text(ctx, 'the same water passes every point each second,', 700, T - 108, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'as the same current I = ' + fmt(I, 2) + ' A passes every point of the circuit', 700, T - 80, ic, { size: 19, weight: 600, align: 'center' });
     headline(ctx, 'A pump driving water round a loop through one narrow section is the circuit in another material: pressure for voltage, flow for current, and the narrow pipe for the resistor.');
@@ -200,11 +212,13 @@ function loop(pts) {
     text(ctx, hot ? 'a filament, whose resistance rises as the current heats it' : 'an ohmic resistor: a straight line through the origin, of slope 1/R',
       X(0.4), BOX.t + 24, ic, { size: 20, weight: 600, bg: PAL.panel });
     /* the one measurement the voltage slider picks out */
-    line(ctx, X(V), BOX.b, X(V), Y(I), PAL.rule, 2.5, [4, 8]);
-    line(ctx, BOX.l, Y(I), X(V), Y(I), PAL.rule, 2.5, [4, 8]);
+    line(ctx, X(V), BOX.b, X(V), Y(I), alpha(PAL.ink, 0.4), 2.5, [4, 8]);
+    line(ctx, BOX.l, Y(I), X(V), Y(I), alpha(PAL.ink, 0.4), 2.5, [4, 8]);
     pinned(ctx, BOX, X, Y, V, I, ic, 'the measurement');
     text(ctx, fmt(I, 2) + ' A', BOX.l + 16, Y(I) - 24, ic, { size: 20, weight: 600, bg: PAL.panel });
-    text(ctx, 'R = V/I = ' + fmt(Rread, 2) + ' Ω', V > 10 ? X(V) - 18 : X(V) + 18, Y(I) + 46, rc, { size: 22, weight: 600, align: V > 10 ? 'right' : 'left', bg: PAL.panel });
+    /* the resistance read at the point: below it and to the side where the point rides high, above it where it sits near the axis */
+    const low = Y(I) > BOX.b - 80;
+    text(ctx, 'R = V/I = ' + fmt(Rread, 2) + ' Ω', V > 10 ? X(V) - 18 : X(V) + 18, low ? Y(I) - 46 : Y(I) + 46, rc, { size: 22, weight: 600, align: V > 10 ? 'right' : 'left', bg: PAL.panel });
     headline(ctx, hot
       ? 'At ' + fmt(V, 1) + ' V the filament carries ' + fmt(I, 2) + ' A, and the resistance read off the graph has risen from ' + fmt(R0, 2) + ' Ω to ' + fmt(Rread, 2) + ' Ω, so the material is not ohmic.'
       : 'At ' + fmt(V, 1) + ' V the ohmic resistor carries ' + fmt(I, 2) + ' A, and every other voltage lands on the same straight line of resistance ' + fmt(R0, 2) + ' Ω.');

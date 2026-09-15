@@ -199,6 +199,8 @@ headline · graph · depth
    tier: still simulation. Readout: the electrodes on the chest and on the
    limbs, counted, and the pair the chosen lead reads. Draws voltage.
 
+Figure pass of 2026-09-15 (Claude Fable 5.1), what is built now. `sim-neuron`: the cell is drawn a quarter larger in its own frame so it fills the canvas, the synapse is named beside itself, the other cell's ending stays out of the headline, the muscle fibre is striated and named. `sim-membrane`: a short arrow runs ahead of each crossing ion instead of a full-length one, the field arrow stands in the right margin, and the two fluids are named inside themselves at the left. `sim-action-potential`: the graph rises to fill the canvas when the membrane is not shown, and the resting label sits above its line when the rest is below −100 mV. `sim-impulse`: the pulse is a travelling bump of voltage over a faint dashed envelope of the height it has at each point, the drawing is lowered out of the headline and the canvas trimmed to 600. `sim-ecg`: the depolarized parts are painted inside the heart's outline through a clip, and the atria and ventricles are named. `sim-electrodes`: the patient is a filled body seen from the front, drawn here since the library's silhouette is a side view, with the six chest electrodes spread along the left chest; the label counts three or four limb electrodes as the placement has.
+
 Every figure is legible with colour off: the ions are told by their labels
 and by the direction they move, the charge layers by their plus and minus
 signs, the two traces of `sim-ecg` by a solid and a dashed stroke as well as

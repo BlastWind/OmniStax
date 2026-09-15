@@ -1,0 +1,359 @@
+{
+ "id": "21.5",
+ "module": "m42362",
+ "chapter": "21",
+ "title": "Null Measurements",
+ "short": "Null measurements",
+ "lead": "Every meter of the last section has to draw a current before it can tell you anything, and the current it draws is exactly what spoils the reading. This section takes the opposite approach and balances the circuit instead, so that no current at all passes through the measuring device and nothing is disturbed. It works the balance through on the two classic instruments, the potentiometer, which measures an emf against a standard one, and the Wheatstone bridge, which measures a resistance against three known resistances, and it ends with what still limits the accuracy of both.",
+ "objectives": [
+  "Explain why a null measurement device is more accurate than a standard voltmeter or ammeter.",
+  "Demonstrate how a Wheatstone bridge can be used to accurately calculate the resistance in a circuit."
+ ],
+ "summary_html": "<ul><li>Null measurement techniques achieve greater accuracy by balancing a circuit so that no current flows through the measuring device.</li><li>One such device, for determining voltage, is a potentiometer.</li><li>Another null measurement device, for determining resistance, is the Wheatstone bridge.</li><li>Other physical quantities can also be measured with null measurement techniques.</li></ul>",
+ "notes": "The two problems the book leaves without a keyed answer are left out: the dry cell whose emf is to be found from a balance against an alkaline standard, and the bridge whose variable arm is to be set for a given unknown resistance.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s answer key. Two of the six problems have no keyed answer and are left out, as the notes say. The Check Your Understanding box is the book’s own and carries the book’s answer; it is set inline after the passage on the Wheatstone bridge, which is the passage it tests. The suggested approaches to the two conceptual questions are AI-written and marked as such. The module carries no AP test prep item. Nothing of this section is held for a later page, and nothing from an earlier one is held for this one; the two problems of 21.4 that ask what a null measurement would do instead stay with 21.4, as that section’s exercise notes record. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-voltmeter-emf",
+   "kind": "sim",
+   "number": "21.33",
+   "originals": [
+    "/media/ch21/Figure_22_05_01.jpg"
+   ],
+   "original_caption": "An analog voltmeter attached to a battery draws a small but nonzero current and measures a terminal voltage that differs from the emf of the battery. (Note that the script capital E symbolizes electromotive force, or emf.) Since the internal resistance of the battery is not known precisely, it is not possible to calculate the emf precisely.",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-potentiometer",
+   "kind": "sim",
+   "number": "21.34",
+   "originals": [
+    "/media/ch21/Figure_22_05_02.jpg"
+   ],
+   "original_caption": "The potentiometer, a null measurement device. (a) A voltage source connected to a long wire resistor passes a constant current I through it. (b) An unknown emf (labeled script E_x in the figure) is connected as shown, and the point of contact along R is adjusted until the galvanometer reads zero. The segment of wire has a resistance R_x and script E_x = IR_x, where I is unaffected by the connection since no current flows through the galvanometer. The unknown emf is thus proportional to the resistance of the wire segment.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-ohmmeter",
+   "kind": "sim",
+   "number": "21.35",
+   "originals": [
+    "/media/ch21/Figure_22_05_03.jpg"
+   ],
+   "original_caption": "Two methods for measuring resistance with standard meters. (a) Assuming a known voltage for the source, an ammeter measures current, and resistance is calculated as R = V/I. (b) Since the terminal voltage V varies with current, it is better to measure it. V is most accurately known when I is small, but I itself is most accurately known when it is large.",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "resistance",
+    "voltage",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-wheatstone",
+   "kind": "sim",
+   "number": "21.36",
+   "originals": [
+    "/media/ch21/Figure_22_05_04.jpg"
+   ],
+   "original_caption": "The Wheatstone bridge is used to calculate unknown resistances. The variable resistance R_3 is adjusted until the galvanometer reads zero with the switch closed. This simplifies the circuit, allowing R_x to be calculated based on the IR drops as discussed in the text.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "resistance",
+    "voltage",
+    "current"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "null-measurements",
+   "concept": "null-measurement",
+   "verb": "introduces"
+  },
+  {
+   "span": "null-measurements",
+   "concept": "measurement-alters-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "null-measurements",
+   "concept": "voltmeter-in-parallel",
+   "verb": "uses"
+  },
+  {
+   "span": "null-measurements",
+   "concept": "ammeter-in-series",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "potentiometer",
+   "verb": "introduces"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "null-measurement",
+   "verb": "reinforces"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "terminal-voltage",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "internal-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "galvanometer",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "ir-drop",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "ohmmeter",
+   "verb": "introduces"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "wheatstone-bridge",
+   "verb": "introduces"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "null-measurement",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "ir-drop",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "parallel-connection",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "potential-difference",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-745",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "wheatstone-bridge"
+   },
+   "cite": "wheatstone-bridge",
+   "prompt": "Identify other factors that might limit the accuracy of null measurements. Would the use of a digital device that is more sensitive than a galvanometer improve the accuracy of null measurements?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "One factor would be resistance in the wires and connections in a null measurement. These are impossible to make zero, and they can change over time. Another factor would be temperature variations in resistance, which can be reduced but not completely eliminated by choice of material. Digital devices sensitive to smaller currents than analog devices do improve the accuracy of null measurements because they allow you to get the current closer to zero."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1053475",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "null-measurements",
+   "prompt": "Why can a null measurement be more accurate than one using standard voltmeters and ammeters? What factors limit the accuracy of null measurements?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A standard voltmeter has to draw a current in order to deflect its needle, and that current passes through the source's internal resistance, so what the meter reads is a terminal voltage rather than an emf; a standard ammeter has a resistance of its own, so putting it in a circuit reduces the current it is there to measure. A null measurement makes no such demand: the contact of a potentiometer or the variable arm of a bridge is adjusted until the galvanometer reads zero, and since no current then flows through the measuring device, the device takes nothing from the circuit and alters nothing in it. What is left to limit the accuracy is everything the balance still depends on. The needle cannot be brought to exactly zero, only to as near zero as it can be read, and the resistances the answer is calculated from carry their own uncertainties, as does the standard emf a potentiometer is compared against. The wires and connections have a small resistance that cannot be made zero and that changes as they age, and the resistances themselves drift with temperature."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2653352",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "potentiometer",
+   "prompt": "If a potentiometer is used to measure cell emfs on the order of a few volts, why is it most accurate for the standard $\\kemfs$ to be the same order of magnitude and the resistances to be in the range of a few ohms?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The unknown emf comes out of the measurement as $\\kemfx = \\kemfs\\kResx/\\kRess$, so its accuracy depends on the accuracy of the standard emf and of the ratio of the two balancing resistances. If the standard emf is of the same order of magnitude as the unknown one, the ratio $\\kResx/\\kRess$ is close to one, the two balance points sit well apart from the ends of the wire, and each of the two resistances is read over a comparable length; a standard emf much larger or much smaller would push one balance point to an end of the wire, or off it altogether, where the length can be read only coarsely and the fractional uncertainty in that resistance is large. The resistances are best a few ohms for a related reason. A wire of a few ohms passes a current of a convenient size for a source of a few volts, so the potential falls by a readable amount over a readable length, and the small resistances of the wires and the connections, which are of the order of a hundredth of an ohm and cannot be made zero, are then a negligible part of what is being measured rather than a large correction to it."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1844231",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "potentiometer",
+   "prompt": "What is the $\\kemfx$ of a cell being measured in a potentiometer, if the standard cell’s emf is 12.0 V and the potentiometer balances for $\\kResx = 5.000\\ Ω$ and $\\kRess = 2.500\\ Ω$?",
+   "answer": {
+    "type": "number",
+    "value": 24.0,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "The same current runs down the wire for both balances, so the two emfs are in the same ratio as the two balancing resistances.",
+    "solution": "24.0 V"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1422615",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheatstone-bridge",
+   "prompt": "When an unknown resistance $\\kResx$ is placed in a Wheatstone bridge, it is possible to balance the bridge by adjusting $\\kResthree$ to be $2500\\ Ω$. What is $\\kResx$ if $\\frac{\\kRestwo}{\\kResone} = 0.625$?",
+   "answer": {
+    "type": "number",
+    "value": 1.56,
+    "unit": "kΩ",
+    "generated_by": "source",
+    "hint": "The balance condition gives the unknown resistance as the variable arm times the ratio of the two known arms, and the ratio is the only thing about those two arms that the answer needs.",
+    "solution": "1.56 kΩ"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2391704",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "potentiometer",
+   "prompt": "(a) What is the unknown $\\kemfx$ in a potentiometer that balances when $\\kResx$ is $10.0\\ Ω$, and balances when $\\kRess$ is $15.0\\ Ω$ for a standard 3.000-V emf? (b) The same $\\kemfx$ is placed in the same potentiometer, which now balances when $\\kRess$ is $15.0\\ Ω$ for a standard emf of 3.100 V. At what resistance $\\kResx$ will the potentiometer balance?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kemfx$",
+      "value": 2.0,
+      "unit": "V",
+      "hint": "The unknown emf is the standard emf times the ratio of the resistance that balances it to the resistance that balances the standard."
+     },
+     {
+      "part": "(b) $\\kResx$",
+      "value": 9.68,
+      "unit": "Ω",
+      "hint": "The unknown emf has not changed, but the standard one has, so the current down the wire is different and the same emf balances at a different resistance."
+     }
+    ],
+    "solution": "(a) 2.00 V (b) $9.68\\ Ω$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3335517",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheatstone-bridge",
+   "prompt": "Suppose you want to measure resistances in the range from $10.0\\ Ω$ to $10.0\\ \\text{k}Ω$ using a Wheatstone bridge that has $\\frac{\\kRestwo}{\\kResone} = 2.000$. Over what range should $\\kResthree$ be adjustable?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Range = 5.00 Ω to 5.00 kΩ"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "null-measurement"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "null-measurement"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "measurement-alters-circuit",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "potentiometer"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "null-measurement",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "potentiometer"
+  },
+  {
+   "exercise": "p3",
+   "concept": "wheatstone-bridge"
+  },
+  {
+   "exercise": "p5",
+   "concept": "potentiometer"
+  },
+  {
+   "exercise": "p6",
+   "concept": "wheatstone-bridge"
+  }
+ ]
+}

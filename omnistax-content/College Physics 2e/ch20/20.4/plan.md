@@ -160,6 +160,8 @@ id · replaces · concepts · value add · moving or still · sliders and choice
    two costs and the two curves, eight in all, none of them on a moving
    thing. Draws power, energy, time.
 
+Figure pass of 2026-09-15 (Claude Fable 5.1), what is built now. `sim-cost-of-lighting`: the two curve names go through the labeller, with the scene above the graph and the two pinned markers reserved, and the bulb's name moves below and to the right of its line where the line has run off the top of the frame, so the names never land on each other or in the scene. `sim-power-in-a-circuit` was looked at in both themes at every extreme and left as built.
+
 Photographs and images:
 
 - Figure 20.13, `Figure_21_04_01a.jpg`, the 25-W and 60-W incandescent bulbs

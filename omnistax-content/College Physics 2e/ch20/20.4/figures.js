@@ -14,7 +14,7 @@
    bases, the resistor's zigzag, the wires and the frames are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, axes, curve, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, axes, curve, pinned, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const money = (v) => '$' + v.toFixed(2);
@@ -168,10 +168,17 @@ const money = (v) => '$' + v.toFixed(2);
     const capC = 4000 * Math.min(1, CMAX / Math.max(CMAX, cost(Pc.v, 4000, CFL, CFL_LIFE)));
     curve(ctx, (h) => cost(Pc.v, h, CFL, CFL_LIFE), 0, capC, a.X, a.Y, alpha(PAL.ink, 0.7), 5, 120);
     ctx.restore();
-    pinned(ctx, g, a.X, a.Y, H.v, ti, PAL.ink);
-    pinned(ctx, g, a.X, a.Y, H.v, tc, alpha(PAL.ink, 0.7));
-    text(ctx, 'incandescent bulb', a.X(capI) - 12, a.Y(Math.min(CMAX, cost(Pi.v, capI, BULB, BULB_LIFE))) - 26, PAL.ink, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'compact fluorescent lamp', a.X(capC) - 12, a.Y(Math.min(CMAX, cost(Pc.v, capC, CFL, CFL_LIFE))) - 26, PAL.ink, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
+    const pI = pinned(ctx, g, a.X, a.Y, H.v, ti, PAL.ink);
+    const pC = pinned(ctx, g, a.X, a.Y, H.v, tc, alpha(PAL.ink, 0.7));
+    const lab = labeller(ctx, 1000, { headline: 2 });
+    lab.block(0, 0, 1400, g.t - 10);                       /* the scene above the graph is spoken for */
+    lab.place({ l: pI.x - 14, r: pI.x + 14, t: pI.y - 14, b: pI.y + 14 }); lab.place({ l: pC.x - 14, r: pC.x + 14, t: pC.y - 14, b: pC.y + 14 });
+    const endI = Math.min(capI, 3400), endC = Math.min(capC, 3400);
+    /* the bulb's name sits above its line, or below and to the right of it where the line has run off the top of the frame */
+    if (capI < 4000) lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0.7, 1, PAL.ink, 20, 30);
+    else lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0, -1, PAL.ink, 20, 26);
+    lab.add('compact fluorescent lamp', a.X(endC), a.Y(Math.min(CMAX, cost(Pc.v, endC, CFL, CFL_LIFE))), 0, 1, PAL.ink, 20, 26);
+    lab.flush();
     topline(ctx, 'Over ' + fmt(H.v, 0) + ' hours the ' + fmt(Pi.v, 0) + '-W bulb uses ' + fmt(kwh(Pi.v, H.v), 1) + ' kW·h and costs ' + money(ti)
       + ', while the ' + fmt(Pc.v, 0) + '-W CFL uses ' + fmt(kwh(Pc.v, H.v), 1) + ' kW·h and costs ' + money(tc) + '.');
     readout(d.readout, `\\kE = \\kP\\kt = (${fmt(Pi.v, 0)}\\ \\text{W})(${fmt(H.v, 0)}\\ \\text{h}) = ${fmt(kwh(Pi.v, H.v), 1)}\\ \\text{kW}\\cdot\\text{h}`,

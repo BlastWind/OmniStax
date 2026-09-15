@@ -3786,3 +3786,100 @@ beside this one; `astro check` clean; a build; and a headless pass over all
 eight pages of the chapter and their Exercises documents in light and dark,
 which found no fault in either theme, no blank canvas, no KaTeX error and no
 unswept dollar sign.
+
+
+### Pass 46 (2026-09-15): Chapter 21, Circuits and DC Instruments, is built and passed
+
+The chapter's introduction and six sections are seven pages, built from the
+modules m42354, m42356, m42357, m42359, m42360, m42362 and m42363. Thirty-three
+figures stand on them: twenty-four drawn simulations, three faithful copies and
+six kept photographs, the servers that open the chapter, the four voltage
+sources, the two battery testers, the sand tiger shark, the car dashboard whose
+gauges are voltmeters and the hummingbird caught by a capacitor-driven flash.
+Only two of the twenty-four move, because only two have a clock in them: the
+capacitor charging and discharging along an axis marked in multiples of the time
+constant, and the lamp on the RC timing circuit that flashes and refills. Six
+fold the book's numbers into one live drawing: 21.3 + 21.4 + 21.6, 21.21 + 21.25,
+21.27 + 21.28, 21.29 + 21.30, 21.31 + 21.32 and 21.37 + 21.38. Every number the
+book prints from 21.1 to 21.40 is drawn or kept but one, the old print of cells
+combined into a battery at 21.16, which is decoration beside the series
+connection it illustrates and is dropped. No module of the chapter prints a
+table.
+
+The chapter declares no type of its own. Every quantity it draws is a current or
+a resistance, which Chapter 20 declares, a voltage, a capacitance or a charge,
+which Chapters 18 and 19 declare, a power or a time. It stages twenty-nine symbol
+rows, the emfs and the internal resistances, the numbered and combined
+resistances, the branch currents, the parallel-group and initial voltages, the
+numbered powers and the time constant. The emf is a symbol on the voltage type
+and not a type of its own, because the book is explicit that emf is not a force
+at all but a special type of potential difference measured in volts, and it
+shares its hue with the terminal voltage deliberately, since the whole of
+$V = \mathcal{E} - Ir$ is a comparison of the two. The time constant is staged as
+`τ_RC` on the time type, since Chapter 9 owns the bare $\tau$ as a torque.
+Thirty-eight concepts, 103 prerequisite edges, ninety-three coverage anchors,
+thirty-three glossary terms and ninety-seven exercises: forty problems, all of
+them the ones the book keys, thirty-nine conceptual questions, thirteen AP items
+and five Check Your Understanding boxes, one inline on every page but 21.2.
+
+What the chapter pass applied. Every variable row and every equation row of the
+six sections now carries an anchor into its own page, sixty-two and twenty-one of
+them, written from the section plans and extended to the rows no plan had named.
+One anchor went elsewhere than its plan asked: `eq-sources-opposed` is anchored in
+21.2's `multiple-sources` span, where the text prints it, and not in `terminal`.
+One variable row was missing altogether, `R_resfour`, the fourth resistance that
+21.1's text names and its first figure carries on a slider, and it was added.
+`COLOR.md` is brought to the bindings as built: every section binds exactly the
+union of what its own figures draw, the element palette is used after all, on the
+two electrons of Figure 21.11, the categorical palette is used nowhere, since a
+branch is told apart by its label and the direction of its arrow, and a
+galvanometer's current sensitivity wears the current hue, being a current.
+`config.md` gains a block on what the build changed.
+
+The reading found several things the validator does not see. The proposal had
+recorded that none of the chapter's thirteen AP test prep items is keyed; the
+CNXML keys eleven of them, all five in 21.1, both in 21.2, three of the four in
+21.3 and the second of the two in 21.6. Four items that had been given an
+AI-written approach now carry the book's own answer, three of them as graded
+choices, and three sections' exercise notes were rewritten to say so. 21.4 wrote
+the voltage across a bare galvanometer with the letters of the resistance wired to
+the meter and the current in the branch being measured, where both quantities are
+the movement's own; it now writes $V = I_\text{G}r$, and the two meanings widened
+with it. Figure 21.31's caption carries the book's own "R_Voltmeter >> R", and two
+bare greater-than signs inside an HTML attribute break every reader of the markup,
+so they are written as the much-greater-than sign. 21.5's caption for Figure 21.35
+said "the two ways the book draws", which is a page talking about itself, and it
+now names the two configurations instead. The branch currents of 21.3's two-loop
+circuit take the true minus sign the book prints. The exploration's own counts were
+out as well: it had 47 of the eighty problems keyed where the modules key forty,
+which is exactly the forty the pages set, and its table is corrected. All of this is
+gathered in `exploration.md`.
+
+The figure pass over every page in both themes found nine faults and fixed them.
+Four controls were wider than their row and were cut: the second cell's sense in
+21.2, the cell in the branch and the two configurations in 21.5 and the state of
+the capacitor in 21.6, the last of which is now "charging" and "discharging" and
+the ohmmeter's two configurations a dropdown, which root rule 26.1 allows where a
+row would wrap. A galvanometer's own readout and its terminals fell off the bottom
+of its canvas, and its needle struck through the number on the dial. The
+voltmeter's leads in 21.4 cut across the internal resistance and its label and
+ended in two stubs that went nowhere. The reading beside the potentiometer's
+galvanometer ran off the canvas at the far end of the wire and claimed a reading
+past full scale. The "the switch" label of the Wheatstone bridge was cut by the
+bottom of its canvas, and the ammeter's caption in the ohmmeter sat where the
+headline's second line falls. Two readouts contradicted their own headline or
+read badly at a slider's end, the charger that is no longer charging and the two
+loads smaller than the resistance feeding them.
+
+One thing to know. The ohm inside math is the literal Ω throughout this chapter,
+in its prose, its prompts and its readouts, where Chapter 20 writes `\Omega`. The
+two render identically and only the TeX annotation differs, so nothing here was
+changed, but the book should settle on one of them.
+
+Checks: `check:content` over the whole book, with no errors; the unit tests, of
+which the one failure names the magnetic field and the force and belongs to
+Chapter 22, being prepared beside this one; `astro check` clean; a build; and a
+headless pass over all seven pages of the chapter in light and dark, every figure
+at its defaults, at both ends of every slider and at every one of its choices,
+which found no blank canvas, no KaTeX error, no unswept dollar sign and no
+NaN in any readout.

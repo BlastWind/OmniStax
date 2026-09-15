@@ -1,0 +1,105 @@
+<section id="rules">
+<h2>Two rules that reach any circuit</h2>
+<p class="cite-target">Many complex circuits, such as the one in Figure 21.21, cannot be analyzed with the series-parallel techniques developed in Resistors in Series and Parallel and Electromotive Force: Terminal Voltage. There are, however, two circuit analysis rules that can be used to analyze any circuit, simple or complex. These rules are special cases of the laws of conservation of charge and conservation of energy. The rules are known as <strong>Kirchhoff’s rules</strong>, after their inventor Gustav Kirchhoff (1824–1887).</p>
+<figure class="sim" id="sim-two-loop-circuit" data-figure="21.21 + 21.25" data-original="/media/ch21/Figure_22_03_01.jpg,/media/ch21/Figure_22_03_05.jpg" data-original-width="175,300" data-original-caption="(Figure 21.21) This circuit cannot be reduced to a combination of series and parallel connections. Kirchhoff’s rules, special applications of the laws of conservation of charge and energy, can be used to analyze it. (Note: The script E in the figure represents electromotive force, emf.) (Figure 21.25) This circuit is similar to that in Figure 21.21, but the resistances and emfs are specified. (Each emf is denoted by script E.) The currents in each branch are labeled and assumed to move in the directions shown. This example uses Kirchhoff’s rules to find the currents.">
+  <div class="sim-head"><span class="eyebrow">Figure 21.21 + 21.25</span><span>Two sources and three resistances are wired into the three branches of a circuit that no combination of series and parallel reductions reaches, and the junction rule and the loop rule solve it for the three branch currents. Move either emf or either load resistance and watch a branch current fall to zero and then run the other way, which costs nothing but a minus sign, since the direction assumed for it was only a guess.</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">Kirchhoff’s Rules</div>
+<ul>
+<li>Kirchhoff’s first rule—the junction rule. The sum of all currents entering a junction must equal the sum of all currents leaving the junction.</li>
+<li>Kirchhoff’s second rule—the loop rule. The algebraic sum of changes in potential around any closed circuit path (loop) must be zero.</li>
+</ul>
+</div>
+<p>Explanations of the two rules will now be given, followed by problem-solving hints for applying Kirchhoff’s rules, and a worked example that uses them.</p>
+</section>
+
+<section id="junction">
+<h2>Kirchhoff’s First Rule</h2>
+<p class="cite-target">Kirchhoff’s first rule (the <strong>junction rule</strong>) is an application of the conservation of charge to a junction; it is illustrated in Figure 21.22. Current is the flow of charge, and charge is conserved; thus, whatever charge flows into the junction must flow out. Kirchhoff’s first rule requires that $\kIcurone = \kIcurtwo + \kIcurthree$ (see figure). Equations like this can and will be used to analyze circuits and to solve circuit problems.</p>
+<div class="note">
+<div class="eyebrow">Making Connections: Conservation Laws</div>
+<p>Kirchhoff’s rules for circuit analysis are applications of <strong>conservation laws</strong> to circuits. The first rule is the application of conservation of charge, while the second rule is the application of conservation of energy. Conservation laws, even used in a specific application, such as circuit analysis, are so basic as to form the foundation of that application.</p>
+</div>
+<figure class="sim" id="sim-junction-rule" data-figure="21.22" data-original="/media/ch21/Figure_22_03_02.jpg" data-original-width="180" data-original-caption="The junction rule. The diagram shows an example of Kirchhoff’s first rule where the sum of the currents into a junction equals the sum of the currents out of a junction. In this case, the current going into the junction splits and comes out as two currents, so that I₁ = I₂ + I₃. Here I₁ must be 11 A, since I₂ is 7 A and I₃ is 4 A.">
+  <div class="sim-head"><span class="eyebrow">Figure 21.22</span><span>One wire carries current into a junction and two wires carry it away. Set the two currents that leave and watch the current that arrives follow their sum, since charge cannot collect at a junction and whatever flows in must flow out.</span></div>
+</figure>
+</section>
+
+<section id="loop">
+<h2>Kirchhoff’s Second Rule</h2>
+<p class="cite-target">Kirchhoff’s second rule (the <strong>loop rule</strong>) is an application of conservation of energy. The loop rule is stated in terms of potential, $\kV$, rather than potential energy, but the two are related since $\text{PE}_{\text{elec}} = \kq\kV$. Recall that <strong>emf</strong> is the potential difference of a source when no current is flowing. In a closed loop, whatever energy is supplied by emf must be transferred into other forms by devices in the loop, since there are no other ways in which energy can be transferred into or out of the circuit. Figure 21.23 illustrates the changes in potential in a simple series circuit loop.</p>
+<p>Kirchhoff’s second rule requires $\kemf - \kIcur\krint - \kIcur\kResone - \kIcur\kRestwo = 0$. Rearranged, this is $\kemf = \kIcur\krint + \kIcur\kResone + \kIcur\kRestwo$, which means the emf equals the sum of the $\kIcur\kRes$ (voltage) drops in the loop.</p>
+<figure class="sim" id="sim-loop-rule" data-figure="21.23" data-original="/media/ch21/Figure_22_03_03.jpg" data-original-width="200" data-original-caption="The loop rule. An example of Kirchhoff’s second rule where the sum of the changes in potential around a closed loop must be zero. (a) In this standard schematic of a simple series circuit, the emf supplies 18 V, which is reduced to zero by the resistances, with 1 V across the internal resistance, and 12 V and 5 V across the two load resistances, for a total of 18 V. (b) This perspective view represents the potential as something like a roller coaster, where charge is raised in potential by the emf and lowered by the resistances. (Note that the script E stands for emf.)">
+  <div class="sim-head"><span class="eyebrow">Figure 21.23</span><span>A source with an internal resistance drives a current through two load resistances, and the graph beneath the circuit follows the potential all the way round the loop. Change the emf or any of the three resistances, or walk the loop the other way, and watch the potential rise at the source, step down at each resistance and arrive back where it began.</span></div>
+</figure>
+</section>
+
+<section id="applying">
+<h2>Applying Kirchhoff’s Rules</h2>
+<p class="cite-target">By applying Kirchhoff’s rules, we generate equations that allow us to find the unknowns in circuits. The unknowns may be currents, emfs, or resistances. Each time a rule is applied, an equation is produced. If there are as many independent equations as unknowns, then the problem can be solved. There are two decisions you must make when applying Kirchhoff’s rules. These decisions determine the signs of various quantities in the equations you obtain from applying the rules.</p>
+<ol>
+<li>When applying Kirchhoff’s first rule, the junction rule, you must label the current in each branch and decide in what direction it is going. For example, in Figure 21.21, Figure 21.22, and Figure 21.23, currents are labeled $\kIcurone$, $\kIcurtwo$, $\kIcurthree$, and $\kIcur$, and arrows indicate their directions. There is no risk here, for if you choose the wrong direction, the current will be of the correct magnitude but negative.</li>
+<li>When applying Kirchhoff’s second rule, the loop rule, you must identify a closed loop and decide in which direction to go around it, clockwise or counterclockwise. For example, in Figure 21.23 the loop was traversed in the same direction as the current (clockwise). Again, there is no risk; going around the circuit in the opposite direction reverses the sign of every term in the equation, which is like multiplying both sides of the equation by $-1$.</li>
+</ol>
+<p>Figure 21.24 and the following points will help you get the plus or minus signs right when applying the loop rule. Note that the resistors and emfs are traversed by going from a to b. In many circuits, it will be necessary to construct more than one loop. In traversing each loop, one needs to be consistent for the sign of the change in potential. (See Example 21.5.)</p>
+<figure class="sim" id="sim-sign-rules" data-figure="21.24" data-original="/media/ch21/Figure_22_03_04.jpg" data-original-width="350" data-original-caption="Each of these resistors and voltage sources is traversed from a to b. The potential changes are shown beneath each element and are explained in the text. (Note that the script E stands for emf.)">
+  <div class="sim-head"><span class="eyebrow">Figure 21.24</span><span>A resistor and a source are each traversed from a to b in both of the two possible directions, and the change in potential is written under each of the four cases. Pick a case and move the current, the resistance and the emf, and watch the change in potential take a value and keep the sign the case gives it.</span></div>
+</figure>
+<ul>
+<li>When a resistor is traversed in the same direction as the current, the change in potential is $-\kIcur\kRes$. (See Figure 21.24.)</li>
+<li>When a resistor is traversed in the direction opposite to the current, the change in potential is $+\kIcur\kRes$. (See Figure 21.24.)</li>
+<li>When an emf is traversed from $-$ to $+$ (the same direction it moves positive charge), the change in potential is $+\kemf$. (See Figure 21.24.)</li>
+<li>When an emf is traversed from $+$ to $-$ (opposite to the direction it moves positive charge), the change in potential is $-\kemf$. (See Figure 21.24.)</li>
+</ul>
+<div class="example" id="ex-kirchhoff">
+<h3>Example 21.5 · Calculating Current: Using Kirchhoff’s Rules</h3>
+<p>Find the currents flowing in the circuit in Figure 21.25.</p>
+<h4>Strategy</h4>
+<p>This circuit is sufficiently complex that the currents cannot be found using Ohm’s law and the series-parallel techniques—it is necessary to use Kirchhoff’s rules. Currents have been labeled $\kIcurone$, $\kIcurtwo$, and $\kIcurthree$ in the figure and assumptions have been made about their directions. Locations on the diagram have been labeled with letters a through h. In the solution we will apply the junction and loop rules, seeking three independent equations to allow us to solve for the three unknown currents.</p>
+<h4>Solution</h4>
+<p>We begin by applying Kirchhoff’s first or junction rule at point a. This gives</p>
+$$\kIcurone = \kIcurtwo + \kIcurthree,$$
+<p>since $\kIcurone$ flows into the junction, while $\kIcurtwo$ and $\kIcurthree$ flow out. Applying the junction rule at e produces exactly the same equation, so that no new information is obtained. This is a single equation with three unknowns—three independent equations are needed, and so the loop rule must be applied.</p>
+<p>Now we consider the loop abcdea. Going from a to b, we traverse $\kRestwo$ in the same (assumed) direction of the current $\kIcurtwo$, and so the change in potential is $-\kIcurtwo\kRestwo$. Then going from b to c, we go from $-$ to $+$, so that the change in potential is $+\kemfone$. Traversing the internal resistance $\krintone$ from c to d gives $-\kIcurtwo\krintone$. Completing the loop by going from d to a again traverses a resistor in the same direction as its current, giving a change in potential of $-\kIcurone\kResone$.</p>
+<p>The loop rule states that the changes in potential sum to zero. Thus,</p>
+$$-\kIcurtwo\kRestwo + \kemfone - \kIcurtwo\krintone - \kIcurone\kResone = -\kIcurtwo(\kRestwo + \krintone) + \kemfone - \kIcurone\kResone = 0.$$
+<p>Substituting values from the circuit diagram for the resistances and emf, and canceling the ampere unit gives</p>
+$$-3\kIcurtwo + 18 - 6\kIcurone = 0.$$
+<p>Now applying the loop rule to aefgha (we could have chosen abcdefgha as well) similarly gives</p>
+$$+\;\kIcurone\kResone + \kIcurthree\kResthree + \kIcurthree\krinttwo - \kemftwo = +\kIcurone\kResone + \kIcurthree(\kResthree + \krinttwo) - \kemftwo = 0.$$
+<p>Note that the signs are reversed compared with the other loop, because elements are traversed in the opposite direction. With values entered, this becomes</p>
+$$+\;6\kIcurone + 2\kIcurthree - 45 = 0.$$
+<p>These three equations are sufficient to solve for the three unknown currents. First, solve the second equation for $\kIcurtwo$:</p>
+$$\kIcurtwo = 6 - 2\kIcurone.$$
+<p>Now solve the third equation for $\kIcurthree$:</p>
+$$\kIcurthree = 22.5 - 3\kIcurone.$$
+<p>Substituting these two new equations into the first one allows us to find a value for $\kIcurone$:</p>
+$$\kIcurone = \kIcurtwo + \kIcurthree = (6 - 2\kIcurone) + (22.5 - 3\kIcurone) = 28.5 - 5\kIcurone.$$
+<p>Combining terms gives</p>
+$$6\kIcurone = 28.5,$$
+<p>and</p>
+$$\kIcurone = 4.75\ \text{A}.$$
+<p>Substituting this value for $\kIcurone$ back into the fourth equation gives</p>
+$$\kIcurtwo = 6 - 2\kIcurone = 6 - 9.50$$
+$$\kIcurtwo = -3.50\ \text{A}.$$
+<p>The minus sign means $\kIcurtwo$ flows in the direction opposite to that assumed in Figure 21.25.</p>
+<p>Finally, substituting the value for $\kIcurone$ into the fifth equation gives</p>
+$$\kIcurthree = 22.5 - 3\kIcurone = 22.5 - 14.25$$
+$$\kIcurthree = 8.25\ \text{A}.$$
+<h4>Discussion</h4>
+<p>Just as a check, we note that indeed $\kIcurone = \kIcurtwo + \kIcurthree$. The results could also have been checked by entering all of the values into the equation for the abcdefgha loop.</p>
+</div>
+<div class="note">
+<div class="eyebrow">Problem-Solving Strategies for Kirchhoff’s Rules</div>
+<ol>
+<li>Make certain there is a clear circuit diagram on which you can label all known and unknown resistances, emfs, and currents. If a current is unknown, you must assign it a direction. This is necessary for determining the signs of potential changes. If you assign the direction incorrectly, the current will be found to have a negative value—no harm done.</li>
+<li>Apply the junction rule to any junction in the circuit. Each time the junction rule is applied, you should get an equation with a current that does not appear in a previous application—if not, then the equation is redundant.</li>
+<li>Apply the loop rule to as many loops as needed to solve for the unknowns in the problem. (There must be as many independent equations as unknowns.) To apply the loop rule, you must choose a direction to go around the loop. Then carefully and consistently determine the signs of the potential changes for each element using the four bulleted points discussed above in conjunction with Figure 21.24.</li>
+<li>Solve the simultaneous equations for the unknowns. This may involve many algebraic steps, requiring careful checking and rechecking.</li>
+<li>Check to see whether the answers are reasonable and consistent. The numbers should be of the correct order of magnitude, neither exceedingly large nor vanishingly small. The signs should be reasonable—for example, no resistance should be negative. Check to see that the values obtained satisfy the various equations obtained from applying the rules. The currents should satisfy the junction rule, for example.</li>
+</ol>
+</div>
+<p>The material in this section is correct in theory. We should be able to verify it by making measurements of current and voltage. In fact, some of the devices used to make such measurements are straightforward applications of the principles covered so far and are explored in the next modules. As we shall see, a very basic, even profound, fact results—making a measurement alters the quantity being measured.</p>
+<div class="exercises" data-place="applying"></div>
+</section>

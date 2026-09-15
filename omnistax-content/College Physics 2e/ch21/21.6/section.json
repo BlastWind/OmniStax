@@ -1,0 +1,895 @@
+{
+ "id": "21.6",
+ "module": "m42363",
+ "chapter": "21",
+ "title": "DC Circuits Containing Resistors and Capacitors",
+ "short": "Resistors and capacitors",
+ "lead": "A circuit that contains a capacitor as well as a resistor does not settle into its final state the instant the switch is closed, because charge has to be carried onto the plates through the resistance before the capacitor can oppose the source. This section works out how the voltage across a charging capacitor climbs toward the emf and how the voltage across a discharging one falls toward zero, shows that the product of the resistance and the capacitance is the time in which either change covers a fixed fraction of what is left, and ends with the circuits that use that time to decide when something should happen, from a camera flash to an artificial pacemaker.",
+ "objectives": [
+  "Explain the importance of the time constant, $\\ktauRC$, and calculate the time constant for a given resistance and capacitance.",
+  "Explain why batteries in a flashlight gradually lose power and the light dims over time.",
+  "Describe what happens to a graph of the voltage across a capacitor over time as it charges.",
+  "Explain how a timing circuit works and list some applications.",
+  "Calculate the necessary speed of a strobe flash needed to “stop” the movement of an object over a particular length."
+ ],
+ "summary_html": "<ul><li>An RC circuit is one that has both a resistor and a capacitor.</li><li>The time constant $\\ktauRC$ for an RC circuit is $\\ktauRC = \\kRes\\kCap$.</li><li>When an initially uncharged ($\\kVzero = 0$ at $\\kt = 0$) capacitor in series with a resistor is charged by a DC voltage source, the voltage rises, asymptotically approaching the emf of the voltage source; as a function of time, $\\kV = \\kemf\\left(1 - e^{-\\kt/\\kRes\\kCap}\\right)$ (charging).</li><li>Within the span of each time constant $\\ktauRC$, the voltage rises by 0.632 of the remaining value, approaching the final voltage asymptotically.</li><li>If a capacitor with an initial voltage $\\kVzero$ is discharged through a resistor starting at $\\kt = 0$, then its voltage decreases exponentially as given by $\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}$ (discharging).</li><li>In each time constant $\\ktauRC$, the voltage falls by 0.368 of its remaining initial value, approaching zero asymptotically.</li></ul>",
+ "notes": "The nine problems the book leaves without a keyed answer are left out, and the link to the PhET simulation Circuit Construction Kit (DC Only) is not carried over.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercises_lead": "Data taken from figures can be assumed to be accurate to three significant digits.",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Nine of the eighteen problems are keyed and are set here; the other nine are left out: the pacemaker’s charging resistance, the four time constants from two capacitors and two resistors, the initial current and time constant of the 500 Ω circuit, the ECG monitor’s maximum capacitance, the exact discharge to one per cent of its original voltage, the flashing Christmas earring, the unreasonable capacitance for a time constant of $1.00 \\times 10^{3}$ s, and the two Construct Your Own Problem items. Every conceptual question and the AP item the book leaves unkeyed carry an AI-marked suggested approach rather than a graded answer, and that AP item is kept as an open item with its options as the book prints them, since it asks for two choices in two parts. The Critical Thinking problem on the power dissipated by resistors in series and in parallel is answered from the combination rules of 21.1, but the book prints it here and it is set here.",
+ "figures": [
+  {
+   "id": "sim-rc-charge-discharge",
+   "kind": "sim",
+   "number": "21.37",
+   "folds": [
+    "21.38"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_06_01.jpg",
+    "/media/ch21/Figure_22_06_02.jpg"
+   ],
+   "original_caption": "(Figure 21.37) (a) An RC circuit with an initially uncharged capacitor. Current flows in the direction shown (opposite of electron flow) as soon as the switch is closed. Mutual repulsion of like charges in the capacitor progressively slows the flow as the capacitor is charged, stopping the current when the capacitor is fully charged and Q = C·emf. (b) A graph of voltage across the capacitor versus time, with the switch closing at time t = 0. (Note that in the two parts of the figure, the capital script E stands for emf, q stands for the charge stored on the capacitor, and τ is the RC time constant.) (Figure 21.38) (a) Closing the switch discharges the capacitor C through the resistor R. Mutual repulsion of like charges on each plate drives the current. (b) A graph of voltage across the capacitor versus time, with V = V₀ at t = 0. The voltage decreases exponentially, falling a fixed fraction of the way to zero in each subsequent time constant τ.",
+   "widths": [
+    400,
+    300
+   ],
+   "draws": [
+    "voltage",
+    "time",
+    "resistance",
+    "capacitance",
+    "current",
+    "charge"
+   ]
+  },
+  {
+   "id": "photo-hummingbird",
+   "kind": "photo",
+   "number": "21.39",
+   "originals": [
+    "/media/ch21/Figure_22_06_03.jpg"
+   ],
+   "original_caption": "This stop-motion photograph of a rufous hummingbird (Selasphorus rufus) feeding on a flower was obtained with an extremely brief and intense flash of light powered by the discharge of a capacitor through a gas. (credit: Dean E. Biggins, U.S. Fish and Wildlife Service)",
+   "widths": [
+    280
+   ]
+  },
+  {
+   "id": "sim-flashing-lamp",
+   "kind": "sim",
+   "number": "21.40",
+   "originals": [
+    "/media/ch21/Figure_22_06_04.jpg"
+   ],
+   "original_caption": "(a) The lamp in this RC circuit ordinarily has a very high resistance, so that the battery charges the capacitor as if the lamp were not there. When the voltage reaches a threshold value, a current flows through the lamp that dramatically reduces its resistance, and the capacitor discharges through the lamp as if the battery and charging resistor were not there. Once discharged, the process starts again, with the flash period determined by the RC constant τ. (b) A graph of voltage versus time for this circuit.",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "voltage",
+    "time",
+    "resistance",
+    "capacitance",
+    "current"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "rc-circuits",
+   "concept": "rc-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "charging-a-capacitor",
+   "verb": "introduces"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "time-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "fraction-per-time-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "discharging",
+   "concept": "discharging-a-capacitor",
+   "verb": "introduces"
+  },
+  {
+   "span": "discharging",
+   "concept": "time-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "discharging",
+   "concept": "fraction-per-time-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "discharging",
+   "concept": "internal-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "timing",
+   "concept": "rc-timing-circuits",
+   "verb": "introduces"
+  },
+  {
+   "span": "timing",
+   "concept": "time-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "timing",
+   "concept": "discharging-a-capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "timing",
+   "concept": "capacitor-energy-applications",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-426",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "timing"
+   },
+   "cite": "timing",
+   "prompt": "When is the potential difference across a capacitor an emf?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Only when the current being drawn from or put into the capacitor is zero. Capacitors, like batteries, have internal resistance, so their output voltage is not an emf unless current is zero. This is difficult to measure in practice so we refer to a capacitor’s voltage rather than its emf. But the source of potential difference in a capacitor is fundamental and it is an emf."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2963669",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "Regarding the units involved in the relationship $\\ktauRC = \\kRes\\kCap$, verify that the units of resistance times capacitance are time, that is, $\\Omega \\cdot \\text{F} = \\text{s}$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write each unit in terms of the volt, the ampere and the coulomb and let them cancel. An ohm is a volt per ampere, since $\\kRes = \\kV/\\kIcur$, and a farad is a coulomb per volt, since $\\kCap = \\kQch/\\kV$. Multiplying the two, the volts cancel and a coulomb per ampere is left. An ampere is a coulomb per second, so a coulomb per ampere is a second, and the product of a resistance and a capacitance is therefore a time, as it must be if $e^{-\\kt/\\kRes\\kCap}$ is to make sense."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2514369",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "The RC time constant in heart defibrillation is crucial to limiting the time the current flows. If the capacitance in the defibrillation unit is fixed, how would you manipulate resistance in the circuit to adjust the RC constant $\\ktauRC$? Would an adjustment of the applied voltage also be needed to ensure that the current delivered has an appropriate value?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With the capacitance fixed, the time constant is proportional to the resistance, so a shorter pulse calls for a smaller resistance in the circuit and a longer one for a larger resistance. The current, however, is not set by the time constant alone: the initial current is $\\kIocur = \\kVzero/\\kRes$, so lowering the resistance to shorten the pulse raises the current that flows through the patient at the same time. The initial voltage would therefore have to be adjusted as well, downward when the resistance is lowered, if the current delivered is to stay within the range that is both effective and safe."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1569819",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "When making an ECG measurement, it is important to measure voltage variations over small time intervals. The time is limited by the RC constant of the circuit—it is not possible to measure time variations shorter than RC. How would you manipulate $\\kRes$ and $\\kCap$ in the circuit to allow the necessary measurements?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The time constant is the product of the two, so both of them must be made small if the circuit is to follow a quick variation. Reduce the capacitance as far as the instrument allows, since a smaller capacitor holds less charge and so fills and empties sooner, and keep the resistance of the circuit low as well. Much of the resistance is the patient’s own chest and cannot be chosen, which is why the capacitance is the quantity the designer works on; the shortest interval the instrument can resolve is then about one time constant of what is left."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3356740",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "Draw two graphs of charge versus time on a capacitor. Draw one for charging an initially uncharged capacitor in series with a resistor, as in the circuit in Figure 21.37, starting from $\\kt = 0$. Draw the other for discharging a capacitor through a resistor, as in the circuit in Figure 21.38, starting at $\\kt = 0$, with an initial charge $\\kQch_0$. Show at least two intervals of $\\ktauRC$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The charge on a capacitor is $\\kQch = \\kCap\\kV$, and the capacitance does not change, so each graph of charge has exactly the shape of the graph of voltage the section draws. The charging graph starts at the origin, rises steeply and bends over toward the final charge $\\kCap \\cdot \\text{emf}$, passing 0.632 of that value at $\\kt = \\ktauRC$ and 0.865 of it at $\\kt = 2\\ktauRC$. The discharging graph starts at $\\kQch_0$ and falls, steeply at first and then more gently, to $0.368\\kQch_0$ at $\\kt = \\ktauRC$ and to $0.135\\kQch_0$ at $\\kt = 2\\ktauRC$. Mark the time axis in multiples of $\\ktauRC$ so that the two intervals are visible."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2687700",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "When charging a capacitor, as discussed in conjunction with Figure 21.37, how long does it take for the voltage on the capacitor to reach emf? Is this a problem?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Strictly it never does. The charging law is $\\kV = \\kemf\\left(1 - e^{-\\kt/\\kRes\\kCap}\\right)$, and the exponential is never exactly zero, so the voltage approaches the emf without ever reaching it. It is not a problem in practice, because the voltage covers 0.632 of what is left in every time constant: after five time constants it is within 0.7 per cent of the emf, which is closer than any ordinary measurement could tell, so the capacitor counts as fully charged long before the mathematics says it is."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3157300",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "When discharging a capacitor, as discussed in conjunction with Figure 21.38, how long does it take for the voltage on the capacitor to reach zero? Is this a problem?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It never reaches zero exactly, for the same reason: $\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}$ falls to 0.368 of its value in every time constant but never becomes zero. Again this is not a difficulty in practice, since after five time constants the voltage is less than 0.7 per cent of what it started at. It is worth remembering, though, that a large capacitor charged to a high voltage is still dangerous for many time constants after the power has been switched off, which is why the circuits that carry them are fitted with a resistor to bleed the charge away."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2647698",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "Referring to Figure 21.37, draw a graph of potential difference across the resistor versus time, showing at least two intervals of $\\ktauRC$. Also draw a graph of current versus time for this situation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The loop rule says that the voltage across the resistor is whatever the capacitor has not yet taken, so $\\kV_{\\kRes} = \\text{emf} - \\kV = \\text{emf}\\,e^{-\\kt/\\kRes\\kCap}$. That graph therefore starts at the full emf and decays, reaching 0.368 of the emf at $\\kt = \\ktauRC$ and 0.135 of it at $\\kt = 2\\ktauRC$. The current is that voltage divided by the resistance, $\\kIcur = \\kIocur e^{-\\kt/\\kRes\\kCap}$ with $\\kIocur = \\text{emf}/\\kRes$, so the current graph has exactly the same shape, starting at the initial current and falling by the same fraction in each time constant. Both are decaying curves, and neither looks like the rising curve of the capacitor’s own voltage."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3181723",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "A long, inexpensive extension cord is connected from inside the house to a refrigerator outside. The refrigerator doesn’t run as it should. What might be the problem?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A long cord of thin wire has a resistance that is no longer small, and it is in series with the refrigerator. The current the motor draws then produces an $\\kIcur\\kRes$ drop along the cord, so the voltage that actually reaches the refrigerator is less than the supply voltage, and it falls furthest just when the motor is starting and drawing the most current. A motor starved of voltage turns slowly or fails to start at all, and the power wasted in the cord heats it. A shorter cord, or one of thicker wire with a lower resistance, is the remedy."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3175808",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "In Figure 21.40, does the graph indicate the time constant is shorter for discharging than for charging? Would you expect ionized gas to have low resistance? How would you adjust $\\kRes$ to get a longer time between flashes? Would adjusting $\\kRes$ affect the discharge time?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The graph rises slowly and falls almost vertically, so the discharging time constant is very much the shorter of the two. That is what one would expect of the ionized gas in the lamp: once it conducts it is full of free charges and its resistance is low, so $\\ktauRC$ for the discharge is small. To lengthen the time between flashes, raise the charging resistance $\\kRes$, since the capacitor then takes longer to reach the voltage at which the lamp fires. Raising $\\kRes$ would not affect the discharge, because the capacitor empties through the lamp rather than through $\\kRes$, and the discharge time constant is set by the lamp’s own resistance and the capacitance."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3165385",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "figure": {
+    "src": "/media/ch21/Figure_22_06_05.jpg",
+    "alt": "An electrical circuit with a capacitor has an extra resistor R sub b l, called a bleeder, installed in parallel with the capacitor.",
+    "caption": "A bleeder resistor R_bl discharges the capacitor in this electronic device once it is switched off."
+   },
+   "prompt": "An electronic apparatus may have large capacitors at high voltage in the power supply section, presenting a shock hazard even when the apparatus is switched off. A “bleeder resistor” is therefore placed across such a capacitor, as shown schematically in the figure below, to bleed the charge from it after the apparatus is off. Why must the bleeder resistance be much greater than the effective resistance of the rest of the circuit? How does this affect the time constant for discharging the capacitor?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The bleeder sits across the capacitor while the apparatus is running as well as after it is switched off, so whatever current passes through it is current the rest of the circuit does not get and power that is simply wasted as heat. Making its resistance much greater than the effective resistance of the circuit keeps that wasted current down to a negligible share of the whole. The price is paid afterwards: the time constant for the discharge is the bleeder’s resistance times the capacitance, so a large bleeder resistance means a long time constant and a slow discharge. The design is therefore a compromise, the resistance chosen large enough to waste little while the apparatus runs and small enough to empty the capacitor within a reasonable time after it is off."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1673724",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "A battery is connected to a resistor and an uncharged capacitor. The switch for the circuit is closed at $\\kt = 0$ s. (a) While the capacitor is being charged, which of the following is true? (a) Current through and voltage across the resistor increase. (b) Current through and voltage across the resistor decrease. (c) Current through and voltage across the resistor first increase and then decrease. (d) Current through and voltage across the resistor first decrease and then increase. (b) When the capacitor is fully charged, which of the following is NOT zero? (a) Current in the resistor. (b) Voltage across the resistor. (c) Current in the capacitor. (d) None of the above.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the two parts in turn from the loop rule. The voltage across the resistor is whatever the capacitor has not yet taken, $\\text{emf} - \\kV$, and the current is that voltage divided by the resistance; since the capacitor’s voltage only ever climbs toward the emf, both the voltage across the resistor and the current through it fall from the moment the switch is closed, which settles the first part. When the capacitor is fully charged it holds the whole emf, so there is nothing left across the resistor and no current anywhere in the loop, neither in the resistor nor in the capacitor; so nothing named in the second part is other than zero. Reading the options against that reasoning gives one answer for each part."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3552653",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "An uncharged capacitor $\\kCap$ is connected in series (with a switch) to a resistor $\\kResone$ and a voltage source $\\kemf$. Assume $\\kemf = 24$ V, $\\kResone = 1.2$ kΩ and $\\kCap = 1$ mF. (a) What will be the current through the circuit as the switch is closed? Draw a circuit diagram and show the direction of current after the switch is closed. How long will it take for the capacitor to be 99% charged? (b) After full charging, this capacitor is connected in series to another resistor, $\\kRestwo = 1$ kΩ. What will be the current in the circuit as soon as it’s connected? Draw a circuit diagram and show the direction of current. How long will it take for the capacitor voltage to reach 3.24 V?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) 20 mA, with the circuit drawn as in Figure 21.37 and the current running from the positive terminal of the source through $\\kResone$ to the capacitor, 5.5 s; (b) 24 mA, with the source gone and the capacitor driving the current the other way round the loop through $\\kRestwo$, 2 s."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1410678",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "The timing device in an automobile’s intermittent wiper system is based on an RC time constant and utilizes a $0.500\\text{-}\\mu\\text{F}$ capacitor and a variable resistor. Over what range must $\\kRes$ be made to vary to achieve time constants from 2.00 to 15.0 s?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "smallest R",
+      "value": 4.0,
+      "unit": "MΩ",
+      "hint": "The time constant is $\\ktauRC = \\kRes\\kCap$, so the smallest resistance goes with the shortest time constant."
+     },
+     {
+      "part": "largest R",
+      "value": 30.0,
+      "unit": "MΩ",
+      "hint": "Divide the longest time constant by the same capacitance."
+     }
+    ],
+    "solution": "Range 4.00 to 30.0 MΩ."
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2679599",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "The duration of a photographic flash is related to an RC time constant, which is $0.100\\ \\mu\\text{s}$ for a certain camera. (a) If the resistance of the flash lamp is $0.0400\\ Ω$ during discharge, what is the size of the capacitor supplying its energy? (b) What is the time constant for charging the capacitor, if the charging resistance is $800\\ \\text{k}Ω$?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.5,
+      "unit": "μF",
+      "hint": "The capacitance is the time constant divided by the resistance of the lamp during the discharge."
+     },
+     {
+      "part": "(b)",
+      "value": 2.0,
+      "unit": "s",
+      "hint": "The same capacitor is now charged through a much larger resistance, and the time constant is again their product."
+     }
+    ],
+    "solution": "(a) $2.50\\ \\mu\\text{F}$ (b) 2.00 s"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2588824",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "After two time constants, what percentage of the final voltage, emf, is on an initially uncharged capacitor $\\kCap$, charged through a resistance $\\kRes$?",
+   "answer": {
+    "type": "number",
+    "value": 86.5,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "Put $\\kt = 2\\ktauRC$ into the charging law, so that the exponential is $e^{-2}$.",
+    "solution": "86.5%"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1574837",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "A heart defibrillator being used on a patient has an RC time constant of 10.0 ms due to the resistance of the patient and the capacitance of the defibrillator. (a) If the defibrillator has an $8.00\\text{-}\\mu\\text{F}$ capacitance, what is the resistance of the path through the patient? (You may neglect the capacitance of the patient and the resistance of the defibrillator.) (b) If the initial voltage is 12.0 kV, how long does it take to decline to $6.00 \\times 10^{2}\\ \\text{V}$?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.25,
+      "unit": "kΩ",
+      "hint": "The resistance is the time constant divided by the capacitance."
+     },
+     {
+      "part": "(b)",
+      "value": 30.0,
+      "unit": "ms",
+      "hint": "The voltage falls to 0.368 of its value in each time constant, so count how many multiplications by 0.368 bring 12.0 kV down to 600 V."
+     }
+    ],
+    "solution": "(a) $1.25\\ \\text{k}Ω$ (b) 30.0 ms"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1390130",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "figure": {
+    "src": "/media/ch21/Figure_22_06_07.jpg",
+    "alt": "A parallel circuit with a switch, an embedded electronic circuit, a capacitor, and a resistor is shown. The embedded circuit, capacitor, and resistor are connected in parallel with each other: the electronic circuit on the left, the capacitor in the middle, and the resistor on the right. The capacitor has a capacitance of eighty micro farads. The resistor has a resistance of two hundred fifty kilohms. The switch is on the top, between the electronic circuit and the capacitor leg.",
+    "caption": "A bleeder resistor across the capacitor of an electronic device, with the switch between the device and the capacitor."
+   },
+   "prompt": "The figure below shows how a bleeder resistor is used to discharge a capacitor after an electronic device is shut off, allowing a person to work on the electronics with less risk of shock. (a) What is the time constant? (b) How long will it take to reduce the voltage on the capacitor to 0.250% (5% of 5%) of its full value once discharge begins? (c) If the capacitor is charged to a voltage $\\kVzero$ through a $100\\text{-}Ω$ resistance, calculate the time it takes to rise to $0.865\\kVzero$ (This is about two time constants.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 20.0,
+      "unit": "s",
+      "hint": "The bleeder resistance and the capacitance on the diagram multiply to the time constant."
+     },
+     {
+      "part": "(b)",
+      "value": 120.0,
+      "unit": "s",
+      "hint": "Each time constant takes the voltage to 0.368 of what it was, so find how many are needed to reach 0.250% of the original."
+     },
+     {
+      "part": "(c)",
+      "value": 16.0,
+      "unit": "ms",
+      "hint": "Charging to 0.865 of the final voltage takes two time constants, and the charging resistance here is only 100 Ω."
+     }
+    ],
+    "solution": "(a) 20.0 s (b) 120 s (c) 16.0 ms"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3384990",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "Using the exact exponential treatment, find how much time is required to charge an initially uncharged 100-pF capacitor through a $75.0\\text{-M}Ω$ resistor to 90.0% of its final voltage.",
+   "answer": {
+    "type": "number",
+    "value": 0.0173,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "Set $\\kV/\\kemf = 0.900$ in the charging law and solve for $\\kt$, which gives $\\kt = \\ktauRC \\ln 10$.",
+    "solution": "$1.73 \\times 10^{-2}\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3081489",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "Integrated Concepts. If you wish to take a picture of a bullet traveling at 500 m/s, then a very brief flash of light produced by an RC discharge through a flash tube can limit blurring. Assuming 1.00 mm of motion during one RC constant is acceptable, and given that the flash is driven by a $600\\text{-}\\mu\\text{F}$ capacitor, what is the resistance in the flash tube?",
+   "answer": {
+    "type": "number",
+    "value": 0.00333,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "The bullet covers 1.00 mm at 500 m/s in one time constant, and the resistance is that time constant divided by the capacitance.",
+    "solution": "$3.33 \\times 10^{-3}\\ Ω$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2584044",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "Integrated Concepts. A $160\\text{-}\\mu\\text{F}$ capacitor charged to 450 V is discharged through a $31.2\\text{-k}Ω$ resistor. (a) Find the time constant. (b) Calculate the temperature increase of the resistor, given that its mass is 2.50 g and its specific heat is $1.67\\ \\frac{\\text{kJ}}{\\text{kg} \\cdot {}^\\circ\\text{C}}$, noting that most of the thermal energy is retained in the short time of the discharge. (c) Calculate the new resistance, assuming it is pure carbon. (d) Does this change in resistance seem significant?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.99,
+      "unit": "s",
+      "hint": "Multiply the resistance by the capacitance."
+     },
+     {
+      "part": "(b)",
+      "value": 3.87,
+      "unit": "°C",
+      "hint": "The energy stored in the capacitor is $\\kCap\\kV^2/2$, and all of it ends as thermal energy in the resistor."
+     },
+     {
+      "part": "(c)",
+      "value": 31.1,
+      "unit": "kΩ",
+      "hint": "Carbon has a negative temperature coefficient of resistivity, so warming the resistor lowers its resistance a little."
+     }
+    ],
+    "solution": "(a) 4.99 s (b) $3.87\\ ^\\circ\\text{C}$ (c) $31.1\\ \\text{k}Ω$ (d) No"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "exer-12347",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "Critical Thinking. A circuit has a voltage source producing $1.00 \\times 10^{2}\\ \\text{V}$ and a $2.50 \\times 10^{3}\\ Ω$ resistor. (a) If the circuit contains nothing else, how much power is dissipated by the resistor? (b) A second $2.50 \\times 10^{3}\\ Ω$ resistor is added in parallel to the first resistor. Now how much power is dissipated by the resistors? (c) Now place the two resistors in series. How much power is dissipated by the resistors? (d) Why would a parallel arrangement of resistors dissipate more power than a series arrangement of resistors of the same value? (e) Which delivers more energy in a given time period, the parallel combination of resistors, the series combination of resistors, or is the energy delivered in a given time period the same?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.0,
+      "unit": "W",
+      "hint": "With the full source voltage across one resistor, $\\kP = \\kV^2/\\kRes$."
+     },
+     {
+      "part": "(b)",
+      "value": 8.0,
+      "unit": "W",
+      "hint": "Two equal resistors in parallel come to half of one of them, and the same voltage across half the resistance dissipates twice the power."
+     },
+     {
+      "part": "(c)",
+      "value": 2.0,
+      "unit": "W",
+      "hint": "Two equal resistors in series come to twice one of them, so the same voltage dissipates half the power."
+     }
+    ],
+    "solution": "(a) $\\kP = \\frac{\\kV^2}{\\kRes} = \\frac{(1.00 \\times 10^{2})^2}{2.50 \\times 10^{3}}\\ \\text{W} = 4.00\\ \\text{W}$. (b) $\\frac{1}{\\kRes_{eq}} = \\frac{2}{\\kResone}$, so $\\kRes_{eq} = \\frac{\\kResone}{2} = 1.25 \\times 10^{3}\\ Ω$ and $\\kP = \\frac{(1.00 \\times 10^{2})^2}{1.25 \\times 10^{3}}\\ \\text{W} = 8\\ \\text{W}$. (c) $\\kRes_{eq} = \\kResone + \\kRestwo = 2\\kResone$, so $\\kP = \\frac{(1.00 \\times 10^{2})^2}{5.00 \\times 10^{3}}\\ \\text{W} = 2\\ \\text{W}$. (d) In the parallel case current passes through each branch, so more current is passed through the resistor system. In the series, the higher resistance of the circuit allows less current to flow. $\\kP = \\kIcur\\kV$ is proportional to the current when the voltage does not change. (e) The parallel combination delivers more energy in a given time period."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "rc-circuit"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "emf",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "rc-timing-circuits",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rc-timing-circuits",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "discharging-a-capacitor"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "fraction-per-time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "fraction-per-time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "discharging-a-capacitor"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "fraction-per-time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "rc-circuit",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "rc-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "wire-resistance-ir-drop"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "rc-timing-circuits"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "discharging-a-capacitor"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "rc-circuit"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "charging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rc-timing-circuits",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p2",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "fraction-per-time-constant"
+  },
+  {
+   "exercise": "p3",
+   "concept": "charging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p4",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "discharging-a-capacitor"
+  },
+  {
+   "exercise": "p5",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "charging-a-capacitor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "p6",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rc-timing-circuits",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p8",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "capacitor-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "series-resistance"
+  },
+  {
+   "exercise": "p9",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "p9",
+   "concept": "power-and-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  }
+ ]
+}

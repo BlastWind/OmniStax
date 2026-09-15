@@ -113,9 +113,11 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
     ctx.ellipse(x1, yc, rx, ry, 0, -Math.PI / 2, Math.PI / 2);
     ctx.lineTo(x0, yc + ry);
     ctx.ellipse(x0, yc, rx, ry, 0, Math.PI / 2, -Math.PI / 2, true);
-    ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = alpha(PAL.ink, 0.10); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(x1, yc, rx, ry, 0, 0, Math.PI * 2); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.stroke();
+    ctx.closePath(); ctx.fill();
+    const shade = ctx.createLinearGradient(0, yc - ry, 0, yc + ry);
+    shade.addColorStop(0, alpha(PAL.ink, 0.02)); shade.addColorStop(0.35, alpha(PAL.ink, 0.0)); shade.addColorStop(1, alpha(PAL.ink, 0.28));
+    ctx.fillStyle = shade; ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(x1, yc, rx, ry, 0, 0, Math.PI * 2); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fill(); ctx.stroke();
     ctx.restore();
     /* the cross-section at the near end, and the diameter across it */
     vbracket(ctx, x1 + rx + 46, yc - ry, yc + ry, C('position'), 'D = ' + fmt(D.v, 3) + ' mm', 1);
@@ -274,7 +276,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
       text(ctx, 'beyond ' + fmt(zero, 0) + ' °C the linear form has failed: a resistance cannot be negative', gx.l + 20, gx.t + 30, PAL.muted, { size: 17, bg: PAL.panel });
     }
     dot(ctx, X(20), Y(R0.v), C('resistance'), false, 11);
-    text(ctx, 'R_0 at 20 °C', X(20) + 16, Y(R0.v) - 28, C('resistance'), { size: 19, weight: 600, bg: PAL.panel });
+    text(ctx, 'R_0 at 20 °C', X(20) + 18, Y(R0.v) + (m.a > 0 ? 30 : -30), C('resistance'), { size: 19, weight: 600, bg: PAL.panel });
     pinned(ctx, gx, X, Y, T.v, R, C('resistance'), ohms(R) + ' Ω');
     line(ctx, X(T.v), Y(Math.min(R, 16)), X(T.v), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
     /* the two resistances as bars, beside the graph */

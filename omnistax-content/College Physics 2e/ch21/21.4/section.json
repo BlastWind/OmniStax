@@ -1,0 +1,597 @@
+{
+ "id": "21.4",
+ "module": "m42360",
+ "chapter": "21",
+ "title": "DC Voltmeters and Ammeters",
+ "short": "DC voltmeters and ammeters",
+ "lead": "A voltmeter and an ammeter measure different things and are therefore put into a circuit in different ways: the voltmeter hangs in parallel with whatever it is to read, and the ammeter is cut into the line so that the whole current passes through it. This section works out how one galvanometer becomes either instrument, a large resistance in series with it making a voltmeter and a small one across it making an ammeter, and then asks what the meter itself does to the circuit, since connecting one is connecting another resistor and no measurement of this kind can be exact.",
+ "objectives": [
+  "Explain why a voltmeter must be connected in parallel with the circuit.",
+  "Draw a diagram showing an ammeter correctly connected in a circuit.",
+  "Describe how a galvanometer can be used as either a voltmeter or an ammeter.",
+  "Find the resistance that must be placed in series with a galvanometer to allow it to be used as a voltmeter with a given reading.",
+  "Explain why measuring the voltage or current in a circuit can never be exact."
+ ],
+ "summary_html": "<ul><li>Voltmeters measure voltage, and ammeters measure current.</li><li>A voltmeter is placed in parallel with the voltage source to receive full voltage and must have a large resistance to limit its effect on the circuit.</li><li>An ammeter is placed in series to get the full current flowing through a branch and must have a small resistance to limit its effect on the circuit.</li><li>Both can be based on the combination of a resistor and a galvanometer, a device that gives an analog reading of current.</li><li>Standard voltmeters and ammeters alter the circuit being measured and are thus limited in accuracy.</li></ul>",
+ "notes": "The seven problems the book leaves without a keyed answer are left out, and so is the PhET simulation the module links to.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Eight of the fifteen problems are keyed and are set here; the other seven are left out: the sensitivity of the galvanometer in a 25.0 kΩ voltmeter on its 100 V scale, the series resistance for a 3000 V reading, the shunt for a 300 mA reading, the two parts of the 10.0 Ω galvanometer made into an ammeter, the lithium cell measured with a 1.00 kΩ voltmeter, the 1.00 MΩ voltmeter across a 75.0 kΩ resistor, and the first of the two Unreasonable Results problems. Part (a) of the answer to the problem on an ammeter in series with a 10.00 Ω resistor is a circuit diagram rather than a number, and it is left out of the solution. The four conceptual questions carry an AI-marked suggested approach rather than a graded answer, and the module prints no AP test prep item. The two problems that ask what a null measurement would do instead stay with this section, since the reader meets null measurements only in 21.5.",
+ "figures": [
+  {
+   "id": "fig-dashboard",
+   "kind": "photo",
+   "number": "21.26",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-meter-connection",
+   "kind": "sim",
+   "number": "21.27",
+   "folds": [
+    "21.28"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_04_02-ea56.jpg",
+    "/media/ch21/Figure_22_04_03.jpg"
+   ],
+   "original_caption": "(Figure 21.27) (a) To measure potential differences in this series circuit, the voltmeter (V) is placed in parallel with the voltage source or either of the resistors. Note that terminal voltage is measured between points a and b. It is not possible to connect the voltmeter directly across the emf without including its internal resistance, r. (b) A digital voltmeter in use. (credit: Messtechniker, Wikimedia Commons) (Figure 21.28) An ammeter (A) is placed in series to measure current. All of the current in this circuit flows through the meter. The ammeter would have the same reading if located between points d and e or between points f and a as it does in the position shown. (Note that the script capital E stands for emf, and r stands for the internal resistance of the source of potential difference.)",
+   "widths": [
+    275,
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage"
+   ]
+  },
+  {
+   "id": "sim-galvanometer",
+   "kind": "sim",
+   "draws": [
+    "current",
+    "resistance",
+    "voltage"
+   ]
+  },
+  {
+   "id": "sim-galvanometer-meters",
+   "kind": "sim",
+   "number": "21.29",
+   "folds": [
+    "21.30"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_04_04.jpg",
+    "/media/ch21/Figure_22_04_05.jpg"
+   ],
+   "original_caption": "(Figure 21.29) A large resistance R placed in series with a galvanometer G produces a voltmeter, the full-scale deflection of which depends on the choice of R. The larger the voltage to be measured, the larger R must be. (Note that r represents the internal resistance of the galvanometer.) (Figure 21.30) A small shunt resistance R placed in parallel with a galvanometer G produces an ammeter, the full-scale deflection of which depends on the choice of R. The larger the current to be measured, the smaller R must be. Most of the current (I) flowing through the meter is shunted through R to protect the galvanometer. (Note that r represents the internal resistance of the galvanometer.) Ammeters may also have multiple scales for greater flexibility in application. The various scales are achieved by switching various shunt resistances in parallel with the galvanometer—the greater the maximum current to be measured, the smaller the shunt resistance must be.",
+   "widths": [
+    200,
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage"
+   ]
+  },
+  {
+   "id": "sim-meter-disturbs",
+   "kind": "sim",
+   "number": "21.31",
+   "folds": [
+    "21.32"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_04_06.jpg",
+    "/media/ch21/Figure_22_04_07.jpg"
+   ],
+   "original_caption": "(Figure 21.31) (a) A voltmeter having a resistance much larger than the device (R_Voltmeter >> R) with which it is in parallel produces a parallel resistance essentially the same as the device and does not appreciably affect the circuit being measured. (b) Here the voltmeter has the same resistance as the device (R_Voltmeter ≅ R), so that the parallel resistance is half of what it is when the voltmeter is not connected. This is an example of a significant alteration of the circuit and is to be avoided. (Figure 21.32) (a) An ammeter normally has such a small resistance that the total series resistance in the branch being measured is not appreciably increased. The circuit is essentially unaltered compared with when the ammeter is absent. (b) Here the ammeter’s resistance is the same as that of the branch, so that the total resistance is doubled and the current is half what it is without the ammeter. This significant alteration of the circuit is to be avoided.",
+   "widths": [
+    400,
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "meters",
+   "concept": "voltmeter-in-parallel",
+   "verb": "introduces"
+  },
+  {
+   "span": "meters",
+   "concept": "ammeter-in-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "galvanometer",
+   "concept": "galvanometer",
+   "verb": "introduces"
+  },
+  {
+   "span": "galvanometer",
+   "concept": "voltmeter-in-parallel",
+   "verb": "uses"
+  },
+  {
+   "span": "as-voltmeter",
+   "concept": "galvanometer-as-voltmeter",
+   "verb": "introduces"
+  },
+  {
+   "span": "as-voltmeter",
+   "concept": "galvanometer",
+   "verb": "uses"
+  },
+  {
+   "span": "as-ammeter",
+   "concept": "galvanometer-as-ammeter",
+   "verb": "introduces"
+  },
+  {
+   "span": "as-ammeter",
+   "concept": "galvanometer",
+   "verb": "uses"
+  },
+  {
+   "span": "altering",
+   "concept": "measurement-alters-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "altering",
+   "concept": "voltmeter-in-parallel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "altering",
+   "concept": "ammeter-in-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "altering",
+   "concept": "galvanometer-as-voltmeter",
+   "verb": "reinforces"
+  },
+  {
+   "span": "altering",
+   "concept": "galvanometer-as-ammeter",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-418",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "altering"
+   },
+   "cite": "altering",
+   "prompt": "Digital meters are able to detect smaller currents than analog meters employing galvanometers. How does this explain their ability to measure voltage and current more accurately than analog meters?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Since digital meters require less current than analog meters, they alter the circuit less than analog meters. Their resistance as a voltmeter can be far greater than an analog meter, and their resistance as an ammeter can be far less than an analog meter. Consult Figure 21.27 and Figure 21.28 and their discussion in the text."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1390392",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "meters",
+   "prompt": "Why should you not connect an ammeter directly across a voltage source as shown in the figure below? (Note that script E in the figure stands for emf.)",
+   "figure": {
+    "src": "/media/ch21/Figure_22_04_08.jpg",
+    "alt": "A circuit shows a connection of a cell of e m f script E and internal resistance r. Each terminal of the cell is connected to opposite ends of the ammeter. The circuit is closed.",
+    "caption": "An ammeter is connected directly across the terminals of a cell of emf script E and internal resistance r."
+   },
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An ammeter is built to have a very small resistance, so that it can be cut into a branch without changing the current there. Connected straight across the source, it is the only resistance in the loop apart from the internal resistance $\\krint$ of the cell, and the current is $\\kIcur = \\kemf/(\\krint + R_{\\text{A}})$, which is very nearly the largest current the cell can drive. That current is far above the full-scale current of the movement, so the needle is driven past the end of its scale and the galvanometer, or the fuse that protects it, is destroyed. An ammeter is placed in series with the device whose current is wanted, never across a source."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1397916",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "altering",
+   "prompt": "Suppose you are using a multimeter (one designed to measure a range of voltages, currents, and resistances) to measure current in a circuit and you inadvertently leave it in a voltmeter mode. What effect will the meter have on the circuit? What would happen if you were measuring voltage but accidentally put the meter in the ammeter mode?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In voltmeter mode the meter has a very large resistance, and it is now cut into the branch in series. Resistances in series add, so the branch resistance becomes enormous and the current in it falls to almost nothing; the circuit is switched off rather than measured, and the meter reads a current near zero. In ammeter mode the meter has a very small resistance, and it is now hung in parallel with the device whose voltage was wanted. A small resistance in parallel with a large one comes to very nearly the small one, so the device is short-circuited, a large current passes through the meter, and the movement or its fuse is damaged. The first mistake spoils the reading; the second can spoil the instrument."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3149558",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "meters",
+   "figure": {
+    "src": "/media/ch21/Figure_22_04_09.jpg",
+    "alt": "This figure shows a circuit having a cell of e m f script E and internal resistance r connected in parallel to two arms, one arm containing resistor R sub one and a second arm containing a series of resistors R sub two and R sub three.",
+    "caption": "A source of emf script E and internal resistance r drives two arms, one carrying R_1 and the other R_2 and R_3 in series."
+   },
+   "prompt": "Specify the points to which you could connect a voltmeter to measure the following potential differences in the figure below: (a) the potential difference of the voltage source; (b) the potential difference across $\\kResone$; (c) across $\\kRestwo$; (d) across $\\kResthree$; (e) across $\\kRestwo$ and $\\kResthree$. Note that there may be more than one answer to each part.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A voltmeter is placed in parallel with whatever it is to read, so for each part the two points are the two ends of that part. (a) The terminals of the source, which are the two points the rest of the circuit is joined to; the reading is the terminal voltage $\\kemf - \\kIcur\\krint$ and not the emf itself, since the internal resistance cannot be left out. (b) The two ends of $\\kResone$, which are the two junctions where its arm leaves and rejoins the rest of the circuit. (c) The two ends of $\\kRestwo$, which are the junction at the top of its arm and the point between $\\kRestwo$ and $\\kResthree$. (d) The two ends of $\\kResthree$, which are that same middle point and the junction at the bottom of the arm. (e) The two ends of the arm that carries both of them, which are the same two points as in part (a) and give the same reading, because the arm and the source terminals are joined by wires of negligible resistance."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1348664",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "meters",
+   "figure": {
+    "src": "/media/ch21/Figure_22_04_09.jpg",
+    "alt": "This figure shows a circuit having a cell of e m f script E and internal resistance r connected in parallel to two arms, one arm containing resistor R sub one and a second arm containing a series of resistors R sub two and R sub three.",
+    "caption": "A source of emf script E and internal resistance r drives two arms, one carrying R_1 and the other R_2 and R_3 in series."
+   },
+   "prompt": "To measure currents in the figure below, you would replace a wire between two points with an ammeter. Specify the points between which you would place an ammeter to measure the following: (a) the total current; (b) the current flowing through $\\kResone$; (c) through $\\kRestwo$; (d) through $\\kResthree$. Note that there may be more than one answer to each part.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An ammeter is cut into the line, so for each part the wire to break is one that carries only the current wanted. (a) Either wire between the source and the point where the circuit divides into its two arms, since all of the current passes there. (b) Any wire in the arm that carries $\\kResone$, above or below it, since that arm carries only the current through $\\kResone$. (c) Any wire in the other arm, since $\\kRestwo$ and $\\kResthree$ are in series there and carry the same current. (d) The same wire as in part (c), and the wire between $\\kRestwo$ and $\\kResthree$ as well, for the same reason: two resistors in series have one current between them."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2008364",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-voltmeter",
+   "prompt": "What is the sensitivity of the galvanometer (that is, what current gives a full-scale deflection) inside a voltmeter that has a $1.00\\text{-M}Ω$ resistance on its 30.0-V scale?",
+   "answer": {
+    "type": "number",
+    "value": 30,
+    "unit": "µA",
+    "generated_by": "source",
+    "hint": "At full scale the whole of the 30.0 V is across the meter, so the current is that voltage divided by the meter’s total resistance.",
+    "solution": "$30\\ \\mu\\text{A}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2660082",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-voltmeter",
+   "prompt": "Find the resistance that must be placed in series with a $25.0\\text{-}Ω$ galvanometer having a $50.0\\text{-}μ\\text{A}$ sensitivity (the same as the one discussed in the text) to allow it to be used as a voltmeter with a 0.100-V full-scale reading.",
+   "answer": {
+    "type": "number",
+    "value": 1.98,
+    "unit": "kΩ",
+    "generated_by": "source",
+    "hint": "Find the total resistance the full-scale reading demands, then take the galvanometer’s own resistance off it.",
+    "solution": "$1.98\\ \\text{k}Ω$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1216022",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-ammeter",
+   "prompt": "Find the resistance that must be placed in parallel with a $25.0\\text{-}Ω$ galvanometer having a $50.0\\text{-}μ\\text{A}$ sensitivity (the same as the one discussed in the text) to allow it to be used as an ammeter with a 10.0-A full-scale reading. Include a circuit diagram with your solution.",
+   "answer": {
+    "type": "number",
+    "value": 0.000125,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "The shunt and the galvanometer have the same voltage across them, and all but the galvanometer’s own current goes through the shunt.",
+    "solution": "$1.25 × 10^{-4}\\ Ω$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1389596",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-voltmeter",
+   "prompt": "Find the resistance that must be placed in series with a $10.0\\text{-}Ω$ galvanometer having a $100\\text{-}\\mu\\text{A}$ sensitivity to allow it to be used as a voltmeter with: (a) a 300-V full-scale reading, and (b) a 0.300-V full-scale reading.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3.0,
+      "unit": "MΩ",
+      "hint": "The total resistance is the full-scale voltage divided by the full-scale current."
+     },
+     {
+      "part": "b",
+      "value": 2.99,
+      "unit": "kΩ",
+      "hint": "Here the galvanometer’s own 10.0 Ω is no longer negligible, so subtract it."
+     }
+    ],
+    "solution": "(a) $3.00\\ \\text{M}Ω$\n(b) $2.99\\ \\text{k}Ω$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1931391",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "altering",
+   "figure": {
+    "src": "/media/ch21/Figure_22_04_10.jpg",
+    "alt": "The figure shows a circuit diagram that includes a battery with an internal resistance r and a voltmeter connected across its terminals. The current I is shown by an arrow pointing in a clockwise direction.",
+    "caption": "A voltmeter is placed across the terminals of a cell of emf script E and internal resistance r, and the current I it draws runs clockwise round the loop."
+   },
+   "prompt": "Suppose you measure the terminal voltage of a 1.585-V alkaline cell having an internal resistance of $0.100\\ Ω$ by placing a $1.00\\text{-k}Ω$ voltmeter across its terminals. (See the figure below.) (a) What current flows? (b) Find the terminal voltage. (c) To see how close the measured terminal voltage is to the emf, calculate their ratio.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 1.58,
+      "unit": "mA",
+      "hint": "The voltmeter and the internal resistance are the only resistances in the loop."
+     },
+     {
+      "part": "b",
+      "value": 1.5848,
+      "unit": "V",
+      "hint": "Take the drop across the internal resistance off the emf; four digits are needed to see the difference."
+     },
+     {
+      "part": "c",
+      "value": 0.9999,
+      "hint": "Five digits are needed to see the difference from unity."
+     }
+    ],
+    "solution": "(a) 1.58 mA\n(b) 1.5848 V (need four digits to see the difference)\n(c) 0.99990 (need five digits to see the difference from unity)"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1355644",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-ammeter",
+   "prompt": "A certain ammeter has a resistance of $5.00 × 10^{-5}\\ Ω$ on its 3.00-A scale and contains a $10.0\\text{-}Ω$ galvanometer. What is the sensitivity of the galvanometer?",
+   "answer": {
+    "type": "number",
+    "value": 15.0,
+    "unit": "µA",
+    "generated_by": "source",
+    "hint": "The resistance quoted for the ammeter is the shunt and the galvanometer in parallel, which is very nearly the shunt alone.",
+    "solution": "$15.0\\ \\mu\\text{A}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3007303",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "altering",
+   "prompt": "A $0.0200\\text{-}Ω$ ammeter is placed in series with a $10.00\\text{-}Ω$ resistor in a circuit. (a) Draw a circuit diagram of the connection. (b) Calculate the resistance of the combination. (c) If the voltage is kept the same across the combination as it was through the $10.00\\text{-}Ω$ resistor alone, what is the percent decrease in current? (d) If the current is kept the same through the combination as it was through the $10.00\\text{-}Ω$ resistor alone, what is the percent increase in voltage? (e) Are the changes found in parts (c) and (d) significant? Discuss.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(b) $10.02\\ Ω$\n(c) 0.9980, or a $2.0 × 10^{-1}$ percent decrease\n(d) 1.002, or a $2.0 × 10^{-1}$ percent increase\n(e) Not significant."
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1990504",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Unreasonable Results",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-ammeter",
+   "prompt": "**Unreasonable Results** (a) What resistance would you put in parallel with a $40.0\\text{-}Ω$ galvanometer having a $25.0\\text{-}μ\\text{A}$ sensitivity to allow it to be used as an ammeter that has a full-scale deflection for $10.0\\text{-}μ\\text{A}$? (b) What is unreasonable about this result? (c) Which assumptions are responsible?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $-66.7\\ Ω$\n(b) You can’t have negative resistance.\n(c) It is unreasonable that $\\kIcurG$ is greater than $I_{\\text{tot}}$ (see Figure 21.30). You cannot achieve a full-scale deflection using a current less than the sensitivity of the galvanometer."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "measurement-alters-circuit"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "voltmeter-in-parallel",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "ammeter-in-series",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ammeter-in-series"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "measurement-alters-circuit",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "galvanometer-as-ammeter",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "measurement-alters-circuit"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "voltmeter-in-parallel",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ammeter-in-series",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "voltmeter-in-parallel"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "measurement-alters-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "ammeter-in-series"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "measurement-alters-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "galvanometer-as-voltmeter"
+  },
+  {
+   "exercise": "p1",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "galvanometer-as-voltmeter"
+  },
+  {
+   "exercise": "p3",
+   "concept": "galvanometer-as-ammeter"
+  },
+  {
+   "exercise": "p4",
+   "concept": "galvanometer-as-voltmeter"
+  },
+  {
+   "exercise": "p4",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "measurement-alters-circuit"
+  },
+  {
+   "exercise": "p5",
+   "concept": "voltmeter-in-parallel",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "galvanometer-as-ammeter"
+  },
+  {
+   "exercise": "p6",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "measurement-alters-circuit"
+  },
+  {
+   "exercise": "p7",
+   "concept": "ammeter-in-series",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "galvanometer-as-ammeter"
+  },
+  {
+   "exercise": "p8",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

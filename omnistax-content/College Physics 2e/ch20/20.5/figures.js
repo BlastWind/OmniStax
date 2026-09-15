@@ -200,28 +200,43 @@ function electrons(ctx, x1, x2, y, off, gap) {
     const lab = labeller(ctx, 820, { headline: 2 });
     /* the scene: the plant on the left, the line across, the city on the right */
     const y = 305, x1 = 240, x2 = 1180;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
-    ctx.strokeRect(120, y - 70, 120, 140);
-    ctx.beginPath(); ctx.moveTo(150, y - 70); ctx.lineTo(150, y - 130); ctx.moveTo(210, y - 70); ctx.lineTo(210, y - 130); ctx.stroke();
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.fillStyle = PAL.soft; ctx.lineJoin = 'round';
+    /* the cooling tower, a waisted shell */
+    ctx.beginPath(); ctx.moveTo(40, y + 70); ctx.quadraticCurveTo(64, y - 30, 58, y - 110); ctx.lineTo(102, y - 110); ctx.quadraticCurveTo(96, y - 30, 120, y + 70); ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the boiler house, taller, with two stacks */
+    ctx.fillRect(130, y - 60, 70, 130); ctx.strokeRect(130, y - 60, 70, 130);
+    ctx.fillRect(140, y - 150, 14, 90); ctx.strokeRect(140, y - 150, 14, 90);
+    ctx.fillRect(176, y - 150, 14, 90); ctx.strokeRect(176, y - 150, 14, 90);
+    /* the turbine hall, lower and longer, with a row of windows */
+    ctx.fillRect(200, y - 10, 80, 80); ctx.strokeRect(200, y - 10, 80, 80);
+    ctx.fillStyle = alpha(PAL.ink, 0.35);
+    for (let k = 0; k < 3; k++) ctx.fillRect(210 + k * 22, y + 8, 12, 18);
+    /* the plumes from the stacks, in ink */
+    ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2.5;
+    for (const sx of [147, 183]) { ctx.beginPath(); ctx.moveTo(sx, y - 152); ctx.quadraticCurveTo(sx + 10, y - 176, sx + 2, y - 194); ctx.stroke(); }
     ctx.restore();
     F.house(ctx, 1200, y + 70, 100, 2); F.house(ctx, 1290, y + 70, 76, 1);
     [460, 720, 980].forEach((x) => tower(ctx, x, y - 86, 86));
+    line(ctx, 250, y - 10, 250, y - 72, PAL.ink, 4);
     line(ctx, x1, y - 72, x2, y - 72, PAL.ink, 4);
     /* the current the line carries, and the share of the power it turns into heat */
     arrow(ctx, 520, y - 72, 700, y - 72, C('current'), 5);
     arrow(ctx, 880, y - 72, 1060, y - 72, C('current'), 5);
-    const band = Math.max(7, Math.min(56, (fr / 20) * 56));
-    ctx.save(); ctx.fillStyle = alpha(C('power'), 0.3); ctx.fillRect(x1, y - 72 - band - 8, x2 - x1, band); ctx.restore();
-    lab.add('plant, ' + fmt(Pw.v, 0) + ' MW sent', 180, y + 70, 0, 1, C('power'), 20, 30);
-    lab.add('city', 1240, y + 76, 0, 1, PAL.ink, 20, 34);
-    lab.add(sig3(I) + ' A in the line', 790, y - 72, 0, 1, C('current'), 22, 34);
-    lab.add(sig3(lw / 1e6) + ' MW lost as heat', 790, y - 80 - band, 0, -1, C('power'), 22, 28);
-    lab.add(fmt(Rl.v, 1) + ' Ω of line', 460, y - 72, -0.6, -1, C('resistance'), 20, 34);
+    const band = Math.max(6, Math.min(30, (fr / 20) * 30));
+    ctx.save(); ctx.strokeStyle = alpha(C('power'), 0.3); ctx.lineWidth = band * 2 + 4; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(x1 + 20, y - 72); ctx.lineTo(x2 - 20, y - 72); ctx.stroke(); ctx.restore();
+    lab.add('the plant, ' + fmt(Pw.v, 0) + ' MW sent', 160, y + 70, 0, 1, C('power'), 20, 30);
+    lab.add('the city', 1240, y + 76, 0, 1, PAL.ink, 20, 34);
+    lab.add(sig3(I) + ' A in the line', 790, y - 72, 0, 1, C('current'), 22, 34 + band);
+    lab.add(sig3(lw / 1e6) + ' MW lost as heat', 600, y - 72 - band, 0, -1, C('power'), 22, 28);
+    lab.add(fmt(Rl.v, 1) + ' Ω of line', 400, y - 72, 0, 1, C('resistance'), 20, 34 + band);
     /* the graph: the loss against the voltage it is sent at, 25 to 400 kV across and 0 to 20 per cent up,
        which is what 100 MW down a 1.0 Ω line loses at the lowest voltage the slider reaches */
     const box = { l: 190, r: 1240, t: 510, b: 730 };
     const { X, Y } = axes(ctx, box, [0, 400], [0, 20], { nx: 4, ny: 4, xl: 'transmission voltage (kV)', xc: C('voltage'), yl: 'power lost (%)', yc: C('power'), fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t - 3, box.r - box.l, box.b - box.t + 3); ctx.clip();
     curve(ctx, (V) => Math.min(60, pct(Math.max(5, V))), 25, 400, X, Y, C('power'), 5, 160);
+    ctx.restore();
     const pt = pinned(ctx, box, X, Y, Vt.v, Math.min(20, fr), C('power'));
     lab.add(sig3(fr) + ' % lost here', pt.x, pt.y, 0.6, -1, C('power'), 20, 26);
     line(ctx, X(Vt.v), box.b, X(Vt.v), Y(Math.min(20, fr)), alpha(PAL.ink, 0.35), 2, [4, 8]);

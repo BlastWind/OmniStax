@@ -91,16 +91,26 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     fixed(ctx, 90, 250, 46, 120);                                        /* the wall the cord is plugged into */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.roundRect(136, 282, 54, 56, 8); ctx.fill(); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
-    ctx.beginPath(); ctx.roundRect(400, 210, 180, 130, 14); ctx.fill(); ctx.stroke();
-    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(430, 224); ctx.lineTo(490, 224); ctx.moveTo(510, 224); ctx.lineTo(556, 224); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(586, 250); ctx.lineTo(604, 250); ctx.lineTo(604, 292); ctx.stroke(); ctx.restore();
-    text(ctx, 'the toaster', 490, 366, PAL.ink, { size: 20, align: 'center', weight: 600 });
-    /* the two conductors, and the place the insulation has worn through */
-    for (const dy of [-9, 9]) line(ctx, 190, 300 + dy, 400, 300 + dy, PAL.ink, 4);
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
-    ctx.strokeRect(190, 286, 70, 28); ctx.strokeRect(330, 286, 70, 28); ctx.restore();
-    line(ctx, 295, 291, 295, 309, PAL.ink, 5);
+    /* the toaster: a rounded body on two feet, two slots in its top with a slice of bread standing in each, the lever at the side */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    for (const sx of [436, 512]) { ctx.beginPath(); ctx.moveTo(sx, 232); ctx.lineTo(sx + 4, 176); ctx.quadraticCurveTo(sx + 26, 162, sx + 48, 176); ctx.lineTo(sx + 52, 232); ctx.closePath(); ctx.fill(); ctx.stroke(); }
+    ctx.fillStyle = PAL.panel;
+    ctx.beginPath(); ctx.roundRect(400, 228, 190, 112, 16); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = PAL.ink;
+    ctx.beginPath(); ctx.roundRect(430, 236, 62, 10, 4); ctx.fill(); ctx.beginPath(); ctx.roundRect(506, 236, 62, 10, 4); ctx.fill();
+    ctx.fillRect(416, 340, 22, 8); ctx.fillRect(552, 340, 22, 8);
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(590, 262); ctx.lineTo(606, 262); ctx.lineTo(606, 300); ctx.stroke();
+    ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.roundRect(598, 296, 16, 12, 3); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2;
+    for (let k = 0; k < 4; k++) { ctx.beginPath(); ctx.moveTo(420, 268 + k * 16); ctx.lineTo(500, 268 + k * 16); ctx.stroke(); }
+    ctx.restore();
+    text(ctx, 'the toaster', 495, 372, PAL.ink, { size: 20, align: 'center', weight: 600 });
+    /* the cord: a sheath that has worn through in the middle, where the two bare conductors touch */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(190, 286, 78, 28, 6); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.roundRect(322, 286, 78, 28, 6); ctx.fill(); ctx.stroke(); ctx.restore();
+    for (const dy of [-7, 7]) { line(ctx, 268, 300 + dy, 290, 300 + dy * 0.4, PAL.ink, 3.5); line(ctx, 300, 300 + dy * 0.4, 322, 300 + dy, PAL.ink, 3.5); }
+    line(ctx, 290, 297, 300, 297, PAL.ink, 3.5); line(ctx, 290, 303, 300, 303, PAL.ink, 3.5);
     spark(ctx, 295, 300, 30, PAL.ink);
     label(ctx, 'the insulation has worn through', 295, 248, { side: 'above', gap: 8, size: 19, color: PAL.ink });
 
@@ -206,24 +216,37 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
       }
       text(ctx, 'the viewing window', 1050, yc - 92, PAL.muted, { size: 18, align: 'center' });
     } else {
-      const yS = open ? 366 : 330, xA = 820, xB = 1210;
-      /* the movable strip, the spring that pulls it down, and the contacts at its right end */
-      coil(ctx, xA - 40, xA, yS, PAL.muted, 3);
-      line(ctx, xA, yS, xB, yS, PAL.ink, 6);
-      dot(ctx, xB, yS, PAL.ink, true, 8); dot(ctx, xB + 34, 330, PAL.ink, true, 8);
-      line(ctx, xB + 34, 330, xB + 34, 430, PAL.ink, 5);
-      if (open) { spark(ctx, xB + 17, 348, 22, PAL.ink); label(ctx, 'the contact has been broken', xB - 60, 442, { side: 'below', gap: 8, size: 19, color: PAL.ink }); }
-      else label(ctx, 'the contacts, closed', xB - 60, 442, { side: 'below', gap: 8, size: 19, color: PAL.ink });
-      /* the bimetallic strip, standing on the movable strip and bending to the right as it heats */
-      const bend = open ? 46 : Math.min(30, (I / rate) * 30), bx = 1010;
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(bx, yS);
-      for (let i = 1; i <= 12; i++) { const t = i / 12; ctx.lineTo(bx + bend * t * t, yS - 130 * t); }
+      const yS = open ? 372 : 336, xA = 840, xB = 1200, floor = 470;
+      /* the housing the mechanism sits in */
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.04); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(790, 150, 500, 330, 14); ctx.fill(); ctx.stroke(); ctx.restore();
+      /* the movable strip, pivoted at its left end, and the coil spring that pulls it down to the floor */
+      const pivot = { x: xA, y: 336 };
+      line(ctx, pivot.x, pivot.y, xB, yS, PAL.ink, 6);
+      dot(ctx, pivot.x, pivot.y, PAL.panel, true, 8); dot(ctx, pivot.x, pivot.y, PAL.ink, false, 8);
+      const sx = xA + 150, sy0 = pivot.y + ((yS - pivot.y) * 150) / (xB - xA);
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(sx, sy0);
+      const turns = 7, span = floor - 12 - sy0;
+      for (let i = 1; i <= turns * 8; i++) { const t = i / (turns * 8); ctx.lineTo(sx + Math.sin(t * turns * 2 * Math.PI) * 12, sy0 + span * t); }
+      ctx.lineTo(sx, floor); ctx.stroke(); ctx.restore();
+      line(ctx, 800, floor, 1280, floor, PAL.muted, 3);
+      /* the contacts: a pad on the strip's free end and a fixed pad above it on the terminal */
+      ctx.save(); ctx.fillStyle = PAL.ink;
+      ctx.fillRect(xB - 12, yS - 6, 24, 10); ctx.fillRect(xB - 12, 318, 24, 10); ctx.restore();
+      line(ctx, xB, 318, xB, 240, PAL.ink, 5); line(ctx, xB, 240, 1280, 240, PAL.ink, 5);
+      if (open) { spark(ctx, xB, (yS + 328) / 2, 22, PAL.ink); label(ctx, 'the contacts have parted', xB, yS + 12, { side: 'below', gap: 14, size: 19, color: PAL.ink }); }
+      else label(ctx, 'the contacts, closed', xB, yS + 12, { side: 'below', gap: 14, size: 19, color: PAL.ink });
+      /* the bimetallic strip, standing on the movable strip and bending to the right as it heats; at the rated current it clears the notch */
+      const bend = open ? 46 : Math.min(30, (I / rate) * 30), bx = 1010, by = pivot.y + ((yS - pivot.y) * (bx - xA)) / (xB - xA);
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(bx, by);
+      for (let i = 1; i <= 12; i++) { const t = i / 12; ctx.lineTo(bx + bend * t * t, by - 130 * t); }
       ctx.stroke(); ctx.restore();
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
-      ctx.beginPath(); ctx.roundRect(bx + 44, yS - 152, 34, 40, 6); ctx.fill(); ctx.stroke(); ctx.restore();
-      text(ctx, 'the notch', bx + 61, yS - 178, PAL.muted, { size: 18, align: 'center' });
-      label(ctx, 'the bimetallic strip', bx - 20, yS - 80, { side: 'left', gap: 10, size: 19, color: PAL.ink });
-      label(ctx, 'the spring', xA - 20, yS, { side: 'left', gap: 8, size: 19, color: PAL.ink });
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(bx + 40, 178, 34, 40, 6); ctx.fill(); ctx.stroke(); ctx.restore();
+      line(ctx, bx + 74, 178, 1280, 178, PAL.muted, 3);
+      label(ctx, 'the notch', bx + 57, 176, { side: 'above', gap: 6, size: 18, color: PAL.muted });
+      label(ctx, 'the bimetallic strip', bx - 6, by - 70, { side: 'left', gap: 14, size: 19, color: PAL.ink });
+      label(ctx, 'the spring', sx - 14, (sy0 + floor) / 2, { side: 'left', gap: 14, size: 19, color: PAL.ink });
     }
 
     /* ---- the current, against the rating ---- */
@@ -323,7 +346,7 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     }
 
     /* ---- the bands of Table 20.3, on a logarithmic current scale ---- */
-    text(ctx, 'the effects Table 20.3 lists, by the current through the trunk', SC.l, SC.y - 132, ic, { size: 20, weight: 600, align: 'left' });
+    text(ctx, 'the effects Table 20.3 lists, by the current through the trunk', SC.l, SC.y - 138, PAL.ink, { size: 20, weight: 600, align: 'left' });
     for (let i = 0; i < BANDS.length; i++) {
       const x1 = XI(BANDS[i].at), x2 = i + 1 < BANDS.length ? XI(BANDS[i + 1].at) : SC.r;
       ctx.save(); ctx.fillStyle = alpha(F.cat(i), 0.55); ctx.fillRect(x1, SC.y - 22, x2 - x1, 44); ctx.restore();
@@ -338,9 +361,9 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     for (let k = D0; k <= D1; k++) { const x = XI(Math.pow(10, k)); line(ctx, x, SC.y + 22, x, SC.y + 34, PAL.muted, 2); text(ctx, (k < 0 ? Math.pow(10, k).toFixed(-k) : fmt(Math.pow(10, k), 0)) + ' mA', x, SC.y + 68, PAL.muted, { size: 17, align: 'center' }); }
     if (I > 0) {
       const xm = Math.min(Math.max(XI(mA), SC.l), SC.r);
-      line(ctx, xm, SC.y - 32, xm, SC.y + 22, ic, 4);
+      line(ctx, xm, SC.y - 74, xm, SC.y + 22, ic, 4);
       dot(ctx, xm, SC.y, ic, true, 11);
-      text(ctx, amps(I), xm, SC.y - 60, ic, { size: 22, weight: 600, align: xm > SC.r - 120 ? 'right' : xm < SC.l + 120 ? 'left' : 'center', bg: PAL.panel });
+      text(ctx, amps(I), xm, SC.y - 94, ic, { size: 22, weight: 600, align: xm > SC.r - 120 ? 'right' : xm < SC.l + 120 ? 'left' : 'center', bg: PAL.panel });
     }
 
     headline(ctx, V === 0 ? 'With nothing across the person no current passes at all, and the wire is safe to hold.'
@@ -381,14 +404,15 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     /* the two curves: the one that can be felt at all, dashed, and the one that closes the hand, solid */
     ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, sense, 0, 4, X, Y, ic, 5, 160); ctx.restore();
     curve(ctx, letGo, 0, 4, X, Y, ic, 5, 160);
-    text(ctx, 'the can’t-let-go current', X(3.1), Y(letGo(3.1)) - 26, ic, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'the threshold of sensation', X(1.1), Y(sense(1.1)) - 26, ic, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'the can’t-let-go current', X(1.2), Y(letGo(1.2)) - 34, ic, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'the threshold of sensation', X(1.6), Y(sense(1.6)) - 28, ic, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     /* the frequency chosen, and the current set against the two curves there */
     line(ctx, X(u), BOX.t, X(u), BOX.b, alpha(fc, 0.5), 3, [4, 8]);
-    text(ctx, name, X(u), BOX.t - 24, fc, { size: 20, weight: 600, align: X(u) > BOX.r - 120 ? 'right' : 'center', bg: PAL.panel });
+    if (X(u) < BOX.l + 220) text(ctx, name, X(u) + 14, BOX.t + 22, fc, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+    else text(ctx, name, X(u), BOX.t - 24, fc, { size: 20, weight: 600, align: X(u) > BOX.r - 120 ? 'right' : 'center', bg: PAL.panel });
     dot(ctx, X(u), Y(lg), ic, true, 10); dot(ctx, X(u), Y(sn), ic, false, 10);
     line(ctx, BOX.l, Y(I), BOX.r, Y(I), ic, 4);
-    text(ctx, fmt(I, 1) + ' mA', BOX.l + 12, Y(I) - 22, ic, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
+    text(ctx, fmt(I, 1) + ' mA', BOX.r - 12, Y(I) + (Y(I) < BOX.t + 40 ? 24 : -22), ic, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
     const felt = I >= sn, stuck = I >= lg;
     headline(ctx, I === 0 ? 'With no current through the person there is nothing to feel at any frequency.'
       : 'At ' + name + ', ' + fmt(I, 1) + ' mA is ' + (stuck ? 'above the can’t-let-go current of ' + fmt(lg, 1) + ' mA, so the hand closes on the wire' : felt ? 'above the ' + fmt(sn, 1) + ' mA that can be felt but below the ' + fmt(lg, 1) + ' mA that closes the hand' : 'below the ' + fmt(sn, 1) + ' mA needed to feel anything at all') + '.');

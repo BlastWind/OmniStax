@@ -1,0 +1,952 @@
+{
+ "id": "21.1",
+ "module": "m42356",
+ "chapter": "21",
+ "title": "Resistors in Series and Parallel",
+ "short": "Resistors in series and parallel",
+ "lead": "Almost every circuit has more than one resistor in it, and the two simplest ways of joining them are one after the other along a single path and each on a path of its own between the same two points. This section works out the one resistance each connection comes to, shows that resistors in series divide the source's voltage while resistors in parallel divide its current, reduces a network that mixes the two to a single resistance, and ends with what happens to a light bulb when the resistance of the wires that feed it is no longer small enough to ignore.",
+ "objectives": [
+  "Draw a circuit with resistors in parallel and in series.",
+  "Calculate the voltage drop of a current across a resistor using Ohm’s law.",
+  "Contrast the way total resistance is calculated for resistors in series and in parallel.",
+  "Explain why total resistance of a parallel circuit is less than the smallest resistance of any of the resistors in that circuit.",
+  "Calculate total resistance of a circuit that contains a mixture of resistors connected in series and in parallel."
+ ],
+ "summary_html": "<ul><li>The total resistance of an electrical circuit with resistors wired in a series is the sum of the individual resistances: $\\kRess = \\kResone + \\kRestwo + \\kResthree + \\ldots$.</li><li>Each resistor in a series circuit has the same amount of current flowing through it.</li><li>The voltage drop, or power dissipation, across each individual resistor in a series is different, and their combined total adds up to the power source input.</li><li>The total resistance of an electrical circuit with resistors wired in parallel is less than the lowest resistance of any of the components and can be determined using the formula: $\\frac{1}{\\kResp} = \\frac{1}{\\kResone} + \\frac{1}{\\kRestwo} + \\frac{1}{\\kResthree} + \\ldots$.</li><li>Each resistor in a parallel circuit has the same full voltage of the source applied to it.</li><li>The current flowing through each resistor in a parallel circuit is different, depending on the resistance.</li><li>If a more complex connection of resistors is a combination of series and parallel, it can be reduced to a single equivalent resistance by identifying its various parts as series or parallel, reducing each to its equivalent, and continuing until a single resistance is eventually reached.</li></ul>",
+ "notes": "The six problems the book leaves without a keyed answer are left out, and so is the photograph of the transmission tower that belongs to one of them.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercises_lead": "Data taken from figures can be assumed to be accurate to three significant digits.",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Seven of the thirteen problems are keyed and are set here; the other six are left out: the series and parallel resistance of a 100 Ω, a 2.50 kΩ and a 4.00 kΩ resistor, the toaster, frying pan and lamp on one 15 A circuit, the currents and powers of two resistors on a 48.0 V battery, the power dissipated by $R_3$ in the combined circuit, the ceramic insulators on a transmission line, and the unreasonable parallel pair. Every conceptual question carries an AI-marked suggested approach rather than a graded answer. All five AP items are keyed in the source: three are graded choices, the multi-part item is an open item with the book’s own key as its solution, and the item that asks the reader to select two of its four options is an open item for the same reason, since a card that takes one choice cannot take two.",
+ "figures": [
+  {
+   "id": "sim-four-resistors",
+   "kind": "sim",
+   "number": "21.2",
+   "originals": [
+    "/media/ch21/Figure_22_01_01.jpg"
+   ],
+   "original_caption": "(a) A series connection of resistors. (b) A parallel connection of resistors.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-three-resistors",
+   "kind": "sim",
+   "number": "21.3",
+   "folds": [
+    "21.4",
+    "21.6"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_01_02.jpg",
+    "/media/ch21/Figure_22_01_04.jpg",
+    "/media/ch21/Figure_22_01_06.jpg"
+   ],
+   "original_caption": "(Figure 21.3) Three resistors connected in series to a battery (left) and the equivalent single or series resistance (right). (Figure 21.4) (a) Three resistors connected in parallel to a battery and the equivalent single or parallel resistance. (b) Electrical power setup in a house. (credit: Dmitry G, Wikimedia Commons) (Figure 21.6) These three resistors are connected to a voltage source so that R_2 and R_3 are in parallel with one another and that combination is in series with R_1.",
+   "widths": [
+    300,
+    500,
+    350
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage"
+   ]
+  },
+  {
+   "id": "sim-reduce-network",
+   "kind": "sim",
+   "number": "21.5",
+   "originals": [
+    "/media/ch21/Figure_22_01_05.jpg"
+   ],
+   "original_caption": "This combination of seven resistors has both series and parallel parts. Each is identified and reduced to an equivalent resistance, and these are further reduced until a single equivalent resistance is reached.",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-dimming-light",
+   "kind": "sim",
+   "number": "21.7",
+   "originals": [
+    "/media/ch21/Figure_22_01_07.jpg"
+   ],
+   "original_caption": "Why do lights dim when a large appliance is switched on? The answer is that the large current the appliance motor draws causes a significant IR drop in the wires and reduces the voltage across the light.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage",
+    "power"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "series",
+   "concept": "series-connection",
+   "verb": "introduces"
+  },
+  {
+   "span": "series",
+   "concept": "series-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "series",
+   "concept": "voltage-divides-in-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-connection",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "current-divides-in-parallel",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-resistance-least",
+   "verb": "introduces"
+  },
+  {
+   "span": "combinations",
+   "concept": "reduce-resistor-network",
+   "verb": "introduces"
+  },
+  {
+   "span": "practical",
+   "concept": "wire-resistance-ir-drop",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "series-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "series-connection",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "series-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "parallel-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "voltage-divides-in-series",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "current-divides-in-parallel",
+   "verb": "uses"
+  },
+  {
+   "span": "practical",
+   "concept": "reduce-resistor-network",
+   "verb": "uses"
+  },
+  {
+   "span": "practical",
+   "concept": "series-connection",
+   "verb": "uses"
+  },
+  {
+   "span": "practical",
+   "concept": "voltage-divides-in-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "practical",
+   "concept": "parallel-resistance-least",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2645156",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "practical"
+   },
+   "cite": "practical",
+   "prompt": "Can any arbitrary combination of resistors be broken down into series and parallel combinations? See if you can draw a circuit diagram of resistors that cannot be broken down into combinations of series and parallel.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No, there are many ways to connect resistors that are not combinations of series and parallel, including loops and junctions. In such cases Kirchhoff’s rules, to be introduced in Kirchhoff’s Rules, will allow you to analyze the circuit."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3009508",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "A switch has a variable resistance that is nearly zero when closed and extremely large when open, and it is placed in series with the device it controls. Explain the effect the switch in the figure below has on current when open and when closed.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The switch is in series with the resistance it controls, so its resistance simply adds to the rest of the circuit. When the switch is closed its resistance is nearly zero, the total resistance is very nearly $\\kRes + \\krint$, and the current is the full $\\kIcur = \\kemf/(\\kRes + \\krint)$ the source can drive. When the switch is open its resistance is enormous, and since resistances in series add, the total resistance of the circuit becomes enormous as well. Ohm’s law then gives a current that is smaller than any current of interest, which is what it means to say the circuit is off."
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_08.jpg",
+    "alt": "The diagram shows a circuit with a voltage source and internal resistance small r connected in series with a resistance R and a switch.",
+    "caption": "A switch is ordinarily in series with a resistance and voltage source. Ideally, the switch has nearly zero resistance when closed but has an extremely large resistance when open. (Note that in this diagram, the script E represents the voltage (or electromotive force) of the battery.)"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3051530",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "What is the voltage across the open switch in the figure below?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Almost the whole emf of the source appears across it. The open switch and the resistance $\\kRes$ are in series, so the voltages across them add to the emf less the small drop inside the source, and the two voltages are in proportion to the two resistances. The switch’s resistance is enormous compared with $\\kRes$, so it takes almost all of that voltage, while the drop across $\\kRes$ is nearly zero because the current through it is nearly zero. The reading across an open switch is therefore very nearly the emf of the battery."
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_08.jpg",
+    "alt": "The diagram shows a circuit with a voltage source and internal resistance small r connected in series with a resistance R and a switch.",
+    "caption": "A switch is ordinarily in series with a resistance and voltage source. Ideally, the switch has nearly zero resistance when closed but has an extremely large resistance when open. (Note that in this diagram, the script E represents the voltage (or electromotive force) of the battery.)"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3177845",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "There is a voltage across an open switch, such as in the figure below. Why, then, is the power dissipated by the open switch small?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Because power is the product of the voltage and the current, and the current is what has become vanishingly small. The open switch has almost the whole emf across it, but the circuit is broken, so $\\kIcur$ is nearly zero and $\\kP = \\kIcur\\kV$ is nearly zero with it. The same conclusion follows from $\\kP = \\kV^2/\\kRes$: the voltage is large, but the resistance of the open switch is larger still, and dividing by it leaves almost nothing."
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_08.jpg",
+    "alt": "The diagram shows a circuit with a voltage source and internal resistance small r connected in series with a resistance R and a switch.",
+    "caption": "A switch is ordinarily in series with a resistance and voltage source. Ideally, the switch has nearly zero resistance when closed but has an extremely large resistance when open. (Note that in this diagram, the script E represents the voltage (or electromotive force) of the battery.)"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2453210",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "Why is the power dissipated by a closed switch, such as in the figure below, small?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Because now it is the voltage that has become vanishingly small. The closed switch carries the full current of the circuit, but its resistance is nearly zero, so the voltage across it, $\\kV = \\kIcur\\kRes$, is nearly zero as well, and $\\kP = \\kIcur\\kV$ is small. Written as $\\kP = \\kIcur^2\\kRes$ the same thing is plain: the current is ordinary and the resistance is almost nothing, so almost no power is dissipated. A switch is useful precisely because it wastes little power in either of its two states."
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_08.jpg",
+    "alt": "The diagram shows a circuit with a voltage source and internal resistance small r connected in series with a resistance R and a switch.",
+    "caption": "A switch is ordinarily in series with a resistance and voltage source. Ideally, the switch has nearly zero resistance when closed but has an extremely large resistance when open. (Note that in this diagram, the script E represents the voltage (or electromotive force) of the battery.)"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2590884",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "prompt": "A student in a physics lab mistakenly wired a light bulb, battery, and switch as shown in the figure below. Explain why the bulb is on when the switch is open, and off when the switch is closed. (Do not try this—it is hard on the battery!)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The switch has been put in parallel with the bulb rather than in series with it. With the switch open its branch carries no current, so all the current the battery drives goes through the bulb and the bulb lights. With the switch closed the two branches are the bulb and a path of nearly zero resistance, and a parallel combination has less resistance than its smallest member, so nearly all of the current takes the switch instead of the bulb. The voltage across the parallel pair is then almost nothing, and the bulb goes out. The battery meanwhile sees almost no resistance at all, which is why it is hard on the battery."
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_09.jpg",
+    "alt": "This diagram shows a circuit with a voltage source and internal resistance small r. A resistance R and an open switch are connected in parallel to it.",
+    "caption": "A wiring mistake put this switch in parallel with the device represented by R. (Note that in this diagram, the script E represents the voltage (or electromotive force) of the battery.)"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1927541",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "Knowing that the severity of a shock depends on the magnitude of the current through your body, would you prefer to be in series or parallel with a resistance, such as the heating element of a toaster, if shocked by it? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In series with it. In series, the resistance of the heating element adds to the resistance of your body, the total resistance is larger than either one, and the current through you is smaller than it would otherwise be. In parallel, your body has the full voltage of the source across it and draws the current that voltage and your own resistance alone allow, no matter what the heating element does, and the current through you is as large as it can be. Since the severity of a shock follows the current, the series connection is the one to prefer."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3106050",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "practical",
+   "prompt": "Would your headlights dim when you start your car’s engine if the wires in your automobile were superconductors? (Do not neglect the battery’s internal resistance.) Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "They would still dim, though less than they do. Superconducting wires would remove the $\\kIcur\\kRes$ drop in the wiring, which is one of the two places the voltage is lost, but the battery’s own internal resistance is still in series with everything the battery feeds. The starter draws a very large current, that current passes through the internal resistance, and the terminal voltage falls by $\\kIcur\\krint$. The headlights are across the terminals, so they see the lowered voltage and dim."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3177055",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "Some strings of holiday lights are wired in series to save wiring costs. An old version utilized bulbs that break the electrical connection, like an open switch, when they burn out. If one such bulb burns out, what happens to the others? If such a string operates on 120 V and has 40 identical bulbs, what is the normal operating voltage of each? Newer versions use bulbs that short circuit, like a closed switch, when they burn out. If one such bulb burns out, what happens to the others? If such a string operates on 120 V and has 39 remaining identical bulbs, what is then the operating voltage of each?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A bulb that burns out open breaks the one path the current has, so every other bulb in the string goes out with it. While all forty are working they share the 120 V equally, because resistors in series divide the source voltage in proportion to their resistances and the bulbs are identical, so each has 120 V ÷ 40 = 3.0 V across it. A bulb that burns out shorted leaves the path unbroken, so the others stay lit; the 120 V is now divided among the 39 that remain, and each has 120 V ÷ 39 ≈ 3.1 V across it. Each surviving bulb therefore runs a little hotter than it was designed to, which is why such a string fails one bulb after another."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3119307",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "If two household lightbulbs rated 60 W and 100 W are connected in series to household power, which will be brighter? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The 60 W bulb will be brighter. A bulb’s rating is the power it dissipates at the full household voltage, and $\\kP = \\kV^2/\\kRes$, so the 60 W bulb is the one with the larger resistance. In series the two carry the same current, and the power each dissipates is $\\kP = \\kIcur^2\\kRes$, which is larger for the larger resistance. The bulb with the lower rating therefore takes the larger share of the voltage and glows the more brightly of the two, while both are dimmer than either would be on its own."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3177962",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "prompt": "Suppose you are doing a physics lab that asks you to put a resistor into a circuit, but all the resistors supplied have a larger resistance than the requested value. How would you connect the available resistances to attempt to get the smaller value asked for?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Connect them in parallel. A parallel combination always comes to less than the smallest resistance in it, because every branch added gives the current another path and so lowers the total, and $1/\\kResp$ is the sum of the reciprocals. Two or more of the resistors on hand, wired side by side between the same two points, will therefore fall below the value of any one of them, and adding further branches brings the combination down further still until it reaches the value the experiment asks for."
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id2442330",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "Before World War II, some radios got power through a “resistance cord” that had a significant resistance. Such a resistance cord reduces the voltage to a desired level for the radio’s tubes and the like, and it saves the expense of a transformer. Explain why resistance cords become warm and waste energy when the radio is on.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The cord is a resistor in series with the radio, and it does its job by taking part of the supply voltage for itself. The current of the radio passes through it, so it has a voltage $\\kV = \\kIcur\\kRes$ across it and dissipates a power $\\kP = \\kIcur^2\\kRes$. That energy does not reach the radio: it goes into heating the cord, which is why the cord becomes warm. The larger the resistance the cord needs in order to drop the voltage far enough, the more of the supplied energy it wastes in this way."
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id1615512",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "prompt": "Some light bulbs have three power settings (not including zero), obtained from multiple filaments that are individually switched and wired in parallel. What is the minimum number of filaments needed for three power settings?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Two. With two filaments of different resistances there are three ways of switching them that give power: the first alone, the second alone, and both together. Each filament has the full supply voltage across it, so each dissipates $\\kV^2/\\kRes$ on its own, and with both switched on the two powers add, giving a third and larger setting. One filament would give only one setting, so two is the fewest that will do."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1825729",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M1_S01_img.jpg",
+    "alt": "A circuit is shown as a rectangle with an extra line connecting the top and bottom having resistor Y. The top of this circuit has a 2-volt battery to the left of the Y resistor line, the left side of this circuit has a point P marked and then a 14-volt battery, the bottom has a resistor X to the left of the Y resistor line, and the right side has a resistor Z.",
+    "caption": "A circuit containing two batteries and three identical resistors of resistance R."
+   },
+   "prompt": "The figure shows a circuit containing two batteries and three identical resistors with resistance $\\kRes$. Which of the following changes to the circuit will result in an increase in the current at point $P$? Select two answers. (a) Reversing the connections to the 14 V battery. (b) Removing the 2 V battery and connecting the wires to close the left loop. (c) Rearranging the resistors so all three are in series. (d) Removing the branch containing resistor $Z$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a), (b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2716433",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "In a circuit, a parallel combination of six 1.6-kΩ resistors is connected in series with a parallel combination of four 2.4-kΩ resistors. If the source voltage is 24 V, what will be the percentage of total current in one of the 2.4-kΩ resistors?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "10%",
+     "12%",
+     "20%",
+     "25%"
+    ],
+    "correct": 3,
+    "generated_by": "source",
+    "hint": "The whole of the current the source drives arrives at the group of four resistors, and four identical resistors in parallel have the same voltage across them and so carry the same current as one another.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1635797",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "If the circuit in the previous question is modified by removing some of the 1.6 kΩ resistors, the total current in the circuit is 24 mA. How many resistors were removed?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "correct": 1,
+    "hint": "A total current of 24 mA on a 24 V source means the whole circuit comes to 1.0 kΩ, and the group of four 2.4-kΩ resistors already accounts for 0.6 kΩ of it.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2337395",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M1_S02_img.jpg",
+    "alt": "A circuit is shown that has nothing on the top or bottom, a battery to the left, and 2R resistor on the right. Additionally, there is an R resistor connecting the top and bottom of the circuit between the left and right sides of the circuit.",
+    "caption": "Two resistors, with resistances R and 2R, connected to a voltage source."
+   },
+   "prompt": "Two resistors, with resistances $\\kRes$ and $2\\kRes$, are connected to a voltage source as shown in this figure. If the power dissipated in $\\kRes$ is 10 W, what is the power dissipated in $2\\kRes$?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "1 W",
+     "2.5 W",
+     "5 W",
+     "10 W"
+    ],
+    "correct": 2,
+    "generated_by": "source",
+    "hint": "Each resistor runs directly from one terminal of the source to the other, so both have the full source voltage across them, and for a fixed voltage the power is $\\kP = \\kV^2/\\kRes$.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1843350",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "In a circuit, a parallel combination of two 20-Ω and one 10-Ω resistors is connected in series with a 4-Ω resistor. The source voltage is 36 V. (a) Find the resistor(s) with the maximum current. (b) Find the resistor(s) with the maximum voltage drop. (c) Find the power dissipated in each resistor and hence the total power dissipated in all the resistors. Also find the power output of the source. Are they equal or not? Justify your answer. (d) Will the answers for questions (a) and (b) differ if a 3 Ω resistor is added in series to the 4 Ω resistor? If yes, repeat the question(s) for the new resistor combination. (e) If the values of all the resistors and the source voltage are doubled, what will be the effect on the current?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) 4-Ω resistor; (b) combination of 20-Ω, 20-Ω, and 10-Ω resistors; (c) 20 W in each 20-Ω resistor, 40 W in the 10-Ω resistor, 64 W in the 4-Ω resistor, 144 W total in the resistors, output power is 144 W, yes they are equal (law of conservation of energy); (d) 4 Ω and 3 Ω for part (a) and no change for part (b); (e) no effect, it will remain the same."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1599495",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "(a) What is the resistance of ten $275\\text{-}Ω$ resistors connected in series? (b) In parallel?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.75,
+      "unit": "kΩ",
+      "hint": "Resistances in series simply add, and ten identical ones add to ten times one of them."
+     },
+     {
+      "part": "(b)",
+      "value": 27.5,
+      "unit": "Ω",
+      "hint": "Ten identical resistors in parallel come to a tenth of one of them, since the ten reciprocals add."
+     }
+    ],
+    "solution": "(a) 2.75 kΩ (b) 27.5 Ω"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3017617",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "What are the largest and smallest resistances you can obtain by connecting a $36.0\\text{-}Ω$, a $50.0\\text{-}Ω$, and a $700\\text{-}Ω$ resistor together?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "largest",
+      "value": 786.0,
+      "unit": "Ω",
+      "hint": "Series adds, so the largest resistance comes from putting all three one after the other."
+     },
+     {
+      "part": "smallest",
+      "value": 20.3,
+      "unit": "Ω",
+      "hint": "Parallel falls below the smallest member, so the smallest resistance comes from putting all three side by side."
+     }
+    ],
+    "solution": "(a) 786 Ω (b) 20.3 Ω"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1927186",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "Your car’s 30.0-W headlight and 2.40-kW starter are ordinarily connected in parallel in a 12.0-V system. What power would one headlight and the starter consume if connected in series to a 12.0-V battery? (Neglect any other resistance in the circuit and any change in resistance in the two devices.)",
+   "answer": {
+    "type": "number",
+    "value": 29.6,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "Get each device’s resistance from its rated power on 12.0 V with $\\kP = \\kV^2/\\kRes$, add the two resistances, and then find the power the same 12.0 V delivers to the sum.",
+    "solution": "29.6 W"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1609224",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-combination",
+   "prompt": "Referring to the example combining series and parallel circuits and Figure 21.6, calculate $\\kIcurthree$ in the following two different ways: (a) from the known values of $\\kIcur$ and $\\kIcurtwo$; (b) using Ohm’s law for $\\kResthree$. In both parts explicitly show how you follow the steps in the Problem-Solving Strategies for Series and Parallel Resistors.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.74,
+      "unit": "A",
+      "hint": "The two branch currents add to the current that arrives at the junction, so $\\kIcurthree = \\kIcur - \\kIcurtwo$."
+     },
+     {
+      "part": "(b)",
+      "value": 0.742,
+      "unit": "A",
+      "hint": "The parallel pair has $\\kVp$ across it, so $\\kIcurthree = \\kVp/\\kResthree$."
+     }
+    ],
+    "solution": "(a) 0.74 A (b) 0.742 A"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2666378",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "practical",
+   "prompt": "Refer to Figure 21.7 and the discussion of lights dimming when a heavy appliance comes on. (a) Given the voltage source is 120 V, the wire resistance is $0.400\\ Ω$, and the bulb is nominally 75.0 W, what power will the bulb dissipate if a total of 15.0 A passes through the wires when the motor comes on? Assume negligible change in bulb resistance. (b) What power is consumed by the motor?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 67.7,
+      "unit": "W",
+      "hint": "The 15.0 A in the wires drops $\\kIcur\\kResone$ of the 120 V, and the bulb keeps the rest; its resistance comes from its 75.0 W rating on 120 V."
+     },
+     {
+      "part": "(b)",
+      "value": 1.64,
+      "unit": "kW",
+      "hint": "The motor takes whatever current the bulb does not, and it has the same reduced voltage across it."
+     }
+    ],
+    "solution": "(a) 67.7 W (b) 1.64 kW"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3051842",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "Show that if two resistors $\\kResone$ and $\\kRestwo$ are combined and one is much greater than the other ($\\kResone \\gg \\kRestwo$): (a) Their series resistance is very nearly equal to the greater resistance $\\kResone$. (b) Their parallel resistance is very nearly equal to the smaller resistance $\\kRestwo$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $\\kRess = \\kResone + \\kRestwo$, so $\\kRess \\approx \\kResone$ when $\\kResone \\gg \\kRestwo$. (b) $\\frac{1}{\\kResp} = \\frac{1}{\\kResone} + \\frac{1}{\\kRestwo} = \\frac{\\kResone + \\kRestwo}{\\kResone\\kRestwo}$, so that $\\kResp = \\frac{\\kResone\\kRestwo}{\\kResone + \\kRestwo} \\approx \\frac{\\kResone\\kRestwo}{\\kResone} = \\kRestwo$ when $\\kResone \\gg \\kRestwo$."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3290888",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "Unreasonable Results. Two resistors, one having a resistance of $900\\ \\text{k}Ω$, are connected in series to produce a total resistance of $0.500\\ \\text{M}Ω$. (a) What is the value of the second resistance? (b) What is unreasonable about this result? (c) Which assumptions are unreasonable or inconsistent?",
+   "answer": {
+    "type": "number",
+    "value": -400.0,
+    "unit": "kΩ",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Series resistances add, so the second resistance is the stated total less the one you are given.",
+    "solution": "(a) $-400\\ \\text{k}Ω$. (b) Resistance cannot be negative. (c) Series resistance is said to be less than one of the resistors, but it must be greater than any of the resistors."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "series-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "voltage-divides-in-series"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "series-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "parallel-connection"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "parallel-resistance-least",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "parallel-connection",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "wire-resistance-ir-drop"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "voltage-divides-in-series"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "series-connection",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "voltage-divides-in-series",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "parallel-resistance-least",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "wire-resistance-ir-drop"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "series-connection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "parallel-connection"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "parallel-resistance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "current-divides-in-parallel",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "current-divides-in-parallel",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "parallel-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "parallel-connection"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "parallel-resistance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "voltage-divides-in-series",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "current-divides-in-parallel",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "series-resistance"
+  },
+  {
+   "exercise": "p1",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "p2",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "p2",
+   "concept": "series-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "parallel-resistance-least",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "series-resistance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "series-connection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "current-divides-in-parallel"
+  },
+  {
+   "exercise": "p4",
+   "concept": "reduce-resistor-network",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "wire-resistance-ir-drop"
+  },
+  {
+   "exercise": "p5",
+   "concept": "reduce-resistor-network",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "series-resistance"
+  },
+  {
+   "exercise": "p6",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "p7",
+   "concept": "series-resistance"
+  }
+ ]
+}

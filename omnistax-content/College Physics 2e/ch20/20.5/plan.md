@@ -34,6 +34,8 @@ sim-transmission · Sim · high-voltage-transmission, ac-ohms-law · variation b
 fig-transformers · photo, Figure 20.17 · high-voltage-transmission · kept: the text says "See Figure 20.17" and the caption names the transformers that do the raising and lowering the span turns on · no controls
 ```
 
+Figure pass of 2026-09-15 (Claude Fable 5.1), what is built now. `sim-transmission`: the loss curve is clipped to its frame, since at 200 MW or 5 Ω it used to climb out of the graph and through the scene; the plant is a cooling tower, a boiler house with two stacks and their plumes, and a turbine hall the line leaves from, drawn here since the library has no such sprite; the heat lost is a bounded glow along the line rather than a slab, and the line's resistance is named below the line. `sim-ac-versus-dc` and `sim-ac-power` were looked at in both themes at every extreme and left as built.
+
 The three sims bind voltage, current, resistance, power and frequency.
 Every hue comes from `C(type)`; the free electrons of the reversing loop are
 `F.el('e-')`, as `ch20/COLOR.md` asks, and the voltage and current traces are

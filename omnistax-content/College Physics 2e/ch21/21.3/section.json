@@ -1,0 +1,591 @@
+{
+ "id": "21.3",
+ "module": "m42359",
+ "chapter": "21",
+ "title": "Kirchhoff’s Rules",
+ "short": "Kirchhoff’s rules",
+ "lead": "Many circuits cannot be taken apart into series and parallel groups, and for those two rules are needed instead. This section states them, the junction rule for the currents that meet at a junction and the loop rule for the changes in potential round a closed path, shows that the first is the conservation of charge and the second the conservation of energy, sets out the conventions that get the signs right, and works a two-loop circuit through to its three branch currents.",
+ "objectives": [
+  "Analyze a complex circuit using Kirchhoff’s rules, using the conventions for determining the correct signs of various terms."
+ ],
+ "summary_html": "<ul><li>Kirchhoff’s rules can be used to analyze any circuit, simple or complex.</li><li>Kirchhoff’s first rule—the junction rule: The sum of all currents entering a junction must equal the sum of all currents leaving the junction.</li><li>Kirchhoff’s second rule—the loop rule: The algebraic sum of changes in potential around any closed circuit path (loop) must be zero.</li><li>The two rules are based, respectively, on the laws of conservation of charge and energy.</li><li>When calculating potential and current using Kirchhoff’s rules, a set of conventions must be followed for determining the correct signs of various terms.</li><li>The simpler series and parallel rules are special cases of Kirchhoff’s rules.</li></ul>",
+ "notes": "The six problems the book leaves without a keyed answer are left out, and where an exercise prints more than one image the card carries the circuit and the remaining images are described in the question in words.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercises_lead": "Data taken from figures can be assumed to be accurate to three significant digits.",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Five of the eleven problems are keyed and are set here; the other six are left out: the loop rule round aedcba, the two verifications of the worked example’s second and third equations, the loop rule round abcdefghija, the currents of the four-source circuit and the currents of the circuit the conceptual questions use. The five conceptual questions and the first of the four AP items carry no key, so each of those has an AI-marked suggested approach; the other three AP items are keyed in the source and carry the book’s own answer. An exercise card carries one image, so in the first and third AP items the further images the book prints, four candidate graphs and one modified circuit, are described in the question in words.",
+ "figures": [
+  {
+   "id": "sim-two-loop-circuit",
+   "kind": "sim",
+   "number": "21.21",
+   "folds": [
+    "21.25"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_03_01.jpg",
+    "/media/ch21/Figure_22_03_05.jpg"
+   ],
+   "original_caption": "(Figure 21.21) This circuit cannot be reduced to a combination of series and parallel connections. Kirchhoff’s rules, special applications of the laws of conservation of charge and energy, can be used to analyze it. (Note: The script E in the figure represents electromotive force, emf.) (Figure 21.25) This circuit is similar to that in Figure 21.21, but the resistances and emfs are specified. (Each emf is denoted by script E.) The currents in each branch are labeled and assumed to move in the directions shown. This example uses Kirchhoff’s rules to find the currents.",
+   "widths": [
+    175,
+    300
+   ],
+   "draws": [
+    "current",
+    "voltage",
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-junction-rule",
+   "kind": "sim",
+   "number": "21.22",
+   "originals": [
+    "/media/ch21/Figure_22_03_02.jpg"
+   ],
+   "original_caption": "The junction rule. The diagram shows an example of Kirchhoff’s first rule where the sum of the currents into a junction equals the sum of the currents out of a junction. In this case, the current going into the junction splits and comes out as two currents, so that I₁ = I₂ + I₃. Here I₁ must be 11 A, since I₂ is 7 A and I₃ is 4 A.",
+   "widths": [
+    180
+   ],
+   "draws": [
+    "current"
+   ]
+  },
+  {
+   "id": "sim-loop-rule",
+   "kind": "sim",
+   "number": "21.23",
+   "originals": [
+    "/media/ch21/Figure_22_03_03.jpg"
+   ],
+   "original_caption": "The loop rule. An example of Kirchhoff’s second rule where the sum of the changes in potential around a closed loop must be zero. (a) In this standard schematic of a simple series circuit, the emf supplies 18 V, which is reduced to zero by the resistances, with 1 V across the internal resistance, and 12 V and 5 V across the two load resistances, for a total of 18 V. (b) This perspective view represents the potential as something like a roller coaster, where charge is raised in potential by the emf and lowered by the resistances. (Note that the script E stands for emf.)",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-sign-rules",
+   "kind": "sim",
+   "number": "21.24",
+   "originals": [
+    "/media/ch21/Figure_22_03_04.jpg"
+   ],
+   "original_caption": "Each of these resistors and voltage sources is traversed from a to b. The potential changes are shown beneath each element and are explained in the text. (Note that the script E stands for emf.)",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "rules",
+   "concept": "kirchhoff-from-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "junction",
+   "concept": "junction-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "junction",
+   "concept": "kirchhoff-from-conservation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "loop",
+   "concept": "loop-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "loop",
+   "concept": "kirchhoff-from-conservation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applying",
+   "concept": "loop-rule-signs",
+   "verb": "introduces"
+  },
+  {
+   "span": "applying",
+   "concept": "apply-kirchhoffs-rules",
+   "verb": "introduces"
+  },
+  {
+   "span": "applying",
+   "concept": "junction-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "applying",
+   "concept": "loop-rule",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2296992",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "applying"
+   },
+   "cite": "applying",
+   "prompt": "Can Kirchhoff’s rules be applied to simple series and parallel circuits or are they restricted for use in more complicated circuits that are not combinations of series and parallel?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Kirchhoff's rules can be applied to any circuit since they are applications to circuits of two conservation laws. Conservation laws are the most broadly applicable principles in physics. It is usually mathematically simpler to use the rules for series and parallel in simpler circuits so we emphasize Kirchhoff’s rules for use in more complicated situations. But the rules for series and parallel can be derived from Kirchhoff’s rules. Moreover, Kirchhoff’s rules can be expanded to devices other than resistors and emfs, such as capacitors, and are one of the basic analysis devices in circuit analysis."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1525010",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "junction",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_06.jpg",
+    "alt": "A T junction with the currents I₁, I₂ and I₃ all drawn entering the junction."
+   },
+   "prompt": "Can all of the currents going into the junction in the figure be positive? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Ask what the junction rule requires of three currents that are all drawn entering. The sum of the currents entering a junction equals the sum of the currents leaving it, and here nothing is drawn leaving, so the three would have to add to zero. Three positive numbers cannot add to zero, and so at least one of the three must be negative, which means that the current in that branch really runs the other way. Charge would otherwise collect at the junction, and charge is conserved."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3137904",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_07-007f.jpg",
+    "alt": "A circuit with four sources of emf and several resistances, wired into two loops with two junctions. Points on the diagram are marked a through g and the current in each branch is labeled separately."
+   },
+   "prompt": "Apply the junction rule to junction b in the figure. Is any new information gained by applying the junction rule at e? (In the figure, each emf is represented by script E.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the branches that meet at b one at a time and write the currents drawn entering it on one side of the equation and those drawn leaving it on the other, keeping the directions the figure assumes rather than the ones you expect. Then do the same at e. The two junctions are the two ends of the same set of branches, so every current that enters one of them leaves the other, and the second equation is the first one rearranged. No new information is gained, which is why a circuit with two junctions gives only one independent junction equation and the rest must come from the loop rule."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3154834",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_07-007f.jpg",
+    "alt": "A circuit with four sources of emf and several resistances, wired into two loops with two junctions. Points on the diagram are marked a through g and the current in each branch is labeled separately."
+   },
+   "prompt": "(a) What is the potential difference going from point a to point b in the figure? (b) What is the potential difference going from c to b? (c) From e to g? (d) From e to d?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each of these is a walk along part of the circuit rather than round a whole loop, so add the changes in potential of the elements you pass and do not set the sum to zero. Go element by element in the direction the question names. A resistor passed the way its current runs contributes −IR and one passed against its current +IR; a source entered at its negative terminal contributes +emf and one entered at its positive terminal −emf, and its internal resistance is a resistor like any other. The answer is the sum of those terms, and its sign tells you whether the potential rose or fell along the way."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2383320",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_07-007f.jpg",
+    "alt": "A circuit with four sources of emf and several resistances, wired into two loops with two junctions. Points on the diagram are marked a through g and the current in each branch is labeled separately."
+   },
+   "prompt": "Apply the loop rule to loop afedcba in the figure.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Start at a and walk to f, e, d, c, b and back to a, writing one term for every element you pass and nothing for a plain wire. Use the four sign conventions: −IR for a resistor passed the way its current runs, +IR for one passed the other way, +emf for a source entered at its negative terminal and −emf for one entered at its positive terminal. Set the sum of all those terms to zero. Check your work by walking the same loop the other way round, which should give every term with its sign reversed, that is, the same equation multiplied by −1."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2402513",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_07-007f.jpg",
+    "alt": "A circuit with four sources of emf and several resistances, wired into two loops with two junctions. Points on the diagram are marked a through g and the current in each branch is labeled separately."
+   },
+   "prompt": "Apply the loop rule to loops abgefa and cbgedc in the figure.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Walk each loop in turn, taking the letters in the order they are given, and write a term for every resistance and every source you pass, with the signs the four conventions give. Keep the current directions the figure assumes throughout, and do not change a sign because a current looks as though it should run the other way; a wrong guess will come out as a negative current at the end. The two loops share a branch, so the same current appears in both equations, and that is what ties them together when they are solved."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1561181",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M3_S06.jpg",
+    "alt": "A circuit with points a, b and c across the top from left to right and points h, g and f across the bottom from left to right. The segment ah carries a source of emf E and a resistance r; the segment bg carries point i, a resistance R₁ and point j; the segment cf carries a resistance R₂, point d, point e and a resistance R₃."
+   },
+   "prompt": "An experiment was set up with the circuit diagram shown. Assume $\\kResone = 10\\ Ω$, $\\kRestwo = \\kResthree = 5\\ Ω$, $\\krint = 0\\ Ω$ and $\\kemf = 6\\ \\text{V}$.\n\n(a) One of the steps to examine the set-up is to test points with the same potential. Which of the following points can be tested? (a) Points b, c and d. (b) Points d, e and f. (c) Points f, h and j. (d) Points a, h and i.\n\n(b) At which three points should the currents be measured so that Kirchhoff’s junction rule can be directly confirmed? (a) Points b, c and d. (b) Points d, e and f. (c) Points f, h and j. (d) Points a, h and i.\n\n(c) If the current in the branch with the voltage source is upward and the currents in the other two branches are downward, that is, the current at a is the sum of the currents at i and at c, identify which of the following can be true. Select two answers. (a) The current at i is the current at j less the current at f. (b) The current at e is the current at h less the current at i. (c) The current at c is the current at j less the current at a. (d) The current at d is the current at h less the current at j.\n\n(d) The measurements reveal that the current through $\\kResone$ is 0.5 A and that through $\\kResthree$ is 0.6 A. Based on your knowledge of Kirchhoff’s rules, confirm which of the following statements is true. (a) The measured current for $\\kResone$ is correct but that for $\\kResthree$ is incorrect. (b) The measured current for $\\kResthree$ is correct but that for $\\kResone$ is incorrect. (c) Both the measured currents are correct. (d) Both the measured currents are incorrect.\n\n(e) The book prints a graph of the energy dissipated at $\\kResone$ against time, a straight line rising from the origin to a point where the energy is $E_1$ at the time $t_1$. Which of the following shows the graph of the energy dissipated at $\\kRestwo$ against time? (a) A straight line from the origin to the energy $2E_1$ at the time $t_1$. (b) A straight line from the origin to the energy $E_1$ at the time $t_1$. (c) A straight line from the origin to the energy $E_1/2$ at the time $t_1$. (d) A straight line from the origin to the energy $E_1/4$ at the time $t_1$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Begin by seeing what the circuit is. The source with no internal resistance sits in one vertical branch, $\\kResone$ in the second and $\\kRestwo$ and $\\kResthree$ in series in the third, and the three branches run between the same two horizontal wires. For part (a), remember that a plain wire has no resistance, so every point along an unbroken stretch of wire is at the same potential; look for three of the lettered points that are joined by wire alone with no element between them. For part (b), the junction rule is confirmed by measuring the current in each of the three branches at once, so choose the three points that lie one in each branch. For part (c), write the junction rule at the top and at the bottom of the circuit in the directions the question sets and rearrange each equation; the statements that survive are the ones that are those equations written another way. For part (d), find each branch current from Ohm’s law: the full 6 V stands across $\\kResone$ and across the series pair $\\kRestwo$ and $\\kResthree$, because the source has no internal resistance, and compare what that gives with the two measured values. For part (e), the energy dissipated in a resistor carrying a steady current grows in proportion to the time, so each graph is a straight line through the origin and its slope is the power $I^2R$; work out the power in $\\kRestwo$ as a multiple of the power in $\\kResone$ and choose the line whose height at $t_1$ stands in the same ratio."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1222161",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M3_S09_img.jpg",
+    "alt": "A circuit with four sources of emf and several resistances, wired into loops with the junctions a and e, the currents I₁, I₂ and I₃ marked with arrows, and points lettered a through l."
+   },
+   "prompt": "For this question, consider the circuit shown in the figure.\n\n(a) Assuming that none of the three currents $\\kIcurone$, $\\kIcurtwo$ and $\\kIcurthree$ is equal to zero, which of the following statements is false? (a) $\\kIcurthree = \\kIcurone + \\kIcurtwo$ at point a. (b) $\\kIcurtwo = \\kIcurthree - \\kIcurone$ at point e. (c) The current through $\\kResthree$ is equal to the current through $R_5$. (d) The current through $\\kResone$ is equal to the current through $R_5$.\n\n(b) Which of the following statements is true? (a) $\\kemfone + \\kemftwo + \\kIcurone\\kResone - \\kIcurtwo\\kRestwo + \\kIcurone\\krintone - \\kIcurtwo\\krinttwo + \\kIcurone R_5 = 0$. (b) $-\\kemfone + \\kemftwo + \\kIcurone\\kResone - \\kIcurtwo\\kRestwo + \\kIcurone\\krintone - \\kIcurtwo\\krinttwo - \\kIcurone R_5 = 0$. (c) $\\kemfone - \\kemftwo - \\kIcurone\\kResone + \\kIcurtwo\\kRestwo - \\kIcurone\\krintone + \\kIcurtwo\\krinttwo - \\kIcurone R_5 = 0$. (d) $\\kemfone + \\kemftwo - \\kIcurone\\kResone + \\kIcurtwo\\kRestwo - \\kIcurone\\krintone + \\kIcurtwo\\krinttwo + \\kIcurone R_5 = 0$.\n\n(c) If $\\kIcurone = 5\\ \\text{A}$ and $\\kIcurthree = -2\\ \\text{A}$, which of the following statements is false? (a) The current through $\\kResone$ will flow from a to b and will be equal to 5 A. (b) The current through $\\kResthree$ will flow from a to j and will be equal to 2 A. (c) The current through $R_5$ will flow from d to e and will be equal to 5 A. (d) None of the above.\n\n(d) If $\\kIcurone = 5\\ \\text{A}$ and $\\kIcurthree = -2\\ \\text{A}$, $\\kIcurtwo$ will be equal to (a) 3 A, (b) −3 A, (c) 7 A, (d) −7 A.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) (c); (b) (c); (c) (d); (d) (d)."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id4214079",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M3_S10.jpg",
+    "alt": "A circuit with a source of emf E in the left-hand vertical branch, a resistance R₁ in the middle branch and a resistance R₂ in the right-hand branch, the three branches joined by a wire at the top and at the bottom."
+   },
+   "prompt": "In an experiment the circuit shown is set up. Three ammeters are used to record the currents in the three vertical branches, the ones carrying $\\kResone$, $\\kRestwo$ and $\\kemf$. The readings of the ammeters in the resistor branches, that is, the currents in $\\kResone$ and $\\kRestwo$, are 2 A and 3 A respectively.\n\n(a) Find the equation obtained by applying Kirchhoff’s loop rule in the loop involving $\\kResone$ and $\\kRestwo$.\n\n(b) What will be the reading of the third ammeter, the one in the branch with $\\kemf$? If $\\kemf$ were replaced by $3\\kemf$, how would this reading change?\n\n(c) The circuit is now modified by adding a second source, of emf $2\\kemf$, in the upper wire between the two resistors, the rest of the circuit left as it was. Find the readings of the three ammeters.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) The loop that contains only the two resistors has no source inside it, so the two changes in potential must cancel and $\\kIcurone\\kResone = \\kIcurtwo\\kRestwo$; with the readings of 2 A and 3 A this is $2\\kResone = 3\\kRestwo$. (b) The junction rule makes the third ammeter read the sum of the other two, which is 5 A, and each current is proportional to the emf that drives it, so replacing $\\kemf$ by $3\\kemf$ would make that reading 15 A. (c) With the second source of emf $2\\kemf$ added in the upper wire between the two resistors, the ammeters read 2 A in the branch with $\\kResone$, 9 A in the branch with $\\kRestwo$ and 11 A in the branch with $\\kemf$."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1175790",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M3_S12_img.jpg",
+    "alt": "A circuit with a source of emf E₁ and a resistance r₁ across the top, a resistance R₁ between the points A and B across the middle, and a source of emf E₂ and a resistance r₂ across the bottom, with a resistance R₂ on the left and a resistance R₃ on the right."
+   },
+   "prompt": "In this circuit, assume the currents through $\\kResone$, $\\kRestwo$ and $\\kResthree$ are $\\kIcurone$, $\\kIcurtwo$ and $\\kIcurthree$ respectively and all are flowing in the clockwise direction.\n\n(a) Find the equation obtained by applying Kirchhoff’s junction rule at point A.\n\n(b) Find the equations obtained by applying Kirchhoff’s loop rule in the upper and lower loops.\n\n(c) Assume $\\kResone = \\kRestwo = 6\\ Ω$, $\\kResthree = 12\\ Ω$, $\\krintone = \\krinttwo = 0\\ Ω$, $\\kemfone = 6\\ \\text{V}$ and $\\kemftwo = 4\\ \\text{V}$. Calculate $\\kIcurone$, $\\kIcurtwo$ and $\\kIcurthree$.\n\n(d) For the situation in which $\\kemftwo$ is replaced by a closed switch, repeat parts (a) and (b). Using the values for $\\kResone$, $\\kRestwo$, $\\kResthree$, $\\krintone$ and $\\kemfone$ from part (c), calculate the currents through the three resistors.\n\n(e) For the circuit in part (d) calculate the output power of the voltage source and the power across all the resistors. Examine whether energy is conserved in the circuit.\n\n(f) A student implemented the circuit of part (d) in the lab and measured the current through one of the resistors as 0.19 A. According to the results calculated in part (d), identify the resistor or resistors. Justify any difference between the measured and the calculated value.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $\\kIcurone + \\kIcurthree = \\kIcurtwo$. (b) $\\kemfone - \\kIcurone\\kResone - \\kIcurtwo\\kRestwo - \\kIcurone\\krintone = 0$ and $-\\kemftwo + \\kIcurone\\kResone - \\kIcurthree\\kResthree - \\kIcurthree\\krinttwo = 0$. (c) $\\kIcurone = 8/15\\ \\text{A}$, $\\kIcurtwo = 7/15\\ \\text{A}$ and $\\kIcurthree = -1/15\\ \\text{A}$. (d) $\\kIcurone = 2/5\\ \\text{A}$, $\\kIcurtwo = 3/5\\ \\text{A}$ and $\\kIcurthree = 1/5\\ \\text{A}$. (e) The source puts out 18/5 W, and the resistors dissipate 24/25 W, 54/25 W and 12/25 W, which add to 18/5 W, so energy is conserved. (f) $\\kResthree$, and the difference is due to losses in the circuit."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2074624",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "Apply the loop rule to loop abcdefgha in Figure 21.25.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\kIcurtwo\\kRestwo + \\kemfone - \\kIcurtwo\\krintone + \\kIcurthree\\kResthree + \\kIcurthree\\krinttwo - \\kemftwo = 0$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3199702",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "junction",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_08-1bf9.jpg",
+    "alt": "A circuit with four sources of emf and several resistances, wired into two loops with many junctions. Points on the diagram are marked a through j and the current in each branch is labeled separately."
+   },
+   "prompt": "Apply the junction rule at point a in the figure.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kIcurthree = \\kIcurone + \\kIcurtwo$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2601229",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_08-1bf9.jpg",
+    "alt": "A circuit with four sources of emf and several resistances, wired into two loops with many junctions. Points on the diagram are marked a through j and the current in each branch is labeled separately."
+   },
+   "prompt": "Apply the loop rule to loop akledcba in the figure.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kemftwo - \\kIcurtwo\\krinttwo - \\kIcurtwo\\kRestwo + \\kIcurone R_5 + \\kIcurone\\krintone - \\kemfone + \\kIcurone\\kResone = 0$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id3080612",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "Solve Example 21.5, but use loop abcdefgha instead of loop akledcba. Explicitly show how you follow the steps in the Problem-Solving Strategies for Series and Parallel Resistors.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.75,
+      "unit": "A",
+      "hint": "Take the junction rule at a together with one loop equation and the outer loop, and solve the three for the current in the middle branch first."
+     },
+     {
+      "part": "(b)",
+      "value": -3.5,
+      "unit": "A",
+      "hint": "A negative current is not a mistake: it means the branch carries its current the other way round from the direction assumed for it."
+     },
+     {
+      "part": "(c)",
+      "value": 8.25,
+      "unit": "A",
+      "hint": "Substitute the current you found for the middle branch back into the loop equation that contains the second source."
+     }
+    ],
+    "solution": "$\\kIcurone = 4.75\\ \\text{A}$, $\\kIcurtwo = -3.5\\ \\text{A}$ and $\\kIcurthree = 8.25\\ \\text{A}$."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2057574",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "junction",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_09.jpg",
+    "alt": "A circuit with two sources of emf E₁ and E₂ and three resistances, wired into two loops with two junctions, with points marked a through h and the current in each branch labeled separately."
+   },
+   "prompt": "<strong>Unreasonable Results</strong> Consider the circuit in the figure, and suppose that the emfs are unknown and the currents are given to be $\\kIcurone = 5.00\\ \\text{A}$, $\\kIcurtwo = 3.0\\ \\text{A}$ and $\\kIcurthree = -2.00\\ \\text{A}$. (a) Could you find the emfs? (b) What is wrong with the assumptions?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) No, you would get inconsistent equations to solve. (b) $\\kIcurone \\neq \\kIcurtwo + \\kIcurthree$. The assumed currents violate the junction rule."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "kirchhoff-from-conservation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "junction-rule"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "junction-rule"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "apply-kirchhoffs-rules",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "loop-rule-signs"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "loop-rule",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "loop-rule"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "loop-rule-signs",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "loop-rule"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "loop-rule-signs",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "apply-kirchhoffs-rules"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "junction-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "loop-rule-signs"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "junction-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "apply-kirchhoffs-rules",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "apply-kirchhoffs-rules"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "loop-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "apply-kirchhoffs-rules"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "junction-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "loop-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "loop-rule-signs"
+  },
+  {
+   "exercise": "p1",
+   "concept": "loop-rule",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "junction-rule"
+  },
+  {
+   "exercise": "p3",
+   "concept": "loop-rule-signs"
+  },
+  {
+   "exercise": "p4",
+   "concept": "apply-kirchhoffs-rules"
+  },
+  {
+   "exercise": "p4",
+   "concept": "loop-rule-signs",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "junction-rule"
+  },
+  {
+   "exercise": "p5",
+   "concept": "apply-kirchhoffs-rules",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

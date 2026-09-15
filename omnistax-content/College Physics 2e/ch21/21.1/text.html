@@ -1,0 +1,218 @@
+<section id="connections">
+<h2>The two simplest connections</h2>
+<p class="cite-target">Most circuits have more than one component, called a <strong>resistor</strong> that limits the flow of charge in the circuit. A measure of this limit on charge flow is called <strong>resistance</strong>. The simplest combinations of resistors are the series and parallel connections illustrated in Figure 21.2. The total resistance of a combination of resistors depends on both their individual values and how they are connected.</p>
+<figure class="sim" id="sim-four-resistors" data-figure="21.2" data-original="/media/ch21/Figure_22_01_01.jpg" data-original-width="200" data-original-caption="(a) A series connection of resistors. (b) A parallel connection of resistors.">
+  <div class="sim-head"><span class="eyebrow">Figure 21.2</span><span>Four resistors are wired one after the other along a single path, or each on a path of its own between the same two points. Change the third and the fourth resistance and switch between the two wirings, and watch the four together come to more than the largest of them when they are in series and to less than the smallest of them when they are in parallel.</span></div>
+</figure>
+</section>
+
+<section id="series">
+<h2>Resistors in series</h2>
+<p class="cite-target">When are resistors in <strong>series</strong>? Resistors are in series whenever the flow of charge, called the <strong>current</strong>, must flow through devices sequentially. For example, if current flows through a person holding a screwdriver and into the Earth, then $\kResone$ in Figure 21.2 could be the resistance of the screwdriver’s shaft, $\kRestwo$ the resistance of its handle, $\kResthree$ the person’s body resistance, and $\kResfour$ the resistance of her shoes.</p>
+<p>Figure 21.3 shows resistors in series connected to a <strong>voltage</strong> source. It seems reasonable that the total resistance is the sum of the individual resistances, considering that the current has to pass through each resistor in sequence. (This fact would be an advantage to a person wishing to avoid an electrical shock, who could reduce the current by wearing high-resistance rubber-soled shoes. It could be a disadvantage if one of the resistances were a faulty high-resistance cord to an appliance that would reduce the operating current.)</p>
+<figure class="sim" id="sim-three-resistors" data-figure="21.3 + 21.4 + 21.6" data-original="/media/ch21/Figure_22_01_02.jpg,/media/ch21/Figure_22_01_04.jpg,/media/ch21/Figure_22_01_06.jpg" data-original-width="300,500,350" data-original-caption="(Figure 21.3) Three resistors connected in series to a battery (left) and the equivalent single or series resistance (right). (Figure 21.4) (a) Three resistors connected in parallel to a battery and the equivalent single or parallel resistance. (b) Electrical power setup in a house. (credit: Dmitry G, Wikimedia Commons) (Figure 21.6) These three resistors are connected to a voltage source so that R_2 and R_3 are in parallel with one another and that combination is in series with R_1.">
+  <div class="sim-head"><span class="eyebrow">Figure 21.3 + 21.4 + 21.6</span><span>One battery and three resistors are wired in the three ways this section works through, with the single resistance the combination reduces to drawn beside it. Change the source voltage and any of the three resistances, and switch the wiring, and watch the voltage drops divide the source voltage in series, the branch currents divide the source current in parallel, and both happen at once when a parallel pair sits behind a resistor in series with it.</span></div>
+</figure>
+<p>To verify that resistances in series do indeed add, let us consider the loss of electrical power, called a <strong>voltage drop</strong>, in each resistor in Figure 21.3.</p>
+<p>According to <strong>Ohm’s law</strong>, the voltage drop, $\kV$, across a resistor when a current flows through it is calculated using the equation $\kV = \kIcur\kRes$, where $\kIcur$ equals the current in amps (A) and $\kRes$ is the resistance in ohms $(Ω)$. Another way to think of this is that $\kV$ is the voltage necessary to make a current $\kIcur$ flow through a resistance $\kRes$.</p>
+<p>So the voltage drop across $\kResone$ is $\kVone = \kIcur\kResone$, that across $\kRestwo$ is $\kVtwo = \kIcur\kRestwo$, and that across $\kResthree$ is $\kVthree = \kIcur\kResthree$. The sum of these voltages equals the voltage output of the source; that is,</p>
+$$\kV = \kVone + \kVtwo + \kVthree.$$
+<p>This equation is based on the conservation of energy and conservation of charge. Electrical potential energy can be described by the equation $\text{PE} = \kq\kV$, where $\kq$ is the electric charge and $\kV$ is the voltage. Thus the energy supplied by the source is $\kq\kV$, while that dissipated by the resistors is</p>
+$$\kq\kVone + \kq\kVtwo + \kq\kVthree.$$
+<div class="note">
+<div class="eyebrow">Connections: Conservation Laws</div>
+<p>The derivations of the expressions for series and parallel resistance are based on the laws of conservation of energy and conservation of charge, which state that total charge and total energy are constant in any process. These two laws are directly involved in all electrical phenomena and will be invoked repeatedly to explain both specific effects and the general behavior of electricity.</p>
+</div>
+<p>These energies must be equal, because there is no other source and no other destination for energy in the circuit. Thus, $\kq\kV = \kq\kVone + \kq\kVtwo + \kq\kVthree$. The charge $\kq$ cancels, yielding $\kV = \kVone + \kVtwo + \kVthree$, as stated. (Note that the same amount of charge passes through the battery and each resistor in a given amount of time, since there is no capacitance to store charge, there is no place for charge to leak, and charge is conserved.)</p>
+<p>Now substituting the values for the individual voltages gives</p>
+$$\kV = \kIcur\kResone + \kIcur\kRestwo + \kIcur\kResthree = \kIcur(\kResone + \kRestwo + \kResthree).$$
+<p>Note that for the equivalent single series resistance $\kRess$, we have</p>
+$$\kV = \kIcur\kRess.$$
+<p>This implies that the total or equivalent series resistance $\kRess$ of three resistors is $\kRess = \kResone + \kRestwo + \kResthree$.</p>
+<p>This logic is valid in general for any number of resistors in series; thus, the total resistance $\kRess$ of a series connection is</p>
+$$\kRess = \kResone + \kRestwo + \kResthree + \ldots,$$
+<p>as proposed. Since all of the current must pass through each resistor, it experiences the resistance of each, and resistances in series simply add up.</p>
+<div class="example" id="ex-series">
+<h3>Example 21.1 · Calculating Resistance, Current, Voltage Drop, and Power Dissipation: Analysis of a Series Circuit</h3>
+<p>Suppose the voltage output of the battery in Figure 21.3 is $12.0\ \text{V}$, and the resistances are $\kResone = 1.00\ Ω$, $\kRestwo = 6.00\ Ω$, and $\kResthree = 13.0\ Ω$. (a) What is the total resistance? (b) Find the current. (c) Calculate the voltage drop in each resistor, and show these add to equal the voltage output of the source. (d) Calculate the power dissipated by each resistor. (e) Find the power output of the source, and show that it equals the total power dissipated by the resistors.</p>
+<h4>Strategy and Solution for (a)</h4>
+<p>The total resistance is simply the sum of the individual resistances, as given by this equation:</p>
+$$\begin{aligned}\kRess &= \kResone + \kRestwo + \kResthree\\ &= 1.00\ Ω + 6.00\ Ω + 13.0\ Ω\\ &= 20.0\ Ω.\end{aligned}$$
+<h4>Strategy and Solution for (b)</h4>
+<p>The current is found using Ohm’s law, $\kV = \kIcur\kRes$. Entering the value of the applied voltage and the total resistance yields the current for the circuit:</p>
+$$\kIcur = \frac{\kV}{\kRess} = \frac{12.0\ \text{V}}{20.0\ Ω} = 0.600\ \text{A}.$$
+<h4>Strategy and Solution for (c)</h4>
+<p>The voltage—or $\kIcur\kRes$ drop—in a resistor is given by Ohm’s law. Entering the current and the value of the first resistance yields</p>
+$$\kVone = \kIcur\kResone = (0.600\ \text{A})(1.0\ Ω) = 0.600\ \text{V}.$$
+<p>Similarly,</p>
+$$\kVtwo = \kIcur\kRestwo = (0.600\ \text{A})(6.0\ Ω) = 3.60\ \text{V}$$
+<p>and</p>
+$$\kVthree = \kIcur\kResthree = (0.600\ \text{A})(13.0\ Ω) = 7.80\ \text{V}.$$
+<h4>Discussion for (c)</h4>
+<p>The three $\kIcur\kRes$ drops add to $12.0\ \text{V}$, as predicted:</p>
+$$\kVone + \kVtwo + \kVthree = (0.600 + 3.60 + 7.80)\ \text{V} = 12.0\ \text{V}.$$
+<h4>Strategy and Solution for (d)</h4>
+<p>The easiest way to calculate power in watts (W) dissipated by a resistor in a DC circuit is to use <strong>Joule’s law</strong>, $\kP = \kIcur\kV$, where $\kP$ is electric power. In this case, each resistor has the same full current flowing through it. By substituting Ohm’s law $\kV = \kIcur\kRes$ into Joule’s law, we get the power dissipated by the first resistor as</p>
+$$\kPonepow = \kIcur^2\kResone = (0.600\ \text{A})^2(1.00\ Ω) = 0.360\ \text{W}.$$
+<p>Similarly,</p>
+$$\kPtwopow = \kIcur^2\kRestwo = (0.600\ \text{A})^2(6.00\ Ω) = 2.16\ \text{W}$$
+<p>and</p>
+$$\kPthreepow = \kIcur^2\kResthree = (0.600\ \text{A})^2(13.0\ Ω) = 4.68\ \text{W}.$$
+<h4>Discussion for (d)</h4>
+<p>Power can also be calculated using either $\kP = \kIcur\kV$ or $\kP = \frac{\kV^2}{\kRes}$, where $\kV$ is the voltage drop across the resistor (not the full voltage of the source). The same values will be obtained.</p>
+<h4>Strategy and Solution for (e)</h4>
+<p>The easiest way to calculate power output of the source is to use $\kP = \kIcur\kV$, where $\kV$ is the source voltage. This gives</p>
+$$\kP = (0.600\ \text{A})(12.0\ \text{V}) = 7.20\ \text{W}.$$
+<h4>Discussion for (e)</h4>
+<p>Note, coincidentally, that the total power dissipated by the resistors is also 7.20 W, the same as the power put out by the source. That is,</p>
+$$\kPonepow + \kPtwopow + \kPthreepow = (0.360 + 2.16 + 4.68)\ \text{W} = 7.20\ \text{W}.$$
+<p>Power is energy per unit time (watts), and so conservation of energy requires the power output of the source to be equal to the total power dissipated by the resistors.</p>
+</div>
+<div class="note">
+<div class="eyebrow">Major Features of Resistors in Series</div>
+<ol>
+<li>Series resistances add: $\kRess = \kResone + \kRestwo + \kResthree + \ldots$.</li>
+<li>The same current flows through each resistor in series.</li>
+<li>Individual resistors in series do not get the total source voltage, but divide it.</li>
+</ol>
+</div>
+</section>
+
+<section id="parallel">
+<h2>Resistors in parallel</h2>
+<p class="cite-target">Figure 21.4 shows resistors in <strong>parallel</strong>, wired to a voltage source. Resistors are in parallel when each resistor is connected directly to the voltage source by connecting wires having negligible resistance. Each resistor thus has the full voltage of the source applied to it.</p>
+<p>Each resistor draws the same current it would if it alone were connected to the voltage source (provided the voltage source is not overloaded). For example, an automobile’s headlights, radio, and so on, are wired in parallel, so that they utilize the full voltage of the source and can operate completely independently. The same is true in your house, or any building. (See Figure 21.4(b).)</p>
+<p>To find an expression for the equivalent parallel resistance $\kResp$, let us consider the currents that flow and how they are related to resistance. Since each resistor in the circuit has the full voltage, the currents flowing through the individual resistors are $\kIcurone = \frac{\kV}{\kResone}$, $\kIcurtwo = \frac{\kV}{\kRestwo}$, and $\kIcurthree = \frac{\kV}{\kResthree}$. Conservation of charge implies that the total current $\kIcur$ produced by the source is the sum of these currents:</p>
+$$\kIcur = \kIcurone + \kIcurtwo + \kIcurthree.$$
+<p>Substituting the expressions for the individual currents gives</p>
+$$\kIcur = \frac{\kV}{\kResone} + \frac{\kV}{\kRestwo} + \frac{\kV}{\kResthree} = \kV\left(\frac{1}{\kResone} + \frac{1}{\kRestwo} + \frac{1}{\kResthree}\right).$$
+<p>Note that Ohm’s law for the equivalent single resistance gives</p>
+$$\kIcur = \frac{\kV}{\kResp} = \kV\left(\frac{1}{\kResp}\right).$$
+<p>The terms inside the parentheses in the last two equations must be equal. Generalizing to any number of resistors, the total resistance $\kResp$ of a parallel connection is related to the individual resistances by</p>
+$$\frac{1}{\kResp} = \frac{1}{\kResone} + \frac{1}{\kRestwo} + \frac{1}{\kResthree} + \ldots.$$
+<p>This relationship results in a total resistance $\kResp$ that is less than the smallest of the individual resistances. (This is seen in the next example.) When resistors are connected in parallel, more current flows from the source than would flow for any of them individually, and so the total resistance is lower.</p>
+<div class="example" id="ex-parallel">
+<h3>Example 21.2 · Calculating Resistance, Current, Power Dissipation, and Power Output: Analysis of a Parallel Circuit</h3>
+<p>Let the voltage output of the battery and resistances in the parallel connection in Figure 21.4 be the same as the previously considered series connection: $\kV = 12.0\ \text{V}$, $\kResone = 1.00\ Ω$, $\kRestwo = 6.00\ Ω$, and $\kResthree = 13.0\ Ω$. (a) What is the total resistance? (b) Find the total current. (c) Calculate the currents in each resistor, and show these add to equal the total current output of the source. (d) Calculate the power dissipated by each resistor. (e) Find the power output of the source, and show that it equals the total power dissipated by the resistors.</p>
+<h4>Strategy and Solution for (a)</h4>
+<p>The total resistance for a parallel combination of resistors is found using the equation below. Entering known values gives</p>
+$$\frac{1}{\kResp} = \frac{1}{\kResone} + \frac{1}{\kRestwo} + \frac{1}{\kResthree} = \frac{1}{1.00\ Ω} + \frac{1}{6.00\ Ω} + \frac{1}{13.0\ Ω}.$$
+<p>Thus,</p>
+$$\frac{1}{\kResp} = \frac{1.00}{Ω} + \frac{0.1667}{Ω} + \frac{0.07692}{Ω} = \frac{1.2436}{Ω}.$$
+<p>(Note that in these calculations, each intermediate answer is shown with an extra digit.)</p>
+<p>We must invert this to find the total resistance $\kResp$. This yields</p>
+$$\kResp = \frac{1}{1.2436}\ Ω = 0.8041\ Ω.$$
+<p>The total resistance with the correct number of significant digits is $\kResp = 0.804\ Ω.$</p>
+<h4>Discussion for (a)</h4>
+<p>$\kResp$ is, as predicted, less than the smallest individual resistance.</p>
+<h4>Strategy and Solution for (b)</h4>
+<p>The total current can be found from Ohm’s law, substituting $\kResp$ for the total resistance. This gives</p>
+$$\kIcur = \frac{\kV}{\kResp} = \frac{12.0\ \text{V}}{0.8041\ Ω} = 14.92\ \text{A}.$$
+<h4>Discussion for (b)</h4>
+<p>Current $\kIcur$ for each device is much larger than for the same devices connected in series (see the previous example). A circuit with parallel connections has a smaller total resistance than the resistors connected in series.</p>
+<h4>Strategy and Solution for (c)</h4>
+<p>The individual currents are easily calculated from Ohm’s law, since each resistor gets the full voltage. Thus,</p>
+$$\kIcurone = \frac{\kV}{\kResone} = \frac{12.0\ \text{V}}{1.00\ Ω} = 12.0\ \text{A}.$$
+<p>Similarly,</p>
+$$\kIcurtwo = \frac{\kV}{\kRestwo} = \frac{12.0\ \text{V}}{6.00\ Ω} = 2.00\ \text{A}$$
+<p>and</p>
+$$\kIcurthree = \frac{\kV}{\kResthree} = \frac{12.0\ \text{V}}{13.0\ Ω} = 0.92\ \text{A}.$$
+<h4>Discussion for (c)</h4>
+<p>The total current is the sum of the individual currents:</p>
+$$\kIcurone + \kIcurtwo + \kIcurthree = 14.92\ \text{A}.$$
+<p>This is consistent with conservation of charge.</p>
+<h4>Strategy and Solution for (d)</h4>
+<p>The power dissipated by each resistor can be found using any of the equations relating power to current, voltage, and resistance, since all three are known. Let us use $\kP = \frac{\kV^2}{\kRes}$, since each resistor gets full voltage. Thus,</p>
+$$\kPonepow = \frac{\kV^2}{\kResone} = \frac{(12.0\ \text{V})^2}{1.00\ Ω} = 144\ \text{W}.$$
+<p>Similarly,</p>
+$$\kPtwopow = \frac{\kV^2}{\kRestwo} = \frac{(12.0\ \text{V})^2}{6.00\ Ω} = 24.0\ \text{W}$$
+<p>and</p>
+$$\kPthreepow = \frac{\kV^2}{\kResthree} = \frac{(12.0\ \text{V})^2}{13.0\ Ω} = 11.1\ \text{W}.$$
+<h4>Discussion for (d)</h4>
+<p>The power dissipated by each resistor is considerably higher in parallel than when connected in series to the same voltage source.</p>
+<h4>Strategy and Solution for (e)</h4>
+<p>The total power can also be calculated in several ways. Choosing $\kP = \kIcur\kV$, and entering the total current, yields</p>
+$$\kP = \kIcur\kV = (14.92\ \text{A})(12.0\ \text{V}) = 179\ \text{W}.$$
+<h4>Discussion for (e)</h4>
+<p>Total power dissipated by the resistors is also 179 W:</p>
+$$\kPonepow + \kPtwopow + \kPthreepow = 144\ \text{W} + 24.0\ \text{W} + 11.1\ \text{W} = 179\ \text{W}.$$
+<p>This is consistent with the law of conservation of energy.</p>
+<h4>Overall Discussion</h4>
+<p>Note that both the currents and powers in parallel connections are greater than for the same devices in series.</p>
+</div>
+<div class="note">
+<div class="eyebrow">Major Features of Resistors in Parallel</div>
+<ol>
+<li>Parallel resistance is found from $\frac{1}{\kResp} = \frac{1}{\kResone} + \frac{1}{\kRestwo} + \frac{1}{\kResthree} + \ldots$, and it is smaller than any individual resistance in the combination.</li>
+<li>Each resistor in parallel has the same full voltage of the source applied to it. (Power distribution systems most often use parallel connections to supply the myriad devices served with the same voltage and to allow them to operate independently.)</li>
+<li>Parallel resistors do not each get the total current; they divide it.</li>
+</ol>
+</div>
+</section>
+
+<section id="combinations">
+<h2>Combinations of series and parallel</h2>
+<p class="cite-target">More complex connections of resistors are sometimes just combinations of series and parallel. These are commonly encountered, especially when wire resistance is considered. In that case, wire resistance is in series with other resistances that are in parallel.</p>
+<p>Combinations of series and parallel can be reduced to a single equivalent resistance using the technique illustrated in Figure 21.5. Various parts are identified as either series or parallel, reduced to their equivalents, and further reduced until a single resistance is left. The process is more time consuming than difficult.</p>
+<figure class="sim" id="sim-reduce-network" data-figure="21.5" data-original="/media/ch21/Figure_22_01_05.jpg" data-original-width="500" data-original-caption="This combination of seven resistors has both series and parallel parts. Each is identified and reduced to an equivalent resistance, and these are further reduced until a single equivalent resistance is reached.">
+  <div class="sim-head"><span class="eyebrow">Figure 21.5</span><span>Seven resistors are wired into one network with both series and parallel parts. Step through the reduction and watch the group being combined picked out of the network and replaced by the one resistance it comes to, until a single resistance is left across the source; change either of the two resistances in the parallel trio and watch the change carry all the way to the end.</span></div>
+</figure>
+<p>The simplest combination of series and parallel resistance, shown in Figure 21.6, is also the most instructive, since it is found in many applications. For example, $\kResone$ could be the resistance of wires from a car battery to its electrical devices, which are in parallel. $\kRestwo$ and $\kResthree$ could be the starter motor and a passenger compartment light. We have previously assumed that wire resistance is negligible, but, when it is not, it has important effects, as the next example indicates.</p>
+<div class="example" id="ex-combination">
+<h3>Example 21.3 · Calculating Resistance, $\kIcur\kRes$ Drop, Current, and Power Dissipation: Combining Series and Parallel Circuits</h3>
+<p>Figure 21.6 shows the resistors from the previous two examples wired in a different way—a combination of series and parallel. We can consider $\kResone$ to be the resistance of wires leading to $\kRestwo$ and $\kResthree$. (a) Find the total resistance. (b) What is the $\kIcur\kRes$ drop in $\kResone$? (c) Find the current $\kIcurtwo$ through $\kRestwo$. (d) What power is dissipated by $\kRestwo$?</p>
+<h4>Strategy and Solution for (a)</h4>
+<p>To find the total resistance, we note that $\kRestwo$ and $\kResthree$ are in parallel and their combination $\kResp$ is in series with $\kResone$. Thus the total (equivalent) resistance of this combination is</p>
+$$\kRestot = \kResone + \kResp.$$
+<p>First, we find $\kResp$ using the equation for resistors in parallel and entering known values:</p>
+$$\frac{1}{\kResp} = \frac{1}{\kRestwo} + \frac{1}{\kResthree} = \frac{1}{6.00\ Ω} + \frac{1}{13.0\ Ω} = \frac{0.2436}{Ω}.$$
+<p>Inverting gives</p>
+$$\kResp = \frac{1}{0.2436}\ Ω = 4.11\ Ω.$$
+<p>So the total resistance is</p>
+$$\kRestot = \kResone + \kResp = 1.00\ Ω + 4.11\ Ω = 5.11\ Ω.$$
+<h4>Discussion for (a)</h4>
+<p>The total resistance of this combination is intermediate between the pure series and pure parallel values ($20.0\ Ω$ and $0.804\ Ω$, respectively) found for the same resistors in the two previous examples.</p>
+<h4>Strategy and Solution for (b)</h4>
+<p>To find the $\kIcur\kRes$ drop in $\kResone$, we note that the full current $\kIcur$ flows through $\kResone$. Thus its $\kIcur\kRes$ drop is</p>
+$$\kVone = \kIcur\kResone.$$
+<p>We must find $\kIcur$ before we can calculate $\kVone$. The total current $\kIcur$ is found using Ohm’s law for the circuit. That is,</p>
+$$\kIcur = \frac{\kV}{\kRestot} = \frac{12.0\ \text{V}}{5.11\ Ω} = 2.35\ \text{A}.$$
+<p>Entering this into the expression above, we get</p>
+$$\kVone = \kIcur\kResone = (2.35\ \text{A})(1.00\ Ω) = 2.35\ \text{V}.$$
+<h4>Discussion for (b)</h4>
+<p>The voltage applied to $\kRestwo$ and $\kResthree$ is less than the total voltage by an amount $\kVone$. When wire resistance is large, it can significantly affect the operation of the devices represented by $\kRestwo$ and $\kResthree$.</p>
+<h4>Strategy and Solution for (c)</h4>
+<p>To find the current through $\kRestwo$, we must first find the voltage applied to it. We call this voltage $\kVp$, because it is applied to a parallel combination of resistors. The voltage applied to both $\kRestwo$ and $\kResthree$ is reduced by the amount $\kVone$, and so it is</p>
+$$\kVp = \kV - \kVone = 12.0\ \text{V} - 2.35\ \text{V} = 9.65\ \text{V}.$$
+<p>Now the current $\kIcurtwo$ through resistance $\kRestwo$ is found using Ohm’s law:</p>
+$$\kIcurtwo = \frac{\kVp}{\kRestwo} = \frac{9.65\ \text{V}}{6.00\ Ω} = 1.61\ \text{A}.$$
+<h4>Discussion for (c)</h4>
+<p>The current is less than the 2.00 A that flowed through $\kRestwo$ when it was connected in parallel to the battery in the previous parallel circuit example.</p>
+<h4>Strategy and Solution for (d)</h4>
+<p>The power dissipated by $\kRestwo$ is given by</p>
+$$\kPtwopow = (\kIcurtwo)^2\kRestwo = (1.61\ \text{A})^2(6.00\ Ω) = 15.5\ \text{W}.$$
+<h4>Discussion for (d)</h4>
+<p>The power is less than the 24.0 W this resistor dissipated when connected in parallel to the 12.0-V source.</p>
+</div>
+</section>
+
+<section id="practical">
+<h2>What the resistance of the wires does</h2>
+<p class="cite-target">One implication of this last example is that resistance in wires reduces the current and power delivered to a resistor. If wire resistance is relatively large, as in a worn (or a very long) extension cord, then this loss can be significant. If a large current is drawn, the $\kIcur\kRes$ drop in the wires can also be significant.</p>
+<p>For example, when you are rummaging in the refrigerator and the motor comes on, the refrigerator light dims momentarily. Similarly, you can see the passenger compartment light dim when you start the engine of your car (although this may be due to resistance inside the battery itself).</p>
+<p>What is happening in these high-current situations is illustrated in Figure 21.7. The device represented by $\kResthree$ has a very low resistance, and so when it is switched on, a large current flows. This increased current causes a larger $\kIcur\kRes$ drop in the wires represented by $\kResone$, reducing the voltage across the light bulb (which is $\kRestwo$), which then dims noticeably.</p>
+<figure class="sim" id="sim-dimming-light" data-figure="21.7" data-original="/media/ch21/Figure_22_01_07.jpg" data-original-width="200" data-original-caption="Why do lights dim when a large appliance is switched on? The answer is that the large current the appliance motor draws causes a significant IR drop in the wires and reduces the voltage across the light.">
+  <div class="sim-head"><span class="eyebrow">Figure 21.7</span><span>A light bulb and a refrigerator motor hang on the same household supply, behind the resistance of the wires that feed them. Switch the motor on and watch the bulb dim as the current through the wires grows and takes more of the supply voltage with it; raise the resistance of the wires and the dimming gets worse.</span></div>
+</figure>
+<div class="exercises" data-place="practical"></div>
+<div class="note">
+<div class="eyebrow">Problem-Solving Strategies for Series and Parallel Resistors</div>
+<ol>
+<li>Draw a clear circuit diagram, labeling all resistors and voltage sources. This step includes a list of the knowns for the problem, since they are labeled in your circuit diagram.</li>
+<li>Identify exactly what needs to be determined in the problem (identify the unknowns). A written list is useful.</li>
+<li>Determine whether resistors are in series, parallel, or a combination of both series and parallel. Examine the circuit diagram to make this assessment. Resistors are in series if the same current must pass sequentially through them.</li>
+<li>Use the appropriate list of major features for series or parallel connections to solve for the unknowns. There is one list for series and another for parallel. If your problem has a combination of series and parallel, reduce it in steps by considering individual groups of series or parallel connections, as done in this module and the examples. Special note: When finding $\kResp$, the reciprocal must be taken with care.</li>
+<li>Check to see whether the answers are reasonable and consistent. Units and numerical results must be reasonable. Total series resistance should be greater, whereas total parallel resistance should be smaller, for example. Power should be greater for the same devices in parallel compared with series, and so on.</li>
+</ol>
+</div>
+</section>
