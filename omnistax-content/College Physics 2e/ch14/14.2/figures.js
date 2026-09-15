@@ -149,7 +149,7 @@ function cylinder(ctx, x, yb, w, h, liquid) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x - 24, y + h + 4, w + 64, 14); ctx.restore();
     for (let k = x - 20; k < x + w + 40; k += 14) line(ctx, k, y + h + 18, k + 10, y + h + 4, PAL.muted, 1.5);
     text(ctx, 'the pan', x + w / 2, y - 18, PAL.ink, { size: 17, weight: 600, align: 'center' });
-    text(ctx, 'the water', x + w / 2, y + 38, PAL.muted, { size: 16, align: 'center' });
+    text(ctx, 'the water', x + w / 2, y + 38, PAL.ink, { size: 16, align: 'center', bg: alpha(PAL.panel, 0.9) });
     text(ctx, 'an insulated pad', x + w / 2 + 12, y + h + 40, PAL.muted, { size: 16, align: 'center' });
   }
   function draw() {

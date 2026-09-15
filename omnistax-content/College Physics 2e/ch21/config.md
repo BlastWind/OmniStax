@@ -1,0 +1,40 @@
+# Config: College Physics 2e, Chapter 21
+
+Written by the prep agent after exploration (2026-09-15). Status: applied as
+written, on Chen's standing instruction to build the chapter in one job without
+check-ins; the per-section stops of rule 2 and the plan reviews of rule 5 are
+replaced by a plan file per section, written before the section is built and left
+for review after, as Chapters 9 to 20 did it. Each line is a setting and its
+value. Lines that repeat the earlier configs are unchanged unless marked.
+
+| Setting | Value |
+|---|---|
+| Chapter | 21 Circuits and DC Instruments, modules m42354 (introduction), m42356, m42357, m42359, m42360, m42362, m42363 |
+| Front matter | the chapter introduction (m42354) is a page of its own in `ch21/intro/`, listed before 21.1 (rule 21), built in the prep pass |
+| Unit of work | one section = one page; sections never folded (rule 11); 21.5, which is two instruments and six problems, stays a page of its own |
+| Order | 21.1 to 21.6 in book order, built in parallel by one agent per section |
+| Loop | plan file → build → validator, all six sections in one wave; review after |
+| Prose | verbatim; objectives, summary, glossary pulled into the tables and views; the boxed notes kept verbatim (Connections: Conservation Laws and the Problem-Solving Strategies in 21.1, Things Great and Small and the two Take-Home Experiments in 21.2, Kirchhoff's Rules, Making Connections: Conservation Laws and the Problem-Solving Strategies in 21.3, Connections: Limits to Knowledge in 21.4) |
+| Tables | none; no module of this chapter prints a table |
+| Sub-concept headers | the book's own narrative headers where a module prints them (21.1, 21.2, 21.3, 21.4 and 21.6 all do), the agent's where it does not (21.5 prints two) |
+| Figures | a sim per idea or result the section introduces; every circuit schematic replaced by a sim with the book's image as its original, since the schematic is the content and the numbers on it are what the reader must move; a photograph kept where the text points at it or it shows the thing the passage is about, dropped where it is decoration; each listed in the plan (rule 14) |
+| Photographs kept | six: the servers that open the chapter (Figure 21.1, kept by rule 21), the four voltage sources (21.8), the battery testers (21.13), the sand tiger shark (21.20), the car dashboard whose gauges are voltmeters (21.26) and the hummingbird caught by a capacitor-driven flash (21.39); the cells made into a battery (21.16) is decoration and is dropped, and the digital voltmeter of 21.27(b) travels as a second original on the diagram it shares its number with |
+| Folds | judged per section; 21.1's three worked circuits (Figures 21.3 + 21.4 + 21.6) are one live schematic with one arrangement choice and fold, and so do the charging and discharging capacitor (Figures 21.37 + 21.38), which are one circuit and one exponential with a direction; 21.2's nine schematics stay separate, since each is a different connection of sources |
+| Sim sliders | whatever is interesting and variable in the idea: the three resistances and the arrangement, the load resistance and the internal resistance, the emfs and their sense, the point on the loop being traversed and its direction, the resistance of the meter against the resistance it measures, the contact point of a potentiometer and the variable arm of a bridge, the resistance and the capacitance that set the time constant |
+| Motion | only the RC figures of 21.6 move, since only they have a time in them: the charging and discharging curves draw themselves against an axis marked in multiples of τ, and the flashing lamp of Figure 21.40 repeats its sawtooth. Everything else in the chapter answers its sliders and nothing else, registers no cycle and gets no transport (rule 14). A section agent who wants the marker of 21.3's loop walk to travel on its own must say in the plan why a slider along the loop is not enough |
+| 3D | none; every figure of the chapter is a schematic and its plane is the canvas (rule 28.1) |
+| Figures that serve exercises | left on the exercise cards, in the `figure` field of the item that refers to them, as Chapters 4 and 19 do: 21.1's two AP circuits and its three question diagrams, 21.2's charger question, 21.3's ten AP images and four question diagrams, 21.4's three and 21.6's two. An image belonging to an unkeyed problem that is left out is not copied at all |
+| Extra simulations | agent proposes only those that open a view the required figures do not, builds the one or two that clearly earn their place, and says in the plan which were left (rule 15) |
+| Colour coding | no new type; the chapter binds Chapter 20's `current` and `resistance` and Chapter 19's `voltage`, `capacitance` and `charge`, with `time` on 21.6's axis and `power` where a section states a dissipation. Thirty-four symbol rows are staged here (the emfs, the internal resistances, the numbered and combined resistances, the branch currents, the parallel-group and initial voltages, the numbered powers and the RC time constant); `I_curr` and `R_res` are Chapter 20's and are used as they stand, as are Chapter 19's `V_volt`, `V_1volt` to `V_3volt`, `C_cap`, `q` and `Q_charge`. The emf is a symbol on the `voltage` type, not a type of its own, because the book calls it a special type of potential difference measured in volts; the time constant τ_RC is a `time`, since Chapter 9 owns the bare τ as a torque. Resistance ratios, the galvanometer's letters G, V and A, the loop letters a to h and every count stay untyped and in ink |
+| Inline exercises | the five Check Your Understanding boxes, one each in 21.1, 21.3, 21.4, 21.5 and 21.6, placed after the passage each tests |
+| Exercises tab | end-of-module problems, conceptual questions, AP test prep |
+| Exercise placement | an exercise goes with the section that introduces what it tests; nothing moves in this chapter, since every problem is answerable from the section that prints it, and the two problems of 21.4 that mention null measurements stay with 21.4 and are named in its `exercise_notes` |
+| AP test prep | included; an unkeyed AP item is kept as an open item with its options as the book prints them and an AI-marked suggested approach, never as a graded choice; none of the chapter's thirteen AP items is keyed |
+| PhET interactive links | dropped (Circuit Construction Kit (DC Only) in 21.4 and again in 21.6), each named in the section's `notes` |
+| Cross-references to other chapters | plain text, as the chapter pass settled book-wide; references to sections of Chapter 21 itself and to Chapters 19 and 20 are linked where the target is built and plain text where it is not |
+| Answers to book problems | book answer key only; never generated; the thirty-three unkeyed problems are left out and named in the notes |
+| Suggested approaches for open questions | generated, marked AI: all thirty-nine conceptual questions of the chapter and all thirteen AP items |
+| Generated questions | none; a node with no book exercise of its own is noted in the plan, no question generated |
+| Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 38 nodes written into `book.json` before the sections were built (9 for 21.1, 8 for 21.2, 5 for 21.3, 6 for 21.4, 4 for 21.5, 6 for 21.6) with prerequisite edges into Chapters 2, 7, 18, 19 and 20 and within the chapter |
+| Formulas | `ch21/chapter.json`: the stated and named results important (the two combination rules, the voltage and current divisions, terminal voltage, the current through a load, the sources in series and in parallel, the junction and loop rules, the voltmeter's and the ammeter's resistances, the potentiometer's ratio, the bridge's balance, the charging and discharging exponentials and the time constant) and the worked substitution steps not; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass writes them from the section plans |
+| Book manifest | `ch21` after `ch20` in `book.json` chapters, merged with `ost merge college-physics-2e 21` |

@@ -231,6 +231,8 @@ Extra simulations (rule 15), thought through, judged and left:
   `sim-osmosis` with a number too large to draw beside a beaker, and the
   text states it.
 
+Figure pass (2026-09-15, Claude Fable 5.1). `sim-membrane`: the "held back" and "through the pores" labels sat on the molecules pressed against the membrane, and the region labels under molecules; both now sit clear, below the membrane and above the field. `sim-osmosis`: the two pressure labels are on opaque panels so the molecules no longer show through them. `sim-random-walk` and `sim-concentration` were left as built.
+
 ## Exercises
 
 - All items sit at the end (`ch12/config.md`).

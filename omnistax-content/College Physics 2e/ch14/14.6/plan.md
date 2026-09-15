@@ -191,6 +191,8 @@ No extra simulation is proposed: the sea breeze of AP 2 is the loop of
 figure 1 with the land and the sea as the two walls, and a figure of it
 would answer the question for the reader.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure was screenshot at its default, slider extremes, both scenes and three points of each cycle in both themes and looked at. `sim-wind-chill`: the stick figure is a filled silhouette leaning into the wind. `sim-sweat`: the stick figure crouching under a grey ellipse is a silhouette sitting on a bench under a parasol drawn as a canopy with a scalloped edge on a pole. `sim-house-turnover`: the door stood under the turnover label and moved to the left wall, where nothing is written. `sim-convective-loop` and `sim-fur` were found clean and are unchanged.
+
 ## Exercises
 
 - The Check Your Understanding (`cyu1`, fs-id2586676, why a fan feels

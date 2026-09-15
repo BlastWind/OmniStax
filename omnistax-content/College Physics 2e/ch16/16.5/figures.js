@@ -7,6 +7,18 @@ const TAU = 2 * Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const sgn = (v) => (v < 0 ? '−' : '+');
 function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times10^{${e}}`; }
+/* The marks x = −X, 0, +X under a floor at y. When the amplitude is small the outer two labels
+   step down a row and lean away from the centre, so that no label sits on another. */
+function marks(ctx, eq, SC, X, y, tick, dy) {
+  const close = 2 * X * SC < 150;
+  [[-X, '−X', -1], [0, 'x = 0', 0], [X, '+X', 1]].forEach(([val, lab, i]) => {
+    const px = eq + val * SC; line(ctx, px, y, px, y + tick, C('position'), 3);
+    const out = close && i !== 0;
+    text(ctx, lab, px + (out ? i * 8 : 0), y + dy + (out ? 24 : 0), C('position'), { size: 18, weight: 600, align: out ? (i < 0 ? 'right' : 'left') : 'center' });
+  });
+}
+/* one entry of a legend: a stroke of the curve's own colour and its name */
+function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color, dash ? 2 : 4, dash); text(ctx, name, x + 46, y, color, { size: 17, weight: 600 }); }
 
 /* =====================================================================
    SIM 1: energy going back and forth. The block on a spring, two energy
@@ -33,7 +45,7 @@ function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / 
     spring(ctx, 200, by, bx - 48, by, 12, 22, PAL.ink, 4); block(ctx, bx, by, 96, 80, PAL.ink);
     text(ctx, 'm = ' + fmt(m.v, 1) + ' kg', bx, by - 104, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
-    for (const [val, lab] of [[-X.v, '−X'], [0, 'x = 0'], [X.v, '+X']]) { const px = eq + val * SC; line(ctx, px, floorY + 24, px, floorY + 40, C('position'), 3); text(ctx, lab, px, floorY + 62, C('position'), { size: 18, weight: 600, align: 'center' }); }
+    marks(ctx, eq, SC, X.v, floorY + 24, 16, 38);
     if (Math.abs(v) > 0.02 * X.v * w()) { const al = 40 + 160 * Math.abs(v) / (X.v * w()), s = v < 0 ? -1 : 1; arrow(ctx, bx, by - 70, bx + s * al, by - 70, C('velocity'), 5); text(ctx, 'v', bx + s * (al + 16), by - 70, C('velocity'), { weight: 600, align: s < 0 ? 'right' : 'left' }); }
     /* The bars and the graph share one fixed energy scale, 0 to 1.00 J, and one fixed position
        scale, the amplitude slider's own ±0.20 m; neither is ever rescaled. The scale is taken from
@@ -45,7 +57,8 @@ function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / 
     /* the bars */
     const b0 = 320, bh = 200, bw = 70, bxs = [1130, 1240];
     const yTot = b0 - bh * Math.min(1, E / EM);
-    line(ctx, bxs[0] - 30, yTot, bxs[1] + bw + 30, yTot, C('energy'), 2, [8, 6]); text(ctx, 'total ½kX² = ' + fmt(E, 3) + ' J', (bxs[0] + bxs[1] + bw) / 2, yTot - 22, C('energy'), { size: 18, weight: 600, align: 'center' });
+    /* the total's name sits above the pair of bars, never across them, and its dashed level runs between them */
+    line(ctx, bxs[0] - 8, yTot, bxs[1] + bw + 8, yTot, C('energy'), 2, [8, 6]); text(ctx, 'total ½kX² = ' + fmt(E, 3) + ' J', (bxs[0] + bxs[1] + bw) / 2, b0 - bh - 26, C('energy'), { size: 18, weight: 600, align: 'center' });
     for (const [i, val, lab] of [[0, KE, 'KE'], [1, PE, 'PE_el']]) {
       const h = bh * Math.min(1, val / EM); ctx.save(); ctx.fillStyle = alpha(C('energy'), i ? 0.35 : 0.8); ctx.fillRect(bxs[i], b0 - h, bw, h); ctx.restore();
       ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 2; ctx.strokeRect(bxs[i], b0 - bh, bw, bh); ctx.restore();
@@ -61,9 +74,8 @@ function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / 
     curve(ctx, (s) => Math.max(0, E - 0.5 * k.v * s * s), -X.v, X.v, gx, gy, C('energy'), 4, 80);
     ctx.restore();
     const inBox = (y) => Math.min(box.b - 18, Math.max(box.t + 18, y));
-    text(ctx, 'PE_el = ½kx²', gx(X.v * 0.8), inBox(gy(0.5 * k.v * X.v * X.v * 0.64) - 24), alpha(C('energy'), 0.7), { size: 17, weight: 600, align: 'center' });
-    text(ctx, 'KE = ½kX² − ½kx²', gx(-X.v * 0.3), inBox(gy(E) - 20), C('energy'), { size: 17, weight: 600, align: 'center' });
-    text(ctx, 'total', gx(-XM) + 12, inBox(gy(E) - 16), C('energy'), { size: 17, weight: 600 });
+    /* the three curves are named in a legend row above the box, clear of the axis title on the left, so no name sits on a curve at any setting */
+    legend(ctx, 560, box.t - 16, alpha(C('energy'), 0.55), 'PE_el = ½kx²'); legend(ctx, 760, box.t - 16, C('energy'), 'KE = ½kX² − ½kx²'); legend(ctx, 1000, box.t - 16, C('energy'), 'total ½kX²', [8, 6]);
     line(ctx, gx(x), box.b, gx(x), inBox(gy(E)), C('position'), 2, [4, 8]);
     pinned(ctx, box, gx, gy, x, PE, alpha(C('energy'), 0.7), fmt(PE, 3) + ' J'); pinned(ctx, box, gx, gy, x, KE, C('energy'), fmt(KE, 3) + ' J');
     headline(ctx, KE < 0.02 * E ? 'At x = ' + sgn(x) + 'X the block is momentarily at rest, and all ' + fmt(E, 3) + ' J of the energy is stored in the spring'
@@ -97,7 +109,7 @@ function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / 
     for (const wx of [cx - 110, cx + 110]) { dot(ctx, wx, road - 22, PAL.ink, false, 22); dot(ctx, wx, road - 22, PAL.ink, true, 6); spring(ctx, wx, road - 44, wx, by + 36, 7, 18, PAL.ink, 3); }
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
     ctx.moveTo(cx - 170, by + 36); ctx.lineTo(cx - 170, by - 6); ctx.lineTo(cx - 120, by - 12); ctx.lineTo(cx - 80, by - 56); ctx.lineTo(cx + 60, by - 56); ctx.lineTo(cx + 120, by - 12); ctx.lineTo(cx + 170, by - 6); ctx.lineTo(cx + 170, by + 36); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, fmt(m.v, 0) + ' kg', cx, by - 84, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, fmt(m.v, 0) + ' kg', cx - 10, by + 14, PAL.ink, { size: 20, weight: 600, align: 'center' });   /* on the car's body, so it never climbs into the headline */
     line(ctx, 80, y0 + 36, 600, y0 + 36, PAL.muted, 2, [8, 8]); text(ctx, 'x = 0', 84, y0 + 20, C('position'), { size: 18, weight: 600 });
     if (Math.abs(v) > 0.02 * vmax()) { const al = 40 + 140 * Math.abs(v) / vmax(), s = v > 0 ? -1 : 1; arrow(ctx, cx + 200, by + 36, cx + 200, by + 36 + s * al, C('velocity'), 5); text(ctx, 'v = ' + sgn(v) + fmt(Math.abs(v), 2) + ' m/s', cx + 214, by + 36 + s * al * 0.5, C('velocity'), { size: 18, weight: 600 }); }
     /* the graph beside: v against x */

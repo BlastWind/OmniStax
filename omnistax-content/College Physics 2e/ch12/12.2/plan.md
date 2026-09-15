@@ -243,6 +243,8 @@ Extra simulations (rule 15), thought through, judged and decided:
 - The pump on the hill of the second AP item. Left: it is `sim-bernoulli`
   with a height of 150 m, and drawing it would answer the item.
 
+Figure pass (2026-09-15, Claude Fable 5.1). `sim-wing-sail`: the arrow for the net pressure on the wing rose through the speed label over the top at the slider's extremes, so it now stands at three fifths of the chord, clear of both speed labels. The other four figures were left as built.
+
 ## Exercises
 
 - All exercises sit at the end: the chapter has no Check Your Understanding

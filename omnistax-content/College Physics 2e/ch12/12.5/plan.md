@@ -126,6 +126,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass (2026-09-15, Claude Fable 5.1). `sim-turbulence`: the speed labels and the "lines of flow" label sat on translucent panels that the dye threads showed through at high flow; the panels are opaque.
+
 ## Exercises
 
 - No Check Your Understanding boxes; nothing inline.

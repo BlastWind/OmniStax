@@ -1,0 +1,633 @@
+{
+ "id": "20",
+ "dir": "ch20",
+ "title": "Electric Current, Resistance, and Ohm’s Law",
+ "intro": {
+  "module": "m42339",
+  "slug": "20-introduction-to-electric-current-resistance-and-ohms-law"
+ },
+ "sections": [
+  {
+   "id": "20.1",
+   "module": "m42341",
+   "title": "Current",
+   "slug": "20-1-current"
+  },
+  {
+   "id": "20.2",
+   "module": "m42344",
+   "title": "Ohm’s Law: Resistance and Simple Circuits",
+   "slug": "20-2-ohms-law-resistance-and-simple-circuits"
+  },
+  {
+   "id": "20.3",
+   "module": "m42346",
+   "title": "Resistance and Resistivity",
+   "slug": "20-3-resistance-and-resistivity"
+  },
+  {
+   "id": "20.4",
+   "module": "m42714",
+   "title": "Electric Power and Energy",
+   "slug": "20-4-electric-power-and-energy"
+  },
+  {
+   "id": "20.5",
+   "module": "m42348",
+   "title": "Alternating Current versus Direct Current",
+   "slug": "20-5-alternating-current-versus-direct-current"
+  },
+  {
+   "id": "20.6",
+   "module": "m42350",
+   "title": "Electric Hazards and the Human Body",
+   "slug": "20-6-electric-hazards-and-the-human-body"
+  },
+  {
+   "id": "20.7",
+   "module": "m42352",
+   "title": "Nerve Conduction–Electrocardiograms",
+   "slug": "20-7-nerve-conduction-electrocardiograms"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "I_curr",
+   "type": "current",
+   "meaning": "the electric current, the rate at which charge flows past a point",
+   "unit": "A",
+   "section": "20.1"
+  },
+  {
+   "sym": "ΔQ_charge",
+   "type": "charge",
+   "meaning": "the charge that passes through a given area in the time Δt",
+   "unit": "C",
+   "section": "20.1"
+  },
+  {
+   "sym": "Δt",
+   "type": "time",
+   "meaning": "the time in which the charge ΔQ passes through the area",
+   "unit": "s",
+   "section": "20.1"
+  },
+  {
+   "sym": "q",
+   "type": "charge",
+   "meaning": "the charge carried by each of the moving carriers",
+   "unit": "C",
+   "section": "20.1"
+  },
+  {
+   "sym": "q_e",
+   "type": "charge",
+   "meaning": "the charge on one electron, −1.60 × 10⁻¹⁹ C",
+   "unit": "C",
+   "section": "20.1"
+  },
+  {
+   "sym": "n",
+   "meaning": "the number of free charges per unit volume in the material, which depends on the material",
+   "unit": "1/m^3",
+   "section": "20.1"
+  },
+  {
+   "sym": "A",
+   "meaning": "the cross-sectional area of the wire through which the charge flows",
+   "unit": "m^2",
+   "section": "20.1"
+  },
+  {
+   "sym": "v_d",
+   "type": "velocity",
+   "meaning": "the drift velocity, the average velocity of the free charges",
+   "unit": "m/s",
+   "section": "20.1"
+  },
+  {
+   "sym": "E_field",
+   "type": "electric-field",
+   "meaning": "the electric field in the conductor, which supplies the energy that moves the charges",
+   "unit": "V/m",
+   "section": "20.1"
+  },
+  {
+   "sym": "V_volt",
+   "type": "voltage",
+   "meaning": "the potential difference the source applies across the conductor",
+   "unit": "V",
+   "section": "20.2"
+  },
+  {
+   "sym": "R_res",
+   "type": "resistance",
+   "meaning": "the resistance, the electric property that impedes current",
+   "unit": "Ω",
+   "section": "20.2"
+  },
+  {
+   "sym": "ρ",
+   "meaning": "the resistivity of the material, an intrinsic property independent of shape or size",
+   "unit": "Ω⋅m",
+   "section": "20.3"
+  },
+  {
+   "sym": "ρ_0res",
+   "meaning": "the original resistivity, before the temperature change ΔT",
+   "unit": "Ω⋅m",
+   "section": "20.3"
+  },
+  {
+   "sym": "L_len",
+   "meaning": "the length of the uniform cylinder along which the current flows",
+   "unit": "m",
+   "section": "20.3"
+  },
+  {
+   "sym": "D",
+   "type": "position",
+   "meaning": "the diameter of a cylindrical conductor",
+   "unit": "m",
+   "section": "20.3"
+  },
+  {
+   "sym": "α_res",
+   "meaning": "the temperature coefficient of resistivity, positive for metals and negative for the semiconductors of Table 20.2",
+   "unit": "1/°C",
+   "section": "20.3"
+  },
+  {
+   "sym": "R_0res",
+   "type": "resistance",
+   "meaning": "the original resistance, before the temperature change ΔT",
+   "unit": "Ω",
+   "section": "20.3"
+  },
+  {
+   "sym": "ΔT",
+   "type": "temperature",
+   "meaning": "the change in temperature of the conductor",
+   "unit": "°C",
+   "section": "20.3"
+  },
+  {
+   "sym": "P",
+   "type": "power",
+   "meaning": "the electric power, the rate at which energy is supplied by a source or dissipated by a device",
+   "unit": "W",
+   "section": "20.4"
+  },
+  {
+   "sym": "E",
+   "type": "energy",
+   "meaning": "the electrical energy a device uses in a time t, billed in kilowatt-hours",
+   "unit": "J",
+   "section": "20.4"
+  },
+  {
+   "sym": "PE",
+   "type": "energy",
+   "meaning": "the potential energy the moved charge carries, qV",
+   "unit": "J",
+   "section": "20.4"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "the time over which the device draws its power",
+   "unit": "s",
+   "section": "20.4"
+  },
+  {
+   "sym": "V_0volt",
+   "type": "voltage",
+   "meaning": "the peak voltage of an AC source",
+   "unit": "V",
+   "section": "20.5"
+  },
+  {
+   "sym": "I_0curr",
+   "type": "current",
+   "meaning": "the peak current in a simple resistance circuit, V₀/R",
+   "unit": "A",
+   "section": "20.5"
+  },
+  {
+   "sym": "f",
+   "type": "frequency",
+   "meaning": "the frequency of the alternating source in hertz",
+   "unit": "Hz",
+   "section": "20.5"
+  },
+  {
+   "sym": "V_rms",
+   "type": "voltage",
+   "meaning": "the rms voltage, the root mean square of the AC voltage, V₀/√2",
+   "unit": "V",
+   "section": "20.5"
+  },
+  {
+   "sym": "I_rms",
+   "type": "current",
+   "meaning": "the rms current, I₀/√2",
+   "unit": "A",
+   "section": "20.5"
+  },
+  {
+   "sym": "P_ave",
+   "type": "power",
+   "meaning": "the average AC power, half the product of the peak current and the peak voltage",
+   "unit": "W",
+   "section": "20.5"
+  },
+  {
+   "sym": "P_0pow",
+   "type": "power",
+   "meaning": "the peak AC power, twice the average power",
+   "unit": "W",
+   "section": "20.5"
+  },
+  {
+   "sym": "r_short",
+   "type": "resistance",
+   "meaning": "the very small resistance of a short circuit across a voltage source",
+   "unit": "Ω",
+   "section": "20.6"
+  },
+  {
+   "sym": "R_w",
+   "type": "resistance",
+   "meaning": "the resistance of the wires that supply power to a user",
+   "unit": "Ω",
+   "section": "20.6"
+  },
+  {
+   "sym": "ΔV_volt",
+   "type": "voltage",
+   "meaning": "the potential difference across the cell membrane, 70 to 90 mV in the resting state",
+   "unit": "V",
+   "section": "20.7"
+  },
+  {
+   "sym": "d",
+   "type": "position",
+   "meaning": "the thickness of the cell membrane, about 8 nm",
+   "unit": "m",
+   "section": "20.7"
+  }
+ ],
+ "equations": [
+  {
+   "id": "eq-current",
+   "concept": "electric-current",
+   "section": "20.1",
+   "latex": "I = \\frac{\\Delta Q}{\\Delta t}",
+   "ktex": "\\kIcur = \\frac{\\kdQch}{\\kdt}",
+   "important": true
+  },
+  {
+   "id": "eq-ampere",
+   "concept": "ampere",
+   "section": "20.1",
+   "latex": "1\\;\\text{A} = 1\\;\\text{C/s}",
+   "ktex": "1\\;\\text{A} = 1\\;\\text{C/s}",
+   "important": true
+  },
+  {
+   "id": "eq-current-drift",
+   "concept": "current-and-drift-velocity",
+   "section": "20.1",
+   "latex": "I = nqAv_{\\text{d}}",
+   "ktex": "\\kIcur = n\\kq A\\kvd",
+   "important": true
+  },
+  {
+   "id": "eq-current-proportional-voltage",
+   "concept": "ohms-law",
+   "section": "20.2",
+   "latex": "I \\propto V",
+   "ktex": "\\kIcur \\propto \\kV",
+   "important": true
+  },
+  {
+   "id": "eq-current-inverse-resistance",
+   "concept": "resistance",
+   "section": "20.2",
+   "latex": "I \\propto \\frac{1}{R}",
+   "ktex": "\\kIcur \\propto \\frac{1}{\\kRes}",
+   "important": true
+  },
+  {
+   "id": "eq-ohms-law",
+   "concept": "ohms-law",
+   "section": "20.2",
+   "latex": "I = \\frac{V}{R}",
+   "ktex": "\\kIcur = \\frac{\\kV}{\\kRes}",
+   "important": true
+  },
+  {
+   "id": "eq-ohm-unit",
+   "concept": "ohm",
+   "section": "20.2",
+   "latex": "1\\;\\Omega = 1\\;\\frac{\\text{V}}{\\text{A}}",
+   "ktex": "1\\;\\Omega = 1\\;\\frac{\\text{V}}{\\text{A}}",
+   "important": true
+  },
+  {
+   "id": "eq-ir-drop",
+   "concept": "ir-drop",
+   "section": "20.2",
+   "latex": "V = IR",
+   "ktex": "\\kV = \\kIcur\\kRes",
+   "important": true
+  },
+  {
+   "id": "eq-resistance-cylinder",
+   "concept": "resistance-of-cylinder",
+   "section": "20.3",
+   "latex": "R = \\frac{\\rho L}{A}",
+   "ktex": "\\kRes = \\frac{\\rho L}{A}",
+   "important": true
+  },
+  {
+   "id": "eq-resistivity-temperature",
+   "concept": "resistivity-and-temperature",
+   "section": "20.3",
+   "latex": "\\rho = \\rho_0(1 + \\alpha\\Delta T)",
+   "ktex": "\\rho = \\rho_0(1 + \\alpha\\kdTemp)",
+   "important": true
+  },
+  {
+   "id": "eq-resistance-temperature",
+   "concept": "resistance-and-temperature",
+   "section": "20.3",
+   "latex": "R = R_0(1 + \\alpha\\Delta T)",
+   "ktex": "\\kRes = \\kReso(1 + \\alpha\\kdTemp)",
+   "important": true
+  },
+  {
+   "id": "eq-power-from-charge",
+   "concept": "electric-power",
+   "section": "20.4",
+   "latex": "P = \\frac{\\text{PE}}{t} = \\frac{qV}{t}",
+   "ktex": "\\kP = \\frac{\\kPEtot}{\\kt} = \\frac{\\kq\\kV}{\\kt}",
+   "important": true
+  },
+  {
+   "id": "eq-power-iv",
+   "concept": "electric-power",
+   "section": "20.4",
+   "latex": "P = IV",
+   "ktex": "\\kP = \\kIcur\\kV",
+   "important": true
+  },
+  {
+   "id": "eq-power-v2r",
+   "concept": "power-and-resistance",
+   "section": "20.4",
+   "latex": "P = \\frac{V^2}{R}",
+   "ktex": "\\kP = \\frac{\\kV^2}{\\kRes}",
+   "important": true
+  },
+  {
+   "id": "eq-power-i2r",
+   "concept": "power-and-resistance",
+   "section": "20.4",
+   "latex": "P = I^2R",
+   "ktex": "\\kP = \\kIcur^2\\kRes",
+   "important": true
+  },
+  {
+   "id": "eq-energy-from-power",
+   "concept": "electrical-energy-and-cost",
+   "section": "20.4",
+   "latex": "E = Pt",
+   "ktex": "\\kE = \\kP\\kt",
+   "important": true
+  },
+  {
+   "id": "eq-kilowatt-hour",
+   "concept": "electrical-energy-and-cost",
+   "section": "20.4",
+   "latex": "1\\;\\text{kW}\\cdot\\text{h} = 3.6\\times10^{6}\\;\\text{J}",
+   "ktex": "1\\;\\text{kW}\\cdot\\text{h} = 3.6\\times10^{6}\\;\\text{J}",
+   "important": true
+  },
+  {
+   "id": "eq-ac-voltage",
+   "concept": "alternating-current",
+   "section": "20.5",
+   "latex": "V = V_0\\sin 2\\pi ft",
+   "ktex": "\\kV = \\kVo\\sin 2\\pi \\kf\\kt",
+   "important": true
+  },
+  {
+   "id": "eq-ac-current",
+   "concept": "alternating-current",
+   "section": "20.5",
+   "latex": "I = I_0\\sin 2\\pi ft",
+   "ktex": "\\kIcur = \\kIocur\\sin 2\\pi \\kf\\kt",
+   "important": true
+  },
+  {
+   "id": "eq-ac-power-average",
+   "concept": "ac-power",
+   "section": "20.5",
+   "latex": "P_{\\text{ave}} = \\frac{1}{2}I_0V_0",
+   "ktex": "\\kPave = \\frac{1}{2}\\kIocur\\kVo",
+   "important": true
+  },
+  {
+   "id": "eq-rms-current",
+   "concept": "rms-values",
+   "section": "20.5",
+   "latex": "I_{\\text{rms}} = \\frac{I_0}{\\sqrt{2}}",
+   "ktex": "\\kIrms = \\frac{\\kIocur}{\\sqrt{2}}",
+   "important": true
+  },
+  {
+   "id": "eq-rms-voltage",
+   "concept": "rms-values",
+   "section": "20.5",
+   "latex": "V_{\\text{rms}} = \\frac{V_0}{\\sqrt{2}}",
+   "ktex": "\\kVrms = \\frac{\\kVo}{\\sqrt{2}}",
+   "important": true
+  },
+  {
+   "id": "eq-ac-power-rms",
+   "concept": "ac-power",
+   "section": "20.5",
+   "latex": "P_{\\text{ave}} = I_{\\text{rms}}V_{\\text{rms}}",
+   "ktex": "\\kPave = \\kIrms\\kVrms",
+   "important": true
+  },
+  {
+   "id": "eq-ohms-law-ac",
+   "concept": "ac-ohms-law",
+   "section": "20.5",
+   "latex": "I_{\\text{rms}} = \\frac{V_{\\text{rms}}}{R}",
+   "ktex": "\\kIrms = \\frac{\\kVrms}{\\kRes}",
+   "important": true
+  },
+  {
+   "id": "eq-ac-power-v2r",
+   "concept": "ac-ohms-law",
+   "section": "20.5",
+   "latex": "P_{\\text{ave}} = \\frac{V_{\\text{rms}}^{2}}{R}",
+   "ktex": "\\kPave = \\frac{\\kVrms^{2}}{\\kRes}",
+   "important": true
+  },
+  {
+   "id": "eq-ac-power-i2r",
+   "concept": "ac-ohms-law",
+   "section": "20.5",
+   "latex": "P_{\\text{ave}} = I_{\\text{rms}}^{2}R",
+   "ktex": "\\kPave = \\kIrms^{2}\\kRes",
+   "important": true
+  },
+  {
+   "id": "eq-short-circuit-power",
+   "concept": "short-circuit",
+   "section": "20.6",
+   "latex": "P = \\frac{V^2}{r}",
+   "ktex": "\\kP = \\frac{\\kV^2}{\\krshort}",
+   "important": true
+  },
+  {
+   "id": "eq-wire-heating",
+   "concept": "overloaded-wires",
+   "section": "20.6",
+   "latex": "P = I^2R_{\\text{w}}",
+   "ktex": "\\kP = \\kIcur^2\\kRw",
+   "important": true
+  }
+ ],
+ "glossary": [
+  {
+   "section": "20.1",
+   "term": "electric current",
+   "definition": "the rate at which charge flows, *I* = Δ*Q*/Δ*t*"
+  },
+  {
+   "section": "20.1",
+   "term": "ampere",
+   "definition": "(amp) the SI unit for current; 1 A = 1 C/s"
+  },
+  {
+   "section": "20.1",
+   "term": "drift velocity",
+   "definition": "the average velocity at which free charges flow in response to an electric field"
+  },
+  {
+   "section": "20.2",
+   "term": "Ohm’s law",
+   "definition": "an empirical relation stating that the current *I* is proportional to the potential difference *V*, *∝ V*; it is often written as *I = V/R*, where *R* is the resistance"
+  },
+  {
+   "section": "20.2",
+   "term": "resistance",
+   "definition": "the electric property that impedes current; for ohmic materials, it is the ratio of voltage to current, *R = V/I*"
+  },
+  {
+   "section": "20.2",
+   "term": "ohm",
+   "definition": "the unit of resistance, given by 1Ω = 1 V/A"
+  },
+  {
+   "section": "20.2",
+   "term": "ohmic",
+   "definition": "a type of a material for which Ohm's law is valid"
+  },
+  {
+   "section": "20.2",
+   "term": "simple circuit",
+   "definition": "a circuit with a single voltage source and a single resistor"
+  },
+  {
+   "section": "20.3",
+   "term": "resistivity",
+   "definition": "an intrinsic property of a material, independent of its shape or size, directly proportional to the resistance, denoted by *ρ*"
+  },
+  {
+   "section": "20.3",
+   "term": "temperature coefficient of resistivity",
+   "definition": "an empirical quantity, denoted by *α*, which describes the change in resistance or resistivity of a material with temperature"
+  },
+  {
+   "section": "20.4",
+   "term": "electric power",
+   "definition": "the rate at which electrical energy is supplied by a source or dissipated by a device; it is the product of current times voltage"
+  },
+  {
+   "section": "20.5",
+   "term": "direct current",
+   "definition": "(DC) the flow of electric charge in only one direction"
+  },
+  {
+   "section": "20.5",
+   "term": "alternating current",
+   "definition": "(AC) the flow of electric charge that periodically reverses direction"
+  },
+  {
+   "section": "20.5",
+   "term": "AC voltage",
+   "definition": "voltage that fluctuates sinusoidally with time, expressed as *V = V*<sub>0</sub> sin 2*πft*, where *V* is the voltage at time *t, V*<sub>0</sub> is the peak voltage, and *f* is the frequency in hertz"
+  },
+  {
+   "section": "20.5",
+   "term": "AC current",
+   "definition": "current that fluctuates sinusoidally with time, expressed as *I = I*<sub>0</sub> sin 2*πft*, where *I* is the current at time *t, I*<sub>0</sub> is the peak current, and *f* is the frequency in hertz"
+  },
+  {
+   "section": "20.5",
+   "term": "rms current",
+   "definition": "the root mean square of the current, *I*<sub>rms</sub> = *I*<sub>0</sub>/√2, where *I*<sub>0</sub> is the peak current, in an AC system"
+  },
+  {
+   "section": "20.5",
+   "term": "rms voltage",
+   "definition": "the root mean square of the voltage, *V*<sub>rms</sub> = *V*<sub>0</sub>/√2, where *V*<sub>0</sub> is the peak voltage, in an AC system"
+  },
+  {
+   "section": "20.6",
+   "term": "thermal hazard",
+   "definition": "a hazard in which electric current causes undesired thermal effects"
+  },
+  {
+   "section": "20.6",
+   "term": "shock hazard",
+   "definition": "when electric current passes through a person"
+  },
+  {
+   "section": "20.6",
+   "term": "short circuit",
+   "definition": "also known as a “short,” a low-resistance path between terminals of a voltage source"
+  },
+  {
+   "section": "20.6",
+   "term": "microshock sensitive",
+   "definition": "a condition in which a person’s skin resistance is bypassed, possibly by a medical procedure, rendering the person vulnerable to electrical shock at currents about 1/1000 the normally required level"
+  },
+  {
+   "section": "20.7",
+   "term": "nerve conduction",
+   "definition": "the transport of electrical signals by nerve cells"
+  },
+  {
+   "section": "20.7",
+   "term": "bioelectricity",
+   "definition": "electrical effects in and created by biological systems"
+  },
+  {
+   "section": "20.7",
+   "term": "semipermeable",
+   "definition": "property of a membrane that allows only certain types of ions to cross it"
+  },
+  {
+   "section": "20.7",
+   "term": "electrocardiogram (ECG)",
+   "definition": "usually abbreviated ECG, a record of voltages created by depolarization and repolarization, especially in the heart"
+  }
+ ]
+}

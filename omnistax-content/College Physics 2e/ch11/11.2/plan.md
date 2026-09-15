@@ -258,3 +258,5 @@ in `text.html`, so `<div class="exercises" data-place="identify"></div>` now
 closes the `identify` span, after the Sugar and Salt note, and the card
 renders there. The third AP item (fs-id889976) is on 11.7's page with
 `source_section` 11.2, and both sections' `exercise_notes` say so.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-reservoir`: the liquid in both views is filled in the pale blue a colourless liquid is drawn in, the chapter's physical-fact colour that 11.6's manometer already carries (a darker liquid such as mercury takes an ink tint instead), in place of the page's grey panel that made the reservoir look like a block; the dam's label in the plan view sits beside the dam at mid-height, where it no longer runs into the depth labels of the section at the largest area. `sim-ton` and `sim-identify` unchanged.

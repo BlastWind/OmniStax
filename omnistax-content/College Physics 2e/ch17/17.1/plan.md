@@ -185,3 +185,13 @@ and a readout, and `COLOR.md` now records it. Keeping the shattered glass
 (Figure 17.2), which the chapter's config had listed as a splash image to
 drop, stands on the argument this plan makes, and `config.md` records the
 change.
+
+## Figure pass (2026-09-15, Claude Fable 5.1)
+
+`sim-eardrum`: the head in section is redrawn so the pinna reads as an ear,
+a helix curling out from the side of the skull, an inner rim, the bowl that
+leads into the canal and a lobe, with the jaw and neck running on below; the
+middle-ear bones are heavier with their joints marked; the pinna and cochlea
+are named, and hover names cover the pinna, canal, eardrum, bones and
+cochlea (rule 26.6). The live pressure and canal labels sit on panels so the
+type hues are not read against the skin's fill. `sim-string` is unchanged.

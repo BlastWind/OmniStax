@@ -70,11 +70,14 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   }
   /* the tuning fork, its stem on (x, y), drawn upward */
   function fork(ctx, x, y, open) {
-    line(ctx, x, y, x, y - 26, PAL.ink, 5);
-    const s = open ? 12 : 8;
-    line(ctx, x - s, y - 26, x - s, y - 92, PAL.ink, 5); line(ctx, x + s, y - 26, x + s, y - 92, PAL.ink, 5);
-    line(ctx, x - s, y - 26, x + s, y - 26, PAL.ink, 5);
-    text(ctx, 'tuning fork', x, y - 112, PAL.ink, { size: 19, align: 'center' });
+    /* a stem, a rounded yoke and two prongs, about 130 tall; the prongs' swing is drawn as faint ghosts either side */
+    const s = open ? 15 : 11, top = y - 130, yoke = y - 46;
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, yoke + s); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x - s, top); ctx.lineTo(x - s, yoke); ctx.arc(x, yoke, s, Math.PI, 0, true); ctx.lineTo(x + s, top); ctx.stroke();
+    ctx.restore();
+    [-1, 1].forEach((k) => line(ctx, x + k * (s + 7), top, x + k * (s + 7), yoke - 30, alpha(PAL.ink, 0.3), 3));
+    text(ctx, 'tuning fork', x, top - 22, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
   }
   function draw() {
     const { ctx } = begin(d.c);

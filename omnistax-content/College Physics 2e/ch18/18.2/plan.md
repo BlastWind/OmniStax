@@ -201,6 +201,8 @@ Extra simulations (rule 15), thought through, judged and left:
 - A comb picking up pieces of paper. Left: `sim-polarization` is the same
   attraction with the book's own bodies.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-electroscope`: the leaves, which had been two thick strokes like a wishbone, are now thin tapered foils hung from the foot of the stem with their marks on the outer faces, and the leaves' label sits beside the lower leaf. `sim-induction-spheres`: the rod, taken away in the last moment, now stops at the canvas edge instead of leaving it. `sim-polarization`: the two pulls were floating in a band under the object with the attraction's head hidden under its own label; they are now set under the two faces whose charges feel them, the attraction under the near face toward the rod and the weaker repulsion under the far face away from it, each with a clamped label below it; the distance is dimensioned in the gap above the bodies' centre line; the rod's name stands to its left and the object's above it, so neither meets the net-charge line at the top right at any distance; the canvas is 600 tall. `sim-conductor-insulator` and `sim-induction-ground` left as built.
+
 ## Exercises
 
 - 1 Check Your Understanding inline: `cyu1` (fs-id1824436, why the stream of

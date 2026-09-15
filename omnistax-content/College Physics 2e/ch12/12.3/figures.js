@@ -263,9 +263,9 @@ function vscale(ctx, box, top, step, fx, title, color) {
     text(ctx, 'P = ' + fmt(Ps.v, 3) + ' × 10⁶ N/m²', 430, YP + 36, prc, { size: 20, weight: 600 });
     if (v > 0.05) arrow(ctx, 626, yt, 626 + 5 * v, yt, vc, 4);
     text(ctx, 'v = ' + fmt(v, 1) + ' m/s', 632, yt - 30, vc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    if (h > 0.2) vbracket(ctx, 760, YP, yt, pc, 'h = ' + fmt(h, 1) + ' m', 1);
-    else text(ctx, 'h = 0', 776, YP, pc, { size: 20, weight: 600 });
-    line(ctx, 470, YP, 740, YP, alpha(PAL.ink, 0.35), 2, [10, 10]);
+    if (h > 0.2) vbracket(ctx, 690, YP, yt, pc, 'h = ' + fmt(h, 1) + ' m', 1);
+    else text(ctx, 'h = 0', 706, YP, pc, { size: 20, weight: 600 });
+    line(ctx, 470, YP, 680, YP, alpha(PAL.ink, 0.35), 2, [10, 10]);
     text(ctx, 'ρ = 1000 kg/m³', 430, YG + 24, dc, { size: 20, weight: 600 });
     text(ctx, 'g = 9.80 m/s²', 650, YG + 24, ac, { size: 20, weight: 600 });
     /* the three powers and their total */

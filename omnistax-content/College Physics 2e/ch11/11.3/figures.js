@@ -4,7 +4,7 @@
    choice's input alone redraws it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, strip, person } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, strip } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -38,36 +38,62 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
      area, which goes as the square of the width, runs through four powers of ten. The two
      detents are the book's two panels, the point of a needle and the pad of a fingertip. */
   const ds = ctl(d.controls, { label: 'd', cls: '', min: 0.1, max: 12, step: 0.1, value: 12, unit: 'mm', dec: 1, aria: 'the width of the contact', detents: [{ v: 0.3, label: 'needle' }, { v: 12, label: 'fingertip' }], snap: true });
-  /* the scene: 1 mm is 30 units; the skin stands at x = 900 and the push comes from the left */
-  const MM = 30, SX = 900, CY = 300, SHAFT = 6 * MM;
+  /* the scene: 1 mm is 20 units; the skin stands at x = 900 with the body behind it, and the push
+     comes from the left. A finger 14 mm across pushes while the contact is 4 mm or wider, its pad
+     flattening against the skin to the width d; below that the pusher is a hypodermic needle on its
+     syringe, tapering to the point d across, and the skin dents under it, deeper as the pressure climbs. */
+  const MM = 20, SX = 900, CY = 300, FR = 7 * MM, X0 = 300;
   /* the ruler of pressures: fixed from the slider extremes, 20 N over the point at 0.1 mm is 2.5 × 10⁹ Pa, so the ruler runs 10² to 10¹⁰ Pa */
   const RX0 = 150, RX1 = 1250, E0 = 2, E1 = 10, RY = 600;
   const RX = (p) => RX0 + ((Math.log10(p) - E0) / (E1 - E0)) * (RX1 - RX0);
   const marks = [[1e4, '1 × 10⁴ Pa, which is 100 mb'], [6.9e6, 'the air tank of Example 11.2'], [3.0e9, 'a nail tip under a hammer']];
+  /* the skin's dent under the contact: a smooth bump of depth `dent` and half-width `hw` centred on CY */
+  const skinX = (y, dent, hw) => { const u = (y - CY) / hw; return Math.abs(u) >= 1 ? SX : SX + dent * 0.5 * (1 + Math.cos(Math.PI * u)); };
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('force'), pc = C('pressure');
     const Fv = Fs.v, dw = ds.v, A = Math.PI * (dw / 2) * (dw / 2) * 1e-6, P = Fv / A;
-    const half = dw * MM / 2;
-    /* the skin and the body behind it */
-    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.12); ctx.fillRect(SX, 110, 380, 380); ctx.restore();
-    line(ctx, SX, 110, SX, 490, PAL.ink, 4);
-    text(ctx, 'the skin', SX + 110, 136, PAL.muted, { size: 19 });
-    /* the push, a rod whose end narrows to the width of the contact */
+    const half = dw * MM / 2, finger = dw >= 4;
+    const dent = Fv === 0 ? 0 : Math.min(44, Math.max(6, 12 + 8 * Math.log10(P / 1e4)));
+    const hw = Math.max(finger ? half + 70 : 60, 2.2 * half);
+    /* the body behind the skin, its surface dented where the push lands */
+    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.14); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(SX, 100);
+    for (let y = 100; y <= 500; y += 4) ctx.lineTo(skinX(y, dent, hw), y);
+    ctx.lineTo(1300, 500); ctx.lineTo(1300, 100); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(SX, 100); for (let y = 100; y <= 500; y += 4) ctx.lineTo(skinX(y, dent, hw), y); ctx.stroke(); ctx.restore();
+    text(ctx, 'the skin', SX + 120, 128, PAL.muted, { size: 19 });
+    const tipX = SX + dent;
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
-    ctx.beginPath(); ctx.moveTo(330, CY - SHAFT / 2); ctx.lineTo(760, CY - SHAFT / 2); ctx.lineTo(SX, CY - half); ctx.lineTo(SX, CY + half); ctx.lineTo(760, CY + SHAFT / 2); ctx.lineTo(330, CY + SHAFT / 2); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'the push', 545, CY - SHAFT / 2 - 22, PAL.muted, { size: 19, align: 'center' });
-    /* the contact, marked on the skin and bracketed */
-    line(ctx, SX, CY - half, SX, CY + half, PAL.ink, 10);
-    if (half > 14) vbracket(ctx, SX + 60, CY - half, CY + half, PAL.ink, 'd = ' + fmt(dw, 1) + ' mm', 1);
-    else { line(ctx, SX + 50, CY, SX + 70, CY, PAL.ink, 3); text(ctx, 'd = ' + fmt(dw, 1) + ' mm', SX + 76, CY, PAL.ink, { weight: 600 }); }
-    /* the force, along the axis of the push */
-    if (Fv > 0) {
-      const la = Math.max(24, Fv * 10);
-      arrow(ctx, 320 - la, CY, 320, CY, fc, 5);
-      text(ctx, 'F = ' + fmt(Fv, 1) + ' N', 316, CY + 34, fc, { weight: 600, align: 'right' });
+    if (finger) {
+      /* a finger: a rounded rod whose tip circle meets the skin along the chord d wide, so the pad flattens to the contact */
+      const cx = tipX - Math.sqrt(FR * FR - half * half), th = Math.asin(half / FR);
+      ctx.beginPath(); ctx.moveTo(X0, CY - FR); ctx.lineTo(cx, CY - FR); ctx.arc(cx, CY, FR, -Math.PI / 2, -th); ctx.lineTo(tipX, CY + half); ctx.arc(cx, CY, FR, th, Math.PI / 2); ctx.lineTo(X0, CY + FR); ctx.closePath(); ctx.fill(); ctx.stroke();
+      /* the nail, an oval on the upper side of the tip, and the knuckle crease */
+      ctx.lineWidth = 2.5; ctx.beginPath(); ctx.ellipse(cx - 30, CY - FR + 34, 62, 26, 0, 0, TAU); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(X0 + 200, CY - FR + 6); ctx.quadraticCurveTo(X0 + 214, CY - FR + 40, X0 + 200, CY - FR + 70); ctx.stroke();
+      text(ctx, 'a fingertip', (X0 + cx) / 2, CY - FR - 24, PAL.muted, { size: 19, align: 'center' });
+    } else {
+      /* a hypodermic needle on its syringe: the barrel, its flange, the hub and a shaft that tapers to the point */
+      const barrelR = 36, hubX = X0 + 330, taper = 110, shaftR = 0.6 * MM;
+      ctx.fillRect(X0, CY - barrelR, hubX - X0, 2 * barrelR); ctx.strokeRect(X0, CY - barrelR, hubX - X0, 2 * barrelR);
+      ctx.fillRect(X0 - 10, CY - barrelR - 14, 14, 2 * barrelR + 28); ctx.strokeRect(X0 - 10, CY - barrelR - 14, 14, 2 * barrelR + 28);
+      ctx.beginPath(); ctx.moveTo(hubX, CY - barrelR); ctx.lineTo(hubX + 40, CY - shaftR - 6); ctx.lineTo(hubX + 40, CY + shaftR + 6); ctx.lineTo(hubX, CY + barrelR); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(hubX + 40, CY - shaftR); ctx.lineTo(tipX - taper, CY - shaftR); ctx.lineTo(tipX, CY - half); ctx.lineTo(tipX, CY + half); ctx.lineTo(tipX - taper, CY + shaftR); ctx.lineTo(hubX + 40, CY + shaftR); ctx.closePath(); ctx.fill(); ctx.stroke();
+      text(ctx, 'a hypodermic needle', (X0 + hubX) / 2, CY - barrelR - 24, PAL.muted, { size: 19, align: 'center' });
     }
-    hbracket(ctx, 330, 330 + 10 * MM, 500, PAL.muted, '10 mm');
+    ctx.restore();
+    /* the contact, marked on the skin and bracketed */
+    line(ctx, tipX, CY - half, tipX, CY + half, pc, 8);
+    if (half > 14) vbracket(ctx, tipX + 60, CY - half, CY + half, PAL.ink, 'd = ' + fmt(dw, 1) + ' mm', 1);
+    else { line(ctx, tipX + 40, CY, tipX + 60, CY, PAL.ink, 3); text(ctx, 'd = ' + fmt(dw, 1) + ' mm', tipX + 66, CY, PAL.ink, { weight: 600 }); }
+    /* the force, along the axis of the push, anchored on the pusher's end and drawn thicker than any body line */
+    if (Fv > 0) {
+      const la = 50 + Fv * 11, ax = X0 - (finger ? 0 : 10);
+      arrow(ctx, ax - la, CY, ax - 4, CY, fc, 7);
+      F.label(ctx, 'F = ' + fmt(Fv, 1) + ' N', ax - la / 2, CY, { side: 'below', color: fc, gap: 26, leader: false });
+    }
+    hbracket(ctx, X0, X0 + 10 * MM, 522, PAL.muted, '10 mm');
     /* the ruler of pressures */
     line(ctx, RX0, RY, RX1, RY, PAL.ink, 3);
     for (let e = E0; e <= E1; e++) { const x = RX(Math.pow(10, e)); line(ctx, x, RY - 8, x, RY + 8, PAL.ink, 2); text(ctx, '10' + sup(e) + (e === E1 ? ' Pa' : ''), x, RY + 30, PAL.muted, { size: 17, align: 'center' }); }
@@ -101,7 +127,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
   const Ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 0, max: 400, step: 5, value: 220, unit: 'kPa', dec: 0, aria: 'the pressure of the air in the tire' });
   const As = ctl(d.controls, { label: 'A', cls: '', min: 0.1, max: 10, step: 0.1, value: 2, unit: 'cm²', dec: 1, aria: 'the area of the patch of wall' });
   /* which wall the patch sits on is a state, not a quantity, so it is a choice */
-  const where = choice(d.controls, { label: '\\text{the patch}', options: [{ value: 'tread', label: 'the tread' }, { value: 'rim', label: 'the rim' }, { value: 'valve', label: 'the valve' }], value: 'tread', aria: 'which wall the patch sits on' });
+  const where = choice(d.controls, { label: '\\text{the patch}', options: [{ value: 'tread', label: 'tread' }, { value: 'rim', label: 'rim' }, { value: 'valve', label: 'valve' }], value: 'tread', aria: 'which wall the patch sits on' });
   const CX = 540, CY = 410, RO = 290, RI = 150, GROUND = 712;
   const VA = 45 * RAD;                                    /* the valve sits on the rim at the lower right, its stem toward the hub */
   const IX = 1140, IY = 440, IR = 190;                    /* the magnified valve beside the tire */
@@ -114,7 +140,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     const fc = C('force'), pc = C('pressure');
     const Pk = Ps.v, P = Pk * 1e3, A = As.v * 1e-4, Fv = P * A, w = where.value;
     const L = Pk > 0 ? 18 + (Pk / PMAX) * 80 : 0;         /* the field's arrows, the same length everywhere at one pressure */
-    const LF = Fv > 0 ? 40 + (Fv / FMAX) * 120 : 0;      /* the one force on the chosen patch */
+    const LF = Fv > 0 ? 60 + (Fv / FMAX) * 150 : 0;      /* the one force on the chosen patch */
     hits = [];
     /* the ground and the tire: tread, the air between tread and rim, the rim and the hub */
     strip(ctx, 140, 940, GROUND, 24);
@@ -158,18 +184,19 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
       hits.push({ x: IX, y: IY + 40, r: 60, name: 'the air in the stem, pushing on the core and on the walls' });
     }
     /* the chosen patch and the force on it */
-    let px, py, nx, ny, lx, ly, align;
-    if (w === 'valve') { px = IX; py = IY - 54; nx = 0; ny = -1; lx = IX + 24; ly = IY - 54 - LF - 10; align = 'left'; }
+    let px, py, nx, ny;
+    if (w === 'valve') { px = IX; py = IY - 54; nx = 0; ny = -1; }
     else {
-      const r = w === 'tread' ? RO - 3 : RI, sgn = w === 'tread' ? 1 : -1, half = 0.05 + 0.11 * Math.sqrt(As.v / 10);
-      ctx.save(); ctx.strokeStyle = w === 'tread' ? PAL.panel : PAL.ink; ctx.lineWidth = w === 'tread' ? 6 : 12; ctx.beginPath(); ctx.arc(CX, CY, w === 'tread' ? RO + 4 : r, PA - half, PA + half); ctx.stroke(); ctx.restore();
-      px = CX + r * Math.cos(PA); py = CY + r * Math.sin(PA); nx = sgn * Math.cos(PA); ny = sgn * Math.sin(PA);
-      lx = px + nx * LF / 2; ly = py + ny * LF / 2 - 28; align = 'center';
+      /* the patch: a short solid arc of the wall itself, wider with the area, on the tread at its outer edge or on the rim */
+      const r = w === 'tread' ? RO + 4 : RI, sgn = w === 'tread' ? 1 : -1, half = 0.07 + 0.13 * Math.sqrt(As.v / 10);
+      ctx.save(); ctx.strokeStyle = fc; ctx.lineWidth = w === 'tread' ? 18 : 14; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.arc(CX, CY, r, PA - half, PA + half); ctx.stroke(); ctx.restore();
+      px = CX + (r + sgn * 7) * Math.cos(PA); py = CY + (r + sgn * 7) * Math.sin(PA); nx = sgn * Math.cos(PA); ny = sgn * Math.sin(PA);
     }
     hits.push({ x: px, y: py, r: 30, name: 'the patch of ' + fmt(As.v, 1) + ' cm² you chose' });
     if (Fv > 0) {
-      arrow(ctx, px, py, px + nx * LF, py + ny * LF, fc, 6);
-      text(ctx, 'F = ' + (Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)) + ' N', lx, ly, fc, { weight: 600, align, bg: alpha(PAL.panel, 0.85) });
+      arrow(ctx, px, py, px + nx * LF, py + ny * LF, fc, 7);
+      const tx = px + nx * (LF + 8), ty = py + ny * (LF + 8);
+      F.label(ctx, 'F = ' + (Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)) + ' N', tx, ty, { side: w === 'valve' ? 'right' : nx < -0.3 ? 'left' : nx > 0.3 ? 'right' : 'above', color: fc, gap: 14, leader: false });
     }
     if (w === 'valve') text(ctx, 'the patch is the face of the core', IX, IY + IR + 30, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'the arrows are the push of the air on the walls, the same size everywhere at one pressure', 700, 100, PAL.muted, { size: 17, align: 'center' });
@@ -226,7 +253,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     ctx.restore();
     if (w === 'swimmer') {
       ctx.save(); ctx.translate(CX, CY); ctx.rotate(a);
-      person(ctx, 0, LEN / 2, PAL.ink, { s: S, reach: { x: 0, y: LEN / 2 - 124 * S } });
+      F.silhouette(ctx, { x: 0, y: LEN / 2 - 8, s: (LEN - 16) / 160, face: -1, pose: 'reach', hands: [{ x: 10, y: -158 }, { x: 2, y: -156 }], feet: [{ x: 6, y: 0 }, { x: -6, y: 0 }], kneeSide: 1, elbowSide: -1 });
       ctx.restore();
     } else {
       const c = toCanvas(0, 0);

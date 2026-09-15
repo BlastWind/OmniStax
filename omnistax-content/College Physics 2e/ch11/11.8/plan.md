@@ -420,3 +420,5 @@ both. Two sentences that named the book are reworded: the last sentence of
 Figure 11.31 + 11.32's caption, and the sentence on representative values in
 Figure 11.29's caption and readout, which now states the three values taken
 instead.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-surface-sheet`: the two surface pulls are drawn at least 120 units long and the angle arc is smaller, so the contact-angle label no longer sits on the right pull's label; the net pull is capped short of the headline and labelled above its tip. `sim-negative-pressure`: the piston's rod is thinner than the force arrow that pulls it, the arrow is heavier and longer with the force and stops short of the headline. The other five figures unchanged.

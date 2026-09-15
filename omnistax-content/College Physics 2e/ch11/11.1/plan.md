@@ -189,3 +189,5 @@ was written. The one change to the page is the first sentence of Figure
 figure moves, which `ch11/config.md` had not foreseen for this section; the
 plan's reason stands and the config's "What the build changed" block records
 it.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-phases`: the plate and the piston now carry the push that moves them, an ink arrow onto the plate's end for the shear and onto the piston's middle for the compression, since the page binds no type; the plasma's electrons are drawn a little larger so the panel reads at page width. Nothing else changed.

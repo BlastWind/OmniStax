@@ -77,6 +77,8 @@ $E$ from 0 to $2.0 \times 10^{6}$ N/C, and a value above the top goes through
 No figure of this section folds another, and neither figure has a clock, so
 neither carries a transport.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-force-field`: an arrow of attraction is capped so that it stops short of the charge Q instead of running into it at the shortest separation. `sim-point-charge-field`: the force arrow toward Q is capped so that it never leaves the canvas at the shortest distance; the label of Q stands to its left so that it never meets the test charge's label; the pinned marker carries no label of its own, since the headline and the readout state the number.
+
 ## Photographs and unnumbered images
 
 The section prints no photograph and no unnumbered image. Figure 18.18 is

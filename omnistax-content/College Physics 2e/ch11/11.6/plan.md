@@ -298,3 +298,5 @@ Principle stays plain text, as every cross reference of the built book is;
 `ch11/config.md` now says so. The two hexes the figures carry, mercury's
 silver and the pale blue of a colourless liquid, are the physical fact of
 root rule 7's third family and stand.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-aneroid`: the whole mechanism (pivot, dial, spring, bellows and stem) sits 32 units lower and the bellows 4 units shorter, so the dial's numbers clear a two-line headline at the ends of the slider where the headline wraps. `sim-manometer` and `sim-barometer` unchanged.

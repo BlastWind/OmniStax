@@ -45,7 +45,7 @@ function turnArc(ctx, cx, cy, R, a0, a1, color) {
   ctx.beginPath(); ctx.arc(cx, cy, R, a0, a1, ccw); ctx.stroke(); ctx.restore();
   const t = ccw ? a1 + Math.PI / 2 : a1 - Math.PI / 2;
   const hx = cx + R * Math.cos(a1), hy = cy + R * Math.sin(a1);
-  arrow(ctx, hx + 26 * Math.cos(t), hy + 26 * Math.sin(t), hx, hy, color, 3);
+  arrow(ctx, hx + 30 * Math.cos(t), hy + 30 * Math.sin(t), hx, hy, color, 4);
 }
 /* a body in ink: a closed path of the given points about (cx, cy), turned by `ang` */
 function body(ctx, cx, cy, pts, ang, fill) {
@@ -56,8 +56,15 @@ function body(ctx, cx, cy, pts, ang, fill) {
 const turned = (cx, cy, x, y, ang) => ({ x: cx + x * Math.cos(ang) - y * Math.sin(ang), y: cy + x * Math.sin(ang) + y * Math.cos(ang) });
 /* a rounded rod of length L and thickness T about its centre */
 const rodPts = (L, T) => { const p = [], n = 8; for (let i = 0; i <= n; i++) { const a = -Math.PI / 2 + (i / n) * Math.PI; p.push([L / 2 + (T / 2) * Math.cos(a), (T / 2) * Math.sin(a)]); } for (let i = 0; i <= n; i++) { const a = Math.PI / 2 + (i / n) * Math.PI; p.push([-L / 2 + (T / 2) * Math.cos(a), (T / 2) * Math.sin(a)]); } return p; };
-/* a hanging cloth, about 130 wide and 170 tall, about its centre */
-const CLOTH = [[-40, -85], [30, -88], [58, -60], [66, -10], [52, 40], [64, 82], [20, 90], [-30, 78], [-62, 88], [-70, 40], [-56, -20], [-66, -62]];
+/* a hanging cloth, about 130 wide and 176 tall, about its centre: pinched at the
+   top where it is held, widening as it drapes, with a scalloped hem */
+const CLOTH = [[0, -88], [26, -72], [52, -50], [62, -10], [58, 40], [64, 84], [44, 74], [22, 88], [0, 76], [-22, 88], [-44, 74], [-64, 84], [-58, 40], [-62, -10], [-52, -50], [-26, -72]];
+/* the folds of a draped cloth, drawn after its body: three faint lines from the pinch to the hem */
+function clothFolds(ctx, cx, cy, ang, sx = 1, sy = 1) {
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(ang); ctx.scale(sx, sy); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2 / Math.max(sx, sy);
+  for (const [x0, x1] of [[-6, -34], [2, 8], [8, 40]]) { ctx.beginPath(); ctx.moveTo(x0, -70); ctx.quadraticCurveTo(x1 * 0.6, 10, x1, 78); ctx.stroke(); }
+  ctx.restore();
+}
 /* the slots the marks on a cloth sit in, about its centre */
 const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24, 30], [0, 60], [-46, 60], [30, -70], [-50, 20]];
 
@@ -110,10 +117,11 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     text(ctx, fmt(r, 1) + ' cm', (ex + px) / 2 + 14, (ey + py) / 2 + 22, PAL.ink, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
     let hx, hy;
     if (heldGlass) { hx = px + (L / 2) * ux; hy = py + (L / 2) * uy; body(ctx, hx, hy, ROD, DIR, PAL.soft); marks(ctx, hx, hy, DIR, nm, '+', false); }
-    else { hx = px + 70 * ux; hy = py + 70 * uy; body(ctx, hx, hy, CLOTH, 0, PAL.soft); marks(ctx, hx, hy, 0, nm, '−', true); }
+    else { hx = px + 70 * ux; hy = py + 70 * uy; body(ctx, hx, hy, CLOTH, 0, PAL.soft); clothFolds(ctx, hx, hy, 0); marks(ctx, hx, hy, 0, nm, '−', true); }
     /* the hanging body, turned about the thread */
     const hc = turned(CX, CY, off.x, off.y, ang);
     body(ctx, hc.x, hc.y, hangGlass ? ROD : CLOTH, ang, PAL.soft);
+    if (!hangGlass) clothFolds(ctx, hc.x, hc.y, ang);
     marks(ctx, hc.x, hc.y, ang, nm, hangGlass ? '+' : '−', !hangGlass);
     line(ctx, CX, CY - 190, CX, CY, PAL.ink, 2);
     dot(ctx, CX, CY, PAL.ink, false, 8);
@@ -123,7 +131,7 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     Lb.add('thread', CX, CY - 150, -1, 0, PAL.ink, 18, 14);
     const top = turned(CX, CY, off.x, off.y - (hangGlass ? 18 : 92), ang);
     Lb.add('q = ' + plus(qHang, 1) + ' nC', top.x, top.y, 0, -1, qc, 21, 22);
-    const heldName = heldGlass ? 'glass rod, brought near' : 'silk, brought near';
+    const heldName = heldGlass ? 'glass rod, brought near' : hangGlass ? 'silk, brought near' : 'a second cloth, brought near';
     const tip = heldGlass ? { x: px + L * ux, y: py + L * uy } : { x: hx, y: hy - 96 };
     Lb.add(heldName, tip.x, tip.y, heldGlass ? 0.3 : 0, -1, PAL.ink, 20, 22);
     Lb.add('q = ' + plus(qHeld, 1) + ' nC', heldGlass ? hx : hx + 72, heldGlass ? hy + 20 : hy, heldGlass ? 0 : 1, heldGlass ? 1 : 0, qc, 21, 24);
@@ -246,7 +254,7 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     const { ctx, H } = begin(d.c);
     const qc = C('charge');
     const n = ns.v;
-    body(ctx, AX, AY, AMBER, 0, PAL.soft); body(ctx, KX, KY, CLOTH2, 0, PAL.soft);
+    body(ctx, AX, AY, AMBER, 0, PAL.soft); body(ctx, KX, KY, CLOTH2, 0, PAL.soft); clothFolds(ctx, KX, KY, 0, 1.6, 1.5);
     AP.forEach(([x, y]) => particle(ctx, AX + x, AY + y, 'p+', 12));
     AE.slice(0, 2 + n).forEach(([x, y]) => particle(ctx, AX + x, AY + y, 'e-', 12));
     KP.forEach(([x, y]) => particle(ctx, KX + x, KY + y, 'p+', 12));

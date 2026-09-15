@@ -161,3 +161,5 @@ gravity lifts the whole curve. `sim-measure-g` draws its time line from 0 to
 75 s, the longest ten swings the sliders allow, so a shorter pendulum plainly
 finishes sooner. All three are two-dimensional, with no 3D; labels are off
 behind a button on the first and on for the other two.
+
+**Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-pendulum-force` names its two curves with clamped `label()`s at points inside the box, Hooke's line above its visible left end and the true curve below its right end, where before both names sat on the curves. `sim-pendulum-period` names its curve in the top left corner, which the curve never reaches. `sim-measure-g` hangs its longest pendulum to y = 410, clear of the time line at 500, which the 2.000 m bob sat on before.

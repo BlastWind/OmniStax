@@ -1,7 +1,7 @@
 /* Figures for section 16.8 Forced Oscillations and Resonance. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.8'] = function (root, F) {
-const { el, fmt, tex, C, PAL, cat, alpha, REDUCED, ctl, choice, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, axes, curve, pinned, scale, spring, block, fixed, person } = F;
+const { el, fmt, tex, C, PAL, cat, alpha, REDUCED, ctl, choice, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, axes, curve, pinned, scale, spring, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 /* a number in the book's own form, 1.20 × 10^3 */
@@ -52,18 +52,14 @@ function sciTex(v, dec) {
     const b = bOf(damp.value), X = ampOf(f.v, b), lag = lagOf(f.v, b);
     const t = REDUCED ? 0.25 / f.v : cy.now(), ph = 2 * Math.PI * f.v * t;
     /* ---- the scene, left: a finger, a rubber band and the paddle ball ---- */
-    const cx = 330, ytop = 150, y0 = 430;
+    const cx = 330, ytop = 200, y0 = 480;
     const AF = 20;                                     /* the finger's own travel, drawn small */
     const yf = ytop + AF * Math.sin(ph);
     const PX = 11;                                     /* 1 cm of swing is 11 units of canvas */
     const yb = y0 - Math.min(X, 10) * PX * Math.sin(ph - lag);
-    fixed(ctx, cx - 150, 74, 300, 26);
-    /* the hand: a fist above and one finger reaching down to the band */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.roundRect(cx - 74, yf - 46, 110, 52, 14); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.roundRect(cx + 26, yf - 20, 24, 30, 10); ctx.fill(); ctx.stroke();
-    ctx.restore();
-    text(ctx, 'your finger', cx - 92, yf - 16, PAL.muted, { size: 20, align: 'right' });
+    /* the hand: a fist gripping the top of the band, its forearm reaching back up and to the left */
+    F.fist(ctx, cx + 38, yf + 10, -0.85, -0.53, 1);
+    F.label(ctx, 'your finger', cx - 6, yf - 8, { side: 'left', color: PAL.muted, weight: 400, size: 20, gap: 18 });
     spring(ctx, cx + 38, yf + 10, cx + 38, yb - 34, 7, 16, PAL.ink, 3);
     text(ctx, 'rubber band', cx + 74, (yf + yb) / 2, PAL.muted, { size: 20 });
     ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(cx + 38, yb, 34, 0, Math.PI * 2); ctx.fill(); ctx.restore();
@@ -134,6 +130,10 @@ function sciTex(v, dec) {
     const { ctx } = begin(d.c);
     const CX = C('position'), CT = C('time'), CE = C('energy'), CP = C('power'), CK = C('stiffness');
     const t = cy.now(), X = XAt(t), E = 0.5 * K() * X * X, Ein = PP.v * t, Xss = DD.v > 0 ? 0.5 * Math.sqrt(PP.v / DD.v) : 0;
+    /* the headline first, so the label under it knows whether it took one line or two */
+    const lines = headline(ctx, DD.v > 0
+      ? 'After ' + fmt(t, 0) + ' s the marching has put in ' + sci(Ein, 3) + ' J, the damper has taken back all but ' + sci(E - 0.5 * K() * X0 * X0, 3) + ' J of it, and the swing is settling at ' + fmt(Xss, 3) + ' m'
+      : 'After ' + fmt(t, 0) + ' s the marching has put in ' + sci(Ein, 3) + ' J and the bridge swings ' + fmt(X, 3) + ' m either way');
     /* ---- the scene: the deck, its towers and the soldiers on it ---- */
     const l = 220, r = 1180, yd = 230, PXm = 150;      /* 1 m of amplitude is 120 units, so the swing can be seen at all */
     const drawn = Math.min(X, 1) * PXm;
@@ -148,14 +148,16 @@ function sciTex(v, dec) {
     deck(drawn, PAL.ink, 5);
     line(ctx, l, yd, r, yd, PAL.muted, 2, [10, 10]);
     text(ctx, 'the deck at rest', r - 6, yd + 76, PAL.muted, { size: 17, align: 'right' });
-    vbracket(ctx, l + 320, yd - drawn, yd + drawn, CX);
-    text(ctx, '2\u2009X = ' + fmt(2 * X, 3) + ' m', l + 320, yd - drawn - 24, CX, { size: 20, weight: 600, align: 'center' });
+    /* the swing is bracketed at midspan, where the deck moves the full amplitude, and named under
+       the deck, where the name cannot climb into the headline however large the swing grows */
+    vbracket(ctx, l + 480, yd - drawn, yd + drawn, CX);
+    text(ctx, '2\u2009X = ' + fmt(2 * X, 3) + ' m', l + 480, yd + drawn + 30, CX, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     const march = (t * 0.6) % 1;
     [0.28, 0.42].forEach((g, i) => {
       const gg = (g + march) % 1, px = l + (r - l) * gg, py = yd + drawn * Math.sin(Math.PI * gg);
-      person(ctx, px, py, PAL.ink, { phase: (t * 2 + i * 0.5) % 1, s: 0.7, face: 1 });
+      F.silhouette(ctx, { x: px, y: py, s: 0.5, pose: 'walk', phase: (t * 2 + i * 0.5) % 1, face: 1, color: PAL.ink });
     });
-    text(ctx, 'soldiers marching in step at the bridge’s natural frequency', l + 260, yd - 160, PAL.muted, { size: 20 });
+    text(ctx, 'soldiers marching in step at the bridge’s natural frequency', l + 60, lines === 2 ? 112 : 86, PAL.muted, { size: 20, bg: PAL.panel });
     /* ---- the store of energy, right of the deck ---- */
     /* Fixed at 0 to 3 × 10⁷ J, which holds the fullest store the sliders reach at 1.00 m. */
     const EMAX = 3e7, bx = 1290, bt = 140, bb = 400;
@@ -175,9 +177,6 @@ function sciTex(v, dec) {
     curve(ctx, (u) => Math.min(XAt(u), 1), 0, Math.max(t, 1e-6), Xa, Ya, CX, 5, 180);
     const p = pinned(ctx, box, Xa, Ya, t, Math.min(X, 1), PAL.ink);
     dot(ctx, p.x, p.y, PAL.ink, true, 9);
-    headline(ctx, DD.v > 0
-      ? 'After ' + fmt(t, 0) + ' s the marching has put in ' + sci(Ein, 3) + ' J, the damper has taken back all but ' + sci(E - 0.5 * K() * X0 * X0, 3) + ' J of it, and the swing is settling at ' + fmt(Xss, 3) + ' m'
-      : 'After ' + fmt(t, 0) + ' s the marching has put in ' + sci(Ein, 3) + ' J and the bridge swings ' + fmt(X, 3) + ' m either way');
     readout(d.readout, `\\kE = \\tfrac{1}{2}\\kk\\kX^2 = \\tfrac{1}{2}\\left(${sciTex(K(), 3)}\\ \\text{N/m}\\right)\\left(${fmt(X, 3)}\\ \\text{m}\\right)^2 = ${sciTex(E, 3)}\\ \\text{J}`,
       (DD.v > 0
         ? 'The damper takes out ' + fmt(DD.v * (X / 0.5) * (X / 0.5), 0) + ' J each second at this amplitude and the marching puts in ' + fmt(PP.v, 0) + ' J, so the swing grows until the two are equal, at ' + fmt(Xss, 3) + ' m. That is how a driven oscillation holds a constant amplitude.'

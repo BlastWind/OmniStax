@@ -233,6 +233,9 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
      14.1 km across (200 km²) in 360 units, and the section holds 100 m of depth in 330 units. */
   const KM = 360 / Math.sqrt(200), MPX = 330 / 100;
   const PCX = 270, PCY = 340, SX1 = 640, SX2 = 1160, DAMW = 60, SURF = 160;
+  /* the pale blue a colourless liquid is drawn in, the chapter's physical-fact colour (the manometer of 11.6 uses the same), tinted toward the ink for the darker liquids */
+  const CLEAR = '#bfe0f2';
+  const liquidFill = (r) => (r.v < 1.5 ? CLEAR : alpha(PAL.ink, 0.18));
   const G = 9.80;
   function draw() {
     const { ctx } = begin(d.c);
@@ -241,10 +244,10 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     const side = Math.sqrt(A) * KM;
     /* the plan: the reservoir as a square of its area, the dam along its right edge */
     text(ctx, 'seen from above', PCX, 108, PAL.muted, { size: 19, align: 'center' });
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = liquidFill(r); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
     ctx.fillRect(PCX - side / 2, PCY - side / 2, side, side); ctx.strokeRect(PCX - side / 2, PCY - side / 2, side, side); ctx.restore();
     fixed(ctx, PCX + side / 2, PCY - side / 2 - 10, 18, side + 20);
-    text(ctx, 'the dam', PCX + side / 2 + 9, PCY - side / 2 - 26, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the dam', PCX + side / 2 + 30, PCY, PAL.muted, { size: 17, align: 'left' });
     text(ctx, lower(r.n), PCX, PCY, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.8) });
     hbracket(ctx, PCX - side / 2, PCX + side / 2, PCY + side / 2 + 28, PAL.ink, '');
     text(ctx, 'A = ' + fmt(A, 1) + ' km², ' + sigz(Math.sqrt(A), 3) + ' km across', PCX, PCY + side / 2 + 54, PAL.ink, { size: 19, weight: 600, align: 'center' });
@@ -255,7 +258,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     const bottom = SURF + h * MPX;
     fixed(ctx, SX2, 130, DAMW, bottom + 34 - 130);
     fixed(ctx, SX1 - 20, bottom, SX2 - SX1 + 20, 34);
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(SX1, SURF, SX2 - SX1, bottom - SURF); ctx.restore();
+    ctx.save(); ctx.fillStyle = liquidFill(r); ctx.fillRect(SX1, SURF, SX2 - SX1, bottom - SURF); ctx.restore();
     line(ctx, SX1, SURF, SX2, SURF, PAL.ink, 3, [14, 10]);
     line(ctx, SX1, bottom, SX2, bottom, PAL.ink, 2);
     text(ctx, lower(r.n), (SX1 + SX2) / 2, (SURF + bottom) / 2, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.8) });

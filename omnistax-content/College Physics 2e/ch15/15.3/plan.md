@@ -258,3 +258,5 @@ gas molecules, the car and the engine are ink.
   writes them, so the `otto` anchor is the nearest passage.
 
 Applied in the chapter pass (2026-09-14): the thirteen variable anchors and the four equation anchors are set on `chapter.json` as listed. The five primed rows of this section (`Q_hprime`, `Q_cprime`, `W_prime`, `T_hprime`, `T_cprime`) stand on the `otto` anchor although the page writes none of them, since the fold carries only the caption of Figure 15.18 as its `original_caption` and the caption of Figure 15.19, where the book writes them, is not shown; they are the book's symbols for the folded figure and the definitions view lists them. No symbol row was changed.
+
+Figure pass (2026-09-15, Claude Fable 5.1): in `sim-otto` the $Q_\text{c}$ arrow leaving DA was drawn over the corner label A, and at the highest $T_\text{h}$ the corner C rose into the legend in the top-left of the graph; the corner labels are now set after the heat arrows and the legend sits in the top-right corner, which stays empty at every temperature. The other three figures were checked at every state and stand as built.

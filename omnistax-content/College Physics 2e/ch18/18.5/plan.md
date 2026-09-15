@@ -60,6 +60,8 @@ The two faithful copies stand in a closing block of the text under the
 header `exercise-figures`, as `config.md` allows where the card image is too
 small to read the labels from. The cards keep the book's images as well.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-adding-fields`: the scene is drawn at 60 units to the centimetre instead of 46, so the triangle fills the frame, and a tick's label is left out where a charge sits on it, which had put "2 cm" under q₁ at the book's own numbers. `sim-one-charge`: field lines 3 px. `sim-two-charges`, `fig-square-wxyz` and `fig-three-objects` left as built.
+
 ## Photographs and unnumbered images
 
 18.5 prints no photograph. The five numbered figures are all diagrams and all

@@ -112,6 +112,8 @@ in a microwave) are what the reader is asked to think of, and a figure would
 answer the box for them; a thermos with its parts removed one at a time would
 answer the third conceptual question the same way. None built.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Both figures were screenshot at every choice in both themes and looked at, and both were found clean: the room, the chimney, the couch and the three paths read without their labels, the thermos's parts are each beside their label with a leader. Unchanged.
+
 ## Exercises
 
 - `cyu1` (fs-id2405334), check-understanding, Understand, inline after

@@ -116,6 +116,8 @@ offered: the two figures already open the views the text lacks, and a
 graph of drag against speed would need the transition law the book does
 not give.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Both figures were looked at in both themes at every slider extreme and fluid and left as built.
+
 ## Exercises
 
 - No Check Your Understanding box; nothing inline.

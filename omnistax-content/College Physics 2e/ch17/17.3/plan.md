@@ -291,3 +291,9 @@ records that. The book's two misprinted forms of the intensity formula are
 kept as printed, and the figure reference in the paragraph on the screaming
 cartoon, which points at Figure 17.12, is the book's own and is kept;
 `exploration.md` carries both under its errata.
+
+## Figure pass (2026-09-15, Claude Fable 5.1)
+
+`sim-many-sources`: the listener is the library's filled silhouette facing
+the reader in place of the stick figure. The ladder, the pressure amplitude
+and the decibel ladder are unchanged.

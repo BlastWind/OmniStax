@@ -165,7 +165,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
   const MS = 1.00e7, VH = 1.00e5, HH = 25, LEN = 100;                              /* the hull: 1.00 × 10⁷ kg of steel, 1.00 × 10⁵ m³, 100 m by 40 m by 25 m */
   const cargo = ctl(d.controls, { label: '\\text{cargo}', cls: '', min: 0, max: 100, step: 1, value: 0, unit: '× 10⁶ kg', dec: 0, detents: [{ v: 0, label: 'empty' }, { v: 90, label: 'the deck awash' }], snap: false, aria: 'the mass of cargo on the deck, in millions of kilograms' });
   const rf = ctl(d.controls, { label: '\\krhofl', cls: 'density', min: 900, max: 1300, step: 5, value: 1000, unit: 'kg/m³', dec: 0, detents: [{ v: 1000 }, { v: 1025, label: 'sea water' }], snap: true, aria: 'the density of the water the ship floats in' });
-  const U = 6.5, SURF = 320, X0 = 375, SEA = 35, KW = 2e-7;                          /* U: canvas units per metre, fixed; KW: units per newton */
+  const U = 6.5, SURF = 320, X0 = 375, SEA = 35, KW = 1.6e-7;                          /* U: canvas units per metre, fixed; KW: units per newton */
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('force'), dc = C('density');
@@ -175,7 +175,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     /* the water, the seabed, the hull, then the water's tint over what is under */
     fluidBox(ctx, 60, 1340, SURF, SURF + SEA * U);
     line(ctx, 60, SURF + SEA * U, 1340, SURF + SEA * U, PAL.muted, 4);
-    text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'water of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', 1330, SURF + 32, dc, { size: 20, weight: 600, align: 'right' });
+    text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'water of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', 70, SURF + 32, dc, { size: 20, weight: 600, align: 'left' });
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(X0, top); ctx.lineTo(x1 - 70, top); ctx.lineTo(x1, top + 30); ctx.lineTo(x1 - 40, bottom); ctx.lineTo(X0 + 30, bottom); ctx.lineTo(X0, top + 60); ctx.closePath(); ctx.fill(); ctx.stroke();
     /* the deckhouse at the stern */
@@ -187,23 +187,26 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
       if (i < full) panelRect(ctx, bx, by, 46, 22, PAL.ink, alpha(PAL.ink, 0.12), 2);
       else if (i === full && part > 0.02) panelRect(ctx, bx, by, 46 * part, 22, PAL.ink, alpha(PAL.ink, 0.12), 2);
     }
-    if (mc > 0) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + Math.min(10, Math.max(1, Math.ceil(boxes))) * 50 + 10, top - 36, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    /* the cargo's label sits beside a short row of boxes and above a long one, so that it never reaches the free-body diagram at the right */
+    if (mc > 0 && boxes < 7) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + Math.max(1, Math.ceil(boxes)) * 50 + 10, top - 36, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    else if (mc > 0) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + 250, top - 24 - 24 - 28, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'steel hull, 1.00 × 10⁷ kg', X0 - 16, (top + bottom) / 2 - 14, PAL.ink, { size: 19, weight: 600, align: 'right' });
     text(ctx, '100 m by 40 m by 25 m, 1.00 × 10⁵ m³', X0 - 16, (top + bottom) / 2 + 14, PAL.muted, { size: 18, align: 'right' });
     fluidTint(ctx, 60, 1340, SURF, SURF + SEA * U);
-    text(ctx, 'the surface', 1330, SURF - 18, PAL.muted, { size: 18, align: 'right' });
-    /* the two forces on the ship, at its centre, one scale */
-    const cx = (X0 + x1) / 2, cy = (top + bottom) / 2;
-    arrow(ctx, cx - 14, cy, cx - 14, cy - FB * KW, fc, 5);
-    text(ctx, 'F_B = ' + sci(FB) + ' N', cx - 30, cy - FB * KW / 2, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    arrow(ctx, cx + 14, cy, cx + 14, cy + W * KW, fc, 5);
-    text(ctx, 'w = ' + sci(W) + ' N', cx + 30, cy + W * KW / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the surface', 70, SURF - 18, PAL.muted, { size: 18, align: 'left' });
+    /* the two forces on the ship, in a free-body diagram beside the hull so that neither arrow runs through the cargo; one scale */
+    const cx = 1200, cy = SURF + 30;
+    text(ctx, 'free-body diagram of the ship', cx, cy - FB * KW - 44, PAL.muted, { size: 17, align: 'center' });
+    arrow(ctx, cx, cy, cx, cy - FB * KW, fc, 5);
+    text(ctx, 'F_B = ' + sci(FB) + ' N', cx + 16, cy - FB * KW / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    arrow(ctx, cx, cy, cx, cy + W * KW, fc, 5);
+    text(ctx, 'w = ' + sci(W) + ' N', cx + 16, cy + W * KW / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
     dot(ctx, cx, cy, PAL.ink, true, 9);
     /* how much of the hull is under */
     if (floats) {
       vbracket(ctx, x1 + 40, SURF, bottom, PAL.ink, 'fraction submerged ' + fmt(f, 3), 1);
       line(ctx, x1 - 40, bottom, x1 + 40, bottom, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    } else text(ctx, 'the ship rests on the bottom', x1 + 40, SURF + SEA * U - 60, PAL.ink, { size: 20, weight: 600 });
+    } else text(ctx, 'the ship rests on the bottom', (X0 + x1) / 2, SURF + SEA * U - 30, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, mc === 0 ? 'With no cargo the hull’s average density is ' + fmt(rav, 0) + ' kg/m³, ' + (rho === 1000 ? 'a tenth of the water’s' : fmt(f * 100, 1) + ' percent of the water’s') + ', so ' + (rho === 1000 ? 'a tenth' : fmt(f * 100, 1) + ' percent') + ' of the hull is submerged.'
       : floats ? 'With a cargo of ' + fmt(cargo.v, 0) + ' × 10⁶ kg the hull’s average density is ' + fmt(rav, 0) + ' kg/m³, so ' + fmt(f * 100, 1) + ' percent of it is submerged.'
         : 'With a cargo of ' + fmt(cargo.v, 0) + ' × 10⁶ kg the hull’s average density is ' + fmt(rav, 0) + ' kg/m³, more than the water’s, so the ship sinks.');

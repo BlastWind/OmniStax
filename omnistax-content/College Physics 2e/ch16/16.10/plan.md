@@ -213,3 +213,5 @@ so is one on each of the sixteen variable rows, on `16.10-superposition`,
 The caption-attribute finding is recorded in `config.md` as an app gap,
 and every caption attribute of the five sections was checked for a dollar
 sign; none carries one.
+
+**Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-beats` names its beat bracket under the bracket rather than above it, where the name sat on the tick labels. `sim-superposition`, `sim-standing-wave` and `sim-string-harmonics` were looked at in light and dark at every slider extreme, every choice and three points of the cycle, and left as built.

@@ -274,18 +274,18 @@ function curl(ctx, x, y, R, a0, ang, w) {
     const Tf = allMelts ? (avail - need) / ((mS + mIce) * CW) : 0;
     const melted = allMelts ? mIce : avail / LF;
     const Qmelt = melted * LF, Qwarm = allMelts ? mIce * CW * Tf : 0, Qsoda = mS * CW * (T - Tf);
-    /* the cup, the soda and the ice cubes floating in it */
+    /* the cup, the soda in it and the ice that is still ice floating at its surface; the cubes that have melted are gone */
     const fillH = 120 + 380 * mS, yTop = CUP.b - 6 - fillH;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(CUP.l + 6, yTop, CUP.r - CUP.l - 12, fillH); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.13); ctx.fillRect(CUP.l + 6, yTop, CUP.r - CUP.l - 12, fillH); ctx.restore();
+    line(ctx, CUP.l + 6, yTop, CUP.r - 6, yTop, PAL.muted, 2);
     const cubes = Math.round(mi.v / 6), left = allMelts ? 0 : Math.max(1, Math.round((mIce - melted) / 0.006));
-    for (let k = 0; k < cubes; k++) {
-      const col = k % 5, row = Math.floor(k / 5), x = CUP.l + 18 + col * 46, y = yTop + 6 + row * 38, solid = k < left;
-      ctx.save(); ctx.strokeStyle = solid ? PAL.ink : PAL.muted; ctx.lineWidth = 2; if (!solid) ctx.setLineDash([4, 4]);
-      if (solid) { ctx.fillStyle = PAL.panel; ctx.fillRect(x, y, 38, 30); } ctx.strokeRect(x, y, 38, 30); ctx.restore();
+    for (let k = 0; k < left; k++) {
+      const col = k % 5, row = Math.floor(k / 5), x = CUP.l + 18 + col * 46, y = yTop - 12 + row * 34;
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(x, y, 38, 30, 4); ctx.fill(); ctx.stroke(); ctx.restore();
     }
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(CUP.l, CUP.t); ctx.lineTo(CUP.l + 10, CUP.b); ctx.lineTo(CUP.r - 10, CUP.b); ctx.lineTo(CUP.r, CUP.t); ctx.stroke(); ctx.restore();
     text(ctx, 'a foam cup', (CUP.l + CUP.r) / 2, CUP.t - 22, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, cubes === 0 ? 'no ice' : cubes + (cubes === 1 ? ' ice cube, ' : ' ice cubes, ') + fmt(mi.v, 0) + ' g, at 0 °C', (CUP.l + CUP.r) / 2, CUP.b + 30, PAL.ink, { size: 19, align: 'center' });
+    text(ctx, cubes === 0 ? 'no ice' : cubes + (cubes === 1 ? ' ice cube, ' : ' ice cubes, ') + fmt(mi.v, 0) + ' g, at 0 °C' + (cubes > 0 && allMelts ? ', all melted' : ''), (CUP.l + CUP.r) / 2, CUP.b + 30, PAL.ink, { size: 19, align: 'center' });
     text(ctx, fmt(mS, 2) + ' kg of soda' + (allMelts ? '' : ', with ' + fmt((mIce - melted) * 1000, 0) + ' g of ice left'), (CUP.l + CUP.r) / 2, CUP.b + 58, PAL.ink, { size: 19, align: 'center' });
     /* the temperature bar: the soda's starting temperature hollow, the final temperature filled */
     const Yt = (t) => BAR.b - (t / 40) * (BAR.b - BAR.t);

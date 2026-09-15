@@ -279,6 +279,25 @@ and 19.7's 133 F truck capacitor, all five keyed; 19.1's goes to 19.3).
   in the first body row, and the page rebuilds it with those as the header.
 - **19.7's AP item cites "Example 19.1"**, which is the car battery's
   number in this edition, so no correction is needed.
+- **Example 19.8's answer key disagrees with the example it belongs to.**
+  The example works the charge stored on a 8.85 nF capacitor at 3.00 kV out
+  as 26.6 µC, and the key at the end of the chapter gives 80.0 mC for the
+  same question. Both are printed as the book prints them, the example in
+  the narrative and the key on the card, and 19.5's `notes` names the
+  disagreement; the figure that draws the capacitor opens on the example's
+  26.6 µC.
+- **19.7's opening paragraph sends the reader to the wrong photograph.**
+  The sentence on the defibrillator reads "(Review Figure 19.23.)", but
+  Figure 19.23 is the calculator whose memory a capacitor preserves and the
+  defibrillator is Figure 19.24, two sentences later. The text is kept as
+  printed, and both photographs are kept, so the reader who follows the
+  link still sees a capacitor doing the work the passage describes.
+- **Figure 19.19, the cell membrane, is printed among 19.5's conceptual
+  questions**, where the book sets it beside the question it illustrates.
+  The conceptual questions leave the text for the Exercises tab, which
+  would leave the figure with nothing around it, so the page sets it beside
+  the paragraph on the membrane's −70 mV, the passage it draws, and keeps
+  its number and its caption. 19.5's `notes` records the move.
 
 ## Prerequisite edges into built chapters
 

@@ -83,7 +83,7 @@ function span(ctx, x1, x2, y, label) {
       /* the test charge, and the Coulomb force the field exerts on it */
       pointCharge(ctx, tx, y, q, 26);
       text(ctx, (i ? 'q₂ = ' : 'q₁ = ') + plus(q, 1) + ' μC', tx, y + 54, qc, { size: 22, weight: 600, align: 'center' });
-      const away = Q * q > 0 ? 1 : -1, L = (Fv[i] / big) * MAXLEN;
+      const away = Q * q > 0 ? 1 : -1, L = Math.min((Fv[i] / big) * MAXLEN, away > 0 ? MAXLEN : r * S - 30 - 30 - 24);
       if (L > 6) {
         arrow(ctx, tx + away * 30, y, tx + away * (30 + L), y, fc, 5);
         /* the label sits above the middle of the arrow, so that it never lands on
@@ -135,7 +135,7 @@ function span(ctx, x1, x2, y, label) {
     const px = QX + r * S;
     /* the charge, the probe, and the distance between them */
     pointCharge(ctx, QX, YS, Q, 32);
-    text(ctx, 'Q = ' + plus(Q, 2) + ' nC', QX, YS + 62, qc, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'Q = ' + plus(Q, 2) + ' nC', QX - 44, YS, qc, { size: 22, weight: 600, align: 'right' });
     span(ctx, QX + 32, px, YS - 110, 'r = ' + fmt(r, 2) + ' mm');
     line(ctx, px, YS - 96, px, YS + 96, PAL.muted, 2, [4, 8]);
     text(ctx, 'the probe', px, YS + 180, PAL.muted, { size: 19, align: 'center' });
@@ -148,7 +148,7 @@ function span(ctx, x1, x2, y, label) {
     pointCharge(ctx, px, YS + 44, q, 24);
     text(ctx, 'q = ' + plus(q, 2) + ' μC', px, YS + 92, qc, { size: 22, weight: 600, align: 'center' });
     if (Math.abs(q) > 1e-9) {
-      const fDir = q > 0 ? eDir : -eDir, fLen = Math.max(28, Math.min(240, 120 * Math.sqrt(Fv / 0.18)));
+      const fDir = q > 0 ? eDir : -eDir, fLen = Math.max(28, Math.min(240, fDir < 0 ? px - 24 - 60 : 240, 120 * Math.sqrt(Fv / 0.18)));
       arrow(ctx, px + fDir * 24, YS + 44, px + fDir * (24 + fLen), YS + 44, fc, 5);
       text(ctx, 'F = ' + fmt(Fv, 3) + ' N', clampX(px + fDir * (24 + fLen / 2)), YS + 136, fc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
     } else {
@@ -160,7 +160,7 @@ function span(ctx, x1, x2, y, label) {
     curve(ctx, (t) => field(Q, t), 1.2, RX[1], X, Y, ec, 5, 160);
     ctx.restore();
     line(ctx, X(r), BOX.t, X(r), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    pinned(ctx, BOX, X, Y, r, E, ec, sci(E, 2) + ' N/C');
+    pinned(ctx, BOX, X, Y, r, E, ec);   /* the number itself is in the headline and the readout */
     text(ctx, 'the field falls as the square of the distance', BOX.r - 12, BOX.t + 30, PAL.muted, { size: 19, align: 'right' });
     topline(ctx, Q === 0 ? 'A charge of nothing makes no field, and a test charge set down anywhere near it feels no force.'
       : 'A charge of ' + plus(Q, 2) + ' nC makes a field of ' + sci(E, 2) + ' N/C at ' + fmt(r, 2) + ' mm, pointing '

@@ -205,6 +205,12 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+### Figure pass, 2026-09-15 (Claude Fable 5.1)
+
+- `sim-potentials-add`: the two component field arrows at P carried no name (rule 26.6); the pointer now names them, P and the two charges through `F.hover`.
+- `sim-van-de-graaff`: the sphere stood on two faint rules with a bare belt between them; it now stands on a filled insulating column with the belt running up one side and down the other, arrowed, in ink.
+- `sim-point-charge-potential`: looked at in both themes at every extreme; nothing changed.
+
 ## Exercises
 
 - No Check Your Understanding boxes; nothing inline.
@@ -290,3 +296,8 @@ arrow, never by a hue.
 - variables `h` → 19.3-charged-spheres
 - equations `eq-point-charge-potential` → 19.3-point-charge-potential
 - equations `eq-point-charge-field` → 19.3-scalar-and-vector
+
+**Applied by the chapter pass (2026-09-14).** Nine variable rows and two
+equation rows carry their anchors. Twenty-one weighted `exercise_concepts`
+rows were given `weights_by: "ai"`. The eight items held for this page from
+19.1 are here with `source_section: "19.1"` and both sections' notes say so.

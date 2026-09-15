@@ -177,6 +177,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Both figures were screenshot at their defaults, slider extremes, three points of the cycle and every material in both themes and looked at. `sim-collisions`: the wavy arrow of net conduction shrank to a stub once the temperatures drew near, so it keeps a readable length while any difference remains. `sim-slab`: the Q of the wavy arrow sat against the hot body's face and is above the bar's hot end on a panel now.
+
 ## Exercises
 
 - 1 Check Your Understanding box, `cyu1` (fs-id2586676), inline after

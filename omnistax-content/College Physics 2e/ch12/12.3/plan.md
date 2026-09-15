@@ -185,6 +185,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   beside `sim-torricelli` already carries $\kvtwo$ against $\kh$ for every
   depth, and a family of jets would repeat it.
 
+Figure pass (2026-09-15, Claude Fable 5.1). `sim-fluid-power`: the height bracket and its label ran into the tick labels of the power chart, so the bracket stands closer to the outlet pipe. `sim-torricelli` and `sim-fire-hose` were left as built.
+
 ## Exercises
 
 - No Check Your Understanding box, so nothing is inline; every item is set

@@ -200,6 +200,8 @@ Extra simulations (rule 15), thought through and decided:
   `sim-expanding-plate` already shows the hole growing with the plate, and a
   figure would answer the question the reader is being asked.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure was screenshot at its default, at every slider extreme and at every choice in both themes. `sim-water-density`: at the warm end the density label and the temperature label were written over one another at the foot of the graph; the density label now goes above the point whenever the point sits in the lower half of the box, and the temperature label steps off its drop line. `sim-thermal-stress`: the gauge's rim, ticks and hub were stroked in the pressure hue, which the scheme gives a pale yellow that vanished on the light theme; the instrument is ink now, and only its arc, its needle and its reading wear the pressure hue, the needle drawn over an ink outline so that it reads whatever the hue. `sim-linear-expansion`, `sim-expanding-plate` and `sim-tank-spill` were found clean and are unchanged.
+
 ## Exercises
 
 - The Check Your Understanding (`cyu1`, eip-264, the two blocks) is keyed and

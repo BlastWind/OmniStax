@@ -409,3 +409,5 @@ typographical slips in the running text … are the book's and stay"); and
 the cylinder's depth slider runs to 0.35 m in a tank 0.60 m deep, which the
 figure line above now says in place of the 0.80 m and 1.00 m first
 planned.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-ship`: the buoyant force and the weight are drawn in a free-body diagram beside the hull rather than through it, since with cargo on deck the two arrows ran through the boxes and their labels; the surface and density labels move to the left end of the water, and the cargo label sits above a long row of boxes so nothing reaches the diagram. The other four figures unchanged.

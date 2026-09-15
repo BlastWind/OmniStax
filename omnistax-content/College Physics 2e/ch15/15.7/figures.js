@@ -117,7 +117,7 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
     for (let h = 0; h <= N; h++) if (tally[h] > 0) {
       const v = Math.min(tally[h], yr.hi), over = tally[h] > yr.hi;
       column(ctx, g.X, g.Y, h, v, 0, alpha(PAL.ink, h === last ? 0.55 : 0.28), h === last ? PAL.ink : null, 3);
-      if (over) text(ctx, String(tally[h]), cxOf(g.X, h), TB.t - 12, PAL.ink, { size: 15, weight: 600, align: 'center' });
+      if (over) text(ctx, String(tally[h]), cxOf(g.X, h), TB.t - 12, PAL.ink, { size: 17, weight: 600, align: 'center' });
     }
     text(ctx, 'dashed outline: the count of microstates W of each macrostate, scaled to ' + TOSSES + ' tosses', TB.r - 10, TB.t + 18, PAL.muted, { size: 17, align: 'right', bg: alpha(PAL.panel, 0.85) });
     /* the entropy of each macrostate, S = k ln W, in the entropy hue; the range follows the number of coins */

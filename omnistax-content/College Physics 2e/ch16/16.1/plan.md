@@ -167,3 +167,5 @@ stretches less instead of redrawing the same picture under new tick labels.
 axis at 0 to 30 N; a spring stiffer than 100 N/m runs off the top and its live
 point is pinned at the edge with its value, so the shaded triangle now answers
 both sliders. All three are two-dimensional, with no 3D, and their labels on.
+
+**Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-ruler` is now drawn as a ruler, a pale strip with an ink edge and graduations down one side, every fifth one longer, in place of a heavy black stroke; its headline is set first so the displacement bracket drops under the bracket line when the headline takes two lines, and the restoring force's name is a clamped `label()`. `sim-stored-energy` gets a dart, a shaft with a point and two fins, in place of a stick and a ball; its flight is capped at the strip's end so the dart and its speed label never leave the canvas, and the label is a clamped `label()` above the arrow. `sim-spring-scale` was looked at in light and dark at every slider extreme and left as built. The dart is drawn in this file; a `dart` sprite would let the library carry it.

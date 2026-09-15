@@ -79,12 +79,12 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     /* the incident beam and the two shares, each arrow as long as its share of the intensity */
     const LEN = 300;
     arrow(ctx, BX - LEN - 40, BEAM, BX - 8, BEAM, ic, 6);
-    text(ctx, 'the ultrasound arrives', BX - LEN - 40, BEAM - 26, ic, { size: 20, weight: 600 });
+    text(ctx, 'the ultrasound arrives', BX - LEN - 40, BEAM - 26, ic, { size: 20, weight: 600, bg: PAL.panel });
     const lr = Math.max(28, a * LEN), lt = Math.max(28, tr * LEN);
     arrow(ctx, BX - 8, BEAM + 54, BX - 8 - lr, BEAM + 54, ic, 3 + 9 * a);
-    text(ctx, 'reflected, ' + fmt(100 * a, 1) + '%', BX - 18, BEAM + 22, ic, { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'reflected, ' + fmt(100 * a, 1) + '%', BX - 18, BEAM + 22, ic, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
     arrow(ctx, BX + 8, BEAM, BX + 8 + lt, BEAM, ic, 3 + 9 * tr);
-    text(ctx, 'transmitted, ' + fmt(100 * tr, 1) + '%', BX + 18, BEAM - 26, ic, { size: 20, weight: 600 });
+    text(ctx, 'transmitted, ' + fmt(100 * tr, 1) + '%', BX + 18, BEAM - 26, ic, { size: 20, weight: 600, bg: PAL.panel });
     /* the same two shares as one bar of the whole incident intensity */
     const w = BAR.r - BAR.l, wr = a * w;
     ctx.save(); ctx.fillStyle = alpha(ic, 0.85); ctx.fillRect(BAR.l, BAR.t, Math.max(wr, 1.5), BAR.b - BAR.t); ctx.restore();

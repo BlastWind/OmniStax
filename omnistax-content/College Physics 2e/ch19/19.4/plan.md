@@ -270,3 +270,11 @@ of its field lines, never by a second hue.
 - variables `θ` → 19.4-perpendicular-to-field
 - equations `eq-work-along-equipotential` → 19.4-perpendicular-to-field
 - equations `eq-work-perpendicular-to-field` → 19.4-perpendicular-to-field
+
+**Applied by the chapter pass (2026-09-14).** Nine variable rows and two
+equation rows carry their anchors. 19.2's two isoline AP items are on this
+page with `source_section: "19.2"`. The page carries no problems at all,
+since all ten of the section's problems ask for a sketch and the book keys
+none of them; the chapter's `config.md` records the decision under "What the
+build changed" so that Chen may override it and keep them as open sketching
+items with their images on the cards.

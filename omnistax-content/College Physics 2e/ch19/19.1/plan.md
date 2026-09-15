@@ -202,6 +202,12 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+### Figure pass, 2026-09-15 (Claude Fable 5.1)
+
+- `sim-electrical-hill`: the energy bars were scaled to the widest state the sliders reach, so the book's 100 µJ stood 24 units tall, and their sign was inverted, a negative charge's potential energy standing up. They now run ±250 µJ over 180 units (the default range, a taller bar capped and drawn broken), each value sits just past the end of its own bar, and the bars read the right way.
+- `sim-electron-gun`: the velocity arrow grew from the particle along its path and ran through the far plate as it arrived. The speed is now an arrow of its own under the plates, growing in step with the time of flight and labelled with its value; the plates were shortened to make its row.
+- `sim-battery-headlight`: looked at in both themes at every extreme; nothing changed.
+
 ## Exercises
 
 - No Check Your Understanding boxes; nothing inline.
@@ -298,3 +304,13 @@ electron, proton and helium nucleus take the element palette.
 - equations `eq-speed-from-voltage` → 19.1-ex-electron-speed
 - The dielectric constant has no symbol row (config); nothing on this page
   writes it.
+
+**Applied by the chapter pass (2026-09-14).** Every variable and equation row
+above carries its anchor in `chapter.json`; nineteen variables and nine
+equations were set. The dielectric constant now has a symbol row of its own,
+`κ` with the LaTeX `\kappa`, staged and merged with the chapter's other
+rows, but nothing on this page writes it, so the page is unchanged. Twenty of
+the section's `exercise_concepts` rows carry a weight and each now carries
+`weights_by: "ai"` as well. The seven AP items and the Unreasonable Results
+problem that go to 19.3 are on 19.3's page with `source_section: "19.1"`, and
+both sections' `exercise_notes` name the move.

@@ -179,7 +179,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
       fatArrow(ctx, 330, YC + HALF + 22, 250, 590, 46, ec, (t * 1.6) % 1);
       text(ctx, 'Q_out', 200, 590, ec, { size: 24, weight: 600, align: 'right' });
       arrow(ctx, px + 46 + 24 + Fp * KF, YC - 60, px + 46 + 24, YC - 60, fc, 5);
-      text(ctx, "F' = P'A = " + sci(Fp, 3, 2) + ' N', px + 70, YC - 96, fc, { size: 21, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, "F' = P'A = " + sci(Fp, 3, 2) + ' N', px + 70, YC - 28, fc, { size: 21, weight: 700, align: 'left', bg: alpha(PAL.panel, 0.9) });
       text(ctx, "W_in = F'd = " + J(Win * (1 - s)) + ' J', 1230, 120, ec, { size: 22, weight: 600, align: 'right' });
       text(ctx, "F' < F", 1230, 160, PAL.ink, { size: 22, weight: 600, align: 'right' });
     }
@@ -225,13 +225,13 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     line(ctx, CX - hw + 2, y0, CX + hw - 2, y0, alpha(PAL.ink, 0.5), 2, [8, 8]);
     if (dd > 0.004) {
       vbracket(ctx, CX + hw + 54, yp, y0, xc, 'd = ' + fmt(dd, 3) + ' m', 1);
-      if (dd > 0.045) text(ctx, 'ΔV = Ad', CX, (yp + y0) / 2, PAL.ink, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      if (dd > 0.045) text(ctx, 'ΔV = Ad', CX - hw + 14, (yp + y0) / 2, PAL.ink, { size: 21, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
     }
     /* the force of the gas on the piston, and the heat that keeps the pressure up */
     const fy0 = Math.min(YB - 20, yp + 4 + Fv * KF);   /* the force on the piston, drawn up to its face, as long as the gas column allows */
     arrow(ctx, CX, fy0, CX, yp + 4, fc, 5);
-    text(ctx, 'F = PA', CX + 18, (fy0 + yp) / 2, fc, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'P = ' + sci(P, 5, 1) + ' N/m²', CX + 18, YB - 70, pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'F = PA', CX + 18, (fy0 + yp) / 2, fc, { size: 22, weight: 700, bg: alpha(PAL.panel, 0.9) });
+    text(ctx, 'P = ' + sci(P, 5, 1) + ' N/m²', CX + 18, YB - 70, pc, { size: 20, weight: 700, bg: alpha(PAL.panel, 0.9) });
     fatArrow(ctx, 40, 612, CX - hw - 26, YB - 30, 40, ec);
     text(ctx, 'Q_in', 40, 566, ec, { size: 24, weight: 600 });
     /* the PV diagram beside it: the process is the horizontal line from A to B, and the work the rectangle under it */
@@ -478,11 +478,13 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const k = kind.value, m = model(k);
     const g = axes(ctx, box, [0, 4], [0, 6], { xl: 'V (10⁻³ m³)', xc: PAL.ink, yl: 'P (10⁵ N/m²)', yc: pc, nx: 4, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     /* the other three processes, faintly, so the chosen one is seen against them */
+    const ghosts = [];
     for (const o of ['isobaric', 'isochoric', 'isothermal', 'adiabatic']) {
-      if (o === k) continue; const mo = model(o), col = alpha(PAL.ink, 0.3);
+      if (o === k) continue; const mo = model(o), col = alpha(PAL.ink, 0.35);
       if (mo.f) walk(ctx, mo.f, VA, mo.VB, g.X, g.Y, col, 2.5, o === 'adiabatic' ? [10, 8] : undefined); else line(ctx, g.X(VA), g.Y(PA), g.X(VA), g.Y(Math.min(mo.PB, 6)), col, 2.5);
-      const ex = g.X(mo.VB), ey = g.Y(Math.min(mo.PB, 6)), dy = { isobaric: 0, isochoric: -22, isothermal: -14, adiabatic: 16 }[o];
-      text(ctx, o, ex + (mo.VB >= VA ? 14 : -14), ey + dy, alpha(PAL.ink, 0.55), { size: 17, align: mo.VB >= VA ? 'left' : 'right', bg: alpha(PAL.panel, 0.7) });
+      /* each ghost is named at the middle of its own path, clear of the chosen path's endpoint B, and the names are set after B so nothing is drawn over them */
+      if (mo.f) { const vm = (VA + mo.VB) / 2, dy = o === 'adiabatic' ? 26 : -20; ghosts.push([o, g.X(vm), g.Y(mo.f(vm)) + dy, 'center']); }
+      else ghosts.push([o, g.X(VA) - 14, g.Y((PA + Math.min(mo.PB, 6)) / 2), 'right']);
     }
     /* the chosen process: its path, the area under it, and its endpoint */
     if (m.f) {
@@ -498,6 +500,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     state(ctx, g.X(VA), g.Y(PA), 'A', k === 'isochoric' ? 0.9 : -0.9, k === 'isochoric' ? 0 : -0.7);
     const e = pinned(ctx, box, g.X, g.Y, m.VB, m.PB, PAL.ink, 'B');
     if (!e.out) text(ctx, 'B', e.x + (m.VB >= VA ? 24 : -24), e.y - 24, PAL.ink, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    ghosts.forEach(([o, x, y, al]) => text(ctx, o, x, y, PAL.muted, { size: 17, align: al, bg: alpha(PAL.panel, 0.8) }));
     text(ctx, k + (k === 'isochoric' ? ': constant volume, W = 0' : k === 'isobaric' ? ': constant pressure, W = PΔV' : k === 'isothermal' ? ': constant temperature, Q = W' : ': no heat transfer, Q = 0'), box.r - 10, box.t + 26, PAL.ink, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     /* the words and the numbers */
     const exp = m.VB > VA + 1e-9, comp = m.VB < VA - 1e-9;

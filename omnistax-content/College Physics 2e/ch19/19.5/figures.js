@@ -87,9 +87,11 @@ function fieldLine(ctx, x0, x1, y, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const qc = C('charge'), Q = Qs.v, n = Math.min(10, Math.round(Q / 5));
-    topline(ctx, 'The battery separates ' + fmt(Q, 1) + ' µC onto one conductor and −' + fmt(Q, 1) + ' µC onto the other, and the capacitor is neutral overall.');
+    const plus = Q > 0 ? '+' + fmt(Q, 1) : '0.0', minus = Q > 0 ? '−' + fmt(Q, 1) : '0.0';
+    topline(ctx, Q > 0 ? 'The battery separates ' + fmt(Q, 1) + ' µC onto one conductor and −' + fmt(Q, 1) + ' µC onto the other, and the capacitor is neutral overall.'
+      : 'With no charge separated, both conductors are neutral and the capacitor stores nothing.');
     battery(ctx, BX, BY, 150);
-    text(ctx, 'the battery', BX, BY + 92, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, 'the battery', BX + 14, BY + 58, PAL.muted, { size: 19 });
     if (kind.value === 'plates') {
       wire(ctx, [[BX, BY - 16], [BX, PT - 40], [PL, PT - 40], [PL, PT]]);
       wire(ctx, [[BX, BY + 16], [BX, PB + 40], [PR, PB + 40], [PR, PB]]);
@@ -97,8 +99,8 @@ function fieldLine(ctx, x0, x1, y, color) {
       ctx.beginPath(); ctx.moveTo(PL, PT); ctx.lineTo(PL, PB); ctx.moveTo(PR, PT); ctx.lineTo(PR, PB); ctx.stroke(); ctx.restore();
       marks(ctx, PL + 32, PT, PB, n, '+', qc);
       marks(ctx, PR - 32, PT, PB, n, '−', qc);
-      label(ctx, '+Q = +' + fmt(Q, 1) + ' µC', PL, PT - 8, { side: 'above', color: qc, gap: 16, size: 21 });
-      label(ctx, '−Q = −' + fmt(Q, 1) + ' µC', PR, PB + 8, { side: 'below', color: qc, gap: 16, size: 21 });
+      label(ctx, '+Q = ' + plus + ' µC', PL, PT - 8, { side: 'above', color: qc, gap: 16, size: 21 });
+      label(ctx, '−Q = ' + minus + ' µC', PR, PB + 8, { side: 'below', color: qc, gap: 16, size: 21 });
       text(ctx, 'two conducting plates, not touching', (PL + PR) / 2, PB + 96, PAL.muted, { size: 19, align: 'center' });
     } else {
       const CX = 770, CY = 290, R0 = 34, K = 15.5, TURNS = 4.2;
@@ -112,8 +114,8 @@ function fieldLine(ctx, x0, x1, y, color) {
       const end = outer[outer.length - 1], start = inner[0];
       wire(ctx, [[BX, BY - 16], [BX, 110], [end[0], 110], [end[0], end[1]]]);
       wire(ctx, [[BX, BY + 16], [BX, 470], [start[0] - 140, 470], [start[0] - 140, start[1]], [start[0], start[1]]]);
-      label(ctx, '+Q = +' + fmt(Q, 1) + ' µC', end[0], end[1] - 10, { side: 'above', color: qc, gap: 18, size: 21 });
-      label(ctx, '−Q = −' + fmt(Q, 1) + ' µC', start[0] - 140, start[1] - 10, { side: 'left', color: qc, gap: 14, size: 21 });
+      label(ctx, '+Q = ' + plus + ' µC', end[0], end[1] - 10, { side: 'above', color: qc, gap: 18, size: 21 });
+      label(ctx, '−Q = ' + minus + ' µC', start[0] - 140, start[1] - 10, { side: 'left', color: qc, gap: 14, size: 21 });
       text(ctx, 'two conducting sheets rolled up with an insulator between them', CX, 512, PAL.muted, { size: 19, align: 'center' });
     }
     readout(d.readout, '\\kQch = ' + fmt(Q, 1) + '\\ \\mu\\text{C}',
@@ -140,7 +142,7 @@ function fieldLine(ctx, x0, x1, y, color) {
     const n = Math.min(16, Math.round(Q / 3.75));
     topline(ctx, 'A charge of ' + fmt(Q, 1) + ' µC on a capacitance of ' + fmt(Cv, 2) + ' nF needs ' + fmt(V / 1000, 2) + ' kV across the plates, because Q = CV.');
     battery(ctx, 200, 290, 150);
-    text(ctx, 'the battery', 200, 382, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, 'the battery', 214, 348, PAL.muted, { size: 19 });
     wire(ctx, [[200, 274], [200, 100], [PL, 100], [PL, PT]]);
     wire(ctx, [[200, 306], [200, 470], [PR, 470], [PR, PB]]);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
@@ -153,8 +155,8 @@ function fieldLine(ctx, x0, x1, y, color) {
     }
     if (n === 0) text(ctx, 'no charge, no field', (PL + PR) / 2, (PT + PB) / 2, PAL.muted, { size: 21, align: 'center' });
     label(ctx, 'E, one line for each unit of charge', (PL + PR) / 2, PT - 6, { side: 'above', color: ec, gap: 14, size: 21 });
-    label(ctx, '+Q = +' + fmt(Q, 1) + ' µC', PL - 30, PB + 14, { side: 'below', color: qc, gap: 12, size: 21 });
-    label(ctx, '−Q = −' + fmt(Q, 1) + ' µC', PR + 30, PB + 14, { side: 'below', color: qc, gap: 12, size: 21 });
+    label(ctx, '+Q = ' + (Q > 0 ? '+' + fmt(Q, 1) : '0.0') + ' µC', PL - 30, PB + 14, { side: 'below', color: qc, gap: 12, size: 21 });
+    label(ctx, '−Q = ' + (Q > 0 ? '−' + fmt(Q, 1) : '0.0') + ' µC', PR + 30, PB + 14, { side: 'below', color: qc, gap: 12, size: 21 });
     vbracket(ctx, PR + 120, PT, PB, vc, 'V = ' + fmt(V / 1000, 2) + ' kV', 1);
     readout(d.readout, '\\kQch = \\kCap\\kV = (' + fmt(Cv, 2) + '\\ \\text{nF})(' + fmt(V / 1000, 2) + '\\ \\text{kV}) = ' + fmt(Q, 1) + '\\ \\mu\\text{C}',
       'The number of field lines, and with it the field strength and the voltage across the plates, is proportional to the charge the capacitor holds.');
@@ -187,7 +189,7 @@ function fieldLine(ctx, x0, x1, y, color) {
     const g = gapOf(mm), h = halfOf(A), xl = CXC - g / 2, xr = CXC + g / 2;
     topline(ctx, 'Plates of ' + fmt(A, 2) + ' m² a distance ' + fmt(mm, 2) + ' mm apart make a capacitance of ' + fmt(Cn, 2) + ' nF, which holds ' + fmt(Q, 1) + ' µC at ' + fmt(kV, 2) + ' kV.');
     battery(ctx, 190, CY, 150);
-    text(ctx, 'the battery', 190, CY + 92, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, 'the battery', 204, CY + 58, PAL.muted, { size: 19 });
     wire(ctx, [[190, CY - 16], [190, 130], [xl, 130], [xl, CY - h]]);
     wire(ctx, [[190, CY + 16], [190, 500], [xr, 500], [xr, CY + h]]);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
@@ -196,8 +198,7 @@ function fieldLine(ctx, x0, x1, y, color) {
     marks(ctx, xl + 22, CY - h, CY + h, n, '+', qc);
     marks(ctx, xr - 22, CY - h, CY + h, n, '−', qc);
     hbracket(ctx, xl, xr, CY + h + 54, pc, 'd = ' + fmt(mm, 2) + ' mm');
-    vbracket(ctx, xl - 42, CY - h, CY + h, PAL.ink, 'A = ' + fmt(A, 2) + ' m²', -1);
-    text(ctx, 'each plate has this area', xl - 42, CY + h + 40, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
+    vbracket(ctx, xl - 42, CY - h, CY + h, PAL.ink, 'each plate has A = ' + fmt(A, 2) + ' m²', -1);
     label(ctx, 'V = ' + fmt(kV, 2) + ' kV', CXC, CY - h - 10, { side: 'above', color: vc, gap: 18, size: 21 });
     label(ctx, 'Q = ' + fmt(Q, 1) + ' µC', xr + 20, CY - h + 10, { side: 'right', color: qc, gap: 14, size: 21 });
     label(ctx, 'C = ' + fmt(Cn, 2) + ' nF', CXC, CY + h + 120, { side: 'below', color: cc, gap: 8, size: 22 });
@@ -244,27 +245,33 @@ function fieldLine(ctx, x0, x1, y, color) {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
     ctx.beginPath(); ctx.moveTo(xl, CY - PH); ctx.lineTo(xl, CY + PH); ctx.moveTo(xr, CY - PH); ctx.lineTo(xr, CY + PH); ctx.stroke(); ctx.restore();
     /* the slab of dielectric, in ink, filling the space between the plates */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2;
-    ctx.fillRect(xl + 8, CY - PH, g - 16, 2 * PH); ctx.strokeRect(xl + 8, CY - PH, g - 16, 2 * PH); ctx.restore();
+    if (m.value !== 'vacuum') {
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, m.k > 1.01 ? 0.06 : 0.025); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2;
+      ctx.fillRect(xl + 8, CY - PH, g - 16, 2 * PH); ctx.strokeRect(xl + 8, CY - PH, g - 16, 2 * PH); ctx.restore();
+    }
     /* the plates' own charge, and the surface layer the dielectric presents to each */
     const np = Math.max(1, Math.min(9, Math.round(Q / 6)));
     marks(ctx, xl - 20, CY - PH, CY + PH, np, '+', qc);
     marks(ctx, xr + 20, CY - PH, CY + PH, np, '−', qc);
     const rows = 4, cols = Math.max(3, Math.min(9, Math.round((g - 52) / 78)));
-    /* what is left of the field: fewer lines cross than would cross a vacuum, and
-       they run in the lanes between the rows of molecules so that neither hides the other */
+    /* what is left of the field: fewer lines cross than would cross a vacuum, and they run
+       in the lanes between the rows of molecules so that neither hides the other; the three
+       inner lanes are taken first and the two at the plates' ends after them */
     const nl = Math.max(0, Math.min(5, Math.round(5 / k)));
-    for (let i = 0; i < nl; i++) fieldLine(ctx, xl + 16, xr - 16, CY - PH + ((i + 1) * 2 * PH) / (nl + 1), ec);
-    for (let r = 0; r < rows; r++) {
+    const lanes = [2, 1, 3, 0, 4].map((r) => CY - PH + (r * 2 * PH) / rows + (r === 0 ? 14 : r === rows ? -14 : 0));
+    for (let i = 0; i < nl; i++) fieldLine(ctx, xl + 16, xr - 16, lanes[i], ec);
+    /* a vacuum has nothing in it to polarize and air too little to draw, so the rows of
+       molecules belong to the solids and liquids of the table */
+    const solid = k > 1.01;
+    if (solid) for (let r = 0; r < rows; r++) {
       const y = CY - PH + ((r + 0.5) * 2 * PH) / rows;
       for (let c = 0; c < cols; c++) molecule(ctx, xl + 30 + ((c + 0.5) * (g - 60)) / cols, y, 58, 28, PAL.muted);
-      if (k > 1.01) {
-        text(ctx, '−', xl + 20, y, qc, { size: 19, weight: 600, align: 'center' });
-        text(ctx, '+', xr - 20, y, qc, { size: 19, weight: 600, align: 'center' });
-      }
+      text(ctx, '−', xl + 20, y, qc, { size: 19, weight: 600, align: 'center' });
+      text(ctx, '+', xr - 20, y, qc, { size: 19, weight: 600, align: 'center' });
     }
     hbracket(ctx, xl, xr, CY + PH + 60, pc, 'd = ' + fmt(mm, 2) + ' mm');
-    label(ctx, 'the molecules turn to face the plates', CXC, CY - PH - 6, { side: 'above', color: PAL.muted, gap: 14, size: 20 });
+    label(ctx, solid ? 'the molecules turn to face the plates' : m.value === 'vacuum' ? 'nothing between the plates to polarize' : 'air, too thin to polarize by more than a part in two thousand',
+      CXC, CY - PH - 6, { side: 'above', color: PAL.muted, gap: 14, size: 20 });
     label(ctx, 'V = ' + (V >= 1000 ? fmt(V / 1000, 2) + ' kV' : fmt(V, 0) + ' V'), xr + 60, CY - 70, { side: 'right', color: vc, gap: 10, size: 21 });
     label(ctx, 'C = ' + fmt(Cf * 1e9, 2) + ' nF', xr + 60, CY + 10, { side: 'right', color: cc, gap: 10, size: 21 });
     label(ctx, 'E = E₀/κ', xl - 60, CY + 10, { side: 'left', color: ec, gap: 10, size: 21 });
@@ -328,6 +335,10 @@ function fieldLine(ctx, x0, x1, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-water-molecule', 520);
+  /* an atom in its element colour with an ink outline, so the light hydrogen fill reads on a light page */
+  function atom(ctx, x, y, color, r) {
+    ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+  }
   function draw() {
     const { ctx } = begin(d.c);
     const OC = F.el('O'), HC = F.el('H');
@@ -341,8 +352,8 @@ function fieldLine(ctx, x0, x1, y, color) {
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.arc(LX, CY, 62, rad(-90 - half), rad(-90 + half)); ctx.stroke(); ctx.restore();
     text(ctx, '104.5°', LX, CY - 88, PAL.ink, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
-    a1.forEach((p) => { dot(ctx, p.x, p.y, HC, true, 26); text(ctx, 'H', p.x, p.y, PAL.panel, { size: 21, weight: 600, align: 'center' }); });
-    dot(ctx, LX, CY, OC, true, 38); text(ctx, 'O', LX, CY, PAL.panel, { size: 26, weight: 600, align: 'center' });
+    a1.forEach((p) => { atom(ctx, p.x, p.y, HC, 26); text(ctx, 'H', p.x, p.y, PAL.ink, { size: 21, weight: 600, align: 'center' }); });
+    atom(ctx, LX, CY, OC, 38); text(ctx, 'O', LX, CY, PAL.panel, { size: 26, weight: 600, align: 'center' });
     text(ctx, '(a) the shape of the molecule', LX, 492, PAL.ink, { size: 22, weight: 600, align: 'center' });
     /* (b) where the electrons gather, and the slight charges that leaves */
     const a2 = arms(RX);
@@ -350,10 +361,10 @@ function fieldLine(ctx, x0, x1, y, color) {
     ctx.beginPath(); ctx.ellipse(RX, CY + 16, 138, 118, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
     a2.forEach((p) => line(ctx, RX, CY, p.x, p.y, PAL.ink, 6));
     a2.forEach((p, i) => {
-      dot(ctx, p.x, p.y, HC, true, 26); text(ctx, 'H', p.x, p.y, PAL.panel, { size: 21, weight: 600, align: 'center' });
+      atom(ctx, p.x, p.y, HC, 26); text(ctx, 'H', p.x, p.y, PAL.ink, { size: 21, weight: 600, align: 'center' });
       label(ctx, 'slightly positive', p.x, p.y - 26, { side: i === 0 ? 'left' : 'right', color: C('charge'), gap: 16, size: 19 });
     });
-    dot(ctx, RX, CY, OC, true, 38); text(ctx, 'O', RX, CY, PAL.panel, { size: 26, weight: 600, align: 'center' });
+    atom(ctx, RX, CY, OC, 38); text(ctx, 'O', RX, CY, PAL.panel, { size: 26, weight: 600, align: 'center' });
     label(ctx, 'slightly negative, where the electrons gather', RX, CY + 128, { side: 'below', color: C('charge'), gap: 8, size: 19 });
     text(ctx, '(b) where the electrons are', RX, 492, PAL.ink, { size: 22, weight: 600, align: 'center' });
     d.readout.textContent = 'Because its charge is already separated, a water molecule lines up with an external field readily, which is why water has a dielectric constant of 80.';
@@ -383,16 +394,23 @@ function fieldLine(ctx, x0, x1, y, color) {
   for (let i = 0; i < 6; i++) IONS.push({ sym: 'K', sign: '+', x0: 250 + (i % 2) * 120, y0: ys(3, Math.floor(i / 2)), x1: MX + 150 + (i % 2) * 64, y1: ys(6, i), t: 0.10 + 0.13 * i });
   for (let i = 0; i < 5; i++) IONS.push({ sym: 'Cl', sign: '−', x0: 1210, y0: ys(5, i), x1: MX - 150 - (i % 2) * 64, y1: ys(5, i), t: 0.16 + 0.14 * i });
   for (let i = 0; i < 6; i++) IONS.push({ sym: 'Na', sign: '+', x0: 960 + (i % 2) * 110, y0: ys(3, Math.floor(i / 2)) + 26, x1: 960 + (i % 2) * 110, y1: ys(3, Math.floor(i / 2)) + 26, t: 9 });
-  function ion(ctx, x, y, sym, sign) {
-    dot(ctx, x, y, F.el(sym), true, 17);
-    text(ctx, sym + sign, x, y - 32, PAL.ink, { size: 17, align: 'center', bg: PAL.panel });
+  function ion(ctx, x, y, sym) {
+    ctx.save(); ctx.fillStyle = F.el(sym); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 15, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+  }
+  /* seventeen ions of three kinds: each kind is named once, in the legend, and not on every ion (rule 26.7) */
+  function legend(ctx, y) {
+    [['K', 'potassium, K⁺', 400], ['Cl', 'chloride, Cl⁻', 640], ['Na', 'sodium, Na⁺', 870]].forEach(([sym, name, lx]) => {
+      ion(ctx, lx, y, sym);
+      text(ctx, name, lx + 26, y, PAL.ink, { size: 19 });
+    });
   }
   function draw() {
     const { ctx } = begin(d.c);
     const qc = C('charge'), vc = C('voltage'), ec = C('electric-field'), pc = C('position');
     const nm = ds.v, u = Math.min(1, cy.now() / T);
     const V = V0 * u, E = V / (nm * 1e-9);
-    topline(ctx, 'Potassium leaves the cell and chloride enters it until the charge left behind holds the rest back, at which point the membrane carries about −70 mV.');
+    topline(ctx, u < 1 ? 'Potassium leaves the cell and chloride enters it, and the charge the crossings leave behind so far holds ' + fmt(V * 1000, 1) + ' mV across the membrane.'
+      : 'The layers of charge left behind now hold the rest back, and the membrane carries its resting −70 mV across ' + fmt(nm, 1) + ' nm of thickness.');
     /* inside, the membrane and outside */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05); ctx.fillRect(90, MT, MX - 126, MB - MT); ctx.restore();
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.14); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
@@ -409,7 +427,7 @@ function fieldLine(ctx, x0, x1, y, color) {
     /* the ions, each moving across at its own moment */
     IONS.forEach((o) => {
       const s = o.t > 1 ? 0 : Math.max(0, Math.min(1, (u - o.t) / 0.34));
-      ion(ctx, o.x0 + (o.x1 - o.x0) * s, o.y0 + (o.y1 - o.y0) * s, o.sym, o.sign);
+      ion(ctx, o.x0 + (o.x1 - o.x0) * s, o.y0 + (o.y1 - o.y0) * s, o.sym);
     });
     /* the two directions diffusion carries the ions, as the book draws them */
     arrow(ctx, MX - 130, MT - 76, MX + 130, MT - 76, alpha(PAL.ink, 0.45), 4);
@@ -417,12 +435,12 @@ function fieldLine(ctx, x0, x1, y, color) {
     arrow(ctx, MX + 130, MB + 44, MX - 130, MB + 44, alpha(PAL.ink, 0.45), 4);
     text(ctx, 'chloride in', MX, MB + 70, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'sodium is held outside: the membrane is impermeable to it', 1090, MB + 70, PAL.muted, { size: 19, align: 'center' });
-    hbracket(ctx, MX - 36, MX + 36, MB + 124, pc, 'd = ' + fmt(nm, 1) + ' nm');
-    text(ctx, 'the membrane', MX, MB + 186, PAL.muted, { size: 20, align: 'center' });
+    hbracket(ctx, MX - 36, MX + 36, MB + 124, pc, 'the membrane, d = ' + fmt(nm, 1) + ' nm');
+    legend(ctx, MB + 186);
     text(ctx, 'E = ' + fmt(E / 1e6, 2) + ' × 10⁶ V/m across the membrane', 300, MB + 132, ec, { size: 21, weight: 600, align: 'center' });
     text(ctx, 'V = ' + fmt(V * 1000, 1) + ' mV across the membrane', 1090, MB + 132, vc, { size: 21, weight: 600, align: 'center' });
     readout(d.readout, '\\kEf = \\frac{\\kV}{\\kd} = \\frac{' + fmt(V * 1000, 1) + ' \\times 10^{-3}\\ \\text{V}}{' + fmt(nm, 1) + ' \\times 10^{-9}\\ \\text{m}} = ' + fmt(E / 1e6, 2) + ' \\times 10^{6}\\ \\text{V/m}',
-      'A field of this size would break down air, and the membrane holds it across a few nanometres.');
+      'A field of this size would break down air, and the membrane holds it across a few nanometers.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

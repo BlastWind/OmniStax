@@ -136,6 +136,11 @@ Extra simulations (rule 15), thought through and judged:
   arrive. Left: it would be a clock on a figure whose idea has none (rule
   24.9), and 19.7 is where the charging of a capacitor belongs.
 
+### Figure pass, 2026-09-15 (Claude Fable 5.1)
+
+- `sim-series-parallel`: in the parallel view the words "the plate area A" sat on the wire that runs down through the equivalent capacitor's bracket; the label now sits beside the wire under the bracket.
+- `sim-mixed`: looked at in both themes at every extreme; nothing changed.
+
 ## Exercises
 
 - The section's one conceptual question, `fs-id3075419`, asks whether a
@@ -214,3 +219,8 @@ told apart by their labels and their places in the circuit.
 - equations `eq-parallel-capacitance` → 19.6-parallel
 - Nothing else is wanted: no symbol row is added or changed by this page, and
   the section defines no glossary term.
+
+**Applied by the chapter pass (2026-09-14).** Sixteen variable rows and four
+equation rows carry their anchors. The section's conceptual question is on
+19.7's page with `source_section: "19.6"` and both sections' notes say so.
+Nothing else was wanted and no symbol row was added or changed for this page.

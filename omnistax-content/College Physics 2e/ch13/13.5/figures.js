@@ -216,12 +216,12 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     /* labels */
     const L = labeller(ctx, H); L.block(0, 0, 1400, 92); L.block(0, box.b, 1400, H);
     text(ctx, 'Liquid', X(0.47), Y(1.75), PAL.ink, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'Liquid and vapor', X(1.25), Y(0.32), PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'Liquid and vapor', X(0.95), Y(0.13), PAL.ink, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'Vapor', X(3.6), Y(0.3), PAL.ink, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'Gas', X(VMAX * 0.78), Y(PMAX * 0.78), PAL.ink, { size: 20, weight: 600, align: 'center' });
     L.add('critical point', X(1), Y(1), -0.4, -1, PAL.ink, 18, 28);
     dot(ctx, X(1), Y(1), PAL.ink, true, 8);
-    L.add('T_c = ' + fmt(S.Tc, 1) + ' K', X(VMAX * 0.98), Y(p(VMAX * 0.98, 1)), -0.2, 1, C('temperature'), 20, 24);
+    L.add('T_c = ' + fmt(S.Tc, 1) + ' K', X(2.2), Y(p(2.2, 1)), 0.2, -1, C('temperature'), 20, 24);   /* on the critical isotherm where it runs clear of the family */
     const vEnd = VMAX * 0.93, pEnd = s && vEnd > s.vl && vEnd < s.vg ? s.ps : p(vEnd, t);
     L.add('T = ' + fmt(T.v, S.Tc < 50 ? 1 : 0) + ' K', X(vEnd), Y(pEnd), -0.3, -1, C('temperature'), 20, 24);
     /* the state at V on this isotherm */
@@ -367,7 +367,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
   const H = 660, d = sim('sim-liquid-vapor-equilibrium', H);
   const T = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 50, max: 150, step: 1, value: 100, unit: '°C', dec: 0, onInput: retune, aria: 'temperature' });
   const cy = cycle(() => Infinity, 0);
-  const B = { l: 334, r: 1066, t: 164, b: 596, s: 440 };   /* the container: walls, and the liquid surface at s */
+  const B = { l: 334, r: 1066, t: 194, b: 626, s: 470 };   /* the container: walls, and the liquid surface at s; set low enough that the gauge on the lid clears a two-line headline */
   const RM = 7, SPEED100 = 240, N100 = 40, WINDOW = 2;     /* molecule radius, speed at 100 °C, vapor count at 100 °C, the counting window in s */
   const rnd = rng(13);
   const Pvap = (tc) => vapAt(WATER_VAP, tc + 273.15) * ATM;                    /* Pa */
@@ -417,18 +417,19 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     /* the vapor */
     vapor.forEach((m) => water(ctx, m.x, m.y, RM, Math.atan2(m.vy, m.vx)));
     /* the instruments: the gauge on the lid, the thermometer in the liquid */
-    line(ctx, 700, B.t, 700, B.t - 8, PAL.ink, 4); gauge(ctx, 700, 122, 34, P / (5 * ATM));
-    text(ctx, 'P = ' + sci(P) + ' Pa', 746, 122, C('pressure'), { size: 20, weight: 600 });
-    thermometer(ctx, 990, 200, 500, (tc - 30) / 140);
-    text(ctx, 'T = ' + fmt(tc, 0) + ' °C', 1086, 200, C('temperature'), { size: 20, weight: 600 });
+    line(ctx, 700, B.t, 700, B.t - 10, PAL.ink, 4); gauge(ctx, 700, B.t - 50, 40, P / (5 * ATM));
+    text(ctx, 'P = ' + sci(P) + ' Pa', 754, B.t - 58, C('pressure'), { size: 22, weight: 600 });
+    text(ctx, fmt(P / ATM, 2) + ' atm', 754, B.t - 30, PAL.muted, { size: 17 });
+    thermometer(ctx, 990, B.t + 36, B.s + 60, (tc - 30) / 140);
+    text(ctx, 'T = ' + fmt(tc, 0) + ' °C', 1086, B.t + 36, C('temperature'), { size: 20, weight: 600 });
     /* the two rates, as arrows that grow with the count in the last two seconds */
     const nl = left.length, nb = back.length, len = (n) => 40 + 200 * Math.min(1, n / 100);
     arrow(ctx, 110, B.s + 40, 110, B.s + 40 - len(nl), PAL.ink, 4); arrow(ctx, 250, B.s + 40 - len(nb), 250, B.s + 40, PAL.ink, 4);
     text(ctx, 'vaporization', 110, B.s + 66, PAL.ink, { size: 17, align: 'center' }); text(ctx, 'condensation', 250, B.s + 66, PAL.ink, { size: 17, align: 'center' });
     text(ctx, nl + ' in ' + WINDOW + ' s', 110, B.s + 90, PAL.muted, { size: 17, align: 'center' }); text(ctx, nb + ' in ' + WINDOW + ' s', 250, B.s + 90, PAL.muted, { size: 17, align: 'center' });
     /* the legend */
-    water(ctx, 1110, 300, RM, -0.4); text(ctx, 'a water molecule', 1130, 300, PAL.muted, { size: 17 });
-    text(ctx, vapor.length + ' in the vapor', 1110, 336, PAL.muted, { size: 17 });
+    water(ctx, 1110, B.t + 136, RM, -0.4); text(ctx, 'a water molecule', 1130, B.t + 136, PAL.muted, { size: 17 });
+    text(ctx, vapor.length + ' in the vapor', 1110, B.t + 172, PAL.muted, { size: 17 });
     text(ctx, 'liquid', B.l + 8, B.b - 14, PAL.muted, { size: 17, bg: alpha(PAL.panel, 0.7) }); text(ctx, 'vapor', B.l + 8, B.t + 18, PAL.muted, { size: 17 });
     topline(ctx, 'At ' + fmt(tc, 0) + ' °C the vapor pressure of water is ' + sci(P) + ' Pa and ' + vapor.length + ' molecules are in the vapor; in the last two seconds ' + nl + ' left the liquid and ' + nb + ' returned.');
     readout(d.readout, `\\kPr = ${sciTex(P)}\\ \\text{Pa} = ${fmt(P / ATM, 2)}\\ \\text{atm}\\quad\\text{at}\\quad \\kTemp = ${fmt(tk, 0)}\\ \\text{K}`,
@@ -454,7 +455,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
   const SN = spots(PER_MOL), SO = spots(PER_MOL);
   function bar(ctx, x, w, P, label, color, base, hmax) {
     const h = Math.min(hmax, (P / PMAX) * hmax);
-    ctx.save(); ctx.fillStyle = color; ctx.fillRect(x - w / 2, base - h, w, h); ctx.restore();
+    ctx.save(); ctx.fillStyle = color; ctx.fillRect(x - w / 2, base - h, w, h); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; if (h > 0) ctx.strokeRect(x - w / 2, base - h, w, h); ctx.restore();
     text(ctx, sci(P) + ' Pa', x, base - h - 18, color, { size: 17, weight: 600, align: 'center' });
     text(ctx, label, x, base + 26, PAL.ink, { size: 20, weight: 600, align: 'center' });
   }

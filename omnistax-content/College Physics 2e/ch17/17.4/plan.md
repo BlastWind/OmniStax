@@ -230,3 +230,13 @@ the chapter's other three folds use, "(Figure 17.13) … (Figure 17.14) …
 (Figure 17.15) …", so that all four folds read alike; the words of each of
 the book's three captions are unchanged. The unclosed parenthesis in the
 bow-wake paragraph is kept as printed.
+
+## Figure pass (2026-09-15, Claude Fable 5.1)
+
+`sim-doppler`: X and Y are filled silhouettes 143 units tall, walking with a
+stride when $\kvobs \neq 0$ and standing to face the car when it is zero.
+`sim-two-booms`: the three observers are silhouettes. `sim-shift`: the four
+frequency values step out to the right of the drop line when the speed is
+small, where the axis left them no room on the left, the axis band is blocked
+to the labeller, and the speed label clears the axis title. `sim-sonic-boom`
+is unchanged.

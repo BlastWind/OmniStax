@@ -231,3 +231,17 @@ Every line above is applied: the seven variable rows and the four equation
 rows carry the anchors this plan names. The page binds time as well as
 frequency, velocity, position and temperature, because the bat's echo is
 clocked and its graph carries a time axis; `COLOR.md` records it.
+
+## Figure pass (2026-09-15, Claude Fable 5.1)
+
+`sim-tuning-fork`: the arcs are clipped out of a window round the fork, so
+no compression crosses the prongs at 1000 Hz, and $f$ is written above the
+prongs on a panel instead of on the stem. `sim-bat`: the insect is now a
+moth about 60 units across, forewings, hindwings, body and antennae, drawn
+here since the library has no insect, and its label and the bat's sit under
+the bodies. `sim-woofer`: the clock and the air's temperature move to the
+bottom right, where the tweeter's wavelength bracket no longer meets them.
+`sim-boundary`: the dots' displacement is $Ak = 0.62$ on both sides with no
+cap, so a compression is three times as dense as a rarefaction whatever the
+wavelength, and the dots are larger and darker; the compressions were
+invisible in sea water before.

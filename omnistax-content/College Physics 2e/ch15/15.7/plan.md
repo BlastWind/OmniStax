@@ -269,3 +269,5 @@ bound.
   `W_microf`, `k_boltz`) are all staged and merged.
 
 Applied in the chapter pass (2026-09-14): the eight variable anchors and the two equation anchors are set on `chapter.json` as listed. The page's binding of `time`, which `ch15/COLOR.md` had not foreseen for 15.7, is settled in that file's table and its bindings paragraph: `sim-gas-disorder` draws the time since the release as the horizontal axis of its entropy graph, and a typed quantity is never drawn in ink. One phrase of the Sim caption of `sim-entropy-change` that spoke of the reader is reworded in the book's second person. No symbol row was changed.
+
+Figure pass (2026-09-15, Claude Fable 5.1): the overflow count above a tall column of `sim-coin-tosses` was 15 px and is now 17 px. The vertical ranges of the two coin figures do change with the number of coins, since $S = k\ln W$ runs from $k\ln 2$ to $k\ln 10^{29}$ across the slider and no fixed axis could hold both; the horizontal axis changes with it, so the reader sees a new histogram rather than a rescaled one. The other two figures were checked at every state and stand as built.

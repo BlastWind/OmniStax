@@ -206,6 +206,8 @@ Extra simulations (rule 15), thought through, judged and left:
 - A balloon on a sweater, the PhET's scene. Left: `sim-rubbing` is the same
   transfer with the book's own bodies.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-rods-and-silk`: the silk cloth, which had been an irregular blob, is now a draped cloth, pinched where the thread holds it, widening as it hangs, with a scalloped hem and three faint folds, so it reads as a cloth without its label; the swing's arc arrow has a larger head; the body brought near in the two-cloths case is named "a second cloth, brought near". `sim-rubbing` takes the same cloth. `sim-atom`, `sim-quarks` and `sim-pair` were looked at in both themes and at every control and left as built.
+
 ## Exercises
 
 - 1 conceptual question inline: `cq1` (fs-id2222446, why most objects show

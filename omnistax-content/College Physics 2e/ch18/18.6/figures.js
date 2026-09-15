@@ -170,10 +170,12 @@ function atom(ctx, x, y, r, symbol, label) {
     hs.forEach((h) => {
       atom(ctx, h.x, h.y, 22, 'H', 'H');
       const a = Math.atan2(h.y - y, h.x - x);
-      text(ctx, dlab + '⁺', h.x + 46 * Math.cos(a), h.y + 46 * Math.sin(a) + (Math.sin(a) < 0 ? -12 : 12), qc, { size: 19, weight: 600, align: 'center' });
+      text(ctx, dlab + '⁺', h.x + 50 * Math.cos(a), h.y + 50 * Math.sin(a), qc, { size: 19, weight: 600, align: 'center' });
     });
     atom(ctx, x, y, 34, 'O', 'O');
-    text(ctx, dlab + '⁻', x, y - 54, qc, { size: 19, weight: 600, align: 'center' });
+    /* the oxygen's mark sits on its far side, away from the two hydrogens */
+    const back = (a + 180) * RAD;
+    text(ctx, dlab + '⁻', x + 56 * Math.cos(back), y + 56 * Math.sin(back), qc, { size: 19, weight: 600, align: 'center' });
     return hs;
   }
   function draw() {
@@ -230,11 +232,11 @@ function atom(ctx, x, y, r, symbol, label) {
   const LINES = 8, QS = 2 * QE;                       /* the eight lines drawn, and the 2 q_e of the site */
   const XL = 200, SC = 260;                           /* the strand, and 260 units to the nanometre */
   /* a water molecule drawn small, its negative end towards the strand */
-  function dipole(ctx, x, y, qc) {
-    line(ctx, x, y, x + 20, y - 14, PAL.ink, 3); line(ctx, x, y, x + 20, y + 14, PAL.ink, 3);
-    atom(ctx, x + 20, y - 14, 9, 'H'); atom(ctx, x + 20, y + 14, 9, 'H');
-    atom(ctx, x, y, 14, 'O');
-    text(ctx, 'δ⁻', x - 22, y, qc, { size: 15, weight: 600, align: 'center' });
+  function dipole(ctx, x, y, qc, k = 1) {
+    line(ctx, x, y, x + 20 * k, y - 14 * k, PAL.ink, 3 * k); line(ctx, x, y, x + 20 * k, y + 14 * k, PAL.ink, 3 * k);
+    atom(ctx, x + 20 * k, y - 14 * k, 9 * k, 'H'); atom(ctx, x + 20 * k, y + 14 * k, 9 * k, 'H');
+    atom(ctx, x, y, 14 * k, 'O');
+    if (k > 0.8) text(ctx, 'δ⁻', x - 22, y, qc, { size: 15, weight: 600, align: 'center' });
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -260,6 +262,9 @@ function atom(ctx, x, y, r, symbol, label) {
     /* the lines the water takes are spread evenly through the fan rather than
        taken from one side, and the molecules stand at two depths so that they
        never sit on top of one another */
+    /* the molecules are drawn smaller where the gap is narrow, so that eight of them
+       still stand between the strand and the ion at the shortest distance */
+    const k = Math.max(0.5, Math.min(1, (xi - XL - 120) / 360));
     const takenIdx = new Set();
     for (let k = 0; k < n; k++) takenIdx.add(n === 1 ? (LINES - 1) / 2 | 0 : Math.round((k * (LINES - 1)) / (n - 1)));
     for (let i = 0; i < LINES; i++) {
@@ -268,15 +273,15 @@ function atom(ctx, x, y, r, symbol, label) {
       const x0 = XL + 32, xm = x0 + (xi - 40 - x0) * (taken ? f : 1);
       const ym = yc + (y2 - yc) * (taken ? f : 1);
       arrow(ctx, x0, yc + t * 26, xm, ym, taken ? alpha(ec, 0.45) : ec, taken ? 3 : 4);
-      if (taken) dipole(ctx, xm + 20, ym, qc);
+      if (taken) dipole(ctx, xm + 20 * k, ym, qc, k);
     }
     /* the ion, and the force on it */
     atom(ctx, xi, yc, 30, 'Na');
     text(ctx, 'Na⁺', xi, yc + 58, PAL.ink, { size: 20, weight: 600, align: 'center' });
     if (through > 0) {
-      const L = 40 + 90 * ratio;
+      const L = Math.min(40 + 90 * ratio, xi - 36 - XL - 44);
       arrow(ctx, xi - 36, yc, xi - 36 - L, yc, fc, 5);
-      text(ctx, 'F = ' + sci(Fv, 2) + ' N', clampX(xi - 36 - L / 2, 120), yc - 66, fc, { size: 20, weight: 600, align: 'center' });
+      text(ctx, 'F = ' + sci(Fv, 2) + ' N', clampX(xi, 120), yc - 66, fc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
     } else {
       text(ctx, 'no line reaches the ion', clampX(xi, 140), yc - 86, PAL.muted, { size: 20, align: 'center' });
     }

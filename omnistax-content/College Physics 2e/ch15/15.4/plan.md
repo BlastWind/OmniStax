@@ -270,3 +270,5 @@ share stay untyped and in ink, and no reservoir body is tinted hot or cold.
 - equations `eq-carnot-efficiency` → 15.4-maximum-efficiency
 
 Applied in the chapter pass (2026-09-14): the seven variable anchors and the two equation anchors are set on `chapter.json` as listed. No concept, edge or symbol row was changed.
+
+Figure pass (2026-09-15, Claude Fable 5.1): the component names of `sim-reactor` were set at 15 and 16 px, under the 17 px floor for notes, and are now 17 px. The other three figures were checked at every slider extreme in both themes and stand as built.

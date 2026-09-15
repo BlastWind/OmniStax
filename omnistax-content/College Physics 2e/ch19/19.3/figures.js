@@ -112,6 +112,8 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
      the curve are the same place. The potential range is set from the default pair, and a larger
      second charge runs off the top and is pinned there. */
   const gx = { l: 200, r: 1250, t: 620, b: 840 };         /* −1.00 to 2.50 m across, −80 to 80 kV up, both fixed */
+  let hits = [];
+  F.hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
     const q2 = (s2.value === 'neg' ? -1 : 1) * Q2m.v * 1e-6;
@@ -140,6 +142,13 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     arrow(ctx, px, py, px + l1 * u1[0], py + l1 * u1[1], alpha(C('electric-field'), 0.55), 4);
     arrow(ctx, px, py, px + l2 * u2[0], py + l2 * u2[1], alpha(C('electric-field'), 0.55), 4);
     if (Em > 0) arrow(ctx, px, py, px + (lr * Ex) / Em, py + (lr * Ey) / Em, C('electric-field'), 6);
+    /* the two component arrows carry no label of their own, so the pointer names them (rule 26.6) */
+    hits = [
+      { x: px + l1 * u1[0], y: py + l1 * u1[1], r: 22, name: 'the field of Q₁ at P, ' + sci(e1, 2) + ' N/C' },
+      { x: px + l2 * u2[0], y: py + l2 * u2[1], r: 22, name: 'the field of Q₂ at P, ' + sci(e2, 2) + ' N/C' },
+      { x: px, y: py, r: 18, name: 'the marked point P' },
+      { x: x1, y: y0, r: 20, name: 'Q₁, held at +2.00 µC' }, { x: x2, y: y0, r: 20, name: 'Q₂' },
+    ];
     dot(ctx, px, py, PAL.ink, false, 10);
     text(ctx, 'P', px - 20, py - 14, PAL.ink, { size: 22, weight: 600, align: 'right' });
     const lx = Math.min(Math.max(px, 300), 1120);
@@ -175,15 +184,19 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     const rm = DIA.v / 200, Vv = V.v * 1000, Q = (rm * Vv) / K, E = Vv / rm;
     const rad = (DIA.v / 2) * PPC, broken = E >= E_BREAKDOWN;
     /* the belt over its two pulleys, the motor and the stand: the frame, in ink */
-    line(ctx, cx - 26, cy, cx - 26, lower, PAL.rule, 3);
-    line(ctx, cx + 26, cy, cx + 26, lower, PAL.rule, 3);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
+    ctx.fillRect(cx - 44, cy, 88, base - cy); ctx.strokeRect(cx - 44, cy, 88, base - cy);   /* the insulating column the sphere stands on */
+    ctx.restore();
+    line(ctx, cx - 26, cy, cx - 26, lower, PAL.ink, 4);                                        /* the belt, up one side and down the other */
+    line(ctx, cx + 26, cy, cx + 26, lower, PAL.ink, 4);
+    for (let y = cy + 30; y < lower - 20; y += 40) { arrow(ctx, cx - 26, y + 14, cx - 26, y - 14, PAL.muted, 3); arrow(ctx, cx + 26, y - 14, cx + 26, y + 14, PAL.muted, 3); }
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.soft;
     ctx.beginPath(); ctx.arc(cx, cy, 26, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.arc(cx, lower, 26, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.fillStyle = PAL.panel; ctx.fillRect(cx - 120, base, 240, 46); ctx.strokeRect(cx - 120, base, 240, 46);
     ctx.restore();
     text(ctx, 'motor', cx, base + 23, PAL.ink, { size: 20, align: 'center', base: 'middle' });
-    text(ctx, 'belt', cx - 44, (cy + lower) / 2, PAL.muted, { size: 20, align: 'right' });
+    text(ctx, 'the belt, in its insulating column', cx - 60, (cy + lower) / 2 + 60, PAL.muted, { size: 19, align: 'right' });
     /* the sphere, its excess charge and the field at its surface */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.soft, 0.6);
     ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();

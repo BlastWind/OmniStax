@@ -299,3 +299,11 @@ square meters with no type, each with the meaning the middle ear gives it.
 No symbol row was changed and none was added; the chapter's variables table
 now holds 64 rows. The section states no equation of its own, so it has no
 equation row to anchor.
+
+## Figure pass (2026-09-15, Claude Fable 5.1)
+
+`sim-middle-ear`: the eardrum and the oval window are drawn as taut skins
+held in fixed rims and bowed a little by the pressure, not bare vertical
+lines, and the oval window's name sits to the right of its rim so it never
+meets the stirrup's force label when the lever ratio is large. The three
+graphs are unchanged.

@@ -1,0 +1,904 @@
+{
+ "types": [
+  {
+   "id": "current",
+   "label": "current",
+   "dimension": "A"
+  },
+  {
+   "id": "resistance",
+   "label": "resistance",
+   "dimension": "Ω"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "I_curr",
+   "latex": "I",
+   "type": "current",
+   "macro": "\\kIcur"
+  },
+  {
+   "sym": "ΔQ_charge",
+   "latex": "\\Delta Q",
+   "type": "charge",
+   "macro": "\\kdQch"
+  },
+  {
+   "sym": "v_d",
+   "latex": "v_{\\text{d}}",
+   "type": "velocity",
+   "macro": "\\kvd"
+  },
+  {
+   "sym": "R_res",
+   "latex": "R",
+   "type": "resistance",
+   "macro": "\\kRes"
+  },
+  {
+   "sym": "R_0res",
+   "latex": "R_0",
+   "type": "resistance",
+   "macro": "\\kReso"
+  },
+  {
+   "sym": "ρ_0res",
+   "latex": "\\rho_0"
+  },
+  {
+   "sym": "α_res",
+   "latex": "\\alpha"
+  },
+  {
+   "sym": "V_0volt",
+   "latex": "V_0",
+   "type": "voltage",
+   "macro": "\\kVo"
+  },
+  {
+   "sym": "I_0curr",
+   "latex": "I_0",
+   "type": "current",
+   "macro": "\\kIocur"
+  },
+  {
+   "sym": "I_rms",
+   "latex": "I_{\\text{rms}}",
+   "type": "current",
+   "macro": "\\kIrms"
+  },
+  {
+   "sym": "V_rms",
+   "latex": "V_{\\text{rms}}",
+   "type": "voltage",
+   "macro": "\\kVrms"
+  },
+  {
+   "sym": "P_ave",
+   "latex": "P_{\\text{ave}}",
+   "type": "power",
+   "macro": "\\kPave"
+  },
+  {
+   "sym": "P_0pow",
+   "latex": "P_0",
+   "type": "power",
+   "macro": "\\kPo"
+  },
+  {
+   "sym": "R_w",
+   "latex": "R_{\\text{w}}",
+   "type": "resistance",
+   "macro": "\\kRw"
+  },
+  {
+   "sym": "r_short",
+   "latex": "r",
+   "type": "resistance",
+   "macro": "\\krshort"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "electric-current",
+   "kind": "idea",
+   "section": "20.1",
+   "name": "Electric current, $\\kIcur = \\kdQch/\\kdt$",
+   "why": "Electric current is defined to be the rate at which charge flows. A large current, such as that used to start a truck engine, moves a large amount of charge in a small time, whereas a small current, such as that used to operate a handheld calculator, moves a small amount of charge over a long period of time. Defining the current as a rate rather than as an amount is what lets the same idea describe a lightning bolt and a clock battery, and every other result in the chapter is built on it.",
+   "evidence": "The definition is the section's first numbered equation, the first learning objective asks the reader to define electric current, and Example 20.1 uses it in both directions, finding the current in a truck battery and the time a calculator takes to move one coulomb.",
+   "eq": "eq-current"
+  },
+  {
+   "id": "ampere",
+   "kind": "result",
+   "section": "20.1",
+   "name": "The ampere, $1\\;\\text{A} = 1\\;\\text{C/s}$",
+   "why": "Since current is a charge divided by a time, its SI unit is one coulomb per second, which is named the ampere for the French physicist André-Marie Ampère. The reader meets the unit everywhere in ordinary life, because fuses, circuit breakers and many electrical appliances are rated in amperes, and knowing what one ampere is makes those ratings readable.",
+   "evidence": "The unit is the section's second numbered equation, the first learning objective names the ampere, and the section adds that fuses, circuit breakers and many electrical appliances are rated in amperes."
+  },
+  {
+   "id": "conventional-current",
+   "kind": "idea",
+   "section": "20.1",
+   "name": "The direction of conventional current",
+   "why": "The direction of conventional current is the direction that positive charge would flow. Depending on the situation, positive charges, negative charges, or both may move: in metal wires the current is carried by electrons, in ionic solutions such as salt water both signs move, and a Van de Graaff generator can produce a current of pure positive charges. Fixing one convention means that the same circuit analysis applies whatever the carriers are, and it is worth stating plainly, because the electrons in a wire actually move opposite to the current drawn on the diagram.",
+   "evidence": "The section states the convention in italics after Figure 20.3, Figure 20.4 draws positive and negative carriers producing the same conventional current, and the second learning objective asks the reader to describe the direction of charge flow in conventional current."
+  },
+  {
+   "id": "circuit-schematic",
+   "kind": "skill",
+   "section": "20.1",
+   "name": "Reading a circuit schematic",
+   "why": "A schematic represents a battery by two parallel lines, a conducting wire by a straight line and a load by a zigzag, and a single schematic can stand for anything from a truck battery lighting a headlight to a small battery lighting a keyhole. Schematics are useful because the analysis is the same for a wide variety of situations, so understanding a few of them lets the reader apply the concepts to many more.",
+   "evidence": "Figure 20.3 prints the lit bulb and its schematic side by side, and the section says that a single schematic can represent a wide variety of situations and that we need to understand a few schematics to apply the concepts to many more."
+  },
+  {
+   "id": "charge-carriers",
+   "kind": "idea",
+   "section": "20.1",
+   "name": "The carriers of a current, and the field that drives them",
+   "why": "Current is the flow of free charges, and which charges are free depends on the material: in a metal the free charges are electrons far enough from their nuclei to move among the atoms in a sea, while in an ionic solution or a nerve cell both signs of ion move. There is an electric field in a conductor carrying a current, which is what supplies the energy to move the charges, so a conductor carrying a current is not in static equilibrium as the conductors of the previous two chapters were.",
+   "evidence": "The section states that unlike static electricity, where a conductor in equilibrium cannot have an electric field in it, conductors carrying a current have an electric field and are not in static equilibrium, and Figure 20.4 draws the field along the wire beside the carriers."
+  },
+  {
+   "id": "drift-velocity",
+   "kind": "idea",
+   "section": "20.1",
+   "name": "Drift velocity, $\\kvd$",
+   "why": "The drift velocity is the average velocity of the free charges in a conductor. An individual electron moves quickly and almost at random, colliding with atoms and with other electrons, but an electric field tilts that random walk so that the whole crowd creeps one way. The drift velocity is quite small, on the order of $10^{-4}$ m/s, because there are so many free charges: the larger the density of carriers, the lower the velocity needed to carry a given current.",
+   "evidence": "The term is defined in the second learning objective and in the glossary, Figure 20.6 draws one electron's path with the drift velocity marked against the field, and Example 20.3 computes 4.53 × 10⁻⁴ m/s for a 12-gauge copper wire carrying 20.0 A."
+  },
+  {
+   "id": "signal-speed-versus-drift",
+   "kind": "idea",
+   "section": "20.1",
+   "name": "Why a light comes on at once though the electrons crawl",
+   "why": "Electrical signals travel at speeds on the order of $10^{8}$ m/s, about $10^{12}$ times the drift velocity of the charges that carry them. The two speeds are reconciled by the fact that the force between charges acts rapidly at a distance: when a charge is forced into one end of a wire it pushes the charges ahead of it, which push on charges farther down the line, so the signal is a rapidly propagating change in electric field rather than the arrival of any particular electron.",
+   "evidence": "The section opens its second part on the question of how to reconcile the two speeds, Figure 20.5 draws charges forced into a volume with an equal number forced out at once, and the discussion of Example 20.3 states that the signal moves about $10^{12}$ times faster than the charges that carry it."
+  },
+  {
+   "id": "current-and-drift-velocity",
+   "kind": "result",
+   "section": "20.1",
+   "name": "Current from drift velocity, $\\kIcur = n\\kq A\\kvd$",
+   "why": "Counting the free charges in a segment of wire gives the current directly: a segment of cross-sectional area $A$ and length $x$ holds $nAx$ carriers of charge $q$ each, and if they all leave the segment in a time $\\Delta t$ then the current is that charge divided by that time. Since $x/\\Delta t$ is the drift velocity, the current is $I = nqAv_\\text{d}$, which ties the number the reader can measure with an ammeter to the microscopic picture of a crowd of electrons.",
+   "evidence": "The relation is derived from Figure 20.7 and stated as the section's last numbered equation, it is listed in the section summary, and Example 20.3 rearranges it to find the drift velocity in a household copper wire.",
+   "eq": "eq-current-drift"
+  },
+  {
+   "id": "ohms-law",
+   "kind": "result",
+   "section": "20.2",
+   "name": "Ohm's law, $\\kIcur = \\kV/\\kRes$",
+   "why": "Georg Simon Ohm was the first to demonstrate experimentally that the current in a metal wire is directly proportional to the voltage applied to it. Combining that proportionality with the fact that current is inversely proportional to resistance gives $I = V/R$, which can be read as a cause-and-effect relationship with voltage the cause and current the effect. It is the relation the rest of the chapter, and the whole of circuit analysis, rests on.",
+   "evidence": "The proportionality and the combined form are the section's first and third numbered equations, the second learning objective asks the reader to calculate voltages, currents or resistances with Ohm's law, and Example 20.4 uses it to find the resistance of an automobile headlight.",
+   "eq": "eq-ohms-law"
+  },
+  {
+   "id": "resistance",
+   "kind": "idea",
+   "section": "20.2",
+   "name": "Resistance, $\\kRes = \\kV/\\kIcur$",
+   "why": "If voltage drives current, something must impede it, and that electric property is called resistance. Collisions of moving charges with the atoms and molecules of a substance transfer energy to the substance and limit the current, so current is inversely proportional to resistance and is cut in half if the resistance doubles. Resistances range over many orders of magnitude, from $10^{-5}\\;\\Omega$ for a meter of thick copper wire to $10^{12}\\;\\Omega$ for a ceramic insulator.",
+   "evidence": "The inverse proportionality is the section's second numbered equation, resistance is defined in the glossary as the ratio of voltage to current, and the section lists resistances from copper wire to ceramic insulators and to the human heart.",
+   "eq": "eq-current-inverse-resistance"
+  },
+  {
+   "id": "ohm",
+   "kind": "result",
+   "section": "20.2",
+   "name": "The ohm, $1\\;\\Omega = 1\\;\\text{V/A}$",
+   "why": "Rearranging $I = V/R$ gives $R = V/I$, so the unit of resistance is one volt per ampere, which is named the ohm and written with the capital Greek omega. An object that has simple resistance is called a resistor, even when its resistance is small, and giving the unit its own name makes it possible to quote a resistance without restating the voltage and the current it came from.",
+   "evidence": "The unit is the section's fourth numbered equation, it is defined in the glossary, and it is restated in the section summary as $1\\;\\Omega = 1$ V/A.",
+   "eq": "eq-ohm-unit"
+  },
+  {
+   "id": "ohmic-material",
+   "kind": "idea",
+   "section": "20.2",
+   "name": "Ohmic materials",
+   "why": "Ohm's law, like Hooke's law, is not universally valid. The many substances for which it holds are called ohmic, and they include good conductors like copper and aluminum and some poor conductors under certain circumstances; an ohmic material has a resistance that does not depend on the voltage across it or the current through it. Knowing that the law is empirical rather than fundamental tells the reader when a straight line through the origin is the right model and when it is not.",
+   "evidence": "The section says that Ohm's law in this form really defines resistance for certain materials and that it is not universally valid, the third learning objective asks the reader to explain what an ohmic material is, and the second AP item asks for a graph of a measured table of voltages and currents and a comment on its shape."
+  },
+  {
+   "id": "simple-circuit",
+   "kind": "idea",
+   "section": "20.2",
+   "name": "The simple circuit",
+   "why": "A simple circuit has a single voltage source and a single resistor, with the connecting wires assumed to have negligible resistance or their resistance included in $R$. It is the smallest complete circuit there is, and settling how voltage, current and resistance behave in it is what makes the more complicated circuits of the next chapter tractable.",
+   "evidence": "The term is defined in the glossary and in the section summary, Figure 20.8 prints the schematic, and the fourth learning objective asks the reader to describe a simple circuit."
+  },
+  {
+   "id": "ir-drop",
+   "kind": "result",
+   "section": "20.2",
+   "name": "The $IR$ drop, $\\kV = \\kIcur\\kRes$",
+   "why": "Solving Ohm's law for the voltage gives $V = IR$, which is the voltage drop across a resistor produced by the current flowing through it, often called the $IR$ drop. If voltage is measured at various points in a circuit it is seen to increase at the voltage source and decrease at the resistor, and conservation of energy requires that in a simple circuit the voltage supplied by the source equals the voltage dropped across the resistor, since the same charge flows through each.",
+   "evidence": "The expression is the section's last numbered equation, Figure 20.9 draws a voltmeter reading the drop across the resistor, and the section's conceptual questions ask whether the current changes as it passes through a resistor and how the $IR$ drop resembles the pressure drop in a pipe.",
+   "eq": "eq-ir-drop"
+  },
+  {
+   "id": "resistivity",
+   "kind": "idea",
+   "section": "20.3",
+   "name": "Resistivity, $\\rho$",
+   "why": "For a given shape, the resistance depends on the material the object is made of, and the resistivity is the property that carries that dependence. Resistivity is an intrinsic property of a material, independent of its shape or size, so a table of resistivities settles the material half of every resistance calculation once and for all.",
+   "evidence": "The term is defined in the first learning objective and in the glossary, and Table 20.1 gives resistivities for twenty-eight materials at 20 °C."
+  },
+  {
+   "id": "resistance-of-cylinder",
+   "kind": "result",
+   "section": "20.3",
+   "name": "The resistance of a cylinder, $\\kRes = \\rho L/A$",
+   "why": "The resistance of a uniform cylinder is directly proportional to its length and inversely proportional to its cross-sectional area, just as the resistance a pipe offers to fluid flow is: the longer the cylinder, the more collisions the charges make with its atoms, and the greater its diameter, the more current it can carry. With the resistivity of the material this gives the resistance of any simple shape from its dimensions alone.",
+   "evidence": "The relation is the section's first numbered equation, the second learning objective asks the reader to use resistivity to calculate the resistance of specified configurations of material, Figure 20.10 draws the cylinder with $L$ and $A$ marked, and Example 20.4 rearranges it to find the diameter of a headlight filament.",
+   "eq": "eq-resistance-cylinder"
+  },
+  {
+   "id": "conductors-semiconductors-insulators",
+   "kind": "idea",
+   "section": "20.3",
+   "name": "Conductors, semiconductors and insulators",
+   "why": "The materials of Table 20.1 fall into three groups by their resistivities. Conductors have the smallest resistivities and varying but large free charge densities; insulators have the largest, because most of their charges are bound to atoms and are not free to move; and semiconductors are intermediate, having far fewer free charges than conductors but a number of free charges that depends strongly on the type and amount of impurities present. That last property is what modern electronics is built on.",
+   "evidence": "Table 20.1 is divided into the three categories, the section explains each in terms of free charge density, and a conceptual question asks in which of the three semiconducting materials listed the impurities supply the free charges."
+  },
+  {
+   "id": "superconductivity",
+   "kind": "idea",
+   "section": "20.3",
+   "name": "Zero resistivity below a critical temperature",
+   "why": "The resistivity of all materials depends on temperature, and some become superconductors, with zero resistivity, at very low temperatures. A sample of mercury has no resistance at all up to about 4.2 K, and above that critical temperature its resistance makes a sudden jump and then increases nearly linearly. A material with no resistance carries a steady current with no continual supply of energy, which is why the possibility matters far beyond the laboratory.",
+   "evidence": "Figure 20.11 graphs the resistance of mercury through its critical temperature, and 20.1 has already noted that superconductors can have a steady current without a continual supply of energy, a great energy saving."
+  },
+  {
+   "id": "temperature-coefficient-of-resistivity",
+   "kind": "idea",
+   "section": "20.3",
+   "name": "The temperature coefficient of resistivity, $\\alpha$",
+   "why": "The temperature coefficient of resistivity is the empirical quantity that describes how much a material's resistivity changes with temperature. It is positive for metals, because their atoms vibrate more rapidly and over larger distances at higher temperatures so the electrons make more collisions, and negative for the semiconductors of Table 20.2, because increased thermal agitation there increases the number of free charges available to carry current. Some alloys, such as manganin, are made to have a coefficient close to zero, which is how a temperature-independent resistance standard is built.",
+   "evidence": "The term is defined in the glossary and in the third learning objective, Table 20.2 gives the coefficient for fifteen materials, and the section explains both the positive sign for metals and the negative sign for semiconductors."
+  },
+  {
+   "id": "resistivity-and-temperature",
+   "kind": "result",
+   "section": "20.3",
+   "name": "Resistivity with temperature, $\\rho = \\rho_0(1 + \\alpha\\kdTemp)$",
+   "why": "Over relatively small temperature changes, about 100 °C or less, the resistivity varies linearly with the temperature change, where $\\rho_0$ is the original resistivity and $\\alpha$ is the temperature coefficient. For larger changes the coefficient may itself vary or a nonlinear equation may be needed, so the reader should treat the linear form as the approximation it is.",
+   "evidence": "The relation is the section's third numbered equation, it is restated in the section summary, and a conceptual question asks why this form is more accurate than the corresponding expression for resistance.",
+   "eq": "eq-resistivity-temperature"
+  },
+  {
+   "id": "resistance-and-temperature",
+   "kind": "result",
+   "section": "20.3",
+   "name": "Resistance with temperature, $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$",
+   "why": "Since the resistance of a cylinder is proportional to the resistivity, and since the length and the area change far less with temperature than the resistivity does, the resistance of an object has the same temperature dependence as the resistivity. Numerous thermometers are based on this effect, the most common being the thermistor, a semiconductor crystal with a strong temperature dependence whose resistance is measured to obtain its temperature.",
+   "evidence": "The relation is the section's fourth numbered equation, Example 20.5 uses it to find that a tungsten filament heated to 2850 °C has a resistance of 4.8 Ω rather than its cold 0.350 Ω, and Figure 20.12 shows the digital thermometers that read a thermistor.",
+   "eq": "eq-resistance-temperature"
+  },
+  {
+   "id": "electric-power",
+   "kind": "result",
+   "section": "20.4",
+   "name": "Electric power, $\\kP = \\kIcur\\kV$",
+   "why": "Electric energy depends on both the voltage involved and the charge moved, $\\text{PE} = qV$, and power is the rate at which energy is moved, so the electric power is the charge per second times the voltage, which is simply the current times the voltage. Power has its familiar units of watts, so that one ampere-volt is one watt, and the reader can read the rating of any outlet or appliance straight off the two numbers printed on it.",
+   "evidence": "The derivation and the result are the section's first two numbered equations, the first learning objective asks the reader to calculate the power dissipated by a resistor and supplied by a power supply, and the section computes the 240 W a car's 20-A, 12-V auxiliary outlet can deliver.",
+   "eq": "eq-power-iv"
+  },
+  {
+   "id": "power-and-resistance",
+   "kind": "result",
+   "section": "20.4",
+   "name": "Power from resistance, $\\kP = \\kV^2/\\kRes$ and $\\kP = \\kIcur^2\\kRes$",
+   "why": "Substituting Ohm's law into $P = IV$ gives two further expressions, and each yields its own insight. The first says that the lower the resistance connected to a given voltage source, the greater the power delivered, and that because the voltage is squared the effect of raising it is larger than expected, which is why a 25-W bulb connected to 240 V glows brightly and burns out. The second is the form to use when the current rather than the voltage is fixed, as it is in a transmission line. The first expression is always valid; these two can be used only for resistors.",
+   "evidence": "The two expressions are the section's third and fourth numbered equations, Example 20.6 uses both to find the hot and cold power of a headlight, and a conceptual question asks the reader to explain why there is no contradiction between them.",
+   "eq": "eq-power-v2r"
+  },
+  {
+   "id": "power-supplied-equals-dissipated",
+   "kind": "idea",
+   "section": "20.4",
+   "name": "In a simple circuit, the power supplied is the power dissipated",
+   "why": "In a circuit with one voltage source and a single resistor, the power supplied by the source and the power dissipated by the resistor are identical, because the resistor is the only place the energy can go. In more complicated circuits $P$ may be the power dissipated by a single device rather than the total power in the circuit, so the reader has to say which power is meant.",
+   "evidence": "The section states the identity after giving the three expressions for power and adds the qualification for more complicated circuits, and 20.2's box on conservation of energy has already made the same point about the voltage."
+  },
+  {
+   "id": "electrical-energy-and-cost",
+   "kind": "result",
+   "section": "20.4",
+   "name": "The energy a device uses, $\\kE = \\kP\\kt$",
+   "why": "Since power is energy per unit time, the energy a device uses is its power multiplied by the time it is on, and that is what appears on an electric bill. The energy unit on electric bills is the kilowatt-hour, which is $3.6\\times10^{6}$ J, and the cost of running anything can be estimated from its power rating in kilowatts, the hours it is on and the cost per kilowatt-hour.",
+   "evidence": "The relation is the section's fifth numbered equation, the second learning objective asks the reader to calculate the cost of electricity under various circumstances, and Example 20.7 works out the cost of running a 60-W bulb for a thousand hours.",
+   "eq": "eq-energy-from-power"
+  },
+  {
+   "id": "lighting-efficiency",
+   "kind": "idea",
+   "section": "20.4",
+   "name": "Reducing the energy that lighting uses",
+   "why": "The electrical energy used can be reduced either by shortening the time of use or by lowering the power consumption, and lighting is one of the fastest places to do it, since about 20 per cent of a home's energy use and closer to 40 per cent of a commercial building's goes to lighting. Fluorescent lights are about four times more efficient than incandescent lights and last up to ten times longer, and white LED lights are about twice as efficient again and last five times longer than compact fluorescents.",
+   "evidence": "The section gives the percentages and the efficiency and lifetime ratios, Figure 20.13(b) shows the compact fluorescent that matches a 60-W bulb at a quarter to a tenth of its input power, and Example 20.7 compares the total cost of the two bulbs over a thousand hours."
+  },
+  {
+   "id": "direct-current",
+   "kind": "idea",
+   "section": "20.5",
+   "name": "Direct current",
+   "why": "Direct current is the flow of electric charge in only one direction, and it is the steady state of a constant-voltage circuit such as one driven by a battery. Naming it is what makes the contrast with alternating current sharp, and most of the examples of the chapter so far have been of this kind.",
+   "evidence": "The term is defined in the first learning objective and in the glossary, and Figure 20.14(a) graphs a DC voltage and current that do not vary with time."
+  },
+  {
+   "id": "alternating-current",
+   "kind": "idea",
+   "section": "20.5",
+   "name": "Alternating current, $\\kV = \\kVo\\sin 2\\pi \\kf\\kt$",
+   "why": "Alternating current is the flow of electric charge that periodically reverses direction, and when the source varies sinusoidally the circuit is an alternating current circuit. The voltage between the terminals is $V = V_0\\sin 2\\pi ft$, where $V_0$ is the peak voltage and $f$ the frequency in hertz, and in a simple resistance circuit the current follows it in phase as $I = I_0\\sin 2\\pi ft$ with $I_0 = V_0/R$. The commercial and residential power that serves most of our needs is of this kind, so the reader needs its form before anything else in the section.",
+   "evidence": "The two expressions are the section's first and second numbered equations, Figure 20.15 draws the source with the circuit reversing as the wave crosses zero, and the first learning objective asks the reader to explain the differences and similarities between AC and DC.",
+   "eq": "eq-ac-voltage"
+  },
+  {
+   "id": "ac-power",
+   "kind": "result",
+   "section": "20.5",
+   "name": "Average AC power, $\\kPave = \\frac{1}{2}\\kIocur\\kVo$",
+   "why": "Since the power supplied is the product of the current and the voltage and the two are in phase, the power is $I_0V_0\\sin^2 2\\pi ft$, which is never negative and fluctuates between zero and $I_0V_0$ twice in each cycle. We are most often concerned with the average rather than the fluctuation, and the average is half the peak, as is evident from the graph, since the areas above and below the half-peak line are equal.",
+   "evidence": "The relation is the section's third numbered equation, Figure 20.16 graphs the power against time with the average drawn across it, and the section notes that a fluorescent bulb brightens and dims 120 times per second on 60-Hz power.",
+   "eq": "eq-ac-power-average"
+  },
+  {
+   "id": "rms-values",
+   "kind": "result",
+   "section": "20.5",
+   "name": "The rms current and voltage, $\\kIrms = \\kIocur/\\sqrt{2}$ and $\\kVrms = \\kVo/\\sqrt{2}$",
+   "why": "The ordinary average of an alternating current is zero, so a different kind of average is needed: the quantity is squared, its mean is found, and the square root is taken, which gives the root mean square. It is standard practice to quote the rms current and voltage and the average power rather than the peak values, so household electricity described as 120 V AC has an rms voltage of 120 V and a peak of about 170 V. The reader can think of these as the equivalent DC values for a simple resistive circuit.",
+   "evidence": "The two definitions are the section's fourth and fifth numbered equations, the second learning objective asks the reader to calculate rms voltage, current and average power, and Example 20.8 finds the 170-V peak of 120-V AC power.",
+   "eq": "eq-rms-current"
+  },
+  {
+   "id": "ac-ohms-law",
+   "kind": "result",
+   "section": "20.5",
+   "name": "Ohm's law and power for AC, $\\kIrms = \\kVrms/\\kRes$",
+   "why": "When dealing with alternating current, Ohm's law and the expressions for power are completely analogous to those for direct current, provided rms and average values are used throughout. That is what makes the rms average worth defining: once it is, everything the reader learned in 20.2 and 20.4 carries over unchanged.",
+   "evidence": "The section states the analogy in so many words and prints Ohm's law and the three power expressions for AC as its last four numbered equations, and Example 20.9 uses them to find the current and the losses in a transmission line.",
+   "eq": "eq-ohms-law-ac"
+  },
+  {
+   "id": "high-voltage-transmission",
+   "kind": "idea",
+   "section": "20.5",
+   "name": "Why power is distributed at high voltage, and as AC",
+   "why": "Economies of scale make it cheaper to build a few very large generating plants than many small ones, which means sending power long distances, and the energy lost on the way must be minimized. For a given power, raising the voltage lowers the current, and since the loss in a fixed-resistance line is $I^2R$ the loss falls as the square: 100 MW sent at 200 kV over a 1.00-Ω line loses a quarter of a per cent, while the same power at 25 kV loses 16 per cent. Alternating voltages are much easier to raise and lower than direct ones, which is why AC has prevailed in large-scale distribution.",
+   "evidence": "Example 20.9 works both cases through and its discussion compares them, Figure 20.17 shows the transformers that raise and lower the voltage, and the third learning objective asks the reader to explain why AC is used for power transmission."
+  },
+  {
+   "id": "thermal-hazard",
+   "kind": "idea",
+   "section": "20.6",
+   "name": "Thermal hazards",
+   "why": "A thermal hazard is one in which excessive electric power causes undesired thermal effects, such as starting a fire in the wall of a house. Electric power causes such heating whenever electric energy is converted to thermal energy faster than it can safely be dissipated, and naming the hazard separately from shock is what lets the reader see that the two are governed by different quantities.",
+   "evidence": "The term is defined in the first learning objective and in the glossary, and the section opens by stating that there are two known hazards of electricity, thermal and shock."
+  },
+  {
+   "id": "short-circuit",
+   "kind": "idea",
+   "section": "20.6",
+   "name": "The short circuit, $\\kP = \\kV^2/\\krshort$",
+   "why": "A short circuit is a low-resistance path between the terminals of a voltage source, such as the one made when worn insulation lets two wires touch. Because the resistance of the short is very small and the power dissipated in it is $V^2/r$, that power is very large: 120 V across 0.100 Ω gives 144 kW, far more than any household appliance uses, and thermal energy delivered at that rate very quickly melts or ignites the surrounding materials. Worse, the heating can ionize the material and lower the resistance further, raising the power again.",
+   "evidence": "The term is defined in the glossary and in the first learning objective, Figure 20.18 draws a worn toaster cord shorting and its schematic, and the section works the 144-kW example and describes the runaway that ionization can cause.",
+   "eq": "eq-short-circuit-power"
+  },
+  {
+   "id": "overloaded-wires",
+   "kind": "idea",
+   "section": "20.6",
+   "name": "Overloaded wires, fuses and circuit breakers, $\\kP = \\kIcur^2\\kRw$",
+   "why": "A less dramatic thermal hazard occurs when the wires supplying a user carry too great a current, since the power dissipated in them is $I^2R_\\text{w}$: a worn cord with 2.00 Ω rather than the 0.100 Ω it should have dissipates 200 W when 10.0 A passes through it. Fuses and circuit breakers limit such currents by opening the circuit automatically when a sustained current exceeds safe limits, a fuse by melting a metal strip and a breaker by bending a bimetallic strip that trips a spring.",
+   "evidence": "The section works the worn-cord example, Figure 20.19 draws a fuse and a circuit breaker and Figure 20.20 their place in a circuit, and the section explains why alternating current is easier to interrupt than direct current at high voltage.",
+   "eq": "eq-wire-heating"
+  },
+  {
+   "id": "shock-hazard",
+   "kind": "idea",
+   "section": "20.6",
+   "name": "Shock hazards",
+   "why": "A shock hazard occurs when electric current passes through a person, and the effects range from painful but otherwise harmless to heart-stopping. Current through people is not always harmful and is sometimes useful, since it can block back pain, burn off warts, drive a pacemaker or bring a heart out of fibrillation; what decides the outcome is the amount of the current, the path it takes, the duration of the shock and the frequency of the current.",
+   "evidence": "The term is defined in the first learning objective and in the glossary, and the section lists the four major factors on which the effects of an electrical shock depend."
+  },
+  {
+   "id": "shock-severity-factors",
+   "kind": "result",
+   "section": "20.6",
+   "name": "What each level of current does to the body",
+   "why": "Current is the major factor determining the severity of a shock once the path, duration and frequency are fixed. The threshold of sensation is only 1 mA and shocks below 5 mA are apparently harmless; from 10 to 20 mA the current stimulates sustained muscular contraction, so that the hand closes on the wire and cannot let go; between 100 and 300 mA ventricular fibrillation is possible and often fatal; above about 300 mA burns begin; and at several amperes the heart and diaphragm contract for the duration of the shock and often return to normal afterwards, which is how a defibrillator works. The body is most sensitive near the 50 and 60 Hz in common use and becomes progressively less sensitive at higher frequencies.",
+   "evidence": "Table 20.3 gives the effects as a function of current, the second learning objective asks the reader to explain what effects various levels of current have on the human body, Figure 20.21 draws the victim thrown back and the victim who cannot let go, and Figure 20.22 graphs the threshold currents against frequency."
+  },
+  {
+   "id": "body-resistance-and-microshock",
+   "kind": "idea",
+   "section": "20.6",
+   "name": "Body resistance, and microshock sensitivity",
+   "why": "A larger voltage is more hazardous, but since $I = V/R$ the severity of a shock depends on the combination of voltage and resistance, so no voltage can be called hazardous without knowing the resistance. Most of the body's resistance is in its dry skin, about 200 kΩ hand to foot, which 120 V drives only 0.6 mA through; the same person soaking wet may have 10.0 kΩ and take 12 mA, above the can't-let-go threshold. If the skin is bypassed, by an intravenous infusion, a catheter or exposed pacemaker leads, the person is microshock sensitive and currents about a thousandth of those in Table 20.3 produce similar effects.",
+   "evidence": "The section works both the dry and the wet case for 120 V, defines microshock sensitive in the glossary, and notes that during open-heart surgery currents as small as 20 µA can still the heart."
+  },
+  {
+   "id": "resting-potential",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "The resting potential across a cell membrane",
+   "why": "A cell membrane separates electrically neutral fluids whose concentrations of sodium, potassium and chlorine ions differ, and it is semipermeable, passing potassium and chlorine in the resting state but not sodium. Diffusion carries those ions across until the layers of charge they build up stop further transfer by the Coulomb force, leaving two layers of charge right on the membrane and a potential difference of 70 to 90 mV across it. Because the membrane is only about 8 nm thick, that small voltage makes a field on the order of 11 MV/m, which has fundamental effects on the membrane's structure and permeability.",
+   "evidence": "Figure 20.25 draws the membrane with its ions and the two charge layers, the section computes the field from $E = V/d$, and it adds that fully 25 per cent of the energy used by cells goes toward creating and maintaining these potentials."
+  },
+  {
+   "id": "action-potential",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "The action potential",
+   "why": "Any stimulus that changes the membrane's permeability creates a current along it. The membrane becomes temporarily permeable to sodium, which rushes in driven both by diffusion and by the Coulomb force and first neutralizes and then reverses the inside of the membrane, which is depolarization; the depolarization closes the membrane to sodium again and the movement of potassium returns the cell to its resting potential, which is repolarization. The sequence is a voltage pulse called the action potential, and only small fractions of the ions move, so the cell can fire hundreds of times before the sodium-potassium pump must restore the concentrations by active transport.",
+   "evidence": "Figure 20.26 graphs the pulse with the ion movements that make it, the first learning objective asks the reader to explain the process by which electric signals are transmitted along a neuron, and a conceptual question asks the reader to define depolarization, repolarization and the action potential."
+  },
+  {
+   "id": "nerve-impulse-propagation",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "How a nerve impulse propagates",
+   "why": "An action potential is a voltage pulse at one place on a membrane, and the changing voltage and electric fields there alter the permeability of the adjacent membrane, so the same process happens next door, and then farther down. The result is a nerve impulse that moves along the cell membrane at about 1 m/s, slowly in electrical terms, and although it is due to sodium and potassium crossing the membrane it is equivalent to a wave of charge moving along the outside and inside of it.",
+   "evidence": "Figure 20.27 draws the impulse propagating along a membrane in five stages, and the section states both the speed and the equivalence to a wave of charge."
+  },
+  {
+   "id": "myelin-sheath",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "Myelin sheaths and the nodes between them",
+   "why": "Some axons are sheathed in myelin, a fatty insulator broken by unmyelinated gaps called nodes of Ranvier. Because myelin is an insulator it prevents signals from jumping between adjacent nerves, and the myelinated regions carry the signal at high speed as an ordinary conductor would, with no action potential and so no cell energy used in them. There is an $IR$ signal loss in the myelin, but the signal is regenerated at full voltage in each gap, so a myelinated axon transmits an impulse faster, with less energy and with better protection from cross talk. Destruction of the sheaths impairs transmission, as it does in multiple sclerosis.",
+   "evidence": "Figure 20.28 draws the impulse losing voltage along a sheath and being regenerated at the next node, the second learning objective asks the reader to explain the effects myelin sheaths have on signal propagation, and a conceptual question asks for those properties in terms of the insulating properties of myelin."
+  },
+  {
+   "id": "electrocardiogram",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "The electrocardiogram",
+   "why": "The depolarization that makes a muscle cell contract can stimulate the cells next to it, so a depolarization wave crosses the heart from the sinoatrial node and coordinates its rhythmic contractions. An electrocardiogram is a record of the voltages that wave and the repolarization after it create, read as vector components between pairs of electrodes on the body. In the lead II potential the P wave is the depolarization of the atria, the QRS complex the depolarization of the ventricles, and the T wave their repolarization, with the systolic blood pressure following shortly after the QRS complex.",
+   "evidence": "Figure 20.30 draws the depolarization vector and the three electrodes, Figure 20.31 prints a lead II trace beside arterial blood pressure with P, Q, R, S and T labelled, and the third learning objective asks the reader to explain what the features of an ECG signal indicate."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "electric-current",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "electric-current",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "electric-current",
+   "prereq": "flow-rate"
+  },
+  {
+   "concept": "electric-current",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "ampere",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "ampere",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "conventional-current",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "conventional-current",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "circuit-schematic",
+   "prereq": "conventional-current"
+  },
+  {
+   "concept": "circuit-schematic",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "field-inside-conductor-zero"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "conventional-current"
+  },
+  {
+   "concept": "drift-velocity",
+   "prereq": "charge-carriers"
+  },
+  {
+   "concept": "drift-velocity",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "drift-velocity",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "signal-speed-versus-drift",
+   "prereq": "drift-velocity"
+  },
+  {
+   "concept": "signal-speed-versus-drift",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "current-and-drift-velocity",
+   "prereq": "drift-velocity"
+  },
+  {
+   "concept": "current-and-drift-velocity",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "current-and-drift-velocity",
+   "prereq": "ampere"
+  },
+  {
+   "concept": "ohms-law",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "ohms-law",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "ohms-law",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "resistance",
+   "prereq": "charge-carriers"
+  },
+  {
+   "concept": "resistance",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "ohm",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ohm",
+   "prereq": "ampere"
+  },
+  {
+   "concept": "ohmic-material",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ohmic-material",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "simple-circuit",
+   "prereq": "circuit-schematic"
+  },
+  {
+   "concept": "simple-circuit",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ir-drop",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ir-drop",
+   "prereq": "simple-circuit"
+  },
+  {
+   "concept": "ir-drop",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "ir-drop",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "resistivity",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "resistance-of-cylinder",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "resistance-of-cylinder",
+   "prereq": "flow-resistance"
+  },
+  {
+   "concept": "conductors-semiconductors-insulators",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "conductors-semiconductors-insulators",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "conductors-semiconductors-insulators",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "superconductivity",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "superconductivity",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "temperature-coefficient-of-resistivity",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "temperature-coefficient-of-resistivity",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "temperature-coefficient-of-resistivity",
+   "prereq": "kinetic-theory"
+  },
+  {
+   "concept": "resistivity-and-temperature",
+   "prereq": "temperature-coefficient-of-resistivity"
+  },
+  {
+   "concept": "resistance-and-temperature",
+   "prereq": "resistivity-and-temperature"
+  },
+  {
+   "concept": "resistance-and-temperature",
+   "prereq": "resistance-of-cylinder"
+  },
+  {
+   "concept": "resistance-and-temperature",
+   "prereq": "thermal-expansion"
+  },
+  {
+   "concept": "electric-power",
+   "prereq": "power"
+  },
+  {
+   "concept": "electric-power",
+   "prereq": "watt"
+  },
+  {
+   "concept": "electric-power",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "electric-power",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "power-and-resistance",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "power-and-resistance",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "power-supplied-equals-dissipated",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "power-supplied-equals-dissipated",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "power-supplied-equals-dissipated",
+   "prereq": "simple-circuit"
+  },
+  {
+   "concept": "electrical-energy-and-cost",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "electrical-energy-and-cost",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "electrical-energy-and-cost",
+   "prereq": "cost-of-energy"
+  },
+  {
+   "concept": "lighting-efficiency",
+   "prereq": "electrical-energy-and-cost"
+  },
+  {
+   "concept": "lighting-efficiency",
+   "prereq": "efficiency"
+  },
+  {
+   "concept": "direct-current",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "alternating-current",
+   "prereq": "direct-current"
+  },
+  {
+   "concept": "alternating-current",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "alternating-current",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "alternating-current",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ac-power",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "ac-power",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "rms-values",
+   "prereq": "ac-power"
+  },
+  {
+   "concept": "rms-values",
+   "prereq": "period-frequency"
+  },
+  {
+   "concept": "ac-ohms-law",
+   "prereq": "rms-values"
+  },
+  {
+   "concept": "ac-ohms-law",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ac-ohms-law",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "high-voltage-transmission",
+   "prereq": "ac-ohms-law"
+  },
+  {
+   "concept": "high-voltage-transmission",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "high-voltage-transmission",
+   "prereq": "resistance-of-cylinder"
+  },
+  {
+   "concept": "thermal-hazard",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "short-circuit",
+   "prereq": "thermal-hazard"
+  },
+  {
+   "concept": "short-circuit",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "overloaded-wires",
+   "prereq": "thermal-hazard"
+  },
+  {
+   "concept": "overloaded-wires",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "shock-hazard",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "shock-hazard",
+   "prereq": "charge-carriers"
+  },
+  {
+   "concept": "shock-severity-factors",
+   "prereq": "shock-hazard"
+  },
+  {
+   "concept": "shock-severity-factors",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "body-resistance-and-microshock",
+   "prereq": "shock-severity-factors"
+  },
+  {
+   "concept": "body-resistance-and-microshock",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "body-resistance-and-microshock",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "semipermeable-membrane"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "diffusion"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "action-potential",
+   "prereq": "resting-potential"
+  },
+  {
+   "concept": "action-potential",
+   "prereq": "active-transport"
+  },
+  {
+   "concept": "nerve-impulse-propagation",
+   "prereq": "action-potential"
+  },
+  {
+   "concept": "nerve-impulse-propagation",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "myelin-sheath",
+   "prereq": "nerve-impulse-propagation"
+  },
+  {
+   "concept": "myelin-sheath",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "myelin-sheath",
+   "prereq": "ir-drop"
+  },
+  {
+   "concept": "electrocardiogram",
+   "prereq": "action-potential"
+  },
+  {
+   "concept": "electrocardiogram",
+   "prereq": "nerve-impulse-propagation"
+  },
+  {
+   "concept": "electrocardiogram",
+   "prereq": "potential-difference"
+  }
+ ]
+}

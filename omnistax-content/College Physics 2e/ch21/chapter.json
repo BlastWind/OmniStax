@@ -1,0 +1,813 @@
+{
+ "id": "21",
+ "dir": "ch21",
+ "title": "Circuits and DC Instruments",
+ "intro": {
+  "module": "m42354",
+  "slug": "21-introduction-to-circuits-and-dc-instruments"
+ },
+ "sections": [
+  {
+   "id": "21.1",
+   "module": "m42356",
+   "title": "Resistors in Series and Parallel",
+   "slug": "21-1-resistors-in-series-and-parallel"
+  },
+  {
+   "id": "21.2",
+   "module": "m42357",
+   "title": "Electromotive Force: Terminal Voltage",
+   "slug": "21-2-electromotive-force-terminal-voltage"
+  },
+  {
+   "id": "21.3",
+   "module": "m42359",
+   "title": "Kirchhoff’s Rules",
+   "slug": "21-3-kirchhoffs-rules"
+  },
+  {
+   "id": "21.4",
+   "module": "m42360",
+   "title": "DC Voltmeters and Ammeters",
+   "slug": "21-4-dc-voltmeters-and-ammeters"
+  },
+  {
+   "id": "21.5",
+   "module": "m42362",
+   "title": "Null Measurements",
+   "slug": "21-5-null-measurements"
+  },
+  {
+   "id": "21.6",
+   "module": "m42363",
+   "title": "DC Circuits Containing Resistors and Capacitors",
+   "slug": "21-6-dc-circuits-containing-resistors-and-capacitors"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "R_resone",
+   "type": "resistance",
+   "meaning": "the first of the resistors being combined, 1.00 Ω in the worked examples",
+   "unit": "Ω",
+   "section": "21.1"
+  },
+  {
+   "sym": "R_restwo",
+   "type": "resistance",
+   "meaning": "the second resistor being combined, 6.00 Ω in the worked examples",
+   "unit": "Ω",
+   "section": "21.1"
+  },
+  {
+   "sym": "R_resthree",
+   "type": "resistance",
+   "meaning": "the third resistor being combined, 13.0 Ω in the worked examples",
+   "unit": "Ω",
+   "section": "21.1"
+  },
+  {
+   "sym": "R_ress",
+   "type": "resistance",
+   "meaning": "the equivalent resistance of the whole series connection",
+   "unit": "Ω",
+   "section": "21.1"
+  },
+  {
+   "sym": "R_resp",
+   "type": "resistance",
+   "meaning": "the equivalent resistance of the whole parallel connection",
+   "unit": "Ω",
+   "section": "21.1"
+  },
+  {
+   "sym": "R_restot",
+   "type": "resistance",
+   "meaning": "the total resistance of a circuit that mixes series and parallel parts",
+   "unit": "Ω",
+   "section": "21.1"
+  },
+  {
+   "sym": "I_curr",
+   "type": "current",
+   "meaning": "the current the source drives, which is the same in every resistor of a series connection",
+   "unit": "A",
+   "section": "21.1"
+  },
+  {
+   "sym": "I_onecurr",
+   "type": "current",
+   "meaning": "the current in the first branch of a parallel connection",
+   "unit": "A",
+   "section": "21.1"
+  },
+  {
+   "sym": "I_twocurr",
+   "type": "current",
+   "meaning": "the current in the second branch",
+   "unit": "A",
+   "section": "21.1"
+  },
+  {
+   "sym": "I_threecurr",
+   "type": "current",
+   "meaning": "the current in the third branch",
+   "unit": "A",
+   "section": "21.1"
+  },
+  {
+   "sym": "V_volt",
+   "type": "voltage",
+   "meaning": "the voltage the source puts out, which is the full voltage across each resistor of a parallel connection",
+   "unit": "V",
+   "section": "21.1"
+  },
+  {
+   "sym": "V_1volt",
+   "type": "voltage",
+   "meaning": "the voltage drop across the first resistor",
+   "unit": "V",
+   "section": "21.1"
+  },
+  {
+   "sym": "V_2volt",
+   "type": "voltage",
+   "meaning": "the voltage drop across the second resistor",
+   "unit": "V",
+   "section": "21.1"
+  },
+  {
+   "sym": "V_3volt",
+   "type": "voltage",
+   "meaning": "the voltage drop across the third resistor",
+   "unit": "V",
+   "section": "21.1"
+  },
+  {
+   "sym": "V_p",
+   "type": "voltage",
+   "meaning": "the voltage across a parallel group that sits inside a larger circuit",
+   "unit": "V",
+   "section": "21.1"
+  },
+  {
+   "sym": "P",
+   "type": "power",
+   "meaning": "the power the source delivers to the whole circuit",
+   "unit": "W",
+   "section": "21.1"
+  },
+  {
+   "sym": "P_onepow",
+   "type": "power",
+   "meaning": "the power dissipated by the first resistor",
+   "unit": "W",
+   "section": "21.1"
+  },
+  {
+   "sym": "P_twopow",
+   "type": "power",
+   "meaning": "the power dissipated by the second resistor",
+   "unit": "W",
+   "section": "21.1"
+  },
+  {
+   "sym": "P_threepow",
+   "type": "power",
+   "meaning": "the power dissipated by the third resistor",
+   "unit": "W",
+   "section": "21.1"
+  },
+  {
+   "sym": "emf",
+   "type": "voltage",
+   "meaning": "the electromotive force of the source, its potential difference when no current flows",
+   "unit": "V",
+   "section": "21.2"
+  },
+  {
+   "sym": "V_volt",
+   "type": "voltage",
+   "meaning": "the terminal voltage, the voltage measured across the source's own terminals while it delivers current",
+   "unit": "V",
+   "section": "21.2"
+  },
+  {
+   "sym": "r_int",
+   "type": "resistance",
+   "meaning": "the internal resistance of the source, which rises as a battery is depleted",
+   "unit": "Ω",
+   "section": "21.2"
+  },
+  {
+   "sym": "R_load",
+   "type": "resistance",
+   "meaning": "the load resistance the source drives",
+   "unit": "Ω",
+   "section": "21.2"
+  },
+  {
+   "sym": "I_curr",
+   "type": "current",
+   "meaning": "the current the source delivers, positive when it flows away from the positive terminal",
+   "unit": "A",
+   "section": "21.2"
+  },
+  {
+   "sym": "emf_one",
+   "type": "voltage",
+   "meaning": "the emf of the first of two sources connected together",
+   "unit": "V",
+   "section": "21.2"
+  },
+  {
+   "sym": "emf_two",
+   "type": "voltage",
+   "meaning": "the emf of the second source",
+   "unit": "V",
+   "section": "21.2"
+  },
+  {
+   "sym": "r_intone",
+   "type": "resistance",
+   "meaning": "the internal resistance of the first source",
+   "unit": "Ω",
+   "section": "21.2"
+  },
+  {
+   "sym": "r_inttwo",
+   "type": "resistance",
+   "meaning": "the internal resistance of the second source",
+   "unit": "Ω",
+   "section": "21.2"
+  },
+  {
+   "sym": "r_inttot",
+   "type": "resistance",
+   "meaning": "the total internal resistance of sources connected in parallel, smaller than either of them",
+   "unit": "Ω",
+   "section": "21.2"
+  },
+  {
+   "sym": "P",
+   "type": "power",
+   "meaning": "the power the source delivers to its load",
+   "unit": "W",
+   "section": "21.2"
+  },
+  {
+   "sym": "I_onecurr",
+   "type": "current",
+   "meaning": "the current in the branch that runs into the junction",
+   "unit": "A",
+   "section": "21.3"
+  },
+  {
+   "sym": "I_twocurr",
+   "type": "current",
+   "meaning": "the current in the first branch that leaves the junction",
+   "unit": "A",
+   "section": "21.3"
+  },
+  {
+   "sym": "I_threecurr",
+   "type": "current",
+   "meaning": "the current in the second branch that leaves the junction",
+   "unit": "A",
+   "section": "21.3"
+  },
+  {
+   "sym": "emf",
+   "type": "voltage",
+   "meaning": "the emf of a source in the loop, counted positive when the loop is traversed from its negative to its positive terminal",
+   "unit": "V",
+   "section": "21.3"
+  },
+  {
+   "sym": "r_int",
+   "type": "resistance",
+   "meaning": "the internal resistance of the source in the loop",
+   "unit": "Ω",
+   "section": "21.3"
+  },
+  {
+   "sym": "R_resone",
+   "type": "resistance",
+   "meaning": "the first load resistance in the loop",
+   "unit": "Ω",
+   "section": "21.3"
+  },
+  {
+   "sym": "R_restwo",
+   "type": "resistance",
+   "meaning": "the second load resistance in the loop",
+   "unit": "Ω",
+   "section": "21.3"
+  },
+  {
+   "sym": "R_res",
+   "type": "resistance",
+   "meaning": "the resistance connected to the galvanometer: large and in series for a voltmeter, small and in parallel for an ammeter",
+   "unit": "Ω",
+   "section": "21.4"
+  },
+  {
+   "sym": "r_int",
+   "type": "resistance",
+   "meaning": "the internal resistance of the galvanometer itself",
+   "unit": "Ω",
+   "section": "21.4"
+  },
+  {
+   "sym": "R_restot",
+   "type": "resistance",
+   "meaning": "the total resistance of the meter, the connected resistance and the galvanometer's own together",
+   "unit": "Ω",
+   "section": "21.4"
+  },
+  {
+   "sym": "I_Gcurr",
+   "type": "current",
+   "meaning": "the current through the galvanometer, whose full-scale value is its current sensitivity",
+   "unit": "A",
+   "section": "21.4"
+  },
+  {
+   "sym": "I_curr",
+   "type": "current",
+   "meaning": "the current in the branch the ammeter is measuring, nearly all of which passes through the shunt",
+   "unit": "A",
+   "section": "21.4"
+  },
+  {
+   "sym": "V_volt",
+   "type": "voltage",
+   "meaning": "the voltage that is to give a full-scale deflection of the voltmeter",
+   "unit": "V",
+   "section": "21.4"
+  },
+  {
+   "sym": "emf_x",
+   "type": "voltage",
+   "meaning": "the unknown emf the potentiometer measures",
+   "unit": "V",
+   "section": "21.5"
+  },
+  {
+   "sym": "emf_s",
+   "type": "voltage",
+   "meaning": "the precisely known standard emf the unknown is compared against",
+   "unit": "V",
+   "section": "21.5"
+  },
+  {
+   "sym": "R_resx",
+   "type": "resistance",
+   "meaning": "the resistance of the wire segment that balances the unknown emf, and the unknown resistance in the bridge",
+   "unit": "Ω",
+   "section": "21.5"
+  },
+  {
+   "sym": "R_ress",
+   "type": "resistance",
+   "meaning": "the resistance of the wire segment that balances the standard emf",
+   "unit": "Ω",
+   "section": "21.5"
+  },
+  {
+   "sym": "R_resone",
+   "type": "resistance",
+   "meaning": "the first precisely known arm of the Wheatstone bridge",
+   "unit": "Ω",
+   "section": "21.5"
+  },
+  {
+   "sym": "R_restwo",
+   "type": "resistance",
+   "meaning": "the second precisely known arm of the bridge",
+   "unit": "Ω",
+   "section": "21.5"
+  },
+  {
+   "sym": "R_resthree",
+   "type": "resistance",
+   "meaning": "the variable arm of the bridge, adjusted until the galvanometer reads zero",
+   "unit": "Ω",
+   "section": "21.5"
+  },
+  {
+   "sym": "I_curr",
+   "type": "current",
+   "meaning": "the constant current the potentiometer's source passes through its long wire",
+   "unit": "A",
+   "section": "21.5"
+  },
+  {
+   "sym": "R_res",
+   "type": "resistance",
+   "meaning": "the resistance through which the capacitor charges or discharges, the source's internal resistance included",
+   "unit": "Ω",
+   "section": "21.6"
+  },
+  {
+   "sym": "C_cap",
+   "type": "capacitance",
+   "meaning": "the capacitance of the capacitor in the circuit",
+   "unit": "F",
+   "section": "21.6"
+  },
+  {
+   "sym": "τ_RC",
+   "type": "time",
+   "meaning": "the time constant of the circuit, the time in which the voltage covers 0.632 of what is left to cover",
+   "unit": "s",
+   "section": "21.6"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "the time since the switch was closed",
+   "unit": "s",
+   "section": "21.6"
+  },
+  {
+   "sym": "V_volt",
+   "type": "voltage",
+   "meaning": "the voltage across the capacitor at time t",
+   "unit": "V",
+   "section": "21.6"
+  },
+  {
+   "sym": "V_zero",
+   "type": "voltage",
+   "meaning": "the voltage on the capacitor at the moment a discharge begins",
+   "unit": "V",
+   "section": "21.6"
+  },
+  {
+   "sym": "V_c",
+   "type": "voltage",
+   "meaning": "the voltage across the capacitor, which opposes the source as charge builds up",
+   "unit": "V",
+   "section": "21.6"
+  },
+  {
+   "sym": "emf",
+   "type": "voltage",
+   "meaning": "the emf of the source charging the capacitor, which the capacitor voltage approaches",
+   "unit": "V",
+   "section": "21.6"
+  },
+  {
+   "sym": "I_0curr",
+   "type": "current",
+   "meaning": "the initial current, largest at the instant the switch is closed",
+   "unit": "A",
+   "section": "21.6"
+  },
+  {
+   "sym": "Q_charge",
+   "type": "charge",
+   "meaning": "the charge stored on each plate of the capacitor",
+   "unit": "C",
+   "section": "21.6"
+  }
+ ],
+ "equations": [
+  {
+   "id": "eq-series-resistance",
+   "concept": "series-resistance",
+   "section": "21.1",
+   "latex": "R_{\\text{s}} = R_1 + R_2 + R_3 + \\ldots",
+   "ktex": "\\kRess = \\kResone + \\kRestwo + \\kResthree + \\ldots",
+   "important": true
+  },
+  {
+   "id": "eq-series-voltage",
+   "concept": "voltage-divides-in-series",
+   "section": "21.1",
+   "latex": "V = V_1 + V_2 + V_3",
+   "ktex": "\\kV = \\kVone + \\kVtwo + \\kVthree",
+   "important": true
+  },
+  {
+   "id": "eq-parallel-resistance",
+   "concept": "parallel-resistance",
+   "section": "21.1",
+   "latex": "\\frac{1}{R_{\\text{p}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} + \\ldots",
+   "ktex": "\\frac{1}{\\kResp} = \\frac{1}{\\kResone} + \\frac{1}{\\kRestwo} + \\frac{1}{\\kResthree} + \\ldots",
+   "important": true
+  },
+  {
+   "id": "eq-parallel-current",
+   "concept": "current-divides-in-parallel",
+   "section": "21.1",
+   "latex": "I = I_1 + I_2 + I_3",
+   "ktex": "\\kIcur = \\kIcurone + \\kIcurtwo + \\kIcurthree",
+   "important": true
+  },
+  {
+   "id": "eq-mixed-total-resistance",
+   "concept": "reduce-resistor-network",
+   "section": "21.1",
+   "latex": "R_{\\text{tot}} = R_1 + R_{\\text{p}}",
+   "ktex": "\\kRestot = \\kResone + \\kResp",
+   "important": true
+  },
+  {
+   "id": "eq-terminal-voltage",
+   "concept": "terminal-voltage",
+   "section": "21.2",
+   "latex": "V = \\mathcal{E} - Ir",
+   "ktex": "\\kV = \\kemf - \\kIcur\\krint",
+   "important": true
+  },
+  {
+   "id": "eq-current-with-load",
+   "concept": "current-with-load",
+   "section": "21.2",
+   "latex": "I = \\frac{\\mathcal{E}}{R_{\\text{load}} + r}",
+   "ktex": "\\kIcur = \\frac{\\kemf}{\\kRload + \\krint}",
+   "important": true
+  },
+  {
+   "id": "eq-sources-in-series",
+   "concept": "sources-in-series",
+   "section": "21.2",
+   "latex": "I = \\frac{\\mathcal{E}_1 + \\mathcal{E}_2}{r_1 + r_2 + R_{\\text{load}}}",
+   "ktex": "\\kIcur = \\frac{\\kemfone + \\kemftwo}{\\krintone + \\krinttwo + \\kRload}",
+   "important": true
+  },
+  {
+   "id": "eq-sources-opposed",
+   "concept": "charging-reverses-the-current",
+   "section": "21.2",
+   "latex": "I = \\frac{\\mathcal{E}_1 - \\mathcal{E}_2}{r_1 + r_2}",
+   "ktex": "\\kIcur = \\frac{\\kemfone - \\kemftwo}{\\krintone + \\krinttwo}",
+   "important": true
+  },
+  {
+   "id": "eq-sources-in-parallel",
+   "concept": "sources-in-parallel",
+   "section": "21.2",
+   "latex": "I = \\frac{\\mathcal{E}}{r_{\\text{tot}} + R_{\\text{load}}}",
+   "ktex": "\\kIcur = \\frac{\\kemf}{\\krinttot + \\kRload}",
+   "important": true
+  },
+  {
+   "id": "eq-junction-rule",
+   "concept": "junction-rule",
+   "section": "21.3",
+   "latex": "I_1 = I_2 + I_3",
+   "ktex": "\\kIcurone = \\kIcurtwo + \\kIcurthree",
+   "important": true
+  },
+  {
+   "id": "eq-loop-rule",
+   "concept": "loop-rule",
+   "section": "21.3",
+   "latex": "\\mathcal{E} = Ir + IR_1 + IR_2",
+   "ktex": "\\kemf = \\kIcur\\krint + \\kIcur\\kResone + \\kIcur\\kRestwo",
+   "important": true
+  },
+  {
+   "id": "eq-voltmeter-resistance",
+   "concept": "galvanometer-as-voltmeter",
+   "section": "21.4",
+   "latex": "R_{\\text{tot}} = R + r = \\frac{V}{I}",
+   "ktex": "\\kRestot = \\kRes + \\krint = \\frac{\\kV}{\\kIcur}",
+   "important": true
+  },
+  {
+   "id": "eq-shunt-resistance",
+   "concept": "galvanometer-as-ammeter",
+   "section": "21.4",
+   "latex": "R = r\\frac{I_{\\text{G}}}{I}",
+   "ktex": "\\kRes = \\krint\\frac{\\kIcurG}{\\kIcur}",
+   "important": true
+  },
+  {
+   "id": "eq-potentiometer",
+   "concept": "potentiometer",
+   "section": "21.5",
+   "latex": "\\mathcal{E}_{\\text{x}} = \\mathcal{E}_{\\text{s}}\\frac{R_{\\text{x}}}{R_{\\text{s}}}",
+   "ktex": "\\kemfx = \\kemfs\\frac{\\kResx}{\\kRess}",
+   "important": true
+  },
+  {
+   "id": "eq-wheatstone-bridge",
+   "concept": "wheatstone-bridge",
+   "section": "21.5",
+   "latex": "R_{\\text{x}} = R_3\\frac{R_2}{R_1}",
+   "ktex": "\\kResx = \\kResthree\\frac{\\kRestwo}{\\kResone}",
+   "important": true
+  },
+  {
+   "id": "eq-capacitor-voltage",
+   "concept": "rc-circuit",
+   "section": "21.6",
+   "latex": "V_{\\text{c}} = \\frac{Q}{C}",
+   "ktex": "\\kVc = \\frac{\\kQch}{\\kCap}",
+   "important": true
+  },
+  {
+   "id": "eq-initial-current",
+   "concept": "rc-circuit",
+   "section": "21.6",
+   "latex": "I_0 = \\frac{\\mathcal{E}}{R}",
+   "ktex": "\\kIocur = \\frac{\\kemf}{\\kRes}",
+   "important": true
+  },
+  {
+   "id": "eq-charging-capacitor",
+   "concept": "charging-a-capacitor",
+   "section": "21.6",
+   "latex": "V = \\mathcal{E}\\left(1 - e^{-t/RC}\\right)",
+   "ktex": "\\kV = \\kemf\\left(1 - e^{-\\kt/\\kRes\\kCap}\\right)",
+   "important": true
+  },
+  {
+   "id": "eq-time-constant",
+   "concept": "time-constant",
+   "section": "21.6",
+   "latex": "\\tau = RC",
+   "ktex": "\\ktauRC = \\kRes\\kCap",
+   "important": true
+  },
+  {
+   "id": "eq-discharging-capacitor",
+   "concept": "discharging-a-capacitor",
+   "section": "21.6",
+   "latex": "V = V_0 e^{-t/RC}",
+   "ktex": "\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}",
+   "important": true
+  }
+ ],
+ "glossary": [
+  {
+   "section": "21.1",
+   "term": "series",
+   "definition": "a sequence of resistors or other components wired into a circuit one after the other"
+  },
+  {
+   "section": "21.1",
+   "term": "resistor",
+   "definition": "a component that provides resistance to the current flowing through an electrical circuit"
+  },
+  {
+   "section": "21.1",
+   "term": "resistance",
+   "definition": "causing a loss of electrical power in a circuit"
+  },
+  {
+   "section": "21.1",
+   "term": "Ohm’s law",
+   "definition": "the relationship between current, voltage, and resistance within an electrical circuit: $V=\\text{IR}$"
+  },
+  {
+   "section": "21.1",
+   "term": "voltage",
+   "definition": "the electrical potential energy per unit charge; electric pressure created by a power source, such as a battery"
+  },
+  {
+   "section": "21.1",
+   "term": "voltage drop",
+   "definition": "the loss of electrical power as a current travels through a resistor, wire or other component"
+  },
+  {
+   "section": "21.1",
+   "term": "current",
+   "definition": "the flow of charge through an electric circuit past a given point of measurement"
+  },
+  {
+   "section": "21.1",
+   "term": "Joule’s law",
+   "definition": "the relationship between potential electrical power, voltage, and resistance in an electrical circuit, given by: ${P}_{e}=\\text{IV}$"
+  },
+  {
+   "section": "21.1",
+   "term": "parallel",
+   "definition": "the wiring of resistors or other components in an electrical circuit such that each component receives an equal voltage from the power source; often pictured in a ladder-shaped diagram, with each component on a rung of the ladder"
+  },
+  {
+   "section": "21.2",
+   "term": "electromotive force (emf)",
+   "definition": "the potential difference of a source of electricity when no current is flowing; measured in volts"
+  },
+  {
+   "section": "21.2",
+   "term": "internal resistance",
+   "definition": "the amount of resistance within the voltage source"
+  },
+  {
+   "section": "21.2",
+   "term": "potential difference",
+   "definition": "the difference in electric potential between two points in an electric circuit, measured in volts"
+  },
+  {
+   "section": "21.2",
+   "term": "terminal voltage",
+   "definition": "the voltage measured across the terminals of a source of potential difference"
+  },
+  {
+   "section": "21.3",
+   "term": "Kirchhoff’s rules",
+   "definition": "a set of two rules, based on conservation of charge and energy, governing current and changes in potential in an electric circuit"
+  },
+  {
+   "section": "21.3",
+   "term": "junction rule",
+   "definition": "Kirchhoff’s first rule, which applies the conservation of charge to a junction; current is the flow of charge; thus, whatever charge flows into the junction must flow out; the rule can be stated ${I}_{1}={I}_{2}+{I}_{3}$"
+  },
+  {
+   "section": "21.3",
+   "term": "loop rule",
+   "definition": "Kirchhoff’s second rule, which states that in a closed loop, whatever energy is supplied by emf must be transferred into other forms by devices in the loop, since there are no other ways in which energy can be transferred into or out of the circuit. Thus, the emf equals the sum of the $\\text{IR}$ (voltage) drops in the loop and can be stated: $\\text{emf}=\\text{Ir}+{\\text{IR}}_{1}+{\\text{IR}}_{2}$"
+  },
+  {
+   "section": "21.3",
+   "term": "conservation laws",
+   "definition": "require that energy and charge be conserved in a system"
+  },
+  {
+   "section": "21.4",
+   "term": "voltmeter",
+   "definition": "an instrument that measures voltage"
+  },
+  {
+   "section": "21.4",
+   "term": "ammeter",
+   "definition": "an instrument that measures current"
+  },
+  {
+   "section": "21.4",
+   "term": "analog meter",
+   "definition": "a measuring instrument that gives a readout in the form of a needle movement over a marked gauge"
+  },
+  {
+   "section": "21.4",
+   "term": "digital meter",
+   "definition": "a measuring instrument that gives a readout in a digital form"
+  },
+  {
+   "section": "21.4",
+   "term": "galvanometer",
+   "definition": "an analog measuring device, denoted by G, that measures current flow using a needle deflection caused by a magnetic field force acting upon a current-carrying wire"
+  },
+  {
+   "section": "21.4",
+   "term": "current sensitivity",
+   "definition": "the maximum current that a galvanometer can read"
+  },
+  {
+   "section": "21.4",
+   "term": "full-scale deflection",
+   "definition": "the maximum deflection of a galvanometer needle, also known as current sensitivity; a galvanometer with a full-scale deflection of $\\text{50}\\mu \\text{A}$ has a maximum deflection of its needle when $\\text{50}\\mu \\text{A}$ flows through it"
+  },
+  {
+   "section": "21.4",
+   "term": "shunt resistance",
+   "definition": "a small resistance $R$ placed in parallel with a galvanometer G to produce an ammeter; the larger the current to be measured, the smaller $R$ must be; most of the current flowing through the meter is shunted through $R$ to protect the galvanometer"
+  },
+  {
+   "section": "21.5",
+   "term": "null measurements",
+   "definition": "methods of measuring current and voltage more accurately by balancing the circuit so that no current flows through the measurement device"
+  },
+  {
+   "section": "21.5",
+   "term": "potentiometer",
+   "definition": "a null measurement device for measuring potentials (voltages)"
+  },
+  {
+   "section": "21.5",
+   "term": "ohmmeter",
+   "definition": "an instrument that applies a voltage to a resistance, measures the current, calculates the resistance using Ohm’s law, and provides a readout of this calculated resistance"
+  },
+  {
+   "section": "21.5",
+   "term": "bridge device",
+   "definition": "a device that forms a bridge between two branches of a circuit; some bridge devices are used to make null measurements in circuits"
+  },
+  {
+   "section": "21.5",
+   "term": "Wheatstone bridge",
+   "definition": "a null measurement device for calculating resistance by balancing potential drops in a circuit"
+  },
+  {
+   "section": "21.6",
+   "term": "RC circuit",
+   "definition": "a circuit that contains both a resistor and a capacitor"
+  },
+  {
+   "section": "21.6",
+   "term": "capacitor",
+   "definition": "an electrical component used to store energy by separating electric charge on two opposing plates"
+  },
+  {
+   "section": "21.6",
+   "term": "capacitance",
+   "definition": "the maximum amount of electric potential energy that can be stored (or separated) for a given electric potential"
+  }
+ ]
+}

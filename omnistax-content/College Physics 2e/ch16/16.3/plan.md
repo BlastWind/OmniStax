@@ -209,3 +209,5 @@ axes at plus and minus 1.5 m/s and 20 m/s², set from that same default state
 because the slider maxima would flatten the book's own curves; a faster
 setting is drawn clipped with its live point pinned at the edge. All four are
 two-dimensional, with no 3D, and their labels on.
+
+**Figure pass, 2026-09-15 (Claude Fable 5.1).** The floor marks x = −X, 0, +X of `sim-shm-oscillator` no longer sit on one another at the smallest amplitude: a shared `marks()` helper steps the outer two labels down a row and leans them away from the centre when the marks are close. `sim-shm-period` names its curve in the top left corner of the box, which the curve never reaches, instead of on the curve. In `sim-paper-strip` the mass hangs at x = 260 rather than 210, which gives the displacement bracket on its left the room its label needs; before, the bracket turned its label to the right and set it across the block. `sim-shm-xva` was looked at and left as built.

@@ -1,7 +1,7 @@
 /* Figures for section 17.1 Sound. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['17.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, fixed, labeller } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, fixed, labeller, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const TAU = 2 * Math.PI;
@@ -130,28 +130,36 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
   const CX = -150, CYY = 331;                    /* the centre the arcs spread from, off the left edge */
   const MOUTH = 700, DRUM = 1010, CT = 302, CB = 360;   /* the canal from the pinna to the eardrum, its top and bottom */
   const FMAX = 2 * 1e-4;                         /* the largest force the sliders reach, 2 Pa on 1 cm² */
+  hover(d.stage, () => [{ x: 650, y: 320, r: 70, name: 'the pinna, the outer ear' }, { x: (MOUTH + DRUM) / 2, y: 331, r: 40, name: 'the ear canal' },
+    { x: DRUM, y: 331, r: 34, name: 'the eardrum, of area ' + fmt(A.v, 2) + ' cm²' }, { x: 1080, y: 316, r: 44, name: 'the hammer, anvil and stirrup of the middle ear' }, { x: 1200, y: 350, r: 46, name: 'the cochlea of the inner ear' }]);
   /* the head in section: skin, the pinna, the canal, the middle ear and the cochlea, all in ink */
   function head(ctx, bulge) {
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+    /* the side of the head cut in section: the skull runs down to the top of the ear, the pinna stands out
+       from it as a helix that curls round to a lobe, and the jaw and the neck run on below */
     ctx.beginPath();
-    ctx.moveTo(790, 100); ctx.bezierCurveTo(756, 130, 740, 165, 736, 200);
-    /* the pinna, standing out from the side of the head */
-    ctx.bezierCurveTo(690, 168, 604, 196, 598, 290); ctx.bezierCurveTo(594, 380, 640, 470, 700, 476);
-    ctx.bezierCurveTo(726, 478, 738, 464, 738, 450);
-    ctx.bezierCurveTo(744, 520, 770, 590, 800, 640); ctx.lineTo(1400, 640); ctx.lineTo(1400, 100); ctx.closePath();
-    ctx.fill(); ctx.stroke();
-    /* the folds of the pinna */
-    ctx.beginPath(); ctx.moveTo(646, 230); ctx.bezierCurveTo(612, 276, 616, 366, 662, 424); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(682, 262); ctx.bezierCurveTo(650, 296, 652, 356, 684, 396); ctx.stroke();
+    ctx.moveTo(1400, 100); ctx.lineTo(880, 100);
+    ctx.bezierCurveTo(800, 100, 748, 150, 740, 236);
+    ctx.bezierCurveTo(736, 190, 690, 168, 650, 176);
+    ctx.bezierCurveTo(590, 190, 574, 270, 590, 330);
+    ctx.bezierCurveTo(602, 380, 630, 440, 676, 466);
+    ctx.bezierCurveTo(704, 482, 740, 470, 744, 440);
+    ctx.bezierCurveTo(752, 520, 776, 590, 810, 640);
+    ctx.lineTo(1400, 640); ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the folds of the pinna: the inner rim of the helix, the bowl that leads into the canal, and the lobe */
+    ctx.beginPath(); ctx.moveTo(660, 200); ctx.bezierCurveTo(620, 214, 606, 280, 620, 336); ctx.bezierCurveTo(632, 380, 658, 420, 692, 440); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(704, 258); ctx.bezierCurveTo(660, 288, 660, 356, 702, 396); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(668, 432); ctx.bezierCurveTo(690, 450, 720, 450, 738, 434); ctx.stroke();
     /* the canal, open to the air at its mouth */
     ctx.fillStyle = PAL.panel; ctx.beginPath();
     ctx.moveTo(MOUTH - 28, CT - 14); ctx.lineTo(DRUM, CT); ctx.lineTo(DRUM, CB); ctx.lineTo(MOUTH - 28, CB + 14); ctx.closePath(); ctx.fill();
     line(ctx, MOUTH - 28, CT - 14, DRUM, CT, PAL.muted, 2.5); line(ctx, MOUTH - 28, CB + 14, DRUM, CB, PAL.muted, 2.5);
     /* the middle ear behind the eardrum, at atmospheric pressure, and the bones that carry the vibration on */
     ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.ellipse(1078, 331, 68, 62, 0, 0, TAU); ctx.fill(); ctx.stroke();
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(DRUM + bulge, 331); ctx.lineTo(1050, 300); ctx.lineTo(1088, 318); ctx.lineTo(1118, 322); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(1118, 312); ctx.lineTo(1118, 332); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(1118, 310); ctx.lineTo(1118, 334); ctx.stroke();
+    ctx.fillStyle = PAL.ink; [[1050, 300], [1088, 318]].forEach(([x, y]) => { ctx.beginPath(); ctx.arc(x, y, 4, 0, TAU); ctx.fill(); });
     /* the cochlea */
     ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath();
     for (let i = 0; i <= 120; i++) { const a = (i / 120) * 2.6 * TAU, r = 6 + (a / (2.6 * TAU)) * 40; const x = 1200 + r * Math.cos(a), y = 350 + r * Math.sin(a); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
@@ -192,8 +200,10 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
     /* the force on the drum, inward under a compression and outward under a rarefaction */
     const lab = labeller(ctx, H);
     lab.block(0, 0, 1400, 96); lab.block(MOUTH - 10, CB + 26, MOUTH + 130, CB + 58); lab.block(DRUM - 190, CT - 50, DRUM, CT - 18);
-    text(ctx, 'P = ' + signed(p, 2) + ' Pa', DRUM - 16, CT - 34, C('pressure'), { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'ear canal', MOUTH + 10, CB + 42, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, 'P = ' + signed(p, 2) + ' Pa', DRUM - 16, CT - 34, C('pressure'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'ear canal', MOUTH + 10, CB + 42, PAL.ink, { size: 20, weight: 600, bg: PAL.panel });
+    text(ctx, 'pinna', 626, 500, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'cochlea', 1200, 416, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
     if (Math.abs(p) > 0.12 * dp.v) {
       const s = Math.sign(p), Lp = 30 + 150 * Math.abs(Fn) / FMAX, x0 = DRUM + bulge;
       arrow(ctx, x0, 331, x0 + s * Lp, 331, C('force'), 5);

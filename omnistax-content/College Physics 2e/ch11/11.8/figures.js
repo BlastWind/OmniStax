@@ -125,11 +125,11 @@ function freeBody(ctx, x, y, arrows, title) {
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
     const half = hold / 2;
     if (!breaks && w > 0) {
-      const len = alen(half);
+      const len = Math.max(120, alen(half));
       arrow(ctx, CX - R, yc, CX - R - len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX - R - len * cosT, yc - len * sinT, -cosT, -sinT, fc, 20, 22);
       arrow(ctx, CX + R, yc, CX + R + len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX + R + len * cosT, yc - len * sinT, cosT, -sinT, fc, 20, 22);
-      const nl = Math.min(alen(w), yc - R * 0.6 - 130); arrow(ctx, CX, yc - R * 0.6, CX, yc - R * 0.6 - nl, fc, 5); lab.add('net F_ST = ' + sigz(w, 3) + ' mN', CX, yc - R * 0.6 - nl, 0, -1, fc, 20, 22);
-      angleArc(ctx, CX + R, yc, 0, -th, 96, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
+      const nl = Math.min(alen(w), yc - R * 0.6 - 150); arrow(ctx, CX, yc - R * 0.6, CX, yc - R * 0.6 - nl, fc, 5); lab.add('net F_ST = ' + sigz(w, 3) + ' mN', CX, yc - R * 0.6 - nl, 0, -1, fc, 20, 22);
+      angleArc(ctx, CX + R, yc, 0, -th, 48, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
     } else if (!breaks) {
       arrow(ctx, CX - R, yc, CX - R - alen(half), yc, fc, 4); lab.add('F_ST', CX - R - alen(half), yc, -1, 0, fc, 20, 22);
       arrow(ctx, CX + R, yc, CX + R + alen(half), yc, fc, 4); lab.add('F_ST', CX + R + alen(half), yc, 1, 0, fc, 20, 22);
@@ -476,9 +476,9 @@ function freeBody(ctx, x, y, arrows, title) {
     ctx.save(); ctx.fillStyle = PAL.soft; path(ctx, [...half(pB, true), ...half(pT, true).slice().reverse()], true); ctx.fill(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fill();
     ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.stroke(); ctx.fillStyle = PAL.soft; path(ctx, pT, true); ctx.fill(); ctx.stroke(); ctx.restore();
     const rodB = V.P([0, YL + 28, 0]), rodT = V.P([0, YL + 90, 0]);
-    line(ctx, rodB[0], rodB[1], rodT[0], rodT[1], PAL.ink, 14);
+    line(ctx, rodB[0], rodB[1], rodT[0], rodT[1], PAL.ink, 6);
     text(ctx, 'piston', rodB[0] + 22, rodB[1] - 8, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.85) });
-    if (Fv > 0) { const al = 24 + Fv * 0.3; arrow(ctx, rodT[0], rodT[1], rodT[0], rodT[1] - al, fc, 5); text(ctx, 'F = ' + fmt(Fv, 0) + ' N', rodT[0] + 22, rodT[1] - al + 10, fc, { size: 21, weight: 600 }); }
+    if (Fv > 0) { const al = Math.min(40 + Fv * 0.42, rodT[1] - 104); arrow(ctx, rodT[0], rodT[1], rodT[0], rodT[1] - al, fc, 7); text(ctx, 'F = ' + fmt(Fv, 0) + ' N', rodT[0] + 22, rodT[1] - al / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) }); }
     const wl = V.P([0, YB + 40, 0]);
     text(ctx, 'water', wl[0], wl[1], PAL.ink, { size: 18, align: 'center' });
     const aL = V.P([-R, YL + 14, 0]);

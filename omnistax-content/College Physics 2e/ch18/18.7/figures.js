@@ -276,18 +276,21 @@ function drawLine(ctx, pts, color, w, heads) {
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(CX, CY, a * S, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     if (Q !== 0) for (let i = 0; i < 10; i++) { const ph = (i * 36 + 18) * RAD; signMark(ctx, CX + (a * S - 13) * Math.cos(ph), CY + (a * S - 13) * Math.sin(ph), sgn > 0, 24); }
-    text(ctx, 'E = 0', CX, CY, PAL.muted, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (out) text(ctx, 'E = 0', CX, CY, PAL.muted, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'q = ' + fmt(Q, 1) + ' nC on the surface', CX, CY + a * S + 36, qc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the probe, set down at the distance the slider gives it */
     const ph = -32 * RAD, px = CX + r * S * Math.cos(ph), py = CY + r * S * Math.sin(ph);
     line(ctx, CX, CY, px, py, PAL.rule, 2, [10, 10]);
     dot(ctx, px, py, PAL.ink, false, 11);
-    text(ctx, 'the probe, ' + fmt(r, 1) + ' cm from the centre', px, py - 32, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* inside the sphere the probe's two lines are set above the sphere, where no mark on the surface is */
+    const ly = out ? py : CY - a * S - 20;
+    text(ctx, 'the probe, ' + fmt(r, 1) + ' cm from the centre', out ? px : CX, ly - 32, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (!out) line(ctx, px, py - 12, CX, ly - 14, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
     if (Eread > 0) {
       const L = Math.min(190, Eread * 0.028), dx = Math.cos(ph) * sgn, dy = Math.sin(ph) * sgn;
       arrow(ctx, px, py, px + L * dx, py + L * dy, ec, 6);
     }
-    text(ctx, out ? 'E = ' + sci(Eread, 2) + ' N/C' : 'E = 0 inside the conductor', px, py + 34, ec, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, out ? 'E = ' + sci(Eread, 2) + ' N/C' : 'E = 0 inside the conductor', out ? px : CX, out ? py + 34 : ly - 64, ec, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* what the same charge would read if the sphere were a point charge */
     text(ctx, 'a point charge of ' + fmt(Q, 1) + ' nC at the centre', 1120, 560, PAL.muted, { size: 20, align: 'center' });
     text(ctx, 'would read ' + (out ? sci(Eout, 2) + ' N/C' : 'more than nothing') + ' at the probe', 1120, 592, PAL.muted, { size: 20, align: 'center' });
@@ -312,7 +315,7 @@ function drawLine(ctx, pts, color, w, heads) {
    settled, and the field between the plates stands.
 ===================================================================== */
 (function () {
-  const d = sim('sim-parallel-plates', 600);
+  const d = sim('sim-parallel-plates', 700);
   const Qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 20, step: 0.5, value: 8, unit: 'nC', dec: 1, aria: 'the excess charge on each plate' });
   const ds = ctl(d.controls, { label: '\\text{the separation}', cls: '', min: 2, max: 18, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: 'the distance between the plates' });
   const Ls = ctl(d.controls, { label: '\\text{the plates}', cls: '', min: 12, max: 38, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'the length of each plate' });
@@ -350,9 +353,13 @@ function drawLine(ctx, pts, color, w, heads) {
     const Emid = K * 1e-9 * mid.m * 1e4, Eedge = K * 1e-9 * edge.m * 1e4;   /* nC and cm to N/C */
     const drop = Emid > 0 ? (100 * (Emid - Eedge)) / Emid : 0;
     dot(ctx, CX, (YT + yb) / 2, PAL.ink, true, 9);
-    text(ctx, 'at the middle, ' + sci(Emid, 2) + ' N/C', CX + 16, (YT + yb) / 2 - 26, ec, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     dot(ctx, x0 + 10, (YT + yb) / 2, PAL.ink, false, 9);
-    text(ctx, 'at the edge, ' + sci(Eedge, 2) + ' N/C', x0 + 22, (YT + yb) / 2 + 34, ec, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    /* the two readings stand in the clear below the plates, each leadered to its point */
+    const RY = yb + 70;
+    for (const [x, name, v, tx] of [[CX, 'at the middle (filled), ', Emid, CX + 250], [x0 + 10, 'at the edge (hollow), ', Eedge, CX - 250]]) {
+      line(ctx, x, (YT + yb) / 2 + 14, tx, RY - 16, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
+      text(ctx, name + sci(v, 2) + ' N/C', tx, RY, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    }
     topline(ctx, 'The plates are ' + fmt(L, 0) + ' cm long and ' + fmt(gap, 1) + ' cm apart, and the field at the very edge is ' + fmt(Math.abs(drop), 0) + ' per cent ' + (drop >= 0 ? 'weaker' : 'stronger') + ' than the field through the middle.');
     readout(d.readout, `\\kEf_{\\ \\text{middle}} = ${sciTex(Emid, 2)}\\ \\text{N/C}, \\qquad \\kEf_{\\ \\text{edge}} = ${sciTex(Eedge, 2)}\\ \\text{N/C}`,
       'Through the middle the lines run straight from one plate to the other and are evenly spaced, which is what a uniform field looks like: the same strength and the same direction everywhere. Near the ends they bow outward and thin, and that is the edge effect. Bring the plates closer together, or make them longer, and the region the edges spoil is a smaller share of the whole, which is what the book means by saying that the edge effects are less important when the plates are close together.');

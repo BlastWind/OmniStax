@@ -201,3 +201,10 @@ American spelling, and the tube's rule is a meter rule. The page binds
 temperature as well as frequency, velocity, position and pressure, because
 the length of a tube that sounds a given note is drawn from the speed of
 sound at the temperature the reader sets; `COLOR.md` records it.
+
+## Figure pass (2026-09-15, Claude Fable 5.1)
+
+`sim-tube-resonance`: the tuning fork is 130 units tall with a rounded yoke,
+round-capped strokes and the prongs' swing ghosted either side, in place of
+the small square one; its name sits on a panel above it. The other three
+figures are unchanged.

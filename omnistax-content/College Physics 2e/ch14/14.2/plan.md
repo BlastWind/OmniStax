@@ -165,6 +165,8 @@ Extra simulations (rule 15), thought through, judged and left:
 - A bar chart of Table 14.1. Left: the table is on the page and the
   dropdown of `sim-three-factors` walks it with a bar of heat for each row.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Both figures were screenshot at their defaults, slider extremes and every substance in both themes and looked at. `sim-calorimetry`: the word "the water" lay on the water's fill in the small drawing of the pan and is on a panel now. `sim-three-factors` was found clean and is unchanged.
+
 ## Exercises
 
 - `cyu1` (fs-id3345408, the block heated from 25 to 30 °C and from 45 to

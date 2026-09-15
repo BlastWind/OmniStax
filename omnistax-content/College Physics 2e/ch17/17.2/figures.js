@@ -59,7 +59,8 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
     names.length = 0;
     /* the wavefronts: compressions solid at nλ, rarefactions dashed at (n − ½)λ, both ways, clipped to the scene's band */
-    ctx.save(); ctx.beginPath(); ctx.rect(0, TOP, 1400, BOT - TOP); ctx.clip();
+    /* the scene's band less a window round the fork, so no arc crosses the prongs or the frequency written above them */
+    ctx.save(); ctx.beginPath(); ctx.rect(0, TOP, 1400, BOT - TOP); ctx.rect(CX - 34, CY - 112, 68, 250); ctx.clip('evenodd');
     for (let n = 1; n * lpx <= REACH * PPM + 1; n++) {
       [0, Math.PI].forEach((dir) => {
         front(ctx, CX, CY, (n - 0.5) * lpx, dir, HALF, alpha(PAL.ink, 0.45), 2, [7, 9]);
@@ -78,8 +79,8 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     arrow(ctx, CX + REACH * PPM + 10, CY, CX + REACH * PPM + 100, CY, vc, 5); arrow(ctx, CX - REACH * PPM - 10, CY, CX - REACH * PPM - 100, CY, vc, 5);
     text(ctx, 'v_w = ' + sig(v) + ' m/s', CX + REACH * PPM + 55, CY - 28, vc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'v_w', CX - REACH * PPM - 55, CY - 28, vc, { size: 22, weight: 600, align: 'center' });
-    lab.add('f = ' + f + ' Hz', CX - 10, CY + 100, -1, 0.4, fc, 22, 30);
-    text(ctx, 'air at ' + degC(Tc), CX, CY - 130, tc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'f = ' + f + ' Hz', CX, CY - 92, fc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'air at ' + degC(Tc), CX, CY - 138, tc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     metreBar(ctx, 90, 468, PPM);
     lab.flush();
     /* the graph beneath: the speed of sound against the temperature */
@@ -144,11 +145,15 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     ctx.fillStyle = PAL.soft; wing(-1, 84, 54);               /* the near wing, lowered */
     ctx.restore();
   }
+  /* a moth seen from above, about 60 wide: two forewings swept back, two hindwings, a body and antennae */
   function insect(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.ellipse(x - 5, y - 7, 9, 4, -0.5, 0, TAU); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(x + 5, y - 7, 9, 4, 0.5, 0, TAU); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.ellipse(x, y, 7, 4, 0, 0, TAU); ctx.fill();
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+    [-1, 1].forEach((sy) => {
+      ctx.beginPath(); ctx.moveTo(x - 4, y + sy * 3); ctx.quadraticCurveTo(x - 30, y + sy * 26, x - 34, y + sy * 12); ctx.quadraticCurveTo(x - 24, y + sy * 4, x - 6, y + sy * 5); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x + 6, y + sy * 3); ctx.quadraticCurveTo(x + 22, y + sy * 30, x + 2, y + sy * 26); ctx.quadraticCurveTo(x - 10, y + sy * 18, x - 6, y + sy * 6); ctx.closePath(); ctx.fill(); ctx.stroke();
+    });
+    ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.ellipse(x, y, 20, 4.5, 0, 0, TAU); ctx.fill();
+    ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(x + 18, y - 2); ctx.quadraticCurveTo(x + 30, y - 12, x + 40, y - 14); ctx.moveTo(x + 18, y + 2); ctx.quadraticCurveTo(x + 30, y + 12, x + 40, y + 14); ctx.stroke();
     ctx.restore();
   }
   function draw() {
@@ -175,9 +180,9 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     }
     ctx.restore();
     bat(ctx, 150, SY); insect(ctx, xi, SY);
-    names.push({ x: 150, y: SY, r: 60, name: 'the bat' }, { x: xi, y: SY, r: 18, name: 'the insect, ' + fmt(dist, 2) + ' m away' });
-    lab.add('the bat', 150, SY + 30, 0, 1, PAL.ink, 19, 26);
-    lab.add('the insect', xi, SY + 12, 0, 1, PAL.ink, 19, 26);
+    names.push({ x: 150, y: SY, r: 60, name: 'the bat' }, { x: xi, y: SY, r: 34, name: 'the insect, ' + fmt(dist, 2) + ' m away' });
+    lab.add('the bat', 150, SY + 62, 0, 1, PAL.ink, 19, 26);
+    lab.add('the insect', xi, SY + 30, 0, 1, PAL.ink, 19, 26);
     /* the distance and the clock */
     hbracket(ctx, X0, xi, SY - 100, xc);
     text(ctx, 'd = ' + fmt(dist, 2) + ' m', (X0 + xi) / 2, SY - 124, xc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
@@ -253,8 +258,8 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     names.push({ x: X0 - 40, y: YT, r: 26, name: 'the tweeter, ' + f2.v + ' Hz' }, { x: X0 - 40, y: YW, r: 62, name: 'the woofer, ' + f1.v + ' Hz' });
     const r0 = V * t * PPM;
     if (r0 > 40) text(ctx, 'v_w = ' + sig(V) + ' m/s', X0 + r0, SPLIT, C('velocity'), { size: 21, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 't = ' + fmt(t * 1000, 1) + ' ms', 1330, 130, C('time'), { size: 24, weight: 600, align: 'right' });
-    text(ctx, 'air at 20 °C', 1330, 160, PAL.ink, { size: 17, align: 'right' });
+    text(ctx, 't = ' + fmt(t * 1000, 1) + ' ms', 1330, 596, C('time'), { size: 24, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'air at 20 °C', 1330, 626, PAL.ink, { size: 17, align: 'right', bg: PAL.panel });
     metreBar(ctx, X0 + 20, 600, PPM);
     lab.flush();
     topline(ctx, 'Both sets of wavefronts cross the room at ' + sig(V) + ' m/s: the ' + f1.v + ' Hz sound is ' + lamTxt(l1) + ' from crest to crest and the ' + f2.v + ' Hz sound ' + lamTxt(l2) + '.');
@@ -296,11 +301,11 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     /* the two media as dots, displaced along the wave; the amplitude follows the wavelength up to a cap so that the packing is visible */
     const w = TAU * f;
     const side = (x0, x1, lam, phase) => {
-      const k = TAU / lam, A = Math.min(0.55 * (lam * PPM) / TAU, 20);   /* the displacement that packs the dots, capped so a long wavelength crowds them without smearing them into lines */
-      ctx.save(); ctx.beginPath(); ctx.rect(x0, YT, x1 - x0, YB - YT); ctx.clip(); ctx.fillStyle = alpha(PAL.ink, 0.55);
-      for (let px = x0 - 40; px <= x1 + 40; px += COLS) {
+      const k = TAU / lam, A = 0.62 * (lam * PPM) / TAU;   /* the displacement that packs the dots: A k = 0.62 on both sides, so a compression is three times as dense as a rarefaction whatever the wavelength */
+      ctx.save(); ctx.beginPath(); ctx.rect(x0, YT, x1 - x0, YB - YT); ctx.clip(); ctx.fillStyle = alpha(PAL.ink, 0.85);
+      for (let px = x0 - 40 - A; px <= x1 + 40 + A; px += COLS) {
         const xm = (px - XB) / PPM, s = A * Math.sin(k * xm - w * t + phase);
-        for (let r = 0; r < ROWS; r++) { ctx.beginPath(); ctx.arc(px + s, YT + 12 + r * ((YB - YT - 24) / (ROWS - 1)), 2, 0, TAU); ctx.fill(); }
+        for (let r = 0; r < ROWS; r++) { ctx.beginPath(); ctx.arc(px + s, YT + 12 + r * ((YB - YT - 24) / (ROWS - 1)), 2.6, 0, TAU); ctx.fill(); }
       }
       /* the compressions, where the dots are densest: kx − ωt = π + 2πn */
       for (let n = -40; n <= 40; n++) { const xm = (Math.PI + n * TAU + w * t - phase) / k, px = XB + xm * PPM; if (px >= x0 && px <= x1) line(ctx, px, YT, px, YB, alpha(PAL.ink, 0.6), 1.5); }

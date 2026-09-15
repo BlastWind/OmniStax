@@ -178,10 +178,15 @@ function rod(ctx, x, y, L, T, sign, n) {
     [-1, 1].forEach((sgn) => {
       const a = sgn * ang;
       const x = CX + LL * Math.sin(a), y = LY0 + LL * Math.cos(a);
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(CX, LY0); ctx.lineTo(x, y); ctx.stroke(); ctx.restore();
-      const mid = { x: CX + (LL * 0.55) * Math.sin(a), y: LY0 + (LL * 0.55) * Math.cos(a) };
-      text(ctx, '+', mid.x + sgn * 26, mid.y, PAL.ink, { size: 22, weight: 700, align: 'center' });
-      text(ctx, '+', mid.x + sgn * 26, mid.y + 36, PAL.ink, { size: 22, weight: 700, align: 'center' });
+      /* a leaf is a thin foil: a tapered strip hung from the foot of the stem, its outer face marked */
+      const nx = Math.cos(a), ny = -Math.sin(a);                  /* across the leaf */
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(CX - nx * 3, LY0 - ny * 3); ctx.lineTo(CX + nx * 3, LY0 + ny * 3);
+      ctx.lineTo(x + nx * 11, y + ny * 11); ctx.lineTo(x - nx * 11, y - ny * 11); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+      if (qLeaves > 0.05) for (const f of [0.45, 0.72]) {
+        const mx = CX + (LL * f) * Math.sin(a), my = LY0 + (LL * f) * Math.cos(a);
+        text(ctx, '+', mx + sgn * 22, my, PAL.ink, { size: 22, weight: 700, align: 'center' });
+      }
     });
     /* the electrons drawn up to the top, and the ones transferred to the rod */
     const nE = Math.max(1, Math.round(q / 2));
@@ -198,7 +203,7 @@ function rod(ctx, x, y, L, T, sign, n) {
     const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 150);
     Lb.add('the ball', CX - RB, BALL - 10, -1, 0, PAL.ink, 20, 22);
     Lb.add('the conducting stem', CX, BALL + 130, -1, 0, PAL.ink, 20, 24);
-    Lb.add('gold leaves', CX, LY0 + 110, -1, 0.4, PAL.ink, 20, 86);
+    Lb.add('gold leaves', CX + LL * Math.sin(-ang) * 0.9 - 8, LY0 + LL * 0.9, -1, 0.3, PAL.ink, 20, 30);
     if (st !== 'away') Lb.add('the glass rod, an insulator', CX + 330, BALL, 0.3, 1, PAL.ink, 20, 34);
     /* the tally at the right */
     const TX = 1010;
@@ -246,7 +251,7 @@ function rod(ctx, x, y, L, T, sign, n) {
     if (t < 1.2) { phase = 'a'; rodX = 40 + (t / 1.2) * 140; }
     else if (t < 2.6) { phase = 'b'; rodX = 180; cross = Math.min(1, (t - 1.2) / 1.0); }
     else if (t < 4.0) { phase = 'c'; rodX = 180; cross = 1; gap = Math.min(1, (t - 2.6) / 1.0) * 150; }
-    else { phase = 'd'; cross = 1; gap = 150; rodX = 180 - Math.min(1, (t - 4.0) / 1.4) * 240; }
+    else { phase = 'd'; cross = 1; gap = 150; rodX = 180 - Math.min(1, (t - 4.0) / 1.4) * 150; }
     const BX = BX0 + gap;
     const held = cross * qi;
     /* the rod */
@@ -386,7 +391,7 @@ function rod(ctx, x, y, L, T, sign, n) {
    registers no cycle.
 ===================================================================== */
 (function () {
-  const d = sim('sim-polarization', 720);
+  const d = sim('sim-polarization', 600);
   const panelSel = choice(d.controls, { label: '\\text{the case}', options: [
     { value: 'pos', label: 'positive rod, insulator' }, { value: 'neg', label: 'negative rod, insulator' }, { value: 'cond', label: 'charged rod, conductor' }], value: 'pos', aria: 'which of the book’s three cases the figure shows' });
   const ds = ctl(d.controls, { label: '\\text{distance}', cls: '', min: 2, max: 10, step: 0.5, value: 4, unit: 'cm', dec: 1, aria: 'how far the rod is held from the neutral object' });
@@ -430,22 +435,26 @@ function rod(ctx, x, y, L, T, sign, n) {
         molecule(ctx, x, y, 19, toward, f);
       }
     }
-    /* the two pulls: the nearer unlike charges attract, the farther like ones repel */
-    /* the two pulls, stacked in a clear band below the object so that neither crosses the rod */
-    /* the far charges sit about four centimetres deeper into the object, and the pull on them is weaker in that proportion */
+    /* the two pulls, each set under the face whose charges feel it: the attraction
+       pulls the near face toward the rod, the weaker repulsion pushes the far face
+       away. The far charges sit about four centimetres deeper into the object, and
+       the push on them is weaker in that proportion. Neither arrow is a stated force,
+       since Coulomb's law is 18.3's. */
     const AL = 70 + 150 * f, RL = Math.max(26, AL * (dist * dist) / ((dist + 4) * (dist + 4)));
-    const AX0 = OX + OBW / 2, AY = YC + OBH / 2 + 60, RY = YC + OBH / 2 + 135;
-    arrow(ctx, AX0, AY, AX0 - AL, AY, PAL.ink, 5);
-    arrow(ctx, AX0, RY, AX0 + RL, RY, PAL.ink, 5);
-    const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 150);
-    Lb.add('the nearer unlike charges are pulled toward the rod', AX0 - AL, AY, -1, 0, PAL.ink, 19, 18);
-    Lb.add('the farther like charges are pushed away, but less', AX0 + RL, RY, 1, 0, PAL.ink, 19, 18);
+    const AY = YC + OBH / 2 + 62;
+    arrow(ctx, OX, AY, OX - AL, AY, PAL.ink, 5);
+    arrow(ctx, OX + OBW, AY, OX + OBW + RL, AY, PAL.ink, 5);
+    F.label(ctx, 'the nearer unlike charges are pulled toward the rod', OX - AL / 2, AY, { side: 'below', size: 19, weight: 400, gap: 24, H });
+    F.label(ctx, 'the farther like charges are pushed away, but less', OX + OBW + RL / 2, AY, { side: 'below', size: 19, weight: 400, gap: 24, H });
+    const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 96);
+    Lb.block(1000, 170, 1400, 212);                        /* the net-charge line at the top right */
     Lb.add('the charged rod', RX - 40, YC, -1, 0, PAL.ink, 20, 20);
-    Lb.add(cse === 'cond' ? 'a neutral conductor' : 'a neutral insulator', OX + OBW, YC - OBH / 2, 0.4, -1, PAL.ink, 20, 22);
-    /* the distance between them */
-    const DY = YC + OBH / 2 + 220;
-    line(ctx, RX + 40, DY, OX, DY, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    text(ctx, fmt(dist, 1) + ' cm', (RX + 40 + OX) / 2, DY + 28, PAL.ink, { size: 19, align: 'center' });
+    Lb.add(cse === 'cond' ? 'a neutral conductor' : 'a neutral insulator', OX + OBW / 2, YC - OBH / 2, 0, -1, PAL.ink, 20, 22);
+    /* the distance between the rod and the near face, in the gap above the two bodies' centre line */
+    const DY = YC - OBH / 2 - 30;
+    line(ctx, RX + 40, DY, OX, DY, PAL.muted, 2);
+    line(ctx, RX + 40, DY - 10, RX + 40, DY + 10, PAL.muted, 2); line(ctx, OX, DY - 10, OX, DY + 10, PAL.muted, 2);
+    text(ctx, fmt(dist, 1) + ' cm', (RX + 40 + OX) / 2, DY - 22, PAL.ink, { size: 19, align: 'center', bg: alpha(PAL.panel, 0.9) });
     text(ctx, 'net charge on the object  q = 0', 1400 - 40, 190, qc, { size: 21, weight: 600, align: 'right' });
     const what = cse === 'cond' ? 'conductor' : 'insulator';
     topline(ctx, `A rod holding ${plus(positive ? q : -q, 1)} nC is held ${fmt(dist, 1)} cm from a neutral ${what}: ${cse === 'cond' ? 'its free charges gather, unlike on the near face and like on the far one' : 'every molecule turns its unlike end toward the rod'}, and because the unlike charges are nearer, the object is attracted.`);

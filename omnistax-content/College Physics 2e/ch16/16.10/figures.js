@@ -176,7 +176,7 @@ function legend(ctx, x, y, color, name, dash) {
    with a bar beside it for how loud that point is at each moment.
 ===================================================================== */
 (function () {
-  const d = sim('sim-beats', 760);
+  const d = sim('sim-beats', 800);   /* room under the graph for the beat bracket and its name */
   const f1 = ctl(d.controls, { label: '\\kfone', cls: 'frequency', min: 4, max: 10, step: 0.1, value: 5, unit: 'Hz', dec: 2, onInput: reset });
   const f2 = ctl(d.controls, { label: '\\kftwo', cls: 'frequency', min: 4, max: 10, step: 0.1, value: 7, unit: 'Hz', dec: 2, onInput: reset });
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.5, unit: 'm', dec: 2, onInput: reset, aria: 'amplitude of each wave' });
@@ -202,7 +202,7 @@ function legend(ctx, x, y, color, name, dash) {
     curve(ctx, envOf, 0, SPAN, B.X, B.Y, alpha(C('position'), 0.4), 2, 800);
     curve(ctx, (t) => -envOf(t), 0, SPAN, B.X, B.Y, alpha(C('position'), 0.4), 2, 800);
     curve(ctx, sum, 0, SPAN, B.X, B.Y, C('position'), 4, 2400);
-    if (fB > 0.05 && 1 / fB <= SPAN) hbracket(ctx, B.X(0), B.X(1 / fB), boxB.b + 52, C('time'), 'one beat, ' + fmt(1 / fB, 2) + ' s');
+    if (fB > 0.05 && 1 / fB <= SPAN) hbracket(ctx, B.X(0), B.X(1 / fB), boxB.b + 56, C('time'), 'one beat, ' + fmt(1 / fB, 2) + ' s', { side: 'below', size: 20 });   /* named under the bracket, clear of the tick labels */
     line(ctx, B.X(now), boxB.t, B.X(now), boxB.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
     pinned(ctx, boxB, B.X, B.Y, now, sum(now), C('position'));
     /* the loudness of that point at this moment, as a bar beside the graph */

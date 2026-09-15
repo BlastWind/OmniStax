@@ -200,12 +200,12 @@ const TAU = Math.PI * 2;
     const lab = labeller(ctx, 560); lab.block(0, 0, 1400, 96);
     const dp = pinned(ctx, box, X, Y, tdew, rho, tc);
     if (!dp.out) { line(ctx, dp.x, dp.y, dp.x, box.b, tc, 2.5, [4, 8]); lab.add('dew point ' + degC(tdew, 1), dp.x, dp.y, -0.7, -0.7, tc, 19, 24); }
-    else lab.add('dew point ' + degC(tdew, 1) + ', off the graph', dp.x, dp.y, -1, 0.4, tc, 19);
+    else lab.add('dew point ' + degC(tdew, 1) + ', off the graph', dp.x, dp.y, dp.x < (box.l + box.r) / 2 ? 1 : -1, dp.x < (box.l + box.r) / 2 ? -0.8 : 0.8, tc, 19);   /* into the box, never up into the headline */
     line(ctx, Math.min(px, dp.x), py, Math.max(px, dp.x), py, tc, 2.5, [10, 10]);
     dot(ctx, px, sy, dc, false, 10); dot(ctx, px, py, dc, true, 10);
     lab.add('ρ_sat = ' + dens(rs) + ' g/m³', px, sy, over ? -0.3 : 0.3, over ? 0.9 : -0.9, dc, 19);
     lab.add('ρ = ' + dens(rho) + ' g/m³', px, py, 0.9, 0.5, dc, 19);
-    lab.add(over ? dens(rho - rs) + ' g/m³ condenses' : fmt(rh, 1) + '% of saturation', px, (py + sy) / 2, -1, 0, PAL.ink, 19, 24);
+    lab.add(over ? dens(rho - rs) + ' g/m³ condenses' : fmt(rh, 1) + '% of saturation', px, (py + sy) / 2, px < box.l + 260 ? 1 : -1, 0, PAL.ink, 19, 24);
     lab.flush();
     if (!over) topline(ctx, `At ${degC(T, 1)} air carrying ${dens(rho)} g/m³ of water vapor is at ${fmt(rh, 1)}% relative humidity and reaches its dew point at ${degC(tdew, 1)}.`);
     else topline(ctx, `At ${degC(T, 1)} air cannot carry ${dens(rho)} g/m³ of water vapor: ${dens(rho - rs)} g/m³ condenses out as dew or fog, leaving the air saturated.`);

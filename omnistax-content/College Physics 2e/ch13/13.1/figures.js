@@ -58,7 +58,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
   const d = sim('sim-bimetallic-strip', 620);
   const T0 = 20, ALPHA_L = 19e-6, ALPHA_R = 12e-6, L = 0.10, THICK = 1e-3, EXAG = 4;
   const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -40, max: 200, step: 1, value: T0, unit: '°C', dec: 0, aria: 'the temperature of the strip', detents: [{ v: T0, label: 'T₀' }, { v: 120, label: 'heated' }] });
-  const BX = 640, BY = 540, LPX = 400, S = LPX / L, W = 18;       /* the strip: base, height in units, units per metre, half-width of one layer */
+  const BX = 640, BY = 566, LPX = 376, S = LPX / L, W = 18;       /* the strip: base, height in units, units per metre, half-width of one layer */
   const brass = F.cat(0), steel = F.cat(1);
   let hits = [];
   hover(d.stage, () => hits);
@@ -344,10 +344,9 @@ function thermometer(ctx, x, yb, h, frac, color) {
     }
     /* heat leaving the hotter body for the cooler one, drawn stronger the larger the difference */
     for (const [x, T] of [[480, a], [940, b]]) {
-      const dT = T - p, w = Math.min(8, 1.5 + Math.abs(dT) / 8);
-      if (Math.abs(dT) > 1) { const up = dT < 0; arrow(ctx, x, up ? PY + 24 : PY - 24, x, up ? PY - 24 : PY + 24, PAL.ink, w); }
+      const dT = T - p, w = Math.min(7, 2.5 + Math.abs(dT) / 10);
+      if (Math.abs(dT) > 1) { const up = dT < 0; arrow(ctx, x, up ? PY + 28 : PY - 40, x, up ? PY - 40 : PY + 28, PAL.ink, w); }
     }
-    text(ctx, 'heat flows from the hotter body to the cooler one', 710, 94, PAL.muted, { size: 17, align: 'center' });
     /* the three temperatures against time, converging on the common temperature */
     const { X, Y } = axes(ctx, box, [0, END], [-20, 120], { xl: 'time, t (s)', xc: tmc, yl: 'temperature, T (°C)', yc: tc, nx: 6, ny: 7, fx: (v) => fmt(v, 0), fy: (v) => num(v, 0) });
     line(ctx, box.l, Y(fin), box.r, Y(fin), PAL.ink, 2, [10, 10]);

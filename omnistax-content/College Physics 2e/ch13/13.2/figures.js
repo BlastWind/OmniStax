@@ -212,8 +212,8 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     const p = pinned(ctx, GB, X, Y, T, r, rc);
     line(ctx, p.x, p.y, p.x, GB.b, alpha(tc, 0.7), 2, [4, 8]);
     line(ctx, GB.l, p.y, p.x, p.y, alpha(rc, 0.7), 2, [4, 8]);
-    text(ctx, 'T = ' + fmt(T, 1) + ' °C', p.x, GB.b - 18, tc, { size: 18, weight: 600, align: p.x > 1160 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'ρ = ' + fmt(r, 5) + ' g/cm³', p.x + (p.x > 1000 ? -16 : 16), p.y + (r > 0.9999 ? 34 : -28), rc, { size: 20, weight: 600, align: p.x > 1000 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'T = ' + fmt(T, 1) + ' °C', p.x + (p.x > 1160 ? -10 : 10), GB.b - 18, tc, { size: 18, weight: 600, align: p.x > 1160 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'ρ = ' + fmt(r, 5) + ' g/cm³', p.x + (p.x > 1000 ? -16 : 16), p.y + (p.y < (GB.t + GB.b) / 2 ? 34 : -28), rc, { size: 20, weight: 600, align: p.x > 1000 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, Math.abs(T - 4) <= 0.05 ? 'At 4 °C water is at its densest, ' + fmt(MAX, 5) + ' g/cm³, and water at any other temperature between 0 and 12 °C floats on it.'
       : 'At ' + fmt(T, 1) + ' °C water has a density of ' + fmt(r, 5) + ' g/cm³, ' + sig(100 * short, 2) + '% below its maximum at 4 °C, so it floats on 4 °C water.');
     readout(d.readout, `\\krho = ${fmt(r, 5)}\\ \\text{g/cm}^3 \\text{ at } \\kTemp = ${fmt(T, 1)}^\\circ\\text{C}, \\qquad \\frac{\\krho_{\\text{max}} - \\krho}{\\krho_{\\text{max}}} = ${sig(100 * short, 2)}\\%`,
@@ -327,18 +327,19 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     text(ctx, ln.replace(' (petrol)', '').toLowerCase() + ', ' + fmt(V0, 1) + ' L, in a steel tank', TX + TW / 2, TB + 26, PAL.muted, { size: 17, align: 'center' });
     /* the pipe to the gauge, and the gauge itself in the pressure hue */
     line(ctx, TX + TW, rim + 60, GX - GR - 30, rim + 60, PAL.ink, 4); line(ctx, GX - GR - 30, rim + 60, GX - GR - 30, GY, PAL.ink, 4); line(ctx, GX - GR - 30, GY, GX - GR, GY, PAL.ink, 4);
-    circle(ctx, GX, GY, GR, PAL.panel, pc, 5);
+    circle(ctx, GX, GY, GR, PAL.panel, PAL.ink, 4);
     const a0 = Math.PI * 0.8, a1 = Math.PI * 2.2, ang = (p) => a0 + (a1 - a0) * Math.min(1, p / PMAX);
-    ctx.save(); ctx.strokeStyle = pc; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(GX, GY, GR - 22, a0, a1); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = pc; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(GX, GY, GR - 22, a0, a1); ctx.stroke(); ctx.restore();
     for (let i = 0; i <= 8; i++) {
       const p = (i / 8) * PMAX, t = ang(p), major = i % 2 === 0;
-      line(ctx, GX + (GR - 22) * Math.cos(t), GY + (GR - 22) * Math.sin(t), GX + (GR - (major ? 44 : 34)) * Math.cos(t), GY + (GR - (major ? 44 : 34)) * Math.sin(t), pc, major ? 3 : 2);
+      line(ctx, GX + (GR - 22) * Math.cos(t), GY + (GR - 22) * Math.sin(t), GX + (GR - (major ? 44 : 34)) * Math.cos(t), GY + (GR - (major ? 44 : 34)) * Math.sin(t), PAL.ink, major ? 3 : 2);
       if (major) text(ctx, fmt(p / 1e8, 1), GX + (GR - 62) * Math.cos(t), GY + (GR - 62) * Math.sin(t), PAL.ink, { size: 17, weight: 600, align: 'center' });
     }
     text(ctx, '× 10⁸ Pa', GX, GY + 64, PAL.ink, { size: 17, weight: 600, align: 'center' });
     const t = ang(P);
-    arrow(ctx, GX - 22 * Math.cos(t), GY - 22 * Math.sin(t), GX + (GR - 92) * Math.cos(t), GY + (GR - 92) * Math.sin(t), pc, 5);
-    dot(ctx, GX, GY, pc, true, 8);
+    arrow(ctx, GX - 22 * Math.cos(t), GY - 22 * Math.sin(t), GX + (GR - 92) * Math.cos(t), GY + (GR - 92) * Math.sin(t), PAL.ink, 8);
+    arrow(ctx, GX - 22 * Math.cos(t), GY - 22 * Math.sin(t), GX + (GR - 92) * Math.cos(t), GY + (GR - 92) * Math.sin(t), pc, 4);
+    dot(ctx, GX, GY, PAL.ink, true, 8);
     text(ctx, 'P = ' + (P > 0 ? sciText(P) : '0') + ' Pa', GX, GY + GR + 30, pc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'B = ' + fmt(Bs.v, 2) + ' × 10⁹ N/m²', GX, GY + GR + 60, bc, { size: 19, weight: 600, align: 'center' });
     const lname = ln.replace(' (petrol)', '').toLowerCase();

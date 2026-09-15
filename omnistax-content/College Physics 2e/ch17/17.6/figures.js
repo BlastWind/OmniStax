@@ -333,9 +333,15 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     line(ctx, EX, HY, PX, HY, PAL.ink, 6);
     line(ctx, PX, SY, WX, SY, PAL.ink, 6);
     dot(ctx, PX, PY, PAL.ink, false, 9); dot(ctx, PX, SY, PAL.ink, true, 8); dot(ctx, PX, HY, PAL.ink, true, 8);
-    /* the two membranes */
-    line(ctx, EX, HY - d1 / 2, EX, HY + d1 / 2, PAL.ink, 4);
-    line(ctx, WX, SY - d2 / 2, WX, SY + d2 / 2, PAL.ink, 4);
+    /* the two membranes, drawn as taut skins bowed a little inward by the pressure on them */
+    const membrane = (x, y, dia) => {
+      const h = dia / 2, bow = Math.max(6, Math.min(16, h / 6));
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
+      ctx.beginPath(); ctx.moveTo(x - 4, y - h); ctx.quadraticCurveTo(x + bow, y, x - 4, y + h); ctx.quadraticCurveTo(x + bow + 6, y, x - 4, y - h); ctx.fill(); ctx.stroke();
+      ctx.restore();
+      fixed(ctx, x - 12, y - h - 14, 16, 12); fixed(ctx, x - 12, y + h + 2, 16, 12);
+    };
+    membrane(EX, HY, d1); membrane(WX, SY, d2);
     /* the lever arms, bracketed on either side of the anvil */
     vbracket(ctx, PX + 42, PY, HY, PAL.ink, 'r_1', 1);
     vbracket(ctx, PX - 42, PY, SY, PAL.ink, 'r_2', -1);
@@ -354,8 +360,8 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     text(ctx, 'anvil', PX - 16, (SY + HY) / 2, PAL.muted, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'hammer', (EX + PX) / 2 + 40, HY + 28, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'stirrup', (PX + WX) / 2 + 60, SY + 28, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'eardrum, A_1 = ' + fmt(A1, 0) + ' mm²', EX, HY - d1 / 2 - 24, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'oval window, A_2 = ' + fmt(A2, 1) + ' mm²', WX, SY - d2 / 2 - 24, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'eardrum, A_1 = ' + fmt(A1, 0) + ' mm²', EX, HY - d1 / 2 - 32, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'oval window, A_2 = ' + fmt(A2, 1) + ' mm²', WX + 22, SY - d2 / 2 - 22, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the gauge: the two pressures on one logarithmic scale */
     line(ctx, GX, GT, GX, GB, PAL.muted, 2);
     for (let e = -2; e <= 3; e++) { const y = gy(Math.pow(10, e)); line(ctx, GX - 8, y, GX + 8, y, PAL.muted, 2); text(ctx, (e === -2 ? '0.01' : e === -1 ? '0.1' : e === 3 ? '1000' : String(Math.pow(10, e))) + ' Pa', GX + 18, y, PAL.muted, { size: 16 }); }

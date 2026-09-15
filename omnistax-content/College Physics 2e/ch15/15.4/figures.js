@@ -233,40 +233,40 @@ function engine(ctx, x, y, r, name) {
     ctx.moveTo(150, GY); ctx.lineTo(150, 340); ctx.arc(205, 340, 55, Math.PI, TAU); ctx.lineTo(260, GY); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(180, 420, 50, 60); ctx.strokeRect(180, 420, 50, 60); ctx.restore();
     for (const x of [192, 205, 218]) line(ctx, x, 310, x, 424, PAL.ink, 3);
-    text(ctx, 'core', 205, 450, PAL.ink, { size: 16, align: 'center' });
-    text(ctx, 'pressure vessel', 205, GY + 24, PAL.muted, { size: 16, align: 'center' });
+    text(ctx, 'core', 205, 450, PAL.ink, { size: 17, align: 'center' });
+    text(ctx, 'pressure vessel', 205, GY + 24, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'T_h = ' + degC(Th.v), 205, 510, tc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the steam generator and the primary loop of pressurized water */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(350, GY); ctx.lineTo(350, 335); ctx.arc(395, 335, 45, Math.PI, TAU); ctx.lineTo(440, GY); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'steam generator', 395, GY + 24, PAL.muted, { size: 16, align: 'center' });
+    text(ctx, 'steam generator', 395, GY + 24, PAL.muted, { size: 17, align: 'center' });
     pipe(ctx, [[260, 400], [350, 400]], 5, PAL.ink);
     pipe(ctx, [[350, 500], [260, 500]], 5, PAL.ink);
-    text(ctx, 'pressurized water', 305, 380, PAL.muted, { size: 15, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'pressurized water', 305, 380, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     band(ctx, 262, 450, 350, 450, 26, ec);
     text(ctx, 'Q_h', 305, 450 - 30, ec, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the steam line to the turbines, the shaft to the generator, and the exhaust down to the condenser */
     pipe(ctx, [[395, 290], [395, 175], [640, 175]], 5, PAL.ink);
-    text(ctx, 'steam', 500, 155, PAL.muted, { size: 16, align: 'center' });
+    text(ctx, 'steam', 500, 155, PAL.muted, { size: 17, align: 'center' });
     turbine(ctx, 640, 720, SHAFT, 60, 120);
     turbine(ctx, 750, 880, SHAFT, 80, 170);
     line(ctx, 720, SHAFT, 750, SHAFT, PAL.ink, 6); line(ctx, 880, SHAFT, 915, SHAFT, PAL.ink, 6);
-    text(ctx, 'high-pressure turbine', 680, 118, PAL.ink, { size: 16, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'low-pressure turbine', 836, 322, PAL.ink, { size: 16, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'high-pressure turbine', 680, 118, PAL.ink, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'low-pressure turbine', 836, 322, PAL.ink, { size: 17, align: 'left', bg: alpha(PAL.panel, 0.85) });
     pipe(ctx, [[720, SHAFT + 40], [735, SHAFT + 40], [735, SHAFT - 20], [750, SHAFT - 20]], 4, PAL.ink);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(960, SHAFT, 45, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'G', 960, SHAFT, PAL.ink, { size: 26, weight: 600, align: 'center' });
-    text(ctx, 'generator', 960, SHAFT + 66, PAL.ink, { size: 16, align: 'center' });
+    text(ctx, 'generator', 960, SHAFT + 66, PAL.ink, { size: 17, align: 'center' });
     band(ctx, 1005, SHAFT, 1125, SHAFT, 26 * eff, ec);
     text(ctx, 'W', 1065, SHAFT - 13 * eff - 22, ec, { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'electrical energy', 1065, SHAFT + 13 * eff + 22, PAL.muted, { size: 15, align: 'center' });
+    text(ctx, 'electrical energy', 1065, SHAFT + 13 * eff + 22, PAL.muted, { size: 17, align: 'center' });
     /* the condenser, the water back to the steam generator, and the heat carried off to the cooling tower */
     pipe(ctx, [[815, SHAFT + 85], [815, 360]], 5, PAL.ink);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(700, 360, 230, 80); ctx.strokeRect(700, 360, 230, 80); ctx.restore();
-    text(ctx, 'condenser', 815, 380, PAL.muted, { size: 16, align: 'center' });
+    text(ctx, 'condenser', 815, 380, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'T_c = ' + degC(Tc.v, 1), 815, 414, tc, { size: 21, weight: 600, align: 'center' });
     pipe(ctx, [[700, 420], [560, 420], [560, 500], [444, 500]], 5, PAL.ink);
-    text(ctx, 'water', 630, 442, PAL.muted, { size: 16, align: 'center' });
+    text(ctx, 'water', 630, 442, PAL.muted, { size: 17, align: 'center' });
     band(ctx, 932, 400, 1165, 400, 26 * (1 - eff), ec);
     text(ctx, 'Q_c', 1048, 400 - 13 * (1 - eff) - 22, ec, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the cooling tower, with the vapour that leaves it */
@@ -275,9 +275,9 @@ function engine(ctx, x, y, r, name) {
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath();
     ctx.arc(1215, 150, 22, Math.PI * 0.9, Math.PI * 1.9); ctx.moveTo(1290, 140); ctx.arc(1268, 140, 22, 0, Math.PI * 1.1, true); ctx.moveTo(1262, 105); ctx.arc(1242, 105, 20, 0, Math.PI, true);
     ctx.stroke(); ctx.restore();
-    text(ctx, 'cooling tower', 1240, GY + 24, PAL.muted, { size: 16, align: 'center' });
-    text(ctx, 'water evaporates', 1240, 470, PAL.muted, { size: 15, align: 'center' });
-    text(ctx, 'into the environment', 1240, 492, PAL.muted, { size: 15, align: 'center' });
+    text(ctx, 'cooling tower', 1240, GY + 24, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'water evaporates', 1240, 470, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'into the environment', 1240, 492, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, 'Pressurized water at ' + degC(Th.v) + ' and condensed steam at ' + degC(Tc.v, 1) + ' allow a maximum efficiency of ' + pct(eff) + '; a real station reaches about 35%.');
     readout(d.readout, `\\text{Eff}_{\\text{C}} = 1 - \\frac{\\kTempc}{\\kTemph} = 1 - \\frac{${fmt(TcK, 0)}\\ \\text{K}}{${fmt(ThK, 0)}\\ \\text{K}} = ${fmt(eff, 3)}`,
       'The temperatures are converted to kelvins first: ' + degC(Th.v) + ' is ' + K(ThK) + ' and ' + degC(Tc.v, 1) + ' is ' + K(TcK) + '. Of the heat transfer Q_h from the pressurized water, at most ' + pct(eff) + ' can come out of the generator as work, and the rest, Q_c, goes to the cooling tower; the water sent to the tower never touches the steam. A typical nuclear station actually reaches about 35%, which is ' + fmt(actual / eff, 2) + ' of this maximum.');

@@ -132,6 +132,8 @@ heated and one stirred, ending in the same state (the Check Your
 Understanding box) is what the reader is asked to reason out, and a figure
 would answer it for them. None built.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure of the page was screenshot at its default, its slider extremes and three points of its cycle in both themes and looked at. `sim-equilibrium`: the ice was a rounded square with two stray slashes and read as nothing; it is a cube on a locked view now, three shaded faces with its name on the top face, and the heat arrow runs from inside the can's wall to the cube's front face across the contact instead of from centre to centre over both bodies; the graph's "contact" mark moved to the foot of the box, where it no longer collides with the upper starting label when a slider is at its top; the bar ticks carry a true minus sign. `sim-joule`: the label of the height h sat on the left weight through most of the descent, so the left pulley moved right and the dimension line stands clear of the weight's path with its label on the far side; the paddle wheel's blades, which had bunched on the shaft as solid black marks, are pairs of blades on opposite arms, foreshortened as the shaft turns, filled and outlined, with the arm pointing at the viewer left out.
+
 ## Exercises
 
 - `cyu1` (fs-id2410326), check-understanding, Understand, inline after

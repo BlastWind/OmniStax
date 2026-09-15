@@ -157,6 +157,11 @@ Extra simulations (rule 15), thought through, judged and decided:
   readout rather than a figure of its own; the chapter pass may add the line
   there if it wants it.
 
+### Figure pass, 2026-09-15 (Claude Fable 5.1)
+
+- `sim-capacitor-energy`: at a small capacitance the narrow triangle's energy label sat above the apex, on the axis title. It is now set to the right of the steep side, a row under the slope's name where the frame has room and a row over it near the base.
+- `sim-defibrillator`: looked at in both themes at every extreme; nothing changed.
+
 ## Exercises
 
 - All thirteen items are set at the end: the section prints no Check Your
@@ -213,3 +218,10 @@ line. The plates, the paddles, the axes and the rectangle $QV$ are ink.
 - equations `eq-capacitor-energy` → 19.7-energy-stored
 - Nothing else is wanted: the page adds and changes no symbol row, and its
   one glossary term, defibrillator, is already in `chapter.json`.
+
+**Applied by the chapter pass (2026-09-14).** Seven variable rows and two
+equation rows carry their anchors. 19.6's conceptual question is on this page
+with `source_section: "19.6"`. The book's "(Review Figure 19.23.)" in the
+opening paragraph points at the calculator rather than at the defibrillator
+of Figure 19.24; the text is kept as printed and the erratum is recorded in
+`exploration.md`.

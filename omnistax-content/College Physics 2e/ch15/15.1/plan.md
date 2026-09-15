@@ -266,3 +266,5 @@ none is bound.
   $\kWtwo$) are all staged and merged.
 
 Applied in the chapter pass (2026-09-14): the fourteen variable anchors and the two equation anchors are set on `chapter.json` as listed, and `ost check` resolves every one. No concept, edge or symbol row was changed.
+
+Figure pass (2026-09-15, Claude Fable 5.1): the three figures were screenshot at every slider extreme and choice in both themes and found to read as built: no label sits on an arrow or a body at any position, every text stays inside the canvas, and no axis rescales. Nothing was changed.

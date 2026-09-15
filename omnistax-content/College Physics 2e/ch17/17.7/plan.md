@@ -337,3 +337,9 @@ Eight places in the section's exercises and notes wrote a stray backslash
 where a sentence should have ended or joined; they now read as sentences.
 The book's repeated minus-sign sentence and its capital $F_\text{B}$ are
 kept as printed.
+
+## Figure pass (2026-09-15, Claude Fable 5.1)
+
+`sim-acoustic-boundary`: the three arrow labels sit on panels so the
+intensity hue is not read against the media's grey fields. The other three
+figures are unchanged.

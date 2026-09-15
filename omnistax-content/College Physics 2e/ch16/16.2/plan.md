@@ -165,3 +165,5 @@ draws its time line from 0 to 30 s, the longest run the elapsed-time slider
 reaches, with the run itself drawn solid along it, so a shorter run plainly
 reaches less far and leaves its marks closer together. Both are
 two-dimensional, with no 3D, and their labels on.
+
+**Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-period` now draws the guitar the caption names, `F.guitar` at 0.9 scale lying on its side, and the string vibrates between its nut and its bridge, so the scene reads as a guitar before the caption is read; the canvas grew to 700 and the graph moved down to make room. The window's sentence moved out of the graph box, where it sat on the trace, to a panel above the shaded window, and the displacement label is a clamped `label()` beside its bracket. `sim-count` was looked at at every extreme and left as built.

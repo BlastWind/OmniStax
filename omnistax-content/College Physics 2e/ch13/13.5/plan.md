@@ -223,6 +223,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   of water leans by a fraction of a degree, and a figure would have to
   exaggerate it to show anything.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure was screenshot at its default, its slider extremes and every choice in both themes. `sim-pv-isotherms`: the words "Liquid and vapor" sat where the volume label lands and were half covered by its panel, so they sit low in the dome now; the critical isotherm's name was placed at the far right where the isotherm runs into the axis and the labeller pushed it under the graph, so it sits on the isotherm at 2.2 critical volumes, where it runs clear of the family. `sim-liquid-vapor-equilibrium`: the gauge on the lid was too small to read; it is larger, its reading is set in 22-point type with the atmospheres under it, and the container sits 30 units lower so that the gauge clears a two-line headline. `sim-partial-pressures`: the bars were solid fills in the pressure hue, which the scheme makes pale on the light theme, so each bar is outlined in ink. `sim-real-gas-volume` and `sim-phase-diagram` were found clean and are unchanged.
+
 ## Exercises
 
 - 2 Check Your Understanding boxes, both keyed by the book, set inline:

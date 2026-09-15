@@ -168,7 +168,7 @@ function tree(ctx, x, y, s = 1) {
     /* the pressure on the face, at the near end: arrows that grow linearly with the depth, and the line their tails make */
     const zA = -10, n = 6, tails = [P(0, h, zA)];
     for (let i = 1; i <= n; i++) {
-      const dd = (h * i) / n, len = 48 * (dd / 120);
+      const dd = (h * i) / n, len = 70 * (dd / 120);
       const tail = P(len, h - dd, zA), tip = P(0, h - dd, zA);
       arrow(ctx, tail[0], tail[1], tip[0], tip[1], pc, 3.5); tails.push(tail);
     }
@@ -176,19 +176,19 @@ function tree(ctx, x, y, s = 1) {
     const tb = tails[n];
     lab.add('hρg = ' + kpa(Pbot) + ' kPa at the bottom', tb[0], tb[1], 0.5, 0.85, pc, 20, 26);
     /* the force on the whole face, at the average depth and halfway along, drawn at one length since it stands for the sum of all the pressure */
-    const ft = P(0, h - hb, -L / 2), ff = P(64, h - hb, -L / 2);
-    arrow(ctx, ff[0], ff[1], ft[0], ft[1], fc, 6);
-    lab.add('F = ' + sci(Fv).txt + ' N', ff[0], ff[1], 1, -0.3, fc, 22, 22);
+    const ft = P(0, h - hb, -L / 2), ff = P(110, h - hb, -L / 2);
+    arrow(ctx, ff[0], ff[1], ft[0], ft[1], fc, 7);
+    lab.add('F = ' + sci(Fv).txt + ' N', ff[0], ff[1], 1, 0.4, fc, 22, 22);
     /* the depth and the average depth, in front of the near end, and the length along the crest */
     const hA = P(0, h, 10), hB = P(0, 0, 10), bA = P(34, h, 10), bB = P(34, h - hb, 10);
     bracket(ctx, hA, hB, xc); bracket(ctx, bA, bB, xc);
     lab.add('h = ' + fmt(h, 1) + ' m', (hA[0] + hB[0]) / 2, (hA[1] + hB[1]) / 2, -1, 0, xc, 22, 22);
-    lab.add('h̄ = ' + fmt(hb, 1) + ' m', (bA[0] + bB[0]) / 2, (bA[1] + bB[1]) / 2, 1, -0.2, xc, 22, 22);
+    lab.add('h̄ = ' + fmt(hb, 1) + ' m', bB[0], bB[1], 1, 1.5, xc, 22, 22);
     bracket(ctx, P(0, DAMH + 7, 0), P(0, DAMH + 7, -L), PAL.ink, 'L = ' + fmt(L, 0) + ' m', 0);
     dot(ctx, ...P(34, h - hb, 10), xc, true, 6);
-    const cn = P(-5, DAMH, -L * 0.3), wn = P(WRES * 0.55, h, -L * 0.45);
+    const cn = P(-5, DAMH, -L * 0.3), wn = P(WRES * 0.8, h, -L * 0.85);
     lab.add('the dam', cn[0], cn[1], -0.3, 1, PAL.ink, 19, 34);
-    lab.add('the water it retains', wn[0], wn[1], 0.7, -0.7, PAL.muted, 19, 26);
+    lab.add('the water it retains', wn[0], wn[1], 0.9, -0.5, PAL.muted, 19, 26);
     lab.flush();
     topline(ctx, 'Water ' + fmt(h, 1) + ' m deep along a dam ' + fmt(L, 0) + ' m long presses on it with an average pressure of ' + kpa(Pbar) + ' kPa and a force of ' + sci(Fv).txt + ' N.');
     readout(d.readout, `\\begin{aligned}\\kPbar &= \\khbar\\krho\\kg = (${fmt(hb, 1)}\\ \\text{m})(1.00\\times 10^{3}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${sci(Pbar).tex}\\ \\text{N/m}^2\\\\ \\kF &= \\kPbar A = (${sci(Pbar).tex}\\ \\text{N/m}^2)(${sci(A).tex}\\ \\text{m}^2) = ${sci(Fv).tex}\\ \\text{N}\\end{aligned}`,

@@ -142,3 +142,5 @@ it any longer. The `draws` rows are corrected: `sim-energy-transfer` binds
 energy, position, stiffness and velocity, and `sim-max-speed` position,
 stiffness and velocity; neither draws the angular rate, and `sim-max-speed`
 draws no energy. Both are two-dimensional, with no 3D, and their labels on.
+
+**Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-energy-transfer`: the total's name sits above the pair of bars instead of across them, with its dashed level running between the bars; the three curves of the energy graph are named in a legend row above the box, clear of the axis title, where before the names sat on the curves; the floor marks step apart at the smallest amplitude as in 16.3. `sim-max-speed` writes the mass on the car's body, where it can no longer climb into the headline at the largest amplitude.

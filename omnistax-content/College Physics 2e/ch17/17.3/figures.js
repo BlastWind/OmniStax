@@ -4,7 +4,7 @@
    transport, and a slider's or a choice's input alone redraws it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['17.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, curve, person } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, curve, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -210,7 +210,7 @@ function speaker(ctx, x, y, color, a, s) {
       for (let i = 0; i < N; i++) { const ring = i % rings, r = R - 12 * (rings - 1) / 2 + 12 * ring, a = (i / N) * TAU; ctx.beginPath(); ctx.arc(CX + r * Math.cos(a), CY + r * Math.sin(a), N === 100 ? 5 : 2.4, 0, TAU); ctx.fill(); }
       ctx.restore();
     }
-    person(ctx, CX, CY + 40, PAL.ink, { s: 1.1 });
+    silhouette(ctx, { x: CX, y: CY + 40, s: 0.76, pose: 'stand', color: PAL.ink, front: true });
     text(ctx, 'the listener', CX, CY + 66, PAL.muted, { size: 17, align: 'center' });
     if (N === 1) text(ctx, 'the source', CX + 44, CY - R, PAL.muted, { size: 17 });
     else text(ctx, 'the ' + fmt(N, 0) + ' sources', CX - R - 34, CY, PAL.muted, { size: 17, align: 'right' });

@@ -1,7 +1,7 @@
 /* Figures for section 17.4 Doppler Effect and Sonic Booms. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['17.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, pinned, labeller, person, car, plane } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, pinned, labeller, silhouette, car, plane } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -47,9 +47,10 @@ function burst(ctx, x, y, f, color) {
     ground(ctx, 0, 1400, ROAD, 14);
     /* the car and the observers, in ink; an observer faces the way they walk, or the car when still */
     car(ctx, cx, ROAD - 12, PAL.ink, 1.1);
-    const walk = vo.v !== 0, ph = walk ? (t / T) * 1.4 * Math.sign(vo.v) : 0;
-    person(ctx, xX, ROAD, PAL.ink, { face: walk ? Math.sign(vo.v) : 1, phase: ph, s: 1.5 });
-    person(ctx, xY, ROAD, PAL.ink, { face: walk ? Math.sign(vo.v) : -1, phase: ph, s: 1.5 });
+    /* the observers as filled bodies, 143 units tall; a walker strides once every four periods of the horn */
+    const walk = vo.v !== 0, ph = ((t / T) * 0.25) % 1;
+    if (walk) { silhouette(ctx, { x: xX, y: ROAD, s: 0.95, pose: 'walk', phase: ph, face: Math.sign(vo.v), color: PAL.ink }); silhouette(ctx, { x: xY, y: ROAD, s: 0.95, pose: 'walk', phase: ph, face: Math.sign(vo.v), color: PAL.ink }); }
+    else { silhouette(ctx, { x: xX, y: ROAD, s: 0.95, pose: 'stand', face: 1, color: PAL.ink }); silhouette(ctx, { x: xY, y: ROAD, s: 0.95, pose: 'stand', face: -1, color: PAL.ink }); }
     text(ctx, 'X', xX, ROAD + 34, PAL.ink, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'Y', xY, ROAD + 34, PAL.ink, { size: 24, weight: 600, align: 'center' });
     /* the wavefronts, each centred on the point where it was emitted, clipped to the scene above the road */
@@ -148,12 +149,13 @@ function burst(ctx, x, y, f, color) {
     lab.add('observer moving away', box.r + 8, Y(Math.max(0, obsA(XR[1]))), 1, 0.4, FQ, 18, 10);
     /* the current speed and its four values */
     line(ctx, X(v.v), box.b, X(v.v), box.t, alpha(C('velocity'), 0.5), 2, [4, 8]);
-    text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', Math.min(X(v.v), box.r - 60), box.t - 18, C('velocity'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', Math.max(box.l + 150, Math.min(X(v.v), box.r - 60)), box.t - 18, C('velocity'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     /* the four values, written to the left of the drop line so that they never reach the curve names on the right */
-    const mid = (box.t + box.b) / 2;
+    const mid = (box.t + box.b) / 2, side = X(v.v) < box.l + 170 ? 1 : -1;   /* to the left of the drop line, or to the right where the axis leaves no room */
+    lab.block(0, box.t, box.l - 2, box.b);
     for (const f of [srcT(v.v), obsT(v.v), srcA(v.v), obsA(v.v)]) {
       const p = pinned(ctx, box, X, Y, v.v, f, FQ);
-      lab.add(sig3(f) + ' Hz', p.x - 8, p.y, -1, (p.y > mid ? -0.45 : 0.45), FQ, 18, 18);   /* the label leans toward the middle of the box, never into the frame */
+      lab.add(sig3(f) + ' Hz', p.x + side * 8, p.y, side, (p.y > mid ? -0.45 : 0.45), FQ, 18, 18);   /* the label leans toward the middle of the box, never into the frame */
     }
     lab.flush();
     const sT = srcT(v.v), sA = srcA(v.v), oT = obsT(v.v), oA = obsA(v.v);
@@ -256,7 +258,7 @@ function burst(ctx, x, y, f, color) {
     /* the observers: each is passed by the aircraft, then swept by the nose boom and the tail boom */
     OBS.forEach((x, i) => {
       const headY = GY - 112;
-      person(ctx, x, GY, PAL.ink, { face: 1, s: 1.3 });
+      silhouette(ctx, { x, y: GY, s: 0.85, pose: 'stand', face: 1, color: PAL.ink });
       const sinceN = (gN - x) / (S * vs.v), sinceT = (gT - x) / (S * vs.v);   /* seconds since each boom swept this observer */
       const flash = (since) => since >= 0 && since < 0.6;
       if (flash(sinceN)) burst(ctx, x, headY, sinceN / 0.6, PAL.ink);

@@ -125,6 +125,8 @@ No third figure. Example 18.1 is the only worked example and figure 2 is
 its picture; the AP items and the conceptual questions need no drawing of
 their own except the water molecule, which rides on its card.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-coulomb-pair`: the two force labels met in the middle when the charges attracted at a short separation; each now sits over the middle of its own arrow, and when the arrows share the gap the second goes under its arrow. `sim-coulomb-versus-gravity` left as built.
+
 ## Photographs and unnumbered images
 
 | image | keep or drop | why |

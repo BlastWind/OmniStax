@@ -392,7 +392,7 @@ function earthSprite(ctx, x, y, r) {
     cols.forEach(([who, v, nm], i) => {
       const xc = box.l + ((i + 0.5) / 4) * (box.r - box.l);
       const { y } = bar(ctx, xc, 110, Y, v, sc, LO, HI);
-      text(ctx, (Math.abs(v) < 1 ? plus(v, 2) : plus(v, 0)) + ' J/K', xc, v >= 0 || Math.abs(v) < 8 ? y - 24 : y + 24, sc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, (Math.abs(v) < 1 ? plus(v, 2) : plus(v, 0)) + ' J/K', xc, v >= 0 ? y - 24 : Y(0) - 24, sc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, nm, xc, box.b + 28, sc, { size: 22, weight: 600, align: 'center' });
       text(ctx, who, xc, box.b + 56, PAL.muted, { size: 17, align: 'center' });
     });

@@ -97,6 +97,8 @@ $3.00 \times 10^{5}$ N/C and reads 14.2 m/s².
 No extra simulation is proposed beyond the five: the section is a tour of
 applications, and a sixth machine would repeat the lesson the first four give.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-ink-jet`: the landing mark's reading had collided with the "cm" of the paper's scale at the axis; the unit now heads the scale and the reading sits on the paper beside its mark. `sim-precipitator`: the name of the outgoing air when the charging grid is off ran off the right edge; it now reads "still dirty". `sim-van-de-graaff`, `sim-xerography` and `sim-charged-drop` left as built.
+
 ## Exercises
 
 | kind | count | placement |

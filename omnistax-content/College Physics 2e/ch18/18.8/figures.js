@@ -323,7 +323,7 @@ function ground(ctx, x, y) {
       line(ctx, PAPER, y, PAPER + 14, y, PAL.muted, 2);
       if (k !== 0) text(ctx, num(k, 0), PAPER + 20, y, PAL.muted, { size: 16 });
     }
-    text(ctx, 'cm', PAPER + 20, YC, PAL.muted, { size: 16 });
+    text(ctx, 'cm', PAPER + 20, 106, PAL.muted, { size: 16 });
     line(ctx, NOZ, YC, PAPER, YC, PAL.rule, 2, [10, 10]);
     /* the droplets, five of them strung along the stream */
     for (let i = 0; i < 5; i++) {
@@ -341,7 +341,7 @@ function ground(ctx, x, y) {
     /* where the stream is writing on the page */
     const yLand = yOf(yEnd);
     line(ctx, PAPER - 30, yLand, PAPER + 8, yLand, PAL.ink, 3);
-    text(ctx, num(yEnd * 100, 2) + ' cm', PAPER + 74, yLand - 24, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, num(yEnd * 100, 2) + ' cm', PAPER + 40, yLand + (Math.abs(yLand - YC) < 18 ? -24 : yLand > YC ? 24 : -24), PAL.ink, { size: 20, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.9) });
     text(ctx, 'q = ' + plus(qs.v, 0) + ' pC', 95, YC + 82, qc, { size: 21, weight: 600, align: 'center' });
     topline(ctx, qs.v === 0 || Es.v === 0
       ? 'The droplets carry no charge, or the plates make no field, so no force acts on them between the plates and the stream flies straight on to the middle of the page.'
@@ -387,7 +387,7 @@ function ground(ctx, x, y) {
     text(ctx, 'E = ' + fmt(Es.v, 0) + ' kN/C', (X1 + X2) / 2, YT - 28, ec, { size: 21, weight: 600, align: 'center' });
     arrow(ctx, X0 - 58, (YT + YB) / 2, X0 - 6, (YT + YB) / 2, PAL.ink, 4);
     text(ctx, 'dirty air', X0 - 56, (YT + YB) / 2 - 34, PAL.ink, { size: 19, align: 'left' });
-    text(ctx, pull > 0.5 ? 'clean air' : 'the air that leaves', X3 + 10, (YT + YB) / 2 - 34, PAL.ink, { size: 19 });
+    text(ctx, pull > 0.5 ? 'clean air' : 'still dirty', X3 + 10, (YT + YB) / 2 - 34, PAL.ink, { size: 19 });
     /* the particles: charged at the first grid, and held on the second where the field is strong enough */
     let caught = 0, through = 0;
     for (let i = 0; i < N; i++) {

@@ -23,13 +23,28 @@ function sci(v, sig = 3) {
 const sf = (v, sig = 3) => { if (v === 0) return '0'; const e = Math.floor(Math.log10(Math.abs(v))); return v.toFixed(Math.max(0, sig - 1 - e)); };
 /* a section through a tube on the canvas: the wall in ink and the fluid inside it in the flow-rate hue, from x1 to x2 about the axis y, of radius R */
 function tube(ctx, x1, x2, y, R, fc) {
-  ctx.save(); ctx.fillStyle = alpha(fc, 0.14); ctx.fillRect(x1, y - R, x2 - x1, 2 * R); ctx.restore();
-  line(ctx, x1, y - R, x2, y - R, PAL.ink, 4); line(ctx, x1, y + R, x2, y + R, PAL.ink, 4);
+  /* drawn as a cylinder seen a little from one end: the body, an open mouth at the left and a rim at the right */
+  const rx = Math.max(8, R * 0.32);
+  ctx.save(); ctx.fillStyle = alpha(fc, 0.14); ctx.fillRect(x1, y - R, x2 - x1, 2 * R);
+  ctx.beginPath(); ctx.ellipse(x2, y, rx, R, 0, 0, 2 * Math.PI); ctx.fill();
+  ctx.fillStyle = alpha(fc, 0.22); ctx.beginPath(); ctx.ellipse(x1, y, rx, R, 0, 0, 2 * Math.PI); ctx.fill();
+  ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(x1, y - R); ctx.lineTo(x2, y - R); ctx.moveTo(x1, y + R); ctx.lineTo(x2, y + R); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(x1, y, rx, R, 0, 0, 2 * Math.PI); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(x2, y, rx, R, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+  ctx.lineWidth = 2.5; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.ellipse(x2, y, rx, R, 0, Math.PI / 2, 3 * Math.PI / 2); ctx.stroke();
+  ctx.restore();
 }
-/* the volume of fluid the figure follows: a cylinder of the tube from x to x + L, shaded in the flow-rate hue with its two faces ruled */
+/* the cylinder of fluid that has passed P: its body and its two elliptical faces, the near half of each ruled */
 function slug(ctx, x, L, y, R, fc) {
-  ctx.save(); ctx.fillStyle = alpha(fc, 0.42); ctx.fillRect(x, y - R + 2, L, 2 * R - 4); ctx.restore();
-  line(ctx, x, y - R, x, y + R, fc, 3); line(ctx, x + L, y - R, x + L, y + R, fc, 3);
+  const rx = Math.max(8, R * 0.32);
+  ctx.save(); ctx.fillStyle = alpha(fc, 0.42); ctx.fillRect(x, y - R + 2, L, 2 * R - 4);
+  ctx.beginPath(); ctx.ellipse(x + L, y, rx, R - 2, 0, -Math.PI / 2, Math.PI / 2); ctx.fill();
+  ctx.fillStyle = alpha(fc, 0.55); ctx.beginPath(); ctx.ellipse(x, y, rx, R - 2, 0, 0, 2 * Math.PI); ctx.fill();
+  ctx.strokeStyle = fc; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.ellipse(x, y, rx, R - 2, 0, 0, 2 * Math.PI); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(x + L, y, rx, R - 2, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+  ctx.restore();
 }
 /* a bar from x0 on a fixed cap: the value's share of the full width, its edge ruled, its label to the left and its value at the end */
 function bar(ctx, x0, y, w, share, color, label, value) {
@@ -53,7 +68,7 @@ function bar(ctx, x0, y, w, share, color, label, value) {
   const ts = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.1, max: 2, step: 0.01, value: 1, unit: 's', dec: 2, aria: 'the elapsed time' });
   /* the radius is drawn at 60 units to the centimeter and the length at 110 to the meter: the slider maxima
      give a pipe 180 tall and a cylinder 880 long, and neither scale ever follows a slider */
-  const KR = 60, KL = 110, KV = 40, PX = 400, CY = 250, X1 = 80, X2 = 1320;
+  const KR = 60, KL = 110, KV = 40, PX = 400, CY = 250, X1 = 110, X2 = 1300;
   const QCAP = 3, VCAP = 6, BX = 640, BW = 560;        /* the bars: 3.00 L/s and 6.00 L on 560 units */
   function draw() {
     const { ctx } = begin(d.c);
@@ -66,12 +81,12 @@ function bar(ctx, x0, y, w, share, color, label, value) {
     slug(ctx, PX, dm * KL, CY, R, fc);
     for (let x = X1 + 60; x < PX - 40; x += 90) arrow(ctx, x, CY, x + 40, CY, alpha(PAL.ink, 0.35), 2);
     arrow(ctx, PX, CY, PX + v * KV, CY, vc, 5);
-    text(ctx, 'v̄ = ' + fmt(v, 2) + ' m/s', PX + v * KV + 14, CY, vc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'in t = ' + fmt(t, 2) + ' s', PX + (dm * KL) / 2, CY - R - 26, tc, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'v̄ = ' + fmt(v, 2) + ' m/s', PX + Math.max(v * KV, 40) + 14, CY - R - 26, vc, { size: 21, weight: 600 });
+    text(ctx, 'in t = ' + fmt(t, 2) + ' s', PX + dm * KL + 44, CY + R + 84, tc, { size: 21, weight: 600 });
     dot(ctx, PX, CY, PAL.ink, true, 8);
     text(ctx, 'P', PX - 14, CY + R + 24, PAL.ink, { size: 24, weight: 600, align: 'right' });
     hbracket(ctx, PX, PX + dm * KL, CY + R + 84, PAL.ink, 'd = v̄t = ' + sf(dm) + ' m');
-    text(ctx, 'the pipe, cut along its length', X2, CY - R - 26, PAL.muted, { size: 19, align: 'right' });
+    text(ctx, 'the pipe', X2 - 40, CY - R - 26, PAL.muted, { size: 19, align: 'right' });
     /* the cross-section of the pipe at P, seen end on */
     const ex = 200, ey = 500;
     ctx.save(); ctx.fillStyle = alpha(fc, 0.14); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
@@ -182,15 +197,16 @@ function bar(ctx, x0, y, w, share, color, label, value) {
     const v1 = Qc / A1 / 100, v2 = Qc / Atot / 100;                                         /* m/s */
     /* the branches fan out from the mouth of the vessel: their roots are spread across the mouth where they fit,
        and where they do not the mouth flares to take them */
-    const sp = 2 * R2 + 12, spr = Math.max(0, (2 * R1 - 2 * R2) / (n - 1)), Mh = Math.max(R1, ((n - 1) * spr) / 2 + R2);
+    const sp = 2 * R2 + 12, spr = Math.min(sp, Math.max((2 * R1 - 2 * R2) / (n - 1), 2 * R2 + 2)), Mh = Math.max(R1, ((n - 1) * spr) / 2 + R2);
     const ys = Array.from({ length: n }, (_, i) => CY + (i - (n - 1) / 2) * sp), yr = Array.from({ length: n }, (_, i) => CY + (i - (n - 1) / 2) * spr);
     const fill = (path) => { ctx.save(); path(); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.fillStyle = alpha(fc, 0.14); ctx.fill(); ctx.restore(); };
     ys.forEach((y, i) => {
       const y0 = yr[i];
-      fill(() => { ctx.beginPath(); ctx.moveTo(XJ - 4, y0 - R2); ctx.lineTo(XF, y - R2); ctx.lineTo(XE, y - R2); ctx.lineTo(XE, y + R2); ctx.lineTo(XF, y + R2); ctx.lineTo(XJ - 4, y0 + R2); ctx.closePath(); });
+      const XM = (XJ + XF) / 2;
+      fill(() => { ctx.beginPath(); ctx.moveTo(XJ - 4, y0 - R2); ctx.bezierCurveTo(XM, y0 - R2, XM, y - R2, XF, y - R2); ctx.lineTo(XE, y - R2); ctx.lineTo(XE, y + R2); ctx.lineTo(XF, y + R2); ctx.bezierCurveTo(XM, y + R2, XM, y0 + R2, XJ - 4, y0 + R2); ctx.closePath(); });
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath();
-      ctx.moveTo(XJ, y0 - R2); ctx.lineTo(XF, y - R2); ctx.lineTo(XE, y - R2);
-      ctx.moveTo(XJ, y0 + R2); ctx.lineTo(XF, y + R2); ctx.lineTo(XE, y + R2); ctx.stroke(); ctx.restore();
+      ctx.moveTo(XJ, y0 - R2); ctx.bezierCurveTo(XM, y0 - R2, XM, y - R2, XF, y - R2); ctx.lineTo(XE, y - R2);
+      ctx.moveTo(XJ, y0 + R2); ctx.bezierCurveTo(XM, y0 + R2, XM, y - R2 + 2 * R2, XF, y + R2); ctx.lineTo(XE, y + R2); ctx.stroke(); ctx.restore();
     });
     /* the vessel, drawn over the roots of its branches */
     fill(() => { ctx.beginPath(); ctx.moveTo(XA, CY - R1); ctx.lineTo(XJ - 60, CY - R1); ctx.lineTo(XJ, CY - Mh); ctx.lineTo(XJ, CY + Mh); ctx.lineTo(XJ - 60, CY + R1); ctx.lineTo(XA, CY + R1); ctx.closePath(); });

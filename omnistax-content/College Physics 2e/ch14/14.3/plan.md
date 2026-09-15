@@ -211,6 +211,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   13.6's humidity figure with a different caption, and the question is a
   conceptual one the reader should reason through in words.
 
+Figure pass (2026-09-15, Claude Fable 5.1). The three figures were screenshot at their defaults, slider extremes and every substance in both themes and looked at. `sim-ice-soda`: the cubes that had melted were drawn as dashed ghosts in a cup of grey, which read as nothing; the soda is a tinted liquid with a surface line, only the ice that is still ice floats at the surface, and the caption line under the cup says when all of it has melted. `sim-phases` and `sim-heating-curve` were found clean and are unchanged.
+
 ## Exercises
 
 - One Check Your Understanding box, `cyu1` (fs-id2408137, why snow remains

@@ -209,6 +209,8 @@ Extra simulations (rule 15), thought through, judged and left:
   `sim-gas-molecules` already shows that the drawing and the readout do not
   change with the gas.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure was screenshot at its default, its slider extremes and three points of its cycle in both themes. `sim-tire`: the gauge needle, alone in the pressure hue, was hard to find on the light theme; it is drawn over an ink outline now. `sim-gas-molecules` and `sim-mole` were found clean and are unchanged.
+
 ## Exercises
 
 - Three Check Your Understanding boxes, every one keyed and set inline:

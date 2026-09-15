@@ -1,7 +1,7 @@
 /* Figures for section 16.2 Period and Frequency. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, axes, curve, scale, spring, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, axes, curve, scale, spring, block, fixed, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -12,7 +12,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
    many cycles fit in it. A steady oscillation, so it runs endlessly.
 ===================================================================== */
 (function () {
-  const d = sim('sim-period', 660);
+  const d = sim('sim-period', 700);
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 0.25, max: 4, step: 0.05, value: 0.5, unit: 's', dec: 2, onInput: reset, aria: 'period' });
   const W = ctl(d.controls, { label: '\\text{window}', cls: 'time', min: 1, max: 5, step: 0.5, value: 2, unit: 's', dec: 1, onInput: reset, aria: 'counting window' });
   const cy = cycle(() => Infinity, 0);
@@ -26,22 +26,25 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
        itself lengthens as the period grows, instead of the tick labels changing under it. */
     const S = 8, NX = 8;
     const tau = REDUCED ? S : cy.now(), x = xAt(tau), f = 1 / T.v;
-    /* the scene: a string between two fixed ends, vibrating in its fundamental */
-    const L = 140, R = 1260, ys = 180, AMP = 64, cx = (L + R) / 2;
-    fixed(ctx, L - 44, ys - 60, 44, 120); fixed(ctx, R, ys - 60, 44, 120);
-    line(ctx, L, ys, R, ys, PAL.muted, 2, [10, 10]);
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([6, 8]);
+    /* the scene: a guitar lying on its side, its string plucked and vibrating in its fundamental
+       between the nut and the bridge; the swing is drawn far larger than a real string's */
+    const GS = 0.9, gx0 = 150, ys = 196, AMP = 44;
+    F.guitar(ctx, gx0, ys, GS);
+    const { nut: L, bridge: R } = F.guitar.string(gx0, GS), cx = (L + R) / 2;
+    line(ctx, L, ys, R, ys, alpha(PAL.ink, 0.35), 2, [10, 10]);
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([6, 8]);
     for (const s of [1, -1]) { ctx.beginPath(); for (let i = 0; i <= 40; i++) { const g = i / 40, px = L + (R - L) * g, py = ys - s * AMP * Math.sin(Math.PI * g); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); } ctx.stroke(); }
     ctx.restore();
     const u = x / A;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
     for (let i = 0; i <= 60; i++) { const g = i / 60, px = L + (R - L) * g, py = ys - u * AMP * Math.sin(Math.PI * g); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
     ctx.stroke(); ctx.restore();
-    dot(ctx, cx, ys - u * AMP, PAL.ink, true, 9);
-    if (Math.abs(x) > 0.15) { vbracket(ctx, cx + 40, ys, ys - u * AMP, C('position')); text(ctx, 'x = ' + (x > 0 ? '+' : '−') + fmt(Math.abs(x), 1) + ' mm', cx + 58, ys - AMP - 24, C('position'), { weight: 600, size: 20 }); }
+    dot(ctx, cx, ys - u * AMP, C('position'), true, 9);
+    if (Math.abs(x) > 0.15) { vbracket(ctx, cx + 40, ys, ys - u * AMP, C('position')); label(ctx, 'x = ' + (x > 0 ? '+' : '−') + fmt(Math.abs(x), 1) + ' mm', cx + 40, ys - u * AMP / 2, { side: 'right', color: C('position'), size: 20, gap: 14 }); }
     /* the graph: the midpoint's position against time, the pen fixed at the right and the trace moving left */
-    const box = { l: 140, r: 1260, t: 320, b: 580 };
-    const { X, Y } = axes(ctx, box, [-S, 0], [-3, 3], { xl: 'time before now (s)', xc: C('time'), yl: 'x (mm)', yc: C('position'), nx: NX, ny: 2, fx: (v) => (Math.abs(v) < 1e-9 ? 'now' : fmt(-v, 0)), fy: (v) => fmt(v, 0) });
+    const box = { l: 140, r: 1260, t: 372, b: 620 };
+    /* the position axis runs to ±4 mm on a 2 mm swing, which leaves the period bracket and its name room above the crests, under the window's sentence */
+    const { X, Y } = axes(ctx, box, [-S, 0], [-4, 4], { xl: 'time before now (s)', xc: C('time'), yl: 'x (mm)', yc: C('position'), nx: NX, ny: 2, fx: (v) => (Math.abs(v) < 1e-9 ? 'now' : fmt(-v, 0)), fy: (v) => fmt(v, 0) });
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(X(-W.v), box.t, X(0) - X(-W.v), box.b - box.t); ctx.restore();
     line(ctx, X(-W.v), box.t, X(-W.v), box.b, C('time'), 2, [8, 8]);
     const t0 = Math.max(0, tau - S);
@@ -49,7 +52,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     for (let n = Math.ceil(t0 / T.v - 1e-9); n * T.v <= tau + 1e-9; n++) dot(ctx, X(n * T.v - tau), Y(A), C('time'), true, 6);
     const n1 = Math.floor(tau / T.v + 1e-9);
     if (n1 >= 1 && (n1 - 1) * T.v >= t0 - 1e-9) hbracket(ctx, X((n1 - 1) * T.v - tau), X(n1 * T.v - tau), Y(A) - 26, C('time'), 'T = ' + fmt(T.v, 2) + ' s');
-    text(ctx, 'The last ' + fmt(W.v, 1) + ' s hold ' + fmt(W.v / T.v, 2) + ' cycles', X(0) - 12, box.b - 16, C('time'), { weight: 600, size: 20, align: 'right' });
+    /* the window's sentence sits over the shaded window, above the graph, and never on the trace */
+    text(ctx, 'The last ' + fmt(W.v, 1) + ' s hold ' + fmt(W.v / T.v, 2) + ' cycles', Math.min(X(-W.v / 2), box.r - 150), box.t - 16, C('time'), { weight: 600, size: 20, align: 'center', bg: PAL.panel });
     dot(ctx, X(0), Y(x), PAL.ink, true, 9);
     headline(ctx, 'Each cycle takes ' + fmt(T.v, 2) + ' s, so ' + fmt(f, 2) + ' cycles fit in every second');
     readout(d.readout, `\\kf = \\frac{1}{\\kT} = \\frac{1}{${fmt(T.v, 2)}\\ \\text{s}} = ${fmt(f, 2)}\\ \\text{Hz}`,

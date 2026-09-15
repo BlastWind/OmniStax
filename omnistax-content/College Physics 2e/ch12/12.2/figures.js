@@ -357,7 +357,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       text(ctx, 'v_1 = ' + fmt(vSlow, 0) + ' m/s under the bottom', 560, yB + 30, vc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       /* the net pressure on the wing, drawn to scale from its middle */
       if (Math.abs(dp) > 0.5) {
-        const x = 640, L = Math.abs(dp) * KP, y0 = dp > 0 ? botF(640) : topF(640), up = dp > 0 ? -1 : 1;
+        const x = 800, L = Math.abs(dp) * KP, y0 = dp > 0 ? botF(800) : topF(800), up = dp > 0 ? -1 : 1;   /* clear of the speed labels, which are centred on x = 560 */
         arrow(ctx, x, y0, x, y0 + up * L, pc, 6);
         text(ctx, 'P_b − P_t = ' + (dp < 0 ? '−' : '') + dP(Math.abs(dp)), x + 22, y0 + up * L / 2, pc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
       }

@@ -165,6 +165,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure was screenshot at its default, its slider extremes, every choice and three points of its cycle in both themes. `sim-humidity`: at the cold end the "condenses" label and the off-graph dew point label were set to the left of a point on the left axis and ran off the canvas; both now take the side of the point that has room. `sim-evaporation` and `sim-boiling` were found clean and are unchanged.
+
 ## Exercises
 
 - 1 Check Your Understanding box, `cyu1` (fs-id2722050, freeze drying),

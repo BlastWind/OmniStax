@@ -183,13 +183,13 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
       const L = v * KV, cut = X(xEnd) - X(x0), clipped = L > cut, len = clipped ? cut : L;
       arrow(ctx, X(x0), YC, X(x0) + len, YC, C('velocity'), 5);
       if (clipped) dot(ctx, X(x0) + len, YC, C('velocity'), false, 7);
-      text(ctx, label, X(x0) + Math.max(len, 60) / 2, YC - 28, C('velocity'), { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, label, X(x0) + Math.max(len, 60) / 2, YC - 28, C('velocity'), { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     }
     speedArrow(0.6, XA - 0.4, v1, 'v_1 = ' + (v1 < 10 ? fmt(v1, 2) : fmt(v1, 1)) + ' m/s');
     if (!uniform) speedArrow(XB + 0.5, LEN - 0.4, v2, 'v_2 = ' + (v2 < 10 ? fmt(v2, 2) : fmt(v2, 1)) + ' m/s');
 
     /* the kind labels: the threads once, the plaque once */
-    text(ctx, 'lines of flow', X(4.0), Yv(0.65 * R1), C('flow-rate'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'lines of flow', X(4.0), Yv(0.65 * R1), C('flow-rate'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     if (!uniform && R1 - r2 > 0.3) text(ctx, 'plaque', X(15), Yv((R1 + radius(15)) / 2), PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.soft });
     else if (!uniform) text(ctx, 'plaque', X(15), Yv(R1) - 22, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'r_1 = 2.00 mm', X(0.2), Yv(R1) - 22, PAL.ink, { size: 19, weight: 600, align: 'left' });

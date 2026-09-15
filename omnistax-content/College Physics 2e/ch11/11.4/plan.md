@@ -317,3 +317,5 @@ the eight equation anchors are written as listed. The forward reference to
 Pascal's Principle stays plain text: no built page of this book links a
 cross reference, within a chapter or across one, and `ch11/config.md`'s
 cross-reference line is corrected to say so.
+
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-dam`: the force arrow is longer and heavier and its label sits below and to the right of its tail, off the water's surface; the average-depth label steps down and to the right of its bracket's foot, off the pressure arrows; the water's label moves toward the far end of the reservoir so the two no longer meet; the pressure arrows on the face are half again as long. `sim-column` and `sim-atmosphere` unchanged.

@@ -213,6 +213,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   example builds the scale in two lines and the figure already shows how a
   scale is made from two fixed points.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure of the page was screenshot at its default, its slider extremes and three points of its cycle in both themes and looked at. `sim-bimetallic-strip`: the strip stood so tall that the bracket naming the tip's move sat against the headline; the base is set lower and the strip a little shorter so the bracket has room at every temperature. `sim-thermal-equilibrium`: a muted line "heat flows from the hotter body to the cooler one" under the headline collided with it whenever the headline wrapped, and said what the arrows and the caption already say, so it is gone; the heat arrows between block and plate are longer and start at a readable width. `sim-three-scales`, `sim-temperature-ladder` and `sim-gas-extrapolation` were found clean and are unchanged.
+
 ## Exercises
 
 - The Check Your Understanding box (eip-959, `cyu1`) is keyed and set inline

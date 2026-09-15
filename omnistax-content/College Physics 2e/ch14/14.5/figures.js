@@ -145,7 +145,7 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
       arrow(ctx, x0, f.y, x1, f.y, alpha(ec, a), 5);
     }
     /* the net heat conduction, the book's wavy arrow, as long as the difference that drives it */
-    const frac = dT / dT0, len = 340 * Math.abs(frac), still = Math.abs(frac) < 0.07;
+    const frac = dT / dT0, len = 90 + 250 * Math.abs(frac), still = Math.abs(frac) < 0.07;
     if (!still) {
       if (frac > 0) heatArrow(ctx, S - len / 2, S + len / 2, BOT + 76, ec); else heatArrowLeft(ctx, S - len / 2, S + len / 2, BOT + 76, ec);
       text(ctx, 'Q', S, BOT + 50, ec, { size: 24, weight: 600, align: 'center' });
@@ -228,7 +228,7 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
     /* the book's wavy arrow, Q, along the axis of the bar */
     const a0 = P([xh + 6, 0, 0]), a1 = P([xc - 6, 0, 0]);
     heatArrow(ctx, a0[0], a1[0], (a0[1] + a1[1]) / 2, ec, 3);
-    text(ctx, 'Q', a0[0] - 6, (a0[1] + a1[1]) / 2 - 26, ec, { size: 24, weight: 600, align: 'right' });
+    text(ctx, 'Q', a0[0] + 36, (a0[1] + a1[1]) / 2 - 30, ec, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.7) });
     /* labels: the two temperatures on the bodies, the section, the thickness and the material */
     const hf = P([xh - BW / 2, -BH + 60, BH]), cf = P([xc + BW / 2, -BH + 60, BH]);
     text(ctx, 'T_2', hf[0], hf[1] - 18, tc, { size: 26, weight: 600, align: 'center' });

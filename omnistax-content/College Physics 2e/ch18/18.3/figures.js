@@ -56,8 +56,11 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
       const L = Math.min(300, 40 + 26 * Math.sqrt(Fv));
       arrow(ctx, x1, CY, x1 - away * L, CY, fc, 5);
       arrow(ctx, x2, CY, x2 + away * L, CY, fc, 5);
-      text(ctx, 'F = ' + fmt(Fv, Fv < 10 ? 2 : 1) + ' N', x1 - away * L - away * 14, CY - 40, fc, { size: 21, weight: 600, align: away > 0 ? 'right' : 'left' });
-      text(ctx, 'F = ' + fmt(Fv, Fv < 10 ? 2 : 1) + ' N', x2 + away * L + away * 14, CY - 40, fc, { size: 21, weight: 600, align: away > 0 ? 'left' : 'right' });
+      /* each label sits over the middle of its own arrow; when the charges attract the
+         two arrows share the gap, so the second label goes under its arrow instead */
+      const Fs = 'F = ' + fmt(Fv, Fv < 10 ? 2 : 1) + ' N';
+      text(ctx, Fs, x1 - away * L / 2, CY - 36, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
+      text(ctx, Fs, x2 + away * L / 2, away > 0 ? CY - 36 : CY + 40, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
     }
     /* the charges themselves, ink bodies whose signs are written on them */
     /* the two labels are stepped apart in height, and leadered back to their own

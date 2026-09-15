@@ -132,7 +132,8 @@ function signs(ctx, x, y, orient, gap, half, color) {
       signs(ctx, EQ, 380, 'v', 46, half, qc);
       battery(ctx, EQ - 200, 410, 'v');
       text(ctx, 'V = ' + fmt(V, 1) + ' V', EQ - 252, 410, vc, { size: 21, weight: 600, align: 'right' });
-      hbracket(ctx, EQ - half, EQ + half, 522, PAL.ink, 'the plate area A');
+      hbracket(ctx, EQ - half, EQ + half, 522, PAL.ink);
+      text(ctx, 'the plate area A', EQ + 16, 552, PAL.ink, { size: 20, weight: 600 });   /* beside the wire that runs down through the bracket, not on it */
       text(ctx, 'C_p = ' + fmt(Cp, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });
       text(ctx, 'a larger plate area', EQ, 636, PAL.muted, { size: 19, align: 'center' });
       headline(ctx, 'The same three capacitors in parallel across ' + fmt(V, 1) + ' V hold ' + fmt(Q, 2) + ' µC between them and act as one capacitor of ' + fmt(Cp, 3) + ' µF.');

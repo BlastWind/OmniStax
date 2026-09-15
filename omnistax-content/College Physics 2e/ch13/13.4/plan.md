@@ -160,6 +160,8 @@ Extra simulations (rule 15) considered and left: a piston meter for AP 4
 the fraction of a distribution above a chosen speed, which would need a
 formula the book does not give. None built.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure was screenshot at its default, its slider extremes and every choice in both themes. `sim-box`: the meter's title "force on the right wall" sat against the headline; the box and the meter are set 18 units lower. `sim-distribution`: at the lowest temperature the curve's peak reaches the top of the box and its name was pushed into the headline; a peak within 64 units of the top now takes its name beside it. `sim-escape`: the label of the set temperature sat at the top of the box, on the axis title at the left end and on the curves' names at the right; it hangs 70 units lower, clear of both. `sim-speeds` was found clean and is unchanged.
+
 ## Exercises
 
 - `cyu1` (fs-id1589233), Understand, inline after `collisions`, open, the

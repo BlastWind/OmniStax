@@ -148,7 +148,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
           /* the line runs from the rim to the frame; the head sits partway along it and points the way the field does */
           const t = Math.min((ux > 0 ? BOX.x1 - CX : CX - BOX.x0) / Math.abs(ux || 1e-6), (uy > 0 ? BOX.y1 - CY : CY - BOX.y0) / Math.abs(uy || 1e-6));
           const x1 = CX + ux * R0, y1 = CY + uy * R0, x2 = CX + ux * t, y2 = CY + uy * t;
-          line(ctx, x1, y1, x2, y2, ec, 2.5);
+          line(ctx, x1, y1, x2, y2, ec, 3);
           for (const s of [0.42, 0.78]) {
             const mx = x1 + (x2 - x1) * s, my = y1 + (y2 - y1) * s;
             arrow(ctx, mx - sgn * ux * 9, my - sgn * uy * 9, mx + sgn * ux * 9, my + sgn * uy * 9, ec, 3.5);
@@ -197,7 +197,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
   const q2s = ctl(d.controls, { label: '\\kqtwo', cls: 'charge', min: 1, max: 10, step: 0.5, value: 10, unit: 'nC', dec: 2, aria: 'the charge on the x-axis' });
   const r1s = ctl(d.controls, { label: 'r_1', cls: '', min: 2, max: 6, step: 0.25, value: 2, unit: 'cm', dec: 2, aria: 'the distance from the origin to the charge on the y-axis' });
   const r2s = ctl(d.controls, { label: 'r_2', cls: '', min: 2, max: 6, step: 0.25, value: 4, unit: 'cm', dec: 2, aria: 'the distance from the origin to the charge on the x-axis' });
-  const OX = 770, OY = 555, S = 46;                   /* the origin O, and 46 units to the centimetre */
+  const OX = 770, OY = 555, S = 60;                   /* the origin O, and 60 units to the centimetre */
   /* One scale for both arrows, fixed from the widest field the sliders reach,
      10.0 nC at 2.00 cm, so that the longest arrow just fills the frame and no
      arrow is ever clipped or rescaled. */
@@ -209,16 +209,17 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     const E1 = (K * q1 * 1e-9) / Math.pow(r1 * 1e-2, 2), E2 = (K * q2 * 1e-9) / Math.pow(r2 * 1e-2, 2);
     const Et = Math.hypot(E1, E2), th = Math.atan2(E1, E2) / RAD;
     /* the axes, drawn only as far as the frame allows */
-    line(ctx, OX - 500, OY, OX + 360, OY, PAL.rule, 2);
+    line(ctx, OX - 500, OY, OX + 420, OY, PAL.rule, 2);
     line(ctx, OX, OY - 470, OX, OY + 70, PAL.rule, 2);
-    text(ctx, 'x', OX + 376, OY + 4, PAL.muted, { size: 20, base: 'middle' });
+    text(ctx, 'x', OX + 436, OY + 4, PAL.muted, { size: 20, base: 'middle' });
     text(ctx, 'y', OX + 12, OY - 466, PAL.muted, { size: 20 });
     for (let k = 1; k <= 6; k++) {
       line(ctx, OX + k * S, OY - 7, OX + k * S, OY + 7, PAL.muted, 2);
       line(ctx, OX - 7, OY - k * S, OX + 7, OY - k * S, PAL.muted, 2);
+      /* a tick's label is left out where a charge sits on it */
       if (k % 2 === 0) {
-        text(ctx, k + ' cm', OX + k * S, OY + 36, PAL.muted, { size: 17, align: 'center' });
-        text(ctx, k + ' cm', OX - 28, OY - k * S, PAL.muted, { size: 17, align: 'right', base: 'middle' });
+        if (Math.abs(k - r2) > 0.4) text(ctx, k + ' cm', OX + k * S, OY + 36, PAL.muted, { size: 17, align: 'center' });
+        if (Math.abs(k - r1) > 0.4) text(ctx, k + ' cm', OX - 28, OY - k * S, PAL.muted, { size: 17, align: 'right', base: 'middle' });
       }
     }
     /* the two charges, the first above the origin and the second to its right */

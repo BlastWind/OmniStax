@@ -1,7 +1,7 @@
 /* Figures for section 11.1 What Is a Fluid? Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.1'] = function (root, F) {
-const { el, PAL, alpha, cycle, register, begin, line, text, topline, spring, fixed, choice, hover } = F;
+const { el, PAL, alpha, cycle, register, begin, line, arrow, text, topline, spring, fixed, choice, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 
@@ -78,7 +78,7 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
     return out;
   }
   const gas = { p: free(2, 10, 12, 110, 170, 'O2'), plateX: 0, depth: 0, open: false };
-  const plasma = { p: free(3, 8, 8, 90, 130, 'p').concat(free(3, 8, 4.5, 220, 300, 'e')), plateX: 0, depth: 0, open: false };
+  const plasma = { p: free(3, 8, 8, 90, 130, 'p').concat(free(3, 8, 6, 220, 300, 'e')), plateX: 0, depth: 0, open: false };
   const refill = (b, i) => b.p.forEach((q) => { if (!q.gone) return; const a = rnd(0, TAU), v = Math.hypot(q.vx, q.vy); Object.assign(q, { x: rnd(XL(i) + 20, XR(i) - 20), y: rnd(BT + 20, BB - 20), vx: v * Math.cos(a), vy: v * Math.sin(a), gone: false }); });
 
   let m = 'leave', t = 0;
@@ -149,7 +149,12 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
   /* ---------- drawing ---------- */
   const hits = [];
   const hit = (x, y, r, name) => hits.push({ x, y, r, name });
-  function plate(ctx, x, y, w, name) { fixed(ctx, x, y, w, PLATE_H); for (let s = 15; s < w; s += 30) hit(x + s, y + PLATE_H / 2, 17, name); }
+  /* the plate or the piston, with the push on it drawn as an arrow in ink, since this page binds no type: sideways onto a plate's left end, downward onto a piston's middle */
+  function plate(ctx, x, y, w, name, dir) {
+    fixed(ctx, x, y, w, PLATE_H); for (let s = 15; s < w; s += 30) hit(x + s, y + PLATE_H / 2, 17, name);
+    if (dir === 'right') arrow(ctx, x - 46, y + PLATE_H / 2, x - 3, y + PLATE_H / 2, PAL.ink, 4);
+    if (dir === 'down') arrow(ctx, x + w / 2, y - 46, x + w / 2, y - 3, PAL.ink, 4);
+  }
   /* a closed container, or one with its lid swung open on its right-hand hinge */
   function box(ctx, i, open, name) {
     const xl = XL(i), xr = XR(i);
@@ -190,21 +195,21 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
     }
     for (const p of pos) { atom(ctx, 'Fe', p.x, p.y, AR); hit(p.x, p.y, AR + 3, 'an iron atom, held near home by the forces the springs stand for'); }
     line(ctx, PX(0) + 24, BB, PX(0) + 276, BB, PAL.ink, 4); hit(PX(0) + 150, BB, 10, 'the ground the crystal stands on');
-    if (m === 'shear') { const x = CX0 - 100 + solid.lean, y = solidTop() - PLATE_H; plate(ctx, x, y, 200, 'a plate pushed sideways, which the solid holds after a hair of lean'); text(ctx, 'a sideways push', CX0, y - 18, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); }
-    if (m === 'compress' || solid.depth > 0) { const y = solidTop() - PLATE_H; plate(ctx, CX0 - 100, y, 200, 'a piston pushed down, which the solid stops almost at once'); text(ctx, 'a piston pushed down', CX0, y - 18, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); }
+    if (m === 'shear') { const x = CX0 - 100 + solid.lean, y = solidTop() - PLATE_H; plate(ctx, x, y, 200, 'a plate pushed sideways, which the solid holds after a hair of lean', 'right'); text(ctx, 'a sideways push', CX0, y - 18, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); }
+    if (m === 'compress' || solid.depth > 0) { const y = solidTop() - PLATE_H; plate(ctx, CX0 - 100, y, 200, 'a piston pushed down, which the solid stops almost at once', 'down'); text(ctx, 'a piston pushed down', CX0, y - 62, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); }
     /* (b) the beaker and the water in it */
     line(ctx, XL(1), BT + 20, XL(1), BB, PAL.ink, 4); line(ctx, XR(1), BT + 20, XR(1), BB, PAL.ink, 4); line(ctx, XL(1) - 2, BB, XR(1) + 2, BB, PAL.ink, 4);
     hit(XL(1), (BT + BB) / 2, 12, 'an open beaker'); hit(XR(1), (BT + BB) / 2, 12, 'an open beaker');
     for (const p of liq) { water(ctx, p.x, p.y, p.a); hit(p.x, p.y, LR + 2, 'a water molecule, an oxygen atom with two hydrogens'); }
-    if (m === 'shear') plate(ctx, XL(1) + 4 + liquid.plateX, liquid.plateY - PLATE_H, PLATE_W, 'a plate pushed sideways, which slides across the liquid');
-    if (m === 'compress' || liquid.depth > 0) plate(ctx, XL(1) + 4, liquid.plateY + liquid.depth - PLATE_H, BW - 8, 'a piston pushed down, which the liquid stops almost at once');
+    if (m === 'shear') plate(ctx, XL(1) + 4 + liquid.plateX, liquid.plateY - PLATE_H, PLATE_W, 'a plate pushed sideways, which slides across the liquid', 'right');
+    if (m === 'compress' || liquid.depth > 0) plate(ctx, XL(1) + 4, liquid.plateY + liquid.depth - PLATE_H, BW - 8, 'a piston pushed down, which the liquid stops almost at once', 'down');
     /* (c) the oxygen and (d) the plasma in their boxes */
     box(ctx, 2, gas.open, 'a closed container of oxygen'); box(ctx, 3, plasma.open, 'a closed container of hydrogen plasma');
     for (const q of gas.p) { if (q.gone) continue; dioxygen(ctx, q.x, q.y, q.a); hit(q.x, q.y, 16, 'an oxygen molecule, O₂'); }
     for (const q of plasma.p) { if (q.gone) continue; if (q.kind === 'p') { proton(ctx, q.x, q.y); hit(q.x, q.y, 12, 'a proton, the nucleus of a hydrogen atom'); } else { electron(ctx, q.x, q.y); hit(q.x, q.y, 10, 'an electron'); } }
     for (const [b, i] of [[gas, 2], [plasma, 3]]) {
-      if (m === 'shear') plate(ctx, XL(i) + 4 + b.plateX, BT, PLATE_W, 'a plate pushed sideways, which nothing resists');
-      if (m === 'compress' || b.depth > 0) plate(ctx, XL(i) + 4, BT + b.depth - PLATE_H, BW - 8, 'a piston pushed down, which travels half way before it is stopped');
+      if (m === 'shear') plate(ctx, XL(i) + 4 + b.plateX, BT, PLATE_W, 'a plate pushed sideways, which nothing resists', 'right');
+      if (m === 'compress' || b.depth > 0) plate(ctx, XL(i) + 4, BT + b.depth - PLATE_H, BW - 8, 'a piston pushed down, which travels half way before it is stopped', 'down');
     }
     /* the captions under the four panels */
     CAP.forEach(([cap, note], i) => { text(ctx, cap, PX(i) + 150, 502, PAL.ink, { size: 19, weight: 600, align: 'center' }); text(ctx, note, PX(i) + 150, 530, PAL.muted, { size: 16, align: 'center' }); });

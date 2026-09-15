@@ -6,7 +6,7 @@
    the rates they carry, never moving. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['14.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, cat, ctl, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, labeller, person, view } = F;
+const { el, fmt, tex, C, PAL, alpha, cat, ctl, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, labeller, silhouette, view } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -254,7 +254,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(ROOM.l, ROOM.t, ROOM.r - ROOM.l, ROOM.b - ROOM.t); ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.strokeRect(ROOM.l, ROOM.t, ROOM.r - ROOM.l, ROOM.b - ROOM.t); ctx.restore();
     const px = 700, py = ROOM.b - 4;
-    person(ctx, px, py, PAL.ink, { s: 2.6 });
+    silhouette(ctx, { x: px, y: py, s: 1.7, pose: 'stand' });
     /* the radiation: outward arrows on the left at the emitted rate's width, inward on the right at the absorbed rate's */
     const wOf = (P) => 2 + 12 * Math.min(1, P / PMAX);
     const mid = (ROOM.t + ROOM.b) / 2 - 20;
@@ -263,7 +263,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     text(ctx, 'emitted by the person, ' + watts(Pout), (px - 120 + ROOM.l + 40) / 2, mid - 45, pc, { size: 19, weight: 600, align: 'center', bg: PAL.soft });
     text(ctx, 'absorbed from the walls, ' + watts(Pin), (px + 120 + ROOM.r - 40) / 2, mid - 45, pc, { size: 19, weight: 600, align: 'center', bg: PAL.soft });
     text(ctx, 'walls at T_2 = ' + degS(tb) + ' °C', px, ROOM.t, tc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'skin at T_1 = ' + degS(ta) + ' °C', px, py - 240, tc, { size: 20, weight: 600, align: 'center', bg: PAL.soft });
+    text(ctx, 'skin at T_1 = ' + degS(ta) + ' °C', px, ROOM.b + 26, tc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });   /* under the person's feet, below the floor line */
     /* the two bars, and the net rate as a bracket between their ends */
     const bar = (y, P, label) => {
       const w = BW * Math.min(1, P / PMAX);

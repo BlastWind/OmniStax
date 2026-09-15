@@ -1,7 +1,7 @@
 /* Figures for section 16.9 Waves. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.9'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, scale, curve, labeller, person } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, scale, curve, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -26,12 +26,20 @@ const sgn = (v) => (v < 0 ? '−' : '+');
      crests are always in view and the wavelength can always be bracketed. */
   const WM = 30, L0 = 80, PX = 42, y0 = 350, SCV = 70, XG = 9, XP = 3.5;
   const Xs = (m) => L0 + m * PX, Ys = (v) => y0 - v * SCV;
+  /* a gull sitting on the water at (x, y), facing right: a boat-shaped body with a folded wing
+     laid along its back, a tail raised behind, a neck up to a round head and a beak; about 120
+     wide and 60 tall, so it reads as a bird before its label is read */
   function gull(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
-    ctx.beginPath(); ctx.ellipse(x, y, 34, 14, 0, 0, TAU); ctx.fill();
-    ctx.beginPath(); ctx.arc(x + 28, y - 20, 11, 0, TAU); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(x + 38, y - 22); ctx.lineTo(x + 56, y - 18); ctx.lineTo(x + 38, y - 14); ctx.closePath(); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(x - 8, y - 8); ctx.lineTo(x - 28, y - 34); ctx.lineTo(x + 10, y - 16); ctx.stroke();
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(x - 44, y - 6); ctx.quadraticCurveTo(x - 40, y + 14, x - 12, y + 16); ctx.lineTo(x + 24, y + 16);
+    ctx.quadraticCurveTo(x + 44, y + 12, x + 40, y - 4); ctx.quadraticCurveTo(x + 6, y - 16, x - 44, y - 6); ctx.closePath(); ctx.fill();   /* the body */
+    ctx.beginPath(); ctx.moveTo(x - 40, y - 4); ctx.lineTo(x - 66, y - 20); ctx.lineTo(x - 42, y + 4); ctx.closePath(); ctx.fill();          /* the tail */
+    ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.moveTo(x - 30, y - 6); ctx.quadraticCurveTo(x - 4, y - 18, x + 28, y - 6);
+    ctx.quadraticCurveTo(x, y + 2, x - 30, y - 6); ctx.closePath(); ctx.fill(); ctx.stroke();                                            /* the folded wing */
+    ctx.fillStyle = PAL.ink; ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(x + 26, y - 6); ctx.quadraticCurveTo(x + 34, y - 18, x + 36, y - 30); ctx.stroke();   /* the neck */
+    ctx.beginPath(); ctx.arc(x + 38, y - 36, 11, 0, TAU); ctx.fill();                                                                  /* the head */
+    ctx.beginPath(); ctx.moveTo(x + 47, y - 40); ctx.lineTo(x + 66, y - 34); ctx.lineTo(x + 47, y - 30); ctx.closePath(); ctx.fill();    /* the beak */
+    ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(x + 41, y - 39, 2.5, 0, TAU); ctx.fill();                                       /* the eye */
     ctx.restore();
   }
   function draw() {
@@ -62,19 +70,19 @@ const sgn = (v) => (v < 0 ? '−' : '+');
       lab.add('2X = ' + fmt(2 * X.v, 2) + ' m', Xs(mc), y0, 1, 0, C('position'), 20);
     }
     /* the gull: it rides the surface and moves up and down only */
-    const gy = Ys(u(XG)) - 16, vg = X.v * (TAU / T.v) * Math.sin(TAU * (XG / lam.v - t / T.v)), vmax = TAU * X.v / T.v;
+    const gy = Ys(u(XG)) - 12, vg = X.v * (TAU / T.v) * Math.sin(TAU * (XG / lam.v - t / T.v)), vmax = TAU * X.v / T.v;
     gull(ctx, Xs(XG), gy);
     if (Math.abs(vg) > 0.04 * vmax) {
       const al = 34 + 70 * Math.abs(vg) / vmax, s = vg > 0 ? -1 : 1;
       arrow(ctx, Xs(XG) - 56, gy, Xs(XG) - 56, gy + s * al, C('velocity'), 5);
-      lab.add(sgn(vg) + fmt(Math.abs(vg), 2) + ' m/s, the gull', Xs(XG) - 56, gy + s * al, -0.6, s, C('velocity'), 20);
+      lab.add(sgn(vg) + fmt(Math.abs(vg), 2) + ' m/s', Xs(XG) - 56, gy + s * al, -0.6, s, C('velocity'), 20);
     }
-    lab.add('the gull bobs up and down', Xs(XG) + 40, gy - 26, 0.8, -1, PAL.ink, 20);
+    lab.add('the gull bobs up and down', Xs(XG) + 50, gy - 40, 0.8, -1, PAL.ink, 20);
     /* one marked particle of water, circling its own place */
     const r = X.v * SCV, ph = TAU * (XP / lam.v - t / T.v), px = Xs(XP) - r * Math.sin(ph), py = y0 - r * Math.cos(ph);
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([6, 8]); ctx.beginPath(); ctx.arc(Xs(XP), y0, r, 0, TAU); ctx.stroke(); ctx.restore();
     dot(ctx, px, py, C('position'), true, 9);
-    lab.add('a particle of water, which stays in place', px, py, 0.9, 1, C('position'), 20);
+    lab.add('a particle of water stays in place', px, py, 0.9, 1, C('position'), 20);
     /* the wave velocity */
     arrow(ctx, Xs(17.5), 176, Xs(21), 176, C('velocity'), 5);
     lab.add('v_w = ' + fmt(vw, 2) + ' m/s', Xs(21), 176, 0, -1, C('velocity'), 22);
@@ -114,7 +122,10 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     const tr = kind.value === 'transverse', vw = lam.v / T.v;
     const u = (m) => X.v * Math.cos(TAU * (m / lam.v - t / T.v));
     const u0 = u(0), hand = { x: tr ? L0 : L0 + u0 * SCV, y: tr ? y0 - u0 * SCV : y0 };
-    person(ctx, 165, 540, PAL.ink, { s: 2.6, reach: hand });
+    /* a filled person holds the near end of the cord: the near hand goes to the cord's end in
+       the silhouette's own frame, the far arm hangs at the side */
+    const PS = 1.8, fx = 165, fy = 540;
+    F.silhouette(ctx, { x: fx, y: fy, s: PS, pose: 'stand', color: PAL.ink, hands: [{ x: (hand.x - fx) / PS, y: (hand.y - fy) / PS }, { x: -6, y: -76 }] });
     /* the cord: the medium is ink, and the quantities measured on it carry the colours */
     if (tr) {
       curve(ctx, u, 0, WM, Xs, (v) => y0 - v * SCV, PAL.ink, 5, 300);

@@ -1,10 +1,19 @@
 /* Figures for section 16.1 Hooke's Law. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+/* a toy dart lying along the line y with its point at x: a shaft, a pointed tip and two fins at the tail, about 90 units long */
+function dart(ctx, x, y) {
+  ctx.save(); ctx.fillStyle = PAL.ink; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(x - 78, y - 3); ctx.lineTo(x - 14, y - 3); ctx.lineTo(x - 14, y + 3); ctx.lineTo(x - 78, y + 3); ctx.closePath(); ctx.fill();   /* the shaft */
+  ctx.beginPath(); ctx.moveTo(x - 16, y - 7); ctx.lineTo(x, y); ctx.lineTo(x - 16, y + 7); ctx.closePath(); ctx.fill();                                     /* the point */
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.moveTo(x - 78, y - 3); ctx.lineTo(x - 90, y - 16); ctx.lineTo(x - 60, y - 3); ctx.closePath(); ctx.fill(); ctx.stroke();   /* the fins */
+  ctx.beginPath(); ctx.moveTo(x - 78, y + 3); ctx.lineTo(x - 90, y + 16); ctx.lineTo(x - 60, y + 3); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.restore();
+}
 
 /* =====================================================================
    SIM 1: the plucked ruler. A cantilever clamped at the bottom, pulled
@@ -28,24 +37,30 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
        the bracket and the restoring force are all there to read. */
     const tau = REDUCED ? 0 : cy.now(), x = xAt(tau), atRest = !REDUCED && tau >= T() - 1e-6;
     const cx = 700, yb = 570, len = 130 + 300 * Lr.v / 30, yt = yb - len, U = 40;   /* 1 cm = 40 units */
-    fixed(ctx, cx - 130, yb, 260, 44); text(ctx, 'clamped here', cx, yb + 24, PAL.muted, { size: 17, align: 'center', base: 'middle', bg: PAL.soft });
-    line(ctx, cx, 96, cx, yb, PAL.muted, 3, [10, 10]); text(ctx, 'equilibrium position', cx - 16, yb - 40, PAL.muted, { size: 17, align: 'right' });
-    /* the ruler bends as the square of the distance from the clamp */
-    const tip = cx + x * U;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 14; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(cx, yb);
-    for (let i = 1; i <= 24; i++) { const f = i / 24; ctx.lineTo(cx + x * U * f * f, yb - len * f); } ctx.stroke();
-    ctx.strokeStyle = PAL.bg; ctx.lineWidth = 2; ctx.beginPath();
-    for (let i = 2; i < 24; i += 2) { const f = i / 24, px = cx + x * U * f * f, py = yb - len * f; ctx.moveTo(px - 5, py); ctx.lineTo(px + 5, py); } ctx.stroke(); ctx.restore();
-    if (Math.abs(x) > 0.15) {
-      hbracket(ctx, cx, tip, yt - 50, C('position'), 'x = ' + (x > 0 ? '+' : '−') + fmt(Math.abs(x), 1) + ' cm');
-      const s = x > 0 ? -1 : 1, al = 64 * Math.abs(x);
-      arrow(ctx, tip, yt + 8, tip + s * al, yt + 8, C('force'), 5);
-      text(ctx, 'restoring force F', tip + s * (al + 14), yt + 8, C('force'), { weight: 600, align: x > 0 ? 'right' : 'left', base: 'middle' });
-    }
-    dot(ctx, tip, yt, PAL.ink, true, 9);
-    headline(ctx, atRest ? 'The ruler has come to rest at its equilibrium position, where the net force on it is zero'
+    /* the headline first, so the bracket under it knows whether it took one line or two */
+    const lines = headline(ctx, atRest ? 'The ruler has come to rest at its equilibrium position, where the net force on it is zero'
       : Math.abs(x) < 0.15 ? 'The tip is passing through equilibrium, where the net force is zero, but the ruler has momentum and keeps moving'
       : 'The tip is ' + fmt(Math.abs(x), 1) + ' cm to the ' + (x < 0 ? 'left' : 'right') + ', so the restoring force points to the ' + (x < 0 ? 'right' : 'left'));
+    fixed(ctx, cx - 130, yb, 260, 44); text(ctx, 'clamped here', cx, yb + 24, PAL.muted, { size: 17, align: 'center', base: 'middle', bg: PAL.soft });
+    line(ctx, cx, 96, cx, yb, PAL.muted, 3, [10, 10]); text(ctx, 'equilibrium position', cx - 22, yb - 40, PAL.muted, { size: 17, align: 'right', bg: PAL.panel });
+    /* The ruler bends as the square of the distance from the clamp. It is drawn as a ruler: a pale
+       strip with an ink edge and graduations down its left side, every fifth one longer. */
+    const tip = cx + x * U, HW = 9, N = 30;
+    const at = (f) => [cx + x * U * f * f, yb - len * f];
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.beginPath();
+    for (let i = 0; i <= N; i++) { const [px, py] = at(i / N); if (i) ctx.lineTo(px - HW, py); else ctx.moveTo(px - HW, py); }
+    for (let i = N; i >= 0; i--) { const [px, py] = at(i / N); ctx.lineTo(px + HW, py); }
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 1.5; ctx.beginPath();
+    for (let i = 1; i < N; i++) { const [px, py] = at(i / N); ctx.moveTo(px - HW, py); ctx.lineTo(px - HW + (i % 5 ? 6 : 11), py); }
+    ctx.stroke(); ctx.restore();
+    if (Math.abs(x) > 0.15) {
+      hbracket(ctx, cx, tip, yt - 44, C('position'), 'x = ' + (x > 0 ? '+' : '−') + fmt(Math.abs(x), 1) + ' cm', { side: lines === 2 ? 'below' : 'above' });
+      const s = x > 0 ? -1 : 1, al = 64 * Math.abs(x);
+      arrow(ctx, tip, yt + 8, tip + s * al, yt + 8, C('force'), 5);
+      label(ctx, 'restoring force F', tip + s * (al + 4), yt + 8, { side: x > 0 ? 'left' : 'right', color: C('force'), size: 22, gap: 10 });
+    }
+    dot(ctx, tip, yt, PAL.ink, true, 7);
     const Fn = -k() * x / 100;
     readout(d.readout, `\\kF = -\\kk\\kx = -(${fmt(k(), 0)}\\ \\text{N/m})(${x < 0 ? '-' : '+'}${fmt(Math.abs(x) / 100, 3)}\\ \\text{m}) = ${Fn < 0 ? '-' : '+'}${fmt(Math.abs(Fn), 2)}\\ \\text{N}`,
       'A ' + Lr.v + ' cm length of this ruler has a force constant of about ' + fmt(k(), 0) + ' N/m and swings back and forth ' + fmt(freq(), 1) + ' times each second. A shorter length is stiffer and oscillates faster.');
@@ -137,8 +152,9 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const plate = wall + nat - xc * SC;
     spring(ctx, wall, y, plate, y, 12, 22, PAL.ink, 4);
     line(ctx, plate, y - 36, plate, y + 36, PAL.ink, 8);
-    const vv = vOut(), dartX = plate + 34 + (phase === 'flight' ? fly * Math.min(1000, 14 * vv) : 0);
-    line(ctx, dartX - 44, y, dartX - 10, y, PAL.ink, 6); dot(ctx, dartX, y, PAL.ink, true, 12);
+    /* the dart flies as far as the strip allows and no farther, so it and its label never leave the canvas */
+    const vv = vOut(), dartX = plate + 40 + (phase === 'flight' ? fly * Math.min(R - 60 - plate - 40, 14 * vv) : 0);
+    dart(ctx, dartX, y);
     line(ctx, wall + nat, y - 44, wall + nat, y + 44, PAL.muted, 2, [6, 6]); text(ctx, 'x = 0', wall + nat, y - 58, C('position'), { size: 18, align: 'center', weight: 600 });
     if (xc > 0.003) hbracket(ctx, plate, wall + nat, y + 80, C('position'), 'x = ' + fmt(xc, 3) + ' m');
     if (phase === 'compress' || phase === 'hold') {
@@ -146,7 +162,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       arrow(ctx, plate + 60 + al, y - 96, plate + 60, y - 96, C('force'), 5);
       text(ctx, 'applied force = kx = ' + fmt(Fn, 2) + ' N', plate + 74 + al, y - 96, C('force'), { weight: 600, base: 'middle' });
     }
-    if (phase === 'flight') { arrow(ctx, dartX + 24, y - 80, dartX + 24 + Math.min(300, vv * 6), y - 80, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 1) + ' m/s', dartX + 24, y - 112, C('velocity'), { weight: 600 }); }
+    if (phase === 'flight') { const al = Math.min(300, vv * 6, R - dartX - 30); arrow(ctx, dartX + 20, y - 80, dartX + 20 + al, y - 80, C('velocity'), 5); label(ctx, 'v = ' + fmt(vv, 1) + ' m/s', dartX + 20 + al / 2, y - 84, { side: 'above', color: C('velocity'), size: 22, gap: 14 }); }
     /* the graph: applied force against deformation, work as the area. Both ranges are fixed
        and never rescaled: the deformation axis is the compression slider's own 0 to 0.30 m,
        and the force axis runs to 30 N, which holds every spring up to 100 N/m at full

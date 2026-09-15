@@ -250,3 +250,13 @@ of a broken-down gap is drawn in ink so that no hue is invented for it.
 - equations `eq-uniform-field-voltage` → 19.2-voltage-between-plates
 - equations `eq-field-units` → 19.2-voltage-between-plates
 - equations `eq-field-gradient` → 19.2-field-as-gradient
+
+**Applied by the chapter pass (2026-09-14).** Ten variable rows and four
+equation rows carry their anchors in `chapter.json`. Thirteen weighted
+`exercise_concepts` rows were given `weights_by: "ai"`. The two isoline AP
+items are on 19.4's page and the item on two plates carrying ±0.225 C is on
+19.5's, each with `source_section: "19.2"`, and every one of the three
+sections names the move in its `exercise_notes`. The section's `notes` wrote
+the book's stray prime as math, which the app does not sweep in a note, so
+the sentence now names the symbol in words instead; the erratum itself is
+unchanged and is recorded in `exploration.md`.

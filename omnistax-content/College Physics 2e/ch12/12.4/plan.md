@@ -262,6 +262,8 @@ Extra simulations (rule 15), thought through, judged and decided:
 - The laminar lanes breaking into eddies as the speed rises. Left: that is
   the onset of turbulence and belongs to 12.5, where motion is allowed.
 
+Figure pass (2026-09-15, Claude Fable 5.1). All seven figures were looked at in both themes at every slider extreme and choice and left as built; the one weakness found, that the pressure and viscosity hues print pale on the light ground, is the book's colour scheme and not this page's to change.
+
 ## Exercises
 
 Kinds and placement follow `ch12/config.md`: everything at the end, since the

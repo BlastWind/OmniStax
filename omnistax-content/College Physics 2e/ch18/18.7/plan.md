@@ -49,6 +49,8 @@ applied to a closed shell, and the charged sphere already draws a field that
 is zero inside a conductor; a cage drawn again would open no view the reader
 does not already have.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-charged-sphere`: with the probe inside the sphere the centre's "E = 0" box and the probe's own reading said the same thing on top of the surface marks; the probe's two lines now stand above the sphere with a leader and the centre box is drawn only when the probe is outside. `sim-parallel-plates`: the two readings had sat on the field lines inside the gap; they now stand in the clear below the plates at fixed positions either side of the middle, each leadered to its point, and the canvas is 700 tall so they fit at the widest separation. `sim-parallel-component`, `sim-sphere-in-field`, `sim-sharp-end` and `fig-square` left as built.
+
 ## Exercises
 
 Sixteen conceptual questions, four AP items and fourteen problems. All of

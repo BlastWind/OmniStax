@@ -189,6 +189,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   `sim-flow-cylinder`, and a filling animation would be the dummy loop the
   chapter's config forbids.
 
+Figure pass (2026-09-15, Claude Fable 5.1). `sim-flow-cylinder`: the pipe was a flat band, so it is now drawn as a cylinder with an open mouth and a rim, and the shaded volume with its two elliptical faces; the speed label left the coloured cylinder for the clear space above the pipe and the elapsed time sits beside the length bracket. `sim-branching`: the roots of the branches crossed one another at the mouth of the vessel whenever the branches were wider than their share of it, so the roots are never closer than a branch is wide, the mouth flares to take them and every wall curves into place. `sim-continuity` was left as built.
+
 ## Exercises
 
 - All items are set at the end; the chapter has no Check Your Understanding

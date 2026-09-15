@@ -68,8 +68,12 @@ function particle(ctx, x, y, color, r) {
   const xA = 230, xB = 980, xs = 280, xe = 930, yPath = 230, pT = 118, pB = 330;
   const hill = { t: 400, b: 570 };            /* the hill's band; V from 0 to 100 V, the slider's range, never rescaled */
   const Yv = (v) => hill.b - ((hill.b - hill.t) * v) / 100;
-  const bars = { x1: 1150, x2: 1290, y0: 450, cap: 120, w: 62 };   /* ±500 µJ across the cap, which is 5.00 µC through 100.0 V, the widest state the sliders reach */
-  const Ypx = (uJ) => (uJ / 500) * bars.cap;
+  /* The bars are scaled from the default range, ±250 µJ across the cap, since the widest state
+     the sliders reach (5.00 µC through 100.0 V, 500 µJ) would leave the book's 100 µJ a sliver;
+     a taller bar is capped and its top drawn broken, and its value is written at the top. */
+  const bars = { x1: 1150, x2: 1290, y0: 400, cap: 180, w: 64 };
+  const Ypx = (uJ) => (uJ / 250) * bars.cap;
+  const barTop = (px) => bars.y0 - Math.sign(px) * Math.min(Math.abs(px), bars.cap);
   function draw() {
     const { ctx } = begin(d.c);
     const pos = sign.value === 'pos', q = (pos ? 1 : -1) * Q.v, Va = VA.v;
@@ -105,13 +109,16 @@ function particle(ctx, x, y, color, r) {
     /* the energy bars, PE and KE about a common zero */
     line(ctx, bars.x1 - 50, bars.y0, bars.x2 + 50, bars.y0, PAL.muted, 2);
     text(ctx, '0', bars.x1 - 58, bars.y0, PAL.muted, { size: 17, align: 'right' });
-    bar(ctx, bars.x1, bars.y0, bars.w, -Ypx(PE), bars.cap, C('energy'), false);
-    bar(ctx, bars.x2, bars.y0, bars.w, -Ypx(KE), bars.cap, C('energy'), true);
-    text(ctx, 'PE', bars.x1, bars.y0 + bars.cap + 34, C('energy'), { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'KE', bars.x2, bars.y0 + bars.cap + 34, C('energy'), { size: 22, weight: 600, align: 'center' });
-    text(ctx, num(PE, 0) + ' µJ', bars.x1, bars.y0 - bars.cap - 26, C('energy'), { size: 17, weight: 600, align: 'center' });
-    text(ctx, num(KE, 0) + ' µJ', bars.x2, bars.y0 - bars.cap - 26, C('energy'), { size: 17, weight: 600, align: 'center' });
-    text(ctx, 'the energy of the charge', (bars.x1 + bars.x2) / 2, bars.y0 - bars.cap - 66, PAL.muted, { size: 17, align: 'center' });
+    bar(ctx, bars.x1, bars.y0, bars.w, Ypx(PE), bars.cap, C('energy'), false);
+    bar(ctx, bars.x2, bars.y0, bars.w, Ypx(KE), bars.cap, C('energy'), true);
+    text(ctx, 'PE', bars.x1, bars.y0 + bars.cap + 30, C('energy'), { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'KE', bars.x2, bars.y0 + bars.cap + 30, C('energy'), { size: 22, weight: 600, align: 'center' });
+    /* each value sits just past the end of its own bar, above a bar that stands up and below one that hangs down */
+    [[bars.x1, PE], [bars.x2, KE]].forEach(([bx, e]) => {
+      const px = Ypx(e), yt = barTop(px), up = px >= 0;
+      text(ctx, num(e, 0) + ' µJ', bx, up ? yt - 20 : yt + 20, C('energy'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    });
+    text(ctx, 'the energy of the charge', (bars.x1 + bars.x2) / 2, bars.y0 - bars.cap - 56, PAL.muted, { size: 17, align: 'center' });
     const uJ = fmt(Math.abs(dPE), 0);
     topline(ctx, start
       ? (pos ? 'The positive charge is at rest at plate A, ' + uJ + ' µJ of potential energy above what it would have at plate B.'
@@ -212,8 +219,9 @@ function particle(ctx, x, y, color, r) {
   const T = 4.5;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
-  const xA = 380, xB = 900, pT = 110, pB = 540, yPath = 325, xs = 430, xe = 850;
-  const kb = { x: 1120, t: 130, b: 520, w: 70 };   /* the KE bar, full at qV whatever the voltage: the reading is in the readout */
+  const xA = 380, xB = 900, pT = 130, pB = 470, yPath = 300, xs = 430, xe = 850;
+  const kb = { x: 1120, t: 150, b: 520, w: 70 };   /* the KE bar, full at qV whatever the voltage: the reading is in the readout */
+  const gauge = { y: 548, len: 280 };              /* the speed, drawn as an arrow of its own under the plates: at the particle it would run into the far plate */
   function draw() {
     const { ctx } = begin(d.c);
     const p = PARTICLES[which.value], neg = p.z < 0;
@@ -225,12 +233,14 @@ function particle(ctx, x, y, color, r) {
     text(ctx, 'A', xA + 46, pT + 16, PAL.ink, { size: 24, weight: 600, align: 'center' }); text(ctx, 'B', xB - 46, pT + 16, PAL.ink, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'V_A = −' + fmt(V.v, 0) + ' V', xA - 26, yPath - 70, C('voltage'), { size: 22, weight: 600, align: 'right' });
     text(ctx, 'V_B = 0', xB + 26, yPath - 70, C('voltage'), { size: 22, weight: 600 });
-    text(ctx, 'V = ' + fmt(V.v, 0) + ' V between the plates', (xA + xB) / 2, pB + 34, C('voltage'), { size: 19, weight: 600, align: 'center' });
+    text(ctx, 'V = ' + fmt(V.v, 0) + ' V between the plates', (xA + xB) / 2, pB + 30, C('voltage'), { size: 19, weight: 600, align: 'center' });
     line(ctx, xs, yPath, xe, yPath, alpha(PAL.ink, 0.35), 2, [6, 10]);
-    text(ctx, neg ? 'from A to B' : 'from B to A', (xs + xe) / 2, yPath + 96, PAL.muted, { size: 17, align: 'center' });
-    /* the particle and its velocity, the arrow growing with the speed */
-    const dir = neg ? 1 : -1, len = 150 * u;
-    if (len > 8) { arrow(ctx, x, yPath + 56, x + dir * len, yPath + 56, C('velocity'), 5); text(ctx, 'v', x + dir * (len + 22), yPath + 56, C('velocity'), { size: 24, weight: 600, align: 'center' }); }
+    text(ctx, neg ? 'from A to B' : 'from B to A', (xs + xe) / 2, yPath + 60, PAL.muted, { size: 17, align: 'center' });
+    /* the speed, which grows in step with the time of flight: an arrow of its own beneath the plates, so that it never runs into them */
+    const dir = neg ? 1 : -1, len = gauge.len * u, gx = (xA + xB) / 2;
+    if (len > 8) arrow(ctx, gx - (dir * len) / 2, gauge.y, gx + (dir * len) / 2, gauge.y, C('velocity'), 5);
+    else dot(ctx, gx, gauge.y, C('velocity'), true, 5);
+    text(ctx, 'v = ' + sci(Math.sqrt((2 * KEJ * s) / p.m) || 0, 2) + ' m/s', gx, gauge.y + 28, C('velocity'), { size: 19, weight: 600, align: 'center' });
     particle(ctx, x, yPath, F.el(p.el), 14);
     text(ctx, p.label, x, yPath - 34, PAL.ink, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     /* the kinetic energy bar, full at qV */

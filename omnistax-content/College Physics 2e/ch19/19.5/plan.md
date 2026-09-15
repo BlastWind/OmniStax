@@ -105,6 +105,15 @@ Figure 19.12's book image is `Figure_20_05_01a.jpg` at 200, 19.13's
 `widths` stays empty. The parentheses in two of the file names are the book's
 own and are kept; only a space would be replaced.
 
+### Figure pass, 2026-09-15 (Claude Fable 5.1)
+
+- `sim-capacitor`, `sim-field-charge`, `sim-parallel-plate`: the words "the battery" sat on the wire that runs down from the battery; the label now sits beside the wire under the battery. A zero charge is written as 0.0 µC rather than +0.0 and −0.0, and the headline says the capacitor stores nothing.
+- `sim-parallel-plate`: the note "each plate has this area" covered the label of the separation bracket at the smallest gap; it is folded into the area bracket's own label.
+- `sim-dielectric`: a vacuum and air were drawn with the same rows of polarized molecules as Teflon, and the field lines ran through the molecules. The rows now belong to the solids and liquids of the table only, a vacuum has no slab and air a faint one, the label over the slab says so, and the field lines run in the lanes between the rows.
+- `sim-water-molecule`: the letter H was set in the panel colour on the hydrogen fill, which is light, and vanished on a light page; each atom now has an ink outline and the H is in ink.
+- `sim-membrane`: seventeen ions carried seventeen labels (rule 26.7); each kind is named once in a legend under the scene, the bracket reads "the membrane, d = …", and the headline carries the live voltage the layers hold so far.
+- `sim-polarized-atom`: looked at in both themes; nothing changed.
+
 ### Extra simulations considered and not built
 
 A graph of $C$ against $d$ at several areas was considered and dropped: the
@@ -171,3 +180,15 @@ carries no `div.exercises`.
   writes $\kappa$ in plain LaTeX, which renders correctly and only leaves the
   symbol without a hover card.
 - No symbol row was changed, and none is asked for beyond the `κ` row above.
+
+**Applied by the chapter pass (2026-09-14).** Ten variable rows and seven
+equation rows carry their anchors. The untyped row `κ` (LaTeX `\kappa`, no
+type and no macro) is staged and merged, so this page's dielectric constant
+is a symbol of the book like any other and the hover layer names it; the page
+already wrote it as plain `\kappa`, which is exactly the row's LaTeX, so no
+line of `text.html` or `figures.js` changed. `ε_0` stays this chapter's row,
+since Chapter 18 never writes it. 19.2's AP item on two plates carrying
+±0.225 C is here with `source_section: "19.2"`. The disagreement between
+Example 19.8's worked 26.6 µC and the answer key's 80.0 mC is recorded in
+`exploration.md` under Errata, with both kept as the book prints them, and so
+is the setting of Figure 19.19 beside the paragraph on the membrane.

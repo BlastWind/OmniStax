@@ -3587,3 +3587,97 @@ Checks: `check:content` over the whole book, 19 chapters, 131 sections and
 check` clean; a build; and a headless pass over all eight pages of the
 chapter in light and dark, which found the dollar signs above and, after the
 fix, nothing.
+
+
+### Pass 44 (2026-09-15): Chapter 19, Electric Potential and Electric Field, is the last chapter of the
+
+wave, and its introduction and seven sections are eight pages, built from the
+modules m42320, m42324, m42326, m42328, m42331, m42333, m42336 and m42395.
+Twenty-six figures stand on them: twenty-one drawn simulations and five kept
+photographs, the automated external defibrillator being practised on that
+opens the chapter, the spark chamber whose sparks follow the field lines
+between two plates, the drawer of typical capacitors, the calculator whose
+memory a capacitor preserves and the defibrillator Example 19.11 computes.
+Four of the twenty-one move, because their idea has a clock in it: the charge
+that falls down the electrical hill of 19.1, the electrons a battery drives
+through a headlight, the electron gun that accelerates its particle across
+the gap, and the cell membrane of 19.5, whose potassium and chloride ions
+diffuse until the layers of charge they leave behind hold the rest back. Two
+figures fold the book's numbers into one live drawing: the equipotential map
+of 19.8 + 19.9 + 19.10, where the arrangement of charges is a choice and not
+a slider, and the circuit of 19.20 + 19.21, where the connection is. Every
+number the book prints from 19.1 to 19.24 is drawn or kept, and Table 19.1,
+the dielectric constants and dielectric strengths, is rebuilt as a table in
+the text with the book's own eyebrow.
+
+The chapter declares two types, `voltage` in volts and `capacitance` in
+farads, because its figures draw them, its sliders carry them and its
+readouts state them; the book now has twenty-nine. It stages twenty-six
+symbol rows. Several of them exist only because the letter the chapter wants
+is already another quantity's: the voltage is `V_volt` because `V` is the
+volume, the capacitance `C_cap` because `C` is a circumference, the energy
+stored `E_cap` because `E` is the total energy, and the three charges of a
+parallel combination `Q_1charge` to `Q_3charge` because `Q` is a flow rate.
+The dielectric constant is a row of its own, `κ` with the LaTeX `\kappa`,
+untyped and with no macro, which the prep pass had withdrawn because the
+app's symbols test read every `\k` in the table as a macro; the test now
+holds only a row that claims a macro to that spelling, so the row is staged
+and merged and the hover layer names the constant as it names the rest. The
+permittivity of free space stays this chapter's row, since Chapter 18 never
+writes it, and the electric potential energy is written on Chapter 7's `PE`
+rows with its electric meaning given in `chapter.json`, as the plates and
+the distances are written on Chapter 3's and Chapter 6's position rows.
+
+Thirty-eight concepts were written before the sections were built, with 137
+edges into Chapters 2, 3, 4, 6, 7, 13 and 18 and within the chapter, and the
+pages cover them 137 times. Ninety-nine exercises are set, 44 test prep
+items, 32 problems and 23 conceptual questions, every one of them tagged, and
+the items the book prints early are landed where the result they need is
+stated: seven of 19.1's test prep items and its Unreasonable Results problem
+are on 19.3, which gives the potential of a point charge; two of 19.2's are
+on 19.4, which draws equipotential lines, and one on 19.5, which gives the
+parallel plate capacitance; and 19.6's conceptual question is on 19.7, which
+gives the energy a capacitor stores. Both sections' notes say so in each
+case, and no exercise is kept twice. Every variable and equation row of the
+chapter now carries its anchor, 110 in all, and every weighted
+`exercise_concepts` row carries `weights_by: "ai"`, which the schema accepts
+from this wave on. Section 19.4 carries no problems at all, because all ten
+of its problems ask the reader to sketch equipotential lines and the book
+keys none of them; the chapter's `config.md` records the decision under "What
+the build changed" so that it can be overridden and the sketches kept as open
+items with their images.
+
+`COLOR.md` records the bindings as built. Three pages bind a type the plan
+had left conditional, each because a figure draws it: 19.3 binds energy on
+the work a charge takes to reach the marked point, 19.4 binds position on the
+plates' separation, and 19.1 binds velocity on the speed the electron gun
+gives its particle. The scheme lays twenty-nine hues round a circle in the
+order the book declares its types, so `electric-field` and `voltage` come out
+two apart and close to each other; no hue is invented for either, and the
+figures carry the difference in their drawing instead, a field line by its
+arrowhead and an equipotential line by the voltage written on it.
+
+What the reading found. Every headline and readout is a full sentence, no
+still figure registers a cycle and none of the four that move lacks one, no
+discrete state sits on a slider, and no ordinal, hex colour, dollar sign or
+leftover marker stands anywhere in the eight pages. Two reader-facing words
+were in British spelling, the millimetre of Figure 19.15's caption and the
+nanometres of the membrane's reading, and both are now American as the book
+writes them. The book's own slips are kept as printed and named in
+`exploration.md`: the stray prime on the potential difference of 19.2, the
+unmatched parenthesis in its summary, the empty display of Example 19.9, the
+empty emphasis marks in two summaries and four problem stems, the answer key
+that gives Example 19.8's stored charge as 80.0 mC where the example works it
+out as 26.6 µC, and the "(Review Figure 19.23.)" in 19.7 that sends the
+reader to the calculator rather than to the defibrillator two sentences
+later. Figure 19.19, the cell membrane, which the book prints among the
+conceptual questions that leave the text for the Exercises tab, is set beside
+the paragraph on the membrane's −70 mV, the passage it draws. The gap the two
+chapters before this one reported bit once more: a section's `notes` is not
+swept for math, so 19.2's note on the stray prime reached the reader as
+dollar signs and now names the symbol in words.
+
+Checks: `check:content` over the whole book, 19 chapters, 132 sections and 20
+introduction pages, with no errors; the unit tests, 419 of them; `astro
+check` clean; a build; and a headless pass over all eight pages of the
+chapter in light and dark, which found no fault in either theme.

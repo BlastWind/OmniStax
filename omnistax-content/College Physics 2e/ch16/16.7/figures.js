@@ -15,6 +15,16 @@ function oscillator(ctx, wall, eq, floorY, x, SC) {
   block(ctx, bx, by, 92, 78, PAL.ink);
   return { bx, by };
 }
+/* The marks x = −X, 0, +X under a floor at y. When the release displacement is small the outer two
+   labels step down a row and lean away from the centre, so that no label sits on another. */
+function marks(ctx, eq, SC, X, y, tick, dy) {
+  const close = 2 * X * SC < 150;
+  [[-X, '−X', -1], [0, 'x = 0', 0], [X, '+X', 1]].forEach(([val, lab, i]) => {
+    const px = eq + val * SC; line(ctx, px, y, px, y + tick, C('position'), 3);
+    const out = close && i !== 0;
+    text(ctx, lab, px + (out ? i * 8 : 0), y + dy + (out ? 26 : 0), C('position'), { size: 20, weight: 600, align: out ? (i < 0 ? 'right' : 'left') : 'center' });
+  });
+}
 /* a vertical bar of the energy left in the oscillation, drawn beside the graph */
 function energyBar(ctx, x, top, bot, frac, label) {
   const w = 54, h = (bot - top) * Math.max(0, Math.min(1, frac));
@@ -50,10 +60,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
     strip(ctx, 120, 1280, floorY + 12, 24);
     const { bx, by } = oscillator(ctx, 220, eq, floorY, x, SC);
     dot(ctx, bx, by, PAL.ink, true, 7);
-    for (const [val, lab] of [[-X.v, '−X'], [0, 'x = 0'], [X.v, '+X']]) {
-      const px = eq + val * SC; line(ctx, px, floorY + 24, px, floorY + 44, C('position'), 3);
-      text(ctx, lab, px, floorY + 68, C('position'), { size: 20, weight: 600, align: 'center' });
-    }
+    marks(ctx, eq, SC, X.v, floorY + 24, 20, 44);
     line(ctx, eq, floorY - 150, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     hbracket(ctx, eq - amp * SC, eq + amp * SC, floorY - 168, C('position'), 'amplitude now ' + fmt(amp, 3) + ' m');
     /* the graph */
@@ -62,7 +69,8 @@ function energyBar(ctx, x, top, bot, frac, label) {
     curve(ctx, (t) => ampAt(t), 0, SPAN, gx, gy, C('position'), 3, 200);
     curve(ctx, (t) => -ampAt(t), 0, SPAN, gx, gy, C('position'), 3, 200);
     if (tau > 0) curve(ctx, xAt, 0, tau, gx, gy, C('position'), 5, Math.min(3000, Math.ceil(60 * tau / T.v) + 20));
-    text(ctx, 'the amplitude falls away', gx(SPAN) - 10, gy(ampAt(SPAN)) - 30, C('position'), { size: 18, weight: 600, align: 'right' });
+    /* the envelope's name sits above the box at the right, off the trace at every setting */
+    text(ctx, p.v > 0 ? 'the amplitude falls away' : 'with no damping the amplitude holds', gx(SPAN) - 4, box.t - 16, C('position'), { size: 18, weight: 600, align: 'right' });
     pinned(ctx, box, gx, gy, tau, x, C('position'), fmt(x, 3));
     energyBar(ctx, 1210, box.t, box.b, frac, 'KE + PE');
     text(ctx, fmt(100 * frac, 0) + '%', 1237, box.b + 28, C('energy'), { size: 20, weight: 600, align: 'center' });
@@ -121,7 +129,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
     const box = { l: 180, r: 1180, t: 160, b: 490 };
     const { X: gx, Y: gy } = axes(ctx, box, [0, SPAN], [-0.1, 0.2], { xl: 'time t (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 4, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 2) });
     line(ctx, box.l, gy(0), box.r, gy(0), alpha(PAL.ink, 0.35), 2, [10, 10]);
-    text(ctx, 'equilibrium', box.l + 10, gy(0) - 18, PAL.muted, { size: 17 });
+    text(ctx, 'equilibrium', box.r - 40, gy(0) + 22, PAL.muted, { size: 17, align: 'right' });   /* under the line at the right, where the three curves have all but met it */
     CURVES.forEach((c) => {
       const on = pick.value === c.key, col = cat(c.i);
       ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
@@ -204,10 +212,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
     dot(ctx, bx, by, PAL.ink, true, 7);
     /* the hatching that says the surface has friction */
     for (let hx = 130; hx < 1280; hx += 24) line(ctx, hx, floorY + 38, hx + 13, floorY + 56, PAL.muted, 2);
-    for (const [val, lab] of [[-X.v, '−X'], [0, 'x = 0'], [X.v, '+X']]) {
-      const px = eq + val * SC; line(ctx, px, floorY + 24, px, floorY + 34, C('position'), 3);
-      text(ctx, lab, px, floorY + 86, C('position'), { size: 20, weight: 600, align: 'center' });
-    }
+    marks(ctx, eq, SC, X.v, floorY + 24, 10, 62);
     line(ctx, eq, floorY - 150, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     if (Math.abs(v) > 1e-4) {
       const s = v < 0 ? 1 : -1;                    /* friction points against the motion */

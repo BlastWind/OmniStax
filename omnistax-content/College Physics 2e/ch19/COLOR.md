@@ -58,16 +58,28 @@ atom whose nucleus and electrons are drawn as Chapter 18's pages draw
 theirs; the 19.5 agent should read `ch18/COLOR.md` for that decision when it
 has landed and follow it.
 
-A page binds only what it draws. 19.1 binds voltage, energy and charge, and
-velocity if a figure states the electron's speed; 19.2 binds voltage,
-electric-field, position and charge, and force where the electron gun's
-force is drawn; 19.3 binds voltage, charge and position, and electric-field
-where the $1/r$ and $1/r^2$ curves are drawn together; 19.4 binds voltage,
-electric-field and charge, and energy if a readout writes the zero work
-along an equipotential; 19.5 binds capacitance, charge, voltage,
-electric-field and position; 19.6 binds capacitance, charge and voltage, and
-position where the equivalent capacitor's larger separation or area is
-bracketed; 19.7 binds energy, capacitance, charge and voltage. No page binds
+A page binds only what it draws, and these are the bindings as the seven
+pages were built. 19.1 binds voltage, charge, energy and velocity, the last
+because the electron gun states the speed the voltage gives its particle.
+19.2 binds voltage, electric-field, position, charge and force, the force
+because Example 19.5 draws the arrow $F = qE$ on the electron. 19.3 binds
+voltage, charge, position, electric-field and energy: the field because the
+$1/r$ potential and the $1/r^2$ field are drawn against each other, and the
+energy because the figure that adds two potentials writes the work a charge
+takes to reach the marked point. 19.4 binds voltage, electric-field, charge,
+energy and position, the energy because the readout writes the zero work
+along an equipotential and the position because the plates carry their
+separation on a slider. 19.5 binds capacitance, charge, voltage,
+electric-field and position; 19.6 binds capacitance, voltage, charge and
+position; and 19.7 binds energy, voltage, capacitance and charge. No page
+binds a type it does not draw, and the categorical palette is used nowhere in
+the chapter, as this plan expected.
+
+The scheme sets the electric-field hue and the voltage hue two places apart
+on a circle of twenty-nine, so they come out close to each other, and the
+chapter invents no hue to separate them. Where both are drawn at once, the
+figure tells them apart in its drawing: a field line carries an arrowhead
+and an equipotential line carries its own voltage in volts. No page binds
 a type merely because the chapter declares it. The categorical palette
 `F.cat(i)` is not expected on any page: the three capacitors of 19.6 are
 told apart by their labels $C_1$, $C_2$, $C_3$ in the capacitance hue and by

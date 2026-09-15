@@ -159,6 +159,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   text reports it as a recent study and gives no quantity; a picture would
   have to invent the physics.
 
+Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-water`: the oxygen's δ⁻ mark had landed on the upper hydrogen; it now sits on the oxygen's far side, away from the two hydrogens, and each δ⁺ stands clear of its hydrogen along the bond. `sim-screening`: the water molecules are drawn smaller where the gap is narrow so that eight still stand between the strand and the ion at 0.5 nm without touching either, the force arrow is capped so it never enters the strand, and the force reads above the ion. `sim-dna` left as built.
+
 ## Exercises
 
 - 1 conceptual question, the section's only exercise: `cq1` (fs-id2681100,

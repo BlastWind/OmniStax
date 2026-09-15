@@ -309,3 +309,5 @@ working fluid written on each leg of Figure 15.27.
   so no symbol rows are wanted for them.
 
 Applied in the chapter pass (2026-09-14): the eleven variable anchors and the six equation anchors are set on `chapter.json` as listed, and $t_1$ and $t_2$ of `eq-eer` stay plain with no symbol row, as this plan asked. The caption of Figure 15.26, which names Figure 15.27 where the book means the Carnot cycle of Section 15.4, is recorded in `exploration.md` under Errata. The AP item taken from 15.1 was checked against both sections' `exercise_notes`, which agree.
+
+Figure pass (2026-09-15, Claude Fable 5.1): the five figures were screenshot at every slider extreme and choice in both themes and found to read as built; nothing was changed.

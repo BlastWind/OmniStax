@@ -1,0 +1,563 @@
+{
+  "id": "22",
+  "dir": "ch22",
+  "title": "Magnetism",
+  "intro": {
+    "module": "m42365",
+    "slug": "22-introduction-to-magnetism"
+  },
+  "sections": [
+    {
+      "id": "22.1",
+      "module": "m42366",
+      "title": "Magnets",
+      "slug": "22-1-magnets"
+    },
+    {
+      "id": "22.2",
+      "module": "m42368",
+      "title": "Ferromagnets and Electromagnets",
+      "slug": "22-2-ferromagnets-and-electromagnets"
+    },
+    {
+      "id": "22.3",
+      "module": "m42370",
+      "title": "Magnetic Fields and Magnetic Field Lines",
+      "slug": "22-3-magnetic-fields-and-magnetic-field-lines"
+    },
+    {
+      "id": "22.4",
+      "module": "m42372",
+      "title": "Magnetic Field Strength: Force on a Moving Charge in a Magnetic Field",
+      "slug": "22-4-magnetic-field-strength-force-on-a-moving-charge-in-a-magnetic-field"
+    },
+    {
+      "id": "22.5",
+      "module": "m42375",
+      "title": "Force on a Moving Charge in a Magnetic Field: Examples and Applications",
+      "slug": "22-5-force-on-a-moving-charge-in-a-magnetic-field-examples-and-applications"
+    },
+    {
+      "id": "22.6",
+      "module": "m42377",
+      "title": "The Hall Effect",
+      "slug": "22-6-the-hall-effect"
+    },
+    {
+      "id": "22.7",
+      "module": "m42398",
+      "title": "Magnetic Force on a Current-Carrying Conductor",
+      "slug": "22-7-magnetic-force-on-a-current-carrying-conductor"
+    },
+    {
+      "id": "22.8",
+      "module": "m42380",
+      "title": "Torque on a Current Loop: Motors and Meters",
+      "slug": "22-8-torque-on-a-current-loop-motors-and-meters"
+    },
+    {
+      "id": "22.9",
+      "module": "m42382",
+      "title": "Magnetic Fields Produced by Currents: Ampere’s Law",
+      "slug": "22-9-magnetic-fields-produced-by-currents-amperes-law"
+    },
+    {
+      "id": "22.10",
+      "module": "m42386",
+      "title": "Magnetic Force between Two Parallel Conductors",
+      "slug": "22-10-magnetic-force-between-two-parallel-conductors"
+    },
+    {
+      "id": "22.11",
+      "module": "m42388",
+      "title": "More Applications of Magnetism",
+      "slug": "22-11-more-applications-of-magnetism"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "B_mag",
+      "type": "magnetic-field",
+      "meaning": "the strength of the magnetic field the charge moves through, defined by the force it exerts on that charge",
+      "unit": "T",
+      "section": "22.4"
+    },
+    {
+      "sym": "F",
+      "type": "force",
+      "meaning": "the magnetic force on the moving charge, perpendicular to the plane formed by the velocity and the field",
+      "unit": "N",
+      "section": "22.4"
+    },
+    {
+      "sym": "q",
+      "type": "charge",
+      "meaning": "the charge that moves through the field; the force reverses when the sign of the charge reverses",
+      "unit": "C",
+      "section": "22.4"
+    },
+    {
+      "sym": "v",
+      "type": "velocity",
+      "meaning": "the speed of the charge through the field; a charge at rest feels no magnetic force",
+      "unit": "m/s",
+      "section": "22.4"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the angle between the direction of the velocity and the direction of the magnetic field",
+      "unit": "°",
+      "section": "22.4"
+    },
+    {
+      "sym": "r_curv",
+      "type": "position",
+      "meaning": "the radius of the circle a charge follows when it moves perpendicular to a uniform field",
+      "unit": "m",
+      "section": "22.5"
+    },
+    {
+      "sym": "m",
+      "meaning": "the mass of the charged particle, which sets how wide its circle is at a given speed",
+      "unit": "kg",
+      "section": "22.5"
+    },
+    {
+      "sym": "E_field",
+      "type": "electric-field",
+      "meaning": "the electric field set up across the conductor by the charge the magnetic force has separated",
+      "unit": "V/m",
+      "section": "22.6"
+    },
+    {
+      "sym": "emf_hall",
+      "type": "voltage",
+      "meaning": "the Hall emf, the voltage the separated charge sets up across the conductor",
+      "unit": "V",
+      "section": "22.6"
+    },
+    {
+      "sym": "I_curr",
+      "type": "current",
+      "meaning": "the current in the wire, which is the stream of moving charges the field acts on",
+      "unit": "A",
+      "section": "22.7"
+    },
+    {
+      "sym": "l",
+      "meaning": "the width of the conductor across which the Hall emf appears, or the length of wire that lies in the field",
+      "unit": "m",
+      "section": "22.6"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area of the current loop, which the torque is proportional to",
+      "unit": "m²",
+      "section": "22.8"
+    },
+    {
+      "sym": "N_count",
+      "meaning": "the number of turns in the loop or coil, each of which feels the same torque",
+      "unit": "",
+      "section": "22.8"
+    },
+    {
+      "sym": "w_loop",
+      "meaning": "the width of the rectangular loop, which is twice the distance from the shaft to each vertical side",
+      "unit": "m",
+      "section": "22.8"
+    },
+    {
+      "sym": "τ",
+      "type": "torque",
+      "meaning": "the torque the field exerts on the current loop about the shaft it is mounted on",
+      "unit": "N⋅m",
+      "section": "22.8"
+    },
+    {
+      "sym": "μ_0",
+      "meaning": "the permeability of free space, one of the basic constants of nature, exactly $4\\pi \\times 10^{-7}\\;\\text{T}\\cdot\\text{m/A}$",
+      "unit": "T⋅m/A",
+      "section": "22.9"
+    },
+    {
+      "sym": "R",
+      "type": "position",
+      "meaning": "the radius of the circular loop of wire whose field is wanted at its centre",
+      "unit": "m",
+      "section": "22.9"
+    },
+    {
+      "sym": "n",
+      "meaning": "the number of loops per unit length of the solenoid, $n = N/l$",
+      "unit": "1/m",
+      "section": "22.9"
+    },
+    {
+      "sym": "B_1mag",
+      "type": "magnetic-field",
+      "meaning": "the field the first wire makes at the position of the second, which is what exerts the force on it",
+      "unit": "T",
+      "section": "22.10"
+    }
+  ],
+  "equations": [
+    {
+      "id": "eq-magnetic-force",
+      "concept": "magnetic-force-on-a-moving-charge",
+      "section": "22.4",
+      "latex": "F = qvB\\sin\\theta",
+      "ktex": "\\kF = \\kq\\kv\\kBmag\\sin\\theta",
+      "important": true
+    },
+    {
+      "id": "eq-field-from-force",
+      "concept": "magnetic-field-strength-defined",
+      "section": "22.4",
+      "latex": "B = \\frac{F}{qv\\sin\\theta}",
+      "ktex": "\\kBmag = \\frac{\\kF}{\\kq\\kv\\sin\\theta}",
+      "important": true
+    },
+    {
+      "id": "eq-tesla",
+      "concept": "the-tesla",
+      "section": "22.4",
+      "latex": "1\\;\\text{T} = \\frac{1\\;\\text{N}}{\\text{C}\\cdot\\text{m/s}} = \\frac{1\\;\\text{N}}{\\text{A}\\cdot\\text{m}}",
+      "important": true
+    },
+    {
+      "id": "eq-magnetic-force-is-centripetal",
+      "concept": "circular-motion-in-a-magnetic-field",
+      "section": "22.5",
+      "latex": "qvB = \\frac{mv^2}{r}",
+      "ktex": "\\kq\\kv\\kBmag = \\frac{m\\kv^2}{\\kr}",
+      "important": true
+    },
+    {
+      "id": "eq-radius-of-curvature",
+      "concept": "radius-of-curvature",
+      "section": "22.5",
+      "latex": "r = \\frac{mv}{qB}",
+      "ktex": "\\kr = \\frac{m\\kv}{\\kq\\kBmag}",
+      "important": true
+    },
+    {
+      "id": "eq-hall-force-balance",
+      "concept": "hall-effect",
+      "section": "22.6",
+      "latex": "qE = qvB \\quad\\text{so}\\quad E = vB",
+      "ktex": "\\kq\\kEf = \\kq\\kv\\kBmag \\quad\\text{so}\\quad \\kEf = \\kv\\kBmag",
+      "important": true
+    },
+    {
+      "id": "eq-hall-emf",
+      "concept": "hall-emf",
+      "section": "22.6",
+      "latex": "\\varepsilon = Blv",
+      "important": true,
+      "ktex": "\\kemfhall = \\kBmag l \\kv"
+    },
+    {
+      "id": "eq-force-on-a-current",
+      "concept": "magnetic-force-on-a-current-carrying-wire",
+      "section": "22.7",
+      "latex": "F = IlB\\sin\\theta",
+      "important": true,
+      "ktex": "\\kF = \\kIcur l \\kBmag\\sin\\theta"
+    },
+    {
+      "id": "eq-force-per-length-on-a-current",
+      "concept": "force-per-unit-length-on-a-wire",
+      "section": "22.7",
+      "latex": "\\frac{F}{l} = IB\\sin\\theta",
+      "important": true,
+      "ktex": "\\frac{\\kF}{l} = \\kIcur\\kBmag\\sin\\theta"
+    },
+    {
+      "id": "eq-torque-one-turn",
+      "concept": "torque-on-a-current-loop",
+      "section": "22.8",
+      "latex": "\\tau = wIlB\\sin\\theta",
+      "important": true,
+      "ktex": "\\ktau = w\\kIcur l \\kBmag\\sin\\theta"
+    },
+    {
+      "id": "eq-torque-on-a-loop",
+      "concept": "torque-on-a-current-loop",
+      "section": "22.8",
+      "latex": "\\tau = NIAB\\sin\\theta",
+      "important": true,
+      "ktex": "\\ktau = N\\kIcur A\\kBmag\\sin\\theta"
+    },
+    {
+      "id": "eq-maximum-torque",
+      "concept": "torque-varies-with-angle",
+      "section": "22.8",
+      "latex": "\\tau_{\\text{max}} = NIAB",
+      "important": true
+    },
+    {
+      "id": "eq-field-of-a-straight-wire",
+      "concept": "field-of-a-long-straight-wire",
+      "section": "22.9",
+      "latex": "B = \\frac{\\mu_0 I}{2\\pi r}",
+      "important": true,
+      "ktex": "\\kBmag = \\frac{\\mu_0\\kIcur}{2\\pi\\kr}"
+    },
+    {
+      "id": "eq-field-at-centre-of-a-loop",
+      "concept": "field-at-the-centre-of-a-loop",
+      "section": "22.9",
+      "latex": "B = \\frac{\\mu_0 I}{2R}",
+      "important": true,
+      "ktex": "\\kBmag = \\frac{\\mu_0\\kIcur}{2\\kR}"
+    },
+    {
+      "id": "eq-field-of-a-flat-coil",
+      "concept": "field-at-the-centre-of-a-loop",
+      "section": "22.9",
+      "latex": "B = \\frac{N\\mu_0 I}{2R}",
+      "important": true,
+      "ktex": "\\kBmag = \\frac{N\\mu_0\\kIcur}{2\\kR}"
+    },
+    {
+      "id": "eq-field-inside-a-solenoid",
+      "concept": "field-inside-a-solenoid",
+      "section": "22.9",
+      "latex": "B = \\mu_0 nI",
+      "important": true,
+      "ktex": "\\kBmag = \\mu_0 n\\kIcur"
+    },
+    {
+      "id": "eq-turns-per-unit-length",
+      "concept": "field-inside-a-solenoid",
+      "section": "22.9",
+      "latex": "n = \\frac{N}{l}",
+      "important": true
+    },
+    {
+      "id": "eq-field-of-wire-one",
+      "concept": "force-between-parallel-currents",
+      "section": "22.10",
+      "latex": "B_1 = \\frac{\\mu_0 I_1}{2\\pi r}",
+      "important": true,
+      "ktex": "\\kBmagone = \\frac{\\mu_0\\kIcurone}{2\\pi\\kr}"
+    },
+    {
+      "id": "eq-force-on-wire-two",
+      "concept": "force-between-parallel-currents",
+      "section": "22.10",
+      "latex": "F_2 = I_2 l B_1",
+      "important": true,
+      "ktex": "\\kFtwo = \\kIcurtwo l \\kBmagone"
+    },
+    {
+      "id": "eq-force-per-length-parallel",
+      "concept": "force-between-parallel-currents",
+      "section": "22.10",
+      "latex": "\\frac{F}{l} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}",
+      "important": true,
+      "ktex": "\\frac{\\kF}{l} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr}"
+    },
+    {
+      "id": "eq-the-ampere",
+      "concept": "definition-of-the-ampere",
+      "section": "22.10",
+      "latex": "\\frac{F}{l} = \\frac{(4\\pi \\times 10^{-7}\\;\\text{T}\\cdot\\text{m/A})(1\\;\\text{A})^2}{(2\\pi)(1\\;\\text{m})} = 2 \\times 10^{-7}\\;\\text{N/m}",
+      "important": true
+    },
+    {
+      "id": "eq-velocity-selector",
+      "concept": "velocity-selector",
+      "section": "22.11",
+      "latex": "v = \\frac{E}{B}",
+      "ktex": "\\kv = \\frac{\\kEf}{\\kBmag}",
+      "important": true
+    },
+    {
+      "id": "eq-mass-spectrometer-radius",
+      "concept": "mass-spectrometry",
+      "section": "22.11",
+      "latex": "r = \\frac{mv}{qB}",
+      "ktex": "\\kr = \\frac{m\\kv}{\\kq\\kBmag}",
+      "important": true
+    }
+  ],
+  "glossary": [
+    {
+      "section": "22.1",
+      "term": "north magnetic pole",
+      "definition": "the end or the side of a magnet that is attracted toward Earth’s geographic north pole"
+    },
+    {
+      "section": "22.1",
+      "term": "south magnetic pole",
+      "definition": "the end or the side of a magnet that is attracted toward Earth’s geographic south pole"
+    },
+    {
+      "section": "22.2",
+      "term": "ferromagnetic",
+      "definition": "materials, such as iron, cobalt, nickel, and gadolinium, that exhibit strong magnetic effects"
+    },
+    {
+      "section": "22.2",
+      "term": "magnetized",
+      "definition": "to be turned into a magnet; to be induced to be magnetic"
+    },
+    {
+      "section": "22.2",
+      "term": "domains",
+      "definition": "regions within a material that behave like small bar magnets"
+    },
+    {
+      "section": "22.2",
+      "term": "Curie temperature",
+      "definition": "the temperature above which a ferromagnetic material cannot be magnetized"
+    },
+    {
+      "section": "22.2",
+      "term": "electromagnetism",
+      "definition": "the use of electrical currents to induce magnetism"
+    },
+    {
+      "section": "22.2",
+      "term": "electromagnet",
+      "definition": "an object that is temporarily magnetic when an electrical current is passed through it"
+    },
+    {
+      "section": "22.2",
+      "term": "magnetic monopoles",
+      "definition": "an isolated magnetic pole; a south pole without a north pole, or vice versa (no magnetic monopole has ever been observed)"
+    },
+    {
+      "section": "22.3",
+      "term": "magnetic field",
+      "definition": "the representation of magnetic forces"
+    },
+    {
+      "section": "22.3",
+      "term": "B-field",
+      "definition": "another term for magnetic field"
+    },
+    {
+      "section": "22.3",
+      "term": "magnetic field lines",
+      "definition": "the pictorial representation of the strength and the direction of a magnetic field"
+    },
+    {
+      "section": "22.3",
+      "term": "direction of magnetic field lines",
+      "definition": "the direction that the north end of a compass needle points"
+    },
+    {
+      "section": "22.4",
+      "term": "right hand rule 1 (RHR-1)",
+      "definition": "the rule to determine the direction of the magnetic force on a positive moving charge: when the thumb of the right hand points in the direction of the charge’s velocity $v$ and the fingers point in the direction of the magnetic field $B$, then the force on the charge is perpendicular and away from the palm; the force on a negative charge is perpendicular and into the palm"
+    },
+    {
+      "section": "22.4",
+      "term": "Lorentz force",
+      "definition": "the force on a charge moving in a magnetic field"
+    },
+    {
+      "section": "22.4",
+      "term": "tesla",
+      "definition": "T, the SI unit of the magnetic field strength; $1\\;\\text{T} = \\frac{1\\;\\text{N}}{\\text{A}\\cdot\\text{m}}$"
+    },
+    {
+      "section": "22.4",
+      "term": "magnetic force",
+      "definition": "the force on a charge produced by its motion through a magnetic field; the Lorentz force"
+    },
+    {
+      "section": "22.4",
+      "term": "gauss",
+      "definition": "G, the unit of the magnetic field strength; $1\\;\\text{G} = 10^{-4}\\;\\text{T}$"
+    },
+    {
+      "section": "22.6",
+      "term": "Hall effect",
+      "definition": "the creation of voltage across a current-carrying conductor by a magnetic field"
+    },
+    {
+      "section": "22.6",
+      "term": "Hall emf",
+      "definition": "the electromotive force created by a current-carrying conductor by a magnetic field, $\\varepsilon = Blv$"
+    },
+    {
+      "section": "22.8",
+      "term": "motor",
+      "definition": "loop of wire in a magnetic field; when current is passed through the loops, the magnetic field exerts torque on the loops, which rotates a shaft; electrical energy is converted to mechanical work in the process"
+    },
+    {
+      "section": "22.8",
+      "term": "meter",
+      "definition": "common application of magnetic torque on a current-carrying loop that is very similar in construction to a motor; by design, the torque is proportional to $I$ and not $\\theta$, so the needle deflection is proportional to the current"
+    },
+    {
+      "section": "22.9",
+      "term": "right hand rule 2 (RHR-2)",
+      "definition": "a rule to determine the direction of the magnetic field induced by a current-carrying wire: Point the thumb of the right hand in the direction of current, and the fingers curl in the direction of the magnetic field loops"
+    },
+    {
+      "section": "22.9",
+      "term": "magnetic field strength (magnitude) produced by a long straight current-carrying wire",
+      "definition": "defined as $B = \\frac{\\mu_0 I}{2\\pi r}$, where $I$ is the current, $r$ is the shortest distance to the wire, and $\\mu_0$ is the permeability of free space"
+    },
+    {
+      "section": "22.9",
+      "term": "permeability of free space",
+      "definition": "the measure of the ability of a material, in this case free space, to support a magnetic field; the constant $\\mu_0 = 4\\pi \\times 10^{-7}\\;\\text{T}\\cdot\\text{m/A}$"
+    },
+    {
+      "section": "22.9",
+      "term": "magnetic field strength at the center of a circular loop",
+      "definition": "defined as $B = \\frac{\\mu_0 I}{2R}$ where $R$ is the radius of the loop"
+    },
+    {
+      "section": "22.9",
+      "term": "solenoid",
+      "definition": "a thin wire wound into a coil that produces a magnetic field when an electric current is passed through it"
+    },
+    {
+      "section": "22.9",
+      "term": "magnetic field strength inside a solenoid",
+      "definition": "defined as $B = \\mu_0 nI$ where $n$ is the number of loops per unit length of the solenoid ($n = N/l$, with $N$ being the number of loops and $l$ the length)"
+    },
+    {
+      "section": "22.9",
+      "term": "Biot-Savart law",
+      "definition": "a physical law that describes the magnetic field generated by an electric current in terms of a specific equation"
+    },
+    {
+      "section": "22.9",
+      "term": "Ampere’s law",
+      "definition": "the physical law that states that the magnetic field around an electric current is proportional to the current; each segment of current produces a magnetic field like that of a long straight wire, and the total field of any shape current is the vector sum of the fields due to each segment"
+    },
+    {
+      "section": "22.9",
+      "term": "Maxwell’s equations",
+      "definition": "a set of four equations that describe electromagnetic phenomena"
+    },
+    {
+      "section": "22.11",
+      "term": "magnetic resonance imaging (MRI)",
+      "definition": "a medical imaging technique that uses magnetic fields create detailed images of internal tissues and organs"
+    },
+    {
+      "section": "22.11",
+      "term": "nuclear magnetic resonance (NMR)",
+      "definition": "a phenomenon in which an externally applied magnetic field interacts with the nuclei of certain atoms"
+    },
+    {
+      "section": "22.11",
+      "term": "magnetocardiogram (MCG)",
+      "definition": "a recording of the heart’s magnetic field as it beats"
+    },
+    {
+      "section": "22.11",
+      "term": "magnetoencephalogram (MEG)",
+      "definition": "a measurement of the brain’s magnetic field"
+    }
+  ]
+}

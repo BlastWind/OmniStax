@@ -72,9 +72,12 @@ Torque, `ch09`), 10 (Rotational Motion and Angular Momentum, `ch10`), 11
 (Fluid Statics, `ch11`), 12 (Fluid Dynamics and Its Biological and
 Medical Applications, `ch12`), 13 (Temperature, Kinetic Theory, and the
 Gas Laws, `ch13`), 14 (Heat and Heat Transfer Methods, `ch14`), 15
-(Thermodynamics, `ch15`) and 16 (Oscillatory Motion and Waves, `ch16`).
+(Thermodynamics, `ch15`), 16 (Oscillatory Motion and Waves, `ch16`), 17
+(Physics of Hearing, `ch17`), 18 (Electric Charge and Electric Field,
+`ch18`) and 19 (Electric Potential and Electric Field, `ch19`).
 Chapters 4 to 9 were built in one job on 2026-09-11 (LOG passes 27 to
-33) and 10 to 15 on 2026-09-14 (LOG passes 35 to 40), both under
+33), 10 to 15 on 2026-09-14 (LOG passes 35 to 40), and 16.7 to 16.11
+with 17 to 19 on 2026-09-14 and 15 (LOG passes 41 to 44), all under
 `Plan.md` at the repository root. A chapter
 folder is `ch` followed by the two-digit chapter number. The whole table
 of contents is in `toc.md`. Every built chapter's introduction and the
@@ -151,16 +154,19 @@ its figures draw and its readouts colour, staged in its `book-rows.json`
 and merged: stress and elastic modulus (5), power (7), torque (9),
 momentum (8), angular acceleration, moment of inertia and angular
 momentum (10), pressure, density and surface tension (11), flow rate and
-viscosity (12), temperature (13), entropy (15), twenty-four in all. Mass,
+viscosity (12), temperature (13), entropy (15), intensity (17), charge and
+electric field (18), voltage and capacitance (19), twenty-nine in all. Mass,
 length, angle, count, amount of substance and every material constant
 (a specific heat, a latent heat, a conductivity, an emissivity, an
 expansion coefficient) are not typed and stay in ink; heat is an energy
-and a rate of heat transfer is a power. With this many types the scheme's
-hues crowd (Chapters 11 to 15 report pressure, density, energy, position,
-temperature and entropy drawn in near-identical magentas, pressure and
-surface tension in pale yellows on the light theme); a page binds only the
-types it draws, which keeps most pages to three or four hues, and the
-scheme itself is the app's matter.
+and a rate of heat transfer is a power. With this many types a hue must still be legible and distinct: since
+2026-09-15 the app's scheme for a book of up to thirty types is a fixed
+palette of thirty hues at one lightness, dealt to the declared order so
+that neighbours in the order and quantities drawn together on one page
+(force with pressure, position with velocity and acceleration, energy
+with temperature and entropy, voltage with the electric field) stay far
+apart, each hue reading against both grounds; a page binds only the
+types it draws, and the scheme itself is the app's matter.
 
 Variants of one type share its hue and differ by decoration: an initial
 value (subscript 0) is hollow or dashed, an average (bar) is dashed, a

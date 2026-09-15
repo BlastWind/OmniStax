@@ -8,6 +8,17 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 /* a number in scientific notation for the readout, 6.53 × 10⁴ */
 function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times10^{${e}}`; }
 const sgn = (v) => (v < 0 ? '−' : '+');
+/* The marks x = −X, 0, +X under a floor at y, X in the scene's own units per metre. When the
+   amplitude is small the outer two labels step down a row and lean away from the centre, so
+   that no label sits on another at any setting of the amplitude slider. */
+function marks(ctx, eq, SC, X, y, tick, dy, labels = ['x = −X', 'x = 0', 'x = +X']) {
+  const close = 2 * X * SC < 150;
+  [[-X, labels[0], -1], [0, labels[1], 0], [X, labels[2], 1]].forEach(([val, lab, i]) => {
+    const px = eq + val * SC; line(ctx, px, y, px, y + tick, C('position'), 3);
+    const out = close && i !== 0;
+    text(ctx, lab, px + (out ? i * 8 : 0), y + dy + (out ? 26 : 0), C('position'), { size: 20, weight: 600, align: out ? (i < 0 ? 'right' : 'left') : 'center' });
+  });
+}
 /* a horizontal oscillator: wall, spring and block on a floor, the block at x meters from equilibrium */
 function oscillator(ctx, wall, eq, floorY, x, SC, label) {
   fixed(ctx, wall - 44, floorY - 116, 44, 116);
@@ -40,10 +51,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
     strip(ctx, 100, 1300, floorY + 12, 24);
     const { bx, by } = oscillator(ctx, 200, eq, floorY, x, SC, 'm = ' + fmt(m.v, 1) + ' kg');
     /* the marks x = -X, 0, +X on the floor */
-    for (const [val, lab] of [[-X.v, 'x = −X'], [0, 'x = 0'], [X.v, 'x = +X']]) {
-      const px = eq + val * SC; line(ctx, px, floorY + 24, px, floorY + 44, C('position'), 3);
-      text(ctx, lab, px, floorY + 68, C('position'), { size: 20, weight: 600, align: 'center' });
-    }
+    marks(ctx, eq, SC, X.v, floorY + 24, 20, 44);
     line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     /* the arrows: restoring force on the block, velocity above it */
     if (Math.abs(Fn) > 0.02 * k.v * X.v) {
@@ -97,7 +105,9 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
     const TMAX = 3, box = { l: 200, r: 1240, t: 440, b: 640 };
     const { X: gx, Y: gy } = axes(ctx, box, [0, 2000], [0, TMAX], { xl: 'mass m (kg)', xc: PAL.ink, yl: 'T (s)', yc: C('time'), nx: 4, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     curve(ctx, Tof, 0, 2000, gx, gy, C('time'), 4, 100);
-    text(ctx, 'T = 2π√(m/k)', gx(1500) + 10, gy(Tof(1500)) + 38, C('time'), { weight: 600, size: 20 });
+    /* the curve's name sits in the top left corner of the box, which the curve never reaches: at
+       the left the period is small at every setting of the sliders */
+    text(ctx, 'T = 2π√(m/k)', box.l + 16, box.t + 22, C('time'), { weight: 600, size: 20 });
     line(ctx, gx(m.v), box.b, gx(m.v), gy(T()), PAL.ink, 2, [4, 8]); line(ctx, box.l, gy(T()), gx(m.v), gy(T()), C('time'), 2, [4, 8]);
     dot(ctx, gx(m.v), gy(T()), C('time'), true, 9);
     headline(ctx, 'A mass of ' + fmt(m.v, 0) + ' kg on a suspension of ' + fmt(k.v / 1000, 1) + '×10³ N/m gives T = ' + fmt(T(), 3) + ' s, and both amplitudes share it');
@@ -127,13 +137,14 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
        relabelling the ticks underneath it. */
     const S = 6, NS = 6;
     const tau = REDUCED ? S : cy.now(), x = xAt(tau), tc = tau % T.v;
-    const cx = 210, y0 = 400, SC = 1600, yOf = (val) => y0 - val * SC;
+    /* the mass hangs at x = 260, which leaves the bracket on its left room for its label */
+    const cx = 260, y0 = 400, SC = 1600, yOf = (val) => y0 - val * SC;
     /* the paper: a band moving left, the pen fixed at its left edge */
     const pl = 340, pr = 1250, pt = 200, pb = 600;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(pl, pt, pr - pl, pb - pt); ctx.restore();
     line(ctx, pl, pt, pl, pb, PAL.rule, 2); line(ctx, pr, pt, pr, pb, PAL.rule, 2);
     const Xp = (s) => pl + ((pr - pl) * -s) / S;   /* s = time before now, 0 at the pen */
-    line(ctx, 120, y0, pr, y0, PAL.muted, 2, [10, 10]);
+    line(ctx, cx - 130, y0, pr, y0, PAL.muted, 2, [10, 10]);
     for (const [val, lab] of [[X.v, 'x = +X'], [0, '0'], [-X.v, '−X']]) { line(ctx, pr, yOf(val), pr + 12, yOf(val), C('position'), 3); text(ctx, lab, pr + 20, yOf(val), C('position'), { size: 20, weight: 600 }); }
     const t0 = Math.max(0, tau - S);
     if (tau > 0) curve(ctx, (s) => xAt(tau + s), t0 - tau, 0, Xp, yOf, C('position'), 4, Math.min(3000, Math.ceil(40 * (tau - t0) / T.v) + 20));
@@ -148,7 +159,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
     spring(ctx, cx, 130, cx, by - 28, 10, 24, PAL.ink, 4);
     block(ctx, cx, by, 80, 56, PAL.ink); text(ctx, 'm', cx, by + 46, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, cx + 40, by, pl, by, PAL.ink, 4); dot(ctx, pl, by, C('position'), true, 8);
-    if (Math.abs(x) > 0.004) vbracket(ctx, cx - 70, y0, by, C('position'), 'x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m', -1);
+    if (Math.abs(x) > 0.004) vbracket(ctx, cx - 64, y0, by, C('position'), 'x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m', -1, { size: 20 });
     headline(ctx, 'At ' + fmt(tc, 2) + ' s into a cycle of ' + fmt(T.v, 2) + ' s the mass is at x = X cos(2πt/T) = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m');
     readout(d.readout, `\\kx(\\kt) = \\kX\\cos\\frac{2\\pi\\kt}{\\kT} = (${fmt(X.v, 3)}\\ \\text{m})\\cos\\frac{2\\pi(${fmt(tc, 2)}\\ \\text{s})}{${fmt(T.v, 2)}\\ \\text{s}} = ${sgn(x)}${fmt(Math.abs(x), 3)}\\ \\text{m}`,
       'At t = 0 the mass is at x = X, and at t = T it is back there again, because cos 2π = 1. The paper moves at a steady speed, so equal distances along it are equal times.');

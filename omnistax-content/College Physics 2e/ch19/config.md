@@ -101,19 +101,71 @@ Rows this chapter stages, with the sections that write them:
 | `n_e` | `n_{\text{e}}` | — | — | 19.1 |
 | `ε_0` | `\varepsilon_0` | — | — | 19.5 |
 
-Twenty-five rows in all, and two types, `voltage` and `capacitance`. The
+Twenty-six rows in all (the `κ` row below was added by the chapter pass),
+and two types, `voltage` and `capacitance`. The
 charge and field rows are staged with the types `charge` and
 `electric-field`, which Chapter 18 declared and merged before this chapter
 did. Chapter 18's modules never write the permittivity of free space, so
 `ε_0` is this chapter's row, untyped and with no macro, as Chapter 13's
-`k_boltz` is. The dielectric constant $\kappa$ has **no** symbol row: its
-LaTeX `\kappa` begins with `\k` and the app's symbols test reads every
-`\k…` in the table as a macro, so the page writes it in plain `\kappa` and
-the hover layer does not know it; the row is withdrawn rather than the test
-changed, and the report names it.
+`k_boltz` is. The dielectric constant `κ` (LaTeX `\kappa`, untyped, no
+macro) is a row of this chapter too, added by the chapter pass once the
+app's symbols test was corrected to hold only a row that claims a macro to
+the `\k` spelling; 19.5 writes it and the hover layer names it.
 
 Rows used as they stand: `PE` (`\kPEtot`), `ΔPE` (`\kdPE`), `PE_i`, `PE_f`,
 `KE` (`\kKE`), `KE_i`, `KE_f`, `W` (`\kW`), `F` (`\kF`), `v` (`\kv`), `d`
 (`\kd`), `r_curv` (`\kr`), `Δs` (`\kds`), `A`, `m`, `h` (`\kh`), `g` (`\kg`),
 `PE_g` (`\kPEg`) and Chapter 18's `q`, `Q_charge`, `q_e`, `q_1`, `q_2`,
 `k_coul`, `m_e` and `E_field` (`\kEf`) by the keys its `book-rows.json` staged.
+
+## What the build changed (chapter pass, 2026-09-14)
+
+The table above is corrected where a line needed a word after the seven
+sections were built. Everything else stood as it was proposed.
+
+- **The dielectric constant has a symbol row after all.** The app's symbols
+  test no longer refuses an untyped row whose LaTeX begins with `\k`, since
+  an untyped symbol's entry is its own LaTeX and `\kappa` begins that way on
+  its own account. The row `κ` (LaTeX `\kappa`, no type, no macro) is staged
+  and merged with the rest, which makes twenty-six symbol rows, not
+  twenty-five, and 19.5 writes the dielectric constant through it, so the
+  hover layer names it as it names every other symbol of the chapter. The
+  constant is still untyped and still in ink, as the colour plan asks.
+- **The permittivity of free space stays here.** Chapter 18's modules never
+  write $\varepsilon_0$, so the row belongs to Chapter 19 as it was staged.
+- **Weights carry their mark.** The schema now accepts `"weights_by": "ai"`
+  on an `exercise_concepts` row, so root rule 20 is followed as written and
+  every weighted row of the chapter carries the mark; fifty-four rows in
+  19.1, 19.2 and 19.3 were given it in this pass and the other four sections
+  had written it already.
+- **Voltage and electric field wear neighbouring hues.** The book declares
+  twenty-nine types and the scheme lays its hues evenly round the circle in
+  that order, so `electric-field` and `voltage`, two apart in the order, come
+  out close enough that a reader who glances at a map of field lines and
+  equipotential lines may not tell one from the other by hue alone. No hue is
+  invented for either, since a colour belongs to a type and the scheme is the
+  app's matter. The figures carry the difference in their drawing instead, as
+  the colour plan asks: a field line carries an arrowhead and an equipotential
+  line carries its voltage in volts, and the reader may set either hue for the
+  chapter or for the page from the colour view.
+- **19.4's page carries no problems.** All ten of the section's problems ask
+  the reader to sketch equipotential lines and the book keys none of them, so
+  by the job's rule every one is left out and the page's Exercises tab holds
+  its three conceptual questions and its eight test prep items alone. The six
+  images those problems carry are not copied. Chen may override this and keep
+  them as open sketching items with their images on the cards, which is the
+  only thing the chapter leaves on the table.
+- **Motion.** Four of the chapter's twenty-one drawn figures register a
+  cycle and take the app's transport: the electrical hill of 19.1, where the
+  charge falls through the potential difference, the battery and its headlight
+  in the same section, whose electrons flow without end, the electron gun,
+  which accelerates its particle across the gap, and the cell membrane of
+  19.5, whose ions diffuse until the Coulomb force halts them. The other
+  seventeen answer their sliders and take no transport.
+- **Folds.** Two figures fold: 19.4's equipotential map carries Figures 19.8,
+  19.9 and 19.10 under one engine with the arrangement as a choice, and
+  19.6's circuit carries Figures 19.20 and 19.21 with the connection as a
+  choice. 19.4's plates (19.11) and 19.6's mixed circuit (19.22) stand alone,
+  and 19.5's Figures 19.13 and 19.15 were built as two figures rather than
+  folded, since one draws the charge against the voltage and the other the
+  plates against their area and separation.

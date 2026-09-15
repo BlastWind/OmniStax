@@ -169,7 +169,8 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
     text(ctx, 'atmospheric', gx + (GR + 30) * Math.cos(aa), gy + (GR + 30) * Math.sin(aa) - 4, PAL.muted, { size: 15, align: 'right' });
     text(ctx, '× 10⁵ Pa', gx, gy + GR * 0.45, PAL.muted, { size: 16, align: 'center' });
     const an = ang(Math.min(PMAX, P / 1e5));
-    arrow(ctx, gx - 22 * Math.cos(an), gy - 22 * Math.sin(an), gx + (GR - 72) * Math.cos(an), gy + (GR - 72) * Math.sin(an), pc, 5);
+    arrow(ctx, gx - 22 * Math.cos(an), gy - 22 * Math.sin(an), gx + (GR - 72) * Math.cos(an), gy + (GR - 72) * Math.sin(an), PAL.ink, 8);
+    arrow(ctx, gx - 22 * Math.cos(an), gy - 22 * Math.sin(an), gx + (GR - 72) * Math.cos(an), gy + (GR - 72) * Math.sin(an), pc, 4);
     dot(ctx, gx, gy, PAL.ink, true, 8);
   }
   function draw() {

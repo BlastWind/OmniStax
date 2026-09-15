@@ -269,6 +269,8 @@ Extra simulations (rule 15), thought through, judged and decided:
 - Foote's flasks in the sun. Left: the paragraph is history, and the
   greenhouse figure already carries the physics she measured.
 
+Figure pass (2026-09-15, Claude Fable 5.1). Every figure was screenshot at its default and slider extremes in both themes and looked at. `sim-radiation-balance`: the stick figure is a filled silhouette standing on the floor, and the label of its skin temperature, which collided with the walls' label above the head, sits under the floor line beneath its feet. `sim-spectrum`, `sim-blocks`, `sim-fourth-power` and `sim-greenhouse` were found clean and are unchanged.
+
 ## Exercises
 
 - The Check Your Understanding box (fs-id3153791, a body at 20 °C compared

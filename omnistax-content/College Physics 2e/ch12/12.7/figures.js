@@ -269,16 +269,16 @@ const TABLE = [
         else molecule(ctx, ML - rOf(k) - 4, py, i);
       });
       const okNames = KINDS.filter((k, i) => passes[i]).map((k) => k.name), noNames = KINDS.filter((k, i) => !passes[i]).map((k) => k.name);
-      text(ctx, okNames.length ? 'through the pores: ' + okNames.join(', ') : 'nothing gets through', MR + 40, BOT - 20, PAL.ink, { size: 19, weight: 600 });
-      text(ctx, noNames.length ? 'held back: ' + noNames.join(', ') : 'nothing is held back', ML - 40, BOT - 20, PAL.ink, { size: 19, weight: 600, align: 'right' });
+      text(ctx, okNames.length ? 'through the pores: ' + okNames.join(', ') : 'nothing gets through', MR + 40, BOT + 50, PAL.ink, { size: 19, weight: 600 });
+      text(ctx, noNames.length ? 'held back: ' + noNames.join(', ') : 'nothing is held back', ML - 40, BOT + 50, PAL.ink, { size: 19, weight: 600, align: 'right' });
     } else {
       /* the dissolving membrane: molecules of every size are on both sides, and a few sit inside the membrane on their way across */
       RIGHT.forEach((p) => molecule(ctx, p.x, p.y, p.k));
       [[0.22, 0.14], [0.7, 0.3], [0.4, 0.5], [0.78, 0.68], [0.3, 0.86]].forEach(([u, v], i) => molecule(ctx, ML + 16 + u * (MR - ML - 32), TOP + 30 + v * (BOT - TOP - 60), i === 3 ? 1 : 0));
       text(ctx, 'dissolved in the membrane, on the way across', (ML + MR) / 2, BOT + 50, PAL.ink, { size: 19, weight: 600, align: 'center' });
     }
-    text(ctx, 'region 1', 110, TOP + 16, PAL.muted, { size: 19 });
-    text(ctx, 'region 2', 1300, TOP + 16, PAL.muted, { size: 19, align: 'right' });
+    text(ctx, 'region 1', 60, TOP - 14, PAL.muted, { size: 19, bg: PAL.panel });
+    text(ctx, 'region 2', 1340, TOP - 14, PAL.muted, { size: 19, align: 'right', bg: PAL.panel });
     const names = KINDS.filter((k, i) => passes[i]).map((k) => k.name);
     topline(ctx, !porous ? 'This membrane has no pores; the molecules that cross it dissolve in it and diffuse through, whatever their size.'
       : names.length === 0 ? 'Pores ' + fmt(pw, 1) + ' nm wide are narrower than every molecule here, so nothing gets through.'
@@ -352,8 +352,8 @@ const TABLE = [
     } else text(ctx, 'h = 0', BR + 50, yl, xc, { size: 22, weight: 600 });
     /* the two pressures at the membrane, drawn from it, and the net transfer beneath the beaker */
     const K = 90, ya = (yl + BB) / 2 - 24, yb = ya + 48;
-    if (P > 0) { arrow(ctx, MX, ya, MX + K * P, ya, pc, 5); text(ctx, 'osmotic pressure ' + fmt(P, 2) + ' kPa', MX + K * P + 12, ya, pc, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.9) }); }
-    if (bp > 0) { arrow(ctx, MX, yb, MX - K * bp, yb, pc, 5); text(ctx, 'back pressure ρgh = ' + fmt(bp, 2) + ' kPa', MX - K * bp - 12, yb, pc, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) }); }
+    if (P > 0) { arrow(ctx, MX, ya, MX + K * P, ya, pc, 5); text(ctx, 'osmotic pressure ' + fmt(P, 2) + ' kPa', MX + K * P + 12, ya, pc, { size: 19, weight: 600, bg: PAL.panel }); }
+    if (bp > 0) { arrow(ctx, MX, yb, MX - K * bp, yb, pc, 5); text(ctx, 'back pressure ρgh = ' + fmt(bp, 2) + ' kPa', MX - K * bp - 12, yb, pc, { size: 19, weight: 600, align: 'right', bg: PAL.panel }); }
     const yn = BB + 92;
     if (balanced) text(ctx, P > 0 ? 'the two pressures balance: the net transfer of water is zero' : 'no osmotic pressure and no back pressure: nothing moves', MX, yn, PAL.ink, { size: 20, weight: 600, align: 'center' });
     else {

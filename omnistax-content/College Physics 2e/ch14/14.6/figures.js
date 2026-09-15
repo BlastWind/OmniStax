@@ -5,7 +5,7 @@
    sliders. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['14.6'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, pinned, curve, labeller, person } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, pinned, curve, labeller, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -171,7 +171,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(L, CE, R - L, FL - CE); ctx.restore();
     line(ctx, L - 40, FL, R + 40, FL, PAL.ink, 4); line(ctx, L, FL, L, CE, PAL.ink, 3); line(ctx, R, FL, R, CE, PAL.ink, 3);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(L - 40, CE); ctx.lineTo((L + R) / 2, 130); ctx.lineTo(R + 40, CE); ctx.closePath(); ctx.stroke();
-    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.strokeRect(330, 280, 110, 80); ctx.strokeRect(520, 360, 60, 110); ctx.restore();
+    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.strokeRect(330, 280, 110, 80); ctx.strokeRect(160, 340, 60, 130); ctx.restore();
     /* cold air in at the cracks of the left wall, warm air out at the right: symbolic arrows in ink */
     [300, 420].forEach((y) => arrow(ctx, L - 70, y, L + 40, y, PAL.ink, 4));
     [270, 400].forEach((y) => arrow(ctx, R - 40, y, R + 70, y, PAL.ink, 4));
@@ -183,7 +183,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     const pc = C('power'), m = RHO * Vs.v, Q = m * CP * dT.v, tsec = ts.v * 3600, P = Q / tsec, kW = P / 1000, bulbs = Math.round(P / 100);
     house(ctx);
     text(ctx, `V = ${fmt(Vs.v, 0)} m³ of air, m = ρV = ${fmt(m, 0)} kg`, 380, 245, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, `replaced once every ${fmt(ts.v, 2)} h, warmed by ${fmt(dT.v, 1)} °C`, 380, 425, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, `replaced once every ${fmt(ts.v, 2)} h, warmed by ${fmt(dT.v, 1)} °C`, 420, 425, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the bar of watts */
     text(ctx, 'rate of heat transfer Q/t (kW)', BAR.l, BAR.y - 34, pc, { size: 20, weight: 600 });
     ctx.save(); ctx.fillStyle = alpha(pc, 0.15); ctx.fillRect(BAR.l, BAR.y - BAR.h / 2, BAR.r - BAR.l, BAR.h);
@@ -249,7 +249,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     hits.length = 0;
     /* the person in the wind, the wind drawn as arrows whose length follows the speed */
     line(ctx, 60, 520, 470, 520, PAL.muted, 3);
-    person(ctx, 300, 520, PAL.ink, { s: 2.6, face: -1 });
+    silhouette(ctx, { x: 300, y: 520, s: 2.4, face: -1, pose: 'lean' });   /* leaning into the wind, which comes from the left */
     if (v > 0) [230, 300, 370].forEach((y, i) => { const L = 40 + v * 7; arrow(ctx, 60 + (i % 2) * 20, y, 60 + (i % 2) * 20 + L, y, vc, 4); });
     text(ctx, v > 0 ? `wind ${fmt(v, 1)} m/s` : 'still air', 70, 190, vc, { size: 20, weight: 600 });
     thermometer(ctx, 570, T, 'moving air', tc);
@@ -350,12 +350,19 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     const pc = C('power'), P = Ps.v, tmin = ts.v, gps = P / LV, gpm = gps * 60, m = gpm * tmin;
     /* the person in the shade, the sweat leaving as vapour */
     line(ctx, 80, 480, 560, 480, PAL.muted, 3);
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(470, 480); ctx.lineTo(470, 200); ctx.stroke(); ctx.fillStyle = alpha(PAL.muted, 0.3); ctx.beginPath(); ctx.ellipse(470, 170, 130, 60, 0, 0, TAU); ctx.fill(); ctx.restore();
-    person(ctx, 250, 480, PAL.ink, { s: 2.6, crouch: 0.5 });
+    /* a parasol on a pole: a canopy of arcs with a scalloped edge, its pole planted behind the bench */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(400, 480); ctx.lineTo(400, 170); ctx.stroke();
+    ctx.fillStyle = alpha(PAL.muted, 0.3); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(240, 210); ctx.quadraticCurveTo(400, 60, 560, 210);
+    for (let i = 0; i < 6; i++) ctx.arc(560 - (i + 0.5) * (320 / 6), 210, 320 / 12, 0, Math.PI, false); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(400, 170); ctx.lineTo(400, 90); ctx.stroke(); ctx.restore();
+    /* the bench, and the person sitting on it in the shade */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(150, 362, 300, 22, 4); ctx.fill(); ctx.stroke(); ctx.restore();
+    line(ctx, 170, 384, 170, 480, PAL.ink, 4); line(ctx, 430, 384, 430, 480, PAL.ink, 4);
+    silhouette(ctx, { x: 250, y: 480, s: 2.6, pose: 'sit' });
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 2; ctx.setLineDash([4, 7]);
-    for (let i = 0; i < 4; i++) { const x = 200 + i * 32, y = 360 - (i % 2) * 20; ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x - 10, y - 30, x + 4, y - 55); ctx.quadraticCurveTo(x + 14, y - 75, x, y - 95); ctx.stroke(); }
+    for (let i = 0; i < 4; i++) { const x = 180 + i * 34, y = 300 - (i % 2) * 20; ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x - 10, y - 30, x + 4, y - 55); ctx.quadraticCurveTo(x + 14, y - 75, x, y - 95); ctx.stroke(); }
     ctx.restore();
-    text(ctx, 'sweat evaporating', 90, 205, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, 'sweat evaporating', 60, 180, PAL.ink, { size: 20, weight: 600 });
     text(ctx, `the body sheds ${fmt(P, 0)} W`, 250, 515, pc, { size: 20, weight: 600, align: 'center' });
     /* the bar of grams a minute, in ink since a mass per time carries no type */
     text(ctx, 'water evaporated each minute (g/min)', BAR.l, BAR.y - 34, PAL.ink, { size: 20, weight: 600 });

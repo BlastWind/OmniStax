@@ -68,7 +68,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
   const LAB = choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the velocity and its components on the molecule followed' });
   const cy = cycle(() => Infinity, 0);
   const L = 10e-9, MODEL = 1.4e-11, MAXN = 60, R = 7, W = 3;         /* the side of the box, model seconds per real second, the most molecules, a molecule's radius, the meter's window */
-  const B = { l: 150, t: 110, r: 630, b: 590 }, S = B.r - B.l;         /* the box in the canvas */
+  const B = { l: 150, t: 128, r: 630, b: 608 }, S = B.r - B.l;         /* the box in the canvas, its top clear of a two-line headline */
   const KV = (S / L) * MODEL;                                          /* canvas units per second, per m/s */
   const FMAX = 6.0e-11;                                                /* the meter's scale, N: fixed against the sliders, an arrow past the cap */
   /* the molecules: fixed gaussian components and starting places, and the signs the walls have flipped */
@@ -256,7 +256,8 @@ function meter(ctx, x, w, yb, yt, frac, color) {
       line(ctx, A.X(pk), G.b, A.X(pk), A.Y(f(pk)), vc, 2.5, [10, 10]);
       line(ctx, A.X(rm), G.b, A.X(rm), A.Y(f(rm)), vc, 2.5, [4, 8]);
       dot(ctx, A.X(pk), A.Y(f(pk)), vc, false, 9); dot(ctx, A.X(rm), A.Y(f(rm)), vc, true, 9);
-      lab.add(name, A.X(pk), A.Y(f(pk)), 0, -1, tc, 21, 26);
+      const room = A.Y(f(pk)) - G.t > 64;                              /* a peak at the top of the box takes its name beside it, not above it */
+      lab.add(name, A.X(pk), A.Y(f(pk)), room ? 0 : 1, room ? -1 : -0.3, tc, 21, 26);
       /* the numbers of each curve, in a table at the top right, so that only the names sit on the graph */
       const ty = G.t + 60 + i * 30;
       text(ctx, name, G.r - 420, ty, tc, { size: 18, weight: 600, align: 'right' });
@@ -306,7 +307,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     line(ctx, G.l, A.Y(ve), G.r, A.Y(ve), vc, 3, [12, 10]);
     lab.add(whose() + ' escape velocity, ' + kms() + ' km/s', G.l + 30, A.Y(ve), 0.4, -1, vc, 18, 22);
     line(ctx, A.X(T), G.b, A.X(T), G.t, tc, 2.5, [4, 8]);
-    lab.add('T = ' + commas(fmt(T, 0)) + ' K', A.X(T), G.t + 4, T > TX * 0.8 ? -1 : 1, 0.6, tc, 20, 22);
+    lab.add('T = ' + commas(fmt(T, 0)) + ' K', A.X(T), G.t + 70, T > TX * 0.8 ? -1 : 1, 0.6, tc, 20, 22);   /* below the axis title, clear of the curves' names at the top */
     /* the four gases */
     const speeds = {};
     LIST.forEach((g, i) => {

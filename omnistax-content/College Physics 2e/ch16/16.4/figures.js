@@ -1,7 +1,7 @@
 /* Figures for section 16.4 The Simple Pendulum. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, pinned, curve, scale, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, axes, pinned, curve, scale, fixed, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI, DEG = Math.PI / 180;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -92,8 +92,11 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     curve(ctx, (v) => -(mg / L.v) * v, -sd, sd, X, Y, C('force'), 3, 2);
     curve(ctx, (v) => -mg * Math.sin(v / L.v), -sd, sd, X, Y, PAL.ink, 4, 120);
     ctx.restore();
-    text(ctx, 'F = −(mg/L)s', X(-sd * 0.95), Math.max(box.t + 20, Y(mg / L.v * sd * 0.95) - 20), C('force'), { size: 17, weight: 600 });
-    text(ctx, 'F = −mg sin θ', X(sd * 0.95), Math.min(box.b - 20, Y(-mg * Math.sin(sd * 0.95 / L.v)) + 24), PAL.ink, { size: 17, weight: 600, align: 'right' });
+    /* each curve is named at a point of it that is inside the box: Hooke's line above its left
+       end, where the true curve runs beneath it, and the true curve below its right end */
+    const sv = Math.min(sd, FM * L.v / mg) * 0.8;
+    label(ctx, 'F = −(mg/L)s', X(-sv), Y(mg / L.v * sv), { side: 'above', color: C('force'), size: 18, gap: 14 });
+    label(ctx, 'F = −mg sin θ', X(sd * 0.85), Y(-mg * Math.sin(sd * 0.85 / L.v)), { side: 'below', color: PAL.ink, size: 18, gap: 14 });
     pinned(ctx, box, X, Y, s, Fs, C('force'), fmt(Fs, 2) + ' N');
     const dev = (a0.v * DEG - Math.sin(a0.v * DEG)) / Math.sin(a0.v * DEG) * 100, Tt = truePeriod(L.v, G, a0.v * DEG), T0 = TAU * Math.sqrt(L.v / G);
     headline(ctx, Math.abs(t) < 0.01 ? 'The bob is passing through its lowest point, where the net force along the arc is zero and it is moving fastest'
@@ -139,7 +142,8 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     const TMAX = 8, box = { l: 200, r: 1240, t: 470, b: 660 };
     const { X, Y } = axes(ctx, box, [0, 2], [0, TMAX], { xl: 'length L (m)', xc: PAL.ink, yl: 'T (s)', yc: C('time'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
     curve(ctx, Tof, 0, 2, X, Y, C('time'), 4, 100);
-    text(ctx, 'T = 2π√(L/g)', X(1.5) + 10, Y(Tof(1.5)) + 38, C('time'), { weight: 600, size: 20 });
+    /* the curve's name sits in the top left corner, which the curve never reaches: a short pendulum is quick under any gravity the slider allows */
+    text(ctx, 'T = 2π√(L/g)', box.l + 16, box.t + 22, C('time'), { weight: 600, size: 20 });
     for (const [L, T, lab] of [[L1.v, T1, '1'], [L2.v, T2, '2']]) { line(ctx, X(L), box.b, X(L), Y(T), PAL.ink, 2, [4, 8]); dot(ctx, X(L), Y(T), C('time'), true, 9); text(ctx, lab, X(L) + 14, Y(T) - 14, C('time'), { size: 18, weight: 600 }); }
     headline(ctx, 'A length of ' + fmt(L1.v, 2) + ' m under g = ' + fmt(g.v, 2) + ' m/s² gives T_1 = ' + fmt(T1, 2) + ' s, while the pendulum of ' + fmt(L2.v, 2) + ' m takes T_2 = ' + fmt(T2, 2) + ' s');
     readout(d.readout, `\\kT = 2\\pi\\sqrt{\\frac{L}{\\kg}} = 2\\pi\\sqrt{\\frac{${fmt(L1.v, 2)}\\ \\text{m}}{${fmt(g.v, 2)}\\ \\text{m/s}^2}} = ${fmt(T1, 2)}\\ \\text{s}`,
@@ -164,7 +168,8 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     const tau = cy.now(), done = tau >= total() - 1e-9, n = Math.min(N, Math.floor(tau / T() + 1e-6));
     const Tm = total() / N, gm = 4 * Math.PI * Math.PI * L.v / (Tm * Tm);
     /* the pendulum, a small swing */
-    const px = 250, py = 100, Ld = 100 + 150 * L.v, th = 6 * DEG * Math.cos(TAU * tau / T());
+    /* the longest pendulum the slider reaches hangs to y = 410, clear of the time line at 500 */
+    const px = 250, py = 100, Ld = 70 + 120 * L.v, th = 6 * DEG * Math.cos(TAU * tau / T());
     fixed(ctx, px - 100, py - 40, 200, 40);
     line(ctx, px, py, px, py + Ld + 30, PAL.muted, 2, [8, 8]);
     pendulum(ctx, px, py, Ld, th, 14, PAL.ink);

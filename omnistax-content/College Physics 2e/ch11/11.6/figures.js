@@ -54,7 +54,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
   /* the linkage, in canvas units: the fixed plate of the bellows at XR, the bellows
      L0 + K·P long, a rod of length R from the moving plate to the lower end of the
      pointer, ARM below the pivot; the pointer's tip TIP above it. */
-  const XR = 1020, L0 = 180, K = 2.0, R = 155, PX = 640, PY = 400, ARM = 120, TIP = 270, DIAL = 290, BH = 100;
+  const XR = 1020, L0 = 180, K = 2.0, R = 155, PX = 640, PY = 432, ARM = 120, TIP = 270, DIAL = 290, BH = 96;
   const lengthOf = (p) => L0 + K * p;
   /* the angle of the pointer from the vertical for a gauge pressure p, positive leaning left */
   function angleOf(p) { const bx = XR - lengthOf(p) - R; return Math.asin(Math.max(-1, Math.min(1, (bx - PX) / ARM))); }
@@ -69,9 +69,9 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     const L = lengthOf(p), xm = XR - L, phi = angleOf(p), s = Math.sin(phi), c = Math.cos(phi);
     const B = { x: PX + ARM * s, y: PY + ARM * c }, T = { x: PX - TIP * s, y: PY - TIP * c }, S = { x: PX - 110 * s, y: PY - 110 * c };
     /* the wall the spring is anchored to, the spring, the pivot and the pointer */
-    fixed(ctx, 250, 330, 24, 140);
-    spring(ctx, 274, 400, S.x, S.y, 9, 13, PAL.ink, 3);
-    text(ctx, 'spring', 262, 300, PAL.ink, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    fixed(ctx, 250, PY - 70, 24, 140);
+    spring(ctx, 274, PY, S.x, S.y, 9, 13, PAL.ink, 3);
+    text(ctx, 'spring', 262, PY - 100, PAL.ink, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* the dial: an arc about the pivot with its ticks placed by the linkage */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath();
     ctx.arc(PX, PY, DIAL, -Math.PI / 2 - angleOf(-14.7), -Math.PI / 2 - angleOf(60)); ctx.stroke(); ctx.restore();
@@ -83,14 +83,14 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
       line(ctx, PX + ux * (DIAL - 16), PY + uy * (DIAL - 16), PX + ux * DIAL, PY + uy * DIAL, zero ? PAL.ink : PAL.muted, zero ? 3.5 : 2);
       text(ctx, num(t, 0), PX + ux * (DIAL + 26), PY + uy * (DIAL + 26), zero ? PAL.ink : PAL.muted, { size: 18, weight: zero ? 600 : 400, align: 'center' });
     }
-    text(ctx, abs ? 'the dial reads absolute pressure, in psi:' : 'the dial reads gauge pressure, in psi:', 1300, 200, PAL.muted, { size: 18, align: 'right' });
-    text(ctx, abs ? 'zero is a vacuum' : 'zero is atmospheric pressure', 1300, 226, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, abs ? 'the dial reads absolute pressure, in psi:' : 'the dial reads gauge pressure, in psi:', 1300, 230, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, abs ? 'zero is a vacuum' : 'zero is atmospheric pressure', 1300, 256, PAL.muted, { size: 18, align: 'right' });
     /* the stem the pressure comes in through, and the pressure itself */
-    line(ctx, XR + 14, 386, 1130, 386, PAL.ink, 3); line(ctx, XR + 14, 414, 1130, 414, PAL.ink, 3);
-    arrow(ctx, 1220, 400, 1060, 400, pc, 5);
-    text(ctx, 'P_g = ' + num(p, 1) + ' psi', 1236, 388, pc, { size: 21, weight: 600, align: 'left' });
-    text(ctx, 'the pressure', 1236, 420, PAL.muted, { size: 18, align: 'left' });
-    text(ctx, 'being measured', 1236, 444, PAL.muted, { size: 18, align: 'left' });
+    line(ctx, XR + 14, PY - 14, 1130, PY - 14, PAL.ink, 3); line(ctx, XR + 14, PY + 14, 1130, PY + 14, PAL.ink, 3);
+    arrow(ctx, 1220, PY, 1060, PY, pc, 5);
+    text(ctx, 'P_g = ' + num(p, 1) + ' psi', 1236, PY - 12, pc, { size: 21, weight: 600, align: 'left' });
+    text(ctx, 'the pressure', 1236, PY + 20, PAL.muted, { size: 18, align: 'left' });
+    text(ctx, 'being measured', 1236, PY + 44, PAL.muted, { size: 18, align: 'left' });
     /* the bellows: a pleated box between the moving plate at xm and the fixed plate at XR */
     const n = 6, step = L / n;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
@@ -126,7 +126,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     text(ctx, 'vacuum', RX0, RY + 60, PAL.muted, { size: 17, align: 'left' });
     line(ctx, RX(PATM_PSI), RY - 12, RX(PATM_PSI), RY + 40, pc, 3, [6, 6]);
     text(ctx, 'P_atm = 14.7 psi', RX(PATM_PSI), RY + 60, pc, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    if (Math.abs(p) >= 0.05) hbracket(ctx, RX(PATM_PSI), RX(pabs), RY - 72, pc, 'P_g = ' + num(p, 1) + ' psi');
+    if (Math.abs(p) >= 0.05) hbracket(ctx, RX(PATM_PSI), RX(pabs), RY - 66, pc, 'P_g = ' + num(p, 1) + ' psi');
     dot(ctx, RX(pabs), RY, pc, true, 9);
     const pl = p < 0 || pabs > 40;
     text(ctx, 'P_abs = ' + num(pabs, 1) + ' psi', RX(pabs) + (pl ? -16 : 16), RY - 30, pc, { size: 19, weight: 600, align: pl ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });

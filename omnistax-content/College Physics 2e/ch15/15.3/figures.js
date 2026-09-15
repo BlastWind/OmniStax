@@ -348,25 +348,26 @@ function hatch(ctx, color) {
     /* the dashed drops to the volume axis and the corner labels */
     line(ctx, g.X(VB), g.Y(s.PC), g.X(VB), g.Y(0), alpha(PAL.ink, 0.5), 2, [6, 8]);
     line(ctx, g.X(VA), g.Y(s.PD), g.X(VA), g.Y(0), alpha(PAL.ink, 0.5), 2, [6, 8]);
-    [['A', VA, PA, 16, 16], ['B', VB, s.PB, -16, 10], ['C', VB, s.PC, -16, -8], ['D', VA, s.PD, 16, -16]].forEach(([n, V, P, dx, dy]) => {
-      dot(ctx, g.X(V), g.Y(P), PAL.ink, true, 7);
-      text(ctx, n, g.X(V) + dx, g.Y(P) + dy, PAL.ink, { size: 22, weight: 600, align: dx < 0 ? 'right' : 'left', bg: PAL.panel });
-    });
     text(ctx, 'adiabats', g.X(0.3), g.Y(upper(0.3)) - 26, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, g.X(0.3), g.Y(upper(0.3)) - 14, g.X(0.3), g.Y(upper(0.3)) - 4, PAL.ink, 2);
     line(ctx, g.X(0.3) + 30, g.Y(upper(0.3)) - 14, g.X(0.31), g.Y(lower(0.31)) - 4, PAL.ink, 2);
-    /* a legend for the two areas, in the empty top-left corner of the frame */
-    const lx = box.l + 22, ly = box.t + 22;
+    /* a legend for the two areas, in the top-right corner of the frame, which stays empty at every temperature (C rises into the top-left when T_h is high) */
+    const lx = box.r - 22 - 36 - 12 - 290, ly = box.t + 22;
     ctx.save(); ctx.fillStyle = alpha(cE, 0.35); ctx.fillRect(lx, ly - 10, 36, 20); ctx.restore();
-    text(ctx, 'net work, the area inside ABCDA', lx + 48, ly, cE, { size: 17, weight: 600 });
+    text(ctx, 'net work, the area inside ABCDA', lx + 48, ly, cE, { size: 17, weight: 600, bg: alpha(PAL.panel, 0.85) });
     ctx.save(); ctx.beginPath(); ctx.rect(lx, ly + 22, 36, 20); hatch(ctx, cE); ctx.restore();
     ctx.save(); ctx.strokeStyle = alpha(cE, 0.7); ctx.lineWidth = 1.5; ctx.strokeRect(lx, ly + 22, 36, 20); ctx.restore();
-    text(ctx, 'work done on the gas along AB', lx + 48, ly + 32, cE, { size: 17, weight: 600 });
+    text(ctx, 'work done on the gas along AB', lx + 48, ly + 32, cE, { size: 17, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the heat transfers: Q_h into BC, Q_c out of DA, each an arrow whose width is the energy */
     const KW = 0.07;   /* arrow width per joule: 600 J is 42 units */
     const yBC = g.Y((s.PB + s.PC) / 2), yDA = g.Y((s.PD + PA) / 2);
     if (fBC > 0) { wide(ctx, g.X(VB) - 130, yBC, g.X(VB) - 12, yBC, s.Qh * KW, alpha(cE, 0.85)); text(ctx, 'Q_h = ' + sig3(s.Qh) + ' J', g.X(VB) - 70, yBC - Math.max(s.Qh * KW * 0.9, 12) - 16, cE, { size: 20, weight: 600, align: 'center' }); }
     if (fDA > 0) { wide(ctx, g.X(VA) + 14, yDA, g.X(VA) + 130, yDA, s.Qc * KW, alpha(cE, 0.85)); text(ctx, 'Q_c = ' + sig3(s.Qc) + ' J', g.X(VA) + 140, yDA, cE, { size: 20, weight: 600 }); }
+    /* the corner labels, set after the heat arrows so Q_c never covers A */
+    [['A', VA, PA, 16, 16], ['B', VB, s.PB, -16, 10], ['C', VB, s.PC, -16, -8], ['D', VA, s.PD, 16, -16]].forEach(([n, V, P, dx, dy]) => {
+      dot(ctx, g.X(V), g.Y(P), PAL.ink, true, 7);
+      text(ctx, n, g.X(V) + dx, g.Y(P) + dy, PAL.ink, { size: 22, weight: 600, align: dx < 0 ? 'right' : 'left', bg: PAL.panel });
+    });
     /* the state point */
     const V = leg === 0 ? vAB : leg === 1 ? VB : leg === 2 ? vCD : VA;
     const P = leg === 0 ? lower(V) : leg === 1 ? s.PB + (s.PC - s.PB) * f : leg === 2 ? upper(V) : s.PD - (s.PD - PA) * f;
