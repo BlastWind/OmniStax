@@ -1,0 +1,72 @@
+<section id="a-generator-induces-an-emf">
+<h2>A generator induces an emf</h2>
+<p><strong>Electric generators</strong> induce an emf by rotating a coil in a magnetic field, as briefly discussed in Induced Emf and Magnetic Flux. We will now explore generators in more detail. Consider the following example.</p>
+<figure class="sim" id="sim-generator" data-figure="23.19 + 23.20 + 23.21 + 23.22" data-original="/media/ch23/Figure_24_05_01.jpg,/media/ch23/Figure_24_05_02.jpg,/media/ch23/Figure_24_05_03.jpg,/media/ch23/Figure_24_05_04.jpg" data-original-width="250,225,350,225" data-original-caption="(Figure 23.19) When this generator coil is rotated through one-fourth of a revolution, the magnetic flux Φ changes from its maximum to zero, inducing an emf. (Figure 23.20) A generator with a single rectangular coil rotated at constant angular velocity in a uniform magnetic field produces an emf that varies sinusoidally in time. Note the generator is similar to a motor, except the shaft is rotated to produce a current rather than the other way around. (Figure 23.21) The emf of a generator is sent to a light bulb with the system of rings and brushes shown. The graph gives the emf of the generator as a function of time. emf₀ is the peak emf. The period is T = 1/f = 2π/ω, where f is the frequency. Note that the script E stands for emf. (Figure 23.22) Split rings, called commutators, produce a pulsed DC emf output in this configuration.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.19 + 23.20 + 23.21 + 23.22</span><span>A coil of wire turns on a shaft between the poles of a magnet, and the field lines its face catches are marked where they pierce it, so that the flux through the coil thins out to nothing as the coil comes edge-on and fills up again as it comes round. Set the number of turns, the area of the coil, the field strength and the angular velocity, and watch the emf follow the curve below the machine. Swap the two slip rings for a split ring and the same coil delivers a train of positive pulses instead of a sinusoid. Stop the motion with the transport and drag the scrubber to reach any angle, and use the view buttons to look down on the coil from above or along the field, where the face of the coil shows you the flux itself.</span></div>
+</figure>
+<div class="example" id="ex-emf-in-a-generator-coil">
+<h3>Example 23.3 · Calculating the Emf Induced in a Generator Coil</h3>
+<p>The generator coil shown in Figure 23.19 is rotated through one-fourth of a revolution (from $\theta = 0^\circ$ to $\theta = 90^\circ$) in 15.0 ms. The 200-turn circular coil has a 5.00 cm radius and is in a uniform 1.25 T magnetic field. What is the average emf induced?</p>
+<h4>Strategy</h4>
+<p>We use Faraday’s law of induction to find the average emf induced over a time $\kdt$:</p>
+$$\kemf = -N\frac{\kdPhi}{\kdt}\text{.}$$
+<p>We know that $N = 200$ and $\kdt = 15.0\;\text{ms}$, and so we must determine the change in flux $\kdPhi$ to find emf.</p>
+<h4>Solution</h4>
+<p>Since the area of the loop and the magnetic field strength are constant, we see that</p>
+$$\kdPhi = \Delta(\kBmag A\cos\theta) = A\kBmag\Delta(\cos\theta)\text{.}$$
+<p>Now, $\Delta(\cos\theta) = -1.0$, since it was given that $\theta$ goes from $0^\circ$ to $90^\circ$. Thus $\kdPhi = -A\kBmag$, and</p>
+$$\kemf = N\frac{A\kBmag}{\kdt}.$$
+<p>The area of the loop is $A = \pi r^{2} = (3.14\ldots)(0.0500\;\text{m})^{2} = 7.85\times {10}^{-3}\;{\text{m}}^{2}$. Entering this value gives</p>
+$$\kemf = 200\frac{(7.85\times {10}^{-3}\;{\text{m}}^{2})(1.25\;\text{T})}{15.0\times {10}^{-3}\;\text{s}} = 131\;\text{V.}$$
+<h4>Discussion</h4>
+<p>This is a practical average value, similar to the 120 V used in household power.</p>
+</div>
+</section>
+
+<section id="the-emf-at-each-instant">
+<h2>The emf at each instant</h2>
+<p>The emf calculated in Example 23.3 is the average over one-fourth of a revolution. What is the emf at any given instant? It varies with the angle between the magnetic field and a perpendicular to the coil. We can get an expression for emf as a function of time by considering the motional emf on a rotating rectangular coil of width $w$ and height $\ell$ in a uniform magnetic field, as illustrated in Figure 23.20.</p>
+<p>Charges in the wires of the loop experience the magnetic force, because they are moving in a magnetic field. Charges in the vertical wires experience forces parallel to the wire, causing currents. But those in the top and bottom segments feel a force perpendicular to the wire, which does not cause a current. We can thus find the induced emf by considering only the side wires. Motional emf is given to be $\kemf = \kBmag\ell\kv$, where the velocity $\kv$ is perpendicular to the magnetic field $\kBmag$. Here the velocity is at an angle $\theta$ with $\kBmag$, so that its component perpendicular to $\kBmag$ is $\kv\sin\theta$ (see Figure 23.20). Thus in this case the emf induced on each side is $\kemf = \kBmag\ell\kv\sin\theta$, and they are in the same direction. The total emf around the loop is then</p>
+$$\kemf = 2\kBmag\ell\kv\sin\theta\text{.}$$
+<p>This expression is valid, but it does not give emf as a function of time. To find the time dependence of emf, we assume the coil rotates at a constant angular velocity $\kw$. The angle $\theta$ is related to angular velocity by $\theta = \kw\kt$, so that</p>
+$$\kemf = 2\kBmag\ell\kv\sin\kw\kt\text{.}$$
+<p>Now, linear velocity $\kv$ is related to angular velocity $\kw$ by $\kv = r\kw$. Here $r = w/2$, so that $\kv = (w/2)\kw$, and</p>
+$$\kemf = 2\kBmag\ell\frac{w}{2}\kw\sin\kw\kt = (\ell w)\kBmag\kw\sin\kw\kt\text{.}$$
+<p>Noting that the area of the loop is $A = \ell w$, and allowing for $N$ loops, we find that</p>
+$$\kemf = NA\kBmag\kw\sin\kw\kt$$
+<p>is the <strong>emf induced in a generator coil</strong> of $N$ turns and area $A$ rotating at a constant angular velocity $\kw$ in a uniform magnetic field $\kBmag$. This can also be expressed as</p>
+$$\kemf = \kemfo\sin\kw\kt\text{,}$$
+<p>where</p>
+$$\kemfo = NA\kBmag\kw$$
+<p>is the maximum <strong>(peak) emf</strong>. Note that the frequency of the oscillation is $\kf = \kw/2\pi$, and the period is $\kT = 1/\kf = 2\pi/\kw$. Figure 23.21 shows a graph of emf as a function of time, and it now seems reasonable that AC voltage is sinusoidal.</p>
+<p>The fact that the peak emf, $\kemfo = NA\kBmag\kw$, makes good sense. The greater the number of coils, the larger their area, and the stronger the field, the greater the output voltage. It is interesting that the faster the generator is spun (greater $\kw$), the greater the emf. This is noticeable on bicycle generators—at least the cheaper varieties. One of the authors as a juvenile found it amusing to ride his bicycle fast enough to burn out his lights, until he had to ride home lightless one dark night.</p>
+<p>Figure 23.22 shows a scheme by which a generator can be made to produce pulsed DC. More elaborate arrangements of multiple coils and split rings can produce smoother DC, although electronic rather than mechanical means are usually used to make ripple-free DC.</p>
+<div class="example" id="ex-maximum-emf-of-a-generator">
+<h3>Example 23.4 · Calculating the Maximum Emf of a Generator</h3>
+<p>Calculate the maximum emf, $\kemfo$, of the generator that was the subject of Example 23.3.</p>
+<h4>Strategy</h4>
+<p>Once $\kw$, the angular velocity, is determined, $\kemfo = NA\kBmag\kw$ can be used to find $\kemfo$. All other quantities are known.</p>
+<h4>Solution</h4>
+<p>Angular velocity is defined to be the change in angle per unit time:</p>
+$$\kw = \frac{\Delta\theta}{\kdt}\text{.}$$
+<p>One-fourth of a revolution is $\pi/2$ radians, and the time is 0.0150 s; thus,</p>
+$$\begin{array}{lll}\kw & = & \frac{\pi /2\;\text{rad}}{0.0150\;\text{s}} \\ & = & 104.7\;\text{rad/s}\text{.}\end{array}$$
+<p>104.7 rad/s is exactly 1000 rpm. We substitute this value for $\kw$ and the information from the previous example into $\kemfo = NA\kBmag\kw$, yielding</p>
+$$\begin{array}{lll}\kemfo & = & NA\kBmag\kw \\ & = & 200(7.85\times {10}^{-3}\;{\text{m}}^{2})(1.25\;\text{T})(104.7\;\text{rad/s}) \\ & = & 206\;\text{V}\end{array}\text{.}$$
+<h4>Discussion</h4>
+<p>The maximum emf is greater than the average emf of 131 V found in the previous example, as it should be.</p>
+</div>
+<figure class="sim" id="sim-average-emf">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The same coil, with the flux through it drawn above and the emf it induces drawn below, both against the angle the coil has turned. Choose where the turn starts and how far it goes, and the chord across the flux curve is the slope Faraday’s law takes, while the dashed level across the shaded span below is the average emf that slope gives. Set the span to a quarter revolution from the position where the coil faces the field and the level lands at the 131 V of Example 23.3, a little under two thirds of the peak drawn above it; open the span to a whole revolution and the average falls to zero, which is why an average emf has to be quoted with the interval it was taken over.</span></div>
+</figure>
+</section>
+
+<section id="generators-in-the-world">
+<h2>Generators in the world</h2>
+<p>In real life, electric generators look a lot different than the figures in this section, but the principles are the same. The source of mechanical energy that turns the coil can be falling water (hydropower), steam produced by the burning of fossil fuels, or the kinetic energy of wind. Figure 23.23 shows a cutaway view of a steam turbine; steam moves over the blades connected to the shaft, which rotates the coil within the generator.</p>
+<figure class="photo" id="fig-steam-turbine" data-figure="23.23">
+  <img src="/media/ch23/Figure_24_05_05.jpg" data-width="300" alt="Photograph of a steam turbine connected to a generator.">
+  <figcaption><span class="eyebrow">Figure 23.23</span><span>Steam turbine/generator. The steam produced by burning coal impacts the turbine blades, turning the shaft which is connected to the generator. (credit: Nabonaco, Wikimedia Commons)</span></figcaption>
+</figure>
+<p>Generators illustrated in this section look very much like the motors illustrated previously. This is not coincidental. In fact, a motor becomes a generator when its shaft rotates. Certain early automobiles used their starter motor as a generator. In Back Emf, we shall further explore the action of a motor as a generator.</p>
+</section>

@@ -1,0 +1,258 @@
+{
+ "id": "23.5",
+ "module": "m42408",
+ "chapter": "23",
+ "title": "Electric Generators",
+ "short": "Electric Generators",
+ "lead": "A motor takes a current and gives back a turning shaft. Turn the shaft yourself and the machine runs the other way: the coil's angle to the field changes, the flux through it changes, and by Faraday's law an emf appears at the brushes. That is an electric generator, and this section works out what comes out of it. Over a quarter revolution, from the position where the coil faces the field to the position where it stands edge-on, the flux falls from its greatest value to zero, and the average emf over that turn is the number of turns times the area times the field strength divided by the time taken. The emf at each instant takes a little more work: the two side wires of the coil are moving at an angle $\\theta$ to the field, each carries the motional emf $\\kBmag\\ell\\kv\\sin\\theta$, the two run the same way round the loop and add, and writing $\\theta = \\kw\\kt$ for a coil turned steadily gives $\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt$. So the voltage a generator makes is a sinusoid, which is where the alternating voltage of the wall socket comes from, and its peak is $\\kemfo = NA\\kBmag\\kw$: more turns, a larger coil, a stronger field and a faster turn each give more. Two slip rings hand that sinusoid to the outside circuit as it stands, while one split ring turns the connection over twice a revolution and hands over a train of positive pulses instead.",
+ "objectives": [
+  "Calculate the emf induced in a generator.",
+  "Calculate the peak emf which can be induced in a particular generator system."
+ ],
+ "summary_html": "<ul><li>An electric generator rotates a coil in a magnetic field, inducing an emfgiven as a function of time by $\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt ,$ where $A$ is the area of an $N$-turn coil rotated at a constant angular velocity $\\kw$ in a uniform magnetic field $\\kBmag$.</li><li>The peak emf $\\kemfo$ of a generator is $\\kemfo = NA\\kBmag\\kw .$</li></ul>",
+ "notes": "The five problems the book leaves unkeyed are left out: the angular velocity in rpm at which a 500-turn coil would give a 480 V peak, the peak emf of the rotating coil of a problem in Faraday’s Law of Induction: Lenz’s Law, the Integrated Concepts problem about the wheel that drives a bicycle generator, the proof that the period of the output is $2\\pi/\\kw$, and the coil whose emf first reaches a peak at 0.100 ms. Nothing else in the module is left out. All four of its drawings are redrawn as one turning generator with the book’s own images beside it, since the book draws one machine four times, and the steam turbine is kept as a photograph, because the passage it sits under is about it. The second AP test prep item of the section carries a solution in the source that is commented out, so it is kept as an open item with an AI-marked suggested approach rather than as a graded answer. The module prints no Check Your Understanding box and no link to a PhET simulation.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Six of the eleven problems are keyed and are set here; the other five are left out and named in the section’s notes. Where the book keys only the numerical part of a problem that also asks for a discussion, the keyed part is set and the book’s discussion is kept in the worked solution. Both conceptual questions carry an AI-marked suggested approach rather than a graded answer, since the book keys neither. The first of the two AP test prep items is a four-option choice that the source keys (c), and it is set as a graded choice; the second is unkeyed, because its solution is commented out in the source, so it is kept as an open item with an AI-marked suggested approach. No exercise is held for a later section and none arrives from an earlier one, although the fourth problem of the section points back at a problem the book prints in Faraday’s Law of Induction: Lenz’s Law, which stays where the book puts it. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-generator",
+   "kind": "sim",
+   "number": "23.19",
+   "folds": ["23.20", "23.21", "23.22"],
+   "originals": ["/media/ch23/Figure_24_05_01.jpg", "/media/ch23/Figure_24_05_02.jpg", "/media/ch23/Figure_24_05_03.jpg", "/media/ch23/Figure_24_05_04.jpg"],
+   "original_caption": "(Figure 23.19) When this generator coil is rotated through one-fourth of a revolution, the magnetic flux Φ changes from its maximum to zero, inducing an emf. (Figure 23.20) A generator with a single rectangular coil rotated at constant angular velocity in a uniform magnetic field produces an emf that varies sinusoidally in time. Note the generator is similar to a motor, except the shaft is rotated to produce a current rather than the other way around. (Figure 23.21) The emf of a generator is sent to a light bulb with the system of rings and brushes shown. The graph gives the emf of the generator as a function of time. emf₀ is the peak emf. The period is T = 1/f = 2π/ω, where f is the frequency. Note that the script E stands for emf. (Figure 23.22) Split rings, called commutators, produce a pulsed DC emf output in this configuration.",
+   "widths": [250, 225, 350, 225],
+   "draws": ["magnetic-flux", "magnetic-field", "voltage", "velocity", "angular-rate", "time"]
+  },
+  {
+   "id": "sim-average-emf",
+   "kind": "sim",
+   "draws": ["magnetic-flux", "voltage", "angular-rate", "time"]
+  },
+  {
+   "id": "fig-steam-turbine",
+   "kind": "photo",
+   "number": "23.23",
+   "widths": [300],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {"span": "a-generator-induces-an-emf", "concept": "electric-generator", "verb": "introduces"},
+  {"span": "a-generator-induces-an-emf", "concept": "average-emf-of-a-generator", "verb": "introduces"},
+  {"span": "a-generator-induces-an-emf", "concept": "faradays-law", "verb": "uses"},
+  {"span": "a-generator-induces-an-emf", "concept": "magnetic-flux", "verb": "uses"},
+  {"span": "a-generator-induces-an-emf", "concept": "ways-to-change-flux", "verb": "uses"},
+  {"span": "a-generator-induces-an-emf", "concept": "turns-multiply-emf", "verb": "uses"},
+  {"span": "the-emf-at-each-instant", "concept": "generator-emf-versus-time", "verb": "introduces"},
+  {"span": "the-emf-at-each-instant", "concept": "peak-emf", "verb": "introduces"},
+  {"span": "the-emf-at-each-instant", "concept": "commutator-pulsed-dc", "verb": "introduces"},
+  {"span": "the-emf-at-each-instant", "concept": "average-emf-of-a-generator", "verb": "reinforces"},
+  {"span": "the-emf-at-each-instant", "concept": "motional-emf", "verb": "uses"},
+  {"span": "the-emf-at-each-instant", "concept": "angular-velocity", "verb": "uses"},
+  {"span": "the-emf-at-each-instant", "concept": "linear-angular-velocity", "verb": "uses"},
+  {"span": "the-emf-at-each-instant", "concept": "alternating-current", "verb": "uses"},
+  {"span": "the-emf-at-each-instant", "concept": "brushes-reverse-the-current", "verb": "uses"},
+  {"span": "generators-in-the-world", "concept": "electric-generator", "verb": "reinforces"},
+  {"span": "generators-in-the-world", "concept": "motional-emf-power-conversion", "verb": "uses"},
+  {"span": "generators-in-the-world", "concept": "torque-on-a-current-loop", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736737112",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "sim-generator",
+   "prompt": "Using RHR-1, show that the emfs in the sides of the generator loop in Figure 23.22 are in the same sense and thus add.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Draw the loop as the book draws it, with the field running from the north pole on the left to the south pole on the right, and take the instant when the plane of the loop lies along the field, so that the two side wires are moving squarely across it. The near side wire is coming toward you and the far side wire is going away from you, because the two are on opposite sides of the shaft and the loop is rigid. Take the near wire first. A positive charge in it is carried along with the wire, so its velocity points toward you. Lay the fingers of the right hand along that velocity, curl them into the field, which points from left to right, and the thumb gives the force on the charge: it points down the wire. Now take the far wire. Its velocity points away from you, which is the opposite direction, while the field is the same, so the same rule turns the force over and it points up that wire. Those two directions look opposite, and they are opposite in space, but the two wires are on opposite sides of the loop, so going round the loop the two forces drive charge the same way: down one side, across the bottom, up the other side, and back across the top. The emfs are therefore in the same sense and add, which is why the total is $2\\kBmag\\ell\\kv\\sin\\theta$ rather than zero. The same argument holds at every angle, because turning the loop turns both velocities together and the sine of the angle each makes with the field is the same for both."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738117063",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {"at": "end"},
+   "cite": "the-emf-at-each-instant",
+   "prompt": "The source of a generator’s electrical energy output is the work done to turn its coils. How is the work needed to turn the generator related to Lenz’s law?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Lenz's law says that the current induced in the coil opposes the change in flux that produced it. That current is flowing in the coil while the coil sits in the magnetic field, so the field exerts a force on it, and by Lenz's law the direction of the current is exactly the one whose force opposes the motion of the coil. The generator therefore resists being turned: the faster it is turned, or the larger the current it is asked to supply, the harder it pushes back. Whoever turns the shaft has to do work against that opposing torque, and that work is the source of the electrical energy the generator delivers. If Lenz's law ran the other way, the induced current would help the coil round, the generator would turn itself faster and faster and deliver energy out of nothing, which is why Lenz's law is conservation of energy written for induction. It is also why a bicycle generator is easy to turn with its lamp switched off and hard to turn with the lamp on: no current, no opposing force, and no work; a current, and the work done against the opposing force is what lights the lamp."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1518306",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "sim-generator",
+   "prompt": "The emf induced in a coil that is rotating in a magnetic field will be at a maximum when",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "the magnetic flux is at a maximum.",
+     "the magnetic flux is at a minimum.",
+     "the change in magnetic flux is at a maximum.",
+     "the change in magnetic flux is at a minimum."
+    ],
+    "correct": 2,
+    "hint": "Faraday's law makes the emf the rate at which the flux changes, not the flux itself. Ask where on a cosine the value is changing fastest, and notice that it is where the value itself is passing through zero.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1448465",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "sim-generator",
+   "prompt": "A coil with circular cross section and 20 turns is rotating at a rate of 400 rpm between the poles of a magnet. If the magnetic field strength is 0.6 T and peak voltage is 0.2 V, what is the radius of the coil? If the emf of the coil is zero at $\\kt = 0\\;\\text{s}$, when will it reach its peak emf?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both parts come from $\\kemfo = NA\\kBmag\\kw$ and from the shape of the curve it belongs to. First put the rotation rate into radians per second: 400 rpm is 400 revolutions in 60 s, so $\\kw = 400(2\\pi)/60 = 41.9\\;\\text{rad/s}$. Now solve the peak emf for the area, $A = \\kemfo/N\\kBmag\\kw$, and put in the numbers given: 0.2 V divided by the product of 20 turns, 0.6 T and 41.9 rad/s. That gives an area of about $4.0\\times 10^{-4}\\;\\text{m}^2$. The cross section is circular, so $A = \\pi r^2$ and the radius is the square root of the area divided by $\\pi$, a little over a centimeter. For the second part, note that the emf is zero when the coil faces the field squarely and is at its peak a quarter of a revolution later, when the coil stands edge-on. The period is $\\kT = 2\\pi/\\kw$, which is 60 s divided by 400, or 0.15 s, so a quarter of it is a little under four hundredths of a second. That is when the emf first reaches its peak."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169736999795",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "sim-generator",
+   "prompt": "Calculate the peak voltage of a generator that rotates its 200-turn, 0.100 m diameter coil at 3600 rpm in a 0.800 T field.",
+   "answer": {
+    "type": "number",
+    "value": 474,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "Use $\\kemfo = NA\\kBmag\\kw$. The coil is circular of 0.100 m diameter, so its area is $\\pi r^2$ with $r = 0.0500\\;\\text{m}$, and 3600 rpm must first be turned into radians per second.",
+    "solution": "474 V"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738080660",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "sim-generator",
+   "prompt": "What is the peak emf generated by rotating a 1000-turn, 20.0 cm diameter coil in the Earth’s $5\\text{.}\\text{00}\\times {\\text{10}}^{-5}\\;\\text{T}$ magnetic field, given the plane of the coil is originally perpendicular to the Earth’s field and is rotated to be parallel to the field in 10.0 ms?",
+   "answer": {
+    "type": "number",
+    "value": 0.247,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "The coil turns through a quarter revolution in 10.0 ms, so the angular velocity is $(\\pi/2)$ radians divided by that time; then use $\\kemfo = NA\\kBmag\\kw$ with the area of a circle of 10.0 cm radius.",
+    "solution": "0.247 V"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737905343",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "sim-generator",
+   "prompt": "(a) A bicycle generator rotates at 1875 rad/s, producing an 18.0 V peak emf. It has a 1.00 by 3.00 cm rectangular coil in a 0.640 T field. How many turns are in the coil? (b) Is this number of turns of wire practical for a 1.00 by 3.00 cm coil?",
+   "answer": {
+    "type": "number",
+    "value": 50,
+    "unit": "turns",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Solve $\\kemfo = NA\\kBmag\\kw$ for $N$, taking the area as the product of the two sides of the rectangle in meters.",
+    "solution": "(a) 50\n(b) yes"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169736729580",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "sim-generator",
+   "prompt": "(a) A car generator turns at 400 rpm when the engine is idling. Its 300-turn, 5.00 by 8.00 cm rectangular coil rotates in an adjustable magnetic field so that it can produce sufficient voltage even at low rpms. What is the field strength needed to produce a 24.0 V peak emf? (b) Discuss how this required field strength compares to those available in permanent and electromagnets.",
+   "answer": {
+    "type": "number",
+    "value": 0.477,
+    "unit": "T",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Solve $\\kemfo = NA\\kBmag\\kw$ for the field strength, turning 400 rpm into radians per second first and taking the area as 5.00 cm by 8.00 cm in meters.",
+    "solution": "(a) 0.477 T\n(b) This field strength is small enough that it can be obtained using either a permanent magnet or an electromagnet."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737719383",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "sim-average-emf",
+   "prompt": "A 75-turn, 10.0 cm diameter coil rotates at an angular velocity of 8.00 rad/s in a 1.25 T field, starting with the plane of the coil parallel to the field. (a) What is the peak emf? (b) At what time is the peak emf first reached? (c) At what time is the emf first at its most negative? (d) What is the period of the AC voltage output?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "(a)", "value": 5.89, "unit": "V", "hint": "Use $\\kemfo = NA\\kBmag\\kw$ with the area of a circle of 5.00 cm radius."},
+     {"part": "(b)", "value": 0, "unit": "s", "hint": "The coil starts with its plane along the field, which is the edge-on position where the emf is already at its peak, so no time has to pass at all."},
+     {"part": "(c)", "value": 0.393, "unit": "s", "hint": "The emf is at its most negative half a period after it is at its peak, and the period is $2\\pi/\\kw$."},
+     {"part": "(d)", "value": 0.785, "unit": "s", "hint": "The period of the output is $\\kT = 2\\pi/\\kw$."}
+    ],
+    "solution": "(a) 5.89 V\n(b) At t=0\n(c) 0.393 s\n(d) 0.785 s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169738092977",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Unreasonable Results",
+   "place": {"at": "end"},
+   "cite": "sim-generator",
+   "prompt": "**Unreasonable Results** A 500-turn coil with a $0\\text{.}\\text{250}\\;{\\text{m}}^{2}$ area is spun in the Earth’s $5\\text{.}\\text{00}\\times {\\text{10}}^{-5}\\;\\text{T}$ field, producing a 12.0 kV maximum emf. (a) At what angular velocity must the coil be spun? (b) What is unreasonable about this result? (c) Which assumption or premise is responsible?",
+   "answer": {
+    "type": "number",
+    "value": 1920000,
+    "unit": "rad/s",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "Solve $\\kemfo = NA\\kBmag\\kw$ for the angular velocity, and keep the field in teslas and the emf in volts.",
+    "solution": "(a) $1\\text{.}\\text{92}\\times {\\text{10}}^{6}\\;\\text{rad/s}$\n(b) This angular velocity is unreasonably high, higher than can be obtained for any mechanical system.\n(c) The assumption that a voltage as great as 12.0 kV could be obtained is unreasonable."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "cq1", "concept": "generator-emf-versus-time"},
+  {"exercise": "cq1", "concept": "motional-emf", "weight": 3, "weights_by": "ai"},
+  {"exercise": "cq2", "concept": "electric-generator"},
+  {"exercise": "cq2", "concept": "lenzs-law", "weight": 4, "weights_by": "ai"},
+  {"exercise": "cq2", "concept": "lenz-from-energy-conservation", "weight": 4, "weights_by": "ai"},
+  {"exercise": "ap1", "concept": "generator-emf-versus-time"},
+  {"exercise": "ap1", "concept": "faradays-law", "weight": 2, "weights_by": "ai"},
+  {"exercise": "ap2", "concept": "peak-emf"},
+  {"exercise": "ap2", "concept": "generator-emf-versus-time", "weight": 3, "weights_by": "ai"},
+  {"exercise": "p1", "concept": "peak-emf"},
+  {"exercise": "p3", "concept": "peak-emf"},
+  {"exercise": "p3", "concept": "average-emf-of-a-generator", "weight": 2, "weights_by": "ai"},
+  {"exercise": "p5", "concept": "peak-emf"},
+  {"exercise": "p7", "concept": "peak-emf"},
+  {"exercise": "p9", "concept": "generator-emf-versus-time"},
+  {"exercise": "p9", "concept": "peak-emf", "weight": 4, "weights_by": "ai"},
+  {"exercise": "p11", "concept": "peak-emf"}
+ ]
+}
