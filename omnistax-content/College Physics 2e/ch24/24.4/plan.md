@@ -46,6 +46,15 @@ sim-intensity-three-ways · Sim · average-intensity-from-e0, intensity-from-the
 sim-oven-intensity · Sim · find-fields-from-intensity · value add: variation by slider, since the reader can put any power onto any patch and watch the intensity and both field amplitudes answer, where the book works one oven once · still, because the oven's power and its floor are a setting and not a motion · sliders: the power P (power, 100 to 2000 W, 1000 W by default), the width of the heated patch (untyped, 0.10 to 0.60 m, 0.400 m by default) and its depth (untyped, 0.10 to 0.60 m, 0.300 m by default), which together are the book's 1.00 kW on 30.0 by 40.0 cm · headline: "1000 W spread over 0.120 m² is 8.33 kW/m², and a wave of that intensity carries 2.51 kV/m and 8.37 µT." · graph: none; the oven's floor drawn to one fixed scale, with three bars beside it for the intensity and the two field amplitudes · 2D, since the oven is a box and nothing about its shape is the lesson (rule 28.1)
 ```
 
+Figure pass, 2026-09-16 (Claude Fable 5.1). The shared `bar()` now writes its
+number on a panel, so in all three figures the value no longer sits on the faint
+track it was written across. `sim-oven-intensity`: the intensity is written in
+the patch only where the patch is wide enough to hold it, and beside it
+otherwise, so a 10 cm patch no longer has its number running over the depth
+bracket's. Figure 24.22 was judged in both views and at every snap button and
+kept as built, design and controls alike.
+
+
 Labels: `sim-amplitude-squared` names five things in its flat view (the two beams,
 $\kEf$, $\kBmag$ and the two energy bars) and five in its scene, which is under
 the six of rule 26.7, so every label is on by default and no Labels button is

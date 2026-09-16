@@ -26,7 +26,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
 function sci(x, dp) {
   if (!(Math.abs(x) > 0)) return '0';
   const e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e);
-  return fmt(m, dp ?? 2) + ' \u00D7 10' + supOf(e);
+  return fmt(m, dp ?? 2) + '\u00A0\u00D7\u00A010' + supOf(e);
 }
 function sciTex(x, dp) {
   if (!(Math.abs(x) > 0)) return '0';
@@ -124,7 +124,7 @@ function sciTex(x, dp) {
       arrow(ctx, tail, 118, xf, 118, VC, 5);
       text(ctx, 'c = 3.00 \u00D7 10\u2078 m/s', xf + 14, 118, VC, { size: 21, weight: 600, align: xf > 1120 ? 'right' : 'left', bg: PAL.panel });
     }
-    text(ctx, 'the front of the wave', xf, MID + AMP + 46, PAL.muted, { size: 18, align: xf > 1180 ? 'right' : 'center', bg: PAL.panel });
+    if (st.front > 0.9) text(ctx, 'the front of the wave', xf, MID + AMP + 46, PAL.muted, { size: 18, align: xf > 1180 ? 'right' : 'center', bg: PAL.panel });
 
     /* one wavelength, marked between two crests once a whole one has left */
     const frac = st.tau - Math.floor(st.tau), m1 = frac * st.lam, m2 = m1 + st.lam;
@@ -227,14 +227,19 @@ function sciTex(x, dp) {
 
     /* the axis the wave travels along, with a tick at every metre */
     poly(ctx, [[0, 0, 0], [RUN * UPM, 0, 0]], alpha(PAL.ink, 0.35), 2);
+    /* the metre ruler runs below the axis, where the wave in the horizontal plane
+       cannot reach its numbers */
+    const RY = -204;
+    poly(ctx, [[0, RY, 0], [RUN * UPM, RY, 0]], PAL.muted, 2);
     for (let m = 0; m <= RUN; m++) {
-      poly(ctx, [[m * UPM, -9, 0], [m * UPM, 9, 0]], PAL.muted, 2);
-      if (m % 3 === 0) { const q = P([m * UPM, 0, 0]); text(ctx, fmt(m, 0) + ' m', q[0], q[1] + 26, PAL.muted, { size: 17, align: 'center' }); }
+      poly(ctx, [[m * UPM, RY - 8, 0], [m * UPM, RY + 8, 0]], PAL.muted, 2);
+      if (m % 3 === 0 && m < RUN) { const q = P([m * UPM, RY, 0]); text(ctx, fmt(m, 0) + ' m', q[0], q[1] + 24, PAL.muted, { size: 17, align: 'center' }); }
     }
+    { const q = P([RUN * UPM, RY, 0]); text(ctx, '9 m', q[0], q[1] + 24, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'distance from the antenna', q[0], q[1] + 50, XC, { size: 18, weight: 600, align: 'right' }); }
 
     /* the rings of magnetic field round the wire, all along it */
     [-1, 0, 1].forEach((k) => {
-      const y = k * 130, main = k === 0;
+      const y = k * 96, main = k === 0;
       ring(ctx, y, R_RING, alpha(BC, main ? 0.35 + 0.6 * str : 0.18 + 0.32 * str), main ? 4 : 2.5, Math.abs(st.I) > 0.5 ? sign : 0);
     });
 
@@ -282,10 +287,12 @@ function sciTex(x, dp) {
       const z = (BAMP * Bz(st, m)) / 50;
       if (Math.abs(z) > 6) arrow3(ctx, [m * UPM, 0, 0], [m * UPM, 0, z], alpha(BC, 0.45), 2.5);
     }
-    if (st.front > 0.4) {
-      const a = P([Math.max(0, st.front - 1.4) * UPM, 132, 0]), b = P([st.front * UPM, 132, 0]);
+    /* the speed arrow runs along the axis just ahead of the front, on the stretch the
+       wave has not yet reached, so it never sits on the wave, the rings or the headline */
+    if (st.front > 1.1 && st.front < RUN - 1.0) {
+      const a = P([(st.front + 0.1) * UPM, 0, 0]), b = P([(st.front + 0.9) * UPM, 0, 0]);
       arrow(ctx, a[0], a[1], b[0], b[1], VC, 5);
-      text(ctx, 'c', a[0] - 12, a[1] - 4, VC, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
+      text(ctx, 'c', b[0] + 14, b[1], VC, { size: 24, weight: 600, align: 'left', bg: PAL.panel });
     }
 
     topline(ctx, `The current in the antenna is ${fmt(Math.abs(st.I), 1)} A ${st.I >= 0 ? 'upward' : 'downward'}, the field one meter out is ${sci(Bring(st.I), 2)} T, and the magnetic wave has reached ${fmt(st.front, 2)} m.`);
@@ -620,7 +627,7 @@ function sciTex(x, dp) {
     line(ctx, BAR_X, 336, BAR_X + BAR_W, 336, alpha(PAL.ink, 0.35), 2);
     arrow(ctx, BAR_X, 336, BAR_X + (BAR_W * st.v) / CLIGHT, 336, VC, 6);
     line(ctx, BAR_X + BAR_W, 322, BAR_X + BAR_W, 350, PAL.muted, 2);
-    text(ctx, 'c', BAR_X + BAR_W, 302, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'c, in a vacuum', BAR_X + BAR_W, 306, PAL.muted, { size: 17, align: 'center' });
     text(ctx, sci(st.v, 2) + ' m/s', BAR_X + (BAR_W * st.v) / CLIGHT + 16, 336, VC, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
 
     /* the strip of magnetic field strengths, with the Earth's own on it */
@@ -632,7 +639,7 @@ function sciTex(x, dp) {
     }
     const xe = XB(Math.log10(B_EARTH));
     line(ctx, xe, SY - 12, xe, SY - 40, alpha(PAL.ink, 0.4), 2, [4, 6]);
-    text(ctx, 'the Earth\u2019s field, 5 \u00D7 10\u207B\u2075 T', xe, SY - 58, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
+    text(ctx, 'the Earth\u2019s field, 5 \u00D7 10\u207B\u2075 T', xe, SY - 58, PAL.ink, { size: 18, align: 'center', bg: PAL.panel });
     const xb = XB(Math.min(HI, Math.max(LO, Math.log10(st.B))));
     dot(ctx, xb, SY, BC, true, 12);
     text(ctx, sci(st.B, 2) + ' T', xb, SY + 62, BC, { size: 20, weight: 600, align: 'center', bg: PAL.panel });

@@ -49,7 +49,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
   if (drawn > 0) line(ctx, x, y, x + drawn, y, color, 16);
   let end = x + drawn;
   if (over) { arrow(ctx, x + len + 6, y, x + len + 26, y, color, 4); end = x + len + 26; }
-  text(ctx, valueText, end + 14, y, valueColor || color, { size: 20, weight: 600, align: 'left' });
+  text(ctx, valueText, end + 14, y, valueColor || color, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
   return end;
 }
 
@@ -395,8 +395,13 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
        its reading never have to share the floor with the patch, however large it is */
     arrow(ctx, CX + 0.36 * S + 76, CY, CX + 0.36 * S + 10, CY, PC, 6);
     text(ctx, fmt(st.P, 0) + ' W', CX + 0.36 * S + 43, CY - 28, PC, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, fmt(st.I, 0) + ' W/m\u00B2', CX, CY, IC, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    const iTxt = fmt(st.I, 0) + ' W/m\u00B2';
+    ctx.save(); ctx.font = '600 21px sans-serif'; const iW = ctx.measureText(iTxt).width; ctx.restore();
     hbracket(ctx, CX - pw / 2, CX + pw / 2, CY + ph / 2 + 26, PAL.muted, fmt(st.w, 2) + ' m', { side: 'below', size: 19 });
+    /* the intensity sits in the patch where the patch is wide enough to hold it, and below the
+       width bracket where it is not, so that it never runs over the depth bracket's number */
+    if (pw > iW + 28) text(ctx, iTxt, CX, CY, IC, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    else text(ctx, iTxt, CX + pw / 2 + 12, CY, IC, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
     vbracket(ctx, CX - pw / 2 - 26, CY - ph / 2, CY + ph / 2, PAL.muted, fmt(st.h, 2) + ' m', -1, { side: 'left', size: 19 });
     text(ctx, 'the oven floor, drawn to one fixed scale', CX, BOX.b + 74, PAL.muted, { size: 17, align: 'center' });
   }

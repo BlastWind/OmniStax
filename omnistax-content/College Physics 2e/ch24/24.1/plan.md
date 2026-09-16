@@ -36,6 +36,17 @@ sim-maxwell-four · Sim · maxwells-equations, changing-fields-generate-each-oth
 sim-hertz · Figure 24.4 · hertz-observations, speed-of-light-from-constants, light-is-an-electromagnetic-wave · variation by slider and intuition: the book's drawing is one fixed apparatus, whereas the whole of Hertz's argument is that the circuit's resonant frequency and the measured wavelength multiply to the speed of light, so the reader sets the inductance and the capacitance, watches the resonant frequency and with it the length of the wave crossing the laboratory change together, and reads the product off the readout · still, because the idea of the figure is a measurement taken of a wave rather than the travelling of it: Hertz's wavelength came from an interference pattern that stands still and his frequency from the circuit, and the product of the two is an arithmetic, not a motion; the wave is set running in 24.2, where its production is the lesson · sliders L and C (both untyped, since the book writes the resonance condition with L and C in plain letters and this page binds neither inductance nor capacitance), a dropdown for the receiver, tuned to the transmitter or tuned elsewhere, taken as a dropdown rather than a button row because the row wraps beside the two sliders (root rule 26.1) · headline reads the frequency the circuit resonates at, the length of the wave that leaves the loop and whether the far loop sparks · graph none · 2D
 ```
 
+Figure pass, 2026-09-16 (Claude Fable 5.1). `sim-hertz`: the driving circuit
+moved left and its leads taken round at x = 254, so the spark at the
+transmitter's gap no longer runs through the wires that feed it, and the
+flashes about both sparks shortened; the two loop names moved above the loops,
+where the transmitter's no longer crossed the wavelength's drop line; the two
+notes under the wave and the circuit's name raised from muted 17 to 18 and 19
+so they are not faint. `sim-maxwell-four`: the arrowhead inside the magnet moved
+to the pole face, clear of the N and S. Nothing else changed; every slider,
+default and id stands.
+
+
 Root rule 26.7 on `sim-hertz`: the figure carries more than six entity labels,
 and they stay on. A schematic whose parts are not named cannot be read at all,
 every one of those labels sits on a fixed lattice that no slider moves — the

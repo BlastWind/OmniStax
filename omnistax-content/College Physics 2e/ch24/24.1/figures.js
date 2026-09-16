@@ -47,7 +47,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
   for (let i = 1; i <= n; i++) { const s = i < n ? (i % 2 ? 9 : -9) : 0; ctx.lineTo(x1 + dx * i + ux * s, y1 + dy * i + uy * s); }
   ctx.stroke();
   const mx = (x1 + x2) / 2, my = (y1 + y2) / 2; ctx.lineWidth = 2;
-  for (let k = 0; k < 6; k++) { const a = (k / 6) * TAU + 0.3; ctx.beginPath(); ctx.moveTo(mx + 15 * Math.cos(a), my + 15 * Math.sin(a)); ctx.lineTo(mx + 26 * Math.cos(a), my + 26 * Math.sin(a)); ctx.stroke(); }
+  for (let k = 0; k < 6; k++) { const a = (k / 6) * TAU + 0.3; ctx.beginPath(); ctx.moveTo(mx + 13 * Math.cos(a), my + 13 * Math.sin(a)); ctx.lineTo(mx + 21 * Math.cos(a), my + 21 * Math.sin(a)); ctx.stroke(); }
   ctx.restore();
 }
 
@@ -154,7 +154,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
         arrow(ctx, CX - dir * 20, yb, CX + dir * 20, yb, bc, 3);      /* outside, away from the north pole */
         /* one arrowhead inside the magnet, on the outermost loop and clear of the pole letters,
            so that the heads of the inner loops do not pile into one smudge at the middle */
-        if (k === levels - 1) arrow(ctx, CX - dir * 74, y0, CX - dir * 114, y0, bc, 3);
+        if (k === levels - 1) arrow(ctx, CX - dir * 88, y0, CX - dir * 124, y0, bc, 3);
       }
     }
     text(ctx, northRight ? 'S' : 'N', CX - HW / 2, CY, PAL.ink, { size: 30, weight: 600, align: 'center', bg: PAL.panel });
@@ -288,40 +288,40 @@ function spark(ctx, x1, y1, x2, y2, color) {
   /* The driving circuit, drawn as the book draws it: an alternating source, a resistor, a
      coil and a capacitor round one rectangle, with the transmitting loop wired across it. */
   function circuit(ctx) {
-    const L = 60, Rt = 250, T = 180, B = 360;
+    const L = 60, Rt = 212, T = 180, B = 360;
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.beginPath();
-    ctx.moveTo(L, 232); ctx.lineTo(L, T); ctx.lineTo(140, T);          /* up the left side and along the top to the resistor */
-    ctx.moveTo(210, T); ctx.lineTo(Rt, T); ctx.lineTo(Rt, 224);        /* on to the corner and down to the coil */
-    ctx.moveTo(Rt, 317); ctx.lineTo(Rt, B); ctx.lineTo(178, B);        /* down to the bottom and along to the capacitor */
-    ctx.moveTo(138, B); ctx.lineTo(L, B); ctx.lineTo(L, 288);          /* on to the corner and up to the source */
+    ctx.moveTo(L, 232); ctx.lineTo(L, T); ctx.lineTo(112, T);          /* up the left side and along the top to the resistor */
+    ctx.moveTo(182, T); ctx.lineTo(Rt, T); ctx.lineTo(Rt, 224);        /* on to the corner and down to the coil */
+    ctx.moveTo(Rt, 317); ctx.lineTo(Rt, B); ctx.lineTo(166, B);        /* down to the bottom and along to the capacitor */
+    ctx.moveTo(126, B); ctx.lineTo(L, B); ctx.lineTo(L, 288);          /* on to the corner and up to the source */
     ctx.stroke();
     /* the resistor, as a zigzag along the top */
-    ctx.beginPath(); ctx.moveTo(140, T);
-    for (let i = 0; i < 7; i++) ctx.lineTo(143 + i * 10, T + (i % 2 ? 11 : -11));
-    ctx.lineTo(210, T); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(112, T);
+    for (let i = 0; i < 7; i++) ctx.lineTo(115 + i * 10, T + (i % 2 ? 11 : -11));
+    ctx.lineTo(182, T); ctx.stroke();
     /* the coil, as four humps down the right side */
     ctx.beginPath();
     for (let i = 0; i < 4; i++) ctx.arc(Rt, 236 + i * 23, 12, -Math.PI / 2, Math.PI / 2);
     ctx.stroke();
     /* the capacitor, as two plates across the bottom wire */
-    ctx.beginPath(); ctx.moveTo(178, B - 20); ctx.lineTo(178, B + 20); ctx.moveTo(138, B - 20); ctx.lineTo(138, B + 20); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(166, B - 20); ctx.lineTo(166, B + 20); ctx.moveTo(126, B - 20); ctx.lineTo(126, B + 20); ctx.stroke();
     /* the alternating source, as a ring with a wave in it */
     ctx.beginPath(); ctx.arc(L, 260, 28, 0, TAU); ctx.stroke();
     ctx.lineWidth = 3; ctx.beginPath();
     for (let i = 0; i <= 24; i++) { const x = L - 15 + (30 * i) / 24, y = 260 - 9 * Math.sin((i / 24) * TAU); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
     ctx.stroke(); ctx.restore();
-    text(ctx, 'R', 175, T - 32, PAL.ink, { size: 24, weight: 600, align: 'center' });
-    text(ctx, 'L', 236, 270, PAL.ink, { size: 24, weight: 600, align: 'right' });
-    text(ctx, 'C', 158, B + 40, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'R', 147, T - 32, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'L', 198, 270, PAL.ink, { size: 24, weight: 600, align: 'right' });
+    text(ctx, 'C', 146, B + 40, PAL.ink, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'AC', 98, 260, PAL.ink, { size: 20, align: 'left' });
   }
   /* the two leads that carry the transmitting loop across the circuit, taken round the
      coil to the corners so that no lead crosses a component */
   function leads(ctx, lower, upper) {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
-    ctx.moveTo(upper.x, upper.y); ctx.lineTo(288, upper.y); ctx.lineTo(288, 180); ctx.lineTo(250, 180);
-    ctx.moveTo(lower.x, lower.y); ctx.lineTo(288, lower.y); ctx.lineTo(288, 360); ctx.lineTo(250, 360);
+    ctx.moveTo(upper.x, upper.y); ctx.lineTo(254, upper.y); ctx.lineTo(254, 180); ctx.lineTo(212, 180);
+    ctx.moveTo(lower.x, lower.y); ctx.lineTo(254, lower.y); ctx.lineTo(254, 360); ctx.lineTo(212, 360);
     ctx.stroke(); ctx.restore();
   }
   /* a loop of wire with a gap in it, the gap centred on the canvas angle `gap` */
@@ -374,13 +374,13 @@ function spark(ctx, x1, y1, x2, y2, color) {
     arrow(ctx, 540, 152, 760, 152, vc, 5);
     text(ctx, 'c = 3.00 × 10⁸ m/s', 772, 152, vc, { size: 21, weight: 600 });
     /* the names of the things on the bench */
-    text(ctx, 'an RLC circuit', 155, 424, PAL.muted, { size: 20, align: 'center' });
-    text(ctx, 'Loop 1, the transmitter', X1, 380, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'Loop 2, the receiver', X2, 380, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'an RLC circuit', 136, 424, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'Loop 1, the transmitter', X1, Y0 - R - 26, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'Loop 2, the receiver', X2, Y0 - R - 26, PAL.ink, { size: 20, align: 'center' });
     text(ctx, 'the tuner', 1300, 340, PAL.ink, { size: 20, align: 'center' });
     text(ctx, 'the electric field of the wave', (XA + XB) / 2, 466, ec, { size: 20, align: 'center' });
-    text(ctx, 'the magnetic field is out of the page at each crest and into it at each trough', (XA + XB) / 2, 496, bc, { size: 17, align: 'center' });
-    text(ctx, 'the two loops stand ' + fmt(LAB, 1) + ' m apart, and the drawing is on that scale', 700, 524, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the magnetic field is out of the page at each crest and into it at each trough', (XA + XB) / 2, 496, bc, { size: 19, align: 'center' });
+    text(ctx, 'the two loops stand ' + fmt(LAB, 1) + ' m apart, and the drawing is on that scale', 700, 526, PAL.muted, { size: 18, align: 'center' });
     headline(ctx, 'The circuit resonates at ' + fmt(fMHz, 1) + ' MHz, so the wave that leaves the first loop is ' + fmt(lam, 2) + ' m long, and the second loop, tuned '
       + (tuned ? 'to the same frequency, sparks in step with it.' : 'elsewhere, stays silent.'));
     readout(d.readout,

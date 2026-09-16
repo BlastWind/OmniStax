@@ -83,6 +83,19 @@ sim-xray · Figure 24.18 + 24.19 · sources-across-the-spectrum, radiation-and-l
 sim-antenna-length · Sim · antenna-length-and-wavelength, find-wavelength-or-frequency, c-equals-f-lambda · variation by slider, on a result the book states in words and never draws: the most efficient antenna is half a wavelength long, and the reader is told that AM needs a very large one without ever being shown how large · still · one slider, log_10(f / Hz) from 5 to 10 carrying the frequency hue, with detents at the three frequencies of Example 24.2 (1530 kHz, 105.1 MHz, 1.90 GHz), and one choice, whether the antenna stands free (L = λ/2) or has one end on the ground (L = λ/4) · the headline gives the frequency, the wavelength and the antenna length, and compares that length with the height of a person · graph alone, because the graph is the idea: antenna length against frequency on log–log axes, a straight line with a pinned marker, and a silhouette drawn beside the axis at 1.7 m as the one scale the reader already has · 2D
 ```
 
+Figure pass, 2026-09-16 (Claude Fable 5.1). `sim-elf-submarine`: the submarine
+redrawn as a hull with a tapered stern, tail fins, a propeller, a conning tower
+with its periscope up and a line of portholes, since an ellipse under a
+trapezoid did not read as one; drawn in the figure itself, as no sprite in the
+library fits, and it could be lifted. `sim-visible`: the two scales are now
+drawn after the marker line, with their numbers on panels, so the marker at 800
+or 300 nm no longer strikes through a tick number. `sim-antenna-length`: the two
+line names now sit on opposite sides of their lines, where L = λ/4 had been
+sitting on the λ/2 line; the tick band under the graph is blocked from the
+labeller; the length's name goes above the point near the bottom of the graph.
+The spectrum, the two modulations and the X-ray scene were judged and kept.
+
+
 Figures 24.8, 24.10, 24.11, 24.12 and 24.15 are the book's drawings kept under
 their own numbers; 24.18 and 24.19 fold into one, since the book draws the same
 electron striking the same material twice and one scene with a choice of

@@ -39,6 +39,20 @@ and no new type is declared.
 sim-antenna-cycle · Figure 24.5 · em-waves-from-accelerating-charges, antenna-field-cycle · intuition and flow by animation and variation by slider: the book freezes the antenna at four instants and asks the reader to supply the motion between them, and nothing in the four panels says what sets the amplitude or what sets the wavelength · moving, the charges run up and down the antenna and the field they made travels off at c, since the idea has a period in it; the model runs two periods so that the wave builds out to two wavelengths as the book's four panels do, then holds · sliders: f (frequency) and E_0 (electric-field) · headline: the phase the antenna stands at, the field beside it and how far the first crest has gone · graph: none, the travelling wave is the scene · 2D, flat (root rule 28.1): the field against distance is a relation between two quantities and is honest drawn flat with a metre ruler under it
 ```
 
+Figure pass, 2026-09-16 (Claude Fable 5.1). `sim-antenna-cycle`: the name of
+the front is held back until the front has left 0.9 m behind, so it no longer
+lands on the antenna's own name at t = 0. `sim-antenna-b`: the metre marks moved
+off the axis onto a ruler of their own below it, where the wave in the
+horizontal plane cannot reach their numbers; the two outer rings brought in to
+±96 scene units, clear of the charge at each end of the wire; the speed arrow
+now runs along the axis just ahead of the front, on the stretch the wave has
+not reached, so it never sits on the wave, the rings, the E label or the
+headline. `sim-field-ratio`: a number written as a × 10ⁿ no longer breaks across
+a wrapped headline, the Earth's-field mark is in ink, and the c tick on the
+speed row is named. Figure 24.7 was judged in the browser at every view and
+choice and kept as built, design and controls alike.
+
+
 ```
 sim-antenna-b · Figure 24.6 · magnetic-part-of-the-wave, em-waves-from-accelerating-charges · intuition and flow by animation and variation by slider: the book's three panels are the same instant seen three ways, and the one thing they cannot show is that the rings round the wire grow, shrink and reverse with the current while the wave that left earlier keeps going · moving, the current in the antenna has a period, and the magnetic wave leaves at c · sliders: f (frequency) and I_0 (current) · headline: which way the current runs, how strong the field is half a metre out and which way the rings turn · graph: none · 2D with the rings and the receding wave on a locked view (root rule 28.2), the viewpoint the book itself prints them from: circles round a wire drawn flat are either a pair of dots and crosses or a lie, and nothing about the arrangement changes with where the reader stands, so there is no orbit
 ```

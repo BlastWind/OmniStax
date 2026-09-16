@@ -198,11 +198,26 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     /* the submarine: a hull with a conning tower */
     const sx = 1120, sy = SEA + (FLOOR - SEA) * 0.66;
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
-    ctx.beginPath(); ctx.ellipse(sx, sy, 120, 24, 0, 0, TAU); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(sx - 24, sy - 20); ctx.lineTo(sx - 14, sy - 50); ctx.lineTo(sx + 22, sy - 50); ctx.lineTo(sx + 28, sy - 20); ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the tail fin and the rudder, drawn first so the hull sits over their roots */
+    ctx.beginPath(); ctx.moveTo(sx - 104, sy - 12); ctx.lineTo(sx - 138, sy - 34); ctx.lineTo(sx - 122, sy - 6); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(sx - 104, sy + 12); ctx.lineTo(sx - 138, sy + 34); ctx.lineTo(sx - 122, sy + 6); ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the propeller, two blades on a short shaft at the stern */
+    ctx.beginPath(); ctx.moveTo(sx - 126, sy); ctx.lineTo(sx - 140, sy); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(sx - 142, sy, 5, 16, 0, 0, TAU); ctx.fill(); ctx.stroke();
+    /* the hull: a long cigar, blunter at the bow */
+    ctx.beginPath(); ctx.moveTo(sx - 126, sy - 12);
+    ctx.bezierCurveTo(sx - 90, sy - 28, sx + 60, sy - 30, sx + 104, sy - 22);
+    ctx.bezierCurveTo(sx + 128, sy - 16, sx + 128, sy + 16, sx + 104, sy + 22);
+    ctx.bezierCurveTo(sx + 60, sy + 30, sx - 90, sy + 28, sx - 126, sy + 12); ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the conning tower, with its periscope up */
+    ctx.beginPath(); ctx.moveTo(sx - 22, sy - 24); ctx.lineTo(sx - 12, sy - 52); ctx.lineTo(sx + 26, sy - 52); ctx.lineTo(sx + 32, sy - 24); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(sx + 10, sy - 52); ctx.lineTo(sx + 10, sy - 72); ctx.lineTo(sx + 20, sy - 72); ctx.stroke();
+    /* a line of portholes along the hull */
+    ctx.fillStyle = alpha(PAL.ink, 0.5);
+    for (let k = -3; k <= 3; k++) { ctx.beginPath(); ctx.arc(sx + 22 * k + 30, sy - 2, 3, 0, TAU); ctx.fill(); }
     ctx.restore();
-    label(ctx, 'a submerged submarine', sx, sy - 56, { side: 'above', gap: 14, size: 19 });
-    text(ctx, 'the sea is a sketch: neither the wavelength above it nor the depth below it is drawn to scale', RX, 618, PAL.muted, { size: 17, align: 'right' });
+    label(ctx, 'a submerged submarine', sx, sy - 74, { side: 'above', gap: 12, size: 19 });
+    text(ctx, 'the sea is a sketch: neither the wavelength above it nor the depth below it is drawn to scale', RX, 618, PAL.muted, { size: 18, align: 'right' });
     topline(ctx, e <= 3.2 ? 'At ' + sciTxt(f, 2) + ' Hz one wavelength is ' + lamText(lam) + ', and waves this long are the ones used to reach a submarine under the surface.'
       : 'At ' + sciTxt(f, 2) + ' Hz one wavelength is ' + lamText(lam) + ', and salt water absorbs a wave this short before it has gone far below the surface.');
     readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}`,
@@ -333,18 +348,20 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     text(ctx, 'ultraviolet', (X(380) + RX) / 2, (TOP + BOT) / 2, PAL.muted, { size: 20, weight: 600, align: 'center' });
     /* the seven colours the book names, on two rows so that the narrow ones have room */
     COLOURS.forEach(([a, b, s], i) => { line(ctx, X((a + b) / 2), BOT, X((a + b) / 2), BOT + (i % 2 ? 40 : 16), PAL.muted, 1.5); text(ctx, s, X((a + b) / 2), BOT + (i % 2 ? 54 : 30), PAL.ink, { size: 18, weight: 600, align: 'center' }); });
-    /* the two scales, both below the strip so that the marker has the space above it */
-    line(ctx, LX, YW, RX, YW, PAL.muted, 2);
-    for (let w = 800; w >= 300; w -= 100) { const x = X(w); line(ctx, x, YW - 9, x, YW + 9, PAL.muted, 2); text(ctx, String(w), x, YW + 26, PAL.muted, { size: 17, align: 'center' }); }
-    text(ctx, 'wavelength, λ (nm)', LX, YW + 58, pc, { size: 20, weight: 600 });
-    line(ctx, LX, YF, RX, YF, PAL.muted, 2);
-    for (let w = 800; w >= 300; w -= 100) { const x = X(w); line(ctx, x, YF - 9, x, YF + 9, PAL.muted, 2); text(ctx, fmt(CLIGHT / (w * 1e-9) / 1e14, 2), x, YF + 26, PAL.muted, { size: 17, align: 'center' }); }
-    text(ctx, 'frequency, f (10¹⁴ Hz)', LX, YF + 58, fc, { size: 20, weight: 600 });
-    text(ctx, 'c = 3.00 × 10⁸ m/s', RX, YF + 58, vc, { size: 18, weight: 600, align: 'right' });
-    /* the marker, in the colour of the light it stands on, or in ink where there is none */
+    /* the marker, in the colour of the light it stands on, or in ink where there is none; the
+       scales are drawn after it, so their numbers sit on panels over the line where it crosses them */
     const x = X(nm);
     line(ctx, x, TOP - 44, x, YF + 10, mc, 4);
+    /* the two scales, both below the strip so that the marker has the space above it */
+    line(ctx, LX, YW, RX, YW, PAL.muted, 2);
+    for (let w = 800; w >= 300; w -= 100) { const x = X(w); line(ctx, x, YW - 9, x, YW + 9, PAL.muted, 2); text(ctx, String(w), x, YW + 26, PAL.muted, { size: 17, align: 'center', bg: PAL.panel }); }
+    text(ctx, 'wavelength, λ (nm)', LX, YW + 58, pc, { size: 20, weight: 600 });
+    line(ctx, LX, YF, RX, YF, PAL.muted, 2);
+    for (let w = 800; w >= 300; w -= 100) { const x = X(w); line(ctx, x, YF - 9, x, YF + 9, PAL.muted, 2); text(ctx, fmt(CLIGHT / (w * 1e-9) / 1e14, 2), x, YF + 26, PAL.muted, { size: 17, align: 'center', bg: PAL.panel }); }
+    text(ctx, 'frequency, f (10¹⁴ Hz)', LX, YF + 58, fc, { size: 20, weight: 600 });
+    text(ctx, 'c = 3.00 × 10⁸ m/s', RX, YF + 58, vc, { size: 18, weight: 600, align: 'right' });
     dot(ctx, x, YW, mc, true, 9); dot(ctx, x, YF, mc, true, 9);
+
     label(ctx, name ? name + ', ' + fmt(nm, 0) + ' nm' : fmt(nm, 0) + ' nm: no eye sees it', x, TOP - 46, { side: 'above', color: name ? mc : PAL.ink, gap: 14, size: 22 });
     topline(ctx, name ? 'Light of wavelength ' + fmt(nm, 0) + ' nm has a frequency of ' + sciTxt(f, 2) + ' Hz, and the eye sees it as ' + name + '.'
       : 'A wave of wavelength ' + fmt(nm, 0) + ' nm has a frequency of ' + sciTxt(f, 2) + ' Hz, which lies ' + (nm > 750 ? 'below the red end of the strip, in the infrared' : 'above the violet end of the strip, in the ultraviolet') + ', and no eye sees it.');
@@ -473,11 +490,12 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
       xl: 'frequency, f (Hz)', xc: fc, yl: 'antenna length, L (m)', yc: pc });
     const lab = labeller(ctx, 620, { headline: 2 });
     lab.place({ l: box.l - 60, r: box.l + 300, t: box.t - 40, b: box.t - 8 });
+    lab.block(0, box.b + 2, 1400, box.b + 60);
     /* both lines, the chosen one solid and the other faint, since one is twice the other */
     [[2, 'L = λ/2'], [4, 'L = λ/4']].forEach(([kk, name]) => {
       const on = kk === k;
       curve(ctx, (v) => Math.log10(CLIGHT / (kk * Math.pow(10, v))), 5, 10, X, Y, on ? pc : alpha(PAL.ink, 0.3), on ? 5 : 2.5, 60);
-      text(ctx, name, X(6.95), Y(Math.log10(CLIGHT / (kk * Math.pow(10, 6.95)))) - 20, on ? pc : PAL.muted, { size: 20, weight: 600, bg: PAL.panel });
+      text(ctx, name, X(6.95), Y(Math.log10(CLIGHT / (kk * Math.pow(10, 6.95)))) + (kk === 2 ? -22 : 24), on ? pc : PAL.muted, { size: 20, weight: 600, bg: PAL.panel });
     });
     /* the height of a person, the one length the reader already has */
     line(ctx, box.l, Y(Math.log10(1.7)), box.r, Y(Math.log10(1.7)), alpha(PAL.ink, 0.4), 2, [10, 10]);
@@ -485,7 +503,9 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     /* the three frequencies of Example 24.2 */
     MARKS.forEach(([ee, name]) => { const yy = Math.log10(CLIGHT / (k * Math.pow(10, ee))); dot(ctx, X(ee), Y(yy), PAL.ink, false, 10); lab.add(name, X(ee), Y(yy), 0.4, -0.9, PAL.muted, 17, 16); });
     pinned(ctx, box, X, Y, e, Math.log10(L), fc, lamText(L));
-    lab.add('L = ' + lamText(L), X(e), Y(Math.log10(L)), -0.5, 0.9, pc, 21, 20);
+    /* the length's name goes below the point, and above it near the bottom of the graph */
+    if (Math.log10(L) < -1.3) lab.add('L = ' + lamText(L), X(e), Y(Math.log10(L)), -0.6, -0.8, pc, 21, 20);
+    else lab.add('L = ' + lamText(L), X(e), Y(Math.log10(L)), -0.5, 0.9, pc, 21, 20);
     lab.flush();
     text(ctx, 'c = 3.00 × 10⁸ m/s', box.r, box.t - 24, vc, { size: 18, weight: 600, align: 'right' });
     topline(ctx, 'At ' + sciTxt(f, 2) + ' Hz the wavelength is ' + lamText(lam) + ', so the most efficient antenna is ' + lamText(L) + ' long, which is ' + (L >= 1.7 ? fmt(L / 1.7, L / 1.7 >= 10 ? 0 : 1) + ' times the height of a person' : 'one part in ' + fmt(1.7 / L, 0) + ' of the height of a person') + '.');
