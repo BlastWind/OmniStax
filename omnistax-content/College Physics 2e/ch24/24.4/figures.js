@@ -237,7 +237,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     V = F.view3d(d.stage, {
       h: 700, dist: 7.0, tilt: 0.40, spin: 'off',
       views: [
-        { label: 'the book\u2019s view', yaw: -0.40, pitch: 0.40 },
+        { label: 'three quarters', yaw: -0.40, pitch: 0.40 },
         { label: 'down the beams', yaw: -1.5708, pitch: 0.0 },
         { label: 'from the side', yaw: 0.0, pitch: 0.0 },
       ],

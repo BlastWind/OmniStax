@@ -214,8 +214,8 @@ function sciTex(x, dp) {
     const st = state();
     const g = P([0, 0, 0]), b = P([R_RING, 0, 0]);
     return [
-      { x: g[0], y: g[1], r: 34, name: 'the AC generator at the centre of the antenna' },
-      { x: b[0], y: b[1], r: 34, name: 'B one metre from the wire, ' + sci(Bring(st.I), 2) + ' T just now' },
+      { x: g[0], y: g[1], r: 34, name: 'the AC generator at the center of the antenna' },
+      { x: b[0], y: b[1], r: 34, name: 'B one meter from the wire, ' + sci(Bring(st.I), 2) + ' T just now' },
     ];
   });
 
@@ -288,7 +288,7 @@ function sciTex(x, dp) {
       text(ctx, 'c', a[0] - 12, a[1] - 4, VC, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
     }
 
-    topline(ctx, `The current in the antenna is ${fmt(Math.abs(st.I), 1)} A ${st.I >= 0 ? 'upward' : 'downward'}, the field one metre out is ${sci(Bring(st.I), 2)} T, and the magnetic wave has reached ${fmt(st.front, 2)} m.`);
+    topline(ctx, `The current in the antenna is ${fmt(Math.abs(st.I), 1)} A ${st.I >= 0 ? 'upward' : 'downward'}, the field one meter out is ${sci(Bring(st.I), 2)} T, and the magnetic wave has reached ${fmt(st.front, 2)} m.`);
     readout(d.readout,
       `\\kBmag = \\frac{\\mu_0\\kIcur}{2\\pi\\kr} = \\frac{(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(Math.abs(st.I), 1)}\\ \\text{A})}{2\\pi(1.00\\ \\text{m})} = ${sciTex(Bring(st.I), 2)}\\ \\text{T}`,
       `The rings are the field of a long straight wire, so they grow and shrink with the current and turn the other way when it reverses; point the thumb of your right hand the way the current runs and your fingers curl the way they go. The current is greatest when the charge separation is zero, a quarter of a cycle away from the instant Figure 24.5 opens on, which is why the electric arrow and the magnetic arrow beside the wire never reach their greatest values together here at the source. Once the field has left, though, it travels as the electric part does, at ${fmt(st.lam, 2)} m to the cycle and at the speed of light, so the magnetic wave has the same period and the same wavelength as the electric one.`);
@@ -514,7 +514,7 @@ function sciTex(x, dp) {
     const eTop = PT(X0 + 0.5 * UPM, kE, 0), bTop = PT(X0 + 0.5 * UPM, 0, kB);
     text(ctx, 'E', eTop[0] - 22, eTop[1] - 18, EC, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, 'B', bTop[0] - 22, bTop[1] + 18, BC, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'This browser cannot turn the scene, so the wave is drawn from the one viewpoint the book prints it from,', 700, 470, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'This browser cannot turn the scene, so the wave is drawn from one viewpoint only,', 700, 470, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'with the electric field in the upright plane and the magnetic field in the plane at right angles to it.', 700, 494, PAL.muted, { size: 17, align: 'center' });
   }
 
@@ -554,7 +554,7 @@ function sciTex(x, dp) {
     V = F.view3d(d.stage, {
       h: 440, dist: 6.4, tilt: 0.42, spin: 'off',
       views: [
-        { label: 'the book\u2019s view', yaw: -0.40, pitch: 0.42 },
+        { label: 'three quarters', yaw: -0.40, pitch: 0.42 },
         { label: 'down the beam', yaw: -1.5708, pitch: 0.0 },
         { label: 'from above', yaw: -0.40, pitch: 1.15 },
       ],

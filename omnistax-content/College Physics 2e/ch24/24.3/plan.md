@@ -175,3 +175,15 @@ as an open item with an AI-marked suggested approach.
   equations and seventeen glossary terms the prep pass staged for 24.3 are the
   ones the page uses, and the section binds no type beyond the six
   `ch24/COLOR.md` allots it.
+
+### What the chapter pass did (2026-09-15)
+
+Every anchor above is written: `eq-wave-speed-general` and `eq-c-equals-f-lambda`
+with `c`, `f`, `λ` and `v_w` to `24.3-wave-relation`, and the three antenna
+equations to `24.3-fm-radio`. The clause naming the TV reception antenna is
+struck from the Figures-that-serve-exercises line of `config.md`, which now
+records that an image belonging to an unkeyed problem is not copied and that the
+rule took this image and 24.4's satellite dish. `ch24/COLOR.md` now records what
+the two modulation figures do: the carrier wave and the modulated wave are both
+the electric field of a wave and take that hue, and the audio signal alone takes
+the categorical palette, as does the emitted ray of the X-ray figure.

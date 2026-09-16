@@ -296,3 +296,28 @@ same thing at different rates. The figures should make that single fact felt.
   agents find them useful; the same pass decides.
 - Nothing else. The chapter declares no type, and the three symbol rows it needs
   (`B_0mag`, `I_ave`, `I_0peak`) are staged and merged here.
+
+## Errata: what the book gets wrong, gathered by the chapter pass (2026-09-15)
+
+Each of these is carried as the book writes it, since the book's words and the
+book's key are what the pages print, and each is named in the `notes` or the
+`exercise_notes` of the section it sits in. They are gathered here so that the
+chapter's slips can be read in one place.
+
+- **The Critical Thinking problem of 24.4, `exer-00001`.** Part (b) asks what
+  happens to the magnetic field strength of the wave when the transmitter's
+  power is raised, and the key the book prints answers for the electric field:
+  it reads "E would increase". The two fields of a wave stand in the fixed ratio
+  $B = E/c$, so the only reading the question allows is that the magnetic field
+  increases with the electric one, and 24.4 sets the answer that way and says so
+  in its `exercise_notes`.
+- **The second AP item of 24.4, `fs-id3156214`.** The item asks for two
+  improvements that would make a radar set more sensitive, and the publisher has
+  commented its solution out of the CNXML, so the book prints no key for it. It
+  is kept as an open item with an AI-marked suggested approach, as the four
+  unkeyed AP items of 24.2 and the one of 24.3 are, and the chapter's count of
+  keyed AP items stands at six of twelve on the six that carry a printed key.
+- **The bundle numbers this chapter 25.** Every media file of the chapter is
+  named `Figure 25_…` while the edition prints the figures as 24.1 to 24.22, and
+  two of those file names carry a space, which the copies under `media/ch24/`
+  write as an underscore. Nothing on the page shows either name.

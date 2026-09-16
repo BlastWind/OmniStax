@@ -102,3 +102,15 @@ the eight glossary entries go to the tables, as root rule 4 asks.
 No concept and no symbol needs fixing: the five concepts of 24.1 and every
 symbol the page colours ($c$, $f_0$, $\lambda$, $E$, $B$) are in `book.json` as
 the prep pass left them.
+
+### What the chapter pass did (2026-09-15)
+
+Every line above is applied. `eq-speed-of-light-constants`, `c`, `μ_0` and
+`ε_0` are anchored to `24.1-prediction`, and `eq-rlc-resonant-frequency` and
+`f_0` to `24.1-hertz`. `ch24/COLOR.md` now gives 24.1 `position` beside
+`velocity`, `frequency`, `electric-field` and `magnetic-field`, since
+`sim-hertz` draws the wavelength as a bracket across the laboratory. No concept
+and no symbol row needed changing, as the plan said. The section's two concepts
+that reach back to Chapter 23 gained their edges at chapter level:
+`maxwells-equations` now takes Faraday's law and Lenz's law, and
+`hertz-observations` takes the resonant frequency of an RLC circuit.

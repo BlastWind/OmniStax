@@ -25,8 +25,8 @@ Which section binds what:
 | Section | Types bound |
 |---|---|
 | intro | none |
-| 24.1 | `velocity`, `frequency`, `electric-field`, `magnetic-field` |
-| 24.2 | `electric-field`, `magnetic-field`, `velocity`, `position`, `time`, `charge`, `current` |
+| 24.1 | `velocity`, `frequency`, `position`, `electric-field`, `magnetic-field` |
+| 24.2 | `electric-field`, `magnetic-field`, `velocity`, `position`, `time`, `charge`, `current`, `frequency` |
 | 24.3 | `frequency`, `position`, `velocity`, `time`, `electric-field`, `energy` |
 | 24.4 | `intensity`, `electric-field`, `magnetic-field`, `velocity`, `power` |
 
@@ -38,9 +38,13 @@ and the visible band inside the spectrum of Figure 24.8, are painted in true
 spectral colour, since there the wavelength and the colour are the same fact; a
 marker dragged along the spectrum takes that colour while it is inside the band
 and is ink outside it. The categorical palette `F.cat(i)` tells apart instances
-that carry no type and must be distinguished — the carrier wave against the audio
-signal in a modulation figure, the two orientations of a receiving antenna, the
-two X-ray mechanisms — and it is never used in a hue the page has bound. The
+that carry no type and must be distinguished, and it is never used in a hue the
+page has bound. In the two modulation figures of 24.3 the carrier wave and the
+modulated wave the station sends out are both the electric field of a wave, so
+both are drawn in the `electric-field` hue, and it is the audio signal alone —
+a voltage waveform of no type this chapter binds — that takes `F.cat(0)`; in
+24.3's X-ray figure the emitted ray takes `F.cat(1)`, since a photon of either
+mechanism carries no type of its own. The
 element palette arises once, on 24.3's X-ray figures, where `F.el('e-')` fills the
 striking electron and the captured one; the nucleus and its shells are ink.
 

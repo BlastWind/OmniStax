@@ -146,3 +146,14 @@ question already, on whether an antenna can be any length.
 - variable `n` (24.2) → anchor `24.2-field-ratio`
 - No symbol row is added and none is changed: $E$, $B$, $c$, $T$, $f$, $\lambda$,
   $v$ and $n$ all have rows already.
+
+### What the chapter pass did (2026-09-15)
+
+Every anchor above is written: the four equations to `24.2-field-ratio`, and the
+eight variables to `24.2-varying-current`, `24.2-e-and-b-together`,
+`24.2-one-cycle` and `24.2-field-ratio` as the lines name them. No symbol row was
+added or changed. Two things the plan did not name were corrected: the `draws`
+columns of `sim-antenna-b` and `sim-em-wave-3d` gained `frequency`, which the
+frequency slider of each binds, and `ch24/COLOR.md` now gives the section that
+type; and the hover names and headline of `sim-antenna-b` are in American
+spelling, as the reader-facing words of the book are.

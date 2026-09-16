@@ -76,11 +76,13 @@ Gas Laws, `ch13`), 14 (Heat and Heat Transfer Methods, `ch14`), 15
 (Physics of Hearing, `ch17`), 18 (Electric Charge and Electric Field,
 `ch18`), 19 (Electric Potential and Electric Field, `ch19`), 20 (Electric
 Current, Resistance, and Ohm's Law, `ch20`), 21 (Circuits and DC
-Instruments, `ch21`) and 22 (Magnetism, `ch22`).
+Instruments, `ch21`), 22 (Magnetism, `ch22`) and 24 (Electromagnetic
+Waves, `ch24`).
 Chapters 4 to 9 were built in one job on 2026-09-11 (LOG passes 27 to
 33), 10 to 15 on 2026-09-14 (LOG passes 35 to 40), and 16.7 to 16.11
 with 17 to 19 on 2026-09-14 and 15 (LOG passes 41 to 44), and 20 to 22
-on 2026-09-15 (LOG passes 45 to 47), all under
+on 2026-09-15 (LOG passes 45 to 47) and 24 on 2026-09-16 (LOG pass 48),
+all under
 `Plan.md` at the repository root. A chapter
 folder is `ch` followed by the two-digit chapter number. The whole table
 of contents is in `toc.md`. Every built chapter's introduction and the

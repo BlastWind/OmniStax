@@ -125,3 +125,17 @@ The module prints none.
   variables and the seven equations the prep pass staged for 24.4 are all used as
   they stand, and `B_0mag`, `I_ave` and `I_0peak` are written with the macros the
   pass gave them.
+
+### What the chapter pass did (2026-09-15)
+
+Every anchor above is written, the five intensity equations to
+`24.4-average-intensity` and the two that solve for a field to
+`24.4-fields-from-intensity`; the section's ten variables are anchored to
+`24.4-average-intensity`, where every one of them is introduced. Both errata are
+gathered under a heading of their own in `ch24/exploration.md` and the AP count
+of `config.md` now says that a key the publisher commented out of the CNXML is no
+key. The `draws` column of `sim-intensity-three-ways` gained `velocity`, which
+its readout writes with the macro for the speed of light. The view choice of
+Figure 24.22 was checked in the browser in both themes: with WebGL the flat
+canvas is hidden by `style.display` and the scene takes its place, and without
+WebGL no view choice is offered at all and the flat drawing stands alone.

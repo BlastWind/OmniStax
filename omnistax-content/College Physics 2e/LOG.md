@@ -3996,3 +3996,85 @@ which found no blank canvas, no KaTeX error, no console error and no page that
 scrolls sideways, and a transport on exactly the five figures that have a clock
 in them. The three 3D scenes were opened with WebGL and with WebGL refused, and
 each was checked for its buttons, its bounded orbit and its flat fallback.
+
+
+### Pass 48 (2026-09-16): Chapter 24, Electromagnetic Waves
+
+Chapter 24 is where twenty-three chapters of separate subjects turn out to be one
+subject. Maxwell's four equations are stated in words, the symmetry Maxwell
+supplied makes a wave of them, that wave is built out of an antenna, the whole
+spectrum is laid along one axis from ELF radio to gamma rays, and the energy the
+wave carries is written three ways. Its five pages — the chapter introduction and
+24.1 to 24.4 — were built in one wave, one agent to a section, with the prep pass
+and this chapter pass on either side of them.
+
+Twenty-six figures: sixteen simulations and ten kept photographs. Every one of
+the chapter's twelve drawings is replaced by a simulation with the book's image
+as its original, and eleven of the sixteen answer their sliders and nothing else.
+Five have a clock in them and carry the app's transport: the antenna's charge
+cycle, the magnetic wave leaving the antenna, the wave itself, and the two
+modulations. Two book figures fold into one, the characteristic X-ray of 24.18
+and the bremsstrahlung of 24.19, since the same electron strikes the same
+material twice and one scene with a choice of mechanism says it better than two.
+Ten photographs are kept, every one of them pointed at by the text or the picture
+its paragraph is about, each with the book's caption and its credit.
+
+The chapter is the second in the book, after Chapter 6's Cavendish balance, where
+a figure earns a full 3D scene. Figure 24.7 teaches nothing but an arrangement in
+space — the electric field in one plane, the magnetic field in a plane at right
+angles, the travel along the line where the two meet — and three of 24.2's
+conceptual questions are answered by turning it against a wire or a loop, so the
+reader turns it, with auto-rotate, wheel zoom and three snap views, and an orbit
+bounded to the hemisphere in front of the antenna. Figure 24.22 mounts the same
+arrangement behind a view choice, flat by default. Figure 24.6 is a locked view,
+not a scene, and everything else in the chapter is flat.
+
+The chapter declares no type: every quantity it draws already has one, and the
+three symbol rows it stages are the magnetic amplitude $B_0$ and the average and
+peak intensities, the peak needing a key of its own because Chapter 17 owns $I_0$
+for the reference intensity of the decibel scale. Twenty-eight concepts, ninety-
+three prerequisite edges, ninety-one coverage rows, twenty-six variables,
+eighteen equations and thirty-eight glossary terms. Three of the edges waited on
+Chapter 23, whose concept ids had not landed when Chapter 24 was prepared, and
+the chapter pass wrote them: Maxwell's equations rest on Faraday's law and on
+Lenz's law, and Hertz's apparatus on the resonant frequency of an RLC circuit.
+The pass also wrote every anchor on every variable and equation row, which the
+prep pass had to leave empty because the validator refuses an anchor into a
+section that is not yet built.
+
+Fifty-nine exercises are set — twenty-five problems, twenty-two conceptual
+questions and twelve AP items — and twenty-eight unkeyed problems are left out
+and named in the notes of the section each belongs to, among them 24.1's two
+verification problems, which leaves that page's five concepts untested by the
+book and no question generated in their place. Two AP items the book prints in
+24.2 need $c = f\lambda$ and are set with 24.3, both sections saying so. Two
+images belonging to unkeyed problems, 24.3's TV reception antenna and 24.4's
+satellite dish, are not copied at all; the three that are kept travel on the
+cards of 24.2's conceptual questions.
+
+Two of the book's own slips are carried as the book writes them and gathered in
+`ch24/exploration.md`: the key for part (b) of 24.4's Critical Thinking problem
+answers for the electric field where the question asks about the magnetic one,
+and the fields' fixed ratio leaves only one reading, so the magnetic field is the
+answer set; and 24.4's second AP item carries a solution the publisher commented
+out of the CNXML, so the book prints none and the item is kept unkeyed with an
+approach of OmniStax's. The chapter pass also corrected `ch24/config.md`, which
+had counted four moving figures where it named five and had promised two images
+that the unkeyed-problem rule takes away, and `ch24/COLOR.md`, which had not
+given 24.1 the position it draws on Hertz's wavelength bracket nor 24.2 the
+frequency its sliders carry, and which now records that the carrier and the
+modulated wave of a modulation figure are the electric field of a wave and take
+that hue, the audio signal alone taking the categorical palette. Five sentences
+and two button labels named the book where the page should talk about the
+subject, and three reader-facing strings were in British spelling; all are
+corrected.
+
+Checks: `check:content` over the whole book, with no errors; 429 unit tests, all
+passing; `astro check` clean; a build; and a headless pass over all five pages of
+the chapter in light and dark, which found no blank canvas, no KaTeX error and no
+console error, and a transport on exactly the five figures that have a clock in
+them. The two 3D scenes were opened with WebGL and with WebGL refused: Figure
+24.7 gives its buttons, its bounded orbit and, where there is no WebGL, a flat
+drawing of the same wave; Figure 24.22 offers its view choice only where a scene
+can be drawn, and the switch hides the flat canvas by its display rather than by
+the `hidden` attribute, which a canvas ignores.
