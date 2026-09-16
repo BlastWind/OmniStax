@@ -1,0 +1,411 @@
+{
+ "id": "23.8",
+ "module": "m42416",
+ "chapter": "23",
+ "title": "Electrical Safety: Systems and Devices",
+ "short": "Electrical safety",
+ "lead": "The wiring of a house is arranged so that a fault does as little harm as it can, and this section is about those arrangements. It follows the three wires modern wiring uses and says what each of them prevents, shows why the case of an appliance is connected to the earth when worn insulation or an induced emf could otherwise leave it at a dangerous voltage, and works through the two devices that use induction itself to protect a person: the ground fault interrupter, which compares the current going out with the current coming back, and the isolation transformer, which leaves a person touching one wire with no complete circuit to be part of.",
+ "objectives": [
+  "Explain how various modern safety features in electric circuits work, with an emphasis on how induction is employed."
+ ],
+ "summary_html": "<ul><li>Electrical safety systems and devices are employed to prevent thermal and shock hazards.</li><li>Circuit breakers and fuses interrupt excessive currents to prevent thermal hazards.</li><li>The three-wire system guards against thermal and shock hazards, utilizing live/hot, neutral, and earth/ground wires, and grounding the neutral wire and case of the appliance.</li><li>A ground fault interrupter (GFI) prevents shock by detecting the loss of current to unintentional paths.</li><li>An isolation transformer insulates the device being powered from the original source, also to prevent shock.</li><li>Many of these devices use induction to perform their basic function.</li></ul>",
+ "notes": "Nothing the book prints in this section is left out. The publisher’s source carries an answer to the second AP test prep item that is commented out and does not appear in the book, so that item is set here without a keyed answer, as the book prints it.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags and weights are AI-generated. Answers come from the book’s answer key. The section’s one problem is keyed and is set here, with the book’s image of the grounded case on its card; its first two parts are numbers and its third, whether the short trips the 20.0 A breaker, is the book’s own yes and is carried in the solution. The first AP test prep item, on the turns of an isolation transformer, is keyed with (c) and is set as a graded choice. The second, which asks for the working of a ground fault interrupter in words, has no printed answer, so it is kept as an open item with an AI-written suggested approach, marked as such; the answer the publisher’s source carries in a comment is not used. The three conceptual questions have no answers in the book and are open items with AI-written suggested approaches, marked as such. The section prints no Check Your Understanding box, so everything is set at the end, and nothing is held for a later page or taken from an earlier one. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-three-wire",
+   "kind": "sim",
+   "number": "23.29",
+   "folds": [
+    "23.30"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_08_01.jpg",
+    "/media/ch23/Figure_24_08_02.jpg"
+   ],
+   "original_caption": "(Figure 23.29) Schematic of a simple AC circuit with a voltage source and a single appliance represented by the resistance R. There are no safety features in this circuit. (Figure 23.30) The three-wire system connects the neutral wire to the earth at the voltage source and user location, forcing it to be at zero volts and supplying an alternative return path for the current through the earth. Also grounded to zero volts is the case of the appliance. A circuit breaker or fuse protects against thermal overload and is in series on the active (live/hot) wire. Note that wire insulation colors vary with region and it is essential to check locally to determine which color codes are in use (and even if they were followed in the particular installation).",
+   "widths": [
+    185,
+    200
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-plug",
+   "kind": "sim",
+   "number": "23.31",
+   "originals": [
+    "/media/ch23/Figure_24_08_03.jpg"
+   ],
+   "original_caption": "The standard three-prong plug can only be inserted in one way, to assure proper function of the three-wire system.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "voltage",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-worn-insulation",
+   "kind": "sim",
+   "number": "23.32",
+   "originals": [
+    "/media/ch23/Figure_24_08_04a.jpg"
+   ],
+   "original_caption": "Worn insulation allows the live/hot wire to come into direct contact with the metal case of this appliance. (a) The earth/ground connection being broken, the person is severely shocked. The appliance may operate normally in this situation. (b) With a proper earth/ground, the circuit breaker trips, forcing repair of the appliance.",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-case-emf",
+   "kind": "sim",
+   "number": "23.33",
+   "originals": [
+    "/media/ch23/Figure_24_08_05a.jpg"
+   ],
+   "original_caption": "AC currents can induce an emf on the case of an appliance. The voltage can be large enough to cause a shock. If the case is grounded, the induced emf is kept near zero.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-gfi",
+   "kind": "sim",
+   "number": "23.34",
+   "folds": [
+    "23.35"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_08_06.jpg",
+    "/media/ch23/Figure_24_08_07.jpg"
+   ],
+   "original_caption": "(Figure 23.34) A ground fault interrupter (GFI) compares the currents in the live/hot and neutral wires and will trip if their difference exceeds a safe value. The leakage current here follows a hazardous path that could have been prevented by an intact earth/ground wire. (Figure 23.35) A GFI compares currents by using both to induce an emf in the same coil. If the currents are equal, they will induce equal but opposite emfs.",
+   "widths": [
+    450,
+    285
+   ],
+   "draws": [
+    "current",
+    "voltage",
+    "magnetic-field"
+   ]
+  },
+  {
+   "id": "sim-isolation",
+   "kind": "sim",
+   "number": "23.36",
+   "originals": [
+    "/media/ch23/Figure_24_08_08.jpg"
+   ],
+   "original_caption": "An isolation transformer puts a large resistance between the original voltage source and the device, preventing a complete circuit between them.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "three-wire",
+   "concept": "three-wire-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "three-wire",
+   "concept": "thermal-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "three-wire",
+   "concept": "shock-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "three-wire",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "grounding-the-case",
+   "verb": "introduces"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "three-wire-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "short-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "shock-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "gfi",
+   "concept": "ground-fault-interrupter",
+   "verb": "introduces"
+  },
+  {
+   "span": "gfi",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "gfi",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "gfi",
+   "concept": "three-wire-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "isolation",
+   "concept": "isolation-transformer",
+   "verb": "introduces"
+  },
+  {
+   "span": "isolation",
+   "concept": "transformer",
+   "verb": "uses"
+  },
+  {
+   "span": "isolation",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "isolation",
+   "concept": "shock-hazard",
+   "verb": "reinforces"
+  },
+  {
+   "span": "beyond-basics",
+   "concept": "shock-hazard",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737813489",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-wire",
+   "prompt": "Does plastic insulation on live/hot wires prevent shock hazards, thermal hazards, or both?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both, and by the same property. Insulation is a very poor conductor, and its whole job is to keep the live/hot wire from touching anything that is not meant to carry the current. It prevents a shock hazard because a person who lays a hand on an insulated wire is not part of the circuit at all: the current cannot leave the conductor and pass through the body. It prevents a thermal hazard because it keeps the live/hot wire from touching the neutral wire, the earth/ground wire or a grounded case, any of which would be a short circuit, and a short circuit has so little resistance that it draws a very large current and heats the wiring. Worn insulation is dangerous for both reasons at once, which is why the section treats a live wire touching a metal case as a fault to be repaired rather than lived with."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169736590263",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-wire",
+   "prompt": "Why are ordinary circuit breakers and fuses ineffective in preventing shocks?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A circuit breaker or a fuse sits in series on the live/hot wire and opens when the current through it is larger than the wiring is built to carry, which in a household circuit is 15 or 20 A. A shock needs nothing like that much current: 5 mA is taken to be the largest harmless one, and a few tens of milliamperes through the chest can be fatal. A person can therefore be receiving a dangerous shock while the breaker reads a current a thousand times below its rating and does nothing whatever. There is a second reason as well. The current that passes through a person on its way to earth need not raise the current the breaker sees at all, since it returns to the source through the ground rather than through the wire the breaker is in. A breaker protects the wiring from overheating, which is a thermal hazard; keeping current out of a person is a different job and needs a different device, which is what the ground fault interrupter is."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737777962",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gfi",
+   "prompt": "A GFI may trip just because the live/hot and neutral wires connected to it are significantly different in length. Explain why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Start from what the device actually measures. A GFI does not measure a leakage current directly; it passes both wires through one coil and reads the emf induced in that coil, and it relies on the two wires being alike in every way except the direction their currents run, so that equal currents induce equal and opposite emfs and nothing is left over. A length difference breaks that likeness. The longer run is not coupled to the sensing coil in quite the same way as the shorter one, so equal currents in the two no longer induce emfs that cancel exactly; the longer run also lies alongside more of the alternating fields of everything else in the building and has more capacitance to the earth and to its neighbours, so a little of its current does genuinely return to the source by a path other than the neutral wire. Any of these leaves a small net emf in the coil where there should be none, and the device cannot tell that emf from the one a real leakage would produce. Since it is set to act on a difference as small as 5 mA, which is one part in two thousand of the current a 10 A appliance draws, a very small asymmetry is enough to open the circuit."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1516027",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isolation",
+   "prompt": "Which of the following statements is true for an isolation transformer?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "It has more primary turns than secondary turns.",
+     "It has fewer primary turns than secondary turns.",
+     "It has an equal number of primary and secondary turns.",
+     "It can have more, fewer, or an equal number of primary and secondary turns."
+    ],
+    "correct": 2,
+    "hint": "An isolation transformer is not there to change the voltage. Ask what its turns ratio has to be if the appliance is to receive the same voltage the supply gives it.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1449525",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gfi",
+   "prompt": "Explain the working of a ground fault interrupter (GFI).",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A ground fault interrupter compares the current going out to an appliance with the current coming back from it. Both the live/hot wire and the neutral wire are passed through the same coil, and because their currents run in opposite directions they induce emfs in that coil that are equal and opposite. While every ampere that leaves by the live/hot wire returns by the neutral wire the two emfs cancel and the coil produces nothing. If some of the current is returning to the source by another path — through a person, or through an earth/ground wire — the neutral wire carries less than the live/hot wire, the cancellation fails, and an emf appears in the coil. That emf operates a circuit breaker, which opens the circuit. GFIs are usually set to act on a difference greater than 5 mA, the accepted maximum harmless shock, so the circuit is broken before the leakage can do much harm, and they act whether the leakage is going through a person or safely to earth through an intact earth/ground wire, since a leakage of either kind is a fault to be repaired."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738083911",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grounded-case",
+   "figure": {
+    "src": "/media/ch23/Figure_24_08_09-e1b9.jpg",
+    "alt": "The figure describes an appliance connected to an AC source. One end of the AC circuit is connected to a circuit breaker. The other end of the circuit breaker is connected to an appliance. The appliance is shown as a resistance enclosed in a rectangular metal case known as the case of appliance. The other end of the resistance is connected back to the AC source through a connecting wire. The connecting wire and the A C source are grounded. The ground terminal at the appliance case is connected to a resistance R g equals zero point two ohms. A person is shown to hold one hand on the appliance case. Since the resistance of ground is not zero the voltage is shown to flow through the person to the ground.",
+    "caption": "A person can be shocked even when the case of an appliance is grounded. The large short circuit current produces a voltage on the case of the appliance, since the resistance of the earth/ground wire is not zero."
+   },
+   "prompt": "<strong>Integrated Concepts</strong> A short circuit to the grounded metal case of an appliance occurs as shown in the figure below. The person touching the case is wet and only has a $3.00\\ \\text{k}\\Omega$ resistance to earth/ground. (a) What is the voltage on the case if 5.00 mA flows through the person? (b) What is the current in the short circuit if the resistance of the earth/ground wire is $0.200\\ \\Omega$? (c) Will this trigger the 20.0 A circuit breaker supplying the appliance?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 15,
+      "unit": "V",
+      "hint": "The person is one resistance carrying one current, so Ohm’s law gives the voltage across them, and that is the voltage on the case, since the far end of the person is at earth."
+     },
+     {
+      "part": "(b)",
+      "value": 75,
+      "unit": "A",
+      "hint": "The case and the earth are the two ends of the earth/ground wire, so the same voltage stands across its 0.200 Ω, and almost all of the short circuit current goes that way rather than through the person."
+     }
+    ],
+    "solution": "(a) The person is a resistance of $3.00\\ \\text{k}\\Omega$ carrying 5.00 mA, so the voltage on the case is $\\kV = \\kIcur\\kRes = (5.00 \\times 10^{-3}\\ \\text{A})(3.00 \\times 10^{3}\\ \\Omega) = 15.0\\ \\text{V}$. (b) That same 15.0 V stands across the earth/ground wire, so the short circuit current in it is $\\kIcur = \\kV/\\kRes = (15.0\\ \\text{V})/(0.200\\ \\Omega) = 75.0\\ \\text{A}$. (c) Yes. 75.0 A is far more than the 20.0 A the breaker is rated for, so the breaker trips, which is what forces the fault to be repaired."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "three-wire-system"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "thermal-hazard",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "shock-hazard",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "three-wire-system"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "shock-hazard",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "ground-fault-interrupter"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "isolation-transformer"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ground-fault-interrupter"
+  },
+  {
+   "exercise": "p1",
+   "concept": "grounding-the-case"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ohms-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "three-wire-system",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ]
+}
