@@ -1,0 +1,698 @@
+{
+ "id": "23.12",
+ "module": "m42431",
+ "chapter": "23",
+ "title": "RLC Series AC Circuits",
+ "short": "RLC series AC circuits",
+ "lead": "A resistor, an inductor and a capacitor each impede an alternating current on their own, and this section puts all three of them in series on one source. Their oppositions are all measured in ohms, but they do not add, because the voltage across the inductor peaks a quarter of a cycle before the current and the voltage across the capacitor peaks a quarter of a cycle after it, so the two work against one another. What they combine into is the impedance, and the current is the source voltage divided by it. At one frequency the two reactances are equal and cancel outright, the impedance falls to the resistance alone and the current is greatest; that frequency is the resonant frequency, and it is the same resonance the reader met in Chapter 16, here in a circuit rather than in a spring. What is left over is the angle between the source voltage and the current, and the section ends by showing that the average power is the product of the rms current and the rms voltage only after it has been multiplied by the cosine of that angle.",
+ "objectives": [
+  "Calculate the impedance, phase angle, resonant frequency, power, power factor, voltage, and/or current in a RLC series circuit.",
+  "Draw the circuit diagram for an RLC series circuit.",
+  "Explain the significance of the resonant frequency."
+ ],
+ "summary_html": "<ul><li>The AC analogy to resistance is impedance $\\kZimp$, the combined effect of resistors, inductors, and capacitors, defined by the AC version of Ohm’s law: $\\kIocur = \\frac{\\kVo}{\\kZimp}\\;\\text{or}\\;\\kIrms = \\frac{\\kVrms}{\\kZimp},$ where $\\kIocur$ is the peak current and $\\kVo$ is the peak source voltage.</li><li>Impedance has units of ohms and is given by $\\kZimp = \\sqrt{\\kRes^{2} + (\\kXL - \\kXC)^{2}}$.</li><li>The resonant frequency $\\kfo$, at which $\\kXL = \\kXC$, is $\\kfo = \\frac{1}{2\\pi\\sqrt{\\kLind\\kCap}}.$</li><li>In an AC circuit, there is a phase angle $\\phi$ between source voltage $\\kV$ and the current $\\kIcur$, which can be found from $\\cos\\;\\phi = \\frac{\\kRes}{\\kZimp},$</li><li>$\\phi = 0^\\circ$ for a purely resistive circuit or an <em>RLC</em> circuit at resonance.</li><li>The average power delivered to an <em>RLC</em> circuit is affected by the phase angle and is given by $\\kPave = \\kIrms\\kVrms\\;\\cos\\;\\phi,$ $\\cos\\;\\phi$ is called the power factor, which ranges from 0 to 1.</li></ul>",
+ "notes": "The seven problems the book leaves unkeyed are left out: the impedance of an RC circuit at two frequencies, the resonant frequency of a 0.500 mH inductor with a 40.0 µF capacitor, the range of resonant frequencies a supply of inductors and capacitors can reach, the inductance that resonates at 60.0 Hz with a 2.00 µF capacitor, the impedance and currents of the 2.50 Ω circuit, that same circuit’s power factor and average power, and the 200 Ω circuit whose phase angle is 45.0° at 8000 Hz. The last problem of the module, the Critical Thinking item on the wire bent into one loop, two loops and a figure eight, is left untyped in the CNXML and is classed by the header it sits under, a problem. Its answer is set exactly as the book prints it, including the arithmetic there: part (a) divides by 100 and comes to 0.0002000 V, and part (b) comes to 0.0001000 V although the reasoning printed with it says two loops should give the larger emf. Nothing is computed in the book’s place. The link at the end of the module to the PhET Circuit Construction Kit (AC+DC) is left out. Nothing else in the module is left out; its five drawings are redrawn as three interactive figures, since the circuit and the curves of its voltages are one machine seen twice and the car on the corrugated road and the mass on the spring are one analogy told twice, once driven and once free.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags and weights are AI-generated. Answers come from the book’s answer key: nine of the sixteen problems are keyed and are set here, and the seven that are not are left out and named in the section’s notes. The last of the nine is the Critical Thinking item, which the CNXML leaves untyped and which is classed as a problem by the header it sits under; its key is set as the book prints it, and the section’s notes say what the book printed. Where the book keys only the numerical part of a problem that also asks for a comparison, the keyed part is set and the book’s comparison is kept in the worked solution. Both conceptual questions carry an AI-marked suggested approach rather than a graded answer, since the book keys neither. The section carries no AP test prep item and no Check Your Understanding box, so everything is set at the end. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-rlc-voltages",
+   "kind": "sim",
+   "number": "23.46",
+   "folds": [
+    "23.47"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_12_01a.jpg",
+    "/media/ch23/Figure_24_12_02a.jpg"
+   ],
+   "original_caption": "(Figure 23.46) An RLC series circuit with an AC voltage source. (Figure 23.47) This graph shows the relationships of the voltages in an RLC circuit to the current. The voltages across the circuit elements add to equal the voltage of the source, which is seen to be out of phase with the current.",
+   "widths": [
+    275,
+    300
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance",
+    "inductance",
+    "capacitance",
+    "frequency",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-impedance-triangle",
+   "kind": "sim",
+   "draws": [
+    "resistance",
+    "inductance",
+    "capacitance",
+    "frequency",
+    "voltage",
+    "current"
+   ]
+  },
+  {
+   "id": "sim-resonance",
+   "kind": "sim",
+   "number": "23.48",
+   "originals": [
+    "/media/ch23/Figure_24_12_03a.jpg"
+   ],
+   "original_caption": "A graph of current versus frequency for two RLC series circuits differing only in the amount of resistance. Both have a resonance at f₀, but that for the higher resistance is lower and broader. The driving AC voltage source has a fixed amplitude V₀.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "frequency",
+    "current",
+    "power",
+    "resistance",
+    "inductance",
+    "capacitance"
+   ]
+  },
+  {
+   "id": "sim-mechanical-analogy",
+   "kind": "sim",
+   "number": "23.49",
+   "folds": [
+    "23.50"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_12_04a.jpg",
+    "/media/ch23/Figure_24_12_05a.jpg"
+   ],
+   "original_caption": "(Figure 23.49) The forced but damped motion of the wheel on the car spring is analogous to an RLC series AC circuit. The shock absorber damps the motion and dissipates energy, analogous to the resistance in an RLC circuit. The mass and spring determine the resonant frequency. (Figure 23.50) An LC circuit is analogous to a mass oscillating on a spring with no friction and no driving force. Energy moves back and forth between the inductor and capacitor, just as it moves from kinetic to potential in the mass-spring system.",
+   "widths": [
+    225,
+    350
+   ],
+   "draws": [
+    "energy",
+    "inductance",
+    "capacitance",
+    "voltage",
+    "current",
+    "time"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "impedance",
+   "concept": "voltages-do-not-simply-add",
+   "verb": "introduces"
+  },
+  {
+   "span": "impedance",
+   "concept": "impedance",
+   "verb": "introduces"
+  },
+  {
+   "span": "impedance",
+   "concept": "ac-ohms-law-with-impedance",
+   "verb": "introduces"
+  },
+  {
+   "span": "impedance",
+   "concept": "inductive-reactance",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "capacitive-reactance",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "inductor-voltage-leads-current",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "capacitor-voltage-follows-current",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "resistor-voltage-in-phase",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "series-connection",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "ac-ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "rms-values",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "resonance-peak-and-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "impedance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "ac-ohms-law-with-impedance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "inductive-reactance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "capacitive-reactance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "natural-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "resonance-curve-damping",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "phase-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "power-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "lc-oscillation-analogy",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "impedance",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "rms-values",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "ac-power",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "energy-stored-in-an-inductor",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "capacitor-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "simple-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "shm-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "voltages-do-not-simply-add",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736614731",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-resonance",
+   "prompt": "Does the resonant frequency of an AC circuit depend on the peak voltage of the AC source? Explain why or why not.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It does not. The resonant frequency is the frequency at which the inductive reactance and the capacitive reactance are equal, and neither of those depends on how large the source voltage is. Setting $2\\pi f_0 L = 1/2\\pi f_0 C$ and solving gives $f_0 = 1/2\\pi\\sqrt{LC}$, in which only the inductance and the capacitance appear. Raising the peak voltage of the source raises the current at every frequency in the same proportion, so the whole resonance curve grows taller while its peak stays over the same place on the frequency axis. That is why a radio tuner is a variable capacitor and not a volume control: turning up the volume does not change which station you hear."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738073810",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-rlc-series-ac-circuits",
+   "prompt": "Suppose you have a motor with a power factor significantly less than 1. Explain why it would be better to improve the power factor as a method of improving the motor’s output, rather than to increase the voltage input.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The average power delivered to the motor is $P_\\text{ave} = I_\\text{rms}V_\\text{rms}\\cos\\phi$, so the power can be raised either by raising the voltage or by raising the power factor. Raising the voltage raises the current in the same proportion, and the heat wasted in the windings goes as the square of the current, so more of the extra power is lost in the motor itself the further you push it, and the insulation has to stand a higher voltage as well. Raising the power factor takes nothing from the supply and wastes nothing: it brings the current back into step with the voltage, so that the same current and the same voltage deliver more useful power. A motor is inductive, its current lagging the voltage, and a capacitor in the circuit cancels part of that inductive reactance and brings the two back into phase, which is why capacitors are fitted to large motors for exactly this purpose."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169736657142",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impedance",
+   "prompt": "An <em>RL</em> circuit consists of a $40.0\\;\\Omega$ resistor and a 3.00 mH inductor. (a) Find its impedance $\\kZimp$ at 60.0 Hz and 10.0 kHz. (b) Compare these values of $\\kZimp$ with those found in Example 23.7 in which there was also a capacitor.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) at 60.0 Hz",
+      "value": 40.02,
+      "unit": "Ω",
+      "hint": "With no capacitor, take $X_C = 0$ in the expression for the impedance."
+     },
+     {
+      "part": "(a) at 10.0 kHz",
+      "value": 193.0,
+      "unit": "Ω",
+      "hint": "The inductive reactance at 10.0 kHz is the 188 Ω found in the preceding section."
+     }
+    ],
+    "solution": "(a) $40.02\\;\\Omega$ at 60.0 Hz, $193\\;\\Omega$ at 10.0 kHz. (b) At 60 Hz, with a capacitor, $Z = 531\\;\\Omega$, over 13 times as high as without the capacitor. The capacitor makes a large difference at low frequencies. At 10 kHz, with a capacitor $Z = 190\\;\\Omega$, about the same as without the capacitor. The capacitor has a smaller effect at high frequencies."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738012738",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impedance",
+   "prompt": "An <em>LC</em> circuit consists of a 3.00 mH inductor and a $5.00\\;\\mu\\text{F}$ capacitor. (a) Find its impedance at 60.0 Hz and 10.0 kHz. (b) Compare these values of $\\kZimp$ with those found in Example 23.7 in which there was also a resistor.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) at 60.0 Hz",
+      "value": 529.0,
+      "unit": "Ω",
+      "hint": "With no resistor, take $R = 0$, so that the impedance is the difference of the two reactances."
+     },
+     {
+      "part": "(a) at 10.0 kHz",
+      "value": 185.0,
+      "unit": "Ω",
+      "hint": "At 10.0 kHz the inductive reactance is 188 Ω and the capacitive reactance 3.18 Ω."
+     }
+    ],
+    "solution": "(a) $529\\;\\Omega$ at 60.0 Hz, $185\\;\\Omega$ at 10.0 kHz. (b) These values are close to those obtained in Example 23.7 because at low frequency the capacitor dominates and at high frequency the inductor dominates. So in both cases the resistor makes little contribution to the total impedance."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738072090",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-resonance",
+   "prompt": "To receive AM radio, you want an <em>RLC</em> circuit that can be made to resonate at any frequency between 500 and 1650 kHz. This is accomplished with a fixed $1.00\\;\\mu\\text{H}$ inductor connected to a variable capacitor. What range of capacitance is needed?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "at 1650 kHz",
+      "value": 9.3,
+      "unit": "nF",
+      "hint": "Solve the resonant frequency for the capacitance: the highest frequency needs the smallest capacitance."
+     },
+     {
+      "part": "at 500 kHz",
+      "value": 101.0,
+      "unit": "nF",
+      "hint": "The lowest frequency in the band needs the largest capacitance."
+     }
+    ],
+    "solution": "9.30 nF to 101 nF"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738244135",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-resonance",
+   "prompt": "What capacitance do you need to produce a resonant frequency of 1.00 GHz, when using an 8.00 nH inductor?",
+   "answer": {
+    "type": "number",
+    "value": 3.17,
+    "unit": "pF",
+    "generated_by": "source",
+    "hint": "Square the expression for the resonant frequency and solve it for the capacitance.",
+    "solution": "3.17 pF"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738136983",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-resonance",
+   "prompt": "The lowest frequency in the FM radio band is 88.0 MHz. (a) What inductance is needed to produce this resonant frequency if it is connected to a 2.50 pF capacitor? (b) The capacitor is variable, to allow the resonant frequency to be adjusted to as high as 108 MHz. What must the capacitance be at this frequency?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.31,
+      "unit": "µH",
+      "hint": "Solve the resonant frequency for the inductance, with the capacitance given."
+     },
+     {
+      "part": "(b)",
+      "value": 1.66,
+      "unit": "pF",
+      "hint": "The inductance stays what part (a) gave; solve for the capacitance at the higher frequency."
+     }
+    ],
+    "solution": "(a) $1.31\\;\\mu\\text{H}$ (b) 1.66 pF"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169738137511",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-impedance-triangle",
+   "prompt": "An <em>RLC</em> series circuit has a $1.00\\;\\text{k}\\Omega$ resistor, a $150\\;\\mu\\text{H}$ inductor, and a 25.0 nF capacitor. (a) Find the circuit’s impedance at 500 Hz. (b) Find the circuit’s impedance at 7.50 kHz. (c) If the voltage source has $\\kVrms = 408\\;\\text{V}$, what is $\\kIrms$ at each frequency? (d) What is the resonant frequency of the circuit? (e) What is $\\kIrms$ at resonance?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 12.8,
+      "unit": "kΩ",
+      "hint": "At 500 Hz the capacitive reactance is much the largest of the three numbers."
+     },
+     {
+      "part": "(b)",
+      "value": 1.31,
+      "unit": "kΩ",
+      "hint": "At 7.50 kHz the two reactances have come much closer together."
+     },
+     {
+      "part": "(c) at 500 Hz",
+      "value": 31.9,
+      "unit": "mA",
+      "hint": "Ohm’s law with the impedance of part (a)."
+     },
+     {
+      "part": "(c) at 7.50 kHz",
+      "value": 312.0,
+      "unit": "mA",
+      "hint": "Ohm’s law with the impedance of part (b)."
+     },
+     {
+      "part": "(d)",
+      "value": 82.2,
+      "unit": "kHz",
+      "hint": "The resonant frequency depends on the inductance and the capacitance alone."
+     },
+     {
+      "part": "(e)",
+      "value": 0.408,
+      "unit": "A",
+      "hint": "At resonance the impedance is the resistance alone."
+     }
+    ],
+    "solution": "(a) $12.8\\;\\text{k}\\Omega$ (b) $1.31\\;\\text{k}\\Omega$ (c) 31.9 mA at 500 Hz, 312 mA at 7.50 kHz (d) 82.2 kHz (e) 0.408 A"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1169737939490",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-rlc-series-ac-circuits",
+   "prompt": "An <em>RLC</em> series circuit has a $1.00\\;\\text{k}\\Omega$ resistor, a $150\\;\\mu\\text{H}$ inductor, and a 25.0 nF capacitor. (a) Find the power factor at $\\kf = 7.50\\;\\text{Hz}$. (b) What is the phase angle at this frequency? (c) What is the average power at this frequency? (d) Find the average power at the circuit’s resonant frequency.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.159,
+      "unit": "",
+      "hint": "The power factor is the resistance divided by the impedance."
+     },
+     {
+      "part": "(b)",
+      "value": 80.9,
+      "unit": "°",
+      "hint": "The phase angle is the inverse cosine of the power factor."
+     },
+     {
+      "part": "(c)",
+      "value": 26.4,
+      "unit": "W",
+      "hint": "The average power is the rms current times the rms voltage times the power factor."
+     },
+     {
+      "part": "(d)",
+      "value": 166.0,
+      "unit": "W",
+      "hint": "At resonance the power factor is 1 and the impedance is the resistance alone."
+     }
+    ],
+    "solution": "(a) 0.159 (b) $80.9^\\circ$ (c) 26.4 W (d) 166 W"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1169738224784",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-rlc-series-ac-circuits",
+   "prompt": "Referring to Example 23.9, find the average power at 10.0 kHz.",
+   "answer": {
+    "type": "number",
+    "value": 16.0,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "The impedance at 10.0 kHz was found to be 190 Ω in Example 23.7, which gives both the current and the power factor.",
+    "solution": "16.0 W"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "exer-78926",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resonance-in-rlc-series-ac-circuits",
+   "prompt": "<strong>Critical Thinking</strong> A length of 4.000 m of wire is to be used to detect a magnetic field. The wire is made into a single square loop and rotated at a rate of 400 cycles per second. (a) If the magnetic field is 0.02000 T, what is the magnitude of the average emf that can be generated in the first quarter cycle, provided the loop is initially oriented in a plane perpendicular to the magnetic field? (b) Is there a difference in the magnitude of the average emf generated if the wire is made into two square loops and rotated at the same rate, starting with the same orientation of the loops as that of the loop in part a? If so, what is the average emf possible for the first quarter cycle for two loops being rotated at 400 cycles per second in the magnetic field? (c) If the wire is made into a figure eight, what is the average emf for the first quarter cycle that can be generated by rotating it at 400 cycles per second in the magnetic field, again starting with the same orientation of the oops with respect to the magnetic field? The wire crosses itself in this arrangement. (d) Does the shape of the loop matter?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.0002,
+      "unit": "V",
+      "hint": "One square loop of 4.000 m of wire has sides of 1.000 m, and the flux falls from its greatest value to zero over the quarter cycle."
+     },
+     {
+      "part": "(b)",
+      "value": 0.0001,
+      "unit": "V",
+      "hint": "Two square loops from the same wire have sides of 0.5000 m each, so each encloses a quarter of the area, and there are two of them."
+     },
+     {
+      "part": "(c)",
+      "value": 0.0,
+      "unit": "V",
+      "hint": "The wire crosses itself, so the two halves of the figure eight are wound in opposite senses."
+     }
+    ],
+    "solution": "(a) $|\\text{emf}| = 1\\frac{\\Delta\\phi}{\\Delta t} = \\frac{1.000(0.02000)}{100}\\text{V} = 0.0002000\\text{V}$ (b) $|\\text{emf}| = 2\\frac{\\Delta\\phi}{\\Delta t} = \\frac{2(0.2500)(0.02000)}{100}\\text{V} = 0.0001000\\text{V}$ (c) The average emf is 0 since the loops are made by a wire that crosses, so the voltage from each loop cancels the emf from the other. (d) No."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "resonance-peak-and-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "power-factor"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "phase-angle",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "impedance"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ac-ohms-law-with-impedance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "impedance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "voltages-do-not-simply-add",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "exercise": "p7",
+   "concept": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "exercise": "p9",
+   "concept": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "exercise": "p11",
+   "concept": "impedance"
+  },
+  {
+   "exercise": "p11",
+   "concept": "ac-ohms-law-with-impedance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "power-factor"
+  },
+  {
+   "exercise": "p13",
+   "concept": "phase-angle",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "power-factor"
+  },
+  {
+   "exercise": "p15",
+   "concept": "impedance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p16",
+   "concept": "average-emf-of-a-generator"
+  },
+  {
+   "exercise": "p16",
+   "concept": "faradays-law",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

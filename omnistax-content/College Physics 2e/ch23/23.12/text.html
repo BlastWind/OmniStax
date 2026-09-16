@@ -1,0 +1,111 @@
+<section id="impedance">
+<h2>Impedance</h2>
+<p>When alone in an AC circuit, inductors, capacitors, and resistors all impede current. How do they behave when all three occur together? Interestingly, their individual resistances in ohms do not simply add. Because inductors and capacitors behave in opposite ways, they partially to totally cancel each other’s effect. Figure 23.46 shows an <em>RLC</em> series circuit with an AC voltage source, the behavior of which is the subject of this section. The crux of the analysis of an <em>RLC</em> circuit is the frequency dependence of $\kXL$ and $\kXC$, and the effect they have on the phase of voltage versus current (established in the preceding section). These give rise to the frequency dependence of the circuit, with important “resonance” features that are the basis of many applications, such as radio tuners.</p>
+<figure class="sim" id="sim-rlc-voltages" data-figure="23.46 + 23.47" data-original="/media/ch23/Figure_24_12_01a.jpg,/media/ch23/Figure_24_12_02a.jpg" data-original-width="275,300" data-original-caption="(Figure 23.46) An RLC series circuit with an AC voltage source. (Figure 23.47) This graph shows the relationships of the voltages in an RLC circuit to the current. The voltages across the circuit elements add to equal the voltage of the source, which is seen to be out of phase with the current.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.46 + 23.47</span><span>A resistor, an inductor and a capacitor sit in series on one AC source, and the same current runs through all three of them. Set the frequency, the resistance, the inductance and the capacitance, and watch the voltage across each element rise and fall beside the element itself. The curves below show when each one peaks: the resistor’s voltage peaks with the current, the inductor’s a quarter of a cycle before it and the capacitor’s a quarter of a cycle after it, which is why the three peak voltages do not add. Stop the motion with the transport and drag the scrubber to the moment the source voltage is greatest, and read what the current is doing then.</span></div>
+</figure>
+<p>The combined effect of resistance $\kRes$, inductive reactance $\kXL$, and capacitive reactance $\kXC$ is defined to be <strong>impedance</strong>, an AC analogue to resistance in a DC circuit. Current, voltage, and impedance in an <em>RLC</em> circuit are related by an AC version of Ohm’s law:</p>
+$$\kIocur = \frac{\kVo}{\kZimp}\;\text{or}\;\kIrms = \frac{\kVrms}{\kZimp}\text{.}$$
+<p>Here $\kIocur$ is the peak current, $\kVo$ the peak source voltage, and $\kZimp$ is the impedance of the circuit. The units of impedance are ohms, and its effect on the circuit is as you might expect: the greater the impedance, the smaller the current. To get an expression for $\kZimp$ in terms of $\kRes$, $\kXL$, and $\kXC$, we will now examine how the voltages across the various components are related to the source voltage. Those voltages are labeled $\kVR$, $\kVL$, and $\kVC$ in Figure 23.46.</p>
+<p>Conservation of charge requires current to be the same in each part of the circuit at all times, so that we can say the currents in $\kRes$, $\kLind$, and $\kCap$ are equal and in phase. But we know from the preceding section that the voltage across the inductor $\kVL$ leads the current by one-fourth of a cycle, the voltage across the capacitor $\kVC$ follows the current by one-fourth of a cycle, and the voltage across the resistor $\kVR$ is exactly in phase with the current. Figure 23.47 shows these relationships in one graph, as well as showing the total voltage around the circuit $\kV = \kVR + \kVL + \kVC$, where all four voltages are the instantaneous values. According to Kirchhoff’s loop rule, the total voltage around the circuit $\kV$ is also the voltage of the source.</p>
+<p>You can see from Figure 23.47 that while $\kVR$ is in phase with the current, $\kVL$ leads by $90^\circ$, and $\kVC$ follows by $90^\circ$. Thus $\kVL$ and $\kVC$ are $180^\circ$ out of phase (crest to trough) and tend to cancel, although not completely unless they have the same magnitude. Since the peak voltages are not aligned (not in phase), the peak voltage $\kVo$ of the source does <em>not</em> equal the sum of the peak voltages across $\kRes$, $\kLind$, and $\kCap$. The actual relationship is</p>
+$$\kVo = \sqrt{\kVoR^{2} + (\kVoL - \kVoC)^{2}},$$
+<p>where $\kVoR$, $\kVoL$, and $\kVoC$ are the peak voltages across $\kRes$, $\kLind$, and $\kCap$, respectively. Now, using Ohm’s law and definitions from Reactance, Inductive and Capacitive, we substitute $\kVo = \kIocur\kZimp$ into the above, as well as $\kVoR = \kIocur\kRes$, $\kVoL = \kIocur\kXL$, and $\kVoC = \kIocur\kXC$, yielding</p>
+$$\kIocur\kZimp = \sqrt{\kIocur^{\;2}\kRes^{2} + (\kIocur\kXL - \kIocur\kXC)^{2}} = \kIocur\sqrt{\kRes^{2} + (\kXL - \kXC)^{2}}\text{.}$$
+<p>$\kIocur$ cancels to yield an expression for $\kZimp$:</p>
+$$\kZimp = \sqrt{\kRes^{2} + (\kXL - \kXC)^{2}}\text{,}$$
+<p>which is the impedance of an <em>RLC</em> series AC circuit. For circuits without a resistor, take $\kRes = 0$; for those without an inductor, take $\kXL = 0$; and for those without a capacitor, take $\kXC = 0$.</p>
+<figure class="sim" id="sim-impedance-triangle">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The three oppositions drawn to scale as the sides of a right triangle: the resistance along the foot, the difference between the two reactances standing on it, and the impedance across the corner. The angle at the foot is the phase angle, and its cosine is the resistance divided by the impedance. Drag the frequency and the standing leg swings from far below the foot, where the capacitor dominates and the current leads the source voltage, up through nothing, where the triangle collapses to its foot and the impedance is the resistance alone, and on up above it, where the inductor dominates and the current lags. The graph beside the triangle carries the same three numbers against frequency on the same scale in ohms.</span></div>
+</figure>
+<div class="example" id="ex-calculating-impedance-and-current">
+<h3>Example 23.7 · Calculating Impedance and Current</h3>
+<p>An <em>RLC</em> series circuit has a $40.0\;\Omega$ resistor, a 3.00 mH inductor, and a $5.00\;\mu\text{F}$ capacitor. (a) Find the circuit’s impedance at 60.0 Hz and 10.0 kHz, noting that these frequencies and the values for $\kLind$ and $\kCap$ are the same as in the two examples of Reactance, Inductive and Capacitive. (b) If the voltage source has $\kVrms = 120\;\text{V}$, what is $\kIrms$ at each frequency?</p>
+<h4>Strategy</h4>
+<p>For each frequency, we use $\kZimp = \sqrt{\kRes^{2} + (\kXL - \kXC)^{2}}$ to find the impedance and then Ohm’s law to find current. We can take advantage of the results of the previous two examples rather than calculate the reactances again.</p>
+<h4>Solution for (a)</h4>
+<p>At 60.0 Hz, the values of the reactances were found in Reactance, Inductive and Capacitive to be $\kXL = 1.13\;\Omega$ and $\kXC = 531\;\Omega$. Entering these and the given $40.0\;\Omega$ for resistance into $\kZimp = \sqrt{\kRes^{2} + (\kXL - \kXC)^{2}}$ yields</p>
+$$\begin{array}{lll}\kZimp & = & \sqrt{\kRes^{2} + (\kXL - \kXC)^{2}} \\ & = & \sqrt{(40.0\;\Omega)^{2} + (1.13\;\Omega - 531\;\Omega)^{2}} \\ & = & 531\;\Omega\;\text{at 60.0 Hz.}\end{array}$$
+<p>Similarly, at 10.0 kHz, $\kXL = 188\;\Omega$ and $\kXC = 3.18\;\Omega$, so that</p>
+$$\begin{array}{lll}\kZimp & = & \sqrt{(40.0\;\Omega)^{2} + (188\;\Omega - 3.18\;\Omega)^{2}} \\ & = & 190\;\Omega\;\text{at 10.0 kHz.}\end{array}$$
+<h4>Discussion for (a)</h4>
+<p>In both cases, the result is nearly the same as the largest value, and the impedance is definitely not the sum of the individual values. It is clear that $\kXL$ dominates at high frequency and $\kXC$ dominates at low frequency.</p>
+<h4>Solution for (b)</h4>
+<p>The current $\kIrms$ can be found using the AC version of Ohm’s law in Equation $\kIrms = \kVrms/\kZimp$:</p>
+<p>$\kIrms = \frac{\kVrms}{\kZimp} = \frac{120\;\text{V}}{531\;\Omega} = 0.226\;\text{A}$ at 60.0 Hz</p>
+<p>Finally, at 10.0 kHz, we find</p>
+<p>$\kIrms = \frac{\kVrms}{\kZimp} = \frac{120\;\text{V}}{190\;\Omega} = 0.633\;\text{A}$ at 10.0 kHz</p>
+<h4>Discussion for (b)</h4>
+<p>The current at 60.0 Hz is the same (to three digits) as found for the capacitor alone in Reactance, Inductive and Capacitive. The capacitor dominates at low frequency. The current at 10.0 kHz is only slightly different from that found for the inductor alone. The inductor dominates at high frequency.</p>
+</div>
+</section>
+
+<section id="resonance-in-rlc-series-ac-circuits">
+<h2>Resonance in <em>RLC</em> Series AC Circuits</h2>
+<p>How does an <em>RLC</em> circuit behave as a function of the frequency of the driving voltage source? Combining Ohm’s law, $\kIrms = \kVrms/\kZimp$, and the expression for impedance $\kZimp$ from $\kZimp = \sqrt{\kRes^{2} + (\kXL - \kXC)^{2}}$ gives</p>
+$$\kIrms = \frac{\kVrms}{\sqrt{\kRes^{2} + (\kXL - \kXC)^{2}}}\text{.}$$
+<p>The reactances vary with frequency, with $\kXL$ large at high frequencies and $\kXC$ large at low frequencies, as we have seen in three previous examples. At some intermediate frequency $\kfo$, the reactances will be equal and cancel, giving $\kZimp = \kRes$—this is a minimum value for impedance, and a maximum value for $\kIrms$ results. We can get an expression for $\kfo$ by taking</p>
+$$\kXL = \kXC\text{.}$$
+<p>Substituting the definitions of $\kXL$ and $\kXC$,</p>
+$$2\pi\kfo\kLind = \frac{1}{2\pi\kfo\kCap}\text{.}$$
+<p>Solving this expression for $\kfo$ yields</p>
+$$\kfo = \frac{1}{2\pi\sqrt{\kLind\kCap}}\text{,}$$
+<p>where $\kfo$ is the <strong>resonant frequency</strong> of an <em>RLC</em> series circuit. This is also the <em>natural frequency</em> at which the circuit would oscillate if not driven by the voltage source. At $\kfo$, the effects of the inductor and capacitor cancel, so that $\kZimp = \kRes$, and $\kIrms$ is a maximum.</p>
+<p>Resonance in AC circuits is analogous to mechanical resonance, where resonance is defined to be a forced oscillation—in this case, forced by the voltage source—at the natural frequency of the system. The receiver in a radio is an <em>RLC</em> circuit that oscillates best at its $\kfo$. A variable capacitor is often used to adjust $\kfo$ to receive a desired frequency and to reject others. Figure 23.48 is a graph of current as a function of frequency, illustrating a resonant peak in $\kIrms$ at $\kfo$. The two curves are for two different circuits, which differ only in the amount of resistance in them. The peak is lower and broader for the higher-resistance circuit. Thus the higher-resistance circuit does not resonate as strongly and would not be as selective in a radio receiver, for example.</p>
+<figure class="sim" id="sim-resonance" data-figure="23.48" data-original="/media/ch23/Figure_24_12_03a.jpg" data-original-width="225" data-original-caption="A graph of current versus frequency for two RLC series circuits differing only in the amount of resistance. Both have a resonance at f₀, but that for the higher resistance is lower and broader. The driving AC voltage source has a fixed amplitude V₀.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.48</span><span>The rms current the circuit draws, plotted against the frequency of the source that drives it. The peak stands where the two reactances cancel and the impedance falls to the resistance alone. Raise the resistance and watch the peak drop and spread, which is the book’s second curve appearing out of the first, and change the inductance or the capacitance and the peak slides along the axis without changing its shape, which is what a radio tuner is built on. The average power is drawn on the same frame on its own scale at the right, and its peak is the sharper of the two, because away from resonance the current and the power factor fall together.</span></div>
+</figure>
+<div class="example" id="ex-calculating-resonant-frequency-and-current">
+<h3>Example 23.8 · Calculating Resonant Frequency and Current</h3>
+<p>For the same <em>RLC</em> series circuit having a $40.0\;\Omega$ resistor, a 3.00 mH inductor, and a $5.00\;\mu\text{F}$ capacitor: (a) Find the resonant frequency. (b) Calculate $\kIrms$ at resonance if $\kVrms$ is 120 V.</p>
+<h4>Strategy</h4>
+<p>The resonant frequency is found by using the expression in $\kfo = \frac{1}{2\pi\sqrt{\kLind\kCap}}$. The current at that frequency is the same as if the resistor alone were in the circuit.</p>
+<h4>Solution for (a)</h4>
+<p>Entering the given values for $\kLind$ and $\kCap$ into the expression given for $\kfo$ in $\kfo = \frac{1}{2\pi\sqrt{\kLind\kCap}}$ yields</p>
+$$\begin{array}{lll}\kfo & = & \frac{1}{2\pi\sqrt{\kLind\kCap}} \\ & = & \frac{1}{2\pi\sqrt{(3.00\times {10}^{-3}\;\text{H})(5.00\times {10}^{-6}\;\text{F})}} = 1.30\;\text{kHz.}\end{array}$$
+<h4>Discussion for (a)</h4>
+<p>We see that the resonant frequency is between 60.0 Hz and 10.0 kHz, the two frequencies chosen in earlier examples. This was to be expected, since the capacitor dominated at the low frequency and the inductor dominated at the high frequency. Their effects are the same at this intermediate frequency.</p>
+<h4>Solution for (b)</h4>
+<p>The current is given by Ohm’s law. At resonance, the two reactances are equal and cancel, so that the impedance equals the resistance alone. Thus,</p>
+$$\kIrms = \frac{\kVrms}{\kZimp} = \frac{120\;\text{V}}{40.0\;\Omega} = 3.00\;\text{A.}$$
+<h4>Discussion for (b)</h4>
+<p>At resonance, the current is greater than at the higher and lower frequencies considered for the same circuit in the preceding example.</p>
+</div>
+</section>
+
+<section id="power-in-rlc-series-ac-circuits">
+<h2>Power in <em>RLC</em> Series AC Circuits</h2>
+<p>If current varies with frequency in an <em>RLC</em> circuit, then the power delivered to it also varies with frequency. But the average power is not simply current times voltage, as it is in purely resistive circuits. As was seen in Figure 23.47, voltage and current are out of phase in an <em>RLC</em> circuit. There is a <strong>phase angle</strong> $\phi$ between the source voltage $\kV$ and the current $\kIcur$, which can be found from</p>
+$$\cos\;\phi = \frac{\kRes}{\kZimp}\text{.}$$
+<p>For example, at the resonant frequency or in a purely resistive circuit $\kZimp = \kRes$, so that $\cos\;\phi = 1$. This implies that $\phi = 0^\circ$ and that voltage and current are in phase, as expected for resistors. At other frequencies, average power is less than at resonance. This is both because voltage and current are out of phase and because $\kIrms$ is lower. The fact that source voltage and current are out of phase affects the power delivered to the circuit. It can be shown that the <em>average power</em> is</p>
+$$\kPave = \kIrms\kVrms\cos\;\phi,$$
+<p>Thus $\cos\;\phi$ is called the <strong>power factor</strong>, which can range from 0 to 1. Power factors near 1 are desirable when designing an efficient motor, for example. At the resonant frequency, $\cos\;\phi = 1$.</p>
+<div class="example" id="ex-calculating-the-power-factor-and-power">
+<h3>Example 23.9 · Calculating the Power Factor and Power</h3>
+<p>For the same <em>RLC</em> series circuit having a $40.0\;\Omega$ resistor, a 3.00 mH inductor, a $5.00\;\mu\text{F}$ capacitor, and a voltage source with a $\kVrms$ of 120 V: (a) Calculate the power factor and phase angle for $\kf = 60.0\;\text{Hz}$. (b) What is the average power at 60.0 Hz? (c) Find the average power at the circuit’s resonant frequency.</p>
+<h4>Strategy and Solution for (a)</h4>
+<p>The power factor at 60.0 Hz is found from</p>
+$$\cos\;\phi = \frac{\kRes}{\kZimp}\text{.}$$
+<p>We know $\kZimp = 531\;\Omega$ from Example 23.7, so that</p>
+$$\cos\;\phi = \frac{40.0\;\Omega}{531\;\Omega} = 0.0753\;\text{at 60.0 Hz.}$$
+<p>This small value indicates the voltage and current are significantly out of phase. In fact, the phase angle is</p>
+$$\phi = \cos^{-1}\;0.0753 = 85.7^\circ\;\text{at 60.0 Hz.}$$
+<h4>Discussion for (a)</h4>
+<p>The phase angle is close to $90^\circ$, consistent with the fact that the capacitor dominates the circuit at this low frequency (a pure <em>RC</em> circuit has its voltage and current $90^\circ$ out of phase).</p>
+<h4>Strategy and Solution for (b)</h4>
+<p>The average power at 60.0 Hz is</p>
+$$\kPave = \kIrms\kVrms\cos\;\phi.$$
+<p>$\kIrms$ was found to be 0.226 A in Example 23.7. Entering the known values gives</p>
+$$\kPave = (0.226\;\text{A})(120\;\text{V})(0.0753) = 2.04\;\text{W at 60.0 Hz.}$$
+<h4>Strategy and Solution for (c)</h4>
+<p>At the resonant frequency, we know $\cos\;\phi = 1$, and $\kIrms$ was found to be 3.00 A in Example 23.8. Thus,</p>
+<p>$\kPave = (3.00\;\text{A})(120\;\text{V})(1) = 360\;\text{W}$ at resonance (1.30 kHz)</p>
+<h4>Discussion</h4>
+<p>Both the current and the power factor are greater at resonance, producing significantly greater power than at higher and lower frequencies.</p>
+</div>
+<p>Power delivered to an <em>RLC</em> series AC circuit is dissipated by the resistance alone. The inductor and capacitor have energy input and output but do not dissipate it out of the circuit. Rather they transfer energy back and forth to one another, with the resistor dissipating exactly what the voltage source puts into the circuit. This assumes no significant electromagnetic radiation from the inductor and capacitor, such as radio waves. Such radiation can happen and may even be desired, as we will see in the next chapter on electromagnetic radiation, but it can also be suppressed as is the case in this chapter. The circuit is analogous to the wheel of a car driven over a corrugated road as shown in Figure 23.49. The regularly spaced bumps in the road are analogous to the voltage source, driving the wheel up and down. The shock absorber is analogous to the resistance damping and limiting the amplitude of the oscillation. Energy within the system goes back and forth between kinetic (analogous to maximum current, and energy stored in an inductor) and potential energy stored in the car spring (analogous to no current, and energy stored in the electric field of a capacitor). The amplitude of the wheels’ motion is a maximum if the bumps in the road are hit at the resonant frequency.</p>
+<p>A pure <em>LC</em> circuit with negligible resistance oscillates at $\kfo$, the same resonant frequency as an <em>RLC</em> circuit. It can serve as a frequency standard or clock circuit—for example, in a digital wristwatch. With a very small resistance, only a very small energy input is necessary to maintain the oscillations. The circuit is analogous to a car with no shock absorbers. Once it starts oscillating, it continues at its natural frequency for some time. Figure 23.50 shows the analogy between an <em>LC</em> circuit and a mass on a spring.</p>
+<figure class="sim" id="sim-mechanical-analogy" data-figure="23.49 + 23.50" data-original="/media/ch23/Figure_24_12_04a.jpg,/media/ch23/Figure_24_12_05a.jpg" data-original-width="225,350" data-original-caption="(Figure 23.49) The forced but damped motion of the wheel on the car spring is analogous to an RLC series AC circuit. The shock absorber damps the motion and dissipates energy, analogous to the resistance in an RLC circuit. The mass and spring determine the resonant frequency. (Figure 23.50) An LC circuit is analogous to a mass oscillating on a spring with no friction and no driving force. Energy moves back and forth between the inductor and capacitor, just as it moves from kinetic to potential in the mass-spring system.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.49 + 23.50</span><span>The circuit and the machine it is a copy of, running side by side. With no resistance in it the circuit oscillates freely, and the energy stands wholly in the capacitor’s electric field at the moment the current is zero and wholly in the inductor’s magnetic field at the moment the current is greatest, just as the energy of the mass stands wholly in the stretched spring at the ends of the swing and wholly in the motion at the middle. Set the inductance and the capacitance and both machines change their period together. Choose the driven circuit instead and a resistance is put in the loop and a shock absorber on the wheel, and both oscillations die away into heat while the source and the bumps in the road keep feeding them.</span></div>
+</figure>
+</section>
