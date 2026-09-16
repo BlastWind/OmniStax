@@ -1,0 +1,294 @@
+{
+  "id": "23.11",
+  "module": "m42427",
+  "chapter": "23",
+  "title": "Reactance, Inductive and Capacitive",
+  "short": "Reactance",
+  "lead": "An inductor and a capacitor each do something to an alternating current that a resistor does not. Put an inductor alone on an AC source and the current still rises and falls with the voltage, but it lags a quarter of a cycle behind it, because the inductor opposes any change in the current; put a capacitor there instead and the current runs a quarter of a cycle ahead of the voltage, because the current is largest at the moment the plates are empty. Each of them limits the current as a resistance does, and the ohms each offers has a name: the inductive reactance $\\kXL = 2\\pi \\kf\\kLind$, which grows with the frequency, and the capacitive reactance $\\kXC = 1/2\\pi \\kf\\kCap$, which falls with it. Ohm's law then gives the current in the same form it always had, $\\kIcur = \\kV/\\kXL$ or $\\kIcur = \\kV/\\kXC$. Because the two run opposite ways with frequency, an inductor put in series with a circuit keeps high frequencies out of it and a capacitor keeps low ones out, which is how a hum is taken out of a sound system and how noise is kept off the supply to a computer. A resistor, for its part, does neither: its voltage and its current are exactly in phase and its ohms do not depend on the frequency at all.",
+  "objectives": [
+    "Sketch voltage and current versus time in simple inductive, capacitive, and resistive circuits.",
+    "Calculate inductive and capacitive reactance.",
+    "Calculate current and/or voltage in simple inductive, capacitive, and resistive circuits."
+  ],
+  "summary_html": "<ul><li>For inductors in AC circuits, we find that when a sinusoidal voltage is applied to an inductor, the voltage leads the current by one-fourth of a cycle, or by a $90^\\circ$ phase angle.</li><li>The opposition of an inductor to a change in current is expressed as a type of AC resistance.</li><li>Ohm's law for an inductor is $\\kIcur = \\frac{\\kV}{\\kXL} ,$ where $\\kV$ is the rms voltage across the inductor.</li><li>$\\kXL$ is defined to be the inductive reactance, given by $\\kXL = 2\\pi \\kf\\kLind ,$ with $\\kf$ the frequency of the AC voltage source in hertz.</li><li>Inductive reactance $\\kXL$ has units of ohms and is greatest at high frequencies.</li><li>For capacitors, we find that when a sinusoidal voltage is applied to a capacitor, the voltage follows the current by one-fourth of a cycle, or by a $90^\\circ$ phase angle.</li><li>Since a capacitor can stop current when fully charged, it limits current and offers another form of AC resistance; Ohm's law for a capacitor is $\\kIcur = \\frac{\\kV}{\\kXC} ,$ where $\\kV$ is the rms voltage across the capacitor.</li><li>$\\kXC$ is defined to be the capacitive reactance, given by $\\kXC = \\frac{1}{2\\pi \\kf\\kCap} .$</li><li>$\\kXC$ has units of ohms and is greatest at low frequencies.</li></ul>",
+  "notes": "The seven problems the book leaves unkeyed are left out: the inductance that gives a 20.0 kΩ reactance at 500 Hz, the frequency at which an 80.0 mF capacitor has 0.250 Ω, the current a 0.250 µF capacitor passes at 60.0 Hz and at 25.0 kHz, the capacitance a 20.0 Hz source and a 2.00 mA current imply, the two parts of the filter capacitor of circuit (a) at 120 Hz and at 1.00 MHz, the Unreasonable Results item on the EEG signal, and the Construct Your Own Problem item on an inductor in series with a computer. The book's unnumbered drawing of the two capacitor filter circuits, which it prints between the fifth and the sixth conceptual questions, is carried on the cards of both of those questions and of the tenth problem, which is the item that names circuit (b).",
+  "ai": {
+    "text": "Claude Opus 5",
+    "figures": "Claude Opus 5"
+  },
+  "built": "2026-09-15",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book's answer key: six of the thirteen problems are keyed and are set here, and the seven that are not are left out and named in the section's notes. None of the six conceptual questions is keyed, so each is kept as an open item with an AI-written suggested approach, marked as such. The section carries no AP test prep item and no Check Your Understanding box, so everything is set at the end. Nothing is held for a later section and nothing arrives from an earlier one. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "sim-ac-phase",
+      "kind": "sim",
+      "number": "23.43",
+      "folds": ["23.44", "23.45"],
+      "originals": [
+        "/media/ch23/Figure_24_11_01a.jpg",
+        "/media/ch23/Figure_24_11_02a.jpg",
+        "/media/ch23/Figure_24_11_03a.jpg"
+      ],
+      "original_caption": "(Figure 23.43) (a) An AC voltage source in series with an inductor having negligible resistance. (b) Graph of current and voltage across the inductor as functions of time. (Figure 23.44) (a) An AC voltage source in series with a capacitor C having negligible resistance. (b) Graph of current and voltage across the capacitor as functions of time. (Figure 23.45) (a) An AC voltage source in series with a resistor. (b) Graph of current and voltage across the resistor as functions of time, showing them to be exactly in phase.",
+      "widths": [400, 400, 400],
+      "draws": ["voltage", "current", "time", "frequency", "inductance", "capacitance", "resistance"]
+    },
+    {
+      "id": "sim-reactance-against-frequency",
+      "kind": "sim",
+      "draws": ["frequency", "resistance", "current", "inductance", "capacitance"]
+    }
+  ],
+  "coverage": [
+    {"span": "inductors-and-inductive-reactance", "concept": "inductor-voltage-leads-current", "verb": "introduces"},
+    {"span": "inductors-and-inductive-reactance", "concept": "inductive-reactance", "verb": "introduces"},
+    {"span": "inductors-and-inductive-reactance", "concept": "filtering-by-frequency", "verb": "introduces"},
+    {"span": "inductors-and-inductive-reactance", "concept": "self-inductance", "verb": "uses"},
+    {"span": "inductors-and-inductive-reactance", "concept": "inductance", "verb": "uses"},
+    {"span": "inductors-and-inductive-reactance", "concept": "henry", "verb": "uses"},
+    {"span": "inductors-and-inductive-reactance", "concept": "rl-circuit", "verb": "uses"},
+    {"span": "inductors-and-inductive-reactance", "concept": "alternating-current", "verb": "uses"},
+    {"span": "inductors-and-inductive-reactance", "concept": "rms-values", "verb": "uses"},
+    {"span": "inductors-and-inductive-reactance", "concept": "ac-ohms-law", "verb": "uses"},
+    {"span": "capacitors-and-capacitive-reactance", "concept": "capacitor-voltage-follows-current", "verb": "introduces"},
+    {"span": "capacitors-and-capacitive-reactance", "concept": "capacitive-reactance", "verb": "introduces"},
+    {"span": "capacitors-and-capacitive-reactance", "concept": "filtering-by-frequency", "verb": "reinforces"},
+    {"span": "capacitors-and-capacitive-reactance", "concept": "capacitor", "verb": "uses"},
+    {"span": "capacitors-and-capacitive-reactance", "concept": "capacitance", "verb": "uses"},
+    {"span": "capacitors-and-capacitive-reactance", "concept": "charging-a-capacitor", "verb": "uses"},
+    {"span": "capacitors-and-capacitive-reactance", "concept": "ac-ohms-law", "verb": "uses"},
+    {"span": "resistors-in-an-ac-circuit", "concept": "resistor-voltage-in-phase", "verb": "introduces"},
+    {"span": "resistors-in-an-ac-circuit", "concept": "ac-ohms-law", "verb": "uses"},
+    {"span": "resistors-in-an-ac-circuit", "concept": "alternating-current", "verb": "uses"}
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id1169738010807",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "capacitors-and-capacitive-reactance",
+      "prompt": "Presbycusis is a hearing loss due to age that progressively affects higher frequencies. A hearing aid amplifier is designed to amplify all frequencies equally. To adjust its output for presbycusis, would you put a capacitor in series or parallel with the hearing aid's speaker? Explain.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Put the capacitor in series with the speaker. A capacitor in series offers a reactance of $1/2\\pi fC$, which is large at low frequencies and small at high ones, so it holds back the low frequencies and lets the high ones through. That is what is wanted here: the listener has lost the high frequencies, so the amplifier's output has to be tilted toward them, and a series capacitor tilts it that way by taking some of the low-frequency output out. A capacitor in parallel with the speaker would do the opposite, since at high frequencies its small reactance would carry the current round the speaker rather than through it, and the sounds the listener has most trouble with are exactly the ones that would be lost."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id1169737854523",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "capacitors-and-capacitive-reactance",
+      "prompt": "Would you use a large inductance or a large capacitance in series with a system to filter out low frequencies, such as the 100 Hz hum in a sound system?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Use a large capacitance. The capacitive reactance $X_C = 1/2\\pi fC$ is greatest at low frequencies, so a capacitor in series with the system stands in the way of the 100 Hz hum while offering very little opposition to the frequencies above it, which pass on through. A large inductance would do the reverse, since $X_L = 2\\pi fL$ grows with the frequency: it would pass the hum and hold back the music. Note that the capacitance has to be large enough that its reactance at the frequencies you want to keep is small, and the section's own example is the capacitor put in series with a sound reproduction system to rid it of the 60 Hz hum."
+      }
+    },
+    {
+      "id": "cq3",
+      "source_id": "fs-id1169737930275",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "inductors-and-inductive-reactance",
+      "prompt": "High-frequency noise in AC power can damage computers. Does the plug-in unit designed to prevent this damage use a large inductance or a large capacitance (in series with the computer) to filter out such high frequencies?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "It uses a large inductance. The inductive reactance $X_L = 2\\pi fL$ is proportional to the frequency, so an inductor in series with the computer is nearly a plain wire at the 60 Hz the computer is meant to run on and a large number of ohms at the high frequencies of the noise. The noise is therefore held back while the power gets through. A capacitor in series would do the opposite, passing the high-frequency noise and blocking the supply itself, which is why the filter uses the inductor."
+      }
+    },
+    {
+      "id": "cq4",
+      "source_id": "fs-id1169737771745",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "inductors-and-inductive-reactance",
+      "prompt": "Does inductance depend on current, frequency, or both? What about inductive reactance?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Inductance depends on neither. It is a property of the device itself, fixed by the number of turns, the area and the length of the coil and by what is inside it, as $L = \\mu_0 N^2 A/\\ell$ shows for a solenoid; the current through the coil and the frequency at which that current alternates do not change it. Inductive reactance is a different quantity and does depend on the frequency, since $X_L = 2\\pi fL$, but it does not depend on the current either: doubling the voltage doubles the current and leaves the ohms the inductor offers exactly where they were, which is what makes $X_L$ an effective resistance and lets Ohm's law be written with it."
+      }
+    },
+    {
+      "id": "cq5",
+      "source_id": "fs-id1169737785016",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "capacitors-and-capacitive-reactance",
+      "figure": {
+        "src": "/media/ch23/Figure_24_11_04a.jpg",
+        "alt": "Two circuits with two different connections. In the first, circuit 1 and circuit 2 are connected in series and a capacitor C is connected between them; both circuits are grounded. In the second, circuit 1 and circuit 2 are connected to each other, and at the point of connection one end of a capacitor is connected and its other end is grounded; both circuits are grounded.",
+        "caption": "Capacitors and inductors. Capacitor with high frequency and low frequency."
+      },
+      "prompt": "Explain why the capacitor in the figure below, part (a), acts as a low-frequency filter between the two circuits, whereas that in part (b) acts as a high-frequency filter.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "In (a) the capacitor is in series, in the one path a signal has from the first circuit to the second, so whatever it blocks does not arrive. Its reactance $1/2\\pi fC$ is large at low frequencies and small at high ones, so the low frequencies are held back and the high ones pass: it filters the low frequencies out of what reaches circuit 2. In (b) the capacitor is not in the path at all but hangs from it to earth, and a signal that finds an easy way to earth there never reaches circuit 2. The easy way is the one with the small reactance, which is the high-frequency one, so the high frequencies are shorted to earth and the low frequencies, which see a large reactance to earth, carry on. The same component filters opposite halves of the spectrum depending on whether it stands in the path or across it."
+      }
+    },
+    {
+      "id": "cq6",
+      "source_id": "fs-id1169736669333",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "inductors-and-inductive-reactance",
+      "figure": {
+        "src": "/media/ch23/Figure_24_11_04a.jpg",
+        "alt": "Two circuits with two different connections. In the first, circuit 1 and circuit 2 are connected in series and a capacitor C is connected between them; both circuits are grounded. In the second, circuit 1 and circuit 2 are connected to each other, and at the point of connection one end of a capacitor is connected and its other end is grounded; both circuits are grounded.",
+        "caption": "Capacitors and inductors. Capacitor with high frequency and low frequency."
+      },
+      "prompt": "If the capacitors in the figure below are replaced by inductors, which acts as a low-frequency filter and which as a high-frequency filter?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The two swap over, because $X_L = 2\\pi fL$ runs the opposite way to $X_C$ with frequency. The inductor in series, in (a), is small in ohms at low frequencies and large at high ones, so it passes the low frequencies and holds back the high ones: it is now the high-frequency filter. The inductor to earth, in (b), offers an easy path to earth at low frequencies and a hard one at high frequencies, so it shorts the low frequencies away and lets the high ones carry on to circuit 2: it is now the low-frequency filter. In each position the inductor does what the capacitor did at the other end of the spectrum, which is the general fact the section ends on, that capacitors have the opposite effect on AC circuits that inductors have."
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id1169738117280",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "inductors-and-inductive-reactance",
+      "prompt": "At what frequency will a 30.0 mH inductor have a reactance of $100\\ \\Omega$?",
+      "answer": {
+        "type": "number",
+        "value": 531,
+        "unit": "Hz",
+        "generated_by": "source",
+        "hint": "The reactance of an inductor is $X_L = 2\\pi fL$; here it is the frequency that is wanted and the other two are given.",
+        "solution": "531 Hz"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id1169738077769",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "capacitors-and-capacitive-reactance",
+      "prompt": "What capacitance should be used to produce a $2.00\\ \\text{M}\\Omega$ reactance at 60.0 Hz?",
+      "answer": {
+        "type": "number",
+        "value": 1.33,
+        "unit": "nF",
+        "generated_by": "source",
+        "hint": "Rearrange $X_C = 1/2\\pi fC$ for the capacitance. Two megohms is a large reactance, so expect a very small capacitor.",
+        "solution": "1.33 nF"
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id1169737729245",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "inductors-and-inductive-reactance",
+      "prompt": "(a) Find the current through a 0.500 H inductor connected to a 60.0 Hz, 480 V AC source. (b) What would the current be at 100 kHz?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {"part": "(a)", "value": 2.55, "unit": "A", "hint": "Find the reactance at 60.0 Hz first, then use Ohm's law in the form $I = V/X_L$."},
+          {"part": "(b)", "value": 1.53, "unit": "mA", "hint": "The frequency has gone up by a factor of about 1670, and the reactance goes up with it."}
+        ],
+        "solution": "(a) 2.55 A (b) 1.53 mA"
+      }
+    },
+    {
+      "id": "p7",
+      "source_id": "fs-id1169738198521",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "inductors-and-inductive-reactance",
+      "prompt": "A 20.0 kHz, 16.0 V source connected to an inductor produces a 2.00 A current. What is the inductance?",
+      "answer": {
+        "type": "number",
+        "value": 63.7,
+        "unit": "µH",
+        "generated_by": "source",
+        "hint": "The voltage and the current give the reactance through $I = V/X_L$, and the reactance and the frequency then give the inductance.",
+        "solution": "$63.7\\ \\mu\\text{H}$"
+      }
+    },
+    {
+      "id": "p9",
+      "source_id": "fs-id1169738250258",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "inductors-and-inductive-reactance",
+      "prompt": "(a) An inductor designed to filter high-frequency noise from power supplied to a personal computer is placed in series with the computer. What minimum inductance should it have to produce a $2.00\\ \\text{k}\\Omega$ reactance for 15.0 kHz noise? (b) What is its reactance at 60.0 Hz?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {"part": "(a)", "value": 21.2, "unit": "mH", "hint": "Rearrange $X_L = 2\\pi fL$ for the inductance, with the 15.0 kHz noise as the frequency."},
+          {"part": "(b)", "value": 8.0, "unit": "Ω", "hint": "The reactance falls in proportion to the frequency, and 60.0 Hz is 250 times smaller than 15.0 kHz."}
+        ],
+        "solution": "(a) 21.2 mH (b) $8.00\\ \\Omega$"
+      }
+    },
+    {
+      "id": "p11",
+      "source_id": "fs-id1169736611033",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "capacitors-and-capacitive-reactance",
+      "figure": {
+        "src": "/media/ch23/Figure_24_11_04a.jpg",
+        "alt": "Two circuits with two different connections. In the first, circuit 1 and circuit 2 are connected in series and a capacitor C is connected between them; both circuits are grounded. In the second, circuit 1 and circuit 2 are connected to each other, and at the point of connection one end of a capacitor is connected and its other end is grounded; both circuits are grounded.",
+        "caption": "Capacitors and inductors. Capacitor with high frequency and low frequency."
+      },
+      "prompt": "The capacitor in the figure below, part (b), will filter high-frequency signals by shorting them to earth/ground. (a) What capacitance is needed to produce a reactance of $10.0\\ \\text{m}\\Omega$ for a 5.00 kHz signal? (b) What would its reactance be at 3.00 Hz? (c) Discuss the implications of your answers to (a) and (b).",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {"part": "(a)", "value": 3.18, "unit": "mF", "hint": "Rearrange $X_C = 1/2\\pi fC$ for the capacitance. A reactance of ten milliohms is very small, so the capacitor must be very large."},
+          {"part": "(b)", "value": 16.7, "unit": "Ω", "hint": "The reactance rises in inverse proportion to the frequency, and 3.00 Hz is 1670 times smaller than 5.00 kHz."}
+        ],
+        "solution": "(a) 3.18 mF (b) $16.7\\ \\Omega$. The two numbers together are what makes the arrangement a filter: at 5.00 kHz the capacitor is all but a wire to earth and carries the signal away, while at 3.00 Hz it offers enough opposition that a low-frequency signal stays in the path between the two circuits."
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {"exercise": "cq1", "concept": "filtering-by-frequency"},
+    {"exercise": "cq1", "concept": "capacitive-reactance", "weight": 5, "weights_by": "ai"},
+    {"exercise": "cq2", "concept": "filtering-by-frequency"},
+    {"exercise": "cq2", "concept": "capacitive-reactance", "weight": 4, "weights_by": "ai"},
+    {"exercise": "cq2", "concept": "inductive-reactance", "weight": 4, "weights_by": "ai"},
+    {"exercise": "cq3", "concept": "filtering-by-frequency"},
+    {"exercise": "cq3", "concept": "inductive-reactance", "weight": 4, "weights_by": "ai"},
+    {"exercise": "cq4", "concept": "inductive-reactance"},
+    {"exercise": "cq4", "concept": "inductance", "weight": 4, "weights_by": "ai"},
+    {"exercise": "cq5", "concept": "filtering-by-frequency"},
+    {"exercise": "cq5", "concept": "capacitive-reactance", "weight": 5, "weights_by": "ai"},
+    {"exercise": "cq6", "concept": "filtering-by-frequency"},
+    {"exercise": "cq6", "concept": "inductive-reactance", "weight": 5, "weights_by": "ai"},
+    {"exercise": "p1", "concept": "inductive-reactance"},
+    {"exercise": "p3", "concept": "capacitive-reactance"},
+    {"exercise": "p5", "concept": "inductive-reactance"},
+    {"exercise": "p5", "concept": "filtering-by-frequency", "weight": 4, "weights_by": "ai"},
+    {"exercise": "p7", "concept": "inductive-reactance"},
+    {"exercise": "p9", "concept": "inductive-reactance"},
+    {"exercise": "p9", "concept": "filtering-by-frequency", "weight": 5, "weights_by": "ai"},
+    {"exercise": "p11", "concept": "capacitive-reactance"},
+    {"exercise": "p11", "concept": "filtering-by-frequency", "weight": 5, "weights_by": "ai"}
+  ]
+}

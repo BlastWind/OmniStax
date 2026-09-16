@@ -1,0 +1,83 @@
+<section id="inductors-and-inductive-reactance">
+<h2>Inductors and Inductive Reactance</h2>
+<p>Many circuits also contain capacitors and inductors, in addition to resistors and an AC voltage source. We have seen how capacitors and inductors respond to DC voltage when it is switched on and off. We will now explore how inductors and capacitors react to sinusoidal AC voltage.</p>
+<p class="cite-target">Suppose an inductor is connected directly to an AC voltage source, as shown in Figure 23.43. It is reasonable to assume negligible resistance, since in practice we can make the resistance of an inductor so small that it has a negligible effect on the circuit. Also shown is a graph of voltage and current as functions of time.</p>
+<figure class="sim" id="sim-ac-phase" data-figure="23.43 + 23.44 + 23.45" data-original="/media/ch23/Figure_24_11_01a.jpg,/media/ch23/Figure_24_11_02a.jpg,/media/ch23/Figure_24_11_03a.jpg" data-original-width="400,400,400" data-original-caption="(Figure 23.43) (a) An AC voltage source in series with an inductor having negligible resistance. (b) Graph of current and voltage across the inductor as functions of time. (Figure 23.44) (a) An AC voltage source in series with a capacitor C having negligible resistance. (b) Graph of current and voltage across the capacitor as functions of time. (Figure 23.45) (a) An AC voltage source in series with a resistor. (b) Graph of current and voltage across the resistor as functions of time, showing them to be exactly in phase.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.43 + 23.44 + 23.45</span><span>One element at a time sits on an AC voltage source of 120 V, and the voltage across it and the current through it are drawn together below the circuit. Put the inductor on the source and the current comes to its peak a quarter of a cycle after the voltage; put the capacitor on and it comes to its peak a quarter of a cycle before; put the resistor on and the two rise and fall together. Raise the frequency and watch what it does to the size of the current in each case, which is the whole of inductive and capacitive reactance.</span></div>
+</figure>
+<p>The graph in Figure 23.43(b) starts with voltage at a maximum. Note that the current starts at zero and rises to its peak <em>after</em> the voltage that drives it, just as was the case when DC voltage was switched on in the preceding section. When the voltage becomes negative at point a, the current begins to decrease; it becomes zero at point b, where voltage is its most negative. The current then becomes negative, again following the voltage. The voltage becomes positive at point c and begins to make the current less negative. At point d, the current goes through zero just as the voltage reaches its positive peak to start another cycle. This behavior is summarized as follows:</p>
+<div class="note">
+<div class="eyebrow">AC Voltage in an Inductor</div>
+<p>When a sinusoidal voltage is applied to an inductor, the voltage leads the current by one-fourth of a cycle, or by a $90^\circ$ phase angle.</p>
+</div>
+<p>Current lags behind voltage, since inductors oppose change in current. Changing current induces a back emf $\kV = -\kLind(\kdIcur/\kdt)$. This is considered to be an effective resistance of the inductor to AC. The rms current $\kIcur$ through an inductor $\kLind$ is given by a version of Ohm’s law:</p>
+$$\kIcur = \frac{\kV}{\kXL}\text{,}$$
+<p>where $\kV$ is the rms voltage across the inductor and $\kXL$ is defined to be</p>
+$$\kXL = 2\pi \kf\kLind\text{,}$$
+<p>with $\kf$ the frequency of the AC voltage source in hertz (An analysis of the circuit using Kirchhoff’s loop rule and calculus actually produces this expression). $\kXL$ is called the <strong>inductive reactance</strong>, because the inductor reacts to impede the current. $\kXL$ has units of ohms ($1\ \text{H} = 1\ \Omega\cdot\text{s}$, so that frequency times inductance has units of $(\text{cycles/s})(\Omega\cdot\text{s}) = \Omega$), consistent with its role as an effective resistance. It makes sense that $\kXL$ is proportional to $\kLind$, since the greater the induction the greater its resistance to change. It is also reasonable that $\kXL$ is proportional to frequency $\kf$, since greater frequency means greater change in current. That is, $\kdIcur/\kdt$ is large for large frequencies (large $\kf$, small $\kdt$). The greater the change, the greater the opposition of an inductor.</p>
+<div class="example" id="ex-inductive-reactance-and-current">
+<h3>Example 23.10 · Calculating Inductive Reactance and then Current</h3>
+<p>(a) Calculate the inductive reactance of a 3.00 mH inductor when 60.0 Hz and 10.0 kHz AC voltages are applied. (b) What is the rms current at each frequency if the applied rms voltage is 120 V?</p>
+<h4>Strategy</h4>
+<p>The inductive reactance is found directly from the expression $\kXL = 2\pi \kf\kLind$. Once $\kXL$ has been found at each frequency, Ohm’s law as stated in the Equation $\kIcur = \kV/\kXL$ can be used to find the current at each frequency.</p>
+<h4>Solution for (a)</h4>
+<p>Entering the frequency and inductance into Equation $\kXL = 2\pi \kf\kLind$ gives</p>
+$$\kXL = 2\pi \kf\kLind = 6.28(60.0/\text{s})(3.00\ \text{mH}) = 1.13\ \Omega\ \text{at 60 Hz}.$$
+<p>Similarly, at 10 kHz,</p>
+$$\kXL = 2\pi \kf\kLind = 6.28(1.00\times {10}^{4}/\text{s})(3.00\ \text{mH}) = 188\ \Omega\ \text{at 10 kHz}.$$
+<h4>Solution for (b)</h4>
+<p>The rms current is now found using the version of Ohm’s law in Equation $\kIcur = \kV/\kXL$, given the applied rms voltage is 120 V. For the first frequency, this yields</p>
+$$\kIcur = \frac{\kV}{\kXL} = \frac{120\ \text{V}}{1.13\ \Omega} = 106\ \text{A at 60 Hz}.$$
+<p>Similarly, at 10 kHz,</p>
+$$\kIcur = \frac{\kV}{\kXL} = \frac{120\ \text{V}}{188\ \Omega} = 0.637\ \text{A at 10 kHz}.$$
+<h4>Discussion</h4>
+<p>The inductor reacts very differently at the two different frequencies. At the higher frequency, its reactance is large and the current is small, consistent with how an inductor impedes rapid change. Thus high frequencies are impeded the most. Inductors can be used to filter out high frequencies; for example, a large inductor can be put in series with a sound reproduction system or in series with your home computer to reduce high-frequency sound output from your speakers or high-frequency power spikes into your computer.</p>
+</div>
+<p>Note that although the resistance in the circuit considered is negligible, the AC current is not extremely large because inductive reactance impedes its flow. With AC, there is no time for the current to become extremely large.</p>
+</section>
+
+<section id="capacitors-and-capacitive-reactance">
+<h2>Capacitors and Capacitive Reactance</h2>
+<p class="cite-target">Consider the capacitor connected directly to an AC voltage source as shown in Figure 23.44. The resistance of a circuit like this can be made so small that it has a negligible effect compared with the capacitor, and so we can assume negligible resistance. Voltage across the capacitor and current are graphed as functions of time in the figure.</p>
+<p>The graph in Figure 23.44 starts with voltage across the capacitor at a maximum. The current is zero at this point, because the capacitor is fully charged and halts the flow. Then voltage drops and the current becomes negative as the capacitor discharges. At point a, the capacitor has fully discharged ($Q = 0$ on it) and the voltage across it is zero. The current remains negative between points a and b, causing the voltage on the capacitor to reverse. This is complete at point b, where the current is zero and the voltage has its most negative value. The current becomes positive after point b, neutralizing the charge on the capacitor and bringing the voltage to zero at point c, which allows the current to reach its maximum. Between points c and d, the current drops to zero as the voltage rises to its peak, and the process starts to repeat. Throughout the cycle, the voltage follows what the current is doing by one-fourth of a cycle:</p>
+<div class="note">
+<div class="eyebrow">AC Voltage in a Capacitor</div>
+<p>When a sinusoidal voltage is applied to a capacitor, the voltage follows the current by one-fourth of a cycle, or by a $90^\circ$ phase angle.</p>
+</div>
+<p>The capacitor is affecting the current, having the ability to stop it altogether when fully charged. Since an AC voltage is applied, there is an rms current, but it is limited by the capacitor. This is considered to be an effective resistance of the capacitor to AC, and so the rms current $\kIcur$ in the circuit containing only a capacitor $\kCap$ is given by another version of Ohm’s law to be</p>
+$$\kIcur = \frac{\kV}{\kXC}\text{,}$$
+<p>where $\kV$ is the rms voltage and $\kXC$ is defined (As with $\kXL$, this expression for $\kXC$ results from an analysis of the circuit using Kirchhoff’s rules and calculus) to be</p>
+$$\kXC = \frac{1}{2\pi \kf\kCap}\text{,}$$
+<p>where $\kXC$ is called the <strong>capacitive reactance</strong>, because the capacitor reacts to impede the current. $\kXC$ has units of ohms (verification left as an exercise for the reader). $\kXC$ is inversely proportional to the capacitance $\kCap$; the larger the capacitor, the greater the charge it can store and the greater the current that can flow. It is also inversely proportional to the frequency $\kf$; the greater the frequency, the less time there is to fully charge the capacitor, and so it impedes current less.</p>
+<div class="example" id="ex-capacitive-reactance-and-current">
+<h3>Example 23.11 · Calculating Capacitive Reactance and then Current</h3>
+<p>(a) Calculate the capacitive reactance of a 5.00 µF capacitor when 60.0 Hz and 10.0 kHz AC voltages are applied. (b) What is the rms current if the applied rms voltage is 120 V?</p>
+<h4>Strategy</h4>
+<p>The capacitive reactance is found directly from the expression in $\kXC = \frac{1}{2\pi \kf\kCap}$. Once $\kXC$ has been found at each frequency, Ohm’s law stated as $\kIcur = \kV/\kXC$ can be used to find the current at each frequency.</p>
+<h4>Solution for (a)</h4>
+<p>Entering the frequency and capacitance into $\kXC = \frac{1}{2\pi \kf\kCap}$ gives</p>
+$$\begin{array}{lll}\kXC & = & \frac{1}{2\pi \kf\kCap} \\ & = & \frac{1}{6.28(60.0/\text{s})(5.00\ \mu\text{F})} = 531\ \Omega\ \text{at 60 Hz}\text{.}\end{array}$$
+<p>Similarly, at 10 kHz,</p>
+$$\begin{array}{lll}\kXC & = & \frac{1}{2\pi \kf\kCap} = \frac{1}{6.28(1.00\times {10}^{4}/\text{s})(5.00\ \mu\text{F})} \\ & = & 3.18\ \Omega\ \text{at 10 kHz}\end{array}\text{.}$$
+<h4>Solution for (b)</h4>
+<p>The rms current is now found using the version of Ohm’s law in $\kIcur = \kV/\kXC$, given the applied rms voltage is 120 V. For the first frequency, this yields</p>
+$$\kIcur = \frac{\kV}{\kXC} = \frac{120\ \text{V}}{531\ \Omega} = 0.226\ \text{A at 60 Hz}.$$
+<p>Similarly, at 10 kHz,</p>
+$$\kIcur = \frac{\kV}{\kXC} = \frac{120\ \text{V}}{3.18\ \Omega} = 37.7\ \text{A at 10 kHz}.$$
+<h4>Discussion</h4>
+<p>The capacitor reacts very differently at the two different frequencies, and in exactly the opposite way an inductor reacts. At the higher frequency, its reactance is small and the current is large. Capacitors favor change, whereas inductors oppose change. Capacitors impede low frequencies the most, since low frequency allows them time to become charged and stop the current. Capacitors can be used to filter out low frequencies. For example, a capacitor in series with a sound reproduction system rids it of the 60 Hz hum.</p>
+</div>
+<p>Although a capacitor is basically an open circuit, there is an rms current in a circuit with an AC voltage applied to a capacitor. This is because the voltage is continually reversing, charging and discharging the capacitor. If the frequency goes to zero (DC), $\kXC$ tends to infinity, and the current is zero once the capacitor is charged. At very high frequencies, the capacitor’s reactance tends to zero—it has a negligible reactance and does not impede the current (it acts like a simple wire). <em>Capacitors have the opposite effect on AC circuits that inductors have</em>.</p>
+<figure class="sim" id="sim-reactance-against-frequency">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The two reactances drawn against frequency on one frame, over the four decades that carry both of the worked examples. The inductor’s ohms climb with the frequency and the capacitor’s fall, so the two lines cross, and the strip above the frame carries the current each element passes at 120 V. Set the frequency to the 10 kHz of the examples and the 3.00 mH inductor that passed 106 A at 60 Hz is down to 0.637 A, while the 5.00 µF capacitor that passed 0.226 A is up to 37.7 A. That reversal is what makes one of them a filter for high frequencies and the other a filter for low ones.</span></div>
+</figure>
+</section>
+
+<section id="resistors-in-an-ac-circuit">
+<h2>Resistors in an AC Circuit</h2>
+<p class="cite-target">Just as a reminder, consider Figure 23.45, which shows an AC voltage applied to a resistor and a graph of voltage and current versus time. The voltage and current are exactly <em>in phase</em> in a resistor. There is no frequency dependence to the behavior of plain resistance in a circuit:</p>
+<div class="note">
+<div class="eyebrow">AC Voltage in a Resistor</div>
+<p>When a sinusoidal voltage is applied to a resistor, the voltage is exactly in phase with the current—they have a $0^\circ$ phase angle.</p>
+</div>
+</section>
