@@ -1,0 +1,90 @@
+<section id="inductors">
+<h2>Inductors</h2>
+<p class="cite-target">Induction is the process in which an emf is induced by changing magnetic flux. Many examples have been discussed so far, some more effective than others. Transformers, for example, are designed to be particularly effective at inducing a desired voltage and current with very little loss of energy to other forms. Is there a useful physical quantity related to how “effective” a given device is? The answer is yes, and that physical quantity is called <strong>inductance</strong>.</p>
+<p><strong>Mutual inductance</strong> is the effect of Faraday’s law of induction for one device upon another, such as the primary coil in transmitting energy to the secondary in a transformer. See Figure 23.37, where simple coils induce emfs in one another.</p>
+<figure class="sim" id="sim-mutual-inductance" data-figure="23.37" data-original="/media/ch23/Figure_24_09_01.jpg" data-original-width="330" data-original-caption="These coils can induce emfs in one another like an inefficient transformer. Their mutual inductance M indicates the effectiveness of the coupling between them. Here a change in current in coil 1 is seen to induce an emf in coil 2. (Note that the induced emf in coil 2 is written ℰ₂ induced.)">
+  <div class="sim-head"><span class="eyebrow">Figure 23.37</span><span>Two coils stand side by side on a common axis, the first driven by an alternating source and the second read by a galvanometer. Watch the needle while the current in the driven coil rises and falls: it stands still at the top of every swing, where the current is greatest and is changing least, and swings hardest as the current passes through zero, where it is changing fastest. Set the mutual inductance between the coils and the current in the driven one, and drive whichever coil you please, since the same $\kMind$ works in either direction.</span></div>
+</figure>
+<p class="cite-target">In the many cases where the geometry of the devices is fixed, flux is changed by varying current. We therefore concentrate on the rate of change of current, $\kdIcur/\kdt$, as the cause of induction. A change in the current $\kIcurone$ in one device, coil 1 in the figure, induces an $\kemftwo$ in the other. We express this in equation form as</p>
+$$\kemftwo = -\kMind\frac{\Delta \kIcurone}{\kdt},$$
+<p>where $\kMind$ is defined to be the mutual inductance between the two devices. The minus sign is an expression of Lenz’s law. The larger the mutual inductance $\kMind$, the more effective the coupling. For example, the coils in Figure 23.37 have a small $\kMind$ compared with the transformer coils in Figure 23.27. Units for $\kMind$ are $(\text{V}\cdot\text{s})/\text{A} = \Omega\cdot\text{s}$, which is named a <strong>henry</strong> (H), after Joseph Henry. That is, $1\;\text{H} = 1\;\Omega\cdot\text{s}$.</p>
+<p>Nature is symmetric here. If we change the current $\kIcurtwo$ in coil 2, we induce an $\kemfone$ in coil 1, which is given by</p>
+$$\kemfone = -\kMind\frac{\Delta \kIcurtwo}{\kdt},$$
+<p>where $\kMind$ is the same as for the reverse process. Transformers run backward with the same effectiveness, or mutual inductance $\kMind$.</p>
+<p class="cite-target">A large mutual inductance $\kMind$ may or may not be desirable. We want a transformer to have a large mutual inductance. But an appliance, such as an electric clothes dryer, can induce a dangerous emf on its case if the mutual inductance between its coils and the case is large. One way to reduce mutual inductance $\kMind$ is to counterwind coils to cancel the magnetic field produced. (See Figure 23.38.)</p>
+<figure class="sim" id="sim-counterwound" data-figure="23.38" data-original="/media/ch23/Figure_24_09_02.jpg" data-original-width="325" data-original-caption="The heating coils of an electric clothes dryer can be counter-wound so that their magnetic fields cancel one another, greatly reducing the mutual inductance with the case of the dryer.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.38</span><span>The heating element of a clothes dryer is a long coil wound on a cylinder, and the field it raises inside itself is drawn here. Wind it the ordinary way and the turns all carry the current round in the same sense, so their fields add and the element has an inductance the dryer’s case can feel. Counter-wind it, so that half the turns run back the other way, and the fields of the two layers cancel one another everywhere inside. Set the number of turns and the current through the element, and watch what the choice of winding does to the field and to the inductance.</span></div>
+</figure>
+</section>
+
+<section id="self-inductance">
+<h2>A device induces an emf in itself</h2>
+<p class="cite-target"><strong>Self-inductance</strong>, the effect of Faraday’s law of induction of a device on itself, also exists. When, for example, current through a coil is increased, the magnetic field and flux also increase, inducing a counter emf, as required by Lenz’s law. Conversely, if the current is decreased, an emf is induced that opposes the decrease. Most devices have a fixed geometry, and so the change in flux is due entirely to the change in current $\kdIcur$ through the device. The induced emf is related to the physical geometry of the device and the rate of change of current. It is given by</p>
+$$\kemf = -\kLind\frac{\kdIcur}{\kdt},$$
+<p>where $\kLind$ is the self-inductance of the device. A device that exhibits significant self-inductance is called an <strong>inductor</strong>, and given the symbol in Figure 23.39.</p>
+<figure class="sim" id="sim-self-inductance" data-figure="23.39" data-original="/media/ch23/Figure_24_09_05.jpg" data-original-width="100" data-original-caption="The circuit symbol for an inductor.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.39</span><span>The symbol the book draws is set here in the circuit the paragraph beside it describes: an inductor carrying a steady current, and a switch that opens. Nothing happens while the current is steady, however large it is. Open the switch and the current is forced to fall in the time the switch takes to part its contacts, and the inductor answers with an emf that can be thousands of times the voltage that drove the current in the first place. Set the inductance, the current and the time the current is taken to fall in, and watch on the graph below that the emf lives only in the interval while the current is changing.</span></div>
+</figure>
+<p class="cite-target">The minus sign is an expression of Lenz’s law, indicating that emf opposes the change in current. Units of self-inductance are henries (H) just as for mutual inductance. The larger the self-inductance $\kLind$ of a device, the greater its opposition to any change in current through it. For example, a large coil with many turns and an iron core has a large $\kLind$ and will not allow current to change quickly. To avoid this effect, a small $\kLind$ must be achieved, such as by counterwinding coils as in Figure 23.38.</p>
+<p class="cite-target">A 1 H inductor is a large inductor. To illustrate this, consider a device with $\kLind = 1.0\;\text{H}$ that has a 10 A current flowing through it. What happens if we try to shut off the current rapidly, perhaps in only 1.0 ms? An emf, given by $\kemf = -\kLind(\kdIcur/\kdt)$, will oppose the change. Thus an emf will be induced given by $\kemf = -\kLind(\kdIcur/\kdt) = (1.0\;\text{H})[(10\;\text{A})/(1.0\;\text{ms})] = 10{,}000\;\text{V}$. The positive sign means this large voltage is in the same direction as the current, opposing its decrease. Such large emfs can cause arcs, damaging switching equipment, and so it may be necessary to change current more slowly.</p>
+<p>There are uses for such a large induced voltage. Camera flashes use a battery, two inductors that function as a transformer, and a switching system or oscillator to induce large voltages. (Remember that we need a changing magnetic field, brought about by a changing current, to induce a voltage in another coil.) The oscillator system will do this many times as the battery voltage is boosted to over one thousand volts. (You may hear the high pitched whine from the transformer as the capacitor is being charged.) A capacitor stores the high voltage for later use in powering the flash. (See Figure 23.40.)</p>
+<figure class="sim" id="sim-camera-flash" data-figure="23.40" data-original="/media/ch23/Figure_24_09_03.jpg" data-original-width="180" data-original-caption="Through rapid switching of an inductor, 1.5 V batteries can be used to induce emfs of several thousand volts. This voltage can be used to store charge in a capacitor for later use, such as in a camera flash attachment.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.40</span><span>The switch of a camera flash moves back and forth between the battery and the capacitor many times a second. On one side it lets the battery build a current in the inductor pair; on the other it breaks that current in a few microseconds, and the pair answers with an emf of hundreds of volts, which carries a little more charge onto the capacitor. Watch the capacitor’s voltage climb a step at every switching from a battery of only 1.5 V, and set the inductance, the battery and the time the switch takes to break the current.</span></div>
+</figure>
+</section>
+
+<section id="calculating-inductance">
+<h2>Calculating an inductance from the geometry</h2>
+<p class="cite-target">It is possible to calculate $\kLind$ for an inductor given its geometry (size and shape) and knowing the magnetic field that it produces. This is difficult in most cases, because of the complexity of the field created. So in this text the inductance $\kLind$ is usually a given quantity. One exception is the solenoid, because it has a very uniform field inside, a nearly zero field outside, and a simple shape. It is instructive to derive an equation for its inductance. We start by noting that the induced emf is given by Faraday’s law of induction as $\kemf = -N(\kdPhi/\kdt)$ and, by the definition of self-inductance, as $\kemf = -\kLind(\kdIcur/\kdt)$. Equating these yields</p>
+$$\kemf = -N\frac{\kdPhi}{\kdt} = -\kLind\frac{\kdIcur}{\kdt}.$$
+<p>Solving for $\kLind$ gives</p>
+$$\kLind = N\frac{\kdPhi}{\kdIcur}.$$
+<p>This equation for the self-inductance $\kLind$ of a device is always valid. It means that self-inductance $\kLind$ depends on how effective the current is in creating flux; the more effective, the greater $\kdPhi/\kdIcur$ is.</p>
+<p>Let us use this last equation to find an expression for the inductance of a solenoid. Since the area $A$ of a solenoid is fixed, the change in flux is $\kdPhi = \Delta(\kBmag A) = A\Delta \kBmag$. To find $\Delta \kBmag$, we note that the magnetic field of a solenoid is given by $\kBmag = \mu_0 nI = \mu_0\frac{NI}{\ell}$. (Here $n = N/\ell$, where $N$ is the number of coils and $\ell$ is the solenoid’s length.) Only the current changes, so that $\kdPhi = A\Delta \kBmag = \mu_0 NA\frac{\kdIcur}{\ell}$. Substituting $\kdPhi$ into $\kLind = N\frac{\kdPhi}{\kdIcur}$ gives</p>
+$$\kLind = N\frac{\kdPhi}{\kdIcur} = N\frac{\mu_0 NA\frac{\kdIcur}{\ell}}{\kdIcur}.$$
+<p>This simplifies to</p>
+$$\kLind = \frac{\mu_0 N^2 A}{\ell}\;\text{(solenoid).}$$
+<p class="cite-target">This is the self-inductance of a solenoid of cross-sectional area $A$ and length $\ell$. Note that the inductance depends only on the physical characteristics of the solenoid, consistent with its definition.</p>
+<figure class="sim" id="sim-solenoid-inductance">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A solenoid is the one shape whose inductance the book works out, and the result says two things worth seeing. Its inductance goes as the <em>square</em> of the number of turns, so doubling the winding stores four times as much flux for the same current, and it falls as the solenoid is stretched out, since the same turns then stand further apart and raise a weaker field. Set the turns, the length and the diameter, and the solenoid is redrawn to scale with its field inside. It opens on the moderate solenoid of the worked example below, 200 turns on 10.0 cm of 4.00 cm diameter.</span></div>
+</figure>
+<div class="example" id="ex-self-inductance-of-a-solenoid">
+<h3>Example 23.7 · Calculating the Self-inductance of a Moderate Size Solenoid</h3>
+<p>Calculate the self-inductance of a 10.0 cm long, 4.00 cm diameter solenoid that has 200 coils.</p>
+<h4>Strategy</h4>
+<p>This is a straightforward application of $\kLind = \frac{\mu_0 N^2 A}{\ell}$, since all quantities in the equation except $\kLind$ are known.</p>
+<h4>Solution</h4>
+<p>Use the following expression for the self-inductance of a solenoid:</p>
+$$\kLind = \frac{\mu_0 N^2 A}{\ell}.$$
+<p>The cross-sectional area in this example is $A = \pi r^2 = (3.14\ldots)(0.0200\;\text{m})^2 = 1.26\times 10^{-3}\;\text{m}^2$, $N$ is given to be 200, and the length $\ell$ is 0.100 m. We know the permeability of free space is $\mu_0 = 4\pi\times 10^{-7}\;\text{T}\cdot\text{m/A}$. Substituting these into the expression for $\kLind$ gives</p>
+$$\begin{array}{lll}\kLind & = & \frac{(4\pi\times 10^{-7}\;\text{T}\cdot\text{m/A})(200)^2(1.26\times 10^{-3}\;\text{m}^2)}{0.100\;\text{m}} \\ & = & 0.632\;\text{mH}.\end{array}$$
+<h4>Discussion</h4>
+<p>This solenoid is moderate in size. Its inductance of nearly a millihenry is also considered moderate.</p>
+</div>
+<p class="cite-target">One common application of inductance is used in traffic lights that can tell when vehicles are waiting at the intersection. An electrical circuit with an inductor is placed in the road under the place a waiting car will stop over. The body of the car increases the inductance and the circuit changes sending a signal to the traffic lights to change colors. Similarly, metal detectors used for airport security employ the same technique. A coil or inductor in the metal detector frame acts as both a transmitter and a receiver. The pulsed signal in the transmitter coil induces a signal in the receiver. The self-inductance of the circuit is affected by any metal object in the path. Such detectors can be adjusted for sensitivity and also can indicate the approximate location of metal found on a person. See Figure 23.41.</p>
+<figure class="photo" id="photo-security-gate" data-figure="23.41">
+  <img src="/media/ch23/OSX_CP2e_Figure_24_09_04.jpg" alt="Photograph of people around a security gate at an airport departure terminal." data-width="250">
+  <figcaption><span class="eyebrow">Figure 23.41</span><span>The familiar security gate at an airport can not only detect metals but also indicate their approximate height above the floor. (credit: shankar s/Flickr)</span></figcaption>
+</figure>
+</section>
+
+<section id="inductor-energy">
+<h2>Energy Stored in an Inductor</h2>
+<p class="cite-target">We know from Lenz’s law that inductances oppose changes in current. There is an alternative way to look at this opposition that is based on energy. Energy is stored in a magnetic field. It takes time to build up energy, and it also takes time to deplete energy; hence, there is an opposition to rapid change. In an inductor, the magnetic field is directly proportional to current and to the inductance of the device. It can be shown that the <strong>energy stored in an inductor</strong> $\kEind$ is given by</p>
+$$\kEind = \frac{1}{2}\kLind\kIcur^2.$$
+<p>This expression is similar to that for the energy stored in a capacitor.</p>
+<figure class="sim" id="sim-inductor-energy">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The energy an inductor holds sits in the magnetic field inside it, and here that field is drawn at the density the current sets, with the stored energy as a bar beside it. Because the current is squared, doubling it stores four times the energy, which is why a research solenoid carrying a hundred amperes holds enough energy to melt its own switchgear. Set the inductance and the current; the figure opens on the 0.632 mH solenoid of the example above carrying the 30.0 A of the example below.</span></div>
+</figure>
+<div class="example" id="ex-energy-stored-in-a-solenoid">
+<h3>Example 23.8 · Calculating the Energy Stored in the Field of a Solenoid</h3>
+<p>How much energy is stored in the 0.632 mH inductor of the preceding example when a 30.0 A current flows through it?</p>
+<h4>Strategy</h4>
+<p>The energy is given by the equation $\kEind = \frac{1}{2}\kLind\kIcur^2$, and all quantities except $\kEind$ are known.</p>
+<h4>Solution</h4>
+<p>Substituting the value for $\kLind$ found in the previous example and the given current into $\kEind = \frac{1}{2}\kLind\kIcur^2$ gives</p>
+$$\begin{array}{lll}\kEind & = & \frac{1}{2}\kLind\kIcur^2 \\ & = & 0.5(0.632\times 10^{-3}\;\text{H})(30.0\;\text{A})^2 = 0.284\;\text{J}.\end{array}$$
+<h4>Discussion</h4>
+<p>This amount of energy is certainly enough to cause a spark if the current is suddenly switched off. It cannot be built up instantaneously unless the power input is infinite.</p>
+</div>
+</section>

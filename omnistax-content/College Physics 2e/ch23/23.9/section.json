@@ -1,0 +1,265 @@
+{
+  "id": "23.9",
+  "module": "m42420",
+  "chapter": "23",
+  "title": "Inductance",
+  "short": "Inductance",
+  "lead": "Induction has been described so far by what it does, and this is the section that gives it a number. Two coils standing side by side induce emfs in one another, and the constant between the emf in one and the rate at which the current changes in the other is their mutual inductance. A single device does the same thing to itself, and the constant is then its self-inductance, measured in henries, where one henry is one ohm-second. The numbers are larger than they look: a one-henry coil carrying ten amperes answers a switch opened in a millisecond with ten thousand volts, which is enough to strike an arc. For most shapes the inductance can only be measured, but the solenoid has a simple enough field to work out, $\\kLind = \\mu_0 N^2 A/\\ell$, and the section closes on the energy the field holds, $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$, which is the second and perhaps the better way to see why an inductor will not let a current change quickly.",
+  "objectives": [
+    "Calculate the inductance of an inductor.",
+    "Calculate the energy stored in an inductor.",
+    "Calculate the emf generated in an inductor."
+  ],
+  "summary_html": "<ul><li>Inductance is the property of a device that tells how effectively it induces an emf in another device.</li><li>Mutual inductance is the effect of two devices in inducing emfs in each other.</li><li>A change in current $\\Delta \\kIcurone/\\kdt$ in one induces an emf $\\kemftwo$ in the second: $\\kemftwo = -\\kMind\\frac{\\Delta \\kIcurone}{\\kdt}$, where $\\kMind$ is defined to be the mutual inductance between the two devices, and the minus sign is due to Lenz's law.</li><li>Symmetrically, a change in current $\\Delta \\kIcurtwo/\\kdt$ through the second device induces an emf $\\kemfone$ in the first: $\\kemfone = -\\kMind\\frac{\\Delta \\kIcurtwo}{\\kdt}$, where $\\kMind$ is the same mutual inductance as in the reverse process.</li><li>Current changes in a device induce an emf in the device itself.</li><li>Self-inductance is the effect of the device inducing emf in itself.</li><li>The device is called an inductor, and the emf induced in it by a change in current through it is $\\kemf = -\\kLind\\frac{\\kdIcur}{\\kdt}$, where $\\kLind$ is the self-inductance of the inductor, and $\\kdIcur/\\kdt$ is the rate of change of current through it. The minus sign indicates that emf opposes the change, as required by Lenz's law.</li><li>The unit of self- and mutual inductance is the henry (H), where $1\\;\\text{H} = 1\\;\\Omega\\cdot\\text{s}$.</li><li>The self-inductance $\\kLind$ of an inductor is proportional to how much flux changes with current. For an $N$-turn inductor, $\\kLind = N\\frac{\\kdPhi}{\\kdIcur}$.</li><li>The self-inductance of a solenoid is $\\kLind = \\frac{\\mu_0 N^2 A}{\\ell}$, where $N$ is its number of turns, $A$ is its cross-sectional area, $\\ell$ is its length, and $\\mu_0 = 4\\pi\\times 10^{-7}\\;\\text{T}\\cdot\\text{m/A}$ is the permeability of free space.</li><li>The energy stored in an inductor $\\kEind$ is $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$.</li></ul>",
+  "notes": "Eight of the section's fourteen problems have no answer in the book and are left out: the 5.00 mH pair and its switched 2.00 A, the device that reaches 3.00 A in 0.100 ms, the two that ask for a derivation of the units of inductance rather than a number, the camera flash's switching time, the 50.0 cm solenoid of 1000 loops, the hair dryer's heating coils, the 150 A through a 0.250 H inductor, and the Unreasonable Results item on the 25.0 H inductor. The book's own answer key is the only source of the answers that are kept.",
+  "ai": { "text": "Claude Opus 5", "figures": "Claude Opus 5" },
+  "built": "2026-09-15",
+  "exercise_notes": "Bloom levels, concept tags, weights, hints and the suggested approaches to the three conceptual questions are AI-generated and marked as such. Every numeric answer comes from the book's own key and nothing is computed here\\; the eight problems the book leaves unkeyed are left out and named in the section's notes. The section prints no Check Your Understanding box and no AP test prep item, so every exercise sits at the end. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "sim-mutual-inductance",
+      "kind": "sim",
+      "number": "23.37",
+      "originals": ["/media/ch23/Figure_24_09_01.jpg"],
+      "original_caption": "These coils can induce emfs in one another like an inefficient transformer. Their mutual inductance M indicates the effectiveness of the coupling between them. Here a change in current in coil 1 is seen to induce an emf in coil 2. (Note that the induced emf in coil 2 is written ℰ₂ induced.)",
+      "widths": [330],
+      "draws": ["inductance", "current", "voltage", "magnetic-field"]
+    },
+    {
+      "id": "sim-counterwound",
+      "kind": "sim",
+      "number": "23.38",
+      "originals": ["/media/ch23/Figure_24_09_02.jpg"],
+      "original_caption": "The heating coils of an electric clothes dryer can be counter-wound so that their magnetic fields cancel one another, greatly reducing the mutual inductance with the case of the dryer.",
+      "widths": [325],
+      "draws": ["inductance", "magnetic-field", "current"]
+    },
+    {
+      "id": "sim-self-inductance",
+      "kind": "sim",
+      "number": "23.39",
+      "originals": ["/media/ch23/Figure_24_09_05.jpg"],
+      "original_caption": "The circuit symbol for an inductor.",
+      "widths": [100],
+      "draws": ["inductance", "current", "voltage", "time"]
+    },
+    {
+      "id": "sim-camera-flash",
+      "kind": "sim",
+      "number": "23.40",
+      "originals": ["/media/ch23/Figure_24_09_03.jpg"],
+      "original_caption": "Through rapid switching of an inductor, 1.5 V batteries can be used to induce emfs of several thousand volts. This voltage can be used to store charge in a capacitor for later use, such as in a camera flash attachment.",
+      "widths": [180],
+      "draws": ["inductance", "voltage", "current", "time"]
+    },
+    {
+      "id": "sim-solenoid-inductance",
+      "kind": "sim",
+      "draws": ["inductance", "magnetic-field", "magnetic-flux"]
+    },
+    {
+      "id": "photo-security-gate",
+      "kind": "photo",
+      "number": "23.41",
+      "originals": ["/media/ch23/OSX_CP2e_Figure_24_09_04.jpg"],
+      "original_caption": "The familiar security gate at an airport can not only detect metals but also indicate their approximate height above the floor. (credit: shankar s/Flickr)",
+      "widths": [250]
+    },
+    {
+      "id": "sim-inductor-energy",
+      "kind": "sim",
+      "draws": ["inductance", "current", "energy", "magnetic-field"]
+    }
+  ],
+  "coverage": [
+    { "span": "inductors", "concept": "inductance", "verb": "introduces" },
+    { "span": "inductors", "concept": "mutual-inductance", "verb": "introduces" },
+    { "span": "inductors", "concept": "henry", "verb": "introduces" },
+    { "span": "inductors", "concept": "counterwinding-cancels-inductance", "verb": "introduces" },
+    { "span": "inductors", "concept": "induction", "verb": "uses" },
+    { "span": "inductors", "concept": "faradays-law", "verb": "uses" },
+    { "span": "inductors", "concept": "lenzs-law", "verb": "uses" },
+    { "span": "inductors", "concept": "transformer-equation", "verb": "uses" },
+    { "span": "self-inductance", "concept": "self-inductance", "verb": "introduces" },
+    { "span": "self-inductance", "concept": "lenzs-law", "verb": "reinforces" },
+    { "span": "self-inductance", "concept": "henry", "verb": "reinforces" },
+    { "span": "self-inductance", "concept": "electric-current", "verb": "uses" },
+    { "span": "self-inductance", "concept": "emf", "verb": "uses" },
+    { "span": "calculating-inductance", "concept": "inductance-from-flux-and-current", "verb": "introduces" },
+    { "span": "calculating-inductance", "concept": "solenoid-inductance", "verb": "introduces" },
+    { "span": "calculating-inductance", "concept": "magnetic-flux", "verb": "uses" },
+    { "span": "calculating-inductance", "concept": "faradays-law", "verb": "uses" },
+    { "span": "calculating-inductance", "concept": "field-inside-a-solenoid", "verb": "uses" },
+    { "span": "calculating-inductance", "concept": "permeability-of-free-space", "verb": "uses" },
+    { "span": "inductor-energy", "concept": "energy-stored-in-an-inductor", "verb": "introduces" },
+    { "span": "inductor-energy", "concept": "capacitor-energy", "verb": "uses" },
+    { "span": "inductor-energy", "concept": "lenzs-law", "verb": "reinforces" }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id1169737917746",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "sim-mutual-inductance",
+      "prompt": "How would you place two identical flat coils in contact so that they had the greatest mutual inductance? The least?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The mutual inductance measures how much of the flux one coil makes passes through the other, so the question is really about how the two faces are set against one another. The greatest mutual inductance comes from laying the coils flat on one another, face to face and lined up so that their axes coincide and their turns sit directly over one another. Almost every line of field the first coil makes then goes straight through the second, and a change in the current in either one carries the whole of that change in flux into the other. The least comes from turning one of them through a right angle, so that the two axes are perpendicular and the second coil stands edge-on to the field of the first. The field of the first coil then runs along the plane of the second rather than through it, the flux through it is nearly zero whatever the current does, and almost no emf is induced. This is the same geometry that made the flux zero in $\\kPhi = \\kBmag A\\cos\\theta$ at $\\theta = 90^\\circ$, and it is worth noticing that the coils are just as close together in the second arrangement as in the first: it is the orientation and not the distance that has done the work."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id1169737938959",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "sim-counterwound",
+      "prompt": "How would you shape a given length of wire to give it the greatest self-inductance? The least?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The self-inductance of a solenoid is $\\kLind = \\mu_0 N^2 A/\\ell$, and the number of turns enters it squared, so a fixed length of wire is best spent on as many turns as possible enclosing as much area as possible. Wind it into a tight coil of many turns, all in the same sense and packed into a short length, with an iron core if one is allowed, and the flux each turn makes threads all the others\\; that gives the greatest self-inductance. For the least, undo everything that made it large. Straighten the wire out, or better, fold it in half and run the two halves side by side so that the current goes out along one and back along the other. The two carry equal currents in opposite directions, their fields cancel almost everywhere, the flux the arrangement encloses is nearly zero, and so is its self-inductance. That is counterwinding, and it is exactly what the section recommends for the heating element of a clothes dryer and what part (c) of the problem on the precision laboratory resistor is doing."
+      }
+    },
+    {
+      "id": "cq3",
+      "source_id": "fs-id1169737042306",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": { "at": "end" },
+      "cite": "inductors",
+      "prompt": "Verify, as was concluded without proof in Example 23.7, that units of $\\text{T}\\cdot\\text{m}^2/\\text{A} = \\Omega\\cdot\\text{s} = \\text{H}$.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Start from $\\kLind = N\\kdPhi/\\kdIcur$, which has units of flux divided by current, that is $\\text{T}\\cdot\\text{m}^2/\\text{A}$, since the number of turns is a pure count. Now take the tesla apart. A magnetic force is $F = qvB$, so $1\\;\\text{T} = 1\\;\\text{N}/(\\text{C}\\cdot\\text{m/s}) = 1\\;\\text{N}\\cdot\\text{s}/(\\text{C}\\cdot\\text{m})$. Multiplying by $\\text{m}^2$ and dividing by the ampere, which is a coulomb per second, gives $\\text{N}\\cdot\\text{s}\\cdot\\text{m}/\\text{C}$ divided by $\\text{C}/\\text{s}$, or $\\text{N}\\cdot\\text{m}\\cdot\\text{s}^2/\\text{C}^2$. A newton-meter is a joule, and a joule per coulomb is a volt, so this is $\\text{V}\\cdot\\text{s}^2/\\text{C}$, and a coulomb per second is an ampere, so it is $\\text{V}\\cdot\\text{s}/\\text{A}$. Finally a volt per ampere is an ohm, which leaves $\\Omega\\cdot\\text{s}$. The same result comes much faster from the other definition: $\\kemf = -\\kLind\\kdIcur/\\kdt$ gives $\\kLind = \\text{emf}\\cdot\\kdt/\\kdIcur$, whose units are $\\text{V}\\cdot\\text{s}/\\text{A} = \\Omega\\cdot\\text{s}$, and that is the henry."
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id1169737794488",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "sim-mutual-inductance",
+      "prompt": "Two coils are placed close together in a physics lab to demonstrate Faraday’s law of induction. A current of 5.00 A in one is switched off in 1.00 ms, inducing a 9.00 V emf in the other. What is their mutual inductance?",
+      "answer": {
+        "type": "number",
+        "value": 1.80,
+        "unit": "mH",
+        "generated_by": "source",
+        "hint": "Solve $\\kemftwo = -\\kMind\\Delta \\kIcurone/\\kdt$ for $\\kMind$. The change in current is the whole 5.00 A and the interval is 1.00 ms, so the rate of change is 5000 A/s.",
+        "solution": "1.80 mH"
+      }
+    },
+    {
+      "id": "p2",
+      "source_id": "fs-id1169738117147",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "sim-self-inductance",
+      "prompt": "The 4.00 A current through a 7.50 mH inductor is switched off in 8.33 ms. What is the emf induced opposing this?",
+      "answer": {
+        "type": "number",
+        "value": 3.60,
+        "unit": "V",
+        "generated_by": "source",
+        "hint": "This is $\\kemf = -\\kLind\\kdIcur/\\kdt$ with every quantity but the emf given. Take the inductance in henries and the interval in seconds before dividing.",
+        "solution": "3.60 V"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id1169737740076",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "sim-inductor-energy",
+      "prompt": "A large research solenoid has a self-inductance of 25.0 H. (a) What induced emf opposes shutting it off when 100 A of current through it is switched off in 80.0 ms? (b) How much energy is stored in the inductor at full current? (c) At what rate in watts must energy be dissipated to switch the current off in 80.0 ms? (d) In view of the answer to the last part, is it surprising that shutting it down this quickly is difficult?",
+      "answer": {
+        "type": "number",
+        "value": 31.3,
+        "unit": "kV",
+        "part": "(a)",
+        "generated_by": "source",
+        "hint": "Part (a) is $\\kemf = -\\kLind\\kdIcur/\\kdt$, part (b) is $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$, and part (c) is that stored energy divided by the same 80.0 ms, since all of it has to go somewhere in that interval.",
+        "solution": "(a) 31.3 kV\n(b) 125 kJ\n(c) 1.56 MW\n(d) No, it is not surprising since this power is very high."
+      }
+    },
+    {
+      "id": "p4",
+      "source_id": "fs-id1169738086748",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "sim-solenoid-inductance",
+      "prompt": "A precision laboratory resistor is made of a coil of wire 1.50 cm in diameter and 4.00 cm long, and it has 500 turns. (a) What is its self-inductance? (b) What average emf is induced if the 12.0 A current through it is turned on in 5.00 ms (one-fourth of a cycle for 50 Hz AC)? (c) What is its inductance if it is shortened to half its length and counter-wound (two layers of 250 turns in opposite directions)?",
+      "answer": {
+        "type": "number",
+        "value": 1.39,
+        "unit": "mH",
+        "part": "(a)",
+        "generated_by": "source",
+        "hint": "Part (a) is $\\kLind = \\mu_0 N^2 A/\\ell$ with the area of a circle of 1.50 cm diameter\\; part (b) is $\\kemf = -\\kLind\\kdIcur/\\kdt$\\; and for part (c) ask what field two layers wound in opposite directions leave inside the coil.",
+        "solution": "(a) 1.39 mH\n(b) 3.33 V\n(c) Zero"
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id1169738146554",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "sim-self-inductance",
+      "prompt": "When the 20.0 A current through an inductor is turned off in 1.50 ms, an 800 V emf is induced, opposing the change. What is the value of the self-inductance?",
+      "answer": {
+        "type": "number",
+        "value": 60.0,
+        "unit": "mH",
+        "generated_by": "source",
+        "hint": "Rearrange $\\kemf = -\\kLind\\kdIcur/\\kdt$ for the inductance, which is the emf times the interval divided by the change in current.",
+        "solution": "60.0 mH"
+      }
+    },
+    {
+      "id": "p6",
+      "source_id": "fs-id1169737861327",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": { "at": "end" },
+      "cite": "sim-inductor-energy",
+      "prompt": "<strong>Integrated Concepts</strong> A very large, superconducting solenoid such as one used in MRI scans, stores 1.00 MJ of energy in its magnetic field when 100 A flows. (a) Find its self-inductance. (b) If the coils “go normal,” they gain resistance and start to dissipate thermal energy. What temperature increase is produced if all the stored energy goes into heating the 1000 kg magnet, given its average specific heat is 200 J/kg·°C?",
+      "answer": {
+        "type": "number",
+        "value": 200,
+        "unit": "H",
+        "part": "(a)",
+        "generated_by": "source",
+        "hint": "Solve $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$ for the inductance in part (a)\\; part (b) is Chapter 14's $Q = mc\\Delta T$ with all of that stored energy going into the magnet.",
+        "solution": "(a) 200 H\n(b) 5.00°C"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    { "exercise": "cq1", "concept": "mutual-inductance" },
+    { "exercise": "cq1", "concept": "inductance", "weight": 3, "weights_by": "ai" },
+    { "exercise": "cq2", "concept": "counterwinding-cancels-inductance" },
+    { "exercise": "cq2", "concept": "solenoid-inductance", "weight": 3, "weights_by": "ai" },
+    { "exercise": "cq3", "concept": "henry" },
+    { "exercise": "cq3", "concept": "inductance-from-flux-and-current", "weight": 3, "weights_by": "ai" },
+    { "exercise": "p1", "concept": "mutual-inductance" },
+    { "exercise": "p2", "concept": "self-inductance" },
+    { "exercise": "p3", "concept": "self-inductance" },
+    { "exercise": "p3", "concept": "energy-stored-in-an-inductor" },
+    { "exercise": "p4", "concept": "solenoid-inductance" },
+    { "exercise": "p4", "concept": "self-inductance", "weight": 4, "weights_by": "ai" },
+    { "exercise": "p4", "concept": "counterwinding-cancels-inductance", "weight": 3, "weights_by": "ai" },
+    { "exercise": "p5", "concept": "self-inductance" },
+    { "exercise": "p6", "concept": "energy-stored-in-an-inductor" },
+    { "exercise": "p6", "concept": "self-inductance", "weight": 3, "weights_by": "ai" }
+  ]
+}
