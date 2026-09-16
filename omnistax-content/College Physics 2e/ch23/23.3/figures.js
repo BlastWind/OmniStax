@@ -38,7 +38,10 @@ const arr = (ctx, a, b, color, w) => arrow(ctx, a[0], a[1], b[0], b[1], color, w
    circuit, which is what the flux counts */
 const FX = [0.075, 0.325, 0.575, 0.825, 1.075, 1.325, 1.575];
 const FZ = [-0.06, 0.09, 0.24, 0.39, 0.54];
-const fieldWidth = (B) => Math.max(1.4, Math.min(5.5, 1.4 + 2.4 * B));
+/* the lines are kept thin and short, so the rails, the rod and the labels read
+   through the lattice; the strength is told by the width and the depth of tone */
+const fieldWidth = (B) => Math.max(1.2, Math.min(3, 1.2 + 0.9 * B));
+const FTOP = 104;
 
 /* The apparatus on its locked view: the face the circuit encloses, shaded in the
    flux hue and pierced by the field lines that pass through it, the rails, the
@@ -75,8 +78,8 @@ function apparatus(ctx, o) {
     FX.forEach((fx0) => {
       const fx = fx0 + (ox || 0);
       FZ.forEach((fz) => {
-        const top = p(fx, fz, 170), foot = p(fx, fz, 10);
-        arr(ctx, top, foot, cB, w);
+        const top = p(fx, fz, FTOP), foot = p(fx, fz, 10);
+        arr(ctx, top, foot, alpha(cB, 0.45 + 0.25 * Math.min(1, B / 2)), w);
         if (fx > lo && fx < hi && fz > 0 && fz < L) pierced.push(p(fx, fz, 0));
       });
     });
@@ -177,7 +180,7 @@ function apparatus(ctx, o) {
 
     /* the names: five in either state, each beside its own thing (rule 26.7) */
     const labs = [];
-    const fieldAt = P3(1.575, -0.075, 170, L);
+    const fieldAt = P3(1.575, -0.075, FTOP, L);
     labs.push(['B = ' + fmt(B, 2) + ' T', fieldAt[0], fieldAt[1], 'right', cB]);
     const resAt = p(0, L / 2, 0);
     labs.push(['R', resAt[0], resAt[1] - 10, 'above', PAL.ink]);
@@ -236,7 +239,7 @@ function apparatus(ctx, o) {
   const H = 820;
   const d = sim('sim-relative-motion', H);
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.5, max: 3, step: 0.05, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: 'the speed of whichever part of the apparatus is moving' });
-  const whatC = choice(d.controls, {
+  const whatC = select(d.controls, {   /* three states in a row that wraps beside the slider, so a dropdown (rule 26.1) */
     label: '\\text{what moves}',
     options: [{ value: 'rod', label: 'the rod' }, { value: 'field', label: 'the rails and the field' }, { value: 'both', label: 'both together' }],
     value: 'rod', aria: 'which part of the apparatus carries the speed',
@@ -289,7 +292,7 @@ function apparatus(ctx, o) {
     const g1 = p(st.xa, L / 2, 0), g2 = p(st.xr, L / 2, 0);
     hbracket(ctx, g1[0], g2[0], 512, PAL.ink, fmt(width, 2) + ' m of rail enclosed', { side: 'below', H });
 
-    const fieldAt = P3(1.575 + st.ox, -0.075, 170, L);
+    const fieldAt = P3(1.575 + st.ox, -0.075, FTOP, L);
     label(ctx, 'B = ' + fmt(B, 2) + ' T', fieldAt[0], fieldAt[1], { side: 'right', size: 21, color: C('magnetic-field'), H });
 
     const box = { l: 230, r: 1200, t: 606, b: 748 };

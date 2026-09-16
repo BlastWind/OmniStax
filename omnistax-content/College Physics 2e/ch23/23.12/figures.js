@@ -512,9 +512,12 @@ function flow(ctx, x, y, dx, dy, L) {
     ctx.restore();
     if (!free) { ctx.save(); ctx.setLineDash([4, 8]); curve(ctx, (u2) => 1 - envOf(u2), 0, CYCLES, X, Y, cE, 4, 120); ctx.restore(); }
     ctx.restore();
-    text(ctx, 'in the capacitor', X(0.52), Y(Math.min(top, envOf(0.5))) - 20, cE, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
-    text(ctx, 'in the inductor', X(0.27), Y(Math.min(top, envOf(0.25))) - 20, cE, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
-    if (!free) text(ctx, 'turned into heat by the resistance', X(1.02), Y(Math.min(top, 1 - envOf(1.6))) - 20, cE, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+    /* the names of the curves, on panels inside the frame's top right corner, clear
+       of the axis title at its top left: solid, dashed and dotted are told apart there */
+    const lx = BOX.r - 16, ly = BOX.t + 24;
+    line(ctx, lx - 250, ly, lx - 200, ly, cE, 5); text(ctx, 'in the capacitor', lx - 190, ly, cE, { size: 19, weight: 600, align: 'left', bg: PAL.panel });
+    line(ctx, lx - 250, ly + 30, lx - 200, ly + 30, cE, 5, [10, 10]); text(ctx, 'in the inductor', lx - 190, ly + 30, cE, { size: 19, weight: 600, align: 'left', bg: PAL.panel });
+    if (!free) { line(ctx, lx - 250, ly + 60, lx - 200, ly + 60, cE, 4, [4, 8]); text(ctx, 'turned into heat by the resistance', lx - 190, ly + 60, cE, { size: 19, weight: 600, align: 'left', bg: PAL.panel }); }
     line(ctx, X(u), BOX.t, X(u), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
     pinned(ctx, BOX, X, Y, u, eC, cE, null);
     pinned(ctx, BOX, X, Y, u, eL, cE, null);

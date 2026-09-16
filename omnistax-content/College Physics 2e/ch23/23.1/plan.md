@@ -218,6 +218,8 @@ Extra simulations (rule 15), considered and left:
 
 None built.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-faraday-ring`: the two coils were drawn as bars laid across the ring and did not read as wire wound on iron; each turn is now a loop drawn round the tube's cross-section, its far half hidden, and the name of the lower coil sits below the ring instead of on its rim. `sim-magnet-coil`: the library's `fist` did not read as a hand on the magnet; a hand that grips the end of the bar, forearm, palm, four fingers and thumb, is drawn in this file as `gripHand()` and holds the magnet or the top of the coil, whichever moves (a candidate for the library); the three-state "what moves" control wrapped into two rows beside the other controls and is a dropdown (rule 26.1). `sim-rotating-coil` and `sim-flux-angle` were judged in the browser in both themes and left as built.
+
 ## Exercises
 
 - `ap1` (fs-id1457853): what may be moved to produce a current, a choice item

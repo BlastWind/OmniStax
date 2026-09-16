@@ -153,6 +153,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   drawn charged and discharged as the pointer runs, rather than a scene of
   its own.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-ac-phase`: the three-element choice stacked into three rows beside two sliders and is a dropdown (rule 26.1). `sim-reactance-against-frequency` was judged and left as built.
+
 ## Exercises
 
 - Every item is set at the end (`ch23/config.md`; the module prints no Check

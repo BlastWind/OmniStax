@@ -436,28 +436,52 @@ function cross(ctx, x, y, r, color, w) {
     const state = ITEMS.map((it, j) => {
       const sv = track[j][2 * i], v = track[j][2 * i + 1], q = at(sv);
       const over = sv > RAMP && sv - RAMP >= ZA && sv - RAMP <= ZB;
-      return { it, v, x: q[0], y: q[1] - 34 - j * 48, drive: over ? Math.min(1, (v / 2.8) * (bS.v / 0.9) * it.mat) : 0 };
+      return { it, v, x: q[0], y: q[1] - 34 - j * 62, drive: over ? Math.min(1, (v / 2.8) * (bS.v / 0.9) * it.mat) : 0 };
     });
     state.forEach((e, j) => {
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
-      if (j === 0) { ctx.beginPath(); ctx.rect(e.x - 17, e.y - 13, 34, 26); ctx.fill(); ctx.stroke(); line(ctx, e.x - 17, e.y - 6, e.x + 17, e.y - 6, PAL.ink, 2); line(ctx, e.x - 17, e.y + 6, e.x + 17, e.y + 6, PAL.ink, 2); }
-      else if (j === 1) { ctx.beginPath(); ctx.arc(e.x, e.y, 15, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(e.x, e.y, 7, 0, TAU); ctx.stroke(); }
-      else { ctx.beginPath(); ctx.moveTo(e.x - 12, e.y + 14); ctx.lineTo(e.x - 12, e.y - 4); ctx.lineTo(e.x - 4, e.y - 14); ctx.lineTo(e.x + 4, e.y - 14); ctx.lineTo(e.x + 12, e.y - 4); ctx.lineTo(e.x + 12, e.y + 14); ctx.closePath(); ctx.fill(); ctx.stroke(); }
+      /* three pieces a reader knows at sight, each about 50 units tall: a drink
+         can standing up with its rim and tab, a copper elbow fitting with its two
+         open sockets, and a bottle with its shoulders, neck and cap */
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel; ctx.lineJoin = 'round';
+      if (j === 0) {
+        const w = 30, h = 52, x = e.x - w / 2, y = e.y - h / 2;
+        ctx.beginPath(); ctx.moveTo(x + 4, y + 8); ctx.lineTo(x, y + 14); ctx.lineTo(x, y + h - 8); ctx.lineTo(x + 4, y + h);
+        ctx.lineTo(x + w - 4, y + h); ctx.lineTo(x + w, y + h - 8); ctx.lineTo(x + w, y + 14); ctx.lineTo(x + w - 4, y + 8); ctx.closePath(); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(e.x, y + 8, w / 2 - 4, 4, 0, 0, TAU); ctx.fill(); ctx.stroke();   /* the rim */
+        line(ctx, e.x - 6, y + 8, e.x + 5, y + 8, PAL.ink, 2.5);                                     /* the tab */
+        line(ctx, x + 1, y + 24, x + w - 1, y + 24, alpha(PAL.ink, 0.35), 2); line(ctx, x + 1, y + h - 14, x + w - 1, y + h - 14, alpha(PAL.ink, 0.35), 2);
+      } else if (j === 1) {
+        const r = 12, a = 24;                                                                     /* an elbow: two sockets at right angles */
+        ctx.beginPath();
+        ctx.moveTo(e.x - a, e.y - r); ctx.lineTo(e.x + r, e.y - r); ctx.lineTo(e.x + r, e.y + a); ctx.lineTo(e.x - r, e.y + a);
+        ctx.lineTo(e.x - r, e.y + r); ctx.lineTo(e.x - a, e.y + r); ctx.closePath(); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(e.x - a, e.y, 4, r, 0, 0, TAU); ctx.fill(); ctx.stroke();       /* the open ends */
+        ctx.beginPath(); ctx.ellipse(e.x, e.y + a, r, 4, 0, 0, TAU); ctx.fill(); ctx.stroke();
+        line(ctx, e.x - a + 5, e.y - r, e.x - a + 5, e.y + r, PAL.ink, 2); line(ctx, e.x - r, e.y + a - 5, e.x + r, e.y + a - 5, PAL.ink, 2);   /* the socket shoulders */
+      } else {
+        const w = 26, h = 56, y = e.y - h / 2;
+        ctx.beginPath(); ctx.moveTo(e.x - w / 2, y + h - 4); ctx.quadraticCurveTo(e.x - w / 2, y + h, e.x - w / 2 + 4, y + h);
+        ctx.lineTo(e.x + w / 2 - 4, y + h); ctx.quadraticCurveTo(e.x + w / 2, y + h, e.x + w / 2, y + h - 4);
+        ctx.lineTo(e.x + w / 2, y + 26); ctx.quadraticCurveTo(e.x + w / 2, y + 16, e.x + 6, y + 12); ctx.lineTo(e.x + 6, y + 4);
+        ctx.lineTo(e.x - 6, y + 4); ctx.lineTo(e.x - 6, y + 12); ctx.quadraticCurveTo(e.x - w / 2, y + 16, e.x - w / 2, y + 26); ctx.closePath(); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.rect(e.x - 8, y - 2, 16, 8); ctx.fill(); ctx.stroke();                 /* the cap */
+        line(ctx, e.x - w / 2 + 1, y + 34, e.x + w / 2 - 1, y + 34, alpha(PAL.ink, 0.35), 2);       /* the label's edge */
+      }
       ctx.restore();
-      lab.place({ l: e.x - 24, r: e.x + 24, t: e.y - 20, b: e.y + 20 });
+      lab.place({ l: e.x - 28, r: e.x + 28, t: e.y - 32, b: e.y + 30 });
       if (e.drive > 0.02) {
         swirl(ctx, e.x, e.y, 10, true, cI, 2.5);
-        const fx = e.x - 22 - 30 - 60 * e.drive;
-        arrow(ctx, e.x - 22, e.y, fx, e.y, cF, 4.5);
+        const fx = e.x - 30 - 30 - 60 * e.drive;
+        arrow(ctx, e.x - 30, e.y, fx, e.y, cF, 4.5);
         if (j === 0) lab.add('F', fx, e.y, -1, 0, cF, 21, 16);
       }
       if (e.v > 0.05) {
-        const vx = e.x + 22 + 20 + 40 * (e.v / 2.8);
-        arrow(ctx, e.x + 22, e.y, vx, e.y, cV, 4);
+        const vx = e.x + 30 + 20 + 40 * (e.v / 2.8);
+        arrow(ctx, e.x + 30, e.y, vx, e.y, cV, 4);
         if (j === 0) lab.add('v', vx, e.y, 1, 0, cV, 21, 16);
       }
     });
-    state.forEach((e) => lab.add(e.it.name, e.x, e.y - 18, 0, -1, PAL.ink, 19, 16));
+    state.forEach((e) => lab.add(e.it.name, e.x, e.y - 30, 0, -1, PAL.ink, 19, 16));
     lab.flush();
     const speeds = state.map((e) => e.v);
     readout(d.readout,

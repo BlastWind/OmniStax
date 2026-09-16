@@ -142,6 +142,8 @@ shows. An induction cooktop heating a pan would be a mechanism animation of a
 sentence the book gives no numbers for. A metal detector's two coils belong to
 23.9, where mutual inductance is the subject and the apparatus is drawn.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-recycling-ramp`: the three pieces were 30-unit glyphs, a plain rectangle for the can and a ring for the fitting, that nobody could name without the labels; they are drawn about 55 units tall as a drink can with its rim and tab, a copper elbow fitting with two open sockets and a bottle with shoulders, neck and cap, set further apart in the chute, and their arrows start at their edges. The other three figures were judged in both themes and left as built.
+
 ## Exercises
 
 - No Check Your Understanding box: the module prints none, so the page has no

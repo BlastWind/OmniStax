@@ -16,7 +16,7 @@
    three register no cycle and take no transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.9'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, label, axes, curve, pinned, view, face } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, label, axes, curve, pinned, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -294,7 +294,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     }
     text(ctx, 'L = ' + fmt(L.v, 1) + ' H', 700, 146, C('inductance'), { size: 22, weight: 600, align: 'center' });
     label(ctx, 'the switch', xr + 60, 300, { side: 'right', size: 20, color: PAL.ink });
-    label(ctx, 'the source that set the current up', xl - 30, 300, { side: 'left', size: 20, color: PAL.ink });
+    label(ctx, 'the source that set the current up', xl - 34, 300, { side: 'left', size: 20, gap: 16, color: PAL.ink });
     text(ctx, 'I = ' + fmt(I, 1) + ' A', 640, yb + 44, C('current'), { size: 21, weight: 600, align: 'center' });
     text(ctx, falling(t) ? 'the inductor induces ' + fmt(emf, 0) + ' V' : 'the inductor induces nothing', 640, yb + 76, C('voltage'), { size: 21, weight: 600, align: 'center' });
     /* the graph: real milliseconds across, the current on the left and the emf on the right */
@@ -458,7 +458,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-inductor-energy', 820);
-  const DEV = choice(d.controls, {
+  const DEV = select(d.controls, {   /* three named devices in a row that stacks, so a dropdown (rule 26.1) */
     label: '\\text{the inductor}',
     options: [{ value: 's', label: 'the 0.632 mH solenoid' }, { value: 'm', label: 'a 60.0 mH inductor' }, { value: 'r', label: 'the 25.0 H research solenoid' }],
     value: 's', aria: 'which of the section’s three inductors is drawn',

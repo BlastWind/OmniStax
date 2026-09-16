@@ -243,6 +243,8 @@ drawn over it and no new quantity; and a side-by-side of the inductor and the
 capacitor, which the book's one sentence of likeness does not carry and which
 23.12 will build properly when the energy sloshes between them.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-inductor-energy`: the three named devices stacked into three rows and are a dropdown (rule 26.1). `sim-self-inductance`: the source's name is set clear of the battery symbol. The other four figures were judged in both themes and left as built.
+
 ## Exercises
 
 No Check Your Understanding box and no AP item, so every exercise sits in the

@@ -458,6 +458,7 @@ function coil(ctx, x, y1, y2, n, side) {
     /* the emf induced on the case, drawn as a source on its wall */
     wires(ctx, [[CR, 320], [1000, 320]]);
     acSource(ctx, 1020, 320, 22);
+    wires(ctx, [[1042, 320], [1118, 320]]);           /* the lead runs on to the hand that holds the case */
     tag(ctx, 'the emf induced on the case', 1090, 214, PAL.ink, { size: 20 });
     tag(ctx, fmt(E, 1) + ' V', 1090, 250, cV);
 
@@ -477,7 +478,7 @@ function coil(ctx, x, y1, y2, n, side) {
 
     /* the leakage current through the person */
     if (!on && Ileak > 0) {
-      flow(ctx, 1072, 330, 1, 0, 40);
+      flow(ctx, 1080, 300, 1, 0, 40);
       flow(ctx, 1178, 556, 0, 1, 44);
       tag(ctx, amps(Ileak), 1090, 386, cI, { align: 'right' });
     } else if (!on) {
@@ -595,8 +596,9 @@ function coil(ctx, x, y1, y2, n, side) {
     if (person) {
       const PX = 1290, PY = 660, S = 2;
       groundLine(ctx, 1150, 1400, PY + 2);
+      wires(ctx, [[CR, 392], [1232, 392]]);           /* the lead from the case to the hand that holds it */
       silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: PAL.ink, hands: [{ x: 56, y: -122 }, { x: -20, y: -76 }] });
-      if (leak > 1e-6) { flow(ctx, 1216, 392, 1, 0, 40); flow(ctx, 1288, 600, 0, 1, 44); }
+      if (leak > 1e-6) { flow(ctx, 1200, 372, 1, 0, 40); flow(ctx, 1288, 600, 0, 1, 44); }
       tag(ctx, 'the person, a path to earth', 1392, 702, cR, { size: 20, align: 'right' });
       if (leak > 1e-6) tag(ctx, amps(leak), 1230, 480, cI, { align: 'right' });
     } else {
@@ -629,7 +631,7 @@ function coil(ctx, x, y1, y2, n, side) {
 (function () {
   const H = 780;
   const d = sim('sim-isolation', H);
-  const iso = choice(d.controls, {
+  const iso = select(d.controls, {                   /* two long names that a button row clips (rule 26.1) */
     label: '\\text{the appliance is run}',
     options: [{ value: 'yes', label: 'through the transformer' }, { value: 'no', label: 'straight from the source' }],
     value: 'yes', aria: 'whether the isolation transformer is in the supply',
@@ -647,7 +649,7 @@ function coil(ctx, x, y1, y2, n, side) {
     const cV = C('voltage'), cI = C('current'), cR = C('resistance');
 
     acSource(ctx, 130, 330, 42);
-    tag(ctx, fmt(VS, 0) + ' V', 130, 414, cV);
+    tag(ctx, fmt(VS, 0) + ' V', 78, 330, cV, { align: 'right' });
     breaker(ctx, 280, TOP, true);
     tag(ctx, 'circuit breaker', 280, TOP - 62, PAL.muted, { size: 19, weight: 400 });
 
@@ -689,9 +691,10 @@ function coil(ctx, x, y1, y2, n, side) {
     const PX = 1180, PY = 700, S = 1.8;
     groundLine(ctx, 1040, 1400, PY + 2);
     earth(ctx, 1350, PY + 16);
+    wires(ctx, [[RX, 464], [1118, 464]]); node(ctx, RX, 464, 6);   /* the output wire the person holds */
     silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: PAL.ink, hands: [{ x: 53, y: -128 }, { x: -20, y: -76 }] });
     tag(ctx, 'the person, ' + ohms(Rp), PX, 740, cR, { size: 20 });
-    flow(ctx, 1122, 464, 1, 0, 40); flow(ctx, 1178, 650, 0, 1, 44);
+    flow(ctx, 1100, 444, 1, 0, 40); flow(ctx, 1178, 650, 0, 1, 44);
     tag(ctx, amps(Iperson), 1290, 470, cI, { align: 'right' });
 
     topline(ctx, on

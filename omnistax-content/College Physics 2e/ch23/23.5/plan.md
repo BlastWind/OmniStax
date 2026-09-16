@@ -232,6 +232,8 @@ Extra simulations (rule 15), thought through, judged and left:
   it better than a drawing would; the distribution line belongs to 23.7,
   where the transformer is.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-generator`: the two-option contacts control stacked into two rows beside four sliders and is a dropdown (rule 26.1); the scene, its views and its transport were judged in the browser and kept. `sim-average-emf` was judged and left as built.
+
 ## Types the page binds
 
 `magnetic-flux`, `magnetic-field`, `voltage`, `angular-rate`, `time` and

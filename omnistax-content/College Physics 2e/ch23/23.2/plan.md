@@ -53,6 +53,8 @@ Labels are on by default in both (rule 26.7): four entity names in `sim-lenz`
 and three in `sim-faraday`, each drawn in a band of its own that no slider
 position reaches, none of them riding on the magnet as it travels.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-lenz`: the scene sat in the right half of the canvas with the left third empty but for the legend; the magnet's travel is now 19 units to the centimetre and the magnet 200 long, so the scene spans the width the two graphs leave. `sim-faraday` was judged and left as built.
+
 ## Types the page binds
 
 `magnetic-flux`, `magnetic-field`, `voltage`, `current` and `time`, which is

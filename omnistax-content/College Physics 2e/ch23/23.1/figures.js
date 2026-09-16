@@ -14,7 +14,7 @@
    process, so it registers no cycle and takes no transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, label, angleArc, view, face, fist } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, label, angleArc, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -72,6 +72,45 @@ function fluxBar(ctx, cx, cy, h, frac, capt, value) {
   text(ctx, value, cx, cy + h + 50, PAL.muted, { size: 17, align: 'center' });
 }
 
+
+/* A hand gripping the end of a bar: the forearm comes in from the side `ux, uy`
+   points to, the palm wraps round the end of the bar, four fingers close over its
+   face and the thumb comes round beneath. (x, y) is the end of the bar it holds
+   and `t` the bar's half-thickness. Drawn here because the library's fist is a
+   grip on a rope and does not read as a hand on a block. */
+function gripHand(ctx, x, y, ux, uy, t) {
+  const px = -uy, py = ux;                                   /* across the arm */
+  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  /* the forearm, tapering toward the wrist */
+  ctx.beginPath();
+  ctx.moveTo(x + ux * 30 + px * (t + 6), y + uy * 30 + py * (t + 6));
+  ctx.lineTo(x + ux * 150 + px * (t + 12), y + uy * 150 + py * (t + 12));
+  ctx.lineTo(x + ux * 150 - px * (t + 12), y + uy * 150 - py * (t + 12));
+  ctx.lineTo(x + ux * 30 - px * (t + 6), y + uy * 30 - py * (t + 6));
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+  /* the palm, a rounded block over the end of the bar */
+  const pl = 58, pw = t + 14;
+  ctx.beginPath();
+  ctx.moveTo(x + ux * 34 + px * pw, y + uy * 34 + py * pw);
+  ctx.lineTo(x - ux * (pl - 34) + px * pw, y - uy * (pl - 34) + py * pw);
+  ctx.quadraticCurveTo(x - ux * (pl - 20) + px * pw, y - uy * (pl - 20) + py * pw, x - ux * (pl - 20) + px * (pw - 14), y - uy * (pl - 20) + py * (pw - 14));
+  ctx.lineTo(x - ux * (pl - 20) - px * (pw - 14), y - uy * (pl - 20) - py * (pw - 14));
+  ctx.quadraticCurveTo(x - ux * (pl - 20) - px * pw, y - uy * (pl - 20) - py * pw, x - ux * (pl - 34) - px * pw, y - uy * (pl - 34) - py * pw);
+  ctx.lineTo(x + ux * 34 - px * pw, y + uy * 34 - py * pw);
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+  /* four fingers closing over the near face, the thumb round the far side */
+  for (let i = 0; i < 4; i++) {
+    const a = -pl + 26 + i * 12;
+    ctx.beginPath();
+    ctx.moveTo(x - ux * (pl - 20) + px * (pw - 14), y - uy * (pl - 20) + py * (pw - 14));
+    ctx.moveTo(x - ux * a + px * pw, y - uy * a + py * pw);
+    ctx.lineTo(x - ux * a + px * (pw - 26), y - uy * a + py * (pw - 26));
+    ctx.stroke();
+  }
+  ctx.beginPath(); ctx.ellipse(x + ux * 6 - px * (pw - 4), y + uy * 6 - py * (pw - 4), 20, 9, Math.atan2(uy, ux), 0, TAU); ctx.fill(); ctx.stroke();
+  ctx.restore();
+}
+
 /* =====================================================================
    FIGURE 23.3 · sim-faraday-ring · moving · 2D from a locked view
    Faraday's iron ring: a coil on its upper part driven by a battery through a
@@ -104,11 +143,21 @@ function fluxBar(ctx, cx, cy, h, frac, capt, value) {
   const V = view({ yaw: 0, pitch: 0.55, dist: 2400, cx: CX, cy: CY });
   const at = (r, a) => V.P([r * Math.cos(a), 0, r * Math.sin(a)]);
   const circle = (r) => { const p = []; for (let i = 0; i <= 96; i++) p.push(at(r, (i / 96) * TAU)); return p; };
+  /* a coil of n turns on the ring: each turn is a loop drawn right round the
+     tube's cross-section, so the wire is seen to be wound on the iron rather
+     than laid across it; the half of each loop behind the tube is hidden */
   function winding(ctx, a0, a1, n) {
     for (let i = 0; i < n; i++) {
       const a = a0 + ((a1 - a0) * (i + 0.5)) / n;
-      const p1 = at(R0 - TUBE - 14, a), p2 = at(R0 + TUBE + 14, a);
-      line(ctx, p1[0], p1[1], p2[0], p2[1], PAL.ink, 5);
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineCap = 'round';
+      ctx.beginPath();
+      for (let k = 0; k <= 40; k++) {
+        const u = -Math.PI / 2 + (k / 40) * Math.PI;           /* the near half of the loop */
+        const r = R0 + (TUBE + 10) * Math.sin(u), y = (TUBE * 0.62) * Math.cos(u);
+        const q = V.P([r * Math.cos(a), y, r * Math.sin(a)]);
+        if (k) ctx.lineTo(q[0], q[1]); else ctx.moveTo(q[0], q[1]);
+      }
+      ctx.stroke(); ctx.restore();
     }
   }
   function ring(ctx) {
@@ -156,7 +205,7 @@ function fluxBar(ctx, cx, cy, h, frac, capt, value) {
     fluxBar(ctx, 880, 380, 110, phi / (0.60 * AREA), 'Φ through the lower coil', sci(phi, 1) + ' T·m²');
     label(ctx, 'the battery and the switch', at(R0, 250 * RAD)[0] - 28, 214, { side: 'left', size: 20, color: PAL.ink });
     label(ctx, core.value === 'iron' ? 'the iron ring' : 'no iron: the coils stand in air', CX - R0 - TUBE, CY, { side: 'left', size: 20, color: PAL.ink });
-    label(ctx, 'the coil the meter reads, ' + fmt(N.v, 0) + (N.v === 1 ? ' turn' : ' turns'), at(R0, 130 * RAD)[0], at(R0, 130 * RAD)[1], { side: 'left', size: 20, gap: 130, color: PAL.ink });
+    label(ctx, 'the coil the meter reads, ' + fmt(N.v, 0) + (N.v === 1 ? ' turn' : ' turns'), at(R0 + TUBE, 120 * RAD)[0], at(R0 + TUBE, 120 * RAD)[1] + 8, { side: 'below', size: 20, gap: 22, color: PAL.ink });
     if (b > 0.004) text(ctx, 'B = ' + fmt(b, 2) + ' T in the ring', CX, CY, C('magnetic-field'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     const head = t < T_ON ? 'The switch is open, there is no field in the ring, and the needle sits at zero.'
       : Math.abs(db) > 0.06
@@ -189,7 +238,7 @@ function fluxBar(ctx, cx, cy, h, frac, capt, value) {
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.05, max: 1.20, step: 0.05, value: 0.40, unit: 'm/s', dec: 2, aria: 'the speed the magnet or the coil is moved at', onInput: () => cy.reset() });
   const Bs = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.02, max: 0.20, step: 0.01, value: 0.08, unit: 'T', dec: 2, aria: 'the field at the face of the magnet’s pole' });
   const pole = choice(d.controls, { label: '\\text{the pole facing the coil}', options: [{ value: 'n', label: 'north' }, { value: 's', label: 'south' }], value: 'n', aria: 'which pole of the magnet faces the coil' });
-  const mover = choice(d.controls, { label: '\\text{what moves}', options: [{ value: 'magnet', label: 'the magnet' }, { value: 'coil', label: 'the coil' }, { value: 'none', label: 'neither' }], value: 'magnet', aria: 'whether the magnet moves, the coil moves, or both are held still', onInput: () => cy.reset() });
+  const mover = select(d.controls, { label: '\\text{what moves}', options: [{ value: 'magnet', label: 'the magnet' }, { value: 'coil', label: 'the coil' }, { value: 'none', label: 'neither' }], value: 'magnet', aria: 'whether the magnet moves, the coil moves, or both are held still', onInput: () => cy.reset() });
   const LAB = choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the parts of the drawing' });
 
   const ZM = 0.12, ZS = 0.05, AC = 0.0050, NL = 2, PX = 2500, CY = 330, APER = 100, ML = 180;
@@ -247,7 +296,7 @@ function fluxBar(ctx, cx, cy, h, frac, capt, value) {
     /* the hand on whatever moves, and the way it is going */
     if (!still()) {
       const onCoil = mover.value === 'coil';
-      fist(ctx, onCoil ? coilX + 26 : mx, onCoil ? CY - APER - 24 : CY, onCoil ? 0 : -1, onCoil ? -1 : 0, 0.9, PAL.ink);
+      if (onCoil) gripHand(ctx, coilX, CY - APER - 10, 0, -1, 30); else gripHand(ctx, mx, CY, -1, 0, 30);
       const way = onCoil ? (st.dz < 0 ? -1 : 1) : (st.dz < 0 ? 1 : -1);
       const ax = onCoil ? coilX + 150 : mx + ML / 2, ay = onCoil ? CY - APER - 96 : CY - 62;
       arrow(ctx, ax - way * 46, ay, ax + way * 46, ay, C('velocity'), 5);

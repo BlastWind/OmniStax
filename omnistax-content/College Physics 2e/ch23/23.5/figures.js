@@ -34,7 +34,7 @@
    one first, as 22.4, 22.8 and 22.9 do it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, note, axes, curve, pinned, vbracket, hover } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, note, axes, curve, pinned, vbracket, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -84,7 +84,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   const aS = ctl(d.controls, { label: 'A', cls: '', min: 2, max: 12, step: 0.05, value: 7.85, unit: '× 10⁻³ m²', dec: 2, aria: 'the area of the coil' });
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 1.5, step: 0.05, value: 1.25, unit: 'T', dec: 2, aria: 'the strength of the magnetic field between the poles' });
   const wS = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 20, max: 125, step: 0.1, value: 104.7, unit: 'rad/s', dec: 1, aria: 'the angular velocity at which the coil is turned' });
-  const ringC = choice(d.controls, { label: '\\text{the contacts}', options: [{ value: 'rings', label: 'slip rings' }, { value: 'split', label: 'a split ring' }], value: 'rings', aria: 'whether the coil meets the outside circuit through two slip rings or through one split ring' });
+  const ringC = select(d.controls, { label: '\\text{the contacts}', options: [{ value: 'rings', label: 'slip rings' }, { value: 'split', label: 'a split ring' }], value: 'rings', aria: 'whether the coil meets the outside circuit through two slip rings or through one split ring' });
   const labC = choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the arrows and of the parts of the generator' });
 
   const T = 5.0;                                    /* two revolutions in five seconds */

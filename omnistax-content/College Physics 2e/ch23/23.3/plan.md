@@ -56,6 +56,8 @@ parts (a) and (b) are sub-figures of one number and become the figure's one
 choice, and `Figure_24_03_02.jpg` at 225 px for Figure 23.11. The section has
 no photograph and no unnumbered image, so nothing is dropped.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-rod-rails` and `sim-relative-motion`: the field was a lattice of thick arrows 170 units tall that buried the rails, the rod and the labels; the lines are now 104 tall, 1.2 to 3 wide with the field strength, and drawn at a lighter tone, so the apparatus reads through them and the flux markers on the enclosed face stand out. The three-state "what moves" control wrapped into two rows and is a dropdown (rule 26.1). `sim-tether` was judged and left as built.
+
 ## Extra simulations offered
 
 `sim-relative-motion` above is the one candidate that survived the test of

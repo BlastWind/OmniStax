@@ -175,6 +175,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   names it and states it beside the coil, and a second curve of the same
   information on the same axis would say that it is a second fact.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-counting-time-constants`: the percentages over the bars that stand above 90 % sat on the curve and on the target's name; those are written inside their bars and the target's name sits at the empty end of its line, the left while the current climbs. `sim-rl-switching` was judged and left as built.
+
 ## Exercises
 
 - Every item is set at the end (`ch23/config.md`; the module prints no Check

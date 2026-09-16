@@ -218,15 +218,17 @@ function flow(ctx, x, y, dx, dy, L) {
         ctx.save(); ctx.fillStyle = alpha(cI, 0.28); ctx.strokeStyle = cI; ctx.lineWidth = 3;
         ctx.beginPath(); ctx.rect(x - bw / 2, yTop, bw, yBot - yTop); ctx.fill(); ctx.stroke(); ctx.restore();
       }
-      /* the first bar of a decay stands at the top of the frame, where a label above
-         it would sit on the axis title, so that one is written inside the bar */
-      if (pc > 0.4) text(ctx, fmt(pc, 1) + '%', x, yTop + (pc > 98 ? 26 : -20), cI, { size: 17, align: 'center', bg: PAL.panel });
+      /* a bar that reaches near the top of the frame would carry its label on the
+         curve and the axis title, so those are written inside the bar */
+      if (pc > 0.4) text(ctx, fmt(pc, 1) + '%', x, yTop + (pc > 90 ? 26 : -20), cI, { size: 17, align: 'center', bg: PAL.panel });
     }
     /* the exact exponential drawn through them */
     curve(ctx, (n) => 100 * (on ? 1 - Math.exp(-n) : Math.exp(-n)), 0, NMAX, X, Y, cI, 5, 120);
     /* the target the reader asks for, and the two times that reach it */
     line(ctx, BOX.l, Y(100 * level), BOX.r, Y(100 * level), alpha(PAL.ink, 0.45), 3, [10, 10]);
-    text(ctx, 'the target, ' + fmt(fS.v, 1) + '%', BOX.r - 12, Y(100 * level) + (on ? 26 : -18), PAL.ink, { size: 19, align: 'right', bg: PAL.panel });
+    /* the target's name sits at the empty end of its line: the left when the current
+       is climbing, where the curve has not yet risen, the right when it is decaying */
+    text(ctx, 'the target, ' + fmt(fS.v, 1) + '%', on ? BOX.l + 14 : BOX.r - 12, Y(100 * level) + (on ? 26 : -18), PAL.ink, { size: 19, align: on ? 'left' : 'right', bg: PAL.panel });
     if (nExact <= NMAX) {
       line(ctx, X(nExact), BOX.t, X(nExact), BOX.b, cT, 3);
       text(ctx, 'the exponential gets there at ' + fmt(tExact, 2) + ' ms', on ? BOX.l + 14 : BOX.r - 14, BOX.b - 26, cT, { size: 18, align: on ? 'left' : 'right', bg: PAL.panel });

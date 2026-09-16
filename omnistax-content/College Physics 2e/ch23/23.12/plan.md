@@ -269,6 +269,8 @@ Extra simulations (rule 15), thought through, judged and left:
   reactive power, and the section's power content is one product and one
   cosine, which `sim-resonance` carries on its second axis.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-mechanical-analogy`: the names of the two energy curves were set over the axis title at the top left of the frame; they are a legend of line samples on panels in the frame's top right corner, with the third for the heat when the circuit is damped. The other three figures were judged in both themes and left as built.
+
 ## Types the page binds
 
 `inductance`, `capacitance`, `resistance`, `frequency`, `voltage`,

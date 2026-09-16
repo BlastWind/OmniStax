@@ -183,7 +183,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
      and 23.5 mV the largest emf, twelve turns at that field. Both axes are fixed
      just above those, rounded to a tick, and neither is ever rescaled. */
   const PHIAX = 0.9, EAX = 30;
-  const CYA = 272, MX = 980, ML = 190, MT = 46, PITCH = 26, BORE = 100, CMU = 14;
+  const CYA = 272, MX = 1000, ML = 200, MT = 48, PITCH = 26, BORE = 100, CMU = 19;   /* 19 units to the centimetre, so the magnet's travel spans the width the graphs leave */
   const BOXP = { l: 116, r: 636, t: 512, b: 692 }, BOXE = { l: 820, r: 1340, t: 512, b: 692 };
   const SLOT = [-36, -54, -72, -90];                /* where the lines the coil catches are drawn, clear of the magnet */
 

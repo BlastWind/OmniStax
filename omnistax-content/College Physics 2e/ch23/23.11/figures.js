@@ -13,7 +13,7 @@
    of it, so it answers its sliders and carries no transport (rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.11'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const VRMS = 120, V0 = VRMS * Math.SQRT2;      /* the rms voltage both worked examples apply, and its peak */
@@ -96,7 +96,7 @@ function resistorBox(ctx, x, y) {
 (function () {
   const H = 900;
   const d = sim('sim-ac-phase', H);
-  const kind = choice(d.controls, {
+  const kind = select(d.controls, {   /* three elements in a row that stacks beside two sliders, so a dropdown (rule 26.1) */
     label: '\\text{on the source}',
     options: [{ value: 'L', label: 'an inductor' }, { value: 'C', label: 'a capacitor' }, { value: 'R', label: 'a resistor' }],
     value: 'L', aria: 'which element sits on the AC source',

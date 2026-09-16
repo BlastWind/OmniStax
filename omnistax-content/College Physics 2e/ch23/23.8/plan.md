@@ -206,6 +206,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   Left: nothing in the section or its exercises turns on more than one circuit
   at a time, and `sim-three-wire` already carries the breaker and its rating.
 
+**Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-case-emf`, `sim-gfi` and `sim-isolation`: the person's hand stopped short of the case or the wire the caption said it held; a lead now runs from the induced-emf source, from the case and from the output wire to the hand, with the current arrow on it, so the person is visibly part of the circuit. `sim-isolation`: the two long names of the choice were clipped in a button row and are a dropdown (rule 26.1); the 120 V tag sat on the source's wire and stands to its left. The other three figures were judged and left as built.
+
 ## Exercises
 
 - Everything is set at the end: the section prints no Check Your Understanding
