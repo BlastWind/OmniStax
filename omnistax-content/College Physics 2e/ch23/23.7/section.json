@@ -1,0 +1,475 @@
+{
+ "id": "23.7",
+ "module": "m42414",
+ "chapter": "23",
+ "title": "Transformers",
+ "short": "Transformers",
+ "lead": "A transformer is two coils wound on one iron core, and it changes a voltage by induction: the alternating current in the primary sends a changing flux round the core, and that same changing flux induces a voltage in the secondary. This section takes the transformer equation from Faraday’s law applied to each coil, finds that the currents must go the other way from the voltages because the power out is the power in, tells a step-up transformer from a step-down one, and explains why a transformer does nothing at all with a steady direct voltage.",
+ "objectives": [
+  "Explain how a transformer works.",
+  "Calculate voltage, current, and/or number of turns given the other quantities."
+ ],
+ "summary_html": "<ul><li>Transformers use induction to transform voltages from one value to another.</li><li>For a transformer, the voltages across the primary and secondary coils are related by $$\\frac{\\kVsec}{\\kVprim} = \\frac{N_{\\text{s}}}{N_{\\text{p}}}\\text{,}$$ where $\\kVprim$ and $\\kVsec$ are the voltages across primary and secondary coils having $N_{\\text{p}}$ and $N_{\\text{s}}$ turns.</li><li>The currents $\\kIprim$ and $\\kIsec$ in the primary and secondary coils are related by $\\frac{\\kIsec}{\\kIprim} = \\frac{N_{\\text{p}}}{N_{\\text{s}}}$.</li><li>A step-up transformer increases voltage and decreases current, whereas a step-down transformer decreases voltage and increases current.</li></ul>",
+ "notes": "The link to the PhET simulation Generator that the module prints after the worked examples is left out. Five problems have no answer in the book’s key and are left out: the traveller’s converter between 240 V and 120 V, the flashlight charger, the multipurpose transformer with three outputs, the line losses that follow the power plant’s new secondary, and the Construct Your Own Problem item on a double transformer.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Five of the ten problems have no keyed answer and are left out, among them the multipurpose transformer and the Construct Your Own Problem item on a double transformer; the five that are kept carry the book’s own numbers. The one conceptual question, on why a transformer vibrates at twice the frequency of the supply, is unkeyed and is kept as an open item with an AI-marked suggested approach. Of the two AP items the first is keyed in the CNXML and carries the book’s own answer, but it asks for two answers of four and is set as an open item rather than a graded choice, since a graded choice takes one; the second has its solution commented out in the CNXML and is kept as an open item with an AI-marked suggested approach. The module prints no Check Your Understanding box, so nothing is set inline, and no exercise is held here for a later section or taken from an earlier one. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "fig-plug-in",
+   "kind": "photo",
+   "number": "23.25",
+   "originals": [
+    "/media/ch23/Figure_24_07_01.jpg"
+   ],
+   "original_caption": "Plug-in transformers are used in low voltage applications such as lighting and for using US products (where the outlet voltage is 120 V) in Europe (where the voltage is 230 V) and vice versa. Transformers are also essential components in consumer electronic devices. (credit: Tamar More)",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-power-line",
+   "kind": "sim",
+   "number": "23.26",
+   "originals": [
+    "/media/ch23/Figure_24_07_02.jpg"
+   ],
+   "original_caption": "Transformers change voltages at several points in a power distribution system. Electric power is usually generated at greater than 10 kV, and transmitted long distances at voltages over 200 kV—sometimes as great as 700 kV—to limit energy losses. Local power distribution to neighborhoods or industries goes through a substation and is sent short distances at voltages ranging from 5 to 13 kV. This is reduced to 120, 240, or 480 V for safety at the individual user site.",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "power",
+    "resistance"
+   ]
+  },
+  {
+   "id": "sim-transformer",
+   "kind": "sim",
+   "number": "23.27",
+   "originals": [
+    "/media/ch23/Figure_24_07_03.jpg"
+   ],
+   "original_caption": "A typical construction of a simple transformer has two coils wound on a ferromagnetic core that is laminated to minimize eddy currents. The magnetic field created by the primary is mostly confined to and increased by the core, which transmits it to the secondary coil. Any change in current in the primary induces a current in the secondary.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "magnetic-flux",
+    "voltage",
+    "current",
+    "power"
+   ]
+  },
+  {
+   "id": "sim-dc-ac",
+   "kind": "sim",
+   "number": "23.28",
+   "originals": [
+    "/media/ch23/Figure_24_07_04.jpg"
+   ],
+   "original_caption": "Transformers do not work for pure DC voltage input, but if it is switched on and off as on the top graph, the output will look something like that on the bottom graph. This is not the sinusoidal AC most AC appliances need.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "voltage",
+    "time"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "how-a-transformer-works",
+   "concept": "transformer",
+   "verb": "introduces"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "high-voltage-transmission",
+   "verb": "uses"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "power-and-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "transformer-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "turns-multiply-emf",
+   "verb": "uses"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "transformer",
+   "verb": "reinforces"
+  },
+  {
+   "span": "currents-and-power",
+   "concept": "transformer-current-ratio",
+   "verb": "introduces"
+  },
+  {
+   "span": "currents-and-power",
+   "concept": "step-up-and-step-down",
+   "verb": "introduces"
+  },
+  {
+   "span": "currents-and-power",
+   "concept": "transformer-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "currents-and-power",
+   "concept": "electric-power",
+   "verb": "uses"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "transformers-need-ac",
+   "verb": "introduces"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "transformer-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "step-up-and-step-down",
+   "verb": "reinforces"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "direct-current",
+   "verb": "uses"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "alternating-current",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737771745",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "how-a-transformer-works",
+   "prompt": "Explain what causes physical vibrations in transformers at twice the frequency of the AC power involved.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The forces inside a transformer do not depend on which way the flux is running, only on how large it is. The core is magnetized first one way and then the other, and the iron shortens a little whenever it is magnetized, whichever way round the flux points; the laminations and the turns of the coils are pulled on as well by forces that go as the square of the current, and a squared quantity is just as large when the current is negative as when it is positive. So the core is pulled tight and released twice in every cycle of the supply rather than once, and the sound it makes is at twice the frequency of the power it is running on. A transformer running on 60 Hz therefore hums at 120 Hz."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1645806",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "Which of the following statements is true for a step-down transformer? Select <em>two</em> answers.<ol type=\"a\"><li>Primary voltage is higher than secondary voltage.</li><li>Primary voltage is lower than secondary voltage.</li><li>Primary current is higher than secondary current.</li><li>Primary current is lower than secondary current.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a), (d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1313520",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "An ideal step-up transformer with turn ratio 1:30 is supplied with an input power of 120 W. If the output voltage is 210 V, calculate the output power and input current.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An ideal transformer wastes nothing, so start from $\\kPprim = \\kPsec$: the output power is the same 120 W that went in. The turn ratio of 1:30 means there are thirty times as many turns on the secondary as on the primary, so by the transformer equation the output voltage is thirty times the input voltage, and the input voltage is $210\\ \\text{V}/30 = 7.00\\ \\text{V}$. The input current then follows from the power into the primary, $\\kIprim = \\kPprim/\\kVprim = (120\\ \\text{W})/(7.00\\ \\text{V}) = 17.1\\ \\text{A}$. Check that against the current ratio: the output current is $(120\\ \\text{W})/(210\\ \\text{V}) = 0.571\\ \\text{A}$, and thirty times that is the same 17.1 A, which is what $\\kIsec/\\kIprim = N_{\\text{p}}/N_{\\text{s}}$ requires."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738257565",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "A plug-in transformer, like that in Figure 23.25, supplies 9.00 V to a video game system. (a) How many turns are in its secondary coil, if its input voltage is 120 V and the primary coil has 400 turns? (b) What is its input current when its output is 1.30 A?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 30,
+      "unit": "turns",
+      "hint": "The turns are in the ratio of the voltages, so solve $\\kVsec/\\kVprim = N_{\\text{s}}/N_{\\text{p}}$ for the number of turns on the secondary."
+     },
+     {
+      "part": "(b)",
+      "value": 0.0975,
+      "unit": "A",
+      "hint": "The currents are in the ratio of the turns the other way up, so the input current is the output current times the turns on the secondary over the turns on the primary."
+     }
+    ],
+    "solution": "(a) 30.0 (b) $9.75\\times {10}^{-2}\\ \\text{A}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738198223",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "A cassette recorder uses a plug-in transformer to convert 120 V to 12.0 V, with a maximum current output of 200 mA. (a) What is the current input? (b) What is the power input? (c) Is this amount of power reasonable for a small appliance?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 20,
+      "unit": "mA",
+      "hint": "The voltage is stepped down by a factor of ten, so the current is stepped up by the same factor, and the input current is the smaller of the two."
+     },
+     {
+      "part": "(b)",
+      "value": 2.4,
+      "unit": "W",
+      "hint": "The power into the primary is the input current times the input voltage, and for a good transformer it is also the power out."
+     }
+    ],
+    "solution": "(a) 20.0 mA (b) 2.40 W (c) Yes, this amount of power is quite reasonable for a small appliance."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737995226",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "(a) The plug-in transformer for a laptop computer puts out 7.50 V and can supply a maximum current of 2.00 A. What is the maximum input current if the input voltage is 240 V? Assume 100% efficiency. (b) If the actual efficiency is less than 100%, would the input current need to be greater or smaller? Explain.",
+   "answer": {
+    "type": "number",
+    "value": 0.063,
+    "unit": "A",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "With no losses the power in is the power out, so work out the power the transformer delivers and divide it by the input voltage.",
+    "solution": "(a) 0.063 A (b) Greater input current needed."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737965228",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "A large power plant generates electricity at 12.0 kV. Its old transformer once converted the voltage to 335 kV. The secondary of this transformer is being replaced so that its output can be 750 kV for more efficient cross-country transmission on upgraded transmission lines. (a) What is the ratio of turns in the new secondary compared with the old secondary? (b) What is the ratio of new current output to old output (at 335 kV) for the same power? (c) If the upgraded transmission lines have the same resistance, what is the ratio of new line power loss to old?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.2,
+      "unit": "",
+      "hint": "The primary is unchanged, so the turns on each secondary are in the ratio of the two output voltages."
+     },
+     {
+      "part": "(b)",
+      "value": 0.45,
+      "unit": "",
+      "hint": "The same power at a higher voltage needs a smaller current, in inverse proportion to the voltage."
+     },
+     {
+      "part": "(c)",
+      "value": 0.2,
+      "unit": "",
+      "hint": "The power a line of fixed resistance wastes is the square of the current times that resistance, so the ratio of the losses is the square of the ratio of the currents."
+     }
+    ],
+    "solution": "(a) 2.2 (b) 0.45 (c) 0.20, or 20.0%"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737727403",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "the-transformer-equation",
+   "prompt": "<strong>Unreasonable Results</strong> The 335 kV AC electricity from a power transmission line is fed into the primary coil of a transformer. The ratio of the number of turns in the secondary to the number in the primary is $N_{\\text{s}}/N_{\\text{p}} = 1000$. (a) What voltage is induced in the secondary? (b) What is unreasonable about this result? (c) Which assumption or premise is responsible?",
+   "answer": {
+    "type": "number",
+    "value": 335,
+    "unit": "MV",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "The transformer equation gives the output voltage directly: multiply the input voltage by the ratio of the turns.",
+    "solution": "(a) 335 MV (b) way too high, well beyond the breakdown voltage of air over reasonable distances (c) input voltage is too high"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "transformer"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "transformers-need-ac",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "step-up-and-step-down"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "transformer-equation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "transformer-current-ratio",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "transformer-current-ratio"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "transformer-equation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "step-up-and-step-down",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "transformer-equation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "transformer-current-ratio",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "transformer-current-ratio"
+  },
+  {
+   "exercise": "p3",
+   "concept": "transformer-equation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "transformer-current-ratio"
+  },
+  {
+   "exercise": "p5",
+   "concept": "transformer-equation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "transformer-equation"
+  },
+  {
+   "exercise": "p7",
+   "concept": "transformer-current-ratio",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "step-up-and-step-down",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "transformer-equation"
+  },
+  {
+   "exercise": "p9",
+   "concept": "step-up-and-step-down",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ]
+}
