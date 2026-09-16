@@ -1,0 +1,258 @@
+{
+  "id": "23.6",
+  "module": "m42411",
+  "chapter": "23",
+  "title": "Back Emf",
+  "short": "Back emf",
+  "lead": "A motor and a generator are the same machine, and a motor whose shaft is turning is generating as well as being driven. What it generates opposes what drives it, which is why it is called the back emf. This section follows that opposing emf from the moment a motor is switched on, when it is zero and the motor draws its largest current, up to the speed at which it very nearly cancels the driving voltage, and shows why a motor held too slow can draw enough current to burn out its own coils.",
+  "objectives": [
+    "Explain what back emf is and how it is induced."
+  ],
+  "summary_html": "<ul><li>Any rotating coil will have an induced emf—in motors, this is called back emf, since it opposes the emf input to the motor.</li></ul>",
+  "notes": "The two problems the book leaves unkeyed are left out: the 240 V motor with a 180 V back emf, and the toy car whose motor draws 3.00 A at its normal speed. Where the book’s third paragraph writes the power at operating speed as (20 A)/(8.0 V), the page sets the product the same sentence names, P = IV, which is the 160 W the book goes on to give.",
+  "ai": {
+    "text": "Claude Opus 5",
+    "figures": "Claude Opus 5"
+  },
+  "built": "2026-09-15",
+  "exercise_notes": "Bloom levels, concept tags and weights are AI-generated. Answers come from the book’s answer key: three of the five problems are keyed and are set here, and the two that are not, the 240 V motor with a 180 V back emf and the toy car’s motor, are left out. The section’s one conceptual question, on the motor whose belt drive has broken, has no answer in the book, so it is kept as an open item with an AI-written suggested approach, marked as such. The section carries no AP test prep item and no Check Your Understanding box, so everything is set at the end. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "sim-back-emf",
+      "kind": "sim",
+      "number": "23.24",
+      "originals": [
+        "/media/ch23/Figure_24_06_01.jpg"
+      ],
+      "original_caption": "The coil of a DC motor is represented as a resistor in this schematic. The back emf is represented as a variable emf that opposes the one driving the motor. Back emf is zero when the motor is not turning, and it increases proportionally to the motor’s angular velocity.",
+      "widths": [
+        225
+      ],
+      "draws": [
+        "voltage",
+        "current",
+        "resistance",
+        "power",
+        "angular-rate"
+      ]
+    },
+    {
+      "id": "sim-dimming-lights",
+      "kind": "sim",
+      "draws": [
+        "voltage",
+        "current",
+        "resistance",
+        "power",
+        "angular-rate"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "motor-as-generator",
+      "concept": "motor-is-a-generator",
+      "verb": "introduces"
+    },
+    {
+      "span": "motor-as-generator",
+      "concept": "electric-generator",
+      "verb": "uses"
+    },
+    {
+      "span": "motor-as-generator",
+      "concept": "faradays-law",
+      "verb": "uses"
+    },
+    {
+      "span": "motor-as-generator",
+      "concept": "lenzs-law",
+      "verb": "uses"
+    },
+    {
+      "span": "motor-as-generator",
+      "concept": "magnetic-flux",
+      "verb": "uses"
+    },
+    {
+      "span": "back-emf-and-speed",
+      "concept": "back-emf",
+      "verb": "introduces"
+    },
+    {
+      "span": "back-emf-and-speed",
+      "concept": "generator-emf-versus-time",
+      "verb": "uses"
+    },
+    {
+      "span": "back-emf-and-speed",
+      "concept": "ir-drop",
+      "verb": "uses"
+    },
+    {
+      "span": "back-emf-and-speed",
+      "concept": "wire-resistance-ir-drop",
+      "verb": "uses"
+    },
+    {
+      "span": "back-emf-and-speed",
+      "concept": "power-and-resistance",
+      "verb": "uses"
+    },
+    {
+      "span": "stalled-motor",
+      "concept": "back-emf-and-current-drawn",
+      "verb": "introduces"
+    },
+    {
+      "span": "stalled-motor",
+      "concept": "ohms-law",
+      "verb": "uses"
+    },
+    {
+      "span": "stalled-motor",
+      "concept": "electric-power",
+      "verb": "uses"
+    },
+    {
+      "span": "stalled-motor",
+      "concept": "back-emf",
+      "verb": "reinforces"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id1169738051900",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "back-emf-and-speed",
+      "prompt": "Suppose you find that the belt drive connecting a powerful motor to an air conditioning unit is broken and the motor is running freely. Should you be worried that the motor is consuming a great deal of energy for no useful purpose? Explain why or why not.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "There is no need to worry about the energy, although the broken belt itself certainly needs attention. With the belt gone there is no mechanical load on the shaft, so the motor speeds up until its back emf is very nearly equal to the emf driving it. Only the small difference between the two is left across the coils, and by Ohm’s law the current is that small difference divided by the resistance of the coils, so the motor draws far less current running free than it draws when it is turning the compressor. The power it takes from the supply is that small current times the driving voltage, and it goes into friction and windage rather than into the air conditioner. The motor that should worry you is the one that has been slowed or stopped by its load, because that one has little or no back emf, draws its largest current and can overheat."
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id1169737728029",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "stalled-motor",
+      "prompt": "Suppose a motor connected to a 120 V source draws 10.0 A when it first starts. (a) What is its resistance? (b) What current does it draw at its normal operating speed when it develops a 100 V back emf?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 12.0,
+            "unit": "Ω",
+            "hint": "A motor that has just started is not yet turning, so it has no back emf and the whole 120 V stands across its coils."
+          },
+          {
+            "part": "(b)",
+            "value": 1.67,
+            "unit": "A",
+            "hint": "At operating speed only the difference between the driving emf and the back emf is left across the coils."
+          }
+        ],
+        "solution": "(a) $12.00\\ \\Omega$ (b) 1.67 A"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id1169737781410",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "stalled-motor",
+      "prompt": "What is the back emf of a 120 V motor that draws 8.00 A at its normal speed and 20.0 A when first starting?",
+      "answer": {
+        "type": "number",
+        "value": 72.0,
+        "unit": "V",
+        "generated_by": "source",
+        "hint": "The starting current and the full 120 V give the resistance of the coils, since a motor that is not yet turning has no back emf. The voltage left across those coils at normal speed is what the 8.00 A then asks for.",
+        "solution": "72.0 V"
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id1169737854685",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "stalled-motor",
+      "tag": "Integrated Concepts",
+      "prompt": "<strong>Integrated Concepts</strong> The motor in a toy car is powered by four batteries in series, which produce a total emf of 6.00 V. The motor draws 3.00 A and develops a 4.50 V back emf at normal speed. Each battery has a $0.100\\ \\Omega$ internal resistance. What is the resistance of the motor?",
+      "answer": {
+        "type": "number",
+        "value": 0.1,
+        "unit": "Ω",
+        "generated_by": "source",
+        "hint": "Three voltages stand between the 6.00 V the batteries produce and nothing: the drop in the four internal resistances, the back emf, and the drop across the resistance you are asked for.",
+        "solution": "$0.100\\ \\Omega$"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cq1",
+      "concept": "back-emf"
+    },
+    {
+      "exercise": "cq1",
+      "concept": "back-emf-and-current-drawn",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p1",
+      "concept": "back-emf-and-current-drawn"
+    },
+    {
+      "exercise": "p1",
+      "concept": "back-emf",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p3",
+      "concept": "back-emf-and-current-drawn"
+    },
+    {
+      "exercise": "p3",
+      "concept": "back-emf",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p5",
+      "concept": "back-emf-and-current-drawn"
+    },
+    {
+      "exercise": "p5",
+      "concept": "back-emf",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p5",
+      "concept": "internal-resistance",
+      "weight": 3,
+      "weights_by": "ai"
+    }
+  ]
+}
