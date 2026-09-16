@@ -1,0 +1,621 @@
+{
+ "symbols": [
+  {
+   "sym": "B_0mag",
+   "latex": "B_0",
+   "type": "magnetic-field",
+   "macro": "\\kBmago"
+  },
+  {
+   "sym": "I_ave",
+   "latex": "I_{\\text{ave}}",
+   "type": "intensity",
+   "macro": "\\kIave"
+  },
+  {
+   "sym": "I_0peak",
+   "latex": "I_0",
+   "type": "intensity",
+   "macro": "\\kIopeak"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "maxwells-equations",
+   "kind": "idea",
+   "section": "24.1",
+   "name": "Maxwell's equations, the four laws of electricity and magnetism",
+   "why": "Maxwell gathered the work of Oersted, Coulomb, Gauss and Faraday into four statements that together are a complete theory of electricity and magnetism. The first says that electric field lines begin on positive charges and end on negative ones, the second that magnetic field lines have no beginning and no end, the third that a changing magnetic field induces an electric field, and the fourth that magnetic fields are made by moving charges and by changing electric fields. Everything else in this chapter follows from them, so the reader who can restate the four has the theory the rest of the chapter uses.",
+   "evidence": "The section's one learning objective is to restate Maxwell's equations, and the book gives them as a numbered boxed note of four paragraphs, saying that they are paraphrased in words because their mathematical statement is beyond the level of this text."
+  },
+  {
+   "id": "changing-fields-generate-each-other",
+   "kind": "idea",
+   "section": "24.1",
+   "name": "A changing electric field is a source of magnetism",
+   "why": "Faraday had shown that a changing magnetic field makes an electric field. Maxwell added the symmetric statement, that a changing electric field makes a magnetic field, and this addition is what turns four separate laws into a theory that predicts a wave. Each field, in changing, creates the other, so a disturbance can keep itself going and travel away from whatever started it. Without this one hypothesis there is no electromagnetic wave to predict.",
+   "evidence": "The book calls Maxwell's addition of the hypothesis that changing electric fields create magnetic fields especially important, says it is exactly analogous and symmetric to Faraday's law of induction, and then uses it at once: oscillating charges produce changing electric fields, and Maxwell predicted that these changing fields would propagate from the source like waves generated on a lake by a jumping fish."
+  },
+  {
+   "id": "speed-of-light-from-constants",
+   "kind": "result",
+   "section": "24.1",
+   "name": "The speed of an electromagnetic wave from the constants of free space, $\\kc = 1/\\sqrt{\\mu_0\\varepsilon_0}$",
+   "why": "Maxwell's theory does not merely say that a wave exists; it says how fast the wave goes, and it says so in terms of two constants measured in the laboratory with charges and with currents, having nothing to do with light. The permittivity of free space sets the strength of the electric force and the permeability of free space sets the strength of the magnetic force, and the square root of their product is the one speed at which the two fields can carry each other along.",
+   "evidence": "The book states $c = 1/\\sqrt{\\mu_0\\varepsilon_0}$ as a display equation, then enters the measured values $8.85 \\times 10^{-12}\\ \\text{C}^2/\\text{N}\\cdot\\text{m}^2$ and $4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A}$ and obtains $3.00 \\times 10^{8}\\ \\text{m/s}$. Both problems of the section ask the reader to verify that number and its units.",
+   "eq": "eq-speed-of-light-constants"
+  },
+  {
+   "id": "light-is-an-electromagnetic-wave",
+   "kind": "idea",
+   "section": "24.1",
+   "name": "Light is an electromagnetic wave, and other wavelengths should exist",
+   "why": "The speed Maxwell calculated from two electrical constants is the speed of light, and a coincidence of that size is not a coincidence. Maxwell concluded that light is an electromagnetic wave of the particular wavelengths the eye happens to detect. The conclusion carries a prediction with it: if light is one band of a wave, other wavelengths should exist and should be findable, and the whole of the next two sections is spent on them.",
+   "evidence": "The book writes that Maxwell concluded that light is an electromagnetic wave having such wavelengths that it can be detected by the eye, and adds that other wavelengths should exist, and that it remained to be seen if they did; the chapter's introduction says that the prediction of electromagnetic waves is one of the most spectacular examples of the power of physics."
+  },
+  {
+   "id": "hertz-observations",
+   "kind": "idea",
+   "section": "24.1",
+   "name": "Hertz generated and detected electromagnetic waves and measured their speed",
+   "why": "A prediction is worth what its test is worth. Starting in 1887, Hertz drove a loop of wire from a circuit resonating at a known frequency, so that sparks jumped a gap in it, and set a second tuned loop across the laboratory, where sparks also appeared. He then measured the wavelength from the interference patterns, and since he knew the frequency, he could find the speed from $v = f\\lambda$ and show that it was the speed of light. The SI unit of frequency carries his name.",
+   "evidence": "The section's second half is given to Hertz's experiments. The book describes the transmitting and receiving loops of Figure 24.4, says that he studied the reflection, refraction and interference patterns of the waves he generated, and that knowing their wavelength and frequency he could calculate the propagation speed and prove that electromagnetic waves travel at the speed of light."
+  },
+  {
+   "id": "em-waves-from-accelerating-charges",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "A charge radiates whenever it is accelerated",
+   "why": "Whenever a current varies, the electric and magnetic fields around it vary, and the variation moves out from the source as a wave. The general statement is simpler still: charges radiate whenever they are accelerated. This is why a broadcast antenna is built to be driven by an alternating source, why a circuit must be shielded if it is not to leak energy, and why a microwave oven has an antenna with an oscillating current imposed on it.",
+   "evidence": "The section opens by saying that whenever a current varies, associated electric and magnetic fields vary, moving out from the source like waves, and returns to the point twice more: charges radiate whenever they are accelerated, and a broadcast antenna is specially designed to enhance the rate of electromagnetic radiation while shielding keeps radiation from a circuit close to zero."
+  },
+  {
+   "id": "antenna-field-cycle",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "The electric field an antenna sends out over one cycle",
+   "why": "An alternating source at the centre of a straight wire drives charge to one end and then to the other. At the instant of greatest separation the electric field beside the antenna is greatest; a quarter of a cycle later the charges have met in the middle and the field there is zero, while the earlier maximum has already travelled away at $\\kc$. Following one full cycle shows where the wave's shape comes from: its amplitude is set by how far the charges separate, and its wavelength by how long the source takes to complete a cycle, so a high frequency makes a short wave.",
+   "evidence": "Figure 24.5 draws the charge distribution at $t = 0$, $T/4$, $T/2$ and $T$, and the book walks through all four in turn. It then states that the outgoing wave has an amplitude proportional to the maximum separation of charge and a wavelength proportional to the period of the oscillation, and so smaller for short periods or high frequencies."
+  },
+  {
+   "id": "magnetic-part-of-the-wave",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "The current in the antenna makes the magnetic part of the wave",
+   "why": "The same charges that separate along the antenna are a current while they move, and by Ampere's law a current makes a magnetic field, whose lines circle the wire. As the current varies, that field varies with it and propagates away at the speed of light, exactly as the electric field does. The magnetic part has the same period and the same wavelength as the electric part, because the same motion of the same charges makes both.",
+   "evidence": "Figure 24.6(a) draws the circular magnetic field lines around the antenna's current and (c) the magnetic field propagating away as a sine wave. The book says that the magnetic field lines also propagate away from the antenna at the speed of light, forming the other part of the electromagnetic wave, and that the magnetic part has the same period and wavelength as the electric part since they are both produced by the same movement and separation of charges."
+  },
+  {
+   "id": "em-wave-is-transverse",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "An electromagnetic wave is transverse, with $\\kEf$ and $\\kBmag$ perpendicular to each other and to the direction of travel",
+   "why": "The two fields of the wave are not drawn in the same plane. The electric field oscillates in one plane, the magnetic field in a plane at right angles to it, and the wave travels along the line where the two planes meet, so both fields are perpendicular to the direction of propagation. That is what makes an electromagnetic wave transverse. The two are also exactly in phase: they reach their maxima together and pass through zero together. The arrangement decides how a wave couples to a receiving wire or loop, so it is worth being able to picture it from any angle.",
+   "evidence": "Figure 24.7 draws the two fields at one instant, and the book states that the electric and magnetic fields produced by a long straight wire antenna are exactly in phase, that they are perpendicular to one another and to the direction of propagation, and that this makes the wave a transverse wave. Two of the section's conceptual questions ask which of two orientations of an arriving wave will better induce a current in a wire and in a loop."
+  },
+  {
+   "id": "e-over-b-equals-c",
+   "kind": "result",
+   "section": "24.2",
+   "name": "The ratio of the field strengths in a vacuum, $\\kEf/\\kBmag = \\kc$",
+   "why": "The stronger the electric field made by the separated charge, the greater the current that flows and so the greater the magnetic field, so the two field strengths ought to rise and fall together. They do, and the constant ratio between them is the speed of light itself, at every instant and at every point in space. Because $\\kc$ is such a large number, the result also says that the magnetic part of any electromagnetic wave is very weak beside the electric part.",
+   "evidence": "The book argues from Ohm's law and from the proportionality of voltage to field strength that the two should be directly proportional, then states $E/B = c$ as the ratio in any electromagnetic wave travelling in a vacuum, calling it true at all times and all locations in space, a simple and elegant result. The section summary repeats it and draws the conclusion that $B$ is very weak relative to $E$.",
+   "eq": "eq-e-over-b"
+  },
+  {
+   "id": "find-b-from-e",
+   "kind": "skill",
+   "section": "24.2",
+   "name": "Find one field strength of a wave from the other, $\\kBmag = \\kEf/\\kc$",
+   "why": "Rearranging the ratio gives either field from the other in one step, and this is the calculation the section's problems ask for over and over. Dividing a field of 1000 V/m by the speed of light leaves a few microtesla, less than a tenth of the Earth's own weak field, which is the concrete form of the statement that the magnetic part of a wave is small. Checking that the units of volts per metre divided by metres per second really are teslas is worth doing once.",
+   "evidence": "The worked example finds $B = 3.33 \\times 10^{-6}\\ \\text{T}$ from $E = 1000\\ \\text{V/m}$ and remarks in its discussion that the field strength is less than a tenth of the Earth's admittedly weak magnetic field. Two of the section's three problems are of the same kind, one asking for $E$ from $B$ and one asking the reader to verify that the units are teslas.",
+   "eq": "eq-b-from-e"
+  },
+  {
+   "id": "em-wave-in-a-medium",
+   "kind": "result",
+   "section": "24.2",
+   "name": "A wave in a medium travels at $\\kv = \\kc/n$, and the ratio of its fields falls with it",
+   "why": "Outside a vacuum an electromagnetic wave is slower, by the factor the medium's index of refraction names. The ratio of the field strengths is reduced in exactly the same proportion, so in a medium it is the wave's own speed, not the speed of light, that the two fields stand in. The result matters wherever a wave is not travelling through empty space, which is most of the places a reader will meet one.",
+   "evidence": "The book states $v = c/n$ for a wave travelling in a medium with index of refraction $n$, then says that the ratio of the field strengths will be similarly reduced, such that in the medium $E/B = c/n$. One of the section's problems asks for the maximum electric field strength of a wave in a medium where the speed is $0.75c$.",
+   "eq": "eq-speed-in-medium"
+  },
+  {
+   "id": "antenna-resonance",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "An antenna is a resonant standing wave, and a receiver works in reverse",
+   "why": "An antenna is not a circuit with a complete path; it is a wire on which the driving source sets up a standing wave of charge, and its dimensions decide the frequency at which it radiates best. That is a resonance, and tuning a radio or a television means changing electrical properties until the resonant condition is met. A receiving antenna does the same thing backwards: an arriving wave accelerates the electrons in it, setting up a standing wave that the set amplifies, and it too is designed to resonate at the frequencies it is meant to catch.",
+   "evidence": "The book says that an antenna has a varying charge distribution forming a standing wave driven by the AC, that the dimensions of the antenna are critical for determining the frequency of the radiated waves, and that this is a resonant phenomenon. Under Receiving Electromagnetic Waves it says that an incoming wave accelerates electrons in the antenna, setting up a standing wave, and that receiver antennas are specially designed to resonate at particular frequencies. One conceptual question asks whether an antenna can be any length."
+  },
+  {
+   "id": "c-equals-f-lambda",
+   "kind": "result",
+   "section": "24.3",
+   "name": "For every electromagnetic wave, $\\kc = \\kf\\klam$",
+   "why": "Propagation speed, frequency and wavelength are related for any wave by $\\kvw = \\kf\\klam$, and for an electromagnetic wave in a vacuum the propagation speed is always the speed of light. Since $\\kc$ never changes, the frequency and the wavelength can only trade against each other: the greater the frequency, the smaller the wavelength. This one relation is what lets the whole spectrum be laid out on a single axis and read in either unit.",
+   "evidence": "The book recalls $v_{\\text{w}} = f\\lambda$ in its Connections: Waves box, sets $v_{\\text{w}} = c$, states $c = f\\lambda$ as a display equation, and concludes that for all electromagnetic waves, the greater the frequency, the smaller the wavelength. The second learning objective of the section asks the reader to explain exactly that.",
+   "eq": "eq-c-equals-f-lambda"
+  },
+  {
+   "id": "find-wavelength-or-frequency",
+   "kind": "skill",
+   "section": "24.3",
+   "name": "Find a wavelength from a frequency, or a frequency from a wavelength",
+   "why": "Rearranged, the relation gives $\\klam = \\kc/\\kf$, and this is the arithmetic that most of the section's problems come down to. An AM carrier of 1530 kHz is nearly 200 m long, an FM carrier of 105.1 MHz is 2.85 m, and a cell phone's 1.90 GHz signal is 15.8 cm; those three numbers explain why an AM mast is enormous and a phone's antenna is hidden inside the case. Carrying the units through as cycles per second keeps the answer in metres.",
+   "evidence": "The first worked example of the section calculates the wavelengths of an AM signal, an FM signal and a cell phone signal from their frequencies, and its discussion checks the answers against the spectrum of Figure 24.8. A dozen of the section's problems ask for a wavelength from a frequency or the reverse, for radar, for infrared, for ultraviolet, for X-rays and for a power line.",
+   "eq": "eq-wavelength-from-frequency"
+  },
+  {
+   "id": "electromagnetic-spectrum",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "The electromagnetic spectrum and its bands",
+   "why": "All electromagnetic waves are the same phenomenon, and the only thing that separates a radio wave from a gamma ray is frequency, and therefore wavelength. Sorting them by frequency gives the named bands — radio, microwave, infrared, visible, ultraviolet, X-ray and gamma ray — over a range of frequencies and wavelengths the book calls remarkable. Some of the dividing lines are sharp and others are not: the bands overlap, and where two bands overlap the name a wave is given depends on how it was made rather than on how fast it oscillates.",
+   "evidence": "Figure 24.8 shows the major categories against wavelength, frequency and energy, and the book says that the range is remarkable and that the dividing line between some categories is distinct whereas other categories overlap. Table 24.1 lists every band with how it is produced, what it is used for, its life science aspect and its hazards, and the third learning objective asks the reader to draw a simplified spectrum."
+  },
+  {
+   "id": "spectrum-rules-of-thumb",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "The three rules of thumb across the spectrum",
+   "why": "Three statements hold across the whole spectrum and are worth carrying: a higher-frequency wave is more energetic and penetrates better, a higher-frequency wave carries more information in a given time, and the shorter the wavelength of a wave used to probe something, the smaller the detail it can resolve. Each has exceptions — magnetic resonance imaging uses 3 m radio waves to see detail smaller than a millimetre — and knowing that the rules are rules of thumb is part of knowing them.",
+   "evidence": "The book gives the three as a boxed note headed Electromagnetic Spectrum: Rules of Thumb, adds that there are exceptions to these rules of thumb, and the section's first learning objective asks the reader to list them. It then works through the MRI exception in detail, calling it a good example of an exception to a rule of thumb."
+  },
+  {
+   "id": "transmission-reflection-absorption",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "Transmission, reflection and absorption depend on the frequency",
+   "why": "When a wave meets a material it may pass through, be turned back, or be taken up, and usually some of each happens. What surprises the reader is that a material's behaviour is a fact about the material and the frequency together, not about the material alone: glass passes visible light and stops ultraviolet, and skin stops visible light and passes X-rays. Transparent and opaque are not properties of a substance until the band is named.",
+   "evidence": "The book gives the three outcomes a short section of their own and then makes the point directly: what is not obvious is that something that is transparent to light may be opaque at other frequencies, with ordinary glass and human skin as the two examples. Three conceptual questions of the section turn on it, including why buildings do not block radio waves as completely as they block visible light."
+  },
+  {
+   "id": "radio-waves-and-modulation",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "Radio waves, and how a signal is carried on a carrier wave",
+   "why": "Radio waves are defined by their source: any electromagnetic wave produced by currents in wires and circuits is one, whatever made the circuit. To carry information on such a wave, a carrier at the station's own frequency is varied, either in amplitude, which is AM, or in frequency, which is FM, and the receiver is tuned to resonate at the carrier frequency and to respond to whichever kind of variation. Because noise adds to amplitude, an FM receiver can throw away what an AM receiver must treat as part of the signal, which is why FM is the quieter of the two.",
+   "evidence": "The book defines radio waves as any electromagnetic wave produced by currents in wires and circuits, runs from 50 Hz power lines through ELF, AM, FM and the VHF and UHF television bands, and draws amplitude modulation in Figure 24.11 and frequency modulation in Figure 24.12. It explains that FM is inherently less subject to noise from stray radio sources than AM, since amplitudes of waves add."
+  },
+  {
+   "id": "antenna-length-and-wavelength",
+   "kind": "result",
+   "section": "24.3",
+   "name": "The most efficient antenna is half a wavelength long, or a quarter with one end on the ground",
+   "why": "An antenna radiates best when it is the length that lets a standing wave sit on it, and for a linear antenna that length is $\\klam/2$; with one end on the ground, a quarter wavelength does the same work, exactly as a tube closed at one end resonates at a quarter of its fundamental wavelength. The rule explains the sizes of the things a reader sees: an AM broadcast antenna must be hundreds of metres, while an FM or mobile phone antenna is small enough to hide and is instead put high up for a clear line of sight.",
+   "evidence": "The book states that the most efficient length for a linear antenna is $\\lambda/2$, half the wavelength, and that a very large antenna is therefore needed for AM. One keyed problem gives a 50.0 m antenna with one end on the ground, uses $\\lambda/4$ and asks for the band, and draws the analogy with the fundamental mode of an air column closed at one end; another finds the frequencies of two television cross wires from their half-wavelength lengths.",
+   "eq": "eq-half-wavelength-antenna"
+  },
+  {
+   "id": "microwaves-and-their-uses",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "Microwaves, radar and dielectric heating",
+   "why": "Microwaves are the highest frequencies that currents in ordinary circuits can produce, from about $10^{9}$ Hz up to the highest practical $LC$ resonance near $10^{12}$ Hz, and their short wavelengths make them good for carrying information and for seeing detail. Radar finds a distance by timing an echo and a speed by the Doppler shift in it, and maps a planet through cloud that stops visible light. In a microwave oven the frequency is chosen so that polar molecules turning to follow the alternating field absorb the energy, which heats the food and not the plate, and the hot spots are an interference pattern.",
+   "evidence": "The book gives microwaves their own section, defines their frequency range, describes radar and the Magellan radar map of Sif Mons in Figure 24.14, and explains dielectric heating at 2.45 GHz through the turning of polar molecules, adding that hot spots in the food are related to constructive and destructive interference patterns. Several problems ask for radar distances from echo times and for the wavelengths of the two authorized oven frequencies."
+  },
+  {
+   "id": "sources-across-the-spectrum",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "How each band is produced",
+   "why": "Each band is made by a process of a particular size. Accelerating charges in circuits give radio waves and microwaves; the thermal agitation of atoms and molecules and their vibrations and rotations give microwaves, infrared and some visible light; electronic transitions within atoms and molecules give visible light and ultraviolet; transitions of inner electrons and the braking of fast electrons in matter give X-rays; and the nucleus itself gives gamma rays. The fourth learning objective of the section is exactly this list, and it is what decides the name where two bands overlap, since an X-ray and a gamma ray of the same frequency differ only in source.",
+   "evidence": "Table 24.1 gives the production of every band in its second column, and the book takes the bands one at a time. The boxed note Things Great and Small draws the two X-ray mechanisms, the characteristic X-ray of Figure 24.18 and the bremsstrahlung of Figure 24.19, and the section on gamma rays says that they have characteristics identical to X-rays of the same frequency and differ only in source. The Sun is treated as a nearly perfect blackbody at 6000 K, and the infrared it radiates is tied to the greenhouse effect."
+  },
+  {
+   "id": "radiation-and-living-tissue",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "What each band does to living tissue, and what it is used for",
+   "why": "The higher the frequency, the more energy a wave delivers to whatever absorbs it, and above visible light that energy begins to break molecules apart. Ultraviolet-B excites and distorts DNA and causes skin cancer and cataracts, and the ozone layer is what keeps most of it off the surface; X-rays penetrate further and damage more, which is both their hazard and, aimed carefully, their use against cancer; gamma rays do the same at higher energies. The same properties make them useful: sterilization, vitamin D, imaging by shadow and by emission, and therapy.",
+   "evidence": "The book gives Human Exposure to UV Radiation, UV Light and the Ozone Layer and Benefits of UV Light three sections of their own, describes the chest radiograph of Figure 24.20 and the bone scan of Figure 24.21, and says of X-rays that because of their effect on rapidly dividing cells they can also be used to treat and even cure cancer. Table 24.1's last two columns are the life science aspect and the issues of every band."
+  },
+  {
+   "id": "wave-energy-from-field-amplitude",
+   "kind": "result",
+   "section": "24.4",
+   "name": "The energy an electromagnetic wave carries goes as the square of the field amplitude",
+   "why": "A wave brings energy into a system because its fields exert forces on charges and move them, and the larger the fields, the more work they can do. For waves of every kind the energy goes as the amplitude squared, and for an electromagnetic wave the amplitude is the maximum field strength, so the energy goes as $\\kEfo^2$ and as $\\kBmago^2$. Doubling the fields quadruples the energy, which is the whole content of the section's first figure and the reason a microwave oven with half the field takes four times as long.",
+   "evidence": "The book says that a wave's energy is proportional to its amplitude squared, that this is true for waves on guitar strings, for water waves and for sound waves, and that in electromagnetic waves the amplitude is the maximum field strength. Figure 24.22 draws one wave and a second of twice the amplitude carrying four times the energy, and the section's first AP item asks how much longer an oven takes when its electric field has halved."
+  },
+  {
+   "id": "average-intensity-from-e0",
+   "kind": "result",
+   "section": "24.4",
+   "name": "Average intensity from the electric amplitude, $\\kIave = \\kc\\varepsilon_0\\kEfo^2/2$",
+   "why": "Intensity is power per unit area, as it has been since the chapter on waves, and for a continuous sinusoidal electromagnetic wave it can be written from the electric amplitude alone. The factor of a half is what is left after averaging the square of a sine over a cycle, and the speed of light and the permittivity of free space are the constants that turn a field strength into a power per square metre. This is the form to reach for when the electric field is the quantity given or wanted.",
+   "evidence": "The book states $I_{\\text{ave}} = c\\varepsilon_0E_0^2/2$ as its first display equation for intensity, names every symbol in it, and notes that intensity, as always, is power per unit area, here in $\\text{W/m}^2$. The section summary gives it first of the three expressions, and the worked example uses it to find $E_0 = 2.51 \\times 10^{3}\\ \\text{V/m}$ in a microwave oven.",
+   "eq": "eq-intensity-from-e0"
+  },
+  {
+   "id": "intensity-from-the-magnetic-amplitude",
+   "kind": "result",
+   "section": "24.4",
+   "name": "The same intensity from the magnetic amplitude, $\\kIave = \\kc\\kBmago^2/2\\mu_0$ and $\\kIave = \\kEfo\\kBmago/2\\mu_0$",
+   "why": "Substituting $\\kBmag = \\kEf/\\kc$ and $\\varepsilon_0 = 1/\\mu_0\\kc^2$ into the first expression gives the intensity in terms of the magnetic amplitude, and substituting only part of the way gives it in terms of both amplitudes at once. The three forms are not three results but one, written in whichever quantities a problem happens to supply, and the principle behind all three is the same: energy in a wave is related to amplitude squared.",
+   "evidence": "The book derives both expressions from the first, by using the relationship $B = E/c$ and the fact that $\\varepsilon_0 = 1/\\mu_0c^2$, and then says that whichever of the three preceding equations is most convenient can be used, since they are really just different versions of the same principle. The section summary lists all three and states that they are all equivalent.",
+   "eq": "eq-intensity-from-b0"
+  },
+  {
+   "id": "peak-intensity-is-twice-average",
+   "kind": "result",
+   "section": "24.4",
+   "name": "Peak intensity is twice the average, $\\kIopeak = 2\\kIave$",
+   "why": "The three expressions are written for a sinusoidal wave, and averaging the square of a sine over a cycle leaves half of its maximum. So the intensity at the crest of the wave is twice the average intensity the same expressions give, and a problem that asks for a peak rather than an average needs the factor of two. The same factor is why the root mean square field is the amplitude divided by the square root of two.",
+   "evidence": "The book states that since these equations are based on the assumption that the electromagnetic waves are sinusoidal, peak intensity is twice the average, that is $I_0 = 2I_{\\text{ave}}$, and the worked example notes that the peak intensity in the oven is $1.67 \\times 10^{4}\\ \\text{W/m}^2$. One problem asks the reader to show the result from $E_0 = \\sqrt{2}E_{\\text{rms}}$.",
+   "eq": "eq-peak-intensity"
+  },
+  {
+   "id": "find-fields-from-intensity",
+   "kind": "skill",
+   "section": "24.4",
+   "name": "Find the field amplitudes of a wave from its intensity",
+   "why": "The common problem of the section runs in one direction: a source of known power spreads it over a known area, which gives the intensity, and the intensity gives the electric amplitude by rearranging the first expression, after which dividing by the speed of light gives the magnetic amplitude. Doing it in that order avoids the awkward constants twice over, and the answers are worth a glance for size, since a kilowatt in an oven gives a field of a few kilovolts per metre and a few microtesla.",
+   "evidence": "The worked example does exactly this for a microwave oven putting 1.00 kW onto a 30.0 by 40.0 cm area, taking the intensity first, then $E_0$ from $E_0 = (2I_{\\text{ave}}/c\\varepsilon_0)^{1/2}$, then $B_0 = E_0/c$. A dozen of the section's problems follow the same route, for a laser, an AM transmitter, a radar leak, a satellite dish and a heat lamp.",
+   "eq": "eq-e0-from-intensity"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "maxwells-equations",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "electric-field-lines"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "rules-for-magnetic-field-lines"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "amperes-law"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "coulomb-constant"
+  },
+  {
+   "concept": "changing-fields-generate-each-other",
+   "prereq": "maxwells-equations"
+  },
+  {
+   "concept": "changing-fields-generate-each-other",
+   "prereq": "current-is-the-source-of-magnetism"
+  },
+  {
+   "concept": "speed-of-light-from-constants",
+   "prereq": "changing-fields-generate-each-other"
+  },
+  {
+   "concept": "speed-of-light-from-constants",
+   "prereq": "permeability-of-free-space"
+  },
+  {
+   "concept": "light-is-an-electromagnetic-wave",
+   "prereq": "speed-of-light-from-constants"
+  },
+  {
+   "concept": "light-is-an-electromagnetic-wave",
+   "prereq": "wave"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "natural-frequency"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "wave-speed-wavelength-frequency"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "em-waves-from-accelerating-charges",
+   "prereq": "maxwells-equations"
+  },
+  {
+   "concept": "em-waves-from-accelerating-charges",
+   "prereq": "changing-fields-generate-each-other"
+  },
+  {
+   "concept": "em-waves-from-accelerating-charges",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "em-waves-from-accelerating-charges",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "electric-field-direction"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "period-frequency"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "magnetic-part-of-the-wave",
+   "prereq": "antenna-field-cycle"
+  },
+  {
+   "concept": "magnetic-part-of-the-wave",
+   "prereq": "field-of-a-long-straight-wire"
+  },
+  {
+   "concept": "magnetic-part-of-the-wave",
+   "prereq": "right-hand-rule-2"
+  },
+  {
+   "concept": "magnetic-part-of-the-wave",
+   "prereq": "amperes-law"
+  },
+  {
+   "concept": "em-wave-is-transverse",
+   "prereq": "magnetic-part-of-the-wave"
+  },
+  {
+   "concept": "em-wave-is-transverse",
+   "prereq": "transverse-wave"
+  },
+  {
+   "concept": "e-over-b-equals-c",
+   "prereq": "em-wave-is-transverse"
+  },
+  {
+   "concept": "e-over-b-equals-c",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "e-over-b-equals-c",
+   "prereq": "volts-per-meter"
+  },
+  {
+   "concept": "find-b-from-e",
+   "prereq": "e-over-b-equals-c"
+  },
+  {
+   "concept": "find-b-from-e",
+   "prereq": "the-tesla"
+  },
+  {
+   "concept": "em-wave-in-a-medium",
+   "prereq": "e-over-b-equals-c"
+  },
+  {
+   "concept": "antenna-resonance",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "antenna-resonance",
+   "prereq": "standing-wave"
+  },
+  {
+   "concept": "antenna-resonance",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "antenna-resonance",
+   "prereq": "nodes-and-antinodes-on-a-string"
+  },
+  {
+   "concept": "c-equals-f-lambda",
+   "prereq": "wave-speed-wavelength-frequency"
+  },
+  {
+   "concept": "c-equals-f-lambda",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "c-equals-f-lambda",
+   "prereq": "em-wave-is-transverse"
+  },
+  {
+   "concept": "find-wavelength-or-frequency",
+   "prereq": "c-equals-f-lambda"
+  },
+  {
+   "concept": "electromagnetic-spectrum",
+   "prereq": "c-equals-f-lambda"
+  },
+  {
+   "concept": "electromagnetic-spectrum",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "spectrum-rules-of-thumb",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "spectrum-rules-of-thumb",
+   "prereq": "ultrasound-imaging-resolution"
+  },
+  {
+   "concept": "transmission-reflection-absorption",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "antenna-length-and-wavelength",
+   "prereq": "antenna-resonance"
+  },
+  {
+   "concept": "antenna-length-and-wavelength",
+   "prereq": "find-wavelength-or-frequency"
+  },
+  {
+   "concept": "antenna-length-and-wavelength",
+   "prereq": "closed-tube-resonances"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "radio-waves-and-modulation"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "echo-ranging"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "doppler-effect"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "polar-molecule"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "radiation-heat-transfer"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "radiation-spectrum-and-temperature"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "greenhouse-effect"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "emissivity"
+  },
+  {
+   "concept": "radiation-and-living-tissue",
+   "prereq": "sources-across-the-spectrum"
+  },
+  {
+   "concept": "radiation-and-living-tissue",
+   "prereq": "spectrum-rules-of-thumb"
+  },
+  {
+   "concept": "radiation-and-living-tissue",
+   "prereq": "transmission-reflection-absorption"
+  },
+  {
+   "concept": "wave-energy-from-field-amplitude",
+   "prereq": "wave-energy-amplitude"
+  },
+  {
+   "concept": "wave-energy-from-field-amplitude",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "wave-energy-from-field-amplitude",
+   "prereq": "em-wave-is-transverse"
+  },
+  {
+   "concept": "wave-energy-from-field-amplitude",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "average-intensity-from-e0",
+   "prereq": "wave-energy-from-field-amplitude"
+  },
+  {
+   "concept": "average-intensity-from-e0",
+   "prereq": "intensity"
+  },
+  {
+   "concept": "average-intensity-from-e0",
+   "prereq": "power"
+  },
+  {
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "prereq": "average-intensity-from-e0"
+  },
+  {
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "prereq": "e-over-b-equals-c"
+  },
+  {
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "prereq": "permeability-of-free-space"
+  },
+  {
+   "concept": "peak-intensity-is-twice-average",
+   "prereq": "average-intensity-from-e0"
+  },
+  {
+   "concept": "peak-intensity-is-twice-average",
+   "prereq": "rms-values"
+  },
+  {
+   "concept": "find-fields-from-intensity",
+   "prereq": "average-intensity-from-e0"
+  },
+  {
+   "concept": "find-fields-from-intensity",
+   "prereq": "intensity-from-the-magnetic-amplitude"
+  },
+  {
+   "concept": "find-fields-from-intensity",
+   "prereq": "find-b-from-e"
+  }
+ ]
+}

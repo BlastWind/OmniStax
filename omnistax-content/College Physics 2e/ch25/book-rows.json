@@ -1,0 +1,458 @@
+{
+ "symbols": [
+  {"sym": "θ_i", "latex": "\\theta_{\\text{i}}"},
+  {"sym": "θ_r", "latex": "\\theta_{\\text{r}}"},
+  {"sym": "θ_c", "latex": "\\theta_{\\text{c}}"},
+  {"sym": "P_lens", "latex": "P"},
+  {"sym": "f_focal", "latex": "f", "type": "position", "macro": "\\kffoc"},
+  {"sym": "d_obj", "latex": "d_{\\text{o}}", "type": "position", "macro": "\\kdobj"},
+  {"sym": "d_img", "latex": "d_{\\text{i}}", "type": "position", "macro": "\\kdimg"},
+  {"sym": "h_obj", "latex": "h_{\\text{o}}", "type": "position", "macro": "\\khobj"},
+  {"sym": "h_img", "latex": "h_{\\text{i}}", "type": "position", "macro": "\\khimg"},
+  {"sym": "R_curv", "latex": "R", "type": "position", "macro": "\\kRcur"}
+ ],
+ "concepts": [
+  {
+   "id": "ray",
+   "kind": "idea",
+   "section": "25.1",
+   "name": "A ray, a straight line that light travels along",
+   "why": "The whole chapter is built on one simplification: light travels in straight lines. A ray is a straight line that originates at some point, and modeling light as a bundle of rays is what lets the rest of the chapter describe mirrors, lenses and images with nothing more than geometry and simple trigonometry. The reader who has the ray has the tool every later section uses.",
+   "evidence": "The book states that in all of these cases, light is modeled as traveling in straight lines called rays, and that light may change direction when it encounters objects or passes from one material to another, but it then continues in a straight line or as a ray. A boxed note gives the definition on its own: the word ray comes from mathematics and here means a straight line that originates at some point."
+  },
+  {
+   "id": "three-paths-of-light",
+   "kind": "idea",
+   "section": "25.1",
+   "name": "The three ways light travels from a source to another location",
+   "why": "Before any law is stated, the reader should be able to say how light gets from where it is made to where it is seen. It can come directly through empty space, it can travel through a medium such as air or glass, or it can arrive after being reflected. Every situation in the chapter is one of these three or a combination of them, and the two laws that follow are the rules for the second and the third.",
+   "evidence": "The section's one learning objective is to list the ways by which light travels from a source to another location, and the book names three: directly from the source through empty space, such as from the Sun to Earth; through various media, such as air and glass; and after being reflected, such as by a mirror. Figure 25.3 draws all three."
+  },
+  {
+   "id": "ray-approximation",
+   "kind": "idea",
+   "section": "25.1",
+   "name": "Light acts like a ray when it meets objects much larger than its wavelength",
+   "why": "The ray model is not always right, and the reader should know when to reach for it. Light behaves like a ray when it interacts with objects several times as large as its wavelength, and since the wavelength of visible light is less than a micron, that covers nearly everything we can see with unaided eyes. When the object is smaller than that, the wave characteristics take over and this chapter's methods no longer apply.",
+   "evidence": "The book says that experiments, as well as our own experiences, show that when light interacts with objects several times as large as its wavelength, it travels in straight lines and acts like a ray, and that its wave characteristics are not pronounced in such situations. The section's second test-prep item asks which model predicts the behavior of 500 nm light after it passes through a slit 150 nm wide, which is exactly the case in which the ray model fails."
+  },
+  {
+   "id": "geometric-optics",
+   "kind": "idea",
+   "section": "25.1",
+   "name": "Geometric optics, and its two laws",
+   "why": "This concept names what the chapter is. Geometric optics is the part of optics in which the ray aspect of light dominates, so that light can be described by geometry and simple trigonometry, and it is governed by exactly two laws: the law of reflection, for light that bounces off matter, and the law of refraction, for light that passes through it. Knowing that there are only two rules to learn is the map the reader carries through the next six sections.",
+   "evidence": "The book states that since light moves in straight lines, changing directions when it interacts with materials, it is described by geometry and simple trigonometry, and that this part of optics is therefore called geometric optics. It then says that there are two laws that govern how light changes direction when it interacts with matter, and names them."
+  },
+  {
+   "id": "law-of-reflection",
+   "kind": "result",
+   "section": "25.2",
+   "name": "The law of reflection, $\\theta_{\\text{r}} = \\theta_{\\text{i}}$",
+   "why": "This is the first of the chapter's two laws, and it is as simple as a law can be: the angle of reflection equals the angle of incidence. What has to be learned with it is where the angles are measured from, since both are taken relative to the perpendicular to the surface at the point where the ray strikes it, not to the surface itself. Every mirror in the chapter, from the bathroom mirror of 25.7 to the corner reflector on the Moon, is this one statement applied again and again.",
+   "evidence": "The book states the law in a boxed note of a single sentence, the angle of reflection equals the angle of incidence, and Figure 25.4 shows how the angles are measured relative to the perpendicular to the surface at the point where the light ray strikes.",
+   "eq": "eq-law-of-reflection"
+  },
+  {
+   "id": "specular-and-diffuse-reflection",
+   "kind": "idea",
+   "section": "25.2",
+   "name": "Smooth surfaces reflect in one direction, rough surfaces diffuse the light",
+   "why": "The law of reflection holds at every point of every surface, and yet a mirror and a sheet of paper look nothing alike. The difference is the surface: a mirror is smooth compared with the wavelength of light and sends parallel rays away in one direction, while a rough surface strikes each ray at a different angle and scatters them in many directions. This is why a mirror can be seen only from a particular angle and a piece of paper can be seen from any angle at all, and it is the reason most of the world around us is visible.",
+   "evidence": "The book says that since the light strikes different parts of the surface at different angles, it is reflected in many different directions, or diffused, and that diffused light is what allows us to see a sheet of paper from any angle. Figures 25.5, 25.6 and 25.7 draw the rough surface, the illuminated paper and the mirror, and Figure 25.8 shows the moon on a lake, where both effects take place at once."
+  },
+  {
+   "id": "image-behind-a-flat-mirror",
+   "kind": "idea",
+   "section": "25.2",
+   "name": "The image in a flat mirror lies behind it, as far behind as the object stands in front",
+   "why": "When we see ourselves in a mirror, the image appears to be behind the mirror, and the law of reflection says exactly where. The rays that reach the eye come from a direction fixed by the law, and extending them back places the image the same distance behind the mirror as the object stands in front of it. The reader needs this before 25.6 and 25.7, because it is the first image in the book and the first case of light that only appears to come from a place.",
+   "evidence": "The book says that when we see ourselves in a mirror, it appears that our image is actually behind the mirror, and that the angles are such that our image is exactly the same distance behind the mirror as we stand away from the mirror. Figure 25.9 traces the two rays that strike the mirror at just the correct angles to reach the eyes, and the section's first test-prep item asks for the distance behind a flat mirror at which two reflected rays appear to converge."
+  },
+  {
+   "id": "refraction",
+   "kind": "idea",
+   "section": "25.3",
+   "name": "Refraction, the change of direction when light passes from one material into another",
+   "why": "Refraction is the chapter's second law and the one that explains most of what optics is used for. The changing of a light ray's direction when it passes through variations in matter is what makes a fish appear to be in two places at once, what makes a pool look shallower than it is, and what makes a lens work at all. The reader should be able to name the phenomenon and say where it happens before being asked to compute with it.",
+   "evidence": "The book defines refraction in a boxed note as the changing of a light ray's direction, loosely called bending, when it passes through variations in matter, and says that refraction is responsible for a tremendous range of optical phenomena, from the action of lenses to voice transmission through optical fibers. Figure 25.10 shows the same fish seen in two different places through the wall of a tank."
+  },
+  {
+   "id": "speed-of-light-in-vacuum",
+   "kind": "idea",
+   "section": "25.3",
+   "name": "The speed of light in a vacuum, $\\kc = 3.00 \\times 10^{8}$ m/s",
+   "why": "The index of refraction is a ratio of speeds, so the speed of light has to be a number the reader can use. Its value in a vacuum is fixed by definition, it is one of the basic physical quantities, and it does not depend on the motion of the source or the observer. It is also the ceiling: light never travels faster than this, which is why the index of refraction can never be less than one.",
+   "evidence": "The book states that the speed of light in a vacuum is so important that it is accepted as one of the basic physical quantities and has the fixed value $c = 2.99792458 \\times 10^{8}$ m/s, approximately $3.00 \\times 10^{8}$ m/s, and recounts how Roemer's 1676 data and Michelson's rotating-mirror apparatus of 1887 measured it.",
+   "eq": "eq-speed-of-light"
+  },
+  {
+   "id": "index-of-refraction",
+   "kind": "result",
+   "section": "25.3",
+   "name": "Index of refraction, $n = \\kc/\\kv$",
+   "why": "One number describes how a material treats light, and this is it. The index of refraction is the speed of light in a vacuum divided by its speed in the material, so a large index means a slow medium. Because light is never faster in matter than in a vacuum, the index is always one or greater, and because gases are mostly empty space their indices are so close to one that we take them to be one. Everything else in the chapter, from Snell's law to the focal length of a lens, is written in terms of this ratio.",
+   "evidence": "The book defines the index of refraction of a material to be $n = c/v$, where $v$ is the observed speed of light in the material, and notes that since the speed of light is always less than $c$ in matter and equals $c$ only in a vacuum, the index of refraction is always greater than or equal to one. Table 25.1 gives the indices of twenty-two gases, liquids and solids.",
+   "eq": "eq-index-of-refraction"
+  },
+  {
+   "id": "speed-in-a-medium-from-the-index",
+   "kind": "skill",
+   "section": "25.3",
+   "name": "Find the speed of light in a material from its index of refraction",
+   "why": "The definition is usually met the other way round: the table gives the index and the reader wants the speed. Rearranging $n = c/v$ into $v = c/n$ and entering a number from the table is the section's first piece of arithmetic, and it is the step that turns a table of ratios into physical speeds, so that the reader can say how much slower light is in water than in air.",
+   "evidence": "Example 25.1 calculates the speed of light in zircon, rearranging $n = c/v$ to $v = c/n$ and entering $n = 1.923$ to obtain $1.56 \\times 10^{8}$ m/s. The section's first two problems ask for the speed of light in water, glycerine, air and crown glass, and two more ask for the index of a substance given its speed.",
+   "eq": "eq-speed-from-index"
+  },
+  {
+   "id": "snells-law",
+   "kind": "result",
+   "section": "25.3",
+   "name": "The law of refraction, $n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2$",
+   "why": "This is the chapter's second law and the one that does the quantitative work. It ties the two angles a ray makes with the perpendicular to the two indices of refraction, so that if any three of the four quantities are known the fourth follows. Every later section computes with it: the critical angle of 25.4 is Snell's law at a refracted angle of 90°, the dispersion of 25.5 is Snell's law with an index that depends on wavelength, and the lenses of 25.6 are Snell's law applied twice at a curved surface.",
+   "evidence": "The book states the law of refraction in a boxed note as $n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2$, names it Snell's law after Willebrord Snell, notes that Ibn Sahl found it in 984, and says that $n_1$ and $n_2$ are the indices of refraction for medium 1 and 2 and $\\theta_1$ and $\\theta_2$ the angles between the rays and the perpendicular.",
+   "eq": "eq-snells-law"
+  },
+  {
+   "id": "bending-toward-or-away-from-the-normal",
+   "kind": "idea",
+   "section": "25.3",
+   "name": "A ray bends toward the perpendicular when it slows and away when it speeds up",
+   "why": "Before the arithmetic there is a direction to get right, and getting it wrong is the commonest mistake in the chapter. Light entering a slower medium turns toward the perpendicular, and light entering a faster medium turns away from it; the larger the change in speed, the larger the change in direction. A reader who holds the lawn mower picture in mind can predict every ray diagram of the chapter without computing anything, and can check every answer Snell's law gives.",
+   "evidence": "The book says that the direction of the ray moves closer to the perpendicular when it slows down and away from the perpendicular when it speeds up, that the path is exactly reversible, and offers the lawn mower rolling from a footpath onto grass as the picture of it. Figure 25.12 draws both cases, and four of the section's conceptual questions and three of its test-prep items ask only for the direction."
+  },
+  {
+   "id": "find-an-index-or-an-angle",
+   "kind": "skill",
+   "section": "25.3",
+   "name": "Find an index of refraction or a refracted angle from Snell's law",
+   "why": "Snell's law is used in two directions, and the reader should be able to go either way. Given both angles, it yields the index of the unknown medium, which is how Snell himself measured indices and how a substance is identified from a measurement. Given the two indices and the incident angle, it yields the refracted angle, which is how every ray in the rest of the chapter is traced.",
+   "evidence": "Example 25.2 finds the index of medium 2 from an incident angle of 30.0° and a refracted angle of 22.0°, obtaining 1.33 and identifying water, and Example 25.3 works the other way, finding an 11.9° angle of refraction for light entering diamond at 30.0°. The section's problems ask the reader to identify an unknown substance immersed in water from its refraction and to find the angle of a ray reaching a scuba diver.",
+   "eq": "eq-index-from-angles"
+  },
+  {
+   "id": "critical-angle",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "The critical angle, the incident angle that refracts a ray along the surface",
+   "why": "When light travels toward a medium with a smaller index, it bends away from the perpendicular, and as the incident angle grows the refracted angle grows faster. The refracted ray cannot turn past the surface itself, so there is an incident angle at which the refracted angle reaches 90°, and that angle is the critical angle. Naming it is what makes the next result possible, and the reader must also see that it exists only for light going from the slower medium into the faster one.",
+   "evidence": "The book defines the critical angle in a boxed note as the incident angle $\\theta_1$ that produces an angle of refraction of 90°, and Figure 25.13 draws the three cases in order: a ray refracted and partly reflected, the ray at the critical angle whose refraction runs along the surface, and the ray beyond it."
+  },
+  {
+   "id": "critical-angle-from-the-indices",
+   "kind": "result",
+   "section": "25.4",
+   "name": "The critical angle from the two indices, $\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)$",
+   "why": "The critical angle is not a property of one material but of a pair of them, and this result says how to get it. Putting a refracted angle of 90° into Snell's law leaves $n_1 \\sin\\theta_1 = n_2$, so the critical angle is the inverse sine of the ratio of the indices, and it exists only when $n_1$ is the larger. The formula explains at a glance why diamond traps light so well and why a fiber must be clad in something of lower index.",
+   "evidence": "The book derives the result by setting $\\theta_2 = 90°$ in Snell's law and noting that $\\sin 90° = 1$, arriving at $\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)$ for $n_1 > n_2$, and says that total internal reflection can only occur when the second medium has an index of refraction less than the first.",
+   "eq": "eq-critical-angle"
+  },
+  {
+   "id": "total-internal-reflection",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "Total internal reflection, a perfect mirror made out of refraction",
+   "why": "Beyond the critical angle no light crosses the boundary at all: every ray is reflected back into the first medium. This is the only perfect mirror in the chapter, better than any silvered surface, which absorbs part of what falls on it, and it is what makes the applications of the section possible. The reader should be able to say the condition in one sentence and to see that it costs nothing, since the surface is already there.",
+   "evidence": "The book says that if the incident angle is greater than the critical angle then all of the light is reflected back into medium 1, a condition called total internal reflection, and Example 25.4 concludes that the inside surface of a clear plastic is a perfect mirror for such rays without any need for the silvering used on common mirrors. The section opens by noting that a good-quality mirror may reflect more than 90 percent of the light that falls on it, absorbing the rest."
+  },
+  {
+   "id": "find-a-critical-angle",
+   "kind": "skill",
+   "section": "25.4",
+   "name": "Find a critical angle, or an index of refraction from a critical angle",
+   "why": "The formula is only useful once the reader can decide which index is which and enter them the right way round. The skill is to identify the medium the light travels in as medium 1, look up or measure the two indices, and take the inverse sine of their ratio; run backward, the same step turns a measured critical angle into the index of an unknown substance, which is one of the standard ways of identifying a material.",
+   "evidence": "Example 25.4 finds the critical angle for a polystyrene pipe surrounded by air to be 42.2°, and its discussion gives water to air as 48.6°, diamond to air as 24.4° and flint glass to crown glass as 66.3°. The section's problems ask the reader to verify those numbers, to find the critical angle of an optical fiber of flint glass clad with crown glass, and to identify a liquid from the critical angle drawn in its figure."
+  },
+  {
+   "id": "fiber-optics",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "Fiber optics, light piped by total internal reflection",
+   "why": "This is the application that carries most of the world's telephone and internet traffic, and it is nothing more than total internal reflection used over and over. Because a fiber is thin, light entering it strikes the inside surface at angles greater than the critical angle and is completely reflected, so it follows the fiber even around corners. The cladding of lower index is what keeps light in one fiber from crossing into its neighbor, which is what allows a bundle to carry an image.",
+   "evidence": "The book defines fiber optics as the transmission of light down fibers of plastic or glass, says that rays are reflected around corners, making the fibers into tiny light pipes, and explains that the cladding prevents light from being transmitted between fibers in a bundle. Figures 25.14, 25.15 and 25.16 show the ray in a bent fiber, an image carried by a bundle beside an endoscope's view, and a single clad fiber."
+  },
+  {
+   "id": "corner-reflector",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "A corner reflector sends light back the way it came",
+   "why": "Two mirrors meeting at a right angle return every ray exactly parallel to the direction it arrived from, whatever the angle of incidence. That is a useful thing to be able to build: it is why a bicycle reflector lights up for the driver behind it and nobody else, and why a corner reflector left on the Moon still returns a laser beam to the observatory that sent it. Made of glass rather than silvered mirrors, it is perfectly efficient, because the reflections are total.",
+   "evidence": "The book says that a light ray striking an object consisting of two mutually perpendicular reflecting surfaces is reflected back exactly parallel to the direction from which it came, independent of the angle of incidence, and that corner reflectors are perfectly efficient when the conditions for total internal reflection are satisfied. Figure 25.17 shows the reflector left on the Moon and a pair of bicycle reflectors, and Figure 25.18 shows the prisms inside binoculars."
+  },
+  {
+   "id": "sparkle-of-diamond",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "Why a diamond sparkles",
+   "why": "The section ends by explaining an everyday observation with the result it has just proved. Diamond's index of refraction is so large that its critical angle with air is only 24.4°, so light that enters has trouble getting out again; the facets are cut so that it can leave in only a few directions, and the light that entered over the whole face comes out concentrated at those few places. This is a satisfying test of whether the reader can use the critical angle rather than merely compute it.",
+   "evidence": "The book says that the critical angle for a diamond-to-air surface is only 24.4°, so when light enters a diamond it has trouble getting back out, and that facets on diamonds are specifically intended to make this unlikely, so that the light makes many internal reflections and is concentrated at the few places it can exit. Figure 25.19 traces a ray through the facets, and the section's conceptual questions ask why a submerged gemstone that becomes invisible cannot be a diamond."
+  },
+  {
+   "id": "dispersion",
+   "kind": "idea",
+   "section": "25.5",
+   "name": "Dispersion, the spreading of white light into its spectrum",
+   "why": "Dispersion is the name for what a prism and a raindrop do, and it is more general than either. It occurs whenever a process changes the direction of light in a way that depends on wavelength, and it can happen to any kind of wave, not only to light. Naming the phenomenon lets the reader see the rainbow, the colors from a prism and the spreading of a signal in an optical fiber as one thing, and the section's whole argument is that they are.",
+   "evidence": "The book defines dispersion in a boxed note as the spreading of white light into its full spectrum of wavelengths, adds that more technically it occurs whenever a process changes the direction of light in a manner that depends on wavelength, and a Making Connections box says that any type of wave can exhibit dispersion. Figure 25.20 sets the colors of a rainbow beside those produced by a prism and says that they are identical."
+  },
+  {
+   "id": "color-and-wavelength",
+   "kind": "idea",
+   "section": "25.5",
+   "name": "A color is a wavelength, and white light is a mixture of them all",
+   "why": "The reader has to accept that the colors in a rainbow are not added by the raindrop but were in the sunlight all along. Each pure wavelength of visible light is seen as one of about six colors, from red at the long end to violet at the short, and white light is a fairly uniform mixture of all of them. Once color is a wavelength, a spreading by wavelength and a spreading into colors are the same event, which is the whole of this section.",
+   "evidence": "The book says that we see about six colors in a rainbow and that those colors are associated with different wavelengths of light, that white light is a fairly uniform mixture of all visible wavelengths, and that the sequence of colors in rainbows is the same sequence as the colors plotted versus wavelength. Figure 25.21 draws the continuous distribution from infrared at 800 nm through red at 700 nm to violet at 400 nm and ultraviolet at 300 nm."
+  },
+  {
+   "id": "index-depends-on-wavelength",
+   "kind": "result",
+   "section": "25.5",
+   "name": "The index of refraction of a medium grows as the wavelength falls",
+   "why": "This is the mechanism behind every dispersion in the chapter. For a given medium the index of refraction is not one number but a slowly rising function of falling wavelength, so violet light meets a larger index than red light does in the same glass. By Snell's law a larger index means a larger change of direction, so violet is bent more than red, and a beam of white light leaves a surface as a fan of colors in a fixed order.",
+   "evidence": "The book says that for a given medium $n$ also depends on wavelength, that $n$ increases as wavelength decreases and is greatest for violet light, and that thus violet light is bent more than red light. Table 25.2 gives the index of six media at six wavelengths, water running from 1.331 in the red to 1.342 in the violet and flint glass from 1.662 to 1.698, and Figure 25.22 draws a prism separating white light into the sequence red to violet."
+  },
+  {
+   "id": "rainbow-formation",
+   "kind": "idea",
+   "section": "25.5",
+   "name": "How a rainbow is made, and why it is an arc",
+   "why": "The rainbow is the chapter's showpiece, and by this point the reader owns every piece of the explanation. Light refracts as it enters a drop, reflects from the back of the drop and refracts again as it leaves, and because the index depends on wavelength the colors come out at slightly different angles. The arc follows, because only drops lying at the one correct angle from the line between the observer and the sun can send a given color to the eye, and a second reflection inside the drop makes the fainter secondary bow above the first.",
+   "evidence": "The book says that rainbows are produced by a combination of refraction and reflection, that light enters a drop of water and is reflected from the back of the drop, being refracted both as it enters and as it leaves, and that the arc of a rainbow comes from the need to be looking at a specific angle relative to the direction of the sun. Figures 25.23 and 25.24 draw the path inside one drop, the colors reaching an observer from different drops and a double rainbow."
+  },
+  {
+   "id": "converging-and-diverging-lenses",
+   "kind": "idea",
+   "section": "25.6",
+   "name": "Converging and diverging lenses",
+   "why": "A lens is refraction put to work twice, at the front surface and at the back, and its shape decides what it does. A convex lens is thicker in the middle, so both surfaces bend the light toward the axis and parallel rays are brought together; a concave lens is thicker at the edges and spreads them apart. The reader who can look at a lens and say which kind it is can predict the sort of image it will make before doing any arithmetic.",
+   "evidence": "The book calls a lens in which light rays that enter parallel to its axis cross one another at a single point a converging, or convex, lens, and a lens that causes light rays to bend away from its axis a diverging lens, and it traces one ray through each in an expanded view to show that the ray moves toward the perpendicular as it enters and away from it as it leaves, in accordance with the law of refraction. Figures 25.25 and 25.27 draw the two."
+  },
+  {
+   "id": "focal-point-and-focal-length",
+   "kind": "idea",
+   "section": "25.6",
+   "name": "The focal point F and the focal length $\\kffoc$",
+   "why": "One number describes a thin lens, and this is it. The focal point is where rays that arrive parallel to the axis cross, or, for a diverging lens, the point they appear to come from, and the focal length is the distance from the center of the lens to that point. The sign carries the rest of the meaning: positive for a converging lens, negative for a diverging one, and a thin lens has the same focal length on either side, so it behaves the same way whichever way round it is held.",
+   "evidence": "The book defines the focal point F as the point at which the rays cross and the focal length $f$ as the distance from the center of the lens to its focal point, notes that the focal length and power of a diverging lens are defined to be negative, and says in Figure 25.29 that thin lenses have the same focal length on either side. Figure 25.26 shows sunlight brought to a spot by a magnifying glass, one focal length away."
+  },
+  {
+   "id": "power-of-a-lens",
+   "kind": "result",
+   "section": "25.6",
+   "name": "The power of a lens, $P = 1/\\kffoc$, in diopters",
+   "why": "Opticians do not write focal lengths, they write powers, so the reader who wants to read a prescription needs this. The power of a lens is the inverse of its focal length in meters, measured in diopters, so a short focal length is a powerful lens that bends light strongly and brings sunlight to a spot close to itself. The book is careful to warn that this power has nothing to do with the power in watts of Chapter 7; it is the same word for a different thing.",
+   "evidence": "The book defines the power $P$ of a lens to be the inverse of its focal length, states that $f$ must be given in meters and that the unit is the diopter with 1 D = 1/m, and warns that this power is not the same as power in watts. Example 25.5 finds a magnifying glass that focuses sunlight 8.00 cm away to have a power of 12.5 D, and four of the section's problems convert between focal lengths and prescriptions in diopters.",
+   "eq": "eq-lens-power"
+  },
+  {
+   "id": "ray-tracing-rules-for-lenses",
+   "kind": "skill",
+   "section": "25.6",
+   "name": "The five rules for tracing rays through a thin lens",
+   "why": "Ray tracing is how an image is found with nothing but a straight edge, and it is how the reader comes to see why the equations that follow are true. There are five rules, and only three of them are needed for most drawings: a ray arriving parallel to the axis leaves through the focal point, a ray through the center is undeflected, and a ray through the near focal point leaves parallel to the axis. Two rays locate an image; the third is a check.",
+   "evidence": "The book gives the rules for ray tracing for thin lenses as a numbered boxed list of five, each referred back to the figure that established it, and defines a thin lens as one whose thickness allows rays to refract but does not allow properties such as dispersion and aberrations. Figure 25.30 shows that the ray through the center of a thin lens is deflected by a negligible amount, and the section's first learning objective is to list these rules."
+  },
+  {
+   "id": "real-and-virtual-images",
+   "kind": "idea",
+   "section": "25.6",
+   "name": "Real images and virtual images",
+   "why": "Both kinds of image are seen by the eye, and only one of them is somewhere. In a real image the rays from a point on the object actually cross, so the image can be caught on a screen, a piece of film or a retina; in a virtual image the rays only appear to come from a common point behind the lens, and a screen put there catches nothing. The distinction runs through the rest of the chapter and is what the sign of the image distance records.",
+   "evidence": "The book defines a real image as one in which light rays from one point on the object actually cross at the location of the image and can be projected onto a screen, a piece of film or the retina of an eye, and a virtual image as one on the same side of the lens as the object that cannot be projected, noting that light rays only appear to originate at a virtual image. It adds that the image distance is taken to be positive for a real image and negative for a virtual image."
+  },
+  {
+   "id": "thin-lens-equation",
+   "kind": "result",
+   "section": "25.6",
+   "name": "The thin lens equation, $1/\\kdobj + 1/\\kdimg = 1/\\kffoc$",
+   "why": "Ray tracing shows where the image is; this equation says so to as many digits as the data allow. It relates the object distance, the image distance and the focal length, so that any one of the three follows from the other two, and it holds for every case in the chapter, including the mirrors of 25.7. The signs are part of the result: a negative image distance means the image is virtual and on the same side as the object.",
+   "evidence": "The book gives the thin lens equations in a boxed note, $1/d_{\\text{o}} + 1/d_{\\text{i}} = 1/f$ together with the magnification, states that they are broadly applicable to all situations involving thin lenses and thin mirrors, and defines $d_{\\text{o}}$ as the distance of the object and $d_{\\text{i}}$ as the distance of the image from the center of the lens.",
+   "eq": "eq-thin-lens"
+  },
+  {
+   "id": "magnification",
+   "kind": "result",
+   "section": "25.6",
+   "name": "Magnification, $\\khimg/\\khobj = -\\kdimg/\\kdobj = m$",
+   "why": "Knowing where the image is is half the answer; the other half is how big it is and which way up. The magnification is the ratio of image height to object height, and it equals minus the ratio of image distance to object distance, so it comes free once the thin lens equation has been solved. The minus sign is what tells the reader the image is inverted, and a magnitude greater or less than one tells whether it is enlarged or reduced.",
+   "evidence": "The book defines the ratio of image height to object height to be the magnification $m$ and gives $h_{\\text{i}}/h_{\\text{o}} = -d_{\\text{i}}/d_{\\text{o}} = m$ in the boxed note beside the thin lens equation, saying that images that appear upright relative to the object have heights that are positive and those that are inverted have negative heights. Example 25.6 obtains $m = -2.00$ and notes that the minus sign causes the magnification to be negative when the image is inverted.",
+   "eq": "eq-magnification"
+  },
+  {
+   "id": "three-cases-of-lens-images",
+   "kind": "idea",
+   "section": "25.6",
+   "name": "The three cases of image formation by a thin lens",
+   "why": "Three arrangements cover every image a single thin lens can make, and knowing which one is at hand tells the reader the answer before the arithmetic and checks it afterward. A converging lens with the object farther away than the focal length makes a real, inverted image; the same lens with the object closer makes an enlarged, upright, virtual image, which is what a magnifier does; and a diverging lens always makes a reduced, upright, virtual image, whatever the object distance.",
+   "evidence": "The book names the three as case 1, case 2 and case 3 as it meets them, and Table 25.3 sets them side by side with the condition, the image type and the signs of $d_{\\text{i}}$ and $m$. It adds that convex lenses can form either real or virtual images, whereas concave lenses can form only virtual images, and that real images are always inverted while virtual images are always upright."
+  },
+  {
+   "id": "solve-with-the-thin-lens-equations",
+   "kind": "skill",
+   "section": "25.6",
+   "name": "Solve a lens problem with the thin lens equations",
+   "why": "This is what the section is for. The reader identifies the case from the sign of the focal length and the object distance, solves the thin lens equation for the unknown distance, remembering to invert $1/d_{\\text{i}}$ at the end, and then takes the magnification from the two distances. The last step is to check the answer against the case: a case 2 image must come out virtual, upright and enlarged, and an answer that does not is a mistake in the arithmetic rather than a discovery.",
+   "evidence": "The book sets out a seven-step Problem-Solving Strategy for lenses and then works three examples by it, a light bulb 0.750 m from a 0.500 m lens, a page 7.50 cm from a 10.0 cm magnifier and the same page in front of a concave lens of focal length −10.0 cm. Each example's discussion checks the result against the characteristics of its case.",
+   "eq": "eq-image-distance-solved"
+  },
+  {
+   "id": "image-in-a-flat-mirror",
+   "kind": "result",
+   "section": "25.7",
+   "name": "The image in a flat mirror is virtual, upright, the same size and as far behind as the object is in front",
+   "why": "The flat mirror is the simplest image in the chapter and the one everybody has seen. Two rays leaving the same point of the object, reflected by the law of reflection, appear on extension to come from a single point behind the mirror, so the image is virtual and lies as far behind the glass as the object stands in front of it. In the language of the thin lens equations this is $d_{\\text{i}} = -d_{\\text{o}}$, which gives a magnification of exactly one and a mirror of infinite focal length.",
+   "evidence": "The book says that images in flat mirrors are the same size as the object and are located behind the mirror, that the rays extrapolated backward seem to originate from a common point behind the mirror, and that this is a virtual image since it cannot be projected. Two of the section's problems ask the reader to show that $d_{\\text{i}} = -d_{\\text{o}}$ gives $h_{\\text{i}} = h_{\\text{o}}$ and to find the focal length and power of a flat mirror."
+  },
+  {
+   "id": "focal-length-of-a-spherical-mirror",
+   "kind": "result",
+   "section": "25.7",
+   "name": "The focal length of a spherical mirror, $\\kffoc = \\kRcur/2$",
+   "why": "A curved mirror has a focal point for the same reason a lens does, and one number again describes it. A mirror that is small compared with its radius of curvature brings parallel rays to a well-defined focus halfway between its surface and its center of curvature, so the focal length is half the radius. The same relation runs backward, which is how an optometrist measures the curvature of a cornea, and the power $P = 1/f$ is defined for a mirror exactly as it is for a lens.",
+   "evidence": "The book says that using the law of reflection and some simple trigonometry it can be shown that the focal length is half the radius of curvature, $f = R/2$, that the smaller the radius of curvature the more powerful the mirror, and that $P = 1/f$ for a mirror too. It notes that this small-mirror condition is the mirror equivalent of the thin lens approximation, since a mirror large compared with its radius of curvature has no well-defined focal point.",
+   "eq": "eq-mirror-focal-length"
+  },
+  {
+   "id": "converging-and-diverging-mirrors",
+   "kind": "idea",
+   "section": "25.7",
+   "name": "Concave mirrors converge and convex mirrors diverge",
+   "why": "As with lenses, the shape decides the sign and the sign decides the images. A concave mirror brings parallel rays together in front of itself and has a positive focal length, while a convex mirror spreads them so that they seem to come from a point behind it and has a negative focal length. This is why a makeup mirror magnifies and a security mirror shrinks, and it is the first thing to settle in any mirror problem.",
+   "evidence": "The book says that the focal length $f$ of a concave mirror is positive, since it is a converging mirror, and that the focal length and power of a convex mirror are negative, since it is a diverging mirror. Figures 25.39 and 25.40 draw parallel rays meeting at F in front of a concave mirror and appearing to come from F behind a convex one."
+  },
+  {
+   "id": "ray-tracing-rules-for-mirrors",
+   "kind": "skill",
+   "section": "25.7",
+   "name": "The five rules for tracing rays at a mirror",
+   "why": "The rules for mirrors are the rules for lenses with the light sent back the way it came, and learning them as a pair is easier than learning them twice. A ray arriving parallel to the axis leaves through the focal point, or seems to come from it; a ray striking the center leaves at the same angle to the axis, which is the law of reflection; and a ray through the focal point leaves parallel to the axis. Two of them locate any image the section draws.",
+   "evidence": "The book gives five numbered rules for ray tracing for mirrors, saying that they are based on the illustrations just discussed, and notes that any ray striking the center of a mirror is followed by applying the law of reflection, making the same angle with the axis when leaving as when approaching. The section's second learning objective is to explain with ray diagrams the formation of an image using spherical mirrors."
+  },
+  {
+   "id": "three-cases-of-mirror-images",
+   "kind": "idea",
+   "section": "25.7",
+   "name": "The three cases of image formation by a mirror",
+   "why": "The same three cases appear again, and the reader should recognize them. A concave mirror with the object farther away than the focal length makes a real, inverted image on the same side as the object; the same mirror with the object closer makes an enlarged, upright, virtual image behind it, which is what a makeup mirror does; and a convex mirror always makes a reduced, upright, virtual image, which is what a security mirror does and why it shows so much of the shop.",
+   "evidence": "The book works through the three in order, calling them a case 1, a case 2 and a case 3 image for mirrors, and says that the case 1 image differs from the case 1 image for lenses only in that the image is on the same side of the mirror as the object. Figures 25.41, 25.43 and 25.44 draw the three, beside a magnifying makeup mirror and a convex security mirror."
+  },
+  {
+   "id": "solve-mirror-problems",
+   "kind": "skill",
+   "section": "25.7",
+   "name": "Solve a mirror problem with the thin lens equations",
+   "why": "No new algebra is needed. Because the mirror is assumed small compared with its radius of curvature, the thin lens equation and the magnification hold unchanged, with the focal length taken as half the radius of curvature and given the sign of the mirror. The reader finds the focal length, solves for the unknown distance and takes the magnification, then checks the answer against the case, exactly as in 25.6.",
+   "evidence": "The book says that since we assume each mirror is small compared with its radius of curvature, we can use the thin lens equations for mirrors just as we did for lenses, and its Problem-Solving Strategy for Mirrors refers the reader to the strategy for lenses with the one qualification that the mirror ray tracing rules are used. Example 25.9 locates the coils of a room heater, and Example 25.11 finds the radius of curvature of a cornea from a magnification of 0.0320.",
+   "eq": "eq-thin-lens"
+  },
+  {
+   "id": "mirrors-and-lenses-are-analogous",
+   "kind": "idea",
+   "section": "25.7",
+   "name": "Concave mirrors act like convex lenses, and convex mirrors like concave lenses",
+   "why": "The chapter closes by tying its two halves together. Mirrors form exactly the same three types of image as lenses do, with the same signs and the same conditions, so everything learned in 25.6 can be carried over if the reader remembers which mirror corresponds to which lens. It is worth stating on its own, because it halves what has to be remembered and because it is the last thing the chapter asks the reader to see.",
+   "evidence": "The book says that the three types of images formed by mirrors are exactly analogous to those formed by lenses, and that it is easiest to concentrate on only three types of images and then remember that concave mirrors act like convex lenses, whereas convex mirrors act like concave lenses. The section opens by promising that we will find that mirror images are analogous to those formed by lenses."
+  }
+ ],
+ "concept_prereqs": [
+  {"concept": "ray", "prereq": "light-is-an-electromagnetic-wave"},
+  {"concept": "ray", "prereq": "wave"},
+  {"concept": "three-paths-of-light", "prereq": "ray"},
+  {"concept": "ray-approximation", "prereq": "ray"},
+  {"concept": "ray-approximation", "prereq": "wavelength"},
+  {"concept": "ray-approximation", "prereq": "electromagnetic-spectrum"},
+  {"concept": "geometric-optics", "prereq": "ray"},
+  {"concept": "geometric-optics", "prereq": "ray-approximation"},
+  {"concept": "law-of-reflection", "prereq": "ray"},
+  {"concept": "law-of-reflection", "prereq": "geometric-optics"},
+  {"concept": "specular-and-diffuse-reflection", "prereq": "law-of-reflection"},
+  {"concept": "specular-and-diffuse-reflection", "prereq": "wavelength"},
+  {"concept": "image-behind-a-flat-mirror", "prereq": "law-of-reflection"},
+  {"concept": "image-behind-a-flat-mirror", "prereq": "three-paths-of-light"},
+  {"concept": "refraction", "prereq": "ray"},
+  {"concept": "refraction", "prereq": "three-paths-of-light"},
+  {"concept": "refraction", "prereq": "wave-speed-wavelength-frequency"},
+  {"concept": "speed-of-light-in-vacuum", "prereq": "speed-of-light-from-constants"},
+  {"concept": "speed-of-light-in-vacuum", "prereq": "average-speed"},
+  {"concept": "index-of-refraction", "prereq": "speed-of-light-in-vacuum"},
+  {"concept": "index-of-refraction", "prereq": "em-wave-in-a-medium"},
+  {"concept": "index-of-refraction", "prereq": "refraction"},
+  {"concept": "speed-in-a-medium-from-the-index", "prereq": "index-of-refraction"},
+  {"concept": "speed-in-a-medium-from-the-index", "prereq": "average-speed"},
+  {"concept": "snells-law", "prereq": "index-of-refraction"},
+  {"concept": "snells-law", "prereq": "refraction"},
+  {"concept": "snells-law", "prereq": "components-from-magnitude-angle"},
+  {"concept": "bending-toward-or-away-from-the-normal", "prereq": "snells-law"},
+  {"concept": "bending-toward-or-away-from-the-normal", "prereq": "index-of-refraction"},
+  {"concept": "find-an-index-or-an-angle", "prereq": "snells-law"},
+  {"concept": "find-an-index-or-an-angle", "prereq": "bending-toward-or-away-from-the-normal"},
+  {"concept": "critical-angle", "prereq": "snells-law"},
+  {"concept": "critical-angle", "prereq": "bending-toward-or-away-from-the-normal"},
+  {"concept": "critical-angle-from-the-indices", "prereq": "critical-angle"},
+  {"concept": "critical-angle-from-the-indices", "prereq": "snells-law"},
+  {"concept": "total-internal-reflection", "prereq": "critical-angle-from-the-indices"},
+  {"concept": "total-internal-reflection", "prereq": "law-of-reflection"},
+  {"concept": "find-a-critical-angle", "prereq": "critical-angle-from-the-indices"},
+  {"concept": "find-a-critical-angle", "prereq": "find-an-index-or-an-angle"},
+  {"concept": "fiber-optics", "prereq": "total-internal-reflection"},
+  {"concept": "fiber-optics", "prereq": "index-of-refraction"},
+  {"concept": "corner-reflector", "prereq": "law-of-reflection"},
+  {"concept": "corner-reflector", "prereq": "total-internal-reflection"},
+  {"concept": "sparkle-of-diamond", "prereq": "total-internal-reflection"},
+  {"concept": "sparkle-of-diamond", "prereq": "find-a-critical-angle"},
+  {"concept": "color-and-wavelength", "prereq": "wavelength"},
+  {"concept": "color-and-wavelength", "prereq": "electromagnetic-spectrum"},
+  {"concept": "color-and-wavelength", "prereq": "c-equals-f-lambda"},
+  {"concept": "dispersion", "prereq": "refraction"},
+  {"concept": "dispersion", "prereq": "color-and-wavelength"},
+  {"concept": "index-depends-on-wavelength", "prereq": "index-of-refraction"},
+  {"concept": "index-depends-on-wavelength", "prereq": "color-and-wavelength"},
+  {"concept": "index-depends-on-wavelength", "prereq": "snells-law"},
+  {"concept": "index-depends-on-wavelength", "prereq": "dispersion"},
+  {"concept": "rainbow-formation", "prereq": "index-depends-on-wavelength"},
+  {"concept": "rainbow-formation", "prereq": "total-internal-reflection"},
+  {"concept": "rainbow-formation", "prereq": "law-of-reflection"},
+  {"concept": "rainbow-formation", "prereq": "dispersion"},
+  {"concept": "converging-and-diverging-lenses", "prereq": "snells-law"},
+  {"concept": "converging-and-diverging-lenses", "prereq": "bending-toward-or-away-from-the-normal"},
+  {"concept": "focal-point-and-focal-length", "prereq": "converging-and-diverging-lenses"},
+  {"concept": "power-of-a-lens", "prereq": "focal-point-and-focal-length"},
+  {"concept": "ray-tracing-rules-for-lenses", "prereq": "focal-point-and-focal-length"},
+  {"concept": "ray-tracing-rules-for-lenses", "prereq": "converging-and-diverging-lenses"},
+  {"concept": "ray-tracing-rules-for-lenses", "prereq": "ray"},
+  {"concept": "real-and-virtual-images", "prereq": "ray-tracing-rules-for-lenses"},
+  {"concept": "real-and-virtual-images", "prereq": "image-behind-a-flat-mirror"},
+  {"concept": "thin-lens-equation", "prereq": "ray-tracing-rules-for-lenses"},
+  {"concept": "thin-lens-equation", "prereq": "focal-point-and-focal-length"},
+  {"concept": "magnification", "prereq": "thin-lens-equation"},
+  {"concept": "magnification", "prereq": "real-and-virtual-images"},
+  {"concept": "three-cases-of-lens-images", "prereq": "thin-lens-equation"},
+  {"concept": "three-cases-of-lens-images", "prereq": "magnification"},
+  {"concept": "three-cases-of-lens-images", "prereq": "real-and-virtual-images"},
+  {"concept": "solve-with-the-thin-lens-equations", "prereq": "thin-lens-equation"},
+  {"concept": "solve-with-the-thin-lens-equations", "prereq": "magnification"},
+  {"concept": "solve-with-the-thin-lens-equations", "prereq": "three-cases-of-lens-images"},
+  {"concept": "solve-with-the-thin-lens-equations", "prereq": "power-of-a-lens"},
+  {"concept": "image-in-a-flat-mirror", "prereq": "law-of-reflection"},
+  {"concept": "image-in-a-flat-mirror", "prereq": "image-behind-a-flat-mirror"},
+  {"concept": "image-in-a-flat-mirror", "prereq": "real-and-virtual-images"},
+  {"concept": "focal-length-of-a-spherical-mirror", "prereq": "law-of-reflection"},
+  {"concept": "focal-length-of-a-spherical-mirror", "prereq": "focal-point-and-focal-length"},
+  {"concept": "focal-length-of-a-spherical-mirror", "prereq": "power-of-a-lens"},
+  {"concept": "converging-and-diverging-mirrors", "prereq": "focal-length-of-a-spherical-mirror"},
+  {"concept": "converging-and-diverging-mirrors", "prereq": "converging-and-diverging-lenses"},
+  {"concept": "ray-tracing-rules-for-mirrors", "prereq": "law-of-reflection"},
+  {"concept": "ray-tracing-rules-for-mirrors", "prereq": "focal-length-of-a-spherical-mirror"},
+  {"concept": "ray-tracing-rules-for-mirrors", "prereq": "ray-tracing-rules-for-lenses"},
+  {"concept": "three-cases-of-mirror-images", "prereq": "ray-tracing-rules-for-mirrors"},
+  {"concept": "three-cases-of-mirror-images", "prereq": "three-cases-of-lens-images"},
+  {"concept": "three-cases-of-mirror-images", "prereq": "converging-and-diverging-mirrors"},
+  {"concept": "solve-mirror-problems", "prereq": "thin-lens-equation"},
+  {"concept": "solve-mirror-problems", "prereq": "magnification"},
+  {"concept": "solve-mirror-problems", "prereq": "focal-length-of-a-spherical-mirror"},
+  {"concept": "solve-mirror-problems", "prereq": "solve-with-the-thin-lens-equations"},
+  {"concept": "solve-mirror-problems", "prereq": "intensity"},
+  {"concept": "mirrors-and-lenses-are-analogous", "prereq": "three-cases-of-mirror-images"},
+  {"concept": "mirrors-and-lenses-are-analogous", "prereq": "three-cases-of-lens-images"}
+ ]
+}

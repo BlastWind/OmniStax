@@ -1,0 +1,390 @@
+{
+ "id": "23.2",
+ "module": "m42392",
+ "chapter": "23",
+ "title": "Faraday’s Law of Induction: Lenz’s Law",
+ "short": "Faraday’s law and Lenz’s law",
+ "lead": "A change in the magnetic flux through a coil drives an emf, and Faraday’s experiments settled exactly what that emf depends on: how much the flux changes, how quickly it changes, and how many turns of wire the change passes through. This section states Faraday’s law of induction, explains the minus sign in front of it as Lenz’s law, which says that the induced current always opposes the change that produced it, gives the six steps for finding the direction of an induced current, and ends with the recording heads, hard drives, cochlear implants and breathing monitors that induction is already at work in.",
+ "objectives": [
+  "Calculate emf, current, and magnetic fields using Faraday’s Law.",
+  "Explain the physical results of Lenz’s Law"
+ ],
+ "summary_html": "<ul><li>Faraday’s law of induction states that the emf induced by a change in magnetic flux is $\\kemf = -N\\frac{\\kdPhi}{\\kdt}$ when flux changes by $\\kdPhi$ in a time $\\kdt$.</li><li>If emf is induced in a coil, $N$ is its number of turns.</li><li>The minus sign means that the emf creates a current $\\kIcur$ and magnetic field $\\kBmag$ that <em>oppose the change in flux</em> $\\kdPhi$—this opposition is known as Lenz’s law.</li></ul>",
+ "notes": "The photograph of the recording and playback heads used with audio and video magnetic tapes is decoration for a technology the reader has not handled, and it is left out along with the parenthesis that pointed at it. The link to the PhET simulation Faraday’s Electromagnetic Lab is left out, as the book’s other interactive links are. The ninth problem of the module, the 1000-turn coil turned in the Earth’s field, carries no kind in the book’s source and is set as a problem because that is the heading it is printed under.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key and are never computed. Seven problems have no keyed answer and are left out: the direction of the current induced in a loop beside a long straight wire, the repeat of the three-coil problem with the battery reversed, the verification that one tesla metre squared per second is one volt, the 50-turn coil stretched to no area in 0.100 s, the Integrated Concepts item asking for the current, the power, the induced field and its direction in the MRI technician’s ring, the 500-turn coil turned a quarter of a revolution for the field that would give 10,000 V, and the Integrated Concepts item on the voltage a lightning strike induces in a loop 50.0 m away. The problem about the MRI technician’s wedding ring keys only part (a), so the card checks that number and carries the book’s own answer to part (b) in its solution. The two conceptual questions have no key in the book, so their suggested approaches are AI-written and marked as such. The section sets no AP test prep item, and nothing of this section’s own is held for a later page, although 23.5 points its readers back at two of the peak-emf problems set here, which keep their own numbers. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-faraday",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-lenz",
+   "kind": "sim",
+   "number": "23.7",
+   "originals": [
+    "/media/ch23/Figure_24_02_01_new.jpg"
+   ],
+   "original_caption": "(a) When this bar magnet is thrust into the coil, the strength of the magnetic field increases in the coil. The current induced in the coil creates another field, in the opposite direction of the bar magnet’s to oppose the increase. This is one aspect of Lenz’s law—induction opposes any change in flux. (b) and (c) are two other situations. Verify for yourself that the direction of the induced B_coil shown indeed opposes the change in flux and that the current direction shown is consistent with RHR-2.",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "current",
+    "time"
+   ]
+  },
+  {
+   "id": "fig-cochlear",
+   "kind": "photo",
+   "number": "23.9",
+   "widths": [
+    200
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "faradays-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "turns-multiply-emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "lenzs-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "apply-lenzs-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "ways-to-change-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "right-hand-rule-2",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "magnetic-field",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "lenz-from-energy-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "applications",
+   "concept": "induction-applications",
+   "verb": "introduces"
+  },
+  {
+   "span": "applications",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "flux-and-orientation",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "faradays-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "lenzs-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "magnetic-flux",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736588278",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "prompt": "A person who works with large magnets sometimes places her head inside a strong field. She reports feeling dizzy as she quickly turns her head. How might this be associated with induction?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Turning her head quickly changes the orientation of everything inside it with respect to the field, and by $\\kPhi = \\kBmag A\\cos\\theta$ a change in orientation is a change in flux. Any closed conducting path in the head, and the fluid and tissue of the head is conducting, then has a changing flux through it, so by Faraday’s law an emf is induced round that path and a small current flows. The faster she turns, the smaller $\\kdt$ is and the larger the induced emf, which is why the dizziness comes with a quick turn and not with a slow one. Currents induced in the fluid of the inner ear and in the nerves that report the position of the head are enough to be felt as dizziness, and nothing is induced at all while she holds her head still, however strong the field is."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738061771",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "prompt": "A particle accelerator sends high-velocity charged particles down an evacuated pipe. Could a coil of wire wrapped around the pipe detect the passage of individual particles via an induced emf? If so, sketch a graph of the voltage output of the coil as a single particle passes through it. If not, determine what orientation of the coil would allow detection of the particle and explain why this orientation is needed.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It could. A moving charge carries a magnetic field of its own, which circles the line of its motion by RHR-2, and a coil wound around the pipe has its own axis along that line. As the particle comes up to the coil the flux of its field through the coil rises, and as it goes away again the flux falls, so the coil sees a flux that rises and then falls and Faraday’s law gives an emf throughout. The graph of the output against time is a pulse one way followed by a pulse the other way, crossing zero at the moment the particle is in the plane of the coil, because that is the moment when the flux is at its largest and is momentarily not changing. The pulse is short and its height grows with the speed of the particle, since a faster particle makes the same change of flux in a smaller $\\kdt$. Whether a single particle can be detected in practice is a question of how large that emf is beside the noise of the amplifier; the emf of one particle is very small, which is why real accelerators read a bunch of many particles at once rather than one."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737817529",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "figure": {
+    "src": "/media/ch23/Figure_24_02_04-3a94.jpg",
+    "alt": "Part a of the diagram shows two single loop coils. Coil one and coil two are held vertically. Coil one has a current I in anti clockwise direction. Part b of the diagram shows a wire held vertical with a current flowing in upward direction. There is a single loop coil next to it held vertically.",
+    "caption": "(a) The coils lie in the same plane. (b) The wire is in the plane of the coil"
+   },
+   "prompt": "Referring to part (a) of the figure below, what is the direction of the current induced in coil 2: (a) If the current in coil 1 increases? (b) If the current in coil 1 decreases? (c) If the current in coil 1 is constant? Explicitly show how you follow the steps in the Problem-Solving Strategy for Lenz’s Law.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) CCW (b) CW (c) No current induced"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738076252",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "figure": {
+    "src": "/media/ch23/Figure_24_02_05.jpg",
+    "alt": "The figure shows a closed circuit consisting of a main coil with many loops connected to a cell through a switch. Three single loop coils named one, two and three are also shown. Coil one is on left of the main coil, coil two on the right and coil three on top of the main coil."
+   },
+   "prompt": "Referring to the figure below, what are the directions of the currents in coils 1, 2, and 3 (assume that the coils are lying in the plane of the circuit): (a) When the switch is first closed? (b) When the switch has been closed for a long time? (c) Just after the switch is opened?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) 1 CCW, 2 CCW, 3 CW (b) 1, 2, and 3 no current induced (c) 1 CW, 2 CW, 3 CCW"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738034098",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "prompt": "(a) An MRI technician moves his hand from a region of very low magnetic field strength into an MRI scanner’s 2.00 T field with his fingers pointing in the direction of the field. Find the average emf induced in his wedding ring, given its diameter is 2.20 cm and assuming it takes 0.250 s to move it into the field. (b) Discuss whether this current would significantly change the temperature of the ring.",
+   "answer": {
+    "type": "number",
+    "value": 3.04,
+    "unit": "mV",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "The ring starts where the field is almost nothing and ends in a 2.00 T field with its face square to it, so the flux through it goes from nearly zero to $\\kBmag A$. Work out the area from the diameter and divide the change in flux by the time; the ring is a single turn, so $N = 1$.",
+    "solution": "(a) 3.04 mV (b) As a lower limit on the ring, estimate R = 1.00 mΩ. The heat transferred will be 2.31 mJ. This is not a significant amount of heat."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738060612",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "prompt": "An emf is induced by rotating a 1000-turn, 20.0 cm diameter coil in the Earth’s $5.00\\times 10^{-5}\\ \\text{T}$ magnetic field. What average emf is induced, given the plane of the coil is originally perpendicular to the Earth’s field and is rotated to be parallel to the field in 10.0 ms?",
+   "answer": {
+    "type": "number",
+    "value": 0.157,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "The coil begins with its plane perpendicular to the field, so the flux through it is $\\kBmag A$, and ends with its plane parallel to the field, where the flux is zero. The whole of that flux is therefore lost in 10.0 ms, and each of the 1000 turns contributes its own emf.",
+    "solution": "0.157 V"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169737806468",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "figure": {
+    "src": "/media/ch23/Figure_24_02_04-3a94.jpg",
+    "alt": "Part a of the diagram shows two single loop coils. Coil one and coil two are held vertically. Coil one has a current I in anti clockwise direction. Part b of the diagram shows a wire held vertical with a current flowing in upward direction. There is a single loop coil next to it held vertically.",
+    "caption": "(a) The coils lie in the same plane. (b) The wire is in the plane of the coil"
+   },
+   "prompt": "Approximately how does the emf induced in the loop in part (b) of the figure below depend on the distance of the center of the loop from the wire?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "proportional to $\\frac{1}{r}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ways-to-change-flux",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "right-hand-rule-2",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "apply-lenzs-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "lenzs-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "right-hand-rule-2",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "apply-lenzs-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "lenzs-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "right-hand-rule-2",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "p7",
+   "concept": "magnetic-flux",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "p9",
+   "concept": "turns-multiply-emf",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "flux-and-orientation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "p11",
+   "concept": "magnetic-flux",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

@@ -1,0 +1,216 @@
+{
+ "id": "25",
+ "dir": "ch25",
+ "title": "Geometric Optics",
+ "intro": {
+  "module": "m42449",
+  "slug": "25-introduction-to-geometric-optics"
+ },
+ "sections": [
+  {
+   "id": "25.1",
+   "module": "m42452",
+   "title": "The Ray Aspect of Light",
+   "slug": "25-1-the-ray-aspect-of-light"
+  },
+  {
+   "id": "25.2",
+   "module": "m42456",
+   "title": "The Law of Reflection",
+   "slug": "25-2-the-law-of-reflection"
+  },
+  {
+   "id": "25.3",
+   "module": "m42459",
+   "title": "The Law of Refraction",
+   "slug": "25-3-the-law-of-refraction"
+  },
+  {
+   "id": "25.4",
+   "module": "m42462",
+   "title": "Total Internal Reflection",
+   "slug": "25-4-total-internal-reflection"
+  },
+  {
+   "id": "25.5",
+   "module": "m42466",
+   "title": "Dispersion: The Rainbow and Prisms",
+   "slug": "25-5-dispersion-the-rainbow-and-prisms"
+  },
+  {
+   "id": "25.6",
+   "module": "m42470",
+   "title": "Image Formation by Lenses",
+   "slug": "25-6-image-formation-by-lenses"
+  },
+  {
+   "id": "25.7",
+   "module": "m42474",
+   "title": "Image Formation by Mirrors",
+   "slug": "25-7-image-formation-by-mirrors"
+  }
+ ],
+ "variables": [
+  {"sym": "θ_i", "meaning": "the angle of incidence, measured from the perpendicular to the surface at the point where the ray strikes it", "unit": "°", "section": "25.2"},
+  {"sym": "θ_r", "meaning": "the angle of reflection, measured from the same perpendicular, which equals the angle of incidence", "unit": "°", "section": "25.2"},
+  {"sym": "c", "type": "velocity", "meaning": "the speed of light in a vacuum, a fixed value and one of the basic physical quantities", "unit": "m/s", "section": "25.3"},
+  {"sym": "v", "type": "velocity", "meaning": "the observed speed of light in a material, which is always less than its speed in a vacuum", "unit": "m/s", "section": "25.3"},
+  {"sym": "n", "meaning": "the index of refraction of a material, the ratio of the speed of light in a vacuum to its speed in the material", "section": "25.3"},
+  {"sym": "n_1", "meaning": "the index of refraction of the medium the ray starts in", "section": "25.3"},
+  {"sym": "n_2", "meaning": "the index of refraction of the medium the ray crosses into", "section": "25.3"},
+  {"sym": "θ_1", "meaning": "the angle between the incident ray and the perpendicular to the surface, in medium 1", "unit": "°", "section": "25.3"},
+  {"sym": "θ_2", "meaning": "the angle between the refracted ray and the perpendicular to the surface, in medium 2", "unit": "°", "section": "25.3"},
+  {"sym": "θ_c", "meaning": "the critical angle, the angle of incidence that produces an angle of refraction of 90°", "unit": "°", "section": "25.4"},
+  {"sym": "θ_1", "meaning": "the angle of incidence inside the denser medium, which is compared with the critical angle", "unit": "°", "section": "25.4"},
+  {"sym": "θ_2", "meaning": "the angle of refraction in the second medium, which reaches 90° at the critical angle", "unit": "°", "section": "25.4"},
+  {"sym": "n_1", "meaning": "the index of refraction of the medium the ray travels in, which must be the larger of the two", "section": "25.4"},
+  {"sym": "n_2", "meaning": "the index of refraction of the medium beyond the surface, which must be the smaller of the two", "section": "25.4"},
+  {"sym": "λ", "type": "position", "meaning": "the wavelength of the light, which decides both the color the eye sees and the index of refraction the medium presents", "unit": "nm", "section": "25.5"},
+  {"sym": "n", "meaning": "the index of refraction of a medium at one wavelength, which grows as the wavelength falls", "section": "25.5"},
+  {"sym": "f_focal", "type": "position", "meaning": "the focal length of the lens, the distance from its center to its focal point, positive for a converging lens and negative for a diverging one", "unit": "m", "section": "25.6"},
+  {"sym": "P_lens", "meaning": "the power of the lens, the inverse of its focal length in meters", "unit": "D", "section": "25.6"},
+  {"sym": "d_obj", "type": "position", "meaning": "the object distance, the distance of the object from the center of the lens", "unit": "m", "section": "25.6"},
+  {"sym": "d_img", "type": "position", "meaning": "the image distance, the distance of the image from the center of the lens, positive for a real image and negative for a virtual one", "unit": "m", "section": "25.6"},
+  {"sym": "h_obj", "type": "position", "meaning": "the height of the object", "unit": "m", "section": "25.6"},
+  {"sym": "h_img", "type": "position", "meaning": "the height of the image, positive where the image is upright and negative where it is inverted", "unit": "m", "section": "25.6"},
+  {"sym": "m", "meaning": "the magnification, the ratio of image height to object height", "section": "25.6"},
+  {"sym": "R_curv", "type": "position", "meaning": "the radius of curvature of a spherical mirror, twice its focal length", "unit": "m", "section": "25.7"},
+  {"sym": "f_focal", "type": "position", "meaning": "the focal length of the mirror, positive for a concave converging mirror and negative for a convex diverging one", "unit": "m", "section": "25.7"},
+  {"sym": "P_lens", "meaning": "the power of the mirror, the inverse of its focal length in meters", "unit": "D", "section": "25.7"},
+  {"sym": "d_obj", "type": "position", "meaning": "the object distance, the distance of the object from the center of the mirror", "unit": "m", "section": "25.7"},
+  {"sym": "d_img", "type": "position", "meaning": "the image distance, positive for a real image in front of the mirror and negative for a virtual image behind it", "unit": "m", "section": "25.7"},
+  {"sym": "h_obj", "type": "position", "meaning": "the height of the object", "unit": "m", "section": "25.7"},
+  {"sym": "h_img", "type": "position", "meaning": "the height of the image, negative where the image is inverted", "unit": "m", "section": "25.7"},
+  {"sym": "m", "meaning": "the magnification, the ratio of image height to object height", "section": "25.7"}
+ ],
+ "equations": [
+  {
+   "id": "eq-law-of-reflection",
+   "concept": "law-of-reflection",
+   "section": "25.2",
+   "latex": "\\theta_{\\text{r}} = \\theta_{\\text{i}}",
+   "important": true
+  },
+  {
+   "id": "eq-speed-of-light",
+   "concept": "speed-of-light-in-vacuum",
+   "section": "25.3",
+   "latex": "c = 2.99792458 \\times 10^{8}\\;\\text{m/s} \\approx 3.00 \\times 10^{8}\\;\\text{m/s}",
+   "ktex": "\\kc = 2.99792458 \\times 10^{8}\\;\\text{m/s} \\approx 3.00 \\times 10^{8}\\;\\text{m/s}",
+   "important": true
+  },
+  {
+   "id": "eq-index-of-refraction",
+   "concept": "index-of-refraction",
+   "section": "25.3",
+   "latex": "n = \\frac{c}{v}",
+   "ktex": "n = \\frac{\\kc}{\\kv}",
+   "important": true
+  },
+  {
+   "id": "eq-speed-from-index",
+   "concept": "speed-in-a-medium-from-the-index",
+   "section": "25.3",
+   "latex": "v = \\frac{c}{n}",
+   "ktex": "\\kv = \\frac{\\kc}{n}"
+  },
+  {
+   "id": "eq-snells-law",
+   "concept": "snells-law",
+   "section": "25.3",
+   "latex": "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2",
+   "important": true
+  },
+  {
+   "id": "eq-index-from-angles",
+   "section": "25.3",
+   "latex": "n_2 = n_1 \\frac{\\sin\\theta_1}{\\sin\\theta_2}"
+  },
+  {
+   "id": "eq-refracted-angle",
+   "section": "25.3",
+   "latex": "\\sin\\theta_2 = \\frac{n_1}{n_2}\\sin\\theta_1"
+  },
+  {
+   "id": "eq-critical-angle-condition",
+   "section": "25.4",
+   "latex": "n_1 \\sin\\theta_1 = n_2"
+  },
+  {
+   "id": "eq-critical-angle",
+   "concept": "critical-angle-from-the-indices",
+   "section": "25.4",
+   "latex": "\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)\\;\\text{for}\\;n_1 > n_2",
+   "important": true
+  },
+  {
+   "id": "eq-lens-power",
+   "concept": "power-of-a-lens",
+   "section": "25.6",
+   "latex": "P = \\frac{1}{f}",
+   "ktex": "P = \\frac{1}{\\kffoc}",
+   "important": true
+  },
+  {
+   "id": "eq-thin-lens",
+   "concept": "thin-lens-equation",
+   "section": "25.6",
+   "latex": "\\frac{1}{d_{\\text{o}}} + \\frac{1}{d_{\\text{i}}} = \\frac{1}{f}",
+   "ktex": "\\frac{1}{\\kdobj} + \\frac{1}{\\kdimg} = \\frac{1}{\\kffoc}",
+   "important": true
+  },
+  {
+   "id": "eq-magnification",
+   "concept": "magnification",
+   "section": "25.6",
+   "latex": "\\frac{h_{\\text{i}}}{h_{\\text{o}}} = -\\frac{d_{\\text{i}}}{d_{\\text{o}}} = m",
+   "ktex": "\\frac{\\khimg}{\\khobj} = -\\frac{\\kdimg}{\\kdobj} = m",
+   "important": true
+  },
+  {
+   "id": "eq-thin-lens-rearranged",
+   "section": "25.6",
+   "latex": "\\frac{1}{d_{\\text{i}}} = \\frac{1}{f} - \\frac{1}{d_{\\text{o}}}",
+   "ktex": "\\frac{1}{\\kdimg} = \\frac{1}{\\kffoc} - \\frac{1}{\\kdobj}"
+  },
+  {
+   "id": "eq-image-distance-solved",
+   "section": "25.6",
+   "latex": "d_{\\text{i}} = \\frac{f d_{\\text{o}}}{d_{\\text{o}} - f}",
+   "ktex": "\\kdimg = \\frac{\\kffoc \\kdobj}{\\kdobj - \\kffoc}"
+  },
+  {
+   "id": "eq-mirror-focal-length",
+   "concept": "focal-length-of-a-spherical-mirror",
+   "section": "25.7",
+   "latex": "f = \\frac{R}{2}",
+   "ktex": "\\kffoc = \\frac{\\kRcur}{2}",
+   "important": true
+  }
+ ],
+ "glossary": [
+  {"section": "25.1", "term": "ray", "definition": "straight line that originates at some point"},
+  {"section": "25.1", "term": "geometric optics", "definition": "part of optics dealing with the ray aspect of light"},
+  {"section": "25.2", "term": "mirror", "definition": "smooth surface that reflects light at specific angles, forming an image of the person or object in front of it"},
+  {"section": "25.2", "term": "law of reflection", "definition": "angle of reflection equals the angle of incidence"},
+  {"section": "25.3", "term": "refraction", "definition": "changing of a light ray’s direction when it passes through variations in matter"},
+  {"section": "25.3", "term": "index of refraction", "definition": "for a material, the ratio of the speed of light in vacuum to that in the material"},
+  {"section": "25.4", "term": "critical angle", "definition": "incident angle that produces an angle of refraction of 90°"},
+  {"section": "25.4", "term": "fiber optics", "definition": "transmission of light down fibers of plastic or glass, applying the principle of total internal reflection"},
+  {"section": "25.4", "term": "corner reflector", "definition": "an object consisting of two mutually perpendicular reflecting surfaces, so that the light that enters is reflected back exactly parallel to the direction from which it came"},
+  {"section": "25.4", "term": "zircon", "definition": "natural gemstone with a large index of refraction"},
+  {"section": "25.5", "term": "dispersion", "definition": "spreading of white light into its full spectrum of wavelengths"},
+  {"section": "25.5", "term": "rainbow", "definition": "dispersion of sunlight into a continuous distribution of colors according to wavelength, produced by the refraction and reflection of sunlight by water droplets in the sky"},
+  {"section": "25.6", "term": "converging lens", "definition": "a convex lens in which light rays that enter it parallel to its axis converge at a single point on the opposite side"},
+  {"section": "25.6", "term": "diverging lens", "definition": "a concave lens in which light rays that enter it parallel to its axis bend away (diverge) from its axis"},
+  {"section": "25.6", "term": "focal point", "definition": "for a converging lens or mirror, the point at which converging light rays cross; for a diverging lens or mirror, the point from which diverging light rays appear to originate"},
+  {"section": "25.6", "term": "focal length", "definition": "distance from the center of a lens or curved mirror to its focal point"},
+  {"section": "25.6", "term": "magnification", "definition": "ratio of image height to object height"},
+  {"section": "25.6", "term": "power", "definition": "inverse of focal length"},
+  {"section": "25.6", "term": "real image", "definition": "image that can be projected"},
+  {"section": "25.6", "term": "virtual image", "definition": "image that cannot be projected"},
+  {"section": "25.7", "term": "converging mirror", "definition": "a concave mirror in which light rays that strike it parallel to its axis converge at one or more points along the axis"},
+  {"section": "25.7", "term": "diverging mirror", "definition": "a convex mirror in which light rays that strike it parallel to its axis bend away (diverge) from its axis"},
+  {"section": "25.7", "term": "law of reflection", "definition": "angle of reflection equals the angle of incidence"}
+ ]
+}

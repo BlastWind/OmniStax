@@ -1,0 +1,215 @@
+{
+ "id": "23.1",
+ "module": "m42390",
+ "chapter": "23",
+ "title": "Induced Emf and Magnetic Flux",
+ "short": "Induced emf and magnetic flux",
+ "lead": "Faraday closed a switch, and a needle on a second coil swung. He opened it, and the needle swung the other way. While the switch stayed closed, with a steady current and a steady magnetic field, the needle sat at zero. It is the change in the magnetic field, and not the field itself, that induces an emf, and the same is true of a bar magnet pushed into a coil and of a coil turned in a field. The quantity that all three have in common is the magnetic flux, $\\kPhi = \\kBmag A\\cos\\theta$, the field strength times the area times the cosine of the angle between the field and the perpendicular to that area. Every induced emf in this chapter is a change in that one quantity, so this section is where it is worth getting exactly right.",
+ "objectives": [
+  "Calculate the flux of a uniform magnetic field through a loop of arbitrary orientation.",
+  "Describe methods to produce an electromotive force (emf) with a magnetic field or magnet and a loop of wire."
+ ],
+ "summary_html": "<ul><li>The crucial quantity in induction is magnetic flux $\\kPhi$, defined to be $\\kPhi = \\kBmag A\\cos\\theta$, where $\\kBmag$ is the magnetic field strength over an area $A$ at an angle $\\theta$ with the perpendicular to the area.</li><li>Units of magnetic flux $\\kPhi$ are $\\text{T}\\cdot\\text{m}^2$.</li><li>Any change in magnetic flux $\\kPhi$ induces an emf—the process is defined to be electromagnetic induction.</li></ul>",
+ "notes": "The section's second problem, the flux through the coil in the second arrangement due to the wire beside it, has no answer in the book and is left out. The second test-prep item has none either and is kept as an open item with a suggested approach.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags, weights, hints and the suggested approaches to the four conceptual questions and to the second test-prep item are AI-generated and marked as such; the answer to the first test-prep item and to the first problem comes from the book's own answer key and nothing is computed here. The second problem is not keyed and is left out. The second test-prep item is not keyed either — the CNXML carries an answer for it that the book does not print — so it is kept as an open item with a suggested approach. The book prints the picture of the oval loop in a uniform field at the foot of the first test-prep item's answer, but it is the figure the second item means by the figure above, so it travels on the second item's card; the stretched coil travels on the fourth conceptual question's card and the two arrangements of coils on the first problem's. The section prints no Check Your Understanding box, so every item is at the end. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-faraday-ring",
+   "kind": "sim",
+   "number": "23.3",
+   "originals": ["/media/ch23/Figure_24_01_01.jpg"],
+   "original_caption": "Faraday’s apparatus for demonstrating that a magnetic field can produce a current. A change in the field produced by the top coil induces an emf and, hence, a current in the bottom coil. When the switch is opened and closed, the galvanometer registers currents in opposite directions. No current flows through the galvanometer when the switch remains closed or open.",
+   "widths": [400],
+   "draws": ["magnetic-field", "magnetic-flux", "voltage"]
+  },
+  {
+   "id": "sim-magnet-coil",
+   "kind": "sim",
+   "number": "23.4",
+   "originals": ["/media/ch23/Figure_24_01_02.jpg"],
+   "original_caption": "Movement of a magnet relative to a coil produces emfs as shown. The same emfs are produced if the coil is moved relative to the magnet. The greater the speed, the greater the magnitude of the emf, and the emf is zero when there is no motion.",
+   "widths": [550],
+   "draws": ["magnetic-field", "magnetic-flux", "voltage", "velocity"]
+  },
+  {
+   "id": "sim-rotating-coil",
+   "kind": "sim",
+   "number": "23.5",
+   "originals": ["/media/ch23/Figure_24_01_03.jpg"],
+   "original_caption": "Rotation of a coil in a magnetic field produces an emf. This is the basic construction of a generator, where work done to turn the coil is converted to electric energy. Note the generator is very similar in construction to a motor.",
+   "widths": [250],
+   "draws": ["magnetic-field", "magnetic-flux", "voltage", "angular-rate"]
+  },
+  {
+   "id": "sim-flux-angle",
+   "kind": "sim",
+   "number": "23.6",
+   "originals": ["/media/ch23/Figure_24_01_04.jpg"],
+   "original_caption": "Magnetic flux Φ is related to the magnetic field and the area over which it exists. The flux Φ = BA cos θ is related to induction; any change in Φ induces an emf.",
+   "widths": [225],
+   "draws": ["magnetic-field", "magnetic-flux"]
+  }
+ ],
+ "coverage": [
+  {"span": "changing-field", "concept": "induction", "verb": "introduces"},
+  {"span": "changing-field", "concept": "magnetic-field", "verb": "uses"},
+  {"span": "changing-field", "concept": "electromagnet", "verb": "uses"},
+  {"span": "changing-field", "concept": "electric-current", "verb": "uses"},
+  {"span": "changing-field", "concept": "emf", "verb": "uses"},
+  {"span": "changing-field", "concept": "meter-and-galvanometer", "verb": "uses"},
+  {"span": "flux-defined", "concept": "magnetic-flux", "verb": "introduces"},
+  {"span": "flux-defined", "concept": "flux-and-orientation", "verb": "introduces"},
+  {"span": "flux-defined", "concept": "magnetic-field", "verb": "uses"},
+  {"span": "flux-defined", "concept": "direction-of-field-lines", "verb": "uses"},
+  {"span": "all-induction", "concept": "ways-to-change-flux", "verb": "introduces"},
+  {"span": "all-induction", "concept": "induction", "verb": "reinforces"},
+  {"span": "all-induction", "concept": "magnetic-flux", "verb": "reinforces"}
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1457853",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "changing-field",
+   "prompt": "To produce current with a coil and bar magnet you can:",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "move the coil but not the magnet.",
+     "move the magnet but not the coil.",
+     "move either the coil or the magnet.",
+     "It is not possible to produce current."
+    ],
+    "correct": 2,
+    "generated_by": "source",
+    "hint": "What the coil answers is the change in the flux through it, and a flux changes whenever the magnet and the coil move with respect to one another. Ask whether the experiment can tell which of the two is the one that moved.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1583528",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "flux-defined",
+   "figure": {
+    "src": "/media/ch23/CNX_APPhysics_23_M1_S01_img.jpg",
+    "alt": "An oval object inclined at an angle theta within a uniform horizontal flow field, indicated by parallel blue arrows.",
+    "caption": "A coil stands at an angle θ to a uniform magnetic field."
+   },
+   "prompt": "Calculate the magnetic flux for a coil of area 0.2 m² placed at an angle of <em>θ</em> = 60° (as shown in the figure below) to a magnetic field of strength 1.5 × 10⁻³ T. At what angle will the flux be at its maximum?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book prints no answer for this item, so work it through for yourself rather than taking one on trust. The flux is $\\kPhi = \\kBmag A\\cos\\theta$, where $\\theta$ is the angle between the field and the perpendicular to the area. Entering the given values, $\\kPhi = (1.5 \\times 10^{-3}\\ \\text{T})(0.2\\ \\text{m}^2)\\cos 60^\\circ = 1.5 \\times 10^{-4}\\ \\text{T}\\cdot\\text{m}^2$, since $\\cos 60^\\circ = 0.5$. The cosine is greatest when its angle is zero, so the flux is at its maximum at $\\theta = 0^\\circ$, with the coil facing the field squarely and the field running straight through it; there the flux would be $3.0 \\times 10^{-4}\\ \\text{T}\\cdot\\text{m}^2$, twice what it is at $60^\\circ$."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736739851",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "changing-field",
+   "prompt": "How do the multiple-loop coils and iron ring in the version of Faraday’s apparatus shown in Figure 23.3 enhance the observation of induced emf?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both make the effect larger without changing what causes it. The iron ring carries the field the upper coil makes round to the lower coil instead of letting it spread out into the air, so nearly the whole of that field passes through the lower coil and the flux there is far greater than it would be with the two coils standing apart. Take the iron away, as the figure lets you do, and the swing of the needle almost disappears. The multiple loops help in a different way: each loop of the lower coil encloses the same flux and each has an emf induced in it, and because the loops are joined end to end those emfs add, so a coil of many turns gives many times the emf of a single loop. Faraday needed both, since the emf induced by opening and closing a switch lasts only as long as the field takes to rise or die, and a galvanometer will not register a swing that is too small to see."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738069605",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "changing-field",
+   "prompt": "When a magnet is thrust into a coil as in Figure 23.4(a), what is the direction of the force exerted by the coil on the magnet? Draw a diagram showing the direction of the current induced in the coil and the magnetic field it produces, to justify your response. How does the magnitude of the force depend on the resistance of the galvanometer?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The force on the magnet is directed back the way the magnet came, opposing the motion that is being made. Draw the coil with the north pole of the magnet approaching it from above: the flux down through the coil is growing, so the current induced in the coil runs in the sense that makes a field of its own pointing up out of the coil, back against the field that is growing. Curl the fingers of your right hand the way that current runs and your thumb points up along the axis, so the coil's own field leaves its upper face like the field of a north pole. A north pole faces the approaching north pole of the magnet, the two repel, and the magnet is pushed back. Pull the magnet away again and everything reverses: the flux is now falling, the induced current runs the other way, and the coil attracts the magnet and tries to hold it. The size of the force depends on how much current the emf can drive, and that is set by the resistance of the circuit: a galvanometer of low resistance lets a large current flow and the force is large, while one of high resistance lets almost none flow and the magnet is hardly opposed at all. The emf itself is the same either way, since it depends only on how fast the flux changes."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737926882",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "flux-defined",
+   "prompt": "Explain how magnetic flux can be zero when the magnetic field is not zero.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The flux is not the field. It is $\\kPhi = \\kBmag A\\cos\\theta$, and the cosine is zero when the angle between the field and the perpendicular to the area is $90^\\circ$. That is the case of a loop turned edge on to the field, with the field lying in the plane of the loop: the field is as strong as it ever was, but not one line of it passes through the area the loop encloses, and the flux is zero. The other form of the same statement says it in a word: $\\kPhi = \\kBmag_{\\perp}A$, the area times the part of the field that goes straight through it, and a field that lies in the plane of the area has no part that goes through it. Turn the loop in the figure of the section to $90^\\circ$ and watch the count of lines it catches fall to nothing while the lines themselves are unchanged. A flux of zero can also be had by making the area zero, but the interesting case is the one where a strong field and a large area still give nothing at all."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737882391",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "all-induction",
+   "figure": {
+    "src": "/media/ch23/Figure_24_01_05.jpg",
+    "alt": "The first part of the figure shows a circular coil of wire held in a magnetic field. The magnetic field points into the paper. The coil is held using both the hands to stretch it. The second part of the figure shows the same circular coil of wire stretched in the magnetic field.",
+    "caption": "A circular coil of wire is stretched in a magnetic field."
+   },
+   "prompt": "Is an emf induced in the coil in the figure below when it is stretched? If so, state why and give the direction of the induced current.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. The flux is $\\kPhi = \\kBmag A\\cos\\theta$, and stretching the coil changes the third of the three factors that can change it: the area it encloses. The field is the same everywhere and the coil stays square to it, so the angle and the field are unchanged, but the area grows as the hands pull the loop out, the flux through it grows with the area, and a changing flux induces an emf. The current runs in the sense that makes a field of its own opposing the growth, and since the field of the figure points into the page, the induced current runs counterclockwise, so that the field it makes inside the loop comes out of the page and holds the flux back. Stop stretching and the emf stops at once, however large the loop has become, since it is the change and not the size that induces it."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737949952",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "flux-defined",
+   "figure": {
+    "src": "/media/ch23/Figure_24_01_06-9353.jpg",
+    "alt": "The first part of the figure shows two single loop coils. The coil one is held vertical with a current shown to flow in anti clockwise direction. The second coil, coil two is held horizontal. The two coils are shown to be held perpendicular to each other. The second image shows a wire held vertical carrying a current in upward direction. There is a single loop coil next to the wire held horizontal.",
+    "caption": "(a) The planes of the two coils are perpendicular. (b) The wire is perpendicular to the plane of the coil."
+   },
+   "prompt": "What is the value of the magnetic flux at coil 2 in the figure below due to coil 1?",
+   "answer": {
+    "type": "number",
+    "value": 0,
+    "unit": "T·m²",
+    "generated_by": "source",
+    "hint": "The planes of the two coils are perpendicular, so ask what angle the field of coil 1 makes with the perpendicular to coil 2, and what the cosine of that angle is.",
+    "solution": "Zero"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "ap1", "concept": "induction"},
+  {"exercise": "ap1", "concept": "ways-to-change-flux", "weight": 3, "weights_by": "ai"},
+  {"exercise": "ap2", "concept": "magnetic-flux"},
+  {"exercise": "ap2", "concept": "flux-and-orientation", "weight": 3, "weights_by": "ai"},
+  {"exercise": "cq1", "concept": "induction"},
+  {"exercise": "cq1", "concept": "magnetic-flux", "weight": 2, "weights_by": "ai"},
+  {"exercise": "cq2", "concept": "induction"},
+  {"exercise": "cq2", "concept": "ways-to-change-flux", "weight": 2, "weights_by": "ai"},
+  {"exercise": "cq3", "concept": "flux-and-orientation"},
+  {"exercise": "cq3", "concept": "magnetic-flux", "weight": 3, "weights_by": "ai"},
+  {"exercise": "cq4", "concept": "ways-to-change-flux"},
+  {"exercise": "cq4", "concept": "magnetic-flux", "weight": 3, "weights_by": "ai"},
+  {"exercise": "p1", "concept": "flux-and-orientation"},
+  {"exercise": "p1", "concept": "magnetic-flux", "weight": 3, "weights_by": "ai"}
+ ]
+}

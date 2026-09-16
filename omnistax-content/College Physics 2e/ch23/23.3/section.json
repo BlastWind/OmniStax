@@ -1,0 +1,347 @@
+{
+ "id": "23.3",
+ "module": "m42400",
+ "chapter": "23",
+ "title": "Motional Emf",
+ "short": "Motional emf",
+ "lead": "A conductor that moves across a magnetic field has an emf along it, because the circuit it belongs to encloses new area every second and the flux through that area changes. This section takes that emf from Faraday’s law of induction, finds it to be $\\kemf = \\kBmag\\ell\\kv$ when the field, the conductor and the velocity are mutually perpendicular, shows that only the relative motion of the parts matters, and follows the result out to the Tethered Satellite experiment, in which twenty kilometers of wire moving at orbital speed through the Earth’s weak field was expected to develop several kilovolts.",
+ "objectives": [
+  "Calculate emf, force, magnetic field, and work due to the motion of an object in a magnetic field."
+ ],
+ "summary_html": "<ul><li>An emf induced by motion relative to a magnetic field $\\kBmag$ is called a <em>motional emf</em> and is given by $$\\kemf = \\kBmag\\ell\\kv \\qquad (\\kBmag\\text{, } \\ell \\text{, and } \\kv \\text{ perpendicular),}$$ where $\\ell$ is the length of the object moving at speed $\\kv$ relative to the field.</li></ul>",
+ "notes": "Eight problems have no answer in the book’s key and are left out: the two that ask the reader to show that the magnetic force on the rod and on the tether opposes the velocity, the proof that the emf is $B\\ell v\\sin\\theta$ when the three are not mutually perpendicular, the screwdriver, the field strength along the sliding rod, the angle the August 1992 flight moved at, and the two Integrated Concepts items about the current in the rails and the stretch of the cable.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Eight of the eleven problems have no keyed answer and are left out, among them the two that ask for a demonstration that the magnetic force opposes the velocity and the proof of $B\\ell v\\sin\\theta$; the three that are kept carry the book’s own numbers. All four conceptual questions are unkeyed and each is kept as an open item with an AI-marked suggested approach. The module prints no Check Your Understanding box, so nothing is set inline, and no exercise is held here for a later section or taken from an earlier one. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-rod-rails",
+   "kind": "sim",
+   "number": "23.10",
+   "originals": [
+    "/media/ch23/Figure_23_03_01.jpg"
+   ],
+   "original_caption": "(a) A motional emf = Bℓv is induced between the rails when this rod moves to the right in the uniform magnetic field. The magnetic field B is into the page, perpendicular to the moving rod and rails and, hence, to the area enclosed by them. (b) Lenz’s law gives the directions of the induced field and current, and the polarity of the induced emf. Since the flux is increasing, the induced field is in the opposite direction, or out of the page. RHR-2 gives the current direction shown, and the polarity of the rod will drive such a current. RHR-1 also indicates the same polarity for the rod. (Note that the script E symbol used in the equivalent circuit at the bottom of part (b) represents emf.)",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "current",
+    "velocity",
+    "force",
+    "position",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-relative-motion",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "velocity",
+    "time"
+   ]
+  },
+  {
+   "id": "sim-tether",
+   "kind": "sim",
+   "number": "23.11",
+   "originals": [
+    "/media/ch23/Figure_24_03_02.jpg"
+   ],
+   "original_caption": "Motional emf as electrical power conversion for the space shuttle is the motivation for the Tethered Satellite experiment. A 5 kV emf was predicted to be induced in the 20 km long tether while moving at orbital speed in the Earth’s magnetic field. The circuit is completed by a return path through the stationary ionosphere.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "magnetic-field",
+    "voltage",
+    "current",
+    "velocity",
+    "force",
+    "power"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "motion-induces",
+   "concept": "relative-motion-induces",
+   "verb": "introduces"
+  },
+  {
+   "span": "motion-induces",
+   "concept": "motional-emf",
+   "verb": "uses"
+  },
+  {
+   "span": "motion-induces",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "rod-on-rails",
+   "concept": "motional-emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "rod-on-rails",
+   "concept": "motional-emf-from-faradays-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "rod-on-rails",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "rod-on-rails",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "relative-motion-induces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "motional-emf",
+   "verb": "reinforces"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "apply-lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-field",
+   "concept": "motional-emf-power-conversion",
+   "verb": "introduces"
+  },
+  {
+   "span": "earths-field",
+   "concept": "motional-emf",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736729392",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relative-motion",
+   "prompt": "Why must part of the circuit be moving relative to other parts, to have usable motional emf? Consider, for example, that the rails in Figure 23.10 are stationary relative to the magnetic field, while the rod moves.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The emf comes from a change in the flux the circuit encloses, and in a uniform field that flux can change only if the area enclosed changes. If the rod, the rails and the resistor all travel together, the area between them stays the same however fast they go, the flux stays the same with it, and no emf appears. The rod must therefore move relative to the rails, so that the area grows by $\\ell\\kv\\kdt$ in every interval $\\kdt$ and the flux grows by $\\kBmag\\ell\\kv\\kdt$, which is what makes the emf $\\kBmag\\ell\\kv$. It is the separation of one part of the circuit from the rest that counts, not the motion of the circuit as a whole."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737862143",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-induces",
+   "prompt": "A powerful induction cannon can be made by placing a metal cylinder inside a solenoid coil. The cylinder is forcefully expelled when solenoid current is turned on rapidly. Use Faraday’s and Lenz’s laws to explain how this works. Why might the cylinder get live/hot when the cannon is fired?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Turning the solenoid current on rapidly raises the field inside it from nothing to its full value in a very short time, so the flux through the metal cylinder changes at an enormous rate and, by Faraday’s law, a large emf is induced around the cylinder. By Lenz’s law the current that emf drives must oppose the increase, so it circulates the opposite way to the current in the solenoid, and two currents running opposite ways repel one another; the cylinder is thrown out of the coil. The cylinder is a conductor of low resistance, so the induced emf drives a very large current through it, and the power $\\kIcur^2\\kRes$ that current dissipates heats the metal while the field is rising."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737756419",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-induces",
+   "prompt": "An induction stove heats a pot with a coil carrying an alternating current located beneath the pot (and without a hot surface). Can the stove surface be a conductor? Why won’t a coil carrying a direct current work?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The surface between the coil and the pot should not be a conductor. The changing field passes through whatever lies over the coil, and a conducting surface would have an emf induced in it just as the pot does, so currents would flow in the surface and heat it, which is the one thing the design is meant to avoid. A steady current in the coil would not work at all, because it makes a steady field and a steady flux through the pot; only a changing flux induces an emf, so nothing would be induced in the pot and nothing would heat it."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738016005",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-induces",
+   "prompt": "Explain how you could thaw out a frozen water pipe by wrapping a coil carrying an alternating current around it. Does it matter whether or not the pipe is a conductor? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A coil carrying an alternating current sends an alternating flux along the pipe inside it. By Faraday’s law an emf is induced around the pipe, and if the pipe conducts, that emf drives currents in the metal which dissipate power as heat and thaw the ice from the pipe wall inward. It does matter whether the pipe is a conductor: a plastic pipe has nothing in which a current can flow, and the ice inside it conducts so poorly that almost no current is driven through it either, so the method would leave a plastic pipe as frozen as it found it."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737770436",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rod-on-rails",
+   "prompt": "(a) A jet airplane with a 75.0 m wingspan is flying at 280 m/s. What emf is induced between wing tips if the vertical component of the Earth’s field is $3.00 \\times 10^{-5}\\ \\text{T}$? (b) Is an emf of this magnitude likely to have any consequences? Explain.",
+   "answer": {
+    "type": "number",
+    "value": 0.63,
+    "unit": "V",
+    "part": "a",
+    "generated_by": "source",
+    "hint": "The wingspan is the length that moves across the field, so the emf is $\\kBmag\\ell\\kv$ with the vertical component of the field.",
+    "solution": "(a) 0.630 V\n(b) No, this is a very small emf."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738010396",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rod-on-rails",
+   "prompt": "At what speed must the sliding rod in Figure 23.10 move to produce an emf of 1.00 V in a 1.50 T field, given the rod’s length is 30.0 cm?",
+   "answer": {
+    "type": "number",
+    "value": 2.22,
+    "unit": "m/s",
+    "generated_by": "source",
+    "hint": "Turn $\\kemf = \\kBmag\\ell\\kv$ round to give the speed, and put the rod’s length in meters.",
+    "solution": "2.22 m/s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169736667005",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "earths-field",
+   "prompt": "<strong>Integrated Concepts</strong> The Tethered Satellite discussed in this module is producing 5.00 kV, and a current of 10.0 A flows. (a) What magnetic drag force does this produce if the system is moving at 7.80 km/s? (b) How much kinetic energy is removed from the system in 1.00 h, neglecting any change in altitude or velocity during that time? (c) What is the change in velocity if the mass of the system is 100,000 kg? (d) Discuss the long term consequences (say, a week-long mission) on the space shuttle’s orbit, noting what effect a decrease in velocity has and assessing the magnitude of the effect.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 10.0,
+      "unit": "N",
+      "hint": "The power the tether delivers is $\\kemf\\kIcur$, and the drag force times the speed is that same power."
+     },
+     {
+      "part": "b",
+      "value": 281000000.0,
+      "unit": "J",
+      "hint": "The energy taken out in an hour is the power multiplied by 3600 s."
+     },
+     {
+      "part": "c",
+      "value": 0.36,
+      "unit": "m/s",
+      "hint": "Set the energy removed equal to the change in $\\tfrac{1}{2}m\\kv^2$ and solve for the small change in speed."
+     }
+    ],
+    "solution": "(a) 10.0 N\n(b) $2.81 \\times 10^{8}\\ \\text{J}$\n(c) 0.36 m/s\n(d) For a week-long mission (168 hours), the change in velocity will be 60 m/s, or approximately 1%. In general, a decrease in velocity would cause the orbit to start spiraling inward because the velocity would no longer be sufficient to keep the circular orbit. The long-term consequences are that the shuttle would require a little more fuel to maintain the desired speed, otherwise the orbit would spiral slightly inward."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "relative-motion-induces"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "motional-emf",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "lenzs-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "induction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "induction-applications",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "motional-emf"
+  },
+  {
+   "exercise": "p5",
+   "concept": "motional-emf"
+  },
+  {
+   "exercise": "p5",
+   "concept": "motional-emf-from-faradays-law",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "motional-emf-power-conversion"
+  },
+  {
+   "exercise": "p11",
+   "concept": "motional-emf",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ]
+}

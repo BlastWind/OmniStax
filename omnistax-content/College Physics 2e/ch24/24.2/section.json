@@ -1,0 +1,688 @@
+{
+ "id": "24.2",
+ "module": "m42440",
+ "chapter": "24",
+ "title": "Production of Electromagnetic Waves",
+ "short": "Production of EM Waves",
+ "lead": "An electromagnetic wave is easiest to understand by watching one being made. A generator at the center of a long straight wire drives charge to one end of it and then to the other, and both the electric field of that separated charge and the magnetic field of the current that moves it travel away from the wire at the speed of light. This section follows one cycle of the antenna, shows that the two fields stand at right angles to one another and to the direction the wave travels in, and gives the fixed ratio between their strengths, $\\kEf/\\kBmag = \\kc$.",
+ "objectives": [
+  "Describe the electric and magnetic waves as they move out from a source, such as an AC generator.",
+  "Explain the mathematical relationship between the magnetic field strength and the electrical field strength.",
+  "Calculate the maximum strength of the magnetic field in an electromagnetic wave, given the maximum electric field strength."
+ ],
+ "summary_html": "<ul><li>Electromagnetic waves are created by oscillating charges (which radiate whenever accelerated) and have the same frequency as the oscillation.</li><li>Since the electric and magnetic fields in most electromagnetic waves are perpendicular to the direction in which the wave moves, it is ordinarily a transverse wave.</li><li>The strengths of the electric and magnetic parts of the wave are related by $\\frac{\\kEf}{\\kBmag} = \\kc,$ which implies that the magnetic field $\\kBmag$ is very weak relative to the electric field $\\kEf$.</li></ul>",
+ "notes": "The link to the PhET simulation Radio Waves and Electromagnetic Fields is left out, as the links to the publisher’s interactive content are throughout. Two of the module’s three problems have no keyed answer and are left out with it: the wave traveling in a medium where the speed is $0.75\\kc$, and the check that the units of $\\kEf/\\kc$ really are teslas. The module’s AP item on the period and wavelength of a 3 GHz wave and its AP item on a wave reaching the end of a medium both need $\\kc = \\kf\\klam$, which Section 24.3 introduces, and they are set there instead.",
+ "ai": {
+  "text": "Claude Opus 5",
+  "figures": "Claude Opus 5"
+ },
+ "built": "2026-09-15",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Two of the three problems have no keyed answer and are left out: the wave in a medium where the speed is $0.75\\kc$, and the verification that the units of $\\kEf/\\kc$ are teslas. All ten conceptual questions and four of the six AP items are unkeyed in the book and are kept as open items with an AI-marked suggested approach; the other two AP items are keyed in the source and are set as graded choices. The module prints no Check Your Understanding box, so nothing is set inline. Two AP items of this module are held for 24.3, which introduces $\\kc = \\kf\\klam$, and are marked there with this section as their source. Three conceptual questions carry the book’s own image on the card. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-antenna-cycle",
+   "kind": "sim",
+   "number": "24.5",
+   "originals": [
+    "/media/ch24/Figure_25_02_01a.jpg"
+   ],
+   "original_caption": "This long straight gray wire with an AC generator at its center becomes a broadcast antenna for electromagnetic waves. Shown here are the charge distributions at four different times. The electric field (E) propagates away from the antenna at the speed of light, forming part of an electromagnetic wave.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "electric-field",
+    "charge",
+    "velocity",
+    "position",
+    "time",
+    "frequency"
+   ]
+  },
+  {
+   "id": "sim-antenna-b",
+   "kind": "sim",
+   "number": "24.6",
+   "originals": [
+    "/media/ch24/Figure_25_02_02a.jpg"
+   ],
+   "original_caption": "(a) The current in the antenna produces the circular magnetic field lines. The current (I) produces the separation of charge along the wire, which in turn creates the electric field as shown. (b) The electric and magnetic fields (E and B) near the wire are perpendicular; they are shown here for one point in space. (c) The magnetic field varies with current and propagates away from the antenna at the speed of light.",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "electric-field",
+    "charge",
+    "velocity",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-em-wave-3d",
+   "kind": "sim",
+   "number": "24.7",
+   "originals": [
+    "/media/ch24/Figure_25_02_03a.jpg"
+   ],
+   "original_caption": "A part of the electromagnetic wave sent out from the antenna at one instant in time. The electric and magnetic fields (E and B) are in phase, and they are perpendicular to one another and the direction of propagation. For clarity, the waves are shown only along one direction, but they propagate out in other directions too.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "electric-field",
+    "magnetic-field",
+    "velocity",
+    "position"
+   ]
+  },
+  {
+   "id": "sim-field-ratio",
+   "kind": "sim",
+   "draws": [
+    "electric-field",
+    "magnetic-field",
+    "velocity"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "varying-current",
+   "concept": "em-waves-from-accelerating-charges",
+   "verb": "introduces"
+  },
+  {
+   "span": "varying-current",
+   "concept": "maxwells-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "changing-fields-generate-each-other",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "antenna-field-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "electric-field-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "period-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "magnetic-part-of-the-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "em-wave-is-transverse",
+   "verb": "introduces"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "antenna-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "amperes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "right-hand-rule-2",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "field-of-a-long-straight-wire",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "transverse-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "standing-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "receiving",
+   "concept": "antenna-resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "receiving",
+   "concept": "em-waves-from-accelerating-charges",
+   "verb": "reinforces"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "e-over-b-equals-c",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "find-b-from-e",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "em-wave-in-a-medium",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "volts-per-meter",
+   "verb": "uses"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "the-tesla",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737794236",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "one-cycle",
+   "prompt": "The direction of the electric field shown in each part of Figure 24.5 is that produced by the charge distribution in the wire. Justify the direction shown in each part, using the Coulomb force law and the definition of $\\kEf = F/\\kq$, where $\\kq$ is a positive test charge.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The field at a point beside the wire is the force per unit charge on a positive test charge placed there, so the direction of the field is the direction that test charge would be pushed. At $\\kt = 0$ the top of the antenna carries the negative charge and the bottom the positive charge, so by the Coulomb force law the test charge is repelled by the bottom and attracted by the top; both contributions point upward, which is the direction the figure draws. One-fourth of a cycle later there is no separation of charge left, the two contributions cancel, and the field beside the antenna is zero. At $\\kt = \\kT/2$ the signs have changed ends, so running the same argument again gives a field of the same size pointing downward, and by $\\kt = \\kT$ the charges are back where they began and the field points upward once more."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738200374",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "Is the direction of the magnetic field shown in Figure 24.6 (a) consistent with the right-hand rule for current (RHR-2) in the direction shown in the figure?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It is. Right hand rule 2 says to point the thumb of the right hand along the current and let the fingers curl, and the fingers then run the way the field lines go. The current in the figure runs up the antenna, so with the thumb pointing up the fingers curl in the sense the circles are drawn, and the same rule applied at any height along the wire gives the same sense, which is why every ring around the antenna turns the same way. Half a cycle later the current runs the other way and the rule reverses all of the rings with it."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738176896",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "Why is the direction of the current shown in each part of Figure 24.6 opposite to the electric field produced by the wire’s charge separation?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Because at that instant the generator is building the separation rather than letting it collapse. The field drawn beside the wire is the field of the charge that is already there, and it points from the positive end of the antenna toward the negative end. The current at the same instant is carrying more positive charge toward the end that is already positive, which is the opposite direction, so the source is driving charge against the field it has itself made. That is the work the generator does on the antenna, and it goes on until the separation reaches its greatest value, where the field is largest and the current has fallen to zero."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737715013",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "In which situation shown in the figure will the electromagnetic wave be more successful in inducing a current in the wire? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the first, where the electric field of the wave oscillates in the vertical plane and so lies along the wire. A current in a straight wire is charge driven from one end of it to the other, and the electric field of the wave pushes charge along whatever direction the field itself points in. When that direction lies along the wire, the whole of the field goes into driving the charge up and down its length, and the current induced is as large as that wave can make. In the second the electric field stands across the wire, so it pushes the charge against the sides and not along the length, and almost no current results."
+   },
+   "figure": {
+    "src": "/media/ch24/Figure_25_02_04a.jpg",
+    "alt": "An electromagnetic wave approaching a long straight vertical wire, drawn twice: in the first the electric field oscillates in the vertical plane and the magnetic field in the horizontal plane, and in the second the two planes are exchanged.",
+    "caption": "Electromagnetic waves approaching long straight wires."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169738253710",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "In which situation shown in the figure will the electromagnetic wave be more successful in inducing a current in the loop? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the one where the magnetic field of the wave passes through the loop rather than sliding along the plane of it. A loop answers to the magnetic flux threading it: when the plane of the loop is turned so that the oscillating magnetic field goes through it, the flux rises and falls with the wave and an emf is induced around the loop. When the loop is edge-on to that field the flux through it stays zero however strong the wave is, and nothing is induced. Notice that the loop and the straight wire ask for opposite orientations, because one is driven by the electric part of the wave and the other by the magnetic part, and those two stand at right angles."
+   },
+   "figure": {
+    "src": "/media/ch24/Figure_25_02_05a.jpg",
+    "alt": "An electromagnetic wave approaching a receiver loop connected to a tuner, drawn twice: in the first the electric field oscillates in the vertical plane and the magnetic field in the horizontal plane, and in the second the two planes are exchanged.",
+    "caption": "Electromagnetic waves approaching a wire loop."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169738225032",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "receiving",
+   "prompt": "Should the straight wire antenna of a radio be vertical or horizontal to best receive radio waves broadcast by a vertical transmitter antenna? How should a loop antenna be aligned to best receive the signals? (Note that the direction of the loop that produces the best reception can be used to determine the location of the source. It is used for that purpose in tracking tagged animals in nature studies, for example.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Vertical. A vertical transmitting antenna sends out a wave whose electric field oscillates in the vertical plane, and a receiving wire is driven by the part of that field lying along it, so the receiving wire should stand parallel to the transmitting one. The magnetic field of the same wave is horizontal and at right angles to the line of travel, so a loop receives best when it is stood upright with its plane containing the line back to the transmitter, which lets that horizontal field pass through it. Turn the loop a quarter turn about the vertical from there and the flux through it falls to zero and the signal disappears, and since that null points along the line to the source, the loop can be used to say where the source is."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169737871842",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "receiving",
+   "prompt": "Under what conditions might wires in a DC circuit emit electromagnetic waves?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Whenever the current in them is not really steady. A charge radiates only when it is accelerated, so a circuit carrying a genuinely constant direct current sends out nothing at all. But a switch closing or opening, a current still rising toward its steady value, a motor’s commutator breaking contact and a spark jumping a gap all change the current quickly, and while the current is changing the charge in the wires is accelerating and the wires radiate. That is why switching an appliance on can be heard as a crack from a radio in the same room."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169737717009",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "Give an example of interference of electromagnetic waves.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The colors in a soap bubble are one. Light reflected from the outer surface of the film and light reflected from the inner surface arrive together, and depending on the thickness of the film and the wavelength of the light the two add or cancel, which leaves some colors strong and others missing. A second example is the fading a car radio suffers under a bridge or among tall buildings, where the wave that came straight from the transmitter meets the wave that has reflected from the structure and the two cancel in some places and reinforce in others. The pattern of two broadcast antennas sending the same signal, drawn in a later question here, is a third."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1169736620972",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "The figure shows the interference pattern of two radio antennas broadcasting the same signal. Explain how this is analogous to the interference pattern for sound produced by two speakers. Could this be used to make a directional antenna system that broadcasts preferentially in certain directions? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The two antennas do exactly what the two speakers do. Each sends out a wave of the same frequency in step with the other, so at any point in the room the two waves arrive having traveled different distances; where the difference is a whole number of wavelengths the crests coincide and the signal is strong, and where it is a half number of wavelengths the crest of one meets the trough of the other and the signal is weak. The lines of strong signal running outward between the antennas in the figure are the lines of constructive interference two speakers set up in a room. And yes, an array of antennas is made directional in just this way: choosing how far apart the antennas stand and what phase each is driven at decides which directions the waves add in and which they cancel in, so the signal can be sent where it is wanted and kept out of where it is not."
+   },
+   "figure": {
+    "src": "/media/ch24/Figure_25_02_06a.jpg",
+    "alt": "An overhead view of two radio broadcast antennas sending the same signal, with circular crests and troughs spreading from each and arrows running out along the directions in which the crests meet.",
+    "caption": "An overhead view of two radio broadcast antennas sending the same signal, and the interference pattern they produce."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id1169738013401",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "Can an antenna be any length? Explain your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It can be built any length, but it will not work well at every length. The alternating source sets up a standing wave of charge along the wire, and a standing wave fits only when the length of the wire suits the wave it is carrying, which is a resonance. An antenna whose length suits the frequency it is driven at radiates strongly; one much shorter or much longer than that does not. This is why the dimensions of an antenna are decided by the frequency it is meant to work at, and why tuning a radio or a television means changing electrical properties until the resonant condition is met."
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id955131",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "Describe the outcome if you attempt to produce a longitudinal electromagnetic wave.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "It cannot be done. The fields of an electromagnetic wave are made by charge accelerating in an antenna, and both of them come out perpendicular to the line along which the radiation travels, so there is no part of either field lying along the direction of propagation that could oscillate back and forth the way a longitudinal wave demands. Drive an antenna however you like and what leaves it is a transverse wave; aiming the antenna along the direction in which you wanted a longitudinal oscillation only sends the transverse wave out at right angles to it instead, since a linear antenna does not radiate along its own length."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1921736",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "varying-current",
+   "prompt": "You’re on the moon, skipping around, and your radio breaks. What would be the best way to communicate this problem to your friend, who is also skipping around on the moon: yelling or flashing a light? Why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Flash a light. Sound is a mechanical wave and needs a medium to carry it, and the moon has no atmosphere, so a shout has nothing to travel through and goes nowhere. Light is an electromagnetic wave, made of an electric field and a magnetic field that create each other as they go and need no material at all, so it crosses the vacuum between you at $3.00\\times 10^{8}\\;\\text{m/s}$ and reaches your friend."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2769744",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "one-cycle",
+   "prompt": "Given the waveform in Figure 24.5 (d), if $\\kT = 3.0\\times 10^{-9}\\;\\text{s}$ and $\\kEf = 5.0\\times 10^{5}\\;\\text{N/C}$, which of the following is the correct equation for the wave at the antenna?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$(5.0\\times 10^{5}\\;\\text{N/C})\\sin\\left(2\\pi(3.0\\times 10^{-9}\\;\\text{s})t\\right)$",
+     "$(5.0\\times 10^{5}\\;\\text{N/C})\\sin\\left(\\frac{2\\pi t}{3.0\\times 10^{-9}\\;\\text{s}}\\right)$",
+     "$(5.0\\times 10^{5}\\;\\text{N/C})\\cos\\left(2\\pi(3.0\\times 10^{-9}\\;\\text{s})t\\right)$",
+     "$(5.0\\times 10^{5}\\;\\text{N/C})\\cos\\left(\\frac{2\\pi t}{3.0\\times 10^{-9}\\;\\text{s}}\\right)$"
+    ],
+    "correct": 3,
+    "hint": "Part (d) of the figure shows the antenna back at its greatest separation of charge, so the wave must be at its maximum when $t = 0$; and the period belongs underneath the time, not multiplied by it.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2203616",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-ratio",
+   "prompt": "Given the waveform in Figure 24.5 (d), if $\\kf = 2.0\\;\\text{GHz}$ and $\\kEf = 6.0\\times 10^{5}\\;\\text{N/C}$, what is the correct equation for the magnetic field wave at the antenna?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The magnetic part of the wave is made by the same motion of the same charges as the electric part, so it has the same frequency and the same phase and differs only in its amplitude. That amplitude comes from the ratio of the two field strengths: $\\kBmag = \\kEf/\\kc = (6.0\\times 10^{5}\\;\\text{N/C})/(3.00\\times 10^{8}\\;\\text{m/s}) = 2.0\\times 10^{-3}\\;\\text{T}$. The wave at the antenna stands at its maximum when $t = 0$, as the electric wave does, so it is a cosine of the same argument: $\\kBmag = (2.0\\times 10^{-3}\\;\\text{T})\\cos\\left(2\\pi(2.0\\times 10^{9}\\;\\text{Hz})t\\right)$."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id3179292",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-ratio",
+   "prompt": "In Heinrich Hertz’s spark gap experiment, how will the induced sparks in Loop 2 compare to those created in Loop 1?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Stronger",
+     "Weaker",
+     "Need to know the tuner settings to tell",
+     "Weaker, but how much depends on the tuner settings."
+    ],
+    "correct": 3,
+    "hint": "Loop 2 is driven only by the wave that has crossed the room, and how much of that wave it takes up depends on how nearly the two loops are tuned to the same frequency.",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1832456",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "varying-current",
+   "prompt": "The sun is far away from the Earth, and the intervening space is very close to empty. Yet the tilt of the Earth’s axis of rotation relative to the sun results in seasons. Explain why, given what you have learned in this section.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "What the sun sends out is electromagnetic radiation, and an electromagnetic wave is a varying electric field and a varying magnetic field that make each other as they go, so it needs no medium to travel through and the emptiness between the sun and the Earth is no obstacle at all. The seasons then follow from how that radiation lands. Because the axis is tilted, sunlight reaching a given latitude strikes the ground nearly head-on at one time of year and slantingly half a year later, and a slanting beam spreads the same power over a larger area. More energy falling on each square meter is summer, and less is winter."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738092272",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-ratio",
+   "prompt": "What is the maximum electric field strength in an electromagnetic wave that has a maximum magnetic field strength of $5.00\\times 10^{-4}\\;\\text{T}$ (about 10 times the Earth’s)?",
+   "answer": {
+    "type": "number",
+    "value": 150,
+    "unit": "kV/m",
+    "generated_by": "source",
+    "hint": "In a vacuum the ratio of the electric field strength to the magnetic field strength is the speed of light, so the electric field is the magnetic field multiplied by $\\kc$.",
+    "solution": "150 kV/m"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "antenna-field-cycle"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-field-direction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "magnetic-part-of-the-wave"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "right-hand-rule-2",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "magnetic-part-of-the-wave"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "antenna-field-cycle",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "em-wave-is-transverse"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "antenna-resonance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "em-wave-is-transverse"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "magnetic-part-of-the-wave",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "em-wave-is-transverse"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "antenna-resonance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "antenna-field-cycle",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "antenna-resonance"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "em-wave-is-transverse"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "em-wave-is-transverse",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "antenna-field-cycle"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "period-frequency",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "find-b-from-e"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "magnetic-part-of-the-wave",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "antenna-resonance"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "e-over-b-equals-c",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "em-wave-is-transverse",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "find-b-from-e"
+  },
+  {
+   "exercise": "p1",
+   "concept": "e-over-b-equals-c",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

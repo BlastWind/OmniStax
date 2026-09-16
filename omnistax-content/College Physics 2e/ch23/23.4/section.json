@@ -1,0 +1,121 @@
+{
+  "id": "23.4",
+  "module": "m42404",
+  "chapter": "23",
+  "title": "Eddy Currents and Magnetic Damping",
+  "short": "Eddy currents",
+  "lead": "A conductor does not need to be bent into a circuit for induction to drive a current through it. When a solid piece of metal moves through a magnetic field, the induced emf drives current around loops inside the metal itself, and those loops feel a magnetic force that opposes the motion that made them. This section follows the drag on a metal plate as it enters and leaves a field, shows why cutting slots in the plate very nearly removes it, and looks at the balances, sorters, detectors and brakes that put the drag to work.",
+  "objectives": [
+    "Explain the magnitude and direction of an induced eddy current, and the effect this will have on the object it is induced in.",
+    "Describe several applications of magnetic damping."
+  ],
+  "summary_html": "<ul><li>Current loops induced in moving conductors are called eddy currents.</li><li>They can create significant drag, called magnetic damping.</li></ul>",
+  "notes": "Neither of the section’s two problems has an answer in the book’s key, so both are left out, along with the drawing of a coil moved into and out of a region of uniform field that the second of them refers to.",
+  "ai": { "text": "Claude Opus 5", "figures": "Claude Opus 5" },
+  "built": "2026-09-15",
+  "exercise_notes": "Bloom levels, concept tags and weights are AI-generated. Answers come from the book’s answer key, and the section’s two problems carry none, so both are left out. The two conceptual questions are kept, and their suggested approaches are AI-written and marked as such.",
+  "figures": [
+    {
+      "id": "sim-magnetic-damping",
+      "kind": "sim",
+      "number": "23.12",
+      "originals": ["/media/ch23/Figure_24_04_01.jpg"],
+      "original_caption": "A common physics demonstration device for exploring eddy currents and magnetic damping. (a) The motion of a metal pendulum bob swinging between the poles of a magnet is quickly damped by the action of eddy currents. (b) There is little effect on the motion of a slotted metal bob, implying that eddy currents are made less effective. (c) There is also no magnetic damping on a nonconducting bob, since the eddy currents are extremely small.",
+      "widths": [300],
+      "draws": ["current", "force", "magnetic-field", "position", "time"]
+    },
+    {
+      "id": "sim-eddy-currents-in-a-plate",
+      "kind": "sim",
+      "number": "23.13",
+      "folds": ["23.14"],
+      "originals": ["/media/ch23/Figure_24_04_02.jpg", "/media/ch23/Figure_24_04_03.jpg"],
+      "original_caption": "(Figure 23.13) A more detailed look at the conducting plate passing between the poles of a magnet. As it enters and leaves the field, the change in flux produces an eddy current. Magnetic force on the current loop opposes the motion. There is no current and no magnetic drag when the plate is completely inside the uniform field. (Figure 23.14) Eddy currents induced in a slotted metal plate entering a magnetic field form small loops, and the forces on them tend to cancel, thereby making magnetic drag almost zero.",
+      "widths": [300, 300],
+      "draws": ["current", "force", "magnetic-field", "position", "velocity"]
+    },
+    {
+      "id": "sim-damped-balance",
+      "kind": "sim",
+      "number": "23.15",
+      "originals": ["/media/ch23/Figure_24_04_04.jpg"],
+      "original_caption": "Magnetic damping of this sensitive balance slows its oscillations. Since Faraday’s law of induction gives the greatest effect for the most rapid change, damping is greatest for large oscillations and goes to zero as the motion stops.",
+      "widths": [225],
+      "draws": ["current", "force", "magnetic-field", "position", "time"]
+    },
+    {
+      "id": "sim-recycling-ramp",
+      "kind": "sim",
+      "number": "23.16",
+      "originals": ["/media/ch23/Figure_24_04_05.jpg"],
+      "original_caption": "Metals can be separated from other trash by magnetic drag. Eddy currents and magnetic drag are created in the metals sent down this ramp by the powerful magnet beneath it. Nonmetals move on.",
+      "widths": [325],
+      "draws": ["current", "force", "magnetic-field", "position", "velocity"]
+    },
+    {
+      "id": "fig-metal-detector",
+      "kind": "photo",
+      "number": "23.17",
+      "widths": [325],
+      "draws": []
+    },
+    {
+      "id": "fig-coaster-magnets",
+      "kind": "photo",
+      "number": "23.18",
+      "widths": [325],
+      "draws": []
+    }
+  ],
+  "coverage": [
+    { "span": "eddy-currents", "concept": "eddy-current", "verb": "introduces" },
+    { "span": "eddy-currents", "concept": "magnetic-damping", "verb": "introduces" },
+    { "span": "eddy-currents", "concept": "slotting-reduces-eddy-currents", "verb": "introduces" },
+    { "span": "eddy-currents", "concept": "motional-emf", "verb": "uses" },
+    { "span": "eddy-currents", "concept": "faradays-law", "verb": "uses" },
+    { "span": "eddy-currents", "concept": "lenzs-law", "verb": "uses" },
+    { "span": "eddy-currents", "concept": "magnetic-force-on-a-current-carrying-wire", "verb": "uses" },
+    { "span": "eddy-currents", "concept": "right-hand-rule-1", "verb": "uses" },
+    { "span": "eddy-currents", "concept": "damped-harmonic-motion", "verb": "uses" },
+    { "span": "applications", "concept": "applications-of-magnetic-damping", "verb": "introduces" },
+    { "span": "applications", "concept": "magnetic-damping", "verb": "reinforces" },
+    { "span": "applications", "concept": "eddy-current", "verb": "reinforces" },
+    { "span": "applications", "concept": "slotting-reduces-eddy-currents", "verb": "reinforces" }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id1169736687515",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": { "at": "end" },
+      "cite": "eddy-currents",
+      "prompt": "Explain why magnetic damping might not be effective on an object made of several thin conducting layers separated by insulation.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The insulation between the layers gives the current no path from one layer into the next, so an eddy current cannot run in a loop that takes in the whole thickness of the object. Each loop is shut inside the thin layer it started in, where it encloses only a small area and must run along a narrow path that offers it a large resistance, so the current is small. The force on a current in a field is proportional to that current, so the drag on the object is small as well. The layers also work against one another, as the slots do in Figure 23.14: neighboring loops carry their current in opposite directions and the forces on them very nearly cancel. An object built this way is therefore hardly damped at all, which is exactly why the cores of transformers and motors are built of thin insulated sheets rather than of solid metal."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id1169737772157",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": { "at": "end" },
+      "cite": "applications",
+      "prompt": "Explain how electromagnetic induction can be used to detect metals? This technique is particularly important in detecting buried landmines for disposal, geophysical prospecting and at airports.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The detector carries a primary coil through which an alternating current is driven, and that current sets up a magnetic field that changes as rapidly as it does. Any conductor near enough to lie in that field has a changing flux through it, so by Faraday’s law an emf is induced in it, and because the conductor offers closed paths of its own the emf drives eddy currents around inside it. Those eddy currents set up a magnetic field of their own, in the direction that opposes the change that produced them, and that field reaches back to the detector and alters the current induced in its secondary coil. The instrument watches the secondary current and reports any change in it, as a shrill noise or a needle. Nothing in the chain asks the buried object to be magnetic, only to conduct, so aluminum and copper are found as readily as iron. That is why the same method serves for a landmine with metal parts, for an ore body underground and for the gate at an airport."
+      }
+    }
+  ],
+  "exercise_concepts": [
+    { "exercise": "cq1", "concept": "slotting-reduces-eddy-currents" },
+    { "exercise": "cq1", "concept": "eddy-current", "weight": 2, "weights_by": "ai" },
+    { "exercise": "cq2", "concept": "applications-of-magnetic-damping" },
+    { "exercise": "cq2", "concept": "eddy-current", "weight": 3, "weights_by": "ai" }
+  ]
+}
