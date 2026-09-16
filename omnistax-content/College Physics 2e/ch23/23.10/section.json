@@ -1,0 +1,279 @@
+{
+  "id": "23.10",
+  "module": "m42425",
+  "chapter": "23",
+  "title": "RL Circuits",
+  "short": "RL circuits",
+  "lead": "An inductor will not let a current start or stop at once, and this section says how long the opposition lasts. Put a resistor and an inductor in series with a battery and a two-position switch, and the current climbs toward the value Ohm’s law allows and, when the battery is cut out, dies away again, both on the same exponential curve. The whole of the timing is carried by one number, the characteristic time constant τ = L/R, and because the same fraction of what is left is covered in every time constant, many questions about an RL circuit can be answered by counting rather than by solving.",
+  "objectives": [
+    "Calculate the current in an RL circuit after a specified number of characteristic time steps.",
+    "Calculate the characteristic time of an RL circuit.",
+    "Sketch the current in an RL circuit over time."
+  ],
+  "summary_html": "<ul><li>When a series connection of a resistor and an inductor—an <em>RL</em> circuit—is connected to a voltage source, the time variation of the current is $\\kIcur = \\kIocur(1 - e^{-\\kt/\\ktauRL})\\;\\text{(turning on),}$ where $\\kIocur = \\kV/\\kRes$ is the final current.</li><li>The characteristic time constant $\\ktauRL$ is $\\ktauRL = \\frac{\\kLind}{\\kRes}$, where $\\kLind$ is the inductance and $\\kRes$ is the resistance.</li><li>In the first time constant $\\ktauRL$, the current rises from zero to $0.632\\kIocur$, and 0.632 of the remainder in every subsequent time interval $\\ktauRL$.</li><li>When the inductor is shorted through a resistor, current decreases as $\\kIcur = \\kIocur e^{-\\kt/\\ktauRL}\\;\\text{(turning off).}$ Here $\\kIocur$ is the initial current.</li><li>Current falls to $0.368\\kIocur$ in the first time interval $\\ktauRL$, and 0.368 of the remainder toward zero in each subsequent time $\\ktauRL$.</li></ul>",
+  "notes": "The five problems the book leaves unkeyed are left out: the 20.0 ns time constant with a 5.00 MΩ resistance, the verification of the 0.183 A of Example 23.9, the 25.0 mH inductor on a 12.0 V battery, the 5.00 A through a 1.50 H inductor, and the 2.00 H inductor taken down to 0.100 percent. The example’s closing discussion points the reader at the fourth of those problems for the 0.183 A it names, and since that problem is not set here the page gives the number and leaves the pointer out.",
+  "ai": {
+    "text": "Claude Opus 5",
+    "figures": "Claude Opus 5"
+  },
+  "built": "2026-09-15",
+  "exercise_notes": "Bloom levels, concept tags and weights are AI-generated. Answers come from the book’s answer key: five of the ten problems are keyed and are set here, and the five that are not are left out and named in the notes. The section prints no conceptual question, no AP test prep item and no Check Your Understanding box, so everything is set at the end. The fifth problem asks for a range rather than a number, so it is kept as an open item with the book’s own key as its answer. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "sim-rl-switching",
+      "kind": "sim",
+      "number": "23.42",
+      "originals": [
+        "/media/ch23/Figure_24_10_01.jpg"
+      ],
+      "original_caption": "(a) An RL circuit with a switch to turn current on and off. When in position 1, the battery, resistor, and inductor are in series and a current is established. In position 2, the battery is removed and the current eventually stops because of energy loss in the resistor. (b) A graph of current growth versus time when the switch is moved to position 1. (c) A graph of current decay when the switch is moved to position 2.",
+      "widths": [
+        550
+      ],
+      "draws": [
+        "inductance",
+        "resistance",
+        "current",
+        "voltage",
+        "time"
+      ]
+    },
+    {
+      "id": "sim-counting-time-constants",
+      "kind": "sim",
+      "draws": [
+        "inductance",
+        "resistance",
+        "current",
+        "time"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "switching-an-rl-circuit",
+      "concept": "rl-circuit",
+      "verb": "introduces"
+    },
+    {
+      "span": "switching-an-rl-circuit",
+      "concept": "self-inductance",
+      "verb": "uses"
+    },
+    {
+      "span": "switching-an-rl-circuit",
+      "concept": "inductance",
+      "verb": "uses"
+    },
+    {
+      "span": "switching-an-rl-circuit",
+      "concept": "lenzs-law",
+      "verb": "uses"
+    },
+    {
+      "span": "current-turning-on",
+      "concept": "current-growth-in-an-rl-circuit",
+      "verb": "introduces"
+    },
+    {
+      "span": "current-turning-on",
+      "concept": "rl-time-constant",
+      "verb": "introduces"
+    },
+    {
+      "span": "current-turning-on",
+      "concept": "ohms-law",
+      "verb": "uses"
+    },
+    {
+      "span": "current-turning-on",
+      "concept": "rc-circuit",
+      "verb": "uses"
+    },
+    {
+      "span": "what-sets-the-time-constant",
+      "concept": "rl-time-constant",
+      "verb": "reinforces"
+    },
+    {
+      "span": "what-sets-the-time-constant",
+      "concept": "energy-stored-in-an-inductor",
+      "verb": "uses"
+    },
+    {
+      "span": "current-turning-off",
+      "concept": "current-decay-in-an-rl-circuit",
+      "verb": "introduces"
+    },
+    {
+      "span": "current-turning-off",
+      "concept": "energy-stored-in-an-inductor",
+      "verb": "uses"
+    },
+    {
+      "span": "current-turning-off",
+      "concept": "electric-power",
+      "verb": "uses"
+    },
+    {
+      "span": "counting-in-time-constants",
+      "concept": "fraction-per-time-constant-rl",
+      "verb": "introduces"
+    },
+    {
+      "span": "counting-in-time-constants",
+      "concept": "rl-time-constant",
+      "verb": "reinforces"
+    },
+    {
+      "span": "counting-in-time-constants",
+      "concept": "current-decay-in-an-rl-circuit",
+      "verb": "reinforces"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "p1",
+      "source_id": "fs-id1169738227350",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "current-turning-on",
+      "prompt": "If you want a characteristic <em>RL</em> time constant of 1.00 s, and you have a $500\\ \\Omega$ resistor, what value of self-inductance is needed?",
+      "answer": {
+        "type": "number",
+        "value": 500.0,
+        "unit": "H",
+        "generated_by": "source",
+        "hint": "The time constant is the inductance divided by the resistance, so the inductance is the time constant multiplied by it.",
+        "solution": "500 H"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id1169737788008",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "what-sets-the-time-constant",
+      "prompt": "A large superconducting magnet, used for magnetic resonance imaging, has a 50.0 H inductance. If you want current through it to be adjustable with a 1.00 s characteristic time constant, what is the minimum resistance of system?",
+      "answer": {
+        "type": "number",
+        "value": 50.0,
+        "unit": "Ω",
+        "generated_by": "source",
+        "hint": "A smaller resistance makes the time constant longer, so the resistance that gives exactly 1.00 s is the smallest one that will do.",
+        "solution": "$50.0\\ \\Omega$"
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id1169736596063",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "what-sets-the-time-constant",
+      "prompt": "Suppose you have a supply of inductors ranging from 1.00 nH to 10.0 H, and resistors ranging from $0.100\\ \\Omega$ to $1.00\\ \\text{M}\\Omega$. What is the range of characteristic <em>RL</em> time constants you can produce by connecting a single resistor to a single inductor?",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "0.100 s to $1.00\\times 10^{-18}\\ \\text{s}$"
+      }
+    },
+    {
+      "id": "p7",
+      "source_id": "fs-id1169737723042",
+      "kind": "problem",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "counting-in-time-constants",
+      "prompt": "What percentage of the final current $\\kIocur$ flows through an inductor $\\kLind$ in series with a resistor $\\kRes$, three time constants after the circuit is completed?",
+      "answer": {
+        "type": "number",
+        "value": 95.0,
+        "unit": "%",
+        "generated_by": "source",
+        "hint": "The current covers 0.632 of what is left in every time constant, so count three steps rather than solving the exponential.",
+        "solution": "95.0%"
+      }
+    },
+    {
+      "id": "p9",
+      "source_id": "fs-id1169737787416",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "counting-in-time-constants",
+      "prompt": "(a) Use the exact exponential treatment to find how much time is required to bring the current through an 80.0 mH inductor in series with a $15.0\\ \\Omega$ resistor to 99.0% of its final value, starting from zero. (b) Compare your answer to the approximate treatment using integral numbers of $\\ktauRL$. (c) Discuss how significant the difference is.",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 24.6,
+            "unit": "ms",
+            "hint": "Set the growth expression equal to 0.990 of the final current and solve it for the time."
+          },
+          {
+            "part": "(b)",
+            "value": 26.7,
+            "unit": "ms",
+            "hint": "Counting in whole time constants, the current is past 99.0 percent after five of them."
+          }
+        ],
+        "solution": "(a) 24.6 ms (b) 26.7 ms (c) 9% difference, which is greater than the inherent uncertainty in the given parameters."
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "p1",
+      "concept": "rl-time-constant"
+    },
+    {
+      "exercise": "p3",
+      "concept": "rl-time-constant"
+    },
+    {
+      "exercise": "p5",
+      "concept": "rl-time-constant"
+    },
+    {
+      "exercise": "p7",
+      "concept": "fraction-per-time-constant-rl"
+    },
+    {
+      "exercise": "p7",
+      "concept": "current-growth-in-an-rl-circuit",
+      "weight": 3,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p9",
+      "concept": "current-growth-in-an-rl-circuit"
+    },
+    {
+      "exercise": "p9",
+      "concept": "fraction-per-time-constant-rl",
+      "weight": 4,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "p9",
+      "concept": "rl-time-constant",
+      "weight": 3,
+      "weights_by": "ai"
+    }
+  ]
+}

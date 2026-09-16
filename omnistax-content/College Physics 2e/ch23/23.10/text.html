@@ -1,0 +1,56 @@
+<section id="switching-an-rl-circuit">
+<h2>A switch that turns the current on and off</h2>
+<p class="cite-target">We know that the current through an inductor $\kLind$ cannot be turned on or off instantaneously. The change in current changes flux, inducing an emf opposing the change (Lenz’s law). How long does the opposition last? Current <em>will</em> flow and <em>can</em> be turned off, but how long does it take? Figure 23.42 shows a switching circuit that can be used to examine current through an inductor as a function of time.</p>
+<figure class="sim" id="sim-rl-switching" data-figure="23.42" data-original="/media/ch23/Figure_24_10_01.jpg" data-original-width="550" data-original-caption="(a) An RL circuit with a switch to turn current on and off. When in position 1, the battery, resistor, and inductor are in series and a current is established. In position 2, the battery is removed and the current eventually stops because of energy loss in the resistor. (b) A graph of current growth versus time when the switch is moved to position 1. (c) A graph of current decay when the switch is moved to position 2.">
+  <div class="sim-head"><span class="eyebrow">Figure 23.42</span><span>A resistor and an inductor stand in series with a battery and a two-position switch, and the graph below the circuit carries the current the switch lets through. Throw the switch to position 1 and the current climbs toward the value the battery and the resistance allow; throw it to position 2 and the battery is cut out and the current dies away. Set the inductance and the resistance and watch the marks at one, two and three time constants slide along the axis, since a larger inductance or a smaller resistance stretches the same curve over more time.</span></div>
+</figure>
+</section>
+
+<section id="current-turning-on">
+<h2>Turning on: the current climbs toward $V/R$</h2>
+<p class="cite-target">When the switch is first moved to position 1 (at $\kt = 0$), the current is zero and it eventually rises to $\kIocur = \kV/\kRes$, where $\kRes$ is the total resistance of the circuit. The opposition of the inductor $\kLind$ is greatest at the beginning, because the amount of change is greatest. The opposition it poses is in the form of an induced emf, which decreases to zero as the current approaches its final value. The opposing emf is proportional to the amount of change left. This is the hallmark of an exponential behavior, and it can be shown with calculus that</p>
+$$\kIcur = \kIocur(1 - e^{-\kt/\ktauRL})\;\text{(turning on),}$$
+<p>is the current in an <em>RL</em> circuit when switched on (Note the similarity to the exponential behavior of the voltage on a charging capacitor). The initial current is zero and approaches $\kIocur = \kV/\kRes$ with a <strong>characteristic time constant</strong> $\ktauRL$ for an <em>RL</em> circuit, given by</p>
+$$\ktauRL = \frac{\kLind}{\kRes}\text{,}$$
+<p>where $\ktauRL$ has units of seconds, since $1\;\text{H} = 1\;\Omega\cdot\text{s}$. In the first period of time $\ktauRL$, the current rises from zero to $0.632\kIocur$, since $\kIcur = \kIocur(1 - e^{-1}) = \kIocur(1 - 0.368) = 0.632\kIocur$. The current will go 0.632 of the remainder in the next time $\ktauRL$. A well-known property of the exponential is that the final value is never exactly reached, but 0.632 of the remainder to that value is achieved in every characteristic time $\ktauRL$. In just a few multiples of the time $\ktauRL$, the final value is very nearly achieved, as the graph in Figure 23.42(b) illustrates.</p>
+</section>
+
+<section id="what-sets-the-time-constant">
+<h2>What makes the time constant long or short</h2>
+<p class="cite-target">The characteristic time $\ktauRL$ depends on only two factors, the inductance $\kLind$ and the resistance $\kRes$. The greater the inductance $\kLind$, the greater $\ktauRL$ is, which makes sense since a large inductance is very effective in opposing change. The smaller the resistance $\kRes$, the greater $\ktauRL$ is. Again this makes sense, since a small resistance means a large final current and a greater change to get there. In both cases—large $\kLind$ and small $\kRes$—more energy is stored in the inductor and more time is required to get it in and out.</p>
+</section>
+
+<section id="current-turning-off">
+<h2>Turning off: the current dies away</h2>
+<p class="cite-target">When the switch in Figure 23.42(a) is moved to position 2 and cuts the battery out of the circuit, the current drops because of energy dissipation by the resistor. But this is also not instantaneous, since the inductor opposes the decrease in current by inducing an emf in the same direction as the battery that drove the current. Furthermore, there is a certain amount of energy, $(1/2)\kLind\kIocur^{2}$, stored in the inductor, and it is dissipated at a finite rate. As the current approaches zero, the rate of decrease slows, since the energy dissipation rate is $\kIcur^{2}\kRes$. Once again the behavior is exponential, and $\kIcur$ is found to be</p>
+$$\kIcur = \kIocur e^{-\kt/\ktauRL}\;\text{(turning off).}$$
+<p>(See Figure 23.42(c).) In the first period of time $\ktauRL = \kLind/\kRes$ after the switch is closed, the current falls to 0.368 of its initial value, since $\kIcur = \kIocur e^{-1} = 0.368\kIocur$. In each successive time $\ktauRL$, the current falls to 0.368 of the preceding value, and in a few multiples of $\ktauRL$, the current becomes very close to zero, as seen in the graph in Figure 23.42(c).</p>
+</section>
+
+<section id="counting-in-time-constants">
+<h2>Counting in time constants</h2>
+<figure class="sim" id="sim-counting-time-constants">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The same rule counted rather than solved. The bars stand at nothing, at one time constant, at two and so on, each covering 0.632 of what is left on the way up or falling to 0.368 of what is there on the way down, and the exact exponential is drawn through them. Ask for a fraction of the final current and the figure gives you the time the exponential takes to reach it and the whole number of time constants the counting needs, so you can see how far the counting stands from the curve.</span></div>
+</figure>
+<div class="example" id="ex-characteristic-time-and-current">
+<h3>Example 23.9 · Calculating Characteristic Time and Current in an <em>RL</em> Circuit</h3>
+<p>(a) What is the characteristic time constant for a 7.50 mH inductor in series with a $3.00\;\Omega$ resistor? (b) Find the current 5.00 ms after the switch is moved to position 2 to disconnect the battery, if it is initially 10.0 A.</p>
+<h4>Strategy for (a)</h4>
+<p>The time constant for an <em>RL</em> circuit is defined by $\ktauRL = \kLind/\kRes$.</p>
+<h4>Solution for (a)</h4>
+<p>Entering known values into the expression for $\ktauRL$ given in $\ktauRL = \kLind/\kRes$ yields</p>
+$$\ktauRL = \frac{\kLind}{\kRes} = \frac{7.50\;\text{mH}}{3.00\;\Omega} = 2.50\;\text{ms.}$$
+<h4>Discussion for (a)</h4>
+<p>This is a small but definitely finite time. The coil will be very close to its full current in about ten time constants, or about 25 ms.</p>
+<h4>Strategy for (b)</h4>
+<p>We can find the current by using $\kIcur = \kIocur e^{-\kt/\ktauRL}$, or by considering the decline in steps. Since the time is twice the characteristic time, we consider the process in steps.</p>
+<h4>Solution for (b)</h4>
+<p>In the first 2.50 ms, the current declines to 0.368 of its initial value, which is</p>
+$$\begin{array}{lll}\kIcur & = & 0.368\kIocur = (0.368)(10.0\;\text{A}) \\ & = & 3.68\;\text{A at}\;\kt = 2.50\;\text{ms.}\end{array}$$
+<p>After another 2.50 ms, or a total of 5.00 ms, the current declines to 0.368 of the value just found. That is,</p>
+$$\begin{array}{lll}\kIcur' & = & 0.368\kIcur = (0.368)(3.68\;\text{A}) \\ & = & 1.35\;\text{A at}\;\kt = 5.00\;\text{ms.}\end{array}$$
+<h4>Discussion for (b)</h4>
+<p>After another 5.00 ms has passed, the current will be 0.183 A; so, although it does die out, the current certainly does not go to zero instantaneously.</p>
+</div>
+<p class="cite-target">In summary, when the voltage applied to an inductor is changed, the current also changes, <em>but the change in current lags the change in voltage in an RL circuit</em>. In Reactance, Inductive and Capacitive, we explore how an <em>RL</em> circuit behaves when a sinusoidal AC voltage is applied.</p>
+</section>
