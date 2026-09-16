@@ -296,3 +296,14 @@ ink.
   (the rate the coil is turned in `sim-rotating-coil`), for the reasons under
   Colour above. The chapter pass may write the two into that file's list for
   23.1.
+
+### Decided by the chapter pass (2026-09-16)
+
+- All four `variables` rows and both `equations` rows are anchored to
+  `23.1-flux-defined`, as asked.
+- `eq-flux-perpendicular` now carries the `ktex` `\kPhi = \kBmag_{\perp}A`,
+  so the formulas view colours it as the paragraph does.
+- `ch23/COLOR.md` is rewritten to the bindings as built and gives 23.1
+  `velocity` and `angular-rate` as well as its three.
+- The second AP item's commented-out key is recorded in `exploration.md` §
+  Errata and is not used; the item stays open with an AI-marked approach.

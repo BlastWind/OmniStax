@@ -212,3 +212,15 @@ No hex literal anywhere.
 - No concept, symbol or type fix is wanted: the four nodes, the two glossary
   terms and the five bound types are all as the chapter's preparation left them,
   and the page writes no symbol of its own.
+
+### Decided by the chapter pass (2026-09-16)
+
+- The five `variables` rows are added, with the meanings the plan proposed and
+  all five anchored to `23.4-eddy-currents`. The section states no equation,
+  but its figures colour a field, a speed, an eddy current, a drag and a
+  displacement, and the Definitions view should name what the page draws;
+  eight sections of Chapters 4 to 20 carry variables without equations for the
+  same reason.
+- `ch23/COLOR.md` now gives 23.4 `time` as well as its five.
+- The four concept anchors are on the glossary and concept rows as listed;
+  glossary rows themselves carry no anchor field.

@@ -224,3 +224,14 @@ bound here.
   voltage) and `I_curr` (the current the motor draws, A, current). The
   section introduces no symbol of its own and stages no `book-rows.json` row,
   so this is a suggestion and not a dependency.
+
+### Decided by the chapter pass (2026-09-16)
+
+- The three `variables` rows the plan offered are added: `ω` and `emf`
+  anchored to `23.6-motor-as-generator`, `I_curr` to
+  `23.6-back-emf-and-speed`. The section states no equation, but the page
+  colours all three and the Definitions view would otherwise have held one
+  glossary term alone.
+- The book's `P = IV = (20 A)/(8.0 V) = 160 W` is an erratum, recorded in
+  `exploration.md` § Errata. The prose is verbatim and prints what the book
+  prints.

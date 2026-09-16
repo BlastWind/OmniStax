@@ -19,7 +19,7 @@ $$\kZimp = \sqrt{\kRes^{2} + (\kXL - \kXC)^{2}}\text{,}$$
   <div class="sim-head"><span class="eyebrow">Sim</span><span>The three oppositions drawn to scale as the sides of a right triangle: the resistance along the foot, the difference between the two reactances standing on it, and the impedance across the corner. The angle at the foot is the phase angle, and its cosine is the resistance divided by the impedance. Drag the frequency and the standing leg swings from far below the foot, where the capacitor dominates and the current leads the source voltage, up through nothing, where the triangle collapses to its foot and the impedance is the resistance alone, and on up above it, where the inductor dominates and the current lags. The graph beside the triangle carries the same three numbers against frequency on the same scale in ohms.</span></div>
 </figure>
 <div class="example" id="ex-calculating-impedance-and-current">
-<h3>Example 23.7 · Calculating Impedance and Current</h3>
+<h3>Example 23.12 · Calculating Impedance and Current</h3>
 <p>An <em>RLC</em> series circuit has a $40.0\;\Omega$ resistor, a 3.00 mH inductor, and a $5.00\;\mu\text{F}$ capacitor. (a) Find the circuit’s impedance at 60.0 Hz and 10.0 kHz, noting that these frequencies and the values for $\kLind$ and $\kCap$ are the same as in the two examples of Reactance, Inductive and Capacitive. (b) If the voltage source has $\kVrms = 120\;\text{V}$, what is $\kIrms$ at each frequency?</p>
 <h4>Strategy</h4>
 <p>For each frequency, we use $\kZimp = \sqrt{\kRes^{2} + (\kXL - \kXC)^{2}}$ to find the impedance and then Ohm’s law to find current. We can take advantage of the results of the previous two examples rather than calculate the reactances again.</p>
@@ -56,7 +56,7 @@ $$\kfo = \frac{1}{2\pi\sqrt{\kLind\kCap}}\text{,}$$
   <div class="sim-head"><span class="eyebrow">Figure 23.48</span><span>The rms current the circuit draws, plotted against the frequency of the source that drives it. The peak stands where the two reactances cancel and the impedance falls to the resistance alone. Raise the resistance and watch the peak drop and spread, which is the book’s second curve appearing out of the first, and change the inductance or the capacitance and the peak slides along the axis without changing its shape, which is what a radio tuner is built on. The average power is drawn on the same frame on its own scale at the right, and its peak is the sharper of the two, because away from resonance the current and the power factor fall together.</span></div>
 </figure>
 <div class="example" id="ex-calculating-resonant-frequency-and-current">
-<h3>Example 23.8 · Calculating Resonant Frequency and Current</h3>
+<h3>Example 23.13 · Calculating Resonant Frequency and Current</h3>
 <p>For the same <em>RLC</em> series circuit having a $40.0\;\Omega$ resistor, a 3.00 mH inductor, and a $5.00\;\mu\text{F}$ capacitor: (a) Find the resonant frequency. (b) Calculate $\kIrms$ at resonance if $\kVrms$ is 120 V.</p>
 <h4>Strategy</h4>
 <p>The resonant frequency is found by using the expression in $\kfo = \frac{1}{2\pi\sqrt{\kLind\kCap}}$. The current at that frequency is the same as if the resistor alone were in the circuit.</p>
@@ -81,12 +81,12 @@ $$\cos\;\phi = \frac{\kRes}{\kZimp}\text{.}$$
 $$\kPave = \kIrms\kVrms\cos\;\phi,$$
 <p>Thus $\cos\;\phi$ is called the <strong>power factor</strong>, which can range from 0 to 1. Power factors near 1 are desirable when designing an efficient motor, for example. At the resonant frequency, $\cos\;\phi = 1$.</p>
 <div class="example" id="ex-calculating-the-power-factor-and-power">
-<h3>Example 23.9 · Calculating the Power Factor and Power</h3>
+<h3>Example 23.14 · Calculating the Power Factor and Power</h3>
 <p>For the same <em>RLC</em> series circuit having a $40.0\;\Omega$ resistor, a 3.00 mH inductor, a $5.00\;\mu\text{F}$ capacitor, and a voltage source with a $\kVrms$ of 120 V: (a) Calculate the power factor and phase angle for $\kf = 60.0\;\text{Hz}$. (b) What is the average power at 60.0 Hz? (c) Find the average power at the circuit’s resonant frequency.</p>
 <h4>Strategy and Solution for (a)</h4>
 <p>The power factor at 60.0 Hz is found from</p>
 $$\cos\;\phi = \frac{\kRes}{\kZimp}\text{.}$$
-<p>We know $\kZimp = 531\;\Omega$ from Example 23.7, so that</p>
+<p>We know $\kZimp = 531\;\Omega$ from Example 23.12, so that</p>
 $$\cos\;\phi = \frac{40.0\;\Omega}{531\;\Omega} = 0.0753\;\text{at 60.0 Hz.}$$
 <p>This small value indicates the voltage and current are significantly out of phase. In fact, the phase angle is</p>
 $$\phi = \cos^{-1}\;0.0753 = 85.7^\circ\;\text{at 60.0 Hz.}$$
@@ -95,10 +95,10 @@ $$\phi = \cos^{-1}\;0.0753 = 85.7^\circ\;\text{at 60.0 Hz.}$$
 <h4>Strategy and Solution for (b)</h4>
 <p>The average power at 60.0 Hz is</p>
 $$\kPave = \kIrms\kVrms\cos\;\phi.$$
-<p>$\kIrms$ was found to be 0.226 A in Example 23.7. Entering the known values gives</p>
+<p>$\kIrms$ was found to be 0.226 A in Example 23.12. Entering the known values gives</p>
 $$\kPave = (0.226\;\text{A})(120\;\text{V})(0.0753) = 2.04\;\text{W at 60.0 Hz.}$$
 <h4>Strategy and Solution for (c)</h4>
-<p>At the resonant frequency, we know $\cos\;\phi = 1$, and $\kIrms$ was found to be 3.00 A in Example 23.8. Thus,</p>
+<p>At the resonant frequency, we know $\cos\;\phi = 1$, and $\kIrms$ was found to be 3.00 A in Example 23.13. Thus,</p>
 <p>$\kPave = (3.00\;\text{A})(120\;\text{V})(1) = 360\;\text{W}$ at resonance (1.30 kHz)</p>
 <h4>Discussion</h4>
 <p>Both the current and the power factor are greater at resonance, producing significantly greater power than at higher and lower frequencies.</p>

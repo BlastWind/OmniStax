@@ -372,6 +372,36 @@ the balance (23.15); the power distribution line (23.26); and the LC circuit
 beside its mass on a spring (23.50), which is two plane systems drawn side by
 side and gains nothing from depth.
 
+## Errata (gathered by the chapter pass, 2026-09-16)
+
+Six places where the printed book is wrong or incomplete. Nothing is
+recomputed for the reader in any of them: the page carries what the book
+carries, and the item is named here.
+
+- **Four AP test prep items whose keys are commented out of the CNXML.** The
+  source file for each of these items holds a `<solution>` inside an XML
+  comment, so the book prints the question and no answer. Each is therefore
+  carried as an open item with the book's options and an AI-marked suggested
+  approach, as `config.md` requires, and the commented key is recorded here
+  rather than used. They are 23.1's second item (`fs-id1583528`, the flux
+  through 0.2 m² at 60° to a 1.5 × 10⁻³ T field; commented key "1.5×10⁻⁴ Wb,
+  0°"), 23.5's second (`fs-id1448465`; "1.1 cm, 0.04 s"), 23.7's second
+  (`fs-id1313520`; "120 W, 17.14 A") and 23.8's second (`fs-id1449525`, how a
+  ground fault interrupter works; a commented paragraph that also carries a
+  stray closing bracket). No other module of the chapter hides a key this way:
+  the twelve CNXML files were searched, and these four are all of them. The
+  wave notes had counted five.
+- **23.6's dissipated power is written as a quotient.** The passage on the
+  motor at operating speed prints P = IV = (20 A)/(8.0 V) = 160 W. The
+  arithmetic and the result are right and the sentence around them is right;
+  the solidus should be a product. The prose is verbatim, so the page prints
+  what the book prints.
+- **23.12's Critical Thinking problem has a faulty key.** Part (a) divides the
+  change in flux by 100 where a quarter cycle of a 400 Hz rotation is 1/1600 s,
+  and part (b) comes out half of part (a) although the text of the answer
+  argues that two loops give more than one. The item is kept as printed, key
+  and all, and 23.12's `notes` says so.
+
 ## Wanted at chapter level
 
 Nothing. The rows this chapter waited on have landed: Chapter 22's

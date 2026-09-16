@@ -317,3 +317,13 @@ flux counted through a turn is in the flux hue, never the same one.
   the switching interval of `sim-self-inductance` and `sim-camera-flash`, for
   the reason under Colour above. The chapter pass may write it into that file's
   list for 23.9.
+
+### Decided by the chapter pass (2026-09-16)
+
+- All five `variables` rows and all seven `equations` rows are anchored as
+  asked.
+- `eq-henry` keeps no `ktex`: the henry is a unit and the page sets it as
+  text.
+- `ch23/COLOR.md` now gives 23.9 `time` as well as its six.
+- The inductance hue was checked against voltage and capacitance on this page
+  in the browser, in both themes; the three read apart.

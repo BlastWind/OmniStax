@@ -34,14 +34,14 @@ as the book writes them (rule 3):
    that impede current together, Figure 23.46, the AC version of Ohm's law,
    the argument from the phases of $V_R$, $V_L$ and $V_C$ through Figure
    23.47, $V_0 = \sqrt{V_{0R}^2 + (V_{0L} - V_{0C})^2}$, the substitution
-   that cancels $I_0$, $Z = \sqrt{R^2 + (X_L - X_C)^2}$, and Example 23.7).
+   that cancels $I_0$, $Z = \sqrt{R^2 + (X_L - X_C)^2}$, and Example 23.12).
 2. `resonance-in-rlc-series-ac-circuits` **Resonance in *RLC* Series AC
    Circuits** (book: the current as a function of frequency, $X_L = X_C$,
    $f_0 = 1/2\pi\sqrt{LC}$, the paragraph on mechanical resonance and the
-   radio tuner, Figure 23.48 with its two resistances, and Example 23.8).
+   radio tuner, Figure 23.48 with its two resistances, and Example 23.13).
 3. `power-in-rlc-series-ac-circuits` **Power in *RLC* Series AC Circuits**
    (book: the phase angle, $\cos\phi = R/Z$, $P_\text{ave} = I_\text{rms}
-   V_\text{rms}\cos\phi$, the power factor, Example 23.9, and the closing
+   V_\text{rms}\cos\phi$, the power factor, Example 23.14, and the closing
    paragraphs in which the resistance dissipates everything the source
    delivers while the inductor and the capacitor pass energy back and
    forth — the car on the corrugated road of Figure 23.49 and the mass on a
@@ -57,7 +57,7 @@ Learning objectives, the section summary and the four glossary terms
 running text into the tables and the views (rule 4). The references to
 Reactance, Inductive and Capacitive are plain text, as `ch23/config.md`
 settles every cross-reference, and the app links "Figure 23.46" to "Figure
-23.50" and "Example 23.7" to "Example 23.9" on the page itself. The PhET
+23.50" and "Example 23.12" to "Example 23.14" on the page itself. The PhET
 link at the end of the module, Circuit Construction Kit (AC+DC), is dropped
 and named in `notes` (`ch23/config.md`).
 
@@ -66,12 +66,12 @@ and named in `notes` (`ch23/config.md`).
 | id | kind | introduced in | evidence |
 |---|---|---|---|
 | voltages-do-not-simply-add | idea | impedance | the paragraph on $V_R$ in phase, $V_L$ leading by 90° and $V_C$ following by 90°; Figure 23.47; $V_0 = \sqrt{V_{0R}^2 + (V_{0L} - V_{0C})^2}$ |
-| impedance | result | impedance | $Z = \sqrt{R^2 + (X_L - X_C)^2}$; the glossary term; Example 23.7, 531 Ω at 60.0 Hz and 190 Ω at 10.0 kHz |
-| ac-ohms-law-with-impedance | result | impedance | $I_0 = V_0/Z$ or $I_\text{rms} = V_\text{rms}/Z$; Example 23.7(b), 0.226 A and 0.633 A |
-| resonant-frequency-of-an-rlc-circuit | result | resonance-in-rlc-series-ac-circuits | $X_L = X_C$ solved for $f_0 = 1/2\pi\sqrt{LC}$; the glossary term; Example 23.8, 1.30 kHz and 3.00 A |
+| impedance | result | impedance | $Z = \sqrt{R^2 + (X_L - X_C)^2}$; the glossary term; Example 23.12, 531 Ω at 60.0 Hz and 190 Ω at 10.0 kHz |
+| ac-ohms-law-with-impedance | result | impedance | $I_0 = V_0/Z$ or $I_\text{rms} = V_\text{rms}/Z$; Example 23.12(b), 0.226 A and 0.633 A |
+| resonant-frequency-of-an-rlc-circuit | result | resonance-in-rlc-series-ac-circuits | $X_L = X_C$ solved for $f_0 = 1/2\pi\sqrt{LC}$; the glossary term; Example 23.13, 1.30 kHz and 3.00 A |
 | resonance-peak-and-resistance | idea | resonance-in-rlc-series-ac-circuits | Figure 23.48, the two curves differing only in resistance; the radio receiver that would not be selective |
-| phase-angle | result | power-in-rlc-series-ac-circuits | $\cos\phi = R/Z$; the glossary term; Example 23.9(a), 0.0753 and 85.7° |
-| power-factor | result | power-in-rlc-series-ac-circuits | $P_\text{ave} = I_\text{rms}V_\text{rms}\cos\phi$; the glossary term; Example 23.9(b) and (c), 2.04 W and 360 W |
+| phase-angle | result | power-in-rlc-series-ac-circuits | $\cos\phi = R/Z$; the glossary term; Example 23.14(a), 0.0753 and 85.7° |
+| power-factor | result | power-in-rlc-series-ac-circuits | $P_\text{ave} = I_\text{rms}V_\text{rms}\cos\phi$; the glossary term; Example 23.14(b) and (c), 2.04 W and 360 W |
 | lc-oscillation-analogy | idea | power-in-rlc-series-ac-circuits | the closing paragraphs; Figure 23.49, the wheel on the corrugated road; Figure 23.50, the mass on a spring beside the *LC* circuit |
 
 The page leans on 23.11's `inductive-reactance`, `capacitive-reactance`,
@@ -116,7 +116,7 @@ and choices · headline · graph · 3D
    (30 to 120 Ω, default 40, the resistance hue), the inductance $\kLind$
    (1.00 to 6.00 mH, default 3.00, the inductance hue) and the capacitance
    $\kCap$ (2.00 to 10.00 µF, default 5.00, the capacitance hue), which are
-   Example 23.7's own numbers, so the figure opens on that example and reads
+   Example 23.12's own numbers, so the figure opens on that example and reads
    531 Ω and 0.226 A; and a choice, never a slider, for what the graph
    carries, the three element voltages or the source voltage beside the
    current (rule 26.1), since five curves on one frame at once would be
@@ -155,8 +155,8 @@ and choices · headline · graph · 3D
    the resistance hue), the inductance $\kLind$ (1.00 to 6.00 mH, default
    3.00, the inductance hue) and the capacitance $\kCap$ (2.00 to 10.00 µF,
    default 5.00, the capacitance hue). The source is held at the book's
-   120 V rms and stated in the readout, so the figure opens on Example 23.7
-   and Example 23.9 together and reads 531 Ω, 0.226 A, a power factor of
+   120 V rms and stated in the readout, so the figure opens on Example 23.12
+   and Example 23.14 together and reads 531 Ω, 0.226 A, a power factor of
    0.0753 and 85.7° · "At 60.0 Hz the capacitor's 531 Ω dwarfs the
    inductor's 1.13 Ω, so the impedance is 531 Ω and the current lags the
    source voltage by 85.7°." · **graph beside** the triangle, which is a
@@ -341,3 +341,19 @@ and no Check Your Understanding box, so everything is set at the end.
   100 where the quarter cycle of a 400 Hz rotation is 1/1600 s, and part
   (b) comes out smaller than part (a) although the text of the answer
   argues it should be larger. Nothing is recomputed for the reader.
+
+### Decided by the chapter pass (2026-09-16)
+
+- All six `variables` rows and all seven `equations` rows are anchored as
+  asked.
+- The chapter's figure numbering was verified module by module. The chapter
+  has fifty narrative figures, not fifty-one: the count of fifty-one had taken
+  one of the nine images that sit inside end-of-module exercises for a
+  narrative figure. No figure between 23.3 and 23.4 is unnumbered, and this
+  section's 23.46 to 23.50 stand.
+- This section's three worked examples are renumbered 23.12, 23.13 and 23.14.
+  Numbered from 23.7 they collided with 23.9's pair; the publisher counts
+  fourteen straight through the chapter. The five exercise and prose
+  references that point back at them are renumbered with the headers.
+- The Critical Thinking problem's faulty key is kept as printed and recorded
+  in `exploration.md` § Errata.

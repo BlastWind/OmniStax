@@ -245,3 +245,9 @@ and every bar by the percentage written above it.
 - `23.10/τ_RL` → `23.10-current-turning-on`
 - `23.10/R_res` → `23.10-current-turning-on`
 - `23.10/I_0curr` → `23.10-current-turning-on`
+
+### Decided by the chapter pass (2026-09-16)
+
+- All three `variables` rows and all four `equations` rows are anchored as
+  asked, the three growth equations and the three variables to
+  `23.10-current-turning-on` and the decay to `23.10-current-turning-off`.

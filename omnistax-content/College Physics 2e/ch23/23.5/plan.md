@@ -296,3 +296,13 @@ problems, of which the book keys six problems and one AP item.
   therefore kept unkeyed with an AI-marked suggested approach, as
   `ch23/config.md` requires, and the commented-out key is recorded here
   rather than used.
+
+### Decided by the chapter pass (2026-09-16)
+
+- All four `variables` rows and all five `equations` rows are anchored to
+  `23.5-the-emf-at-each-instant`, as asked.
+- `ch23/COLOR.md`'s 23.5 line now carries `velocity`.
+- The second AP item's commented-out key, "1.1 cm, 0.04 s", is recorded in
+  `exploration.md` § Errata and is not used.
+- The generator, the chapter's one moving 3D scene, was checked in the browser
+  with WebGL and with it refused; it draws and turns either way.

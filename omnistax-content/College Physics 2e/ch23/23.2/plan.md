@@ -101,3 +101,12 @@ Anchors, one row per line:
 No concept row and no symbol row needs a correction for this section: the six
 concepts read correctly, and `Φ`, `ΔΦ`, `emf`, `N_count`, `Δt` and `B_mag` are
 all staged or already in the book with the types this page draws them in.
+
+### Decided by the chapter pass (2026-09-16)
+
+- The one `equations` row and all four `variables` rows are anchored to
+  `23.2-faradays-and-lenzs-law`, as asked. No concept or symbol row needed a
+  correction.
+- Figure 23.8, the tape heads, is the one number of the chapter with no row,
+  and this section's `notes` says so; the chapter pass confirms that no other
+  number is missing.

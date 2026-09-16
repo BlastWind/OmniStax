@@ -215,3 +215,13 @@ in the line wear their own hues.
   `fs-id1313520`, has its solution commented out in the CNXML
   (`120 W, 17.14 A`), so it is carried unkeyed with an AI-marked approach, as
   23.1's AP item was.
+
+### Decided by the chapter pass (2026-09-16)
+
+- All five `equations` rows and all eight `variables` rows are anchored as
+  asked.
+- `ch23/COLOR.md` now gives 23.7 `resistance` and `time`, and no longer claims
+  the distribution line for the categorical palette: its three places are
+  drawn in ink.
+- The second AP item's commented-out key, "120 W, 17.14 A", is recorded in
+  `exploration.md` § Errata and is not used.

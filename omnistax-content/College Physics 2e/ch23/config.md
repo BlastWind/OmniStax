@@ -24,7 +24,7 @@ marked.
 | Sim sliders | whatever is interesting and variable in the idea: the field strength, the area of a loop and the angle it makes with the field, the speed of a magnet moved into a coil, the number of turns, the speed of a rod on its rails and the length between them, the conductivity of a plate and the width of its slots, the angular velocity of a generator's coil, the driving voltage and the back emf of a motor, the turns ratio of a transformer, the leakage current a GFI must catch, the length and the turns of a solenoid, the inductance and the resistance of an RL circuit, and above all the frequency, which drives every figure of 23.11 and 23.12. A choice, never a slider, for the pole that faces the coil, for in or out, for solid or slotted or insulating, for rings or split ring, for step-up or step-down, for the earth wire intact or broken, and for which element sits on the AC source (rule 26.1) |
 | Motion | decided per figure (rule 14). This chapter has more moving figures than any before it, because induction is a rate and most of its ideas have a clock in them. Expected to move: 23.1's magnet moved in and out of a coil, whose emf follows the speed of the hand; 23.3's rod sliding along its rails, sweeping area; 23.4's pendulum damping to rest, three bobs released together; 23.5's generator, the chapter's one moving 3D scene, whose sinusoid is drawn as the loop turns; 23.10's current growing and decaying through its time constants; 23.11's three phase pairs, where the lead and the lag are the whole content; 23.12's stacked voltages and its LC circuit sloshing beside a mass on a spring. Expected to be still: the flux geometry of 23.1, which answers its tilt slider; the transformer's ratios; the safety schematics of 23.8, where a fault is a state and not a process; the solenoid of 23.9; the impedance triangle and the resonance curve of 23.12, which answer their frequency slider and register no cycle. A plan line must say which and why, and must never add a dummy loop to earn a transport |
 | 3D | two full 3D scenes (rule 28.3): 23.1's flux through a tilted area, where the definition is an angle between a field and a surface's normal and no flat drawing can hold it; and 23.5's generator, the chapter's one moving 3D scene, whose four book figures are four states of it. Each carries the buttons rule 26.2 asks for and each plan line states the bound on the orbit and the reason. Locked views (rule 28.2) for the arrangements the book prints in perspective that do not turn: Faraday's iron ring (23.3), the transformer core (23.27), the two neighbouring coils and the counter-wound element of 23.9 (23.37, 23.38) and the pendulum between its pole faces (23.12). Everything else is flat, every circuit and every graph included (new) |
-| Figures that serve exercises | the second of the book's two ways, as Chapters 4, 9, 12, 15, 19 and 22 used it: an image an exercise refers to travels on the `figure` field of that exercise's card. This chapter has nine of them; those belonging to problems that are kept are copied, and 23.11's two capacitor filter circuits, which sit between two conceptual questions rather than inside either, travel on both questions' cards |
+| Figures that serve exercises | the second of the book's two ways, as Chapters 4, 9, 12, 15, 19 and 22 used it: an image an exercise refers to travels on the `figure` field of that exercise's card. This chapter has nine of them; those belonging to problems that are kept are copied, and 23.11's two capacitor filter circuits, which sit between two conceptual questions rather than inside either, travel on both questions' cards and on the card of the tenth problem, which is the item that names circuit (b) |
 | Colour coding | two new types, `magnetic-flux` (Wb, which the book writes $\text{T}\cdot\text{m}^2$) and `inductance` (H), because the chapter's figures draw both and its readouts state both; reactance and impedance take Chapter 20's `resistance` type rather than types of their own, since the book calls them an effective resistance and the AC analogue to resistance, they are measured in ohms, they stand in Ohm's law where $R$ stands, and $Z = \sqrt{R^2 + (X_L - X_C)^2}$ must read as one sentence about ohms (`exploration.md` § The type cases this chapter had to settle argues all four cases); `magnetic-field` and $\mu_0$ are Chapter 22's, `current` and `resistance` Chapter 20's, `emf` Chapter 21's, `voltage` and `capacitance` Chapter 19's, `energy` Chapter 7's, `power` Chapter 7's, `frequency` and the resonant frequency $f_0$ Chapter 16's, `angular-rate` Chapter 6's and `time` Chapter 2's, all used by name and none restaged; the number of turns $N$, the area $A$, the length $\ell$, the width $w$, the permeability $\mu_0$, the phase angle $\phi$ and the power factor $\cos\phi$ stay untyped and in ink. Symbol rows added are listed under "Symbols" below |
 | Inline exercises | none: no module of this chapter prints a Check Your Understanding box |
 | Exercises tab | end-of-module problems, conceptual questions, AP test prep |
@@ -123,3 +123,53 @@ Rows used as they stand: `B_mag` (`\kBmag`), `μ_0`, `I_curr` (`\kIcur`),
 `emf` (`\kemf`), `emf_one` (`\kemfone`), `emf_two` (`\kemftwo`), `f` (`\kf`),
 `f_0` (`\kfo`), `ω` (`\kw`), `v` (`\kv`), `t` (`\kt`), `Δt` (`\kdt`), `T`
 (`\kT`), `N_count`, `n`, `A`, `ΔA`, `l`, `θ` and `m`.
+
+## What the build changed (chapter pass, 2026-09-16)
+
+The table above stands as it was proposed, with the corrections below already
+written into it. Nothing in the plan had to be abandoned.
+
+- **Figure numbering.** Verified module by module against the book, and the two sections in doubt were read on openstax.org: 23.1 prints Figures 23.3 to 23.6 and 23.12 prints 23.46 to 23.50 with Examples 23.12 to 23.14. The
+  chapter's narrative figures are exactly the fifty the table names, 23.1 to
+  23.50: two in the introduction, then four, three, two, seven, five, one,
+  four, eight, five, one, three and five through 23.1 to 23.12, with nine
+  further images sitting inside end-of-module exercises and taking no number.
+  23.12's count of fifty-one had taken one of those nine for a narrative
+  figure; no figure of the chapter is unnumbered. Every number from 23.1 to
+  23.50 is on a built row or on a `folds` list, and each appears once. The one
+  number with no row is 23.8, the tape recording and playback heads, dropped as
+  decoration and named in 23.2's `notes`.
+- **Worked examples.** The publisher counts fourteen through the chapter, and
+  they now run straight through: 23.1 in section 23.2, 23.2 in 23.3, 23.3 and
+  23.4 in 23.5, 23.5 and 23.6 in 23.7, 23.7 and 23.8 in 23.9, 23.9 in 23.10,
+  23.10 and 23.11 in 23.11, and 23.12, 23.13 and 23.14 in 23.12. Section 23.12
+  had numbered its three from 23.7 and collided with 23.9's pair; its headers
+  and the five exercise references that point back at them are renumbered.
+- **Variables where the section states no equation.** 23.4 and 23.6 print no
+  equation display and so owned no `variables` row, which left their
+  Definitions views holding glossary terms alone. Both now carry the rows their
+  own figures colour and read out: five for 23.4 (`B_mag`, `v`, `I_curr`, `F`
+  and `x`) and three for 23.6 (`ω`, `emf` and `I_curr`). Chapters 4, 6, 7, 9,
+  16, 17, 18 and 20 each do the same somewhere. 23.8 stays without, as its plan
+  asked: it gives no symbol a meaning of its own. The chapter's `variables`
+  table is therefore forty-eight rows, not forty.
+- **Anchors.** Every `variables` and every `equations` row of the chapter now
+  carries one, eighty-five in all, written from the section plans once the
+  ids existed. `eq-flux-perpendicular` gained the `ktex`
+  `\kPhi = \kBmag_{\perp}A` that 23.1 writes in its prose, so the formulas view
+  colours it as the page does. `eq-henry` keeps no `ktex`: the henry is a unit
+  and the page sets it as text. Glossary rows carry no anchor.
+- **Colour.** `COLOR.md`'s paragraph of bindings is rewritten to the bindings as
+  built. Seven pages took a type the forecast had not given them, each for a
+  quantity its figures draw: `velocity` and `angular-rate` on 23.1, `time` and
+  `power` on 23.3, `time` on 23.4 and on 23.9, `velocity` on 23.5, `resistance`
+  and `time` on 23.7, and `magnetic-field` on 23.8. No page dropped one. The
+  categorical palette is used on one page rather than three: 23.12's resonance
+  curve tells its second resistance by a dash, as the plan preferred, and
+  23.7's distribution line draws its three places in ink.
+- **Motion.** Seventeen of the chapter's forty drawn figures call `cycle()`
+  and the rest carry no transport, which is the split the table forecast: the
+  magnet, the ring and the turning coil of 23.1 move and its flux geometry does
+  not; the transformer figures of 23.7 and every safety schematic of 23.8 are
+  still, since a fault is a state and not a process; the impedance triangle of
+  23.12 is still and its voltages and its LC circuit move.

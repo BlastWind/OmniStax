@@ -108,3 +108,9 @@ hue.
   `power` as well as the seven types listed there, the first for the time axis
   of the two rail figures and the second because `sim-tether` states the power
   converted from the shuttle's orbit.
+
+### Decided by the chapter pass (2026-09-16)
+
+- Both `equations` rows and all three `variables` rows are anchored to
+  `23.3-rod-on-rails`, as asked.
+- `ch23/COLOR.md` now gives 23.3 `time` and `power` as well as its seven.

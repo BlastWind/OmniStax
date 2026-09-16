@@ -374,7 +374,8 @@ function fluxBar(ctx, cx, cy, h, frac, capt, value) {
 ===================================================================== */
 (function () {
   const THREE = window.THREE;
-  const hasGL = !!(THREE && typeof WebGLRenderingContext === 'function');
+  const glOk = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } };
+  const hasGL = !!(THREE && glOk());
   const d = sim('sim-flux-angle', hasGL ? 0 : 620);
   const B = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.5, max: 3.0, step: 0.1, value: 1.5, unit: 'mT', dec: 1, aria: 'the strength of the uniform magnetic field' });
   const A = ctl(d.controls, { label: 'A', cls: '', min: 0.05, max: 0.40, step: 0.01, value: 0.20, unit: 'm²', dec: 2, aria: 'the area of the loop' });

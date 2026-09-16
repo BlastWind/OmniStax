@@ -280,3 +280,12 @@ requires. The number of turns on a transformer, the 5 mA trip level and the
 - No anchors are wanted: the section states no equation and gives no symbol a
   meaning of its own, so it writes no `equations` and no `variables` row. The
   glossary rows the prep pass wrote for it carry no anchor field.
+
+### Decided by the chapter pass (2026-09-16)
+
+- No anchor was wanted and none is written: the section states no equation and
+  gives no symbol a meaning of its own, and its glossary rows carry no anchor
+  field. It is the one section of the chapter left without `variables`.
+- `ch23/COLOR.md`'s 23.8 line now carries `magnetic-field`.
+- The second AP item's commented-out key is recorded in `exploration.md` §
+  Errata and is not used.

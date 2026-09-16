@@ -4078,3 +4078,77 @@ them. The two 3D scenes were opened with WebGL and with WebGL refused: Figure
 drawing of the same wave; Figure 24.22 offers its view choice only where a scene
 can be drawn, and the switch hides the flat canvas by its display rather than by
 the `hidden` attribute, which a canvas ignores.
+
+
+### Pass 49 (2026-09-16): Chapter 23, Electromagnetic Induction, AC Circuits, and Electrical Technologies, is built and passed
+
+Twelve sections and an introduction, the longest chapter of the book and the one
+with the most moving figures, because induction is a rate and nearly every idea
+in it has a clock. Forty sims and eight photographs, fifty numbered figures of
+the book accounted for, sixty-two concepts, a hundred and seventy-eight
+prerequisite edges, two hundred and eighteen coverage rows, forty-eight
+variables, thirty-seven equations and thirty-one glossary terms. Eighty-eight
+exercises are set — fifty problems, thirty conceptual questions and eight AP
+items — and the fifty-seven unkeyed problems are left out and named in the notes
+of the section each belongs to.
+
+The chapter declares two types, `magnetic-flux` and `inductance`, and both had
+to be argued for. Flux earns one because the hardest sentence of the chapter is
+that a strong field held still induces nothing: the lines drawn in space wear
+the field's hue and the count of them a loop catches wears the flux hue, and a
+figure that draws both changes the colour of the same line where it crosses the
+surface. Inductance earns one because the henry is read out on four pages.
+Reactance and impedance were refused types of their own and take Chapter 20's
+`resistance`, since 23.12's whole argument is that $R$, $X_L$ and $X_C$ are
+three numbers of one kind that combine into a fourth; they are told apart by
+subscript, as root rule 7 tells variants apart. Twenty-six symbol rows are
+staged, every one of them keyed around a name Chapters 2 to 22 had already
+taken: the self-inductance is `L_ind` because `L` is angular momentum, the
+impedance `Z_imp` because `Z` is acoustic impedance, the RL time constant
+`τ_RL` beside Chapter 21's `τ_RC`.
+
+Two figures earn a full 3D scene. The flux through a tilted area is a plane
+surface and a direction in the space round it, and a flat drawing has to lie
+about one of the two; its orbit is held from just below the field's plane to
+85° above it, since the scene is symmetric about that plane. The generator is
+the chapter's one moving scene and folds four of the book's figures into one
+machine whose split ring is a choice and whose sinusoid is drawn as the coil
+turns. Six more arrangements the book prints in perspective are locked views,
+and everything else is flat.
+
+The chapter pass wrote every anchor on every variable and equation row,
+eighty-five in all, which the preparation had to leave empty because the
+validator refuses an anchor into a section that is not yet built, and gave
+`eq-flux-perpendicular` the `ktex` its paragraph writes. It added the variables
+rows for 23.4 and 23.6, which state no equation and so had Definitions views
+holding glossary terms alone although their figures colour a field, a speed, an
+eddy current, a drag, a displacement, a shaft rate, a back emf and a current.
+It renumbered 23.12's three worked examples 23.12 to 23.14: numbered from 23.7
+they had collided with 23.9's pair, and the publisher counts fourteen straight
+through the chapter. It verified the chapter's figure numbering module by
+module and found fifty narrative figures where 23.12 had counted fifty-one,
+the extra being one of the nine images that sit inside end-of-module exercises;
+every number from 23.1 to 23.50 is on a row or a `folds` list except 23.8, the
+tape heads, dropped as decoration. It rewrote `ch23/COLOR.md` to the bindings
+as built, seven pages having taken a type the forecast had not given them, and
+recorded that the categorical palette is wanted on one page rather than three.
+
+Six of the book's own slips are carried as the book prints them and gathered in
+`ch23/exploration.md`: four AP test prep items whose keys the publisher
+commented out of the CNXML, in 23.1, 23.5, 23.7 and 23.8, each kept open with
+an approach of OmniStax's; 23.6's dissipated power written as a quotient where
+it is a product; and 23.12's Critical Thinking key, which divides by 100 where
+a quarter cycle of a 400 Hz rotation is 1/1600 s and then answers less for two
+loops than for one. Nothing is recomputed for the reader anywhere.
+
+Checks: `check:content` over the whole book with no errors, 429 unit tests,
+`astro check` clean, a build, and a headless pass over all thirteen pages in
+light and dark with WebGL and with WebGL refused. It found no blank canvas and
+no KaTeX error anywhere, and one console error, which is the fix pass: 23.1's
+flux scene had asked whether `WebGLRenderingContext` was defined, which a
+browser with WebGL turned off still answers yes to, so it drew nothing at all
+instead of the flat side view it carries. It now probes a context as the
+generator does, and both scenes fall back to a drawing of the same arrangement.
+The chapter's two doubtful numberings were also read on openstax.org: 23.1
+prints Figures 23.3 to 23.6 and 23.12 prints 23.46 to 23.50 with Examples 23.12
+to 23.14.

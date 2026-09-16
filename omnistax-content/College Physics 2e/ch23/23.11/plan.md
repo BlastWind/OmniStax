@@ -231,3 +231,13 @@ categorical or the element palette.
   `23.11-capacitors-and-capacitive-reactance`
 - `equations` `eq-ohms-law-capacitor` → anchor
   `23.11-capacitors-and-capacitive-reactance`
+
+### Decided by the chapter pass (2026-09-16)
+
+- All three `variables` rows and all four `equations` rows are anchored as
+  asked.
+- The filter image travels on the two conceptual questions and on the tenth
+  problem, which is the item that names circuit (b); `config.md` names two and
+  is right about the questions.
+- The flux and inductance hues were checked against voltage and capacitance on
+  this page in the browser, in both themes; they read apart.
