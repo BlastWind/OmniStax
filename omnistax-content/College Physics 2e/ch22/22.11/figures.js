@@ -71,14 +71,25 @@ function poly(ctx, pts, color, w, dash) {
    person falling over, so this figure draws its own patient (rule 25). The half
    width at each point down the body is given as a fraction of the body's length,
    and the outline is that profile taken down one side and back up the other. */
-const BODY = [[0, 0.050], [0.05, 0.062], [0.10, 0.058], [0.13, 0.030], [0.16, 0.080],
-  [0.20, 0.088], [0.34, 0.070], [0.45, 0.082], [0.55, 0.070], [0.72, 0.052], [0.93, 0.034], [0.97, 0.044], [1, 0.030]];
+const TORSO = [[0.105, 0.028], [0.13, 0.105], [0.20, 0.100], [0.40, 0.078], [0.50, 0.090], [0.58, 0.085], [0.60, 0.0]];
 function supine(ctx, x, y, L, color) {
-  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.lineJoin = 'round';
+  const P = (u, w) => [x + u * L, y + w * L];
+  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  /* the head, a circle at the crown end */
+  ctx.beginPath(); ctx.arc(x + 0.058 * L, y, 0.054 * L, 0, TAU); ctx.fill();
+  /* the trunk, from the neck over the shoulders down to the hips, one side and then the other */
   ctx.beginPath();
-  BODY.forEach(([u, w], i) => (i ? ctx.lineTo(x + u * L, y - w * L) : ctx.moveTo(x + u * L, y - w * L)));
-  for (let i = BODY.length - 1; i >= 0; i--) ctx.lineTo(x + BODY[i][0] * L, y + BODY[i][1] * L);
-  ctx.closePath(); ctx.fill(); ctx.restore();
+  TORSO.forEach(([u, w], i) => { const q = P(u, -w); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); });
+  for (let i = TORSO.length - 1; i >= 0; i--) { const q = P(TORSO[i][0], TORSO[i][1]); ctx.lineTo(q[0], q[1]); }
+  ctx.closePath(); ctx.fill();
+  /* the arms lying along the sides, and the two legs, as rounded strokes */
+  ctx.lineWidth = 0.036 * L;
+  [-1, 1].forEach((s) => { const a = P(0.17, s * 0.13), b = P(0.54, s * 0.118); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); });
+  ctx.lineWidth = 0.07 * L;
+  [-1, 1].forEach((s) => { const a = P(0.60, s * 0.045), b = P(0.95, s * 0.040); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); });
+  /* the feet, turned up at the far end */
+  [-1, 1].forEach((s) => { const q = P(0.975, s * 0.040); ctx.beginPath(); ctx.ellipse(q[0], q[1], 0.03 * L, 0.024 * L, 0, 0, TAU); ctx.fill(); });
+  ctx.restore();
 }
 /* a legend line: the mark, then its name set to the right of it */
 function legend(ctx, mark, x, y, s, color) {

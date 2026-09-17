@@ -348,7 +348,7 @@ function legend(ctx, mark, x, y, s, color) {
     line(ctx, EX - RE - 30, EY, EX + RE + 30, EY, alpha(PAL.ink, 0.3), 2, [6, 8]);
     text(ctx, 'N', EX, EY - RE + 26, PAL.ink, { size: 22, weight: 700, align: 'center' });
     text(ctx, 'S', EX, EY + RE - 26, PAL.ink, { size: 22, weight: 700, align: 'center' });
-    text(ctx, 'the equator', EX + RE + 40, EY, PAL.muted, { size: 18 });
+    text(ctx, 'the equator', EX - RE - 42, EY, PAL.muted, { size: 18, align: 'right', bg: PAL.panel });
     /* the angle the arriving velocity makes with the field line where it meets it */
     const cosA = (2 * Math.sin(lat)) / Math.sqrt(1 + 3 * Math.sin(lat) * Math.sin(lat));
     const ang = Math.acos(Math.min(1, cosA)) / RAD, guided = ang < 45;
@@ -362,7 +362,7 @@ function legend(ctx, mark, x, y, s, color) {
       label(ctx, 'a cosmic ray proton', (far[0] + meet[0]) / 2, (far[1] + meet[1]) / 2, { side: 'right', size: 19, color: col.v, gap: 34, H });
       if (guided) {                                     /* it meets the lines nearly end-on and rides them down */
         const lend = Math.acos(Math.cos(lat) / Math.sqrt(R0)), pts = [];
-        for (let i = 0; i <= 70; i++) { const la = lat + ((lend - lat) * i) / 70; const p = shell(L, la); pts.push([p[0] + 10 * Math.sin(i * 0.8), p[1] + 10 * Math.cos(i * 0.8)]); }
+        for (let i = 0; i <= 70; i++) { const la = lat + ((lend - lat) * i) / 70; const p = shell(L, la); pts.push([p[0] + 7 * Math.sin(i * 0.6), p[1] + 7 * Math.cos(i * 0.6)]); }
         poly(ctx, pts, col.q, 4);
         const end = pts[pts.length - 1];
         dot(ctx, end[0], end[1], col.q, true, 10);
@@ -380,7 +380,7 @@ function legend(ctx, mark, x, y, s, color) {
       angleArc(ctx, { x: meet[0], y: meet[1] }, 50, Math.atan2(-(far[1] - meet[1]), far[0] - meet[0]), Math.atan2(-(nxt[1] - meet[1]), nxt[0] - meet[0]), fmt(ang, 0) + '°');
     } else {
       const lm = Math.min(latMax(belt) - 0.06, lat), pts = [];
-      for (let i = 0; i <= 150; i++) { const la = -lm + (2 * lm * i) / 150; const p = shell(belt, la); pts.push([p[0] + 12 * Math.sin(i * 0.5), p[1] + 12 * Math.cos(i * 0.5)]); }
+      for (let i = 0; i <= 150; i++) { const la = -lm + (2 * lm * i) / 150; const p = shell(belt, la); pts.push([p[0] + 8 * Math.sin(i * 0.4), p[1] + 8 * Math.cos(i * 0.4)]); }
       poly(ctx, pts, col.q, 4);
       [pts[0], pts[pts.length - 1]].forEach((p) => dot(ctx, p[0], p[1], col.q, true, 10));
       label(ctx, 'turned back where the lines crowd', pts[pts.length - 1][0], pts[pts.length - 1][1], { side: 'right', size: 19, color: col.q, gap: 30, H });
@@ -453,7 +453,7 @@ function legend(ctx, mark, x, y, s, color) {
     const top = P3(RMAJ, AMIN, 0), mid = P3(RMAJ, 0, 0);
     vbracket(ctx, mid[0] + 104, top[1], mid[1], col.r, fmt(AMIN, 1) + ' m', 1, { side: 'right', H });
     const outer = ring(RMAJ + AMIN, 0);
-    label(ctx, 'the field runs all the way around', centre[0][0], centre[0][1], { side: 'right', size: 19, color: col.B, gap: 34, H });
+    label(ctx, 'the field runs all the way around', centre[34][0], centre[34][1], { side: 'below', size: 19, color: col.B, gap: 40, H });
     label(ctx, 'the chamber and its coil', outer[60][0], outer[60][1], { side: 'left', size: 19, gap: 34, H });
     label(ctx, 'a proton of the plasma and its path', pts[390][0], pts[390][1], { side: 'below', size: 19, color: col.q, gap: 40, H });
     ['The spiral is drawn', BIG + ' times its true size.', 'At its true size the', 'circle would be a', fmt(AMIN / rg, 0) + 'th of the chamber’s', 'half width, which is', 'why the plasma never', 'reaches the wall.'].forEach((s, i) =>

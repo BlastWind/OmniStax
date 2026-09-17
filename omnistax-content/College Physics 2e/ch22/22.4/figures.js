@@ -63,7 +63,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
   const handC = choice(d.controls, { label: '\\text{the right hand}', options: [{ value: 'on', label: 'shown' }, { value: 'off', label: 'hidden' }], value: 'on', aria: 'whether the right hand of the rule is drawn over the three vectors' });
 
   const V_MAX = 15, B_MAX = 1, F_MAX = Q_C * V_MAX * B_MAX * G_TO_T;   /* 3.0 × 10⁻¹¹ N, and the graph's axis */
-  const LV = 2.0, LB = 2.0, LF = 3.2, R_DISC = 2.1;
+  const LV = 2.0, LB = 2.0, LF = 3.2, R_DISC = 1.9;
   const state = () => {
     const th = thS.v * RAD, s = signC.value === 'pos' ? 1 : -1;
     const sn = (thS.v === 0 || thS.v === 180) ? 0 : Math.sin(th);      /* exactly zero along the field, not a rounding crumb */
@@ -146,7 +146,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     };
     S.lab.v.style.color = C('velocity'); S.lab.B.style.color = C('magnetic-field');
     S.lab.F.style.color = C('force'); S.lab.q.style.color = C('charge');
-    const comp = [['N', [0, 0, -R_DISC - 0.42]], ['E', [R_DISC + 0.42, 0, 0]], ['S', [0, 0, R_DISC + 0.42]], ['W', [-R_DISC - 0.42, 0, 0]]];
+    const comp = [['N', [0, 0, -R_DISC - 0.3]], ['E', [R_DISC + 0.3, 0, 0]], ['S', [0, 0, R_DISC + 0.3]], ['W', [-R_DISC - 0.3, 0, 0]]];
     S.comp = comp.map(([s, p]) => dim(V.label(s, p, root3, 0), PAL.muted));
     V.invalidate();
   }
@@ -169,7 +169,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
       S.lines.children.forEach((c) => { c.geometry?.dispose(); c.material?.dispose(); });
       S.lines.clear(); lastLines = n;
       for (let i = 0; i < n; i++) {
-        const x = n === 1 ? 0 : -1.7 + (3.4 * i) / (n - 1);
+        const x = n === 1 ? 0 : -1.5 + (3.0 * i) / (n - 1);
         if (Math.abs(x) < 0.12) continue;                       /* the bold arrow already stands on the middle line */
         const half = Math.sqrt(Math.max(0.16, R_DISC * R_DISC - x * x));
         F.mesh.polyline(S.lines, [[x, 0, half], [x, 0, -half + 0.22]], alpha(C('magnetic-field'), 0.5));
@@ -186,7 +186,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
       S.arcPt = (thS.v > 2 && thS.v < 178) ? F.mesh.arc(S.arc, st.vdir, st.bdir, 1.45, [0, 0, 0], PAL.muted) : [0.9, 0, -0.9];
     }
     S.arc.children.forEach((c) => { try { c.material.color.set(PAL.muted); } catch (e) { /* left as it was */ } });
-    V.move(S.lab.v, [vt[0] * 0.62, 0, vt[2] * 0.62]); V.move(S.lab.B, [0, 0, bt[2] * 0.62]);
+    V.move(S.lab.v, [vt[0] * 0.62, 0, vt[2] * 0.62]); V.move(S.lab.B, [0, 0, bt[2] * 0.5]);
     V.move(S.lab.F, ft); V.move(S.lab.q, [1.15, -0.08, 0.85]); V.move(S.lab.th, S.arcPt ?? [0.9, 0, -0.9]);
     S.lab.v.textContent = 'v'; S.lab.B.textContent = 'B'; S.lab.F.textContent = 'F';
     S.lab.q.textContent = 'q = ' + (st.s > 0 ? '+' : '\u2212') + '20 nC';
@@ -265,8 +265,8 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
 
   if (hasGL) {
     V = F.view3d(d.stage, {
-      h: 680, dist: 6.5, tilt: 0.42, spin: 'off',
-      views: [{ label: 'the book’s view', yaw: -0.55, pitch: 0.42 }, { label: 'along the field', yaw: 0, pitch: 0.16 }, { label: 'from above', yaw: 0, pitch: 1.40 }],
+      h: 680, dist: 8.0, tilt: 0.42, spin: 'off',
+      views: [{ label: 'the book’s view', yaw: -0.55, pitch: 0.42 }, { label: 'along the field', yaw: 0, pitch: 0.16 }, { label: 'from above', yaw: 0, pitch: 1.30 }],
       pitch: [0.10, 1.43], yaw: 'free', zoomMin: 0.7, zoomMax: 2.4,
     });
     if (!V.scene) V = null;

@@ -154,7 +154,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     S = { coil: new THREE.Group() };
     /* the two pole pieces, lettered on their faces, and the field between them */
     [-1, 1].forEach((sx) => {
-      const m = F.mesh.box(turn, [sx * (GAP + PW / 2), 0, 0], [PW, PH, PD], PAL.muted);
+      const m = F.mesh.box(turn, [sx * (GAP + PW / 2), 0, 0], [PW, PH, PD], PAL.muted, { transparent: true, opacity: 0.55 });   /* a little see-through, so the loop still shows from along the field */
       keep(m, mutedC); V.pickable(m, sx < 0 ? 'the north pole of the magnet' : 'the south pole of the magnet');
     });
     S.field = [[0.5, 0.52], [0.5, -0.52], [-0.5, 0.52], [-0.5, -0.52]].map(([y, z]) => {
@@ -312,10 +312,10 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
 
   /* ---------- the book's top view, where there is no WebGL for the scene ---------- */
   function drawFlat(ctx, st) {
-    const cx = 700, cy0 = 250, R = 190, hh = (wS.v / 100) * 900;
+    const cx = 700, cy0 = 300, R = 190, hh = (wS.v / 100) * 900;
     /* the field, running left to right across the whole view */
     if (bS.v > 0) for (let i = -2; i <= 2; i++) {
-      const y = cy0 + i * 78;
+      const y = cy0 + i * 64;
       arrow(ctx, cx - 460, y, cx + 460, y, alpha(C('magnetic-field'), i === 0 ? 1 : 0.55), i === 0 ? 5 : 3);
     }
     if (bS.v > 0) text(ctx, 'B = ' + fmt(bS.v, 2) + ' T', cx + 470, cy0, C('magnetic-field'), { size: 21, weight: 600, align: 'left' });
@@ -333,7 +333,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     if (fl > 6) {
       arrow(ctx, outAt[0], outAt[1], outAt[0], outAt[1] - fl, C('force'), 5);
       arrow(ctx, inAt[0], inAt[1], inAt[0], inAt[1] + fl, C('force'), 5);
-      text(ctx, 'F = ' + fmt(st.side, 2) + ' N', outAt[0] + 18, outAt[1] - fl - 18, C('force'), { size: 20, weight: 600, align: 'left' });
+      text(ctx, 'F = ' + fmt(st.side, 2) + ' N', outAt[0] + 18, outAt[1] - fl - 18, C('force'), { size: 20, weight: 600, align: 'left', bg: PAL.panel });
     }
     /* the perpendicular to the loop, the angle it makes with the field, and the torque */
     const nx = Math.cos(st.th * RAD), ny = -Math.sin(st.th * RAD);
@@ -387,7 +387,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
 
   if (hasGL) {
     V = F.view3d(d.stage, {
-      h: 620, dist: 7.9, tilt: 0.34, spin: 'off',
+      h: 620, dist: 8.8, tilt: 0.34, spin: 'off',
       views: [{ label: 'the book’s view', yaw: 0.42, pitch: 0.30 }, { label: 'from above', yaw: 0, pitch: 1.47 }, { label: 'along the field', yaw: 1.5708, pitch: 0.12 }],
       pitch: [0.07, 1.52], yaw: 'free', zoomMin: 0.7, zoomMax: 2.4,
     });
@@ -481,7 +481,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 13; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(eA[0], eA[1]); ctx.lineTo(eB[0], eB[1]); ctx.stroke(); ctx.restore();
     if (iS.v > 0.004) { outMark(ctx, eA[0], eA[1], cI, 15); inMark(ctx, eB[0], eB[1], cI, 15); }
-    text(ctx, 'I = ' + fmt(iS.v, 2) + ' mA', eA[0] - 26, eA[1] - 26, cI, { size: 21, weight: 600, align: 'right' });
+    label(ctx, 'I = ' + fmt(iS.v, 2) + ' mA', eA[0], eA[1], { side: 'left', size: 21, color: cI, gap: 26, H });
     /* the spring, a spiral about the pivot that winds tighter as the coil turns, and the
        two torques that balance on it */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath();

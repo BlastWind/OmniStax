@@ -123,6 +123,27 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       const ang = rank < aligned ? 0 : WILD[cell];
       domainArrow(ctx, ax, ay, ang, 22, alpha(PAL.ink, 0.55), 2.5);
     });
+    /* what is being done to the iron, drawn so the choice can be seen and not only read:
+       heat rising under the bar, or a mallet coming down on its end */
+    if (!st.away && treatC.value === 'heat') {
+      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 2.5; ctx.lineCap = 'round';
+      [-30, 0, 30].forEach((dx) => {
+        ctx.beginPath();
+        for (let i = 0; i <= 24; i++) { const q = i / 24, yy = CY + T / 2 + 54 - q * 44, xx = cx + dx + 7 * Math.sin(q * Math.PI * 3); i ? ctx.lineTo(xx, yy) : ctx.moveTo(xx, yy); }
+        ctx.stroke();
+      });
+      ctx.restore();
+      lab.add('heated', cx, CY + T / 2 + 58, 0, 1, PAL.ink, 18, 14);
+    }
+    if (!st.away && treatC.value === 'tap') {
+      const hx = cx - L * 0.32, hy = CY - T / 2 - 6;
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(hx + 14, hy - 26); ctx.lineTo(hx + 62, hy - 92); ctx.stroke();
+      ctx.beginPath(); ctx.rect(hx - 24, hy - 30, 48, 30); ctx.fill(); ctx.stroke();
+      ctx.restore();
+      [-1, 1].forEach((k) => line(ctx, hx + k * 34, hy - 40, hx + k * 44, hy - 54, alpha(PAL.ink, 0.6), 2));
+      lab.add('tapped', hx + 62, hy - 92, -0.4, -0.9, PAL.ink, 18, 14);
+    }
     /* names: five where the magnets are in place, two once they are gone */
     if (!st.away) {
       lab.add('an original magnet', lc, CY + T / 2, 0, 1, PAL.ink, 19, 30);
@@ -194,7 +215,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
   const THRESH = MAP.map((dm, i) => (dm === GROWER ? -1 : clamp(0.12 + 0.62 * (SEED[i] / DMAX) + 0.22 * (1 - Math.cos(ANG[dm])) / 2, 0.05, 0.97)));
 
   const thermal = (T) => (T >= TC ? 0 : 1 - Math.pow(T / TC, 3));
-  const target = () => clamp((bS.v / 50) * thermal(tS.v), 0, 1);
+  const target = () => clamp(Math.sqrt(bS.v / 50) * thermal(tS.v), 0, 1);   /* 20 mT already brings most of the sample round, 50 mT all of it */
 
   /* the sample at alignment a: which domain each cell belongs to and which way it points */
   function sample(a) {
@@ -235,8 +256,8 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(X0, Y0, SIDE, SIDE); ctx.restore();
     /* the sample's own poles, once enough of it lies one way to give it any */
     if (s.mean > 0.5) {
-      text(ctx, 'S', X0 - 32, Y0 + SIDE / 2, PAL.ink, { size: 32, weight: 700, align: 'center' });
-      text(ctx, 'N', X0 + SIDE + 32, Y0 + SIDE / 2, PAL.ink, { size: 32, weight: 700, align: 'center' });
+      text(ctx, 'S', X0 - 34, Y0 + SIDE * 0.35, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
+      text(ctx, 'N', X0 + SIDE + 34, Y0 + SIDE * 0.35, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
     }
     lab.add('one domain', X0 + CELL * 0.5, Y0 + SIDE, 0, 1, PAL.ink, 19, 30);
     /* the temperature of the iron, and the temperature above which no field holds it */
@@ -302,7 +323,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     /* the field, drawn as lines that close from one end of the core round to the
        other; a line that closes on itself carries no arrowhead, and the letters
        N and S say which way it runs */
-    const loops = I === 0 ? 0 : 1 + Math.round(2 * strength);
+    const loops = I === 0 ? 0 : 1 + Math.round(3 * strength);
     const dirs = [[0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
     const outer = 122 + 108 * strength;
     ctx.save(); ctx.strokeStyle = alpha(fc, 0.85); ctx.lineWidth = 3; ctx.lineJoin = 'round';
@@ -363,12 +384,12 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
         if (w > bd) { bd = w; best = i; }
       }
       if (best < 0) return;
-      const pa = V.P(pts[best - 3]), pb = V.P(pts[best + 3]);
-      arrow(ctx, pa[0], pa[1], pb[0], pb[1], cc, 4);
+      const pa = V.P(pts[best - 5]), pb = V.P(pts[best + 5]);
+      arrow(ctx, pa[0], pa[1], pb[0], pb[1], cc, 5.5);
     });
     /* the poles, lettered on the two ends of the core */
     if (I !== 0) {
-      const pn = V.P([north * (LX + 116), 0, 0]), ps = V.P([-north * (LX + 116), 0, 0]);
+      const pn = V.P([north * (LX + 72), 0, 0]), ps = V.P([-north * (LX + 72), 0, 0]);
       text(ctx, 'N', pn[0], pn[1], PAL.ink, { size: 34, weight: 700, align: 'center', bg: PAL.panel });
       text(ctx, 'S', ps[0], ps[1], PAL.ink, { size: 34, weight: 700, align: 'center', bg: PAL.panel });
     }
@@ -424,7 +445,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     ctx.restore();
     if (I !== 0) {
       const s = I > 0 ? 1 : -1;
-      [OT + 48, OT + 132].forEach((y) => arrow(ctx, (OL + IL) / 2 - 44, y - 15 * s, (OL + IL) / 2 - 44, y + 15 * s, cc, 4));
+      [OT + 48, OT + 132].forEach((y) => arrow(ctx, (OL + IL) / 2 - 44, y - 24 * s, (OL + IL) / 2 - 44, y + 24 * s, cc, 5.5));
       /* the field escaping across the gap, which is what writes the medium */
       arrow(ctx, GX - s * 48, OB + 26, GX + s * 48, OB + 26, fc, 4);
     }
@@ -481,8 +502,8 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     options: [{ value: 'ccw', label: 'counterclockwise' }, { value: 'cw', label: 'clockwise' }],
     value: 'ccw', aria: 'which way round the electron goes, seen from above',
   });
-  const CX = 540, CY = 330, RX = 196, RY = 68, EA = -0.72;
-  const KW = [150, 232], KH = [122, 196];              /* the two field lines that close through the loop */
+  const CX = 540, CY = 350, RX = 196, RY = 68, EA = -0.72;
+  const KW = [150, 232], KH = [140, 210];              /* the two field lines that close through the loop */
   const NUC = [[-15, -9], [13, -7], [0, 12], [-4, -20], [20, 9], [-22, 6]];
 
   function draw() {
@@ -531,8 +552,8 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       arrow(ctx, CX + crx * Math.cos(t - dt), CY + cry * Math.sin(t - dt), CX + crx * Math.cos(t + dt), CY + cry * Math.sin(t + dt), cc, 4);
     });
     /* the poles of the loop, on its two faces */
-    text(ctx, nUp ? 'N' : 'S', CX, CY - KH[1] - 32, PAL.ink, { size: 32, weight: 700, align: 'center' });
-    text(ctx, nUp ? 'S' : 'N', CX, CY + KH[1] + 32, PAL.ink, { size: 32, weight: 700, align: 'center' });
+    text(ctx, nUp ? 'N' : 'S', CX, CY - KH[1] + 34, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
+    text(ctx, nUp ? 'S' : 'N', CX, CY + KH[1] - 34, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
     if (orbit) {
       lab.add('the electron', CX + ring.rx * Math.cos(EA), CY + ring.ry * Math.sin(EA), 0.8, -0.6, PAL.ink, 19, 26);
       lab.add('the nucleus', CX, CY + 14, -0.85, 0.53, PAL.ink, 19, 44);

@@ -131,7 +131,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
          shows in the drawing as well as on the curve below */
       if (I1 > 0.5) {
         [-118, 0, 118].forEach((y) => circle3(ctx, x1, y, D, cB, lw, true));
-        [0.55, 1.45].forEach((k) => circle3(ctx, x1, 0, D * k, alpha(cB, 0.65), Math.max(1.4, widthOf(B1 / k) * 0.8), false));
+        [0.55, 1.45].forEach((k) => { if (D * k < 560) circle3(ctx, x1, 0, D * k, alpha(cB, 0.65), Math.max(1.4, widthOf(B1 / k) * 0.8), false); });
       }
       /* the two wires, ink, and the current along each of them */
       [x1, x2].forEach((x) => line3(ctx, [x, -WY, 0], [x, WY, 0], PAL.ink, 7));

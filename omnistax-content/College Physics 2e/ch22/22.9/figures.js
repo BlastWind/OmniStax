@@ -63,7 +63,7 @@ function oval(c, A, B, u, v, n = 72) {
      drawing below takes the canvas and the figure loses nothing but the turn */
   const glOk = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } };
   const hasGL = !!(THREE && glOk());
-  const H2D = hasGL ? 360 : 760;              /* with no scene to mount, the canvas draws the arrangement flat as well as the graph */
+  const H2D = hasGL ? 360 : 780;              /* with no scene to mount, the canvas draws the arrangement flat as well as the graph */
   const d = sim('sim-field-of-a-current', H2D);
   const arrC = F.select(d.controls, {
     label: '\\text{the wire is}',
@@ -244,7 +244,7 @@ function oval(c, A, B, u, v, n = 72) {
     const tR = 3.9;
     pstick(g3, [0, 0, 0], at(tR), 0.018, PC);
     S.labs.I = dim(V.label('I = ' + fmt(st.I, 0) + ' A', add3(at(tI), iDir(tI), 0.40), g3, -20), C('current'));
-    S.labs.B = dim(V.label('B = ' + sci(st.B, 2) + ' T', [0.82, 0.78, 0], g3, 4), C('magnetic-field'));
+    S.labs.B = dim(V.label('B = ' + sci(st.B, 2) + ' T', [0.0, 1.0, 0], g3, 26), C('magnetic-field'));
     S.labs.R = dim(V.label('R = ' + fmt(RS.v, 1) + ' cm', add3([0, 0, 0], at(tR), 0.55), g3, 0), C('position'));
     buildHand(g3, at(2.55), iDir(2.55), unit3(at(2.55)), 0.9);
   }
@@ -270,7 +270,7 @@ function oval(c, A, B, u, v, n = 72) {
       [[2.10, 0.38], [2.52, 0.78]].forEach(([A, Bh]) => pline(g3, oval(add3([0, 0, 0], nrm, a), A, Bh, [1, 0, 0], nrm, 72), FAINT, OP));
     });
     S.labs.I = dim(V.label('I = ' + fmt(st.I, 0) + ' A', add3(p1, unit3([0, p1[1], p1[2]]), 0.62), g3, 8), C('current'));
-    S.labs.B = dim(V.label('B = ' + fmt(st.B, 2) + ' T', [0.1, -1.05, 0], g3, 0), C('magnetic-field'));
+    S.labs.B = dim(V.label('B = ' + fmt(st.B, 2) + ' T', [-0.6, -1.35, 0], g3, 0), C('magnetic-field'));
     S.labs.N = dim(V.label('N', [HX + 0.46, 0, 0], g3, 0), PAL.ink);
     S.labs.S = dim(V.label('S', [-HX - 0.46, 0, 0], g3, 0), PAL.ink);
     const jh = Math.round(npt * 0.26), ph0 = pts[Math.max(0, jh - 3)], ph1 = pts[Math.min(npt, jh + 3)];
@@ -283,9 +283,9 @@ function oval(c, A, B, u, v, n = 72) {
     ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; ctx.beginPath(); ctx.ellipse(cx, cy, A, B, 0, 0, TAU); ctx.stroke(); ctx.restore();
   }
   function drawFlat(ctx, st) {
-    const cx = 700, cy = 215;
+    const cx = 700, cy = 262;
     if (st.a === 'wire') {
-      const K = 170 / RHO(12), rho = RHO(rS.v) * K;
+      const K = 150 / RHO(12), rho = RHO(rS.v) * K;
       [4, 8, 12].forEach((cm) => { const R = RHO(cm); ovalPath(ctx, cx, cy, R * K, R * K, alpha(C('magnetic-field'), 0.5), 2.5); });
       ovalPath(ctx, cx, cy, rho, rho, C('magnetic-field'), 4);
       /* the wire runs out of the page, drawn as 22.3 draws a vector coming toward the reader */
@@ -299,7 +299,7 @@ function oval(c, A, B, u, v, n = 72) {
       arrow(ctx, px, py, px - 52, py + 54, C('magnetic-field'), 5);
       text(ctx, 'B = ' + sci(st.B, 2) + ' T', px - 58, py + 74, C('magnetic-field'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     } else if (st.a === 'loop') {
-      const K = 170 / RHO(12), rho = RHO(RS.v) * K;
+      const K = 150 / RHO(12), rho = RHO(RS.v) * K;
       [1, -1].forEach((s) => {
         [[rho, 0.30 * rho, 0.30 * rho], [rho, 0.62 * rho, 0.62 * rho], [1.125 * rho, 0.975 * rho, 0.90 * rho]].forEach(([c, A, B]) =>
           ovalPath(ctx, cx + s * c, cy, A, B, alpha(C('magnetic-field'), 0.5), 2.5));
@@ -316,7 +316,7 @@ function oval(c, A, B, u, v, n = 72) {
       line(ctx, cx, cy, cx + rho, cy, C('position'), 3);
       text(ctx, 'R = ' + fmt(RS.v, 1) + ' cm', cx + rho / 2, cy - 18, C('position'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     } else {
-      const HX = 300, a = 92, turns = Math.round(st.n / 100);
+      const HX = 300, a = 80, turns = Math.round(st.n / 100);
       for (let k = 0; k < turns; k++) {
         const x = cx - HX + ((2 * HX) / (turns - 1)) * k;
         dot(ctx, x, cy - a, C('current'), true, 7);
@@ -324,13 +324,13 @@ function oval(c, A, B, u, v, n = 72) {
         ctx.moveTo(x - 5, cy + a - 5); ctx.lineTo(x + 5, cy + a + 5); ctx.moveTo(x + 5, cy + a - 5); ctx.lineTo(x - 5, cy + a + 5); ctx.stroke(); ctx.restore();
       }
       [-46, 0, 46].forEach((dy) => arrow(ctx, cx - 250, cy + dy, cx + 250, cy + dy, C('magnetic-field'), 4));
-      [1, -1].forEach((s) => [[360, 62], [430, 126]].forEach(([A, B]) => ovalPath(ctx, cx, cy + s * a, A, B, alpha(C('magnetic-field'), 0.5), 2.5)));
+      [1, -1].forEach((s) => [[330, 36], [380, 66]].forEach(([A, B]) => ovalPath(ctx, cx, cy + s * a, A, B, alpha(C('magnetic-field'), 0.5), 2.5)));
       text(ctx, 'N', cx + HX + 64, cy, PAL.ink, { size: 24, weight: 600, align: 'center' });
       text(ctx, 'S', cx - HX - 64, cy, PAL.ink, { size: 24, weight: 600, align: 'center' });
       text(ctx, 'I = ' + fmt(st.I, 0) + ' A', cx, cy - a - 34, C('current'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
       text(ctx, 'B = ' + fmt(st.B, 2) + ' T', cx, cy - 70, C('magnetic-field'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     }
-    text(ctx, 'This browser cannot turn the scene, so the arrangement is drawn flat: the wire end-on, the loop and the coil in section.', 700, 412, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'This browser cannot turn the scene, so the arrangement is drawn flat: the wire end-on, the loop and the coil in section.', 700, 440, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, headlineOf(st));
   }
 
@@ -390,7 +390,7 @@ function oval(c, A, B, u, v, n = 72) {
     }
     const { ctx } = begin(d.c);
     if (!V) drawFlat(ctx, st);
-    drawGraph(ctx, st, V ? 40 : 440);
+    drawGraph(ctx, st, V ? 40 : 456);
     if (st.a === 'wire') {
       readout(d.readout,
         `\\kBmag = \\frac{\\mu_0\\kIcur}{2\\pi\\kr} = \\frac{(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(st.I, 0)}\\ \\text{A})}{2\\pi(${fmt(st.r, 3)}\\ \\text{m})} = ${sciTex(st.B, 2)}\\ \\text{T}`,

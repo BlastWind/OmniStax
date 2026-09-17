@@ -78,7 +78,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
    laid beside a magnet has settled (rule 14).
 ===================================================================== */
 (function () {
-  const d = sim('sim-field-map', 860);
+  const d = sim('sim-field-map', 900);
   const viewC = choice(d.controls, {
     label: '\\text{what is drawn}',
     options: [{ value: 'compasses', label: 'compass needles' }, { value: 'lines', label: 'field lines' }, { value: 'loops', label: 'closed loops' }],
@@ -88,7 +88,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
   const alongS = ctl(d.controls, { label: '\\text{along}', cls: '', min: -16, max: 16, step: 0.5, value: 9, unit: 'cm', dec: 1, aria: 'how far along the magnet your own compass is held' });
   const acrossS = ctl(d.controls, { label: '\\text{across}', cls: '', min: -10, max: 10, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'how far across the magnet your own compass is held' });
 
-  const CX = 700, CY = 455, S = 32;            /* 32 units to the centimeter */
+  const CX = 700, CY = 480, S = 30;            /* 30 units to the centimeter, so the compass at 10 cm above the magnet clears the headline */
   const HL = 7, TH = 4, A = 5.5, MX = 10;      /* the bar is 14 cm by 4 cm, its poles sit 5.5 cm out, the mark 3 cm off the north end */
   const PX = (x) => CX + x * S, PY = (y) => CY - y * S;
 
@@ -207,7 +207,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
       lines: 'Joining the arrows the needles make gives continuous lines, which leave the north pole and return to the south pole.',
       loops: 'If the inside of the magnet could be probed as well, every line would be found to close on itself, running back from the south end to the north end.',
     };
-    text(ctx, says[state], CX, 836, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, says[state], CX, 874, PAL.muted, { size: 18, align: 'center' });
 
     /* the place in words, since a signed number reads badly in a sentence */
     const along = px === 0 ? '' : `${fmt(Math.abs(px), 1)} cm toward the ${px < 0 ? 'south' : 'north'} pole`;
@@ -387,7 +387,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
       label(ctx, 'a long straight wire lying in the page', CX, PY(-12.2), { side: 'below', size: 19, gap: 22, leader: false });
       const onWire = Math.abs(px) < 0.6;
       compassEdge(ctx, PX(px), PY(py), 27, onWire ? 0 : (Bz(px) > 0 ? 1 : -1), col);
-      label(ctx, 'your compass', PX(px), PY(py) + (py > 7 ? 12 : -12), { side: py > 7 ? 'below' : 'above', size: 19, gap: 24 });
+      label(ctx, 'your compass', PX(px), PY(py) + (py > 7 ? 12 : -12), { side: py > 7 ? 'below' : 'above', size: 19, gap: 40 });
       const outSide = s > 0 ? 'left' : 'right', inSide = s > 0 ? 'right' : 'left';
       headline = onWire
         ? `Held straight ${py < 0 ? 'below' : 'above'} the wire the compass sits on the wire itself, where there is no field outside the wire to lie along; move it a little to either side and its needle stands out of the page on the ${outSide} and into the page on the ${inSide}.`

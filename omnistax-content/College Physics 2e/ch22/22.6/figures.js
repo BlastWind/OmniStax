@@ -110,7 +110,7 @@ function carrier(ctx, x, y, color, sign, r) {
     ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.arc(MX, MY, 44, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, neg ? 'ε' : '−ε', MX, MY, ec, { size: 28, weight: 700, align: 'center' });
-    text(ctx, neg ? 'positive at the top' : 'negative at the top', MX, MY + 74, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, neg ? 'positive at the top' : 'negative at the top', MX, MY + 74, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
 
     /* what the two marks in the slab are */
     text(ctx, 'F is the magnetic force on that carrier, and the circled dots are the magnetic field coming out of the page.', 680, 590, PAL.muted, { size: 19, align: 'center' });
@@ -247,7 +247,7 @@ function carrier(ctx, x, y, color, sign, r) {
       ctx.beginPath(); ctx.rect(x0, 200, 120, 220); ctx.fill(); ctx.stroke(); ctx.restore();
       text(ctx, nm, x0 + 60, 310, PAL.ink, { size: 44, weight: 700, align: 'center' });
     }
-    text(ctx, 'B = ' + fmt(B, 3) + ' T, across the vessel', 300, 160, bc, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'B = ' + fmt(B, 3) + ' T, across the vessel', 340, 456, bc, { size: 21, weight: 600, align: 'center' });
 
     /* the vessel, seen end on, with the flow coming straight out of the page */
     ctx.save(); ctx.lineWidth = 4; ctx.strokeStyle = PAL.ink; ctx.fillStyle = alpha(PAL.ink, 0.045);
@@ -280,17 +280,18 @@ function carrier(ctx, x, y, color, sign, r) {
     const bx = CX - R - 38;
     vbracket(ctx, bx, CY - R, CY + R, PAL.ink);
     label(ctx, 'l = ' + fmt(lmm, 2) + ' mm', bx, CY - R * 0.52, { side: 'left', size: 21, gap: 14 });
-    const MX = 1230, MY = CY;
-    line(ctx, CX, CY - R, CX, 108, PAL.muted, 3); line(ctx, CX, 108, MX, 108, PAL.muted, 3); line(ctx, MX, 108, MX, MY - 46, PAL.muted, 3);
-    line(ctx, CX, CY + R, CX, 618, PAL.muted, 3); line(ctx, CX, 618, MX, 618, PAL.muted, 3); line(ctx, MX, 618, MX, MY + 46, PAL.muted, 3);
+    /* the leads run just clear of the vessel and over and under the pole pieces to the meter */
+    const MX = 1230, MY = CY, topY = Math.min(180, CY - R - 24), botY = Math.max(440, CY + R + 24);
+    line(ctx, CX, CY - R, CX, topY, PAL.muted, 3); line(ctx, CX, topY, MX, topY, PAL.muted, 3); line(ctx, MX, topY, MX, MY - 46, PAL.muted, 3);
+    line(ctx, CX, CY + R, CX, botY, PAL.muted, 3); line(ctx, CX, botY, MX, botY, PAL.muted, 3); line(ctx, MX, botY, MX, MY + 46, PAL.muted, 3);
     ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.arc(MX, MY, 46, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'ε', MX, MY, uc, { size: 30, weight: 700, align: 'center' });
     text(ctx, volt(emf).n + ' ' + volt(emf).u, MX, MY + 76, uc, { size: 21, weight: 600, align: 'center' });
 
-    text(ctx, 'v = ' + fmt(v, 3) + ' m/s, the flow, straight out of the page', CX, 530, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'The magnetic force takes the positive carriers to one wall and the negative carriers to the other,', 700, 562, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
-    text(ctx, 'so the emf comes out the same way whichever sign of carrier is free to move.', 700, 588, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, 'v = ' + fmt(v, 3) + ' m/s, the flow, straight out of the page', CX, 548, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'The magnetic force takes the positive carriers to one wall and the negative carriers to the other,', 700, 580, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, 'so the emf comes out the same way whichever sign of carrier is free to move.', 700, 606, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
 
     /* the scale of voltage, with the heart's own voltages shaded on it */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12);

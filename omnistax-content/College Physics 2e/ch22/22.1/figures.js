@@ -52,12 +52,16 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
     /* Earth, its rotation axis and its geographic North Pole */
     ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = alpha(PAL.ink, 0.05);
     ctx.beginPath(); ctx.arc(CX, CY, R, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
-    line(ctx, CX, CY - R - 62, CX, CY + R + 62, alpha(PAL.ink, 0.4), 2.5, [10, 10]);
+    /* the equator and two parallels, so the circle reads as a globe */
+    line(ctx, CX - R, CY, CX + R, CY, alpha(PAL.ink, 0.3), 2);
+    [-1, 1].forEach((s2) => { const yy = CY + s2 * R * 0.707, hw = R * 0.707; line(ctx, CX - hw, yy, CX + hw, yy, alpha(PAL.ink, 0.18), 1.5); });
+    text(ctx, 'equator', CX - R - 12, CY, PAL.muted, { size: 17, align: 'right' });
+    line(ctx, CX, CY - R - 62, CX, CY + R + 62, alpha(PAL.ink, 0.5), 2.5, [10, 10]);
     const np = { x: CX, y: CY - R };
     dot(ctx, np.x, np.y, PAL.ink, true, 8);
     /* Earth's own magnet, tilted from the rotation axis, S at the top */
     const mx = Math.sin(tilt), my = -Math.cos(tilt);
-    const sm = { x: CX + mx * R * 0.8, y: CY + my * R * 0.8 };
+    const sm = { x: CX + mx * R, y: CY + my * R };          /* the south magnetic pole, where the magnet's axis reaches the surface */
     bar(ctx, CX, CY, R * 1.6, 54, Math.atan2(-my, -mx), 'S', 'N', 30);
     /* the magnet hung by a thread, its north-seeking end turned toward the
        south magnetic pole that Earth's magnet puts near the geographic north */
@@ -66,14 +70,15 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
     dot(ctx, h.x, h.y - 72, PAL.ink, true, 6);
     const dm = { x: sm.x - h.x, y: sm.y - h.y }, lm = Math.hypot(dm.x, dm.y);
     const dn = { x: np.x - h.x, y: np.y - h.y }, ln = Math.hypot(dn.x, dn.y);
-    /* the direction of the geographic North Pole, drawn faint for comparison */
-    line(ctx, h.x, h.y, h.x + (dn.x / ln) * 120, h.y + (dn.y / ln) * 120, alpha(PAL.ink, 0.35), 2.5, [8, 8]);
+    /* the direction of the geographic North Pole, drawn as a dashed guide that starts clear of the bar */
+    line(ctx, h.x + (dn.x / ln) * 82, h.y + (dn.y / ln) * 82, h.x + (dn.x / ln) * 150, h.y + (dn.y / ln) * 150, alpha(PAL.ink, 0.6), 2.5, [8, 8]);
     bar(ctx, h.x, h.y, 150, 36, Math.atan2(-dm.y, -dm.x), 'S', 'N', 22);
+    dot(ctx, sm.x, sm.y, PAL.ink, true, 6);
     const ang = Math.acos(Math.max(-1, Math.min(1, (dm.x * dn.x + dm.y * dn.y) / (lm * ln)))) / RAD;
     /* the arc between the two directions, always the minor one */
     const aM = Math.atan2(-dm.y, dm.x), aN = Math.atan2(-dn.y, dn.x);
     const dlt = ((aN - aM + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
-    angleArc(ctx, h, 78, aM, aM + dlt, fmt(ang, 1) + '°');
+    angleArc(ctx, h, 96, aM, aM + dlt, fmt(ang, 1) + '°');
     /* names */
     label(ctx, 'geographic North Pole', np.x, np.y, { side: 'left', size: 19 });
     label(ctx, 'rotation axis', CX, CY + R + 62, { side: 'below', size: 19, color: PAL.muted });
@@ -87,7 +92,8 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
       'pole because Earth’s magnet is tilted.',
     ];
     say.forEach((s, i) => text(ctx, s, 1120, 250 + i * 30, PAL.muted, { size: 18, align: 'center' }));
-    topline(ctx, `A magnet hung at ${fmt(latS.v, 0)}° of latitude points ${fmt(ang, 1)}° away from the direction of the geographic North Pole.`);
+    const where = latS.v === 0 ? 'over the equator' : `${fmt(Math.abs(latS.v), 0)}° ${latS.v > 0 ? 'north' : 'south'} of the equator`;
+    topline(ctx, `A magnet hung ${where} points ${fmt(ang, 1)}° away from the direction of the geographic North Pole.`);
     readout(d.readout,
       `\\text{tilt} = ${fmt(tiltS.v, 0)}^\\circ \\qquad \\text{latitude} = ${fmt(latS.v, 0)}^\\circ \\qquad \\text{the magnet points } ${fmt(ang, 1)}^\\circ \\text{ from geographic north}`,
       'Drag the tilt to zero and the hanging magnet points straight at the geographic North Pole from anywhere on the globe; tilt Earth’s magnet and the two directions part company.');
@@ -112,17 +118,26 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
     const lc = CX - g / 2 - L / 2, rc = CX + g / 2 + L / 2;
     const facing = leftC.value + rightC.value;           /* the two poles across the gap */
     const alike = leftC.value === rightC.value;
-    bar(ctx, lc, CY, L, T, 0, leftC.value === 'N' ? 'S' : 'N', leftC.value, 44);
-    bar(ctx, rc, CY, L, T, 0, rightC.value, rightC.value === 'N' ? 'S' : 'N', 44);
-    /* the force on each magnet, outward when the facing poles are alike */
+    /* the bars, lettered in their upper halves so that the force arrow can run through
+       the body along the lower half, anchored at the magnet's centre */
+    bar(ctx, lc, CY, L, T, 0, '', '', 0);
+    bar(ctx, rc, CY, L, T, 0, '', '', 0);
+    const LY = CY - T * 0.2;
+    [[lc, leftC.value === 'N' ? 'S' : 'N', leftC.value], [rc, rightC.value, rightC.value === 'N' ? 'S' : 'N']].forEach(([cx0, a, b]) => {
+      text(ctx, a, cx0 - L * 0.25, LY, PAL.ink, { size: 36, weight: 700, align: 'center' });
+      text(ctx, b, cx0 + L * 0.25, LY, PAL.ink, { size: 36, weight: 700, align: 'center' });
+    });
+    /* the force on each magnet, from its centre toward the other when the facing poles
+       differ and away from it when they are alike */
     const len = 60 + 200 * Math.pow(1 / gapS.v, 0.6);
-    const inward = Math.min(len, L / 2 + g / 2 - 24);
+    const inward = Math.min(len, L / 2 + g / 2 - 8);
     const reach = alike ? len : inward, sgn = alike ? -1 : 1;
-    const AY = CY - T / 2 - 78, col = C('force');
+    const AY = CY + T * 0.24, col = C('force');
+    dot(ctx, lc, AY, col, true, 6); dot(ctx, rc, AY, col, true, 6);
     arrow(ctx, lc, AY, lc + sgn * reach, AY, col, 5);
     arrow(ctx, rc, AY, rc - sgn * reach, AY, col, 5);
-    label(ctx, 'F', lc + sgn * reach * 0.55, AY - 16, { side: 'above', size: 24, color: col, leader: false });
-    label(ctx, 'F', rc - sgn * reach * 0.55, AY - 16, { side: 'above', size: 24, color: col, leader: false });
+    label(ctx, 'F', lc + sgn * reach, AY, { side: alike ? 'left' : 'below', size: 24, color: col, leader: false, gap: 14 });
+    label(ctx, 'F', rc - sgn * reach, AY, { side: alike ? 'right' : 'above', size: 24, color: col, leader: false, gap: 14 });
     label(ctx, 'left magnet', lc, CY + T / 2, { side: 'below', size: 19, leader: false });
     label(ctx, 'right magnet', rc, CY + T / 2, { side: 'below', size: 19, leader: false });
     /* the gap itself */
@@ -173,7 +188,7 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
       if (k < n) row.forEach(([a, b]) => {
         if ((b - a) * W < 46) return;
         const x = X0 + (a + (whereS.v / 100) * (b - a)) * W;
-        line(ctx, x, y - TH / 2 - 10, x, y + TH / 2 + 10, alpha(PAL.ink, 0.45), 2, [6, 6]);
+        line(ctx, x, y - TH / 2 - 12, x, y + TH / 2 + 12, alpha(PAL.ink, 0.8), 2.5, [6, 5]);
       });
     });
     const k = Math.pow(2, n);

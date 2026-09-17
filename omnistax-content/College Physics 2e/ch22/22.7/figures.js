@@ -102,7 +102,11 @@ const deg = (x) => fmt(x, 0) + '°';
      canvas; the force arrow is a fixed 33 units to the newton, from the greatest
      force the three sliders can make together, 40.0 A × 0.100 m × 2.50 T = 10.0 N,
      which is drawn 330 units long. */
-  const SL = 34, SF = 33, GAP = 120, PW = 200, PY = 100;
+  const SL = 50, SF = 90, FCAP = 420, GAP = 170, PW = 280, PY = 150;
+  /* revised for the figure pass: 50 units to the centimetre and 90 to the newton, so that
+     the book's own 1.50 N is an arrow 135 units long; a force past 4.7 N is drawn at the
+     cap of 420 units and told by the number written on it, as pinned() tells an
+     overflow on a graph */
 
   function draw() {
     const { ctx } = begin(d.c);
@@ -115,26 +119,26 @@ const deg = (x) => fmt(x, 0) + '°';
     solid(ctx, V, boxOf(-GAP - PW, -GAP, -PY, PY, -half, half));
     solid(ctx, V, boxOf(GAP, GAP + PW, -PY, PY, -half, half));
     const nF = V.P([-GAP - PW / 2, 0, half]), sF = V.P([GAP + PW / 2, 0, half]);
-    text(ctx, 'N', nF[0], nF[1], PAL.ink, { size: 40, weight: 700, align: 'center' });
-    text(ctx, 'S', sF[0], sF[1], PAL.ink, { size: 40, weight: 700, align: 'center' });
+    text(ctx, 'N', nF[0], nF[1], PAL.ink, { size: 46, weight: 700, align: 'center' });
+    text(ctx, 'S', sF[0], sF[1], PAL.ink, { size: 46, weight: 700, align: 'center' });
     /* the field across the gap, from the north face to the south face; the arrows
        thicken with the field strength and go altogether when it is zero */
     const lw = 2 + 4.5 * (B / 2.5);
-    if (B > 0.001) [62, -62].forEach((y) => [-half * 0.5, half * 0.5].forEach((z) => arr3(ctx, V, [-GAP + 4, y, z], [GAP - 4, y, z], cB, lw)));
+    if (B > 0.001) [90, -90].forEach((y) => [-half * 0.5, half * 0.5].forEach((z) => arr3(ctx, V, [-GAP + 4, y, z], [GAP - 4, y, z], cB, lw)));
     /* the wire, ink, running through the gap and well out of it at both ends, with
        the current drawn on each end so that both arrowheads point the same way */
-    const reach = half + 260;
-    line3(ctx, V, [0, 0, -reach], [0, 0, reach], PAL.ink, 9);
-    arr3(ctx, V, [0, 0, sgn * (half + 70)], [0, 0, sgn * (half + 240)], cI, 6);
-    arr3(ctx, V, [0, 0, -sgn * (half + 240)], [0, 0, -sgn * (half + 70)], cI, 6);
+    const reach = half + 300;
+    line3(ctx, V, [0, 0, -reach], [0, 0, reach], PAL.ink, 10);
+    arr3(ctx, V, [0, 0, sgn * (half + 80)], [0, 0, sgn * (half + 270)], cI, 6);
+    arr3(ctx, V, [0, 0, -sgn * (half + 270)], [0, 0, -sgn * (half + 80)], cI, 6);
     /* the two ends of the length that lies in the field, marked on the wire */
-    [-half, half].forEach((z) => line3(ctx, V, [0, -46, z], [0, 46, z], alpha(PAL.ink, 0.5), 3, [7, 7]));
+    [-half, half].forEach((z) => line3(ctx, V, [0, -56, z], [0, 56, z], alpha(PAL.ink, 0.6), 3, [7, 7]));
     /* the force on that length, at right angles to both the current and the field */
-    const Flen = Fn * SF;
-    if (Flen > 8) arr3(ctx, V, [0, 0, 0], [0, sgn * Flen, 0], cF, 6);
+    const Flen = Math.min(FCAP, Fn * SF);
+    if (Flen > 8) arr3(ctx, V, [0, 0, 0], [0, sgn * Flen, 0], cF, 7);
     /* the names: five of them, none on a thing that moves far (rule 26.7) */
-    const pF = V.P([0, sgn * Flen, 0]), pB = V.P([GAP - 4, 62, -half * 0.5]);
-    const pI = V.P([0, 0, sgn * (half + 240)]), pL = V.P([0, -46, 0]), pW = V.P([0, 0, -sgn * reach]);
+    const pF = V.P([0, sgn * Flen, 0]), pB = V.P([GAP - 4, 90, -half * 0.5]);
+    const pI = V.P([0, 0, sgn * (half + 270)]), pL = V.P([0, -56, 0]), pW = V.P([0, 0, -sgn * reach]);
     if (Flen > 8) label(ctx, 'F = ' + fmt(Fn, 2) + ' N', pF[0], pF[1], { side: sgn > 0 ? 'above' : 'below', size: 22, color: cF, leader: false });
     label(ctx, 'B = ' + fmt(B, 2) + ' T', pB[0], pB[1], { side: 'right', size: 21, color: cB });
     label(ctx, 'I = ' + fmt(I, 1) + ' A', pI[0], pI[1], { side: out ? 'below' : 'above', size: 21, color: cI });
@@ -157,7 +161,7 @@ const deg = (x) => fmt(x, 0) + '°';
       { ...p([-GAP - PW / 2, 0, 0]), r: 100, name: 'the north pole of the magnet' },
       { ...p([GAP + PW / 2, 0, 0]), r: 100, name: 'the south pole of the magnet' },
       { ...p([0, 0, 0]), r: 46, name: 'the length of wire that lies in the field, ' + fmt(lS.v, 2) + ' cm of it' },
-      { ...p([0, 0, (out ? 1 : -1) * (half + 160)]), r: 70, name: 'the current in the wire, ' + fmt(iS.v, 1) + ' A' },
+      { ...p([0, 0, (out ? 1 : -1) * (half + 180)]), r: 70, name: 'the current in the wire, ' + fmt(iS.v, 1) + ' A' },
     ];
   });
 })();
