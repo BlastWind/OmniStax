@@ -26,6 +26,8 @@ sim-rc-charge-discharge · Figure 21.37 + 21.38 · rc-circuit, charging-a-capaci
 sim-flashing-lamp · Figure 21.40 · rc-timing-circuits, time-constant, discharging-a-capacitor · variation by slider and flow by animation: the lamp charges slowly through the resistor and empties quickly through itself once the threshold is passed, so the sawtooth is drawn as it happens and the flash period follows the resistance and the capacitance the designer chooses, which is the whole of the passage and is what the book's still sawtooth cannot show · moving, because the circuit repeats: the cycle is one full flash, charge and discharge together, and the lamp lights as the voltage falls · sliders \kRes (resistance), \kCap (capacitance) and the threshold fraction of the emf (untyped) · headline reads the flash period and how many flashes a minute that is · graph below the circuit, for the same reason · 2D
 ```
 
+Figure pass, 2026-09-15 (Claude Fable 5.1): both circuits are redrawn at the book's symbol conventions, with a zigzag resistor, a one-cell source with a long thin positive plate and its signs, a capacitor of two equal plates with the wire broken between them, a closed switch as a hinged blade lying on its contact, and the current arrow beside the wire on the inside of the loop, its length still following the current. Figure 21.40's lamp is the book's circle with a coiled filament, and its name sits beside it rather than under it on the wire.
+
 Every photograph and unnumbered image of the module: Figure 21.39, the rufous
 hummingbird stopped by a capacitor-driven flash, is kept as a photograph, because
 the strobe example is about that picture and the text points the reader at it

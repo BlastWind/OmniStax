@@ -47,6 +47,8 @@ sim-ohmmeter · Figure 21.35 · ohmmeter · variation: the two configurations ar
 sim-wheatstone · Figure 21.36 · wheatstone-bridge · variation: the variable arm is dialled and the galvanometer swings through zero, and the balance condition is then read off the three known arms · still, for the same reason as the potentiometer · sliders: the variable arm (resistance), the unknown resistance (resistance), the second known arm (resistance) · headline: what the galvanometer reads and what the bridge gives for the unknown · graph none · 2D
 ```
 
+Figure pass, 2026-09-15 (Claude Fable 5.1): every schematic is redrawn at the book's symbol conventions, with zigzag resistors (the variable arm's arrow struck across its zigzag, as the book draws it), one-cell sources with a long thin positive plate and their signs, an open switch as a hinged blade lifted off its contact, current arrows beside their wires and every label off every wire. Figure 21.33's voltmeter case is drawn wide enough to hold the galvanometer's resistance label. Figure 21.34's canvas is taller so the source and its current clear the two-line headline, the first and last tick labels of the wire are pulled in off the return wire, and "the contact" sits beside its arrow rather than under the meter that hid it. Figure 21.35's voltmeter lead runs clear of the emf label, and its reading sits under the meter rather than on the lead. Figure 21.36's arm labels stand further off their arms so neither line touches a wire, and "the unknown" takes the value line under Rₓ.
+
 No figure folds: the four diagrams are four different instruments, and nothing
 is gained by drawing two of them on one canvas.
 
