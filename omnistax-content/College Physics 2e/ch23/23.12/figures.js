@@ -302,8 +302,9 @@ function flow(ctx, x, y, dx, dy, L) {
 
 /* =====================================================================
    SIM: the impedance triangle again, with resonance as a place the
-   frequency slider can land. A detent on the slider sits at f₀ = 1/2π√LC
-   and moves with L and C; as the frequency comes onto it the standing leg
+   frequency slider can land. A dashed circle on it sits at f₀ = 1/2π√LC
+   and moves with L and C, and L and C carry circles of their own; on
+   resonance the standing leg
    shrinks to nothing, the triangle lies down on its foot and the impedance
    rewrites itself from √(R² + (X_L − X_C)²) to R. Still: the collapse is
    the only motion, and it plays once each time resonance is reached.
@@ -311,37 +312,25 @@ function flow(ctx, x, y, dx, dy, L) {
 (function () {
   const H = 900;
   const d = sim('sim-impedance-triangle-morph', H);
-  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 60, max: 3000, step: 10, value: 60, unit: 'Hz', dec: 0, aria: 'the frequency of the AC source', detents: [{ v: 60, label: 'f₀' }], snap: false });
-  const fLab = d.controls.lastElementChild, fIn = fLab.querySelector('input'), fTick = fLab.querySelector('.ctl-ticks .tick');
+  /* resonance marked on each slider it involves: f₀ on f, and on L and C the value that makes the current f resonant */
+  const w2 = () => (TWO_PI * fS.v) ** 2;
+  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 60, max: 3000, step: 10, value: 60, unit: 'Hz', dec: 0, aria: 'the frequency of the AC source',
+    specials: [{ at: () => circuit(1000, rS.v, lS.v * 1e-3, cS.v * 1e-6).f0, label: 'f₀' }] });
   const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 30, max: 120, step: 1, value: 40, unit: 'Ω', dec: 1, aria: 'the resistance of the resistor' });
-  const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 1, max: 6, step: 0.25, value: 3, unit: 'mH', dec: 2, aria: 'the inductance of the inductor', onInput: () => follow() });
-  const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, aria: 'the capacitance of the capacitor', onInput: () => follow() });
+  const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 1, max: 6, step: 0.25, value: 3, unit: 'mH', dec: 2, aria: 'the inductance of the inductor',
+    specials: [{ at: () => 1e3 / (w2() * cS.v * 1e-6), label: 'resonance' }] });
+  const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, aria: 'the capacitance of the capacitor',
+    specials: [{ at: () => 1e6 / (w2() * lS.v * 1e-3), label: 'resonance' }] });
+  fS.refresh(); lS.refresh();
   const eqHost = el('div'), numHost = el('div'), note = el('small');
+  eqHost.style.fontSize = '1.7em';
   d.readout.append(eqHost, numHost, note);
 
-  const VRMS = 120, OHMS = 600, SC = 0.6, OX = 232, OY = 462;
+  const VRMS = 120, OHMS = 600, SIDE = 330, OX = 232, OY = 462;
   const BOX = { l: 800, r: 1310, t: 196, b: 730 };
-  /* figlib's detents are fixed when the slider is made, so this one is kept by hand: the slider walks in steps of
-     10 Hz, and within CATCH of f₀ it lands on f₀ exactly and stays there until it is dragged past LET_GO */
-  const CATCH = 20, LET_GO = 40;
-  fIn.step = 'any';
-  const f0Now = () => circuit(1000, rS.v, lS.v * 1e-3, cS.v * 1e-6).f0;
-  let locked = false, X0 = 0, lastX = 0;
-  let col = { v: 1 };
-  function snapF() {
-    const f0 = f0Now(), x = +fIn.value, off = Math.abs(x - f0), inRange = f0 <= 3000;
-    const was = locked;
-    locked = inRange && off <= (locked ? LET_GO : CATCH);
-    fS.set(locked ? f0 : Math.min(3000, Math.max(60, Math.round(x / 10) * 10)));
-    if (locked && !was) enter();
-  }
-  function follow() {
-    const f0 = f0Now();
-    if (fTick) { fTick.style.display = f0 <= 3000 ? '' : 'none'; fTick.style.left = (100 * (f0 - 60)) / (3000 - 60) + '%'; }
-    if (locked) { if (f0 <= 3000) fS.set(f0); else { locked = false; fS.set(3000); } }
-  }
-  function enter() { X0 = lastX; col.set(0); col.to(1, 900); }
-  fIn.addEventListener('input', snapF);
+  /* on resonance the standing leg collapses from where it stood; the scale follows the triangle's longest side */
+  let locked = false, X0 = 0, lastX = 0, aim = 0;
+  const col = F.tween(d, 1), sc = F.tween(d, 1);
   let hits = [];
   hover(d.stage, () => hits);
 
@@ -350,13 +339,18 @@ function flow(ctx, x, y, dx, dy, L) {
     const f = fS.v, R = rS.v, L = lS.v * 1e-3, Cf = cS.v * 1e-6;
     const { XL, XC, Z, phi, f0 } = circuit(f, R, L, Cf);
     const cR = C('resistance'), cF = C('frequency');
+    const was = locked;
+    locked = Math.abs(f - f0) <= 1e-9 * f0;
+    if (locked && !was) { X0 = lastX; col.set(0); col.to(1, 900); }
     const X = locked ? 0 : XL - XC, Zs = locked ? R : Z, Irms = VRMS / Zs;
     if (!locked) lastX = X;
     const Xd = locked ? X0 * (1 - col.v) : X;
+    const want = SIDE / Zs;
+    if (!aim) { aim = want; sc.set(want); } else if (Math.abs(want - aim) > 1e-3 * want) { aim = want; sc.to(want, 900); }
+    const SC = sc.v;
     hits = [];
 
-    const clip = (v) => Math.max(-OHMS, Math.min(OHMS, v));
-    const fx = OX + clip(R) * SC, fy = OY, ty = OY - clip(Xd) * SC;
+    const fx = OX + R * SC, fy = OY, ty = OY - Xd * SC;
     line(ctx, OX, OY - 360, OX, OY + 360, alpha(PAL.ink, 0.3), 2, [10, 12]);
     line(ctx, OX - 40, OY, OX + 180, OY, alpha(PAL.ink, 0.3), 2, [10, 12]);
     if (Math.abs(Xd) * SC > 1) {
@@ -414,8 +408,6 @@ function flow(ctx, x, y, dx, dy, L) {
     note.textContent = 'On a 120 V rms source this circuit draws ' + fmt(Irms, 3) + ' A.';
   }
   register(d.fig, { update: () => {}, draw });
-  col = F.tween(d, 1);
-  follow();
 })();
 
 /* =====================================================================

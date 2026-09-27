@@ -362,4 +362,4 @@ and no Check Your Understanding box, so everything is set at the end.
 
 ## Manim duplicates
 
-- `sim-impedance-triangle-morph` (layer B, after `sim-impedance-triangle`): value add is resonance as a place the slider lands. Threshold: f within 20 Hz of f₀ = 1/2π√LC catches onto f₀ exactly and lets go past 40 Hz; the detent tick follows L and C. On catching, the X_L − X_C leg shrinks to nothing over 0.9 s, Z = √(R² + (X_L − X_C)²) morphs to Z = R, and the marker settles in the notch of the Z curve. Flat, no 3D.
+- `sim-impedance-triangle-morph` (layer B, after `sim-impedance-triangle`): value add is resonance as a place the sliders land. Special values: f at f₀ = 1/2π√LC, L at 1/((2πf)²C), C at 1/((2πf)²L), each hidden out of range. On landing, the X_L − X_C leg shrinks to nothing over 0.9 s, Z = √(R² + (X_L − X_C)²) morphs by shape to Z = R (set large; the numbers on their own line), and the marker settles in the notch of the Z curve. The triangle is scaled by its longest side, eased, so R stays a long side at resonance. Flat, no 3D.

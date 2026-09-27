@@ -243,20 +243,18 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
 (function () {
   const d = sim('sim-bernoulli-morph', 770);
   const P1 = 1.50e5, RHO = RHO_W, V1 = 4, V2 = 9;
-  const vDet = [{ v: 0, label: '0' }];
-  const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 0, max: 10, step: 0.5, value: V1, unit: 'm/s', dec: 1, aria: 'the speed of the water at point 1', detents: vDet, snap: false });
-  const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: 0, max: 10, step: 0.5, value: V2, unit: 'm/s', dec: 1, aria: 'the speed of the water at point 2', detents: vDet, snap: false });
-  const h1 = ctl(d.controls, { label: '\\khone', cls: 'position', min: 0, max: 10, step: 0.5, value: 0, unit: 'm', dec: 1, aria: 'the height of point 1 above the reference', detents: [{ v: 0, label: '0' }], snap: false });
-  const h2 = ctl(d.controls, { label: '\\khtwo', cls: 'position', min: 0, max: 10, step: 0.5, value: 5, unit: 'm', dec: 1, aria: 'the height of point 2 above the reference', detents: [{ v: 0, label: 'h₁' }], snap: false });
-  /* figlib's detents are fixed when the slider is made; the one on h₂ sits at h₁ and follows it */
-  const h2Tick = lastLabel(d.controls).querySelector('.ctl-ticks .tick');
-  const moveTick = () => { if (h2Tick) h2Tick.style.left = (100 * h1.v) / 10 + '%'; };
-  moveTick();
+  const zero = { at: 0, label: '0' };
+  let h1, h2;
+  const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 0, max: 10, step: 0.5, value: V1, unit: 'm/s', dec: 1, aria: 'the speed of the water at point 1', specials: [zero] });
+  const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: 0, max: 10, step: 0.5, value: V2, unit: 'm/s', dec: 1, aria: 'the speed of the water at point 2', specials: [zero] });
+  h1 = ctl(d.controls, { label: '\\khone', cls: 'position', min: 0, max: 10, step: 0.5, value: 2, unit: 'm', dec: 1, aria: 'the height of point 1 above the reference', specials: [zero, { at: () => (h2 ? h2.v : null), label: 'h₂' }] });
+  h2 = ctl(d.controls, { label: '\\khtwo', cls: 'position', min: 0, max: 10, step: 0.5, value: 5, unit: 'm', dec: 1, aria: 'the height of point 2 above the reference', specials: [zero, { at: () => h1.v, label: 'h₁' }] });
+  h1.refresh();
   const eqHost = el('div'), numHost = el('div'), note = el('small');
+  eqHost.style.fontSize = '1.6em';
   d.readout.append(eqHost, numHost, note);
-  /* hysteresis on each threshold: a flag is raised on the special value and lowered only once the slider has left it by more than a quarter step */
-  const flags = { still: false, level: false, ground: false };
-  const hold = (k, off) => { flags[k] = flags[k] ? off <= 0.25 : off <= 1e-9; return flags[k]; };
+  /* the kinetic and the gravitational bars, and their legend entries, fade with the terms the case strikes */
+  const P = F.presence(d);
   const YREF = 440, SH = 24, X1 = 340, X2 = 1000, XA = 500, XB = 860;
   const AX0 = 300, AX1 = 1280, EMAX = 3.0e5, KX = (AX1 - AX0) / EMAX;
   const halfw = (v) => (v === 0 ? 44 : clamp(22 * Math.sqrt(4 / v), 14, 44));
@@ -266,24 +264,26 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     a1: '\\mk{a1}{+}', a2: '\\mk{a2}{+}', a3: '\\mk{a3}{+}', a4: '\\mk{a4}{+}', eq: '\\mk{eq}{=}',
   };
   const form = (ks) => ks.map((k) => T[k]).join(' ');
-  function bars(ctx, y, P, ke, pe, total, pc, ec) {
+  function bars(ctx, y, P, ke, pe, total, pc, ec, aK, aG) {
     let x = AX0;
-    const seg = (w, col, hatch) => {
+    const seg = (w, col, hatch, a = 1) => {
       if (w < 0.5) return;
-      ctx.save(); ctx.beginPath(); ctx.rect(x, y - 17, w, 34); ctx.fillStyle = alpha(col, 0.5); ctx.fill();
+      ctx.save(); ctx.globalAlpha = a; ctx.beginPath(); ctx.rect(x, y - 17, w, 34); ctx.fillStyle = alpha(col, 0.5); ctx.fill();
       if (hatch) { ctx.clip(); ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); for (let s = x - 34; s < x + w; s += 12) { ctx.moveTo(s, y + 17); ctx.lineTo(s + 34, y - 17); } ctx.stroke(); }
       ctx.restore();
-      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.strokeRect(x, y - 17, w, 34); ctx.restore();
+      ctx.save(); ctx.globalAlpha = a; ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.strokeRect(x, y - 17, w, 34); ctx.restore();
       x += w;
     };
-    seg(P * KX, pc, false); seg(ke * KX, ec, false); seg(pe * KX, ec, true);
+    seg(P * KX, pc, false); seg(ke * KX, ec, false, aK); seg(pe * KX, ec, true, aG);
     return total;
   }
   function draw() {
-    const { ctx } = begin(d.c); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; moveTick();
+    const { ctx } = begin(d.c); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     const vc = C('velocity'), pc = C('pressure'), hc = C('position'), ec = C('energy');
     const va = v1.v, vb = v2.v, ha = h1.v, hb = h2.v;
-    const still = hold('still', Math.max(va, vb)), level = hold('level', Math.abs(ha - hb)), ground = hold('ground', hb);
+    const still = va === 0 && vb === 0, level = ha === hb, ground = hb === 0, base = ha === 0;
+    P.show('k', !still, { ms: 1200 }); P.show('g', !level, { ms: 1200 });
+    const aK = 0.2 + 0.8 * P.a('k'), aG = 0.2 + 0.8 * P.a('g');
     const ke1 = 0.5 * RHO * va * va, ke2 = 0.5 * RHO * vb * vb, pe1 = RHO * G * ha, pe2 = RHO * G * hb;
     const total = P1 + ke1 + pe1, P2 = total - ke2 - pe2;
     const ya = YREF - SH * ha, yb = YREF - SH * hb, wa = halfw(va), wb = halfw(vb);
@@ -302,20 +302,20 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       else text(ctx, 'h_' + nm + ' = 0', x - 110, YREF + 60, hc, { size: 20, weight: 600, align: 'right' });
     }
     /* the legend: a term the case has crossed out is struck through where it stands */
-    const legend = [['P', 300, pc, false], ['½ρv²', 340, ec, still], ['ρgh (hatched)', 412, ec, level]];
-    for (const [s, x, col, gone] of legend) {
-      text(ctx, s, x, 530, gone ? alpha(col, 0.45) : col, { size: 19, weight: 600 });
-      if (gone) { ctx.save(); ctx.font = `600 19px ${F.FONT}`; const w = ctx.measureText(s).width; ctx.restore(); line(ctx, x - 4, 530, x + w + 4, 530, col, 3); }
+    const legend = [['P', 300, pc, 1], ['½ρv²', 340, ec, P.a('k')], ['ρgh (hatched)', 412, ec, P.a('g')]];
+    for (const [s, x, col, a] of legend) {
+      text(ctx, s, x, 530, alpha(col, 0.45 + 0.55 * a), { size: 19, weight: 600 });
+      if (a < 1) { ctx.save(); ctx.font = `600 19px ${F.FONT}`; const w = ctx.measureText(s).width; ctx.restore(); line(ctx, x - 4, 530, x - 4 + (w + 8) * (1 - a), 530, col, 3); }
     }
     text(ctx, 'the three terms of Bernoulli’s equation, as energy per unit volume', 1280, 530, PAL.muted, { size: 17, align: 'right' });
-    for (const [nm, y, P, ke, pe] of [['at point 1', 572, P1, ke1, pe1], ['at point 2', 650, P2, ke2, pe2]]) {
+    for (const [nm, y, Pr, ke, pe] of [['at point 1', 572, P1, ke1, pe1], ['at point 2', 650, P2, ke2, pe2]]) {
       text(ctx, nm, 280, y, PAL.ink, { size: 20, weight: 600, align: 'right' });
-      bars(ctx, y, P, ke, pe, total, pc, ec);
+      bars(ctx, y, Pr, ke, pe, total, pc, ec, aK, aG);
       const vy = y + 36;
       text(ctx, '× 10⁵ J/m³:', 280, vy, PAL.muted, { size: 17, align: 'right' });
-      text(ctx, 'P = ' + fmt(P / 1e5, 2), AX0, vy, pc, { size: 17, weight: 600 });
-      text(ctx, '½ρv² = ' + fmt(ke / 1e5, 2), AX0 + 150, vy, ec, { size: 17, weight: 600 });
-      text(ctx, 'ρgh = ' + fmt(pe / 1e5, 2), AX0 + 340, vy, ec, { size: 17, weight: 600 });
+      text(ctx, 'P = ' + fmt(Pr / 1e5, 2), AX0, vy, pc, { size: 17, weight: 600 });
+      text(ctx, '½ρv² = ' + fmt(ke / 1e5, 2), AX0 + 150, vy, alpha(ec, aK), { size: 17, weight: 600 });
+      text(ctx, 'ρgh = ' + fmt(pe / 1e5, 2), AX0 + 340, vy, alpha(ec, aG), { size: 17, weight: 600 });
     }
     const tx = AX0 + total * KX, tl = tx > 1040;
     line(ctx, tx, 548, tx, 714, PAL.ink, 3, [8, 10]);
@@ -338,6 +338,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     const n = (x) => fmt(x / 1e5, 2);
     const [keys, nums] = still && level ? [['P1', 'eq', 'P2'], `${n(P1)} = ${n(P2)}`]
       : still && ground ? [['P2', 'eq', 'P1', 'a2', 'g1'], `${n(P2)} = ${n(P1)} + ${n(pe1)}`]
+        : still && base ? [['P1', 'eq', 'P2', 'a4', 'g2'], `${n(P1)} = ${n(P2)} + ${n(pe2)}`]
         : still ? [['P1', 'a2', 'g1', 'eq', 'P2', 'a4', 'g2'], `${n(P1)} + ${n(pe1)} = ${n(P2)} + ${n(pe2)}`]
           : level ? [['P1', 'a1', 'k1', 'eq', 'P2', 'a3', 'k2'], `${n(P1)} + ${n(ke1)} = ${n(P2)} + ${n(ke2)}`]
             : [['P1', 'a1', 'k1', 'a2', 'g1', 'eq', 'P2', 'a3', 'k2', 'a4', 'g2'], `${n(P1)} + ${n(ke1)} + ${n(pe1)} = ${n(P2)} + ${n(ke2)} + ${n(pe2)}`];
