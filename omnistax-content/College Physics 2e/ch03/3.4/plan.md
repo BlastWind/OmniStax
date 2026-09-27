@@ -339,9 +339,12 @@ exercises list now says.
 - `sim-range-morph` (after `sim-range`) · layer B · value add: 45º is a
   special value on θ₀ (dashed circle, the engine's snap); as θ₀ nears it
   the dashed complement converges on the chosen path, and on it the
-  symbolic line, set large, morphs by shape from $\kR = \kvo^2 \sin
-  2\theta_0/\kg$ to $\kR = \kvo^2/\kg$ while the dashed complement bends
-  into the path; the numbers sit on their own line beneath; leaving 45º,
+  readout, one inline equation $\kR = \kvo^2 \sin 2\theta_0/\kg$ =
+  numbers = result, morphs by meaning into $\kR = \kvo^2/\kg$ = numbers =
+  result while the dashed complement bends into the path (R, v₀², g and
+  their numbers keep their keys and move; sin 2θ₀ and sin 90º have no
+  counterpart, since they equal 1, and fade; numbers bend as v₀ or θ₀ is
+  dragged); leaving 45º,
   the dashed and the faint 45º paths arrive drawn along their length ·
   flat, no 3D.
 - `sim-orbit-morph` (after `sim-orbit`) · layer C · value add: the camera
@@ -351,6 +354,12 @@ exercises list now says.
   ground reads flat and the g arrows are parallel, wide they point to the
   centre · one timeline, the flight · special values on v₀: the
   circular-orbit speed $\sqrt{\kg R_E^2/(R_E + h)}$, recomputed from the
-  height (escape speed marked when it lies in range); on it the symbolic
-  line morphs from $\kR = \kvo\sqrt{2h/\kg}$ into $\kvo =
-  \sqrt{\kg R_E^2/(R_E + h)}$ · flat, no 3D.
+  height (escape speed marked when it lies in range); on it the inline
+  readout morphs by meaning from $\kR = \kvo\sqrt{2h/\kg}$ = numbers =
+  km into $\kvo = \sqrt{\kg R_E^2/(R_E + h)}$ = numbers = km/s (v₀, g, h
+  and their numbers are the same quantities and move; the set speed's
+  number moves into the result, the launch speed in both; R and its
+  number have no counterpart and fade; R_E is new and fades in; above the
+  circle the result is keyed as the circular speed, the same number, so
+  it moves); only drags change the string, so the flight's clock never
+  morphs it · flat, no 3D.

@@ -494,13 +494,12 @@ function tower(ctx, x, y, h, color) {
   const d = sim('sim-range-morph', 800);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 20, max: 60, step: 1, value: 50, unit: 'm/s', dec: 0, onInput: reset, aria: 'initial speed' });
   const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: 'º', dec: 0, specials: [{ at: 45, label: '45º' }], onInput: reset, aria: 'launch angle' });
-  const eqHost = el('div'), numHost = el('div');
-  eqHost.style.fontSize = '1.7em';
-  d.readout.append(eqHost, numHost);
+  const eqHost = el('div');
+  d.readout.append(eqHost);
   const fl = () => flight(v0.v, th.v);
   const cy = cycle(() => fl().T, 1.2);
   const merge = F.tween(d, 1), reveal = F.tween(d, 1);
-  let at45 = true, lastComp = 45, nums = '';
+  let at45 = true, lastComp = 45;
   function reset() {
     cy.reset();
     const on = th.v === 45;
@@ -558,9 +557,8 @@ function tower(ctx, x, y, h, color) {
     text(ctx, at45 ? 'farthest at 45º' : 'R = ' + fmt(f.R, 0) + ' m at ' + th.v + 'º and at ' + comp + 'º', g.X(45), g.Y(Math.max(f.R, Rmax)) - 24, at45 ? C('position') : PAL.muted, { size: 18, weight: 600, align: 'center' });
     topline(ctx, at45 ? 'At 45º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, which is the farthest this speed can reach.'
       : 'At ' + th.v + 'º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + 'º.');
-    F.morph(eqHost, at45 ? '\\mk{R}{\\kR} = \\frac{\\mk{v}{\\kvo^2}}{\\mk{g}{\\kg}}' : '\\mk{R}{\\kR} = \\frac{\\mk{v}{\\kvo^2}\\,\\mk{s}{\\sin 2\\theta_0}}{\\mk{g}{\\kg}}');
-    const n = at45 ? `= \\frac{(${v0.v}\\ \\text{m/s})^2}{9.80\\ \\text{m/s}^2} = ${fmt(f.R, 0)}\\ \\text{m}` : `= \\frac{(${v0.v}\\ \\text{m/s})^2 \\sin ${2 * th.v}^\\circ}{9.80\\ \\text{m/s}^2} = ${fmt(f.R, 0)}\\ \\text{m}`;
-    if (n !== nums) { nums = n; tex(numHost, n); }
+    const s = at45 ? '' : '\\,\\mk{s}{\\sin 2\\theta_0}', sv = at45 ? '' : `\\,\\mk{sval}{\\sin ${2 * th.v}^\\circ}`;
+    F.morph(eqHost, `\\mk{R}{\\kR} = \\frac{\\mk{v0}{\\kvo^2}${s}}{\\mk{g}{\\kg}} = \\frac{\\mk{v0val}{(${v0.v}\\ \\text{m/s})^2}${sv}}{\\mk{gval}{9.80\\ \\text{m/s}^2}} = \\mk{Rval}{${fmt(f.R, 0)}\\ \\text{m}}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => fl().T / 5), draw });
 })();
@@ -582,9 +580,8 @@ function tower(ctx, x, y, h, color) {
     specials: [{ at: () => vCirc(), label: 'circular orbit' }, { at: () => Math.SQRT2 * vCirc(), label: 'escape speed' }] });
   const ht = ctl(d.controls, { label: '\\text{tower height}', cls: 'position', min: 200, max: 1500, step: 100, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: 'tower height' });
   v0.refresh();
-  const eqHost = el('div'), numHost = el('div'), note = el('small');
-  eqHost.style.fontSize = '1.7em';
-  d.readout.append(eqHost, numHost, note);
+  const eqHost = el('div'), note = el('small');
+  d.readout.append(eqHost, note);
   function integrate(v, h) {
     const r0 = RE + h * 1000; let x = 0, y = r0, vx = v * 1000, vy = 0, t = 0, swept = 0, last = Math.PI / 2;
     const acc = (px, py) => { const r = Math.hypot(px, py), a = -GM / (r * r * r); return [a * px, a * py]; };
@@ -628,7 +625,7 @@ function tower(ctx, x, y, h, color) {
   const cy = cycle(() => { paths(); return run.T; }, 1.4);
   function reset() { cy.reset(); }
   const at = (tau) => { const p = run.pts; let lo = 0, hi = p.length - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (p[m].t < tau) lo = m + 1; else hi = m; } return Math.max(0, Math.min(lo, p.length - 1)); };
-  let nums = '';
+  let form = '';
   function draw() {
     paths();
     const { ctx } = begin(d.c); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -671,14 +668,15 @@ function tower(ctx, x, y, h, color) {
     topline(ctx, done && run.landed ? 'After ' + min(run.T) + ' it lands ' + sig3(along) + ' km along the curved surface, against ' + sig3(flat) + ' km on level ground.'
       : done ? 'At ' + fmt(v0.v, 2) + ' km/s the Earth curves away as fast as the projectile falls, so after ' + min(run.T) + ' it is in orbit.'
       : 'After ' + min(tau) + ' the projectile is ' + sig3((r - RE) / 1000) + ' km up and has covered ' + sig3(sofar) + ' km of the surface so far.');
-    /* the symbolic line morphs between the level-ground range and the orbit condition; the numbers sit beneath it */
-    const orbit = '\\mk{o}{\\sqrt{\\frac{\\kg R_E^2}{R_E + h}}}';
-    F.morph(eqHost, run.landed ? '\\mk{R}{\\kR} = \\mk{v}{\\kvo}\\mk{f}{\\sqrt{2h/\\kg}}'
-      : circ ? `\\mk{v}{\\kvo} \\mk{eq}{=} ${orbit}` : `\\mk{v}{\\kvo} ${v0.v > vo ? '\\mk{gt}{>}' : '\\mk{lt}{<}'} ${orbit}`, { keyMap: { f: 'o' } });
-    const nl = run.landed
-      ? `= (${fmt(v0.v, 1)}\\ \\text{km/s})\\sqrt{\\frac{2(${commas(fmt(ht.v * 1000, 0))}\\ \\text{m})}{9.80\\ \\text{m/s}^2}} = ${sig3(flat)}\\ \\text{km on level ground}`
-      : `\\sqrt{\\frac{\\kg R_E^2}{R_E + h}} = ${fmt(vo, 2)}\\ \\text{km/s at } h = ${commas(fmt(ht.v, 0))}\\ \\text{km}`;
-    if (nl !== nums) { nums = nl; tex(numHost, nl); }
+    /* the level-ground range, or the orbit condition: v₀, g and h are the same quantities in both */
+    const gv = '\\mk{gval}{(9.80\\ \\text{m/s}^2)}', hv = `\\mk{hval}{${commas(fmt(ht.v * 1000, 0))}\\ \\text{m}}`, re = '6.37 \\times 10^6\\ \\text{m}';
+    const orbit = `\\sqrt{\\frac{\\mk{g}{\\kg}\\mk{RE}{R_E^2}}{\\mk{RE2}{R_E} + \\mk{h}{h}}} = \\sqrt{\\frac{${gv}\\mk{REval}{(${re})^2}}{\\mk{REval2}{${re}} + ${hv}}}`;
+    const vc = `\\ \\text{km/s}`;
+    F.morph(eqHost, run.landed
+      ? `\\mk{R}{\\kR} = \\mk{v0}{\\kvo}\\sqrt{\\frac{2\\mk{h}{h}}{\\mk{g}{\\kg}}} = \\mk{v0val}{(${fmt(v0.v, 1)}\\ \\text{km/s})}\\sqrt{\\frac{2(${hv})}{${gv}}} = \\mk{Rval}{${sig3(flat)}\\ \\text{km}}`
+      : circ ? `\\mk{v0}{\\kvo} = ${orbit} = \\mk{v0val}{${fmt(vo, 2)}${vc}}`
+      : `\\mk{v0}{\\kvo} ${v0.v > vo ? '\\mk{gt}{>}' : '\\mk{lt}{<}'} ${orbit} = \\mk{vc}{${fmt(vo, 2)}${vc}}`, { keyMap: form === 'circ' && !run.landed && !circ ? { v0val: 'vc' } : form === 'off' && circ ? { vc: 'v0val' } : undefined });
+    form = run.landed ? 'range' : circ ? 'circ' : 'off';
     note.textContent = run.landed ? 'The projectile went ' + sig3(along) + ' km along the curved surface, ' + fmt(along / flat, 1) + ' times as far, because the ground fell away beneath it and it had farther to fall.'
       : circ ? 'At this speed the path is a circle: the projectile falls the whole way round in ' + fmt(run.T / 60, 0) + ' min and stays at the height of the tower.'
       : 'Instead of landing, the projectile circles the Earth in ' + fmt(run.T / 60, 0) + ' min: it falls the whole way round and never reaches the surface.';

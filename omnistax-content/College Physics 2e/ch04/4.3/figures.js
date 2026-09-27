@@ -460,8 +460,8 @@ function bathScale(ctx, x, y, w, color) {
   function extras(ctx, x, y, lv) {
     ctx.save(); ctx.translate(x, y); ctx.scale(Z, Z); x = 0; y = 0;
     ctx.fillStyle = PAL.ink; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.arc(x + 40, y - 44, 13, 0, TAU); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(x + 40, y - 30); ctx.lineTo(x + 40, y - 8); ctx.moveTo(x + 40, y - 24); ctx.lineTo(x + 64, y - 16); ctx.stroke();
+    ctx.beginPath(); ctx.arc(x + 74, y - 44, 13, 0, TAU); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(x + 74, y - 30); ctx.lineTo(x + 74, y - 8); ctx.moveTo(x + 74, y - 24); ctx.lineTo(x + 90, y - 14); ctx.stroke();
     ctx.beginPath(); ctx.arc(x - 50, y + 20, 12, 0, TAU); ctx.arc(x + 52, y + 20, 12, 0, TAU); ctx.fill();
     ctx.lineWidth = 2.5; ctx.beginPath();
     for (let i = 1; i < 4; i++) { ctx.moveTo(x - 86, y - 6 - 22 * i); ctx.lineTo(x - 46, y - 6 - 22 * i); }
@@ -473,7 +473,6 @@ function bathScale(ctx, x, y, w, color) {
     });
     ctx.restore();
   }
-  let lastNums = '';
   function draw() {
     const { ctx } = begin(d.c);
     const n = +nn.value, s = st.v, lv = burn.map((b) => b.v), cf = C('force');
@@ -519,16 +518,12 @@ function bathScale(ctx, x, y, w, color) {
       ctx.restore();
     }
     const terms = [0, 1, 2, 3].slice(0, n).map((i) => `\\mk{T${i}}{${i ? '{}+' : ''}\\kTf}`).join(' ');
-    F.morph(formula, `\\kFnet = ${terms} \\mk{f}{{}-\\kff}`);
-    const nums = `\\kFnet = ${n}(${sig3(Tt.v)}\\ \\text{N}) - ${commas(fmt(ff.v, 0))}\\ \\text{N} = ${sig3(net)}\\ \\text{N}`;
-    if (nums !== lastNums) {
-      lastNums = nums; tex(numbers, nums);
-      note.textContent = net > 0 ? 'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s².' : 'The thrust does not overcome the friction, and the sled stays where it is.';
-    }
+    F.morph(formula, `\\mk{Fnet}{\\kFnet} = ${terms} \\mk{f}{{}-\\kff} = \\mk{n}{${n}}\\mk{nT}{\\kTf} \\mk{f2}{{}-\\kff}`
+      + ` = \\mk{nval}{${n}}\\mk{Tval}{(${sig3(Tt.v)}\\ \\text{N})} \\mk{fval}{{}-${commas(fmt(ff.v, 0))}\\ \\text{N}} = \\mk{Fval}{${sig3(net)}\\ \\text{N}}`);
+    note.textContent = net > 0 ? 'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s².' : 'The thrust does not overcome the friction, and the sled stays where it is.';
   }
-  const formula = el('div'), numbers = el('div'), note = el('small');
-  formula.style.fontSize = '1.6em'; formula.style.minHeight = '2.4em';
-  d.readout.append(formula, numbers, note);
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
   register(d.fig, { update: () => {}, draw });
 })();
 
