@@ -419,6 +419,439 @@ function oval(c, A, B, u, v, n = 72) {
 })();
 
 /* =====================================================================
+   SIM · sim-field-of-a-current-tour · a tour (layer C) · mathematical 3D
+   (root rule 28.3): ink and the type hues, flat unlit colour, no materials.
+   The figure above, told as a script: the circles round a straight wire
+   seen end-on, then as rings all along it, the field weakening outward,
+   the wire bending continuously into a loop and the loop stacking into
+   the solenoid. The controls are the original's and stay live; every
+   beat moves them as a reader would, and the three morphs the dropdown
+   cannot show (sweep, bend, stack) are story-time parameters in tv.
+===================================================================== */
+(function () {
+  const THREE = window.THREE;
+  const glOk = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } };
+  const hasGL = !!(THREE && glOk());
+  const H2D = hasGL ? 360 : 780;
+  const d = sim('sim-field-of-a-current-tour', H2D);
+  const arrC = F.select(d.controls, {
+    label: '\\text{the wire is}',
+    options: [{ value: 'wire', label: 'straight' }, { value: 'loop', label: 'a circular loop' }, { value: 'sol', label: 'a solenoid' }],
+    value: 'wire', aria: 'the shape the current-carrying wire is wound in', onInput: () => { show(); },
+  });
+  const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 5, max: 50, step: 1, value: 25, unit: 'A', dec: 0, aria: 'the current in the wire or the loop' });
+  const iBox = lastLabel(d.controls);
+  const rS = ctl(d.controls, { label: '\\kr', cls: 'position', min: 2, max: 12, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'the shortest distance from the wire to the point where the field is wanted' });
+  const rBox = lastLabel(d.controls);
+  const RS = ctl(d.controls, { label: '\\kR', cls: 'position', min: 2, max: 12, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'the radius of the circular loop' });
+  const RBox = lastLabel(d.controls);
+  const NS = ctl(d.controls, { label: 'N', cls: '', min: 1, max: 4, step: 1, value: 1, unit: 'turns', dec: 0, detents: [1, 2, 3, 4], aria: 'the number of turns in the flat coil' });
+  const NBox = lastLabel(d.controls);
+  const iSol = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 200, max: 2000, step: 50, value: 1600, unit: 'A', dec: 0, aria: 'the current in the solenoid' });
+  const iSolBox = lastLabel(d.controls);
+  const nS = ctl(d.controls, { label: 'n', cls: '', min: 400, max: 2000, step: 50, value: 1000, unit: '/m', dec: 0, aria: 'the number of turns per meter of the solenoid' });
+  const nBox = lastLabel(d.controls);
+  const handC = choice(d.controls, { label: '\\text{the right hand}', options: [{ value: 'on', label: 'shown' }, { value: 'off', label: 'hidden' }], value: 'on', aria: 'whether the right hand of rule 2 is drawn gripping the wire' });
+
+  function show() {
+    const a = arrC.value;
+    iBox.style.display = a === 'sol' ? 'none' : '';
+    rBox.style.display = a === 'wire' ? '' : 'none';
+    RBox.style.display = a === 'loop' ? '' : 'none';
+    NBox.style.display = a === 'loop' ? '' : 'none';
+    iSolBox.style.display = a === 'sol' ? '' : 'none';
+    nBox.style.display = a === 'sol' ? '' : 'none';
+  }
+  show();
+
+  /* Story-time parameters, each 0 to 1: the circles drawn, swept out along the
+     wire, the hand faded in, the wire bent into the loop, the loops stacked into
+     the solenoid. A reader's own change of a control finishes them all, so any
+     arrangement the reader picks is drawn whole; the tour's transport gives them
+     back to the script. */
+  const partial = F.partial;
+  const tv = { create: 1, sweep: 1, hand: 1, bend: 1, stack: 1 };
+  let free = false;
+  const eff = (x) => (free ? 1 : x);
+
+  const SOL_L = 2.00;
+  const RHO = (cm) => (1.7 * cm) / 12;
+  const state = () => {
+    const a = arrC.value;
+    if (a === 'wire') { const r = rS.v / 100, I = iS.v; return { a, I, r, B: (MU0 * I) / (TAU * r) }; }
+    if (a === 'loop') { const R = RS.v / 100, I = iS.v, N = NS.v; return { a, I, R, N, B: (N * MU0 * I) / (2 * R) }; }
+    const I = iSol.v, n = nS.v;
+    return { a, I, n, N: Math.round(n * SOL_L), B: MU0 * n * I };
+  };
+  const headlineOf = (st) => {
+    if (st.a === 'wire') return `A current of ${fmt(st.I, 0)} A makes ${sci(st.B, 2)} T at ${fmt(rS.v, 1)} cm from the wire, in circles centered on it.`;
+    if (st.a === 'loop') return st.N === 1
+      ? `The same current, closed into a loop of radius ${fmt(RS.v, 1)} cm, makes ${sci(st.B, 2)} T at its center.`
+      : `${fmt(st.N, 0)} turns of radius ${fmt(RS.v, 1)} cm carrying ${fmt(st.I, 0)} A make ${sci(st.B, 2)} T at the center.`;
+    return `A solenoid of ${fmt(st.n, 0)} turns per meter carrying ${fmt(st.I, 0)} A holds ${fmt(st.B, 2)} T all through its interior, and almost nothing outside.`;
+  };
+
+  /* ---------- the scene, in the Manim look: flat colour, round-ended tubes, no plates ---------- */
+  let V = null, S = null, g3 = null, key = '';
+  const paint = [];
+  const pmat = (col, op = 1) => {
+    const m = new THREE.MeshBasicMaterial({ color: new THREE.Color(col()), transparent: op < 1, opacity: op, depthWrite: op >= 1 });
+    paint.push({ m, col }); return m;
+  };
+  const V3 = (p) => new THREE.Vector3(p[0], p[1], p[2]);
+  /* a stroke along pts as a tube of radius r, with round ends where it is open */
+  function tube(g, pts, r, col, op = 1, closed = false) {
+    if (pts.length < 2 || op <= 0.01) return null;
+    const m = pmat(col, op);
+    const t = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map(V3), closed), Math.max(8, pts.length), r, 8, closed), m);
+    g.add(t);
+    if (!closed) [pts[0], pts[pts.length - 1]].forEach((p) => { const c = new THREE.Mesh(F.mesh.geo().sphere, m); c.position.copy(V3(p)); c.scale.setScalar(r); g.add(c); });
+    return t;
+  }
+  /* an arrow along the path pts, its plain cone tip on the last point */
+  function parrow(g, pts, r, col, op = 1, name) {
+    if (pts.length < 2 || op <= 0.01) return;
+    const B = V3(pts[pts.length - 1]), A = V3(pts[Math.max(0, pts.length - 3)]);
+    let L = 0; for (let i = 1; i < pts.length; i++) L += V3(pts[i]).distanceTo(V3(pts[i - 1]));
+    if (L < 0.03) return;
+    const hl = Math.min(0.26, L * 0.45), u = B.clone().sub(A).normalize(), base = B.clone().sub(u.clone().multiplyScalar(hl));
+    const shaft = partial(pts, (L - hl * 0.8) / L);
+    const t = tube(g, shaft.length >= 2 ? shaft : [pts[0], base.toArray()], r, col, op);
+    const cone = new THREE.Mesh(F.mesh.geo().cone, pmat(col, op));
+    cone.position.copy(base).add(u.clone().multiplyScalar(hl / 2));
+    cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), u);
+    cone.scale.set(r * 3.4, hl, r * 3.4); g.add(cone);
+    if (name) { if (t) V.pickable(t, name); V.pickable(cone, name); }
+  }
+  const seg = (a, b) => [a, b];
+  const lab = (s, p, g, dy, col, op = 1) => {
+    const e = V.label(s, p, g, dy);
+    e.style.fontWeight = '600'; e.style.color = col; e.style.background = 'transparent'; e.style.border = 'none'; e.style.opacity = String(op);
+    return e;
+  };
+  const INK = () => PAL.ink, MUT = () => PAL.muted;
+  const BC = () => C('magnetic-field'), IC = () => C('current'), PC = () => C('position');
+  const OP = 0.45, THIN = 0.009, MAIN = 0.017;
+  const stag = (k, i, n, lag = 0.12) => clamp((k - i * lag) / (1 - (n - 1) * lag), 0, 1);
+  const lerp = (a, b, k) => a + (b - a) * k;
+  const lerp3 = (a, b, k) => [lerp(a[0], b[0], k), lerp(a[1], b[1], k), lerp(a[2], b[2], k)];
+  const circle = (c, q, u, v, n = 72) => { const pts = []; for (let i = 0; i <= n; i++) { const t = (i / n) * TAU; pts.push(add3(add3(c, u, q * Math.cos(t)), v, q * Math.sin(t))); } return pts; };
+
+  /* The right hand of rule 2, as in the figure above, drawn as a half-opacity fill in the muted ink. */
+  function buildHand(g, grip, iDir, outDir, s, op) {
+    if (handC.value !== 'on' || op <= 0.01) return;
+    const h = new THREE.Group();
+    const hm = pmat(MUT, 0.5 * op);
+    const palm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.40, 0.26), hm); palm.position.set(0.30, -0.03, 0.02); h.add(palm);
+    V.pickable(palm, 'the palm of the right hand, which grips the wire');
+    const thumb = new THREE.Mesh(F.mesh.geo().cyl, hm); thumb.scale.set(0.048, 1, 0.048);
+    F.mesh.setStick(thumb, [0.24, 0.12, 0.06], [0.12, 0.78, 0.04]); h.add(thumb);
+    V.pickable(thumb, 'the thumb, pointing the way the current runs');
+    [0.12, 0.02, -0.08, -0.18].forEach((yF, fi) => {
+      const span = 2.5 - 0.16 * fi;
+      for (let k = 0; k < 5; k++) {
+        const a0 = -(span / 5) * k, a1 = -(span / 5) * (k + 1), rr = 0.30 - 0.026 * k;
+        const p0 = [rr * Math.cos(a0), yF, rr * Math.sin(a0)], p1 = [(rr - 0.026) * Math.cos(a1), yF, (rr - 0.026) * Math.sin(a1)];
+        const f2 = new THREE.Mesh(F.mesh.geo().cyl, hm); f2.scale.set(0.034, 1, 0.034);
+        F.mesh.setStick(f2, p0, p1); h.add(f2);
+        V.pickable(f2, 'the fingers, curling the way the magnetic field goes');
+      }
+    });
+    const wrist = new THREE.Mesh(F.mesh.geo().cyl, hm); wrist.scale.set(0.10, 1, 0.10);
+    F.mesh.setStick(wrist, [0.34, -0.10, 0.06], [0.74, -0.32, 0.34]); h.add(wrist);
+    V.pickable(wrist, 'the wrist');
+    const u = new THREE.Vector3(...unit3(outDir)), t = new THREE.Vector3(...unit3(iDir));
+    const w = new THREE.Vector3().crossVectors(u, t);
+    h.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, t, w));
+    h.position.set(grip[0], grip[1], grip[2]); h.scale.setScalar(s);
+    g.add(h);
+  }
+
+  function build() {
+    if (!V || !V.scene || !g3) return;
+    V.clear(); paint.length = 0;
+    const st = state();
+    S = { labs: {} };
+    if (st.a === 'sol') buildSolenoid(st, eff(tv.stack));
+    else buildLine(st, st.a === 'loop' ? eff(tv.bend) : 0);
+    V.invalidate();
+  }
+
+  /* One wire that bends. At b = 0 it is the straight wire along x, six units
+     long; at b = 1 it is the loop of radius rho lying flat and centred on the
+     origin. Between, it is an arc of constant curvature b/rho and of length
+     running from 6 to 2π rho, so the bend is continuous and the rings round the
+     wire ride along with it until they are the loop's own field lines. */
+  function bendOf(b, rho) {
+    const L = lerp(6.0, TAU * rho, b), kap = b / rho;
+    const P = (s) => (kap < 1e-4 ? [s, 0, 0] : [Math.sin(kap * s) / kap, 0, -(1 - Math.cos(kap * s)) / kap + b * rho]);
+    const T = (s) => [Math.cos(kap * s), 0, -Math.sin(kap * s)];
+    const Out = (s) => [Math.sin(kap * s), 0, Math.cos(kap * s)];
+    const path = (s0, s1, n = 60) => Array.from({ length: n + 1 }, (_, i) => P(s0 + ((s1 - s0) * i) / n));
+    return { L, P, T, Out, path };
+  }
+
+  function buildLine(st, b) {
+    const c = eff(tv.create), w = eff(tv.sweep), hand = eff(tv.hand);
+    const rhoL = RHO(RS.v), W = bendOf(b, rhoL), UP = [0, 1, 0];
+    const closed = b > 0.999;
+    const N = closed ? st.N : 1;
+    for (let k = 0; k < N; k++) {
+      const dq = (k - (N - 1) / 2) * 0.052;
+      const wire = closed ? tube(g3, circle([0, 0, 0], rhoL + dq, [0, 0, 1], [1, 0, 0], 96), 0.026, INK, 1, true) : tube(g3, W.path(-W.L / 2, W.L / 2, 96), 0.026, INK);
+      if (wire) V.pickable(wire, b < 0.5 ? 'the long straight wire' : N === 1 ? 'the loop of wire' : 'one turn of the flat coil');
+    }
+    /* the current, an arrow along the wire that shortens to the loop's own arrow */
+    const sI = rhoL * (Math.PI / 2 - 1.15);
+    const i0 = lerp(-2.6, sI - 0.30, b), i1 = lerp(2.6, sI + 0.42, b);
+    parrow(g3, W.path(i0, i1, 40), 0.040, IC, 1, 'I, the current');
+    /* the rings round the wire, at three places along it, the side two swept out from the middle */
+    const ringAt = (s, q, col, op, draw = 1) => {
+      if (draw <= 0) return;
+      const pts = circle(W.P(s), q, W.Out(s), UP, 72);
+      if (draw >= 1) tube(g3, pts, col === BC ? MAIN : THIN, col, op, true); else tube(g3, partial(pts, draw), col === BC ? MAIN : THIN, col, op);
+    };
+    const qs = [lerp(RHO(4), 0.30 * rhoL, b), lerp(RHO(8), 0.62 * rhoL, b), RHO(12)];
+    const ops = [OP, OP, OP * (1 - b)];
+    qs.forEach((q, i) => ringAt(0, q, BC, ops[i], stag(c, i, 5)));
+    if (w > 0) [-1, 1].forEach((sg) => qs.forEach((q, i) => ringAt(sg * (W.L / 4) * w, q, BC, ops[i] * Math.min(1, w * 3))));
+    if (b > 0) qs.slice(0, 2).forEach((q) => ringAt(W.L / 2 - 1e-3, q, BC, OP * b));
+    /* the loop's large field lines, up through the hole and back round outside */
+    if (b > 0) [0, Math.PI / 2, Math.PI, -Math.PI / 2].forEach((al) => {
+      const e = [Math.cos(al), 0, Math.sin(al)];
+      tube(g3, oval(add3([0, 0, 0], e, 1.125 * rhoL), 0.975 * rhoL, 0.90 * rhoL, e, UP, 64), THIN, BC, OP * b * b, true);
+    });
+    /* the wire's field point: the circle through it, the field there, and r */
+    const ow = 1 - b;
+    if (ow > 0) {
+      const rho = RHO(rS.v), at = (t) => [0, rho * Math.sin(t), rho * Math.cos(t)], tang = (t) => [0, Math.cos(t), -Math.sin(t)];
+      ringAt(0, rho, BC, ow, stag(c, 3, 5));
+      const g = stag(c, 4, 5), tP = -2.0, p = at(tP);
+      if (g > 0) {
+        [0.6, 2.4].forEach((t) => parrow(g3, seg(at(t), add3(at(t), tang(t), 0.36 * g)), 0.022, BC, ow, 'the magnetic field, tangent to the circle'));
+        parrow(g3, seg(p, add3(p, tang(tP), 0.66 * g)), 0.032, BC, ow, 'B, the magnetic field at this point');
+        tube(g3, seg([0, 0, 0], p), 0.013, PC, ow);
+        F.mesh.sphere(g3, p, 0.05, PAL.ink);
+        S.labs.B = lab('B = ' + sci(st.a === 'wire' ? st.B : (MU0 * st.I) / (TAU * rS.v / 100), 2) + ' T', add3(p, tang(tP), 0.88), g3, -8, C('magnetic-field'), g * ow);
+        S.labs.r = lab('r = ' + fmt(rS.v, 1) + ' cm', add3(p, unit3(p), 0.58), g3, -10, C('position'), g * ow);
+      }
+    }
+    /* the loop's centre: the field there grows up through the hole, and R */
+    if (b > 0) {
+      parrow(g3, seg([0, -0.40, 0], [0, -0.40 + 1.26 * b, 0]), 0.036, BC, 1, 'B, the magnetic field at the center of the loop');
+      const tR = 3.9, pR = [rhoL * Math.cos(tR), 0, rhoL * Math.sin(tR)];
+      tube(g3, seg([0, 0, 0], pR), 0.014, PC, b);
+      S.labs.B = lab('B = ' + sci(st.B, 2) + ' T', [0.0, 1.0, 0], g3, 26, C('magnetic-field'), b);
+      S.labs.R = lab('R = ' + fmt(RS.v, 1) + ' cm', add3([0, 0, 0], pR, 0.55), g3, 0, C('position'), b);
+    }
+    S.labs.I = lab('I = ' + fmt(st.I, 0) + ' A', add3(W.P(i1), W.T(i1), 0.2), g3, 22, C('current'));
+    /* the hand rides the bend from its grip on the straight wire to its grip on the loop */
+    const sh = lerp(-1.1, rhoL * (Math.PI / 2 - 2.55), b);
+    buildHand(g3, W.P(sh), W.T(sh), unit3(lerp3(UP, W.Out(sh), b)), lerp(1, 0.9, b), hand);
+  }
+
+  /* The loop stacks into the solenoid. The helix is built along x in a group
+     turned a quarter about z at k = 0, which stands its axis upright where the
+     loop's is; as k runs to 1 the turns spread along the axis, the radius goes
+     from the loop's to the coil's and the group turns the axis level. */
+  function buildSolenoid(st, k) {
+    const a = 0.55, HX = 1.6, turns = Math.round(st.n / 100), rhoL = RHO(RS.v), UP = [0, 1, 0];
+    const sub = new THREE.Group(); sub.rotation.z = (1 - k) * Math.PI / 2; g3.add(sub);
+    const rr = lerp(rhoL, a, k), npt = turns * 26, pts = [];
+    for (let i = 0; i <= npt; i++) { const s = i / npt, u = TAU * turns * s; pts.push([k * (-HX + 2 * HX * s), -rr * Math.sin(u), rr * Math.cos(u)]); }
+    const coil = tube(sub, pts, 0.022, INK); if (coil) V.pickable(coil, 'the winding of the solenoid');
+    const j = Math.round(0.62 * turns) * 26;
+    parrow(sub, pts.slice(Math.max(0, j - 5), Math.min(npt, j + 5) + 1), 0.030, IC, 1, 'I, the current in the winding');
+    /* the loop's field lines leave as the turns spread */
+    if (k < 1) [0, Math.PI / 2, Math.PI, -Math.PI / 2].forEach((al) => {
+      const e = [Math.cos(al), 0, Math.sin(al)];
+      [[rhoL, 0.30 * rhoL, 0.30 * rhoL], [rhoL, 0.62 * rhoL, 0.62 * rhoL], [1.125 * rhoL, 0.975 * rhoL, 0.90 * rhoL]].forEach(([cc, A, Bh]) =>
+        tube(g3, oval(add3([0, 0, 0], e, cc), A, Bh, e, UP, 64), THIN, BC, OP * (1 - k), true));
+    });
+    /* the field inside: the loop's own arrow stretches down the axis, and four more grow beside it */
+    parrow(sub, seg([lerp(-0.40, -1.25, k), 0, 0], [lerp(0.86, 1.25, k), 0, 0]), 0.030, BC, 1, 'B, the field inside the solenoid, the same everywhere in the interior');
+    if (k > 0.02) [[0.30, 0], [-0.30, 0], [0, 0.30], [0, -0.30]].forEach(([dy, dz], i) => {
+      const g = stag(k, i, 4, 0.1);
+      if (g > 0) parrow(sub, seg([-1.25, dy, dz], [-1.25 + 2.5 * g, dy, dz]), 0.024, BC, 1, 'B, the field inside the solenoid, the same everywhere in the interior');
+    });
+    [[0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]].forEach((nrm) =>
+      [[2.10, 0.38], [2.52, 0.78]].forEach(([A, Bh]) => tube(sub, oval(add3([0, 0, 0], nrm, a), A, Bh, [1, 0, 0], nrm, 72), THIN, BC, OP * k * k, true)));
+    S.labs.I = lab('I = ' + fmt(st.I, 0) + ' A', add3(pts[j], [0.34, 0, 0.3]), sub, 0, C('current'));
+    S.labs.B = lab('B = ' + fmt(st.B, 2) + ' T', [-0.6, -0.95, 0], sub, 0, C('magnetic-field'), k);
+    S.labs.N = lab('N', [HX + 0.46, 0, 0], sub, 0, PAL.ink, k);
+    S.labs.S = lab('S', [-HX - 0.46, 0, 0], sub, 0, PAL.ink, k);
+    const hand = eff(tv.hand);
+    if (k < 0.5) {
+      const W = bendOf(1, rhoL), sh = rhoL * (Math.PI / 2 - 2.55);
+      buildHand(g3, W.P(sh), W.T(sh), W.Out(sh), 0.9, hand * (1 - 2 * k));
+    } else {
+      const jh = Math.round(npt * 0.26), ph0 = pts[Math.max(0, jh - 3)], ph1 = pts[Math.min(npt, jh + 3)], u0 = unit3([0, pts[jh][1], pts[jh][2]]);
+      buildHand(sub, add3(pts[jh], u0, 0.04), unit3([ph1[0] - ph0[0], ph1[1] - ph0[1], ph1[2] - ph0[2]]), u0, 0.62, hand * (2 * k - 1));
+    }
+  }
+
+  /* ---------- the arrangement flat, where there is no WebGL for the scene ---------- */
+  function ovalPath(ctx, cx, cy, A, B, col, w) {
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; ctx.beginPath(); ctx.ellipse(cx, cy, A, B, 0, 0, TAU); ctx.stroke(); ctx.restore();
+  }
+  function drawFlat(ctx, st) {
+    const cx = 700, cy = 262;
+    if (st.a === 'wire') {
+      const K = 150 / RHO(12), rho = RHO(rS.v) * K;
+      [4, 8, 12].forEach((cm) => { const R = RHO(cm); ovalPath(ctx, cx, cy, R * K, R * K, alpha(C('magnetic-field'), 0.5), 2.5); });
+      ovalPath(ctx, cx, cy, rho, rho, C('magnetic-field'), 4);
+      /* the wire runs out of the page, drawn as 22.3 draws a vector coming toward the reader */
+      dot(ctx, cx, cy, C('current'), true, 11);
+      ovalPath(ctx, cx, cy, 20, 20, C('current'), 3.5);
+      text(ctx, 'I = ' + fmt(st.I, 0) + ' A, out of the page', cx + 30, cy - 26, C('current'), { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+      const px = cx + rho * 0.72, py = cy + rho * 0.69;
+      line(ctx, cx, cy, px, py, C('position'), 3);
+      dot(ctx, px, py, PAL.ink, true, 8);
+      text(ctx, 'r = ' + fmt(rS.v, 1) + ' cm', (cx + px) / 2 + 8, (cy + py) / 2 + 20, C('position'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
+      arrow(ctx, px, py, px - 52, py + 54, C('magnetic-field'), 5);
+      text(ctx, 'B = ' + sci(st.B, 2) + ' T', px - 58, py + 74, C('magnetic-field'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    } else if (st.a === 'loop') {
+      const K = 150 / RHO(12), rho = RHO(RS.v) * K;
+      [1, -1].forEach((s) => {
+        [[rho, 0.30 * rho, 0.30 * rho], [rho, 0.62 * rho, 0.62 * rho], [1.125 * rho, 0.975 * rho, 0.90 * rho]].forEach(([c, A, B]) =>
+          ovalPath(ctx, cx + s * c, cy, A, B, alpha(C('magnetic-field'), 0.5), 2.5));
+        for (let k = 0; k < st.N; k++) {
+          const xk = cx + s * (rho + (k - (st.N - 1) / 2) * 5);
+          if (s > 0) { dot(ctx, xk, cy, C('current'), true, 9); }
+          else { ctx.save(); ctx.strokeStyle = C('current'); ctx.lineWidth = 3.5; ctx.beginPath(); ctx.moveTo(xk - 6, cy - 6); ctx.lineTo(xk + 6, cy + 6); ctx.moveTo(xk + 6, cy - 6); ctx.lineTo(xk - 6, cy + 6); ctx.stroke(); ctx.restore(); }
+        }
+      });
+      text(ctx, 'I = ' + fmt(st.I, 0) + ' A, out of the page here', cx + rho + 24, cy + 26, C('current'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
+      text(ctx, 'and into it there', cx - rho - 24, cy + 26, C('current'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
+      arrow(ctx, cx, cy + 46, cx, cy - 104, C('magnetic-field'), 5);
+      text(ctx, 'B = ' + sci(st.B, 2) + ' T', cx + 14, cy - 92, C('magnetic-field'), { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+      line(ctx, cx, cy, cx + rho, cy, C('position'), 3);
+      text(ctx, 'R = ' + fmt(RS.v, 1) + ' cm', cx + rho / 2, cy - 18, C('position'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    } else {
+      const HX = 300, a = 80, turns = Math.round(st.n / 100);
+      for (let k = 0; k < turns; k++) {
+        const x = cx - HX + ((2 * HX) / (turns - 1)) * k;
+        dot(ctx, x, cy - a, C('current'), true, 7);
+        ctx.save(); ctx.strokeStyle = C('current'); ctx.lineWidth = 3; ctx.beginPath();
+        ctx.moveTo(x - 5, cy + a - 5); ctx.lineTo(x + 5, cy + a + 5); ctx.moveTo(x + 5, cy + a - 5); ctx.lineTo(x - 5, cy + a + 5); ctx.stroke(); ctx.restore();
+      }
+      [-46, 0, 46].forEach((dy) => arrow(ctx, cx - 250, cy + dy, cx + 250, cy + dy, C('magnetic-field'), 4));
+      [1, -1].forEach((s) => [[330, 36], [380, 66]].forEach(([A, B]) => ovalPath(ctx, cx, cy + s * a, A, B, alpha(C('magnetic-field'), 0.5), 2.5)));
+      text(ctx, 'N', cx + HX + 64, cy, PAL.ink, { size: 24, weight: 600, align: 'center' });
+      text(ctx, 'S', cx - HX - 64, cy, PAL.ink, { size: 24, weight: 600, align: 'center' });
+      text(ctx, 'I = ' + fmt(st.I, 0) + ' A', cx, cy - a - 34, C('current'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+      text(ctx, 'B = ' + fmt(st.B, 2) + ' T', cx, cy - 70, C('magnetic-field'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    }
+    text(ctx, 'This browser cannot turn the scene, so the arrangement is drawn flat: the wire end-on, the loop and the coil in section.', 700, 440, PAL.muted, { size: 17, align: 'center' });
+    topline(ctx, headlineOf(st));
+  }
+
+  /* ---------- the graph below the scene ----------
+     The axes are fixed per arrangement and never rescale: the wire runs to 20 cm
+     and 5 × 10⁻⁴ T, the loop to 20 cm and 20 × 10⁻⁴ T, and the solenoid to 2000
+     turns per metre and 5 T. A curve that leaves the frame is clipped to it and
+     the live point goes through pinned(). */
+  function drawGraph(ctx, st, y0) {
+    const box = { l: 180, r: 1270, t: y0 + 54, b: y0 + 238 };
+    const clipped = (fn) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); fn(); ctx.restore(); };
+    if (st.a === 'wire') {
+      const { X, Y } = axes(ctx, box, [0, 12], [0, 5], {
+        xl: 'r, the shortest distance to the wire (cm)', xc: C('position'), yl: 'B (10⁻⁴ T)', yc: C('magnetic-field'),
+        nx: 6, ny: 5, fx: (t) => fmt(t, 0), fy: (t) => fmt(t, 0),
+      });
+      const t0 = Math.max(0.8, ((MU0 * st.I) / (TAU * 5e-4)) * 100);
+      clipped(() => curve(ctx, (t) => (MU0 * st.I) / (TAU * (t / 100)) / 1e-4, t0, 12, X, Y, C('magnetic-field'), 5, 140));
+      const p = pinned(ctx, box, X, Y, rS.v, st.B / 1e-4, C('magnetic-field'));
+      if (!p.out) line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
+      text(ctx, 'the field falls off as one over the distance, not as one over its square', box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' });
+    } else if (st.a === 'loop') {
+      const { X, Y } = axes(ctx, box, [0, 12], [0, 20], {
+        xl: 'R, the radius of the loop (cm)', xc: C('position'), yl: 'B (10⁻⁴ T)', yc: C('magnetic-field'),
+        nx: 6, ny: 5, fx: (t) => fmt(t, 0), fy: (t) => fmt(t, 0),
+      });
+      const t0 = Math.max(0.8, ((st.N * MU0 * st.I) / (2 * 20e-4)) * 100);
+      clipped(() => curve(ctx, (t) => (st.N * MU0 * st.I) / (2 * (t / 100)) / 1e-4, t0, 12, X, Y, C('magnetic-field'), 5, 140));
+      const p = pinned(ctx, box, X, Y, RS.v, st.B / 1e-4, C('magnetic-field'));
+      if (!p.out) line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
+      text(ctx, 'the larger the loop, the weaker its center, because the current is farther away', box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' });
+    } else {
+      const { X, Y } = axes(ctx, box, [0, 2000], [0, 5], {
+        xl: 'n, the number of turns per meter (1/m)', xc: PAL.ink, yl: 'B (T)', yc: C('magnetic-field'),
+        nx: 4, ny: 5, fx: (t) => fmt(t, 0), fy: (t) => fmt(t, 0),
+      });
+      clipped(() => curve(ctx, (t) => MU0 * t * st.I, 0, 2000, X, Y, C('magnetic-field'), 5, 60));
+      const p = pinned(ctx, box, X, Y, st.n, st.B, C('magnetic-field'));
+      if (!p.out) line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
+      text(ctx, 'no radius enters it: the field grows straight with the turns per meter', box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' });
+    }
+  }
+
+  /* the readout: a formula whose terms morph as the arrangement changes, the live numbers outside the tags */
+  const fx = el('div'), note = el('small');
+  d.readout.append(fx, note);
+  let noteNow = '';
+  const setNote = (s) => { if (s !== noteNow) { noteNow = s; note.textContent = s; } };
+  function readoutOf(st) {
+    if (st.a === 'wire') {
+      F.morph(fx, `\\mk{B}{\\kBmag} = \\frac{\\mk{mu}{\\mu_0}\\mk{I}{\\kIcur}}{\\mk{two}{2}\\mk{pi}{\\pi}\\mk{r}{\\kr}} = \\frac{(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(st.I, 0)}\\ \\text{A})}{2\\pi(${fmt(st.r, 3)}\\ \\text{m})} = ${sciTex(st.B, 2)}\\ \\text{T}`);
+      setNote('The field lines are circles centered on the wire, and because the wire is long the picture is the same everywhere along it. Point the thumb of your right hand along the wire the way the current runs, and your fingers curl the way the field goes.');
+    } else if (st.a === 'loop') {
+      const Nt = st.N === 1 ? '' : '\\mk{N}{N}', Nn = st.N === 1 ? '' : `(${fmt(st.N, 0)})`;
+      F.morph(fx, `\\mk{B}{\\kBmag} = \\frac{${Nt}\\mk{mu}{\\mu_0}\\mk{I}{\\kIcur}}{\\mk{two}{2}\\mk{R}{\\kR}} = \\frac{${Nn}(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(st.I, 0)}\\ \\text{A})}{2(${fmt(st.R, 3)}\\ \\text{m})} = ${sciTex(st.B, 2)}\\ \\text{T}`);
+      setNote('Bent into a circle, every part of the wire curls its field the same way through the middle, so the circles crowd together at the center and the field there is π times the straight wire’s at the same distance.');
+    } else {
+      F.morph(fx, `\\mk{B}{\\kBmag} = \\mk{mu}{\\mu_0}\\mk{n}{n}\\mk{I}{\\kIcur} = (4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(st.n, 0)}\\ \\text{m}^{-1})(${fmt(st.I, 0)}\\ \\text{A}) = ${fmt(st.B, 2)}\\ \\text{T}`);
+      setNote(`Stacked side by side, the loops add their fields inside and cancel them outside, so the field is uniform through the whole interior. No radius enters the formula. The winding is drawn one turn to every hundred the meter really holds.`);
+    }
+  }
+
+  function draw() {
+    const st = state();
+    const k = [st.a, iS.v, rS.v, RS.v, NS.v, iSol.v, nS.v, handC.value, free, tv.create, tv.sweep, tv.hand, tv.bend, tv.stack].join('|');
+    if (V && k !== key) { key = k; try { build(); } catch (e) { console.error('sim-field-of-a-current-tour: the scene could not be built', e); S = null; } }
+    if (V && S) {
+      paint.forEach((p) => { try { p.m.color.set(p.col()); } catch (e) { /* left as it was */ } });
+      if (S.labs.I) S.labs.I.style.color = C('current');
+      if (S.labs.B) S.labs.B.style.color = C('magnetic-field');
+      if (S.labs.r) S.labs.r.style.color = C('position');
+      if (S.labs.R) S.labs.R.style.color = C('position');
+      if (S.labs.N) { S.labs.N.style.color = PAL.ink; S.labs.S.style.color = PAL.ink; }
+      V.headline(headlineOf(st));
+      V.invalidate();
+    }
+    const { ctx } = begin(d.c);
+    if (!V) drawFlat(ctx, st);
+    drawGraph(ctx, st, V ? 40 : 456);
+    readoutOf(st);
+  }
+
+  if (hasGL) {
+    V = F.view3d(d.stage, {
+      h: 620, dist: 7.0, tilt: 0.34, spin: 'off',
+      views: [{ label: 'three quarters on', yaw: -0.55, pitch: 0.34 }, { label: 'along the wire', yaw: 1.50, pitch: 0.03 }, { label: 'from above', yaw: 0, pitch: 1.45 }],
+      pitch: [-0.30, 1.50], yaw: 'free', zoomMin: 0.7, zoomMax: 2.4,
+    });
+    if (!V.scene) V = null;
+    else { g3 = V.part(0); V.setView(1.50, 0.03); d.stage.appendChild(d.c); }
+  }
+  register(d.fig, { update: () => {}, draw });
+
+  const tour = F.tour(d, { camera: V || undefined, beats: [
+    { name: 'Seen along the wire, the field is a set of circles centered on it.', ms: 1600, run: (k) => { tv.create = k; } },
+    { name: 'Turned to three quarters, the circles are rings all along the wire, and the right hand grips it.', ms: 2600, view: { yaw: -0.55, pitch: 0.34 }, run: (k) => { tv.sweep = k; tv.hand = k; } },
+    { name: 'Farther from the wire the field is weaker, as one over the distance.', ms: 2400, knobs: [[rS, 12]], view: { zoom: 0.7 } },
+    { name: 'The wire bends into a loop, and the circles crowd together at its center.', ms: 2800, rest: 1200, knobs: [[arrC, 'loop']], view: { yaw: 0, pitch: 1.2, zoom: 1 }, run: (k) => { tv.bend = k; } },
+    { name: 'Loops stacked side by side make a solenoid.', ms: 2800, rest: 1200, knobs: [[arrC, 'sol']], view: { yaw: 0, pitch: 0.30 }, run: (k) => { tv.stack = k; } },
+    { name: 'Inside the solenoid the field is uniform, and outside it is almost nothing.', ms: 2000, rest: 3500, view: { zoom: 1.5 } },
+  ] });
+  d.fig.addEventListener('input', (e) => { if (e.isTrusted && !tour.bar.contains(e.target)) free = true; }, true);
+  d.fig.addEventListener('change', (e) => { if (e.isTrusted && !tour.bar.contains(e.target)) free = true; }, true);
+  d.controls.addEventListener('click', (e) => { if (e.isTrusted) free = true; }, true);
+  ['pointerdown', 'keydown', 'input'].forEach((ev) => tour.bar.addEventListener(ev, () => { free = false; }, true));
+  if (F.REDUCED) tour.seek(1600);
+})();
+
+/* =====================================================================
    SIM · sim-toroid · still · a locked view (root rule 28.2)
    The 2000-turn coil of Example 22.7, drawn straight and then bent into a
    ring. Bending it takes away the two ends, so the field that used to

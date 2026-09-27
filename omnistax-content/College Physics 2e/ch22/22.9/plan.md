@@ -181,3 +181,7 @@ the body writes $N$; both are gathered in `ch22/exploration.md` under Errata.
 The field lines this page draws round a current carry no arrowhead and are told
 by the field vectors drawn tangent to them, which `ch22/COLOR.md` now names as
 one of the three ways a current's field line may carry its sense.
+
+## Manim duplicates
+
+- `sim-field-of-a-current-tour` · layer C, a tour of `sim-field-of-a-current`, set after it · mathematical 3D (root rule 28.3): ink and the type hues in flat colour, round-ended tubes, no materials or plates · value add: the three arrangements become one continuous story, the wire bending into the loop and the loop stacking into the solenoid rather than being cut between by the dropdown · beats: (1) along the wire, the circles drawn one after another; (2) orbit to three quarters while the circles sweep out along the wire into rings and the right hand fades in; (3) r eases from 5 to 12 cm while the camera dollies out, the readout ticking B = μ0I/2πr; (4) the wire bends as an arc of growing curvature into the loop, the rings riding with it into the loop's field lines, the camera rising toward from above, the readout morphing by term to B = μ0I/2R; (5) the loop's turns spread along a levelling axis into the solenoid, the camera dropping to a side view, the readout morphing to B = μ0nI; (6) dolly in on the uniform interior and hold · every control of the original stays live, and a reader's change of one finishes the story parameters so any arrangement picked is drawn whole
