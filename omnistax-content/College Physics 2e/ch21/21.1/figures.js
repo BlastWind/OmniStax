@@ -381,7 +381,7 @@ function bulb(ctx, x, y, frac) {
   const R2 = ctl(d.controls, { label: '\\kRestwo', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 4, unit: 'Ω', dec: 1, aria: 'the second resistance' });
   const R3 = ctl(d.controls, { label: '\\kResthree', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 6, unit: 'Ω', dec: 1, aria: 'the third resistance' });
   const st = ctl(d.controls, { label: '\\text{step}', cls: 'k', min: 1, max: 5, step: 0.01, value: 1, unit: '', dec: 0, aria: 'how far the reduction has been carried' });
-  F.story(d, st, { stops: [1, 2, 3, 4, 5], ms: 1400 });
+  F.story(d, st, { stops: [{ v: 1, label: '7 resistors' }, { v: 2, label: 'Rp, Rp′' }, { v: 3, label: 'Rs' }, { v: 4, label: 'Rp″' }, { v: 5, label: 'Rtot' }], ms: 1400 });
   const r1 = 1.0, r4 = 12.0, r5 = 3.0, r6 = 6.0, r7 = 20.0;
   const TOP = 260, LOW = 450, BOT = 580, A = 430, B = 1180, ROWS = [155, 260, 365], ROWS2 = [210, 310];
   const lerp = F.lerp, sm = F.ease.smooth;
