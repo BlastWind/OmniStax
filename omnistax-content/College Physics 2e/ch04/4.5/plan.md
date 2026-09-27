@@ -344,7 +344,3 @@ colours force and nothing else; the page still binds acceleration, because
 the skier, the incline and the rope all draw it.
 
 Every `º` in the section's text, figures and rows is now the degree sign `°`.
-
-## Manim duplicates
-
-- `sim-incline-style` · layer A (style) of `sim-incline` · value add: the Manim look only, same behaviour and sliders. Labels without panel plates and set further from the heads; strokes 5 to 6 with round ends; the object and the incline as outlines with half-tone fills; numbers moved off the canvas into the headline and the readout, one-symbol labels on the drawing. Flat, no 3D.

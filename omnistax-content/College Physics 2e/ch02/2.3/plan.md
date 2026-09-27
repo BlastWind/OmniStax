@@ -296,7 +296,3 @@ and the count of swings are untyped and in ink. No new hue, no new macro.
 
 The chapter pass wrote every anchor above into `chapter.json`, each one
 checked against the ids of this section's `text.html`.
-
-## Manim duplicates
-
-- `sim-segments-tour` · layer C (tour) of `sim-segments` · value add: the limit the text names ("taking a limit") is shown closing in rather than left to a drag; each halving splits every chord at its midpoint, staggered, and a zoom of the graph's own mapping on t = 2.00 s shows the curve straightening and the chord from that instant merging with the tangent, while the readout morphs from v̄ = Δx/Δt to v = lim Δx/Δt when the chord's interval falls under 0.008 s (back over 0.012 s). Beats: one chord over 5.0 s; Δt to 2.5, 1.25, 0.625, 0.3125 s (four beats, the slider's detents); zoom ×24 on t = 2.00 s; chord interval 0.3125 → 0.004 s, eased out; zoom back with the tangent kept; the tangent pulses and holds. Flat, no 3D.
