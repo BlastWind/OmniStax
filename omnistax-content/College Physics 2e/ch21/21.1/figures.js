@@ -349,7 +349,7 @@ function bulb(ctx, x, y, frac) {
     } else {
       wires(ctx, [[150, TOP], [B, TOP]]);
       spot(ctx, 570, TOP - 100, 800, TOP + 100);
-      resistor(ctx, 685, TOP, true, 'R_s′', Rtot);
+      resistor(ctx, 685, TOP, true, 'R_tot', Rtot);
     }
     const MAIN = [
       '\\dfrac{1}{\\kResp} = \\dfrac{1}{' + ohm(r2) + '} + \\dfrac{1}{' + ohm(r3) + '} + \\dfrac{1}{' + ohm(r4) + '} \\Rightarrow \\kResp = ' + ohm(Rp),
@@ -385,6 +385,15 @@ function bulb(ctx, x, y, frac) {
   const r1 = 1.0, r4 = 12.0, r5 = 3.0, r6 = 6.0, r7 = 20.0;
   const TOP = 260, LOW = 450, BOT = 580, A = 430, B = 1180, ROWS = [155, 260, 365], ROWS2 = [210, 310];
   const lerp = F.lerp, sm = F.ease.smooth;
+  /* the resistor each slider feeds is lit while the slider is held or hovered, and pulses once when a drag starts */
+  const lit = F.tween(d, 0), pulse = F.tween(d, 1);
+  let fed = null, folded = false;
+  [[R2, 'R_2'], [R3, 'R_3']].forEach(([h, name]) => {
+    const on = () => { fed = name; lit.to(1, 250); }, off = () => { if (!h.el.matches(':hover, :focus-within')) lit.to(0, 350); };
+    h.el.addEventListener('pointerenter', on); h.el.addEventListener('focusin', on);
+    h.el.addEventListener('pointerleave', off); h.el.addEventListener('focusout', off);
+    h.el.addEventListener('pointerdown', () => { on(); if (folded) { pulse.set(0); pulse.to(1, 700, F.ease.linear); } });
+  });
   /* a resistor drawn at an opacity, so that the ones merging fade as the one they become arrives */
   function faded(ctx, a, f) { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); }
   /* the zigzag with round joins, the Manim look */
@@ -392,15 +401,18 @@ function bulb(ctx, x, y, frac) {
     const L = (o && o.len) || ZL, n = 6, s = L / n;
     gap(ctx, x, y, a, L, 6);
     ctx.save(); ctx.translate(x, y); ctx.rotate(a);
+    const h = (o && o.hi) || 0, g = 1 + 0.2 * ((o && o.pop) || 0);
+    ctx.scale(g, g);
     ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE + 1; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(-L / 2, 0);
     for (let i = 0; i < n; i++) { ctx.lineTo(-L / 2 + (i + 0.25) * s, -ZA); ctx.lineTo(-L / 2 + (i + 0.75) * s, ZA); }
     ctx.lineTo(L / 2, 0); ctx.stroke();
+    if (h > 0.01) { ctx.globalAlpha *= h; ctx.strokeStyle = C('resistance'); ctx.lineWidth = WIRE + 2.5; ctx.stroke(); }
     if (o && o.variable) arrow(ctx, -L * 0.42, ZA + 18, L * 0.42, -ZA - 18, PAL.ink, 3);
     ctx.restore();
   }
   function resistorM(ctx, x, y, horiz, name, val, o) {
-    o = o || {}; const rc = C('resistance'), v = typeof val === 'number' ? ohms(val) : val;
+    o = Object.assign(name === target ? { hi: litNow, pop: popNow } : {}, o); const rc = C('resistance'), v = typeof val === 'number' ? ohms(val) : val;
     zigzagM(ctx, x, y, horiz ? 0 : Math.PI / 2, o);
     if (horiz) {
       if (o.stack) {
@@ -420,18 +432,29 @@ function bulb(ctx, x, y, frac) {
   }
   /* the grouping at each stop: the terms about to merge carry one key, and the key map bends them into the one they become */
   const q = (x) => '\\left(' + x + '\\right)^{-1}';
+  const mk = (key, x) => '\\mk{' + key + '}{' + x + '}', inv = (...xs) => q(xs.map((x) => '\\frac{1}{' + x + '}').join(' + '));
+  const SYM = { R1: '\\kResone', R2: '\\kRestwo', R3: '\\kResthree', R4: '\\kResfour', R5: '\\kRes_5', R6: '\\kRes_6', R7: '\\kRes_7', Rp: '\\kResp', Rq: '\\kResp\'', Rs: '\\kRess', Rpp: '\\kResp\'\'', Rtot: '\\kRestot' };
+  const S = (k) => mk(k, SYM[k]), N = (v, k) => mk(k + 'val', ohm(v[k]));
+  /* each stop states the step it is about to take, as the new resistance = the combination = its numbers = its value */
   const FORM = [
-    '\\mk{p}{' + q('\\frac{1}{\\kRestwo} + \\frac{1}{\\kResthree} + \\frac{1}{\\kResfour}') + '} + \\mk{q}{' + q('\\frac{1}{\\kRes_5} + \\frac{1}{\\kRes_6}') + '}',
-    '\\mk{p}{\\kResp} + \\mk{q}{\\kResp\'}',
-    q('\\frac{1}{\\mk{s}{\\kRess}} + \\frac{1}{\\mk{r7}{\\kRes_7}}'),
-    '\\mk{r1}{\\kResone} + \\mk{pp}{\\kResp\'\'}',
-    '\\mk{t}{\\kRestot}',
+    (v) => S('Rp') + ' = ' + inv(S('R2'), S('R3'), S('R4')) + ' = ' + inv(N(v, 'R2'), N(v, 'R3'), N(v, 'R4')) + ' = ' + N(v, 'Rp') + ',\\quad ' + S('Rq') + ' = ' + inv(S('R5'), S('R6')) + ' = ' + N(v, 'Rq'),
+    (v) => S('Rs') + ' = ' + S('Rp') + ' + ' + S('Rq') + ' = ' + N(v, 'Rp') + ' + ' + N(v, 'Rq') + ' = ' + N(v, 'Rs'),
+    (v) => S('Rpp') + ' = ' + inv(S('Rs'), S('R7')) + ' = ' + inv(N(v, 'Rs'), N(v, 'R7')) + ' = ' + N(v, 'Rpp'),
+    (v) => S('Rtot') + ' = ' + S('R1') + ' + ' + S('Rpp') + ' = ' + N(v, 'R1') + ' + ' + N(v, 'Rpp') + ' = ' + N(v, 'Rtot'),
+    (v) => S('Rtot') + ' = ' + N(v, 'Rtot'),
   ];
-  const KEYS = [{}, { p: 's' }, { s: 'pp' }, { pp: 't' }];
-  const fx = el('div'), nums = el('div'), note = el('small');
-  fx.style.fontSize = '1.6em'; fx.style.minHeight = '2.4em';
-  d.readout.append(fx, nums, note);
-  let numShown = '';
+  /* between two stops the combination collapses into the resistance it defines, which keeps its key into the next step */
+  const into = (to, ...from) => Object.fromEntries(from.flatMap((k) => [[k, to], [k + 'val', to + 'val']]));
+  const KEYS = [
+    { ...into('Rp', 'R2', 'R3', 'R4'), ...into('Rq', 'R5', 'R6') },
+    into('Rs', 'Rp', 'Rq'),
+    into('Rpp', 'Rs', 'R7'),
+    into('Rtot', 'R1', 'Rpp'),
+  ];
+  const fx = el('div'), note = el('small');
+  fx.style.minHeight = '4.4em';
+  d.readout.append(fx, note);
+  let target = null, litNow = 0, popNow = 0, scrubbed = false;
   function draw() {
     const { ctx } = begin(d.c);
     const r2 = R2.v, r3 = R3.v;
@@ -439,6 +462,9 @@ function bulb(ctx, x, y, frac) {
     const s = Math.min(5, Math.max(1, st.v)), k = Math.min(4, Math.floor(s)), u = sm(s - k);
     /* in, the merged resistor's opacity; out, the opacity of those it is made from */
     const inA = Math.min(1, Math.max(0, (u - 0.55) / 0.45)), outA = 1 - inA;
+    const m = Math.round(s);
+    folded = m > 1; target = folded ? ['R_p', 'R_s', 'R_p″', 'R_tot'][m - 2] : fed;
+    litNow = lit.v; popNow = folded && pulse.v < 1 ? F.ease.thereAndBack(pulse.v) : 0;
     const HEADS = [
       'The three resistors in parallel and the pair in parallel are each combined first, because a parallel group is the easiest part of the network to pick out.',
       'The two equivalent resistances now sit one after the other, so they simply add.',
@@ -486,20 +512,16 @@ function bulb(ctx, x, y, frac) {
     } else {
       wires(ctx, [[s < 5 ? A : 150, TOP], [B, TOP]]);
       faded(ctx, s < 5 ? (k === 4 ? outA : 1) : 0, () => resistorM(ctx, xpp, TOP, true, 'R_p″', Rpp));
-      faded(ctx, s < 5 ? (k === 4 ? inA : 0) : 1, () => resistorM(ctx, 685, TOP, true, 'R_s′', Rtot));
+      faded(ctx, s < 5 ? (k === 4 ? inA : 0) : 1, () => resistorM(ctx, 685, TOP, true, 'R_tot', Rtot));
     }
-    /* the grouping bends from one stop's form into the next; the numbers stand only at a stop */
+    /* the equation bends from one stop's step into the next; at a stop its numbers bend as the reader drags */
     const i = Math.min(4, Math.floor(s)), at1 = Math.round(s), still = Math.abs(s - at1) < 1e-6;
-    F.morphAt(fx, FORM[i - 1], FORM[Math.min(4, i)], s - i, { keyMap: KEYS[i - 1] || {} });
-    const NUM = [
-      '\\kResp = ' + ohm(Rp) + ',\\quad \\kResp\' = ' + ohm(Rq),
-      '\\kRess = ' + ohm(Rp) + ' + ' + ohm(Rq) + ' = ' + ohm(Rs),
-      '\\kResp\'\' = ' + q('\\frac{1}{' + ohm(Rs) + '} + \\frac{1}{' + ohm(r7) + '}') + ' = ' + ohm(Rpp),
-      '\\kRestot = ' + ohm(r1) + ' + ' + ohm(Rpp) + ' = ' + ohm(Rtot),
-      '\\kRestot = ' + ohm(Rtot),
-    ];
-    if (still && NUM[at1 - 1] !== numShown) { numShown = NUM[at1 - 1]; tex(nums, numShown); }
-    F.fadeEl(nums, still, { ms: 250, shift: [0, 6] });
+    const vals = { R1: r1, R2: r2, R3: r3, R4: r4, R5: r5, R6: r6, R7: r7, Rp, Rq, Rs, Rpp, Rtot };
+    /* arriving on a stop from a scrub, the still formula is set first, so that later drags bend its numbers */
+    if (still && scrubbed) F.morphAt(fx, FORM[at1 - 1](vals), FORM[at1 - 1](vals), 0);
+    scrubbed = !still;
+    if (still) F.morph(fx, FORM[at1 - 1](vals));
+    else F.morphAt(fx, FORM[i - 1](vals), FORM[i](vals), s - i, { keyMap: KEYS[i - 1] });
     note.textContent = [
       'The pair R₅ and R₆ is combined in the same step, and it comes to ' + fmt(Rq, 2) + ' Ω. Four steps in all bring the seven resistances down to ' + fmt(Rtot, 2) + ' Ω.',
       'Each of the two came from a parallel group, and in series they add to ' + fmt(Rs, 2) + ' Ω.',
