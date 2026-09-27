@@ -878,15 +878,12 @@ function oval(c, A, B, u, v, n = 72) {
     loop: 'Bent into a circle, every part of the wire curls its field the same way through the middle, so the circles crowd together at the center and the field there is π times the straight wire’s at the same distance. The thumb along the current, the fingers curl up through the loop.',
     sol: 'Stacked side by side, the loops add their fields inside and cancel them outside, so the field is uniform through the whole interior. No radius enters the formula. The winding is drawn one turn to every hundred the meter really holds.',
   };
-  let noteNow = '', between = false;
+  let noteNow = '';
   const win = (s, a, b) => clamp((s - a) / (b - a), 0, 1);
   function readoutOf(s, A) {
     const [ta, tb, k, keyMap] = s < 2 ? [EQ.wire(), EQ.loop(), win(s, 1.35, 1.65), KEYS_LOOP] : [EQ.loop(), EQ.sol(), win(s, 2.35, 2.65), {}];
-    if (k > 0 && k < 1) { between = true; F.morphAt(fx, ta, tb, k, { keyMap }); }
-    else {
-      if (between) { between = false; fx.replaceChildren(); F.morphAt(fx, ta, tb, k, { keyMap }); }
-      F.morph(fx, k <= 0 ? ta : tb);
-    }
+    if (k > 0 && k < 1) F.morphAt(fx, ta, tb, k, { keyMap });
+    else F.morph(fx, k <= 0 ? ta : tb);
     const a = arrOf(s);
     if (NOTE[a] !== noteNow) { noteNow = NOTE[a]; note.textContent = noteNow; }
     note.style.opacity = String(A[a]);

@@ -454,7 +454,7 @@ function bulb(ctx, x, y, frac) {
   const fx = el('div'), note = el('small');
   fx.style.minHeight = '4.4em';
   d.readout.append(fx, note);
-  let target = null, litNow = 0, popNow = 0, scrubbed = false;
+  let target = null, litNow = 0, popNow = 0;
   function draw() {
     const { ctx } = begin(d.c);
     const r2 = R2.v, r3 = R3.v;
@@ -517,9 +517,6 @@ function bulb(ctx, x, y, frac) {
     /* the equation bends from one stop's step into the next; at a stop its numbers bend as the reader drags */
     const i = Math.min(4, Math.floor(s)), at1 = Math.round(s), still = Math.abs(s - at1) < 1e-6;
     const vals = { R1: r1, R2: r2, R3: r3, R4: r4, R5: r5, R6: r6, R7: r7, Rp, Rq, Rs, Rpp, Rtot };
-    /* arriving on a stop from a scrub, the still formula is set first, so that later drags bend its numbers */
-    if (still && scrubbed) F.morphAt(fx, FORM[at1 - 1](vals), FORM[at1 - 1](vals), 0);
-    scrubbed = !still;
     if (still) F.morph(fx, FORM[at1 - 1](vals));
     else F.morphAt(fx, FORM[i - 1](vals), FORM[i](vals), s - i, { keyMap: KEYS[i - 1] });
     note.textContent = [
