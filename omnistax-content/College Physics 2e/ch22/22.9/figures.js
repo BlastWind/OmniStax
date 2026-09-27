@@ -449,7 +449,6 @@ function oval(c, A, B, u, v, n = 72) {
   const iSolBox = lastLabel(d.controls);
   const nS = ctl(d.controls, { label: 'n', cls: '', min: 400, max: 2000, step: 50, value: 1000, unit: '/m', dec: 0, aria: 'the number of turns per meter of the solenoid' });
   const nBox = lastLabel(d.controls);
-  const handC = choice(d.controls, { label: '\\text{the right hand}', options: [{ value: 'on', label: 'shown' }, { value: 'off', label: 'hidden' }], value: 'on', aria: 'whether the right hand of rule 2 is drawn gripping the wire' });
 
   /* ---------- the story: which arrangement s is at, and how present each one's own parts are ---------- */
   const arrOf = (s) => (s < 1.5 ? 'wire' : s < 2.5 ? 'loop' : 'sol');
@@ -560,7 +559,7 @@ function oval(c, A, B, u, v, n = 72) {
      larger hand, then the half-opacity fill, so the field behind shows through the fill and the
      overlapping parts read as one hand rather than a stack. */
   function buildHand(g, grip, iDir, outDir, hs, op) {
-    if (handC.value !== 'on' || op <= 0.01) return;
+    if (op <= 0.01) return;
     const h = new THREE.Group(), G = F.mesh.geo(), D = 0.0065;
     const pre = new THREE.MeshBasicMaterial({ colorWrite: false, transparent: true, depthWrite: true });
     const hull = new THREE.MeshBasicMaterial({ color: new THREE.Color(PAL.ink), side: THREE.BackSide, transparent: true, opacity: op, depthWrite: false });
@@ -625,7 +624,7 @@ function oval(c, A, B, u, v, n = 72) {
     const i0 = lerp(0.7, I_AZ[0] * rhoL, b), i1 = lerp(2.5, I_AZ[1] * rhoL, b);
     const sc = loopScale(rhoL);
     parrow(g3, W.path(i0, i1, 40), lerp(0.040, 0.032 * sc, b), IC, 1, 'I, the current');
-    keep(lab('I = ' + fmt(iS.v, 0) + ' A', add3(add3(W.P(i1), UP, 0.26), W.Out(i1), 0.55), g3, 0, C('current')), IC);
+    keep(lab('I = ' + fmt(iS.v, 0) + ' A', add3(add3(W.P(i1), UP, 0.26), W.Out(i1), 0.55 * lerp(1, Math.max(1, rhoL / RHO(5)), b)), g3, 0, C('current')), IC);
     /* the rings round the wire: three at its middle, and as the camera turns, three more swept out to
        each side; as the wire bends, two sets slide to the loop's right and left and the third leaves */
     const ringAt = (at, q, op) => tube(g3, circle(W.P(at), q, W.Out(at), UP, 72), MAIN, BC, op, true);
@@ -658,7 +657,7 @@ function oval(c, A, B, u, v, n = 72) {
       const st = stOf('wire');
       keep(lab('B = ' + sci(st.B, 2) + ' T', p, g3, -30, C('magnetic-field'), ow), BC);
       keep(lab('r = ' + fmt(rS.v, 1) + ' cm', add3(add3(lerp3(c0, p, 0.55), fld(tP), -0.42), W.T(0), -0.3), g3, 0, C('position'), ow), PC);
-      const sh = -1.9;
+      const sh = -2.6;
       buildHand(g3, W.P(sh), W.T(sh), scale3(UP, -1), HS_WIRE, ow * ramp(s, 0.25, 0.75));
     }
     /* the loop's own parts, round the centre of the arc as it closes: R, the value at the centre, and the hand */
@@ -779,43 +778,67 @@ function oval(c, A, B, u, v, n = 72) {
   }
 
   /* ---------- the graph below the scene ----------
-     The axes are fixed per arrangement and never rescale: the wire runs to 12 cm
-     and 5 × 10⁻⁴ T, the loop to 12 cm and 20 × 10⁻⁴ T, and the solenoid to 2000
-     turns per metre and 5 T. A curve that leaves the frame is clipped to it and
-     the live point goes through pinned(). */
-  function drawGraph(ctx, st, y0) {
+     One frame through the story. The wire's and the loop's graphs are the same
+     kind, B against the distance from the current to where B is read, so from the
+     wire to the loop the curve reshapes, the marker moves, the r of the x-axis
+     becomes R and the B-scale eases from 5 to 20 × 10⁻⁴ T. The solenoid's is B
+     against the turns per metre: its x-axis, ticks and curve replace the loop's
+     with a fade, and the B-scale eases on to 5 T. All of it is a function of s. */
+  const GM = (s) => ramp(s, 1.35, 1.65), GQ = (s) => ramp(s, 2.35, 2.65);
+  const bWire = (t) => (MU0 * iS.v) / (TAU * (t / 100));
+  const bLoop = (t) => (NS.v * MU0 * iS.v) / (2 * (t / 100));
+  const yTop = (m, q) => Math.exp(lerp(Math.log(lerp(5e-4, 20e-4, m)), Math.log(5), q));
+  function faded(ctx, a, dy, fn) {
+    if (a <= 0.01) return;
+    ctx.save(); ctx.globalAlpha *= a; ctx.translate(0, dy); fn(); ctx.restore();
+  }
+  function drawGraph(ctx, s, y0) {
     const box = { l: 180, r: 1270, t: y0 + 54, b: y0 + 238 };
+    const m = GM(s), q = GQ(s), top = yTop(m, q), sh = 18;
+    const Y = (v) => box.b - (v / top) * (box.b - box.t);
+    const Xd = (v) => box.l + (v / 12) * (box.r - box.l), Xn = (v) => box.l + (v / 2000) * (box.r - box.l);
     const clipped = (fn) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); fn(); ctx.restore(); };
-    if (st.a === 'wire') {
-      const { X, Y } = axes(ctx, box, [0, 12], [0, 5], {
-        xl: 'r, the shortest distance to the wire (cm)', xc: C('position'), yl: 'B (10⁻⁴ T)', yc: C('magnetic-field'),
-        nx: 6, ny: 5, fx: (t) => fmt(t, 0), fy: (t) => fmt(t, 0),
-      });
-      const t0 = Math.max(0.8, ((MU0 * st.I) / (TAU * 5e-4)) * 100);
-      clipped(() => curve(ctx, (t) => (MU0 * st.I) / (TAU * (t / 100)) / 1e-4, t0, 12, X, Y, C('magnetic-field'), 5, 140));
-      const p = pinned(ctx, box, X, Y, rS.v, st.B / 1e-4, C('magnetic-field'));
+    const yTicks = (step, unit, a, dy) => faded(ctx, a * clamp((box.b - Y(step) - 12) / 12, 0, 1), dy, () => {
+      for (let v = 0; Y(v) >= box.t - 1; v += step) {
+        if (v) line(ctx, box.l, Y(v), box.r, Y(v), PAL.rule, 1.5);
+        text(ctx, fmt(v / unit, 0), box.l - 14, Y(v), PAL.muted, { size: 17, align: 'right' });
+      }
+    });
+    const xTicks = (X, hi, n, a, dy) => faded(ctx, a, dy, () => {
+      for (let i = 0; i <= n; i++) { const v = (hi * i) / n; if (i) line(ctx, X(v), box.t, X(v), box.b, PAL.rule, 1.5); text(ctx, fmt(v, 0), X(v), box.b + 26, PAL.muted, { size: 17, align: 'center' }); }
+    });
+    const xl = (s0, col, a, dy) => faded(ctx, a, dy, () => text(ctx, s0, box.r, box.b + 58, col, { align: 'right', weight: 600, size: 20 }));
+    const yl = (s0, a, dy) => faded(ctx, a, dy, () => text(ctx, s0, box.l, box.t - 24, C('magnetic-field'), { align: 'left', weight: 600, size: 20 }));
+    const tip = (s0, a, dy) => faded(ctx, a, dy, () => text(ctx, s0, box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' }));
+
+    /* the scale in 10⁻⁴ T through the wire and the loop, in T for the solenoid */
+    yTicks(1e-4, 1e-4, (1 - m) * (1 - q), 0);
+    yTicks(4e-4, 1e-4, m * (1 - q), 0);
+    yTicks(1, 1, q, 0);
+    yl('B (10⁻⁴ T)', 1 - q, sh * q);
+    yl('B (T)', q, -sh * (1 - q));
+    xTicks(Xd, 12, 6, 1 - q, sh * q);
+    xTicks(Xn, 2000, 4, q, -sh * (1 - q));
+    line(ctx, box.l, box.t, box.l, box.b, PAL.muted, 2); line(ctx, box.l, box.b, box.r, box.b, PAL.muted, 2);
+    xl('r, the shortest distance to the wire (cm)', C('position'), (1 - m) * (1 - q), 0);
+    xl('R, the radius of the loop (cm)', C('position'), m * (1 - q), sh * q);
+    xl('n, the number of turns per meter (1/m)', PAL.ink, q, -sh * (1 - q));
+
+    /* the curve of the distance, reshaping from the wire's into the loop's */
+    const fD = (t) => lerp(bWire(t), bLoop(t), m);
+    faded(ctx, 1 - q, sh * q, () => {
+      clipped(() => curve(ctx, (t) => fD(t), 0.3, 12, Xd, Y, C('magnetic-field'), 5, 160));
+      const xv = lerp(rS.v, RS.v, m), p = pinned(ctx, box, Xd, Y, xv, fD(xv), C('magnetic-field'));
       if (!p.out) line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
-      text(ctx, 'the field falls off as one over the distance, not as one over its square', box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' });
-    } else if (st.a === 'loop') {
-      const { X, Y } = axes(ctx, box, [0, 12], [0, 20], {
-        xl: 'R, the radius of the loop (cm)', xc: C('position'), yl: 'B (10⁻⁴ T)', yc: C('magnetic-field'),
-        nx: 6, ny: 5, fx: (t) => fmt(t, 0), fy: (t) => fmt(t, 0),
-      });
-      const t0 = Math.max(0.8, ((st.N * MU0 * st.I) / (2 * 20e-4)) * 100);
-      clipped(() => curve(ctx, (t) => (st.N * MU0 * st.I) / (2 * (t / 100)) / 1e-4, t0, 12, X, Y, C('magnetic-field'), 5, 140));
-      const p = pinned(ctx, box, X, Y, RS.v, st.B / 1e-4, C('magnetic-field'));
+    });
+    faded(ctx, q, -sh * (1 - q), () => {
+      clipped(() => curve(ctx, (t) => MU0 * t * iSol.v, 0, 2000, Xn, Y, C('magnetic-field'), 5, 60));
+      const p = pinned(ctx, box, Xn, Y, nS.v, MU0 * nS.v * iSol.v, C('magnetic-field'));
       if (!p.out) line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
-      text(ctx, 'the larger the loop, the weaker its center, because the current is farther away', box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' });
-    } else {
-      const { X, Y } = axes(ctx, box, [0, 2000], [0, 5], {
-        xl: 'n, the number of turns per meter (1/m)', xc: PAL.ink, yl: 'B (T)', yc: C('magnetic-field'),
-        nx: 4, ny: 5, fx: (t) => fmt(t, 0), fy: (t) => fmt(t, 0),
-      });
-      clipped(() => curve(ctx, (t) => MU0 * t * st.I, 0, 2000, X, Y, C('magnetic-field'), 5, 60));
-      const p = pinned(ctx, box, X, Y, st.n, st.B, C('magnetic-field'));
-      if (!p.out) line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
-      text(ctx, 'no radius enters it: the field grows straight with the turns per meter', box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' });
-    }
+    });
+    tip('the field falls off as one over the distance, not as one over its square', (1 - m) * (1 - q), sh * m);
+    tip('the larger the loop, the weaker its center, because the current is farther away', m * (1 - q), -sh * (1 - m) + sh * q);
+    tip('no radius enters it: the field grows straight with the turns per meter', q, -sh * (1 - q));
   }
   /* each arrangement's own layer, at its presence and slid by its shift */
   function layer(ctx, a, s, A, fn) {
@@ -823,34 +846,50 @@ function oval(c, A, B, u, v, n = 72) {
     ctx.save(); ctx.globalAlpha = A[a]; ctx.translate(0, 18 * slide(a, s, A)); fn(); ctx.restore();
   }
 
-  /* ---------- the readout: the law, set large, morphing by shape between the arrangements; the numbers on their own line ---------- */
-  const fx = el('div'), nums = el('div'), note = el('small');
-  fx.style.fontSize = '1.75em'; fx.style.margin = '0.1em 0 0.3em';
-  d.readout.append(fx, nums, note);
-  const LAW = {
-    wire: () => '\\mk{B}{\\kBmag} = \\frac{\\mk{mu}{\\mu_0}\\mk{I}{\\kIcur}}{\\mk{two}{2}\\mk{pi}{\\pi}\\mk{r}{\\kr}}',
-    loop: () => `\\mk{B}{\\kBmag} = \\frac{${NS.v > 1 ? '\\mk{N}{N}' : ''}\\mk{mu}{\\mu_0}\\mk{I}{\\kIcur}}{\\mk{two}{2}\\mk{R}{\\kR}}`,
-    sol: () => '\\mk{B}{\\kBmag} = \\mk{mu}{\\mu_0}\\mk{n}{n}\\mk{I}{\\kIcur}',
+  /* ---------- the readout: one equation, the law = its numbers = the field, bending by meaning between the arrangements ---------- */
+  const fx = el('div'), note = el('small');
+  d.readout.append(fx, note);
+  const UNIT = (x, u) => `(${x}\\ ${u})`;
+  const MUV = '\\mk{muval}{(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})}';
+  const EQ = {
+    wire: () => {
+      const st = stOf('wire');
+      return '\\mk{B}{\\kBmag} = \\frac{\\mk{mu}{\\mu_0}\\mk{I}{\\kIcur}}{\\mk{two}{2}\\mk{pi}{\\pi}\\mk{r}{\\kr}}'
+        + ` = \\frac{${MUV}\\mk{Ival}{${UNIT(fmt(st.I, 0), '\\text{A}')}}}{\\mk{twoval}{2}\\mk{pival}{\\pi}\\mk{rval}{${UNIT(fmt(st.r, 3), '\\text{m}')}}}`
+        + ` = \\mk{Bval}{${sciTex(st.B, 2)}\\ \\text{T}}`;
+    },
+    loop: () => {
+      const st = stOf('loop'), many = st.N > 1;
+      return `\\mk{B}{\\kBmag} = \\frac{${many ? '\\mk{N}{N}' : ''}\\mk{mu}{\\mu_0}\\mk{I}{\\kIcur}}{\\mk{two}{2}\\mk{R}{\\kR}}`
+        + ` = \\frac{${many ? `\\mk{Nval}{(${fmt(st.N, 0)})}` : ''}${MUV}\\mk{Ival}{${UNIT(fmt(st.I, 0), '\\text{A}')}}}{\\mk{twoval}{2}\\mk{Rval}{${UNIT(fmt(st.R, 3), '\\text{m}')}}}`
+        + ` = \\mk{Bval}{${sciTex(st.B, 2)}\\ \\text{T}}`;
+    },
+    sol: () => {
+      const st = stOf('sol');
+      return '\\mk{B}{\\kBmag} = \\mk{mu}{\\mu_0}\\mk{n}{n}\\mk{I}{\\kIcur}'
+        + ` = ${MUV}\\mk{nval}{${UNIT(fmt(st.n, 0), '\\text{m}^{-1}')}}\\mk{Ival}{${UNIT(fmt(st.I, 0), '\\text{A}')}}`
+        + ` = \\mk{Bval}{${fmt(st.B, 2)}\\ \\text{T}}`;
+    },
   };
-  const numsOf = (st) => {
-    if (st.a === 'wire') return `\\kBmag = \\frac{(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(st.I, 0)}\\ \\text{A})}{2\\pi(${fmt(st.r, 3)}\\ \\text{m})} = ${sciTex(st.B, 2)}\\ \\text{T}`;
-    if (st.a === 'loop') return `\\kBmag = \\frac{${st.N === 1 ? '' : `(${fmt(st.N, 0)})`}(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(st.I, 0)}\\ \\text{A})}{2(${fmt(st.R, 3)}\\ \\text{m})} = ${sciTex(st.B, 2)}\\ \\text{T}`;
-    return `\\kBmag = (4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(st.n, 0)}\\ \\text{m}^{-1})(${fmt(st.I, 0)}\\ \\text{A}) = ${fmt(st.B, 2)}\\ \\text{T}`;
-  };
+  /* r and R are both the distance from the current to where B is read */
+  const KEYS_LOOP = { r: 'R', rval: 'Rval' };
   const NOTE = {
     wire: 'The field lines are circles centered on the wire, and because the wire is long the picture is the same everywhere along it. Point the thumb of your right hand along the wire the way the current runs, and your fingers curl the way the field goes.',
     loop: 'Bent into a circle, every part of the wire curls its field the same way through the middle, so the circles crowd together at the center and the field there is π times the straight wire’s at the same distance. The thumb along the current, the fingers curl up through the loop.',
     sol: 'Stacked side by side, the loops add their fields inside and cancel them outside, so the field is uniform through the whole interior. No radius enters the formula. The winding is drawn one turn to every hundred the meter really holds.',
   };
-  let numsNow = '', noteNow = '';
+  let noteNow = '', between = false;
   const win = (s, a, b) => clamp((s - a) / (b - a), 0, 1);
   function readoutOf(s, A) {
-    if (s < 2) F.morphAt(fx, LAW.wire(), LAW.loop(), win(s, 1.35, 1.65), { keyMap: { r: 'R' } });
-    else F.morphAt(fx, LAW.loop(), LAW.sol(), win(s, 2.35, 2.65), NS.v > 1 ? { keyMap: { N: 'n' } } : {});
-    const a = arrOf(s), n = numsOf(stOf(a));
-    if (n !== numsNow) { numsNow = n; tex(nums, n); }
+    const [ta, tb, k, keyMap] = s < 2 ? [EQ.wire(), EQ.loop(), win(s, 1.35, 1.65), KEYS_LOOP] : [EQ.loop(), EQ.sol(), win(s, 2.35, 2.65), {}];
+    if (k > 0 && k < 1) { between = true; F.morphAt(fx, ta, tb, k, { keyMap }); }
+    else {
+      if (between) { between = false; fx.replaceChildren(); F.morphAt(fx, ta, tb, k, { keyMap }); }
+      F.morph(fx, k <= 0 ? ta : tb);
+    }
+    const a = arrOf(s);
     if (NOTE[a] !== noteNow) { noteNow = NOTE[a]; note.textContent = noteNow; }
-    nums.style.opacity = note.style.opacity = String(A[a]);
+    note.style.opacity = String(A[a]);
   }
 
   /* ---------- the camera: keyframes on s, the loop's framed by the reader's radius ---------- */
@@ -871,7 +910,7 @@ function oval(c, A, B, u, v, n = 72) {
     if (V) {
       if (s !== lastS) { own = false; lastS = s; }
       if (!own) V.look(camAt(s));
-      const k = [s, iS.v, rS.v, RS.v, NS.v, iSol.v, nS.v, handC.value].join('|');
+      const k = [s, iS.v, rS.v, RS.v, NS.v, iSol.v, nS.v].join('|');
       if (k !== key) { key = k; try { build(); } catch (e) { console.error('sim-field-of-a-current-tour: the scene could not be built', e); S = null; } }
       if (S) {
         paint.forEach((p) => { try { p.m.color.set(p.col()); } catch (e) { /* left as it was */ } });
@@ -882,7 +921,7 @@ function oval(c, A, B, u, v, n = 72) {
     }
     const { ctx } = begin(d.c);
     if (!V) layer(ctx, a, s, A, () => { drawFlat(ctx, st); topline(ctx, headlineOf(st)); });
-    ['wire', 'loop', 'sol'].forEach((x) => layer(ctx, x, s, A, () => drawGraph(ctx, stOf(x), V ? 40 : 456)));
+    drawGraph(ctx, s, V ? 40 : 456);
     readoutOf(s, A);
   }
 
