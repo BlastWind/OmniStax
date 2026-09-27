@@ -336,23 +336,21 @@ exercises list now says.
 
 ## Manim duplicates
 
-- `sim-range-morph` (after `sim-range`) · layer B · value add: the special
-  angle is a detent, and landing on it rewrites the range equation by term
-  and folds the complementary path into the chosen one · threshold: θ₀ =
-  45º exactly (a detent with snap; the 1º step leaves nothing between on
-  and off, so the switch cannot flicker): $\sin 2\theta_0$ fades out of
-  $\kR = \kvo^2 \sin 2\theta_0/\kg$, leaving $\kR = \kvo^2/\kg$, and the
-  dashed complement bends into the path; leaving 45º, the dashed and the
-  faint 45º paths arrive drawn along their length · flat, no 3D.
-- `sim-orbit-tour` (after `sim-orbit`) · layer C · value add: the camera
-  carries the reader from the local picture (level ground, parallel g) to
-  the global one (curved ground, g toward the centre, orbit), honouring
-  "the Earth curves away below the projectile and acceleration of gravity
-  changes direction along the path" · camera: a 2D zoom and pan of the
-  world-to-screen map, fitting the tower and the path, blended to the full
-  view of Figure 3.39 · beats: (1) the tower drops to 200 km and the
-  launch slows to 1 km/s while the view closes on the tower; (2) the
-  launch climbs to 7.2 km/s while the view keeps the landing point in
-  frame and the fan of g arrows turns; (3) the launch reaches 7.9 km/s,
-  the path closes, the readout morphs from the level-ground range to the
-  orbit condition and the view opens fully; (4) hold · flat, no 3D.
+- `sim-range-morph` (after `sim-range`) · layer B · value add: 45º is a
+  special value on θ₀ (dashed circle, the engine's snap); as θ₀ nears it
+  the dashed complement converges on the chosen path, and on it the
+  symbolic line, set large, morphs by shape from $\kR = \kvo^2 \sin
+  2\theta_0/\kg$ to $\kR = \kvo^2/\kg$ while the dashed complement bends
+  into the path; the numbers sit on their own line beneath; leaving 45º,
+  the dashed and the faint 45º paths arrive drawn along their length ·
+  flat, no 3D.
+- `sim-orbit-morph` (after `sim-orbit`) · layer C · value add: the camera
+  is a function of v₀ and the tower height, fitting the tower, the whole
+  predicted path and the landing point (the whole Earth once the path
+  closes), easing over 0.8 s when the values jump; close on the tower the
+  ground reads flat and the g arrows are parallel, wide they point to the
+  centre · one timeline, the flight · special values on v₀: the
+  circular-orbit speed $\sqrt{\kg R_E^2/(R_E + h)}$, recomputed from the
+  height (escape speed marked when it lies in range); on it the symbolic
+  line morphs from $\kR = \kvo\sqrt{2h/\kg}$ into $\kvo =
+  \sqrt{\kg R_E^2/(R_E + h)}$ · flat, no 3D.
