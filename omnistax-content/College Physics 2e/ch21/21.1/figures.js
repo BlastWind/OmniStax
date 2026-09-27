@@ -1,7 +1,8 @@
 /* Figures for section 21.1 Resistors in Series and Parallel.
    A connection of resistors that is only being looked at has no time in it, so
-   every figure here is a still picture: none registers a cycle, none carries a
-   transport, and a slider or a choice alone redraws it. The page binds the
+   every figure here but one is a still picture: none registers a cycle, and a
+   slider or a choice alone redraws it; the reduction told as a story has the one
+   transport, which plays its step slider. The page binds the
    resistance, the current, the voltage and the power, which is what ch21/COLOR.md
    gives 21.1; the wires, the source, the zigzags and the frame are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -370,24 +371,17 @@ function bulb(ctx, x, y, frac) {
 })();
 
 /* =====================================================================
-   SIM: the same reduction, each step carried out as a motion. The step
-   is a tracker that glides between the five states: resistors in
-   series slide together into one, parallel rows fold onto the wire they
-   share, and stepping back pulls them apart again. The readout writes
-   the step's relation in symbols while the resistors move and morphs
-   into the numbers once they have landed.
+   SIM: the same reduction as a story slider from step 1 to step 5. Every
+   position is a function of the slider: resistors in series slide
+   together into one, parallel rows fold onto the wire they share, and
+   the formula bends from one step's grouping into the next.
 ===================================================================== */
 (function () {
   const d = sim('sim-reduce-network-morph', 660);
   const R2 = ctl(d.controls, { label: '\\kRestwo', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 4, unit: 'Ω', dec: 1, aria: 'the second resistance' });
   const R3 = ctl(d.controls, { label: '\\kResthree', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 6, unit: 'Ω', dec: 1, aria: 'the third resistance' });
-  const step = choice(d.controls, {
-    label: '\\text{the step}',
-    options: [1, 2, 3, 4, 5].map((n) => ({ value: String(n), label: String(n) })),
-    value: '1', aria: 'how far the reduction has been carried',
-    onInput: () => st.to(+step.value, 700 + 500 * Math.abs(+step.value - st.v)),
-  });
-  const st = F.tween(d, 1);
+  const st = ctl(d.controls, { label: '\\text{step}', cls: 'k', min: 1, max: 5, step: 0.01, value: 1, unit: '', dec: 0, aria: 'how far the reduction has been carried' });
+  F.story(d, st, { stops: [1, 2, 3, 4, 5], ms: 1400 });
   const r1 = 1.0, r4 = 12.0, r5 = 3.0, r6 = 6.0, r7 = 20.0;
   const TOP = 260, LOW = 450, BOT = 580, A = 430, B = 1180, ROWS = [155, 260, 365], ROWS2 = [210, 310];
   const lerp = F.lerp, sm = F.ease.smooth;
@@ -424,13 +418,25 @@ function bulb(ctx, x, y, frac) {
       else if (v) text(ctx, v, lx, y, rc, { size: 21, align: al });
     }
   }
-  let shown = '';
-  const fx = el('span'), note = el('small'); d.readout.append(fx, note);
+  /* the grouping at each stop: the terms about to merge carry one key, and the key map bends them into the one they become */
+  const q = (x) => '\\left(' + x + '\\right)^{-1}';
+  const FORM = [
+    '\\mk{p}{' + q('\\frac{1}{\\kRestwo} + \\frac{1}{\\kResthree} + \\frac{1}{\\kResfour}') + '} + \\mk{q}{' + q('\\frac{1}{\\kRes_5} + \\frac{1}{\\kRes_6}') + '}',
+    '\\mk{p}{\\kResp} + \\mk{q}{\\kResp\'}',
+    q('\\frac{1}{\\mk{s}{\\kRess}} + \\frac{1}{\\mk{r7}{\\kRes_7}}'),
+    '\\mk{r1}{\\kResone} + \\mk{pp}{\\kResp\'\'}',
+    '\\mk{t}{\\kRestot}',
+  ];
+  const KEYS = [{}, { p: 's' }, { s: 'pp' }, { pp: 't' }];
+  const fx = el('div'), nums = el('div'), note = el('small');
+  fx.style.fontSize = '1.6em'; fx.style.minHeight = '2.4em';
+  d.readout.append(fx, nums, note);
+  let numShown = '';
   function draw() {
     const { ctx } = begin(d.c);
     const r2 = R2.v, r3 = R3.v;
     const Rp = par(r2, r3, r4), Rq = par(r5, r6), Rs = Rp + Rq, Rpp = par(Rs, r7), Rtot = r1 + Rpp;
-    const s = Math.min(5, Math.max(1, st.v)), k = Math.min(4, Math.floor(s)), u = sm(s - k), at = s === Math.round(s) ? Math.round(s) : 0;
+    const s = Math.min(5, Math.max(1, st.v)), k = Math.min(4, Math.floor(s)), u = sm(s - k);
     /* in, the merged resistor's opacity; out, the opacity of those it is made from */
     const inA = Math.min(1, Math.max(0, (u - 0.55) / 0.45)), outA = 1 - inA;
     const HEADS = [
@@ -482,32 +488,25 @@ function bulb(ctx, x, y, frac) {
       faded(ctx, s < 5 ? (k === 4 ? outA : 1) : 0, () => resistorM(ctx, xpp, TOP, true, 'R_p″', Rpp));
       faded(ctx, s < 5 ? (k === 4 ? inA : 0) : 1, () => resistorM(ctx, 685, TOP, true, 'R_s′', Rtot));
     }
-    /* the relation in symbols while the step is under way, and in numbers once it has landed */
-    const tgt = +step.value;
-    const LHS = ['\\mk{L1}{\\dfrac{1}{\\kResp}}', '\\mk{L2}{\\kRess}', '\\mk{L3}{\\dfrac{1}{\\kResp\'\'}}', '\\mk{L4}{\\kRestot}', '\\mk{L4}{\\kRestot}'];
-    const SYM = [
-      '\\dfrac{1}{\\kRestwo} + \\dfrac{1}{\\kResthree} + \\dfrac{1}{\\kResfour}',
-      '\\kResp + \\kResp\'',
-      '\\dfrac{1}{\\kRess} + \\dfrac{1}{\\kRes_7}',
-      '\\kResone + \\kResp\'\'',
-      '\\kResone + \\kResp\'\'',
-    ];
+    /* the grouping bends from one stop's form into the next; the numbers stand only at a stop */
+    const i = Math.min(4, Math.floor(s)), at1 = Math.round(s), still = Math.abs(s - at1) < 1e-6;
+    F.morphAt(fx, FORM[i - 1], FORM[Math.min(4, i)], s - i, { keyMap: KEYS[i - 1] || {} });
     const NUM = [
-      '\\dfrac{1}{' + ohm(r2) + '} + \\dfrac{1}{' + ohm(r3) + '} + \\dfrac{1}{' + ohm(r4) + '} \\Rightarrow \\kResp = ' + ohm(Rp),
-      ohm(Rp) + ' + ' + ohm(Rq) + ' = ' + ohm(Rs),
-      '\\dfrac{1}{' + ohm(Rs) + '} + \\dfrac{1}{' + ohm(r7) + '} \\Rightarrow \\kResp\'\' = ' + ohm(Rpp),
-      '\\kResone + ' + ohm(Rpp) + ' = ' + ohm(Rtot),
-      ohm(Rtot),
+      '\\kResp = ' + ohm(Rp) + ',\\quad \\kResp\' = ' + ohm(Rq),
+      '\\kRess = ' + ohm(Rp) + ' + ' + ohm(Rq) + ' = ' + ohm(Rs),
+      '\\kResp\'\' = ' + q('\\frac{1}{' + ohm(Rs) + '} + \\frac{1}{' + ohm(r7) + '}') + ' = ' + ohm(Rpp),
+      '\\kRestot = ' + ohm(r1) + ' + ' + ohm(Rpp) + ' = ' + ohm(Rtot),
+      '\\kRestot = ' + ohm(Rtot),
     ];
-    const f = LHS[tgt - 1] + ' = ' + (at === tgt ? '\\mk{n' + tgt + '}{' + NUM[tgt - 1] + '}' : '\\mk{s' + tgt + '}{' + SYM[tgt - 1] + '}');
-    if (f !== shown) { shown = f; F.morph(fx, f); }
+    if (still && NUM[at1 - 1] !== numShown) { numShown = NUM[at1 - 1]; tex(nums, numShown); }
+    F.fadeEl(nums, still, { ms: 250, shift: [0, 6] });
     note.textContent = [
       'The pair R₅ and R₆ is combined in the same step, and it comes to ' + fmt(Rq, 2) + ' Ω. Four steps in all bring the seven resistances down to ' + fmt(Rtot, 2) + ' Ω.',
       'Each of the two came from a parallel group, and in series they add to ' + fmt(Rs, 2) + ' Ω.',
       'The pair in parallel comes to ' + fmt(Rpp, 2) + ' Ω, which is less than either of them.',
       'R₁ carries the whole current of the circuit, so it is in series with everything behind it.',
       'Every one of the seven resistances is inside this one number, and the source sees nothing else.',
-    ][tgt - 1];
+    ][at1 - 1];
   }
   register(d.fig, { update: () => {}, draw });
 })();
