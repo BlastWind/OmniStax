@@ -359,3 +359,7 @@ and no Check Your Understanding box, so everything is set at the end.
   references that point back at them are renumbered with the headers.
 - The Critical Thinking problem's faulty key is kept as printed and recorded
   in `exploration.md` § Errata.
+
+## Manim duplicates
+
+- `sim-impedance-triangle-morph` (layer B, after `sim-impedance-triangle`): value add is resonance as a place the slider lands. Threshold: f within 20 Hz of f₀ = 1/2π√LC catches onto f₀ exactly and lets go past 40 Hz; the detent tick follows L and C. On catching, the X_L − X_C leg shrinks to nothing over 0.9 s, Z = √(R² + (X_L − X_C)²) morphs to Z = R, and the marker settles in the notch of the Z curve. Flat, no 3D.

@@ -234,6 +234,121 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
 })();
 
 /* =====================================================================
+   SIM: the three terms of Bernoulli's equation again, with no case to
+   choose. The special cases come out of the sliders themselves: both speeds
+   at zero cross the kinetic terms out, both heights equal cross the
+   gravitational terms out, and the equation beneath rewrites itself term by
+   term as each threshold is crossed. Still, as the original is.
+===================================================================== */
+(function () {
+  const d = sim('sim-bernoulli-morph', 770);
+  const P1 = 1.50e5, RHO = RHO_W, V1 = 4, V2 = 9;
+  const vDet = [{ v: 0, label: '0' }];
+  const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 0, max: 10, step: 0.5, value: V1, unit: 'm/s', dec: 1, aria: 'the speed of the water at point 1', detents: vDet, snap: false });
+  const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: 0, max: 10, step: 0.5, value: V2, unit: 'm/s', dec: 1, aria: 'the speed of the water at point 2', detents: vDet, snap: false });
+  const h1 = ctl(d.controls, { label: '\\khone', cls: 'position', min: 0, max: 10, step: 0.5, value: 0, unit: 'm', dec: 1, aria: 'the height of point 1 above the reference', detents: [{ v: 0, label: '0' }], snap: false });
+  const h2 = ctl(d.controls, { label: '\\khtwo', cls: 'position', min: 0, max: 10, step: 0.5, value: 5, unit: 'm', dec: 1, aria: 'the height of point 2 above the reference', detents: [{ v: 0, label: 'h₁' }], snap: false });
+  /* figlib's detents are fixed when the slider is made; the one on h₂ sits at h₁ and follows it */
+  const h2Tick = lastLabel(d.controls).querySelector('.ctl-ticks .tick');
+  const moveTick = () => { if (h2Tick) h2Tick.style.left = (100 * h1.v) / 10 + '%'; };
+  moveTick();
+  const eqHost = el('div'), numHost = el('div'), note = el('small');
+  d.readout.append(eqHost, numHost, note);
+  /* hysteresis on each threshold: a flag is raised on the special value and lowered only once the slider has left it by more than a quarter step */
+  const flags = { still: false, level: false, ground: false };
+  const hold = (k, off) => { flags[k] = flags[k] ? off <= 0.25 : off <= 1e-9; return flags[k]; };
+  const YREF = 440, SH = 24, X1 = 340, X2 = 1000, XA = 500, XB = 860;
+  const AX0 = 300, AX1 = 1280, EMAX = 3.0e5, KX = (AX1 - AX0) / EMAX;
+  const halfw = (v) => (v === 0 ? 44 : clamp(22 * Math.sqrt(4 / v), 14, 44));
+  const T = {
+    P1: '\\mk{P1}{\\kProne}', k1: '\\mk{k1}{\\tfrac{1}{2}\\krho\\kvone^2}', g1: '\\mk{g1}{\\krho\\kg\\khone}',
+    P2: '\\mk{P2}{\\kPrtwo}', k2: '\\mk{k2}{\\tfrac{1}{2}\\krho\\kvtwo^2}', g2: '\\mk{g2}{\\krho\\kg\\khtwo}',
+    a1: '\\mk{a1}{+}', a2: '\\mk{a2}{+}', a3: '\\mk{a3}{+}', a4: '\\mk{a4}{+}', eq: '\\mk{eq}{=}',
+  };
+  const form = (ks) => ks.map((k) => T[k]).join(' ');
+  function bars(ctx, y, P, ke, pe, total, pc, ec) {
+    let x = AX0;
+    const seg = (w, col, hatch) => {
+      if (w < 0.5) return;
+      ctx.save(); ctx.beginPath(); ctx.rect(x, y - 17, w, 34); ctx.fillStyle = alpha(col, 0.5); ctx.fill();
+      if (hatch) { ctx.clip(); ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); for (let s = x - 34; s < x + w; s += 12) { ctx.moveTo(s, y + 17); ctx.lineTo(s + 34, y - 17); } ctx.stroke(); }
+      ctx.restore();
+      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.strokeRect(x, y - 17, w, 34); ctx.restore();
+      x += w;
+    };
+    seg(P * KX, pc, false); seg(ke * KX, ec, false); seg(pe * KX, ec, true);
+    return total;
+  }
+  function draw() {
+    const { ctx } = begin(d.c); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; moveTick();
+    const vc = C('velocity'), pc = C('pressure'), hc = C('position'), ec = C('energy');
+    const va = v1.v, vb = v2.v, ha = h1.v, hb = h2.v;
+    const still = hold('still', Math.max(va, vb)), level = hold('level', Math.abs(ha - hb)), ground = hold('ground', hb);
+    const ke1 = 0.5 * RHO * va * va, ke2 = 0.5 * RHO * vb * vb, pe1 = RHO * G * ha, pe2 = RHO * G * hb;
+    const total = P1 + ke1 + pe1, P2 = total - ke2 - pe2;
+    const ya = YREF - SH * ha, yb = YREF - SH * hb, wa = halfw(va), wb = halfw(vb);
+    const cen = (x) => ya + (yb - ya) * ease((x - XA) / (XB - XA)), wid = (x) => wa + (wb - wa) * ease((x - XA) / (XB - XA));
+    const top = samples(200, 1120, 80, (x) => cen(x) - wid(x)), bot = samples(200, 1120, 80, (x) => cen(x) + wid(x)).reverse();
+    line(ctx, 100, YREF, 1300, YREF, alpha(PAL.ink, 0.35), 2, [10, 10]);
+    text(ctx, 'h = 0', 1300, YREF - 18, PAL.muted, { size: 17, align: 'right' });
+    shape(ctx, top.concat(bot), null, PAL.ink, 5);
+    for (const [x, v, h, y, w, P, nm] of [[X1, va, ha, ya, wa, P1, '1'], [X2, vb, hb, yb, wb, P2, '2']]) {
+      if (v > 0) arrow(ctx, x - v * 7, y, x + v * 7, y, vc, 6);
+      dot(ctx, x, y, PAL.ink, true, 8);
+      text(ctx, nm, x, y - w - 24, PAL.ink, { size: 22, weight: 600, align: 'center' });
+      text(ctx, 'P_' + nm + ' = ' + atPow(P, 5, 2) + ' N/m²', x, y - w - 54, pc, { size: 20, weight: 600, align: 'center' });
+      text(ctx, 'v_' + nm + ' = ' + fmt(v, 1) + ' m/s', x, y + w + 26, vc, { size: 20, weight: 600, align: 'center' });
+      if (h > 0.01) vbracket(ctx, x - 110, y, YREF, hc, 'h_' + nm + ' = ' + fmt(h, 1) + ' m', -1);
+      else text(ctx, 'h_' + nm + ' = 0', x - 110, YREF + 60, hc, { size: 20, weight: 600, align: 'right' });
+    }
+    /* the legend: a term the case has crossed out is struck through where it stands */
+    const legend = [['P', 300, pc, false], ['½ρv²', 340, ec, still], ['ρgh (hatched)', 412, ec, level]];
+    for (const [s, x, col, gone] of legend) {
+      text(ctx, s, x, 530, gone ? alpha(col, 0.45) : col, { size: 19, weight: 600 });
+      if (gone) { ctx.save(); ctx.font = `600 19px ${F.FONT}`; const w = ctx.measureText(s).width; ctx.restore(); line(ctx, x - 4, 530, x + w + 4, 530, col, 3); }
+    }
+    text(ctx, 'the three terms of Bernoulli’s equation, as energy per unit volume', 1280, 530, PAL.muted, { size: 17, align: 'right' });
+    for (const [nm, y, P, ke, pe] of [['at point 1', 572, P1, ke1, pe1], ['at point 2', 650, P2, ke2, pe2]]) {
+      text(ctx, nm, 280, y, PAL.ink, { size: 20, weight: 600, align: 'right' });
+      bars(ctx, y, P, ke, pe, total, pc, ec);
+      const vy = y + 36;
+      text(ctx, '× 10⁵ J/m³:', 280, vy, PAL.muted, { size: 17, align: 'right' });
+      text(ctx, 'P = ' + fmt(P / 1e5, 2), AX0, vy, pc, { size: 17, weight: 600 });
+      text(ctx, '½ρv² = ' + fmt(ke / 1e5, 2), AX0 + 150, vy, ec, { size: 17, weight: 600 });
+      text(ctx, 'ρgh = ' + fmt(pe / 1e5, 2), AX0 + 340, vy, ec, { size: 17, weight: 600 });
+    }
+    const tx = AX0 + total * KX, tl = tx > 1040;
+    line(ctx, tx, 548, tx, 714, PAL.ink, 3, [8, 10]);
+    text(ctx, 'total = ' + atPow(total, 5, 2) + ' J/m³', tx + (tl ? -14 : 14), 611, PAL.ink, { size: 19, weight: 600, align: tl ? 'right' : 'left' });
+    line(ctx, AX0, 714, AX1, 714, PAL.muted, 3);
+    for (let i = 0; i <= 3; i++) { const x = AX0 + (i * 1e5) * KX; line(ctx, x, 708, x, 720, PAL.muted, 3); text(ctx, i === 0 ? '0' : i + ' × 10⁵', x, 740, PAL.muted, { size: 17, align: 'center' }); }
+    text(ctx, 'J/m³ = N/m²', 280, 740, PAL.muted, { size: 17, align: 'right' });
+    const dv = vb - va, dh = hb - ha, dPv = P2 - P1;
+    const spd = dv > 0 ? 'speeds up from ' + fmt(va, 1) + ' to ' + fmt(vb, 1) + ' m/s' : dv < 0 ? 'slows from ' + fmt(va, 1) + ' to ' + fmt(vb, 1) + ' m/s' : 'keeps its speed of ' + fmt(va, 1) + ' m/s';
+    const hgt = dh > 0 ? 'rises ' + fmt(dh, 1) + ' m' : dh < 0 ? 'falls ' + fmt(-dh, 1) + ' m' : 'stays at one height';
+    const chg = dPv < 0 ? 'falls' : dPv > 0 ? 'rises' : 'stays';
+    topline(ctx, still
+      ? (level ? 'The water is at rest and both points are at one height, so the pressure is the same at both.'
+        : 'The water is at rest and point 2 is ' + fmt(Math.abs(dh), 1) + ' m ' + (dh > 0 ? 'above' : 'below') + ' point 1, so its pressure is ' + atPow(Math.abs(dPv), 5, 2) + ' N/m² ' + (dh > 0 ? 'lower' : 'higher') + ' there.')
+      : level
+        ? 'At one depth the water ' + spd + ' between the two points, so its pressure ' + chg + ' by ' + atPow(Math.abs(dPv), 5, 2) + ' N/m².'
+        : dPv === 0 ? 'Between point 1 and point 2 the water ' + spd + ' and ' + hgt + ', and its pressure comes out the same at both.'
+          : 'Between point 1 and point 2 the water ' + spd + ' and ' + hgt + ', so its pressure ' + chg + ' from ' + atPow(P1, 5, 2) + ' to ' + atPow(P2, 5, 2) + ' N/m².');
+    /* the equation in the form the sliders put it in; the numbers sit on a line of their own, outside the tagged terms */
+    const n = (x) => fmt(x / 1e5, 2);
+    const [keys, nums] = still && level ? [['P1', 'eq', 'P2'], `${n(P1)} = ${n(P2)}`]
+      : still && ground ? [['P2', 'eq', 'P1', 'a2', 'g1'], `${n(P2)} = ${n(P1)} + ${n(pe1)}`]
+        : still ? [['P1', 'a2', 'g1', 'eq', 'P2', 'a4', 'g2'], `${n(P1)} + ${n(pe1)} = ${n(P2)} + ${n(pe2)}`]
+          : level ? [['P1', 'a1', 'k1', 'eq', 'P2', 'a3', 'k2'], `${n(P1)} + ${n(ke1)} = ${n(P2)} + ${n(ke2)}`]
+            : [['P1', 'a1', 'k1', 'a2', 'g1', 'eq', 'P2', 'a3', 'k2', 'a4', 'g2'], `${n(P1)} + ${n(ke1)} + ${n(pe1)} = ${n(P2)} + ${n(ke2)} + ${n(pe2)}`];
+    F.morph(eqHost, form(keys));
+    tex(numHost, nums + '\\quad (\\times 10^5\\ \\text{J/m}^3)');
+    note.textContent = 'Water at 1.00 × 10³ kg/m³ and g = 9.80 m/s², with P₁ held at 1.50 × 10⁵ N/m². Whatever the water gains in speed or in height it pays for out of its pressure.';
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
    FIGURE 12.6: entrainment, drawn once. A stream of air is driven through a
    tube that narrows, a side tube from the narrow part dips into water that
    is open to the atmosphere, and the greater pressure outside pushes the

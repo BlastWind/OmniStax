@@ -301,6 +301,124 @@ function flow(ctx, x, y, dx, dy, L) {
 })();
 
 /* =====================================================================
+   SIM: the impedance triangle again, with resonance as a place the
+   frequency slider can land. A detent on the slider sits at f₀ = 1/2π√LC
+   and moves with L and C; as the frequency comes onto it the standing leg
+   shrinks to nothing, the triangle lies down on its foot and the impedance
+   rewrites itself from √(R² + (X_L − X_C)²) to R. Still: the collapse is
+   the only motion, and it plays once each time resonance is reached.
+===================================================================== */
+(function () {
+  const H = 900;
+  const d = sim('sim-impedance-triangle-morph', H);
+  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 60, max: 3000, step: 10, value: 60, unit: 'Hz', dec: 0, aria: 'the frequency of the AC source', detents: [{ v: 60, label: 'f₀' }], snap: false });
+  const fLab = d.controls.lastElementChild, fIn = fLab.querySelector('input'), fTick = fLab.querySelector('.ctl-ticks .tick');
+  const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 30, max: 120, step: 1, value: 40, unit: 'Ω', dec: 1, aria: 'the resistance of the resistor' });
+  const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 1, max: 6, step: 0.25, value: 3, unit: 'mH', dec: 2, aria: 'the inductance of the inductor', onInput: () => follow() });
+  const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, aria: 'the capacitance of the capacitor', onInput: () => follow() });
+  const eqHost = el('div'), numHost = el('div'), note = el('small');
+  d.readout.append(eqHost, numHost, note);
+
+  const VRMS = 120, OHMS = 600, SC = 0.6, OX = 232, OY = 462;
+  const BOX = { l: 800, r: 1310, t: 196, b: 730 };
+  /* figlib's detents are fixed when the slider is made, so this one is kept by hand: the slider walks in steps of
+     10 Hz, and within CATCH of f₀ it lands on f₀ exactly and stays there until it is dragged past LET_GO */
+  const CATCH = 20, LET_GO = 40;
+  fIn.step = 'any';
+  const f0Now = () => circuit(1000, rS.v, lS.v * 1e-3, cS.v * 1e-6).f0;
+  let locked = false, X0 = 0, lastX = 0;
+  let col = { v: 1 };
+  function snapF() {
+    const f0 = f0Now(), x = +fIn.value, off = Math.abs(x - f0), inRange = f0 <= 3000;
+    const was = locked;
+    locked = inRange && off <= (locked ? LET_GO : CATCH);
+    fS.set(locked ? f0 : Math.min(3000, Math.max(60, Math.round(x / 10) * 10)));
+    if (locked && !was) enter();
+  }
+  function follow() {
+    const f0 = f0Now();
+    if (fTick) { fTick.style.display = f0 <= 3000 ? '' : 'none'; fTick.style.left = (100 * (f0 - 60)) / (3000 - 60) + '%'; }
+    if (locked) { if (f0 <= 3000) fS.set(f0); else { locked = false; fS.set(3000); } }
+  }
+  function enter() { X0 = lastX; col.set(0); col.to(1, 900); }
+  fIn.addEventListener('input', snapF);
+  let hits = [];
+  hover(d.stage, () => hits);
+
+  function draw() {
+    const { ctx } = begin(d.c); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const f = fS.v, R = rS.v, L = lS.v * 1e-3, Cf = cS.v * 1e-6;
+    const { XL, XC, Z, phi, f0 } = circuit(f, R, L, Cf);
+    const cR = C('resistance'), cF = C('frequency');
+    const X = locked ? 0 : XL - XC, Zs = locked ? R : Z, Irms = VRMS / Zs;
+    if (!locked) lastX = X;
+    const Xd = locked ? X0 * (1 - col.v) : X;
+    hits = [];
+
+    const clip = (v) => Math.max(-OHMS, Math.min(OHMS, v));
+    const fx = OX + clip(R) * SC, fy = OY, ty = OY - clip(Xd) * SC;
+    line(ctx, OX, OY - 360, OX, OY + 360, alpha(PAL.ink, 0.3), 2, [10, 12]);
+    line(ctx, OX - 40, OY, OX + 180, OY, alpha(PAL.ink, 0.3), 2, [10, 12]);
+    if (Math.abs(Xd) * SC > 1) {
+      ctx.save(); ctx.beginPath(); ctx.moveTo(OX, OY); ctx.lineTo(fx, fy); ctx.lineTo(fx, ty); ctx.closePath(); ctx.fillStyle = alpha(cR, 0.5 * 0.4); ctx.fill(); ctx.restore();
+    }
+    arrow(ctx, OX, OY, fx, fy, cR, 6);
+    text(ctx, 'R = ' + fmt(R, 1) + ' Ω', OX + 4, OY + 56, cR, { size: 22, weight: 600, align: 'left' });
+    if (Math.abs(Xd) * SC > 3) {
+      arrow(ctx, fx, fy, fx, ty, cR, 6);
+      if (!locked) text(ctx, (X > 0 ? 'X_L − X_C = ' : 'X_C − X_L = ') + fmt(Math.abs(X), Math.abs(X) > 99 ? 0 : 2) + ' Ω', fx + 18, (fy + ty) / 2, cR, { size: 22, weight: 600, align: 'left' });
+    }
+    if (locked) text(ctx, 'X_L = X_C', fx + 18, fy - 30, cR, { size: 22, weight: 600, align: 'left' });
+    line(ctx, OX, OY, fx, ty, cR, 7);
+    text(ctx, 'Z = ' + fmt(Zs, Zs > 99 ? 0 : 2) + ' Ω', OX - 22, locked ? OY - 30 : (OY + ty) / 2, cR, { size: 24, weight: 600, align: 'right' });
+    if (Math.abs(Math.atan2(Xd, R)) > 0.03 && !locked) angleArc(ctx, { x: OX, y: OY }, 78, 0, -phi, 'φ = ' + fmt(Math.abs(phi) * DEG, 1) + '°');
+    dot(ctx, OX, OY, PAL.ink, true, 7);
+    hits.push({ x: (OX + fx) / 2, y: OY, r: 40, name: 'the resistance, ' + fmt(R, 1) + ' Ω, which is the foot of the triangle' });
+    hits.push({ x: fx, y: (fy + ty) / 2, r: 46, name: 'the difference of the two reactances, ' + fmt(Math.abs(X), 1) + ' Ω' });
+    hits.push({ x: (OX + fx) / 2, y: (OY + ty) / 2, r: 46, name: 'the impedance, ' + fmt(Zs, 1) + ' Ω' });
+
+    const A = axes(ctx, BOX, [0, 3000], [0, OHMS], {
+      xl: 'frequency f (Hz)', xc: cF, yl: 'ohms', yc: cR, nx: 3, ny: 3, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0),
+    });
+    ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
+    line(ctx, BOX.l, A.Y(R), BOX.r, A.Y(R), cR, 4);
+    ctx.save(); ctx.setLineDash([10, 12]);
+    curve(ctx, (u) => TWO_PI * u * L, 60, 3000, A.X, A.Y, cR, 4, 60);
+    ctx.restore();
+    ctx.save(); ctx.setLineDash([2, 10]);
+    curve(ctx, (u) => 1 / (TWO_PI * u * Cf), 60, 3000, A.X, A.Y, cR, 4, 240);
+    ctx.restore();
+    curve(ctx, (u) => circuit(u, R, L, Cf).Z, 60, 3000, A.X, A.Y, cR, 6, 240);
+    ctx.restore();
+    text(ctx, 'Z', A.X(1700), A.Y(Math.min(OHMS, circuit(1700, R, L, Cf).Z)) - 30, cR, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'X_L', A.X(2880), A.Y(Math.min(OHMS, TWO_PI * 2880 * L)) - 30, cR, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'X_C', A.X(340), A.Y(Math.min(OHMS, 1 / (TWO_PI * 340 * Cf))) - 30, cR, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'R', A.X(150), A.Y(R) + 30, cR, { size: 20, weight: 600, align: 'center' });
+    if (f0 < 3000) {
+      line(ctx, A.X(f0), BOX.t, A.X(f0), BOX.b, alpha(PAL.ink, 0.35), 2, [10, 12]);
+      text(ctx, 'f₀', A.X(f0), BOX.b + 44, cF, { size: 20, weight: 600, align: 'center' });
+    }
+    /* on resonance the marker sits in the notch of the impedance curve, where Z meets the line of R */
+    if (locked) { dot(ctx, A.X(f0), A.Y(R), cR, true, 10); ctx.save(); ctx.globalAlpha = 1 - col.v; dot(ctx, A.X(f0), A.Y(R), cR, false, 10 + 26 * col.v); ctx.restore(); }
+    else pinned(ctx, BOX, A.X, A.Y, f, Z, cR);
+
+    topline(ctx, locked
+      ? 'At ' + fmt(f, 0) + ' Hz, the resonant frequency, the two reactances are equal and cancel, so the triangle is its foot alone and the impedance is the ' + fmt(R, 1) + ' Ω of the resistor.'
+      : XC > XL
+        ? 'At ' + fmt(f, 0) + ' Hz the capacitor’s ' + fmt(XC, XC > 99 ? 0 : 2) + ' Ω outweighs the inductor’s ' + fmt(XL, XL > 99 ? 0 : 2) + ' Ω, so the impedance is ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the current leads the source voltage by ' + fmt(-phi * DEG, 1) + '°.'
+        : 'At ' + fmt(f, 0) + ' Hz the inductor’s ' + fmt(XL, XL > 99 ? 0 : 2) + ' Ω outweighs the capacitor’s ' + fmt(XC, XC > 99 ? 0 : 2) + ' Ω, so the impedance is ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the current lags the source voltage by ' + fmt(phi * DEG, 1) + '°.');
+    F.morph(eqHost, locked ? '\\mk{Z}{\\kZimp} \\mk{eq}{=} \\mk{R}{\\kRes}' : '\\mk{Z}{\\kZimp} \\mk{eq}{=} \\mk{sq}{\\sqrt{\\kRes^2 + (\\kXL - \\kXC)^2}}');
+    tex(numHost, locked
+      ? `= ${fmt(R, 1)}\\ \\Omega,\\quad \\cos\\phi = 1`
+      : `= \\sqrt{(${fmt(R, 1)})^2 + (${fmt(XL, 1)} - ${fmt(XC, 1)})^2}\\ \\Omega = ${fmt(Z, Z > 99 ? 0 : 2)}\\ \\Omega,\\quad \\cos\\phi = ${fmt(Math.cos(phi), 4)}`);
+    note.textContent = 'On a 120 V rms source this circuit draws ' + fmt(Irms, 3) + ' A.';
+  }
+  register(d.fig, { update: () => {}, draw });
+  col = F.tween(d, 1);
+  follow();
+})();
+
+/* =====================================================================
    FIGURE 23.48: the resonance curve. The book prints two curves for two
    resistances and says the higher one is lower and broader; here the
    resistance is a slider, so one curve becomes the other, and the second

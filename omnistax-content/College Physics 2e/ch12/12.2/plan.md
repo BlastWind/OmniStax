@@ -372,3 +372,7 @@ The link on Example 12.2 is plain text now, the chapter's decision for every
 cross-reference. The evidence of `lift-from-bernoulli` was corrected: it had
 cited the aircraft-wing problem, which is 12.3's, and now names this
 section's figure, its two conceptual questions and its sail problem.
+
+## Manim duplicates
+
+- `sim-bernoulli-morph` (layer B, after `sim-bernoulli`): the case select is gone and the special cases fire from the sliders. Value add: the reader finds the static fluid and Bernoulli’s principle by driving the general equation into them, and sees which terms leave. Thresholds: v₁ = v₂ = 0 drops ½ρv² (eq-871), and with h₂ = 0 as well gives eq-477; h₁ = h₂ drops ρgh (eq-663); otherwise eq-506 with live numbers on a line of their own. Detents at v = 0 and on h₂ at h₁ (the tick follows h₁); each flag is raised on the value and lowered a quarter step off it. Flat, no 3D.

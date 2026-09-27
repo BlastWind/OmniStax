@@ -396,6 +396,66 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
 })();
 
 /* =====================================================================
+   SIM: the water main of Figure 12.19 again, drawn in the Manim manner:
+   round strokes, fills at half the opacity of their outline's hue, labels
+   straight on the ground with no plate behind them. Same controls, same
+   numbers, still as the original is.
+===================================================================== */
+(function () {
+  const d = sim('sim-water-main-style', 600);
+  const ns = ctl(d.controls, { label: '\\text{taps open}', cls: '', min: 0, max: 20, step: 1, value: 5, unit: 'of 20', dec: 0, aria: 'the number of houses drawing water at 20.0 L/min each' });
+  const Rs = ctl(d.controls, { label: 'R', cls: '', min: 0.5, max: 2, step: 0.01, value: 1, unit: 'kPa·min/L', dec: 2, aria: 'the resistance of the water main' });
+  const Ps = ctl(d.controls, { label: '\\kPrtwo', cls: 'pressure', min: 2, max: 6, step: 0.01, value: 4, unit: '× 10⁵ N/m²', dec: 2, aria: 'the pressure at the water works' });
+  const PCAP = 6, GH = 220, GY = 420, MY = 330, X1 = 300, X2 = 800, QCAP = 400;
+  const hits = [];
+  function poly(ctx, pts, stroke, w, fill, closed) {
+    ctx.save(); ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); if (closed) ctx.closePath();
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    ctx.strokeStyle = stroke; ctx.lineWidth = w; ctx.stroke(); ctx.restore();
+  }
+  function house(ctx, x, y, on, fc) {
+    poly(ctx, [[x - 20, y + 16], [x - 20, y - 6], [x, y - 22], [x + 20, y - 6], [x + 20, y + 16]], on ? fc : alpha(PAL.ink, 0.45), on ? 4 : 3, on ? alpha(fc, 0.5) : null, true);
+  }
+  function gauge(ctx, x, P, label, color) {
+    const h = Math.min(1, Math.max(0, P / PCAP)) * GH;
+    poly(ctx, [[x - 16, GY - GH], [x + 16, GY - GH], [x + 16, GY], [x - 16, GY]], alpha(PAL.ink, 0.35), 3, null, true);
+    if (h > 1) poly(ctx, [[x - 16, GY - h], [x + 16, GY - h], [x + 16, GY], [x - 16, GY]], color, 5, alpha(color, 0.5), true);
+    text(ctx, label, x, GY - GH - 44, color, { size: 24, weight: 600, align: 'center' });
+    text(ctx, sci(P * 1e5).txt + ' N/m²', x, GY - GH - 16, color, { size: 20, weight: 600, align: 'center' });
+  }
+  function draw() {
+    const { ctx } = begin(d.c); hits.length = 0; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const n = ns.v, Q = 20 * n, R = Rs.v * 1e3, P2 = Ps.v * 1e5, drop = R * Q, P1raw = P2 - drop, P1 = Math.max(0, P1raw), starved = P1raw < 0;
+    const fc = C('flow-rate'), pc = C('pressure');
+    poly(ctx, [[90, 340], [90, 250], [80, 250], [165, 205], [250, 250], [240, 250], [240, 340]], PAL.ink, 5, null, true);
+    text(ctx, 'Water works', 165, 372, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    for (const [x0, x1] of [[240, X1 - 22], [X1 + 22, X2 - 22], [X2 + 22, X2 + 80]]) { line(ctx, x0, MY - 18, x1, MY - 18, PAL.ink, 5); line(ctx, x0, MY + 18, x1, MY + 18, PAL.ink, 5); }
+    const qlen = (Q / QCAP) * (X2 - X1 - 120);
+    if (qlen > 4) arrow(ctx, X1 + 60, MY, X1 + 60 + qlen, MY, fc, 7);
+    text(ctx, 'Q = ' + fmt(Q, 0) + ' L/min', (X1 + X2) / 2 + 30, MY + 52, fc, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'R = ' + fmt(Rs.v, 2) + ' × 10³ N/m² per L/min', (X1 + X2) / 2, MY - 46, PAL.ink, { size: 19, align: 'center' });
+    gauge(ctx, X1, P2 / 1e5, 'P_2', pc); gauge(ctx, X2, P1 / 1e5, 'P_1', pc);
+    hits.push({ x: X1, y: GY - GH / 2, r: 40, name: 'the pressure at the water works, ' + sci(P2).txt + ' N/m²' }, { x: X2, y: GY - GH / 2, r: 40, name: 'the pressure at the houses, ' + sci(P1).txt + ' N/m²' });
+    const TX = X2 + 90;
+    line(ctx, TX - 10, 120, TX - 10, 565, PAL.ink, 4); line(ctx, TX + 10, 120, TX + 10, 565, PAL.ink, 4);
+    for (let i = 0; i < 20; i++) {
+      const col = i % 4, row = Math.floor(i / 4), hx = TX + 110 + col * 115, hy = 160 + row * 98, on = i < n;
+      line(ctx, TX + 10, hy + 10, hx - 22, hy + 10, on ? fc : alpha(PAL.ink, 0.25), on ? 5 : 3);
+      house(ctx, hx, hy, on, fc);
+      hits.push({ x: hx, y: hy, r: 26, name: on ? 'a house drawing 20.0 L/min' : 'a house with its taps closed' });
+    }
+    text(ctx, n + (n === 1 ? ' house drawing' : ' houses drawing') + ', 20.0 L/min each', TX + 282, 108, PAL.ink, { size: 19, align: 'center' });
+    if (starved) text(ctx, 'the drop RQ would exceed P₂: the pressure at the houses falls to zero and the main cannot supply this flow', 460, 560, PAL.ink, { size: 18, align: 'center' });
+    topline(ctx, n === 0 ? `With no tap open nothing flows, and the pressure at the houses is the ${sci(P2).txt} N/m² of the water works.`
+      : `${n} ${n === 1 ? 'house draws' : 'houses draw'} ${fmt(Q, 0)} L/min through the main, and the pressure falls from ${sci(P2).txt} N/m² at the water works to ${sci(P1).txt} N/m² at the houses.`);
+    readout(d.readout, `\\kPrtwo - \\kProne = R\\kQ = (${sci(R).tex}\\ \\text{N/m}^2\\ \\text{per L/min})(${fmt(Q, 0)}\\ \\text{L/min}) = ${sci(drop).tex}\\ \\text{N/m}^2`,
+      starved ? 'The drop the main would need exceeds the pressure the water works supplies, so the houses get no pressure at all.' : 'When the flow is very small the drop is negligible and P₁ ≈ P₂; when it is large the houses get much less than the water works creates.');
+  }
+  hover(d.stage, () => hits);
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
    FIGURE 12.20: the circulatory system unrolled, with the average pressure
    of an adult at rest at each of its major parts, each stretch a fixed
    resistance found from the book's numbers at 5.00 L/min. Still: the

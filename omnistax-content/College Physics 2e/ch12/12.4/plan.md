@@ -368,3 +368,7 @@ brought to the ranges the figures were built with. The `notes` and
 the falling steel ball is set there and the other two are left out of both
 sections. Table 12.1's header writes $\keta$ with the macro, as the prose
 does, since the page binds viscosity.
+
+## Manim duplicates
+
+- `sim-water-main-style` (layer A, after `sim-water-main`): the most cluttered figure of the page (nine plates and filled rects) redrawn in the Manim look, round strokes, half-opacity fills in the outline’s hue, no label plates; same controls and behaviour. Flat, no 3D.
