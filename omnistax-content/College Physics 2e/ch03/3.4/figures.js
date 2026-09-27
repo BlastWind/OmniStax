@@ -581,6 +581,7 @@ function tower(ctx, x, y, h, color) {
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 8, step: 0.1, value: 6, unit: 'km/s', dec: 1, onInput: reset, aria: 'launch speed',
     specials: [{ at: () => vCirc(), label: 'circular orbit' }, { at: () => Math.SQRT2 * vCirc(), label: 'escape speed' }] });
   const ht = ctl(d.controls, { label: '\\text{tower height}', cls: 'position', min: 200, max: 1500, step: 100, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: 'tower height' });
+  v0.refresh();
   const eqHost = el('div'), numHost = el('div'), note = el('small');
   eqHost.style.fontSize = '1.7em';
   d.readout.append(eqHost, numHost, note);
