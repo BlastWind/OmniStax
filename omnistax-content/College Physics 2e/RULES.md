@@ -254,20 +254,21 @@ book prints (Table 1.2) and whose caption is the book's title for it. A
 table is never a `<figure>`, since the validator reads every figure
 element as a figure row.
 
-Almost every figure of this book is planar, because almost every idea in it
-is a relation between quantities and is clearest drawn flat with a fixed
-frame (root rule 28.1). One is not. The group root rule 28.3 names is an
-apparatus whose fine parts are the explanation, and Chapter 6’s Cavendish
-balance (6.5, Figure 6.25) is this book’s one member of it: the thin fiber,
-the small rod hung from it, the mirror on the rod’s hanger and the beam that
-mirror throws across the floor to the scale are an arrangement in space, and
-a flat drawing would have to lie about depth or scale to show how a force too
-small to feel is turned into a reading anyone can take. It is a full 3D scene
-on the app’s viewer, carrying the buttons root rule 26.2 asks for, and its
-plan line states the bound on the orbit and the reason for it. Nothing else
-in the book has earned the tier: a block on an incline, a free-body diagram
-and a banked curve are drawn flat, or, where the book prints them in
-perspective, from a locked view (root rule 28.2).
+Most figures of this book are planar, because most of its ideas are
+relations between quantities and read best flat with a fixed frame (root
+rule 28.1). A block on an incline, a free-body diagram and a banked curve are
+drawn flat, or, where the book prints them in perspective, from a locked view
+(root rule 28.2). The book's 3D scenes fall into the two classes of root rule
+28.3. Physical 3D is the Cavendish balance (6.5, Figure 6.25), whose thin
+fiber, small rod, mirror and beam thrown across the floor to the scale turn a
+force too small to feel into a reading; the gyroscope (10.7); and the motor
+and generator (22.8, 23.5), whose coils and brushes are meshes while their
+field is drawn as mathematics. Mathematical 3D is the magnetism and waves of
+Chapters 22 to 24: right hand rule 1 (22.4), the field of a current (22.9),
+flux through a tilted loop (23.1) and the electromagnetic wave (24.2, 24.4).
+Candidates not yet built are the torque vector of a merry-go-round (10.7),
+which lifts out of the platform's plane, and the equipotential map of 19.4
+rising into a surface of potential.
 
 Photographs are kept
 where the text points the reader at them (Chapter 1 does this for
