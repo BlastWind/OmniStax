@@ -295,7 +295,7 @@ function flow(ctx, x, y, dx, dy, L) {
         : 'At ' + fmt(f, 0) + ' Hz the inductor’s ' + fmt(XL, XL > 99 ? 0 : 2) + ' Ω outweighs the capacitor’s ' + fmt(XC, XC > 99 ? 0 : 2) + ' Ω, so the impedance is ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the current lags the source voltage by ' + fmt(phi * DEG, 1) + '°.');
     readout(d.readout,
       `\\cos\\phi = \\dfrac{\\kRes}{\\kZimp} = \\dfrac{${fmt(R, 1)}\\ \\Omega}{${fmt(Z, Z > 99 ? 0 : 2)}\\ \\Omega} = ${fmt(Math.cos(phi), 4)},\\quad \\phi = ${fmt(Math.abs(phi) * DEG, 1)}^\\circ`,
-      'On a 120 V rms source this circuit draws ' + fmt(Irms, 3) + ' A, and the ' + fmt(Math.abs(X), Math.abs(X) > 99 ? 0 : 2) + ' Ω standing on the foot of the triangle is the whole of the difference between an impedance of ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the ' + fmt(R, 1) + ' Ω the circuit would have at resonance.');
+      'On a 120 V rms source this circuit draws ' + fmt(Irms, 3) + ' A, and the ' + fmt(Math.abs(X), Math.abs(X) > 99 ? 0 : Math.abs(X) > 9 ? 1 : 2) + ' Ω standing on the foot of the triangle is the whole of the difference between an impedance of ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the ' + fmt(R, 1) + ' Ω the circuit would have at resonance.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -322,9 +322,8 @@ function flow(ctx, x, y, dx, dy, L) {
   const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, aria: 'the capacitance of the capacitor',
     specials: [{ at: () => 1e6 / (w2() * lS.v * 1e-3), label: 'resonance' }] });
   fS.refresh(); lS.refresh();
-  const eqHost = el('div'), numHost = el('div'), note = el('small');
-  eqHost.style.fontSize = '1.7em';
-  d.readout.append(eqHost, numHost, note);
+  const eqHost = el('div'), note = el('small');
+  d.readout.append(eqHost, note);
 
   const VRMS = 120, OHMS = 600, SIDE = 330, OX = 232, OY = 462;
   const BOX = { l: 800, r: 1310, t: 196, b: 730 };
@@ -360,11 +359,11 @@ function flow(ctx, x, y, dx, dy, L) {
     text(ctx, 'R = ' + fmt(R, 1) + ' Ω', OX + 4, OY + 56, cR, { size: 22, weight: 600, align: 'left' });
     if (Math.abs(Xd) * SC > 3) {
       arrow(ctx, fx, fy, fx, ty, cR, 6);
-      if (!locked) text(ctx, (X > 0 ? 'X_L − X_C = ' : 'X_C − X_L = ') + fmt(Math.abs(X), Math.abs(X) > 99 ? 0 : 2) + ' Ω', fx + 18, (fy + ty) / 2, cR, { size: 22, weight: 600, align: 'left' });
+      if (!locked) text(ctx, (X > 0 ? 'X_L − X_C = ' : 'X_C − X_L = ') + fmt(Math.abs(X), Math.abs(X) > 99 ? 0 : Math.abs(X) > 9 ? 1 : 2) + ' Ω', fx + 18, (fy + ty) / 2, cR, { size: 22, weight: 600, align: 'left' });
     }
     if (locked) text(ctx, 'X_L = X_C', fx + 18, fy - 30, cR, { size: 22, weight: 600, align: 'left' });
     line(ctx, OX, OY, fx, ty, cR, 7);
-    text(ctx, 'Z = ' + fmt(Zs, Zs > 99 ? 0 : 2) + ' Ω', OX - 22, locked ? OY - 30 : (OY + ty) / 2, cR, { size: 24, weight: 600, align: 'right' });
+    text(ctx, 'Z = ' + fmt(Zs, Zs > 99 ? 0 : Zs > 9 ? 1 : 2) + ' Ω', OX - 22, locked ? OY - 30 : (OY + ty) / 2, cR, { size: 24, weight: 600, align: 'right' });
     if (Math.abs(Math.atan2(Xd, R)) > 0.03 && !locked) angleArc(ctx, { x: OX, y: OY }, 78, 0, -phi, 'φ = ' + fmt(Math.abs(phi) * DEG, 1) + '°');
     dot(ctx, OX, OY, PAL.ink, true, 7);
     hits.push({ x: (OX + fx) / 2, y: OY, r: 40, name: 'the resistance, ' + fmt(R, 1) + ' Ω, which is the foot of the triangle' });
@@ -401,11 +400,13 @@ function flow(ctx, x, y, dx, dy, L) {
       : XC > XL
         ? 'At ' + fmt(f, 0) + ' Hz the capacitor’s ' + fmt(XC, XC > 99 ? 0 : 2) + ' Ω outweighs the inductor’s ' + fmt(XL, XL > 99 ? 0 : 2) + ' Ω, so the impedance is ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the current leads the source voltage by ' + fmt(-phi * DEG, 1) + '°.'
         : 'At ' + fmt(f, 0) + ' Hz the inductor’s ' + fmt(XL, XL > 99 ? 0 : 2) + ' Ω outweighs the capacitor’s ' + fmt(XC, XC > 99 ? 0 : 2) + ' Ω, so the impedance is ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the current lags the source voltage by ' + fmt(phi * DEG, 1) + '°.');
-    F.morph(eqHost, locked ? '\\mk{Z}{\\kZimp} \\mk{eq}{=} \\mk{R}{\\kRes}' : '\\mk{Z}{\\kZimp} \\mk{eq}{=} \\mk{sq}{\\sqrt{\\kRes^2 + (\\kXL - \\kXC)^2}}');
-    tex(numHost, locked
-      ? `= ${fmt(R, 1)}\\ \\Omega,\\quad \\cos\\phi = 1`
-      : `= \\sqrt{(${fmt(R, 1)})^2 + (${fmt(XL, 1)} - ${fmt(XC, 1)})^2}\\ \\Omega = ${fmt(Z, Z > 99 ? 0 : 2)}\\ \\Omega,\\quad \\cos\\phi = ${fmt(Math.cos(phi), 4)}`);
-    note.textContent = 'On a 120 V rms source this circuit draws ' + fmt(Irms, 3) + ' A.';
+    /* at resonance the reactance term and its numbers fade, and R² inside the radical bends into R, the same resistance */
+    const s3 = (x) => fmt(x, x > 99 ? 0 : x > 9 ? 1 : 2);
+    F.morph(eqHost, locked
+      ? `\\mk{Z}{\\kZimp} = \\mk{R}{\\kRes} = \\mk{Rv}{${fmt(R, 1)}}\\ \\mk{u}{\\Omega}`
+      : `\\mk{Z}{\\kZimp} = \\sqrt{\\mk{R2}{\\kRes^2} + \\mk{X}{(\\kXL - \\kXC)^2}} = \\sqrt{\\mk{Rv2}{(${fmt(R, 1)})^2} + (\\mk{XLv}{${s3(XL)}} - \\mk{XCv}{${s3(XC)}})^2}\\ \\mk{u1}{\\Omega} = \\mk{Zv}{${s3(Z)}}\\ \\mk{u}{\\Omega}`,
+      { keyMap: locked ? { R2: 'R', Rv2: 'Rv' } : { R: 'R2', Rv: 'Rv2' } });
+    note.textContent = 'cos φ = ' + (locked ? '1' : fmt(Math.cos(phi), 4)) + '. On a 120 V rms source this circuit draws ' + fmt(Irms, 3) + ' A.';
   }
   register(d.fig, { update: () => {}, draw });
 })();

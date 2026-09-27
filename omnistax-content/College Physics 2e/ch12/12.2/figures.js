@@ -250,20 +250,27 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
   h1 = ctl(d.controls, { label: '\\khone', cls: 'position', min: 0, max: 10, step: 0.5, value: 2, unit: 'm', dec: 1, aria: 'the height of point 1 above the reference', specials: [zero, { at: () => (h2 ? h2.v : null), label: 'h₂' }] });
   h2 = ctl(d.controls, { label: '\\khtwo', cls: 'position', min: 0, max: 10, step: 0.5, value: 5, unit: 'm', dec: 1, aria: 'the height of point 2 above the reference', specials: [zero, { at: () => h1.v, label: 'h₁' }] });
   h1.refresh();
-  const eqHost = el('div'), numHost = el('div'), note = el('small');
-  eqHost.style.fontSize = '1.6em';
-  d.readout.append(eqHost, numHost, note);
+  const eqHost = el('div'), note = el('small');
+  d.readout.append(eqHost, note);
   /* the kinetic and the gravitational bars, and their legend entries, fade with the terms the case strikes */
   const P = F.presence(d);
   const YREF = 440, SH = 24, X1 = 340, X2 = 1000, XA = 500, XB = 860;
   const AX0 = 300, AX1 = 1280, EMAX = 3.0e5, KX = (AX1 - AX0) / EMAX;
   const halfw = (v) => (v === 0 ? 44 : clamp(22 * Math.sqrt(4 / v), 14, 44));
   const T = {
-    P1: '\\mk{P1}{\\kProne}', k1: '\\mk{k1}{\\tfrac{1}{2}\\krho\\kvone^2}', g1: '\\mk{g1}{\\krho\\kg\\khone}',
-    P2: '\\mk{P2}{\\kPrtwo}', k2: '\\mk{k2}{\\tfrac{1}{2}\\krho\\kvtwo^2}', g2: '\\mk{g2}{\\krho\\kg\\khtwo}',
-    a1: '\\mk{a1}{+}', a2: '\\mk{a2}{+}', a3: '\\mk{a3}{+}', a4: '\\mk{a4}{+}', eq: '\\mk{eq}{=}',
+    P1: '\\kProne', k1: '\\tfrac{1}{2}\\krho\\kvone^2', g1: '\\krho\\kg\\khone',
+    P2: '\\kPrtwo', k2: '\\tfrac{1}{2}\\krho\\kvtwo^2', g2: '\\krho\\kg\\khtwo',
   };
-  const form = (ks) => ks.map((k) => T[k]).join(' ');
+  /* one line: the two sides in symbols, then in numbers (× 10⁵ J/m³), then their common total; each term and each number keyed by its point */
+  function form(L, R, val) {
+    const n = (k) => `\\mk{${k}v}{${fmt(val[k] / 1e5, 2)}}`;
+    const sym = (ks) => ks.map((k) => `\\mk{${k}}{${T[k]}}`).join(' + ');
+    const num = (ks) => (ks.length > 1 ? `(${ks.map(n).join(' + ')})` : n(ks[0])) + '\\times 10^{5}';
+    const segs = [sym(L), sym(R), num(L)];
+    if (L.length > 1 || R.length > 1) segs.push(num(R));
+    if (L.length > 1 && R.length > 1) segs.push(`\\mk{tot}{${fmt(L.reduce((s, k) => s + val[k], 0) / 1e5, 2)}}\\times 10^{5}`);
+    return segs.join(' = ') + '\\ \\text{J/m}^3';
+  }
   function bars(ctx, y, P, ke, pe, total, pc, ec, aK, aG) {
     let x = AX0;
     const seg = (w, col, hatch, a = 1) => {
@@ -334,16 +341,14 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
         ? 'At one depth the water ' + spd + ' between the two points, so its pressure ' + chg + ' by ' + atPow(Math.abs(dPv), 5, 2) + ' N/m².'
         : dPv === 0 ? 'Between point 1 and point 2 the water ' + spd + ' and ' + hgt + ', and its pressure comes out the same at both.'
           : 'Between point 1 and point 2 the water ' + spd + ' and ' + hgt + ', so its pressure ' + chg + ' from ' + atPow(P1, 5, 2) + ' to ' + atPow(P2, 5, 2) + ' N/m².');
-    /* the equation in the form the sliders put it in; the numbers sit on a line of their own, outside the tagged terms */
-    const n = (x) => fmt(x / 1e5, 2);
-    const [keys, nums] = still && level ? [['P1', 'eq', 'P2'], `${n(P1)} = ${n(P2)}`]
-      : still && ground ? [['P2', 'eq', 'P1', 'a2', 'g1'], `${n(P2)} = ${n(P1)} + ${n(pe1)}`]
-        : still && base ? [['P1', 'eq', 'P2', 'a4', 'g2'], `${n(P1)} = ${n(P2)} + ${n(pe2)}`]
-        : still ? [['P1', 'a2', 'g1', 'eq', 'P2', 'a4', 'g2'], `${n(P1)} + ${n(pe1)} = ${n(P2)} + ${n(pe2)}`]
-          : level ? [['P1', 'a1', 'k1', 'eq', 'P2', 'a3', 'k2'], `${n(P1)} + ${n(ke1)} = ${n(P2)} + ${n(ke2)}`]
-            : [['P1', 'a1', 'k1', 'a2', 'g1', 'eq', 'P2', 'a3', 'k2', 'a4', 'g2'], `${n(P1)} + ${n(ke1)} + ${n(pe1)} = ${n(P2)} + ${n(ke2)} + ${n(pe2)}`];
-    F.morph(eqHost, form(keys));
-    tex(numHost, nums + '\\quad (\\times 10^5\\ \\text{J/m}^3)');
+    /* the equation in the form the sliders put it in */
+    const [L, R] = still && level ? [['P1'], ['P2']]
+      : still && ground ? [['P2'], ['P1', 'g1']]
+        : still && base ? [['P1'], ['P2', 'g2']]
+          : still ? [['P1', 'g1'], ['P2', 'g2']]
+            : level ? [['P1', 'k1'], ['P2', 'k2']]
+              : [['P1', 'k1', 'g1'], ['P2', 'k2', 'g2']];
+    F.morph(eqHost, form(L, R, { P1, k1: ke1, g1: pe1, P2, k2: ke2, g2: pe2 }));
     note.textContent = 'Water at 1.00 × 10³ kg/m³ and g = 9.80 m/s², with P₁ held at 1.50 × 10⁵ N/m². Whatever the water gains in speed or in height it pays for out of its pressure.';
   }
   register(d.fig, { update: () => {}, draw });
