@@ -375,3 +375,7 @@ repair is the book's own wording from three pages later.
 
 The `T_force` row keeps the thrust meaning this section gives it, and 4.5's
 row of the same symbol keeps the tension meaning, as the plan asked.
+
+## Manim duplicates
+
+- `sim-sled-morph` · layer B (morph) of `sim-sled` · value add: concreteness fading from the drawn sled to the dot of a free-body diagram. A sled/dot choice shrinks the sled into its centre over 1.2 s while the dot grows there, the thrust arrows carried with it and set head to tail on the dot; a rocket switched on grows its thrust from the tail (staggered 0.12 s, one after another), one switched off shrinks it back; the net-force readout morphs by term, one T term per burning rocket. Thresholds: the choice itself and the rocket count, both discrete, so no detents or hysteresis are needed. Flat, no 3D.

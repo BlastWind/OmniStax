@@ -403,6 +403,126 @@ function bathScale(ctx, x, y, w, color) {
 })();
 
 /* =====================================================================
+   SIM: Figure 4.8 with the sled fading to a dot. The same run; a choice
+   shrinks the drawn sled into the dot a free-body diagram uses, its force
+   arrows carried along and set head to tail, and back. A rocket that
+   lights grows its thrust from the tail, and the net force is written
+   one thrust term per burning rocket.
+===================================================================== */
+(function () {
+  const d = sim('sim-sled-morph', 860);
+  const Tt = ctl(d.controls, { label: '\\kTf', cls: 'force', min: 5000, max: 40000, step: 100, value: 25900, unit: 'N', dec: 0, onInput: reset, aria: 'thrust of one rocket' });
+  const burn = [0, 1, 2, 3].map(() => F.tween(d, 1));
+  const nn = choice(d.controls, {
+    label: '\\text{rockets burning}', aria: 'number of rockets burning', value: '4',
+    options: [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }],
+    onInput: (v) => { reset(); light(+v); },
+  });
+  const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 2000, step: 50, value: 650, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction' });
+  const form = F.tween(d, 0);
+  choice(d.controls, {
+    label: '\\text{drawn as}', aria: 'draw the system as the sled or as a dot', value: 'sled',
+    options: [{ value: 'sled', label: 'sled' }, { value: 'dot', label: 'dot' }],
+    onInput: (v) => { form.to(v === 'dot' ? 1 : 0, 1200); },
+  });
+  /* each rocket that lights grows its thrust from the tail, one after another; one that goes out shrinks back */
+  let lit = 4;
+  function light(n) {
+    burn.forEach((b, i) => { if (i >= n) b.to(0, 500); else if (i >= lit) setTimeout(() => b.to(1, 700), 120 * (i - lit)); });
+    lit = n;
+  }
+  const M = 2100, T = 2;
+  const accOf = (n) => Math.max(0, n * Tt.v - ff.v) / M;
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  const lerp = (a, b, k) => a + (b - a) * k;
+  const mdot = (ctx, x, y, color, r, filled = true) => { ctx.save(); ctx.fillStyle = filled ? alpha(color, 0.5) : PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore(); };
+  /* the sled in outline with half-tone fills, each rocket's flame as long as its burn */
+  function sledM(ctx, x, y, color, lv) {
+    ctx.save(); ctx.fillStyle = alpha(color, 0.5); ctx.strokeStyle = color; ctx.lineWidth = 4;
+    const shape = (f) => { ctx.beginPath(); f(); ctx.fill(); ctx.stroke(); };
+    shape(() => ctx.rect(x - 86, y - 6, 172, 14));
+    lv.forEach((g, i) => {
+      const rx = x - 66 + i * 38;
+      shape(() => ctx.rect(rx - 15, y - 30, 30, 22));
+      if (g > 0.02) shape(() => { ctx.moveTo(rx - 15, y - 26); ctx.lineTo(rx - 15 - 29 * g, y - 19); ctx.lineTo(rx - 15, y - 12); ctx.closePath(); });
+    });
+    shape(() => ctx.arc(x + 58, y - 44, 13, 0, TAU));
+    ctx.beginPath(); ctx.moveTo(x + 58, y - 30); ctx.lineTo(x + 58, y - 8); ctx.stroke();
+    shape(() => ctx.arc(x - 50, y + 20, 12, 0, TAU)); shape(() => ctx.arc(x + 52, y + 20, 12, 0, TAU));
+    ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const n = +nn.value, a = accOf(n), net = n * Tt.v - ff.v, w = M * G, fm = form.v;
+    const lv = burn.map((b) => b.v), thrust = lv.reduce((s, g) => s + g, 0) * Tt.v;
+    const tau = cy.now(), x = 0.5 * a * tau * tau, v = a * tau;
+    const gy = 330, x0 = 250, XMAX = 100, SC = 620 / XMAX, SX = (mtr) => x0 + mtr * SC;
+    strip(ctx, 60, 1340, gy + 26, 40);
+    const past = x > XMAX;
+    const sx = SX(Math.min(x, XMAX)), sy = gy - 34, cf = C('force'), K = 170 / 40000, Lt = alen(Tt.v, K, 20);
+    /* sled to dot: the sled shrinks into its centre as the dot grows there */
+    const ox = sx, oy = sy - 12, s = 1 - 0.85 * fm;
+    if (fm < 0.999) { ctx.save(); ctx.globalAlpha = 1 - fm; ctx.translate(ox, oy); ctx.scale(s, s); ctx.translate(-ox, -oy); sledM(ctx, sx, sy, PAL.ink, lv); ctx.restore(); }
+    /* one thrust per rocket, from the rocket forward; on the dot they are set head to tail, so their sum reads as one length */
+    lv.forEach((g, i) => {
+      if (g < 0.01) return;
+      const tx = lerp(sx - 66 + i * 38, ox + i * Lt, fm), ty = lerp(sy - 56 - i * 22, oy, fm);
+      arrow(ctx, tx, ty, tx + Lt * g, ty, cf, 6);
+    });
+    const lastX = lerp(sx - 66 + (n - 1) * 38, ox + (n - 1) * Lt, fm), lastY = lerp(sy - 56 - (n - 1) * 22, oy, fm);
+    headLabel(ctx, n + 'T = ' + sig3(n * Tt.v) + ' N', lastX, lastX + Lt, lastY - 26, cf);
+    const Lf = alen(ff.v, K, 24), fx0 = lerp(sx - 20, ox, fm), fy0 = lerp(sy - 56, oy, fm);
+    arrow(ctx, fx0, fy0, fx0 - Lf, fy0, cf, 6);
+    text(ctx, 'f = ' + commas(fmt(ff.v, 0)) + ' N', fx0 - 14 - Lf, fy0 - 26 * fm, cf, { size: 20, weight: 600, align: 'right' });
+    if (fm > 0.001) mdot(ctx, ox, oy, PAL.ink, 12 * fm);
+    const ay = lerp(sy - 40, sy - 70, fm), vy = lerp(sy + 6, sy - 110, fm), ax0 = lerp(sx + 130, ox, fm);
+    if (a > 0.01) {
+      const La = Math.min(180, 30 + a * 2.2);
+      arrow(ctx, ax0, ay, ax0 + La, ay, C('acceleration'), 6);
+      headLabel(ctx, 'a = ' + fmt(a, 1) + ' m/s²', ax0, ax0 + La, ay, C('acceleration'));
+    }
+    if (v > 0.1) {
+      const Lv = Math.min(180, v * 1.8);
+      arrow(ctx, ax0, vy, ax0 + Lv, vy, C('velocity'), 6);
+      headLabel(ctx, 'v = ' + fmt(v, 1) + ' m/s', ax0, ax0 + Lv, vy, C('velocity'));
+    }
+    scale(ctx, SX, 0, XMAX, 10, gy + 90, 'm', 2);
+    /* the free-body diagram, its thrust as long as the rockets burning at this moment */
+    const k = 170 / Math.max(n * Tt.v, ff.v, 1), cx = 400, cyy = 620;
+    [[1, 'w = '], [-1, 'N = ']].forEach(([dy, lab]) => {
+      arrow(ctx, cx, cyy, cx, cyy + dy * 96, cf, 6);
+      text(ctx, lab + sig3(w) + ' N', cx + 16, cyy + dy * 112, cf, { size: 19, weight: 600 });
+    });
+    if (thrust > 1) arrow(ctx, cx, cyy - 20, cx + alen(thrust, k), cyy - 20, cf, 6);
+    text(ctx, n + 'T = ' + sig3(n * Tt.v) + ' N', cx + alen(thrust, k) + 14, cyy - 20, cf, { size: 19, weight: 600 });
+    arrow(ctx, cx, cyy + 20, cx - alen(ff.v, k), cyy + 20, cf, 6);
+    text(ctx, 'f = ' + commas(fmt(ff.v, 0)) + ' N', cx - alen(ff.v, k) - 14, cyy + 20, cf, { size: 19, weight: 600, align: 'right' });
+    mdot(ctx, cx, cyy, PAL.ink, 9);
+    const netA = thrust - ff.v;
+    if (netA > 0) {
+      arrow(ctx, cx, 782, cx + alen(netA, k), 782, cf, 7);
+      text(ctx, 'F_net = ' + sig3(net) + ' N', cx + alen(netA, k) + 14, 782, cf, { size: 19, weight: 600 });
+    }
+    const AR = 80, gbox = { l: 920, r: 1270, t: 520, b: 770 };
+    const g = axes(ctx, gbox, [0, 4], [0, AR], { xl: 'rockets burning', xc: PAL.ink, yl: 'a (m/s²)', yc: C('acceleration'), nx: 4, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
+    inbox(ctx, gbox, () => {
+      line(ctx, g.X(0), g.Y(0), g.X(4), g.Y(accOf(4)), PAL.muted, 3, [2, 12]);
+      line(ctx, g.X(1), g.Y(accOf(1)), g.X(4), g.Y(accOf(4)), C('acceleration'), 6);
+      for (let i = 1; i <= 4; i++) mdot(ctx, g.X(i), g.Y(accOf(i)), C('acceleration'), i === n ? 11 : 8, i === n);
+    });
+    text(ctx, 'proportional', g.X(1.45), g.Y(AR * 0.36) - 30, PAL.muted, { size: 17, align: 'center' });
+    topline(ctx, 'After ' + fmt(tau, 2) + ' s ' + (n === 1 ? 'one thrust of ' : n + ' thrusts of ') + sig3(Tt.v) + ' N less ' + commas(fmt(ff.v, 0)) + ' N of friction have given the sled ' + fmt(a, 1) + ' m/s², and it is at ' + fmt(v, 1) + ' m/s' + (past ? ', ' + sig3(x) + ' m down the rail and past the end of the 100 m drawn here' : ''));
+    const terms = [0, 1, 2, 3].slice(0, n).map((i) => `\\mk{T${i}}{${i ? '{}+' : ''}\\kTf}`).join(' ');
+    F.morph(formula, `\\kFnet = ${terms} \\mk{f}{{}-\\kff} = ${n}(${sig3(Tt.v)}\\ \\text{N}) - ${commas(fmt(ff.v, 0))}\\ \\text{N} = ${sig3(net)}\\ \\text{N} = m\\ka`);
+    note.textContent = 'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s². The dot stands for all of it at once, since only the external forces decide the acceleration.';
+  }
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
+})();
+
+/* =====================================================================
    SIM: the weight of a mass, on Earth and elsewhere. Weight has no time in
    it — the figure answers its sliders — so it is a still picture with no
    transport. The scene stands upright, so its graph goes beside it, and

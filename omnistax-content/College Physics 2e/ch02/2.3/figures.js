@@ -263,6 +263,116 @@ function trip(u) {
 })();
 
 /* =====================================================================
+   SIM: Figure 2.9 told as a tour. The same trip; the interval halves and
+   each chord splits in two at its midpoint, then the graph's own mapping
+   zooms on one instant until the chord from it closes onto the tangent,
+   and zooms back out with the tangent kept. The tour moves the interval
+   slider a reader would; zoom and the shrinking chord are story time.
+===================================================================== */
+(function () {
+  const d = sim('sim-segments-tour', 720);
+  const HALVES = [5, 2.5, 1.25, 0.625, 0.3125];
+  const W = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.1, max: 5, step: 0.0125, value: 5, unit: 's', dec: 2, detents: HALVES, snap: true, aria: 'width of one interval' });
+  const TOT = 5, TS = 2, ZMAX = 24, H0 = 0.3125, HMIN = 0.004;
+  const cy = cycle(() => TOT, 1.2); let ph = 0;
+  const at = (s) => trip(s);
+  const clamp01 = (u) => Math.min(1, Math.max(0, u));
+  const lerp = (a, b, k) => a + (b - a) * k;
+  const inbox = (ctx, box, f) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); };
+  const mdot = (ctx, x, y, color, r) => { ctx.save(); ctx.fillStyle = alpha(color, 0.5); ctx.strokeStyle = color; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore(); };
+  const tex$ = (x, dd) => signed(x, dd).replace('−', '-');
+  /* story state, each written by one beat's run(k) */
+  let rv = 0, zi = 0, hk = 0, zo = 0, pulse = 0, lim = false;
+  const L = 200, R = 1200, X = (m) => L + ((R - L) * m) / 10;
+  const box = { l: 160, r: 1000, t: 450, b: 630 };
+  const BX = (s) => box.l + ((box.r - box.l) * s) / TOT, BY = (m) => box.b - ((box.b - box.t) * m) / 8;
+  const fx = at(TS).x, fv = at(TS).v;
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), done = tau >= TOT - 1e-9, now = at(tau), x0 = at(0).x, xe = at(TOT).x, dxt = xe - x0;
+    const y = 215;
+    fuselage(ctx, 90, 1310, y, 110, PAL.ink);
+    strip(ctx, L, R, y + 10, 36);
+    text(ctx, 'rear', 100, y + 92, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'front', 1330, y + 92, PAL.muted, { size: 17, align: 'center' });
+    scale(ctx, X, 0, 10, 1, y + 92, 'm', 2);
+    hbracket(ctx, X(x0), X(xe), 126, C('position')); subLabel(ctx, 'Δx', 'tot', ' = ' + signed(dxt, 1) + ' m', (X(x0) + X(xe)) / 2, 104, C('position'), 'center');
+    mdot(ctx, X(x0), y + 10, C('position'), 10); mdot(ctx, X(xe), y + 10, C('position'), 10);
+    person(ctx, X(now.x), y + 28, PAL.ink, { face: now.v < 0 ? -1 : 1, phase: done || Math.abs(now.v) < 0.05 ? 0 : ph });
+    const ax = X(now.x), len = Math.max(-300, Math.min(300, now.v * 70));
+    if (Math.abs(len) > 6) arrow(ctx, ax, y - 72, ax + len, y - 72, C('velocity'), 6);
+    const sx = 1210, sy = 540, r = 72;
+    stopwatch(ctx, sx, sy, r, tau, TOT);
+    text(ctx, 't = ' + fmt(tau, 2) + ' s', sx, sy + r + 34, C('time'), { weight: 600, size: 24, align: 'center' });
+    /* the camera: the graph's mapping scaled by z about the instant TS, whose point pans to the box's centre */
+    const e = zi * (1 - zo), z = Math.pow(ZMAX, e);
+    const cx = lerp(BX(TS), (box.l + box.r) / 2, e), cyy = lerp(BY(fx), (box.t + box.b) / 2, e);
+    const GXi = (px) => TS + (px - cx) / (z * (BX(1) - BX(0))), GYi = (py) => fx + (py - cyy) / (z * (BY(1) - BY(0)));
+    const dec = z < 2 ? 1 : z < 8 ? 2 : 3;
+    const { X: GX, Y: GY } = axes(ctx, box, [GXi(box.l), GXi(box.r)], [GYi(box.b), GYi(box.t)], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 5, ny: 4, fx: (v) => fmt(v, dec), fy: (v) => fmt(v, dec - 1) });
+    /* the chords: level ℓ = log₂(5 s / Δt); between two levels every chord of the coarser one splits at
+       its midpoint, the midpoint rising onto the curve, one chord after another */
+    const lvl = Math.max(0, Math.log2(TOT / W.v)), L0 = Math.floor(lvl + 1e-6), f = clamp01(lvl - L0), n0 = Math.pow(2, L0), w0 = TOT / n0;
+    const segs = [];
+    for (let i = 0; i < n0; i++) {
+      const a = i * w0, b = a + w0, m = (a + b) / 2, xa = at(a).x, xb = at(b).x;
+      const q = F.ease.smooth(clamp01(n0 > 1 ? f * 1.6 - (0.6 * i) / (n0 - 1) : f)), xm = lerp((xa + xb) / 2, at(m).x, q);
+      if (q <= 0) segs.push([a, xa, b, xb]); else segs.push([a, xa, m, xm], [m, xm, b, xb]);
+    }
+    const cr = clamp01((rv - 0.45) / 0.55), fade = 1 - 0.7 * clamp01(hk * 3);
+    inbox(ctx, box, () => {
+      curve(ctx, (s) => at(s).x, 0, TOT * clamp01(rv / 0.5), GX, GY, C('position'), 6, 400);
+      segs.forEach(([a, xa, b, xb]) => {
+        const cur = tau >= a - 1e-9 && tau <= b + 1e-9;
+        line(ctx, GX(a), GY(xa), GX(lerp(a, b, cr)), GY(lerp(xa, xb, cr)), alpha(C('velocity'), (cur ? 1 : 0.5) * fade), cur ? 6 : 4);
+      });
+      if (cr > 0 && segs.length <= 32) segs.forEach(([, , b, xb]) => mdot(ctx, GX(b), GY(xb), alpha(C('velocity'), fade), 5));
+      if (!zi) line(ctx, GX(tau), box.b, GX(tau), GY(now.x), C('time'), 3, [4, 10]);
+      /* the instant TS: the chord from it over h, drawn as its whole line, and the tangent there */
+      if (zi > 0) {
+        const h = H0 * Math.pow(HMIN / H0, hk), sl = (at(TS + h).x - fx) / h, span = (box.r - box.l) / (z * (BX(1) - BX(0)));
+        const ends = (slope, reach) => [GX(TS - reach), GY(fx - slope * reach), GX(TS + reach), GY(fx + slope * reach)];
+        const [a1, b1, a2, b2] = ends(sl, span * 1.2);
+        line(ctx, a1, b1, lerp(a1, a2, zi), lerp(b1, b2, zi), alpha(C('velocity'), 0.55), 10);
+        if (hk > 0) { const [c1, d1, c2, d2] = ends(fv, span * 1.2 * clamp01(hk / 0.3)); line(ctx, c1, d1, c2, d2, C('velocity'), 4 + 3 * pulse); }
+        mdot(ctx, GX(TS + h), GY(at(TS + h).x), C('velocity'), 8 * zi);
+        mdot(ctx, GX(TS), GY(fx), PAL.ink, 9 * zi);
+      }
+    });
+    const k = Math.min(n0 - 1, Math.floor(tau / w0)), ta = k * w0, tb = ta + w0, vb = (at(tb).x - at(ta).x) / w0;
+    if (zi > 0) {
+      const h = H0 * Math.pow(HMIN / H0, hk), dx = at(TS + h).x - fx, sl = dx / h;
+      if (h < 0.008) lim = true; else if (h > 0.012) lim = false;
+      topline(ctx, lim ? 'Over an interval this short the chord from t = ' + fmt(TS, 2) + ' s lies on the tangent, whose slope is the velocity at that instant, ' + signed(fv, 2) + ' m/s.'
+        : 'Over Δt = ' + fmt(h, 3) + ' s from t = ' + fmt(TS, 2) + ' s the chord has slope ' + signed(sl, 2) + ' m/s, and the tangent there has slope ' + signed(fv, 2) + ' m/s.');
+      F.morph(formula, lim ? `\\mk{v}{\\kv} = \\mk{lim}{\\lim_{\\kdt \\to 0}} \\mk{fr}{\\frac{\\kdx}{\\kdt}} = ${tex$(fv, 2)}\\ \\text{m/s}`
+        : `\\mk{vb}{\\kvb} = \\mk{fr}{\\frac{\\kdx}{\\kdt}} = \\frac{${tex$(dx, 4)}\\ \\text{m}}{${fmt(h, 3)}\\ \\text{s}} = ${tex$(sl, 2)}\\ \\text{m/s}`);
+      note.textContent = 'As the interval shrinks to nothing the average velocity over it becomes the instantaneous velocity, the slope of the tangent.';
+      return;
+    }
+    lim = false;
+    topline(ctx, done ? 'In ' + fmt(TOT, 1) + ' s the passenger moved ' + signed(dxt, 1) + ' m, an average velocity of ' + signed(dxt / TOT, 2) + ' m/s over the whole trip.'
+      : 'Over the interval from ' + fmt(ta, 2) + ' s to ' + fmt(tb, 2) + ' s the average velocity is ' + signed(vb, 2) + ' m/s, while at ' + fmt(tau, 2) + ' s the velocity is ' + signed(now.v, 2) + ' m/s.');
+    F.morph(formula, `\\mk{vb}{\\kvb} = \\mk{fr}{\\frac{\\kdx}{\\kdt}} = \\frac{${tex$(at(tb).x - at(ta).x, 2)}\\ \\text{m}}{${fmt(w0, 2)}\\ \\text{s}} = ${tex$(vb, 2)}\\ \\text{m/s}`);
+    note.textContent = 'Each chord is the average velocity over one interval; halve the interval and every chord splits in two.';
+  }
+  register(d.fig, { update: (dt) => { cy.step(dt, () => TOT / 5); if (cy.tau < TOT) ph += dt * 12; }, draw });
+  const tour = F.tour(d, { beats: [
+    { name: 'The whole trip is one interval, and its average velocity is the slope of one chord.', ms: 1800, run: (k) => { rv = k; } },
+    { name: 'The interval halves, and the chord splits in two.', ms: 1000, rest: 500, knobs: [[W, 2.5]] },
+    { name: 'It halves again, and each chord splits in turn.', ms: 1000, rest: 500, knobs: [[W, 1.25]] },
+    { name: 'It halves again.', ms: 1000, rest: 500, knobs: [[W, 0.625]] },
+    { name: 'And again, until the chords hug the curve.', ms: 1000, knobs: [[W, 0.3125]] },
+    { name: 'The graph closes in on the instant t = 2.00 s.', ms: 2500, run: (k) => { zi = k; } },
+    { name: 'Magnified, the curve is straight, and as the interval shrinks the chord closes onto the tangent.', ms: 2600, ease: F.ease.out, run: (k) => { hk = k; } },
+    { name: 'The graph pulls back out, and the tangent stays.', ms: 2400, run: (k) => { zo = k; } },
+    { name: 'The velocity at that instant is the slope of the tangent.', ms: 900, rest: 3500, run: (k) => { pulse = Math.sin(Math.PI * k); } },
+  ] });
+  if (F.REDUCED) tour.seek(tour.total);
+})();
+
+/* =====================================================================
    FIGURE 2.10: the round trip to the store. A car drives out to the
    store and back while an odometer adds up the distance traveled and a
    bracket shows the displacement from home. Finite motion, so it gets
