@@ -482,4 +482,192 @@ function tower(ctx, x, y, h, color) {
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => run.T / 5), draw });
 })();
+/* =====================================================================
+   Sim, after Figure 3.38: the range on level ground drawn in the Manim
+   manner. The launch angle settles on 45º; there sin 2θ₀ becomes 1, the
+   range equation drops that term, and the dashed complementary path bends
+   into the chosen one. Leaving 45º, the dashed and the 45º paths arrive
+   drawn along their length.
+===================================================================== */
+(function () {
+  const d = sim('sim-range-morph', 800);
+  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 20, max: 60, step: 1, value: 50, unit: 'm/s', dec: 0, onInput: reset, aria: 'initial speed' });
+  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: 'º', dec: 0, detents: [{ v: 45, label: '45º' }], snap: true, onInput: reset, aria: 'launch angle' });
+  const fl = () => flight(v0.v, th.v);
+  const cy = cycle(() => fl().T, 1.2);
+  const merge = F.tween(d, 1), reveal = F.tween(d, 1);
+  let at45 = true, lastComp = 45;
+  function reset() {
+    cy.reset();
+    const on = th.v === 45;
+    if (on === at45) return;
+    at45 = on;
+    if (on) { merge.set(0); merge.to(1, 700); } else { merge.set(0); reveal.set(0); reveal.to(1, 900); }
+  }
+  const range = (v, a) => (v * v * Math.sin(2 * a * RAD)) / G;
+  const ptsOf = (f, t1 = f.T, n = 90) => Array.from({ length: n + 1 }, (_, i) => { const t = (t1 * i) / n; return [f.x(t), Math.max(0, f.y(t))]; });
+  function pline(ctx, pts, X, Y, color, w, dash) {
+    if (pts.length < 2) return;
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.beginPath();
+    pts.forEach(([x, y], i) => (i ? ctx.lineTo(X(x), Y(y)) : ctx.moveTo(X(x), Y(y)))); ctx.stroke(); ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const f = fl(), tau = cy.now(), comp = 90 - th.v, f45 = flight(v0.v, 45);
+    if (!at45) lastComp = comp;
+    const x = f.x(tau), y = Math.max(0, f.y(tau));
+    /* the same fixed scale as Figure 3.38, 1.54 units to the metre */
+    const box = { l: 200, r: 1300, t: 110, b: 390 }, SC = 1.54;
+    const X = (m) => box.l + m * SC, Y = (m) => box.b - m * SC;
+    ground(ctx, 60, 1340, box.b);
+    const near45 = Math.abs(th.v - 45) < 6;
+    if (at45) {
+      /* the complement bends into the chosen path and is gone once they coincide */
+      if (merge.v < 1) pline(ctx, ptsOf(flight(v0.v, lastComp + (45 - lastComp) * merge.v)), X, Y, alpha(PAL.muted, 1 - merge.v), 4, [12, 12]);
+    } else {
+      pline(ctx, F.partial(ptsOf(f45), reveal.v), X, Y, alpha(PAL.muted, 0.5), 4);
+      pline(ctx, F.partial(ptsOf(flight(v0.v, comp)), reveal.v), X, Y, PAL.muted, 4, [12, 12]);
+      if (!near45 && reveal.v > 0.99) {
+        text(ctx, '45º', X(f45.x(f45.tTop)), Y(f45.h) - 22, PAL.muted, { size: 18, align: 'center' });
+        const fc = flight(v0.v, comp); text(ctx, comp + 'º', X(fc.x(fc.tTop)), Y(fc.h) - 22, PAL.muted, { size: 18, weight: 600, align: 'center' });
+      }
+    }
+    pline(ctx, ptsOf(f), X, Y, alpha(PAL.ink, 0.3), 4);
+    pline(ctx, ptsOf(f, tau), X, Y, PAL.ink, 6);
+    text(ctx, th.v + 'º', X(f.x(f.tTop)), Y(f.h) - 22, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    const L = 30 + v0.v * 1.6;
+    arrow(ctx, X(0), Y(0), X(0) + L * Math.cos(th.v * RAD), Y(0) - L * Math.sin(th.v * RAD), C('velocity'), 6);
+    text(ctx, 'v₀', X(0) - 30, Y(0) - L * Math.sin(th.v * RAD) - 6, C('velocity'), { size: 20, weight: 600, align: 'center' });
+    hbracket(ctx, X(0), X(f.R), box.b + 50, C('position'), '');
+    text(ctx, 'R = ' + fmt(f.R, 0) + ' m', X(f.R / 2), box.b + 78, C('position'), { weight: 600, align: 'center' });
+    dot(ctx, X(f.R), Y(0), C('position'), true, 9);
+    dot(ctx, X(x), Y(y), PAL.ink, true, 11);
+    /* R against θ₀ for the set speed, on the same fixed axes as Figure 3.38 */
+    const Rmax = f45.R;
+    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 760 }, [0, 90], [0, 400], { xl: 'θ₀ (º)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: 4, fx: (a) => fmt(a, 0) });
+    ctx.save(); ctx.fillStyle = alpha(C('position'), 0.12); ctx.beginPath(); ctx.moveTo(g.X(0), g.Y(0));
+    for (let i = 0; i <= 90; i++) ctx.lineTo(g.X(i), g.Y(range(v0.v, i))); ctx.lineTo(g.X(90), g.Y(0)); ctx.fill(); ctx.restore();
+    curve(ctx, (a) => range(v0.v, a), 0, 90, g.X, g.Y, C('position'), 6, 90);
+    line(ctx, g.X(th.v), g.Y(0), g.X(th.v), g.Y(f.R), PAL.ink, 3, [4, 10]);
+    if (!at45) { line(ctx, g.X(comp), g.Y(0), g.X(comp), g.Y(f.R), PAL.muted, 3, [4, 10]); dot(ctx, g.X(comp), g.Y(f.R), C('position'), false, 10); }
+    dot(ctx, g.X(th.v), g.Y(f.R), C('position'), true, 11);
+    text(ctx, at45 ? 'farthest at 45º' : 'R = ' + fmt(f.R, 0) + ' m at ' + th.v + 'º and at ' + comp + 'º', g.X(45), g.Y(Math.max(f.R, Rmax)) - 24, at45 ? C('position') : PAL.muted, { size: 18, weight: 600, align: 'center' });
+    topline(ctx, at45 ? 'At 45º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, which is the farthest this speed can reach.'
+      : 'At ' + th.v + 'º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + 'º.');
+    const eq = at45 ? '\\mk{R}{\\kR} = \\frac{\\mk{v}{\\kvo^2}}{\\mk{g}{\\kg}}' : '\\mk{R}{\\kR} = \\frac{\\mk{v}{\\kvo^2}\\,\\mk{s}{\\sin 2\\theta_0}}{\\mk{g}{\\kg}}';
+    const nums = at45 ? `\\frac{(${v0.v}\\ \\text{m/s})^2}{9.80\\ \\text{m/s}^2}` : `\\frac{(${v0.v}\\ \\text{m/s})^2 \\sin ${2 * th.v}^\\circ}{9.80\\ \\text{m/s}^2}`;
+    F.morph(d.readout, `${eq} = ${nums} = ${fmt(f.R, 0)}\\ \\text{m}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => fl().T / 5), draw });
+})();
+
+/* =====================================================================
+   Sim, after Figure 3.39: the tower and the satellite as a tour. The
+   camera is a zoom and pan of the world-to-screen mapping: it fits the
+   tower and the whole path, blended by `wide` toward the full view of
+   Figure 3.39. Beats: close on a slow launch from a low tower; the speed
+   climbs while the view keeps the landing point in frame; near 7.9 km/s
+   the path closes into an orbit and the view opens fully; hold.
+===================================================================== */
+(function () {
+  const d = sim('sim-orbit-tour', 760);
+  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 8, step: 0.1, value: 6, unit: 'km/s', dec: 1, onInput: reset, aria: 'launch speed' });
+  const ht = ctl(d.controls, { label: '\\text{tower height}', cls: 'position', min: 200, max: 1500, step: 100, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: 'tower height' });
+  const RE = 6.37e6, GM = G * RE * RE;
+  function integrate(v, h) {
+    const r0 = RE + h * 1000; let x = 0, y = r0, vx = v * 1000, vy = 0, t = 0, swept = 0, last = Math.PI / 2;
+    const acc = (px, py) => { const r = Math.hypot(px, py), a = -GM / (r * r * r); return [a * px, a * py]; };
+    const pts = [{ x, y, t, swept, r: r0 }];
+    const dt = Math.max(2, Math.min(8, 40000 / (v * 1000)));
+    const out = (landed) => ({ pts, landed, T: pts[pts.length - 1].t });
+    for (let i = 0; i < 60000; i++) {
+      const [a1x, a1y] = acc(x, y);
+      const x2 = x + 0.5 * dt * vx, y2 = y + 0.5 * dt * vy, vx2 = vx + 0.5 * dt * a1x, vy2 = vy + 0.5 * dt * a1y; const [a2x, a2y] = acc(x2, y2);
+      const x3 = x + 0.5 * dt * vx2, y3 = y + 0.5 * dt * vy2, vx3 = vx + 0.5 * dt * a2x, vy3 = vy + 0.5 * dt * a2y; const [a3x, a3y] = acc(x3, y3);
+      const x4 = x + dt * vx3, y4 = y + dt * vy3, vx4 = vx + dt * a3x, vy4 = vy + dt * a3y; const [a4x, a4y] = acc(x4, y4);
+      x += (dt / 6) * (vx + 2 * vx2 + 2 * vx3 + vx4); y += (dt / 6) * (vy + 2 * vy2 + 2 * vy3 + vy4);
+      vx += (dt / 6) * (a1x + 2 * a2x + 2 * a3x + a4x); vy += (dt / 6) * (a1y + 2 * a2y + 2 * a3y + a4y); t += dt;
+      const ang = Math.atan2(y, x); let da = last - ang; if (da < -Math.PI) da += TAU; if (da > Math.PI) da -= TAU; swept += da; last = ang;
+      const r = Math.hypot(x, y);
+      if (r <= RE) { const p = pts[pts.length - 1], k = (p.r - RE) / (p.r - r); pts.push({ x: p.x + k * (x - p.x), y: p.y + k * (y - p.y), t: p.t + k * dt, swept: p.swept + k * (swept - p.swept), r: RE }); return out(true); }
+      pts.push({ x, y, t, swept, r });
+      if (swept >= TAU) return out(false);
+    }
+    return out(false);
+  }
+  let run = null, key = '';
+  function paths() { const k = v0.v + '|' + ht.v; if (k === key) return; key = k; run = integrate(v0.v, ht.v); }
+  const cy = cycle(() => { paths(); return run.T; }, 1.4);
+  function reset() { cy.reset(); }
+  const at = (tau) => { const p = run.pts; let lo = 0, hi = p.length - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (p[m].t < tau) lo = m + 1; else hi = m; } return Math.max(0, Math.min(lo, p.length - 1)); };
+  /* the camera: 0 fits the tower and the path, 1 is the full view of Figure 3.39; scale in px per metre */
+  let wide = 1;
+  const FRAME = { l: 220, r: 1200, t: 190, b: 700 }, FULL = { s: 140 / RE, cx: 660, cy: 410, mx: 0, my: 0 };
+  function camera() {
+    const xs = run.pts.map((p) => p.x).concat([0]), ys = run.pts.map((p) => p.y).concat([RE]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    const s = Math.min((FRAME.r - FRAME.l) / Math.max(1, x1 - x0), (FRAME.b - FRAME.t) / Math.max(1, y1 - y0), 400 / (ht.v * 1000));
+    const fit = { s, mx: (x0 + x1) / 2, my: (y0 + y1) / 2 };
+    const ls = Math.log(fit.s) + (Math.log(FULL.s) - Math.log(fit.s)) * wide, sc = Math.exp(ls);
+    /* the point at the frame's centre travels in world space, weighted so the zoom reads as one move */
+    const w = (sc - fit.s) / ((FULL.s - fit.s) || 1), q = Math.abs(FULL.s - fit.s) < 1e-15 ? wide : w;
+    const mx = fit.mx + (FULL.mx - fit.mx) * q, my = fit.my + (FULL.my - fit.my) * q;
+    const cx = (FRAME.l + FRAME.r) / 2 + (FULL.cx - (FRAME.l + FRAME.r) / 2) * q, cyy = (FRAME.t + FRAME.b) / 2 + (FULL.cy - (FRAME.t + FRAME.b) / 2) * q;
+    return { X: (m) => cx + (m - mx) * sc, Y: (m) => cyy - (m - my) * sc, s: sc };
+  }
+  function draw() {
+    paths();
+    const { ctx } = begin(d.c); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const tau = cy.now(), done = tau >= run.T - 1e-9, pi = at(tau), p = run.pts[pi], end = run.pts[run.pts.length - 1];
+    const { X, Y, s } = camera(), ox = X(0), oy = Y(0), RPX = RE * s;
+    const lab = labeller(ctx, 760); lab.block(0, 0, 1400, 96);
+    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.18); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(ox, oy, RPX, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    if (RPX < 400) text(ctx, 'Earth', ox, oy + 8, PAL.muted, { size: 22, align: 'center' });
+    const arcTo = run.landed ? end.swept : Math.min(p.swept, TAU);
+    ctx.save(); ctx.strokeStyle = C('position'); ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(ox, oy, RPX + 3, -Math.PI / 2, -Math.PI / 2 + Math.min(p.swept, arcTo), false); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = alpha(PAL.muted, 0.8); ctx.lineWidth = 3; ctx.setLineDash([2, 10]); ctx.beginPath(); run.pts.forEach((q, i) => (i ? ctx.lineTo(X(q.x), Y(q.y)) : ctx.moveTo(X(q.x), Y(q.y)))); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); for (const q of run.pts) { if (q.t > tau) break; ctx.lineTo(X(q.x), Y(q.y)); } ctx.stroke(); ctx.restore();
+    /* g along the whole path, a fan of arrows that all point at the centre */
+    const n = 7;
+    for (let i = 0; i < n; i++) {
+      const q = run.pts[Math.round(((run.pts.length - 1) * (i + 0.5)) / n)], qx = X(q.x), qy = Y(q.y), u = Math.hypot(ox - qx, oy - qy) || 1, ga = (RE * RE) / (q.r * q.r);
+      arrow(ctx, qx, qy, qx + ((ox - qx) / u) * 40 * ga, qy + ((oy - qy) / u) * 40 * ga, alpha(C('acceleration'), 0.5), 4);
+    }
+    const hpx = ht.v * 1000 * s, top = Y(RE + ht.v * 1000);
+    tower(ctx, ox, Y(RE), hpx, PAL.ink);
+    lab.add(commas(fmt(ht.v, 0)) + ' km tower', ox - 12, Y(RE) - hpx / 2, -1, 0, PAL.muted, 17, 22);
+    const L = 40 + v0.v * 14;
+    arrow(ctx, ox, top, ox + L, top, C('velocity'), 6);
+    lab.add('v₀ = ' + fmt(v0.v, 1) + ' km/s', ox + L, top, 0.5, -1, C('velocity'), 20, 24);
+    const px = X(p.x), py = Y(p.y), r = Math.hypot(p.x, p.y), ga = (RE * RE) / (r * r);
+    if (tau > 0 && !(done && run.landed) && pi + 1 < run.pts.length) {
+      const q = run.pts[pi + 1], qx = X(q.x) - px, qy = Y(q.y) - py, qn = Math.hypot(qx, qy) || 1;
+      const sp = Math.hypot(q.x - p.x, q.y - p.y) / Math.max(1e-6, q.t - p.t) / 1000;
+      arrow(ctx, px, py, px + (qx / qn) * (30 + sp * 10), py + (qy / qn) * (30 + sp * 10), C('velocity'), 5);
+    }
+    const u = Math.hypot(ox - px, oy - py) || 1;
+    arrow(ctx, px, py, px + ((ox - px) / u) * 46 * ga, py + ((oy - py) / u) * 46 * ga, C('acceleration'), 5);
+    dot(ctx, px, py, PAL.ink, true, 10);
+    const along = (arcTo * RE) / 1000, flat = (v0.v * 1000 * Math.sqrt((2 * ht.v * 1000) / G)) / 1000, sofar = (Math.min(p.swept, arcTo) * RE) / 1000;
+    if (run.landed) { const a = -Math.PI / 2 + end.swept; lab.add(sig3(along) + ' km along the surface', ox + RPX * Math.cos(a), oy + RPX * Math.sin(a), Math.cos(a), Math.sin(a), C('position'), 20, 30); }
+    lab.flush();
+    const min = (x) => fmt(x / 60, 1) + ' min';
+    topline(ctx, done && run.landed ? 'After ' + min(run.T) + ' it lands ' + sig3(along) + ' km along the curved surface, against ' + sig3(flat) + ' km on level ground.'
+      : done ? 'At ' + fmt(v0.v, 1) + ' km/s the Earth curves away as fast as the projectile falls, so after ' + min(run.T) + ' it is in orbit.'
+      : 'After ' + min(tau) + ' the projectile is ' + sig3((r - RE) / 1000) + ' km up and has covered ' + sig3(sofar) + ' km of the surface so far.');
+    /* the readout turns on the outcome; the speed is on a 0.1 km/s step, so there is no flicker to damp */
+    const vOrb = Math.sqrt(GM / (RE + ht.v * 1000)) / 1000;
+    F.morph(d.readout, run.landed
+      ? `\\mk{R}{\\kR} = \\mk{v}{\\kvo}\\mk{f}{\\sqrt{2h/\\kg}} = (${fmt(v0.v, 1)}\\ \\text{km/s})\\sqrt{\\frac{2(${commas(fmt(ht.v * 1000, 0))}\\ \\text{m})}{9.80\\ \\text{m/s}^2}} = ${sig3(flat)}\\ \\text{km on level ground}`
+      : `\\mk{v}{\\kvo} \\mk{ge}{\\geq} \\mk{o}{\\sqrt{\\kg R_E^2/(R_E + h)}} = ${fmt(vOrb, 2)}\\ \\text{km/s: in orbit}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => run.T / 5), draw });
+  let k1 = 0, k3 = 0; const widen = () => { wide = Math.max(1 - k1, k3); };
+  F.tour(d, { beats: [
+    { name: 'Close to the tower, a slow launch falls on what looks like level ground.', ms: 2400, rest: 2600, knobs: [[v0, 1], [ht, 200]], run: (k) => { k1 = k; widen(); } },
+    { name: 'Faster launches land farther, and the ground curves away beneath them.', ms: 3000, rest: 2200, knobs: [[v0, 7.2]] },
+    { name: 'Near 7.9 km/s the path closes on itself: the projectile is in orbit.', ms: 2400, rest: 1200, knobs: [[v0, 7.9]], run: (k) => { k3 = k; widen(); } },
+    { name: 'The projectile falls the whole way round and never lands.', ms: 400, rest: 4000 },
+  ] });
+})();
 };
