@@ -419,3 +419,7 @@ change of theme.
   book's key: the book does not print it, and the rule is that answers come
   from the printed key only. The three AP items stay open items with their
   AI-marked approaches, exactly as the section built them.
+
+## Manim duplicates
+
+- `sim-cavendish-tour` · layer C (tour) · physical 3D (rule 28.3): the meshes and ground of `sim-cavendish`, the Manim look on the 2D layer only (r and F arrive, no plates, no headline) · value add: the chain of causes in order, each isolated by the camera · an Arm button (away / in) replaces the loop, and the rod sits at the rest for each place of the arm · beats: (1) wide three-quarter view, arm away; (2) arm swings in, camera to above, both r grow; (3) dolly to the back pair, F grows, readout writes F = GmM/r² with live numbers; (4) zoom on the mirror, exaggeration 1 → 150, readout adds the true angle and the factor (rule 28.4); (5) along the scale, M 30 → 120, the spot slides, readout adds the spot distance; (6) back to three-quarter, hold 3.5 s.
