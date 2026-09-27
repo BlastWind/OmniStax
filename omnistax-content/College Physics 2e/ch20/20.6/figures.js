@@ -266,6 +266,113 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
   }
   register(d.fig, { update: () => {}, draw });
 })();
+/* =====================================================================
+   SIM: the fuse and the circuit breaker in the Manim look. The same
+   engine and controls; every part is an outline over a half-opacity face
+   of its own hue, strokes are thicker with round joins, and no label
+   sits on a plate.
+===================================================================== */
+(function () {
+  const d = sim('sim-fuse-breaker-style', 700);
+  const kind = choice(d.controls, { label: '\\text{The device}', options: [{ value: 'fuse', label: 'A fuse' }, { value: 'breaker', label: 'A circuit breaker' }], value: 'fuse', aria: 'which device protects the circuit' });
+  const rating = choice(d.controls, { label: '\\text{Its rating}', options: [{ value: '15', label: '15 A' }, { value: '20', label: '20 A' }, { value: '30', label: '30 A' }], value: '15', aria: 'the current the device is rated for' });
+  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 40, step: 0.5, value: 10, unit: 'A', dec: 1, aria: 'the current the circuit draws' });
+  const Rw = ctl(d.controls, { label: '\\kRw', cls: 'resistance', min: 0.05, max: 3, step: 0.05, value: 2, unit: 'Ω', dec: 3, aria: 'the resistance of the supply wires' });
+  const SC = { l: 240, r: 1220, y: 612 };                              /* 0 to 40 A, fixed */
+  const XI = (I) => SC.l + (I / 40) * (SC.r - SC.l);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ic = C('current'), rc = C('resistance'), pc = C('power');
+    const I = Is.v, Rww = Rw.v, rate = +rating.value, open = I > rate, P = I * I * Rww;
+    const fuse = kind.value === 'fuse';
+
+    /* ---- the circuit, at the left ---- */
+    const L = 150, R = 620, T = 200, B = 440, DX = 400;
+    text(ctx, 'the circuit it protects', (L + R) / 2, 122, PAL.muted, { size: 19, align: 'center' });
+    acSource(ctx, L, (T + B) / 2, 34, PAL.ink);
+    line(ctx, L, T, L, (T + B) / 2 - 34, PAL.ink, 5); line(ctx, L, (T + B) / 2 + 34, L, B, PAL.ink, 5);
+    line(ctx, L, T, DX - 46, T, PAL.ink, 5); line(ctx, DX + 46, T, R, T, PAL.ink, 5); line(ctx, L, B, R, B, PAL.ink, 5);
+    resistor(ctx, R, T + 40, R, B - 40, PAL.ink); line(ctx, R, T, R, T + 40, PAL.ink, 5); line(ctx, R, B - 40, R, B, PAL.ink, 5);
+    text(ctx, 'R', R + 22, (T + B) / 2, rc, { size: 24, weight: 600, align: 'left' });
+    /* the device in the top rail, drawn as the book's box symbol */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.5); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.roundRect(DX - 46, T - 22, 92, 44, 8); ctx.fill(); ctx.stroke(); ctx.restore();
+    if (open) { line(ctx, DX - 30, T, DX - 6, T, PAL.panel, 5); line(ctx, DX + 6, T, DX + 30, T, PAL.panel, 5); }
+    else line(ctx, DX - 30, T, DX + 30, T, PAL.panel, 5);
+    text(ctx, fuse ? 'the fuse' : 'the breaker', DX, T - 48, PAL.ink, { size: 19, align: 'center' });
+    hbracket(ctx, L, R, B + 74, rc, 'the supply wires, R_w = ' + fmt(Rww, 3) + ' Ω');
+    if (!open && I > 0) { flowHead(ctx, 260, T, 1, 0, ic); flowHead(ctx, 540, T, 1, 0, ic); flowHead(ctx, 400, B, -1, 0, ic); text(ctx, fmt(I, 1) + ' A', 262, T + 40, ic, { size: 21, weight: 600, align: 'center' }); }
+    else if (open) text(ctx, 'the circuit is open and no current flows', (L + R) / 2, T + 40, PAL.ink, { size: 19, align: 'center' });
+
+    /* ---- the device, opened up, at the right ---- */
+    text(ctx, fuse ? 'inside the fuse' : 'inside the circuit breaker', 1040, 122, PAL.muted, { size: 19, align: 'center' });
+    if (fuse) {
+      const x1 = 800, x2 = 1300, yc = 290;
+      ctx.save(); ctx.lineJoin = 'round'; ctx.fillStyle = alpha(PAL.muted, 0.12); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.roundRect(x1 + 60, yc - 54, x2 - x1 - 120, 108, 14); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = alpha(PAL.ink, 0.5); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.roundRect(x1, yc - 46, 64, 92, 8); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.roundRect(x2 - 64, yc - 46, 64, 92, 8); ctx.fill(); ctx.stroke(); ctx.restore();
+      if (open) {
+        line(ctx, x1 + 64, yc, 1010, yc, PAL.ink, 5); line(ctx, 1090, yc, x2 - 64, yc, PAL.ink, 5);
+        line(ctx, 1010, yc, 1026, yc - 18, PAL.ink, 5); line(ctx, 1090, yc, 1074, yc + 18, PAL.ink, 5);
+        label(ctx, 'the strip has melted through', 1050, yc + 62, { side: 'below', gap: 6, size: 19, color: PAL.ink });
+      } else {
+        line(ctx, x1 + 64, yc, x2 - 64, yc, PAL.ink, 5);
+        label(ctx, 'a metal strip with a low melting point', 1050, yc + 62, { side: 'below', gap: 6, size: 19, color: PAL.ink });
+      }
+      text(ctx, 'the viewing window', 1050, yc - 92, PAL.muted, { size: 18, align: 'center' });
+    } else {
+      const yS = open ? 372 : 336, xA = 840, xB = 1200, floor = 470;
+      /* the housing the mechanism sits in */
+      ctx.save(); ctx.lineJoin = 'round'; ctx.fillStyle = alpha(PAL.muted, 0.08); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.roundRect(790, 150, 500, 330, 14); ctx.fill(); ctx.stroke(); ctx.restore();
+      /* the movable strip, pivoted at its left end, and the coil spring that pulls it down to the floor */
+      const pivot = { x: xA, y: 336 };
+      line(ctx, pivot.x, pivot.y, xB, yS, PAL.ink, 6);
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.5); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(pivot.x, pivot.y, 8, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
+      const sx = xA + 150, sy0 = pivot.y + ((yS - pivot.y) * 150) / (xB - xA);
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(sx, sy0);
+      const turns = 7, span = floor - 12 - sy0;
+      for (let i = 1; i <= turns * 8; i++) { const t = i / (turns * 8); ctx.lineTo(sx + Math.sin(t * turns * 2 * Math.PI) * 12, sy0 + span * t); }
+      ctx.lineTo(sx, floor); ctx.stroke(); ctx.restore();
+      line(ctx, 800, floor, 1280, floor, PAL.muted, 3);
+      /* the contacts: a pad on the strip's free end and a fixed pad above it on the terminal */
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.5); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+      [yS - 6, 318].forEach((y) => { ctx.beginPath(); ctx.roundRect(xB - 12, y, 24, 10, 3); ctx.fill(); ctx.stroke(); }); ctx.restore();
+      line(ctx, xB, 318, xB, 240, PAL.ink, 5); line(ctx, xB, 240, 1280, 240, PAL.ink, 5);
+      if (open) { spark(ctx, xB, (yS + 328) / 2, 22, PAL.ink); label(ctx, 'the contacts have parted', xB, yS + 12, { side: 'below', gap: 14, size: 19, color: PAL.ink }); }
+      else label(ctx, 'the contacts, closed', xB, yS + 12, { side: 'below', gap: 14, size: 19, color: PAL.ink });
+      /* the bimetallic strip, standing on the movable strip and bending to the right as it heats; at the rated current it clears the notch */
+      const bend = open ? 46 : Math.min(30, (I / rate) * 30), bx = 1010, by = pivot.y + ((yS - pivot.y) * (bx - xA)) / (xB - xA);
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 8; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(bx, by);
+      for (let i = 1; i <= 12; i++) { const t = i / 12; ctx.lineTo(bx + bend * t * t, by - 130 * t); }
+      ctx.stroke(); ctx.restore();
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.5); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.roundRect(bx + 40, 178, 34, 40, 6); ctx.fill(); ctx.stroke(); ctx.restore();
+      line(ctx, bx + 74, 178, 1280, 178, PAL.muted, 3);
+      label(ctx, 'the notch', bx + 57, 176, { side: 'above', gap: 6, size: 18, color: PAL.muted });
+      label(ctx, 'the bimetallic strip', bx - 6, by - 70, { side: 'left', gap: 14, size: 19, color: PAL.ink });
+      label(ctx, 'the spring', sx - 14, (sy0 + floor) / 2, { side: 'left', gap: 14, size: 19, color: PAL.ink });
+    }
+
+    /* ---- the current, against the rating ---- */
+    line(ctx, SC.l, SC.y, SC.r, SC.y, PAL.muted, 3);
+    scale(ctx, XI, 0, 40, 5, SC.y, 'A');
+    line(ctx, XI(rate), SC.y - 46, XI(rate), SC.y + 14, PAL.ink, 3, [10, 10]);
+    text(ctx, 'the ' + rate + '-A rating', XI(rate), SC.y - 62, PAL.ink, { size: 19, align: 'center' });
+    dot(ctx, XI(I), SC.y, ic, true, 11);
+    text(ctx, fmt(I, 1) + ' A', XI(I), SC.y - 30, ic, { size: 21, weight: 600, align: 'center' });
+
+    headline(ctx, open
+      ? fmt(I, 1) + ' A is more than the ' + rate + '-A rating, so the ' + (fuse ? 'fuse has melted through' : 'breaker has tripped') + ' and the circuit is open.'
+      : fmt(I, 1) + ' A through supply wires of ' + fmt(Rww, 3) + ' Ω dissipates ' + watts(P) + ' in the wires alone, and the ' + rate + '-A ' + (fuse ? 'fuse' : 'breaker') + ' still holds.');
+    readout(d.readout, `\\kP = \\kIcur^2\\kRw = (${fmt(I, 1)}\\ \\text{A})^2(${fmt(Rww, 3)}\\ \\Omega) = ${watts(P).replace(/ (\w+)$/, '\\ \\text{$1}')}`,
+      'A sound cord of 0.100 Ω carrying 10.0 A dissipates only 10.0 W, but a worn cord whose braided wires have broken may have 2.00 Ω, and the same 10.0 A then dissipates 200 W in the cord itself, which is far more than is safe. '
+      + (fuse ? 'A fuse holds a metal strip of low melting point across the circuit; an excessive current melts it and breaks the connection permanently, so a blown fuse is replaced.' : 'A circuit breaker is restorable: the bimetallic strip bends as it heats, and at the rated current it reaches the notch, whereupon the spring pulls the movable strip down and parts the contacts. The breaker is then reset by hand.'));
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
 
 /* =====================================================================
    FIGURE 20.21: what a shock does. A person touches a live wire, the current

@@ -370,6 +370,149 @@ function bulb(ctx, x, y, frac) {
 })();
 
 /* =====================================================================
+   SIM: the same reduction, each step carried out as a motion. The step
+   is a tracker that glides between the five states: resistors in
+   series slide together into one, parallel rows fold onto the wire they
+   share, and stepping back pulls them apart again. The readout writes
+   the step's relation in symbols while the resistors move and morphs
+   into the numbers once they have landed.
+===================================================================== */
+(function () {
+  const d = sim('sim-reduce-network-morph', 660);
+  const R2 = ctl(d.controls, { label: '\\kRestwo', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 4, unit: 'Ω', dec: 1, aria: 'the second resistance' });
+  const R3 = ctl(d.controls, { label: '\\kResthree', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 6, unit: 'Ω', dec: 1, aria: 'the third resistance' });
+  const step = choice(d.controls, {
+    label: '\\text{the step}',
+    options: [1, 2, 3, 4, 5].map((n) => ({ value: String(n), label: String(n) })),
+    value: '1', aria: 'how far the reduction has been carried',
+    onInput: () => st.to(+step.value, 700 + 500 * Math.abs(+step.value - st.v)),
+  });
+  const st = F.tween(d, 1);
+  const r1 = 1.0, r4 = 12.0, r5 = 3.0, r6 = 6.0, r7 = 20.0;
+  const TOP = 260, LOW = 450, BOT = 580, A = 430, B = 1180, ROWS = [155, 260, 365], ROWS2 = [210, 310];
+  const lerp = F.lerp, sm = F.ease.smooth;
+  /* a resistor drawn at an opacity, so that the ones merging fade as the one they become arrives */
+  function faded(ctx, a, f) { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); }
+  /* the zigzag with round joins, the Manim look */
+  function zigzagM(ctx, x, y, a, o) {
+    const L = (o && o.len) || ZL, n = 6, s = L / n;
+    gap(ctx, x, y, a, L, 6);
+    ctx.save(); ctx.translate(x, y); ctx.rotate(a);
+    ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE + 1; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(-L / 2, 0);
+    for (let i = 0; i < n; i++) { ctx.lineTo(-L / 2 + (i + 0.25) * s, -ZA); ctx.lineTo(-L / 2 + (i + 0.75) * s, ZA); }
+    ctx.lineTo(L / 2, 0); ctx.stroke();
+    if (o && o.variable) arrow(ctx, -L * 0.42, ZA + 18, L * 0.42, -ZA - 18, PAL.ink, 3);
+    ctx.restore();
+  }
+  function resistorM(ctx, x, y, horiz, name, val, o) {
+    o = o || {}; const rc = C('resistance'), v = typeof val === 'number' ? ohms(val) : val;
+    zigzagM(ctx, x, y, horiz ? 0 : Math.PI / 2, o);
+    if (horiz) {
+      if (o.stack) {
+        const s = o.stack === 'above' ? -1 : 1, y1 = y + s * (s < 0 ? 62 : 36), y2 = y + s * (s < 0 ? 34 : 64);
+        if (name) text(ctx, name, x, y1, rc, { size: 24, weight: 600, align: 'center' });
+        if (v) text(ctx, v, x, y2, rc, { size: 21, align: 'center' });
+      } else {
+        if (name) text(ctx, name, x, y - 38, rc, { size: 24, weight: 600, align: 'center' });
+        if (v) text(ctx, v, x, y + 36, rc, { size: 21, align: 'center' });
+      }
+    } else {
+      const s = o.side === 1 ? 1 : -1, lx = x + s * 32, al = s > 0 ? 'left' : 'right';
+      if (name && v) { text(ctx, name, lx, y - 15, rc, { size: 24, weight: 600, align: al }); text(ctx, v, lx, y + 16, rc, { size: 21, align: al }); }
+      else if (name) text(ctx, name, lx, y, rc, { size: 24, weight: 600, align: al });
+      else if (v) text(ctx, v, lx, y, rc, { size: 21, align: al });
+    }
+  }
+  let shown = '';
+  const fx = el('span'), note = el('small'); d.readout.append(fx, note);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const r2 = R2.v, r3 = R3.v;
+    const Rp = par(r2, r3, r4), Rq = par(r5, r6), Rs = Rp + Rq, Rpp = par(Rs, r7), Rtot = r1 + Rpp;
+    const s = Math.min(5, Math.max(1, st.v)), k = Math.min(4, Math.floor(s)), u = sm(s - k), at = s === Math.round(s) ? Math.round(s) : 0;
+    /* in, the merged resistor's opacity; out, the opacity of those it is made from */
+    const inA = Math.min(1, Math.max(0, (u - 0.55) / 0.45)), outA = 1 - inA;
+    const HEADS = [
+      'The three resistors in parallel and the pair in parallel are each combined first, because a parallel group is the easiest part of the network to pick out.',
+      'The two equivalent resistances now sit one after the other, so they simply add.',
+      'That one resistance and R₇ lie on two paths between the same pair of points, so they combine as a parallel pair.',
+      'What is left is one resistance in series with R₁, and the network has come down to a single resistance.',
+      'The whole network of seven resistors is one resistance of ' + fmt(Rtot, 2) + ' Ω across the source.',
+    ];
+    headline(ctx, HEADS[Math.round(s) - 1]);
+    wires(ctx, [[150, TOP], [150, BOT], [B, BOT], [B, TOP]]);
+    cell(ctx, 150, (TOP + BOT) / 2, 'up', null);
+    /* R₁ stands at 290 until the last step slides it into the one resistance at 685 */
+    const x1 = k === 4 ? lerp(290, 685, u) : 290, xpp = k === 4 ? lerp(805, 685, u) : 805;
+    if (s < 5) {
+      wires(ctx, [[150, TOP], [Math.max(A, x1 + 60), TOP]]);
+      faded(ctx, k === 4 ? outA : 1, () => resistorM(ctx, x1, TOP, true, 'R_1', r1));
+    }
+    /* the lower path of R₇, folding up onto the top wire in the third step */
+    if (s < 4) {
+      const y7 = k === 3 ? lerp(LOW, TOP, u) : LOW;
+      wires(ctx, [[A, TOP], [A, y7], [B, y7], [B, TOP]]);
+      faded(ctx, 1 - (k === 3 ? inA : 0), () => { node(ctx, A, TOP); node(ctx, B, TOP); });
+      faded(ctx, k === 3 ? outA : 1, () => resistorM(ctx, 805, y7, true, 'R_7', r7, { stack: 'below' }));
+    }
+    if (s < 2) {
+      /* the step into 2: each parallel group's rows fold onto the top wire and slide to where its equivalent sits */
+      const f = k === 1 ? u : 0;
+      const rows = ROWS.map((y) => lerp(y, TOP, f)), rows2 = ROWS2.map((y) => lerp(y, TOP, f));
+      rows.forEach((y, i) => { wires(ctx, [[A, y], [810, y]]); faded(ctx, outA, () => resistorM(ctx, lerp(640, 660, f), y, true, ['R_2', 'R_3', 'R_4'][i], [r2, r3, r4][i])); });
+      wires(ctx, [[A, rows[0]], [A, rows[2]]]); wires(ctx, [[810, rows[0]], [810, rows[2]]]);
+      rows2.forEach((y, i) => { wires(ctx, [[840, y], [1150, y]]); faded(ctx, outA, () => resistorM(ctx, lerp(995, 950, f), y, true, ['R_5', 'R_6'][i], [r5, r6][i])); });
+      wires(ctx, [[840, rows2[0]], [840, rows2[1]]]); wires(ctx, [[1150, rows2[0]], [1150, rows2[1]]]);
+      wires(ctx, [[810, TOP], [840, TOP]]); wires(ctx, [[1150, TOP], [B, TOP]]);
+      faded(ctx, outA, () => { node(ctx, 810, TOP); node(ctx, 840, TOP); node(ctx, 1150, TOP); });
+      faded(ctx, inA, () => { resistorM(ctx, 660, TOP, true, 'R_p', Rp); resistorM(ctx, 950, TOP, true, 'R_p′', Rq); });
+    } else if (s < 3) {
+      /* the step into 3: the two equivalents in series slide together into one */
+      wires(ctx, [[A, TOP], [B, TOP]]);
+      const f = k === 2 ? u : 0;
+      faded(ctx, k === 2 ? outA : 1, () => { resistorM(ctx, lerp(660, 805, f), TOP, true, 'R_p', Rp); resistorM(ctx, lerp(950, 805, f), TOP, true, 'R_p′', Rq); });
+      faded(ctx, k === 2 ? inA : 0, () => resistorM(ctx, 805, TOP, true, 'R_s', Rs));
+    } else if (s < 4) {
+      wires(ctx, [[A, TOP], [B, TOP]]);
+      faded(ctx, k === 3 ? outA : 1, () => resistorM(ctx, 805, TOP, true, 'R_s', Rs));
+      faded(ctx, k === 3 ? inA : 0, () => resistorM(ctx, 805, TOP, true, 'R_p″', Rpp));
+    } else {
+      wires(ctx, [[s < 5 ? A : 150, TOP], [B, TOP]]);
+      faded(ctx, s < 5 ? (k === 4 ? outA : 1) : 0, () => resistorM(ctx, xpp, TOP, true, 'R_p″', Rpp));
+      faded(ctx, s < 5 ? (k === 4 ? inA : 0) : 1, () => resistorM(ctx, 685, TOP, true, 'R_s′', Rtot));
+    }
+    /* the relation in symbols while the step is under way, and in numbers once it has landed */
+    const tgt = +step.value;
+    const LHS = ['\\mk{L1}{\\dfrac{1}{\\kResp}}', '\\mk{L2}{\\kRess}', '\\mk{L3}{\\dfrac{1}{\\kResp\'\'}}', '\\mk{L4}{\\kRestot}', '\\mk{L4}{\\kRestot}'];
+    const SYM = [
+      '\\dfrac{1}{\\kRestwo} + \\dfrac{1}{\\kResthree} + \\dfrac{1}{\\kResfour}',
+      '\\kResp + \\kResp\'',
+      '\\dfrac{1}{\\kRess} + \\dfrac{1}{\\kRes_7}',
+      '\\kResone + \\kResp\'\'',
+      '\\kResone + \\kResp\'\'',
+    ];
+    const NUM = [
+      '\\dfrac{1}{' + ohm(r2) + '} + \\dfrac{1}{' + ohm(r3) + '} + \\dfrac{1}{' + ohm(r4) + '} \\Rightarrow \\kResp = ' + ohm(Rp),
+      ohm(Rp) + ' + ' + ohm(Rq) + ' = ' + ohm(Rs),
+      '\\dfrac{1}{' + ohm(Rs) + '} + \\dfrac{1}{' + ohm(r7) + '} \\Rightarrow \\kResp\'\' = ' + ohm(Rpp),
+      '\\kResone + ' + ohm(Rpp) + ' = ' + ohm(Rtot),
+      ohm(Rtot),
+    ];
+    const f = LHS[tgt - 1] + ' = ' + (at === tgt ? '\\mk{n' + tgt + '}{' + NUM[tgt - 1] + '}' : '\\mk{s' + tgt + '}{' + SYM[tgt - 1] + '}');
+    if (f !== shown) { shown = f; F.morph(fx, f); }
+    note.textContent = [
+      'The pair R₅ and R₆ is combined in the same step, and it comes to ' + fmt(Rq, 2) + ' Ω. Four steps in all bring the seven resistances down to ' + fmt(Rtot, 2) + ' Ω.',
+      'Each of the two came from a parallel group, and in series they add to ' + fmt(Rs, 2) + ' Ω.',
+      'The pair in parallel comes to ' + fmt(Rpp, 2) + ' Ω, which is less than either of them.',
+      'R₁ carries the whole current of the circuit, so it is in series with everything behind it.',
+      'Every one of the seven resistances is inside this one number, and the source sees nothing else.',
+    ][tgt - 1];
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
    FIGURE 21.7: why the light dims when the motor comes on. Still: switching
    the motor on is a state of the circuit and not a motion, so the figure
    answers its choice and its sliders and registers no cycle.

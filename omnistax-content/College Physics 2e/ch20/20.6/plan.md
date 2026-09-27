@@ -155,3 +155,7 @@ No concept row and no symbol row needs a fix.
 Applied in the chapter pass of 2026-09-15. The two variable anchors and the
 two equation anchors above were written to `ch20/chapter.json`. Nothing else
 of this section was changed at chapter level.
+
+## Manim duplicates
+
+- `sim-fuse-breaker-style` (duplicate of `sim-fuse-breaker`), layer A. Value add: the Manim look only; every filled box becomes an ink outline over a half-opacity face (the large fuse glass and breaker housing a light muted face, so the parts inside read), thicker round-joined strokes, no label plates. Same behaviour. Flat.

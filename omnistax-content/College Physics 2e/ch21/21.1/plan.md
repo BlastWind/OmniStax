@@ -100,3 +100,7 @@ the page colours are already in `book.json` as the prep pass staged them.
 - The five AP items were read against the CNXML: all five are keyed, not two.
   `ap2` and `ap4` became graded choices with the book's key, and the
   `exercise_notes` were rewritten to say so.
+
+## Manim duplicates
+
+- `sim-reduce-network-morph` (duplicate of `sim-reduce-network`), layer B. Value add: each step is carried out as a motion, so the reader sees which resistors become which. The step choice drives a tracker between states 1–5; beats per step: 1→2 the rows of R₂R₃R₄ and R₅R₆ fold onto the top wire into Rp and Rp′; 2→3 Rp and Rp′ slide together into Rs; 3→4 the lower path of R₇ folds up onto Rs into Rp″; 4→5 R₁ and Rp″ slide together into Rs′. Stepping back un-merges. The readout writes the relation in symbols while moving and morphs into the numbers on landing (Rs = R1 + R2 + R3 + …, eq:eip-288). The dashed highlight boxes are dropped for the Manim look. Flat.
