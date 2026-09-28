@@ -37,3 +37,14 @@ for review after. Each line is a setting and its value.
 | Cross-references | plain text to General Relativity and Quantum Gravity, Particle Physics and every unbuilt chapter; 28.1's link to The Law of Refraction (25.3) is plain text until Chapter 25 is built |
 | Errata | carried as printed, listed in `exploration.md`, named in the section's `notes` |
 | Book manifest | `ch28` merged with `ost merge college-physics-2e 28` |
+
+## What the build changed
+
+| Setting | As built |
+|---|---|
+| Folds | Figure 28.16 + 28.17 is one figure, the ship sending a laser beam or a canister with a choice; 28.6 + 28.7 and 28.10 + 28.11 stay apart, each its own figure; 28.1 adds a Sim of light from a moving source, 28.4 a Sim of the relativistic Doppler shift, 28.6 a Sim of the energy-momentum triangle |
+| Motion | the Sim of 28.1, the flash lamps and the light clock of 28.2, and Figures 28.10 and 28.11 of 28.3 register a cycle; the muon's γ curve, the twins, every figure of 28.4 (the canister included), both graphs and the energy triangle are still |
+| Photographs | the section openers 28.3, 28.4, 28.9, 28.13 and 28.18 are dropped; 28.20, 28.21 and 28.23 are kept in 28.6 |
+| Colour coding | 28.1 binds `velocity`; 28.2 draws the twins in `time` alone; 28.3's electron wears the element palette through `F.el` |
+| Tolerances | the near-c and near-1 answers carry `tol`: 28.2's 0.99995c, 28.5's 2.9957 × 10⁸ m/s and both parts of the asteroid problem |
+| Anchors | every equation and variable row anchored by the chapter pass; glossary rows carry none |

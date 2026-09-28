@@ -4277,3 +4277,61 @@ Checks: `check:content` found no errors in the chapter. The unit tests pass,
 `astro check` is clean and the build completed. A headless pass over all ten
 pages in light and dark found no console error, blank figure, KaTeX error,
 missing image or missing exercise card.
+
+
+### Pass 53 (2026-09-28): Chapter 28, Special Relativity, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+six sections, 28.1 to 28.6, by one agent each. It carries 33 concepts, 18
+equations, 23 variables, 19 glossary terms and 71 exercises (37 keyed problems,
+22 conceptual questions, 6 Check Your Understanding items and 6 AP items).
+Relativity compares two observers' numbers for one quantity, so a proper value
+and its dilated or contracted partner share one hue, the proper one dashed, and
+the two frames are told apart by the categorical palette. One figure folds book
+figures, the ship that sends a laser beam or a canister toward the Earth (Figure
+28.16 + 28.17), and three Sims are added: light from a moving source in 28.1, the
+relativistic Doppler shift in 28.4 and the energy-momentum triangle in 28.6. The
+Sim of 28.1, the flash lamps and light clock of 28.2 and the muon and Alpha
+Centauri trips of 28.3 move; every other figure is still. No figure is in 3D.
+
+The chapter pass read the six section plans and applied what each wanted at
+chapter level. It wrote anchors on all 18 equation rows and all 23 variable
+rows, 28.1's $c$ among them. No concept, edge, glossary or symbol row changed.
+Number answers now take a relative tolerance, so 28.2's $0.99995c$ is checked to
+its printed digits, as are 28.5's electron at $2.9957\times 10^{8}$ m/s and
+both parts of its asteroid problem, whose ratio is 1.000000005; at the old 2%
+each would have accepted $c$ or 1. `COLOR.md` records the bindings as built:
+`velocity` on 28.1, `time` alone for the twins, and the electron of Figure 28.12
+in the element palette.
+
+Seen at the ends of their sliders, the three figures of 28.3 wanted a few
+fixes: the clock readings, the $v$ labels, the coil and the Earth were set from
+their left edge and now center on the point they name, so the clock readings no
+longer run off the right of the figure; Alpha Centauri's name no longer runs into
+the Earth's clock; the ship of Figure 28.11 no longer covers the frame's name and
+carries its $v$; and Figure 28.10's speed starts at $0.500c$, below which the
+two clouds lie on top of each other. The twins of Figure 28.8 read correctly from
+$\gamma = 1$ to 40.
+
+Across the sections, the two moved exercises land once each with
+`source_section` set and both notes agreeing: the Critical Thinking space rock of
+28.6 in 28.3, and the AP item on whether $F = ma$ governs motion near $c$, printed
+in 28.4, in 28.5 as an open item with its options. Figure numbers run from 28.1
+to 28.23 in book order, the five section-opening photographs dropped, and
+Examples 28.1 to 28.8 are where the book puts them. 28.6 keys 14 of its problems,
+not the 15 the prep counted.
+
+The book's slips are kept as printed and gathered in `ch28/exploration.md`:
+Example 28.2's "$L_0 - 4.300$ ly", Example 28.8(b)'s electron of
+$9.00\times 10^{-31}$ kg, 28.3's muon living 7.05 μs and 2.20 μs where Example
+28.1 gives 4.87 μs and 1.52 μs, "0.0.900c" in 28.4, the AP item that asks for
+the limit "when $v = c$" and answers "when $v \ll c$", a photon that "decays"
+into a pair, the garbled flash-lamp sentence of 28.2 and five smaller slips of
+wording. The stray leading "=" of 28.4's Doppler equations is CNXML markup and
+is dropped.
+
+Checks: `check:content` found no errors. The unit tests pass but for one in a
+chemistry section then being built, `astro check` is clean and the build
+completed. A headless pass over all seven pages in light and dark found no
+console error, blank figure, KaTeX error, missing image or missing exercise
+card.

@@ -41,3 +41,12 @@ the plan line. The element palette does not arise: a muon, an electron or a
 `F.el` if the library has the particle, otherwise ink with a label. A ship, a
 planet and a star are ink. Colour-off keeps every figure legible from labels,
 the frame labels and the caption.
+
+## As built
+
+28.1 binds `velocity`, for its Sim of light from a moving source. 28.2's twins
+figure draws `time` alone, with the twins in `F.cat`. The electron of 28.3's
+Figure 28.12 is drawn with `F.el('e-')`, the one use of the element palette in
+the chapter. 28.4's Doppler Sim draws the observed light in its spectral colour
+where the wavelength is visible and in ink outside it, the one physical-fact
+colour. Every other section binds the types the table above gives it.

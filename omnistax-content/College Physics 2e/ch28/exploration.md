@@ -156,6 +156,16 @@ prints "$4.48 \times {-10}^{-19}$"; 28.4's `fs-id1566424` prints "0.$0.900c$";
 $v \ll c$"; 28.4's Doppler equations carry a stray leading "=" in the CNXML, a
 markup slip, not the book's text. The 28.6 CYU says a photon "decays" into a pair.
 
+The section builds found more, also carried as printed: 28.2's flash-lamp
+paragraph, whose second sentence ("B will measure the light from the right bulb
+and arrive at observer A before…") is garbled, its "*Simultaneity is not
+absolute.*." with a double stop, and "In the case of the astronaut observe the
+reflecting light"; 28.3's "The relativistic effect is so great than the
+accelerator"; 28.5's link to "Work, Energy, and Energy Resources" where it means
+the chapter on linear momentum, kept as plain text; and Example 28.7's unit
+conversion, which prints an unbalanced parenthesis. 28.5's `fs-id1346384` is
+unkeyed and left out, so its slip is named in the notes only.
+
 ## The chapter's answer to root rule 23: be inspiring
 
 Relativity is the one subject where a still picture cannot show the claim,
