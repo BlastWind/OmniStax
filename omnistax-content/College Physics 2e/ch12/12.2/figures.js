@@ -210,7 +210,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     text(ctx, 'total = ' + atPow(total, 5, 2) + ' J/m³', tx + (tl ? -12 : 12), 611, PAL.ink, { size: 19, weight: 600, align: tl ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     line(ctx, AX0, 714, AX1, 714, PAL.muted, 2);
     for (let i = 0; i <= 3; i++) { const x = AX0 + (i * 1e5) * KX; line(ctx, x, 708, x, 720, PAL.muted, 2); text(ctx, i === 0 ? '0' : i + ' × 10⁵', x, 740, PAL.muted, { size: 17, align: 'center' }); }
-    text(ctx, 'energy per unit volume, J/m³ = N/m²', 280, 740, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'energy per unit volume, J/m³ = N/m²', AX1, 692, PAL.muted, { size: 17, align: 'right' });
     /* the headline and the equation in the form the case takes */
     const dv = vb - va, dh = hb - ha, dPv = P2 - P1;
     const spd = dv > 0 ? 'speeds up from ' + fmt(va, 1) + ' to ' + fmt(vb, 1) + ' m/s' : dv < 0 ? 'slows from ' + fmt(va, 1) + ' to ' + fmt(vb, 1) + ' m/s' : 'keeps its speed of ' + fmt(va, 1) + ' m/s';

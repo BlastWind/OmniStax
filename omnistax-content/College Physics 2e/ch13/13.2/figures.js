@@ -267,7 +267,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
       hatch(ctx, TX + TW + 2, rimCold - hs - 4, 12, TB - rimCold + hs + 4);
       hatch(ctx, TX + TW + 14, TB - 14, 60, 14);
       line(ctx, TX + TW + 14, TB, TX + TW + 74, TB, PAL.ink, 3); line(ctx, TX + TW + 74, TB, TX + TW + 74, TB - 24, PAL.ink, 3);
-      text(ctx, 'spilled', TX + TW + 44, TB + 22, PAL.muted, { size: 17, align: 'center' });
+      text(ctx, 'spilled', TX + TW + 44, TB - 40, PAL.muted, { size: 17, align: 'center' });
     }
     text(ctx, 'the tank, filled to the brim before warming', TX + TW / 2, TB + 26, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'rim before', TX - 22, rimCold, PAL.muted, { size: 16, align: 'right', bg: alpha(PAL.panel, 0.85) });

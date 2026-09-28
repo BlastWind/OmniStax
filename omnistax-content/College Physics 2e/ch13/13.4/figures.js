@@ -303,6 +303,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     text(ctx, 'at T = ' + commas(fmt(T, 0)) + ' K', TBX, G.t + 8, tc, { size: 19, weight: 600 });
     const A = axes(ctx, G, [0, TX], [0, VY], { xl: 'temperature T (K)', xc: tc, yl: 'rms speed (km/s)', yc: vc, nx: 6, ny: 3, fx: (t) => commas(fmt(t, 0)), fy: (v) => fmt(v / 1000, 0) });
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
+    lab.block(TBX - 110, G.t + 44, 1400, G.t + 44 + 3 * 58 + 36);   /* the table's lines of reach, which run past the graph's edge */
     /* the escape velocity as a level, and the set temperature as a drop line */
     line(ctx, G.l, A.Y(ve), G.r, A.Y(ve), vc, 3, [12, 10]);
     lab.add(whose() + ' escape velocity, ' + kms() + ' km/s', G.l + 30, A.Y(ve), 0.4, -1, vc, 18, 22);

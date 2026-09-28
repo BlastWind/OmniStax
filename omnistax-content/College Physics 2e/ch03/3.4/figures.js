@@ -364,7 +364,7 @@ function tower(ctx, x, y, h, color) {
     dot(ctx, X(x), Y(y), PAL.ink, true, 10);
     /* R against θ₀ for the set speed, on fixed axes: 400 m holds the farthest range the sliders allow */
     const Rmax = f45.R, yr = { lo: 0, hi: 400, n: 4 };
-    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 760 }, [0, 90], [0, yr.hi], { xl: 'θ₀ (°)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: yr.n, fx: (a) => fmt(a, 0) });
+    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 730 }, [0, 90], [0, yr.hi], { xl: 'θ₀ (°)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: yr.n, fx: (a) => fmt(a, 0) });
     curve(ctx, (a) => range(v0.v, a), 0, 90, g.X, g.Y, C('position'), 5, 90);
     line(ctx, g.X(th.v), g.Y(0), g.X(th.v), g.Y(f.R), PAL.ink, 2, [4, 8]);
     if (!is45) { line(ctx, g.X(comp), g.Y(0), g.X(comp), g.Y(f.R), PAL.muted, 2, [4, 8]); line(ctx, g.X(th.v), g.Y(f.R), g.X(comp), g.Y(f.R), C('position'), 2, [10, 10]); dot(ctx, g.X(comp), g.Y(f.R), C('position'), false, 10); }
@@ -547,7 +547,7 @@ function tower(ctx, x, y, h, color) {
     dot(ctx, X(x), Y(y), PAL.ink, true, 11);
     /* R against θ₀ for the set speed, on the same fixed axes as Figure 3.38 */
     const Rmax = f45.R;
-    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 760 }, [0, 90], [0, 400], { xl: 'θ₀ (°)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: 4, fx: (a) => fmt(a, 0) });
+    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 730 }, [0, 90], [0, 400], { xl: 'θ₀ (°)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: 4, fx: (a) => fmt(a, 0) });
     ctx.save(); ctx.fillStyle = alpha(C('position'), 0.12); ctx.beginPath(); ctx.moveTo(g.X(0), g.Y(0));
     for (let i = 0; i <= 90; i++) ctx.lineTo(g.X(i), g.Y(range(v0.v, i))); ctx.lineTo(g.X(90), g.Y(0)); ctx.fill(); ctx.restore();
     curve(ctx, (a) => range(v0.v, a), 0, 90, g.X, g.Y, C('position'), 6, 90);

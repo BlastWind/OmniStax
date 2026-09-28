@@ -67,7 +67,7 @@ function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel, lo, hi, ny, dec, key)
   const { X, Y } = axes(ctx, box, [0, thMax], [lo, hi], { xl: 'lean θ (°)', yl: yLabel, yc: C('torque'), nx: 5, ny, fy: (v) => fmt(v, dec) });
   /* The readout prints the size of the torque and the axis prints its sign, so the axis says
      which sign means which turn (rule 26.5). */
-  if (key) text(ctx, key, box.l, box.b + 58, PAL.muted, { size: 17 });
+  if (key) text(ctx, key, box.l, box.b + 92, PAL.muted, { size: 17 });
   curve(ctx, (t) => Math.min(Math.max(f(t), lo), hi), 0, thMax, X, Y, C('torque'), 5, 140);
   if (crit > 0.05 && crit < thMax) {
     line(ctx, X(crit), box.t, X(crit), box.b, PAL.muted, 2, [10, 10]);

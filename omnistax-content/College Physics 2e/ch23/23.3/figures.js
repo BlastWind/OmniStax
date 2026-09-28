@@ -399,12 +399,12 @@ function apparatus(ctx, o) {
        orbit can carry it, since the field there stands across the page */
     const bx = { l: 960, r: 1340, t: 170, b: 470 }, cx0 = 1046, cy0 = 380;
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(bx.l, bx.t, bx.r - bx.l, bx.b - bx.t); ctx.restore();
-    text(ctx, 'seen from along the tether', (bx.l + bx.r) / 2, bx.t + 24, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'seen from along the tether', bx.r - 16, bx.t + 24, PAL.muted, { size: 17, align: 'right' });
     arrow(ctx, cx0, cy0, cx0 + 178, cy0, cV, 5);
     text(ctx, 'v', cx0 + 190, cy0 + 2, cV, { size: 24, weight: 600 });
     const bl = 162, bxh = cx0 + bl * Math.cos(th * RAD), byh = cy0 - bl * Math.sin(th * RAD);
     arrow(ctx, cx0, cy0, bxh, byh, cB, 5);
-    text(ctx, 'B', bxh + (th > 60 ? 14 : 8), byh - (th > 60 ? 8 : 16), cB, { size: 24, weight: 600 });
+    text(ctx, 'B', bxh + (th > 60 ? -14 : 8), byh - (th > 60 ? 8 : 16), cB, { size: 24, weight: 600, align: th > 60 ? 'right' : 'left' });
     if (th > 3) angleArc(ctx, { x: cx0, y: cy0 }, 66, 0, th * RAD, 'θ = ' + fmt(th, 0) + '°');
     dot(ctx, cx0, cy0, PAL.ink, false, 9);
     text(ctx, 'the tether, end on', cx0, cy0 + 56, PAL.muted, { size: 17, align: 'center' });

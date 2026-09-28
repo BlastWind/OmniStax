@@ -110,7 +110,7 @@ function stopwatch(ctx, x, y, r, f) {
   const PREFIX = [[-18, 'atto', 'a'], [-15, 'femto', 'f'], [-12, 'pico', 'p'], [-9, 'nano', 'n'], [-6, 'micro', 'µ'], [-3, 'milli', 'm'], [-2, 'centi', 'c'], [-1, 'deci', 'd'],
     [1, 'deka', 'da'], [2, 'hecto', 'h'], [3, 'kilo', 'k'], [6, 'mega', 'M'], [9, 'giga', 'G'], [12, 'tera', 'T'], [15, 'peta', 'P'], [18, 'exa', 'E']];
   /* the lengths of Table 1.3: power of ten, label, row above the ladder (0 nearest), and which side of its tick the label sits */
-  const LENGTHS = [[-15, 'a proton', 1, 'left'], [-10, 'a hydrogen atom', 0, 'right'], [-8, 'a cell membrane', 1, 'right'], [-6, 'visible light', 2, 'right'],
+  const LENGTHS = [[-15, 'a proton', 2, 'left'], [-10, 'a hydrogen atom', 0, 'right'], [-8, 'a cell membrane', 1, 'right'], [-6, 'visible light', 2, 'right'],
     [-3, 'a grain of sand', 1, 'left'], [0, 'a child', 0, 'right'], [2, 'a football field', 2, 'left'], [7, 'the Earth', 0, 'left'], [11, 'the Earth to the Sun', 1, 'right'],
     [16, 'a light year', 2, 'left'], [21, 'the Milky Way', 0, 'left'], [26, 'the known universe', 1, 'right']];
   const L = 90, R = 1330, X = (n) => L + ((R - L) * (n + 18)) / 44;

@@ -504,7 +504,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
       line(ctx, CX + Math.cos(a) * r0, CY + Math.sin(a) * r0, CX + Math.cos(a) * RSC, CY + Math.sin(a) * RSC, PAL.muted, big ? 3 : 2);
       if (big) text(ctx, fmt(i / 10, 1), CX + Math.cos(a) * (RSC + 26), CY + Math.sin(a) * (RSC + 26), PAL.muted, { size: 17, align: 'center' });
     }
-    text(ctx, 'the scale, in milliamperes', CX + Math.cos(-Math.PI / 2 + FULL / 2) * (RSC + 70), CY + Math.sin(-Math.PI / 2 + FULL / 2) * (RSC + 70), PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'the scale, in milliamperes', CX - 50, CY - RSC - 26, PAL.muted, { size: 18, align: 'right' });
     if (phi > STOP) text(ctx, 'the needle is against its stop', CX + 150, CY - 150, PAL.ink, { size: 19, weight: 600, align: 'left', bg: PAL.panel });
     /* the deflection against the current, with the other kind of pole face drawn faint
        beside the one now chosen */
@@ -514,7 +514,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
       yl: 'the deflection of the needle (degrees)', nx: 5, ny: 3, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0),
     });
     line(ctx, BOX.l, Y(75), BOX.r, Y(75), alpha(PAL.ink, 0.35), 2, [10, 10]);
-    text(ctx, 'the stop', BOX.l + 10, Y(75) - 16, PAL.muted, { size: 17, align: 'left' });
+    text(ctx, 'the stop', BOX.r - 10, Y(75) - 16, PAL.muted, { size: 17, align: 'right' });
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
     curve(ctx, (t) => deflect(t, !shaped) / RAD, 0, 1, X, Y, alpha(PAL.ink, 0.3), 3, 90);
     curve(ctx, (t) => deflect(t, shaped) / RAD, 0, 1, X, Y, PAL.ink, 5, 90);
@@ -523,7 +523,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     note(ctx, BOX, shaped
       ? 'The deflection is proportional to the current, so the divisions of the scale are even.'
       : 'The torque falls away as the coil turns, so the divisions close up toward the top of the scale.',
-      [{ l: X(iS.v) - 200, r: X(iS.v) + 200, t: BOX.t, b: BOX.b }]);
+      [{ l: X(iS.v) - 200, r: X(iS.v) + 200, t: BOX.t, b: BOX.b }, { l: BOX.r - 120, r: BOX.r, t: Y(75) - 34, b: Y(75) }]);
     topline(ctx, iS.v < 0.005
       ? 'With no current through the coil there is no torque on it, and the spring holds the needle at zero.'
       : `A current of ${fmt(iS.v, 2)} mA through ${fmt(nS.v, 0)} turns in a ${fmt(bS.v, 3)} T field turns the coil against its spring to ${deg(Math.min(phi, STOP) / RAD)}${phi > STOP ? ', which is past the stop' : ' of the 60° scale'}.`);

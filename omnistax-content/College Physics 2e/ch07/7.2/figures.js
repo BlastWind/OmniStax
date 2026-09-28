@@ -236,7 +236,8 @@ function package_(ctx, x, y, w, h, color) {
       text(ctx, fmt(u, 1) + ' m/s', bx[i], base + 34, cV, { size: 18, weight: 600, align: 'center' });
     });
     line(ctx, 985, base, 1310, base, PAL.muted, 2);
-    text(ctx, 'the same two energies side by side, against the same ' + fmt(KR, 0) + ' kJ', 1148, base + 58, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the same two energies side by side,', 1160, base + 52, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'against the same ' + fmt(KR, 0) + ' kJ', 1160, base + 76, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, v < 0.05
       ? 'A body at rest carries no kinetic energy at all, whatever its mass.'
       : 'At ' + fmt(v, 1) + ' m/s a ' + sig3(m) + ' kg body carries ' + joules(ke(v)) + ', four times the ' + joules(ke(half)) + ' it carries at half that speed.');
