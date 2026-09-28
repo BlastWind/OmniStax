@@ -336,3 +336,5 @@ written into `ch07/chapter.json`, the eleven variable rows and the four equation
 rows, and the judgement on `d` is accepted as the plan argues it: the row is
 anchored at `lifting`, where $\kW = \kF\kd = m\kg\kh$ first gives the symbol
 its meaning, and not at `landing`, where the same symbol is the knee bend.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-ladder` picks its two rungs from two dropdowns rather than two count sliders (rule 26.1). The crate and the bracket glide from the old rung to the new one through `mix`. `sim-landing` marks its two worked landings, 0.005 m and 0.500 m, as dashed circles on the knee-bend slider in place of soft detents.

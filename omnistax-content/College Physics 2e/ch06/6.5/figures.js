@@ -229,6 +229,9 @@ function sun(ctx, x, y, r, color) {
   const d = sim('sim-earth-moon', 660);
   const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 2, max: 6, step: 0.01, value: 3.84, unit: '\u00D7 10\u2078 m', dec: 2, onInput: reset, aria: 'the radius of the orbit' });
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 10, max: 60, step: 0.1, value: T_MOON, unit: 'd', dec: 1, onInput: reset, aria: 'the period of the orbit' });
+  /* Newton's test passes where the period the orbit needs is the one Earth's gravity gives at that radius */
+  T.mark([{ at: () => TAU * Math.sqrt((r.v * 1e8) ** 3 / (G_THREE * M_EARTH)) / 86400, label: 'g = a_c' }]);
+  r.mark([{ at: () => Math.cbrt(G_THREE * M_EARTH * (T.v * 86400 / TAU) ** 2) / 1e8, label: 'g = a_c' }]);
   const cy = cycle(() => T.v, 1.0);
   function reset() { cy.reset(); }
   function draw() {
@@ -290,7 +293,7 @@ function sun(ctx, x, y, r, color) {
 (function () {
   const d = sim('sim-tides', 700);
   const rM = ctl(d.controls, { label: '\\kr', cls: 'position', min: 3, max: 5, step: 0.01, value: 3.84, unit: '\u00D7 10\u2078 m', dec: 2, aria: 'the distance from Earth to the Moon' });
-  const phi = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 0, unit: '°', dec: 0, aria: 'the angle of the Sun from the Earth-Moon line, zero for a spring tide and ninety for a neap tide' });
+  const phi = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 0, unit: '°', dec: 0, aria: 'the angle of the Sun from the Earth-Moon line, zero for a spring tide and ninety for a neap tide', specials: [{ at: 0, label: 'spring' }, { at: 90, label: 'neap' }] });
   const cy = cycle(() => 24, 1.2);
   const pull = (dist) => (G_MEASURED * M_MOON) / (dist * dist);
   /* the arrows are forces, so the readout writes the force the Moon exerts on a named parcel of
@@ -447,11 +450,6 @@ function sun(ctx, x, y, r, color) {
   const M = ctl(d.controls, { label: 'M', cls: '', min: 5, max: 160, step: 1, value: 30, unit: 'kg', dec: 0, aria: 'the mass of each sphere on the stand', onInput: reset });
   const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.2, max: 0.6, step: 0.01, value: 0.2, unit: 'm', dec: 2, aria: 'the distance between the centers of a small sphere and the large one beside it', onInput: reset });
   const X = ctl(d.controls, { label: '\\times', cls: '', min: 1, max: 300, step: 1, value: 150, unit: '', dec: 0, aria: 'how many times larger than life the twist is drawn' });
-  /* Ten names sit on this apparatus and half of them ride the rod as it turns, which is more than
-     rule 26.7 lets a figure show at once. The two typed quantities the readout writes, the distance
-     between the centers and the force across it, stay on the drawing; the names of the parts go
-     behind this button, off to begin with, and the pointer gives every part its name in any case. */
-  const LAB = F.choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the parts of the balance' });
 
   /* ---------- the balance as numbers ---------- */
   /* Lead spheres of 0.73 kg hang from the rod, as Cavendish's did, and every
@@ -794,7 +792,6 @@ function sun(ctx, x, y, r, color) {
 
   function over3d(ctx, st) {
     const { bigs, smalls, spot, fibLen } = S, { ref, marks, fine } = frame3;
-    const on = LAB.value === 'on';
     /* the labels: each beside its thing on a page-color panel, and the two typed quantities in their colors */
     const lab = labeller(ctx, 620);
     lab.block(0, 0, 1400, 96); lab.block(280, 582, 1120, 620);
@@ -813,36 +810,13 @@ function sun(ctx, x, y, r, color) {
     lab.add('F', pSmallBack[0] + (fx / fl) * aLen, pSmallBack[1] + (fy / fl) * aLen, fy / fl, -Math.abs(fx / fl) - 0.2, C('force'), 24, 16);
     const pZero = proj(new THREE.Vector3(S.at0.x, Y_SCALE, S.at0.z));
     dot(ctx, pZero[0], pZero[1], PAL.muted, false, 7);
-    /* the light spot's label stands still, just past the far end of the scale, and a leader runs from it to wherever the spot is */
-    const pEnd = proj(reflect(SCALE.a1).land.clone().addScaledVector(pathNormal(SCALE.a1), SCALE.half + 0.03));
-    const spotLab = [Math.min(pEnd[0] + 70, 1300), Math.min(pEnd[1] + 24, 560)];
-    if (on) {
-      const pBigFoot = projected(world(bigs[1].ball, -st.rL)), pSmallFoot = projected(world(smalls[1], -R_S));
-      lab.add('M = ' + fmt(M.v, 0) + ' kg', pBigFoot[0], pBigFoot[1], 0, 1, PAL.ink, 20, 22);
-      lab.add('m = ' + fmt(m_S, 2) + ' kg', pSmallFoot[0], pSmallFoot[1], 0, 1, PAL.ink, 20, 22);
-      const pMirror = projected(world(S.mirror)), pFib = proj(new THREE.Vector3(0, Y_HUB_TOP + 0.4 * fibLen, 0));
-      const pLamp = proj(new THREE.Vector3(LAMP[0] + 0.1, LAMP[1] + 0.07, LAMP[2]));
-      const aMid = (SCALE.a0 + SCALE.a1) / 2, pScale = proj(reflect(aMid).land.clone().addScaledVector(pathNormal(aMid), SCALE.half + 0.02));
-      lab.add('the fiber', pFib[0], pFib[1], -1, 0, PAL.muted, 18, 30);
-      lab.add('the mirror', pMirror[0], pMirror[1], 1, 0.3, PAL.muted, 18, 44);
-      lab.add('the light source', pLamp[0], pLamp[1], 0, -1, PAL.muted, 18, 40);
-      lab.add('zero mark', pZero[0], pZero[1], -0.6, -1, PAL.muted, 17, 26);
-      lab.add('the scale', pScale[0], pScale[1], 0.3, -1, PAL.muted, 18, 40);
-      lab.block(spotLab[0] - 8, spotLab[1] - 14, spotLab[0] + 120, spotLab[1] + 14);
-    }
     /* the numbers on the tall ticks, in the readout's millimeters */
     marks.forEach(({ v, p }, i) => { const q = proj(p), num = v === 0 ? '0' : fine < 1 ? fmt(v, 1) : fmt(v, 0); text(ctx, num + (i === marks.length - 1 ? ' mm' : ''), q[0], q[1] + 9, PAL.muted, { size: 14, align: 'center', bg: alpha(PAL.panel, 0.7) }); });
     lab.flush();
-    if (on && ref.hit) {
-      const pSpot = projected(world(spot));
-      line(ctx, pSpot[0], pSpot[1], spotLab[0], spotLab[1], alpha(PAL.ink, 0.5), 1.5, [5, 6]);
-      text(ctx, 'the light spot', spotLab[0], spotLab[1], PAL.ink, { weight: 600, size: 18, align: 'left', bg: PAL.panel });
-    }
   }
 
   /* ---------- the balance from above, when there is no WebGL to draw the scene ---------- */
   function drawFlat(ctx, st) {
-    const on = LAB.value === 'on';
     const px = 400, py = 340, armS = 150, armL = armS * (A / L), rs = 12, rl = 14 + 16 * Math.sqrt(M.v / 160);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
     ctx.beginPath(); ctx.arc(px, py, armL + rl + 30, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
@@ -871,15 +845,6 @@ function sun(ctx, x, y, r, color) {
     for (let x = 700; x <= 1340.5; x += 32) line(ctx, x, 160, x, 174, PAL.muted, 2);
     dot(ctx, zero, 160, PAL.muted, false, 9);
     line(ctx, px, py, spotX, 172, alpha(PAL.ink, 0.3), 2); dot(ctx, spotX, 160, PAL.ink, true, 10);
-    if (on) {
-      lab.add('M = ' + fmt(M.v, 0) + ' kg', ax(1), ay(1), 1, 0, PAL.ink, 20, rl + 14);
-      lab.add('m = ' + fmt(m_S, 2) + ' kg', sx(-1), sy(-1), -1, 0, PAL.ink, 20, rs + 14);
-      lab.add('the fiber, seen end on', px, py, -0.4, 1, PAL.muted, 17, 30);
-      lab.add('the light source', lx, ly, 0, 1, PAL.muted, 17, 26);
-      lab.add('the scale', 1340, 160, 0, -1, PAL.muted, 17, 26);
-      lab.add('zero mark', zero, 160, 0, 1, PAL.muted, 17, 26);
-      lab.add('the light spot', spotX, 160, 0.3, -1, PAL.ink, 17, 26);
-    }
     lab.flush();
     text(ctx, 'This browser cannot draw the balance in three dimensions, so it is drawn from above.', 24, 600, PAL.muted, { size: 15 });
   }

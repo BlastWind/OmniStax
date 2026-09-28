@@ -255,3 +255,5 @@ not about the share of it that becomes work.
 Table 7.5's footnote, "for a 76-kg male with typical metabolic functions", is
 set as a `<p class="tnote">` under the table rather than as a second table
 caption, so that it matches Table 7.2's footnote in 7.6 and Table 4.1's in 4.8.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-food-energy` marks the balance on both energy sliders, a dashed circle at the other's value. It is the point the Discussion names, where eating exactly what the body spends stores no fat and draws on none.

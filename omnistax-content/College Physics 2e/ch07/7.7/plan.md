@@ -246,3 +246,5 @@ of Table 7.3 stay untyped and in ink.
 **Decided in the chapter pass, 2026-09-11.** Every anchor asked for above is
 written into `ch07/chapter.json`, the ten variable rows and the four equation
 rows.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-power-ladder` measures its label widths with `F.measure`, and no longer sets `ctx.font` (rule 26.8).

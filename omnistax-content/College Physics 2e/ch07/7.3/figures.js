@@ -127,13 +127,18 @@ function coasterCar(ctx, x, y, rot, color) {
 (function () {
   const d = sim('sim-ladder', 660);
   const M = 20, RISE = 0.3, NR = 8;                           /* a 20-kg crate and eight rungs, 0.30 m apart */
-  const a = ctl(d.controls, { label: '\\text{lower rung}', cls: '', min: 1, max: 7, step: 1, value: 1, unit: '', dec: 0, aria: 'lower rung' });
-  const b = ctl(d.controls, { label: '\\text{upper rung}', cls: '', min: 2, max: 8, step: 1, value: 2, unit: '', dec: 0, aria: 'upper rung' });
+  /* a rung is one of eight places, not a quantity, so each is picked from a list */
+  const rungs = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => ({ value: String(from + i), label: 'rung ' + (from + i) }));
+  const a = F.select(d.controls, { label: '\\text{lower rung}', options: rungs(1, 7), value: '1', aria: 'lower rung' });
+  const b = F.select(d.controls, { label: '\\text{upper rung}', options: rungs(2, 8), value: '2', aria: 'upper rung' });
   /* the zero level stops at −0.4 m: a metre below the ground it would be drawn off the foot of the canvas */
   const z = ctl(d.controls, { label: '\\text{zero level}', cls: 'position', min: -0.4, max: 2.4, step: 0.1, value: 0, unit: 'm', dec: 1, aria: 'height at which the potential energy is called zero' });
   function draw() {
     const { ctx } = begin(d.c);
-    const lo = Math.min(a.v, b.v), hi = Math.max(lo + 1, Math.max(a.v, b.v));
+    const av = Number(a.value), bv = Number(b.value);
+    const lo = Math.min(av, bv), hi = Math.max(lo + 1, Math.max(av, bv));
+    /* the crate and the marks glide from the rung left to the rung picked */
+    const ga = a.mix(Number), gb = b.mix(Number), gLo = Math.min(ga, gb) * RISE, gHi = Math.max(Math.min(ga, gb) + 1, ga, gb) * RISE;
     const yLo = lo * RISE, yHi = hi * RISE, dPE = M * G * (yHi - yLo);
     const ground = 560, SC = 130, Yp = (met) => ground - met * SC;
     /* the scene: the ladder, its rungs labelled with the energy each one holds */
@@ -145,9 +150,9 @@ function coasterCar(ctx, x, y, rot, color) {
       text(ctx, fmt(M * G * (n * RISE - z.v), 1) + ' J', 424, y, on ? C('energy') : PAL.muted, { size: 17, weight: on ? 600 : 400 });
       text(ctx, String(n), 232, y, on ? C('position') : PAL.muted, { size: 17, align: 'right' });
     }
-    F.crate(ctx, 325, Yp(yHi) - 19, 72, 38, PAL.ink);
-    dot(ctx, 325, Yp(yLo), C('position'), false, 10);
-    vbracket(ctx, 196, Yp(yLo), Yp(yHi), C('position'), 'h = ' + fmt(yHi - yLo, 2) + ' m', -1);
+    F.crate(ctx, 325, Yp(gHi) - 19, 72, 38, PAL.ink);
+    dot(ctx, 325, Yp(gLo), C('position'), false, 10);
+    vbracket(ctx, 196, Yp(gLo), Yp(gHi), C('position'), 'h = ' + fmt(yHi - yLo, 2) + ' m', -1);
     line(ctx, 150, Yp(z.v), 700, Yp(z.v), C('energy'), 3, [10, 10]);
     text(ctx, 'PE_g = 0 here', 700, Yp(z.v) - 20, C('energy'), { size: 18, weight: 600, align: 'right' });
     /* the graph beside: the same straight line, shifted by the choice of zero */
@@ -250,9 +255,9 @@ function coasterCar(ctx, x, y, rot, color) {
 (function () {
   const d = sim('sim-landing', 700);
   const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0.5, max: 5, step: 0.1, value: 3, unit: 'm', dec: 2, onInput: reset, aria: 'height of the fall' });
-  /* the two landings the section works out are soft detents on the slider, since the graph
+  /* the two landings the section works out are marked on the slider, since the graph
      beside the scene is a ratio scale and the interesting ground is all at its left-hand end */
-  const kb = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.005, max: 0.75, step: 0.005, value: 0.005, unit: 'm', dec: 3, onInput: reset, aria: 'distance the knees bend', detents: [{ v: 0.005, label: 'stiff' }, { v: 0.5, label: 'bent' }], snap: true });
+  const kb = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.005, max: 0.75, step: 0.005, value: 0.005, unit: 'm', dec: 3, onInput: reset, aria: 'distance the knees bend', specials: [{ at: 0.005, label: 'stiff' }, { at: 0.5, label: 'bent' }] });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the person' });
   const cy = cycle(() => 1.3, 1.0);
   function reset() { cy.reset(); }

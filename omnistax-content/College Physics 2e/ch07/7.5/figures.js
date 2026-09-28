@@ -227,6 +227,9 @@ function skierSprite(ctx, x, y) {
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 400, step: 10, value: 120, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction on the crate' });
   const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 30, step: 1, value: 25, unit: '\u00b0', dec: 0, onInput: reset, aria: 'angle of the ramp' });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 120, step: 5, value: 50, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the crate' });
+  /* the text's third case: on level ground a push equal to the friction keeps the mechanical energy where it is */
+  fa.mark([{ at: () => (th.v === 0 ? ff.v : null), label: 'W_nc = 0' }]);
+  th.mark([{ at: 0, label: 'level' }]);
   const D = 4.0, SC = 78, BACK = 260, X0 = 260, YBASE = 460, ZERO = 1020;
   /* The crate is already moving at 1.00 m/s when the push begins, and from there the net force
      along the ramp decides what happens: while the push beats friction and the pull of gravity
@@ -326,8 +329,10 @@ function skierSprite(ctx, x, y) {
   const vi = ctl(d.controls, { label: '\\kvi', cls: 'velocity', min: 2, max: 10, step: 0.25, value: 6, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed at which the slide begins' });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 200, max: 800, step: 10, value: 450, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction against the player' });
   /* the two slopes the section works out, level ground and a rise of 5.00 degrees, are soft detents */
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 15, step: 0.25, value: 0, unit: '\u00b0', dec: 2, onInput: reset, aria: 'angle of the slope', detents: [{ v: 0, label: 'level' }, { v: 5, label: '5.00°' }], snap: true });
+  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 15, step: 0.25, value: 0, unit: '\u00b0', dec: 2, onInput: reset, aria: 'angle of the slope', specials: [{ at: 0, label: 'level' }, { at: 5, label: '5.00°' }] });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 110, step: 0.5, value: 65, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the player' });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
   const opp = () => ff.v + m.v * G * Math.sin(th.v * RAD);            /* everything that takes energy from him */
   const stop = () => (0.5 * m.v * vi.v * vi.v) / opp();
   const tstop = () => (vi.v * m.v) / opp();
@@ -390,10 +395,15 @@ function skierSprite(ctx, x, y) {
     topline(ctx, s >= D - 1e-6
       ? 'He has stopped after ' + fmt(D, 2) + ' m, with ' + num(Wfr, 0) + ' J taken by friction' + (th.v > 0.01 ? ' and ' + num(PE, 0) + ' J stored in the height.' : '.')
       : 'He has slid ' + fmt(s, 2) + ' m of the ' + fmt(D, 2) + ' m it takes him to stop, and ' + num(Wfr, 0) + ' J of his ' + num(KEi, 0) + ' J have gone into friction.');
-    readout(d.readout, `\\kd = \\frac{\\tfrac{1}{2}m{\\kvi}^2}{\\kff + m\\kg\\sin\\theta} = \\frac{(0.5)(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(vi.v, 2)}\\ \\text{m/s})^2}{${num(ff.v, 0)}\\ \\text{N} + (${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin(${fmt(th.v, 2)}^\\circ)} = ${fmt(D, 2)}\\ \\text{m}`,
-      th.v < 0.01
+    /* on the level the slope's share has nothing to take, so its term leaves the sum and returns as the slope rises */
+    const top = `\\mk{KE}{\\tfrac{1}{2}m{\\kvi}^2}`, nTop = `\\mk{nKE}{(0.5)(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(vi.v, 2)}\\ \\text{m/s})^2}`, dv = `\\mk{dv}{${fmt(D, 2)}}\\ \\text{m}`;
+    F.morph(formula, th.v === 0
+      ? `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff}} = \\frac{${nTop}}{\\mk{nf}{${num(ff.v, 0)}}\\ \\text{N}} = ${dv}`
+      : `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff} \\mk{g}{{}+ m\\kg\\sin\\theta}} = \\frac{${nTop}}{\\mk{nf}{${num(ff.v, 0)}}\\ \\text{N} \\mk{ng}{{}+ (${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin(${fmt(th.v, 2)}^\\circ)}} = ${dv}`);
+    note.textContent =
+      th.v === 0
         ? 'On the level the only thing taking energy from him is friction, so he slides ' + fmt(D, 2) + ' m. Raise the slope to 5.00 degrees and the gravitational force takes a share as well, which brings him to rest in ' + fmt((0.5 * m.v * vi.v * vi.v) / (ff.v + m.v * G * Math.sin(5 * RAD)), 2) + ' m.'
-        : 'Sliding up the ' + fmt(th.v, 2) + '-degree slope he stops in ' + fmt(D, 2) + ' m, where on the level the same slide would have carried him ' + fmt((0.5 * m.v * vi.v * vi.v) / ff.v, 2) + ' m. The difference is the ' + num(m.v * G * D * sa, 0) + ' J of gravitational potential energy he gains on the way up, which friction no longer has to take.');
+        : 'Sliding up the ' + fmt(th.v, 2) + '-degree slope he stops in ' + fmt(D, 2) + ' m, where on the level the same slide would have carried him ' + fmt((0.5 * m.v * vi.v * vi.v) / ff.v, 2) + ' m. The difference is the ' + num(m.v * G * D * sa, 0) + ' J of gravitational potential energy he gains on the way up, which friction no longer has to take.';
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => tstop() / 4.5), draw });
 })();

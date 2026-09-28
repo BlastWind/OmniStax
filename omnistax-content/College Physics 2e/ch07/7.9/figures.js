@@ -16,8 +16,7 @@ function key(ctx, x, y, a, label, size = 17, color) {
   ctx.save(); ctx.fillStyle = color ? alpha(color, a) : alpha(C('energy'), a); ctx.fillRect(x, y - 8, 26, 16);
   ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(x, y - 8, 26, 16); ctx.restore();
   text(ctx, label, x + 34, y, PAL.ink, { size });
-  ctx.save(); ctx.font = `400 ${size}px ${F.FONT}`; const w = ctx.measureText(label).width; ctx.restore();
-  return x + 34 + w + 30;
+  return x + 34 + F.measure(ctx, label, { size }) + 30;
 }
 
 /* =====================================================================
@@ -191,23 +190,27 @@ function key(ctx, x, y, a, label, size = 17, color) {
 (function () {
   const d = sim('sim-degrade', 480);
   const EF = ctl(d.controls, { label: '\\text{Eff}', cls: '', min: 10, max: 90, step: 1, value: 35, unit: '%', dec: 0, aria: 'efficiency of each transformation' });
-  const N = ctl(d.controls, { label: '\\text{transformations}', cls: '', min: 1, max: 5, step: 1, value: 3, unit: '', dec: 0, aria: 'number of transformations' });
+  const N = F.choice(d.controls, { label: '\\text{transformations}', options: [1, 2, 3, 4, 5].map((k) => ({ value: String(k), label: String(k) })), value: '3', aria: 'number of transformations' });
   const L = 420, RX = 1280, X = (j) => L + ((RX - L) * j) / 100;
   function draw() {
     const { ctx } = begin(d.c);
-    const f = EF.v / 100, n = N.v;
+    const f = EF.v / 100, n = Number(N.value), nb = N.mix(Number);   /* nb runs between the old count and the new while rows arrive or leave */
     text(ctx, 'able to do work', L + 8, 108, PAL.ink, { size: 18, weight: 600 });
     text(ctx, 'degraded to waste heat', RX - 8, 108, PAL.muted, { size: 18, weight: 600, align: 'right' });
-    for (let k = 0; k <= n; k++) {
-      const y = 145 + k * 52, use = 100 * Math.pow(f, k), lost = 100 - use;
+    for (let k = 0; k <= Math.max(n, Math.ceil(nb)); k++) {
+      const a = Math.max(0, Math.min(1, nb - k + 1));
+      if (a <= 0) continue;
+      const y = 145 + k * 52 - (1 - a) * 12, use = 100 * Math.pow(f, k), lost = 100 - use;
+      ctx.save(); ctx.globalAlpha = a;
       text(ctx, k === 0 ? 'as it arrives' : k === 1 ? 'after 1 transformation' : 'after ' + k + ' transformations', 400, y, PAL.ink, { size: 19, align: 'right' });
       seg(ctx, X(0), X(use), y, 30, 0.9);
       seg(ctx, X(use), X(100), y, 30, 0.2);
       if (X(use) - X(0) > 200) text(ctx, fmt(use, 1) + ' J', (X(0) + X(use)) / 2, y, PAL.bg, { size: 18, weight: 600, align: 'center' });
       else text(ctx, fmt(use, 1) + ' J', X(use) + 10, y - 24, C('energy'), { size: 18, weight: 600 });
       if (lost > 12) text(ctx, fmt(lost, 1) + ' J', RX - 12, y, PAL.ink, { size: 18, align: 'right' });
+      ctx.restore();
     }
-    const bot = 145 + n * 52 + 22;
+    const bot = 145 + nb * 52 + 22;
     line(ctx, X(100), 122, X(100), bot, PAL.ink, 3);
     text(ctx, 'the total is still 100 J', X(100), bot + 24, PAL.ink, { size: 18, align: 'right' });
     const use = 100 * Math.pow(f, n);

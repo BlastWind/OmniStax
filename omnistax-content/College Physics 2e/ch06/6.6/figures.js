@@ -96,7 +96,7 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
 ===================================================================== */
 (function () {
   const d = sim('sim-ellipse', 690);
-  const ecc = ctl(d.controls, { label: 'e', cls: '', min: 0, max: 0.8, step: 0.01, value: 0.5, unit: '', dec: 2, aria: 'eccentricity' });
+  const ecc = ctl(d.controls, { label: 'e', cls: '', min: 0, max: 0.8, step: 0.01, value: 0.5, unit: '', dec: 2, aria: 'eccentricity', specials: [{ at: 0, label: 'circle' }] });
   const ang = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 360, step: 1, value: 55, unit: '°', dec: 0, aria: 'place of the point on the curve' });
   function draw() {
     const { ctx } = begin(d.c);
@@ -214,7 +214,7 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
 (function () {
   const d = sim('sim-third-law', 690);
   const rad = ctl(d.controls, { label: '\\kr', cls: 'position', min: 7, max: 400, step: 0.01, value: 7.88, unit: '×10³ km', dec: 2, onInput: reset, aria: 'orbital radius' });
-  const mass = ctl(d.controls, { label: 'M', cls: '', min: 0.2, max: 2.5, step: 0.01, value: 1, unit: 'M⊕', dec: 2, onInput: reset, aria: 'mass of the parent body' });
+  const mass = ctl(d.controls, { label: 'M', cls: '', min: 0.2, max: 2.5, step: 0.01, value: 1, unit: 'M⊕', dec: 2, onInput: reset, aria: 'mass of the parent body', specials: [{ at: 1, label: 'through the Moon' }] });
   const cy = cycle(() => 1, 1.0);
   function reset() { cy.reset(); }
   const CX = 340, CY = 400, RDRAW = 200;

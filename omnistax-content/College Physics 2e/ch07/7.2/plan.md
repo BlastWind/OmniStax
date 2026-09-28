@@ -316,3 +316,5 @@ The card for `cq2` had nowhere to render: the item is placed inline after the
 span `transfers`, and `text.html` carried no host for it. A
 `<div class="exercises" data-place="transfers"></div>` now closes that section,
 where 7.7 and the other sections of the chapter put theirs.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-area`, value add: the rectangle becomes its strips (manim-style 8, 11, 16). Each force slider carries a dashed circle at the other's value, which is the steady case. Across it the eight strips are always drawn, their dividing lines fading in as the force begins to vary and out as it steadies, so the rectangle splits and closes up rather than cutting between two pictures. The labels of the two cases cross-fade over 0.9 s, and the readout W = (F cos θ) d bends into W = Σ (F cos θ)ᵢ dᵢ through an `F.morph` keyMap. Still: no clock.

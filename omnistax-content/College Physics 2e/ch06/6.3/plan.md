@@ -356,3 +356,5 @@ says.
   section's lead for that block now counts five.
 - `sim-radius` listed `angular-rate` in its `draws` and binds no angular
   velocity anywhere, so the type is removed from the row.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-radius`, `sim-level-curve`, `sim-banked` and `fig-centrifuge` set their subscripted labels through figlib's `text()` (the file's `lab()` is now a thin call to it), so no string is painted into a canvas (rule 26.8). `sim-loop` marks the text's threshold on both sliders it involves: a dashed circle on v at √(g r) and on r at v²/g, each recomputed from the other, where the top of the loop needs nothing from the track. The readout is driven by the clock, so it takes no formula morph (manim-style 13).

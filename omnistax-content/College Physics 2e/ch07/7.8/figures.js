@@ -39,6 +39,8 @@ const width = (s, size) => s.length * size * 0.52;
   const Ee = ctl(d.controls, { label: '\\kE', cls: 'energy', min: 6000, max: 18000, step: 100, value: 13000, unit: 'kJ', dec: 0, aria: 'food energy eaten today' });
   const Ei = ctl(d.controls, { label: '\\kEin', cls: 'energy', min: 6000, max: 18000, step: 100, value: 12000, unit: 'kJ', dec: 0, aria: 'food energy the body spends today' });
   const ef = ctl(d.controls, { label: '\\text{Eff}', cls: '', min: 2, max: 25, step: 1, value: 10, unit: '%', dec: 0, aria: 'efficiency with which the body does useful work' });
+  /* eating exactly what the body spends stores no fat and draws on none */
+  Ee.mark([{ at: () => Ei.v, label: 'balance' }]); Ei.mark([{ at: () => Ee.v, label: 'balance' }]);
   const XL = 150, XR = 1330, MAX = 18000, K = (XR - XL) / MAX;
   const TOP = 132, TH = 56, BOT = 306, ROWA = 404, ROWB = 466;
   /* a label under one share of the lower bar, with a leader up to the share it names */

@@ -141,7 +141,7 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     /* the factor goes after the entry's own figure, where nothing else on the row can sit on it */
     const mark = (row, label) => {
       const x = X(Math.log10(row[0])), y = TOP + ROWS.indexOf(row) * DY;
-      ctx.save(); ctx.font = `600 17px ${FONT}`; const w = ctx.measureText(row[1] + ' W').width; ctx.restore();
+      const w = F.measure(ctx, row[1] + ' W', { size: 17, weight: 600 });
       text(ctx, label, Math.min(x + w + 30, 1330), y, PAL.ink, { size: 17, weight: 600 });
     };
     if (below) mark(below, '× ' + factor(P / below[0]));

@@ -13,24 +13,7 @@ const sgn = (v) => (v < 0 ? '−' : '');
 const sig3 = (x) => { const a = Math.abs(x); return sgn(x) + (a >= 1000 ? commas(String(Math.round(a))) : a.toPrecision(3)); };
 /* a label with subscripts, written the way the book writes them: F_c, μ_s, F_c' */
 function lab(ctx, s, x, y, color, o = {}) {
-  const size = o.size ?? 21, ss = Math.round(size * 0.72), weight = o.weight ?? 600, parts = [];
-  let i = 0;
-  while (i < s.length) {
-    const j = s.indexOf('_', i);
-    if (j < 0 || j === s.length - 1) { if (i < s.length) parts.push([s.slice(i), false]); break; }
-    if (j > i) parts.push([s.slice(i, j), false]);
-    const k = j + 1;
-    if (s[k] === '{') { const e = s.indexOf('}', k); parts.push([s.slice(k + 1, e), true]); i = e + 1; } else { parts.push([s[k], true]); i = k + 1; }
-  }
-  ctx.save();
-  const widthOf = ([t, sub]) => { ctx.font = `${weight} ${sub ? ss : size}px ${FONT}`; return ctx.measureText(t).width; };
-  const w = parts.reduce((a, p) => a + widthOf(p), 0);
-  const align = o.align ?? 'center';
-  let cx = align === 'center' ? x - w / 2 : align === 'right' ? x - w : x;
-  if (o.bg) { ctx.fillStyle = o.bg; ctx.fillRect(cx - 7, y - (size + 8) / 2, w + 14, size + 8); }
-  ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillStyle = color;
-  parts.forEach(([t, sub]) => { text(ctx, t, cx, y + (sub ? size * 0.22 : 0), color, { size: sub ? ss : size, weight }); ctx.font = F.shownFont(`${weight} ${sub ? ss : size}px ${FONT}`); cx += ctx.measureText(t).width; });
-  ctx.restore();
+  text(ctx, s, x, y, color, { size: o.size ?? 21, weight: o.weight ?? 600, align: o.align ?? 'center', bg: o.bg });
 }
 /* an arc from the angle a1 to the angle a2, both measured from the horizontal with the angle growing upward */
 function angleArc(ctx, x, y, r, a1, a2, label, color) {
@@ -278,6 +261,9 @@ function rider(ctx, x, y, color, s = 1) {
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 6, max: 22, step: 0.2, value: 12, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the car' });
   const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 4, max: 15, step: 0.5, value: 8, unit: 'm', dec: 1, onInput: reset, aria: 'radius of the loop' });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 200, max: 800, step: 25, value: 500, unit: 'kg', dec: 0, aria: 'mass of the car' });
+  /* the speed at which the top of the loop needs nothing from the track, and the radius at which the set speed is that speed */
+  v.mark([{ at: () => Math.sqrt(G * r.v), label: 'v = √(gr)' }]);
+  r.mark([{ at: () => (v.v * v.v) / G, label: 'r = v²/g' }]);
   const period = () => (TAU * r.v) / v.v;
   const cy = cycle(period, 0.8);
   function reset() { cy.reset(); }

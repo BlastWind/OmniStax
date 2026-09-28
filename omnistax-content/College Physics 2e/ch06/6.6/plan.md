@@ -312,3 +312,5 @@ angles stay in ink, as the book's rules say.
 - The symbol keys `r_curv` (macro `\kr`) and `T_orb1`/`T_orb2` stand as they
   were merged; they are the book-level rows this chapter added and no other
   chapter's row is touched.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-ellipse` marks e = 0 on its slider, the circle the caption names, where the two foci meet at the center. `sim-third-law` marks M = 1.00 Earth mass, where the line of periods runs through the Moon's observed point, which is how the parent body is weighed.

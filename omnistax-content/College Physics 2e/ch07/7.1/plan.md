@@ -240,3 +240,5 @@ written into `ch07/chapter.json`: the five variable rows and the two equation
 rows now carry `7.1-definition` and `7.1-joule-unit`. The mass `m` is anchored
 at `joule-unit` as the plan asked, since the running text of this section never
 writes the symbol and the sim that lifts a mass through a height stands there.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-work`, value add: formula morph by meaning (manim-style 8 and 11). Dashed circles mark the book's cases on the sliders, θ at 90° (c) and 180° (e) and d at 0 (b). The readout is an `F.morph`: at 90° it reads W = F d cos θ = (F)(d) cos 90° = 0 J, and at 180° the cos θ term bends into a minus sign, W = −F d. The numbers change at once under the highlight. Motion is unchanged: the push runs on its clock.

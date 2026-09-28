@@ -297,3 +297,5 @@ The plan is right that `ch07/exploration.md` had the answer key wrong: only one
 of the two Unreasonable Results items is keyed, the exercise bicycle and body
 fat (`fs-id1975735`), and the car advertisement (`fs-id1279346`) is not.
 `exploration.md` now says so, and this section's `exercise_notes` already did.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-country` measures its key with `F.measure` (rule 26.8). `sim-degrade` · Sim, replacing nothing in the book · energy degraded by each transformation · **still**: the transformations are counted, not clocked · the efficiency of each transformation (10 to 90 %, default 35, ink) and the number of transformations, a choice of 1 to 5 (rule 26.1: a count is a discrete state), default 3 · "At 35 percent each, 3 transformations leave 4.3 J of the original 100 J able to do work." · no graph: the rows of 100 J, each what is left after one more transformation, are the picture · 2D. A row arrives or leaves with a slight shift as the count changes (manim-style 15), and the line of the total follows. Readout: E_useful = (100 J) Eff^n with the numbers. Draws energy.

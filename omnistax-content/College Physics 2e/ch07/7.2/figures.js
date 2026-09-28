@@ -59,47 +59,56 @@ function package_(ctx, x, y, w, h, color) {
   const d = sim('sim-area', 660);
   const f1 = ctl(d.controls, { label: '\\kF_{\\text{start}}', cls: 'force', min: 0, max: 200, step: 5, value: 115, unit: 'N', dec: 0, aria: 'the force component where the push begins' });
   const f2 = ctl(d.controls, { label: '\\kF_{\\text{end}}', cls: 'force', min: 0, max: 200, step: 5, value: 115, unit: 'N', dec: 0, aria: 'the force component where the push ends' });
+  f1.mark([{ at: () => f2.v, label: 'steady' }]); f2.mark([{ at: () => f1.v, label: 'steady' }]);
   const dd = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.2, max: 2, step: 0.05, value: 0.8, unit: 'm', dec: 2, aria: 'the distance the force acts through' });
   const N = 8;                                   /* the strips the book's part (b) cuts the area into */
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  /* the rectangle of a steady force splits into the strips of a varying one, and closes up again */
+  const split = F.tween(d, 0);
+  let goal = 0;
   function draw() {
     const { ctx } = begin(d.c);
     const Fa = f1.v, Fb = f2.v, D = dd.v, steady = Math.abs(Fb - Fa) < 1;
+    if ((steady ? 0 : 1) !== goal) { goal = steady ? 0 : 1; split.to(goal, 900); }
+    const k = split.v;
     const Fav = (Fa + Fb) / 2, W = Fav * D;
     const cF = C('force'), cE = C('energy'), cD = C('position');
     const box = { l: 180, r: 1280, t: 150, b: 520 };
     const g = axes(ctx, box, [0, 2], [0, 200], { xl: 'd (m)', xc: cD, yl: 'F cos θ (N)', yc: cF, nx: 4, ny: 4, fx: (v) => fmt(v, 1) });
     const Fat = (x) => Fa + ((Fb - Fa) * x) / D;
-    /* the area under the line, whole when the force holds steady and in strips when it varies */
-    if (steady) {
-      shade(ctx, g.X(0), g.X(D), g.Y(Fa), g.Y(Fa), g.Y(0), cE);
-      text(ctx, 'W = ' + sig3(W) + ' J', (g.X(0) + g.X(D)) / 2, (g.Y(0) + g.Y(Fa)) / 2, cE, { size: 26, weight: 600, align: 'center' });
-    } else {
-      for (let i = 0; i < N; i++) {
-        const xa = (D * i) / N, xb = (D * (i + 1)) / N, h = Fat((xa + xb) / 2);
-        shade(ctx, g.X(xa), g.X(xb), g.Y(h), g.Y(h), g.Y(0), cE);
-        line(ctx, g.X(xb), g.Y(0), g.X(xb), g.Y(h), PAL.panel, 2);
-      }
-      const i = 4, xa = (D * i) / N, xb = (D * (i + 1)) / N, h = Fat((xa + xb) / 2);
+    /* the area under the line: the strips close up into one rectangle when the force holds steady */
+    for (let i = 0; i < N; i++) {
+      const xa = (D * i) / N, xb = (D * (i + 1)) / N, h = Fat((xa + xb) / 2);
+      shade(ctx, g.X(xa), g.X(xb), g.Y(h), g.Y(h), g.Y(0), cE);
+      if (i < N - 1) line(ctx, g.X(xb), g.Y(0), g.X(xb), g.Y(h), alpha(PAL.panel, k), 2);
+    }
+    ctx.save(); ctx.globalAlpha = 1 - k;
+    text(ctx, 'W = ' + sig3(W) + ' J', (g.X(0) + g.X(D)) / 2, (g.Y(0) + g.Y(Fav)) / 2, cE, { size: 26, weight: 600, align: 'center' });
+    hbracket(ctx, g.X(0), g.X(D), g.Y(0) + 92, cD, 'd = ' + fmt(D, 2) + ' m');
+    ctx.globalAlpha = k;
+    { const i = 4, xa = (D * i) / N, xb = (D * (i + 1)) / N, h = Fat((xa + xb) / 2);
       line(ctx, g.X(xa), g.Y(0), g.X(xa), g.Y(h), cE, 3);
       text(ctx, 'W_i', (g.X(xa) + g.X(xb)) / 2, g.Y(h) / 2 + g.Y(0) / 2, cE, { size: 20, weight: 600, align: 'center' });
       hbracket(ctx, g.X(xa), g.X(xb), g.Y(0) + 56, cD, 'd_i');
       text(ctx, 'W = ' + sig3(W) + ' J', g.X(D / 2), g.Y(Math.max(Fa, Fb)) - 40, cE, { size: 26, weight: 600, align: 'center' });
-    }
+      text(ctx, 'd = ' + fmt(D, 2) + ' m', g.X(D / 2), g.Y(0) + 102, cD, { weight: 600, align: 'center' }); }
+    ctx.restore();
     /* the force line itself, and the distance it acts through */
     line(ctx, g.X(0), g.Y(Fa), g.X(D), g.Y(Fb), cF, 5);
     dot(ctx, g.X(0), g.Y(Fa), cF, false, 10); dot(ctx, g.X(D), g.Y(Fb), cF, true, 10);
     line(ctx, g.X(D), g.Y(0), g.X(D), g.Y(Fb), PAL.muted, 2, [4, 8]);
-    if (steady) hbracket(ctx, g.X(0), g.X(D), g.Y(0) + 92, cD, 'd = ' + fmt(D, 2) + ' m');
-    else text(ctx, 'd = ' + fmt(D, 2) + ' m', g.X(D / 2), g.Y(0) + 102, cD, { weight: 600, align: 'center' });
     topline(ctx, steady
       ? 'The force component holds at ' + sig3(Fa) + ' N through ' + fmt(D, 2) + ' m, so the area under the line is ' + sig3(W) + ' J of work.'
       : 'The force component ' + (Fb > Fa ? 'climbs from ' : 'falls from ') + sig3(Fa) + ' N to ' + sig3(Fb) + ' N over ' + fmt(D, 2) + ' m, and the eight strips add to ' + sig3(W) + ' J of work.');
-    readout(d.readout, steady
-      ? `\\kW = (\\kF\\cos\\theta)\\kd = (${sig3(Fa)}\\ \\text{N})(${fmt(D, 2)}\\ \\text{m}) = ${sig3(W)}\\ \\text{J}`
-      : `\\kW = \\sum_i (F\\cos\\theta)_{i(\\text{ave})}\\,d_i = ${N}\\times(${sig3(Fav)}\\ \\text{N})(${fmt(D / N, 3)}\\ \\text{m}) = ${sig3(W)}\\ \\text{J}`,
-      steady
-        ? 'The shaded rectangle is the work the force does, so widening it by pushing through a greater distance and raising it by pushing harder both put more energy into the system.'
-        : 'The strips add to the same area as a rectangle of height ' + sig3(Fav) + ' N, so a force that climbs steadily does as much work as a steady force of its average value.');
+    /* the product of the steady force bends out into the sum over the strips, and back */
+    F.morph(formula, steady
+      ? `\\mk{W}{\\kW} = \\mk{P}{(\\kF\\cos\\theta)\\kd} = \\mk{nP}{(${sig3(Fa)}\\ \\text{N})(${fmt(D, 2)}\\ \\text{m})} = \\mk{Wv}{${sig3(W)}}\\ \\text{J}`
+      : `\\mk{W}{\\kW} = \\mk{S}{\\sum_i (F\\cos\\theta)_{i(\\text{ave})}\\,d_i} = \\mk{nS}{${N}\\times(${sig3(Fav)}\\ \\text{N})(${fmt(D / N, 3)}\\ \\text{m})} = \\mk{Wv}{${sig3(W)}}\\ \\text{J}`,
+      { keyMap: steady ? { S: 'P', nS: 'nP' } : { P: 'S', nP: 'nS' } });
+    note.textContent = steady
+      ? 'The shaded rectangle is the work the force does, so widening it by pushing through a greater distance and raising it by pushing harder both put more energy into the system.'
+      : 'The strips add to the same area as a rectangle of height ' + sig3(Fav) + ' N, so a force that climbs steadily does as much work as a steady force of its average value.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
