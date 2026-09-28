@@ -233,9 +233,10 @@ function current(ctx, x, y, dx, frac, label) {
    FIGURE 21.40: a lamp of very high resistance across the capacitor of a
    charging circuit. The capacitor charges through R until the voltage
    reaches the value that makes the lamp conduct, and then empties through
-   the lamp in a flash. Moving, because the circuit repeats: one loop is one
-   whole flash, and it is run in real time, since how often the lamp flashes
-   is the thing the figure is about.
+   the lamp in a flash. Moving, because the circuit repeats: the clock runs
+   in real time across the four seconds the graph holds, so the reader sees
+   the lamp flash again and again and how often, which is the thing the
+   figure is about.
    The time axis is fixed at 0 to 4 s, which holds one whole period at the
    slowest setting and several at the fastest, and the voltage axis at
    0 to 12 V, the emf of the source.
@@ -251,7 +252,8 @@ function current(ctx, x, y, dx, frac, label) {
   const charge = () => -tauC() * Math.log(1 - fr.v); /* the time to reach the threshold */
   const flash = () => 5 * tauD();                    /* the lamp is lit while the capacitor empties */
   const period = () => charge() + flash();
-  const cy = cycle(period, 0);                       /* no hold: the lamp simply flashes again */
+  const WIN = 4;                                     /* the seconds the time axis holds */
+  const cy = cycle(() => WIN, 1.2);
   function reset() { cy.reset(); }
   /* the voltage on the capacitor at a time s into one period */
   const volt = (s) => {
@@ -260,7 +262,7 @@ function current(ctx, x, y, dx, frac, label) {
   };
   function draw() {
     const { ctx } = begin(d.c);
-    const t = cy.now(), P = period(), V = volt(t), firing = t > charge();
+    const t = cy.now(), P = period(), s = t % P, V = volt(s), firing = s > charge();
     const Vth = fr.v * EMF, I = firing ? (V / RL) : ((EMF - V) / R.v);
     /* ---- the circuit: the source and R charge the capacitor, the lamp sits across it ---- */
     const L = 340, M = 760, Rx = 1080, T = 160, B = 410;
@@ -280,8 +282,8 @@ function current(ctx, x, y, dx, frac, label) {
     });
     line(ctx, box.l, Y(Vth), box.r, Y(Vth), alpha(C('voltage'), 0.5), 2.5, [10, 10]);
     text(ctx, 'the lamp fires at ' + fmt(Vth, 2) + ' V', box.r - 8, Y(Vth) - 18, C('voltage'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
-    curve(ctx, (s) => volt(s % P), 0, 4, X, Y, alpha(C('voltage'), 0.35), 3, 900);
-    curve(ctx, (s) => volt(s), 0, Math.min(t, 4), X, Y, C('voltage'), 5, 400);
+    curve(ctx, (u) => volt(u % P), 0, WIN, X, Y, alpha(C('voltage'), 0.35), 3, 900);
+    curve(ctx, (u) => volt(u % P), 0, t, X, Y, C('voltage'), 5, 900);
     pinned(ctx, box, X, Y, t, V, C('voltage'), fmt(V, 2) + ' V');
     topline(ctx, 'The capacitor charges through R for ' + fmt(charge(), 2) + ' s, the lamp fires at ' + fmt(Vth, 2) + ' V and empties it in ' + fmt(flash() * 1000, 0) + ' ms, so the lamp flashes every ' + fmt(P, 2) + ' s, which is ' + fmt(60 / P, 0) + ' times a minute.');
     readout(d.readout,
