@@ -66,7 +66,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    Readout: (2 m / 1 person) × (2 persons / 1 story) × 39 stories =
    156 m, with the live values. Small line: the estimate is only as good
    as its inputs, and the ranges of the sliders put it within a factor of
-   about two. On reduced motion the finished building is drawn.
+   about two. On reduced motion the finished building is drawn. Revised 2026-09-28: still, no transport. The stories stack as a staggered arrival on first view (lag 0.1, manim 19); after that a slider redraws at once.
 2. `sim-trillion` · new (Example 1.4 has only the photograph) ·
    approximation, order-of-magnitude, unit-conversion,
    sig-figs-multiplication · a side view of a football field, 100 yd
@@ -91,7 +91,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    before rounding, then the one-figure value and its feet. Small line:
    the unrounded height, and what 28 trillion (the 2021 federal debt the
    example mentions) comes to at the set thickness. On reduced motion
-   the finished pile is drawn.
+   the finished pile is drawn. Revised 2026-09-28: still, no transport. The pile rises as the figure's arrival on first view, and a slider redraws at once; 28 trillion, the 2021 debt the example names, is a special value on the amount.
 
 Both sims draw in ink: nothing in the section is a typed quantity, so
 `draws` is `[]` for every figure and the page binds no colour.

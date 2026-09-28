@@ -134,7 +134,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    Readout: $\mathbf{C} + \mathbf{A} + \mathbf{B} = \mathbf{A} +
    \mathbf{B} + \mathbf{C} = \mathbf{R}$, $\kR = 50.8\ \text{m}$; small
    line: vector addition is commutative, as 2 + 3 and 3 + 2 are. Draws
-   position (the resultant's magnitude in the readout).
+   position (the resultant's magnitude in the readout). Revised 2026-09-28: a change of order no longer cuts; each of A, B and C glides from its old tail to its new one while the resultant holds (manim 15, 16).
 5. `sim-subtraction` · replaces Figure 3.19 (B and −B) and Figures 3.20
    to 3.23 (Example 3.2: A and B, −B, A + (−B) = R, A + B = R′) ·
    vector-subtraction · **still**: the picture answers its sliders; the

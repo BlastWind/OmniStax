@@ -136,7 +136,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    travels, one finite flight per loop in about 5 real seconds, with the
    scrubber. Readout: the position and velocity equations with the live
    time substituted; small line: the rock is highest at t = v₀/g, where v
-   = 0 and y = v₀²/2g. Draws time, position, velocity, acceleration.
+   = 0 and y = v₀²/2g. Draws time, position, velocity, acceleration. Revised 2026-09-28: the time of the highest point, $\kvo/\kg$, is a special value on $\kt$ (label "highest point"), recomputed from the other two sliders.
 3. `sim-rock-down` · replaces Figure 2.41 (Figure 2.40, the strategy
    sketch, is its second original) · free-fall-symmetry,
    free-fall-kinematics · two rocks leave the same cliff edge at the same
@@ -151,7 +151,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    is cut at 12 m below the start so that the one height scale the scene
    and the graph share stays readable), $\kg$ in
    m/s² (1.50 to 10.00, step 0.01, default 9.80, acceleration hue, with
-   soft detents at 1.67 and 9.80), and a Labels button · "After
+   soft detents at 1.67 and 9.80) · "After
    2.99 s the rock thrown up reaches −5.10 m at −16.4 m/s, which is the
    velocity the rock thrown down had there at 0.34 s." · beside the
    scene, on the same height scale, $\kv$ across against $\ky$ up: the
@@ -160,9 +160,9 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    the left, the rock thrown down starting on the left branch, on ranges
    fixed once at −32 m/s to 32 m/s and −12 m to 14 m, with the curve
    clipped to the box · 2D. The marks the rock thrown up leaves are
-   spaced so that at most eight are drawn, and their labels are off by
-   default behind a Labels button, with the time under the pointer
-   instead (rule 26.7). The equation written in the corner of the graph
+   spaced so that at most eight are drawn and carry no labels, since
+   they would sit on moving things; the time is the hover name of each
+   (rule 26.7). The equation written in the corner of the graph
    names three types at once, so it is in ink rather than in any one of
    their hues.
    Moving: both rocks travel, one finite flight per loop in about 5 real

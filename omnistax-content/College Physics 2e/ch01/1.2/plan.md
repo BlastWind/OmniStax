@@ -88,7 +88,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    \times 10^{-9}\ \text{s}) = 1.00\ \text{m}$; small line on the speed
    of light being exact by definition and the meter being what is
    measured. The pulse is drawn in the velocity hue, the bracket in ink,
-   the time label in the time hue. Draws time and velocity.
+   the time label in the time hue. Draws time and velocity. Revised 2026-09-28: 1/c = 3.34 ns is a special value on $\kt$ (dashed circle, label "one meter"), the time the text defines the meter by.
 2. `sim-ladder` · new · metric-prefixes, order-of-magnitude · a
    horizontal logarithmic ladder from $10^{-18}$ m to $10^{26}$ m, a
    tick per decade and a label every three, the prefixes of Table 1.2

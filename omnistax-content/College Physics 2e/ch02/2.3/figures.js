@@ -12,14 +12,13 @@ const sig3 = (x) => { const s = x.toPrecision(3); return s.includes('e') ? Strin
 const signed = (x, d) => (x < 0 ? '−' : '+') + fmt(Math.abs(x), d);
 /* a symbol with a letter subscript and what follows it, such as t_f = 40.0 s, centred, left or right on x */
 function subLabel(ctx, sym, sub, rest, x, y, color, align, size = 22) {
-  ctx.save(); ctx.font = `600 ${size}px ${FONT}`; const w1 = ctx.measureText(sym).width, w3 = ctx.measureText(rest).width;
-  ctx.font = `600 ${size * 0.7}px ${FONT}`; const w2 = ctx.measureText(sub).width; ctx.restore();
+  const w1 = F.measure(ctx, sym, { size, weight: 600 }), w3 = F.measure(ctx, rest, { size, weight: 600 }), w2 = F.measure(ctx, sub, { size: size * 0.7, weight: 600 });
   const total = w1 + w2 + w3, left = align === 'center' ? x - total / 2 : align === 'right' ? x - total : x;
   text(ctx, sym, left, y, color, { weight: 600, size }); text(ctx, sub, left + w1, y + size * 0.3, color, { weight: 600, size: size * 0.7 }); text(ctx, rest, left + w1 + w2, y, color, { weight: 600, size });
 }
 /* a label in ink followed by a value in a colour, on one line */
 function pair(ctx, left, right, x, y, color) {
-  ctx.save(); ctx.font = `400 22px ${FONT}`; const w = ctx.measureText(left).width; ctx.restore();
+  const w = F.measure(ctx, left);
   text(ctx, left, x, y, PAL.ink); text(ctx, right, x + w + 8, y, color, { weight: 600, size: 24 });
 }
 
@@ -194,12 +193,16 @@ function trip(u) {
    FIGURE 2.9: the passenger's trip in detail. His position along the
    aisle is a smooth curve; the trip is cut into intervals of a set width
    and the average velocity over each is a chord on the graph; the
-   instantaneous velocity is the tangent. Finite motion, so it gets the
-   scrubber.
+   instantaneous velocity is the tangent. The narrowest interval is a
+   special value on Δt: there the chord lies on the tangent and the
+   average v̄ = Δx/Δt bends into v ≈ Δx/Δt. Finite motion, so it gets
+   the scrubber.
 ===================================================================== */
 (function () {
   const d = sim('sim-segments', 720);
-  const W = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.1, max: 5, step: 0.05, value: 1.25, unit: 's', dec: 2, onInput: reset, aria: 'width of one interval' });
+  const W = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.1, max: 5, step: 0.05, value: 1.25, unit: 's', dec: 2, specials: [{ at: 0.1, label: 'instant' }], onInput: reset, aria: 'width of one interval' });
+  const eqHost = el('div'), note = el('small');
+  d.readout.append(eqHost, note);
   /* The trip the book draws under this number takes 5.0 s. A slider for the whole time only
      restretched the same curve and changed no picture, so it is gone (rule 24.6) and the trip
      keeps the book's 5.0 s; what is interesting and variable here is the width of one interval. */
@@ -256,8 +259,13 @@ function trip(u) {
     lab.flush();
     topline(ctx, done ? 'In ' + fmt(TOT, 1) + ' s the passenger moved ' + signed(dxt, 1) + ' m, an average velocity of ' + signed(dxt / TOT, 2) + ' m/s over the whole trip, which is cut here into ' + n + (n === 1 ? ' interval' : ' intervals') + ' of ' + fmt(w, 2) + ' s.'
       : 'Over the interval from ' + fmt(ta, 2) + ' s to ' + fmt(tb, 2) + ' s the average velocity is ' + signed(vb, 2) + ' m/s, while at the instant ' + fmt(tau, 2) + ' s the velocity is ' + signed(now.v, 2) + ' m/s.');
-    readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{${signed(xb - xa, 2).replace('−', '-')}\\ \\text{m}}{${fmt(tb - ta, 2)}\\ \\text{s}} = ${signed(vb, 2).replace('−', '-')}\\ \\text{m/s} \\qquad \\kv = ${signed(now.v, 2).replace('−', '-')}\\ \\text{m/s}`,
-      'As the interval shrinks, the average velocity over it settles to the instantaneous velocity, which is what the text means by an infinitesimally small interval.');
+    /* at the narrowest interval the average and the instantaneous velocity are one number, so the two relations fold into one */
+    const instant = W.v <= 0.1 + 1e-9, sv = (x) => signed(x, 2).replace('−', '-');
+    const frac = `\\frac{\\mk{dx}{\\kdx}}{\\mk{dt}{\\kdt}} = \\frac{\\mk{dxv}{${sv(xb - xa)}\\ \\text{m}}}{\\mk{dtv}{${fmt(tb - ta, 2)}\\ \\text{s}}}`;
+    F.morph(eqHost, instant ? `\\mk{vb}{\\kv} \\approx ${frac} = \\mk{vbv}{${sv(vb)}\\ \\text{m/s}}`
+      : `\\mk{vb}{\\kvb} = ${frac} = \\mk{vbv}{${sv(vb)}\\ \\text{m/s}} \\qquad \\mk{v}{\\kv} = \\mk{vv}{${sv(now.v)}\\ \\text{m/s}}`);
+    note.textContent = instant ? 'Over an interval this short the average velocity is close to the instantaneous velocity, which is what the text means by an infinitesimally small interval.'
+      : 'As the interval shrinks, the average velocity over it settles to the instantaneous velocity, which is what the text means by an infinitesimally small interval.';
   }
   register(d.fig, { update: (dt) => { cy.step(dt, () => TOT / 5); if (cy.tau < TOT) ph += dt * 12; }, draw });
 })();
@@ -272,7 +280,7 @@ function trip(u) {
   const d = sim('sim-store', 520);
   const D = ctl(d.controls, { label: '\\text{distance to the store}', cls: '', min: 1, max: 10, step: 0.5, value: 3, unit: 'km', dec: 1, onInput: reset, aria: 'distance to the store' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 10, max: 120, step: 5, value: 30, unit: 'min', dec: 0, onInput: reset, aria: 'time of the trip' });
-  const B = ctl(d.controls, { label: '\\text{of the way home}', cls: '', min: 0, max: 100, step: 10, value: 100, unit: '%', dec: 0, onInput: reset, aria: 'how far back toward home the car drives' });
+  const B = ctl(d.controls, { label: '\\text{of the way home}', cls: '', min: 0, max: 100, step: 10, value: 100, unit: '%', dec: 0, specials: [{ at: 100, label: 'round trip' }], onInput: reset, aria: 'how far back toward home the car drives' });
   const cy = cycle(() => T.v, 1.2);
   function reset() { cy.reset(); }
   /* the road is a fixed 0 to 10 km, the distance slider's maximum, and the store stands at the
@@ -335,7 +343,7 @@ function trip(u) {
   /* The third slider is the one the errand figure carries: how far back toward home the car drives.
      Without it these graphs answered the same two sliders as the errand a paragraph above and told
      the reader nothing new, and with it the three graphs show what stopping short of home does. */
-  const B = ctl(d.controls, { label: '\\text{of the way home}', cls: '', min: 0, max: 100, step: 10, value: 100, unit: '%', dec: 0, onInput: reset, aria: 'how far back toward home the car drives' });
+  const B = ctl(d.controls, { label: '\\text{of the way home}', cls: '', min: 0, max: 100, step: 10, value: 100, unit: '%', dec: 0, specials: [{ at: 100, label: 'round trip' }], onInput: reset, aria: 'how far back toward home the car drives' });
   const cy = cycle(() => T.v, 1.2);
   function reset() { cy.reset(); }
   /* every scale here is fixed from the slider maxima: the road 0 to 10 km, the time 0 to 2 h, and

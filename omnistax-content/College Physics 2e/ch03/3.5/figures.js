@@ -27,7 +27,7 @@ function angleArc(ctx, x, y, r, a0, a1, color, label, lab) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, r, -a0 * DEG, -a1 * DEG, a1 > a0); ctx.stroke(); ctx.restore();
   if (!label) return;
   if (lab) { const m = ((a0 + a1) / 2) * DEG; lab.add(label, x + r * Math.cos(m), y - r * Math.sin(m), Math.cos(m), -Math.sin(m), color, 20, 26); return; }
-  ctx.save(); ctx.font = `600 20px ${FONT}`; const w = ctx.measureText(label).width; ctx.restore();
+  const w = F.measure(ctx, label, { size: 20, weight: 600 });
   const m = ((a0 + a1) / 2) * DEG, half = Math.max(0.05, Math.abs(Math.sin(((a1 - a0) / 2) * DEG))), rho = Math.max(r + 26, w / (2 * half) + 24);
   text(ctx, label, x + rho * Math.cos(m), y - rho * Math.sin(m), color, { size: 20, weight: 600, align: 'center' });
 }
@@ -79,7 +79,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
   const d = sim('sim-boat', 640);
   const vb = ctl(d.controls, { label: '\\kvboat', cls: 'velocity', min: 0.1, max: 3, step: 0.01, value: 0.75, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the boat relative to the water' });
   const vr = ctl(d.controls, { label: '\\kvriver', cls: 'velocity', min: 0, max: 3, step: 0.01, value: 1.2, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the river relative to the shore' });
-  const ph = ctl(d.controls, { label: '\\text{heading}', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, onInput: reset, aria: 'heading of the boat, degrees from downstream' });
+  const ph = ctl(d.controls, { label: '\\text{heading}', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, specials: [{ at: 90, label: 'straight across' }], onInput: reset, aria: 'heading of the boat, degrees from downstream' });
   /* The example gives no width for the river, so one is assumed here and the reader may set it. */
   const WC = ctl(d.controls, { label: '\\text{river width}', cls: 'position', min: 10, max: 30, step: 1, value: 25, unit: 'm', dec: 0, onInput: reset, aria: 'width of the river' });
   const vx = () => vr.v + vb.v * Math.cos(ph.v * DEG), vy = () => vb.v * Math.sin(ph.v * DEG), T = () => WC.v / vy();

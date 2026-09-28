@@ -14,7 +14,7 @@ const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const sig3 = (x) => { const s = x.toPrecision(3); return s.includes('e') ? String(Math.round(Number(s))) : s; };
 /* a label in ink followed by a value in a colour, on one line */
 function pair(ctx, left, right, x, y, color) {
-  ctx.save(); ctx.font = `400 22px ${FONT}`; const w = ctx.measureText(left).width; ctx.restore();
+  const w = F.measure(ctx, left);
   text(ctx, left, x, y, PAL.ink); text(ctx, right, x + w + 8, y, color, { weight: 600, size: 24 });
 }
 
@@ -62,7 +62,7 @@ function stopwatch(ctx, x, y, r, f) {
 ===================================================================== */
 (function () {
   const d = sim('sim-light-meter', 370);
-  const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 5, step: 0.01, value: 3.34, unit: 'ns', dec: 2, onInput: reset, aria: 'elapsed time' });
+  const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 5, step: 0.01, value: 3.34, unit: 'ns', dec: 2, specials: [{ at: 1 / 0.299792458, label: 'one meter' }], onInput: reset, aria: 'elapsed time' });
   const CNS = 0.299792458;   /* the speed of light in meters per nanosecond, exact */
   const cy = cycle(() => T.v, 1.2);
   function reset() { cy.reset(); }

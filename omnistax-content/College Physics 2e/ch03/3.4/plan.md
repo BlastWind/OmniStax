@@ -161,7 +161,15 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    different maximum height. Within six degrees of 45º the three arcs
    share almost one highest point, so only the chosen angle is named
    there and the other two labels are left off (rule 26.7). Draws
-   position, velocity, acceleration, time.
+   position, velocity, acceleration, time. Merged 2026-09-28 with the
+   Manim trial `sim-range-morph`, whose code it now runs: 45º is a
+   special value on $\theta_0$ (dashed circle, slight snap); as the
+   angle nears it the dashed complementary path closes on the chosen one
+   and on it bends into it, the readout morphs by meaning as
+   $\sin 2\theta_0$ becomes 1 and leaves the equation, and leaving 45º
+   the dashed and faint paths arrive drawn along their length. Value
+   add: the book's "every angle but 45º has a partner" is seen as two
+   paths becoming one and a term leaving the equation.
 6. `sim-orbit` · replaces Figure 3.39 (the tower and the satellite) ·
    range · **moves**: a projectile leaves a tall tower horizontally and
    falls around the Earth under gravity that always points at the centre,
@@ -181,7 +189,15 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    what the text describes and beyond what it computes; the readout gives
    the level-ground range $\kR = \kvo\sqrt{2h/\kg}$ for comparison and
    the small line says how much farther the projectile went. Draws
-   position, velocity, acceleration, time.
+   position, velocity, acceleration, time. Merged 2026-09-28 with the
+   Manim trial `sim-orbit-morph`, whose code it now runs: the camera
+   follows the values (manim 1, 7), fitting the tower, the whole
+   predicted path and the landing point and easing to the new fit when
+   a slider moves, so a slow launch is seen close up over what reads as
+   level ground and a fast one needs the whole Earth; the circular-orbit
+   and escape speeds for the set height are special values on $\kvo$,
+   and on the circular one the readout morphs from the level-ground
+   range into the orbit condition.
 
 Every book figure of the section is a sketch and is replaced; no
 photograph to keep or drop. Problems 7 and 8 refer to Figure 3.38, which

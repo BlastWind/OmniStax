@@ -88,7 +88,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    Readout: spread = 2.0 rings, offset of the centre = 0.3 rings. Small
    line: precision is about how closely the attempts agree with one
    another, and accuracy about how close they are to the correct value,
-   and a system can have either without the other.
+   and a system can have either without the other. Revised 2026-09-28: the café's sign no longer paints a word into the canvas (rule 26.8); the label beneath names the restaurant.
 2. `sim-percent` · new (Example 1.2) · percent-uncertainty · a number
    line of weight in pounds with the four weekly weights of the example
    as ink ticks, the average A as a filled marker and the band A ± δA as
@@ -104,7 +104,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    readings of the example. Labels on, six ticks and two brackets, none
    of them moving under one another. No motion. Readout: the equation
    with the numbers substituted. Small line: the same uncertainty on a
-   bag half as heavy is 16%.
+   bag half as heavy is 16%. Revised 2026-09-28: 5.1 lb is a special value on $A$ (dashed circle, label "Example 1.2"), the one average at which the four weekly weights are drawn.
 3. `sim-area` · new (the floor) · adding-percents · the 4.00 m by 3.00 m
    floor drawn to scale with the largest and smallest floors the
    uncertainties allow as dashed outlines about the same centre and the
@@ -132,7 +132,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    reduced motion draws it aligned. Readout: L = 36.7 cm. Small line: the
    last digit written down is the first with some uncertainty; the
    centimeter ruler gives 37 cm, two figures, and the caliper 36.71 cm,
-   four, computed from L.
+   four, computed from L. Revised 2026-09-28: still, no transport. A reading has no time in it, so the slide of the ruler is the figure's arrival on first view (eased out, about 1.1 s) and a control redraws at once.
 5. `sim-calc` · new (the two rules) · sig-figs-multiplication,
    sig-figs-addition · two measured lengths a and b as two sticks laid end
    to end for the sum, and as the sides of a rectangle for the product;
@@ -145,7 +145,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    hundredths" · none · no. No motion. Readout: the sum rounded to the
    fewer decimals and the product rounded to the fewer significant
    figures, as two aligned lines. Small line: the two rules in one
-   sentence.
+   sentence. Revised 2026-09-28: the kept and rejected figures are page text through the library, no longer painted into the canvas (rule 26.8).
 
 Every figure draws in ink (`draws: []`): a spread, a weight, a percent, a
 length and a count are untyped in this book. Two helpers sit at the top

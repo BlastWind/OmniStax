@@ -325,173 +325,15 @@ function tower(ctx, x, y, h, color) {
 })();
 
 /* =====================================================================
-   FIGURE 3.38: the range on level ground. The projectile flies its
-   trajectory; the complementary angle's path is dashed and lands at the
-   same range; the 45° path is faint and goes farthest. Below, R against
-   θ₀ for the set speed. Finite motion, so it gets the scrubber.
-===================================================================== */
-(function () {
-  const d = sim('sim-range', 800);
-  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 20, max: 60, step: 1, value: 50, unit: 'm/s', dec: 0, onInput: reset, aria: 'initial speed' });
-  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: '°', dec: 0, onInput: reset, aria: 'launch angle' });
-  const fl = () => flight(v0.v, th.v);
-  const cy = cycle(() => fl().T, 1.2);
-  function reset() { cy.reset(); }
-  const range = (v, a) => (v * v * Math.sin(2 * a * RAD)) / G;
-  function draw() {
-    const { ctx } = begin(d.c);
-    const f = fl(), tau = cy.now(), done = tau >= f.T - 1e-9, comp = 90 - th.v, fc = flight(v0.v, comp), f45 = flight(v0.v, 45), is45 = th.v === 45;
-    const x = f.x(tau), y = Math.max(0, f.y(tau));
-    /* the scene: all three trajectories at one fixed scale, 1.54 units to the metre, which holds the
-       farthest range the sliders allow (367 m at 60 m/s and 45°) and the highest rise (182 m at 85°) */
-    const box = { l: 200, r: 1300, t: 110, b: 390 }, SC = 1.54;
-    const X = (m) => box.l + m * SC, Y = (m) => box.b - m * SC;
-    const lab = labeller(ctx, 800); lab.block(0, 0, 1400, 96); lab.block(0, 420, 1400, 800);
-    ground(ctx, 60, 1340, box.b);
-    /* Within six degrees of 45° the three arcs have almost the same apex, so only the chosen angle
-       is named there; the other two are still drawn and the readout gives their numbers. */
-    const near45 = Math.abs(th.v - 45) < 6;
-    if (!is45) { path(ctx, f45, 0, f45.T, X, Y, alpha(PAL.muted, 0.45), 3); if (!near45) text(ctx, '45°', X(f45.x(f45.tTop)), Y(f45.h) - 20, PAL.muted, { size: 18, align: 'center' }); }
-    if (!is45) { path(ctx, fc, 0, fc.T, X, Y, PAL.muted, 3, [10, 10]); if (!near45) text(ctx, comp + '°', X(fc.x(fc.tTop)), Y(fc.h) - 20, PAL.muted, { size: 18, weight: 600, align: 'center' }); }
-    path(ctx, f, 0, f.T, X, Y, alpha(PAL.ink, 0.35), 3);
-    path(ctx, f, 0, tau, X, Y, PAL.ink, 4);
-    text(ctx, th.v + '°', X(f.x(f.tTop)), Y(f.h) - 20, PAL.ink, { size: 18, weight: 600, align: 'center' });
-    launch(ctx, X(0), Y(0), 30 + v0.v * 1.6, th.v, 'v₀ = ' + v0.v + ' m/s', lab);
-    lab.flush();
-    hbracket(ctx, X(0), X(f.R), box.b + 50, C('position'), '');
-    text(ctx, 'R = ' + fmt(f.R, 0) + ' m', X(f.R / 2), box.b + 76, C('position'), { weight: 600, align: 'center' });
-    dot(ctx, X(f.R), Y(0), C('position'), true, 8);
-    dot(ctx, X(x), Y(y), PAL.ink, true, 10);
-    /* R against θ₀ for the set speed, on fixed axes: 400 m holds the farthest range the sliders allow */
-    const Rmax = f45.R, yr = { lo: 0, hi: 400, n: 4 };
-    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 730 }, [0, 90], [0, yr.hi], { xl: 'θ₀ (°)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: yr.n, fx: (a) => fmt(a, 0) });
-    curve(ctx, (a) => range(v0.v, a), 0, 90, g.X, g.Y, C('position'), 5, 90);
-    line(ctx, g.X(th.v), g.Y(0), g.X(th.v), g.Y(f.R), PAL.ink, 2, [4, 8]);
-    if (!is45) { line(ctx, g.X(comp), g.Y(0), g.X(comp), g.Y(f.R), PAL.muted, 2, [4, 8]); line(ctx, g.X(th.v), g.Y(f.R), g.X(comp), g.Y(f.R), C('position'), 2, [10, 10]); dot(ctx, g.X(comp), g.Y(f.R), C('position'), false, 10); }
-    dot(ctx, g.X(th.v), g.Y(f.R), C('position'), true, 10);
-    text(ctx, 'R = ' + fmt(f.R, 0) + ' m at ' + th.v + '°' + (is45 ? '' : ' and at ' + comp + '°'), g.X(45), g.Y(f.R) + (f.R > 0.7 * Rmax ? 30 : -24), C('position'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.8) });
-    text(ctx, 'farthest at 45°', g.X(45), g.Y(Rmax) - 22, PAL.muted, { size: 17, align: 'center' });
-    topline(ctx, is45 ? 'At 45° a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, which is the farthest this speed can reach.'
-      : 'At ' + th.v + '° a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + '°.');
-    readout(d.readout, `\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg} = \\frac{(${v0.v}\\ \\text{m/s})^2 \\sin ${2 * th.v}^\\circ}{9.80\\ \\text{m/s}^2} = ${fmt(f.R, 0)}\\ \\text{m}`,
-      is45 ? 'No other angle reaches as far at this speed, and every other angle shares its range with its complement, the angle that makes 90° with it.'
-        : 'A launch at ' + comp + '° has the same range but rises to ' + fmt(fc.h, 1) + ' m, where the ' + th.v + '° launch rises to ' + fmt(f.h, 1) + ' m.');
-  }
-  register(d.fig, { update: (dt) => cy.step(dt, () => fl().T / 5), draw });
-})();
-
-/* =====================================================================
-   FIGURE 3.39: the tower and the satellite. A projectile leaves a tall
-   tower horizontally and falls around the Earth under an acceleration
-   that always points at the centre, until it lands or completes an
-   orbit. The path is integrated under the inverse-square attraction with
-   g = 9.80 m/s² at the surface. Finite motion, so it gets the scrubber.
-===================================================================== */
-(function () {
-  const d = sim('sim-orbit', 760);
-  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 8, step: 0.1, value: 6, unit: 'km/s', dec: 1, onInput: reset, aria: 'launch speed' });
-  const ht = ctl(d.controls, { label: '\\text{tower height}', cls: 'position', min: 200, max: 1500, step: 100, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: 'tower height' });
-  const RE = 6.37e6, GM = G * RE * RE;
-  /* the flight integrated from the top of the tower: points (x, y, t, angle swept) until the surface or one full turn */
-  function integrate(v, h) {
-    const r0 = RE + h * 1000; let x = 0, y = r0, vx = v * 1000, vy = 0, t = 0, swept = 0, last = Math.PI / 2;
-    const acc = (px, py) => { const r = Math.hypot(px, py), a = -GM / (r * r * r); return [a * px, a * py]; };
-    const pts = [{ x, y, t, swept, r: r0 }];
-    const dt = Math.max(2, Math.min(8, 40000 / (v * 1000)));
-    for (let i = 0; i < 60000; i++) {
-      /* one step of RK4 */
-      const [a1x, a1y] = acc(x, y);
-      const x2 = x + 0.5 * dt * vx, y2 = y + 0.5 * dt * vy, vx2 = vx + 0.5 * dt * a1x, vy2 = vy + 0.5 * dt * a1y; const [a2x, a2y] = acc(x2, y2);
-      const x3 = x + 0.5 * dt * vx2, y3 = y + 0.5 * dt * vy2, vx3 = vx + 0.5 * dt * a2x, vy3 = vy + 0.5 * dt * a2y; const [a3x, a3y] = acc(x3, y3);
-      const x4 = x + dt * vx3, y4 = y + dt * vy3, vx4 = vx + dt * a3x, vy4 = vy + dt * a3y; const [a4x, a4y] = acc(x4, y4);
-      x += (dt / 6) * (vx + 2 * vx2 + 2 * vx3 + vx4); y += (dt / 6) * (vy + 2 * vy2 + 2 * vy3 + vy4);
-      vx += (dt / 6) * (a1x + 2 * a2x + 2 * a3x + a4x); vy += (dt / 6) * (a1y + 2 * a2y + 2 * a3y + a4y); t += dt;
-      const ang = Math.atan2(y, x); let da = last - ang; if (da < -Math.PI) da += TAU; if (da > Math.PI) da -= TAU; swept += da; last = ang;
-      const r = Math.hypot(x, y);
-      if (r <= RE) { const p = pts[pts.length - 1], k = (p.r - RE) / (p.r - r); pts.push({ x: p.x + k * (x - p.x), y: p.y + k * (y - p.y), t: p.t + k * dt, swept: p.swept + k * (swept - p.swept), r: RE }); return { pts, landed: true, T: pts[pts.length - 1].t, rmax: Math.max(...pts.map((q) => q.r)) }; }
-      pts.push({ x, y, t, swept, r });
-      if (swept >= TAU) return { pts, landed: false, T: t, rmax: Math.max(...pts.map((q) => q.r)) };
-    }
-    return { pts, landed: false, T: t, rmax: Math.max(...pts.map((q) => q.r)) };
-  }
-  /* the paths are computed when a slider has changed since the last frame, never more often */
-  let run = null, faint = null, key = '';
-  function paths() {
-    const k = v0.v + '|' + ht.v; if (k === key) return;
-    key = k; run = integrate(v0.v, ht.v);
-    faint = [3, 5, 7].filter((v) => Math.abs(v - v0.v) > 0.05).map((v) => integrate(v, ht.v));
-  }
-  const cy = cycle(() => { paths(); return run.T; }, 1.4);
-  function reset() { cy.reset(); }
-  /* the index of the first point at or after the model time tau */
-  const at = (tau) => { const p = run.pts; let lo = 0, hi = p.length - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (p[m].t < tau) lo = m + 1; else hi = m; } return Math.max(0, Math.min(lo, p.length - 1)); };
-  function draw() {
-    paths();
-    const { ctx } = begin(d.c);
-    const tau = cy.now(), done = tau >= run.T - 1e-9, pi = at(tau), p = run.pts[pi], end = run.pts[run.pts.length - 1];
-    /* the Earth is drawn at a fixed 140 units to its radius: the farthest any launch the sliders allow
-       reaches is 2.1 Earth radii from the centre (8 km/s from a 1,500 km tower), which the canvas holds */
-    const cx = 660, cyy = 410, RPX = 140;
-    const X = (m) => cx + (m / RE) * RPX, Y = (m) => cyy - (m / RE) * RPX;
-    const lab = labeller(ctx, 760); lab.block(0, 0, 1400, 96);
-    /* the Earth */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cyy, RPX, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'Earth', cx, cyy + 8, PAL.muted, { size: 22, align: 'center' });
-    /* the surface the projectile covers, from the tower to the landing point */
-    const arcTo = run.landed ? end.swept : Math.min(p.swept, TAU);
-    ctx.save(); ctx.strokeStyle = C('position'); ctx.lineWidth = 7; ctx.beginPath(); ctx.arc(cx, cyy, RPX + 2, -Math.PI / 2, -Math.PI / 2 + Math.min(p.swept, arcTo), false); ctx.stroke(); ctx.restore();
-    /* the faint launches at lower speeds, and the current path */
-    const names = [3, 5, 7].filter((v) => Math.abs(v - v0.v) > 0.05);
-    faint.forEach((q, i) => {
-      ctx.save(); ctx.strokeStyle = alpha(PAL.muted, 0.7); ctx.lineWidth = 2; ctx.beginPath(); q.pts.forEach((s, j) => (j ? ctx.lineTo(X(s.x), Y(s.y)) : ctx.moveTo(X(s.x), Y(s.y)))); ctx.stroke(); ctx.restore();
-      const e = q.pts[q.pts.length - 1], a = Math.atan2(e.y, e.x);
-      lab.add(names[i] + ' km/s', X(e.x), Y(e.y), Math.cos(a), -Math.sin(a), PAL.muted, 16, 22);
-    });
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.setLineDash([8, 8]); ctx.beginPath(); run.pts.forEach((s, i) => (i ? ctx.lineTo(X(s.x), Y(s.y)) : ctx.moveTo(X(s.x), Y(s.y)))); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); for (const s of run.pts) { if (s.t > tau) break; ctx.lineTo(X(s.x), Y(s.y)); } ctx.stroke(); ctx.restore();
-    /* the tower and the launch */
-    const hpx = (ht.v * 1000 / RE) * RPX;
-    tower(ctx, cx, cyy - RPX, hpx, PAL.ink);
-    lab.add(commas(fmt(ht.v, 0)) + ' km tower', cx - 12, cyy - RPX - hpx / 2, -1, 0, PAL.muted, 17, 22);
-    const L = 40 + v0.v * 14, ay = cyy - RPX - hpx;
-    arrow(ctx, cx, ay, cx + L, ay, C('velocity'), 5);
-    lab.add('v₀ = ' + fmt(v0.v, 1) + ' km/s', cx + L, ay, 0.5, -1, C('velocity'), 20, 24);
-    /* the projectile, its velocity and the acceleration toward the centre */
-    const px = X(p.x), py = Y(p.y), r = Math.hypot(p.x, p.y), ga = (RE * RE) / (r * r);
-    if (tau > 0 && !(done && run.landed) && pi + 1 < run.pts.length) {
-      const q = run.pts[pi + 1], qx = X(q.x) - px, qy = Y(q.y) - py, qn = Math.hypot(qx, qy) || 1;
-      const sp = Math.hypot(q.x - p.x, q.y - p.y) / Math.max(1e-6, q.t - p.t) / 1000;
-      arrow(ctx, px, py, px + (qx / qn) * (30 + sp * 10), py + (qy / qn) * (30 + sp * 10), C('velocity'), 4);
-    }
-    arrow(ctx, px, py, px + ((cx - px) / (Math.hypot(cx - px, cyy - py) || 1)) * 46 * ga, py + ((cyy - py) / (Math.hypot(cx - px, cyy - py) || 1)) * 46 * ga, C('acceleration'), 4);
-    dot(ctx, px, py, PAL.ink, true, 9);
-    /* the ranges: along the curved surface, and on level ground */
-    const along = (arcTo * RE) / 1000, flat = (v0.v * 1000 * Math.sqrt((2 * ht.v * 1000) / G)) / 1000, sofar = (Math.min(p.swept, arcTo) * RE) / 1000;
-    if (run.landed) {
-      const a = -Math.PI / 2 + end.swept;
-      lab.add(sig3(along) + ' km along the surface', cx + RPX * Math.cos(a), cyy + RPX * Math.sin(a), Math.cos(a), Math.sin(a), C('position'), 20, 30);
-    }
-    lab.flush();
-    const min = (s) => fmt(s / 60, 1) + ' min';
-    topline(ctx, done && run.landed ? 'After ' + min(run.T) + ' it lands ' + sig3(along) + ' km along the curved surface, against ' + sig3(flat) + ' km on level ground.'
-      : done ? 'At ' + fmt(v0.v, 1) + ' km/s the Earth curves away as fast as the projectile falls, so after ' + min(run.T) + ' it is in orbit.'
-      : 'After ' + min(tau) + ' the projectile is ' + sig3((r - RE) / 1000) + ' km up and has covered ' + sig3(sofar) + ' km of the surface so far.');
-    readout(d.readout, `\\kR = \\kvo\\sqrt{2h/\\kg} = (${fmt(v0.v, 1)}\\ \\text{km/s})\\sqrt{\\frac{2(${commas(fmt(ht.v * 1000, 0))}\\ \\text{m})}{9.80\\ \\text{m/s}^2}} = ${sig3(flat)}\\ \\text{km on level ground}`,
-      run.landed ? 'The projectile went ' + sig3(along) + ' km along the curved surface, ' + fmt(along / flat, 1) + ' times as far, because the ground fell away beneath it and it had farther to fall.'
-        : 'Instead of landing, the projectile circles the Earth in ' + fmt(run.T / 60, 0) + ' min: it falls the whole way round and never reaches the surface.');
-  }
-  register(d.fig, { update: (dt) => cy.step(dt, () => run.T / 5), draw });
-})();
-/* =====================================================================
-   Sim, after Figure 3.38: the range on level ground drawn in the Manim
-   manner. 45° is a special value on the angle slider; as the angle nears
+   FIGURE 3.38: the range on level ground, with R against θ₀ beneath.
+   45° is a special value on the angle slider; as the angle nears
    it the dashed complementary path closes on the chosen one, and on it
    sin 2θ₀ becomes 1, the range equation drops that term, and the dashed
    path bends into the chosen one. Leaving 45°, the dashed and the 45°
    paths arrive drawn along their length.
 ===================================================================== */
 (function () {
-  const d = sim('sim-range-morph', 800);
+  const d = sim('sim-range', 800);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 20, max: 60, step: 1, value: 50, unit: 'm/s', dec: 0, onInput: reset, aria: 'initial speed' });
   const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: '°', dec: 0, specials: [{ at: 45, label: '45°' }], onInput: reset, aria: 'launch angle' });
   const eqHost = el('div');
@@ -564,8 +406,8 @@ function tower(ctx, x, y, h, color) {
 })();
 
 /* =====================================================================
-   Sim, after Figure 3.39: the tower and the satellite with a camera that
-   follows the values. The view fits the tower, the whole predicted path
+   FIGURE 3.39: the tower and the satellite, with a camera that follows
+   the values. The view fits the tower, the whole predicted path
    and the landing point, easing to the new fit when a slider moves: close
    on the tower a slow launch falls over what reads as level ground; a
    fast one needs the whole Earth. The circular-orbit speed for the set
@@ -573,7 +415,7 @@ function tower(ctx, x, y, h, color) {
    from the level-ground range into the orbit condition.
 ===================================================================== */
 (function () {
-  const d = sim('sim-orbit-morph', 760);
+  const d = sim('sim-orbit', 760);
   const RE = 6.37e6, GM = G * RE * RE;
   const vCirc = () => Math.sqrt(GM / (RE + ht.v * 1000)) / 1000;
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 8, step: 0.1, value: 6, unit: 'km/s', dec: 1, onInput: reset, aria: 'launch speed',

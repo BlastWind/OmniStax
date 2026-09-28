@@ -119,7 +119,8 @@ function stopwatch(ctx, x, y, r, f) {
      never sits on the y₀ label. The two values of g the chapter uses are soft detents. */
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 25, step: 0.1, value: 13, unit: 'm/s', dec: 1, onInput: reset });
   const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.5, max: 10, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration due to gravity', detents: [{ v: 1.67, label: 'Moon' }, { v: 9.8, label: 'Earth' }], snap: true });
-  const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 6, step: 0.05, value: 3, unit: 's', dec: 2, onInput: reset, aria: 'time shown', detents: [{ v: 3, label: '3.00 s' }], snap: true });
+  const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 6, step: 0.05, value: 3, unit: 's', dec: 2, onInput: reset, aria: 'time shown', detents: [{ v: 3, label: '3.00 s' }], snap: true,
+    specials: [{ at: () => v0.v / g.v, label: 'highest point' }] });
   const cy = cycle(() => T.v, 1.4);
   function reset() { cy.reset(); }
   const pos = (s) => v0.v * s - 0.5 * g.v * s * s, vel = (s) => v0.v - g.v * s;
@@ -210,8 +211,6 @@ function stopwatch(ctx, x, y, r, f) {
      keeps the one height scale the scene and the graph share readable */
   const yE = ctl(d.controls, { label: '\\ky', cls: 'position', min: -12, max: -1, step: 0.1, value: -5.1, unit: 'm', dec: 2, onInput: reset, aria: 'level reached' });
   const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.5, max: 10, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration due to gravity', detents: [{ v: 1.67, label: 'Moon' }, { v: 9.8, label: 'Earth' }], snap: true });
-  /* When the labels on the whole-second marks would exceed six, they go behind this button (rule 26.7). */
-  const LAB = F.choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'labels on the whole-second marks' });
   const vmax = () => Math.sqrt(v0.v * v0.v - 2 * g.v * yE.v);
   const tA = () => (v0.v + vmax()) / g.v, tB = () => (-v0.v + vmax()) / g.v;
   const cy = cycle(tA, 1.4);
@@ -243,7 +242,7 @@ function stopwatch(ctx, x, y, r, f) {
     line(ctx, xa, Y(yr.hi), xa, Y(yr.lo), PAL.rule, 1.5); line(ctx, xb, Y(yr.hi), xb, Y(yr.lo), PAL.rule, 1.5);
     /* The marks the rock thrown up leaves as it flies. A flight of many seconds would stack fifty
        marks on one column, so the interval between marks is widened until at most eight are drawn,
-       and their labels sit behind the Labels button. */
+       and each is named on hover. */
     const mstep = Math.max(1, Math.ceil(ta / 8));
     const marks = [];
     for (let k = 0; k <= Math.floor(tau + 1e-9) && k <= ta; k += mstep) {
@@ -251,7 +250,6 @@ function stopwatch(ctx, x, y, r, f) {
       dot(ctx, xa, Y(yk), C('position'), false, 7);
       if (Math.abs(vk) > 0.3) arrow(ctx, xa - 26, Y(yk), xa - 26, Y(yk) - Math.sign(vk) * (16 + Math.abs(vk) * 4), C('velocity'), 3);
       marks.push({ x: xa, y: Y(yk), r: 12, name: k + ' s after the throw' });
-      if (LAB.value === 'on') text(ctx, k + ' s', xa + 16, Y(yk) + 2, PAL.muted, { size: 15 });
     }
     hits = marks;
     dot(ctx, xa, Y(yA), PAL.ink, true, 11);

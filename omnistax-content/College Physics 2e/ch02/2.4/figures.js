@@ -20,13 +20,13 @@ const sig3s = (x) => (x > 0 ? '+' : '') + sig3(x);
 const tsig3s = (x) => (x > 0 ? '+' : '') + tsig3(x);
 /* a symbol followed by a small subscript, such as v with an f */
 function sub(ctx, base, sfx, x, y, color, size = 24, align = 'left') {
-  ctx.save(); ctx.font = `600 ${size}px ${FONT}`; const wb = ctx.measureText(base).width; ctx.font = `600 ${size * 0.7}px ${FONT}`; const ws = ctx.measureText(sfx).width; ctx.restore();
+  const wb = F.measure(ctx, base, { size, weight: 600 }), ws = F.measure(ctx, sfx, { size: size * 0.7, weight: 600 });
   const x0 = align === 'center' ? x - (wb + ws) / 2 : align === 'right' ? x - wb - ws : x;
   text(ctx, base, x0, y, color, { weight: 600, size }); text(ctx, sfx, x0 + wb, y + size * 0.3, color, { weight: 600, size: size * 0.7 });
 }
 /* a label in ink followed by a value in a colour, on one line */
 function pair(ctx, left, right, x, y, color, size = 22) {
-  ctx.save(); ctx.font = `400 ${size}px ${FONT}`; const w = ctx.measureText(left).width; ctx.restore();
+  const w = F.measure(ctx, left, { size });
   text(ctx, left, x, y, PAL.ink, { size }); text(ctx, right, x + w + 8, y, color, { weight: 600, size: size + 2 });
 }
 /* the range a function takes over [0, T], sampled */
@@ -222,10 +222,9 @@ function topCar(ctx, x, y, heading, color) {
   const d = sim('sim-four-cars', 620);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 5, max: 30, step: 1, value: 15, unit: 'm/s', dec: 0, onInput: reset, aria: 'starting speed' });
   const am = ctl(d.controls, { label: '|\\ka|', cls: 'acceleration', min: 1, max: 6, step: 0.1, value: 3, unit: 'm/s²', dec: 1, onInput: reset, aria: 'size of the acceleration' });
-  /* Eight labels riding eight arrows that travel with four cars is more than the eye can hold, so
-     rule 26.7 puts them behind a Labels button, off by default; the hover name and the line of
-     numbers beside each road say which car is which whether the button is on or off. */
-  const LAB = F.choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'labels on the arrows' });
+  /* Eight labels riding eight arrows that travel with four cars would sit on moving things, so none
+     is drawn (rule 26.7): the coloured numbers beside each road name v and a, and the hover name
+     says which car is which. */
   const T = () => v0.v / am.v;
   const cy = cycle(T, 1.2);
   function reset() { cy.reset(); }
@@ -234,7 +233,7 @@ function topCar(ctx, x, y, heading, color) {
   F.hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = cy.now(), done = tau >= T() - 1e-9, on = LAB.value === 'on';
+    const tau = cy.now(), done = tau >= T() - 1e-9;
     /* The four roads carry no scale and no ticks: this figure is about the signs of v and a, not
        about distance, so each road is simply the room the cars need to run in. Every number the
        reader is meant to take away is written beside the road and in the readout. */
@@ -252,10 +251,6 @@ function topCar(ctx, x, y, heading, color) {
       carDir(ctx, px, y - 6, PAL.ink, 1.1, sv);
       if (Math.abs(vel) > 0.2) arrow(ctx, px, y - 58, px + vel * 4, y - 58, C('velocity'), 5);
       arrow(ctx, px, y + 44, px + sa * am.v * 20, y + 44, C('acceleration'), 5);
-      if (on) {
-        text(ctx, 'v', px + vel * 4 + 16 * sv, y - 58, C('velocity'), { weight: 600, size: 24, align: 'center' });
-        text(ctx, 'a', px + sa * am.v * 20 + 16 * sa, y + 44, C('acceleration'), { weight: 600, size: 24, align: 'center' });
-      }
       pair(ctx, 'v =', signed(vel, 1) + ' m/s', 1040, y - 16, C('velocity'), 20);
       pair(ctx, 'a =', signed(sa * am.v, 1) + ' m/s²', 1040, y + 18, C('acceleration'), 20);
       next.push({ x: px, y: y - 20, r: 60, name: 'Car ' + lab + ', ' + what });

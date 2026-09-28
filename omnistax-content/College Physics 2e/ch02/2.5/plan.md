@@ -124,7 +124,7 @@ headline · graph · 2D or 3D
    the farthest the sliders can send the dragster. Labels on, six of
    them. Small line: at half the time the dragster has gone a quarter of
    the distance when it starts from rest, and more than a quarter with a
-   running start. Draws acceleration, position, time, velocity.
+   running start. Draws acceleration, position, time, velocity. Revised 2026-09-28: starting from rest is a special value on $\kvo$ (label "from rest"); on it the readout morphs by meaning into the book's $\kx = \tfrac{1}{2}\ka\kt^2$, $\kxo$ and $\kvo\kt$ leaving the equation, and away from it they come back (manim 8, 11, 14).
 6. `sim-braking` · Figure 2.33 + 2.34 (the sketch for Example 2.12 and
    the book's diagram of braking distances) · v-squared, choose-equation
    · variation by slider: the same speed and the same driver on two road

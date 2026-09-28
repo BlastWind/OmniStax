@@ -1,7 +1,7 @@
 /* Figures for section 1.3 Accuracy, Precision, and Significant Figures. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.3'] = function (root, F) {
-const { el, fmt, tex, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, dot, text, headline, hbracket, vbracket, strip, nice, FONT } = F;
+const { el, fmt, tex, PAL, alpha, ctl, register, begin, line, dot, text, headline, hbracket, vbracket, strip, nice } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -31,7 +31,6 @@ function restaurant(ctx, x, y, color) {
   ctx.beginPath(); for (let i = 0; i < 4; i++) ctx.arc(x - 25 + 17 * i, y - 4, 8.5, 0, Math.PI); ctx.fill();   /* the awning */
   ctx.fillRect(x - 8, y + 4, 16, 22);                                                        /* the door */
   ctx.strokeRect(x + 12, y + 6, 12, 10);                                                     /* the window */
-  text(ctx, 'CAFÉ', x, y - 24, PAL.panel, { size: 9, weight: 700, align: 'center' });
   ctx.restore();
 }
 function bar(ctx, x, y, w, h, filled) {
@@ -39,9 +38,8 @@ function bar(ctx, x, y, w, h, filled) {
 }
 /* one line of text in several colours: runs of [string, colour, weight], left-aligned at x */
 function runs(ctx, parts, x, y, size) {
-  ctx.save(); ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; let cx = x;
-  for (const [s, c, w] of parts) { text(ctx, s, cx, y, c, { size, weight: w || 400 }); ctx.font = F.shownFont(`${w || 400} ${size}px ${FONT}`); cx += ctx.measureText(s).width; }
-  ctx.restore();
+  let cx = x;
+  for (const [s, c, w] of parts) { if (!s) continue; text(ctx, s, cx, y, c, { size, weight: w || 400 }); cx += F.measure(ctx, s, { size, weight: w || 400 }); }
 }
 
 /* =====================================================================
@@ -91,7 +89,7 @@ function runs(ctx, parts, x, y, size) {
 ===================================================================== */
 (function () {
   const d = sim('sim-percent', 560);
-  const A = ctl(d.controls, { label: 'A', cls: '', min: 1, max: 10, step: 0.1, value: 5.1, unit: 'lb', dec: 1, aria: 'average weight' });
+  const A = ctl(d.controls, { label: 'A', cls: '', min: 1, max: 10, step: 0.1, value: 5.1, unit: 'lb', dec: 1, specials: [{ at: 5.1, label: 'Example 1.2' }], aria: 'average weight' });
   const dA = ctl(d.controls, { label: '\\delta A', cls: '', min: 0.1, max: 1, step: 0.1, value: 0.4, unit: 'lb', dec: 1, aria: 'uncertainty in the weight' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const WEEKS = [4.8, 5.3, 4.9, 5.4];
@@ -175,25 +173,22 @@ function runs(ctx, parts, x, y, size) {
    from the left over four seconds and stops with its zero at the stick's
    left end. Beneath, a magnified view of the end of the stick against
    the ruler's marks at the chosen division, with the two marks the end
-   lies between bracketed as the estimated digit. Finite, so it gets the
-   scrubber; reduced motion draws it aligned.
+   lies between bracketed as the estimated digit. The slide is the
+   figure's arrival on first view, not a clock: a reading has no time in
+   it, so there is no transport and a control redraws at once.
 ===================================================================== */
 (function () {
   const d = sim('sim-ruler', 500);
-  const Lc = ctl(d.controls, { label: '\\text{length}', cls: '', min: 10, max: 50, step: 0.01, value: 36.71, unit: 'cm', dec: 2, onInput: reset, aria: 'true length of the stick' });
+  const Lc = ctl(d.controls, { label: '\\text{length}', cls: '', min: 10, max: 50, step: 0.01, value: 36.71, unit: 'cm', dec: 2, aria: 'true length of the stick' });
   /* The smallest division is one of three rulers, not a quantity to slide through, so it is a choice (rule 26.1). */
   const DIVS = { cm: { cm: 1, dec: 0, name: 'centimeter divisions' }, mm: { cm: 0.1, dec: 1, name: 'millimeter divisions' }, tenth: { cm: 0.01, dec: 2, name: '0.1 mm divisions' } };
-  const Dv = F.choice(d.controls, { label: '\\text{smallest division}', options: [{ value: 'cm', label: '1 cm' }, { value: 'mm', label: '1 mm' }, { value: 'tenth', label: '0.1 mm' }], value: 'mm', aria: 'smallest division of the ruler', onInput: reset });
-  const T = 4;
-  const cy = cycle(() => T, 1.5);
-  function reset() { cy.reset(); }
-  const ease = (u) => 1 - Math.pow(1 - u, 3);
+  const Dv = F.choice(d.controls, { label: '\\text{smallest division}', options: [{ value: 'cm', label: '1 cm' }, { value: 'mm', label: '1 mm' }, { value: 'tenth', label: '0.1 mm' }], value: 'mm', aria: 'smallest division of the ruler' });
   const X0 = 200, K = 22, YS = 140, SLIDE = 760;
   const BOX = { l: 175, r: 1225, t: 262, b: 470 }, WIN = 1.5, KM = (BOX.r - BOX.l) / WIN;
   function draw() {
     const { ctx } = begin(d.c);
     const dv = DIVS[Dv.value] ?? DIVS.mm;
-    const u = REDUCED ? 1 : ease(Math.min(1, cy.now() / T)), aligned = u >= 1 - 1e-6;
+    const u = F.ease.out(F.arrival(d)), aligned = u >= 1 - 1e-6;
     const L = Lc.v, reading = L.toFixed(dv.dec), n = sigfigs(L, dv.dec), last = reading[reading.length - 1];
     const slide = -(1 - u) * SLIDE, sw = slide / K;
     /* the scene: the stick on a strip, the ruler sliding in beneath it */
@@ -237,7 +232,7 @@ function runs(ctx, parts, x, y, size) {
     readout(d.readout, `L = ${reading}\\ \\text{cm}`,
       'The last digit written down is the first with some uncertainty. A ruler marked in centimeters gives ' + L.toFixed(0) + ' cm, ' + words(sigfigs(L, 0)) + ' figures, and a caliper reading to 0.1 mm gives ' + L.toFixed(2) + ' cm, ' + words(sigfigs(L, 2)) + '.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+  register(d.fig, { update: () => {}, draw });
 })();
 
 /* =====================================================================

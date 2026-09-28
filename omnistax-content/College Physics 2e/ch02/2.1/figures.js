@@ -35,47 +35,56 @@ function bike(ctx, x, y, color, dir, phase) {
   const W = F.choice(d.controls, { label: '\\text{who moves}', options: [{ value: 'professor', label: 'professor' }, { value: 'passenger', label: 'passenger' }], value: 'professor', aria: 'who moves', onInput: preset });
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 8, step: 0.5, value: 1.5, unit: 'm', dec: 1 });
   const xf = ctl(d.controls, { label: '\\kxf', cls: 'position', min: 0, max: 8, step: 0.5, value: 3.5, unit: 'm', dec: 1, aria: 'final position' });
-  function preset(v) { const w = WHO[v]; x0.set(w.x0); xf.set(w.xf); }
+  /* a change of frame glides the two positions from where they were to the book's numbers for it */
+  let was = { x0: x0.v, xf: xf.v };
+  function preset(v) { const w = WHO[v]; was = { x0: x0.v, xf: xf.v }; x0.set(w.x0); xf.set(w.xf); }
   /* the axis is a fixed 0 to 8 m, the range of the two position sliders, and never follows their values */
   function draw() {
     const { ctx } = begin(d.c);
-    const w = WHO[W.value] ?? WHO.professor, dx = xf.v - x0.v, face = dx < 0 ? -1 : 1;
+    const w = WHO[W.value] ?? WHO.professor, k = W.k;
+    const p0 = was.x0 + (x0.v - was.x0) * k, pf = was.xf + (xf.v - was.xf) * k;
+    const dx = pf - p0, face = dx < 0 ? -1 : 1;
     const L = 110, R = 1290, y = 336; const X = (m) => L + (R - L) * m / 8;
     /* the reference frame the section names, drawn as a room: the professor's wall with its whiteboard,
        or the cabin of the airplane with its row of windows; the person stands on its floor */
     const top = 92, floor = 252;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(L - 30, top, R - L + 60, floor - top); ctx.restore();
-    if (W.value === 'passenger') {
+    /* the room's own furniture fades and drifts as the frame changes; the floor, the person and the axis stay */
+    const room = (v, paint) => { const a = W.a(v); if (a <= 0) return; const [ox, oy] = W.off(v, [0, -24]); ctx.save(); ctx.globalAlpha = a; ctx.translate(ox, oy); paint(); ctx.restore(); };
+    room('passenger', () => {
       ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2;
       for (let sx = L + 10; sx < R; sx += 96) { ctx.beginPath(); ctx.roundRect(sx, top + 18, 44, 40, 10); ctx.fill(); ctx.stroke(); }
       ctx.restore();
       /* overhead bins run above the windows */
       line(ctx, L - 30, top + 8, R + 30, top + 8, PAL.rule, 3);
-    } else {
+      text(ctx, WHO.passenger.frame, R + 30, top - 14, PAL.muted, { size: 17, align: 'right' });
+    });
+    room('professor', () => {
       ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.fillRect(L + 60, top + 16, 520, 96); ctx.strokeRect(L + 60, top + 16, 520, 96); ctx.restore();
       [40, 62, 84].forEach((dy, i) => line(ctx, L + 84, top + dy, L + 84 + [300, 220, 360][i], top + dy, PAL.rule, 2));
-    }
+      text(ctx, WHO.professor.frame, R + 30, top - 14, PAL.muted, { size: 17, align: 'right' });
+    });
     line(ctx, L - 30, floor, R + 30, floor, PAL.muted, 3);
-    text(ctx, w.frame, R + 30, top - 14, PAL.muted, { size: 17, align: 'right' });
     /* the person where the motion ended, and a faint trace of them where it began */
-    ctx.save(); ctx.globalAlpha = 0.3; person(ctx, X(x0.v), floor, PAL.ink, { face }); ctx.restore();
-    person(ctx, X(xf.v), floor, PAL.ink, { face });
+    ctx.save(); ctx.globalAlpha = 0.3; person(ctx, X(p0), floor, PAL.ink, { face }); ctx.restore();
+    person(ctx, X(pf), floor, PAL.ink, { face });
     /* the displacement, an arrow at chest height from where the person was to where they are */
     const ay = floor - 62;
-    if (Math.abs(dx) >= 0.25) { arrow(ctx, X(x0.v), ay, X(xf.v), ay, C('position'), 5); text(ctx, 'Δx = ' + sgn(dx, 1) + ' m', (X(x0.v) + X(xf.v)) / 2, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) }); }
-    else text(ctx, 'Δx = 0', X(x0.v) + 40, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
+    if (Math.abs(dx) >= 0.25) { arrow(ctx, X(p0), ay, X(pf), ay, C('position'), 5); text(ctx, 'Δx = ' + sgn(dx, 1) + ' m', (X(p0) + X(pf)) / 2, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) }); }
+    else text(ctx, 'Δx = 0', X(p0) + 40, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the axis under the floor, the two positions dropped onto it */
     line(ctx, L - 30, y, R + 30, y, PAL.muted, 3); scale(ctx, X, 0, 8, 1, y, 'm', 1);
-    line(ctx, X(x0.v), floor, X(x0.v), y, C('position'), 2, [4, 8]); line(ctx, X(xf.v), floor, X(xf.v), y, C('position'), 2, [4, 8]);
-    dot(ctx, X(x0.v), y, C('position'), false, 11); dot(ctx, X(xf.v), y, C('position'), true, 11);
-    const apart = Math.abs(X(xf.v) - X(x0.v)) > 60;
-    text(ctx, 'x_0', X(x0.v) + (apart ? 0 : -22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
-    text(ctx, 'x_f', X(xf.v) + (apart ? 0 : 22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
-    const dir = dx > 0 ? 'to the right' : 'to the left';
-    topline(ctx, Math.abs(dx) < 0.25
+    line(ctx, X(p0), floor, X(p0), y, C('position'), 2, [4, 8]); line(ctx, X(pf), floor, X(pf), y, C('position'), 2, [4, 8]);
+    dot(ctx, X(p0), y, C('position'), false, 11); dot(ctx, X(pf), y, C('position'), true, 11);
+    const apart = Math.abs(X(pf) - X(p0)) > 60;
+    text(ctx, 'x_0', X(p0) + (apart ? 0 : -22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
+    text(ctx, 'x_f', X(pf) + (apart ? 0 : 22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
+    const dxv = xf.v - x0.v;
+    const dir = dxv > 0 ? 'to the right' : 'to the left';
+    topline(ctx, Math.abs(dxv) < 0.25
       ? 'The displacement is zero, since ' + w.who + ' ends where ' + w.pron + ' started, whatever path ' + w.pron + ' took.'
-      : 'The displacement of ' + w.who + ' is ' + fmt(xf.v, 1) + ' m − ' + fmt(x0.v, 1) + ' m = ' + sgn(dx, 1) + ' m, which is ' + fmt(Math.abs(dx), 1) + ' m ' + dir + '.');
-    tex(d.readout, `\\kdx = \\kxf - \\kxo = ${fmt(xf.v, 1)}\\ \\text{m} - ${fmt(x0.v, 1)}\\ \\text{m} = ${dx >= 0 ? '+' : ''}${fmt(dx, 1)}\\ \\text{m}`);
+      : 'The displacement of ' + w.who + ' is ' + fmt(xf.v, 1) + ' m − ' + fmt(x0.v, 1) + ' m = ' + sgn(dxv, 1) + ' m, which is ' + fmt(Math.abs(dxv), 1) + ' m ' + dir + '.');
+    tex(d.readout, `\\kdx = \\kxf - \\kxo = ${fmt(xf.v, 1)}\\ \\text{m} - ${fmt(x0.v, 1)}\\ \\text{m} = ${dxv >= 0 ? '+' : ''}${fmt(dxv, 1)}\\ \\text{m}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

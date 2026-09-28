@@ -182,13 +182,17 @@ function dragster(ctx, x, y, color, s = 1) {
 })();
 
 /* =====================================================================
-   SIM 5: the dragster, x = x0 + v0 t + ½ a t²
+   SIM 5: the dragster, x = x0 + v0 t + ½ a t². Starting from rest is a
+   special value on v₀; there x₀ and v₀t leave the equation, which
+   bends into the book's x = ½at², and away from it they come back.
 ===================================================================== */
 (function () {
   const d = sim('sim-dragster', 680);
-  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 0, unit: 'm/s', dec: 1, onInput: reset });
+  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 0, unit: 'm/s', dec: 1, specials: [{ at: 0, label: 'from rest' }], onInput: reset });
   const a = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 1, max: 30, step: 0.1, value: 26, unit: 'm/s²', dec: 1, onInput: reset });
   const t = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 8, step: 0.01, value: 5.56, unit: 's', dec: 2, onInput: reset });
+  const eqHost = el('div'), note = el('small');
+  d.readout.append(eqHost, note);
   const cy = cycle(() => t.v, 1.4);
   function reset() { cy.reset(); }
   const pos = (s) => v0.v * s + 0.5 * a.v * s * s;
@@ -219,8 +223,11 @@ function dragster(ctx, x, y, color, s = 1) {
     dot(ctx, GX(t.v / 2), GY(xh), C('position'), false, 10); dot(ctx, GX(t.v), GY(xe), C('position'), true, 10);
     dot(ctx, GX(tau), GY(pos(tau)), PAL.ink, true, 9);
     headline(ctx, 'After ' + fmt(tau, 2) + ' s the dragster is at x = ' + fmt(pos(tau), 0) + ' m, since the distance covered grows with the square of the time.');
-    tex(d.readout, `\\kx = \\kxo + \\kvo\\kt + \\tfrac{1}{2}\\ka\\kt^2 = 0 + (${fmt(v0.v, 1)})(${fmt(t.v, 2)}) + \\tfrac{1}{2}(${fmt(a.v, 1)})(${fmt(t.v, 2)})^2 = ${fmt(xe, 0)}\\ \\text{m}`);
-    const s = el('small', null, 'At half the time, t/2 = ' + fmt(t.v / 2, 2) + ' s, the dragster has gone ' + fmt(xh, 0) + ' m' + (v0.v === 0 ? ', exactly one fourth of the distance.' : '. With a running start it is more than a fourth.')); d.readout.appendChild(s);
+    const rest = v0.v === 0;
+    const half = `\\mk{half}{\\tfrac{1}{2}\\ka\\kt^2}`, halfN = `\\mk{halfn}{\\tfrac{1}{2}(${fmt(a.v, 1)})(${fmt(t.v, 2)})^2}`, res = `\\mk{xv}{${fmt(xe, 0)}\\ \\text{m}}`;
+    F.morph(eqHost, rest ? `\\mk{x}{\\kx} = ${half} = ${halfN} = ${res}`
+      : `\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{v0t}{\\kvo\\kt} + ${half} = \\mk{x0n}{0} + \\mk{v0tn}{(${fmt(v0.v, 1)})(${fmt(t.v, 2)})} + ${halfN} = ${res}`);
+    note.textContent = 'At half the time, t/2 = ' + fmt(t.v / 2, 2) + ' s, the dragster has gone ' + fmt(xh, 0) + ' m' + (rest ? ', exactly one fourth of the distance.' : '. With a running start it is more than a fourth.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

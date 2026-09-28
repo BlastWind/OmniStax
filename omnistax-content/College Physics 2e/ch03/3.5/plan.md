@@ -103,7 +103,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    $\theta = \tan^{-1}(\kvy/\kvx) = 32.0°$, with the book's small-angle
    discussion as the small line; with the heading off 90° the readout
    shows $\kvx = \kvriver + \kvboat\cos\phi$ and the small line says
-   where the boat lands. Draws velocity.
+   where the boat lands. Draws velocity. Revised 2026-09-28: a heading of 90°, straight across, the book's case, is a special value on the heading.
 2. `sim-plane` · replaces Figure 3.41 (the plane carried west by the
    wind) · relative-velocity · a plane pointed due north flies over a
    map while the wind's streaks drift across it; the plane's track runs

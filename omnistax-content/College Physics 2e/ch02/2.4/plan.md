@@ -129,17 +129,16 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    to stop, its velocity arrow growing or shrinking every frame while
    its acceleration arrow keeps its length and sign · starting speed
    (5 to 30 m/s, default 15, velocity hue), size of the acceleration
-   (1.0 to 6.0 m/s², default 3.0, acceleration hue), and a Labels button
+   (1.0 to 6.0 m/s², default 3.0, acceleration hue)
    · "After 2.4 s cars (b) and (c) are decelerating, while (b) and (d)
    are the ones whose acceleration is negative." · none · 2D. The four
    roads carry no scale and no ticks, since the figure is about the signs
    of v and a rather than about distance, and every number the reader is
    meant to take away is written beside the road and in the readout.
-   Labels off by default behind a Labels button: eight letters riding
-   eight arrows that travel with four cars is more than the eye can
-   hold, so rule 26.7 puts them there, and the hover name over each car
-   and the line of numbers beside each road say which is which whether
-   the button is on or off. Moving: speeding up and slowing down are
+   No letters ride the arrows: eight labels on eight arrows that travel
+   with four cars sit on moving things, so by rule 26.7 they are not
+   drawn; the coloured line of numbers beside each road names v and a
+   by hue, and the hover name over each car says which it is. Moving: speeding up and slowing down are
    things that happen as time runs. Finite, one loop of v₀/|a| seconds
    in about 5 real seconds, scrubber. Readout: v = v₀ + at written out
    with the live numbers for each of the four cars. Draws velocity,

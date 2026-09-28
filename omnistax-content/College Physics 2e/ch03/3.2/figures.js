@@ -285,15 +285,29 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     }
     return [px, py];
   }
+  /* the tail of each of A, B and C when laid in the given order, as one flat list, so a change of
+     order glides every arrow from its old place to its new one instead of cutting */
+  function tails(order, degs) {
+    const out = [0, 0, 0, 0, 0, 0]; let px = ox, py = oy;
+    for (const i of order) { out[2 * i] = px; out[2 * i + 1] = py; [px, py] = tip(px, py, MAG[i] * S, degs[i]); }
+    return out;
+  }
   function draw() {
     const { ctx } = begin(d.c);
     const k = Number(O.value), degs = [TA.v, TB.v, TC.v];
+    const at = O.mix((v) => tails(ORDERS[Number(v)], degs));
+    const refA = O.from === O.value ? (k !== 0 ? 1 : 0) : k === 0 ? 1 - O.k : O.from === '0' ? O.k : 1;
     const lab = labeller(ctx, 940); lab.block(0, 0, 1400, 96); lab.block(1040, 96, 1400, 220);
     line(ctx, ox - 430, oy, ox + 430, oy, PAL.rule, 2); line(ctx, ox, oy - 420, ox, oy + 410, PAL.rule, 2);
     text(ctx, 'east', ox + 430, oy + 20, PAL.muted, { size: 15, align: 'right' });
     /* the reference walk, A then B then C, carries no labels: each leg is named once, on the chosen order */
-    if (k !== 0) path(ctx, ORDERS[0], degs, alpha(PAL.ink, 0.45), 3, null);
-    const [ex, ey] = path(ctx, ORDERS[k], degs, C('position'), 5, lab);
+    if (refA > 0) path(ctx, ORDERS[0], degs, alpha(PAL.ink, 0.45 * refA), 3, null);
+    [0, 1, 2].forEach((i) => {
+      const px = at[2 * i], py = at[2 * i + 1], [hx, hy] = tip(px, py, MAG[i] * S, degs[i]);
+      arrow(ctx, px, py, hx, hy, C('position'), 5);
+      const nx = (hy - py) / (MAG[i] * S), ny = -(hx - px) / (MAG[i] * S); lab.add(NAMES[i], (px + hx) / 2, (py + hy) / 2, nx, ny, C('position'), 22, 22);
+    });
+    const [ex, ey] = [0, 1, 2].reduce(([x, y], i) => tip(x, y, MAG[i] * S, degs[i]), [ox, oy]);
     const pol = polar(ex - ox, oy - ey), r = pol.r / S, deg = pol.deg;
     arrow(ctx, ox, oy, ex, ey, C('position'), 6.5);
     if (r > 0.5) { const L = r * S, nx = (ey - oy) / L, ny = -(ex - ox) / L; lab.add('R = ' + fmt(r, 1) + ' m', (ox + ex) / 2, (oy + ey) / 2, nx, ny, C('position'), 22, 30); }

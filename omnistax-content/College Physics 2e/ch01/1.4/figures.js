@@ -1,7 +1,7 @@
 /* Figures for section 1.4 Approximation. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.4'] = function (root, F) {
-const { el, fmt, tex, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, text, headline, topline, vbracket, nice } = F;
+const { el, fmt, tex, PAL, alpha, ctl, register, begin, line, text, headline, topline, vbracket, nice } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -25,25 +25,24 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
 
 /* =====================================================================
    SIM 1: the height of a building. A person stands beside a building
-   on a common ground line, and the stories stack up one by one to the
-   set count while a bracket on the right reads the running height. The
+   on a common ground line, and the stories stack up one by one, a
+   staggered arrival on first view, while a bracket on the right reads
+   the running height; after that a slider redraws at once. The
    ground story is shown magnified on the left with the persons that
    make it up, since at 39 stories a person to scale is a few units
-   tall. Finite motion, so it gets the scrubber.
+   tall. An estimate has no time in it, so there is no transport.
 ===================================================================== */
 (function () {
   const d = sim('sim-building', 620);
-  const N = ctl(d.controls, { label: '\\text{stories}', cls: '', min: 1, max: 100, step: 1, value: 39, unit: '', dec: 0, onInput: reset, aria: 'number of stories' });
-  const P = ctl(d.controls, { label: '\\text{person}', cls: '', min: 1.5, max: 2, step: 0.1, value: 2, unit: 'm', dec: 1, onInput: reset, aria: 'height of a person' });
-  const S = ctl(d.controls, { label: '\\text{persons per story}', cls: '', min: 1, max: 3, step: 0.5, value: 2, unit: '', dec: 1, onInput: reset, aria: 'persons per story' });
-  const T = 4;
-  const cy = cycle(() => T, 1.4);
-  function reset() { cy.reset(); }
+  const N = ctl(d.controls, { label: '\\text{stories}', cls: '', min: 1, max: 100, step: 1, value: 39, unit: '', dec: 0, aria: 'number of stories' });
+  const P = ctl(d.controls, { label: '\\text{person}', cls: '', min: 1.5, max: 2, step: 0.1, value: 2, unit: 'm', dec: 1, aria: 'height of a person' });
+  const S = ctl(d.controls, { label: '\\text{persons per story}', cls: '', min: 1, max: 3, step: 0.5, value: 2, unit: '', dec: 1, aria: 'persons per story' });
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = REDUCED ? T : cy.now(), done = tau >= T - 1e-9;
+    const kA = F.arrival(d), done = kA >= 1;
     const story = P.v * S.v, total = N.v * story;
-    const n = done ? N.v : Math.min(N.v, Math.floor((tau / T) * N.v + 1e-6)), up = n * story;
+    let grown = 0; for (let i = 0; i < N.v; i++) grown += F.stagger(kA, i, N.v, 0.1);
+    const n = done ? N.v : Math.ceil(grown - 1e-6), up = (done ? N.v : grown) * story;
     /* The ground line, and a scale fixed once from the tallest the sliders allow: 100 stories of
        2.0 m per person and 3 persons per story is 600 m, drawn 440 units high. It never follows the
        building, so one story and a hundred stories are drawn as different as they are. */
@@ -87,7 +86,7 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
     readout(d.readout, `\\frac{${num(P.v)}\\ \\text{m}}{1\\ \\text{person}} \\times \\frac{${num(S.v)}\\ \\text{${S.v === 1 ? 'person' : 'persons'}}}{1\\ \\text{story}} \\times ${N.v}\\ \\text{${N.v === 1 ? 'story' : 'stories'}} ${exact ? '=' : '\\approx'} ${Math.round(total)}\\ \\text{m}`,
       'The estimate is only as good as its inputs. A person is between 1.5 and 2 m tall and a story holds between one and a half and three of them, so the height is known to within a factor of about two, which is what an approximation gives.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+  register(d.fig, { update: () => {}, draw });
 })();
 
 /* =====================================================================
@@ -97,22 +96,21 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
    100-bill stacks rises on the field to its final height, which is
    computed from the set amount and thickness with the field's true
    area and rounded to one significant figure as the example does.
-   Finite motion, so it gets the scrubber.
+   The pile rises as the figure's arrival on first view; after that a
+   slider redraws at once, and there is no transport.
 ===================================================================== */
 (function () {
   const d = sim('sim-trillion', 640);
-  const A = ctl(d.controls, { label: '\\text{amount}', cls: '', min: 0.1, max: 30, step: 0.1, value: 1, unit: 'trillion dollars', dec: 1, onInput: reset, aria: 'amount in trillions of dollars' });
-  const TH = ctl(d.controls, { label: '\\text{stack thickness}', cls: '', min: 0.3, max: 0.7, step: 0.05, value: 0.5, unit: 'in.', dec: 2, onInput: reset, aria: 'thickness of a stack of 100 bills' });
-  const T = 5, AREA = 6480000;   /* the field between the end zones, 100 yd by 50 yd, in square inches */
-  const cy = cycle(() => T, 1.4);
-  function reset() { cy.reset(); }
+  const A = ctl(d.controls, { label: '\\text{amount}', cls: '', min: 0.1, max: 30, step: 0.1, value: 1, unit: 'trillion dollars', dec: 1, specials: [{ at: 28, label: '2021 debt' }], aria: 'amount in trillions of dollars' });
+  const TH = ctl(d.controls, { label: '\\text{stack thickness}', cls: '', min: 0.3, max: 0.7, step: 0.05, value: 0.5, unit: 'in.', dec: 2, aria: 'thickness of a stack of 100 bills' });
+  const AREA = 6480000;   /* the field between the end zones, 100 yd by 50 yd, in square inches */
   const volumeOf = (trillions) => (trillions * 1e12 / 1e4) * 6 * 3 * TH.v;   /* stacks of 10,000 dollars, each 6 in. by 3 in. by the set thickness */
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = REDUCED ? T : cy.now(), done = tau >= T - 1e-9;
+    const k = F.ease.out(F.arrival(d)), done = k >= 1;
     const vol = volumeOf(A.v), Hin = vol / AREA, Hft = Hin / 12;
     const H1 = round1(Hin), F1 = round1(H1 / 12);
-    const h = Hft * (done ? 1 : tau / T);
+    const h = Hft * k;
     /* the field in side view: the end zones shaded, the yard line ticked every 10 yd */
     const G = 560, fx0 = 240, fx1 = 1300, ez = (fx1 - fx0) / 12, gx0 = fx0 + ez, gx1 = fx1 - ez, Xy = (yd) => gx0 + ((gx1 - gx0) * yd) / 100;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(fx0, G, fx1 - fx0, 24); ctx.fillStyle = alpha(PAL.muted, 0.25); ctx.fillRect(fx0, G, ez, 24); ctx.fillRect(gx1, G, ez, 24); ctx.restore();
@@ -146,8 +144,8 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
     topline(ctx, done ? amount + ' in $100 bills covers the field to a height of about ' + plain(H1) + ' in., ' + (F1 >= 1 ? 'or about ' + plain(F1) + ' ft' : 'which is less than a foot') + (over ? ', which is taller than the scale on the left reaches.' : '.')
       : 'The stacks are being laid down, and the pile is ' + dec(h) + ' ft high so far.');
     readout(d.readout, `\\text{height} = \\frac{${sci(vol)}\\ \\text{in.}^{3}}{6.48 \\times 10^{6}\\ \\text{in.}^{2}} = ${dec(Hin)}\\ \\text{in.} \\approx ${sci(H1)}\\ \\text{in.} = ${plain(F1)}\\ \\text{ft}`,
-      'Before rounding, the pile is ' + dec(Hin) + ' in. or ' + dec(Hft) + ' ft high, and the example keeps only one significant figure because its inputs are that rough. Set the amount to 28 trillion, the federal debt of 2021 the example mentions, and the pile rises to about ' + plain(round1(round1(volumeOf(28) / AREA) / 12)) + ' ft, taller than most buildings.');
+      'Before rounding, the pile is ' + dec(Hin) + ' in. or ' + dec(Hft) + ' ft high, and the example keeps only one significant figure because its inputs are that rough. At 28 trillion, the federal debt of 2021 the example mentions, the pile rises to about ' + plain(round1(round1(volumeOf(28) / AREA) / 12)) + ' ft, taller than most buildings.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+  register(d.fig, { update: () => {}, draw });
 })();
 };

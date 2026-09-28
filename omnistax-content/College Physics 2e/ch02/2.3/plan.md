@@ -143,7 +143,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    velocity over it settles to the instantaneous velocity, which is what
    the text means by an infinitesimally small interval. Keeps the book's
    number 2.9, the book's image as its original and the book's caption.
-   Draws position, time, velocity.
+   Draws position, time, velocity. Revised 2026-09-28: the narrowest interval, 0.10 s, is a special value on $\kdt$ (label "instant"); there the chord lies on the tangent and the readout morphs by meaning, $\kvb = \kdx/\kdt$ bending into $\kv \approx \kdx/\kdt$ and the separate $\kv$ term folding into it (manim 8, 11). Value add: the text's limit is seen in the formula, not only stated.
 4. `sim-store` · replaces Figure 2.10 · average-speed, average-velocity,
    distance-traveled, displacement · a road from home at the left to the
    store at the right; a car drives out to the store and part or all of
@@ -169,7 +169,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    the car stopping halfway home, the displacement is 1.5 km and the
    average velocity 3.0 km/h away from home while the average speed is
    9.0 km/h. Keeps the book's number 2.10, the book's image as its
-   original and the book's caption. Draws position, time, velocity.
+   original and the book's caption. Draws position, time, velocity. Revised 2026-09-28: 100 % of the way home is a special value (label "round trip"), where the displacement is zero.
 5. `sim-trip-graphs` · replaces Figure 2.11 · average-speed,
    average-velocity, instantaneous-velocity, instantaneous-speed · the
    same round trip as Figure 2.10 drawn three ways under a short strip
@@ -200,7 +200,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    This is the figure that serves `instantaneous-speed`; a figure of its
    own would only draw the same graph again. Keeps the book's number
    2.11, the book's image as its original and the book's caption. Draws
-   position, time, velocity.
+   position, time, velocity. Revised 2026-09-28: 100 % of the way home is a special value (label "round trip").
 
 Photographs, one:
 
