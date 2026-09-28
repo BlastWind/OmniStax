@@ -258,3 +258,5 @@ the section built out of `F.mesh` boxes and cylinders is left where it is: no
 other section of the chapter draws a hand in 3D, so the library gains nothing
 by holding one yet, and the note stands here for the section that wants a
 second.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-rhr-1`: the choice that showed or hid the right hand is gone and the hand is always drawn (rule 26.7); θ carries a dashed circle at 90°, the right angle of Example 22.1 where the sine is 1; changing the sign of the charge shrinks the force into the plane and grows it out of the other side. `sim-tesla`: a new field slides the field's mark and the force's mark along their decades rather than jumping; the readout's note and the caption no longer speak of the scale or the readout.

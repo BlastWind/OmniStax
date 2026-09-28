@@ -87,19 +87,28 @@ function carrier(ctx, x, y, color, sign, r) {
     /* the charge that has gathered on the two faces: the carriers are driven
        to the lower face whichever sign they carry, so the lower face takes
        their sign and the upper face the other */
-    const lower = neg ? '−' : '+', upper = neg ? '+' : '−';
-    for (const x of SIGNX) {
-      text(ctx, upper, x, YT + 26, qc, { size: 30, weight: 700, align: 'center' });
-      text(ctx, lower, x, YB - 26, qc, { size: 30, weight: 700, align: 'center' });
-    }
+    /* a change of carrier turns every sign over, each fading as the other arrives,
+       and turns the drift round through nothing rather than cutting */
+    const bySign = (f) => ['e', 'p'].forEach((v) => {
+      const a = who.a(v);
+      if (a <= 0) return;
+      ctx.save(); ctx.globalAlpha = a; f(v === 'e'); ctx.restore();
+    });
+    bySign((n) => {
+      const lower = n ? '−' : '+', upper = n ? '+' : '−';
+      for (const x of SIGNX) {
+        text(ctx, upper, x, YT + 26, qc, { size: 30, weight: 700, align: 'center' });
+        text(ctx, lower, x, YB - 26, qc, { size: 30, weight: 700, align: 'center' });
+      }
+    });
 
     /* the carriers, drifting against the current when they are negative and
        with it when they are positive */
-    for (const x of CARX) carrier(ctx, x, YM, qc, neg ? '−' : '+', 13);
-    const vx = neg ? -1 : 1, tip = HX + vx * 130;
-    arrow(ctx, HX + vx * 24, YM, tip, YM, vc, 5);
-    label(ctx, 'v_d = ' + fmt(vs.v, 2) + ' mm/s', (HX + tip) / 2, YM, { side: 'above', size: 21, color: vc, gap: 30 });
-    carrier(ctx, HX, YM, qc, neg ? '−' : '+', 16);
+    bySign((n) => { for (const x of CARX) carrier(ctx, x, YM, qc, n ? '−' : '+', 13); });
+    const vx = who.mix((v) => (v === 'e' ? -1 : 1)), tip = HX + vx * 130;
+    if (Math.abs(vx) > 0.2) arrow(ctx, HX + vx * 24, YM, tip, YM, vc, 5);
+    label(ctx, 'v_d = ' + fmt(vs.v, 2) + ' mm/s', HX + (neg ? -1 : 1) * 77, YM, { side: 'above', size: 21, color: vc, gap: 30 });
+    bySign((n) => carrier(ctx, HX, YM, qc, n ? '−' : '+', 16));
     arrow(ctx, HX, YM + 26, HX, YM + 96, fc, 5);
     label(ctx, 'F', HX, YM + 62, { side: 'left', size: 22, color: fc, gap: 18 });
 
@@ -109,8 +118,10 @@ function carrier(ctx, x, y, color, sign, r) {
     line(ctx, X1, YB - 40, MX, YB - 40, PAL.muted, 3); line(ctx, MX, YB - 40, MX, MY + 44, PAL.muted, 3);
     ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.arc(MX, MY, 44, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, neg ? 'ε' : '−ε', MX, MY, ec, { size: 28, weight: 700, align: 'center' });
-    text(ctx, neg ? 'positive at the top' : 'negative at the top', MX, MY + 74, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+    bySign((n) => {
+      text(ctx, n ? 'ε' : '−ε', MX, MY, ec, { size: 28, weight: 700, align: 'center' });
+      text(ctx, n ? 'positive at the top' : 'negative at the top', MX, MY + 74, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+    });
 
     /* what the two marks in the slab are */
     text(ctx, 'F is the magnetic force on that carrier, and the circled dots are the magnetic field coming out of the page.', 680, 590, PAL.muted, { size: 19, align: 'center' });
@@ -200,14 +211,14 @@ function carrier(ctx, x, y, color, sign, r) {
     text(ctx, 'ε = ' + volt(emf).n + ' ' + volt(emf).u + ' across the width', 680, 566, uc, { size: 23, weight: 600, align: 'center' });
 
     /* what each mark in the slab is, once, in a legend */
-    text(ctx, 'B = ' + fmt(B, 3) + ' T, coming out of the front face, drawn as circled dots', 60, 608, bc, { size: 20, weight: 600 });
+    text(ctx, 'B = ' + fmt(B, 3) + ' T, coming out of the front face, the circled dots', 60, 608, bc, { size: 20, weight: 600 });
     text(ctx, 'E = ' + fmt(E, 4) + ' V/m, running from the positive face down to the negative one', 60, 638, ec, { size: 20, weight: 600 });
     text(ctx, 'F = qvB downward and F_e = qE upward, equal at the balance, so the gathering stops', 60, 668, fc, { size: 20, weight: 600 });
 
     topline(ctx, 'The electric force on the electron is as large as the magnetic force and points the other way, so the field between the faces holds at ' + fmt(E, 4) + ' V/m and the charge stops gathering.');
     readout(d.readout,
-      `\\kq\\kEf = \\kq\\kv\\kBmag,\\ \\text{so}\\ \\kEf = \\kv\\kBmag = ${fmt(E, 4)}\\ \\text{V/m},\\quad \\kemfhall = \\kBmag l \\kv = ${volt(emf).n}\\ ${volt(emf).tex}`,
-      'The charge cancels from the balance, so the field the separation settles at does not depend on how much charge each carrier holds; the width of the conductor then turns that field into the Hall emf, which is why a wider conductor gives a larger reading at the same field and the same speed.');
+      `\\kemfhall = \\kBmag l \\kv = ${volt(emf).n}\\ ${volt(emf).tex}`,
+      `At the balance qE = qvB, so the field between the faces is E = vB = ${fmt(E, 4)} V/m. ` + 'The charge cancels from the balance, so the field the separation settles at does not depend on how much charge each carrier holds; the width of the conductor then turns that field into the Hall emf, which is why a wider conductor gives a larger reading at the same field and the same speed.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

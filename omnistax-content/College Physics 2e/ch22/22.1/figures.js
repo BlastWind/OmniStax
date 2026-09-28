@@ -1,10 +1,10 @@
 /* Figures for section 22.1 Magnets. Boots against the section's text article.
-   The page binds force alone, from the two arrows of the pair of magnets; every
+   The page binds no type; every
    angle, latitude, length, gap and count here is untyped and in ink, and no body
-   is tinted, a bar magnet being ink with N and S lettered on its ends. All three
+   is tinted, a bar magnet being ink with N and S lettered on its ends. Both
    figures answer their controls and register no cycle: a hanging magnet has
-   settled, a pair of magnets is held, and a cut magnet is a state the reader
-   steps through. */
+   settled, and a cut magnet is a state the reader steps through. Figure 22.5
+   is the book's own image. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['22.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, label, angleArc, hover } = F;
@@ -95,75 +95,22 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
     const where = latS.v === 0 ? 'over the equator' : `${fmt(Math.abs(latS.v), 0)}° ${latS.v > 0 ? 'north' : 'south'} of the equator`;
     topline(ctx, `A magnet hung ${where} points ${fmt(ang, 1)}° away from the direction of the geographic North Pole.`);
     readout(d.readout,
-      `\\text{tilt} = ${fmt(tiltS.v, 0)}^\\circ \\qquad \\text{latitude} = ${fmt(latS.v, 0)}^\\circ \\qquad \\text{the magnet points } ${fmt(ang, 1)}^\\circ \\text{ from geographic north}`,
-      'Drag the tilt to zero and the hanging magnet points straight at the geographic North Pole from anywhere on the globe; tilt Earth’s magnet and the two directions part company.');
-  }
-  register(d.fig, { update: () => {}, draw });
-})();
-
-/* =====================================================================
-   FIGURE 22.5: two bar magnets laid end to end, either of which may be
-   turned around. Still: the force is a state of the arrangement.
-===================================================================== */
-(function () {
-  const d = sim('sim-attract-repel', 520);
-  const leftC = choice(d.controls, { label: '\\text{left magnet}', options: [{ value: 'N', label: 'N on the right' }, { value: 'S', label: 'S on the right' }], value: 'N', aria: 'which pole of the left magnet faces the gap' });
-  const rightC = choice(d.controls, { label: '\\text{right magnet}', options: [{ value: 'S', label: 'S on the left' }, { value: 'N', label: 'N on the left' }], value: 'S', aria: 'which pole of the right magnet faces the gap' });
-  const gapS = ctl(d.controls, { label: '\\text{gap}', cls: '', min: 1, max: 10, step: 0.5, value: 3, unit: 'cm', dec: 1, aria: 'the gap between the two magnets' });
-  const CX = 700, CY = 290, L = 300, T = 96, S = 22;   /* 22 units to the centimetre */
-
-  function draw() {
-    const { ctx } = begin(d.c);
-    const g = gapS.v * S;
-    const lc = CX - g / 2 - L / 2, rc = CX + g / 2 + L / 2;
-    const facing = leftC.value + rightC.value;           /* the two poles across the gap */
-    const alike = leftC.value === rightC.value;
-    /* the bars, lettered in their upper halves so that the force arrow can run through
-       the body along the lower half, anchored at the magnet's centre */
-    bar(ctx, lc, CY, L, T, 0, '', '', 0);
-    bar(ctx, rc, CY, L, T, 0, '', '', 0);
-    const LY = CY - T * 0.2;
-    [[lc, leftC.value === 'N' ? 'S' : 'N', leftC.value], [rc, rightC.value, rightC.value === 'N' ? 'S' : 'N']].forEach(([cx0, a, b]) => {
-      text(ctx, a, cx0 - L * 0.25, LY, PAL.ink, { size: 36, weight: 700, align: 'center' });
-      text(ctx, b, cx0 + L * 0.25, LY, PAL.ink, { size: 36, weight: 700, align: 'center' });
-    });
-    /* the force on each magnet, from its centre toward the other when the facing poles
-       differ and away from it when they are alike */
-    const len = 60 + 200 * Math.pow(1 / gapS.v, 0.6);
-    const inward = Math.min(len, L / 2 + g / 2 - 8);
-    const reach = alike ? len : inward, sgn = alike ? -1 : 1;
-    const AY = CY + T * 0.24, col = C('force');
-    dot(ctx, lc, AY, col, true, 6); dot(ctx, rc, AY, col, true, 6);
-    arrow(ctx, lc, AY, lc + sgn * reach, AY, col, 5);
-    arrow(ctx, rc, AY, rc - sgn * reach, AY, col, 5);
-    label(ctx, 'F', lc + sgn * reach, AY, { side: alike ? 'left' : 'below', size: 24, color: col, leader: false, gap: 14 });
-    label(ctx, 'F', rc - sgn * reach, AY, { side: alike ? 'right' : 'above', size: 24, color: col, leader: false, gap: 14 });
-    label(ctx, 'left magnet', lc, CY + T / 2, { side: 'below', size: 19, leader: false });
-    label(ctx, 'right magnet', rc, CY + T / 2, { side: 'below', size: 19, leader: false });
-    /* the gap itself */
-    const GY = CY + T / 2 + 56;
-    line(ctx, CX - g / 2, GY, CX + g / 2, GY, alpha(PAL.ink, 0.55), 2.5);
-    [-1, 1].forEach((s2) => line(ctx, CX + s2 * g / 2, GY - 12, CX + s2 * g / 2, GY + 12, alpha(PAL.ink, 0.55), 2.5));
-    text(ctx, 'gap, ' + fmt(gapS.v, 1) + ' cm', CX, GY + 34, PAL.muted, { size: 18, align: 'center' });
-    text(ctx, 'The pull or the push strengthens quickly as the gap closes.', 700, 470, PAL.muted, { size: 18, align: 'center' });
-    const words = alike
-      ? `The poles that face each other are both ${facing[0] === 'N' ? 'north' : 'south'} poles, so each magnet is pushed away from the other.`
-      : 'The poles that face each other are a north and a south, so each magnet is pulled toward the other.';
-    topline(ctx, words);
-    readout(d.readout,
-      `\\text{facing poles: } \\text{${facing[0]} and ${facing[1]}} \\qquad \\text{gap} = ${fmt(gapS.v, 1)}\\ \\text{cm} \\qquad \\kF \\text{ points } \\text{${alike ? 'outward' : 'inward'}}`,
-      alike ? 'Like poles repel. Turn either magnet around and the arrows change ends.' : 'Unlike poles attract. Turn either magnet around and the arrows change ends.');
+      `\\text{the magnet points } ${fmt(ang, 1)}^\\circ \\text{ from geographic north}`,
+      `With Earth’s magnet tilted ${fmt(tiltS.v, 0)}° from the rotation axis, the two directions part company. Were it not tilted at all, a hanging magnet would point straight at the geographic North Pole from anywhere on the globe.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
 
 /* =====================================================================
    FIGURE 22.6: the magnet cut again and again. Still: the cuts are states
-   the reader steps through, and a knife would add nothing to the count.
+   the reader steps through, and a knife would add nothing to the count. A
+   new cut does not redraw the stack: each new row slides down out of the
+   one above it, its pieces parting at the cut (manim 16).
 ===================================================================== */
 (function () {
   const d = sim('sim-split-magnet', 600);
-  const cutS = ctl(d.controls, { label: '\\text{cuts}', cls: '', min: 0, max: 4, step: 1, value: 3, unit: '', dec: 0, detents: [0, 1, 2, 3, 4], aria: 'how many times the magnet is cut' });
+  const cutC = choice(d.controls, { label: '\\text{cuts}', options: [0, 1, 2, 3, 4].map((n) => ({ value: String(n), label: String(n) })), value: '3', aria: 'how many times the magnet is cut' });
+  const cutS = { get v() { return +cutC.value; } };
   const whereS = ctl(d.controls, { label: '\\text{where the cut falls}', cls: '', min: 40, max: 60, step: 5, value: 50, unit: '%', dec: 0, aria: 'where along each piece the cut falls, as a percentage of its length' });
   const X0 = 300, W = 1020, ROW = 82, Y0 = 150, TH = 46, NOTE_Y = 560;
 
@@ -176,19 +123,32 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const rows = pieces(), n = cutS.v;
+    const n = cutS.v, was = +cutC.from, lo = Math.min(n, was), hi = Math.max(n, was);
+    const rows = stages(hi, whereS.v / 100);
+    /* how far row k has split off the row above: 1 for rows both states hold, and
+       for the rows the change adds or takes away, staggered from the top down */
+    const part = (k) => {
+      if (k <= lo) return 1;
+      const i = n > was ? k - lo - 1 : hi - k, q = F.stagger(cutC.k, i, hi - lo, 0.25);
+      return n > was ? q : 1 - q;
+    };
     rows.forEach((row, k) => {
-      const y = Y0 + k * ROW;
-      text(ctx, k === 0 ? 'the magnet' : `after ${wd(k)} ${k === 1 ? 'cut' : 'cuts'}`, X0 - 24, y, PAL.muted, { size: 18, align: 'right' });
+      const p = part(k);
+      if (p <= 0) return;
+      const y = Y0 + (k - 1 + p) * ROW;
+      ctx.save(); ctx.globalAlpha = k === 0 ? 1 : Math.min(1, p * 1.6);
+      text(ctx, k === 0 ? 'the magnet' : `after ${wd(k)} ${k === 1 ? 'cut' : 'cuts'}`, X0 - 24, k === 0 ? Y0 : y, PAL.muted, { size: 18, align: 'right' });
       row.forEach(([a, b]) => {
-        const x1 = X0 + a * W + 3, x2 = X0 + b * W - 3, w = x2 - x1;
-        bar(ctx, (x1 + x2) / 2, y, w, TH, 0, 'N', 'S', Math.min(26, w * 0.30));
+        const x1 = X0 + a * W + 3 * p, x2 = X0 + b * W - 3 * p, w = x2 - x1;
+        bar(ctx, (x1 + x2) / 2, k === 0 ? Y0 : y, w, TH, 0, 'N', 'S', Math.min(26, w * 0.30));
       });
+      ctx.restore();
       /* where the next cut will fall */
-      if (k < n) row.forEach(([a, b]) => {
+      const q = k < hi ? Math.min(p, part(k + 1)) : 0;
+      if (q > 0) row.forEach(([a, b]) => {
         if ((b - a) * W < 46) return;
         const x = X0 + (a + (whereS.v / 100) * (b - a)) * W;
-        line(ctx, x, y - TH / 2 - 12, x, y + TH / 2 + 12, alpha(PAL.ink, 0.8), 2.5, [6, 5]);
+        line(ctx, x, y - TH / 2 - 12, x, y + TH / 2 + 12, alpha(PAL.ink, 0.8 * q), 2.5, [6, 5]);
       });
     });
     const k = Math.pow(2, n);
@@ -197,8 +157,8 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
       ? 'Before any cut the magnet is one magnet, with a north pole at one end and a south pole at the other.'
       : `${cap(wd(n))} ${n === 1 ? 'cut leaves' : 'cuts leave'} ${COUNT[n]} shorter magnets, ${POLES[n]} poles and not one pole on its own.`);
     readout(d.readout,
-      `2^{${n}} = ${k}\\ \\text{pieces} \\qquad ${2 * k}\\ \\text{poles} \\qquad 0\\ \\text{poles on their own}`,
-      'Move the cut off the middle and the pieces come out unequal, but the count of poles standing alone is still zero.');
+      `2^{${n}} = ${k}\\ \\text{pieces}`,
+      `The ${k === 1 ? 'magnet has' : `${k} pieces have`} ${2 * k} poles between them and not one pole on its own. A cut that falls off the middle leaves the pieces unequal, but every piece still has both poles.`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {

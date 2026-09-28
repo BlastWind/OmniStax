@@ -292,3 +292,5 @@ each circle, the tangent field arrow 22.9 draws and the compass 22.3 stands on
 the line. A bar magnet's closed lines keep the plain rule and carry no head.
 Figure 22.40's row keeps its one original, since the book's two panels ship as
 a single image file, and `config.md` now says so.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-parallel-wires`: the choice of view is gone (rule 26.7); the book's two panels stand side by side, the locked perspective on the left and the end view on the right; reversing wire 2 turns its current, its field line and both forces over through nothing. `sim-pinch-effect`: the note speaks of the model, not the drawing.

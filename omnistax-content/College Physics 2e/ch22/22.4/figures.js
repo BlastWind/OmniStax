@@ -59,17 +59,18 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
   const signC = choice(d.controls, { label: '\\text{the charge}', options: [{ value: 'pos', label: 'positive' }, { value: 'neg', label: 'negative' }], value: 'pos', aria: 'the sign of the charge that crosses the field' });
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 15, step: 0.5, value: 10, unit: 'm/s', dec: 1, aria: 'the speed of the charge through the field' });
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 1, step: 0.05, value: 0.5, unit: 'G', dec: 2, aria: 'the strength of the magnetic field, in gauss' });
-  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the velocity of the charge and the magnetic field' });
-  const handC = choice(d.controls, { label: '\\text{the right hand}', options: [{ value: 'on', label: 'shown' }, { value: 'off', label: 'hidden' }], value: 'on', aria: 'whether the right hand of the rule is drawn over the three vectors' });
+  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, specials: [{ at: 90, label: 'sin θ = 1' }], aria: 'the angle between the velocity of the charge and the magnetic field' });
 
   const V_MAX = 15, B_MAX = 1, F_MAX = Q_C * V_MAX * B_MAX * G_TO_T;   /* 3.0 × 10⁻¹¹ N, and the graph's axis */
   const LV = 2.0, LB = 2.0, LF = 3.2, R_DISC = 1.9;
   const state = () => {
     const th = thS.v * RAD, s = signC.value === 'pos' ? 1 : -1;
+    /* the sign turning over: the force shrinks into the plane and grows out of the other side */
+    const sm = signC.mix((v) => (v === 'pos' ? 1 : -1));
     const sn = (thS.v === 0 || thS.v === 180) ? 0 : Math.sin(th);      /* exactly zero along the field, not a rounding crumb */
     const B_T = bS.v * G_TO_T, Fv = Q_C * vS.v * B_T * sn;
     /* x east, y up, z south: the field runs due north and the velocity swings from north through west */
-    return { th, s, sn, B_T, Fv, vdir: [-Math.sin(th), 0, -Math.cos(th)], bdir: [0, 0, -1], fdir: [0, -s, 0] };
+    return { th, s, sm, sn, B_T, Fv, vdir: [-Math.sin(th), 0, -Math.cos(th)], bdir: [0, 0, -1], fdir: [0, -s, 0] };
   };
   const dirWord = () => {
     const st = state();
@@ -159,9 +160,8 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     S.comp.forEach((e) => { e.style.color = PAL.muted; });
     const lv = LV * (vS.v / V_MAX), lf = LF * (st.Fv / F_MAX), lb = bS.v > 0 ? LB : 0;
     const vt = [st.vdir[0] * lv, 0, st.vdir[2] * lv];
-    const bt = [0, 0, -lb], ft = [0, st.fdir[1] * lf, 0];
+    const bt = [0, 0, -lb], ft = [0, -st.sm * lf, 0];
     S.v.set([0, 0, 0], vt); S.B.set([0, 0, 0], bt); S.F.set([0, 0, 0], ft);
-    S.hand.visible = handC.value === 'on';
     F.mesh.setStick(S.thumb, [st.vdir[0] * 0.33, 0.62, st.vdir[2] * 0.33], [st.vdir[0] * 0.95, 0.62, st.vdir[2] * 0.95]);
     /* the field lines: one to every tenth of a gauss, spread across the plane */
     const n = Math.round(bS.v * 10);
@@ -187,7 +187,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     }
     S.arc.children.forEach((c) => { try { c.material.color.set(PAL.muted); } catch (e) { /* left as it was */ } });
     V.move(S.lab.v, [vt[0] * 0.62, 0, vt[2] * 0.62]); V.move(S.lab.B, [0, 0, bt[2] * 0.5]);
-    V.move(S.lab.F, ft); V.move(S.lab.q, [1.15, -0.08, 0.85]); V.move(S.lab.th, S.arcPt ?? [0.9, 0, -0.9]);
+    V.move(S.lab.F, ft); S.lab.F.style.opacity = String(Math.abs(st.sm)); V.move(S.lab.q, [1.15, -0.08, 0.85]); V.move(S.lab.th, S.arcPt ?? [0.9, 0, -0.9]);
     S.lab.v.textContent = 'v'; S.lab.B.textContent = 'B'; S.lab.F.textContent = 'F';
     S.lab.q.textContent = 'q = ' + (st.s > 0 ? '+' : '\u2212') + '20 nC';
     S.lab.th.textContent = 'θ = ' + fmt(thS.v, 0) + '°';
@@ -260,7 +260,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     drawGraph(ctx, st, hasGL ? 40 : 536);
     readout(d.readout,
       `\\kF = \\kq\\kv\\kBmag\\sin\\theta = (${st.s > 0 ? '' : '-'}20 \\times 10^{-9}\\ \\text{C})(${fmt(vS.v, 1)}\\ \\text{m/s})(${sciTex(st.B_T, 2)}\\ \\text{T})\\sin ${fmt(thS.v, 0)}^\\circ = ${st.Fv > 0 ? sciTex(st.Fv, 1) : '0'}\\ \\text{N}`,
-      'The field is set in gauss, the smaller unit the section names, and the readout gives it in teslas: 0.50 G is the 5 × 10⁻⁵ T of the Earth’s field at its surface, so the figure opens on Example 22.1 and gives its answer of 1 × 10⁻¹¹ N. Point the thumb of your right hand along the velocity and your fingers along the field, and your palm pushes the way the force arrow goes; a negative charge is pushed into the palm instead. The arrows are drawn to a fixed scale, the velocity at its full length when the speed is 15 m/s and the force at its full length when the force is 3.0 × 10⁻¹¹ N, and the field is drawn with one line to every tenth of a gauss.');
+      'The field is set in gauss, the smaller unit the section names, and written in teslas in the equation: 0.50 G is the 5 × 10⁻⁵ T of the Earth’s field at its surface, and at 10 m/s and 90° this is Example 22.1, with its answer of 1 × 10⁻¹¹ N. Point the thumb of your right hand along the velocity and your fingers along the field, and your palm pushes the way the force arrow goes; a negative charge is pushed into the palm instead. The arrows are drawn to a fixed scale, the velocity at its full length when the speed is 15 m/s and the force at its full length when the force is 3.0 × 10⁻¹¹ N, and the field is drawn with one line to every tenth of a gauss.');
   }
 
   if (hasGL) {
@@ -296,6 +296,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
   const qS = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 100, step: 1, value: 20, unit: 'nC', dec: 0, aria: 'the charge that crosses the field' });
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 1, max: 100, step: 1, value: 10, unit: 'm/s', dec: 0, aria: 'the speed at which the charge crosses the field' });
   const now = () => FIELDS.find((f) => f.v === fieldC.value) ?? FIELDS[0];
+  const lgOf = (v) => Math.log10((FIELDS.find((f) => f.v === v) ?? FIELDS[0]).B);
 
   const GX = { l: 160, r: 1240 };
   const B_LO = -5.4, B_HI = 1.4, F_LO = -14.4, F_HI = -3.6;       /* fixed from the three fields and the slider maxima */
@@ -319,34 +320,37 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
   function draw() {
     const { ctx } = begin(d.c);
     const f = now(), Fv = force(), BC = C('magnetic-field'), FC = C('force');
+    /* a new field slides the force mark along its decades rather than jumping */
+    const lgB = fieldC.mix(lgOf), Fm = qS.v * 1e-9 * vS.v * Math.pow(10, lgB);
     /* the field, in teslas above the line and in gauss below it */
     text(ctx, 'magnetic field strength B (T), each step a factor of ten', GX.l, 124, PAL.ink, { align: 'left', weight: 600, size: 20 });
     decades(ctx, YB, XB, B_LO, B_HI, 4, false);
     text(ctx, 'the same field in gauss (G)', GX.r, YB + 62, PAL.ink, { align: 'right', weight: 600, size: 20 });
     FIELDS.forEach((k, i) => {
       const x = XB(Math.log10(k.B)), on = k.v === f.v, col = on ? BC : PAL.muted, up = TIER[i];
-      dot(ctx, x, YB, BC, on, on ? 12 : 9);
+      dot(ctx, x, YB, BC, false, 9);
       if (up) line(ctx, x, YB - 14, x, YB - 20 - up, alpha(PAL.ink, 0.35), 2, [4, 6]);
       text(ctx, k.disp, x, YB - 54 - up, col, { size: 17, align: 'center', bg: PAL.panel });
       text(ctx, k.short, x, YB - 78 - up, col, { size: on ? 21 : 18, weight: 600, align: 'center', bg: PAL.panel });
     });
+    dot(ctx, XB(lgB), YB, BC, true, 12);
     /* the charge the reader has set, and the force that field puts on it */
     text(ctx, 'A charge of ' + fmt(qS.v, 0) + ' nC crossing that field at ' + fmt(vS.v, 0) + ' m/s at right angles', 700, 356, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'is pushed with the force marked below.', 700, 382, PAL.muted, { size: 19, align: 'center' });
     const xr = XF(Math.log10(1e-11));
-    const near = Math.abs(Math.log10(Math.max(Fv, 1e-15)) + 11) < 0.45;   /* the reader's own force is standing on the book's mark */
+    const near = Math.abs(Math.log10(Math.max(Fm, 1e-15)) + 11) < 0.45;   /* the reader's own force is standing on the book's mark */
     line(ctx, xr, YF - 14, xr, YF - (near ? 30 : 52), alpha(PAL.ink, 0.35), 2, [4, 6]);
     if (!near) text(ctx, 'the glass rod of Example 22.1', xr, YF - 68, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
     decades(ctx, YF, XF, F_LO, F_HI, null, true);
     text(ctx, 'the force F on that charge (N), each step a factor of ten', GX.r, YF + 62, PAL.ink, { align: 'right', weight: 600, size: 20 });
-    const xf = XF(Math.log10(Math.max(Fv, 1e-15)));
+    const xf = XF(Math.log10(Math.max(Fm, 1e-15)));
     dot(ctx, xf, YF, FC, true, 12);
     text(ctx, sci(Fv, 1) + ' N', xf, YF - 34, FC, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     if (near) text(ctx, 'the glass rod of Example 22.1', xf, YF - 60, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
     topline(ctx, `${f.name.charAt(0).toUpperCase() + f.name.slice(1)} is ${f.disp}, or ${f.gauss}, and it pushes a ${fmt(qS.v, 0)} nC charge crossing it at ${fmt(vS.v, 0)} m/s at right angles with ${sci(Fv, 1)} N.`);
     readout(d.readout,
       `\\kBmag = \\frac{\\kF}{\\kq\\kv\\sin\\theta} = \\frac{${sciTex(Fv, 1)}\\ \\text{N}}{(${fmt(qS.v, 0)} \\times 10^{-9}\\ \\text{C})(${fmt(vS.v, 0)}\\ \\text{m/s})} = ${f.tex}\\ \\text{T}`,
-      'Read the other way round, this is the definition the section gives: the strength of a field is the force it exerts on a charge, divided by the charge and by the speed at which the charge crosses it. The scale makes plain how far apart the three fields stand. A superconducting electromagnet is two hundred thousand times the Earth’s field, and even so the force on a charge anyone can rub onto a glass rod stays too small to feel, which is why the section says the effect is negligible on any macroscopic object.');
+      'Read the other way round, this is the definition the section gives: the strength of a field is the force it exerts on a charge, divided by the charge and by the speed at which the charge crosses it. The three fields stand far apart: a superconducting electromagnet is two hundred thousand times the Earth’s field, and even so the force on a charge anyone can rub onto a glass rod stays too small to feel, which is why the section says the effect is negligible on any macroscopic object.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

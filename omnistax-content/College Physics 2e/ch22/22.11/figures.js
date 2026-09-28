@@ -186,8 +186,8 @@ function legend(ctx, mark, x, y, s, color) {
     const sep = 2 * (rOf(ions[1].m) - rOf(ions[0].m));
     topline(ctx, `At ${sci(vS.v * 1e6, 2)} m/s in a ${fmt(bS.v, 3)} T field, oxygen-16 turns a half circle ${fmt(rOf(M16), 3)} m in radius and oxygen-18 one of ${fmt(rOf(ions[1].m), 3)} m, so the two land ${fmt(sep, 3)} m apart on the detector.`);
     readout(d.readout,
-      `\\kr = \\frac{m\\kv}{\\kq\\kBmag} = \\frac{(${sciTex(M16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(rOf(M16), 3)}\\ \\text{m} \\qquad 2\\kr_{18} - 2\\kr_{16} = ${fmt(sep, 3)}\\ \\text{m}`,
-      `Drag the speed or the field and both arcs tighten together, but the gap between the two landing points shrinks with them, which is why a spectrometer is built to hold the speed and the field steady while the sample changes. The lighter ion lands first, since its arc is the shorter and both ions travel at the same speed.`);
+      `2\\kr_{18} - 2\\kr_{16} = \\frac{2(m_{18} - m_{16})\\kv}{\\kq\\kBmag} = \\frac{2(${sciTex(ions[1].m - M16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(sep, 3)}\\ \\text{m}`,
+      `Oxygen-16 turns a half circle of radius r = mv/qB = ${fmt(rOf(M16), 3)} m. A higher field or a lower speed tightens both arcs together, but the gap between the two landing points shrinks with them, which is why a spectrometer is built to hold the speed and the field steady while the sample changes. The lighter ion lands first, since its arc is the shorter and both ions travel at the same speed.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 5), draw });
 })();
@@ -202,8 +202,10 @@ function legend(ctx, mark, x, y, s, color) {
 ===================================================================== */
 (function () {
   const H = 700, d = sim('sim-velocity-selector', H);
-  const eS = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 1.00, max: 2.00, step: 0.01, value: 1.50, unit: '× 10⁶ V/m', dec: 2, aria: 'the electric field between the plates' });
-  const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.500, max: 0.700, step: 0.005, value: 0.600, unit: 'T', dec: 3, aria: 'the magnetic field across the plates' });
+  const eS = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 1.00, max: 2.00, step: 0.01, value: 1.50, unit: '× 10⁶ V/m', dec: 2, aria: 'the electric field between the plates',
+    specials: [1.50, 2.50, 3.50].map((v6) => ({ at: () => v6 * bS.v, label: fmt(v6, 1) + ' × 10⁶ m/s passes' })) });
+  const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.500, max: 0.700, step: 0.005, value: 0.600, unit: 'T', dec: 3, aria: 'the magnetic field across the plates',
+    specials: [1.50, 2.50, 3.50].map((v6) => ({ at: () => eS.v / v6, label: fmt(v6, 1) + ' × 10⁶ m/s passes' })) });
   const signC = choice(d.controls, { label: '\\text{the ions}', options: [{ value: 'pos', label: 'positive' }, { value: 'neg', label: 'negative' }], value: 'pos', aria: 'the sign of the charge on the ions' });
   const SC = 6000;                                       /* units to the metre */
   const X0 = 140, AX = 330, L = 0.200, GAP = 0.0300;     /* the channel: where it starts, its axis, its length and its gap */
@@ -264,8 +266,8 @@ function legend(ctx, mark, x, y, s, color) {
       text(ctx, s, X0, 540 + i * 28, PAL.muted, { size: 18 }));
     topline(ctx, `A field of ${sci(eS.v * 1e6, 2)} V/m crossed with ${fmt(bS.v, 3)} T passes ${sci(sel(), 2)} m/s, so ${passing.length ? 'that is the one ion of the three that reaches the slit' : 'none of the three ions reaches the slit'}.`);
     readout(d.readout,
-      `\\kq\\kEf = \\kq\\kv\\kBmag \\qquad \\kv = \\frac{\\kEf}{\\kBmag} = \\frac{${sciTex(eS.v * 1e6, 2)}\\,\\text{V/m}}{${fmt(bS.v, 3)}\\,\\text{T}} = ${sciTex(sel(), 2)}\\ \\text{m/s}`,
-      `The charge cancels from the balance, so the speed that is selected is the same for an ion of any charge and any mass. Raise the electric field and the selected speed rises with it; raise the magnetic field and it falls.`);
+      `\\kv = \\frac{\\kEf}{\\kBmag} = \\frac{${sciTex(eS.v * 1e6, 2)}\\,\\text{V/m}}{${fmt(bS.v, 3)}\\,\\text{T}} = ${sciTex(sel(), 2)}\\ \\text{m/s}`,
+      `The electric and magnetic forces balance, qE = qvB, only at that speed. The charge cancels from the balance, so the speed that is selected is the same for an ion of any charge and any mass. Raise the electric field and the selected speed rises with it; raise the magnetic field and it falls.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -295,7 +297,10 @@ function legend(ctx, mark, x, y, s, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const col = { B: C('magnetic-field'), v: C('velocity'), F: C('force'), V: C('voltage'), r: C('position') };
-    const E = el('e-'), into = dirC.value === 'in', s = into ? 1 : -1;   /* +1 sends the beam down the screen */
+    const E = el('e-'), into = dirC.value === 'in';
+    /* +1 sends the beam down the screen; reversing the field swings it through the axis to the other side */
+    const s = dirC.mix((v) => (v === 'in' ? 1 : -1)), aIn = dirC.a('in'), aOut = dirC.a('out');
+    const through = (x, y, r0) => [['in', aIn], ['out', aOut]].forEach(([v, a]) => { if (a > 0) { ctx.save(); ctx.globalAlpha = a; (v === 'in' ? intoPage : outOfPage)(ctx, x, y, alpha(col.B, 0.85), r0); ctx.restore(); } });
     const r = radius(), th = angle(), R = r * SC;
     /* the envelope of the tube, drawn in ink */
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 3;
@@ -310,14 +315,12 @@ function legend(ctx, mark, x, y, s, color) {
     /* the coil's field, drawn between the pole faces of the coil pair */
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 3;
     ctx.strokeRect(XC, AX - 110, XCE - XC, 220); ctx.restore();
-    for (let x = XC + 34; x < XCE; x += 68) for (let y = AX - 76; y <= AX + 76; y += 76) (into ? intoPage : outOfPage)(ctx, x, y, alpha(col.B, 0.85));
+    for (let x = XC + 34; x < XCE; x += 68) for (let y = AX - 76; y <= AX + 76; y += 76) through(x, y);
     text(ctx, 'steering coil', (XC + XCE) / 2, AX - 130, PAL.muted, { size: 19, weight: 600, align: 'center' });
     /* the beam: straight to the coil, an arc across it, straight on to the screen */
     line(ctx, 180, AX, XC, AX, E, 5);
-    const cyC = AX + s * R;                               /* the centre of the arc */
     ctx.save(); ctx.strokeStyle = E; ctx.lineWidth = 5; ctx.beginPath();
-    if (s > 0) ctx.arc(XC, cyC, R, -Math.PI / 2, -Math.PI / 2 + th);
-    else ctx.arc(XC, cyC, R, Math.PI / 2, Math.PI / 2 - th, true);
+    for (let i = 0; i <= 40; i++) { const a = (th * i) / 40, x = XC + R * Math.sin(a), y = AX + s * R * (1 - Math.cos(a)); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
     ctx.stroke(); ctx.restore();
     const xe = XC + R * Math.sin(th), ye = AX + s * R * (1 - Math.cos(th));
     const spotY = AX + s * drop() * SC;
@@ -327,25 +330,27 @@ function legend(ctx, mark, x, y, s, color) {
     text(ctx, 'screen', XS + 16, AX - 170, PAL.muted, { size: 19, weight: 600 });
     dot(ctx, XS, spotY, E, true, 12);
     line(ctx, XC, AX, XS, AX, alpha(PAL.ink, 0.28), 2, [10, 10]);
-    vbracket(ctx, XS - 34, AX, spotY, col.r, fmt(drop() * 100, 2) + ' cm', -1, { H, side: 'left', size: 20 });
+    if (Math.abs(spotY - AX) > 4) vbracket(ctx, XS - 34, AX, spotY, col.r, fmt(drop() * 100, 2) + ' cm', -1, { H, side: 'left', size: 20 });
     /* the force on the electron where it enters the field */
-    arrow(ctx, XC + 8, AX, XC + 8, AX + s * 92, col.F, 5);
-    text(ctx, 'F', XC - 8, AX + s * 70, col.F, { size: 22, weight: 600, align: 'right' });
+    if (Math.abs(s) > 0.1) arrow(ctx, XC + 8, AX, XC + 8, AX + s * 92, col.F, 5);
+    text(ctx, 'F', XC - 8, AX + (into ? 70 : -70), col.F, { size: 22, weight: 600, align: 'right' });
     arrow(ctx, 250, AX - 60, 330, AX - 60, col.v, 4);
     text(ctx, 'v', 290, AX - 80, col.v, { size: 22, weight: 600, align: 'center' });
-    /* right hand rule 1, in the corner, as the book's own figure draws it */
+    /* right hand rule 1, in the corner, as the book's own figure has it */
     const rx = 200, ry = 580;
     text(ctx, 'Right hand rule 1', rx - 80, ry - 150, PAL.muted, { size: 20, weight: 600 });
     arrow(ctx, rx, ry, rx + 110, ry, col.v, 4); text(ctx, 'v', rx + 122, ry, col.v, { size: 22, weight: 600 });
-    (into ? intoPage : outOfPage)(ctx, rx + 54, ry - 40, col.B, 9); text(ctx, 'B', rx + 78, ry - 40, col.B, { size: 22, weight: 600 });
-    arrow(ctx, rx, ry, rx, ry - s * 70, col.F, 4); text(ctx, 'F on a positive charge', rx + 16, ry - s * 86, col.F, { size: 19, weight: 600 });
-    arrow(ctx, rx, ry, rx, ry + s * 70, E, 4); text(ctx, 'F on the electron', rx + 16, ry + s * 86, E, { size: 19, weight: 600 });
+    [['in', aIn], ['out', aOut]].forEach(([v, a]) => { if (a > 0) { ctx.save(); ctx.globalAlpha = a; (v === 'in' ? intoPage : outOfPage)(ctx, rx + 54, ry - 40, col.B, 9); ctx.restore(); } }); text(ctx, 'B', rx + 78, ry - 40, col.B, { size: 22, weight: 600 });
+    if (Math.abs(s) > 0.1) { arrow(ctx, rx, ry, rx, ry - s * 70, col.F, 4); arrow(ctx, rx, ry, rx, ry + s * 70, E, 4); }
+    const sd = into ? 1 : -1;
+    text(ctx, 'F on a positive charge', rx + 16, ry - sd * 86, col.F, { size: 19, weight: 600 });
+    text(ctx, 'F on the electron', rx + 16, ry + sd * 86, E, { size: 19, weight: 600 });
     ['The gun sets the speed and the coil sets the radius, so a faster', 'electron crosses the field in less time and is turned less. A', 'second pair of coils, set at right angles to this one, carries the', 'spot across the screen the other way.'].forEach((str, i) =>
       text(ctx, str, 700, 500 + i * 28, PAL.muted, { size: 18, bg: PAL.panel }));
     topline(ctx, `A ${fmt(uS.v, 1)} kV gun sends electrons across the coil at ${sci(speed(), 2)} m/s, and a ${fmt(bS.v, 3)} mT field bends them onto a circle ${fmt(r, 3)} m in radius, putting the spot ${fmt(drop() * 100, 2)} cm ${into ? 'below' : 'above'} the axis.`);
     readout(d.readout,
-      `\\kq\\kV = \\tfrac{1}{2}m\\kv^2 \\;\\Rightarrow\\; \\kv = ${sciTex(speed(), 2)}\\ \\text{m/s} \\qquad \\kr = \\frac{m\\kv}{\\kq\\kBmag} = ${fmt(r, 3)}\\ \\text{m}`,
-      `Raise the voltage and the spot climbs back toward the axis, because the radius grows with the speed; raise the field and the spot runs away from it. Reversing the coil's field sends the beam the other way, which is how a pair of coils reaches every point on the screen.`);
+      `\\kr = \\frac{m\\kv}{\\kq\\kBmag} = \\frac{(9.11 \\times 10^{-31}\\,\\text{kg})(${sciTex(speed(), 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${sciTex(bS.v * 1e-3, 2)}\\,\\text{T})} = ${fmt(r, 3)}\\ \\text{m}`,
+      `The gun sets the speed through qV = ½mv², which gives ${sci(speed(), 2)} m/s at ${fmt(uS.v, 1)} kV. A higher voltage brings the spot back toward the axis, because the radius grows with the speed, and a stronger field sends it farther away. Reversing the coil's field sends the beam the other way, which is how a pair of coils reaches every point on the screen.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -406,8 +411,10 @@ function legend(ctx, mark, x, y, s, color) {
         ? `The field rises by ${fmt(gS.v, 1)} mT every meter, so the slice ${fmt(p, 2)} m from the head sits in ${fmt(fieldAt(p), 3)} T and is the one the broadcast flips.`
         : `The field runs from ${fmt(b0S.v, 3)} T at the head to ${fmt(fieldAt(LEN), 3)} T at the feet, and ${fmt(tS.v, 3)} T lies outside that range, so no slice of the patient is in resonance.`);
     readout(d.readout,
-      `\\kBmag = ${fmt(b0S.v, 2)}\\,\\text{T} + (${fmt(gS.v, 1)}\\,\\text{mT/m})\\,\\kx \\qquad \\kx = ${inside ? fmt(p, 2) : '\\text{---}'}\\ \\text{m} \\;\\Rightarrow\\; \\kBmag = ${inside ? fmt(fieldAt(p), 3) : '\\text{---}'}\\ \\text{T}`,
-      `Nuclei absorb and reemit a broadcast only where the field has the right strength, so a field that varies along the patient turns a frequency into a position. Flatten the gradient and the position is lost; steepen it and a given tuning picks out a thinner slice.`);
+      inside
+        ? `\\kBmag = \\kBmag_0 + G\\kx = ${fmt(b0S.v, 2)}\\,\\text{T} + (${fmt(gS.v, 1)}\\,\\text{mT/m})(${fmt(p, 2)}\\,\\text{m}) = ${fmt(fieldAt(p), 3)}\\ \\text{T}`
+        : `\\kBmag = \\kBmag_0 + G\\kx = ${fmt(b0S.v, 2)}\\,\\text{T} + (${fmt(gS.v, 1)}\\,\\text{mT/m})\\,\\kx`,
+      `${inside ? '' : 'No slice sits in the tuned field. '}Nuclei absorb and reemit a broadcast only where the field has the right strength, so a field that varies along the patient turns a frequency into a position. With no gradient the position is lost, and a steeper one lets a given tuning pick out a thinner slice.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -434,6 +441,7 @@ function legend(ctx, mark, x, y, s, color) {
   const X = (b) => XL + ((Math.log10(b) - LO) / (HI - LO)) * (XR - XL);
   const factor = () => Math.pow(10, Number(facC.value));
   const bodyB = () => B_EARTH * factor();
+  const LOGS = { mri: Math.log10(1.50), perm: Math.log10(0.500), earth: Math.log10(B_EARTH) };
   const chosen = () => ({ mri: 1.50, perm: 0.500, earth: B_EARTH, body: bodyB() }[srcC.value]);
 
   function draw() {
@@ -452,17 +460,21 @@ function legend(ctx, mark, x, y, s, color) {
       { key: 'mri', b: 1.50, lo: 1.00, hi: 2.00, name: 'an MRI magnet, 1 to 2 T', up: true },
       { key: 'perm', b: 0.500, name: 'a permanent magnet, 0.500 T', up: false },
       { key: 'earth', b: B_EARTH, name: 'the Earth, ' + sci(B_EARTH, 2) + ' T', up: true },
-      { key: 'body', b: bodyB(), name: 'the heart and the brain, ' + sci(bodyB(), 2) + ' T', up: false },
+      { key: 'body', b: B_EARTH * Math.pow(10, facC.mix((v) => Number(v))), name: 'the heart and the brain, ' + sci(bodyB(), 2) + ' T', up: false },
     ];
     const lab = labeller(ctx, H, { headline: 2 });
     marks.forEach((m) => {
-      const x = X(m.b), on = srcC.value === m.key, c = on ? col.B : alpha(PAL.ink, 0.5);
+      const x = X(m.b), on = srcC.value === m.key, c = alpha(PAL.ink, 0.5);
       if (m.lo) { ctx.save(); ctx.fillStyle = alpha(col.B, on ? 0.3 : 0.14); ctx.fillRect(X(m.lo), AXY - 26, X(m.hi) - X(m.lo), 52); ctx.restore(); }
       line(ctx, x, m.up ? AXY - 74 : AXY + 74, x, AXY, c, on ? 5 : 3);
-      dot(ctx, x, AXY, c, true, on ? 12 : 8);
+      dot(ctx, x, AXY, c, true, 8);
       lab.beside({ x1: x, y1: AXY, x2: x, y2: m.up ? AXY - 74 : AXY + 74 }, m.up ? 'left' : 'right', m.name, c, on ? 21 : 19, { offset: 1, gap: 20 });
     });
     lab.flush();
+    /* the chosen field is one mark that slides along the decades to the next choice */
+    const lgBody = Math.log10(B_EARTH) + facC.mix((v) => Number(v));
+    const lgNow = srcC.mix((v) => (v === 'body' ? lgBody : LOGS[v]));
+    dot(ctx, XL + ((lgNow - LO) / (HI - LO)) * (XR - XL), AXY, col.B, true, 13);
     /* the span the scale covers, so the gap is a length on the page */
     hbracket(ctx, X(bodyB()), X(1.50), AXY + 150, alpha(PAL.ink, 0.5),
       fmt(Math.log10(1.50 / bodyB()), 0) + ' decades from an MRI magnet to a beating heart', { H, side: 'below', size: 19 });
@@ -471,8 +483,8 @@ function legend(ctx, mark, x, y, s, color) {
     const b = chosen();
     topline(ctx, `${{ mri: 'The magnet of an MRI unit', perm: 'A permanent magnet', earth: 'The Earth', body: 'The field of the heart and of the brain' }[srcC.value]} reaches about ${sci(b, 2)} T, which is ${srcC.value === 'earth' ? 'the field every compass on the planet answers to' : sci(b / B_EARTH, 2) + ' times the Earth’s own field'}.`);
     readout(d.readout,
-      `\\kBmag = ${sciTex(b, 2)}\\ \\text{T} \\qquad \\frac{\\kBmag}{\\kBmag_\\text{Earth}} = ${sciTex(b / B_EARTH, 2)}`,
-      `The field of the heart and of the brain is 10⁻⁶ to 10⁻⁸ of the Earth's, and the three buttons set each of those three decades in turn.`);
+      `\\kBmag = ${sciTex(b, 2)}\\ \\text{T}`,
+      `${srcC.value === 'earth' ? '' : `That is ${sci(b / B_EARTH, 2)} times the Earth’s field. `}The field of the heart and of the brain is 10⁻⁶ to 10⁻⁸ of the Earth’s.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

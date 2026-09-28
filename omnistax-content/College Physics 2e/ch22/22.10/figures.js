@@ -81,13 +81,14 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
   const i1S = ctl(d.controls, { label: '\\kIcurone', cls: 'current', min: 0, max: 1000, step: 10, value: 800, unit: 'A', dec: 0, aria: 'the current in wire 1' });
   const i2S = ctl(d.controls, { label: '\\kIcurtwo', cls: 'current', min: 0, max: 1000, step: 10, value: 800, unit: 'A', dec: 0, aria: 'the current in wire 2' });
   const rS = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.1, max: 2, step: 0.05, value: 0.75, unit: 'm', dec: 2, aria: 'the distance between the two wires' });
-  const dirC = choice(d.controls, { label: '\\text{wire 2 carries its current}', options: [{ value: 'same', label: 'the same way' }, { value: 'opp', label: 'the opposite way' }], value: 'same', aria: 'which way the current in wire 2 runs' });
-  const viewC = choice(d.controls, { label: '\\text{the view}', options: [{ value: 'persp', label: 'in perspective' }, { value: 'end', label: 'from the end' }], value: 'persp', aria: 'whether the wires are seen in perspective or end-on' });
-  /* The book's own viewpoint for the perspective state: from the right and well
-     above, so that the horizontal field circles read as open ellipses and the two
-     vertical wires stay apart on the canvas at every separation. Never changed and
-     never turned by the reader (rule 28.2). */
-  const V = view({ yaw: 0.55, pitch: 0.34, dist: 2600, cx: 640, cy: 310 });
+  const dirC = choice(d.controls, { label: '\\text{wire 2}', options: [{ value: 'same', label: 'same way' }, { value: 'opp', label: 'opposite way' }], value: 'same', aria: 'which way the current in wire 2 runs' });
+  /* The book's two panels side by side, as the book prints them: on the left its own
+     viewpoint, from the right and well above, so that the horizontal field circles read
+     as open ellipses and the two vertical wires stay apart at every separation, never
+     changed and never turned by the reader (rule 28.2); on the right the same wires
+     seen end-on. Both are drawn at once rather than offered as a choice of view
+     (rule 26.7). */
+  const V = view({ yaw: 0.55, pitch: 0.34, dist: 2600, cx: 350, cy: 310 });
   /* 170 canvas units to the meter of separation in perspective and 300 end-on, both
      fixed: the widest separation the slider reaches, 2.00 m, is 340 and 600 units,
      and the scene is clipped to its own band so that a field circle wider than the
@@ -96,7 +97,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
      0.171 N/m, stands a sixth of the way up it, and the greatest the sliders can
      make together, 2.00 N/m at 1000 A in each wire 0.100 m apart, is carried at the
      top edge by pinned() with its value written beside it. */
-  const SR = 195, SE = 250, SCENE = 575, WY = 150;
+  const SR = 120, SE = 140, SCENE = 575, WY = 150, MID = 700, EX = 1050;
   const BOX = { l: 200, r: 1260, t: 610, b: 826 };
   const FREF = K * 800 * 800 / 0.75, BREF = K * 800 / 0.75;
   let hits = [];
@@ -116,16 +117,18 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
 
   function draw() {
     const { ctx } = begin(d.c);
-    const I1 = i1S.v, I2 = i2S.v, r = rS.v, same = dirC.value === 'same', persp = viewC.value === 'persp';
+    const I1 = i1S.v, I2 = i2S.v, r = rS.v, same = dirC.value === 'same';
     const B1 = K * I1 / r, B2 = K * I2 / r, FL = K * I1 * I2 / r;
     const cB = C('magnetic-field'), cI = C('current'), cF = C('force'), cR = C('position');
-    const pull = same ? 1 : -1;               /* +1 draws each wire pulled toward the other */
+    /* +1 draws each wire pulled toward the other; reversing wire 2 turns its current,
+       its field line and both forces over through nothing rather than cutting */
+    const pull = dirC.mix((v) => (v === 'same' ? 1 : -1)), aSame = dirC.a('same'), aOpp = dirC.a('opp');
     const W = fw(FL, FREF), lw = widthOf(B1);
     const pts = [];
 
-    ctx.save(); ctx.beginPath(); ctx.rect(0, 74, 1400, SCENE - 74); ctx.clip();
-    if (persp) {
-      const D = r * SR, x1 = -D / 2, x2 = D / 2, up2 = same ? 1 : -1;
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 74, MID, SCENE - 74); ctx.clip();
+    {
+      const D = r * SR, x1 = -D / 2, x2 = D / 2, up2 = pull;
       /* the field of wire 1: a circle through wire 2 at each of three heights, and
          two more radii at the middle height so that the falling off with distance
          shows in the drawing as well as on the curve below */
@@ -136,12 +139,12 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       /* the two wires, ink, and the current along each of them */
       [x1, x2].forEach((x) => line3(ctx, [x, -WY, 0], [x, WY, 0], PAL.ink, 7));
       if (I1 > 0.5) arr3(ctx, [x1, -46, 0], [x1, 130, 0], cI, 6);
-      if (I2 > 0.5) arr3(ctx, [x2, -up2 * 74, 0], [x2, up2 * 74, 0], cI, 6);
+      if (I2 > 0.5 && Math.abs(up2) > 0.1) arr3(ctx, [x2, -up2 * 74, 0], [x2, up2 * 74, 0], cI, 6);
       /* the field wire 1 makes where wire 2 stands is at right angles to wire 2 and
          runs away from the reader, which is where RHR-1 takes over from RHR-2 */
       if (B1 > 1e-12) arr3(ctx, [x2, 0, 0], [x2, 0, -76], cB, 5);
       /* the pair of forces, equal in size and opposite in direction (Newton's third law) */
-      if (FL > 1e-12) {
+      if (FL > 1e-12 && Math.abs(pull) > 0.1) {
         arr3(ctx, [x2, 58, 0], [x2 - pull * 118, 58, 0], cF, W);
         arr3(ctx, [x1, -58, 0], [x1 + pull * 118, -58, 0], cF, W);
       }
@@ -156,15 +159,18 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       const pF2 = V.P([x2 - pull * 118, 58, 0]), pF1 = V.P([x1 + pull * 118, -58, 0]);
       label(ctx, 'I₁ = ' + fmt(I1, 0) + ' A', pI1[0], pI1[1], { side: 'left', size: 21, color: cI, H: SCENE });
       label(ctx, 'I₂ = ' + fmt(I2, 0) + ' A', pI2[0], pI2[1], { side: 'right', size: 21, color: cI, H: SCENE });
-      if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', pB[0], pB[1], { side: 'right', size: 21, color: cB, H: SCENE });
+      if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', pB[0], pB[1], { side: 'below', size: 21, color: cB, H: SCENE });
       if (FL > 1e-12) {
         label(ctx, 'F₂/l = ' + num(FL) + ' N/m', pF2[0], pF2[1], { side: 'above', size: 21, color: cF, H: SCENE });
         label(ctx, 'F₁/l = ' + num(FL) + ' N/m', pF1[0], pF1[1], { side: 'below', size: 21, color: cF, H: SCENE });
       }
       pts.push({ p: V.P([x1, 0, 0]), r: 56, name: 'wire 1, carrying ' + fmt(I1, 0) + ' A' }, { p: V.P([x2, 0, 0]), r: 56, name: 'wire 2, carrying ' + fmt(I2, 0) + ' A' });
-    } else {
+    }
+    ctx.save(); ctx.beginPath(); ctx.rect(MID, 74, 1400 - MID, SCENE - 74); ctx.clip();
+    line(ctx, MID, 110, MID, SCENE - 30, alpha(PAL.ink, 0.15), 2);
+    {
       /* the book's second panel: both wires seen end-on, with one field line for each */
-      const D = r * SE, y0 = 300, xa = 700 - D / 2, xb = 700 + D / 2, R = 11;
+      const D = r * SE, y0 = 300, xa = EX - D / 2, xb = EX + D / 2, R = 11;
       /* each field line closes on itself, and the one arrowhead it carries, at the top
          of the circle, gives the sense RHR-2 asks for: counterclockwise about a
          current that comes toward the reader, so the field runs to the left up there */
@@ -174,17 +180,17 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
         arrow(ctx, cx0 + s * 34, y0 - D, cx0 - s * 34, y0 - D, cB, w + 1.5);
       };
       if (I1 > 0.5) ring(xa, true, lw);
-      if (I2 > 0.5) ring(xb, same, widthOf(B2));
+      if (I2 > 0.5) [['same', aSame], ['opp', aOpp]].forEach(([v, a]) => { if (a > 0) { ctx.save(); ctx.globalAlpha = a; ring(xb, v === 'same', widthOf(B2)); ctx.restore(); } });
       /* the field each wire makes where the other one stands, at right angles to the
          line between them, so that RHR-1 sends the force straight along that line */
       if (B1 > 1e-12) arrow(ctx, xb, y0, xb, y0 - 88, cB, 5);
-      if (B2 > 1e-12) arrow(ctx, xa, y0, xa, y0 + (same ? 88 : -88), cB, 5);
+      if (B2 > 1e-12 && Math.abs(pull) > 0.1) arrow(ctx, xa, y0, xa, y0 + pull * 88, cB, 5);
       currentMark(ctx, xa, y0, true, cI, R);
-      currentMark(ctx, xb, y0, same, cI, R);
+      [['same', aSame], ['opp', aOpp]].forEach(([v, a]) => { if (a > 0) { ctx.save(); ctx.globalAlpha = a; currentMark(ctx, xb, y0, v === 'same', cI, R); ctx.restore(); } });
       /* each force arrow is set on the side of its wire that the other wire's field
          arrow has left clear, so that no force crosses a field */
-      const fy2 = y0 + 44, fy1 = y0 + (same ? -44 : 44);
-      if (FL > 1e-12) {
+      const fy2 = y0 + 44, fy1 = y0 - pull * 44;
+      if (FL > 1e-12 && Math.abs(pull) > 0.1) {
         arrow(ctx, xb, fy2, xb - pull * 126, fy2, cF, W);
         arrow(ctx, xa, fy1, xa + pull * 126, fy1, cF, W);
       }
@@ -195,11 +201,12 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       label(ctx, 'I₁ = ' + fmt(I1, 0) + ' A', xa, y0 - 16, { side: 'left', size: 21, color: cI, gap: 30, H: SCENE });
       label(ctx, 'I₂ = ' + fmt(I2, 0) + ' A', xb, y0 + 16, { side: 'right', size: 21, color: cI, gap: 30, H: SCENE });
       if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', xb, y0 - 88, { side: 'above', size: 21, color: cB, H: SCENE });
-      if (FL > 1e-12) {
-        label(ctx, 'F₂/l = ' + num(FL) + ' N/m', xb - pull * 126, fy2, { side: 'below', size: 21, color: cF, H: SCENE });
-        label(ctx, 'F₁/l = ' + num(FL) + ' N/m', xa + pull * 126, fy1, { side: same ? 'above' : 'below', size: 21, color: cF, H: SCENE });
+      if (FL > 1e-12 && Math.abs(pull) > 0.5) {
+        label(ctx, 'F₂/l', xb - pull * 126, fy2, { side: 'below', size: 21, color: cF, H: SCENE });
+        label(ctx, 'F₁/l', xa + pull * 126, fy1, { side: pull > 0 ? 'above' : 'below', size: 21, color: cF, H: SCENE });
       }
-      text(ctx, 'A current is drawn as a dot where it comes toward you and as a cross where it runs away from you.', 700, 546, PAL.muted, { size: 18, align: 'center' });
+      text(ctx, 'A dot is a current coming toward you,', EX, 520, PAL.muted, { size: 18, align: 'center' });
+      text(ctx, 'and a cross one running away from you.', EX, 546, PAL.muted, { size: 18, align: 'center' });
       pts.push({ p: [xa, y0], r: 40, name: 'wire 1, carrying ' + fmt(I1, 0) + ' A' }, { p: [xb, y0], r: 40, name: 'wire 2, carrying ' + fmt(I2, 0) + ' A' });
     }
     hits = pts;
@@ -293,7 +300,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
     label(ctx, 'F/l = ' + fmt(net, 0) + ' N/m', CX + R + 26 + L, CY, { side: 'right', size: 22, color: cF, H: 780 });
     label(ctx, fmt(Is / 1000, 2) + ' kA in each strand', p1.x, p1.y, { side: 'above', size: 20, color: cI, gap: 28, H: 780 });
     label(ctx, fmt(dmm / 2, 2) + ' mm apart', (p0.x + p1.x) / 2, (p0.y + p1.y) / 2, { side: 'above', size: 19, gap: 18, H: 780 });
-    text(ctx, 'The column is drawn as seven strands of equal current. Each of the six on the rim is pulled toward the other six, so that the whole', 700, 650, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'Take the column as seven strands of equal current. Each of the six on the rim is pulled toward the other six, so that the whole', 700, 650, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'column squeezes itself into a narrower tube, while the strand on the axis, pulled equally in every direction, is pulled nowhere at all.', 700, 678, PAL.muted, { size: 18, align: 'center' });
     topline(ctx, `A ${fmt(iS.v, 1)} kA arc ${fmt(dmm, 1)} mm across squeezes itself: each strand of the rim is pulled toward the other six with ${fmt(net, 0)} N on every meter.`);
     readout(d.readout,

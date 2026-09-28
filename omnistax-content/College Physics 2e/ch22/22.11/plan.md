@@ -256,3 +256,5 @@ the images copied for this section is corrected there, to five images on six
 cards with one of them shared with 22.10. The supine pose the MRI figure draws
 for itself is left where it is, and the library gap is recorded for the section
 that wants a person lying down next.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). Readouts to one equation each (manim 12): `sim-mass-spectrometer` the separation; `sim-velocity-selector` v = E/B, with qE = qvB in the small line; `sim-crt-steering` r = mv/qB, with the speed from qV = ½mv² in the small line; `sim-mri-gradient` B = B₀ + Gx with x filled in; `sim-field-scale` B, with the ratio to the Earth in the small line. `sim-velocity-selector`: dashed circles on E and on B at the values that select each of the three ions, v = E/B (rule 26.1). `sim-crt-steering`: reversing the coil's field swings the beam through the axis and crossfades the field marks. `sim-field-scale`: the chosen field is one mark that slides along the decades. Notes and caption no longer speak of dragging or of the corner.

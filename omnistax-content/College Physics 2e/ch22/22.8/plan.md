@@ -251,3 +251,5 @@ in `ch22/exploration.md` under Errata. The closeness of the `force` and
 `current` hues, which this page draws on one loop, is recorded in
 `ch22/config.md` for the figure pass; no hue is invented here, since the scheme
 is the app's own matter.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-motor`: the Labels choice is gone (rule 26.7); the pole letters and B are always drawn, and every name on a turning part is left to hover; caption and note reworded. `sim-meter`: shaped and flat pole faces bend into each other (`F.lerpPts`), the field arrows crossfade, the needle swings to its new balance and the two curves pass the weight across; the readout is one equation, NIAB sin θ = kφ, with φ in the small line.

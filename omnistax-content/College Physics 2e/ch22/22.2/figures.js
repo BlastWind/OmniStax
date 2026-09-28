@@ -82,9 +82,10 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
   const WILD = [2.4, -1.7, 0.9, -2.9, 1.3, 2.8, -0.6, -2.2, 1.9, -1.1, 3.0, 0.4, -0.3, 2.1, -2.5, 1.1, -0.9, 2.6, -1.4, 0.6, -2.8, 1.6, -2.0, 2.3];
 
   const share = () => clamp(1.05 - 0.09 * gapS.v, 0.5, 1);   /* how much of the iron the magnets bring into line */
+  const alOf = (mag, treat) => (mag === 'off' ? (treat !== 'none' ? share() : 0) : share());
   function state() {
     const away = magC.value === 'off', kept = treatC.value !== 'none';
-    const al = away ? (kept ? share() : 0) : share();
+    const al = alOf(magC.value, treatC.value);
     return { away, kept, al, magnet: al >= 0.4 };
   }
 
@@ -94,11 +95,16 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     gapS.disable(st.away);
     const fc = C('magnetic-field');
     const g = gapS.v * S, cx = 700;
-    const lc = cx - L - g, rc = cx + L + g;
+    /* the magnets slide out and back rather than vanishing, and the domains fall
+       out of line or into it as they go */
+    const mA = magC.a('on'), slide = (1 - mA) * 220;
+    const al = magC.mix((m) => treatC.mix((t) => alOf(m, t)));
+    const lc = cx - L - g - slide, rc = cx + L + g + slide;
     const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 96);
     /* the two original magnets, each with its north pole toward the iron on its
        left and its south pole toward the iron on its right */
-    if (!st.away) {
+    if (mA > 0) {
+      ctx.save(); ctx.globalAlpha = mA;
       bar(ctx, lc, CY, L, T, 'S', 'N', 44);
       bar(ctx, rc, CY, L, T, 'S', 'N', 44);
       /* the field of the magnets crossing each gap, from a north pole to a south */
@@ -107,45 +113,49 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
         arrow(ctx, lc + L / 2 + 6, y, cx - L / 2 - 6, y, fc, 3.5);
         arrow(ctx, cx + L / 2 + 6, y, rc - L / 2 - 6, y, fc, 3.5);
       }
+      ctx.restore();
     }
     /* the iron, with its domains inside it and, once it is magnetized, its induced
        poles lettered under its two ends where the domain arrows leave room */
     bar(ctx, cx, CY, L, T, null, null, 44, false);
-    if (st.magnet) {
+    const poleA = clamp((al - 0.3) / 0.2, 0, 1);
+    if (poleA > 0) {
+      ctx.save(); ctx.globalAlpha = poleA;
       text(ctx, 'S', cx - L * 0.3, CY + T / 2 + 30, PAL.ink, { size: 34, weight: 700, align: 'center' });
       text(ctx, 'N', cx + L * 0.3, CY + T / 2 + 30, PAL.ink, { size: 34, weight: 700, align: 'center' });
+      ctx.restore();
     }
-    const aligned = Math.round(ORDER.length * st.al);
     const cw = L / COLS, ch = T / ROWS;
     ORDER.forEach((cell, rank) => {
       const col = cell % COLS, row = Math.floor(cell / COLS);
       const ax = cx - L / 2 + (col + 0.5) * cw, ay = CY - T / 2 + (row + 0.5) * ch;
-      const ang = rank < aligned ? 0 : WILD[cell];
+      const ang = WILD[cell] * (1 - clamp(ORDER.length * al - rank, 0, 1));
       domainArrow(ctx, ax, ay, ang, 22, alpha(PAL.ink, 0.55), 2.5);
     });
     /* what is being done to the iron, drawn so the choice can be seen and not only read:
        heat rising under the bar, or a mallet coming down on its end */
-    if (!st.away && treatC.value === 'heat') {
-      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 2.5; ctx.lineCap = 'round';
+    const heatA = mA * treatC.a('heat'), tapA = mA * treatC.a('tap');
+    if (heatA > 0) {
+      ctx.save(); ctx.globalAlpha = heatA; ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 2.5; ctx.lineCap = 'round';
       [-30, 0, 30].forEach((dx) => {
         ctx.beginPath();
         for (let i = 0; i <= 24; i++) { const q = i / 24, yy = CY + T / 2 + 54 - q * 44, xx = cx + dx + 7 * Math.sin(q * Math.PI * 3); i ? ctx.lineTo(xx, yy) : ctx.moveTo(xx, yy); }
         ctx.stroke();
       });
       ctx.restore();
-      lab.add('heated', cx, CY + T / 2 + 58, 0, 1, PAL.ink, 18, 14);
+      if (heatA > 0.5) lab.add('heated', cx, CY + T / 2 + 58, 0, 1, PAL.ink, 18, 14);
     }
-    if (!st.away && treatC.value === 'tap') {
+    if (tapA > 0) {
       const hx = cx - L * 0.32, hy = CY - T / 2 - 6;
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      ctx.save(); ctx.globalAlpha = tapA; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 3; ctx.lineCap = 'round';
       ctx.beginPath(); ctx.moveTo(hx + 14, hy - 26); ctx.lineTo(hx + 62, hy - 92); ctx.stroke();
       ctx.beginPath(); ctx.rect(hx - 24, hy - 30, 48, 30); ctx.fill(); ctx.stroke();
-      ctx.restore();
       [-1, 1].forEach((k) => line(ctx, hx + k * 34, hy - 40, hx + k * 44, hy - 54, alpha(PAL.ink, 0.6), 2));
-      lab.add('tapped', hx + 62, hy - 92, -0.4, -0.9, PAL.ink, 18, 14);
+      ctx.restore();
+      if (tapA > 0.5) lab.add('tapped', hx + 62, hy - 92, -0.4, -0.9, PAL.ink, 18, 14);
     }
     /* names: five where the magnets are in place, two once they are gone */
-    if (!st.away) {
+    if (mA > 0.5) {
       lab.add('an original magnet', lc, CY + T / 2, 0, 1, PAL.ink, 19, 30);
       lab.add('an original magnet', rc, CY + T / 2, 0, 1, PAL.ink, 19, 30);
       lab.add('the field crosses the gap', cx - L / 2 - g / 2, CY - T / 2, -0.5, -0.87, fc, 19, 34);
@@ -167,10 +177,11 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       : `With the magnets ${fmt(gapS.v, 1)} cm away on either side, the iron is magnetized with its south pole beside the north pole of the magnet on its left.`;
     topline(ctx, words);
     readout(d.readout,
-      `\\text{the iron was } \\text{${treatC.value === 'none' ? 'left alone' : treatC.value === 'tap' ? 'tapped while cold' : 'heated and then cooled'}} \\qquad \\text{magnets: } \\text{${st.away ? 'taken away' : 'in place'}} \\qquad \\text{the iron ${st.magnet ? 'is' : 'is not'} a magnet}`,
-      st.magnet
+      `\\text{the iron ${st.magnet ? 'is' : 'is not'} a magnet}`,
+      `The iron was ${treatC.value === 'none' ? 'left alone' : treatC.value === 'tap' ? 'tapped while cold' : 'heated and then cooled'}, and the magnets are ${st.away ? 'taken away' : 'in place'}. `
+      + (st.magnet
         ? 'Unlike poles lie closest across each gap, which is why the three bars are pulled toward one another.'
-        : 'Take the magnets away without heating or tapping the iron, and the magnetization goes with them.');
+        : 'Taken away from iron that was neither heated nor tapped, the magnets take the magnetization with them.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -186,7 +197,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
   const d = sim('sim-domains', 680);
   const reset = () => cy.reset();
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 50, step: 1, value: 20, unit: 'mT', dec: 0, onInput: reset, aria: 'the strength of the external magnetic field the iron is put in' });
-  const tS = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 300, max: 1300, step: 10, value: 300, unit: 'K', dec: 0, onInput: reset, detents: [{ v: 1043, label: '1043' }], snap: false, aria: 'the temperature of the iron' });
+  const tS = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 300, max: 1300, step: 10, value: 300, unit: 'K', dec: 0, onInput: reset, specials: [{ at: 1043, label: 'Curie' }], aria: 'the temperature of the iron' });
   const cy = cycle(() => 4.5, 1.2);
   const TC = 1043;                                     /* the Curie temperature of iron, the book's own number */
   const N = 6, X0 = 230, Y0 = 150, SIDE = 420, CELL = SIDE / N;
@@ -284,8 +295,8 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
         ? `In no external field the domains of the iron point every which way, ${wd(s.left)} of them in all, and the sample shows no poles.`
         : `In a field of ${fmt(bS.v, 0)} mT at ${fmt(tS.v, 0)} K the domain lying along the field has grown to hold ${fmt(100 * s.grown / (N * N), 0)} per cent of the sample.`);
     readout(d.readout,
-      `\\kBmag = ${fmt(bS.v, 0)}\\ \\text{mT} \\qquad \\kTemp = ${fmt(tS.v, 0)}\\ \\text{K} \\qquad \\text{${wd(s.left)} domain${s.left === 1 ? '' : 's'} left}`,
-      `The largest domain holds ${fmt(100 * s.grown / (N * N), 0)} per cent of the sample. Above the Curie temperature of iron, 1043 K, no field however strong holds the alignment, which is why a permanent magnet can be demagnetized by heating it.`);
+      `\\text{${wd(s.left)} domain${s.left === 1 ? '' : 's'} left}`,
+      `In a field of ${fmt(bS.v, 0)} mT at ${fmt(tS.v, 0)} K the largest domain holds ${fmt(100 * s.grown / (N * N), 0)} per cent of the sample. Above the Curie temperature of iron, 1043 K, no field however strong holds the alignment, which is why a permanent magnet can be demagnetized by heating it.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -318,7 +329,9 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     const cc = C('current'), fc = C('magnetic-field');
     const I = iS.v, n = nS.v, iron = coreC.value === 'iron';
     const lab = labeller(ctx, 640); lab.block(0, 0, 1400, 96);
-    const strength = Math.min(1, (Math.abs(I) / 4) * (n / 16) * (iron ? 1 : 0.3));
+    /* taking the core out fades it and lets the field shrink back, never a cut */
+    const gain = coreC.mix((v) => (v === 'iron' ? 1 : 0.3)), ironA = coreC.a('iron'), airA = coreC.a('air');
+    const strength = Math.min(1, (Math.abs(I) / 4) * (n / 16) * gain);
     const north = I >= 0 ? 1 : -1;                       /* which end of the core the field leaves by */
     /* the field, drawn as lines that close from one end of the core round to the
        other; a line that closes on itself carries no arrowhead, and the letters
@@ -363,16 +376,19 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     };
     seg(false);
     /* the core: an ink box seen from the book's own viewpoint, its lit faces shaded */
-    if (iron) {
+    if (ironA > 0) {
       const P = (x, y, z) => V.P([x, y, z]);
+      ctx.save(); ctx.globalAlpha = ironA;
       [
         { pts: [P(-LX, HC, HC), P(LX, HC, HC), P(LX, HC, -HC), P(-LX, HC, -HC)], nrm: [0, 1, 0] },
         { pts: [P(-LX, -HC, HC), P(LX, -HC, HC), P(LX, HC, HC), P(-LX, HC, HC)], nrm: [0, 0, 1] },
         { pts: [P(LX, -HC, HC), P(LX, -HC, -HC), P(LX, HC, -HC), P(LX, HC, HC)], nrm: [1, 0, 0] },
       ].forEach((f) => face(ctx, f.pts, V.shade(f.nrm), 2.5));
-    } else {
+      ctx.restore();
+    }
+    if (airA > 0) {
       const a = V.P([-LX, 0, 0]), b = V.P([LX, 0, 0]);
-      line(ctx, a[0], a[1], b[0], b[1], alpha(PAL.ink, 0.3), 2.5, [10, 10]);
+      line(ctx, a[0], a[1], b[0], b[1], alpha(PAL.ink, 0.3 * airA), 2.5, [10, 10]);
     }
     seg(true);
     /* which way the current runs, marked on two of the turns that face the reader */
@@ -403,8 +419,8 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       ? 'With no current in the winding there is no field, and the iron core is not a magnet at all.'
       : `${cap(wd(n))} turns carrying ${fmt(Math.abs(I), 1)} A round ${iron ? 'an iron core' : 'nothing but air'} make a magnet with its north pole at the ${north > 0 ? 'right' : 'left'}-hand end.`);
     readout(d.readout,
-      `\\kIcur = ${fmt(I, 1)}\\ \\text{A} \\qquad ${n}\\ \\text{turns} \\qquad \\text{core: } \\text{${iron ? 'iron' : 'none'}} \\qquad \\kBmag \\text{ is } \\text{${I === 0 ? 'nothing at all' : strength > 0.62 ? 'strong' : strength > 0.28 ? 'moderate' : 'weak'}}`,
-      'The field grows with the current and with the number of turns, and it is very much stronger with the iron core than without one, because the domains of the iron line up with the field of the coil and add a field of their own.');
+      `\\kBmag \\text{ is } \\text{${I === 0 ? 'nothing at all' : strength > 0.62 ? 'strong' : strength > 0.28 ? 'moderate' : 'weak'}}`,
+      `${cap(wd(n))} turns carry ${fmt(Math.abs(I), 1)} A round ${iron ? 'an iron core' : 'no core at all'}. The field grows with the current and with the number of turns, and it is very much stronger with the iron core than without one, because the domains of the iron line up with the field of the coil and add a field of their own.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -452,14 +468,16 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     /* the medium, its regions already written, the one under the gap and the blank ones */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
     ctx.fillRect(MX0, MY - MH / 2, MX1 - MX0, MH); ctx.strokeRect(MX0, MY - MH / 2, MX1 - MX0, MH); ctx.restore();
+    /* a change of storage bends each region's strength to its new one */
+    const full = modeC.mix((m) => (m === 'digital' ? 1 : 0));
     for (let i = 0; i < CELLS; i++) {
       const cx = MX0 + (i + 0.5) * CW;
       if (i) line(ctx, MX0 + i * CW, MY - MH / 2, MX0 + i * CW, MY + MH / 2, alpha(PAL.ink, 0.35), 2);
       let v = null;
-      if (i < GAPCELL) v = digital ? Math.sign(WRITTEN[i]) : WRITTEN[i];
-      else if (i === GAPCELL && I !== 0) v = digital ? Math.sign(I) : I / 3;
+      if (i < GAPCELL) v = WRITTEN[i];
+      else if (i === GAPCELL && I !== 0) v = I / 3;
       if (v === null || v === 0) continue;
-      const len = (CW - 24) * (digital ? 1 : Math.abs(v));
+      const len = (CW - 24) * (full + (1 - full) * Math.abs(v));
       arrow(ctx, cx - Math.sign(v) * len / 2, MY, cx + Math.sign(v) * len / 2, MY, fc, 4);
     }
     /* what each part of the strip is */
@@ -478,8 +496,8 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       ? 'With no current in the winding the gap makes no field, and the region passing under it is left as it was.'
       : `A current of ${fmt(Math.abs(I), 1)} A writes a region magnetized to the ${I > 0 ? 'right' : 'left'}, and in ${digital ? 'digital storage only its direction is kept' : 'analog storage its strength follows the current as well'}.`);
     readout(d.readout,
-      `\\kIcur = ${fmt(I, 1)}\\ \\text{A} \\qquad \\text{storage: } \\text{${digital ? 'digital' : 'analog'}} \\qquad \\text{the new region ${I === 0 ? 'is left as it was' : 'points ' + (I > 0 ? 'right' : 'left')}}`,
-      `${I === 0 || digital ? '' : 'The region is written to ' + fmt(100 * Math.abs(I) / 3, 0) + ' per cent of full strength. '}The head is an electromagnet with a gap in its core, and the medium keeps whatever magnetization the field at that gap leaves in it, which is what makes a ferromagnetic material a memory.`);
+      `\\text{the new region ${I === 0 ? 'is left as it was' : 'points ' + (I > 0 ? 'right' : 'left')}}`,
+      `${I === 0 ? '' : `A current of ${fmt(Math.abs(I), 1)} A in ${digital ? 'digital' : 'analog'} storage writes the region to ${digital ? 'full strength' : fmt(100 * Math.abs(I) / 3, 0) + ' per cent of full strength'}. `}The head is an electromagnet with a gap in its core, and the medium keeps whatever magnetization the field at that gap leaves in it, which is what makes a ferromagnetic material a memory.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -495,7 +513,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
   const d = sim('sim-atomic-currents', 620);
   const modelC = choice(d.controls, {
     label: '\\text{model}', options: [{ value: 'orbit', label: 'an electron in orbit' }, { value: 'spin', label: 'an electron spinning' }],
-    value: 'orbit', aria: 'which of the two models of submicroscopic current the figure draws',
+    value: 'orbit', aria: 'which of the two models of submicroscopic current',
   });
   const wayC = choice(d.controls, {
     label: '\\text{the way the electron goes}',
@@ -528,32 +546,48 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       ctx.stroke();
     }
     ctx.restore();
-    const ring = orbit ? { rx: RX, ry: RY } : { rx: 76, ry: 26 };
-    if (orbit) {
+    /* the current loop is the one part both models share, so it keeps its place and
+       only resizes; the electron of each model fades out as the other's fades in */
+    const ring = modelC.mix((m) => (m === 'orbit' ? { rx: RX, ry: RY } : { rx: 76, ry: 26 }));
+    const orbA = modelC.a('orbit'), spinA = modelC.a('spin');
+    if (orbA > 0) {
+      ctx.save(); ctx.globalAlpha = orbA;
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 3; ctx.setLineDash([9, 9]);
-      ctx.beginPath(); ctx.ellipse(CX, CY, ring.rx, ring.ry, 0, 0, TAU); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.ellipse(CX, CY, RX, RY, 0, 0, TAU); ctx.stroke(); ctx.restore();
       NUC.forEach((p, i) => dot(ctx, CX + p[0], CY + p[1], F.el(i % 2 ? 'n0' : 'p+'), true, 13));
-      dot(ctx, CX + ring.rx * Math.cos(EA), CY + ring.ry * Math.sin(EA), F.el('e-'), true, 15);
-    } else {
+      dot(ctx, CX + RX * Math.cos(EA), CY + RY * Math.sin(EA), F.el('e-'), true, 15);
+      ctx.restore();
+    }
+    if (spinA > 0) {
+      ctx.save(); ctx.globalAlpha = spinA;
       /* the electron itself, pictured as a ball of charge turning about its axis */
       ctx.save(); ctx.fillStyle = alpha(F.el('e-'), 0.3); ctx.strokeStyle = F.el('e-'); ctx.lineWidth = 3;
       ctx.beginPath(); ctx.arc(CX, CY, 80, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 2.5; ctx.setLineDash([8, 8]);
       ctx.beginPath(); ctx.ellipse(CX, CY, 80, 27, 0, 0, TAU); ctx.stroke(); ctx.restore();
       text(ctx, 'e\u207B', CX, CY - 14, PAL.ink, { size: 26, weight: 700, align: 'center' });
+      ctx.restore();
     }
     /* the conventional current, round the loop against the electron's own travel */
     const crx = ring.rx + 22, cry = ring.ry + 15;
     ctx.save(); ctx.strokeStyle = cc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.ellipse(CX, CY, crx, cry, 0, 0, TAU); ctx.stroke(); ctx.restore();
-    const cur = ccw ? 1 : -1;                          /* the conventional current runs the other way from the electron */
-    [0.25, 0.75].forEach((f) => {
+    /* the conventional current runs the other way from the electron; reversed, its
+       arrows turn over round the loop */
+    const cur = wayC.mix((w) => (w === 'ccw' ? 1 : -1));
+    if (Math.abs(cur) > 0.05) [0.25, 0.75].forEach((f) => {
       const t = TAU * f, dt = 0.18 * cur;
       arrow(ctx, CX + crx * Math.cos(t - dt), CY + cry * Math.sin(t - dt), CX + crx * Math.cos(t + dt), CY + cry * Math.sin(t + dt), cc, 4);
     });
-    /* the poles of the loop, on its two faces */
-    text(ctx, nUp ? 'N' : 'S', CX, CY - KH[1] + 34, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
-    text(ctx, nUp ? 'S' : 'N', CX, CY + KH[1] - 34, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
+    /* the poles of the loop, on its two faces, changing ends as the current turns over */
+    [['cw', 'N', 'S'], ['ccw', 'S', 'N']].forEach(([w, up, down]) => {
+      const a = wayC.a(w);
+      if (a <= 0) return;
+      ctx.save(); ctx.globalAlpha = a;
+      text(ctx, up, CX, CY - KH[1] + 34, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
+      text(ctx, down, CX, CY + KH[1] - 34, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
+      ctx.restore();
+    });
     if (orbit) {
       lab.add('the electron', CX + ring.rx * Math.cos(EA), CY + ring.ry * Math.sin(EA), 0.8, -0.6, PAL.ink, 19, 26);
       lab.add('the nucleus', CX, CY + 14, -0.85, 0.53, PAL.ink, 19, 44);
@@ -566,16 +600,16 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     const say = [
       orbit ? 'The electron goes round the nucleus ' + (ccw ? 'counterclockwise' : 'clockwise') : 'The electron turns about its axis ' + (ccw ? 'counterclockwise' : 'clockwise'),
       'as seen from above, and because its charge is negative the',
-      'conventional current runs the other way round. Whichever',
-      'model is drawn and whichever way the charge goes, the loop',
+      'conventional current runs the other way round. In either',
+      'model and whichever way the charge goes, the loop',
       'has a north pole on one face and a south pole on the other,',
       'and never one of them by itself.',
     ];
     say.forEach((t, i) => text(ctx, t, 1120, 240 + i * 30, PAL.muted, { size: 17, align: 'center' }));
     topline(ctx, `An electron going ${ccw ? 'counterclockwise' : 'clockwise'} ${orbit ? 'round the nucleus' : 'about its own axis'}, seen from above, is a ${ccw ? 'clockwise' : 'counterclockwise'} current, and the loop has its north pole on its ${nUp ? 'upper' : 'lower'} face.`);
     readout(d.readout,
-      `\\text{the electron goes } \\text{${ccw ? 'counterclockwise' : 'clockwise'}} \\qquad \\kIcur \\text{ runs } \\text{${ccw ? 'clockwise' : 'counterclockwise'}} \\qquad \\text{N on the ${nUp ? 'upper' : 'lower'} face}`,
-      'A current loop always makes a pair of poles, which is why no amount of searching inside matter turns up a north pole standing on its own.');
+      `\\kIcur \\text{ runs } \\text{${ccw ? 'clockwise' : 'counterclockwise'}}, \\text{ N on the ${nUp ? 'upper' : 'lower'} face}`,
+      `The electron goes ${ccw ? 'counterclockwise' : 'clockwise'}, and its charge is negative. A current loop always makes a pair of poles, which is why no amount of searching inside matter turns up a north pole standing on its own.`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => (modelC.value === 'orbit'

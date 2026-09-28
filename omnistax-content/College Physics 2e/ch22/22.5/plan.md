@@ -344,3 +344,5 @@ The two ions of the separation figure keep `F.cat(0)` and `F.cat(1)`, which
 `ch22/COLOR.md` now settles for the chapter: two isotopes of one element share
 one element colour, so the categorical palette is what tells them apart, while
 a particle the page names, such as this section's proton, keeps `F.el`.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). Readouts to one equation each (manim 12): `sim-circle-radius` r = mv/qB, with qvB = mv²/r in the small line; `sim-isotope-arcs` the separation 2(r₂ − r₁) = 2(m₂ − m₁)v/qB with the two radii in the small line; `sim-spiral-mirror` the field at which the charge turns back, or the shortfall; `sim-earth-trap` one relation per particle; `sim-tokamak` r = mv/qB, the fraction of the chamber in the small line and the fifty-times note kept (root 28.4). `sim-earth-trap`: a change of particle keeps the Earth and its lines, the ray and the trapped path fade and drift, and between the belts the trapped path moves out along its line.

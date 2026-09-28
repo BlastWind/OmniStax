@@ -260,3 +260,5 @@ before the build.
 
 **Chapter pass, 2026-09-15.** Nothing was wanted and nothing was done. The
 section's rows stood as they were written.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-magnetize`: taking the magnets away slides them out and fades them, and the domains fall out of line or into it as they go; a change of treatment fades the heat or the mallet (manim 15, 16); the readout is one relation, whether the iron is a magnet. `sim-domains`: the Curie temperature, which the text names, is a dashed special circle on the temperature slider in place of a detent (rule 26.1); the readout is the count of domains left. `sim-electromagnet`: taking the core out fades it and lets the field shrink back rather than cutting; the readout is one line. `sim-recording`: a change of storage bends each region's strength to its new one. `sim-atomic-currents`: the current loop keeps its place and resizes between the models while each model's electron fades out as the other's arrives, and reversing the electron turns the current's arrows over and the poles change ends by a crossfade; the readout is one line.

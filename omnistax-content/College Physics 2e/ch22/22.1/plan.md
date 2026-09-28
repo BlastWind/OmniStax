@@ -172,3 +172,5 @@ before the build.
 
 **Chapter pass, 2026-09-15.** Nothing was wanted and nothing was done. The
 section's rows stood as they were written.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-earth-magnet`: the readout is one relation, the angle between the hanging magnet and geographic north, and the tilt moves to the small line's sentence. `fig-attract-repel` (was `sim-attract-repel`) · Figure 22.5 · photograph of the book's own image with its caption, **kept**: the two choices only turned a magnet over and the gap slider lengthened arrows the section gives no law for, so the book's two drawn pairs say the rule as well (rule 24.3); the page now binds no type. `sim-split-magnet`: the number of cuts is a choice of five (0 to 4, rule 26.1), and a new cut splits the pieces apart, each new row sliding down out of the one above with its pieces parting at the cut (manim 16); the readout is $2^n$ pieces, the poles going to the small line.

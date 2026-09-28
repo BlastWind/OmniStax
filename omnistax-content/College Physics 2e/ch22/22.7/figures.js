@@ -112,6 +112,8 @@ const deg = (x) => fmt(x, 0) + '°';
     const { ctx } = begin(d.c);
     const I = iS.v, lcm = lS.v, B = bS.v, out = dirC.value === 'out';
     const half = (lcm * SL) / 2, Fn = I * (lcm / 100) * B, sgn = out ? 1 : -1;
+    /* reversing the current turns its arrows and the force over through nothing */
+    const sm = dirC.mix((v) => (v === 'out' ? 1 : -1));
     const cB = C('magnetic-field'), cI = C('current'), cF = C('force');
     /* the magnet: a pole piece on each side of the gap, as deep along the wire as
        the length of wire that lies in the field, lettered on the face turned to the
@@ -129,17 +131,18 @@ const deg = (x) => fmt(x, 0) + '°';
        the current drawn on each end so that both arrowheads point the same way */
     const reach = half + 300;
     line3(ctx, V, [0, 0, -reach], [0, 0, reach], PAL.ink, 10);
-    arr3(ctx, V, [0, 0, sgn * (half + 80)], [0, 0, sgn * (half + 270)], cI, 6);
-    arr3(ctx, V, [0, 0, -sgn * (half + 270)], [0, 0, -sgn * (half + 80)], cI, 6);
+    if (Math.abs(sm) > 0.1) {
+      [1, -1].forEach((e) => arr3(ctx, V, [0, 0, e * (half + 175) - sm * 95], [0, 0, e * (half + 175) + sm * 95], cI, 6));
+    }
     /* the two ends of the length that lies in the field, marked on the wire */
     [-half, half].forEach((z) => line3(ctx, V, [0, -56, z], [0, 56, z], alpha(PAL.ink, 0.6), 3, [7, 7]));
     /* the force on that length, at right angles to both the current and the field */
     const Flen = Math.min(FCAP, Fn * SF);
-    if (Flen > 8) arr3(ctx, V, [0, 0, 0], [0, sgn * Flen, 0], cF, 7);
+    if (Flen * Math.abs(sm) > 8) arr3(ctx, V, [0, 0, 0], [0, sm * Flen, 0], cF, 7);
     /* the names: five of them, none on a thing that moves far (rule 26.7) */
-    const pF = V.P([0, sgn * Flen, 0]), pB = V.P([GAP - 4, 90, -half * 0.5]);
+    const pF = V.P([0, sm * Flen, 0]), pB = V.P([GAP - 4, 90, -half * 0.5]);
     const pI = V.P([0, 0, sgn * (half + 270)]), pL = V.P([0, -56, 0]), pW = V.P([0, 0, -sgn * reach]);
-    if (Flen > 8) label(ctx, 'F = ' + fmt(Fn, 2) + ' N', pF[0], pF[1], { side: sgn > 0 ? 'above' : 'below', size: 22, color: cF, leader: false });
+    if (Flen * Math.abs(sm) > 8) label(ctx, 'F = ' + fmt(Fn, 2) + ' N', pF[0], pF[1], { side: sm > 0 ? 'above' : 'below', size: 22, color: cF, leader: false });
     label(ctx, 'B = ' + fmt(B, 2) + ' T', pB[0], pB[1], { side: 'right', size: 21, color: cB });
     label(ctx, 'I = ' + fmt(I, 1) + ' A', pI[0], pI[1], { side: out ? 'below' : 'above', size: 21, color: cI });
     label(ctx, 'l = ' + fmt(lcm, 2) + ' cm', pL[0], pL[1], { side: 'below', size: 21, gap: 30 });
@@ -151,7 +154,7 @@ const deg = (x) => fmt(x, 0) + '°';
       : `A current of ${fmt(I, 1)} A through ${fmt(lcm, 2)} cm of wire in a ${fmt(B, 2)} T field is pushed ${sgn > 0 ? 'upward' : 'downward'} with a force of ${fmt(Fn, 2)} N.`);
     readout(d.readout,
       `\\kF = \\kIcur l \\kBmag \\sin\\theta = (${fmt(I, 1)}\\ \\text{A})(${fmt(lcm / 100, 4)}\\ \\text{m})(${fmt(B, 2)}\\ \\text{T})\\sin 90^\\circ = ${fmt(Fn, 2)}\\ \\text{N}`,
-      'The wire lies across the field here, so the angle between the current and the field is 90° and the sine is 1. Send the current the other way and the force turns over, because the field and the length in the field have not changed.');
+      'The wire lies across the field, so the angle between the current and the field is 90° and the sine is 1. With the current sent the other way the force turns over, because the field and the length in the field have not changed.');
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {
@@ -175,7 +178,7 @@ const deg = (x) => fmt(x, 0) + '°';
 ===================================================================== */
 (function () {
   const d = sim('sim-angle-and-force', 880);
-  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, detents: [0, 90, 180], aria: 'the angle between the current and the magnetic field' });
+  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, specials: [{ at: 90, label: 'sin θ = 1' }], aria: 'the angle between the current and the magnetic field' });
   const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 40, step: 0.5, value: 20, unit: 'A', dec: 1, aria: 'the current in the wire' });
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 2.5, step: 0.05, value: 1.5, unit: 'T', dec: 2, aria: 'the strength of the magnetic field' });
   const V = mkView(620, 330);
@@ -259,25 +262,32 @@ const deg = (x) => fmt(x, 0) + '°';
   function draw() {
     const { ctx } = begin(d.c);
     const I = iS.v, B = bS.v, lcm = lS.v, R = (lcm * SD) / 2, Fn = I * (lcm / 100) * B;
-    const lab = sceneC.value === 'lab', car = carC.value;
+    const car = carC.value;
+    /* the duct, the field, the current and the force are the same in both pumps and
+       stay put; only the poles and the coils, which one pump has, fade and drift */
+    const aLab = sceneC.a('lab'), aSub = sceneC.a('sub');
     const cB = C('magnetic-field'), cI = C('current'), cF = C('force');
     const h = Math.max(110, R * 0.8), g = R + 34;
     /* what stands round the duct: the poles of a laboratory magnet, or nothing yet,
        since a thruster's coils are drawn over the duct rather than beside it */
-    if (lab) {
+    if (aLab > 0) {
+      ctx.save(); ctx.globalAlpha = aLab; const [lx, ly] = sceneC.off('lab', [0, 30]); ctx.translate(lx, ly);
       solid(ctx, V, boxOf(-g - PW, -g, -h, h, -ZP, ZP));
       solid(ctx, V, boxOf(g, g + PW, -h, h, -ZP, ZP));
       const nT = V.P([-g - PW / 2, h, 0]), sT = V.P([g + PW / 2, h, 0]);
       text(ctx, 'N', nT[0], nT[1], PAL.ink, { size: 36, weight: 700, align: 'center' });
       text(ctx, 'S', sT[0], sT[1], PAL.ink, { size: 36, weight: 700, align: 'center' });
+      ctx.restore();
     }
     /* the duct, ink, lying along the line the fluid is driven down; the book draws
        it over the poles too, since the tube passes between them and out at both ends */
     solid(ctx, V, tubeOf(R, -ZD, ZD));
-    if (!lab) {
+    if (aSub > 0) {
+      ctx.save(); ctx.globalAlpha = aSub;
       [-170, -50, 70, 190].forEach((z) => ring(ctx, V, R + 16, z, alpha(PAL.ink, 0.72), 9));
       text(ctx, 'Each duct is wrapped in saddle-shaped superconducting coils, and the field they make', 700, 700, PAL.muted, { size: 18, align: 'center' });
       text(ctx, 'crosses the duct just as the poles of a magnet do.', 700, 728, PAL.muted, { size: 18, align: 'center' });
+      ctx.restore();
     }
     /* the field across the duct, thickening with its strength */
     const lw = 2 + 4.5 * (B / 3);
@@ -290,14 +300,22 @@ const deg = (x) => fmt(x, 0) + '°';
        way it drifts. A positive carrier drifts along the current and a negative one
        against it, and either way the force comes out the same. */
     const rr = Math.max(11, Math.min(18, R * 0.16));
-    const rows = car === 'both' ? [['+', -1, -R * 0.46], ['−', 1, R * 0.46]] : car === 'pos' ? [['+', -1, 0]] : [['−', 1, 0]];
-    rows.forEach(([sign, way, off]) => {
+    /* each sign of carrier is present or not, and moves aside to share the duct
+       with the other, as a blend of the carrier choice */
+    const rows = carC.mix((v) => ({
+      pa: v === 'neg' ? 0 : 1, po: v === 'both' ? -R * 0.46 : 0,
+      na: v === 'pos' ? 0 : 1, no: v === 'both' ? R * 0.46 : 0,
+    }));
+    [['+', -1, rows.po, rows.pa], ['−', 1, rows.no, rows.na]].forEach(([sign, way, off, a]) => {
+      if (a <= 0.01) return;
+      ctx.save(); ctx.globalAlpha = a;
       const p = V.P([off, 0, ez + 8]);
       dot(ctx, p[0], p[1], PAL.panel, true, rr);
       dot(ctx, p[0], p[1], PAL.ink, false, rr);
       text(ctx, sign, p[0], p[1], PAL.ink, { size: Math.max(17, Math.round(rr * 1.3)), weight: 700, align: 'center' });
       const ax = off + Math.sign(off || 1) * rr * 2.2;      /* the drift arrow on the carrier's outer side, clear of the current */
       arr3(ctx, V, [ax, -way * R * 0.36, ez + 8], [ax, way * R * 0.36, ez + 8], alpha(PAL.ink, 0.8), 4.5);
+      ctx.restore();
     });
     /* the force on the fluid, along the duct and out toward the reader */
     const Flen = Fn * SF;
@@ -316,7 +334,7 @@ const deg = (x) => fmt(x, 0) + '°';
       `\\kF = \\kIcur l \\kBmag \\sin\\theta = (${fmt(I, 0)}\\ \\text{A})(${fmt(lcm / 100, 3)}\\ \\text{m})(${fmt(B, 2)}\\ \\text{T})\\sin 90^\\circ = ${fmt(Fn, 1)}\\ \\text{N}`,
       car === 'both'
         ? 'Both signs of carrier are here at once. The positive ones drift the way the current runs and the negative ones drift against it, so both are pushed the same way and the fluid moves as one.'
-        : `The carriers are ${car === 'pos' ? 'positive and drift along the current' : 'negative and drift against the current'}. Change them for the other sign and the force does not move, because the sign of the charge and the direction it drifts reverse together.`);
+        : `The carriers are ${car === 'pos' ? 'positive and drift along the current' : 'negative and drift against the current'}. With carriers of the other sign the force does not move, because the sign of the charge and the direction it drifts reverse together.`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {

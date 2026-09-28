@@ -245,3 +245,5 @@ is now in that list, with the reason. The AP item fs-id2336649 stays unkeyed
 with the approach that uses the perpendicular component, and the difference
 from the solution the publisher commented out is recorded in
 `ch22/exploration.md` under Errata.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-hall-carriers`: a change of carrier turns every sign over by a crossfade and swings the drift arrow round through nothing (manim 16). `sim-hall-balance`: the readout is the Hall emf alone, qE = qvB and E = vB going to the small line. `sim-flow-probe`: caption reworded to the reading, not the scale.

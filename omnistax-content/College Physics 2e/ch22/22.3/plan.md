@@ -179,3 +179,5 @@ before the build.
 
 **Chapter pass, 2026-09-15.** Nothing was wanted and nothing was done. The
 section's rows stood as they were written.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-field-map` · value add: the book's three panels as one story slider (manim 6): needles · field lines · closed loops; the lines are drawn along their length out of the needles, which then fade, and the lines are carried on through the magnet into closed loops, drawn along their length; the story is the one timeline and the compass sliders stay the reader's. The choice of what is drawn is gone (rule 26.7). The readout is the field against the mark. `sim-field-sources`: the wire in the page tips out of it to be seen end-on, its circles swept out as it turns (manim 1, 16); the loop and the wires fade into each other; a reversed current turns every needle end for end and every dot into a cross; the current's options read one way / the other way; the readout is one relation per source.

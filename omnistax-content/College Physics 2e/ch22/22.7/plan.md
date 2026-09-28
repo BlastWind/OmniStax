@@ -247,3 +247,5 @@ section's variable row and its two equation rows now carry
 `source_section`, and both sections' `exercise_notes` say so. The fold of
 Figures 22.31 and 22.32, which `config.md` had not named, is recorded in that
 file under What the build changed.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-wire-in-field`: reversing the current turns its arrows and the force over through nothing. `sim-angle-and-force`: θ carries a dashed circle at 90°, the angle Example 22.4 names; the ends 0° and 180° are left unmarked because 22.7's text does not name the along-field case; caption reworded. `sim-mhd-pump`: the duct, field, current and force stay put between the two pumps while the poles and the coils fade and drift; each sign of carrier fades in or out and moves aside to share the duct.
