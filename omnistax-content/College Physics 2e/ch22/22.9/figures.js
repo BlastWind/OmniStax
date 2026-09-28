@@ -437,18 +437,15 @@ function oval(c, A, B, u, v, n = 72) {
   const d = sim('sim-field-of-a-current-tour', H2D);
   const STOPS = [{ v: 0, label: 'along the wire' }, { v: 1, label: 'the wire' }, { v: 2, label: 'a loop' }, { v: 3, label: 'a solenoid' }];
   const sS = ctl(d.controls, { label: '\\text{the wire}', cls: '', min: 0, max: 3, step: 0.01, value: 0, unit: '', dec: 2, aria: 'how far the story has gone, from the straight wire seen along its length, through the loop, to the solenoid' });
-  const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 5, max: 50, step: 1, value: 25, unit: 'A', dec: 0, aria: 'the current in the wire or the loop' });
-  const iBox = lastLabel(d.controls);
+  /* one I throughout, its range carried to the solenoid's; one distance from the current, r along the wire and R round the loop */
+  const I_LOW = { min: 5, max: 50, step: 1, unit: 'A', dec: 0 }, I_SOL = { min: 200, max: 2000, step: 50, unit: 'A', dec: 0 };
+  const iOf = { low: 25, sol: 1600 };
+  const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', ...I_LOW, value: iOf.low, aria: 'the current in the wire, the loop or the solenoid', onInput: () => { iOf[sS.v < 2.5 ? 'low' : 'sol'] = iS.v; } });
+  const iLow = { get v() { return iOf.low; } }, iSol = { get v() { return iOf.sol; } };
   const rS = ctl(d.controls, { label: '\\kr', cls: 'position', min: 2, max: 12, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'the shortest distance from the wire to the point where the field is wanted' });
-  const rBox = lastLabel(d.controls);
-  const RS = ctl(d.controls, { label: '\\kR', cls: 'position', min: 2, max: 12, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'the radius of the circular loop' });
-  const RBox = lastLabel(d.controls);
+  const RS = rS;
   const NS = ctl(d.controls, { label: 'N', cls: '', min: 1, max: 4, step: 1, value: 1, unit: 'turns', dec: 0, detents: [1, 2, 3, 4], aria: 'the number of turns in the flat coil' });
-  const NBox = lastLabel(d.controls);
-  const iSol = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 200, max: 2000, step: 50, value: 1600, unit: 'A', dec: 0, aria: 'the current in the solenoid' });
-  const iSolBox = lastLabel(d.controls);
   const nS = ctl(d.controls, { label: 'n', cls: '', min: 400, max: 2000, step: 50, value: 1000, unit: '/m', dec: 0, aria: 'the number of turns per meter of the solenoid' });
-  const nBox = lastLabel(d.controls);
 
   /* ---------- the story: which arrangement s is at, and how present each one's own parts are ---------- */
   const arrOf = (s) => (s < 1.5 ? 'wire' : s < 2.5 ? 'loop' : 'sol');
@@ -458,26 +455,27 @@ function oval(c, A, B, u, v, n = 72) {
   const CENTRE = { wire: 0, loop: 2, sol: 3 };
   const slide = (a, s, A) => (1 - A[a]) * (s < CENTRE[a] ? -1 : 1);
 
-  /* the reader's controls for each arrangement, swapped with a fade */
-  const BOXES = { wire: [iBox, rBox], loop: [iBox, RBox, NBox], sol: [iSolBox, nBox] };
-  const ALL = [iBox, rBox, RBox, NBox, iSolBox, nBox];
-  let shown = '';
-  function showControls(a, ms = 500) {
-    if (a === shown) return;
-    shown = a;
-    ALL.forEach((b) => {
-      if (BOXES[a].includes(b)) { b.style.display = ''; F.fadeEl(b, true, { ms, shift: [0, 8] }); return; }
-      F.fadeEl(b, false, { ms, shift: [0, 8] });
-      setTimeout(() => { if (b.style.opacity === '0') b.style.display = 'none'; }, ms);
-    });
+  /* the reader's controls: I and the distance carry over, bending as functions of s; N and n enter and leave */
+  const OWN = { wire: [rS], loop: [rS, NS], sol: [nS] };
+  const ARIA_R = ['the shortest distance from the wire to the point where the field is wanted', 'the radius of the circular loop'];
+  const lin = (s, a, b) => clamp((s - a) / (b - a), 0, 1);
+  let shown = arrOf(sS.v);
+  [rS, NS, nS].forEach((c) => { if (!OWN[shown].includes(c)) c.show(false, { ms: 0 }); });
+  function controlsAt(s) {
+    const r = lin(s, 1.35, 1.65);
+    rS.relabelAt('\\kr', '\\kR', r);
+    rS.el.querySelector('input').setAttribute('aria-label', ARIA_R[r < 0.5 ? 0 : 1]);
+    iS.rangeAt({ ...I_LOW, value: iOf.low }, { ...I_SOL, value: iOf.sol }, lin(s, 2.35, 2.65));
+    const a = arrOf(s); if (a === shown) return;
+    const plan = F.layoutPlan(OWN[shown], OWN[a]); shown = a;
+    F.regroup(d.controls, plan.enter.map((c) => c.el), plan.leave.map((c) => c.el));
   }
-  showControls(arrOf(sS.v), 0);
 
   const SOL_L = 2.00;
   const RHO = (cm) => (1.7 * cm) / 12;
   const stOf = (a) => {
-    if (a === 'wire') { const r = rS.v / 100, I = iS.v; return { a, I, r, B: (MU0 * I) / (TAU * r) }; }
-    if (a === 'loop') { const R = RS.v / 100, I = iS.v, N = NS.v; return { a, I, R, N, B: (N * MU0 * I) / (2 * R) }; }
+    if (a === 'wire') { const r = rS.v / 100, I = iLow.v; return { a, I, r, B: (MU0 * I) / (TAU * r) }; }
+    if (a === 'loop') { const R = RS.v / 100, I = iLow.v, N = NS.v; return { a, I, R, N, B: (N * MU0 * I) / (2 * R) }; }
     const I = iSol.v, n = nS.v;
     return { a, I, n, N: Math.round(n * SOL_L), B: MU0 * n * I };
   };
@@ -624,7 +622,7 @@ function oval(c, A, B, u, v, n = 72) {
     const i0 = lerp(0.7, I_AZ[0] * rhoL, b), i1 = lerp(2.5, I_AZ[1] * rhoL, b);
     const sc = loopScale(rhoL);
     parrow(g3, W.path(i0, i1, 40), lerp(0.040, 0.032 * sc, b), IC, 1, 'I, the current');
-    keep(lab('I = ' + fmt(iS.v, 0) + ' A', add3(add3(W.P(i1), UP, 0.26), W.Out(i1), 0.55 * lerp(1, Math.max(1, rhoL / RHO(5)), b)), g3, 0, C('current')), IC);
+    keep(lab('I = ' + fmt(iLow.v, 0) + ' A', add3(add3(W.P(i1), UP, 0.26), W.Out(i1), 0.55 * lerp(1, Math.max(1, rhoL / RHO(5)), b)), g3, 0, C('current')), IC);
     /* the rings round the wire: three at its middle, and as the camera turns, three more swept out to
        each side; as the wire bends, two sets slide to the loop's right and left and the third leaves */
     const ringAt = (at, q, op) => tube(g3, circle(W.P(at), q, W.Out(at), UP, 72), MAIN, BC, op, true);
@@ -689,7 +687,7 @@ function oval(c, A, B, u, v, n = 72) {
     parrow(sub, Array.from({ length: 21 }, (_, i) => at(onTurn(0.62, lerp(I_AZ[0], I_AZ[1], i / 20)))), lerp(0.032 * sc, 0.030, k), IC, 1, 'I, the current in the winding');
     const pI = at(onTurn(0.62, I_AZ[1]));
     keep(lab('I = ' + fmt(iSol.v, 0) + ' A', [pI[0], a + 0.34, 0.2], sub, 0, C('current'), A.sol), IC);
-    keep(lab('I = ' + fmt(iS.v, 0) + ' A', add3(add3(pI, [1, 0, 0], 0.26), unit3([0, pI[1], pI[2]]), 0.55), sub, 0, C('current'), 1 - ramp(k + 2, 2.3, 2.5)), IC);
+    keep(lab('I = ' + fmt(iLow.v, 0) + ' A', add3(add3(pI, [1, 0, 0], 0.26), unit3([0, pI[1], pI[2]]), 0.55), sub, 0, C('current'), 1 - ramp(k + 2, 2.3, 2.5)), IC);
     /* the loop's field lines leave as the turns spread */
     if (k < 1) FIELD_AL.forEach((al) => {
       const e = [Math.cos(al), 0, Math.sin(al)];
@@ -785,8 +783,8 @@ function oval(c, A, B, u, v, n = 72) {
      against the turns per metre: its x-axis, ticks and curve replace the loop's
      with a fade, and the B-scale eases on to 5 T. All of it is a function of s. */
   const GM = (s) => ramp(s, 1.35, 1.65), GQ = (s) => ramp(s, 2.35, 2.65);
-  const bWire = (t) => (MU0 * iS.v) / (TAU * (t / 100));
-  const bLoop = (t) => (NS.v * MU0 * iS.v) / (2 * (t / 100));
+  const bWire = (t) => (MU0 * iLow.v) / (TAU * (t / 100));
+  const bLoop = (t) => (NS.v * MU0 * iLow.v) / (2 * (t / 100));
   const yTop = (m, q) => Math.exp(lerp(Math.log(lerp(5e-4, 20e-4, m)), Math.log(5), q));
   function faded(ctx, a, dy, fn) {
     if (a <= 0.01) return;
@@ -903,11 +901,11 @@ function oval(c, A, B, u, v, n = 72) {
 
   function draw() {
     const s = sS.v, A = setA(s), a = arrOf(s), st = stOf(a);
-    showControls(a);
+    controlsAt(s);
     if (V) {
       if (s !== lastS) { own = false; lastS = s; }
       if (!own) V.look(camAt(s));
-      const k = [s, iS.v, rS.v, RS.v, NS.v, iSol.v, nS.v].join('|');
+      const k = [s, iLow.v, rS.v, RS.v, NS.v, iSol.v, nS.v].join('|');
       if (k !== key) { key = k; try { build(); } catch (e) { console.error('sim-field-of-a-current-tour: the scene could not be built', e); S = null; } }
       if (S) {
         paint.forEach((p) => { try { p.m.color.set(p.col()); } catch (e) { /* left as it was */ } });
