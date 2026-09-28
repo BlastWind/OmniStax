@@ -32,8 +32,8 @@ Which section binds what:
 | 25.1 | none; the page is a ray diagram and is wholly in ink |
 | 25.2 | none; the law of reflection is an equality of two untyped angles |
 | 25.3 | `velocity`, `position`, `time` |
-| 25.4 | none by default; `velocity` and `time` only if the plan gives the fiber figure a pulse with a speed and a travel time |
-| 25.5 | `position` for the wavelength, `velocity` where the speeds of two colours in one medium are compared |
+| 25.4 | none; the fiber carries no pulse, so every figure is wholly in ink |
+| 25.5 | `position` for the wavelength; no figure draws a speed, so `velocity` is not bound, and sunlight is the one other hex, `#f4d35e` |
 | 25.6 | `position` |
 | 25.7 | `position` |
 

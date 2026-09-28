@@ -1,0 +1,694 @@
+{
+ "id": "27.3",
+ "module": "m42508",
+ "chapter": "27",
+ "title": "Young’s Double Slit Experiment",
+ "short": "Young’s double slit experiment",
+ "lead": "Light sent through two narrow, closely spaced slits does not make two bright lines on a screen but a whole row of them, and this pattern is what finally convinced physicists that light is a wave. This section explains the pattern by the difference in the lengths of the two paths from the slits to each point on the screen, gives the conditions for bright and dark fringes, and uses them to measure a wavelength and to find how many fringes a pair of slits can produce.",
+ "objectives": [
+  "Explain the phenomena of interference.",
+  "Define constructive interference for a double slit and destructive interference for a double slit."
+ ],
+ "summary_html": "<ul><li>Young’s double slit experiment gave definitive proof of the wave character of light.</li><li>An interference pattern is obtained by the superposition of light from two slits.</li><li>There is constructive interference when $\\kd\\;\\text{sin}\\;\\theta = m\\klam\\;\\text{(for}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots)$, where $\\kd$ is the distance between the slits, $\\theta$ is the angle relative to the incident direction, and $m$ is the order of the interference.</li><li>There is destructive interference when $\\kd\\;\\text{sin}\\;\\theta = \\left(m+\\frac{1}{2}\\right)\\klam\\;\\text{(for}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots)$.</li></ul>",
+ "notes": "The conceptual question on the pattern of red dots that shows single slit as well as double slit interference, with its photograph, is set with Section 27.5, which teaches the single slit. Seven of the module’s fifteen problems have no keyed answer and are left out: the third-order maximum of 580-nm light, the first minimum of 410-nm light at 45.0°, the third-order maximum at 60.0° with slits 2.00 μm apart, the highest order for 400-nm light and slits 25.0 μm apart, the smallest separation for a second-order maximum of 720-nm light, the angles that follow from a first-order maximum at 10.0°, and the fringe spacing of 633-nm light on a screen 3.00 m away.",
+ "ai": {
+  "text": "Claude Opus 5.5",
+  "figures": "Claude Opus 5.5"
+ },
+ "built": "2026-09-28",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Seven of the fifteen problems have no keyed answer and are left out, and they are named in the section’s notes. Three of the six AP items are keyed and set as graded choices, except the item that asks for two answers, which is set as an open item with the book’s own answer; the other three are unkeyed and kept as open items with AI-marked suggested approaches. The three conceptual questions kept here carry AI-marked suggested approaches, and the fourth moves to Section 27.5. The module prints no Check Your Understanding box, so nothing is set inline. The problem that derives the fringe spacing is kept with the book’s own derivation, and it and the problem after it carry the book’s sketch on their cards. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-young-apparatus",
+   "kind": "sim",
+   "number": "27.10",
+   "originals": [
+    "/media/ch27/Figure_28_03_01a.jpg"
+   ],
+   "original_caption": "Young’s double slit experiment. Here pure-wavelength light sent through a pair of vertical slits is diffracted into a pattern on the screen of numerous vertical lines spread out horizontally. Without diffraction and interference, the light would simply make two lines on the screen.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "sim-two-waves",
+   "kind": "sim",
+   "number": "27.11",
+   "originals": [
+    "/media/ch27/Figure_28_03_02a.jpg"
+   ],
+   "original_caption": "The amplitudes of waves add. (a) Pure constructive interference is obtained when identical waves are in phase. (b) Pure destructive interference occurs when identical waves are exactly out of phase, or shifted by half a wavelength.",
+   "widths": [
+    275
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-ripple-tank",
+   "kind": "sim",
+   "number": "27.12",
+   "originals": [
+    "/media/ch27/Figure_28_03_03a.jpg"
+   ],
+   "original_caption": "Double slits produce two coherent sources of waves that interfere. (a) Light spreads out (diffracts) from each slit, because the slits are narrow. These waves overlap and interfere constructively (bright lines) and destructively (dark regions). We can only see this if the light falls onto a screen and is scattered into our eyes. (b) Double slit interference pattern for water waves are nearly identical to that for light. Wave action is greatest in regions of constructive interference and least in regions of destructive interference. (c) When light that has passed through double slits falls on a screen, we see a pattern such as this. (credit: PASCO)",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "photo-double-slit-pattern",
+   "kind": "photo",
+   "number": "27.12",
+   "originals": [
+    "/media/ch27/Figure_28_03_03a.jpg"
+   ],
+   "original_caption": "Double slits produce two coherent sources of waves that interfere. (a) Light spreads out (diffracts) from each slit, because the slits are narrow. These waves overlap and interfere constructively (bright lines) and destructively (dark regions). We can only see this if the light falls onto a screen and is scattered into our eyes. (b) Double slit interference pattern for water waves are nearly identical to that for light. Wave action is greatest in regions of constructive interference and least in regions of destructive interference. (c) When light that has passed through double slits falls on a screen, we see a pattern such as this. (credit: PASCO)",
+   "widths": [
+    500
+   ]
+  },
+  {
+   "id": "sim-path-difference",
+   "kind": "sim",
+   "number": "27.13",
+   "folds": [
+    "27.14"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_03_04a.jpg",
+    "/media/ch27/Figure_28_03_05a.jpg"
+   ],
+   "original_caption": "(Figure 27.13) Waves follow different paths from the slits to a common point on a screen. (a) Destructive interference occurs here, because one path is a half wavelength longer than the other. The waves start in phase but arrive out of phase. (b) Constructive interference occurs here because one path is a whole wavelength longer than the other. The waves start out and arrive in phase. (Figure 27.14) The paths from each slit to a common point on the screen differ by an amount $d\\sin\\theta$, assuming the distance to the screen is much greater than the distance between slits (not to scale here).",
+   "widths": [
+    300,
+    225
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "sim-fringe-pattern",
+   "kind": "sim",
+   "number": "27.15",
+   "originals": [
+    "/media/ch27/Figure_28_03_06a.jpg"
+   ],
+   "original_caption": "The interference pattern for a double slit has an intensity that falls off with angle. The photograph shows multiple bright and dark lines, or fringes, formed by light passing through a double slit.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "position"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "double-slit-experiment",
+   "concept": "youngs-double-slit",
+   "verb": "introduces"
+  },
+  {
+   "span": "double-slit-experiment",
+   "concept": "coherent-sources",
+   "verb": "introduces"
+  },
+  {
+   "span": "double-slit-experiment",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "waves-from-two-slits",
+   "concept": "youngs-double-slit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "waves-from-two-slits",
+   "concept": "coherent-sources",
+   "verb": "reinforces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "path-length-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "double-slit-constructive",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "double-slit-destructive",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "order-of-interference",
+   "verb": "introduces"
+  },
+  {
+   "span": "interference-fringes",
+   "concept": "fringe-spacing",
+   "verb": "introduces"
+  },
+  {
+   "span": "interference-fringes",
+   "concept": "double-slit-constructive",
+   "verb": "reinforces"
+  },
+  {
+   "span": "measuring-wavelength",
+   "concept": "find-wavelength-from-a-pattern",
+   "verb": "introduces"
+  },
+  {
+   "span": "measuring-wavelength",
+   "concept": "highest-order",
+   "verb": "introduces"
+  },
+  {
+   "span": "measuring-wavelength",
+   "concept": "double-slit-constructive",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2431746",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "Superposition of which of the following light waves may produce interference fringes? Select <em>two</em> answers.<br>Wave<sub>1</sub> = A<sub>1</sub>sin(2<em>ωt</em>)<br>Wave<sub>2</sub> = A<sub>2</sub>sin(4<em>ωt</em>)<br>Wave<sub>3</sub> = A<sub>3</sub>sin(2<em>ωt</em> + <em>θ</em>)<br>Wave<sub>4</sub> = A<sub>4</sub>sin(4<em>ωt</em> + <em>θ</em>)<ol type=\"a\"><li>Wave<sub>1</sub> and Wave<sub>2</sub></li><li>Wave<sub>2</sub> and Wave<sub>4</sub></li><li>Wave<sub>3</sub> and Wave<sub>1</sub></li><li>Wave<sub>4</sub> and Wave<sub>3</sub></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(b) and (c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2013916",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference-fringes",
+   "prompt": "In a double slit experiment with monochromatic light, the separation between the slits is 2 mm. If the screen is moved by 100 mm toward the slits, the distance between the central bright line and the second bright line changes by 32 μm. Calculate the wavelength of the light used for the experiment.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For small angles the fringes are evenly spaced, $\\kdy = \\kx\\klam/\\kd$, so the second bright line lies at $\\ky_2 = 2\\kx\\klam/\\kd$ from the center. Moving the screen changes $\\kx$ and leaves $\\klam$ and $\\kd$ as they were, so the change in that distance is $2\\klam(\\Delta\\kx)/\\kd$. Setting this equal to 32 μm with $\\Delta\\kx = 100$ mm and $\\kd = 2$ mm gives $\\klam = (32\\;\\mu\\text{m})(2\\;\\text{mm})/(2 \\times 100\\;\\text{mm}) = 3.2\\times 10^{-7}$ m, or 320 nm. Notice that the distance to the screen itself is never needed, only how far the screen was moved."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2427771",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "In a double slit experiment, a student measures the maximum and minimum intensities when two waves with equal amplitudes are used. The student then doubles the amplitudes of the two waves and performs the measurements again. Which of the following will remain unchanged?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The intensity of the bright fringe",
+     "The intensity of the dark fringe",
+     "The difference in the intensities of consecutive bright and dark fringes",
+     "None of the above"
+    ],
+    "correct": 1,
+    "hint": "Two equal waves that arrive crest to trough cancel completely, whatever their amplitude.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1741687",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "Draw a figure to show the resultant wave produced when two coherent waves (with equal amplitudes <em>x</em>) interact in phase. What is the amplitude of the resultant wave? If the phase difference between the coherent waves is changed to 60°, what will be new amplitude?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Draw the two waves one above the other with their crests and troughs lined up, and beneath them a third wave of the same wavelength whose crests are twice as high; in phase the amplitudes simply add, so the resultant has amplitude $2x$. When one wave is shifted by a phase $\\phi$, the two amplitudes add like two arrows at the angle $\\phi$, and the resultant is $\\sqrt{x^2 + x^2 + 2x^2\\cos\\phi} = 2x\\cos(\\phi/2)$. For $\\phi = 60^\\circ$ this is $2x\\cos 30^\\circ = \\sqrt{3}\\,x$, about $1.73x$, smaller than in phase but still larger than either wave alone."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1924302",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "What will be the amplitude of the central fringe if the amplitudes of the two waves in a double slit experiment are <em>a</em> and 3<em>a</em>?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "2<em>a</em>",
+     "4<em>a</em>",
+     "8<em>a</em><sup>2</sup>",
+     "16<em>a</em><sup>2</sup>"
+    ],
+    "correct": 1,
+    "hint": "At the central fringe the two paths are equal, so the waves arrive in phase and their amplitudes add.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id3276560",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference-fringes",
+   "prompt": "If the ratio of amplitudes of the two waves in a double slit experiment is 3:4, calculate the ratio of minimum intensity (dark fringe) to maximum intensity (bright fringe).",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At a bright fringe the waves arrive in phase and their amplitudes add, $3 + 4 = 7$ in the units of the ratio; at a dark fringe they arrive out of phase and subtract, $4 - 3 = 1$. Intensity is proportional to amplitude squared, so the minimum and maximum intensities are in the ratio $1^2 : 7^2$, which is $1 : 49$. The dark fringes are therefore not completely dark, because unequal waves can never cancel entirely."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738220186",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "Young’s double slit experiment breaks a single light beam into two sources. Would the same pattern be obtained for two independent sources of light, such as the headlights of a distant car? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The pattern depends on the two sources being coherent, so that the phase difference between their waves at each point of the screen stays the same. The two slits are lit by one beam, so the waves leaving them keep a fixed phase relationship and the bright and dark fringes stay put. Two headlights are independent sources whose phases change randomly and very rapidly, so at any point on the screen the waves are sometimes crest to crest and sometimes crest to trough, and the fringes shift about far too fast to see. What is seen is simply the sum of the two intensities, with no fringes."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738011450",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "Suppose you use the same double slit to perform Young’s double slit experiment in air and then repeat the experiment in water. Do the angles to the same parts of the interference pattern get larger or smaller? Does the color of the light change? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The angles get smaller. In water the wavelength is shorter, $\\klamn = \\klam/n$, and the bright fringes lie where $\\kd\\sin\\theta = m\\klamn$, so for the same slits and the same order a shorter wavelength gives a smaller $\\sin\\theta$ and a smaller angle, and the pattern draws in toward the center. The color does not change. Color is set by the frequency of the light, and the frequency stays the same when light enters a medium; only the speed and the wavelength change."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738013588",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "waves-from-two-slits",
+   "prompt": "Is it possible to create a situation in which there is only destructive interference? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Not everywhere. Energy is conserved, so the energy of two waves that cancel in one place must appear somewhere else; interference only redistributes it, making some regions darker and others brighter. In a double slit pattern every dark fringe lies between bright ones, and the central fringe, where the two paths are equal, is always bright. Destructive interference can be arranged at particular places or in particular directions, as a thin film cancels the light it reflects, but the energy then goes into the transmitted light instead."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737757694",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "At what angle is the first-order maximum for 450-nm wavelength blue light falling on double slits separated by 0.0500 mm?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.516,
+    "unit": "°",
+    "hint": "Set $m = 1$ in $\\kd\\sin\\theta = m\\klam$ and solve for $\\theta$.",
+    "solution": "$0.516^\\circ$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169738091525",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "What is the separation between two slits for which 610-nm orange light has its first maximum at an angle of 30.0°?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.22e-06,
+    "unit": "m",
+    "hint": "Solve $\\kd\\sin\\theta = m\\klam$ for $\\kd$ with $m = 1$.",
+    "solution": "$1.22\\times 10^{-6}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737758071",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "Calculate the wavelength of light that has its third minimum at an angle of 30.0° when falling on double slits separated by 3.00 μm. Explicitly, show how you follow the steps in Problem-Solving Strategies for Wave Optics.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 600,
+    "unit": "nm",
+    "hint": "The first minimum has $m = 0$ in $\\kd\\sin\\theta = (m + \\tfrac{1}{2})\\klam$, so the third has $m = 2$.",
+    "solution": "600 nm"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169738090862",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "At what angle is the fourth-order maximum for the situation in the first problem of this set, 450-nm light falling on double slits separated by 0.0500 mm?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.06,
+    "unit": "°",
+    "hint": "Use $\\kd\\sin\\theta = m\\klam$ with $m = 4$.",
+    "solution": "$2.06^\\circ$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737739465",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "measuring-wavelength",
+   "prompt": "Find the largest wavelength of light falling on double slits separated by 1.20 μm for which there is a first-order maximum. Is this in the visible part of the spectrum?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1200,
+    "unit": "nm",
+    "hint": "The largest wavelength with a first-order maximum puts that maximum at $\\sin\\theta = 1$.",
+    "solution": "1200 nm (not visible)"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169738094750",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "measuring-wavelength",
+   "prompt": "(a) What is the smallest separation between two slits that will produce a second-order maximum for any visible light? (b) For all visible light?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) for any visible light",
+      "value": 760,
+      "unit": "nm",
+      "hint": "A second-order maximum needs $\\kd \\ge 2\\klam$, and the easiest visible wavelength to satisfy is the shortest, 380 nm."
+     },
+     {
+      "part": "(b) for all visible light",
+      "value": 1520,
+      "unit": "nm",
+      "hint": "For every visible wavelength to have a second-order maximum, the condition must hold for the longest, 760 nm."
+     }
+    ],
+    "solution": "(a) 760 nm\n\n(b) 1520 nm"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737762724",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference-fringes",
+   "figure": {
+    "src": "/media/ch27/Figure_28_03_08a.jpg",
+    "alt": "A double slit at the left and a screen at the right. The slits are a distance d apart; a horizontal line x runs from them to the screen, a line at angle theta rises to the screen, and the distance y along the screen and the fringe spacing delta y are marked.",
+    "caption": "The distance between adjacent fringes is $\\Delta y = x\\lambda/d$, assuming the slit separation $d$ is large compared with $\\lambda$."
+   },
+   "prompt": "The figure shows a double slit located a distance <em>x</em> from a screen, with the distance from the center of the screen given by <em>y</em>. When the distance <em>d</em> between the slits is relatively large, there will be numerous bright spots, called fringes. Show that, for small angles (where $\\sin\\theta \\approx \\theta$, with $\\theta$ in radians), the distance between fringes is given by $\\Delta y = x\\lambda/d$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "For small angles $\\sin\\theta \\approx \\tan\\theta \\approx \\theta$ (in radians). For two adjacent fringes we have $\\kd\\sin\\theta_{\\text{m}} = m\\klam$ and $\\kd\\sin\\theta_{\\text{m}+1} = (m+1)\\klam$. Subtracting these equations gives $\\kd(\\sin\\theta_{\\text{m}+1} - \\sin\\theta_{\\text{m}}) = [(m+1) - m]\\klam$, so $\\kd(\\theta_{\\text{m}+1} - \\theta_{\\text{m}}) = \\klam$. Since $\\tan\\theta_{\\text{m}} = \\ky_{\\text{m}}/\\kx \\approx \\theta_{\\text{m}}$, this is $\\kd\\left(\\frac{\\ky_{\\text{m}+1}}{\\kx} - \\frac{\\ky_{\\text{m}}}{\\kx}\\right) = \\klam$, so $\\kd\\frac{\\kdy}{\\kx} = \\klam$ and $\\kdy = \\frac{\\kx\\klam}{\\kd}$."
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169737790043",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference-fringes",
+   "figure": {
+    "src": "/media/ch27/Figure_28_03_08a.jpg",
+    "alt": "A double slit at the left and a screen at the right. The slits are a distance d apart; a horizontal line x runs from them to the screen, a line at angle theta rises to the screen, and the distance y along the screen and the fringe spacing delta y are marked.",
+    "caption": "The distance between adjacent fringes is $\\Delta y = x\\lambda/d$, assuming the slit separation $d$ is large compared with $\\lambda$."
+   },
+   "prompt": "Using the result of the previous problem, find the wavelength of light that produces fringes 7.50 mm apart on a screen 2.00 m from double slits separated by 0.120 mm (see the figure).",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 450,
+    "unit": "nm",
+    "hint": "Solve $\\kdy = \\kx\\klam/\\kd$ for $\\klam$.",
+    "solution": "450 nm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "coherent-sources"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "superposition",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "fringe-spacing"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "double-slit-constructive",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "double-slit-destructive"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "superposition",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "superposition"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "coherent-sources",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "superposition",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "double-slit-destructive"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "double-slit-constructive",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "coherent-sources"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "youngs-double-slit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "wavelength-in-a-medium",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "color-follows-frequency",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "double-slit-destructive"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "youngs-double-slit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "p2",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "p2",
+   "concept": "find-wavelength-from-a-pattern",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "double-slit-destructive"
+  },
+  {
+   "exercise": "p3",
+   "concept": "find-wavelength-from-a-pattern",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "p4",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "highest-order"
+  },
+  {
+   "exercise": "p5",
+   "concept": "find-wavelength-from-a-pattern",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "highest-order"
+  },
+  {
+   "exercise": "p6",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "fringe-spacing"
+  },
+  {
+   "exercise": "p7",
+   "concept": "double-slit-constructive",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "fringe-spacing"
+  },
+  {
+   "exercise": "p8",
+   "concept": "find-wavelength-from-a-pattern",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ]
+}

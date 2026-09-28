@@ -100,3 +100,8 @@ Table 25.2, Index of Refraction n in Selected Media at Various Wavelengths, a
 - Errata: the book's key to `exer-00001` (a) writes $v_{610} = c/1.530$ and $v_{410} = c/1.514$, the two indices swapped; the difference it finds, 2.07 × 10⁶ m/s, is the right size, and orange, not violet, is the faster; kept as printed and named in `exercise_notes`.
 - Errata: the paragraph "Refraction is responsible…" opens "(See Table 25.2." and never closes the parenthesis; kept as printed.
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-09-28):
+
+- Both variable anchors are written as listed.
+- `exer-00001` is set here with `source_section: "25.7"`. Both errata, the swapped indices in its key and the unclosed "(See Table 25.2.", are gathered in `ch25/exploration.md`. Figure 25.24(c) stays inside the sim's original, since one bundle file holds all three panels.

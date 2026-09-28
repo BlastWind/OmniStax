@@ -46,7 +46,7 @@ function sci(x, dec) {
 (function () {
   const d = sim('sim-wavelength-in-medium', 460);
   const lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 380, max: 760, step: 1, value: 633, unit: 'nm', dec: 0, aria: 'the wavelength of the light in vacuum', detents: [{ v: 380, label: '380' }, { v: 760, label: '760' }] });
-  const nS = ctl(d.controls, { label: 'n', cls: '', min: 1, max: 2.42, step: 0.001, value: 1.333, unit: '', dec: 3, aria: 'the index of refraction of the medium', snap: true, detents: [{ v: 1.333, label: 'water' }, { v: 1.52, label: 'crown glass' }, { v: 2.419, label: 'diamond' }] });
+  const nS = ctl(d.controls, { label: 'n', cls: '', min: 1, max: 2.42, step: 0.001, value: 1.333, unit: '', dec: 3, aria: 'the index of refraction of the medium', snap: true, detents: [{ v: 1.333, label: 'water' }, { v: 1.52 }, { v: 2.419, label: 'diamond' }] });
   const PERIODS = 4;
   const cy = cycle(() => PERIODS, 0.2);
   const PX = 0.3;                               /* drawn units per nanometer: 760 nm is 228 units */
@@ -90,7 +90,7 @@ function sci(x, dec) {
     current = hits;
 
     /* the rulers: one wavelength on each side, starting at a fixed point */
-    const b1 = 150, b2 = b1 + L * PX, m1 = XB + 120, m2 = m1 + Ln * PX, yb = MED.t + 18;
+    const b1 = 150, b2 = b1 + L * PX, m1 = XB + 120, m2 = m1 + Ln * PX, yb = MED.t + 34;
     hbracket(ctx, b1, b2, yb, PC, `λ = ${fmt(L, 0)} nm`);
     hbracket(ctx, m1, m2, yb, PC, `λₙ = ${fmt(Ln, 0)} nm`);
 

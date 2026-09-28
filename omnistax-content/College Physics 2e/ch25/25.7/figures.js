@@ -59,7 +59,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
    pupil, and every ray obeys the law of reflection at the glass. The reflected
    rays traced backward meet behind the mirror, as far behind it as the bottle
    stands in front, and the image is the same height, whatever the eye's place.
-   Scale: 5 units per centimetre, so the 100 cm reach of the object slider and
+   Scale: 5 units per centimeter, so the 100 cm reach of the object slider and
    the 100 cm behind the glass both fit.
 ===================================================================== */
 (function () {
@@ -138,9 +138,9 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
    edge rays cross nearer the mirror and the focus smears, which is Figure
    25.39(a) against 25.39(b). A convex mirror spreads them, and their backward
    extensions meet at F behind it, which is Figure 25.40. The mirror slides to
-   the left when it turns convex so that its focal point and centre of curvature,
+   the left when it turns convex so that its focal point and center of curvature,
    which then lie behind it, stay on the canvas.
-   Scale: 6 units per centimetre; R runs to 60 cm, 360 units, and the widest
+   Scale: 6 units per centimeter; R runs to 60 cm, 360 units, and the widest
    mirror, 0.9 R, reaches 324 units either side of the axis at y = 390.
 ===================================================================== */
 (function () {
@@ -229,7 +229,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
    behind the mirror, cross. The object slider walks a concave mirror through
    case 1 into case 2, with dashed circles where the object reaches 2f (an image
    the same size) and f (no image); the choice turns the mirror convex, case 3.
-   Scale: 9 units per centimetre, so a 90 cm object distance fits in front of the
+   Scale: 9 units per centimeter, so a 90 cm object distance fits in front of the
    mirror and 51 cm behind it; an image beyond the canvas is named at the edge.
 ===================================================================== */
 (function () {
@@ -286,7 +286,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
     ray(ctx, [xo, yt], h1, F.cat(0), { at: 0.5 });
     const r1 = atX(h1, [xF, AY], XL) || [XL, AY];
     ray(ctx, h1, r1, F.cat(0), { at: 0.3 });
-    /* ray 2: to the centre, leaving at the same angle to the axis */
+    /* ray 2: to the center, leaving at the same angle to the axis */
     const r2 = [XL, AY + (AY - yt) * (MX - XL) / Math.max(MX - xo, 1)];
     ray(ctx, [xo, yt], [MX, AY], F.cat(1), { at: 0.5 });
     ray(ctx, [MX, AY], atX([MX, AY], r2, XL) || r2, F.cat(1), { at: 0.3 });

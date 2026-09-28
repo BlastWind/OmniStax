@@ -106,3 +106,8 @@ None.
 - variables `θ_c`, `θ_1`, `θ_2`, `n_1`, `n_2` (section 25.4) → 25.4-critical-angle
 - Errata: Example 25.4's strategy says the index of polystyrene "is found to be 1.49 in Figure 25.14", which is the fiber drawing; the index is in Table 25.1 of 25.3. Kept as printed in words naming Table 25.1 as the prep notes settle, and named in `notes`.
 - No concept or symbol row needs changing.
+
+Applied by the chapter pass (2026-09-28):
+
+- Both equation anchors and the five variable anchors are written as listed.
+- The erratum on Example 25.4's figure reference is gathered in `ch25/exploration.md`. The rainbow question is set with 25.5 with `source_section: "25.4"`, and both notes agree. The two rows numbered 25.15 (the sim for (a), the photograph for (b)) stand as built.

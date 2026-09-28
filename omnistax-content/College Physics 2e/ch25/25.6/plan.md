@@ -127,3 +127,8 @@ Table 25.3, Three Types of Images Formed By Thin Lenses, as a `div.book-table` i
 - Variables `f_focal`, `P_lens` → 25.6-converging-lens and 25.6-lens-power; `d_obj`, `d_img`, `h_obj`, `h_img`, `m` → 25.6-thin-lens-equations
 - Errata: AP items `fs-id1303826` and `fs-id1463977` of m42470 carry solutions commented out of the CNXML; set as open items.
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-09-28):
+
+- The five equation anchors and seven variable anchors are written as listed.
+- The two AP items whose solutions are commented out of the CNXML are gathered in `ch25/exploration.md`.

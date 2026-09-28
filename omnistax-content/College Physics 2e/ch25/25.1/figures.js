@@ -42,7 +42,7 @@ function ray(ctx, pts, color, w) {
   const EYE = { x: PX - 14 * PS, y: FLOOR - 140 * PS };
   const SUNDIR = (() => { const L = Math.hypot(1, 0.25); return { x: 1 / L, y: 0.25 / L }; })();
 
-  /* the path of a ray that arrives at `end` travelling along `u`, traced back through the pane:
+  /* the path of a ray that arrives at `end` traveling along `u`, traced back through the pane:
      it bends toward the normal inside the glass and leaves parallel to the way it came */
   function throughGlass(end, u) {
     const t1 = (end.x - GR) / u.x, inner = { x: GR, y: end.y - t1 * u.y };

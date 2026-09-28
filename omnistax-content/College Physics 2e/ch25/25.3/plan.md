@@ -110,3 +110,8 @@ columns; the book's `0ºC` written 0°C.
 - glossary `refraction` → 25.3-refraction; `index of refraction` → 25.3-speed-of-light
 - Move: `fs-id2104353` (the curved thermometer) is set with 25.6 with `source_section: "25.3"`; 25.3's `exercise_notes` says so.
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-09-28):
+
+- The six equation anchors and seven variable anchors are written as listed. Glossary rows carry no anchor field, so the glossary lines need no row change; the terms stand as the section wrote them.
+- The curved thermometer is set with 25.6 with `source_section: "25.3"`, and both notes agree.

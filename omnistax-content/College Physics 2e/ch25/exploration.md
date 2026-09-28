@@ -295,6 +295,21 @@ is never presented as a graded choice.
   percent different from today's; Roemer's, quoted in the text, was 25 percent
   different. Both numbers are the book's and are kept.
 
+- **25.5, the Critical Thinking key.** The key to `exer-00001` (a), printed in
+  25.7 and set with 25.5, writes $v_{610} = c/1.530$ and $v_{410} = c/1.514$,
+  the two indices swapped; the difference it finds, 2.07 × 10⁶ m/s, is the right
+  size, but orange, not violet, is the faster. Kept as printed and named in 25.5's
+  `exercise_notes` (chapter pass).
+- **25.5, an unclosed parenthesis.** The paragraph on refraction and dispersion
+  opens "(See Table 25.2." and never closes it. Kept as printed (chapter pass).
+- **25.6, two AP solutions commented out.** The solutions to `fs-id1303826` and
+  `fs-id1463977` are commented out of m42470's CNXML, so the book prints none;
+  both are set as open items (chapter pass).
+- **25.7, an AP key that disagrees with its item.** `fs-id1560818` is keyed (b)
+  10 cm, but an upright image twice the size of an object 10 cm from a concave
+  mirror gives $d_{\text{i}} = -20$ cm and $f = +20$ cm, which is (c). The item is
+  set open with its options and named in 25.7's `exercise_notes` (chapter pass).
+
 ## Prerequisite edges into built chapters
 
 - Chapter 24: `light-is-an-electromagnetic-wave`, `speed-of-light-from-constants`,

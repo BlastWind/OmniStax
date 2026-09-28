@@ -86,3 +86,8 @@ None.
 - glossary `mirror` → 25.2-reflection-and-diffusion
 - glossary `law of reflection` → 25.2-law-of-reflection
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-09-28):
+
+- The equation anchor and both variable anchors are written with `ost set`. Glossary rows carry no anchor field, so the glossary lines need no row change; the terms stand as the section wrote them.
+- The flat-against-convex AP item is set with 25.7 with `source_section: "25.2"`, and both notes agree.

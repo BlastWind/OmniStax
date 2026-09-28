@@ -105,3 +105,9 @@ The module prints none.
 - Errata named in `notes`: the summary's "Image length is half the radius of curvature" (focal length is meant); Example 25.11's $R = 2|f| = -0.800$ cm kept as printed.
 - Figures 25.43 and 25.44: if the chapter pass wants the drawings (a) folded into `sim-mirror-images`, the two bundle images need splitting into a drawing and a photograph file, and the photo rows then carry only (b).
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-09-28):
+
+- The equation anchor and the eight variable anchors are written as listed.
+- The summary's "Image length", Example 25.11's $R = 2|f| = -0.800$ cm and the AP item `fs-id1560818`, keyed (b) 10 cm where the arithmetic gives +20 cm (c) and set open, are gathered in `ch25/exploration.md`.
+- Figures 25.43 and 25.44 are kept whole as photo rows, drawing and photograph together as the bundle file prints them; the drawings are not folded into `sim-mirror-images`, since the sim already draws both cases and splitting the files would add two images for no new view.

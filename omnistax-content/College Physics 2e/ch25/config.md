@@ -40,3 +40,25 @@ value. Lines that repeat the earlier configs are unchanged unless marked.
 | Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 41 nodes written into `book.json` before the sections were built (4 for 25.1, 3 for 25.2, 7 for 25.3, 7 for 25.4, 4 for 25.5, 9 for 25.6, 7 for 25.7) with 99 prerequisite edges into Chapters 2, 3, 16, 24 and within the chapter |
 | Formulas | `ch25/chapter.json`: 15 equations, the stated and named ones important (the law of reflection, the value of the speed of light, the index of refraction, Snell's law, the critical angle, the power of a lens, the thin lens equation, the magnification and the focal length of a spherical mirror) and the rearrangements and worked steps not; 25.7 states only $f = R/2$ of its own and uses 25.6's thin lens and magnification rows rather than restating them, which is what the book does; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass writes them from the section plans |
 | Book manifest | `ch25` after `ch24` in `book.json` chapters, merged with `ost merge college-physics-2e 25` |
+
+## What the build changed (chapter pass, 2026-09-28)
+
+Four lines of the table above read differently once the sections were built.
+Everything else stood.
+
+- **Motion.** Only Michelson's rotating mirror (Figure 25.11) moves. 25.4's fiber
+  carries no pulse, since the idea is the geometry of each bounce, so every other
+  figure of the chapter is still and has no transport.
+- **3D.** The rainbow's cone (Figure 25.24) is built as the chapter's one full 3D
+  scene, with its orbit bounded above the observer's horizon. The three locked views
+  the table proposed (25.15(a), 25.16, 25.18) are drawn flat instead, because each
+  teaches a light path that lies in one plane and a perspective view would add only
+  shading.
+- **Colour coding.** 25.5 binds `position` alone; no figure draws a speed, so
+  `velocity` is not bound there. Sunlight in 25.5 is the one hex besides the
+  spectral colours, `#f4d35e`.
+- **Photographs kept.** Figures 25.43 and 25.44 are kept whole as photo rows, the
+  drawing and the photograph together as the bundle file prints them, beside the
+  sim that draws both cases; Figure 25.24(c) travels inside the rainbow sim's
+  original, since one file holds all three panels, and 25.15 carries two rows, the
+  sim for (a) and the photograph for (b).

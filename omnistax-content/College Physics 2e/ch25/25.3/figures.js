@@ -245,7 +245,7 @@ function eye(ctx, x, y, a, s) {
    a front is the set of points of equal phase n·(distance along the ray), so
    it is continuous across the surface wherever Snell's law holds and kinks
    there, which is the lawn mower's axle. The heavy front with its two wheels
-   is the one crossing the surface a quarter of the beam from its centre.
+   is the one crossing the surface a quarter of the beam from its center.
    Media from Table 25.1, air taken as 1.00 as the examples take it.
 ===================================================================== */
 (function () {

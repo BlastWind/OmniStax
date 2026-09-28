@@ -61,3 +61,8 @@ No conceptual questions and no Check Your Understanding box in this module.
 
 - glossary `ray` → 25.1-three-paths
 - glossary `geometric optics` → 25.1-geometric-optics
+
+Applied by the chapter pass (2026-09-28):
+
+- Glossary rows carry no anchor field, so the glossary lines need no row change; the terms stand as the section wrote them.
+- The full-length mirror problem is set with 25.2 with `source_section: "25.1"`, and both notes agree.

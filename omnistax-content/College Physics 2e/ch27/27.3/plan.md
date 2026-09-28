@@ -34,7 +34,7 @@ All nine were written by the prep pass; the page adds none.
 
 ## Types the page binds
 
-`position` only, as `ch27/COLOR.md` gives 27.3: $\klam$, $\kd$, $\kdl$, $\kx$, $\ky$, $\kdy$. No readout states an intensity, so `intensity` is not bound. Angles, the order $m$ and the amplitudes of Figure 27.11 are ink. The light is drawn in the colour of its wavelength (rule 7's third family) by one `spectral()` function, the only literal colours of the page; the two waves of Figure 27.11 are told apart by `F.cat(0)` and `F.cat(1)`, and where two waves of one light must be told apart one is dashed.
+`position` only, as `ch27/COLOR.md` gives 27.3: $\klam$, $\kd$, $\kdl$, $\kx$, $\ky$, $\kdy$. No readout states an intensity, so `intensity` is not bound. Angles, the order $m$ and the amplitudes of Figure 27.11 are ink. The light is drawn in the colour of its wavelength (rule 7's third family) by one `spectral()` function, the only literal colours of the page besides the black ground (`#000`) of the fringe strip in Figure 27.15, which is the darkened screen the fringes are seen on; the two waves of Figure 27.11 are told apart by `F.cat(0)` and `F.cat(1)`, and where two waves of one light must be told apart one is dashed.
 
 ## Figures
 
@@ -58,7 +58,7 @@ Labels: every figure names under six things; the fringes of 27.10 and 27.15 are 
 | `Figure_28_03_04a.jpg`, `Figure_28_03_05a.jpg` (27.13, 27.14) | originals of `sim-path-difference` | folded |
 | `Figure_28_03_06a.jpg` (27.15) | original of `sim-fringe-pattern` | replaced |
 | `Figure_28_03_07a.jpg` (red dots) | not copied here | travels with its conceptual question to 27.5 |
-| `Figure_28_03_08a.jpg` ($\kdy = \kx\klam/\kd$ sketch) | on the cards of `p6` and `p7` | serves keyed problems |
+| `Figure_28_03_08a.jpg` ($\kdy = \kx\klam/\kd$ sketch) | on the cards of `p7` and `p8` | serves keyed problems |
 
 ## Extra simulations considered
 

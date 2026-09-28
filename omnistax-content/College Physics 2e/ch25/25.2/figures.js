@@ -175,7 +175,7 @@ function hatch(ctx, pts, depth) {
    reflection; traced back, they meet at the image, as far behind the mirror as
    the person stands in front. The mirror is drawn only over the stretch the
    two rays use, which is half her height wherever she stands.
-   Scale: 180 units per metre, fixed, from 3.0 m either side of the mirror.
+   Scale: 180 units per meter, fixed, from 3.0 m either side of the mirror.
 ===================================================================== */
 (function () {
   const d = sim('sim-image-in-mirror', 660);
