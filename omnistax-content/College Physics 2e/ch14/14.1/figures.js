@@ -78,8 +78,8 @@ function cube(ctx, xl, yb) {
 ===================================================================== */
 (function () {
   const d = sim('sim-equilibrium', 780);
-  const T1 = ctl(d.controls, { label: '\\kTempone', cls: 'temperature', min: -20, max: 60, step: 1, value: 30, unit: '°C', dec: 0, onInput: reset, aria: 'temperature of the soft drink' });
-  const T2 = ctl(d.controls, { label: '\\kTemptwo', cls: 'temperature', min: -20, max: 60, step: 1, value: -10, unit: '°C', dec: 0, onInput: reset, aria: 'temperature of the ice' });
+  const T1 = ctl(d.controls, { label: '\\kTempone', cls: 'temperature', min: -20, max: 60, step: 1, value: 30, unit: '°C', dec: 0, onInput: reset, aria: 'temperature of the soft drink', specials: [{ at: () => T2.v, label: 'equal' }] });
+  const T2 = ctl(d.controls, { label: '\\kTemptwo', cls: 'temperature', min: -20, max: 60, step: 1, value: -10, unit: '°C', dec: 0, onInput: reset, aria: 'temperature of the ice', specials: [{ at: () => T1.v, label: 'equal' }] });
   const PERIOD = 12, TC = 1.0, TAUR = 1.6;   /* minutes: the loop, the moment of contact, the relaxation time */
   const cy = cycle(() => PERIOD, 1.2);
   function reset() { cy.reset(); }

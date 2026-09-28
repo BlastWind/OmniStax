@@ -171,7 +171,7 @@ function earthSprite(ctx, x, y, r) {
   const how = choice(d.controls, { label: '\\text{the process}', options: [{ value: 'direct', label: 'direct' }, { value: 'rev', label: 'reversible' }], value: 'direct', aria: 'whether the heat transfer is direct or by two reversible processes' });
   const q = ctl(d.controls, { label: '\\kQh', cls: 'energy', min: 0, max: 8000, step: 100, value: 4000, unit: 'J', dec: 0, aria: 'the heat transfer from the hot reservoir to the cold one' });
   const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 300, max: 1000, step: 10, value: 600, unit: 'K', dec: 0, aria: 'the temperature of the hot reservoir' });
-  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 100, max: 1000, step: 10, value: 250, unit: 'K', dec: 0, aria: 'the temperature of the cold reservoir' });
+  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 100, max: 1000, step: 10, value: 250, unit: 'K', dec: 0, aria: 'the temperature of the cold reservoir', specials: [{ at: () => th.v, label: 'reversible' }] });
   const BX1 = 170, BX2 = 560, HY1 = 110, HY2 = 220, CY1 = 440, CY2 = 550, MX = (BX1 + BX2) / 2, K = 0.0085;
   const box = { l: 800, r: 1320, t: 135, b: 520 }, LO = -40, HI = 80;   /* the entropy axis is fixed at −40 to 80 J/K: 8000 J at 100 K is 80 J/K */
   function draw() {
@@ -182,24 +182,35 @@ function earthSprite(ctx, x, y, r) {
     /* the two reservoirs, the hot one above */
     reservoir(ctx, BX1, HY1, BX2, HY2, 'hot reservoir', 'T_h = ' + fmt(Th, 0) + ' K');
     reservoir(ctx, BX1, CY1, BX2, CY2, 'cold reservoir', 'T_c = ' + fmt(Tc, 0) + ' K');
+    /* a part only one process has, faded and shifted with the choice */
+    const only = (v, f) => { const a = how.a(v); if (a <= 0) return; const [dx, dy] = how.off(v, [0, 10]); ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore(); };
     if (w > 0) {
-      if (!rev) {
+      /* the direct arrow splits: its upper half swings out into the transfer leaving the hot reservoir, its lower half into the one entering the cold */
+      const k = how.mix((v) => (v === 'rev' ? 1 : 0)), mid = (HY2 + CY1) / 2, L = (a, b) => a + (b - a) * k;
+      only('direct', () => {
         fatArrow(ctx, MX, HY2 + 2, MX, CY1 - 2, w, ec);
         text(ctx, 'Q = ' + fmt(Q, 0) + ' J', MX + w / 2 + 22, 330, ec, { size: 22, weight: 600, align: 'left' });
         text(ctx, 'direct from T_h to T_c', MX + w / 2 + 22, 360, PAL.muted, { size: 17, align: 'left' });
-      } else {
-        fatArrow(ctx, MX + 30, HY2 + 2, MX + 130, HY2 + 96, w, ec);
-        fatArrow(ctx, MX - 130, CY1 - 96, MX - 30, CY1 - 2, w, ec);
+      });
+      const ar = how.a('rev');
+      if (ar > 0) {
+        ctx.save(); ctx.globalAlpha *= ar;
+        fatArrow(ctx, L(MX, MX + 30), HY2 + 2, L(MX, MX + 130), L(mid - 8, HY2 + 96), w, ec);
+        fatArrow(ctx, L(MX, MX - 130), L(mid + 8, CY1 - 96), L(MX, MX - 30), CY1 - 2, w, ec);
+        ctx.restore();
+      }
+      only('rev', () => {
         text(ctx, 'Q = ' + fmt(Q, 0) + ' J out', MX + 130 + w / 2 + 4, HY2 + 96, ec, { size: 22, weight: 600, align: 'left' });
         text(ctx, 'reversible process', MX + 130 + w / 2 + 4, HY2 + 124, PAL.muted, { size: 17, align: 'left' });
         text(ctx, 'Q = ' + fmt(Q, 0) + ' J in', MX - 130 - w / 2 - 4, CY1 - 96, ec, { size: 22, weight: 600, align: 'right' });
         text(ctx, 'reversible process', MX - 130 - w / 2 - 4, CY1 - 124, PAL.muted, { size: 17, align: 'right' });
-      }
+      });
     } else {
       line(ctx, MX, HY2, MX, CY1, alpha(ec, 0.35), 2, [6, 8]);
       text(ctx, 'no heat transfer', MX + 22, 330, PAL.muted, { size: 17, align: 'left' });
     }
-    text(ctx, rev ? 'two reversible processes' : 'irreversible', MX, CY2 + 40, PAL.ink, { size: 20, align: 'center' });
+    only('rev', () => text(ctx, 'two reversible processes', MX, CY2 + 40, PAL.ink, { size: 20, align: 'center' }));
+    only('direct', () => text(ctx, 'irreversible', MX, CY2 + 40, PAL.ink, { size: 20, align: 'center' }));
     /* the bars on a fixed axis */
     const { Y } = axes(ctx, box, [0, 3], [LO, HI], { yl: 'ΔS (J/K)', yc: sc, nx: 3, ny: 6, fx: () => '' });
     const cols = [['ΔS_h', dSh, 'hot reservoir'], ['ΔS_c', dSc, 'cold reservoir'], ['ΔS_tot', tot, 'total']];
@@ -236,7 +247,7 @@ function earthSprite(ctx, x, y, r) {
   const d = sim('sim-two-engines', 750);
   const qh = ctl(d.controls, { label: '\\kQH', cls: 'energy', min: 1000, max: 8000, step: 100, value: 4000, unit: 'J', dec: 0, aria: 'the heat transfer fed to each engine' });
   const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 400, max: 1000, step: 10, value: 600, unit: 'K', dec: 0, aria: 'the temperature of the hot reservoir' });
-  const tm = ctl(d.controls, { label: '\\kTemphprime', cls: 'temperature', min: 150, max: 1000, step: 10, value: 250, unit: 'K', dec: 0, aria: 'the temperature of the colder reservoir the heat falls to before the second engine' });
+  const tm = ctl(d.controls, { label: '\\kTemphprime', cls: 'temperature', min: 150, max: 1000, step: 10, value: 250, unit: 'K', dec: 0, aria: 'the temperature of the colder reservoir the heat falls to before the second engine' , specials: [{ at: () => th.v, label: 'no fall' }] });
   const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 50, max: 400, step: 10, value: 100, unit: 'K', dec: 0, aria: 'the temperature of the cold reservoir' });
   const K = 0.0085, RY1 = 150, RY2 = 240, CY1 = 600, CY2 = 690, EY = 420, ER = 88;
   function panel(ctx, x1, x2, Qh, W, Qc, tag) {

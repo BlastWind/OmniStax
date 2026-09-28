@@ -57,7 +57,9 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
    fluid warmed at the heater is lighter than the rest and the buoyant force
    lifts it; parcels ride the loop at a rate set by how much lighter it is
    and by the size of the loop. A steady flow, so the cycle is endless and
-   there is no scrubber.
+   there is no scrubber. Changing the scene carries the parcels from one loop
+   onto the other and the density bars across, while the house and the pot
+   fade past each other.
 ===================================================================== */
 (function () {
   const d = sim('sim-convective-loop', 620);
@@ -101,7 +103,6 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     const lp = rectLoop(345, 1110, 205, 515, 60);
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.25); ctx.lineWidth = 2; ctx.setLineDash([6, 10]); ctx.beginPath();
     for (let i = 0; i <= 200; i++) { const p = lp.at((lp.P * i) / 200); if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } ctx.stroke(); ctx.restore();
-    const N = 28; for (let i = 0; i < N; i++) { const p = lp.at((ph / TAU) * lp.P + (i * lp.P) / N); parcel(ctx, p[0], p[1]); }
     arrow(ctx, 345, 420, 345, 330, PAL.ink, 4); arrow(ctx, 1110, 300, 1110, 390, PAL.ink, 4);
     const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 95);
     lab.add('Hot air rises', 345, 380, 1, 0, PAL.ink, 22, 30);
@@ -109,7 +110,6 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     lab.add('Gravity furnace', 300, 470, 1, 0, PAL.ink, 20, 24);
     lab.flush();
     text(ctx, 'Each dot is a parcel of air riding the loop.', 200, 596, PAL.muted, { size: 17 });
-    densityBars(ctx, 1238, 470, FLUIDS.air, dT.v, 220);
   }
   function pot(ctx, ph) {
     const L = 470, R = 930, TOP = 190, BOT = 510, WL = 235;
@@ -125,7 +125,6 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     cx.forEach((c, k) => {
       const sgn = k ? 1 : -1;
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.25); ctx.lineWidth = 2; ctx.setLineDash([6, 10]); ctx.beginPath(); ctx.ellipse(c, cy0, rx, ry, 0, 0, TAU); ctx.stroke(); ctx.restore();
-      const N = 14; for (let i = 0; i < N; i++) { const a = sgn * ph + (i * TAU) / N; parcel(ctx, c + rx * Math.cos(a), cy0 + ry * Math.sin(a)); }
     });
     arrow(ctx, 700, 430, 700, 330, PAL.ink, 4); arrow(ctx, 500, 320, 500, 420, PAL.ink, 4); arrow(ctx, 900, 320, 900, 420, PAL.ink, 4);
     const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 95);
@@ -134,12 +133,24 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     lab.add('Burner', 860, 585, 1, 0, PAL.ink, 20, 24);
     lab.flush();
     text(ctx, 'Each dot is a parcel of water riding a loop.', 200, 596, PAL.muted, { size: 17 });
-    densityBars(ctx, 1160, 470, FLUIDS.water, dT.v, 220);
   }
+  /* the 28 parcels as one flat list of x, y: on the room's loop, or 14 on each of the pot's two loops */
+  const N = 28, ROOMLOOP = rectLoop(345, 1110, 205, 515, 60);
+  const parcels = {
+    room: (ph) => Array.from({ length: N }, (_, i) => ROOMLOOP.at((ph / TAU) * ROOMLOOP.P + (i * ROOMLOOP.P) / N)).flat(),
+    pot: (ph) => Array.from({ length: N }, (_, i) => { const k = i % 2, sgn = k ? 1 : -1, a = sgn * ph + (Math.floor(i / 2) * TAU) / (N / 2); return [[590, 810][k] + 96 * Math.cos(a), 372 + 120 * Math.sin(a)]; }).flat(),
+  };
   function draw() {
     const { ctx } = begin(d.c);
     const ph = phaseOf(cy), isRoom = scene.value === 'room', f = isRoom ? FLUIDS.air : FLUIDS.water, pct = pctLighter(f, dT.v);
-    if (isRoom) room(ctx, ph); else pot(ctx, ph);
+    for (const [v, paint] of [['room', room], ['pot', pot]]) {
+      const a = scene.a(v); if (!(a > 0)) continue;
+      const [ox, oy] = scene.off(v, [0, 24]);
+      ctx.save(); ctx.globalAlpha = a; ctx.translate(ox, oy); paint(ctx, ph); ctx.restore();
+    }
+    const pts = scene.mix((v) => parcels[v](ph));
+    for (let i = 0; i < pts.length; i += 2) parcel(ctx, pts[i], pts[i + 1]);
+    densityBars(ctx, scene.mix((v) => (v === 'room' ? 1238 : 1160)), 470, f, dT.v, 220);
     topline(ctx, isRoom
       ? `Air ${fmt(dT.v, 0)} °C warmer than the room's is ${fmt(pct, 1)}% lighter, so the room's air lifts it: it rises up the wall, cools along the ceiling and sinks down the far side.`
       : `Water ${fmt(dT.v, 0)} °C warmer than the rest is ${fmt(pct, 2)}% lighter, so it rises through the middle of the pot, cools at the surface and the walls, and sinks.`);

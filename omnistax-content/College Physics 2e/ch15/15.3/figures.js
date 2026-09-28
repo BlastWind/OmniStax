@@ -135,7 +135,7 @@ function hatch(ctx, color) {
 (function () {
   const d = sim('sim-heat-engine', 640);
   const Qh = ctl(d.controls, { label: '\\kQH', cls: 'energy', min: 5, max: 50, step: 0.1, value: 25, unit: 'kJ', dec: 1, aria: 'heat transfer from the hot reservoir' });
-  const Qc = ctl(d.controls, { label: '\\kQC', cls: 'energy', min: 0, max: 50, step: 0.1, value: 14.8, unit: 'kJ', dec: 1, aria: 'heat transfer into the cold reservoir' });
+  const Qc = ctl(d.controls, { label: '\\kQC', cls: 'energy', min: 0, max: 50, step: 0.1, value: 14.8, unit: 'kJ', dec: 1, aria: 'heat transfer into the cold reservoir', specials: [{ at: 0, label: '100 %' }] });
   const K = 2.4;   /* arrow width per kilojoule: 50 kJ is 120 units wide */
   function draw() {
     const { ctx } = begin(d.c);

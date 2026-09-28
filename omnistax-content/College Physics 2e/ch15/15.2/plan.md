@@ -107,7 +107,7 @@ choices with types · headline · graph · 3D
    gives 60 J back to the environment, and puts out 40 J of work." · none ·
    2D. Readout: $\kW = \kQin - \kQout$ with the live numbers, and a small
    line on why $\kQout = 0$ is never achieved and what it means when the
-   heat out exceeds the heat in. Draws energy.
+   heat out exceeds the heat in. Draws energy. · house style (2026-09-28, Claude Opus 5.5): The slider for the heat out carries a dashed circle at zero, the engine with no heat transfer to the environment that the caption calls impossible.
 2. `sim-piston` · replaces Figure 15.8 (a), (b), (c), the gas in a cylinder
    heated, expanding and pushed back · heat-engine, isobaric-work,
    first-law-of-thermodynamics · flow by animation and variation by slider:
@@ -213,7 +213,7 @@ choices with types · headline · graph · 3D
    $\kdEint = -\kW$ along the adiabat with the numbers, the internal energy
    taken as $\tfrac{3}{2}PV$ from `eq-internal-energy-monatomic` and the
    ideal gas law; for panel (b) the net work of ABCA as the area between the
-   curves. Draws energy, pressure.
+   curves. Draws energy, pressure. · house style (2026-09-28, Claude Opus 5.5): The panel choice is a becoming, not a cut: the area under the adiabat drains as the band between the curves deepens, the adiabat's arrowhead shrinks and turns round, the isochoric leg grows down from B, and the readout morphs by meaning from the two works W_AB and W_AC into their difference, the net work.
 7. `sim-four-processes` · Sim (it replaces no figure; it is Table 15.2 drawn)
    · isobaric-work, isochoric-process, isothermal-process,
    adiabatic-process, first-law-of-thermodynamics · variation by choice: the
@@ -231,7 +231,7 @@ choices with types · headline · graph · 3D
    $V_\text{A}$ at 1.0 × 10⁻³, $P$ 0 to 6 × 10⁵ N/m² with $P_\text{A}$ at
    2.0 × 10⁵. Readout: $\kdEint = \kQh - \kW$ with the three numbers for the
    chosen process, the internal energy as $\tfrac{3}{2}PV$. Draws energy,
-   pressure.
+   pressure. · house style (2026-09-28, Claude Opus 5.5): A change of process morphs: the old path thins into its ghost while the new ghost thickens, the area passes from one to the other, B travels to its new place, and the names cross-fade.
 8. `fig-loops` · a faithful copy of the unnumbered nested loops ABCFA and
    ABDEA that a conceptual question and two AP items read; eyebrow
    "Figure" · net-work-of-a-cycle · standardisation only · still, no

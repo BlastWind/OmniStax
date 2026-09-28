@@ -83,9 +83,8 @@ id · replaces · concepts · value add · motion · sliders · headline · grap
    molecules the bar jumps about and with many it settles, which is the
    Check Your Understanding · $T$ (100 to
    1000 K, default 293, temperature), $N$ (1 to 60, default 25, ink), the
-   gas (He, N₂, O₂, a choice, default N₂), Labels (off by default, because
-   the component labels sit on the followed molecule, which moves; hover
-   names every molecule) · "At 293 K the 25 nitrogen molecules press on the
+   gas (He, N₂, O₂, a choice, default N₂); the followed molecule's v,
+   vₓ and v_y are on hover, since they sit on a moving molecule · "At 293 K the 25 nitrogen molecules press on the
    walls of the box at 1.01 × 10⁵ Pa, one atmosphere." · none, the box is
    the picture · 2D. Readout: $\kPr V = \tfrac{1}{3}Nm\overline{v^2} =
    Nk\kTemp$ with the live numbers and $P$; small line on the followed
@@ -134,8 +133,9 @@ id · replaces · concepts · value add · motion · sliders · headline · grap
    velocity.
 4. `sim-escape` · **Sim** (inside Example 13.9) · atmospheric-escape,
    rms-speed · variation by slider, intuition (which gases a world can keep)
-   · still · $T$ (100 to 30 000 K, default 19 800, temperature, detents at
-   250 K and 19 800 K), the world (Earth, 11.1 km/s, or the Moon, 2.38 km/s,
+   · still · $T$ (100 to 30 000 K, default 19 800, temperature, a detent at
+   250 K and a special where helium's rms speed reaches the world's escape
+   velocity, 19 800 K for Earth), the world (Earth, 11.1 km/s, or the Moon, 2.38 km/s,
    a choice) · "At 19 800 K the rms speed of helium reaches Earth's escape
    velocity of 11.1 km/s, while nitrogen and oxygen are still far below it."
    · the graph is the scene: $v_\text{rms}$ against $T$ for H₂, He, N₂ and
@@ -242,3 +242,5 @@ glossary term of the book does. 13.6's `exercise_notes` now names
 fs-id2705483 and every other item that left it by id, with the section each
 is set in. Two captions on this page began with a fragment (the distribution
 and the escape Sim) and are full sentences now.
+
+Phase 2 (2026-09-28, Claude Opus 5.5). sim-box: the Labels choice is gone, the velocity goes to hover. sim-speeds and sim-distribution: the gas choice blends the mass, so the arrows, the rms arrow, the speed axis and the curves reshape. sim-escape: helium's escape temperature is a special; the world blends the escape level.

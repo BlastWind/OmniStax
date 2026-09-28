@@ -240,8 +240,8 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
 ===================================================================== */
 (function () {
   const d = sim('sim-radiation-balance', 700);
-  const T1 = ctl(d.controls, { label: '\\kTempone\\text{, the person}', cls: 'temperature', min: -50, max: 120, step: 0.5, value: 33, unit: '°C', dec: 1, aria: 'the skin temperature of the person' });
-  const T2 = ctl(d.controls, { label: '\\kTemptwo\\text{, the walls}', cls: 'temperature', min: -50, max: 120, step: 0.5, value: 22, unit: '°C', dec: 1, aria: 'the temperature of the walls of the room' });
+  const T1 = ctl(d.controls, { label: '\\kTempone\\text{, the person}', cls: 'temperature', min: -50, max: 120, step: 0.5, value: 33, unit: '°C', dec: 1, aria: 'the skin temperature of the person', specials: [{ at: () => T2.v, label: 'equal' }] });
+  const T2 = ctl(d.controls, { label: '\\kTemptwo\\text{, the walls}', cls: 'temperature', min: -50, max: 120, step: 0.5, value: 22, unit: '°C', dec: 1, aria: 'the temperature of the walls of the room', specials: [{ at: () => T1.v, label: 'equal' }] });
   const es = ctl(d.controls, { label: 'e', cls: '', min: 0, max: 1, step: 0.01, value: 0.97, unit: '', dec: 2, aria: 'the emissivity of the person' });
   const As = ctl(d.controls, { label: 'A', cls: '', min: 0.1, max: 2, step: 0.05, value: 1.5, unit: 'm²', dec: 2, aria: 'the surface area of the person' });
   /* The bars share one fixed scale, 0 to 3 kW: an emissivity of 1, 2.00 m² and 120 °C give 2.71 kW. */

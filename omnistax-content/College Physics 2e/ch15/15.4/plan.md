@@ -118,7 +118,7 @@ headline · graph · 3D
    graph being the idea · 2D. Axes fixed at 0 to 1000 K and 0 to 100%.
    Readout: $\text{Eff}_{\text{C}} = 1 - \kTempc/\kTemph$ with the live
    numbers; small line saying what moving each temperature does. Draws
-   temperature.
+   temperature. · house style (2026-09-28, Claude Opus 5.5): The 0 K point on T_c is a dashed circle, the only place the text allows 100 % efficiency; 273 K stays a detent.
 3. `sim-reactor` · replaces Figure 15.22, the schematic of a pressurized
    water reactor and its steam turbines · calculate-carnot-efficiency,
    carnot-efficiency, heat-engine · standardisation and variation by

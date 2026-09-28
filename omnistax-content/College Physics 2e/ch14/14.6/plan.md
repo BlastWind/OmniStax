@@ -277,3 +277,5 @@ colour that is the physical fact.
 Applied by the chapter pass (2026-09-14): the ten anchors are set as listed,
 and the two concept rows name Examples 14.7 and 14.8, the publisher's
 numbers.
+
+Manim pass (2026-09-28, Claude Opus 5.5). `sim-convective-loop`: the scene choice no longer cuts. The 28 parcels move from the room's loop onto the pot's two loops, and the density bars slide to their new place, while the house and the pot fade past each other with a slight shift (manim-style 15/16, choice `mix`, `a`, `off`). The flame colours stay (the colour is the fact).

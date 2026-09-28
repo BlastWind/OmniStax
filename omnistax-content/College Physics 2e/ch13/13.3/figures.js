@@ -80,8 +80,8 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
     text(ctx, 'density, against the packed liquid', lx, 340, PAL.muted, { size: 19 });
     text(ctx, ratio === 1 ? '1' : '1 / ' + fmt(ratio, ratio < 10 ? 1 : 0), lx, 378, PAL.ink, { size: 26, weight: 600 });
     text(ctx, sp === 1 ? 'packed one diameter apart, as in a liquid' : sp < 3 ? 'still crowded, as a dense gas is' : 'mostly empty space, as a gas is', lx, 420, PAL.muted, { size: 17 });
-    text(ctx, 'the box is the same whichever gas is chosen', lx, 470, PAL.muted, { size: 17 });
-    text(ctx, 'only the molecule changes', lx, 496, PAL.muted, { size: 17 });
+    text(ctx, 'At the same temperature and pressure, equal volumes', lx, 470, PAL.muted, { size: 17 });
+    text(ctx, 'hold the same number of molecules, whatever the gas.', lx, 496, PAL.muted, { size: 17 });
     topline(ctx, sp === 1 ? 'Packed one diameter apart the molecules touch, as they do in a liquid, and the density is the liquid’s.'
       : 'At ' + fmt(sp, 1) + ' diameters apart the gas has 1/' + fmt(ratio, ratio < 10 ? 1 : 0) + ' of the density of the packed liquid, whatever the gas is.');
     readout(d.readout, `\\frac{\\rho_{\\text{gas}}}{\\rho_{\\text{liquid}}} = \\left(\\frac{a}{d}\\right)^3 = \\left(\\frac{1}{${fmt(sp, 1)}}\\right)^3 = ${ratio === 1 ? '1' : '\\frac{1}{' + fmt(ratio, ratio < 10 ? 1 : 0) + '}'}`,
@@ -104,8 +104,12 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
   const d = sim('sim-tire', 680);
   const Ns = ctl(d.controls, { label: 'N', cls: '', min: 0, max: 6, step: 0.002, value: 3.486, unit: '× 10²³ molecules', dec: 2, onInput: () => { recount(); }, aria: 'the number of molecules in the tire, in units of ten to the twenty-third' });
   const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -40, max: 60, step: 1, value: 18, unit: '°C', dec: 0, onInput: () => { respeed(); }, aria: 'the temperature of the air in the tire' });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  let form = null;
   const cy = cycle(() => Infinity, 0);
   const V_FULL = 2.00e-3;                          /* the tube holds 2.00 L when full, as in Examples 13.4 and 13.7 */
+  Ns.mark([{ at: () => (P_ATM * V_FULL) / (K_B * (Ts.v + 273)) / 1e23, label: 'full' }]);
   const RIM_Y = 600, CX = 520, R_FULL = 200, R_MIN = 28, RM = 7, DRAWN = 1e22, KV = 170;
   const rnd = rng(1319);
   const mol = [];                                  /* the drawn molecules, in coordinates relative to the tube's centre */
@@ -114,7 +118,7 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
   /* the state of the gas from the sliders: still filling at atmospheric pressure, or full with the pressure rising */
   function state() {
     const N = Ns.v * 1e23, TK = Ts.v + 273, NkT = N * K_B * TK;
-    const Vfree = NkT / P_ATM, full = Vfree >= V_FULL;
+    const Vfree = NkT / P_ATM, full = Vfree >= V_FULL * (1 - 1e-9);
     const V = N === 0 ? 0 : full ? V_FULL : Vfree, P = N === 0 ? P_ATM : full ? NkT / V_FULL : P_ATM;
     return { N, TK, NkT, V, P, full };
   }
@@ -208,16 +212,23 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
       : !s.full ? 'With ' + Nt + ' at ' + Tt + ' the tire is still filling: its volume has grown to ' + fmt(s.V * 1e3, 2) + ' L and its pressure stays at atmospheric.'
       : 'With ' + Nt + ' at ' + Tt + ' the tire is full, and the gauge reads an absolute pressure of ' + sciU(s.P, 2) + ' Pa.');
     const rate = nhit === 0 ? 'No strikes are counted while the figure stands still. ' : 'In the drawing the molecules struck the wall ' + nhit + ' times in the last second; more of them, or faster ones, strike it more often, and that is what the gauge feels. ';
-    if (s.N === 0) readout(d.readout, `\\kPr V = Nk\\kTemp = 0`, 'With N = 0 the tire holds nothing, so there is no volume to speak of and no pressure above the atmosphere’s outside. Pump some molecules in with the first slider.');
-    else if (!s.full) readout(d.readout, `V = \\frac{Nk\\kTemp}{\\kPr} = \\frac{(${sciK(s.N, 2)})(1.38\\times10^{-23}\\ \\text{J/K})(${fmt(s.TK, 0)}\\ \\text{K})}{${sciK(P_ATM, 2)}\\ \\text{Pa}} = ${sciK(s.V, 2)}\\ \\text{m}^3`,
-      rate + 'While the tire is filling, the pressure inside is essentially atmospheric and the volume grows in proportion to the number of molecules put in, which is panel (a) of the book’s figure; the wall takes over once the volume reaches 2.00 L.');
+    /* one equation in three forms: the variables keep their tags, so reaching the circle on N bends V = NkT/P into P = NkT/V */
+    const sym = { P: '\\mk{P}{\\kPr}', V: '\\mk{V}{V}', N: '\\mk{N}{N}', k: '\\mk{k}{k}', T: '\\mk{T}{\\kTemp}' };
+    const nums = `(\\mk{nN}{${sciK(s.N || 1, 2)}})(\\mk{nk}{1.38\\times10^{-23}}\\ \\text{J/K})(\\mk{nT}{${fmt(s.TK, 0)}}\\ \\text{K})`;
+    const now = s.N === 0 ? 'flat' : s.full ? 'full' : 'filling';
+    const tx = now === 'flat' ? `${sym.P} ${sym.V} = ${sym.N}${sym.k}${sym.T} = \\mk{z}{0}`
+      : now === 'filling' ? `${sym.V} = \\frac{${sym.N}${sym.k}${sym.T}}{${sym.P}} = \\frac{${nums}}{\\mk{nP}{${sciK(P_ATM, 2)}}\\ \\text{Pa}} = \\mk{nV}{${sciK(s.V, 2)}}\\ \\text{m}^3`
+      : `${sym.P} = \\frac{${sym.N}${sym.k}${sym.T}}{${sym.V}} = \\frac{${nums}}{\\mk{nV}{${sciK(V_FULL, 2)}}\\ \\text{m}^3} = \\mk{nP}{${sciK(s.P, 2)}}\\ \\text{Pa}`;
+    F.morph(formula, tx, { force: form !== null && form !== now });
+    form = now;
+    if (s.N === 0) note.textContent = 'With N = 0 the tire holds nothing, so there is no volume to speak of and no pressure above the atmosphere’s outside. Pump some molecules in with the first slider.';
+    else if (!s.full) note.textContent = rate + 'While the tire is filling, the pressure inside is essentially atmospheric and the volume grows in proportion to the number of molecules put in, which is panel (a) of the book’s figure; the wall takes over once the volume reaches 2.00 L.';
     else {
       const P18 = s.N * K_B * 291 / V_FULL, n = s.N / N_A;
-      readout(d.readout, `\\kPr = \\frac{Nk\\kTemp}{V} = \\frac{(${sciK(s.N, 2)})(1.38\\times10^{-23}\\ \\text{J/K})(${fmt(s.TK, 0)}\\ \\text{K})}{${sciK(V_FULL, 2)}\\ \\text{m}^3} = ${sciK(s.P, 2)}\\ \\text{Pa}`,
-        rate + (Math.abs(s.TK - 291) < 0.5
+      note.textContent = rate + (Math.abs(s.TK - 291) < 0.5
           ? 'Held at this volume and count, the pressure follows the absolute temperature: warm the tire to 35.0 °C and the reading rises in the ratio 308 K/291 K to ' + sciU(P18 * 308 / 291, 2) + ' Pa, which is what Example 13.4 finds. '
           : 'Held at this volume and count, the pressure follows the absolute temperature in the ratio Example 13.4 takes: at 18.0 °C this tire would read ' + sciU(P18, 2) + ' Pa, and at ' + Tt + ' it reads ' + fmt(s.TK / 291, 3) + ' times that. ')
-        + 'In moles, n = N/Nₐ = ' + fmt(n, 3) + ' mol, and PV = nRT gives the same pressure.');
+        + 'In moles, n = N/Nₐ = ' + fmt(n, 3) + ' mol, and PV = nRT gives the same pressure.';
     }
   }
   register(d.fig, { update: (dt) => { cy.step(dt, () => 1); step(dt); }, draw });

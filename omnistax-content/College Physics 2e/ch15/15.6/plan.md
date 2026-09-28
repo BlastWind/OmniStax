@@ -147,7 +147,7 @@ headline · graph · 3D
    comes from the reversible stand-in, or that the total is zero in the
    reversible limit. Labels: two reservoirs with their temperatures, the
    arrow or arrows with $Q$, three bars, on by default. Draws entropy,
-   energy, temperature.
+   energy, temperature. · house style (2026-09-28, Claude Opus 5.5): The choice splits the direct arrow into the two reversible transfers, its halves swinging out to the hot and the cold reservoir, while the three bars, the same in both accounts, stay put.
 4. `sim-two-engines` · replaces Figure 15.34 (a) and (b), the Carnot engine
    fed directly and the one fed after the heat has fallen to a colder
    reservoir · unavailable-energy, carnot-efficiency,
@@ -172,7 +172,7 @@ headline · graph · 3D
    increase of the first transfer. Labels: four reservoirs with their
    temperatures, two engines, seven arrows labelled with their energies, on
    by default since none moves and none collides at any slider position.
-   Draws entropy, energy, temperature.
+   Draws entropy, energy, temperature. · house style (2026-09-28, Claude Opus 5.5): T_h' carries a dashed circle at the current T_h, the case with no irreversible fall and no energy made unavailable.
 5. `sim-melting-ice` · replaces Figure 15.35, the ordered ice and the
    disordered water · entropy-and-disorder, calculate-entropy-change,
    heat-of-fusion · variation by slider and intuition: the book draws one

@@ -115,7 +115,7 @@ headline · graph · 3D
    numbers; small line saying what $\kQC = 0$ would mean. Panel (a) beside
    it keeps the book's spontaneous transfer with the same reservoirs.
    Draws energy, temperature (the reservoir labels $\kTemph$, $\kTempc$
-   wear the hue; the bodies are ink). Labels on: six, none moving.
+   wear the hue; the bodies are ink). Labels on: six, none moving. · house style (2026-09-28, Claude Opus 5.5): The slider for Q_C carries a dashed circle at zero, the 100 % engine the text says is possible only with no heat transfer to the environment.
 3. `sim-four-stroke` · replaces Figure 15.17 (a) to (d) (the four-stroke
    engine) · otto-cycle · flow by animation, and a view the book's four
    panels do not give: the book draws four instants of a sequence and

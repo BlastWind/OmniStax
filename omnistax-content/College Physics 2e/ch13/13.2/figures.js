@@ -186,7 +186,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
 ===================================================================== */
 (function () {
   const d = sim('sim-water-density', 560);
-  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 0, max: 12, step: 0.1, value: 4, unit: '°C', dec: 1, aria: 'the temperature of the water', detents: [{ v: 0 }, { v: 4, label: 'densest' }, { v: 12 }], snap: false });
+  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 0, max: 12, step: 0.1, value: 4, unit: '°C', dec: 1, aria: 'the temperature of the water', specials: [{ at: 4, label: 'densest' }], snap: false });
   /* the density of freshwater at whole degrees, in g/cm³, the values the book's graph plots */
   const RHO = [0.999840, 0.999899, 0.999940, 0.999964, 0.999972, 0.999964, 0.999940, 0.999901, 0.999848, 0.999781, 0.999700, 0.999605, 0.999498];
   /* a smooth curve through the table: cubic Hermite pieces with finite-difference slopes */

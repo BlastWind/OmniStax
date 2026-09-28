@@ -305,3 +305,5 @@ the note says. The key to the diver's part (a), 2.12 × 10⁴ Pa, is 20.9% of
 2.11 × 10⁴ Pa; the card's tolerance accepts both, and `exercise_notes` says
 so. The caption of Figure 13.28 called the set isotherm "the colored curve";
 it names it by its weight and label now, so that it reads with colour off.
+
+Phase 2 (2026-09-28, Claude Opus 5.5). sim-real-gas-volume: a special where the substance leaves the ideal line (its boiling point, or its sublimation for CO₂). sim-pv-isotherms: T_c is a special.

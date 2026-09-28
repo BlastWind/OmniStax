@@ -57,7 +57,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
 (function () {
   const d = sim('sim-bimetallic-strip', 620);
   const T0 = 20, ALPHA_L = 19e-6, ALPHA_R = 12e-6, L = 0.10, THICK = 1e-3, EXAG = 4;
-  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -40, max: 200, step: 1, value: T0, unit: '°C', dec: 0, aria: 'the temperature of the strip', detents: [{ v: T0, label: 'T₀' }, { v: 120, label: 'heated' }] });
+  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -40, max: 200, step: 1, value: T0, unit: '°C', dec: 0, aria: 'the temperature of the strip', specials: [{ at: T0, label: 'T₀' }], detents: [{ v: 120, label: 'heated' }] });
   const BX = 640, BY = 566, LPX = 376, S = LPX / L, W = 18;       /* the strip: base, height in units, units per metre, half-width of one layer */
   const brass = F.cat(0), steel = F.cat(1);
   let hits = [];
@@ -116,7 +116,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
 (function () {
   const d = sim('sim-three-scales', 560);
   const Ts = ctl(d.controls, { label: '\\kTempC', cls: 'temperature', min: -273.15, max: 130, step: 0.05, value: 25, unit: '°C', dec: 2, aria: 'the temperature to read on the three scales',
-    detents: [{ v: -273.15, label: 'absolute zero' }, { v: 0, label: 'water freezes' }, { v: 37, label: 'body' }, { v: 100, label: 'water boils' }] });
+    specials: [{ at: -273.15, label: 'absolute zero' }, { at: 0, label: 'water freezes' }, { at: 100, label: 'water boils' }], detents: [{ v: 37, label: 'body' }] });
   const XL = 130, XR = 1130, CMIN = -273.15, CMAX = 130;
   const X = (c) => XL + ((c - CMIN) / (CMAX - CMIN)) * (XR - XL);
   const ROWS = [
@@ -238,7 +238,6 @@ function thermometer(ctx, x, yb, h, frac, color) {
     if (crushed.length) {
       ctx.save(); ctx.fillStyle = alpha(tc, 0.35); ctx.fillRect(RX - 7, yTop - 4, 14, YB - yTop + 4); ctx.restore();
       hits.push({ x: RX, y: (yTop + YB) / 2, r: Math.max(16, (YB - yTop) / 2 + 8), name: crushed.length + ' more: ' + crushed.join(', ') });
-      text(ctx, crushed.length + ' more ' + (crushed.length === 1 ? 'landmark sits' : 'landmarks sit') + ' too close to a named one to be labelled; hover to name them', RX, YB + 40, tc, { size: 17, weight: 600, align: 'center' });
     }
     if (off) text(ctx, off + (off === 1 ? ' landmark lies' : ' landmarks lie') + ' off the top', RX + 30, YT - 26, PAL.muted, { size: 17 });
     const sun = 5.8e3 / Ttop;
@@ -260,7 +259,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
 (function () {
   const d = sim('sim-gas-extrapolation', 640);
   const Ts = ctl(d.controls, { label: '\\kTempC', cls: 'temperature', min: -273.15, max: 150, step: 0.05, value: 20, unit: '°C', dec: 2, aria: 'the temperature the gases are held at',
-    detents: [{ v: -273.15, label: 'absolute zero' }, { v: 0, label: 'water freezes' }, { v: 100 }] });
+    specials: [{ at: -273.15, label: 'absolute zero' }, { at: 0, label: 'water freezes' }], detents: [{ v: 100 }] });
   const Ps = ctl(d.controls, { label: 'P_0', cls: 'pressure', min: 0.2, max: 1.2, step: 0.01, value: 1, unit: 'atm', dec: 2, aria: 'the pressure of gas 1 at 0 °C' });
   const OTHERS = [0.75, 0.5, 0.3], T0 = -273.15, TLIQ = -200;
   const box = { l: 170, r: 1240, t: 110, b: 520 };

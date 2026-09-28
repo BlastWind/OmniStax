@@ -336,3 +336,5 @@ its gauge reads. `sim-mole` is ink throughout, since a length is untyped.
 Applied in the chapter pass (2026-09-14): every anchor above is written on its
 row, thirteen variables and nine equations, `M` on `molar-volume` as the note
 asks. No symbol row was changed.
+
+Phase 2 (2026-09-28, Claude Opus 5.5). sim-gas-molecules: the gas choice stays because the text teaches Avogadro's hypothesis; the two canvas lines now state it. sim-tire: a special on N where the tube just fills; the readout morphs V = NkT/P into P = NkT/V there, and into PV = NkT = 0 at N = 0.

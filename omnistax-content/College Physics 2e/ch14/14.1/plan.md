@@ -178,3 +178,5 @@ constant 4186 J/kcal stay in ink.
 - equations `eq-mechanical-equivalent` → 14.1-mechanical-equivalent
 
 Applied by the chapter pass (2026-09-14): the six anchors are set as listed.
+
+Manim pass (2026-09-28, Claude Opus 5.5). `sim-equilibrium`: each temperature slider carries a dashed circle at the other's current value, the equal pair the text names (the two reach the same temperature, and no heat is transferred); landing on it gives the figure's already-at-equilibrium state. Nothing else changed.

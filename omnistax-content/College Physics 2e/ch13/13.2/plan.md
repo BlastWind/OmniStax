@@ -308,3 +308,5 @@ since Chapters 2 to 16 carry it everywhere else. The `draws` row of
 names and what the plan line says; the row had also claimed `position`. The
 caption of Figure 13.13 in the book overstates the density difference between
 4 °C and 2 °C (0.0075% for about 0.003%), recorded in `exploration.md`.
+
+Phase 2 (2026-09-28, Claude Opus 5.5). sim-water-density: 4 °C is a special; the end detents are gone. The three drawn × life sliders stay (root 28.4); each readout states the factor.

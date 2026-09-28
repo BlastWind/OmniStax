@@ -108,7 +108,7 @@ choices · headline · graph · 3D
    line on $\kQC/\kQH = \kTempc/\kTemph$ fixing the sizes. Labels: the frame,
    $T_{\text{h}}$ and $T_{\text{c}}$ on the reservoirs, $Q$ and $W$ on the
    arrows, A to D on the corners, the two isotherms named; nine labels, none
-   moving, so they are on. Draws energy, temperature, pressure.
+   moving, so they are on. Draws energy, temperature, pressure. · house style (2026-09-28, Claude Opus 5.5): The engine/pump choice turns the cycle about: every arrow shrinks to its tail and regrows the other way, the walk arrows on the loop turn round, the fill of the loop gives way to hatching, and the readout morphs by meaning, W = Q_H − Q_C rearranging into Q_H = Q_C + W.
 2. `sim-heat-pump-components` · replaces Figure 15.27, the four components ·
    heat-pump-components · variation by a choice: the text says in one
    sentence that in a cooling cycle the two coils exchange roles and the flow
@@ -124,7 +124,7 @@ choices · headline · graph · 3D
    air, and the indoor coil is the condenser, where $Q_{\text{h}}$ occurs into
    the room." · none · 2D. Labels: the four components numbered as the book
    numbers them, the state of the fluid on each leg, the two heat transfers
-   and the work; hover names on the components. Draws energy.
+   and the work; hover names on the components. Draws energy. · house style (2026-09-28, Claude Opus 5.5): Heating and cooling are one machine: the arrowheads on the pipe turn round through the change, each coil's transfer arrow turns about and takes the other's width, and the coils' roles and the fluid's states cross-fade in place.
 3. `sim-friction` · replaces Figure 15.28, the real heat pump whose work
    input is partly lost to friction · coefficient-of-performance-heat-pump,
    real-engines-below-carnot · variation by slider: the caption says that if

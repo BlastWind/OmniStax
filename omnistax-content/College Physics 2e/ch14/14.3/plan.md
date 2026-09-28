@@ -317,3 +317,5 @@ $m_\text{soda}$ and $c_\text{W}$ stay in plain LaTeX and in ink; no row is
 added. `ch14/COLOR.md` now agrees with the config and the page that Figure
 14.8 is still and its arrows are marks. The heating curve's ranges above are
 corrected to the figure's own, 0 to 3200 kJ/kg and −20 to 180 °C.
+
+Manim pass (2026-09-28, Claude Opus 5.5). `sim-heating-curve`: the readout is one formula that morphs by meaning (manim-style 11). Each stage writes Q as the heat already spent plus the stage's own term, mcΔT or mL; at each corner the spent heat and the finished term bend together into the next stage's spent heat, and dragging back they bend apart. The ΔQ/m slider carries dashed circles at the four corners the text walks (melting begins, all melted, boiling begins, all boiled). The note under the formula stays. `sim-ice-soda`: the readout morphs instead of cutting where the soda can no longer melt all the ice: T_f keeps its place, the soda's side m_soda c_W T_soda keeps its place, and the all-melts fraction bends into the 0 °C line with the mass melted. The text names no threshold mass, so the m_ice slider gets no circle.

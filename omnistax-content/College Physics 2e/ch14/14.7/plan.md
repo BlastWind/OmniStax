@@ -392,3 +392,5 @@ row that names it say 14.9 now. The caption of Figure 14.29 and the glow
 label no longer speak of the book, and the caption of Figure 14.33 no longer
 of the text; Figure 14.29 has one original with two panels, as the Photographs
 paragraph above says, and `config.md` records it.
+
+Manim pass (2026-09-28, Claude Opus 5.5). `sim-radiation-balance`: T₁ and T₂ each carry a dashed circle at the other's value, the case between the text's T₂ > T₁ and T₂ < T₁, where the net rate is zero.

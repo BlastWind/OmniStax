@@ -159,7 +159,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
 ===================================================================== */
 (function () {
   const d = sim('sim-heating-curve', 640);
-  const qs = ctl(d.controls, { label: '\\Delta Q/m', cls: '', min: 0, max: 3200, step: 5, value: 200, unit: 'kJ/kg', dec: 0, aria: 'the heat added per kilogram of the sample' });
+  const qs = ctl(d.controls, { label: '\\Delta Q/m', cls: '', min: 0, max: 3200, step: 5, value: 200, unit: 'kJ/kg', dec: 0, aria: 'the heat added per kilogram of the sample', specials: [{ at: C_ICE * 20, label: 'melting' }, { at: C_ICE * 20 + L_F, label: 'melted' }, { at: C_ICE * 20 + L_F + C_W * 100, label: 'boiling' }, { at: C_ICE * 20 + L_F + C_W * 100 + L_V, label: 'boiled' }] });
   const ms = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'kg', dec: 2, aria: 'the mass of the sample' });
   const T0 = -20, Q1 = C_ICE * 20, Q2 = Q1 + L_F, Q3 = Q2 + C_W * 100, Q4 = Q3 + L_V;   /* the corners of the curve, kJ/kg */
   /* the state of one kilogram after q kJ/kg: its temperature and the fraction that is ice, water and steam */
@@ -170,6 +170,8 @@ function curl(ctx, x, y, R, a0, ang, w) {
     if (q <= Q4) { const f = (q - Q3) / L_V; return { T: 100, ice: 0, water: 1 - f, steam: f, stage: 3 }; }
     return { T: 100 + (q - Q4) / C_STEAM, ice: 0, water: 0, steam: 1, stage: 4 };
   }
+  const formula = el('div'), note = el('small'); d.readout.append(formula, note);
+  let was = 0;
   const box = { l: 440, r: 1340, t: 132, b: 500 };            /* fixed axes: 0 to 3200 kJ/kg, −20 to 180 °C */
   const CUP = { l: 90, r: 310, t: 150, b: 520 };
   const rnd = seeded(3), wisps = Array.from({ length: 36 }, () => ({ x: rnd(), y: rnd() }));
@@ -232,14 +234,20 @@ function curl(ctx, x, y, R, a0, ang, w) {
       'After ' + fmt(q, 0) + ' kJ/kg all the water is steam, and the steam has warmed to ' + fmt(st.T, 1) + ' °C.',
     ];
     topline(ctx, q === 0 ? 'No heat has been added yet: the sample is ice at −20 °C.' : heads[st.stage]);
-    const kJ = (v) => fmt(v, v < 100 ? 1 : 0), kg = fmt(m, 2);
-    const mains = [
-      `\\kQh = mc_{\\text{ice}}\\kdTemp = (${kg}\\ \\text{kg})(${fmt(C_ICE, 2)}\\ \\text{kJ/kg}\\cdot{}^\\circ\\text{C})(${fmt(st.T - T0, 1)}^\\circ\\text{C}) = ${kJ(Q)}\\ \\text{kJ}`,
-      `\\kQh = mc_{\\text{ice}}(20^\\circ\\text{C}) + m_{\\text{melted}}L_{\\text{f}} = ${kJ(m * Q1)}\\ \\text{kJ} + (${fmt(m * st.water, 2)}\\ \\text{kg})(${fmt(L_F, 0)}\\ \\text{kJ/kg}) = ${kJ(Q)}\\ \\text{kJ}`,
-      `\\kQh = ${kJ(m * Q2)}\\ \\text{kJ} + mc_{\\text{w}}\\kdTemp = ${kJ(m * Q2)}\\ \\text{kJ} + (${kg}\\ \\text{kg})(${fmt(C_W, 2)}\\ \\text{kJ/kg}\\cdot{}^\\circ\\text{C})(${fmt(st.T, 1)}^\\circ\\text{C}) = ${kJ(Q)}\\ \\text{kJ}`,
-      `\\kQh = ${kJ(m * Q3)}\\ \\text{kJ} + m_{\\text{boiled}}L_{\\text{v}} = ${kJ(m * Q3)}\\ \\text{kJ} + (${fmt(m * st.steam, 2)}\\ \\text{kg})(${fmt(L_V, 0)}\\ \\text{kJ/kg}) = ${kJ(Q)}\\ \\text{kJ}`,
-      `\\kQh = ${kJ(m * Q4)}\\ \\text{kJ} + mc_{\\text{steam}}\\kdTemp = ${kJ(m * Q4)}\\ \\text{kJ} + (${kg}\\ \\text{kg})(${fmt(C_STEAM, 2)}\\ \\text{kJ/kg}\\cdot{}^\\circ\\text{C})(${fmt(st.T - 100, 1)}^\\circ\\text{C}) = ${kJ(Q)}\\ \\text{kJ}`,
+    const kJ = (v) => fmt(v, v < 100 ? 1 : 0), kg = fmt(m, 2), U = (u) => `\\ \\text{${u}}`, CU = '\\ \\text{kJ/kg}\\cdot{}^\\circ\\text{C}';
+    /* each stage: the heat already spent (b, its value bv), the stage's own term (t, tv) and the total; on to the next stage
+       the spent heat and the stage's term bend together into the next one's spent heat, and back again they bend apart */
+    const mk = (k, x) => `\\mk{${k}}{${x}}`;
+    const form = [
+      () => `${mk('Q', '\\kQh')} = ${mk('t0', 'mc_{\\text{ice}}\\kdTemp')} = ${mk('tv0', `(${kg}${U('kg')})(${fmt(C_ICE, 2)}${CU})(${fmt(st.T - T0, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('b', 'mc_{\\text{ice}}(20^\\circ\\text{C})')} + ${mk('t1', 'm_{\\text{melted}}L_{\\text{f}}')} = ${mk('bv', kJ(m * Q1) + U('kJ'))} + ${mk('tv1', `(${fmt(m * st.water, 2)}${U('kg')})(${fmt(L_F, 0)}${U('kJ/kg')})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q2) + U('kJ'))} + ${mk('t2', 'mc_{\\text{w}}\\kdTemp')} = ${mk('bv', kJ(m * Q2) + U('kJ'))} + ${mk('tv2', `(${kg}${U('kg')})(${fmt(C_W, 2)}${CU})(${fmt(st.T, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q3) + U('kJ'))} + ${mk('t3', 'm_{\\text{boiled}}L_{\\text{v}}')} = ${mk('bv', kJ(m * Q3) + U('kJ'))} + ${mk('tv3', `(${fmt(m * st.steam, 2)}${U('kg')})(${fmt(L_V, 0)}${U('kJ/kg')})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q4) + U('kJ'))} + ${mk('t4', 'mc_{\\text{steam}}\\kdTemp')} = ${mk('bv', kJ(m * Q4) + U('kJ'))} + ${mk('tv4', `(${kg}${U('kg')})(${fmt(C_STEAM, 2)}${CU})(${fmt(st.T - 100, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
     ];
+    const s0 = was, s1 = st.stage; was = s1;
+    const keyMap = s1 === s0 + 1 ? (s0 === 0 ? { t0: 'b', tv0: 'bv' } : { b: 'b', ['t' + s0]: 'b', bv: 'bv', ['tv' + s0]: 'bv' })
+      : s1 === s0 - 1 ? (s1 === 0 ? { b: 't0', bv: 'tv0' } : { b: ['b', 't' + s1], bv: ['bv', 'tv' + s1] }) : undefined;
     const smalls = [
       'The ice warms at 0.50 cal/g·°C, which is ' + fmt(C_ICE, 2) + ' kJ/kg·°C, so the first segment of the curve is steep: only ' + fmt(Q1, 1) + ' kJ/kg carries the ice from −20 °C to 0 °C.',
       'Every joule now goes into breaking the bonds of the ice rather than into its temperature. Melting the ice takes 79.8 cal/g, which is ' + fmt(L_F, 0) + ' kJ for every kilogram, eight times what warming it through 20 °C took, and the temperature stays at 0 °C until the last of the ice is gone.',
@@ -247,7 +255,8 @@ function curl(ctx, x, y, R, a0, ang, w) {
       'The ' + kJ(m * Q3) + ' kJ is what it took to bring the sample to water at 100 °C. Boiling the water takes 539 cal/g, which is ' + fmt(L_V, 0) + ' kJ for every kilogram, nearly seven times the heat of melting and more than everything that came before it together.',
       'The ' + kJ(m * Q4) + ' kJ is what it took to bring the sample to steam at 100 °C. Steam warms at 0.482 cal/g·°C, which is ' + fmt(C_STEAM, 2) + ' kJ/kg·°C, so the last segment climbs nearly as steeply as the ice did.',
     ];
-    readout(d.readout, q === 0 ? `\\kQh = 0` : mains[st.stage], q === 0 ? 'Slide the heat added to the right and follow the sample up the curve.' : smalls[st.stage]);
+    F.morph(formula, form[st.stage](), keyMap ? { keyMap } : undefined);
+    note.textContent = smalls[st.stage];
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -263,6 +272,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
   const mi = ctl(d.controls, { label: 'm_{\\text{ice}}', cls: '', min: 0, max: 100, step: 1, value: 18, unit: 'g', dec: 0, aria: 'the mass of ice, six grams to a cube', detents: Array.from({ length: 17 }, (_, i) => 6 * i) });
   const msod = ctl(d.controls, { label: 'm_{\\text{soda}}', cls: '', min: 0.1, max: 0.5, step: 0.01, value: 0.25, unit: 'kg', dec: 2, aria: 'the mass of soda' });
   const Ts = ctl(d.controls, { label: 'T_{\\text{soda}}', cls: 'temperature', min: 1, max: 40, step: 1, value: 20, unit: '°C', dec: 0, aria: 'the starting temperature of the soda' });
+  const formula = el('div'), note = el('small'); d.readout.append(formula, note);
   const CW = 4186, LF = 334000;                                      /* J/(kg·°C) and J/kg, the example's values */
   const CUP = { l: 120, r: 380, t: 150, b: 520 }, BAR = { x: 450, t: 160, b: 520 }, HX0 = 700, HX1 = 1320, MAXKJ = 40;
   function draw() {
@@ -311,11 +321,14 @@ function curl(ctx, x, y, R, a0, ang, w) {
     topline(ctx, cubes === 0 ? 'With no ice in it the soda stays at ' + fmt(T, 0) + ' °C.'
       : allMelts ? (cubes === 1 ? 'One ice cube, ' : cubes + ' ice cubes, ') + fmt(mi.v, 0) + ' g in all, melt' + (cubes === 1 ? 's' : '') + ' in ' + fmt(mS, 2) + ' kg of soda at ' + fmt(T, 0) + ' °C and bring' + (cubes === 1 ? 's' : '') + ' it to ' + fmt(Tf, 1) + ' °C.'
       : 'The soda cannot melt ' + fmt(mi.v, 0) + ' g of ice: it cools to 0 °C having melted ' + fmt(melted * 1000, 0) + ' g, and the rest floats in it.');
-    if (cubes === 0) readout(d.readout, `\\kQh = 0`, 'There is no ice to melt, so no heat leaves the soda and its temperature does not change.');
-    else if (allMelts) readout(d.readout, `\\kTempf = \\frac{m_{\\text{soda}}c_{\\text{W}}(${fmt(T, 0)}^\\circ\\text{C}) - m_{\\text{ice}}L_{\\text{f}}}{(m_{\\text{soda}} + m_{\\text{ice}})c_{\\text{W}}} = \\frac{${fmt(avail, 0)}\\ \\text{J} - ${fmt(need, 0)}\\ \\text{J}}{${fmt((mS + mIce) * CW, 0)}\\ \\text{J/}{}^\\circ\\text{C}} = ${fmt(Tf, 1)}^\\circ\\text{C}`,
-      'The soda gives up ' + fmt(Qsoda / 1000, 1) + ' kJ in cooling from ' + fmt(T, 0) + ' °C to ' + fmt(Tf, 1) + ' °C. Of that, ' + fmt(Qmelt / 1000, 1) + ' kJ melts the ice at 0 °C and the remaining ' + fmt(Qwarm / 1000, 1) + ' kJ warms the meltwater from 0 °C to ' + fmt(Tf, 1) + ' °C, so the two sides of the budget are equal.');
-    else readout(d.readout, `\\kTempf = 0^\\circ\\text{C}, \\qquad m_{\\text{melted}} = \\frac{m_{\\text{soda}}c_{\\text{W}}T_{\\text{soda}}}{L_{\\text{f}}} = \\frac{${fmt(avail, 0)}\\ \\text{J}}{${fmt(LF, 0)}\\ \\text{J/kg}} = ${fmt(melted, 3)}\\ \\text{kg}`,
-      'Cooling all the way to 0 °C the soda can give up only ' + fmt(avail / 1000, 1) + ' kJ, and melting all the ice would take ' + fmt(need / 1000, 1) + ' kJ. The soda reaches 0 °C first, ' + fmt((mIce - melted) * 1000, 0) + ' g of ice is left, and with nothing warmer than 0 °C in the cup no more heat flows.');
+    /* past the mass the soda can just melt, the all-melts formula bends into the one that stops at 0 °C: the soda's side, m_soda c_W T_soda, keeps its place */
+    const mk = (k, x) => `\\mk{${k}}{${x}}`, soda = mk('a', `m_{\\text{soda}}c_{\\text{W}}(${fmt(T, 0)}^\\circ\\text{C})`), sodaV = mk('av', `${fmt(avail, 0)}\\ \\text{J}`);
+    if (cubes === 0) F.morph(formula, `${mk('Q', '\\kQh')} = ${mk('z', '0')}`);
+    else if (allMelts) F.morph(formula, `${mk('Tf', '\\kTempf')} = \\frac{${soda} - ${mk('n', 'm_{\\text{ice}}L_{\\text{f}}')}}{${mk('dn', '(m_{\\text{soda}} + m_{\\text{ice}})c_{\\text{W}}')}} = \\frac{${sodaV} - ${mk('nv', `${fmt(need, 0)}\\ \\text{J}`)}}{${mk('dv', `${fmt((mS + mIce) * CW, 0)}\\ \\text{J/}{}^\\circ\\text{C}`)}} = ${mk('Tv', fmt(Tf, 1))}^\\circ\\text{C}`);
+    else F.morph(formula, `${mk('Tf', '\\kTempf')} = ${mk('Tv', '0')}^\\circ\\text{C}, \\qquad ${mk('mm', 'm_{\\text{melted}}')} = \\frac{${soda}}{${mk('n', 'L_{\\text{f}}')}} = \\frac{${sodaV}}{${mk('nv', `${fmt(LF, 0)}\\ \\text{J/kg}`)}} = ${mk('mv', fmt(melted, 3))}\\ \\text{kg}`);
+    note.textContent = cubes === 0 ? 'There is no ice to melt, so no heat leaves the soda and its temperature does not change.'
+      : allMelts ? 'The soda gives up ' + fmt(Qsoda / 1000, 1) + ' kJ in cooling from ' + fmt(T, 0) + ' °C to ' + fmt(Tf, 1) + ' °C. Of that, ' + fmt(Qmelt / 1000, 1) + ' kJ melts the ice at 0 °C and the remaining ' + fmt(Qwarm / 1000, 1) + ' kJ warms the meltwater from 0 °C to ' + fmt(Tf, 1) + ' °C, so the two sides of the budget are equal.'
+      : 'Cooling all the way to 0 °C the soda can give up only ' + fmt(avail / 1000, 1) + ' kJ, and melting all the ice would take ' + fmt(need / 1000, 1) + ' kJ. The soda reaches 0 °C first, ' + fmt((mIce - melted) * 1000, 0) + ' g of ice is left, and with nothing warmer than 0 °C in the cup no more heat flows.';
   }
   register(d.fig, { update: () => {}, draw });
 })();

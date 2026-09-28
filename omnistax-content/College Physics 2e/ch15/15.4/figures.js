@@ -156,7 +156,7 @@ function engine(ctx, x, y, r, name) {
 ===================================================================== */
 (function () {
   const d = sim('sim-efficiency-map', 560);
-  const Tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 0, max: 400, step: 5, value: 300, unit: 'K', dec: 0, detents: [{ v: 0, label: '0 K' }, { v: 273, label: '273 K' }], aria: 'the temperature of the cold reservoir' });
+  const Tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 0, max: 400, step: 5, value: 300, unit: 'K', dec: 0, detents: [{ v: 273, label: '273 K' }], specials: [{ at: 0, label: '100 %' }, { at: () => Th.v, label: 'T_c = T_h' }], aria: 'the temperature of the cold reservoir' });
   const Th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 300, max: 1000, step: 1, value: 573, unit: 'K', dec: 0, aria: 'the temperature of the hot reservoir' });
   const box = { l: 140, r: 1300, t: 130, b: 440 };
   function draw() {

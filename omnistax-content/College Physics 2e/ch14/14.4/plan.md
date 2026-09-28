@@ -152,3 +152,5 @@ fireplace, drawn as the physical fact.
 
 Applied by the chapter pass (2026-09-14): nothing to apply; the caption of
 Figure 14.14 now spells "labeled" the American way.
+
+Manim pass (2026-09-28, Claude Opus 5.5). `sim-fireplace`: the Show choice is gone (root 26.7: it dimmed parts of the drawing, a visual setting). All three paths are drawn at full weight with their names. The Fire choice stays, and putting the fire out now fades the flame and the three paths with a slight rise instead of cutting them away (manim-style 15). The headline and readout have two states, burning and out; the burning readout names what carries each path. Still, as before.

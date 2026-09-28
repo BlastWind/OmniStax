@@ -84,7 +84,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
 (function () {
   const d = sim('sim-heat-engine', 560);
   const qi = ctl(d.controls, { label: '\\kQin', cls: 'energy', min: 0, max: 200, step: 5, value: 100, unit: 'J', dec: 0, aria: 'the heat transfer into the engine' });
-  const qo = ctl(d.controls, { label: '\\kQout', cls: 'energy', min: 0, max: 200, step: 5, value: 60, unit: 'J', dec: 0, aria: 'the heat transfer out of the engine to the environment' });
+  const qo = ctl(d.controls, { label: '\\kQout', cls: 'energy', min: 0, max: 200, step: 5, value: 60, unit: 'J', dec: 0, aria: 'the heat transfer out of the engine to the environment', specials: [{ at: 0, label: 'no heat out' }] });
   const CX = 640, CY = 300, R = 132, KW = 0.6;   /* 200 J is an arrow 120 units wide */
   function draw() {
     const { ctx } = begin(d.c);
@@ -414,38 +414,50 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
   const panel = choice(d.controls, { label: '\\text{the panel}', options: [{ value: 'a', label: '(a) two paths from A' }, { value: 'b', label: '(b) the cycle ABCA' }], value: 'a', aria: 'which panel of the figure is drawn' });
   const box = { l: 220, r: 1240, t: 130, b: 480 };   /* V 0 to 5 × 10⁻³ m³, P 0 to 5 × 10⁵ N/m², fixed */
   const VA = 1;
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  /* a part only one panel has, faded and shifted with the panel choice */
+  const only = (ctx, v, shift, f) => { const a = panel.a(v); if (a <= 0) return; const [dx, dy] = panel.off(v, shift); ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore(); };
   function draw() {
     const { ctx } = begin(d.c);
     const ec = C('energy'), pc = C('pressure');
-    const PA = ps.v, r = rs.v, VB = VA * r, b = panel.value === 'b';
+    const PA = ps.v, r = rs.v, VB = VA * r, b = panel.value === 'b', q = panel.mix((v) => (v === 'b' ? 1 : 0));
     const iso = (v) => (PA * VA) / v, adi = (v) => PA * Math.pow(VA / v, GAMMA);
     const PC = adi(VB), EA = 1.5 * PA * VA * 100, Wiso = PA * VA * 100 * Math.log(r), Wad = 1.5 * (PA * VA - PC * VB) * 100;
     const g = axes(ctx, box, [0, 5], [0, 5], { xl: 'V (10⁻³ m³)', xc: PAL.ink, yl: 'P (10⁵ N/m²)', yc: pc, nx: 5, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
-    /* the areas: under the adiabat, and the band the isotherm adds above it (or the net work of the cycle) */
-    if (!b) fillPoly(ctx, under(adi, VA, VB, g.X, g.Y), ec, 0.22);
-    fillPoly(ctx, between(iso, adi, VA, VB, g.X, g.Y), ec, b ? 0.35 : 0.22);
-    /* the two paths, the isotherm solid and the adiabat dashed, and the way each is walked */
+    /* the areas: the one under the adiabat drains as the band the isotherm adds above it deepens into the net work of the cycle */
+    if (q < 1) fillPoly(ctx, under(adi, VA, VB, g.X, g.Y), ec, 0.22 * (1 - q));
+    fillPoly(ctx, between(iso, adi, VA, VB, g.X, g.Y), ec, 0.22 + 0.13 * q);
+    /* the two paths, the isotherm solid and the adiabat dashed; the adiabat's arrowhead shrinks and turns round as the cycle walks it back */
     walk(ctx, iso, VA, VB, g.X, g.Y, PAL.ink, 5);
     walk(ctx, adi, VA, VB, g.X, g.Y, PAL.ink, 4, [12, 9]);
-    const mid = VA * Math.sqrt(r), dvm = 1e-3;
-    for (const [f, sgn] of [[iso, 1], [adi, b ? -1 : 1]]) { const sl = (g.Y(f(mid + dvm)) - g.Y(f(mid))) / (g.X(mid + dvm) - g.X(mid)), L = Math.hypot(1, sl); head(ctx, g.X(mid), g.Y(f(mid)), sgn / L, (sgn * sl) / L, PAL.ink, 18); }
-    if (b) { line(ctx, g.X(VB), g.Y(iso(VB)), g.X(VB), g.Y(PC), PAL.ink, 5); head(ctx, g.X(VB), (g.Y(iso(VB)) + g.Y(PC)) / 2, 0, 1, PAL.ink); }
+    const mid = VA * Math.sqrt(r), dvm = 1e-3, turn = 1 - 2 * q;
+    for (const [f, sgn, s] of [[iso, 1, 18], [adi, turn < 0 ? -1 : 1, 18 * Math.abs(turn)]]) {
+      if (s < 1) continue;
+      const sl = (g.Y(f(mid + dvm)) - g.Y(f(mid))) / (g.X(mid + dvm) - g.X(mid)), L = Math.hypot(1, sl); head(ctx, g.X(mid), g.Y(f(mid)), sgn / L, (sgn * sl) / L, PAL.ink, s);
+    }
+    /* the isochoric leg grows down from B */
+    const yB = g.Y(iso(VB)), yC = g.Y(PC);
+    if (q > 0) line(ctx, g.X(VB), yB, g.X(VB), yB + (yC - yB) * q, PAL.ink, 5);
+    if (q > 0.6) head(ctx, g.X(VB), (yB + yC) / 2, 0, 1, PAL.ink, (18 * (q - 0.6)) / 0.4);
     line(ctx, g.X(VA), g.Y(PA), g.X(VA), g.Y(0), alpha(PAL.ink, 0.5), 2, [4, 8]);
-    line(ctx, g.X(VB), g.Y(b ? PC : 0), g.X(VB), g.Y(0), alpha(PAL.ink, 0.5), 2, [4, 8]);
-    state(ctx, g.X(VA), g.Y(PA), 'A', -0.9, -0.6); state(ctx, g.X(VB), g.Y(iso(VB)), 'B', 0.9, -0.5); state(ctx, g.X(VB), g.Y(PC), 'C', 0.9, 0.7);
+    line(ctx, g.X(VB), g.Y(PC * q), g.X(VB), g.Y(0), alpha(PAL.ink, 0.5), 2, [4, 8]);
+    state(ctx, g.X(VA), g.Y(PA), 'A', -0.9, -0.6); state(ctx, g.X(VB), yB, 'B', 0.9, -0.5); state(ctx, g.X(VB), yC, 'C', 0.9, 0.7);
     const lx = VA * Math.pow(r, 0.6);
     text(ctx, 'isothermal, ΔT = 0', g.X(lx) + 14, g.Y(iso(lx)) - 30, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'adiabatic, Q = 0', g.X(lx) - 30, g.Y(adi(lx)) + 44, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    if (b) text(ctx, 'isochoric', g.X(VB) + 16, (g.Y(iso(VB)) + g.Y(PC)) / 2, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    text(ctx, b ? 'net work of the cycle = ' + J(Wiso - Wad) + ' J' : 'work along AB = ' + J(Wiso) + ' J, along AC = ' + J(Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    only(ctx, 'b', [0, 12], () => text(ctx, 'isochoric', g.X(VB) + 16, (yB + yC) / 2, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) }));
+    only(ctx, 'a', [0, -12], () => text(ctx, 'work along AB = ' + J(Wiso) + ' J, along AC = ' + J(Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }));
+    only(ctx, 'b', [0, -12], () => text(ctx, 'net work of the cycle = ' + J(Wiso - Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }));
     topline(ctx, b
       ? 'Out along the isotherm, cooled to C and back along the adiabat, the cycle ABCA puts out ' + J(Wiso - Wad) + ' J of net work.'
       : 'The isothermal path from A does ' + J(Wiso) + ' J of work, the adiabatic path only ' + J(Wad) + ' J.');
-    readout(d.readout, b
-      ? `\\kW = (\\text{area under AB}) - (\\text{area under CA}) = ${JTex(Wiso)}\\ \\text{J} - ${JTex(Wad)}\\ \\text{J} = ${JTex(Wiso - Wad)}\\ \\text{J}`
-      : `\\text{AB: } \\kQh = \\kW = ${JTex(Wiso)}\\ \\text{J}\\qquad \\text{AC: } \\kdEint = -\\kW = ${JTex(-Wad)}\\ \\text{J}`,
-      b ? 'The isochoric leg BC does no work, so the net work is the area between the two curves. Cooling the gas at B to C is what makes the return along the adiabat cheaper than the expansion along the isotherm was.'
-        : 'For a monatomic ideal gas E_int = (3/2)NkT = (3/2)PV, which is ' + J(EA) + ' J at A. Along the isotherm it stays ' + J(EA) + ' J, since heat transfer replaces the work as it is done; along the adiabat the work comes out of the internal energy, which falls to ' + J(EA - Wad) + ' J at C, so the gas is colder and its pressure lower.');
+    const AB = '\\mk{AB}{\\kW_{\\text{AB}}}', nAB = `\\mk{nAB}{${JTex(Wiso)}}\\ \\text{J}`, nAC = `\\mk{nAC}{${JTex(Wad)}}\\ \\text{J}`;
+    F.morph(formula, b
+      ? `\\mk{W}{\\kW} = ${AB} - \\mk{AC}{\\kW_{\\text{CA}}} = ${nAB} - ${nAC} = \\mk{nW}{${JTex(Wiso - Wad)}}\\ \\text{J}`
+      : `${AB} = ${nAB},\\quad \\mk{AC}{\\kW_{\\text{AC}}} = ${nAC}`);
+    note.textContent = b ? 'The isochoric leg BC does no work, so the net work is the area between the two curves. Cooling the gas at B to C is what makes the return along the adiabat cheaper than the expansion along the isotherm was.'
+      : 'For a monatomic ideal gas E_int = (3/2)NkT = (3/2)PV, which is ' + J(EA) + ' J at A. Along the isotherm it stays ' + J(EA) + ' J, since heat transfer Q = W replaces the work as it is done; along the adiabat the work comes out of the internal energy, ΔE_int = −W, which falls to ' + J(EA - Wad) + ' J at C, so the gas is colder and its pressure lower.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -463,7 +475,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
   function hold() { rv.disable(kind.value === 'isochoric'); rp.disable(kind.value !== 'isochoric'); }
   hold();
   const box = { l: 220, r: 1240, t: 130, b: 480 };   /* V 0 to 4 × 10⁻³ m³, P 0 to 6 × 10⁵ N/m², fixed */
-  const VA = 1, PA = 2;
+  const VA = 1, PA = 2, KINDS = ['isobaric', 'isochoric', 'isothermal', 'adiabatic'];
   /* each process as a curve of V (or, for the isochoric one, a vertical line), and its first-law numbers in joules */
   function model(k) {
     const r = rv.v, q = rp.v;
@@ -477,31 +489,37 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const ec = C('energy'), pc = C('pressure');
     const k = kind.value, m = model(k);
     const g = axes(ctx, box, [0, 4], [0, 6], { xl: 'V (10⁻³ m³)', xc: PAL.ink, yl: 'P (10⁵ N/m²)', yc: pc, nx: 4, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
-    /* the other three processes, faintly, so the chosen one is seen against them */
+    /* all four processes are always drawn; a change of process thins the old path into a ghost while the new ghost thickens,
+       and the area under the path passes from one to the other */
+    const w = kind.mix((v) => KINDS.map((o) => (o === v ? 1 : 0)));
     const ghosts = [];
-    for (const o of ['isobaric', 'isochoric', 'isothermal', 'adiabatic']) {
-      if (o === k) continue; const mo = model(o), col = alpha(PAL.ink, 0.35);
-      if (mo.f) walk(ctx, mo.f, VA, mo.VB, g.X, g.Y, col, 2.5, o === 'adiabatic' ? [10, 8] : undefined); else line(ctx, g.X(VA), g.Y(PA), g.X(VA), g.Y(Math.min(mo.PB, 6)), col, 2.5);
-      /* each ghost is named at the middle of its own path, clear of the chosen path's endpoint B, and the names are set after B so nothing is drawn over them */
-      if (mo.f) { const vm = (VA + mo.VB) / 2, dy = o === 'adiabatic' ? 26 : -20; ghosts.push([o, g.X(vm), g.Y(mo.f(vm)) + dy, 'center']); }
-      else ghosts.push([o, g.X(VA) - 14, g.Y((PA + Math.min(mo.PB, 6)) / 2), 'right']);
-    }
-    /* the chosen process: its path, the area under it, and its endpoint */
-    if (m.f) {
-      const pts = under(m.f, VA, m.VB, g.X, g.Y);
-      if (m.VB > VA) fillPoly(ctx, pts, ec, 0.32); else hatchPoly(ctx, pts, ec);
-      walk(ctx, m.f, VA, m.VB, g.X, g.Y, PAL.ink, 5, k === 'adiabatic' ? [12, 9] : undefined);
-      const mid = (VA + m.VB) / 2, dv = 1e-3 * (m.VB > VA ? 1 : -1), sl = (g.Y(m.f(mid + dv)) - g.Y(m.f(mid))) / (g.X(mid + dv) - g.X(mid)), L = Math.hypot(1, sl), sg = m.VB > VA ? 1 : -1;
-      head(ctx, g.X(mid), g.Y(m.f(mid)), sg / L, (sg * sl) / L, PAL.ink, 18);
-    } else {
-      line(ctx, g.X(VA), g.Y(PA), g.X(VA), g.Y(Math.min(m.PB, 6)), PAL.ink, 5);
-      head(ctx, g.X(VA), g.Y((PA + Math.min(m.PB, 6)) / 2), 0, m.PB > PA ? -1 : 1, PAL.ink, 18);
-    }
-    state(ctx, g.X(VA), g.Y(PA), 'A', k === 'isochoric' ? 0.9 : -0.9, k === 'isochoric' ? 0 : -0.7);
-    const e = pinned(ctx, box, g.X, g.Y, m.VB, m.PB, PAL.ink, 'B');
-    if (!e.out) text(ctx, 'B', e.x + (m.VB >= VA ? 24 : -24), e.y - 24, PAL.ink, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    ghosts.forEach(([o, x, y, al]) => text(ctx, o, x, y, PAL.muted, { size: 17, align: al, bg: alpha(PAL.panel, 0.8) }));
-    text(ctx, k + (k === 'isochoric' ? ': constant volume, W = 0' : k === 'isobaric' ? ': constant pressure, W = PΔV' : k === 'isothermal' ? ': constant temperature, Q = W' : ': no heat transfer, Q = 0'), box.r - 10, box.t + 26, PAL.ink, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    KINDS.forEach((o, i) => {
+      const mo = model(o), q = w[i], col = alpha(PAL.ink, 0.35 + 0.65 * q), lw = 2.5 + 2.5 * q, dash = o === 'adiabatic' ? [10 + 2 * q, 8 + q] : undefined;
+      if (mo.f) {
+        if (q > 0) { const pts = under(mo.f, VA, mo.VB, g.X, g.Y); ctx.save(); ctx.globalAlpha *= q; if (mo.VB > VA) fillPoly(ctx, pts, ec, 0.32); else hatchPoly(ctx, pts, ec); ctx.restore(); }
+        walk(ctx, mo.f, VA, mo.VB, g.X, g.Y, col, lw, dash);
+        if (q > 0.05) { const mid = (VA + mo.VB) / 2, dv = 1e-3 * (mo.VB > VA ? 1 : -1), sl = (g.Y(mo.f(mid + dv)) - g.Y(mo.f(mid))) / (g.X(mid + dv) - g.X(mid)), L = Math.hypot(1, sl), sg = mo.VB > VA ? 1 : -1;
+          head(ctx, g.X(mid), g.Y(mo.f(mid)), sg / L, (sg * sl) / L, PAL.ink, 18 * q); }
+        /* each ghost is named at the middle of its own path, clear of the chosen path's endpoint B, and the names are set after B so nothing is drawn over them */
+        const vm = (VA + mo.VB) / 2, dy = o === 'adiabatic' ? 26 : -20; ghosts.push([o, g.X(vm), g.Y(mo.f(vm)) + dy, 'center', 1 - q]);
+      } else {
+        line(ctx, g.X(VA), g.Y(PA), g.X(VA), g.Y(Math.min(mo.PB, 6)), col, lw);
+        if (q > 0.05) head(ctx, g.X(VA), g.Y((PA + Math.min(mo.PB, 6)) / 2), 0, mo.PB > PA ? -1 : 1, PAL.ink, 18 * q);
+        ghosts.push([o, g.X(VA) - 14, g.Y((PA + Math.min(mo.PB, 6)) / 2), 'right', 1 - q]);
+      }
+    });
+    /* the endpoint B travels from the old process's end to the new one's */
+    const iv = KINDS.indexOf('isochoric'), [VBm, PBm] = kind.mix((v) => { const mo = model(v); return [mo.VB, mo.PB]; });
+    state(ctx, g.X(VA), g.Y(PA), 'A', 0.9 * (2 * w[iv] - 1), -0.7 * (1 - w[iv]));
+    const e = pinned(ctx, box, g.X, g.Y, VBm, PBm, PAL.ink, 'B');
+    if (!e.out) text(ctx, 'B', e.x + (VBm >= VA ? 24 : -24), e.y - 24, PAL.ink, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    ghosts.forEach(([o, x, y, al, a]) => { if (a <= 0.02) return; ctx.save(); ctx.globalAlpha *= a; text(ctx, o, x, y, PAL.muted, { size: 17, align: al, bg: alpha(PAL.panel, 0.8) }); ctx.restore(); });
+    KINDS.forEach((o) => {
+      const a = kind.a(o); if (a <= 0) return; const [dx, dy] = kind.off(o, [0, -12]);
+      ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy);
+      text(ctx, o + (o === 'isochoric' ? ': constant volume, W = 0' : o === 'isobaric' ? ': constant pressure, W = PΔV' : o === 'isothermal' ? ': constant temperature, Q = W' : ': no heat transfer, Q = 0'), box.r - 10, box.t + 26, PAL.ink, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+      ctx.restore();
+    });
     /* the words and the numbers */
     const exp = m.VB > VA + 1e-9, comp = m.VB < VA - 1e-9;
     const lines = {

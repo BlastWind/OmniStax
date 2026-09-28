@@ -33,15 +33,13 @@ function poly(ctx, pts, fill, stroke, w) {
 
 /* =====================================================================
    FIGURE 14.13: the fireplace. The room, the chimney, the window and the
-   couch are the book's; each of the three methods is a path the reader can
-   pick out alone, and putting the fire out takes every path away, since
-   nothing is then hotter than anything else. Still: the section states no
+   couch are the book's; the three methods are three named paths, and putting the fire out fades every path away, since nothing is
+   then hotter than anything else. Still: the section states no
    rate and no time, so nothing here has a clock.
 ===================================================================== */
 (function () {
   const H = 720;
   const d = sim('sim-fireplace', H);
-  const show = choice(d.controls, { label: '\\text{Show}', options: [{ value: 'all', label: 'all three' }, { value: 'conduction', label: 'conduction' }, { value: 'convection', label: 'convection' }, { value: 'radiation', label: 'radiation' }], value: 'all', aria: 'which method of heat transfer to show' });
   const fire = choice(d.controls, { label: '\\text{Fire}', options: [{ value: 'on', label: 'burning' }, { value: 'off', label: 'out' }], value: 'on', aria: 'whether the fire is burning' });
   /* the scene, in logical units: the chimney at the left, the room with its window at the right, the ground under both */
   const CH = { l: 200, r: 340, top: 110, open: 440 };                 /* the chimney shaft and the height of its opening into the room */
@@ -53,17 +51,11 @@ function poly(ctx, pts, fill, stroke, w) {
   /* the flame is the one colour on the page: the physical fact, in the flame's own orange and yellow (rule 7) */
   const FLAME_OUT = '#f2a33a', FLAME_IN = '#ffd166';
   const HEADS = {
-    all: 'In a fireplace, heat is transferred into the room by all three methods, and most of it by radiation.',
-    conduction: 'Conduction carries heat from the fire into the floor through matter that stays where it is, and at a much slower rate than the other two.',
-    convection: 'Convection carries heat by moving the air itself: cold air comes in around the window and hot air leaves up the chimney.',
-    radiation: 'Radiation carries most of the heat into the room, crossing from the flames to the couch and the walls with nothing to carry it.',
+    on: 'In a fireplace, heat is transferred into the room by all three methods, and most of it by radiation.',
     off: 'With the fire out and the room at the temperature of the outdoors, there is no temperature difference and no heat is transferred by any method.',
   };
   const READS = {
-    all: 'Every one of the three transfers heat only because the fire is hotter than the room and the room is warmer than the outdoors.',
-    conduction: 'Heat passes from the hot hearth into the floor by physical contact, as it does from the burner of a stove into the bottom of a pan.',
-    convection: 'The air itself moves and carries the heat with it: the air the fire has warmed rises up the chimney, and cold air drawn in around the window flows along the floor to take its place.',
-    radiation: 'Infrared radiation and visible light leave the flames and are absorbed by the couch, the walls and anyone sitting in the room, with no matter needed in between.',
+    on: 'Conduction carries heat from the hearth into the floor through matter that stays where it is; convection carries it by moving the air itself, hot air up the chimney and cold air in around the window; radiation, most of it, crosses from the flames to the couch and the walls with nothing to carry it.',
     off: 'The fire, the room, the floor and the outdoors are at one temperature, so nothing drives a transfer by any of the three methods.',
   };
   function flame(ctx, x, y, s, outer, inner) {
@@ -101,9 +93,8 @@ function poly(ctx, pts, fill, stroke, w) {
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const on = fire.value === 'on', sel = show.value;
-    const tone = (k) => (sel === 'all' || sel === k ? PAL.ink : alpha(PAL.ink, 0.18));
-    const width = (k) => (sel === k ? 5 : 4);
+    const on = fire.value === 'on', lit = fire.a('on'), [ox, oy] = fire.off('on', [0, -24]);
+    const width = () => 4;
     /* the ground, the chimney and the room */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.10); ctx.fillRect(CH.l - 20, GROUND.t, ROOM.r + 20 - (CH.l - 20), GROUND.b - GROUND.t); ctx.restore();
     line(ctx, CH.l - 20, GROUND.t, ROOM.r + 20, GROUND.t, PAL.ink, 3); line(ctx, CH.l - 20, GROUND.b, ROOM.r + 20, GROUND.b, PAL.muted, 2);
@@ -121,10 +112,11 @@ function poly(ctx, pts, fill, stroke, w) {
     /* the couch and the fire */
     couch(ctx, 640, 560);
     logs(ctx, FIRE.x, FIRE.y + 18, !on);
-    if (on) flame(ctx, FIRE.x, FIRE.y + 6, 1, FLAME_OUT, FLAME_IN);
-    /* the three paths, only while a temperature difference drives them */
-    if (on) {
-      const cd = tone('conduction'), cv = tone('convection'), rd = tone('radiation');
+    /* the flame and the three paths exist only while a temperature difference drives them, and fade with the fire */
+    if (lit > 0) {
+      ctx.save(); ctx.globalAlpha = lit; ctx.translate(ox, oy);
+      flame(ctx, FIRE.x, FIRE.y + 6, 1, FLAME_OUT, FLAME_IN);
+      const cd = PAL.ink, cv = PAL.ink, rd = PAL.ink;
       /* conduction: from under the logs down into the ground and along it */
       ctx.save(); ctx.strokeStyle = cd; ctx.lineWidth = width('conduction'); ctx.beginPath(); ctx.moveTo(FIRE.x, GROUND.t + 4); ctx.lineTo(FIRE.x, GROUND.t + 32); ctx.quadraticCurveTo(FIRE.x, GROUND.t + 46, FIRE.x + 14, GROUND.t + 46); ctx.lineTo(500, GROUND.t + 46); ctx.stroke(); ctx.restore();
       arrow(ctx, 480, GROUND.t + 46, 530, GROUND.t + 46, cd, width('conduction'));
@@ -142,9 +134,10 @@ function poly(ctx, pts, fill, stroke, w) {
       wavy(ctx, 340, 520, 630, 452, rd, width('radiation'), 6);
       wavy(ctx, 340, 566, 626, 516, rd, width('radiation'), 6);
       text(ctx, 'Radiation', 470, 448, rd, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+      ctx.restore();
     }
-    topline(ctx, on ? HEADS[sel] : HEADS.off);
-    d.readout.replaceChildren(el('small', null, on ? READS[sel] : READS.off));
+    topline(ctx, HEADS[fire.value]);
+    d.readout.replaceChildren(el('small', null, READS[fire.value]));
   }
   hover(d.stage, () => [
     { x: 1182, y: 356, r: 60, name: 'the window, where cold air enters the room' },

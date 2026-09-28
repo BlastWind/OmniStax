@@ -59,7 +59,7 @@ const TAU = Math.PI * 2;
   const PERIOD = 5.0;
   let mode = 'sealed';
   const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 0, max: 100, step: 1, value: 20, unit: '°C', dec: 0, onInput: reset, aria: 'temperature of the water' });
-  choice(d.controls, { label: '\\text{container}', options: [{ value: 'open', label: 'Open' }, { value: 'sealed', label: 'Sealed' }], value: mode, aria: 'open or sealed container',
+  const box = choice(d.controls, { label: '\\text{container}', options: [{ value: 'open', label: 'Open' }, { value: 'sealed', label: 'Sealed' }], value: mode, aria: 'open or sealed container',
     onInput: (v) => { mode = v; reset(); } });
   const cy = cycle(() => PERIOD, 1.5);
   /* the container in section: walls at XL and XR, the rim at YR, the surface at YS, the bottom at YB; molecules of radius R */
@@ -80,7 +80,7 @@ const TAU = Math.PI * 2;
   /* the launches of one run: quasi-regular in time so that the count aloft hardly flickers, each with a start, a
      place on the surface, a speed and a direction; scheduled over two periods so that the open container is a
      steady stream and the sealed one has molecules already in flight when the lid goes on at t = 0 */
-  let launches = [], m = model(), stale = true;
+  let launches = [], m = model(), stale = true, held = 0;
   function reset() { cy.reset(); stale = true; }
   function schedule() {
     stale = false; m = model();
@@ -124,8 +124,9 @@ const TAU = Math.PI * 2;
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05); ctx.fillRect(XL, YS, XR - XL, YB - YS); ctx.restore();
     line(ctx, XL, YR - 6, XL, YB, PAL.ink, 4); line(ctx, XR, YR - 6, XR, YB, PAL.ink, 4); line(ctx, XL, YB, XR, YB, PAL.ink, 4);
     line(ctx, XL, YS, XR, YS, alpha(PAL.ink, 0.5), 2);
-    if (mode === 'sealed') { ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(XL - 12, YR - 12, XR - XL + 24, 12); ctx.restore(); text(ctx, 'lid', XR + 22, YR - 6, PAL.ink, { size: 20, weight: 600 }); }
-    else text(ctx, 'open to the room', XR + 22, YR - 6, PAL.ink, { size: 20, weight: 600 });
+    const lid = box.a('sealed'), [lx, ly] = box.off('sealed', [0, -30]), [ox, oy] = box.off('open', [0, -30]);
+    if (lid > 0) { ctx.save(); ctx.globalAlpha *= lid; ctx.fillStyle = PAL.ink; ctx.fillRect(XL - 12 + lx, YR - 12 + ly, XR - XL + 24, 12); ctx.restore(); text(ctx, 'lid', XR + 22 + lx, YR - 6 + ly, alpha(PAL.ink, lid), { size: 20, weight: 600 }); }
+    if (box.a('open') > 0) text(ctx, 'open to the room', XR + 22 + ox, YR - 6 + oy, alpha(PAL.ink, box.a('open')), { size: 20, weight: 600 });
     /* the liquid */
     ctx.save(); ctx.fillStyle = oxy;
     for (const q of LIQ) { const a = 2.6 * m.c; ctx.beginPath(); ctx.arc(q.x + a * Math.sin(3.1 * m.c * t + q.p), q.y + a * Math.sin(2.7 * m.c * t + q.q), R - 1, 0, TAU); ctx.fill(); }
@@ -143,20 +144,24 @@ const TAU = Math.PI * 2;
     text(ctx, 'liquid', XL + 14, YB - 22, PAL.ink, { size: 20, weight: 600, bg: PAL.panel });
     text(ctx, 'vapor', XL + 14, YR + 22, PAL.ink, { size: 20, weight: 600, bg: PAL.panel });
     /* the two rates as arrows beside the container, and the vapor density as a bar against saturation */
-    const share = mode === 'sealed' ? Math.min(1, alive / m.nEq) : 0, pct = Math.round(share * 100);
+    /* as the lid lifts, the vapor under it drifts away: the bar drains from where it stood rather than vanishing */
+    if (mode === 'sealed') held = Math.min(1, alive / m.nEq);
+    const share = held * box.a('sealed'), pct = Math.round(share * 100);
+    const fade = (v, f) => { const a = box.a(v); if (a <= 0) return; const [dx, dy] = box.off(v, [0, 12]); ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore(); };
     const AX = 950, CX = 1110, L = 170;
     arrow(ctx, AX, YS, AX, YS - L, PAL.ink, 4); text(ctx, 'evaporation', AX, YS + 26, PAL.ink, { size: 18, weight: 600, align: 'center' });
     if (share > 0.02) arrow(ctx, CX, YS - L, CX, YS - L + L * share, PAL.ink, 4); else line(ctx, CX - 8, YS - L, CX + 8, YS - L, PAL.ink, 3);
     text(ctx, 'condensation', CX, YS + 26, PAL.ink, { size: 18, weight: 600, align: 'center' });
-    text(ctx, mode === 'sealed' ? pct + '% of it' : 'none returns', CX, YS + 50, PAL.muted, { size: 17, align: 'center' });
+    fade('sealed', () => text(ctx, pct + '% of it', CX, YS + 50, PAL.muted, { size: 17, align: 'center' }));
+    fade('open', () => text(ctx, 'none returns', CX, YS + 50, PAL.muted, { size: 17, align: 'center' }));
     const BX = 1230, BW = 56;
     line(ctx, BX, YS, BX, YR, PAL.muted, 2); line(ctx, BX - 10, YR, BX + BW + 10, YR, dc, 3, [10, 10]);
-    if (mode === 'sealed') { ctx.save(); ctx.fillStyle = alpha(dc, 0.3); ctx.fillRect(BX, YS - (YS - YR) * share, BW, (YS - YR) * share); ctx.restore(); line(ctx, BX, YS - (YS - YR) * share, BX + BW, YS - (YS - YR) * share, dc, 3); }
+    if (share > 0) { ctx.save(); ctx.fillStyle = alpha(dc, 0.3); ctx.fillRect(BX, YS - (YS - YR) * share, BW, (YS - YR) * share); ctx.restore(); line(ctx, BX, YS - (YS - YR) * share, BX + BW, YS - (YS - YR) * share, dc, 3); }
     line(ctx, BX, YS, BX + BW, YS, PAL.muted, 2);
     text(ctx, 'vapor density', BX + BW / 2, YS + 26, dc, { size: 18, weight: 600, align: 'center' });
     text(ctx, 'saturation, ' + dens(satD(T)) + ' g/m³', BX + BW / 2, YR - 18, dc, { size: 17, weight: 600, align: 'center' });
-    if (mode === 'sealed') text(ctx, dens(satD(T) * share) + ' g/m³', BX + BW + 12, YS - (YS - YR) * share, dc, { size: 17, weight: 600, bg: PAL.panel });
-    else text(ctx, 'drifts away', BX + BW / 2, (YS + YR) / 2, PAL.muted, { size: 17, align: 'center' });
+    fade('sealed', () => text(ctx, dens(satD(T) * share) + ' g/m³', BX + BW + 12, YS - (YS - YR) * share, dc, { size: 17, weight: 600, bg: PAL.panel }));
+    fade('open', () => text(ctx, 'drifts away', BX + BW / 2, (YS + YR) / 2, PAL.muted, { size: 17, align: 'center' }));
     text(ctx, 'T = ' + degC(T), XL + 14, YS - 18, tc, { size: 22, weight: 600, bg: PAL.panel });
     /* the words */
     if (mode === 'sealed') topline(ctx, share >= 0.99
@@ -180,7 +185,9 @@ const TAU = Math.PI * 2;
 (function () {
   const d = sim('sim-humidity', 560);
   const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -20, max: 40, step: 0.5, value: 25, unit: '°C', dec: 1, aria: 'air temperature' });
-  const Rs = ctl(d.controls, { label: '\\krho', cls: 'density', min: 0.5, max: 60, step: 0.1, value: 9.4, unit: 'g/m³', dec: 2, aria: 'vapor density of the air' });
+  const dewAt = () => { const t = tableInv(Rs.v, 2); return t >= -20 && t <= 40 ? t : null; };
+  const Rs = ctl(d.controls, { label: '\\krho', cls: 'density', min: 0.5, max: 60, step: 0.1, value: 9.4, unit: 'g/m³', dec: 2, aria: 'vapor density of the air', specials: [{ at: () => satD(Ts.v), label: 'saturation' }] });
+  Ts.mark([{ at: dewAt, label: 'dew point' }]);
   /* axes fixed at −20 to 40 °C and 0 to 60 g/m³, the range of the humidity problems; a dew point beyond 40 °C is pinned */
   const box = { l: 170, r: 1300, t: 120, b: 450 };
   function draw() {
@@ -224,7 +231,11 @@ const TAU = Math.PI * 2;
 (function () {
   const d = sim('sim-boiling', 640);
   const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 20, max: 150, step: 0.5, value: 20, unit: '°C', dec: 1, aria: 'temperature of the water' });
-  const Ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 0.3, max: 2, step: 0.01, value: 1, unit: 'atm', dec: 2, aria: 'pressure over the water', detents: [{ v: 1, label: 'sea level' }], snap: true });
+  const Ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 0.3, max: 2, step: 0.01, value: 1, unit: 'atm', dec: 2, aria: 'pressure over the water', detents: [{ v: 1, label: 'sea level' }], snap: true,
+    specials: [{ at: () => vapP(Ts.v) / ATM, label: 'boils' }] });
+  Ts.mark([{ at: () => tableInv(Ps.v * ATM, 1), label: 'boils' }]);
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
   /* the beaker: walls at XL and XR, rim at YR, bottom at YB, water to YW; the burner beneath; the bar of partial pressures at right */
   const XL = 300, XR = 700, YR = 130, YB = 520, YW = 190, R0 = 14;
   const BX = 850, BW = 440, BY = 400, BH = 54;
@@ -233,7 +244,7 @@ const TAU = Math.PI * 2;
   function draw() {
     const { ctx } = begin(d.c); hits.length = 0;
     const T = Ts.v, P = Ps.v * ATM, tc = C('temperature'), pc = C('pressure');
-    const pv = vapP(T), pair = P - pv, boils = pair <= 0, tb = tableInv(P, 1);
+    const pv = vapP(T), pair = P - pv, boils = pair <= P * 1e-6, tb = tableInv(P, 1);
     /* the bubble's volume from the ideal gas law with its air fixed, against the book's 20 °C, 1.00 atm start */
     const ratio = boils ? Infinity : ((T + 273.15) / 293.15) * (ATM - vapP(20)) / pair;
     const r = boils ? 0 : Math.min(60, R0 * Math.cbrt(ratio));
@@ -276,9 +287,11 @@ const TAU = Math.PI * 2;
     if (!boils) topline(ctx, `At ${degC(T, 1)} the bubble is ${fmt(fv * 100, 1)}% water vapor and ${fmt((1 - fv) * 100, 1)}% air, and it sits on the bottom${r > 40 ? ', swollen to keep its pressure at ' + fmt(Ps.v, 2) + ' atm' : ''}.`);
     else topline(ctx, `At ${degC(T, 1)} the vapor pressure of water ${pv - P < 0.02 * P ? 'reaches' : 'exceeds'} the ${fmt(Ps.v, 2)} atm over the water, so vapor enters the bubble without limit: it grows, breaks away and rises. The water boils.`);
     const Pv = sci(pv), Pa = sci(Math.max(0, pair)), Pt = sci(P);
-    readout(d.readout, boils
-      ? `{\\kPr}_{\\text{vapor}}(\\kTemp) = ${Pv.tex}\\ \\text{Pa} \\ge \\kPr = ${Pt.tex}\\ \\text{Pa}`
-      : `{\\kPr}_{\\text{vapor}}(\\kTemp) = ${Pv.tex}\\ \\text{Pa},\\qquad {\\kPr}_{\\text{air}} = ${Pa.tex}\\ \\text{Pa},\\qquad \\kPr = ${Pt.tex}\\ \\text{Pa}`,
+    const vap = '\\mk{v}{{\\kPr}_{\\text{vapor}}(\\kTemp)}', nv = `\\mk{nv}{${Pv.tex}}\\ \\text{Pa}`, nP = `\\mk{nP}{${Pt.tex}}\\ \\text{Pa}`;
+    F.morph(formula, boils
+      ? `${vap} = ${nv} \\ge \\mk{P}{\\kPr} = ${nP}`
+      : `\\mk{P}{\\kPr} = ${vap} + \\mk{a}{{\\kPr}_{\\text{air}}} = ${nv} + \\mk{na}{${Pa.tex}}\\ \\text{Pa} = ${nP}`);
+    note.textContent = (
       `At ${fmt(Ps.v, 2)} atm water boils at ${degC(tb, 1)}, where Table 13.5 puts the vapor pressure of water at ${sci(P).txt} Pa.${boils ? '' : ' The bubble’s volume is ' + fmt(ratio, 2) + ' times what it was at 20 °C and 1.00 atm.'}`);
   }
   register(d.fig, { update: () => {}, draw });

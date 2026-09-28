@@ -88,39 +88,40 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     { value: 'H2O', label: 'Water', name: 'water', boil: 100, melt: 0, vliq: 0.0188, vsol: 0.0196 },
   ];
   const sub = select(d.controls, { label: '\\text{substance}', options: SUBS.map((s) => ({ value: s.value, label: s.label })), value: 'N2', aria: 'the substance' });
-  const T = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -273, max: 150, step: 1, value: 20, unit: '°C', dec: 0, aria: 'temperature' });
+  const T = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -273, max: 150, step: 1, value: 20, unit: '°C', dec: 0, aria: 'temperature',
+    specials: [{ at: () => { const S = SUBS.find((q) => q.value === sub.value); return S.boil ?? S.melt; }, label: 'condenses' }] });
   const X100 = 100;                                  /* the factor the condensed volumes are drawn at */
   const ideal = (tc) => (R_GAS * (tc + 273.15)) / ATM * 1000;   /* litres of one mole at 1 atm */
   function draw() {
     const { ctx, H } = begin(d.c);
     const S = SUBS.find((s) => s.value === sub.value), tc = T.v, tk = tc + 273.15;
     const tCond = S.boil ?? S.melt;                  /* where the gas leaves the ideal line */
+    /* the corners of the curve blend from one substance to the next; a substance with no liquid has its liquid step of zero length */
+    const [gB, gM, gL, gS] = sub.mix((v) => { const q = SUBS.find((s) => s.value === v); return [q.boil ?? q.melt, q.melt, (q.vliq ?? q.vsol) * X100, q.vsol * X100]; });
     const box = { l: 150, r: 1320, t: 120, b: 520 };
     const { X, Y } = axes(ctx, box, [-300, 150], [0, 40], { xl: 'Temperature T (°C)', xc: C('temperature'), yl: 'Volume V (L)', nx: 9, ny: 4, fx: (v) => (v === -300 || Math.abs(v) % 100 > 1 ? '' : neg(fmt(v, 0))), fy: (v) => fmt(v, 0) });
     line(ctx, X(-273.15), box.b - 8, X(-273.15), box.b + 8, PAL.muted, 2);
     text(ctx, '−273.15', X(-273.15), box.b + 26, PAL.muted, { size: 17, align: 'center' });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l - 3, box.t - 3, box.r - box.l + 6, box.b - box.t + 6); ctx.clip();
     /* the ideal line, dashed where the substance is no longer a gas */
-    line(ctx, X(-273.15), Y(0), X(tCond), Y(ideal(tCond)), PAL.muted, 3, [10, 10]);
-    line(ctx, X(tCond), Y(ideal(tCond)), X(150), Y(ideal(150)), PAL.ink, 5);
+    line(ctx, X(-273.15), Y(0), X(gB), Y(ideal(gB)), PAL.muted, 3, [10, 10]);
+    line(ctx, X(gB), Y(ideal(gB)), X(150), Y(ideal(150)), PAL.ink, 5);
     /* the condensed part, drawn ×100 */
-    const yLiq = S.vliq ? Y(S.vliq * X100) : null, ySol = Y(S.vsol * X100);
-    if (S.boil != null) {
-      line(ctx, X(S.boil), Y(ideal(S.boil)), X(S.boil), yLiq, PAL.ink, 5);
-      line(ctx, X(S.boil), yLiq, X(S.melt), yLiq, PAL.ink, 5);
-      line(ctx, X(S.melt), yLiq, X(S.melt), ySol, PAL.ink, 5);
-    } else line(ctx, X(S.melt), Y(ideal(S.melt)), X(S.melt), ySol, PAL.ink, 5);
-    line(ctx, X(S.melt), ySol, X(-273.15), ySol, PAL.ink, 5);
+    const gyL = Y(gL), gyS = Y(gS);
+    line(ctx, X(gB), Y(ideal(gB)), X(gB), gyL, PAL.ink, 5);
+    line(ctx, X(gB), gyL, X(gM), gyL, PAL.ink, 5);
+    line(ctx, X(gM), gyL, X(gM), gyS, PAL.ink, 5);
+    line(ctx, X(gM), gyS, X(-273.15), gyS, PAL.ink, 5);
     ctx.restore();
     /* labels beside the pieces of the curve */
     const L = labeller(ctx, H); L.block(0, 0, 1400, 92);
     L.add('ideal gas line', X(80), Y(ideal(80)), -0.5, -1, PAL.ink, 20);
     const side = tCond > -60 ? -1 : 1;
     if (S.boil != null) {
-      L.add('condenses to a liquid, drawn ×' + X100, X(S.boil), (Y(ideal(S.boil)) + yLiq) / 2, side, 0, PAL.ink, 20);
-      L.add('freezes to a solid', X(S.melt), (yLiq + ySol) / 2 - 14, -1, 0.3, PAL.ink, 20);
-    } else L.add('goes straight to a solid, drawn ×' + X100, X(S.melt), (Y(ideal(S.melt)) + ySol) / 2, side, 0, PAL.ink, 20);
-    L.add('solid, drawn ×' + X100, X((S.melt - 273.15) / 2), ySol, 0, -1, PAL.ink, 17);
+      L.add('condenses to a liquid, drawn ×' + X100, X(gB), (Y(ideal(gB)) + gyL) / 2, side, 0, PAL.ink, 20);
+      L.add('freezes to a solid', X(gM), (gyL + gyS) / 2 - 14, -1, 0.3, PAL.ink, 20);
+    } else L.add('goes straight to a solid, drawn ×' + X100, X(gM), (Y(ideal(gM)) + gyS) / 2, side, 0, PAL.ink, 20);
+    L.add('solid, drawn ×' + X100, X((gM - 273.15) / 2), gyS, 0, -1, PAL.ink, 17);
     /* the state at the temperature set */
     const phase = tc > tCond ? 'gas' : S.boil != null && tc > S.melt ? 'liquid' : 'solid';
     const vTrue = phase === 'gas' ? ideal(tc) : phase === 'liquid' ? S.vliq : S.vsol;
@@ -166,7 +167,8 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
   const stepOf = (S) => (S.Tc < 50 ? 0.1 : 1);
   const VcOf = (S) => (3 * R_GAS * S.Tc) / (8 * S.Pc) * 1000;   /* the model's critical volume in L/mol */
   const sub = select(d.controls, { label: '\\text{substance}', options: SUBS.map((s) => ({ value: s.value, label: s.label })), value: 'CO2', aria: 'the substance', onInput: () => { const S = SUBS.find((s) => s.value === sub.value), st = stepOf(S), on = (x) => +(Math.round(x / st) * st).toFixed(1), Vc = VcOf(S), onV = (x) => +(Math.round(x / 0.005) * 0.005).toFixed(3); rerange(tIn, on(0.7 * S.Tc), on(1.5 * S.Tc), st, on(0.95 * S.Tc)); rerange(vIn, onV(0.4 * Vc), onV(6 * Vc), 0.005, onV(1.55 * Vc)); } });
-  const T = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 213, max: 456, step: 1, value: 290, unit: 'K', dec: 1, aria: 'temperature of the isotherm' });
+  const T = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 213, max: 456, step: 1, value: 290, unit: 'K', dec: 1, aria: 'temperature of the isotherm',
+    specials: [{ at: () => SUBS.find((q) => q.value === sub.value).Tc, label: 'critical' }] });
   const tIn = lastInput(d.controls);
   const V = ctl(d.controls, { label: 'V', cls: '', min: 0.05, max: 0.77, step: 0.005, value: 0.2, unit: 'L/mol', dec: 3, aria: 'volume of one mole' });
   const vIn = lastInput(d.controls);

@@ -54,7 +54,7 @@ function hatch(ctx, pathFn, color) {
   const d = sim('sim-heat-pump-backward', 640);
   const mode = choice(d.controls, { label: '\\text{the cycle}', options: [{ value: 'engine', label: 'heat engine' }, { value: 'pump', label: 'heat pump' }], value: 'pump', aria: 'whether the cycle is run as a heat engine or as a heat pump' });
   const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 300, max: 400, step: 2, value: 318, unit: 'K', dec: 0, aria: 'the hot reservoir temperature' });
-  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 220, max: 300, step: 2, value: 258, unit: 'K', dec: 0, aria: 'the cold reservoir temperature' });
+  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 220, max: 300, step: 2, value: 258, unit: 'K', dec: 0, aria: 'the cold reservoir temperature', specials: [{ at: () => th.v, label: 'no loop' }] });
   /* a fixed amount of gas, nR = 2 J/K, expanded from 2.0 L to 4.0 L on the hot isotherm;
      with V in litres and P in kPa, PV is in joules. Axes fixed at V 0 to 10 L and P 0 to
      500 kPa, which hold the loop at both slider extremes (V_C = 9.8 L at 400 K and 220 K,
@@ -65,27 +65,28 @@ function hatch(ctx, pathFn, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const ec = C('energy'), pc = C('pressure'), tcol = C('temperature');
-    const Th = th.v, Tc = tc.v, pump = mode.value === 'pump';
+    const Th = th.v, Tc = tc.v, pump = mode.value === 'pump', s = mode.mix((v) => (v === 'pump' ? -1 : 1));
     const Qh = NR * Th * Math.log(VB / VA), Qc = NR * Tc * Math.log(VB / VA), W = Qh - Qc;
     const wOf = (Q) => Math.max(3, Q / 8);
+    /* an arrow drawn the engine's way, from 1 to 2; as the mode turns it shrinks to its tail and regrows from 2 */
+    const turned = (x1, y1, x2, y2, w) => (s >= 0 ? fat(ctx, x1, y1, x1 + (x2 - x1) * s, y1 + (y2 - y1) * s, w, ec) : fat(ctx, x2, y2, x2 + (x1 - x2) * -s, y2 + (y1 - y2) * -s, w, ec));
+    /* a part only one mode has, faded and shifted with the mode */
+    const only = (v, f) => { const a = mode.a(v); if (a <= 0) return; const [dx, dy] = mode.off(v, [0, 10]); ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore(); };
     /* ---- the schematic: hot reservoir above, cold below, the machine between ---- */
     reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, 'hot reservoir', 'T_h = ' + fmt(Th, 0) + ' K');
     reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, 'cold reservoir', 'T_c = ' + fmt(Tc, 0) + ' K');
     const top = HOT.y + HOT.h, bot = COLD.y;
-    if (pump) {
-      if (Qc > 0) fat(ctx, MX, bot, MX, MY + MR + 2, wOf(Qc), ec);
-      fat(ctx, MX, MY - MR - 2, MX, top, wOf(Qh), ec);
-      if (W > 0.5) fat(ctx, 600, MY, MX + MR + 2, MY, wOf(W), ec);
-    } else {
-      fat(ctx, MX, top, MX, MY - MR - 2, wOf(Qh), ec);
-      if (Qc > 0) fat(ctx, MX, MY + MR + 2, MX, bot, wOf(Qc), ec);
-      if (W > 0.5) fat(ctx, MX + MR + 2, MY, 600, MY, wOf(W), ec);
-    }
-    machine(ctx, MX, MY, MR, pump ? 'heat pump' : 'heat engine');
+    turned(MX, top, MX, MY - MR - 2, wOf(Qh));
+    if (Qc > 0) turned(MX, MY + MR + 2, MX, bot, wOf(Qc));
+    if (W > 0.5) turned(MX + MR + 2, MY, 600, MY, wOf(W));
+    machine(ctx, MX, MY, MR, '');
+    only('pump', () => text(ctx, 'heat pump', MX, MY, PAL.ink, { size: 20, weight: 600, align: 'center' }));
+    only('engine', () => text(ctx, 'heat engine', MX, MY, PAL.ink, { size: 20, weight: 600, align: 'center' }));
     text(ctx, 'Q_h = ' + fmt(Qh, 0) + ' J', MX - wOf(Qh) / 2 - 22, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Q_c = ' + fmt(Qc, 0) + ' J', MX - wOf(Qc) / 2 - 22, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'W = ' + fmt(W, 0) + ' J', 500, MY - wOf(W) / 2 - 30, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, pump ? 'work put in' : 'work got out', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' });
+    only('pump', () => text(ctx, 'work put in', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }));
+    only('engine', () => text(ctx, 'work got out', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }));
     /* ---- the PV diagram: pressure wears its hue on the vertical axis, volume is ink ---- */
     const { X, Y } = axes(ctx, box, [0, 10], [0, 500], { xl: 'V (L)', yl: 'P (kPa)', yc: pc, nx: 5, ny: 5 });
     const k = 1 / (GAM - 1), VC = VB * Math.pow(Th / Tc, k), VD = VA * Math.pow(Th / Tc, k);
@@ -105,16 +106,16 @@ function hatch(ctx, pathFn, color) {
     ctx.restore();
     /* the area inside the loop is the work: filled for an engine, hatched for a pump */
     if (W > 0.5) {
-      if (pump) hatch(ctx, pathFn, ec);
-      else { ctx.save(); ctx.fillStyle = alpha(ec, 0.28); ctx.beginPath(); pathFn(); ctx.fill(); ctx.restore(); }
+      only('pump', () => hatch(ctx, pathFn, ec));
+      only('engine', () => { ctx.fillStyle = alpha(ec, 0.28); ctx.beginPath(); pathFn(); ctx.fill(); });
     }
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); pathFn(); ctx.closePath(); ctx.stroke(); ctx.restore();
     /* the way the loop is walked: an arrowhead at the middle of each leg */
     const legs = [[Ph, VA, VB], [aBC, VB, VC], [Pc, VC, VD], [aDA, VD, VA]];
     for (const [f, v0, v1] of legs) {
-      const vm = (v0 + v1) / 2, dv = (v1 - v0) * 0.02 * (pump ? -1 : 1);
+      const vm = (v0 + v1) / 2, dv = (v1 - v0) * 0.02 * (s < 0 ? -1 : 1), n = 26 * Math.abs(s);
       const ax = X(vm - dv), ay = Y(f(vm - dv)), bx = X(vm + dv), by = Y(f(vm + dv));
-      const L = Math.hypot(bx - ax, by - ay); if (L > 1) arrow(ctx, ax, ay, ax + (bx - ax) / L * 26, ay + (by - ay) / L * 26, PAL.ink, 4);
+      const L = Math.hypot(bx - ax, by - ay); if (L > 1 && n > 4) arrow(ctx, ax, ay, ax + (bx - ax) / L * n, ay + (by - ay) / L * n, PAL.ink, 4);
     }
     /* the corners and the isotherms named */
     const corners = [['A', VA, Ph(VA), -20, -8, 'right'], ['B', VB, Ph(VB), 16, -14, 'left'], ['C', VC, Pc(VC), 6, 26, 'left'], ['D', VD, Pc(VD), -18, 20, 'right']];
@@ -124,21 +125,24 @@ function hatch(ctx, pathFn, color) {
     /* the two heat transfers at the isotherms: in on one, out on the other */
     const hx = X((VA + VB) / 2), hy = Y(Ph((VA + VB) / 2)), vq = VD + 0.3 * (VC - VD), cx = X(vq), cy = Y(Pc(vq));
     const cb = Math.min(cy + 84, box.b - 4);      /* the cold arrow stays inside the axes when the loop sits low */
-    if (pump) { fat(ctx, hx, hy - 14, hx, hy - 84, 12, ec); fat(ctx, cx, cb, cx, cy + 14, 12, ec); }
-    else { fat(ctx, hx, hy - 84, hx, hy - 14, 12, ec); fat(ctx, cx, cy + 14, cx, cb, 12, ec); }
+    turned(hx, hy - 84, hx, hy - 14, 12); turned(cx, cy + 14, cx, cb, 12);
     text(ctx, 'Q_h', hx + 26, hy - 50, ec, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Q_c', cx - 26, (cy + 14 + cb) / 2, ec, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, pump ? 'walked ADCBA, a net work input' : 'walked ABCDA, a net work output', box.l, box.b + 58, PAL.muted, { size: 17 });
+    only('pump', () => text(ctx, 'walked ADCBA, a net work input', box.l, box.b + 58, PAL.muted, { size: 17 }));
+    only('engine', () => text(ctx, 'walked ABCDA, a net work output', box.l, box.b + 58, PAL.muted, { size: 17 }));
     topline(ctx, W < 0.5
       ? 'With both reservoirs at ' + fmt(Th, 0) + ' K the loop has no area, so no work is needed as a pump and none is got out as an engine.'
       : pump
         ? 'Run as a heat pump between ' + fmt(Tc, 0) + ' K and ' + fmt(Th, 0) + ' K, the cycle takes ' + fmt(Qc, 0) + ' J from the cold reservoir and ' + fmt(W, 0) + ' J of work and delivers ' + fmt(Qh, 0) + ' J to the hot reservoir.'
         : 'Run as a heat engine between ' + fmt(Th, 0) + ' K and ' + fmt(Tc, 0) + ' K, the cycle takes ' + fmt(Qh, 0) + ' J from the hot reservoir, gives out ' + fmt(W, 0) + ' J of work and rejects ' + fmt(Qc, 0) + ' J to the cold reservoir.');
-    readout(d.readout, pump
-      ? `\\kQH = \\kQC + \\kW = ${fmt(Qc, 0)}\\ \\text{J} + ${fmt(W, 0)}\\ \\text{J} = ${fmt(Qh, 0)}\\ \\text{J}`
-      : `\\kW = \\kQH - \\kQC = ${fmt(Qh, 0)}\\ \\text{J} - ${fmt(Qc, 0)}\\ \\text{J} = ${fmt(W, 0)}\\ \\text{J}`,
-      'The Carnot cycle fixes Q_c/Q_h = T_c/T_h = ' + fmt(Tc / Th, 3) + ', and the area inside the loop is the work: the closer the two temperatures, the thinner the loop and the less work a cycle needs as a pump or gives as an engine. Run backward, every transfer keeps its size and turns about.');
+    /* the first law rearranged by meaning: each term moves to its place as the mode turns */
+    const QH = '\\mk{QH}{\\kQH}', QC = '\\mk{QC}{\\kQC}', Wk = '\\mk{W}{\\kW}', nQH = `\\mk{nQH}{${fmt(Qh, 0)}}\\ \\text{J}`, nQC = `\\mk{nQC}{${fmt(Qc, 0)}}\\ \\text{J}`, nW = `\\mk{nW}{${fmt(W, 0)}}\\ \\text{J}`;
+    F.morph(formula, pump ? `${QH} = ${QC} + ${Wk} = ${nQC} + ${nW} = ${nQH}` : `${Wk} = ${QH} - ${QC} = ${nQH} - ${nQC} = ${nW}`, { force: pump !== wasPump });
+    wasPump = pump;
   }
+  let wasPump = mode.value === 'pump';
+  const formula = el('div');
+  d.readout.append(formula, el('small', null, 'The Carnot cycle fixes Q_c/Q_h = T_c/T_h, and the area inside the loop is the work: the closer the two temperatures, the thinner the loop and the less work a cycle needs as a pump or gives as an engine. Run backward, every transfer keeps its size and turns about.'));
   register(d.fig, { update: () => {}, draw });
 })();
 
@@ -174,7 +178,11 @@ function hatch(ctx, pathFn, color) {
   function head(ctx, x, y, dx, dy) { arrow(ctx, x - dx * 14, y - dy * 14, x + dx * 14, y + dy * 14, PAL.ink, 6); }
   function draw() {
     const { ctx } = begin(d.c);
-    const ec = C('energy'), heating = mode.value === 'heat';
+    const ec = C('energy'), heating = mode.value === 'heat', s = mode.mix((v) => (v === 'heat' ? 1 : -1));
+    /* a label either mode has in the same place, the old one fading down as the new one rises */
+    const two = (a, b, f) => { for (const [v, str] of [['heat', a], ['cool', b]]) { const q = mode.a(v); if (q <= 0) continue; const [dx, dy] = mode.off(v, [0, 10]); ctx.save(); ctx.globalAlpha *= q; ctx.translate(dx, dy); f(str); ctx.restore(); } };
+    /* an arrow drawn the heating way, from 1 to 2; as the mode turns it shrinks to its tail and regrows from 2 */
+    const turned = (x1, y1, x2, y2, w) => (s >= 0 ? fat(ctx, x1, y1, x1 + (x2 - x1) * s, y1 + (y2 - y1) * s, w, ec) : fat(ctx, x2, y2, x2 + (x1 - x2) * -s, y2 + (y1 - y2) * -s, w, ec));
     /* the wall, and which side is which */
     line(ctx, WX, 130, WX, 610, PAL.muted, 3, [12, 10]);
     text(ctx, 'outside', WX - 16, 112, PAL.ink, { size: 20, weight: 600, align: 'right' });
@@ -185,9 +193,10 @@ function hatch(ctx, pathFn, color) {
     pipe(ctx, [[IX, CY + CH / 2], [IX, BOT - 26], [IX - 26, BOT], [WX + 40, BOT]]);
     pipe(ctx, [[WX - 40, BOT], [OX + 26, BOT], [OX, BOT - 26], [OX, CY + CH / 2]]);
     /* which way the fluid flows: down the outdoor side and along the bottom in heating mode, the reverse in cooling */
-    const s = heating ? 1 : -1;
-    head(ctx, (OX + WX - 40) / 2, BOT, s, 0); head(ctx, (WX + 40 + IX) / 2, BOT, s, 0);
-    head(ctx, (WX + 36 + IX) / 2, TOP, -s, 0); head(ctx, (OX + WX - 36) / 2, TOP, -s, 0);
+    if (Math.abs(s) > 0.15) {
+      head(ctx, (OX + WX - 40) / 2, BOT, s, 0); head(ctx, (WX + 40 + IX) / 2, BOT, s, 0);
+      head(ctx, (WX + 36 + IX) / 2, TOP, -s, 0); head(ctx, (OX + WX - 36) / 2, TOP, -s, 0);
+    }
     /* the four components */
     coil(ctx, OX, CY, CW, CH); coil(ctx, IX, CY, CW, CH);
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
@@ -195,30 +204,29 @@ function hatch(ctx, pathFn, color) {
     ctx.beginPath(); ctx.arc(WX, BOT, 34, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
     line(ctx, WX - 16, TOP - 16, WX + 16, TOP + 16, PAL.ink, 3); line(ctx, WX - 16, TOP + 16, WX + 16, TOP - 16, PAL.ink, 3);
     text(ctx, '4', WX, BOT, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    text(ctx, heating ? '3' : '1', OX, CY, PAL.ink, { size: 26, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, heating ? '1' : '3', IX, CY, PAL.ink, { size: 26, weight: 600, align: 'center', bg: PAL.panel });
+    two('3', '1', (t) => text(ctx, t, OX, CY, PAL.ink, { size: 26, weight: 600, align: 'center', bg: PAL.panel }));
+    two('1', '3', (t) => text(ctx, t, IX, CY, PAL.ink, { size: 26, weight: 600, align: 'center', bg: PAL.panel }));
     text(ctx, 'expansion valve (2)', WX, TOP - 52, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'compressor (4)', WX - 48, BOT + 44, PAL.ink, { size: 19, weight: 600, align: 'right' });
     text(ctx, 'outdoor coil', OX, CY - CH / 2 + 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, heating ? 'evaporator (3)' : 'condenser (1)', OX, CY + CH / 2 - 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    two('evaporator (3)', 'condenser (1)', (t) => text(ctx, t, OX, CY + CH / 2 - 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel }));
     text(ctx, 'indoor coil', IX, CY - CH / 2 + 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, heating ? 'condenser (1)' : 'evaporator (3)', IX, CY + CH / 2 - 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    two('condenser (1)', 'evaporator (3)', (t) => text(ctx, t, IX, CY + CH / 2 - 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel }));
     /* the state of the fluid on each leg */
     const gas = 'gas, low pressure', hot = 'hot gas, high pressure', liq = 'liquid, high pressure', cold = 'cold liquid and gas';
-    text(ctx, heating ? gas : hot, (OX + WX - 40) / 2, BOT - 30, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, heating ? hot : gas, (WX + 40 + IX) / 2, BOT - 30, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, heating ? cold : liq, (OX + WX - 36) / 2, TOP + 30, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, heating ? liq : cold, (WX + 36 + IX) / 2, TOP + 30, PAL.muted, { size: 17, align: 'center' });
-    /* the three transfers across the boundary: heat into the evaporator, heat out of the condenser, work into the compressor */
-    const QC = 26, QH = 38, WW = 12;
+    two(gas, hot, (t) => text(ctx, t, (OX + WX - 40) / 2, BOT - 30, PAL.muted, { size: 17, align: 'center' }));
+    two(hot, gas, (t) => text(ctx, t, (WX + 40 + IX) / 2, BOT - 30, PAL.muted, { size: 17, align: 'center' }));
+    two(cold, liq, (t) => text(ctx, t, (OX + WX - 36) / 2, TOP + 30, PAL.muted, { size: 17, align: 'center' }));
+    two(liq, cold, (t) => text(ctx, t, (WX + 36 + IX) / 2, TOP + 30, PAL.muted, { size: 17, align: 'center' }));
+    /* the three transfers across the boundary: heat into the evaporator, heat out of the condenser, work into the compressor;
+       as the mode turns, each coil's arrow turns about and takes the other transfer's width */
+    const QC = 26, QH = 38, WW = 12, k = (1 - s) / 2;
     const L0 = 120, L1 = OX - CW / 2 - 4, R0 = IX + CW / 2 + 4, R1 = 1300;
-    if (heating) {
-      fat(ctx, L0, CY, L1, CY, QC, ec); text(ctx, 'Q_c', L0, CY - 44, ec, { size: 21, weight: 600 }); text(ctx, 'from the cold outdoor air', L0, CY + 44, PAL.muted, { size: 17 });
-      fat(ctx, R0, CY, R1, CY, QH, ec); text(ctx, 'Q_h', R0, CY - 50, ec, { size: 21, weight: 600 }); text(ctx, 'into the room', R0, CY + 50, PAL.muted, { size: 17 });
-    } else {
-      fat(ctx, R1, CY, R0, CY, QC, ec); text(ctx, 'Q_c', R0, CY - 44, ec, { size: 21, weight: 600 }); text(ctx, 'from the room', R0, CY + 44, PAL.muted, { size: 17 });
-      fat(ctx, L1, CY, L0, CY, QH, ec); text(ctx, 'Q_h', L0, CY - 50, ec, { size: 21, weight: 600 }); text(ctx, 'into the outdoor air', L0, CY + 50, PAL.muted, { size: 17 });
-    }
+    turned(L0, CY, L1, CY, QC + (QH - QC) * k); turned(R0, CY, R1, CY, QH + (QC - QH) * k);
+    two('Q_c', 'Q_h', (t) => text(ctx, t, L0, CY - 44 - 6 * k, ec, { size: 21, weight: 600 }));
+    two('from the cold outdoor air', 'into the outdoor air', (t) => text(ctx, t, L0, CY + 44 + 6 * k, PAL.muted, { size: 17 }));
+    two('Q_h', 'Q_c', (t) => text(ctx, t, R0, CY - 50 + 6 * k, ec, { size: 21, weight: 600 }));
+    two('into the room', 'from the room', (t) => text(ctx, t, R0, CY + 50 - 6 * k, PAL.muted, { size: 17 }));
     fat(ctx, WX, 612, WX, BOT + 38, WW, ec); text(ctx, 'W, electrical', WX + 22, 585, ec, { size: 19, weight: 600 });
     topline(ctx, heating
       ? 'In heating mode the working fluid takes Q_c from the outdoor air and delivers Q_h = Q_c + W to the room.'

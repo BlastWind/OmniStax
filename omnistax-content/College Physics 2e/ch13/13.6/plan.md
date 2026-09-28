@@ -239,3 +239,5 @@ row, six variables and two equations. `exercise_notes` now names each of the
 seven items that left the section by its id and the section it is set in,
 and says that the two unkeyed ones (fs-id1669904, fs-id2298434) are set in
 neither.
+
+Phase 2 (2026-09-28, Claude Opus 5.5). sim-evaporation: the lid fades and slides with the choice. sim-humidity: specials at saturation on ρ and at the dew point on T. sim-boiling: specials where the vapor pressure meets P, on both sliders; the readout is P = P_vapor + P_air and morphs to P_vapor(T) ≥ P as the air's term vanishes.

@@ -286,3 +286,5 @@ plain LaTeX in the readouts and in ink.
 Applied in the chapter pass (2026-09-14): every anchor above is written on its
 row, five variables and six equations. Nothing else was wanted and nothing
 else was changed.
+
+Phase 2 (2026-09-28, Claude Opus 5.5). sim-bimetallic-strip: T₀ is a special. sim-three-scales: absolute zero, freezing and boiling are specials, body a detent. sim-temperature-ladder: the canvas line about crushed landmarks is gone (hover stays). sim-gas-extrapolation: absolute zero and freezing are specials.

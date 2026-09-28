@@ -65,7 +65,6 @@ function meter(ctx, x, w, yb, yt, frac, color) {
   const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 100, max: 1000, step: 1, value: 293, unit: 'K', dec: 0, aria: 'the temperature of the gas', detents: [{ v: 293, label: '293' }], snap: false, onInput: restart });
   const Ns = ctl(d.controls, { label: 'N', cls: '', min: 1, max: 60, step: 1, value: 25, unit: '', dec: 0, aria: 'the number of molecules in the box', onInput: restart });
   const gas = choice(d.controls, { label: '\\text{the gas}', options, value: 'N2', aria: 'the gas in the box', onInput: restart });
-  const LAB = choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the velocity and its components on the molecule followed' });
   const cy = cycle(() => Infinity, 0);
   const L = 10e-9, MODEL = 1.4e-11, MAXN = 60, R = 7, W = 3;         /* the side of the box, model seconds per real second, the most molecules, a molecule's radius, the meter's window */
   const B = { l: 150, t: 128, r: 630, b: 608 }, S = B.r - B.l;         /* the box in the canvas, its top clear of a two-line headline */
@@ -98,7 +97,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     const { ctx, H } = begin(d.c);
     const now = cy.now(); if (now === 0 && lastNow !== 0) reset(); lastNow = now;
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
-    const g = pick(gas.value), T = Ts.v, N = Ns.v, sg = sigma(), on = LAB.value === 'on';
+    const g = pick(gas.value), T = Ts.v, N = Ns.v, sg = sigma();
     const V = L * L * L, P = (N * KB * T) / V, Fth = (N * KB * T) / L, Fm = clock - winStart > 0.2 ? hits.reduce((a, h) => a + h.J, 0) / (Math.min(W, clock - winStart) * MODEL) : Fth;
     const vr = vrms(T, g.m), vx0 = Math.abs(sx[0] * ux[0] * sg), vy0 = Math.abs(sy[0] * uy[0] * sg), v0 = Math.hypot(vx0, vy0), dt0 = (2 * L) / vx0, dp0 = 2 * g.m * vx0;
     const tc = C('temperature'), pc = C('pressure'), vc = C('velocity'), mc = C('momentum'), fc = C('force');
@@ -113,17 +112,12 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     for (let i = N - 1; i >= 0; i--) {
       const vx = sx[i] * ux[i] * sg, vy = sy[i] * uy[i] * sg, ang = Math.atan2(vy, vx);
       molecule(ctx, x[i], y[i], g, R, ang + Math.PI / 2);
-      hitsList.push({ x: x[i], y: y[i], r: R + 6, name: i === 0 ? 'the ' + g.name + ' followed' : g.name });
+      hitsList.push({ x: x[i], y: y[i], r: R + 6, name: i === 0 ? 'the ' + g.name + ' followed: v = ' + fmt(v0, 0) + ' m/s, vₓ = ' + fmt(vx0, 0) + ' m/s, v_y = ' + fmt(vy0, 0) + ' m/s' : g.name });
     }
-    { const vx = sx[0] * ux[0] * sg, vy = sy[0] * uy[0] * sg, k = 0.12, px = x[0], py = y[0], n = Math.hypot(vx, vy) || 1;
+    { const vx = sx[0] * ux[0] * sg, vy = sy[0] * uy[0] * sg, k = 0.12, px = x[0], py = y[0];
       dot(ctx, px, py, PAL.ink, false, R + 6);
       line(ctx, px, py, px + vx * k, py, alpha(vc, 0.55), 3, [6, 6]); line(ctx, px + vx * k, py, px + vx * k, py + vy * k, alpha(vc, 0.55), 3, [6, 6]);
       arrow(ctx, px, py, px + vx * k, py + vy * k, vc, 5);
-      if (on) {   /* the labels sit on a moving molecule, so they are off by default (rule 26.7) */
-        lab.add('v', px + vx * k, py + vy * k, vx / n, vy / n, vc, 22, 18);
-        lab.add('v_x', px + vx * k * 0.5, py, 0, vy < 0 ? 1 : -1, vc, 20, 18);
-        lab.add('v_y', px + vx * k, py + vy * k * 0.5, vx < 0 ? -1 : 1, 0, vc, 20, 18);
-      }
     }
     ctx.restore();
     lab.flush();
@@ -186,16 +180,18 @@ function meter(ctx, x, w, yb, yt, frac, color) {
   hover(d.stage, () => hitsList);
   function draw() {
     const { ctx } = begin(d.c);
-    const g = pick(gas.value), T = Ts.v, sg = Math.sqrt((KB * T) / g.m), KE = 1.5 * KB * T, vr = vrms(T, g.m);
+    const g = pick(gas.value), T = Ts.v, m = gas.mix((v) => pick(v).m), sg = Math.sqrt((KB * T) / m), KE = 1.5 * KB * T, vr = vrms(T, m);
     const tc = C('temperature'), vc = C('velocity'), ec = C('energy');
+    const both = gas.from === gas.value ? [g] : [pick(gas.from), g];
+    const each = (f) => both.forEach((q) => { const a = gas.a(q.value); if (a <= 0) return; ctx.save(); ctx.globalAlpha *= a; f(q); ctx.restore(); });
     box(ctx, B);
     ctx.save(); ctx.beginPath(); ctx.rect(B.l + 2, B.t + 2, S - 4, S - 4); ctx.clip();
     hitsList = [];
     pts.forEach((p) => { const vx = p.ux * sg, vy = p.uy * sg; arrow(ctx, p.x, p.y, p.x + vx * KA, p.y + vy * KA, vc, 3); });
-    pts.forEach((p) => { molecule(ctx, p.x, p.y, g, R, Math.atan2(p.uy, p.ux) + Math.PI / 2); hitsList.push({ x: p.x, y: p.y, r: R + 6, name: g.name + ' at ' + fmt(Math.hypot(p.ux, p.uy) * sg, 0) + ' m/s' }); });
+    pts.forEach((p) => { each((q) => molecule(ctx, p.x, p.y, q, R, Math.atan2(p.uy, p.ux) + Math.PI / 2)); hitsList.push({ x: p.x, y: p.y, r: R + 6, name: g.name + ' at ' + fmt(Math.hypot(p.ux, p.uy) * sg, 0) + ' m/s' }); });
     ctx.restore();
     /* the legend under the box: the gas and an arrow the length of the rms speed */
-    ctx.save(); ctx.fillStyle = F.el(g.el); ctx.beginPath(); ctx.arc(B.l + 10, B.b + 34, 8, 0, TAU); ctx.fill(); ctx.restore();
+    each((q) => { ctx.fillStyle = F.el(q.el); ctx.beginPath(); ctx.arc(B.l + 10, B.b + 34, 8, 0, TAU); ctx.fill(); });
     text(ctx, g.name + ', m = ' + sciTxt(g.m, 2) + ' kg', B.l + 28, B.b + 34, PAL.ink, { size: 18 });
     arrow(ctx, B.r - vr * KA, B.b + 34 + 26, B.r, B.b + 34 + 26, vc, 3);
     text(ctx, 'an arrow this long is v_rms = ' + fmt(vr, 0) + ' m/s', B.r - vr * KA - 12, B.b + 34 + 26, vc, { size: 17, weight: 600, align: 'right' });
@@ -242,11 +238,12 @@ function meter(ctx, x, w, yb, yt, frac, color) {
   const mb = (m, T) => { const a = m / (2 * KB * T); const k = 4 * Math.PI * Math.pow(a / Math.PI, 1.5); return (v) => k * v * v * Math.exp(-a * v * v); };
   function draw() {
     const { ctx, H } = begin(d.c);
-    const g = pick(gas.value), ta = T1.v, tb = T2.v, same = ta === tb;
+    const g0 = pick(gas.value), ta = T1.v, tb = T2.v, same = ta === tb;
     const tc = C('temperature'), vc = C('velocity');
-    const VX = g === HE ? 6000 : 2500, nx = g === HE ? 6 : 5;
+    const g = { ...g0, m: gas.mix((v) => pick(v).m) };
+    const VX = gas.mix((v) => (v === 'He' ? 6000 : 2500)), nx = g0 === HE ? 6 : 5;
     const fmax = mb(g.m, 100)(vp(100, g.m)) * 1.06;
-    const A = axes(ctx, G, [0, VX], [0, fmax], { xl: 'speed v (m/s)', xc: vc, yl: 'probability', yc: PAL.ink, nx, ny: 4, fx: (v) => commas(fmt(v, 0)), fy: () => '' });
+    const A = axes(ctx, G, [0, VX], [0, fmax], { xl: 'speed v (m/s)', xc: vc, yl: 'probability', yc: PAL.ink, nx, ny: 4, fx: (v) => commas(fmt(Math.round(v / 100) * 100, 0)), fy: () => '' });
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
     const curves = same ? [[ta, 'T₁ = T₂ = ' + ta + ' K']] : [[ta, 'T₁ = ' + ta + ' K'], [tb, 'T₂ = ' + tb + ' K']];
     curves.forEach(([T, name], i) => {
@@ -265,13 +262,13 @@ function meter(ctx, x, w, yb, yt, frac, color) {
       text(ctx, 'v_rms = ' + fmt(rm, 0) + ' m/s', G.r - 200, ty, vc, { size: 18, weight: 600, align: 'left' });
     });
     lab.flush();
-    ctx.save(); ctx.fillStyle = F.el(g.el); ctx.beginPath(); ctx.arc(G.r - 420 - 8, G.t + 24, 8, 0, TAU); ctx.fill(); ctx.restore();
-    text(ctx, g.label + ', ' + g.name + 's', G.r - 400, G.t + 24, PAL.ink, { size: 19 });
+    ctx.save(); ctx.fillStyle = F.el(g0.el); ctx.beginPath(); ctx.arc(G.r - 420 - 8, G.t + 24, 8, 0, TAU); ctx.fill(); ctx.restore();
+    text(ctx, g0.label + ', ' + g0.name + 's', G.r - 400, G.t + 24, PAL.ink, { size: 19 });
     text(ctx, 'hollow: the most probable speed, at the peak; filled: the rms speed', G.r, G.t + 60 + curves.length * 30 + 4, vc, { size: 16, align: 'right' });
     const pa = vp(ta, g.m), ra = vrms(ta, g.m), pb = vp(tb, g.m), rb = vrms(tb, g.m);
     topline(ctx, same ? 'At ' + ta + ' K the most probable speed of ' + (g.atoms === 1 ? 'a helium atom' : 'an ' + g.name) + ' is ' + fmt(pa, 0) + ' m/s and its rms speed ' + fmt(ra, 0) + ' m/s; the two curves lie on one another.'
       : 'At ' + ta + ' K the most probable speed of ' + (g.atoms === 1 ? 'a helium atom' : 'an ' + g.name) + ' is ' + fmt(pa, 0) + ' m/s and its rms speed ' + fmt(ra, 0) + ' m/s; at ' + tb + ' K the curve moves to ' + fmt(pb, 0) + ' and ' + fmt(rb, 0) + ' m/s and ' + (tb > ta ? 'flattens.' : 'sharpens.'));
-    readout(d.readout, `\\kvrms = \\sqrt{\\frac{3k\\kTempone}{m}} = \\sqrt{\\frac{3(1.38\\times10^{-23}\\ \\text{J/K})(${ta}\\ \\text{K})}{${sciTex(g.m, 2)}\\ \\text{kg}}} = ${fmt(ra, 0)}\\ \\text{m/s} \\qquad \\kvrms = \\sqrt{\\frac{3k\\kTemptwo}{m}} = ${fmt(rb, 0)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kvrms = \\sqrt{\\frac{3k\\kTempone}{m}} = \\sqrt{\\frac{3(1.38\\times10^{-23}\\ \\text{J/K})(${ta}\\ \\text{K})}{${sciTex(g0.m, 2)}\\ \\text{kg}}} = ${fmt(ra, 0)}\\ \\text{m/s} \\qquad \\kvrms = \\sqrt{\\frac{3k\\kTemptwo}{m}} = ${fmt(rb, 0)}\\ \\text{m/s}`,
       'At each temperature the most probable speed, at the peak of the curve, lies below the rms speed, ' + fmt(pa, 0) + ' m/s against ' + fmt(ra, 0) + ' m/s at T₁, and the long tail on the right holds the few molecules moving at several times the rms speed. ' + (same ? 'Raise either temperature and its curve moves out to higher speeds and broadens.' : 'The higher temperature gives the broader curve, since the range of speeds widens as the speeds rise.'));
   }
   register(d.fig, { update: () => {}, draw });
@@ -286,14 +283,15 @@ function meter(ctx, x, w, yb, yt, frac, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-escape', 660);
-  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 100, max: 30000, step: 10, value: 19800, unit: 'K', dec: 0, aria: 'the temperature of the gas', detents: [{ v: 250, label: '250' }, { v: 19800, label: '19,800' }], snap: false });
+  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 100, max: 30000, step: 10, value: 19800, unit: 'K', dec: 0, aria: 'the temperature of the gas', detents: [{ v: 250, label: '250' }], snap: false });
   const world = choice(d.controls, { label: '\\text{the world}', options: [{ value: 'earth', label: 'Earth' }, { value: 'moon', label: 'the Moon' }], value: 'earth', aria: 'whose escape velocity is drawn' });
   const G = { l: 170, r: 1110, t: 110, b: 500 }, TX = 30000, VY = 15000, TBX = 1150;   /* the graph and the table beside it */
   const LIST = [H2, HE, N2, O2];
-  const vesc = () => (world.value === 'moon' ? 2380 : 11100);
+  const vesc = () => world.mix((w) => (w === 'moon' ? 2380 : 11100));
   const kms = () => (world.value === 'moon' ? '2.38' : '11.1');
   const whose = () => (world.value === 'moon' ? "the Moon's" : "Earth's");
   const tesc = (m, v) => (m * v * v) / (3 * KB);
+  Ts.mark([{ at: () => tesc(HE.m, world.value === 'moon' ? 2380 : 11100), label: 'helium escapes' }]);
   let hitsList = [];
   hover(d.stage, () => hitsList);
   function draw() {
