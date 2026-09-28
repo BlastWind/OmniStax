@@ -39,3 +39,11 @@ earlier configs are unchanged unless marked.
 | Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 33 nodes written into `book.json` before the sections were built (6 for 26.1, 7 for 26.2, 5 for 26.3, 7 for 26.4, 5 for 26.5, 3 for 26.6) with 71 prerequisite edges into Chapters 24 and 25 and within the chapter |
 | Formulas | `ch26/chapter.json`: 11 equations, the stated and named ones important (the power and magnification equations of the eye, the overall magnification, the numerical aperture, the $f$-number and the angular magnification of a telescope) and the worked steps not; 26.2 states no equation of its own and uses 26.1's rows; no anchor on any row, since the validator refuses an anchor into an unbuilt section, and the chapter pass writes them from the section plans |
 | Book manifest | `ch26` after `ch25` in `book.json` chapters, merged with `ost merge college-physics-2e 26` |
+
+## What the build changed
+
+| Setting | As built |
+|---|---|
+| Folds | Figures 26.3 + 26.4 (the eye with an object-distance slider), 26.5 + 26.6 + 26.7 (defect choice and spectacle), 26.17 + 26.19 (the acceptance cone with the immersion medium), 26.23 + 26.24 (the two-lens telescopes) and 26.29 + 26.30 (coma and spherical aberration) are each one sim |
+| Colour coding | `intensity` is not bound on 26.3, whose emission spectra draw relative intensity in ink; 26.6 binds `position` for its wavelength, focal length and aperture; 26.5's mirror radius takes Chapter 25's `R_curv` |
+| Cross-references | 26.6's reference to the astigmatism chart of Figure 26.8 stays plain text, as every cross-reference to another section does |

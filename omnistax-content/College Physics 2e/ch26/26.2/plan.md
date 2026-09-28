@@ -85,3 +85,5 @@ written `°C`.
 - 26.6's notes and exercise_notes should say `fs-id3069158` is set with 26.2.
 - 26.6's reference to the astigmatism chart can link Figure 26.8 at 26.2.
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass: the three variable anchors as listed. 26.6's notes and exercise_notes already name `fs-id3069158` as set with 26.2. The reference to Figure 26.8 in 26.6 stays plain text, since cross-references to other sections are plain text.

@@ -4187,3 +4187,45 @@ chapters still being built (26.2 and 27.1 point `source_section` at unbuilt
 sections). Unit tests: 664 pass. `astro check` is clean. The build completed.
 A headless pass over all eight pages in light and dark found no console error,
 blank canvas, KaTeX error or missing image.
+
+
+### Pass 51 (2026-09-28): Chapter 26, Vision and Optical Instruments, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+six sections, 26.1 to 26.6, by one agent each. It carries 33 concepts, 11
+equations, 23 glossary terms and 52 exercises. Every drawing of the chapter is a
+still sim with the book's image as its original, and the seven photographs the
+text points at are kept, with Chandra's nested mirrors kept as the book's image.
+Nothing moves, so no figure registers a cycle or carries a transport, and no
+figure is in 3D. Five sims fold book figures: the eye with an object-distance
+slider (Figure 26.3 + 26.4), the defect choice with its spectacle (26.5 + 26.6 +
+26.7), the acceptance cone with its immersion medium (26.17 + 26.19), the two
+telescopes (26.23 + 26.24) and coma with spherical aberration (26.29 + 26.30).
+
+The chapter pass read the six section plans and applied what each wanted at
+chapter level. It wrote anchors on all eleven equation rows and on the chapter's
+variable rows, and added five variable rows: 26.6's wavelength, focal length,
+angle and aperture diameter, which its sims set and read out, and 26.5's
+mirror radius. That radius now takes Chapter 25's typed symbol `R_curv` and its
+`position` hue instead of ink. No concept, edge or symbol row changed. Every page
+binds `position` alone; 26.3's relative intensity is a ratio in ink, so
+`intensity` is not bound, and `COLOR.md` says so.
+
+Across the sections, the two moved exercises land once each with
+`source_section` 26.6 and both notes agreeing: the LASIK ablation problem in
+26.2 and the Critical Thinking microscope problem in 26.4. Figure numbers run
+from 26.1 to 26.30 in book order, and the five examples and Table 26.1 are where
+the book puts them. 26.6's reference to the astigmatism chart of Figure 26.8
+stays plain text.
+
+Seven of the book's slips are kept as printed and gathered in
+`ch26/exploration.md`: the lower-case "$p=1/f$", the stray minus in the
+microscope's resolution, the glossary naming the first lens the ocular, the
+line on the lens-to-retina distance above 26.5's problems, the microscope
+problem's wording and worked answer, the AP item keyed (c) 25× for two concave
+lenses, and the four stray asterisks of 26.3, which are dropped.
+
+Checks: `check:content` found no errors. The unit tests pass but for one in a chemistry section then being built, `astro check` is
+clean and the build completed. A headless pass over all seven pages in light and
+dark found no console error, blank figure, KaTeX error, missing image or missing
+exercise card.

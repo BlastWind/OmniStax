@@ -24,10 +24,10 @@ Which section binds what:
 | intro | none |
 | 26.1 | `position` |
 | 26.2 | `position` |
-| 26.3 | `position` for the wavelength axis; `intensity` only as above |
+| 26.3 | `position` for the wavelength; Figure 26.13's relative intensity is drawn as a ratio in ink, so `intensity` is not bound |
 | 26.4 | `position` |
 | 26.5 | `position` |
-| 26.6 | `position` for the focal points of each color, if the figure brackets them |
+| 26.6 | `position` for the wavelength, the focal length and the aperture diameter |
 
 Of root rule 7's four families this chapter uses three.
 
@@ -57,3 +57,7 @@ The test for one figure is root rule 7's: everything in it with an identity is
 coloured, or the whole figure is ink. Colour-off drops the type hues and keeps
 the physical and categorical colours, so every figure must stay legible from its
 labels, ray directions and caption alone.
+
+As built (chapter pass, 2026-09-28): every page binds `position` alone and the
+introduction binds nothing. The mirror's radius of curvature in 26.5 takes
+Chapter 25's `R_curv` and its `position` hue.

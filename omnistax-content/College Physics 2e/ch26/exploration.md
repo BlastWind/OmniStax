@@ -100,7 +100,10 @@ lens-to-retina distance is 2.00 cm", which belongs to no telescope problem.
 and "moving the objective increase closer"; its worked answer in (a) uses an
 eyepiece object distance of 13.0 mm and then 5.00 mm. 26.6's
 `fs-id3069158` writes `34.0ºC` and `100ºC` with the ordinal sign, which is
-written with `°` here. Each is named in its section's `notes`.
+written with `°` here. 26.5's AP item `fs-id3539800`, on two concave lenses, is
+keyed (c) 25×, although two concave lenses cannot form a telescope; it is set as printed. 26.3 prints four stray asterisks after
+"retinex theory of color vision", dropped here. Each is named in its section's
+`notes`.
 
 ## Locked views and 3D (root rule 28)
 

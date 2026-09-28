@@ -99,3 +99,5 @@ None.
 - Glossary `retinex` → 26.3-retinex; `retinex theory of color vision` → 26.3-retinex
 - The book prints four stray asterisks after "retinex theory of color vision"; they are dropped.
 - No concept, edge, symbol or equation row needs changing; the page uses `λ` (`\klam`) as it stands.
+
+Applied by the chapter pass: nothing to write; glossary rows carry no anchor. The dropped asterisks are named in the section's notes and gathered in `exploration.md`.

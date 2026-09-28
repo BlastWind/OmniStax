@@ -140,7 +140,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
     hbracket(ctx, XO, xI1, yb, PC(), 'd_{i}');
     if (s.doP * S2 > 44) hbracket(ctx, xI1, XE, yb, PC(), 'd_{o}′');
     else hbracket(ctx, xI1, XE, yb, PC());
-    if (i2in && Math.abs(xI2 - XE) > 40) hbracket(ctx, Math.min(xI2, XE), Math.max(xI2, XE), Y - 240, PC(), 'd_{i}′');
+    if (i2in && Math.abs(xI2 - XE) > 40) hbracket(ctx, Math.min(xI2, XE), Math.max(xI2, XE), FR.b - 56, PC(), 'd_{i}′', { side: 'above' });
 
     text(ctx, 'objective', XO, Y + 118, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
     text(ctx, 'eyepiece', XE + 30, Y - HE - 4, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
@@ -400,8 +400,9 @@ function arrowUp(ctx, x, y, h, color, dash) {
   function specimen(ctx) {
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.55); ctx.beginPath(); ctx.ellipse(CX, SY, 36, 7, -0.05, 0, 2 * Math.PI); ctx.fill(); ctx.restore();
   }
-  function condenser(ctx, cy) {
-    ctx.save(); ctx.beginPath(); ctx.moveTo(CX - 150, cy + 40); ctx.quadraticCurveTo(CX, cy - 60, CX + 150, cy + 40); ctx.closePath();
+  function condenser(ctx, cy, w) {
+    w = w || 150;
+    ctx.save(); ctx.beginPath(); ctx.moveTo(CX - w, cy + 40); ctx.quadraticCurveTo(CX, cy - 60, CX + w, cy + 40); ctx.closePath();
     ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
   }
   /* rays from the specimen up into the objective */
@@ -432,10 +433,10 @@ function arrowUp(ctx, x, y, h, color, dash) {
       text(ctx, 'concave mirror', mx + 20, my + 60, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
     },
     dark(ctx) {
-      condenser(ctx, 470);
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.45); ctx.fillRect(CX - 250, 548, 500, 12); ctx.restore();
+      condenser(ctx, 470, 270);
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.45); ctx.fillRect(CX - 300, 548, 600, 12); ctx.restore();
       [-1, 1].forEach((s) => {
-        const x0 = CX + s * 140;
+        const x0 = CX + s * 250;
         ray(ctx, x0, 590, x0, 500, IL(), 3.5);
         line(ctx, x0, 500, CX, SY + 4, IL(), 3.5);
         const ux = (CX - x0), uy = (SY - 500);
@@ -443,7 +444,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
         ray(ctx, CX, SY, CX + ux * k * 0.72, SY + uy * k * 0.72, IL(), 3.5);
       });
       fanUp(ctx, [-80, -40, 0, 40, 80], SC(), 2.5);
-      text(ctx, 'annular stop', CX + 260, 554, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
+      text(ctx, 'annular stop', CX + 310, 554, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
       text(ctx, 'condenser lens', CX + 170, 490, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
     },
     laser(ctx) {

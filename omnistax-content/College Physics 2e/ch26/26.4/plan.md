@@ -81,3 +81,5 @@ from 26.6 (`source_section: "26.6"`). Left out, unkeyed: `fs-id3046042`,
 - eq-eyepiece-magnification → 26.4-microscope-magnification
 - eq-numerical-aperture → 26.4-numerical-aperture
 - eq-f-number → 26.4-f-number
+
+Applied by the chapter pass: the six equation anchors as listed, and anchors on all fifteen variable rows: `m` at `compound-microscope`; `m_obj`, `m_eye`, `f_obj`, `f_eye`, `d_obj`, `d_img`, `d_objp`, `d_imgp` at `microscope-magnification`; `NA`, `n`, `θ`, `α_half` at `numerical-aperture`; `f_focal`, `D` at `f-number`.

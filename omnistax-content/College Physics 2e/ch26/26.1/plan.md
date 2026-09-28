@@ -92,3 +92,5 @@ Table 26.1, Refractive Indices Relevant to the Eye, as a `div.book-table` in
 - Glossary `accommodation` → 26.1-accommodation; `presbyopia` → 26.1-power-range
 - Errata kept as printed: "$p=1/f$" in lower case.
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass: the three equation anchors and the six variable anchors as listed. Glossary rows carry no anchor, so the glossary lines needed no change. The erratum is gathered in `exploration.md`.

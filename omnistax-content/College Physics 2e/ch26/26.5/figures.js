@@ -132,16 +132,16 @@ function eye(ctx, x, y, R) {
     angleArc(ctx, { x: ex[0], y: Y - ex[1] }, 46, 0, up, 'θ′');
     eye(ctx, 1300, Y, 34);
 
-    hbracket(ctx, XO, xf, Y - 170, PC, 'f_o = ' + fmt(o, 1) + ' cm');
+    hbracket(ctx, XO, xf, Y - 170, PC, 'f_o = ' + sig3(o) + ' cm');
     const xe = cmx(v === 'galileo' ? o - e : v === 'kepler' ? o + e : o + 4 * FR + e);
     const fFrom = v === 'erect' ? cmx(o + 4 * FR) : xf;
-    hbracket(ctx, Math.min(fFrom, xe), Math.max(fFrom, xe), Y + 150, PC, 'f_e = ' + minus(fmt(v === 'galileo' ? -e : e, 1)) + ' cm', { side: 'below' });
+    hbracket(ctx, Math.min(fFrom, xe), Math.max(fFrom, xe), Y + 150, PC, 'f_e = ' + minus(sig3(v === 'galileo' ? -e : e)) + ' cm', { side: 'below' });
 
     const lab = { size: 18, align: 'center', bg: PAL.panel };
     text(ctx, 'objective', XO, Y + A + 44, PAL.muted, lab);
     text(ctx, 'eyepiece', xe, Y - Math.max(reach.e + 16, 50) - 20, PAL.muted, lab);
     arr.only(ctx, 'erect', () => text(ctx, 'erecting lens', cmx(o + 2 * FR), Y - Math.max(reach.r + 16, 50) - 20, PAL.muted, lab), [0, 0]);
-    text(ctx, 'from a very distant object', 24, Y + 74, PAL.muted, { size: 18, align: 'left' });
+    text(ctx, 'from a very distant object', 24, Y - 110, PAL.muted, { size: 18, align: 'left' });
 
     parts = [{ x: xf, y: Y - yi / 2, r: 20, name: v === 'galileo' ? 'where the rays would meet, the focal point of the objective' : 'the first image, at the focal point of the objective' }];
     if (v === 'erect') parts.push({ x: cmx(o + 4 * FR), y: Y + yi / 2, r: 20, name: 'the second image, upright' });
@@ -173,7 +173,7 @@ function eye(ctx, x, y, R) {
 ===================================================================== */
 (function () {
   const d = sim('sim-reflecting-telescope', 620);
-  const R = ctl(d.controls, { label: 'R', cls: 'position', min: 1, max: 10, step: 0.1, value: 10, unit: 'm', dec: 2, aria: 'the radius of curvature of the mirror' });
+  const R = ctl(d.controls, { label: '\\kRcur', cls: 'position', min: 1, max: 10, step: 0.1, value: 10, unit: 'm', dec: 2, aria: 'the radius of curvature of the mirror' });
   const fe = ctl(d.controls, { label: '\\kfeye', cls: 'position', min: 1, max: 10, step: 0.05, value: 3, unit: 'cm', dec: 2, aria: 'the focal length of the eyepiece' });
   const Y = 250, XM = 1240, H = 150, HS = [-110, -55, 55, 110], DROP = 150;
   let parts = [];
@@ -195,7 +195,7 @@ function eye(ctx, x, y, R) {
     for (const h of HS) {
       const yy = Y + h, xh = XM - Rd + Math.sqrt(Rd * Rd - h * h);
       line(ctx, 20, yy, xh, yy, ray, 3);
-      const dx = xF - xh, dy = Y - yy, s = (xd - xh - (Y - yy)) / (dx - dy);
+      const dx = xF - xh, dy = Y - yy, s = (xd - xh + Y - yy) / (dx + dy);
       const qx = xh + s * dx, qy = yy + s * dy;
       line(ctx, xh, yy, qx, qy, ray, 3);
       line(ctx, qx, qy, xF, Y, alpha(ray, 0.4), 2, [6, 8]);
@@ -211,7 +211,7 @@ function eye(ctx, x, y, R) {
     dot(ctx, xd, yF, PAL.ink, true, 6);
     dot(ctx, xF, Y, alpha(PAL.ink, 0.5), false, 6);
 
-    hbracket(ctx, xF, XM, Y - 190, PC, 'f_o = R/2 = ' + sig3(R.v / 2) + ' m', { side: 'below' });
+    hbracket(ctx, xF, XM, Y - 165, PC, 'f_o = R/2 = ' + sig3(R.v / 2) + ' m', { side: 'below' });
     vbracket(ctx, xd - half - 26, yF, ye, PC, 'f_e = ' + sig3(fe.v) + ' cm', -1);
 
     const lab = { size: 18, bg: PAL.panel };

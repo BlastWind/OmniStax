@@ -87,3 +87,5 @@ as is the stray line on the lens-to-retina distance above the problems.
 - Glossary `angular magnification` → 26.5-angular-magnification; `adaptive optics` → 26.5-telescopes-across-the-spectrum
 - The mirror's radius of curvature $R$ is written in ink in `sim-reflecting-telescope`; a typed `R` (position) symbol row would let it take the hue. No concept, edge or symbol row needs changing otherwise.
 - App: an exercise card holds one `figure`, so AP item `fs-id2542348` shows only part (a)'s drawing; part (b)'s `Figure_27_05_07.jpg` is copied to `media/ch26/` for when a card can hold two.
+
+Applied by the chapter pass: the two equation anchors and the seven variable anchors as listed. The mirror's radius in `sim-reflecting-telescope` now takes Chapter 25's typed symbol `R_curv` (`\kRcur`, position), and a variable row `R_curv` anchored at `reflecting-telescopes` defines it; no symbol row changed. The second drawing of `fs-id2542348` waits on the app.
