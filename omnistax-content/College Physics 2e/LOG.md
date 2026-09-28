@@ -4229,3 +4229,51 @@ Checks: `check:content` found no errors. The unit tests pass but for one in a ch
 clean and the build completed. A headless pass over all seven pages in light and
 dark found no console error, blank figure, KaTeX error, missing image or missing
 exercise card.
+
+
+### Pass 52 (2026-09-28): Chapter 27, Wave Optics, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+nine sections, 27.1 to 27.9, by one agent each. It carries 45 concepts, 25
+equations, 50 variables, 32 glossary terms and 107 exercises (51 keyed problems,
+38 conceptual questions and 18 AP items). Light wears the colour of its
+wavelength throughout, as in Chapter 25, and every length in the chapter is one
+`position` hue. Ten figures fold book figures, among them the Huygens scene with
+its surface choice (Figure 27.5 + 27.6 + 27.7), the doorway for sound and light
+(27.8 + 27.9), the screen point the reader drags (27.13 + 27.14), the grating
+spectrum with Example 27.3 on load (27.16 + 27.20) and the chain of polarizing
+filters (27.39 + 27.40 + 27.41 + 27.42). The Sim of 27.1, the three figures of
+27.2, the ripple tank of 27.3 and the rope of 27.8 move; every other figure is
+still. No figure is in full 3D; 27.8's rope, filter chain and rotator are locked
+views.
+
+The chapter pass read the nine section plans and applied what each wanted at
+chapter level. It wrote anchors on all 25 equation rows and all 50 variable rows,
+and added 27.8's keyed Critical Thinking grating problem to 27.4 with its two
+concept rows, now that 27.8 is built. Glossary rows carry no anchor, so the
+glossary lines needed no change. No concept, edge or symbol row changed.
+`COLOR.md` now binds `frequency` on 27.2 as well, for the sound at the doorway,
+and says that `intensity` is bound on 27.8 alone. 27.2's sentence on sound wrote
+$\lambda = c/f$ with the speed of light's symbol and now writes it with $v$.
+27.8's two worked examples had been numbered 27.3 and 27.4 and are now 27.8 and
+27.9, as the publisher counts them, and the rope figure's view is pitched higher
+so that its horizontal wave no longer reads edge-on.
+
+Across the sections, the four moved exercises land once each with
+`source_section` set and both notes agreeing: the wavelength in a medium in 27.1,
+the single and double slit pattern and the slit with no minimum in 27.5, and the
+grating problem in 27.4. Figure numbers run from 27.1 to 27.54 in book order,
+Figure 27.32 repeating the introduction's bubbles as the book does, and Examples
+27.1 to 27.9 are where the book puts them.
+
+Six of the book's slips are kept as printed and gathered in
+`ch27/exploration.md`: matter waves sent to "Special Relativity", the CD "in the
+opening photograph", Example 27.3's 0.815 m where its numbers give 0.822 m (the
+figure, which computes its distances, shows 0.822 m), the grating key's line
+spacing of $1.00\times 10^{-6}$ m, a key in centimeters for lines per
+centimeter, and Example 27.7(b)'s $\frac{\lambda n}{2}$.
+
+Checks: `check:content` found no errors in the chapter. The unit tests pass,
+`astro check` is clean and the build completed. A headless pass over all ten
+pages in light and dark found no console error, blank figure, KaTeX error,
+missing image or missing exercise card.

@@ -41,3 +41,13 @@ value. Lines that repeat the earlier configs are unchanged unless marked.
 | Concept nodes | testable units only; kinds idea/result/skill; canonical ids; 45 nodes written into `book.json` before the sections were built (4 for 27.1, 4 for 27.2, 9 for 27.3, 4 for 27.4, 3 for 27.5, 6 for 27.6, 5 for 27.7, 7 for 27.8, 3 for 27.9) with 84 prerequisite edges into Chapters 6, 16, 17, 24, 25 and 26 and within the chapter |
 | Formulas | `ch27/chapter.json`: 25 equations, the stated ones important ($\lambda_n = \lambda/n$, the two double slit conditions, the grating condition, the single slit minima, the Rayleigh criterion, the resolving power, Malus's law and Brewster's law); no anchor on any row until the sections are built |
 | Book manifest | `ch27` after `ch26` in `book.json` chapters, merged with `ost merge college-physics-2e 27` |
+
+## What the build changed
+
+| Setting | As built |
+|---|---|
+| Folds | Figures 27.5 + 27.6 + 27.7 (one Huygens scene with a surface choice), 27.8 + 27.9 (the doorway for sound and light), 27.13 + 27.14 (one screen point), 27.16 + 27.20 (the grating spectrum with Example 27.3 on load), 27.21 + 27.23 and 27.22 + 27.24 (the single slit pattern and its rays), 27.25 + 27.26 (two sources merging), 27.39 + 27.40 + 27.41 + 27.42 (the filter chain), 27.44 + 27.45 (the molecules of a filter) and 27.47 + 27.48 (the rotator and the LCD pixel) are each one figure; 27.1 adds one Sim, the wavelength in a medium |
+| Motion | the Sim of 27.1, the three figures of 27.2, the ripple tank of 27.3 and the rope of 27.8 (Figure 27.38) register a cycle; every other figure is still |
+| 3D | no full 3D scene: 27.8's filter chain, its rope and its rotator are locked views (rule 28.2), and the rope's view is pitched at −0.4 so that its horizontal wave does not read edge-on |
+| Colour coding | 27.2 also binds `frequency`, for the sound at the doorway; `intensity` is bound on 27.8 alone, since no figure of 27.3 to 27.6 states one in a readout |
+| Anchors | every equation and variable row anchored by the chapter pass; glossary rows carry none |

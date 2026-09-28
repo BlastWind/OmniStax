@@ -82,3 +82,5 @@ Labels: every figure names under six things; the fringes of 27.10 and 27.15 are 
 - `eq-fringe-spacing` → 27.3-interference-fringes
 - variables `27.3/d`, `27.3/θ`, `27.3/m`, `27.3/λ`, `27.3/Δl` → 27.3-path-difference; `27.3/x`, `27.3/y`, `27.3/Δy` → 27.3-interference-fringes
 - No concept, edge or symbol fix.
+
+Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed.

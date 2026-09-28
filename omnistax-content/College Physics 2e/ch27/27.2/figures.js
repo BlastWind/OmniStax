@@ -123,7 +123,7 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
   const surf = choice(d.controls, { label: '\\text{surface}', options: [{ value: 'open', label: 'open space' }, { value: 'mirror', label: 'mirror' }, { value: 'slower', label: 'slower medium' }], value: 'open', aria: 'what the wavefront meets', onInput: () => { regroupNow(); cy.reset(); } });
   const th = ctl(d.controls, { label: '\\theta_1', cls: '', min: 0, max: 70, step: 1, value: 45, unit: '°', dec: 0, aria: 'the angle of incidence', onInput: () => cy.reset() });
   const n2 = ctl(d.controls, { label: 'n_2', cls: '', min: 1.00, max: 2.42, step: 0.01, value: 1.50, unit: '', dec: 2, aria: 'the index of refraction of the second medium',
-    detents: [{ v: 1.33, label: 'water' }, { v: 1.52, label: 'glass' }, { v: 2.42, label: 'diamond' }], onInput: () => cy.reset() });
+    detents: [1.33, 1.52, 2.42], onInput: () => cy.reset() });
   function regroupNow(ms) {
     const m = surf.value;
     const on = [], off = [];

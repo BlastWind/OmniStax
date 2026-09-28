@@ -1,0 +1,708 @@
+{
+ "id": "27.4",
+ "module": "m42512",
+ "chapter": "27",
+ "title": "Multiple Slit Diffraction",
+ "short": "Multiple slit diffraction",
+ "lead": "A diffraction grating is a large number of evenly spaced parallel slits, and it makes a pattern much like a double slit’s, with bright regions at the same angles but narrower and brighter. This section shows why each ray from a grating must travel a whole number of wavelengths farther than its neighbor for a maximum, and uses that condition to find where the colors of white light fall on a screen.",
+ "objectives": [
+  "Discuss the pattern obtained from diffraction grating.",
+  "Explain diffraction grating effects."
+ ],
+ "summary_html": "<ul><li>A diffraction grating is a large collection of evenly spaced parallel slits that produces an interference pattern similar to but sharper than that of a double slit.</li><li>There is constructive interference for a diffraction grating when $\\kd\\;\\text{sin}\\;\\theta = m\\klam\\;\\text{(for}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots)$, where $\\kd$ is the distance between slits in the grating, $\\klam$ is the wavelength of light, and $m$ is the order of the maximum.</li></ul>",
+ "notes": "The opening paragraph’s “CD pictured in the opening photograph of this chapter” is carried as printed, although the chapter opens on a photograph of Katharine Burr Blodgett. The conceptual question on a single slit with no minimum is set with Section 27.5, which teaches the single slit, and the Critical Thinking grating problem printed in Section 27.8 is set here; its key takes the line spacing as 1.00 × 10⁻⁶ m, although 1000 lines in 10.00 mm are 1.00 × 10⁻⁵ m apart, and the key is carried as printed. Example 27.3 prints $\\ky_{\\text{V}} = 0.815\\;\\text{m}$, although $(2.00\\;\\text{m})\\tan 22.33^\\circ$ is 0.822 m; the example is carried as printed, and Figure 27.16 + 27.20, which computes its distances, gives 0.822 m. The key to the problem on a 30,000-line-per-centimeter grating writes the answer to (c) in centimeters where it means lines per centimeter. Eleven of the module’s twenty-two problems have no keyed answer and are left out: the third-order maximum of 580-nm light on 1500 lines per centimeter, the line spacing for a second-order maximum of 760-nm light at 60.0°, the hydrogen wavelengths, the most lines per centimeter for a complete first-order spectrum, the feather spacing for 525-nm light at 30.0°, the opal’s red and blue angles, the proof that a second-order maximum needs a first order below 30.0°, the most lines per centimeter for a maximum of the shortest visible wavelength, the groove spacing of a CD, the double slit 400 nm apart for 700-nm light, and the spectrometer to construct.",
+ "ai": {
+  "text": "Claude Opus 5.5",
+  "figures": "Claude Opus 5.5"
+ },
+ "built": "2026-09-28",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Eleven of the twenty-two problems have no keyed answer and are left out, and they are named in the section’s notes. The keyed Critical Thinking grating problem printed in Section 27.8 is set here, since this section teaches the grating condition. One AP item is keyed and set as a graded choice; the other is unkeyed and kept as an open item with an AI-marked suggested approach. The six conceptual questions kept here carry AI-marked suggested approaches, and the seventh, on a single slit with no minimum, moves to Section 27.5. The module prints no Check Your Understanding box, so nothing is set inline. The fringe-spacing problem carries the book’s sketch on its card. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-grating-spectrum",
+   "kind": "sim",
+   "number": "27.16",
+   "folds": [
+    "27.20"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_04_01a.jpg",
+    "/media/ch27/Figure_28_04_05a.jpg"
+   ],
+   "original_caption": "(Figure 27.16) A diffraction grating is a large number of evenly spaced parallel slits. (a) Light passing through is diffracted in a pattern similar to a double slit, with bright regions at various angles. (b) The pattern obtained for white light incident on a grating. The central maximum is white, and the higher-order maxima disperse white light into a rainbow of colors. (Figure 27.20) The diffraction grating considered in this example produces a rainbow of colors on a screen a distance $x=2.00\\;\\text{m}$ from the grating. The distances along the screen are measured perpendicular to the $x$-direction. In other words, the rainbow pattern extends out of the page.",
+   "widths": [
+    300,
+    241
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "photo-opal-butterfly",
+   "kind": "photo",
+   "number": "27.17",
+   "originals": [
+    "/media/ch27/Figure_28_04_02a.jpg"
+   ],
+   "original_caption": "(a) This Australian opal and (b) the butterfly wings have rows of reflectors that act like reflection gratings, reflecting different colors at different angles. (credits: (a) Opals-On-Black.com, via Flickr (b) whologwhy, Flickr)",
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "sim-grating-sharpness",
+   "kind": "sim",
+   "number": "27.18",
+   "originals": [
+    "/media/ch27/Figure_28_04_03a.jpg"
+   ],
+   "original_caption": "Idealized graphs of the intensity of light passing through a double slit (a) and a diffraction grating (b) for monochromatic light. Maxima can be produced at the same angles, but those for the diffraction grating are narrower and hence sharper. The maxima become narrower and the regions between darker as the number of slits is increased.",
+   "widths": [
+    180
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "sim-grating-rays",
+   "kind": "sim",
+   "number": "27.19",
+   "originals": [
+    "/media/ch27/Figure_28_04_04a.jpg"
+   ],
+   "original_caption": "Diffraction grating showing light rays from each slit traveling in the same direction. Each ray travels a different distance to reach a common point on a screen (not shown). Each ray travels a distance $d\\sin\\theta$ different from that of its neighbor.",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "position"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "diffraction-grating",
+   "concept": "diffraction-grating",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffraction-grating",
+   "concept": "grating-maxima-are-sharper",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffraction-grating",
+   "concept": "youngs-double-slit",
+   "verb": "uses"
+  },
+  {
+   "span": "grating-condition",
+   "concept": "grating-constructive-condition",
+   "verb": "introduces"
+  },
+  {
+   "span": "grating-condition",
+   "concept": "path-length-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "grating-condition",
+   "concept": "double-slit-constructive",
+   "verb": "uses"
+  },
+  {
+   "span": "grating-spectrum",
+   "concept": "grating-spectrum-on-a-screen",
+   "verb": "introduces"
+  },
+  {
+   "span": "grating-spectrum",
+   "concept": "grating-constructive-condition",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1817479",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction-grating",
+   "prompt": "Which of the following cannot be a possible outcome of passing white light through several evenly spaced parallel slits?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The central maximum will be white but the higher-order maxima will disperse into a rainbow of colors.",
+     "The central maximum and higher-order maxima will be of equal widths.",
+     "The lower wavelength components of light will have less diffraction compared to higher wavelength components for all maxima except the central one.",
+     "None of the above."
+    ],
+    "correct": 1,
+    "hint": "White light spreads into a rainbow in every order but the central one, so the higher orders are wider than the central maximum.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2315626",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "prompt": "White light is passed through a diffraction grating to a screen some distance away. The <em>n</em>th-order diffraction angle for the longest wavelength (760 nm) is 53.13°. Find the <em>n</em>th-order diffraction angle for the shortest wavelength (380 nm). What will be the change in the two angles if the distance between the screen and the grating is doubled?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the same order and with the same grating, $\\kd\\sin\\theta = m\\klam$ makes $\\sin\\theta$ proportional to the wavelength. For 760 nm, $\\sin 53.13^\\circ = 0.800$, so for 380 nm, half the wavelength, $\\sin\\theta = 0.400$ and $\\theta = 23.6^\\circ$. The angles depend only on $\\kd$, $\\klam$ and $m$, not on where the screen stands, so doubling the distance to the screen leaves both angles unchanged; it only doubles the distances $\\ky = \\kx\\tan\\theta$ along the screen."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737977593",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction-grating",
+   "prompt": "What is the advantage of a diffraction grating over a double slit in dispersing light into a spectrum?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A grating forms a much sharper pattern. Its bright regions stand at the same angles as a double slit’s but are narrower and brighter, and the regions between them are darker, so light of two nearly equal wavelengths makes two separate lines instead of two broad overlapping bands. With its slits usually closer together, a grating also spreads the wavelengths through larger angles."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737738322",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "What are the advantages of a diffraction grating over a prism in dispersing light for spectral analysis?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A grating’s angles follow from $\\kd\\sin\\theta = m\\klam$, which contains only the line spacing and the wavelength, so a wavelength can be calculated directly from a measured angle. A prism’s dispersion depends on how its index of refraction changes with wavelength, which is small and must be measured for each glass. A grating with closely spaced lines also spreads the colors much farther apart, and it works for wavelengths, such as ultraviolet, that glass absorbs."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737961204",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "Can the lines in a diffraction grating be too close together to be useful as a spectroscopic tool for visible light? If so, what type of EM radiation would the grating be suitable for? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. A first-order maximum needs $\\sin\\theta = \\klam/\\kd$, which cannot exceed 1, so if the lines are closer together than the wavelength, $\\kd$ smaller than $\\klam$, there is no maximum except the central one and the light is not dispersed at all. Such a grating would still work for shorter wavelengths than its spacing, such as ultraviolet radiation or, for extremely fine spacings, x rays."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169736863864",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "prompt": "If a beam of white light passes through a diffraction grating with vertical lines, the light is dispersed into rainbow colors on the right and left. If a glass prism disperses white light to the right into a rainbow, how does the sequence of colors compare with that produced on the right by a diffraction grating?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The sequences are reversed. A grating bends longer wavelengths more, since $\\sin\\theta = m\\klam/\\kd$ grows with $\\klam$, so red is farthest from the center and violet nearest. A prism bends shorter wavelengths more, because the index of refraction of glass is larger for violet light, so violet is deviated farthest and red least."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737796597",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "Suppose pure-wavelength light falls on a diffraction grating. What happens to the interference pattern if the same light falls on a grating that has more lines per centimeter? What happens to the interference pattern if a longer-wavelength light falls on the same grating? Explain how these two effects are consistent in terms of the relationship of wavelength to the distance between slits.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "More lines per centimeter means a smaller spacing $\\kd$, so $\\sin\\theta = m\\klam/\\kd$ is larger and the maxima spread out to larger angles, with fewer of them. A longer wavelength on the same grating also makes $\\sin\\theta$ larger and spreads the pattern in the same way. The two effects agree because the angles depend only on the ratio $\\klam/\\kd$: making $\\kd$ smaller or $\\klam$ larger both increase that ratio."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169737875290",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction-grating",
+   "prompt": "Suppose a feather appears green but has no green pigment. Explain in terms of diffraction.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The feather has tiny, regularly spaced structures that act as a reflection grating. Light reflected from them interferes constructively in the directions where $\\kd\\sin\\theta = m\\klam$, and for the spacing of those structures and the angle at which the feather is seen, that condition is met for green wavelengths. The feather therefore looks green from that direction, and its color changes as it is turned, which is the iridescence the section describes."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738090029",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "A diffraction grating has 2000 lines per centimeter. At what angle will the first-order maximum be for 520-nm-wavelength green light?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.97,
+    "unit": "°",
+    "hint": "The line spacing is $\\kd = (1\\;\\text{cm})/2000$; then set $m = 1$ in $\\kd\\sin\\theta = m\\klam$.",
+    "solution": "$5.97^\\circ$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737927226",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "How many lines per centimeter are there on a diffraction grating that gives a first-order maximum for 470-nm blue light at an angle of 25.0°?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8990,
+    "unit": "lines/cm",
+    "hint": "Solve $\\kd\\sin\\theta = m\\klam$ for $\\kd$, then take the number of spacings in one centimeter.",
+    "solution": "$8.99\\times 10^{3}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738090158",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "Calculate the wavelength of light that has its second-order maximum at 45.0° when falling on a diffraction grating that has 5000 lines per centimeter.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 707,
+    "unit": "nm",
+    "hint": "Solve $\\kd\\sin\\theta = m\\klam$ for $\\klam$ with $m = 2$ and $\\kd = (1\\;\\text{cm})/5000$.",
+    "solution": "707 nm"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169737995146",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "(a) What do the four angles in the hydrogen problem of this set (first-order maxima at 24.2°, 25.7°, 29.1° and 41.0° on a grating having 10,000 lines per centimeter) become if a 5000-line-per-centimeter diffraction grating is used? (b) Using this grating, what would the angles be for the second-order maxima? (c) Discuss the relationship between integral reductions in lines per centimeter and the new angles of various order maxima.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $11.8^\\circ,\\;12.5^\\circ,\\;14.1^\\circ,\\;19.2^\\circ$\n\n(b) $24.2^\\circ,\\;25.7^\\circ,\\;29.1^\\circ,\\;41.0^\\circ$\n\n(c) Decreasing the number of lines per centimeter by a factor of x means that the angle for the x-order maximum is the same as the original angle for the first-order maximum."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169736684764",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "The yellow light from a sodium vapor lamp <em>seems</em> to be of pure wavelength, but it produces two first-order maxima at 36.093° and 36.129° when projected on a 10,000 line per centimeter diffraction grating. What are the two wavelengths to an accuracy of 0.1 nm?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the wavelength of the maximum at 36.093°",
+      "value": 589.1,
+      "unit": "nm",
+      "hint": "With $\\kd = 1.00\\;\\mu\\text{m}$ and $m = 1$, $\\klam = \\kd\\sin\\theta$."
+     },
+     {
+      "part": "the wavelength of the maximum at 36.129°",
+      "value": 589.6,
+      "unit": "nm",
+      "hint": "The same relation at the second angle; keep enough digits to tell the two apart."
+     }
+    ],
+    "solution": "589.1 nm and 589.6 nm"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169737713486",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "Structures on a bird feather act like a reflection grating having 8000 lines per centimeter. What is the angle of the first-order maximum for 600-nm light?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 28.7,
+    "unit": "°",
+    "hint": "A reflection grating obeys the same condition, $\\kd\\sin\\theta = m\\klam$, with $\\kd = (1\\;\\text{cm})/8000$.",
+    "solution": "$28.7^\\circ$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737728088",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "At what angle does a diffraction grating produces a second-order maximum for light having a first-order maximum at 20.0°?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 43.2,
+    "unit": "°",
+    "hint": "For the same grating and wavelength, $\\sin\\theta$ of the second order is twice that of the first.",
+    "solution": "$43.2^\\circ$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169738060610",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "prompt": "If a diffraction grating produces a first-order maximum for the shortest wavelength of visible light at 30.0°, at what angle will the first-order maximum be for the longest wavelength of visible light?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 90.0,
+    "unit": "°",
+    "hint": "The longest visible wavelength, 760 nm, is twice the shortest, 380 nm, so $\\sin\\theta$ doubles.",
+    "solution": "$90.0^\\circ$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738186583",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "prompt": "(a) Show that a 30,000-line-per-centimeter grating will not produce a maximum for visible light. (b) What is the longest wavelength for which it does produce a first-order maximum? (c) What is the greatest number of lines per centimeter a diffraction grating can have and produce a complete second-order spectrum for visible light?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(b) the longest wavelength with a first-order maximum",
+      "value": 333,
+      "unit": "nm",
+      "hint": "The longest wavelength puts the first-order maximum at $\\sin\\theta = 1$, so $\\klam = \\kd$."
+     },
+     {
+      "part": "(c) the greatest number of lines per centimeter",
+      "value": 6580,
+      "unit": "lines/cm",
+      "hint": "A complete second-order spectrum needs $\\kd \\ge 2(760\\;\\text{nm})$."
+     }
+    ],
+    "solution": "(a) The longest wavelength is 333.3 nm, which is not visible.\n\n(b) 333 nm (UV)\n\n(c) $6.58\\times 10^{3}\\;\\text{cm}$"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1169738080654",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "figure": {
+    "src": "/media/ch27/Figure_28_04_06a-4339.jpg",
+    "alt": "A double slit at the left and a screen at the right. The slits are a distance d apart; a horizontal line x runs from them to the screen, a line at angle theta rises to the screen, and the distance y along the screen and the fringe spacing delta y are marked.",
+    "caption": "The distance between adjacent fringes is $\\Delta y = x\\lambda/d$, assuming the slit separation $d$ is large compared with $\\lambda$."
+   },
+   "prompt": "The analysis shown in the figure below also applies to diffraction gratings with lines separated by a distance $d$. What is the distance between fringes produced by a diffraction grating having 125 lines per centimeter for 600-nm light, if the screen is 1.50 m away?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0113,
+    "unit": "m",
+    "hint": "Use $\\kdy = \\kx\\klam/\\kd$ with $\\kd = (1\\;\\text{cm})/125$.",
+    "solution": "$1.13\\times 10^{-2}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169738214765",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "Unreasonable Results",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "(a) What visible wavelength has its fourth-order maximum at an angle of 25.0° when projected on a 25,000-line-per-centimeter diffraction grating? (b) What is unreasonable about this result? (c) Which assumptions are unreasonable or inconsistent?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 42.3,
+    "unit": "nm",
+    "hint": "Solve $\\kd\\sin\\theta = m\\klam$ for $\\klam$ with $m = 4$, then compare the result with the visible range.",
+    "solution": "(a) 42.3 nm\n\n(b) Not a visible wavelength\n\nThe number of slits in this diffraction grating is too large. Etching in integrated circuits can be done to a resolution of 50 nm, so slit separations of 400 nm are at the limit of what we can do today. This line spacing is too small to produce diffraction of light."
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "exer-00001",
+   "source_section": "27.8",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Critical Thinking",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "A semiconductor laser emits light at 400.0 nm. The light is passed through a grating where 1,000 lines are etched covering a space of 10.00 mm. The light is directed directly at the grating. (a) What is the angle the light beam diffracts for first order diffraction? (b) What is the angle the light beam diffracts for second order diffraction? (c) The laser is changed out. The first order angle of diffraction is now 23.9°. What wavelength of light does it produce? (d) If a new grating with the spacing between the lines doubled were to replace the one above, what would the new angle be for part a? (e) Would the magnitude of the angle of diffraction be different going left from going right?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the first-order angle",
+      "value": 23.6,
+      "unit": "°",
+      "hint": "Set $m = 1$ in $\\kd\\sin\\theta = m\\klam$."
+     },
+     {
+      "part": "(b) the second-order angle",
+      "value": 53.1,
+      "unit": "°",
+      "hint": "Set $m = 2$ with the same spacing."
+     },
+     {
+      "part": "(c) the new wavelength",
+      "value": 405,
+      "unit": "nm",
+      "hint": "Solve $\\kd\\sin\\theta = \\klam$ for $\\klam$ at 23.9°."
+     },
+     {
+      "part": "(d) the first-order angle with the spacing doubled",
+      "value": 11.5,
+      "unit": "°",
+      "hint": "Doubling $\\kd$ halves $\\sin\\theta$."
+     }
+    ],
+    "solution": "(a) $\\sin\\theta = \\frac{4.00\\times 10^{-7}}{10^{-6}} = 0.400$, $\\theta = 23.6^\\circ$\n\n(b) $\\sin\\theta = \\frac{(2)(4.00\\times 10^{-7})}{10^{-6}} = 0.800$, $\\theta = 53.1^\\circ$\n\n(c) $\\sin 23.9^\\circ = \\frac{\\lambda}{10^{-6}}$, $\\lambda = 4.05\\times 10^{-7} = 405\\;\\text{nm}$\n\n(d) $\\sin\\theta = \\frac{4.00\\times 10^{-7}}{2.00\\times 10^{-6}} = 0.200$, $\\theta = 11.5^\\circ$\n\n(e) No."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "grating-spectrum-on-a-screen"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "grating-maxima-are-sharper",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "grating-spectrum-on-a-screen",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "grating-maxima-are-sharper"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "diffraction-grating",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "diffraction-grating"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "dispersion",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "electromagnetic-spectrum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "grating-spectrum-on-a-screen"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "dispersion",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "diffraction-grating"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "grating-constructive-condition",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p2",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p3",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p4",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p4",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p5",
+   "concept": "grating-maxima-are-sharper",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p6",
+   "concept": "diffraction-grating",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p7",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "grating-spectrum-on-a-screen"
+  },
+  {
+   "exercise": "p9",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p9",
+   "concept": "grating-spectrum-on-a-screen",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "fringe-spacing"
+  },
+  {
+   "exercise": "p10",
+   "concept": "diffraction-grating",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p12",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p12",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ]
+}

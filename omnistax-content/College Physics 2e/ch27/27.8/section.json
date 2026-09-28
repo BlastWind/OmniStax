@@ -1,0 +1,704 @@
+{
+ "id": "27.8",
+ "module": "m42522",
+ "chapter": "27",
+ "title": "Polarization",
+ "short": "Polarization",
+ "lead": "Light is a transverse wave, so its electric field oscillates in a definite direction across its line of travel, and that direction is its polarization. This section shows how a polarizing filter passes only the field along its axis, so that a second filter at an angle θ passes the intensity I₀ cos² θ, how reflection and scattering polarize light, with the reflection complete at Brewster’s angle, tan θ_b = n₂/n₁, and how liquid crystals, optically active substances and birefringent crystals act on the direction of polarization.",
+ "objectives": [
+  "Discuss the meaning of polarization.",
+  "Discuss the property of optical activity of certain materials."
+ ],
+ "summary_html": "<ul><li>Polarization is the attribute that wave oscillations have a definite direction relative to the direction of propagation of the wave.</li><li>EM waves are transverse waves that may be polarized.</li><li>The direction of polarization is defined to be the direction parallel to the electric field of the EM wave.</li><li>Unpolarized light is composed of many rays having random polarization directions.</li><li>Light can be polarized by passing it through a polarizing filter or other polarizing material. The intensity $\\kIntens$ of polarized light after passing through a polarizing filter is $\\kIntens = \\kIopol\\;\\cos^{2}\\;\\theta,$ where $\\kIopol$ is the original intensity and $\\theta$ is the angle between the direction of polarization and the axis of the filter.</li><li>Polarization is also produced by reflection.</li><li>Brewster’s law states that reflected light will be completely polarized at the angle of reflection $\\theta_{\\text{b}}$, known as Brewster’s angle, given by a statement known as Brewster’s law: $\\tan\\;\\theta_{\\text{b}} = \\frac{n_{2}}{n_{1}}$, where $n_{1}$ is the medium in which the incident and reflected light travel and $n_{2}$ is the index of refraction of the medium that forms the interface that reflects the light.</li><li>Polarization can also be produced by scattering.</li><li>There are a number of types of optically active substances that rotate the direction of polarization of light passing through them.</li></ul>",
+ "notes": "Eight of the module’s eighteen problems have no keyed answer and are left out: the second filter at 45.0°, the filter that reduces 1.00 kW/m² to 10.0 W/m², the three filters at 45° and 90.0°, the light reflected from diamond, the scuba diver, the window at 55.6°, the proof that the two Brewster’s angles of one interface add to 90.0°, and the two pairs of sunglasses at 15.0°. The Critical Thinking problem on a diffraction grating is set in 27.4, which introduces the grating.",
+ "ai": {
+  "text": "Claude Opus 5.5",
+  "figures": "Claude Opus 5.5"
+ },
+ "built": "2026-09-28",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Eight of the eighteen problems have no keyed answer and are left out, and they are named in the section’s notes; the keyed Critical Thinking problem on a grating is moved to 27.4, which introduces what it tests. The first AP item is keyed and set as a graded choice; the second is unkeyed and kept as an open item with its table and image and an AI-marked suggested approach. The seven conceptual questions are unkeyed and carry AI-marked suggested approaches. The proof that the two intensities add to $\\kIopol$ is set as an open item with the book’s answer. The module prints no Check Your Understanding box, so nothing is set inline. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "photo-river",
+   "kind": "photo",
+   "number": "27.36",
+   "originals": [
+    "/media/ch27/Figure_28_08_01a.jpg"
+   ],
+   "original_caption": "These two photographs of a river show the effect of a polarizing filter in reducing glare in light reflected from the surface of water. Part (b) of this figure was taken with a polarizing filter and part (a) was not. As a result, the reflection of clouds and sky observed in part (a) is not observed in part (b). Polarizing sunglasses are particularly useful on snow and water. (credit: Amithshs, Wikimedia Commons)",
+   "widths": [
+    400
+   ]
+  },
+  {
+   "id": "fig-em-wave",
+   "kind": "photo",
+   "number": "27.37",
+   "originals": [
+    "/media/ch27/Figure_28_08_02a.jpg"
+   ],
+   "original_caption": "An EM wave, such as light, is a transverse wave. The electric and magnetic fields are perpendicular to the direction of propagation.",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-rope-slit",
+   "kind": "sim",
+   "number": "27.38",
+   "originals": [
+    "/media/ch27/Figure_28_08_03a.jpg"
+   ],
+   "original_caption": "The transverse oscillations in one rope are in a vertical plane, and those in the other rope are in a horizontal plane. The first is said to be vertically polarized, and the other is said to be horizontally polarized. Vertical slits pass vertically polarized waves and block horizontally polarized waves.",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-filter-chain",
+   "kind": "sim",
+   "number": "27.39",
+   "folds": [
+    "27.40",
+    "27.41",
+    "27.42"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_08_04a.jpg",
+    "/media/ch27/Figure_28_08_05a.jpg",
+    "/media/ch27/Figure_28_08_06a.jpg",
+    "/media/ch27/Figure_28_08_07a.jpg"
+   ],
+   "original_caption": "(Figure 27.39) The slender arrow represents a ray of unpolarized light. The bold arrows represent the direction of polarization of the individual waves composing the ray. Since the light is unpolarized, the arrows point in all directions. (Figure 27.40) A polarizing filter has a polarization axis that acts as a slit passing through electric fields parallel to its direction. The direction of polarization of an EM wave is defined to be the direction of its electric field. (Figure 27.41) The effect of rotating two polarizing filters, where the first polarizes the light. (a) All of the polarized light is passed by the second polarizing filter, because its axis is parallel to the first. (b) As the second is rotated, only part of the light is passed. (c) When the second is perpendicular to the first, no light is passed. (d) In this photograph, a polarizing filter is placed above two others. Its axis is perpendicular to the filter on the right (dark area) and parallel to the filter on the left (lighter area). (credit: P.P. Urone) (Figure 27.42) A polarizing filter transmits only the component of the wave parallel to its axis, $E\\;\\cos\\;\\theta$, reducing the intensity of any light not polarized parallel to its axis.",
+   "widths": [
+    200,
+    350,
+    500,
+    215
+   ],
+   "draws": [
+    "electric-field",
+    "intensity"
+   ]
+  },
+  {
+   "id": "sim-brewster",
+   "kind": "sim",
+   "number": "27.43",
+   "originals": [
+    "/media/ch27/Figure_28_08_08a.jpg"
+   ],
+   "original_caption": "Polarization by reflection. Unpolarized light has equal amounts of vertical and horizontal polarization. After interaction with a surface, the vertical components are preferentially absorbed or refracted, leaving the reflected light more horizontally polarized. This is akin to arrows striking on their sides bouncing off, whereas arrows striking on their tips go into the surface.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-filter-molecules",
+   "kind": "sim",
+   "number": "27.44",
+   "folds": [
+    "27.45"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_08_09a.jpg",
+    "/media/ch27/Figure_28_08_10a.jpg"
+   ],
+   "original_caption": "(Figure 27.44) Long molecules are aligned perpendicular to the axis of a polarizing filter. The component of the electric field in an EM wave perpendicular to these molecules passes through the filter, while the component parallel to the molecules is absorbed. (Figure 27.45) Artist’s conception of an electron in a long molecule oscillating parallel to the molecule. The oscillation of the electron absorbs energy and reduces the intensity of the component of the EM wave that is parallel to the molecule.",
+   "widths": [
+    300,
+    300
+   ],
+   "draws": [
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-scattering",
+   "kind": "sim",
+   "number": "27.46",
+   "originals": [
+    "/media/ch27/Figure_28_08_11a.jpg"
+   ],
+   "original_caption": "Polarization by scattering. Unpolarized light scattering from air molecules shakes their electrons perpendicular to the direction of the original ray. The scattered light therefore has a polarization perpendicular to the original direction and none parallel to the original direction.",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "electric-field"
+   ]
+  },
+  {
+   "id": "sim-rotator",
+   "kind": "sim",
+   "number": "27.47",
+   "folds": [
+    "27.48"
+   ],
+   "originals": [
+    "/media/ch27/OSX_CP2e_Figure_28_08_12.jpg",
+    "/media/ch27/Figure_28_08_13a.jpg"
+   ],
+   "original_caption": "(Figure 27.47) (a) Polarized light is rotated $90^\\circ$ by a liquid crystal and then passed by a polarizing filter that has its axis perpendicular to the original polarization direction. (b) When a voltage is applied to the liquid crystal, the polarized light is not rotated and is blocked by the filter, making the region dark in comparison with its surroundings. (c) LCDs can be made color specific, small, and fast enough to use in computer monitor screens. (credit: Idaho National Laboratory) (Figure 27.48) Optical activity is the ability of some substances to rotate the plane of polarization of light passing through them. The rotation is detected with a polarizing filter or analyzer.",
+   "widths": [
+    261,
+    350
+   ],
+   "draws": [
+    "electric-field",
+    "intensity"
+   ]
+  },
+  {
+   "id": "photo-stressed-lens",
+   "kind": "photo",
+   "number": "27.49",
+   "originals": [
+    "/media/ch27/Figure_28_08_14a.jpg"
+   ],
+   "original_caption": "Optical stress analysis of a plastic lens placed between crossed polarizers. (credit: Infopro, Wikimedia Commons)",
+   "widths": [
+    200
+   ]
+  },
+  {
+   "id": "fig-birefringence",
+   "kind": "photo",
+   "number": "27.50",
+   "originals": [
+    "/media/ch27/Figure_28_08_15a.jpg"
+   ],
+   "original_caption": "Birefringent materials, such as the common mineral calcite, split unpolarized beams of light into two. The ordinary ray behaves as expected, but the extraordinary ray does not obey Snell’s law.",
+   "widths": [
+    300
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "polarization",
+   "concept": "light-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarizing-filters",
+   "concept": "polarizing-filters",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarizing-filters",
+   "concept": "light-polarization",
+   "verb": "uses"
+  },
+  {
+   "span": "malus-law",
+   "concept": "malus-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "malus-law",
+   "concept": "intensity",
+   "verb": "uses"
+  },
+  {
+   "span": "malus-example",
+   "concept": "malus-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reflection",
+   "concept": "polarization-by-reflection",
+   "verb": "introduces"
+  },
+  {
+   "span": "brewster",
+   "concept": "brewsters-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "brewster",
+   "concept": "polarization-by-reflection",
+   "verb": "reinforces"
+  },
+  {
+   "span": "filter-molecules",
+   "concept": "polarizing-filters",
+   "verb": "reinforces"
+  },
+  {
+   "span": "brewster-example",
+   "concept": "brewsters-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "scattering",
+   "concept": "polarization-by-scattering",
+   "verb": "introduces"
+  },
+  {
+   "span": "liquid-crystals",
+   "concept": "optical-activity",
+   "verb": "introduces"
+  },
+  {
+   "span": "liquid-crystals",
+   "concept": "polarizing-filters",
+   "verb": "uses"
+  },
+  {
+   "span": "stress-and-birefringence",
+   "concept": "optical-activity",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2504352",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization",
+   "prompt": "Which of the following statements is true for the direction of polarization for a polarized light wave?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "It is parallel to the direction of propagation and perpendicular to the direction of the electric field.",
+     "It is perpendicular to the direction of propagation and parallel to the direction of the electric field.",
+     "It is parallel to the directions of propagation and the electric field.",
+     "It is perpendicular to the directions of propagation and the electric field."
+    ],
+    "correct": 1,
+    "hint": "Light is a transverse wave, and the direction of polarization is defined by one of its two fields.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2717829",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "figure": {
+    "src": "/media/ch27/Figure_28_08_16a.jpg",
+    "alt": "An arrow indicates light is going from a diagram E with arrows pointing in all directions, then a Polarizing filter with a vertical arrow in one direction labeled Axis. The light diagram to the right of the filter shows only one vertical line with arrows pointing up and down.",
+    "caption": ""
+   },
+   "prompt": "In an experiment, light is passed through two polarizing filters. The image below shows the first filter and axis of polarization. The intensity of the resulting light (after the first filter) is recorded as <em>I</em>. Three configurations (at different angles) are set up for the second filter, and the intensity of light is recorded for each configuration. The results are shown in the table below:<table class=\"data\"><tr><th>Set up</th><th>Angle of second filter compared to first filter</th><th>Intensity of light after second filter</th></tr><tr><td>Configuration A</td><td><em>θ</em><sub>1</sub></td><td><em>I</em></td></tr><tr><td>Configuration B</td><td><em>θ</em><sub>2</sub></td><td>0.5<em>I</em></td></tr><tr><td>Configuration C</td><td><em>θ</em><sub>3</sub></td><td>0</td></tr></table>Complete the table by calculating <em>θ</em><sub>1</sub>, <em>θ</em><sub>2</sub>, and <em>θ</em><sub>3</sub>.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Malus’s law gives the intensity after the second filter as $\\kIntens = \\kIopol\\cos^2\\theta$, where here $\\kIopol$ is the intensity $I$ after the first filter. In configuration A the whole intensity passes, so $\\cos^2\\theta_1 = 1$ and $\\theta_1 = 0^\\circ$: the axes are parallel. In configuration B, $\\cos^2\\theta_2 = 0.5$, so $\\cos\\theta_2 = 0.707$ and $\\theta_2 = 45^\\circ$. In configuration C nothing passes, so $\\cos\\theta_3 = 0$ and $\\theta_3 = 90^\\circ$: the axes are perpendicular."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737764823",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reflection",
+   "prompt": "Under what circumstances is the phase of light changed by reflection? Is the phase related to polarization?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Light reflected from a medium with a greater index of refraction than the one it travels in has its phase changed by half a wavelength; light reflected from a medium with a smaller index has no phase change. The phase and the polarization are different properties. The phase says where in its cycle the wave is, while the polarization is the direction the electric field oscillates in. A wave of any polarization can have its phase changed by reflection, and a change of phase does not turn the direction of polarization."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738239443",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization",
+   "prompt": "Can a sound wave in air be polarized? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. Polarization is the attribute that a wave’s oscillations have a definite direction relative to its direction of propagation, and it exists only for transverse waves, whose oscillations can point in different directions across the line of travel. A sound wave in air is longitudinal: the air oscillates back and forth along the direction the wave travels, so there is only one direction its oscillations can have, and there is nothing to polarize."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169736821483",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "No light passes through two perfect polarizing filters with perpendicular axes. However, if a third polarizing filter is placed between the original two, some light can pass. Why is this? Under what circumstances does most of the light pass?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each filter passes only the component of the field along its own axis. With the two crossed filters alone, the light from the first is polarized exactly perpendicular to the second, which passes none of it. A middle filter at an angle $\\theta$ to the first passes a component $\\kEf\\cos\\theta$ polarized along its own axis, and that new polarization is at $90^\\circ - \\theta$ to the last filter, which passes part of it again. The intensity passed is $\\kIopol\\cos^2\\theta\\cos^2(90^\\circ - \\theta)$, which is greatest when the middle filter is at $45^\\circ$ to both, where one quarter of the light leaving the first filter gets through."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738214502",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "filter-molecules",
+   "prompt": "Explain what happens to the energy carried by light that it is dimmed by passing it through two crossed polarizing filters.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The energy is absorbed by the filters. The component of the electric field along the long molecules of a filter drives the electrons in those molecules back and forth, and the electrons take energy from the wave as they oscillate. That energy ends up as thermal energy, so the filters warm slightly. None of the energy is destroyed; it is only no longer carried forward by the light."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737727403",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scattering",
+   "prompt": "When particles scattering light are much smaller than its wavelength, the amount of scattering is proportional to $1/\\klam^4$. Does this mean there is more scattering for small $\\klam$ than large $\\klam$? How does this relate to the fact that the sky is blue?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. Since the scattering goes as $1/\\klam^4$, a smaller wavelength is scattered much more strongly: blue light at about 450 nm is scattered roughly $(700/450)^4 \\approx 6$ times as much as red light at 700 nm. Air molecules are far smaller than the wavelength of light, so when sunlight crosses the atmosphere its short wavelengths are scattered out of the beam and toward us from all parts of the sky. The light reaching us from directions away from the Sun is therefore mostly scattered short-wavelength light, and the sky looks blue."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169737861781",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scattering",
+   "prompt": "Using the information given in the preceding question, explain why sunsets are red.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At sunset the light from the Sun travels a much longer path through the atmosphere to reach us, because it comes in nearly along the horizon. Along that path the short wavelengths are scattered out of the beam, since scattering goes as $1/\\klam^4$, while the long wavelengths are scattered least and continue straight on. The light that still arrives directly from the Sun and lights the clouds is therefore mostly red and orange."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169738232889",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "brewster-example",
+   "prompt": "When light is reflected at Brewster’s angle from a smooth surface, it is $100\\%$ polarized parallel to the surface. Part of the light will be refracted into the surface. Describe how you would do an experiment to determine the polarization of the refracted light. What direction would you expect the polarization to have and would you expect it to be $100\\%$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Send unpolarized light onto a glass block at Brewster’s angle and look at the refracted beam through a polarizing filter, either inside a transparent block or where it leaves the far face. Rotate the filter and note the angle of the axis at which the transmitted light is brightest and the angle at which it is dimmest. The brightest light should come with the axis in the plane of incidence, the vertical direction for a horizontal surface, because the reflection has taken away part of the light polarized parallel to the surface. It will not be 100% polarized: only a small fraction of the incident light is reflected, so most of the light polarized parallel to the surface is still refracted, and the filter will dim the beam but never darken it."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738130392",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "What angle is needed between the direction of polarized light and the axis of a polarizing filter to cut its intensity in half?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 45.0,
+    "unit": "°",
+    "hint": "Set $\\kIntens = 0.500\\kIopol$ in $\\kIntens = \\kIopol\\cos^2\\theta$ and solve for $\\theta$.",
+    "solution": "$45.0^\\circ$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737702299",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "If you have completely polarized light of intensity $150\\;\\text{W/m}^2$, what will its intensity be after passing through a polarizing filter with its axis at an $89.0^\\circ$ angle to the light’s polarization direction?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 45.7,
+    "unit": "mW/m²",
+    "hint": "Use $\\kIntens = \\kIopol\\cos^2\\theta$ with $\\theta = 89.0^\\circ$.",
+    "solution": "$45.7\\;\\text{mW/m}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169736656969",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-example",
+   "prompt": "At the end of Example 27.8, it was stated that the intensity of polarized light is reduced to $90.0\\%$ of its original value by passing through a polarizing filter with its axis at an angle of $18.4^\\circ$ to the direction of polarization. Verify this statement.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 90.0,
+    "unit": "%",
+    "hint": "Evaluate $\\cos^2 18.4^\\circ$.",
+    "solution": "$90.0\\%$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169737138684",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "Prove that, if $\\kIntens$ is the intensity of light transmitted by two polarizing filters with axes at an angle $\\theta$ and $I'$ is the intensity when the axes are at an angle $90.0^\\circ - \\theta$, then $\\kIntens + I' = \\kIopol$, the original intensity. (Hint: Use the trigonometric identities $\\cos(90.0^\\circ - \\theta) = \\sin\\theta$ and $\\cos^2\\theta + \\sin^2\\theta = 1$.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kIopol$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738014837",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "brewster",
+   "prompt": "What is Brewster’s angle for light traveling in water that is reflected from crown glass?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 48.8,
+    "unit": "°",
+    "hint": "Here $n_1$ is water, 1.333, and $n_2$ is crown glass, 1.52; use $\\tan\\theta_{\\text{b}} = n_2/n_1$.",
+    "solution": "$48.8^\\circ$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169736619449",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "brewster",
+   "prompt": "At what angle is light inside crown glass completely polarized when reflected from water, as in a fish tank?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 41.2,
+    "unit": "°",
+    "hint": "The light travels in crown glass, so $n_1 = 1.52$, and the reflecting medium is water, $n_2 = 1.333$.",
+    "solution": "$41.2^\\circ$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738134393",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "brewster",
+   "prompt": "(a) Light reflected at $62.5^\\circ$ from a gemstone in a ring is completely polarized. Can the gem be a diamond? (b) At what angle would the light be completely polarized if the gem was in water?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the index of refraction of the gem",
+      "value": 1.92,
+      "unit": "",
+      "hint": "Solve $\\tan\\theta_{\\text{b}} = n_2/n_1$ for $n_2$ with $n_1 = 1.00$, and compare with diamond’s 2.419."
+     },
+     {
+      "part": "(b) Brewster’s angle in water",
+      "value": 55.2,
+      "unit": "°",
+      "hint": "Use the gem’s index as $n_2$ and water’s 1.333 as $n_1$."
+     }
+    ],
+    "solution": "(a) 1.92, not diamond (Zircon)\n\n(b) $55.2^\\circ$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169738176566",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "<strong>Integrated Concepts</strong> If a polarizing filter reduces the intensity of polarized light to $50.0\\%$ of its original value, by how much are the electric and magnetic fields reduced?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.707,
+    "unit": "",
+    "part": "the ratio of each field after the filter to its value before",
+    "hint": "Intensity goes as the square of the field, so each field is reduced by the square root of the intensity ratio.",
+    "solution": "$B_2 = 0.707\\;B_1$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169736971075",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "<strong>Integrated Concepts</strong> (a) On a day when the intensity of sunlight is $1.00\\;\\text{kW/m}^2$, a circular lens 0.200 m in diameter focuses light onto water in a black aluminum beaker. Two polarizing sheets of plastic are placed in front of the lens with their axes at an angle of $20.0^\\circ$. Assuming the sunlight is unpolarized and the polarizers are $100\\%$ efficient, what is the initial rate of heating of the water in $^\\circ\\text{C/s}$, assuming it is $80.0\\%$ absorbed? The aluminum beaker has a mass of 30.0 grams and contains 250 grams of water. (b) Do the polarizing filters get hot? Explain.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0207,
+    "unit": "°C/s",
+    "part": "(a) the initial rate of heating",
+    "hint": "The first sheet passes half of the unpolarized light and the second $\\cos^2 20.0^\\circ$ of that; multiply by the lens area and 80.0%, then divide by the heat capacity of the water and the beaker.",
+    "solution": "(a) $2.07\\times 10^{-2}\\;^\\circ\\text{C/s}$\n\n(b) Yes, the polarizing filters get hot because they absorb some of the lost energy from the sunlight."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "light-polarization"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "polarizing-filters"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "phase-change-on-reflection"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "light-polarization"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "light-polarization"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "malus-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "polarizing-filters"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "polarizing-filters"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "polarization-by-scattering"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "polarization-by-scattering"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "brewsters-law"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "polarization-by-reflection"
+  },
+  {
+   "exercise": "p1",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p2",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p4",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "brewsters-law"
+  },
+  {
+   "exercise": "p6",
+   "concept": "brewsters-law"
+  },
+  {
+   "exercise": "p7",
+   "concept": "brewsters-law"
+  },
+  {
+   "exercise": "p8",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p8",
+   "concept": "intensity"
+  },
+  {
+   "exercise": "p9",
+   "concept": "malus-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "polarizing-filters"
+  },
+  {
+   "exercise": "p9",
+   "concept": "specific-heat"
+  }
+ ]
+}

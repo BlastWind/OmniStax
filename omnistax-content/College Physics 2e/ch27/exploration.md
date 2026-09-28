@@ -162,6 +162,22 @@ the reader watch it happen rather than be told.
   the field arrow shrinking as $\cos\theta$ and the intensity as $\cos^2\theta$,
   is where the reader discovers that a third filter lets light back through.
 
+## Errata carried as printed
+
+27.1's Making Connections box sends matter waves to "Special Relativity",
+although they are treated in a later chapter. 27.4's opening paragraph points at
+the "CD pictured in the opening photograph of this chapter", although the chapter
+opens on Katharine Burr Blodgett. Example 27.3 prints $y_{\text{V}} = 0.815$ m
+where $(2.00\;\text{m})\tan 22.33^\circ$ is 0.822 m; the example is carried as
+printed and Figure 27.16 + 27.20, which computes its distances, shows 0.822 m.
+The key to 27.8's Critical Thinking grating problem (`exer-00001`, set in 27.4)
+takes the line spacing as $1.00\times 10^{-6}$ m, although 1000 lines in 10.00 mm
+are $1.00\times 10^{-5}$ m apart. The key to 27.4's problem on a
+30,000-line-per-centimeter grating writes (c) in centimeters where it means lines
+per centimeter. Example 27.7(b) prints $\frac{\lambda n}{2}$ for $\lambda_n/2$.
+27.6's laser printer problem spells the criterion "Raleigh's"; it is unkeyed and
+left out. Each is named in its section's `notes`.
+
 ## Edges wanted later
 
 None; Chapter 26's concepts were merged before this chapter's, and the one edge

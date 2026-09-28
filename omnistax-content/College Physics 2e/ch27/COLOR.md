@@ -17,7 +17,7 @@ Chapter 25.
 |---|---|---|
 | The wavelength $\lambda$ and the wavelength in a medium $\lambda_n$; the slit separation $d$; the slit width $D$ and the aperture diameter $D$; the film thickness $t$; the path difference $\Delta l$; the screen distance $x$, the position $y$ and the fringe spacing $\Delta y$; the distance $s$ a wavelet travels | `position` (Chapter 2) | One hue for every length; the wavelength in a medium keeps it and is told by its subscript. A figure that shows both $\lambda$ and $d$ tells them apart by their brackets and labels, never by a second hue |
 | The speed of light $c$ and its speed $v$ in a medium, the speed of Huygens's wavelets | `velocity` (Chapter 2) | Bound on 27.1 and 27.2 |
-| The frequency $f$ of light, which stays the same in a medium | `frequency` (Chapter 16) | Bound on 27.1 |
+| The frequency $f$ of light, which stays the same in a medium | `frequency` (Chapter 16) | Bound on 27.1, and on 27.2 for the frequency of the sound at the doorway |
 | The time $t$ after which the wavelets are drawn | `time` (Chapter 2) | Bound on 27.2 where a moving figure has a clock |
 | The intensity $I$ after a filter and $I_0$ before it; an intensity axis on a pattern graph | `intensity` (Chapter 17) | Bound on 27.8 for Malus's law, and on 27.3 to 27.6 only where a graph's axis is labelled with $I$ and a readout states it; a relative brightness drawn as a pattern on a screen is the colour of the light, not a type |
 | The electric field $E$ of a polarized wave, its component $E\cos\theta$ through a filter | `electric-field` (Chapter 18) | Bound on 27.8; the polarization arrows wear it, and an unpolarized bundle's arrows share the one hue |
@@ -29,14 +29,18 @@ Which section binds what:
 |---|---|
 | intro | none |
 | 27.1 | `position`, `velocity`, `frequency` |
-| 27.2 | `position`, `velocity`, `time` |
-| 27.3 | `position`; `intensity` only if a readout states it |
-| 27.4 | `position`; `intensity` only if a readout states it |
-| 27.5 | `position`; `intensity` only if a readout states it |
+| 27.2 | `position`, `velocity`, `time`, `frequency` |
+| 27.3 | `position` |
+| 27.4 | `position` |
+| 27.5 | `position` |
 | 27.6 | `position` |
 | 27.7 | `position` |
 | 27.8 | `electric-field`, `intensity` |
-| 27.9 | none by default; `position` if a figure measures a wavelength in the sample |
+| 27.9 | none |
+
+As built, no figure of 27.3 to 27.6 states an intensity in a readout, since each
+draws its pattern as the brightness of the light, so `intensity` is bound on 27.8
+alone.
 
 Of root rule 7's four families this chapter uses three.
 

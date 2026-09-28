@@ -52,7 +52,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
   const d = sim('sim-young-apparatus', 600);
   const lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 380, max: 750, step: 1, value: 633, unit: 'nm', dec: 0, aria: 'the wavelength of the light', detents: LAM_DETENTS });
   const dS = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.005, max: 0.04, step: 0.0005, value: 0.01, unit: 'mm', dec: 4, aria: 'the distance between the slits' });
-  const V = view({ yaw: -0.62, pitch: 0.42, dist: 2600, cx: 700, cy: 380 });
+  const V = view({ yaw: -0.62, pitch: 0.42, dist: 2600, cx: 700, cy: 430 });
   const P = (p) => V.P(p);
   const HALF = 350, UPM = HALF / 0.30, XS = 1.0;      /* 0.30 m either side of the screen's center */
   const ZF = 260, ZB = -300, WH = 300;                 /* the slit wall, the screen, and their height */
@@ -80,9 +80,9 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
       const a = P([x - 180, 150, ZF + 520]), b = P([x, 150, ZF]);
       F.arrow(ctx, a[0], a[1], b[0], b[1], spectral(L), 5);
     });
-    const sl = P([gap / 2 + 20, 250, ZF]), sc = P([HALF, WH, ZB]);
+    const sl = P([gap / 2 + 20, 250, ZF]), sc = P([-HALF, 0, ZB]);
     label(ctx, 'double slit', sl[0], sl[1], { side: 'above', size: 20, color: PAL.ink });
-    label(ctx, 'screen', sc[0] - 60, sc[1], { side: 'above', size: 20, color: PAL.ink });
+    label(ctx, 'screen', sc[0] + 40, sc[1], { side: 'below', size: 20, color: PAL.ink });
     readout(d.readout, `\\kdy = \\frac{\\kx\\klam}{\\kd} = \\frac{(${fmt(XS, 2)}\\ \\text{m})(${fmt(L, 0)}\\ \\text{nm})}{${fmt(D, 4)}\\ \\text{mm}} = ${fmt(sp * 100, 2)}\\ \\text{cm}`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -193,7 +193,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
         if (!pts.length && n !== 0) return;
         const path = n === 0 ? [[XB, YC], [XS, YC]] : pts;
         ctx.save(); ctx.strokeStyle = alpha(PAL.ink, max ? 0.6 : 0.45); ctx.lineWidth = 2.5; if (!max) ctx.setLineDash([10, 10]);
-        ctx.beginPath(); path.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore();
+        ctx.beginPath(); ctx.rect(XB, YT, XS - XB, YB - YT); ctx.clip(); ctx.beginPath(); path.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore();
         const ye = path[path.length - 1][1];
         if (ye > YT + 10 && ye < YB - 10) labels.push({ y: ye, s: max ? 'Max' : 'Min', c: n === 0 });
       });

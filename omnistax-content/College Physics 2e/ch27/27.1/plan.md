@@ -76,3 +76,5 @@ None.
 - Variables `c`, `f`, `λ` → 27.1-wave-character; `n`, `v`, `λ_n` → 27.1-wavelength-in-a-medium
 - 27.2's `exercise_notes` should name `fs-id1169737980797` as moved to 27.1.
 - Erratum carried as printed: the Making Connections box sends matter waves to "Special Relativity" (they are in a later chapter).
+
+Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed. 27.2's `exercise_notes` already names the moved question, and the matter-waves erratum is gathered in `exploration.md`.

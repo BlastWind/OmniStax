@@ -83,3 +83,5 @@ questions.
 - glossary `Huygens’s principle` → 27.2-huygens-principle; `diffraction` → 27.2-diffraction
 - `ch27/COLOR.md`: 27.2 also binds `frequency`, for the sound's frequency in Figure 27.8 + 27.9, whose readout writes $\lambda = \kv/\kf$
 - Errata: none found in m42505.
+
+Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed, and `COLOR.md` binds `frequency` on 27.2. The doorway paragraph's $\klam=\kc/\kf$ for sound, whose speed is 330 m/s, now reads $\klam=\kv/\kf$, since `\kc` is the speed of light. The glossary lines are not written, since a glossary row carries no anchor field; each term is found on its section's page.
