@@ -210,3 +210,7 @@ skaters themselves stay in ink.
 
 The seven variable anchors are written. Nothing else was wanted and nothing
 else was changed.
+
+Revised in the Manim pass of 2026-09-28:
+- `sim-skaters` · the angle carries a dashed circle at 90°, the right angle the book draws; landing on it morphs the readout by meaning, F_x bending into F₁ and F_y into F₂ under the root, and leaving it bends them back (manim-style 8, 11). Still, as before.
+- `sim-spring` · the relaxed-length slider is gone (rule 24.6: it moved where the spring ends and nothing else); the relaxed length is the book's 0.20 m and the stretch Δx is the one slider. Still.

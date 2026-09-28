@@ -37,9 +37,14 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
 ===================================================================== */
 (function () {
   const d = sim('sim-hooke-graph', 700);
-  const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 600, step: 5, value: 90, unit: 'N', dec: 0, aria: 'applied force' });
+  let Fh;
+  const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 600, step: 5, value: 90, unit: 'N', dec: 0, aria: 'applied force',
+    specials: [{ at: () => (Fh ? Fh.v : null), label: 'Hooke limit' }] });
   const kk = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 50, max: 400, step: 10, value: 150, unit: 'N/m', dec: 0, aria: 'force constant' });
-  const Fh = ctl(d.controls, { label: '\\text{Hooke limit}', cls: 'force', min: 40, max: 300, step: 10, value: 120, unit: 'N', dec: 0, aria: 'force at which the straight segment of the graph ends' });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  let wasPast = false;
+  Fh = ctl(d.controls, { label: '\\text{Hooke limit}', cls: 'force', min: 40, max: 300, step: 10, value: 120, unit: 'N', dec: 0, aria: 'force at which the straight segment of the graph ends' });
   const elastic = () => 1.5 * Fh.v, fracture = () => 1.9 * Fh.v;
   /* the deformation the force produces: proportional while Hooke's law holds, then steeper, then steeper again */
   function dl(f) {
@@ -101,10 +106,10 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       : reg === 1 ? 'A force of ' + fmt(f, 0) + ' N has stretched the spring ' + fmt(x, 3) + ' m, so the graph has left its straight segment, but the stretch is still elastic and comes back'
         : reg === 2 ? 'A force of ' + fmt(f, 0) + ' N has stretched the spring ' + fmt(x, 3) + ' m and deformed it permanently, so it will not return to its original length'
           : 'A force of ' + fmt(f, 0) + ' N has fractured the spring, which happens here at ' + fmt(fracture(), 0) + ' N');
-    readout(d.readout, reg === 0
-      ? `\\kdL = \\frac{\\kF}{\\kk} = \\frac{${fmt(f, 0)}\\ \\text{N}}{${fmt(kk.v, 0)}\\ \\text{N/m}} = ${fmt(x, 3)}\\ \\text{m}`
-      : `\\kF = ${fmt(f, 0)}\\ \\text{N} > ${fmt(Fh.v, 0)}\\ \\text{N}, \\qquad \\kdL = ${fmt(x, 3)}\\ \\text{m} > \\frac{\\kF}{\\kk} = ${fmt(f / kk.v, 3)}\\ \\text{m}`,
-      'The slope of the straight region is 1/k, so a stiffer spring gives a flatter line. Move the end of the straight segment to the right and the region in which Hooke’s law holds grows, as it does for a metal or a spring; move it to the left and it shrinks, as it does for a bone.');
+    const past = reg > 0;
+    F.morph(formula, `\\mk{dL}{\\kdL} = \\mk{nx}{${fmt(x, 3)}}\\ \\text{m} \\mk{rel}{${past ? '>' : '='}} \\mk{Fk}{\\frac{\\kF}{\\kk}} = \\mk{fk}{\\frac{${fmt(f, 0)}\\ \\text{N}}{${fmt(kk.v, 0)}\\ \\text{N/m}}} = \\mk{nfk}{${fmt(f / kk.v, 3)}}\\ \\text{m}`, { force: past !== wasPast });
+    wasPast = past;
+    note.textContent = 'The slope of the straight region is 1/k, so a stiffer spring gives a flatter line. The straight region is long for a metal or a spring and short for a bone.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -288,7 +293,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     headline(ctx, 'At a strain of ' + fmt(e, 3) + ' the tendon carries a stress of ' + fmt(s / 1e6, 1) + ' MN/m², and the slope of the curve there is ' + plain(m, 1) + ' N/m²');
     /* the book gives stress no letter of its own, so the readout writes the word; it is a bound type
        here, so the word is set in the stress hue rather than left in ink */
-    readout(d.readout, `\\htmlClass{kv-stress}{\\text{stress}} = ${sci(s, 2)}\\ \\text{N/m}^2 \\qquad \\text{strain} = \\frac{\\kdL}{\\kLo} = \\frac{${fmt(dL * 1000, 1)}\\ \\text{mm}}{${fmt(L0.v, 0)}\\ \\text{cm}} = ${fmt(e, 3)}`,
+    readout(d.readout, `\\text{strain} = \\frac{\\kdL}{\\kLo} = \\frac{${fmt(dL * 1000, 1)}\\ \\text{mm}}{${fmt(L0.v, 0)}\\ \\text{cm}} = ${fmt(e, 3)}`,
       'In the linear region the curve rises by Young’s modulus for tendon, 1 × 10⁹ N/m², for every unit of strain, so stress = Y × strain holds there. In the toe region the fibers are still aligning themselves with the stress and the tendon gives more easily, and in the failure region individual fibers break, so the slope falls away.');
   }
   register(d.fig, { update: () => {}, draw });

@@ -246,3 +246,7 @@ introduced. 4.7's notes say the same, so the two sections agree.
 
 The heading of the strategy is set in the book's voice, sentence case, as the
 headings of Chapters 1 to 3 are.
+
+Revised in the Manim pass of 2026-09-28:
+- `sim-tarzan` · the acceleration carries a dashed circle at zero, "if Tarzan is stationary"; on it the readout morphs T = w + ma = m(g + a) into T = w = mg, the ma and a terms fading toward w and g (manim-style 8, 11).
+- `sim-axes` · the turn of the axes carries a dashed circle at the slope's angle, recomputed as the slope moves, replacing the hand-written settle within a degree (rule 26.1); the readout is the one equation across the slope, F_net,y′ = m a_y′, and the net force along x′ moves to the line beneath (manim-style 12).

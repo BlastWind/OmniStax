@@ -177,3 +177,6 @@ says. No new hue and no new macro: `\kv`, `\kvo`, `\ka`, `\kt` and
 The two variable anchors are written. The conceptual question that names
 weight stays here, as the section asked: what it tests is that mass does not
 vary with location, and this is where the text says so.
+
+Revised in the Manim pass of 2026-09-28:
+- `sim-frictionless` · the slowing carries a dashed circle at zero, the frictionless surface the text names; on it the readout morphs v = v₀ − at into v = v₀, the −at term fading toward v₀ (manim-style 8, 11). The clock and transport are unchanged.

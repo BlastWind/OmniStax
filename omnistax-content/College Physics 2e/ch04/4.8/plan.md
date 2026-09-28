@@ -279,3 +279,7 @@ one line.
 
 The Critical Thinking item stays on 4.3's page, as this plan and 4.3's notes
 both say.
+
+Revised in the Manim pass of 2026-09-28:
+- `sim-strengths` · the two force choices no longer cut: the ends of the bracket and their drop lines slide from the old pick to the new, and the rows' emphasis crossfades (manim-style 15, 16).
+- `sim-field` · the headline at a charge states the fact instead of addressing the reader (root rule 17).

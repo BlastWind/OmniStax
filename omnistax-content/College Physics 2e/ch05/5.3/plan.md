@@ -425,3 +425,7 @@ and in ink, as the chapter config says.
   magnification it actually draws, a few hundred times at the numbers of
   Example 5.5. The caption now says hundreds of times and points at the
   number the figure prints.
+
+Revised in the Manim pass of 2026-09-28:
+- `sim-hooke-graph` · the force carries a dashed circle at the end of the straight segment, recomputed as that limit moves; the readout is one line with live numbers on both sides, ΔL = x = F/k while Hooke's law holds, and crossing the limit morphs its = into >, so ΔL = 1.3 m > F/k = 1.1 m is shown, not asserted (manim-style 8, 11, 12).
+- `sim-tendon` · the readout is the strain alone; the stress is in the headline (manim-style 12).

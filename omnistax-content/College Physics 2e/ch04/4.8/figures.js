@@ -40,7 +40,8 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     /* one bar per force, running from the foot of the ladder to its own strength */
     FORCE.forEach((f, i) => {
       const y = rowY(i), on = i === a || i === b;
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, on ? 0.26 : 0.09); ctx.fillRect(X(LO), y - 14, X(f.p) - X(LO), 28); ctx.restore();
+      const w = Math.max(A.a(String(i)), B.a(String(i)));   /* a picked row's emphasis crossfades as the pick moves */
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.09 + 0.17 * w); ctx.fillRect(X(LO), y - 14, X(f.p) - X(LO), 28); ctx.restore();
       dot(ctx, X(f.p), y, PAL.ink, on, 10);
       text(ctx, f.name, L - 26, y, PAL.ink, { align: 'right', weight: on ? 600 : 400 });
       text(ctx, f.p === 0 ? '1' : pow10(f.p), X(f.p) + 18, y, on ? PAL.ink : PAL.muted, { size: 17, weight: on ? 600 : 400 });
@@ -55,10 +56,12 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     text(ctx, 'relative strength', 60, ya + 26, PAL.ink, { weight: 600, size: 20 });
     /* the bracket that counts the powers of ten between the two picked forces */
     const e = fa.p - fb.p;
-    if (a !== b) {
-      const xa = X(fa.p), xb = X(fb.p), lo = Math.min(xa, xb), hi = Math.max(xa, xb);
-      line(ctx, xa, rowY(a) + 14, xa, 428, PAL.ink, 2, [4, 8]);
-      line(ctx, xb, rowY(b) + 14, xb, 428, PAL.ink, 2, [4, 8]);
+    /* the ends of the bracket and their drop lines slide from the old pick to the new one */
+    const [xa, ra] = A.mix((v) => [X(FORCE[+v].p), rowY(+v)]), [xb, rb] = B.mix((v) => [X(FORCE[+v].p), rowY(+v)]);
+    if (Math.abs(xa - xb) > 0.5 || a !== b) {
+      const lo = Math.min(xa, xb), hi = Math.max(xa, xb);
+      line(ctx, xa, ra + 14, xa, 428, PAL.ink, 2, [4, 8]);
+      line(ctx, xb, rb + 14, xb, 428, PAL.ink, 2, [4, 8]);
       hbracket(ctx, lo, hi, 428, PAL.ink);
       const lab = pow10(Math.abs(e)) + ' between them', mid = Math.min(1250, Math.max(160, (lo + hi) / 2));
       text(ctx, lab, mid, 404, PAL.ink, { weight: 600, align: 'center', bg: PAL.panel });
@@ -150,7 +153,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     }
     dot(ctx, px(x), py(y), PAL.ink, true, 7 + 3 * q);
     text(ctx, 'q = ' + fmt(q, 1), px(x), py(y) + (uy >= 0 ? 1 : -1) * (26 + 3 * q), PAL.ink, { size: 17, align: 'center', bg: PAL.panel });
-    headline(ctx, near ? 'Move the test charge clear of the charge it is sitting on, where the field has no one direction'
+    headline(ctx, near ? 'At a charge itself the field has no single direction, so the force on the test charge there is not defined'
       : Math.abs(ang) < 1 ? 'The force on the test charge is ' + fmt(Fm, 2) + ' units and runs straight along the axis, following the field line through it'
         : 'The force on the test charge is ' + fmt(Fm, 2) + ' units and points ' + fmt(Math.abs(ang), 0) + '° ' + (ang > 0 ? 'above' : 'below') + ' the axis');
     readout(d.readout, `\\kF = qE = (${fmt(q, 1)}\\ \\text{units})(${fmt(E, 2)}\\ \\text{units}) = ${fmt(Fm, 2)}\\ \\text{units}`,

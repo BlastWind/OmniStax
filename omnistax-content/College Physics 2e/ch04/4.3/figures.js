@@ -113,7 +113,8 @@ function bathScale(ctx, x, y, w, color) {
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 40, step: 0.5, value: 12, unit: 'N', dec: 1, onInput: reset, aria: 'force of friction' });
   const mm = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 60, step: 0.5, value: 30, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the wagon and its rider' });
   const T = 4;
-  const net = () => F1.v + F2.v - ff.v;
+  const fr = () => Math.min(ff.v, F1.v + F2.v);   /* at rest the friction holds only as much as the pushes ask of it */
+  const net = () => F1.v + F2.v - fr();
   const acc = () => Math.max(0, net()) / mm.v;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
@@ -144,9 +145,9 @@ function bathScale(ctx, x, y, w, color) {
       headLabel(ctx, lab + ' = ' + fmt(val, 1) + ' N', wx - 84, wx - 84 + L, y, cf);
     });
     /* the friction acts where the wheels meet the ground, so it is drawn on the ground */
-    const Lf = alen(ff.v, K, 10);
+    const Lf = alen(fr(), K, 10);
     arrow(ctx, wx - 48, gy + 12, wx - 48 - Lf, gy + 12, cf, 5);
-    text(ctx, 'f = ' + fmt(ff.v, 1) + ' N', wx - 60 - Lf, gy + 12, cf, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'f = ' + fmt(fr(), 1) + ' N', wx - 60 - Lf, gy + 12, cf, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
     /* the acceleration is a third row above the pushes, so it never runs off the right edge */
     if (a > 0.01) {
       const La = Math.min(200, 30 + a * 60);
@@ -164,7 +165,7 @@ function bathScale(ctx, x, y, w, color) {
     fbd(ctx, 420, 620,
       [{ dx: 1, v: F1.v, label: 'F_1 = ' + fmt(F1.v, 1) + ' N', c: cf, row: -22 },
        { dx: 1, v: F2.v, label: 'F_2 = ' + fmt(F2.v, 1) + ' N', c: cf, row: 22 },
-       { dx: -1, v: ff.v, label: 'f = ' + fmt(ff.v, 1) + ' N', c: cf, row: 0 }],
+       { dx: -1, v: fr(), label: 'f = ' + fmt(fr(), 1) + ' N', c: cf, row: 0 }],
       [{ dy: 1, label: 'w = ' + sig3(w) + ' N', c: cf },
        { dy: -1, label: 'N = ' + sig3(w) + ' N', c: cf }],
       k, 'the external forces on the wagon and its rider');
@@ -189,13 +190,13 @@ function bathScale(ctx, x, y, w, color) {
     pinned(ctx, gbox, g.X, g.Y, tau, v, PAL.ink, fmt(v, 1) + ' m/s');
     text(ctx, 'the slope is the acceleration', g.X(2), g.Y(VR) + 26, C('acceleration'), { size: 17, weight: 600, align: 'center' });
     topline(ctx, n <= 0
-      ? 'The two pushes together, ' + fmt(F1.v + F2.v, 1) + ' N, do not overcome the ' + fmt(ff.v, 1) + ' N of friction, so the wagon stays where it is'
+      ? 'The two pushes together, ' + fmt(F1.v + F2.v, 1) + ' N, are no more than the ' + fmt(ff.v, 1) + ' N the friction can give, so the friction matches them and the wagon stays where it is'
       : past
         ? 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(n, 1) + ' N on ' + fmt(mm.v, 1) + ' kg has carried the wagon ' + fmt(x, 1) + ' m, past the end of the ' + XMAX + ' m of ground drawn here, at ' + fmt(v, 2) + ' m/s'
         : 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(n, 1) + ' N on ' + fmt(mm.v, 1) + ' kg has given the wagon ' + fmt(a, 2) + ' m/s² of acceleration, and it has reached ' + fmt(v, 2) + ' m/s');
-    readout(d.readout, `\\kFnet = \\kFone + \\kFtwo - \\kff = ${fmt(F1.v, 1)}\\ \\text{N} + ${fmt(F2.v, 1)}\\ \\text{N} - ${fmt(ff.v, 1)}\\ \\text{N} = ${fmt(n, 1)}\\ \\text{N}`,
+    readout(d.readout, `\\kFnet = \\kFone + \\kFtwo - \\kff = ${fmt(F1.v, 1)}\\ \\text{N} + ${fmt(F2.v, 1)}\\ \\text{N} - ${fmt(fr(), 1)}\\ \\text{N} = ${fmt(n, 1)}\\ \\text{N}`,
       n <= 0
-        ? 'The weight of the system, ' + sig3(w) + ' N, and the support of the ground are equal and opposite, so the net external force is the horizontal one alone, and here it is not greater than zero.'
+        ? 'The weight of the system, ' + sig3(w) + ' N, and the support of the ground are equal and opposite, so the net external force is the horizontal one alone, and here the friction cancels it.'
         : 'Dividing by the mass gives a = F net / m = ' + fmt(n, 1) + ' N / ' + fmt(mm.v, 1) + ' kg = ' + fmt(a, 2) + ' m/s², in the direction of the net force. The weight of the system, ' + sig3(w) + ' N, and the support of the ground are equal and opposite, so they add nothing to it.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
@@ -262,8 +263,8 @@ function bathScale(ctx, x, y, w, color) {
     });
     text(ctx, 'every step of ten in the mass is a step of a tenth in the acceleration', g.X(2.6), g.Y(5.5), PAL.muted, { size: 17, align: 'center' });
     headline(ctx, 'The same ' + fmt(Fp.v, 0) + ' N gives the ' + fmt(mb.v, 3) + ' kg ball ' + sig3(ab) + ' m/s² and the ' + commas(fmt(ms.v, 0)) + ' kg SUV ' + sig3(as) + ' m/s²');
-    readout(d.readout, `\\ka = \\frac{\\kF}{m} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mb.v, 3)}\\ \\text{kg}} = ${sig3(ab)}\\ \\text{m/s}^2 \\qquad \\ka = \\frac{\\kF}{m} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${commas(fmt(ms.v, 0))}\\ \\text{kg}} = ${sig3(as)}\\ \\text{m/s}^2`,
-      'The force is the same in both cases, so the only thing that sets the two accelerations apart is the mass: the SUV is ' + sig3(ms.v / mb.v) + ' times as massive as the ball and accelerates at ' + sig3(ms.v / mb.v) + ' times less.');
+    readout(d.readout, `\\ka = \\frac{\\kF}{m} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mb.v, 3)}\\ \\text{kg}} = ${sig3(ab)}\\ \\text{m/s}^2`,
+      'The same force on the SUV gives ' + sig3(as) + ' m/s². It is the same in both cases, so the only thing that sets the two accelerations apart is the mass: the SUV is ' + sig3(ms.v / mb.v) + ' times as massive as the ball and accelerates at ' + sig3(ms.v / mb.v) + ' times less.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -320,98 +321,17 @@ function bathScale(ctx, x, y, w, color) {
 })();
 
 /* =====================================================================
-   FIGURE 4.8: the rocket sled of Example 4.2. The sled runs down its rail
-   for two seconds, so the idea has a time in it and the figure loops with
-   the scrubber. The graph beside the free-body diagram is the acceleration
-   against the number of rockets burning, against the dashed line the
-   accelerations would lie on if they were simply proportional.
-===================================================================== */
-(function () {
-  const d = sim('sim-sled', 860);
-  const Tt = ctl(d.controls, { label: '\\kTf', cls: 'force', min: 5000, max: 40000, step: 100, value: 25900, unit: 'N', dec: 0, onInput: reset, aria: 'thrust of one rocket' });
-  /* how many of the four rockets are burning is a count, so it is a row of buttons and not a slider */
-  const nn = choice(d.controls, {
-    label: '\\text{rockets burning}', aria: 'number of rockets burning', value: '4',
-    options: [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }],
-    onInput: () => reset(),
-  });
-  const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 2000, step: 50, value: 650, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction' });
-  const M = 2100, T = 2;
-  const accOf = (n) => Math.max(0, n * Tt.v - ff.v) / M;
-  const cy = cycle(() => T, 1.2);
-  function reset() { cy.reset(); }
-  function draw() {
-    const { ctx } = begin(d.c);
-    const n = +nn.value, a = accOf(n), net = n * Tt.v - ff.v, w = M * G;
-    const tau = cy.now(), x = 0.5 * a * tau * tau, v = a * tau;
-    /* fixed scene scale: the rail is ruled 0 to 100 m and never rescales. Example 4.2 covers 98 m in
-       the two seconds of the run and so fills it, and a harder burn runs past the end, where the sled
-       is held at the last mark and the headline says how far it has really gone. */
-    const gy = 330, x0 = 250, XMAX = 100, SC = 620 / XMAX, SX = (mtr) => x0 + mtr * SC;
-    strip(ctx, 60, 1340, gy + 26, 40);
-    const past = x > XMAX;
-    const sx = SX(Math.min(x, XMAX)), sy = gy - 34, cf = C('force'), K = 170 / 40000;
-    sled(ctx, sx, sy, PAL.ink, n);
-    /* one thrust per burning rocket, drawn from its rocket forward, the row stacked just over the sled */
-    for (let i = 0; i < n; i++) arrow(ctx, sx - 66 + i * 38, sy - 56 - i * 22, sx - 66 + i * 38 + alen(Tt.v, K, 20), sy - 56 - i * 22, cf, 4);
-    headLabel(ctx, n + 'T = ' + sig3(n * Tt.v) + ' N', sx - 66 + (n - 1) * 38, sx - 66 + (n - 1) * 38 + alen(Tt.v, K, 20), sy - 56 - (n - 1) * 22 - 26, cf);
-    const Lf = alen(ff.v, K, 24);
-    arrow(ctx, sx - 20, sy - 56, sx - 20 - Lf, sy - 56, cf, 4);
-    text(ctx, 'f = ' + commas(fmt(ff.v, 0)) + ' N', sx - 32 - Lf, sy - 56, cf, { size: 20, weight: 600, align: 'right' });
-    if (a > 0.01) {
-      const La = Math.min(180, 30 + a * 2.2);
-      arrow(ctx, sx + 130, sy - 40, sx + 130 + La, sy - 40, C('acceleration'), 5);
-      headLabel(ctx, 'a = ' + fmt(a, 1) + ' m/s²', sx + 130, sx + 130 + La, sy - 40, C('acceleration'));
-    }
-    if (v > 0.1) {
-      const Lv = Math.min(180, v * 1.8);
-      arrow(ctx, sx + 130, sy + 6, sx + 130 + Lv, sy + 6, C('velocity'), 5);
-      headLabel(ctx, 'v = ' + fmt(v, 1) + ' m/s', sx + 130, sx + 130 + Lv, sy + 6, C('velocity'));
-    }
-    scale(ctx, SX, 0, XMAX, 10, gy + 90, 'm', 2);
-    /* the free-body diagram of the sled, its rockets and its rider */
-    const k = 170 / Math.max(n * Tt.v, ff.v, 1);
-    fbd(ctx, 400, 620,
-      [{ dx: 1, v: n * Tt.v, label: n + 'T = ' + sig3(n * Tt.v) + ' N', c: cf, row: -20 },
-       { dx: -1, v: ff.v, label: 'f = ' + commas(fmt(ff.v, 0)) + ' N', c: cf, row: 20 }],
-      [{ dy: 1, label: 'w = ' + sig3(w) + ' N', c: cf },
-       { dy: -1, label: 'N = ' + sig3(w) + ' N', c: cf }],
-      k, 'the external forces on the sled, its rockets and its rider');
-    /* the net force is a force and takes the force hue; it stands on its own row below the diagram */
-    if (net > 0) {
-      arrow(ctx, 400, 782, 400 + alen(net, k), 782, cf, 5);
-      text(ctx, 'F_net = ' + sig3(net) + ' N', 400 + alen(net, k) + 12, 782, cf, { size: 19, weight: 600 });
-    }
-    /* the acceleration against the number of rockets burning */
-    /* fixed axes: four rockets at the largest thrust the slider allows and no friction give
-       4 × 40,000 / 2,100 = 76.2 m/s², so the acceleration axis is always 0 to 80 m/s², ticked every
-       20, and it never rescales as a slider moves; a value past the top is pinned at the edge */
-    const AR = 80, gbox = { l: 920, r: 1270, t: 520, b: 770 };
-    const g = axes(ctx, gbox, [0, 4], [0, AR], { xl: 'rockets burning', xc: PAL.ink, yl: 'a (m/s²)', yc: C('acceleration'), nx: 4, ny: 4, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, 0) });
-    inbox(ctx, gbox, () => {
-      line(ctx, g.X(0), g.Y(0), g.X(4), g.Y(accOf(4)), PAL.muted, 3, [10, 10]);
-      line(ctx, g.X(1), g.Y(accOf(1)), g.X(4), g.Y(accOf(4)), C('acceleration'), 5);
-      for (let i = 1; i <= 4; i++) dot(ctx, g.X(i), g.Y(accOf(i)), C('acceleration'), i !== n, 9);
-    });
-    pinned(ctx, gbox, g.X, g.Y, n, a, PAL.ink, fmt(a, 1) + ' m/s²');
-    text(ctx, 'simply proportional', g.X(1.45), g.Y(AR * 0.36) - 30, PAL.muted, { size: 17, align: 'center' });
-    topline(ctx, 'After ' + fmt(tau, 2) + ' s ' + (n === 1 ? 'one thrust of ' : n + ' thrusts of ') + sig3(Tt.v) + ' N less ' + commas(fmt(ff.v, 0)) + ' N of friction have given the sled ' + fmt(a, 1) + ' m/s², and it is at ' + fmt(v, 1) + ' m/s' + (past ? ', ' + sig3(x) + ' m down the rail and past the end of the 100 m drawn here' : ''));
-    readout(d.readout, `\\kFnet = ${n}\\kTf - \\kff = ${n}(${sig3(Tt.v)}\\ \\text{N}) - ${commas(fmt(ff.v, 0))}\\ \\text{N} = ${sig3(net)}\\ \\text{N} = m\\ka`,
-      'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s². With one rocket burning the acceleration is ' + fmt(accOf(1), 1) + ' m/s², not a quarter of ' + fmt(accOf(4), 1) + ' m/s², because the same ' + commas(fmt(ff.v, 0)) + ' N of friction is taken off it.');
-  }
-  register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
-})();
-
-/* =====================================================================
-   SIM: Figure 4.8 made into its free-body diagram. One story slider runs
+   FIGURE 4.8: the rocket sled of Example 4.2, made into its free-body
+   diagram. One story slider runs
    from the picture to the diagram: the rail, the rider and the flames
    fade, the outline of the sled and its rockets bends into a dot, and
    the dot carries every force to where the diagram stands, each arrow
-   re-rooting its tail on it. The sled is caught at the instant of
-   Example 4.2, so the story is the only timeline.
+   re-rooting its tail on it, while the graph of the acceleration
+   against the rockets burning arrives beside it. The sled is caught at
+   the instant of Example 4.2, so the story is the only timeline.
 ===================================================================== */
 (function () {
-  const d = sim('sim-sled-morph', 700);
+  const d = sim('sim-sled', 700);
   const M = 2100, A0 = 49;
   let nn, ff;
   const Tt = ctl(d.controls, { label: '\\kTf', cls: 'force', min: 5000, max: 40000, step: 12.5, value: (M * A0 + 650) / 4, unit: 'N', dec: 0, aria: 'thrust of one rocket',
@@ -515,6 +435,22 @@ function bathScale(ctx, x, y, w, color) {
       ctx.save(); ctx.globalAlpha = t;
       arrow(ctx, DOT[0], DOT[1] + 190, DOT[0] + net * K, DOT[1] + 190, cf, 8);
       text(ctx, 'F_net', DOT[0] + net * K + 14, DOT[1] + 190, cf, { size: 30, weight: 600 });
+      ctx.restore();
+    }
+    /* the acceleration against the rockets burning, beside the diagram it follows from; with one
+       rocket it is not a quarter of four, since the same friction comes off every count */
+    if (t > 0.01) {
+      const accOf = (k) => Math.max(0, k * Tt.v - ff.v) / M, AR = 80, gbox = { l: 1000, r: 1320, t: 140, b: 320 };
+      ctx.save(); ctx.globalAlpha = t;
+      const g = axes(ctx, gbox, [0, 4], [0, AR], { xl: 'rockets burning', xc: PAL.ink, yl: 'a (m/s²)', yc: C('acceleration'), nx: 4, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
+      inbox(ctx, gbox, () => {
+        line(ctx, g.X(0), g.Y(0), g.X(4), g.Y(accOf(4)), PAL.muted, 3, [10, 10]);
+        line(ctx, g.X(1), g.Y(accOf(1)), g.X(4), g.Y(accOf(4)), C('acceleration'), 5);
+        for (let i = 1; i <= 4; i++) dot(ctx, g.X(i), g.Y(accOf(i)), C('acceleration'), i !== n, 9);
+      });
+      const nm = nn.mix((v) => +v);   /* the marker slides along the line to the new count */
+      pinned(ctx, gbox, g.X, g.Y, nm, accOf(nm), PAL.ink, fmt(a, 1) + ' m/s²');
+      text(ctx, 'simply proportional', g.X(1.6), g.Y(AR * 0.36) - 26, PAL.muted, { size: 17, align: 'center' });
       ctx.restore();
     }
     const terms = [0, 1, 2, 3].slice(0, n).map((i) => `\\mk{T${i}}{${i ? '{}+' : ''}\\kTf}`).join(' ');

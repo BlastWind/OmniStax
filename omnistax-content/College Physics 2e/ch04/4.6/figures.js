@@ -20,7 +20,10 @@ const RAD = Math.PI / 180;
 (function () {
   const d = sim('sim-tarzan', 720);
   const M = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 100, step: 5, value: 80, unit: 'kg', dec: 0, aria: 'mass of the man' });
-  const A = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: -2.5, max: 2.5, step: 0.25, value: 0, unit: 'm/s²', dec: 2, aria: 'vertical acceleration' });
+  const A = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: -2.5, max: 2.5, step: 0.25, value: 0, unit: 'm/s²', dec: 2, aria: 'vertical acceleration',
+    specials: [{ at: 0, label: 'stationary' }] });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
   const K = 0.20;                     /* logical units per newton, so an 80 kg weight draws 157 units long */
   const PX = [30, 370, 710, 1050], PW = 310;
   const LAB = ['(a)', '(b)', '(c)', '(d)'];
@@ -90,10 +93,12 @@ const RAD = Math.PI / 180;
     headline(ctx, Math.abs(a) < 1e-9
       ? 'Tarzan hangs still, so the tension of ' + fmt(T, 0) + ' N is exactly his weight of ' + fmt(w, 0) + ' N'
       : 'Tarzan accelerates ' + (a > 0 ? 'upward' : 'downward') + ' at ' + fmt(Math.abs(a), 2) + ' m/s², so the tension of ' + fmt(T, 0) + ' N is ' + fmt(Math.abs(gap), 0) + ' N ' + (a > 0 ? 'more' : 'less') + ' than his weight');
-    readout(d.readout, `\\kTf = \\kwgt + m\\ka = m(\\kg + \\ka) = (${fmt(m, 0)}\\ \\text{kg})(${fmt(G, 2)} + ${fmt(a, 2)})\\ \\text{m/s}^2 = ${fmt(T, 0)}\\ \\text{N}`,
-      Math.abs(a) < 1e-9
-        ? 'The acceleration along the vertical axis is zero, so the net force along that axis is zero and the tension is exactly the weight, as the fourth panel shows.'
-        : 'The acceleration along the vertical axis is ' + fmt(Math.abs(a), 2) + ' m/s², so the net force along that axis is ' + fmt(Math.abs(gap), 0) + ' N and the tension no longer matches the weight.');
+    F.morph(formula, Math.abs(a) < 1e-9
+      ? `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} = \\mk{m}{m}\\mk{g}{\\kg} = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}}\\ \\text{m/s}^2) = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`
+      : `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} \\mk{ma}{{}+ m\\ka} = \\mk{m}{m}(\\mk{g}{\\kg} \\mk{a}{{}+ \\ka}) = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}} \\mk{na}{{}${a < 0 ? '-' : '+'} ${fmt(Math.abs(a), 2)}})\\ \\text{m/s}^2 = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`);
+    note.textContent = Math.abs(a) < 1e-9
+        ? 'The acceleration along the vertical axis is zero, so the net force along that axis is zero and the tension is exactly the weight.'
+        : 'The acceleration along the vertical axis is ' + fmt(Math.abs(a), 2) + ' m/s², so the net force along that axis is ' + fmt(Math.abs(gap), 0) + ' N and the tension no longer matches the weight.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -111,17 +116,9 @@ const RAD = Math.PI / 180;
 (function () {
   const d = sim('sim-axes', 780);
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 40, step: 1, value: 25, unit: '°', dec: 0, aria: 'angle of the incline' });
-  const PH = ctl(d.controls, { label: '\\varphi', cls: '', min: 0, max: 45, step: 1, value: 0, unit: '°', dec: 0, aria: 'angle the axes are turned through' });
+  const PH = ctl(d.controls, { label: '\\varphi', cls: '', min: 0, max: 45, step: 1, value: 0, unit: '°', dec: 0, aria: 'angle the axes are turned through',
+    specials: [{ at: () => TH.v, label: 'along the slope' }] });
   const M = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 100, step: 5, value: 40, unit: 'kg', dec: 0, aria: 'mass of the block' });
-  /* The state that matters, φ = θ, moves with the slope, so it cannot be a fixed tick on the track;
-     instead the axes settle onto the slope when the thumb is let go within a degree of it, which is
-     what a soft detent does for a preset value. */
-  d.fig.addEventListener('change', (e) => {
-    const t = e.target;
-    if (!t || typeof t.getAttribute !== 'function') return;
-    if (t.getAttribute('aria-label') !== 'angle the axes are turned through') return;
-    if (PH.v !== TH.v && Math.abs(PH.v - TH.v) <= 1) PH.set(TH.v);
-  });
   const GY = 440, X0 = 90, L = 430;           /* the ground, the foot of the incline and the length of its face */
   const WLEN = 115;                           /* the weight always draws this long, so the picture reads at every mass */
   const O = [900, 320];                       /* the centre of the free-body diagram */
@@ -204,10 +201,10 @@ const RAD = Math.PI / 180;
     headline(ctx, along
       ? 'With one axis along the slope the block accelerates at ' + num(ax, 2) + ' m/s² along it and not at all across it'
       : 'Turned ' + fmt(Math.abs(TH.v - PH.v), 0) + '° from the slope, the axes split the acceleration into ' + num(ax, 2) + ' and ' + num(ay, 2) + ' m/s²');
-    readout(d.readout, `\\kFnetx = m\\ka_{x'} = ${num(wx + nx, 0)}\\ \\text{N} \\qquad \\kFnety = m\\ka_{y'} = ${num(wy + ny, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kFnety = m\\ka_{y'} = ${num(wy + ny, 0)}\\ \\text{N}`,
       along
-        ? 'With one axis along the slope the block accelerates along x′ alone, so the acceleration across the slope is zero and the net force across it is zero as well, and only the weight is left to resolve.'
-        : 'These axes leave the block accelerating along both of them, so neither net force is zero and both the weight and the normal force have to be resolved. Turn the axes to ' + fmt(TH.v, 0) + '°, the angle of the slope, and the second equation becomes zero.');
+        ? 'With one axis along the slope the block accelerates along x′ alone, with a net force of ' + num(wx + nx, 0) + ' N, and only the weight is left to resolve.'
+        : 'The net force along x′ is ' + num(wx + nx, 0) + ' N. These axes leave the block accelerating along both of them, so both the weight and the normal force have to be resolved; with the axes at ' + fmt(TH.v, 0) + '°, the angle of the slope, the net force across it is zero.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

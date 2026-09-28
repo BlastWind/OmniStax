@@ -403,3 +403,7 @@ contestant's head.
   carries `\mu_{\text{k}} = \frac{m\kg\sin\theta}{m\kg\cos\theta} = \tan\theta`,
   so the weight in the take-home experiment's result wears the same hues as
   the two rows above it on the formula sheet.
+
+Revised in the Manim pass of 2026-09-28:
+- `sim-interface` · the applied force carries a dashed circle at f_s(max) = μ_s mg, the breakaway the text names, recomputed from the mass (rule 26.1); the readout is that one equation (manim-style 12).
+- `sim-probe` · the headline no longer speaks of the drawing (root rule 17).

@@ -160,9 +160,9 @@ function trafficLight(ctx, x, y, color) {
     dot(ctx, ox, cyy, PAL.ink, true, 6);
     text(ctx, 'T₁ₓ = T₂ₓ = ' + fmt(T1 * cos(t1.v), 1) + ' N', ox, cyy + 36, fc, { size: 20, weight: 600, align: 'center' });
     headline(ctx, 'At ' + fmt(t1.v, 1) + '° and ' + fmt(t2.v, 1) + '° the wires carry ' + fmt(T1, 0) + ' N and ' + fmt(T2, 0) + ' N, and together they hold up ' + fmt(w, 0) + ' N');
-    readout(d.readout, `\\kTone\\cos\\theta_1 = \\kTtwo\\cos\\theta_2,\\quad \\kTone\\sin\\theta_1 + \\kTtwo\\sin\\theta_2 = \\kwgt = ${fmt(w, 0)}\\ \\text{N}\\;\\Rightarrow\\;\\kTone = ${fmt(T1, 0)}\\ \\text{N},\\ \\kTtwo = ${fmt(T2, 0)}\\ \\text{N}`,
-      Math.abs(t1.v - t2.v) < 0.26 ? 'The angles on either side are equal, so the two tensions are equal, as they were for the tightrope walker.'
-        : 'The wire at ' + fmt(Math.max(t1.v, t2.v), 1) + '° is nearer the vertical and carries the larger tension, because it holds up the greater part of the weight. Bring both wires toward the horizontal and both tensions grow.');
+    readout(d.readout, `\\kTone\\sin\\theta_1 + \\kTtwo\\sin\\theta_2 = (${fmt(T1, 0)}\\ \\text{N})\\sin ${fmt(t1.v, 1)}^\\circ + (${fmt(T2, 0)}\\ \\text{N})\\sin ${fmt(t2.v, 1)}^\\circ = ${fmt(w, 0)}\\ \\text{N} = \\kwgt`,
+      'The horizontal components cancel, T₁ cos θ₁ = T₂ cos θ₂, and that with the vertical balance fixes both tensions. ' + (Math.abs(t1.v - t2.v) < 0.26 ? 'The angles on either side are equal, so the two tensions are equal, as they were for the tightrope walker.'
+        : 'The wire at ' + fmt(Math.max(t1.v, t2.v), 1) + '° is nearer the vertical and carries the larger tension, because it holds up the greater part of the weight. Brought toward the horizontal, both wires carry larger tensions.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -305,8 +305,8 @@ function trafficLight(ctx, x, y, color) {
     line(ctx, g.X(t), box.b, g.X(t), g.Y(v), PAL.ink, 2, [4, 8]);
     dot(ctx, g.X(t), g.Y(v), vc, true, 9);
     headline(ctx, 'After ' + fmt(t, 2) + ' s he is at ' + fmt(v, 2) + ' m/s, and the ground has pushed him forward with ' + fmt(Fn, 0) + ' N all the way');
-    readout(d.readout, `\\ka = \\frac{\\kdv}{\\kdt} = \\frac{${fmt(vf.v, 2)}\\ \\text{m/s}}{${fmt(el1.v, 2)}\\ \\text{s}} = ${fmt(a, 2)}\\ \\text{m/s}^2,\\qquad \\kFnet = m\\ka = (${fmt(mm.v, 1)}\\ \\text{kg})(${fmt(a, 2)}\\ \\text{m/s}^2) = ${fmt(Fn, 0)}\\ \\text{N}`,
-      'That is about ' + fmt(Fn / 4.45, 0) + ' pounds, a reasonable average force, and he covers ' + fmt(stot, 1) + ' m while he is getting up to speed.');
+    readout(d.readout, `\\kFnet = m\\frac{\\kdv}{\\kdt} = (${fmt(mm.v, 1)}\\ \\text{kg})\\frac{${fmt(vf.v, 2)}\\ \\text{m/s}}{${fmt(el1.v, 2)}\\ \\text{s}} = ${fmt(Fn, 0)}\\ \\text{N}`,
+      'The average acceleration is ' + fmt(a, 2) + ' m/s². The force is about ' + fmt(Fn / 4.45, 0) + ' pounds, a reasonable average force, and he covers ' + fmt(stot, 1) + ' m while he is getting up to speed.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.max(0.2, el1.v / 5)), draw });
 })();

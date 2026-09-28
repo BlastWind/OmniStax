@@ -252,3 +252,6 @@ No symbol row is added for the four forces the book names in words. They are
 written $\kF$ with the book's own subscript, so they already wear the force
 hue, and a row apiece would add four symbols that the book never sets as
 symbols of its own. The section is unchanged.
+
+Revised in the Manim pass of 2026-09-28:
+- `sim-cart` · the Labels on/off choice is removed (rule 26.7): the scene draws no force labels, since they ride a moving scene and two pairs share origins; the free-body diagrams carry every value and the pointer names each arrow. The readout is one equation, a = (F_floor − f)/m (manim-style 12).

@@ -48,7 +48,11 @@ function hook(ctx, x, y, color) {
   const d = sim('sim-skaters', 620);
   const F1 = ctl(d.controls, { label: '\\kFone', cls: 'force', min: 10, max: 80, step: 1, value: 50, unit: 'N', dec: 0, aria: 'the push of the first skater' });
   const F2 = ctl(d.controls, { label: '\\kFtwo', cls: 'force', min: 10, max: 80, step: 1, value: 40, unit: 'N', dec: 0, aria: 'the push of the second skater' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the two pushes' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the two pushes',
+    specials: [{ at: 90, label: 'right angle' }] });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  let wasRight = TH.v === 90;
   const U = 2.5;                                  /* logical units per newton */
   const sub1 = 'F₁', sub2 = 'F₂';
   /* a label set just beyond the head of an arrow that points along the angle a, and
@@ -111,8 +115,12 @@ function hook(ctx, x, y, color) {
 
     headline(ctx, 'A push of ' + fmt(F1.v, 0) + ' N and a push of ' + fmt(F2.v, 0) + ' N, ' + fmt(TH.v, 0)
       + '° apart, add to a total force of ' + fmt(tot, 1) + ' N at ' + fmt(ang / RAD, 1) + '° from the first push');
-    readout(d.readout, `\\kFtot = \\sqrt{\\kFx^2 + \\kFy^2} = \\sqrt{(${fmt(fx, 1)}\\ \\text{N})^2 + (${fmt(fy, 1)}\\ \\text{N})^2} = ${fmt(tot, 1)}\\ \\text{N}`,
-      'The two pushes are laid head to tail, so the total force runs from the tail of the first arrow to the head of the second. At the right angle the book draws, the components are the two pushes themselves and the total force is the square root of F₁² + F₂².');
+    const right = Math.abs(TH.v - 90) < 1e-9;
+    F.morph(formula, `\\mk{t}{\\kFtot} = \\sqrt{\\mk{x}{${right ? '\\kFone' : '\\kFx'}}^2 + \\mk{y}{${right ? '\\kFtwo' : '\\kFy'}}^2} = \\sqrt{(\\mk{nx}{${fmt(fx, 1)}}\\ \\text{N})^2 + (\\mk{ny}{${fmt(fy, 1)}}\\ \\text{N})^2} = \\mk{nt}{${fmt(tot, 1)}}\\ \\text{N}`, { force: right !== wasRight });
+    wasRight = right;
+    note.textContent = right
+      ? 'At a right angle the components are the two pushes themselves.'
+      : 'The two pushes are laid head to tail, so the total force runs from the tail of the first arrow to the head of the second.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -126,7 +134,7 @@ function hook(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-spring', 660);
-  const X = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0.10, max: 0.40, step: 0.01, value: 0.20, unit: 'm', dec: 2, aria: 'the undistorted length of the spring' });
+  const X = { v: 0.20 };                          /* the relaxed length, the book's */
   const DX = ctl(d.controls, { label: '\\kdx', cls: 'position', min: 0, max: 0.10, step: 0.005, value: 0.06, unit: 'm', dec: 3, aria: 'the distance the spring is stretched' });
   const SC = 2000;                                /* logical units per meter */
   const STD = 0.01;                               /* the standard: the restoring force of a one centimeter stretch */
@@ -174,7 +182,7 @@ function hook(ctx, x, y, color) {
       ? 'The spring sits at its relaxed length of ' + fmt(X.v * 100, 0) + ' cm, so it exerts no restoring force and the scale reads nothing'
       : 'The spring is stretched ' + fmt(DX.v * 100, 1) + ' cm past its relaxed length of ' + fmt(X.v * 100, 0) + ' cm, and the scale reads ' + fmt(r, 1) + ' units of the standard force');
     readout(d.readout, `\\kFres = \\frac{\\kdx}{\\htmlClass{kv-position}{\\Delta x_{\\text{std}}}}\\,\\htmlClass{kv-force}{F_{\\text{std}}} = \\frac{${fmt(DX.v * 100, 1)}\\ \\text{cm}}{1.0\\ \\text{cm}}\\,\\htmlClass{kv-force}{F_{\\text{std}}} = ${fmt(r, 1)}\\,\\htmlClass{kv-force}{F_{\\text{std}}}`,
-      'The standard here is the restoring force of this spring stretched one centimeter, and the face of the scale in part (c) is marked off in those units, so a reading of six means the pull on the hook is six times the standard force. The relaxed length changes where the spring ends and nothing else: the standard is fixed by the stretch past that length, so the same Δx always gives the same reading.');
+      'The standard here is the restoring force of this spring stretched one centimeter, and the spring scale is marked off in those units, so a reading of six means the pull on the hook is six times the standard force.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

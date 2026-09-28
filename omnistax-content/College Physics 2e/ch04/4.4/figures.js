@@ -169,13 +169,9 @@ function plume(ctx, x, y, color, f) {
   const fr = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 60, step: 1, value: 24, unit: 'N', dec: 1, onInput: reset, aria: 'forces opposing the motion' });
   const mp = ctl(d.controls, { label: 'm_{\\text{prof}}', cls: '', min: 40, max: 100, step: 1, value: 65, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the professor' });
   const mc = ctl(d.controls, { label: 'm_{\\text{cart}}', cls: '', min: 5, max: 40, step: 1, value: 19, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the cart and its equipment' });
-  /* Seven force labels ride a scene that crosses the room, and two of them share an origin at her
-     hand, so they are off until they are asked for (rule 26.7). The two system boundaries are frame
-     labels and stay, the free-body diagrams below carry every value, and the pointer names any arrow. */
-  const LAB = choice(d.controls, {
-    label: '\\text{Labels}', aria: 'Force labels on the scene', value: 'off',
-    options: [{ value: 'on', label: 'on' }, { value: 'off', label: 'off' }],
-  });
+  /* The force labels would ride a scene that crosses the room, and two pairs share an origin, so the
+     scene draws none (rule 26.7): the two system boundaries are frame labels and stay, the free-body
+     diagrams below carry every value, and the pointer names any arrow. */
   const ROOM = 8, FLOOR = 330, KF = 0.7;
   let hits = [];
   const run = () => {
@@ -216,21 +212,19 @@ function plume(ctx, x, y, color, f) {
     /* the forces opposing the motion, on the cart's wheels */
     const Lr = Math.max(44, fr.v * KF);   /* f is too small to draw to scale, as the book says of it */
     arrow(ctx, cxx - 40, 408, cxx - 40 - Lr, 408, cf, 4);
-    /* every arrow has a name under the pointer, and the names are drawn beside them when Labels is on */
-    const named = [
-      { x: hand + Lp, y: 200, side: 1, s: 'F_prof', name: 'F prof, the force the professor exerts on the cart' },
-      { x: hand - Lp, y: 200, side: -1, s: 'F_cart', name: 'F cart, the force the cart exerts back on the professor' },
-      { x: foot - Lf, y: 362, side: -1, s: 'F_foot', name: 'F foot, the force she exerts back on the floor' },
-      { x: foot + Lf, y: 362, side: 1, s: 'F_floor = ' + fmt(Ff.v, 0) + ' N', name: 'F floor, the force the floor exerts on her' },
-      { x: cxx - 40 - Lr, y: 408, side: -1, s: 'f = ' + fmt(fr.v, 1) + ' N', name: 'f, the forces opposing the motion' },
-    ];
-    hits = named.map((q) => ({ x: q.x, y: q.y, r: 30, name: q.name }));
-    if (LAB.value === 'on') named.forEach((q) => text(ctx, q.s, q.x + q.side * 12, q.y, cf, { size: 19, weight: 600, align: q.side > 0 ? 'left' : 'right', bg: alpha(PAL.panel, 0.85) }));
+    /* every arrow has a name under the pointer */
+    hits = [
+      { x: hand + Lp, y: 200, name: 'F prof, the force the professor exerts on the cart' },
+      { x: hand - Lp, y: 200, name: 'F cart, the force the cart exerts back on the professor' },
+      { x: foot - Lf, y: 362, name: 'F foot, the force she exerts back on the floor' },
+      { x: foot + Lf, y: 362, name: 'F floor, the force the floor exerts on her' },
+      { x: cxx - 40 - Lr, y: 408, name: 'f, the forces opposing the motion' },
+    ].map((q) => ({ ...q, r: 30 }));
     /* a free-body diagram for each system */
     fbd(ctx, 100, 470, 660, 'System 1: the professor, the cart and the equipment', Ff.v, 'F_floor', r.Fnet, r.M, r.a, cf);
     fbd(ctx, 740, 470, 1300, 'System 2: the cart and the equipment', r.Fprof, 'F_prof', r.Fnet2, mc.v, r.a, cf);
     topline(ctx, 'After ' + fmt(tau, 2) + ' s System 1 is still pushed forward with ' + fmt(Ff.v, 0) + ' N and held back by ' + fmt(fr.v, 1) + ' N, so its ' + fmt(r.M, 1) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s²');
-    readout(d.readout, `\\kFnet = \\kFfloor - \\kff = ${fmt(Ff.v, 0)}\\ \\text{N} - ${fmt(fr.v, 1)}\\ \\text{N} = ${fmt(r.Fnet, 1)}\\ \\text{N},\\qquad \\ka = \\frac{\\kFnet}{m} = \\frac{${fmt(r.Fnet, 1)}\\ \\text{N}}{${fmt(r.M, 1)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
+    readout(d.readout, `\\ka = \\frac{\\kFfloor - \\kff}{m} = \\frac{${fmt(Ff.v, 0)}\\ \\text{N} - ${fmt(fr.v, 1)}\\ \\text{N}}{${fmt(r.M, 1)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
       'The force the professor exerts on the cart is ' + fmt(r.Fnet2, 1) + ' N + ' + fmt(fr.v, 1) + ' N = ' + fmt(r.Fprof, 1) + ' N. It is internal to System 1, where it cancels against the force the cart exerts back on her, so it never enters the first calculation; taking the cart alone as System 2 makes it external, and then it is the force that accelerates the cart.');
   }
   hover(d.stage, () => hits);

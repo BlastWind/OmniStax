@@ -68,7 +68,8 @@ function skier(ctx, x, y, theta) {
   const d = sim('sim-interface', 720);
   const MU_S = 0.45, MU_K = 0.30;
   const m = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 200, step: 5, value: 100, unit: 'kg', dec: 0, aria: 'mass of the crate' });
-  const Fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 800, step: 10, value: 300, unit: 'N', dec: 0, aria: 'applied force' });
+  const Fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 800, step: 10, value: 300, unit: 'N', dec: 0, aria: 'applied force',
+    specials: [{ at: () => MU_S * m.v * G, label: 'breakaway' }] });
   /* the asperities: one fixed profile for each surface, so the picture is the same every frame */
   const LOW = [0.42, 0.78, 0.30, 0.95, 0.55, 0.22, 0.70, 0.38, 0.88, 0.48, 0.26, 0.66, 0.34, 0.80];
   const UP = [0.60, 0.28, 0.84, 0.40, 0.72, 0.34, 0.50, 0.92, 0.24, 0.62, 0.44, 0.86, 0.32, 0.56];
@@ -141,7 +142,7 @@ function skier(ctx, x, y, theta) {
     headline(ctx, sliding
       ? 'Your ' + fmt(Fp.v, 0) + ' N push has passed the ' + fmt(fmax, 0) + ' N these surfaces can hold, so the crate slides against ' + fmt(fk, 0) + ' N'
       : 'A normal force of ' + fmt(N, 0) + ' N presses the surfaces together, and your ' + fmt(Fp.v, 0) + ' N push is answered by ' + fmt(fr, 0) + ' N of friction');
-    readout(d.readout, `\\kN = m\\kg = (${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(N, 0)}\\ \\text{N},\\qquad \\kfsmax = \\mu_{\\text{s}}\\kN = (${fmt(MU_S, 2)})(${fmt(N, 0)}\\ \\text{N}) = ${fmt(fmax, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kfsmax = \\mu_{\\text{s}}\\kN = \\mu_{\\text{s}} m\\kg = (${fmt(MU_S, 2)})(${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(fmax, 0)}\\ \\text{N}`,
       'The coefficients are the ones the passage gives for this crate on this floor, 0.45 while it holds and 0.30 once it slides, so the crate breaks away at ' + fmt(fmax, 0) + ' N and then slides against ' + fmt(fk, 0) + ' N. The friction is parallel to the surface and points against the motion or the attempted motion. Press the two surfaces together harder and the actual area of contact, drawn heavy in the magnified view, grows; the friction grows with it, and the total area of the base never enters.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -390,7 +391,7 @@ function skier(ctx, x, y, theta) {
     text(ctx, 'f = ' + fmt(f, 2) + ' nN', tipX - 110 - fl / 2, surfaceY - 64, C('force'), { size: 20, weight: 600, align: 'center' });
     arrow(ctx, topX, 104, topX, 174, C('force'), 5);
     text(ctx, 'N = ' + fmt(N.v, 0) + ' nN', topX - 14, 140, C('force'), { size: 20, weight: 600, align: 'right' });
-    headline(ctx, 'Pressed on with N = ' + fmt(N.v, 0) + ' nN, the tip is dragged back by f = ' + fmt(f, 2) + ' nN, and it is drawn leaning behind its base by that much friction');
+    headline(ctx, 'Pressed on with N = ' + fmt(N.v, 0) + ' nN, the tip is dragged back by f = ' + fmt(f, 2) + ' nN, and it leans back behind its base as it is dragged');
     readout(d.readout, `\\kfk = \\mu_{\\text{k}}\\kN = (${fmt(uk.v, 2)})(${fmt(N.v, 0)}\\ \\text{nN}) = ${fmt(f, 2)}\\ \\text{nN}`,
       'Press the tip on harder and more of its atoms adhere to the surface, so the friction that leans it back is larger. The lean is drawn in proportion to that friction to make it visible and is not a measured angle. The atoms the tip has passed over are left vibrating, and that vibration travels away as sound and becomes the heat of rubbing.');
   }
