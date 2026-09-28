@@ -125,3 +125,10 @@ and no symbol row needed changing, as the plan said. The section's two concepts
 that reach back to Chapter 23 gained their edges at chapter level:
 `maxwells-equations` now takes Faraday's law and Lenz's law, and
 `hertz-observations` takes the resonant frequency of an RLC circuit.
+
+## Figure pass, 2026-09-28 (Claude Opus 5.5)
+
+Judged against `docs/prompts/manim-style.md`; only the figures below changed.
+
+- `sim-maxwell-four` · the notes speak of the physics, not the controls (root 17); nothing else changed.
+- `sim-hertz` · the far loop's spark fades in and out as the receiver is retuned rather than cutting (manim 15); the loops' 12.0 m spacing is stated as a fact, without a note on the drawing's scale.

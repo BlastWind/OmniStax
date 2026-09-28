@@ -54,42 +54,25 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
 }
 
 /* =====================================================================
-   FIGURE 24.22 · sim-amplitude-squared · still · flat, with the scene behind
-   a view choice (archetype 10)
+   FIGURE 24.22 · sim-amplitude-squared · still · flat (root rule 28.1)
    The book prints one wave and a second of twice the amplitude carrying four
    times the energy, and asks the reader to take the squaring on trust. Here
    the second wave takes any amplitude the slider gives it and the two bars
    beneath answer, so the squaring is something to watch rather than to
-   believe; the figure opens on the doubling the book draws. The flat view is
-   the book's own oblique one, with the electric field in the upright plane
-   and the magnetic field in the plane at right angles; the scene behind the
-   view choice is the same two waves in space, where the amplitude of each
-   field is a height that can be compared directly. The orbit is bounded to a
-   yaw from -115° to +29° and a pitch within about ±70°, so the reader may
-   turn from the book's own view round to looking straight down the beams but
-   never round behind them, where one beam hides the other and the comparison
-   the figure is for is lost.
+   believe; the figure opens on the doubling the book draws, and the doubling
+   is a dashed circle on the second slider wherever the first stands. The view
+   is the book's own oblique one, with the electric field in the upright plane
+   and the magnetic field in the plane at right angles; the same arrangement
+   in space is Figure 24.7's, so no scene is mounted here (root rule 28.5).
    Scales: the electric field 140 units at 3000 V/m, the magnetic field 86
    units at 1.00 × 10⁻⁵ T, each to its own scale, as the figure says; the
    intensity bars 760 units at 11.9 kW/m², which is what 3000 V/m carries.
 ===================================================================== */
 (function () {
-  const THREE = window.THREE;
-  /* whether the scene can be mounted is settled before the choice is made, since
-     a browser with no WebGL is offered no view to switch to; a probe context is
-     the honest test, and asking for one costs nothing */
-  const hasGL = (() => {
-    if (!THREE) return false;
-    try { const p = document.createElement('canvas'); return !!(p.getContext('webgl') || p.getContext('experimental-webgl')); } catch (e) { return false; }
-  })();
   const d = sim('sim-amplitude-squared', 840);
   const e1S = ctl(d.controls, { label: '\\kEfo', cls: 'electric-field', min: 400, max: 1500, step: 50, value: 1000, unit: 'V/m', dec: 0, aria: 'the maximum electric field strength of the first wave' });
-  const e2S = ctl(d.controls, { label: '{\\kEfo}\'', cls: 'electric-field', min: 400, max: 3000, step: 50, value: 2000, unit: 'V/m', dec: 0, aria: 'the maximum electric field strength of the second wave' });
-  const viewC = hasGL ? choice(d.controls, {
-    label: '\\text{the view}',
-    options: [{ value: '2d', label: '2D' }, { value: '3d', label: '3D' }],
-    value: '2d', aria: 'whether the two waves are drawn flat or seen in space',
-  }) : null;
+  const e2S = ctl(d.controls, { label: '{\\kEfo}\'', cls: 'electric-field', min: 400, max: 3000, step: 50, value: 2000, unit: 'V/m', dec: 0, aria: 'the maximum electric field strength of the second wave',
+    specials: [{ at: () => 2 * e1S.v, label: 'twice' }] });
 
   const E_MAX = 3000, B_MAX = E_MAX / CLIGHT, I_MAX = iave(E_MAX);
   const UPV = 140 / E_MAX, UPB = 86 / B_MAX;            /* canvas units per volt per metre, and per tesla */
@@ -98,10 +81,9 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
   const shape = (u) => Math.sin(TAU * CYCLES * u);
   const state = () => {
     const E1 = e1S.v, E2 = e2S.v;
-    return { E1, E2, B1: E1 / CLIGHT, B2: E2 / CLIGHT, I1: iave(E1), I2: iave(E2), k: E2 / E1, mode: viewC ? viewC.value : '2d' };
+    return { E1, E2, B1: E1 / CLIGHT, B2: E2 / CLIGHT, I1: iave(E1), I2: iave(E2), k: E2 / E1 };
   };
 
-  /* ---------- the flat view, which is the one the book prints ---------- */
   function panel(ctx, y0, E0, B0, name, names) {
     const EC = C('electric-field'), BC = C('magnetic-field'), VC = C('velocity');
     const PT = (u, ey, bz) => [BX0 + u * (BX1 - BX0) + bz * KX, y0 - ey + bz * KY];
@@ -144,127 +126,13 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     panel(ctx, 200, st.E1, st.B1, 'the first wave', true);
     panel(ctx, 460, st.E2, st.B2, 'the second wave', false);
     drawBars(ctx, st);
-    /* the two notes sit below the bars, where the deepest trough the sliders reach
-       cannot come down on them */
-    text(ctx, 'Each field is drawn to its own scale, since the magnetic field of a wave is the electric field divided by the speed of light.', 700, 794, PAL.muted, { size: 17, align: 'center' });
-    if (!hasGL) text(ctx, 'This browser cannot show the waves in space, so they are drawn from the one viewpoint the book prints them from.', 700, 822, PAL.muted, { size: 17, align: 'center' });
-  }
-
-  /* ---------- the same two waves in space ---------- */
-  let V = null, S = null, gA = null, gB = null, bar3 = null;
-  const paint = [];
-  const pmat = (col, extra) => { const m = F.mesh.mat(col(), extra); paint.push({ m, col }); return m; };
-  function vec(g, col, r) {
-    const shaft = new THREE.Mesh(F.mesh.geo().cyl, pmat(col)); shaft.scale.set(r, 1, r); g.add(shaft);
-    const cone = new THREE.Mesh(F.mesh.geo().cone, pmat(col)); g.add(cone);
-    return {
-      set(a, b) {
-        const A = new THREE.Vector3(a[0], a[1], a[2]), B = new THREE.Vector3(b[0], b[1], b[2]);
-        const dd = B.clone().sub(A), L = dd.length();
-        if (L < 0.03) { shaft.visible = cone.visible = false; return; }
-        shaft.visible = cone.visible = true;
-        const hl = Math.min(0.18, L * 0.45), u = dd.clone().normalize(), base = B.clone().sub(u.clone().multiplyScalar(hl));
-        F.mesh.setStick(shaft, a, base.toArray());
-        cone.position.copy(base).add(u.clone().multiplyScalar(hl / 2));
-        cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), u);
-        cone.scale.set(r * 3.3, hl, r * 3.3);
-      },
-      hide() { shaft.visible = cone.visible = false; },
-    };
-  }
-  const SX0 = -2.5, SX1 = 2.5, SEP = 0.95;              /* the two beams, one above the other */
-  const SE = 0.62 / E_MAX, SB = 0.40 / B_MAX;           /* scene units per volt per metre, and per tesla, each to its own scale as the flat view says */
-  const N3 = 120, NC3 = 9;
-
-  function beam(g, yOff, named) {
-    const EC = () => C('electric-field'), BC = () => C('magnetic-field'), VC = () => C('velocity');
-    const b = { yOff };
-    const ax = F.mesh.polyline(g, [[SX0 - 0.3, yOff, 0], [SX1 + 0.55, yOff, 0]], PAL.rule);
-    paint.push({ m: ax.material, col: () => PAL.rule });
-    b.eLine = F.mesh.polyline(g, [[0, 0, 0], [0, 0, 0]], C('electric-field'));
-    b.bLine = F.mesh.polyline(g, [[0, 0, 0], [0, 0, 0]], C('magnetic-field'));
-    b.eLine.frustumCulled = false; b.bLine.frustumCulled = false;
-    paint.push({ m: b.eLine.material, col: EC }); paint.push({ m: b.bLine.material, col: BC });
-    b.eComb = []; b.bComb = [];
-    for (let i = 0; i < NC3; i++) { b.eComb.push(vec(g, EC, 0.019)); b.bComb.push(vec(g, BC, 0.019)); }
-    b.c = vec(g, VC, 0.021); b.c.set([SX1 + 0.2, yOff, 0], [SX1 + 0.62, yOff, 0]);
-    b.name = V.label(named, [SX0 - 0.55, yOff - 0.58, 0], g, -4);
-    b.name.style.background = 'transparent'; b.name.style.border = '0'; b.name.style.fontWeight = '500'; b.name.style.color = PAL.muted;
-    return b;
-  }
-
-  function build() {
-    if (!V || !V.scene || !gA) return;
-    V.clear(); paint.length = 0;
-    S = { a: beam(gA, SEP, 'the first wave'), b: beam(gA, -SEP, 'the second wave') };
-    S.labE = V.label('E', [0, 0, 0], gA, 12);
-    S.labB = V.label('B', [0, 0, 0], gA, 12);
-    S.labE.style.color = C('electric-field'); S.labB.style.color = C('magnetic-field');
-    V.invalidate();
-  }
-
-  function apply3d(st) {
-    if (!S) return;
-    paint.forEach((p) => { try { p.m.color.set(p.col()); } catch (e) { /* a palette value the renderer cannot read is left as it was */ } });
-    S.labE.style.color = C('electric-field'); S.labB.style.color = C('magnetic-field');
-    const put = (b, E0, B0) => {
-      const ep = [], bp = [], kE = E0 * SE, kB = B0 * SB;
-      for (let i = 0; i <= N3; i++) {
-        const u = i / N3, x = SX0 + u * (SX1 - SX0), s = shape(u);
-        ep.push(new THREE.Vector3(x, b.yOff + kE * s, 0));
-        bp.push(new THREE.Vector3(x, b.yOff, kB * s));
-      }
-      b.eLine.geometry.setFromPoints(ep); b.bLine.geometry.setFromPoints(bp);
-      for (let i = 0; i < NC3; i++) {
-        const u = (i + 0.5) / NC3, x = SX0 + u * (SX1 - SX0), s = shape(u);
-        if (Math.abs(kE * s) < 0.035) b.eComb[i].hide(); else b.eComb[i].set([x, b.yOff, 0], [x, b.yOff + kE * s, 0]);
-        if (Math.abs(kB * s) < 0.035) b.bComb[i].hide(); else b.bComb[i].set([x, b.yOff, 0], [x, b.yOff, kB * s]);
-      }
-    };
-    put(S.a, st.E1, st.B1); put(S.b, st.E2, st.B2);
-    /* the two names ride on the second crest of the upper beam, in the right half
-       of the stage, where neither the headline band above nor the beams' own names
-       at the left can reach them */
-    const uc = 1 - 3 / (4 * CYCLES), xc = SX0 + uc * (SX1 - SX0);
-    V.move(S.labE, [xc, SEP + st.E1 * SE + 0.14, 0]);
-    V.move(S.labB, [xc, SEP, st.B1 * SB + 0.14]);
-    V.headline(`The second wave carries a field ${fmt(st.k, 2)} times the first wave\u2019s, so it carries ${fmt(st.k * st.k, 2)} times the energy: ${fmt(st.I2, 0)} W/m\u00B2 against ${fmt(st.I1, 0)} W/m\u00B2.`);
-    V.invalidate();
-  }
-
-  function mount() {
-    if (V || !hasGL) return;
-    V = F.view3d(d.stage, {
-      h: 700, dist: 7.0, tilt: 0.40, spin: 'off',
-      views: [
-        { label: 'three quarters', yaw: -0.40, pitch: 0.40 },
-        { label: 'down the beams', yaw: -1.5708, pitch: 0.0 },
-        { label: 'from the side', yaw: 0.0, pitch: 0.0 },
-      ],
-      pitch: [-1.22, 1.22], yaw: [-2.0, 0.5], zoomMin: 0.7, zoomMax: 2.4,
-    });
-    if (!V.scene) { V = null; return; }
-    gA = V.part(0); gA.position.y = -0.22; V.setView(-0.40, 0.40);   /* the scene sits a little low, so no crest reaches the headline band */
-    bar3 = d.stage.querySelector('.view3d-bar');
-    try { build(); } catch (e) { console.error('sim-amplitude-squared: the scene could not be built', e); S = null; V = null; }
-  }
-
-  function show(mode) {
-    if (mode === '3d') mount();
-    const on3d = mode === '3d' && !!V;
-    d.c.style.display = on3d ? 'none' : '';
-    if (V) { V.wrap.style.display = on3d ? '' : 'none'; if (bar3) bar3.style.display = on3d ? '' : 'none'; }
   }
 
   function draw() {
     const st = state();
-    show(st.mode);
-    if (st.mode === '3d' && V) apply3d(st);
-    else {
-      const { ctx } = begin(d.c);
-      topline(ctx, `The second wave carries a field ${fmt(st.k, 2)} times the first wave\u2019s, so it carries ${fmt(st.k * st.k, 2)} times the energy.`);
-      drawFlat(ctx, st);
-    }
+    const { ctx } = begin(d.c);
+    topline(ctx, `The second wave carries a field ${fmt(st.k, 2)} times the first wave\u2019s, so it carries ${fmt(st.k * st.k, 2)} times the energy.`);
+    drawFlat(ctx, st);
     readout(d.readout,
       `\\frac{{\\kIave}'}{\\kIave} = \\left(\\frac{{\\kEfo}'}{\\kEfo}\\right)^2 = \\left(\\frac{${fmt(st.E2, 0)}\\ \\text{V/m}}{${fmt(st.E1, 0)}\\ \\text{V/m}}\\right)^2 = ${fmt(st.k * st.k, 2)}`,
       `A wave\u2019s energy is proportional to its amplitude squared, and for an electromagnetic wave the amplitude is the maximum field strength, so multiplying both fields by ${fmt(st.k, 2)} multiplies the energy the wave carries by ${fmt(st.k * st.k, 2)}. The magnetic amplitude follows the electric one, ${sci(st.B1, 2)} T on the first wave and ${sci(st.B2, 2)} T on the second, since each is its electric field divided by the speed of light.`);
@@ -303,6 +171,12 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
   const E_MAX = 4000, B_MAX = E_MAX / CLIGHT, I_TOP = 45000;   /* the fixed ranges, from the slider's maximum */
   const BX = 430, LEN = 700;
   const state = () => ({ E0: eS.v, B0: eS.v / CLIGHT, I: iave(eS.v), mode: modeC.value });
+  /* the three expressions are one quantity rewritten, so the readout bends from one into the next:
+     the amplitude term the new form uses in place of the old one bends into it, and a constant with
+     no counterpart fades out as the other arrives */
+  const fx = el('div'), note = el('small'); d.readout.append(fx, note);
+  let shown = '', form = 'e';
+  const SWAP = { 'e>b': { E: 'B' }, 'b>e': { B: 'E' } };
 
   function draw() {
     const st = state();
@@ -313,12 +187,12 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     /* the two amplitudes, each on its own fixed scale */
     /* the amplitude the chosen expression does not use is drawn back a little, but
        never so far that its name or its number stops being readable (rule 26.6) */
-    const dimE = st.mode === 'b' ? 0.55 : 1, dimB = st.mode === 'e' ? 0.55 : 1;
+    const dimE = modeC.mix((m) => (m === 'b' ? 0.55 : 1)), dimB = modeC.mix((m) => (m === 'e' ? 0.55 : 1));
     text(ctx, 'E_0', BX - 22, 148, EC, { size: 24, weight: 600, align: 'right' });
     text(ctx, 'B_0', BX - 22, 208, BC, { size: 24, weight: 600, align: 'right' });
     bar(ctx, BX, 148, LEN, st.E0, E_MAX, alpha(EC, dimE), fmt(st.E0, 0) + ' V/m', EC);
     bar(ctx, BX, 208, LEN, st.B0, B_MAX, alpha(BC, dimB), sci(st.B0, 2) + ' T', BC);
-    text(ctx, 'Each field is drawn to its own scale, so the two bars have the same length: the magnetic amplitude is the electric one divided by the speed of light.', 700, 258, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'The magnetic amplitude is the electric one divided by the speed of light, so on their own scales the two bars are one length.', 700, 258, PAL.muted, { size: 17, align: 'center' });
 
     /* the intensity against the electric amplitude */
     const box = { l: 200, r: 1230, t: 330, b: 610 };
@@ -335,11 +209,17 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     label(ctx, 'I_ave', pa.x, pa.y, { side: 'right', color: IC, size: 20, gap: 26 });
     label(ctx, 'I_0, twice the average', pp.x, pp.y, { side: 'left', color: IC, size: 20, gap: 26 });
 
-    const eTex = `\\kIave = \\frac{\\kc\\varepsilon_0\\kEfo^2}{2} = \\frac{(${sciTex(CLIGHT, 2)}\\ \\text{m/s})(${sciTex(EPS0, 2)}\\ \\text{C}^2/\\text{N}\\cdot\\text{m}^2)(${fmt(st.E0, 0)}\\ \\text{V/m})^2}{2} = ${sciTex(st.I, 2)}\\ \\text{W/m}^2`;
-    const bTex = `\\kIave = \\frac{\\kc\\kBmago^2}{2\\mu_0} = \\frac{(${sciTex(CLIGHT, 2)}\\ \\text{m/s})(${sciTex(st.B0, 2)}\\ \\text{T})^2}{2(${sciTex(MU0, 2)}\\ \\text{T}\\cdot\\text{m/A})} = ${sciTex(st.I, 2)}\\ \\text{W/m}^2`;
-    const abTex = `\\kIave = \\frac{\\kEfo\\kBmago}{2\\mu_0} = \\frac{(${fmt(st.E0, 0)}\\ \\text{V/m})(${sciTex(st.B0, 2)}\\ \\text{T})}{2(${sciTex(MU0, 2)}\\ \\text{T}\\cdot\\text{m/A})} = ${sciTex(st.I, 2)}\\ \\text{W/m}^2`;
-    readout(d.readout, st.mode === 'e' ? eTex : st.mode === 'b' ? bTex : abTex,
-      `The three expressions are different versions of one principle, that the energy in a wave is related to amplitude squared, and on this wave all three come to ${sci(st.I, 2)} W/m\u00B2. Because the expressions assume the wave is sinusoidal, the intensity at the crest is twice the average, which here is ${fmt(st.I / 500, 2)} kW/m\u00B2.`);
+    const mk = (k, x) => `\\mk{${k}}{${x}}`;
+    const res = mk('res', `${sciTex(st.I, 2)}\\ \\text{W/m}^2`), I = mk('I', '\\kIave'), two = mk('two', '2'), mu = mk('mu', '\\mu_0'), c = mk('c', '\\kc');
+    const muN = `(${sciTex(MU0, 2)}\\ \\text{T}\\cdot\\text{m/A})`, cN = `(${sciTex(CLIGHT, 2)}\\ \\text{m/s})`;
+    const F3 = {
+      e: `${I} = \\frac{${c}${mk('eps', '\\varepsilon_0')}${mk('E', '\\kEfo^2')}}{${two}} = ${mk('ne', `\\frac{${cN}(${sciTex(EPS0, 2)}\\ \\text{C}^2/\\text{N}\\cdot\\text{m}^2)(${fmt(st.E0, 0)}\\ \\text{V/m})^2}{2}`)} = ${res}`,
+      b: `${I} = \\frac{${c}${mk('B', '\\kBmago^2')}}{${two}${mu}} = ${mk('nb', `\\frac{${cN}(${sciTex(st.B0, 2)}\\ \\text{T})^2}{2${muN}}`)} = ${res}`,
+      both: `${I} = \\frac{${mk('E', '\\kEfo')}${mk('B', '\\kBmago')}}{${two}${mu}} = ${mk('nab', `\\frac{(${fmt(st.E0, 0)}\\ \\text{V/m})(${sciTex(st.B0, 2)}\\ \\text{T})}{2${muN}}`)} = ${res}`,
+    };
+    const f = F3[st.mode];
+    if (f !== shown) { const km = SWAP[form + '>' + st.mode]; shown = f; F.morph(fx, f, km ? { keyMap: km } : {}); form = st.mode; }
+    note.textContent = `The three expressions are different versions of one principle, that the energy in a wave is related to amplitude squared, and on this wave all three come to ${sci(st.I, 2)} W/m\u00B2. Because the expressions assume the wave is sinusoidal, the intensity at the crest is twice the average, which here is ${fmt(st.I / 500, 2)} kW/m\u00B2.`;
   }
 
   register(d.fig, { update: () => {}, draw });
@@ -396,14 +276,14 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     arrow(ctx, CX + 0.36 * S + 76, CY, CX + 0.36 * S + 10, CY, PC, 6);
     text(ctx, fmt(st.P, 0) + ' W', CX + 0.36 * S + 43, CY - 28, PC, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     const iTxt = fmt(st.I, 0) + ' W/m\u00B2';
-    ctx.save(); ctx.font = '600 21px sans-serif'; const iW = ctx.measureText(iTxt).width; ctx.restore();
+    const iW = F.measure(ctx, iTxt, { size: 21, weight: 600 });
     hbracket(ctx, CX - pw / 2, CX + pw / 2, CY + ph / 2 + 26, PAL.muted, fmt(st.w, 2) + ' m', { side: 'below', size: 19 });
     /* the intensity sits in the patch where the patch is wide enough to hold it, and below the
        width bracket where it is not, so that it never runs over the depth bracket's number */
     if (pw > iW + 28) text(ctx, iTxt, CX, CY, IC, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     else text(ctx, iTxt, CX + pw / 2 + 12, CY, IC, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
     vbracket(ctx, CX - pw / 2 - 26, CY - ph / 2, CY + ph / 2, PAL.muted, fmt(st.h, 2) + ' m', -1, { side: 'left', size: 19 });
-    text(ctx, 'the oven floor, drawn to one fixed scale', CX, BOX.b + 74, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the oven floor, seen from above', CX, BOX.b + 74, PAL.muted, { size: 17, align: 'center' });
   }
 
   function drawBars(ctx, st) {

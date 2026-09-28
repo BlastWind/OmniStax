@@ -148,3 +148,11 @@ its readout writes with the macro for the speed of light. The view choice of
 Figure 24.22 was checked in the browser in both themes: with WebGL the flat
 canvas is hidden by `style.display` and the scene takes its place, and without
 WebGL no view choice is offered at all and the flat drawing stands alone.
+
+## Figure pass, 2026-09-28 (Claude Opus 5.5)
+
+Judged against `docs/prompts/manim-style.md`; only the figures below changed.
+
+- `sim-amplitude-squared` · Figure 24.22 · still, **flat only**: the 2D/3D view choice and its scene are removed (26.7; root 28.5, since Figure 24.7 already shows the arrangement in space); a dashed circle on E₀′ at twice E₀, the book's doubling (manim 8).
+- `sim-intensity-three-ways` · Sim · value add now also the morph by meaning (manim 11): the choice of amplitude bends the readout from cε₀E₀²/2 into cB₀²/(2μ₀) and into E₀B₀/(2μ₀), E₀² and B₀² bending into each other, ε₀ and μ₀ fading where one has no counterpart; the dimming of the bar the form does not use blends (manim 15). Still.
+- `sim-oven-intensity` · the intensity label is measured with `F.measure` (26.8).

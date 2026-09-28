@@ -122,7 +122,7 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     lab.block(0, 476, 1400, 620);
     BANDS.forEach((b) => {
       const x1 = X(b.a), x2 = X(b.b), mid = (x1 + x2) / 2;
-      ctx.save(); ctx.font = '600 20px sans-serif'; const w = ctx.measureText(b.name).width; ctx.restore();
+      const w = F.measure(ctx, b.name, { size: 20, weight: 600 });
       if (x2 - x1 > w + 24) text(ctx, b.name, mid, (YT + YB) / 2, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.78) });
       else lab.add(b.name, mid, YB + 2, 0, 1, PAL.ink, 20, 18);
     });
@@ -149,8 +149,8 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     lab.flush();
     topline(ctx, 'A wave of frequency ' + sciTxt(f, 2) + ' Hz has a wavelength of ' + lamText(lam) + ', which puts it among the ' + band.name + ', and no detail much smaller than ' + lamText(lam) + ' can be resolved with it.');
     readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}`,
-      vis ? 'Here the wave is visible light, and the band is painted in the color the eye sees at each wavelength in it. The whole visible band is three tenths of one power of ten wide, which is why it is a sliver on a chart that runs over twenty-one of them.'
-        : 'The two scales run opposite ways because the product of the frequency and the wavelength is always the same number, the speed of light. The hatched stretches are the three boundaries the book calls overlapping rather than distinct.');
+      vis ? 'Here the wave is visible light, and each wavelength in the band has the color the eye sees at it. The whole visible band is three tenths of one power of ten wide, which is why it is a sliver among the twenty-one powers of ten of the spectrum.'
+        : 'The two scales run opposite ways because the product of the frequency and the wavelength is always the same number, the speed of light. The bands overlap rather than meet at sharp boundaries, between microwaves and infrared, ultraviolet and X-rays, and X-rays and gamma rays.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -217,11 +217,10 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     for (let k = -3; k <= 3; k++) { ctx.beginPath(); ctx.arc(sx + 22 * k + 30, sy - 2, 3, 0, TAU); ctx.fill(); }
     ctx.restore();
     label(ctx, 'a submerged submarine', sx, sy - 74, { side: 'above', gap: 12, size: 19 });
-    text(ctx, 'the sea is a sketch: neither the wavelength above it nor the depth below it is drawn to scale', RX, 618, PAL.muted, { size: 18, align: 'right' });
     topline(ctx, e <= 3.2 ? 'At ' + sciTxt(f, 2) + ' Hz one wavelength is ' + lamText(lam) + ', and waves this long are the ones used to reach a submarine under the surface.'
       : 'At ' + sciTxt(f, 2) + ' Hz one wavelength is ' + lamText(lam) + ', and salt water absorbs a wave this short before it has gone far below the surface.');
     readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}`,
-      'The wave above the surface is drawn ' + sciTxt(lam / (W / 260), 1) + ' times shorter than it is, because five powers of ten of wavelength will not fit in one picture at one scale. The shaded column reaches deeper the longer the wavelength, which is what the text says decides it, and no scale is put on that depth.');
+      'The wave above the surface is drawn ' + sciTxt(lam / (W / 260), 1) + ' times shorter than it is, because five powers of ten of wavelength will not fit in one picture at one scale. The longer the wavelength, the deeper the wave reaches, and the depth shown has no scale.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -279,7 +278,7 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     cursorOn(ctx, PANELS[2], G.X, G.Y, u, env(u) * carr(u), car);
     label(ctx, 'the envelope is the audio signal', G.X(0.45), G.Y(env(0.45)), { side: 'above', color: aud, gap: 18, size: 19 });
     topline(ctx, 'A carrier of ' + fmt(fcar.v, 0) + ' kHz is modulated in amplitude by an audio signal of ' + fmt(faud.v, 0) + ' Hz to a depth of ' + fmt(m, 2) + ', so the height of the wave rises and falls with the sound while its frequency never changes at all.');
-    readout(d.readout, `\\kEf(\\kt) = \\kEfo\\left[1 + m\\sin(2\\pi \\kf_{\\text{a}}\\kt)\\right]\\cos(2\\pi \\kf_{\\text{c}}\\kt), \\qquad \\kf_{\\text{c}} = ${fmt(fcar.v, 0)}\\ \\text{kHz}, \\quad \\kf_{\\text{a}} = ${fmt(faud.v, 0)}\\ \\text{Hz}, \\quad m = ${fmt(m, 2)}`,
+    readout(d.readout, `\\kEf(\\kt) = \\kEfo\\left[1 + m\\sin(2\\pi \\kf_{\\text{a}}\\kt)\\right]\\cos(2\\pi \\kf_{\\text{c}}\\kt) = \\kEfo\\left[1 + ${fmt(m, 2)}\\sin(2\\pi (${fmt(faud.v, 0)}\\ \\text{Hz})\\kt)\\right]\\cos(2\\pi (${fmt(fcar.v, 0)}\\ \\text{kHz})\\kt)`,
       'The carrier is drawn with ' + NCAR + ' cycles for every cycle of the audio signal so that both can be seen at once; at these settings the true ratio is ' + fmt((fcar.v * 1000) / faud.v, 0) + ' to 1. A receiver tuned to ' + fmt(fcar.v, 0) + ' kHz follows the height of the wave and gets the audio signal of panel (b) back.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
@@ -314,9 +313,9 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     curve(ctx, fmw, 0, 2, G.X, G.Y, car, 3.5, 1600);
     cursorOn(ctx, PANELS[2], G.X, G.Y, u, fmw(u), car);
     topline(ctx, 'A carrier of ' + fmt(fcar.v, 1) + ' MHz is swung by ' + fmt(dfs.v, 1) + ' kHz either way by an audio signal of ' + fmt(faud.v, 0) + ' Hz, so the wave runs between ' + fmt(fcar.v - dfs.v / 1000, 3) + ' and ' + fmt(fcar.v + dfs.v / 1000, 3) + ' MHz while its height never changes.');
-    readout(d.readout, `\\kf(\\kt) = \\kf_{\\text{c}} + \\Delta \\kf \\sin(2\\pi \\kf_{\\text{a}}\\kt) = ${fmt(fcar.v, 1)}\\ \\text{MHz} \\pm ${fmt(dfs.v, 1)}\\ \\text{kHz}, \\qquad \\kEfo \\text{ never changes}`,
-      dfs.v === 0 ? 'With no swing at all the station sends out its bare carrier and carries no sound, and a receiver that looks only for changes of frequency hears nothing.'
-        : 'The swing is drawn ' + fmt(A / (dfs.v / (fcar.v * 1000)), 0) + ' times larger than it is, so that the crowding can be seen at all: the true swing is ' + fmt(dfs.v, 1) + ' kHz on a carrier of ' + fmt(fcar.v, 1) + ' MHz, a change of ' + fmt((100 * dfs.v) / (fcar.v * 1000), 4) + ' percent. Two stations cannot sit closer than 0.020 MHz for this reason.');
+    readout(d.readout, `\\kf(\\kt) = \\kf_{\\text{c}} + \\Delta \\kf \\sin(2\\pi \\kf_{\\text{a}}\\kt) = ${fmt(fcar.v, 1)}\\ \\text{MHz} \\pm ${fmt(dfs.v, 1)}\\ \\text{kHz}`,
+      dfs.v === 0 ? 'The amplitude E₀ never changes. With no swing at all the station sends out its bare carrier and carries no sound, and a receiver that looks only for changes of frequency hears nothing.'
+        : 'The amplitude E₀ never changes. The swing is drawn ' + fmt(A / (dfs.v / (fcar.v * 1000)), 0) + ' times larger than it is, so that the crowding can be seen at all: the true swing is ' + fmt(dfs.v, 1) + ' kHz on a carrier of ' + fmt(fcar.v, 1) + ' MHz, a change of ' + fmt((100 * dfs.v) / (fcar.v * 1000), 4) + ' percent. Two stations cannot sit closer than 0.020 MHz for this reason.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
 })();
@@ -330,7 +329,7 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
 ===================================================================== */
 (function () {
   const d = sim('sim-visible', 620);
-  const ls = ctl(d.controls, { label: '\\klam', cls: 'position', min: 300, max: 800, step: 1, value: 550, unit: 'nm', dec: 0, aria: 'the wavelength of the light', detents: [{ v: 380, label: '380' }, { v: 750, label: '750' }] });
+  const ls = ctl(d.controls, { label: '\\klam', cls: 'position', min: 300, max: 800, step: 1, value: 550, unit: 'nm', dec: 0, aria: 'the wavelength of the light', specials: [{ at: 380, label: 'violet end' }, { at: 750, label: 'red end' }] });
   const LX = 150, RX = 1250, TOP = 200, BOT = 320, NMA = 800, NMB = 300, YW = 436, YF = 520;
   const X = (nm) => LX + ((NMA - nm) / (NMA - NMB)) * (RX - LX);
   function draw() {
@@ -366,7 +365,7 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     topline(ctx, name ? 'Light of wavelength ' + fmt(nm, 0) + ' nm has a frequency of ' + sciTxt(f, 2) + ' Hz, and the eye sees it as ' + name + '.'
       : 'A wave of wavelength ' + fmt(nm, 0) + ' nm has a frequency of ' + sciTxt(f, 2) + ' Hz, which lies ' + (nm > 750 ? 'below the red end of the strip, in the infrared' : 'above the violet end of the strip, in the ultraviolet') + ', and no eye sees it.');
     readout(d.readout, `\\kf = \\frac{\\kc}{\\klam} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(lam, 2)}\\ \\text{m}} = ${sciTex(f, 2)}\\ \\text{Hz}`,
-      'Red light has the lowest frequencies and the longest wavelengths of the strip, and violet the highest frequencies and the shortest, so the frequency rises to the right here exactly as it does across the whole spectrum of Figure 24.8.');
+      'Red light has the lowest frequencies and the longest wavelengths of the strip, and violet the highest frequencies and the shortest, so the frequency rises from red to violet exactly as it rises across the whole electromagnetic spectrum.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -407,13 +406,16 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     const { ctx } = begin(d.c);
     const En = C('energy'), E = Es.v, e0 = F.el('e-'), ray = cat(1);
     const chosen = how.value === 'char';
-    if (chosen) {
+    /* the striking electron and its energy bar belong to both mechanisms and hold; each scene fades and drifts on its own */
+    const [ax2, ay2] = how.mix((v) => (v === 'char' ? [300, 312] : [430, 292]));
+    arrow(ctx, 150, 262, ax2, ay2, En, 5);
+    dot(ctx, 150, 262, e0, true, 11);
+    label(ctx, 'the striking electron', 150, 254, { side: 'above', gap: 14, size: 19 });
+    const scene = (v, f) => { const a = how.a(v); if (a <= 0.01) return; const [dx, dy] = how.off(v, [0, 24]); ctx.save(); ctx.globalAlpha = a; ctx.translate(dx, dy); f(); ctx.restore(); };
+    scene('char', () => {
       text(ctx, 'the strike', 380, 150, PAL.muted, { size: 19, align: 'center' });
       text(ctx, 'a moment later', 1010, 150, PAL.muted, { size: 19, align: 'center' });
       atom(ctx, 380, 340, 140, false);
-      arrow(ctx, 150, 260, 300, 312, En, 5);
-      dot(ctx, 150, 260, e0, true, 11);
-      label(ctx, 'the striking electron', 150, 252, { side: 'above', gap: 14, size: 19 });
       arrow(ctx, 404, 332, 548, 252, PAL.ink, 4);
       dot(ctx, 556, 248, e0, true, 10);
       label(ctx, 'an inner electron is knocked out', 556, 242, { side: 'above', gap: 14, size: 19 });
@@ -424,7 +426,8 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
       xray(ctx, 1010, 360, 1010, 494, ray);
       label(ctx, 'the X-ray', 1010, 498, { side: 'below', color: ray, gap: 12, size: 20 });
       text(ctx, 'the nucleus and the orbits around it belong to the atom', 1300, 542, PAL.muted, { size: 17, align: 'right' });
-    } else {
+    });
+    scene('brake', () => {
       ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(360, 200, 900, 300); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.strokeRect(360, 200, 900, 300); ctx.restore();
       text(ctx, 'the material the electron strikes', 1250, 478, PAL.muted, { size: 19, align: 'right' });
       ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.4);
@@ -432,35 +435,35 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
       ctx.restore();
       text(ctx, 'atoms and their electrons', 380, 528, PAL.muted, { size: 17 });
       const path = [[150, 266], [430, 292], [600, 256], [780, 330], [940, 292], [1080, 370], [1200, 350]];
-      arrow(ctx, path[0][0], path[0][1], path[1][0], path[1][1], En, 5);
       for (let i = 1; i < path.length - 1; i++) line(ctx, path[i][0], path[i][1], path[i + 1][0], path[i + 1][1], En, Math.max(1.5, 5 - i * 0.7));
-      dot(ctx, path[0][0], path[0][1], e0, true, 11);
-      label(ctx, 'the striking electron', 150, 256, { side: 'above', gap: 14, size: 19 });
       dot(ctx, 1200, 350, e0, true, 8);
       label(ctx, 'and what is left of it', 1200, 360, { side: 'below', gap: 14, size: 19 });
       [1, 2, 3, 4].forEach((i, k) => xray(ctx, path[i][0], path[i][1], path[i][0] + 26 + k * 12, path[i][1] - 120 + k * 10, ray));
       label(ctx, 'every deflection sends out an X-ray of its own', 700, 130, { side: 'above', color: ray, gap: 6, size: 20 });
-    }
+    });
     /* the two bars: what the electron arrives with, and what the X-ray carries away */
     line(ctx, BL, BY + 118, BR, BY + 118, PAL.muted, 2);
     for (let k = 0; k <= 120; k += 20) { line(ctx, KX(k), BY + 110, KX(k), BY + 126, PAL.muted, 2); text(ctx, String(k), KX(k), BY + 146, PAL.muted, { size: 17, align: 'center' }); }
     text(ctx, 'energy (keV)', BR, BY + 176, En, { size: 20, weight: 600, align: 'right' });
     bar(ctx, BL, KX(E), BY, 32, En);
     text(ctx, 'the electron arrives with ' + fmt(E, 0) + ' keV', BL - 18, BY + 16, En, { size: 19, weight: 600, align: 'right' });
-    if (chosen) {
-      bar(ctx, BL, KX(9), BY + 52, 32, ray);
+    /* what the X-ray carries: a fixed bar the atom sets, bending into the braking spread up to E */
+    const q = how.mix((v) => (v === 'char' ? [BL, BY + 52, KX(9), BY + 52, KX(9), BY + 84] : [BL, BY + 52, BL, BY + 52, KX(E), BY + 84]));
+    ctx.save(); ctx.fillStyle = alpha(ray, 0.3); ctx.strokeStyle = ray; ctx.lineWidth = 2.5; ctx.beginPath();
+    ctx.moveTo(q[0], q[1]); ctx.lineTo(q[2], q[3]); ctx.lineTo(q[4], q[5]); ctx.lineTo(BL, BY + 84); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+    scene('char', () => {
       text(ctx, 'the X-ray carries what the atom decides', BL - 18, BY + 68, ray, { size: 19, weight: 600, align: 'right' });
-      text(ctx, 'drawn at no scale of its own, because the orbits of the atom set it and the slider does not move it', KX(12), BY + 68, PAL.muted, { size: 17 });
-    } else {
-      ctx.save(); ctx.fillStyle = alpha(ray, 0.3); ctx.beginPath(); ctx.moveTo(BL, BY + 84); ctx.lineTo(KX(E), BY + 84); ctx.lineTo(BL, BY + 52); ctx.closePath(); ctx.fill(); ctx.strokeStyle = ray; ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+      text(ctx, 'fixed by the orbits of the atom, whatever the electron arrives with', KX(12), BY + 68, PAL.muted, { size: 17 });
+    });
+    scene('brake', () => {
       text(ctx, 'the X-rays carry anything up to ' + fmt(E, 0) + ' keV', BL - 18, BY + 68, ray, { size: 19, weight: 600, align: 'right' });
       text(ctx, 'many low energies and few high ones, because the collisions are random', Math.min(KX(E) + 16, 900), BY + 68, PAL.muted, { size: 17 });
-    }
+    });
     topline(ctx, chosen ? 'An electron arriving with ' + fmt(E, 0) + ' keV knocks an inner electron out, and the X-ray that follows carries the energy another electron loses falling into the empty orbit, which is the atom’s own and not the striking electron’s.'
       : 'An electron arriving with ' + fmt(E, 0) + ' keV is slowed by one collision after another, and each of those decelerations radiates, so the X-rays that leave the material carry anything from almost nothing up to ' + fmt(E, 0) + ' keV.');
-    readout(d.readout, chosen ? `\\kE = ${fmt(E, 0)}\\ \\text{keV}, \\qquad \\kE_{\\text{X-ray}} = \\kE_{\\text{outer}} - \\kE_{\\text{inner}}`
-      : `\\kE = ${fmt(E, 0)}\\ \\text{keV}, \\qquad \\kE_{\\text{X-ray}} \\le \\kE = ${fmt(E, 0)}\\ \\text{keV}`,
-      chosen ? 'Since the orbits of the atom are unique to the type of atom, the energy of this X-ray is characteristic of the atom, which is why it is called a characteristic X-ray. Raising the energy of the striking electron sends out more of them and does not change the energy of any one of them.'
+    readout(d.readout, chosen ? `\\kE_{\\text{X-ray}} = \\kE_{\\text{outer}} - \\kE_{\\text{inner}}`
+      : `\\kE_{\\text{X-ray}} \\le \\kE = ${fmt(E, 0)}\\ \\text{keV}`,
+      chosen ? 'The striking electron arrives with ' + fmt(E, 0) + ' keV. Since the orbits of the atom are unique to the type of atom, the energy of this X-ray is characteristic of the atom, which is why it is called a characteristic X-ray. Raising the energy of the striking electron sends out more of them and does not change the energy of any one of them.'
         : 'Since the process is random, a broad spectrum of X-ray energy is emitted that is more characteristic of the electron energy than of the material the electron encounters. Such radiation is called bremsstrahlung, German for braking radiation.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -491,27 +494,31 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     const lab = labeller(ctx, 620, { headline: 2 });
     lab.place({ l: box.l - 60, r: box.l + 300, t: box.t - 40, b: box.t - 8 });
     lab.block(0, box.b + 2, 1400, box.b + 60);
-    /* both lines, the chosen one solid and the other faint, since one is twice the other */
+    /* both lines, the chosen one solid and the other faint, since one is twice the other; a change of mount
+       hands the emphasis from one to the other and slides the point between them */
+    const km = mount.mix((v) => (v === 'half' ? 2 : 4)), Lm = lam / km;
     [[2, 'L = λ/2'], [4, 'L = λ/4']].forEach(([kk, name]) => {
-      const on = kk === k;
-      curve(ctx, (v) => Math.log10(CLIGHT / (kk * Math.pow(10, v))), 5, 10, X, Y, on ? pc : alpha(PAL.ink, 0.3), on ? 5 : 2.5, 60);
-      text(ctx, name, X(6.95), Y(Math.log10(CLIGHT / (kk * Math.pow(10, 6.95)))) + (kk === 2 ? -22 : 24), on ? pc : PAL.muted, { size: 20, weight: 600, bg: PAL.panel });
+      const on = mount.mix((v) => ((v === 'half' ? 2 : 4) === kk ? 1 : 0));
+      const fl = (v) => Math.log10(CLIGHT / (kk * Math.pow(10, v)));
+      curve(ctx, fl, 5, 10, X, Y, alpha(PAL.ink, 0.3), 2.5, 60);
+      if (on > 0.01) curve(ctx, fl, 5, 10, X, Y, alpha(pc, on), 2.5 + 2.5 * on, 60);
+      text(ctx, name, X(6.95), Y(fl(6.95)) + (kk === 2 ? -22 : 24), on > 0.5 ? pc : PAL.muted, { size: 20, weight: 600, bg: PAL.panel });
     });
     /* the height of a person, the one length the reader already has */
     line(ctx, box.l, Y(Math.log10(1.7)), box.r, Y(Math.log10(1.7)), alpha(PAL.ink, 0.4), 2, [10, 10]);
     text(ctx, 'the height of a person, 1.7 m', box.r - 10, Y(Math.log10(1.7)) - 16, PAL.muted, { size: 17, align: 'right' });
     /* the three frequencies of Example 24.2 */
-    MARKS.forEach(([ee, name]) => { const yy = Math.log10(CLIGHT / (k * Math.pow(10, ee))); dot(ctx, X(ee), Y(yy), PAL.ink, false, 10); lab.add(name, X(ee), Y(yy), 0.4, -0.9, PAL.muted, 17, 16); });
-    pinned(ctx, box, X, Y, e, Math.log10(L), fc, lamText(L));
+    MARKS.forEach(([ee, name]) => { const yy = Math.log10(CLIGHT / (km * Math.pow(10, ee))); dot(ctx, X(ee), Y(yy), PAL.ink, false, 10); lab.add(name, X(ee), Y(yy), 0.4, -0.9, PAL.muted, 17, 16); });
+    pinned(ctx, box, X, Y, e, Math.log10(Lm), fc, lamText(L));
     /* the length's name goes below the point, and above it near the bottom of the graph */
-    if (Math.log10(L) < -1.3) lab.add('L = ' + lamText(L), X(e), Y(Math.log10(L)), -0.6, -0.8, pc, 21, 20);
-    else lab.add('L = ' + lamText(L), X(e), Y(Math.log10(L)), -0.5, 0.9, pc, 21, 20);
+    if (Math.log10(Lm) < -1.3) lab.add('L = ' + lamText(L), X(e), Y(Math.log10(Lm)), -0.6, -0.8, pc, 21, 20);
+    else lab.add('L = ' + lamText(L), X(e), Y(Math.log10(Lm)), -0.5, 0.9, pc, 21, 20);
     lab.flush();
     text(ctx, 'c = 3.00 × 10⁸ m/s', box.r, box.t - 24, vc, { size: 18, weight: 600, align: 'right' });
     topline(ctx, 'At ' + sciTxt(f, 2) + ' Hz the wavelength is ' + lamText(lam) + ', so the most efficient antenna is ' + lamText(L) + ' long, which is ' + (L >= 1.7 ? fmt(L / 1.7, L / 1.7 >= 10 ? 0 : 1) + ' times the height of a person' : 'one part in ' + fmt(1.7 / L, 0) + ' of the height of a person') + '.');
-    readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}, \\qquad L = \\frac{\\klam}{${k}} = ${sciTex(L, 2)}\\ \\text{m}`,
-      k === 2 ? 'A linear antenna radiates best when it is half a wavelength long, so the length it wants falls away as the frequency rises. Both scales here are powers of ten, which is why the relation is a straight line.'
-        : 'An antenna with one end on the ground wants a quarter of a wavelength, in the same way that an air column closed at one end resonates at four times its own length, so every length on this line is half what a free-standing antenna would need.');
+    readout(d.readout, `L = \\frac{\\klam}{${k}} = \\frac{\\kc}{${k}\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${k}(${sciTex(f, 2)}\\ \\text{Hz})} = ${sciTex(L, 2)}\\ \\text{m}`,
+      k === 2 ? 'A linear antenna radiates best when it is half a wavelength long, so the length it wants falls away as the frequency rises; the wavelength here is ' + lamText(lam) + '. Length and frequency are inversely proportional, a straight line when both are counted in powers of ten.'
+        : 'An antenna with one end on the ground wants a quarter of a wavelength, in the same way that an air column closed at one end resonates at four times its own length, so every length on this line is half what a free-standing antenna would need; the wavelength here is ' + lamText(lam) + '.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

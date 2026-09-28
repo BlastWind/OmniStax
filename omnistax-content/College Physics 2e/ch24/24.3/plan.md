@@ -200,3 +200,15 @@ rule took this image and 24.4's satellite dish. `ch24/COLOR.md` now records what
 the two modulation figures do: the carrier wave and the modulated wave are both
 the electric field of a wave and take that hue, and the audio signal alone takes
 the categorical palette, as does the emitted ray of the X-ray figure.
+
+## Figure pass, 2026-09-28 (Claude Opus 5.5)
+
+Judged against `docs/prompts/manim-style.md`; only the figures below changed.
+
+- `sim-spectrum` · band names measured with `F.measure` (26.8); notes speak of the spectrum.
+- `sim-elf-submarine` · the canvas note on the sketch's scale goes; the readout keeps the 28.4 factor and says the depth has no scale.
+- `sim-am` · one equation with the live numbers set into it (manim 12).
+- `sim-fm` · one equation; that E₀ never changes moves to the sentence beneath (manim 12).
+- `sim-visible` · 380 nm and 750 nm, the ends of the visible range the text names, are dashed circles on λ (manim 8).
+- `sim-xray` · the mechanism choice no longer cuts: the striking electron and its bar hold, each scene fades and drifts, and the X-ray bar bends from the atom's fixed bar into the braking spread up to E (manim 15/16); readout one equation, the arriving energy in the sentence (manim 12).
+- `sim-antenna-length` · the mount choice slides the point from the λ/2 line down to the λ/4 line and hands the emphasis across (manim 15/16); readout one chain, L = λ/k = c/(kf) = … m (manim 12).

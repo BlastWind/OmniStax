@@ -238,7 +238,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
       main = `\\text{lines of }\\kBmag\\text{ close on themselves}\\qquad ${s === 0 ? 0 : 2 * n}\\ \\text{drawn, no beginning and no end}`;
       small = s === 0
         ? 'The strength of the magnetic force is related to the permeability of free space μ₀, and the second of Maxwell’s equations is Gauss’s law for magnetism.'
-        : 'This is what marks the magnetic field off from the electric one. No line begins anywhere and no line ends anywhere, because no magnetic monopoles are known to exist: there is no magnetic charge for a line to start on. Turn the magnet end for end with the source slider and every line runs the other way round, but each is still a closed loop.';
+        : 'This is what marks the magnetic field off from the electric one. No line begins anywhere and no line ends anywhere, because no magnetic monopoles are known to exist: there is no magnetic charge for a line to start on. Turn the magnet end for end and every line runs the other way round, but each is still a closed loop.';
     } else if (k === 'f') {
       drawFaraday(ctx, s);
       head = s === 0 ? 'The magnetic field through the loop is steady, so no electric field is induced round it.'
@@ -247,7 +247,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
       main = `\\text{a changing }\\kBmag\\ \\rightarrow\\ \\kEf\\text{ round the loop, opposing the change}`;
       small = s === 0
         ? 'A magnetic field that does not change induces nothing, however strong it is. It is the changing of the field, and not the field itself, that is the source here.'
-        : 'The induced electric field drives a current round the loop, and that current makes a magnetic field of its own that points ' + (s > 0 ? 'out of the page, against the growth of the field through the loop' : 'into the page, keeping up the field that is dying away') + '. That is what it means to say that the direction of the emf opposes the change, which is Lenz’s law. Drag the source the other way and the whole arrangement reverses.';
+        : 'The induced electric field drives a current round the loop, and that current makes a magnetic field of its own that points ' + (s > 0 ? 'out of the page, against the growth of the field through the loop' : 'into the page, keeping up the field that is dying away') + '. That is what it means to say that the direction of the emf opposes the change, which is Lenz’s law. A change in the other direction reverses the whole arrangement.';
     } else {
       drawAmpere(ctx, s);
       head = s === 0 ? 'A charge at rest and a steady electric field make no magnetic field at all.'
@@ -349,11 +349,12 @@ function spark(ctx, x1, y1, x2, y2, color) {
     const q = wireLoop(ctx, X2, 'right');
     line(ctx, q[0].x, q[0].y, 1230, q[0].y, PAL.ink, 4);
     line(ctx, q[1].x, q[1].y, 1230, q[1].y, PAL.ink, 4);
-    if (tuned) spark(ctx, q[1].x, q[1].y, q[0].x, q[0].y, PAL.ink);
+    const sa = tune.a('on');
+    if (sa > 0.01) { ctx.save(); ctx.globalAlpha = sa; spark(ctx, q[1].x, q[1].y, q[0].x, q[0].y, PAL.ink); ctx.restore(); }
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.rect(1230, 222, 140, 96); ctx.fill(); ctx.stroke();
     ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(1300, 270, 28, 0, TAU); ctx.stroke(); ctx.restore();
-    const dial = tuned ? -Math.PI / 2 : -Math.PI / 2 + 1.1;
+    const dial = -Math.PI / 2 + tune.mix((v) => (v === 'on' ? 0 : 1.1));
     line(ctx, 1300, 270, 1300 + 24 * Math.cos(dial), 270 + 24 * Math.sin(dial), PAL.ink, 4);
     /* the wave crossing the laboratory: the electric field drawn across the page, and the
        magnetic field at right angles to it and to the page, out of it at every crest and
@@ -380,7 +381,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
     text(ctx, 'the tuner', 1300, 340, PAL.ink, { size: 20, align: 'center' });
     text(ctx, 'the electric field of the wave', (XA + XB) / 2, 466, ec, { size: 20, align: 'center' });
     text(ctx, 'the magnetic field is out of the page at each crest and into it at each trough', (XA + XB) / 2, 496, bc, { size: 19, align: 'center' });
-    text(ctx, 'the two loops stand ' + fmt(LAB, 1) + ' m apart, and the drawing is on that scale', 700, 526, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'the two loops stand ' + fmt(LAB, 1) + ' m apart', 700, 526, PAL.muted, { size: 18, align: 'center' });
     headline(ctx, 'The circuit resonates at ' + fmt(fMHz, 1) + ' MHz, so the wave that leaves the first loop is ' + fmt(lam, 2) + ' m long, and the second loop, tuned '
       + (tuned ? 'to the same frequency, sparks in step with it.' : 'elsewhere, stays silent.'));
     readout(d.readout,

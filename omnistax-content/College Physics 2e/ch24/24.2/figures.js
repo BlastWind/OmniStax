@@ -148,12 +148,12 @@ function sciTex(x, dp) {
       if (nm) text(ctx, nm, PT(t), PY + 28, PAL.muted, { size: 17, align: 'center' });
     });
     dot(ctx, PT(st.tau), PY, TC, true, 10);
-    text(ctx, 'the instants the book draws', PX0 - 16, PY, TC, { size: 19, weight: 600, align: 'right' });
+    text(ctx, 'time, t', PX0 - 16, PY, TC, { size: 19, weight: 600, align: 'right' });
 
     topline(ctx, `The antenna stands ${fmt(st.tau, 2)} periods into its cycle, the field beside it is ${fmt(Ehere, 0)} V/m, and the wave has reached ${fmt(st.front, 2)} m from the source.`);
     readout(d.readout,
       `\\klam = \\kc\\kT = \\frac{\\kc}{\\kf} = \\frac{3.00 \\times 10^{8}\\ \\text{m/s}}{${fmt(fS.v, 0)} \\times 10^{6}\\ \\text{Hz}} = ${fmt(st.lam, 2)}\\ \\text{m}`,
-      `In one period the field that left the antenna first travels one wavelength, so a faster oscillation makes a shorter wave: at ${fmt(fS.v, 0)} MHz the period is ${sci(st.T, 2)} s and the wave is ${fmt(st.lam, 2)} m long. The amplitude is set by how far the charges separate, and nothing else: raising the field beside the antenna makes every crest taller and leaves the spacing alone. Watch the antenna at the four instants the clock marks, and the picture at each is one of the book's four panels.`);
+      `In one period the field that left the antenna first travels one wavelength, so a faster oscillation makes a shorter wave: at ${fmt(fS.v, 0)} MHz the period is ${sci(st.T, 2)} s and the wave is ${fmt(st.lam, 2)} m long. The amplitude is set by how far the charges separate, and nothing else: raising the field beside the antenna makes every crest taller and leaves the spacing alone. At t = 0 the top of the antenna is positive and the field beside it is greatest; at T/4 the charges pass through zero and so does the field; at T/2 the separation and the field are reversed.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
 })();
@@ -298,7 +298,7 @@ function sciTex(x, dp) {
     topline(ctx, `The current in the antenna is ${fmt(Math.abs(st.I), 1)} A ${st.I >= 0 ? 'upward' : 'downward'}, the field one meter out is ${sci(Bring(st.I), 2)} T, and the magnetic wave has reached ${fmt(st.front, 2)} m.`);
     readout(d.readout,
       `\\kBmag = \\frac{\\mu_0\\kIcur}{2\\pi\\kr} = \\frac{(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(Math.abs(st.I), 1)}\\ \\text{A})}{2\\pi(1.00\\ \\text{m})} = ${sciTex(Bring(st.I), 2)}\\ \\text{T}`,
-      `The rings are the field of a long straight wire, so they grow and shrink with the current and turn the other way when it reverses; point the thumb of your right hand the way the current runs and your fingers curl the way they go. The current is greatest when the charge separation is zero, a quarter of a cycle away from the instant Figure 24.5 opens on, which is why the electric arrow and the magnetic arrow beside the wire never reach their greatest values together here at the source. Once the field has left, though, it travels as the electric part does, at ${fmt(st.lam, 2)} m to the cycle and at the speed of light, so the magnetic wave has the same period and the same wavelength as the electric one.`);
+      `The rings are the field of a long straight wire, so they grow and shrink with the current and turn the other way when it reverses; point the thumb of your right hand the way the current runs and your fingers curl the way they go. The current is greatest when the charge separation is zero, a quarter of a cycle after the separation is greatest, so beside the wire the electric field and the magnetic field never reach their greatest values together. Once the field has left, though, it travels as the electric part does, at ${fmt(st.lam, 2)} m to the cycle and at the speed of light, so the magnetic wave has the same period and the same wavelength as the electric one.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
 })();
@@ -481,10 +481,13 @@ function sciTex(x, dp) {
     const bx = X0 + bestM * UPM;
     V.move(S.lab.E, [bx, kE * best + 0.16, 0]); V.move(S.lab.B, [bx, 0, kB * best + 0.16]);
     S.lab.E.hidden = st.E0 <= 0; S.lab.B.hidden = st.E0 <= 0;
-    S.wire.visible = st.rec === 'wire-e' || st.rec === 'wire-b';
-    if (st.rec === 'wire-e') F.mesh.setStick(S.wire, [S.RX, -0.75, 0], [S.RX, 0.75, 0]);
-    if (st.rec === 'wire-b') F.mesh.setStick(S.wire, [S.RX, 0, -0.75], [S.RX, 0, 0.75]);
-    S.loopXY.visible = st.rec === 'loop-b'; S.loopXZ.visible = st.rec === 'loop-edge';
+    /* the receiver turns from one orientation into the other, and fades where only one option has it */
+    const wa = recC.mix((r) => r.startsWith('wire') ? 1 : 0), la = recC.mix((r) => r.startsWith('loop') ? 1 : 0);
+    const th = recC.mix((r) => (r === 'wire-b' ? Math.PI / 2 : 0)), ph = recC.mix((r) => (r === 'loop-edge' ? Math.PI / 2 : 0));
+    const fade = (m, a) => { m.visible = a > 0.02; m.material.transparent = a < 1; m.material.opacity = a; };
+    fade(S.wire, wa); fade(S.loopXY, la); S.loopXZ.visible = false;
+    F.mesh.setStick(S.wire, [S.RX, -0.75 * Math.cos(th), 0.75 * Math.sin(th)], [S.RX, 0.75 * Math.cos(th), -0.75 * Math.sin(th)]);
+    S.loopXY.rotation.x = ph;
     S.lab.rec.textContent = st.rec === 'none' ? '' : RECNAME[st.rec];
     S.lab.rec.hidden = st.rec === 'none';
     V.headline(`The wave travels to the right at the speed of light, ${fmt(st.lam, 2)} m to the cycle, its crests ${fmt(st.E0, 0)} V/m and ${sci(st.B0, 2)} T.`);
@@ -521,8 +524,7 @@ function sciTex(x, dp) {
     const eTop = PT(X0 + 0.5 * UPM, kE, 0), bTop = PT(X0 + 0.5 * UPM, 0, kB);
     text(ctx, 'E', eTop[0] - 22, eTop[1] - 18, EC, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, 'B', bTop[0] - 22, bTop[1] + 18, BC, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'This browser cannot turn the scene, so the wave is drawn from one viewpoint only,', 700, 470, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'with the electric field in the upright plane and the magnetic field in the plane at right angles to it.', 700, 494, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'The electric field is in the upright plane and the magnetic field in the plane at right angles to it.', 700, 482, PAL.muted, { size: 17, align: 'center' });
   }
 
   function drawGraph(ctx, st, y0) {
@@ -554,7 +556,7 @@ function sciTex(x, dp) {
     drawGraph(ctx, st, V ? 24 : 520);
     readout(d.readout,
       `\\frac{\\kEf}{\\kBmag} = \\frac{${fmt(st.E0, 0)}\\ \\text{V/m}}{${sciTex(st.B0, 2)}\\ \\text{T}} = 3.00 \\times 10^{8}\\ \\text{m/s} = \\kc`,
-      `The two fields are exactly in phase and stand at right angles to one another and to the line of travel, which is what makes an electromagnetic wave a transverse wave. On the graph the electric curve is drawn against the left scale and the magnetic curve against the right, and because each is the other divided by the speed of light the two fall on the same line. ${st.rec === 'none' ? 'Nothing is held in the beam just now, so' : RECNAME[st.rec].charAt(0).toUpperCase() + RECNAME[st.rec].slice(1) + ' stands ' + fmt(REC_M, 2) + ' m down the beam, and'} ${verdict(st)}.`);
+      `The two fields are exactly in phase and stand at right angles to one another and to the line of travel, which is what makes an electromagnetic wave a transverse wave. The magnetic field is the electric field divided by the speed of light at every point, so on the left and right scales of the graph the two curves fall on the same line. ${st.rec === 'none' ? 'Nothing is held in the beam just now, so' : RECNAME[st.rec].charAt(0).toUpperCase() + RECNAME[st.rec].slice(1) + ' stands ' + fmt(REC_M, 2) + ' m down the beam, and'} ${verdict(st)}.`);
   }
 
   if (hasGL) {
@@ -620,7 +622,6 @@ function sciTex(x, dp) {
     text(ctx, 'the magnetic field of the wave', BAR_X - 18, 228, BC, { size: 20, weight: 600, align: 'right' });
     arrow(ctx, BAR_X, 228, BAR_X + (BAR_W * st.B) / B_MAX, 228, BC, 6);
     text(ctx, sci(st.B, 2) + ' T', BAR_X + (BAR_W * st.B) / B_MAX + 16, 228, BC, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
-    text(ctx, 'each arrow is drawn to its own scale, since the two are quantities of different kinds', 700, 278, PAL.muted, { size: 17, align: 'center' });
 
     /* the speed of the wave in the medium */
     text(ctx, 'the speed of the wave', BAR_X - 18, 336, VC, { size: 20, weight: 600, align: 'right' });
@@ -651,7 +652,7 @@ function sciTex(x, dp) {
     topline(ctx, `An electric field of ${fmt(eS.v, 0)} V/m goes with a magnetic field of ${sci(st.B, 2)} T, ${compare}.`);
     readout(d.readout,
       `\\kBmag = \\frac{\\kEf}{\\kc / n} = \\frac{(${fmt(eS.v, 0)}\\ \\text{V/m})(${fmt(nS.v, 2)})}{3.00 \\times 10^{8}\\ \\text{m/s}} = ${sciTex(st.B, 2)}\\ \\text{T}`,
-      `The figure opens on Example 24.1: a wave in a vacuum whose electric field reaches 1000 V/m carries a magnetic field of only 3.33 \u00D7 10\u207B\u2076 T, which is less than a tenth of the Earth\u2019s admittedly weak field, and that is the concrete form of the statement that the magnetic part of a wave is small beside the electric part. Raise the index of refraction and the wave slows to ${sci(st.v, 2)} m/s; the ratio of the two field strengths falls with the speed, so the same electric field now goes with a larger magnetic one.`);
+      `In Example 24.1 a wave in a vacuum whose electric field reaches 1000 V/m carries a magnetic field of only 3.33 \u00D7 10\u207B\u2076 T, which is less than a tenth of the Earth\u2019s admittedly weak field, and that is the concrete form of the statement that the magnetic part of a wave is small beside the electric part. Raise the index of refraction and the wave slows to ${sci(st.v, 2)} m/s; the ratio of the two field strengths falls with the speed, so the same electric field now goes with a larger magnetic one.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

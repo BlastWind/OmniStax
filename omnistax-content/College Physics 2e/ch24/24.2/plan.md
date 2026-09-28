@@ -171,3 +171,12 @@ columns of `sim-antenna-b` and `sim-em-wave-3d` gained `frequency`, which the
 frequency slider of each binds, and `ch24/COLOR.md` now gives the section that
 type; and the hover names and headline of `sim-antenna-b` are in American
 spelling, as the reader-facing words of the book are.
+
+## Figure pass, 2026-09-28 (Claude Opus 5.5)
+
+Judged against `docs/prompts/manim-style.md`; only the figures below changed.
+
+- `sim-antenna-cycle` · the clock is named time, t; the readout's last sentence says what the antenna holds at 0, T/4 and T/2 (root 17).
+- `sim-antenna-b` · the readout gives the quarter-cycle lag between charge and current as physics (root 17).
+- `sim-em-wave-3d` · value add unchanged; the receiver dropdown now turns the wire from along E to along B, and the loop from through the field to edge-on, over 0.9 s, fading a receiver only one option has (manim 15/16); the notes on the graph's scales and the no-WebGL view speak of the fields.
+- `sim-field-ratio` · the note on the arrows' scales goes; the readout states Example 24.1's numbers directly (root 17).
