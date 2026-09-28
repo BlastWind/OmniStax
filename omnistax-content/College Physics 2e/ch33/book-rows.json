@@ -1,0 +1,619 @@
+{
+ "symbols": [
+  {
+   "sym": "V_gap",
+   "latex": "V_{\\text{gap}}",
+   "type": "voltage",
+   "macro": "\\kVgap"
+  },
+  {
+   "sym": "B_bary",
+   "latex": "B"
+  },
+  {
+   "sym": "L_e",
+   "latex": "L_{e}"
+  },
+  {
+   "sym": "L_mu",
+   "latex": "L_{\\mu}"
+  },
+  {
+   "sym": "L_tau",
+   "latex": "L_{\\tau}"
+  },
+  {
+   "sym": "S_str",
+   "latex": "S"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "virtual-particle-exchange",
+   "kind": "idea",
+   "section": "33.1",
+   "name": "Forces are carried by the exchange of virtual particles",
+   "why": "Yukawa's idea is the thread of the whole chapter: a force is carried by particles created for a short time, as the uncertainty principle allows, and every carrier particle that follows is one of them. The reader should be able to say why such a particle cannot be observed directly.",
+   "evidence": "The book states that a pion is created in temporary violation of the conservation of mass-energy, for a time $\\Delta t \\approx h/4\\pi\\Delta E$, and must be recaptured, since observing it would be a permanent violation; Figure 33.3 shows the exchange between a proton and a neutron.",
+   "eq": "eq-energy-time-uncertainty"
+  },
+  {
+   "id": "range-and-carrier-mass",
+   "kind": "result",
+   "section": "33.1",
+   "name": "The range of a force limits the mass of its carrier, $d \\approx c\\,\\Delta t$",
+   "why": "A carrier can travel only as far as light goes in the time it may exist, so the heavier the carrier, the shorter the range. This relation lets a measured range predict a particle no one had seen.",
+   "evidence": "The book gives $d \\approx c\\Delta t$ and states that the larger the mass and the greater the $\\Delta E$, the shorter the time the particle can exist; the caption of Figure 33.3 says the shorter the range, the larger the mass.",
+   "eq": "eq-range-of-force"
+  },
+  {
+   "id": "estimate-carrier-mass",
+   "kind": "skill",
+   "section": "33.1",
+   "name": "Estimate the mass of a carrier particle from the range of its force",
+   "why": "Yukawa's estimate of the pion's mass is a short chain the reader can repeat: range to time, time to energy, energy to mass. The same chain runs backward from a mass to a range or a lifetime.",
+   "evidence": "Example 33.1 finds $m \\approx 100\\;\\text{MeV}/c^{2}$ from a range of 1 fermi; the section's problems ask for the lifetime of a $10^{14}\\text{-GeV}/c^{2}$ virtual particle and the range of a force carried by $K$-mesons."
+  },
+  {
+   "id": "pions-and-muons",
+   "kind": "idea",
+   "section": "33.1",
+   "name": "The pions carry the strong force; the muon, of nearly the same mass, does not feel it",
+   "why": "The discovery of the pions confirmed Yukawa's prediction, while the muon showed that a particle of the right mass need not be the right particle. The distinction is the first sorting of particles by the forces they feel.",
+   "evidence": "The book gives the masses of $\\pi^{+}$, $\\pi^{-}$ and $\\pi^{0}$ as 139.6 and $135.0\\;\\text{MeV}/c^{2}$, close to the prediction, names them mesons, and explains that the $106\\text{-MeV}/c^{2}$ muon does not feel the strong nuclear force."
+  },
+  {
+   "id": "properties-of-the-four-forces",
+   "kind": "result",
+   "section": "33.2",
+   "name": "The four basic forces, their relative strengths, ranges and carrier particles",
+   "why": "Particle physics classifies every particle by the forces it feels, so the reader needs the four forces side by side: gravity and electromagnetism of infinite range, the weak and strong forces short ranged, each with its carrier.",
+   "evidence": "Table 33.1 lists relative strengths from $10^{-38}$ for gravity to 1 for the strong force, the ranges, and the graviton, photon, $W^{\\pm}$ and $Z^{0}$, and gluons as carriers; the section's AP items compare the forces between hydrogen atoms and between the Earth and the Sun."
+  },
+  {
+   "id": "feynman-diagrams",
+   "kind": "idea",
+   "section": "33.2",
+   "name": "A Feynman diagram graphs the exchange of virtual particles, time against position",
+   "why": "Feynman diagrams are the language of the rest of the chapter: each later interaction, from pion exchange to a gluon changing a quark's color, is drawn as one. The reader should be able to read which particles approach, what they exchange and how they leave.",
+   "evidence": "Figure 33.5 shows two positive charges exchanging a virtual photon, time graphed vertically, and Figure 33.6 shows a $\\pi^{+}$ exchanged between a proton and a neutron."
+  },
+  {
+   "id": "quantum-electrodynamics",
+   "kind": "idea",
+   "section": "33.2",
+   "name": "Quantum electrodynamics, the quantum theory of electromagnetism",
+   "why": "QED is the model every later force theory follows: the electromagnetic force carried by virtual photons and calculated from Feynman diagrams.",
+   "evidence": "The book defines QED as the quantum mechanics of electromagnetism, spectacularly successful on the submicroscopic scale, and notes that Feynman diagrams are used to calculate the strengths and probabilities of interactions."
+  },
+  {
+   "id": "carrier-mass-sets-range",
+   "kind": "result",
+   "section": "33.2",
+   "name": "Massless carriers give forces of infinite range; massive carriers give short-ranged forces",
+   "why": "The four ranges in Table 33.1 follow from one rule: the photon and graviton are massless, so their forces reach any distance, while the $W^{\\pm}$ and $Z^{0}$, about 1000 times the pion's mass, give the weak force about 1/1000 of the strong force's range.",
+   "evidence": "The book explains the infinite ranges of electromagnetism and gravity by their massless carriers and the weak force's short range by the masses of the $W^{\\pm}$ and $Z^{0}$, and notes that gluons are massless but act inside massive pions."
+  },
+  {
+   "id": "accelerators-create-matter",
+   "kind": "idea",
+   "section": "33.3",
+   "name": "Energetic collisions create new matter, $m = \\Delta E/c^{2}$",
+   "why": "Nearly everything known about particles came from machines that turn the energy of a collision into new mass. The reader should see why more energy lets heavier particles be made, within the conservation laws.",
+   "evidence": "The book states that the more energy input, the more matter can be created, since $m = \\Delta E/c^{2}$, limited by conservation of mass-energy, momentum and charge; the AP items ask how fast bowling balls must collide to make a tennis ball and how many $K^{0}$ a $Z$ boson could decay into.",
+   "eq": "eq-mass-from-energy"
+  },
+  {
+   "id": "van-de-graaff-and-cyclotron",
+   "kind": "idea",
+   "section": "33.3",
+   "name": "Early accelerators: the electrostatic Van de Graaff and the cyclotron",
+   "why": "The cyclotron's trick, a fixed-frequency alternating voltage across a gap while a magnetic field bends the particle round again, is the idea every circular accelerator builds on.",
+   "evidence": "The book gives Van de Graaff potentials as great as 50 MV and describes particles spiraling outward in the cyclotron's magnetic field, accelerated twice in each orbit as they cross the gap between the Ds (Figure 33.8)."
+  },
+  {
+   "id": "synchrotron",
+   "kind": "idea",
+   "section": "33.3",
+   "name": "The synchrotron: rising frequency and field keep the orbit's radius fixed",
+   "why": "Holding the radius fixed while the particle gains energy is what makes a ring of magnets possible, and the limit on field strength is why the highest-energy rings are kilometers across.",
+   "evidence": "The book explains that the frequency of the accelerating voltage and the field strength are increased as the particles gain energy, shows the ring and the reversing tube potentials in Figure 33.9, and states that achievable field strengths force very large machines."
+  },
+  {
+   "id": "synchrotron-radiation",
+   "kind": "idea",
+   "section": "33.3",
+   "name": "Synchrotron radiation from charged particles bent by a magnetic field",
+   "why": "Bending a beam costs energy, most severely for light electrons, which is why electron machines are built straight; the same radiation marks magnetic fields in deep space.",
+   "evidence": "The book defines synchrotron radiation, notes that it is recognized in cosmic rays and used as a research source, and says linear accelerators avoid its losses, particularly severe for electrons; a conceptual question asks why electron accelerators suffer more."
+  },
+  {
+   "id": "colliding-beams",
+   "kind": "result",
+   "section": "33.3",
+   "name": "Colliding beams make the whole beam energy available for new particles",
+   "why": "A beam striking a fixed target must leave its products recoiling, wasting energy; two beams meeting head-on have zero total momentum, so particles of twice the beam energy can be made.",
+   "evidence": "The book explains the recoil limit, states that colliding beams can create masses equivalent to twice the beam energy, and describes the Tevatron, the LHC, SLAC and LEP with their collision energies; problems ask for the collision energy of 7.00-TeV protons and of 50.0-GeV electrons and positrons."
+  },
+  {
+   "id": "accelerator-gap-voltage",
+   "kind": "skill",
+   "section": "33.3",
+   "name": "Find the energy a particle gains across accelerating gaps, $\\text{PE}_{\\text{elec}} = qV$",
+   "why": "A proton gains 1 eV for each volt it crosses, so the energy of a linear accelerator is the sum of its gap voltages; the reader should be able to go from one to the other.",
+   "evidence": "Example 33.2 finds the 400-kV gap voltage for 800-MeV protons in 2000 tubes; problems ask for SLAC's gap voltage and for the number of LHC revolutions at 5.00 MeV each.",
+   "eq": "eq-gap-energy"
+  },
+  {
+   "id": "antimatter-and-annihilation",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "Every particle has an antiparticle, and the two annihilate",
+   "why": "Antimatter doubles the list of particles and settles one of the puzzles the chapter opens with: negative charge belongs to heavy particles too. Annihilation turns the whole mass into photons, which move apart to keep the total momentum zero.",
+   "evidence": "The book states that antimatter has the opposite charge and the same mass, spin and half-life, that some neutral particles are their own antiparticles, and shows an electron and a positron annihilating into two photons in Figure 33.13."
+  },
+  {
+   "id": "hadrons-and-leptons",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "Hadrons feel the strong force; leptons do not",
+   "why": "Sorting particles by the forces they feel gives the chapter's first classification. Only six leptons exist and they seem fundamental, while the hadrons are many.",
+   "evidence": "The book defines hadrons and leptons, names the proton, neutron and pions as hadrons and the electron, muons and neutrinos as leptons, and lists them in Table 33.2."
+  },
+  {
+   "id": "bosons-and-fermions",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "Bosons have integral spin; fermions have half-integral spin and obey the exclusion principle",
+   "why": "Spin divides particles along another line: all carrier particles are bosons, while quarks and leptons are fermions, which is what later forces a quark to carry color.",
+   "evidence": "The book defines bosons with $s = 0, 1, 2, \\ldots$ and fermions with $s = 1/2, 3/2, \\ldots$, states that fermions obey the Pauli exclusion principle, and names the carrier particles gauge bosons."
+  },
+  {
+   "id": "lepton-family-numbers",
+   "kind": "result",
+   "section": "33.4",
+   "name": "Three lepton families, and the conservation of $L_{e}$, $L_{\\mu}$ and $L_{\\tau}$",
+   "why": "The six leptons fall into three families, each with a number that stays the same through a reaction; these numbers decide which neutrinos appear in a decay.",
+   "evidence": "The book gives the decays $\\mu^{-} \\to e^{-} + \\bar{\\nu}_{e} + \\nu_{\\mu}$ and $\\tau^{-} \\to \\mu^{-} + \\bar{\\nu}_{\\mu} + \\nu_{\\tau}$ and notes that neutrino oscillations show lepton family number is not universally conserved."
+  },
+  {
+   "id": "mesons-and-baryons",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "Mesons and baryons, the two kinds of hadrons, told apart by how they decay",
+   "why": "The division is not by mass but by decay: a meson can decay to leptons leaving no hadron, while a baryon always decays to another baryon.",
+   "evidence": "The book defines mesons and baryons by their decay modes and divides the hadrons of Table 33.2 into the two subgroups; a conceptual question asks whether a hadron is always a baryon."
+  },
+  {
+   "id": "baryon-number-conservation",
+   "kind": "result",
+   "section": "33.4",
+   "name": "Conservation of total baryon number",
+   "why": "Baryon number explains why the proton does not decay and why nuclear physics always kept the number of nucleons; the older rule is one consequence of the new one.",
+   "evidence": "The book gives $B = +1$ for baryons, $-1$ for antibaryons and 0 for mesons and leptons, and states that conservation of the total number of nucleons in nuclear reactions is one consequence of the conservation of total baryon number."
+  },
+  {
+   "id": "particle-lifetime-and-force",
+   "kind": "result",
+   "section": "33.4",
+   "name": "A particle's lifetime shows which force causes its decay",
+   "why": "The stronger the force, the faster the decay, so a measured lifetime tells the reader whether the strong or the weak force is at work, and leptons among the products point to the weak force.",
+   "evidence": "The book contrasts ${}^{8}\\text{Be} \\to \\alpha + \\alpha$, about $10^{-16}\\;\\text{s}$ by the strong force, with the neutron's 882-s decay by the weak force, and gives lifetimes of $10^{-16}$ to $10^{-12}\\;\\text{s}$ for weak decays and $10^{-16}$ to $10^{-23}\\;\\text{s}$ for strong ones."
+  },
+  {
+   "id": "strangeness",
+   "kind": "result",
+   "section": "33.4",
+   "name": "Strangeness: conserved by the strong force, not by the weak force",
+   "why": "Some decays allowed by every known law never happen, and strangeness is the quantum number that forbids them. That the weak force alone can change it later points to quark flavor.",
+   "evidence": "The book introduces strangeness $S$ from the long lifetimes of the $\\Lambda$, $\\Sigma$, $\\Xi$ and $\\Omega$, lists it in Table 33.2, and states in italics that it is conserved by the strong force but not by the weak force."
+  },
+  {
+   "id": "check-conservation-in-decays",
+   "kind": "skill",
+   "section": "33.4",
+   "name": "Check a decay against the conservation of charge, baryon number, lepton family numbers and strangeness",
+   "why": "Adding up the quantum numbers before and after is how a physicist decides whether a decay can happen, and which force is responsible when it does.",
+   "evidence": "Example 33.3 checks $\\Xi^{-} \\to \\Lambda^{0} + \\pi^{-}$ and $K^{+} \\to \\mu^{+} + \\nu_{\\mu}$ with Table 33.2; problems ask for the energy released and the family numbers in the decays of the $\\pi^{0}$, the muon and the positive tau."
+  },
+  {
+   "id": "fundamental-particles",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "Fundamental particles: leptons, quarks and carrier particles",
+   "why": "The chapter's question, what is truly elementary, gets its present answer here: particles with no substructure and no size beyond their wavelength, in three groups.",
+   "evidence": "The book defines a fundamental particle, states that all leptons seem fundamental and no hadrons are, and names quarks and the carrier particles as the other two groups."
+  },
+  {
+   "id": "quark-flavors",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "Six quark flavors with fractional charges, $+\\frac{2}{3}q_{e}$ and $-\\frac{1}{3}q_{e}$",
+   "why": "The quark model's boldest claim is fractional charge, and it is consistent only because a free quark is never seen. The six flavors are the alphabet from which every hadron is spelled.",
+   "evidence": "Table 33.3 lists up, down, strange, charmed, bottom and top with their spins, charges, baryon numbers of $\\pm\\frac{1}{3}$, flavor quantum numbers and approximate masses."
+  },
+  {
+   "id": "quark-composition-of-hadrons",
+   "kind": "result",
+   "section": "33.5",
+   "name": "Baryons are three quarks, mesons a quark and an antiquark",
+   "why": "Two rules build every hadron and give only integral charges, which is the pattern that made the quark model convincing.",
+   "evidence": "Figure 33.15 shows the proton as $uud$, the neutron as $udd$ and the pions as $u\\bar{d}$ and $\\bar{u}d$ with their spins and charges added; Table 33.4 lists the compositions of selected hadrons."
+  },
+  {
+   "id": "quantum-numbers-from-quarks",
+   "kind": "skill",
+   "section": "33.5",
+   "name": "Find a hadron's charge, baryon number and strangeness from its quarks",
+   "why": "Adding the quark quantum numbers checks a composition against Table 33.2, and working backward names the quarks of a particle from its quantum numbers.",
+   "evidence": "Example 33.4 verifies the quantum numbers of the $\\Xi^{0}$ from $uss$; problems ask for the $\\Omega^{+}$, the $D^{+}$ and the particle $\\bar{u}\\bar{u}\\bar{d}$."
+  },
+  {
+   "id": "weak-force-changes-flavor",
+   "kind": "result",
+   "section": "33.5",
+   "name": "The weak force can change a quark's flavor; the strong force cannot",
+   "why": "Neutron decay is a down quark becoming an up quark, and the same flavor change explains why the weak force alone can change strangeness.",
+   "evidence": "The book writes neutron $\\beta^{-}$ decay as $udd \\to uud + \\beta^{-} + \\bar{\\nu}_{e}$, reduces it to $d \\to u + \\beta^{-} + \\bar{\\nu}_{e}$, and states in italics both general facts.",
+   "eq": "eq-down-to-up"
+  },
+  {
+   "id": "evidence-for-quarks",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "The evidence for quarks: predicted particles, electron scattering and jets",
+   "why": "No quark has been isolated, so the reader should know why physicists believe in them: the $\\Omega^{-}$ was found as predicted, high-energy electrons scatter from three pointlike charges inside the proton, and collisions give three jets.",
+   "evidence": "The book tells of the 1964 discovery of the $\\Omega^{-}$ (Figure 33.16), the SLAC scattering experiments analogous to Rutherford's (Figure 33.17), and jets of particles in collisions; the November Revolution of the $J/\\psi$ confirmed the charmed quark."
+  },
+  {
+   "id": "quark-color-and-confinement",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "Quark color, white hadrons and confinement",
+   "why": "Color explains three things at once: why baryons have three quarks and mesons two, why quarks in states like $sss$ obey the exclusion principle, and why a single quark cannot be isolated.",
+   "evidence": "The book assigns red, green and blue to quarks and their anticolors to antiquarks, shows RGB and $R\\bar{R}$ adding to white in Figure 33.19, describes the theory of quark confinement and names the theory of quarks with color quantum chromodynamics."
+  },
+  {
+   "id": "three-families",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "Leptons, quarks and carriers each fall into three families",
+   "why": "The pattern of three analogous families, normal, exotic and more exotic, is the present map of all known fundamental particles, and the higher families decay into the first.",
+   "evidence": "Figure 33.20 arranges leptons, quarks and carrier particles in three families with the graviton left out; the book notes that the $\\tau$ decays into the $\\mu$ and the $\\mu$ into the $e$."
+  },
+  {
+   "id": "electroweak-unification",
+   "kind": "result",
+   "section": "33.6",
+   "name": "Electroweak theory: the electromagnetic and weak forces are one at high energy",
+   "why": "The first successful unification since electricity and magnetism predicted the $W^{\\pm}$ and $Z^{0}$ and their masses before they were found.",
+   "evidence": "The book gives the predicted masses of 81 and $90\\;\\text{GeV}/c^{2}$, their observation at CERN in 1983, the $Z^{0}$ exchange of Figure 33.21, and the equal strengths of the two forces near 100 GeV in Figure 33.24."
+  },
+  {
+   "id": "gluons-and-qcd",
+   "kind": "idea",
+   "section": "33.6",
+   "name": "Eight gluons carry the strong force between quarks and can change their color",
+   "why": "Gluons finish the picture of the strong force: pion exchange between nucleons is, underneath, quarks and gluons.",
+   "evidence": "The book states that QCD calls for eight massless spin-1 gluons, six carrying a color and an anticolor, shows an $R\\bar{G}$ gluon changing the colors of two quarks in Figure 33.22, and traces pion exchange through its quarks and gluons in Figure 33.23."
+  },
+  {
+   "id": "standard-model",
+   "kind": "idea",
+   "section": "33.6",
+   "name": "The Standard Model: electroweak theory and quantum chromodynamics together",
+   "why": "The Standard Model is the name for everything the chapter has built, expected to be modified but not overthrown, with the Higgs boson its last predicted piece.",
+   "evidence": "The book defines the Standard Model as QCD with the electroweak theory and describes the Higgs boson and the evidence at the LHC for a mass of about 125 GeV."
+  },
+  {
+   "id": "grand-unified-theories",
+   "kind": "idea",
+   "section": "33.6",
+   "name": "Grand Unified Theories: the forces' strengths meet at extreme energies and small distances",
+   "why": "Higher energy probes smaller distances, and there the strengths of the forces come together; the reader should see why the GUT scale lies far beyond any accelerator.",
+   "evidence": "Figure 33.24 shows the electromagnetic and weak forces meeting near 100 GeV, the strong force joining near $10^{14}\\;\\text{GeV}$ and gravity near $10^{19}\\;\\text{GeV}$; the book gives $10^{-30}\\;\\text{m}$ as the distance probed at $10^{14}\\;\\text{GeV}$ and names superstring theory as one TOE."
+  },
+  {
+   "id": "proton-decay",
+   "kind": "result",
+   "section": "33.6",
+   "name": "GUTs predict that the proton decays, $p \\to \\pi^{0} + e^{+}$, with a lifetime near $10^{31}$ y",
+   "why": "Proton decay is a consequence of unification that ordinary energies could test, and its absence so far constrains the theories.",
+   "evidence": "The book gives the proposed decay, which violates baryon number and electron family number, the predicted lifetime of about $10^{31}\\;\\text{y}$ and the experimental limit above $5 \\times 10^{32}\\;\\text{y}$; a problem asks how much water a detector needs to see one decay a month."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "carrier-particle"
+  },
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "energy-time-uncertainty"
+  },
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "range-and-carrier-mass",
+   "prereq": "virtual-particle-exchange"
+  },
+  {
+   "concept": "estimate-carrier-mass",
+   "prereq": "range-and-carrier-mass"
+  },
+  {
+   "concept": "estimate-carrier-mass",
+   "prereq": "uncertainty-principle-calculation"
+  },
+  {
+   "concept": "estimate-carrier-mass",
+   "prereq": "atomic-mass-unit"
+  },
+  {
+   "concept": "pions-and-muons",
+   "prereq": "range-and-carrier-mass"
+  },
+  {
+   "concept": "properties-of-the-four-forces",
+   "prereq": "four-basic-forces"
+  },
+  {
+   "concept": "properties-of-the-four-forces",
+   "prereq": "carrier-particle"
+  },
+  {
+   "concept": "properties-of-the-four-forces",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "feynman-diagrams",
+   "prereq": "virtual-particle-exchange"
+  },
+  {
+   "concept": "quantum-electrodynamics",
+   "prereq": "feynman-diagrams"
+  },
+  {
+   "concept": "carrier-mass-sets-range",
+   "prereq": "range-and-carrier-mass"
+  },
+  {
+   "concept": "carrier-mass-sets-range",
+   "prereq": "properties-of-the-four-forces"
+  },
+  {
+   "concept": "accelerators-create-matter",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "van-de-graaff-and-cyclotron",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "van-de-graaff-and-cyclotron",
+   "prereq": "circular-motion-in-a-magnetic-field"
+  },
+  {
+   "concept": "synchrotron",
+   "prereq": "van-de-graaff-and-cyclotron"
+  },
+  {
+   "concept": "synchrotron",
+   "prereq": "radius-of-curvature"
+  },
+  {
+   "concept": "synchrotron-radiation",
+   "prereq": "synchrotron"
+  },
+  {
+   "concept": "colliding-beams",
+   "prereq": "accelerators-create-matter"
+  },
+  {
+   "concept": "accelerator-gap-voltage",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "accelerator-gap-voltage",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "antimatter-and-annihilation",
+   "prereq": "conservation-of-electron-family-number"
+  },
+  {
+   "concept": "antimatter-and-annihilation",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "hadrons-and-leptons",
+   "prereq": "properties-of-the-four-forces"
+  },
+  {
+   "concept": "hadrons-and-leptons",
+   "prereq": "pions-and-muons"
+  },
+  {
+   "concept": "bosons-and-fermions",
+   "prereq": "spin-quantum-numbers"
+  },
+  {
+   "concept": "bosons-and-fermions",
+   "prereq": "pauli-exclusion-principle"
+  },
+  {
+   "concept": "lepton-family-numbers",
+   "prereq": "conservation-of-electron-family-number"
+  },
+  {
+   "concept": "lepton-family-numbers",
+   "prereq": "hadrons-and-leptons"
+  },
+  {
+   "concept": "mesons-and-baryons",
+   "prereq": "hadrons-and-leptons"
+  },
+  {
+   "concept": "baryon-number-conservation",
+   "prereq": "mesons-and-baryons"
+  },
+  {
+   "concept": "baryon-number-conservation",
+   "prereq": "conservation-of-nucleon-number"
+  },
+  {
+   "concept": "particle-lifetime-and-force",
+   "prereq": "properties-of-the-four-forces"
+  },
+  {
+   "concept": "particle-lifetime-and-force",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "particle-lifetime-and-force",
+   "prereq": "mesons-and-baryons"
+  },
+  {
+   "concept": "strangeness",
+   "prereq": "particle-lifetime-and-force"
+  },
+  {
+   "concept": "check-conservation-in-decays",
+   "prereq": "lepton-family-numbers"
+  },
+  {
+   "concept": "check-conservation-in-decays",
+   "prereq": "baryon-number-conservation"
+  },
+  {
+   "concept": "check-conservation-in-decays",
+   "prereq": "strangeness"
+  },
+  {
+   "concept": "check-conservation-in-decays",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "fundamental-particles",
+   "prereq": "hadrons-and-leptons"
+  },
+  {
+   "concept": "fundamental-particles",
+   "prereq": "bosons-and-fermions"
+  },
+  {
+   "concept": "quark-flavors",
+   "prereq": "fundamental-particles"
+  },
+  {
+   "concept": "quark-flavors",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "quark-composition-of-hadrons",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "quark-composition-of-hadrons",
+   "prereq": "mesons-and-baryons"
+  },
+  {
+   "concept": "quantum-numbers-from-quarks",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "quantum-numbers-from-quarks",
+   "prereq": "check-conservation-in-decays"
+  },
+  {
+   "concept": "weak-force-changes-flavor",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "weak-force-changes-flavor",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "weak-force-changes-flavor",
+   "prereq": "strangeness"
+  },
+  {
+   "concept": "evidence-for-quarks",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "evidence-for-quarks",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "quark-color-and-confinement",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "quark-color-and-confinement",
+   "prereq": "pauli-exclusion-principle"
+  },
+  {
+   "concept": "three-families",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "three-families",
+   "prereq": "lepton-family-numbers"
+  },
+  {
+   "concept": "electroweak-unification",
+   "prereq": "properties-of-the-four-forces"
+  },
+  {
+   "concept": "electroweak-unification",
+   "prereq": "carrier-mass-sets-range"
+  },
+  {
+   "concept": "electroweak-unification",
+   "prereq": "feynman-diagrams"
+  },
+  {
+   "concept": "gluons-and-qcd",
+   "prereq": "quark-color-and-confinement"
+  },
+  {
+   "concept": "gluons-and-qcd",
+   "prereq": "feynman-diagrams"
+  },
+  {
+   "concept": "standard-model",
+   "prereq": "electroweak-unification"
+  },
+  {
+   "concept": "standard-model",
+   "prereq": "gluons-and-qcd"
+  },
+  {
+   "concept": "grand-unified-theories",
+   "prereq": "electroweak-unification"
+  },
+  {
+   "concept": "grand-unified-theories",
+   "prereq": "estimate-carrier-mass"
+  },
+  {
+   "concept": "proton-decay",
+   "prereq": "grand-unified-theories"
+  },
+  {
+   "concept": "proton-decay",
+   "prereq": "baryon-number-conservation"
+  },
+  {
+   "concept": "proton-decay",
+   "prereq": "lepton-family-numbers"
+  }
+ ]
+}

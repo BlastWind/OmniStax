@@ -1,0 +1,747 @@
+{
+ "types": [
+  {
+   "id": "dose",
+   "label": "radiation dose",
+   "dimension": "Gy"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "dose",
+   "latex": "\\text{dose}",
+   "type": "dose",
+   "macro": "\\kdose"
+  },
+  {
+   "sym": "RBE",
+   "latex": "\\text{RBE}"
+  },
+  {
+   "sym": "m_i",
+   "latex": "m_{\\text{i}}"
+  },
+  {
+   "sym": "m_f",
+   "latex": "m_{\\text{f}}"
+  },
+  {
+   "sym": "m_products",
+   "latex": "m_{\\text{products}}"
+  },
+  {
+   "sym": "E_gamma",
+   "latex": "E_{\\gamma}",
+   "type": "energy",
+   "macro": "\\kEgam"
+  },
+  {
+   "sym": "FF_1",
+   "latex": "\\text{FF}_{1}"
+  },
+  {
+   "sym": "FF_2",
+   "latex": "\\text{FF}_{2}"
+  },
+  {
+   "sym": "x_fis",
+   "latex": "x"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "radiopharmaceuticals-and-tagging",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "Radiopharmaceuticals: a radioactive nuclide tagged onto a compound the body sends where it is needed",
+   "why": "Nuclear medicine rests on two facts: $\\gamma$ rays pass easily out of the body, and a nucleus radiates the same whatever compound it sits in. The reader should be able to say why a tagged compound lets detectors outside the body see where a drug has gone.",
+   "evidence": "The book explains that nuclear radiation depends on the nuclide and not on the compound, defines a tagged compound and a radiopharmaceutical, and lists diagnostic uses with their isotopes and activities in Table 32.1: iodine for the thyroid, thallium for the heart, gallium for tumors."
+  },
+  {
+   "id": "technetium-99m",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "Why technetium-99m is used in most radiopharmaceutical procedures",
+   "why": "One nuclide carries perhaps 80 percent of all nuclear medicine, and the reasons are the chapter's physics in miniature: a single clean $\\gamma$ energy, a short half-life that limits the dose, and a parent that decays into it on site.",
+   "evidence": "The book gives the single 0.142-MeV $\\gamma$ ray, the 6.0-h half-life and production by neutron activation of molybdenum, which $\\beta$ decays into ${}^{99m}\\text{Tc}$; the second conceptual question asks how a short half-life limits the dose."
+  },
+  {
+   "id": "anger-camera",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "The Anger camera: a lead collimator, scintillators and photomultipliers",
+   "why": "The simplest nuclear imager is built from parts the reader met in Chapter 31. Knowing what each part does explains why the image is flat and has no depth.",
+   "evidence": "Figure 32.3 shows the collimator admitting $\\gamma$ rays from one direction only, the scintillators flashing and the photomultipliers turning the light into signals for the computer; the book notes that radiation from any depth under a detector gives the same signal."
+  },
+  {
+   "id": "spect-imaging",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "SPECT: tomography with $\\gamma$-emitting radiopharmaceuticals",
+   "why": "Surrounding the patient with detectors turns flat nuclear images into three-dimensional ones, as x-ray CT does for shadows. The reader should know what SPECT adds and what it costs in resolution.",
+   "evidence": "The book describes a circular array of detectors whose output a computer turns into an image (Figure 32.4), with poor spatial resolution of about 1 cm but good contrast."
+  },
+  {
+   "id": "pet-annihilation-pair",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "PET: two 0.511-MeV $\\gamma$ rays from a positron annihilation fix a line through the source",
+   "why": "PET is the cleanest use of conservation laws in medicine: an annihilating positron and electron at rest must send two equal photons in opposite directions, so two detectors firing together name the line the source lies on.",
+   "evidence": "The book explains that the two $\\gamma$ rays have identical 0.511-MeV energies, from the destroyed electron and positron masses, and move directly away from one another (Figure 32.5); detectors on opposite sides must fire simultaneously, and the resolution is 0.5 cm. The Critical Thinking problem on a $\\beta^{+}$ target asks for the directions of the pair."
+  },
+  {
+   "id": "mass-from-activity",
+   "kind": "skill",
+   "section": "32.1",
+   "name": "Finding the mass of a radioactive sample from its activity and half-life",
+   "why": "Medical activities of a few millicuries correspond to astonishingly small masses, and the calculation joins the activity relation of Chapter 31 to Avogadro's number. The same skill returns in the dose problems of the next sections.",
+   "evidence": "The problems ask for the mass of technetium in a 7.50-mCi brain scan and the mass of ${}^{24}\\text{Na}$ that gives 5.0 mCi, from $R = 0.693N/t_{1/2}$ and the molar mass."
+  },
+  {
+   "id": "radiation-damages-dna",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "Ionizing radiation acts on molecules in cells, above all on DNA",
+   "why": "Every biological effect of radiation, from cancer to its cure, follows from this one statement. It explains why rapidly reproducing cells, including cancer cells, are the most sensitive.",
+   "evidence": "The book states that all effects of ionizing radiation on tissue can be understood from its effect on DNA, lists what a cell with damaged repair can do (senescence, programmed death, unregulated division) and concludes that radiation can be both a cure and a cause of cancer."
+  },
+  {
+   "id": "absorbed-dose-rad-and-gray",
+   "kind": "result",
+   "section": "32.2",
+   "name": "Radiation dose as energy per kilogram: $1\\;\\text{rad} = 0.01\\;\\text{J/kg}$ and $1\\;\\text{Gy} = 1\\;\\text{J/kg} = 100\\;\\text{rad}$",
+   "why": "Effects are assumed proportional to the ionization produced, and ionization to the energy deposited, so dose is energy divided by the mass of tissue affected. The reader should be able to convert between rad and gray and say which tissue a dose refers to.",
+   "evidence": "The book defines the rad and the gray and works a 50.0-kg person absorbing 1.00 J (2.00 rad whole body) against the same joule in a 2.00-kg forearm (50.0 rad); Table 32.3 lists the units.",
+   "eq": "eq-gray"
+  },
+  {
+   "id": "relative-biological-effectiveness",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "Relative biological effectiveness: short-range radiation does more damage per joule",
+   "why": "The same deposited energy harms more when it is concentrated, because concentrated damage is harder to repair. This is why an $\\alpha$ emitter inside the body is so much more dangerous than a $\\gamma$ source of the same dose.",
+   "evidence": "Figure 32.6 compares the dense ionization of an $\\alpha$ with the sparse ionization of a $\\gamma$; Table 32.2 lists RBEs from 1 for x-rays, $\\gamma$ rays and energetic $\\beta$s to 10 to 20 for $\\alpha$s and 32 for fast neutrons in the eye."
+  },
+  {
+   "id": "dose-equivalent-rem-and-sievert",
+   "kind": "result",
+   "section": "32.2",
+   "name": "Dose equivalent: $\\text{rem} = \\text{rad}\\times\\text{RBE}$ and $\\text{Sv} = \\text{Gy}\\times\\text{RBE}$",
+   "why": "Multiplying the absorbed dose by the RBE gives a number proportional to the biological effect, which is what limits and risks are stated in. The reader should be able to pass between Gy and Sv for any type of radiation.",
+   "evidence": "The book shows 2.00 rad of $\\gamma$ radiation as 2.00 rem and 2.00 rad of $\\alpha$ radiation as 40.0 rem, defines the sievert with $1\\;\\text{Sv} = 100\\;\\text{rem}$, and the first problem asks for doses in mSv from x-ray, neutron and $\\alpha$ exposures.",
+   "eq": "eq-sievert"
+  },
+  {
+   "id": "dose-from-a-source",
+   "kind": "skill",
+   "section": "32.2",
+   "name": "Calculating a dose from an activity, the energy per decay and the mass of tissue",
+   "why": "Following a source's decays into joules per kilogram ties together activity, energy per decay, dose and RBE. The book's Problem-Solving Strategy sets out the steps, and activity must not be confused with dose along the way.",
+   "evidence": "Example 32.1 finds the lung dose from 1.00 $\\mu$Ci of inhaled ${}^{239}\\text{Pu}$: decays per year, times 5.23 MeV per decay, divided by 2.00 kg, times an RBE of 20, gives 9.8 Sv; the Misconception Alert separates activity, a property of the source, from dose, the energy deposited."
+  },
+  {
+   "id": "immediate-effects-and-dose-levels",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "Immediate effects of a single whole-body dose, and low, moderate and high doses",
+   "why": "Knowing roughly what 0.1, 1 and 5 Sv do to a person is what lets a reader judge whether any dose in the chapter is reasonable. Blood counts fall first because blood cells reproduce fastest.",
+   "evidence": "Table 32.4 lists effects from no observable effect below 0.10 Sv to LD50/32 at 4.5 Sv and death within hours above 20 Sv; the book names doses under 0.1 Sv low, 0.1 to 1 Sv moderate and over 1 Sv high."
+  },
+  {
+   "id": "linear-hypothesis-and-long-term-risk",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "Long-term risk and the linear hypothesis: about $10/10^{6}\\;\\text{rem}\\cdot\\text{y}$ for cancer",
+   "why": "Low doses have no effect anyone can observe, so their risk is estimated by scaling down from high doses. The reader should be able to estimate a lifetime risk and see why it cannot be detected demographically.",
+   "evidence": "The book gives the cancer risk of 10 in a million per rem per year for about 30 years (0.03 percent for 1 rem), genetic defects at about a third of that, and names the proportional assumption the linear hypothesis, prudent but controversial, with hormesis as the opposing claim."
+  },
+  {
+   "id": "background-radiation",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "Background radiation, about 3 mSv a year, most of it from radon",
+   "why": "Everyone is exposed, and the size of the background is the natural yardstick for every other dose. The reader should know its main sources and how much they vary.",
+   "evidence": "Table 32.5 lists cosmic rays, soil, radon, internal ${}^{40}\\text{K}$ and ${}^{14}\\text{C}$ and medical doses for four regions, totaling 2.6 to 3.5 mSv/y; Table 32.6 gives the doses of diagnostic x-ray exams, with a CT scan the largest."
+  },
+  {
+   "id": "radiation-protection",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "Radiation protection: shielding, distance and time",
+   "why": "These three are the only ways to limit a dose, and every safety measure in the chapter is one of them. The reader should be able to name which is at work in a given setting.",
+   "evidence": "The book describes the lead apron, shielded tube and distant technician behind lead glass in Figure 32.7, occupational limits of about 20 to 50 mSv/y and public limits a tenth or a thousandth of those; a conceptual question asks which methods the shoe-store x-ray machine and the protective suits use."
+  },
+  {
+   "id": "therapeutic-ratio",
+   "kind": "idea",
+   "section": "32.3",
+   "name": "Radiotherapy and the therapeutic ratio",
+   "why": "Radiotherapy works because cancer cells, reproducing rapidly, are more sensitive to radiation than normal cells. Every technique aims to kill as many abnormal cells as possible for each normal cell killed.",
+   "evidence": "The book defines radiotherapy and the therapeutic ratio, the ratio of abnormal cells killed to normal cells killed, and describes implants, radioactive iodine for the thyroid and tagged antibodies as ways to concentrate the dose in abnormal tissue."
+  },
+  {
+   "id": "crossfire-beams",
+   "kind": "idea",
+   "section": "32.3",
+   "name": "Beams from many directions crossing in a tumor concentrate the dose there",
+   "why": "A single beam would give healthy tissue on its path the same dose as the tumor. Rotating the source about a point in the tumor keeps the dose high at the crossing point and spreads it thin everywhere else.",
+   "evidence": "Figure 32.9 shows a ${}^{60}\\text{Co}$ source rotated around the patient with the common crossing point in the tumor; the book adds that accelerator beams of heavy ions have larger RBEs and can be better localized."
+  },
+  {
+   "id": "therapeutic-doses",
+   "kind": "idea",
+   "section": "32.3",
+   "name": "Therapeutic doses are large but localized and spread out in time",
+   "why": "Doses of tens of sieverts would kill if given to the whole body at once. The reader should see why localization and fractionation make them survivable, and why the tolerable dose depends on the surrounding tissue.",
+   "evidence": "Table 32.7 lists typical doses from 10 to 20 Sv for lung cancer to 80 Sv and more for brain, bone and thyroid; the book describes three to five 200-rem treatments a week for several weeks, with the time between allowing normal tissue to repair."
+  },
+  {
+   "id": "food-irradiation",
+   "kind": "idea",
+   "section": "32.4",
+   "name": "Food irradiation, at doses far above those fatal to humans",
+   "why": "Insects and bacteria are simpler organisms than people and tolerate much more radiation, so killing them takes doses of thousands of grays. The reader should be able to compare a low dose in food irradiation with a low dose to a person.",
+   "evidence": "The book gives $\\gamma$ sources of ${}^{60}\\text{Co}$ (1.25 MeV) and ${}^{137}\\text{Cs}$ (0.67 MeV), x-rays up to 5 MeV and electrons up to 10 MeV; up to 1000 Gy is a low dose for fruit and vegetables, about 10,000 Gy kills salmonella, and Figure 32.10 shows a plant that stores its source under water."
+  },
+  {
+   "id": "irradiated-food-is-not-radioactive",
+   "kind": "idea",
+   "section": "32.4",
+   "name": "Photons and electrons leave no residual radioactivity in food",
+   "why": "The first worry about irradiated food is that it becomes radioactive. It does not, because $\\gamma$ rays, x-rays and electrons at these energies induce no nuclear reactions.",
+   "evidence": "The book states that these photons and electrons create no residual radioactivity, and that neutron irradiation, which does, is not used for food; a conceptual question asks exactly this."
+  },
+  {
+   "id": "free-radicals-and-radiolytic-products",
+   "kind": "idea",
+   "section": "32.4",
+   "name": "Ionization makes free radicals, whose reactions produce radiolytic products",
+   "why": "This is how irradiation kills organisms, and it is also where the debate about safety lives. The reader should be able to say what is known and what is not about the products.",
+   "evidence": "The book explains that ionization produces free radicals that react to form perhaps four or five thousand radiolytic products, some of which break cell membranes and fracture DNA; low-level irradiation produces no compound in measurable amounts, and no short-term effects on consumers have been observed."
+  },
+  {
+   "id": "fusion-releases-energy",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "Fusing light nuclei releases energy because BE/$A$ rises toward iron",
+   "why": "The binding energy per nucleon curve of Chapter 31 predicts both fusion and fission. Where two light nuclei make one with greater BE/$A$, mass is destroyed and energy released.",
+   "evidence": "The book reasons from the curve in Figure 32.12 that the larger nucleus has greater binding energy and less mass per nucleon; the conceptual questions ask why fusion of light nuclei releases energy and why fusing iron or cobalt requires energy input."
+  },
+  {
+   "id": "coulomb-barrier-to-fusion",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "The Coulomb barrier: nuclei must come close before the short-ranged attraction takes over",
+   "why": "The major obstruction to fusion is the repulsion of two positive nuclei. The reader should be able to read the potential energy curve as a hill with a deep well at its center.",
+   "evidence": "Figure 32.13 graphs the potential energy between two light nuclei against their separation, repulsive Coulomb outside and attractive nuclear inside, with the analogy of a ball rolled over a hump into a deeper well; the AP item built on the same graph asks at what distance fusion can occur."
+  },
+  {
+   "id": "fusion-by-tunneling-and-temperature",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "In the Sun, fusion happens by tunneling, and its rate rises steeply with temperature",
+   "why": "The core of the Sun is too cool for nuclei to touch, yet it fuses hydrogen. Tunneling explains it, and because tunneling is so sensitive to how high up the barrier the nuclei climb, temperature controls the rate.",
+   "evidence": "The book states that about $10^{8}$ K is needed for nuclei to touch, more than the Sun's core temperature; Figure 32.14 shows nuclei that turn back without touching and, at higher energy, nuclei that fuse by tunneling before contact. Figure 32.15 shows fusion concentrated where the Sun is hottest, with negative feedback regulating the output."
+  },
+  {
+   "id": "proton-proton-cycle",
+   "kind": "result",
+   "section": "32.5",
+   "name": "The proton-proton cycle: $2e^{-} + 4\\,{}^{1}\\text{H} \\to {}^{4}\\text{He} + 2v_{\\text{e}} + 6\\gamma$, 26.7 MeV",
+   "why": "This is how the Sun shines. The reader should be able to follow the three reactions, see why the first two must happen twice, and check the conservation laws at each step.",
+   "evidence": "The book gives the three reactions with their energies, explains that the cycle consumes six protons and gives back two, and that annihilation of the two positrons adds four $\\gamma$ rays; the problems ask to verify nucleon number, charge and electron family number and to show the 26.7 MeV.",
+   "eq": "eq-pp-overall"
+  },
+  {
+   "id": "solar-neutrinos",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "Solar neutrinos escape the Sun at once and test the theory of its core",
+   "why": "Energy from the core takes tens of thousands of years to reach the surface, but neutrinos leave in seconds. That makes them the only direct messengers from the reactions, and their shortfall led to the discovery that neutrinos have mass.",
+   "evidence": "The book states that energy takes about 32,000 years to diffuse to the surface while neutrinos escape in less than two seconds, shows a neutrino detector's photomultiplier array (Figure 32.16) and Supernova 1987A (Figure 32.17), and tells how the solar neutrino problem was resolved."
+  },
+  {
+   "id": "deuterium-tritium-fusion",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "Fusion reactions of deuterium and tritium, the fuels for power on Earth",
+   "why": "The proton-proton cycle is far too slow for a power plant. Reactions of deuterium and tritium are easier to induce, give large energies, and use a fuel that is plentiful in sea water.",
+   "evidence": "The book lists the D-D and D-T reactions with their energies, among them ${}^{2}\\text{H} + {}^{3}\\text{H} \\to {}^{4}\\text{He} + n$ at 17.59 MeV, notes that deuterium is 0.015 percent of natural hydrogen, and explains that reactions putting most of their energy into a $\\gamma$ ray are hard to use; the AP item asks what else D-T fusion produces.",
+   "eq": "eq-dt-fusion"
+  },
+  {
+   "id": "fusion-energy-from-a-mass-of-fuel",
+   "kind": "skill",
+   "section": "32.5",
+   "name": "Finding the energy and power from fusing a given mass of fuel",
+   "why": "Counting the reactions in a kilogram and multiplying by the energy per reaction turns MeV into joules on a human scale. The same skill, with fission energies, runs through the next two sections.",
+   "evidence": "Example 32.2 finds $3.37\\times10^{14}$ J from 1.00 kg of D-T mixture and an average power of 10.7 MW over a year; keyed problems find the energies of reactions from the masses and the fuel needed for a year of United States energy use.",
+   "eq": "eq-fusion-energy-from-masses"
+  },
+  {
+   "id": "ignition-and-break-even",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "Temperature, density and time, and the goals of break-even and ignition",
+   "why": "Practical fusion needs a hot enough fuel, dense enough, held together long enough; the three trade off against one another. Break-even and ignition are the milestones a reactor must pass.",
+   "evidence": "The book names the three keys, defines ignition as self-sustaining reaction after external input is cut off and break-even as fusion power equal to heating power, and states that ignition has not been achieved."
+  },
+  {
+   "id": "magnetic-and-inertial-confinement",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "Magnetic confinement in a tokamak and inertial confinement by lasers",
+   "why": "These are the two techniques that have shown promise, and they trade density against confinement time. The reader should be able to say how each holds the fuel.",
+   "evidence": "The book explains that charged particles have difficulty crossing magnetic field lines, describes the tokamak and ITER (Figure 32.18), and describes lasers crushing D-T pellets to high density for a short time at the National Ignition Facility (Figure 32.19)."
+  },
+  {
+   "id": "fission-releases-energy",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "Splitting a heavy nucleus releases about 200 MeV because BE/$A$ is greater for medium-mass nuclei",
+   "why": "Fission is the other side of the binding energy curve. Reading about 7.6 MeV per nucleon near $A = 240$ against 8.6 near $A = 120$ estimates the energy of one fission, ten times a fusion and a hundred times a decay.",
+   "evidence": "The book estimates about 1 MeV per nucleon, or about 240 MeV per fission, from the BE/$A$ curve; the first conceptual question asks why fission of heavy nuclei releases energy while fission of light nuclei requires it."
+  },
+  {
+   "id": "fission-energy-from-masses",
+   "kind": "skill",
+   "section": "32.6",
+   "name": "Calculating the energy released by a fission from atomic masses",
+   "why": "The same mass bookkeeping as for any nuclear reaction applies, with neutrons counted among the products. The result shows why a real fission gives a little less than the estimate.",
+   "evidence": "Example 32.3 finds 171.2 MeV for the spontaneous fission ${}^{238}\\text{U} \\to {}^{95}\\text{Sr} + {}^{140}\\text{Xe} + 3n$; keyed problems do the same for neutron-induced fission of ${}^{238}\\text{U}$ and ${}^{239}\\text{Pu}$ and confirm conservation of nucleon number and charge.",
+   "eq": "eq-fission-energy"
+  },
+  {
+   "id": "neutron-induced-fission",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "Neutron-induced fission and the liquid drop model",
+   "why": "A neutron, having no charge, can enter a nucleus at low energy; the energy it deposits sets the nucleus oscillating like a struck drop until Coulomb repulsion splits it. The reader should be able to write $n + {}^{A}\\text{X} \\to \\text{FF}_{1} + \\text{FF}_{2} + xn$ and check that charge and nucleon number balance.",
+   "evidence": "Figure 32.21 shows the absorbed neutron, the narrowing nucleus and the two fragments with some neutrons; the book writes the general reaction and the example $n + {}^{235}\\text{U} \\to {}^{142}\\text{Ba} + {}^{91}\\text{Kr} + 3n$, with $92 + 0 = 56 + 36$.",
+   "eq": "eq-neutron-induced-fission"
+  },
+  {
+   "id": "chain-reaction-and-critical-mass",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "Chain reactions, critical mass, criticality and supercriticality",
+   "why": "Because fission makes neutrons that can cause more fission, a chain reaction is possible when more than one neutron per fission goes on to fission another nucleus. How much material that takes is the critical mass, the central quantity of both reactors and bombs.",
+   "evidence": "Figure 32.22 shows one fission leading to two more; the book defines the critical mass, criticality and supercriticality, and explains that ${}^{239}\\text{Pu}$ has the smallest critical mass because it produces more neutrons per fission and fissions more easily."
+  },
+  {
+   "id": "odd-neutron-number-fissile",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "Nuclei with an odd number of neutrons fission more easily",
+   "why": "Why ${}^{235}\\text{U}$ and ${}^{239}\\text{Pu}$ and not the plentiful ${}^{238}\\text{U}$? The nuclear force is more attractive when the captured neutron makes the number even, so about 2 MeV more is deposited and the drop deforms further.",
+   "evidence": "The book counts 143 neutrons in ${}^{235}\\text{U}$, 145 in ${}^{239}\\text{Pu}$ and 146 in ${}^{238}\\text{U}$, and states that ${}^{235}\\text{U}$ is only 0.72 percent of natural uranium; a conceptual question asks why odd-neutron nuclei fission with thermal neutrons."
+  },
+  {
+   "id": "reactor-moderation-and-control",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "A reactor thermalizes neutrons with water and regulates them with control rods",
+   "why": "${}^{235}\\text{U}$ captures slow neutrons best while fission gives fast ones, so a reactor needs a moderator; control rods keep it at criticality. The water also makes a safety feature, since losing it stops the chain reaction.",
+   "evidence": "Figure 32.23 shows a pressurized water reactor; the book explains that neutrons lose energy colliding with protons in water, that control rods absorb neutrons, and that residual heat from fission products continues after shutdown, which is why loss-of-coolant accidents need auxiliary cooling."
+  },
+  {
+   "id": "fission-energy-per-kilogram",
+   "kind": "skill",
+   "section": "32.6",
+   "name": "Finding the energy from fissioning a given mass of fuel",
+   "why": "Comparing fuels kilogram for kilogram shows a surprise: each fission gives ten times the energy of a fusion, but a kilogram of fission fuel gives only a quarter as much, because there are far fewer heavy nuclei in it.",
+   "evidence": "Example 32.4 finds $8.21\\times10^{13}$ J from 1.00 kg of ${}^{235}\\text{U}$ at 200 MeV per fission and compares it with Example 32.2; a keyed problem finds the fissions per second and the mass used in a year by a 900-MW plant."
+  },
+  {
+   "id": "breeding-plutonium",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "Breeding ${}^{239}\\text{Pu}$ from ${}^{238}\\text{U}$ by neutron capture and two $\\beta^{-}$ decays",
+   "why": "Breeding makes the other 99 percent of natural uranium usable, and it makes the bomb material. The reader should be able to write the three steps and check each for conservation.",
+   "evidence": "The book gives ${}^{238}\\text{U} + n \\to {}^{239}\\text{U} + \\gamma$, then the $\\beta^{-}$ decays of ${}^{239}\\text{U}$ (23 min) and ${}^{239}\\text{Np}$ (2.4 d), and defines breeder reactors; a keyed problem calculates the energy of each step.",
+   "eq": "eq-breeding-capture"
+  },
+  {
+   "id": "fission-bomb-assembly",
+   "kind": "idea",
+   "section": "32.7",
+   "name": "Fission bombs assemble a critical mass: the gun type and the implosion",
+   "why": "A bomb must hold a supercritical mass together for microseconds before it blows itself apart. The two designs differ in how fast they assemble it, which is why plutonium needed the implosion.",
+   "evidence": "Figure 32.24 shows two subcritical masses of ${}^{235}\\text{U}$ blown together in a barrel; Figure 32.25 shows high explosives compressing a sphere of ${}^{239}\\text{Pu}$ three-dimensionally, with a neutron source triggered at the right moment."
+  },
+  {
+   "id": "thermonuclear-bomb",
+   "kind": "idea",
+   "section": "32.7",
+   "name": "The thermonuclear bomb: a fission trigger ignites fusion fuel",
+   "why": "Fusion gives more energy per kilogram, and fast neutrons aid it, so a fusion bomb is limited in size by almost nothing. The reader should be able to follow how the fission trigger makes tritium and heats the fuel.",
+   "evidence": "Figure 32.28 shows the fission trigger beside lithium deuteride in a ${}^{238}\\text{U}$ shell; the book explains that $\\gamma$ rays heat and compress the fuel, neutrons make tritium by $n + {}^{6}\\text{Li} \\to {}^{3}\\text{H} + {}^{4}\\text{He}$, and fast neutrons fission the shell."
+  },
+  {
+   "id": "nuclear-weapon-energy-output",
+   "kind": "idea",
+   "section": "32.7",
+   "name": "Nuclear yields in kilotons and megatons, and how the energy divides into blast, heat and radiation",
+   "why": "Nuclear weapons differ from conventional ones not only in size but in where their energy goes. The reader should be able to convert a yield into mass destroyed and compare the fractions of blast, thermal energy and radiation.",
+   "evidence": "The book gives yields from 0.1 kT to 20 MT, Trinity at about 10 kT and Hiroshima at 15 kT; Figure 32.29 compares the fractions for a chemical bomb, a nuclear bomb and a neutron bomb, and keyed problems find the mass converted by a 12.0-kT bomb and compare blast and prompt radiation yields."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "radiopharmaceuticals-and-tagging",
+   "prereq": "gamma-decay"
+  },
+  {
+   "concept": "radiopharmaceuticals-and-tagging",
+   "prereq": "isotopes"
+  },
+  {
+   "concept": "radiopharmaceuticals-and-tagging",
+   "prereq": "range-of-radiation"
+  },
+  {
+   "concept": "technetium-99m",
+   "prereq": "radiopharmaceuticals-and-tagging"
+  },
+  {
+   "concept": "technetium-99m",
+   "prereq": "half-life"
+  },
+  {
+   "concept": "technetium-99m",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "anger-camera",
+   "prereq": "scintillator-and-photomultiplier"
+  },
+  {
+   "concept": "anger-camera",
+   "prereq": "radiopharmaceuticals-and-tagging"
+  },
+  {
+   "concept": "spect-imaging",
+   "prereq": "anger-camera"
+  },
+  {
+   "concept": "spect-imaging",
+   "prereq": "x-ray-imaging"
+  },
+  {
+   "concept": "pet-annihilation-pair",
+   "prereq": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "concept": "pet-annihilation-pair",
+   "prereq": "rest-energy"
+  },
+  {
+   "concept": "pet-annihilation-pair",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "pet-annihilation-pair",
+   "prereq": "spect-imaging"
+  },
+  {
+   "concept": "mass-from-activity",
+   "prereq": "activity-from-number-and-half-life"
+  },
+  {
+   "concept": "mass-from-activity",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "radiation-damages-dna",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "absorbed-dose-rad-and-gray",
+   "prereq": "radiation-damages-dna"
+  },
+  {
+   "concept": "absorbed-dose-rad-and-gray",
+   "prereq": "ionization-energy-to-count"
+  },
+  {
+   "concept": "relative-biological-effectiveness",
+   "prereq": "range-of-radiation"
+  },
+  {
+   "concept": "relative-biological-effectiveness",
+   "prereq": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "concept": "dose-equivalent-rem-and-sievert",
+   "prereq": "relative-biological-effectiveness"
+  },
+  {
+   "concept": "dose-from-a-source",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "dose-from-a-source",
+   "prereq": "activity"
+  },
+  {
+   "concept": "immediate-effects-and-dose-levels",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "immediate-effects-and-dose-levels",
+   "prereq": "radiation-damages-dna"
+  },
+  {
+   "concept": "linear-hypothesis-and-long-term-risk",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "background-radiation",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "background-radiation",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "radiation-protection",
+   "prereq": "range-of-radiation"
+  },
+  {
+   "concept": "radiation-protection",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "therapeutic-ratio",
+   "prereq": "radiation-damages-dna"
+  },
+  {
+   "concept": "therapeutic-ratio",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "crossfire-beams",
+   "prereq": "therapeutic-ratio"
+  },
+  {
+   "concept": "therapeutic-doses",
+   "prereq": "therapeutic-ratio"
+  },
+  {
+   "concept": "therapeutic-doses",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "food-irradiation",
+   "prereq": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "concept": "food-irradiation",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "irradiated-food-is-not-radioactive",
+   "prereq": "food-irradiation"
+  },
+  {
+   "concept": "irradiated-food-is-not-radioactive",
+   "prereq": "gamma-decay"
+  },
+  {
+   "concept": "free-radicals-and-radiolytic-products",
+   "prereq": "food-irradiation"
+  },
+  {
+   "concept": "free-radicals-and-radiolytic-products",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "fusion-releases-energy",
+   "prereq": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "concept": "fusion-releases-energy",
+   "prereq": "mass-defect"
+  },
+  {
+   "concept": "fusion-releases-energy",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "coulomb-barrier-to-fusion",
+   "prereq": "fusion-releases-energy"
+  },
+  {
+   "concept": "coulomb-barrier-to-fusion",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "coulomb-barrier-to-fusion",
+   "prereq": "short-range-nuclear-force-and-coulomb-repulsion"
+  },
+  {
+   "concept": "fusion-by-tunneling-and-temperature",
+   "prereq": "coulomb-barrier-to-fusion"
+  },
+  {
+   "concept": "fusion-by-tunneling-and-temperature",
+   "prereq": "quantum-tunneling"
+  },
+  {
+   "concept": "fusion-by-tunneling-and-temperature",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "fusion-releases-energy"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "conservation-of-nucleon-number"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "conservation-of-electron-family-number"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "solar-neutrinos",
+   "prereq": "proton-proton-cycle"
+  },
+  {
+   "concept": "deuterium-tritium-fusion",
+   "prereq": "proton-proton-cycle"
+  },
+  {
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "prereq": "deuterium-tritium-fusion"
+  },
+  {
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "prereq": "calculate-power"
+  },
+  {
+   "concept": "ignition-and-break-even",
+   "prereq": "fusion-by-tunneling-and-temperature"
+  },
+  {
+   "concept": "magnetic-and-inertial-confinement",
+   "prereq": "ignition-and-break-even"
+  },
+  {
+   "concept": "magnetic-and-inertial-confinement",
+   "prereq": "spiral-along-field-lines"
+  },
+  {
+   "concept": "fission-releases-energy",
+   "prereq": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "concept": "fission-releases-energy",
+   "prereq": "fusion-releases-energy"
+  },
+  {
+   "concept": "fission-energy-from-masses",
+   "prereq": "fission-releases-energy"
+  },
+  {
+   "concept": "fission-energy-from-masses",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "fission-energy-from-masses",
+   "prereq": "conservation-of-nucleon-number"
+  },
+  {
+   "concept": "neutron-induced-fission",
+   "prereq": "fission-releases-energy"
+  },
+  {
+   "concept": "neutron-induced-fission",
+   "prereq": "short-range-nuclear-force-and-coulomb-repulsion"
+  },
+  {
+   "concept": "neutron-induced-fission",
+   "prereq": "conservation-of-nucleon-number"
+  },
+  {
+   "concept": "chain-reaction-and-critical-mass",
+   "prereq": "neutron-induced-fission"
+  },
+  {
+   "concept": "odd-neutron-number-fissile",
+   "prereq": "neutron-induced-fission"
+  },
+  {
+   "concept": "odd-neutron-number-fissile",
+   "prereq": "binding-energy"
+  },
+  {
+   "concept": "reactor-moderation-and-control",
+   "prereq": "chain-reaction-and-critical-mass"
+  },
+  {
+   "concept": "reactor-moderation-and-control",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "fission-energy-per-kilogram",
+   "prereq": "fission-releases-energy"
+  },
+  {
+   "concept": "fission-energy-per-kilogram",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "fission-energy-per-kilogram",
+   "prereq": "fusion-energy-from-a-mass-of-fuel"
+  },
+  {
+   "concept": "breeding-plutonium",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "breeding-plutonium",
+   "prereq": "odd-neutron-number-fissile"
+  },
+  {
+   "concept": "fission-bomb-assembly",
+   "prereq": "chain-reaction-and-critical-mass"
+  },
+  {
+   "concept": "fission-bomb-assembly",
+   "prereq": "odd-neutron-number-fissile"
+  },
+  {
+   "concept": "thermonuclear-bomb",
+   "prereq": "fission-bomb-assembly"
+  },
+  {
+   "concept": "thermonuclear-bomb",
+   "prereq": "deuterium-tritium-fusion"
+  },
+  {
+   "concept": "nuclear-weapon-energy-output",
+   "prereq": "fission-bomb-assembly"
+  },
+  {
+   "concept": "nuclear-weapon-energy-output",
+   "prereq": "find-mass-change-from-energy"
+  }
+ ]
+}
