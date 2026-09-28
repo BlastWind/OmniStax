@@ -69,7 +69,7 @@ function bike(ctx, x, y, color, dir, phase) {
     person(ctx, X(pf), floor, PAL.ink, { face });
     /* the displacement, an arrow at chest height from where the person was to where they are */
     const ay = floor - 62;
-    if (Math.abs(dx) >= 0.25) { arrow(ctx, X(p0), ay, X(pf), ay, C('position'), 5); text(ctx, 'Δx = ' + sgn(dx, 1) + ' m', (X(p0) + X(pf)) / 2, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) }); }
+    if (Math.abs(dx) >= 0.25) { arrow(ctx, X(p0), ay, X(pf), ay, C('position'), 5); text(ctx, 'Δx = ' + sgn(xf.v - x0.v, 1) + ' m', (X(p0) + X(pf)) / 2, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) }); }
     else text(ctx, 'Δx = 0', X(p0) + 40, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the axis under the floor, the two positions dropped onto it */
     line(ctx, L - 30, y, R + 30, y, PAL.muted, 3); scale(ctx, X, 0, 8, 1, y, 'm', 1);

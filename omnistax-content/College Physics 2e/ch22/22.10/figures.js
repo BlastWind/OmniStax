@@ -122,7 +122,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
     const cB = C('magnetic-field'), cI = C('current'), cF = C('force'), cR = C('position');
     /* +1 draws each wire pulled toward the other; reversing wire 2 turns its current,
        its field line and both forces over through nothing rather than cutting */
-    const pull = dirC.mix((v) => (v === 'same' ? 1 : -1)), aSame = dirC.a('same'), aOpp = dirC.a('opp');
+    const pull = dirC.mix((v) => (v === 'same' ? 1 : -1));
     const W = fw(FL, FREF), lw = widthOf(B1);
     const pts = [];
 
@@ -148,9 +148,9 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
         arr3(ctx, [x2, 58, 0], [x2 - pull * 118, 58, 0], cF, W);
         arr3(ctx, [x1, -58, 0], [x1 + pull * 118, -58, 0], cF, W);
       }
-      const t1 = V.P([x1, WY, 0]), t2 = V.P([x2, WY, 0]);
-      text(ctx, '1', t1[0], t1[1] - 28, PAL.ink, { size: 26, weight: 700, align: 'center' });
-      text(ctx, '2', t2[0], t2[1] - 28, PAL.ink, { size: 26, weight: 700, align: 'center' });
+      const t1 = V.P([x1, WY, 0]), t2 = V.P([x2, WY, 0]), apart = Math.max(0, 16 - (t2[0] - t1[0]) / 2);
+      text(ctx, '1', t1[0] - apart, t1[1] - 28, PAL.ink, { size: 26, weight: 700, align: 'center' });
+      text(ctx, '2', t2[0] + apart, t2[1] - 28, PAL.ink, { size: 26, weight: 700, align: 'center' });
       const b1 = V.P([x1, -WY, 0]), b2 = V.P([x2, -WY, 0]);
       hbracket(ctx, b1[0], b2[0], Math.max(b1[1], b2[1]) + 42, cR, 'r = ' + fmt(r, 2) + ' m', { side: 'below', H: SCENE });
       ctx.restore();
@@ -159,7 +159,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       const pF2 = V.P([x2 - pull * 118, 58, 0]), pF1 = V.P([x1 + pull * 118, -58, 0]);
       label(ctx, 'I₁ = ' + fmt(I1, 0) + ' A', pI1[0], pI1[1], { side: 'left', size: 21, color: cI, H: SCENE });
       label(ctx, 'I₂ = ' + fmt(I2, 0) + ' A', pI2[0], pI2[1], { side: 'right', size: 21, color: cI, H: SCENE });
-      if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', pB[0], pB[1], { side: 'below', size: 21, color: cB, H: SCENE });
+      if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', pB[0], pB[1], { side: 'right', size: 21, color: cB, H: SCENE, bg: PAL.panel });
       if (FL > 1e-12) {
         label(ctx, 'F₂/l = ' + num(FL) + ' N/m', pF2[0], pF2[1], { side: 'above', size: 21, color: cF, H: SCENE });
         label(ctx, 'F₁/l = ' + num(FL) + ' N/m', pF1[0], pF1[1], { side: 'below', size: 21, color: cF, H: SCENE });
@@ -180,13 +180,13 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
         arrow(ctx, cx0 + s * 34, y0 - D, cx0 - s * 34, y0 - D, cB, w + 1.5);
       };
       if (I1 > 0.5) ring(xa, true, lw);
-      if (I2 > 0.5) [['same', aSame], ['opp', aOpp]].forEach(([v, a]) => { if (a > 0) { ctx.save(); ctx.globalAlpha = a; ring(xb, v === 'same', widthOf(B2)); ctx.restore(); } });
+      if (I2 > 0.5) ['same', 'opp'].forEach((v) => dirC.only(ctx, v, () => ring(xb, v === 'same', widthOf(B2)), [0, 0]));
       /* the field each wire makes where the other one stands, at right angles to the
          line between them, so that RHR-1 sends the force straight along that line */
       if (B1 > 1e-12) arrow(ctx, xb, y0, xb, y0 - 88, cB, 5);
       if (B2 > 1e-12 && Math.abs(pull) > 0.1) arrow(ctx, xa, y0, xa, y0 + pull * 88, cB, 5);
       currentMark(ctx, xa, y0, true, cI, R);
-      [['same', aSame], ['opp', aOpp]].forEach(([v, a]) => { if (a > 0) { ctx.save(); ctx.globalAlpha = a; currentMark(ctx, xb, y0, v === 'same', cI, R); ctx.restore(); } });
+      ['same', 'opp'].forEach((v) => dirC.only(ctx, v, () => currentMark(ctx, xb, y0, v === 'same', cI, R), [0, 0]));
       /* each force arrow is set on the side of its wire that the other wire's field
          arrow has left clear, so that no force crosses a field */
       const fy2 = y0 + 44, fy1 = y0 - pull * 44;
@@ -194,8 +194,9 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
         arrow(ctx, xb, fy2, xb - pull * 126, fy2, cF, W);
         arrow(ctx, xa, fy1, xa + pull * 126, fy1, cF, W);
       }
-      text(ctx, '1', xa, y0 - 34, PAL.ink, { size: 24, weight: 700, align: 'center' });
-      text(ctx, '2', xb, y0 - 34, PAL.ink, { size: 24, weight: 700, align: 'center' });
+      const apart = Math.max(0, 16 - D / 2);
+      text(ctx, '1', xa - apart, y0 - 34, PAL.ink, { size: 24, weight: 700, align: 'center' });
+      text(ctx, '2', xb + apart, y0 - 34, PAL.ink, { size: 24, weight: 700, align: 'center' });
       hbracket(ctx, xa, xb, y0 + 178, cR, 'r = ' + fmt(r, 2) + ' m', { side: 'below', H: SCENE });
       ctx.restore();
       label(ctx, 'I₁ = ' + fmt(I1, 0) + ' A', xa, y0 - 16, { side: 'left', size: 21, color: cI, gap: 30, H: SCENE });
@@ -205,8 +206,8 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
         label(ctx, 'F₂/l', xb - pull * 126, fy2, { side: 'below', size: 21, color: cF, H: SCENE });
         label(ctx, 'F₁/l', xa + pull * 126, fy1, { side: pull > 0 ? 'above' : 'below', size: 21, color: cF, H: SCENE });
       }
-      text(ctx, 'A dot is a current coming toward you,', EX, 520, PAL.muted, { size: 18, align: 'center' });
-      text(ctx, 'and a cross one running away from you.', EX, 546, PAL.muted, { size: 18, align: 'center' });
+      text(ctx, 'A dot is a current coming toward you,', EX, 520, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+      text(ctx, 'and a cross one running away from you.', EX, 546, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
       pts.push({ p: [xa, y0], r: 40, name: 'wire 1, carrying ' + fmt(I1, 0) + ' A' }, { p: [xb, y0], r: 40, name: 'wire 2, carrying ' + fmt(I2, 0) + ' A' });
     }
     hits = pts;

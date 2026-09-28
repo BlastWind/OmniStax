@@ -81,8 +81,7 @@ function vec(ctx, x, y, L, s, color, label) {
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: -40, max: 40, step: 0.05, value: 35, unit: 'm/s', dec: 2, onInput: reset });
   const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: -40, max: 40, step: 0.05, value: 0, unit: 'm/s', dec: 2, onInput: reset });
   const cc = ctl(d.controls, { label: 'c', cls: '', min: 0, max: 3.5, step: 0.01, value: 0, unit: '', dec: 2, specials: [{ at: 0, label: 'perfectly inelastic' }, { at: 1, label: 'elastic' }], detents: [{ v: 3.08, label: '3.08' }], snap: true, onInput: reset, aria: 'the speed the objects separate at divided by the speed they approached at' });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   const TC = 2, T = 4, GY = 290;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }

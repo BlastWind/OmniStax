@@ -195,8 +195,7 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
   });
   /* the potential runs from zero to the largest emf the slider reaches */
   const YMAX = 30, T = 190, B = 400;
-  const fx = el('div'), note = el('small');
-  d.readout.replaceChildren(fx, note);
+  const { formula: fx, note } = F.readout(d);
   let walked = way.value;
   function draw() {
     const { ctx } = begin(d.c);

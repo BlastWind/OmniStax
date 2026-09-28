@@ -299,8 +299,8 @@ function legend(ctx, mark, x, y, s, color) {
     const col = { B: C('magnetic-field'), v: C('velocity'), F: C('force'), V: C('voltage'), r: C('position') };
     const E = el('e-'), into = dirC.value === 'in';
     /* +1 sends the beam down the screen; reversing the field swings it through the axis to the other side */
-    const s = dirC.mix((v) => (v === 'in' ? 1 : -1)), aIn = dirC.a('in'), aOut = dirC.a('out');
-    const through = (x, y, r0) => [['in', aIn], ['out', aOut]].forEach(([v, a]) => { if (a > 0) { ctx.save(); ctx.globalAlpha = a; (v === 'in' ? intoPage : outOfPage)(ctx, x, y, alpha(col.B, 0.85), r0); ctx.restore(); } });
+    const s = dirC.mix((v) => (v === 'in' ? 1 : -1));
+    const through = (x, y, r0, c = alpha(col.B, 0.85)) => [['in', intoPage], ['out', outOfPage]].forEach(([v, sym]) => dirC.only(ctx, v, () => sym(ctx, x, y, c, r0), [0, 0]));
     const r = radius(), th = angle(), R = r * SC;
     /* the envelope of the tube, drawn in ink */
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 3;
@@ -340,7 +340,7 @@ function legend(ctx, mark, x, y, s, color) {
     const rx = 200, ry = 580;
     text(ctx, 'Right hand rule 1', rx - 80, ry - 150, PAL.muted, { size: 20, weight: 600 });
     arrow(ctx, rx, ry, rx + 110, ry, col.v, 4); text(ctx, 'v', rx + 122, ry, col.v, { size: 22, weight: 600 });
-    [['in', aIn], ['out', aOut]].forEach(([v, a]) => { if (a > 0) { ctx.save(); ctx.globalAlpha = a; (v === 'in' ? intoPage : outOfPage)(ctx, rx + 54, ry - 40, col.B, 9); ctx.restore(); } }); text(ctx, 'B', rx + 78, ry - 40, col.B, { size: 22, weight: 600 });
+    through(rx + 54, ry - 40, 9, col.B); text(ctx, 'B', rx + 78, ry - 40, col.B, { size: 22, weight: 600 });
     if (Math.abs(s) > 0.1) { arrow(ctx, rx, ry, rx, ry - s * 70, col.F, 4); arrow(ctx, rx, ry, rx, ry + s * 70, E, 4); }
     const sd = into ? 1 : -1;
     text(ctx, 'F on a positive charge', rx + 16, ry - sd * 86, col.F, { size: 19, weight: 600 });

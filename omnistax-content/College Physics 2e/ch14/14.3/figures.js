@@ -271,7 +271,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
   const mi = ctl(d.controls, { label: 'm_{\\text{ice}}', cls: '', min: 0, max: 100, step: 1, value: 18, unit: 'g', dec: 0, aria: 'the mass of ice, six grams to a cube', detents: Array.from({ length: 17 }, (_, i) => 6 * i) });
   const msod = ctl(d.controls, { label: 'm_{\\text{soda}}', cls: '', min: 0.1, max: 0.5, step: 0.01, value: 0.25, unit: 'kg', dec: 2, aria: 'the mass of soda' });
   const Ts = ctl(d.controls, { label: 'T_{\\text{soda}}', cls: 'temperature', min: 1, max: 40, step: 1, value: 20, unit: '°C', dec: 0, aria: 'the starting temperature of the soda' });
-  const formula = el('div'), note = el('small'); d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   const CW = 4186, LF = 334000;                                      /* J/(kg·°C) and J/kg, the example's values */
   const CUP = { l: 120, r: 380, t: 150, b: 520 }, BAR = { x: 450, t: 160, b: 520 }, HX0 = 700, HX1 = 1320, MAXKJ = 40;
   function draw() {

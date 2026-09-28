@@ -337,7 +337,6 @@ function rod(ctx, x, y, L, T, sign, n) {
     const g = order.mix((v) => { const o = state(s, v === 'book'); return [o.rod, o.wire, o.cut, o.held]; });
     const [rodA, wireA, cutA, heldF] = g, flow = state(s, bookOrder).flow;
     const held = q * 0.6 * heldF;
-    const fade = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     /* the sphere on its insulating stand */
     circle(ctx, CX, YC, R, PAL.soft);
     panel(ctx, CX - 34, YC + R, 68, GY - YC - R, 8, PAL.soft);
@@ -345,31 +344,31 @@ function rod(ctx, x, y, L, T, sign, n) {
     /* the marks on the sphere: polarized while the rod is near, spread evenly once it has gone */
     const nm = Math.max(2, Math.round(q / 1.5));
     const markAt = (sign, deg) => text(ctx, sign, CX + (R - 26) * Math.cos(deg * RAD), YC + (R - 26) * Math.sin(deg * RAD) + 1, PAL.ink, { size: 22, weight: 700, align: 'center' });
-    fade(rodA, () => {
+    F.faded(ctx, rodA, [0, 0], () => {
       for (let i = 0; i < nm; i++) markAt('−', 180 - 36 + (i / Math.max(1, nm - 1)) * 72);
       const nf = Math.max(heldF > 0.5 ? 1 : 0, Math.round(nm * (1 - (2 / 3) * heldF)));
       for (let i = 0; i < nf; i++) markAt('+', -36 + (i / Math.max(1, nf - 1 || 1)) * 72);
     });
-    if (heldF > 0.05) fade((1 - rodA) * heldF, () => { for (let i = 0; i < nm; i++) markAt('−', (i / nm) * 360); });
+    if (heldF > 0.05) F.faded(ctx, (1 - rodA) * heldF, [0, 0], () => { for (let i = 0; i < nm; i++) markAt('−', (i / nm) * 360); });
     /* the rod, held to the left of the sphere, carried off to the left as it goes */
-    fade(rodA, () => rod(ctx, 120 - 260 * (1 - rodA), YC, 350, 34, '+', Math.max(2, Math.round(q / 2))));
+    F.faded(ctx, rodA, [0, 0], () => rod(ctx, 120 - 260 * (1 - rodA), YC, 350, 34, '+', Math.max(2, Math.round(q / 2))));
     /* the earth, and the ground wire when it is attached */
     line(ctx, 100, GY, 1300, GY, PAL.ink, 4);
     for (let x = 122; x < 1300; x += 46) line(ctx, x, GY, x - 22, GY + 24, alpha(PAL.ink, 0.5), 3);
     text(ctx, 'the earth, a large reservoir of charge', 1290, GY + 40, PAL.muted, { size: 18, align: 'right' });
     const wirePath = () => { ctx.beginPath(); ctx.moveTo(CX + R - 12, YC + 24); ctx.lineTo(WX, YC + 24); ctx.lineTo(WX, GY); ctx.stroke(); };
-    fade(wireA, () => {
+    F.faded(ctx, wireA, [0, 0], () => {
       ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; wirePath();
       text(ctx, 'ground wire', WX - 10, YC + 4, PAL.ink, { size: 19, align: 'center' });
     });
     /* the electrons in the wire, carried up out of the earth as the sphere is grounded, or back down when the rod leaves first */
     const moving = flow === 1 ? clamp((s - 0.3) / 0.7) : flow === -1 ? clamp(s - 1) : 0;
-    if (flow && moving > 0 && moving < 1) fade(wireA, () => {
+    if (flow && moving > 0 && moving < 1) F.faded(ctx, wireA, [0, 0], () => {
       for (let i = 0; i < 3; i++) { const f = (moving + i / 3) % 1, y = flow > 0 ? GY - f * (GY - YC - 24) : YC + 24 + f * (GY - YC - 24); particle(ctx, WX, y, 'e-', 12); }
       if (flow > 0) arrow(ctx, WX + 58, GY - 24, WX + 58, YC + 48, PAL.ink, 4); else arrow(ctx, WX + 58, YC + 48, WX + 58, GY - 24, PAL.ink, 4);
       text(ctx, flow > 0 ? 'electrons come up out of the earth' : 'the electrons run back to the earth', WX + 76, (GY + YC) / 2, PAL.ink, { size: 19 });
     });
-    fade(cutA, () => {
+    F.faded(ctx, cutA, [0, 0], () => {
       ctx.strokeStyle = alpha(PAL.ink, 0.4); ctx.lineWidth = 4; ctx.setLineDash([8, 10]); wirePath();
       text(ctx, 'the ground connection has been broken', WX + 24, YC + 160, PAL.muted, { size: 18 });
     });
@@ -428,18 +427,17 @@ function rod(ctx, x, y, L, T, sign, n) {
     const positive = cse !== 'neg';
     /* a change of case blends: the rod's marks cross over, the molecules turn end for end, and a conductor's face charges replace the molecules */
     const [pos, cond, th] = panelSel.mix((v) => [v !== 'neg' ? 1 : 0, v === 'cond' ? 1 : 0, v === 'neg' ? Math.PI : 0]);
-    const fade = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     const OX = RX + 40 + dist * S;                       /* the near face of the object */
     /* the rod, standing on its end at the left */
     panel(ctx, RX - 40, YC - 170, 80, 340, 40, PAL.soft);
     const nm = Math.max(3, Math.round(q / 1.5));
-    for (const [sign, a] of [['+', pos], ['−', 1 - pos]]) fade(a, () => { for (let i = 0; i < nm; i++) text(ctx, sign, RX, YC - 134 + (i / Math.max(1, nm - 1)) * 268, PAL.ink, { size: 24, weight: 700, align: 'center' }); });
+    for (const [sign, a] of [['+', pos], ['−', 1 - pos]]) F.faded(ctx, a, [0, 0], () => { for (let i = 0; i < nm; i++) text(ctx, sign, RX, YC - 134 + (i / Math.max(1, nm - 1)) * 268, PAL.ink, { size: 24, weight: 700, align: 'center' }); });
     /* the neutral object */
     panel(ctx, OX, YC - OBH / 2, OBW, OBH, 10, PAL.panel);
     /* how far the charges have shifted: more with the charge and less with the distance, never a stated force */
     const f = Math.min(1, (q / 6) * (16 / (dist * dist)));
     /* a conductor: the free charges gather on the two faces */
-    fade(cond, () => {
+    F.faded(ctx, cond, [0, 0], () => {
       const n = Math.max(3, Math.round(3 + f * 5));
       for (let i = 0; i < n; i++) {
         const y = YC - OBH / 2 + 40 + (i / Math.max(1, n - 1)) * (OBH - 80);
@@ -448,7 +446,7 @@ function rod(ctx, x, y, L, T, sign, n) {
       }
     });
     /* an insulator: every molecule turns its unlike end toward the rod */
-    fade(1 - cond, () => {
+    F.faded(ctx, 1 - cond, [0, 0], () => {
       for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) molecule(ctx, OX + 68 + c * 110, YC - 78 + r * 78, 19, th, f);
     });
     /* the two pulls, each set under the face whose charges feel it: the attraction

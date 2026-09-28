@@ -9,8 +9,6 @@ window.OMNISTAX_FIGURES['21.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
-/* A layer drawn at the opacity a, skipped once it has gone. */
-function layer(ctx, a, f) { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); }
 /* A resistance written with the prefix that keeps it between one and a thousand. */
 function ohms(r) {
   const a = Math.abs(r);
@@ -180,7 +178,7 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
        place it glides there along the loop, and a change of meter fades one into the other */
     let head = '', main = '', small = '';
     const reading = w === 's' ? Vt : w === '1' ? V1 : V2;
-    layer(ctx, which.a('V'), () => {
+    F.faded(ctx, which.a('V'), [0, 0], () => {
       /* The meter hangs on two taps, each one a point of the loop, and its leads run
          along and across rather than cutting through the source or a resistor: for the
          source the taps are on the two wires that leave it, and for a resistor they sit
@@ -193,7 +191,7 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       meter(ctx, mx, my, 'V', fmt(reading, 2) + ' V', vc);
       text(ctx, what, mx, my + 96, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
     });
-    layer(ctx, which.a('A'), () => {
+    F.faded(ctx, which.a('A'), [0, 0], () => {
       const [mx, my] = where.mix((v) => (v === 's' ? [320, TOP] : v === '1' ? [710, TOP] : [Rt, 385]));
       /* on the top wire the reading and its caption go above, clear of the resistors' names; on the right wire they go inside the loop */
       meter(ctx, mx, my, 'A', w === '2' ? null : fmt(I, 3) + ' A', cc, 42, true);

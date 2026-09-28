@@ -355,10 +355,9 @@ function compassEdge(ctx, X, Y, r, out, color) {
   /* a symbol for a direction through the page whose sign may be turning over: the
      dot fades as the cross arrives, never a cut */
   function through(ctx, X, Y, r, color, s) {
-    const a = ctx.globalAlpha, up = (1 + s) / 2;
-    if (up > 0) { ctx.globalAlpha = a * up; outSym(ctx, X, Y, r, color); }
-    if (up < 1) { ctx.globalAlpha = a * (1 - up); inSym(ctx, X, Y, r, color); }
-    ctx.globalAlpha = a;
+    const up = (1 + s) / 2;
+    F.faded(ctx, up, [0, 0], () => outSym(ctx, X, Y, r, color));
+    F.faded(ctx, 1 - up, [0, 0], () => inSym(ctx, X, Y, r, color));
   }
 
   function draw() {

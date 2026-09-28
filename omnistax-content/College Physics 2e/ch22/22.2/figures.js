@@ -580,14 +580,10 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       arrow(ctx, CX + crx * Math.cos(t - dt), CY + cry * Math.sin(t - dt), CX + crx * Math.cos(t + dt), CY + cry * Math.sin(t + dt), cc, 4);
     });
     /* the poles of the loop, on its two faces, changing ends as the current turns over */
-    [['cw', 'N', 'S'], ['ccw', 'S', 'N']].forEach(([w, up, down]) => {
-      const a = wayC.a(w);
-      if (a <= 0) return;
-      ctx.save(); ctx.globalAlpha = a;
+    [['cw', 'N', 'S'], ['ccw', 'S', 'N']].forEach(([w, up, down]) => wayC.only(ctx, w, () => {
       text(ctx, up, CX, CY - KH[1] + 34, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
       text(ctx, down, CX, CY + KH[1] - 34, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
-      ctx.restore();
-    });
+    }, [0, 0]));
     if (orbit) {
       lab.add('the electron', CX + ring.rx * Math.cos(EA), CY + ring.ry * Math.sin(EA), 0.8, -0.6, PAL.ink, 19, 26);
       lab.add('the nucleus', CX, CY + 14, -0.85, 0.53, PAL.ink, 19, 44);

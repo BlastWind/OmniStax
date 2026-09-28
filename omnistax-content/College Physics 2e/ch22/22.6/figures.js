@@ -89,11 +89,7 @@ function carrier(ctx, x, y, color, sign, r) {
        their sign and the upper face the other */
     /* a change of carrier turns every sign over, each fading as the other arrives,
        and turns the drift round through nothing rather than cutting */
-    const bySign = (f) => ['e', 'p'].forEach((v) => {
-      const a = who.a(v);
-      if (a <= 0) return;
-      ctx.save(); ctx.globalAlpha = a; f(v === 'e'); ctx.restore();
-    });
+    const bySign = (f) => ['e', 'p'].forEach((v) => who.only(ctx, v, () => f(v === 'e'), [0, 0]));
     bySign((n) => {
       const lower = n ? '−' : '+', upper = n ? '+' : '−';
       for (const x of SIGNX) {

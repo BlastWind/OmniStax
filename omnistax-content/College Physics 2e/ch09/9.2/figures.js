@@ -94,8 +94,7 @@ function fulcrum(ctx, x, y, h) {
   const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle between the push and the line back to the hinges',
     specials: [{ at: 0, label: 'along the door' }, { at: 90, label: 'perpendicular' }, { at: 180, label: 'along the door' }] });
   const side = choice(d.controls, { label: '\\text{the force}', options: [{ value: 'push', label: 'push' }, { value: 'pull', label: 'pull' }], value: 'push', aria: 'which way the door is acted on' });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   const S = 780, KF = 4.6, HX = 250, HY = 390, LEN = 0.9;
   function draw() {
     const { ctx } = begin(d.c);
@@ -161,8 +160,7 @@ function fulcrum(ctx, x, y, h) {
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 30, unit: 'N', dec: 0, aria: 'the size of the push' });
   const gs = ctl(d.controls, { label: '\\text{the push}', cls: '', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, aria: 'the direction of the push, measured from the horizontal',
     specials: [{ at: 90, label: 'along the stick' }] });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   const X = 560, YB = 620, S = 338, HAND = 1.10, KF = 4.4, PX = 1010;
   const yOf = (s) => YB - s * S;
   function draw() {

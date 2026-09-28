@@ -139,10 +139,6 @@ function resistorPose(ctx, x, y, a, name, val, side) {
   else { const s = side === 1 ? 1 : -1, lx = x + s * 32, al = s > 0 ? 'left' : 'right'; text(ctx, name, lx, y - 15, rc, { size: 24, weight: 600, align: al }); text(ctx, v, lx, y + 16, rc, { size: 21, align: al }); }
   ctx.restore();
 }
-/* A layer drawn at the opacity a, skipped once it has gone. */
-function layer(ctx, a, f) { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); }
-/* A formula host in the readout, with its small line under it. */
-function morphHost(d) { const fx = el('div'), note = el('small'); d.readout.replaceChildren(fx, note); return { fx, note }; }
 /* The soft panel that picks the group of a network being combined out of the rest. */
 function spot(ctx, l, t, r, b) {
   ctx.save(); ctx.fillStyle = alpha(C('resistance'), 0.14); ctx.strokeStyle = alpha(C('resistance'), 0.5);
@@ -174,7 +170,7 @@ function bulb(ctx, x, y, frac) {
   const R4 = ctl(d.controls, { label: '\\kResfour', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 4, unit: 'Ω', dec: 1, aria: 'the fourth resistance' });
   const how = choice(d.controls, { label: '\\text{the wiring}', options: [{ value: 'series', label: 'in series' }, { value: 'parallel', label: 'in parallel' }], value: 'series', aria: 'how the four resistors are wired' });
   const R1 = 1.00, R2 = 6.00;
-  const { fx, note } = morphHost(d);
+  const { formula: fx, note } = F.readout(d);
   let wired = how.value;
   /* each resistor's place in the two wirings, [x, y, angle]; a rewiring carries every one from its place in the old to its place in the new */
   const POSE = { series: [300, 560, 820, 1080].map((x) => [x, 200, 0]), parallel: [420, 680, 940, 1200].map((x) => [x, 335, Math.PI / 2]) };
@@ -187,13 +183,13 @@ function bulb(ctx, x, y, frac) {
     headline(ctx, series
       ? 'Wired one after the other, the four resistors together come to ' + fmt(tot, 1) + ' Ω, which is more than the largest of them on its own.'
       : 'Wired each on a path of its own, the four resistors together come to ' + fmt(tot, 2) + ' Ω, which is less than the smallest of them on its own.');
-    layer(ctx, how.a('series'), () => {
+    F.faded(ctx, how.a('series'), [0, 0], () => {
       wires(ctx, [[180, 200], [180, 470], [1240, 470], [1240, 200], [180, 200]]);
       flow(ctx, 700, 470, -1, 0, 'I');
       [430, 690, 950].forEach((x) => flow(ctx, x, 200, 1, 0, null, { len: 44, w: 4 }));
       text(ctx, 'the same current passes through every one of them', 710, 530, PAL.muted, { size: 19, align: 'center' });
     });
-    layer(ctx, how.a('parallel'), () => {
+    F.faded(ctx, how.a('parallel'), [0, 0], () => {
       wires(ctx, [[180, 200], [1200, 200]]);
       wires(ctx, [[180, 470], [1200, 470]]);
       wires(ctx, [[180, 200], [180, 470]]);
@@ -239,7 +235,7 @@ function bulb(ctx, x, y, frac) {
     options: [{ value: 'series', label: 'all three in series' }, { value: 'parallel', label: 'all three in parallel' }, { value: 'mixed', label: 'R₂ and R₃ in parallel, in series with R₁' }],
     value: 'series', aria: 'how the three resistors are wired',
   });
-  const { fx, note } = morphHost(d);
+  const { formula: fx, note } = F.readout(d);
   let wired = how.value;
   /* the three resistors' places in each wiring, [x, y, angle] each, and the source's height last */
   const H = 0, V_ = Math.PI / 2;
@@ -262,14 +258,14 @@ function bulb(ctx, x, y, frac) {
     /* the parts only one wiring has fade out as the next one's arrive; the three resistors
        and the source are in every wiring, so they move from their old places to their new */
     const Rs = r1 + r2 + r3, Rp3 = par(r1, r2, r3), Rp = par(r2, r3), Rt = r1 + Rp;
-    layer(ctx, how.a('series'), () => {
+    F.faded(ctx, how.a('series'), [0, 0], () => {
       const I = V / Rs, vs = rs.map((r) => I * r);
       wires(ctx, [[160, 230], [720, 230], [720, 480], [160, 480], [160, 230]]);
       [280, 440, 600].forEach((x, i) => text(ctx, 'V_' + (i + 1) + ' = ' + fmt(vs[i], 2) + ' V', x, 330, vc, { size: 20, weight: 600, align: 'center' }));
       flow(ctx, 440, 480, -1, 0, 'I = ' + fmt(I, 3) + ' A');
       text(ctx, 'the same current in every resistor', 440, 540, PAL.muted, { size: 19, align: 'center' });
     });
-    layer(ctx, how.a('parallel'), () => {
+    F.faded(ctx, how.a('parallel'), [0, 0], () => {
       const I = V / Rp3;
       wires(ctx, [[160, 230], [740, 230]]);
       wires(ctx, [[160, 480], [740, 480]]);
@@ -283,7 +279,7 @@ function bulb(ctx, x, y, frac) {
       flow(ctx, 230, 230, 1, 0, 'I = ' + fmt(I, 2) + ' A', { len: 56 });
       text(ctx, 'every resistor has the full ' + fmt(V, 1) + ' V across it', 450, 180, vc, { size: 20, align: 'center' });
     });
-    layer(ctx, how.a('mixed'), () => {
+    F.faded(ctx, how.a('mixed'), [0, 0], () => {
       const I = V / Rt, V1 = I * r1, Vp = V - V1;
       wires(ctx, [[160, 200], [720, 200], [720, 480], [160, 480], [160, 200]]);
       wires(ctx, [[480, 200], [480, 350], [720, 350]]);
@@ -406,9 +402,8 @@ function bulb(ctx, x, y, frac) {
     into('Rpp', 'Rs', 'R7'),
     into('Rtot', 'R1', 'Rpp'),
   ];
-  const fx = el('div'), note = el('small');
+  const { formula: fx, note } = F.readout(d);
   fx.style.minHeight = '4.4em';
-  d.readout.append(fx, note);
   let target = null, litNow = 0, popNow = 0;
   function draw() {
     const { ctx } = begin(d.c);

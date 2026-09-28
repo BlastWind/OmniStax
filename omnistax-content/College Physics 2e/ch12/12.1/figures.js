@@ -90,8 +90,7 @@ function bar(ctx, x0, y, w, share, color, label, value) {
     'The cylinder’s volume is its cross-section times its length, V = Ad, and its length is d = v̄t.',
     'The length over the time is the average speed, d/t = v̄, so the flow rate is the area times the average speed.',
   ];
-  const fx = el('div'), note = el('small');
-  d.readout.append(fx, note);
+  const { formula: fx, note } = F.readout(d);
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('flow-rate'), vc = C('velocity'), tc = C('time');

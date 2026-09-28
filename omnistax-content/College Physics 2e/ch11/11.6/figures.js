@@ -185,18 +185,18 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     ctx.lineCap = 'butt'; ctx.lineWidth = IW; ctx.strokeStyle = fl.mixColor((v) => FLUIDS[v].color); tubePath(ctx); ctx.stroke(); ctx.restore();
     line(ctx, XL - IW / 2, yL, XL + IW / 2, yL, PAL.ink, 2.5); line(ctx, XR - IW / 2, yR, XR + IW / 2, yR, PAL.ink, 2.5);
     /* the meter stick between the legs, in centimetres from the rest level */
-    const MX = 450;
+    const MX = 420;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(MX - 12, YT - 10, 24, YB - YT + 20); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(MX - 12, YT - 10, 24, YB - YT + 20); ctx.restore();
     for (let cm = -10; cm <= 10; cm++) {
       const y = Y0 - cm * 0.01 * S; if (y < YT - 4 || y > YB + 4) continue;
       const big = cm % 5 === 0; line(ctx, MX - 12, y, MX - 12 + (big ? 24 : 10), y, PAL.muted, big ? 2 : 1.5);
       if (big) text(ctx, num(cm, 0) + ' cm', MX + 20, y, PAL.muted, { size: 15, align: 'left' });
     }
-    text(ctx, 'meter stick', MX - 12, YT - 32, PAL.muted, { size: 17, align: 'left' });
+    text(ctx, 'meter stick', MX + 18, YT - 32, PAL.muted, { size: 17, align: 'left' });
     /* the levels carried to the stick, and the height between them */
     line(ctx, XL + IW / 2, yL, MX - 12, yL, alpha(PAL.ink, 0.35), 2, [4, 8]);
     line(ctx, XR - IW / 2, yR, MX + 12, yR, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    if (Math.abs(yR - yL) >= 1) vbracket(ctx, 570, Math.min(yL, yR), Math.max(yL, yR), hc, 'h = ' + hstr(Math.abs(h)), 1);
+    if (Math.abs(yR - yL) >= 1) vbracket(ctx, 535, Math.min(yL, yR), Math.max(yL, yR), hc, 'h = ' + hstr(Math.abs(h)), 1, { size: 20 });
     if (outL) pinned(ctx, legBox(XL), ident, ident, XL, yl, hc);
     if (outR) pinned(ctx, legBox(XR), ident, ident, XR, yr, hc);
     /* the open side, and the source on the right */

@@ -74,8 +74,9 @@ function hook(ctx, x, y, color) {
     skater(ctx, px - R, py, 0, PAL.ink);
     skater(ctx, px - R * Math.cos(th), py + R * Math.sin(th), -th, PAL.ink);
     skater(ctx, px, py, Math.PI / 2, PAL.ink);
-    line(ctx, px, py + 26, px, py + 40, PAL.muted, 2);
-    text(ctx, 'the third skater', px, py + 54, PAL.muted, { size: 17, align: 'center' });
+    /* named below and to the side the second skater has left free */
+    const side = TH.v <= 90 ? 1 : -1;
+    text(ctx, 'the third skater', px + side * 30, py + (TH.v <= 110 ? 52 : 84), PAL.muted, { size: 17, align: side > 0 ? 'left' : 'right' });
     const h1x = px + F1.v * U, h1y = py;
     const tx = h1x + F2.v * U * Math.cos(th), ty = h1y - F2.v * U * Math.sin(th);
     line(ctx, h1x, h1y, tx, ty, alpha(C('force'), 0.45), 4, [10, 10]);
@@ -90,7 +91,7 @@ function hook(ctx, x, y, color) {
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, arcR, -th, 0); ctx.stroke(); ctx.restore();
     /* the angle is named on its bisector, except when the pushes are so far apart that the total
        force runs along that bisector, when it is named below the first skater's arms instead */
-    if (TH.v <= 110) text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px + (arcR + 34) * Math.cos(th / 2), py - (arcR + 34) * Math.sin(th / 2), PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    if (TH.v <= 110) text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px + (arcR + 50) * Math.cos(th / 2), py - (arcR + 50) * Math.sin(th / 2), PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     else text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px - 124, py + 54, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
 
     /* ---- the free-body diagram: the body as a single point, the outside forces leaving it ---- */

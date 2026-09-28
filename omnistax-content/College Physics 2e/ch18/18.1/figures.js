@@ -113,11 +113,10 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     /* the body hangs from the thread at the pivot: a rod by its middle, a cloth by its top corner.
        Its rest position and the point the second body is measured from follow from that. */
     const ex = CX + g.nx, ey = CY + g.ny, Rn = Math.hypot(g.nx, g.ny), a0 = Math.atan2(g.ny, g.nx);
-    const faded = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     /* the rest position, faint, and the arc the near end swung through */
     if (Math.abs(g.A) > 1) {
-      faded(g.hang, () => { ctx.globalAlpha *= 0.3; ctx.setLineDash([8, 8]); body(ctx, CX, CY, ROD, 0, 'transparent'); });
-      faded(1 - g.hang, () => { ctx.globalAlpha *= 0.3; ctx.setLineDash([8, 8]); body(ctx, CX, CY + 94, CLOTH, 0, 'transparent'); });
+      F.faded(ctx, g.hang, [0, 0], () => { ctx.globalAlpha *= 0.3; ctx.setLineDash([8, 8]); body(ctx, CX, CY, ROD, 0, 'transparent'); });
+      F.faded(ctx, 1 - g.hang, [0, 0], () => { ctx.globalAlpha *= 0.3; ctx.setLineDash([8, 8]); body(ctx, CX, CY + 94, CLOTH, 0, 'transparent'); });
       turnArc(ctx, CX, CY, Rn + 34, a0, a0 + ang, PAL.ink);
     }
     /* the held body: its near point a distance r from the rest position's near end, along the 18° line */
@@ -125,12 +124,12 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     line(ctx, ex, ey, px, py, alpha(PAL.ink, 0.4), 2, [4, 8]);
     text(ctx, fmt(r, 1) + ' cm', (ex + px) / 2 + 14, (ey + py) / 2 + 22, PAL.ink, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
     const rodAt = { x: px + (L / 2) * ux, y: py + (L / 2) * uy }, clothAt = { x: px + 70 * ux, y: py + 70 * uy };
-    faded(g.held, () => { body(ctx, rodAt.x, rodAt.y, ROD, DIR, PAL.soft); marks(ctx, rodAt.x, rodAt.y, DIR, nm, '+', false); });
-    faded(1 - g.held, () => { body(ctx, clothAt.x, clothAt.y, CLOTH, 0, PAL.soft); clothFolds(ctx, clothAt.x, clothAt.y, 0); marks(ctx, clothAt.x, clothAt.y, 0, nm, '−', true); });
+    F.faded(ctx, g.held, [0, 0], () => { body(ctx, rodAt.x, rodAt.y, ROD, DIR, PAL.soft); marks(ctx, rodAt.x, rodAt.y, DIR, nm, '+', false); });
+    F.faded(ctx, 1 - g.held, [0, 0], () => { body(ctx, clothAt.x, clothAt.y, CLOTH, 0, PAL.soft); clothFolds(ctx, clothAt.x, clothAt.y, 0); marks(ctx, clothAt.x, clothAt.y, 0, nm, '−', true); });
     const hx = heldGlass ? rodAt.x : clothAt.x, hy = heldGlass ? rodAt.y : clothAt.y;
     /* the hanging body, turned about the thread */
-    faded(g.hang, () => { body(ctx, CX, CY, ROD, ang, PAL.soft); marks(ctx, CX, CY, ang, nm, '+', false); });
-    faded(1 - g.hang, () => { const hc = turned(CX, CY, 0, 94, ang); body(ctx, hc.x, hc.y, CLOTH, ang, PAL.soft); clothFolds(ctx, hc.x, hc.y, ang); marks(ctx, hc.x, hc.y, ang, nm, '−', true); });
+    F.faded(ctx, g.hang, [0, 0], () => { body(ctx, CX, CY, ROD, ang, PAL.soft); marks(ctx, CX, CY, ang, nm, '+', false); });
+    F.faded(ctx, 1 - g.hang, [0, 0], () => { const hc = turned(CX, CY, 0, 94, ang); body(ctx, hc.x, hc.y, CLOTH, ang, PAL.soft); clothFolds(ctx, hc.x, hc.y, ang); marks(ctx, hc.x, hc.y, ang, nm, '−', true); });
     line(ctx, CX, CY - 190, CX, CY, PAL.ink, 2);
     dot(ctx, CX, CY, PAL.ink, false, 8);
     /* labels beside their things */

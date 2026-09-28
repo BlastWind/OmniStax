@@ -145,8 +145,7 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     specials: [{ at: () => m1.v, label: 'equal masses' }] });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 6, step: 0.25, value: 4, unit: 'm/s', dec: 2, aria: 'velocity of the first object before the collision' });
   m1.refresh();
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
 
   function draw() {
     const { ctx } = begin(d.c);

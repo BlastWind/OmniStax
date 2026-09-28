@@ -360,8 +360,7 @@ function reading(ctx, x, y, label, value, color) {
   const rc = ctl(d.controls, { label: '\\kr_{\\text{c}}', cls: 'position', min: 0, max: 1.5, step: 0.05, value: 1.25, unit: 'm', dec: 2, onInput: reset, aria: 'the distance from the center to the child' });
   const Ms = ctl(d.controls, { label: 'M', cls: '', min: 20, max: 100, step: 0.5, value: 50, unit: 'kg', dec: 1, onInput: reset, aria: 'the mass of the platform' });
   const R = 1.5, T = 2, CX = 400, CY = 350, S = 140, KF = 0.5, BOX = { l: 900, r: 1320, t: 130, b: 470 }, WMAX = 30;   /* the graph is fixed at 0 to 2.00 s and 0 to 30 rad/s, twice the book's 13.3 rad/s rounded */
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
   function model() {

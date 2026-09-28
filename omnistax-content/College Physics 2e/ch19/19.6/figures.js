@@ -67,8 +67,7 @@ function signs(ctx, x, y, orient, gap, half, color) {
   const c2 = ctl(d.controls, { label: '\\kCtwo', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 3, aria: 'the capacitance of the second capacitor' });
   const c3 = ctl(d.controls, { label: '\\kCthree', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 8, unit: 'µF', dec: 3, aria: 'the capacitance of the third capacitor' });
   const vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 2, max: 24, step: 0.5, value: 12, unit: 'V', dec: 1, aria: 'the voltage of the source' });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   let wasSer = null;
   /* the gap and the plate width of the equivalent capacitor are drawn to a
      fixed scale, bounded so that the widest separation and the widest plates
@@ -86,13 +85,12 @@ function signs(ctx, x, y, orient, gap, half, color) {
     const Cs = 1 / (1 / cs[0] + 1 / cs[1] + 1 / cs[2]), Cp = cs[0] + cs[1] + cs[2];
     const Ctot = ser ? Cs : Cp, Q = Ctot * V;                 /* µF times V is µC */
     const aS = conn.a('series'), aP = conn.a('parallel');
-    const layer = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     line(ctx, DIV, 130, DIV, 660, PAL.rule, 2, [10, 10]);
-    layer(aS, () => text(ctx, 'three capacitors in series', 110, 134, PAL.muted, { size: 19 }));
-    layer(aP, () => text(ctx, 'three capacitors in parallel', 110, 134, PAL.muted, { size: 19 }));
+    F.faded(ctx, aS, [0, 0], () => text(ctx, 'three capacitors in series', 110, 134, PAL.muted, { size: 19 }));
+    F.faded(ctx, aP, [0, 0], () => text(ctx, 'three capacitors in parallel', 110, 134, PAL.muted, { size: 19 }));
     text(ctx, 'the one capacitor the combination is equivalent to', 880, 134, PAL.muted, { size: 19 });
     /* the wires and the source of each circuit */
-    layer(aS, () => {
+    F.faded(ctx, aS, [0, 0], () => {
       wire(ctx, [[XS[0] - 34, TOP], [LFT, TOP], [LFT, BOT], [RGT, BOT], [RGT, TOP], [XS[2] + 34, TOP]]);
       wire(ctx, [[XS[0] + 34, TOP], [XS[1] - 34, TOP]]);
       wire(ctx, [[XS[1] + 34, TOP], [XS[2] - 34, TOP]]);
@@ -101,7 +99,7 @@ function signs(ctx, x, y, orient, gap, half, color) {
       XS.forEach((x, i) => text(ctx, 'V_' + (i + 1) + ' = ' + fmt((Cs * V) / cs[i], 2) + ' V', x, TOP + 116, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel }));
       text(ctx, 'The same charge Q = ' + fmt(Cs * V, 2) + ' µC is separated in every capacitor.', 450, 636, qc, { size: 20, weight: 600, align: 'center' });
     });
-    layer(aP, () => {
+    F.faded(ctx, aP, [0, 0], () => {
       wire(ctx, [[LP, TOP], [RGT, TOP]]);
       wire(ctx, [[LP, BOT], [RGT, BOT]]);
       wire(ctx, [[LP, TOP], [LP, BOT]]);
@@ -120,8 +118,8 @@ function signs(ctx, x, y, orient, gap, half, color) {
     XS.forEach((_, i) => {
       const x = place[i], y = place[3], th = place[4];
       turnedCap(ctx, x, y, th, 34, 46);
-      layer(aS, () => signs(ctx, x, y, 'h', 34, 46, qc));
-      layer(aP, () => signs(ctx, x, y, 'v', 34, 46, qc));
+      F.faded(ctx, aS, [0, 0], () => signs(ctx, x, y, 'h', 34, 46, qc));
+      F.faded(ctx, aP, [0, 0], () => signs(ctx, x, y, 'v', 34, 46, qc));
       text(ctx, 'C_' + (i + 1) + ' = ' + fmt(cs[i], 3) + ' µF', x + 12 * (th / (Math.PI / 2)), place[5], cc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     });
     /* the equivalent capacitor: a larger separation in series, a larger plate area in parallel */
@@ -133,12 +131,12 @@ function signs(ctx, x, y, orient, gap, half, color) {
     signs(ctx, EQ, 380, 'v', gap, half, qc);
     battery(ctx, EQ - 200, 410, 'v');
     text(ctx, 'V = ' + fmt(V, 1) + ' V', EQ - 252, 410, vc, { size: 21, weight: 600, align: 'right' });
-    layer(aS, () => {
+    F.faded(ctx, aS, [0, 0], () => {
       vbracket(ctx, EQ + 152, 380 - gap / 2, 380 + gap / 2, pc, 'd', 1);
       text(ctx, 'C_S = ' + fmt(Cs, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });
       text(ctx, 'a larger plate separation', EQ + 40, 636, PAL.muted, { size: 19, align: 'center' });
     });
-    layer(aP, () => {
+    F.faded(ctx, aP, [0, 0], () => {
       hbracket(ctx, EQ - half, EQ + half, 522, PAL.ink);
       text(ctx, 'the plate area A', EQ + 16, 552, PAL.ink, { size: 20, weight: 600 });   /* beside the wire that runs down through the bracket, not on it */
       text(ctx, 'C_p = ' + fmt(Cp, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });

@@ -441,8 +441,7 @@ function gripHand(ctx, x, y, ux, uy, t) {
   const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 60, unit: '°', dec: 0, aria: 'the angle between the field and the perpendicular to the loop',
     specials: [{ at: 0, label: 'face on' }, { at: 90, label: 'edge on' }] });
   /* the flux changes form at the two angles the text names: face on it is B A, edge on it is nothing */
-  const eqHost = el('div'), note = el('small');
-  d.readout.append(eqHost, note);
+  const { formula: eqHost, note } = F.readout(d);
 
   const U = 3.5;                                   /* scene units to the metre, so 0.40 m² fills the frame */
   const REG = 1.15, ZEND = 2.2;                    /* the lines cover a square of side 2 REG and run from −ZEND to ZEND */

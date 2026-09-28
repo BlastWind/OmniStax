@@ -174,7 +174,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
   /* the three expressions are one quantity rewritten, so the readout bends from one into the next:
      the amplitude term the new form uses in place of the old one bends into it, and a constant with
      no counterpart fades out as the other arrives */
-  const fx = el('div'), note = el('small'); d.readout.append(fx, note);
+  const { formula: fx, note } = F.readout(d);
   let shown = '', form = 'e';
   const SWAP = { 'e>b': { E: 'B' }, 'b>e': { B: 'E' } };
 

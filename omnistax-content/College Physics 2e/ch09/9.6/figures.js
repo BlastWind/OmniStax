@@ -327,8 +327,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
   const PH = ctl(d.controls, { label: '\\varphi', cls: '', min: 40, max: 140, step: 1, value: 70, unit: '°', dec: 0, aria: 'angle at the elbow',
     specials: [{ at: 90, label: 'Example 9.4' }] });
   const R1 = ctl(d.controls, { label: '\\krone', cls: 'position', min: 2, max: 8, step: 0.5, value: 4, unit: 'cm', dec: 1, aria: 'distance from the elbow to the biceps' });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   const HUM = 0.250, HAND = 0.380;    /* the biceps runs from 25.0 cm up the humerus, and the hand sits where the book has it */
   const EX = 430, EY = 470, S = 1060;
   const len = (ph, r1) => Math.sqrt(HUM * HUM + r1 * r1 - 2 * HUM * r1 * Math.cos(ph * RAD));

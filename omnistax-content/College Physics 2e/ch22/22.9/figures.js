@@ -409,28 +409,24 @@ function oval(c, A, B, u, v, n = 72) {
   const bWire = (t) => (MU0 * iLow.v) / (TAU * (t / 100));
   const bLoop = (t) => (NS.v * MU0 * iLow.v) / (2 * (t / 100));
   const yTop = (m, q) => Math.exp(lerp(Math.log(lerp(5e-4, 20e-4, m)), Math.log(5), q));
-  function faded(ctx, a, dy, fn) {
-    if (a <= 0.01) return;
-    ctx.save(); ctx.globalAlpha *= a; ctx.translate(0, dy); fn(); ctx.restore();
-  }
   function drawGraph(ctx, s, y0) {
     const box = { l: 180, r: 1270, t: y0 + 54, b: y0 + 238 };
     const m = GM(s), q = GQ(s), top = yTop(m, q), sh = 18;
     const Y = (v) => box.b - (v / top) * (box.b - box.t);
     const Xd = (v) => box.l + (v / 12) * (box.r - box.l), Xn = (v) => box.l + (v / 2000) * (box.r - box.l);
     const clipped = (fn) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); fn(); ctx.restore(); };
-    const yTicks = (step, unit, a, dy) => faded(ctx, a * clamp((box.b - Y(step) - 12) / 12, 0, 1), dy, () => {
+    const yTicks = (step, unit, a, dy) => F.faded(ctx, a * clamp((box.b - Y(step) - 12) / 12, 0, 1), [0, dy], () => {
       for (let v = 0; Y(v) >= box.t - 1; v += step) {
         if (v) line(ctx, box.l, Y(v), box.r, Y(v), PAL.rule, 1.5);
         text(ctx, fmt(v / unit, 0), box.l - 14, Y(v), PAL.muted, { size: 17, align: 'right' });
       }
     });
-    const xTicks = (X, hi, n, a, dy) => faded(ctx, a, dy, () => {
+    const xTicks = (X, hi, n, a, dy) => F.faded(ctx, a, [0, dy], () => {
       for (let i = 0; i <= n; i++) { const v = (hi * i) / n; if (i) line(ctx, X(v), box.t, X(v), box.b, PAL.rule, 1.5); text(ctx, fmt(v, 0), X(v), box.b + 26, PAL.muted, { size: 17, align: 'center' }); }
     });
-    const xl = (s0, col, a, dy) => faded(ctx, a, dy, () => text(ctx, s0, box.r, box.b + 58, col, { align: 'right', weight: 600, size: 20 }));
-    const yl = (s0, a, dy) => faded(ctx, a, dy, () => text(ctx, s0, box.l, box.t - 24, C('magnetic-field'), { align: 'left', weight: 600, size: 20 }));
-    const tip = (s0, a, dy) => faded(ctx, a, dy, () => text(ctx, s0, box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' }));
+    const xl = (s0, col, a, dy) => F.faded(ctx, a, [0, dy], () => text(ctx, s0, box.r, box.b + 58, col, { align: 'right', weight: 600, size: 20 }));
+    const yl = (s0, a, dy) => F.faded(ctx, a, [0, dy], () => text(ctx, s0, box.l, box.t - 24, C('magnetic-field'), { align: 'left', weight: 600, size: 20 }));
+    const tip = (s0, a, dy) => F.faded(ctx, a, [0, dy], () => text(ctx, s0, box.r - 12, box.t + 22, PAL.muted, { size: 17, align: 'right' }));
 
     /* the scale in 10⁻⁴ T through the wire and the loop, in T for the solenoid */
     yTicks(1e-4, 1e-4, (1 - m) * (1 - q), 0);
@@ -447,12 +443,12 @@ function oval(c, A, B, u, v, n = 72) {
 
     /* the curve of the distance, reshaping from the wire's into the loop's */
     const fD = (t) => lerp(bWire(t), bLoop(t), m);
-    faded(ctx, 1 - q, sh * q, () => {
+    F.faded(ctx, 1 - q, [0, sh * q], () => {
       clipped(() => curve(ctx, (t) => fD(t), 0.3, 12, Xd, Y, C('magnetic-field'), 5, 160));
       const xv = lerp(rS.v, RS.v, m), p = pinned(ctx, box, Xd, Y, xv, fD(xv), C('magnetic-field'));
       if (!p.out) line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
     });
-    faded(ctx, q, -sh * (1 - q), () => {
+    F.faded(ctx, q, [0, -sh * (1 - q)], () => {
       clipped(() => curve(ctx, (t) => MU0 * t * iSol.v, 0, 2000, Xn, Y, C('magnetic-field'), 5, 60));
       const p = pinned(ctx, box, Xn, Y, nS.v, MU0 * nS.v * iSol.v, C('magnetic-field'));
       if (!p.out) line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
@@ -463,13 +459,11 @@ function oval(c, A, B, u, v, n = 72) {
   }
   /* each arrangement's own layer, at its presence and slid by its shift */
   function layer(ctx, a, s, A, fn) {
-    if (A[a] <= 0.01) return;
-    ctx.save(); ctx.globalAlpha = A[a]; ctx.translate(0, 18 * slide(a, s, A)); fn(); ctx.restore();
+    F.faded(ctx, A[a], [0, 18 * slide(a, s, A)], fn);
   }
 
   /* ---------- the readout: one equation, the law = its numbers = the field, bending by meaning between the arrangements ---------- */
-  const fx = el('div'), note = el('small');
-  d.readout.append(fx, note);
+  const { formula: fx, note } = F.readout(d);
   const UNIT = (x, u) => `(${x}\\ ${u})`;
   const MUV = '\\mk{muval}{(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})}';
   const EQ = {
@@ -582,7 +576,7 @@ function oval(c, A, B, u, v, n = 72) {
   const RBAR = L / TAU;                        /* the mean radius of the ring the same coil makes: 0.318 m */
   const state = () => { const n = NS.v / L, B = MU0 * n * iS.v; return { n, B, I: iS.v, N: NS.v }; };
 
-  const V = view({ yaw: 0.0, pitch: 0.58, dist: 2400, cx: 700, cy: 252 });
+  const V = view({ yaw: 0.0, pitch: 0.58, dist: 2400, cx: 700, cy: 266 });
   const P = V.P;
   const RC = 212, A = 44;                      /* the ring's mean radius and the tube's radius, in canvas units */
   const HX = 330, AS = 62;                     /* the straight coil's half-length and radius */
@@ -649,7 +643,7 @@ function oval(c, A, B, u, v, n = 72) {
        a ring has no ends, so that part fades as the ends close */
     if (aS > 0) {
       ctx.save(); ctx.globalAlpha = aS;
-      [1, -1].forEach((s) => [[HX + 110, AS + 32], [HX + 168, AS + 88]].forEach(([Aw, Bh]) => {
+      [1, -1].forEach((s) => [[HX + 110, AS + 26], [HX + 168, AS + 64]].forEach(([Aw, Bh]) => {
         const pts = [];
         for (let i = 0; i <= 96; i++) { const t = (i / 96) * TAU; pts.push([Aw * Math.cos(t), s * (AS + Bh * Math.sin(t)), 0]); }
         poly(ctx, pts, alpha(C('magnetic-field'), 0.5), 2.5);

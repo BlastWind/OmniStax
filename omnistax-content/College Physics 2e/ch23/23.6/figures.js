@@ -100,8 +100,7 @@ function rotor(ctx, x, y, r, frac) {
   const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 0.2, max: 2, step: 0.05, value: 0.4, unit: 'Ω', dec: 3, aria: 'the resistance of the motor’s coils' });
   const K = 0.25;                      /* volts of back emf for each rad/s of the shaft */
   /* at rest the back emf is gone from the current's equation: its term fades and the rest closes up */
-  const eqHost = el('div'), small = el('small');
-  d.readout.append(eqHost, small);
+  const { formula: eqHost, note: small } = F.readout(d);
   const WMAX = 160;
   /* Fixed ranges, taken from the book's own numbers and never rescaled: at rest
      the 48.0 V motor with 0.400 Ω coils draws 120 A and dissipates 5.76 kW, which

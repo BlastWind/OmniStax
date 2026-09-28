@@ -78,8 +78,7 @@ function flow(ctx, x, y, dx, dy, L) {
   const TWIN = 0.025, IMAX = 30;
   /* throwing the switch rewrites the law by meaning: I₀ and the exponential keep their places, and
      the "1 −" the battery supplies fades with its brackets */
-  const eqHost = el('div'), small = el('small');
-  d.readout.append(eqHost, small);
+  const { formula: eqHost, note: small } = F.readout(d);
   const BOX = { l: 250, r: 1230, t: 600, b: 820 };
   const cy = cycle(() => TWIN, 1.2);
   function reset() { cy.reset(); }
@@ -195,8 +194,7 @@ function flow(ctx, x, y, dx, dy, L) {
      together, and 0 to 100 percent of the final current up the side. Neither
      depends on a slider, since the horizontal axis is counted in time constants. */
   const NMAX = 6, BOX = { l: 230, r: 1250, t: 196, b: 636 };
-  const eqHost = el('div'), small = el('small');
-  d.readout.append(eqHost, small);
+  const { formula: eqHost, note: small } = F.readout(d);
 
   function draw() {
     const { ctx } = begin(d.c);

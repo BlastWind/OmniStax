@@ -11,10 +11,6 @@ window.OMNISTAX_FIGURES['21.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
-/* A formula host in the readout, with its small line under it, for a readout that morphs. */
-function morphHost(d) { const fx = el('div'), note = el('small'); d.readout.replaceChildren(fx, note); return { fx, note }; }
-/* A layer drawn at the opacity a, skipped once it has gone. */
-function layer(ctx, a, f) { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); }
 const ohms = (r) => fmt(r, r < 10 ? 3 : 1) + ' Ω';
 const ohm = (r) => fmt(r, r < 10 ? 3 : 1) + '\\ \\Omega';
 const volt = (v) => fmt(v, 2) + '\\ \\text{V}';
@@ -388,7 +384,7 @@ function bulb(ctx, x, y, frac) {
     options: [{ value: 'same', label: 'the same way' }, { value: 'back', label: 'turned round' }],
     value: 'same', aria: 'which way round the second cell is put in',
   });
-  const { fx, note } = morphHost(d);
+  const { formula: fx, note } = F.readout(d);
   function draw() {
     const { ctx } = begin(d.c);
     const e1 = E1.v, e2 = E2.v, r1 = R1.v, r2 = R2.v, back = sense.value === 'back';
@@ -525,7 +521,7 @@ function bulb(ctx, x, y, frac) {
     options: [{ value: 'one', label: 'one on its own' }, { value: 'two', label: 'two in parallel' }],
     value: 'one', aria: 'whether one source or two in parallel drive the load',
   });
-  const { fx, note } = morphHost(d);
+  const { formula: fx, note } = F.readout(d);
   let was = how.value;
   function draw() {
     const { ctx } = begin(d.c);
@@ -537,7 +533,7 @@ function bulb(ctx, x, y, frac) {
       : 'One source alone drives ' + fmt(i, 1) + ' A through the load, all of it through its own internal resistance of ' + fmt(rt, 3) + ' Ω.');
     /* the first source steps aside and the second arrives beside it */
     const x1 = how.mix((v) => (v === 'two' ? 340 : 450)), a2 = how.a('two');
-    layer(ctx, a2, () => enclosure(ctx, 190, 150, 660, 566, 'the two sources side by side'));
+    F.faded(ctx, a2, [0, 0], () => enclosure(ctx, 190, 150, 660, 566, 'the two sources side by side'));
     wires(ctx, [[x1, T], [RX, T]]);
     wires(ctx, [[x1, B], [RX, B]]);
     wires(ctx, [[RX, T], [RX, B]]);
@@ -549,7 +545,7 @@ function bulb(ctx, x, y, frac) {
       text(ctx, two ? 'source ' + (k + 1) : 'the source', x, B + 44, PAL.muted, { size: 19, align: 'center' });
     };
     source(x1, 0);
-    layer(ctx, a2, () => source(580, 1));
+    F.faded(ctx, a2, [0, 0], () => source(580, 1));
     resistor(ctx, RX, 350, false, 'R_load', rl);
     text(ctx, 'the load', RX, B + 44, PAL.muted, { size: 19, align: 'center' });
     flow(ctx, 920, T, 1, 0, 'I = ' + fmt(i, 1) + ' A');

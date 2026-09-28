@@ -216,8 +216,7 @@ function flow(ctx, x, y, dx, dy, L) {
   const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, aria: 'the capacitance of the capacitor',
     specials: [{ at: () => 1e6 / (w2() * lS.v * 1e-3), label: 'resonance' }] });
   fS.refresh(); lS.refresh();
-  const eqHost = el('div'), note = el('small');
-  d.readout.append(eqHost, note);
+  const { formula: eqHost, note } = F.readout(d);
 
   const VRMS = 120, OHMS = 600, SIDE = 330, OX = 232, OY = 462;
   const BOX = { l: 800, r: 1310, t: 196, b: 730 };

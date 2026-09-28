@@ -185,8 +185,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
 
   const LEN = 1.00, DIA = 0.00800, AREA = Math.PI * (DIA / 2) * (DIA / 2);
   /* counter-wound, the inductance is not a smaller number but no term at all: the formula gives way to zero */
-  const eqHost = el('div'), small = el('small');
-  d.readout.append(eqHost, small);
+  const { formula: eqHost, note: small } = F.readout(d);
   const V = view({ yaw: 0.30, pitch: 0.26, dist: 3200, cx: 700, cy: 330 });
   const at = (x, r, a) => V.P([x, r * Math.sin(a), r * Math.cos(a)]);
   const X0 = -430, X1 = 430, R0 = 96;

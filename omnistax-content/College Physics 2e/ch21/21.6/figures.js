@@ -169,8 +169,7 @@ function current(ctx, x, y, dx, frac, label) {
   const tauOf = () => R.v * Cc.v;                      /* kΩ × μF = ms */
   const cy = cycle(() => 5 * tauOf(), 1.2);            /* one loop runs to five time constants */
   function reset() { cy.reset(); }
-  const fx = el('div'), note = el('small');
-  d.readout.replaceChildren(fx, note);
+  const { formula: fx, note } = F.readout(d);
   /* the two laws, each term keyed by what it means: the exponential keeps its key, the
      emf is renamed V₀ in place, and the "1 −" and its brackets leave as the curve turns over */
   const LAW = (m, t, tau, V) => {

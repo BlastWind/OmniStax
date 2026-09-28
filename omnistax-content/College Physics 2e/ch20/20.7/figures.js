@@ -83,7 +83,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     /* the other cell's ending, meeting the topmost dendrite across a synapse */
     const syn = { x: soma.x + dends[3][0] - 34, y: soma.y + dends[3][1] - 26 };
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 5; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(syn.x - 18, syn.y - 14); ctx.lineTo(syn.x - 130, syn.y - 34); ctx.stroke(); ctx.restore();
+    ctx.beginPath(); ctx.moveTo(syn.x - 18, syn.y - 14); ctx.lineTo(syn.x - 80, syn.y - 56); ctx.stroke(); ctx.restore();
     dot(ctx, syn.x - 14, syn.y - 12, alpha(PAL.ink, 0.35), true, 12);
     /* the cell body and its nucleus */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = on('soma'); ctx.lineWidth = 6;

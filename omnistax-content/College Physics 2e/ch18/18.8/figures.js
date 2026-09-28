@@ -194,7 +194,6 @@ function ground(ctx, x, y) {
        settles on what is left; the paper comes up and pulls the toner off, sector by sector */
     const light = sm(clamp((s - 0.25) / 0.75)), beam = sm(clamp(s / 0.5)) * (1 - sm(clamp((s - 1.2) / 0.5)));
     const toner = sm(clamp((s - 1.3) / 0.7)), paper = sm(clamp((s - 2) / 0.5)), pulled = sm(clamp(s - 2));
-    const fade = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     /* the aluminum drum, its selenium coat, and the ground the book names */
     circle(ctx, CX, CY, R, PAL.panel, 4);
     circle(ctx, CX, CY, R - 26, PAL.soft, 3);
@@ -208,7 +207,7 @@ function ground(ctx, x, y) {
        negative charge induced under it on the grounded aluminum */
     for (let i = 0; i < 48; i++) {
       const deg = -180 + i * 7.5, a = deg * (Math.PI / 180);
-      fade(isDark(deg) ? 1 : 1 - light, () => {
+      F.faded(ctx, isDark(deg) ? 1 : 1 - light, [0, 0], () => {
         mark(ctx, '+', CX + (R - 13) * Math.cos(a), CY + (R - 13) * Math.sin(a), 18);
         mark(ctx, '−', CX + (R - 38) * Math.cos(a), CY + (R - 38) * Math.sin(a), 16);
       });
@@ -217,7 +216,7 @@ function ground(ctx, x, y) {
     comb(ctx, CX - 150, CY - R - 62, 4, 0.55, 0.84, 26);
     text(ctx, 'corotron', CX - 200, CY - R - 78, PAL.ink, { size: 19, align: 'right' });
     /* what writes the image, while the image is being written */
-    fade(beam * writer.a('laser'), () => {
+    F.faded(ctx, beam * writer.a('laser'), [0, 0], () => {
       panel(ctx, 1030, 150, 150, 64, 8, PAL.panel);
       text(ctx, 'laser', 1105, 182, PAL.ink, { size: 20, weight: 600, align: 'center' });
       line(ctx, 1030, 182, 900, 182, PAL.ink, 3);
@@ -229,7 +228,7 @@ function ground(ctx, x, y) {
       dot(ctx, 900, 182, PAL.ink, false, 10);
       text(ctx, 'a turning mirror scans the beam', 880, 146, PAL.muted, { size: 18, align: 'right' });
     });
-    fade(beam * writer.a('lamp'), () => {
+    F.faded(ctx, beam * writer.a('lamp'), [0, 0], () => {
       panel(ctx, 1000, 150, 190, 300, 8, PAL.soft);
       text(ctx, 'the original', 1095, 176, PAL.ink, { size: 19, align: 'center' });
       for (let i = 0; i < 4; i++) panel(ctx, 1024, 210 + i * 56, 142, 26, 4, PAL.panel);
@@ -241,7 +240,7 @@ function ground(ctx, x, y) {
       text(ctx, 'the lamp throws the image on the drum', 1095, 476, PAL.muted, { size: 18, align: 'center' });
     });
     /* the toner on the dark sectors, and what the paper has already taken */
-    fade(toner, () => {
+    F.faded(ctx, toner, [0, 0], () => {
       for (let i = 0; i < 48; i++) {
         const deg = -180 + i * 7.5, a = deg * (Math.PI / 180);
         if (!isDark(deg) || deg > 180 - 160 * pulled) continue;
@@ -249,7 +248,7 @@ function ground(ctx, x, y) {
       }
       text(ctx, 'toner, sprayed with negative charge', CX - R - 30, CY + R + 40, PAL.muted, { size: 19, align: 'right' });
     });
-    fade(paper, () => {
+    F.faded(ctx, paper, [0, 0], () => {
       panel(ctx, 900, CY + 40, 330, 150, 6, PAL.panel);
       for (let i = 0; i < 7; i++) mark(ctx, '+', 930 + i * 46, CY + 176, 20);
       for (let i = 0; i < Math.round(5 * pulled); i++) dot(ctx, 950 + i * 40, CY + 78, PAL.ink, true, 7);
@@ -441,8 +440,7 @@ function ground(ctx, x, y) {
     specials: [{ at: () => (ms && qs.v > 0 ? (ms.v * 1e-15 * G) / (qs.v * 1e-19) / 1e5 : null), label: 'hangs' }] });
   ms = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 10, step: 0.1, value: 4.0, unit: '×10⁻¹⁵ kg', dec: 2, aria: 'the mass of the drop',
     specials: [{ at: () => (qs.v * 1e-19 * Es.v * 1e5) / G / 1e-15, label: 'hangs' }] });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   let wasHung = null;
   const DX = 470, DY = 330, FX = 1010;
   function draw() {

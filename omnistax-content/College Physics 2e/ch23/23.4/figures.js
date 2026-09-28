@@ -281,8 +281,8 @@ function cross(ctx, x, y, r, color, w) {
           ? 'The plate stands clear of the poles, where there is no field to induce anything in it.'
           : 'The plate is ' + where + ', so the amount of it in the field is changing, the current runs ' + (ccw ? 'counterclockwise' : 'clockwise') + ' and the force on it is to the left.');
     readout(d.readout,
-      `\\kBmag = ${fmt(bS.v, 2)}\\ \\text{T},\\quad \\kv = ${fmt(vS.v, 2)}\\ \\text{m/s},\\quad \\kx = ${fmt(p, 1)}\\ \\text{cm}\\quad\\Rightarrow\\quad \\kF = ${fmt(drag, 2)}`,
-      'Only the side of the loop that lies in the field is pushed, and it is pushed against the motion, on the way in and on the way out alike. Cutting the plate into slots leaves the same emf with many small loops to run in, and neighboring loops run opposite ways, so the forces on them very nearly cancel.');
+      `\\kF = ${fmt(drag, 2)}`,
+      'With the field at ' + fmt(bS.v, 2) + ' T, the plate moving at ' + fmt(vS.v, 2) + ' m/s and standing at ' + fmt(p, 1) + ' cm, the drag is that fraction of the greatest. Only the side of the loop that lies in the field is pushed, and it is pushed against the motion, on the way in and on the way out alike. Cutting the plate into slots leaves the same emf with many small loops to run in, and neighboring loops run opposite ways, so the forces on them very nearly cancel.');
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => [

@@ -197,7 +197,7 @@ function drawLine(ctx, pts, color, w, heads) {
     /* a change of material blends how far the sphere polarizes, so the lines straighten or bend to
        their new course, and the lines that begin again on a conductor's face fade with it */
     const [b, mA] = kind.mix((v) => (v === 'metal' ? [1, 1] : [BETA, 0]));
-    const inside = E0 * (1 - b);
+    const inside = E0 * (1 - b), shown = metal ? 0 : E0 * (1 - BETA);
     /* the field of a sphere in a uniform field: the applied field and the
        field of the charge the sphere's own surface has taken up */
     const field = (x, y) => {
@@ -238,12 +238,12 @@ function drawLine(ctx, pts, color, w, heads) {
       }
       ctx.restore();
     }
-    text(ctx, metal ? 'no field inside' : 'E = ' + fmt(inside, 0) + ' N/C inside', CX, CY, metal ? PAL.muted : ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, metal ? 'no field inside' : 'E = ' + fmt(shown, 0) + ' N/C inside', CX, CY, metal ? PAL.muted : ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, metal ? 'a metal sphere' : 'an insulating sphere', CX, CY + a + 44, PAL.muted, { size: 21, align: 'center' });
     text(ctx, 'the applied field, ' + fmt(E0, 0) + ' N/C', BOX.x0 + 6, BOX.y0 + 20, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
     topline(ctx, metal
       ? 'The free charges have moved to the two faces of the sphere, and the field they make cancels the applied field inside it exactly, leaving nothing there and meeting the surface at right angles.'
-      : 'An insulator has no free charges to move to its faces, so the lines pass through it, weakened to ' + fmt(inside, 0) + ' N/C but neither cancelled nor bent to meet the surface at right angles.');
+      : 'An insulator has no free charges to move to its faces, so the lines pass through it, weakened to ' + fmt(shown, 0) + ' N/C but neither cancelled nor bent to meet the surface at right angles.');
     const Ein = metal ? 0 : E0 * (1 - BETA);
     readout(d.readout, `\\kEf_{\\ \\text{inside}} = \\kEf_{\\ \\text{applied}} - \\kEf_{\\ \\text{faces}} = ${fmt(E0, 0)}\\ \\text{N/C} - ${fmt(E0 - Ein, 0)}\\ \\text{N/C} = ${fmt(Ein, 0)}\\ \\text{N/C}`,
       metal
@@ -268,8 +268,7 @@ function drawLine(ctx, pts, color, w, heads) {
     specials: [{ at: () => (rs ? rs.v : null), label: 'the surface' }] });
   rs = ctl(d.controls, { label: '\\text{the probe}', cls: '', min: 1, max: 24, step: 0.5, value: 15, unit: 'cm', dec: 1, aria: 'the distance of the probe from the centre of the sphere',
     specials: [{ at: () => as.v, label: 'the surface' }] });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const { formula, note } = F.readout(d);
   let wasOut = null;
   const CX = 560, CY = 386, S = 17;                 /* 17 logical units to the centimetre */
   function draw() {
@@ -463,12 +462,6 @@ function drawLine(ctx, pts, color, w, heads) {
     /* the body is the same in every case and stays; a change of case fades out the parts only the
        old case has and brings in the new case's, each with a slight drift */
     drawBody(ctx, r1, r2);
-    const layer = (v, f) => {
-      const a = panel.a(v);
-      if (a < 0.01) return;
-      const [dx, dy] = panel.off(v, [0, 18]);
-      ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore();
-    };
     /* (a) an identical pair of charges at each end. The two charges of a
        pair are the same distance apart at both ends, so the force between
        them is the same size; what differs is how much of it lies along the
@@ -477,7 +470,7 @@ function drawLine(ctx, pts, color, w, heads) {
     const Fpair = (K * (PAIR * 1e-9) * (PAIR * 1e-9)) / Math.pow(sep / S / 100, 2) * 1e6;   /* μN */
     const dlOf = (r) => Math.asin(Math.min(0.94, sep / (2 * r)));
     const dlL = dlOf(r1), dlR = dlOf(r2);
-    layer('a', () => {
+    panel.only(ctx, 'a', () => {
       const FL = 92;
       for (const [cx, r, ox, nm] of [[CLX, r1, -1, 'the flat end'], [CRX, r2, 1, 'the pointed end']]) {
         const dl = dlOf(r);
@@ -494,9 +487,9 @@ function drawLine(ctx, pts, color, w, heads) {
         text(ctx, 'F∥ = ' + fmt(Fpair * Math.cos(dl), 1) + ' μN', px + ox * 46 + FL * Math.cos(dl) * tx, py + FL * Math.cos(dl) * ty - 4, fc, { size: 20, weight: 600, align: ox < 0 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
         text(ctx, nm, cx, YC + r + 132, PAL.muted, { size: 21, align: 'center' });
       }
-    });
+    }, [0, 18]);
     /* (b) the excess charge that has settled, and the field it makes */
-    layer('b', () => {
+    panel.only(ctx, 'b', () => {
       const pts = surface(r1, r2), qs = pts.map((p) => ({ x: p.x / S, y: p.y / S, q: (Q * p.w) }));
       const field = (x, y) => { const f = fieldAt(x / S, y / S, qs); return { x: f.x, y: f.y, m: f.m }; };
       /* one line out of every place a mark is drawn, so the crowding of the
@@ -515,10 +508,10 @@ function drawLine(ctx, pts, color, w, heads) {
       text(ctx, 'q = ' + fmt(Q, 0) + ' nC on the surface', (CLX + CRX) / 2, YC + 2, qc, { size: 22, weight: 600, align: 'center' });
       text(ctx, 'E = ' + sci(Eflat, 2) + ' N/C', CLX - r1 - 24, YC, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
       text(ctx, 'E = ' + sci(Etip, 2) + ' N/C', CRX + r2 + 24, YC - 44, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    });
+    }, [0, 18]);
     /* (c) the same body, uncharged, in a field that was uniform before it
        was put there: the induced charge is most concentrated at the point */
-    layer('c', () => {
+    panel.only(ctx, 'c', () => {
       const pts = surface(r1, r2), xc = (CLX + CRX) / 2;
       const raw = pts.map((p) => ({ x: p.x / S, y: p.y / S, q: p.w * (p.x - xc) / S }));
       /* scale the induced charge so that it cancels the applied field at the
@@ -549,7 +542,7 @@ function drawLine(ctx, pts, color, w, heads) {
       }
       text(ctx, 'no field inside', xc, YC + 2, PAL.muted, { size: 21, weight: 600, align: 'center' });
       text(ctx, 'the applied field, ' + fmt(E0, 0) + ' N/C', BOX.x0 + 6, BOX.y0 + 20, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    });
+    }, [0, 18]);
     if (cur === 'a') {
       topline(ctx, 'The two charges of a pair sit the same distance apart at either end, so the force between them is the same ' + fmt(Fpair, 1) + ' μN; but ' + fmt(100 * Math.cos(dlL), 0) + ' per cent of it lies along the flat surface against only ' + fmt(100 * Math.cos(dlR), 0) + ' per cent along the pointed one.');
       readout(d.readout, `\\kFpar = \\kF\\cos\\theta = (${fmt(Fpair, 1)}\\ \\mu\\text{N})(${fmt(Math.cos(dlR), 2)}) = ${fmt(Fpair * Math.cos(dlR), 1)}\\ \\mu\\text{N}`,

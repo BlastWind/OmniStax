@@ -120,8 +120,7 @@ function resistorBox(ctx, x, y) {
   /* a change of element slides the current a quarter cycle along against the voltage, and the
      readout rewrites itself by meaning: 2π and f keep their places, while X_L, X_C and R are
      three different quantities and cross-fade where they stand */
-  const eqHost = el('div'), small = el('small');
-  d.readout.append(eqHost, small);
+  const { formula: eqHost, note: small } = F.readout(d);
   const reactance = (m, f) => (m === 'L' ? 2 * Math.PI * f * (lS.v * 1e-3) : m === 'C' ? 1 / (2 * Math.PI * f * (cS.v * 1e-6)) : rS.v);
 
   function draw() {
