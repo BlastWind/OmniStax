@@ -25,10 +25,8 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
   const a0 = ctl(d.controls, { label: '\\theta_0', cls: '', min: 2, max: 60, step: 1, value: 15, unit: '°', dec: 0, onInput: reset, aria: 'swing amplitude' });
   const L = ctl(d.controls, { label: 'L', cls: '', min: 0.5, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length' });
   const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
-  /* Seven labels would otherwise ride the bob and cross one another as it swings, so rule 26.7
-     puts them behind a button, off to begin with, and the name of anything drawn is still there
-     under the pointer. The frame of the figure, its axis titles and its two curve labels, stays. */
-  const labs = F.choice(d.controls, { label: 'Labels', options: [{ value: 'off', label: 'Off' }, { value: 'on', label: 'On' }], value: 'off', aria: 'entity labels' });
+  /* Seven labels riding the bob would cross one another as it swings, so only the restoring
+     force is named on the canvas; every other part is named under the pointer. */
   let hits = [];
   F.hover(d.stage, () => hits);
   const G = 9.80;
@@ -50,24 +48,18 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     fixed(ctx, px - 110, py - 44, 220, 44);
     line(ctx, px, py, px, py + Ld + 50, PAL.muted, 2, [8, 8]);
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([6, 8]); ctx.beginPath(); ctx.arc(px, py, Ld, Math.PI / 2 - a0.v * DEG, Math.PI / 2 + a0.v * DEG); ctx.stroke(); ctx.restore();
-    const on = labs.value === 'on';
-    if (Math.abs(t) > 0.01) {
-      ctx.save(); ctx.strokeStyle = C('position'); ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(px, py, Ld + 14, Math.PI / 2, Math.PI / 2 - t, t > 0); ctx.stroke(); ctx.restore();
-      if (on) text(ctx, 's = ' + sgn(s) + fmt(Math.abs(s), 3) + ' m', px - Math.sign(t) * 30, py + Ld + 44, C('position'), { weight: 600, size: 20, align: t > 0 ? 'right' : 'left' });
-    }
+    if (Math.abs(t) > 0.01) { ctx.save(); ctx.strokeStyle = C('position'); ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(px, py, Ld + 14, Math.PI / 2, Math.PI / 2 - t, t > 0); ctx.stroke(); ctx.restore(); }
     const { bx, by } = pendulum(ctx, px, py, Ld, t, 16, PAL.ink);
-    if (on) text(ctx, 'L = ' + fmt(L.v, 2) + ' m', px + Ld / 2 * Math.sin(t) + (t >= 0 ? -16 : 16), py + Ld / 2 * Math.cos(t), PAL.muted, { size: 18, align: t >= 0 ? 'right' : 'left' });
-    if (Math.abs(t) > 0.005) { ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, 60, Math.PI / 2, Math.PI / 2 - t, t > 0); ctx.stroke(); ctx.restore(); if (on) text(ctx, 'θ = ' + fmt(Math.abs(t) / DEG, 1) + '°', px + (t >= 0 ? 1 : -1) * 78 * Math.sin(Math.abs(t) / 2 + 0.25) , py + 78 * Math.cos(Math.abs(t) / 2 + 0.25) + 4, PAL.muted, { size: 18, align: t >= 0 ? 'left' : 'right' }); }
+    if (Math.abs(t) > 0.005) { ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, 60, Math.PI / 2, Math.PI / 2 - t, t > 0); ctx.stroke(); ctx.restore(); }
     /* the forces: weight, its two components, the tension */
     const fs = 180 / mg, ux = Math.sin(t), uy = Math.cos(t), tx = Math.cos(t), ty = -Math.sin(t);   /* u: along the string outward; t: along the arc toward +θ */
     const wl = mg * fs, cl = mg * Math.cos(t) * fs, sl = mg * Math.sin(t) * fs;
     const side = t >= 0 ? 1 : -1;   /* the component leans to the bob's side; the labels sit on opposite sides of the pair */
-    arrow(ctx, bx, by, bx, by + wl, C('force'), 4); if (on) text(ctx, 'w = mg', bx - side * 16, by + wl * 0.62, C('force'), { size: 18, align: side > 0 ? 'right' : 'left' });
+    arrow(ctx, bx, by, bx, by + wl, C('force'), 4);
     line(ctx, bx, by, bx + ux * cl, by + uy * cl, C('force'), 2, [6, 6]); line(ctx, bx + ux * cl, by + uy * cl, bx, by + wl, C('force'), 2, [6, 6]); line(ctx, bx - tx * sl, by - ty * sl, bx, by + wl, C('force'), 2, [6, 6]);
-    if (on) text(ctx, 'mg cos θ', bx + ux * cl * 0.62 + side * 16, by + uy * cl * 0.62, C('force'), { size: 17, align: side > 0 ? 'left' : 'right' });
     /* the tension is a force like the rest of them, so it takes the force hue */
-    arrow(ctx, bx, by, bx - ux * cl, by - uy * cl, C('force'), 4); if (on) text(ctx, 'tension', bx - ux * cl * 0.55 + (t >= 0 ? 12 : -12), by - uy * cl * 0.55, C('force'), { size: 17, align: t >= 0 ? 'left' : 'right' });
-    if (Math.abs(t) > 0.01) { arrow(ctx, bx, by, bx - tx * sl, by - ty * sl, C('force'), 6); if (on) text(ctx, 'mg sin θ = ' + fmt(Math.abs(Fs), 2) + ' N', bx - tx * (sl + 16), by - ty * (sl + 16) - 22, C('force'), { size: 18, weight: 600, align: t >= 0 ? 'right' : 'left' }); }
+    arrow(ctx, bx, by, bx - ux * cl, by - uy * cl, C('force'), 4);
+    if (Math.abs(t) > 0.01) { arrow(ctx, bx, by, bx - tx * sl, by - ty * sl, C('force'), 6); text(ctx, 'mg sin θ = ' + fmt(Math.abs(Fs), 2) + ' N', bx - tx * (sl + 16), by - ty * (sl + 16) - 22, C('force'), { size: 18, weight: 600, align: t >= 0 ? 'right' : 'left' }); }
     hits = [
       { x: bx, y: by, r: 22, name: 'the bob, ' + fmt(m.v, 1) + ' kg' },
       { x: bx, y: by + wl, r: 20, name: 'weight w = mg = ' + fmt(mg, 2) + ' N' },
@@ -114,11 +106,10 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
 (function () {
   const d = sim('sim-pendulum-period', 760);
   const L1 = ctl(d.controls, { label: 'L_1', cls: '', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 1' });
-  const L2 = ctl(d.controls, { label: 'L_2', cls: '', min: 0.1, max: 2, step: 0.05, value: 0.25, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 2' });
+  const L2 = ctl(d.controls, { label: 'L_2', cls: '', min: 0.1, max: 2, step: 0.05, value: 0.25, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 2', specials: [{ at: () => L1.v, label: 'equal lengths' }] });
   const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 10, step: 0.1, value: 5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the second bob' });
-  /* soft detents at the two values the section's problems name, without snapping, since the two
-     sit so far apart on this slider that a snap would swallow everything between them */
-  const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.6, max: 25, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, detents: [{ v: 1.63, label: 'Moon' }, { v: 9.8, label: 'Earth' }], snap: false });
+  /* the Moon and the Earth, the two values the section's problems name */
+  const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.6, max: 25, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, specials: [{ at: 1.63, label: 'Moon' }, { at: 9.8, label: 'Earth' }] });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }
   const Tof = (L) => TAU * Math.sqrt(L / g.v), A0 = 12 * DEG;

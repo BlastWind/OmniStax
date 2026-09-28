@@ -36,7 +36,7 @@ function sciTex(v, dec) {
     { value: 'medium', label: 'medium', b: 0.30 },
     { value: 'heavy', label: 'heavy', b: 0.70 },
   ];
-  const f = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 0.1, max: 2, step: 0.01, value: 1, unit: 'Hz', dec: 2, onInput: reset, aria: 'driving frequency' });
+  const f = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 0.1, max: 2, step: 0.01, value: 1, unit: 'Hz', dec: 2, onInput: reset, aria: 'driving frequency', specials: [{ at: F0, label: 'resonance' }] });
   const damp = choice(d.controls, { label: '\\text{damping}', options: REG, value: 'small', aria: 'amount of damping', onInput: reset });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }
@@ -49,7 +49,7 @@ function sciTex(v, dec) {
   function draw() {
     const { ctx } = begin(d.c);
     const CF = C('frequency'), CX = C('position');     /* bound before cat(), so no curve takes a bound hue */
-    const b = bOf(damp.value), X = ampOf(f.v, b), lag = lagOf(f.v, b);
+    const b = damp.mix(bOf), X = ampOf(f.v, b), lag = lagOf(f.v, b);
     const t = REDUCED ? 0.25 / f.v : cy.now(), ph = 2 * Math.PI * f.v * t;
     /* ---- the scene, left: a finger, a rubber band and the paddle ball ---- */
     const cx = 330, ytop = 200, y0 = 480;
@@ -76,12 +76,11 @@ function sciTex(v, dec) {
     line(ctx, Xa(F0), box.t, Xa(F0), box.b, CF, 2, [8, 8]);
     text(ctx, 'f₀ = 1.00 Hz', Xa(F0) - 10, box.b - 24, CF, { size: 19, weight: 600, align: 'right' });
     REG.forEach((r, i) => {
-      const on = r.value === damp.value;
-      curve(ctx, (u) => Math.min(ampOf(u, r.b), 10), 0.02, 2, Xa, Ya, cat(i), on ? 6 : 3, 240);
+      curve(ctx, (u) => Math.min(ampOf(u, r.b), 10), 0.02, 2, Xa, Ya, cat(i), 3 + 3 * damp.a(r.value), 240);
     });
     REG.forEach((r, i) => {
       const ly = box.t + 26 + i * 28, lx = box.r - 210;
-      line(ctx, lx, ly, lx + 40, ly, cat(i), r.value === damp.value ? 6 : 3);
+      line(ctx, lx, ly, lx + 40, ly, cat(i), 3 + 3 * damp.a(r.value));
       text(ctx, r.label + ' damping', lx + 50, ly + 1, PAL.ink, { size: 19, weight: r.value === damp.value ? 600 : 400, base: 'middle' });
     });
     const p = pinned(ctx, box, Xa, Ya, f.v, Math.min(X, 10), PAL.ink);
@@ -113,7 +112,7 @@ function sciTex(v, dec) {
   const X0 = 0.100;                      /* the amplitude the bridge starts at, m */
   const kk = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 0.5, max: 2, step: 0.05, value: 1, unit: '× 10⁸ N/m', dec: 2, onInput: reset, aria: 'force constant' });
   const PP = ctl(d.controls, { label: '\\kP', cls: 'power', min: 2000, max: 20000, step: 500, value: 10000, unit: 'J each second', dec: 0, onInput: reset, aria: 'energy imparted each second' });
-  const DD = ctl(d.controls, { label: '\\text{damping}', cls: '', min: 0, max: 12000, step: 250, value: 0, unit: 'J each second', dec: 0, onInput: reset, aria: 'amount of damping' });
+  const DD = ctl(d.controls, { label: '\\text{damping}', cls: '', min: 0, max: 12000, step: 250, value: 0, unit: 'J each second', dec: 0, onInput: reset, aria: 'amount of damping', specials: [{ at: 0, label: 'undamped' }] });
   const cy = cycle(() => RUN, 1.6);
   function reset() { cy.reset(); }
   const K = () => kk.v * 1e8;

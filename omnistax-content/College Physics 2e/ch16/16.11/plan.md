@@ -164,3 +164,5 @@ corrects the AP line: 16.11 prints no AP test prep, so the wave's eight
 open AP items sit in 16.7 to 16.10 alone.
 
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** All three figures were looked at in light and dark at every slider extreme and every choice and left as built: no label sits on a line or another label, nothing is clipped, and the axes hold at every setting.
+
+**Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-intensity-area`: the spread/focused choice narrows the beam and slides its point along I = P/A, the lens fading in. `sim-speaker-interference`: x carries dashed circles at the post where the waves arrive in step and at the two where they arrive half a wavelength apart.

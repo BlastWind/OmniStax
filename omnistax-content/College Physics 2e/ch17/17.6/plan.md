@@ -307,3 +307,5 @@ held in fixed rims and bowed a little by the pressure, not bare vertical
 lines, and the oval window's name sits to the right of its rim so it never
 meets the stirrup's force label when the lever ratio is large. The three
 graphs are unchanged.
+
+**Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-audiogram`: the person choice slides each ear's readings to the next person's, the bone-conduction marks fading in and out, instead of cutting.

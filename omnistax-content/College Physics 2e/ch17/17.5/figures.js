@@ -14,8 +14,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 ===================================================================== */
 (function () {
   const d = sim('sim-noise-cancelling', 640);
-  const dp2 = ctl(d.controls, { label: '\\kdpamp_2', cls: 'pressure', min: 0, max: 1.5, step: 0.05, value: 1, unit: 'Pa', dec: 2, onInput: reset, aria: 'pressure amplitude of the introduced sound' });
-  const phi = ctl(d.controls, { label: '\\varphi', cls: '', min: 0, max: 360, step: 5, value: 180, unit: '°', dec: 0, onInput: reset, aria: 'phase of the introduced sound against the noise' });
+  const dp2 = ctl(d.controls, { label: '\\kdpamp_2', cls: 'pressure', min: 0, max: 1.5, step: 0.05, value: 1, unit: 'Pa', dec: 2, onInput: reset, aria: 'pressure amplitude of the introduced sound', specials: [{ at: 1, label: 'matched' }] });
+  const phi = ctl(d.controls, { label: '\\varphi', cls: '', min: 0, max: 360, step: 5, value: 180, unit: '°', dec: 0, onInput: reset, aria: 'phase of the introduced sound against the noise', specials: [{ at: 180, label: 'half a cycle' }] });
   const fq = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 100, max: 1000, step: 10, value: 400, unit: 'Hz', dec: 0, onInput: reset });
   const cy = cycle(() => 1, 0);                 /* one model unit is one wave period */
   function reset() { cy.reset(); }
@@ -57,7 +57,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 ===================================================================== */
 (function () {
   const d = sim('sim-tube-resonance', 650);
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 0.2, max: 1.5, step: 0.002, value: 0.672, unit: 'm', dec: 3, onInput: reset, aria: 'length of the tube' });
+  const L = ctl(d.controls, { label: 'L', cls: '', min: 0.2, max: 1.5, step: 0.002, value: 0.672, unit: 'm', dec: 3, onInput: reset, aria: 'length of the tube',
+    specials: [{ at: () => (nearest().n * VW) / (4 * fq.v), label: 'resonance' }] });
   const fq = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 50, max: 800, step: 1, value: 128, unit: 'Hz', dec: 0, onInput: reset });
   const where = choice(d.controls, { label: '\\text{the fork}', options: [{ value: 'open', label: 'at the open end' }, { value: 'closed', label: 'near the closed end' }], value: 'open', aria: 'where the tuning fork is held' });
   const cy = cycle(() => 6, 1.2);
@@ -155,40 +156,58 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const pick = +harm.value;
     const span = 780, xL = 300, xR = xL + span;   /* the four tubes are drawn one length, as the book draws them; the slider on L is read in the frequencies and wavelengths beside each */
     const AMP = 52;
-    const nOf = (i) => (closed ? 2 * i + 1 : i + 1);
-    const shape = (n) => (u) => (closed ? Math.cos((n * Math.PI * u) / 2) : Math.cos(n * Math.PI * u));
+    const nOfEnds = (cl, i) => (cl ? 2 * i + 1 : i + 1);
+    const nOf = (i) => nOfEnds(closed, i);
+    const shapeOf = (cl, n) => (u) => (cl ? Math.cos((n * Math.PI * u) / 2) : Math.cos(n * Math.PI * u));
+    /* each tube's standing wave, sampled, bends from one kind of tube into the other */
+    const NS = 220, waves = ends.mix((v) => Array.from({ length: 4 * (NS + 1) }, (_, j) => shapeOf(v === 'closed', nOfEnds(v === 'closed', Math.floor(j / (NS + 1))))((j % (NS + 1)) / NS)));
+    const trace = (i, sgn, Xu, Yv, col, w) => {
+      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.beginPath();
+      for (let k = 0; k <= NS; k++) { const X = Xu(k / NS), Y = Yv(sgn * waves[i * (NS + 1) + k]); if (k) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); }
+      ctx.stroke(); ctx.restore();
+    };
     const fOf = (n) => (closed ? (n * VW) / (4 * L.v) : (n * VW) / (2 * L.v));
     const lamOf = (n) => (closed ? (4 * L.v) / n : (2 * L.v) / n);
     for (let i = 0; i < 4; i++) {
-      const n = nOf(i), y0 = 190 + i * 160, on = i === pick, f = shape(n);
-      const col = on ? C('position') : alpha(C('position'), 0.3);
-      const ink = on ? PAL.ink : alpha(PAL.ink, 0.35);
+      const n = nOf(i), y0 = 190 + i * 160, e = harm.a(String(i));
+      const col = alpha(C('position'), 0.3 + 0.7 * e);
+      const ink = alpha(PAL.ink, 0.35 + 0.65 * e);
       /* the tube, drawn with its closed end walled and its open ends left bare */
-      line(ctx, xL, y0 - 74, xR, y0 - 74, ink, on ? 5 : 3); line(ctx, xL, y0 + 74, xR, y0 + 74, ink, on ? 5 : 3);
-      if (closed) fixed(ctx, xR, y0 - 74, 22, 148);
+      line(ctx, xL, y0 - 74, xR, y0 - 74, ink, 3 + 2 * e); line(ctx, xL, y0 + 74, xR, y0 + 74, ink, 3 + 2 * e);
+      if (ends.a('closed') > 0) { ctx.save(); ctx.globalAlpha = ends.a('closed'); fixed(ctx, xR, y0 - 74, 22, 148); ctx.restore(); }
       line(ctx, xL, y0, xR, y0, PAL.muted, 2, [10, 10]);
       const Xu = (u) => xL + u * span, Yv = (v) => y0 - v * AMP;
-      curve(ctx, f, 0, 1, Xu, Yv, col, on ? 5 : 3, 220);
+      trace(i, 1, Xu, Yv, col, 3 + 2 * e);
       ctx.save(); ctx.setLineDash([6, 8]);
-      curve(ctx, (u) => -f(u), 0, 1, Xu, Yv, alpha(col, 0.6), 3, 220);
+      trace(i, -1, Xu, Yv, alpha(col, 0.6), 3);
       ctx.restore();
       /* every node hollow and every antinode filled, named once on the fundamental */
-      const zeros = [], peaks = [];
-      for (let m = 0; m < 12; m++) {
-        const uz = closed ? (2 * m + 1) / n : (m + 0.5) / n, up = closed ? (2 * m) / n : m / n;
-        if (uz <= 1.0001) zeros.push(uz);
-        if (up <= 1.0001) peaks.push(up);
+      const marks = (cl) => {
+        const nn = nOfEnds(cl, i), zeros = [], peaks = [];
+        for (let m = 0; m < 12; m++) {
+          const uz = cl ? (2 * m + 1) / nn : (m + 0.5) / nn, up = cl ? (2 * m) / nn : m / nn;
+          if (uz <= 1.0001) zeros.push(uz);
+          if (up <= 1.0001) peaks.push(up);
+        }
+        if (!cl) peaks.push(1);
+        return { zeros, peaks, f: shapeOf(cl, nn) };
+      };
+      for (const v of ['closed', 'open']) {
+        const a = ends.a(v); if (a <= 0) continue;
+        const { zeros: zs, peaks: ps, f: fv } = marks(v === 'closed');
+        ctx.save(); ctx.globalAlpha = a;
+        zs.forEach((u) => dot(ctx, Xu(u), Yv(0), col, false, 10));
+        ps.forEach((u) => dot(ctx, Xu(u), Yv(fv(u)), col, true, 10));
+        ctx.restore();
       }
-      if (!closed) peaks.push(1);
-      zeros.forEach((u) => dot(ctx, Xu(u), Yv(0), col, false, 10));
-      peaks.forEach((u) => dot(ctx, Xu(u), Yv(f(u)), col, true, 10));
+      const { zeros, peaks } = marks(closed);
       if (i === 0) {
         text(ctx, 'node', Xu(zeros[0]), Yv(0) + 30, C('position'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
         text(ctx, 'antinode', Xu(peaks[0]), y0 - 96, C('position'), { size: 19, weight: 600, align: 'center' });
       }
-      text(ctx, NAMES[i], xR + 44, y0 - 22, on ? PAL.ink : alpha(PAL.ink, 0.5), { size: 21, weight: 600 });
-      text(ctx, 'f_' + n + ' = ' + fmt(fOf(n), 0) + ' Hz', xR + 44, y0 + 12, on ? C('frequency') : alpha(C('frequency'), 0.45), { size: 21, weight: 600 });
-      text(ctx, 'λ = ' + fmt(lamOf(n), 3) + ' m', xR + 44, y0 + 44, on ? C('position') : alpha(C('position'), 0.45), { size: 19 });
+      text(ctx, NAMES[i], xR + 44, y0 - 22, alpha(PAL.ink, 0.5 + 0.5 * e), { size: 21, weight: 600 });
+      text(ctx, 'f_' + n + ' = ' + fmt(fOf(n), 0) + ' Hz', xR + 44, y0 + 12, alpha(C('frequency'), 0.45 + 0.55 * e), { size: 21, weight: 600 });
+      text(ctx, 'λ = ' + fmt(lamOf(n), 3) + ' m', xR + 44, y0 + 44, alpha(C('position'), 0.45 + 0.55 * e), { size: 19 });
     }
     hbracket(ctx, xL, xR, 796, PAL.ink, 'L = ' + fmt(L.v, 3) + ' m');
     const n = nOf(pick);
@@ -249,7 +268,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     text(ctx, 'L = v_w/4f_1', X(330) + 10, Y(v / (4 * 330)) - 30, PAL.ink, { size: 20, weight: 600 });
     headline(ctx, 'A tube closed at one end that sounds ' + fmt(f1.v, 0) + ' Hz at ' + fmt(Tc.v, 1) + ' °C must be ' + fmt(Lv, 3) + ' m long');
     readout(d.readout, `L = \\frac{\\kvw}{4\\kfone} = \\frac{${fmt(v, 0)}\\ \\text{m/s}}{4(${fmt(f1.v, 0)}\\ \\text{Hz})} = ${fmt(Lv, 3)}\\ \\text{m}`,
-      'The speed of sound comes first: v_w = (331 m/s)√(T/273 K) = ' + fmt(v, 0) + ' m/s at ' + fmt(Tc.v, 1) + ' °C. ' + (n === 1 ? 'The tube is drawn sounding its fundamental, ' + fmt(f1.v, 0) + ' Hz.' : 'Harmonic number ' + n + ' is ' + n + ' times the fundamental, ' + (n * f1.v >= 1000 ? fmt((n * f1.v) / 1000, 2) + ' kHz' : fmt(n * f1.v, 0) + ' Hz') + '.') + ' A tube closed at one end sounds the odd harmonics only.');
+      'The speed of sound comes first: v_w = (331 m/s)√(T/273 K) = ' + fmt(v, 0) + ' m/s at ' + fmt(Tc.v, 1) + ' °C. ' + (n === 1 ? 'Its fundamental is ' + fmt(f1.v, 0) + ' Hz.' : 'Harmonic number ' + n + ' is ' + n + ' times the fundamental, ' + (n * f1.v >= 1000 ? fmt((n * f1.v) / 1000, 2) + ' kHz' : fmt(n * f1.v, 0) + ' Hz') + '.') + ' A tube closed at one end sounds the odd harmonics only.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

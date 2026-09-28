@@ -121,23 +121,28 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     const lab = labeller(ctx, 650); lab.block(0, 0, 1400, 92);
     const tr = kind.value === 'transverse', vw = lam.v / T.v;
     const u = (m) => X.v * Math.cos(TAU * (m / lam.v - t / T.v));
-    const u0 = u(0), hand = { x: tr ? L0 : L0 + u0 * SCV, y: tr ? y0 - u0 * SCV : y0 };
+    /* q turns each point's swing from across the cord (0) to along it (1) as the choice changes */
+    const q = kind.mix((v) => (v === 'transverse' ? 0 : 1));
+    const at = (m) => ({ x: Xs(m) + q * u(m) * SCV, y: y0 - (1 - q) * u(m) * SCV });
+    const u0 = u(0), hand = { x: L0 + q * u0 * SCV, y: y0 - (1 - q) * u0 * SCV };
     /* a filled person holds the near end of the cord: the near hand goes to the cord's end in
        the silhouette's own frame, the far arm hangs at the side */
     const PS = 1.8, fx = 165, fy = 540;
     F.silhouette(ctx, { x: fx, y: fy, s: PS, pose: 'stand', color: PAL.ink, hands: [{ x: (hand.x - fx) / PS, y: (hand.y - fy) / PS }, { x: -6, y: -76 }] });
     /* the cord: the medium is ink, and the quantities measured on it carry the colours */
-    if (tr) {
-      curve(ctx, u, 0, WM, Xs, (v) => y0 - v * SCV, PAL.ink, 5, 300);
-      line(ctx, L0, y0, Xs(WM), y0, alpha(PAL.ink, 0.3), 2, [10, 10]);
-    } else {
-      for (let i = 0; i <= NC; i++) {
-        const m = (WM * i) / NC, mark = i === Math.round((NC * MM) / WM);
-        const x = Xs(m) + u(m) * SCV;
-        line(ctx, x, y0 - 40, x, y0 + 40, mark ? C('position') : PAL.ink, mark ? 5 : 2.5);
-      }
-      line(ctx, Xs(MM), y0 - 58, Xs(MM), y0 + 58, alpha(PAL.ink, 0.35), 2, [6, 8]);
+    const aT = kind.a('transverse'), aL = kind.a('longitudinal');
+    ctx.save(); ctx.globalAlpha = aT;
+    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.beginPath();
+    for (let i = 0; i <= 300; i++) { const p = at((WM * i) / 300); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); }
+    ctx.stroke();
+    line(ctx, L0, y0, Xs(WM), y0, alpha(PAL.ink, 0.3), 2, [10, 10]);
+    ctx.globalAlpha = aL;
+    for (let i = 0; i <= NC; i++) {
+      const m = (WM * i) / NC, mark = i === Math.round((NC * MM) / WM), p = at(m);
+      line(ctx, p.x, p.y - 40, p.x, p.y + 40, mark ? C('position') : PAL.ink, mark ? 5 : 2.5);
     }
+    line(ctx, Xs(MM), y0 - 58, Xs(MM), y0 + 58, alpha(PAL.ink, 0.35), 2, [6, 8]);
+    ctx.restore();
     /* the wavelength: between adjacent crests, or between adjacent compressions */
     const base = lam.v * (t / T.v + (tr ? 0 : 0.25)), pts = [];
     for (let n = -2; n < 40; n++) { const m = base + n * lam.v; if (m >= 0.35 && m <= WM - 0.35) pts.push(m); }

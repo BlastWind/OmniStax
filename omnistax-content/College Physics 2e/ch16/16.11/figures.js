@@ -88,12 +88,13 @@ function bar(ctx, cx, base, w, h, color) {
     const Ause = focused ? A.v / 200 : A.v, I = P.v / Ause, E = I * Ause * t.v * 3600;
     /* the scene: a steady beam falling on the collector, with the lens where it is focused */
     const cy = 250, cx = 700, w = Math.max(40, 300 * Math.sqrt(A.v / 0.5)), wf = Math.max(10, w / Math.sqrt(200));
-    const wide = focused ? wf : w;
+    /* the beam narrows onto the collector, and its point slides along the curve, as the lens comes in */
+    const wide = mode.mix((v) => (v === 'focused' ? wf : w)), Adraw = Math.exp(mode.mix((v) => Math.log(v === 'focused' ? A.v / 200 : A.v)));
     for (let i = -3; i <= 3; i++) {
       const sx = cx + (i * w) / 7, ex = cx + (i * wide) / 7;
       arrow(ctx, sx, 110, ex, cy - 26, C('power'), 4);
     }
-    if (focused) { ctx.save(); ctx.strokeStyle = C('power'); ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(cx, 185, w / 2, 16, 0, 0, TAU); ctx.stroke(); ctx.restore(); text(ctx, 'the magnifying glass', cx - w / 2 - 16, 185, PAL.muted, { size: 18, align: 'right' }); }
+    if (mode.a('focused') > 0) { ctx.save(); ctx.globalAlpha = mode.a('focused'); ctx.strokeStyle = C('power'); ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(cx, 185, w / 2, 16, 0, 0, TAU); ctx.stroke(); text(ctx, 'the magnifying glass', cx - w / 2 - 16, 185, PAL.muted, { size: 18, align: 'right' }); ctx.restore(); }
     block(ctx, cx, cy, Math.max(24, wide), 30, PAL.ink);
     hbracket(ctx, cx - Math.max(24, wide) / 2, cx + Math.max(24, wide) / 2, cy + 74, PAL.ink, 'A = ' + (focused ? sciPlain(Ause, 2) : fmt(Ause, 3)) + ' m²');
     text(ctx, 'P = ' + fmt(P.v, 0) + ' W through the beam', cx, 90, C('power'), { size: 20, weight: 600, align: 'center' });
@@ -105,7 +106,7 @@ function bar(ctx, cx, base, w, h, color) {
     curve(ctx, (a) => P.v / a, P.v / IM, AM, gx, gy, C('intensity'), 5, 220);
     ctx.restore();
     text(ctx, 'I = P/A', gx(AM * 0.62), gy(P.v / (AM * 0.62)) - 30, C('intensity'), { size: 20, weight: 600, bg: PAL.panel });
-    pinned(ctx, box, gx, gy, Ause, I, C('intensity'), (I >= 10000 ? sciPlain(I, 2) : fmt(I, 0)) + ' W/m²');
+    pinned(ctx, box, gx, gy, Adraw, P.v / Adraw, C('intensity'), (I >= 10000 ? sciPlain(I, 2) : fmt(I, 0)) + ' W/m²');
     topline(ctx, fmt(P.v, 0) + ' W through ' + (focused ? sciPlain(Ause, 2) : fmt(Ause, 3)) + ' m² is an intensity of ' + (I >= 10000 ? sciPlain(I, 2) : fmt(I, 0)) + ' W/m², and in ' + fmt(t.v, 2) + ' h it delivers ' + sciPlain(E, 2) + ' J');
     readout(d.readout, `\\kIntens = \\frac{\\kP}{A} = \\frac{${fmt(P.v, 0)}\\ \\text{W}}{${focused ? sci(Ause, 2) : fmt(Ause, 3)}\\ \\text{m}^{2}} = ${I >= 10000 ? sci(I, 2) : fmt(I, 0)}\\ \\text{W/m}^{2}`,
       focused
@@ -124,7 +125,10 @@ function bar(ctx, cx, base, w, h, color) {
   const d = sim('sim-speaker-interference', 900);
   const lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 0.2, max: 2, step: 0.05, value: 0.8, unit: 'm', dec: 2, aria: 'wavelength' });
   const sep = ctl(d.controls, { label: 'd', cls: 'position', min: 0.5, max: 4, step: 0.1, value: 2, unit: 'm', dec: 1, aria: 'the spacing of the speakers' });
-  const post = ctl(d.controls, { label: 'x', cls: 'position', min: -4, max: 4, step: 0.1, value: 0, unit: 'm', dec: 2, aria: 'the listening post along the far wall' });
+  /* the path difference to a post x along the far wall, 6.0 m away */
+  const dif = (x) => Math.hypot(x + sep.v / 2, 6) - Math.hypot(x - sep.v / 2, 6);
+  const post = ctl(d.controls, { label: 'x', cls: 'position', min: -4, max: 4, step: 0.01, value: 0, unit: 'm', dec: 2, aria: 'the listening post along the far wall',
+    specials: [{ at: 0, label: 'in step' }, { at: () => F.solve((x) => dif(x) - lam.v / 2, 0, 4), label: 'out of step' }, { at: () => F.solve((x) => dif(x) + lam.v / 2, -4, 0) }] });
   /* the room is 8.0 m across and 6.0 m deep, drawn at 120 units to the metre across and 90 down */
   const L = 220, R = 1180, TOP = 240, BOT = 780, SX = (R - L) / 8, SY = (BOT - TOP) / 6;
   const px = (x) => (L + R) / 2 + x * SX, py = (y) => TOP + y * SY;

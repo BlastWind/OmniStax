@@ -297,3 +297,5 @@ cartoon, which points at Figure 17.12, is the book's own and is kept;
 `sim-many-sources`: the listener is the library's filled silhouette facing
 the reader in place of the stick figure. The ladder, the pressure amplitude
 and the decibel ladder are unchanged.
+
+**Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-many-sources` (value add, manim 11): the readout is one line β_N = β + 10 log₁₀N = … and at N = 1 the 10 log₁₀N term fades out, leaving β_N = β. `sim-pressure-amplitude`: Δp = 0 is a special value. `sim-decibel-ladder`: β₂ carries a circle at β₁.

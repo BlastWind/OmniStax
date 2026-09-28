@@ -43,7 +43,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
   const d = sim('sim-damped-amplitude', 760);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.01, value: 0.1, unit: 'm', dec: 2, onInput: reset, aria: 'amplitude' });
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 0.5, max: 3, step: 0.1, value: 1, unit: 's', dec: 1, onInput: reset, aria: 'period' });
-  const p = ctl(d.controls, { label: '\\text{damping}', cls: '', min: 0, max: 30, step: 1, value: 10, unit: '%', dec: 0, onInput: reset, aria: 'amplitude lost each cycle' });
+  const p = ctl(d.controls, { label: '\\text{damping}', cls: '', min: 0, max: 30, step: 1, value: 10, unit: '%', dec: 0, onInput: reset, aria: 'amplitude lost each cycle', specials: [{ at: 0, label: 'undamped' }] });
   const SPAN = 6;                                  /* the six seconds the figure runs and the graph shows */
   const cy = cycle(() => SPAN, 1.2);
   function reset() { cy.reset(); }
@@ -90,17 +90,13 @@ function energyBar(ctx, x, top, bot, frac, label) {
   const d = sim('sim-damping-regimes', 700);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.01, value: 0.1, unit: 'm', dec: 2, onInput: reset, aria: 'release displacement' });
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 0.5, max: 3, step: 0.1, value: 1, unit: 's', dec: 1, onInput: reset, aria: 'undamped period' });
-  const pick = choice(d.controls, {
-    label: '\\text{regime}', value: 'critical',
-    options: [{ value: 'under', label: 'Underdamped' }, { value: 'critical', label: 'Critically damped (A)' }, { value: 'over', label: 'Overdamped (B)' }],
-    aria: 'which regime the headline describes', onInput: () => { },
-  });
   const SPAN = 4;                                 /* the four seconds the figure runs and the graph shows */
   const cy = cycle(() => SPAN, 1.2);
   function reset() { cy.reset(); }
   /* Each system is released from rest at x = X. The three differ only in how much damping they
      carry, written here as a ratio of the critical amount: 0.20, 1.00 and 2.50. */
   const ZETA = { under: 0.2, critical: 1, over: 2.5 };
+  const FOCUS = 'critical';                       /* the book's A, the one the section is about */
   const CURVES = [
     { key: 'critical', name: 'critically damped (A)', i: 0 },
     { key: 'over', name: 'overdamped (B)', i: 1 },
@@ -131,7 +127,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
     line(ctx, box.l, gy(0), box.r, gy(0), alpha(PAL.ink, 0.35), 2, [10, 10]);
     text(ctx, 'equilibrium', box.r - 40, gy(0) + 22, PAL.muted, { size: 17, align: 'right' });   /* under the line at the right, where the three curves have all but met it */
     CURVES.forEach((c) => {
-      const on = pick.value === c.key, col = cat(c.i);
+      const on = FOCUS === c.key, col = cat(c.i);
       ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
       curve(ctx, (t) => xOf(c.key, t), 0, SPAN, gx, gy, on ? col : alpha(col, 0.45), on ? 5 : 3, 400);
       ctx.restore();
@@ -140,11 +136,11 @@ function energyBar(ctx, x, top, bot, frac, label) {
     /* the legend, one row per system */
     CURVES.forEach((c, j) => {
       const y = 620, x = 200 + j * 340;
-      line(ctx, x, y, x + 40, y, cat(c.i), pick.value === c.key ? 5 : 3);
-      text(ctx, c.name, x + 52, y, PAL.ink, { size: 20, weight: pick.value === c.key ? 600 : 400 });
+      line(ctx, x, y, x + 40, y, cat(c.i), FOCUS === c.key ? 5 : 3);
+      text(ctx, c.name, x + 52, y, PAL.ink, { size: 20, weight: FOCUS === c.key ? 600 : 400 });
     });
-    const here = xOf(pick.value, tau), tc = settleTime('critical'), to = settleTime('over');
-    const name = CURVES.find((c) => c.key === pick.value).name;
+    const here = xOf(FOCUS, tau), tc = settleTime('critical'), to = settleTime('over');
+    const name = CURVES.find((c) => c.key === FOCUS).name;
     topline(ctx, 'At ' + fmt(tau, 2) + ' s the ' + name + ' system is ' + fmt(Math.abs(here), 3) + ' m from equilibrium, and the critically damped one is the first of the three to settle there, after ' + (tc < SPAN ? fmt(tc, 2) + ' s' : 'more than ' + fmt(SPAN, 0) + ' s'));
     readout(d.readout, `\\kx = ${fmt(xOf('critical', tau), 3)}\\ \\text{m (A)},\\quad ${fmt(xOf('over', tau), 3)}\\ \\text{m (B)},\\quad ${fmt(xOf('under', tau), 3)}\\ \\text{m at } \\kt = ${fmt(tau, 2)}\\ \\text{s}`,
       'The overdamped system B needs ' + (to < SPAN ? fmt(to, 2) + ' s' : 'more than ' + fmt(SPAN, 0) + ' s') + ' to settle, and the underdamped one crosses the equilibrium position on the way rather than creeping up to it.');
@@ -239,7 +235,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
       ? 'The object has come to rest ' + fmt(Math.abs(xAt(stop)), 3) + ' m from equilibrium after ' + fmt(stop, 2) + ' s, having covered ' + fmt(path, 2) + ' m of ground'
       : 'At ' + fmt(tau, 2) + ' s the object is ' + fmt(Math.abs(x), 3) + ' m from equilibrium and has covered ' + fmt(path, 2) + ' m of the ' + fmt(dBook(), 2) + ' m it will travel');
     readout(d.readout, `\\kd = \\frac{\\kk}{2\\mu_{\\text{k}} m\\kg}\\left(\\kX^2 - \\left(\\frac{\\mu_{\\text{k}} m\\kg}{\\kk}\\right)^2\\right) = ${fmt(dBook(), 2)}\\ \\text{m}`,
-      'The friction is ' + fmt(fric(), 3) + ' N, and it stops the object where the spring force no longer matches it, at x = ' + fmt(band(), 4) + ' m. The equation takes the object to that position exactly, while the figure stops it at the first turning point inside it, so the distance counted above can differ from the equation in its last digit.');
+      'The friction is ' + fmt(fric(), 3) + ' N, and once the object turns within x = ±' + fmt(band(), 4) + ' m of equilibrium the spring can no longer overcome it, so the object comes to rest at the first turning point inside that band, and the distance it travels can differ from the energy estimate in the last digit.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

@@ -16,28 +16,33 @@ function curl(ctx, cx, cy, r, color) {
 /* =====================================================================
    SIM 1: the turntable. A ball on a circle, its shadow on a line below
    drawn as a block on a spring, and the trace on paper moving downward.
-   Endless.
+   The turntable can be seen from above or edge-on: tilting it flattens
+   the circle into a line, on which the ball moves back and forth exactly
+   above its shadow. Endless.
 ===================================================================== */
 (function () {
   const d = sim('sim-turntable', 900);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 5, max: 20, step: 1, value: 10, unit: 'cm', dec: 0, onInput: reset, aria: 'radius' });
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 0.5, max: 4, step: 0.1, value: 2, unit: 's', dec: 2, onInput: reset, aria: 'period' });
+  const view = F.choice(d.controls, { label: '\\text{the turntable seen}', options: [{ value: 'above', label: 'from above' }, { value: 'edge', label: 'edge-on' }], value: 'above', aria: 'the direction the turntable is seen from', ms: 2000 });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }
   const w = () => TAU / T.v;
   function draw() {
     const { ctx } = begin(d.c);
     const tau = REDUCED ? T.v / 5 : cy.now(), th = w() * tau, x = X.v * Math.cos(th);
+    const sq = view.mix((v) => (v === 'above' ? 1 : 0));     /* how much of its depth the circle shows: 1 from above, 0 edge-on */
     /* 8 units to the centimetre, so the widest turntable the slider reaches stays clear of the lights above it */
     const U = 8, cx = 700, cyc = 300, R = U * X.v, yL = 520;
     /* the lights and the turntable */
     fixed(ctx, cx - 420, 84, 840, 22);
     for (let i = -3; i <= 3; i++) line(ctx, cx + i * 120, 106, cx + i * 120, 122, PAL.muted, 3);
     text(ctx, 'light from above', cx + 416, 142, PAL.muted, { size: 18, align: 'right' });
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cyc, R, 0, TAU); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(cx, cyc, R, Math.max(R * sq, 0.5), 0, 0, TAU); ctx.stroke(); ctx.restore();
     dot(ctx, cx, cyc, PAL.muted, true, 5);
-    curl(ctx, cx, cyc, R + 26, C('angular-rate')); text(ctx, 'ω', cx, cyc - R - 50, C('angular-rate'), { weight: 600, align: 'center' });
-    const bx = cx + R * Math.cos(th), byy = cyc - R * Math.sin(th);
+    ctx.save(); ctx.globalAlpha = sq; ctx.translate(cx, cyc); ctx.scale(1, Math.max(sq, 0.01)); ctx.translate(-cx, -cyc); curl(ctx, cx, cyc, R + 26, C('angular-rate')); ctx.restore();
+    ctx.save(); ctx.globalAlpha = sq; text(ctx, 'ω', cx, cyc - (R + 50) * sq, C('angular-rate'), { weight: 600, align: 'center' }); ctx.restore();
+    const bx = cx + R * Math.cos(th), byy = cyc - R * Math.sin(th) * sq;
     line(ctx, cx, cyc, bx, byy, PAL.muted, 2);
     line(ctx, bx, 122, bx, byy - 12, alpha(PAL.ink, 0.35), 2); line(ctx, bx, byy + 12, bx, yL - 24, PAL.muted, 2, [6, 6]);
     dot(ctx, bx, byy, PAL.ink, true, 12);
@@ -69,7 +74,8 @@ function curl(ctx, cx, cy, r, color) {
     if (tau > 0) ctx.stroke(); ctx.restore();
     dot(ctx, bx, pt, C('position'), true, 8);
     const deg = ((th * DEG) % 360 + 360) % 360;
-    headline(ctx, 'At θ = ωt = ' + fmt(deg, 0) + '° the shadow stands at x = X cos θ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm');
+    headline(ctx, sq < 0.01 ? 'Seen edge-on, the ball moves back and forth exactly above its shadow, at x = X cos θ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm'
+      : 'At θ = ωt = ' + fmt(deg, 0) + '° the shadow stands at x = X cos θ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm');
     readout(d.readout, `\\kx = \\kX\\cos\\kw\\kt = (${fmt(X.v, 0)}\\ \\text{cm})\\cos(${fmt(deg, 0)}°) = ${sgn(x)}${fmt(Math.abs(x), 1)}\\ \\text{cm}`,
       'ω = 2π/T = ' + fmt(w(), 2) + ' rad/s. The ball goes round once every T = ' + fmt(T.v, 2) + ' s, and the shadow goes back and forth once in the same time.');
   }

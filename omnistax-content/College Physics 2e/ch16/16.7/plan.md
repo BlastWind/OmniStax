@@ -200,3 +200,5 @@ the distance on `16.7-friction-example`. No concept, symbol or glossary
 row was changed.
 
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-damped-amplitude` and `sim-friction-damped` step their floor marks apart at the smallest release displacement through a shared `marks()` helper, where before the three labels sat on one another; the envelope's name in `sim-damped-amplitude` moved above the box, off the trace, and reads "with no damping the amplitude holds" at zero damping. `sim-damping-regimes` sets its "equilibrium" under the line at the right, where the three curves have all but met it, instead of on the curves at the left.
+
+**Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-damped-amplitude` marks zero damping as a special value. `sim-damping-regimes` loses its regime choice, which only chose what the headline described (26.7); the headline follows the critically damped system A. `sim-friction-damped`'s note says where the object comes to rest in the physics, not in terms of the figure.

@@ -165,3 +165,5 @@ as plain text and is not swept, so the dollar signs stood on the page. No
 concept or symbol row was changed.
 
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-ocean-wave`: the gull is redrawn as a bird, a boat-shaped body with a folded wing along its back, a raised tail, a neck, a round head with an eye and a beak, in place of an ellipse and a circle; its labels are shorter, the speed alone on the velocity arrow. `sim-wave-types`: the person shaking the cord is an `F.silhouette` standing figure whose near hand goes to the cord's end, in place of a stick figure. The gull is drawn in this file; a `gull` sprite would let the library carry it.
+
+**Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-wave-types`: the transverse/longitudinal choice turns each point's swing from across the cord to along it over the change, the cord fading into its coils, instead of cutting between two pictures (manim 15/16).

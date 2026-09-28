@@ -240,3 +240,5 @@ frequency values step out to the right of the drop line when the speed is
 small, where the axis left them no room on the left, the axis band is blocked
 to the labeller, and the speed label clears the axis title. `sim-sonic-boom`
 is unchanged.
+
+**Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-sonic-boom`: the speed of sound is a special value on v_s; above it the readout morphs to θ = 2 arcsin(v_w/v_s), v_s and v_w moving into the arcsine, and below it reads v_s as a multiple of v_w. `sim-shift` is unchanged: its slider stops at 330 m/s, short of v_w, where the moving-source formula diverges.

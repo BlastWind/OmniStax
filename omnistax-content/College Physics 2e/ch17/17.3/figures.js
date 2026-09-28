@@ -54,7 +54,7 @@ function speaker(ctx, x, y, color, a, s) {
 (function () {
   const d = sim('sim-pressure-amplitude', 640);
   const ps = ctl(d.controls, { label: '\\kdpamp', cls: 'pressure', min: 0, max: 2, step: 0.002, value: 0.656, unit: 'Pa', dec: 3, aria: 'the pressure amplitude of the wave',
-    detents: [{ v: 0.5 }, { v: 0.656, label: 'Example 17.2' }], snap: false });
+    detents: [{ v: 0.5 }, { v: 0.656, label: 'Example 17.2' }], snap: false, specials: [{ at: 0, label: 'silence' }] });
   const RHO = 1.29, VW = 331;                       /* air at 0 °C, as in Example 17.2 */
   const G = { l: 250, r: 940, t: 290, b: 540 };     /* the graph box; its pressure axis is fixed at −2 to +2 Pa */
   const LAM = 230, NCYC = 3;                        /* the drawn wavelength and how many cycles the frame holds */
@@ -120,7 +120,7 @@ function speaker(ctx, x, y, color, a, s) {
 (function () {
   const d = sim('sim-decibel-ladder', 820);
   const b1 = ctl(d.controls, { label: '\\beta_1', cls: '', min: 0, max: 160, step: 1, value: 60, unit: 'dB', dec: 0, aria: 'the first sound intensity level' });
-  const b2 = ctl(d.controls, { label: '\\beta_2', cls: '', min: 0, max: 160, step: 1, value: 90, unit: 'dB', dec: 0, aria: 'the second sound intensity level' });
+  const b2 = ctl(d.controls, { label: '\\beta_2', cls: '', min: 0, max: 160, step: 1, value: 90, unit: 'dB', dec: 0, aria: 'the second sound intensity level', specials: [{ at: () => b1.v, label: 'equal' }] });
   const RAIL = 300, TOP = 130, BOT = 770;           /* the ladder: 0 dB at the bottom, 160 dB at the top, 4 units per dB */
   const yOf = (b) => BOT - (b / 160) * (BOT - TOP);
   const BR = 880;                                   /* where the bracket between the two marks stands */
@@ -193,6 +193,9 @@ function speaker(ctx, x, y, color, a, s) {
   const bs = ctl(d.controls, { label: '\\beta', cls: '', min: 0, max: 120, step: 1, value: 40, unit: 'dB', dec: 0, aria: 'the sound intensity level one source makes at the listener',
     detents: [{ v: 40, label: 'a housefly' }, { v: 110 }], snap: false });
   const ns = choice(d.controls, { label: 'N', options: [1, 2, 5, 10, 100, 1000].map((n) => ({ value: String(n), label: String(n) })), value: '1000', aria: 'the number of sources' });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  note.textContent = 'The intensities add when interference between the sources can be neglected. The level rises by 10 log₁₀ N, which is 3 dB for every doubling and 10 dB for every factor of ten, and never by N times the level of one source.';
   const CX = 420, CY = 290, R = 160;                /* the ring */
   const LAD = { l: 130, r: 1310, y: 610 };          /* the ladder: 0 to 160 dB, fixed */
   const xOf = (b) => LAD.l + (b / 160) * (LAD.r - LAD.l);
@@ -243,8 +246,10 @@ function speaker(ctx, x, y, color, a, s) {
     } else text(ctx, 'one source', x1, LAD.y + 58, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, N === 1 ? 'One source of ' + fmt(b, 0) + ' dB makes a sound of ' + fmt(b, 0) + ' dB at the listener.'
       : fmt(N, 0) + ' sources of ' + fmt(b, 0) + ' dB each make a sound of ' + fmt(bN, 0) + ' dB, since their intensities add to ' + fmt(N, 0) + ' times one.');
-    readout(d.readout, `\\kIntens = N\\kIntens_{\\text{one}} = ${sciTex(IN, 2)}\\ \\text{W/m}^2, \\quad \\beta = 10\\log_{10}(\\kIntens/\\kIo) = ${fmt(bN, 0)}\\ \\text{dB}`,
-      'The intensities add when interference between the sources can be neglected. The level rises by 10 log₁₀ N, which is 3 dB for every doubling and 10 dB for every factor of ten, and never by N times the level of one source.');
+    /* one source leaves no rise: the 10 log N term fades out and the level is the source's own */
+    F.morph(formula, N === 1
+      ? `\\mk{bN}{\\beta_N} = \\mk{b}{\\beta} = \\mk{res}{${fmt(bN, 0)}}\\ \\text{dB}`
+      : `\\mk{bN}{\\beta_N} = \\mk{b}{\\beta} + \\mk{r}{10\\log_{10}N} = \\mk{bv}{${fmt(b, 0)}}\\ \\text{dB} + \\mk{rv}{${fmt(rise, 0)}}\\ \\text{dB} = \\mk{res}{${fmt(bN, 0)}}\\ \\text{dB}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

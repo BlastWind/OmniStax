@@ -22,8 +22,8 @@ function legend(ctx, x, y, color, name, dash) {
 (function () {
   const d = sim('sim-superposition', 720);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.5, unit: 'm', dec: 2, aria: 'amplitude of each wave' });
-  const ph = ctl(d.controls, { label: '\\text{phase of wave 2}', cls: '', min: 0, max: 360, step: 5, value: 0, unit: '°', dec: 0, aria: 'phase of the second wave in degrees', detents: [0, 90, 180, 270, 360] });
-  const L2 = ctl(d.controls, { label: '\\klamtwo', cls: 'position', min: 0.8, max: 4, step: 0.1, value: 4, unit: 'm', dec: 1, aria: 'wavelength of the second wave' });
+  const ph = ctl(d.controls, { label: '\\text{phase of wave 2}', cls: '', min: 0, max: 360, step: 5, value: 0, unit: '°', dec: 0, aria: 'phase of the second wave in degrees', detents: [90, 270], specials: [{ at: 0, label: 'in step' }, { at: 180, label: 'out of step' }, { at: 360 }] });
+  const L2 = ctl(d.controls, { label: '\\klamtwo', cls: 'position', min: 0.8, max: 4, step: 0.1, value: 4, unit: 'm', dec: 1, aria: 'wavelength of the second wave', specials: [{ at: 4, label: 'equal wavelengths' }] });
   const L1 = 4;                                   /* the first wave's wavelength is fixed at 4.00 m */
   function draw() {
     const { ctx } = begin(d.c);
@@ -138,33 +138,48 @@ function legend(ctx, x, y, color, name, dash) {
     const lamN = (2 * L.v) / n, fN = (n * vw.v) / (2 * L.v);
     const tau = REDUCED ? 0 : cy.now(), c = Math.cos(TAU * tau / SHOW);
     const xb = xa + L.v * SC;
-    const shape = (s) => y0 - amp * Math.sin((n * Math.PI * s) / L.v) * c;
+    /* the loop shape, sampled, bends from the last harmonic into the new one */
+    const NS = 400, loops = nPick.mix((v) => Array.from({ length: NS + 1 }, (_, i) => Math.sin((+v * Math.PI * i) / NS)));
+    const sOf = (i) => (L.v * i) / NS;
+    const trace = (f, col, w) => {
+      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.beginPath();
+      loops.forEach((y, i) => { const X = xa + sOf(i) * SC, Y = y0 - amp * f * y; if (i) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); });
+      ctx.stroke(); ctx.restore();
+    };
     /* the two clamps the string is fixed between */
     for (const px of [xa, xb]) { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.25); ctx.fillRect(px - 9, y0 - 150, 18, 300); ctx.restore(); }
     /* the envelope the string sweeps, and the string itself */
-    curve(ctx, (s) => y0 - amp * Math.sin((n * Math.PI * s) / L.v), 0, L.v, (s) => xa + s * SC, (y) => y, alpha(C('position'), 0.35), 2, 400);
-    curve(ctx, (s) => y0 + amp * Math.sin((n * Math.PI * s) / L.v), 0, L.v, (s) => xa + s * SC, (y) => y, alpha(C('position'), 0.35), 2, 400);
-    curve(ctx, shape, 0, L.v, (s) => xa + s * SC, (y) => y, C('position'), 5, 400);
+    trace(1, alpha(C('position'), 0.35), 2);
+    trace(-1, alpha(C('position'), 0.35), 2);
+    trace(c, C('position'), 5);
     line(ctx, xa, y0, xb, y0, alpha(PAL.ink, 0.3), 2, [10, 10]);
     /* the fundamental's wavelength runs on past the far clamp, as the book draws it */
-    if (n === 1) {
+    if (nPick.a('1') > 0) {
+      ctx.save(); ctx.globalAlpha = nPick.a('1');
       const sEnd = Math.min(2 * L.v, (xEnd - xa) / SC);
       curve(ctx, (s) => y0 - amp * Math.sin(Math.PI * s / L.v) * c, L.v, sEnd, (s) => xa + s * SC, (y) => y, alpha(C('position'), 0.3), 4, 400);
       line(ctx, xb, y0, xa + sEnd * SC, y0, alpha(PAL.ink, 0.2), 2, [10, 10]);
+      ctx.restore();
     }
     /* nodes, hollow, and one antinode named: they are all alike, so one of each carries the word */
-    for (let k = 0; k <= n; k++) dot(ctx, xa + ((k * L.v) / n) * SC, y0, PAL.ink, false, 10);
-    text(ctx, 'node', xa + (L.v / n) * SC, y0 + 38, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
-    const ax = xa + (L.v / (2 * n)) * SC;
+    for (const v of ['1', '2', '3']) {
+      const a = nPick.a(v); if (a <= 0) continue;
+      ctx.save(); ctx.globalAlpha = a;
+      for (let k = 0; k <= +v; k++) dot(ctx, xa + ((k * L.v) / +v) * SC, y0, PAL.ink, false, 10);
+      ctx.restore();
+    }
+    const nm = nPick.mix((v) => +v);
+    text(ctx, 'node', xa + (L.v / nm) * SC, y0 + 38, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    const ax = xa + (L.v / (2 * nm)) * SC;
     line(ctx, ax, y0 - amp - 8, ax, y0 + amp + 8, alpha(PAL.ink, 0.35), 2, [4, 8]);
     text(ctx, 'antinode', ax, y0 - amp - 30, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     hbracket(ctx, xa, xb, y0 - 176, PAL.ink, 'L = ' + fmt(L.v, 2) + ' m');
-    hbracket(ctx, xa, Math.min(xa + lamN * SC, xEnd), y0 + 128, C('position'), 'wavelength ' + fmt(lamN, 2) + ' m');
+    hbracket(ctx, xa, Math.min(xa + (2 * L.v / nm) * SC, xEnd), y0 + 128, C('position'), 'wavelength ' + fmt(lamN, 2) + ' m');
     topline(ctx, n === 1 ? 'The fundamental has one loop: the longest wavelength the string can carry is 2L = ' + fmt(lamN, 2) + ' m, and the frequency is ' + fmt(fN, 0) + ' Hz'
       : 'The ' + (n === 2 ? 'first' : 'second') + ' overtone has ' + n + ' loops: the wavelength is 2L/' + n + ' = ' + fmt(lamN, 2) + ' m and the frequency is ' + n + ' times the fundamental, ' + fmt(fN, 0) + ' Hz');
     const mac = n === 1 ? '\\kfone' : n === 2 ? '\\kftwo' : '\\kfthree';
     readout(d.readout, `${mac} = \\frac{\\kvw}{\\klam} = \\frac{${n}(${fmt(vw.v, 0)}\\ \\text{m/s})}{2(${fmt(L.v, 2)}\\ \\text{m})} = ${fmt(fN, 0)}\\ \\text{Hz}`,
-      'The fundamental of this string is ' + fmt(vw.v / (2 * L.v), 0) + ' Hz, and the overtones are multiples of it. The string is drawn completing one cycle every four seconds so that the loops can be watched; at ' + fmt(fN, 0) + ' Hz it really completes ' + fmt(fN, 0) + ' of them a second.');
+      'The fundamental of this string is ' + fmt(vw.v / (2 * L.v), 0) + ' Hz, and the overtones are multiples of it. At ' + fmt(fN, 0) + ' Hz the string completes ' + fmt(fN, 0) + ' cycles each second.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -178,7 +193,7 @@ function legend(ctx, x, y, color, name, dash) {
 (function () {
   const d = sim('sim-beats', 800);   /* room under the graph for the beat bracket and its name */
   const f1 = ctl(d.controls, { label: '\\kfone', cls: 'frequency', min: 4, max: 10, step: 0.1, value: 5, unit: 'Hz', dec: 2, onInput: reset });
-  const f2 = ctl(d.controls, { label: '\\kftwo', cls: 'frequency', min: 4, max: 10, step: 0.1, value: 7, unit: 'Hz', dec: 2, onInput: reset });
+  const f2 = ctl(d.controls, { label: '\\kftwo', cls: 'frequency', min: 4, max: 10, step: 0.1, value: 7, unit: 'Hz', dec: 2, onInput: reset, specials: [{ at: () => f1.v, label: 'equal' }] });
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.5, unit: 'm', dec: 2, onInput: reset, aria: 'amplitude of each wave' });
   const SPAN = 2;                                  /* the window is a fixed two seconds at every setting */
   const cy = cycle(() => SPAN, 0.8);

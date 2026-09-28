@@ -263,7 +263,7 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('frequency'), rc = F.cat(0), lc = F.cat(3);
-    const p = PEOPLE[who.value];
+    const p = PEOPLE[who.value], q = who.mix((v) => ({ R: PEOPLE[v].R, L: PEOPLE[v].L })), bone = who.a('presby');
     hits.length = 0;
     /* the frame: the six test frequencies, and the level every 10 dB downward */
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
@@ -277,20 +277,21 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     text(ctx, 'Hearing threshold level (dB above normal)', box.l, box.t - 24, PAL.ink, { align: 'left', weight: 600, size: 20 });
     text(ctx, 'normal', box.r - 10, Y(0) - 14, PAL.muted, { size: 16, align: 'right' });
     /* the two ears, each a line through its six readings */
-    for (const [ear, vals, color, name] of [['R', p.R, rc, 'right ear'], ['L', p.L, lc, 'left ear']]) {
+    /* the readings slide from one person's to the next */
+    for (const [ear, vals, color, name, exact] of [['R', q.R, rc, 'right ear', p.R], ['L', q.L, lc, 'left ear', p.L]]) {
       ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath();
       vals.forEach((v, i) => { const x = X(Math.log10(FT[i])), y = Y(v); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }); ctx.stroke(); ctx.restore();
       vals.forEach((v, i) => {
         const x = X(Math.log10(FT[i])), y = Y(v);
         if (ear === 'R') dot(ctx, x, y, color, true, 10); else diamond(ctx, x, y, color);
-        if (p.bone) bracket(ctx, x + (ear === 'R' ? 22 : -22), y, ear === 'L');
-        hits.push({ x, y, r: 22, name: name + ' at ' + hz(FT[i]) + ': ' + fmt(v, 0) + ' dB above normal' });
+        if (bone > 0) { ctx.save(); ctx.globalAlpha = bone; bracket(ctx, x + (ear === 'R' ? 22 : -22), y, ear === 'L'); ctx.restore(); }
+        hits.push({ x, y, r: 22, name: name + ' at ' + hz(FT[i]) + ': ' + fmt(exact[i], 0) + ' dB above normal' });
       });
     }
     /* the legend, where the book puts it */
     dot(ctx, box.l + 40, box.b - 92, rc, true, 9); text(ctx, 'right ear', box.l + 62, box.b - 92, PAL.ink, { size: 18 });
     diamond(ctx, box.l + 40, box.b - 58, lc); text(ctx, 'left ear', box.l + 62, box.b - 58, PAL.ink, { size: 18 });
-    if (p.bone) { bracket(ctx, box.l + 34, box.b - 24, true); bracket(ctx, box.l + 46, box.b - 24, false); text(ctx, 'bone conduction', box.l + 62, box.b - 24, PAL.ink, { size: 18 }); }
+    if (bone > 0) { ctx.save(); ctx.globalAlpha = bone; bracket(ctx, box.l + 34, box.b - 24, true); bracket(ctx, box.l + 46, box.b - 24, false); text(ctx, 'bone conduction', box.l + 62, box.b - 24, PAL.ink, { size: 18 }); ctx.restore(); }
     const w = who.value;
     topline(ctx, w === 'normal' ? 'Both ears lie within 5 dB of the normal threshold at every frequency tested, which is normal hearing.'
       : w === 'capgun' ? 'The child hears normally except near 4000 Hz, where both ears need 55 dB more than normal: the dip that noise damage leaves.'

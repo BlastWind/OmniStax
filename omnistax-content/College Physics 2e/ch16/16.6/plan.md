@@ -142,3 +142,5 @@ set by the fastest the sliders allow rather than capped. Both are
 two-dimensional, with no 3D, and their labels on.
 
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-turntable` draws 8 units to the centimetre rather than 9, so the widest turntable and its ω stay clear of the lights above them, and its floor marks step apart at the smallest radius. `sim-circle-triangles` hands its seven names (P, X, x, the height, θ, v_max and v) to the labeller, which sets each beside its thing and steps it out with a leader where the slot is taken, at 20 to 22 px in place of 17 and 18; before they crowded and overlapped at the smallest radius.
+
+**Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-turntable` (value add, manim 1): a choice turns the turntable from above to edge-on over two seconds; the circle closes into a line and the ball is seen moving back and forth directly above its shadow, the relation the section states. Motion unchanged: the physical clock runs throughout.

@@ -156,3 +156,5 @@ beyond the frequency, position and time the colour plan expected, and
 row changed and no equation row added.
 
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-resonance`: the hand is `F.fist` gripping the top of the rubber band with its forearm reaching back up and to the left, in place of two rounded rectangles that read as nothing, the beam above it is gone, the scene sits 50 units lower to keep the forearm under a two-line headline, and "your finger" is a clamped `label()`. `sim-driven-energy`: the soldiers are `F.silhouette` figures walking with a stride phase, in place of stick figures; the headline is set first, and the soldiers' label sits under a two-line headline instead of across it; the 2X bracket is at midspan and named under the deck, where it cannot climb into the headline at the largest swing.
+
+**Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-resonance`: f carries a dashed circle at the natural frequency f₀ = 1.00 Hz; the damping choice now blends the ball's amplitude and the emphasis of the three curves instead of cutting. `sim-driven-energy`: zero damping is a special value; the note on the drawn scale of the swing stays (28.4).
