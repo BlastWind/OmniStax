@@ -400,7 +400,7 @@ function coasterCar(ctx, x, y, rot, color) {
 (function () {
   const d = sim('sim-marble', 690);
   const rel = ctl(d.controls, { label: '\\kd', cls: 'position', min: 5, max: 30, step: 1, value: 10, unit: 'cm', dec: 0, onInput: reset, aria: 'release position along the ruler' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 25, step: 1, value: 15, unit: 'º', dec: 0, onInput: reset, aria: 'angle of the incline' });
+  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 25, step: 1, value: 15, unit: '°', dec: 0, onInput: reset, aria: 'angle of the incline' });
   const dm = () => rel.v / 100, sn = () => Math.sin(th.v * RAD), cs = () => Math.cos(th.v * RAD);
   const acc = () => G * sn(), vEnd = () => Math.sqrt(2 * G * dm() * sn());
   const t1 = () => Math.sqrt((2 * dm()) / acc()), t2 = () => 1 / vEnd();
@@ -427,8 +427,8 @@ function coasterCar(ctx, x, y, rot, color) {
     if (v > 0.05) { const al = 40 + 130 * (v / Math.max(0.2, vEnd())); arrow(ctx, mx, my - 40, mx + al, my - 40, C('velocity'), 5); text(ctx, fmt(v, 2) + ' m/s', mx + al + 12, my - 40, C('velocity'), { size: 18, weight: 600 }); }
     text(ctx, 'released at ' + fmt(rel.v, 0) + ' cm', xTop - 10, yTop - 34, PAL.muted, { size: 18 });
     /* the graph below: the plot the investigation asks for */
-    /* fixed axes: the steepest incline the slider allows is 25º, where releasing at the far end of
-       the ruler gives v² = 2 × 9.80 × 0.30 × sin 25º = 2.49 m²/s², so the graph is always 0 to
+    /* fixed axes: the steepest incline the slider allows is 25°, where releasing at the far end of
+       the ruler gives v² = 2 × 9.80 × 0.30 × sin 25° = 2.49 m²/s², so the graph is always 0 to
        0.3 m by 0 to 2.5 m²/s², ticked every 0.5, and never rescales with either slider. */
     const VR = 2.5, box = { l: 240, r: 1300, t: 380, b: 600 };
     const { X, Y } = axes(ctx, box, [0, 0.3], [0, VR], { xl: 'release position on the ruler (m)', xc: C('position'), yl: 'v² on the level (m²/s²)', yc: C('velocity'), nx: 3, ny: 5, fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 1) });

@@ -83,7 +83,7 @@ function tower(ctx, x, y, h, color) {
 (function () {
   const d = sim('sim-displacement', 560);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 10, max: 30, step: 0.5, value: 20, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
-  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 15, max: 80, step: 1, value: 50, unit: 'º', dec: 0, onInput: reset, aria: 'launch angle' });
+  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 15, max: 80, step: 1, value: 50, unit: '°', dec: 0, onInput: reset, aria: 'launch angle' });
   const fl = () => flight(v0.v, th.v);
   const cy = cycle(() => fl().T, 1.2);
   function reset() { cy.reset(); }
@@ -109,16 +109,16 @@ function tower(ctx, x, y, h, color) {
       if (y > 0.5) { arrow(ctx, X(x) + 46, box.b, X(x) + 46, Y(y), C('position'), 4); text(ctx, 'y = ' + fmt(y, 1) + ' m', X(x) + 62, (box.b + Y(y)) / 2, C('position'), { weight: 600 }); }
       arrow(ctx, X(0), Y(0), X(x), Y(y), C('position'), 5);
       const mid = 0.55, sn = Math.hypot(x, y) || 1; lab.add('s = ' + fmt(s, 1) + ' m', X(x * mid), Y(y * mid), -y / sn, -x / sn, C('position'), 24, 26);
-      if (ang > 4 && x * SC > 120) angleArc(ctx, X(0), Y(0), 70, ang, 'θ = ' + fmt(ang, 1) + 'º', PAL.ink, lab);
+      if (ang > 4 && x * SC > 120) angleArc(ctx, X(0), Y(0), 70, ang, 'θ = ' + fmt(ang, 1) + '°', PAL.ink, lab);
     }
     dot(ctx, X(0), Y(0), C('position'), false, 10);
     ball(ctx, X(x), Y(y), PAL.ink);
     lab.flush();
-    topline(ctx, tau < 1e-9 ? 'The ball is at the origin, about to be kicked at ' + fmt(v0.v, 1) + ' m/s and ' + th.v + 'º above the horizontal.'
+    topline(ctx, tau < 1e-9 ? 'The ball is at the origin, about to be kicked at ' + fmt(v0.v, 1) + ' m/s and ' + th.v + '° above the horizontal.'
       : done ? 'After ' + fmt(f.T, 2) + ' s the ball lands ' + fmt(f.R, 1) + ' m away, where s = x = ' + fmt(f.R, 1) + ' m and θ = 0.'
-      : 'After ' + fmt(tau, 2) + ' s the ball is ' + fmt(x, 1) + ' m along and ' + fmt(y, 1) + ' m up, so s = ' + fmt(s, 1) + ' m at ' + fmt(ang, 1) + 'º above the horizontal.');
+      : 'After ' + fmt(tau, 2) + ' s the ball is ' + fmt(x, 1) + ' m along and ' + fmt(y, 1) + ' m up, so s = ' + fmt(s, 1) + ' m at ' + fmt(ang, 1) + '° above the horizontal.');
     readout(d.readout, `\\ks = \\sqrt{\\kx^2 + \\ky^2} = \\sqrt{(${fmt(x, 1)}\\ \\text{m})^2 + (${fmt(y, 1)}\\ \\text{m})^2} = ${fmt(s, 1)}\\ \\text{m}`,
-      x > 0.5 ? 'The direction of the displacement is θ = tan⁻¹(y/x) = tan⁻¹(' + fmt(y, 1) + '/' + fmt(x, 1) + ') = ' + fmt(ang, 1) + 'º above the horizontal.'
+      x > 0.5 ? 'The direction of the displacement is θ = tan⁻¹(y/x) = tan⁻¹(' + fmt(y, 1) + '/' + fmt(x, 1) + ') = ' + fmt(ang, 1) + '° above the horizontal.'
         : 'The ball has not left the origin yet, so its displacement is zero and has no direction.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => fl().T / 5), draw });
@@ -133,7 +133,7 @@ function tower(ctx, x, y, h, color) {
 (function () {
   const d = sim('sim-components', 860);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 10, max: 30, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
-  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 10, max: 80, step: 1, value: 60, unit: 'º', dec: 0, onInput: reset, aria: 'launch angle' });
+  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 10, max: 80, step: 1, value: 60, unit: '°', dec: 0, onInput: reset, aria: 'launch angle' });
   const fl = () => flight(v0.v, th.v);
   const cy = cycle(() => fl().T, 1.2);
   function reset() { cy.reset(); }
@@ -200,7 +200,7 @@ function tower(ctx, x, y, h, color) {
 (function () {
   const d = sim('sim-fireworks', 720);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 40, max: 90, step: 0.5, value: 70, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
-  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 30, max: 89, step: 0.5, value: 75, unit: 'º', dec: 1, onInput: reset, aria: 'launch angle' });
+  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 30, max: 89, step: 0.5, value: 75, unit: '°', dec: 1, onInput: reset, aria: 'launch angle' });
   const fl = () => flight(v0.v, th.v);
   const cy = cycle(() => fl().tTop + 0.6, 1.4);   /* the flight to the top, then the burst opens */
   function reset() { cy.reset(); }
@@ -220,7 +220,7 @@ function tower(ctx, x, y, h, color) {
     path(ctx, f, 0, t, X, Y, PAL.ink, 4);
     /* the launch velocity and its angle */
     launch(ctx, X(0), Y(0), 40 + v0.v * 1.4, th.v, 'v₀ = ' + fmt(v0.v, 1) + ' m/s', lab);
-    angleArc(ctx, X(0), Y(0), 56, th.v, 'θ₀ = ' + fmt(th.v, 1) + 'º', PAL.ink, lab);
+    angleArc(ctx, X(0), Y(0), 56, th.v, 'θ₀ = ' + fmt(th.v, 1) + '°', PAL.ink, lab);
     /* the height and the horizontal displacement of the apex */
     line(ctx, X(xTop), Y(f.h), X(xTop), box.b, PAL.muted, 2, [4, 8]);
     line(ctx, X(0), Y(f.h), X(xTop), Y(f.h), PAL.muted, 2, [4, 8]);
@@ -257,7 +257,7 @@ function tower(ctx, x, y, h, color) {
 (function () {
   const d = sim('sim-rock', 800);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 10, max: 30, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'initial speed' });
-  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 0, max: 60, step: 0.5, value: 35, unit: 'º', dec: 1, onInput: reset, aria: 'launch angle' });
+  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 0, max: 60, step: 0.5, value: 35, unit: '°', dec: 1, onInput: reset, aria: 'launch angle' });
   const yl = ctl(d.controls, { label: '\\ky', cls: 'position', min: -40, max: -5, step: 0.5, value: -20, unit: 'm', dec: 1, onInput: reset, aria: 'height of the landing point' });
   const fl = () => flight(v0.v, th.v);
   const roots = () => { const f = fl(), disc = Math.sqrt(f.vy0 * f.vy0 - 2 * G * yl.v); return [(f.vy0 + disc) / G, (f.vy0 - disc) / G]; };
@@ -285,7 +285,7 @@ function tower(ctx, x, y, h, color) {
     path(ctx, f, 0, tp, X, Y, PAL.muted, 3, [8, 8]);
     path(ctx, f, 0, tau, X, Y, PAL.ink, 4);
     launch(ctx, X(0), Y(0), 30 + v0.v * 2.2, th.v, 'v₀ = ' + fmt(v0.v, 1) + ' m/s', lab);
-    if (th.v > 8) angleArc(ctx, X(0), Y(0), 44, th.v, 'θ₀ = ' + fmt(th.v, 1) + 'º', PAL.ink, lab);
+    if (th.v > 8) angleArc(ctx, X(0), Y(0), 44, th.v, 'θ₀ = ' + fmt(th.v, 1) + '°', PAL.ink, lab);
     dot(ctx, X(xl), Y(yl.v), C('position'), true, 8);
     /* the rock and its velocity; at impact the components and the angle below the horizontal */
     const px = X(x), py = Y(y), K = 4.5, cv = C('velocity');
@@ -295,7 +295,7 @@ function tower(ctx, x, y, h, color) {
       arrow(ctx, px, py, px + f.vx * K, py - vyl * K, cv, 5);
       lab.add('v = ' + fmt(vl, 1) + ' m/s', px + f.vx * K, py - vyl * K, f.vx / vl, -vyl / vl, cv, 20, 26);
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(px, py, 40, 0, -thl * RAD, false); ctx.stroke(); ctx.restore();
-      lab.add('θv = ' + fmt(thl, 1) + 'º', px + 40 * Math.cos(thl * RAD / 2), py - 40 * Math.sin(thl * RAD / 2), Math.cos(thl * RAD / 2), -Math.sin(thl * RAD / 2), PAL.ink, 20, 26);
+      lab.add('θv = ' + fmt(thl, 1) + '°', px + 40 * Math.cos(thl * RAD / 2), py - 40 * Math.sin(thl * RAD / 2), Math.cos(thl * RAD / 2), -Math.sin(thl * RAD / 2), PAL.ink, 20, 26);
     } else if (tau > 0.05) {
       arrow(ctx, px, py, px + f.vx * K * 0.6, py - vy * K * 0.6, cv, 4);
       lab.add('v = ' + fmt(v, 1) + ' m/s', px + f.vx * K * 0.6, py - vy * K * 0.6, f.vx / v, -vy / v, cv, 18, 22);
@@ -316,10 +316,10 @@ function tower(ctx, x, y, h, color) {
     dot(ctx, g.X(tau), g.Y(y), PAL.ink, true, 9);
     text(ctx, 't = ' + fmt(tp, 2) + ' s', g.X(tp) + 14, g.Y(yl.v) - 22, C('time'), { size: 18, weight: 600 });
     text(ctx, 't = ' + fmt(tn, 2) + ' s, before the launch', g.X(tn) + 14, g.Y(yl.v) + 24, PAL.muted, { size: 17, weight: 600 });
-    topline(ctx, done ? 'After ' + fmt(tp, 2) + ' s the rock lands ' + fmt(-yl.v, 1) + ' m below its start at ' + fmt(vl, 1) + ' m/s, ' + fmt(-thl, 1) + 'º below the horizontal.'
+    topline(ctx, done ? 'After ' + fmt(tp, 2) + ' s the rock lands ' + fmt(-yl.v, 1) + ' m below its start at ' + fmt(vl, 1) + ' m/s, ' + fmt(-thl, 1) + '° below the horizontal.'
       : 'After ' + fmt(tau, 2) + ' s the rock is ' + fmt(Math.abs(y), 1) + ' m ' + (y >= 0 ? 'above' : 'below') + ' the rim and ' + fmt(x, 1) + ' m along, moving at ' + fmt(v, 1) + ' m/s.');
     readout(d.readout, `(${fmt(G / 2, 2)}\\ \\text{m/s}^2)\\kt^2 - (${fmt(f.vy0, 1)}\\ \\text{m/s})\\kt - (${fmt(-yl.v, 1)}\\ \\text{m}) = 0 \\;\\Rightarrow\\; \\kt = ${fmt(tp, 2)}\\ \\text{s}\\ \\text{or}\\ ${fmt(tn, 2)}\\ \\text{s}`,
-      'The negative root is an event before the launch and is discarded. At impact vx = ' + fmt(f.vx, 1) + ' m/s and vy = ' + sgn(vyl) + fmt(Math.abs(vyl), 1) + ' m/s, so v = ' + fmt(vl, 1) + ' m/s at θv = ' + fmt(thl, 1) + 'º.');
+      'The negative root is an event before the launch and is discarded. At impact vx = ' + fmt(f.vx, 1) + ' m/s and vy = ' + sgn(vyl) + fmt(Math.abs(vyl), 1) + ' m/s, so v = ' + fmt(vl, 1) + ' m/s at θv = ' + fmt(thl, 1) + '°.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => roots()[0] / 5), draw });
 })();
@@ -327,13 +327,13 @@ function tower(ctx, x, y, h, color) {
 /* =====================================================================
    FIGURE 3.38: the range on level ground. The projectile flies its
    trajectory; the complementary angle's path is dashed and lands at the
-   same range; the 45º path is faint and goes farthest. Below, R against
+   same range; the 45° path is faint and goes farthest. Below, R against
    θ₀ for the set speed. Finite motion, so it gets the scrubber.
 ===================================================================== */
 (function () {
   const d = sim('sim-range', 800);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 20, max: 60, step: 1, value: 50, unit: 'm/s', dec: 0, onInput: reset, aria: 'initial speed' });
-  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: 'º', dec: 0, onInput: reset, aria: 'launch angle' });
+  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: '°', dec: 0, onInput: reset, aria: 'launch angle' });
   const fl = () => flight(v0.v, th.v);
   const cy = cycle(() => fl().T, 1.2);
   function reset() { cy.reset(); }
@@ -348,14 +348,14 @@ function tower(ctx, x, y, h, color) {
     const X = (m) => box.l + m * SC, Y = (m) => box.b - m * SC;
     const lab = labeller(ctx, 800); lab.block(0, 0, 1400, 96); lab.block(0, 420, 1400, 800);
     ground(ctx, 60, 1340, box.b);
-    /* Within six degrees of 45º the three arcs have almost the same apex, so only the chosen angle
+    /* Within six degrees of 45° the three arcs have almost the same apex, so only the chosen angle
        is named there; the other two are still drawn and the readout gives their numbers. */
     const near45 = Math.abs(th.v - 45) < 6;
-    if (!is45) { path(ctx, f45, 0, f45.T, X, Y, alpha(PAL.muted, 0.45), 3); if (!near45) text(ctx, '45º', X(f45.x(f45.tTop)), Y(f45.h) - 20, PAL.muted, { size: 18, align: 'center' }); }
-    if (!is45) { path(ctx, fc, 0, fc.T, X, Y, PAL.muted, 3, [10, 10]); if (!near45) text(ctx, comp + 'º', X(fc.x(fc.tTop)), Y(fc.h) - 20, PAL.muted, { size: 18, weight: 600, align: 'center' }); }
+    if (!is45) { path(ctx, f45, 0, f45.T, X, Y, alpha(PAL.muted, 0.45), 3); if (!near45) text(ctx, '45°', X(f45.x(f45.tTop)), Y(f45.h) - 20, PAL.muted, { size: 18, align: 'center' }); }
+    if (!is45) { path(ctx, fc, 0, fc.T, X, Y, PAL.muted, 3, [10, 10]); if (!near45) text(ctx, comp + '°', X(fc.x(fc.tTop)), Y(fc.h) - 20, PAL.muted, { size: 18, weight: 600, align: 'center' }); }
     path(ctx, f, 0, f.T, X, Y, alpha(PAL.ink, 0.35), 3);
     path(ctx, f, 0, tau, X, Y, PAL.ink, 4);
-    text(ctx, th.v + 'º', X(f.x(f.tTop)), Y(f.h) - 20, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    text(ctx, th.v + '°', X(f.x(f.tTop)), Y(f.h) - 20, PAL.ink, { size: 18, weight: 600, align: 'center' });
     launch(ctx, X(0), Y(0), 30 + v0.v * 1.6, th.v, 'v₀ = ' + v0.v + ' m/s', lab);
     lab.flush();
     hbracket(ctx, X(0), X(f.R), box.b + 50, C('position'), '');
@@ -364,18 +364,18 @@ function tower(ctx, x, y, h, color) {
     dot(ctx, X(x), Y(y), PAL.ink, true, 10);
     /* R against θ₀ for the set speed, on fixed axes: 400 m holds the farthest range the sliders allow */
     const Rmax = f45.R, yr = { lo: 0, hi: 400, n: 4 };
-    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 760 }, [0, 90], [0, yr.hi], { xl: 'θ₀ (º)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: yr.n, fx: (a) => fmt(a, 0) });
+    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 760 }, [0, 90], [0, yr.hi], { xl: 'θ₀ (°)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: yr.n, fx: (a) => fmt(a, 0) });
     curve(ctx, (a) => range(v0.v, a), 0, 90, g.X, g.Y, C('position'), 5, 90);
     line(ctx, g.X(th.v), g.Y(0), g.X(th.v), g.Y(f.R), PAL.ink, 2, [4, 8]);
     if (!is45) { line(ctx, g.X(comp), g.Y(0), g.X(comp), g.Y(f.R), PAL.muted, 2, [4, 8]); line(ctx, g.X(th.v), g.Y(f.R), g.X(comp), g.Y(f.R), C('position'), 2, [10, 10]); dot(ctx, g.X(comp), g.Y(f.R), C('position'), false, 10); }
     dot(ctx, g.X(th.v), g.Y(f.R), C('position'), true, 10);
-    text(ctx, 'R = ' + fmt(f.R, 0) + ' m at ' + th.v + 'º' + (is45 ? '' : ' and at ' + comp + 'º'), g.X(45), g.Y(f.R) + (f.R > 0.7 * Rmax ? 30 : -24), C('position'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.8) });
-    text(ctx, 'farthest at 45º', g.X(45), g.Y(Rmax) - 22, PAL.muted, { size: 17, align: 'center' });
-    topline(ctx, is45 ? 'At 45º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, which is the farthest this speed can reach.'
-      : 'At ' + th.v + 'º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + 'º.');
+    text(ctx, 'R = ' + fmt(f.R, 0) + ' m at ' + th.v + '°' + (is45 ? '' : ' and at ' + comp + '°'), g.X(45), g.Y(f.R) + (f.R > 0.7 * Rmax ? 30 : -24), C('position'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.8) });
+    text(ctx, 'farthest at 45°', g.X(45), g.Y(Rmax) - 22, PAL.muted, { size: 17, align: 'center' });
+    topline(ctx, is45 ? 'At 45° a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, which is the farthest this speed can reach.'
+      : 'At ' + th.v + '° a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + '°.');
     readout(d.readout, `\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg} = \\frac{(${v0.v}\\ \\text{m/s})^2 \\sin ${2 * th.v}^\\circ}{9.80\\ \\text{m/s}^2} = ${fmt(f.R, 0)}\\ \\text{m}`,
-      is45 ? 'No other angle reaches as far at this speed, and every other angle shares its range with its complement, the angle that makes 90º with it.'
-        : 'A launch at ' + comp + 'º has the same range but rises to ' + fmt(fc.h, 1) + ' m, where the ' + th.v + 'º launch rises to ' + fmt(f.h, 1) + ' m.');
+      is45 ? 'No other angle reaches as far at this speed, and every other angle shares its range with its complement, the angle that makes 90° with it.'
+        : 'A launch at ' + comp + '° has the same range but rises to ' + fmt(fc.h, 1) + ' m, where the ' + th.v + '° launch rises to ' + fmt(f.h, 1) + ' m.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => fl().T / 5), draw });
 })();
@@ -484,16 +484,16 @@ function tower(ctx, x, y, h, color) {
 })();
 /* =====================================================================
    Sim, after Figure 3.38: the range on level ground drawn in the Manim
-   manner. 45º is a special value on the angle slider; as the angle nears
+   manner. 45° is a special value on the angle slider; as the angle nears
    it the dashed complementary path closes on the chosen one, and on it
    sin 2θ₀ becomes 1, the range equation drops that term, and the dashed
-   path bends into the chosen one. Leaving 45º, the dashed and the 45º
+   path bends into the chosen one. Leaving 45°, the dashed and the 45°
    paths arrive drawn along their length.
 ===================================================================== */
 (function () {
   const d = sim('sim-range-morph', 800);
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 20, max: 60, step: 1, value: 50, unit: 'm/s', dec: 0, onInput: reset, aria: 'initial speed' });
-  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: 'º', dec: 0, specials: [{ at: 45, label: '45º' }], onInput: reset, aria: 'launch angle' });
+  const th = ctl(d.controls, { label: '\\theta_0', cls: '', min: 5, max: 85, step: 1, value: 45, unit: '°', dec: 0, specials: [{ at: 45, label: '45°' }], onInput: reset, aria: 'launch angle' });
   const eqHost = el('div');
   d.readout.append(eqHost);
   const fl = () => flight(v0.v, th.v);
@@ -531,13 +531,13 @@ function tower(ctx, x, y, h, color) {
       pline(ctx, F.partial(ptsOf(f45), reveal.v), X, Y, alpha(PAL.muted, 0.5), 4);
       pline(ctx, F.partial(ptsOf(flight(v0.v, comp)), reveal.v), X, Y, PAL.muted, 4, [12, 12]);
       if (!near45 && reveal.v > 0.99) {
-        text(ctx, '45º', X(f45.x(f45.tTop)), Y(f45.h) - 22, PAL.muted, { size: 18, align: 'center' });
-        const fc = flight(v0.v, comp); text(ctx, comp + 'º', X(fc.x(fc.tTop)), Y(fc.h) - 22, PAL.muted, { size: 18, weight: 600, align: 'center' });
+        text(ctx, '45°', X(f45.x(f45.tTop)), Y(f45.h) - 22, PAL.muted, { size: 18, align: 'center' });
+        const fc = flight(v0.v, comp); text(ctx, comp + '°', X(fc.x(fc.tTop)), Y(fc.h) - 22, PAL.muted, { size: 18, weight: 600, align: 'center' });
       }
     }
     pline(ctx, ptsOf(f), X, Y, alpha(PAL.ink, 0.3), 4);
     pline(ctx, ptsOf(f, tau), X, Y, PAL.ink, 6);
-    text(ctx, th.v + 'º', X(f.x(f.tTop)), Y(f.h) - 22, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    text(ctx, th.v + '°', X(f.x(f.tTop)), Y(f.h) - 22, PAL.ink, { size: 18, weight: 600, align: 'center' });
     const L = 30 + v0.v * 1.6;
     arrow(ctx, X(0), Y(0), X(0) + L * Math.cos(th.v * RAD), Y(0) - L * Math.sin(th.v * RAD), C('velocity'), 6);
     text(ctx, 'v₀', X(0) - 30, Y(0) - L * Math.sin(th.v * RAD) - 6, C('velocity'), { size: 20, weight: 600, align: 'center' });
@@ -547,16 +547,16 @@ function tower(ctx, x, y, h, color) {
     dot(ctx, X(x), Y(y), PAL.ink, true, 11);
     /* R against θ₀ for the set speed, on the same fixed axes as Figure 3.38 */
     const Rmax = f45.R;
-    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 760 }, [0, 90], [0, 400], { xl: 'θ₀ (º)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: 4, fx: (a) => fmt(a, 0) });
+    const g = axes(ctx, { l: 180, r: 1240, t: 570, b: 760 }, [0, 90], [0, 400], { xl: 'θ₀ (°)', xc: PAL.ink, yl: 'R (m)', yc: C('position'), nx: 6, ny: 4, fx: (a) => fmt(a, 0) });
     ctx.save(); ctx.fillStyle = alpha(C('position'), 0.12); ctx.beginPath(); ctx.moveTo(g.X(0), g.Y(0));
     for (let i = 0; i <= 90; i++) ctx.lineTo(g.X(i), g.Y(range(v0.v, i))); ctx.lineTo(g.X(90), g.Y(0)); ctx.fill(); ctx.restore();
     curve(ctx, (a) => range(v0.v, a), 0, 90, g.X, g.Y, C('position'), 6, 90);
     line(ctx, g.X(th.v), g.Y(0), g.X(th.v), g.Y(f.R), PAL.ink, 3, [4, 10]);
     if (!at45) { line(ctx, g.X(comp), g.Y(0), g.X(comp), g.Y(f.R), PAL.muted, 3, [4, 10]); dot(ctx, g.X(comp), g.Y(f.R), C('position'), false, 10); }
     dot(ctx, g.X(th.v), g.Y(f.R), C('position'), true, 11);
-    text(ctx, at45 ? 'farthest at 45º' : 'R = ' + fmt(f.R, 0) + ' m at ' + th.v + 'º and at ' + comp + 'º', g.X(45), g.Y(Math.max(f.R, Rmax)) - 24, at45 ? C('position') : PAL.muted, { size: 18, weight: 600, align: 'center' });
-    topline(ctx, at45 ? 'At 45º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, which is the farthest this speed can reach.'
-      : 'At ' + th.v + 'º a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + 'º.');
+    text(ctx, at45 ? 'farthest at 45°' : 'R = ' + fmt(f.R, 0) + ' m at ' + th.v + '° and at ' + comp + '°', g.X(45), g.Y(Math.max(f.R, Rmax)) - 24, at45 ? C('position') : PAL.muted, { size: 18, weight: 600, align: 'center' });
+    topline(ctx, at45 ? 'At 45° a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, which is the farthest this speed can reach.'
+      : 'At ' + th.v + '° a ' + v0.v + ' m/s launch lands ' + fmt(f.R, 0) + ' m away, and so does a launch at ' + comp + '°.');
     const s = at45 ? '' : '\\,\\mk{s}{\\sin 2\\theta_0}', sv = at45 ? '' : `\\,\\mk{sval}{\\sin ${2 * th.v}^\\circ}`;
     F.morph(eqHost, `\\mk{R}{\\kR} = \\frac{\\mk{v0}{\\kvo^2}${s}}{\\mk{g}{\\kg}} = \\frac{\\mk{v0val}{(${v0.v}\\ \\text{m/s})^2}${sv}}{\\mk{gval}{9.80\\ \\text{m/s}^2}} = \\mk{Rval}{${fmt(f.R, 0)}\\ \\text{m}}`);
   }

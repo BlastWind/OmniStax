@@ -157,7 +157,7 @@ function chicken(ctx, d, h, SC, color) {
     ctx.save(); ctx.translate(px, GY); ctx.rotate(g.th); ctx.translate(-A.v * SC, 0);
     pencilFlat(ctx, 2 * H * SC, 2 * A.v * SC, PAL.ink); ctx.restore();
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' mm', side: -1, arcR: 200, arc: !g.up });
-    /* the sliders reach τ = 0.060 × 90 sin 25º = 2.17 mN·m one way and 0.060 × 40 = 2.4 mN·m the
+    /* the sliders reach τ = 0.060 × 90 sin 25° = 2.17 mN·m one way and 0.060 × 40 = 2.4 mN·m the
        other, so the torque axis is fixed at −3 to 3 mN·m, ticked every 1, and never rescales */
     tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 25, (t) => W * (H * Math.sin(t * RAD) - A.v * Math.cos(t * RAD)), TH.v, g.crit, 'τ (mN·m)', -3, 3, 6, 1,
       'τ > 0 carries the pencil over, τ < 0 brings it back');
@@ -188,7 +188,7 @@ function chicken(ctx, d, h, SC, color) {
     ctx.save(); ctx.translate(BX, GY); ctx.rotate(g.th);
     pencilPoint(ctx, L.v * SC, 18, PAL.ink); ctx.restore();
     leanForces(ctx, { px: BX, cgx, cgy, gy: GY, rpU: g.cx * SC, topple: true, rLabel: 'r⊥ = ' + fmt(g.rp, 1) + ' mm', side: -1, arcR: 200, arc: !g.up, nSide: -1 });
-    /* the longest pencil the slider allows gives 0.060 × (200/180) × 100 mm × sin 20º = 2.28 mN·m,
+    /* the longest pencil the slider allows gives 0.060 × (200/180) × 100 mm × sin 20° = 2.28 mN·m,
        so the torque axis is fixed at 0 to 2.5 mN·m, ticked every 0.5, and never rescales */
     tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 450 }, 20, (t) => W * h * Math.sin(t * RAD), TH.v, 0, 'τ (mN·m)', 0, 2.5, 5, 1,
       'every τ here is positive, and each one leans the pencil further');
@@ -327,7 +327,7 @@ function chicken(ctx, d, h, SC, color) {
     person(ctx, D.v, HG.v, SC, PAL.ink); ctx.restore();
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' cm', side: 1, arcR: 190, arc: !g.up });
     hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, PAL.ink, 'base of support, ' + fmt(D.v, 0) + ' cm');
-    /* the sliders reach 7.00 × (110 sin 30º − 5 cos 30º) = 355 N·m one way and 7.00 × 45 = 315 N·m
+    /* the sliders reach 7.00 × (110 sin 30° − 5 cos 30°) = 355 N·m one way and 7.00 × 45 = 315 N·m
        the other, so the torque axis is fixed at −400 to 400 N·m, ticked every 100, and never moves */
     tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 460 }, 30, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -400, 400, 8, 0,
       'τ > 0 takes the person over, τ < 0 brings them back');
@@ -360,7 +360,7 @@ function chicken(ctx, d, h, SC, color) {
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' cm', side: 1, arcR: 235, arc: !g.up });
     hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, PAL.ink, 'base of support, ' + fmt(D, 0) + ' cm');
     const box = { l: 820, r: 1340, t: 130, b: 460 };
-    /* with feet 18 cm apart the sliders reach 0.245 × (28 − 9) sin 45º = 3.29 N·m one way and
+    /* with feet 18 cm apart the sliders reach 0.245 × (28 − 9) sin 45° = 3.29 N·m one way and
        0.245 × 9 = 2.21 N·m the other, so the torque axis is fixed at −4 to 4 N·m, ticked every 1 */
     tauGraph(ctx, box, 45, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -4, 4, 8, 1,
       'τ > 0 takes the chicken over, τ < 0 brings it back');

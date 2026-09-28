@@ -202,7 +202,7 @@ function bar(ctx, x1, x2, y, color, h) {
     if (!inSky) pinned(ctx, box, X, Y, f.x(tau), f.y(tau), C('position'), 'center of mass, ' + fmt(f.x(tau) / 1000, 1) + ' km out, ' + fmt(f.y(tau) / 1000, 1) + ' km up');
     /* the graph: the two components of the system's momentum against time */
     /* fixed axes: the probe masses 1000 kg and is launched at no more than 800 m/s, so neither
-       component of its momentum passes 800,000 kg·m/s, and the longest flight, 2 × 800 × sin 80º /
+       component of its momentum passes 800,000 kg·m/s, and the longest flight, 2 × 800 × sin 80° /
        9.80, is 161 s. The graph is therefore always 0 to 200 s by −800,000 to 800,000 kg·m/s,
        ticked every 50 s and every 200,000 kg·m/s, and neither range moves with the sliders. */
     const gb = { l: 200, r: 1280, t: 530, b: 715 }, TR = 200, PR = 800000;
