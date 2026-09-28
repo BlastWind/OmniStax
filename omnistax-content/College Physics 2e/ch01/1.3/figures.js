@@ -31,7 +31,7 @@ function restaurant(ctx, x, y, color) {
   ctx.beginPath(); for (let i = 0; i < 4; i++) ctx.arc(x - 25 + 17 * i, y - 4, 8.5, 0, Math.PI); ctx.fill();   /* the awning */
   ctx.fillRect(x - 8, y + 4, 16, 22);                                                        /* the door */
   ctx.strokeRect(x + 12, y + 6, 12, 10);                                                     /* the window */
-  ctx.fillStyle = PAL.panel; ctx.font = '700 9px ' + FONT; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('CAFÉ', x, y - 24);
+  text(ctx, 'CAFÉ', x, y - 24, PAL.panel, { size: 9, weight: 700, align: 'center' });
   ctx.restore();
 }
 function bar(ctx, x, y, w, h, filled) {
@@ -40,7 +40,7 @@ function bar(ctx, x, y, w, h, filled) {
 /* one line of text in several colours: runs of [string, colour, weight], left-aligned at x */
 function runs(ctx, parts, x, y, size) {
   ctx.save(); ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; let cx = x;
-  for (const [s, c, w] of parts) { ctx.font = `${w || 400} ${size}px ${FONT}`; ctx.fillStyle = c; ctx.fillText(s, cx, y); cx += ctx.measureText(s).width; }
+  for (const [s, c, w] of parts) { text(ctx, s, cx, y, c, { size, weight: w || 400 }); ctx.font = F.shownFont(`${w || 400} ${size}px ${FONT}`); cx += ctx.measureText(s).width; }
   ctx.restore();
 }
 

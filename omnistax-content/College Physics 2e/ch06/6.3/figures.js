@@ -29,7 +29,7 @@ function lab(ctx, s, x, y, color, o = {}) {
   let cx = align === 'center' ? x - w / 2 : align === 'right' ? x - w : x;
   if (o.bg) { ctx.fillStyle = o.bg; ctx.fillRect(cx - 7, y - (size + 8) / 2, w + 14, size + 8); }
   ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillStyle = color;
-  parts.forEach(([t, sub]) => { ctx.font = `${weight} ${sub ? ss : size}px ${FONT}`; ctx.fillText(t, cx, y + (sub ? size * 0.22 : 0)); cx += ctx.measureText(t).width; });
+  parts.forEach(([t, sub]) => { text(ctx, t, cx, y + (sub ? size * 0.22 : 0), color, { size: sub ? ss : size, weight }); ctx.font = F.shownFont(`${weight} ${sub ? ss : size}px ${FONT}`); cx += ctx.measureText(t).width; });
   ctx.restore();
 }
 /* an arc from the angle a1 to the angle a2, both measured from the horizontal with the angle growing upward */
