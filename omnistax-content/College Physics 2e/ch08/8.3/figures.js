@@ -218,8 +218,8 @@ function bar(ctx, x1, x2, y, color, h) {
     topline(ctx, !after
       ? 'The whole probe is climbing, and its horizontal momentum is ' + whole(f.px) + ' kg·m/s.'
       : 'The horizontal momentum is still ' + whole(f.px) + ' kg·m/s, and the vertical momentum has fallen to ' + whole(f.py(tau)) + ' kg·m/s.');
-    readout(d.readout, `\\kpx = ${tnum(f.px)}\\ \\text{kg·m/s} = \\text{constant}\\qquad \\kpy = ${tnum(f.py(tau))}\\ \\text{kg·m/s} \\neq \\text{constant}`,
-      'The two halves push each other apart with ' + whole(dp.v) + ' kg·m/s, one forward and one backward, so the horizontal momentum of the pair is the momentum the whole probe had. Gravity is an external force and takes ' + whole(M * G) + ' kg·m/s from the vertical momentum every second.');
+    readout(d.readout, `\\kpx = ${tnum(f.px)}\\ \\text{kg·m/s} = \\text{constant}`,
+      'The vertical momentum is ' + whole(f.py(tau)) + ' kg·m/s now and is not constant. The two halves push each other apart with ' + whole(dp.v) + ' kg·m/s, one forward and one backward, so the horizontal momentum of the pair is the momentum the whole probe had. Gravity is an external force and takes ' + whole(M * G) + ' kg·m/s from the vertical momentum every second.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });
 })();

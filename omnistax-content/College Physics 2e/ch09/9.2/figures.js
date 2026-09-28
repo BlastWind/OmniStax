@@ -91,16 +91,21 @@ function fulcrum(ctx, x, y, h) {
      door the force is applied from is a state and not a quantity, so it is a choice:
      panel (a) of the book's figure is the push, and panel (d), the same force the other
      way about, is the pull. */
-  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle between the push and the line back to the hinges' });
+  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle between the push and the line back to the hinges',
+    specials: [{ at: 0, label: 'along the door' }, { at: 90, label: 'perpendicular' }, { at: 180, label: 'along the door' }] });
   const side = choice(d.controls, { label: '\\text{the force}', options: [{ value: 'push', label: 'push' }, { value: 'pull', label: 'pull' }], value: 'push', aria: 'which way the door is acted on' });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
   const S = 780, KF = 4.6, HX = 250, HY = 390, LEN = 0.9;
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('force'), pc = C('position'), tc = C('torque');
     const r = rs.v, Fv = Fs.v, th = ts.v, sgn = side.value === 'push' ? 1 : -1;
     const px = HX + r * S, py = HY;
-    const ux = cosd(180 - th), uy = -sgn * sind(180 - th);      /* the direction of the push on the canvas */
-    const tau = sgn * r * Fv * sind(th), rp = r * Math.abs(sind(th)), fp = foot(HX, HY, px, py, ux, uy);
+    /* a change between push and pull swings the force through to the other side of the door */
+    const ssw = side.mix((v) => (v === 'push' ? 1 : -1));
+    const ux = cosd(180 - th), uy = -ssw * sind(180 - th);      /* the direction of the push on the canvas */
+    const tau = ssw * r * Fv * sind(th), rp = r * Math.abs(sind(th)), fp = foot(HX, HY, px, py, ux, uy);
     /* the wall, the hinges and the door seen from overhead */
     fixed(ctx, 70, HY - 30, 180, 60);
     text(ctx, 'the wall', 128, HY + 50, PAL.muted, { size: 19, align: 'center' });
@@ -129,13 +134,15 @@ function fulcrum(ctx, x, y, h) {
     text(ctx, 'the hinges', HX, HY - 46, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
     /* which way the door turns */
     if (Math.abs(tau) > 0.005) { turnArc(ctx, HX, HY, 92, tau > 0, tc, Math.PI / 2); text(ctx, 'τ', HX, HY + 124, tc, { size: 24, weight: 600, align: 'center' }); }
+    const tv = sgn * r * Fv * sind(th);
     const act = sgn > 0 ? 'push' : 'pull';
     headline(ctx, Fv === 0 ? 'With no force on the door there is no torque about the hinges at all.'
-      : Math.abs(tau) < 0.005 ? 'The force runs straight along the line to the hinges, so its lever arm is nothing and it makes no torque.'
-      : 'A ' + act + ' of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at θ = ' + fmt(th, 0) + '°, makes ' + fmt(Math.abs(tau), 1) + ' N·m ' + (tau > 0 ? 'counterclockwise' : 'clockwise') + '.');
-    readout(d.readout, `\\ktau = ${sgn > 0 ? '' : '-'}\\krlev\\kF\\sin\\theta = ${sgn > 0 ? '' : '-'}(${fmt(r, 3)}\\ \\text{m})(${fmt(Fv, 0)}\\ \\text{N})\\sin ${fmt(th, 0)}^\\circ = ${num(tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
-      Math.abs(tau) < 0.005 ? 'The perpendicular lever arm is the shortest distance from the hinges to the line along which the force acts, and here that line runs through the hinges themselves, so the lever arm is zero and the door will not turn however hard you push.'
-        : 'The perpendicular lever arm is r⊥ = r sin θ = ' + fmt(rp, 3) + ' m, and τ = r⊥F gives the same ' + fmt(Math.abs(tau), 1) + ' N·m. A pull is the same force applied the other way about, so it makes a torque of the same size in the opposite sense, and the counterclockwise-positive convention writes that one with a minus sign.');
+      : Math.abs(tv) < 0.005 ? 'The force runs straight along the line to the hinges, so its lever arm is nothing and it makes no torque.'
+      : 'A ' + act + ' of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at θ = ' + fmt(th, 0) + '°, makes ' + fmt(Math.abs(tv), 1) + ' N·m ' + (tv > 0 ? 'counterclockwise' : 'clockwise') + '.');
+    const mi = sgn > 0 ? '' : '\\mk{s}{-}', mj = sgn > 0 ? '' : '\\mk{s2}{-}';
+    F.morph(formula, `\\mk{t}{\\ktau} = ${mi}\\mk{r}{\\krlev}\\mk{f}{\\kF}\\mk{a}{\\sin\\theta} = ${mj}(\\mk{rn}{${fmt(r, 3)}}\\ \\text{m})(\\mk{fn}{${fmt(Fv, 0)}}\\ \\text{N})\\sin \\mk{an}{${fmt(th, 0)}}^\\circ = \\mk{tn}{${num(tv, 1)}}\\ \\text{N}\\cdot\\text{m}`);
+    note.textContent = Math.abs(tv) < 0.005 ? 'The perpendicular lever arm is the shortest distance from the hinges to the line along which the force acts, and here that line runs through the hinges themselves, so the lever arm is zero and the door will not turn however hard you push.'
+        : 'The perpendicular lever arm is r⊥ = r sin θ = ' + fmt(rp, 3) + ' m, and τ = r⊥F gives the same ' + fmt(Math.abs(tv), 1) + ' N·m. A pull is the same force applied the other way about, so it makes a torque of the same size in the opposite sense, and the counterclockwise-positive convention writes that one with a minus sign.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -149,9 +156,13 @@ function fulcrum(ctx, x, y, h) {
 ===================================================================== */
 (function () {
   const d = sim('sim-hockey-stick', 700);
-  const ps = ctl(d.controls, { label: '\\text{the nail}', cls: 'position', min: 0.1, max: 1.3, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'where the nail is driven, measured from the blade' });
+  const ps = ctl(d.controls, { label: '\\text{the nail}', cls: 'position', min: 0.1, max: 1.3, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'where the nail is driven, measured from the blade',
+    specials: [{ at: 1.1, label: 'at the hand' }] });
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 30, unit: 'N', dec: 0, aria: 'the size of the push' });
-  const gs = ctl(d.controls, { label: '\\text{the push}', cls: '', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, aria: 'the direction of the push, measured from the horizontal' });
+  const gs = ctl(d.controls, { label: '\\text{the push}', cls: '', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, aria: 'the direction of the push, measured from the horizontal',
+    specials: [{ at: 90, label: 'along the stick' }] });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
   const X = 560, YB = 620, S = 338, HAND = 1.10, KF = 4.4, PX = 1010;
   const yOf = (s) => YB - s * S;
   function draw() {
@@ -202,9 +213,9 @@ function fulcrum(ctx, x, y, h) {
       : Math.abs(tau) < 0.02 ? 'The nail lies on the line along which the force acts, so the lever arm is nothing and the stick does not turn.'
       : 'About the nail ' + fmt(p, 2) + ' m from the blade a push of ' + fmt(Fv, 0) + ' N turns the stick ' + (tau > 0 ? 'counterclockwise' : 'clockwise') + ' with ' + fmt(Math.abs(tau), 1) + ' N·m.');
     /* r⊥ and F are both positive, so a clockwise turn takes its minus sign in the equation itself */
-    const mi = eps(tau, 1) < 0 ? '-' : '';
-    readout(d.readout, `\\ktau = ${mi}\\krperp\\kF = ${mi}(${fmt(rp, 2)}\\ \\text{m})(${fmt(Fv, 0)}\\ \\text{N}) = ${num(tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
-      'Counterclockwise is counted positive here, so the minus sign appears in the equation itself when the stick turns the other way. The same force at the same point gives a different answer for every nail, because the torque is always taken about a pivot you have chosen. Drive the nail at A, below the hand, and the stick turns counterclockwise; drive it at B, above the hand, and the same push turns it clockwise; put it on the line of the force and it does not turn at all.');
+    const neg = eps(tau, 1) < 0, mi = neg ? '\\mk{s}{-}' : '', mj = neg ? '\\mk{s2}{-}' : '';
+    F.morph(formula, `\\mk{t}{\\ktau} = ${mi}\\mk{r}{\\krperp}\\mk{f}{\\kF} = ${mj}(\\mk{rn}{${fmt(rp, 2)}}\\ \\text{m})(\\mk{fn}{${fmt(Fv, 0)}}\\ \\text{N}) = \\mk{tn}{${num(tau, 1)}}\\ \\text{N}\\cdot\\text{m}`);
+    note.textContent = 'Counterclockwise is counted positive here, so the minus sign appears in the equation itself when the stick turns the other way. The same force at the same point gives a different answer for every nail, because the torque is always taken about a pivot you have chosen. Drive the nail at A, below the hand, and the stick turns counterclockwise; drive it at B, above the hand, and the same push turns it clockwise; put it on the line of the force and it does not turn at all.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -217,10 +228,15 @@ function fulcrum(ctx, x, y, h) {
 ===================================================================== */
 (function () {
   const d = sim('sim-seesaw', 700);
-  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 10, max: 50, step: 0.5, value: 26, unit: 'kg', dec: 1, aria: 'the mass of the first child' });
-  const r1 = ctl(d.controls, { label: '\\krone', cls: 'position', min: 0.2, max: 2.5, step: 0.05, value: 1.6, unit: 'm', dec: 2, aria: 'the distance from the pivot to the first child' });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 10, max: 50, step: 0.5, value: 32, unit: 'kg', dec: 1, aria: 'the mass of the second child' });
-  const r2 = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 0.2, max: 2.5, step: 0.05, value: 1.3, unit: 'm', dec: 2, aria: 'the distance from the pivot to the second child' });
+  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 10, max: 50, step: 0.5, value: 26, unit: 'kg', dec: 1, aria: 'the mass of the first child',
+    specials: [{ at: () => (m2.v * r2.v) / r1.v, label: 'balanced' }] });
+  const r1 = ctl(d.controls, { label: '\\krone', cls: 'position', min: 0.2, max: 2.5, step: 0.05, value: 1.6, unit: 'm', dec: 2, aria: 'the distance from the pivot to the first child',
+    specials: [{ at: () => (m2.v * r2.v) / m1.v, label: 'balanced' }] });
+  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 10, max: 50, step: 0.5, value: 32, unit: 'kg', dec: 1, aria: 'the mass of the second child',
+    specials: [{ at: () => (m1.v * r1.v) / r2.v, label: 'balanced' }] });
+  const r2 = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 0.2, max: 2.5, step: 0.05, value: 1.3, unit: 'm', dec: 2, aria: 'the distance from the pivot to the second child',
+    specials: [{ at: () => (m1.v * r1.v) / m2.v, label: 'balanced' }] });
+  m1.refresh(); r1.refresh(); m2.refresh();
   const FX = 700, FY = 360, S = 228, HALF = 2.6, KW = 0.26;
   function draw() {
     const { ctx } = begin(d.c);
@@ -270,7 +286,8 @@ function fulcrum(ctx, x, y, h) {
 (function () {
   const d = sim('sim-any-pivot', 770);
   const ds = ctl(d.controls, { label: '\\text{the pivot}', cls: 'position', min: -2.5, max: 2.5, step: 0.05, value: 0, unit: 'm', dec: 2, aria: 'the point the torques are taken about, measured from the fulcrum' });
-  const ms = ctl(d.controls, { label: 'm_1', cls: '', min: 20, max: 40, step: 0.5, value: 26, unit: 'kg', dec: 1, aria: 'the mass of the first child' });
+  const ms = ctl(d.controls, { label: 'm_1', cls: '', min: 20, max: 40, step: 0.5, value: 26, unit: 'kg', dec: 1, aria: 'the mass of the first child',
+    specials: [{ at: () => (m2.v * r2.v) / r1.v, label: 'balanced' }] });
   const rs = ctl(d.controls, { label: '\\krone', cls: 'position', min: 0.6, max: 2, step: 0.05, value: 1.6, unit: 'm', dec: 2, aria: 'the distance from the fulcrum to the first child' });
   const M2 = 32, FX = 700, FY = 300, S = 228, HALF = 2.6, KW = 0.2, KT = 0.13;
   function draw() {

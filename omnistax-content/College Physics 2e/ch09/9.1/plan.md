@@ -91,6 +91,7 @@ sliders with their types · headline · graph or none · 3D or not
    carried as the single normal force $\kN$ that the four equal arrows of
    the scene share a quarter of each, as the book's caption says. Draws
    force, velocity.
+   Manim pass, 2026-09-28: a dashed circle on each horizontal force at the other's value marks equilibrium; the readout is the one equation along the road, the vertical one in the small line.
 3. `sim-stick` · replaces Figure 9.4 and folds Figure 9.5 (the same ice
    hockey stick, the same two forces, applied first along one line and then
    at different places) · point-of-application, first-condition-equilibrium
@@ -110,6 +111,7 @@ sliders with their types · headline · graph or none · 3D or not
    $\text{net}\;\kF = \kF - \kF = 0$ with the numbers, and a second line
    saying that the free-body diagram cannot tell the two cases apart.
    Draws force.
+   Manim pass, 2026-09-28: a dashed circle on $d$ at 0 marks the one line of action of Figure 9.4.
 
    The fold is rule 14's own case: the book draws one scene twice because
    print cannot slide the forces along the stick, and one drawing with a
@@ -134,6 +136,7 @@ sliders with their types · headline · graph or none · 3D or not
    along the floor and 1,470 N across it · no. Readout: the two component equations with the
    numbers, and a second line saying that nothing in them mentions the
    speed. Draws force, velocity.
+   Manim pass, 2026-09-28: a dashed circle on $\kv$ at 0 marks static equilibrium; the readout is the one equation along the floor, the vertical one in the small line.
 
 Photographs: the section has none. Its four images are all free-body
 diagrams drawn over a sketch or a photograph, and the chapter config says

@@ -82,6 +82,7 @@ id · replaces · concepts · value add · motion · sliders and choices · head
    (rule 26.7). Readout: $\kL = I\kw$ with the numbers; small line that the
    two point the same way because $I$ is positive. Draws angular-rate,
    angular-momentum.
+   Manim pass, 2026-09-28: a change of sense no longer cuts: $\kw$ and $\kL$ run down through nothing and out the other way, the hand turns through 180° in the page, and the turning arrow on the disk fades to its reverse.
 2. `sim-torque-direction` · replaces Figure 10.38 (a) and (b) (the torque
    perpendicular to the plane of $r$ and $F$, and the merry-go-round) ·
    torque-sets-the-direction-of-angular-momentum, right-hand-rule,
@@ -103,6 +104,7 @@ id · replaces · concepts · value add · motion · sliders and choices · head
    Readout: $\ktau = \kr\kF$ with the numbers; small line that $\kdLang =
    \ktau\,\Delta t$ points the way the torque points. Draws torque, force,
    position, angular-momentum.
+   Manim pass, 2026-09-28: a change of push no longer cuts: $\kF$, $\ktau$ and $\kdLang$ run through nothing to the other side, and the turning arrow fades to its reverse.
 3. `sim-bike-wheel` · replaces Figure 10.39 (a) and (b) (the woman and the
    spinning wheel, and the vector sum) · torque-sets-the-direction-of-
    angular-momentum, right-hand-rule, head-to-tail-method (3.2) ·
@@ -124,10 +126,11 @@ id · replaces · concepts · value add · motion · sliders and choices · head
    \kL_0 + \ktau t$, so the direction tilts by $\tan^{-1}(\kdLang/\kL)$ and
    the magnitude grows only slightly, which is what the book says for a
    small change. Labels $\kL$, $\kdLang$, $\kL + \kdLang$, $\ktau$ and the
-   two $\kF$ on things that move and turn, so they go behind a Labels button,
-   off by default, with hover names (rule 26.7). Readout: $\kdLang =
-   \ktau\,\Delta t$ and $\kL = I\kw$ with the numbers; small line with the
-   angle. Draws angular-momentum, torque, angular-rate, force.
+   two $\kF$ on things that move and turn, so in the scene they are hover
+   names and the diagram beside it names each kind (rule 26.7). Readout:
+   $\kdLang = \ktau\,\Delta t$ with the numbers; small line with $\kL = I\kw$
+   and the angle. Draws angular-momentum, torque, angular-rate, force.
+   Manim pass, 2026-09-28: the Labels button was removed (rule 26.7); the scene's arrows are named under the pointer and the diagram beside it names each kind; the readout is the one equation $\kdLang = \ktau\,\Delta t$, $\kL$ in the small line.
 4. `sim-gyroscope` · replaces Figure 10.40 (a) and (b) (the forces on a
    spinning gyroscope and the cone its angular momentum sweeps) ·
    gyroscopic-precession, torque-sets-the-direction-of-angular-momentum,
@@ -164,12 +167,13 @@ id · replaces · concepts · value add · motion · sliders and choices · head
    $\kdLang$ in the angular-momentum hue, $w$ and $N$ in the force hue,
    $\ktau$ in the torque hue. The spin is drawn at one twentieth of its true
    rate so the spokes can be followed, and the readout says so (rule 28.4).
-   Six labels on things that move, so they sit behind a Labels button, off
-   by default, and every arrow and body has a hover name (rule 26.7). Where
-   WebGL is missing the stage says so. Readout: $\ktau = mgr\sin\theta$ and
-   $\kL = I\kw$ with the numbers, and the precession period $2\pi I\kw / mgr$;
-   small line on the drawn spin rate. Draws angular-momentum, torque,
+   Six labels would sit on things that move, so none is drawn and every
+   arrow and body has a hover name (rule 26.7). Where WebGL is missing the
+   stage says so. Readout: $\ktau = mgr\sin\theta$ with the numbers; small
+   line on $\kL = I\kw$, the precession period $2\pi I\kw / mgr$ and the drawn
+   spin rate. Draws angular-momentum, torque,
    angular-rate, force.
+   Manim pass, 2026-09-28: the Labels button was removed (rule 26.7); every arrow is named under the pointer; the readout is the one torque equation, $\kL$ in the small line.
 
 Figure 10.41, Earth's axis precessing, sits inside the section's one problem
 and travels on that problem's card as its `figure` field, as the chapter

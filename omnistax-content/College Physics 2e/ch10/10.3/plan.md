@@ -146,6 +146,7 @@ headline · graph · 3D
    from one fixed viewpoint with shaded faces and no orbit. Readout: the
    shape's formula with the live numbers. Draws rotational-inertia, position.
    Labels on: the axis and the dimensions, three at most.
+   Manim pass, 2026-09-28: the readout is drawn with `F.morph`, the terms tagged by meaning ($I$, the coefficient, $M$, the radius or length term), so a change of body bends the coefficient and keeps $M$ in place; the bodies do not stand for one another, so the old one fades out and the new one in with a slight drop, none bending into the next.
 4. `sim-merry-go-round` · replaces Figure 10.13, the father pushing the
    merry-go-round · newtons-second-law-rotation, mass-distribution-and-inertia,
    choosing-a-moment-of-inertia, torque-on-a-point-mass · variation by slider
@@ -177,6 +178,7 @@ headline · graph · 3D
    the child and the push stays at the rim where the father stands; both
    stay on, since two labels never crowd, and the child has a hover name as
    well.
+   Manim pass, 2026-09-28: a dashed circle on the child's mass at 0 (part (a) of the example); the readout writes $\kI$ out as $\frac{1}{2}M\kR^2 + m\kr_{\text{c}}^2$ with `F.morph`, and at 0 the child's term leaves the sum.
 
 Photographs: the racing bicycle (Figure 10.14) sits inside a conceptual
 question and travels on that item's card, as `ch10/config.md` decides; it is

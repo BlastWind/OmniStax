@@ -146,8 +146,10 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-eraser', 640);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 25, step: 0.5, value: 3, unit: '°', dec: 1, aria: 'the lean of the pencil' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 25, step: 0.5, value: 3, unit: '°', dec: 1, aria: 'the lean of the pencil',
+    specials: [{ at: () => Math.atan2(A.v, 90) / RAD, label: 'critical lean' }] });
   const A = ctl(d.controls, { label: 'a', cls: '', min: 2, max: 40, step: 1, value: 16, unit: 'mm', dec: 0, aria: 'half-width of the flat end' });
+  TH.refresh();
   const H = 90, W = 0.060, SC = 2.2, GY = 500, BX = 300;          /* the cg 90 mm up, a 0.060 N pencil */
   function draw() {
     const { ctx } = begin(d.c);
@@ -254,7 +256,7 @@ function chicken(ctx, d, h, SC, color) {
 (function () {
   const d = sim('sim-marble', 540);
   const S = ctl(d.controls, { label: '\\text{shape}', cls: '', min: -1, max: 1, step: 0.05, value: 1, unit: '', dec: 2, aria: 'shape of the surface, a hill at minus one and a bowl at plus one',
-    detents: [{ v: -1, label: 'a hill' }, { v: 0, label: 'flat' }, { v: 1, label: 'a bowl' }], snap: true });
+    specials: [{ at: -1, label: 'a hill' }, { at: 0, label: 'flat' }, { at: 1, label: 'a bowl' }] });
   const X = ctl(d.controls, { label: 'x', cls: '', min: -40, max: 40, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'displacement of the ball' });
   const SC = 11, CX = 700, CY = 330, W = 1.96, RB = 30, FSC = 70;   /* a 0.200 kg ball; 70 units of arrow per newton */
   const yOf = (s, x) => (s * x * x) / 160;                          /* centimeters above the level place */
@@ -316,7 +318,8 @@ function chicken(ctx, d, h, SC, color) {
   const d = sim('sim-stance', 660);
   const D = ctl(d.controls, { label: 'd', cls: '', min: 10, max: 90, step: 1, value: 25, unit: 'cm', dec: 0, aria: 'distance between the feet' });
   const HG = ctl(d.controls, { label: 'h', cls: '', min: 60, max: 110, step: 1, value: 100, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 30, step: 0.5, value: 4, unit: '°', dec: 1, aria: 'the lean of the person' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 30, step: 0.5, value: 4, unit: '°', dec: 1, aria: 'the lean of the person',
+    specials: [{ at: () => Math.atan2(D.v / 2, HG.v) / RAD, label: 'critical lean' }] });
   const SC = 2.2, GY = 480, BX = 320, W = 700;                     /* a 700 N adult */
   function draw() {
     const { ctx } = begin(d.c);
@@ -347,8 +350,10 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-chicken', 660);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 45, step: 0.5, value: 10, unit: '°', dec: 1, aria: 'the lean of the chicken' });
+  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 45, step: 0.5, value: 10, unit: '°', dec: 1, aria: 'the lean of the chicken',
+    specials: [{ at: () => Math.atan2(9, HG.v) / RAD, label: 'critical lean' }] });
   const HG = ctl(d.controls, { label: 'h', cls: '', min: 5, max: 28, step: 1, value: 15, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
+  TH.refresh();
   const SC = 6.5, GY = 470, BX = 330, W = 24.5, D = 18;            /* a 2.50 kg chicken on feet 18 cm apart */
   function draw() {
     const { ctx } = begin(d.c);

@@ -161,6 +161,7 @@ headline · graph · 3D
    $\kKEtrans = \frac{1}{2}m\kv^2$ with the live numbers; small line giving
    the ratio and $\kh = \kKErot / m\kg$. Labels: four, on by default (26.7).
    Draws angular-rate, rotational-inertia, velocity, energy, position.
+   Manim pass, 2026-09-28: the readout is the one equation for $\kKErot$; $\kKEtrans$ moved into the small line.
 4. `sim-cans-race` · replaces Figure 10.21, the three cans of soup racing
    down an incline · rolling-splits-the-energy, rotational-kinetic-energy,
    conservation-of-mechanical-energy, linear-from-angular · **motion and the

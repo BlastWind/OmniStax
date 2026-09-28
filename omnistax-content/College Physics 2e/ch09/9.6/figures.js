@@ -134,7 +134,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
      reachable: with the center of gravity 0.400 m up the spine it arrives at 61°, which is given
      a detent of its own, as the upright position is. */
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 65, step: 1, value: 0, unit: '°', dec: 0, aria: 'lean of the upper body away from the vertical',
-    detents: [{ v: 0, label: 'upright' }, { v: 61, label: 'Example 9.5' }], snap: true });
+    specials: [{ at: 0, label: 'upright' }], detents: [{ v: 61, label: 'Example 9.5' }], snap: true });
   const MU = ctl(d.controls, { label: 'm_{\\text{ub}}', cls: '', min: 40, max: 80, step: 1, value: 55, unit: 'kg', dec: 1, aria: 'mass of the upper body' });
   const RB = ctl(d.controls, { label: '\\krbperp', cls: 'position', min: 4, max: 12, step: 0.5, value: 8, unit: 'cm', dec: 1, aria: 'perpendicular lever arm of the back muscles' });
   const DCG = 0.400, SP = 308;         /* the centre of gravity sits 0.400 m up the spine, which makes its lever */
@@ -324,9 +324,12 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
 ===================================================================== */
 (function () {
   const d = sim('sim-lever-arm-trade', 770);
-  const PH = ctl(d.controls, { label: '\\varphi', cls: '', min: 40, max: 140, step: 1, value: 70, unit: '°', dec: 0, aria: 'angle at the elbow' });
+  const PH = ctl(d.controls, { label: '\\varphi', cls: '', min: 40, max: 140, step: 1, value: 70, unit: '°', dec: 0, aria: 'angle at the elbow',
+    specials: [{ at: 90, label: 'Example 9.4' }] });
   const R1 = ctl(d.controls, { label: '\\krone', cls: 'position', min: 2, max: 8, step: 0.5, value: 4, unit: 'cm', dec: 1, aria: 'distance from the elbow to the biceps' });
-  const HUM = 0.250, HAND = 0.380;     /* the biceps runs from 25.0 cm up the humerus, and the hand sits where the book has it */
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  const HUM = 0.250, HAND = 0.380;    /* the biceps runs from 25.0 cm up the humerus, and the hand sits where the book has it */
   const EX = 430, EY = 470, S = 1060;
   const len = (ph, r1) => Math.sqrt(HUM * HUM + r1 * r1 - 2 * HUM * r1 * Math.cos(ph * RAD));
 
@@ -374,13 +377,14 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
       : (ph < 90 ? 'Closing' : 'Opening') + ' the elbow to ' + fmt(ph, 0) + '° '
         + (ph < 90 ? 'shortens' : 'lengthens') + ' the biceps by ' + fmt(Math.abs(dL) * 100, 2)
         + ' cm while the hand sweeps ' + fmt(ds * 100, 1) + ' cm, which is ' + fmt(ds / Math.abs(dL), 0) + ' times as far.');
-    readout(d.readout,
+    /* at 90° nothing has moved, and the ratio unfolds into its two parts, each of them nothing */
+    F.morph(formula,
       Math.abs(dL) < 1e-4
-        ? `\\Delta s = \\Delta L = 0\\ \\text{cm}`
-        : `\\frac{\\Delta s}{\\Delta L} = \\frac{${fmt(ds * 100, 1)}\\ \\text{cm}}{${fmt(Math.abs(dL) * 100, 2)}\\ \\text{cm}} = ${fmt(ds / Math.abs(dL), 1)}`,
-      Math.abs(dL) < 1e-4
+        ? `\\mk{s}{\\Delta s} = \\mk{l}{\\Delta L} = \\mk{n}{0}\\ \\text{cm}`
+        : `\\frac{\\mk{s}{\\Delta s}}{\\mk{l}{\\Delta L}} = \\frac{\\mk{sn}{${fmt(ds * 100, 1)}}\\ \\text{cm}}{\\mk{ln}{${fmt(Math.abs(dL) * 100, 2)}}\\ \\text{cm}} = \\mk{q}{${fmt(ds / Math.abs(dL), 1)}}`);
+    note.textContent = Math.abs(dL) < 1e-4
         ? 'Nothing has moved yet, since the arm is still in the position the example draws.'
-        : 'The same short lever arm that makes the biceps pull so hard is what turns a contraction of a centimeter or so into a large and quick movement of the hand. Slide the attachment out along the forearm and the muscle has to travel much farther for the same sweep.');
+        : 'The same short lever arm that makes the biceps pull so hard is what turns a contraction of a centimeter or so into a large and quick movement of the hand. Slide the attachment out along the forearm and the muscle has to travel much farther for the same sweep.';
   }
   register(d.fig, { update: () => {}, draw });
 })();

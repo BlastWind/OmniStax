@@ -124,6 +124,7 @@ id · replaces or Sim · concepts · what moves · sliders · headline · graph 
    dimensions on Figure 9.26
    itself, and the plan records the choice rather than leaving it to be
    rediscovered. Draws force, position, torque.
+   Manim pass, 2026-09-28: the upright position is a dashed circle (no torque, which the text names); 61° stays a detent.
 3. `fig-stance` · photograph, Figure 9.27, **kept**: the text points the
    reader at it ("as seen in Figure 9.27") and it shows the thing the
    passage is about, a person leaning forward, sideways and backward to
@@ -158,6 +159,7 @@ id · replaces or Sim · concepts · what moves · sliders · headline · graph 
    beside the movement of the hand · no. The biceps is taken to run from
    0.250 m up the humerus to $\krone$ along the forearm, and the hand sits
    at the 0.380 m of Example 9.4. Draws position.
+   Manim pass, 2026-09-28: a dashed circle at 90°, Example 9.4's position; the readout is drawn with `F.morph`, so the ratio unfolds into $\Delta s = \Delta L = 0$ there by meaning.
 
 Every diagram of the section is replaced; the one photograph is kept, and
 there is no decoration to drop. The nine figures that sit inside problems

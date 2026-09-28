@@ -91,6 +91,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    hand with the numbers in it, and a small line for the first condition
    $\kFL + \kFR = \kwgt = mg$. Draws force and position; the figure states
    torques in words and colours none of them, so it binds no torque hue.
+   Manim pass, 2026-09-28: dashed circles on the cg slider at the symmetric hold (halfway between the hands, Figure 9.18) and over the left hand (where $\kFR$ passes through zero), recomputed from the hand spacing; the readout is one line solved for $\kFR$.
 
    The drawing is to a fixed scale, from −0.50 m to 3.30 m along the pole,
    which holds every position the sliders reach, so that moving the center of
@@ -127,6 +128,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    force, position. This is the figure for step 3 of the strategy: the book
    states that any pivot may be chosen and that the useful ones kill the
    torque of an unknown force, and then uses the rule without drawing it.
+   Manim pass, 2026-09-28: dashed circles on the pivot slider at the right hand, the center of gravity and the left hand, where one torque drops out.
 
 `static-equilibrium-strategy` is a skill whose statement is a list of four
 steps, and a drawing of a list is not a figure; it is served by `sim-pole`,

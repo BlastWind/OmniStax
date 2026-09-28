@@ -144,7 +144,8 @@ function bar(ctx, x1, x2, y, h, f, color) {
 (function () {
   const d = sim('sim-mass-ratio', 640);
   const ve = ctl(d.controls, { label: '\\kve', cls: 'velocity', min: 0.5, max: 5, step: 0.1, value: 2.5, unit: '\u00d7 10\u00b3 m/s', dec: 1, aria: 'exhaust velocity' });
-  const ratio = ctl(d.controls, { label: 'm_0 / m_{\\text{r}}', cls: '', min: 1, max: 200, step: 1, value: 88, unit: '', dec: 0, aria: 'mass ratio' });
+  const ratio = ctl(d.controls, { label: 'm_0 / m_{\\text{r}}', cls: '', min: 1, max: 200, step: 1, value: 88, unit: '', dec: 0, aria: 'mass ratio',
+    specials: [{ at: () => Math.exp(11.2 / ve.v), label: 'escape velocity' }] });
   const ESCAPE = 11.2e3;
   function draw() {
     const { ctx } = begin(d.c);

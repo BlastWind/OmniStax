@@ -55,10 +55,13 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
 ===================================================================== */
 (function () {
   const d = sim('sim-elastic-collision', 700);
-  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.1, max: 5, step: 0.05, value: 0.5, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the first object' });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 5, step: 0.05, value: 3.5, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the second object' });
+  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.1, max: 5, step: 0.05, value: 0.5, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the first object',
+    specials: [{ at: () => m2.v, label: 'equal masses' }] });
+  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 5, step: 0.05, value: 3.5, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the second object',
+    specials: [{ at: () => m1.v, label: 'equal masses' }] });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 6, step: 0.25, value: 4, unit: 'm/s', dec: 2, onInput: reset, aria: 'velocity of the first object before the collision' });
   const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: -6, max: 0.5, step: 0.25, value: 0, unit: 'm/s', dec: 2, onInput: reset, aria: 'velocity of the second object before the collision' });
+  m1.refresh();
 
   const SC = 85, TC = 1.0, GY = 308, VY = 132, PY = 200;
   const wide = (m) => 58 + 26 * Math.sqrt(m);
@@ -136,9 +139,14 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
 ===================================================================== */
 (function () {
   const d = sim('sim-two-solutions', 620);
-  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.1, max: 5, step: 0.05, value: 0.5, unit: 'kg', dec: 2, aria: 'mass of the first object' });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 5, step: 0.05, value: 3.5, unit: 'kg', dec: 2, aria: 'mass of the second object' });
+  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.1, max: 5, step: 0.05, value: 0.5, unit: 'kg', dec: 2, aria: 'mass of the first object',
+    specials: [{ at: () => m2.v, label: 'equal masses' }] });
+  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 5, step: 0.05, value: 3.5, unit: 'kg', dec: 2, aria: 'mass of the second object',
+    specials: [{ at: () => m1.v, label: 'equal masses' }] });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 6, step: 0.25, value: 4, unit: 'm/s', dec: 2, aria: 'velocity of the first object before the collision' });
+  m1.refresh();
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
 
   function draw() {
     const { ctx } = begin(d.c);
@@ -185,9 +193,16 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     text(ctx, 'after the collision', X(v1p), Y(Math.min(Math.max(v2p, -VR), VR)) + (high ? 34 : -32), PAL.ink, { align: 'center', size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
 
     topline(ctx, 'The curves meet twice, at v′₁ = ' + num(V, 2) + ' m/s before the collision and at v′₁ = ' + num(v1p, 2) + ' m/s after it.');
-    readout(d.readout,
-      `\\kvoneprime = \\frac{m_1 - m_2}{m_1 + m_2}\\kvone = ${fmt(v1p, 2)}\\ \\text{m/s}, \\qquad \\kvtwoprime = \\frac{2m_1}{m_1 + m_2}\\kvone = ${fmt(v2p, 2)}\\ \\text{m/s}`,
-      'The hollow crossing is the pair of velocities the objects already had, so it describes the situation before the collision and is discarded; the filled crossing is the only other way the two objects can leave one another with the momentum and the internal kinetic energy they came in with.');
+    /* at equal masses the difference in the numerator is nothing, and the formula becomes the swap */
+    const same = Math.abs(M1 - M2) < 1e-9;
+    F.morph(formula, same
+      ? `\\mk{v}{\\kvoneprime} = \\mk{n}{0}\\ \\text{m/s}`
+      : `\\mk{v}{\\kvoneprime} = \\mk{f}{\\frac{m_1 - m_2}{m_1 + m_2}}\\mk{u}{\\kvone} = \\mk{n}{${fmt(v1p, 2)}}\\ \\text{m/s}`,
+      { keyMap: same ? { f: 'n', u: 'n' } : {} });
+    note.textContent = (same
+      ? 'With equal masses the first object stops dead and the second leaves with v′₂ = v₁ = ' + fmt(V, 2) + ' m/s: the two exchange velocities. '
+      : 'The second object leaves with v′₂ = 2m₁v₁/(m₁ + m₂) = ' + fmt(v2p, 2) + ' m/s. ')
+      + 'The hollow crossing is the pair of velocities the objects already had, so it describes the situation before the collision and is discarded; the filled crossing is the only other way the two objects can leave one another with the momentum and the internal kinetic energy they came in with.';
   }
   register(d.fig, { update: () => {}, draw });
 })();

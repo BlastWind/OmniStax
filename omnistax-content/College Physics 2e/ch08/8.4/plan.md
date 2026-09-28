@@ -86,6 +86,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    conserved · no. Readout: $\kpone + \kptwo = \kponeprime + \kptwoprime$ with
    the numbers; small line on the internal kinetic energy before and after.
    Draws velocity, momentum, energy.
+   Manim pass, 2026-09-28: a dashed circle on each mass slider at the other mass marks the equal masses the section's items name, where the blocks trade velocities.
 2. `sim-two-solutions` · a Sim; replaces nothing in the book ·
    elastic-collision-1d, physical-solution, internal-kinetic-energy ·
    **still**: the picture answers its sliders and nothing else, so it registers
@@ -105,6 +106,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    Readout: ${v'}_1 = \frac{m_1 - m_2}{m_1 + m_2}\kvone$ and
    ${v'}_2 = \frac{2m_1}{m_1 + m_2}\kvone$ with the numbers; small line on why
    the first root is thrown away. Draws velocity, momentum, energy.
+   Manim pass, 2026-09-28: the readout is the one equation for ${v'}_1$, drawn with `F.morph`; the equal-mass circles on both mass sliders fire a morph by meaning into ${v'}_1 = 0$ (the fraction and $\kvone$ bend into the zero), and the small line then says the second object leaves with $\kvone$. ${v'}_2$ lives in the small line.
 
 The section has one book figure and it is a sketch, so it is replaced; there is
 no photograph to keep or drop, and nothing folds, since the book draws the

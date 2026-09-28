@@ -86,6 +86,7 @@ graph · 3D
    reach, so the football's momentum reads as the stub beside the player's
    that the example says it is. The player's speed reaches down to a walk so
    that the two momenta can be made to match, as the caption invites.
+   Manim pass, 2026-09-28: a dashed circle on each speed slider marks the speed at which the two momenta are equal, recomputed from the other three values, so the match the caption invites is a place the thumb catches.
 2. `sim-force` · **Sim**, no number: the book draws nothing here either ·
    newtons-second-law-momentum, constant-mass-second-law · **moves**: the
    idea has a time in it, since the momentum accumulates while the racquet
@@ -105,6 +106,7 @@ graph · 3D
    numbers; small line on the same force found the other way, as
    $m\ka$ with $\ka = \kdv/\kdt$, which is the constant-mass case. Draws
    momentum, force, velocity, time and acceleration.
+   Manim pass, 2026-09-28: the readout is the one equation $\kFnet = \kdp/\kdt$ with its numbers; the $m\ka$ form moved into the small line.
 
 The section has no book figure of any kind, so nothing is replaced and
 nothing is folded, and there is no photograph to keep or drop. No exercise

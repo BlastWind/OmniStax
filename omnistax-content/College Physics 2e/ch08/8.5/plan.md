@@ -115,6 +115,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    Readout: $m_1\kvone + m_2\kvtwo = m_1\kvoneprime + m_2\kvtwoprime$ with
    the live numbers on both sides; small line on $\kKEint$, $\kKEintprime$
    and the difference. Draws velocity, momentum, energy.
+   Manim pass, 2026-09-28: the detents at $c = 0$ and $c = 1$ are dashed circles (perfectly inelastic, elastic; 3.08 stays a detent); at $c = 0$ the readout morphs by meaning into $m_1\kvone + m_2\kvtwo = (m_1 + m_2)\kvprime$, the two after terms bending together into the one of the stuck pair.
 2. `sim-recoil` · Sim, replacing nothing in the book · recoil-velocity,
    perfectly-inelastic-collision · **still**: the recoil velocity answers
    its three sliders and has no time in it, so the figure redraws when a

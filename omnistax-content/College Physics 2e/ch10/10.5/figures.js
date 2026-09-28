@@ -32,7 +32,7 @@ function bar(ctx, x1, x2, y, h, v, cap, color, name, value) {
   const f = Math.min(1, Math.max(0, v / cap)), xe = x1 + f * (x2 - x1);
   ctx.fillStyle = color; ctx.fillRect(x1, y - h / 2, xe - x1, h); ctx.restore();
   text(ctx, name, x1 - 16, y, color, { size: 22, weight: 600, align: 'right' });
-  ctx.save(); ctx.font = '600 19px ' + F.FONT; const vw = ctx.measureText(value).width; ctx.restore();
+  const vw = F.measure(ctx, value, { size: 19, weight: 600 });
   if (v > cap) { dot(ctx, x2, y, color, false, 9); text(ctx, value, x2 - 18, y - h / 2 - 16, color, { size: 19, weight: 600, align: 'right' }); }
   else if (xe + 12 + vw > 1385) text(ctx, value, xe, y - h / 2 - 16, color, { size: 19, weight: 600, align: 'right' });
   else text(ctx, value, xe + 12, y, color, { size: 19, weight: 600, align: 'left' });
@@ -208,7 +208,7 @@ function plate(ctx, x, y, r, color) {
 (function () {
   const d = sim('sim-skater', 760);
   const IOUT = 2.34, IIN = 0.363;
-  const Is = ctl(d.controls, { label: '\\kI', cls: 'rotational-inertia', min: IIN, max: IOUT, step: 0.001, value: IOUT, unit: 'kg·m²', dec: 3, aria: 'her moment of inertia, arms out to arms in', detents: [{ v: IIN, label: 'arms in' }, { v: IOUT, label: 'arms out' }], snap: false });
+  const Is = ctl(d.controls, { label: '\\kI', cls: 'rotational-inertia', min: IIN, max: IOUT, step: 0.001, value: IOUT, unit: 'kg·m²', dec: 3, aria: 'her moment of inertia, arms out to arms in', specials: [{ at: IIN, label: 'arms in' }, { at: IOUT, label: 'arms out' }] });
   const w0s = ctl(d.controls, { label: '\\kwo', cls: 'angular-rate', min: 0.2, max: 1.5, step: 0.01, value: 0.8, unit: 'rev/s', dec: 3, aria: 'her angular velocity with her arms out', detents: [{ v: 0.8, label: '0.800' }], snap: false });
   const cy = cycle(() => Infinity, 0);
   let phi = 0;                                        /* how far round she has turned */

@@ -133,6 +133,7 @@ chapter config's reading of it).
    the numbers; small line on the normal force at the wheel,
    $\kN = \kwgt - \kFi$. Draws force, position. The defaults are the
    worked example's, so the figure loads on 32.4 N and 409 N.
+   Manim pass, 2026-09-28: a dashed circle on each lever arm at the other's value marks MA = 1, where the wheelbarrow becomes the shovel.
 3. `sim-incline` · replaces nothing: a **Sim** · simple-machine,
    mechanical-advantage · **still**: the cart is pushed at constant
    velocity and the figure is about the force and the distance, not about
@@ -193,6 +194,7 @@ chapter config's reading of it).
    the ceiling must supply. Draws force. At $n = 1$ the system is the
    ordinary pulley of Figure 9.23(c), which only turns the direction of
    the pull.
+   Manim pass, 2026-09-28: a change of count no longer cuts: the legs, the movable block and the cables slide to their new places, and the sheaves (which swap top for bottom with the count and so have no counterparts), the extra leg, cable and the dead end fade with a slight shift.
 
 Photographs: the section has none. Every one of its four images is a
 sketch or a free-body diagram over a drawing, so all four are replaced and

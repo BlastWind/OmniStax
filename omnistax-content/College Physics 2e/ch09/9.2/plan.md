@@ -101,6 +101,7 @@ graph · 3D
    $\ktau = \krlev\kF\sin\theta$ with the live numbers, carrying a minus sign
    on a pull; small line on the perpendicular lever arm and on the force
    along the hinges that does nothing. Draws force, position, torque.
+   Manim pass, 2026-09-28: dashed circles on $\theta$ at 0°, 90° and 180°; a change between push and pull swings the force through to the other side of the door (the choice's `mix`), and the readout is drawn with `F.morph`, so its minus sign arrives and leaves by meaning.
 2. `sim-hockey-stick` · replaces Figure 9.7 (a) and (b), the same stick about
    pivot A and about pivot B · torque-depends-on-pivot, torque-sign-convention,
    perpendicular-lever-arm · **still**: the stick is nailed down and the
@@ -120,6 +121,7 @@ graph · 3D
    both positive; small line on the counterclockwise-positive convention and
    on the torque being zero when the nail sits on the line of
    action, because the lever arm is then nothing. Draws force, position, torque.
+   Manim pass, 2026-09-28: dashed circles where the torque vanishes: the nail at the hand (1.10 m) and the push along the stick (90°); the readout is drawn with `F.morph`, so the minus sign of a clockwise turn arrives by meaning.
 3. `sim-seesaw` · replaces Figure 9.8, the two children on the seesaw ·
    balanced-seesaw, second-condition-equilibrium, center-of-gravity,
    first-condition-equilibrium · **still**: a balanced seesaw stands still,
@@ -135,6 +137,7 @@ graph · 3D
    the picture · no. Readout: $\krtwo = \krone m_1/m_2$ with the live numbers;
    small line giving the supporting force $\kFp = \kwone + \kwtwo$, which is
    part (b) of the example. Draws force, position, torque.
+   Manim pass, 2026-09-28: a dashed circle on each of the four sliders at the value that balances the seesaw given the other three.
 4. `sim-any-pivot` · Sim (it replaces no figure of the book) ·
    torque-depends-on-pivot, second-condition-equilibrium, balanced-seesaw ·
    **still**: it answers where the reader puts the pivot and nothing else ·

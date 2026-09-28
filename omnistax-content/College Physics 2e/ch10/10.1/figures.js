@@ -216,7 +216,8 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
   const d = sim('sim-accelerations', 860);
   const rs = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.6, unit: 'm', dec: 2, onInput: reset, aria: 'the radius' });
   const w0 = ctl(d.controls, { label: '\\kwo', cls: 'angular-rate', min: 0, max: 3, step: 0.1, value: 0.5, unit: 'rad/s', dec: 1, onInput: reset, aria: 'the starting angular velocity' });
-  const as = ctl(d.controls, { label: '\\kalpha', cls: 'angular-acceleration', min: -1, max: 1, step: 0.05, value: 0.8, unit: 'rad/s²', dec: 2, onInput: reset, aria: 'the angular acceleration' });
+  const as = ctl(d.controls, { label: '\\kalpha', cls: 'angular-acceleration', min: -1, max: 1, step: 0.05, value: 0.8, unit: 'rad/s²', dec: 2, onInput: reset, aria: 'the angular acceleration',
+    specials: [{ at: 0, label: 'uniform motion' }] });
   const T = 4;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
@@ -280,8 +281,8 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     topline(ctx, Math.abs(a) < 1e-9
       ? 'With no angular acceleration the speed stays at ' + fmt(Math.abs(v), 2) + ' m/s and only a_c = ' + fmt(ac, 2) + ' m/s² acts, turning the velocity: this is uniform circular motion.'
       : 'At ' + fmt(t, 2) + ' s the point moves at ' + num(v, 2) + ' m/s; a_t = ' + num(at, 2) + ' m/s² is changing that speed and a_c = ' + fmt(ac, 2) + ' m/s² is changing its direction.');
-    readout(d.readout, `\\kat = \\kr\\kalpha = ${knum(at, 2)}\\ \\text{m/s}^2 \\qquad \\kac = \\kr\\kw^2 = ${fmt(ac, 2)}\\ \\text{m/s}^2`,
-      'With r = ' + fmt(r, 2) + ' m, α = ' + num(a, 2) + ' rad/s² and ω = ω₀ + αt = ' + num(w, 2) + ' rad/s now, the tangential acceleration is (' + fmt(r, 2) + ' m)(' + num(a, 2) + ' rad/s²) and the centripetal acceleration is (' + fmt(r, 2) + ' m)(' + num(w, 2) + ' rad/s)². The two are perpendicular and independent: the tangential acceleration is the same at every instant while α is, and the centripetal acceleration grows with the square of the angular velocity.' + (Math.abs(v) < 0.02 && t > 0.1 ? ' At this instant the point is at rest, so it has no centripetal acceleration at all.' : ''));
+    readout(d.readout, `\\kat = \\kr\\kalpha = ${knum(at, 2)}\\ \\text{m/s}^2`,
+      'With r = ' + fmt(r, 2) + ' m, α = ' + num(a, 2) + ' rad/s² and ω = ω₀ + αt = ' + num(w, 2) + ' rad/s now, the tangential acceleration is (' + fmt(r, 2) + ' m)(' + num(a, 2) + ' rad/s²) and the centripetal acceleration is a_c = rω² = (' + fmt(r, 2) + ' m)(' + num(w, 2) + ' rad/s)² = ' + fmt(ac, 2) + ' m/s².The two are perpendicular and independent: the tangential acceleration is the same at every instant while α is, and the centripetal acceleration grows with the square of the angular velocity.' + (Math.abs(v) < 0.02 && t > 0.1 ? ' At this instant the point is at rest, so it has no centripetal acceleration at all.' : ''));
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();

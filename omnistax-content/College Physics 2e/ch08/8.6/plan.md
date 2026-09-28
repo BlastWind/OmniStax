@@ -100,11 +100,10 @@ headline · graph · 3D
    $\kvtwoprime = 0.886$ m/s. · sliders: $\kvone$ (1.00 to 4.00 m/s,
    default 2.00, velocity), $\theta_1$ ($10^\circ$ to $80^\circ$, default
    $45^\circ$, ink), $\theta_2$ ($-80^\circ$ to $-10^\circ$, default
-   $-48.5^\circ$, ink), $m_2$ (0.100 to 1.000 kg, default 0.400, ink), and a
-   Labels button, off by default, because the two momentum labels ride
-   objects that move and would crowd at a small angle of separation (rule
-   26.7); with the labels off the kind is named once beside the scene and
-   either object still gives its name and its momentum under the pointer ·
+   $-48.5^\circ$, ink), $m_2$ (0.100 to 1.000 kg, default 0.400, ink); the two momentum labels
+   would ride objects that move and crowd at a small angle of separation, so
+   they are not drawn (rule 26.7): the kind is named once beside the scene and
+   either object gives its name and its momentum under the pointer ·
    "The two objects leave at 1.50 m/s and 0.886 m/s, and their momenta along
    y still cancel." · every momentum arrow is on one fixed scale, 120 units
    per kg·m/s, and the ledger bars on theirs, 400 units per kg·m/s along $x$
@@ -118,6 +117,7 @@ headline · graph · 3D
    could reach · no. Readout: the
    $x$-axis equation with the live numbers; small line on the $y$-axis
    equation. Draws momentum, velocity and energy.
+   Manim pass, 2026-09-28: the Labels button was removed (rule 26.7); the kind is named once beside the scene and each object gives its name and momentum under the pointer.
 2. `sim-dark-room` · replaces Figure 8.11 · scattering-to-find-unseen-object,
    momentum-conservation-x, momentum-conservation-y · **moves**: the same
    reason as the first figure, and here the reader also watches the object
@@ -139,6 +139,7 @@ headline · graph · 3D
    the example. Draws velocity; the internal kinetic energy is stated in
    words in the readout and is not colored, so it is not a type this figure
    binds.
+   Manim pass, 2026-09-28: the readout is the one scattering-angle equation ending in $\theta_2$; ${v'}_2$ moved into the small line.
 3. `sim-billiards` · Sim, replacing nothing in the book ·
    equal-mass-elastic-2d, ninety-degree-separation · **moves**: a cue ball
    strikes a ball at rest and the two roll away, so the idea has a time in
@@ -163,6 +164,7 @@ headline · graph · 3D
    identity with the live numbers; small line on the extra term
    $m\kvoneprime\kvtwoprime\cos(\theta_1 - \theta_2)$ and where it
    vanishes. Draws velocity and energy.
+   Manim pass, 2026-09-28: a dashed circle on $\theta_2$ at $\theta_1 - 90^\circ$ marks the ninety-degree separation, recomputed as $\theta_1$ moves.
 
 Both of the book's figures are sketches and both are replaced. The section
 has no photograph to keep or drop.

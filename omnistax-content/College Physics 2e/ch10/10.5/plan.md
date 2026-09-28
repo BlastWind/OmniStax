@@ -149,6 +149,7 @@ id · replaces · concepts · value add · motion · sliders · headline · grap
    rotational kinetic energy before and after and the work that made the
    difference. Labels on: one skater, four named bars. Draws
    rotational-inertia, angular-rate, angular-momentum, energy.
+   Manim pass, 2026-09-28: the arms-in and arms-out detents are dashed circles; the bar helper measures its text through `F.measure` rather than setting a font (rule 26.8).
 5. `sim-cloud` · replaces Figure 10.26 (the Solar System coalescing) ·
    conservation-of-angular-momentum, spin-rate-from-moment-of-inertia ·
    value add: animation and variation; the book's three panels ask the
@@ -171,6 +172,7 @@ id · replaces · concepts · value add · motion · sliders · headline · grap
    varies; a starting rate would be a number the book does not give. Labels
    on: the cloud, the forming Sun and the bars. Draws rotational-inertia,
    angular-rate, angular-momentum.
+   Manim pass, 2026-09-28: the bar helper measures its text through `F.measure` rather than setting a font (rule 26.8).
 
 The five figures inside exercises travel on their cards' `figure` field, as
 `ch10/config.md` settles for this chapter: 10.27 the child on the platform

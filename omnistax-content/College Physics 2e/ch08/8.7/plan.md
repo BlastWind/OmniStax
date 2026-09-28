@@ -125,6 +125,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    $\kv = \kve\ln(m_0/m_{\text{r}})$ with the numbers; small line on the
    percentage of the rocket that is fuel, which is where the case for stages
    comes from. Draws velocity.
+   Manim pass, 2026-09-28: a dashed circle on the mass ratio marks the ratio at which the final velocity reaches escape velocity, $e^{11.2/\kve}$, the book's 88 at 2.5 × 10³ m/s.
 3. `fig-shuttle` · Figure 8.13, the NASA photograph of the space shuttle
    launching · **kept**: the paragraph above it is about the shuttle and its
    reusable parts, and the photograph shows the thing the passage is about;

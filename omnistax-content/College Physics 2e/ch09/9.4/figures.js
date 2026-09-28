@@ -63,8 +63,10 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
 ===================================================================== */
 (function () {
   const d = sim('sim-pole', 980);
-  const P = ctl(d.controls, { label: '\\krlev', cls: 'position', min: 0, max: 3, step: 0.05, value: 0.3, unit: 'm', dec: 3, aria: 'distance from the right hand to the center of gravity' });
+  const P = ctl(d.controls, { label: '\\krlev', cls: 'position', min: 0, max: 3, step: 0.05, value: 0.3, unit: 'm', dec: 3, aria: 'distance from the right hand to the center of gravity',
+    specials: [{ at: () => S.v / 2, label: 'halfway' }, { at: () => S.v, label: 'over the left hand' }] });
   const S = ctl(d.controls, { label: '\\text{hands apart}', cls: 'position', min: 0.3, max: 1.5, step: 0.05, value: 0.9, unit: 'm', dec: 3, aria: 'distance between the hands' });
+  P.refresh();
   const M = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 10, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass of the pole' });
   const YP = 290;
   function draw() {
@@ -124,7 +126,7 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
        figure is about and the one the worked example uses; the first condition, which then gives
        the other hand, follows on the small line. */
     readout(d.readout,
-      `(${fmt(s, 3)}\\ \\text{m})\\,\\kFR = (${fmt(s - p, 3)}\\ \\text{m})\\,\\kwgt = (${fmt(s - p, 3)}\\ \\text{m})(${fmt(w, 1)}\\ \\text{N}),\\quad \\kFR = ${signedTex(FR, 1)}\\ \\text{N}`,
+      `\\kFR = \\frac{(${fmt(s - p, 3)}\\ \\text{m})\\,\\kwgt}{${fmt(s, 3)}\\ \\text{m}} = \\frac{(${fmt(s - p, 3)}\\ \\text{m})(${fmt(w, 1)}\\ \\text{N})}{${fmt(s, 3)}\\ \\text{m}} = ${signedTex(FR, 1)}\\ \\text{N}`,
       even
         ? 'Taking the pivot at the center of gravity, the weight has no lever arm and the two hands are equally far from the pivot, so their equal forces exert equal and opposite torques and both conditions for equilibrium are satisfied at once.'
         : beyond
@@ -142,8 +144,10 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
 ===================================================================== */
 (function () {
   const d = sim('sim-pivot', 900);
-  const Q = ctl(d.controls, { label: '\\text{pivot}', cls: 'position', min: 0, max: 3, step: 0.05, value: 0.9, unit: 'm', dec: 3, aria: 'position of the pivot, measured from the right hand' });
+  const Q = ctl(d.controls, { label: '\\text{pivot}', cls: 'position', min: 0, max: 3, step: 0.05, value: 0.9, unit: 'm', dec: 3, aria: 'position of the pivot, measured from the right hand',
+    specials: [{ at: 0, label: 'right hand' }, { at: () => P.v, label: 'center of gravity' }, { at: 0.9, label: 'left hand' }] });
   const P = ctl(d.controls, { label: '\\krlev', cls: 'position', min: 0, max: 3, step: 0.05, value: 0.3, unit: 'm', dec: 3, aria: 'distance from the right hand to the center of gravity' });
+  Q.refresh();
   const YP = 250, S = 0.9, MASS = 5, BASE = 710, BAR = 90;
   function draw() {
     const { ctx } = begin(d.c);

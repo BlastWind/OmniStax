@@ -122,6 +122,7 @@ with their types · headline · graph or none · 3D or not
    of slope $-M\kg$ · no 3D. Readout: $\kpx = \text{constant}$ beside
    $\kpy \neq \text{constant}$ with the numbers. Draws momentum, velocity
    and time.
+   Manim pass, 2026-09-28: the readout is the one equation $\kpx = \text{constant}$; the vertical momentum is stated in the small line.
 3. `sim-scatter` · replaces **Figure 8.5** (a particle scattering straight
    backward from a target) · subatomic-momentum, conservation-of-momentum
    · **moves**: the electron runs in from the left, meets the target and

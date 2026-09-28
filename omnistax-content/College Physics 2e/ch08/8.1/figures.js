@@ -48,9 +48,11 @@ function racquet(ctx, x, y, color) {
   const d = sim('sim-momentum', 670);
   const mp = ctl(d.controls, { label: 'm_{\\text{player}}', cls: '', min: 50, max: 150, step: 1, value: 110, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the player' });
   /* the player's speed reaches down to a walk, so that the football can be given as much momentum as the player carries */
-  const vp = ctl(d.controls, { label: '\\kv_{\\text{player}}', cls: 'velocity', min: 1, max: 15, step: 0.25, value: 8, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the player' });
+  const vp = ctl(d.controls, { label: '\\kv_{\\text{player}}', cls: 'velocity', min: 1, max: 15, step: 0.25, value: 8, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the player',
+    specials: [{ at: () => (mb.v * vb.v) / mp.v, label: 'equal momenta' }] });
   const mb = ctl(d.controls, { label: 'm_{\\text{ball}}', cls: '', min: 0.1, max: 2, step: 0.01, value: 0.41, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the football' });
-  const vb = ctl(d.controls, { label: '\\kv_{\\text{ball}}', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the football' });
+  const vb = ctl(d.controls, { label: '\\kv_{\\text{ball}}', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the football',
+    specials: [{ at: () => (mp.v * vp.v) / mb.v, label: 'equal momenta' }] });
   const RUN = 30;                                   /* the strip is thirty meters of ground */
   /* Both bar scales are fixed from the slider maxima and never move: a velocity bar is 560 units at
      40 m/s, and a momentum bar is 900 units at 2,250 kg·m/s, which is 150 kg at 15 m/s, the most the
@@ -160,8 +162,8 @@ function racquet(ctx, x, y, color) {
       ? 'The ball is at rest against the strings, about to be given ' + fmt(dp, 2) + ' kg·m/s in ' + fmt(dt.v, 1) + ' ms.'
       : 'At t = ' + fmt(tau * 1000, 1) + ' ms the ball has taken up ' + fmt(p, 2) + ' of the ' + fmt(dp, 2) + ' kg·m/s the racquet will give it.');
     readout(d.readout,
-      `\\begin{aligned}\\kFnet &= \\frac{\\kdp}{\\kdt} = \\frac{m(\\kvf - \\kvi)}{\\kdt} = \\frac{(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(vf.v, 0)}\\ \\text{m/s})}{${fmt(dt.v, 1)}\\times 10^{-3}\\ \\text{s}} = ${sig3(Fn)}\\ \\text{N}\\\\ &= m\\ka = (${fmt(m.v, 3)}\\ \\text{kg})(${sig3(a)}\\ \\text{m/s}^2) = ${sig3(Fn)}\\ \\text{N}\\end{aligned}`,
-      'The mass of the ball does not change, so the two forms agree. Spread the same change in momentum over twice the contact time and the force falls to half of what it was, which is why a follow-through and a soft landing hurt less.');
+      `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{m(\\kvf - \\kvi)}{\\kdt} = \\frac{(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(vf.v, 0)}\\ \\text{m/s})}{${fmt(dt.v, 1)}\\times 10^{-3}\\ \\text{s}} = ${sig3(Fn)}\\ \\text{N}`,
+      'The mass of the ball does not change, so ma = (' + fmt(m.v, 3) + ' kg)(' + sig3(a) + ' m/s²) gives the same ' + sig3(Fn) + ' N. Spread the same change in momentum over twice the contact time and the force falls to half of what it was, which is why a follow-through and a soft landing hurt less.');
   }
   register(d.fig, { update: (dt2) => cy.step(dt2, () => T() / 5), draw });
 })();

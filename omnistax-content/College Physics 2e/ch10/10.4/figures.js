@@ -240,8 +240,8 @@ function helicopter(ctx, x, y, color, s = 1) {
     L.add('h = ' + sig3(h) + ' m', p.x, p.y, 1, 0, C('position'), 20, 24);
     L.flush();
     topline(ctx, 'At ' + fmt(rpm.v, 0) + ' rpm the four blades hold ' + sig3(KEr / 1000) + ' kJ, the helicopter flying at ' + fmt(vc.v, 1) + ' m/s carries ' + sig3(KEt / 1000) + ' kJ, and the blades’ energy could lift it ' + sig3(h) + ' m.');
-    readout(d.readout, `\\kKErot = \\frac{1}{2}\\kI\\kw^2 = ${sig3(KEr / 1000)}\\ \\text{kJ} \\qquad \\kKEtrans = \\frac{1}{2}m\\kv^2 = ${sig3(KEt / 1000)}\\ \\text{kJ}`,
-      'With I = 4Mℓ²/3 = ' + fmt(I, 0) + ' kg·m² and ω = ' + fmt(w, 1) + ' rad/s, the ratio of translational to rotational kinetic energy is ' + sig3(KEt / KEr) + ', and h = KE_rot / mg = ' + sig3(h) + ' m.');
+    readout(d.readout, `\\kKErot = \\frac{1}{2}\\kI\\kw^2 = ${sig3(KEr / 1000)}\\ \\text{kJ}`,
+      'The helicopter itself carries KE_trans = ½mv² = ' + sig3(KEt / 1000) + ' kJ. With I = 4Mℓ²/3 = ' + fmt(I, 0) + ' kg·m² and ω = ' + fmt(w, 1) + ' rad/s, the ratio of translational to rotational kinetic energy is ' + sig3(KEt / KEr) + ', and h = KE_rot / mg = ' + sig3(h) + ' m.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

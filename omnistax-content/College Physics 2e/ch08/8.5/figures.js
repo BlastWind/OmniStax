@@ -80,7 +80,9 @@ function vec(ctx, x, y, L, s, color, label) {
   const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.05, max: 80, step: 0.05, value: 70, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the second object' });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: -40, max: 40, step: 0.05, value: 35, unit: 'm/s', dec: 2, onInput: reset });
   const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: -40, max: 40, step: 0.05, value: 0, unit: 'm/s', dec: 2, onInput: reset });
-  const cc = ctl(d.controls, { label: 'c', cls: '', min: 0, max: 3.5, step: 0.01, value: 0, unit: '', dec: 2, detents: [{ v: 0, label: '0' }, { v: 1, label: '1' }, { v: 3.08, label: '3.08' }], snap: true, onInput: reset, aria: 'the speed the objects separate at divided by the speed they approached at' });
+  const cc = ctl(d.controls, { label: 'c', cls: '', min: 0, max: 3.5, step: 0.01, value: 0, unit: '', dec: 2, specials: [{ at: 0, label: 'perfectly inelastic' }, { at: 1, label: 'elastic' }], detents: [{ v: 3.08, label: '3.08' }], snap: true, onInput: reset, aria: 'the speed the objects separate at divided by the speed they approached at' });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
   const TC = 2, T = 4, GY = 290;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
@@ -167,9 +169,12 @@ function vec(ctx, x, y, L, s, color, label) {
     topline(ctx, !s.hits ? 'The two objects are not approaching each other, so raise v₁ above v₂ and they will meet.'
       : !after ? 'The two are still approaching, with ' + sig(s.ke) + ' J of internal kinetic energy between them.'
         : 'They leave at ' + sig(s.v1p) + ' m/s and ' + sig(s.v2p) + ' m/s, and the internal kinetic energy has ' + (lost >= 0 ? 'fallen by ' + sig(lost) : 'risen by ' + sig(-lost)) + ' J.');
-    readout(d.readout, `m_1\\kvone + m_2\\kvtwo = m_1\\kvoneprime + m_2\\kvtwoprime:\\quad ${sum(m1.v * v1.v, m2.v * v2.v)} = ${sum(m1.v * s.v1p, m2.v * s.v2p)} = ${texnum(s.ptot)}\\ \\text{kg}\\cdot\\text{m/s}`,
-      !s.hits ? 'The two objects never meet, so nothing about the system changes and both graphs run flat.'
-        : 'The internal kinetic energy is ' + sig(s.ke) + ' J before the collision and ' + sig(s.kep) + ' J after it, a change of ' + sig(s.kep - s.ke) + ' J. At c = 0 the two stick together and lose as much internal kinetic energy as conservation of momentum allows; at c = 1 they lose none; above c = 1 a compressed spring has given them more than they brought.');
+    /* at c = 0 the two leave together, and their two terms bend into the one term of the stuck pair */
+    const stuck = cc.v === 0;
+    F.morph(formula, `\\mk{p}{m_1\\kvone + m_2\\kvtwo} = ${stuck ? '\\mk{s}{(m_1 + m_2)\\kvprime}' : '\\mk{a}{m_1\\kvoneprime} + \\mk{b}{m_2\\kvtwoprime}'}:\\quad \\mk{l}{${sum(m1.v * v1.v, m2.v * v2.v)}} = \\mk{r}{${stuck ? texnum((m1.v + m2.v) * s.v1p) : sum(m1.v * s.v1p, m2.v * s.v2p)}} = \\mk{t}{${texnum(s.ptot)}}\\ \\text{kg}\\cdot\\text{m/s}`,
+      { keyMap: stuck ? { a: 's', b: 's' } : { s: ['a', 'b'] } });
+    note.textContent = !s.hits ? 'The two objects never meet, so nothing about the system changes and both graphs run flat.'
+        : 'The internal kinetic energy is ' + sig(s.ke) + ' J before the collision and ' + sig(s.kep) + ' J after it, a change of ' + sig(s.kep - s.ke) + ' J. At c = 0 the two stick together and lose as much internal kinetic energy as conservation of momentum allows; at c = 1 they lose none; above c = 1 a compressed spring has given them more than they brought.';
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 4.6), draw });
 })();

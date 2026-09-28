@@ -146,6 +146,7 @@ graph · 3D
    six, and the labeller steps them out where they would touch). Draws
    position, angular-rate, angular-acceleration, velocity, acceleration,
    time.
+   Manim pass, 2026-09-28: a dashed circle on $\kalpha$ at 0 (uniform motion); the readout is the one equation $\kat = \kr\kalpha$, $\kac$ in the small line.
 4. `sim-motorcycle` · replaces Figure 10.6 (the motorcycle with $\kat$ on
    the rider and $\kalpha$ on its wheels) · tangential-angular-acceleration,
    angular-acceleration, tangential-acceleration · variation by slider and

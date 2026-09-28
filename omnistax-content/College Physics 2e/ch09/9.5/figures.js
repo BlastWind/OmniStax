@@ -113,8 +113,11 @@ function grip(ctx, x, y, dir = 1) {
 ===================================================================== */
 (function () {
   const d = sim('sim-wheelbarrow', 610);
-  const lo = ctl(d.controls, { label: '\\klo', cls: 'position', min: 0.05, max: 1.40, step: 0.005, value: 0.075, unit: 'm', dec: 3, aria: 'lever arm of the load' });
-  const li = ctl(d.controls, { label: '\\kli', cls: 'position', min: 0.50, max: 1.50, step: 0.01, value: 1.02, unit: 'm', dec: 2, aria: 'lever arm of the hands' });
+  const lo = ctl(d.controls, { label: '\\klo', cls: 'position', min: 0.05, max: 1.40, step: 0.005, value: 0.075, unit: 'm', dec: 3, aria: 'lever arm of the load',
+    specials: [{ at: () => li.v, label: 'MA = 1' }] });
+  const li = ctl(d.controls, { label: '\\kli', cls: 'position', min: 0.50, max: 1.50, step: 0.01, value: 1.02, unit: 'm', dec: 2, aria: 'lever arm of the hands',
+    specials: [{ at: () => lo.v, label: 'MA = 1' }] });
+  lo.refresh();
   const M = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 100, step: 2.5, value: 45, unit: 'kg', dec: 1, aria: 'combined mass of the load and the machine' });
   const SC = 600, PX = 1180, PY = 392, GY = 430;   /* units per metre, the pivot, and the ground */
 
@@ -368,11 +371,22 @@ function grip(ctx, x, y, dir = 1) {
        the free end, which always comes down off a ceiling sheave into your hands. The dead end is
        tied to the ceiling when n is even and to the movable block when n is odd, which is what
        makes the count come out at n. At n = 1 there is no movable sheave at all and the picture
-       is the ordinary pulley of Figure 9.23(c), and at n = 2 it is the book's own panel (a). */
-    const GAP = Math.max(90, Math.min(130, 330 / n)), r = GAP / 2;
-    const Xk = (k) => CX + (k - (n - 1) / 2) * GAP;
-    const bottomJoin = (k) => (k + n) % 2 === 0;
-    const half = ((n - 1) * GAP) / 2 + GAP * 0.42;
+       is the ordinary pulley of Figure 9.23(c), and at n = 2 it is the book's own panel (a).
+       A change of count moves the legs, the block and the cables to their new places; the sheaves
+       swap top for bottom with the count, so they have no counterparts and fade, each set sliding
+       toward the block it hangs from, as do a leg, a cable and the dead end that only one count has. */
+    const nf = N.mix((v) => Number(v)), from = Number(N.from);
+    const counts = from === n ? [n] : [from, n];
+    const GAP = Math.max(90, Math.min(130, 330 / nf)), r = GAP / 2;
+    const Xk = (k) => CX + (k - (nf - 1) / 2) * GAP;
+    const bottomJoin = (c, k) => (k + c) % 2 === 0;
+    const half = ((nf - 1) * GAP) / 2 + GAP * 0.42;
+    const aOf = (c) => (counts.length === 1 ? 1 : N.a(String(c)));
+    const legY = (c, k) => {
+      const up = k > 0 ? bottomJoin(c, k - 1) : null, dn = k < c ? bottomJoin(c, k) : null;
+      const hasTop = up === false || dn === false, hasBot = up === true || dn === true;
+      return [hasTop ? BEAM + r : BEAM, k === c ? 486 : hasBot ? YOKE - r : YOKE];
+    };
 
     fixed(ctx, 260, BEAM - 34, 900, 34);                                      /* the ceiling the system hangs from */
     text(ctx, 'the ceiling', 272, BEAM - 52, PAL.muted, { size: 17, align: 'left' });
@@ -384,29 +398,42 @@ function grip(ctx, x, y, dir = 1) {
     text(ctx, fmt(M.v, 0) + ' kg', CX, YOKE + 78, PAL.ink, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'w = ' + sig3(w) + ' N', CX, YOKE + 116, C('force'), { size: 21, weight: 600, align: 'center' });
 
-    /* the straight legs of the cord */
-    for (let k = 0; k <= n; k++) {
-      const up = k > 0 ? bottomJoin(k - 1) : null, dn = k < n ? bottomJoin(k) : null;
-      const hasTop = up === false || dn === false, hasBot = up === true || dn === true;
-      const y0 = hasTop ? BEAM + r : BEAM;
-      const y1 = k === n ? 486 : hasBot ? YOKE - r : YOKE;
-      line(ctx, Xk(k), y0, Xk(k), y1, PAL.muted, 4);
+    /* the straight legs of the cord: a leg both counts have runs between its two lengths */
+    const kq = counts.length === 1 ? 1 : N.k;
+    for (let k = 0; k <= Math.max(...counts); k++) {
+      const both = counts.every((c) => k <= c);
+      const [a0, a1] = legY(from, Math.min(k, from)), [b0, b1] = legY(n, Math.min(k, n));
+      const y0 = both ? a0 + (b0 - a0) * kq : k <= n ? b0 : a0, y1 = both ? a1 + (b1 - a1) * kq : k <= n ? b1 : a1;
+      ctx.save(); ctx.globalAlpha = both ? 1 : aOf(k <= n ? n : from);
+      line(ctx, Xk(k), y0, Xk(k), y1, PAL.muted, 4); ctx.restore();
     }
     /* the sheaves, and the cord running over each of them */
-    for (let k = 0; k < n; k++) {
-      const bot = bottomJoin(k), cx = (Xk(k) + Xk(k + 1)) / 2, cy = bot ? YOKE - r : BEAM + r;
-      ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4;
-      ctx.beginPath(); ctx.arc(cx, cy, r, bot ? 0 : Math.PI, bot ? Math.PI : 2 * Math.PI, false); ctx.stroke(); ctx.restore();
-      pulleyAt(ctx, cx, cy, r - 5);
+    for (const c of counts) {
+      ctx.save(); ctx.globalAlpha = aOf(c);
+      for (let k = 0; k < c; k++) {
+        const bot = bottomJoin(c, k), [, dy] = counts.length === 1 ? [0, 0] : N.off(String(c), [0, bot ? 30 : -30]);
+        const cx = (Xk(k) + Xk(k + 1)) / 2, cy = (bot ? YOKE - r : BEAM + r) + dy;
+        ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.arc(cx, cy, r, bot ? 0 : Math.PI, bot ? Math.PI : 2 * Math.PI, false); ctx.stroke(); ctx.restore();
+        pulleyAt(ctx, cx, cy, r - 5);
+      }
+      ctx.restore();
     }
     /* the dead end, tied to whichever block the count leaves it on */
-    const deadTop = n % 2 === 0;
-    dot(ctx, Xk(0), deadTop ? BEAM : YOKE, PAL.ink, true, 9);
-    text(ctx, deadTop ? 'the cord is tied to the ceiling here' : 'the cord is tied to the block here',
-      Xk(0) - 22, deadTop ? BEAM + 24 : YOKE - 22, PAL.muted, { size: 17, align: 'right', bg: PAL.panel });
+    for (const c of counts) {
+      const deadTop = c % 2 === 0;
+      ctx.save(); ctx.globalAlpha = aOf(c);
+      dot(ctx, Xk(0), deadTop ? BEAM : YOKE, PAL.ink, true, 9);
+      if (c === n) text(ctx, deadTop ? 'the cord is tied to the ceiling here' : 'the cord is tied to the block here',
+        Xk(0) - 22, deadTop ? BEAM + 24 : YOKE - 22, PAL.muted, { size: 17, align: 'right', bg: PAL.panel });
+      ctx.restore();
+    }
 
     /* every cable that pulls directly up on the load, all at the one tension */
-    for (let k = 0; k < n; k++) arrow(ctx, Xk(k), 378, Xk(k), 306, C('force'), 5);
+    for (let k = 0; k < Math.max(...counts); k++) {
+      ctx.save(); ctx.globalAlpha = counts.every((c) => k < c) ? 1 : aOf(k < n ? n : from);
+      arrow(ctx, Xk(k), 378, Xk(k), 306, C('force'), 5); ctx.restore();
+    }
     text(ctx, 'T, on every one of them', Xk(0) - 16, 342, C('force'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
     /* the free end, which is what you pull on */
     arrow(ctx, Xk(n), 400, Xk(n), 486, C('force'), 5);

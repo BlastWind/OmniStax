@@ -91,6 +91,7 @@ id · replaces · concepts · still or moving · sliders · headline · graph ·
    against the lean, crossing zero at the critical lean · no. Readout:
    $\ktau = \krperp\kwgt$ with the live numbers; small line on the critical
    lean $\theta_c = \tan^{-1}(a/h)$. Draws force, position, torque.
+   Manim pass, 2026-09-28: a dashed circle on the lean at the critical lean $\tan^{-1}(a/h)$, recomputed from $a$.
 3. `sim-point` · replaces Figures 9.13 + 9.14 (the pencil balanced on its
    point, upright and displaced) · unstable-equilibrium, restoring-torque ·
    **still**, for the reason above · the lean $\theta$ (0º to 20º, ink) and
@@ -128,6 +129,7 @@ id · replaces · concepts · still or moving · sliders · headline · graph ·
    where the ball meets the surface; small line naming which of the three
    kinds the surface makes.
    Draws force.
+   Manim pass, 2026-09-28: the three surfaces the section names (a hill, flat, a bowl) are dashed circles on the shape slider rather than detents.
 6. `sim-stance` · replaces Figure 9.16 (a) and (b) (the person standing, feet
    close and knees straight, then knees bent and feet apart) · base-of-support
    · **still** · the distance between the feet $d$ (10 to 90 cm, ink), the
@@ -139,6 +141,7 @@ id · replaces · concepts · still or moving · sliders · headline · graph ·
    $\ktau = \krperp\kwgt$ with the live numbers; small line saying what
    spreading the feet and bending the knees each do to the critical lean.
    Draws force, position, torque.
+   Manim pass, 2026-09-28: a dashed circle on the lean at the critical lean, recomputed from $d$ and $h$.
 7. `sim-chicken` · replaces Figure 9.17 (the chicken, cg below the hips and
    between two broad feet) · base-of-support · **still** · the lean $\theta$
    (0º to 45º, ink) and the height $h$ of the center of gravity above the
@@ -148,6 +151,7 @@ id · replaces · concepts · still or moving · sliders · headline · graph ·
    $\ktau = \krperp\kwgt$ with the live numbers; small line comparing the
    chicken's critical lean with the person's few degrees. Draws force,
    position, torque.
+   Manim pass, 2026-09-28: a dashed circle on the lean at the critical lean, recomputed from $h$.
 
 Photographs: the section has one, Figure 9.9, and it is kept for the reason
 given above. Nothing else in the section is a photograph, so nothing is

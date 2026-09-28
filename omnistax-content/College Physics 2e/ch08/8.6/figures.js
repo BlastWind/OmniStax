@@ -45,12 +45,8 @@ function bar(ctx, x, y, w, h, color, a) {
   const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: 'angle of the incoming object after the collision' });
   const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 0.5, value: -48.5, unit: '°', dec: 1, onInput: reset, aria: 'angle of the struck object after the collision' });
   const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the struck object' });
-  /* the two momentum labels ride objects that move, so rule 26.7 puts them behind a button, off by
-     default, and the name of either object is still there under the pointer */
-  const labs = choice(d.controls, {
-    label: '\\text{labels}', value: 'off', aria: 'the labels on the two objects',
-    options: [{ value: 'on', label: 'on' }, { value: 'off', label: 'off' }],
-  });
+  /* the momentum labels would ride objects that move, so the kind is named once beside the scene and
+     each object gives its name and momentum under the pointer (rule 26.7) */
   let hits = [];
   hover(d.stage, () => hits);
   /* the two conservation equations, read for the two final speeds */
@@ -72,7 +68,6 @@ function bar(ctx, x, y, w, h, color, a) {
        240 units per kg·m/s, and no arrow is drawn longer than 320 units */
     const S = R / Math.max(v1.v * TA, s.v1p * TB, s.v2p * TB, 1e-6);
     const pScale = 240, cap = (L) => Math.min(320, L);
-    const on = labs.value === 'on';
     /* the axes the section chooses: x along the incoming velocity */
     line(ctx, OX - 330, OY, OX + 320, OY, PAL.muted, 2);
     text(ctx, 'x', OX + 334, OY, PAL.ink, { size: 22, weight: 600 });
@@ -89,7 +84,6 @@ function bar(ctx, x, y, w, h, color, a) {
       const x = OX - (TA - tau) * v1.v * S, L = cap(s.p1 * pScale);
       disc(ctx, x, OY, r1, PAL.ink, true);
       arrow(ctx, x, OY, x + L, OY, cm, 5);
-      if (on) lab.add('p₁ = ' + fmt(s.p1, 3), x + L / 2, OY, 0, -1, cm, 20, 22);
       disc(ctx, OX, OY, r2, PAL.muted, false);
       text(ctx, 'at rest', OX + r2 + 12, OY + 34, PAL.muted, { size: 18 });
       hits = [{ x, y: OY, r: r1 + 8, name: 'the incoming object, m₁' }, { x: OX, y: OY, r: r2 + 8, name: 'the struck object, m₂' }];
@@ -100,15 +94,13 @@ function bar(ctx, x, y, w, h, color, a) {
       const L1 = cap(s.p1p * pScale), L2 = cap(s.p2p * pScale);
       disc(ctx, x1, y1, r1, PAL.ink, true);
       arrow(ctx, x1, y1, x1 + L1 * Math.cos(s.a1), y1 - L1 * Math.sin(s.a1), cm, 5);
-      if (on) lab.beside({ x1, y1, x2: x1 + L1 * Math.cos(s.a1), y2: y1 - L1 * Math.sin(s.a1) }, 'left', "p′₁ = " + fmt(s.p1p, 3), cm, 20);
       disc(ctx, x2, y2, r2, PAL.ink, false);
       arrow(ctx, x2, y2, x2 + L2 * Math.cos(s.a2), y2 - L2 * Math.sin(s.a2), cm, 5);
-      if (on) lab.beside({ x1: x2, y1: y2, x2: x2 + L2 * Math.cos(s.a2), y2: y2 - L2 * Math.sin(s.a2) }, 'right', "p′₂ = " + fmt(s.p2p, 3), cm, 20);
       hits = [{ x: x1, y: y1, r: r1 + 8, name: "the first object afterward, p′₁ = " + fmt(s.p1p, 3) + ' kg·m/s' },
         { x: x2, y: y2, r: r2 + 8, name: "the struck object afterward, p′₂ = " + fmt(s.p2p, 3) + ' kg·m/s' }];
     }
     lab.flush();
-    if (!on) text(ctx, 'each arrow is a momentum', 60, 612, cm, { size: 18, weight: 600 });
+    text(ctx, 'each arrow is a momentum', 60, 612, cm, { size: 18, weight: 600 });
     text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 640, PAL.ink, { size: 19 });
     text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg', 60, 668, PAL.ink, { size: 19 });
     /* momentum alone allows pairs of angles that would need energy from somewhere, so the figure says so */
@@ -234,12 +226,13 @@ function bar(ctx, x, y, w, h, color, a) {
       : 'The ' + fmt(M1, 3) + ' kg object slides in at ' + fmt(v1.v, 2) + ' m/s, carrying all ' + fmt(s.ke, 3) + ' J of the internal kinetic energy.');
     const diff = s.kep - s.ke;
     readout(d.readout,
-      `\\tan\\theta_2 = \\frac{\\kvoneprime\\sin\\theta_1}{\\kvoneprime\\cos\\theta_1 - \\kvone} = ${num(s.tan, 3)},\\quad \\theta_2 = ${fmt(s.deg, 1)}^\\circ,\\quad \\kvtwoprime = -\\frac{m_1}{m_2}\\kvoneprime\\frac{\\sin\\theta_1}{\\sin\\theta_2} = ${fmt(s.v2p, 3)}\\ \\text{m/s}`,
-      Math.abs(diff) < 0.002
+      `\\tan\\theta_2 = \\frac{\\kvoneprime\\sin\\theta_1}{\\kvoneprime\\cos\\theta_1 - \\kvone} = ${num(s.tan, 3)}\\ \\Rightarrow\\ \\theta_2 = ${fmt(s.deg, 1)}^\\circ`,
+      'The unseen object leaves with v′₂ = −(m₁/m₂)v′₁ sin θ₁/sin θ₂ = ' + fmt(s.v2p, 3) + ' m/s. '
+      + (Math.abs(diff) < 0.002
         ? 'The internal kinetic energy is ' + fmt(s.ke, 3) + ' J before the collision and the same after it, so this collision is elastic.'
         : diff < 0
           ? 'The internal kinetic energy falls from ' + fmt(s.ke, 3) + ' J before the collision to ' + fmt(s.kep, 3) + ' J after it, so this collision is inelastic.'
-          : 'The internal kinetic energy rises from ' + fmt(s.ke, 3) + ' J before the collision to ' + fmt(s.kep, 3) + ' J after it, so energy was released inside the collision.');
+          : 'The internal kinetic energy rises from ' + fmt(s.ke, 3) + ' J before the collision to ' + fmt(s.kep, 3) + ' J after it, so energy was released inside the collision.'));
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TTOT / 5), draw });
 })();
@@ -256,7 +249,8 @@ function bar(ctx, x, y, w, h, color, a) {
   const d = sim('sim-billiards', 900);
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 2, max: 10, step: 0.25, value: 6, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the cue ball' });
   const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 45, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: 'angle of the cue ball after the collision' });
-  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 1, value: -60, unit: '°', dec: 0, onInput: reset, aria: 'angle of the struck ball after the collision' });
+  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 1, value: -60, unit: '°', dec: 0, onInput: reset, aria: 'angle of the struck ball after the collision',
+    specials: [{ at: () => t1.v - 90, label: '90° apart' }] });
   /* with equal masses, momentum alone gives both speeds from the two angles */
   const speeds = (d1, d2, u) => {
     const a1 = d1 * RAD, a2 = d2 * RAD, den = Math.sin(a2 - a1);

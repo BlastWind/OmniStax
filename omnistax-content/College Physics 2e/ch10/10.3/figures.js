@@ -192,16 +192,16 @@ function reading(ctx, x, y, label, value, color) {
 (function () {
   const d = sim('sim-inertias', 640);
   const SHAPES = [
-    { value: 'hoop-axis', label: 'Hoop about cylinder axis', ktex: '\\kI = M\\kR^2', uses: { R: true } , I: (M, R) => M * R * R, far: (R) => R },
-    { value: 'annular', label: 'Annular cylinder (or ring) about cylinder axis', ktex: '\\kI = \\frac{M}{2}(R_1^2 + R_2^2)', uses: { R: true, R1: true }, I: (M, R, l, R1) => 0.5 * M * (R1 * R1 + R * R), far: (R) => R },
-    { value: 'disk-axis', label: 'Solid cylinder (or disk) about cylinder axis', ktex: '\\kI = \\frac{1}{2}M\\kR^2', uses: { R: true }, I: (M, R) => 0.5 * M * R * R, far: (R) => R },
-    { value: 'disk-diameter', label: 'Solid cylinder (or disk) about central diameter', ktex: '\\kI = \\frac{1}{4}M\\kR^2 + \\frac{1}{12}M\\ell^2', uses: { R: true, l: true }, I: (M, R, l) => M * R * R / 4 + M * l * l / 12, far: (R, l) => Math.hypot(R, l / 2) },
-    { value: 'rod-center', label: 'Thin rod about axis through center, perpendicular to length', ktex: '\\kI = \\frac{1}{12}M\\ell^2', uses: { l: true }, I: (M, R, l) => M * l * l / 12, far: (R, l) => l / 2 },
-    { value: 'rod-end', label: 'Thin rod about axis through one end, perpendicular to length', ktex: '\\kI = \\frac{1}{3}M\\ell^2', uses: { l: true }, I: (M, R, l) => M * l * l / 3, far: (R, l) => l },
-    { value: 'sphere', label: 'Solid sphere about any diameter', ktex: '\\kI = \\frac{2}{5}M\\kR^2', uses: { R: true }, I: (M, R) => 0.4 * M * R * R, far: (R) => R },
-    { value: 'shell', label: 'Thin spherical shell about any diameter', ktex: '\\kI = \\frac{2}{3}M\\kR^2', uses: { R: true }, I: (M, R) => (2 / 3) * M * R * R, far: (R) => R },
-    { value: 'hoop-diameter', label: 'Hoop about any diameter', ktex: '\\kI = \\frac{1}{2}M\\kR^2', uses: { R: true }, I: (M, R) => 0.5 * M * R * R, far: (R) => R },
-    { value: 'slab', label: 'Slab about perpendicular axis through center', ktex: '\\kI = \\frac{1}{12}M(a^2 + b^2)', uses: { R: true, l: true }, I: (M, R, l) => M * (l * l + R * R) / 12, far: (R, l) => Math.hypot(R / 2, l / 2) },
+    { value: 'hoop-axis', mk: '\\mk{I}{\\kI} = \\mk{M}{M}\\mk{R}{\\kR^2}', label: 'Hoop about cylinder axis', ktex: '\\kI = M\\kR^2', uses: { R: true } , I: (M, R) => M * R * R, far: (R) => R },
+    { value: 'annular', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{2}}\\mk{M}{M}\\mk{R}{(R_1^2 + R_2^2)}', label: 'Annular cylinder (or ring) about cylinder axis', ktex: '\\kI = \\frac{M}{2}(R_1^2 + R_2^2)', uses: { R: true, R1: true }, I: (M, R, l, R1) => 0.5 * M * (R1 * R1 + R * R), far: (R) => R },
+    { value: 'disk-axis', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{2}}\\mk{M}{M}\\mk{R}{\\kR^2}', label: 'Solid cylinder (or disk) about cylinder axis', ktex: '\\kI = \\frac{1}{2}M\\kR^2', uses: { R: true }, I: (M, R) => 0.5 * M * R * R, far: (R) => R },
+    { value: 'disk-diameter', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{4}}\\mk{M}{M}\\mk{R}{\\kR^2} + \\mk{c2}{\\frac{1}{12}}\\mk{M2}{M}\\mk{L}{\\ell^2}', label: 'Solid cylinder (or disk) about central diameter', ktex: '\\kI = \\frac{1}{4}M\\kR^2 + \\frac{1}{12}M\\ell^2', uses: { R: true, l: true }, I: (M, R, l) => M * R * R / 4 + M * l * l / 12, far: (R, l) => Math.hypot(R, l / 2) },
+    { value: 'rod-center', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{12}}\\mk{M}{M}\\mk{L}{\\ell^2}', label: 'Thin rod about axis through center, perpendicular to length', ktex: '\\kI = \\frac{1}{12}M\\ell^2', uses: { l: true }, I: (M, R, l) => M * l * l / 12, far: (R, l) => l / 2 },
+    { value: 'rod-end', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{3}}\\mk{M}{M}\\mk{L}{\\ell^2}', label: 'Thin rod about axis through one end, perpendicular to length', ktex: '\\kI = \\frac{1}{3}M\\ell^2', uses: { l: true }, I: (M, R, l) => M * l * l / 3, far: (R, l) => l },
+    { value: 'sphere', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{2}{5}}\\mk{M}{M}\\mk{R}{\\kR^2}', label: 'Solid sphere about any diameter', ktex: '\\kI = \\frac{2}{5}M\\kR^2', uses: { R: true }, I: (M, R) => 0.4 * M * R * R, far: (R) => R },
+    { value: 'shell', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{2}{3}}\\mk{M}{M}\\mk{R}{\\kR^2}', label: 'Thin spherical shell about any diameter', ktex: '\\kI = \\frac{2}{3}M\\kR^2', uses: { R: true }, I: (M, R) => (2 / 3) * M * R * R, far: (R) => R },
+    { value: 'hoop-diameter', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{2}}\\mk{M}{M}\\mk{R}{\\kR^2}', label: 'Hoop about any diameter', ktex: '\\kI = \\frac{1}{2}M\\kR^2', uses: { R: true }, I: (M, R) => 0.5 * M * R * R, far: (R) => R },
+    { value: 'slab', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{12}}\\mk{M}{M}\\mk{R}{(a^2 + b^2)}', label: 'Slab about perpendicular axis through center', ktex: '\\kI = \\frac{1}{12}M(a^2 + b^2)', uses: { R: true, l: true }, I: (M, R, l) => M * (l * l + R * R) / 12, far: (R, l) => Math.hypot(R / 2, l / 2) },
   ];
   const shape = select(d.controls, { label: '\\text{the body}', options: SHAPES.map((s) => ({ value: s.value, label: s.label })), value: 'disk-axis', aria: 'the shape and the axis it turns about', onInput: hold });
   const Ms = ctl(d.controls, { label: 'M', cls: '', min: 10, max: 100, step: 0.5, value: 50, unit: 'kg', dec: 1, aria: 'the mass of the body' });
@@ -209,6 +209,8 @@ function reading(ctx, x, y, label, value, color) {
   const ls = ctl(d.controls, { label: '\\ell', cls: '', min: 0.25, max: 3, step: 0.05, value: 1, unit: 'm', dec: 2, aria: 'the length of the body or the slab’s length a' });
   const R1s = ctl(d.controls, { label: 'R_1', cls: 'position', min: 0.05, max: 1.9, step: 0.05, value: 1, unit: 'm', dec: 2, aria: 'the inner radius of the ring' });
   const cur = () => SHAPES.find((s) => s.value === shape.value);
+  const formula = el('div');
+  d.readout.append(formula, el('small', null, 'The formulas differ only in how far from the axis the mass sits on the whole. The mass of a hoop is all at the rim, so its moment of inertia is the largest a body of that mass and radius can have; a disk of the same mass and radius has half as much, because most of its mass is nearer the axis than the rim.'));
   /* the sliders a formula has no use for are held (root rule 24.6) */
   function hold() { const u = cur().uses; Rs.disable(!u.R); ls.disable(!u.l); R1s.disable(!u.R1); }
   hold();
@@ -282,8 +284,9 @@ function reading(ctx, x, y, label, value, color) {
     const r = R * S, L = l * S, r1 = R1 * S, labs = [];
     const dim = (p, str) => labs.push([V.P(p), str]);
     /* the body and its axis, one shape at a time; the axis is always vertical */
+    function body(v, dim) {
     let top = 0;
-    switch (s.value) {
+    switch (v) {
       case 'hoop-axis': top = 0; axis(ctx, 1.9 * r + 80, -1.2 * r - 40); hoop(ctx, [0, 0, 0], X, Z, r); dim([r, 0, 0], 'R = ' + fmt(R, 2) + ' m'); axisOver(ctx, 1.9 * r + 80, 0); break;
       case 'hoop-diameter': top = r; axis(ctx, 1.3 * r + 80, -1.2 * r - 40); hoop(ctx, [0, 0, 0], X, Y, r); dim([r, 0, 0], 'R = ' + fmt(R, 2) + ' m'); axisOver(ctx, 1.3 * r + 80, r); break;
       case 'annular': { const h = Math.max(40, 0.45 * r); top = h / 2; axis(ctx, h / 2 + 1.1 * r + 80, -h / 2 - 1.1 * r - 40);
@@ -301,8 +304,18 @@ function reading(ctx, x, y, label, value, color) {
       case 'disk-diameter': top = r; axis(ctx, r + 120, -r - 40); cylinder(ctx, [-L / 2, 0, 0], [L / 2, 0, 0], r, Y, Z, X, false); dim([L / 2 + 10, -r, 0], 'R = ' + fmt(R, 2) + ' m'); dim([0, -r - 24, r], 'ℓ = ' + fmt(l, 2) + ' m'); axisOver(ctx, r + 120, r); break;
       case 'rod-center': top = 12; axis(ctx, 160, -80); cylinder(ctx, [-L / 2, 0, 0], [L / 2, 0, 0], 12, Y, Z, X, false); dim([0, -40, 14], 'ℓ = ' + fmt(l, 2) + ' m'); axisOver(ctx, 160, 12); break;
       case 'rod-end': top = 12; axis(ctx, 160, -80); cylinder(ctx, [0, 0, 0], [L, 0, 0], 12, Y, Z, X, false); dim([L / 2, -40, 14], 'ℓ = ' + fmt(l, 2) + ' m'); axisOver(ctx, 160, 12); break;
-      case 'sphere': case 'shell': { top = r; axis(ctx, r + 120, -r - 40); const rp = sphere(ctx, [0, 0, 0], r, s.value === 'shell'); labs.push([[CX + rp + 4, CY + 10], 'R = ' + fmt(R, 2) + ' m']); axisOver(ctx, r + 120, r); break; }
+      case 'sphere': case 'shell': { top = r; axis(ctx, r + 120, -r - 40); const rp = sphere(ctx, [0, 0, 0], r, v === 'shell'); dim.raw([CX + rp + 4, CY + 10], 'R = ' + fmt(R, 2) + ' m'); axisOver(ctx, r + 120, r); break; }
       case 'slab': top = 8; axis(ctx, 170, -90); box(ctx, L / 2, 8, r / 2); dim([0, -30, r / 2 + 10], 'a = ' + fmt(l, 2) + ' m'); dim([L / 2 + 10, -30, 0], 'b = ' + fmt(R, 2) + ' m'); axisOver(ctx, 170, 8); break;
+    }
+    }
+    /* a change of body fades the old one out and the new one in, each with a slight drop: the shapes do
+       not stand for one another, so none bends into the next */
+    const shown = shape.from === s.value ? [s.value] : [shape.from, s.value];
+    for (const v of shown) {
+      const [ox, oy] = shape.off(v, [0, 28]), live = v === s.value;
+      const put = (pp, str) => { if (live) dim(pp, str); };
+      put.raw = (q, str) => { if (live) labs.push([q, str]); };
+      ctx.save(); ctx.globalAlpha = shown.length === 1 ? 1 : shape.a(v); ctx.translate(ox, oy); body(v, put); ctx.restore();
     }
     labs.forEach(([p, str]) => text(ctx, str, Math.min(760, Math.max(60, p[0] + 16)), Math.min(600, Math.max(100, p[1] + 20)), pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) }));
     /* the body's name, its formula and its moment of inertia, then the share of the farthest-mass value */
@@ -327,8 +340,7 @@ function reading(ctx, x, y, label, value, color) {
       : s.value === 'slab' ? `\\frac{(${fmt(M, 1)}\\ \\text{kg})\\left[(${fmt(l, 2)}\\ \\text{m})^2 + (${fmt(R, 2)}\\ \\text{m})^2\\right]}{12}`
       : s.uses.l ? `${s.value === 'rod-center' ? '\\frac{1}{12}' : '\\frac{1}{3}'}(${fmt(M, 1)}\\ \\text{kg})(${fmt(l, 2)}\\ \\text{m})^2`
       : `${s.ktex.split('= ')[1].split('M')[0]}(${fmt(M, 1)}\\ \\text{kg})(${fmt(R, 2)}\\ \\text{m})^2`;
-    readout(d.readout, `${s.ktex} = ${nums} = ${fmt(I, I < 10 ? 3 : 1)}\\ \\text{kg}\\cdot\\text{m}^2`,
-      'The formulas differ only in how far from the axis the mass sits on the whole. The mass of a hoop is all at the rim, so its moment of inertia is the largest a body of that mass and radius can have; a disk of the same mass and radius has half as much, because most of its mass is nearer the axis than the rim.');
+    F.morph(formula, `${s.mk} = \\mk{n}{${nums}} = \\mk{v}{${fmt(I, I < 10 ? 3 : 1)}}\\ \\text{kg}\\cdot\\text{m}^2`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -343,10 +355,13 @@ function reading(ctx, x, y, label, value, color) {
 (function () {
   const d = sim('sim-merry-go-round', 620);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 400, step: 5, value: 250, unit: 'N', dec: 0, onInput: reset, aria: 'the father’s push at the edge' });
-  const mc = ctl(d.controls, { label: 'm_{\\text{child}}', cls: '', min: 0, max: 40, step: 0.5, value: 18, unit: 'kg', dec: 1, onInput: reset, aria: 'the mass of the child, zero when no one is on the platform' });
+  const mc = ctl(d.controls, { label: 'm_{\\text{child}}', cls: '', min: 0, max: 40, step: 0.5, value: 18, unit: 'kg', dec: 1, onInput: reset, aria: 'the mass of the child, zero when no one is on the platform',
+    specials: [{ at: 0, label: 'no child' }] });
   const rc = ctl(d.controls, { label: '\\kr_{\\text{c}}', cls: 'position', min: 0, max: 1.5, step: 0.05, value: 1.25, unit: 'm', dec: 2, onInput: reset, aria: 'the distance from the center to the child' });
   const Ms = ctl(d.controls, { label: 'M', cls: '', min: 20, max: 100, step: 0.5, value: 50, unit: 'kg', dec: 1, onInput: reset, aria: 'the mass of the platform' });
   const R = 1.5, T = 2, CX = 400, CY = 350, S = 140, KF = 0.5, BOX = { l: 900, r: 1320, t: 130, b: 470 }, WMAX = 30;   /* the graph is fixed at 0 to 2.00 s and 0 to 30 rad/s, twice the book's 13.3 rad/s rounded */
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
   function model() {
@@ -410,10 +425,12 @@ function reading(ctx, x, y, label, value, color) {
       : t < 1e-9 ? who + ' the platform is at rest, and a push of ' + fmt(Fs.v, 0) + ' N at its edge is about to start it turning.'
       : done ? who + ' the push makes ' + fmt(m.tau, 0) + ' N·m, the moment of inertia is ' + fmt(m.I, 1) + ' kg·m² and after 2.00 s the platform turns at ' + fmt(w, 2) + ' rad/s.'
       : 'After ' + fmt(t, 2) + ' s of pushing the platform turns at ' + fmt(w, 2) + ' rad/s, gaining ' + fmt(m.al, 2) + ' rad/s every second.');
-    readout(d.readout, `\\kalpha = \\frac{\\ktau}{\\kI} = \\frac{${fmt(m.tau, 0)}\\ \\text{N}\\cdot\\text{m}}{${fmt(m.I, 1)}\\ \\text{kg}\\cdot\\text{m}^2} = ${fmt(m.al, 2)}\\ \\text{rad/s}^2`,
-      (loaded ? 'The moment of inertia is the disk’s plus the child’s, I = ½MR² + m r_c² = ' + fmt(m.Id, 1) + ' + ' + fmt(m.Ic, 1) + ' = ' + fmt(m.I, 1) + ' kg·m². '
+    /* with no child the child's term leaves the sum, and the example's part (a) is what remains */
+    const child = loaded ? ' + \\mk{c}{m\\kr_{\\text{c}}^2}' : '', childN = loaded ? ` + \\mk{cn}{${fmt(m.Ic, 1)}}` : '';
+    F.morph(formula, `\\mk{a}{\\kalpha} = \\frac{\\mk{t}{\\ktau}}{\\mk{d}{\\frac{1}{2}M\\kR^2}${child}} = \\frac{\\mk{tn}{${fmt(m.tau, 0)}}\\ \\text{N}\\cdot\\text{m}}{(\\mk{dn}{${fmt(m.Id, 1)}}${childN})\\ \\text{kg}\\cdot\\text{m}^2} = \\mk{an}{${fmt(m.al, 2)}}\\ \\text{rad/s}^2`);
+    note.textContent = (loaded ? 'The moment of inertia is the disk’s plus the child’s, I = ½MR² + m r_c² = ' + fmt(m.Id, 1) + ' + ' + fmt(m.Ic, 1) + ' = ' + fmt(m.I, 1) + ' kg·m². '
         : 'The moment of inertia is the disk’s alone, I = ½MR² = ' + fmt(m.Id, 1) + ' kg·m². ')
-      + 'After 2.00 s of pushing the platform turns at ω = αt = ' + fmt(m.al * T, 2) + ' rad/s, which is ' + fmt(m.al * T / TAU, 2) + ' rev/s; the same push on the empty platform would reach ' + fmt(m.al0 * T, 1) + ' rad/s.');
+      + 'After 2.00 s of pushing the platform turns at ω = αt = ' + fmt(m.al * T, 2) + ' rad/s, which is ' + fmt(m.al * T / TAU, 2) + ' rev/s; the same push on the empty platform would reach ' + fmt(m.al0 * T, 1) + ' rad/s.';
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();

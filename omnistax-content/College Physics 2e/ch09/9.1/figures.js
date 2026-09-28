@@ -127,8 +127,11 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
 (function () {
   const d = sim('sim-car', 900);
   const mm = ctl(d.controls, { label: 'm', cls: '', min: 800, max: 1600, step: 10, value: 1200, unit: 'kg', dec: 0, aria: 'mass of the car' });
-  const Fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 2000, step: 10, value: 700, unit: 'N', dec: 0, aria: 'applied force between the tires and the road' });
-  const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 2000, step: 10, value: 700, unit: 'N', dec: 0, aria: 'air friction on the car' });
+  const Fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 2000, step: 10, value: 700, unit: 'N', dec: 0, aria: 'applied force between the tires and the road',
+    specials: [{ at: () => ff.v, label: 'equilibrium' }] });
+  const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 2000, step: 10, value: 700, unit: 'N', dec: 0, aria: 'air friction on the car',
+    specials: [{ at: () => Fa.v, label: 'equilibrium' }] });
+  Fa.refresh();
   function draw() {
     const { ctx } = begin(d.c);
     const w = mm.v * G, net = Fa.v - ff.v, ok = Math.abs(net) < 1e-9;
@@ -172,10 +175,10 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     headline(ctx, ok
       ? 'The ' + N0(Fa.v) + ' N the tires apply and the ' + N0(ff.v) + ' N of air friction cancel, so the car keeps its constant velocity.'
       : 'The net external force along the road is ' + N0(net) + ' N, so the car ' + (net > 0 ? 'speeds up' : 'slows down') + ' and is not in equilibrium.');
-    readout(d.readout, `\\text{net}\\;\\kFx = \\kFa - \\kff = ${NT(Fa.v)}\\ \\text{N} - ${NT(ff.v)}\\ \\text{N} = ${NT(net)}\\ \\text{N} \\qquad \\text{net}\\;\\kFy = \\kN - \\kwgt = ${NT(w)}\\ \\text{N} - ${NT(w)}\\ \\text{N} = 0`,
-      ok
+    readout(d.readout, `\\text{net}\\;\\kFx = \\kFa - \\kff = ${NT(Fa.v)}\\ \\text{N} - ${NT(ff.v)}\\ \\text{N} = ${NT(net)}\\ \\text{N}`,
+      'Across the road, net F_y = N − w = ' + N0(w) + ' N − ' + N0(w) + ' N = 0. ' + (ok
         ? 'The car is in dynamic equilibrium, because it is moving at a constant velocity, so its acceleration is zero and the net external force on it is zero in every direction. The weight of ' + N0(w) + ' N is carried by the four tires together, each of them pushing up with a quarter of the normal force N, and the drive of the tires against the road is exactly undone by the air.'
-        : 'The vertical forces still cancel, since the car neither rises nor sinks, but along the road they do not: a net external force of ' + N0(net) + ' N is left over, the car accelerates, and the first condition for equilibrium is no longer met. Set the two horizontal forces equal again and the car returns to a constant velocity.');
+        : 'The vertical forces still cancel, since the car neither rises nor sinks, but along the road they do not: a net external force of ' + N0(net) + ' N is left over, the car accelerates, and the first condition for equilibrium is no longer met. Set the two horizontal forces equal again and the car returns to a constant velocity.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -192,7 +195,8 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
 (function () {
   const d = sim('sim-stick', 720);
   const Fm = ctl(d.controls, { label: '\\kF', cls: 'force', min: 5, max: 60, step: 0.5, value: 30, unit: 'N', dec: 1, aria: 'size of each of the two forces' });
-  const dd = ctl(d.controls, { label: 'd', cls: '', min: 0, max: 0.6, step: 0.02, value: 0, unit: 'm', dec: 2, aria: 'distance between the two lines of action' });
+  const dd = ctl(d.controls, { label: 'd', cls: '', min: 0, max: 0.6, step: 0.02, value: 0, unit: 'm', dec: 2, aria: 'distance between the two lines of action',
+    specials: [{ at: 0, label: 'one line' }] });
   const SC = 300;                                          /* logical units to the metre */
   function draw() {
     const { ctx } = begin(d.c);
@@ -241,7 +245,8 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
   const d = sim('sim-equilibrium', 860);
   const mm = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 150, step: 1, value: 100, unit: 'kg', dec: 0, aria: 'mass of the crate' });
   const Fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 400, step: 5, value: 150, unit: 'N', dec: 0, aria: 'force of the push' });
-  const vv = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 0, unit: 'm/s', dec: 1, aria: 'constant speed of the crate' });
+  const vv = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 0, unit: 'm/s', dec: 1, aria: 'constant speed of the crate',
+    specials: [{ at: 0, label: 'at rest' }] });
   function draw() {
     const { ctx } = begin(d.c);
     const w = mm.v * G, moving = vv.v > 0.01, cf = C('force'), cv = C('velocity');
@@ -291,8 +296,8 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     headline(ctx, moving
       ? 'At ' + fmt(vv.v, 1) + ' m/s the crate is in dynamic equilibrium, and the four forces on it are the ones it had at rest.'
       : 'At rest the crate is in static equilibrium, because the push and the friction cancel and so do the weight and the floor.');
-    readout(d.readout, `\\text{net}\\;\\kFx = \\kFa - \\kff = ${NT(Fa.v)}\\ \\text{N} - ${NT(Fa.v)}\\ \\text{N} = 0 \\qquad \\text{net}\\;\\kFy = \\kN - \\kwgt = ${NT(w)}\\ \\text{N} - ${NT(w)}\\ \\text{N} = 0`,
-      'Neither equation mentions the speed. Raise it from zero to ' + fmt(Math.max(vv.v, 6), 1) + ' m/s and the push, the friction, the weight and the support of the floor keep the values they had, because what the first condition asks is that the velocity be constant and not that it be zero. At rest the crate is in static equilibrium and while it slides steadily it is in dynamic equilibrium, and the same four arrows describe both.');
+    readout(d.readout, `\\text{net}\\;\\kFx = \\kFa - \\kff = ${NT(Fa.v)}\\ \\text{N} - ${NT(Fa.v)}\\ \\text{N} = 0`,
+      'Across the floor, net F_y = N − w = ' + N0(w) + ' N − ' + N0(w) + ' N = 0. Neither equation mentions the speed. Raise it from zero to ' + fmt(Math.max(vv.v, 6), 1) + ' m/s and the push, the friction, the weight and the support of the floor keep the values they had, because what the first condition asks is that the velocity be constant and not that it be zero. At rest the crate is in static equilibrium and while it slides steadily it is in dynamic equilibrium, and the same four arrows describe both.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

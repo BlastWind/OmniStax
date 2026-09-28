@@ -50,9 +50,8 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
   const d = sim('sim-disk-stick', 820);
   const m = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 200, step: 1, value: 50, unit: 'g', dec: 0, onInput: reset, aria: 'mass of the disk' });
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 30, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the disk' });
-  const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.1, max: 1.2, step: 0.01, value: 1.2, unit: 'm', dec: 2, onInput: reset, aria: 'where the disk strikes, from the nail', detents: [{ v: 0.1, label: 'nail' }, { v: 0.8, label: 'percussion point' }, { v: 1.2 }] });
+  const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.1, max: 1.2, step: 0.01, value: 1.2, unit: 'm', dec: 2, onInput: reset, aria: 'where the disk strikes, from the nail', specials: [{ at: 0.8, label: 'percussion point' }], detents: [{ v: 0.1, label: 'nail' }, { v: 1.2 }] });
   const M = ctl(d.controls, { label: 'M', cls: '', min: 0.5, max: 4, step: 0.05, value: 2, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the stick' });
-  const labels = choice(d.controls, { label: 'Labels', options: [{ value: 'off', label: 'Off' }, { value: 'on', label: 'On' }], value: 'off', aria: 'names of the disk, the stick and the nail' });
   const APPROACH = 2.4;                            /* metres of table the disk crosses before it strikes */
   const state = () => {
     const mk = m.v / 1000, L = mk * v.v * r.v, Ip = mk * r.v * r.v + (M.v * ELL * ELL) / 3, w = L / Ip;
@@ -83,7 +82,6 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
       arrow(ctx, dx + 16, dy, dx + 16 + K * v.v, dy, C('velocity'), 5);
       lab.add('v', dx + 16 + (K * v.v) / 2, dy, 0, 1, C('velocity'), 24, 26);
       vbracket(ctx, NX + 34, NY, NY - r.v * SC, C('position'), 'r = ' + fmt(r.v, 2) + ' m', 1);
-      if (labels.value === 'on') { lab.add('disk', dx, dy, 0, 1, PAL.ink, 20, 30); lab.add('stick', NX, NY - (ELL * SC) / 2, -1, 0, PAL.ink, 20, 24); lab.add('nail', NX, NY, 1, 0.6, PAL.ink, 20, 26); }
     } else {
       disk(ctx, hit.x, hit.y, 13, PAL.ink); hits.push({ x: hit.x, y: hit.y, r: 24, name: 'the disk, stuck to the stick' });
       /* the velocity of the disk and of the stick's centre, tangential and clockwise */
@@ -97,7 +95,6 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
       /* the angular velocity about the nail */
       arcArrow(ctx, NX, NY, 46, -Math.PI / 2 + th - 0.9, 1.8, C('angular-rate'), 4);
       const la = -Math.PI / 2 + th; lab.add("ω′", NX + 70 * Math.cos(la), NY + 70 * Math.sin(la), Math.cos(la), Math.sin(la), C('angular-rate'), 24, 16);
-      if (labels.value === 'on') { lab.add('disk', hit.x, hit.y, -tx, -ty, PAL.ink, 20, 30); lab.add('stick', cm.x, cm.y, -tx, -ty, PAL.ink, 20, 30); lab.add('nail', NX, NY, -Math.sin(th) || -1, Math.cos(th), PAL.ink, 20, 26); }
     }
     /* the bars: before hollow, after filled, three fixed caps */
     const BY = 770, HM = 165;
@@ -139,7 +136,7 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
 ===================================================================== */
 (function () {
   const d = sim('sim-percussion', 640);
-  const f = ctl(d.controls, { label: 'r/\\ell', cls: '', min: 0.1, max: 1, step: 0.01, value: 0.95, unit: 'of the length', dec: 2, aria: 'where the ball strikes, as a fraction of the length from the pivot', detents: [{ v: 0.35, label: 'down the shaft' }, { v: 2 / 3, label: 'percussion point' }, { v: 0.95, label: 'near the end' }] });
+  const f = ctl(d.controls, { label: 'r/\\ell', cls: '', min: 0.1, max: 1, step: 0.01, value: 0.95, unit: 'of the length', dec: 2, aria: 'where the ball strikes, as a fraction of the length from the pivot', specials: [{ at: 2 / 3, label: 'percussion point' }], detents: [{ v: 0.35, label: 'down the shaft' }, { v: 0.95, label: 'near the end' }] });
   const SC = 350, PY = 540, LS = ELL, LR = 0.685, SX = 430, RX = 940, FL = 120;   /* lengths in m, body x positions, the ball's arrow length */
   function racquet(ctx, x, top, base) {
     const L = base - top, head = { cy: top + 0.24 * L, rx: 0.19 * L, ry: 0.24 * L }, throat = top + 0.5 * L, grip = base - 0.22 * L;

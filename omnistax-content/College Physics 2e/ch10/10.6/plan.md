@@ -104,13 +104,14 @@ headline · graph · 3D
    fixed cap taken from the book's defaults (4 kg·m²/s, 40 J, 4 kg·m/s), a
    bar past its cap clipped with a marker and its number written · 2D, the
    plane of the table. Labels: the disk, the stick and the nail move or sit
-   under a moving thing, so their names are off behind a Labels button with
-   hover names (rule 26.7); the quantity labels $\kv$, $\kvprime$,
+   under a moving thing, so their names are not drawn and hover names carry
+   them (rule 26.7); the quantity labels $\kv$, $\kvprime$,
    $\kvcm$ and $\kwprime$ ride their arrows through the labeller. Readout:
    $\kwprime = m\kv\kr/\kIprime$ with the live numbers; small line saying
    what the kinetic energy and the linear momentum did and which way the nail
    pushed. Draws angular-momentum, rotational-inertia, angular-rate,
    momentum, velocity, energy, position.
+   Manim pass, 2026-09-28: the Labels button was removed (rule 26.7); the disk, the stick and the nail are named under the pointer; the percussion point at 0.800 m is a dashed circle, the other detents stay.
 3. `sim-percussion` · replaces Figure 10.34 (a), (b) and (c), the stick and
    the racquet struck in three places · percussion-point · value add:
    variation by slider. The book draws three states; sliding the strike
@@ -136,6 +137,7 @@ headline · graph · 3D
    Readout: $\kF_{\text{hand}} = \kF_{\text{nail}} = (1 - \tfrac{3}{2}\,r/\ell)\,\kF_{\text{ball}}$ with the live factor; small line saying
    the two bodies are taken as uniform rods, for which the percussion point
    lies two thirds of the way from the pivot. Draws force, position.
+   Manim pass, 2026-09-28: the percussion point at 2/3 is a dashed circle; the book's other two panels stay detents.
 
 Photographs: Figure 10.32 is kept (above). Figures 10.35, the twin skaters,
 and 10.36, the skater catching a ball, sit inside problems and travel on the
