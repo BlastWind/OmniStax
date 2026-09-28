@@ -4152,3 +4152,38 @@ generator does, and both scenes fall back to a drawing of the same arrangement.
 The chapter's two doubtful numberings were also read on openstax.org: 23.1
 prints Figures 23.3 to 23.6 and 23.12 prints 23.46 to 23.50 with Examples 23.12
 to 23.14.
+
+
+### Pass 50 (2026-09-28): Chapter 25, Geometric Optics, is built and passed
+
+The chapter pass read the seven section plans and applied what each wanted at
+chapter level. It wrote anchors on all fifteen of the chapter's equation rows and
+all thirty-one of its variable rows, and re-merged the chapter's staged rows
+(41 concepts, 99 edges, 10 symbols) into `book.json`. Glossary rows carry no
+anchor, so the glossary lines needed no change. No concept, edge or symbol row
+changed. Each plan now records what the pass decided.
+
+Across the sections, the five moved exercises land once each, with
+`source_section` set and both notes agreeing: the full-length mirror problem in
+25.2, the flat-against-convex AP item in 25.7, the curved thermometer in 25.6,
+the rainbow question in 25.5 and the Critical Thinking problem in 25.5. Every
+figure number from 25.1 to 25.44 is on a row or a `folds` list, in book order.
+Figures 25.43 and 25.44 stay whole as photo rows, drawing and photograph
+together, since the mirror sim already draws both cases. The read-through
+changed one caption in 25.5 that named the book, and the British spellings in
+four code comments. `COLOR.md` now gives 25.4 as wholly in ink and 25.5 as
+`position` alone. `config.md` gains a block on what the build changed: one
+moving figure, the rainbow as the one 3D scene, and the proposed locked views
+drawn flat.
+
+Nine of the book's slips are kept as printed and gathered in
+`ch25/exploration.md`. Four of them were added by this pass: the swapped indices
+in the key to the Critical Thinking problem, the unclosed "(See Table 25.2.", the
+two AP solutions that m42470 comments out, and the AP item `fs-id1560818`. That
+item is keyed (b) 10 cm, but its arithmetic gives +20 cm, so it is set open.
+
+Checks: `check:content` found no errors in this chapter. It found two in
+chapters still being built (26.2 and 27.1 point `source_section` at unbuilt
+sections). Unit tests: 664 pass. `astro check` is clean. The build completed.
+A headless pass over all eight pages in light and dark found no console error,
+blank canvas, KaTeX error or missing image.
