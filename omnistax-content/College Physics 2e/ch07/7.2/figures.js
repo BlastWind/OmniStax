@@ -62,8 +62,7 @@ function package_(ctx, x, y, w, h, color) {
   f1.mark([{ at: () => f2.v, label: 'steady' }]); f2.mark([{ at: () => f1.v, label: 'steady' }]);
   const dd = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.2, max: 2, step: 0.05, value: 0.8, unit: 'm', dec: 2, aria: 'the distance the force acts through' });
   const N = 8;                                   /* the strips the book's part (b) cuts the area into */
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const ro = F.readout(d);
   /* the rectangle of a steady force splits into the strips of a varying one, and closes up again */
   const split = F.tween(d, 0);
   let goal = 0;
@@ -102,13 +101,11 @@ function package_(ctx, x, y, w, h, color) {
       ? 'The force component holds at ' + sig3(Fa) + ' N through ' + fmt(D, 2) + ' m, so the area under the line is ' + sig3(W) + ' J of work.'
       : 'The force component ' + (Fb > Fa ? 'climbs from ' : 'falls from ') + sig3(Fa) + ' N to ' + sig3(Fb) + ' N over ' + fmt(D, 2) + ' m, and the eight strips add to ' + sig3(W) + ' J of work.');
     /* the product of the steady force bends out into the sum over the strips, and back */
-    F.morph(formula, steady
+    ro.set(steady
       ? `\\mk{W}{\\kW} = \\mk{P}{(\\kF\\cos\\theta)\\kd} = \\mk{nP}{(${sig3(Fa)}\\ \\text{N})(${fmt(D, 2)}\\ \\text{m})} = \\mk{Wv}{${sig3(W)}}\\ \\text{J}`
-      : `\\mk{W}{\\kW} = \\mk{S}{\\sum_i (F\\cos\\theta)_{i(\\text{ave})}\\,d_i} = \\mk{nS}{${N}\\times(${sig3(Fav)}\\ \\text{N})(${fmt(D / N, 3)}\\ \\text{m})} = \\mk{Wv}{${sig3(W)}}\\ \\text{J}`,
-      { keyMap: steady ? { S: 'P', nS: 'nP' } : { P: 'S', nP: 'nS' } });
-    note.textContent = steady
+      : `\\mk{W}{\\kW} = \\mk{S}{\\sum_i (F\\cos\\theta)_{i(\\text{ave})}\\,d_i} = \\mk{nS}{${N}\\times(${sig3(Fav)}\\ \\text{N})(${fmt(D / N, 3)}\\ \\text{m})} = \\mk{Wv}{${sig3(W)}}\\ \\text{J}`, steady
       ? 'The shaded rectangle is the work the force does, so widening it by pushing through a greater distance and raising it by pushing harder both put more energy into the system.'
-      : 'The strips add to the same area as a rectangle of height ' + sig3(Fav) + ' N, so a force that climbs steadily does as much work as a steady force of its average value.';
+      : 'The strips add to the same area as a rectangle of height ' + sig3(Fav) + ' N, so a force that climbs steadily does as much work as a steady force of its average value.', { keyMap: steady ? { S: 'P', nS: 'nP' } : { P: 'S', nP: 'nS' } });
   }
   register(d.fig, { update: () => {}, draw });
 })();

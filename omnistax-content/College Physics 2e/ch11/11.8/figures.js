@@ -112,18 +112,17 @@ function freeBody(ctx, x, y, arrows, title) {
     /* the body: the foot of an insect on its leg, or a needle seen end-on */
     const bx = CX, by = breaks ? sunk.y : yc;
     /* each body fades and slides in or out as the choice turns, while the dent and the pulls stay */
-    const part = (v, paint) => { const q = body.a(v); if (q <= 0) return; const [ox, oy] = body.off(v, [0, -40]); ctx.save(); ctx.globalAlpha = q; ctx.translate(ox, oy); paint(); ctx.restore(); };
-    part('needle', () => {
+    body.only(ctx, 'needle', () => {
       dot(ctx, bx, by, PAL.ink, false, R); dot(ctx, bx, by, PAL.ink, true, Math.max(1, R - 8));
       text(ctx, 'iron needle, seen end-on', bx + R + 150, by + 58, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
       line(ctx, bx + R + 10, by + 10, bx + R + 62, by + 50, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
-    });
-    part('insect', () => {
+    }, [0, -40]);
+    body.only(ctx, 'insect', () => {
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       ctx.beginPath(); ctx.moveTo(bx, by - R + 4); ctx.lineTo(bx + 60, by - 130); ctx.lineTo(bx + 210, by - 225); ctx.stroke(); ctx.restore();
       shape(ctx, (c) => c.ellipse(bx, by, R, R * 0.6, 0, 0, TAU), PAL.ink);
       text(ctx, 'insect’s foot on its leg', bx + 120, by - 250, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
-    });
+    }, [0, -40]);
     /* the forces: the two pulls of the surface along itself, their net, and the weight */
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
     const half = hold / 2;

@@ -178,8 +178,7 @@ function burst(ctx, x, y, f, color) {
   const NP = 5.5;                              /* periods per loop: six wavefronts, the last just born */
   const d = sim('sim-sonic-boom', H);
   const vs = ctl(d.controls, { label: '\\kvs', cls: 'velocity', min: 200, max: 1000, step: 10, value: 800, unit: 'm/s', dec: 0, onInput: reset, aria: 'speed of the source', specials: [{ at: VW, label: 'speed of sound' }] });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const ro = F.readout(d);
   const cy = cycle(() => NP, 1.2);
   function reset() { cy.reset(); }
   function draw() {
@@ -217,12 +216,10 @@ function burst(ctx, x, y, f, color) {
       : M >= 1 ? 'At 340 m/s the source keeps pace with its own sound, and every wavefront is tangent at its front, where the observed frequency would be infinite.'
       : 'At ' + vs.v + ' m/s the source is slower than its sound, so the wavefronts nest inside one another, bunched ahead of it as in Figure 17.14.');
     /* past the speed of sound the cone's angle appears, and v_s and v_w move into the arcsine */
-    F.morph(formula, M >= 1
+    ro.set(M >= 1
       ? `\\mk{th}{\\theta} = 2\\arcsin\\frac{\\mk{vw}{\\kvw}}{\\mk{vs}{\\kvs}} = 2\\arcsin\\frac{\\mk{wv}{340\\ \\text{m/s}}}{\\mk{vv}{${vs.v}\\ \\text{m/s}}} = \\mk{tv}{${fmt(theta, 0)}^\\circ}`
-      : `\\mk{vs}{\\kvs} = \\mk{vv}{${vs.v}\\ \\text{m/s}} = \\mk{M}{${fmt(M, 2)}}\\,\\mk{vw}{\\kvw}`);
-    note.textContent =
-      M >= 1 ? 'By the time the source is a distance v_s t beyond the point where it emitted a wavefront, that wavefront has grown to a radius v_w t, so the lines tangent to every wavefront make half the angle θ with the path, with sin(θ/2) = v_w / v_s = ' + fmt(1 / M, 3) + '.'
-        : 'Below the speed of sound no wavefront is overtaken, and there is no line along which they arrive together; the frequency ahead is f_s v_w/(v_w − v_s) = ' + fmt(1 / (1 - M), 2) + ' f_s.';
+      : `\\mk{vs}{\\kvs} = \\mk{vv}{${vs.v}\\ \\text{m/s}} = \\mk{M}{${fmt(M, 2)}}\\,\\mk{vw}{\\kvw}`, M >= 1 ? 'By the time the source is a distance v_s t beyond the point where it emitted a wavefront, that wavefront has grown to a radius v_w t, so the lines tangent to every wavefront make half the angle θ with the path, with sin(θ/2) = v_w / v_s = ' + fmt(1 / M, 3) + '.'
+        : 'Below the speed of sound no wavefront is overtaken, and there is no line along which they arrive together; the frequency ahead is f_s v_w/(v_w − v_s) = ' + fmt(1 / (1 - M), 2) + ' f_s.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => NP / 5), draw });
 })();

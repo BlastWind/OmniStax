@@ -22,8 +22,7 @@ const RAD = Math.PI / 180;
   const M = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 100, step: 5, value: 80, unit: 'kg', dec: 0, aria: 'mass of the man' });
   const A = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: -2.5, max: 2.5, step: 0.25, value: 0, unit: 'm/s²', dec: 2, aria: 'vertical acceleration',
     specials: [{ at: 0, label: 'stationary' }] });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const ro = F.readout(d);
   const K = 0.20;                     /* logical units per newton, so an 80 kg weight draws 157 units long */
   const PX = [30, 370, 710, 1050], PW = 310;
   const LAB = ['(a)', '(b)', '(c)', '(d)'];
@@ -93,12 +92,11 @@ const RAD = Math.PI / 180;
     headline(ctx, Math.abs(a) < 1e-9
       ? 'Tarzan hangs still, so the tension of ' + fmt(T, 0) + ' N is exactly his weight of ' + fmt(w, 0) + ' N'
       : 'Tarzan accelerates ' + (a > 0 ? 'upward' : 'downward') + ' at ' + fmt(Math.abs(a), 2) + ' m/s², so the tension of ' + fmt(T, 0) + ' N is ' + fmt(Math.abs(gap), 0) + ' N ' + (a > 0 ? 'more' : 'less') + ' than his weight');
-    F.morph(formula, Math.abs(a) < 1e-9
+    ro.set(Math.abs(a) < 1e-9
       ? `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} = \\mk{m}{m}\\mk{g}{\\kg} = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}}\\ \\text{m/s}^2) = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`
-      : `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} \\mk{ma}{{}+ m\\ka} = \\mk{m}{m}(\\mk{g}{\\kg} \\mk{a}{{}+ \\ka}) = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}} \\mk{na}{{}${a < 0 ? '-' : '+'} ${fmt(Math.abs(a), 2)}})\\ \\text{m/s}^2 = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`);
-    note.textContent = Math.abs(a) < 1e-9
+      : `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} \\mk{ma}{{}+ m\\ka} = \\mk{m}{m}(\\mk{g}{\\kg} \\mk{a}{{}+ \\ka}) = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}} \\mk{na}{{}${a < 0 ? '-' : '+'} ${fmt(Math.abs(a), 2)}})\\ \\text{m/s}^2 = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`, Math.abs(a) < 1e-9
         ? 'The acceleration along the vertical axis is zero, so the net force along that axis is zero and the tension is exactly the weight.'
-        : 'The acceleration along the vertical axis is ' + fmt(Math.abs(a), 2) + ' m/s², so the net force along that axis is ' + fmt(Math.abs(gap), 0) + ' N and the tension no longer matches the weight.';
+        : 'The acceleration along the vertical axis is ' + fmt(Math.abs(a), 2) + ' m/s², so the net force along that axis is ' + fmt(Math.abs(gap), 0) + ' N and the tension no longer matches the weight.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

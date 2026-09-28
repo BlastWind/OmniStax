@@ -56,8 +56,7 @@ function crate(ctx, x, y, w, color) {
   const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 35, unit: '°', dec: 0, onInput: reset, aria: 'angle between the force and the displacement',
     specials: [{ at: 90, label: 'perpendicular' }, { at: 180, label: 'opposite' }] });
   const dd = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0, max: 40, step: 0.5, value: 25, unit: 'm', dec: 1, onInput: reset, aria: 'displacement', specials: [{ at: 0, label: 'no motion' }] });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const ro = F.readout(d);
   const cy = cycle(() => 1, 1.2);            /* one trip per loop, counted as the fraction of it that is done */
   function reset() { cy.reset(); }
   const SC = 22, X0 = 260, GY = 420;         /* logical units to the metre, the start of the trip, the ground */
@@ -137,12 +136,11 @@ function crate(ctx, x, y, w, color) {
     /* the relation takes the form of the case: at 90° the cosine is the zero that empties the product,
        and at 180° it bends into the minus sign of work done against the motion */
     const nums = `(\\mk{Fv}{${fmt(Fv, 1)}}\\ \\text{N})(\\mk{dv}{${fmt(D, 1)}}\\ \\text{m})`;
-    F.morph(formula, ang === 90
+    ro.set(ang === 90
       ? `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\theta} = ${nums}\\mk{cv}{\\cos 90^\\circ} = \\mk{Wv}{0}\\ \\text{J}`
       : ang === 180
         ? `\\mk{W}{\\kW} = \\mk{c}{-}\\mk{F}{\\kF}\\mk{d}{\\kd} = \\mk{cv}{-}${nums} = \\mk{Wv}{${sig3(Wtot)}}\\ \\text{J}`
-        : `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\theta} = ${nums}\\mk{cv}{\\cos ${fmt(ang, 0)}^\\circ} = \\mk{Wv}{${sig3(Wtot)}}\\ \\text{J}`);
-    note.textContent = caseLine;
+        : `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\theta} = ${nums}\\mk{cv}{\\cos ${fmt(ang, 0)}^\\circ} = \\mk{Wv}{${sig3(Wtot)}}\\ \\text{J}`, caseLine);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
 })();

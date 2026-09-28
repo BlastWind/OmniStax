@@ -6,7 +6,7 @@
    config decides for everything before the onset of turbulence in 12.5. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, fixed, view } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, fixed, view, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -67,7 +67,6 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
      obstruction is 40 % of the depth, WB either side of XB */
   const X1 = 80, X2 = 1320, BED = 470, TOP = 130, D = BED - TOP, N = 5, KV = 150, HB = 0.4 * D, XB = 640, WB = 220;
   const hits = [];
-  const faded = (ctx, a, f) => { if (a <= 0) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); };
   function draw() {
     const { ctx } = begin(d.c); hits.length = 0;
     const vt = vs.v, vc = C('velocity'), lam = pick.value === 'laminar';
@@ -76,7 +75,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     line(ctx, X1, TOP, X2, TOP, alpha(PAL.ink, 0.5), 2, [12, 10]);
     text(ctx, 'the bed', X1 + 12, BED + 15, PAL.ink, { size: 17, bg: PAL.panel });
     /* the layers, shaded alternately, and the speed of each */
-    faded(ctx, aL, () => {
+    faded(ctx, aL, [0, 0], () => {
       for (let i = 0; i < N; i++) {                                  /* i = 0 is the layer on the bed */
         const y1 = BED - (i + 1) * (D / N), y0 = BED - i * (D / N);
         ctx.fillStyle = alpha(PAL.ink, i % 2 ? 0.035 : 0.075); ctx.fillRect(X1, y1, X2 - X1, y0 - y1);
@@ -87,7 +86,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     if (hb > 0.5) {
       ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(XB - WB, BED);
       for (let x = XB - WB; x <= XB + WB; x += 6) ctx.lineTo(x, BED - bump(x)); ctx.lineTo(XB + WB, BED); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-      faded(ctx, aT, () => text(ctx, 'obstruction', XB, BED - hb / 2, PAL.ink, { size: 19, weight: 600, align: 'center' }));
+      faded(ctx, aT, [0, 0], () => text(ctx, 'obstruction', XB, BED - hb / 2, PAL.ink, { size: 19, weight: 600, align: 'center' }));
     }
     /* the boundaries between layers: each keeps its share of the depth above the bed, so it lifts over the bump;
        behind it the ones below the bump's top break off, and the ones above waver more the lower they are */
@@ -103,17 +102,17 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
       const col = alpha(PAL.ink, 0.35 + 0.35 * aT);
       const run = (ps) => { ctx.strokeStyle = col; ctx.beginPath(); ps.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke(); };
       run(pts.filter(([x]) => !broken || x <= XB));
-      if (broken) faded(ctx, aL, () => run(pts.filter(([x]) => x >= XB)));
+      if (broken) faded(ctx, aL, [0, 0], () => run(pts.filter(([x]) => x >= XB)));
     }
     ctx.restore();
     /* the speeds: every layer's upstream arrow stays; the ones over and behind the bump leave with the layers */
     for (let i = 0; i < N; i++) {
       const yc = BED - (i + 0.5) * (D / N), v = vt * (i + 1) / N;
       arrow(ctx, 160, yc, 160 + v * KV, yc, vc, 4);
-      faded(ctx, aL, () => { for (const x of [490, 820]) arrow(ctx, x, yc, x + v * KV, yc, vc, 4); });
+      faded(ctx, aL, [0, 0], () => { for (const x of [490, 820]) arrow(ctx, x, yc, x + v * KV, yc, vc, 4); });
       if (lam) hits.push({ x: 700, y: yc, r: D / N / 2, name: `layer ${i + 1} of ${N}, moving at ${fmt(v, 2)} m/s` });
     }
-    faded(ctx, aL, () => {
+    faded(ctx, aL, [0, 0], () => {
       text(ctx, 'v_t = ' + fmt(vt, 2) + ' m/s', 820 + vt * KV + 16, BED - (N - 0.5) * (D / N), vc, { size: 22, weight: 600, bg: PAL.panel });
       text(ctx, 'v_b = ' + fmt(vt / N, 2) + ' m/s', 820 + (vt / N) * KV + 16, BED - 0.5 * (D / N), vc, { size: 22, weight: 600, bg: PAL.panel });
       /* the friction between layers, marked as the book marks it: wavy strokes across two boundaries with one label */
@@ -123,7 +122,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
       text(ctx, 'friction between layers, and with the bed', 1150, BED + 50, PAL.ink, { size: 19, align: 'center' });
     });
     /* the eddies behind the bump: curled arrows, one kind, labelled once, each with a hover name */
-    faded(ctx, aT, () => {
+    faded(ctx, aT, [0, 0], () => {
       const eddies = [], n = 3 + Math.round(HB / 40);
       for (let i = 0; i < n; i++) {
         const ex = XB + WB * 0.55 + 70 + (i % 3) * 110 + Math.floor(i / 3) * 40, ey = BED - 30 - (i * 53) % Math.max(60, HB + 60), r = 18 + (i % 2) * 8;

@@ -29,12 +29,6 @@ const num = (v, d) => { const x = eps(v, d); return (x < 0 ? '−' : '') + fmt(M
 function sig3(v) { const a = Math.abs(v); if (a === 0) return '0'; const d = Math.max(0, 2 - Math.floor(Math.log10(a))); return (v < 0 ? '−' : '') + fmt(a, d); }
 /* a height written in the unit that suits its size */
 function hstr(h) { const a = Math.abs(h); return a >= 1 ? sig3(h) + ' m' : a >= 0.01 ? sig3(h * 100) + ' cm' : sig3(h * 1000) + ' mm'; }
-/* paints a fluid's region in its colour, the last fluid's colour giving way to the new one while the choice turns */
-function fluidPaint(ctx, ch, paint) {
-  paint(FLUIDS[ch.from].color);
-  if (ch.from === ch.value) return;
-  ctx.save(); ctx.globalAlpha = ch.k; paint(FLUIDS[ch.value].color); ctx.restore();
-}
 /* a rounded-rectangle outline, for a jar and a lid */
 function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
   ctx.save(); ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.arcTo(x + w, y, x + w, y + r, r); ctx.lineTo(x + w, y + h - r); ctx.arcTo(x + w, y + h, x + w - r, y + h, r); ctx.lineTo(x + r, y + h); ctx.arcTo(x, y + h, x, y + h - r, r); ctx.lineTo(x, y + r); ctx.arcTo(x, y, x + r, y, r); ctx.closePath();
@@ -188,7 +182,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     ctx.strokeStyle = PAL.panel; ctx.lineWidth = IW; tubePath(ctx); ctx.stroke(); ctx.restore();
     /* the fluid, clipped to below the two levels */
     ctx.save(); ctx.beginPath(); ctx.rect(XL - IW / 2, yL, IW, YRUN - yL + IW); ctx.rect(XR - IW / 2, yR, IW, YRUN - yR + IW); ctx.rect(XL, YRUN - IW, XR - XL, 2 * IW); ctx.clip();
-    ctx.lineCap = 'butt'; ctx.lineWidth = IW; fluidPaint(ctx, fl, (c) => { ctx.strokeStyle = c; tubePath(ctx); ctx.stroke(); }); ctx.restore();
+    ctx.lineCap = 'butt'; ctx.lineWidth = IW; ctx.strokeStyle = fl.mixColor((v) => FLUIDS[v].color); tubePath(ctx); ctx.stroke(); ctx.restore();
     line(ctx, XL - IW / 2, yL, XL + IW / 2, yL, PAL.ink, 2.5); line(ctx, XR - IW / 2, yR, XR + IW / 2, yR, PAL.ink, 2.5);
     /* the meter stick between the legs, in centimetres from the rest level */
     const MX = 450;
@@ -267,7 +261,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     const p = Ps.v * 1000, f = FLUIDS[fl.value];
     const h = p / (f.rho * G), hd = fl.mix((v) => p / (FLUIDS[v].rho * G)), out = hd > TUBE, yh = YS - Math.min(hd, TUBE) * S;
     /* the dish and the fluid in it */
-    fluidPaint(ctx, fl, (c) => { ctx.fillStyle = c; ctx.fillRect(452, YS, 496, 60); });
+    ctx.fillStyle = fl.mixColor((v) => FLUIDS[v].color); ctx.fillRect(452, YS, 496, 60);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineCap = 'butt';
     ctx.beginPath(); ctx.moveTo(450, 580); ctx.lineTo(450, 682); ctx.lineTo(950, 682); ctx.lineTo(950, 580); ctx.stroke(); ctx.restore();
     line(ctx, 452, YS, TX - TW / 2 - WALL, YS, PAL.ink, 2.5); line(ctx, TX + TW / 2 + WALL, YS, 948, YS, PAL.ink, 2.5);
@@ -275,7 +269,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     /* the tube: the walls, the bore, the vacuum above the column and the column itself */
     ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(TX - TW / 2 - WALL, YTOP - WALL, TW + 2 * WALL, YS + 40 - YTOP + WALL); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(TX - TW / 2, YTOP, TW, YS + 40 - YTOP); ctx.restore();
-    fluidPaint(ctx, fl, (c) => { ctx.fillStyle = c; ctx.fillRect(TX - TW / 2, yh, TW, YS + 40 - yh); });
+    ctx.fillStyle = fl.mixColor((v) => FLUIDS[v].color); ctx.fillRect(TX - TW / 2, yh, TW, YS + 40 - yh);
     if (!out) line(ctx, TX - TW / 2, yh, TX + TW / 2, yh, PAL.ink, 2.5);
     if (!out) text(ctx, 'vacuum (P_abs = 0)', TX + TW / 2 + 24, YTOP + 22, PAL.ink, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* a scale up the tube, in tenths of a metre */

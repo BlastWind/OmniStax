@@ -170,7 +170,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
     if (q <= Q4) { const f = (q - Q3) / L_V; return { T: 100, ice: 0, water: 1 - f, steam: f, stage: 3 }; }
     return { T: 100 + (q - Q4) / C_STEAM, ice: 0, water: 0, steam: 1, stage: 4 };
   }
-  const formula = el('div'), note = el('small'); d.readout.append(formula, note);
+  const ro = F.readout(d);
   let was = 0;
   const box = { l: 440, r: 1340, t: 132, b: 500 };            /* fixed axes: 0 to 3200 kJ/kg, −20 to 180 °C */
   const CUP = { l: 90, r: 310, t: 150, b: 520 };
@@ -255,8 +255,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
       'The ' + kJ(m * Q3) + ' kJ is what it took to bring the sample to water at 100 °C. Boiling the water takes 539 cal/g, which is ' + fmt(L_V, 0) + ' kJ for every kilogram, nearly seven times the heat of melting and more than everything that came before it together.',
       'The ' + kJ(m * Q4) + ' kJ is what it took to bring the sample to steam at 100 °C. Steam warms at 0.482 cal/g·°C, which is ' + fmt(C_STEAM, 2) + ' kJ/kg·°C, so the last segment climbs nearly as steeply as the ice did.',
     ];
-    F.morph(formula, form[st.stage](), keyMap ? { keyMap } : undefined);
-    note.textContent = smalls[st.stage];
+    ro.set(form[st.stage](), smalls[st.stage], keyMap ? { keyMap } : undefined);
   }
   register(d.fig, { update: () => {}, draw });
 })();

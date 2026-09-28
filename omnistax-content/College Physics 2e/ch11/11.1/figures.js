@@ -1,7 +1,7 @@
 /* Figures for section 11.1 What Is a Fluid? Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.1'] = function (root, F) {
-const { el, PAL, alpha, cycle, register, begin, line, arrow, text, topline, spring, fixed, choice, hover } = F;
+const { el, PAL, alpha, cycle, register, begin, line, arrow, text, topline, spring, fixed, choice, hover, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 
@@ -156,13 +156,12 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
     if (dir === 'down') arrow(ctx, x + w / 2, y - 46, x + w / 2, y - 3, PAL.ink, 4);
   }
   /* a part that only some pushes have, drawn under its fade and shift as the push changes */
-  function part(ctx, a, off, f) { if (!(a > 0)) return; ctx.save(); ctx.globalAlpha *= a; ctx.translate(off[0], off[1]); f(); ctx.restore(); }
   const SLIDE = [30, 0], LIFT = [0, -24];
   /* a closed container, whose lid lifts away when the reader takes it off */
   function box(ctx, i, name) {
     const xl = XL(i), xr = XR(i);
     line(ctx, xl, BT, xl, BB, PAL.ink, 4); line(ctx, xr, BT, xr, BB, PAL.ink, 4); line(ctx, xl - 2, BB, xr + 2, BB, PAL.ink, 4);
-    part(ctx, 1 - mode.a('open'), [0, -24 * mode.a('open')], () => line(ctx, xl - 2, BT, xr + 2, BT, PAL.ink, 4));
+    faded(ctx, 1 - mode.a('open'), [0, -24 * mode.a('open')], () => line(ctx, xl - 2, BT, xr + 2, BT, PAL.ink, 4));
     hit(xl, (BT + BB) / 2, 12, name); hit(xr, (BT + BB) / 2, 12, name);
   }
   const HEAD = {
@@ -199,22 +198,22 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
     for (const p of pos) { atom(ctx, 'Fe', p.x, p.y, AR); hit(p.x, p.y, AR + 3, 'an iron atom, held near home by the forces the springs stand for'); }
     line(ctx, PX(0) + 24, BB, PX(0) + 276, BB, PAL.ink, 4); hit(PX(0) + 150, BB, 10, 'the ground the crystal stands on');
     const shear = mode.a('shear'), slide = mode.off('shear', SLIDE), press = mode.a('compress'), lift = mode.off('compress', LIFT);
-    part(ctx, shear, slide, () => { const x = CX0 - 100 + solid.lean, y = solidTop() - PLATE_H; plate(ctx, x, y, 200, 'a plate pushed sideways, which the solid holds after a hair of lean', 'right'); text(ctx, 'a sideways push', CX0, y - 18, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); });
-    part(ctx, press, lift, () => { const y = solidTop() - PLATE_H; plate(ctx, CX0 - 100, y, 200, 'a piston pushed down, which the solid stops almost at once', 'down'); text(ctx, 'a piston pushed down', CX0, y - 62, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); });
+    faded(ctx, shear, slide, () => { const x = CX0 - 100 + solid.lean, y = solidTop() - PLATE_H; plate(ctx, x, y, 200, 'a plate pushed sideways, which the solid holds after a hair of lean', 'right'); text(ctx, 'a sideways push', CX0, y - 18, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); });
+    faded(ctx, press, lift, () => { const y = solidTop() - PLATE_H; plate(ctx, CX0 - 100, y, 200, 'a piston pushed down, which the solid stops almost at once', 'down'); text(ctx, 'a piston pushed down', CX0, y - 62, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); });
     /* (b) the beaker and the water in it */
     line(ctx, XL(1), BT + 20, XL(1), BB, PAL.ink, 4); line(ctx, XR(1), BT + 20, XR(1), BB, PAL.ink, 4); line(ctx, XL(1) - 2, BB, XR(1) + 2, BB, PAL.ink, 4);
     hit(XL(1), (BT + BB) / 2, 12, 'an open beaker'); hit(XR(1), (BT + BB) / 2, 12, 'an open beaker');
     for (const p of liq) { water(ctx, p.x, p.y, p.a); hit(p.x, p.y, LR + 2, 'a water molecule, an oxygen atom with two hydrogens'); }
-    part(ctx, shear, slide, () => plate(ctx, XL(1) + 4 + liquid.plateX, liquid.plateY - PLATE_H, PLATE_W, 'a plate pushed sideways, which slides across the liquid', 'right'));
-    part(ctx, press, lift, () => plate(ctx, XL(1) + 4, liquid.plateY + liquid.depth - PLATE_H, BW - 8, 'a piston pushed down, which the liquid stops almost at once', 'down'));
+    faded(ctx, shear, slide, () => plate(ctx, XL(1) + 4 + liquid.plateX, liquid.plateY - PLATE_H, PLATE_W, 'a plate pushed sideways, which slides across the liquid', 'right'));
+    faded(ctx, press, lift, () => plate(ctx, XL(1) + 4, liquid.plateY + liquid.depth - PLATE_H, BW - 8, 'a piston pushed down, which the liquid stops almost at once', 'down'));
     /* (c) the oxygen and (d) the plasma in their boxes */
     box(ctx, 2, 'a closed container of oxygen'); box(ctx, 3, 'a closed container of hydrogen plasma');
     const back = 1 - mode.a('open');                /* molecules that refill a closed box fade in where they are */
-    for (const q of gas.p) { if (q.gone) continue; part(ctx, q.back ? back : 1, [0, 0], () => dioxygen(ctx, q.x, q.y, q.a)); hit(q.x, q.y, 16, 'an oxygen molecule, O₂'); }
-    for (const q of plasma.p) { if (q.gone) continue; part(ctx, q.back ? back : 1, [0, 0], () => { if (q.kind === 'p') proton(ctx, q.x, q.y); else electron(ctx, q.x, q.y); }); hit(q.x, q.y, q.kind === 'p' ? 12 : 10, q.kind === 'p' ? 'a proton, the nucleus of a hydrogen atom' : 'an electron'); }
+    for (const q of gas.p) { if (q.gone) continue; faded(ctx, q.back ? back : 1, [0, 0], () => dioxygen(ctx, q.x, q.y, q.a)); hit(q.x, q.y, 16, 'an oxygen molecule, O₂'); }
+    for (const q of plasma.p) { if (q.gone) continue; faded(ctx, q.back ? back : 1, [0, 0], () => { if (q.kind === 'p') proton(ctx, q.x, q.y); else electron(ctx, q.x, q.y); }); hit(q.x, q.y, q.kind === 'p' ? 12 : 10, q.kind === 'p' ? 'a proton, the nucleus of a hydrogen atom' : 'an electron'); }
     for (const [b, i] of [[gas, 2], [plasma, 3]]) {
-      part(ctx, shear, slide, () => plate(ctx, XL(i) + 4 + b.plateX, BT, PLATE_W, 'a plate pushed sideways, which nothing resists', 'right'));
-      part(ctx, press, lift, () => plate(ctx, XL(i) + 4, BT + b.depth - PLATE_H, BW - 8, 'a piston pushed down, which travels half way before it is stopped', 'down'));
+      faded(ctx, shear, slide, () => plate(ctx, XL(i) + 4 + b.plateX, BT, PLATE_W, 'a plate pushed sideways, which nothing resists', 'right'));
+      faded(ctx, press, lift, () => plate(ctx, XL(i) + 4, BT + b.depth - PLATE_H, BW - 8, 'a piston pushed down, which travels half way before it is stopped', 'down'));
     }
     /* the captions under the four panels */
     CAP.forEach(([cap, note], i) => { text(ctx, cap, PX(i) + 150, 502, PAL.ink, { size: 19, weight: 600, align: 'center' }); text(ctx, note, PX(i) + 150, 530, PAL.muted, { size: 16, align: 'center' }); });

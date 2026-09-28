@@ -454,12 +454,10 @@ function bathScale(ctx, x, y, w, color) {
       ctx.restore();
     }
     const terms = [0, 1, 2, 3].slice(0, n).map((i) => `\\mk{T${i}}{${i ? '{}+' : ''}\\kTf}`).join(' ');
-    F.morph(formula, `\\mk{Fnet}{\\kFnet} = ${terms} \\mk{f}{{}-\\kff} = \\mk{n}{${n}}\\mk{nT}{\\kTf} \\mk{f2}{{}-\\kff}`
-      + ` = \\mk{nval}{${n}}\\mk{Tval}{(${sig3(Tt.v)}\\ \\text{N})} \\mk{fval}{{}-${commas(fmt(ff.v, 0))}\\ \\text{N}} = \\mk{Fval}{${sig3(net)}\\ \\text{N}}`);
-    note.textContent = net > 0 ? 'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s².' : 'The thrust does not overcome the friction, and the sled stays where it is.';
+    ro.set(`\\mk{Fnet}{\\kFnet} = ${terms} \\mk{f}{{}-\\kff} = \\mk{n}{${n}}\\mk{nT}{\\kTf} \\mk{f2}{{}-\\kff}`
+      + ` = \\mk{nval}{${n}}\\mk{Tval}{(${sig3(Tt.v)}\\ \\text{N})} \\mk{fval}{{}-${commas(fmt(ff.v, 0))}\\ \\text{N}} = \\mk{Fval}{${sig3(net)}\\ \\text{N}}`, net > 0 ? 'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s².' : 'The thrust does not overcome the friction, and the sled stays where it is.');
   }
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const ro = F.readout(d);
   register(d.fig, { update: () => {}, draw });
 })();
 

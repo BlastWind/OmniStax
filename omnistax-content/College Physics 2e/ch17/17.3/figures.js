@@ -193,9 +193,8 @@ function speaker(ctx, x, y, color, a, s) {
   const bs = ctl(d.controls, { label: '\\beta', cls: '', min: 0, max: 120, step: 1, value: 40, unit: 'dB', dec: 0, aria: 'the sound intensity level one source makes at the listener',
     detents: [{ v: 40, label: 'a housefly' }, { v: 110 }], snap: false });
   const ns = choice(d.controls, { label: 'N', options: [1, 2, 5, 10, 100, 1000].map((n) => ({ value: String(n), label: String(n) })), value: '1000', aria: 'the number of sources' });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
-  note.textContent = 'The intensities add when interference between the sources can be neglected. The level rises by 10 log₁₀ N, which is 3 dB for every doubling and 10 dB for every factor of ten, and never by N times the level of one source.';
+  const ro = F.readout(d);
+  ro.note.textContent = 'The intensities add when interference between the sources can be neglected. The level rises by 10 log₁₀ N, which is 3 dB for every doubling and 10 dB for every factor of ten, and never by N times the level of one source.';
   const CX = 420, CY = 290, R = 160;                /* the ring */
   const LAD = { l: 130, r: 1310, y: 610 };          /* the ladder: 0 to 160 dB, fixed */
   const xOf = (b) => LAD.l + (b / 160) * (LAD.r - LAD.l);
@@ -247,7 +246,7 @@ function speaker(ctx, x, y, color, a, s) {
     topline(ctx, N === 1 ? 'One source of ' + fmt(b, 0) + ' dB makes a sound of ' + fmt(b, 0) + ' dB at the listener.'
       : fmt(N, 0) + ' sources of ' + fmt(b, 0) + ' dB each make a sound of ' + fmt(bN, 0) + ' dB, since their intensities add to ' + fmt(N, 0) + ' times one.');
     /* one source leaves no rise: the 10 log N term fades out and the level is the source's own */
-    F.morph(formula, N === 1
+    ro.set(N === 1
       ? `\\mk{bN}{\\beta_N} = \\mk{b}{\\beta} = \\mk{res}{${fmt(bN, 0)}}\\ \\text{dB}`
       : `\\mk{bN}{\\beta_N} = \\mk{b}{\\beta} + \\mk{r}{10\\log_{10}N} = \\mk{bv}{${fmt(b, 0)}}\\ \\text{dB} + \\mk{rv}{${fmt(rise, 0)}}\\ \\text{dB} = \\mk{res}{${fmt(bN, 0)}}\\ \\text{dB}`);
   }

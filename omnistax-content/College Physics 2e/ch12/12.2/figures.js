@@ -4,7 +4,7 @@
    slider's or a choice's input alone redraws it (ch12/config.md). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, vbracket } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, vbracket, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -148,8 +148,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
   h1 = ctl(d.controls, { label: '\\khone', cls: 'position', min: 0, max: 10, step: 0.5, value: 2, unit: 'm', dec: 1, aria: 'the height of point 1 above the reference', specials: [zero, { at: () => (h2 ? h2.v : null), label: 'h₂' }] });
   h2 = ctl(d.controls, { label: '\\khtwo', cls: 'position', min: 0, max: 10, step: 0.5, value: 5, unit: 'm', dec: 1, aria: 'the height of point 2 above the reference', specials: [zero, { at: () => h1.v, label: 'h₁' }] });
   h1.refresh();
-  const eqHost = el('div'), note = el('small');
-  d.readout.append(eqHost, note);
+  const ro = F.readout(d);
   /* the kinetic and the gravitational bars, and their legend entries, fade with the terms the case strikes */
   const P = F.presence(d);
   const YREF = 440, SH = 24, X1 = 340, X2 = 1000, XA = 500, XB = 860;
@@ -247,8 +246,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
           : still ? [['P1', 'g1'], ['P2', 'g2']]
             : level ? [['P1', 'k1'], ['P2', 'k2']]
               : [['P1', 'k1', 'g1'], ['P2', 'k2', 'g2']];
-    F.morph(eqHost, form(L, R, { P1, k1: ke1, g1: pe1, P2, k2: ke2, g2: pe2 }));
-    note.textContent = 'Water at 1.00 × 10³ kg/m³ and g = 9.80 m/s², with P₁ held at 1.50 × 10⁵ N/m². Whatever the water gains in speed or in height it pays for out of its pressure.';
+    ro.set(form(L, R, { P1, k1: ke1, g1: pe1, P2, k2: ke2, g2: pe2 }), 'Water at 1.00 × 10³ kg/m³ and g = 9.80 m/s², with P₁ held at 1.50 × 10⁵ N/m². Whatever the water gains in speed or in height it pays for out of its pressure.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -388,9 +386,8 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     }
     flowLines(ctx, topF, botF, 60, 1340, F.lerp(WX0, SX0, q), F.lerp(WX1, SX1, q), GAP, kTop, kBot);
     shape(ctx, F.lerpPts(WING, SAIL, q, true), alpha(PAL.soft, 1 - q), PAL.ink, F.lerp(3, 7, q));
-    const faded = (a, f) => { if (a <= 0) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); };
-    faded(aWing, () => text(ctx, 'the wing, in profile', 450, 342, PAL.ink, { size: 19, align: 'center' }));
-    faded(aSail, () => {
+    faded(ctx, aWing, [0, 0], () => text(ctx, 'the wing, in profile', 450, 342, PAL.ink, { size: 19, align: 'center' }));
+    faded(ctx, aSail, [0, 0], () => {
       text(ctx, 'the hull, seen from above', 640, 500, PAL.ink, { size: 19, align: 'center' });
       dot(ctx, SX0, 380, PAL.ink, true, 8);
       text(ctx, 'the mast', SX0 - 20, 404, PAL.ink, { size: 19, align: 'right' });
@@ -408,7 +405,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     text(ctx, 'v_1 = ' + fmt(vSlow, dec) + ' m/s ' + (wing ? 'under the bottom' : 'along the back'), xB, yB + 30, vc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the net pressure on the surface, drawn to scale from its middle: straight up or down on the wing, clear of the
        speed labels, and perpendicular to the sail, toward the front when the front is the faster side */
-    if (Math.abs(dp) > 0.05) faded(pick.a(pick.value), () => {
+    if (Math.abs(dp) > 0.05) faded(ctx, pick.a(pick.value), [0, 0], () => {
       if (wing) {
         const x = 800, L = Math.abs(dp) * KP, y0 = dp > 0 ? wingBot(800) : wingTop(800), up = dp > 0 ? -1 : 1;
         arrow(ctx, x, y0, x, y0 + up * L, pc, 6);
@@ -465,22 +462,21 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     const hd = fl.mix((f) => Math.min(dp / (RHO_M[f] * G), HMAX)), shade = fl.mix((f) => (f === 'hg' ? 0.3 : 0.14));
     const g = dev.mix((k) => AT[k]), aTwo = dev.a('two'), aPr = dev.a('prandtl');
     const lab = (s, x, y, col, o) => text(ctx, s, x, y, col, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85), ...o });
-    const faded = (a, f) => { if (a <= 0) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); };
     /* the air, streaming left to right past the tubes, drawn first so the tubes sit over it; the
        streamline a tube's mouth faces is the one that ends in the dead spot */
     if (v > 0) for (let i = 0; i < 7; i++) streamline(ctx, [[60, 150 + i * 30], [g.end, 150 + i * 30]], mid);
     const U = [[XL, g.legL], [XL, YBOT], [XL + 30, YBOT + 40], [XR - 30, YBOT + 40], [XR, YBOT], [XR, g.legR]];
     /* tube 2 straightens out of the pipe that joins the outer tube to the right leg, and the outer tube fills in around the inner one */
-    faded(aPr, () => {
+    faded(ctx, aPr, [0, 0], () => {
       tube(ctx, [[440, 250], [780, 250]], 40);
       line(ctx, 440, 229, 440, 271, PAL.ink, 3); line(ctx, 780, 229, 780, 271, PAL.ink, 3);
     });
     tube(ctx, [[g.x2, g.py], [g.px, g.py], [g.px, g.legR], [XR, g.legR]], 14);
-    faded(aPr, () => {
+    faded(ctx, aPr, [0, 0], () => {
       line(ctx, 753, 230, 767, 230, PAL.soft, 6);                                                        /* where the pipe leaves the outer wall */
       line(ctx, 556, 230, 604, 230, PAL.panel, 9); line(ctx, 556, 270, 604, 270, PAL.panel, 9);         /* the side holes */
     });
-    faded(aTwo, () => {
+    faded(ctx, aTwo, [0, 0], () => {
       dot(ctx, 380, 210, PAL.ink, true, 8);                                                               /* tube 2's closed front */
       line(ctx, 500, 202, 540, 202, PAL.panel, 9);                                                       /* its side opening, a gap in the upper wall */
     });

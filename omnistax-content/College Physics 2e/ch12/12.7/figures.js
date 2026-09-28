@@ -4,7 +4,7 @@
    sliders and register no cycle, as the chapter's config decided. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, nice, curve } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, nice, curve, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -248,7 +248,6 @@ const TABLE = [
     const passes = KINDS.map((k) => porous && k.nm < pw), fits = KINDS.map((k) => k.nm < pw);
     /* the pores close into the dissolving layer and open out of it; each molecule keeps its place and only fades */
     const aP = kind.a('pores'), aD = kind.a('dissolving');
-    const faded = (a, f) => { if (a <= 0.001) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     /* the legend: the three kinds, named once */
     let lx = 70;
     KINDS.forEach((k, i) => { molecule(ctx, lx + rOf(KINDS[2]), 104, i); text(ctx, k.name + ' molecules, ' + fmt(k.nm, 1) + ' nm across', lx + 2 * rOf(KINDS[2]) + 14, 104, PAL.muted, { size: 17 }); lx += 400; });
@@ -262,11 +261,11 @@ const TABLE = [
     } else { ctx.fillRect(ML, TOP, MR - ML, BOT - TOP); ctx.strokeRect(ML, TOP, MR - ML, BOT - TOP); }
     ctx.restore();
     text(ctx, 'membrane', (ML + MR) / 2, BOT + 24, PAL.muted, { size: 19, align: 'center' });
-    faded(aP, () => { line(ctx, MR + 6, PORES[0], MR + 40, PORES[0] - 30, PAL.muted, 2); text(ctx, 'pore, ' + fmt(pw, 1) + ' nm', MR + 48, PORES[0] - 34, PAL.ink, { size: 19, weight: 600 }); });
+    faded(ctx, aP, [0, 0], () => { line(ctx, MR + 6, PORES[0], MR + 40, PORES[0] - 30, PAL.muted, 2); text(ctx, 'pore, ' + fmt(pw, 1) + ' nm', MR + 48, PORES[0] - 34, PAL.ink, { size: 19, weight: 600 }); });
     /* the molecules on the left, and on the right the kinds that have got across */
     LEFT.forEach((p) => molecule(ctx, p.x, p.y, p.k));
-    RIGHT.forEach((p) => faded(kind.mix((v) => (v === 'dissolving' || fits[p.k] ? 1 : 0)), () => molecule(ctx, p.x, p.y, p.k)));
-    faded(aP, () => {
+    RIGHT.forEach((p) => faded(ctx, kind.mix((v) => (v === 'dissolving' || fits[p.k] ? 1 : 0)), [0, 0], () => molecule(ctx, p.x, p.y, p.k)));
+    faded(ctx, aP, [0, 0], () => {
       /* one of each admitted kind in a pore, and one of each held kind pressed against the membrane */
       KINDS.forEach((k, i) => {
         const py = PORES[1 + i];
@@ -277,7 +276,7 @@ const TABLE = [
       text(ctx, okNames.length ? 'through the pores: ' + okNames.join(', ') : 'nothing gets through', MR + 40, BOT + 50, PAL.ink, { size: 19, weight: 600 });
       text(ctx, noNames.length ? 'held back: ' + noNames.join(', ') : 'nothing is held back', ML - 40, BOT + 50, PAL.ink, { size: 19, weight: 600, align: 'right' });
     });
-    faded(aD, () => {
+    faded(ctx, aD, [0, 0], () => {
       /* the dissolving membrane: a few molecules sit inside it on their way across */
       [[0.22, 0.14], [0.7, 0.3], [0.4, 0.5], [0.78, 0.68], [0.3, 0.86]].forEach(([u, v], i) => molecule(ctx, ML + 16 + u * (MR - ML - 32), TOP + 30 + v * (BOT - TOP - 60), i === 3 ? 1 : 0));
       text(ctx, 'dissolved in the membrane, on the way across', (ML + MR) / 2, BOT + 50, PAL.ink, { size: 19, weight: 600, align: 'center' });

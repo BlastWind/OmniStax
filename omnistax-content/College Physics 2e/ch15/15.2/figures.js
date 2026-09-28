@@ -414,10 +414,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
   const panel = choice(d.controls, { label: '\\text{the panel}', options: [{ value: 'a', label: '(a) two paths from A' }, { value: 'b', label: '(b) the cycle ABCA' }], value: 'a', aria: 'which panel of the figure is drawn' });
   const box = { l: 220, r: 1240, t: 130, b: 480 };   /* V 0 to 5 × 10⁻³ m³, P 0 to 5 × 10⁵ N/m², fixed */
   const VA = 1;
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
-  /* a part only one panel has, faded and shifted with the panel choice */
-  const only = (ctx, v, shift, f) => { const a = panel.a(v); if (a <= 0) return; const [dx, dy] = panel.off(v, shift); ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore(); };
+  const ro = F.readout(d);
   function draw() {
     const { ctx } = begin(d.c);
     const ec = C('energy'), pc = C('pressure');
@@ -446,18 +443,17 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const lx = VA * Math.pow(r, 0.6);
     text(ctx, 'isothermal, ΔT = 0', g.X(lx) + 14, g.Y(iso(lx)) - 30, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'adiabatic, Q = 0', g.X(lx) - 30, g.Y(adi(lx)) + 44, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    only(ctx, 'b', [0, 12], () => text(ctx, 'isochoric', g.X(VB) + 16, (yB + yC) / 2, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) }));
-    only(ctx, 'a', [0, -12], () => text(ctx, 'work along AB = ' + J(Wiso) + ' J, along AC = ' + J(Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }));
-    only(ctx, 'b', [0, -12], () => text(ctx, 'net work of the cycle = ' + J(Wiso - Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }));
+    panel.only(ctx, 'b', () => text(ctx, 'isochoric', g.X(VB) + 16, (yB + yC) / 2, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) }));
+    panel.only(ctx, 'a', () => text(ctx, 'work along AB = ' + J(Wiso) + ' J, along AC = ' + J(Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }), [0, -12]);
+    panel.only(ctx, 'b', () => text(ctx, 'net work of the cycle = ' + J(Wiso - Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }), [0, -12]);
     topline(ctx, b
       ? 'Out along the isotherm, cooled to C and back along the adiabat, the cycle ABCA puts out ' + J(Wiso - Wad) + ' J of net work.'
       : 'The isothermal path from A does ' + J(Wiso) + ' J of work, the adiabatic path only ' + J(Wad) + ' J.');
     const AB = '\\mk{AB}{\\kW_{\\text{AB}}}', nAB = `\\mk{nAB}{${JTex(Wiso)}}\\ \\text{J}`, nAC = `\\mk{nAC}{${JTex(Wad)}}\\ \\text{J}`;
-    F.morph(formula, b
+    ro.set(b
       ? `\\mk{W}{\\kW} = ${AB} - \\mk{AC}{\\kW_{\\text{CA}}} = ${nAB} - ${nAC} = \\mk{nW}{${JTex(Wiso - Wad)}}\\ \\text{J}`
-      : `${AB} = ${nAB},\\quad \\mk{AC}{\\kW_{\\text{AC}}} = ${nAC}`);
-    note.textContent = b ? 'The isochoric leg BC does no work, so the net work is the area between the two curves. Cooling the gas at B to C is what makes the return along the adiabat cheaper than the expansion along the isotherm was.'
-      : 'For a monatomic ideal gas E_int = (3/2)NkT = (3/2)PV, which is ' + J(EA) + ' J at A. Along the isotherm it stays ' + J(EA) + ' J, since heat transfer Q = W replaces the work as it is done; along the adiabat the work comes out of the internal energy, ΔE_int = −W, which falls to ' + J(EA - Wad) + ' J at C, so the gas is colder and its pressure lower.';
+      : `${AB} = ${nAB},\\quad \\mk{AC}{\\kW_{\\text{AC}}} = ${nAC}`, b ? 'The isochoric leg BC does no work, so the net work is the area between the two curves. Cooling the gas at B to C is what makes the return along the adiabat cheaper than the expansion along the isotherm was.'
+      : 'For a monatomic ideal gas E_int = (3/2)NkT = (3/2)PV, which is ' + J(EA) + ' J at A. Along the isotherm it stays ' + J(EA) + ' J, since heat transfer Q = W replaces the work as it is done; along the adiabat the work comes out of the internal energy, ΔE_int = −W, which falls to ' + J(EA - Wad) + ' J at C, so the gas is colder and its pressure lower.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

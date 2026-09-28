@@ -41,9 +41,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 600, step: 5, value: 90, unit: 'N', dec: 0, aria: 'applied force',
     specials: [{ at: () => (Fh ? Fh.v : null), label: 'Hooke limit' }] });
   const kk = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 50, max: 400, step: 10, value: 150, unit: 'N/m', dec: 0, aria: 'force constant' });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
-  let wasPast = false;
+  const ro = F.readout(d);
   Fh = ctl(d.controls, { label: '\\text{Hooke limit}', cls: 'force', min: 40, max: 300, step: 10, value: 120, unit: 'N', dec: 0, aria: 'force at which the straight segment of the graph ends' });
   const elastic = () => 1.5 * Fh.v, fracture = () => 1.9 * Fh.v;
   /* the deformation the force produces: proportional while Hooke's law holds, then steeper, then steeper again */
@@ -107,9 +105,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
         : reg === 2 ? 'A force of ' + fmt(f, 0) + ' N has stretched the spring ' + fmt(x, 3) + ' m and deformed it permanently, so it will not return to its original length'
           : 'A force of ' + fmt(f, 0) + ' N has fractured the spring, which happens here at ' + fmt(fracture(), 0) + ' N');
     const past = reg > 0;
-    F.morph(formula, `\\mk{dL}{\\kdL} = \\mk{nx}{${fmt(x, 3)}}\\ \\text{m} \\mk{rel}{${past ? '>' : '='}} \\mk{Fk}{\\frac{\\kF}{\\kk}} = \\mk{fk}{\\frac{${fmt(f, 0)}\\ \\text{N}}{${fmt(kk.v, 0)}\\ \\text{N/m}}} = \\mk{nfk}{${fmt(f / kk.v, 3)}}\\ \\text{m}`, { force: past !== wasPast });
-    wasPast = past;
-    note.textContent = 'The slope of the straight region is 1/k, so a stiffer spring gives a flatter line. The straight region is long for a metal or a spring and short for a bone.';
+    ro.set(`\\mk{dL}{\\kdL} = \\mk{nx}{${fmt(x, 3)}}\\ \\text{m} \\mk{rel}{${past ? '>' : '='}} \\mk{Fk}{\\frac{\\kF}{\\kk}} = \\mk{fk}{\\frac{${fmt(f, 0)}\\ \\text{N}}{${fmt(kk.v, 0)}\\ \\text{N/m}}} = \\mk{nfk}{${fmt(f / kk.v, 3)}}\\ \\text{m}`, 'The slope of the straight region is 1/k, so a stiffer spring gives a flatter line. The straight region is long for a metal or a spring and short for a bone.', { form: past });
   }
   register(d.fig, { update: () => {}, draw });
 })();

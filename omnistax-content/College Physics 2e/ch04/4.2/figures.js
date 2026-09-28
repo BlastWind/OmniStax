@@ -20,8 +20,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   const V = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 2, max: 10, step: 0.5, value: 8, unit: 'm/s', dec: 1, onInput: reset, aria: 'the speed the block starts with' });
   const A = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0, max: 3, step: 0.1, value: 2, unit: 'm/s²', dec: 1, onInput: reset, aria: 'the rate at which the surface slows the block',
     specials: [{ at: 0, label: 'frictionless' }] });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const ro = F.readout(d);
   const TRACK = 60;                                   /* the surface drawn, in metres */
   const SL = 150, SR = 1200, X = (s) => SL + ((SR - SL) * s) / TRACK;
   const yS = 250, yBlk = yS - 50, GB = { l: 150, r: 1200, t: 440, b: 630 };
@@ -78,12 +77,11 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       : r.stops ? 'On ' + surface(r.a) + ' the block slides ' + fmt(r.ds, 1) + ' m and stops'
       : r.a === 0 ? 'With the friction gone the block leaves the picture at ' + fmt(r.v0, 1) + ' m/s, and nothing will stop it'
       : 'The block leaves the picture still moving at ' + fmt(v, 1) + ' m/s, since stopping it would take ' + fmt(r.ds, 1) + ' m');
-    F.morph(formula, r.a === 0
+    ro.set(r.a === 0
       ? `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} = \\mk{n0}{${fmt(r.v0, 1)}} = \\mk{nv}{${fmt(v, 2)}}\\ \\text{m/s}`
-      : `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} \\mk{at}{{}- \\ka\\kt} = \\mk{n0}{${fmt(r.v0, 1)}} \\mk{nat}{{}- ${fmt(r.a, 1)}(${fmt(t, 2)})} = \\mk{nv}{${fmt(v, 2)}}\\ \\text{m/s}`);
-    note.textContent = r.a === 0 ? 'With the slowing set to zero the block never stops: the line of the speed is flat, and the distance it covers goes on growing with the time.'
+      : `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} \\mk{at}{{}- \\ka\\kt} = \\mk{n0}{${fmt(r.v0, 1)}} \\mk{nat}{{}- ${fmt(r.a, 1)}(${fmt(t, 2)})} = \\mk{nv}{${fmt(v, 2)}}\\ \\text{m/s}`, r.a === 0 ? 'With the slowing set to zero the block never stops: the line of the speed is flat, and the distance it covers goes on growing with the time.'
         : r.stops ? 'The block covers ' + fmt(r.ds, 1) + ' m before it stops, and halving the slowing would double that distance.'
-        : 'Stopping the block would take ' + fmt(r.ds, 1) + ' m, which is more than the 60 m of surface drawn here.';
+        : 'Stopping the block would take ' + fmt(r.ds, 1) + ' m, which is more than the 60 m of surface drawn here.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => run().T / 5), draw });
 })();

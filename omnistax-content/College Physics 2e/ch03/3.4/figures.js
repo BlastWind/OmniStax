@@ -422,8 +422,7 @@ function tower(ctx, x, y, h, color) {
     specials: [{ at: () => vCirc(), label: 'circular orbit' }, { at: () => Math.SQRT2 * vCirc(), label: 'escape speed' }] });
   const ht = ctl(d.controls, { label: '\\text{tower height}', cls: 'position', min: 200, max: 1500, step: 100, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: 'tower height' });
   v0.refresh();
-  const eqHost = el('div'), note = el('small');
-  d.readout.append(eqHost, note);
+  const ro = F.readout(d);
   function integrate(v, h) {
     const r0 = RE + h * 1000; let x = 0, y = r0, vx = v * 1000, vy = 0, t = 0, swept = 0, last = Math.PI / 2;
     const acc = (px, py) => { const r = Math.hypot(px, py), a = -GM / (r * r * r); return [a * px, a * py]; };
@@ -514,14 +513,15 @@ function tower(ctx, x, y, h, color) {
     const gv = '\\mk{gval}{(9.80\\ \\text{m/s}^2)}', hv = `\\mk{hval}{${commas(fmt(ht.v * 1000, 0))}\\ \\text{m}}`, re = '6.37 \\times 10^6\\ \\text{m}';
     const orbit = `\\sqrt{\\frac{\\mk{g}{\\kg}\\mk{RE}{R_E^2}}{\\mk{RE2}{R_E} + \\mk{h}{h}}} = \\sqrt{\\frac{${gv}\\mk{REval}{(${re})^2}}{\\mk{REval2}{${re}} + ${hv}}}`;
     const vc = `\\ \\text{km/s}`;
-    F.morph(eqHost, run.landed
+    ro.set(run.landed
       ? `\\mk{R}{\\kR} = \\mk{v0}{\\kvo}\\sqrt{\\frac{2\\mk{h}{h}}{\\mk{g}{\\kg}}} = \\mk{v0val}{(${fmt(v0.v, 1)}\\ \\text{km/s})}\\sqrt{\\frac{2(${hv})}{${gv}}} = \\mk{Rval}{${sig3(flat)}\\ \\text{km}}`
       : circ ? `\\mk{v0}{\\kvo} = ${orbit} = \\mk{v0val}{${fmt(vo, 2)}${vc}}`
-      : `\\mk{v0}{\\kvo} ${v0.v > vo ? '\\mk{gt}{>}' : '\\mk{lt}{<}'} ${orbit} = \\mk{vc}{${fmt(vo, 2)}${vc}}`, { keyMap: form === 'circ' && !run.landed && !circ ? { v0val: 'vc' } : form === 'off' && circ ? { vc: 'v0val' } : undefined });
-    form = run.landed ? 'range' : circ ? 'circ' : 'off';
-    note.textContent = run.landed ? 'The projectile went ' + sig3(along) + ' km along the curved surface, ' + fmt(along / flat, 1) + ' times as far, because the ground fell away beneath it and it had farther to fall.'
+      : `\\mk{v0}{\\kvo} ${v0.v > vo ? '\\mk{gt}{>}' : '\\mk{lt}{<}'} ${orbit} = \\mk{vc}{${fmt(vo, 2)}${vc}}`,
+      run.landed ? 'The projectile went ' + sig3(along) + ' km along the curved surface, ' + fmt(along / flat, 1) + ' times as far, because the ground fell away beneath it and it had farther to fall.'
       : circ ? 'At this speed the path is a circle: the projectile falls the whole way round in ' + fmt(run.T / 60, 0) + ' min and stays at the height of the tower.'
-      : 'Instead of landing, the projectile circles the Earth in ' + fmt(run.T / 60, 0) + ' min: it falls the whole way round and never reaches the surface.';
+      : 'Instead of landing, the projectile circles the Earth in ' + fmt(run.T / 60, 0) + ' min: it falls the whole way round and never reaches the surface.',
+      { keyMap: form === 'circ' && !run.landed && !circ ? { v0val: 'vc' } : form === 'off' && circ ? { vc: 'v0val' } : undefined });
+    form = run.landed ? 'range' : circ ? 'circ' : 'off';
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => run.T / 5), draw });
 })();

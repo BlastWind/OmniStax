@@ -147,21 +147,20 @@ const TAU = Math.PI * 2;
     /* as the lid lifts, the vapor under it drifts away: the bar drains from where it stood rather than vanishing */
     if (mode === 'sealed') held = Math.min(1, alive / m.nEq);
     const share = held * box.a('sealed'), pct = Math.round(share * 100);
-    const fade = (v, f) => { const a = box.a(v); if (a <= 0) return; const [dx, dy] = box.off(v, [0, 12]); ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore(); };
     const AX = 950, CX = 1110, L = 170;
     arrow(ctx, AX, YS, AX, YS - L, PAL.ink, 4); text(ctx, 'evaporation', AX, YS + 26, PAL.ink, { size: 18, weight: 600, align: 'center' });
     if (share > 0.02) arrow(ctx, CX, YS - L, CX, YS - L + L * share, PAL.ink, 4); else line(ctx, CX - 8, YS - L, CX + 8, YS - L, PAL.ink, 3);
     text(ctx, 'condensation', CX, YS + 26, PAL.ink, { size: 18, weight: 600, align: 'center' });
-    fade('sealed', () => text(ctx, pct + '% of it', CX, YS + 50, PAL.muted, { size: 17, align: 'center' }));
-    fade('open', () => text(ctx, 'none returns', CX, YS + 50, PAL.muted, { size: 17, align: 'center' }));
+    box.only(ctx, 'sealed', () => text(ctx, pct + '% of it', CX, YS + 50, PAL.muted, { size: 17, align: 'center' }));
+    box.only(ctx, 'open', () => text(ctx, 'none returns', CX, YS + 50, PAL.muted, { size: 17, align: 'center' }));
     const BX = 1230, BW = 56;
     line(ctx, BX, YS, BX, YR, PAL.muted, 2); line(ctx, BX - 10, YR, BX + BW + 10, YR, dc, 3, [10, 10]);
     if (share > 0) { ctx.save(); ctx.fillStyle = alpha(dc, 0.3); ctx.fillRect(BX, YS - (YS - YR) * share, BW, (YS - YR) * share); ctx.restore(); line(ctx, BX, YS - (YS - YR) * share, BX + BW, YS - (YS - YR) * share, dc, 3); }
     line(ctx, BX, YS, BX + BW, YS, PAL.muted, 2);
     text(ctx, 'vapor density', BX + BW / 2, YS + 26, dc, { size: 18, weight: 600, align: 'center' });
     text(ctx, 'saturation, ' + dens(satD(T)) + ' g/m³', BX + BW / 2, YR - 18, dc, { size: 17, weight: 600, align: 'center' });
-    fade('sealed', () => text(ctx, dens(satD(T) * share) + ' g/m³', BX + BW + 12, YS - (YS - YR) * share, dc, { size: 17, weight: 600, bg: PAL.panel }));
-    fade('open', () => text(ctx, 'drifts away', BX + BW / 2, (YS + YR) / 2, PAL.muted, { size: 17, align: 'center' }));
+    box.only(ctx, 'sealed', () => text(ctx, dens(satD(T) * share) + ' g/m³', BX + BW + 12, YS - (YS - YR) * share, dc, { size: 17, weight: 600, bg: PAL.panel }));
+    box.only(ctx, 'open', () => text(ctx, 'drifts away', BX + BW / 2, (YS + YR) / 2, PAL.muted, { size: 17, align: 'center' }));
     text(ctx, 'T = ' + degC(T), XL + 14, YS - 18, tc, { size: 22, weight: 600, bg: PAL.panel });
     /* the words */
     if (mode === 'sealed') topline(ctx, share >= 0.99
@@ -234,8 +233,7 @@ const TAU = Math.PI * 2;
   const Ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 0.3, max: 2, step: 0.01, value: 1, unit: 'atm', dec: 2, aria: 'pressure over the water', detents: [{ v: 1, label: 'sea level' }], snap: true,
     specials: [{ at: () => vapP(Ts.v) / ATM, label: 'boils' }] });
   Ts.mark([{ at: () => tableInv(Ps.v * ATM, 1), label: 'boils' }]);
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const ro = F.readout(d);
   /* the beaker: walls at XL and XR, rim at YR, bottom at YB, water to YW; the burner beneath; the bar of partial pressures at right */
   const XL = 300, XR = 700, YR = 130, YB = 520, YW = 190, R0 = 14;
   const BX = 850, BW = 440, BY = 400, BH = 54;
@@ -288,11 +286,10 @@ const TAU = Math.PI * 2;
     else topline(ctx, `At ${degC(T, 1)} the vapor pressure of water ${pv - P < 0.02 * P ? 'reaches' : 'exceeds'} the ${fmt(Ps.v, 2)} atm over the water, so vapor enters the bubble without limit: it grows, breaks away and rises. The water boils.`);
     const Pv = sci(pv), Pa = sci(Math.max(0, pair)), Pt = sci(P);
     const vap = '\\mk{v}{{\\kPr}_{\\text{vapor}}(\\kTemp)}', nv = `\\mk{nv}{${Pv.tex}}\\ \\text{Pa}`, nP = `\\mk{nP}{${Pt.tex}}\\ \\text{Pa}`;
-    F.morph(formula, boils
+    ro.set(boils
       ? `${vap} = ${nv} \\ge \\mk{P}{\\kPr} = ${nP}`
-      : `\\mk{P}{\\kPr} = ${vap} + \\mk{a}{{\\kPr}_{\\text{air}}} = ${nv} + \\mk{na}{${Pa.tex}}\\ \\text{Pa} = ${nP}`);
-    note.textContent = (
-      `At ${fmt(Ps.v, 2)} atm water boils at ${degC(tb, 1)}, where Table 13.5 puts the vapor pressure of water at ${sci(P).txt} Pa.${boils ? '' : ' The bubble’s volume is ' + fmt(ratio, 2) + ' times what it was at 20 °C and 1.00 atm.'}`);
+      : `\\mk{P}{\\kPr} = ${vap} + \\mk{a}{{\\kPr}_{\\text{air}}} = ${nv} + \\mk{na}{${Pa.tex}}\\ \\text{Pa} = ${nP}`, (
+      `At ${fmt(Ps.v, 2)} atm water boils at ${degC(tb, 1)}, where Table 13.5 puts the vapor pressure of water at ${sci(P).txt} Pa.${boils ? '' : ' The bubble’s volume is ' + fmt(ratio, 2) + ' times what it was at 20 °C and 1.00 atm.'}`));
   }
   register(d.fig, { update: () => {}, draw });
 })();

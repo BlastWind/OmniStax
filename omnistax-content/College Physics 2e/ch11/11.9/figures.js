@@ -4,7 +4,7 @@
    person, an eye. One, the breath, has a clock in it and moves. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.9'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, register, cycle, begin, line, arrow, dot, text, topline, vbracket, strip, axes, pinned, curve } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, register, cycle, begin, line, arrow, dot, text, topline, vbracket, strip, axes, pinned, curve, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -263,18 +263,17 @@ const UNITS = {
     const dh = hs.v, dhEff = eps(dh * up, 3), dP = dhEff * RHO_BLOOD * G, dPmm = dP / MMHG;
     const where = Math.abs(dh - 1.4) < 1e-6 ? 'the feet' : Math.abs(dh + 0.4) < 1e-6 ? 'the top of the head' : Math.abs(dh) < 1e-6 ? 'the heart' : 'a point ' + fmt(Math.abs(dh), 2) + ' m ' + (dh > 0 ? 'below' : 'above') + ' the heart';
     const aS = pose.a('standing'), aL = pose.a('lying');
-    const faded = (q, paint) => { if (q <= 0) return; ctx.save(); ctx.globalAlpha = q; paint(); ctx.restore(); };
-    faded(aL, () => {
+    faded(ctx, aL, [0, 0], () => {
       ctx.save(); ctx.fillStyle = PAL.soft; rrect(ctx, 60, BEDY - 0.34 * SC, 610, 0.68 * SC, 18); ctx.fill(); ctx.restore();
       text(ctx, 'the bed, seen from above', 660, BEDY + 0.34 * SC + 26, PAL.muted, { size: 17, align: 'right' });
     });
-    faded(aS, () => strip(ctx, 60, 620, GY + 14, 24));
+    faded(ctx, aS, [0, 0], () => strip(ctx, 60, 620, GY + 14, 24));
     const P = body(ctx, turn[1], turn[2], ux, uy);
     const [hx, hy] = P(HEART, 0), [px, py] = P(HEART - dh, 0);
     /* the column of blood between the heart and the point, fading as the body lies down and the column has no height */
-    faded(0.3 * up, () => { const [ax, ay] = P(HEART, -0.045), [bx, by] = P(HEART, 0.045), [cx, cy] = P(HEART - dh, 0.045), [ex, ey] = P(HEART - dh, -0.045); ctx.fillStyle = BLOOD; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.lineTo(cx, cy); ctx.lineTo(ex, ey); ctx.closePath(); ctx.fill(); });
+    faded(ctx, 0.3 * up, [0, 0], () => { const [ax, ay] = P(HEART, -0.045), [bx, by] = P(HEART, 0.045), [cx, cy] = P(HEART - dh, 0.045), [ex, ey] = P(HEART - dh, -0.045); ctx.fillStyle = BLOOD; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.lineTo(cx, cy); ctx.lineTo(ex, ey); ctx.closePath(); ctx.fill(); });
     dot(ctx, hx, hy, BLOOD, true, 9); dot(ctx, px, py, xc, true, 9);
-    faded(aS, () => {
+    faded(ctx, aS, [0, 0], () => {
       text(ctx, 'the heart', hx + 0.24 * SC + 16, hy, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.9) });
       /* the scale of depth below the heart beside the person */
       const SX = 560; line(ctx, SX, hy - (TOP - HEART) * SC, SX, hy + HEART * SC, PAL.muted, 2);
@@ -282,7 +281,7 @@ const UNITS = {
       text(ctx, 'depth below the heart', SX - 60, GY + 44, xc, { size: 17, weight: 600 });
       if (Math.abs(py - hy) > 6) line(ctx, px + 13, py, SX, py, xc, 2, [4, 8]);
     });
-    faded(aL, () => {
+    faded(ctx, aL, [0, 0], () => {
       line(ctx, 40, hy, 700, hy, xc, 2, [10, 10]);
       text(ctx, 'the level of the heart', 60, hy - 60, xc, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.9) });
       text(ctx, 'the heart', hx, hy - 34 - 0.22 * SC, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.9) });

@@ -201,8 +201,7 @@ function trip(u) {
 (function () {
   const d = sim('sim-segments', 720);
   const W = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.1, max: 5, step: 0.05, value: 1.25, unit: 's', dec: 2, specials: [{ at: 0.1, label: 'instant' }], onInput: reset, aria: 'width of one interval' });
-  const eqHost = el('div'), note = el('small');
-  d.readout.append(eqHost, note);
+  const ro = F.readout(d);
   /* The trip the book draws under this number takes 5.0 s. A slider for the whole time only
      restretched the same curve and changed no picture, so it is gone (rule 24.6) and the trip
      keeps the book's 5.0 s; what is interesting and variable here is the width of one interval. */
@@ -262,10 +261,9 @@ function trip(u) {
     /* at the narrowest interval the average and the instantaneous velocity are one number, so the two relations fold into one */
     const instant = W.v <= 0.1 + 1e-9, sv = (x) => signed(x, 2).replace('−', '-');
     const frac = `\\frac{\\mk{dx}{\\kdx}}{\\mk{dt}{\\kdt}} = \\frac{\\mk{dxv}{${sv(xb - xa)}\\ \\text{m}}}{\\mk{dtv}{${fmt(tb - ta, 2)}\\ \\text{s}}}`;
-    F.morph(eqHost, instant ? `\\mk{vb}{\\kv} \\approx ${frac} = \\mk{vbv}{${sv(vb)}\\ \\text{m/s}}`
-      : `\\mk{vb}{\\kvb} = ${frac} = \\mk{vbv}{${sv(vb)}\\ \\text{m/s}} \\qquad \\mk{v}{\\kv} = \\mk{vv}{${sv(now.v)}\\ \\text{m/s}}`);
-    note.textContent = instant ? 'Over an interval this short the average velocity is close to the instantaneous velocity, which is what the text means by an infinitesimally small interval.'
-      : 'As the interval shrinks, the average velocity over it settles to the instantaneous velocity, which is what the text means by an infinitesimally small interval.';
+    ro.set(instant ? `\\mk{vb}{\\kv} \\approx ${frac} = \\mk{vbv}{${sv(vb)}\\ \\text{m/s}}`
+      : `\\mk{vb}{\\kvb} = ${frac} = \\mk{vbv}{${sv(vb)}\\ \\text{m/s}} \\qquad \\mk{v}{\\kv} = \\mk{vv}{${sv(now.v)}\\ \\text{m/s}}`, instant ? 'Over an interval this short the average velocity is close to the instantaneous velocity, which is what the text means by an infinitesimally small interval.'
+      : 'As the interval shrinks, the average velocity over it settles to the instantaneous velocity, which is what the text means by an infinitesimally small interval.');
   }
   register(d.fig, { update: (dt) => { cy.step(dt, () => TOT / 5); if (cy.tau < TOT) ph += dt * 12; }, draw });
 })();

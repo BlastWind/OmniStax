@@ -71,7 +71,6 @@ function hatch(ctx, pathFn, color) {
     /* an arrow drawn the engine's way, from 1 to 2; as the mode turns it shrinks to its tail and regrows from 2 */
     const turned = (x1, y1, x2, y2, w) => (s >= 0 ? fat(ctx, x1, y1, x1 + (x2 - x1) * s, y1 + (y2 - y1) * s, w, ec) : fat(ctx, x2, y2, x2 + (x1 - x2) * -s, y2 + (y1 - y2) * -s, w, ec));
     /* a part only one mode has, faded and shifted with the mode */
-    const only = (v, f) => { const a = mode.a(v); if (a <= 0) return; const [dx, dy] = mode.off(v, [0, 10]); ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore(); };
     /* ---- the schematic: hot reservoir above, cold below, the machine between ---- */
     reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, 'hot reservoir', 'T_h = ' + fmt(Th, 0) + ' K');
     reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, 'cold reservoir', 'T_c = ' + fmt(Tc, 0) + ' K');
@@ -80,13 +79,13 @@ function hatch(ctx, pathFn, color) {
     if (Qc > 0) turned(MX, MY + MR + 2, MX, bot, wOf(Qc));
     if (W > 0.5) turned(MX + MR + 2, MY, 600, MY, wOf(W));
     machine(ctx, MX, MY, MR, '');
-    only('pump', () => text(ctx, 'heat pump', MX, MY, PAL.ink, { size: 20, weight: 600, align: 'center' }));
-    only('engine', () => text(ctx, 'heat engine', MX, MY, PAL.ink, { size: 20, weight: 600, align: 'center' }));
+    mode.only(ctx, 'pump', () => text(ctx, 'heat pump', MX, MY, PAL.ink, { size: 20, weight: 600, align: 'center' }), [0, 10]);
+    mode.only(ctx, 'engine', () => text(ctx, 'heat engine', MX, MY, PAL.ink, { size: 20, weight: 600, align: 'center' }), [0, 10]);
     text(ctx, 'Q_h = ' + fmt(Qh, 0) + ' J', MX - wOf(Qh) / 2 - 22, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Q_c = ' + fmt(Qc, 0) + ' J', MX - wOf(Qc) / 2 - 22, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'W = ' + fmt(W, 0) + ' J', 500, MY - wOf(W) / 2 - 30, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    only('pump', () => text(ctx, 'work put in', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }));
-    only('engine', () => text(ctx, 'work got out', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }));
+    mode.only(ctx, 'pump', () => text(ctx, 'work put in', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }), [0, 10]);
+    mode.only(ctx, 'engine', () => text(ctx, 'work got out', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }), [0, 10]);
     /* ---- the PV diagram: pressure wears its hue on the vertical axis, volume is ink ---- */
     const { X, Y } = axes(ctx, box, [0, 10], [0, 500], { xl: 'V (L)', yl: 'P (kPa)', yc: pc, nx: 5, ny: 5 });
     const k = 1 / (GAM - 1), VC = VB * Math.pow(Th / Tc, k), VD = VA * Math.pow(Th / Tc, k);
@@ -106,8 +105,8 @@ function hatch(ctx, pathFn, color) {
     ctx.restore();
     /* the area inside the loop is the work: filled for an engine, hatched for a pump */
     if (W > 0.5) {
-      only('pump', () => hatch(ctx, pathFn, ec));
-      only('engine', () => { ctx.fillStyle = alpha(ec, 0.28); ctx.beginPath(); pathFn(); ctx.fill(); });
+      mode.only(ctx, 'pump', () => hatch(ctx, pathFn, ec), [0, 10]);
+      mode.only(ctx, 'engine', () => { ctx.fillStyle = alpha(ec, 0.28); ctx.beginPath(); pathFn(); ctx.fill(); }, [0, 10]);
     }
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); pathFn(); ctx.closePath(); ctx.stroke(); ctx.restore();
     /* the way the loop is walked: an arrowhead at the middle of each leg */
@@ -128,8 +127,8 @@ function hatch(ctx, pathFn, color) {
     turned(hx, hy - 84, hx, hy - 14, 12); turned(cx, cy + 14, cx, cb, 12);
     text(ctx, 'Q_h', hx + 26, hy - 50, ec, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Q_c', cx - 26, (cy + 14 + cb) / 2, ec, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    only('pump', () => text(ctx, 'walked ADCBA, a net work input', box.l, box.b + 58, PAL.muted, { size: 17 }));
-    only('engine', () => text(ctx, 'walked ABCDA, a net work output', box.l, box.b + 58, PAL.muted, { size: 17 }));
+    mode.only(ctx, 'pump', () => text(ctx, 'walked ADCBA, a net work input', box.l, box.b + 58, PAL.muted, { size: 17 }), [0, 10]);
+    mode.only(ctx, 'engine', () => text(ctx, 'walked ABCDA, a net work output', box.l, box.b + 58, PAL.muted, { size: 17 }), [0, 10]);
     topline(ctx, W < 0.5
       ? 'With both reservoirs at ' + fmt(Th, 0) + ' K the loop has no area, so no work is needed as a pump and none is got out as an engine.'
       : pump

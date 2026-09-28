@@ -138,14 +138,8 @@ function legend(ctx, x, y, color, name, dash) {
     const lamN = (2 * L.v) / n, fN = (n * vw.v) / (2 * L.v);
     const tau = REDUCED ? 0 : cy.now(), c = Math.cos(TAU * tau / SHOW);
     const xb = xa + L.v * SC;
-    /* the loop shape, sampled, bends from the last harmonic into the new one */
-    const NS = 400, loops = nPick.mix((v) => Array.from({ length: NS + 1 }, (_, i) => Math.sin((+v * Math.PI * i) / NS)));
-    const sOf = (i) => (L.v * i) / NS;
-    const trace = (f, col, w) => {
-      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.beginPath();
-      loops.forEach((y, i) => { const X = xa + sOf(i) * SC, Y = y0 - amp * f * y; if (i) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); });
-      ctx.stroke(); ctx.restore();
-    };
+    /* the loop shape bends from the last harmonic into the new one */
+    const trace = (f, col, w) => nPick.curve(ctx, (v) => (s) => Math.sin((+v * Math.PI * s) / L.v), 0, L.v, (s) => xa + s * SC, (y) => y0 - amp * f * y, col, w, 400);
     /* the two clamps the string is fixed between */
     for (const px of [xa, xb]) { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.25); ctx.fillRect(px - 9, y0 - 150, 18, 300); ctx.restore(); }
     /* the envelope the string sweeps, and the string itself */

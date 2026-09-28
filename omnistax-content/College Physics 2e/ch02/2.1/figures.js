@@ -50,20 +50,19 @@ function bike(ctx, x, y, color, dir, phase) {
     const top = 92, floor = 252;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(L - 30, top, R - L + 60, floor - top); ctx.restore();
     /* the room's own furniture fades and drifts as the frame changes; the floor, the person and the axis stay */
-    const room = (v, paint) => { const a = W.a(v); if (a <= 0) return; const [ox, oy] = W.off(v, [0, -24]); ctx.save(); ctx.globalAlpha = a; ctx.translate(ox, oy); paint(); ctx.restore(); };
-    room('passenger', () => {
+    W.only(ctx, 'passenger', () => {
       ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2;
       for (let sx = L + 10; sx < R; sx += 96) { ctx.beginPath(); ctx.roundRect(sx, top + 18, 44, 40, 10); ctx.fill(); ctx.stroke(); }
       ctx.restore();
       /* overhead bins run above the windows */
       line(ctx, L - 30, top + 8, R + 30, top + 8, PAL.rule, 3);
       text(ctx, WHO.passenger.frame, R + 30, top - 14, PAL.muted, { size: 17, align: 'right' });
-    });
-    room('professor', () => {
+    }, [0, -24]);
+    W.only(ctx, 'professor', () => {
       ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.fillRect(L + 60, top + 16, 520, 96); ctx.strokeRect(L + 60, top + 16, 520, 96); ctx.restore();
       [40, 62, 84].forEach((dy, i) => line(ctx, L + 84, top + dy, L + 84 + [300, 220, 360][i], top + dy, PAL.rule, 2));
       text(ctx, WHO.professor.frame, R + 30, top - 14, PAL.muted, { size: 17, align: 'right' });
-    });
+    }, [0, -24]);
     line(ctx, L - 30, floor, R + 30, floor, PAL.muted, 3);
     /* the person where the motion ended, and a faint trace of them where it began */
     ctx.save(); ctx.globalAlpha = 0.3; person(ctx, X(p0), floor, PAL.ink, { face }); ctx.restore();

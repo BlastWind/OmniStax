@@ -50,9 +50,7 @@ function hook(ctx, x, y, color) {
   const F2 = ctl(d.controls, { label: '\\kFtwo', cls: 'force', min: 10, max: 80, step: 1, value: 40, unit: 'N', dec: 0, aria: 'the push of the second skater' });
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the two pushes',
     specials: [{ at: 90, label: 'right angle' }] });
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
-  let wasRight = TH.v === 90;
+  const ro = F.readout(d);
   const U = 2.5;                                  /* logical units per newton */
   const sub1 = 'F₁', sub2 = 'F₂';
   /* a label set just beyond the head of an arrow that points along the angle a, and
@@ -116,11 +114,9 @@ function hook(ctx, x, y, color) {
     headline(ctx, 'A push of ' + fmt(F1.v, 0) + ' N and a push of ' + fmt(F2.v, 0) + ' N, ' + fmt(TH.v, 0)
       + '° apart, add to a total force of ' + fmt(tot, 1) + ' N at ' + fmt(ang / RAD, 1) + '° from the first push');
     const right = Math.abs(TH.v - 90) < 1e-9;
-    F.morph(formula, `\\mk{t}{\\kFtot} = \\sqrt{\\mk{x}{${right ? '\\kFone' : '\\kFx'}}^2 + \\mk{y}{${right ? '\\kFtwo' : '\\kFy'}}^2} = \\sqrt{(\\mk{nx}{${fmt(fx, 1)}}\\ \\text{N})^2 + (\\mk{ny}{${fmt(fy, 1)}}\\ \\text{N})^2} = \\mk{nt}{${fmt(tot, 1)}}\\ \\text{N}`, { force: right !== wasRight });
-    wasRight = right;
-    note.textContent = right
+    ro.set(`\\mk{t}{\\kFtot} = \\sqrt{\\mk{x}{${right ? '\\kFone' : '\\kFx'}}^2 + \\mk{y}{${right ? '\\kFtwo' : '\\kFy'}}^2} = \\sqrt{(\\mk{nx}{${fmt(fx, 1)}}\\ \\text{N})^2 + (\\mk{ny}{${fmt(fy, 1)}}\\ \\text{N})^2} = \\mk{nt}{${fmt(tot, 1)}}\\ \\text{N}`, right
       ? 'At a right angle the components are the two pushes themselves.'
-      : 'The two pushes are laid head to tail, so the total force runs from the tail of the first arrow to the head of the second.';
+      : 'The two pushes are laid head to tail, so the total force runs from the tail of the first arrow to the head of the second.', { form: right });
   }
   register(d.fig, { update: () => {}, draw });
 })();

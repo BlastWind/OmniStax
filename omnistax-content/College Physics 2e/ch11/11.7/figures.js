@@ -63,8 +63,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
 ===================================================================== */
 (function () {
   const d = sim('sim-cylinder', 720);
-  const formula = el('div'), note = el('small');
-  d.readout.append(formula, note);
+  const shown = F.readout(d);
   const HC = 0.200, A = 0.0500, VOL = HC * A, R = Math.sqrt(A / Math.PI);          /* the cylinder: 20.0 cm tall, faces of 500 cm², 10.0 L */
   const h1 = ctl(d.controls, { label: 'h_1', cls: '', min: 0, max: 0.35, step: 0.01, value: 0.2, unit: 'm', dec: 2, aria: 'the depth of the top face of the cylinder' });
   const rf = ctl(d.controls, { label: '\\krhofl', cls: 'density', min: 600, max: 1400, step: 10, value: 1000, unit: 'kg/m³', dec: 0, detents: LIQUIDS_SHORT, snap: true, aria: 'the density of the fluid in the tank' });
@@ -156,11 +155,10 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
       : 'The fluid pushes up on the bottom of the cylinder with ' + sf(F2) + ' N and down on its top with ' + sf(F1) + ' N, so the buoyant force is ' + sf(FB) + ' N.');
     /* F₂ − F₁ bends into the weight of the fluid in the outline, and a cylinder as dense as the fluid adds its own weight */
     const fb = `\\mk{FB}{\\kFB} = `, val = `\\mk{v}{${sf(FB)}}\\ \\text{N}`;
-    F.morph(formula, fluid ? `${fb}\\mk{d}{\\kwfl} = ${val}`
-      : `${fb}\\mk{d}{\\kFtwo - \\kFone} = \\mk{n}{${sf(F2)}\\ \\text{N} - ${f1s}\\ \\text{N}} = ${val}` + (Math.abs(W - FB) < 0.05 ? ` = \\mk{w}{\\kwgt}` : ''));
-    note.textContent = 'The two forces are F₁ = h₁ρg A = ' + f1s + ' N and F₂ = h₂ρg A = ' + sf(F2) + ' N, and their difference is (h₂ − h₁)ρg A, the weight of the 10.0 L of fluid the cylinder displaces, whatever the depth. '
+    shown.set(fluid ? `${fb}\\mk{d}{\\kwfl} = ${val}`
+      : `${fb}\\mk{d}{\\kFtwo - \\kFone} = \\mk{n}{${sf(F2)}\\ \\text{N} - ${f1s}\\ \\text{N}} = ${val}` + (Math.abs(W - FB) < 0.05 ? ` = \\mk{w}{\\kwgt}` : ''), 'The two forces are F₁ = h₁ρg A = ' + f1s + ' N and F₂ = h₂ρg A = ' + sf(F2) + ' N, and their difference is (h₂ − h₁)ρg A, the weight of the 10.0 L of fluid the cylinder displaces, whatever the depth. '
       + (fluid ? 'With the cylinder taken out, that 10.0 L of fluid fills its place and weighs ' + sf(FB) + ' N, which the surrounding fluid holds up with the same ' + sf(FB) + ' N, so the buoyant force on any object here is the weight of the fluid it displaces.'
-        : 'The cylinder itself weighs ' + sf(W) + ' N, ' + (Math.abs(W - FB) < 0.05 ? 'the same, so it remains suspended at this depth.' : W < FB ? 'less than that, so it will rise to the surface and float.' : 'more than that, so it will sink.'));
+        : 'The cylinder itself weighs ' + sf(W) + ' N, ' + (Math.abs(W - FB) < 0.05 ? 'the same, so it remains suspended at this depth.' : W < FB ? 'less than that, so it will rise to the surface and float.' : 'more than that, so it will sink.')));
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -159,13 +159,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const nOfEnds = (cl, i) => (cl ? 2 * i + 1 : i + 1);
     const nOf = (i) => nOfEnds(closed, i);
     const shapeOf = (cl, n) => (u) => (cl ? Math.cos((n * Math.PI * u) / 2) : Math.cos(n * Math.PI * u));
-    /* each tube's standing wave, sampled, bends from one kind of tube into the other */
-    const NS = 220, waves = ends.mix((v) => Array.from({ length: 4 * (NS + 1) }, (_, j) => shapeOf(v === 'closed', nOfEnds(v === 'closed', Math.floor(j / (NS + 1))))((j % (NS + 1)) / NS)));
-    const trace = (i, sgn, Xu, Yv, col, w) => {
-      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.beginPath();
-      for (let k = 0; k <= NS; k++) { const X = Xu(k / NS), Y = Yv(sgn * waves[i * (NS + 1) + k]); if (k) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); }
-      ctx.stroke(); ctx.restore();
-    };
+    /* each tube's standing wave bends from one kind of tube into the other */
+    const trace = (i, sgn, Xu, Yv, col, w) => ends.curve(ctx, (v) => shapeOf(v === 'closed', nOfEnds(v === 'closed', i)), 0, 1, Xu, (y) => Yv(sgn * y), col, w, 220);
     const fOf = (n) => (closed ? (n * VW) / (4 * L.v) : (n * VW) / (2 * L.v));
     const lamOf = (n) => (closed ? (4 * L.v) / n : (2 * L.v) / n);
     for (let i = 0; i < 4; i++) {
