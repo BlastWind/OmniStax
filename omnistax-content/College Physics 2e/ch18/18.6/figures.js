@@ -189,19 +189,23 @@ function atom(ctx, x, y, r, symbol, label) {
 
     const SC = 470;                                   /* 470 units to the nanometre */
     const y = 300, gap = dist * SC;
-    /* which centre of each molecule sits on the axis, and how each is turned */
-    const A_H = mode !== 'OO', B_H = mode === 'HH';    /* a hydrogen faces the gap, or the oxygen does */
-    const aA = A_H ? -HALF : 180, aB = B_H ? 180 + HALF : 0;
-    const offA = A_H ? BOND : 0, offB = B_H ? BOND : 0;
+    /* which centre of each molecule sits on the axis, and how each is turned; a change of ends turns
+       the molecules over to their new places and the force arrows shrink through nothing and reverse */
+    const [aA, aB, offA, offB, s] = face.mix((m) => {
+      const A_H = m !== 'OO', B_H = m === 'HH';        /* a hydrogen faces the gap, or the oxygen does */
+      return [A_H ? -HALF : 180, B_H ? 180 + HALF : 0, A_H ? BOND : 0, B_H ? BOND : 0, m === 'OH' ? 1 : -1];
+    });
     const mid = 700, xa = mid - gap / 2 - offA, xb = mid + gap / 2 + offB;
     /* the two nearest centres, and the dashed line between them */
     const na = { x: mid - gap / 2, y }, nb = { x: mid + gap / 2, y };
     line(ctx, na.x, y, nb.x, y, alpha(PAL.ink, 0.4), 2.5, [10, 10]);
     water(ctx, xa, y, aA, qc, 'δ'); water(ctx, xb, y, aB, qc, 'δ');
     /* the force on each molecule, towards the other when the ends are unlike */
-    const L = Math.max(44, Math.min(130, 130 * Math.pow(0.3 / dist, 0.6))), s = pull ? 1 : -1;
-    arrow(ctx, xa - 92, y + 124, xa - 92 + s * L, y + 124, fc, 5);
-    arrow(ctx, xb + 92, y + 124, xb + 92 - s * L, y + 124, fc, 5);
+    const L = Math.max(44, Math.min(130, 130 * Math.pow(0.3 / dist, 0.6)));
+    if (Math.abs(s) > 0.08) {
+      arrow(ctx, xa - 92, y + 124, xa - 92 + s * L, y + 124, fc, 5);
+      arrow(ctx, xb + 92, y + 124, xb + 92 - s * L, y + 124, fc, 5);
+    }
     text(ctx, 'F = ' + sci(Fv, 2) + ' N', clampX(mid, 150), y + 162, fc, { size: 21, weight: 600, align: 'center' });
     /* the separation of the two nearest centres */
     line(ctx, na.x, y - 130, nb.x, y - 130, PAL.muted, 2);
@@ -210,8 +214,8 @@ function atom(ctx, x, y, r, symbol, label) {
     text(ctx, 'each center carries ' + fmt(del, 2) + ' q_e', 700, 500, qc, { size: 20, weight: 600, align: 'center' });
     text(ctx, pull ? 'unlike ends: the molecules are drawn together' : 'like ends: the molecules are pushed apart', 700, 534, PAL.muted, { size: 18, align: 'center' });
 
-    readout(d.readout, `\\kF = \\dfrac{k\\lvert \\kqone \\kqtwo\\rvert}{r^2} = \\dfrac{(8.99 \\times 10^{9})(${fmt(del, 2)} \\kqe)^2}{(${fmt(dist, 2)}\\ \\text{nm})^2} = ${sciTex(Fv, 2)}\\ \\text{N}, \\quad \\text{${pull ? 'an attraction' : 'a repulsion'}}`,
-      'The ten electrons of the molecule remain closer to the oxygen nucleus than to the hydrogen nuclei, which is what leaves the oxygen end negative and the hydrogen ends positive.');
+    readout(d.readout, `\\kF = \\dfrac{k\\lvert \\kqone \\kqtwo\\rvert}{r^2} = \\dfrac{(8.99 \\times 10^{9})(${fmt(del, 2)} \\kqe)^2}{(${fmt(dist, 2)}\\ \\text{nm})^2} = ${sciTex(Fv, 2)}\\ \\text{N}`,
+      (pull ? 'Unlike ends, so the force is an attraction. ' : 'Like ends, so the force is a repulsion. ') + 'The ten electrons of the molecule remain closer to the oxygen nucleus than to the hydrogen nuclei, which is what leaves the oxygen end negative and the hydrogen ends positive.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

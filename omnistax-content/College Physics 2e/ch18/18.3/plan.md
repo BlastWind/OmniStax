@@ -190,3 +190,5 @@ sister requirement is that every variable row carry an anchor. No concept,
 symbol or glossary row was changed. The section's `exercise_notes` now say
 that only the keyed one of the two problems that belong in 18.5 is set
 there, the unkeyed one being left out as every unkeyed problem is.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-coulomb-versus-gravity`: the readout is one equation, F/F_G = (kqₑ²/r²)/(GmM/r²) = the ratio with both forces' numbers in it (manim-style 12); the small line no longer speaks of the drawing.

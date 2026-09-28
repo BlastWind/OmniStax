@@ -143,3 +143,5 @@ coverage names, and the inverse square is carried by `coulombs-law` and
 `field-of-point-charge`, which the section already uses. This chapter
 introduces neither idea. The page binds `charge` and `electric-field` and
 not `force`, and `ch18/COLOR.md` now says so.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-one-charge` and `sim-two-charges`: the choice between field lines and arrows morphs (manim-style 15): the lines are drawn out along their length from the charges as the arrows fade, and back; the choice is labelled "the field, as". `sim-two-charges` marks the book's two pairs on both sliders, a dashed circle at the other charge's value (equal) and at its negative (opposite) (rule 26.1). `sim-adding-fields`: one equation, E_tot = (E₁² + E₂²)^½ with the numbers; the angle moves to the small line.

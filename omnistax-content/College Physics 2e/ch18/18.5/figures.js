@@ -126,7 +126,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
   const d = sim('sim-one-charge', 620);
   const qs = ctl(d.controls, { label: '\\kQch', cls: 'charge', min: -20, max: 20, step: 0.5, value: 5, unit: 'nC', dec: 1,
     aria: 'the size and the sign of the point charge', detents: [-10, -5, 5, 10] });
-  const how = choice(d.controls, { label: '\\text{the drawing}', options: [
+  const how = choice(d.controls, { label: '\\text{the field, as}', options: [
     { value: 'lines', label: 'field lines' }, { value: 'arrows', label: 'arrows' }], value: 'lines', aria: 'whether the field is drawn as continuous lines or as separate arrows' });
   const CX = 700, CY = 330, R0 = 30;                  /* the charge sits here, and the lines start at its rim */
   const S = 46;                                       /* 46 units to the centimetre, so 6 cm reaches the frame */
@@ -140,21 +140,27 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     const n = Math.max(4, Math.min(48, Math.round(2.4 * mag)));
     const E = (K * mag * 1e-9) / Math.pow(PROBE * 1e-2, 2);
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(BOX.x0, BOX.y0, BOX.x1 - BOX.x0, BOX.y1 - BOX.y0); ctx.restore();
+    /* a change of drawing blends: the lines grow out from the rim along their length as the arrows fade, and shrink back as they return */
+    const w = how.mix((v) => (v === 'lines' ? 1 : 0));
     if (mag > 0) {
-      if (how.value === 'lines') {
+      if (w > 0.01) {
+        ctx.save(); ctx.globalAlpha = F.ease.smooth(Math.min(1, w * 2));
         for (let i = 0; i < n; i++) {
           const a = (i / n) * TAU - Math.PI / 2;
           const ux = Math.cos(a), uy = Math.sin(a);
           /* the line runs from the rim to the frame; the head sits partway along it and points the way the field does */
           const t = Math.min((ux > 0 ? BOX.x1 - CX : CX - BOX.x0) / Math.abs(ux || 1e-6), (uy > 0 ? BOX.y1 - CY : CY - BOX.y0) / Math.abs(uy || 1e-6));
-          const x1 = CX + ux * R0, y1 = CY + uy * R0, x2 = CX + ux * t, y2 = CY + uy * t;
+          const x1 = CX + ux * R0, y1 = CY + uy * R0, x2 = CX + ux * (R0 + (t - R0) * w), y2 = CY + uy * (R0 + (t - R0) * w);
           line(ctx, x1, y1, x2, y2, ec, 3);
-          for (const s of [0.42, 0.78]) {
+          for (const s of [0.42, 0.78].filter((f) => f < w).map((f) => f / w)) {
             const mx = x1 + (x2 - x1) * s, my = y1 + (y2 - y1) * s;
             arrow(ctx, mx - sgn * ux * 9, my - sgn * uy * 9, mx + sgn * ux * 9, my + sgn * uy * 9, ec, 3.5);
           }
         }
-      } else {
+        ctx.restore();
+      }
+      if (w < 0.99) {
+        ctx.save(); ctx.globalAlpha = 1 - w;
         /* separate arrows on rings, each as long as the field is strong there */
         const A = 54;                                /* set so the innermost ring draws a readable arrow at the book's own charge */
         for (const rcm of [1.6, 2.6, 4.0, 5.6]) {
@@ -168,6 +174,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
             arrow(ctx, bx, by, bx + sgn * ux * L, by + sgn * uy * L, ec, 3);
           }
         }
+        ctx.restore();
       }
     }
     pointCharge(ctx, CX, CY, q, R0 * (0.78 + 0.22 * Math.min(1, mag / 10)));
@@ -249,8 +256,8 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.arc(OX, OY, Math.min(74, 0.55 * hyp), Math.PI, Math.PI + th * RAD); ctx.stroke(); ctx.restore();
     topline(ctx, 'The two fields at O add to ' + sci(Et, 2) + ' N/C, at ' + fmt(th, 1) + '° above the x-axis.');
-    readout(d.readout, `\\kEftot = \\left(\\kEfone^2 + \\kEftwo^2\\right)^{1/2} = ${sciTex(Et, 2)}\\ \\text{N/C},\\quad \\theta = \\tan^{-1}\\!\\left(\\frac{\\kEfone}{\\kEftwo}\\right) = ${fmt(th, 1)}^\\circ`,
-      'The field of each charge points directly away from it, since the field is defined for a positive test charge.');
+    readout(d.readout, `\\kEftot = \\left(\\kEfone^2 + \\kEftwo^2\\right)^{1/2} = \\left[(${sciTex(E1, 2)})^2 + (${sciTex(E2, 2)})^2\\right]^{1/2} = ${sciTex(Et, 2)}\\ \\text{N/C}`,
+      'It points at θ = tan⁻¹(E₁/E₂) = ' + fmt(th, 1) + '° above the x-axis. The field of each charge points directly away from it, since the field is defined for a positive test charge.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -263,10 +270,14 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-two-charges', 700);
-  const q1s = ctl(d.controls, { label: '\\kqone', cls: 'charge', min: -3, max: 3, step: 0.5, value: 1, unit: 'q', dec: 1, aria: 'the charge on the left, in units of q', detents: [-3, -2, -1, 1, 2, 3] });
-  const q2s = ctl(d.controls, { label: '\\kqtwo', cls: 'charge', min: -3, max: 3, step: 0.5, value: 1, unit: 'q', dec: 1, aria: 'the charge on the right, in units of q', detents: [-3, -2, -1, 1, 2, 3] });
+  /* the book's two pairs, like charges of one size and unlike charges of one size, are circles on each slider at the other's value */
+  let q2s;
+  const q1s = ctl(d.controls, { label: '\\kqone', cls: 'charge', min: -3, max: 3, step: 0.5, value: 1, unit: 'q', dec: 1, aria: 'the charge on the left, in units of q',
+    specials: [{ at: () => (q2s && q2s.v !== 0 ? q2s.v : null), label: 'equal' }, { at: () => (q2s && q2s.v !== 0 ? -q2s.v : null), label: 'opposite' }] });
+  q2s = ctl(d.controls, { label: '\\kqtwo', cls: 'charge', min: -3, max: 3, step: 0.5, value: 1, unit: 'q', dec: 1, aria: 'the charge on the right, in units of q',
+    specials: [{ at: () => (q1s.v !== 0 ? q1s.v : null), label: 'equal' }, { at: () => (q1s.v !== 0 ? -q1s.v : null), label: 'opposite' }] });
   const ss = ctl(d.controls, { label: '\\text{separation}', cls: '', min: 4, max: 14, step: 0.5, value: 8, unit: 'cm', dec: 1, aria: 'the distance between the two charges' });
-  const how = choice(d.controls, { label: '\\text{the drawing}', options: [
+  const how = choice(d.controls, { label: '\\text{the field, as}', options: [
     { value: 'lines', label: 'field lines' }, { value: 'arrows', label: 'arrows' }], value: 'lines', aria: 'whether the field is drawn as continuous lines or as separate arrows' });
   const CX = 700, CY = 340, S = 34;                   /* the pair is centred here, at 34 units to the centimetre */
   const BOX = { x0: 120, x1: 1280, y0: 96, y1: 610 };
@@ -277,20 +288,23 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     const a = { x: CX - (sep * S) / 2, y: CY, q: q1 }, b = { x: CX + (sep * S) / 2, y: CY, q: q2 };
     const qs = [a, b].filter((c) => c.q !== 0);
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(BOX.x0, BOX.y0, BOX.x1 - BOX.x0, BOX.y1 - BOX.y0); ctx.restore();
-    if (how.value === 'lines') {
+    /* a change of drawing blends: the lines are drawn out along their length as the arrows fade */
+    const w = how.mix((v) => (v === 'lines' ? 1 : 0));
+    if (w > 0.01) {
       /* one bundle of lines from each charge, as many as the charge is large */
+      ctx.save(); ctx.globalAlpha = F.ease.smooth(Math.min(1, w * 2));
       for (const c of qs) {
         const n = Math.max(6, Math.round(6 * Math.abs(c.q)));
         for (let i = 0; i < n; i++) {
           const ang = (i / n) * TAU + (c === a ? 0 : Math.PI / n) - Math.PI / 2;
           const seed = { x: c.x + Math.cos(ang) * 26, y: c.y + Math.sin(ang) * 26 };
           const pts = traceLine(seed, qs, c.q > 0 ? 1 : -1, BOX, 22, 7, 900);
-          drawLine(ctx, pts, ec, 2.5, [0.25, 0.62]);
+          drawLine(ctx, w < 1 ? F.partial(pts, w) : pts, ec, 2.5, [0.25, 0.62]);
         }
       }
-    } else {
-      arrowGrid(ctx, qs, BOX, 62, 2.5e5, 55, ec);
+      ctx.restore();
     }
+    if (w < 0.99) { ctx.save(); ctx.globalAlpha = 1 - w; arrowGrid(ctx, qs, BOX, 62, 2.5e5, 55, ec); ctx.restore(); }
     for (const c of [a, b]) {
       pointCharge(ctx, c.x, c.y, c.q, 16 + 5 * Math.min(1, Math.abs(c.q) / 3));
       text(ctx, (c === a ? 'q₁ = ' : 'q₂ = ') + (c.q === 0 ? '0' : plus(c.q, 1) + 'q'), c.x, c.y + (c === a ? -40 : 48), qc,

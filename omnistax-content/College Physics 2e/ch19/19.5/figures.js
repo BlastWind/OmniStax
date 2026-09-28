@@ -73,7 +73,9 @@ function fieldLine(ctx, x0, x1, y, color) {
    terminal and −Q on the other. Still: a charged capacitor has no time in
    it, so the figure answers its choice and its slider and registers no
    cycle. The construction is a state and so is a choice, not a slider
-   (rule 26.1).
+   (rule 26.1). The rolled capacitor is the same two conductors rolled up,
+   so a change of kind bends each plate into its sheet of the roll and the
+   wires follow their ends.
 ===================================================================== */
 (function () {
   const d = sim('sim-capacitor', 560);
@@ -84,39 +86,45 @@ function fieldLine(ctx, x0, x1, y, color) {
   });
   const Qs = ctl(d.controls, { label: '\\kQch', cls: 'charge', min: 0, max: 60, step: 0.2, value: 26.6, unit: 'µC', dec: 1, aria: 'the charge the capacitor stores' });
   const BX = 210, BY = 300, PL = 640, PR = 900, PT = 150, PB = 430;
+  /* the roll: two sheets wound half a turn apart. The positive plate becomes the outer sheet, read
+     from its outer end where its wire joins, and the negative plate the inner one, read from its start. */
+  const CX = 770, CY = 290, R0 = 34, KR = 15.5, TURNS = 4.2;
+  const spiral = (phase) => { const p = []; for (let t = 0; t <= TURNS * Math.PI * 2; t += 0.12) { const r = R0 + KR * (t / (Math.PI * 2)) * 2; p.push([CX + r * Math.cos(t + phase), CY + r * Math.sin(t + phase)]); } return p; };
+  const OUTER = spiral(0).reverse(), INNER = spiral(Math.PI);
+  const PLUS = [[PL, PT], [PL, PB]], MINUS = [[PR, PB], [PR, PT]];
+  const lerp2 = (a, b, u) => a.map((p, i) => [p[0] + (b[i][0] - p[0]) * u, p[1] + (b[i][1] - p[1]) * u]);
   function draw() {
     const { ctx } = begin(d.c);
-    const qc = C('charge'), Q = Qs.v, n = Math.min(10, Math.round(Q / 5));
+    const qc = C('charge'), Q = Qs.v, n = Math.min(10, Math.round(Q / 5)), rolled = kind.value === 'rolled';
+    const u = kind.mix((v) => (v === 'rolled' ? 1 : 0));
     const plus = Q > 0 ? '+' + fmt(Q, 1) : '0.0', minus = Q > 0 ? '−' + fmt(Q, 1) : '0.0';
     topline(ctx, Q > 0 ? 'The battery separates ' + fmt(Q, 1) + ' µC onto one conductor and −' + fmt(Q, 1) + ' µC onto the other, and the capacitor is neutral overall.'
       : 'With no charge separated, both conductors are neutral and the capacitor stores nothing.');
     battery(ctx, BX, BY, 150);
     text(ctx, 'the battery', BX + 14, BY + 58, PAL.muted, { size: 19 });
-    if (kind.value === 'plates') {
-      wire(ctx, [[BX, BY - 16], [BX, PT - 40], [PL, PT - 40], [PL, PT]]);
-      wire(ctx, [[BX, BY + 16], [BX, PB + 40], [PR, PB + 40], [PR, PB]]);
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
-      ctx.beginPath(); ctx.moveTo(PL, PT); ctx.lineTo(PL, PB); ctx.moveTo(PR, PT); ctx.lineTo(PR, PB); ctx.stroke(); ctx.restore();
-      marks(ctx, PL + 32, PT, PB, n, '+', qc);
-      marks(ctx, PR - 32, PT, PB, n, '−', qc);
-      label(ctx, '+Q = ' + plus + ' µC', PL, PT - 8, { side: 'above', color: qc, gap: 16, size: 21 });
-      label(ctx, '−Q = ' + minus + ' µC', PR, PB + 8, { side: 'below', color: qc, gap: 16, size: 21 });
-      text(ctx, 'two conducting plates, not touching', (PL + PR) / 2, PB + 96, PAL.muted, { size: 19, align: 'center' });
-    } else {
-      const CX = 770, CY = 290, R0 = 34, K = 15.5, TURNS = 4.2;
-      const spiral = (phase) => { const p = []; for (let t = 0; t <= TURNS * Math.PI * 2; t += 0.12) { const r = R0 + K * (t / (Math.PI * 2)) * 2; p.push([CX + r * Math.cos(t + phase), CY + r * Math.sin(t + phase)]); } return p; };
-      const outer = spiral(0), inner = spiral(Math.PI);
-      const strip = (pts, w, color) => { ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]); pts.forEach((p) => ctx.lineTo(p[0], p[1])); ctx.stroke(); ctx.restore(); };
-      strip(outer, 13, alpha(PAL.ink, 0.35));                 /* the insulating sheet between them */
-      strip(inner, 13, alpha(PAL.ink, 0.35));
-      strip(outer, 7, PAL.ink);
-      strip(inner, 7, PAL.ink);
-      const end = outer[outer.length - 1], start = inner[0];
-      wire(ctx, [[BX, BY - 16], [BX, 110], [end[0], 110], [end[0], end[1]]]);
-      wire(ctx, [[BX, BY + 16], [BX, 470], [start[0] - 140, 470], [start[0] - 140, start[1]], [start[0], start[1]]]);
-      label(ctx, '+Q = ' + plus + ' µC', end[0], end[1] - 10, { side: 'above', color: qc, gap: 18, size: 21 });
-      label(ctx, '−Q = ' + minus + ' µC', start[0] - 140, start[1] - 10, { side: 'left', color: qc, gap: 14, size: 21 });
-      text(ctx, 'two conducting sheets rolled up with an insulator between them', CX, 512, PAL.muted, { size: 19, align: 'center' });
+    const pos = u <= 0 ? PLUS : F.lerpPts(PLUS, OUTER, u), neg = u <= 0 ? MINUS : F.lerpPts(MINUS, INNER, u);
+    const strip = (pts, w, color) => { ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]); pts.forEach((p) => ctx.lineTo(p[0], p[1])); ctx.stroke(); ctx.restore(); };
+    /* the insulating sheet between the two conductors of the roll */
+    if (u > 0.01) { strip(pos, 13, alpha(PAL.ink, 0.35 * u)); strip(neg, 13, alpha(PAL.ink, 0.35 * u)); }
+    strip(pos, 12 - 5 * u, PAL.ink); strip(neg, 12 - 5 * u, PAL.ink);
+    const e = pos[0], s = neg[0];
+    wire(ctx, lerp2([[BX, BY - 16], [BX, PT - 40], [PL, PT - 40], [PL, PT]], [[BX, BY - 16], [BX, 110], [e[0], 110], [e[0], e[1]]], u).map((p, i) => (i === 3 ? e : p)));
+    wire(ctx, lerp2([[BX, BY + 16], [BX, PB + 40], [PR, PB + 40], [PR, PB], [PR, PB]], [[BX, BY + 16], [BX, 470], [s[0] - 140, 470], [s[0] - 140, s[1]], [s[0], s[1]]], u).map((p, i) => (i === 4 ? s : p)));
+    ctx.save(); ctx.globalAlpha = kind.a('plates');
+    marks(ctx, PL + 32, PT, PB, n, '+', qc);
+    marks(ctx, PR - 32, PT, PB, n, '−', qc);
+    text(ctx, 'two conducting plates, not touching', (PL + PR) / 2, PB + 96, PAL.muted, { size: 19, align: 'center' });
+    ctx.globalAlpha = kind.a('rolled');
+    text(ctx, 'two conducting sheets rolled up with an insulator between them', CX, 512, PAL.muted, { size: 19, align: 'center' });
+    ctx.restore();
+    if (kind.k >= 1) {
+      if (rolled) {
+        label(ctx, '+Q = ' + plus + ' µC', e[0], e[1] - 10, { side: 'above', color: qc, gap: 18, size: 21 });
+        label(ctx, '−Q = ' + minus + ' µC', s[0] - 140, s[1] - 10, { side: 'left', color: qc, gap: 14, size: 21 });
+      } else {
+        label(ctx, '+Q = ' + plus + ' µC', PL, PT - 8, { side: 'above', color: qc, gap: 16, size: 21 });
+        label(ctx, '−Q = ' + minus + ' µC', PR, PB + 8, { side: 'below', color: qc, gap: 16, size: 21 });
+      }
     }
     readout(d.readout, '\\kQch = ' + fmt(Q, 1) + '\\ \\mu\\text{C}',
       'The capacitor stores a charge Q, which is the charge separated onto each of its two conductors, and not the total charge it carries, which is zero.');
@@ -278,7 +286,8 @@ function fieldLine(ctx, x0, x1, y, color) {
     text(ctx, 'each plate has an area A = ' + fmt(A, 2) + ' m²', CXC, 600, PAL.muted, { size: 19, align: 'center' });
     const limit = m.strength === null ? 'The book gives ' + m.label.toLowerCase() + ' no dielectric strength, so no voltage limit is quoted for it.'
       : 'Its dielectric strength of ' + (m.strength / 1e6) + ' × 10⁶ V/m allows at most ' + fmt((m.strength * mm * 1e-3) / 1000, 1) + ' kV across a separation of ' + fmt(mm, 2) + ' mm.';
-    readout(d.readout, '\\kEf = \\frac{\\kEfo}{\\kappa} = \\frac{' + sci(E0, 2) + '\\ \\text{V/m}}{' + fmt(k, k < 10 ? 2 : 0) + '} = ' + sci(E, 2) + '\\ \\text{V/m}, \\quad \\kCap = \\kappa\\varepsilon_0\\frac{A}{\\kd} = ' + fmt(Cf * 1e9, 2) + '\\ \\text{nF}', limit);
+    readout(d.readout, '\\kCap = \\kappa\\varepsilon_0\\frac{A}{\\kd} = (' + fmt(k, k < 10 ? 2 : 0) + ')(' + sci(EPS0, 2) + '\\ \\text{F/m})\\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cf * 1e9, 2) + '\\ \\text{nF}',
+      'The field between the plates is E = E₀/κ = ' + sciText(E, 2) + ' V/m. ' + limit);
   }
   register(d.fig, { update: () => {}, draw });
 })();

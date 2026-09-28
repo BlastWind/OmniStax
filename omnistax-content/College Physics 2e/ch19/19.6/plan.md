@@ -224,3 +224,5 @@ told apart by their labels and their places in the circuit.
 equation rows carry their anchors. The section's conceptual question is on
 19.7's page with `source_section: "19.6"` and both sections' notes say so.
 Nothing else was wanted and no symbol row was added or changed for this page.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-series-parallel`: a change of connection carries each capacitor from its place in the row to its branch of the ladder, turning it as it goes, while the old wires fade and the new ones arrive; the equivalent capacitor's separation and plates bend to their new values; the readout is an `F.morph`, 1/C_S = 1/C₁ + 1/C₂ + 1/C₃ bending term by term into C_p = C₁ + C₂ + C₃ (manim-style 11). `sim-mixed`: one equation, C_tot = C_S + C₃ with the numbers, the series step in the small line.

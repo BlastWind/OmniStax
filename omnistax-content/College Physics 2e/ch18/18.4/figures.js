@@ -101,8 +101,8 @@ function span(ctx, x1, x2, y, label) {
       ? 'A test charge of nothing feels no force, however much charge Q carries, because the Coulomb force is proportional to both charges.'
       : 'At the same distance from the same charge Q, the force on q₂ is ' + fmt(ratio, 2) + ' times the force on q₁, and the two point '
         + (Math.sign(q1s.v) === Math.sign(q2s.v) ? 'the same way' : 'opposite ways') + '.');
-    readout(d.readout, `\\kFone = k\\frac{|\\kqone\\kQch|}{r^2} = ${fmt(Fv[0], 2)}\\ \\text{N} \\qquad \\kFtwo = k\\frac{|\\kqtwo\\kQch|}{r^2} = ${fmt(Fv[1], 2)}\\ \\text{N}`,
-      'The longer of the two arrows is drawn at a fixed length and the shorter in proportion to it, so that the two forces can be compared however large or small they are; the newtons beside each arrow are the true values. Both arrows change when a test charge changes, although the charge that creates the field and the distance from it have not moved, and that is why the Coulomb force field is not unique at a point in space.');
+    readout(d.readout, `\\kFone = k\\frac{|\\kqone\\kQch|}{r^2} = ${fmt(Fv[0], 2)}\\ \\text{N}`,
+      'The same law gives F₂ = ' + fmt(Fv[1], 2) + ' N on q₂. The longer of the two arrows is drawn at a fixed length and the shorter in proportion to it, so that the two forces can be compared however large or small they are; the newtons beside each arrow are the true values. Both arrows change when a test charge changes, although the charge that creates the field and the distance from it have not moved, and that is why the Coulomb force field is not unique at a point in space.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -165,7 +165,7 @@ function span(ctx, x1, x2, y, label) {
     topline(ctx, Q === 0 ? 'A charge of nothing makes no field, and a test charge set down anywhere near it feels no force.'
       : 'A charge of ' + plus(Q, 2) + ' nC makes a field of ' + sci(E, 2) + ' N/C at ' + fmt(r, 2) + ' mm, pointing '
         + (Q > 0 ? 'away from it' : 'towards it') + ', and that field pushes the ' + (q === 0 ? 'test charge' : q > 0 ? 'positive test charge along itself' : 'negative test charge against itself') + '.');
-    readout(d.readout, `\\kEf = k\\frac{|\\kQch|}{r^2} = ${sciTex(E, 2)}\\ \\text{N/C} \\qquad \\kF = \\kq\\kEf = ${fmt(Fv, 3)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = |\\kq|\\kEf = (${fmt(Math.abs(q), 2)} \\times 10^{-6}\\ \\text{C})(${sciTex(E, 2)}\\ \\text{N/C}) = ${fmt(Fv, 3)}\\ \\text{N}`,
       'The field arrow depends on the charge Q and the distance r alone: drag the test charge through zero and across sign and it does not move, while the force arrow shrinks to nothing and turns about. Set Q to 2.00 nC and r to 5.00 mm, as Example 18.2 does, and the field reads 7.19 × 10⁵ N/C; set the test charge to −0.250 μC, as Example 18.3 does, and the force reads 0.180 N towards the positive charge. The arrows are drawn shorter than in proportion so that both the small and the large readings can be seen, and the numbers beside them are the true values.');
   }
   register(d.fig, { update: () => {}, draw });

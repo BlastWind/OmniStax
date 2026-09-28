@@ -169,7 +169,7 @@ function drawLine(ctx, pts, color, w, heads) {
         ? 'The charge that has gathered at the ends has cancelled the parallel component, so the field left at the surface is ' + fmt(Eperp, 0) + ' N/C, perpendicular to it, and nothing pushes the free charge any longer.'
         : 'The gathered charge has cancelled all but ' + fmt(Epar, 0) + ' N/C of the parallel component, and what is left pushes the free charge with ' + fmt(Fpar, 0) + ' μN.');
     readout(d.readout, `\\kFpar = \\kq\\kEfpar = (${fmt(q, 2)}\\ \\mu\\text{C})(${fmt(Epar, 0)}\\ \\text{N/C}) = ${fmt(Fpar, 0)}\\ \\mu\\text{N}`,
-      'A positive free charge is drawn here, but free charges may be of either sign and in a metal they are negative; a negative charge driven to the left is the same thing as a positive one driven to the right. The perpendicular component E⊥ = ' + fmt(Eperp, 0) + ' N/C is untouched throughout, because nothing in the conductor can move across the surface, and it is the field that is left when the settling is over.');
+      'The free charge here is positive, but free charges may be of either sign and in a metal they are negative; a negative charge driven to the left is the same thing as a positive one driven to the right. The perpendicular component E⊥ = ' + fmt(Eperp, 0) + ' N/C is untouched throughout, because nothing in the conductor can move across the surface, and it is the field that is left when the settling is over.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -194,7 +194,10 @@ function drawLine(ctx, pts, color, w, heads) {
     const { ctx } = begin(d.c);
     const ec = C('electric-field');
     const E0 = Es.v, a = as.v * S, metal = kind.value === 'metal';
-    const b = metal ? 1 : BETA, inside = metal ? 0 : E0 * (1 - b);
+    /* a change of material blends how far the sphere polarizes, so the lines straighten or bend to
+       their new course, and the lines that begin again on a conductor's face fade with it */
+    const [b, mA] = kind.mix((v) => (v === 'metal' ? [1, 1] : [BETA, 0]));
+    const inside = E0 * (1 - b);
     /* the field of a sphere in a uniform field: the applied field and the
        field of the charge the sphere's own surface has taken up */
     const field = (x, y) => {
@@ -207,27 +210,33 @@ function drawLine(ctx, pts, color, w, heads) {
     };
     /* the lines, traced from the left edge, and, on a conductor, begun again
        on the excess positive charge of the right-hand face */
-    const stop = (x, y) => metal && Math.hypot(x - CX, y - CY) < a + 2;
+    const stop = (x, y) => mA > 0.5 && Math.hypot(x - CX, y - CY) < a + 2;
     const ys = [];
     for (let i = 0; i < 11; i++) ys.push(BOX.y0 + 26 + (i * (BOX.y1 - BOX.y0 - 52)) / 10);
     for (const y of ys) drawLine(ctx, traceLine({ x: BOX.x0 + 4, y }, field, 1, BOX, stop, 7, 420), ec, 3, [0.3, 0.75]);
-    if (metal) {
+    if (mA > 0.01) {
+      ctx.save(); ctx.globalAlpha = mA;
       for (let i = -4; i <= 4; i++) {
         const ph = (i * 20) * RAD;
         const seed = { x: CX + (a + 4) * Math.cos(ph), y: CY + (a + 4) * Math.sin(ph) };
         drawLine(ctx, traceLine(seed, field, 1, BOX, null, 7, 420), ec, 3, [0.45]);
       }
+      ctx.restore();
     }
     /* the sphere itself, a body and so in ink, with the charge its two faces
        carry marked the way the book marks it */
-    ctx.save(); ctx.fillStyle = metal ? alpha(PAL.ink, 0.12) : alpha(PAL.ink, 0.05);
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05 + 0.07 * mA);
     ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(CX, CY, a, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    const marks = metal ? 7 : 5;
-    for (let i = 0; i < marks; i++) {
-      const ph = -60 * RAD + (i * 120 * RAD) / (marks - 1);
-      signMark(ctx, CX + (a - 20) * Math.cos(ph), CY + (a - 20) * Math.sin(ph), true, 26);
-      signMark(ctx, CX - (a - 20) * Math.cos(ph), CY + (a - 20) * Math.sin(ph), false, 26);
+    for (const [marks, ma] of [[7, mA], [5, 1 - mA]]) {
+      if (ma < 0.01) continue;
+      ctx.save(); ctx.globalAlpha = ma;
+      for (let i = 0; i < marks; i++) {
+        const ph = -60 * RAD + (i * 120 * RAD) / (marks - 1);
+        signMark(ctx, CX + (a - 20) * Math.cos(ph), CY + (a - 20) * Math.sin(ph), true, 26);
+        signMark(ctx, CX - (a - 20) * Math.cos(ph), CY + (a - 20) * Math.sin(ph), false, 26);
+      }
+      ctx.restore();
     }
     text(ctx, metal ? 'no field inside' : 'E = ' + fmt(inside, 0) + ' N/C inside', CX, CY, metal ? PAL.muted : ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, metal ? 'a metal sphere' : 'an insulating sphere', CX, CY + a + 44, PAL.muted, { size: 21, align: 'center' });
@@ -235,11 +244,10 @@ function drawLine(ctx, pts, color, w, heads) {
     topline(ctx, metal
       ? 'The free charges have moved to the two faces of the sphere, and the field they make cancels the applied field inside it exactly, leaving nothing there and meeting the surface at right angles.'
       : 'An insulator has no free charges to move to its faces, so the lines pass through it, weakened to ' + fmt(inside, 0) + ' N/C but neither cancelled nor bent to meet the surface at right angles.');
-    readout(d.readout, metal
-      ? `\\kEf_{\\ \\text{inside}} = 0, \\qquad \\kEf_{\\ \\text{applied}} = ${fmt(E0, 0)}\\ \\text{N/C}`
-      : `\\kEf_{\\ \\text{inside}} = ${fmt(inside, 0)}\\ \\text{N/C}, \\qquad \\kEf_{\\ \\text{applied}} = ${fmt(E0, 0)}\\ \\text{N/C}`,
+    const Ein = metal ? 0 : E0 * (1 - BETA);
+    readout(d.readout, `\\kEf_{\\ \\text{inside}} = \\kEf_{\\ \\text{applied}} - \\kEf_{\\ \\text{faces}} = ${fmt(E0, 0)}\\ \\text{N/C} - ${fmt(E0 - Ein, 0)}\\ \\text{N/C} = ${fmt(Ein, 0)}\\ \\text{N/C}`,
       metal
-        ? 'The lines end on the excess negative charge of the left-hand face and begin again on the excess positive charge of the right-hand face, and they are closer together near the sphere than far from it, which is what the caption means by the field becoming stronger there. Change the radius and the picture changes size but not shape: it is the field of the applied field and of the charge the surface has taken up, and nothing else.'
+        ? 'The lines end on the excess negative charge of the left-hand face and begin again on the excess positive charge of the right-hand face, and they are closer together near the sphere than far from it, which is where the field is stronger. Change the radius and the lines keep their shape at a new size: this is the field of the applied field and of the charge the surface has taken up, and nothing else.'
         : 'This is how the object of the section’s first two conceptual questions is told from a conductor. Lines that pass straight through a body, and meet its surface at any angle they please, belong to an insulator; lines that stop at the surface, meet it at right angles and leave nothing inside belong to a conductor.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -253,8 +261,16 @@ function drawLine(ctx, pts, color, w, heads) {
 (function () {
   const d = sim('sim-charged-sphere', 660);
   const Qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: -20, max: 20, step: 0.5, value: 8, unit: 'nC', dec: 1, aria: 'the excess charge on the sphere' });
-  const as = ctl(d.controls, { label: '\\text{the radius}', cls: '', min: 2, max: 9, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'the radius of the sphere' });
-  const rs = ctl(d.controls, { label: '\\text{the probe}', cls: '', min: 1, max: 24, step: 0.5, value: 15, unit: 'cm', dec: 1, aria: 'the distance of the probe from the centre of the sphere' });
+  /* the surface, where the field inside gives way to the field outside, is a circle on the probe's
+     slider at the radius and on the radius's slider at the probe */
+  let rs;
+  const as = ctl(d.controls, { label: '\\text{the radius}', cls: '', min: 2, max: 9, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'the radius of the sphere',
+    specials: [{ at: () => (rs ? rs.v : null), label: 'the surface' }] });
+  rs = ctl(d.controls, { label: '\\text{the probe}', cls: '', min: 1, max: 24, step: 0.5, value: 15, unit: 'cm', dec: 1, aria: 'the distance of the probe from the centre of the sphere',
+    specials: [{ at: () => as.v, label: 'the surface' }] });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  let wasOut = null;
   const CX = 560, CY = 386, S = 17;                 /* 17 logical units to the centimetre */
   function draw() {
     const { ctx } = begin(d.c);
@@ -297,12 +313,13 @@ function drawLine(ctx, pts, color, w, heads) {
     topline(ctx, Q === 0 ? 'With no excess charge on it the sphere makes no field at all, inside or out.'
       : out ? 'At ' + fmt(r, 1) + ' cm the probe reads ' + sci(Eout, 2) + ' N/C, which is what a point charge of ' + fmt(Q, 1) + ' nC at the centre would give there; drag the radius and the reading does not move.'
         : 'The probe is inside the metal, where the excess charge on the surface leaves no field at all, however much of it there is.');
-    readout(d.readout, out
-      ? `\\kEf = k\\frac{|\\kq|}{r^2} = \\frac{(8.99 \\times 10^{9})(${sciTex(Math.abs(Q) * 1e-9, 2)})}{(${fmt(r / 100, 4)})^2} = ${sciTex(Eout, 2)}\\ \\text{N/C}`
-      : `\\kEf = 0 \\quad \\text{everywhere inside the conductor}`,
-      out
+    F.morph(formula, out
+      ? `\\mk{E}{\\kEf} = \\mk{law}{k\\frac{|\\kq|}{r^2}} = \\mk{nums}{\\frac{(8.99 \\times 10^{9})(${sciTex(Math.abs(Q) * 1e-9, 2)})}{(${fmt(r / 100, 4)})^2}} = \\mk{v}{${sciTex(Eout, 2)}}\\ \\text{N/C}`
+      : `\\mk{E}{\\kEf} = \\mk{v}{0}`, { force: wasOut !== null && out !== wasOut });
+    wasOut = out;
+    note.textContent = out
         ? 'Excess charge is forced to the surface until nothing is left inside to push it further, so the field is zero everywhere within the metal and the field outside is exactly the field of a point charge of the same size at the centre. Double the charge and read at three times the distance and the field is 2/9 of what it was, a fall of 77.8 per cent, since it grows with the charge and falls with the square of the distance.'
-        : 'Set the probe beyond ' + fmt(a, 1) + ' cm and the reading climbs from nothing to the field of a point charge at the centre. Inside there is no reading to take, which is the first of the three properties of a conductor in electrostatic equilibrium.');
+        : 'Set the probe beyond ' + fmt(a, 1) + ' cm and the reading climbs from nothing to the field of a point charge at the centre. Inside there is no reading to take, which is the first of the three properties of a conductor in electrostatic equilibrium.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -361,8 +378,8 @@ function drawLine(ctx, pts, color, w, heads) {
       text(ctx, name + sci(v, 2) + ' N/C', tx, RY, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     }
     topline(ctx, 'The plates are ' + fmt(L, 0) + ' cm long and ' + fmt(gap, 1) + ' cm apart, and the field at the very edge is ' + fmt(Math.abs(drop), 0) + ' per cent ' + (drop >= 0 ? 'weaker' : 'stronger') + ' than the field through the middle.');
-    readout(d.readout, `\\kEf_{\\ \\text{middle}} = ${sciTex(Emid, 2)}\\ \\text{N/C}, \\qquad \\kEf_{\\ \\text{edge}} = ${sciTex(Eedge, 2)}\\ \\text{N/C}`,
-      'Through the middle the lines run straight from one plate to the other and are evenly spaced, which is what a uniform field looks like: the same strength and the same direction everywhere. Near the ends they bow outward and thin, and that is the edge effect. Bring the plates closer together, or make them longer, and the region the edges spoil is a smaller share of the whole, which is what the book means by saying that the edge effects are less important when the plates are close together.');
+    readout(d.readout, `\\kEf_{\\ \\text{middle}} = ${sciTex(Emid, 2)}\\ \\text{N/C}`,
+      'At the edge the field is ' + sci(Eedge, 2) + ' N/C. Through the middle the lines run straight from one plate to the other and are evenly spaced, which is what a uniform field looks like: the same strength and the same direction everywhere. Near the ends they bow outward and thin, and that is the edge effect. Bring the plates closer together, or make them longer, and the region the edges spoil is a smaller share of the whole, which is what the book means by saying that the edge effects are less important when the plates are close together.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -382,9 +399,9 @@ function drawLine(ctx, pts, color, w, heads) {
   const Qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 5, max: 200, step: 5, value: 60, unit: 'nC', dec: 0, aria: 'the excess charge on the conductor' });
   const Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 100, max: 1200, step: 50, value: 500, unit: 'N/C', dec: 0, aria: 'the strength of the applied field' });
   const panel = select(d.controls, {
-    label: '\\text{the figure shows}',
+    label: '\\text{the case}',
     options: [{ value: 'a', label: 'repulsion' }, { value: 'b', label: 'the charge' }, { value: 'c', label: 'a field' }],
-    value: 'b', aria: 'which of the book’s three panels is drawn',
+    value: 'b', aria: 'which of the book’s three cases: the repulsion along the surface, the settled charge, or an applied field',
   });
   const R1CM = 6, CLX = 470, CRX = 940, YC = 396, S = 16;   /* 16 logical units to the centimetre */
   /* The body is the outline of two circles and their common tangents, which is
@@ -437,25 +454,33 @@ function drawLine(ctx, pts, color, w, heads) {
     const { ctx } = begin(d.c);
     const ec = C('electric-field'), fc = C('force'), qc = C('charge');
     const { R1, R2, r1, r2 } = ends();
-    const Q = Qs.v, E0 = Es.v;
+    const Q = Qs.v, E0 = Es.v, cur = panel.value;
     const Etip = (8.99e4 * Q) / (R2 * (R1 + R2)), Eflat = (8.99e4 * Q) / (R1 * (R1 + R2));
     const BOX = { x0: 80, x1: 1320, y0: 120, y1: 690 };
     sh.disable(false);
-    Qs.disable(panel.value === 'c');
-    Es.disable(panel.value !== 'c');
-    if (panel.value === 'a') {
-      /* (a) an identical pair of charges at each end. The two charges of a
-         pair are the same distance apart at both ends, so the force between
-         them is the same size; what differs is how much of it lies along the
-         surface, and that is what drives them apart. */
-      drawBody(ctx, r1, r2);
-      const sep = Math.min(46, 1.7 * r2), PAIR = Q / 25;                              /* how far apart the pair sits, and the charge each carries, nC */
-      const Fpair = (K * (PAIR * 1e-9) * (PAIR * 1e-9)) / Math.pow(sep / S / 100, 2) * 1e6;   /* μN */
+    Qs.disable(cur === 'c');
+    Es.disable(cur !== 'c');
+    /* the body is the same in every case and stays; a change of case fades out the parts only the
+       old case has and brings in the new case's, each with a slight drift */
+    drawBody(ctx, r1, r2);
+    const layer = (v, f) => {
+      const a = panel.a(v);
+      if (a < 0.01) return;
+      const [dx, dy] = panel.off(v, [0, 18]);
+      ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy); f(); ctx.restore();
+    };
+    /* (a) an identical pair of charges at each end. The two charges of a
+       pair are the same distance apart at both ends, so the force between
+       them is the same size; what differs is how much of it lies along the
+       surface, and that is what drives them apart. */
+    const sep = Math.min(46, 1.7 * r2), PAIR = Q / 25;                              /* how far apart the pair sits, and the charge each carries, nC */
+    const Fpair = (K * (PAIR * 1e-9) * (PAIR * 1e-9)) / Math.pow(sep / S / 100, 2) * 1e6;   /* μN */
+    const dlOf = (r) => Math.asin(Math.min(0.94, sep / (2 * r)));
+    const dlL = dlOf(r1), dlR = dlOf(r2);
+    layer('a', () => {
       const FL = 92;
-      const dls = {};
       for (const [cx, r, ox, nm] of [[CLX, r1, -1, 'the flat end'], [CRX, r2, 1, 'the pointed end']]) {
-        const dl = Math.asin(Math.min(0.94, sep / (2 * r)));
-        dls[ox] = dl;
+        const dl = dlOf(r);
         const ux = ox * Math.cos(dl), uy = Math.sin(dl);
         const px = cx + r * ux, py = YC - r * uy;                  /* the upper charge of the pair */
         const bx = cx + r * ux, by = YC + r * uy;                  /* and the lower one */
@@ -469,12 +494,9 @@ function drawLine(ctx, pts, color, w, heads) {
         text(ctx, 'F∥ = ' + fmt(Fpair * Math.cos(dl), 1) + ' μN', px + ox * 46 + FL * Math.cos(dl) * tx, py + FL * Math.cos(dl) * ty - 4, fc, { size: 20, weight: 600, align: ox < 0 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
         text(ctx, nm, cx, YC + r + 132, PAL.muted, { size: 21, align: 'center' });
       }
-      const dlL = dls[-1], dlR = dls[1];
-      topline(ctx, 'The two charges of a pair sit the same distance apart at either end, so the force between them is the same ' + fmt(Fpair, 1) + ' μN; but ' + fmt(100 * Math.cos(dlL), 0) + ' per cent of it lies along the flat surface against only ' + fmt(100 * Math.cos(dlR), 0) + ' per cent along the pointed one.');
-      readout(d.readout, `\\kFpar = \\kF\\cos\\theta: \\quad ${fmt(Fpair * Math.cos(dlL), 1)}\\ \\mu\\text{N}\\ \\text{at the flat end}, \\quad ${fmt(Fpair * Math.cos(dlR), 1)}\\ \\mu\\text{N}\\ \\text{at the point}`,
-        'It is the part of the force that lies along the surface that moves a charge once it has reached the surface, since nothing can carry it off the metal. That part is largest where the surface is flattest, so the charges at the flat end are driven apart most effectively and end up least concentrated, and the charges at the point are left crowded together. Sharpen the point and the gap between the two widens.');
-    } else if (panel.value === 'b') {
-      /* (b) the excess charge that has settled, and the field it makes */
+    });
+    /* (b) the excess charge that has settled, and the field it makes */
+    layer('b', () => {
       const pts = surface(r1, r2), qs = pts.map((p) => ({ x: p.x / S, y: p.y / S, q: (Q * p.w) }));
       const field = (x, y) => { const f = fieldAt(x / S, y / S, qs); return { x: f.x, y: f.y, m: f.m }; };
       /* one line out of every place a mark is drawn, so the crowding of the
@@ -486,7 +508,6 @@ function drawLine(ctx, pts, color, w, heads) {
         const nx = p.x - (p.x < (CLX + CRX) / 2 ? CLX : CRX), ny = p.y - YC, n = Math.hypot(nx, ny) || 1;
         drawLine(ctx, traceLine({ x: p.x + (nx / n) * 6, y: p.y + (ny / n) * 6 }, field, 1, BOX, null, 8, 120), ec, 2.5, [0.7]);
       }
-      drawBody(ctx, r1, r2);
       for (const p of seeds) {
         const nx = p.x - (p.x < (CLX + CRX) / 2 ? CLX : CRX), ny = p.y - YC, n = Math.hypot(nx, ny) || 1;
         signMark(ctx, p.x - (nx / n) * 11, p.y - (ny / n) * 11, Q > 0, 22);
@@ -494,15 +515,10 @@ function drawLine(ctx, pts, color, w, heads) {
       text(ctx, 'q = ' + fmt(Q, 0) + ' nC on the surface', (CLX + CRX) / 2, YC + 2, qc, { size: 22, weight: 600, align: 'center' });
       text(ctx, 'E = ' + sci(Eflat, 2) + ' N/C', CLX - r1 - 24, YC, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
       text(ctx, 'E = ' + sci(Etip, 2) + ' N/C', CRX + r2 + 24, YC - 44, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
-      topline(ctx, Etip >= BREAKDOWN
-        ? 'At ' + sci(Etip, 2) + ' N/C the field at the point has passed the 3 × 10⁶ N/C at which air stops insulating, so charge is carried away from the point into the air, which is how a lightning rod works.'
-        : sh.v < 1.05 ? 'With both ends equally round the charge spreads itself evenly, and the field is ' + sci(Etip, 2) + ' N/C at either end.'
-        : 'The point carries the charge ' + fmt(sh.v, 2) + ' times as thickly as the flat end, so the field there is ' + sci(Etip, 2) + ' N/C against ' + sci(Eflat, 2) + ' N/C at the flat end.');
-      readout(d.readout, `\\kEf_{\\ \\text{point}} = ${sciTex(Etip, 2)}\\ \\text{N/C}, \\qquad \\kEf_{\\ \\text{flat end}} = ${sciTex(Eflat, 2)}\\ \\text{N/C}`,
-        'Both ends are part of one conductor, so the charge divides itself between them in proportion to their radii and the field at each goes as one over its own radius. Sharpen the point, or put more charge on the body, and the field at the point climbs; take it past 3 × 10⁶ N/C and the air at the point gives way and the charge is bled off there, which is what the pointed end of a lightning rod is for and what the smooth sphere of a Van de Graaff generator is shaped to avoid.');
-    } else {
-      /* (c) the same body, uncharged, in a field that was uniform before it
-         was put there: the induced charge is most concentrated at the point */
+    });
+    /* (c) the same body, uncharged, in a field that was uniform before it
+       was put there: the induced charge is most concentrated at the point */
+    layer('c', () => {
       const pts = surface(r1, r2), xc = (CLX + CRX) / 2;
       const raw = pts.map((p) => ({ x: p.x / S, y: p.y / S, q: p.w * (p.x - xc) / S }));
       /* scale the induced charge so that it cancels the applied field at the
@@ -527,18 +543,30 @@ function drawLine(ctx, pts, color, w, heads) {
         const nx = p.x - (p.x < xc ? CLX : CRX), ny = p.y - YC, n = Math.hypot(nx, ny) || 1;
         if (p.x > xc) drawLine(ctx, traceLine({ x: p.x + (nx / n) * 8, y: p.y + (ny / n) * 8 }, field, 1, BOX, null, 8, 200), ec, 2.5, [0.6]);
       }
-      drawBody(ctx, r1, r2);
       for (const p of seeds) {
         const nx = p.x - (p.x < xc ? CLX : CRX), ny = p.y - YC, n = Math.hypot(nx, ny) || 1;
         signMark(ctx, p.x - (nx / n) * 11, p.y - (ny / n) * 11, p.x > xc, 22);
       }
       text(ctx, 'no field inside', xc, YC + 2, PAL.muted, { size: 21, weight: 600, align: 'center' });
       text(ctx, 'the applied field, ' + fmt(E0, 0) + ' N/C', BOX.x0 + 6, BOX.y0 + 20, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    });
+    if (cur === 'a') {
+      topline(ctx, 'The two charges of a pair sit the same distance apart at either end, so the force between them is the same ' + fmt(Fpair, 1) + ' μN; but ' + fmt(100 * Math.cos(dlL), 0) + ' per cent of it lies along the flat surface against only ' + fmt(100 * Math.cos(dlR), 0) + ' per cent along the pointed one.');
+      readout(d.readout, `\\kFpar = \\kF\\cos\\theta = (${fmt(Fpair, 1)}\\ \\mu\\text{N})(${fmt(Math.cos(dlR), 2)}) = ${fmt(Fpair * Math.cos(dlR), 1)}\\ \\mu\\text{N}`,
+        'That is the part along the surface at the point; at the flat end it is ' + fmt(Fpair * Math.cos(dlL), 1) + ' μN. It is the part of the force that lies along the surface that moves a charge once it has reached the surface, since nothing can carry it off the metal. That part is largest where the surface is flattest, so the charges at the flat end are driven apart most effectively and end up least concentrated, and the charges at the point are left crowded together. Sharpen the point and the gap between the two widens.');
+    } else if (cur === 'b') {
+      topline(ctx, Etip >= BREAKDOWN
+        ? 'At ' + sci(Etip, 2) + ' N/C the field at the point has passed the 3 × 10⁶ N/C at which air stops insulating, so charge is carried away from the point into the air, which is how a lightning rod works.'
+        : sh.v < 1.05 ? 'With both ends equally round the charge spreads itself evenly, and the field is ' + sci(Etip, 2) + ' N/C at either end.'
+        : 'The point carries the charge ' + fmt(sh.v, 2) + ' times as thickly as the flat end, so the field there is ' + sci(Etip, 2) + ' N/C against ' + sci(Eflat, 2) + ' N/C at the flat end.');
+      readout(d.readout, `\\kEf_{\\ \\text{point}} = \\frac{R_{\\text{flat}}}{R_{\\text{point}}}\\,\\kEf_{\\ \\text{flat}} = (${fmt(sh.v, 2)})(${sciTex(Eflat, 2)}\\ \\text{N/C}) = ${sciTex(Etip, 2)}\\ \\text{N/C}`,
+        'Both ends are part of one conductor, so the charge divides itself between them in proportion to their radii and the field at each goes as one over its own radius. Sharpen the point, or put more charge on the body, and the field at the point climbs; take it past 3 × 10⁶ N/C and the air at the point gives way and the charge is bled off there, which is what the pointed end of a lightning rod is for and what the smooth sphere of a Van de Graaff generator is shaped to avoid.');
+    } else {
       topline(ctx, sh.v < 1.05
         ? 'The body carries no excess charge of its own, but the applied field has driven its free charges to the two ends, and with both ends equally round the two take it equally.'
         : 'The body carries no excess charge of its own, but the applied field has driven its free charges to the two ends, and the ' + fmt(sh.v, 2) + '-times sharper end takes ' + fmt(sh.v, 2) + ' times the concentration the flat end takes.');
-      readout(d.readout, `\\kEf_{\\ \\text{applied}} = ${fmt(E0, 0)}\\ \\text{N/C}, \\qquad \\kEf_{\\ \\text{inside}} = 0`,
-        'The lines must meet the surface at right angles and none may pass through the metal, so more of them are gathered onto the most curved part of it. This is the same concentration at the point that the charged body shows, produced here by an applied field rather than by charge put on the body, and it is why a pointed conductor under a storm cloud bleeds charge away continually instead of waiting for a strike.');
+      readout(d.readout, `\\kEf_{\\ \\text{inside}} = 0`,
+        'The applied field is ' + fmt(E0, 0) + ' N/C. The lines must meet the surface at right angles and none may pass through the metal, so more of them are gathered onto the most curved part of it. This is the same concentration at the point that the charged body shows, produced here by an applied field rather than by charge put on the body, and it is why a pointed conductor under a storm cloud bleeds charge away continually instead of waiting for a strike.');
     }
   }
   register(d.fig, { update: () => {}, draw });

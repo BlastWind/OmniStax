@@ -91,41 +91,50 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
       text(ctx, sign, p.x, p.y + 1, PAL.ink, { size: 22, weight: 700, align: 'center' });
     }
   }
+  /* what each pair makes of the scene: the swing, and which body hangs and which is held (1 a rod, 0 a cloth).
+     A change of pair blends these, so the hanging body swings over to its new angle and a body that
+     changes kind dissolves into the other in place. */
+  function scene(kind) {
+    const q = qs.v, r = rs.v, hangGlass = kind !== 'silk-silk', heldGlass = kind === 'glass-glass';
+    const unlike = hangGlass !== heldGlass;
+    /* the swing: toward an unlike charge, away from a like one; larger with the charges and smaller with the distance, never a stated number */
+    const A = 40 * (1 - Math.exp(-2.77 * q * q / (r * r)));
+    return { ang: -(unlike ? A : -A) * RAD, A, hang: hangGlass ? 1 : 0, held: heldGlass ? 1 : 0, nx: hangGlass ? L / 2 : 66, ny: hangGlass ? 0 : 94 };
+  }
   function draw() {
     const { ctx, H } = begin(d.c);
     const qc = C('charge');
     const q = qs.v, r = rs.v, kind = pair.value;
     const hangGlass = kind !== 'silk-silk', heldGlass = kind === 'glass-glass';
     const qHang = hangGlass ? q : -q, qHeld = heldGlass ? q : -q, unlike = qHang * qHeld < 0;
-    /* the swing: toward an unlike charge, away from a like one; larger with the charges and smaller with the distance, never a stated number */
-    const A = 40 * (1 - Math.exp(-2.77 * q * q / (r * r))), phi = (unlike ? A : -A) * RAD, ang = -phi;
+    const g = pair.mix(scene), ang = g.ang;
     const nm = Math.max(1, Math.round(q * 2));
     const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 96);
     /* the body hangs from the thread at the pivot: a rod by its middle, a cloth by its top corner.
        Its rest position and the point the second body is measured from follow from that. */
-    const off = hangGlass ? { x: 0, y: 0 } : { x: 0, y: 94 };
-    const near = hangGlass ? { x: L / 2, y: 0 } : { x: 66, y: 94 };
-    const ex = CX + near.x, ey = CY + near.y, Rn = Math.hypot(near.x, near.y), a0 = Math.atan2(near.y, near.x);
+    const ex = CX + g.nx, ey = CY + g.ny, Rn = Math.hypot(g.nx, g.ny), a0 = Math.atan2(g.ny, g.nx);
+    const faded = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     /* the rest position, faint, and the arc the near end swung through */
-    if (Math.abs(A) > 1) {
-      ctx.save(); ctx.globalAlpha = 0.3; ctx.setLineDash([8, 8]); body(ctx, CX + off.x, CY + off.y, hangGlass ? ROD : CLOTH, 0, 'transparent'); ctx.restore();
+    if (Math.abs(g.A) > 1) {
+      faded(g.hang, () => { ctx.globalAlpha *= 0.3; ctx.setLineDash([8, 8]); body(ctx, CX, CY, ROD, 0, 'transparent'); });
+      faded(1 - g.hang, () => { ctx.globalAlpha *= 0.3; ctx.setLineDash([8, 8]); body(ctx, CX, CY + 94, CLOTH, 0, 'transparent'); });
       turnArc(ctx, CX, CY, Rn + 34, a0, a0 + ang, PAL.ink);
     }
     /* the held body: its near point a distance r from the rest position's near end, along the 18° line */
     const px = ex + r * S * ux, py = ey + r * S * uy;
     line(ctx, ex, ey, px, py, alpha(PAL.ink, 0.4), 2, [4, 8]);
     text(ctx, fmt(r, 1) + ' cm', (ex + px) / 2 + 14, (ey + py) / 2 + 22, PAL.ink, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
-    let hx, hy;
-    if (heldGlass) { hx = px + (L / 2) * ux; hy = py + (L / 2) * uy; body(ctx, hx, hy, ROD, DIR, PAL.soft); marks(ctx, hx, hy, DIR, nm, '+', false); }
-    else { hx = px + 70 * ux; hy = py + 70 * uy; body(ctx, hx, hy, CLOTH, 0, PAL.soft); clothFolds(ctx, hx, hy, 0); marks(ctx, hx, hy, 0, nm, '−', true); }
+    const rodAt = { x: px + (L / 2) * ux, y: py + (L / 2) * uy }, clothAt = { x: px + 70 * ux, y: py + 70 * uy };
+    faded(g.held, () => { body(ctx, rodAt.x, rodAt.y, ROD, DIR, PAL.soft); marks(ctx, rodAt.x, rodAt.y, DIR, nm, '+', false); });
+    faded(1 - g.held, () => { body(ctx, clothAt.x, clothAt.y, CLOTH, 0, PAL.soft); clothFolds(ctx, clothAt.x, clothAt.y, 0); marks(ctx, clothAt.x, clothAt.y, 0, nm, '−', true); });
+    const hx = heldGlass ? rodAt.x : clothAt.x, hy = heldGlass ? rodAt.y : clothAt.y;
     /* the hanging body, turned about the thread */
-    const hc = turned(CX, CY, off.x, off.y, ang);
-    body(ctx, hc.x, hc.y, hangGlass ? ROD : CLOTH, ang, PAL.soft);
-    if (!hangGlass) clothFolds(ctx, hc.x, hc.y, ang);
-    marks(ctx, hc.x, hc.y, ang, nm, hangGlass ? '+' : '−', !hangGlass);
+    faded(g.hang, () => { body(ctx, CX, CY, ROD, ang, PAL.soft); marks(ctx, CX, CY, ang, nm, '+', false); });
+    faded(1 - g.hang, () => { const hc = turned(CX, CY, 0, 94, ang); body(ctx, hc.x, hc.y, CLOTH, ang, PAL.soft); clothFolds(ctx, hc.x, hc.y, ang); marks(ctx, hc.x, hc.y, ang, nm, '−', true); });
     line(ctx, CX, CY - 190, CX, CY, PAL.ink, 2);
     dot(ctx, CX, CY, PAL.ink, false, 8);
     /* labels beside their things */
+    const off = hangGlass ? { x: 0, y: 0 } : { x: 0, y: 94 };
     const far = turned(CX, CY, hangGlass ? -L / 2 : off.x - 66, off.y, ang);
     Lb.add(hangGlass ? 'glass rod, hanging' : 'silk cloth, hanging', far.x, far.y, -1, 0, PAL.ink, 20, 16);
     Lb.add('thread', CX, CY - 150, -1, 0, PAL.ink, 18, 14);
@@ -141,7 +150,7 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     topline(ctx, `A ${hang} holding ${plus(qHang, 1)} nC hangs by a thread, and ${held} holding ${plus(qHeld, 1)} nC is brought to ${fmt(r, 1)} cm: ${unlike ? 'unlike' : 'like'} charges, so the ${hangGlass ? 'rod' : 'cloth'} swings ${swing}.`);
     Lb.flush();
     const n1 = heldGlass ? 'rod 1' : hangGlass ? 'glass' : 'cloth 1', n2 = heldGlass ? 'rod 2' : hangGlass ? 'silk' : 'cloth 2';
-    readout(d.readout, `\\kq_{\\text{${n1}}} = ${texSign(qHang, 1)}\\ \\text{nC}, \\qquad \\kq_{\\text{${n2}}} = ${texSign(qHeld, 1)}\\ \\text{nC}`,
+    readout(d.readout, `\\kq_{\\text{${n1}}} = ${unlike ? '-' : ''}\\kq_{\\text{${n2}}} = ${texSign(qHang, 1)}\\ \\text{nC}`,
       (unlike ? 'Unlike charges attract, so the hanging ' + (hangGlass ? 'rod' : 'cloth') + ' swings toward the ' + (heldGlass ? 'second rod' : 'silk') + '; '
         : 'Like charges repel, so the hanging ' + (hangGlass ? 'rod' : 'cloth') + ' swings away from the ' + (heldGlass ? 'second rod' : 'second cloth') + '; ')
       + 'bring the two closer and it swings farther, since the force between charges decreases with distance. Rubbing glass with silk leaves equal and opposite charges on the two, which is why one number sets both.');
@@ -157,8 +166,11 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
 ===================================================================== */
 (function () {
   const d = sim('sim-atom', 620);
-  const ps = ctl(d.controls, { label: '\\text{protons}', cls: '', min: 1, max: 10, step: 1, value: 3, unit: '', dec: 0, aria: 'how many protons the nucleus holds' });
-  const es = ctl(d.controls, { label: '\\text{electrons}', cls: '', min: 0, max: 12, step: 1, value: 3, unit: '', dec: 0, aria: 'how many electrons orbit the nucleus' });
+  let es;
+  const ps = ctl(d.controls, { label: '\\text{protons}', cls: '', min: 1, max: 10, step: 1, value: 3, unit: '', dec: 0, aria: 'how many protons the nucleus holds',
+    specials: [{ at: () => (es ? es.v : 3), label: 'neutral' }] });
+  es = ctl(d.controls, { label: '\\text{electrons}', cls: '', min: 0, max: 12, step: 1, value: 3, unit: '', dec: 0, aria: 'how many electrons orbit the nucleus',
+    specials: [{ at: () => ps.v, label: 'neutral' }] });
   const CX = 600, CY = 350;
   /* the three orbits the book draws: one tall, two tilted */
   const ORBITS = [{ rx: 112, ry: 236, rot: 0, t0: -80 * RAD }, { rx: 320, ry: 116, rot: -22 * RAD, t0: 200 * RAD }, { rx: 320, ry: 116, rot: 22 * RAD, t0: 10 * RAD }];
@@ -289,7 +301,6 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
   const T = 5;
   const cy = cycle(() => T, 1.2);
   const ev = choice(d.controls, { label: '\\text{the event}', options: [{ value: 'create', label: 'creation' }, { value: 'annihilate', label: 'annihilation' }], value: 'create', aria: 'whether a pair is created from energy or annihilated into it', onInput: () => cy.reset() });
-  const LAB = choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the two particles' });
   const BX = 640, BY = 250, DX = 560, DY = 165;
   let hits = [], lastKey = '';
   /* the thick ink arrow the book draws for the energy, its head at (hx, y) */
@@ -324,8 +335,8 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
       line(ctx, from.x, from.y, ep.x, ep.y, alpha(PAL.ink, 0.35), 2); line(ctx, to.x, to.y, pp.x, pp.y, alpha(PAL.ink, 0.35), 2);
       particle(ctx, ep.x, ep.y, 'e-', 15); particle(ctx, pp.x, pp.y, 'e+', 15);
       hits.push({ x: ep.x, y: ep.y, r: 20, name: 'the electron, charge −1 qₑ' }, { x: pp.x, y: pp.y, r: 20, name: 'the antielectron (positron), charge +1 qₑ' });
-      if (LAB.value === 'on') { Lb.add('electron, −1 q_e', ep.x, ep.y, 0, -1, PAL.ink, 19, 24); Lb.add('antielectron, +1 q_e', pp.x, pp.y, 0, 1, PAL.ink, 19, 24); }
     }
+    legendRow(ctx, 560, H - 70, 'e-', 'electron, −1 q_e'); legendRow(ctx, 560, H - 38, 'e+', 'antielectron, +1 q_e');
     text(ctx, 'Δm = 2mₑ = E/c²', BX, BY + 120, PAL.ink, { size: 22, align: 'center' });
     text(ctx, 'Before', 300, H - 70, PAL.ink, { size: 20, align: 'center' }); text(ctx, 'q_tot = 0', 300, H - 38, qc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'After', 1000, H - 70, PAL.ink, { size: 20, align: 'center' }); text(ctx, 'q_tot = 0', 1000, H - 38, qc, { size: 22, weight: 600, align: 'center' });
@@ -338,8 +349,8 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     if (key !== lastKey) {
       lastKey = key;
       const pair = '(-1)\\,\\kqe + (+1)\\,\\kqe = 0';
-      readout(d.readout, create ? `\\kqtot = 0 \\ \\text{before}, \\qquad \\kqtot = ${pair} \\ \\text{after}` : `\\kqtot = ${pair} \\ \\text{before}, \\qquad \\kqtot = 0 \\ \\text{after}`,
-        'The mass that appears or vanishes is Δm = 2mₑ = E/c², and since the two particles carry equal and opposite charges, the total charge is the same before and after: charge is conserved even where matter is made or unmade.');
+      readout(d.readout, `\\kqtot = ${pair}`,
+        (create ? 'Zero before the event, and the pair after it. ' : 'The pair before the event, and zero after it. ') + 'The mass that appears or vanishes is Δm = 2mₑ = E/c², and since the two particles carry equal and opposite charges, the total charge is the same before and after: charge is conserved even where matter is made or unmade.');
     }
   }
   hover(d.stage, () => hits);

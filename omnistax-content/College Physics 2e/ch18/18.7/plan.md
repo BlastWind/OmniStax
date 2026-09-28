@@ -91,3 +91,5 @@ rows `q`, `E_field`, `E_par`, `E_perp` and `F_par`; `q_a` to `q_d`, which
 label the square the exercises read, are anchored at `18.7-four-charges`.
 The nine concept ids listed above resolve, and no concept or symbol row was
 changed.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-sphere-in-field`: the conductor/insulator choice blends how far the sphere polarizes, so the traced lines straighten or bend into their new course and the lines beginning again on the conductor's face fade with it; readout E_inside = E_applied − E_faces with the numbers, one equation. `sim-charged-sphere` marks the surface: a dashed circle on the probe at the radius and on the radius at the probe (rule 26.1), and crossing it morphs E = k|q|/r² = … into E = 0 by meaning (manim-style 11). `sim-parallel-plates`: one equation, E_middle, the edge field in the small line. `sim-sharp-end`: the body stays and a change of case fades and shifts only the parts one case has (manim-style 15); each case's readout is one equation, F∥ = F cos θ at the point, E_point = (R_flat/R_point) E_flat, and E_inside = 0; the choice is labelled "the case".

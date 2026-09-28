@@ -40,11 +40,6 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     options: [{ value: 'one', label: 'One charge' }, { value: 'pair', label: 'Opposite pair' }, { value: 'neg', label: 'Two negative' }],
     value: 'one', aria: 'the arrangement of the charges'
   });
-  const shown = choice(d.controls, {
-    label: '\\text{Draw}',
-    options: [{ value: 'both', label: 'Both sets' }, { value: 'equi', label: 'Equipotentials' }, { value: 'field', label: 'Field lines' }],
-    value: 'both', aria: 'which sets of lines are drawn'
-  });
   const Qm = ctl(d.controls, { label: '\\kQch', cls: 'charge', min: 1, max: 8, step: 0.25, value: 4, unit: 'nC', dec: 2, aria: 'magnitude of each charge' });
   const NL = ctl(d.controls, { label: '\\text{lines}', cls: '', min: 2, max: 6, step: 1, value: 4, unit: '', dec: 0, aria: 'number of equipotential lines drawn for each charge' });
 
@@ -56,11 +51,13 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
   const X = (x) => cx + x * PPC, Y = (y) => cy - y * PPC;
   const X0 = (BOX.r - BOX.l) / 2 / PPC, Y0 = (BOX.b - BOX.t) / 2 / PPC;
 
+  /* Every arrangement is two charges, the lone charge's partner carrying nothing, so a change of
+     arrangement blends their places and sizes: the lone charge slides aside as its partner grows,
+     and the lines, traced from the blend, bend with them. A charge too small to matter is left out. */
+  const ARR = { one: [0, 1, SEP / 2, 0], pair: [-SEP / 2, 1, SEP / 2, -1], neg: [-SEP / 2, -1, SEP / 2, -1] };
   function charges() {
-    const q = Qm.v * 1e-9;
-    if (arr.value === 'one') return [{ x: 0, y: 0, q, s: 1 }];
-    if (arr.value === 'pair') return [{ x: -SEP / 2, y: 0, q, s: 1 }, { x: SEP / 2, y: 0, q: -q, s: -1 }];
-    return [{ x: -SEP / 2, y: 0, q: -q, s: -1 }, { x: SEP / 2, y: 0, q: -q, s: -1 }];
+    const q = Qm.v * 1e-9, [x1, q1, x2, q2] = arr.mix((v) => ARR[v]);
+    return [{ x: x1, y: 0, q: q1 * q, s: Math.sign(q1), w: Math.abs(q1) }, { x: x2, y: 0, q: q2 * q, s: Math.sign(q2), w: Math.abs(q2) }].filter((c) => c.w > 0.04);
   }
   /* the potential at a point given in centimetres, in volts; the distance is floored at
      3 mm so that no node of the grid sits on a charge and runs away to infinity */
@@ -158,18 +155,17 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     /* the frame of the map, in ink */
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.strokeRect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.restore();
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    /* the field lines, traced from the field itself */
-    if (shown.value !== 'equi') {
-      for (const c of cs) {
-        if (arr.value === 'pair' && c.s < 0) continue;   /* the pair's lines all start on the positive charge */
-        for (let i = 0; i < 16; i++) {
-          const a = (i / 16) * Math.PI * 2 + 0.2;
-          streamline(ctx, cs, c.x + 0.7 * Math.cos(a), c.y + 0.7 * Math.sin(a), c.s, alpha(fc, 0.85));
-        }
+    /* the field lines, traced from the field itself; where there is a positive charge they all start on it */
+    const pos = cs.some((c) => c.s > 0);
+    for (const c of cs) {
+      if (pos && c.s < 0) continue;
+      for (let i = 0; i < 16; i++) {
+        const a = (i / 16) * Math.PI * 2 + 0.2;
+        streamline(ctx, cs, c.x + 0.7 * Math.cos(a), c.y + 0.7 * Math.sin(a), c.s, alpha(fc, 0.85));
       }
     }
     /* the equipotential lines, contoured from the potential */
-    if (shown.value !== 'field') {
+    {
       const hx = (2 * X0) / NX, hy = (2 * Y0) / NY, grid = [];
       for (let i = 0; i <= NX; i++) { const col = []; for (let j = 0; j <= NY; j++) col.push(pot(cs, -X0 + i * hx, -Y0 + j * hy)); grid.push(col); }
       for (const v of lv) contour(ctx, grid, v, vc, 3);
@@ -177,12 +173,14 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     ctx.restore();
     /* the charges themselves */
     for (const c of cs) {
+      ctx.save(); ctx.globalAlpha = Math.min(1, c.w);
       dot(ctx, X(c.x), Y(c.y), qc, true, 16);
       text(ctx, c.s < 0 ? '−' : '+', X(c.x), Y(c.y), PAL.panel, { size: 22, weight: 600, align: 'center', base: 'middle' });
-      text(ctx, (c.s < 0 ? '−' : '+') + fmt(Qm.v, 2) + ' nC', X(c.x), Y(c.y) + 44, qc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+      if (c.w > 0.99) text(ctx, (c.s < 0 ? '−' : '+') + fmt(Qm.v, 2) + ' nC', X(c.x), Y(c.y) + 44, qc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+      ctx.restore();
     }
     /* one voltage on each equipotential line, read off a ray from the charge it rings */
-    if (shown.value !== 'field') {
+    if (arr.k >= 1) {
       const seen = [];
       for (const v of lv) {
         const c = v > 0 ? cs[0] : cs[cs.length - 1];
@@ -199,15 +197,11 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     }
     /* the legend, which names both sets of lines even with colour turned off */
     const ly = BOX.b + 34;
-    if (shown.value !== 'equi') {
-      line(ctx, BOX.l + 10, ly, BOX.l + 70, ly, fc, 3);
-      arrow(ctx, BOX.l + 50, ly, BOX.l + 74, ly, fc, 3);
-      text(ctx, 'electric field lines, with their arrowheads', BOX.l + 86, ly + 7, fc, { size: 19, weight: 600 });
-    }
-    if (shown.value !== 'field') {
-      line(ctx, BOX.r - 440, ly, BOX.r - 380, ly, vc, 3);
-      text(ctx, 'equipotential lines, each at its own voltage', BOX.r - 366, ly + 7, vc, { size: 19, weight: 600 });
-    }
+    line(ctx, BOX.l + 10, ly, BOX.l + 70, ly, fc, 3);
+    arrow(ctx, BOX.l + 50, ly, BOX.l + 74, ly, fc, 3);
+    text(ctx, 'electric field lines, with their arrowheads', BOX.l + 86, ly + 7, fc, { size: 19, weight: 600 });
+    line(ctx, BOX.r - 440, ly, BOX.r - 380, ly, vc, 3);
+    text(ctx, 'equipotential lines, each at its own voltage', BOX.r - 366, ly + 7, vc, { size: 19, weight: 600 });
     const stepV = (K * Qm.v * 1e-9) / 0.04 / NL.v;
     const named = arr.value === 'one' ? 'An isolated +' + fmt(Qm.v, 2) + ' nC charge'
       : arr.value === 'pair' ? 'A +' + fmt(Qm.v, 2) + ' nC charge and a −' + fmt(Qm.v, 2) + ' nC charge ' + fmt(SEP, 0) + ' cm apart'
@@ -215,10 +209,7 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     topline(ctx, named + ', with equipotential lines drawn every ' + fmt(stepV, 0) + ' V, the outermost at ' + fmt(stepV, 0) + ' V and the innermost at ' + fmt(stepV * NL.v, 0) + ' V.');
     const near = lv.reduce((a, b) => (Math.abs(b) > Math.abs(a) ? b : a), lv[0]);
     readout(d.readout, `\\kW = -\\kq\\kdV = -\\kq(0) = 0`,
-      (shown.value === 'field' ? '' : 'The innermost line drawn here stands at ' + num(near, 0) + ' V. ')
-      + (shown.value === 'equi' ? 'Every line here is a line of constant potential, so a charge carried along one of them has no work done on it. The field lines are hidden: draw them in yourself by crossing every one of these lines at a right angle, and then bring them back and see whether you were right.'
-        : shown.value === 'field' ? 'Only the field lines are drawn. The equipotentials are the curves that cross every one of them at a right angle, and they crowd wherever the field lines crowd, since a strong field means the potential changes quickly over a short step.'
-          : 'The two sets of lines meet at a right angle everywhere on the map, which is what the zero work says. Where the lines crowd together the potential changes quickly over a short distance and the field is strong, and where they spread apart the field is weak.'));
+      'The innermost equipotential stands at ' + num(near, 0) + ' V. A charge carried along any equipotential has no work done on it, and so the field lines cross every equipotential at a right angle. Where the lines crowd together the potential changes quickly over a short distance and the field is strong, and where they spread apart the field is weak.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -234,11 +225,8 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
   const d = sim('sim-plate-equipotentials', 790);
   const Vab = ctl(d.controls, { label: '\\kVAB', cls: 'voltage', min: 20, max: 200, step: 5, value: 100, unit: 'V', dec: 0, aria: 'the voltage across the plates' });
   const gap = ctl(d.controls, { label: '\\kd', cls: 'position', min: 5, max: 25, step: 0.5, value: 10, unit: 'cm', dec: 1, aria: 'the separation of the plates' });
-  const step = choice(d.controls, {
-    label: '\\text{A line every}',
-    options: [{ value: 5, label: '5 V' }, { value: 10, label: '10 V' }, { value: 20, label: '20 V' }, { value: 25, label: '25 V' }],
-    value: 20, aria: 'the step in voltage between one equipotential line and the next'
-  });
+  const step = ctl(d.controls, { label: '\\kdV', cls: 'voltage', min: 5, max: 25, step: 5, value: 20, unit: 'V', dec: 0, detents: [5, 10, 20, 25],
+    aria: 'the step in voltage between one equipotential line and the next' });
   /* 34 logical units to the centimetre, from the widest gap the slider reaches,
      so the 25 cm gap fills 850 units and the scale never changes */
   const cx = 700, PPC = 34, TOP = 210, BOT = 570;
@@ -247,7 +235,7 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     const vc = C('voltage'), fc = C('electric-field'), qc = C('charge'), pc = C('position');
     const V = Vab.v, dm = gap.v / 100, E = V / dm, half = (gap.v * PPC) / 2;
     const xa = cx - half, xb = cx + half;
-    const dV = Number(step.value), n = Math.floor(V / dV);          /* the interior lines plus the far plate */
+    const dV = step.v, n = Math.floor(V / dV);          /* the interior lines plus the far plate */
     /* the two plates and their charges: the frame is ink, the charges wear the charge hue */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
     ctx.fillRect(xa - 16, TOP, 16, BOT - TOP); ctx.strokeRect(xa - 16, TOP, 16, BOT - TOP);

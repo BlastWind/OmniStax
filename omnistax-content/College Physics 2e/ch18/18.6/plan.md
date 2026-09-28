@@ -211,3 +211,5 @@ separations, the counts and the nanometre scales are untyped and in ink.
 `18.6-charged-molecules`. The page binds `force` as well as `charge` and
 `electric-field`, for the attraction between a water molecule and the ion it
 surrounds, and `ch18/COLOR.md` now records that binding as built.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-water`: a change of the ends that face morphs, the molecules turning over to their new places and the force arrows shrinking through nothing and reversing (manim-style 16); attraction or repulsion moves out of the formula into the small line (manim-style 12).

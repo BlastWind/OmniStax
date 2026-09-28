@@ -53,8 +53,12 @@ function signs(ctx, x, y, orient, gap, half, color) {
    FIGURES 19.20 + 19.21, folded: the same three capacitors across the
    same source, connected first in series and then in parallel, with the
    single capacitor each combination is equivalent to drawn beside it.
-   Still: a charged combination sits at its voltage and the figure answers
-   its sliders, so it registers no cycle.
+   A change of connection carries each capacitor from its place in the row
+   to its branch of the ladder, turning it as it goes, while the wires of
+   the old circuit fade and the new ones arrive; the equivalent capacitor's
+   separation and plates bend to the new values, and the formula bends
+   term by term into the other. Still: a charged combination sits at its
+   voltage and the figure answers its controls, so it registers no cycle.
 ===================================================================== */
 (function () {
   const d = sim('sim-series-parallel', 760);
@@ -63,83 +67,96 @@ function signs(ctx, x, y, orient, gap, half, color) {
   const c2 = ctl(d.controls, { label: '\\kCtwo', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 3, aria: 'the capacitance of the second capacitor' });
   const c3 = ctl(d.controls, { label: '\\kCthree', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 8, unit: 'µF', dec: 3, aria: 'the capacitance of the third capacitor' });
   const vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 2, max: 24, step: 0.5, value: 12, unit: 'V', dec: 1, aria: 'the voltage of the source' });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  let wasSer = null;
   /* the gap and the plate width of the equivalent capacitor are drawn to a
      fixed scale, bounded so that the widest separation and the widest plates
      the sliders can reach still stand inside the panel */
   const XS = [280, 450, 620], TOP = 260, BOT = 530, LFT = 160, RGT = 740, DIV = 820, EQ = 1110;
+  const LP = 250, XP = [350, 520, 690], YP = 395;
+  /* a capacitor of plate half-width `half` and gap `gap` at (x, y), turned by `th`: 0 sits in a horizontal wire, π/2 in a vertical one */
+  function turnedCap(ctx, x, y, th, gap, half) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(th); capacitor(ctx, 0, 0, 'h', gap, half); ctx.restore();
+  }
   function draw() {
     const { ctx } = begin(d.c);
     const cc = C('capacitance'), vc = C('voltage'), qc = C('charge'), pc = C('position');
     const cs = [c1.v, c2.v, c3.v], V = vs.v, ser = conn.value === 'series';
     const Cs = 1 / (1 / cs[0] + 1 / cs[1] + 1 / cs[2]), Cp = cs[0] + cs[1] + cs[2];
     const Ctot = ser ? Cs : Cp, Q = Ctot * V;                 /* µF times V is µC */
+    const aS = conn.a('series'), aP = conn.a('parallel');
+    const layer = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     line(ctx, DIV, 130, DIV, 660, PAL.rule, 2, [10, 10]);
-    text(ctx, ser ? 'three capacitors in series' : 'three capacitors in parallel', 110, 134, PAL.muted, { size: 19 });
+    layer(aS, () => text(ctx, 'three capacitors in series', 110, 134, PAL.muted, { size: 19 }));
+    layer(aP, () => text(ctx, 'three capacitors in parallel', 110, 134, PAL.muted, { size: 19 }));
     text(ctx, 'the one capacitor the combination is equivalent to', 880, 134, PAL.muted, { size: 19 });
-    if (ser) {
-      /* the loop, with the three capacitors along the top and the source below */
+    /* the wires and the source of each circuit */
+    layer(aS, () => {
       wire(ctx, [[XS[0] - 34, TOP], [LFT, TOP], [LFT, BOT], [RGT, BOT], [RGT, TOP], [XS[2] + 34, TOP]]);
       wire(ctx, [[XS[0] + 34, TOP], [XS[1] - 34, TOP]]);
       wire(ctx, [[XS[1] + 34, TOP], [XS[2] - 34, TOP]]);
       battery(ctx, 450, BOT, 'h');
       text(ctx, 'V = ' + fmt(V, 1) + ' V', 450, BOT + 62, vc, { size: 22, weight: 600, align: 'center' });
-      XS.forEach((x, i) => {
-        capacitor(ctx, x, TOP, 'h', 34, 46);
-        signs(ctx, x, TOP, 'h', 34, 46, qc);
-        text(ctx, 'C_' + (i + 1) + ' = ' + fmt(cs[i], 3) + ' µF', x, TOP - 84, cc, { size: 21, weight: 600, align: 'center' });
-        text(ctx, 'V_' + (i + 1) + ' = ' + fmt(Q / cs[i], 2) + ' V', x, TOP + 116, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
-      });
-      text(ctx, 'The same charge Q = ' + fmt(Q, 2) + ' µC is separated in every capacitor.', 450, 636, qc, { size: 20, weight: 600, align: 'center' });
-      /* the equivalent capacitor: the same charge behind a larger separation */
-      const gap = 40 + 150 * Math.min(1, 1 / Math.max(Cs, 0.35) / 3);
-      wire(ctx, [[EQ, 260], [EQ - 200, 260], [EQ - 200, 560], [EQ + 200, 560], [EQ + 200, 260], [EQ, 260]]);
-      wire(ctx, [[EQ, 260], [EQ, 380 - gap / 2]]);
-      wire(ctx, [[EQ, 380 + gap / 2], [EQ, 560]]);
-      capacitor(ctx, EQ, 380, 'v', gap, 116);
-      signs(ctx, EQ, 380, 'v', gap, 116, qc);
-      battery(ctx, EQ - 200, 410, 'v');
-      text(ctx, 'V = ' + fmt(V, 1) + ' V', EQ - 252, 410, vc, { size: 21, weight: 600, align: 'right' });
-      vbracket(ctx, EQ + 152, 380 - gap / 2, 380 + gap / 2, pc, 'd', 1);
-      text(ctx, 'C_S = ' + fmt(Cs, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });
-      text(ctx, 'a larger plate separation', EQ + 40, 636, PAL.muted, { size: 19, align: 'center' });
-      headline(ctx, 'Three capacitors of ' + fmt(cs[0], 3) + ', ' + fmt(cs[1], 3) + ' and ' + fmt(cs[2], 3) + ' µF in series across ' + fmt(V, 1) + ' V hold ' + fmt(Q, 2) + ' µC each and act as one capacitor of ' + fmt(Cs, 3) + ' µF.');
-      readout(d.readout, `\\frac{1}{\\kCS} = \\frac{1}{\\kCone} + \\frac{1}{\\kCtwo} + \\frac{1}{\\kCthree} = \\frac{${fmt(1 / cs[0] + 1 / cs[1] + 1 / cs[2], 3)}}{\\mu\\text{F}}, \\quad \\kCS = ${fmt(Cs, 3)}\\ \\mu\\text{F}`,
-        'The three voltages add to the source voltage, ' + fmt(Q / cs[0], 2) + ' + ' + fmt(Q / cs[1], 2) + ' + ' + fmt(Q / cs[2], 2) + ' = ' + fmt(V, 1) + ' V, because the same charge sits on every capacitor and the smallest capacitance takes the largest share. The total is ' + fmt(Cs, 3) + ' µF, less than the smallest of the three, which is what a larger effective plate separation means.');
-    } else {
-      /* the loop, with the three capacitors on branches of their own */
-      const LP = 250, XP = [350, 520, 690];
+      XS.forEach((x, i) => text(ctx, 'V_' + (i + 1) + ' = ' + fmt((Cs * V) / cs[i], 2) + ' V', x, TOP + 116, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel }));
+      text(ctx, 'The same charge Q = ' + fmt(Cs * V, 2) + ' µC is separated in every capacitor.', 450, 636, qc, { size: 20, weight: 600, align: 'center' });
+    });
+    layer(aP, () => {
       wire(ctx, [[LP, TOP], [RGT, TOP]]);
       wire(ctx, [[LP, BOT], [RGT, BOT]]);
       wire(ctx, [[LP, TOP], [LP, BOT]]);
-      battery(ctx, LP, 395, 'v');
-      text(ctx, 'V = ' + fmt(V, 1) + ' V', LP - 44, 395, vc, { size: 22, weight: 600, align: 'right' });
+      battery(ctx, LP, YP, 'v');
+      text(ctx, 'V = ' + fmt(V, 1) + ' V', LP - 44, YP, vc, { size: 22, weight: 600, align: 'right' });
       XP.forEach((x, i) => {
-        wire(ctx, [[x, TOP], [x, 395 - 17]]);
-        wire(ctx, [[x, 395 + 17], [x, BOT]]);
-        capacitor(ctx, x, 395, 'v', 34, 46);
-        signs(ctx, x, 395, 'v', 34, 46, qc);
+        wire(ctx, [[x, TOP], [x, YP - 17]]);
+        wire(ctx, [[x, YP + 17], [x, BOT]]);
         dot(ctx, x, TOP, PAL.ink, true, 6); dot(ctx, x, BOT, PAL.ink, true, 6);
-        text(ctx, 'C_' + (i + 1) + ' = ' + fmt(cs[i], 3) + ' µF', x + 12, 300, cc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
         text(ctx, 'Q_' + (i + 1) + ' = ' + fmt(cs[i] * V, 2) + ' µC', x + 12, 492, qc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
       });
       text(ctx, 'Every capacitor has the whole ' + fmt(V, 1) + ' V across it.', 470, 636, vc, { size: 20, weight: 600, align: 'center' });
-      /* the equivalent capacitor: the same separation behind a larger plate area */
-      const half = 50 + 3.5 * Math.min(Cp, 30);
-      wire(ctx, [[EQ, 260], [EQ - 200, 260], [EQ - 200, 560], [EQ + 200, 560], [EQ + 200, 260], [EQ, 260]]);
-      capacitor(ctx, EQ, 380, 'v', 46, half);
-      wire(ctx, [[EQ, 260], [EQ, 380 - 23]]);
-      wire(ctx, [[EQ, 380 + 23], [EQ, 560]]);
-      signs(ctx, EQ, 380, 'v', 46, half, qc);
-      battery(ctx, EQ - 200, 410, 'v');
-      text(ctx, 'V = ' + fmt(V, 1) + ' V', EQ - 252, 410, vc, { size: 21, weight: 600, align: 'right' });
+    });
+    /* the three capacitors themselves, each travelling from its place in one circuit to its place in the other */
+    const place = conn.mix((v) => (v === 'series' ? [...XS, TOP, 0, TOP - 84] : [...XP, YP, Math.PI / 2, 300]));
+    XS.forEach((_, i) => {
+      const x = place[i], y = place[3], th = place[4];
+      turnedCap(ctx, x, y, th, 34, 46);
+      layer(aS, () => signs(ctx, x, y, 'h', 34, 46, qc));
+      layer(aP, () => signs(ctx, x, y, 'v', 34, 46, qc));
+      text(ctx, 'C_' + (i + 1) + ' = ' + fmt(cs[i], 3) + ' µF', x + 12 * (th / (Math.PI / 2)), place[5], cc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    });
+    /* the equivalent capacitor: a larger separation in series, a larger plate area in parallel */
+    const [gap, half] = conn.mix((v) => (v === 'series' ? [40 + 150 * Math.min(1, 1 / Math.max(Cs, 0.35) / 3), 116] : [46, 50 + 3.5 * Math.min(Cp, 30)]));
+    wire(ctx, [[EQ, 260], [EQ - 200, 260], [EQ - 200, 560], [EQ + 200, 560], [EQ + 200, 260], [EQ, 260]]);
+    wire(ctx, [[EQ, 260], [EQ, 380 - gap / 2]]);
+    wire(ctx, [[EQ, 380 + gap / 2], [EQ, 560]]);
+    capacitor(ctx, EQ, 380, 'v', gap, half);
+    signs(ctx, EQ, 380, 'v', gap, half, qc);
+    battery(ctx, EQ - 200, 410, 'v');
+    text(ctx, 'V = ' + fmt(V, 1) + ' V', EQ - 252, 410, vc, { size: 21, weight: 600, align: 'right' });
+    layer(aS, () => {
+      vbracket(ctx, EQ + 152, 380 - gap / 2, 380 + gap / 2, pc, 'd', 1);
+      text(ctx, 'C_S = ' + fmt(Cs, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });
+      text(ctx, 'a larger plate separation', EQ + 40, 636, PAL.muted, { size: 19, align: 'center' });
+    });
+    layer(aP, () => {
       hbracket(ctx, EQ - half, EQ + half, 522, PAL.ink);
       text(ctx, 'the plate area A', EQ + 16, 552, PAL.ink, { size: 20, weight: 600 });   /* beside the wire that runs down through the bracket, not on it */
       text(ctx, 'C_p = ' + fmt(Cp, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });
       text(ctx, 'a larger plate area', EQ, 636, PAL.muted, { size: 19, align: 'center' });
+    });
+    const n = cs.map((c) => fmt(c, 3));
+    if (ser) {
+      headline(ctx, 'Three capacitors of ' + n[0] + ', ' + n[1] + ' and ' + n[2] + ' µF in series across ' + fmt(V, 1) + ' V hold ' + fmt(Q, 2) + ' µC each and act as one capacitor of ' + fmt(Cs, 3) + ' µF.');
+      F.morph(formula, `\\frac{1}{\\mk{C}{\\kCS}} = \\frac{1}{\\mk{a}{\\kCone}} + \\frac{1}{\\mk{b}{\\kCtwo}} + \\frac{1}{\\mk{c}{\\kCthree}} = \\frac{1}{\\mk{na}{${n[0]}}} + \\frac{1}{\\mk{nb}{${n[1]}}} + \\frac{1}{\\mk{nc}{${n[2]}}} = \\frac{1}{\\mk{n}{${fmt(Cs, 3)}}\\ \\mu\\text{F}}`,
+        { force: wasSer !== null && wasSer !== ser });
+      note.textContent = 'The three voltages add to the source voltage, ' + fmt(Q / cs[0], 2) + ' + ' + fmt(Q / cs[1], 2) + ' + ' + fmt(Q / cs[2], 2) + ' = ' + fmt(V, 1) + ' V, because the same charge sits on every capacitor and the smallest capacitance takes the largest share. The total is ' + fmt(Cs, 3) + ' µF, less than the smallest of the three, which is what a larger effective plate separation means.';
+    } else {
       headline(ctx, 'The same three capacitors in parallel across ' + fmt(V, 1) + ' V hold ' + fmt(Q, 2) + ' µC between them and act as one capacitor of ' + fmt(Cp, 3) + ' µF.');
-      readout(d.readout, `\\kCp = \\kCone + \\kCtwo + \\kCthree = ${fmt(cs[0], 3)} + ${fmt(cs[1], 3)} + ${fmt(cs[2], 3)} = ${fmt(Cp, 3)}\\ \\mu\\text{F}`,
-        'Each capacitor is connected straight across the source, so each holds the charge it would hold alone, Q = CV, and the three charges add to ' + fmt(Q, 2) + ' µC. The total is larger than any of the three, which is what a larger effective plate area means.');
+      F.morph(formula, `\\mk{C}{\\kCp} = \\mk{a}{\\kCone} + \\mk{b}{\\kCtwo} + \\mk{c}{\\kCthree} = \\mk{na}{${n[0]}} + \\mk{nb}{${n[1]}} + \\mk{nc}{${n[2]}} = \\mk{n}{${fmt(Cp, 3)}}\\ \\mu\\text{F}`,
+        { force: wasSer !== null && wasSer !== ser });
+      note.textContent = 'Each capacitor is connected straight across the source, so each holds the charge it would hold alone, Q = CV, and the three charges add to ' + fmt(Q, 2) + ' µC. The total is larger than any of the three, which is what a larger effective plate area means.';
     }
+    wasSer = ser;
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -202,8 +219,8 @@ function signs(ctx, x, y, orient, gap, half, color) {
     /* the arrows that carry one panel into the next */
     for (const x of [PX[0] + PW + 10, PX[1] + PW + 10]) arrow(ctx, x, MID, x + 60, MID, PAL.muted, 4);
     headline(ctx, 'With ' + fmt(a, 3) + ' µF and ' + fmt(b, 3) + ' µF in series, and ' + fmt(c, 3) + ' µF across them, the circuit is one capacitor of ' + fmt(Ctot, 3) + ' µF.');
-    readout(d.readout, `\\frac{1}{\\kCS} = \\frac{1}{\\kCone} + \\frac{1}{\\kCtwo} \\Rightarrow \\kCS = ${fmt(Cs, 3)}\\ \\mu\\text{F}, \\quad \\kCtot = \\kCS + \\kCthree = ${fmt(Cs, 3)} + ${fmt(c, 3)} = ${fmt(Ctot, 3)}\\ \\mu\\text{F}`,
-      'The two steps are the same two every time: replace the series pair by the one capacitor equivalent to it, which is smaller than either of them, and then add that capacitor to the one it stands in parallel with. Larger combinations come down the same way, a piece at a time, until a single capacitance is left.');
+    readout(d.readout, `\\kCtot = \\kCS + \\kCthree = ${fmt(Cs, 3)} + ${fmt(c, 3)} = ${fmt(Ctot, 3)}\\ \\mu\\text{F}`,
+      'The series pair of C₁ and C₂ comes first: the reciprocals add, and the pair is equivalent to ' + fmt(Cs, 3) + ' µF. The two steps are the same two every time: replace the series pair by the one capacitor equivalent to it, which is smaller than either of them, and then add that capacitor to the one it stands in parallel with. Larger combinations come down the same way, a piece at a time, until a single capacitance is left.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

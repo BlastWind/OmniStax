@@ -3,7 +3,8 @@
    slider and every one of them states a charge in its readout. Electrons and
    ions are the element palette's particles; a sign is told by the book's +
    and − marks and by which way an arrow points, never by a hue. Three
-   figures answer their controls and register no cycle; the spreading charge
+   figures register no cycle, and two of them tell the book's panels as a
+   story on a slider; the spreading charge
    of the opening simulation and the induction of Figure 18.12 have a clock
    in them and move. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -149,24 +150,26 @@ function rod(ctx, x, y, L, T, sign, n) {
 })();
 
 /* =====================================================================
-   FIGURE 18.11: the electroscope charged by contact. Still: each of the
-   book's three panels is a settled state, the leaves hanging where the
-   electrostatic force and their weight hold them, so the figure answers
-   its controls and registers no cycle.
+   FIGURE 18.11: the electroscope charged by contact. A story: the book's
+   three panels are three stops of one slider (the rod brought near, the
+   rod touching the ball, the rod removed), and the rod, the charges and
+   the leaves are functions of it, so every position between two panels is
+   exact in either direction. Each stop is a settled state, the leaves
+   hanging where the electrostatic force and their weight hold them.
 ===================================================================== */
 (function () {
   const d = sim('sim-electroscope', 620);
-  const step = choice(d.controls, { label: '\\text{the step}', options: [
-    { value: 'near', label: 'rod brought near' }, { value: 'touch', label: 'rod touching the ball' }, { value: 'away', label: 'rod removed' }], value: 'near', aria: 'which step of the charging the figure shows' });
   const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 12, step: 0.5, value: 6, unit: 'nC', dec: 1, aria: 'the charge the glass rod carries' });
+  const ss = ctl(d.controls, { label: '\\text{the step}', cls: '', min: 0, max: 2, step: 0.01, value: 0, unit: '', dec: 2, aria: 'the step of the charging: the rod brought near, touching the ball, removed' });
+  F.story(d, ss, { stops: [{ v: 0, label: 'near' }, { v: 1, label: 'touching' }, { v: 2, label: 'removed' }] });
   const CX = 560, BALL = 186, RB = 42, STEM = 232, JX = 330, JY = 232, JW = 460, JH = 350;
+  const sm = F.ease.smooth, clamp = (x) => Math.min(1, Math.max(0, x));
   function draw() {
     const { ctx, H } = begin(d.c);
-    const qc = C('charge'), q = qs.v, st = step.value;
-    /* what each part holds at this step */
-    const qRod = st === 'near' ? q : st === 'touch' ? q * 0.55 : q * 0.55;
-    const qScope = st === 'near' ? 0 : q * 0.45;
-    const qLeaves = st === 'near' ? q * 0.45 : st === 'touch' ? q * 0.30 : q * 0.30;
+    const qc = C('charge'), q = qs.v, s = ss.v, st = ['near', 'touch', 'away'][Math.round(s)];
+    /* the rod closes in over the first stretch and touches at 1; the charge passes as it touches; it leaves after */
+    const u = sm(clamp((s - 0.75) / 0.25)), gone = sm(clamp(s - 1));
+    const qScope = q * 0.45 * u, qRod = q - qScope, qLeaves = q * (0.45 - 0.15 * u);
     const ang = 26 * (1 - Math.exp(-(qLeaves * qLeaves) / 6)) * RAD;
     /* the glass-walled container */
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 3; ctx.strokeRect(JX, JY, JW, JH); ctx.restore();
@@ -188,29 +191,32 @@ function rod(ctx, x, y, L, T, sign, n) {
         text(ctx, '+', mx + sgn * 22, my, PAL.ink, { size: 22, weight: 700, align: 'center' });
       }
     });
-    /* the electrons drawn up to the top, and the ones transferred to the rod */
+    /* the electrons drawn up to the top of the ball */
     const nE = Math.max(1, Math.round(q / 2));
     for (let i = 0; i < nE; i++) {
       const a = 202 * RAD + (i / Math.max(1, nE - 1 || 1)) * 76 * RAD;
       particle(ctx, CX + RB * Math.cos(a), BALL + RB * Math.sin(a), 'e-', 11);
     }
-    /* the rod, held to the right of the ball */
-    if (st !== 'away') {
-      const gap = st === 'touch' ? 0 : 110;
+    /* the rod, held to the right of the ball: it closes the gap, touches, and is carried off to the right */
+    const gap = 110 * (1 - sm(clamp(s / 0.75))) + 900 * gone;
+    if (gone < 1) {
+      ctx.save(); ctx.globalAlpha = 1 - gone;
       rod(ctx, CX + RB + gap, BALL, 380, 34, '+', Math.max(2, Math.round(qRod / 2)));
-      if (st === 'touch') for (let i = 0; i < Math.max(1, Math.round(q / 4)); i++) particle(ctx, CX + 70 + i * 34, BALL + 46, 'e-', 11);
+      /* the electrons that passed to the rod at the touch ride on it */
+      if (u > 0) { ctx.globalAlpha *= u; for (let i = 0; i < Math.max(1, Math.round(q / 4)); i++) particle(ctx, CX + 70 + gap + i * 34, BALL + 46, 'e-', 11); }
+      ctx.restore();
     }
     const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 150);
     Lb.add('the ball', CX - RB, BALL - 10, -1, 0, PAL.ink, 20, 22);
     Lb.add('the conducting stem', CX, BALL + 130, -1, 0, PAL.ink, 20, 24);
     Lb.add('gold leaves', CX + LL * Math.sin(-ang) * 0.9 - 8, LY0 + LL * 0.9, -1, 0.3, PAL.ink, 20, 30);
-    if (st !== 'away') Lb.add('the glass rod, an insulator', CX + 330, BALL, 0.3, 1, PAL.ink, 20, 34);
+    if (gone < 0.5) Lb.add('the glass rod, an insulator', CX + 330 + gap, BALL, 0.3, 1, PAL.ink, 20, 34);
     /* the tally at the right */
     const TX = 1010;
     text(ctx, 'charge on the rod', TX, 256, PAL.ink, { size: 20 });
     text(ctx, plus(qRod, 1) + ' nC', TX, 292, qc, { size: 24, weight: 600 });
     text(ctx, 'net charge on the electroscope', TX, 356, PAL.ink, { size: 20 });
-    text(ctx, qScope === 0 ? '0 nC' : plus(qScope, 1) + ' nC', TX, 392, qc, { size: 24, weight: 600 });
+    text(ctx, qScope < 0.05 ? '0 nC' : plus(qScope, 1) + ' nC', TX, 392, qc, { size: 24, weight: 600 });
     text(ctx, 'the leaves stand ' + fmt(2 * ang / RAD, 0) + '° apart', TX, 456, PAL.ink, { size: 20 });
     const lines = {
       near: `A glass rod holding ${plus(q, 1)} nC is brought near the ball: electrons are attracted to the top of the electroscope, the leaves are left with ${plus(qLeaves, 1)} nC between them, and like charges repel, so they stand ${fmt(2 * ang / RAD, 0)}° apart.`,
@@ -219,7 +225,7 @@ function rod(ctx, x, y, L, T, sign, n) {
     };
     topline(ctx, lines[st]);
     Lb.flush();
-    readout(d.readout, `\\kq_{\\text{rod}} = ${texSign(qRod, 1)}\\ \\text{nC}, \\qquad \\kq_{\\text{electroscope}} = ${qScope === 0 ? '0' : texSign(qScope, 1) + '\\ \\text{nC}'}`,
+    readout(d.readout, `\\kq_{\\text{electroscope}} = \\kq - \\kq_{\\text{rod}} = ${fmt(q, 1)}\\ \\text{nC} - ${fmt(qRod, 1)}\\ \\text{nC} = ${qScope < 0.05 ? '0' : texSign(qScope, 1) + '\\ \\text{nC}'}`,
       st === 'near'
         ? 'Bringing the rod near moves charge about inside the electroscope but adds none to it: the whole instrument is still neutral, and it is the leaves alone that are left positive and repel. The electrostatic force has a horizontal component that separates them and a vertical one that the gravitational force balances.'
         : st === 'touch'
@@ -293,7 +299,8 @@ function rod(ctx, x, y, L, T, sign, n) {
     };
     topline(ctx, lines[phase]);
     Lb.flush();
-    readout(d.readout, `\\kq_{\\text{near}} = ${held === 0 ? '0' : texSign(-held, 1) + '\\ \\text{nC}'}, \\qquad \\kq_{\\text{far}} = ${held === 0 ? '0' : texSign(held, 1) + '\\ \\text{nC}'}, \\qquad \\kq_{\\text{near}} + \\kq_{\\text{far}} = 0`,
+    readout(d.readout, held === 0 ? `\\kq_{\\text{near}} + \\kq_{\\text{far}} = 0 + 0 = 0`
+      : `\\kq_{\\text{near}} + \\kq_{\\text{far}} = (${texSign(-held, 1)}\\ \\text{nC}) + (${texSign(held, 1)}\\ \\text{nC}) = 0`,
       'The object closest to the charged rod receives the opposite charge when it is charged by induction, and no charge is removed from the rod, so the whole process can be repeated without depleting its supply. The spheres must be parted before the rod is pulled away; let the rod go first and the electrons run back and both spheres are neutral again.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -301,69 +308,76 @@ function rod(ctx, x, y, L, T, sign, n) {
 
 /* =====================================================================
    FIGURE 18.13: one sphere charged by induction through a ground wire.
-   Still: the reader picks the step and asks what the sphere holds at
-   that moment; the transfer itself is drawn moving in Figure 18.12, and
-   a second clock would say nothing new.
+   A story: the book's four panels are four stops of one slider, and the
+   rod, the wire, the electrons in it and the charge on the sphere are
+   functions of it. The order of the last two steps is the reader's
+   choice; changing it blends one sequence into the other at the same
+   point of the story.
 ===================================================================== */
 (function () {
   const d = sim('sim-induction-ground', 620);
-  const step = choice(d.controls, { label: '\\text{the step}', options: [
-    { value: 'a', label: 'rod near' }, { value: 'b', label: 'grounded' }, { value: 'c', label: 'the first is taken away' }, { value: 'd', label: 'the second is taken away' }], value: 'a', aria: 'which step of the charging the figure shows' });
   const order = choice(d.controls, { label: '\\text{taken away}', options: [
     { value: 'book', label: 'the ground wire first' }, { value: 'other', label: 'the rod first' }], value: 'book', aria: 'the order in which the ground wire and the rod are taken away' });
   const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 12, step: 0.5, value: 6, unit: 'nC', dec: 1, aria: 'the charge the glass rod carries' });
-  const CX = 660, YC = 300, R = 105, GY = 500;
+  const ss = ctl(d.controls, { label: '\\text{the step}', cls: '', min: 0, max: 3, step: 0.01, value: 0, unit: '', dec: 2, aria: 'the step of the charging' });
+  F.story(d, ss, { stops: [{ v: 0, label: 'rod near' }, { v: 1, label: 'grounded' }, { v: 2, label: 'first removed' }, { v: 3, label: 'second removed' }] });
+  const CX = 660, YC = 300, R = 105, GY = 500, WX = CX + 250;
+  const sm = F.ease.smooth, clamp = (x) => Math.min(1, Math.max(0, x));
+  /* the scene at story position s, for one order: how present the rod and the wire are (0 to 1), the
+     fraction of the induced charge on the sphere, and the electrons' way along the wire (+1 up, −1 down) */
+  function state(s, book) {
+    const on = sm(clamp(s / 0.6)), up = sm(clamp((s - 0.3) / 0.7));
+    return book
+      ? { rod: 1 - sm(clamp(s - 2)), wire: on * (1 - sm(clamp(s - 1))), cut: sm(clamp(s - 1)) * (1 - sm(clamp(s - 2))), held: up, flow: s < 1 ? 1 : 0 }
+      : { rod: 1 - sm(clamp(s - 1)), wire: on * (1 - sm(clamp(s - 2))), cut: 0, held: up * (1 - sm(clamp(s - 1))), flow: s < 1 ? 1 : s < 2 ? -1 : 0 };
+  }
   function draw() {
     const { ctx, H } = begin(d.c);
-    const qc = C('charge'), q = qs.v, st = step.value, bookOrder = order.value === 'book';
-    /* what is present and what the sphere holds at this step */
-    const rodOn = st === 'a' || st === 'b' || (st === 'c' && bookOrder) || (st === 'd' && false);
-    const wireOn = st === 'b' || (st === 'c' && !bookOrder);
-    const held = st === 'a' ? 0 : st === 'b' ? q * 0.6 : bookOrder ? q * 0.6 : 0;
-    const polarized = rodOn && held >= 0;
-    const spread = st === 'd' || (st === 'c' && !bookOrder && !rodOn);
+    const qc = C('charge'), q = qs.v, s = ss.v, st = 'abcd'[Math.round(s)], bookOrder = order.value === 'book';
+    const g = order.mix((v) => { const o = state(s, v === 'book'); return [o.rod, o.wire, o.cut, o.held]; });
+    const [rodA, wireA, cutA, heldF] = g, flow = state(s, bookOrder).flow;
+    const held = q * 0.6 * heldF;
+    const fade = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     /* the sphere on its insulating stand */
     circle(ctx, CX, YC, R, PAL.soft);
     panel(ctx, CX - 34, YC + R, 68, GY - YC - R, 8, PAL.soft);
     text(ctx, 'insulating stand', CX, GY + 40, PAL.muted, { size: 18, align: 'center' });
-    /* the marks on the sphere */
+    /* the marks on the sphere: polarized while the rod is near, spread evenly once it has gone */
     const nm = Math.max(2, Math.round(q / 1.5));
-    if (polarized) {
-      for (let i = 0; i < nm; i++) {
-        const a = (180 - 36 + (i / Math.max(1, nm - 1)) * 72) * RAD;
-        text(ctx, '−', CX + (R - 26) * Math.cos(a), YC + (R - 26) * Math.sin(a) + 1, PAL.ink, { size: 22, weight: 700, align: 'center' });
-      }
-      const nf = held > 0 ? Math.max(1, Math.round(nm / 3)) : nm;
-      for (let i = 0; i < nf; i++) {
-        const b = (-36 + (i / Math.max(1, nf - 1 || 1)) * 72) * RAD;
-        text(ctx, '+', CX + (R - 26) * Math.cos(b), YC + (R - 26) * Math.sin(b) + 1, PAL.ink, { size: 22, weight: 700, align: 'center' });
-      }
-    } else if (spread && held > 0) {
-      for (let i = 0; i < nm; i++) { const a = (i / nm) * TAU; text(ctx, '−', CX + (R - 26) * Math.cos(a), YC + (R - 26) * Math.sin(a) + 1, PAL.ink, { size: 22, weight: 700, align: 'center' }); }
-    }
-    /* the rod, held to the left of the sphere */
-    if (rodOn) rod(ctx, 120, YC, 350, 34, '+', Math.max(2, Math.round(q / 2)));
+    const markAt = (sign, deg) => text(ctx, sign, CX + (R - 26) * Math.cos(deg * RAD), YC + (R - 26) * Math.sin(deg * RAD) + 1, PAL.ink, { size: 22, weight: 700, align: 'center' });
+    fade(rodA, () => {
+      for (let i = 0; i < nm; i++) markAt('−', 180 - 36 + (i / Math.max(1, nm - 1)) * 72);
+      const nf = Math.max(heldF > 0.5 ? 1 : 0, Math.round(nm * (1 - (2 / 3) * heldF)));
+      for (let i = 0; i < nf; i++) markAt('+', -36 + (i / Math.max(1, nf - 1 || 1)) * 72);
+    });
+    if (heldF > 0.05) fade((1 - rodA) * heldF, () => { for (let i = 0; i < nm; i++) markAt('−', (i / nm) * 360); });
+    /* the rod, held to the left of the sphere, carried off to the left as it goes */
+    fade(rodA, () => rod(ctx, 120 - 260 * (1 - rodA), YC, 350, 34, '+', Math.max(2, Math.round(q / 2))));
     /* the earth, and the ground wire when it is attached */
     line(ctx, 100, GY, 1300, GY, PAL.ink, 4);
     for (let x = 122; x < 1300; x += 46) line(ctx, x, GY, x - 22, GY + 24, alpha(PAL.ink, 0.5), 3);
     text(ctx, 'the earth, a large reservoir of charge', 1290, GY + 40, PAL.muted, { size: 18, align: 'right' });
-    const WX = CX + 250;
-    if (wireOn) {
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(CX + R - 12, YC + 24); ctx.lineTo(WX, YC + 24); ctx.lineTo(WX, GY); ctx.stroke(); ctx.restore();
-      for (let i = 0; i < 3; i++) particle(ctx, WX, GY - 52 - i * 56, 'e-', 12);
-      arrow(ctx, WX + 58, GY - 24, WX + 58, YC + 48, PAL.ink, 4);
-      text(ctx, 'electrons come up out of the earth', WX + 76, (GY + YC) / 2, PAL.ink, { size: 19 });
+    const wirePath = () => { ctx.beginPath(); ctx.moveTo(CX + R - 12, YC + 24); ctx.lineTo(WX, YC + 24); ctx.lineTo(WX, GY); ctx.stroke(); };
+    fade(wireA, () => {
+      ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; wirePath();
       text(ctx, 'ground wire', WX - 10, YC + 4, PAL.ink, { size: 19, align: 'center' });
-    } else if (st === 'c' && bookOrder) {
-      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.4); ctx.lineWidth = 4; ctx.setLineDash([8, 10]); ctx.beginPath(); ctx.moveTo(CX + R - 12, YC + 24); ctx.lineTo(WX, YC + 24); ctx.lineTo(WX, GY); ctx.stroke(); ctx.restore();
+    });
+    /* the electrons in the wire, carried up out of the earth as the sphere is grounded, or back down when the rod leaves first */
+    const moving = flow === 1 ? clamp((s - 0.3) / 0.7) : flow === -1 ? clamp(s - 1) : 0;
+    if (flow && moving > 0 && moving < 1) fade(wireA, () => {
+      for (let i = 0; i < 3; i++) { const f = (moving + i / 3) % 1, y = flow > 0 ? GY - f * (GY - YC - 24) : YC + 24 + f * (GY - YC - 24); particle(ctx, WX, y, 'e-', 12); }
+      if (flow > 0) arrow(ctx, WX + 58, GY - 24, WX + 58, YC + 48, PAL.ink, 4); else arrow(ctx, WX + 58, YC + 48, WX + 58, GY - 24, PAL.ink, 4);
+      text(ctx, flow > 0 ? 'electrons come up out of the earth' : 'the electrons run back to the earth', WX + 76, (GY + YC) / 2, PAL.ink, { size: 19 });
+    });
+    fade(cutA, () => {
+      ctx.strokeStyle = alpha(PAL.ink, 0.4); ctx.lineWidth = 4; ctx.setLineDash([8, 10]); wirePath();
       text(ctx, 'the ground connection has been broken', WX + 24, YC + 160, PAL.muted, { size: 18 });
-    }
+    });
     const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 150);
     Lb.add('the metal sphere', CX, YC - R, 0, -1, PAL.ink, 20, 24);
-    if (rodOn) Lb.add('the charged rod', 300, YC, 0, 1, PAL.ink, 20, 32);
+    if (rodA > 0.5) Lb.add('the charged rod', 300 - 260 * (1 - rodA), YC, 0, 1, PAL.ink, 20, 32);
     text(ctx, 'net charge on the sphere', 1010, 186, PAL.ink, { size: 20 });
-    text(ctx, held === 0 ? '0 nC' : plus(-held, 1) + ' nC', 1010, 224, qc, { size: 24, weight: 600 });
-    /* what the reader is looking at */
+    text(ctx, held < 0.05 ? '0 nC' : plus(-held, 1) + ' nC', 1010, 224, qc, { size: 24, weight: 600 });
     const lines = {
       a: `A rod holding ${plus(q, 1)} nC is brought near the neutral metal sphere and polarizes it: negative charge is drawn to the near side and positive charge is left on the far side, and the sphere itself still holds no net charge.`,
       b: `The sphere is grounded while the rod is near: electrons are attracted up out of the earth’s ample supply through the ground wire, and the sphere now holds ${plus(-held, 1)} nC.`,
@@ -376,10 +390,10 @@ function rod(ctx, x, y, L, T, sign, n) {
     };
     topline(ctx, lines[st]);
     Lb.flush();
-    readout(d.readout, `\\kq_{\\text{sphere}} = ${held === 0 ? '0' : texSign(-held, 1) + '\\ \\text{nC}'}, \\qquad \\kq_{\\text{rod}} = ${texSign(q, 1)}\\ \\text{nC}`,
-      bookOrder
-        ? 'The earth is large and most ground is a good conductor, so it can supply or accept excess charge easily. Break the ground connection before the rod is removed and the sphere is left with an excess charge opposite to the rod’s, and the rod loses none of its own.'
-        : 'Take the rod away while the wire is still attached and the electrons it drew up from the earth simply run back down, since nothing holds them on the sphere. The order of the two steps is what decides whether the sphere ends charged or neutral.');
+    readout(d.readout, `\\kq_{\\text{sphere}} = ${held < 0.05 ? '0' : texSign(-held, 1) + '\\ \\text{nC}'}`,
+      `The rod holds ${plus(q, 1)} nC throughout and gives none of it away. ` + (bookOrder
+        ? 'The earth is large and most ground is a good conductor, so it can supply or accept excess charge easily. Break the ground connection before the rod is removed and the sphere is left with an excess charge opposite to the rod’s.'
+        : 'Take the rod away while the wire is still attached and the electrons it drew up from the earth simply run back down, since nothing holds them on the sphere. The order of the two steps is what decides whether the sphere ends charged or neutral.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -397,44 +411,46 @@ function rod(ctx, x, y, L, T, sign, n) {
   const ds = ctl(d.controls, { label: '\\text{distance}', cls: '', min: 2, max: 10, step: 0.5, value: 4, unit: 'cm', dec: 1, aria: 'how far the rod is held from the neutral object' });
   const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 12, step: 0.5, value: 6, unit: 'nC', dec: 1, aria: 'the charge the rod carries' });
   const RX = 250, YC = 330, OBW = 460, OBH = 250, S = 26;   /* 26 units to the centimetre */
-  /* a molecule: two lobes, its negative end turned toward the rod by the fraction f */
-  function molecule(ctx, x, y, r, toward, f) {
-    const sep = 14 + 12 * f, s = toward;
+  /* a molecule: two lobes, its negative end turned by the angle th (0 toward the rod on the left, π away) and pulled apart by the fraction f */
+  function molecule(ctx, x, y, r, th, f) {
+    const sep = 14 + 12 * f, cx = Math.cos(th) * sep, cy = Math.sin(th) * sep * 0.6;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
-    ctx.beginPath(); ctx.arc(x - s * sep, y, r, 0, TAU); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.arc(x + s * sep, y, r * 0.86, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(x - cx, y - cy, r, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(x + cx, y + cy, r * 0.86, 0, TAU); ctx.fill(); ctx.stroke();
     ctx.restore();
-    text(ctx, '−', x - s * (sep + 3), y + 1, PAL.ink, { size: 19, weight: 700, align: 'center' });
-    text(ctx, '+', x + s * (sep + 3), y + 1, PAL.ink, { size: 19, weight: 700, align: 'center' });
+    const k = (sep + 3) / sep;
+    text(ctx, '−', x - cx * k, y - cy * k + 1, PAL.ink, { size: 19, weight: 700, align: 'center' });
+    text(ctx, '+', x + cx * k, y + cy * k + 1, PAL.ink, { size: 19, weight: 700, align: 'center' });
   }
   function draw() {
     const { ctx, H } = begin(d.c);
     const qc = C('charge'), q = qs.v, dist = ds.v, cse = panelSel.value;
     const positive = cse !== 'neg';
+    /* a change of case blends: the rod's marks cross over, the molecules turn end for end, and a conductor's face charges replace the molecules */
+    const [pos, cond, th] = panelSel.mix((v) => [v !== 'neg' ? 1 : 0, v === 'cond' ? 1 : 0, v === 'neg' ? Math.PI : 0]);
+    const fade = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     const OX = RX + 40 + dist * S;                       /* the near face of the object */
     /* the rod, standing on its end at the left */
     panel(ctx, RX - 40, YC - 170, 80, 340, 40, PAL.soft);
     const nm = Math.max(3, Math.round(q / 1.5));
-    for (let i = 0; i < nm; i++) text(ctx, positive ? '+' : '−', RX, YC - 134 + (i / Math.max(1, nm - 1)) * 268, PAL.ink, { size: 24, weight: 700, align: 'center' });
+    for (const [sign, a] of [['+', pos], ['−', 1 - pos]]) fade(a, () => { for (let i = 0; i < nm; i++) text(ctx, sign, RX, YC - 134 + (i / Math.max(1, nm - 1)) * 268, PAL.ink, { size: 24, weight: 700, align: 'center' }); });
     /* the neutral object */
     panel(ctx, OX, YC - OBH / 2, OBW, OBH, 10, PAL.panel);
     /* how far the charges have shifted: more with the charge and less with the distance, never a stated force */
     const f = Math.min(1, (q / 6) * (16 / (dist * dist)));
-    const toward = positive ? 1 : -1;                    /* the molecule's negative end faces a positive rod */
-    if (cse === 'cond') {
-      /* a conductor: the free charges gather on the two faces */
+    /* a conductor: the free charges gather on the two faces */
+    fade(cond, () => {
       const n = Math.max(3, Math.round(3 + f * 5));
       for (let i = 0; i < n; i++) {
         const y = YC - OBH / 2 + 40 + (i / Math.max(1, n - 1)) * (OBH - 80);
         text(ctx, positive ? '−' : '+', OX + 30, y, PAL.ink, { size: 24, weight: 700, align: 'center' });
         text(ctx, positive ? '+' : '−', OX + OBW - 30, y, PAL.ink, { size: 24, weight: 700, align: 'center' });
       }
-    } else {
-      for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) {
-        const x = OX + 68 + c * 110, y = YC - 78 + r * 78;
-        molecule(ctx, x, y, 19, toward, f);
-      }
-    }
+    });
+    /* an insulator: every molecule turns its unlike end toward the rod */
+    fade(1 - cond, () => {
+      for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) molecule(ctx, OX + 68 + c * 110, YC - 78 + r * 78, 19, th, f);
+    });
     /* the two pulls, each set under the face whose charges feel it: the attraction
        pulls the near face toward the rod, the weaker repulsion pushes the far face
        away. The far charges sit about four centimetres deeper into the object, and
@@ -459,8 +475,8 @@ function rod(ctx, x, y, L, T, sign, n) {
     const what = cse === 'cond' ? 'conductor' : 'insulator';
     topline(ctx, `A rod holding ${plus(positive ? q : -q, 1)} nC is held ${fmt(dist, 1)} cm from a neutral ${what}: ${cse === 'cond' ? 'its free charges gather, unlike on the near face and like on the far one' : 'every molecule turns its unlike end toward the rod'}, and because the unlike charges are nearer, the object is attracted.`);
     Lb.flush();
-    readout(d.readout, `\\kq_{\\text{rod}} = ${texSign(positive ? q : -q, 1)}\\ \\text{nC}, \\qquad \\kq_{\\text{object}} = 0`,
-      'The object remains neutral: nothing is added to it and nothing is taken away, and only the places its charges sit have changed. Since the electrostatic force decreases with distance, the attraction of the unlike charges, which are nearer, beats the repulsion of the like charges, which are farther, and the net effect is a pull toward the rod. Bring the rod closer and both the shift and the attraction grow.');
+    readout(d.readout, `\\kq_{\\text{object}} = 0`,
+      `The rod holds ${plus(positive ? q : -q, 1)} nC, and the object remains neutral: nothing is added to it and nothing is taken away, and only the places its charges sit have changed. Since the electrostatic force decreases with distance, the attraction of the unlike charges, which are nearer, beats the repulsion of the like charges, which are farther, and the net effect is a pull toward the rod. Bring the rod closer and both the shift and the attraction grow.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

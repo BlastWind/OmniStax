@@ -7,8 +7,8 @@
    Masses, radii, distances, counts and fractions are untyped and stay in ink.
    Four of the five figures are machines whose parts carry charge from one place
    to another, which is the kinematic arrow of rule 24.1, so they register a
-   cycle and carry a transport; the copier drum and the charged drop answer
-   their controls alone and register none. */
+   cycle and carry a transport; the copier drum tells its four stations as a
+   story on a slider, and the charged drop answers its controls alone. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['18.8'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, cycle, line, arrow, dot, text, topline, hover } = F;
@@ -166,30 +166,35 @@ function ground(ctx, x, y) {
    of the process, with the image written either by a copier's lamp and
    original or by the scanned beam of a laser printer. The book prints the
    process twice, four panels for the copier and one for the printer, and
-   one drawing whose station the reader sets carries the same charge pattern
-   through all of them, so the fold keeps every number (rule 14). Still: a
-   station is a discrete state and is a choice, not a slider (rule 26.1),
-   and what is taught is what the drum holds at each station rather than the
-   turning between them, so the figure registers no cycle.
+   one drawing carries the same charge pattern through all of them, so the
+   fold keeps every number (rule 14). A story: the four stations are the
+   stops of one slider, and the charge the light takes away, the toner the
+   charge holds and the toner the paper pulls off are functions of it, so
+   every point between two stations is exact in either direction.
 ===================================================================== */
 (function () {
   const d = sim('sim-xerography', 700);
-  const stage = choice(d.controls, { label: '\\text{the station}', options: [
-    { value: 'charge', label: 'charge the drum' }, { value: 'image', label: 'write the image' },
-    { value: 'toner', label: 'apply the toner' }, { value: 'paper', label: 'transfer to paper' }],
-    value: 'charge', aria: 'which station of the process the drum is at' });
   const writer = choice(d.controls, { label: '\\text{the image}', options: [
     { value: 'lamp', label: 'a copier’s lamp' }, { value: 'laser', label: 'a laser' }],
     value: 'lamp', aria: 'what writes the image on the drum' });
   const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 10, step: 0.5, value: 6, unit: 'nC/cm²', dec: 1, aria: 'the charge the corotron sprays onto the selenium' });
+  const ss = ctl(d.controls, { label: '\\text{the station}', cls: '', min: 0, max: 3, step: 0.01, value: 0, unit: '', dec: 2, aria: 'the station of the process the drum is at' });
+  F.story(d, ss, { stops: [{ v: 0, label: 'charge' }, { v: 1, label: 'image' }, { v: 2, label: 'toner' }, { v: 3, label: 'paper' }] });
   const CX = 560, CY = 380, R = 190;
+  const sm = F.ease.smooth, clamp = (x) => Math.min(1, Math.max(0, x));
   /* The image the drum is given: the dark sectors keep their charge and the
      light ones lose it. The angles are canvas angles, measured from the right. */
   const DARK = [[-150, -120], [-100, -70], [-40, 10], [40, 70]];
   const isDark = (deg) => DARK.some(([a, b]) => deg >= a && deg <= b);
+  const NDARK = Array.from({ length: 48 }, (_, i) => -180 + i * 7.5).filter(isDark).length;
   function draw() {
     const { ctx } = begin(d.c);
-    const qc = C('charge'), st = stage.value, q = qs.v, lit = st !== 'charge';
+    const qc = C('charge'), s = ss.v, st = ['charge', 'image', 'toner', 'paper'][Math.round(s)], q = qs.v;
+    /* the light arrives over the first stretch and takes the charge off the lit selenium; the toner
+       settles on what is left; the paper comes up and pulls the toner off, sector by sector */
+    const light = sm(clamp((s - 0.25) / 0.75)), beam = sm(clamp(s / 0.5)) * (1 - sm(clamp((s - 1.2) / 0.5)));
+    const toner = sm(clamp((s - 1.3) / 0.7)), paper = sm(clamp((s - 2) / 0.5)), pulled = sm(clamp(s - 2));
+    const fade = (a, f) => { if (a < 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     /* the aluminum drum, its selenium coat, and the ground the book names */
     circle(ctx, CX, CY, R, PAL.panel, 4);
     circle(ctx, CX, CY, R - 26, PAL.soft, 3);
@@ -201,74 +206,71 @@ function ground(ctx, x, y) {
     text(ctx, 'grounded', CX + 34, CY + R + 56, PAL.muted, { size: 18 });
     /* the charge the drum holds: + on the selenium where it survives, and the
        negative charge induced under it on the grounded aluminum */
-    let kept = 0, lost = 0;
     for (let i = 0; i < 48; i++) {
       const deg = -180 + i * 7.5, a = deg * (Math.PI / 180);
-      const dark = isDark(deg), holds = !lit || dark;
-      if (holds) kept++; else lost++;
-      if (holds) {
+      fade(isDark(deg) ? 1 : 1 - light, () => {
         mark(ctx, '+', CX + (R - 13) * Math.cos(a), CY + (R - 13) * Math.sin(a), 18);
         mark(ctx, '−', CX + (R - 38) * Math.cos(a), CY + (R - 38) * Math.sin(a), 16);
-      }
+      });
     }
     /* the corotron, which sprays the selenium with positive charge */
     comb(ctx, CX - 150, CY - R - 62, 4, 0.55, 0.84, 26);
     text(ctx, 'corotron', CX - 200, CY - R - 78, PAL.ink, { size: 19, align: 'right' });
-    /* the station the reader has chosen */
-    if (st === 'image') {
-      if (writer.value === 'laser') {
-        panel(ctx, 1030, 150, 150, 64, 8, PAL.panel);
-        text(ctx, 'laser', 1105, 182, PAL.ink, { size: 20, weight: 600, align: 'center' });
-        line(ctx, 1030, 182, 900, 182, PAL.ink, 3);
-        for (let i = 0; i < 4; i++) {
-          const deg = -150 + i * 46, a = deg * (Math.PI / 180);
-          if (isDark(deg)) continue;
-          line(ctx, 900, 182, CX + R * Math.cos(a), CY + R * Math.sin(a), PAL.muted, 2, [8, 8]);
-        }
-        dot(ctx, 900, 182, PAL.ink, false, 10);
-        text(ctx, 'a turning mirror scans the beam', 880, 146, PAL.muted, { size: 18, align: 'right' });
-      } else {
-        panel(ctx, 1000, 150, 190, 300, 8, PAL.soft);
-        text(ctx, 'the original', 1095, 176, PAL.ink, { size: 19, align: 'center' });
-        for (let i = 0; i < 4; i++) panel(ctx, 1024, 210 + i * 56, 142, 26, 4, PAL.panel);
-        for (let i = 0; i < 5; i++) {
-          const deg = -160 + i * 42, a = deg * (Math.PI / 180);
-          if (isDark(deg)) continue;
-          line(ctx, 1000, 300, CX + R * Math.cos(a), CY + R * Math.sin(a), PAL.muted, 2, [8, 8]);
-        }
-        text(ctx, 'the lamp throws the image on the drum', 980, 470, PAL.muted, { size: 18, align: 'right' });
+    /* what writes the image, while the image is being written */
+    fade(beam * writer.a('laser'), () => {
+      panel(ctx, 1030, 150, 150, 64, 8, PAL.panel);
+      text(ctx, 'laser', 1105, 182, PAL.ink, { size: 20, weight: 600, align: 'center' });
+      line(ctx, 1030, 182, 900, 182, PAL.ink, 3);
+      for (let i = 0; i < 4; i++) {
+        const deg = -150 + i * 46, a = deg * (Math.PI / 180);
+        if (isDark(deg)) continue;
+        line(ctx, 900, 182, CX + R * Math.cos(a), CY + R * Math.sin(a), PAL.muted, 2, [8, 8]);
       }
-    }
-    if (st === 'toner' || st === 'paper') {
+      dot(ctx, 900, 182, PAL.ink, false, 10);
+      text(ctx, 'a turning mirror scans the beam', 880, 146, PAL.muted, { size: 18, align: 'right' });
+    });
+    fade(beam * writer.a('lamp'), () => {
+      panel(ctx, 1000, 150, 190, 300, 8, PAL.soft);
+      text(ctx, 'the original', 1095, 176, PAL.ink, { size: 19, align: 'center' });
+      for (let i = 0; i < 4; i++) panel(ctx, 1024, 210 + i * 56, 142, 26, 4, PAL.panel);
+      for (let i = 0; i < 5; i++) {
+        const deg = -160 + i * 42, a = deg * (Math.PI / 180);
+        if (isDark(deg)) continue;
+        line(ctx, 1000, 300, CX + R * Math.cos(a), CY + R * Math.sin(a), PAL.muted, 2, [8, 8]);
+      }
+      text(ctx, 'the lamp throws the image on the drum', 1095, 476, PAL.muted, { size: 18, align: 'center' });
+    });
+    /* the toner on the dark sectors, and what the paper has already taken */
+    fade(toner, () => {
       for (let i = 0; i < 48; i++) {
         const deg = -180 + i * 7.5, a = deg * (Math.PI / 180);
-        if (!isDark(deg)) continue;
-        if (st === 'paper' && deg > 20) continue;                   /* what the paper has already taken */
+        if (!isDark(deg) || deg > 180 - 160 * pulled) continue;
         dot(ctx, CX + (R + 13) * Math.cos(a), CY + (R + 13) * Math.sin(a), PAL.ink, true, 7);
       }
       text(ctx, 'toner, sprayed with negative charge', CX - R - 30, CY + R + 40, PAL.muted, { size: 19, align: 'right' });
-    }
-    if (st === 'paper') {
+    });
+    fade(paper, () => {
       panel(ctx, 900, CY + 40, 330, 150, 6, PAL.panel);
       for (let i = 0; i < 7; i++) mark(ctx, '+', 930 + i * 46, CY + 176, 20);
-      for (let i = 0; i < 5; i++) dot(ctx, 950 + i * 40, CY + 78, PAL.ink, true, 7);
+      for (let i = 0; i < Math.round(5 * pulled); i++) dot(ctx, 950 + i * 40, CY + 78, PAL.ink, true, 7);
       text(ctx, 'the paper, charged more strongly than the drum', 1065, CY + 214, PAL.muted, { size: 18, align: 'center' });
       arrow(ctx, CX + R + 30, CY + 60, 890, CY + 90, PAL.ink, 4);
-    }
-    const dens = q * (kept / 48);
+    });
+    const frac = (NDARK + (48 - NDARK) * (1 - light)) / 48, dens = q * frac;
     const lines = {
       charge: `The corotron sprays the selenium with ${fmt(q, 1)} nC/cm² of positive charge, and because the aluminum drum under it is grounded, an equal negative charge is induced beneath the coat.`,
       image: writer.value === 'laser'
-        ? `The laser beam is scanned across the drum. Selenium is a photoconductor, so wherever the beam falls the coat conducts and its positive charge runs away to the grounded drum; the ${fmt((kept / 48) * 100, 0)}% of the surface the beam has left dark still holds ${fmt(q, 1)} nC/cm².`
-        : `The image of the original is thrown on the drum. Where the image is light the selenium conducts and its positive charge is neutralized; where it is dark the charge remains, so ${fmt((kept / 48) * 100, 0)}% of the surface still holds ${fmt(q, 1)} nC/cm² and the image has been transferred to the drum.`,
+        ? `A laser beam is scanned across the drum: wherever it falls the selenium conducts and loses its charge, and the ${fmt(frac * 100, 0)}% it leaves dark keeps ${fmt(q, 1)} nC/cm².`
+        : `The image of the original is thrown on the drum: where it is light the selenium conducts and loses its charge, and where it is dark, ${fmt(frac * 100, 0)}% of the surface, the charge remains.`,
       toner: `Toner sprayed with negative charge is drawn to the positive parts of the drum and to no other part, so the pattern of charge has become a pattern of black powder.`,
       paper: `A blank sheet given a greater positive charge than the drum pulls the toner off it, and heated rollers then melt the powder permanently into the fibers of the paper.`,
     };
     topline(ctx, lines[st]);
-    readout(d.readout, `\\kq_{\\text{dark}} = ${fmt(q, 1)}\\ \\text{nC/cm}^2, \\qquad \\kq_{\\text{light}} = 0, \\qquad \\kq_{\\text{drum}} = ${fmt(dens, 1)}\\ \\text{nC/cm}^2\\ \\text{on average}`,
-      writer.value === 'laser'
-        ? 'The laser printer uses the xerographic process, and only this station differs: the image is written by a beam whose position is controlled with great precision rather than thrown from an original, which is why the printed characters are as sharp as the beam is narrow. Every other part of the machine, the corotron, the photoconducting drum, the toner and the heated rollers, is the copier’s.'
-        : 'Selenium is an insulator in the dark and a conductor in the light, and that one property does the whole of the work: the drum keeps its charge exactly where no light reached it. The more charge the corotron lays down, the more toner the dark regions hold and the blacker the copy, and the charge on the paper must exceed the charge on the drum or the toner will not leave the drum at all.');
+    readout(d.readout, `\\kq_{\\text{drum}} = (${fmt(frac, 2)})\\,\\kq = (${fmt(frac, 2)})(${fmt(q, 1)}\\ \\text{nC/cm}^2) = ${fmt(dens, 1)}\\ \\text{nC/cm}^2`,
+      'That is the drum’s charge on average: the dark regions hold the full ' + fmt(q, 1) + ' nC/cm² and the lit ones ' + (light > 0.99 ? 'none' : 'what the light has not yet taken') + '. '
+      + (writer.value === 'laser'
+        ? 'The laser printer uses the xerographic process, and only the writing of the image differs: it is written by a beam whose position is controlled with great precision rather than thrown from an original, which is why the printed characters are as sharp as the beam is narrow.'
+        : 'Selenium is an insulator in the dark and a conductor in the light, and that one property does the whole of the work: the drum keeps its charge exactly where no light reached it. The charge on the paper must exceed the charge on the drum or the toner will not leave the drum at all.'));
   }
   hover(d.stage, () => [
     { x: CX, y: CY, r: 160, name: 'the aluminum drum, grounded under the selenium' },
@@ -430,15 +432,24 @@ function ground(ctx, x, y) {
 ===================================================================== */
 (function () {
   const d = sim('sim-charged-drop', 620);
-  const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 0, max: 10, step: 0.1, value: 3.2, unit: '×10⁻¹⁹ C', dec: 2, aria: 'the charge on the drop' });
-  const Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 0, max: 6, step: 0.1, value: 3.0, unit: '×10⁵ N/C', dec: 2, aria: 'the strength of the upward electric field' });
-  const ms = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 10, step: 0.1, value: 4.0, unit: '×10⁻¹⁵ kg', dec: 2, aria: 'the mass of the drop' });
+  /* the balance the text names, the electric force equal to the weight, is a circle on each slider,
+     placed from the other two; landing on it turns the acceleration into the balance itself */
+  let Es, ms;
+  const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 0, max: 10, step: 0.1, value: 3.2, unit: '×10⁻¹⁹ C', dec: 2, aria: 'the charge on the drop',
+    specials: [{ at: () => (Es && ms && Es.v > 0 ? (ms.v * 1e-15 * G) / (Es.v * 1e5) / 1e-19 : null), label: 'hangs' }] });
+  Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 0, max: 6, step: 0.1, value: 3.0, unit: '×10⁵ N/C', dec: 2, aria: 'the strength of the upward electric field',
+    specials: [{ at: () => (ms && qs.v > 0 ? (ms.v * 1e-15 * G) / (qs.v * 1e-19) / 1e5 : null), label: 'hangs' }] });
+  ms = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 10, step: 0.1, value: 4.0, unit: '×10⁻¹⁵ kg', dec: 2, aria: 'the mass of the drop',
+    specials: [{ at: () => (qs.v * 1e-19 * Es.v * 1e5) / G / 1e-15, label: 'hangs' }] });
+  const formula = el('div'), note = el('small');
+  d.readout.append(formula, note);
+  let wasHung = null;
   const DX = 470, DY = 330, FX = 1010;
   function draw() {
     const { ctx } = begin(d.c);
     const qc = C('charge'), ec = C('electric-field'), fc = C('force'), ac = C('acceleration');
     const q = qs.v * 1e-19, E = Es.v * 1e5, m = ms.v * 1e-15;
-    const w = m * G, Fe = q * E, net = Fe - w, a = net / m;
+    const w = m * G, Fe = q * E, hung = q > 0 && E > 0 && Math.abs(Fe - w) < 1e-6 * w, net = hung ? 0 : Fe - w, a = net / m;
     /* the upward field the drop hangs in */
     for (let i = 0; i < 7; i++) {
       const x = 150 + i * 120;
@@ -473,8 +484,13 @@ function ground(ctx, x, y) {
         : net < 0
           ? `The weight of ${sci(w, 2)} N is greater than the electric force of ${sci(Fe, 2)} N, so the drop falls, with an acceleration of ${fmt(Math.abs(a), 1)} m/s² downward.`
           : `The electric force and the weight are both ${sci(w, 2)} N, so the net force is zero and the drop hangs where it is.`);
-    readout(d.readout, `\\kwgt = m\\kg = ${sciTex(w, 2)}\\ \\text{N}, \\qquad \\kF = \\kq\\kEf = ${sciTex(Fe, 2)}\\ \\text{N}, \\qquad \\ka = \\frac{\\kF - \\kwgt}{m} = ${a === 0 ? '0' : num(a, 1)}\\ \\text{m/s}^2`,
-      'An integrated problem is solved a part at a time, each part with the strategy of the chapter it belongs to: the weight from w = mg, the electric force from F = qE, and the acceleration from Newton’s second law with the net force. The two forces are of the same order here, which is why the answer depends on all three of the charge, the field and the mass, and why static electricity on gasoline is worth taking trouble over.');
+    F.morph(formula, hung
+      ? `\\mk{F}{\\kF} = \\mk{w}{\\kwgt} = \\mk{nw}{${sciTex(w, 2)}}\\ \\text{N}`
+      : `\\mk{a}{\\ka} = \\frac{\\mk{F}{\\kF} - \\mk{w}{\\kwgt}}{m} = \\frac{\\mk{nF}{${sciTex(Fe, 2)}} - \\mk{nw}{${sciTex(w, 2)}}}{\\mk{m}{${sciTex(m, 2)}}} = \\mk{na}{${a === 0 ? '0' : num(a, 1)}}\\ \\text{m/s}^2`,
+      { force: wasHung !== null && hung !== wasHung });
+    wasHung = hung;
+    note.textContent = (hung ? 'The electric force holds up the whole weight, so the drop neither rises nor falls. ' : '')
+      + 'An integrated problem is solved a part at a time, each part with the strategy of the chapter it belongs to: the weight from w = mg, the electric force from F = qE, and the acceleration from Newton’s second law with the net force. The two forces are of the same order here, which is why the answer depends on all three of the charge, the field and the mass, and why static electricity on gasoline is worth taking trouble over.';
   }
   register(d.fig, { update: () => {}, draw });
 })();

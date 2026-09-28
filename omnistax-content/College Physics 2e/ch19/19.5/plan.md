@@ -192,3 +192,5 @@ since Chapter 18 never writes it. 19.2's AP item on two plates carrying
 Example 19.8's worked 26.6 µC and the answer key's 80.0 mC is recorded in
 `exploration.md` under Errata, with both kept as the book prints them, and so
 is the setting of Figure 19.19 beside the paragraph on the membrane.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-capacitor`: the rolled capacitor is the parallel plate one rolled up, so a change of kind bends each plate into its sheet of the roll (`F.lerpPts`) and the wires follow their ends (manim-style 2, 16). `sim-dielectric`: one equation, C = κε₀A/d with its numbers, the reduced field in the small line (manim-style 12).

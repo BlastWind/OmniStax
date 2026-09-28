@@ -131,3 +131,5 @@ on its label and by the $+$ and $-$ drawn on it.
 **Applied by the chapter pass (2026-09-15).** All four equation anchors and
 all five variable anchors are written exactly as listed. No concept or
 symbol row was changed.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-force-field` and `sim-point-charge-field`: one equation each in the readout (manim-style 12), F₁ = k|q₁Q|/r² with F₂ in the small line, and F = |q|E with its numbers.

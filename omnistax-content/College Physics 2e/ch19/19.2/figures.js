@@ -112,34 +112,38 @@ function plate(ctx, x, y1, y2, w, sign, n) {
   function draw() {
     const { ctx } = begin(d.c);
     const kind = shape.value;
+    /* a change of potential keeps the graph's frame and bends its curve into the other, the chord and the arrows following */
+    const u = shape.mix((v) => (v === 'uneven' ? 1 : 0));
+    const Vd = (s) => (1 - u) * Vof(s, 'even') + u * Vof(s, 'uneven');
     const half = DS.v / 2, s1 = Math.max(0, Math.min(10 - DS.v, S.v - half)), s2 = s1 + DS.v;
     const V1 = Vof(s1, kind), V2 = Vof(s2, kind), dV = V2 - V1, E = -dV / (DS.v / 100);
+    const W1 = Vd(s1), W2 = Vd(s2);
     const { X, Y } = axes(ctx, gx, [0, 10], [0, 100], { nx: 5, ny: 4, xl: 'distance s (cm)', xc: C('position'), yl: 'V (V)', yc: C('voltage') });
     /* the window, shaded, and the potential across it */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(X(s1), gx.t, X(s2) - X(s1), gx.b - gx.t); ctx.restore();
-    F.curve(ctx, (s) => Vof(s, kind), 0, 10, X, Y, C('voltage'), 5, 120);
-    line(ctx, X(s1), Y(V1), X(s1), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    line(ctx, X(s2), Y(V2), X(s2), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    line(ctx, X(s1), Y(V1), X(s2), Y(V2), C('electric-field'), 5);
-    dot(ctx, X(s1), Y(V1), C('voltage'), false, 10); dot(ctx, X(s2), Y(V2), C('voltage'), true, 10);
+    F.curve(ctx, Vd, 0, 10, X, Y, C('voltage'), 5, 120);
+    line(ctx, X(s1), Y(W1), X(s1), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    line(ctx, X(s2), Y(W2), X(s2), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    line(ctx, X(s1), Y(W1), X(s2), Y(W2), C('electric-field'), 5);
+    dot(ctx, X(s1), Y(W1), C('voltage'), false, 10); dot(ctx, X(s2), Y(W2), C('voltage'), true, 10);
     text(ctx, 'the chord across the window', Math.max(X((s1 + s2) / 2), gx.l + 230), gx.t - 26, C('electric-field'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     hbracket(ctx, X(s1), X(s2), gx.b + 132, C('position'), 'Δs = ' + fmt(DS.v, 2) + ' cm');
-    vbracket(ctx, X(s2) + 34, Y(V1), Y(V2), C('voltage'), 'ΔV = ' + num(dV, 1) + ' V', 1);
+    vbracket(ctx, X(s2) + 34, Y(W1), Y(W2), C('voltage'), 'ΔV = ' + num(dV, 1) + ' V', 1);
     /* the field at each place along the way, drawn to the same scale */
 
     for (let i = 0; i < 10; i++) {
       const s = 0.5 + i, h = 0.05;
-      const Eloc = (-(Vof(Math.min(10, s + h), kind) - Vof(Math.max(0, s - h), kind)) / ((Math.min(10, s + h) - Math.max(0, s - h)) / 100));
+      const Eloc = (-(Vd(Math.min(10, s + h)) - Vd(Math.max(0, s - h))) / ((Math.min(10, s + h) - Math.max(0, s - h)) / 100));
       const L = 8 + (120 * Eloc) / 3000;
       arrow(ctx, X(s) - L / 2, yArr, X(s) + L / 2, yArr, C('electric-field'), 4);
     }
     line(ctx, X(s1), yArr - 36, X(s1), yArr + 36, alpha(PAL.ink, 0.35), 2, [4, 8]);
     line(ctx, X(s2), yArr - 36, X(s2), yArr + 36, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    text(ctx, 'the field at each place along the way, drawn to one scale, with the window marked', (gx.l + gx.r) / 2, yArr + 74, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the field at each place along the way', (gx.l + gx.r) / 2, yArr + 74, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, 'Over the ' + fmt(DS.v, 2) + ' cm window centered ' + fmt((s1 + s2) / 2, 2) + ' cm along, the potential falls ' + fmt(-dV, 1) + ' V, so the average field there is ' + sci(E, 2) + ' V/m.');
     readout(d.readout, `\\kEf = -\\frac{\\kdV}{\\kds} = -\\frac{${(dV < 0 ? '-' : '') + fmt(Math.abs(dV), 1)}\\ \\text{V}}{${fmt(DS.v / 100, 4)}\\ \\text{m}} = ${sciTex(E, 2)}\\ \\text{V/m}`,
       kind === 'even'
-        ? 'The potential falls evenly here, as it does between two parallel plates, so every window of every width gives the same field and the arrows beneath are all of one length. That is the uniform field of Figure 19.5 again, read as a slope.'
+        ? 'The potential falls evenly here, as it does between two parallel plates, so every window of every width gives the same field, and the field is the same everywhere along the way. That is the uniform field of Figure 19.5 again, read as a slope.'
         : 'Here the potential falls slowly at first and then steeply, so the window reads a small field near s = 0 and a field several times larger near s = 10 cm. The minus sign puts the field along the direction in which the potential falls, which is to the right in both graphs.');
   }
   register(d.fig, { update: () => {}, draw });

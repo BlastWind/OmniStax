@@ -287,3 +287,5 @@ in ink there because nothing on the page binds them.
 names no antiparticle, so `sim-pair` keeps the antielectron in the electron's
 hue, hollow; the request for an `e+` key is recorded in `ch18/COLOR.md` and
 in `config.md`, and the figure takes the key if the app adds one.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-rods-and-silk`: a change of pair morphs (manim-style 16): the hanging body swings over to its new angle, and a body that changes kind, rod or cloth, dissolves into the other in place; the readout is one equation, q₁ = ±q₂ = the charge (manim-style 12). `sim-atom` marks the neutral atom the text names: a dashed circle on the electrons at the proton count and on the protons at the electron count (rule 26.1). `sim-pair` loses its Labels choice (rule 26.7): the electron and the antielectron are named in a legend and by hover, and the readout is one equation, q_tot = (−1)qₑ + (+1)qₑ = 0, with before and after in the small line.

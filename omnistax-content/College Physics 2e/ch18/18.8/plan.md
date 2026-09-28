@@ -145,3 +145,5 @@ the seven variable anchors are written at `18.8-integrated-concepts`. Figure
 `ch18/config.md`, under "What the build changed", which also says that seven
 photographs are kept as rows of their own rather than the eight the table
 first counted. No concept or symbol row was changed.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-xerography` is a story (manim-style 6): the four stations are the stops of one slider, and the charge the light takes off the lit selenium, the toner settling on what is left and the paper pulling it off sector by sector are functions of it; the writer choice fades between lamp and laser; readout q_drum = (fraction) q with the numbers. `sim-charged-drop` marks the balance the text names: a dashed circle on each of q, E and m placed from the other two (rule 26.1), and landing on it morphs a = (F − w)/m = … into F = w by meaning (manim-style 11); one equation in either state.

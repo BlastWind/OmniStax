@@ -260,3 +260,5 @@ sections names the move in its `exercise_notes`. The section's `notes` wrote
 the book's stray prime as math, which the app does not sweep in a note, so
 the sentence now names the symbol in words instead; the erratum itself is
 unchanged and is recorded in `exploration.md`.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-potential-gradient`: the choice between an even and an uneven fall keeps the graph's frame and bends its curve into the other, the chord, the window's bracket and the arrows beneath following (manim-style 15); the small line and the label under the arrows no longer speak of the drawing.

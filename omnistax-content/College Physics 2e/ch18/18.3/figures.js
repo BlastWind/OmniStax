@@ -142,8 +142,8 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     const xc = mark(Fc, true, 96, 'F');
     hbracket(ctx, xg, xc, AY - 178, PAL.ink, 'a factor of ' + sciText(ratio, 2));
     topline(ctx, 'At a separation of ' + fmt(rs.v, 3) + ' × 10⁻¹⁰ m the Coulomb attraction is ' + sciText(Fc, 2) + ' N and the gravitational attraction is ' + sciText(Fg, 2) + ' N, so the first is ' + sciText(ratio, 2) + ' times the second.');
-    readout(d.readout, `\\kF = k\\frac{\\kqe^2}{r^2} = ${sci(Fc, 2)}\\ \\text{N}, \\qquad \\kFG = G\\frac{mM}{r^2} = ${sci(Fg, 2)}\\ \\text{N}, \\qquad \\frac{\\kF}{\\kFG} = ${sci(ratio, 2)}`,
-      'Both forces fall off as the inverse square of the separation, so moving the electron out weakens each of them by the same factor and the distance between the two marks on the axis never changes. Only the Coulomb force is drawn on the atom itself: an arrow for the gravitational attraction, drawn to the same scale, would be shorter than an atomic nucleus by a factor no picture can hold, which is why the two are set beside one another by powers of ten.');
+    readout(d.readout, `\\frac{\\kF}{\\kFG} = \\frac{k\\kqe^2/r^2}{GmM/r^2} = \\frac{${sci(Fc, 2)}\\ \\text{N}}{${sci(Fg, 2)}\\ \\text{N}} = ${sci(ratio, 2)}`,
+      'Both forces fall off as the inverse square of the separation, so moving the electron out weakens each of them by the same factor and their ratio never changes. At the scale of the Coulomb force, the gravitational attraction would be shorter than an atomic nucleus: gravity plays no part in holding the atom together.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
