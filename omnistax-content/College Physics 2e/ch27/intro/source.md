@@ -1,0 +1,13 @@
+# Introduction to Wave Optics
+
+> FIGURE {fig:import-auto-id1169736938034} src=../../media/OSX_CP2e_Figure_28_00_01.jpg class=splash
+> alt: Katharine Burr Blodgett using equipment.
+> caption: Katharine Burr Blodgett (1898–1979) was a physicist and chemist who made significant advancements in the study of surfaces and thin films. The trough she developed is still used in thousands of labs around the world, and her invention of non-reflective glass has had massive impact in cinema, medical, and scientific research arenas. (credit: Smithsonian Institution)
+
+If you have ever looked at the reds, blues, and greens in a sunlit soap bubble and wondered how straw-colored soapy water could produce them, you have hit upon one of the many phenomena that can only be explained by the wave character of light (see [ref:import-auto-id1169738214989]). The same is true for the colors seen in an oil slick or in the light reflected from a compact disc. These and other interesting phenomena, such as the dispersion of white light into a rainbow of colors when passed through a narrow slit, cannot be explained fully by geometric optics. In these cases, light interacts with small objects and exhibits its wave characteristics. The branch of optics that considers the behavior of light when it exhibits wave characteristics (particularly when it interacts with small objects) is called wave optics (sometimes called physical optics). It is the topic of this chapter.
+
+> FIGURE {fig:import-auto-id1169738214989} src=../../media/Figure_28_00_02a.jpg
+> alt: Soap bubbles reflecting mostly purple and blue light with some regions of orange.
+> width: 300
+> caption: These soap bubbles exhibit brilliant colors when exposed to sunlight. How are the colors produced if they are not pigments in the soap? (credit: Scott Robinson, Flickr)
+

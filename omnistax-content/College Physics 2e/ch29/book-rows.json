@@ -1,0 +1,769 @@
+{
+ "symbols": [
+  {
+   "sym": "h_planck",
+   "latex": "h"
+  },
+  {
+   "sym": "KE_e",
+   "latex": "\\text{KE}_e",
+   "type": "energy",
+   "macro": "\\kKEe"
+  },
+  {
+   "sym": "E_prime",
+   "latex": "E'",
+   "type": "energy",
+   "macro": "\\kEprime"
+  },
+  {
+   "sym": "f_max",
+   "latex": "f_{\\text{max}}",
+   "type": "frequency",
+   "macro": "\\kfmax"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "energy-quantization",
+   "kind": "idea",
+   "section": "29.1",
+   "name": "Energy is quantized in some systems",
+   "why": "A quantized system can have only certain energies and not a continuum of them, which would be like a car that could travel only at certain speeds. This is the first break with classical physics that the chapter makes, and every later section builds on it.",
+   "evidence": "The book states that energy is quantized in some systems, meaning that the system can have only certain energies and not a continuum of energies, and that some forms of energy transfer take place with discrete lumps of energy."
+  },
+  {
+   "id": "blackbody-radiation",
+   "kind": "idea",
+   "section": "29.1",
+   "name": "Blackbody radiation and the shape of its spectrum",
+   "why": "An ideal radiator, a blackbody, emits a spectrum whose shape depends only on its temperature, and that shape could not be explained by classical physics. It was the curve of intensity against wavelength that gave the first clue that the energies of atoms are quantized.",
+   "evidence": "The book defines blackbodies as ideal radiators with an emissivity of 1 at all wavelengths, and Figure 29.3 shows their spectra at three temperatures, whose shape, the caption says, cannot be described with classical physics."
+  },
+  {
+   "id": "planck-oscillator-energy",
+   "kind": "result",
+   "section": "29.1",
+   "name": "Planck’s quantized oscillator energy, $\\kE = (n + \\tfrac{1}{2})h\\kf$",
+   "why": "Planck found that the atoms and molecules of a blackbody, treated as oscillators, could have only the energies $E = (n + \\frac{1}{2})hf$. With this one assumption he described the measured blackbody spectrum correctly, and Planck’s constant $h$ entered physics.",
+   "evidence": "The book states that Planck deduced that the energy of an oscillator having a frequency $f$ is $E = (n + \\frac{1}{2})hf$, where $n$ is any nonnegative integer and $h = 6.626 \\times 10^{-34}$ J·s is Planck’s constant.",
+   "eq": "eq-planck-oscillator-energy"
+  },
+  {
+   "id": "quantum-energy-step",
+   "kind": "result",
+   "section": "29.1",
+   "name": "Energy changes in steps of $\\kdE = h\\kf$",
+   "why": "An oscillator of frequency $f$ can gain or lose energy only in discrete steps of size $hf$, much as a person on a staircase can stand only on the steps. Because $h$ is so small, these steps are far too small to notice in a macroscopic system.",
+   "evidence": "The book states that an oscillator having a frequency $f$ can have its energy increase or decrease only in discrete steps of size $\\Delta E = hf$, and works out that for an infrared frequency of $10^{14}$ Hz the step is only about 0.4 eV.",
+   "eq": "eq-quantum-energy-step"
+  },
+  {
+   "id": "correspondence-principle",
+   "kind": "idea",
+   "section": "29.1",
+   "name": "The correspondence principle",
+   "why": "In the classical limit of large, slow-moving objects, quantum mechanics gives the same results as classical physics. This is why quantization goes unnoticed in everyday life, and the chapter returns to it for photons, for matter waves and for the uncertainty principle.",
+   "evidence": "The chapter introduction states the correspondence principle, and 29.1 applies it: even if macroscopic energies are quantized, the quantum steps are too small to be noticed, and for a large object quantum mechanics produces results indistinguishable from those of classical physics."
+  },
+  {
+   "id": "atomic-spectra-quantized",
+   "kind": "idea",
+   "section": "29.1",
+   "name": "Discrete atomic spectra imply quantized energies",
+   "why": "A hot gas emits only certain wavelengths, a line spectrum, and if each emission carries an energy $\\Delta E = hf$, the energies of the electrons in the emitting atoms must be quantized. This is the second clue to quantization, and atomic physics grows from it.",
+   "evidence": "The book states that emission spectra are discrete, that only certain wavelengths are emitted, and that if frequency and energy are associated as $\\Delta E = hf$, the energies of the electrons in the emitting atoms and molecules are quantized; Figure 29.5 shows the emission spectrum of oxygen."
+  },
+  {
+   "id": "photoelectric-effect",
+   "kind": "idea",
+   "section": "29.2",
+   "name": "The photoelectric effect",
+   "why": "When light strikes a material it can eject electrons, and the energy of those electrons can be measured with a retarding voltage. The details of this simple experiment are what forced Einstein to treat light itself as quantized.",
+   "evidence": "The book defines the photoelectric effect as light ejecting electrons from materials and describes the evacuated tube of Figure 29.6, in which the voltage that stops the electrons from reaching the wire equals their energy in eV."
+  },
+  {
+   "id": "photon-energy",
+   "kind": "result",
+   "section": "29.2",
+   "name": "A photon carries energy $\\kE = h\\kf$",
+   "why": "Einstein proposed that EM radiation is itself made of quanta, photons, each with an energy proportional to its frequency. This is a quantization of the radiation, not only of the oscillators that emit it, and it is the idea the rest of the chapter depends on.",
+   "evidence": "The book states that Einstein defined a quantized unit of EM energy, the photon, with energy $E = hf$, and that EM waves are composed of photons whose energy is absorbed and emitted in lumps, not continuously.",
+   "eq": "eq-photon-energy"
+  },
+  {
+   "id": "photoelectric-properties",
+   "kind": "idea",
+   "section": "29.2",
+   "name": "The properties of the photoelectric effect that only photons explain",
+   "why": "A threshold frequency below which no electrons leave however intense the light, ejection without delay, a number of electrons that grows with intensity and a maximum kinetic energy that does not: each of these follows from one photon meeting one electron, and several contradict a simple wave.",
+   "evidence": "The book lists five properties of the photoelectric effect and says that all of them are consistent with individual photons being absorbed by individual electrons, while some are inconsistent with the idea that EM radiation is a simple wave."
+  },
+  {
+   "id": "photoelectric-equation",
+   "kind": "result",
+   "section": "29.2",
+   "name": "Einstein’s photoelectric equation, $\\kKEe = h\\kf - \\kBE$",
+   "why": "The photon gives all its energy to one electron; part of it breaks the electron away from the material and the rest becomes the electron’s kinetic energy. This one line explains the photoelectric effect quantitatively, and its graph against frequency has Planck’s constant as its slope.",
+   "evidence": "The book states that the maximum kinetic energy of an ejected electron is $\\text{KE}_e = hf - \\text{BE}$, where BE is the binding energy or work function of the material, and Figure 29.8 graphs it against frequency with slope $h$.",
+   "eq": "eq-photoelectric-equation"
+  },
+  {
+   "id": "binding-energy-threshold",
+   "kind": "result",
+   "section": "29.2",
+   "name": "The binding energy sets a threshold, $\\kBE = h\\kfo$",
+   "why": "A photon whose energy is less than the binding energy cannot free an electron at all, so each material has a threshold frequency, and a longest wavelength, below which it is blind. Problems that ask for the longest wavelength that can eject an electron use exactly this.",
+   "evidence": "The book states that the binding energy is $\\text{BE} = hf_0$, where $f_0$ is the threshold frequency for the material, and Example 29.1 shows that calcium has a threshold wavelength of 459 nm.",
+   "eq": "eq-binding-energy-threshold"
+  },
+  {
+   "id": "photon-energy-from-wavelength",
+   "kind": "skill",
+   "section": "29.2",
+   "name": "Find a photon’s energy from its wavelength, $\\kE = h\\kc/\\klam$",
+   "why": "Light is usually described by its wavelength, so the photon energy is most often found by combining $E = hf$ with $c = f\\lambda$. The reader who can do this can compare any photon with the energies of atoms and molecules.",
+   "evidence": "Example 29.1 combines $E = hf$ with $f = c/\\lambda$ to give $E = hc/\\lambda$ and finds that a 420-nm violet photon carries $4.74 \\times 10^{-19}$ J, or 2.96 eV.",
+   "eq": "eq-photon-energy-wavelength"
+  },
+  {
+   "id": "photon-energy-in-ev",
+   "kind": "skill",
+   "section": "29.3",
+   "name": "Work photon energies in electron volts, $hc = 1240$ eV·nm",
+   "why": "On the scale of atoms the electron volt is the natural unit, and with $h = 4.14 \\times 10^{-15}$ eV·s and $hc = 1240$ eV·nm a photon energy is one division. The section’s problems are written to be worked this way.",
+   "evidence": "The book gives Planck’s constant as $4.14 \\times 10^{-15}$ eV·s and $hc = 1240$ eV·nm, and Example 29.3 uses the second to find that a 100-nm UV photon carries 12.4 eV.",
+   "eq": "eq-hc-ev-nm"
+  },
+  {
+   "id": "photon-energy-and-radiation-effects",
+   "kind": "idea",
+   "section": "29.3",
+   "name": "The effects of EM radiation follow from its photon energy",
+   "why": "Because photons interact one at a time with individual atoms and molecules, what a kind of radiation can do depends on how the energy of one photon compares with molecular and atomic energies. This explains why UV sunburns and visible light does not, and why dyes fade in a particular order.",
+   "evidence": "The book states that the energy a photon carries is crucial to the effects it has, compares the EM spectrum of Figure 29.9 with the representative energies of Table 29.1, and explains the fading poster of Figure 29.13 by the higher photon energies of blue and violet light."
+  },
+  {
+   "id": "ionizing-photons",
+   "kind": "idea",
+   "section": "29.3",
+   "name": "Ionizing radiation: UV, x rays and gamma rays",
+   "why": "A photon with more energy than the 10 to 1000 eV needed to ionize an atom can damage tissue on its own, so the high-frequency end of the spectrum is hazardous in a way the low-frequency end is not. The same energy makes these photons useful in medical imaging and cancer treatment.",
+   "evidence": "The book states that $\\gamma$ rays, x rays and UV are ionizing radiation because they produce ionization in materials that absorb them, and that a single $\\gamma$-ray photon of about 4 MeV can ionize thousands of atoms."
+  },
+  {
+   "id": "x-ray-tube-maximum-energy",
+   "kind": "result",
+   "section": "29.3",
+   "name": "The most energetic x-ray photon from a tube, $h\\kfmax = \\kq\\kV$",
+   "why": "An electron accelerated through a voltage $V$ gains an energy $qV$, and when it strikes the anode it can give all of it to a single photon. So an x-ray tube’s voltage in kilovolts is its highest photon energy in keV, which is how its penetrating power is adjusted.",
+   "evidence": "Example 29.2 equates the maximum photon energy to the electrical potential energy, $hf = qV$, and finds that a 50.0-kV tube produces photons of at most 50.0 keV; Figure 29.12 marks $qV = hf_{\\text{max}}$ at the end of the spectrum.",
+   "eq": "eq-x-ray-maximum-energy"
+  },
+  {
+   "id": "x-ray-tube-spectrum",
+   "kind": "idea",
+   "section": "29.3",
+   "name": "Bremsstrahlung and characteristic x rays",
+   "why": "The x-ray spectrum of a tube has two parts: a smooth distribution from electrons braking in the anode, and sharp peaks that belong to the anode material. The peaks, like the lines of atomic spectra, are one more sign that the energy levels of atoms are quantized.",
+   "evidence": "The book explains Figure 29.12 as a smooth bremsstrahlung distribution produced by decelerating electrons, with sharp peaks, characteristic x rays, that come from atomic excitations unique to the anode material."
+  },
+  {
+   "id": "photons-per-second",
+   "kind": "skill",
+   "section": "29.3",
+   "name": "Count the photons per second from a source’s power",
+   "why": "Power is energy per unit time, so dividing a source’s power by the energy of one photon gives the number of photons it emits each second. The enormous numbers that result show why individual photons go unnoticed in ordinary life.",
+   "evidence": "Example 29.4 divides 10.0 J/s of visible power by $3.43 \\times 10^{-19}$ J per photon and finds that a 100-W bulb emits $2.92 \\times 10^{19}$ visible photons each second."
+  },
+  {
+   "id": "photon-momentum",
+   "kind": "result",
+   "section": "29.4",
+   "name": "Photon momentum, $\\kp = h/\\klam$",
+   "why": "Photons have no mass, yet they carry momentum, and a photon of wavelength $\\lambda$ carries $p = h/\\lambda$. This is why comet tails point away from the Sun and why a space sail could be pushed by sunlight.",
+   "evidence": "The book states that the Compton effect helped prove that photon momentum is given by $p = h/\\lambda$, and it shows the tails of the Hale-Bopp comet, Figure 29.14, pointing away from the Sun as macroscopic evidence.",
+   "eq": "eq-photon-momentum"
+  },
+  {
+   "id": "compton-effect",
+   "kind": "idea",
+   "section": "29.4",
+   "name": "The Compton effect",
+   "why": "When an x-ray photon scatters from an electron, the two collide like particles, energy and momentum are both conserved, and the scattered photon leaves with less energy and a longer wavelength. This was among the earliest direct evidence that momentum is conserved in quantum mechanics.",
+   "evidence": "The book describes Compton’s observation that x rays scattered from materials had a decreased energy, analyzed as a collision between a photon and an electron in which energy and momentum are conserved, as Figure 29.15 shows."
+  },
+  {
+   "id": "photon-momentum-and-energy",
+   "kind": "result",
+   "section": "29.4",
+   "name": "Photon momentum and energy, $\\kp = \\kE/\\kc$",
+   "why": "Setting the mass to zero in the relativistic relation between energy and momentum gives $E = pc$ for a photon, and with $E = hc/\\lambda$ this is Compton’s $p = h/\\lambda$ again. The two routes to the same momentum tie the chapter to special relativity.",
+   "evidence": "The book derives $E = pc$, or $p = E/c$, from $E^2 = (pc)^2 + (mc^2)^2$ with $m = 0$, shows that it is equivalent to $p = h/\\lambda$, and Example 29.6 checks it numerically for a 500-nm photon.",
+   "eq": "eq-photon-momentum-energy"
+  },
+  {
+   "id": "photon-momentum-is-small",
+   "kind": "idea",
+   "section": "29.4",
+   "name": "Photon momentum is small, but not negligible for x rays and electrons",
+   "why": "Because $h$ is so small, the momentum of visible light is tiny, which is why mirrors do not recoil. It becomes important only for short-wavelength photons meeting light particles, as in Compton’s experiment, or for enormous numbers of photons with nothing to stop the recoil.",
+   "evidence": "Example 29.5 finds that a 500-nm photon carries $1.33 \\times 10^{-27}$ kg·m/s, the momentum of an electron moving at only 1460 m/s, and the book notes that Compton saw the effect because x rays interact with the lightest of particles, the electron."
+  },
+  {
+   "id": "photon-momentum-conservation",
+   "kind": "skill",
+   "section": "29.4",
+   "name": "Apply momentum conservation to the emission, absorption and reflection of photons",
+   "why": "A photon absorbed gives its momentum to the absorber, and a photon reflected straight back gives twice its momentum. With these two facts the reader can find the recoil of a dust grain, a sail or a mirror.",
+   "evidence": "The objective of the section asks the reader to apply linear momentum conservation to simple processes involving the emission, absorption or reflection of photons, and its AP items ask for the momentum a sphere acquires when a pulse of photons is reflected or absorbed."
+  },
+  {
+   "id": "particle-wave-duality",
+   "kind": "idea",
+   "section": "29.5",
+   "name": "The particle-wave duality of EM radiation",
+   "why": "Light shows interference, which is a property of waves, and it interacts as discrete photons, which is a property of particles. The duality is the name for having both, and the next question it raises is whether matter has it too.",
+   "evidence": "The book states that EM radiation interferes and has wavelength and frequency, that it also behaves as particles, photons with discrete energy, and that this twofold nature is called the particle-wave duality."
+  },
+  {
+   "id": "particle-or-wave-in-one-observation",
+   "kind": "idea",
+   "section": "29.5",
+   "name": "An observation shows particle or wave properties, never both at once",
+   "why": "The duality seems strange because the words wave and particle come from large objects, which never act like both. On the quantum level our observations reveal one set of properties or the other, but not both simultaneously.",
+   "evidence": "The book states that we do not ordinarily observe details on the quantum level directly, and that our observations yield either particle or wavelike properties, but never both simultaneously; Figure 29.17 draws the two analogies, water waves and a grain of sand."
+  },
+  {
+   "id": "de-broglie-wavelength",
+   "kind": "result",
+   "section": "29.6",
+   "name": "The de Broglie wavelength, $\\klam = h/\\kp$",
+   "why": "De Broglie proposed that every particle, with mass or without, has a wavelength $h/p$. It is the same relation as the photon’s, now applied to matter, and it opened the era in which quantum mechanics was founded.",
+   "evidence": "The book states de Broglie’s proposal that all particles have a wavelength $\\lambda = h/p$, for matter and photons, and notes that this is the relation already found for photons, $p = h/\\lambda$.",
+   "eq": "eq-de-broglie-wavelength"
+  },
+  {
+   "id": "wave-effects-need-matching-size",
+   "kind": "idea",
+   "section": "29.6",
+   "name": "Wave effects show only when the wavelength matches the size of the obstacle",
+   "why": "A wave must meet an object about as large as its wavelength to show interference, and a macroscopic body has a wavelength far smaller than anything known. This is why a bowling ball never diffracts and why the wave nature of matter was first seen with electrons.",
+   "evidence": "The book computes that a 3-kg bowling ball moving at 10 m/s has a wavelength of $2 \\times 10^{-35}$ m and explains that to get easily observed interference the longest wavelength and hence smallest mass is needed, so the effect was first observed with electrons."
+  },
+  {
+   "id": "electron-diffraction",
+   "kind": "idea",
+   "section": "29.6",
+   "name": "Electron diffraction, the evidence for matter waves",
+   "why": "Davisson and Germer, and independently G. P. Thomson, scattered electrons from crystals and found diffraction patterns exactly consistent with the de Broglie wavelength. Interference is the hallmark of a wave, so these patterns showed that electrons are waves as well as particles.",
+   "evidence": "The book describes the crystal-scattering experiments of Davisson and Germer in 1925 and G. P. Thomson in 1926, whose patterns are exactly consistent with the de Broglie wavelength, and Figure 29.18 shows electrons diffracted by crystalline silicon."
+  },
+  {
+   "id": "electron-wavelength-and-energy",
+   "kind": "skill",
+   "section": "29.6",
+   "name": "Find an electron’s speed and energy from its wavelength",
+   "why": "With $p = mv$ for a nonrelativistic particle, the de Broglie wavelength gives the speed, $v = h/m\\lambda$, and from it the kinetic energy. The reader should also check that the speed really is well below the speed of light.",
+   "evidence": "Example 29.7 finds that an electron of wavelength 0.167 nm moves at $4.36 \\times 10^{6}$ m/s with 54.0 eV of kinetic energy and confirms that it is nonrelativistic.",
+   "eq": "eq-electron-speed-from-wavelength"
+  },
+  {
+   "id": "electron-microscope",
+   "kind": "idea",
+   "section": "29.6",
+   "name": "The electron microscope",
+   "why": "Resolution is limited to about one wavelength, and electrons from a modest voltage have wavelengths far smaller than those of visible light. The transmission and scanning electron microscopes use this to see details as small as individual atoms.",
+   "evidence": "The book states that since a potential of only 54 V produces electrons with sub-nanometer wavelengths, electron microscopes can detect much smaller details than optical ones, and it describes the TEM and the SEM of Figure 29.19."
+  },
+  {
+   "id": "bragg-equation",
+   "kind": "result",
+   "section": "29.6",
+   "name": "The Bragg equation, $n\\klam = 2\\kd\\sin\\theta$",
+   "why": "Planes of atoms in a crystal act like the slits of a diffraction grating: electrons scattered from successive planes interfere constructively when the extra path is a whole number of wavelengths. The same relation applies to x rays.",
+   "evidence": "The Making Connections box states that constructive interference occurs when $n\\lambda = 2d\\sin\\theta$, the Bragg equation, and Figure 29.20 shows the path length difference between the top and second layers of atoms.",
+   "eq": "eq-bragg-equation"
+  },
+  {
+   "id": "probability-distribution",
+   "kind": "idea",
+   "section": "29.7",
+   "name": "A particle’s position is described by a probability distribution",
+   "why": "Each electron arrives at a definite place that cannot be predicted, yet many of them together build up a wave’s diffraction pattern. What quantum mechanics predicts is the probability of finding the particle at each location.",
+   "evidence": "The book states that because of its wave character a particle’s trajectory and destination cannot be precisely predicted, that there is a certain probability of finding it at a given location, and that the overall pattern is called a probability distribution; Figure 29.21 shows a pattern building up."
+  },
+  {
+   "id": "measurement-affects-the-system",
+   "kind": "idea",
+   "section": "29.7",
+   "name": "Measuring which slit an electron passes through destroys the double-slit pattern",
+   "why": "A single electron at a time still builds up a double-slit pattern, so each electron interferes with itself. But if the slit it passes through is determined, the pattern becomes a single-slit one: measurement affects the system being observed.",
+   "evidence": "The book states that the same interference pattern builds up when there is never more than one electron between the slits and the screen, and that knowing the particle went through one slit forces a single-slit pattern."
+  },
+  {
+   "id": "position-momentum-uncertainty",
+   "kind": "result",
+   "section": "29.7",
+   "name": "Heisenberg’s uncertainty principle for position and momentum, $\\kdx\\,\\kdp \\ge h/4\\pi$",
+   "why": "A probe short enough in wavelength to locate a particle well carries a large momentum and disturbs the particle’s momentum, so the two cannot both be known exactly. The product of their uncertainties can never be smaller than $h/4\\pi$.",
+   "evidence": "The book argues that $\\Delta x \\approx \\lambda$ and $\\Delta p \\approx h/\\lambda$, so that $\\Delta x\\Delta p \\approx h$, and states Heisenberg’s result that the best that can be done in a simultaneous measurement is $\\Delta x\\Delta p \\ge h/4\\pi$.",
+   "eq": "eq-position-momentum-uncertainty"
+  },
+  {
+   "id": "energy-time-uncertainty",
+   "kind": "result",
+   "section": "29.7",
+   "name": "Heisenberg’s uncertainty principle for energy and time, $\\kdE\\,\\kdt \\ge h/4\\pi$",
+   "why": "Energy cannot be measured precisely in a short time, so a short-lived state has an uncertain energy. The spread in the decay energies of short-lived particles is used to find their lifetimes.",
+   "evidence": "The book states that $\\Delta E\\Delta t \\ge h/4\\pi$, and Example 29.9 finds that an excited state living $1.0 \\times 10^{-10}$ s has an energy uncertain by $3.3 \\times 10^{-6}$ eV.",
+   "eq": "eq-energy-time-uncertainty"
+  },
+  {
+   "id": "uncertainty-principle-calculation",
+   "kind": "skill",
+   "section": "29.7",
+   "name": "Use the uncertainty principle to find a minimum uncertainty",
+   "why": "Using the equals sign in either form of the principle gives the smallest possible uncertainty, and $\\Delta p = m\\Delta v$ turns a momentum uncertainty into a velocity uncertainty. The reader can then judge whether the result matters by comparing it with atomic energies.",
+   "evidence": "Example 29.8 uses $\\Delta x\\Delta p = h/4\\pi$ and $\\Delta p = m\\Delta v$ to find that an electron located to 0.0100 nm has a velocity uncertain by $5.79 \\times 10^{6}$ m/s, and Example 29.9 finds a minimum energy uncertainty from a lifetime."
+  },
+  {
+   "id": "uncertainty-negligible-for-large-objects",
+   "kind": "idea",
+   "section": "29.7",
+   "name": "The uncertainty principle is negligible for large objects",
+   "why": "Planck’s constant is so small that the limits the principle sets are far below anything that matters for a planet or a ball. This is the correspondence principle again, and it is why we never notice the uncertainty principle in everyday life.",
+   "evidence": "The book explains that sunlight reflected from Jupiter creates an uncertainty in its momentum that is totally negligible compared with Jupiter’s huge momentum, and that the correspondence principle makes quantum predictions indistinguishable from classical ones for large objects."
+  },
+  {
+   "id": "particle-wave-duality-universal",
+   "kind": "idea",
+   "section": "29.8",
+   "name": "The particle-wave duality holds for all particles",
+   "why": "Every particle, massless like the photon or with mass like the electron, has a wavelength and behaves as a particle, and so do combinations of them such as nuclei, atoms and molecules. The duality is a universal attribute of nature, one more connection between matter and energy.",
+   "evidence": "The book states that the dual properties of particles and waves are found for all particles, whether massless like photons or having a mass like electrons, as Figure 29.24 shows, and calls the particle-wave duality a universal attribute."
+  },
+  {
+   "id": "classical-limit-of-duality",
+   "kind": "idea",
+   "section": "29.8",
+   "name": "In large numbers, matter acts as particles and light as waves",
+   "why": "A large combination of massive particles has a wave nature too small to observe, and a large combination of photons shows mostly wave behavior. This is why classical physics saw matter only as particles and light only as waves.",
+   "evidence": "The book states that as a combination of masses becomes macroscopic its wave nature becomes difficult to observe, and that in large combinations of massless particles there is mostly wave behavior upon detection; Figure 29.25 contrasts a massive rock with a massless wave."
+  },
+  {
+   "id": "integrated-quantum-problem",
+   "kind": "skill",
+   "section": "29.8",
+   "name": "Solve a problem that joins photons to principles from earlier chapters",
+   "why": "The problems of this section join photon energy and momentum to momentum conservation, heat transfer, circuits, wave optics and relativity. The strategy is to identify which physical principles are involved and then solve each part with the strategy of its own chapter.",
+   "evidence": "Example 29.10 finds the momentum of a 550-nm photon from this chapter and then the recoil of a 1.00-μg dust grain from conservation of momentum, following the two-step problem-solving strategy the section prints."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "energy-quantization",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "blackbody-radiation",
+   "prereq": "radiation-spectrum-and-temperature"
+  },
+  {
+   "concept": "blackbody-radiation",
+   "prereq": "emissivity"
+  },
+  {
+   "concept": "blackbody-radiation",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "planck-oscillator-energy",
+   "prereq": "energy-quantization"
+  },
+  {
+   "concept": "planck-oscillator-energy",
+   "prereq": "blackbody-radiation"
+  },
+  {
+   "concept": "planck-oscillator-energy",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "planck-oscillator-energy",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "quantum-energy-step",
+   "prereq": "planck-oscillator-energy"
+  },
+  {
+   "concept": "quantum-energy-step",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "correspondence-principle",
+   "prereq": "quantum-energy-step"
+  },
+  {
+   "concept": "atomic-spectra-quantized",
+   "prereq": "quantum-energy-step"
+  },
+  {
+   "concept": "atomic-spectra-quantized",
+   "prereq": "color-and-wavelength"
+  },
+  {
+   "concept": "photoelectric-effect",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "photoelectric-effect",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "photon-energy",
+   "prereq": "quantum-energy-step"
+  },
+  {
+   "concept": "photon-energy",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "photoelectric-properties",
+   "prereq": "photoelectric-effect"
+  },
+  {
+   "concept": "photoelectric-properties",
+   "prereq": "photon-energy"
+  },
+  {
+   "concept": "photoelectric-properties",
+   "prereq": "intensity"
+  },
+  {
+   "concept": "photoelectric-equation",
+   "prereq": "photon-energy"
+  },
+  {
+   "concept": "photoelectric-equation",
+   "prereq": "photoelectric-properties"
+  },
+  {
+   "concept": "photoelectric-equation",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "photoelectric-equation",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "binding-energy-threshold",
+   "prereq": "photoelectric-equation"
+  },
+  {
+   "concept": "photon-energy-from-wavelength",
+   "prereq": "photon-energy"
+  },
+  {
+   "concept": "photon-energy-from-wavelength",
+   "prereq": "c-equals-f-lambda"
+  },
+  {
+   "concept": "photon-energy-in-ev",
+   "prereq": "photon-energy-from-wavelength"
+  },
+  {
+   "concept": "photon-energy-in-ev",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "photon-energy-and-radiation-effects",
+   "prereq": "photon-energy-in-ev"
+  },
+  {
+   "concept": "photon-energy-and-radiation-effects",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "ionizing-photons",
+   "prereq": "photon-energy-and-radiation-effects"
+  },
+  {
+   "concept": "x-ray-tube-maximum-energy",
+   "prereq": "photon-energy"
+  },
+  {
+   "concept": "x-ray-tube-maximum-energy",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "x-ray-tube-maximum-energy",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "x-ray-tube-spectrum",
+   "prereq": "x-ray-tube-maximum-energy"
+  },
+  {
+   "concept": "x-ray-tube-spectrum",
+   "prereq": "atomic-spectra-quantized"
+  },
+  {
+   "concept": "photons-per-second",
+   "prereq": "photon-energy-from-wavelength"
+  },
+  {
+   "concept": "photons-per-second",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "photons-per-second",
+   "prereq": "correspondence-principle"
+  },
+  {
+   "concept": "photon-momentum",
+   "prereq": "photon-energy"
+  },
+  {
+   "concept": "photon-momentum",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "photon-momentum",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "compton-effect",
+   "prereq": "photon-momentum"
+  },
+  {
+   "concept": "compton-effect",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "compton-effect",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "photon-momentum-and-energy",
+   "prereq": "photon-momentum"
+  },
+  {
+   "concept": "photon-momentum-and-energy",
+   "prereq": "photon-energy-from-wavelength"
+  },
+  {
+   "concept": "photon-momentum-is-small",
+   "prereq": "photon-momentum"
+  },
+  {
+   "concept": "photon-momentum-conservation",
+   "prereq": "photon-momentum"
+  },
+  {
+   "concept": "photon-momentum-conservation",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "particle-wave-duality",
+   "prereq": "photon-energy"
+  },
+  {
+   "concept": "particle-wave-duality",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "particle-wave-duality",
+   "prereq": "photon-momentum"
+  },
+  {
+   "concept": "particle-or-wave-in-one-observation",
+   "prereq": "particle-wave-duality"
+  },
+  {
+   "concept": "de-broglie-wavelength",
+   "prereq": "particle-wave-duality"
+  },
+  {
+   "concept": "de-broglie-wavelength",
+   "prereq": "photon-momentum"
+  },
+  {
+   "concept": "de-broglie-wavelength",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "wave-effects-need-matching-size",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "wave-effects-need-matching-size",
+   "prereq": "ray-approximation"
+  },
+  {
+   "concept": "electron-diffraction",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "electron-diffraction",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "electron-diffraction",
+   "prereq": "destructive-interference"
+  },
+  {
+   "concept": "electron-wavelength-and-energy",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "electron-wavelength-and-energy",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "electron-wavelength-and-energy",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "electron-microscope",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "electron-microscope",
+   "prereq": "electron-wavelength-and-energy"
+  },
+  {
+   "concept": "bragg-equation",
+   "prereq": "electron-diffraction"
+  },
+  {
+   "concept": "bragg-equation",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "probability-distribution",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "probability-distribution",
+   "prereq": "electron-diffraction"
+  },
+  {
+   "concept": "measurement-affects-the-system",
+   "prereq": "probability-distribution"
+  },
+  {
+   "concept": "position-momentum-uncertainty",
+   "prereq": "measurement-affects-the-system"
+  },
+  {
+   "concept": "position-momentum-uncertainty",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "position-momentum-uncertainty",
+   "prereq": "photon-momentum"
+  },
+  {
+   "concept": "energy-time-uncertainty",
+   "prereq": "position-momentum-uncertainty"
+  },
+  {
+   "concept": "uncertainty-principle-calculation",
+   "prereq": "position-momentum-uncertainty"
+  },
+  {
+   "concept": "uncertainty-principle-calculation",
+   "prereq": "energy-time-uncertainty"
+  },
+  {
+   "concept": "uncertainty-principle-calculation",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "uncertainty-negligible-for-large-objects",
+   "prereq": "position-momentum-uncertainty"
+  },
+  {
+   "concept": "uncertainty-negligible-for-large-objects",
+   "prereq": "correspondence-principle"
+  },
+  {
+   "concept": "particle-wave-duality-universal",
+   "prereq": "particle-wave-duality"
+  },
+  {
+   "concept": "particle-wave-duality-universal",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "classical-limit-of-duality",
+   "prereq": "particle-wave-duality-universal"
+  },
+  {
+   "concept": "classical-limit-of-duality",
+   "prereq": "wave-effects-need-matching-size"
+  },
+  {
+   "concept": "classical-limit-of-duality",
+   "prereq": "correspondence-principle"
+  },
+  {
+   "concept": "integrated-quantum-problem",
+   "prereq": "photon-momentum"
+  },
+  {
+   "concept": "integrated-quantum-problem",
+   "prereq": "photon-energy-from-wavelength"
+  },
+  {
+   "concept": "integrated-quantum-problem",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "integrated-quantum-problem",
+   "prereq": "problem-solving-steps"
+  },
+  {
+   "concept": "particle-wave-duality",
+   "prereq": "youngs-double-slit"
+  },
+  {
+   "concept": "particle-wave-duality",
+   "prereq": "interference-is-the-hallmark-of-a-wave"
+  },
+  {
+   "concept": "electron-diffraction",
+   "prereq": "diffraction-grating"
+  },
+  {
+   "concept": "wave-effects-need-matching-size",
+   "prereq": "diffraction-depends-on-opening-size"
+  },
+  {
+   "concept": "bragg-equation",
+   "prereq": "path-length-difference"
+  },
+  {
+   "concept": "bragg-equation",
+   "prereq": "grating-constructive-condition"
+  },
+  {
+   "concept": "electron-microscope",
+   "prereq": "diffraction-limits-resolution"
+  },
+  {
+   "concept": "electron-microscope",
+   "prereq": "wavelength-limits-microscopy"
+  },
+  {
+   "concept": "probability-distribution",
+   "prereq": "double-slit-constructive"
+  },
+  {
+   "concept": "measurement-affects-the-system",
+   "prereq": "single-slit-pattern"
+  }
+ ]
+}

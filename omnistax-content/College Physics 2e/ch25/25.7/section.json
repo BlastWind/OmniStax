@@ -1,0 +1,807 @@
+{
+ "id": "25.7",
+ "module": "m42474",
+ "chapter": "25",
+ "title": "Image Formation by Mirrors",
+ "short": "Mirrors",
+ "lead": "A mirror forms images by the law of reflection alone, and those images turn out to be the same three kinds a lens forms. This section finds the image behind a flat mirror, shows that a small spherical mirror has a focal length equal to half its radius of curvature, gives the rules for tracing rays at a mirror, and uses the thin lens equations to solve for the images of concave and convex mirrors.",
+ "objectives": [
+  "Illustrate image formation in a flat mirror.",
+  "Explain with ray diagrams the formation of an image using spherical mirrors.",
+  "Determine focal length and magnification given radius of curvature, distance of object and image."
+ ],
+ "summary_html": "<ul><li>The characteristics of an image formed by a flat mirror are: (a) The image and object are the same distance from the mirror, (b) The image is a virtual image, and (c) The image is situated behind the mirror.</li><li>Image length is half the radius of curvature. $$\\kffoc = \\frac{\\kRcur}{2}$$</li><li>A convex mirror is a diverging mirror and forms only one type of image, namely a virtual image.</li></ul>",
+ "notes": "Six of the module’s thirteen problems have no keyed answer and are left out: the telephoto mirror replacing an 800 mm lens, the magnification of the heater in Example 25.9, the shopper and the convex security mirror, the focal length and power of a flat mirror, the proof that f = R/2, and the Construct Your Own Problem item on the bathroom heat lamp. The Critical Thinking problem on violet and orange light in crown glass is set with 25.5, and the second AP item of 25.2 is set here. The summary’s second line reads “Image length” where the focal length is meant, and Example 25.11 writes R = 2|f| = −0.800 cm with a sign the absolute value cannot give; both are kept as the book prints them. Figures 25.43 and 25.44 are kept whole, each with its ray drawing beside its photograph, and their drawings are also reached by Figure 25.41. Example 25.10 and the last problem lean on the heat of Chapter 14 and the intensity of Chapter 16 as well as on this section.",
+ "ai": {
+  "text": "Claude Opus 5.5",
+  "figures": "Claude Opus 5.5"
+ },
+ "built": "2026-09-28",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s own key. Six of the thirteen problems have no keyed answer and are left out, and they are named in the section’s notes; the Critical Thinking problem, which tests the index of refraction and dispersion rather than mirrors, is set with 25.5. The second AP item of 25.2, which compares a flat mirror with a convex one, is set here. All twelve conceptual questions and the second and fourth AP items are unkeyed and carry an AI-suggested approach. The third AP item is keyed (b), 10 cm, in the book, but an upright image twice the size of an object 10 cm away gives a focal length of 20 cm, so it is set as an open item with its options and an AI-suggested approach rather than graded against that key. The spoon problem carries no type in the source and is classed as a problem by its header.",
+ "figures": [
+  {
+   "id": "sim-flat-mirror",
+   "kind": "sim",
+   "number": "25.38",
+   "originals": [
+    "/media/ch25/Figure_26_07_01.jpg"
+   ],
+   "original_caption": "Two sets of rays from common points on an object are reflected by a flat mirror into the eye of an observer. The reflected rays seem to originate from behind the mirror, locating the virtual image.",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "sim-mirror-focus",
+   "kind": "sim",
+   "number": "25.39",
+   "folds": [
+    "25.40"
+   ],
+   "originals": [
+    "/media/ch25/Figure_26_07_02.jpg",
+    "/media/ch25/Figure_26_07_03.jpg"
+   ],
+   "original_caption": "(a) Parallel rays reflected from a large spherical mirror do not all cross at a common point. (b) If a spherical mirror is small compared with its radius of curvature, parallel rays are focused to a common point. The distance of the focal point from the center of the mirror is its focal length $f$. Since this mirror is converging, it has a positive focal length. Parallel rays of light reflected from a convex spherical mirror (small in size compared with its radius of curvature) seem to originate from a well-defined focal point at the focal distance $f$ behind the mirror. Convex mirrors diverge light rays and, thus, have a negative focal length.",
+   "widths": [
+    450,
+    250
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "sim-mirror-images",
+   "kind": "sim",
+   "number": "25.41",
+   "originals": [
+    "/media/ch25/Figure_26_07_04.jpg"
+   ],
+   "original_caption": "A case 1 image for a mirror. An object is farther from the converging mirror than its focal length. Rays from a common point on the object are traced using the rules in the text. Ray 1 approaches parallel to the axis, ray 2 strikes the center of the mirror, and ray 3 goes through the focal point on the way toward the mirror. All three rays cross at the same point after being reflected, locating the inverted real image. Although three rays are shown, only two of the three are needed to locate the image and determine its height.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position"
+   ]
+  },
+  {
+   "id": "photo-trough",
+   "kind": "photo",
+   "number": "25.42",
+   "widths": [
+    285
+   ],
+   "draws": []
+  },
+  {
+   "id": "photo-makeup-mirror",
+   "kind": "photo",
+   "number": "25.43",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "photo-security-mirror",
+   "kind": "photo",
+   "number": "25.44",
+   "widths": [
+    275
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "flat-mirror",
+   "concept": "image-in-a-flat-mirror",
+   "verb": "introduces"
+  },
+  {
+   "span": "flat-mirror",
+   "concept": "law-of-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "focal-length-of-a-spherical-mirror",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "converging-and-diverging-mirrors",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "power-of-a-lens",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-ray-tracing",
+   "concept": "ray-tracing-rules-for-mirrors",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-ray-tracing",
+   "concept": "solve-mirror-problems",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-ray-tracing",
+   "concept": "thin-lens-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "three-cases-of-mirror-images",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "ray-tracing-rules-for-mirrors",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "focal-length-of-a-spherical-mirror",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "converging-and-diverging-mirrors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "solve-mirror-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "mirrors-and-lenses-are-analogous",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "magnification",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "real-and-virtual-images",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-strategy",
+   "concept": "solve-mirror-problems",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1998480",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "A student is testing the properties of a mirror with an unknown radius of curvature. The student notices that no matter how far an object is placed from the mirror, the image seen in the mirror is always upright and smaller than the object. What can the student deduce about this mirror?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The mirror is convex.",
+     "The mirror is flat.",
+     "The mirror is concave.",
+     "More information is required to deduce the shape of the mirror."
+    ],
+    "correct": 0,
+    "hint": "A flat mirror always gives an image of the same size, and a concave mirror gives an upright image only when the object is inside its focal length, where the image is larger. Which mirror forms only one type of image?",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2381022",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "A student notices a small printed sentence at the bottom of the driver’s side mirror on her car. It reads, “Objects in the mirror are closer than they appear.” Which type of mirror is this (convex, concave, or flat)? How could you confirm the shape of the mirror experimentally?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The mirror is convex. A convex mirror is a diverging mirror and forms only a case 3 image, which is upright and smaller than the object and lies behind the mirror, closer to it than the focal length. Because the image of a car is smaller than a flat mirror would show it, the eye judges the car to be farther away than it is, which is why the warning is printed. To confirm the shape, look at a nearby object in the mirror and move it from far away up close: in a convex mirror the image stays upright and smaller at every distance, while a concave mirror would give an inverted image for a distant object and an enlarged upright one up close, and a flat mirror would give an image of the same size. Another test is to send parallel light, such as sunlight, onto the mirror and look for a spot where the reflected rays come to a focus; a convex mirror spreads the rays and forms no such spot."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1560818",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "A mirror shows an upright image twice as large as the object when the object is 10 cm away from the mirror. What is the focal length of the mirror? (a) −10 cm (b) 10 cm (c) 20 cm (d) 40 cm",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An upright image larger than the object comes only from a concave mirror with the object inside its focal length, which is a case 2 image, so the focal length is positive and greater than 10 cm. The magnification is $m = +2$, and since $m = -\\kdimg/\\kdobj$, the image distance is $\\kdimg = -m\\kdobj = -(2)(10\\text{ cm}) = -20\\text{ cm}$, negative because the virtual image is behind the mirror. The thin lens equation then gives $1/\\kffoc = 1/\\kdobj + 1/\\kdimg = 1/(10\\text{ cm}) - 1/(20\\text{ cm}) = 1/(20\\text{ cm})$, so the focal length is $+20$ cm. The key the book prints is (b), 10 cm, which would put the object at the focal point, where no image is formed."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1859234",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "A mirror shows an inverted image that is equal in size to the object when the object is 20 cm away from the mirror. Describe the image that will be formed if this object is moved to a distance of 5 cm away from the mirror.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An inverted image of equal size means a magnification of $-1$, so the image distance equals the object distance, $\\kdimg = \\kdobj = 20$ cm. The mirror must be concave, and the thin lens equation gives $1/\\kffoc = 1/(20\\text{ cm}) + 1/(20\\text{ cm})$, so $\\kffoc = 10$ cm: the object was at twice the focal length, at the center of curvature. With the object moved to 5 cm it is inside the focal length, which is a case 2 image. Then $1/\\kdimg = 1/(10\\text{ cm}) - 1/(5\\text{ cm})$, so $\\kdimg = -10$ cm, and $m = -\\kdimg/\\kdobj = +2$. The image is virtual, 10 cm behind the mirror, upright and twice as tall as the object, as in a makeup mirror."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1448298",
+   "source_section": "25.2",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "Two light rays originate from object A, at a distance of 50 cm in front of a flat mirror, diverging at an angle of 10°. Both of the rays strike a flat mirror and reflect. Two light rays originate from object B, at a distance of 50 cm in front of a convex mirror, diverging at an angle of 10°. Both of the rays strike the convex mirror and reflect. For which object do the reflected rays appear to converge behind the mirror closer to the surface of the mirror, thus forming a closer (larger) image? Explain with the help of a sketch or diagram.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Sketch both mirrors with the two rays from each object and apply the law of reflection at each point where a ray strikes. At the flat mirror the reflected rays diverge at the same 10° they started with, and traced backward they meet 50 cm behind the mirror, as far behind as object A is in front. At the convex mirror the surface tilts away from the axis on either side, so each reflected ray is turned farther outward and the pair leaves diverging at a larger angle. Rays that diverge more strongly, traced backward, meet sooner, so the image of object B lies closer to the mirror, inside its focal length, while the image of A lies 50 cm behind the glass. The image of B is the closer one; it is also smaller than the object, since a convex mirror forms only a reduced case 3 image, which is why it appears farther away than it is."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1487938",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "What are the differences between real and virtual images? How can you tell (by looking) whether an image formed by a single lens or mirror is real or virtual?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A real image is formed where rays from a point on the object actually cross, so light is really present there and the image can be projected onto a screen placed at that spot. A virtual image is formed where the rays only appear to come from, after they are traced backward, so no light passes through it and nothing appears on a screen placed there. For a single lens or mirror the two can be told apart by looking at the image: a real image is inverted and a virtual image is upright. A real image also lies on the side where the light goes (beyond a lens, in front of a mirror), while a virtual image lies on the other side, behind the mirror or on the object’s side of the lens."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1502616",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "Can you see a virtual image? Can you photograph one? Can one be projected onto a screen with additional lenses or mirrors? Explain your responses.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes to all three. The rays leaving a mirror or lens behave exactly as if they came from the virtual image, so the lens of the eye focuses them onto the retina just as it would focus light from a real object there; that is how you see yourself in a flat mirror. A camera does the same with its own lens, so a virtual image can be photographed. What cannot be done is to put a screen at the virtual image itself, since no light goes there. But another lens or mirror placed in the path of the diverging rays can take the virtual image as its object and form a real image of it, which can then be projected onto a screen; the eye and the camera are examples of exactly this."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1622392",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "Is it necessary to project a real image onto a screen for it to exist?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. A real image exists wherever rays from each point of the object actually cross, whether or not anything is placed there to catch the light. A screen only makes the image visible from many directions by scattering the light that is already converging there. Without a screen the rays pass through the image point and diverge again, and an eye placed farther along their path can still see the image hanging in the air, as in a concave mirror viewed from beyond its real image."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1677882",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "At what distance is an image always located—at $\\kdobj$, $\\kdimg$, or $\\kffoc$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An image is always located at the image distance $\\kdimg$. That is what the image distance means: the distance of the image from the lens or mirror, found from the thin lens equation $1/\\kdobj + 1/\\kdimg = 1/\\kffoc$. The object is at $\\kdobj$, and the image coincides with the focal distance $\\kffoc$ only in the special case of an object very far away."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2785853",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "Under what circumstances will an image be located at the focal point of a lens or mirror?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "When the object is very far away, so that the rays arriving from any one point of it are parallel. In the thin lens equation, $1/\\kdobj$ goes to zero as $\\kdobj$ grows very large, which leaves $1/\\kdimg = 1/\\kffoc$ and so $\\kdimg = \\kffoc$. This is how the focal point is defined in the first place: parallel rays along the axis cross, or appear to cross, at the focal point. The image of the Sun formed by a magnifying glass or a concave mirror sits at the focal point for this reason."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1281672",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "What is meant by a negative magnification? What is meant by a magnification that is less than 1 in magnitude?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The magnification $m = \\khimg/\\khobj$ carries a sign as well as a size. A negative magnification means that the image height has the opposite sign to the object height, so the image is inverted, as every case 1 image is. A magnification whose magnitude is less than 1 means that the image is smaller than the object, whatever its orientation; the case 3 image of a convex mirror has a positive magnification less than 1, upright and reduced, while a case 1 image far from a concave mirror has a negative magnification less than 1 in magnitude, inverted and reduced."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1362775",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "Can a case 1 image be larger than the object even though its magnification is always negative? Explain.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. The negative sign of the magnification says only that a case 1 image is inverted; its size is given by the magnitude of $m = -\\kdimg/\\kdobj$. When the object is between the focal length and twice the focal length, the image distance is greater than the object distance, so the magnitude of $m$ is greater than 1 and the inverted image is larger than the object. Example 25.9’s room heater is such a case: the coils at 27.3 cm form an image 3.00 m away, a magnification of about $-11$. Only when the object is beyond twice the focal length is the case 1 image smaller than the object."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2016225",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "The figure below shows a light bulb between two mirrors. One mirror produces a beam of light with parallel rays; the other keeps light from escaping without being put into the beam. Where is the filament of the light in relation to the focal point or radius of curvature of each mirror?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The filament is at the focal point of the large mirror. A ray approaching a concave mirror through its focal point is reflected parallel to its axis, so every ray from the filament that strikes the large mirror leaves as part of a parallel beam. The filament is at the center of curvature of the small mirror, a distance equal to its radius of curvature, which is twice its focal length. A ray from the center of curvature strikes a spherical mirror along its normal and is reflected straight back on itself, so the light that would have escaped forward is sent back through the filament to the large mirror and joins the beam."
+   },
+   "figure": {
+    "src": "/media/ch25/Figure_26_07_08.jpg",
+    "alt": "Two concave mirrors of different sizes are placed facing one another. A filament bulb is placed at the focus of the larger mirror. The rays after reflection from the larger mirror travel parallel to one another. The rays falling on the smaller mirror retrace their paths.",
+    "caption": "The two mirrors trap most of the bulb’s light and form a directional beam as in a headlight."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1534293",
+   "kind": "conceptual-question",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "Devise an arrangement of mirrors allowing you to see the back of your head. What is the minimum number of mirrors needed for this task?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Two flat mirrors are the minimum. Stand facing one mirror and hold a second one behind and a little to the side of your head, tilted so that its reflection of the back of your head faces the first mirror. Light from the back of your head reflects from the hand mirror to the wall mirror and then into your eyes, and by the law of reflection the image in the wall mirror is the image of an image, which is why it shows the back of your head. One flat mirror cannot do it, since it can only send light back toward the side it came from, and the back of your head and your eyes face opposite ways."
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id2677030",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "If you wish to see your entire body in a flat mirror (from head to toe), how tall should the mirror be? Does its size depend upon your distance away from the mirror? Provide a sketch.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The mirror need be only half your height. Sketch yourself standing in front of a vertical mirror and draw a ray from the top of your head and a ray from your feet, each reflecting into your eye by the law of reflection. The ray from your head strikes the mirror halfway between your eyes and the top of your head, and the ray from your feet strikes halfway between your eyes and your feet, so the part of the mirror in use runs from one of those points to the other, which is half your height, with its top edge at the midpoint between your eyes and the top of your head. The size does not depend on your distance from the mirror: moving back makes every angle smaller, but each reflection point stays exactly halfway up, because the image is always as far behind the mirror as you are in front of it."
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id919971",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "It can be argued that a flat mirror has an infinite focal length. If so, where does it form an image? That is, how are $\\kdimg$ and $\\kdobj$ related?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "If the focal length is infinite, then $1/\\kffoc = 0$ and the thin lens equation becomes $1/\\kdobj + 1/\\kdimg = 0$, so $\\kdimg = -\\kdobj$. The image is as far behind the mirror as the object is in front of it, and the negative sign says it is virtual, which is exactly what ray tracing with the law of reflection gives for a flat mirror. The magnification is then $m = -\\kdimg/\\kdobj = 1$, an upright image of the same size."
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id3166876",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "Why are diverging mirrors often used for rear-view mirrors in vehicles? What is the main disadvantage of using such a mirror compared with a flat one?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A diverging (convex) mirror forms a case 3 image, upright and smaller than the object, so a mirror of a given size shows a much wider field of view than a flat mirror would, taking in more lanes and fewer blind spots, just as a security mirror images a larger area of a shop. The disadvantage is that the image is reduced: cars look smaller than they would in a flat mirror, so the driver judges them to be farther away than they are, and distances and closing speeds are harder to estimate. That is why such mirrors carry the warning that objects are closer than they appear."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1429754",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-focal-length",
+   "prompt": "What is the focal length of a makeup mirror that has a power of 1.50 D?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.667,
+    "unit": "m",
+    "hint": "The power of a mirror is the inverse of its focal length in meters, just as for a lens.",
+    "solution": "+0.667 m"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3039111",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-focal-length",
+   "prompt": "(a) Calculate the focal length of the mirror formed by the shiny back of a spoon that has a 3.00 cm radius of curvature. (b) What is its power in diopters?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -0.015,
+      "unit": "m",
+      "hint": "The back of a spoon is convex, so the focal length is half the radius of curvature and negative."
+     },
+     {
+      "part": "(b)",
+      "value": -66.7,
+      "unit": "D",
+      "hint": "The power is the inverse of the focal length in meters, and it keeps the negative sign of a diverging mirror."
+     }
+    ],
+    "solution": "(a) $-1.5\\times10^{-2}\\text{ m}$ (b) $-66.7\\text{ D}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1946589",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "What is the focal length of a makeup mirror that produces a magnification of 1.50 when a person’s face is 12.0 cm away? Explicitly show how you follow the steps in the Problem-Solving Strategy for Mirrors.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.36,
+    "unit": "m",
+    "hint": "Find the image distance from the magnification first, remembering that an upright, enlarged image in a makeup mirror is virtual, then use the thin lens equation.",
+    "solution": "+0.360 m (concave)"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1777792",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "An object 1.50 cm high is held 3.00 cm from a person’s cornea, and its reflected image is measured to be 0.167 cm high. (a) What is the magnification? (b) Where is the image? (c) Find the radius of curvature of the convex mirror formed by the cornea. (Note that this technique is used by optometrists to measure the curvature of the cornea for contact lens fitting. The instrument used is called a keratometer, or curve measurer.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.111,
+      "hint": "The magnification is the ratio of the image height to the object height, and the image in a convex mirror is upright."
+     },
+     {
+      "part": "(b)",
+      "value": -0.334,
+      "unit": "cm",
+      "hint": "The magnification is also minus the image distance over the object distance."
+     },
+     {
+      "part": "(c)",
+      "value": 0.752,
+      "unit": "cm",
+      "hint": "Find the focal length from the thin lens equation, then double its magnitude, as in Example 25.11."
+     }
+    ],
+    "solution": "(a) +0.111 (b) −0.334 cm (behind “mirror”) (c) 0.752 cm"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2725085",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "Show that for a flat mirror $\\khimg = \\khobj$, knowing that the image is a distance behind the mirror equal in magnitude to the distance of the object from the mirror.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$m = \\frac{\\khimg}{\\khobj} = -\\frac{\\kdimg}{\\kdobj} = -\\frac{-\\kdobj}{\\kdobj} = \\frac{\\kdobj}{\\kdobj} = 1 \\Rightarrow \\khimg = \\khobj$$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2681152",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "Referring to the electric room heater considered in the first example in this section, calculate the intensity of IR radiation in $\\text{W/m}^2$ projected by the concave mirror on a person 3.00 m away. Assume that the heating element radiates 1500 W and has an area of $100\\text{ cm}^2$, and that half of the radiated power is reflected and focused by the mirror.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.82,
+    "unit": "kW/m²",
+    "hint": "Find the magnification of the heater in Example 25.9; the image of the element has an area larger by the square of the magnification, and half the power falls on that area.",
+    "solution": "6.82 kW/m²"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "converging-and-diverging-mirrors"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "converging-and-diverging-mirrors"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "ray-tracing-rules-for-mirrors"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "law-of-reflection"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "real-and-virtual-images"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "real-and-virtual-images"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "real-and-virtual-images"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "thin-lens-equation"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "focal-point-and-focal-length"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "ray-tracing-rules-for-mirrors"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "law-of-reflection"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "law-of-reflection"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "mirrors-and-lenses-are-analogous"
+  },
+  {
+   "exercise": "p1",
+   "concept": "power-of-a-lens"
+  },
+  {
+   "exercise": "p1",
+   "concept": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "exercise": "p2",
+   "concept": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "exercise": "p2",
+   "concept": "converging-and-diverging-mirrors"
+  },
+  {
+   "exercise": "p2",
+   "concept": "power-of-a-lens"
+  },
+  {
+   "exercise": "p3",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "p3",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "p4",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "p4",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "p4",
+   "concept": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "exercise": "p5",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "p5",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "p6",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "p6",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "p6",
+   "concept": "intensity"
+  }
+ ]
+}

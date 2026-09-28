@@ -1,0 +1,842 @@
+{
+ "types": [
+  {
+   "id": "activity",
+   "label": "activity",
+   "dimension": "Bq"
+  },
+  {
+   "id": "decay-constant",
+   "label": "decay constant",
+   "dimension": "1/s"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "t_half",
+   "latex": "t_{1/2}",
+   "type": "time",
+   "macro": "\\kthalf"
+  },
+  {
+   "sym": "λ_dec",
+   "latex": "\\lambda",
+   "type": "decay-constant",
+   "macro": "\\klamdec"
+  },
+  {
+   "sym": "R_act",
+   "latex": "R",
+   "type": "activity",
+   "macro": "\\kRact"
+  },
+  {
+   "sym": "R_0act",
+   "latex": "R_0",
+   "type": "activity",
+   "macro": "\\kRoact"
+  },
+  {
+   "sym": "N_0nuc",
+   "latex": "N_0"
+  },
+  {
+   "sym": "ΔN",
+   "latex": "\\Delta N"
+  },
+  {
+   "sym": "N_neut",
+   "latex": "N"
+  },
+  {
+   "sym": "A_nuc",
+   "latex": "A"
+  },
+  {
+   "sym": "BE",
+   "latex": "\\text{BE}",
+   "type": "energy",
+   "macro": "\\kBE"
+  },
+  {
+   "sym": "r_nuc",
+   "latex": "r",
+   "type": "position",
+   "macro": "\\krnuc"
+  },
+  {
+   "sym": "r_0nuc",
+   "latex": "r_0",
+   "type": "position",
+   "macro": "\\kronuc"
+  },
+  {
+   "sym": "m_n",
+   "latex": "m_{\\text{n}}"
+  },
+  {
+   "sym": "m_tot",
+   "latex": "m_{\\text{tot}}"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "nuclear-radioactivity",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "Radioactivity, the spontaneous emission of rays by unstable nuclei",
+   "why": "Everything in this chapter starts from one observation: some nuclei spontaneously decay, destroying a small part of their mass and emitting energetic rays. The reader should be able to say what radioactivity is, what the rays are called and what it means for a nucleus to decay, since every later section describes one aspect of that event.",
+   "evidence": "The book tells how Becquerel found that pitchblende emits invisible, penetrating rays continuously without any energy input, and defines radioactivity as the emission of these rays, nuclear radiation as the rays themselves, and decay as a nucleus spontaneously destroying part of its mass to emit radiation."
+  },
+  {
+   "id": "radiation-is-nuclear-in-origin",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "Two kinds of evidence that the rays come from the nucleus",
+   "why": "The rays could have come from the electrons, as atomic spectra do, and the book shows why they cannot. The radiation does not vary with chemical state, temperature, pressure or ionization, all of which affect electrons, and each event carries energies of the order of a million electron volts, far beyond atomic energies of a few eV. Knowing this argument is what lets the reader treat the nucleus as a separate world.",
+   "evidence": "The book gives the two types of experimental evidence in turn and states that nuclear radiation has energies of the order of $10^{6}$ eV per event, more than ten times as high as the most energetic characteristic x rays. A conceptual question asks exactly which characteristics show radioactivity to be nuclear and not atomic."
+  },
+  {
+   "id": "alpha-beta-gamma-rays",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "Alpha, beta and gamma rays: a helium nucleus, an electron and a photon",
+   "why": "The three kinds of nuclear radiation were named before anyone knew what they were, and the reader must know what each one is. A magnetic field bends alphas and betas in opposite directions and leaves gammas alone, which shows their charges, and later work showed that an alpha is a helium nucleus, a beta is an electron created at the instant of decay, and a gamma is a high-energy photon from a nucleus.",
+   "evidence": "Figure 31.3 shows the three rays passed through a magnetic field, with the alphas and betas bending in opposite directions and the gammas unaffected. The book states in italics that alpha radiation is the emission of a helium nucleus, beta radiation is the emission of an electron and gamma radiation is the emission of a high-energy photon by a nucleus."
+  },
+  {
+   "id": "ionizing-radiation",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "Ionizing radiation, and why its effects and detection follow from ionization",
+   "why": "Nuclear decays emit from a few keV to more than 10 MeV per event, while only a few eV are needed to ionize an atom. That is why nuclear radiation and x rays damage tissue and electronics and why every detector in 31.2 works: all of it comes from the ionization the radiation produces. The reader should see ionization as the one mechanism behind both the harm and the measurement.",
+   "evidence": "The book defines ionizing radiation as any form of radiation that produces ionization, whether nuclear in origin or not, since the effects and detection of the radiation are related to ionization, and gives the electroscope dosimeter of Figure 31.4 as an example of a detector that is discharged by the ionized air."
+  },
+  {
+   "id": "range-of-radiation",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "The range of radiation, and how it depends on energy, material and type",
+   "why": "The range is the distance radiation travels through a material, and the book explains it from how radiation loses energy. Higher energy means more ionizations before it stops, so a greater range; a material dense in electrons takes energy faster, so a smaller range; and at the same energy alphas stop first, betas go farther and gammas farthest, because a greater charge and a lower speed make a particle ionize more readily. This is the reasoning behind every shield.",
+   "evidence": "Figure 31.5 draws the three dependences, and Table 31.1 gives the ranges: a sheet of paper for alphas, a thin aluminum plate for betas and several centimeters of lead for gammas. The book adds that gammas have no well-defined range, since each thickness absorbs the same fraction of what reaches it."
+  },
+  {
+   "id": "ionization-energy-to-count",
+   "kind": "skill",
+   "section": "31.2",
+   "name": "Counting the ion pairs a particle can create from the energy it deposits",
+   "why": "A detector counts ionization, and the number of ion pairs a particle can make is the energy it deposits divided by the energy needed for each pair. This one division connects the MeV energies of nuclear radiation to the tens of eV of an ionization and shows why a single particle can be detected at all.",
+   "evidence": "The section's keyed problem gives 30.0 eV per ion pair in the gas of a Geiger tube and asks for the maximum number of ion pairs a 0.500-MeV particle can create, with the answer $1.67\\times10^{4}$."
+  },
+  {
+   "id": "radiation-detection-by-ionization",
+   "kind": "idea",
+   "section": "31.2",
+   "name": "Radiation detectors work directly or indirectly by the ionization radiation creates",
+   "why": "Ionizing radiation does not trigger nerve impulses, so we cannot sense it, and instruments must do it for us. Every detector in the section, from photographic film to a semiconductor, turns the ionization or excitation that radiation produces into something that can be seen or measured.",
+   "evidence": "The section opens by noting that radiation poisoning victims never felt the radiation directly, and its summary states that radiation detectors are based directly or indirectly upon the ionization created by radiation. Film badges (Figure 31.7) are the first example."
+  },
+  {
+   "id": "geiger-tube",
+   "kind": "idea",
+   "section": "31.2",
+   "name": "The Geiger tube counts the current of ion pairs radiation produces in a gas",
+   "why": "The Geiger tube is the most familiar detector, and its principle is simple: a voltage between a cylinder and a wire along its axis sweeps up the ion pairs radiation creates in the gas, and the brief current is registered as a count. The reader should also know what a count does not say, namely the energy, charge or type of the radiation.",
+   "evidence": "Figure 31.8(b) shows the tube schematically, and the book says that the word count implies there is no information on energy, charge or type of radiation with a simple Geiger counter, though it gives a prompt output that reveals the existence and relative intensity of ionizing radiation."
+  },
+  {
+   "id": "scintillator-and-photomultiplier",
+   "kind": "idea",
+   "section": "31.2",
+   "name": "Scintillators turn radiation into light, and photomultipliers turn the light into a current",
+   "why": "A second family of detectors records light instead of charge. A scintillator converts the energy of radiation into brief flashes of light, and a photomultiplier multiplies the photoelectrons from each flash at a series of dynodes into a measurable current proportional to the energy deposited. Because the output is proportional, these detectors can tell energy, charge and type as a Geiger tube cannot.",
+   "evidence": "The book describes both devices, and Figure 31.9 shows how each successive dynode has a more positive potential than the last, attracts the ejected electrons and multiplies their number. The section's conceptual question asks whether scintillator light can be too low in frequency for a photomultiplier."
+  },
+  {
+   "id": "solid-state-detector",
+   "kind": "idea",
+   "section": "31.2",
+   "name": "Solid-state detectors convert ionization in a semiconductor directly into a signal",
+   "why": "A semiconductor built to conduct only when ionization frees charge in it acts like a solid Geiger tube, and because it is solid it stops radiation in a short distance and misses few particles. The current is closely related to the energy deposited, so these detectors give sophisticated information as scintillators do.",
+   "evidence": "The book states that solid-state radiation detectors convert ionization produced in a semiconductor directly into an electrical signal, that current flows only when ionization is produced by radiation, and that the detector can have a high efficiency since ionizing radiation is stopped in a shorter distance in solids."
+  },
+  {
+   "id": "nucleons",
+   "kind": "idea",
+   "section": "31.3",
+   "name": "Nuclei are made of protons and neutrons, the nucleons",
+   "why": "A nucleus has two kinds of particles in it, the positive proton and the neutral neutron, with nearly the same mass and both far heavier than an electron. Every property of a nucleus is set by how many of each it has, so this is the first thing the reader must hold.",
+   "evidence": "The book states that there are two types of particles in the nuclei, the proton and the neutron, referred to collectively as nucleons, and Table 31.2 compares their masses with the electron's, giving $m_{\\text{p}} = 1836 m_{\\text{e}}$ and $m_{\\text{n}} = 1839 m_{\\text{e}}$."
+  },
+  {
+   "id": "atomic-mass-unit",
+   "kind": "result",
+   "section": "31.3",
+   "name": "The unified atomic mass unit and masses in MeV/$c^{2}$",
+   "why": "Nuclear masses are awkward in kilograms, so the book introduces two better units. The unified atomic mass unit is defined so that a neutral $^{12}$C atom has a mass of exactly 12 u, and a mass in MeV/$c^{2}$ turns into an energy in MeV the moment it is multiplied by $c^{2}$. With 1 u equal to 931.5 MeV/$c^{2}$ the reader can move between mass and energy in one step, which every energy calculation of the chapter needs.",
+   "evidence": "The book gives $1\\;\\text{u} = 1.6605\\times10^{-27}\\;\\text{kg}$ and $1\\;\\text{u} = 931.5\\;\\text{MeV}/c^{2}$, and works the rest mass of a proton into 938.27 MeV as its example.",
+   "eq": "eq-atomic-mass-unit"
+  },
+  {
+   "id": "nuclide-notation",
+   "kind": "skill",
+   "section": "31.3",
+   "name": "Writing and reading a nuclide as ${}^{A}_{Z}\\text{X}_{N}$, with $A = N + Z$",
+   "why": "A nuclide is a specific combination of protons and neutrons, and the chapter writes every one of them in the same notation: the mass number $A$ above, the atomic number $Z$ below, the element symbol, and the neutron number $N$ after it. The reader must be able to find any one of these from the others, since every decay equation in 31.4 is written this way.",
+   "evidence": "The book defines $Z$ as the number of protons, $N$ as the number of neutrons and $A = N + Z$ as the mass number, notes that $Z$ and X are redundant, and works $^{238}$U into $Z = 92$ and $N = 146$. The simpler notation $^{A}$X is read backward, as uranium-238.",
+   "eq": "eq-mass-number"
+  },
+  {
+   "id": "isotopes",
+   "kind": "idea",
+   "section": "31.3",
+   "name": "Isotopes, nuclei with the same $Z$ and different $N$",
+   "why": "Hydrogen, deuterium and tritium have nearly identical chemistries but very different nuclei, and the name for such a family is isotopes. The reader should know that the chemistry follows $Z$ while the mass and the stability follow the whole nucleus.",
+   "evidence": "The book defines isotopes as nuclei having the same $Z$ and different $N$s, and uses the three forms of hydrogen, $^{1}$H, $^{2}$H and $^{3}$H, as its example. A conceptual question asks why different isotopes of the same element have similar chemistries."
+  },
+  {
+   "id": "nuclear-radius",
+   "kind": "result",
+   "section": "31.3",
+   "name": "The radius of a nucleus, $r = r_0 A^{1/3}$",
+   "why": "The radius of a nucleus grows as the cube root of the number of nucleons in it, so its volume is proportional to $A$. That is what happens if nucleons are packed so closely that there is no empty space between them, and it is the most compelling evidence that a nucleus is a tightly packed ball.",
+   "evidence": "The book states $r = r_0 A^{1/3}$ with $r_0 = 1.2$ fm, notes that $r^{3} \\propto A$ and therefore $V \\propto A$, and shows the packed ball in Figure 31.11. Example 31.1 finds the radius of $^{56}$Fe to be 4.6 fm.",
+   "eq": "eq-nuclear-radius"
+  },
+  {
+   "id": "nuclear-density",
+   "kind": "skill",
+   "section": "31.3",
+   "name": "Finding the density of nuclear matter",
+   "why": "Since every nucleus is packed the same way, every nucleus has about the same density, and that density is almost beyond belief: about $2\\times10^{14}$ times that of water. Calculating it from $r = r_0 A^{1/3}$ and a mass of $A$ u makes the reader feel how small and how heavy the nucleus is.",
+   "evidence": "Example 31.1 finds the density of $^{56}$Fe to be $2.3\\times10^{17}\\;\\text{kg/m}^{3}$ and remarks that one cubic meter of nuclear matter has the same mass as a cube of water 61 km on a side."
+  },
+  {
+   "id": "strong-and-weak-nuclear-forces",
+   "kind": "idea",
+   "section": "31.3",
+   "name": "The strong and weak nuclear forces, short ranged and much stronger than the Coulomb force",
+   "why": "The protons of a nucleus repel each other enormously, and something must hold them together. The answer is two previously unknown forces: the strong nuclear force, about 100 times more attractive than the electromagnetic repulsion but falling to zero within a few fm, and the weak nuclear force. Their strength is why nuclear decay energies are so large, and the two kinds of decay they cause are how we know there are two of them.",
+   "evidence": "The book states that the strong nuclear force is about 100 times more attractive than the repulsive EM force, that nuclear forces fall to zero strength when nucleons are separated by only a few fm, and that the strong force is responsible for $\\alpha$ decay while the weak force is responsible for $\\beta$ decay. The section's AP item asks what prevents a carbon nucleus from dismantling itself."
+  },
+  {
+   "id": "chart-of-the-nuclides",
+   "kind": "idea",
+   "section": "31.3",
+   "name": "The chart of the nuclides and the pattern of stable nuclei",
+   "why": "Plotting every known nuclide by $N$ against $Z$ shows where stable nuclei lie: near $N = Z$ for light nuclei and with progressively more neutrons than protons for heavier ones, since extra neutrons keep the protons apart without adding Coulomb repulsion. Nuclei off this band decay toward it, so the chart is the map on which every decay of 31.4 moves.",
+   "evidence": "Figure 31.12 is a simplified chart of the nuclides, and the book says that for low-mass nuclei there is a strong tendency for $N$ and $Z$ to be nearly equal, that heavier stable nuclei have progressively more neutrons, and that decay modes of nuclides out of the region of stability consistently produce nuclides closer to it."
+  },
+  {
+   "id": "magic-numbers",
+   "kind": "idea",
+   "section": "31.3",
+   "name": "Magic numbers and the shell structure of the nucleus",
+   "why": "Nuclei with certain numbers of protons or neutrons are unusually stable, which means the nucleus has shells as the atom does and closed shells are more stable. The idea returns in 31.6, where closed-shell nuclei appear as spikes on the binding energy curve.",
+   "evidence": "The book states that there are more stable nuclei having certain numbers of protons and neutrons, called magic numbers, that these indicate a shell structure for the nucleus in which closed shells are more stable, and credits the shell model to Maria Goeppert Mayer (Figure 31.13)."
+  },
+  {
+   "id": "parent-daughter-decay-series",
+   "kind": "idea",
+   "section": "31.4",
+   "name": "Parent and daughter nuclides, and a decay series",
+   "why": "A decay turns a parent nuclide into a daughter, and a daughter may itself be unstable, so some parents start a whole series of decays that ends only at a stable nuclide. The $^{238}$U series is the one to know, since it produces the radium and polonium the Curies found and the radon that seeps from soil, and ends at $^{206}$Pb.",
+   "evidence": "The book defines the parent and the daughters, gives $^{60}$Co decaying directly to stable $^{60}$Ni as a single-step example, and draws the $^{238}$U decay series in Figure 31.14, noting that some nuclides decay by more than one mode and that a stable isotope of lead is the end product."
+  },
+  {
+   "id": "alpha-decay",
+   "kind": "skill",
+   "section": "31.4",
+   "name": "Writing an $\\alpha$ decay equation: $Z$ and $N$ each fall by 2",
+   "why": "In $\\alpha$ decay a $^{4}$He nucleus simply breaks away, leaving a daughter with two fewer protons and two fewer neutrons. With the general rule the reader can write the decay of any $\\alpha$ emitter by finding the element two places lower in the periodic table and subtracting four from the mass number.",
+   "evidence": "The book gives the general rule ${}^{A}_{Z}\\text{X}_{N} \\to {}^{A-4}_{Z-2}\\text{Y}_{N-2} + {}^{4}_{2}\\text{He}_{2}$ and the examples $^{238}$U to $^{234}$Th and $^{239}$Pu to $^{235}$U; several of the section's problems ask for complete $\\alpha$ decay equations.",
+   "eq": "eq-alpha-decay"
+  },
+  {
+   "id": "nuclear-reaction-energy",
+   "kind": "result",
+   "section": "31.4",
+   "name": "The energy of a nuclear reaction, $E = (\\Delta m)c^{2}$",
+   "why": "The energy released in a decay comes from the mass destroyed in it. When the products have less total mass than the parent the reaction releases energy and can happen spontaneously; when they have more, energy must be put in. This one relation tells the reader both whether a decay can happen and how much energy it gives.",
+   "evidence": "The book states $E = (\\Delta m)c^{2}$, where $\\Delta m$ is the difference in mass between initial and final products, and says that for $\\alpha$ decay to be spontaneous the decay products must have smaller mass than the parent.",
+   "eq": "eq-nuclear-reaction-energy"
+  },
+  {
+   "id": "decay-energy-from-atomic-masses",
+   "kind": "skill",
+   "section": "31.4",
+   "name": "Finding a decay energy from atomic masses, counting the electrons",
+   "why": "The masses in the tables are those of neutral atoms, so the electrons must be counted. In $\\alpha$ and $\\beta^{-}$ decay they balance and the atomic masses can be subtracted directly, while in $\\beta^{+}$ decay two electron masses must be subtracted as well. With that care the reader can find the energy of any decay in MeV.",
+   "evidence": "Example 31.2 finds 5.25 MeV for the $\\alpha$ decay of $^{239}$Pu and Example 31.3 finds 2.82 MeV for the $\\beta^{-}$ decay of $^{60}$Co, and the book gives $\\Delta m = m(\\text{parent}) - [m(\\text{daughter}) + 2m_{\\text{e}}]$ for $\\beta^{+}$ decay.",
+   "eq": "eq-beta-plus-mass-difference"
+  },
+  {
+   "id": "beta-minus-decay-and-the-neutrino",
+   "kind": "skill",
+   "section": "31.4",
+   "name": "$\\beta^{-}$ decay and the neutrino it requires",
+   "why": "In $\\beta^{-}$ decay a neutron in the nucleus becomes a proton, and an electron and an electron's antineutrino are created and emitted. The antineutrino was invented to save three conservation laws: without it, energy, linear momentum and angular momentum would not balance. The reader should be able to write the decay and say why the neutrino must be there.",
+   "evidence": "The book gives ${}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z+1}\\text{Y}_{N-1} + \\beta^{-} + \\bar{\\nu}_{e}$, the decay of $^{60}$Co as its example, and the story of Pauli's proposal and Fermi's theory, noting that either a previously unsuspected particle was carrying energy and momentum away or three conservation laws were being violated.",
+   "eq": "eq-beta-minus-decay"
+  },
+  {
+   "id": "beta-plus-decay-and-electron-capture",
+   "kind": "skill",
+   "section": "31.4",
+   "name": "$\\beta^{+}$ decay and electron capture",
+   "why": "Nuclei with too many protons for stability lower $Z$ by one, either by emitting a positron and an electron's neutrino or by capturing one of their own inner electrons. The two have the same effect on the nucleus, and any nuclide that can do one can do the other. With the $\\beta^{-}$ rule these complete the three types of beta decay.",
+   "evidence": "The book gives ${}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\beta^{+} + \\nu_{e}$ with $^{22}$Na as its example, and the electron capture equation ${}^{A}_{Z}\\text{X}_{N} + e^{-} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\nu_{e}$, and says that any nuclide that can $\\beta^{+}$ decay can also undergo electron capture.",
+   "eq": "eq-beta-plus-decay"
+  },
+  {
+   "id": "conservation-of-electron-family-number",
+   "kind": "idea",
+   "section": "31.4",
+   "name": "Conservation of electron family number, and antimatter",
+   "why": "Beta decay revealed a conservation law no earlier chapter needed: the total number of members of the electron family is constant. Electrons and electron's neutrinos count $+1$, their antimatter partners count $-1$, and so an electron can never be created without an antimatter family member. It works for the electron family as conservation of charge works when the total charge starts at zero.",
+   "evidence": "The book states that the total electron family number is constant and that an electron cannot be created without also creating an antimatter family member, and it introduces antimatter as particles nearly identical to their counterparts but with the opposite charge. A conceptual question asks which conservation law requires the neutrino in electron capture."
+  },
+  {
+   "id": "conservation-of-nucleon-number",
+   "kind": "idea",
+   "section": "31.4",
+   "name": "Conservation of the total number of nucleons, with conservation of charge",
+   "why": "In every decay the total number of nucleons $A$ is the same before and after, even when protons turn into neutrons or the reverse, and total charge is conserved as always. These two counts are the quickest test of whether a proposed reaction can happen at all, and they let the reader fill in a missing particle.",
+   "evidence": "The book states in italics that the total number of nucleons $A$ is conserved, checks it and the charge for the $^{60}$Co decay, and notes that $Z$ and $N$ separately are not conserved in $\\beta^{-}$ decay. The section's AP items ask which reactions are possible and which particle is missing."
+  },
+  {
+   "id": "gamma-decay",
+   "kind": "idea",
+   "section": "31.4",
+   "name": "$\\gamma$ decay, the emission of photons by an excited nucleus",
+   "why": "A nucleus left in an excited state by an earlier decay falls to lower levels by emitting photons, just as an excited atom does, but with MeV energies. $\\gamma$ decay does not change the nuclide, which is why it does not appear on a decay-series chart, and it is the source of the cobalt $\\gamma$ rays used in cancer therapy.",
+   "evidence": "The book gives ${}^{A}_{Z}\\text{X}^{*}_{N} \\to {}^{A}_{Z}\\text{X}_{N} + \\gamma_{1} + \\gamma_{2} + \\cdots$ and the example of $^{60}$Ni$^{*}$ emitting two $\\gamma$s after the $\\beta^{-}$ decay of $^{60}$Co, noting that nuclear excited states have lifetimes of only about $10^{-14}$ s.",
+   "eq": "eq-gamma-decay"
+  },
+  {
+   "id": "half-life",
+   "kind": "idea",
+   "section": "31.5",
+   "name": "Half-life, the time in which each nucleus has a 50% chance of decaying",
+   "why": "Radioactive decay is purely statistical. Each nucleus has a 50% chance of surviving one half-life, whatever its history, so a large sample falls to half in one half-life, to a quarter in the next and so on, and many half-lives pass before all of it is gone. The reader should see why the book speaks of a half-life and not a lifetime.",
+   "evidence": "The book defines the half-life as the time in which half of the original number of nuclei decay, and more precisely as the time for which each nucleus has a 50% chance of living, comparing it with coin flipping. Figure 31.19 shows the number of nuclei falling by half in each half-life."
+  },
+  {
+   "id": "exponential-decay-law",
+   "kind": "result",
+   "section": "31.5",
+   "name": "The number of nuclei left, $N = N_0 e^{-\\lambda t}$",
+   "why": "The halving in each half-life is an exponential decay, and the exponential form lets the reader find the number of nuclei left at any time, not only after whole half-lives. For whole half-lives dividing by two again and again gives the same answer, which is the check on the formula.",
+   "evidence": "The book states $N = N_0 e^{-\\lambda t}$, shows that $t = t_{1/2}$ gives $N = 0.500 N_0$, and notes that ten half-lives reduce $N$ to $N/1024$.",
+   "eq": "eq-exponential-decay"
+  },
+  {
+   "id": "decay-constant",
+   "kind": "result",
+   "section": "31.5",
+   "name": "The decay constant, $\\lambda = 0.693/t_{1/2}$",
+   "why": "The decay constant sets how fast the exponential falls, and it is tied to the half-life by one relation: the shorter the half-life, the larger $\\lambda$. The reader needs it to move between the half-life a table gives and the exponent in the decay law.",
+   "evidence": "The book states $\\lambda = \\ln(2)/t_{1/2} \\approx 0.693/t_{1/2}$ and uses it in Example 31.4 with the 5730-y half-life of $^{14}$C.",
+   "eq": "eq-decay-constant"
+  },
+  {
+   "id": "radioactive-dating",
+   "kind": "skill",
+   "section": "31.5",
+   "name": "Dating an object from the fraction of a radioactive nuclide left in it",
+   "why": "If the starting abundance of a radioactive nuclide is known, the fraction left gives the time since the clock started. Carbon-14 dating uses the fixed abundance in living tissue and works back to 50 or 60 thousand years, and $^{238}$U dating reaches billions of years. The reader should be able to take $N/N_0$ and a half-life and find an age.",
+   "evidence": "The book explains carbon-14 dating, and Example 31.4 dates the Shroud of Turin from its 92% of the living abundance of $^{14}$C to about 690 years before 1988; it also describes dating rocks by the $^{238}$U to $^{206}$Pb ratio."
+  },
+  {
+   "id": "activity",
+   "kind": "result",
+   "section": "31.5",
+   "name": "Activity, the rate of decay $R = \\Delta N/\\Delta t$, in becquerels and curies",
+   "why": "What we mean by a source being highly radioactive is that its number of decays per unit time is high. That rate is the activity, measured in becquerels (one decay per second) or in curies, the activity of a gram of radium. The reader should know both units and how far apart they are.",
+   "evidence": "The book defines $R = \\Delta N/\\Delta t$, $1\\;\\text{Bq} = 1\\;\\text{decay/s}$ and $1\\;\\text{Ci} = 3.70\\times10^{10}\\;\\text{Bq}$, and notes that a curie is a large unit while a becquerel is a small one.",
+   "eq": "eq-activity-definition"
+  },
+  {
+   "id": "activity-from-number-and-half-life",
+   "kind": "result",
+   "section": "31.5",
+   "name": "The activity of a source, $R = 0.693N/t_{1/2}$",
+   "why": "Intuition says the activity should grow with the number of radioactive nuclei and fall with their half-life, and it does. This relation, with moles and Avogadro's number to find $N$, answers most of the section's problems, from the activity of the carbon in living tissue to the mass of cesium released at Chernobyl.",
+   "evidence": "The book states $R = 0.693N/t_{1/2}$, and Examples 31.5 and 31.6 use it to find 250 Bq for 1.00 kg of carbon in living tissue and 70 kg of $^{137}$Cs from 6.0 MCi.",
+   "eq": "eq-activity-number-half-life"
+  },
+  {
+   "id": "activity-decays-exponentially",
+   "kind": "result",
+   "section": "31.5",
+   "name": "Activity falls exponentially too, $R = R_0 e^{-\\lambda t}$",
+   "why": "Since activity is proportional to the number of nuclei, it falls by half in each half-life along with them. A source labeled with its activity on the day it was made is weaker on every later day, and the reader should be able to say by how much.",
+   "evidence": "The book combines $N = N_0 e^{-\\lambda t}$ with $R = 0.693N/t_{1/2}$ to give $R = R_0 e^{-\\lambda t}$, with the example of a 1.00-mCi source falling to 0.500, 0.250 and 0.125 mCi in successive half-lives.",
+   "eq": "eq-activity-exponential"
+  },
+  {
+   "id": "binding-energy",
+   "kind": "idea",
+   "section": "31.6",
+   "name": "Binding energy, the energy needed to take a nucleus completely apart",
+   "why": "The more tightly a system is bound, the more energy it takes to pull it apart, so the binding energy measures the nuclear forces themselves. It is defined as the energy required to completely disassemble a nucleus into separate protons and neutrons, and it is where the energy of every nuclear reaction ultimately comes from.",
+   "evidence": "The book defines the binding energy (BE) of a nucleus as the energy required to completely disassemble it into separate protons and neutrons, and Figure 31.22 shows the work done to pull a nucleus apart."
+  },
+  {
+   "id": "mass-defect",
+   "kind": "idea",
+   "section": "31.6",
+   "name": "The mass defect: a bound nucleus has less mass than its separate nucleons",
+   "why": "Pulling a nucleus apart puts energy in, and that energy appears as extra rest mass of the separated pieces. So a nucleus has less mass than its protons and neutrons would have apart, by $\\text{BE}/c^{2}$. This is why the products of a spontaneous decay have less mass than the parent.",
+   "evidence": "The book says that the energy put into the pieces increases their total rest mass compared with what it was when they were glued together as a nucleus, that the mass increase is $\\Delta m = \\text{BE}/c^{2}$ and that this difference is known as mass defect, and writes $\\Delta m = (Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}$.",
+   "eq": "eq-mass-defect"
+  },
+  {
+   "id": "binding-energy-from-atomic-masses",
+   "kind": "skill",
+   "section": "31.6",
+   "name": "Calculating BE and BE/$A$ from atomic masses",
+   "why": "With atomic masses from the tables, the binding energy is $Z$ hydrogen atoms and $N$ neutrons less the atom, times $c^{2}$, and dividing by $A$ gives the binding energy per nucleon. This is the calculation behind every point on the curve, and the section's problems ask it for nuclei from deuterium to uranium.",
+   "evidence": "The book gives $\\text{BE} = \\{[Zm({}^{1}\\text{H}) + Nm_{\\text{n}}] - m({}^{A}\\text{X})\\}c^{2}$, and Example 31.7 finds 28.3 MeV and 7.07 MeV/nucleon for $^{4}$He.",
+   "eq": "eq-binding-energy"
+  },
+  {
+   "id": "binding-energy-per-nucleon-curve",
+   "kind": "idea",
+   "section": "31.6",
+   "name": "The binding energy per nucleon peaks near $A = 60$",
+   "why": "The curve of BE/$A$ against $A$ averages about 8 MeV, rises steeply for light nuclei, peaks near iron and falls slowly for heavy ones, with spikes at especially tightly bound nuclei such as $^{4}$He. The larger the BE/$A$, the more stable the nucleus, so this one curve says which nuclei are stable, why $\\alpha$ decay happens and, in the next chapter, where fission and fusion get their energy.",
+   "evidence": "Figure 31.24 is the graph of BE/$A$ for stable nuclei, and the book says that nuclei with $A$ equal to about 60 have the greatest BE/$A$ and are thus the most tightly bound, and that the spikes indicate shell closures."
+  },
+  {
+   "id": "short-range-nuclear-force-and-coulomb-repulsion",
+   "kind": "idea",
+   "section": "31.6",
+   "name": "Why BE/$A$ falls for heavy nuclei: short-ranged attraction against long-ranged repulsion",
+   "why": "The shape of the curve comes from two facts about the forces. The nuclear force is strong but short ranged, so beyond about $A = 60$ a new nucleon feels only its neighbors, while the Coulomb repulsion reaches every proton. Coulomb repulsion grows as nuclei get heavier and nuclear attraction does not, so BE/$A$ falls, and heavy stable nuclei carry extra neutrons to keep their protons apart.",
+   "evidence": "The book explains the trend in these terms, and Figure 31.25 shows the range of the nuclear force for a single nucleon as smaller than a large nucleus while the Coulomb repulsion from all protons reaches all others. A conceptual question asks why stable nuclei with $A$ greater than about 40 have more neutrons than protons."
+  },
+  {
+   "id": "bound-in-a-potential-well",
+   "kind": "idea",
+   "section": "31.7",
+   "name": "A particle bound in a well cannot, classically, get over the rim",
+   "why": "Nucleons are bound in the nucleus as a marble is in a bowl: they move about but lack the energy to get over the rim, and outside the rim an $\\alpha$ would be pushed away by the Coulomb repulsion. Classically such a particle stays trapped forever, which makes $\\alpha$ decay a puzzle the reader should feel before the answer is given.",
+   "evidence": "Figure 31.26 shows the marble in a bowl atop a volcano, and Figure 31.27 the simplified nuclear potential with the $\\alpha$ inside it; the book says the nucleons have kinetic energy about 8 MeV less than that needed to get out."
+  },
+  {
+   "id": "quantum-tunneling",
+   "kind": "idea",
+   "section": "31.7",
+   "name": "Quantum mechanical tunneling through a potential barrier",
+   "why": "A quantum particle's wave function does not stop at a barrier but decreases exponentially inside it, so a small part of it reaches the other side, and the particle has a small probability of being found there. It goes from one side to the other without ever being in between. The thinner the barrier, the greater the chance, which is why tunneling is negligible for anything classical.",
+   "evidence": "The book describes the wave function of Figure 31.28 varying smoothly through the barrier, decreasing exponentially inside it and becoming small but finite outside, and calls the process barrier penetration or quantum mechanical tunneling. A conceptual question asks why a student's chance of tunneling out of a cell is negligible."
+  },
+  {
+   "id": "alpha-decay-by-tunneling",
+   "kind": "idea",
+   "section": "31.7",
+   "name": "$\\alpha$ decay happens by tunneling, and more energetic $\\alpha$ decays have shorter half-lives",
+   "why": "Gamow's answer to the puzzle is that the $\\alpha$ tunnels out. The theory explains more than that it can escape: a more energetic $\\alpha$ sits closer to the rim, meets a thinner barrier and escapes more readily, so its half-life is shorter, across 17 orders of magnitude.",
+   "evidence": "The book states that the $\\alpha$ particle tunnels through a region of space it is forbidden to be in, that the detailed theory explains quantitatively the half-lives of $\\alpha$ decay varying by 17 orders of magnitude, and that the more energetic the $\\alpha$ decay of a nuclide, the shorter its half-life."
+  },
+  {
+   "id": "scanning-tunneling-microscope",
+   "kind": "idea",
+   "section": "31.7",
+   "name": "Electrons tunnel between a probe and a surface in a scanning tunneling microscope",
+   "why": "Tunneling is not only nuclear. Electrons can tunnel across a thin gap between two objects, and because the probability is extremely sensitive to the thickness, the current between a probe and a surface reveals surface features as small as single atoms.",
+   "evidence": "The book says that scanning tunneling electron microscopes function on this principle, and Figure 31.29(a) shows the probe traveling over the surface, the barrier thinner over a hill and thicker over a hollow."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "nuclear-radioactivity",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "nuclear-radioactivity",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "radiation-is-nuclear-in-origin",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "radiation-is-nuclear-in-origin",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "force-reverses-with-sign-of-charge"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "ionizing-radiation",
+   "prereq": "alpha-beta-gamma-rays"
+  },
+  {
+   "concept": "ionizing-radiation",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "ionizing-radiation",
+   "prereq": "radiation-and-living-tissue"
+  },
+  {
+   "concept": "range-of-radiation",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "range-of-radiation",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "range-of-radiation",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "range-of-radiation",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "radiation-detection-by-ionization",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "ionization-energy-to-count",
+   "prereq": "radiation-detection-by-ionization"
+  },
+  {
+   "concept": "ionization-energy-to-count",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "geiger-tube",
+   "prereq": "radiation-detection-by-ionization"
+  },
+  {
+   "concept": "geiger-tube",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "scintillator-and-photomultiplier",
+   "prereq": "radiation-detection-by-ionization"
+  },
+  {
+   "concept": "scintillator-and-photomultiplier",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "solid-state-detector",
+   "prereq": "radiation-detection-by-ionization"
+  },
+  {
+   "concept": "solid-state-detector",
+   "prereq": "geiger-tube"
+  },
+  {
+   "concept": "nucleons",
+   "prereq": "alpha-beta-gamma-rays"
+  },
+  {
+   "concept": "nucleons",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "atomic-mass-unit",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "nuclide-notation",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "isotopes",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "nuclear-radius",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "nuclear-density",
+   "prereq": "nuclear-radius"
+  },
+  {
+   "concept": "nuclear-density",
+   "prereq": "atomic-mass-unit"
+  },
+  {
+   "concept": "nuclear-density",
+   "prereq": "density"
+  },
+  {
+   "concept": "strong-and-weak-nuclear-forces",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "strong-and-weak-nuclear-forces",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "strong-and-weak-nuclear-forces",
+   "prereq": "four-basic-forces"
+  },
+  {
+   "concept": "strong-and-weak-nuclear-forces",
+   "prereq": "work"
+  },
+  {
+   "concept": "chart-of-the-nuclides",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "chart-of-the-nuclides",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "magic-numbers",
+   "prereq": "chart-of-the-nuclides"
+  },
+  {
+   "concept": "parent-daughter-decay-series",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "parent-daughter-decay-series",
+   "prereq": "chart-of-the-nuclides"
+  },
+  {
+   "concept": "alpha-decay",
+   "prereq": "parent-daughter-decay-series"
+  },
+  {
+   "concept": "alpha-decay",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "alpha-decay",
+   "prereq": "alpha-beta-gamma-rays"
+  },
+  {
+   "concept": "nuclear-reaction-energy",
+   "prereq": "atomic-mass-unit"
+  },
+  {
+   "concept": "nuclear-reaction-energy",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "nuclear-reaction-energy",
+   "prereq": "alpha-decay"
+  },
+  {
+   "concept": "decay-energy-from-atomic-masses",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "decay-energy-from-atomic-masses",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "decay-energy-from-atomic-masses",
+   "prereq": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "prereq": "parent-daughter-decay-series"
+  },
+  {
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "beta-plus-decay-and-electron-capture",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "beta-plus-decay-and-electron-capture",
+   "prereq": "conservation-of-electron-family-number"
+  },
+  {
+   "concept": "conservation-of-electron-family-number",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "conservation-of-electron-family-number",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "conservation-of-nucleon-number",
+   "prereq": "alpha-decay"
+  },
+  {
+   "concept": "conservation-of-nucleon-number",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "conservation-of-nucleon-number",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "gamma-decay",
+   "prereq": "alpha-beta-gamma-rays"
+  },
+  {
+   "concept": "gamma-decay",
+   "prereq": "parent-daughter-decay-series"
+  },
+  {
+   "concept": "half-life",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "exponential-decay-law",
+   "prereq": "half-life"
+  },
+  {
+   "concept": "decay-constant",
+   "prereq": "exponential-decay-law"
+  },
+  {
+   "concept": "radioactive-dating",
+   "prereq": "exponential-decay-law"
+  },
+  {
+   "concept": "radioactive-dating",
+   "prereq": "decay-constant"
+  },
+  {
+   "concept": "activity",
+   "prereq": "half-life"
+  },
+  {
+   "concept": "activity-from-number-and-half-life",
+   "prereq": "activity"
+  },
+  {
+   "concept": "activity-from-number-and-half-life",
+   "prereq": "decay-constant"
+  },
+  {
+   "concept": "activity-decays-exponentially",
+   "prereq": "activity-from-number-and-half-life"
+  },
+  {
+   "concept": "activity-decays-exponentially",
+   "prereq": "exponential-decay-law"
+  },
+  {
+   "concept": "binding-energy",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "binding-energy",
+   "prereq": "work"
+  },
+  {
+   "concept": "binding-energy",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "mass-defect",
+   "prereq": "binding-energy"
+  },
+  {
+   "concept": "mass-defect",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "binding-energy-from-atomic-masses",
+   "prereq": "mass-defect"
+  },
+  {
+   "concept": "binding-energy-from-atomic-masses",
+   "prereq": "atomic-mass-unit"
+  },
+  {
+   "concept": "binding-energy-from-atomic-masses",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "binding-energy-per-nucleon-curve",
+   "prereq": "binding-energy-from-atomic-masses"
+  },
+  {
+   "concept": "binding-energy-per-nucleon-curve",
+   "prereq": "magic-numbers"
+  },
+  {
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "prereq": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "prereq": "chart-of-the-nuclides"
+  },
+  {
+   "concept": "bound-in-a-potential-well",
+   "prereq": "binding-energy"
+  },
+  {
+   "concept": "bound-in-a-potential-well",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "bound-in-a-potential-well",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "quantum-tunneling",
+   "prereq": "bound-in-a-potential-well"
+  },
+  {
+   "concept": "alpha-decay-by-tunneling",
+   "prereq": "quantum-tunneling"
+  },
+  {
+   "concept": "alpha-decay-by-tunneling",
+   "prereq": "alpha-decay"
+  },
+  {
+   "concept": "alpha-decay-by-tunneling",
+   "prereq": "half-life"
+  },
+  {
+   "concept": "scanning-tunneling-microscope",
+   "prereq": "quantum-tunneling"
+  }
+ ]
+}

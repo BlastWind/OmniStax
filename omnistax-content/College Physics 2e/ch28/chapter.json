@@ -1,0 +1,445 @@
+{
+ "id": "28",
+ "dir": "ch28",
+ "title": "Special Relativity",
+ "intro": {
+  "module": "m42525",
+  "slug": "28-introduction-to-special-relativity"
+ },
+ "sections": [
+  {
+   "id": "28.1",
+   "module": "m42528",
+   "title": "Einstein’s Postulates",
+   "slug": "28-1-einsteins-postulates"
+  },
+  {
+   "id": "28.2",
+   "module": "m42531",
+   "title": "Simultaneity And Time Dilation",
+   "slug": "28-2-simultaneity-and-time-dilation"
+  },
+  {
+   "id": "28.3",
+   "module": "m42535",
+   "title": "Length Contraction",
+   "slug": "28-3-length-contraction"
+  },
+  {
+   "id": "28.4",
+   "module": "m42540",
+   "title": "Relativistic Addition of Velocities",
+   "slug": "28-4-relativistic-addition-of-velocities"
+  },
+  {
+   "id": "28.5",
+   "module": "m42542",
+   "title": "Relativistic Momentum",
+   "slug": "28-5-relativistic-momentum"
+  },
+  {
+   "id": "28.6",
+   "module": "m42546",
+   "title": "Relativistic Energy",
+   "slug": "28-6-relativistic-energy"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "c",
+   "type": "velocity",
+   "meaning": "the speed of light in a vacuum, 3.00 × 10⁸ m/s, the same for every observer whatever the motion of the source",
+   "unit": "m/s",
+   "section": "28.1"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "the relative velocity between two observers, or of a moving clock, ship or particle relative to an observer",
+   "unit": "m/s",
+   "section": "28.2"
+  },
+  {
+   "sym": "γ_rel",
+   "meaning": "the relativistic factor, 1/√(1 − v²/c²), which is 1 at rest and grows without limit as v approaches c",
+   "unit": "",
+   "section": "28.2"
+  },
+  {
+   "sym": "Δt_0",
+   "type": "time",
+   "meaning": "the proper time, the elapsed time measured by an observer at rest relative to the event being observed",
+   "unit": "s",
+   "section": "28.2"
+  },
+  {
+   "sym": "Δt",
+   "type": "time",
+   "meaning": "the elapsed time for the same event measured by an observer moving relative to it, longer than the proper time",
+   "unit": "s",
+   "section": "28.2"
+  },
+  {
+   "sym": "D",
+   "type": "position",
+   "meaning": "the width of the astronaut’s ship, which light crosses once each way in her frame",
+   "unit": "m",
+   "section": "28.2"
+  },
+  {
+   "sym": "s",
+   "type": "position",
+   "meaning": "the length of one slanted leg of the light’s path as seen from the Earth",
+   "unit": "m",
+   "section": "28.2"
+  },
+  {
+   "sym": "L_0",
+   "type": "position",
+   "meaning": "the proper length, the distance between two points measured by an observer at rest relative to both of them",
+   "unit": "m",
+   "section": "28.3"
+  },
+  {
+   "sym": "L_rel",
+   "type": "position",
+   "meaning": "the contracted length, the length measured by an observer moving relative to the object, shorter than the proper length",
+   "unit": "m",
+   "section": "28.3"
+  },
+  {
+   "sym": "u",
+   "type": "velocity",
+   "meaning": "the velocity of an object relative to one observer",
+   "unit": "m/s",
+   "section": "28.4"
+  },
+  {
+   "sym": "u_prime",
+   "type": "velocity",
+   "meaning": "the velocity of the same object relative to the other observer, who moves at v relative to the first",
+   "unit": "m/s",
+   "section": "28.4"
+  },
+  {
+   "sym": "λ_s",
+   "type": "position",
+   "meaning": "the wavelength of electromagnetic radiation as emitted by its source",
+   "unit": "m",
+   "section": "28.4"
+  },
+  {
+   "sym": "λ_obs",
+   "type": "position",
+   "meaning": "the wavelength of the same radiation as received by an observer moving relative to the source",
+   "unit": "m",
+   "section": "28.4"
+  },
+  {
+   "sym": "f_src",
+   "type": "frequency",
+   "meaning": "the frequency of the radiation as emitted by its source",
+   "unit": "Hz",
+   "section": "28.4"
+  },
+  {
+   "sym": "f_obs",
+   "type": "frequency",
+   "meaning": "the frequency of the radiation as received by the observer",
+   "unit": "Hz",
+   "section": "28.4"
+  },
+  {
+   "sym": "m",
+   "meaning": "the rest mass of an object, its mass measured by an observer at rest relative to it",
+   "unit": "kg",
+   "section": "28.5"
+  },
+  {
+   "sym": "p",
+   "type": "momentum",
+   "meaning": "the relativistic momentum, γmu, which approaches infinity as u approaches c",
+   "unit": "kg·m/s",
+   "section": "28.5"
+  },
+  {
+   "sym": "E",
+   "type": "energy",
+   "meaning": "the total energy of an object, γmc²",
+   "unit": "J",
+   "section": "28.6"
+  },
+  {
+   "sym": "E_0rest",
+   "type": "energy",
+   "meaning": "the rest energy of an object, mc², the energy it has when it is not moving",
+   "unit": "J",
+   "section": "28.6"
+  },
+  {
+   "sym": "KE_rel",
+   "type": "energy",
+   "meaning": "the relativistic kinetic energy, (γ − 1)mc², the part of the total energy due to motion",
+   "unit": "J",
+   "section": "28.6"
+  },
+  {
+   "sym": "KE_class",
+   "type": "energy",
+   "meaning": "the classical kinetic energy, ½mv², which agrees with the relativistic value only at low velocities",
+   "unit": "J",
+   "section": "28.6"
+  },
+  {
+   "sym": "W_net",
+   "type": "energy",
+   "meaning": "the net work done on an object, which goes into its kinetic energy",
+   "unit": "J",
+   "section": "28.6"
+  },
+  {
+   "sym": "Δm",
+   "meaning": "a change in rest mass, the mass gained when energy is stored or destroyed when energy is released",
+   "unit": "kg",
+   "section": "28.6"
+  }
+ ],
+ "equations": [
+  {
+   "id": "eq-proper-time-light-clock",
+   "section": "28.2",
+   "latex": "\\Delta t_0 = \\frac{2D}{c}",
+   "ktex": "\\kdto = \\frac{2\\kD}{\\kc}",
+   "important": false
+  },
+  {
+   "id": "eq-earth-time-light-clock",
+   "section": "28.2",
+   "latex": "\\Delta t = \\frac{2s}{c}",
+   "ktex": "\\kdt = \\frac{2\\ks}{\\kc}",
+   "important": false
+  },
+  {
+   "id": "eq-time-dilation",
+   "concept": "time-dilation-equation",
+   "section": "28.2",
+   "latex": "\\Delta t = \\frac{\\Delta t_0}{\\sqrt{1-\\frac{v^{2}}{c^{2}}}} = \\gamma \\Delta t_0",
+   "ktex": "\\kdt = \\frac{\\kdto}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}} = \\gamma \\kdto",
+   "important": true
+  },
+  {
+   "id": "eq-gamma",
+   "concept": "relativistic-factor",
+   "section": "28.2",
+   "latex": "\\gamma = \\frac{1}{\\sqrt{1-\\frac{v^{2}}{c^{2}}}}",
+   "ktex": "\\gamma = \\frac{1}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}",
+   "important": true
+  },
+  {
+   "id": "eq-length-contraction-gamma",
+   "section": "28.3",
+   "latex": "L = \\frac{L_0}{\\gamma}",
+   "ktex": "\\kLrel = \\frac{\\kLo}{\\gamma}",
+   "important": false
+  },
+  {
+   "id": "eq-length-contraction",
+   "concept": "length-contraction-equation",
+   "section": "28.3",
+   "latex": "L = L_0\\sqrt{1-\\frac{v^{2}}{c^{2}}}",
+   "ktex": "\\kLrel = \\kLo\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}",
+   "important": true
+  },
+  {
+   "id": "eq-classical-velocity-addition",
+   "concept": "classical-velocity-addition-1d",
+   "section": "28.4",
+   "latex": "u = v + u'",
+   "ktex": "\\ku = \\kv + \\kuprime",
+   "important": true
+  },
+  {
+   "id": "eq-relativistic-velocity-addition",
+   "concept": "relativistic-velocity-addition",
+   "section": "28.4",
+   "latex": "u = \\frac{v + u'}{1 + \\frac{vu'}{c^{2}}}",
+   "ktex": "\\ku = \\frac{\\kv + \\kuprime}{1 + \\frac{\\kv\\kuprime}{\\kc^{2}}}",
+   "important": true
+  },
+  {
+   "id": "eq-relativistic-doppler-wavelength",
+   "concept": "relativistic-doppler-effect",
+   "section": "28.4",
+   "latex": "\\lambda_{\\text{obs}} = \\lambda_{\\text{s}}\\sqrt{\\frac{1+\\frac{u}{c}}{1-\\frac{u}{c}}}",
+   "ktex": "\\klamobs = \\klams\\sqrt{\\frac{1+\\frac{\\ku}{\\kc}}{1-\\frac{\\ku}{\\kc}}}",
+   "important": true
+  },
+  {
+   "id": "eq-relativistic-doppler-frequency",
+   "concept": "relativistic-doppler-frequency",
+   "section": "28.4",
+   "latex": "f_{\\text{obs}} = f_{\\text{s}}\\sqrt{\\frac{1-\\frac{u}{c}}{1+\\frac{u}{c}}}",
+   "ktex": "\\kfobs = \\kfsrc\\sqrt{\\frac{1-\\frac{\\ku}{\\kc}}{1+\\frac{\\ku}{\\kc}}}",
+   "important": true
+  },
+  {
+   "id": "eq-relativistic-momentum",
+   "concept": "relativistic-momentum",
+   "section": "28.5",
+   "latex": "p = \\gamma m u",
+   "ktex": "\\kp = \\gamma m \\ku",
+   "important": true
+  },
+  {
+   "id": "eq-gamma-u",
+   "section": "28.5",
+   "latex": "\\gamma = \\frac{1}{\\sqrt{1-\\frac{u^{2}}{c^{2}}}}",
+   "ktex": "\\gamma = \\frac{1}{\\sqrt{1-\\frac{\\ku^{2}}{\\kc^{2}}}}",
+   "important": false
+  },
+  {
+   "id": "eq-total-energy",
+   "concept": "total-energy",
+   "section": "28.6",
+   "latex": "E = \\gamma mc^{2}",
+   "ktex": "\\kE = \\gamma m\\kc^{2}",
+   "important": true
+  },
+  {
+   "id": "eq-rest-energy",
+   "concept": "rest-energy",
+   "section": "28.6",
+   "latex": "E_0 = mc^{2}",
+   "ktex": "\\kErest = m\\kc^{2}",
+   "important": true
+  },
+  {
+   "id": "eq-relativistic-work-energy",
+   "section": "28.6",
+   "latex": "W_{\\text{net}} = E - E_0 = \\gamma mc^{2} - mc^{2} = (\\gamma - 1)mc^{2}",
+   "ktex": "\\kWnet = \\kE - \\kErest = \\gamma m\\kc^{2} - m\\kc^{2} = (\\gamma - 1)m\\kc^{2}",
+   "important": false
+  },
+  {
+   "id": "eq-relativistic-kinetic-energy",
+   "concept": "relativistic-kinetic-energy",
+   "section": "28.6",
+   "latex": "\\text{KE}_{\\text{rel}} = (\\gamma - 1)mc^{2}",
+   "ktex": "\\kKErel = (\\gamma - 1)m\\kc^{2}",
+   "important": true
+  },
+  {
+   "id": "eq-gamma-low-velocity",
+   "concept": "relativistic-ke-classical-limit",
+   "section": "28.6",
+   "latex": "\\gamma = 1 + \\frac{1}{2}\\frac{v^{2}}{c^{2}}",
+   "ktex": "\\gamma = 1 + \\frac{1}{2}\\frac{\\kv^{2}}{\\kc^{2}}",
+   "important": false
+  },
+  {
+   "id": "eq-energy-momentum",
+   "concept": "energy-momentum-relation",
+   "section": "28.6",
+   "latex": "E^{2} = (pc)^{2} + (mc^{2})^{2}",
+   "ktex": "\\kE^{2} = (\\kp\\kc)^{2} + (m\\kc^{2})^{2}",
+   "important": true
+  }
+ ],
+ "glossary": [
+  {
+   "section": "28.1",
+   "term": "relativity",
+   "definition": "the study of how different observers measure the same event"
+  },
+  {
+   "section": "28.1",
+   "term": "special relativity",
+   "definition": "the theory that, in an inertial frame of reference, the motion of an object is relative to the frame from which it is viewed or measured"
+  },
+  {
+   "section": "28.1",
+   "term": "inertial frame of reference",
+   "definition": "a reference frame in which a body at rest remains at rest and a body in motion moves at a constant speed in a straight line unless acted on by an outside force"
+  },
+  {
+   "section": "28.1",
+   "term": "first postulate of special relativity",
+   "definition": "the idea that the laws of physics are the same and can be stated in their simplest form in all inertial frames of reference"
+  },
+  {
+   "section": "28.1",
+   "term": "second postulate of special relativity",
+   "definition": "the idea that the speed of light $c$ is a constant, independent of the source"
+  },
+  {
+   "section": "28.1",
+   "term": "Michelson-Morley experiment",
+   "definition": "an investigation performed in 1887 that proved that the speed of light in a vacuum is the same in all frames of reference from which it is viewed"
+  },
+  {
+   "section": "28.2",
+   "term": "time dilation",
+   "definition": "the phenomenon of time passing slower to an observer who is moving relative to another observer"
+  },
+  {
+   "section": "28.2",
+   "term": "proper time",
+   "definition": "$\\Delta t_0$. the time measured by an observer at rest relative to the event being observed: $\\Delta t=\\frac{\\Delta t_0}{\\sqrt{1-\\frac{v^{2}}{c^{2}}}}=\\gamma\\Delta t_0$, where $\\gamma=\\frac{1}{\\sqrt{1-\\frac{v^{2}}{c^{2}}}}$"
+  },
+  {
+   "section": "28.2",
+   "term": "twin paradox",
+   "definition": "this asks why a twin traveling at a relativistic speed away and then back towards the Earth ages less than the Earth-bound twin. The premise to the paradox is faulty because the traveling twin is accelerating, and special relativity does not apply to accelerating frames of reference"
+  },
+  {
+   "section": "28.3",
+   "term": "proper length",
+   "definition": "$L_0$; the distance between two points measured by an observer who is at rest relative to both of the points; Earth-bound observers measure proper length when measuring the distance between two points that are stationary relative to the Earth"
+  },
+  {
+   "section": "28.3",
+   "term": "length contraction",
+   "definition": "$L$, the shortening of the measured length of an object moving relative to the observer’s frame: $L=L_0\\sqrt{1-\\frac{v^{2}}{c^{2}}}=\\frac{L_0}{\\gamma}$"
+  },
+  {
+   "section": "28.4",
+   "term": "classical velocity addition",
+   "definition": "the method of adding velocities when $v \\ll c$; velocities add like regular numbers in one-dimensional motion: $u=v+u'$, where $v$ is the velocity between two observers, $u$ is the velocity of an object relative to one observer, and $u'$ is the velocity relative to the other observer"
+  },
+  {
+   "section": "28.4",
+   "term": "relativistic velocity addition",
+   "definition": "the method of adding velocities of an object moving at a relativistic speed: $u=\\frac{v+u'}{1+\\frac{vu'}{c^{2}}}$, where $v$ is the relative velocity between two observers, $u$ is the velocity of an object relative to one observer, and $u'$ is the velocity relative to the other observer"
+  },
+  {
+   "section": "28.4",
+   "term": "relativistic Doppler effects",
+   "definition": "a change in wavelength of radiation that is moving relative to the observer; the wavelength of the radiation is longer (called a red shift) than that emitted by the source when the source moves away from the observer and shorter (called a blue shift) when the source moves toward the observer; the shifted wavelength is described by the equation $\\lambda_{\\text{obs}}=\\lambda_{\\text{s}}\\sqrt{\\frac{1+\\frac{u}{c}}{1-\\frac{u}{c}}}$ where $\\lambda_{\\text{obs}}$ is the observed wavelength, $\\lambda_{\\text{s}}$ is the source wavelength, and $u$ is the velocity of the source to the observer"
+  },
+  {
+   "section": "28.5",
+   "term": "relativistic momentum",
+   "definition": "$p$, the momentum of an object moving at relativistic velocity; $p=\\gamma mu$, where $m$ is the rest mass of the object, $u$ is its velocity relative to an observer, and the relativistic factor $\\gamma=\\frac{1}{\\sqrt{1-\\frac{u^{2}}{c^{2}}}}$"
+  },
+  {
+   "section": "28.5",
+   "term": "rest mass",
+   "definition": "the mass of an object as measured by a person at rest relative to the object"
+  },
+  {
+   "section": "28.6",
+   "term": "total energy",
+   "definition": "defined as $E=\\gamma mc^{2}$, where $\\gamma=\\frac{1}{\\sqrt{1-\\frac{v^{2}}{c^{2}}}}$"
+  },
+  {
+   "section": "28.6",
+   "term": "rest energy",
+   "definition": "the energy stored in an object at rest: $E_0=mc^{2}$"
+  },
+  {
+   "section": "28.6",
+   "term": "relativistic kinetic energy",
+   "definition": "the kinetic energy of an object moving at relativistic speeds: $\\text{KE}_{\\text{rel}}=(\\gamma-1)mc^{2}$, where $\\gamma=\\frac{1}{\\sqrt{1-\\frac{v^{2}}{c^{2}}}}$"
+  }
+ ]
+}

@@ -1,0 +1,835 @@
+{
+  "id": "25.6",
+  "module": "m42470",
+  "chapter": "25",
+  "title": "Image Formation by Lenses",
+  "short": "Image formation by lenses",
+  "lead": "A lens puts the law of refraction to work at two surfaces, and its shape decides whether it brings parallel light together at a focal point or spreads it as if from one. This section defines the focal length and the power of a lens, gives the rules for tracing rays through a thin lens, and uses them and the thin lens equations to find where an image forms, how large it is, and whether it is real or virtual, which sorts every image a single thin lens can make into three cases.",
+  "objectives": [
+    "List the rules for ray tracing for thin lenses.",
+    "Illustrate the formation of images using the technique of ray tracing.",
+    "Determine power of a lens given the focal length."
+  ],
+  "summary_html": "<ul><li>Light rays entering a converging lens parallel to its axis cross one another at a single point on the opposite side.</li><li>For a converging lens, the focal point is the point at which converging light rays cross; for a diverging lens, the focal point is the point from which diverging light rays appear to originate.</li><li>The distance from the center of the lens to its focal point is called the focal length $\\kffoc$.</li><li>Power $P$ of a lens is defined to be the inverse of its focal length, $P = \\frac{1}{\\kffoc}$.</li><li>A lens that causes the light rays to bend away from its axis is called a diverging lens.</li><li>Ray tracing is the technique of graphically determining the paths that light rays take.</li><li>The image in which light rays from one point on the object actually cross at the location of the image and can be projected onto a screen, a piece of film, or the retina of an eye is called a real image.</li><li>Thin lens equations are $\\frac{1}{\\kdobj} + \\frac{1}{\\kdimg} = \\frac{1}{\\kffoc}$ and $\\frac{\\khimg}{\\khobj} = -\\frac{\\kdimg}{\\kdobj} = m$ (magnification).</li><li>The distance of the image from the center of the lens is called image distance.</li><li>An image that is on the same side of the lens as the object and cannot be projected on a screen is called a virtual image.</li></ul>",
+  "notes": "Eight of the module’s seventeen problems have no keyed answer and are left out: the power of a 50.0 mm camera lens, the focal length of 1.75 D reading glasses, the flower photographed from 75.0 cm, the person photographed from 3.00 m, the lens 51.0 mm from the film, the −4.00 D lens with an object at 25.0 cm, the telephoto lens and the mountains, and the proof that $m = \\kffoc/(\\kffoc - \\kdobj)$; the fourth problem-solving step’s “alist” is written “a list”.",
+  "ai": {
+    "text": "Claude Opus 5.5",
+    "figures": "Claude Opus 5.5"
+  },
+  "built": "2026-09-28",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Eight of the seventeen problems have no keyed answer and are left out, and they are named in the section’s notes; where a keyed problem asks for a discussion as its last part, the book’s words for that part are in the solution. The first and third AP items are keyed and set as graded choices; the second and fourth carry solutions the publisher commented out of the source, so they are kept as open items with AI-marked suggested approaches that give the method and not a number. Every conceptual question is unkeyed and carries an AI-marked suggested approach. The conceptual question on the curved front of a thermometer is printed with 25.3 and is set here, where the magnifier it depends on is taught, and 25.3’s notes say so. The module prints no Check Your Understanding box, so nothing is set inline. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "sim-lens-focus",
+      "kind": "sim",
+      "number": "25.25",
+      "folds": [
+        "25.27",
+        "25.28",
+        "25.29",
+        "25.30"
+      ],
+      "originals": [
+        "/media/ch25/Figure_26_06_01.jpg",
+        "/media/ch25/Figure_26_06_03.jpg",
+        "/media/ch25/Figure_26_06_04.jpg",
+        "/media/ch25/Figure_26_06_05.jpg",
+        "/media/ch25/Figure_26_06_06.jpg"
+      ],
+      "original_caption": "(Figure 25.25) Rays of light entering a converging lens parallel to its axis converge at its focal point F. (Ray 2 lies on the axis of the lens.) The distance from the center of the lens to the focal point is the lens’s focal length $f$. An expanded view of the path taken by ray 1 shows the perpendiculars and the angles of incidence and refraction at both surfaces. (Figure 25.27) Rays of light entering a diverging lens parallel to its axis are diverged, and all appear to originate at its focal point F. The dashed lines are not rays—they indicate the directions from which the rays appear to come. The focal length $f$ of a diverging lens is negative. An expanded view of the path taken by ray 1 shows the perpendiculars and the angles of incidence and refraction at both surfaces. (Figure 25.28) A small light source, like a light bulb filament, placed at the focal point of a convex lens, results in parallel rays of light emerging from the other side. The paths are exactly the reverse of those shown in Figure 25.25. This technique is used in lighthouses and sometimes in traffic lights to produce a directional beam of light from a source that emits light in all directions. (Figure 25.29) Thin lenses have the same focal length on either side. (a) Parallel light rays entering a converging lens from the right cross at its focal point on the left. (b) Parallel light rays entering a diverging lens from the right seem to come from the focal point on the right. (Figure 25.30) The light ray through the center of a thin lens is deflected by a negligible amount and is assumed to emerge parallel to its original path (shown as a shaded line).",
+      "widths": [
+        475,
+        250,
+        225,
+        250,
+        125
+      ],
+      "draws": [
+        "position"
+      ]
+    },
+    {
+      "id": "photo-sunlight-burn",
+      "kind": "photo",
+      "number": "25.26",
+      "widths": [
+        225
+      ]
+    },
+    {
+      "id": "sim-image-by-lens",
+      "kind": "sim",
+      "number": "25.31",
+      "folds": [
+        "25.33",
+        "25.35",
+        "25.37"
+      ],
+      "originals": [
+        "/media/ch25/Figure_26_06_07.jpg",
+        "/media/ch25/Figure_26_06_09.jpg",
+        "/media/ch25/Figure_26_06_11.jpg",
+        "/media/ch25/Figure_26_06_13.jpg"
+      ],
+      "original_caption": "(Figure 25.31) Ray tracing is used to locate the image formed by a lens. Rays originating from the same point on the object are traced—the three chosen rays each follow one of the rules for ray tracing, so that their paths are easy to determine. The image is located at the point where the rays cross. In this case, a real image—one that can be projected on a screen—is formed. (Figure 25.33) A light bulb placed 0.750 m from a lens having a 0.500 m focal length produces a real image on a poster board as discussed in the example above. Ray tracing predicts the image location and size. (Figure 25.35) Ray tracing predicts the image location and size for an object held closer to a converging lens than its focal length. Ray 1 enters parallel to the axis and exits through the focal point on the opposite side, while ray 2 passes through the center of the lens without changing path. The two rays continue to diverge on the other side of the lens, but both appear to come from a common point, locating the upright, magnified, virtual image. This is a case 2 image. (Figure 25.37) Ray tracing predicts the image location and size for a concave or diverging lens. Ray 1 enters parallel to the axis and is bent so that it appears to originate from the focal point. Ray 2 passes through the center of the lens without changing path. The two rays appear to come from a common point, locating the upright image. This is a case 3 image, which is closer to the lens than the object and smaller in height.",
+      "widths": [
+        250,
+        425,
+        250,
+        325
+      ],
+      "draws": [
+        "position"
+      ]
+    },
+    {
+      "id": "sim-projected-image",
+      "kind": "sim",
+      "number": "25.32",
+      "originals": [
+        "/media/ch25/Figure_26_06_08.jpg"
+      ],
+      "original_caption": "Real images can be projected. (a) A real image of the person is projected onto film. (b) The converging nature of the multiple surfaces that make up the eye result in the projection of a real image on the retina.",
+      "widths": [
+        250
+      ],
+      "draws": [
+        "position"
+      ]
+    },
+    {
+      "id": "photo-face-lens",
+      "kind": "photo",
+      "number": "25.34",
+      "widths": [
+        225
+      ]
+    },
+    {
+      "id": "photo-car-diverging",
+      "kind": "photo",
+      "number": "25.36",
+      "widths": [
+        250
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "converging-lens",
+      "concept": "converging-and-diverging-lenses",
+      "verb": "introduces"
+    },
+    {
+      "span": "converging-lens",
+      "concept": "focal-point-and-focal-length",
+      "verb": "introduces"
+    },
+    {
+      "span": "lens-power",
+      "concept": "power-of-a-lens",
+      "verb": "introduces"
+    },
+    {
+      "span": "lens-power",
+      "concept": "focal-point-and-focal-length",
+      "verb": "uses"
+    },
+    {
+      "span": "diverging-lens",
+      "concept": "converging-and-diverging-lenses",
+      "verb": "reinforces"
+    },
+    {
+      "span": "diverging-lens",
+      "concept": "focal-point-and-focal-length",
+      "verb": "reinforces"
+    },
+    {
+      "span": "diverging-lens",
+      "concept": "power-of-a-lens",
+      "verb": "reinforces"
+    },
+    {
+      "span": "ray-tracing",
+      "concept": "ray-tracing-rules-for-lenses",
+      "verb": "introduces"
+    },
+    {
+      "span": "ray-tracing",
+      "concept": "focal-point-and-focal-length",
+      "verb": "uses"
+    },
+    {
+      "span": "image-formation",
+      "concept": "real-and-virtual-images",
+      "verb": "introduces"
+    },
+    {
+      "span": "image-formation",
+      "concept": "ray-tracing-rules-for-lenses",
+      "verb": "uses"
+    },
+    {
+      "span": "thin-lens-equations",
+      "concept": "thin-lens-equation",
+      "verb": "introduces"
+    },
+    {
+      "span": "thin-lens-equations",
+      "concept": "magnification",
+      "verb": "introduces"
+    },
+    {
+      "span": "thin-lens-equations",
+      "concept": "solve-with-the-thin-lens-equations",
+      "verb": "uses"
+    },
+    {
+      "span": "case-1-and-2",
+      "concept": "three-cases-of-lens-images",
+      "verb": "introduces"
+    },
+    {
+      "span": "case-1-and-2",
+      "concept": "real-and-virtual-images",
+      "verb": "reinforces"
+    },
+    {
+      "span": "case-1-and-2",
+      "concept": "thin-lens-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "case-1-and-2",
+      "concept": "magnification",
+      "verb": "uses"
+    },
+    {
+      "span": "case-3",
+      "concept": "three-cases-of-lens-images",
+      "verb": "reinforces"
+    },
+    {
+      "span": "case-3",
+      "concept": "real-and-virtual-images",
+      "verb": "reinforces"
+    },
+    {
+      "span": "case-3",
+      "concept": "thin-lens-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "case-3",
+      "concept": "magnification",
+      "verb": "uses"
+    },
+    {
+      "span": "three-cases",
+      "concept": "three-cases-of-lens-images",
+      "verb": "reinforces"
+    },
+    {
+      "span": "problem-solving",
+      "concept": "solve-with-the-thin-lens-equations",
+      "verb": "introduces"
+    },
+    {
+      "span": "problem-solving",
+      "concept": "three-cases-of-lens-images",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ap1",
+      "source_id": "fs-id2793635",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "case-1-and-2",
+      "prompt": "An object is 25 cm in front of a converging lens with a focal length of 25 cm. Where will the resulting image be located?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "25 cm in front of the lens",
+          "25 cm behind the lens",
+          "50 cm behind the lens",
+          "at infinity (either in front of or behind the lens)"
+        ],
+        "correct": 3,
+        "hint": "Put $\\kdobj = \\kffoc$ into the thin lens equation and see what is left for $1/\\kdimg$."
+      }
+    },
+    {
+      "id": "ap2",
+      "source_id": "fs-id1303826",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "case-1-and-2",
+      "prompt": "A detective holds a magnifying glass 5.0 cm above an object he is studying, creating an upright image twice as large as the object. What is the focal length of the lens used for the magnifying glass?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "An upright, enlarged image from a magnifying glass is a case 2 image, so the magnification is positive, $m = +2$, and the image is virtual. From $m = -\\kdimg/\\kdobj$, the image distance is $\\kdimg = -m\\kdobj$, which is negative, as it must be for a virtual image on the object’s side of the lens. Put $\\kdobj$ and this $\\kdimg$ into $1/\\kdobj + 1/\\kdimg = 1/\\kffoc$ and solve for $\\kffoc$. Check that the focal length comes out positive and larger than 5.0 cm, since a case 2 image needs the object inside the focal length."
+      }
+    },
+    {
+      "id": "ap3",
+      "source_id": "fs-id1487694",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "thin-lens-equations",
+      "prompt": "A student wishes to predict the magnification of an image given the distance from the object to a converging lens with an unknown index of refraction. What data must the student collect in order to make such a prediction for any object distance?",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "A specific object distance and the image distance associated with that object distance.",
+          "A specific image distance and a determination of whether the image formed is upright or inverted.",
+          "The diameter and index of refraction of the lens.",
+          "The radius of curvature of each side of the lens."
+        ],
+        "correct": 0,
+        "hint": "One pair of distances fixes the focal length through the thin lens equation, and the focal length then gives the image distance, and so the magnification, for any other object distance."
+      }
+    },
+    {
+      "id": "ap4",
+      "source_id": "fs-id1463977",
+      "kind": "ap-test-prep",
+      "bloom": "Create",
+      "place": {
+        "at": "end"
+      },
+      "cite": "converging-lens",
+      "prompt": "Given a converging lens of unknown focal length and unknown index of refraction, explain what materials you would need and what procedure you would follow in order to experimentally determine the focal length of the lens.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "One way needs only the lens, a sheet of white paper and a meter stick. Rays from a very distant source, such as the Sun or a window across a large room, arrive nearly parallel, and a converging lens brings parallel rays together at its focal point. Hold the lens so that it throws a small, sharp spot or a sharp image of the distant scene onto the paper, and measure the distance from the center of the lens to the paper; that distance is the focal length. A second way uses a lamp, the lens and a screen on a bench: set the lamp at a measured object distance well beyond the focal length, move the screen until the image is sharp, measure the image distance, and find the focal length from $1/\\kdobj + 1/\\kdimg = 1/\\kffoc$. Repeating for several object distances and averaging reduces the error, and the index of refraction never needs to be known."
+      }
+    },
+    {
+      "id": "cq1",
+      "source_id": "fs-id2633637",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "thin-lens-equations",
+      "prompt": "It can be argued that a flat piece of glass, such as in a window, is like a lens with an infinite focal length. If so, where does it form an image? That is, how are $\\kdimg$ and $\\kdobj$ related?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "With an infinite focal length, $1/\\kffoc$ is zero, and the thin lens equation becomes $1/\\kdobj + 1/\\kdimg = 0$, so $\\kdimg = -\\kdobj$. The image is virtual, on the same side of the glass as the object and at the same distance from it, so it sits exactly where the object is. The magnification is $m = -\\kdimg/\\kdobj = 1$, so the image is upright and the same size. That is why a scene looks the same through a window as it does with the window open."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id2678508",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "converging-lens",
+      "prompt": "You can often see a reflection when looking at a sheet of glass, particularly if it is darker on the other side. Explain why you can often see a double image in such circumstances.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "A sheet of glass has two surfaces, and each reflects a little of the light falling on it. Light reflected from the front surface forms one image, and light that passes into the glass, reflects from the back surface and comes out again forms a second, slightly displaced image, since it has traveled through the thickness of the glass twice and been refracted on the way in and out. When the other side is dark, little light comes through the glass from behind to wash the reflections out, so both faint images can be seen, one a little behind the other."
+      }
+    },
+    {
+      "id": "cq3",
+      "source_id": "fs-id2506828",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "case-1-and-2",
+      "prompt": "When you focus a camera, you adjust the distance of the lens from the film. If the camera lens acts like a thin lens, why can it not be a fixed distance from the film for both near and distant objects?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The focal length of the lens is fixed, so by the thin lens equation $1/\\kdobj + 1/\\kdimg = 1/\\kffoc$ each object distance has its own image distance. A distant object has $1/\\kdobj$ close to zero and forms its image almost at the focal point, while a near object has a larger $1/\\kdobj$, leaving a smaller $1/\\kdimg$ and so a larger image distance. The film has to be where the image is for the picture to be sharp, so the lens must be moved farther from the film for near objects than for distant ones."
+      }
+    },
+    {
+      "id": "cq4",
+      "source_id": "fs-id2003119",
+      "kind": "conceptual-question",
+      "bloom": "Evaluate",
+      "place": {
+        "at": "end"
+      },
+      "cite": "ray-tracing",
+      "prompt": "A thin lens has two focal points, one on either side, at equal distances from its center, and should behave the same for light entering from either side. Look through your eyeglasses (or those of a friend) backward and forward and comment on whether they are thin lenses.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "If the view of a distant object through the lens looks the same, the same size and equally sharp, with the lens held either way round, the lens behaves as a thin lens: its focal length is the same on both sides and its thickness does not matter. Most eyeglass lenses come close to this, since they are thin compared with their focal lengths, though a strong lens is thick enough that the two views differ a little. Eyeglass lenses are also curved in the same direction on both faces (a meniscus shape), which makes them look different from the two sides even when they act almost the same."
+      }
+    },
+    {
+      "id": "cq5",
+      "source_id": "fs-id3094309",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "converging-lens",
+      "prompt": "Will the focal length of a lens change when it is submerged in water? Explain.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Yes. A lens bends light because the index of refraction of the glass is greater than that of the medium around it, and the amount a ray bends at each surface depends on the ratio of the two indices, by the law of refraction. Water has an index much closer to that of glass than air does, so a ray passing from water into glass and out again is bent much less, and parallel rays cross much farther from the lens. The focal length becomes longer, and the lens becomes weaker."
+      }
+    },
+    {
+      "id": "cq6",
+      "source_id": "fs-id2104353",
+      "source_section": "25.3",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "case-1-and-2",
+      "figure": {
+        "src": "/media/ch25/Figure_26_06_14.jpg",
+        "alt": "A triangular shaped transparent thermometer is shown.",
+        "caption": "The curved surface of the thermometer serves a purpose."
+      },
+      "prompt": "Why is the front surface of a thermometer curved as shown?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The curved front makes the glass act as a converging lens, and the thin thread of liquid lies behind it, closer to the lens than its focal length. That is a case 2 arrangement, so the eye sees an upright, enlarged virtual image of the thread, which is much easier to read than the thread itself. Seen from the side, where the glass does not act as a magnifier, the thread is so thin it can almost disappear."
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id2677903",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "lens-power",
+      "prompt": "Your camera’s zoom lens has an adjustable focal length ranging from 80.0 to 200 mm. What is its range of powers?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "the lowest power, at 200 mm",
+            "value": 5.0,
+            "unit": "D",
+            "hint": "Write the focal length in meters before taking its inverse."
+          },
+          {
+            "part": "the highest power, at 80.0 mm",
+            "value": 12.5,
+            "unit": "D",
+            "hint": "The shorter focal length gives the greater power."
+          }
+        ],
+        "solution": "$5.00$ to $12.5\\ \\text{D}$"
+      }
+    },
+    {
+      "id": "p2",
+      "source_id": "fs-id857005",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "lens-power",
+      "prompt": "You note that your prescription for new eyeglasses is –4.50 D. What will their focal length be?",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": -0.222,
+        "unit": "m",
+        "hint": "Invert the power; the negative sign says the lens is diverging.",
+        "solution": "$\\kffoc = \\frac{1}{P} = \\frac{1}{-4.50\\ \\text{D}} = -0.222\\ \\text{m}$"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id1511783",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "problem-solving",
+      "prompt": "A certain slide projector has a 100 mm focal length lens. (a) How far away is the screen, if a slide is placed 103 mm from the lens and produces a sharp image? (b) If the slide is 24.0 by 36.0 mm, what are the dimensions of the image? Explicitly show how you follow the steps in the Problem-Solving Strategy for lenses.",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a) the distance to the screen",
+            "value": 3.43,
+            "unit": "m",
+            "hint": "Solve the thin lens equation for $\\kdimg$ with $\\kdobj = 103$ mm and $\\kffoc = 100$ mm."
+          },
+          {
+            "part": "(b) the shorter side of the image",
+            "value": 0.8,
+            "unit": "m",
+            "hint": "The magnification is $-\\kdimg/\\kdobj$; multiply each side of the slide by its size."
+          },
+          {
+            "part": "(b) the longer side of the image",
+            "value": 1.2,
+            "unit": "m"
+          }
+        ],
+        "solution": "(a) 3.43 m\n\n(b) 0.800 by 1.20 m"
+      }
+    },
+    {
+      "id": "p4",
+      "source_id": "fs-id1551768",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "case-1-and-2",
+      "prompt": "A doctor examines a mole with a 15.0 cm focal length magnifying glass held 13.5 cm from the mole (a) Where is the image? (b) What is its magnification? (c) How big is the image of a 5.00 mm diameter mole?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a) the image distance",
+            "value": -1.35,
+            "unit": "m",
+            "hint": "The mole is inside the focal length, so expect a case 2 image with a negative image distance."
+          },
+          {
+            "part": "(b) the magnification",
+            "value": 10.0,
+            "hint": "$m = -\\kdimg/\\kdobj$."
+          },
+          {
+            "part": "(c) the size of the image",
+            "value": 5.0,
+            "unit": "cm",
+            "hint": "Multiply the size of the mole by the magnification."
+          }
+        ],
+        "solution": "(a) $-1.35\\ \\text{m}$ (on the object side of the lens).\n\n(b) $+10.0$\n\n(c) 5.00 cm"
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id2999113",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "lens-power",
+      "prompt": "How far from a piece of paper must you hold your father’s 2.25 D reading glasses to try to burn a hole in the paper with sunlight?",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 44.4,
+        "unit": "cm",
+        "hint": "Sunlight arrives parallel, so it crosses at the focal point, and the focal length is the inverse of the power.",
+        "solution": "44.4 cm"
+      }
+    },
+    {
+      "id": "p6",
+      "source_id": "fs-id2937990",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "thin-lens-equations",
+      "prompt": "A camera lens used for taking close-up photographs has a focal length of 22.0 mm. The farthest it can be placed from the film is 33.0 mm. (a) What is the closest object that can be photographed? (b) What is the magnification of this closest object?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a) the closest object distance",
+            "value": 6.6,
+            "unit": "cm",
+            "hint": "The largest image distance goes with the smallest object distance; solve the thin lens equation for $\\kdobj$."
+          },
+          {
+            "part": "(b) the magnification",
+            "value": -0.5,
+            "hint": "$m = -\\kdimg/\\kdobj$."
+          }
+        ],
+        "solution": "(a) 6.60 cm\n\n(b) –0.500"
+      }
+    },
+    {
+      "id": "p7",
+      "source_id": "fs-id2938156",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "case-1-and-2",
+      "prompt": "(a) What is the focal length of a magnifying glass that produces a magnification of 3.00 when held 5.00 cm from an object, such as a rare coin? (b) Calculate the power of the magnifier in diopters. (c) Discuss how this power compares to those for store-bought reading glasses (typically 1.0 to 4.0 D). Is the magnifier’s power greater, and should it be?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a) the focal length",
+            "value": 7.5,
+            "unit": "cm",
+            "hint": "Find $\\kdimg$ from $m = -\\kdimg/\\kdobj$, then use the thin lens equation."
+          },
+          {
+            "part": "(b) the power",
+            "value": 13.3,
+            "unit": "D",
+            "hint": "Invert the focal length in meters."
+          }
+        ],
+        "solution": "(a) $+7.50\\ \\text{cm}$\n\n(b) $13.3\\ \\text{D}$\n\n(c) Much greater"
+      }
+    },
+    {
+      "id": "p8",
+      "source_id": "fs-id1942256",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "case-1-and-2",
+      "prompt": "In Example 25.7, the magnification of a book held 7.50 cm from a 10.0 cm focal length lens was found to be 4.00. (a) Find the magnification for the book when it is held 8.50 cm from the magnifier. (b) Do the same for when it is held 9.50 cm from the magnifier. (c) Comment on the trend in m as the object distance increases as in these two calculations.",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "(a) the magnification at 8.50 cm",
+            "value": 6.67,
+            "hint": "Find $\\kdimg$ from the thin lens equation first, then $m = -\\kdimg/\\kdobj$."
+          },
+          {
+            "part": "(b) the magnification at 9.50 cm",
+            "value": 20.0
+          }
+        ],
+        "solution": "(a) +6.67\n\n(b) +20.0\n\n(c) The magnification increases without limit (to infinity) as the object distance increases to the limit of the focal distance."
+      }
+    },
+    {
+      "id": "p9",
+      "source_id": "fs-id3200951",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "thin-lens-equations",
+      "prompt": "A camera with a 100 mm focal length lens is used to photograph the sun and moon. What is the height of the image of the sun on the film, given the sun is $1.40\\times 10^{6}\\;\\text{km}$ in diameter and is $1.50\\times 10^{8}\\;\\text{km}$ away?",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": -0.933,
+        "unit": "mm",
+        "hint": "The sun is so far away that the image forms at the focal point; then $\\khimg = -\\khobj\\kdimg/\\kdobj$.",
+        "solution": "$-0.933\\ \\text{mm}$"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "ap1",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "ap1",
+      "concept": "three-cases-of-lens-images",
+      "weight": 2,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "magnification"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "ap2",
+      "concept": "solve-with-the-thin-lens-equations",
+      "weight": 2,
+      "weights_by": "ai"
+    },
+    {
+      "exercise": "ap3",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "ap3",
+      "concept": "magnification"
+    },
+    {
+      "exercise": "ap4",
+      "concept": "focal-point-and-focal-length"
+    },
+    {
+      "exercise": "ap4",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "cq1",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "cq1",
+      "concept": "real-and-virtual-images"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "converging-and-diverging-lenses"
+    },
+    {
+      "exercise": "cq3",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "cq3",
+      "concept": "real-and-virtual-images"
+    },
+    {
+      "exercise": "cq4",
+      "concept": "ray-tracing-rules-for-lenses"
+    },
+    {
+      "exercise": "cq4",
+      "concept": "focal-point-and-focal-length"
+    },
+    {
+      "exercise": "cq5",
+      "concept": "converging-and-diverging-lenses"
+    },
+    {
+      "exercise": "cq5",
+      "concept": "focal-point-and-focal-length"
+    },
+    {
+      "exercise": "cq6",
+      "concept": "three-cases-of-lens-images"
+    },
+    {
+      "exercise": "cq6",
+      "concept": "real-and-virtual-images"
+    },
+    {
+      "exercise": "p1",
+      "concept": "power-of-a-lens"
+    },
+    {
+      "exercise": "p2",
+      "concept": "power-of-a-lens"
+    },
+    {
+      "exercise": "p3",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "p3",
+      "concept": "magnification"
+    },
+    {
+      "exercise": "p3",
+      "concept": "solve-with-the-thin-lens-equations"
+    },
+    {
+      "exercise": "p4",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "p4",
+      "concept": "magnification"
+    },
+    {
+      "exercise": "p4",
+      "concept": "three-cases-of-lens-images"
+    },
+    {
+      "exercise": "p5",
+      "concept": "power-of-a-lens"
+    },
+    {
+      "exercise": "p5",
+      "concept": "focal-point-and-focal-length"
+    },
+    {
+      "exercise": "p6",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "p6",
+      "concept": "magnification"
+    },
+    {
+      "exercise": "p7",
+      "concept": "magnification"
+    },
+    {
+      "exercise": "p7",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "p7",
+      "concept": "power-of-a-lens"
+    },
+    {
+      "exercise": "p8",
+      "concept": "magnification"
+    },
+    {
+      "exercise": "p8",
+      "concept": "thin-lens-equation"
+    },
+    {
+      "exercise": "p8",
+      "concept": "three-cases-of-lens-images"
+    },
+    {
+      "exercise": "p9",
+      "concept": "magnification"
+    },
+    {
+      "exercise": "p9",
+      "concept": "thin-lens-equation"
+    }
+  ]
+}
