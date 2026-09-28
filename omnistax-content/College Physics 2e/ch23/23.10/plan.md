@@ -177,6 +177,8 @@ Extra simulations (rule 15), thought through, judged and decided:
 
 **Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-counting-time-constants`: the percentages over the bars that stand above 90 % sat on the curve and on the target's name; those are written inside their bars and the target's name sits at the empty end of its line, the left while the current climbs. `sim-rl-switching` was judged and left as built.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** `sim-rl-switching`: throwing the switch rewrites the law by meaning. I₀ and the exponential keep their places, and the "1 −" with its brackets fades: I = I₀(1 − e^{−t/τ}) becomes I = I₀e^{−t/τ} (manim 11). The curve bends from growth into decay. `sim-counting-time-constants`: turning round bends the bars and the curve from the climb into the decay, and ln(1 − f) morphs into ln f (manim 11, 16). Notes and captions reworded.
+
 ## Exercises
 
 - Every item is set at the end (`ch23/config.md`; the module prints no Check

@@ -85,7 +85,6 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 1.5, step: 0.05, value: 1.25, unit: 'T', dec: 2, aria: 'the strength of the magnetic field between the poles' });
   const wS = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 20, max: 125, step: 0.1, value: 104.7, unit: 'rad/s', dec: 1, aria: 'the angular velocity at which the coil is turned' });
   const ringC = select(d.controls, { label: '\\text{the contacts}', options: [{ value: 'rings', label: 'slip rings' }, { value: 'split', label: 'a split ring' }], value: 'rings', aria: 'whether the coil meets the outside circuit through two slip rings or through one split ring' });
-  const labC = choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the arrows and of the parts of the generator' });
 
   const T = 5.0;                                    /* two revolutions in five seconds */
   const cy = cycle(() => T, 1.0);
@@ -103,10 +102,11 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     const th = ((turned % 360) + 360) % 360;
     const s = Math.sin(th * RAD), c = Math.cos(th * RAD);
     const split = ringC.value === 'split';
+    const ks = ringC.mix((r) => (r === 'split' ? 1 : 0));   /* a change of contacts bends the output from the sinusoid into its pulses */
     const emf = peak() * s;
     return {
-      turned, th, s, c, split, emf,
-      out: split ? Math.abs(emf) : emf,             /* what the contacts hand to the circuit */
+      turned, th, s, c, split, ks, emf,
+      out: emf + ks * (Math.abs(emf) - emf),        /* what the contacts hand to the circuit */
       flux: bS.v * area() * c,
       v: (side() / 2) * wS.v,                       /* the speed of each side wire, v = rω with r = w/2 */
       period: TAU / wS.v,
@@ -226,9 +226,9 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     for (let i = 0; i < ARCN; i++) S.arc.push(keep(F.mesh.stick(turn, [0, 0, 0], [0, 0.01, 0], 0.028, PAL.ink), WC));
     S.arcHead = new THREE.Mesh(F.mesh.geo().cone, pmat(WC)); S.arcHead.scale.set(0.085, 0.19, 0.085); turn.add(S.arcHead);
     V.pickable(S.arcHead, 'the angular velocity at which the coil is turned');
-    /* the names. The letters on the poles are the frame and are always drawn; every
-       other name sits on something that turns, so they wait behind the Labels button
-       (rule 26.7) and are on hover meanwhile. */
+    /* the names. The letters on the poles and the names on the fixed frame (the field,
+       the angle and the turning) are always drawn; the names of the flux, the velocity
+       and the emf would ride round on the coil, so those are hover names (rule 26.7). */
     const dim = (e, col) => { e.style.background = 'transparent'; e.style.border = '0'; e.style.fontWeight = '600'; e.style.color = col; return e; };
     S.pole = [dim(V.label('N', [-(GAP + PW + 0.22), 0, 0], turn, 0), PAL.ink), dim(V.label('S', [GAP + PW + 0.22, 0, 0], turn, 0), PAL.ink)];
     S.lab = {
@@ -263,9 +263,10 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     S.patch.scale.set(1, 2 * hh, 2 * hh);
     S.patch.visible = on;
     S.lead.forEach((m, i) => F.mesh.setStick(m, [0, -hh, (i ? 1 : -1) * 0.12], [0, (st.split ? YSP : i ? YR2 : YR1) + 0.1, (i ? 1 : -1) * 0.12]));
-    S.slip.forEach((m) => { m.visible = !st.split; });
-    S.split.forEach((m) => { m.visible = st.split; });
-    S.brush.forEach((m, i) => { m.visible = st.split ? i > 1 : i < 2; });
+    const aRing = ringC.a('rings'), aSplit = ringC.a('split');
+    S.slip.forEach((m) => F.fade3(m, aRing));
+    S.split.forEach((m) => F.fade3(m, aSplit));
+    S.brush.forEach((m, i) => F.fade3(m, i > 1 ? aSplit : aRing));
     S.wire.forEach((m, i) => F.mesh.setStick(m, [(i ? 1 : -1) * 0.36, st.split ? YSP : i ? YR2 : YR1, 0], [(i ? 1 : -1) * 0.2, -1.58, -1.17]));
     /* the marks where the field lines pierce the face of the coil. A line at height
        y and depth z crosses the coil's plane at x = z tan θ, and it is caught only
@@ -317,7 +318,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     S.arcHead.position.copy(tip).add(dv.clone().multiplyScalar(0.06));
     S.arcHead.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dv);
     /* where each name sits, and whether it is drawn at all */
-    const labOn = labC.value === 'on';
+    const moving = { Phi: 1, v: 1, emf: 1 };
     V.move(S.lab.Phi, [0.12, -hh - 0.3, 0]);
     V.move(S.lab.v, [vl + 0.16, 0.2, hh]);
     V.move(S.lab.emf, [0.34, dir * eln * 0.7, -hh]);
@@ -332,7 +333,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     S.lab.w.textContent = 'ω = ' + fmt(wS.v, 1) + ' rad/s';
     S.pole.forEach((e) => { e.style.color = PAL.ink; });
     Object.entries(S.lab).forEach(([key, e]) => {
-      e.hidden = !labOn || ((key === 'B' || key === 'Phi') && !on)
+      e.hidden = moving[key] || ((key === 'B' || key === 'Phi') && !on)
         || (key === 'emf' && (!on || Math.abs(st.emf) <= 0.5))
         || (key === 'th' && span <= 0.06);
     });
@@ -389,13 +390,13 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     });
     const pk = peak();
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    curve(ctx, (a) => pk * (st.split ? Math.abs(Math.sin(a * RAD)) : Math.sin(a * RAD)), 0, 720, X, Y, C('voltage'), 5, 360);
+    curve(ctx, (a) => { const e = Math.sin(a * RAD); return pk * (e + st.ks * (Math.abs(e) - e)); }, 0, 720, X, Y, C('voltage'), 5, 360);
     ctx.restore();
     if (pk > 1) {
       line(ctx, BOX.l, Y(pk), BOX.r, Y(pk), alpha(C('voltage'), 0.45), 2, [10, 10]);
       text(ctx, 'emf₀ = ' + fmt(pk, 0) + ' V', BOX.r - 10, Y(pk) - 17, C('voltage'), { size: 18, weight: 600, align: 'right', bg: PAL.panel });
     }
-    if (st.split) [180, 360, 540].forEach((a) => line(ctx, X(a), BOX.t, X(a), BOX.b, alpha(PAL.ink, 0.4), 2, [6, 8]));
+    if (st.ks > 0) [180, 360, 540].forEach((a) => line(ctx, X(a), BOX.t, X(a), BOX.b, alpha(PAL.ink, 0.4 * st.ks), 2, [6, 8]));
     line(ctx, X(st.turned), Math.min(Y(st.out), Y(0)), X(st.turned), Math.max(Y(st.out), Y(0)), alpha(PAL.ink, 0.35), 2.5, [4, 8]);
     pinned(ctx, BOX, X, Y, st.turned, st.out, C('voltage'), fmt(st.out, 0) + ' V');
   }
@@ -409,7 +410,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     const drawnPeriod = T / 2, slow = drawnPeriod / st.period;
     readout(d.readout,
       `\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt = (${fmt(nS.v, 0)})(${milliTex(area(), 2)}\\ \\text{m}^2)(${fmt(bS.v, 2)}\\ \\text{T})(${fmt(wS.v, 1)}\\ \\text{rad/s})\\sin ${degTex(st.th)} = ${fmt(st.emf, 0)}\\ \\text{V}`,
-      `The angle is measured from the position where the coil faces the field squarely, which is where the flux through it is greatest, ${fluxStr(bS.v * area())}, and where the emf is zero; a quarter revolution on, the coil stands edge-on, the flux is zero and the emf is at its peak of ${fmt(peak(), 0)} V. The coil turns at ${fmt(wS.v, 1)} rad/s, so its period is ${fmt(st.period * 1000, 1)} ms and its frequency ${fmt(1 / st.period, 1)} Hz, but the scene is drawn at one revolution every ${fmt(drawnPeriod, 1)} s, about ${fmt(slow, 0)} times slower than the coil really turns, because a machine turning sixteen times a second shows the reader nothing. At the settings the figure opens on it is Example 23.3 and Example 23.4: two hundred turns of 7.85 × 10⁻³ m² in a 1.25 T field at 104.7 rad/s, whose average emf over a quarter revolution is 131 V and whose peak is 205 V, which Example 23.4 rounds to 206 V. Stop the motion with the transport and drag the scrubber from 0° to 90° to make that quarter revolution, over which the flux falls from its greatest value to zero in 15.0 ms. ${st.split ? 'The split ring turns the connection over each half revolution, so the coil still induces the same sinusoid but the circuit receives a train of positive pulses.' : 'The slip rings keep each end of the coil on its own brush all the way round, so the circuit receives the sinusoid just as the coil induces it.'}`);
+      `The angle is measured from the position where the coil faces the field squarely, which is where the flux through it is greatest, ${fluxStr(bS.v * area())}, and where the emf is zero; a quarter revolution on, the coil stands edge-on, the flux is zero and the emf is at its peak of ${fmt(peak(), 0)} V. The coil turns at ${fmt(wS.v, 1)} rad/s, so its period is ${fmt(st.period * 1000, 1)} ms and its frequency ${fmt(1 / st.period, 1)} Hz, but the scene is drawn at one revolution every ${fmt(drawnPeriod, 1)} s, about ${fmt(slow, 0)} times slower than the coil really turns, because a machine turning sixteen times a second shows the reader nothing. At the opening settings it is Example 23.3 and Example 23.4: two hundred turns of 7.85 × 10⁻³ m² in a 1.25 T field at 104.7 rad/s, whose average emf over a quarter revolution is 131 V and whose peak is 205 V, which Example 23.4 rounds to 206 V. From 0° to 90° is that quarter revolution, over which the flux falls from its greatest value to zero in 15.0 ms. ${st.split ? 'The split ring turns the connection over each half revolution, so the coil still induces the same sinusoid but the circuit receives a train of positive pulses.' : 'The slip rings keep each end of the coil on its own brush all the way round, so the circuit receives the sinusoid just as the coil induces it.'}`);
   }
 
   if (hasGL) {
@@ -448,8 +449,10 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
 (function () {
   const H = 770;
   const d = sim('sim-average-emf', H);
-  const t1S = ctl(d.controls, { label: '\\theta_1', cls: '', min: 0, max: 180, step: 5, value: 0, unit: '°', dec: 0, aria: 'the angle the coil has already turned when the interval begins' });
-  const dtS = ctl(d.controls, { label: '\\Delta\\theta', cls: '', min: 10, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle the coil turns through during the interval' });
+  const t1S = ctl(d.controls, { label: '\\theta_1', cls: '', min: 0, max: 180, step: 5, value: 0, unit: '°', dec: 0, aria: 'the angle the coil has already turned when the interval begins',
+    specials: [{ at: 0, label: 'face on' }] });
+  const dtS = ctl(d.controls, { label: '\\Delta\\theta', cls: '', min: 10, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle the coil turns through during the interval',
+    specials: [{ at: 90, label: 'quarter turn' }] });
   const wS = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 20, max: 125, step: 0.1, value: 104.7, unit: 'rad/s', dec: 1, aria: 'the angular velocity at which the coil is turned' });
 
   const N0 = 200, A0 = 7.85e-3, B0 = 1.25;          /* Example 23.3's own coil and field */
@@ -478,7 +481,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     dot(ctx, p1[0], p1[1], cP, false, 10); dot(ctx, p2[0], p2[1], cP, true, 10);
     line(ctx, p1[0], p1[1], p2[0] + 44, p1[1], alpha(PAL.ink, 0.35), 2, [4, 8]);
     vbracket(ctx, p2[0] + 44, p1[1], p2[1], cP, 'ΔΦ = ' + milli(st.dPhi, 2) + ' T⋅m²', 1);
-    note(ctx, BA, 'The chord is the change in flux over the change in time.', [
+    note(ctx, BA, 'The average emf follows the change in flux over the time it takes.', [
       { l: Math.min(p1[0], p2[0]) - 30, r: Math.max(p1[0], p2[0]) + 280, t: BA.t, b: BA.b },
       { l: BA.l, r: A.X(60), t: BA.t, b: A.Y(0) }, { l: A.X(300), r: BA.r, t: BA.t, b: A.Y(0) },
       { l: A.X(135), r: A.X(225), t: A.Y(0), b: BA.b },
@@ -494,14 +497,14 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     text(ctx, 'emf₀ = ' + fmt(st.peak, 0) + ' V', BB.r - 10, Bx.Y(st.peak) - 17, cE, { size: 18, weight: 600, align: 'right', bg: PAL.panel });
     line(ctx, Bx.X(st.t1), Bx.Y(st.avg), Bx.X(st.t2), Bx.Y(st.avg), cE, 4, [12, 8]);
     text(ctx, 'the average over this span, ' + fmt(st.avg, 0) + ' V', (Bx.X(st.t1) + Bx.X(st.t2)) / 2, Bx.Y(st.avg) - 20, cE, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
-    note(ctx, BB, 'The level is the mean of the curve over the span.', [
+    note(ctx, BB, 'The same average is the mean of the emf over the turn.', [
       { l: Bx.X(st.t1) - 40, r: Bx.X(st.t2) + 40, t: BB.t, b: BB.b },
       { l: Bx.X(45), r: Bx.X(135), t: BB.t, b: Bx.Y(0) }, { l: Bx.X(225), r: Bx.X(315), t: Bx.Y(0), b: BB.b },
     ]);
     topline(ctx, `Turned through ${deg(dtS.v)} from ${st.t1 === 0 ? 'the position where it faces the field' : deg(st.t1) + ' past the position where it faces the field'}, the coil's flux goes from ${fluxStr(flux(st.t1))} to ${fluxStr(flux(st.t2))} in ${fmt(st.dt * 1000, 1)} ms, so the average emf over that turn is ${fmt(st.avg, 0)} V against a peak of ${fmt(st.peak, 0)} V.`);
     readout(d.readout,
-      `\\kemf = -N\\frac{\\kdPhi}{\\kdt} = -(${fmt(N0, 0)})\\frac{${milliTex(st.dPhi, 2)}\\ \\text{T}\\cdot\\text{m}^2}{${milliTex(st.dt, 2)}\\ \\text{s}} = ${fmt(st.avg, 0)}\\ \\text{V}, \\qquad \\kemfo = NA\\kBmag\\kw = ${fmt(st.peak, 0)}\\ \\text{V}`,
-      `The coil is Example 23.3's own: two hundred turns of area 7.85 × 10⁻³ m² in a field of 1.25 T, so the greatest flux through it is 9.81 × 10⁻³ T⋅m² and the peak emf is 205 V at 104.7 rad/s, which Example 23.4 rounds to 206 V. Set the turn to a quarter revolution beginning where the coil faces the field and the average comes to 131 V, which is 2/π of that peak, because that is what the mean of a sine over a quarter of its cycle comes to; the figure then reads Example 23.3 and Example 23.4 together. Move the start of the turn to 90° and the same quarter revolution gives the same average the other way about, since the flux is now climbing rather than falling. Open the turn to a whole revolution and the average falls to zero, because the coil ends where it began and the flux has not changed at all, which is why an average emf has to be quoted with the interval it was taken over. The angular velocity scales both the peak and the average together, since turning the coil twice as fast halves the time as well as leaving the change in flux alone.`);
+      `\\kemf = -N\\frac{\\kdPhi}{\\kdt} = -(${fmt(N0, 0)})\\frac{${milliTex(st.dPhi, 2)}\\ \\text{T}\\cdot\\text{m}^2}{${milliTex(st.dt, 2)}\\ \\text{s}} = ${fmt(st.avg, 0)}\\ \\text{V}`,
+      `The peak emf is emf₀ = NABω = ${fmt(st.peak, 0)} V. The coil is Example 23.3's own: two hundred turns of area 7.85 × 10⁻³ m² in a field of 1.25 T, so the greatest flux through it is 9.81 × 10⁻³ T⋅m² and the peak emf is 205 V at 104.7 rad/s, which Example 23.4 rounds to 206 V. Set the turn to a quarter revolution beginning where the coil faces the field and the average comes to 131 V, which is 2/π of that peak, because that is what the mean of a sine over a quarter of its cycle comes to, and that is Example 23.3 and Example 23.4 together. Move the start of the turn to 90° and the same quarter revolution gives the same average the other way about, since the flux is now climbing rather than falling. Start the turn at 90° and open it to a half revolution and the average falls to zero, because the flux ends where it began, which is why an average emf has to be quoted with the interval it was taken over. The angular velocity scales both the peak and the average together, since turning the coil twice as fast halves the time as well as leaving the change in flux alone.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

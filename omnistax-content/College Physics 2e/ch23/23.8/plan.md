@@ -208,6 +208,8 @@ Extra simulations (rule 15), thought through, judged and decided:
 
 **Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-case-emf`, `sim-gfi` and `sim-isolation`: the person's hand stopped short of the case or the wire the caption said it held; a lead now runs from the induced-emf source, from the case and from the output wire to the hand, with the current arrow on it, so the person is visibly part of the circuit. `sim-isolation`: the two long names of the choice were clipped in a button row and are a dropdown (rule 26.1); the 120 V tag sat on the source's wire and stands to its left. The other three figures were judged and left as built.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** All six choices now fade the parts only one option has, instead of cutting between two drawings (manim 16); the helper `layer(ctx, a, f)` at the top of the file does it: the three-wire system's breaker, case and earths; the plug's third prong, cut prong and earth run; the broken earth wire and its fault current; the grounded case's lead; the GFI's two leakage paths; and the isolation transformer against the direct supply. Captions no longer speak of the drawing.
+
 ## Exercises
 
 - Everything is set at the end: the section prints no Check Your Understanding

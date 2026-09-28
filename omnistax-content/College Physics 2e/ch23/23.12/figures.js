@@ -85,17 +85,11 @@ function flow(ctx, x, y, dx, dy, L) {
 (function () {
   const H = 1000;
   const d = sim('sim-rlc-voltages', H);
-  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 20, max: 3000, step: 10, value: 60, unit: 'Hz', dec: 0, onInput: reset, aria: 'the frequency of the AC source' });
+  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 20, max: 3000, step: 10, value: 60, unit: 'Hz', dec: 0, onInput: reset, aria: 'the frequency of the AC source',
+    specials: [{ at: () => circuit(1000, rS.v, lS.v * 1e-3, cS.v * 1e-6).f0, label: 'f₀' }] });
   const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 30, max: 120, step: 1, value: 40, unit: 'Ω', dec: 1, onInput: reset, aria: 'the resistance of the resistor' });
   const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 1, max: 6, step: 0.25, value: 3, unit: 'mH', dec: 2, onInput: reset, aria: 'the inductance of the inductor' });
   const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, onInput: reset, aria: 'the capacitance of the capacitor' });
-  /* a dropdown rather than a button row, since five curves on one frame at once
-     would be unreadable at any setting and the two names are long (rule 26.1) */
-  const showC = select(d.controls, {
-    label: '\\text{the graph carries}',
-    options: [{ value: 'elements', label: 'each element' }, { value: 'source', label: 'source and current' }],
-    value: 'elements', aria: 'whether the graph carries the three element voltages or the source voltage beside the current',
-  });
 
   const VRMS = 120, V0 = VRMS * Math.SQRT2;       /* the source the book fixes at 120 V rms */
   /* Fixed ranges, taken from the slider maxima and never rescaled: the source
@@ -117,7 +111,6 @@ function flow(ctx, x, y, dx, dy, L) {
     const vR = iNow * R, vL = I0 * XL * Math.cos(th), vC = -I0 * XC * Math.cos(th), vS = vR + vL + vC;
     const cV = C('voltage'), cI = C('current'), cR = C('resistance'), cL = C('inductance'), cC = C('capacitance'), cF = C('frequency'), cT = C('time');
     const period = 1000 / f;                                   /* the period in milliseconds */
-    const elems = showC.value === 'elements';
 
     /* the loop: the three elements along the top, the source along the bottom */
     const yT = 214, yB = 452, xL = 230, xR = 1240;
@@ -154,46 +147,38 @@ function flow(ctx, x, y, dx, dy, L) {
     });
     const Y2 = (a) => (BOX.t + BOX.b) / 2 - (a / IMAX) * (BOX.b - BOX.t) / 2;
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    if (elems) {
-      curve(ctx, (u) => I0 * R * Math.sin(TWO_PI * u), 0, CYCLES, X, Y, cV, 5, 300);
-      ctx.save(); ctx.setLineDash([10, 10]);
-      curve(ctx, (u) => I0 * XL * Math.cos(TWO_PI * u), 0, CYCLES, X, Y, cV, 5, 300);
-      ctx.restore();
-      ctx.save(); ctx.setLineDash([4, 8]);
-      curve(ctx, (u) => -I0 * XC * Math.cos(TWO_PI * u), 0, CYCLES, X, Y, cV, 5, 300);
-      ctx.restore();
-    } else {
-      curve(ctx, (u) => I0 * Z * Math.sin(TWO_PI * u + phi), 0, CYCLES, X, Y, cV, 5, 300);
-      curve(ctx, (u) => I0 * Math.sin(TWO_PI * u), 0, CYCLES, X, Y2, cI, 5, 300);
-    }
+    /* the three element voltages in the voltage hue, told apart by their dashes; the
+       source, which is their sum at every instant, in ink; the current on its own scale */
+    curve(ctx, (u) => I0 * R * Math.sin(TWO_PI * u), 0, CYCLES, X, Y, cV, 4, 300);
+    ctx.save(); ctx.setLineDash([10, 10]);
+    curve(ctx, (u) => I0 * XL * Math.cos(TWO_PI * u), 0, CYCLES, X, Y, cV, 4, 300);
     ctx.restore();
-    /* the right-hand scale, which the current rides when it is drawn */
+    ctx.save(); ctx.setLineDash([4, 8]);
+    curve(ctx, (u) => -I0 * XC * Math.cos(TWO_PI * u), 0, CYCLES, X, Y, cV, 4, 300);
+    ctx.restore();
+    curve(ctx, (u) => I0 * Z * Math.sin(TWO_PI * u + phi), 0, CYCLES, X, Y, PAL.ink, 5, 300);
+    curve(ctx, (u) => I0 * Math.sin(TWO_PI * u), 0, CYCLES, X, Y2, cI, 5, 300);
+    ctx.restore();
+    /* the right-hand scale, which the current rides */
     line(ctx, BOX.r, BOX.t, BOX.r, BOX.b, PAL.muted, 2);
-    if (!elems) {
-      for (let k = -2; k <= 2; k++) text(ctx, fmt(k * IMAX / 2, 0), BOX.r + 14, Y2(k * IMAX / 2), PAL.muted, { size: 17, align: 'left' });
-      text(ctx, 'current (A)', BOX.r, BOX.t - 24, cI, { size: 20, weight: 600, align: 'right' });
-    }
+    for (let k = -2; k <= 2; k++) text(ctx, fmt(k * IMAX / 2, 0), BOX.r + 14, Y2(k * IMAX / 2), PAL.muted, { size: 17, align: 'left' });
+    text(ctx, 'current (A)', BOX.r, BOX.t - 24, cI, { size: 20, weight: 600, align: 'right' });
     /* the names on the curves, set at the crest each one reaches first */
-    const at = (u, v, Yf) => [Math.min(Math.max(X(u), BOX.l + 8), BOX.r - 28), Math.min(Math.max(Yf(v), BOX.t + 22), BOX.b - 8)];
-    const tag = (s, u, v, Yf, col) => { const q = at(u, v, Yf); text(ctx, s, q[0] + 14, q[1] - 16, col, { size: 21, weight: 600, bg: PAL.panel }); };
-    if (elems) {
-      tag('V_R', 0.32, I0 * R, Y, cV);
-      tag('V_L', 0.0, I0 * XL, Y, cV);
-      tag('V_C', 0.5, I0 * XC, Y, cV);
-    } else {
-      tag('V', 0.25 - phi / TWO_PI, I0 * Z, Y, cV);
-      tag('I', 0.25, I0, Y2, cI);
-    }
+    /* five curves: the legend above the frame names them all, so no name has to sit on a crowded crest */
+    const legend = [['V_R', cV, []], ['V_L', cV, [10, 10]], ['V_C', cV, [4, 8]], ['V, the source', PAL.ink, []], ['I', cI, []]];
+    let lx = BOX.l + 150;             /* clear of the axis title at the frame's top left */
+    legend.forEach(([s, col, dash]) => {
+      line(ctx, lx, BOX.t - 30, lx + 44, BOX.t - 30, col, 4, dash.length ? dash : undefined);
+      text(ctx, s, lx + 54, BOX.t - 30, col, { size: 19, weight: 600, align: 'left' });
+      lx += 54 + F.measure(ctx, s, { size: 19, weight: 600 }) + 34;
+    });
     /* where the figure stands at this instant */
     line(ctx, X(cy.now()), BOX.t, X(cy.now()), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    if (elems) {
-      pinned(ctx, BOX, X, Y, cy.now(), vR, cV, null);
-      pinned(ctx, BOX, X, Y, cy.now(), vL, cV, null);
-      pinned(ctx, BOX, X, Y, cy.now(), vC, cV, null);
-    } else {
-      pinned(ctx, BOX, X, Y, cy.now(), vS, cV, null);
-      pinned(ctx, BOX, X, Y2, cy.now(), iNow, cI, null);
-    }
+    pinned(ctx, BOX, X, Y, cy.now(), vR, cV, null);
+    pinned(ctx, BOX, X, Y, cy.now(), vL, cV, null);
+    pinned(ctx, BOX, X, Y, cy.now(), vC, cV, null);
+    pinned(ctx, BOX, X, Y, cy.now(), vS, PAL.ink, null);
+    pinned(ctx, BOX, X, Y2, cy.now(), iNow, cI, null);
 
     topline(ctx, XC > XL
       ? 'At ' + fmt(f, 0) + ' Hz the capacitor’s ' + fmt(XC, XC > 99 ? 0 : 2) + ' Ω dwarfs the inductor’s ' + fmt(XL, XL > 99 ? 0 : 2) + ' Ω, so the current reaches its peak ' + fmt(-phi * DEG, 1) + '° of a cycle before the source voltage does, and one cycle takes ' + fmt(period, period > 9 ? 1 : 3) + ' ms.'
@@ -208,100 +193,9 @@ function flow(ctx, x, y, dx, dy, L) {
 /* =====================================================================
    SIM: the impedance triangle. The book states the square root and says
    in words that it is not a sum; it never draws the triangle whose sides
-   the three numbers are, which is a pity, because the phase angle lives
-   in the same picture. Still: a triangle is a geometry and has no clock
-   in it. The two halves share one scale in ohms, 600 Ω to the frame, so
-   that the triangle and the curves beside it are one drawing; the
-   capacitive reactance runs to 1326 Ω at the foot of the frequency
-   slider and is clipped there with its value stated, since no honest
-   frame holds both that and a 40 Ω resistance.
-===================================================================== */
-(function () {
-  const H = 900;
-  const d = sim('sim-impedance-triangle', H);
-  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 60, max: 3000, step: 10, value: 60, unit: 'Hz', dec: 0, aria: 'the frequency of the AC source' });
-  const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 30, max: 120, step: 1, value: 40, unit: 'Ω', dec: 1, aria: 'the resistance of the resistor' });
-  const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 1, max: 6, step: 0.25, value: 3, unit: 'mH', dec: 2, aria: 'the inductance of the inductor' });
-  const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, aria: 'the capacitance of the capacitor' });
-
-  const VRMS = 120;
-  const OHMS = 600, SC = 0.6;                    /* ohms to the frame, and canvas units to the ohm */
-  const OX = 232, OY = 462;                      /* the corner the triangle is built out from */
-  const BOX = { l: 800, r: 1310, t: 196, b: 730 };
-  let hits = [];
-  hover(d.stage, () => hits);
-
-  function draw() {
-    const { ctx } = begin(d.c);
-    const f = fS.v, R = rS.v, L = lS.v * 1e-3, Cf = cS.v * 1e-6;
-    const { XL, XC, Z, phi, f0 } = circuit(f, R, L, Cf);
-    const cR = C('resistance'), cF = C('frequency'), cV = C('voltage'), cI = C('current');
-    const X = XL - XC, Irms = VRMS / Z;
-    hits = [];
-
-    /* the triangle, drawn to scale in ohms: the resistance along the foot, the
-       difference of the two reactances standing on it, the impedance across the
-       corner. A leg past the frame is drawn to the frame's edge and its value
-       is stated, since the reader is being shown which of the three dominates. */
-    const clip = (v) => Math.max(-OHMS, Math.min(OHMS, v));
-    const fx = OX + clip(R) * SC, fy = OY, ty = OY - clip(X) * SC;
-    line(ctx, OX, OY - 360, OX, OY + 360, alpha(PAL.ink, 0.3), 2, [10, 10]);
-    line(ctx, OX - 40, OY, OX + 180, OY, alpha(PAL.ink, 0.3), 2, [10, 10]);
-    arrow(ctx, OX, OY, fx, fy, cR, 5);
-    text(ctx, 'R = ' + fmt(R, 1) + ' Ω', OX + 4, OY + 56, cR, { size: 22, weight: 600, align: 'left', bg: PAL.panel });
-    if (Math.abs(X) * SC > 3) {
-      arrow(ctx, fx, fy, fx, ty, cR, 5);
-      text(ctx, (X > 0 ? 'X_L − X_C = ' : 'X_C − X_L = ') + fmt(Math.abs(X), Math.abs(X) > 99 ? 0 : 2) + ' Ω', fx + 18, (fy + ty) / 2, cR, { size: 22, weight: 600, align: 'left' });
-    } else {
-      text(ctx, 'X_L − X_C = 0, so the triangle has collapsed to its foot', fx + 18, fy - 30, cR, { size: 21, weight: 600, align: 'left' });
-    }
-    line(ctx, OX, OY, fx, ty, cR, 6);
-    text(ctx, 'Z = ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω', OX - 22, (OY + ty) / 2, cR, { size: 24, weight: 600, align: 'right' });
-    if (Math.abs(phi) > 0.03) angleArc(ctx, { x: OX, y: OY }, 78, 0, -phi, 'φ = ' + fmt(Math.abs(phi) * DEG, 1) + '°');
-    dot(ctx, OX, OY, PAL.ink, true, 7);
-    text(ctx, X > 0 ? 'the inductor wins, and the current lags the source voltage' : X < 0 ? 'the capacitor wins, and the current leads the source voltage' : 'neither wins: this is resonance', 40, 848, PAL.muted, { size: 19, align: 'left' });
-    hits.push({ x: (OX + fx) / 2, y: OY, r: 40, name: 'the resistance, ' + fmt(R, 1) + ' Ω, which is the foot of the triangle' });
-    hits.push({ x: fx, y: (fy + ty) / 2, r: 46, name: 'the difference of the two reactances, ' + fmt(Math.abs(X), 1) + ' Ω' });
-    hits.push({ x: (OX + fx) / 2, y: (OY + ty) / 2, r: 46, name: 'the impedance, ' + fmt(Z, 1) + ' Ω' });
-
-    /* the same three numbers against frequency, on the same scale in ohms */
-    const A = axes(ctx, BOX, [0, 3000], [0, OHMS], {
-      xl: 'frequency f (Hz)', xc: cF, yl: 'ohms', yc: cR, nx: 3, ny: 3, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0),
-    });
-    ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    line(ctx, BOX.l, A.Y(R), BOX.r, A.Y(R), cR, 4);
-    ctx.save(); ctx.setLineDash([10, 10]);
-    curve(ctx, (u) => TWO_PI * u * L, 60, 3000, A.X, A.Y, cR, 4, 60);
-    ctx.restore();
-    ctx.save(); ctx.setLineDash([4, 8]);
-    curve(ctx, (u) => 1 / (TWO_PI * u * Cf), 60, 3000, A.X, A.Y, cR, 4, 240);
-    ctx.restore();
-    curve(ctx, (u) => { const q = circuit(u, R, L, Cf); return q.Z; }, 60, 3000, A.X, A.Y, cR, 6, 240);
-    ctx.restore();
-    text(ctx, 'Z', A.X(1700), A.Y(Math.min(OHMS, circuit(1700, R, L, Cf).Z)) - 30, cR, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'X_L', A.X(2880), A.Y(Math.min(OHMS, TWO_PI * 2880 * L)) - 30, cR, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'X_C', A.X(340), A.Y(Math.min(OHMS, 1 / (TWO_PI * 340 * Cf))) - 30, cR, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'R', A.X(150), A.Y(R) + 30, cR, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    if (f0 < 3000) {
-      line(ctx, A.X(f0), BOX.t, A.X(f0), BOX.b, alpha(PAL.ink, 0.35), 2, [10, 10]);
-      text(ctx, 'f₀', A.X(f0), BOX.b + 44, cF, { size: 20, weight: 600, align: 'center' });
-    }
-    pinned(ctx, BOX, A.X, A.Y, f, Z, cR, fmt(Z, Z > 99 ? 0 : 2) + ' Ω');
-
-    topline(ctx, Math.abs(X) < 0.5
-      ? 'At ' + fmt(f, 0) + ' Hz the two reactances are equal and cancel, so the triangle is its foot alone, the impedance is the ' + fmt(R, 1) + ' Ω of the resistor and the current is in phase with the source voltage.'
-      : XC > XL
-        ? 'At ' + fmt(f, 0) + ' Hz the capacitor’s ' + fmt(XC, XC > 99 ? 0 : 2) + ' Ω dwarfs the inductor’s ' + fmt(XL, XL > 99 ? 0 : 2) + ' Ω, so the impedance is ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the current leads the source voltage by ' + fmt(-phi * DEG, 1) + '°.'
-        : 'At ' + fmt(f, 0) + ' Hz the inductor’s ' + fmt(XL, XL > 99 ? 0 : 2) + ' Ω outweighs the capacitor’s ' + fmt(XC, XC > 99 ? 0 : 2) + ' Ω, so the impedance is ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the current lags the source voltage by ' + fmt(phi * DEG, 1) + '°.');
-    readout(d.readout,
-      `\\cos\\phi = \\dfrac{\\kRes}{\\kZimp} = \\dfrac{${fmt(R, 1)}\\ \\Omega}{${fmt(Z, Z > 99 ? 0 : 2)}\\ \\Omega} = ${fmt(Math.cos(phi), 4)},\\quad \\phi = ${fmt(Math.abs(phi) * DEG, 1)}^\\circ`,
-      'On a 120 V rms source this circuit draws ' + fmt(Irms, 3) + ' A, and the ' + fmt(Math.abs(X), Math.abs(X) > 99 ? 0 : Math.abs(X) > 9 ? 1 : 2) + ' Ω standing on the foot of the triangle is the whole of the difference between an impedance of ' + fmt(Z, Z > 99 ? 0 : 2) + ' Ω and the ' + fmt(R, 1) + ' Ω the circuit would have at resonance.');
-  }
-  register(d.fig, { update: () => {}, draw });
-})();
-
-/* =====================================================================
-   SIM: the impedance triangle again, with resonance as a place the
+   the three numbers are, and the phase angle lives in the same picture.
+   The two halves share one scale in ohms, so the triangle and the curves
+   beside it are one drawing. Resonance is a place the
    frequency slider can land. A dashed circle on it sits at f₀ = 1/2π√LC
    and moves with L and C, and L and C carry circles of their own; on
    resonance the standing leg
@@ -311,7 +205,7 @@ function flow(ctx, x, y, dx, dy, L) {
 ===================================================================== */
 (function () {
   const H = 900;
-  const d = sim('sim-impedance-triangle-morph', H);
+  const d = sim('sim-impedance-triangle', H);
   /* resonance marked on each slider it involves: f₀ on f, and on L and C the value that makes the current f resonant */
   const w2 = () => (TWO_PI * fS.v) ** 2;
   const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 60, max: 3000, step: 10, value: 60, unit: 'Hz', dec: 0, aria: 'the frequency of the AC source',
@@ -424,10 +318,15 @@ function flow(ctx, x, y, dx, dy, L) {
 (function () {
   const H = 800;
   const d = sim('sim-resonance', H);
-  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 20, max: 3000, step: 10, value: 1300, unit: 'Hz', dec: 0, aria: 'the frequency of the AC source, which sets the marker on the curve' });
+  /* resonance marked on each slider it involves: f₀ on f, and on L and C the value that makes the present f resonant */
+  const w2 = () => (TWO_PI * fS.v) ** 2;
+  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 20, max: 3000, step: 10, value: 1300, unit: 'Hz', dec: 0, aria: 'the frequency of the AC source',
+    specials: [{ at: () => circuit(1000, rS.v, lS.v * 1e-3, cS.v * 1e-6).f0, label: 'f₀' }] });
   const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 10, max: 200, step: 1, value: 40, unit: 'Ω', dec: 1, aria: 'the resistance of the resistor' });
-  const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 1, max: 6, step: 0.25, value: 3, unit: 'mH', dec: 2, aria: 'the inductance of the inductor' });
-  const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, aria: 'the capacitance of the capacitor' });
+  const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 1, max: 6, step: 0.25, value: 3, unit: 'mH', dec: 2, aria: 'the inductance of the inductor',
+    specials: [{ at: () => 1e3 / (w2() * cS.v * 1e-6), label: 'resonance' }] });
+  const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 2, aria: 'the capacitance of the capacitor',
+    specials: [{ at: () => 1e6 / (w2() * lS.v * 1e-3), label: 'resonance' }] });
 
   const VRMS = 120;
   /* Fixed ranges, taken from the slider maxima and never rescaled: the smallest
@@ -469,7 +368,7 @@ function flow(ctx, x, y, dx, dy, L) {
     pinned(ctx, BOX, X, Y, f, Irms, cI, fmt(Irms, 2) + ' A');
     pinned(ctx, BOX, X, Y2, f, Pave, cP, fmt(Pave, 0) + ' W');
     line(ctx, X(f), BOX.t, X(f), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    note(ctx, BOX, 'the dashed curve is the same circuit with four times the resistance, which is the book’s second circuit', [
+    note(ctx, BOX, 'four times the resistance gives a lower and broader peak at the same frequency, which is the book’s second circuit', [
       { l: BOX.l, r: BOX.r, t: Y(IMAX), b: Y(0) },
     ]);
 
@@ -543,14 +442,20 @@ function flow(ctx, x, y, dx, dy, L) {
     const L = lS.v * 1e-3, Cf = cS.v * 1e-6, free = whichC.value === 'free';
     const f0 = 1 / (TWO_PI * Math.sqrt(L * Cf)), period = 1000 / f0;
     const u = cy.now(), th = TWO_PI * u;
-    const env = free ? 1 : Math.pow(1 - LOSS, u);
+    /* the loss comes in and goes out by degrees: the energies bend under their envelope, and the
+       mass on its spring and the wheel on its road, which have no parts in common, trade places by fading */
+    const kD = whichC.mix((w) => (w === 'driven' ? 1 : 0)), aFree = whichC.a('free'), aDrv = whichC.a('driven');
+    const envOf = (u2) => 1 - kD * (1 - Math.pow(1 - LOSS, u2));
+    const env = envOf(u);
     const eC = env * Math.cos(th) * Math.cos(th), eL = env * Math.sin(th) * Math.sin(th);
-    const heat = free ? 0 : 1 - env;
+    const heat = 1 - env;
     const cE = C('energy'), cV = C('voltage'), cI = C('current'), cL = C('inductance'), cC = C('capacitance'), cT = C('time'), cR = C('resistance'), cF = C('frequency');
     hits = [];
 
     /* ---- the mechanical machine, on the left ---- */
-    if (free) {
+    if (aFree > 0) {
+      const [ox, oy] = whichC.off('free', [0, 30]);
+      ctx.save(); ctx.globalAlpha = aFree; ctx.translate(ox, oy);
       /* the mass on its spring: the displacement follows the charge on the
          capacitor and the speed follows the current in the inductor */
       const x0 = 520, amp = 150, mx = x0 + amp * Math.cos(th), fl = 470;
@@ -567,8 +472,12 @@ function flow(ctx, x, y, dx, dy, L) {
          into a hue to be shown */
       if (Math.abs(sp) > 8) arrow(ctx, mx, 300, mx + sp * 0.7, 300, PAL.muted, 5);
       text(ctx, Math.abs(Math.sin(th)) < 0.08 ? 'all of the energy is in the spring' : Math.abs(Math.cos(th)) < 0.08 ? 'all of the energy is in the motion of the mass' : 'the energy is shared between the spring and the motion', 400, 528, PAL.muted, { size: 19, align: 'center' });
-      hits.push({ x: mx, y: 370, r: 60, name: 'the mass, whose displacement follows the charge on the capacitor' });
-    } else {
+      if (free) hits.push({ x: mx, y: 370, r: 60, name: 'the mass, whose displacement follows the charge on the capacitor' });
+      ctx.restore();
+    }
+    if (aDrv > 0) {
+      const [ox, oy] = whichC.off('driven', [0, 30]);
+      ctx.save(); ctx.globalAlpha = aDrv; ctx.translate(ox, oy);
       const shift = 150 * u;
       road(ctx, shift);
       const bounce = 20 * env * Math.cos(th), hubY = RAD + bounce;
@@ -584,7 +493,8 @@ function flow(ctx, x, y, dx, dy, L) {
       text(ctx, 'the shock absorber, which is the resistance', mount[0] + 26, mount[1] + 18, cR, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
       text(ctx, 'the bumps in the road, which are the source', 340, 596, PAL.muted, { size: 19, align: 'center' });
       const hp = V.P([0, hubY, WW / 2]);
-      hits.push({ x: hp[0], y: hp[1], r: 70, name: 'the wheel, driven up and down by the bumps and damped by the shock absorber' });
+      if (!free) hits.push({ x: hp[0], y: hp[1], r: 70, name: 'the wheel, driven up and down by the bumps and damped by the shock absorber' });
+      ctx.restore();
     }
 
     /* ---- the circuit, on the right ---- */
@@ -594,7 +504,7 @@ function flow(ctx, x, y, dx, dy, L) {
     text(ctx, 'C', (xl + xr) / 2, yt - 54, cC, { size: 24, weight: 600, align: 'center', bg: PAL.panel });
     coil(ctx, (xl + xr) / 2, yb, 132);
     text(ctx, 'L', (xl + xr) / 2, yb + 52, cL, { size: 24, weight: 600, align: 'center', bg: PAL.panel });
-    if (!free) { resistorBox(ctx, xr, (yt + yb) / 2, 46, 110); text(ctx, 'R', xr + 44, (yt + yb) / 2, cR, { size: 24, weight: 600, align: 'left', bg: PAL.panel }); }
+    if (aDrv > 0) { ctx.save(); ctx.globalAlpha = aDrv; resistorBox(ctx, xr, (yt + yb) / 2, 46, 110); text(ctx, 'R', xr + 44, (yt + yb) / 2, cR, { size: 24, weight: 600, align: 'left', bg: PAL.panel }); ctx.restore(); }
     /* the charge on the plates and the current round the loop, both live */
     const qs = Math.cos(th) * Math.sqrt(env), isv = -Math.sin(th) * Math.sqrt(env);
     if (Math.abs(qs) > 0.06) {
@@ -611,24 +521,23 @@ function flow(ctx, x, y, dx, dy, L) {
     hits.push({ x: (xl + xr) / 2, y: yb, r: 60, name: 'the inductor, which holds the energy in its magnetic field' });
 
     /* ---- the graph: where the energy stands, cycle by cycle ---- */
-    const top = free ? 1.0 : 1.5;
+    const top = 1 + 0.5 * kD;
     const { X, Y } = axes(ctx, BOX, [0, CYCLES], [0, top], {
       xl: 'cycles of the oscillation', xc: cT, yl: 'energy, as a fraction of the whole', yc: cE, nx: 4, ny: free ? 4 : 3, fx: (u2) => fmt(u2, 1), fy: (u2) => fmt(u2, 2),
     });
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    const envOf = (u2) => (free ? 1 : Math.pow(1 - LOSS, u2));
     curve(ctx, (u2) => envOf(u2) * Math.cos(TWO_PI * u2) ** 2, 0, CYCLES, X, Y, cE, 5, 300);
     ctx.save(); ctx.setLineDash([10, 10]);
     curve(ctx, (u2) => envOf(u2) * Math.sin(TWO_PI * u2) ** 2, 0, CYCLES, X, Y, cE, 5, 300);
     ctx.restore();
-    if (!free) { ctx.save(); ctx.setLineDash([4, 8]); curve(ctx, (u2) => 1 - envOf(u2), 0, CYCLES, X, Y, cE, 4, 120); ctx.restore(); }
+    if (kD > 0.001) { ctx.save(); ctx.setLineDash([4, 8]); curve(ctx, (u2) => 1 - envOf(u2), 0, CYCLES, X, Y, alpha(cE, aDrv), 4, 120); ctx.restore(); }
     ctx.restore();
     /* the names of the curves, on panels inside the frame's top right corner, clear
        of the axis title at its top left: solid, dashed and dotted are told apart there */
     const lx = BOX.r - 16, ly = BOX.t + 24;
     line(ctx, lx - 250, ly, lx - 200, ly, cE, 5); text(ctx, 'in the capacitor', lx - 190, ly, cE, { size: 19, weight: 600, align: 'left', bg: PAL.panel });
     line(ctx, lx - 250, ly + 30, lx - 200, ly + 30, cE, 5, [10, 10]); text(ctx, 'in the inductor', lx - 190, ly + 30, cE, { size: 19, weight: 600, align: 'left', bg: PAL.panel });
-    if (!free) { line(ctx, lx - 250, ly + 60, lx - 200, ly + 60, cE, 4, [4, 8]); text(ctx, 'turned into heat by the resistance', lx - 190, ly + 60, cE, { size: 19, weight: 600, align: 'left', bg: PAL.panel }); }
+    if (aDrv > 0) { line(ctx, lx - 250, ly + 60, lx - 200, ly + 60, alpha(cE, aDrv), 4, [4, 8]); text(ctx, 'turned into heat by the resistance', lx - 190, ly + 60, alpha(cE, aDrv), { size: 19, weight: 600, align: 'left', bg: PAL.panel }); }
     line(ctx, X(u), BOX.t, X(u), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
     pinned(ctx, BOX, X, Y, u, eC, cE, null);
     pinned(ctx, BOX, X, Y, u, eL, cE, null);
@@ -637,8 +546,8 @@ function flow(ctx, x, y, dx, dy, L) {
       ? 'With ' + fmt(lS.v, 2) + ' mH and ' + fmt(cS.v, 2) + ' µF the circuit oscillates at ' + fmt(f0 / 1000, 2) + ' kHz of its own accord, and ' + fmt(100 * eC, 0) + '% of its energy stands in the capacitor’s electric field at this moment.'
       : 'Driven at its own ' + fmt(f0 / 1000, 2) + ' kHz and damped by its resistance, the circuit has turned ' + fmt(100 * heat, 0) + '% of the energy it started with into heat, and ' + fmt(100 * eC, 0) + '% of it stands in the capacitor at this moment.');
     readout(d.readout,
-      `\\kfo = \\dfrac{1}{2\\pi\\sqrt{\\kLind\\kCap}} = ${fmt(f0, 0)}\\ \\text{Hz},\\quad \\kT = ${fmt(period, 3)}\\ \\text{ms}`,
-      'The circuit really takes ' + fmt(period, 3) + ' ms to a cycle, and the drawing is slowed by a factor of ' + fmt(2500 / period, 0) + ' so that the trade can be watched; the two stores are ' + (free ? 'never both full and never both empty, and they always add to the whole.' : 'still in step with one another, but what they add to falls, because the resistance takes a share of it every cycle.'));
+      `\\kfo = \\dfrac{1}{2\\pi\\sqrt{\\kLind\\kCap}} = \\dfrac{1}{2\\pi\\sqrt{(${fmt(lS.v, 2)} \\times 10^{-3}\\ \\text{H})(${fmt(cS.v, 2)} \\times 10^{-6}\\ \\text{F})}} = ${fmt(f0, 0)}\\ \\text{Hz}`,
+      'The circuit really takes T = ' + fmt(period, 3) + ' ms to a cycle, and the drawing is slowed by a factor of ' + fmt(2500 / period, 0) + ' so that the trade can be watched; the two stores are ' + (free ? 'never both full and never both empty, and they always add to the whole.' : 'still in step with one another, but what they add to falls, because the resistance takes a share of it every cycle.'));
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => CYCLES / 5.0), draw });
 })();

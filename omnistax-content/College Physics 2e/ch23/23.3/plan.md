@@ -58,6 +58,8 @@ no photograph and no unnumbered image, so nothing is dropped.
 
 **Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-rod-rails` and `sim-relative-motion`: the field was a lattice of thick arrows 170 units tall that buried the rails, the rod and the labels; the lines are now 104 tall, 1.2 to 3 wide with the field strength, and drawn at a lighter tone, so the apparatus reads through them and the flux markers on the enclosed face stand out. The three-state "what moves" control wrapped into two rows and is a dropdown (rule 26.1). `sim-tether` was judged and left as built.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** `sim-rod-rails`: the "the drawing shows" dropdown is gone (rule 26.7). The book's (a) and (b) are one state: the swept area, the Δx and ΔA bracket and the polarity are there throughout, and the induced current, its field and the drag grow from their tails, staggered, over the rod's first 15 cm. Names were re-placed so the drawing reads at ℓ = 0.10 and 0.60 m. `sim-relative-motion`: a change of what moves carries the rod, the rails and the field from one motion to the other, and each velocity arrow fades in or out; the flux line bends flat for "both together" (manim 16). `sim-tether`: the caption no longer speaks of the readout.
+
 ## Extra simulations offered
 
 `sim-relative-motion` above is the one candidate that survived the test of

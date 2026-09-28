@@ -117,19 +117,23 @@ function resistorBox(ctx, x, y) {
      frequency, so the shape stays legible from 20 Hz to 2 kHz. */
   const cy = cycle(() => 2, 0.6);
   const BOX = { l: 250, r: 1230, t: 560, b: 830 };
+  /* a change of element slides the current a quarter cycle along against the voltage, and the
+     readout rewrites itself by meaning: 2π and f keep their places, while X_L, X_C and R are
+     three different quantities and cross-fade where they stand */
+  const eqHost = el('div'), small = el('small');
+  d.readout.append(eqHost, small);
+  const reactance = (m, f) => (m === 'L' ? 2 * Math.PI * f * (lS.v * 1e-3) : m === 'C' ? 1 / (2 * Math.PI * f * (cS.v * 1e-6)) : rS.v);
 
   function draw() {
     const { ctx } = begin(d.c);
     const f = fS.v, T = 1 / f, mode = kind.value;
-    const X_ = mode === 'L' ? 2 * Math.PI * f * (lS.v * 1e-3)
-      : mode === 'C' ? 1 / (2 * Math.PI * f * (cS.v * 1e-6))
-        : rS.v;
+    const X_ = reactance(mode, f);
     const Irms = VRMS / X_, I0 = Irms * Math.SQRT2;
     const cV = C('voltage'), cI = C('current'), cR = C('resistance'), cT = C('time'), cF = C('frequency');
     /* θ is the phase of the source in cycles; the voltage is a cosine of it and the
        current is a quarter cycle behind it in an inductor and a quarter cycle ahead
        of it in a capacitor, which is what the book's three graphs show */
-    const lead = mode === 'L' ? -0.25 : mode === 'C' ? 0.25 : 0;
+    const lead = kind.mix((m) => (m === 'L' ? -0.25 : m === 'C' ? 0.25 : 0));
     const vf = (u) => Math.cos(2 * Math.PI * u);
     const iff = (u) => Math.cos(2 * Math.PI * (u + lead));
     const now = cy.now();                    /* 0 to 2, in periods */
@@ -143,14 +147,21 @@ function resistorBox(ctx, x, y) {
     text(ctx, fmt(VRMS, 0) + ' V rms', xl - 76, (y0 + y1) / 2 + 12, cV, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, fHz(f), xl - 76, (y0 + y1) / 2 + 48, cF, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     const ex = 760;
-    if (mode === 'L') inductor(ctx, ex, y0);
-    else if (mode === 'C') capacitor(ctx, ex, y0, Math.cos(2 * Math.PI * now));
-    else resistorBox(ctx, ex, y0);
-    const name = mode === 'L' ? 'the inductor' : mode === 'C' ? 'the capacitor' : 'the resistor';
-    const val = mode === 'L' ? fmt(lS.v, 2) + ' mH' : mode === 'C' ? fmt(cS.v, 2) + ' µF' : fmt(rS.v, 0) + ' Ω';
-    const sym = mode === 'L' ? 'X_L = ' : mode === 'C' ? 'X_C = ' : 'R = ';
-    text(ctx, name + ', ' + val, ex, y0 - 86, PAL.ink, { size: 21, align: 'center', bg: PAL.panel });
-    text(ctx, sym + big(X_, 'Ω'), ex, y0 - 50, cR, { size: 23, weight: 600, align: 'center', bg: PAL.panel });
+    /* the element on the source, one fading out where it stands as the next arrives */
+    ['L', 'C', 'R'].forEach((m) => {
+      const a = kind.a(m);
+      if (a <= 0) return;
+      ctx.save(); ctx.globalAlpha = a;
+      if (m === 'L') inductor(ctx, ex, y0);
+      else if (m === 'C') capacitor(ctx, ex, y0, Math.cos(2 * Math.PI * now));
+      else resistorBox(ctx, ex, y0);
+      const name = m === 'L' ? 'the inductor' : m === 'C' ? 'the capacitor' : 'the resistor';
+      const val = m === 'L' ? fmt(lS.v, 2) + ' mH' : m === 'C' ? fmt(cS.v, 2) + ' µF' : fmt(rS.v, 0) + ' Ω';
+      const sym = m === 'L' ? 'X_L = ' : m === 'C' ? 'X_C = ' : 'R = ';
+      text(ctx, name + ', ' + val, ex, y0 - 86, PAL.ink, { size: 21, align: 'center', bg: PAL.panel });
+      text(ctx, sym + big(reactance(m, f), 'Ω'), ex, y0 - 50, cR, { size: 23, weight: 600, align: 'center', bg: PAL.panel });
+      ctx.restore();
+    });
     /* the voltage across the element at this instant, bracketed above it */
     const vNow = V0 * vf(now), iNow = I0 * iff(now);
     text(ctx, 'v = ' + fmt(vNow, 1) + ' V', ex, y0 + 58, cV, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
@@ -179,22 +190,23 @@ function resistorBox(ctx, x, y) {
     pinned(ctx, BOX, X, Y, now, iff(now), cI);
     /* the quarter cycle between the two peaks, bracketed where the book marks its
        points a to d; a resistor has no gap to bracket and is told so instead */
-    if (mode === 'L') hbracket(ctx, X(1), X(1.25), Y(1) - 46, cT, 'a quarter of a cycle', { side: 'above', H });
-    else if (mode === 'C') hbracket(ctx, X(0.75), X(1), Y(1) - 46, cT, 'a quarter of a cycle', { side: 'above', H });
-    else text(ctx, 'the two peak together at every frequency', BOX.r, 536, PAL.muted, { size: 20, align: 'right', bg: PAL.panel });
+    const gap = Math.abs(lead) > 0.01;
+    if (gap && lead < 0) hbracket(ctx, X(1), X(1 - lead), Y(1) - 46, alpha(cT, Math.min(1, -lead * 4)), 'a quarter of a cycle', { side: 'above', H });
+    else if (gap) hbracket(ctx, X(1 - lead), X(1), Y(1) - 46, alpha(cT, Math.min(1, lead * 4)), 'a quarter of a cycle', { side: 'above', H });
+    if (kind.a('R') > 0) text(ctx, 'the two peak together at every frequency', BOX.r, 536, alpha(PAL.muted, kind.a('R')), { size: 20, align: 'right', bg: PAL.panel });
 
     topline(ctx, mode === 'L'
       ? 'Across a ' + fmt(lS.v, 2) + ' mH inductor at ' + fHz(f) + ' the reactance is ' + big(X_, 'Ω') + ', the rms current is ' + big(Irms, 'A') + ', and the current comes to its peak a quarter of a cycle after the voltage does.'
       : mode === 'C'
         ? 'Across a ' + fmt(cS.v, 2) + ' µF capacitor at ' + fHz(f) + ' the reactance is ' + big(X_, 'Ω') + ', the rms current is ' + big(Irms, 'A') + ', and the current comes to its peak a quarter of a cycle before the voltage does.'
         : 'Across a ' + fmt(rS.v, 0) + ' Ω resistor at ' + fHz(f) + ' the rms current is ' + big(Irms, 'A') + ', and the voltage and the current rise and fall exactly together.');
-    readout(d.readout,
-      mode === 'L'
-        ? `\\kXL = 2\\pi \\kf\\kLind = 2\\pi(${texHz(f)})(${fmt(lS.v, 2)}\\ \\text{mH}) = ${ohmTex(X_)}`
-        : mode === 'C'
-          ? `\\kXC = \\dfrac{1}{2\\pi \\kf\\kCap} = \\dfrac{1}{2\\pi(${texHz(f)})(${fmt(cS.v, 2)}\\ \\mu\\text{F})} = ${ohmTex(X_)}`
-          : `\\kRes = ${fmt(rS.v, 0)}\\ \\Omega,\\ \\text{whatever the frequency}`,
-      'Ohm’s law in this form gives a current of ' + big(Irms, 'A') + ' rms from the ' + fmt(VRMS, 0) + ' V rms across the element, and one period of the source lasts ' + (T >= 0.01 ? fmt(T * 1000, 1) + ' ms' : fmt(T * 1e6, 0) + ' µs') + '.');
+    const fv = `(\\mk{fv}{${texHz(f)}})`;
+    F.morph(eqHost, mode === 'L'
+      ? `\\mk{XL}{\\kXL} = \\mk{tp}{2\\pi} \\mk{f}{\\kf}\\mk{L}{\\kLind} = \\mk{tp2}{2\\pi}${fv}(\\mk{Lv}{${fmt(lS.v, 2)}}\\ \\text{mH}) = \\mk{rL}{${ohmTex(X_)}}`
+      : mode === 'C'
+        ? `\\mk{XC}{\\kXC} = \\dfrac{1}{\\mk{tp}{2\\pi} \\mk{f}{\\kf}\\mk{C}{\\kCap}} = \\dfrac{1}{\\mk{tp2}{2\\pi}${fv}(\\mk{Cv}{${fmt(cS.v, 2)}}\\ \\mu\\text{F})} = \\mk{rC}{${ohmTex(X_)}}`
+        : `\\mk{R}{\\kRes} = \\mk{Rv}{${fmt(rS.v, 0)}}\\ \\Omega`);
+    small.textContent = (mode === 'R' ? 'A resistance is the same whatever the frequency. ' : '') + 'Ohm’s law in this form gives a current of ' + big(Irms, 'A') + ' rms from the ' + fmt(VRMS, 0) + ' V rms across the element, and one period of the source lasts ' + (T >= 0.01 ? fmt(T * 1000, 1) + ' ms' : fmt(T * 1e6, 0) + ' µs') + '.';
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
 })();
@@ -247,7 +259,7 @@ function resistorBox(ctx, x, y) {
     capacitor(ctx, 880, 210, 0);
     text(ctx, fmt(cS.v, 2) + ' µF', 880, 268, PAL.ink, { size: 20, align: 'center' });
     bar(1010, 210, ic, 'the capacitor passes');
-    text(ctx, 'each on its own across ' + fmt(VRMS, 0) + ' V rms at ' + fHz(f) + '; the arrows are on the same logarithmic scale as the frame below',
+    text(ctx, 'each on its own across ' + fmt(VRMS, 0) + ' V rms at ' + fHz(f) + ', on a logarithmic scale of current',
       700, 320, PAL.muted, { size: 19, align: 'center' });
 
     /* ---- the frame: both reactances against frequency, logarithmic both ways ---- */
@@ -275,8 +287,8 @@ function resistorBox(ctx, x, y) {
     topline(ctx, 'At ' + fHz(f) + ' the ' + fmt(lS.v, 2) + ' mH inductor offers ' + big(xl, 'Ω') + ' and passes ' + big(il, 'A')
       + ', while the ' + fmt(cS.v, 2) + ' µF capacitor offers ' + big(xc, 'Ω') + ' and passes ' + big(ic, 'A') + '.');
     readout(d.readout,
-      `\\kXL = 2\\pi \\kf\\kLind = ${ohmTex(xl)} \\qquad \\kXC = \\dfrac{1}{2\\pi \\kf\\kCap} = ${ohmTex(xc)}`,
-      'Take the frequency up and the inductor’s ohms climb while the capacitor’s fall, which is why a large inductor in series with a computer keeps high-frequency noise out of it and a capacitor in series with a loudspeaker keeps the 60 Hz hum out of that.');
+      `\\kXL = 2\\pi \\kf\\kLind = 2\\pi(${texHz(f)})(${fmt(lS.v, 2)}\\ \\text{mH}) = ${ohmTex(xl)}`,
+      'At the same frequency the capacitor offers X_C = 1/2πfC = ' + big(xc, 'Ω') + '. Take the frequency up and the inductor’s ohms climb while the capacitor’s fall, which is why a large inductor in series with a computer keeps high-frequency noise out of it and a capacitor in series with a loudspeaker keeps the 60 Hz hum out of that.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

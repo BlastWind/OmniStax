@@ -139,6 +139,8 @@ No image rides on an exercise card: the only image an exercise points at is
 Figure 23.25, which the page already carries, and the first problem refers to
 it by its number.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** `sim-dc-ac`: changing what the primary is given bends both traces from one shape to the other on the same frames, and the throw marks fade with the switched state (manim 15). The switched readout was two equations; the peak is now in the note (manim 12). The caption no longer points above and below.
+
 ## Extra simulations offered
 
 None survives rule 15. Two were judged and dropped: a double transformer in

@@ -134,7 +134,7 @@ function gripHand(ctx, x, y, ux, uy, t) {
   const TC = 0.28, T_ON = 0.5, T_OFF = 3.6, T_END = 6.4, AREA = 0.012;
   const FULL = 20 * AREA * (0.60 / TC);            /* the greatest N ΔΦ/Δt the sliders reach */
   const cy = cycle(() => T_END, 0.8);
-  const k = () => (core.value === 'iron' ? 1 : 0.04);
+  const k = () => core.mix((c) => (c === 'iron' ? 1 : 0.04));      /* taking the iron out thins the field the lower coil sees */
   const rise = 1 - Math.exp(-(T_OFF - T_ON) / TC);
   const field = (t) => (t < T_ON ? 0 : t < T_OFF ? B.v * (1 - Math.exp(-(t - T_ON) / TC)) : B.v * rise * Math.exp(-(t - T_OFF) / TC));
   const slope = (t) => (t < T_ON ? 0 : t < T_OFF ? (B.v / TC) * Math.exp(-(t - T_ON) / TC) : -((B.v * rise) / TC) * Math.exp(-(t - T_OFF) / TC));
@@ -161,19 +161,22 @@ function gripHand(ctx, x, y, ux, uy, t) {
     }
   }
   function ring(ctx) {
+    ctx.save(); ctx.globalAlpha = 0.3 + 0.7 * core.a('iron');     /* the iron fades to the outline the coils are wound on */
     face(ctx, circle(R0 + TUBE), 0.1, 3);
+    ctx.restore();
     const inner = circle(R0 - TUBE);
     ctx.save(); ctx.beginPath(); inner.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
     ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
   }
   function fieldArrows(ctx, b) {
     if (b < 0.004) return;
-    const a = clamp(b / 0.60, 0.12, 1), whole = core.value === 'iron';
+    const a = clamp(b / 0.60, 0.12, 1), round = core.a('iron');
     for (let i = 0; i < 12; i++) {
       const c = (i / 12) * TAU + 0.26;
-      if (!whole && !(c > 200 * RAD && c < 340 * RAD)) continue;
+      const w = c > 200 * RAD && c < 340 * RAD ? 1 : round;   /* without the iron the field stays in the upper coil */
+      if (w <= 0) continue;
       const p1 = at(R0, c - 0.13), p2 = at(R0, c + 0.13);
-      arrow(ctx, p1[0], p1[1], p2[0], p2[1], alpha(C('magnetic-field'), 0.25 + 0.75 * a), 4);
+      arrow(ctx, p1[0], p1[1], p2[0], p2[1], alpha(C('magnetic-field'), (0.25 + 0.75 * a) * w), 4);
     }
   }
   function circuits(ctx, closed) {
@@ -239,12 +242,11 @@ function gripHand(ctx, x, y, ux, uy, t) {
   const Bs = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.02, max: 0.20, step: 0.01, value: 0.08, unit: 'T', dec: 2, aria: 'the field at the face of the magnet’s pole' });
   const pole = choice(d.controls, { label: '\\text{the pole facing the coil}', options: [{ value: 'n', label: 'north' }, { value: 's', label: 'south' }], value: 'n', aria: 'which pole of the magnet faces the coil' });
   const mover = select(d.controls, { label: '\\text{what moves}', options: [{ value: 'magnet', label: 'the magnet' }, { value: 'coil', label: 'the coil' }, { value: 'none', label: 'neither' }], value: 'magnet', aria: 'whether the magnet moves, the coil moves, or both are held still', onInput: () => cy.reset() });
-  const LAB = choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the parts of the drawing' });
 
   const ZM = 0.12, ZS = 0.05, AC = 0.0050, NL = 2, PX = 2500, CY = 330, APER = 100, ML = 180;
   const spread = (z) => 1 + z / ZS;
   const Bat = (z) => Bs.v / (spread(z) * spread(z));
-  const sign = () => (pole.value === 'n' ? 1 : -1);
+  const sign = () => pole.mix((p) => (p === 'n' ? 1 : -1));   /* turning the magnet round carries the flux through zero to its mirror */
   const dphidz = (z) => -sign() * ((2 * Bs.v * AC) / (ZS * Math.pow(spread(z), 3)));
   const FULL = NL * ((2 * 0.20 * AC) / (ZS * Math.pow(spread(ZM / 2), 3))) * 1.20;   /* a middling emf at the greatest settings */
   const still = () => mover.value === 'none';
@@ -262,7 +264,6 @@ function gripHand(ctx, x, y, ux, uy, t) {
     const coilX = mover.value === 'coil' ? 400 + zpx : 700;
     const poleX = mover.value === 'coil' ? 420 : coilX + 20 - zpx;
     const phi = sign() * Bat(st.z) * AC, emf = -NL * dphidz(st.z) * st.dz, r = soft((2.2 * emf) / FULL);
-    const on = LAB.value === 'on';
 
     /* the magnet's field: a bundle of lines out of the pole, spreading as they go */
     const n = Math.max(3, Math.round(3 + (8 * Bs.v) / 0.20)), BAND = 190;
@@ -277,16 +278,20 @@ function gripHand(ctx, x, y, ux, uy, t) {
       const inside = Math.abs(off * (1 + Math.max(0, coilX - xp) / 125)) < APER;
       if (inside) caught++;
       const out = sign() > 0;
-      arrow(ctx, out ? xp : xe, out ? yAt(xp) : yAt(xe), out ? xe : xp, out ? yAt(xe) : yAt(xp), alpha(C('magnetic-field'), 0.55), 3);
-      if (inside) line(ctx, coilX - 46, yAt(coilX - 46), coilX + 46, yAt(coilX + 46), C('magnetic-flux'), 6);
+      const s = Math.abs(sign());
+      arrow(ctx, out ? xp : xe, out ? yAt(xp) : yAt(xe), out ? xe : xp, out ? yAt(xe) : yAt(xp), alpha(C('magnetic-field'), 0.55 * s), 3);
+      if (inside) line(ctx, coilX - 46, yAt(coilX - 46), coilX + 46, yAt(coilX + 46), alpha(C('magnetic-flux'), s), 6);
     }
     /* the magnet, its poles lettered */
     const mx = poleX - ML;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.rect(mx, CY - 30, ML, 60); ctx.fill(); ctx.stroke(); ctx.restore();
     line(ctx, mx + ML / 2, CY - 30, mx + ML / 2, CY + 30, PAL.ink, 2);
-    text(ctx, sign() > 0 ? 'S' : 'N', mx + ML / 4, CY, PAL.ink, { size: 24, weight: 600, align: 'center' });
-    text(ctx, sign() > 0 ? 'N' : 'S', mx + (3 * ML) / 4, CY, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    [['n', 'S', 'N'], ['s', 'N', 'S']].forEach(([p, back, front]) => {
+      const a = pole.a(p); if (a <= 0) return;
+      text(ctx, back, mx + ML / 4, CY, alpha(PAL.ink, a), { size: 24, weight: 600, align: 'center' });
+      text(ctx, front, mx + (3 * ML) / 4, CY, alpha(PAL.ink, a), { size: 24, weight: 600, align: 'center' });
+    });
     /* the coil: two turns seen from the side, drawn over the magnet where it is inside */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6;
     [-16, 16].forEach((dx) => { ctx.beginPath(); ctx.ellipse(coilX + dx, CY, 26, APER, 0, 0, TAU); ctx.stroke(); });
@@ -304,20 +309,23 @@ function gripHand(ctx, x, y, ux, uy, t) {
     }
     meter(ctx, 1150, 462, 95, r, 'induced emf');
     fluxBar(ctx, 950, 300, 100, phi / (0.20 * AC), 'Φ through the coil', sci(phi, 1) + ' T·m²');
-    if (on) {
-      label(ctx, 'the bar magnet', mx + ML / 2, CY + 34, { side: 'below', size: 20, color: PAL.ink });
-      label(ctx, 'the coil, two turns', coilX, CY - APER - 6, { side: 'above', size: 20, color: PAL.ink });
-      label(ctx, 'the field of the magnet', poleX + 130, CY + 92, { side: 'below', size: 20, color: C('magnetic-field') });
-      label(ctx, 'the lines the coil catches', coilX, CY + APER + 14, { side: 'below', size: 20, color: C('magnetic-flux') });
-    }
+    hits = [
+      { x: mx + ML / 2, y: CY, r: 60, name: 'the bar magnet' },
+      { x: coilX, y: CY - APER + 20, r: 40, name: 'the coil, two turns' },
+      { x: coilX, y: CY + APER - 20, r: 40, name: 'the coil, two turns' },
+      { x: coilX, y: CY, r: 34, name: 'the lines the coil catches, whose count is the flux' },
+      { x: poleX + 130, y: CY + 60, r: 40, name: 'the field of the magnet' },
+    ];
     const head = still()
       ? 'Nothing is moving, the flux through the coil is as steady as the magnet is, and the needle sits at zero however strong the magnet is.'
       : `${mover.value === 'coil' ? `The coil is moving ${st.dz < 0 ? 'onto' : 'off'} the magnet` : `The magnet is moving ${st.dz < 0 ? 'into' : 'out of'} the coil`} at ${fmt(v.v, 2)} m/s, the flux through the coil is ${st.dz < 0 ? 'growing' : 'falling'}, and the needle stands to the ${r > 0 ? 'right' : 'left'}.`;
     topline(ctx, head);
     readout(d.readout,
       `\\kPhi = \\kBmag A = (${fmt(Bat(st.z), 4)}\\ \\text{T})(0.0050\\ \\text{m}^2) = ${sciTex(Math.abs(phi), 2)}\\ \\text{T}\\cdot\\text{m}^2\\ \\text{, with the coil}\\ ${fmt(st.z * 100, 1)}\\ \\text{cm from the pole}`,
-      `The coil catches ${caught} of the ${n} lines drawn, and that count is the flux: bring the magnet up and the lines crowd into it, take it away and they spread past it. The needle answers how fast the flux is changing and not how much of it there is, which is why it falls back to zero the moment the motion stops, and why it changes ends when the magnet is pulled out instead of pushed in, or turned round so that the other pole faces the coil. Moving the coil onto a magnet held still does exactly what moving the magnet does: it is the relative motion that counts.`);
+      `The coil catches ${caught} of the ${n} lines out of the pole, and that count is the flux: bring the magnet up and the lines crowd into it, take it away and they spread past it. The needle answers how fast the flux is changing and not how much of it there is, which is why it falls back to zero the moment the motion stops, and why it changes ends when the magnet is pulled out instead of pushed in, or turned round so that the other pole faces the coil. Moving the coil onto a magnet held still does exactly what moving the magnet does: it is the relative motion that counts.`);
   }
+  let hits = [];
+  F.hover(d.stage, () => hits);
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
@@ -338,7 +346,6 @@ function gripHand(ctx, x, y, ux, uy, t) {
   const B = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.10, max: 0.40, step: 0.05, value: 0.20, unit: 'T', dec: 2, aria: 'the field between the poles of the magnet' });
   const w = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 1, max: 12, step: 0.5, value: 4, unit: 'rad/s', dec: 1, aria: 'the rate the coil is turned at', onInput: () => cy.reset() });
   const A = ctl(d.controls, { label: 'A', cls: '', min: 0.04, max: 0.16, step: 0.01, value: 0.08, unit: 'm²', dec: 2, aria: 'the area of the coil' });
-  const LAB = choice(d.controls, { label: '\\text{Labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'the names of the coil and of the perpendicular to it' });
 
   const CX = 520, CY = 320, FULL = 0.30, PHI_MAX = 0.40 * 0.16, RY = 540;
   const cy = cycle(() => TAU / w.v, 0);
@@ -391,15 +398,18 @@ function gripHand(ctx, x, y, ux, uy, t) {
     fluxBar(ctx, 940, 300, 104, phi / PHI_MAX, 'Φ through the coil', sci(phi, 1) + ' T·m²');
     text(ctx, 'seen from above', 210, 120, PAL.muted, { size: 17, align: 'center' });
     label(ctx, 'B between the poles', CX, CY - 172, { side: 'above', size: 20, color: C('magnetic-field'), leader: false });
-    if (LAB.value === 'on') {
-      label(ctx, 'the coil, edge on', CX + ex, CY + ey, { side: ey < 0 ? 'above' : 'below', size: 20, color: PAL.ink });
-      label(ctx, 'the perpendicular to the coil', CX + nx, CY + ny, { side: ny < 0 ? 'above' : 'below', size: 20, color: PAL.muted });
-    }
+    hits = [
+      { x: CX + ex * 0.6, y: CY + ey * 0.6, r: 36, name: 'the coil, edge on' },
+      { x: CX - ex * 0.6, y: CY - ey * 0.6, r: 36, name: 'the coil, edge on' },
+      { x: CX + nx * 0.85, y: CY + ny * 0.85, r: 30, name: 'the perpendicular to the coil' },
+    ];
     topline(ctx, `The perpendicular to the coil stands at ${fmt(deg, 0)}° to the field, so the flux through the coil is ${sci(phi, 1)} T·m² and ${Math.abs(s) < 0.06 ? 'at a turning point' : s > 0 ? 'falling' : 'growing'}.`);
     readout(d.readout,
       `\\kPhi = \\kBmag A\\cos\\theta = (${fmt(B.v, 2)}\\ \\text{T})(${fmt(A.v, 2)}\\ \\text{m}^2)\\cos ${fmt(deg, 0)}^\\circ = ${sciTex(phi, 2)}\\ \\text{T}\\cdot\\text{m}^2`,
       `Neither the field nor the area changes as the coil turns: the angle alone does the work, and the flux follows its cosine. The needle stands at zero twice a turn, at the two angles where the coil faces the field squarely and the flux is greatest, and swings furthest as the coil passes edge on, where the flux is zero and changing fastest. Turn the coil faster and every swing grows, which is what the section means when it says the emf depends on the rotation rate.`);
   }
+  let hits = [];
+  F.hover(d.stage, () => hits);
   register(d.fig, {
     update: (dt) => { if (cy.tau >= cy.period()) { cy.tau = 0; cy.wait = 0; } cy.step(dt, () => 1); },
     draw,
@@ -428,7 +438,11 @@ function gripHand(ctx, x, y, ux, uy, t) {
   const d = sim('sim-flux-angle', hasGL ? 0 : 620);
   const B = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.5, max: 3.0, step: 0.1, value: 1.5, unit: 'mT', dec: 1, aria: 'the strength of the uniform magnetic field' });
   const A = ctl(d.controls, { label: 'A', cls: '', min: 0.05, max: 0.40, step: 0.01, value: 0.20, unit: 'm²', dec: 2, aria: 'the area of the loop' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 60, unit: '°', dec: 0, aria: 'the angle between the field and the perpendicular to the loop' });
+  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 60, unit: '°', dec: 0, aria: 'the angle between the field and the perpendicular to the loop',
+    specials: [{ at: 0, label: 'face on' }, { at: 90, label: 'edge on' }] });
+  /* the flux changes form at the two angles the text names: face on it is B A, edge on it is nothing */
+  const eqHost = el('div'), note = el('small');
+  d.readout.append(eqHost, note);
 
   const U = 3.5;                                   /* scene units to the metre, so 0.40 m² fills the frame */
   const REG = 1.15, ZEND = 2.2;                    /* the lines cover a square of side 2 REG and run from −ZEND to ZEND */
@@ -564,9 +578,14 @@ function gripHand(ctx, x, y, ux, uy, t) {
     const st = state();
     if (hasGL && S) apply(st);
     if (!hasGL && d.c) { const { ctx } = begin(d.c); drawFlat(ctx, st); }
-    readout(d.readout,
-      `\\kPhi = \\kBmag A\\cos\\theta = (${sciTex(st.B_T, 2)}\\ \\text{T})(${fmt(A.v, 2)}\\ \\text{m}^2)\\cos ${fmt(th.v, 0)}^\\circ = ${sciTex(st.phi, 2)}\\ \\text{T}\\cdot\\text{m}^2`,
-      `The same flux is Φ = B⊥A, the area times the part of the field that goes straight through it, and here B⊥ = B cos θ = ${sci(st.B_T * st.c, 2)} T. ${hasGL ? `The loop catches ${st.caught} of the lines drawn, where face on it would catch ${st.face} of them, and turning it to 90° leaves it catching none at all while the field is as strong as it ever was. The lines are drawn more closely as the field is made stronger.` : 'Turning the loop to 90° leaves it catching nothing at all, while the field is as strong as it ever was.'} The figure opens on the coil of the section’s second test-prep item, 0.20 m² at 60° to a field of 1.5 mT.`);
+    const Bv = `\\mk{Bv}{${sciTex(st.B_T, 2)}}\\ \\text{T}`, Av = `\\mk{Av}{${fmt(A.v, 2)}}\\ \\text{m}^2`, u = `\\ \\mk{u}{\\text{T}\\cdot\\text{m}^2}`;
+    F.morph(eqHost, th.v <= 0
+      ? `\\mk{Phi}{\\kPhi} = \\mk{B}{\\kBmag} \\mk{A}{A} = (${Bv})(${Av}) = \\mk{r}{${sciTex(st.phi, 2)}}${u}`
+      : th.v >= 90
+        ? `\\mk{Phi}{\\kPhi} = \\mk{r}{0}`
+        : `\\mk{Phi}{\\kPhi} = \\mk{B}{\\kBmag} \\mk{A}{A}\\mk{cos}{\\cos\\theta} = (${Bv})(${Av})\\mk{cv}{\\cos ${fmt(th.v, 0)}^\\circ} = \\mk{r}{${sciTex(st.phi, 2)}}${u}`);
+    note.textContent =
+      `The same flux is Φ = B⊥A, the area times the part of the field that goes straight through it, and here B⊥ = B cos θ = ${sci(st.B_T * st.c, 2)} T. ${hasGL ? `The loop catches ${st.caught} of the field lines, where face on it would catch ${st.face} of them, and turning it to 90° leaves it catching none at all while the field is as strong as it ever was. A stronger field is more lines to the square metre.` : 'Turning the loop to 90° leaves it catching nothing at all, while the field is as strong as it ever was.'}`;
   }
 
   if (hasGL) {

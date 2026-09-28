@@ -140,7 +140,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
     topline(ctx, `Raising the field through the loop by ${fmt(dB, 2)} T in ${fmt(dt, 2)} s changes the flux by ${fmt(dPhi * 1e3, 2)} mWb, and ${N === 1 ? 'a single turn' : N + ' turns'} of wire then ${N === 1 ? 'carries' : 'carry'} an emf of ${fmt(emf * 1e3, 1)} mV.`);
     readout(d.readout,
       `\\kemf = N\\frac{\\kdPhi}{\\kdt} = (${N})\\frac{(${sciTex(A, 2)}\\ \\text{m}^2)(${fmt(dB, 2)}\\ \\text{T})}{${fmt(dt, 2)}\\ \\text{s}} = ${fmt(emf * 1e3, 1)}\\ \\text{mV}`,
-      'The area of the loop is fixed, so the change in flux is the area times the change in B cos θ, and the emf is the slope of the ramp below multiplied by the number of turns. Faraday’s three factors act here one at a time: double the change in the field and the emf doubles, halve the time the change takes and the emf doubles again, and every turn of the coil adds an emf of its own. The sliders begin at Example 23.1, a single loop of 6.00 cm radius through which B cos θ rises from 0.0500 T to 0.250 T in 0.100 s, which gives 22.6 mV.');
+      'The area of the loop is fixed, so the change in flux is the area times the change in B cos θ, and the emf is the rate the flux changes at, multiplied by the number of turns. Faraday’s three factors act here one at a time: double the change in the field and the emf doubles, halve the time the change takes and the emf doubles again, and every turn of the coil adds an emf of its own. The sliders begin at Example 23.1, a single loop of 6.00 cm radius through which B cos θ rises from 0.0500 T to 0.250 T in 0.100 s, which gives 22.6 mV.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -175,7 +175,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
     if (u < 4.1) return SMAX * sm((u - 2.5) / 1.6);
     return SMAX;
   }
-  const sgn = () => (poleC.value === 'N' ? 1 : -1); /* the flux points toward the coil when the north pole faces it */
+  const sgn = () => poleC.mix((p) => (p === 'N' ? 1 : -1)); /* the flux points toward the coil when the north pole faces it; turned round, every curve bends through zero to its mirror */
   const phiOf = (t) => (sgn() * bS.v * A) / Math.pow(1 + Math.pow(sOf(t) / AA, 2), 1.5);
   const rateOf = (t) => (phiOf(t + 0.004) - phiOf(t - 0.004)) / 0.008;
   const emfOf = (t) => -nS.v * rateOf(t);
@@ -219,7 +219,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
     const { ctx } = begin(d.c);
     const fc = C('magnetic-field'), pc = C('magnetic-flux'), vc = C('voltage'), ic = C('current'), tc = C('time');
     const t = cy.now(), s = sOf(t), phi = phiOf(t), rate = rateOf(t), emf = emfOf(t);
-    const N = nS.v, right = poleC.value, mx = MX - s * CMU;
+    const N = nS.v, mx = MX - s * CMU;
     const PHIFULL = 0.3 * A;                        /* the flux a 0.300 T magnet puts through the coil at its closest */
     const share = Math.min(1, Math.abs(phi) / PHIFULL), lit = Math.round(SLOT.length * share);
     const moving = Math.abs(emf) > 1e-4;
@@ -232,7 +232,9 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
       text(ctx, nm, 102, y, PAL.muted, { size: 18 });
     });
 
-    magnetField(ctx, mx, right, bS.v);
+    /* the magnet turned round: the two ends trade letters and the field its direction, one fading out as the other arrives */
+    const poles = ['N', 'S'].filter((p) => poleC.a(p) > 0);
+    poles.forEach((p) => { ctx.save(); ctx.globalAlpha = poleC.a(p); magnetField(ctx, mx, p, bS.v); ctx.restore(); });
     /* the flux: the shaded opening of the coil, and the lines that pass through it */
     ctx.save(); ctx.fillStyle = alpha(pc, 0.07 + 0.25 * share);
     ctx.fillRect(MX - 34, CYA - BORE, 68, 2 * BORE); ctx.restore();
@@ -242,7 +244,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
     }
     /* the coil, and the magnet on its axis */
     const coil = solenoid(ctx, MX, CYA, N, PITCH, BORE);
-    barMagnet(ctx, mx, CYA, ML, MT, right);
+    poles.forEach((p) => { ctx.save(); ctx.globalAlpha = poles.length > 1 ? poleC.a(p) : 1; barMagnet(ctx, mx, CYA, ML, MT, p); ctx.restore(); });
     /* the field the coil raises against the change, and the current that raises it */
     if (moving) {
       const y = CYA + 56;

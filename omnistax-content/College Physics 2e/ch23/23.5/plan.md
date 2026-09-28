@@ -234,6 +234,8 @@ Extra simulations (rule 15), thought through, judged and left:
 
 **Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-generator`: the two-option contacts control stacked into two rows beside four sliders and is a dropdown (rule 26.1); the scene, its views and its transport were judged in the browser and kept. `sim-average-emf` was judged and left as built.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** `sim-generator`: the Labels button is gone (rule 26.7). The names on the fixed frame (B, θ, ω) are always drawn; the flux, velocity and emf names ride on the coil, so they are hover names. Changing the contacts bends the output from the sinusoid into its rectified pulses, and the rings cross-fade to the split ring (manim 15). `sim-average-emf`: the readout is one equation, the average; the peak moves into the note (manim 12). Dashed circles mark θ₁ = 0° (face on) and Δθ = 90° (the quarter turn of Example 23.3) (manim 8). The canvas notes state the physics, and the caption no longer promises a whole revolution the Δθ slider cannot reach.
+
 ## Types the page binds
 
 `magnetic-flux`, `magnetic-field`, `voltage`, `angular-rate`, `time` and

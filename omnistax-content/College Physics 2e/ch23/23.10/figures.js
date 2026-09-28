@@ -76,6 +76,10 @@ function flow(ctx, x, y, dx, dy, L) {
      30 A of current, which is the greatest final current the sliders reach, 30.0 V
      through 1.00 Ω. Nothing the sliders can set leaves the frame. */
   const TWIN = 0.025, IMAX = 30;
+  /* throwing the switch rewrites the law by meaning: I₀ and the exponential keep their places, and
+     the "1 −" the battery supplies fades with its brackets */
+  const eqHost = el('div'), small = el('small');
+  d.readout.append(eqHost, small);
   const BOX = { l: 250, r: 1230, t: 600, b: 820 };
   const cy = cycle(() => TWIN, 1.2);
   function reset() { cy.reset(); }
@@ -124,7 +128,8 @@ function flow(ctx, x, y, dx, dy, L) {
     const { X, Y } = axes(ctx, BOX, [0, TWIN * 1000], [0, IMAX], {
       xl: 'time t (ms)', xc: cT, yl: 'current I (A)', yc: cI, nx: 5, ny: 3, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0),
     });
-    const f = (ms) => (on ? I0 * (1 - Math.exp(-ms / (tau * 1000))) : I0 * Math.exp(-ms / (tau * 1000)));
+    const kOn = pos.mix((p) => (p === '1' ? 1 : 0));   /* the curve bends from the growth into the decay rather than cutting */
+    const f = (ms) => { const e = Math.exp(-ms / (tau * 1000)); return I0 * (kOn * (1 - e) + (1 - kOn) * e); };
     line(ctx, BOX.l, Y(I0), BOX.r, Y(I0), alpha(cI, 0.5), 3, [10, 10]);
     text(ctx, 'I₀ = V/R = ' + fmt(I0, 2) + ' A', BOX.r - 10, Y(I0) - 20, cI, { size: 19, align: 'right', bg: PAL.panel });
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
@@ -157,11 +162,11 @@ function flow(ctx, x, y, dx, dy, L) {
       : (on
         ? 'At ' + fmt(t * 1000, 2) + ' ms, which is ' + fmt(t / tau, 2) + ' time constants, the current has climbed to ' + fmt(I, 2) + ' A of its final ' + fmt(I0, 2) + ' A.'
         : 'At ' + fmt(t * 1000, 2) + ' ms, which is ' + fmt(t / tau, 2) + ' time constants, the current has fallen to ' + fmt(I, 2) + ' A of the ' + fmt(I0, 2) + ' A it started from.'));
-    readout(d.readout,
-      on
-        ? `\\kIcur = \\kIocur\\left(1 - e^{-\\kt/\\ktauRL}\\right) = (${fmt(I0, 2)}\\ \\text{A})\\left(1 - e^{-${fmt(t * 1000, 2)}/${fmt(tau * 1000, 2)}}\\right) = ${fmt(I, 2)}\\ \\text{A}`
-        : `\\kIcur = \\kIocur e^{-\\kt/\\ktauRL} = (${fmt(I0, 2)}\\ \\text{A})\\,e^{-${fmt(t * 1000, 2)}/${fmt(tau * 1000, 2)}} = ${fmt(I, 2)}\\ \\text{A}`,
-      'The time constant is τ = L/R = ' + fmt(lS.v, 2) + ' mH divided by ' + fmt(R, 2) + ' Ω, which is ' + fmt(tau * 1000, 2) + ' ms, so the 25 ms drawn here is ' + fmt(TWIN / tau, 1) + ' time constants wide.');
+    const ex = `e^{-${fmt(t * 1000, 2)}/${fmt(tau * 1000, 2)}}`, I0v = `(\\mk{I0v}{${fmt(I0, 2)}}\\ \\text{A})`, res = `\\mk{r}{${fmt(I, 2)}}\\ \\text{A}`;
+    F.morph(eqHost, on
+      ? `\\mk{I}{\\kIcur} = \\mk{I0}{\\kIocur}\\mk{o}{(1 - }\\mk{e}{e^{-\\kt/\\ktauRL}}\\mk{c}{)} = ${I0v}\\mk{o2}{(1 - }\\mk{ev}{${ex}}\\mk{c2}{)} = ${res}`
+      : `\\mk{I}{\\kIcur} = \\mk{I0}{\\kIocur}\\mk{e}{e^{-\\kt/\\ktauRL}} = ${I0v}\\mk{ev}{${ex}} = ${res}`);
+    small.textContent = 'The time constant is τ = L/R = ' + fmt(lS.v, 2) + ' mH divided by ' + fmt(R, 2) + ' Ω, which is ' + fmt(tau * 1000, 2) + ' ms, so 25 ms is ' + fmt(TWIN / tau, 1) + ' time constants.';
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TWIN / 5), draw });
 })();
@@ -190,6 +195,8 @@ function flow(ctx, x, y, dx, dy, L) {
      together, and 0 to 100 percent of the final current up the side. Neither
      depends on a slider, since the horizontal axis is counted in time constants. */
   const NMAX = 6, BOX = { l: 230, r: 1250, t: 196, b: 636 };
+  const eqHost = el('div'), small = el('small');
+  d.readout.append(eqHost, small);
 
   function draw() {
     const { ctx } = begin(d.c);
@@ -202,7 +209,9 @@ function flow(ctx, x, y, dx, dy, L) {
     const nCount = Math.ceil(nExact - 1e-9);
     const tExact = nExact * tau * 1000, tCount = nCount * tau * 1000;
     const cI = C('current'), cT = C('time'), cL = C('inductance'), cR = C('resistance');
-    const level = on ? frac : 1 - frac;          /* where the target sits up the side */
+    const kOn = dir.mix((v) => (v === 'on' ? 1 : 0));   /* turning round, every bar and the curve bend from the climb into the decay */
+    const up = (x) => kOn * (1 - x) + (1 - kOn) * x;     /* x is what is left, e^-n */
+    const level = up(1 - frac);                  /* where the target sits up the side */
 
     const { X, Y } = axes(ctx, BOX, [0, NMAX], [0, 100], {
       xl: 'time, counted in time constants τ = ' + fmt(tau * 1000, 2) + ' ms', xc: cT,
@@ -212,7 +221,7 @@ function flow(ctx, x, y, dx, dy, L) {
     /* the bars: the value the counting lands on at every whole time constant */
     const bw = (X(1) - X(0)) * 0.26;
     for (let n = 0; n <= 5; n++) {
-      const pc = 100 * (on ? 1 - Math.pow(Math.exp(-1), n) : Math.pow(Math.exp(-1), n));
+      const pc = 100 * up(Math.pow(Math.exp(-1), n));
       const x = X(n), yTop = Y(pc), yBot = Y(0);
       if (pc > 0.4) {
         ctx.save(); ctx.fillStyle = alpha(cI, 0.28); ctx.strokeStyle = cI; ctx.lineWidth = 3;
@@ -223,7 +232,7 @@ function flow(ctx, x, y, dx, dy, L) {
       if (pc > 0.4) text(ctx, fmt(pc, 1) + '%', x, yTop + (pc > 90 ? 26 : -20), cI, { size: 17, align: 'center', bg: PAL.panel });
     }
     /* the exact exponential drawn through them */
-    curve(ctx, (n) => 100 * (on ? 1 - Math.exp(-n) : Math.exp(-n)), 0, NMAX, X, Y, cI, 5, 120);
+    curve(ctx, (n) => 100 * up(Math.exp(-n)), 0, NMAX, X, Y, cI, 5, 120);
     /* the target the reader asks for, and the two times that reach it */
     line(ctx, BOX.l, Y(100 * level), BOX.r, Y(100 * level), alpha(PAL.ink, 0.45), 3, [10, 10]);
     /* the target's name sits at the empty end of its line: the left when the current
@@ -241,11 +250,11 @@ function flow(ctx, x, y, dx, dy, L) {
     topline(ctx, on
       ? 'Counting in whole time constants puts the current past ' + fmt(fS.v, 1) + ' percent of its final value after ' + nCount + ' of them, at ' + fmt(tCount, 2) + ' ms, where the exponential gets there at ' + fmt(tExact, 2) + ' ms.'
       : 'Counting in whole time constants puts the current down past ' + fmt(fS.v, 1) + ' percent of the way to zero after ' + nCount + ' of them, at ' + fmt(tCount, 2) + ' ms, where the exponential gets there at ' + fmt(tExact, 2) + ' ms.');
-    readout(d.readout,
-      on
-        ? `\\kt = -\\ktauRL\\ln\\left(1 - ${fmt(frac, 3)}\\right) = -(${fmt(tau * 1000, 2)}\\ \\text{ms})\\ln\\left(1 - ${fmt(frac, 3)}\\right) = ${fmt(tExact, 2)}\\ \\text{ms}`
-        : `\\kt = -\\ktauRL\\ln\\left(${fmt(1 - frac, 3)}\\right) = -(${fmt(tau * 1000, 2)}\\ \\text{ms})\\ln\\left(${fmt(1 - frac, 3)}\\right) = ${fmt(tExact, 2)}\\ \\text{ms}`,
-      'Counting ' + nCount + ' whole time constants gives ' + fmt(tCount, 2) + ' ms, which is ' + fmt(100 * (tCount - tExact) / tExact, 1) + ' percent longer than the exact answer; the two agree exactly at every whole time constant, where the bars stand on the curve, and part company in between.');
+    const tv = `(\\mk{tv}{${fmt(tau * 1000, 2)}}\\ \\text{ms})`, res = `\\mk{r}{${fmt(tExact, 2)}}\\ \\text{ms}`;
+    F.morph(eqHost, on
+      ? `\\mk{t}{\\kt} = -\\mk{tau}{\\ktauRL}\\ln(\\mk{o}{1 - }\\mk{f}{${fmt(frac, 3)}}) = -${tv}\\ln(\\mk{o2}{1 - }\\mk{f2}{${fmt(frac, 3)}}) = ${res}`
+      : `\\mk{t}{\\kt} = -\\mk{tau}{\\ktauRL}\\ln(\\mk{f}{${fmt(1 - frac, 3)}}) = -${tv}\\ln(\\mk{f2}{${fmt(1 - frac, 3)}}) = ${res}`);
+    small.textContent = 'Counting ' + nCount + ' whole time constants gives ' + fmt(tCount, 2) + ' ms, which is ' + fmt(100 * (tCount - tExact) / tExact, 1) + ' percent longer than the exact answer; the two agree exactly at every whole time constant and part company in between.';
   }
   register(d.fig, { update: () => {}, draw });
 })();

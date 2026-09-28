@@ -21,6 +21,9 @@ window.OMNISTAX_FIGURES['23.8'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, register, begin, line, arrow, dot, text, topline, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+/* the parts only one option of a choice has, drawn at that option's opacity, so a change of choice
+   fades them out and in instead of cutting between two drawings */
+const layer = (ctx, a, f) => { if (a <= 0) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
 
 const TAU = 2 * Math.PI;
 const VS = 120;                       /* the supply, 120 V rms, as every household circuit of this book has it */
@@ -170,11 +173,12 @@ function coil(ctx, x, y1, y2, n, side) {
        return along the bottom */
     wires(ctx, [[SX, SY - 44], [SX, LIVE], [RX, LIVE], [RX, CT + 22]]);
     wires(ctx, [[RX, 368], [RX, NEUT], [SX, NEUT], [SX, SY + 44]]);
-    if (three) caseBox(ctx, CL, CT, CR, CB, false);
+    const a3 = mode.a('three'), a2 = mode.a('two');
+    layer(ctx, a3, () => caseBox(ctx, CL, CT, CR, CB, false));
     zig(ctx, RX, 320, Math.PI / 2);
     acSource(ctx, SX, SY, 44);
     tag(ctx, fmt(VS, 0) + ' V', SX, SY + 78, cV);
-    if (three) breaker(ctx, 420, LIVE, !open);
+    layer(ctx, a3, () => breaker(ctx, 420, LIVE, !open));
 
     /* the current, where the breaker has not taken it away */
     if (!open) {
@@ -192,7 +196,7 @@ function coil(ctx, x, y1, y2, n, side) {
     tag(ctx, 'the appliance', 1060, 300, PAL.ink, { align: 'right' });
     tag(ctx, ohms(R, 1), 1060, 340, cR, { align: 'right', weight: 400 });
 
-    if (three) {
+    layer(ctx, a3, () => {
       tag(ctx, 'circuit breaker', 420, LIVE + 62, PAL.muted, { size: 19, weight: 400 });
       tag(ctx, 'the case of the appliance', 1030, CT - 26, PAL.ink);
       /* the three connections to earth: two on the neutral wire and one on the case */
@@ -205,9 +209,8 @@ function coil(ctx, x, y1, y2, n, side) {
       /* the earth itself as the alternative return path the section names */
       line(ctx, 280, 620, 700, 620, alpha(PAL.ink, 0.35), 3, [12, 10]);
       tag(ctx, 'an alternative return path through the earth', 490, 652, PAL.muted, { size: 19, weight: 400 });
-    } else {
-      tag(ctx, 'no circuit breaker · no case · no earth/ground connection', 620, 600, PAL.muted, { size: 20, weight: 400 });
-    }
+    });
+    layer(ctx, a2, () => tag(ctx, 'no circuit breaker · no case · no earth/ground connection', 620, 600, PAL.muted, { size: 20, weight: 400 }));
 
     topline(ctx, three
       ? open
@@ -248,6 +251,7 @@ function coil(ctx, x, y1, y2, n, side) {
   function draw() {
     const { ctx } = begin(d.c);
     const k = kind.value, three = k === 'three', two = k === 'two';
+    const a3 = kind.a('three'), a2 = kind.a('two'), aCut = kind.a('cut'), aGnd = 1 - a2;   /* the earth run is there for every plug but the two-prong one */
     const cV = C('voltage'), cI = C('current');
 
     /* behind the wall: the source, the breaker and the three runs to the outlet */
@@ -256,7 +260,7 @@ function coil(ctx, x, y1, y2, n, side) {
     wires(ctx, [[150, 310], [150, NEUT], [OL, NEUT]]);
     wires(ctx, [[250, NEUT], [250, 404]]); node(ctx, 250, NEUT); earth(ctx, 250, 404);
     breaker(ctx, 330, LIVE, true);
-    if (!two) { wires(ctx, [[400, 530], [400, GND], [OL, GND]]); earth(ctx, 400, 530); }
+    layer(ctx, aGnd, () => { wires(ctx, [[400, 530], [400, GND], [OL, GND]]); earth(ctx, 400, 530); });
     tag(ctx, fmt(VS, 0) + ' V', 95, 270, cV, { align: 'right' });
     tag(ctx, 'circuit breaker', 330, LIVE - 62, PAL.muted, { size: 19, weight: 400 });
 
@@ -269,21 +273,21 @@ function coil(ctx, x, y1, y2, n, side) {
     });
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.arc(574, GND, 17, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    if (!two) wires(ctx, [[OL, GND], [557, GND]]);
+    layer(ctx, aGnd, () => wires(ctx, [[OL, GND], [557, GND]]));
 
     /* the plug and its prongs */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.roundRect(PL, 175, PR - PL, 320, 16); ctx.fill(); ctx.stroke(); ctx.restore();
     [LIVE, NEUT].forEach((y) => line(ctx, PL, y, 574, y, PAL.ink, 8));
-    if (three) line(ctx, PL, GND, 574, GND, PAL.ink, 8);
-    if (k === 'cut') { line(ctx, PL, GND, PL - 18, GND, PAL.ink, 8); broken(ctx, PL - 34, GND, true); }
+    layer(ctx, a3, () => line(ctx, PL, GND, 574, GND, PAL.ink, 8));
+    layer(ctx, aCut, () => { line(ctx, PL, GND, PL - 18, GND, PAL.ink, 8); broken(ctx, PL - 34, GND, true); });
 
     /* the cord and the appliance */
     wires(ctx, [[PR, LIVE], [RX, LIVE], [RX, CT + 72]]);
     wires(ctx, [[RX, 318], [RX, NEUT], [PR, NEUT]]);
     caseBox(ctx, CL, CT, CR, CB, two);
     zig(ctx, RX, 270, Math.PI / 2);
-    if (!two) { wires(ctx, [[PR, GND], [RX, GND], [RX, CB]]); node(ctx, RX, CB); }
+    layer(ctx, aGnd, () => { wires(ctx, [[PR, GND], [RX, GND], [RX, CB]]); node(ctx, RX, CB); });
     flow(ctx, 960, LIVE, 1, 0);
     flow(ctx, 960, NEUT, -1, 0);
     tag(ctx, '10.0 A', 960, 265, cI);
@@ -293,9 +297,9 @@ function coil(ctx, x, y1, y2, n, side) {
     tag(ctx, 'the plug', 725, 530, PAL.ink, { size: 20 });
     tag(ctx, 'the live/hot wire', 860, LIVE - 36, PAL.ink, { size: 20 });
     tag(ctx, 'the neutral wire', 860, NEUT + 38, PAL.ink, { size: 20 });
-    if (three) tag(ctx, 'the earth/ground wire', 880, GND + 40, PAL.ink, { size: 20 });
-    else if (two) tag(ctx, 'no earth/ground wire, and a case that does not conduct', 780, GND + 46, PAL.muted, { size: 20, weight: 400 });
-    else tag(ctx, 'the earth/ground wire, joined to no earth', 900, GND + 40, PAL.muted, { size: 20, weight: 400 });
+    layer(ctx, a3, () => tag(ctx, 'the earth/ground wire', 880, GND + 40, PAL.ink, { size: 20 }));
+    layer(ctx, a2, () => tag(ctx, 'no earth/ground wire, and a case that does not conduct', 780, GND + 46, PAL.muted, { size: 20, weight: 400 }));
+    layer(ctx, aCut, () => tag(ctx, 'the earth/ground wire, joined to no earth', 900, GND + 40, PAL.muted, { size: 20, weight: 400 }));
     tag(ctx, two ? 'a nonconducting case' : 'the metal case of the appliance', RX, CT - 26, PAL.ink);
     tag(ctx, 'the appliance', 1145, 250, PAL.ink, { align: 'right' });
 
@@ -375,7 +379,7 @@ function coil(ctx, x, y1, y2, n, side) {
 
     /* the earth/ground wire from the case, intact or cut */
     wires(ctx, [[930, CB], [930, 620]]); node(ctx, 930, CB, 6); earth(ctx, 930, 620);
-    if (!on) broken(ctx, 930, 545, false);
+    layer(ctx, earthed.a('broken'), () => broken(ctx, 930, 545, false));
     tag(ctx, on ? 'the earth/ground wire' : 'the earth/ground wire, broken', 930, 666, on ? PAL.ink : PAL.muted, { size: 20, weight: on ? 600 : 400 });
 
     /* the person, one hand on the case and one on a water pipe */
@@ -389,7 +393,7 @@ function coil(ctx, x, y1, y2, n, side) {
 
     /* the fault current: down the earth/ground wire where there is one, and
        through the person either way */
-    if (on) { flow(ctx, 930, 560, 0, 1, 50); tag(ctx, amps(Ishort), 878, 560, cI, { align: 'right' }); }
+    layer(ctx, earthed.a('intact'), () => { flow(ctx, 930, 560, 0, 1, 50); tag(ctx, amps(VS / (Rf + Rg)), 878, 560, cI, { align: 'right' }); });
     flow(ctx, 1035, 318, 1, 0, 44);
     tag(ctx, amps(Iperson), 1035, 280, cI);
     flow(ctx, 1259, 560, 0, 1, 50);
@@ -470,22 +474,21 @@ function coil(ctx, x, y1, y2, n, side) {
     tag(ctx, 'the person, ' + ohms(Rp), PX, 660, cR, { size: 20 });
 
     /* the earth/ground wire, where the case has one */
-    if (on) {
+    layer(ctx, grounded.a('yes'), () => {
       wires(ctx, [[900, CB], [900, 560]]); node(ctx, 900, CB, 6); earth(ctx, 900, 560);
       tag(ctx, 'the earth/ground wire', 890, 620, PAL.ink, { size: 20 });
       flow(ctx, 900, 500, 0, 1, 44);
-    }
+    });
 
     /* the leakage current through the person */
-    if (!on && Ileak > 0) {
-      flow(ctx, 1080, 300, 1, 0, 40);
-      flow(ctx, 1178, 556, 0, 1, 44);
-      tag(ctx, amps(Ileak), 1090, 386, cI, { align: 'right' });
-    } else if (!on) {
-      tag(ctx, 'nothing at all', 1090, 386, cI, { align: 'right' });
-    } else {
-      tag(ctx, 'nothing through the person', 1090, 386, cI, { align: 'right', size: 20 });
-    }
+    layer(ctx, grounded.a('no'), () => {
+      if (E > 0) {
+        flow(ctx, 1080, 300, 1, 0, 40);
+        flow(ctx, 1178, 556, 0, 1, 44);
+        tag(ctx, amps(E / Rp), 1090, 386, cI, { align: 'right' });
+      } else tag(ctx, 'nothing at all', 1090, 386, cI, { align: 'right' });
+    });
+    layer(ctx, grounded.a('yes'), () => tag(ctx, 'nothing through the person', 1090, 386, cI, { align: 'right', size: 20 }));
 
     topline(ctx, on
       ? 'The earth/ground wire holds the case at zero volts, so the ' + fmt(E, 1) + ' V induced on it drives its leakage current down that wire and nothing whatever through the person.'
@@ -593,7 +596,7 @@ function coil(ctx, x, y1, y2, n, side) {
     tag(ctx, 'the neutral wire', 700, NEUT + 40, PAL.ink, { size: 20 });
     tag(ctx, fmt(back, 3) + ' A', 890, NEUT + 40, cI);
 
-    if (person) {
+    layer(ctx, path.a('person'), () => {
       const PX = 1290, PY = 660, S = 2;
       groundLine(ctx, 1150, 1400, PY + 2);
       wires(ctx, [[CR, 392], [1232, 392]]);           /* the lead from the case to the hand that holds it */
@@ -601,12 +604,13 @@ function coil(ctx, x, y1, y2, n, side) {
       if (leak > 1e-6) { flow(ctx, 1200, 372, 1, 0, 40); flow(ctx, 1288, 600, 0, 1, 44); }
       tag(ctx, 'the person, a path to earth', 1392, 702, cR, { size: 20, align: 'right' });
       if (leak > 1e-6) tag(ctx, amps(leak), 1230, 480, cI, { align: 'right' });
-    } else {
+    });
+    layer(ctx, path.a('earth'), () => {
       wires(ctx, [[CR, 400], [1310, 400], [1310, 600]]); earth(ctx, 1310, 600);
       if (leak > 1e-6) flow(ctx, 1310, 520, 0, 1, 44);
       tag(ctx, 'the earth/ground wire', 1392, 666, PAL.ink, { size: 20, align: 'right' });
       if (leak > 1e-6) tag(ctx, amps(leak), 1262, 520, cI, { align: 'right' });
-    }
+    });
 
     topline(ctx, leak > 1e-6
       ? 'The live/hot wire carries ' + fmt(I, 3) + ' A and the neutral wire ' + fmt(back, 3) + ' A, a difference of ' + amps(leak) + ', so a field appears in the core and the interrupter ' + (trips ? 'opens the circuit' : 'is not yet set to act') + '.'
@@ -653,7 +657,7 @@ function coil(ctx, x, y1, y2, n, side) {
     breaker(ctx, 280, TOP, true);
     tag(ctx, 'circuit breaker', 280, TOP - 62, PAL.muted, { size: 19, weight: 400 });
 
-    if (on) {
+    layer(ctx, iso.a('yes'), () => {
       /* the primary, the core and the secondary */
       wires(ctx, [[130, 288], [130, TOP], [440, TOP], [440, 250]]);
       coil(ctx, 440, 250, 470, 6, -1);
@@ -671,12 +675,13 @@ function coil(ctx, x, y1, y2, n, side) {
       tag(ctx, ohms(Rins), 500, 545, cR, { size: 21 });
       tag(ctx, 'the material between the coils', 500, 580, PAL.ink, { size: 20 });
       tag(ctx, 'equal numbers of turns, so the appliance receives what it always received', 500, 700, PAL.muted, { size: 19, weight: 400 });
-    } else {
+    });
+    layer(ctx, iso.a('no'), () => {
       wires(ctx, [[130, 288], [130, TOP], [RX, TOP], [RX, CT + 47]]);
       wires(ctx, [[RX, 368], [RX, BOT], [130, BOT], [130, 372]]);
       wires(ctx, [[300, BOT], [300, 620]]); node(ctx, 300, BOT); earth(ctx, 300, 620);
       tag(ctx, 'the source is earthed, and so the person is part of a circuit', 560, 650, PAL.muted, { size: 20, weight: 400 });
-    }
+    });
 
     /* the appliance, which runs the same either way */
     caseBox(ctx, CL, CT, CR, CB, false);

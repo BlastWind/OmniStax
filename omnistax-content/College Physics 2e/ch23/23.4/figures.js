@@ -203,9 +203,11 @@ function cross(ctx, x, y, r, color, w) {
      24 cm across and 14 cm deep, so the plate can be walked right out of the field on
      either side and still stand on the canvas. */
   const SC = 20, X0 = 700, Y0 = 340, PH = 6, FH = 12, FV = 7;
+  /* a change of plate carries its conductivity from one value to the other, so the loops, the drag and its curve shrink or grow instead of cutting */
+  const mat = () => mC.mix((m) => MAT[m]);
   const dragAt = (p) => {
     const inL = p - PH < -FH && p + PH > -FH, inR = p - PH < FH && p + PH > FH;
-    return (inL || inR) ? MAT[mC.value] * (bS.v / 0.8) * (bS.v / 0.8) * (vS.v / 0.6) : 0;
+    return (inL || inR) ? mat() * (bS.v / 0.8) * (bS.v / 0.8) * (vS.v / 0.6) : 0;
   };
   function draw() {
     const { ctx } = begin(d.c);
@@ -240,14 +242,18 @@ function cross(ctx, x, y, r, color, w) {
     const entering = p - PH < -FH && p + PH > -FH, leaving = p - PH < FH && p + PH > FH;
     const ccw = entering;                      /* entering, the amount of the plate in the field grows and the current runs counterclockwise */
     const drag = dragAt(p);
-    if (mC.value === 'slotted') {
+    const aSlot = mC.a('slotted'), aSolid = mC.a('solid'), aIns = mC.a('insulating');
+    if (aSlot > 0) {
+      ctx.save(); ctx.globalAlpha = aSlot;
       [-2.4, 0, 2.4].forEach((k) => line(ctx, cx + k * SC, pt + 18, cx + k * SC, pb - 18, PAL.ink, 3));
       if (drag > 0.0005) [-1, 1].forEach((r, ri) => [-3.6, -1.2, 1.2, 3.6].forEach((k, ci) => swirl(ctx, cx + k * SC, Y0 + r * 52, 16, (ri + ci) % 2 ? !ccw : ccw, cI, 2.5)));
-    } else if (mC.value === 'solid' && drag > 0.0005) {
-      loopArrows(ctx, cx, Y0, PH * SC - 32, PH * SC - 32, ccw, cI, 4.5);
+      ctx.restore();
     }
-    if (drag > 0.0005) label(ctx, 'I runs ' + (ccw ? 'counterclockwise' : 'clockwise'), cx, 500, { side: 'above', size: 21, color: cI, leader: false, gap: 0 });
-    if (mC.value === 'insulating') label(ctx, 'no current: the plate does not conduct', cx, 500, { side: 'above', size: 20, color: PAL.muted, leader: false, gap: 0 });
+    if (aSolid > 0 && drag > 0.0005) {
+      ctx.save(); ctx.globalAlpha = aSolid; loopArrows(ctx, cx, Y0, PH * SC - 32, PH * SC - 32, ccw, cI, 4.5); ctx.restore();
+    }
+    if (drag > 0.0005 && aIns < 1) label(ctx, 'I runs ' + (ccw ? 'counterclockwise' : 'clockwise'), cx, 500, { side: 'above', size: 21, color: alpha(cI, 1 - aIns), leader: false, gap: 0 });
+    if (aIns > 0) label(ctx, 'no current: the plate does not conduct', cx, 500, { side: 'above', size: 20, color: alpha(PAL.muted, aIns), leader: false, gap: 0 });
     /* the drag that answers the motion */
     if (drag > 0.004) {
       const fx = pl - 22 - (50 + 190 * drag);
@@ -259,7 +265,7 @@ function cross(ctx, x, y, r, color, w) {
        nought to one, the greatest drag the three sliders can make between them. */
     const box = { l: 170, r: 1250, t: 630, b: 780 };
     const { X, Y } = axes(ctx, box, [-24, 24], [0, 1], { xl: 'where the plate stands, x (cm)', xc: cP, yl: 'drag force F (as a fraction of the greatest)', yc: cF, nx: 4, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 2) });
-    const lvl = MAT[mC.value] * (bS.v / 0.8) * (bS.v / 0.8) * (vS.v / 0.6);
+    const lvl = mat() * (bS.v / 0.8) * (bS.v / 0.8) * (vS.v / 0.6);
     [[-FH - PH, -FH + PH], [FH - PH, FH + PH]].forEach(([a, b]) => {
       line(ctx, X(a), Y(0), X(a), Y(lvl), cF, 4); line(ctx, X(a), Y(lvl), X(b), Y(lvl), cF, 5); line(ctx, X(b), Y(lvl), X(b), Y(0), cF, 4);
     });
@@ -352,7 +358,7 @@ function cross(ctx, x, y, r, color, w) {
     topline(ctx, bS.v < 0.001
       ? 'With no field in the gap nothing damps the beam, and a friction-free balance of this kind swings for as long as you care to watch it.'
       : settle > RUN
-        ? 'A field of ' + fmt(bS.v, 2) + ' T is too weak to settle this beam inside the six seconds the figure runs, and the pan still stands ' + fmt(Math.abs(y), 1) + ' mm off its level.'
+        ? 'A field of ' + fmt(bS.v, 2) + ' T is too weak to settle this beam inside six seconds, and the pan still stands ' + fmt(Math.abs(y), 1) + ' mm off its level.'
         : 'With the disc in a field of ' + fmt(bS.v, 2) + ' T the pan is inside one division after ' + fmt(settle, 1) + ' s, and the drag on the beam has fallen to ' + fmt(drive, 2) + ' of its greatest.');
     readout(d.readout,
       `\\kBmag = ${fmt(bS.v, 2)}\\ \\text{T}:\\quad \\kx = ${fmt(y, 1)}\\ \\text{mm},\\quad \\kF = ${fmt(drive, 2)}\\quad\\text{at } \\kt = ${fmt(t, 1)}\\ \\text{s}`,

@@ -406,7 +406,11 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   function draw() {
     const { ctx } = begin(d.c);
     const v0 = vpS.v, r = rS.v, kind = kindC.value;
-    const w = waves(kind, v0, r);
+    /* a change of what the primary is given bends both traces from one shape into the other on the same frames */
+    const KINDS = ['steady', 'switched', 'ac'];
+    const wt = kindC.mix((k) => KINDS.map((q) => (q === k ? 1 : 0)));
+    const ws = KINDS.map((q) => waves(q, v0, r));
+    const w = { u: (t) => ws.reduce((a, x, i) => a + (wt[i] ? wt[i] * x.u(t) : 0), 0), s: (t) => ws.reduce((a, x, i) => a + (wt[i] ? wt[i] * x.s(t) : 0), 0) };
     const cV = C('voltage'), cT = C('time');
 
     const top = { l: 240, r: 1250, t: 150, b: 350 };
@@ -414,10 +418,10 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const ax1 = axes(ctx, top, [0, TMAX], [-VP, VP], { yl: 'primary voltage V_p (V)', yc: cV, nx: 4, ny: 4, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
     const ax2 = axes(ctx, bot, [0, TMAX], [-VS, VS], { xl: 'time t (ms)', xc: cT, yl: 'secondary voltage V_s (V)', yc: cV, nx: 4, ny: 4, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
 
-    if (kind === 'switched') {
+    if (wt[1] > 0) {
       for (let t = STEP; t < TMAX; t += STEP) {
-        line(ctx, ax1.X(t), top.t, ax1.X(t), top.b, alpha(PAL.ink, 0.3), 2, [4, 8]);
-        line(ctx, ax2.X(t), bot.t, ax2.X(t), bot.b, alpha(PAL.ink, 0.3), 2, [4, 8]);
+        line(ctx, ax1.X(t), top.t, ax1.X(t), top.b, alpha(PAL.ink, 0.3 * wt[1]), 2, [4, 8]);
+        line(ctx, ax2.X(t), bot.t, ax2.X(t), bot.b, alpha(PAL.ink, 0.3 * wt[1]), 2, [4, 8]);
       }
     }
     curve(ctx, w.u, 0, TMAX, ax1.X, ax1.Y, cV, 5, 1400);
@@ -441,11 +445,11 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
         ? `\\kVsec = -N_{\\text{s}}\\dfrac{\\kdPhi}{\\kdt} = \\dfrac{N_{\\text{s}}}{N_{\\text{p}}}\\kVprim = (${fmt(r, 2)})(${fmt(v0, 0)}\\ \\text{V}) = ${fmt(peak, 0)}\\ \\text{V}`
         : kind === 'steady'
           ? `\\kVsec = -N_{\\text{s}}\\dfrac{\\kdPhi}{\\kdt} = 0\\ \\text{V}`
-          : `\\kVsec = -N_{\\text{s}}\\dfrac{\\kdPhi}{\\kdt},\\qquad \\text{peak } \\kVsec = ${fmt(peak, 0)}\\ \\text{V}`,
+          : `\\kVsec = -N_{\\text{s}}\\dfrac{\\kdPhi}{\\kdt}`,
       kind === 'steady'
         ? 'The primary voltage never changes, so the flux never changes, and a flux that does not change induces nothing. This is why a transformer is of no use on direct current.'
         : kind === 'switched'
-          ? 'Only while the flux is moving does the secondary show anything, and the switch moves it only at the instant it is thrown. The output is a train of spikes rather than the sinusoidal AC most appliances need.'
+          ? 'Only while the flux is moving does the secondary show anything, and the switch moves it only at the instant it is thrown, when the secondary peaks at about ' + fmt(peak, 0) + ' V. The output is a train of spikes rather than the sinusoidal AC most appliances need.'
           : 'An alternating primary voltage keeps the flux moving all the time, so the secondary carries the same shape as the input with the turns ratio in front of it.');
   }
   register(d.fig, { update: () => {}, draw });

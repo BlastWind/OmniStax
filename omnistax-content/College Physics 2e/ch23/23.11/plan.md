@@ -155,6 +155,8 @@ Extra simulations (rule 15), thought through, judged and decided:
 
 **Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-ac-phase`: the three-element choice stacked into three rows beside two sliders and is a dropdown (rule 26.1). `sim-reactance-against-frequency` was judged and left as built.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** `sim-ac-phase`: changing the element slides the current curve through its quarter cycle against the voltage, and the quarter-cycle bracket shrinks or grows with it. The element and its names cross-fade in place. The readout is a formula morph by meaning: 2π and f keep their places; X_L, X_C and R are different quantities and cross-fade where they stand (manim 11, 16). `sim-reactance-against-frequency`: the readout was two equations side by side; X_L keeps the line and X_C is in the note (manim 12). Notes and captions reworded.
+
 ## Exercises
 
 - Every item is set at the end (`ch23/config.md`; the module prints no Check

@@ -132,9 +132,11 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     turns(ctx, -240, 5, 46); turns(ctx, 160, 4, 46);
     const [la, lb] = leads(ctx, -240, 5, 46, BASE);
     const [ra, rb] = leads(ctx, 160, 4, 46, BASE);
-    /* the source, on whichever coil is driven, and the meter on the other */
-    const srcX = one ? (la + lb) / 2 : (ra + rb) / 2, srcA = one ? la : ra, srcB = one ? lb : rb;
-    const mtrA = one ? ra : la, mtrB = one ? rb : lb, mtrX = one ? (ra + rb) / 2 : (la + lb) / 2;
+    /* the source, on whichever coil is driven, and the meter on the other; driving the other coil
+       carries the two across to trade places */
+    const { srcX, srcA, srcB, mtrA, mtrB, mtrX } = drive.mix((c) => (c === '1'
+      ? { srcX: (la + lb) / 2, srcA: la, srcB: lb, mtrA: ra, mtrB: rb, mtrX: (ra + rb) / 2 }
+      : { srcX: (ra + rb) / 2, srcA: ra, srcB: rb, mtrA: la, mtrB: lb, mtrX: (la + lb) / 2 }));
     line(ctx, srcA, BASE, srcX - 34, BASE, PAL.ink, 4); line(ctx, srcX + 34, BASE, srcB, BASE, PAL.ink, 4);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(srcX, BASE, 34, 0, TAU); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(srcX - 20, BASE); ctx.quadraticCurveTo(srcX - 10, BASE - 20, srcX, BASE); ctx.quadraticCurveTo(srcX + 10, BASE + 20, srcX + 20, BASE); ctx.stroke(); ctx.restore();
@@ -159,7 +161,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       : `The current in coil ${driven} is ${dI > 0 ? 'rising' : 'falling'} at ${fmt(Math.abs(dI), 1)} A/s, and the ${fmt(M.v, 1)} mH between the coils induces ${fmt(Math.abs(emf) * 1e3, 1)} mV in coil ${other}.`);
     readout(d.readout,
       `\\kemf_{${other}} = -\\kMind\\frac{\\Delta \\kIcur_{${driven}}}{\\kdt} = -(${fmt(M.v, 1)}\\times 10^{-3}\\ \\text{H})(${fmt(dI, 1)}\\ \\text{A/s}) = ${fmt(-emf * 1e3, 1)}\\ \\text{mV}`,
-      `The needle answers the rate at which the current changes and nothing else, so it stands at zero twice in every swing, at the two instants when the current is greatest. Driving the other coil changes nothing about the size of the swing, since the same ${fmt(M.v, 1)} mH works in either direction, which is what the section means by saying that nature is symmetric here. The coils are drawn from the book's own viewpoint and do not turn.`);
+      `The needle answers the rate at which the current changes and nothing else, so it stands at zero twice in every swing, at the two instants when the current is greatest. Driving the other coil changes nothing about the size of the swing, since the same ${fmt(M.v, 1)} mH works in either direction, which is what the section means by saying that nature is symmetric here.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -182,6 +184,9 @@ function inductorSymbol(ctx, x1, x2, y, color) {
   const wind = choice(d.controls, { label: '\\text{the winding}', options: [{ value: 'one', label: 'wound one way' }, { value: 'counter', label: 'counter-wound' }], value: 'one', aria: 'whether the element is wound all one way or counter-wound in two layers' });
 
   const LEN = 1.00, DIA = 0.00800, AREA = Math.PI * (DIA / 2) * (DIA / 2);
+  /* counter-wound, the inductance is not a smaller number but no term at all: the formula gives way to zero */
+  const eqHost = el('div'), small = el('small');
+  d.readout.append(eqHost, small);
   const V = view({ yaw: 0.30, pitch: 0.26, dist: 3200, cx: 700, cy: 330 });
   const at = (x, r, a) => V.P([x, r * Math.sin(a), r * Math.cos(a)]);
   const X0 = -430, X1 = 430, R0 = 96;
@@ -202,8 +207,9 @@ function inductorSymbol(ctx, x1, x2, y, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const counter = wind.value === 'counter';
+    const kc = wind.mix((w) => (w === 'counter' ? 1 : 0)), a2 = wind.a('counter');   /* the second layer arrives and the field thins to nothing */
     const L = counter ? 0 : (MU0 * N.v * N.v * AREA) / LEN;
-    const B = counter ? 0 : (MU0 * N.v * I.v) / LEN;
+    const B = (1 - kc) * (MU0 * N.v * I.v) / LEN;
     const nd = clamp(Math.round(N.v / 26), 6, 22);
     /* the former, drawn as a tube from the book's own viewpoint */
     ring(ctx, X0, R0, 3, alpha(PAL.ink, 0.45)); ring(ctx, X1, R0, 3, alpha(PAL.ink, 0.45));
@@ -220,12 +226,13 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       text(ctx, 'the field inside the element cancels: B = 0', 700, 492, C('magnetic-field'), { size: 21, weight: 600, align: 'center' });
     }
     helix(ctx, X0, X1, nd, R0, 1, PAL.ink);
-    if (counter) helix(ctx, X1, X0, nd, R0 * 1.22, 1, PAL.ink);
+    if (a2 > 0) helix(ctx, X1, X0, nd, R0 * 1.22, 1, alpha(PAL.ink, a2));
     /* the current, as an arrow on each layer, the two opposed where it is counter-wound */
     const p1 = at(-120, R0, Math.PI), p2 = at(40, R0, Math.PI);
     arrow(ctx, p1[0], p1[1], p2[0], p2[1], C('current'), 5);
-    if (counter) {
-      const q1 = at(40, R0 * 1.22, Math.PI), q2 = at(-120, R0 * 1.22, Math.PI);
+    if (a2 > 0) {
+      /* the second layer's current grows from its tail, back along the element against the first */
+      const q1 = at(40, R0 * 1.22, Math.PI), q2 = at(40 - 160 * a2, R0 * 1.22, Math.PI);
       arrow(ctx, q1[0], q1[1], q2[0], q2[1], C('current'), 5);
     }
     label(ctx, counter ? 'the second layer, wound back the other way' : 'one layer of ' + fmt(N.v, 0) + ' turns', at(X1, R0 * 1.22, Math.PI)[0], at(X1, R0 * 1.22, Math.PI)[1], { side: 'right', size: 20, color: PAL.ink });
@@ -235,11 +242,10 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     topline(ctx, counter
       ? `Counter-wound, the two layers of ${fmt(N.v / 2, 0)} turns carry the same current in opposite directions, the field inside the element cancels, and its inductance falls to zero.`
       : `Wound all one way, the ${fmt(N.v, 0)} turns raise a field of ${sci(B, 2)} T inside the element, and it has a self-inductance of ${henry(L, 2)}.`);
-    readout(d.readout,
-      counter
-        ? `\\kLind = \\frac{\\mu_0 N^2 A}{\\ell} \\ \\text{for each layer, and the two cancel: } \\kLind = 0`
-        : `\\kLind = \\frac{\\mu_0 N^2 A}{\\ell} = \\frac{(4\\pi\\times 10^{-7})(${fmt(N.v, 0)})^2(${sciTex(AREA, 2)}\\ \\text{m}^2)}{1.00\\ \\text{m}} = ${henryTex(L, 2)}`,
-      `What the counterwinding protects is the case of the dryer. A mutual inductance between the element and the case would let every change in the heating current induce an emf on metal the user touches, and a winding that raises no field outside itself induces nothing. The same trick is what part (c) of the section's problem on the precision laboratory resistor asks for, where halving the length and counter-winding two layers of 250 turns leaves an inductance of zero. The element is drawn from the book's own viewpoint and does not turn, with ${fmt(nd, 0)} turns standing for the ${fmt(N.v, 0)} it carries.`);
+    F.morph(eqHost, counter
+      ? `\\mk{L}{\\kLind} = \\mk{v}{0}`
+      : `\\mk{L}{\\kLind} = \\mk{f}{\\frac{\\mu_0 N^2 A}{\\ell}} = \\frac{(4\\pi\\times 10^{-7})(\\mk{N}{${fmt(N.v, 0)}})^2(${sciTex(AREA, 2)}\\ \\text{m}^2)}{1.00\\ \\text{m}} = \\mk{v}{${henryTex(L, 2)}}`);
+    small.textContent = `${counter ? 'Each layer alone would have L = μ₀N²A/ℓ, but the two carry the current round in opposite senses and their fields cancel. ' : ''}What the counterwinding protects is the case of the dryer. A mutual inductance between the element and the case would let every change in the heating current induce an emf on metal the user touches, and a winding that raises no field outside itself induces nothing. The same trick is what part (c) of the section's problem on the precision laboratory resistor asks for, where halving the length and counter-winding two layers of 250 turns leaves an inductance of zero.`;
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -440,7 +446,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     topline(ctx, `${fmt(N.v, 0)} turns on a ${fmt(LEN.v, 1)} cm solenoid of ${fmt(DIA.v, 2)} cm diameter give a self-inductance of ${henry(L, 3)}.`);
     readout(d.readout,
       `\\kLind = \\frac{\\mu_0 N^2 A}{\\ell} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(N.v, 0)})^2(${sciTex(A, 2)}\\ \\text{m}^2)}{${fmt(LEN.v * 1e-2, 3)}\\ \\text{m}} = ${henryTex(L, 3)}`,
-      `The curve below the solenoid is the square law: double the turns and the inductance is four times as great, because each of twice as many turns catches twice as much flux. Stretching the solenoid out weakens it, since the same turns then stand further apart and raise a smaller field per ampere. All of this comes from the relation L = N ΔΦ/ΔI, which holds for any device at all and is carried here through the one field the book can write down.`);
+      `The inductance goes as the square of the turns: double the turns and the inductance is four times as great, because each of twice as many turns catches twice as much flux. Stretching the solenoid out weakens it, since the same turns then stand further apart and raise a smaller field per ampere. All of this comes from the relation L = N ΔΦ/ΔI, which holds for any device at all and is carried here through the one field the book can write down.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -55,6 +55,8 @@ position reaches, none of them riding on the magnet as it travels.
 
 **Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-lenz`: the scene sat in the right half of the canvas with the left third empty but for the legend; the magnet's travel is now 19 units to the centimetre and the magnet 200 long, so the scene spans the width the two graphs leave. `sim-faraday` was judged and left as built.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** `sim-lenz`: turning the magnet round is a blend, not a cut: the flux and emf curves bend through zero to their mirror, and the magnet and its field cross-fade to the other pole (manim 15, 16). `sim-faraday`: the note and caption state the slope as a rate rather than pointing at the drawing.
+
 ## Types the page binds
 
 `magnetic-flux`, `magnetic-field`, `voltage`, `current` and `time`, which is

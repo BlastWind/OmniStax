@@ -94,10 +94,14 @@ function rotor(ctx, x, y, r, frac) {
 (function () {
   const H = 880;
   const d = sim('sim-back-emf', H);
-  const wS = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 0, max: 160, step: 5, value: 160, unit: 'rad/s', dec: 0, aria: 'the angular velocity of the motor’s shaft' });
+  const wS = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 0, max: 160, step: 5, value: 160, unit: 'rad/s', dec: 0, aria: 'the angular velocity of the motor’s shaft',
+    specials: [{ at: 0, label: 'at rest' }] });
   const eS = ctl(d.controls, { label: '\\kemf', cls: 'voltage', min: 40, max: 120, step: 1, value: 48, unit: 'V', dec: 1, aria: 'the emf driving the motor' });
   const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 0.2, max: 2, step: 0.05, value: 0.4, unit: 'Ω', dec: 3, aria: 'the resistance of the motor’s coils' });
   const K = 0.25;                      /* volts of back emf for each rad/s of the shaft */
+  /* at rest the back emf is gone from the current's equation: its term fades and the rest closes up */
+  const eqHost = el('div'), small = el('small');
+  d.readout.append(eqHost, small);
   const WMAX = 160;
   /* Fixed ranges, taken from the book's own numbers and never rescaled: at rest
      the 48.0 V motor with 0.400 Ω coils draws 120 A and dissipates 5.76 kW, which
@@ -171,9 +175,11 @@ function rotor(ctx, x, y, r, frac) {
       : I < 0.05
         ? 'At ' + fmt(w, 0) + ' rad/s the back emf has risen to the whole of the ' + fmt(E, 1) + ' V driving the motor, so the motor draws nothing at all and is running free.'
         : 'Turning at ' + fmt(w, 0) + ' rad/s the motor generates ' + fmt(back, 1) + ' V against the ' + fmt(E, 1) + ' V driving it, so ' + fmt(E - back, 1) + ' V is left across its coils and it draws ' + fmt(I, 1) + ' A.');
-    readout(d.readout,
-      `\\kIcur = \\dfrac{\\kemf - \\kemf_{\\text{back}}}{\\kRes} = \\dfrac{${fmt(E, 1)}\\ \\text{V} - ${fmt(back, 1)}\\ \\text{V}}{${fmt(R, 3)}\\ \\Omega} = ${fmt(I, 1)}\\ \\text{A}`,
-      w < 1
+    const Ev = `\\mk{Ev}{${fmt(E, 1)}}\\ \\text{V}`, Rv = `\\mk{Rv}{${fmt(R, 3)}}\\ \\Omega`, Iv = `\\mk{Iv}{${fmt(I, 1)}}\\ \\text{A}`;
+    F.morph(eqHost, w <= 0
+      ? `\\mk{I}{\\kIcur} = \\dfrac{\\mk{E}{\\kemf}}{\\mk{R}{\\kRes}} = \\dfrac{${Ev}}{${Rv}} = ${Iv}`
+      : `\\mk{I}{\\kIcur} = \\dfrac{\\mk{E}{\\kemf} - \\mk{b}{\\kemf_{\\text{back}}}}{\\mk{R}{\\kRes}} = \\dfrac{${Ev} - \\mk{bv}{${fmt(back, 1)}}\\ \\text{V}}{${Rv}} = ${Iv}`);
+    small.textContent = (w < 1
         ? 'The coils turn ' + fmt(P / 1000, 2) + ' kW into heat at this speed, which is what a motor switched on but not yet turning has to survive.'
         : 'The coils turn ' + (P < 1000 ? fmt(P, 0) + ' W' : fmt(P / 1000, 2) + ' kW') + ' into heat at this speed, against the ' + fmt(P0 / 1000, 2) + ' kW they would dissipate held at rest.');
   }
@@ -204,14 +210,15 @@ function rotor(ctx, x, y, r, frac) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const w = wS.v, Rl = rS.v, running = on.value === 'on', back = K * w;
+    /* switching the motor blends its branch in or out, so the lamp dims or brightens rather than jumping */
+    const w = wS.v, Rl = rS.v, running = on.value === 'on', back = K * w, m = on.mix((s) => (s === 'on' ? 1 : 0));
     wS.disable(!running);        /* a motor that is switched off has no speed to set */
     /* the voltage the two branches share, from the junction rule. Over the whole
        of both sliders it stays above the back emf, so the motor never feeds the
        lamp and the current in every branch runs the way the arrows are drawn. */
     const g = Rl < 1e-6 ? null : 1 / Rl;
-    const V = g === null ? VS : (VS * g + (running ? back / RM : 0)) / (g + 1 / RL + (running ? 1 / RM : 0));
-    const iLamp = V / RL, iMotor = running ? Math.max(0, (V - back) / RM) : 0, iLine = iLamp + iMotor;
+    const V = g === null ? VS : (VS * g + m * back / RM) / (g + 1 / RL + m / RM);
+    const iLamp = V / RL, iMotor = m * Math.max(0, (V - back) / RM), iLine = iLamp + iMotor;
     const pLamp = V * V / RL, bright = pLamp / PFULL;
     const cV = C('voltage'), cI = C('current'), cP = C('power'), cW = C('angular-rate');
 
@@ -247,19 +254,25 @@ function rotor(ctx, x, y, r, frac) {
     panel(ctx, 900, 200, 1340, 482, 'the motor');
     wires(ctx, [[1060, 190], [1060, 500]]);
     resistor(ctx, 1060, 392, false, null, RM);
-    if (running) {
+    const aOn = on.a('on'), aOff = on.a('off');
+    if (aOn > 0) {
+      ctx.save(); ctx.globalAlpha = aOn;
       cell(ctx, 1060, 272, false, -1, true);
       text(ctx, 'the back emf', 1042, 240, PAL.ink, { size: 20, align: 'right', bg: PAL.panel });
       text(ctx, fmt(back, 1) + ' V', 1042, 304, cV, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
       rotor(ctx, 1245, 330, 38, w / 180);
       text(ctx, 'ω = ' + fmt(w, 0) + ' rad/s', 1245, 428, cW, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
       if (iMotor > 0.01) flow(ctx, 1060, 466, 0, 1, 44);
-    } else {
+      ctx.restore();
+    }
+    if (aOff > 0) {
       /* the switch of the appliance, open: the branch carries nothing */
+      ctx.save(); ctx.globalAlpha = aOff;
       dot(ctx, 1060, 252, PAL.ink, true, 6); dot(ctx, 1060, 300, PAL.ink, true, 6);
       line(ctx, 1060, 252, 1106, 286, PAL.ink, 3.5);
       rotor(ctx, 1245, 330, 38, 0);
       text(ctx, 'switched off', 1245, 428, PAL.muted, { size: 20, align: 'center', bg: PAL.panel });
+      ctx.restore();
     }
 
     topline(ctx, !running

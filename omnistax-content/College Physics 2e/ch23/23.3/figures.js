@@ -100,9 +100,10 @@ function apparatus(ctx, o) {
    result depends on are there to be seen rather than asserted. The rod
    slides the length of the rails once every loop and the flux grows as
    it goes, so the figure has a clock in it and takes the transport. The
-   choice carries the book's two panels: the area swept and the polarity
-   of the rod in (a), the induced current, the field it raises and the
-   drag on the rod in (b). The graph below is the flux against time, and
+   book's two panels are one drawing: the area swept and the polarity of
+   the rod of (a) are there from the start, and the induced current, the
+   field it raises and the drag of (b) grow in as the rod gets under way.
+   The graph below is the flux against time, and
    its slope is the emf. The figure opens on the 1.50 T, 30.0 cm and
    2.22 m/s of the section's fifth problem, so it reads 1.00 V on load.
 ===================================================================== */
@@ -112,13 +113,6 @@ function apparatus(ctx, o) {
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 2, step: 0.05, value: 1.5, unit: 'T', dec: 2, onInput: reset, aria: 'the strength of the magnetic field through the rails' });
   const lS = ctl(d.controls, { label: '\\ell', cls: '', min: 0.1, max: 0.6, step: 0.02, value: 0.3, unit: 'm', dec: 2, onInput: reset, aria: 'the distance between the rails' });
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.8, max: 3, step: 0.02, value: 2.22, unit: 'm/s', dec: 2, onInput: reset, aria: 'the speed of the rod along the rails' });
-  /* a dropdown rather than a button row, since four controls in one row leave a
-     segmented control too narrow for either state to be named (rule 26.1) */
-  const showC = select(d.controls, {
-    label: '\\text{the drawing shows}',
-    options: [{ value: 'emf', label: 'the area it sweeps' }, { value: 'lenz', label: 'the current and the drag' }],
-    value: 'emf', aria: 'whether the drawing carries the area swept and the polarity of the rod or the induced current, its field and the drag',
-  });
 
   const X0 = 0.20, XEND = 1.40;                 /* where the rod starts and where it leaves the rails */
   const TRAV = XEND - X0;
@@ -133,7 +127,7 @@ function apparatus(ctx, o) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const B = bS.v, L = lS.v, v = vS.v, lenz = showC.value === 'lenz';
+    const B = bS.v, L = lS.v, v = vS.v;
     const T = TRAV / v, tau = cy.now(), xr = X0 + v * tau, dx = xr - X0;
     const emf = B * L * v, phi = B * L * xr, phi0 = B * L * X0, dA = L * dx;
     const cB = C('magnetic-field'), cPhi = C('magnetic-flux'), cV = C('velocity'), cI = C('current'), cF = C('force'), cX = C('position'), cE = C('voltage'), cT = C('time');
@@ -150,54 +144,54 @@ function apparatus(ctx, o) {
     /* the velocity of the rod, which both states carry */
     const vHead = p(Math.min(xr + 0.26, 1.58), L / 2, yA);
     if (v > 0) arr(ctx, rodMid, vHead, cV, 5);
-    if (!lenz) {
-      /* (a) the area swept, the distance travelled and the polarity of the rod */
+    /* (a) the polarity of the rod */
+    if (emf > 1e-6) {
       const eF = p(xr, -0.13, yA), eB = p(xr, L + 0.13, yA);
       text(ctx, '+', eF[0], eF[1] - 4, PAL.ink, { size: 30, weight: 700, align: 'center', bg: PAL.panel });
       text(ctx, '−', eB[0], eB[1] - 4, PAL.ink, { size: 30, weight: 700, align: 'center', bg: PAL.panel });
-    } else {
+    }
+    {
       /* (b) the induced current round the circuit, the field it raises inside the
          loop and the drag the field lays on the rod, all of which vanish with the
          emf; the current runs the way Lenz's law asks, so that the field it makes
-         inside the circuit points back up against a flux that is growing downward */
+         inside the circuit points back up against a flux that is growing downward.
+         They grow from their tails over the rod's first 15 cm, the current first. */
       if (emf > 1e-6 && dx > 0.02) {
-        const cur = (x1, z1, x2, z2) => arr(ctx, p(x1, z1, yA), p(x2, z2, yA), cI, 5);
+        const g = F.ease.smooth(Math.min(1, (dx - 0.02) / 0.15));
+        const grow = (a, b, k) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k];
+        const cur = (x1, z1, x2, z2) => { const a = p(x1, z1, yA), k = F.stagger(g, 0, 3); if (k > 0) arr(ctx, a, grow(a, p(x2, z2, yA), k), cI, 5); };
         cur(xr, L * 0.82, xr, L * 0.18);                       /* along the rod, toward its positive end */
         cur(xr - 0.04, 0, X0 + (xr - X0) * 0.30, 0);            /* back along the near rail */
         cur(0, L * 0.2, 0, L * 0.8);                            /* up through the resistor */
         cur(X0 * 0.6, L, xr - 0.06, L);                         /* out along the far rail */
         /* the field the induced current raises inside the circuit, out of the plane */
         [0.35, 0.65].forEach((k) => {
-          const b0 = p(X0 + (xr - X0) * k, L / 2, 6), b1 = p(X0 + (xr - X0) * k, L / 2, 118);
-          arr(ctx, b0, b1, cB, 4.5);
+          const b0 = p(X0 + (xr - X0) * k, L / 2, 6), b1 = p(X0 + (xr - X0) * k, L / 2, 118), q = F.stagger(g, 1, 3);
+          if (q > 0) arr(ctx, b0, grow(b0, b1, q), cB, 4.5);
         });
         /* the drag: the field pushes the current-carrying rod back the way it came */
-        const fHead = p(Math.max(xr - 0.24, 0.06), L / 2, yA);
-        arr(ctx, p(xr, L / 2, yA), fHead, cF, 5);
+        const fTail = p(xr, L / 2, yA), fHead = p(Math.max(xr - 0.24, 0.06), L / 2, yA), q = F.stagger(g, 2, 3);
+        if (q > 0) arr(ctx, fTail, grow(fTail, fHead, q), cF, 5);
       }
     }
     ctx.restore();
 
-    /* the names: five in either state, each beside its own thing (rule 26.7) */
+    /* the names, each beside its own thing (rule 26.7); the area swept rides on the bracket of the distance */
     const labs = [];
     const fieldAt = P3(1.575, -0.075, FTOP, L);
     labs.push(['B = ' + fmt(B, 2) + ' T', fieldAt[0], fieldAt[1], 'right', cB]);
     const resAt = p(0, L / 2, 0);
     labs.push(['R', resAt[0], resAt[1] - 10, 'above', PAL.ink]);
     if (v > 0) labs.push(['v = ' + fmt(v, 2) + ' m/s', vHead[0], vHead[1], 'above', cV]);
-    if (!lenz && dA > 0.004) {
-      const aAt = p((X0 + xr) / 2, L / 2, 72);
-      labs.push(['ΔA = ℓΔx = ' + fmt(dA, 2) + ' m²', aAt[0], aAt[1], 'above', PAL.ink]);
-    }
-    if (lenz && emf > 1e-6 && dx > 0.02) {
+    if (emf > 1e-6 && dx > 0.17) {
       const iAt = p((X0 * 0.6 + xr) / 2, L, yA), bAt = p(X0 + (xr - X0) * 0.5, L / 2, 118), fAt = p(Math.max(xr - 0.24, 0.06), L / 2, yA);
       labs.push(['the induced current', iAt[0], iAt[1], 'below', cI, 64]);
       labs.push(['the induced field', bAt[0], bAt[1], 'above', cB, 24]);
-      labs.push(['the drag on the rod', fAt[0], fAt[1], 'above', cF, 78]);
+      labs.push(['the drag on the rod', fAt[0], fAt[1], 'below', cF, 96]);
     }
-    if (!lenz && dx > 0.01) {
+    if (dx > 0.01) {
       const a1 = p(X0, L / 2, 0), a2 = p(xr, L / 2, 0);
-      hbracket(ctx, a1[0], a2[0], 548, cX, 'Δx = ' + fmt(dx, 2) + ' m', { side: 'below', H });
+      hbracket(ctx, a1[0], a2[0], 548, cX, 'Δx = ' + fmt(dx, 2) + ' m' + (dA > 0.004 ? ',  ΔA = ℓΔx = ' + fmt(dA, 2) + ' m²' : ''), { side: 'below', H });
     }
     const lAt1 = p(0.02, 0, 0), lAt2 = p(0.02, L, 0);
     vbracket(ctx, Math.min(lAt1[0], lAt2[0]) - 34, lAt1[1], lAt2[1], PAL.ink, 'ℓ = ' + fmt(L, 2) + ' m', -1, { side: 'left', H });
@@ -254,8 +248,8 @@ function apparatus(ctx, o) {
 
   /* where the resistor and the rod stand at the model time tau, and how fast
      they are separating, which is the only speed the emf knows about */
-  function state(tau) {
-    const v = vS.v, s = v * tau, w = whatC.value;
+  function state(w, tau) {
+    const v = vS.v, s = v * tau;
     if (w === 'rod') return { xa: 0.25, xr: 0.55 + s, ox: 0, vRod: v, vRail: 0 };
     if (w === 'field') return { xa: 0.90 - s, xr: 1.20, ox: -s, vRod: 0, vRail: v };
     return { xa: 0.25 + s, xr: 0.55 + s, ox: 0, vRod: v, vRail: 0 };
@@ -263,8 +257,9 @@ function apparatus(ctx, o) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const v = vS.v, w = whatC.value, T = TRAV / v, tau = cy.now(), st = state(tau);
-    const rel = w === 'both' ? 0 : v, emf = B * L * rel, width = st.xr - st.xa, phi = B * L * width;
+    /* a change of what moves carries the rod, the rails and the field from one motion to the other */
+    const v = vS.v, w = whatC.value, T = TRAV / v, tau = cy.now(), st = whatC.mix((m) => state(m, tau));
+    const rel = whatC.mix((m) => (m === 'both' ? 0 : v)), emf = B * L * rel, width = st.xr - st.xa, phi = B * L * width;
     const cV = C('velocity'), cPhi = C('magnetic-flux'), cE = C('voltage'), cT = C('time');
     hits = [];
 
@@ -272,20 +267,21 @@ function apparatus(ctx, o) {
     const { p } = apparatus(ctx, { L, xa: st.xa, xr: st.xr, B, ox: st.ox, hits, rails: [st.xa - 0.35, st.xa + 1.28] });
     const yA = 26;
     /* the velocity of whatever is moving: one arrow on the rod, one on the rails */
-    if (st.vRod > 0) {
+    const aRod = whatC.mix((m) => (m === 'field' ? 0 : 1)), aBack = whatC.a('field'), aWith = whatC.a('both');
+    if (aRod > 0) {
       const a = p(st.xr, L / 2, yA), b = p(st.xr + 0.26, L / 2, yA);
-      arr(ctx, a, b, cV, 5);
-      label(ctx, 'the rod, ' + fmt(st.vRod, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: cV, H });
+      arr(ctx, a, b, alpha(cV, aRod), 5);
+      label(ctx, 'the rod, ' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: alpha(cV, aRod), H });
     }
-    if (st.vRail > 0) {
+    if (aBack > 0) {
       const a = p(st.xa - 0.10, L + 0.12, yA), b = p(st.xa - 0.36, L + 0.12, yA);
-      arr(ctx, a, b, cV, 5);
-      label(ctx, 'the rails and the field, ' + fmt(st.vRail, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: cV, H });
+      arr(ctx, a, b, alpha(cV, aBack), 5);
+      label(ctx, 'the rails and the field, ' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: alpha(cV, aBack), H });
     }
-    if (w === 'both') {
+    if (aWith > 0) {
       const a = p(st.xa - 0.10, L + 0.12, yA), b = p(st.xa + 0.16, L + 0.12, yA);
-      arr(ctx, a, b, cV, 5);
-      label(ctx, 'the rails, ' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: cV, H });
+      arr(ctx, a, b, alpha(cV, aWith), 5);
+      label(ctx, 'the rails, ' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: alpha(cV, aWith), H });
     }
     /* the width of the loop, which is what the flux follows */
     ctx.restore();
@@ -309,7 +305,7 @@ function apparatus(ctx, o) {
       : 'The rod and the resistor are separating at ' + fmt(rel, 2) + ' m/s, so the circuit encloses ' + fmt(width, 2) + ' m of rail and the emf is ' + fmt(emf, 2) + ' V.');
     readout(d.readout,
       `\\kemf = \\kBmag\\ell\\kv = (${fmt(B, 2)}\\ \\text{T})(${fmt(L, 3)}\\ \\text{m})(${fmt(rel, 2)}\\ \\text{m/s}) = ${fmt(emf, 2)}\\ \\text{V}`,
-      w === 'rod' ? 'The rails and the field stand still while the rod is pushed along them, which is the arrangement Figure 23.10 draws.'
+      w === 'rod' ? 'The rails and the field stand still while the rod is pushed along them, the arrangement of the rod on its rails above.'
         : w === 'field' ? 'The rod stands still now and the rails and the field are carried the other way, and because the rod and the field are separating at the same ' + fmt(rel, 2) + ' m/s as before, the emf is the same.'
           : 'Everything is moving, but nothing is moving relative to anything else, so the area the circuit encloses never changes and the speed in the expression is zero.');
   }

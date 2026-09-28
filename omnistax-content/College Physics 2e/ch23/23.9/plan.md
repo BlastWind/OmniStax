@@ -245,6 +245,8 @@ capacitor, which the book's one sentence of likeness does not carry and which
 
 **Figure pass, 2026-09-16 (Claude Fable 5.1).** `sim-inductor-energy`: the three named devices stacked into three rows and are a dropdown (rule 26.1). `sim-self-inductance`: the source's name is set clear of the battery symbol. The other four figures were judged in both themes and left as built.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** `sim-mutual-inductance`: driving the other coil carries the source and the meter across to trade places (manim 16), and the note no longer mentions the viewpoint. `sim-counterwound`: counter-winding brings the second layer in, grows its current arrow back against the first and thins the field inside to nothing. The readout is a formula morph: L = μ₀N²A/ℓ gives way to L = 0 (manim 11, 16). `sim-self-inductance`, `sim-solenoid-inductance` and `sim-inductor-energy`: captions and notes reworded (root 17). `sim-inductor-energy` keeps its cut between devices: the coil is drawn the same for all three, and the curve's shape is the same on its own scale, so nothing has a counterpart to bend.
+
 ## Exercises
 
 No Check Your Understanding box and no AP item, so every exercise sits in the

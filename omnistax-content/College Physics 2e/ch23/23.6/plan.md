@@ -151,6 +151,8 @@ Extra simulations (rule 15), thought through, judged and decided:
   page opens by saying in the book's own words that they have the same
   construction; a third drawing of the same coil would add no view.
 
+**Figure pass, 2026-09-28 (Claude Opus 5.5).** `sim-back-emf`: ω carries a dashed circle at rest, the moment the text names. The readout is a formula morph: I = (emf − emf_back)/R loses the back-emf term and its number and becomes I = emf/R (manim 8, 11). `sim-dimming-lights`: switching the motor blends its branch in or out, so the lamp dims or brightens and the motor's parts and the open switch cross-fade (manim 16).
+
 ## Exercises
 
 - Every item is set at the end (`ch23/config.md`; the module prints no Check
