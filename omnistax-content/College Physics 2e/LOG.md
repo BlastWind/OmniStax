@@ -4335,3 +4335,54 @@ chemistry section then being built, `astro check` is clean and the build
 completed. A headless pass over all seven pages in light and dark found no
 console error, blank figure, KaTeX error, missing image or missing exercise
 card.
+
+
+### Pass 54 (2026-09-28): Chapter 29, Quantum Physics, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+eight sections, 29.1 to 29.8, by one agent each. It carries 40 concepts, 20
+equations, 24 variables, 30 glossary terms and 90 exercises (46 keyed problems,
+26 conceptual questions and 18 AP items, 9 of them keyed). No new type is
+declared: photon energies, frequencies, wavelengths and momenta wear the hues
+they wear elsewhere, and light itself is drawn in the colour of its wavelength
+through one piecewise fit of the visible spectrum, ink with its band named
+outside it. Every electron is `F.el('e-')`.
+
+Three figures fold book figures: the lamp over a metal plate and its
+$\text{KE}_e$ graph (Figure 29.7 + 29.8), the x-ray tube and the spectrum its
+photons build (29.11 + 29.12), and the double-slit pattern that fills one
+arrival at a time, watched or not watched (29.21 + 29.22). These three move;
+the blackbody curves, the spectrum, the Compton collision and the Bragg crystal
+are still. Seven Sims are added: the oscillator ladder and a line spectrum in
+29.1, a photon meeting an electron in 29.4, the de Broglie wavelength in 29.6,
+the position-momentum and energy-time trade-offs in 29.7 and the recoiling dust
+grain of Example 29.10 in 29.8.
+
+The chapter pass wrote anchors on all 20 equation rows and all 24 variable rows,
+and added three edges into Chapter 28, now merged: the photon's $E = pc$ rests
+on the energy-momentum relation, and photon momentum and 29.8's integrated
+problem on relativistic momentum. The edges from 30.4's x rays and 31.1's
+ionizing radiation into 29.3's `x-ray-tube-spectrum` and `ionizing-photons`
+belong to those chapters and wait for their passes. `COLOR.md` records the
+bindings as built: 29.2 draws no voltage and 29.3 no power, and 29.3 binds
+`charge` for its $qV$ readout.
+
+Across the sections no exercise moves or lands twice, Figures 29.1 to 29.25 run
+in book order with their folds, Examples 29.1 to 29.10 and Table 29.1 are where
+the book puts them, and 29.8's problem on the 54.0-eV electron of Example 29.7
+names the right example.
+
+One key is not kept as printed: part (a) of the orangutan problem of 29.1 prints
+$2.21\times 10^{34}$ J, and the page sets $2.21\times 10^{-34}$ J, since the
+printed value would mark a right answer wrong; this waits on Chen. The other
+slips are kept as printed and gathered in `ch29/exploration.md`: an AP item of
+29.3 that asks for a wavelength and offers frequencies, Example 29.5's electron
+of $9.11\times 10^{-3}$ kg and its $(\text{mc})^2$, the garbled
+"$E = \gamma mc^2 mc^2$" called a rest energy, a velocity in meters in 29.6, the
+double-slit relation credited to the wrong module in 29.7, and 29.8's
+"1.21 kg × 10⁻²⁷ m/s".
+
+Checks: `check:content` found no errors, `npm test` passed, `astro check` is
+clean and the build completed. A headless pass over all nine pages in light and
+dark found no console error, blank figure, KaTeX error, missing image or missing
+exercise card.

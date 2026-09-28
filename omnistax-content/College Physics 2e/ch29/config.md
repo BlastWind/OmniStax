@@ -40,3 +40,12 @@ its value.
 | Concept nodes | 40 in `book.json` before the sections were built (6, 6, 6, 5, 2, 6, 6, 3 for 29.1 to 29.8) with 101 prerequisite edges |
 | Formulas | `ch29/chapter.json`: 20 equations, the stated ones important; no anchors until the chapter pass |
 | Credit | `ai` is Claude Opus 5.5 for text and figures; `built` 2026-09-28 |
+
+## What the build changed
+
+| Setting | As built |
+|---|---|
+| Folds | Figure 29.7 + 29.8 (the lamp over the plate and its $\text{KE}_e$ graph), 29.11 + 29.12 (the tube and the spectrum it builds) and 29.21 + 29.22 (the build-up of the double-slit pattern) are one figure each; seven Sims are added: the oscillator ladder and a line spectrum in 29.1, a photon meeting an electron in 29.4, the de Broglie wavelength in 29.6, the position-momentum and energy-time trade-offs in 29.7 and the recoiling dust grain in 29.8 |
+| Motion | the photoelectric figure of 29.2, the x-ray tube of 29.3 and the build-up of 29.7 register a cycle; the Compton figure of 29.4 and every other figure are still |
+| Colour coding | 29.2 leaves `voltage` unbound and 29.3 leaves `power` unbound, since no figure draws either; 29.3 binds `charge` for its $\kq\kV$ readout |
+| Answers | the key of `fs-id1319731` (a) in 29.1 is set as $2.21\times 10^{-34}$ J, restoring the minus sign the book lost; every other key is as printed |

@@ -1,0 +1,96 @@
+{
+  "id": "29.1",
+  "module": "m42554",
+  "chapter": "29",
+  "title": "Quantization of Energy",
+  "short": "Quantization of energy",
+  "lead": "Some systems can have only certain energies and not a continuum of them, and the first clue that energy is quantized came from the spectrum of a hot, ideal radiator. This section shows how Max Planck explained the shape of that blackbody spectrum by allowing the atoms and molecules of the body, acting as oscillators, only the energies $\\kE = (n + \\frac{1}{2})h\\kf$, so that their energy changes in steps of $\\kdE = h\\kf$, explains why those steps are far too small to notice on a macroscopic scale, and shows that the discrete line spectra of hot gases point to quantized energies in individual atoms and molecules.",
+  "objectives": [
+    "Explain Max Planck’s contribution to the development of quantum mechanics.",
+    "Explain why atomic spectra indicate quantization."
+  ],
+  "summary_html": "<ul><li>The first indication that energy is sometimes quantized came from blackbody radiation, which is the emission of EM radiation by an object with an emissivity of 1.</li><li>Planck recognized that the energy levels of the emitting atoms and molecules were quantized, with only the allowed values of $\\kE = \\left(n + \\frac{1}{2}\\right)h\\kf$, where $n$ is any non-negative integer (0, 1, 2, 3, …).</li><li>$h$ is Planck’s constant, whose value is $h = 6.626 \\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$.</li><li>Thus, the oscillatory absorption and emission energies of atoms and molecules in a blackbody could increase or decrease only in steps of size $\\kdE = h\\kf$ where $\\kf$ is the frequency of the oscillatory nature of the absorption and emission of EM radiation.</li><li>Another indication of energy levels being quantized in atoms and molecules comes from the lines in atomic spectra, which are the EM emissions of individual atoms and molecules.</li></ul>",
+  "notes": "The link to the PhET simulation Models of the Hydrogen Atom is left out, as the links to the publisher’s interactive content are throughout. The problem on the oscillation frequency of an HBr molecule has no keyed answer and is left out with it. The book’s key prints part (a) of the orangutan problem as 2.21 × 10³⁴ J, with the minus sign of its exponent lost, and it is set here as 2.21 × 10⁻³⁴ J.",
+  "ai": {
+    "text": "Claude Opus 5.5",
+    "figures": "Claude Opus 5.5"
+  },
+  "built": "2026-09-28",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. One of the three problems, the oscillation frequency of an HBr molecule, has no keyed answer and is left out. The key the book prints for part (a) of the orangutan problem reads $2.21\\times 10^{34}$ J, which has lost the minus sign of its exponent, and it is set here as $2.21\\times 10^{-34}$ J, the only reading the question allows. The first AP item is keyed and is set as a graded choice; the second has its solution commented out of the source, so the book prints none, and it is kept as an open item with an AI-marked suggested approach, as are all five conceptual questions, which the book leaves unkeyed. The module prints no Check Your Understanding box, so nothing is set inline. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "sim-blackbody",
+      "kind": "sim",
+      "number": "29.3",
+      "originals": ["/media/ch29/Figure_30_01_01a.jpg"],
+      "original_caption": "Graphs of blackbody radiation (from an ideal radiator) at three different radiator temperatures. The intensity or rate of radiation emission increases dramatically with temperature, and the peak of the spectrum shifts toward the visible and ultraviolet parts of the spectrum. The shape of the spectrum cannot be described with classical physics.",
+      "widths": [250],
+      "draws": ["temperature", "intensity", "position"]
+    },
+    {
+      "id": "sim-oscillator-ladder",
+      "kind": "sim",
+      "draws": ["energy", "frequency"]
+    },
+    {
+      "id": "photo-planck",
+      "kind": "photo",
+      "number": "29.4",
+      "widths": [300],
+      "draws": []
+    },
+    {
+      "id": "photo-oxygen-spectrum",
+      "kind": "photo",
+      "number": "29.5",
+      "widths": [550],
+      "draws": []
+    },
+    {
+      "id": "sim-line-spectrum",
+      "kind": "sim",
+      "draws": ["position", "frequency", "energy"]
+    }
+  ],
+  "coverage": [
+    {"span": "plancks-contribution", "concept": "energy-quantization", "verb": "introduces"},
+    {"span": "plancks-contribution", "concept": "blackbody-radiation", "verb": "introduces"},
+    {"span": "plancks-contribution", "concept": "planck-oscillator-energy", "verb": "introduces"},
+    {"span": "plancks-contribution", "concept": "quantum-energy-step", "verb": "introduces"},
+    {"span": "plancks-contribution", "concept": "correspondence-principle", "verb": "introduces"},
+    {"span": "atomic-spectra", "concept": "atomic-spectra-quantized", "verb": "introduces"},
+    {"span": "atomic-spectra", "concept": "quantum-energy-step", "verb": "uses"},
+    {"span": "atomic-spectra", "concept": "energy-quantization", "verb": "reinforces"}
+  ],
+  "exercises": [
+    {"id": "ap1", "source_id": "fs-id3425592", "kind": "ap-test-prep", "bloom": "Analyze", "place": {"at": "end"}, "cite": "atomic-spectra", "prompt": "The visible spectrum of sunlight shows a range of colors from red to violet. This spectrum has numerous dark lines spread throughout it. Noting that the surface of the Sun is much cooler than the interior, so that the surface is comparable to a cool gas through which light passes, which of the following statements correctly explains the dark lines?", "answer": {"type": "choice", "generated_by": "source", "options": ["The cooler, denser surface material scatters certain wavelengths of light, forming dark lines.", "The atoms at the surface absorb certain wavelengths of light, causing the dark lines at those wavelengths.", "The atoms in the Sun’s interior emit light of specific wavelength, so that parts of the spectrum are dark.", "The atoms at the surface are excited by the high interior temperatures, so that the dark lines are merely wavelengths at which those atoms don’t emit energy."], "correct": 1, "hint": "The energies of the atoms in a gas are quantized, so a cool gas can take energy out of the light passing through it only in steps of $\\kdE = h\\kf$, which means only at certain frequencies.", "solution": "(b)"}},
+    {"id": "ap2", "source_id": "fs-id1392909", "kind": "ap-test-prep", "bloom": "Evaluate", "place": {"at": "end"}, "cite": "plancks-contribution", "prompt": "A log in a fireplace burns for nearly an hour, at which point it consists mostly of small, hot embers. These embers glow a bright orange and whitish-yellow color. Describe the characteristics of the energy of this system, both in terms of energy transfer and the quantum behavior of blackbodies.", "answer": {"type": "open", "generated_by": "ai", "solution": "The chemical energy stored in the wood is released by burning and becomes thermal energy of the embers, which then transfer energy to the room by radiation, as well as by convection and conduction. The hot embers act much like a blackbody, so the spectrum they radiate depends on their temperature. The atoms and molecules in the embers act like oscillators whose energies are quantized, $\\kE = (n + \\frac{1}{2})h\\kf$, and they emit radiation as they drop from one allowed energy to another in steps of $\\kdE = h\\kf$. At the temperature of the embers, the peak of the spectrum lies in the infrared, but enough of the spectrum reaches into the visible to make them glow orange and yellow-white, and the hotter parts glow whiter because the peak of their spectrum has moved to shorter wavelengths. As the embers cool, their total intensity falls as the fourth power of the absolute temperature and their color moves toward red."}},
+    {"id": "cq1", "source_id": "fs-id1254787", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "plancks-contribution", "prompt": "Give an example of a physical entity that is quantized. State specifically what the entity is and what the limits are on its values.", "answer": {"type": "open", "generated_by": "ai", "solution": "The energy of an oscillating atom or molecule is quantized. An oscillator of frequency $\\kf$ can have only the energies $\\kE = (n + \\frac{1}{2})h\\kf$, where $n$ is a nonnegative integer, so its energy can change only in steps of $\\kdE = h\\kf$ and can never be less than $\\frac{1}{2}h\\kf$. Electric charge is another example: every charge is a whole-number multiple of the charge of the electron."}},
+    {"id": "cq2", "source_id": "fs-id1268120", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "plancks-contribution", "prompt": "Give an example of a physical entity that is not quantized, in that it is continuous and may have a continuous range of values.", "answer": {"type": "open", "generated_by": "ai", "solution": "The speed of a car, as far as can be measured, may take any value in a continuous range, and so may its position along a road. The energy of a macroscopic object such as a swinging pendulum also appears continuous, because the quantum steps are far too small to be noticed."}},
+    {"id": "cq3", "source_id": "fs-id1250135", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "plancks-contribution", "prompt": "What aspect of the blackbody spectrum forced Planck to propose quantization of energy levels in its atoms and molecules?", "answer": {"type": "open", "generated_by": "ai", "solution": "The shape of the curve of intensity versus wavelength. Classical physics predicted that the intensity would keep rising toward short wavelengths, the ultraviolet catastrophe, while the measured spectrum rises to a peak and falls toward zero at short wavelengths. Planck could describe the measured shape correctly only by allowing the oscillating atoms and molecules the energies $\\kE = (n + \\frac{1}{2})h\\kf$ and no others."}},
+    {"id": "cq4", "source_id": "fs-id977492", "kind": "conceptual-question", "bloom": "Apply", "place": {"at": "end"}, "cite": "plancks-contribution", "prompt": "If Planck’s constant were large, say $10^{34}$ times greater than it is, we would observe macroscopic entities to be quantized. Describe the motions of a child’s swing under such circumstances.", "answer": {"type": "open", "generated_by": "ai", "solution": "A swing oscillating about once every 3 s has a frequency near 0.3 Hz, and with $h$ about 6.6 J·s the energy step $\\kdE = h\\kf$ would be about 2 J, comparable to the energy of a gentle swing. The swing could then move with only certain amplitudes. A push would either raise it by a whole step to the next larger amplitude or do nothing at all, and as friction took energy away the swing would drop suddenly from one amplitude to a smaller one rather than dying away smoothly."}},
+    {"id": "cq5", "source_id": "fs-id1267708", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "plancks-contribution", "prompt": "Why don’t we notice quantization in everyday events?", "answer": {"type": "open", "generated_by": "ai", "solution": "Planck’s constant is very small, so the energy steps $\\kdE = h\\kf$ of everyday objects, which oscillate at low frequencies, are tiny compared with their energies, which are on the order of joules. The steps are far too small to be noticed, and quantum mechanics gives the same results as classical physics for large objects, as the correspondence principle says."}},
+    {"id": "p1", "source_id": "fs-id1296980", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "plancks-contribution", "prompt": "A LiBr molecule oscillates with a frequency of $1.7\\times 10^{13}\\;\\text{Hz}$. (a) What is the difference in energy in eV between allowed oscillator states? (b) What is the approximate value of $n$ for a state having an energy of 1.0 eV?", "answer": {"type": "multi", "generated_by": "source", "parts": [{"part": "(a) the difference in energy", "value": 0.070, "unit": "eV", "hint": "The step between allowed states is $\\kdE = h\\kf$; convert joules to electron volts with $1\\;\\text{eV} = 1.60\\times 10^{-19}\\;\\text{J}$."}, {"part": "(b) the value of n", "value": 14, "hint": "Solve $\\kE = (n + \\frac{1}{2})h\\kf$ for $n$ with $\\kE = 1.0$ eV and round to a whole number."}], "solution": "(a) 0.070 eV\n\n(b) 14"}},
+    {"id": "p2", "source_id": "fs-id1319731", "kind": "problem", "bloom": "Analyze", "place": {"at": "end"}, "cite": "plancks-contribution", "prompt": "A physicist is watching a 15-kg orangutan at a zoo swing lazily in a tire at the end of a rope. He (the physicist) notices that each oscillation takes 3.00 s and hypothesizes that the energy is quantized. (a) What is the difference in energy in joules between allowed oscillator states? (b) What is the value of $n$ for a state where the energy is 5.00 J? (c) Can the quantization be observed?", "answer": {"type": "multi", "generated_by": "source", "parts": [{"part": "(a) the difference in energy", "value": 2.21e-34, "unit": "J", "hint": "The frequency is one over the period, and the step between allowed states is $\\kdE = h\\kf$."}, {"part": "(b) the value of n", "value": 2.26e34, "hint": "Solve $\\kE = (n + \\frac{1}{2})h\\kf$ for $n$; the one half makes no difference to a number this large."}], "solution": "(a) $2.21\\times 10^{-34}\\;\\text{J}$\n\n(b) $2.26\\times 10^{34}$\n\n(c) No"}}
+  ],
+  "exercise_concepts": [
+    {"exercise": "ap1", "concept": "atomic-spectra-quantized"},
+    {"exercise": "ap1", "concept": "quantum-energy-step", "weight": 2, "weights_by": "ai"},
+    {"exercise": "ap2", "concept": "blackbody-radiation"},
+    {"exercise": "ap2", "concept": "planck-oscillator-energy", "weight": 2, "weights_by": "ai"},
+    {"exercise": "cq1", "concept": "energy-quantization"},
+    {"exercise": "cq2", "concept": "energy-quantization"},
+    {"exercise": "cq2", "concept": "correspondence-principle", "weight": 2, "weights_by": "ai"},
+    {"exercise": "cq3", "concept": "blackbody-radiation"},
+    {"exercise": "cq3", "concept": "planck-oscillator-energy"},
+    {"exercise": "cq4", "concept": "quantum-energy-step"},
+    {"exercise": "cq4", "concept": "correspondence-principle"},
+    {"exercise": "cq5", "concept": "correspondence-principle"},
+    {"exercise": "cq5", "concept": "quantum-energy-step", "weight": 2, "weights_by": "ai"},
+    {"exercise": "p1", "concept": "quantum-energy-step"},
+    {"exercise": "p1", "concept": "planck-oscillator-energy"},
+    {"exercise": "p2", "concept": "quantum-energy-step"},
+    {"exercise": "p2", "concept": "planck-oscillator-energy"},
+    {"exercise": "p2", "concept": "correspondence-principle"}
+  ]
+}

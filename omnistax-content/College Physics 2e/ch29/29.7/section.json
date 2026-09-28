@@ -1,0 +1,184 @@
+{
+  "id": "29.7",
+  "module": "m42579",
+  "chapter": "29",
+  "title": "Probability: The Heisenberg Uncertainty Principle",
+  "short": "The Heisenberg uncertainty principle",
+  "lead": "Because every particle is a wave, no one can predict where a single electron will land, only the probability distribution that many of them build. This section shows that watching which slit an electron passes through changes the pattern it builds, derives Heisenberg’s uncertainty principle for position and momentum, $\\kdx\\,\\kdp \\ge h/4\\pi$, and its second form for energy and time, $\\kdE\\,\\kdt \\ge h/4\\pi$, and works each for an atom.",
+  "objectives": [
+    "Use both versions of Heisenberg’s uncertainty principle in calculations.",
+    "Explain the implications of Heisenberg’s uncertainty principle for measurements."
+  ],
+  "summary_html": "<ul><li>Matter is found to have the same interference characteristics as any other wave.</li><li>There is now a probability distribution for the location of a particle rather than a definite position.</li><li>Another consequence of the wave character of all particles is the Heisenberg uncertainty principle, which limits the precision with which certain physical quantities can be known simultaneously. For position and momentum, the uncertainty principle is $\\kdx\\,\\kdp \\ge \\frac{h}{4\\pi}$, where $\\kdx$ is the uncertainty in position and $\\kdp$ is the uncertainty in momentum.</li><li>For energy and time, the uncertainty principle is $\\kdE\\,\\kdt \\ge \\frac{h}{4\\pi}$ where $\\kdE$ is the uncertainty in energy and $\\kdt$ is the uncertainty in time.</li><li>These small limits are fundamentally important on the quantum-mechanical scale.</li></ul>",
+  "notes": "Five of the module’s ten problems have no keyed answer and are left out: the chlorine ion located to 1.00 μm, the proton whose velocity is known to 0.250% of the speed of light, the nucleus with a lifetime of 10⁻²⁰ s, the nuclear excited state with a 2.0-eV uncertainty, and the derivation of ΔEΔt ≈ h. The text says the double-slit equation was developed in Photon Energies and the Electromagnetic Spectrum, where it was in fact developed in Wave Optics, and this is kept as printed.",
+  "ai": {
+    "text": "Claude Opus 5.5",
+    "figures": "Claude Opus 5.5"
+  },
+  "built": "2026-09-28",
+  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Five of the ten problems have no keyed answer and are left out, and they are named in the section’s notes. The one conceptual question is unkeyed and carries an AI-marked suggested approach. The module prints no Check Your Understanding box and no AP test prep, so nothing is set inline. Numeric answers accept 2% tolerance.",
+  "figures": [
+    {
+      "id": "sim-buildup",
+      "kind": "sim",
+      "number": "29.21",
+      "folds": ["29.22"],
+      "originals": ["/media/ch29/Figure_30_07_01a-43db.jpg", "/media/ch29/Figure_30_07_02a-0d6a.jpg"],
+      "original_caption": "(Figure 29.21) The building up of the diffraction pattern of electrons scattered from a crystal surface. Each electron arrives at a definite location, which cannot be precisely predicted. The overall distribution shown at the bottom can be predicted as the diffraction of waves having the de Broglie wavelength of the electrons. (Figure 29.22) Double-slit interference for electrons (a) and photons (b) is identical for equal wavelengths and equal slit separations. Both patterns are probability distributions in the sense that they are built up by individual particles traversing the apparatus, the paths of which are not individually predictable.",
+      "widths": [350, 400],
+      "draws": ["position"]
+    },
+    {
+      "id": "photo-heisenberg",
+      "kind": "photo",
+      "number": "29.23"
+    },
+    {
+      "id": "sim-position-momentum",
+      "kind": "sim",
+      "draws": ["position", "momentum", "velocity"]
+    },
+    {
+      "id": "sim-energy-time",
+      "kind": "sim",
+      "draws": ["energy", "time"]
+    }
+  ],
+  "coverage": [
+    { "span": "probability-distribution", "concept": "probability-distribution", "verb": "introduces" },
+    { "span": "probability-distribution", "concept": "measurement-affects-the-system", "verb": "introduces" },
+    { "span": "probability-distribution", "concept": "de-broglie-wavelength", "verb": "uses" },
+    { "span": "probability-distribution", "concept": "double-slit-constructive", "verb": "uses" },
+    { "span": "probability-distribution", "concept": "single-slit-pattern", "verb": "uses" },
+    { "span": "heisenberg-uncertainty", "concept": "position-momentum-uncertainty", "verb": "introduces" },
+    { "span": "heisenberg-uncertainty", "concept": "measurement-affects-the-system", "verb": "reinforces" },
+    { "span": "heisenberg-uncertainty", "concept": "de-broglie-wavelength", "verb": "uses" },
+    { "span": "uncertainty-example-atom", "concept": "uncertainty-principle-calculation", "verb": "introduces" },
+    { "span": "uncertainty-example-atom", "concept": "position-momentum-uncertainty", "verb": "uses" },
+    { "span": "large-objects", "concept": "uncertainty-negligible-for-large-objects", "verb": "introduces" },
+    { "span": "large-objects", "concept": "correspondence-principle", "verb": "uses" },
+    { "span": "energy-time-uncertainty", "concept": "energy-time-uncertainty", "verb": "introduces" },
+    { "span": "energy-time-example", "concept": "energy-time-uncertainty", "verb": "uses" },
+    { "span": "energy-time-example", "concept": "uncertainty-principle-calculation", "verb": "reinforces" },
+    { "span": "energy-time-consequences", "concept": "energy-time-uncertainty", "verb": "reinforces" },
+    { "span": "energy-time-consequences", "concept": "probability-distribution", "verb": "reinforces" }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id1252921",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": { "at": "end" },
+      "cite": "heisenberg-uncertainty",
+      "prompt": "What is the Heisenberg uncertainty principle? Does it place limits on what can be known?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The Heisenberg uncertainty principle says that certain pairs of quantities cannot both be measured to exact precision at the same time. For position and momentum, $\\kdx\\,\\kdp \\ge h/4\\pi$, and for energy and time, $\\kdE\\,\\kdt \\ge h/4\\pi$. It does place limits on what can be known, even in principle: to locate a particle you must probe it with something of short wavelength, and that probe carries a large momentum that changes the particle’s momentum in a way that cannot be known. Neither uncertainty can be zero, and making one smaller makes the other larger. Because $h$ is so small, the limit matters only on the scale of atoms and smaller; for large objects it is negligible."
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id1651737",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "uncertainty-example-atom",
+      "prompt": "(a) If the position of an electron in a membrane is measured to an accuracy of $1.00\\;\\mu\\text{m}$, what is the electron’s minimum uncertainty in velocity? (b) If the electron has this velocity, what is its kinetic energy in eV? (c) What are the implications of this energy, comparing it to typical molecular binding energies?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          { "part": "(a) the minimum uncertainty in velocity", "value": 57.9, "unit": "m/s", "hint": "Find $\\kdp = h/4\\pi\\kdx$ with $\\kdx = 1.00\\times 10^{-6}$ m, then $\\kdv = \\kdp/m$." },
+          { "part": "(b) the kinetic energy", "value": 9.55e-9, "unit": "eV", "hint": "Use $\\frac{1}{2}m\\kv^{2}$ with the speed from (a), and divide by $1.60\\times 10^{-19}$ J/eV." }
+        ],
+        "solution": "(a) 57.9 m/s (b) $9.55\\times 10^{-9}\\;\\text{eV}$ (c) From Table 29.1, typical molecular binding energies range from about 1 eV to 10 eV, therefore the result in part (b) is approximately 9 orders of magnitude smaller than typical molecular binding energies."
+      }
+    },
+    {
+      "id": "p2",
+      "source_id": "fs-id1569524",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "uncertainty-example-atom",
+      "prompt": "Suppose the velocity of an electron in an atom is known to an accuracy of $2.0\\times 10^{3}\\;\\text{m/s}$ (reasonably accurate compared with orbital velocities). What is the electron’s minimum uncertainty in position, and how does this compare with the approximate 0.1-nm size of the atom?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          { "part": "the minimum uncertainty in position", "value": 29, "unit": "nm", "hint": "Find $\\kdp = m\\kdv$, then $\\kdx = h/4\\pi\\kdp$." },
+          { "part": "how many times the size of the atom", "value": 290, "hint": "Divide the uncertainty in position by 0.1 nm." }
+        ],
+        "solution": "29 nm, 290 times greater"
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id2322092",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "energy-time-example",
+      "prompt": "A relatively long-lived excited state of an atom has a lifetime of 3.00 ms. What is the minimum uncertainty in its energy?",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 1.1e-13,
+        "unit": "eV",
+        "hint": "Use $\\kdE = h/4\\pi\\kdt$ with $\\kdt = 3.00\\times 10^{-3}$ s, and convert to eV.",
+        "solution": "$1.10\\times 10^{-13}\\;\\text{eV}$"
+      }
+    },
+    {
+      "id": "p4",
+      "source_id": "fs-id1548241",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "energy-time-consequences",
+      "prompt": "The decay energy of a short-lived particle has an uncertainty of 1.0 MeV due to its short lifetime. What is the smallest lifetime it can have?",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 3.3e-22,
+        "unit": "s",
+        "hint": "Use $\\kdt = h/4\\pi\\kdE$ with $\\kdE = 1.0\\times 10^{6}$ eV written in joules.",
+        "solution": "$3.3\\times 10^{-22}\\;\\text{s}$"
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id2682306",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": { "at": "end" },
+      "cite": "energy-time-consequences",
+      "prompt": "What is the approximate uncertainty in the mass of a muon, as determined from its decay lifetime?",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 2.66e-46,
+        "unit": "kg",
+        "hint": "The muon lives about $2.2\\times 10^{-6}$ s. Find $\\kdE = h/4\\pi\\kdt$, then the uncertainty in mass is $\\kdE/c^{2}$.",
+        "solution": "$2.66\\times 10^{-46}\\;\\text{kg}$"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    { "exercise": "cq1", "concept": "position-momentum-uncertainty" },
+    { "exercise": "cq1", "concept": "energy-time-uncertainty" },
+    { "exercise": "cq1", "concept": "measurement-affects-the-system" },
+    { "exercise": "p1", "concept": "uncertainty-principle-calculation" },
+    { "exercise": "p1", "concept": "position-momentum-uncertainty" },
+    { "exercise": "p2", "concept": "uncertainty-principle-calculation" },
+    { "exercise": "p2", "concept": "position-momentum-uncertainty" },
+    { "exercise": "p3", "concept": "uncertainty-principle-calculation" },
+    { "exercise": "p3", "concept": "energy-time-uncertainty" },
+    { "exercise": "p4", "concept": "uncertainty-principle-calculation" },
+    { "exercise": "p4", "concept": "energy-time-uncertainty" },
+    { "exercise": "p5", "concept": "energy-time-uncertainty" },
+    { "exercise": "p5", "concept": "uncertainty-principle-calculation" }
+  ]
+}

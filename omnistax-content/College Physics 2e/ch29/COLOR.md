@@ -12,25 +12,29 @@ draw, its sliders carry or its readouts state (root rules 7 and 22).
 | Photon and particle momentum $p$, its uncertainty $\Delta p$ | `momentum` | one hue |
 | The speed of light $c$, a particle's speed $v$, $\Delta v$ | `velocity` | one hue |
 | A lifetime or uncertainty in time $\Delta t$ | `time` | 29.7 only |
-| The accelerating or retarding voltage $V$ | `voltage` | 29.2, 29.3 |
+| The accelerating voltage $V$ of an x-ray tube | `voltage` | 29.3 |
 | The electron's charge $q$ | `charge` | 29.3's readout only if it writes `\kq` |
-| A source's power | `power` | 29.3's photons-per-second figure only |
+| A source's power | `power` | unbound as built: no figure draws a power |
 | Blackbody intensity and temperature | `intensity`, `temperature` | 29.1's blackbody sim |
 | Planck's constant $h$, a mass $m$, the integers $n$, an angle $\theta$, a count of photons | untyped | ink |
 
-Which section binds what (the plan narrows it to what its figures draw):
+Which section binds what, as built:
 
 | Section | Types bound |
 |---|---|
 | intro | none |
 | 29.1 | `energy`, `frequency`; `intensity`, `temperature`, `position` on the blackbody figure |
-| 29.2 | `energy`, `frequency`, `position`, `voltage` |
-| 29.3 | `energy`, `frequency`, `position`, `voltage`, `power` |
+| 29.2 | `energy`, `frequency`, `position`; no figure draws a voltage, so `voltage` is unbound |
+| 29.3 | `energy`, `frequency`, `position`, `voltage`, `charge` (the tube's readout writes $\kq\kV$); no figure draws a power, so `power` is unbound |
 | 29.4 | `momentum`, `energy`, `position`, `velocity` |
-| 29.5 | none, or `position` if a figure writes a wavelength |
+| 29.5 | none |
 | 29.6 | `position`, `momentum`, `velocity`, `energy` |
 | 29.7 | `position`, `momentum`, `energy`, `time`, `velocity` |
 | 29.8 | `momentum`, `velocity`, `position` |
+
+The colour of visible light is one piecewise fit of the spectrum, `spectral()` in
+29.1 (the function of 27.1) and `wavelengthColor(nm)` in 29.2, 29.3, 29.4, 29.7 and
+29.8, each page carrying its own copy.
 
 Of root rule 7's four families the chapter uses three. **Physical colour**: a
 photon or a beam of visible light is drawn in the colour of its wavelength, the

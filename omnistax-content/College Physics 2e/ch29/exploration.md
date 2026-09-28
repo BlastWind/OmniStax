@@ -171,8 +171,10 @@ every unkeyed AP item is kept with an AI-marked suggested approach.
 ## Errata and oddities kept as printed
 
 - 29.1 `fs-id1319731` (a): the key prints $2.21 \times 10^{34}$ J, a lost minus sign
-  in the exponent ($hf$ for a 3.00-s period is $2.21 \times 10^{-34}$ J). Kept as
-  printed and named in 29.1's `notes`.
+  in the exponent ($hf$ for a 3.00-s period is $2.21 \times 10^{-34}$ J). The one
+  key of the chapter not kept as printed: 29.1 sets it as $2.21 \times 10^{-34}$ J,
+  since the printed value would mark a right answer wrong, and names the slip in
+  its `notes`. For Chen to confirm.
 - 29.3 AP `fs-id2345857` asks for a wavelength and offers frequencies; key (b)
   2.45 GHz. Kept as printed.
 - 29.4 Example 29.5 (c) writes the electron mass as $9.11 \times 10^{-3}$ kg and
@@ -206,6 +208,15 @@ chapter notes file.
 
 Each section's plan writes its own lines here; the prep pass leaves it empty, and
 the chapter pass writes the anchors on every variable and equation row.
+
+Applied by the chapter pass (2026-09-28): anchors on all 20 equation rows and all
+24 variable rows; three edges into Chapter 28, now merged
+(`photon-momentum-and-energy` ← `energy-momentum-relation`, and `photon-momentum`
+and `integrated-quantum-problem` ← `relativistic-momentum`). The two edges from the
+later chapters, `x-ray-tube-spectrum` → 30.4's
+`bremsstrahlung-and-characteristic-x-rays` and `ionizing-photons` → 31.1's
+`ionizing-radiation`, are rows of Chapters 30 and 31 and wait for their chapter
+passes.
 
 ## BE INSPIRING (rule 23)
 

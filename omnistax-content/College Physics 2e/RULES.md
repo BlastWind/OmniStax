@@ -77,12 +77,17 @@ Gas Laws, `ch13`), 14 (Heat and Heat Transfer Methods, `ch14`), 15
 `ch18`), 19 (Electric Potential and Electric Field, `ch19`), 20 (Electric
 Current, Resistance, and Ohm's Law, `ch20`), 21 (Circuits and DC
 Instruments, `ch21`), 22 (Magnetism, `ch22`), 23 (Electromagnetic
-Induction, AC Circuits, and Electrical Technologies, `ch23`) and 24
-(Electromagnetic Waves, `ch24`).
+Induction, AC Circuits, and Electrical Technologies, `ch23`), 24
+(Electromagnetic Waves, `ch24`), 25 (Geometric Optics, `ch25`), 26 (Vision
+and Optical Instruments, `ch26`), 27 (Wave Optics, `ch27`), 28 (Special
+Relativity, `ch28`) and 29 (Quantum Physics, `ch29`). Chapters 30 to 34 are
+prepared (source, chapter tables, concepts, introduction pages and notes)
+and have no section pages yet.
 Chapters 4 to 9 were built in one job on 2026-09-11 (LOG passes 27 to
 33), 10 to 15 on 2026-09-14 (LOG passes 35 to 40), and 16.7 to 16.11
 with 17 to 19 on 2026-09-14 and 15 (LOG passes 41 to 44), and 20 to 22
-on 2026-09-15 (LOG passes 45 to 47) and 23 and 24 on 2026-09-16 (LOG passes 48 and 49),
+on 2026-09-15 (LOG passes 45 to 47), 23 and 24 on 2026-09-16 (LOG passes 48 and 49),
+and 25 to 29 on 2026-09-28 (LOG passes 50 to 54),
 all under
 `Plan.md` at the repository root. A chapter
 folder is `ch` followed by the two-digit chapter number. The whole table
