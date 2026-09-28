@@ -74,6 +74,9 @@ function panel(ctx, x, y, w, h) {
     const { ctx } = begin(d.c);
     const cc = C('current'), qc = C('charge'), tc = C('time'), ec = C('electric-field');
     const I = dQ.v / dT.v, u = Math.min(1, cy.now() / dT.v), mode = who.value;
+    /* each sign's presence, blended as the carriers change so the one set becomes the other */
+    const [aPos, aNeg] = who.mix((v) => [v === 'neg' ? 0 : 1, v === 'pos' ? 0 : 1]);
+    const faded = (a, f) => { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); };
     /* the wire, the marked cross-section and the field that drives the carriers */
     wireBody(ctx, WL, WR, WT, WB);
     crossSection(ctx, AX, WT, WB, qc, alpha(qc, 0.28));
@@ -92,18 +95,16 @@ function panel(ctx, x, y, w, h) {
         text(ctx, sign > 0 ? '+' : '−', x, y + 1, PAL.ink, { size: 18, weight: 700, align: 'center', base: 'middle' });
       }
     };
-    if (mode !== 'neg') draw1(1);
-    if (mode !== 'pos') draw1(-1);
-    /* the legend, which names each kind of carrier once (root rule 26.6) */
-    let lx = 162;
-    const entry = (sign, name) => {
+    faded(aPos, () => draw1(1));
+    faded(aNeg, () => draw1(-1));
+    /* the legend, which names each kind of carrier once (root rule 26.6), each entry in its own place */
+    const entry = (lx, sign, name) => {
       carrier(ctx, lx, 212, sign > 0 ? F.el('p+') : F.el('e-'), 12);
       text(ctx, sign > 0 ? '+' : '−', lx, 213, PAL.ink, { size: 17, weight: 700, align: 'center', base: 'middle' });
       text(ctx, name, lx + 22, 212, PAL.muted, { size: 19, base: 'middle' });
-      lx += 40 + name.length * 9.6;
     };
-    if (mode !== 'neg') entry(1, 'a positive carrier, of charge +q');
-    if (mode !== 'pos') entry(-1, 'a free electron, of charge −q');
+    faded(aPos, () => entry(162, 1, 'a positive carrier, of charge +q'));
+    faded(aNeg, () => entry(520, -1, 'a free electron, of charge −q'));
     /* the conventional current, which runs with the field whichever sign is moving */
     arrow(ctx, 980, 430, 1200, 430, cc, 6);
     text(ctx, 'I = ' + fmt(I, I < 10 ? 2 : 0) + ' A, the conventional current', 966, 430, cc, { size: 22, weight: 600, align: 'right', base: 'middle' });
@@ -163,9 +164,10 @@ function panel(ctx, x, y, w, h) {
     const cc = C('current'), I = Is.v, big = what.value === 'truck';
     const lamp = big ? 'the headlight' : 'the penlight bulb';
     const cell = big ? 'the truck battery' : 'the small battery';
-    /* (a) the picture: a source on the left, a lamp on the right, two wires between them */
+    /* (a) the picture: a source on the left, a lamp on the right, two wires between them;
+       the battery and the lamp grow or shrink into the other situation's */
     text(ctx, '(a) ' + cell + ' and ' + lamp, 90, 122, PAL.ink, { size: 22, weight: 600 });
-    const bl = big ? 110 : 150, br = big ? 300 : 260, bt = 330, bb = big ? 470 : 420;
+    const [bl, br, bb, R] = what.mix((v) => (v === 'truck' ? [110, 300, 470, 66] : [150, 260, 420, 38])), bt = 330;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(bl, bt, br - bl, bb - bt, 6); ctx.fill(); ctx.stroke();
     ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(bl, bt, br - bl, 22); ctx.strokeRect(bl, bt, br - bl, 22);   /* the lid */
@@ -178,7 +180,7 @@ function panel(ctx, x, y, w, h) {
       ctx.beginPath(); ctx.roundRect(x - 13, bt - 18, 26, 20, 4); ctx.fill(); ctx.stroke(); ctx.restore();
       text(ctx, s, x, bt - 8, PAL.ink, { size: 22, weight: 600, align: 'center', base: 'middle' });
     });
-    const lx = 560, ly = 246, R = big ? 66 : 38;
+    const lx = 560, ly = 246;
     const wires = [[[pA, bt - 18], [pA, 170], [lx - R - 36, 170], [lx - R - 6, ly - 12]], [[lx - R - 6, ly + 12], [lx - R - 36, 318], [pB, 318], [pB, bt - 18]]];
     wires.forEach((w) => {
       for (let i = 0; i < w.length - 1; i++) line(ctx, w[i][0], w[i][1], w[i + 1][0], w[i + 1][1], PAL.ink, 5);
@@ -230,7 +232,7 @@ function panel(ctx, x, y, w, h) {
     ctx.lineTo(zr, st); ctx.stroke(); ctx.restore();
     text(ctx, 'the load', (zl + zr) / 2, st - 44, PAL.muted, { size: 18, align: 'center' });
     label(ctx, 'I = ' + fmt(I, 1) + ' A', sr, (st + sb) / 2, { side: 'left', color: cc, size: 22, gap: 26 });
-    headline(ctx, 'A current of ' + fmt(I, 1) + ' A runs out of the positive terminal, through ' + lamp + ' and back, and the schematic beside the picture is the same for both situations.');
+    headline(ctx, 'A current of ' + fmt(I, 1) + ' A runs out of the positive terminal, through ' + lamp + ' and back, and its schematic is the same whatever the source and the lamp.');
     readout(d.readout, `\\kdQch = \\kIcur\\kdt = (${fmt(I, 1)}\\ \\text{A})(1.00\\ \\text{s}) = ${fmt(I, 1)}\\ \\text{C}`,
       'A current of ' + fmt(I, 1) + ' A carries ' + fmt(I, 1) + ' C of charge past every point of the loop each second, since an ampere is one coulomb per second. The schematic draws the source as two parallel lines, the conducting wires as straight lines and the load as a zigzag, and the analysis is the same whether the source is a truck battery and the load a headlight or the source is a small battery and the load a penlight bulb.');
   }
@@ -287,8 +289,9 @@ function panel(ctx, x, y, w, h) {
     text(ctx, 'I = ' + fmt(I, 1) + ' A', 966, 200, cc, { size: 21, weight: 600, align: 'right', base: 'middle' });
     arrow(ctx, 470, 476, 300, 476, vc, 6);
     text(ctx, 'v_d = ' + sci(vd, 2) + ' m/s, the drift velocity', 486, 476, vc, { size: 21, weight: 600, base: 'middle' });
-    /* the electrons themselves, in one of three states */
-    if (m === 'one') {
+    /* the electrons themselves, in one of three states; a change of state fades the old out as the new arrives */
+    const faded = (v, f) => { const a = mode.a(v); if (a <= 0.01) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); };
+    faded('one', () => {
       const s = (speed * t) % SPAN, x0 = WR - 50;
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.38); ctx.lineWidth = 2.5; ctx.beginPath();
       for (let q = 0; q <= s; q += 6) { const px = x0 - q, py = cyc + walkY(q) * 0.5; if (q === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
@@ -297,7 +300,8 @@ function panel(ctx, x, y, w, h) {
       carrier(ctx, ex, ey, F.el('e-'), 12);
       label(ctx, 'one free electron', ex, ey, { side: ey < cyc ? 'above' : 'below', color: PAL.ink, size: 20, gap: 30 });
       text(ctx, 'The path is nearly random, like an atom in a gas, but it creeps to the left all the same.', WL, 530, PAL.muted, { size: 19 });
-    } else if (m === 'crowd') {
+    });
+    faded('crowd', () => {
       for (let i = 0; i < 18; i++) {
         const ph = i * 1.37, s = (speed * t + i * (SPAN / 18)) % SPAN;
         const x = WR - 50 - s, y = cyc + 40 * Math.sin(s * 0.09 + ph) + 22 * Math.sin(s * 0.27 + ph * 2);
@@ -305,7 +309,8 @@ function panel(ctx, x, y, w, h) {
       }
       carrier(ctx, WL + 40, 530, F.el('e-'), 10);
       text(ctx, 'each one a free electron, rattling from collision to collision while the whole crowd creeps to the left', WL + 62, 530, PAL.muted, { size: 19, base: 'middle' });
-    } else {
+    });
+    faded('signal', () => {
       /* the charges already in the wire, which barely move, and the push that
          crosses it in the first fifth of a second of the loop */
       const front = Math.min(1, t / 0.18);
@@ -327,7 +332,7 @@ function panel(ctx, x, y, w, h) {
         label(ctx, 'and one leaves here, at once', ox, cyc + 14, { side: 'below', gap: 40, size: 19, color: PAL.ink });
       }
       text(ctx, 'The push travels at about ' + sci(VSIG, 0) + ' m/s, so the far end answers at once though no electron has gone anywhere.', WL, 530, PAL.muted, { size: 19 });
-    }
+    });
     text(ctx, 'copper atoms of the lattice', WL, 570, PAL.muted, { size: 19 });
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(WL + 260, 564, 13, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     headline(ctx, 'The crowd drifts at ' + sci(vd, 2) + ' m/s, drawn ' + fmt(fac.v, 0) + ' times faster than it is, while the signal crosses the wire at about ' + sci(VSIG, 0) + ' m/s.');

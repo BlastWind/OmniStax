@@ -172,7 +172,7 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
     text(ctx, 'Charge cannot collect at a junction, so the arrow that arrives is as wide as the two that leave together.', 700, 432, PAL.muted, { size: 19, align: 'center' });
     readout(d.readout,
       '\\kIcurone = \\kIcurtwo + \\kIcurthree = ' + amp(I2.v) + ' + ' + amp(I3.v) + ' = ' + amp(i1),
-      'The width of each arrow is drawn from its own current, so the one that arrives is always as wide as the two that leave put together.');
+      'Charge cannot collect at the junction, so the current that arrives is always the two that leave put together.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -195,6 +195,9 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
   });
   /* the potential runs from zero to the largest emf the slider reaches */
   const YMAX = 30, T = 190, B = 400;
+  const fx = el('div'), note = el('small');
+  d.readout.replaceChildren(fx, note);
+  let walked = way.value;
   function draw() {
     const { ctx } = begin(d.c);
     const cw = way.value === 'cw';
@@ -223,8 +226,16 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
       xl: 'the walk round the loop, one step per element passed', yl: 'potential (V)', yc: C('voltage'),
       nx: 4, ny: 3, fx: (v) => (v === 0 ? 'start' : v === 4 ? 'back at the start' : ''),
     });
+    /* while the walk turns round, the staircase bends from one order of steps into the other */
+    const stairs = (w) => { const s = w === 'cw' ? [E.v, -dr, -d1, -d2] : [d2, d1, dr, -E.v]; let u = 0; const p = [[X(0), Y(0)]]; s.forEach((q, i) => { p.push([X(i + 1), Y(u)]); u += q; p.push([X(i + 1), Y(u)]); }); return p; };
+    const turning = way.k < 1;
+    if (turning) {
+      const p = F.lerpPts(stairs(way.from), stairs(way.value), way.k);
+      ctx.save(); ctx.strokeStyle = C('voltage'); ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.beginPath();
+      p.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke(); ctx.restore();
+    }
     let v = 0;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4 && !turning; i++) {
       const next = v + steps[i];
       line(ctx, X(i), Y(v), X(i + 1), Y(v), C('voltage'), 5);
       line(ctx, X(i + 1), Y(v), X(i + 1), Y(next), cols[i], 5);
@@ -236,10 +247,14 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
       v = next;
     }
     dot(ctx, X(0), Y(0), C('voltage'), false, 9);
-    readout(d.readout,
-      cw
-        ? '\\kemf - \\kIcur\\krint - \\kIcur\\kResone - \\kIcur\\kRestwo = ' + volt(E.v) + ' - ' + volt(dr) + ' - ' + volt(d1) + ' - ' + volt(d2) + ' = 0'
-        : '+\\kIcur\\kRestwo + \\kIcur\\kResone + \\kIcur\\krint - \\kemf = ' + volt(d2) + ' + ' + volt(d1) + ' + ' + volt(dr) + ' - ' + volt(E.v) + ' = 0',
+    /* each term keeps its key and its sign is its own key, so turning the walk round moves every term to its new place and flips its sign there */
+    const T4 = [['e', '\\kemf', E.v, 1], ['r', '\\kIcur\\krint', dr, -1], ['1', '\\kIcur\\kResone', d1, -1], ['2', '\\kIcur\\kRestwo', d2, -1]];
+    const order = cw ? T4 : [T4[3], T4[2], T4[1], T4[0]].map(([k, s, n, g]) => [k, s, n, -g]);
+    const sg = (g) => (g > 0 ? '+' : '-');
+    F.morph(fx, order.map(([k, s, , g]) => '\\mk{s' + k + '}{' + sg(g) + '}\\mk{t' + k + '}{' + s + '}').join(' ') + ' = '
+      + order.map(([k, , n, g]) => '\\mk{g' + k + '}{' + sg(g) + '}\\mk{n' + k + '}{' + volt(n) + '}').join(' ') + ' = 0', { force: walked !== way.value });
+    walked = way.value;
+    note.textContent = (
       'Walking the loop the other way reverses the sign of every term, which is the same as multiplying the whole equation by −1, and the potential still comes back to where it began.');
   }
   register(d.fig, { update: () => {}, draw });

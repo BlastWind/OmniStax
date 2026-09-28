@@ -123,3 +123,11 @@ Applied in the chapter pass of 2026-09-15. Every anchor above was written to
 the section now carry one each, since the pass anchored every row of the
 chapter and not only the rows a plan named. Nothing else of this section was
 changed at chapter level.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-current-in-a-wire · Figure 20.2 + 20.4 · as above · the carriers choice no longer cuts: the one set of carriers blends between positive charges, electrons and both signs (`mix` of each sign's presence), each legend entry keeping its own place (manim 15, 16) · moving, as above
+sim-simple-circuit · Figure 20.3 · as above · the situation choice rescales the battery and the lamp from one situation's into the other's (`mix`) while the schematic holds still, which is the point of the figure; the headline no longer speaks of the figure (root 17) · still
+sim-drift-and-signal · Figure 20.5 + 20.6 · as above · the "follow" choice cross-fades the three states over the wire and lattice they share (`a(v)`) instead of cutting (manim 15) · moving, as above; the "drawn × life" slider and its stated factor stay (28.4)

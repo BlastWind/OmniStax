@@ -211,7 +211,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
 ===================================================================== */
 (function () {
   const d = sim('sim-mercury-superconductor', 620);
-  const T = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 0, max: 6, step: 0.05, value: 5, unit: 'K', dec: 2, detents: [{ v: 4.2, label: '4.2' }], snap: true, aria: 'temperature of the mercury sample' });
+  const T = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 0, max: 6, step: 0.05, value: 5, unit: 'K', dec: 2, specials: [{ at: 4.2, label: 'the critical temperature' }], aria: 'temperature of the mercury sample' });
   const TC = 4.2, R0 = 0.11, SLOPE = 0.006;          /* the jump and the nearly linear climb the book's graph shows */
   const gx = { l: 200, r: 1240, t: 150, b: 450 };    /* 0 to 6 K across, 0 to 0.15 Ω up, both fixed */
   const Rof = (t) => (t < TC ? 0 : R0 + SLOPE * (t - TC));
@@ -244,7 +244,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
     readout(d.readout, `\\kRes = ${fmt(R, 3)}\\ \\Omega \\quad\\text{at}\\quad \\kTemp = ${fmt(T.v, 2)}\\ \\text{K}`,
       cold
         ? 'Below 4.2 K mercury is a superconductor, and a superconductor has no resistance at all rather than a very small one: a current once started in a loop of it carries on with no continual supply of energy, which is the saving 20.1 pointed to.'
-        : 'Above the critical temperature the resistance jumps to about 0.11 Ω and then climbs nearly in a straight line, the way an ordinary metal does. Drag the temperature below 4.2 K and it does not climb down that line but falls to nothing.');
+        : 'Above the critical temperature the resistance jumps to about 0.11 Ω and then climbs nearly in a straight line, the way an ordinary metal does. Below 4.2 K it does not climb down that line but falls to nothing.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -266,19 +266,21 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
   const gx = { l: 420, r: 1300, t: 150, b: 470 };    /* −200 to 3000 °C across, 0 to 16 Ω up, both fixed from the slider maxima */
   function draw() {
     const { ctx } = begin(d.c);
-    const m = alphaOf(mat.value), dT = T.v - 20, raw = R0.v * (1 + m.a * dT), R = Math.max(0, raw);
+    /* the line turns from one material's slope to the next's; the numbers are the new material's */
+    const m = alphaOf(mat.value), a = mat.mix((k) => alphaOf(k).a), dT = T.v - 20, R = Math.max(0, R0.v * (1 + m.a * dT));
+    const Rd = Math.max(0, R0.v * (1 + a * dT));
     const { X, Y } = axes(ctx, gx, [-200, 3000], [0, 16], { nx: 4, ny: 4, xl: 'temperature T (°C)', xc: C('temperature'), yl: 'R (Ω)', yc: C('resistance') });
     /* the line the material makes, cut off where the linear form would go negative */
-    const zero = m.a < 0 ? 20 - 1 / m.a : 3000;
-    curve(ctx, (t) => Math.max(0, R0.v * (1 + m.a * (t - 20))), -200, Math.min(3000, zero), X, Y, C('resistance'), 5, 80);
-    if (zero < 3000) {
+    const zero = a < 0 ? 20 - 1 / a : 3000;
+    curve(ctx, (t) => Math.max(0, R0.v * (1 + a * (t - 20))), -200, Math.min(3000, zero), X, Y, C('resistance'), 5, 80);
+    if (zero < 3000 && mat.k >= 1) {
       line(ctx, X(zero), gx.b, X(3000), gx.b, alpha(PAL.ink, 0.35), 3, [10, 10]);
       text(ctx, 'beyond ' + fmt(zero, 0) + ' °C the linear form has failed: a resistance cannot be negative', gx.l + 20, gx.t + 30, PAL.muted, { size: 17, bg: PAL.panel });
     }
     dot(ctx, X(20), Y(R0.v), C('resistance'), false, 11);
     text(ctx, 'R_0 at 20 °C', X(20) + 18, Y(R0.v) + (m.a > 0 ? 30 : -30), C('resistance'), { size: 19, weight: 600, bg: PAL.panel });
-    pinned(ctx, gx, X, Y, T.v, R, C('resistance'), ohms(R) + ' Ω');
-    line(ctx, X(T.v), Y(Math.min(R, 16)), X(T.v), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    pinned(ctx, gx, X, Y, T.v, Rd, C('resistance'), ohms(R) + ' Ω');
+    line(ctx, X(T.v), Y(Math.min(Rd, 16)), X(T.v), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
     /* the two resistances as bars, beside the graph */
     const bx = 170, base = gx.b, hOf = (v) => Math.min(320, (v / 16) * 320);
     ctx.save(); ctx.fillStyle = alpha(C('resistance'), 0.25); ctx.strokeStyle = C('resistance'); ctx.lineWidth = 3;

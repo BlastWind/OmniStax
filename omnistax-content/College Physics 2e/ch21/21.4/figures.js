@@ -9,6 +9,8 @@ window.OMNISTAX_FIGURES['21.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+/* A layer drawn at the opacity a, skipped once it has gone. */
+function layer(ctx, a, f) { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); }
 /* A resistance written with the prefix that keeps it between one and a thousand. */
 function ohms(r) {
   const a = Math.abs(r);
@@ -174,36 +176,38 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
     text(ctx, 'a', L - 22, TOP - 22, PAL.muted, { size: 20, align: 'right' });
     text(ctx, 'b', L - 22, BOT + 22, PAL.muted, { size: 20, align: 'right' });
     flow(ctx, 700, BOT, -1, 0, 'I = ' + fmt(I, 3) + ' A');
-    /* the meter, hung across what it measures or cut into the line */
+    /* the meter, hung across what it measures or cut into the line; moved to another
+       place it glides there along the loop, and a change of meter fades one into the other */
     let head = '', main = '', small = '';
-    if (isV) {
+    const reading = w === 's' ? Vt : w === '1' ? V1 : V2;
+    layer(ctx, which.a('V'), () => {
       /* The meter hangs on two taps, each one a point of the loop, and its leads run
          along and across rather than cutting through the source or a resistor: for the
          source the taps are on the two wires that leave it, and for a resistor they sit
          on the top wire on either side of it. */
-      const span = w === 's' ? [400, 395, Vt, 'the terminal voltage, between a and b']
-        : w === '1' ? [520, 400, V1, 'the voltage across R₁']
-          : [900, 400, V2, 'the voltage across R₂'];
-      const [mx, my, reading, what] = span;
-      const tapY = w === 's' ? BOT : TOP;
+      const [mx, my, tapY] = where.mix((v) => (v === 's' ? [400, 395, BOT] : v === '1' ? [520, 400, TOP] : [900, 400, TOP]));
+      const what = w === 's' ? 'the terminal voltage, between a and b' : w === '1' ? 'the voltage across R₁' : 'the voltage across R₂';
       wires(ctx, [[mx - 78, TOP], [mx - 78, my], [mx - 42, my]]);
       wires(ctx, [[mx + 78, tapY], [mx + 78, my], [mx + 42, my]]);
       node(ctx, mx - 78, TOP); node(ctx, mx + 78, tapY);
       meter(ctx, mx, my, 'V', fmt(reading, 2) + ' V', vc);
       text(ctx, what, mx, my + 96, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
+    });
+    layer(ctx, which.a('A'), () => {
+      const [mx, my] = where.mix((v) => (v === 's' ? [320, TOP] : v === '1' ? [710, TOP] : [Rt, 385]));
+      /* on the top wire the reading and its caption go above, clear of the resistors' names; on the right wire they go inside the loop */
+      meter(ctx, mx, my, 'A', w === '2' ? null : fmt(I, 3) + ' A', cc, 42, true);
+      text(ctx, w === 's' ? 'in the line leaving the source' : w === '1' ? 'in the line between R₁ and R₂' : 'in the line beyond R₂',
+        w === '2' ? mx - 60 : mx, w === '2' ? my + 66 : my - 98, PAL.muted, { size: 19, align: w === '2' ? 'right' : 'center' });
+      if (w === '2') text(ctx, fmt(I, 3) + ' A', mx - 60, my + 36, cc, { size: 22, weight: 600, align: 'right' });
+    });
+    if (isV) {
       head = 'The voltmeter is hung in parallel with what it measures, and there it reads ' + fmt(reading, 2) + ' V; moved to either of the other two places it reads a different voltage, because each part of the loop takes its own share.';
       main = w === 's'
         ? '\\kV = \\kemf - \\kIcur\\krint = ' + fmt(EMF, 1) + '\\ \\text{V} - (' + fmt(I, 3) + '\\ \\text{A})(' + fmt(r, 2) + '\\ \\Omega) = ' + fmt(Vt, 2) + '\\ \\text{V}'
         : '\\kV = \\kIcur\\kRes' + (w === '1' ? 'one' : 'two') + ' = (' + fmt(I, 3) + '\\ \\text{A})(' + fmt(w === '1' ? r1 : r2, 1) + '\\ \\Omega) = ' + fmt(reading, 2) + '\\ \\text{V}';
       small = 'The three voltages are ' + fmt(Vt, 2) + ' V at the terminals, ' + fmt(V1, 2) + ' V across R₁ and ' + fmt(V2, 2) + ' V across R₂, and the last two add to the first, because R₁ and R₂ share what the source delivers.';
     } else {
-      const mx = w === 's' ? 320 : w === '1' ? 710 : Rt;
-      const my = w === '2' ? 385 : TOP;
-      /* on the top wire the reading and its caption go above, clear of the resistors' names; on the right wire they go inside the loop */
-      meter(ctx, mx, my, 'A', w === '2' ? null : fmt(I, 3) + ' A', cc, 42, true);
-      text(ctx, w === 's' ? 'in the line leaving the source' : w === '1' ? 'in the line between R₁ and R₂' : 'in the line beyond R₂',
-        w === '2' ? mx - 60 : mx, w === '2' ? my + 66 : my - 98, PAL.muted, { size: 19, align: w === '2' ? 'right' : 'center' });
-      if (w === '2') text(ctx, fmt(I, 3) + ' A', mx - 60, my + 36, cc, { size: 22, weight: 600, align: 'right' });
       head = 'The ammeter is cut into the line, so the whole current passes through it, and it reads ' + fmt(I, 3) + ' A wherever in the loop it is put.';
       main = '\\kIcur = \\dfrac{\\kemf}{\\krint + \\kResone + \\kRestwo} = \\dfrac{' + fmt(EMF, 1) + '\\ \\text{V}}{' + fmt(r + r1 + r2, 2) + '\\ \\Omega} = ' + fmt(I, 3) + '\\ \\text{A}';
       small = 'There is one path round this loop and no junction anywhere on it, so the same ' + fmt(I, 3) + ' A passes the source, R₁ and R₂ in turn, and all three places give the meter the same reading.';
@@ -222,6 +226,8 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
   const d = sim('sim-galvanometer', 700);
   const Ig = ctl(d.controls, { label: '\\kIcurG', cls: 'current', min: 0, max: 60, step: 1, value: 25, unit: 'µA', dec: 0, aria: 'the current through the galvanometer' });
   const Is = ctl(d.controls, { label: '\\text{the sensitivity}', cls: 'current', min: 10, max: 100, step: 5, value: 50, unit: 'µA', dec: 0, aria: 'the current that gives a full-scale deflection' });
+  /* half scale and full scale, the two readings the text names, moved by the sensitivity */
+  Ig.mark([{ at: () => Is.v / 2, label: 'half scale' }, { at: () => Is.v, label: 'full scale' }]);
   const rg = ctl(d.controls, { label: '\\krint', cls: 'resistance', min: 5, max: 100, step: 5, value: 25, unit: 'Ω', dec: 0, aria: 'the resistance of the galvanometer' });
   const CX = 700, CY = 470, RAD = 300;
   function draw() {
@@ -296,8 +302,8 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       text(ctx, 'the large resistance in series', 450, Y + 72, PAL.muted, { size: 19, align: 'center' });
       text(ctx, 'the movement, with its own resistance', 830, Y + 104, PAL.muted, { size: 19, align: 'center' });
       head = 'To read ' + fmt(Vfs.v, 1) + ' V at full scale, a ' + fmt(rr, 0) + ' Ω movement of ' + fmt(Is.v, 0) + ' µA sensitivity needs ' + ohms(Rx) + ' in series with it.';
-      main = '\\kRestot = \\kRes + \\krint = \\dfrac{\\kV}{\\kIcur} = \\dfrac{' + fmt(Vfs.v, 1) + '\\ \\text{V}}{' + fmt(Is.v, 0) + '\\ \\mu\\text{A}} = ' + tohms(Rtot) + ', \\quad \\kRes = ' + tohms(Rx);
-      small = 'The series resistance is what the meter is: it is ' + fmt(Rtot / rr, 0) + ' times the resistance of the movement, so almost the whole of the ' + fmt(Vfs.v, 1) + ' V falls across it and the movement itself keeps only ' + fmt(s * rr * 1e3, 2) + ' mV. Half the voltage sends half the current through and gives half a scale.';
+      main = '\\kRestot = \\kRes + \\krint = \\dfrac{\\kV}{\\kIcur} = \\dfrac{' + fmt(Vfs.v, 1) + '\\ \\text{V}}{' + fmt(Is.v, 0) + '\\ \\mu\\text{A}} = ' + tohms(Rtot);
+      small = 'Less the movement’s own ' + fmt(rr, 0) + ' Ω, that leaves R = ' + ohms(Rx) + ' in series. The series resistance is what the meter is: it is ' + fmt(Rtot / rr, 0) + ' times the resistance of the movement, so almost the whole of the ' + fmt(Vfs.v, 1) + ' V falls across it and the movement itself keeps only ' + fmt(s * rr * 1e3, 2) + ' mV. Half the voltage sends half the current through and gives half a scale.';
     } else {
       const Rx = Ifs.v > s ? rr * s / (Ifs.v - s) : rr * 1e3;
       wires(ctx, [[L, Y], [420, Y]]); wires(ctx, [[980, Y], [R, Y]]);
@@ -358,8 +364,8 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       text(ctx, 'the voltmeter, ' + ohms(rv), 900, 566, C('resistance'), { size: 20, align: 'center' });
       text(ctx, 'without it the resistor has ' + fmt(Vtrue, 3) + ' V across it', 400, 470, vc, { size: 20, weight: 600, align: 'center' });
       head = 'The voltmeter is ' + fmt(rv / rd, 1) + ' times the resistance it is placed across, and it reads ' + fmt(Vread, 3) + ' V where the resistor alone would have ' + fmt(Vtrue, 3) + ' V, an error of ' + fmt(Math.abs(err), 2) + ' per cent.';
-      main = '\\kResp = \\dfrac{\\kRes\\,R_{\\text{V}}}{\\kRes + R_{\\text{V}}} = ' + tohms(rp) + ', \\quad \\kV = \\kemf\\dfrac{\\kResp}{\\kRes + \\kResp} = ' + fmt(Vread, 3) + '\\ \\text{V}';
-      small = 'A large resistance in parallel with a small one comes to very nearly the small one, so a voltmeter of a few orders of magnitude more resistance than the device hardly moves the reading. Bring it down to the resistance of the device itself and the pair comes to half of it, and the voltage the meter reports is far below the voltage it was meant to measure.';
+      main = '\\kV = \\kemf\\dfrac{\\kResp}{\\kRes + \\kResp} = ' + fmt(Vread, 3) + '\\ \\text{V}';
+      small = 'The device and the voltmeter in parallel come to ' + ohms(rp) + '. A large resistance in parallel with a small one comes to very nearly the small one, so a voltmeter of a few orders of magnitude more resistance than the device hardly moves the reading. Bring it down to the resistance of the device itself and the pair comes to half of it, and the voltage the meter reports is far below the voltage it was meant to measure.';
     } else {
       const rb = Rb.v, ra = Ra.v, Itrue = EMF / rb, Iread = EMF / (rb + ra);
       const err = 100 * (Iread - Itrue) / Itrue;

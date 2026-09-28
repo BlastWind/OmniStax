@@ -114,3 +114,10 @@ and 20.9, but the book numbers its examples straight through the chapter and
 20.10; the headings, the caption of `sim-transmission`, the problem that
 verifies the second example's closing statements and the three concept rows
 whose evidence cites them were all changed with them.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-ac-versus-dc · Figure 20.14 + 20.15 · as above · the DC/AC choice bends the flat trace into the sine (`mix` of the oscillating part) and the two source symbols cross-fade (manim 15, 16); the DC readout is one equation, I = V/R, with the steady V in the small line (manim 12) · moving, as above
+sim-transmission · Sim · as above · the readout is one equation, the loss P = I²R, with the current I = P/V in the small line (manim 12) · still

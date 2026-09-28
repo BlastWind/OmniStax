@@ -60,7 +60,8 @@ function electrons(ctx, x1, x2, y, off, gap) {
   const cy = cycle(() => WIN, 1.2);
   function reset() { cy.reset(); }
   const I0 = () => V0.v / Rr.v;
-  const Vof = (t) => (kind.value === 'dc' ? V0.v : V0.v * Math.sin(TAU * fq.v * t));
+  /* w is how far the source has turned alternating: the flat trace bends into the sine */
+  const Vof = (t, w = kind.value === 'ac' ? 1 : 0) => V0.v * (1 - w + w * Math.sin(TAU * fq.v * t));
   function draw() {
     const { ctx } = begin(d.c);
     const t = cy.now(), ac = kind.value === 'ac';
@@ -71,7 +72,9 @@ function electrons(ctx, x1, x2, y, off, gap) {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(L, my + 36); ctx.lineTo(L, B); ctx.lineTo(R, B); ctx.lineTo(R, T); ctx.lineTo(R - 90, T); ctx.moveTo(L + 90, T); ctx.lineTo(L, T); ctx.lineTo(L, my - 36); ctx.stroke(); ctx.restore();
     resistor(ctx, L + 90, R - 90, T, 22);
-    if (ac) acSource(ctx, L, my, 36); else battery(ctx, L, my, 1.25);
+    const w = kind.mix((v) => (v === 'ac' ? 1 : 0)), aAC = kind.a('ac'), aDC = kind.a('dc');
+    if (aAC > 0.01) { ctx.save(); ctx.globalAlpha = aAC; acSource(ctx, L, my, 36); ctx.restore(); }
+    if (aDC > 0.01) { ctx.save(); ctx.globalAlpha = aDC; battery(ctx, L, my, 1.25); ctx.restore(); }
     /* the conventional current round the loop, its direction the sign of I */
     const dir = I >= 0 ? 1 : -1;
     if (Math.abs(I) > 0.02 * (i0 || 1)) {
@@ -95,22 +98,22 @@ function electrons(ctx, x1, x2, y, off, gap) {
     const Yi = (a) => Y(a * (VMAX / IMAX));
     for (let k = -10; k <= 10; k += 5) text(ctx, fmt(k, 0), box.r + 14, Yi(k), C('current'), { size: 17, align: 'left' });
     text(ctx, 'current (A)', box.r, box.t - 24, C('current'), { size: 20, weight: 600, align: 'right' });
-    curve(ctx, (ms) => Vof(ms / 1000), 0, WIN * 1000, X, Y, C('voltage'), 5, 220);
+    curve(ctx, (ms) => Vof(ms / 1000, w), 0, WIN * 1000, X, Y, C('voltage'), 5, 220);
     ctx.save(); ctx.setLineDash([10, 10]);
-    curve(ctx, (ms) => Vof(ms / 1000) / Rr.v * (VMAX / IMAX), 0, WIN * 1000, X, Y, C('current'), 4, 220);
+    curve(ctx, (ms) => Vof(ms / 1000, w) / Rr.v * (VMAX / IMAX), 0, WIN * 1000, X, Y, C('current'), 4, 220);
     ctx.restore();
     line(ctx, X(t * 1000), box.t, X(t * 1000), box.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    pinned(ctx, box, X, Y, t * 1000, V, C('voltage'));
-    pinned(ctx, box, X, Y, t * 1000, I * (VMAX / IMAX), C('current'));
+    pinned(ctx, box, X, Y, t * 1000, Vof(t, w), C('voltage'));
+    pinned(ctx, box, X, Y, t * 1000, Vof(t, w) / Rr.v * (VMAX / IMAX), C('current'));
     lab.flush();
     topline(ctx, ac
       ? 'At ' + fmt(t * 1000, 1) + ' ms the source stands at ' + sig3(V) + ' V and drives ' + sig3(I) + ' A, so the electrons are running ' + (I > 0.01 ? 'to the left' : I < -0.01 ? 'to the right' : 'nowhere at all, as the current passes through zero') + '.'
       : 'The battery holds a steady ' + fmt(V0.v, 0) + ' V, so a constant ' + sig3(I) + ' A flows and the electrons drift one way for as long as the circuit is closed.');
     readout(d.readout, ac
       ? `\\kV = \\kVo\\sin 2\\pi \\kf\\kt = ${fmt(V0.v, 0)}\\ \\text{V}\\sin\\!\\big(2\\pi(${fmt(fq.v, 0)}\\ \\text{Hz})(${fmt(t * 1000, 1)}\\ \\text{ms})\\big) = ${sig3(V)}\\ \\text{V}`
-      : `\\kV = ${fmt(V0.v, 0)}\\ \\text{V},\\qquad \\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V0.v, 0)}\\ \\text{V}}{${fmt(Rr.v, 0)}\\ \\Omega} = ${sig3(I)}\\ \\text{A}`,
+      : `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V0.v, 0)}\\ \\text{V}}{${fmt(Rr.v, 0)}\\ \\Omega} = ${sig3(I)}\\ \\text{A}`,
       ac ? 'The peak current is ' + sig3(i0) + ' A, and the current reaches it at the same instant as the voltage reaches its own peak, since the two are in phase.'
-         : 'Nothing in the circuit changes with time, which is what makes this direct current.');
+         : 'The battery holds its ' + fmt(V0.v, 0) + ' V at every instant, and nothing in the circuit changes with time, which is what makes this direct current.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.01), draw });
 })();
@@ -242,8 +245,8 @@ function electrons(ctx, x1, x2, y, off, gap) {
     line(ctx, X(Vt.v), box.b, X(Vt.v), Y(Math.min(20, fr)), alpha(PAL.ink, 0.35), 2, [4, 8]);
     lab.flush();
     topline(ctx, 'Sending ' + fmt(Pw.v, 0) + ' MW at ' + fmt(Vt.v, 0) + ' kV needs a current of ' + sig3(I) + ' A, and a line of ' + fmt(Rl.v, 1) + ' Ω turns ' + sig3(lw / 1e6) + ' MW of that power into heat, which is ' + sig3(fr) + ' per cent of it.');
-    readout(d.readout, `\\kIrms = \\frac{\\kPave}{\\kVrms} = ${sigM(I)}\\ \\text{A},\\qquad \\kPave = \\kIrms^{2}\\kRes = (${sigM(I)}\\ \\text{A})^{2}(${fmt(Rl.v, 1)}\\ \\Omega) = ${sigM(lw / 1e6)}\\ \\text{MW}`,
-      'Doubling the voltage halves the current, and since the loss goes as the square of the current it falls to a quarter of what it was.');
+    readout(d.readout, `\\kPave = \\kIrms^{2}\\kRes = (${sigM(I)}\\ \\text{A})^{2}(${fmt(Rl.v, 1)}\\ \\Omega) = ${sigM(lw / 1e6)}\\ \\text{MW}`,
+      'The line carries ' + sig3(I) + ' A. Doubling the voltage halves the current, and since the loss goes as the square of the current it falls to a quarter of what it was.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

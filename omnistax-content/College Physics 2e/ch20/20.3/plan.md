@@ -136,3 +136,10 @@ The second conceptual question, the rectangular bar, was missing the
 unnumbered image `Figure_21_03_04a` its last sentence points at, although
 the file had been copied into `media/ch20/`; the pass put it on the card
 with the book's alt text and caption.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-mercury-superconductor · Figure 20.11 · as above · the critical temperature 4.2 K, which the text names, is a dashed special circle on the temperature slider in place of a detent (26.1, manim 8) · still
+sim-temperature-resistance · Sim · as above · the material dropdown turns the line from one material's slope into the next's (`mix` of α) instead of cutting it; readouts print the new material's numbers (manim 13, 15) · still

@@ -96,3 +96,9 @@ page colours are already in `book.json` as the prep pass staged them.
   anchored, `V_zero` to `21.6-discharging` and the rest to `21.6-rc-circuits`.
 - The two states of the capacitor are now labelled "charging" and "discharging",
   since "being charged" did not fit the segmented control's row.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-rc-charge-discharge · Figure 21.37 + 21.38 · as above · value add: switching between charging and discharging keeps the graph's frame and bends one curve into the other (`mix`), and the law morphs by meaning, ε renamed V₀ in place, the exponential keeping its key and the "1 −" leaving (`F.morphAt` over the choice's progress, manim 11, 15); the source cross-fades; the clock-driven numbers are never highlighted (manim 13) · moving, as above

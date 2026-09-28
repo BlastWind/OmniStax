@@ -87,13 +87,19 @@ function loop(pts) {
   function draw() {
     const { ctx } = begin(d.c);
     const ic = C('current'), rc = C('resistance'), vc = C('voltage'), ec = F.el('e-');
-    const V = vs.v, Rv = rs.v, I = V / Rv, meter = view.value === 'meter';
-    if (view.value === 'pipe') { pipe(ctx, V, Rv, I, ic, rc, vc); return; }
+    const V = vs.v, Rv = rs.v, I = V / Rv;
+    /* p carries the circuit into its analogy: the wire swells into the pipe, the battery
+       gives way to the pump that grows where it stood, and the zigzag straightens into
+       the narrow section; the voltmeter is the one part only its own state has */
+    const p = view.mix((v) => (v === 'pipe' ? 1 : 0)), am = view.a('meter');
+    if (p > 0.01) { ctx.save(); ctx.globalAlpha = p; pipe(ctx, V, Rv, I, ic, rc, vc, p); ctx.restore(); }
+    if (p > 0.99) return;
+    ctx.save(); ctx.globalAlpha = 1 - p;
     /* the loop, broken where the battery and the resistor stand in it */
-    wire(ctx, [[L, MY - 30], [L, T], [R, T], [R, MY - 78]]);
-    wire(ctx, [[R, MY + 78], [R, B], [L, B], [L, MY + 30]]);
-    battery(ctx, L, MY, 'v');
-    resistor(ctx, R, MY, 78, 26);
+    wire(ctx, [[L, MY - 30], [L, T], [R, T], [R, MY - 78]], PAL.ink, 4 + 40 * p);
+    wire(ctx, [[R, MY + 78], [R, B], [L, B], [L, MY + 30]], PAL.ink, 4 + 40 * p);
+    ctx.save(); ctx.translate(L, MY); ctx.scale(1 - p, 1 - p); battery(ctx, 0, 0, 'v'); ctx.restore();
+    resistor(ctx, R, MY, 78, 26 * (1 - p));
     text(ctx, '+', L + 34, MY - 44, PAL.ink, { size: 24, weight: 600, align: 'center' });
     text(ctx, '−', L + 34, MY + 44, PAL.ink, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'V = ' + fmt(V, 1) + ' V', L - 46, MY, vc, { size: 24, weight: 600, align: 'right' });
@@ -115,8 +121,10 @@ function loop(pts) {
     }
     dot(ctx, 96, B + 84, ec, true, 8);
     text(ctx, 'e⁻, the free electrons that carry the current, drifting the other way round the loop', 114, B + 84, PAL.muted, { size: 18 });
-    if (meter) {
+    ctx.restore();
+    if (am > 0.01) {
       const MX = 1250, VR = I * Rv;
+      ctx.save(); ctx.globalAlpha = am;
       wire(ctx, [[R, MY - 78], [MX, MY - 78], [MX, MY - 50]], PAL.muted, 3);
       wire(ctx, [[R, MY + 78], [MX, MY + 78], [MX, MY + 50]], PAL.muted, 3);
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3.5;
@@ -124,17 +132,19 @@ function loop(pts) {
       text(ctx, 'V', MX, MY, PAL.ink, { size: 26, weight: 600, align: 'center' });
       text(ctx, fmt(VR, 1) + ' V', MX, MY + 100, vc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
       text(ctx, 'the voltmeter', MX, MY - 116, PAL.muted, { size: 18, align: 'center' });
-      headline(ctx, 'The voltmeter across the resistor reads ' + fmt(VR, 1) + ' V, the whole voltage of the source, because the resistor converts all the energy the source supplies.');
-    } else {
-      headline(ctx, fmt(V, 1) + ' V across ' + fmt(Rv, 2) + ' Ω drives ' + fmt(I, 2) + ' A round the loop, and the electrons carrying it drift the other way.');
+      ctx.restore();
     }
+    if (view.value === 'pipe') return;
+    headline(ctx, view.value === 'meter'
+      ? 'The voltmeter across the resistor reads ' + fmt(I * Rv, 1) + ' V, the whole voltage of the source, because the resistor converts all the energy the source supplies.'
+      : fmt(V, 1) + ' V across ' + fmt(Rv, 2) + ' Ω drives ' + fmt(I, 2) + ' A round the loop, and the electrons carrying it drift the other way.');
     readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(Rv, 2)}\\ \\Omega} = ${fmt(I, 2)}\\ \\text{A}`,
       'Raise the voltage and the current rises in the same proportion, which is Ohm’s law; raise the resistance and the current falls, so that doubling the resistance cuts the current in half. The voltage drop across the resistor is V = IR = ' + fmt(I * Rv, 1) + ' V, equal to the voltage of the source, since there is nothing else in the loop for the energy to go into.');
   }
   /* the pump and the narrow pipe the text compares the circuit with, drawn
      wholly in ink: the analogy is the frame, and only the electrical
      quantities it stands for wear a hue */
-  function pipe(ctx, V, Rv, I, ic, rc, vc) {
+  function pipe(ctx, V, Rv, I, ic, rc, vc, g) {
     const wide = 44, narrow = Math.max(7, 40 - 34 * (Rv - 0.5) / 19.5);
     /* the wide pipe everywhere but the right side's middle, where it tapers to the narrow section */
     const pipeRun = (path, w) => { wire(ctx, path, PAL.muted, w + 6); wire(ctx, path, PAL.soft, w); };
@@ -149,10 +159,10 @@ function loop(pts) {
     wire(ctx, [[R, MY - 94], [R, MY + 94]], PAL.soft, narrow);
     /* the pump: a round casing with a turning impeller inside it */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3.5;
-    ctx.beginPath(); ctx.arc(L, MY, 54, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(L, MY, 54 * g, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     const spin = cy.now() * 3;
     ctx.lineWidth = 3; ctx.strokeStyle = PAL.muted;
-    for (let k = 0; k < 6; k++) { const a = spin + (k * Math.PI) / 3; ctx.beginPath(); ctx.moveTo(L, MY); ctx.quadraticCurveTo(L + 26 * Math.cos(a + 0.5), MY + 26 * Math.sin(a + 0.5), L + 42 * Math.cos(a), MY + 42 * Math.sin(a)); ctx.stroke(); }
+    for (let k = 0; k < 6; k++) { const a = spin + (k * Math.PI) / 3; ctx.beginPath(); ctx.moveTo(L, MY); ctx.quadraticCurveTo(L + 26 * g * Math.cos(a + 0.5), MY + 26 * g * Math.sin(a + 0.5), L + 42 * g * Math.cos(a), MY + 42 * g * Math.sin(a)); ctx.stroke(); }
     ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(L, MY, 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
     arrow(ctx, L - 74, MY + 30, L - 74, MY - 30, PAL.ink, 4);
     text(ctx, 'the pump', 400, B + 62, PAL.ink, { size: 22, weight: 600, align: 'center' });
@@ -171,6 +181,7 @@ function loop(pts) {
     for (const x of [560, 760, 900]) arrow(ctx, x - 34, T - 40, x + 34, T - 40, PAL.ink, 4);
     text(ctx, 'the same water passes every point each second,', 700, T - 108, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'as the same current I = ' + fmt(I, 2) + ' A passes every point of the circuit', 700, T - 80, ic, { size: 19, weight: 600, align: 'center' });
+    if (view.value !== 'pipe') return;
     headline(ctx, 'A pump driving water round a loop through one narrow section is the circuit in another material: pressure for voltage, flow for current, and the narrow pipe for the resistor.');
     readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(Rv, 2)}\\ \\Omega} = ${fmt(I, 2)}\\ \\text{A}`,
       'The pump does not make the water; it raises the pressure that drives water already in the pipe, and the voltage source does the same for the charge already in the wire. Narrowing the pipe slows the flow without changing the pump, which is what raising the resistance does to the current.');
@@ -200,13 +211,18 @@ function loop(pts) {
     const { ctx } = begin(d.c);
     const ic = C('current'), rc = C('resistance'), vc = C('voltage');
     const R0 = rs.v, V = vs.v, hot = mat.value === 'filament';
-    const Reff = (v) => R0 * (hot ? 1 + WARM * v : 1);
+    /* the curve bends from the straight line into the filament's as the material changes */
+    const warm = mat.mix((m) => (m === 'filament' ? WARM : 0));
+    const Reff = (v) => R0 * (1 + warm * v);
     const cur = (v) => v / Reff(v);
     const I = cur(V), Rread = V / I;
     const { X, Y } = axes(ctx, BOX, [0, 16], [0, 8], { xl: 'voltage V (V)', xc: vc, yl: 'current I (A)', yc: ic, nx: 8, ny: 8, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
-    if (hot) {
+    const ah = mat.a('filament');
+    if (ah > 0.01) {
+      ctx.save(); ctx.globalAlpha = ah;
       curve(ctx, (v) => v / R0, 0, 16, X, Y, PAL.muted, 3, 2);
       text(ctx, 'the straight line an ohmic resistor of the same cold resistance would give', X(0.4), BOX.t + 54, PAL.muted, { size: 17, bg: PAL.panel });
+      ctx.restore();
     }
     curve(ctx, cur, 0, 16, X, Y, ic, 5, 120);
     text(ctx, hot ? 'a filament, whose resistance rises as the current heats it' : 'an ohmic resistor: a straight line through the origin, of slope 1/R',

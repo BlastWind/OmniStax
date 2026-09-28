@@ -116,3 +116,13 @@ the page colours are already in `book.json` as the prep pass staged them.
 - Two figure fixes: the "no current is being drawn" label of Figure 21.9 was struck
   through by the dashed case, and the load of Figure 21.12 read "1010 per cent of
   the load" at the small end of its slider, which now reads as a sentence.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-load · Figure 21.12 · as above · the readout is one equation, I = emf/(R_load + r), with the terminal voltage and the power in the small line (manim 12) · still
+sim-series-sources · Figure 21.15 · as above · value add: turning the second cell round rotates it about its centre (`mix`) and flips one sign in place in ε₁ ± ε₂, in the symbols and in the numbers (`F.morph`, manim 11); the internal resistances go to the small line (manim 12) · still
+sim-charging · Figure 21.17 · as above · a dashed special circle on each emf slider at the other's value, equal emfs being where the text has the current turn round (26.1, manim 8); one equation, I, the battery's terminal voltage in the small line (manim 12) · still
+sim-flashlight · Figure 21.18 · as above · one equation, I, the bulb's power in the small line (manim 12) · still
+sim-parallel-sources · Figure 21.19 · as above · value add: the first source steps aside as the second arrives beside it (`mix`, `a('two')`), and r_tot = r₁ bends into r_tot = (1/r₁ + 1/r₂)⁻¹ with r₁ keeping its key (manim 11, 15); the current in the small line (manim 12) · still

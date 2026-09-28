@@ -11,6 +11,10 @@ window.OMNISTAX_FIGURES['21.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+/* A formula host in the readout, with its small line under it, for a readout that morphs. */
+function morphHost(d) { const fx = el('div'), note = el('small'); d.readout.replaceChildren(fx, note); return { fx, note }; }
+/* A layer drawn at the opacity a, skipped once it has gone. */
+function layer(ctx, a, f) { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); }
 const ohms = (r) => fmt(r, r < 10 ? 3 : 1) + ' Ω';
 const ohm = (r) => fmt(r, r < 10 ? 3 : 1) + '\\ \\Omega';
 const volt = (v) => fmt(v, 2) + '\\ \\text{V}';
@@ -84,9 +88,11 @@ function cell(ctx, x, y, plus, label, o) {
     if (lab.length === 2) { text(ctx, lab[0], lx, y - 13, vc, { size: 23, weight: 600, align: al }); text(ctx, lab[1], lx, y + 15, vc, { size: 20, align: al }); }
     else if (lab.length === 1) text(ctx, lab[0], lx, y, vc, { size: 23, weight: 600, align: al });
   } else {
-    gap(ctx, x, y, 0, 20, 8);
-    line(ctx, x + s * 10, y - 30, x + s * 10, y + 30, PAL.ink, 4.5);
-    line(ctx, x - s * 10, y - 15, x - s * 10, y + 15, PAL.ink, 8);
+    if (o.plates !== false) {                                  /* a cell turning round draws its plates itself */
+      gap(ctx, x, y, 0, 20, 8);
+      line(ctx, x + s * 10, y - 30, x + s * 10, y + 30, PAL.ink, 4.5);
+      line(ctx, x - s * 10, y - 15, x - s * 10, y + 15, PAL.ink, 8);
+    }
     const sy = y - side * 32;
     if (o.signs !== false) {
       text(ctx, '+', x + s * 24, sy, PAL.muted, { size: 22, weight: 600, align: 'center' });
@@ -305,12 +311,12 @@ function bulb(ctx, x, y, frac) {
     flow(ctx, 960, 220, 1, 0, 'I = ' + fmt(i, 3) + ' A');
     text(ctx, 'P = ' + fmt(P, 1) + ' W given out here', 1150, 168, C('power'), { size: 21, weight: 600, align: 'center' });
     readout(d.readout,
-      '\\kIcur = \\dfrac{\\kemf}{\\kRload + \\krint} = \\dfrac{' + volt(e) + '}{' + ohm(rl + r) + '} = ' + fmt(i, 3) + '\\ \\text{A}, \\quad \\kV = \\kemf - \\kIcur\\krint = ' + volt(V) + ', \\quad \\kP = \\kIcur^{2}\\kRload = ' + fmt(P, 1) + '\\ \\text{W}',
-      r / rl < 0.05
+      '\\kIcur = \\dfrac{\\kemf}{\\kRload + \\krint} = \\dfrac{' + volt(e) + '}{' + ohm(rl + r) + '} = ' + fmt(i, 3) + '\\ \\text{A}',
+      'The terminals hold ' + fmt(V, 2) + ' V of the emf, and the load dissipates ' + fmt(P, 1) + ' W. ' + (r / rl < 0.05
         ? 'The internal resistance is a small fraction of the load, so the terminal voltage stays within ' + fmt(e - V, 2) + ' V of the emf and this is a light load for the source.'
         : r < rl
         ? 'The internal resistance is now ' + fmt(100 * r / rl, 0) + ' per cent of the load, so it takes ' + fmt(e - V, 2) + ' V of the emf for itself and both the current and the power reaching the load are cut down. This is what a depleted battery does.'
-        : 'The internal resistance is now larger than the load itself, so it keeps ' + fmt(e - V, 2) + ' V of the emf inside the source and leaves only ' + fmt(V, 2) + ' V for the load. A source asked to drive a load smaller than its own resistance spends most of its energy heating itself.');
+        : 'The internal resistance is now larger than the load itself, so it keeps ' + fmt(e - V, 2) + ' V of the emf inside the source and leaves only ' + fmt(V, 2) + ' V for the load. A source asked to drive a load smaller than its own resistance spends most of its energy heating itself.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -382,6 +388,7 @@ function bulb(ctx, x, y, frac) {
     options: [{ value: 'same', label: 'the same way' }, { value: 'back', label: 'turned round' }],
     value: 'same', aria: 'which way round the second cell is put in',
   });
+  const { fx, note } = morphHost(d);
   function draw() {
     const { ctx } = begin(d.c);
     const e1 = E1.v, e2 = E2.v, r1 = R1.v, r2 = R2.v, back = sense.value === 'back';
@@ -393,7 +400,10 @@ function bulb(ctx, x, y, frac) {
     node(ctx, 220, Y, 8); node(ctx, 1280, Y, 8);
     cell(ctx, 375, Y, 'right', ['emf₁', fmt(e1, 2) + ' V']);
     resistor(ctx, 620, Y, true, 'r₁', r1);
-    cell(ctx, 875, Y, back ? 'left' : 'right', ['emf₂', fmt(e2, 2) + ' V']);
+    /* the second cell turns round about its own centre; its signs return once it has come to rest */
+    const turn = sense.mix((v) => (v === 'back' ? Math.PI : 0)), still = sense.k >= 1;
+    ctx.save(); ctx.translate(875, Y); ctx.rotate(turn); cell(ctx, 0, 0, 'right', null, { signs: false }); ctx.restore();
+    cell(ctx, 875, Y, back ? 'left' : 'right', ['emf₂', fmt(e2, 2) + ' V'], { signs: still, plates: false });
     resistor(ctx, 1120, Y, true, 'r₂', r2);
     text(ctx, 'the first cell', 375, Y + 112, PAL.muted, { size: 19, align: 'center' });
     text(ctx, back ? 'the second cell, put in backward' : 'the second cell, the same way round', 875, Y + 112, PAL.muted, { size: 19, align: 'center' });
@@ -401,12 +411,10 @@ function bulb(ctx, x, y, frac) {
     line(ctx, 220, Y + 136, 220, Y + 162, alpha(PAL.ink, 0.4), 2.5);
     line(ctx, 1280, Y + 136, 1280, Y + 162, alpha(PAL.ink, 0.4), 2.5);
     line(ctx, 220, Y + 162, 1280, Y + 162, alpha(PAL.ink, 0.4), 2.5);
-    readout(d.readout,
-      (back
-        ? '\\kemfone - \\kemftwo = ' + volt(e1) + ' - ' + volt(e2) + ' = ' + volt(Et)
-        : '\\kemfone + \\kemftwo = ' + volt(e1) + ' + ' + volt(e2) + ' = ' + volt(Et))
-      + ', \\quad \\krintone + \\krinttwo = ' + ohm(r1) + ' + ' + ohm(r2) + ' = ' + ohm(Rt),
-      back
+    /* turning the cell round flips one sign in place, in the symbols and in the numbers */
+    const op = back ? '-' : '+';
+    F.morph(fx, '\\mk{a}{\\kemfone} \\mk{op}{' + op + '} \\mk{b}{\\kemftwo} = \\mk{na}{' + volt(e1) + '} \\mk{op2}{' + op + '} \\mk{nb}{' + volt(e2) + '} = \\mk{t}{' + volt(Et) + '}');
+    note.textContent = 'The internal resistances add to r₁ + r₂ = ' + fmt(Rt, 3) + ' Ω either way. ' + (back
         ? 'The emfs add algebraically, so a cell put into an appliance backward takes its own emf away from the total instead of adding it. The internal resistances have no sense to them and add either way, which is the disadvantage of the series connection.'
         : 'Cells are usually put in series exactly to get the larger total emf. The internal resistances add as well, which is why two six-volt batteries in place of one twelve-volt battery make an engine hard to start.');
   }
@@ -424,6 +432,9 @@ function bulb(ctx, x, y, frac) {
   const E2 = ctl(d.controls, { label: '\\kemftwo', cls: 'voltage', min: 1, max: 24, step: 0.5, value: 12, unit: 'V', dec: 2, aria: 'the emf of the battery' });
   const R1 = ctl(d.controls, { label: '\\krintone', cls: 'resistance', min: 0.05, max: 2, step: 0.05, value: 1, unit: 'Ω', dec: 3, aria: 'the internal resistance of the charger' });
   const R2 = ctl(d.controls, { label: '\\krinttwo', cls: 'resistance', min: 0.05, max: 2, step: 0.05, value: 0.5, unit: 'Ω', dec: 3, aria: 'the internal resistance of the battery' });
+  /* equal emfs are where the current turns round, which the text names */
+  E1.mark([{ at: () => E2.v, label: 'equal emfs' }]);
+  E2.mark([{ at: () => E1.v, label: 'equal emfs' }]);
   function draw() {
     const { ctx } = begin(d.c);
     const e1 = E1.v, e2 = E2.v, r1 = R1.v, r2 = R2.v, i = (e1 - e2) / (r1 + r2);
@@ -445,12 +456,12 @@ function bulb(ctx, x, y, frac) {
     else text(ctx, 'no current', 880, T + 40, C('current'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'V = ' + fmt(V2, 2) + ' V at its terminals', R - 60, 290, C('voltage'), { size: 21, weight: 600, align: 'right' });
     readout(d.readout,
-      '\\kIcur = \\dfrac{\\kemfone - \\kemftwo}{\\krintone + \\krinttwo} = \\dfrac{' + volt(e1) + ' - ' + volt(e2) + '}{' + ohm(r1 + r2) + '} = ' + fmt(i, 2) + '\\ \\text{A}, \\quad \\kV = \\kemftwo + \\kIcur\\krinttwo = ' + volt(V2),
-      i > 0
+      '\\kIcur = \\dfrac{\\kemfone - \\kemftwo}{\\krintone + \\krinttwo} = \\dfrac{' + volt(e1) + ' - ' + volt(e2) + '}{' + ohm(r1 + r2) + '} = ' + fmt(i, 2) + '\\ \\text{A}',
+      'The battery’s terminals read ' + fmt(V2, 2) + ' V. ' + (i > 0
         ? 'Current flows in the direction of the greater emf and is limited by the sum of the two internal resistances. Because it enters the battery at the positive terminal, the current in the terminal voltage equation is negative for the battery, and its terminal voltage is ' + fmt(V2 - e2, 2) + ' V above its emf. That is what charging looks like from outside.'
         : i < 0
         ? 'With the battery’s emf the larger, the battery has become the source and the charger the load, so the current runs the wrong way for charging and the battery is being drained rather than filled. A charger must always have the greater emf.'
-        : 'With the two emfs equal there is nothing left to drive the loop, so no charge moves either way and neither source does anything to the other. A charger must always have the greater emf.');
+        : 'With the two emfs equal there is nothing left to drive the loop, so no charge moves either way and neither source does anything to the other. A charger must always have the greater emf.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -488,12 +499,12 @@ function bulb(ctx, x, y, frac) {
     flow(ctx, 700, T, -1, 0, 'I = ' + fmt(i, 3) + ' A');
     text(ctx, 'the two cells, one after the other', 670, B + 100, PAL.muted, { size: 19, align: 'center' });
     readout(d.readout,
-      '\\kIcur = \\dfrac{\\kemfone + \\kemftwo}{\\krintone + \\krinttwo + \\kRload} = \\dfrac{' + volt(e1 + e2) + '}{' + ohm(r1 + r2 + rl) + '} = ' + fmt(i, 3) + '\\ \\text{A}, \\quad \\kP = \\kIcur^{2}\\kRload = ' + fmt(P, 2) + '\\ \\text{W}',
-      (r1 + r2) / rl > 0.25
+      '\\kIcur = \\dfrac{\\kemfone + \\kemftwo}{\\krintone + \\krinttwo + \\kRload} = \\dfrac{' + volt(e1 + e2) + '}{' + ohm(r1 + r2 + rl) + '} = ' + fmt(i, 3) + '\\ \\text{A}',
+      'The bulb gives out ' + fmt(P, 2) + ' W. ' + ((r1 + r2) / rl > 0.25
         ? (r1 + r2 > rl
           ? 'The two internal resistances now come to more than the bulb’s own resistance, so most of what the cells produce is spent inside them and the bulb is dim. Old cells are old chiefly in this sense: their internal resistance has risen.'
           : 'The two internal resistances now come to ' + fmt(100 * (r1 + r2) / rl, 0) + ' per cent of the bulb’s resistance, so a large part of what the cells produce is spent inside them and the bulb is dim. Old cells are old chiefly in this sense: their internal resistance has risen.')
-        : 'While the cells are fresh their internal resistances are small beside the bulb, almost the whole of the two emfs reaches the bulb, and the flashlight is bright. Raise either internal resistance and watch the light go.');
+        : 'While the cells are fresh their internal resistances are small beside the bulb, almost the whole of the two emfs reaches the bulb, and the flashlight is bright. As either internal resistance rises, the light fades.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -514,6 +525,8 @@ function bulb(ctx, x, y, frac) {
     options: [{ value: 'one', label: 'one on its own' }, { value: 'two', label: 'two in parallel' }],
     value: 'one', aria: 'whether one source or two in parallel drive the load',
   });
+  const { fx, note } = morphHost(d);
+  let was = how.value;
   function draw() {
     const { ctx } = begin(d.c);
     const e = E.v, r1 = R1.v, r2 = R2.v, rl = RL.v, two = how.value === 'two';
@@ -522,32 +535,34 @@ function bulb(ctx, x, y, frac) {
     headline(ctx, two
       ? 'Side by side the two sources still offer ' + fmt(e, 2) + ' V, but their internal resistances stand in parallel and come to ' + fmt(rt, 3) + ' Ω, so the load now gets ' + fmt(i, 1) + ' A.'
       : 'One source alone drives ' + fmt(i, 1) + ' A through the load, all of it through its own internal resistance of ' + fmt(rt, 3) + ' Ω.');
-    const xs = two ? [340, 580] : [450];
-    const rs = two ? [r1, r2] : [r1];
-    if (two) enclosure(ctx, 190, 150, 660, 566, 'the two sources side by side');
-    wires(ctx, [[xs[0], T], [RX, T]]);
-    wires(ctx, [[xs[0], B], [RX, B]]);
+    /* the first source steps aside and the second arrives beside it */
+    const x1 = how.mix((v) => (v === 'two' ? 340 : 450)), a2 = how.a('two');
+    layer(ctx, a2, () => enclosure(ctx, 190, 150, 660, 566, 'the two sources side by side'));
+    wires(ctx, [[x1, T], [RX, T]]);
+    wires(ctx, [[x1, B], [RX, B]]);
     wires(ctx, [[RX, T], [RX, B]]);
-    xs.forEach((x, k) => {
+    const source = (x, k) => {
       wires(ctx, [[x, T], [x, B]]);
-      if (two && k > 0) { node(ctx, x, T); node(ctx, x, B); }
+      if (k > 0) { node(ctx, x, T); node(ctx, x, B); }
       cell(ctx, x, 274, 'up', ['emf', fmt(e, 2) + ' V']);
-      resistor(ctx, x, 417, false, k === 0 ? 'r₁' : 'r₂', rs[k]);
+      resistor(ctx, x, 417, false, k === 0 ? 'r₁' : 'r₂', k === 0 ? r1 : r2);
       text(ctx, two ? 'source ' + (k + 1) : 'the source', x, B + 44, PAL.muted, { size: 19, align: 'center' });
-    });
+    };
+    source(x1, 0);
+    layer(ctx, a2, () => source(580, 1));
     resistor(ctx, RX, 350, false, 'R_load', rl);
     text(ctx, 'the load', RX, B + 44, PAL.muted, { size: 19, align: 'center' });
     flow(ctx, 920, T, 1, 0, 'I = ' + fmt(i, 1) + ' A');
     text(ctx, 'V = ' + fmt(V, 2) + ' V across the load', 900, 410, C('voltage'), { size: 21, weight: 600, align: 'center' });
     text(ctx, 'P = ' + fmt(P, 0) + ' W', RX, 168, C('power'), { size: 21, weight: 600, align: 'center' });
-    readout(d.readout,
-      (two
-        ? '\\dfrac{1}{\\krinttot} = \\dfrac{1}{\\krintone} + \\dfrac{1}{\\krinttwo} \\Rightarrow \\krinttot = ' + ohm(rt) + ', \\quad '
-        : '\\krinttot = \\krintone = ' + ohm(rt) + ', \\quad ')
-      + '\\kIcur = \\dfrac{\\kemf}{\\krinttot + \\kRload} = ' + fmt(i, 1) + '\\ \\text{A}',
-      two
+    /* r₁ keeps its key as it goes into the parallel rule, and r₂ arrives beside it */
+    F.morph(fx, two
+      ? '\\mk{r}{\\krinttot} = \\left(\\dfrac{1}{\\mk{a}{\\krintone}} + \\dfrac{1}{\\mk{b}{\\krinttwo}}\\right)^{-1} = \\mk{v}{' + ohm(rt) + '}'
+      : '\\mk{r}{\\krinttot} = \\mk{a}{\\krintone} = \\mk{v}{' + ohm(rt) + '}', { force: was !== how.value });
+    was = how.value;
+    note.textContent = 'The load gets ' + fmt(i, 1) + ' A. ' + (two
         ? 'Each source has the same potential difference, so the total emf is the emf of one of them; only the internal resistance changes, and two resistances in parallel come to less than either. That is why some diesel cars carry two twelve-volt batteries side by side: twelve volts still, and enough current to turn a diesel engine.'
-        : 'Everything the source delivers passes through its own internal resistance, which takes ' + fmt(e - V, 2) + ' V of the emf for itself. Put a second source alongside and watch that share fall.');
+        : 'Everything the source delivers passes through its own internal resistance, which takes ' + fmt(e - V, 2) + ' V of the emf for itself. A second source alongside cuts that share.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

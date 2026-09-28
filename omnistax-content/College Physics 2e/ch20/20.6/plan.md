@@ -155,3 +155,10 @@ No concept row and no symbol row needs a fix.
 Applied in the chapter pass of 2026-09-15. The two variable anchors and the
 two equation anchors above were written to `ch20/chapter.json`. Nothing else
 of this section was changed at chapter level.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-fuse-breaker · Figure 20.19 + 20.20 · as above · a dashed special circle on the current slider at the chosen rating, the threshold the text names, moved by the rating choice (26.1, manim 8) · still
+sim-frequency-sensitivity · Figure 20.22 · as above · the readout is one relation, the current against the can't-let-go current at the chosen frequency, with both thresholds in the small line (manim 12); no special circles, since the text names no per-frequency value · still

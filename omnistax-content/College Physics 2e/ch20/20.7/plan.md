@@ -258,3 +258,12 @@ One figure row was corrected: `sim-ecg` shades the depolarized part of the
 heart in the charge hue and so draws `charge`, which its `draws` column did
 not list. The page already binds charge for `sim-membrane` and `sim-impulse`,
 so `ch20/COLOR.md` is unchanged.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-neuron · Figure 20.24 · as above · the "Part" choice is gone (26.7: it only highlighted a part of the drawing); six labels are drawn and the synapse, the nucleus and the nodes of Ranvier carry hover names · still
+sim-action-potential · Figure 20.26 · as above · the "trace alone" toggle is gone (26.7); the readout is one line, ΔV at t, with the peak in the small line (manim 12) · moving, as above
+sim-ecg · Figure 20.30 + 20.31 · as above · the readout is one equation, the beat period from the heart rate, with the lead reading in the small line (manim 12) · moving, as above
+sim-electrodes · Figure 20.32 · as above · the twelve-lead readout is true as written, ten electrodes giving twelve leads (manim 14); the chest electrodes and the right-leg electrode arrive staggered with the twelve-lead placement (manim 15, 19) · still

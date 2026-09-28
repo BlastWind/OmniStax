@@ -169,9 +169,22 @@ function current(ctx, x, y, dx, frac, label) {
   const tauOf = () => R.v * Cc.v;                      /* kΩ × μF = ms */
   const cy = cycle(() => 5 * tauOf(), 1.2);            /* one loop runs to five time constants */
   function reset() { cy.reset(); }
+  const fx = el('div'), note = el('small');
+  d.readout.replaceChildren(fx, note);
+  /* the two laws, each term keyed by what it means: the exponential keeps its key, the
+     emf is renamed V₀ in place, and the "1 −" and its brackets leave as the curve turns over */
+  const LAW = (m, t, tau, V) => {
+    const x = (s) => '\\mk{' + s + 'x}{e^{-' + (s ? fmt(t, 2) + '/' + fmt(tau, 2) : '\\kt/\\kRes\\kCap') + '}}';
+    const val = '\\mk{v}{' + fmt(V, 2) + '\\ \\text{V}}';
+    return m === 'charging'
+      ? '\\mk{V}{\\kV} = \\mk{E}{\\kemf}\\,\\mk{o}{(1 -} ' + x('') + '\\mk{c}{)} = \\mk{nE}{' + fmt(E.v, 1) + '\\ \\text{V}}\\,\\mk{no}{(1 -} ' + x('n') + '\\mk{nc}{)} = ' + val
+      : '\\mk{V}{\\kV} = \\mk{E}{\\kVzero}\\, ' + x('') + ' = \\mk{nE}{' + fmt(E.v, 1) + '\\ \\text{V}}\\, ' + x('n') + ' = ' + val;
+  };
   function draw() {
     const { ctx } = begin(d.c);
     const tau = tauOf(), t = cy.now(), charging = mode.value === 'charging';
+    /* w is how far the circuit has turned to charging: the curve bends from one law into the other */
+    const w = mode.mix((m) => (m === 'charging' ? 1 : 0));
     const f = Math.exp(-t / tau);
     const V = charging ? E.v * (1 - f) : E.v * f;      /* volts */
     const I = (E.v / R.v) * f;                          /* V / kΩ = mA */
@@ -179,7 +192,8 @@ function current(ctx, x, y, dx, frac, label) {
     /* ---- the circuit ---- */
     const L = 380, Rx = 1020, T = 160, B = 410;
     wires(ctx, [[L, T], [Rx, T], [Rx, B], [L, B], [L, T]]);
-    if (charging) cell(ctx, L, 285, 'up', fmt(E.v, 1) + ' V');
+    const aC = mode.a('charging');
+    if (aC > 0.01) { ctx.save(); ctx.globalAlpha = aC; cell(ctx, L, 285, 'up', fmt(E.v, 1) + ' V'); ctx.restore(); }
     resistor(ctx, 700, T, true, 'R', ohms(R.v));
     capacitor(ctx, Rx, 285, Cc.v, q, true);
     sw(ctx, 700, B, 0, true);
@@ -193,7 +207,7 @@ function current(ctx, x, y, dx, frac, label) {
     });
     line(ctx, box.l, Y(E.v), box.r, Y(E.v), alpha(C('voltage'), 0.5), 2.5, [10, 10]);
     text(ctx, charging ? 'emf = ' + fmt(E.v, 1) + ' V' : 'V₀ = ' + fmt(E.v, 1) + ' V', box.r - 8, Y(E.v) - 18, C('voltage'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
-    const fn = (s) => (charging ? E.v * (1 - Math.exp(-s / tau)) : E.v * Math.exp(-s / tau));
+    const fn = (s) => E.v * (w * (1 - Math.exp(-s / tau)) + (1 - w) * Math.exp(-s / tau));
     curve(ctx, fn, 0, 100, X, Y, alpha(C('voltage'), 0.35), 3, 160);
     curve(ctx, fn, 0, Math.min(t, 100), X, Y, C('voltage'), 5, 160);
     if (tau <= 100) {
@@ -201,18 +215,17 @@ function current(ctx, x, y, dx, frac, label) {
       dot(ctx, X(tau), Y(fn(tau)), C('time'), false, 10);
       text(ctx, 'one time constant, ' + fmt(tau, 2) + ' ms', X(tau) + 14, Y(fn(tau)) + (charging ? 34 : -26), C('time'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
     }
-    pinned(ctx, box, X, Y, t, V, C('voltage'), fmt(V, 2) + ' V');
+    pinned(ctx, box, X, Y, t, fn(t), C('voltage'), fmt(V, 2) + ' V');
     /* ---- the sentence over it all ---- */
     topline(ctx, charging
       ? 'After ' + fmt(t, 2) + ' ms the capacitor has reached ' + fmt(V, 2) + ' V of the ' + fmt(E.v, 1) + ' V the source puts out, and the current has fallen to ' + fmt(I, 2) + ' mA, because the time constant of this circuit is ' + fmt(tau, 2) + ' ms.'
       : 'After ' + fmt(t, 2) + ' ms the capacitor has fallen to ' + fmt(V, 2) + ' V of the ' + fmt(E.v, 1) + ' V it started with, and the current it drives has fallen to ' + fmt(I, 2) + ' mA, because the time constant of this circuit is ' + fmt(tau, 2) + ' ms.');
-    readout(d.readout,
-      charging
-        ? `\\kV = \\kemf\\left(1 - e^{-\\kt/\\kRes\\kCap}\\right) = ${fmt(E.v, 1)}\\ \\text{V}\\left(1 - e^{-${fmt(t, 2)}/${fmt(tau, 2)}}\\right) = ${fmt(V, 2)}\\ \\text{V}`
-        : `\\kV = \\kVzero\\, e^{-\\kt/\\kRes\\kCap} = ${fmt(E.v, 1)}\\ \\text{V}\\ e^{-${fmt(t, 2)}/${fmt(tau, 2)}} = ${fmt(V, 2)}\\ \\text{V}`,
-      charging
-        ? 'The time constant is τ = RC = ' + fmt(tau, 2) + ' ms, and in that time the voltage covers 0.632 of what is left to cover, so it reaches ' + fmt(0.632 * E.v, 2) + ' V by the marked point and ' + fmt(E.v * (1 - Math.exp(-5)), 2) + ' V after five time constants. The charge on each plate is now ' + fmt(q, 1) + ' μC.'
-        : 'The time constant is τ = RC = ' + fmt(tau, 2) + ' ms, and in that time the voltage falls to 0.368 of what it was, so it is down to ' + fmt(0.368 * E.v, 2) + ' V at the marked point and to ' + fmt(E.v * Math.exp(-5), 2) + ' V after five time constants. The charge left on each plate is ' + fmt(q, 1) + ' μC.');
+    /* a clock drives the numbers, so they are never highlighted; the law itself bends as the circuit is switched over */
+    if (mode.k < 1) F.morphAt(fx, LAW(mode.from, t, tau, V), LAW(mode.value, t, tau, V), mode.k, { values: false });
+    else F.morph(fx, LAW(mode.value, t, tau, V), { values: false });
+    note.textContent = (charging
+        ? 'The time constant is τ = RC = ' + fmt(tau, 2) + ' ms, and in that time the voltage covers 0.632 of what is left to cover, so it reaches ' + fmt(0.632 * E.v, 2) + ' V after one time constant and ' + fmt(E.v * (1 - Math.exp(-5)), 2) + ' V after five time constants. The charge on each plate is now ' + fmt(q, 1) + ' μC.'
+        : 'The time constant is τ = RC = ' + fmt(tau, 2) + ' ms, and in that time the voltage falls to 0.368 of what it was, so it is down to ' + fmt(0.368 * E.v, 2) + ' V after one time constant and to ' + fmt(E.v * Math.exp(-5), 2) + ' V after five time constants. The charge left on each plate is ' + fmt(q, 1) + ' μC.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => tauOf()), draw });
 })();

@@ -82,7 +82,7 @@ const money = (v) => '$' + v.toFixed(2);
     readout(d.readout, `\\kP = \\kIcur\\kV = (${fmt(I, 2)}\\ \\text{A})(${fmt(V.v, 1)}\\ \\text{V}) = ${fmt(P, 1)}\\ \\text{W}`,
       'The same two numbers read the other two ways give P = V²/R = ' + fmt((V.v * V.v) / R.v, 1) + ' W and P = I²R = ' + fmt(I * I * R.v, 1) + ' W, which is the same power. '
       + 'The source supplies it and the resistor dissipates it, and in a circuit with one source and one resistor those are always the same number. '
-      + (R.v <= 1 ? 'At this resistance the figure is drawing the headlight as it is switched on cold, when it briefly takes far more power than it does hot.'
+      + (R.v <= 1 ? 'At this resistance the headlight is as it is switched on cold, when it briefly takes far more power than it does hot.'
         : 'Bring the resistance down and the power rises, because the voltage is being held fixed; hold the current fixed instead and the same resistance would raise the power rather than lower it.'));
   }
   register(d.fig, { update: () => {}, draw });

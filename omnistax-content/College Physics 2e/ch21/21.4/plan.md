@@ -101,3 +101,12 @@ already in `book.json` as the prep pass staged them.
 - Three figure fixes: the voltmeter's leads no longer cut across the internal
   resistance and its label, the galvanometer's canvas was too short for its own
   readout and its terminals, and the needle struck through the number on the dial.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-meter-connection · Figure 21.27 + 21.28 · as above · the meter glides round the loop to its new place (`mix` of its pose) and the voltmeter and ammeter cross-fade, instead of cutting (manim 16) · still
+sim-galvanometer · Sim · as above · dashed special circles on I_G at half and at full scale, the readings the text names, moved by the sensitivity slider (26.1, manim 8) · still
+sim-galvanometer-meters · Figure 21.29 + 21.30 · as above · the voltmeter readout is one equation, R_tot = R + r = V/I_G, with R in the small line (manim 12) · still
+sim-meter-disturbs · Figure 21.31 + 21.32 · as above · the voltmeter readout is one equation, the reading V, with R_p in the small line (manim 12) · still

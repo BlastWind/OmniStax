@@ -161,3 +161,10 @@ Applied in the chapter pass of 2026-09-15. The five equation anchors and the
 two variable anchors above were written to `ch20/chapter.json`, and both of
 the section's variable rows now carry one. Nothing else of this section was
 changed at chapter level.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-simple-circuit · Figure 20.8 + 20.9 · as above · value add: the pictured circuit becomes its analogy (manim 2): the wire swells into the pipe, the battery shrinks as the pump grows where it stood, the zigzag straightens into the narrow section, the carriers give way to the water; the voltmeter arrives and leaves with `a('meter')` · moving, the flow is a steady flow (24.1)
+sim-ohmic · Sim · as above · the material choice keeps the graph's frame and the I–V curve bends from the straight line into the filament's (`mix` of the warming coefficient); the dashed ohmic line arrives only with the filament (manim 15) · still

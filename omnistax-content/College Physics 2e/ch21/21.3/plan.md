@@ -93,3 +93,9 @@ page colours are already in `book.json` as the prep pass staged them.
   book's own answer instead of an AI-marked approach, and the `exercise_notes` say so.
 - The branch currents of Figure 21.21 + 21.25 now take the true minus sign on the
   canvas, as the book prints them.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-loop-rule · Figure 21.23 · as above · value add: turning the walk round moves every term of the loop equation to its new place and flips its sign there (`F.morph`, each sign its own key; manim 11), and the potential staircase bends from one order of steps into the other (`lerpPts`) · still

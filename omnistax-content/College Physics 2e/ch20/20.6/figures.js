@@ -169,7 +169,7 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
   const d = sim('sim-fuse-breaker', 700);
   const kind = choice(d.controls, { label: '\\text{The device}', options: [{ value: 'fuse', label: 'A fuse' }, { value: 'breaker', label: 'A circuit breaker' }], value: 'fuse', aria: 'which device protects the circuit' });
   const rating = choice(d.controls, { label: '\\text{Its rating}', options: [{ value: '15', label: '15 A' }, { value: '20', label: '20 A' }, { value: '30', label: '30 A' }], value: '15', aria: 'the current the device is rated for' });
-  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 40, step: 0.5, value: 10, unit: 'A', dec: 1, aria: 'the current the circuit draws' });
+  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 40, step: 0.5, value: 10, unit: 'A', dec: 1, aria: 'the current the circuit draws', specials: [{ at: () => +rating.value, label: 'the rating' }] });
   const Rw = ctl(d.controls, { label: '\\kRw', cls: 'resistance', min: 0.05, max: 3, step: 0.05, value: 2, unit: 'Ω', dec: 3, aria: 'the resistance of the supply wires' });
   const SC = { l: 240, r: 1220, y: 612 };                              /* 0 to 40 A, fixed */
   const XI = (I) => SC.l + (I / 40) * (SC.r - SC.l);
@@ -416,8 +416,8 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     const felt = I >= sn, stuck = I >= lg;
     headline(ctx, I === 0 ? 'With no current through the person there is nothing to feel at any frequency.'
       : 'At ' + name + ', ' + fmt(I, 1) + ' mA is ' + (stuck ? 'above the can’t-let-go current of ' + fmt(lg, 1) + ' mA, so the hand closes on the wire' : felt ? 'above the ' + fmt(sn, 1) + ' mA that can be felt but below the ' + fmt(lg, 1) + ' mA that closes the hand' : 'below the ' + fmt(sn, 1) + ' mA needed to feel anything at all') + '.');
-    readout(d.readout, `\\kf = \\text{${name}}:\\quad \\kIcur = ${fmt(I, 1)}\\ \\text{mA},\\quad \\text{felt above } ${fmt(sn, 1)}\\ \\text{mA},\\quad \\text{held above } ${fmt(lg, 1)}\\ \\text{mA}`,
-      'The lower a curve runs, the more sensitive the body is at that frequency, and both curves reach their lowest values near the 50 and 60 Hz in common use, so the frequencies carried by household wiring are the ones the body feels most readily. The body is slightly less sensitive at direct current, which mildly confirms Edison’s claims that alternating current presents the greater hazard, and it becomes progressively less sensitive at higher frequencies, because nerves can only fire so fast. At very high frequencies the current travels only on the surface of a person, which is why a wart can be burned off without stopping the heart.');
+    readout(d.readout, `\\kIcur = ${fmt(I, 1)}\\ \\text{mA} ${stuck ? '\\geq' : '<'} ${fmt(lg, 1)}\\ \\text{mA}`,
+      'At ' + name + ' the can’t-let-go current is ' + fmt(lg, 1) + ' mA and the threshold of sensation ' + fmt(sn, 1) + ' mA. The lower a curve runs, the more sensitive the body is at that frequency, and both curves reach their lowest values near the 50 and 60 Hz in common use, so the frequencies carried by household wiring are the ones the body feels most readily. The body is slightly less sensitive at direct current, which mildly confirms Edison’s claims that alternating current presents the greater hazard, and it becomes progressively less sensitive at higher frequencies, because nerves can only fire so fast. At very high frequencies the current travels only on the surface of a person, which is why a wart can be burned off without stopping the heart.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

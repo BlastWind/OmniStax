@@ -214,6 +214,8 @@ function meter(ctx, x, y, R, frac, letter, opts) {
   const Iw = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0.1, max: 0.3, step: 0.005, value: 0.2, unit: 'A', dec: 3, aria: 'the current the source passes down the wire' });
   const which = choice(d.controls, { label: '\\text{which cell}', options: [{ value: 'x', label: 'the unknown' }, { value: 's', label: 'the standard' }], value: 'x', aria: 'which cell is connected through the galvanometer' });
   const RW = 20.0, ES = 1.500, X0 = 300, X1 = 1250, YT = 190, YW = 340, YB = 690, FULL = 0.5;
+  /* the balance, the null the method rests on, for the cell now in the branch */
+  Rx.mark([{ at: () => (which.value === 'x' ? Ex.v : ES) / Iw.v, label: 'balance' }]);
   function draw() {
     const { ctx } = begin(d.c);
     const vc = C('voltage'), rc = C('resistance'), cc = C('current');
@@ -323,6 +325,8 @@ function meter(ctx, x, y, R, frac, letter, opts) {
   const Rx = ctl(d.controls, { label: '\\kResx', cls: 'resistance', min: 10, max: 300, step: 1, value: 200, unit: 'Ω', dec: 0, aria: 'the unknown resistance' });
   const R2 = ctl(d.controls, { label: '\\kRestwo', cls: 'resistance', min: 50, max: 300, step: 1, value: 125, unit: 'Ω', dec: 0, aria: 'the second known arm of the bridge' });
   const R1 = 100.0, E = 6.00, FULL = 0.2;
+  /* the balance, where the needle reads zero */
+  R3.mark([{ at: () => Rx.v * R1 / R2.v, label: 'balance' }]);
   const A = [300, 380], B = [760, 200], Cc = [1220, 380], D = [760, 560];
   function draw() {
     const { ctx } = begin(d.c);

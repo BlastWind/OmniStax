@@ -116,3 +116,10 @@ row already.
 - Two controls were too long for their row: the cell in the branch is now labelled
   "which cell", and the two configurations of the ohmmeter are a dropdown, as root
   rule 26.1 allows where a row would wrap.
+
+## House-style pass (2026-09-28)
+
+Each line supersedes the figure's line above where they differ.
+
+sim-potentiometer · Figure 21.34 · as above · a dashed special circle on R_x at the balance for the cell in the branch, the null the method rests on (26.1, manim 8) · still
+sim-wheatstone · Figure 21.36 · as above · a dashed special circle on R₃ at the balance, R_x R₁/R₂ (26.1, manim 8) · still
