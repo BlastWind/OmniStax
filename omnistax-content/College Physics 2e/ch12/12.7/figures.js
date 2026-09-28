@@ -157,8 +157,9 @@ const TABLE = [
 ===================================================================== */
 (function () {
   const d = sim('sim-concentration', 700);
-  const c1 = ctl(d.controls, { label: 'C_1', cls: '', min: 0, max: 60, step: 1, value: 40, unit: '', dec: 0, aria: 'the number of molecules in region 1' });
-  const c2 = ctl(d.controls, { label: 'C_2', cls: '', min: 0, max: 60, step: 1, value: 10, unit: '', dec: 0, aria: 'the number of molecules in region 2' });
+  const c1 = ctl(d.controls, { label: 'C_1', cls: '', min: 0, max: 60, step: 1, value: 40, unit: '', dec: 0, aria: 'the number of molecules in region 1', specials: [{ at: () => c2.v, label: 'C_1 = C_2' }] });
+  const c2 = ctl(d.controls, { label: 'C_2', cls: '', min: 0, max: 60, step: 1, value: 10, unit: '', dec: 0, aria: 'the number of molecules in region 2', specials: [{ at: () => c1.v, label: 'C_2 = C_1' }] });
+  c1.refresh();
   const L = 160, R = 1200, TOP = 180, BOT = 480, CYm = (TOP + BOT) / 2, RY = (BOT - TOP) / 2, RX = 44, S1 = 610, S2 = 790;
   /* fixed scatters for the three regions, so that a slider only adds or removes molecules */
   function scatter(seed, x1, x2, n) { const r = rng(seed); const out = []; for (let i = 0; i < n; i++) { const t = r() * TAU, q = Math.sqrt(r()); out.push({ x: x1 + r() * (x2 - x1), y: CYm + q * (RY - 14) * Math.sin(t) }); } return out; }
@@ -244,39 +245,43 @@ const TABLE = [
   function draw() {
     const { ctx } = begin(d.c);
     const pw = pore.v, porous = kind.value === 'pores';
-    const passes = KINDS.map((k) => porous && k.nm < pw);
+    const passes = KINDS.map((k) => porous && k.nm < pw), fits = KINDS.map((k) => k.nm < pw);
+    /* the pores close into the dissolving layer and open out of it; each molecule keeps its place and only fades */
+    const aP = kind.a('pores'), aD = kind.a('dissolving');
+    const faded = (a, f) => { if (a <= 0.001) return; ctx.save(); ctx.globalAlpha *= a; f(); ctx.restore(); };
     /* the legend: the three kinds, named once */
     let lx = 70;
     KINDS.forEach((k, i) => { molecule(ctx, lx + rOf(KINDS[2]), 104, i); text(ctx, k.name + ' molecules, ' + fmt(k.nm, 1) + ' nm across', lx + 2 * rOf(KINDS[2]) + 14, 104, PAL.muted, { size: 17 }); lx += 400; });
     /* the membrane, pierced or whole */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
-    if (porous) {
-      const half = (pw * NM) / 2; let y = TOP;
+    const half = kind.mix((v) => (v === 'pores' ? (pw * NM) / 2 : 0));
+    if (half > 0.5) {
+      let y = TOP;
       PORES.forEach((py) => { ctx.fillRect(ML, y, MR - ML, py - half - y); ctx.strokeRect(ML, y, MR - ML, py - half - y); y = py + half; });
       ctx.fillRect(ML, y, MR - ML, BOT - y); ctx.strokeRect(ML, y, MR - ML, BOT - y);
     } else { ctx.fillRect(ML, TOP, MR - ML, BOT - TOP); ctx.strokeRect(ML, TOP, MR - ML, BOT - TOP); }
     ctx.restore();
     text(ctx, 'membrane', (ML + MR) / 2, BOT + 24, PAL.muted, { size: 19, align: 'center' });
-    if (porous) { line(ctx, MR + 6, PORES[0], MR + 40, PORES[0] - 30, PAL.muted, 2); text(ctx, 'pore, ' + fmt(pw, 1) + ' nm', MR + 48, PORES[0] - 34, PAL.ink, { size: 19, weight: 600 }); }
+    faded(aP, () => { line(ctx, MR + 6, PORES[0], MR + 40, PORES[0] - 30, PAL.muted, 2); text(ctx, 'pore, ' + fmt(pw, 1) + ' nm', MR + 48, PORES[0] - 34, PAL.ink, { size: 19, weight: 600 }); });
     /* the molecules on the left, and on the right the kinds that have got across */
     LEFT.forEach((p) => molecule(ctx, p.x, p.y, p.k));
-    if (porous) {
-      RIGHT.filter((p) => passes[p.k]).forEach((p) => molecule(ctx, p.x, p.y, p.k));
+    RIGHT.forEach((p) => faded(kind.mix((v) => (v === 'dissolving' || fits[p.k] ? 1 : 0)), () => molecule(ctx, p.x, p.y, p.k)));
+    faded(aP, () => {
       /* one of each admitted kind in a pore, and one of each held kind pressed against the membrane */
       KINDS.forEach((k, i) => {
         const py = PORES[1 + i];
-        if (passes[i]) molecule(ctx, (ML + MR) / 2, py, i);
+        if (fits[i]) molecule(ctx, (ML + MR) / 2, py, i);
         else molecule(ctx, ML - rOf(k) - 4, py, i);
       });
-      const okNames = KINDS.filter((k, i) => passes[i]).map((k) => k.name), noNames = KINDS.filter((k, i) => !passes[i]).map((k) => k.name);
+      const okNames = KINDS.filter((k, i) => fits[i]).map((k) => k.name), noNames = KINDS.filter((k, i) => !fits[i]).map((k) => k.name);
       text(ctx, okNames.length ? 'through the pores: ' + okNames.join(', ') : 'nothing gets through', MR + 40, BOT + 50, PAL.ink, { size: 19, weight: 600 });
       text(ctx, noNames.length ? 'held back: ' + noNames.join(', ') : 'nothing is held back', ML - 40, BOT + 50, PAL.ink, { size: 19, weight: 600, align: 'right' });
-    } else {
-      /* the dissolving membrane: molecules of every size are on both sides, and a few sit inside the membrane on their way across */
-      RIGHT.forEach((p) => molecule(ctx, p.x, p.y, p.k));
+    });
+    faded(aD, () => {
+      /* the dissolving membrane: a few molecules sit inside it on their way across */
       [[0.22, 0.14], [0.7, 0.3], [0.4, 0.5], [0.78, 0.68], [0.3, 0.86]].forEach(([u, v], i) => molecule(ctx, ML + 16 + u * (MR - ML - 32), TOP + 30 + v * (BOT - TOP - 60), i === 3 ? 1 : 0));
       text(ctx, 'dissolved in the membrane, on the way across', (ML + MR) / 2, BOT + 50, PAL.ink, { size: 19, weight: 600, align: 'center' });
-    }
+    });
     text(ctx, 'region 1', 60, TOP - 14, PAL.muted, { size: 19, bg: PAL.panel });
     text(ctx, 'region 2', 1340, TOP - 14, PAL.muted, { size: 19, align: 'right', bg: PAL.panel });
     const names = KINDS.filter((k, i) => passes[i]).map((k) => k.name);
@@ -303,8 +308,8 @@ const TABLE = [
 (function () {
   const d = sim('sim-osmosis', 760);
   const pi = ctl(d.controls, { label: '\\text{osmotic pressure}', cls: 'pressure', min: 0, max: 3, step: 0.01, value: 0.98, unit: 'kPa', dec: 2, aria: 'the relative osmotic pressure of the two solutions' });
-  const hs = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0, max: 30, step: 0.1, value: 10, unit: 'cm', dec: 1, aria: 'the extra height of fluid on the right' });
   const RHO = 1000, G = 9.8;
+  const hs = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0, max: 30, step: 0.1, value: 10, unit: 'cm', dec: 1, aria: 'the extra height of fluid on the right', specials: [{ at: () => (pi.v * 1000) / (RHO * G) * 100, label: 'ρgh = osmotic pressure' }] });
   const BL = 280, BR = 1120, BB = 600, BT = 110, MX = 700, UPC = 10, LEVEL0 = 27;   /* 10 canvas units per centimeter; 27 cm in each side to begin with */
   const yOf = (cm) => BB - cm * UPC;
   /* a water molecule: one oxygen and two hydrogens in the element palette */

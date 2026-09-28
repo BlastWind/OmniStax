@@ -2,7 +2,8 @@
    Continuity has no clock the reader must watch: each figure here is a still
    picture that answers its sliders, registers no cycle and carries no
    transport, as the chapter's config decides for everything before the onset
-   of turbulence. */
+   of turbulence. The shaded cylinder's one transport is its story slider,
+   the book's derivation of Q = Av̄, not a clock. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, curve, pinned } = F;
@@ -57,35 +58,67 @@ function bar(ctx, x0, y, w, share, color, label, value) {
 
 /* =====================================================================
    FIGURE 12.2: the shaded cylinder of fluid that has passed the point P in
-   a uniform pipe. Still: the book's picture is one cylinder that has passed
-   in a chosen time, and the time is a slider here, so the figure exposes
-   the clock without running one.
+   a uniform pipe, and the book's derivation on it as a story slider:
+   Q = V/t, then V = Ad makes Q = Ad/t, then d/t bends into v̄ and Q = Av̄.
+   At the last stop the length bracket of the shaded volume becomes the
+   speed arrow. Still otherwise: the time is a slider here, so the figure
+   exposes the clock without running one, and the reader's three sliders
+   work at every stop.
 ===================================================================== */
 (function () {
   const d = sim('sim-flow-cylinder', 640);
   const vs = ctl(d.controls, { label: '\\kvb', cls: 'velocity', min: 0.2, max: 4, step: 0.02, value: 1.96, unit: 'm/s', dec: 2, aria: 'the average speed of the fluid' });
   const rs = ctl(d.controls, { label: 'r', cls: '', min: 0.3, max: 1.5, step: 0.01, value: 0.9, unit: 'cm', dec: 3, aria: 'the radius of the pipe' });
   const ts = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.1, max: 2, step: 0.01, value: 1, unit: 's', dec: 2, aria: 'the elapsed time' });
+  const st = ctl(d.controls, { label: '\\text{step}', cls: 'k', min: 0, max: 2, step: 0.01, value: 0, unit: '', dec: 0, aria: 'how far the derivation has been carried' });
+  F.story(d, st, { stops: [{ v: 0, label: 'V/t' }, { v: 1, label: 'Ad/t' }, { v: 2, label: 'Av̄' }], ms: 1400 });
   /* the radius is drawn at 60 units to the centimeter and the length at 110 to the meter: the slider maxima
      give a pipe 180 tall and a cylinder 880 long, and neither scale ever follows a slider */
   const KR = 60, KL = 110, KV = 40, PX = 400, CY = 250, X1 = 110, X2 = 1300;
   const QCAP = 3, VCAP = 6, BX = 640, BW = 560;        /* the bars: 3.00 L/s and 6.00 L on 560 units */
+  /* the three steps of the derivation; V splits into A and d, and d over t bends together into v̄ */
+  const mk = (key, x) => '\\mk{' + key + '}{' + x + '}';
+  const L = (n) => n + '\\ \\text{L}';
+  const FORM = [
+    (n) => mk('Q', '\\kQ') + ' = \\frac{' + mk('V', 'V') + '}{' + mk('t', '\\kt') + '} = \\frac{' + mk('Vn', L(n.V)) + '}{' + mk('tn', n.t + '\\ \\text{s}') + '} = ' + mk('Qn', n.Q + '\\ \\text{L/s}'),
+    (n) => mk('Q', '\\kQ') + ' = \\frac{' + mk('A', 'A') + mk('d', 'd') + '}{' + mk('t', '\\kt') + '} = \\frac{' + mk('An', '(' + n.A + '\\ \\text{cm}^2)') + mk('dn', '(' + n.d + '\\ \\text{m})') + '}{' + mk('tn', n.t + '\\ \\text{s}') + '} = ' + mk('Qn', n.Q + '\\ \\text{L/s}'),
+    (n) => mk('Q', '\\kQ') + ' = ' + mk('A', 'A') + mk('d', '\\kvb') + ' = ' + mk('An', '(' + n.A + '\\ \\text{cm}^2)') + mk('dn', '(' + n.v + '\\ \\text{m/s})') + ' = ' + mk('Qn', n.Q + '\\ \\text{L/s}'),
+  ];
+  const KEYS = [{ V: ['A', 'd'], Vn: ['An', 'dn'] }, { t: 'd', tn: 'dn' }];
+  const NOTE = [
+    'Flow rate is the volume that passes a point in a unit of time: the shaded cylinder has passed P in the time t.',
+    'The cylinder’s volume is its cross-section times its length, V = Ad, and its length is d = v̄t.',
+    'The length over the time is the average speed, d/t = v̄, so the flow rate is the area times the average speed.',
+  ];
+  const fx = el('div'), note = el('small');
+  d.readout.append(fx, note);
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('flow-rate'), vc = C('velocity'), tc = C('time');
-    const v = vs.v, r = rs.v, t = ts.v, R = r * KR, dm = v * t;
+    const v = vs.v, r = rs.v, t = ts.v, s = st.v, R = r * KR, dm = v * t;
     const A = Math.PI * r * r, Q = A * 1e-4 * v, V = Q * t;          /* A in cm², Q in m³/s, V in m³ */
     const QL = Q * 1000, VL = V * 1000;
+    /* the bracket's length becoming the speed arrow, over the second step */
+    const k = F.ease.smooth(Math.min(1, Math.max(0, s - 1)));
     /* the pipe, the fluid in it and the cylinder that has passed P */
     tube(ctx, X1, X2, CY, R, fc);
     slug(ctx, PX, dm * KL, CY, R, fc);
     for (let x = X1 + 60; x < PX - 40; x += 90) arrow(ctx, x, CY, x + 40, CY, alpha(PAL.ink, 0.35), 2);
-    arrow(ctx, PX, CY, PX + v * KV, CY, vc, 5);
-    text(ctx, 'v̄ = ' + fmt(v, 2) + ' m/s', PX + Math.max(v * KV, 40) + 14, CY - R - 26, vc, { size: 21, weight: 600 });
-    text(ctx, 'in t = ' + fmt(t, 2) + ' s', PX + dm * KL + 44, CY + R + 84, tc, { size: 21, weight: 600 });
+    const yb = CY + R + 84, xe = F.lerp(PX + dm * KL, PX + v * KV, k), ye = F.lerp(yb, CY, k);
+    if (k < 1) {
+      ctx.save(); ctx.globalAlpha = 1 - k;
+      hbracket(ctx, PX, xe, ye, PAL.ink, k > 0 ? undefined : 'd = v̄t = ' + sf(dm) + ' m');
+      if (k === 0) text(ctx, 'in t = ' + fmt(t, 2) + ' s', PX + dm * KL + 44, yb + 30, tc, { size: 21, weight: 600 });
+      ctx.restore();
+    }
+    if (k > 0) {
+      ctx.save(); ctx.globalAlpha = k;
+      arrow(ctx, PX, ye, xe, ye, vc, 5);
+      if (k === 1) text(ctx, 'v̄ = ' + fmt(v, 2) + ' m/s', PX + Math.max(v * KV, 40) + 14, CY - R - 26, vc, { size: 21, weight: 600 });
+      ctx.restore();
+    }
     dot(ctx, PX, CY, PAL.ink, true, 8);
     text(ctx, 'P', PX - 14, CY + R + 24, PAL.ink, { size: 24, weight: 600, align: 'right' });
-    hbracket(ctx, PX, PX + dm * KL, CY + R + 84, PAL.ink, 'd = v̄t = ' + sf(dm) + ' m');
     text(ctx, 'the pipe', X2 - 40, CY - R - 26, PAL.muted, { size: 19, align: 'right' });
     /* the cross-section of the pipe at P, seen end on */
     const ex = 200, ey = 500;
@@ -101,8 +134,12 @@ function bar(ctx, x0, y, w, share, color, label, value) {
     bar(ctx, BX, 540, BW, VL / VCAP, PAL.ink, 'V = Ad', sf(VL) + ' L');
     text(ctx, 'the bars are drawn on caps of 3.00 L/s and 6.00 L', BX + BW, 590, PAL.muted, { size: 17, align: 'right' });
     topline(ctx, 'In ' + fmt(t, 2) + ' s a cylinder of fluid ' + sf(dm) + ' m long passes the point P, so the flow rate through the ' + fmt(r, 3) + ' cm pipe is ' + sf(QL) + ' L/s.');
-    readout(d.readout, `\\kQ = A\\kvb = \\pi(${fmt(r, 3)}\\ \\text{cm})^2(${fmt(v, 2)}\\ \\text{m/s}) = ${sci(Q).tex}\\ \\text{m}^3\\text{/s} = ${sf(QL)}\\ \\text{L/s}`,
-      'The shaded cylinder is d = v̄t = ' + sf(dm) + ' m long and holds V = Ad = Qt = ' + sf(VL) + ' L, which is the volume that has passed P in ' + fmt(t, 2) + ' s. The radius of the pipe and the length of the cylinder are not drawn to one scale, since a centimeter of one and a meter of the other could not share a picture.');
+    const n = { V: sf(VL), t: fmt(t, 2), Q: sf(QL), A: sf(A), d: sf(dm), v: fmt(v, 2) };
+    const i = Math.min(1, Math.floor(s)), at = Math.round(s);
+    if (Math.abs(s - at) < 1e-6) F.morph(fx, FORM[at](n));
+    else F.morphAt(fx, FORM[i](n), FORM[i + 1](n), s - i, { keyMap: KEYS[i] });
+    const line2 = NOTE[at] + ' The radius of the pipe and the length of the cylinder are not drawn to one scale, since a centimeter of one and a meter of the other could not share a picture.';
+    if (note.textContent !== line2) note.textContent = line2;
   }
   register(d.fig, { update: () => {}, draw });
 })();

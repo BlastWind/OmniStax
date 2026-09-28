@@ -138,6 +138,7 @@ sliders and choices with their types · headline · graph · 3D
    fluid being the same in every wheel cylinder. No person is drawn: the
    book crops its driver to a shoe, and the pedal carries the force arrow
    and a hover name instead. Draws pressure, force.
+   **Choice morphs** (manim 15/16): the four wheel cylinders are one column; two is its middle pair, which stays put, while the outer pair fades and slides in or out through the choice's `a`/`off`, the manifold stretching to meet them and the F₂ label and A₂ bracket gliding to their row.
 3. `sim-hydraulic-work` · Sim (it replaces no figure of the book) ·
    hydraulic-work-limit, hydraulic-force-ratio · **a view the text does not
    give**: the section says that the wheel cylinder moves through a

@@ -368,3 +368,5 @@ brought to the ranges the figures were built with. The `notes` and
 the falling steel ball is set there and the other two are left out of both
 sections. Table 12.1's header writes $\keta$ with the macro, as the prose
 does, since the page binds viscosity.
+
+Manim pass (2026-09-28, Claude Opus 5.5). `sim-laminar-turbulent`: the obstruction slider, dead in laminar flow, is gone; the obstruction (40 % of the depth) rises out of the bed with the choice through `mix`, while the channel and the layer boundaries stay, lifting over it and, below its top, breaking off behind it as the eddies arrive through `a(v)`. The one speed slider works in both states. Still, no clock. The other figures kept.

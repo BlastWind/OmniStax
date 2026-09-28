@@ -29,6 +29,12 @@ const num = (v, d) => { const x = eps(v, d); return (x < 0 ? '−' : '') + fmt(M
 function sig3(v) { const a = Math.abs(v); if (a === 0) return '0'; const d = Math.max(0, 2 - Math.floor(Math.log10(a))); return (v < 0 ? '−' : '') + fmt(a, d); }
 /* a height written in the unit that suits its size */
 function hstr(h) { const a = Math.abs(h); return a >= 1 ? sig3(h) + ' m' : a >= 0.01 ? sig3(h * 100) + ' cm' : sig3(h * 1000) + ' mm'; }
+/* paints a fluid's region in its colour, the last fluid's colour giving way to the new one while the choice turns */
+function fluidPaint(ctx, ch, paint) {
+  paint(FLUIDS[ch.from].color);
+  if (ch.from === ch.value) return;
+  ctx.save(); ctx.globalAlpha = ch.k; paint(FLUIDS[ch.value].color); ctx.restore();
+}
 /* a rounded-rectangle outline, for a jar and a lid */
 function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
   ctx.save(); ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.arcTo(x + w, y, x + w, y + r, r); ctx.lineTo(x + w, y + h - r); ctx.arcTo(x + w, y + h, x + w - r, y + h, r); ctx.lineTo(x + r, y + h); ctx.arcTo(x, y + h, x, y + h - r, r); ctx.lineTo(x, y + r); ctx.arcTo(x, y, x + r, y, r); ctx.closePath();
@@ -48,7 +54,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
   /* The slider is in pounds per square inch because the tire gauge of the text reads
      psi and the book's worked numbers (34, 14.7, 48.7) are in it; the readout gives the pascals. */
   const Ps = ctl(d.controls, { label: '\\kPg', cls: 'pressure', min: -14.7, max: 60, step: 0.1, value: 34, unit: 'psi', dec: 1, aria: 'the gauge pressure being measured',
-    detents: [{ v: 0, label: 'atmospheric' }, { v: 34, label: 'the tire' }], snap: true });
+    detents: [{ v: 34, label: 'the tire' }], snap: true, specials: [{ at: 0, label: 'atmospheric' }] });
   const dial = choice(d.controls, { label: '\\text{the dial reads}', options: [{ value: 'gauge', label: 'gauge pressure' }, { value: 'abs', label: 'absolute pressure' }], value: 'gauge', aria: 'whether the dial is numbered from atmospheric pressure or from a vacuum' });
   const PATM_PSI = 14.7;
   /* the linkage, in canvas units: the fixed plate of the bellows at XR, the bellows
@@ -65,7 +71,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
   function draw() {
     const { ctx } = begin(d.c);
     const pc = C('pressure'), fc = C('force');
-    const p = Ps.v, pabs = p + PATM_PSI, abs = dial.value === 'abs';
+    const p = Ps.v, pabs = p + PATM_PSI, shift = dial.mix((v) => (v === 'abs' ? PATM_PSI : 0));
     const L = lengthOf(p), xm = XR - L, phi = angleOf(p), s = Math.sin(phi), c = Math.cos(phi);
     const B = { x: PX + ARM * s, y: PY + ARM * c }, T = { x: PX - TIP * s, y: PY - TIP * c }, S = { x: PX - 110 * s, y: PY - 110 * c };
     /* the wall the spring is anchored to, the spring, the pivot and the pointer */
@@ -75,16 +81,24 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     /* the dial: an arc about the pivot with its ticks placed by the linkage */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath();
     ctx.arc(PX, PY, DIAL, -Math.PI / 2 - angleOf(-14.7), -Math.PI / 2 - angleOf(60)); ctx.stroke(); ctx.restore();
-    const ticks = abs ? [0, 10, 20, 30, 40, 50, 60, 70] : [-10, 0, 10, 20, 30, 40, 50, 60];
-    for (const t of ticks) {
-      const g = abs ? t - PATM_PSI : t; if (g < -14.7 - 1e-9 || g > 60 + 1e-9) continue;
-      const a = angleOf(g), zero = (abs ? t : g) === 0;
+    /* the numbering slides round the dial by 14.7 psi between gauge and absolute, each number fading at the dial's ends */
+    for (let t = -10; t <= 70; t += 10) {
+      const g = t - shift, edge = Math.min(g + 14.7, 60 - g); if (edge < -2) continue;
+      const a = angleOf(Math.max(-14.7, Math.min(60, g))), zero = t === 0;
       const ux = -Math.sin(a), uy = -Math.cos(a);
+      ctx.save(); ctx.globalAlpha = Math.min(1, Math.max(0, (edge + 2) / 2));
       line(ctx, PX + ux * (DIAL - 16), PY + uy * (DIAL - 16), PX + ux * DIAL, PY + uy * DIAL, zero ? PAL.ink : PAL.muted, zero ? 3.5 : 2);
       text(ctx, num(t, 0), PX + ux * (DIAL + 26), PY + uy * (DIAL + 26), zero ? PAL.ink : PAL.muted, { size: 18, weight: zero ? 600 : 400, align: 'center' });
+      ctx.restore();
     }
-    text(ctx, abs ? 'the dial reads absolute pressure, in psi:' : 'the dial reads gauge pressure, in psi:', 1300, 230, PAL.muted, { size: 18, align: 'right' });
-    text(ctx, abs ? 'zero is a vacuum' : 'zero is atmospheric pressure', 1300, 256, PAL.muted, { size: 18, align: 'right' });
+    for (const [v, head, zero] of [['gauge', 'the dial reads gauge pressure, in psi:', 'zero is atmospheric pressure'], ['abs', 'the dial reads absolute pressure, in psi:', 'zero is a vacuum']]) {
+      const a = dial.a(v); if (a <= 0) continue;
+      const [dx, dy] = dial.off(v, [0, 12]);
+      ctx.save(); ctx.globalAlpha = a;
+      text(ctx, head, 1300 + dx, 230 + dy, PAL.muted, { size: 18, align: 'right' });
+      text(ctx, zero, 1300 + dx, 256 + dy, PAL.muted, { size: 18, align: 'right' });
+      ctx.restore();
+    }
     /* the stem the pressure comes in through, and the pressure itself */
     line(ctx, XR + 14, PY - 14, 1130, PY - 14, PAL.ink, 3); line(ctx, XR + 14, PY + 14, 1130, PY + 14, PAL.ink, 3);
     arrow(ctx, 1220, PY, 1060, PY, pc, 5);
@@ -153,7 +167,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
 (function () {
   const d = sim('sim-manometer', 740);
   const Ps = ctl(d.controls, { label: '\\kPg', cls: 'pressure', min: -10, max: 20, step: 0.01, value: 0.49, unit: 'kPa', dec: 2, aria: 'the gauge pressure of the source connected to the right side',
-    detents: [{ v: -6.66, label: 'the jar' }, { v: 0 }, { v: 0.49, label: 'the balloon' }, { v: 16, label: 'systolic' }], snap: true });
+    detents: [{ v: -6.66, label: 'the jar' }, { v: 0.49, label: 'the balloon' }, { v: 16, label: 'systolic' }], snap: true, specials: [{ at: 0, label: 'levels even' }] });
   const fl = choice(d.controls, { label: '\\text{the fluid}', options: [{ value: 'water', label: 'water' }, { value: 'alcohol', label: 'ethyl alcohol' }, { value: 'glycerin', label: 'glycerin' }, { value: 'mercury', label: 'mercury' }], value: 'water', aria: 'the fluid in the tube' });
   /* The scene scale is fixed from the slider maximum in mercury, 0.150 m across the
      two levels, at 2000 canvas units to the metre, and never follows a slider. */
@@ -165,7 +179,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     const { ctx } = begin(d.c);
     const pc = C('pressure'), hc = C('position'), rc = C('density');
     const p = Ps.v * 1000, f = FLUIDS[fl.value];
-    const h = p / (f.rho * G), half = h * S / 2;
+    const h = p / (f.rho * G), half = fl.mix((v) => p / (FLUIDS[v].rho * G)) * S / 2;
     const yl = Y0 - half, yr = Y0 + half;                          /* the level on the open side rises when the source pushes */
     const outL = yl < YT || yl > YB, outR = yr < YT || yr > YB, out = outL || outR;
     const yL = Math.min(Math.max(yl, YT), YB), yR = Math.min(Math.max(yr, YT), YB);
@@ -174,7 +188,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     ctx.strokeStyle = PAL.panel; ctx.lineWidth = IW; tubePath(ctx); ctx.stroke(); ctx.restore();
     /* the fluid, clipped to below the two levels */
     ctx.save(); ctx.beginPath(); ctx.rect(XL - IW / 2, yL, IW, YRUN - yL + IW); ctx.rect(XR - IW / 2, yR, IW, YRUN - yR + IW); ctx.rect(XL, YRUN - IW, XR - XL, 2 * IW); ctx.clip();
-    ctx.lineCap = 'butt'; ctx.strokeStyle = f.color; ctx.lineWidth = IW; tubePath(ctx); ctx.stroke(); ctx.restore();
+    ctx.lineCap = 'butt'; ctx.lineWidth = IW; fluidPaint(ctx, fl, (c) => { ctx.strokeStyle = c; tubePath(ctx); ctx.stroke(); }); ctx.restore();
     line(ctx, XL - IW / 2, yL, XL + IW / 2, yL, PAL.ink, 2.5); line(ctx, XR - IW / 2, yR, XR + IW / 2, yR, PAL.ink, 2.5);
     /* the meter stick between the legs, in centimetres from the rest level */
     const MX = 450;
@@ -188,7 +202,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     /* the levels carried to the stick, and the height between them */
     line(ctx, XL + IW / 2, yL, MX - 12, yL, alpha(PAL.ink, 0.35), 2, [4, 8]);
     line(ctx, XR - IW / 2, yR, MX + 12, yR, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    if (Math.abs(h) >= 0.0005) vbracket(ctx, 570, Math.min(yL, yR), Math.max(yL, yR), hc, 'h = ' + hstr(Math.abs(h)), 1);
+    if (Math.abs(yR - yL) >= 1) vbracket(ctx, 570, Math.min(yL, yR), Math.max(yL, yR), hc, 'h = ' + hstr(Math.abs(h)), 1);
     if (outL) pinned(ctx, legBox(XL), ident, ident, XL, yl, hc);
     if (outR) pinned(ctx, legBox(XR), ident, ident, XR, yr, hc);
     /* the open side, and the source on the right */
@@ -224,10 +238,10 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
       : out ? 'The ' + (p > 0 ? 'balloon' : 'jar') + ' is ' + fmt(Math.abs(p) / 1000, 2) + ' kPa ' + (p > 0 ? 'above' : 'below') + ' atmospheric pressure, which would stand ' + hstr(Math.abs(h)) + ' of ' + f.name + ', more than this tube can hold.'
       : p > 0 ? 'The balloon is ' + fmt(p / 1000, 2) + ' kPa above atmospheric pressure, so the ' + f.name + ' stands ' + hstr(h) + ' higher on the open side.'
       : 'The jar is ' + fmt(-p / 1000, 2) + ' kPa below atmospheric pressure, so the atmosphere pushes the ' + f.name + ' ' + hstr(-h) + ' higher on the jar’s side.');
-    readout(d.readout, `\\begin{aligned}\\kPg &= \\kh\\krho\\kg = (${Math.abs(h) < 0.1 ? num(h, 4) : sig3(h)}\\ \\text{m})(${f.s}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${Math.abs(p) >= 1000 ? fmt(p / 1000, 2) + '\\ \\text{kPa}' : num(p, 0) + '\\ \\text{Pa}'}\\\\ \\kPabs &= \\kPatm + \\kh\\krho\\kg = 101.3\\ \\text{kPa} ${p < 0 ? '-' : '+'} ${fmt(Math.abs(p) / 1000, 2)}\\ \\text{kPa} = ${fmt((PATM + p) / 1000, 1)}\\ \\text{kPa}\\end{aligned}`,
+    readout(d.readout, `\\kPg = \\kh\\krho\\kg = (${Math.abs(h) < 0.1 ? num(h, 4) : sig3(h)}\\ \\text{m})(${f.s}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${Math.abs(p) >= 1000 ? fmt(p / 1000, 2) + '\\ \\text{kPa}' : num(p, 0) + '\\ \\text{Pa}'}`,
       Math.abs(p) < 0.5 ? 'Atmospheric pressure pushes down on each side equally, so its effect cancels and the levels are equal whatever the diameters of the two legs. Slide the pressure either way to connect a source to the right side.'
-      : out ? 'In the units the problem set asks for, this is ' + num(cmw, 1) + ' cm of water, which is ' + num(mmhg, 1) + ' mm of mercury. A column of ' + f.name + ' ' + hstr(Math.abs(h)) + ' tall runs far beyond this tube, which is why mercury, 13.6 times as dense as water, is used for pressures of this size.'
-      : 'In the units the problem set asks for, this is ' + num(cmw, 2) + ' cm of water, which is ' + num(mmhg, 2) + ' mm of mercury. The gauge pressure is negative when the source is below atmospheric pressure, and the atmosphere then holds the column up on the source’s side.');
+      : out ? 'The absolute pressure is ' + fmt((PATM + p) / 1000, 1) + ' kPa. In the units the problem set asks for, the gauge pressure is ' + num(cmw, 1) + ' cm of water, which is ' + num(mmhg, 1) + ' mm of mercury. A column of ' + f.name + ' ' + hstr(Math.abs(h)) + ' tall runs far beyond this tube, which is why mercury, 13.6 times as dense as water, is used for pressures of this size.'
+      : 'The absolute pressure is ' + fmt((PATM + p) / 1000, 1) + ' kPa. In the units the problem set asks for, the gauge pressure is ' + num(cmw, 2) + ' cm of water, which is ' + num(mmhg, 2) + ' mm of mercury. The gauge pressure is negative when the source is below atmospheric pressure, and the atmosphere then holds the column up on the source’s side.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -251,9 +265,9 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     const { ctx } = begin(d.c);
     const pc = C('pressure'), hc = C('position');
     const p = Ps.v * 1000, f = FLUIDS[fl.value];
-    const h = p / (f.rho * G), out = h > TUBE, yh = YS - Math.min(h, TUBE) * S;
+    const h = p / (f.rho * G), hd = fl.mix((v) => p / (FLUIDS[v].rho * G)), out = hd > TUBE, yh = YS - Math.min(hd, TUBE) * S;
     /* the dish and the fluid in it */
-    ctx.save(); ctx.fillStyle = f.color; ctx.fillRect(452, YS, 496, 60); ctx.restore();
+    fluidPaint(ctx, fl, (c) => { ctx.fillStyle = c; ctx.fillRect(452, YS, 496, 60); });
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineCap = 'butt';
     ctx.beginPath(); ctx.moveTo(450, 580); ctx.lineTo(450, 682); ctx.lineTo(950, 682); ctx.lineTo(950, 580); ctx.stroke(); ctx.restore();
     line(ctx, 452, YS, TX - TW / 2 - WALL, YS, PAL.ink, 2.5); line(ctx, TX + TW / 2 + WALL, YS, 948, YS, PAL.ink, 2.5);
@@ -261,7 +275,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     /* the tube: the walls, the bore, the vacuum above the column and the column itself */
     ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(TX - TW / 2 - WALL, YTOP - WALL, TW + 2 * WALL, YS + 40 - YTOP + WALL); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(TX - TW / 2, YTOP, TW, YS + 40 - YTOP); ctx.restore();
-    ctx.save(); ctx.fillStyle = f.color; ctx.fillRect(TX - TW / 2, yh, TW, YS + 40 - yh); ctx.restore();
+    fluidPaint(ctx, fl, (c) => { ctx.fillStyle = c; ctx.fillRect(TX - TW / 2, yh, TW, YS + 40 - yh); });
     if (!out) line(ctx, TX - TW / 2, yh, TX + TW / 2, yh, PAL.ink, 2.5);
     if (!out) text(ctx, 'vacuum (P_abs = 0)', TX + TW / 2 + 24, YTOP + 22, PAL.ink, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* a scale up the tube, in tenths of a metre */
@@ -273,8 +287,8 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     line(ctx, TX - 9, YS - 9, TX + 9, YS + 9, PAL.ink, 2.5); line(ctx, TX - 9, YS + 9, TX + 9, YS - 9, PAL.ink, 2.5);
     text(ctx, 'P_abs = hρg = P_atm', TX + TW / 2 + 26, YS - 34, pc, { size: 19, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* the height of the column */
-    if (h > 0.0005) vbracket(ctx, TX - 130, out ? YTOP : yh, YS, hc, 'h = ' + (h >= 1 ? sig3(h) : fmt(h, 3)) + ' m', -1);
-    if (out) pinned(ctx, { l: TX, r: TX, t: YTOP, b: YS }, ident, ident, TX, YS - h * S, hc);
+    if (hd > 0.0005) vbracket(ctx, TX - 130, out ? YTOP : yh, YS, hc, 'h = ' + (h >= 1 ? sig3(h) : fmt(h, 3)) + ' m', -1);
+    if (out) pinned(ctx, { l: TX, r: TX, t: YTOP, b: YS }, ident, ident, TX, YS - hd * S, hc);
     const mmhg = p / (FLUIDS.mercury.rho * G) * 1000, atm = p / PATM;
     topline(ctx, p < 50 ? 'With no atmosphere pressing on the dish, nothing holds the column up, and the ' + f.name + ' in the tube falls to the level of the dish.'
       : out ? 'At ' + fmt(p / 1000, 1) + ' kPa the atmosphere would hold up ' + hstr(h) + ' of water, far beyond the top of this tube.'

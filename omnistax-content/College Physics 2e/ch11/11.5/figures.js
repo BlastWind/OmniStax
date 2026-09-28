@@ -161,7 +161,8 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
      the largest pedal force on the narrowest pedal cylinder, 1.41 × 10⁸ N/m². */
   const PV = { x: 300, y: 150 }, ROD = 206, PAD = 420, CX0 = 420, CX1 = 540, KD = 30, KF = 0.6, MAN = 760, WX = 1080, WL = 200, PW = 22;
   const PMAX = (5 * 200) / (Math.PI * 0.0015 * 0.0015), MA = 0.2 / 0.04;
-  const rowsOf = (n) => (n === 4 ? [160, 305, 450, 595] : [300, 500]);
+  /* four rows; two wheel cylinders are the middle pair, and the outer pair arrives and leaves */
+  const ROWS = [160, 305, 450, 595], SHARED = [false, true, true, false];
   let hits = [];
   function tube(ctx, pts) {
     ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'butt';
@@ -177,13 +178,19 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('force'), pc = C('pressure');
-    const Fp = Fs.v, d1 = D1.v, d2 = D2.v, n = +count.value, rows = rowsOf(n);
+    const Fp = Fs.v, d1 = D1.v, d2 = D2.v, n = +count.value, rows = ROWS.filter((_, i) => n === 4 || SHARED[i]);
     const F1 = MA * Fp, a1 = Math.PI * (d1 / 2) ** 2, a2 = Math.PI * (d2 / 2) ** 2, P = F1 / (a1 * 1e-4), F2 = P * a2 * 1e-4;
     const h1 = KD * d1, h2 = KD * d2, L = P > 0 ? 8 + 30 * Math.sqrt(P / PMAX) : 0;
     /* the hydraulic line: out of the bottom of the pedal cylinder, along to the manifold, and a branch to each wheel cylinder */
-    const branchY = rows.map((yc) => yc + h2 / 2 + 12);
-    tube(ctx, [[520, ROD + h1 / 2], [520, 330], [MAN, 330], [MAN, branchY[0]], [MAN, branchY[branchY.length - 1]]]);
-    for (const y of branchY) tube(ctx, [[MAN, y], [WX - 50, y], [WX - 50, y - 14]]);
+    const [top, bot] = count.mix((v) => (v === '4' ? [ROWS[0], ROWS[3]] : [ROWS[1], ROWS[2]])).map((y) => y + h2 / 2 + 12);
+    const partOf = (i) => (SHARED[i] ? { a: 1, dy: 0 } : { a: count.a('4'), dy: count.off('4', [0, i ? 36 : -36])[1] });
+    tube(ctx, [[520, ROD + h1 / 2], [520, 330], [MAN, 330], [MAN, top], [MAN, bot]]);
+    ROWS.forEach((yc, i) => {
+      const { a, dy } = partOf(i), y = yc + dy + h2 / 2 + 12;
+      if (a <= 0) return;
+      ctx.save(); ctx.globalAlpha = a; tube(ctx, [[MAN, y], [WX - 50, y], [WX - 50, y - 14]]); ctx.restore();
+    });
+    const labelRow = count.mix((v) => (v === '4' ? [ROWS[0], ROWS[3]] : [ROWS[1], ROWS[2]]));
     /* the pedal and its lever: pivot at the top, the pushrod 0.040 m below it, the pad 0.20 m below it */
     fixed(ctx, PV.x - 30, PV.y - 36, 60, 26);
     line(ctx, PV.x, PV.y, PV.x, PAD + 14, PAL.ink, 9);
@@ -203,7 +210,10 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     vbracket(ctx, CX1 + 22, ROD - h1 / 2, ROD + h1 / 2, PAL.ink, fmt(d1, 2) + ' cm', 1);
     text(ctx, 'A_1 = ' + sig3(a1) + ' cm²', CX0 + 20, ROD - h1 / 2 - 26, PAL.ink, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the wheel cylinders, each with two pistons pushed outward by the same pressure */
-    rows.forEach((yc, i) => {
+    ROWS.forEach((y0, i) => {
+      const { a, dy } = partOf(i), yc = y0 + dy;
+      if (a <= 0) return;
+      ctx.save(); ctx.globalAlpha = a;
       ctx.save(); ctx.strokeStyle = alpha(PAL.muted, 0.55); ctx.lineWidth = 10; ctx.lineCap = 'butt';
       const R = Math.max(72, h2 / 2 + 30);
       ctx.beginPath(); ctx.arc(WX, yc, R, -0.78, 0.78); ctx.stroke(); ctx.beginPath(); ctx.arc(WX, yc, R, Math.PI - 0.78, Math.PI + 0.78); ctx.stroke(); ctx.restore();
@@ -217,13 +227,15 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       const room = 172;
       pushFrom(ctx, WX - WL / 2 - 2, yc, -1, 0, F2 * KF, room, fc);
       pushFrom(ctx, WX + WL / 2 + 2, yc, 1, 0, F2 * KF, room, fc);
-      if (i === 0 && F2 > 0) text(ctx, 'F_2 = ' + N(F2), WX + WL / 2 + 2 + Math.max(60, Math.min(F2 * KF, room)) / 2, yc - 28, fc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      if (i === rows.length - 1) {
-        vbracket(ctx, WX + 30, yc - h2 / 2, yc + h2 / 2, PAL.ink, undefined, 1);
-        text(ctx, fmt(d2, 2) + ' cm', WX + 30, yc + h2 / 2 + 22, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-        text(ctx, 'A_2 = ' + sig3(a2) + ' cm²', WX + 30, yc + h2 / 2 + 52, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      }
+      ctx.restore();
     });
+    {
+      const [yc, yb] = labelRow, room = 172;
+      if (F2 > 0) text(ctx, 'F_2 = ' + N(F2), WX + WL / 2 + 2 + Math.max(60, Math.min(F2 * KF, room)) / 2, yc - 28, fc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      vbracket(ctx, WX + 30, yb - h2 / 2, yb + h2 / 2, PAL.ink, undefined, 1);
+      text(ctx, fmt(d2, 2) + ' cm', WX + 30, yb + h2 / 2 + 22, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'A_2 = ' + sig3(a2) + ' cm²', WX + 30, yb + h2 / 2 + 52, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    }
     /* the foot on the pedal and the force on the pedal cylinder */
     const tf = push(ctx, PV.x - 5, PAD, 1, 0, Fp * KF, 160, fc);
     push(ctx, CX0 + 2, ROD, 1, 0, F1 * KF, CX0 - PV.x - 16, fc);
@@ -236,7 +248,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       { x: PV.x, y: PV.y, r: 22, name: 'the pivot of the pedal\u2019s lever' },
       { x: PV.x, y: ROD, r: 16, name: 'the pushrod, carrying ' + N(F1) + ' to the pedal cylinder' },
       { x: (CX0 + CX1) / 2, y: ROD, r: 44, name: 'the pedal cylinder, ' + fmt(d1, 2) + ' cm across' },
-      { x: MAN, y: (330 + branchY[branchY.length - 1]) / 2, r: 40, name: 'the hydraulic line, carrying the same pressure to every wheel cylinder' },
+      { x: MAN, y: (330 + bot) / 2, r: 40, name: 'the hydraulic line, carrying the same pressure to every wheel cylinder' },
       ...rows.map((yc, i) => ({ x: WX, y: yc, r: 70, name: 'wheel cylinder ' + (i + 1) + ', ' + fmt(d2, 2) + ' cm across, pushing out with ' + N(F2) + ' on each side' })),
     ];
     const word = n === 4 ? 'four' : 'two';

@@ -126,7 +126,10 @@ headline · graph · 3D
    and every arrow is capped at 250 units and carries its number · 2D. Readout: $\kwgt = \kgamma L\sin\theta$ with the live
    numbers and the angle it solves for; small line on the largest weight the
    surface can hold, $\kgamma L$, and on the surface breaking past it. Labels
-   on: four arrows and two names. Draws force, surface-tension.
+   on: four arrows and two names. The choice of body does not cut: the foot
+   and the needle fade and slide past each other through the choice's
+   `a`/`off` while the dent, the contact line and the two pulls stay, since
+   they are what the two bodies share (manim 16). Draws force, surface-tension.
 3. `sim-slide-wire` · replaces Figure 11.26, the sliding wire device ·
    surface-tension · **variation by slider and standardisation**: the book
    draws the device and says the force it measures gives the surface tension
@@ -145,9 +148,10 @@ headline · graph · 3D
    `pinned()`; mercury and gold lie beyond it and are named at the edge ·
    2D. Readout: $\kgamma = \kF/L = \kF/(2l)$ with the live numbers; small
    line naming the nearest liquid of the table or saying none is near. The
-   twelve liquids on the axis would collide, so their names are off by
-   default behind a Labels button with hover names, and the matched liquid is
-   always named (rule 26.7). Draws force, surface-tension.
+   twelve liquids on the axis would collide, so the figure names only the
+   four the section's examples use, and the matched liquid, where the
+   labeller finds room; the rest are named on hover (rule 26.7, no Labels
+   button). Draws force, surface-tension.
 4. `sim-two-balloons` · replaces Figure 11.27, the two balloons joined by a
    tube · pressure-inside-a-bubble · **flow by animation and variation by
    slider**: the book's arrow shows air moving from the small balloon to the
@@ -216,7 +220,9 @@ headline · graph · 3D
    cohesive forces win and the water stands as a bead on the wax." · none ·
    2D. Readout: the contact angle and the relation it states, which of the
    two forces is the stronger; small line naming the pair of Table 11.4 at a
-   detent. Draws nothing typed: the angle, the drop and the surface are ink,
+   detent. A dashed circle marks 90° on $\theta$, the line between wetting
+   and not wetting that the text and Figure 11.31's caption name (26.1).
+   Draws nothing typed: the angle, the drop and the surface are ink,
    and the figure lists no types.
 8. `sim-capillary` · replaces Figure 11.31 + 11.32, mercury suppressed and
    water raised in glass, then tubes of decreasing radius and two liquids
@@ -245,7 +251,10 @@ headline · graph · 3D
    weight limiting the height. The liquids are drawn as themselves: the
    clear ones as a faint ink tint with the name on the beaker, mercury as a
    denser grey tint of the same ink, since silver-grey is the physical fact
-   of mercury and no type hue is borrowed for it. Draws position,
+   of mercury and no type hue is borrowed for it. A dashed circle marks 90° on
+   $\theta$, where $\kh = 0$ (26.1); a change of liquid blends $\kgamma$,
+   $\krho$ and the tint through the choice's `mix`, so the column slides to
+   its new height instead of jumping (manim 15). Draws position,
    surface-tension, density, force.
 9. `sim-negative-pressure` · replaces Figure 11.33, the piston that
    stretches a liquid and the liquid that separates · capillary-action

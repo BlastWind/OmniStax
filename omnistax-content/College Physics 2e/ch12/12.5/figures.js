@@ -36,12 +36,15 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
   const T = 6.0;                            /* one crossing of the threads, s of screen time */
   const S1 = 20 / 3.4;                      /* the mean speed of the wide part on screen, mm/s: 20 mm in 3.4 s */
   const FLUIDS = [{ v: 1.002, name: 'water at 20 °C' }, { v: 1.257, name: 'blood plasma at 37 °C' }, { v: 2.084, name: 'whole blood at 37 °C' }, { v: 3.015, name: 'whole blood at 20 °C' }];
-  const Q = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 1.0, max: 16.0, step: 0.1, value: 8.0, unit: 'cm³/s', dec: 1, onInput: reset, aria: 'flow rate' });
-  const R2 = ctl(d.controls, { label: 'r_2', cls: '', min: 0.50, max: 2.00, step: 0.01, value: 0.75, unit: 'mm', dec: 2, onInput: reset, aria: 'radius of the narrowed part' });
+  const Q = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 1.0, max: 16.0, step: 0.1, value: 8.0, unit: 'cm³/s', dec: 1, onInput: reset, aria: 'flow rate',
+    specials: [2000, 3000].map((N) => ({ at: () => (N * Math.PI * ETA.v * 1e-3 * R2.v * 1e-3) / (2 * RHO) * 1e6, label: 'N_R = ' + N + ' in the narrow part' })) });
+  const R2 = ctl(d.controls, { label: 'r_2', cls: '', min: 0.50, max: 2.00, step: 0.01, value: 0.75, unit: 'mm', dec: 2, onInput: reset, aria: 'radius of the narrowed part',
+    specials: [2000, 3000].map((N) => ({ at: () => (2 * RHO * Q.v * 1e-6) / (Math.PI * ETA.v * 1e-3 * N) * 1e3, label: 'N_R = ' + N })) });
   const ETA = ctl(d.controls, {
     label: '\\keta', cls: 'viscosity', min: 0.5, max: 4.0, step: 0.001, value: 2.084, unit: 'mPa·s', dec: 3, onInput: reset, aria: 'viscosity', snap: true,
     detents: FLUIDS.map((f) => f.v),
   });
+  Q.refresh(); R2.refresh();
   const cy = cycle(() => T, 1.2);
   const fluidNamed = () => { const f = FLUIDS.find((q) => Math.abs(q.v - ETA.v) < 5e-4); return f ? ' This is the viscosity of ' + f.name + ' from Table 12.1.' : ''; };
 

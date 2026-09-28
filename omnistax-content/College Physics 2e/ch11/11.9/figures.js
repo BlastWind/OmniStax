@@ -137,7 +137,6 @@ const UNITS = {
     { id: 'pulm-veins', name: 'pulmonary veins', P: 8, x: 482, y: 265, side: 'right', head: 'The blood returns from the lungs through the pulmonary veins at about 8 mm Hg, to be pumped by the left side of the heart.' },
   ];
   const st = select(d.controls, { label: '\\text{the station}', options: ST.map((s) => ({ value: s.id, label: s.name })), value: 'aorta', aria: 'the station of the circuit whose pressure is read' });
-  const lab = choice(d.controls, { label: '\\text{labels}', options: [{ value: 'off', label: 'off' }, { value: 'on', label: 'on' }], value: 'off', aria: 'whether the parts of the circuit are named on the drawing' });
   /* the heart, the two loops and the lungs on the canvas */
   const HX = 440, HY = 400, HW = 80, HH = 130;                         /* the heart: two halves, each HW wide, HH tall */
   const LOOP = { l: 140, r: 740, b: 680, y: HY }, PL = { l: 398, r: 482, top: 200 };   /* the systemic loop and the pulmonary loop */
@@ -192,35 +191,27 @@ const UNITS = {
     /* the stations and their pressures; the chosen one is filled and the others hollow */
     for (const s of ST) {
       const on = s === cur;
-      dot(ctx, s.x, s.y, on ? pc : PAL.ink, on, on ? 11 : 8);
+      dot(ctx, s.x, s.y, PAL.ink, false, 8);
       const px = s.side === 'left' ? s.x - 26 : s.side === 'right' ? s.x + 26 : s.x, py = s.side === 'top' ? s.y - 34 : s.y;
       text(ctx, num(s.P, 0) + ' mm Hg', px, py, pc, { size: on ? 21 : 18, weight: 600, align: s.side === 'left' ? 'right' : s.side === 'right' ? 'left' : 'center', bg: alpha(PAL.panel, 0.9) });
     }
-    /* the parts named, when asked for */
-    if (lab.value === 'on') {
-      leader(ctx, 'lungs', HX + 130, 130, HX + 100, 145, PAL.ink, 'left');
-      leader(ctx, 'capillaries', HX, LOOP.b + 46, HX, LOOP.b + 14, PAL.ink, 'center');
-      leader(ctx, 'veins', LOOP.l - 26, 545, LOOP.l - 12, 545, PAL.ink, 'right');
-      leader(ctx, 'aorta', 680, LOOP.y + 36, 680, LOOP.y + 12, PAL.ink, 'center');
-      leader(ctx, 'small arteries', LOOP.r + 26, 530, LOOP.r + 12, 510, PAL.ink, 'left');
-      leader(ctx, 'arterioles', LOOP.r + 26, 650, LOOP.r + 12, 630, PAL.ink, 'left');
-      leader(ctx, 'venules', LOOP.l - 26, 650, LOOP.l - 12, 630, PAL.ink, 'right');
-      leader(ctx, 'vena cavae', LOOP.l - 26, 500, LOOP.l - 12, 480, PAL.ink, 'right');
-      leader(ctx, 'pulmonary artery', PL.l - 26, 300, PL.l - 12, 280, PAL.ink, 'right');
-      leader(ctx, 'pulmonary veins', PL.r + 26, 300, PL.r + 12, 280, PAL.ink, 'left');
-      leader(ctx, 'right atrium', HX - HW - 22, HY - 46, HX - HW + 4, HY - 40, PAL.ink, 'right'); leader(ctx, 'right ventricle', HX - HW - 22, HY + 46, HX - HW + 4, HY + 40, PAL.ink, 'right');
-      leader(ctx, 'left atrium', HX + HW + 22, HY - 46, HX + HW - 4, HY - 40, PAL.ink, 'left'); leader(ctx, 'left ventricle', HX + HW + 22, HY + 46, HX + HW - 4, HY + 40, PAL.ink, 'left');
-    }
+    /* the chosen station's marker glides round to the next one chosen */
+    const [mx, my] = st.mix((v) => { const s = ST.find((q) => q.id === v); return [s.x, s.y]; });
+    dot(ctx, mx, my, pc, true, 11);
+    /* the parts that carry no pressure of their own are named on the drawing; the chambers and vessels by hover */
+    leader(ctx, 'lungs', HX + 130, 130, HX + 100, 145, PAL.ink, 'left');
+    leader(ctx, 'capillaries', HX, LOOP.b + 46, HX, LOOP.b + 14, PAL.ink, 'center');
     /* the profile beside the loop: the pressure at each station in circuit order, on a fixed axis 0 to 140 mm Hg, and the two rises the pumps make */
     const box = { l: 1040, r: 1350, t: 150, b: 610 }, X = (v) => box.l + (v / 140) * (box.r - box.l), RH = (box.b - box.t) / ST.length;
     for (let v = 0; v <= 140; v += 20) { line(ctx, X(v), box.t, X(v), box.b, v ? PAL.rule : PAL.muted, v ? 1.5 : 2); text(ctx, fmt(v, 0), X(v), box.b + 24, PAL.muted, { size: 17, align: 'center' }); }
     line(ctx, box.l, box.b, box.r, box.b, PAL.muted, 2);
     text(ctx, 'gauge pressure (mm Hg)', box.r, box.b + 54, pc, { size: 20, weight: 600, align: 'right' });
     text(ctx, 'around the circuit, from the left side of the heart', box.l, box.t - 24, PAL.muted, { size: 17 });
+    const glow = st.mix((v) => ST.map((s) => (s.id === v ? 0.65 : 0.3)));
     ST.forEach((s, i) => {
       const y = box.t + (i + 0.5) * RH, on = s === cur;
       text(ctx, s.name, box.l - 14, y, on ? PAL.ink : PAL.muted, { size: 18, align: 'right', weight: on ? 600 : 400 });
-      ctx.save(); ctx.fillStyle = alpha(pc, on ? 0.65 : 0.3); ctx.strokeStyle = pc; ctx.lineWidth = 2; rrect(ctx, box.l, y - 12, Math.max(X(s.P) - box.l, 4), 24, 5); ctx.fill(); ctx.stroke(); ctx.restore();
+      ctx.save(); ctx.fillStyle = alpha(pc, glow[i]); ctx.strokeStyle = pc; ctx.lineWidth = 2; rrect(ctx, box.l, y - 12, Math.max(X(s.P) - box.l, 4), 24, 5); ctx.fill(); ctx.stroke(); ctx.restore();
       if (on) text(ctx, num(s.P, 0), X(s.P) + 10, y, pc, { size: 18, weight: 600 });
     });
     /* the pumps: from the vena cavae up to the pulmonary artery, and from the pulmonary veins back up to the aorta */
@@ -244,7 +235,7 @@ const UNITS = {
 ===================================================================== */
 (function () {
   const d = sim('sim-blood-column', 700);
-  const hs = ctl(d.controls, { label: '\\kdh', cls: 'position', min: -0.4, max: 1.4, step: 0.05, value: 1.4, unit: 'm', dec: 2, aria: 'the depth of the point below the heart, negative above it', detents: [-0.4, 0, 1.4] });
+  const hs = ctl(d.controls, { label: '\\kdh', cls: 'position', min: -0.4, max: 1.4, step: 0.05, value: 1.4, unit: 'm', dec: 2, aria: 'the depth of the point below the heart, negative above it', detents: [-0.4, 0, 1.4], specials: [{ at: 0, label: 'the level of the heart' }] });
   const pose = choice(d.controls, { label: '\\text{posture}', options: [{ value: 'standing', label: 'standing' }, { value: 'lying', label: 'lying down' }], value: 'standing', aria: 'whether the person stands or lies down' });
   /* the person is 1.80 m tall with the heart 1.40 m above the feet, which is the book's distance; SC is canvas units per meter */
   const SC = 290, HEART = 1.4, TOP = 1.8, GY = 640, BX = 330, BEDY = 420, BEDX = 110;
@@ -266,34 +257,38 @@ const UNITS = {
   function draw() {
     const { ctx } = begin(d.c);
     const pc = C('pressure'), xc = C('position'), standing = pose.value === 'standing';
-    const dh = hs.v, dhEff = standing ? dh : 0, dP = dhEff * RHO_BLOOD * G, dPmm = dP / MMHG;
+    /* the body turns about its feet from standing to lying; the depth that counts is the vertical one, dh sin of its tilt */
+    const turn = pose.mix((v) => (v === 'standing' ? [90, BX, GY] : [0, BEDX, BEDY])), tilt = turn[0] * Math.PI / 180, ux = Math.cos(tilt), uy = -Math.sin(tilt);
+    const up = -uy;
+    const dh = hs.v, dhEff = eps(dh * up, 3), dP = dhEff * RHO_BLOOD * G, dPmm = dP / MMHG;
     const where = Math.abs(dh - 1.4) < 1e-6 ? 'the feet' : Math.abs(dh + 0.4) < 1e-6 ? 'the top of the head' : Math.abs(dh) < 1e-6 ? 'the heart' : 'a point ' + fmt(Math.abs(dh), 2) + ' m ' + (dh > 0 ? 'below' : 'above') + ' the heart';
-    if (standing) {
-      strip(ctx, 60, 620, GY + 14, 24);
-      const P = body(ctx, BX, GY, 0, -1);
-      const [, hy] = P(HEART, 0), [, py] = P(HEART - dh, 0);
-      /* the column of blood between the heart and the point, and its depth */
-      ctx.save(); ctx.fillStyle = alpha(BLOOD, 0.3); ctx.fillRect(BX - 13, Math.min(hy, py), 26, Math.abs(py - hy)); ctx.restore();
-      dot(ctx, BX, hy, BLOOD, true, 9); text(ctx, 'the heart', BX + 0.24 * SC + 16, hy, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.9) });
-      dot(ctx, BX, py, xc, true, 9);
+    const aS = pose.a('standing'), aL = pose.a('lying');
+    const faded = (q, paint) => { if (q <= 0) return; ctx.save(); ctx.globalAlpha = q; paint(); ctx.restore(); };
+    faded(aL, () => {
+      ctx.save(); ctx.fillStyle = PAL.soft; rrect(ctx, 60, BEDY - 0.34 * SC, 610, 0.68 * SC, 18); ctx.fill(); ctx.restore();
+      text(ctx, 'the bed, seen from above', 660, BEDY + 0.34 * SC + 26, PAL.muted, { size: 17, align: 'right' });
+    });
+    faded(aS, () => strip(ctx, 60, 620, GY + 14, 24));
+    const P = body(ctx, turn[1], turn[2], ux, uy);
+    const [hx, hy] = P(HEART, 0), [px, py] = P(HEART - dh, 0);
+    /* the column of blood between the heart and the point, fading as the body lies down and the column has no height */
+    faded(0.3 * up, () => { const [ax, ay] = P(HEART, -0.045), [bx, by] = P(HEART, 0.045), [cx, cy] = P(HEART - dh, 0.045), [ex, ey] = P(HEART - dh, -0.045); ctx.fillStyle = BLOOD; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.lineTo(cx, cy); ctx.lineTo(ex, ey); ctx.closePath(); ctx.fill(); });
+    dot(ctx, hx, hy, BLOOD, true, 9); dot(ctx, px, py, xc, true, 9);
+    faded(aS, () => {
+      text(ctx, 'the heart', hx + 0.24 * SC + 16, hy, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.9) });
       /* the scale of depth below the heart beside the person */
-      const SX = 560; line(ctx, SX, P(TOP, 0)[1], SX, GY, PAL.muted, 2);
+      const SX = 560; line(ctx, SX, hy - (TOP - HEART) * SC, SX, hy + HEART * SC, PAL.muted, 2);
       for (let v = -0.4; v <= 1.41; v += 0.2) { const y = hy + v * SC; line(ctx, SX - 8, y, SX + 8, y, PAL.muted, 2); text(ctx, plus(v, 1) + ' m', SX + 16, y, PAL.muted, { size: 16 }); }
       text(ctx, 'depth below the heart', SX - 60, GY + 44, xc, { size: 17, weight: 600 });
-      line(ctx, BX + 13, py, SX, py, xc, 2, [4, 8]);
-      if (Math.abs(dh) > 0.02) vbracket(ctx, 200, Math.min(hy, py), Math.max(hy, py), xc, 'Δh = ' + num(dh, 2) + ' m', -1);
-      else text(ctx, 'Δh = 0', 184, hy, xc, { size: 22, weight: 600, align: 'right' });
-    } else {
-      ctx.save(); ctx.fillStyle = PAL.soft; rrect(ctx, 60, BEDY - 0.34 * SC, 610, 0.68 * SC, 18); ctx.fill(); ctx.restore();
-      text(ctx, 'the bed, seen from above', 70, BEDY + 0.34 * SC + 26, PAL.muted, { size: 17 });
-      const P = body(ctx, BEDX, BEDY, 1, 0);
-      const [hx, hy] = P(HEART, 0), [px] = P(HEART - dh, 0);
+      if (Math.abs(py - hy) > 6) line(ctx, px + 13, py, SX, py, xc, 2, [4, 8]);
+    });
+    faded(aL, () => {
       line(ctx, 40, hy, 700, hy, xc, 2, [10, 10]);
       text(ctx, 'the level of the heart', 60, hy - 60, xc, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.9) });
-      dot(ctx, hx, hy, BLOOD, true, 9); text(ctx, 'the heart', hx, hy - 34 - 0.22 * SC, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.9) });
-      dot(ctx, px, hy, xc, true, 9);
-      text(ctx, 'Δh = 0', px, hy + 0.3 * SC + 26, xc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
-    }
+      text(ctx, 'the heart', hx, hy - 34 - 0.22 * SC, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.9) });
+    });
+    if (Math.abs(py - hy) > 6) vbracket(ctx, Math.min(hx, px) - 130, Math.min(hy, py), Math.max(hy, py), xc, 'Δh = ' + num(dhEff, 2) + ' m', -1);
+    else text(ctx, 'Δh = 0', standing ? 184 : px, standing ? hy : hy + 0.3 * SC + 26, xc, { size: 22, weight: 600, align: standing ? 'right' : 'center', bg: alpha(PAL.panel, 0.9) });
     /* the graph beside the person: the difference in pressure against the depth, on fixed axes from the slider range */
     const box = { l: 800, r: 1330, t: 130, b: 560 };
     const { X, Y } = axes(ctx, box, [-0.4, 1.4], [-40, 120], { xl: 'depth below the heart Δh (m)', yl: 'increase in pressure ΔP (mm Hg)', xc: xc, yc: pc, nx: 9, ny: 4, fx: (v) => num(v, 1), fy: (v) => num(v, 0) });

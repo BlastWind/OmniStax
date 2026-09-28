@@ -54,9 +54,11 @@ function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx
 ===================================================================== */
 (function () {
   const d = sim('sim-wake', 620);
-  const vs = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.1, max: 40, step: 0.1, value: 40, unit: 'm/s', dec: 1, aria: 'the speed of the ball through the fluid' });
+  const vs = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.1, max: 40, step: 0.1, value: 40, unit: 'm/s', dec: 1, aria: 'the speed of the ball through the fluid',
+    specials: [[1, '1'], [10, '10'], [1e6, '10^6']].map(([N, lab]) => ({ at: () => { const f = fluidOf(fl.value); return (N * f.eta) / (f.rho * (Ls.v / 100)); }, label: 'N′_R = ' + lab })) });
   const Ls = ctl(d.controls, { label: 'L', cls: '', min: 0.1, max: 10, step: 0.1, value: 7.4, unit: 'cm', dec: 1, aria: 'the diameter of the ball' });
   const fl = select(d.controls, { label: '\\text{the fluid}', options: FLUID_OPTS, value: 'air', aria: 'the fluid the ball moves through' });
+  vs.refresh();
   const cy = cycle(() => Infinity, 0);
   /* the scene: a frame of fluid with the ball at its centre, in logical units */
   const CX = 720, CY = 330, RB = 105, FX0 = 60, FX1 = 1340, FY0 = 100, FY1 = 560;

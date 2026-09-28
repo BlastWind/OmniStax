@@ -86,7 +86,7 @@ function freeBody(ctx, x, y, arrows, title) {
     const fc = C('force'), gc = C('surface-tension');
     const w = ws.v, L = Ls.v / 1000, g = gs.v, hold = g * L * 1000;          /* hold: the most the surface can carry, in mN */
     const s = hold > 0 ? w / hold : Infinity, breaks = s > 1, th = breaks ? 90 : Math.asin(s) / RAD;
-    const needle = body.value === 'needle', R = needle ? 16 : 30;
+    const needle = body.value === 'needle', R = body.mix((v) => (v === 'needle' ? 16 : 30));
     const D = breaks ? DENT : DENT * Math.sin(th * RAD), yc = Y0 + D;      /* the dent bottom, where the body's equator sits */
     const cosT = Math.cos(th * RAD), sinT = Math.sin(th * RAD), k = 0.35 * (CX - R - XL);
     /* the liquid: flat far away, dented to the contact points, or closed over a body that has sunk */
@@ -111,16 +111,19 @@ function freeBody(ctx, x, y, arrows, title) {
     text(ctx, liq ? liq : 'the liquid, γ = ' + sigz(g, 3) + ' N/m', XL + 16, YB - 26, PAL.muted, { size: 18 });
     /* the body: the foot of an insect on its leg, or a needle seen end-on */
     const bx = CX, by = breaks ? sunk.y : yc;
-    if (needle) {
-      dot(ctx, bx, by, PAL.ink, false, R); dot(ctx, bx, by, PAL.ink, true, R - 8);
+    /* each body fades and slides in or out as the choice turns, while the dent and the pulls stay */
+    const part = (v, paint) => { const q = body.a(v); if (q <= 0) return; const [ox, oy] = body.off(v, [0, -40]); ctx.save(); ctx.globalAlpha = q; ctx.translate(ox, oy); paint(); ctx.restore(); };
+    part('needle', () => {
+      dot(ctx, bx, by, PAL.ink, false, R); dot(ctx, bx, by, PAL.ink, true, Math.max(1, R - 8));
       text(ctx, 'iron needle, seen end-on', bx + R + 150, by + 58, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
       line(ctx, bx + R + 10, by + 10, bx + R + 62, by + 50, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
-    } else {
+    });
+    part('insect', () => {
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       ctx.beginPath(); ctx.moveTo(bx, by - R + 4); ctx.lineTo(bx + 60, by - 130); ctx.lineTo(bx + 210, by - 225); ctx.stroke(); ctx.restore();
       shape(ctx, (c) => c.ellipse(bx, by, R, R * 0.6, 0, 0, TAU), PAL.ink);
       text(ctx, 'insect’s foot on its leg', bx + 120, by - 250, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
-    }
+    });
     /* the forces: the two pulls of the surface along itself, their net, and the weight */
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
     const half = hold / 2;
@@ -134,7 +137,7 @@ function freeBody(ctx, x, y, arrows, title) {
       arrow(ctx, CX - R, yc, CX - R - alen(half), yc, fc, 4); lab.add('F_ST', CX - R - alen(half), yc, -1, 0, fc, 20, 22);
       arrow(ctx, CX + R, yc, CX + R + alen(half), yc, fc, 4); lab.add('F_ST', CX + R + alen(half), yc, 1, 0, fc, 20, 22);
     }
-    if (w > 0) { const wl = Math.min(alen(w), YB - 30 - by - R); arrow(ctx, bx, by + (needle ? R : R * 0.6), bx, by + R + wl, fc, 5); lab.add('w = ' + sigz(w, 3) + ' mN', bx, by + R + wl, 0, 1, fc, 20, 22); }
+    if (w > 0) { const wl = Math.min(alen(w), YB - 30 - by - R); arrow(ctx, bx, by + body.mix((v) => (v === 'needle' ? 16 : 18)), bx, by + R + wl, fc, 5); lab.add('w = ' + sigz(w, 3) + ' mN', bx, by + R + wl, 0, 1, fc, 20, 22); }
     lab.flush();
     /* the free-body diagram the book draws beside each panel */
     const FX = 1160, FY = 300, fl = 100;                                    /* each pull is drawn 100 long, and the weight as their two upward parts, 200 sin θ */
@@ -163,11 +166,12 @@ function freeBody(ctx, x, y, arrows, title) {
   const d = sim('sim-slide-wire', 780);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 8, step: 0.01, value: 3.16, unit: 'mN', dec: 2, aria: 'the force that holds the wire in place' });
   const ls = ctl(d.controls, { label: 'l', cls: '', min: 5, max: 50, step: 0.1, value: 25, unit: 'mm', dec: 1, aria: 'the length of the sliding wire' });
-  const labels = choice(d.controls, { label: 'Labels', options: [{ value: 'off', label: 'Off' }, { value: 'on', label: 'On' }], value: 'off', aria: 'the names of the liquids on the axis' });
   /* the frame, the axis and the force scale: 40 units per millinewton, fixed from the slider maximum; the axis runs 0 to 0.10 N/m */
   const FL = 260, FY = 280, WX = 580, KF = 40;
   const AX = { l: 200, r: 1300, t: 620, b: 690 }, GR = [0, 0.1];
   const onAxis = TABLE.filter((r) => r.g <= GR[1]), beyond = TABLE.filter((r) => r.g > GR[1]);
+  /* the four liquids the examples use carry their names; the rest are named on hover, and the labeller drops any that would collide */
+  const named = new Set(GAMMA_DETENTS.map((x) => x.v));
   let hits = [];
   hover(d.stage, () => hits);
   function draw() {
@@ -201,7 +205,7 @@ function freeBody(ctx, x, y, arrows, title) {
       const x = X(r.g), isMatch = match && r === near;
       line(ctx, x, AX.b - 36, x, AX.b, isMatch ? gc : PAL.ink, isMatch ? 4 : 2);
       dot(ctx, x, AX.b - 36, isMatch ? gc : PAL.ink, isMatch, isMatch ? 8 : 6);
-      if (labels.value === 'on' || isMatch) lab.add(r.n, x, AX.b - 36, i % 2 ? 0.4 : -0.4, -1, isMatch ? gc : PAL.ink, 17, i % 2 ? 24 : 58);
+      if (named.has(r.g) || isMatch) lab.add(r.n, x, AX.b - 36, i % 2 ? 0.4 : -0.4, -1, isMatch ? gc : PAL.ink, 17, i % 2 ? 24 : 58);
     });
     text(ctx, beyond.map((r) => r.n + ' at ' + sigz(r.g, 3) + ' N/m').join(' and ') + ' lie beyond the axis', AX.l, AX.b + 58, PAL.muted, { size: 17 });
     const p = pinned(ctx, AX, X, (v) => AX.b, g, 0, gc, 'γ = ' + sigz(g, 3) + ' N/m');
@@ -343,7 +347,7 @@ function freeBody(ctx, x, y, arrows, title) {
 ===================================================================== */
 (function () {
   const d = sim('sim-contact-angle', 560);
-  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 107, unit: '°', dec: 0, detents: THETA_DETENTS, snap: true, aria: 'the contact angle' });
+  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 107, unit: '°', dec: 0, detents: THETA_DETENTS, snap: true, specials: [{ at: 90, label: 'the line between wetting and not wetting' }], aria: 'the contact angle' });
   const YS = 420, CX = 620, A0 = 150 * 150 * Math.PI / 2;                    /* the drop's area: a half-disc of radius 150 at 90°; below 10° and above 172° the drawing holds its shape, since a thinner film would run off the canvas */
   function draw() {
     const { ctx } = begin(d.c);
@@ -383,7 +387,7 @@ function freeBody(ctx, x, y, arrows, title) {
   const d = sim('sim-capillary', 740);
   const LIQ = { water: { n: 'water', g: 0.0728, rho: 1000 }, alcohol: { n: 'ethyl alcohol', g: 0.0223, rho: 790 }, glycerin: { n: 'glycerin', g: 0.0631, rho: 1260 }, mercury: { n: 'mercury', g: 0.465, rho: 13600 }, olive: { n: 'olive oil', g: 0.032, rho: 920 } };
   const liq = choice(d.controls, { label: '\\text{the liquid}', options: Object.entries(LIQ).map(([v, L]) => ({ value: v, label: L.n })), value: 'water', aria: 'the liquid in the container' });
-  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 0, unit: '°', dec: 0, detents: THETA_TICKS, snap: true, aria: 'the contact angle between the liquid and the glass' });
+  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 0, unit: '°', dec: 0, detents: THETA_TICKS, snap: true, specials: [{ at: 90, label: 'neither raised nor suppressed' }], aria: 'the contact angle between the liquid and the glass' });
   const rs = ctl(d.controls, { label: 'r', cls: '', min: 0.1, max: 9, step: 0.01, value: 0.5, unit: 'mm', dec: 2, aria: 'the radius of the tube' });
   /* the scene: the level in the container at Y0, 20 units per centimetre of height, the tube from 16 cm above to 8 cm below; the graph: r 0 to 9 mm, h −8 to 16 cm, fixed */
   const Y0 = 480, SC = 20, HMAX = 16, HMIN = -8, TX = 400, BL = 160, BR = 640, BB = 680;
@@ -392,8 +396,8 @@ function freeBody(ctx, x, y, arrows, title) {
   function draw() {
     const { ctx, H } = begin(d.c);
     const hc = C('position'), gc = C('surface-tension'), dc = C('density'), fc = C('force');
-    const L = LIQ[liq.value], th = ts.v, r = rs.v, h = zero(hOf(L, th, r), 5e-6), hcm = h * 100;
-    const fill = alpha(PAL.ink, L.n === 'mercury' ? 0.35 : 0.1);
+    const L = { ...LIQ[liq.value], ...liq.mix((v) => ({ g: LIQ[v].g, rho: LIQ[v].rho })) }, th = ts.v, r = rs.v, h = zero(hOf(L, th, r), 5e-6), hcm = h * 100;
+    const fill = alpha(PAL.ink, liq.mix((v) => (v === 'mercury' ? 0.35 : 0.1)));
     const bw = 14 + r * 6, wall = 5, TT = Y0 - (HMAX + 3) * SC;              /* the bore half-width follows the radius; the tube top stands above the tallest column the frame shows */
     const ytop = Y0 - Math.max(HMIN, Math.min(HMAX, hcm)) * SC, out = hcm > HMAX || hcm < HMIN;
     /* the container and its liquid */
@@ -429,7 +433,7 @@ function freeBody(ctx, x, y, arrows, title) {
     const rword = fmt(r, 2) + ' mm', tword = fmt(th, 0) + '°';
     topline(ctx, Math.abs(cs) <= 0.02 ? L.n[0].toUpperCase() + L.n.slice(1) + ' in a glass tube ' + rword + ' in radius, with a contact angle of 90°, is neither raised nor suppressed.'
       : L.n[0].toUpperCase() + L.n.slice(1) + ' in a glass tube ' + rword + ' in radius, with a contact angle of ' + tword + ', is ' + (h > 0 ? 'raised ' : 'suppressed ') + sigz(Math.abs(hcm), 3) + ' cm' + (out ? ', which is beyond the frame drawn here.' : '.'));
-    readout(d.readout, `\\kh = \\frac{2\\kgamma\\cos\\theta}{\\krho\\kg r} = \\frac{2(${sigz(L.g, 3)}\\ \\text{N/m})\\cos ${fmt(th, 0)}^\\circ}{(${L.rho}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${sciTex(r / 1000, 3)}\\ \\text{m})} = ${minus(sigz(hcm, 3))}\\ \\text{cm}`,
+    readout(d.readout, `\\kh = \\frac{2\\kgamma\\cos\\theta}{\\krho\\kg r} = \\frac{2(${sigz(L.g, 3)}\\ \\text{N/m})\\cos ${fmt(th, 0)}^\\circ}{(${Math.round(L.rho)}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${sciTex(r / 1000, 3)}\\ \\text{m})} = ${minus(sigz(hcm, 3))}\\ \\text{cm}`,
       'The height is positive, and the liquid raised, when the contact angle is less than 90°, and negative, the liquid suppressed, when it is more, as it is for mercury in glass. The column is held up by the pull of the surface round the rim of the tube, and it climbs until the weight of the column matches that pull, which is why a narrower tube and a lighter liquid climb higher.');
   }
   register(d.fig, { update: () => {}, draw });

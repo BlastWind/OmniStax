@@ -180,3 +180,5 @@ radii, the Reynolds number, its graph and its bands are ink.
 
 Applied in the chapter pass (2026-09-14): every anchor above is written on its
 row; the link on Example 12.8 is plain text.
+
+House-style pass (2026-09-28, Claude Opus 5.5). `sim-turbulence`: dashed circles on $r_2$ and on $\kQ$ where the narrowed part reaches $N_{\text{R}} = 2000$ and $3000$, the two thresholds the text names, each solved from the other two sliders; landing on one puts the narrow part exactly on a boundary. Motion unchanged.

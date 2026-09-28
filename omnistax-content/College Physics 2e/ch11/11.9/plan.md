@@ -149,8 +149,12 @@ graph · 3D
    pressure hue; vessel walls, labels and the lungs are ink. Labels: seven
    station names plus the heart's four chambers, the lungs and the
    capillaries exceed six, so the station names sit on the chart's category
-   axis (frame, always shown) and the anatomical names on the loop are off by
-   default behind a Labels button with hover names (rule 26.7). Draws
+   axis (frame, always shown), the loop names only the lungs and the
+   capillaries, which carry no pressure of their own, and the chambers and
+   vessels are named on hover; there is no Labels button (rule 26.7). The
+   filled station marker glides to the next station chosen,
+   and the chosen bar's shade blends, through the choice's `mix` (manim 16).
+   `BLOOD` and `BLOOD_DARK` stay hex constants: they are the physical fact. Draws
    pressure.
 3. `sim-blood-column` · Sim (it replaces no figure of the book) ·
    blood-pressure-and-height, pressure-from-weight-of-fluid · value add:
@@ -181,7 +185,10 @@ graph · 3D
    its head is a quarter of its height, so scaled to a metre rule with the
    heart 1.40 m up it would stand 2.2 m tall and the scale beside it would
    say so. The same drawing is turned through a right angle to lie on the
-   bed. The heart is
+   bed, and the change of posture is a turn, not a cut: the body rotates
+   about its feet through the choice's `mix`, the column of blood fading as
+   its height goes to nothing, the floor giving way to the bed. A dashed
+   circle marks $\kdh = 0$, the heart's level (26.1). The heart is
    a small mark in blood red (the physical fact, `#C93A2E`); the density of
    blood and $\kg$ are stated and untyped on this page (`ch11/COLOR.md` binds
    only pressure, position and force here). Draws pressure, position.

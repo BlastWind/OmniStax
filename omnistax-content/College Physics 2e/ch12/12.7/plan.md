@@ -299,3 +299,5 @@ and sugar of the osmosis figure take the element palette; the molecules of
 
 Applied in the chapter pass (2026-09-14): every anchor above is written on its
 row; nothing else was wanted and nothing else was changed.
+
+House-style pass (2026-09-28, Claude Opus 5.5). `sim-concentration`: a dashed circle on each $C$ slider at the other's value, the equal pair where the net rate is zero. `sim-membrane`: switching the membrane no longer cuts; the pores close into the dissolving layer (their width blends to zero) and open out of it, every molecule keeps its place, and the parts only one kind has (the pore label, the molecules in and against the pores, the molecules dissolved in the layer, the right-hand molecules a pore holds back) fade in or out. `sim-osmosis`: a dashed circle on $\kh$ at $P/\krho\kg$, where the back pressure balances the osmotic pressure. `sim-random-walk` kept.

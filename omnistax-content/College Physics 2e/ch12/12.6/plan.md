@@ -185,3 +185,5 @@ the Definitions view, where the variable is listed under a length and not
 under the angular momentum. The wake figure's
 caption no longer speaks of the book; it names Stokes' law and Chapter 5's
 drag equation as the two laws the readout uses.
+
+House-style pass (2026-09-28, Claude Opus 5.5). `sim-wake`: dashed circles on $\kv$ where $N'_{\text{R}} = 1$, $10$ and $10^6$ for the set size and fluid, the regime boundaries the text names; a circle out of range is hidden. Motion unchanged. `sim-terminal` kept.

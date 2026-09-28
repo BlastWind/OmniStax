@@ -111,6 +111,7 @@ headline · graph · 3D
    are ink with a soft fill; the force on their face is the `force` hue and
    the pressure arrow into the stem the `pressure` hue. Draws pressure,
    force.
+   **Choice morphs** (manim 16): gauge to absolute slides the dial's numbering round by 14.7 psi through the choice's `mix`, the pointer never moving; a dashed circle on $\kPg$ at 0, atmospheric pressure, the gauge's zero the text names (manim 8), in place of the labelled detent.
 2. `sim-manometer` · replaces Figure 11.14 (a), (b) and (c), the manometer
    level, raised by the balloon and lowered by the peanut jar, one image
    under one number and so not a fold · manometer, gauge-pressure,
@@ -152,6 +153,7 @@ headline · graph · 3D
    `#a9b2bd`, and the three colourless liquids the pale blue `#bfe0f2` the
    book prints its water in, told apart by the label, since a colourless
    liquid has no colour to draw. Draws pressure, position, density.
+   **Choice morphs** (manim 15): a new fluid's levels blend to their new heights through `mix` and its colour fades over the last; a dashed circle on $\kPg$ at 0, where the levels stand even (manim 8). `HG` (mercury, silver) and `CLEAR` (the book's pale blue of a clear liquid) are the physical fact, kept as colours.
 3. `fig-cuff` · Figure 11.15, the blood pressure cuff · photograph, **kept**:
    the text points at it ("as shown in Figure 11.15") and the second
    conceptual question refers to it; the book's caption and its credit
@@ -182,6 +184,7 @@ headline · graph · 3D
    vacuum, the dish and $\kh$, so labels are on. Mercury is the silver of
    `#a9b2bd` and water the pale blue `#bfe0f2`, as in `sim-manometer`, the
    physical fact and not a hue. Draws pressure, position, density.
+   **Choice morphs** (manim 15/16): mercury to water grows the column from 760 mm towards 10.3 m through `mix`, the tube and scale kept, and the fluid's colour fades across; `HG` and `CLEAR` are the physical fact, as for the manometer.
 
 Photographs: one, Figure 11.15, kept as above. No unnumbered image travels on
 any card of this section.

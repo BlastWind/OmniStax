@@ -294,3 +294,5 @@ figure's default was raised from four branches to six so that the page opens
 on a vessel whose total cross-section grows and the blood visibly slows; at
 four branches of 5.0 mm the total equalled the vessel's own and the headline
 said nothing had changed.
+
+Manim pass (2026-09-28, Claude Opus 5.5). `sim-flow-cylinder`: the book's derivation on the cylinder becomes a story slider with three stops, V/t, Ad/t and Av̄. Value add: the reader sees the readout morph by meaning (`F.morphAt`, V splitting into A and d, then d over t bending together into v̄) while the length bracket of the shaded volume turns into the speed arrow over the last step. The reader's speed, radius and time sliders work at every stop and the story never moves them; the small line states each step. Still otherwise, no clock. `sim-continuity` and `sim-branching` kept.

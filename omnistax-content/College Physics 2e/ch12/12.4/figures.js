@@ -54,90 +54,96 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
    FIGURE 12.15: laminar layers over a bed, and the same stream over an
    obstruction that breaks it into eddies. Still: the two states are what
    the two kinds of flow look like, not one becoming the other, which is
-   12.5's figure; a choice swaps them and each has one slider of its own.
+   12.5's figure. The choice raises the obstruction out of the bed while
+   the channel and its layer boundaries stay, lifting over it and breaking
+   into eddies behind it; the one speed slider works in both.
 ===================================================================== */
 (function () {
   const d = sim('sim-laminar-turbulent', 560);
-  let mode = 'laminar';
   const vs = ctl(d.controls, { label: '{\\kv}_{\\text{t}}', cls: 'velocity', min: 0.2, max: 2, step: 0.05, value: 1, unit: 'm/s', dec: 2, aria: 'the speed of the top layer' });
-  const hs = ctl(d.controls, { label: '\\text{obstruction}', cls: '', min: 10, max: 60, step: 1, value: 40, unit: '% of depth', dec: 0, aria: 'the height of the obstruction as a share of the depth', disabled: true });
-  choice(d.controls, { label: '\\text{flow}', options: [{ value: 'laminar', label: 'Laminar' }, { value: 'turbulent', label: 'Turbulent' }], value: mode, aria: 'laminar or turbulent flow',
-    onInput: (v) => { mode = v; vs.disable(mode !== 'laminar'); hs.disable(mode !== 'turbulent'); } });
+  const pick = choice(d.controls, { label: '\\text{flow}', options: [{ value: 'laminar', label: 'Laminar' }, { value: 'turbulent', label: 'Turbulent' }], value: 'laminar', aria: 'laminar or turbulent flow' });
   /* the channel: bed at BED, surface at TOP, depth D; five layers of equal thickness; the arrows are drawn at
-     KV units per m/s, so the top layer's arrow at the slider's maximum of 2.0 m/s is 300 units long */
-  const X1 = 80, X2 = 1320, BED = 470, TOP = 130, D = BED - TOP, N = 5, KV = 150;
+     KV units per m/s, so the top layer's arrow at the slider's maximum of 2.0 m/s is 300 units long; the
+     obstruction is 40 % of the depth, WB either side of XB */
+  const X1 = 80, X2 = 1320, BED = 470, TOP = 130, D = BED - TOP, N = 5, KV = 150, HB = 0.4 * D, XB = 640, WB = 220;
   const hits = [];
-  function laminar(ctx) {
-    const vt = vs.v, vc = C('velocity');
-    for (let i = 0; i < N; i++) {                                  /* i = 0 is the layer on the bed */
-      const y1 = BED - (i + 1) * (D / N), y0 = BED - i * (D / N), yc = (y0 + y1) / 2, v = vt * (i + 1) / N;
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, i % 2 ? 0.035 : 0.075); ctx.fillRect(X1, y1, X2 - X1, y0 - y1); ctx.restore();
-      if (i) line(ctx, X1, y0, X2, y0, alpha(PAL.ink, 0.35), 2);
-      for (let x = 160; x < 900; x += 330) arrow(ctx, x, yc, x + v * KV, yc, vc, 4);
-      hits.push({ x: 700, y: yc, r: D / N / 2, name: `layer ${i + 1} of ${N}, moving at ${fmt(v, 2)} m/s` });
-      if (i === N - 1) text(ctx, 'v_t = ' + fmt(v, 2) + ' m/s', 820 + v * KV + 16, yc, vc, { size: 22, weight: 600, bg: PAL.panel });
-      if (i === 0) text(ctx, 'v_b = ' + fmt(v, 2) + ' m/s', 820 + v * KV + 16, yc, vc, { size: 22, weight: 600, bg: PAL.panel });
-    }
-    /* the friction between layers, marked as the book marks it: wavy strokes across two boundaries with one label */
-    const wavy = (x, y) => { ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); for (let t = -26; t <= 26; t += 2) ctx.lineTo(x + 5 * Math.sin(t / 4), y + t); ctx.stroke(); ctx.restore(); };
-    wavy(1120, BED - 2 * (D / N)); wavy(1180, BED - 1 * (D / N));
-    line(ctx, 1150, BED - 1.2 * (D / N) + 20, 1150, BED + 30, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
-    text(ctx, 'friction between layers, and with the bed', 1150, BED + 50, PAL.ink, { size: 19, align: 'center' });
-    text(ctx, 'the stream in section, flowing to the right', X2, TOP - 22, PAL.muted, { size: 19, align: 'right' });
-    topline(ctx, `The layers slide past one another without mixing: the top one moves at ${fmt(vt, 2)} m/s, the one on the bed at ${fmt(vt / N, 2)} m/s, and friction acts between each pair.`);
-    readout(d.readout, `{\\kv}_{\\text{t}} = ${fmt(vt, 2)}\\ \\text{m/s},\\qquad {\\kv}_{\\text{b}} = ${fmt(vt / N, 2)}\\ \\text{m/s}`,
-      'Laminar flow: the layers keep their order and slide past one another, and the friction between them is the drag that viscosity describes.');
-  }
-  function turbulent(ctx) {
-    const vt = vs.v, vc = C('velocity'), hb = hs.v / 100 * D, XB = 640, WB = 220;
-    /* the obstruction: a smooth bump on the bed, WB wide and hb tall */
-    const bump = (x) => { const u = (x - XB) / WB; return Math.abs(u) < 1 ? hb * 0.5 * (1 + Math.cos(Math.PI * u)) : 0; };
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(XB - WB, BED);
-    for (let x = XB - WB; x <= XB + WB; x += 6) ctx.lineTo(x, BED - bump(x)); ctx.lineTo(XB + WB, BED); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'obstruction', XB, BED - hb / 2, PAL.ink, { size: 19, weight: 600, align: 'center' });
-    /* six streamlines: ahead of the bump each keeps its share of the depth above the bed, so it lifts over the bump;
-       behind it the ones that ran below the bump's top are broken, and the ones above waver more the lower they are */
-    const wakeEnd = XB + WB + 60 + hb * 3;
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 2.5;
-    for (let k = 1; k <= 6; k++) {
-      const f = k / 7, yLevel = BED - f * D; ctx.beginPath(); ctx.moveTo(X1, yLevel);
-      const broken = f * D < hb;
-      for (let x = X1; x <= X2; x += 8) {
-        const b = bump(x); let y = BED - b - f * (D - b);
-        if (x > XB && broken) break;
-        if (x > XB + WB * 0.3) { const s = Math.min(1, (x - XB - WB * 0.3) / 300), a = (1 - f) * 22 * s * (hb / D) * 2; y += a * Math.sin((x - XB) / 38 + k); }
-        ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-      if (!broken) arrow(ctx, X1 + 40 + 0.001, yLevel, X1 + 40 + vt * KV * 0.6, yLevel, vc, 4);
-    }
-    ctx.restore();
-    text(ctx, 'v = ' + fmt(vt, 2) + ' m/s', X1 + 40, TOP + 8, vc, { size: 22, weight: 600, bg: PAL.panel });
-    /* the eddies behind the bump: curled arrows, one kind, labelled once, each with a hover name */
-    const eddies = [];
-    const n = 3 + Math.round(hb / 40);
-    for (let i = 0; i < n; i++) {
-      const ex = XB + WB * 0.55 + 70 + (i % 3) * 110 + Math.floor(i / 3) * 40, ey = BED - 30 - (i * 53) % Math.max(60, hb + 60), r = 18 + (i % 2) * 8;
-      if (ex > X2 - 60) continue;
-      const ccw = i % 2 === 0, a0 = 0.3 + i, a1 = ccw ? a0 - 4.6 : a0 + 4.6;
-      ctx.save(); ctx.strokeStyle = vc; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(ex, ey, r, a0, a1, ccw); ctx.stroke(); ctx.restore();
-      const tip = [ex + r * Math.cos(a1), ey + r * Math.sin(a1)], tx = ccw ? Math.sin(a1) : -Math.sin(a1), ty = ccw ? -Math.cos(a1) : Math.cos(a1);
-      arrow(ctx, tip[0] - 4 * tx, tip[1] - 4 * ty, tip[0] + 14 * tx, tip[1] + 14 * ty, vc, 3.5);
-      eddies.push({ x: ex, y: ey, r: r + 10, name: 'an eddy: fluid swirling across the direction of flow' });
-    }
-    hits.push(...eddies);
-    if (eddies.length) { const e0 = eddies[eddies.length - 1]; text(ctx, 'eddies and swirls mix the layers', Math.min(1180, e0.x + 40), TOP + 60, vc, { size: 20, weight: 600, bg: PAL.panel, align: 'center' }); }
-    text(ctx, 'the stream in section, flowing to the right', X2, TOP - 22, PAL.muted, { size: 19, align: 'right' });
-    topline(ctx, `An obstruction ${fmt(hs.v, 0)}% of the depth bends the streamlines over it and leaves eddies behind it that carry fluid across the flow.`);
-    readout(d.readout, `\\kv = ${fmt(vt, 2)}\\ \\text{m/s}`,
-      'Turbulent flow: behind the obstruction the layers mix, there are velocities across the direction of flow, and there is more heating and more resistance than in laminar flow.');
-  }
+  const faded = (ctx, a, f) => { if (a <= 0) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); };
   function draw() {
     const { ctx } = begin(d.c); hits.length = 0;
+    const vt = vs.v, vc = C('velocity'), lam = pick.value === 'laminar';
+    const aL = pick.a('laminar'), aT = pick.a('turbulent'), hb = pick.mix((m) => (m === 'turbulent' ? HB : 0));
     fixed(ctx, X1, BED, X2 - X1, 30);
     line(ctx, X1, TOP, X2, TOP, alpha(PAL.ink, 0.5), 2, [12, 10]);
     text(ctx, 'the bed', X1 + 12, BED + 15, PAL.ink, { size: 17, bg: PAL.panel });
-    if (mode === 'laminar') laminar(ctx); else turbulent(ctx);
+    /* the layers, shaded alternately, and the speed of each */
+    faded(ctx, aL, () => {
+      for (let i = 0; i < N; i++) {                                  /* i = 0 is the layer on the bed */
+        const y1 = BED - (i + 1) * (D / N), y0 = BED - i * (D / N);
+        ctx.fillStyle = alpha(PAL.ink, i % 2 ? 0.035 : 0.075); ctx.fillRect(X1, y1, X2 - X1, y0 - y1);
+      }
+    });
+    /* the obstruction rises out of the bed: a smooth bump, WB wide and hb tall */
+    const bump = (x) => { const u = (x - XB) / WB; return Math.abs(u) < 1 ? hb * 0.5 * (1 + Math.cos(Math.PI * u)) : 0; };
+    if (hb > 0.5) {
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(XB - WB, BED);
+      for (let x = XB - WB; x <= XB + WB; x += 6) ctx.lineTo(x, BED - bump(x)); ctx.lineTo(XB + WB, BED); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+      faded(ctx, aT, () => text(ctx, 'obstruction', XB, BED - hb / 2, PAL.ink, { size: 19, weight: 600, align: 'center' }));
+    }
+    /* the boundaries between layers: each keeps its share of the depth above the bed, so it lifts over the bump;
+       behind it the ones below the bump's top break off, and the ones above waver more the lower they are */
+    ctx.save(); ctx.lineWidth = 2.5;
+    for (let k = 1; k < N; k++) {
+      const f = k / N, broken = f * D < HB;
+      const pts = [];
+      for (let x = X1; x <= X2; x += 8) {
+        const b = bump(x); let y = BED - b - f * (D - b);
+        if (x > XB + WB * 0.3) { const s = Math.min(1, (x - XB - WB * 0.3) / 300), a = (1 - f) * 22 * s * (hb / D) * 2; y += a * Math.sin((x - XB) / 38 + k); }
+        pts.push([x, y]);
+      }
+      const col = alpha(PAL.ink, 0.35 + 0.35 * aT);
+      const run = (ps) => { ctx.strokeStyle = col; ctx.beginPath(); ps.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke(); };
+      run(pts.filter(([x]) => !broken || x <= XB));
+      if (broken) faded(ctx, aL, () => run(pts.filter(([x]) => x >= XB)));
+    }
+    ctx.restore();
+    /* the speeds: every layer's upstream arrow stays; the ones over and behind the bump leave with the layers */
+    for (let i = 0; i < N; i++) {
+      const yc = BED - (i + 0.5) * (D / N), v = vt * (i + 1) / N;
+      arrow(ctx, 160, yc, 160 + v * KV, yc, vc, 4);
+      faded(ctx, aL, () => { for (const x of [490, 820]) arrow(ctx, x, yc, x + v * KV, yc, vc, 4); });
+      if (lam) hits.push({ x: 700, y: yc, r: D / N / 2, name: `layer ${i + 1} of ${N}, moving at ${fmt(v, 2)} m/s` });
+    }
+    faded(ctx, aL, () => {
+      text(ctx, 'v_t = ' + fmt(vt, 2) + ' m/s', 820 + vt * KV + 16, BED - (N - 0.5) * (D / N), vc, { size: 22, weight: 600, bg: PAL.panel });
+      text(ctx, 'v_b = ' + fmt(vt / N, 2) + ' m/s', 820 + (vt / N) * KV + 16, BED - 0.5 * (D / N), vc, { size: 22, weight: 600, bg: PAL.panel });
+      /* the friction between layers, marked as the book marks it: wavy strokes across two boundaries with one label */
+      const wavy = (x, y) => { ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); for (let t = -26; t <= 26; t += 2) ctx.lineTo(x + 5 * Math.sin(t / 4), y + t); ctx.stroke(); ctx.restore(); };
+      wavy(1120, BED - 2 * (D / N)); wavy(1180, BED - 1 * (D / N));
+      line(ctx, 1150, BED - 1.2 * (D / N) + 20, 1150, BED + 30, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
+      text(ctx, 'friction between layers, and with the bed', 1150, BED + 50, PAL.ink, { size: 19, align: 'center' });
+    });
+    /* the eddies behind the bump: curled arrows, one kind, labelled once, each with a hover name */
+    faded(ctx, aT, () => {
+      const eddies = [], n = 3 + Math.round(HB / 40);
+      for (let i = 0; i < n; i++) {
+        const ex = XB + WB * 0.55 + 70 + (i % 3) * 110 + Math.floor(i / 3) * 40, ey = BED - 30 - (i * 53) % Math.max(60, HB + 60), r = 18 + (i % 2) * 8;
+        if (ex > X2 - 60) continue;
+        const ccw = i % 2 === 0, a0 = 0.3 + i, a1 = ccw ? a0 - 4.6 : a0 + 4.6;
+        ctx.save(); ctx.strokeStyle = vc; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(ex, ey, r, a0, a1, ccw); ctx.stroke(); ctx.restore();
+        const tip = [ex + r * Math.cos(a1), ey + r * Math.sin(a1)], tx = ccw ? Math.sin(a1) : -Math.sin(a1), ty = ccw ? -Math.cos(a1) : Math.cos(a1);
+        arrow(ctx, tip[0] - 4 * tx, tip[1] - 4 * ty, tip[0] + 14 * tx, tip[1] + 14 * ty, vc, 3.5);
+        eddies.push({ x: ex, y: ey, r: r + 10, name: 'an eddy: fluid swirling across the direction of flow' });
+      }
+      if (!lam) hits.push(...eddies);
+      if (eddies.length) { const e0 = eddies[eddies.length - 1]; text(ctx, 'eddies and swirls mix the layers', Math.min(1180, e0.x + 40), TOP + 60, vc, { size: 20, weight: 600, bg: PAL.panel, align: 'center' }); }
+    });
+    text(ctx, 'the stream in section, flowing to the right', X2, TOP - 22, PAL.muted, { size: 19, align: 'right' });
+    topline(ctx, lam
+      ? `The layers slide past one another without mixing: the top one moves at ${fmt(vt, 2)} m/s, the one on the bed at ${fmt(vt / N, 2)} m/s, and friction acts between each pair.`
+      : 'An obstruction 40% of the depth bends the layers over it and leaves eddies behind it that carry fluid across the flow.');
+    readout(d.readout, `{\\kv}_{\\text{t}} = ${fmt(vt, 2)}\\ \\text{m/s}`, lam
+      ? 'Laminar flow: the layers keep their order and slide past one another, the one on the bed at ' + fmt(vt / N, 2) + ' m/s, and the friction between them is the drag that viscosity describes.'
+      : 'Turbulent flow: behind the obstruction the layers mix, there are velocities across the direction of flow, and there is more heating and more resistance than in laminar flow.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });

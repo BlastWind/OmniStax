@@ -142,6 +142,7 @@ headline · graph · 3D
    six, each labelled beside itself, so labels are on. Draws force, density.
    The cylinder is ink with a labelled outline and the fluid a soft panel,
    since no body wears a type hue.
+   **Morphs by meaning** (manim 11, 16): the outline stays and the cylinder's fill fades so the fluid shows through it (choice `a`), the free-body weight arrow blends from $w$ to $w_{\text{fl}}$, and the readout's $\kFtwo - \kFone$ bends into $\kwfl$ with its numbers fading out; a dashed circle on $\krhoobj$ sits at $\krhofl$, the rise/sink threshold of Figure 11.19 (manim 8), and landing on it adds $= w$ to the equation.
 3. `sim-ship` · replaces Figure 11.20, the unloaded and the loaded ship ·
    fraction-submerged, average-density-decides-floating,
    archimedes-principle, float-sink-suspend · variation by slider: the
@@ -243,6 +244,7 @@ headline · graph · 3D
    specific gravity when the fluid is water. Labels: the block, the fluid,
    the surface and one bracket, so labels are on. Draws force, density (the
    two forces on the block are drawn equal while it floats).
+   **Special values** (manim 8): a dashed circle on $\krhoobj$ at $\krhofl$ and on $\krhofl$ at $\krhoobj$, where the fraction submerged reaches 1 and the block hangs neither rising nor sinking; the 1000 kg/m³ detent on $\krhoobj$ gives way to it.
 
 Photographs: three, Figure 11.17 and Figure 11.22 kept as above; the ships
 of Figure 11.20 are a drawing and are replaced. No photograph is dropped.

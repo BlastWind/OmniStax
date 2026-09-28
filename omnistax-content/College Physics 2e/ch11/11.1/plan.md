@@ -191,3 +191,5 @@ plan's reason stands and the config's "What the build changed" block records
 it.
 
 Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-phases`: the plate and the piston now carry the push that moves them, an ink arrow onto the plate's end for the shear and onto the piston's middle for the compression, since the page binds no type; the plasma's electrons are drawn a little larger so the panel reads at page width. Nothing else changed.
+
+Figure pass, 2026-09-28 (Claude Opus 5.5). `sim-phases`: a new push no longer cuts to a new picture. The plate and the piston fade in and slide or lift into place, the lid lifts away as it opens and settles back as it closes, and the molecules that refill a closed box fade in where they are, so the four samples stay put while only the parts one push has come and go. The clock stays, since the motion is the idea.

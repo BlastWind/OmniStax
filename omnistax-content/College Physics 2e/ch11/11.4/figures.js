@@ -58,6 +58,22 @@ function tree(ctx, x, y, s = 1) {
   const rs = ctl(d.controls, { label: '\\krho', cls: 'density', min: 600, max: 1400, step: 5, value: 1000, unit: 'kg/m³', dec: 0, aria: 'the density of the fluid',
     detents: [{ v: 680, label: 'gasoline' }, 790, 920, 1000, 1025, 1050, { v: 1260, label: 'glycerin' }] });
   const As = ctl(d.controls, { label: 'A', cls: '', min: 0.25, max: 2, step: 0.05, value: 1, unit: 'm²', dec: 2, aria: 'the area of the bottom of the container' });
+  /* the book's derivation as a story: each stop rewrites one factor of P = F/A, and the fluid, the depth and the pressure arrive with it */
+  const st = ctl(d.controls, { label: '\\text{derivation}', cls: '', min: 0, max: 4, step: 0.01, value: 0, unit: '', dec: 2, aria: 'the steps from P = F/A to P = hρg' });
+  F.story(d, st, { stops: [{ v: 0, label: 'F/A' }, { v: 1, label: 'mg/A' }, { v: 2, label: 'ρVg/A' }, { v: 3, label: 'ρAhg/A' }, { v: 4, label: 'hρg' }] });
+  const formula = el('span'), note = el('small');
+  d.readout.append(formula, note);
+  const res = (P) => ` = \\mk{r}{${sci(P).tex}}\\ \\text{N/m}^2`;
+  const STEPS = [
+    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{F}{\\kF}}{\\mk{A}{A}}` + res(P),
+    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{m}{m}\\mk{g}{\\kg}}{\\mk{A}{A}}` + res(P),
+    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{rho}{\\krho}\\mk{V}{V}\\mk{g}{\\kg}}{\\mk{A}{A}}` + res(P),
+    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{rho}{\\krho}\\mk{A2}{A}\\mk{h}{\\kh}\\mk{g}{\\kg}}{\\mk{A}{A}}` + res(P),
+    (P, h, rho) => `\\mk{P}{\\kPr} = \\mk{h}{\\kh}\\mk{rho}{\\krho}\\mk{g}{\\kg} = (\\mk{hv}{${fmt(h, 1)}}\\ \\text{m})(\\mk{rv}{${sci(rho).tex}}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)` + res(P),
+  ];
+  /* the factor each step splits: F into m and g, m into ρ and V, V into A and h; at the last the two areas cancel */
+  const SPLIT = [{ F: ['m', 'g'] }, { m: ['rho', 'V'] }, { V: ['A2', 'h'] }, undefined];
+  const clamp = (x) => Math.max(0, Math.min(1, x));
   /* Scales, fixed from the slider maxima and never rescaled: 32 canvas units to the
      metre of depth, so 12 m fills the tank; the tank's width follows the square
      root of the area on a scale of its own, 95 units to the metre, since a tank
@@ -74,52 +90,66 @@ function tree(ctx, x, y, s = 1) {
     const h = hs.v, rho = rs.v, A = As.v;
     const P = h * rho * G, m = rho * A * h, w = m * G;
     const half = KW2 * Math.sqrt(A) / 2, L = CX - half, R = CX + half, SY = BOT - h * KD;
+    const s = st.v, kFill = clamp(s), kDepth = clamp(s - 2), kP = clamp(s - 3);
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 100);
-    /* the fluid, a translucent fill, and the tank in ink */
-    if (h > 0) { ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.22); ctx.fillRect(L, SY, R - L, BOT - SY); ctx.restore(); line(ctx, L, SY, R, SY, PAL.muted, 2); }
-    line(ctx, L, TOPY, L, BOT, PAL.ink, 4); line(ctx, R, TOPY, R, BOT, PAL.ink, 4); line(ctx, L - 2, BOT, R + 2, BOT, PAL.ink, 4);
-    /* the pressure on the walls, one arrow per metre of depth and one at the bottom, and on the bottom */
-    const depths = []; for (let k = 1; k < h - 0.3; k += 1) depths.push(k); if (h > 0) depths.push(h);
-    for (const dd of depths) {
-      const y = BOT - (h - dd) * KD, len = dd * rho * G * KP;
-      if (len < 6) continue;
-      arrow(ctx, L, y, L - len, y, pc, 3); arrow(ctx, R, y, R + len, y, pc, 3);
+    /* the fluid, a translucent fill rising to its surface as its mass enters the derivation, and the tank in ink */
+    if (h > 0) {
+      const y = BOT - kFill * (BOT - SY);
+      ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.22); ctx.fillRect(L, y, R - L, BOT - y); ctx.restore();
+      line(ctx, L, SY, R, SY, PAL.muted, 2, kFill < 1 ? [8, 8] : undefined);
     }
-    const lenB = P * KP;
+    line(ctx, L, TOPY, L, BOT, PAL.ink, 4); line(ctx, R, TOPY, R, BOT, PAL.ink, 4); line(ctx, L - 2, BOT, R + 2, BOT, PAL.ink, 4);
+    /* the pressure on the walls, one arrow per metre of depth and one at the bottom, and on the bottom, growing in a cascade as the areas cancel */
+    const depths = []; for (let k = 1; k < h - 0.3; k += 1) depths.push(k); if (h > 0) depths.push(h);
     const nB = A < 0.6 ? 3 : 5;   /* fewer arrows under a narrow bottom, so they never touch */
-    if (lenB >= 6) for (let i = 0; i < nB; i++) { const x = L + ((R - L) * (i + 0.5)) / nB; arrow(ctx, x, BOT, x, BOT + lenB, pc, 3); }
-    /* the weight of the fluid, down through its middle */
+    const lenB = P * KP, nA = depths.length + nB;
+    depths.forEach((dd, i) => {
+      const y = BOT - (h - dd) * KD, len = dd * rho * G * KP * F.stagger(kP, i, nA, 0.1);
+      if (len >= 6) { arrow(ctx, L, y, L - len, y, pc, 3); arrow(ctx, R, y, R + len, y, pc, 3); }
+    });
+    for (let i = 0; i < nB; i++) { const x = L + ((R - L) * (i + 0.5)) / nB, len = lenB * F.stagger(kP, depths.length + i, nA, 0.1); if (len >= 6) arrow(ctx, x, BOT, x, BOT + len, pc, 3); }
+    /* the force on the bottom, down through the fluid's middle: F at the first step, the weight mg from the second */
     if (w > 0) {
       const y0 = (SY + BOT) / 2 - Math.min(w * KW, BOT - SY) / 2, y1 = y0 + w * KW;
       arrow(ctx, CX, y0, CX, y1, fc, 5);
       /* named beyond the wall arrows at its own depth, with a leader back to the arrow */
-      const ym = (y0 + y1) / 2, reach = (R - CX) + Math.max(0, (h - (BOT - ym) / KD) * rho * G * KP) + 26;
-      lab.add('w = mg = ' + sci(w).txt + ' N', CX, ym, 1, 0, fc, 21, reach);
+      const ym = (y0 + y1) / 2, reach = (R - CX) + Math.max(0, (h - (BOT - ym) / KD) * rho * G * KP * kP) + 26;
+      lab.add((s < 0.5 ? 'F = ' : 'w = mg = ') + sci(w).txt + ' N', CX, ym, 1, 0, fc, 21, reach);
     }
-    /* the depth, the area and the pressure at the bottom */
-    if (h > 0) vbracket(ctx, L - 118, SY, BOT, xc, 'h = ' + fmt(h, 1) + ' m', -1);
+    /* the depth, brought forward as V becomes Ah, the area, and the pressure at the bottom once it is found */
+    ctx.save(); ctx.globalAlpha = 0.35 + 0.65 * kDepth;
+    if (h > 0) vbracket(ctx, L - 118, SY, BOT, xc, 'h = ' + fmt(h, 1) + ' m', -1, { size: 19 });
+    ctx.restore();
     text(ctx, 'A = ' + fmt(A, 2) + ' m²', CX, BOT + 88 + 24, PAL.ink, { align: 'center', weight: 600, size: 22 });
-    if (h > 0) lab.add('P = ' + kpa(P) + ' kPa', R + 4, BOT + Math.max(lenB, 10) / 2 + 6, 1, 0.2, pc, 21, 20);
+    if (h > 0 && kP > 0.5) lab.add('P = ' + kpa(P) + ' kPa', R + 4, BOT + Math.max(lenB, 10) / 2 + 6, 1, 0.2, pc, 21, 20);
     text(ctx, 'the container', L - 4, TOPY - 16, PAL.muted, { size: 18, align: 'left' });
     /* the graph: pressure against depth for this fluid, the 1 atm level dashed across it */
     const { X, Y } = axes(ctx, box, [0, 12], [0, 200], { xl: 'depth h (m)', yl: 'pressure due to the fluid, P (kPa)', xc, yc: pc, nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, box.l, Y(101), box.r, Y(101), PAL.muted, 2, [10, 10]);
     text(ctx, '1 atm = 101 kPa', box.l + 8, Y(101) - 16, PAL.muted, { size: 17, align: 'left' });
-    curve(ctx, (x) => (x * rho * G) / 1000, 0, 12, X, Y, pc, 4);
-    text(ctx, 'slope ρg, ρ = ' + fmt(rho, 0) + ' kg/m³', X(12) - 6, Y((12 * rho * G) / 1000) + (rho > 1250 ? 24 : -20), dc, { size: 18, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    if (h > 0) {
-      line(ctx, X(h), Y(P / 1000), X(h), box.b, xc, 2, [4, 8]);
-      line(ctx, box.l, Y(P / 1000), X(h), Y(P / 1000), pc, 2, [4, 8]);
+    /* the line P = hρg draws along its length as the derivation reaches it */
+    if (kP > 0) {
+      const pts = []; for (let i = 0; i <= 60; i++) { const x = (12 * i) / 60; pts.push([X(x), Y((x * rho * G) / 1000)]); }
+      ctx.save(); ctx.strokeStyle = pc; ctx.lineWidth = 4; ctx.beginPath(); F.partial(pts, kP).forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke(); ctx.restore();
+      ctx.save(); ctx.globalAlpha = kP;
+      text(ctx, 'slope ρg, ρ = ' + fmt(rho, 0) + ' kg/m³', X(12) - 6, Y((12 * rho * G) / 1000) + (rho > 1250 ? 24 : -20), dc, { size: 18, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+      if (h > 0) {
+        line(ctx, X(h), Y(P / 1000), X(h), box.b, xc, 2, [4, 8]);
+        line(ctx, box.l, Y(P / 1000), X(h), Y(P / 1000), pc, 2, [4, 8]);
+      }
+      pinned(ctx, box, X, Y, h, P / 1000, pc);
+      ctx.restore();
     }
-    pinned(ctx, box, X, Y, h, P / 1000, pc);
     lab.flush();
     const name = liquidOf(rho);
     const what = name ? cap(name) : 'A fluid of density ' + fmt(rho, 0) + ' kg/m³';
     topline(ctx, h === 0 ? 'With no fluid in the container there is no weight on the bottom and no pressure.'
       : what + ' ' + fmt(h, 1) + ' m deep over ' + fmt(A, 2) + ' m² weighs ' + sci(w).txt + ' N, so the pressure it exerts on the bottom is ' + sci(P).txt + ' N/m², or ' + kpa(P) + ' kPa.');
-    readout(d.readout, `\\kPr = \\frac{m\\kg}{A} = \\kh\\krho\\kg = (${fmt(h, 1)}\\ \\text{m})(${sci(rho).tex}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${sci(P).tex}\\ \\text{N/m}^2`,
-      h === 0 ? 'The bottom supports nothing until there is fluid above it, and the pressure grows in proportion to the depth as soon as there is.'
-        : 'The fluid has a mass of ' + sci(m).txt + ' kg and weighs ' + sci(w).txt + ' N. A wider bottom holds up more fluid and more weight over more area, and the pressure, which is the weight divided by the area, does not change; only the depth and the density move it.');
+    const i = Math.min(3, Math.floor(s)), k = s - i;
+    if (k < 0.005 || s >= 4) F.morph(formula, STEPS[Math.round(s)](P, h, rho));
+    else F.morphAt(formula, STEPS[i](P, h, rho), STEPS[i + 1](P, h, rho), k, { keyMap: SPLIT[i] });
+    note.textContent = h === 0 ? 'The bottom supports nothing until there is fluid above it, and the pressure grows in proportion to the depth as soon as there is.'
+        : 'The fluid has a mass of ' + sci(m).txt + ' kg and weighs ' + sci(w).txt + ' N. A wider bottom holds up more fluid and more weight over more area, and the pressure, which is the weight divided by the area, does not change; only the depth and the density move it.';
   }
   register(d.fig, { update: () => {}, draw });
 })();

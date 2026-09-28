@@ -183,22 +183,23 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
       for (const y of [IY + 20, IY + 110]) for (const s of [-1, 1]) arrow(ctx, IX + s * (64 - 12 - l), y, IX + s * (64 - 12), y, pc, 4);
       hits.push({ x: IX, y: IY + 40, r: 60, name: 'the air in the stem, pushing on the core and on the walls' });
     }
-    /* the chosen patch and the force on it */
-    let px, py, nx, ny;
-    if (w === 'valve') { px = IX; py = IY - 54; nx = 0; ny = -1; }
-    else {
-      /* the patch: a short solid arc of the wall itself, wider with the area, on the tread at its outer edge or on the rim */
-      const r = w === 'tread' ? RO + 4 : RI, sgn = w === 'tread' ? 1 : -1, half = 0.07 + 0.13 * Math.sqrt(As.v / 10);
-      ctx.save(); ctx.strokeStyle = fc; ctx.lineWidth = w === 'tread' ? 18 : 14; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.arc(CX, CY, r, PA - half, PA + half); ctx.stroke(); ctx.restore();
-      px = CX + (r + sgn * 7) * Math.cos(PA); py = CY + (r + sgn * 7) * Math.sin(PA); nx = sgn * Math.cos(PA); ny = sgn * Math.sin(PA);
-    }
+    /* the chosen patch and the force on it: a short solid arc of the wall itself, wider with the area, on the tread at its outer edge
+       or on the rim, or the face of the core; a new choice slides the patch and its force from the one wall to the other */
+    const spot = (v) => {
+      if (v === 'valve') return { px: IX, py: IY - 54, nx: 0, ny: -1, r: RI, lw: 14, on: 0 };
+      const r = v === 'tread' ? RO + 4 : RI, sgn = v === 'tread' ? 1 : -1;
+      return { px: CX + (r + sgn * 7) * Math.cos(PA), py: CY + (r + sgn * 7) * Math.sin(PA), nx: sgn * Math.cos(PA), ny: sgn * Math.sin(PA), r, lw: v === 'tread' ? 18 : 14, on: 1 };
+    };
+    const { px, py, nx, ny, r, lw, on } = where.mix(spot), half = 0.07 + 0.13 * Math.sqrt(As.v / 10);
+    if (on > 0) { ctx.save(); ctx.globalAlpha = on; ctx.strokeStyle = fc; ctx.lineWidth = lw; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.arc(CX, CY, r, PA - half, PA + half); ctx.stroke(); ctx.restore(); }
     hits.push({ x: px, y: py, r: 30, name: 'the patch of ' + fmt(As.v, 1) + ' cm² you chose' });
     if (Fv > 0) {
       arrow(ctx, px, py, px + nx * LF, py + ny * LF, fc, 7);
       const tx = px + nx * (LF + 8), ty = py + ny * (LF + 8);
       F.label(ctx, 'F = ' + (Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)) + ' N', tx, ty, { side: w === 'valve' ? 'right' : nx < -0.3 ? 'left' : nx > 0.3 ? 'right' : 'above', color: fc, gap: 14, leader: false });
     }
-    if (w === 'valve') text(ctx, 'the patch is the face of the core', IX, IY + IR + 30, PAL.muted, { size: 17, align: 'center' });
+    const va = where.a('valve');
+    if (va > 0) { ctx.save(); ctx.globalAlpha = va; text(ctx, 'the patch is the face of the core', IX, IY + IR + 30, PAL.muted, { size: 17, align: 'center' }); ctx.restore(); }
     text(ctx, 'the arrows are the push of the air on the walls, the same size everywhere at one pressure', 700, 100, PAL.muted, { size: 17, align: 'center' });
     const Fs = (Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)) + ' N';
     topline(ctx, Pk === 0 ? 'With no air pressure inside, nothing pushes on the walls of the tire.'
@@ -249,15 +250,19 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     const half = LEN / 2 - R;
     ctx.save(); ctx.translate(CX, CY); ctx.rotate(a);
     ctx.beginPath(); ctx.moveTo(R, -half); ctx.lineTo(R, half); ctx.arc(0, half, R, 0, Math.PI); ctx.lineTo(-R, -half); ctx.arc(0, -half, R, Math.PI, TAU); ctx.closePath();
-    if (w === 'water') { ctx.fillStyle = alpha(PAL.muted, 0.22); ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.stroke(); }
+    /* his outline holds its place while his body fades into the water that fills it, and back */
+    const aw = who.a('water'), as = who.a('swimmer');
+    ctx.globalAlpha = aw; ctx.fillStyle = alpha(PAL.muted, 0.22); ctx.fill();
+    ctx.globalAlpha = 0.35 + 0.65 * aw; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.stroke();
     ctx.restore();
-    if (w === 'swimmer') {
-      ctx.save(); ctx.translate(CX, CY); ctx.rotate(a);
+    if (as > 0) {
+      ctx.save(); ctx.globalAlpha = as; ctx.translate(CX, CY); ctx.rotate(a);
       F.silhouette(ctx, { x: 0, y: LEN / 2 - 8, s: (LEN - 16) / 160, face: -1, pose: 'reach', hands: [{ x: 10, y: -158 }, { x: 2, y: -156 }], feet: [{ x: 6, y: 0 }, { x: -6, y: 0 }], kneeSide: 1, elbowSide: -1 });
       ctx.restore();
-    } else {
+    }
+    if (aw > 0) {
       const c = toCanvas(0, 0);
-      text(ctx, 'the water that would fill his place', c.x, c.y, PAL.ink, { size: 19, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      ctx.save(); ctx.globalAlpha = aw; text(ctx, 'the water that would fill his place', c.x, c.y, PAL.ink, { size: 19, align: 'center', bg: alpha(PAL.panel, 0.85) }); ctx.restore();
     }
     /* the forces of the water on the boundary, each perpendicular to it, longer underneath */
     const cs = PTS.map((p) => ({ p, c: toCanvas(p.x, p.y) }));
@@ -274,7 +279,8 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     text(ctx, 'the net upward force', NX + 18, CY - 112, fc, { weight: 600 });
     hits.push({ x: NX, y: CY - 65, r: 24, name: 'the net upward force, the sum of every push of the water' });
     arrow(ctx, NX, CY, NX, CY + 130, fc, 5);
-    text(ctx, w === 'swimmer' ? 'w, his weight' : 'w, the weight of that water', NX + 18, CY + 112, fc, { weight: 600 });
+    ctx.save(); ctx.globalAlpha = as; text(ctx, 'w, his weight', NX, CY + 140, fc, { weight: 600, align: 'center' });
+    ctx.globalAlpha = aw; text(ctx, 'w, the weight of that water', NX, CY + 140, fc, { weight: 600, align: 'center' }); ctx.restore();
     hits.push({ x: NX, y: CY + 65, r: 24, name: w === 'swimmer' ? 'his weight, which balances the net upward force' : 'the weight of the water in his place, which the net upward force holds up' });
     text(ctx, 'the sum of the pushes,', NX, CY - 160, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'and the weight it balances', NX, CY - 138, PAL.muted, { size: 17, align: 'center' });

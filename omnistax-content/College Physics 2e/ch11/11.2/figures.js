@@ -4,7 +4,7 @@
    alone redraws it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, pinned, fixed, view, face } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, select, hover, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, pinned, fixed, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -113,6 +113,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     const dc = C('density');
     const m = ms.v, L = rowOf(left.value), R = rowOf(right.value);
     const VL = m / (L.v * 1e3), VR = m / (R.v * 1e3), sL = Math.cbrt(VL), sR = Math.cbrt(VR);
+    const side = (n) => Math.cbrt(m / (rowOf(n).v * 1e3));          /* a new substance grows or shrinks the pile into its own cube */
     /* the ground, the support and the plank, a slab seen from the same viewpoint as the cubes */
     const w = PLANK / 2;
     line(ctx, 150, 590, 1250, 590, PAL.muted, 4);
@@ -122,7 +123,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     face(ctx, quad([[-w, 0, 0], [w, 0, 0], [w, 0, -DEPTH], [-w, 0, -DEPTH]]), kTop, 2.5);
     face(ctx, quad([[-w, -THICK, 0], [w, -THICK, 0], [w, 0, 0], [-w, 0, 0]]), kFront, 2.5);
     /* the two piles */
-    cube(-270, sL * PX); cube(270, sR * PX);
+    cube(-270, left.mix(side) * PX); cube(270, right.mix(side) * PX);
     /* one metre, for scale */
     hbracket(ctx, 1170, 1170 + PX, 130, PAL.ink, '1 m');
     /* each pile named once, beneath its place on the plank, with its volume and its density */
@@ -152,14 +153,12 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
   const d = sim('sim-identify', 1000);
   const ms = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 1000, step: 0.1, value: 240, unit: 'g', dec: 1, aria: 'the mass of the sample' });
   const vs = ctl(d.controls, { label: 'V', cls: '', min: 1, max: 1000, step: 0.5, value: 89, unit: 'cm³', dec: 1, aria: 'the volume of the sample' });
-  const axis = choice(d.controls, { label: '\\text{axis}', options: [{ value: 'log', label: 'logarithmic' }, { value: 'lin', label: 'linear' }], value: 'log', aria: 'the scale of the density axis' });
   /* rows in the order of their densities, densest first; a range sorts by its upper end */
   const ROWS = SUBST.slice().sort((a, b) => (b.hi ?? b.v) - (a.hi ?? a.v));
-  /* The axis is fixed and never rescales. The logarithmic one runs from 10⁻² to 10⁵ kg/m³ in decades,
-     which holds every entry from hydrogen (0.090 kg/m³) to gold (19 320 kg/m³); the linear one runs from
-     0 to 20 × 10³ kg/m³, the table's largest value rounded up. A density past either end goes through pinned(). */
+  /* The axis is logarithmic, fixed and never rescales: it runs from 10⁻² to 10⁵ kg/m³ in decades, the only
+     scale that holds every entry from hydrogen (0.090 kg/m³) to gold (19 320 kg/m³). A density past either end goes through pinned(). */
   const BOX = { l: 330, t: 130, r: 1340, b: 900 };
-  const LOGR = [0, 7], LINR = [0, 20];                              /* the log axis counts decades above 10⁻² kg/m³ */
+  const LOGR = [0, 7];                                              /* the axis counts decades above 10⁻² kg/m³ */
   const TOL = 0.025;
   let hits = [];
   hover(d.stage, () => hits);
@@ -168,11 +167,9 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     const { ctx } = begin(d.c);
     const dc = C('density'), phaseC = (p) => F.cat(PHASES.indexOf(p));
     const m = ms.v, Vv = vs.v, rho = m / Vv;                          /* g/cm³, which is 10³ kg/m³ */
-    const log = axis.value === 'log';
-    const xr = log ? LOGR : LINR;
-    const fx = log ? (v) => { const e = Math.round(v) - 2; return e === 0 ? '1' : e === 1 ? '10' : '10' + sup(e); } : (v) => (v === 0 ? '0' : fmt(v, 0) + ' × 10³');
-    const { X } = axes(ctx, BOX, xr, [0, 1], { nx: log ? 7 : 4, ny: 0, fx, fy: () => '', xl: 'density ρ (kg/m³)', xc: dc });
-    const xOf = (g) => X(log ? Math.log10(g * 1e3) + 2 : g);       /* g in g/cm³ */
+    const fx = (v) => { const e = Math.round(v) - 2; return e === 0 ? '1' : e === 1 ? '10' : '10' + sup(e); };
+    const { X } = axes(ctx, BOX, LOGR, [0, 1], { nx: 7, ny: 0, fx, fy: () => '', xl: 'density ρ (kg/m³)', xc: dc });
+    const xOf = (g) => X(Math.log10(g * 1e3) + 2);                  /* g in g/cm³ */
     const rowH = (BOX.b - BOX.t) / ROWS.length;
     /* which rows the measured density matches */
     const match = (r) => (single(r) ? Math.abs(r.v - rho) <= TOL * rho : r.lo <= rho * (1 + TOL) && r.hi >= rho * (1 - TOL));
@@ -196,7 +193,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     PHASES.forEach((p, i) => { const x = BOX.l + 10 + i * 150; dot(ctx, x, BOX.b + 58, phaseC(p), true, 7); text(ctx, p === 'gas' ? 'gases' : p + 's', x + 16, BOX.b + 58, PAL.ink, { size: 18 }); });
     /* the measured density, a line across the chart, pinned at the edge when it is off the axis */
     const label = 'ρ = ' + sigz(rho, 3) + ' g/cm³ = ' + sciText(rho * 1e3, 3) + ' kg/m³';
-    const p = pinned(ctx, BOX, X, () => BOX.t, log ? Math.log10(rho * 1e3) + 2 : rho, 0, dc);
+    const p = pinned(ctx, BOX, X, () => BOX.t, Math.log10(rho * 1e3) + 2, 0, dc);
     if (!p.out) line(ctx, p.x, BOX.t + 9, p.x, BOX.b, dc, 3, [10, 10]);
     text(ctx, label, Math.min(Math.max(p.x, 560), 1160), BOX.t - 28, dc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
     /* the substances the sample could be */
@@ -235,7 +232,13 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
   const PCX = 270, PCY = 340, SX1 = 640, SX2 = 1160, DAMW = 60, SURF = 160;
   /* the pale blue a colourless liquid is drawn in, the chapter's physical-fact colour (the manometer of 11.6 uses the same), tinted toward the ink for the darker liquids */
   const CLEAR = '#bfe0f2';
-  const liquidFill = (r) => (r.v < 1.5 ? CLEAR : alpha(PAL.ink, 0.18));
+  /* the share of the pale blue in the fill, 1 for a colourless liquid; a new liquid's tint blends in */
+  const clear = (n) => (rowOf(n).v < 1.5 ? 1 : 0);
+  function fill(ctx, x, y, w, h) {
+    const k = liq.mix(clear);
+    ctx.save(); ctx.globalAlpha = k; ctx.fillStyle = CLEAR; ctx.fillRect(x, y, w, h);
+    ctx.globalAlpha = 1 - k; ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fillRect(x, y, w, h); ctx.restore();
+  }
   const G = 9.80;
   function draw() {
     const { ctx } = begin(d.c);
@@ -244,8 +247,8 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     const side = Math.sqrt(A) * KM;
     /* the plan: the reservoir as a square of its area, the dam along its right edge */
     text(ctx, 'seen from above', PCX, 108, PAL.muted, { size: 19, align: 'center' });
-    ctx.save(); ctx.fillStyle = liquidFill(r); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
-    ctx.fillRect(PCX - side / 2, PCY - side / 2, side, side); ctx.strokeRect(PCX - side / 2, PCY - side / 2, side, side); ctx.restore();
+    fill(ctx, PCX - side / 2, PCY - side / 2, side, side);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(PCX - side / 2, PCY - side / 2, side, side); ctx.restore();
     fixed(ctx, PCX + side / 2, PCY - side / 2 - 10, 18, side + 20);
     text(ctx, 'the dam', PCX + side / 2 + 30, PCY, PAL.muted, { size: 17, align: 'left' });
     text(ctx, lower(r.n), PCX, PCY, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.8) });
@@ -258,7 +261,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     const bottom = SURF + h * MPX;
     fixed(ctx, SX2, 130, DAMW, bottom + 34 - 130);
     fixed(ctx, SX1 - 20, bottom, SX2 - SX1 + 20, 34);
-    ctx.save(); ctx.fillStyle = liquidFill(r); ctx.fillRect(SX1, SURF, SX2 - SX1, bottom - SURF); ctx.restore();
+    fill(ctx, SX1, SURF, SX2 - SX1, bottom - SURF);
     line(ctx, SX1, SURF, SX2, SURF, PAL.ink, 3, [14, 10]);
     line(ctx, SX1, bottom, SX2, bottom, PAL.ink, 2);
     text(ctx, lower(r.n), (SX1 + SX2) / 2, (SURF + bottom) / 2, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.8) });
