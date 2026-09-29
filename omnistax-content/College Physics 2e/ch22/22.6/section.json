@@ -4,7 +4,7 @@
  "chapter": "22",
  "title": "The Hall Effect",
  "short": "The Hall Effect",
- "lead": "A magnetic field pushes on a charge that moves through it, and the charges that carry a current in a conductor are moving through it too. They cannot leave the conductor, so they gather against one side of it and leave the other side with the opposite sign, and the voltage that appears across the conductor is the Hall emf. This section works that voltage out from the balance between the magnetic force and the electric force the separated charge sets up, arrives at $\\kemfhall = \\kBmag l \\kv$, and ends with the two instruments that live off the result: the Hall probe that measures a magnetic field, and the flow meter that measures how fast blood is moving in an artery without touching it.",
+ "lead": "A magnetic field pushes on any charge that moves through it, including the charges that carry a current in a conductor. They cannot leave the conductor, so they gather against one side of it and leave the other side with the opposite sign. The voltage that appears across the conductor is the Hall emf. The balance between the magnetic force and the electric force of the separated charge gives $\\kemfhall = \\kBmag l \\kv$. Two instruments rest on this result: the Hall probe, which measures a magnetic field, and the flow meter, which measures how fast blood moves in an artery without touching it.",
  "objectives": [
   "Describe the Hall effect.",
   "Calculate the Hall emf across a current-carrying conductor."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -86,7 +90,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Send a known current through a conductor of known cross-section and known width, apply a known magnetic field across it, and measure the Hall emf. The emf gives the drift velocity at once, because $\\kemfhall = \\kBmag l \\kv$ rearranges to $\\kv = \\kemfhall/\\kBmag l$, where $l$ is the width the emf is measured across. The current is carried by the free charges themselves, and the section on current writes it as $\\kIcur = n\\kq A\\kvd$, where $n$ is the number of free charges in a cubic meter, $\\kq$ the charge each one carries and $A$ the cross-section of the conductor. Everything in that relation is now known except $n$, so $n = \\kIcur/\\kq A\\kvd$, and the free charge density follows from the Hall measurement. This is what the section means when it calls the Hall effect a research tool for probing the movement of charges, their drift velocities and their densities in materials."
+    "solution": "Send a known current through a conductor of known cross-section and known width, apply a known magnetic field across it, and measure the Hall emf. The emf gives the drift velocity at once, because $\\kemfhall = \\kBmag l \\kv$ rearranges to $\\kv = \\kemfhall/\\kBmag l$, where $l$ is the width across which you measure the emf. The free charges themselves carry the current, and it is $\\kIcur = n\\kq A\\kvd$, where $n$ is the number of free charges in a cubic meter, $\\kq$ the charge each one carries and $A$ the cross-section of the conductor. Everything in that relation is now known except $n$, so $n = \\kIcur/\\kq A\\kvd$, and the free charge density follows from the Hall measurement. That is why the Hall effect is a research tool for probing the movement of charges, their drift velocities and their densities in materials."
    }
   },
   {

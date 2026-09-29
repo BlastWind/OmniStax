@@ -4,7 +4,7 @@
  "chapter": "24",
  "title": "Production of Electromagnetic Waves",
  "short": "Production of EM Waves",
- "lead": "An electromagnetic wave is easiest to understand by watching one being made. A generator at the center of a long straight wire drives charge to one end of it and then to the other, and both the electric field of that separated charge and the magnetic field of the current that moves it travel away from the wire at the speed of light. This section follows one cycle of the antenna, shows that the two fields stand at right angles to one another and to the direction the wave travels in, and gives the fixed ratio between their strengths, $\\kEf/\\kBmag = \\kc$.",
+ "lead": "An electromagnetic wave is easiest to understand by watching one form. A generator at the center of a long straight wire drives charge to one end of it and then to the other. The electric field of that separated charge and the magnetic field of the current that moves it both travel away from the wire at the speed of light. Over one cycle of the antenna, the two fields stand at right angles to one another and to the direction the wave travels, and their strengths keep a fixed ratio, $\\kEf/\\kBmag = \\kc$.",
  "objectives": [
   "Describe the electric and magnetic waves as they move out from a source, such as an AC generator.",
   "Explain the mathematical relationship between the magnetic field strength and the electrical field strength.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -263,7 +267,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The field at a point beside the wire is the force per unit charge on a positive test charge placed there, so the direction of the field is the direction that test charge would be pushed. At $\\kt = 0$ the top of the antenna carries the negative charge and the bottom the positive charge, so by the Coulomb force law the test charge is repelled by the bottom and attracted by the top; both contributions point upward, which is the direction the figure draws. One-fourth of a cycle later there is no separation of charge left, the two contributions cancel, and the field beside the antenna is zero. At $\\kt = \\kT/2$ the signs have changed ends, so running the same argument again gives a field of the same size pointing downward, and by $\\kt = \\kT$ the charges are back where they began and the field points upward once more."
+    "solution": "The field at a point beside the wire is the force per unit charge on a positive test charge placed there, so it points the way that test charge would move. At $\\kt = 0$ the top of the antenna carries the negative charge and the bottom the positive charge. By the Coulomb force law the bottom repels the test charge and the top attracts it, so both contributions point upward, as in the figure. One-fourth of a cycle later no charge is separated, the two contributions cancel, and the field beside the antenna is zero. At $\\kt = \\kT/2$ the signs have changed ends, so the same argument gives a field of the same size pointing downward. By $\\kt = \\kT$ the charges are back where they began, and the field points upward once more."
    }
   },
   {
@@ -279,7 +283,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "It is. Right hand rule 2 says to point the thumb of the right hand along the current and let the fingers curl, and the fingers then run the way the field lines go. The current in the figure runs up the antenna, so with the thumb pointing up the fingers curl in the sense the circles are drawn, and the same rule applied at any height along the wire gives the same sense, which is why every ring around the antenna turns the same way. Half a cycle later the current runs the other way and the rule reverses all of the rings with it."
+    "solution": "It is. Right hand rule 2 says to point the thumb of the right hand along the current and let the fingers curl; the fingers then run the way the field lines go. The current in the figure runs up the antenna, so with the thumb pointing up, the fingers curl in the same sense as the circles. The same rule applied at any height along the wire gives the same sense, which is why every ring around the antenna turns the same way. Half a cycle later the current runs the other way, and the rule reverses all of the rings with it."
    }
   },
   {
@@ -332,7 +336,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "In the one where the magnetic field of the wave passes through the loop rather than sliding along the plane of it. A loop answers to the magnetic flux threading it: when the plane of the loop is turned so that the oscillating magnetic field goes through it, the flux rises and falls with the wave and an emf is induced around the loop. When the loop is edge-on to that field the flux through it stays zero however strong the wave is, and nothing is induced. Notice that the loop and the straight wire ask for opposite orientations, because one is driven by the electric part of the wave and the other by the magnetic part, and those two stand at right angles."
+    "solution": "In the orientation where the magnetic field of the wave passes through the loop rather than sliding along its plane. A loop responds to the magnetic flux threading it. Turn the plane of the loop so that the oscillating magnetic field goes through it, and the flux rises and falls with the wave, inducing an emf around the loop. When the loop is edge-on to that field, the flux through it stays zero however strong the wave is, and nothing is induced. The loop and the straight wire need opposite orientations, because the electric part of the wave drives one and the magnetic part drives the other, and those two stand at right angles."
    },
    "figure": {
     "src": "/media/ch24/Figure_25_02_05a.jpg",
@@ -353,7 +357,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Vertical. A vertical transmitting antenna sends out a wave whose electric field oscillates in the vertical plane, and a receiving wire is driven by the part of that field lying along it, so the receiving wire should stand parallel to the transmitting one. The magnetic field of the same wave is horizontal and at right angles to the line of travel, so a loop receives best when it is stood upright with its plane containing the line back to the transmitter, which lets that horizontal field pass through it. Turn the loop a quarter turn about the vertical from there and the flux through it falls to zero and the signal disappears, and since that null points along the line to the source, the loop can be used to say where the source is."
+    "solution": "Vertical. A vertical transmitting antenna sends out a wave whose electric field oscillates in the vertical plane. The part of that field lying along a receiving wire drives it, so the receiving wire should stand parallel to the transmitting one. The magnetic field of the same wave is horizontal and at right angles to the line of travel. A loop therefore receives best when it stands upright with its plane containing the line back to the transmitter, so that the horizontal field passes through it. Turn the loop a quarter turn about the vertical from there, and the flux through it falls to zero and the signal disappears. That null points along the line to the source, so you can use the loop to find where the source is."
    }
   },
   {
@@ -401,7 +405,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The two antennas do exactly what the two speakers do. Each sends out a wave of the same frequency in step with the other, so at any point in the room the two waves arrive having traveled different distances; where the difference is a whole number of wavelengths the crests coincide and the signal is strong, and where it is a half number of wavelengths the crest of one meets the trough of the other and the signal is weak. The lines of strong signal running outward between the antennas in the figure are the lines of constructive interference two speakers set up in a room. And yes, an array of antennas is made directional in just this way: choosing how far apart the antennas stand and what phase each is driven at decides which directions the waves add in and which they cancel in, so the signal can be sent where it is wanted and kept out of where it is not."
+    "solution": "The two antennas do exactly what the two speakers do. Each sends out a wave of the same frequency in step with the other, so at any point in the room the two waves arrive having traveled different distances. Where the difference is a whole number of wavelengths, the crests coincide and the signal is strong. Where it is a half number of wavelengths, the crest of one meets the trough of the other and the signal is weak. The lines of strong signal running outward between the antennas in the figure are the lines of constructive interference that two speakers set up in a room. And yes, an array of antennas becomes directional in just this way. The spacing of the antennas and the phase at which each is driven decide which directions the waves add in and which they cancel in, so you can send the signal where you want it and keep it out of where you do not."
    },
    "figure": {
     "src": "/media/ch24/Figure_25_02_06a.jpg",
@@ -422,7 +426,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "It can be built any length, but it will not work well at every length. The alternating source sets up a standing wave of charge along the wire, and a standing wave fits only when the length of the wire suits the wave it is carrying, which is a resonance. An antenna whose length suits the frequency it is driven at radiates strongly; one much shorter or much longer than that does not. This is why the dimensions of an antenna are decided by the frequency it is meant to work at, and why tuning a radio or a television means changing electrical properties until the resonant condition is met."
+    "solution": "You can build it any length, but it will not work well at every length. The alternating source sets up a standing wave of charge along the wire, and a standing wave fits only when the length of the wire suits the wave it carries, which is a resonance. An antenna whose length suits its driving frequency radiates strongly; one much shorter or much longer does not. This is why the frequency an antenna must work at decides its dimensions, and why tuning a radio or a television means changing electrical properties until the resonant condition is met."
    }
   },
   {
@@ -438,7 +442,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "It cannot be done. The fields of an electromagnetic wave are made by charge accelerating in an antenna, and both of them come out perpendicular to the line along which the radiation travels, so there is no part of either field lying along the direction of propagation that could oscillate back and forth the way a longitudinal wave demands. Drive an antenna however you like and what leaves it is a transverse wave; aiming the antenna along the direction in which you wanted a longitudinal oscillation only sends the transverse wave out at right angles to it instead, since a linear antenna does not radiate along its own length."
+    "solution": "It cannot be done. Charge accelerating in an antenna makes the fields of an electromagnetic wave, and both fields come out perpendicular to the line along which the radiation travels. No part of either field lies along the direction of propagation, so nothing can oscillate back and forth the way a longitudinal wave demands. Drive an antenna however you like, and what leaves it is a transverse wave. Aiming the antenna along the direction of the longitudinal oscillation you wanted only sends the transverse wave out at right angles to it, since a linear antenna does not radiate along its own length."
    }
   },
   {
@@ -477,7 +481,7 @@
      "$(5.0\\times 10^{5}\\;\\text{N/C})\\cos\\left(\\frac{2\\pi t}{3.0\\times 10^{-9}\\;\\text{s}}\\right)$"
     ],
     "correct": 3,
-    "hint": "Part (d) of the figure shows the antenna back at its greatest separation of charge, so the wave must be at its maximum when $t = 0$; and the period belongs underneath the time, not multiplied by it.",
+    "hint": "In part (d) of the figure the antenna is back at its greatest separation of charge, so the wave must be at its maximum when $t = 0$. Put the period underneath the time, not multiplied by it.",
     "solution": "(d)"
    }
   },

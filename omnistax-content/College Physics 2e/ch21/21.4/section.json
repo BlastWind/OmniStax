@@ -4,7 +4,7 @@
  "chapter": "21",
  "title": "DC Voltmeters and Ammeters",
  "short": "DC voltmeters and ammeters",
- "lead": "A voltmeter and an ammeter measure different things and are therefore put into a circuit in different ways: the voltmeter hangs in parallel with whatever it is to read, and the ammeter is cut into the line so that the whole current passes through it. This section works out how one galvanometer becomes either instrument, a large resistance in series with it making a voltmeter and a small one across it making an ammeter, and then asks what the meter itself does to the circuit, since connecting one is connecting another resistor and no measurement of this kind can be exact.",
+ "lead": "A voltmeter and an ammeter measure different things, so they go into a circuit in different ways. The voltmeter hangs in parallel with whatever it reads, and the ammeter sits in the line so that the whole current passes through it. One galvanometer can become either instrument: a large resistance in series with it makes a voltmeter, and a small one across it makes an ammeter. Connecting a meter always adds another resistor to the circuit, so the meter changes what it measures, and no measurement of this kind can be exact.",
  "objectives": [
   "Explain why a voltmeter must be connected in parallel with the circuit.",
   "Draw a diagram showing an ammeter correctly connected in a circuit.",
@@ -19,6 +19,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -227,7 +231,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "An ammeter is built to have a very small resistance, so that it can be cut into a branch without changing the current there. Connected straight across the source, it is the only resistance in the loop apart from the internal resistance $\\krint$ of the cell, and the current is $\\kIcur = \\kemf/(\\krint + R_{\\text{A}})$, which is very nearly the largest current the cell can drive. That current is far above the full-scale current of the movement, so the needle is driven past the end of its scale and the galvanometer, or the fuse that protects it, is destroyed. An ammeter is placed in series with the device whose current is wanted, never across a source."
+    "solution": "An ammeter has a very small resistance, so that it can sit in a branch without changing the current there. Connected straight across the source, it is the only resistance in the loop apart from the internal resistance $\\krint$ of the cell. The current is then $\\kIcur = \\kemf/(\\krint + R_{\\text{A}})$, very nearly the largest current the cell can drive. That current is far above the full-scale current of the movement, so the needle slams past the end of its scale, and the current destroys the galvanometer or the fuse that protects it. Always place an ammeter in series with the device whose current you want, never across a source."
    }
   },
   {
@@ -243,7 +247,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "In voltmeter mode the meter has a very large resistance, and it is now cut into the branch in series. Resistances in series add, so the branch resistance becomes enormous and the current in it falls to almost nothing; the circuit is switched off rather than measured, and the meter reads a current near zero. In ammeter mode the meter has a very small resistance, and it is now hung in parallel with the device whose voltage was wanted. A small resistance in parallel with a large one comes to very nearly the small one, so the device is short-circuited, a large current passes through the meter, and the movement or its fuse is damaged. The first mistake spoils the reading; the second can spoil the instrument."
+    "solution": "In voltmeter mode the meter has a very large resistance, and now it sits in the branch in series. Resistances in series add, so the branch resistance becomes enormous and the current in it falls to almost nothing. The meter switches the circuit off rather than measuring it, and reads a current near zero. In ammeter mode the meter has a very small resistance, and now it hangs in parallel with the device whose voltage you wanted. A small resistance in parallel with a large one comes to very nearly the small one, so the meter short-circuits the device, a large current passes through the meter, and the movement or its fuse can burn out. The first mistake spoils the reading; the second can spoil the instrument."
    }
   },
   {
@@ -264,7 +268,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A voltmeter is placed in parallel with whatever it is to read, so for each part the two points are the two ends of that part. (a) The terminals of the source, which are the two points the rest of the circuit is joined to; the reading is the terminal voltage $\\kemf - \\kIcur\\krint$ and not the emf itself, since the internal resistance cannot be left out. (b) The two ends of $\\kResone$, which are the two junctions where its arm leaves and rejoins the rest of the circuit. (c) The two ends of $\\kRestwo$, which are the junction at the top of its arm and the point between $\\kRestwo$ and $\\kResthree$. (d) The two ends of $\\kResthree$, which are that same middle point and the junction at the bottom of the arm. (e) The two ends of the arm that carries both of them, which are the same two points as in part (a) and give the same reading, because the arm and the source terminals are joined by wires of negligible resistance."
+    "solution": "A voltmeter goes in parallel with whatever it reads, so for each part the two points are the two ends of that part. (a) The terminals of the source, the two points where the rest of the circuit attaches. The reading is the terminal voltage $\\kemf - \\kIcur\\krint$ and not the emf itself, since the internal resistance is always there. (b) The two ends of $\\kResone$, the two junctions where its arm leaves and rejoins the rest of the circuit. (c) The two ends of $\\kRestwo$: the junction at the top of its arm and the point between $\\kRestwo$ and $\\kResthree$. (d) The two ends of $\\kResthree$: that same middle point and the junction at the bottom of the arm. (e) The two ends of the arm that carries both of them. These are the same two points as in part (a) and give the same reading, because wires of negligible resistance join the arm to the source terminals."
    }
   },
   {

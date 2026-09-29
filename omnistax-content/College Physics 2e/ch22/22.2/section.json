@@ -4,7 +4,7 @@
  "chapter": "22",
  "title": "Ferromagnets and Electromagnets",
  "short": "Ferromagnets and Electromagnets",
- "lead": "The magnets of the last section were taken as they came: a bar of iron with a pole at each end, and nothing said about where those poles came from. This section says which materials can carry them, how the small regions inside such a material called domains grow and line up to magnetize it, and why heating it above a certain temperature undoes that alignment altogether. It then makes a magnet out of nothing but a current in a coil of wire, which is what an electromagnet is, and it ends on the sentence the rest of the chapter is built on: electric current is the source of all magnetism.",
+ "lead": "The magnets of the last section came as they were: a bar of iron with a pole at each end, and nothing said about where those poles came from. Only certain materials can carry them. Inside such a material, small regions called domains grow and line up to magnetize it, and heating it above a certain temperature undoes that alignment altogether. A current in a coil of wire makes a magnet out of nothing else, and that is an electromagnet. It leads to the idea the rest of the chapter rests on: electric current is the source of all magnetism.",
  "objectives": [
   "Define ferromagnet.",
   "Describe the role of magnetic domains in magnetization.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -134,7 +138,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The needle keeps pointing the same way relative to the airplane, so nothing about the picture in front of you changes as you fly. The north pole of the needle turns toward the end of Earth’s magnet that lies at the geographic north pole, and along the equator that direction is geographic north everywhere. Flying due west, north is always to your right, so the needle stays perpendicular to your direction of motion with its north pole to your right the whole way round. What does change is your heading in the fixed frame of the stars, since flying due west carries you round the equator, but the compass turns with you and reports the same relation between your motion and the field at every longitude. The needle would only swing if you left the equator, where the field begins to dip out of the horizontal, or if the magnetic pole and the geographic pole were not in the same place, which is the simplification the question grants."
+    "solution": "The needle keeps pointing the same way relative to the airplane, so nothing about the picture in front of you changes as you fly. The north pole of the needle turns toward the end of Earth’s magnet that lies at the geographic north pole, and along the equator that direction is geographic north everywhere. Flying due west, north is always to your right, so the needle stays perpendicular to your direction of motion, with its north pole to your right the whole way around. Your heading does change in the fixed frame of the stars, since flying due west carries you around the equator. But the compass turns with you and reports the same relation between your motion and the field at every longitude. The needle would swing only if you left the equator, where the field begins to dip out of the horizontal, or if the magnetic pole and the geographic pole were not in the same place, which is the simplification the question grants."
    }
   },
   {
@@ -170,7 +174,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A magnetic domain is a region inside the iron, often about a millimeter across, in which the poles of the individual atoms all point the same way, so that the region behaves like one small bar magnet. In an unmagnetized rod the domains are small and point every which way, and their fields cancel, so the rod as a whole shows no poles. To magnetize it permanently, lay the rod in a strong external magnetic field, which is most simply done by placing it between two magnets or inside a current-carrying coil. The domains already lying along the field grow at the expense of their neighbors, and the neighbors that are left swing into line, so the rod becomes magnetized while the field is applied. To make that state stay when the field is taken away, either heat the rod and then let it cool while it lies in the field, or tap it with hard blows while it lies cold in the field. Both of these give the domain walls the chance to settle into the new arrangement rather than springing back, and the rod is then a permanent magnet with a north pole at one end and a south pole at the other. The heating must stop short of the Curie temperature of iron, 1043 K, because above that temperature thermal motion is too violent for any field to hold the domains in line at all."
+    "solution": "A magnetic domain is a region inside the iron, often about a millimeter across, in which the poles of the individual atoms all point the same way, so the region behaves like one small bar magnet. In an unmagnetized rod the domains are small and point every which way, and their fields cancel, so the rod as a whole shows no poles. To magnetize it permanently, lay the rod in a strong external magnetic field, most simply between two magnets or inside a current-carrying coil. The domains already lying along the field grow at the expense of their neighbors, and the remaining neighbors swing into line, so the rod is magnetized while the field is on. To keep that state after you remove the field, either heat the rod and let it cool while it lies in the field, or tap it with hard blows while it lies cold in the field. Both give the domain walls the chance to settle into the new arrangement rather than springing back. The rod is then a permanent magnet with a north pole at one end and a south pole at the other. Keep the heating below the Curie temperature of iron, 1043 K, because above that temperature thermal motion is too violent for any field to hold the domains in line at all."
    }
   },
   {
@@ -206,7 +210,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The two are alike in the way they turn. Each is free to rotate, each is acted on by something that fills the space around it, and each settles pointing along that something: the vane lines up with the wind, and the domain lines up with the external magnetic field. In both cases a stronger wind or a stronger field brings the turning about faster and holds it more firmly against whatever tends to disturb it. They differ in three ways. The vane is one object that merely turns, whereas a domain is a region of the material whose boundary can move, so a domain lying along the field grows at the expense of its neighbors as well as turning; nothing about a weather vane grows. The vane's alignment is lost as soon as the wind drops, while a domain's alignment can be made to stay after the field is taken away, if the iron is heated and cooled or tapped while it lies in the field, which is how a permanent magnet is made. And thermal motion is nothing to a vane, while above the Curie temperature it is enough to keep the domains from lining up at all. They also differ in their effect on their surroundings. The vane takes a little momentum from the air and disturbs the wind hardly at all, so a second vane beside the first feels the same wind as before. The domain is itself a small magnet, so once it is aligned it adds its own field to the external one, and the sum of all the aligned domains is what makes the iron a magnet that pulls on other things and that can align its neighbors in turn."
+    "solution": "The two are alike in the way they turn. Each is free to rotate, something that fills the space around each one acts on it, and each settles pointing along that something: the vane lines up with the wind, and the domain lines up with the external magnetic field. In both cases a stronger wind or a stronger field brings the turning about faster and holds it more firmly against disturbances. They differ in three ways. First, the vane is one object that merely turns, whereas a domain is a region of the material whose boundary can move. A domain lying along the field grows at the expense of its neighbors as well as turning, and nothing about a weather vane grows. Second, the vane loses its alignment as soon as the wind drops, while a domain can keep its alignment after the field is gone. Heating and cooling the iron, or tapping it, while it lies in the field makes a permanent magnet this way. Third, thermal motion is nothing to a vane, while above the Curie temperature it keeps the domains from lining up at all. They also differ in their effect on their surroundings. The vane takes a little momentum from the air and hardly disturbs the wind, so a second vane beside the first feels the same wind as before. The domain is itself a small magnet, so once aligned it adds its own field to the external one. The sum of all the aligned domains makes the iron a magnet that pulls on other things and can align its neighbors in turn."
    }
   }
  ],

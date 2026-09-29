@@ -4,7 +4,7 @@
  "chapter": "22",
  "title": "Magnetic Fields Produced by Currents: Ampere’s Law",
  "short": "Fields Produced by Currents",
- "lead": "A current makes a magnetic field, and the shape the wire is wound in decides the shape of that field. This section gives the field of a long straight wire as $\\kBmag = \\mu_0\\kIcur/2\\pi\\kr$, states right hand rule 2 for the direction of the circles it makes, and names the Biot-Savart law and Ampere’s law, which say that the field of a current of any shape is the sum of the fields of its segments. It then follows the same circular field around a flat loop, where the circles crowd together at the center, and down the inside of a solenoid, where they become the strong and uniform field an MRI magnet is made of.",
+ "lead": "A current makes a magnetic field, and the shape of the wire decides the shape of that field. The field of a long straight wire is $\\kBmag = \\mu_0\\kIcur/2\\pi\\kr$, and right hand rule 2 gives the direction of the circles it makes. The Biot-Savart law and Ampere’s law say that the field of a current of any shape is the sum of the fields of its segments. Around a flat loop, the circular field crowds together at the center. Down the inside of a solenoid, it becomes the strong and uniform field of an MRI magnet.",
  "objectives": [
   "Calculate current that produces a magnetic field.",
   "Use the right hand rule 2 to determine the direction of current or the direction of magnetic field loops."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -176,7 +180,7 @@
      "all of the above"
     ],
     "correct": 4,
-    "hint": "Write down the two relations the situation obeys, the radius of the circle a charge makes in a field and the field a long straight wire makes at a given distance, and then see which symbols are still unknown once the mass and the charge of the electron are given.",
+    "hint": "Write down the two relations the situation obeys: the radius of the circle a charge makes in a field, and the field a long straight wire makes at a given distance. Then see which symbols remain unknown once you know the mass and the charge of the electron.",
     "solution": "(e)"
    }
   },
@@ -233,7 +237,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The wire comes straight out of the page at the origin, so point the thumb of your right hand out of the page along the current and your fingers curl counterclockwise. The field lines are therefore circles centered on the origin, drawn counterclockwise: at a point on the $+x$-axis the field points in the $+y$-direction, at a point on the $+y$-axis it points in the $-x$-direction, and so on all the way round. Draw several of those circles at increasing distances from the origin, put an arrow on each to carry the counterclockwise sense, and note that the field at any point is tangent to the circle through it rather than directed away from the wire. For the strength, the field of a long straight wire is $\\kBmag = \\mu_0\\kIcur/2\\pi\\kr$, so it is inversely proportional to the distance $\\kr$ from the $z$-axis: doubling the distance halves the field, and tripling it leaves a third. The circles you draw should carry shorter arrows the farther out they are, and none of them should be drawn at the origin itself, where the formula for a long straight wire no longer applies."
+    "solution": "The wire comes straight out of the page at the origin, so point the thumb of your right hand out of the page along the current, and your fingers curl counterclockwise. The field lines are therefore circles centered on the origin, running counterclockwise. At a point on the $+x$-axis the field points in the $+y$-direction, at a point on the $+y$-axis it points in the $-x$-direction, and so on all the way around. Draw several of those circles at increasing distances from the origin and put an arrow on each to show the counterclockwise sense. The field at any point is tangent to the circle through it, not directed away from the wire. For the strength, the field of a long straight wire is $\\kBmag = \\mu_0\\kIcur/2\\pi\\kr$, so it is inversely proportional to the distance $\\kr$ from the $z$-axis: doubling the distance halves the field, and tripling it leaves a third. Give the circles shorter arrows the farther out they are, and draw none at the origin itself, where the formula for a long straight wire no longer applies."
    }
   },
   {
@@ -249,7 +253,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Draw the loop of the motor between the poles of the permanent magnet, with the field of the magnet running across the page from its north pole to its south pole, and mark which way the current goes round the loop. Now apply RHR-2 to the loop itself: point the thumb of your right hand along the current in one side of the loop and your fingers curl the way that side’s field goes, and doing this all the way round shows that the loop’s own field comes out of one face of the loop and goes in at the other. The loop is therefore a small magnet, with its north pole on the face the field leaves by and its south pole on the other. Now compare the two magnets. In any position except the face-on one, the loop’s north pole is turned partly toward the north pole of the permanent magnet and its south pole partly toward that magnet’s south pole. Like poles repel and unlike poles attract, so the loop is pushed round until its north pole faces the magnet’s south pole, and there, face-on, the pushing and the pulling are balanced and the turning stops. That is exactly the sense the torque $\\ktau = N\\kIcur A\\kBmag\\sin\\theta$ gives: it is largest when the loop is side-on to the field, falls to zero when the loop is face-on, and always acts to bring the loop face-on. The two accounts are one account, because the loop’s poles are made by its own current."
+    "solution": "Draw the loop of the motor between the poles of the permanent magnet, with the field of the magnet running across the page from its north pole to its south pole, and mark which way the current goes around the loop. Now apply RHR-2 to the loop itself. Point the thumb of your right hand along the current in one side of the loop, and your fingers curl the way that side’s field goes. Doing this all the way around shows that the loop’s own field comes out of one face of the loop and goes in at the other. The loop is therefore a small magnet, with its north pole on the face the field leaves by and its south pole on the other. Now compare the two magnets. In any position except face-on, the loop’s north pole faces partly toward the north pole of the permanent magnet, and its south pole partly toward that magnet’s south pole. Like poles repel and unlike poles attract, so the loop turns until its north pole faces the magnet’s south pole. There, face-on, the pushing and the pulling balance and the turning stops. The torque $\\ktau = N\\kIcur A\\kBmag\\sin\\theta$ has exactly this sense: it is largest when the loop is side-on to the field, falls to zero when the loop is face-on, and always acts to bring the loop face-on. The two accounts are one account, because the loop’s own current makes its poles."
    }
   }
  ],

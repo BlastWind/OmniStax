@@ -4,7 +4,7 @@
  "chapter": "21",
  "title": "Kirchhoff’s Rules",
  "short": "Kirchhoff’s rules",
- "lead": "Many circuits cannot be taken apart into series and parallel groups, and for those two rules are needed instead. This section states them, the junction rule for the currents that meet at a junction and the loop rule for the changes in potential round a closed path, shows that the first is the conservation of charge and the second the conservation of energy, sets out the conventions that get the signs right, and works a two-loop circuit through to its three branch currents.",
+ "lead": "Many circuits do not break down into series and parallel groups, and for those you need two rules instead. The junction rule governs the currents that meet at a junction, and the loop rule governs the changes in potential around a closed path. The first is the conservation of charge and the second the conservation of energy. A few conventions get the signs right, and with them you can work a two-loop circuit through to its three branch currents.",
  "objectives": [
   "Analyze a complex circuit using Kirchhoff’s rules, using the conventions for determining the correct signs of various terms."
  ],
@@ -15,6 +15,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -210,7 +214,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Take the branches that meet at b one at a time and write the currents drawn entering it on one side of the equation and those drawn leaving it on the other, keeping the directions the figure assumes rather than the ones you expect. Then do the same at e. The two junctions are the two ends of the same set of branches, so every current that enters one of them leaves the other, and the second equation is the first one rearranged. No new information is gained, which is why a circuit with two junctions gives only one independent junction equation and the rest must come from the loop rule."
+    "solution": "Take the branches that meet at b one at a time. Write the currents drawn entering it on one side of the equation and those drawn leaving it on the other, keeping the directions drawn in the figure rather than the ones you expect. Then do the same at e. The two junctions are the two ends of the same set of branches, so every current that enters one of them leaves the other, and the second equation is the first one rearranged. It adds no new information. A circuit with two junctions therefore gives only one independent junction equation, and the rest must come from the loop rule."
    }
   },
   {
@@ -270,7 +274,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Walk each loop in turn, taking the letters in the order they are given, and write a term for every resistance and every source you pass, with the signs the four conventions give. Keep the current directions the figure assumes throughout, and do not change a sign because a current looks as though it should run the other way; a wrong guess will come out as a negative current at the end. The two loops share a branch, so the same current appears in both equations, and that is what ties them together when they are solved."
+    "solution": "Walk each loop in turn, taking the letters in the order given, and write a term for every resistance and every source you pass, with the signs the four conventions give. Keep the current directions drawn in the figure throughout. Do not change a sign because a current looks as though it should run the other way; a wrong guess will come out as a negative current at the end. The two loops share a branch, so the same current appears in both equations, and that ties them together when you solve them."
    }
   },
   {
@@ -290,7 +294,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Begin by seeing what the circuit is. The source with no internal resistance sits in one vertical branch, $\\kResone$ in the second and $\\kRestwo$ and $\\kResthree$ in series in the third, and the three branches run between the same two horizontal wires. For part (a), remember that a plain wire has no resistance, so every point along an unbroken stretch of wire is at the same potential; look for three of the lettered points that are joined by wire alone with no element between them. For part (b), the junction rule is confirmed by measuring the current in each of the three branches at once, so choose the three points that lie one in each branch. For part (c), write the junction rule at the top and at the bottom of the circuit in the directions the question sets and rearrange each equation; the statements that survive are the ones that are those equations written another way. For part (d), find each branch current from Ohm’s law: the full 6 V stands across $\\kResone$ and across the series pair $\\kRestwo$ and $\\kResthree$, because the source has no internal resistance, and compare what that gives with the two measured values. For part (e), the energy dissipated in a resistor carrying a steady current grows in proportion to the time, so each graph is a straight line through the origin and its slope is the power $I^2R$; work out the power in $\\kRestwo$ as a multiple of the power in $\\kResone$ and choose the line whose height at $t_1$ stands in the same ratio."
+    "solution": "Begin by seeing what the circuit is. The source with no internal resistance sits in one vertical branch, $\\kResone$ in the second, and $\\kRestwo$ and $\\kResthree$ in series in the third, and the three branches run between the same two horizontal wires. For part (a), remember that a plain wire has no resistance, so every point along an unbroken stretch of wire is at the same potential. Look for three of the lettered points that only wire joins, with no element between them. For part (b), you confirm the junction rule by measuring the current in each of the three branches at once, so choose the three points that lie one in each branch. For part (c), write the junction rule at the top and at the bottom of the circuit in the directions the question sets, and rearrange each equation. The statements that survive are those equations written another way. For part (d), find each branch current from Ohm’s law. The source has no internal resistance, so the full 6 V stands across $\\kResone$ and across the series pair $\\kRestwo$ and $\\kResthree$; compare what that gives with the two measured values. For part (e), the energy dissipated in a resistor carrying a steady current grows in proportion to the time, so each graph is a straight line through the origin whose slope is the power $I^2R$. Work out the power in $\\kRestwo$ as a multiple of the power in $\\kResone$, and choose the line whose height at $t_1$ stands in the same ratio."
    }
   },
   {

@@ -4,7 +4,7 @@
  "chapter": "22",
  "title": "Magnetic Force between Two Parallel Conductors",
  "short": "Force between Two Parallel Conductors",
- "lead": "Two things this chapter has already settled are enough to say what two parallel wires do to each other: a current makes a magnetic field that circles it, and a current lying in a magnetic field feels a force. Putting the one into the other gives the force per unit length between two long parallel currents, the permeability of free space times the two currents, divided by two pi times the distance between them. The direction follows from the two right hand rules, and it is the reverse of what you will expect if you remember that like charges repel: currents running the same way pull together, and currents running opposite ways push apart. Because the current in an electric arc is a great many parallel currents, that same attraction squeezes the arc into a narrower tube, which is the pinch effect, and in a large circuit breaker it can concentrate the arc and burn holes in the plates that are trying to interrupt it. The same force, measured between two conductors, is what the ampere itself is defined by.",
+ "lead": "Two results of this chapter are enough to say what two parallel wires do to each other: a current makes a magnetic field that circles it, and a current lying in a magnetic field feels a force. Putting the one into the other gives the force per unit length between two long parallel currents. It is the permeability of free space times the two currents, divided by two pi times the distance between them. The two right hand rules give the direction, and it is the reverse of what you might expect from like charges repelling: currents running the same way pull together, and currents running opposite ways push apart. The current in an electric arc is a great many parallel currents, so the same attraction squeezes the arc into a narrower tube. This is the pinch effect, and in a large circuit breaker it can concentrate the arc and burn holes in the plates meant to interrupt it. The same force, measured between two conductors, defines the ampere itself.",
  "objectives": [
   "Describe the effects of the magnetic force between two conductors.",
   "Calculate the force between two parallel conductors."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -99,7 +103,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Neither is possible. The middle wire carries its current one way or the other, and whichever way that is, it runs the same way as one of the outer currents and the opposite way to the other, because the outer two are opposite to each other. So the middle wire is attracted by one outer wire and repelled by the other, and there is no setting of the currents that makes both forces pulls or both pushes. What is worth noticing is that the two forces do not oppose each other. The wire that attracts the middle one pulls it toward that side, and the wire that repels it pushes it away from the other side, which is the same side; the two forces point the same way and add. The middle wire is therefore driven toward whichever outer wire carries its current the same way, and no position between the two outer wires makes the net force on it vanish."
+    "solution": "Neither is possible. The middle wire carries its current one way or the other. Whichever way that is, it runs the same way as one of the outer currents and opposite to the other, because the outer two are opposite to each other. So one outer wire attracts the middle wire and the other repels it, and no setting of the currents makes both forces pulls or both pushes. Notice, though, that the two forces do not oppose each other. The wire that attracts the middle one pulls it toward its own side, and the wire that repels it pushes it away from the other side, which is the same side. The two forces point the same way and add. The middle wire therefore moves toward whichever outer wire carries its current the same way, and no position between the two outer wires makes the net force on it vanish."
    }
   },
   {
@@ -113,7 +117,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "There is no net force, but there is a net torque. Take the first wire to run east and west and the second to run north and south, a little above it. The field of the first wire circles it, so at points on the second wire north of the crossing the field points one way across that wire, and at points south of the crossing it points the other way. Apply RHR-1 at each of those points with the thumb along the current in the second wire: the piece to the north is pushed one way along the first wire’s direction and the piece to the south is pushed the opposite way, by an equal amount at equal distances from the crossing. Adding the pushes over the whole length gives nothing, so there is no net force. Adding their moments about the line that runs perpendicular to both wires does not give nothing, because the two pushes are in opposite directions and act on opposite sides of that line: they make a couple. The torque is about the common perpendicular, and it turns the second wire toward lying parallel to the first with the two currents running the same way, which is the arrangement in which the two wires attract."
+    "solution": "There is no net force, but there is a net torque. Take the first wire to run east and west and the second to run north and south, a little above it. The field of the first wire circles it, so at points on the second wire north of the crossing the field points one way across that wire, and at points south of the crossing it points the other way. Apply RHR-1 at each of those points with the thumb along the current in the second wire. The force on the piece to the north points one way along the first wire’s direction, and the force on the piece to the south points the opposite way, equally strong at equal distances from the crossing. Adding the forces over the whole length gives nothing, so there is no net force. Their moments about the line perpendicular to both wires do not add to nothing, because the two forces point in opposite directions and act on opposite sides of that line: they make a couple. The torque about the common perpendicular turns the second wire toward lying parallel to the first with the two currents running the same way, the arrangement in which the two wires attract."
    }
   },
   {
@@ -132,7 +136,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A sketch of the two loops one above the other, with a short piece of the upper loop marked and the piece of the lower loop directly beneath it marked as well, shows it in one step. Those two pieces are short parallel currents, and when both loops carry their current the same way round the two run in the same direction, so by this section’s rule they are pulled together. The same is true of every such pair all the way round the loops, so the loops attract. Reverse the current in one loop and every pair becomes a pair of opposite currents, every pair pushes apart, and the loops repel. It agrees with what the loops do as magnets. RHR-2 applied to a loop puts its north pole on the face from which the current is seen to run counterclockwise, so when both loops circulate the same way their north poles point the same way, and the south face of the upper loop is turned toward the north face of the lower one. Unlike poles face each other, which is attraction. Reverse one current and two like faces meet, which is repulsion."
+    "solution": "Sketch the two loops one above the other, and mark a short piece of the upper loop and the piece of the lower loop directly beneath it. Those two pieces are short parallel currents. When both loops carry their current the same way around, the two run in the same direction, so they pull together. The same is true of every such pair all the way around the loops, so the loops attract. Reverse the current in one loop and every pair becomes a pair of opposite currents that push apart, so the loops repel. This agrees with what the loops do as magnets. RHR-2 puts a loop’s north pole on the face from which its current appears to run counterclockwise. When both loops circulate the same way, their north poles point the same way, and the south face of the upper loop faces the north face of the lower one. Unlike poles face each other, which is attraction. Reverse one current and two like faces meet, which is repulsion."
    }
   },
   {
@@ -151,7 +155,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Each loop sits in the field of the other, and a current loop in a magnetic field feels a torque that turns it until its own field runs the same way as the field it sits in. Tilt the upper loop a little and the lower loop’s field no longer runs along the upper loop’s axis; the torque on the upper loop is about the line where the two planes would meet, and it turns the upper loop back toward the plane of the lower one. The lower loop feels a torque about the same line and in the opposite sense, as the third law requires, and it turns toward the plane of the upper one. So yes: if the loops were free to rotate they would turn until their axes were parallel and their fields ran the same way through both of them, which puts the north face of one against the south face of the other. It is the same thing two bar magnets do when they are free to swing, and for the same reason."
+    "solution": "Each loop sits in the field of the other, and a current loop in a magnetic field feels a torque that turns it until its own field runs the same way as the field it sits in. Tilt the upper loop a little, and the lower loop’s field no longer runs along the upper loop’s axis. The torque on the upper loop is about the line where the two planes would meet, and it turns the upper loop back toward the plane of the lower one. The lower loop feels a torque about the same line in the opposite sense, as the third law requires, and it turns toward the plane of the upper one. So yes: loops free to rotate would turn until their axes were parallel and their fields ran the same way through both, which puts the north face of one against the south face of the other. Two bar magnets free to swing do the same, and for the same reason."
    }
   },
   {
@@ -165,7 +169,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "There is a kind of magnetic shielding, although it does not work the way a Faraday cage does. A Faraday cage works because a conductor holds charges that are free to move, and they move until the field inside the cage is zero. There is no magnetic charge to move in the same way, so that trick is not available. What can be done is to surround the space with a material through which field lines pass far more readily than through air, such as soft iron or mu-metal: nearly all of the lines take the easy path round the enclosure and very few cross the space inside it. It is a diversion rather than a cancellation and it is never complete, but it is good enough that sensitive instruments are routinely housed in such shields. Gravitational shielding is another matter. Mass comes with one sign only, so there is no arrangement of matter whose attraction cancels the attraction of everything outside it, and no material offers gravity an easier path than empty space does. Nothing that screens gravity has ever been found, and nothing in what is known of gravity suggests that anything could."
+    "solution": "There is a kind of magnetic shielding, although it does not work the way a Faraday cage does. A Faraday cage works because a conductor holds charges that are free to move, and they move until the field inside the cage is zero. There is no magnetic charge to move in the same way. Instead, you can surround the space with a material through which field lines pass far more readily than through air, such as soft iron or mu-metal. Nearly all of the lines then take the easy path around the enclosure, and very few cross the space inside it. This diverts the field rather than canceling it, and it is never complete, but it works well enough to house sensitive instruments routinely in such shields. Gravitational shielding is another matter. Mass comes with one sign only, so no arrangement of matter can cancel the attraction of everything outside it, and no material offers gravity an easier path than empty space does. No one has ever found anything that screens gravity, and nothing we know of gravity suggests that anything could."
    }
   },
   {

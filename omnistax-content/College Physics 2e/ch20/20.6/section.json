@@ -4,7 +4,7 @@
  "chapter": "20",
  "title": "Electric Hazards and the Human Body",
  "short": "Electric hazards",
- "lead": "Electricity is dangerous in two quite different ways, and the two are governed by different quantities. A thermal hazard is a matter of power: a short circuit lays a resistance of a fraction of an ohm across a source, and since the power dissipated is the voltage squared divided by that resistance, a household 120 V can deliver 144 kW into a few centimeters of cord. A shock hazard is a matter of the current through a person, and because that current is the voltage divided by the body’s resistance, the same 120 V passes harmlessly through dry skin and holds the hand shut on the wire when the skin is wet. This section works both cases in numbers, sets out what each level of current does to the body, and explains what fuses and circuit breakers do about the first of the two.",
+ "lead": "Electricity is dangerous in two different ways, and different quantities govern each. A thermal hazard is a matter of power. A short circuit puts a resistance of a fraction of an ohm across a source, and since the power dissipated is the voltage squared divided by that resistance, a household 120 V can deliver 144 kW into a few centimeters of cord. A shock hazard is a matter of the current through a person. That current is the voltage divided by the body’s resistance, so the same 120 V passes harmlessly through dry skin but holds the hand shut on the wire when the skin is wet. You will work both cases in numbers, see what each level of current does to the body, and learn how fuses and circuit breakers guard against the first.",
  "objectives": [
   "Define thermal hazard, shock hazard, and short circuit.",
   "Explain what effects various levels of current have on the human body."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -242,7 +246,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The severity is determined by the current through the person, the path the current takes, the duration of the shock and the frequency of the current. No, a voltage cannot be called hazardous by itself. Since $I = V/R$, the current depends on the resistance as well as the voltage, and 120 V through the 200 kΩ of dry skin passes an unfelt 0.6 mA while the same 120 V through the 10.0 kΩ of a person soaking wet passes 12 mA, which is above the can’t-let-go threshold. The path matters too, since a current through the brain leaves the heart unaffected, and so do the duration and the frequency."
+    "solution": "Four things determine the severity: the current through the person, the path the current takes, the duration of the shock and the frequency of the current. No, a voltage is not hazardous by itself. Since $I = V/R$, the current depends on the resistance as well as the voltage. 120 V through the 200 kΩ of dry skin passes an unfelt 0.6 mA, while the same 120 V through the 10.0 kΩ of a person soaking wet passes 12 mA, above the can’t-let-go threshold. The path matters too, since a current through the brain leaves the heart unaffected, and so do the duration and the frequency."
    }
   },
   {
@@ -274,7 +278,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The electric field at the surface of a conductor is greatest where the surface curves most sharply, so the field is largest at the thin edge of the blade. The largest field drives the largest current density, and so almost all the current leaves the scalpel along its edge, which is where the cutting and cauterizing are wanted. High-frequency alternating current is used. The section notes that the body becomes progressively less sensitive at higher frequencies, because nerves can only fire so fast, and that at very high frequencies the current travels only on the surface of a person, so a high-frequency current can cut and burn without stimulating nerves or stopping the heart."
+    "solution": "The electric field at the surface of a conductor is greatest where the surface curves most sharply, so the field is largest at the thin edge of the blade. The largest field drives the largest current density, so almost all the current leaves the scalpel along its edge, exactly where it should cut and cauterize. The scalpel uses high-frequency alternating current. The body becomes progressively less sensitive at higher frequencies, because nerves can only fire so fast, and at very high frequencies the current travels only on the surface of a person. A high-frequency current can therefore cut and burn without stimulating nerves or stopping the heart."
    }
   },
   {

@@ -4,7 +4,7 @@
  "chapter": "20",
  "title": "Resistance and Resistivity",
  "short": "Resistance and resistivity",
- "lead": "The resistance of an object is settled by two things: what it is made of and what shape it is cut to. This section defines the resistivity that carries the material half of the answer, gives the resistance of a uniform cylinder as $\\kRes = \\rho L/A$, sorts the materials of the book's table into conductors, semiconductors and insulators, and then adds temperature, which changes a resistivity and with it the resistance of the object made from it.",
+ "lead": "Two things set the resistance of an object: what it is made of and what shape it has. The resistivity carries the material half of the answer, and a uniform cylinder has resistance $\\kRes = \\rho L/A$. The materials of the table sort into conductors, semiconductors and insulators. Temperature then changes a resistivity, and with it the resistance of the object made from it.",
  "objectives": [
   "Explain the concept of resistivity.",
   "Use resistivity to calculate the resistance of specified configurations of material.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -355,7 +359,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The expression for resistivity carries one approximation and the expression for resistance carries two. The first is that the resistivity varies linearly with the temperature change, which holds well over changes of about 100 °C or less and less well beyond them. The expression for resistance then assumes on top of that that the length and the cross-sectional area of the object do not change as it is heated, since $\\kRes = \\rho L/A$ depends on both. They do change: the object expands. The section makes the case that this second approximation is a mild one, because coefficients of linear expansion are about two orders of magnitude smaller than typical temperature coefficients of resistivity, so the error it brings in is about a hundredth of the effect being calculated. Mild is not nothing, though, and the Integrated Concepts problem shows the size of it: taking the thermal expansion of the filament into account changes the answer by three percent."
+    "solution": "The expression for resistivity carries one approximation and the expression for resistance carries two. The first is that the resistivity varies linearly with the temperature change, which holds well over changes of about 100 °C or less and less well beyond them. The expression for resistance also assumes that the length and the cross-sectional area of the object stay fixed as it heats, since $\\kRes = \\rho L/A$ depends on both. In fact the object expands. This second approximation is a mild one, because coefficients of linear expansion are about two orders of magnitude smaller than typical temperature coefficients of resistivity, so its error is about a hundredth of the effect itself. Mild is not nothing, though: in the Integrated Concepts problem, taking the thermal expansion of the filament into account changes the answer by three percent."
    }
   },
   {

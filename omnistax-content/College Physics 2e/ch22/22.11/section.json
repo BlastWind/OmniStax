@@ -4,7 +4,7 @@
  "chapter": "22",
  "title": "More Applications of Magnetism",
  "short": "More Applications of Magnetism",
- "lead": "The chapter closes on the instruments its results have made possible. A mass spectrometer is the radius of a charged particle's circle read backwards: fix the speed, the charge and the field, and the width of the arc an ion turns is a reading of its mass. The stage that fixes the speed is a pair of crossed fields whose forces balance on one speed only, and that balance is the one new result the section proves. The same steering that bends an ion round a chamber points the beam of a cathode ray tube at the screen, and a field made to vary slightly across a patient lets a radio frequency report where in the body it was absorbed, which is what magnetic resonance imaging is. The section ends with the faintest fields anyone measures, those of a beating heart and a working brain.",
+ "lead": "The chapter closes on the instruments its results make possible. A mass spectrometer reads the radius of a charged particle's circle backwards: fix the speed, the charge and the field, and the width of the arc an ion turns gives its mass. The stage that fixes the speed is a pair of crossed fields whose forces balance for one speed only. The same steering that bends an ion around a chamber points the beam of a cathode ray tube at the screen. In magnetic resonance imaging, a field that varies slightly across a patient lets a radio frequency report where in the body it was absorbed. Last come the faintest fields anyone measures, those of a beating heart and a working brain.",
  "objectives": [
   "Describe some applications of magnetism."
  ],
@@ -15,6 +15,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -113,7 +117,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Blood is a conductor, and the heart moves it across the field of the magnet, so the conditions for a Hall voltage are met: the field pushes the positive and negative carriers in the blood to opposite walls of a vessel until the electric field between them balances the magnetic force, leaving an emf of about $\\kBmag\\kv\\ell$ across the vessel. With a field of 1 to 2 T, a vessel a centimeter or two across and blood moving at a few tenths of a meter per second, this comes to a few tens of millivolts, which is the same size as the voltages the heart works with. The wires of a pacemaker are a much better conductor and they move with the heart, so the same effect appears along them, and a voltage of that size arriving at the pacemaker is a signal it was never meant to receive. That is on top of the force the strong field exerts on any magnetic material in the device. The two together are why a patient with a pacemaker is not put in an MRI unit."
+    "solution": "Blood is a conductor, and the heart moves it across the field of the magnet, so the conditions for a Hall voltage are met. The field pushes the positive and negative carriers in the blood to opposite walls of a vessel until the electric field between them balances the magnetic force, leaving an emf of about $\\kBmag\\kv\\ell$ across the vessel. With a field of 1 to 2 T, a vessel a centimeter or two across and blood moving at a few tenths of a meter per second, this comes to a few tens of millivolts, the same size as the voltages the heart works with. The wires of a pacemaker are a much better conductor and they move with the heart, so the same effect appears along them. A voltage of that size arriving at the pacemaker is a signal it was never meant to receive. On top of that, the strong field exerts a force on any magnetic material in the device. Together, these are why a patient with a pacemaker must not enter an MRI unit."
    }
   },
   {
@@ -155,7 +159,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Treat the river as the moving conductor of a Hall probe. The ions dissolved in the water are carried along by the flow at speed $\\kv$, and the component of the Earth’s field perpendicular to both the flow and the line across the river pushes the positive ions toward one bank and the negative ions toward the other. They collect there until the electric field they set up balances the magnetic force, and at that point the potential difference between the banks is $\\kemfhall = \\kBmag\\ell\\kv$, with $\\ell$ the width of the river. So three numbers are needed: the width of the river, the average speed of the flow, and the component of the Earth’s field at right angles to the plane the other two lie in, which for a river running east to west is the vertical component. A river 100 m wide flowing at 1 m/s through a vertical field component of $5 \\times 10^{-5}$ T gives about 5 mV between the banks."
+    "solution": "Treat the river as the moving conductor of a Hall probe. The flow carries the dissolved ions along at speed $\\kv$. The component of the Earth’s field perpendicular to both the flow and the line across the river pushes the positive ions toward one bank and the negative ions toward the other. They collect there until the electric field they set up balances the magnetic force, and then the potential difference between the banks is $\\kemfhall = \\kBmag\\ell\\kv$, with $\\ell$ the width of the river. So you need three numbers: the width of the river, the average speed of the flow, and the component of the Earth’s field at right angles to the plane the other two lie in, which for a river running east to west is the vertical component. A river 100 m wide flowing at 1 m/s through a vertical field component of $5 \\times 10^{-5}$ T gives about 5 mV between the banks."
    }
   },
   {
@@ -168,7 +172,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The gravitational lines between two masses run from each mass toward the other and end on them, because gravity only ever attracts and mass comes in one sign; the picture looks like the electric one for two opposite charges, and there is no arrangement of masses that gives the second picture. The electric lines between a positive and a negative charge leave the positive charge, curve across the gap and end on the negative charge, since electric field lines begin on positive charge and end on negative charge. Between two positive charges the lines leave both and bend away from one another, leaving an empty point midway between them where the two contributions cancel, and no line crosses from one charge to the other. The magnetic lines around a bar magnet neither begin nor end: outside the magnet they leave the north pole and curve round to the south pole, and inside the magnet they continue from south to north, so that every line is a closed loop. That last difference is the important one. A charge can be had on its own, so electric field lines have ends; a magnetic pole cannot, since cutting a magnet in half gives two magnets rather than a north and a south, so magnetic field lines have none."
+    "solution": "The gravitational lines between two masses run from each mass toward the other and end on them, because gravity only ever attracts and mass comes in one sign. The picture looks like the electric one for two opposite charges, and no arrangement of masses gives the second picture. The electric lines between a positive and a negative charge leave the positive charge, curve across the gap and end on the negative charge, since electric field lines begin on positive charge and end on negative charge. Between two positive charges the lines leave both and bend away from one another. They leave an empty point midway between the charges where the two contributions cancel, and no line crosses from one charge to the other. The magnetic lines around a bar magnet neither begin nor end. Outside the magnet they leave the north pole and curve around to the south pole, and inside the magnet they continue from south to north, so every line is a closed loop. That last difference is the important one. A charge can exist on its own, so electric field lines have ends. A magnetic pole cannot, since cutting a magnet in half gives two magnets rather than a north and a south, so magnetic field lines have none."
    }
   },
   {

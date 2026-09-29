@@ -4,7 +4,7 @@
  "chapter": "21",
  "title": "DC Circuits Containing Resistors and Capacitors",
  "short": "Resistors and capacitors",
- "lead": "A circuit that contains a capacitor as well as a resistor does not settle into its final state the instant the switch is closed, because charge has to be carried onto the plates through the resistance before the capacitor can oppose the source. This section works out how the voltage across a charging capacitor climbs toward the emf and how the voltage across a discharging one falls toward zero, shows that the product of the resistance and the capacitance is the time in which either change covers a fixed fraction of what is left, and ends with the circuits that use that time to decide when something should happen, from a camera flash to an artificial pacemaker.",
+ "lead": "A circuit with a capacitor as well as a resistor does not settle into its final state the instant you close the switch. Charge has to flow onto the plates through the resistance before the capacitor can oppose the source. The voltage across a charging capacitor climbs toward the emf, and the voltage across a discharging one falls toward zero. The product of the resistance and the capacitance is the time in which either change covers a fixed fraction of what remains. Circuits from a camera flash to an artificial pacemaker use that time to decide when something should happen.",
  "objectives": [
   "Explain the importance of the time constant, $\\ktauRC$, and calculate the time constant for a given resistance and capacitance.",
   "Explain why batteries in a flashlight gradually lose power and the light dims over time.",
@@ -19,6 +19,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -237,7 +241,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The time constant is the product of the two, so both of them must be made small if the circuit is to follow a quick variation. Reduce the capacitance as far as the instrument allows, since a smaller capacitor holds less charge and so fills and empties sooner, and keep the resistance of the circuit low as well. Much of the resistance is the patient’s own chest and cannot be chosen, which is why the capacitance is the quantity the designer works on; the shortest interval the instrument can resolve is then about one time constant of what is left."
+    "solution": "The time constant is the product of the two, so both must be small if the circuit is to follow a quick variation. Reduce the capacitance as far as the instrument allows, since a smaller capacitor holds less charge and so fills and empties sooner, and keep the resistance of the circuit low as well. Much of the resistance is the patient’s own chest, which the designer cannot choose, so the capacitance is the quantity to work on. The shortest interval the instrument can resolve is then about one time constant of what remains."
    }
   },
   {
@@ -285,7 +289,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "It never reaches zero exactly, for the same reason: $\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}$ falls to 0.368 of its value in every time constant but never becomes zero. Again this is not a difficulty in practice, since after five time constants the voltage is less than 0.7 per cent of what it started at. It is worth remembering, though, that a large capacitor charged to a high voltage is still dangerous for many time constants after the power has been switched off, which is why the circuits that carry them are fitted with a resistor to bleed the charge away."
+    "solution": "It never reaches zero exactly, for the same reason: $\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}$ falls to 0.368 of its value in every time constant but never becomes zero. Again this is no difficulty in practice, since after five time constants the voltage is less than 0.7 per cent of its starting value. Remember, though, that a large capacitor charged to a high voltage stays dangerous for many time constants after you switch the power off. That is why such circuits carry a resistor to bleed the charge away."
    }
   },
   {
@@ -354,7 +358,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The bleeder sits across the capacitor while the apparatus is running as well as after it is switched off, so whatever current passes through it is current the rest of the circuit does not get and power that is simply wasted as heat. Making its resistance much greater than the effective resistance of the circuit keeps that wasted current down to a negligible share of the whole. The price is paid afterwards: the time constant for the discharge is the bleeder’s resistance times the capacitance, so a large bleeder resistance means a long time constant and a slow discharge. The design is therefore a compromise, the resistance chosen large enough to waste little while the apparatus runs and small enough to empty the capacitor within a reasonable time after it is off."
+    "solution": "The bleeder sits across the capacitor while the apparatus runs as well as after you switch it off. Any current through it is current the rest of the circuit does not get, and power wasted as heat. Making its resistance much greater than the effective resistance of the circuit keeps that wasted current to a negligible share of the whole. The price comes afterwards: the time constant for the discharge is the bleeder’s resistance times the capacitance, so a large bleeder resistance means a long time constant and a slow discharge. The design is therefore a compromise. Choose the resistance large enough to waste little while the apparatus runs and small enough to empty the capacitor within a reasonable time after it is off."
    }
   },
   {
@@ -370,7 +374,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Take the two parts in turn from the loop rule. The voltage across the resistor is whatever the capacitor has not yet taken, $\\text{emf} - \\kV$, and the current is that voltage divided by the resistance; since the capacitor’s voltage only ever climbs toward the emf, both the voltage across the resistor and the current through it fall from the moment the switch is closed, which settles the first part. When the capacitor is fully charged it holds the whole emf, so there is nothing left across the resistor and no current anywhere in the loop, neither in the resistor nor in the capacitor; so nothing named in the second part is other than zero. Reading the options against that reasoning gives one answer for each part."
+    "solution": "Take the two parts in turn from the loop rule. The voltage across the resistor is whatever the capacitor has not yet taken, $\\text{emf} - \\kV$, and the current is that voltage divided by the resistance. The capacitor’s voltage only ever climbs toward the emf, so both the voltage across the resistor and the current through it fall from the moment you close the switch, which settles the first part. A fully charged capacitor holds the whole emf, so nothing remains across the resistor and no current flows anywhere in the loop, neither in the resistor nor in the capacitor. Everything named in the second part is therefore zero. Reading the options against that reasoning gives one answer for each part."
    }
   },
   {
