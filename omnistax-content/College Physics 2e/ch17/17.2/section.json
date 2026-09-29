@@ -4,7 +4,7 @@
  "chapter": "17",
  "title": "Speed of Sound, Frequency, and Wavelength",
  "short": "Speed of sound",
- "lead": "Sound travels at a definite speed, and its frequency and wavelength are tied to that speed as they are for every wave. This section names the perception of frequency pitch, relates the speed of sound to its frequency and wavelength, shows how the speed depends on the medium and on the temperature of the air, and explains why the speed of sound is nearly the same for every frequency.",
+ "lead": "Sound travels at a definite speed, and as for every wave, its frequency and wavelength are tied to that speed. We perceive frequency as pitch. The speed of sound depends on the medium and on the temperature of the air, and it is nearly the same for every frequency.",
  "objectives": [
   "Define pitch.",
   "Describe the relationship between the speed of sound, its frequency, and its wavelength.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -27,6 +31,10 @@
    },
    {
     "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
     "effort": "low"
    }
   ]
@@ -156,7 +164,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The flaw is in reading $\\kvw = \\kf\\klam$ as if the speed depended on the frequency. In a given medium the speed of a wave is fixed by the medium, so the equation says that the frequency and the wavelength must adjust to each other: a higher frequency means a shorter wavelength, and their product is always the same speed. A student can show this with a slinky stretched to a fixed length along the floor. Shake one end slowly and then quickly, sending waves of two different frequencies down the same slinky, and time each with the stopwatch as it travels a distance measured with the meter stick. The speed comes out the same for both, while the meter stick shows that the fast shaking produces a shorter wavelength than the slow shaking. To make the speed of the wave change, the medium itself must change: stretch the slinky to a greater tension, or use a heavier or lighter slinky. Then the same shaking gives a different speed, and the wavelength changes with it, which is exactly why every instrument of the orchestra, high or low, is heard at once."
+    "solution": "The flaw is in reading $\\kvw = \\kf\\klam$ as if the speed depended on the frequency. The medium sets the speed of a wave, so the equation says that the frequency and the wavelength must adjust to each other: a higher frequency means a shorter wavelength, and their product is always the same speed. You can show this with a slinky stretched to a fixed length along the floor. Shake one end slowly and then quickly, sending waves of two different frequencies down the same slinky. Time each with the stopwatch as it travels a distance measured with the meter stick. The speed comes out the same for both, while the meter stick shows that the fast shaking produces a shorter wavelength than the slow shaking. To change the speed of the wave, you must change the medium itself: stretch the slinky to a greater tension, or use a heavier or lighter slinky. Then the same shaking gives a different speed, and the wavelength changes with it. That is why you hear every instrument of the orchestra, high or low, at once."
    }
   },
   {
@@ -170,7 +178,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Thermal motion is random. Each atom or molecule moves in its own direction at its own speed, the average of those speeds is the rms speed $\\kvrms = \\sqrt{3k\\kTemp/m}$, and because the directions are random there is no net motion of the gas. A sound vibration is an organized motion added on top of the thermal motion: the atoms of a region move together, back and forth along the direction the sound travels, so that compressions and rarefactions pass through the medium at the speed of sound with a definite frequency and wavelength. The two are connected, since the speed at which the disturbance can be passed from particle to particle depends on how fast the particles are already moving, which is why the speed of sound in a gas grows with the square root of the temperature, but the sound vibration is coherent and the thermal motion is not."
+    "solution": "Thermal motion is random. Each atom or molecule moves in its own direction at its own speed, and the average of those speeds is the rms speed $\\kvrms = \\sqrt{3k\\kTemp/m}$. Because the directions are random, the gas has no net motion. A sound vibration is an organized motion added on top of the thermal motion. The atoms of a region move together, back and forth along the direction the sound travels, so compressions and rarefactions pass through the medium at the speed of sound with a definite frequency and wavelength. The two motions are connected: how fast the particles already move sets how fast they can pass the disturbance along. That is why the speed of sound in a gas grows with the square root of the temperature. Still, the sound vibration is coherent and the thermal motion is not."
    }
   },
   {

@@ -4,7 +4,7 @@
  "chapter": "17",
  "title": "Ultrasound",
  "short": "Ultrasound",
- "lead": "Ultrasound is any sound above 20,000 Hz, and medicine puts it to two quite different uses. Focused to high intensity it shatters gallstones, pulverizes tissue and heats a muscle deep below the skin, and at intensities ten million times smaller it forms an image, because a wave is partly reflected wherever the acoustic impedance of the material changes. This section defines that impedance and the fraction of the intensity a boundary returns, shows how the time an echo takes gives the depth of its reflector and how the wavelength limits the detail a probe can resolve, and closes on Doppler-shifted ultrasound, whose double shift is measured as the beats the echo makes against the broadcast.",
+ "lead": "Ultrasound is any sound above 20,000 Hz, and medicine puts it to two different uses. Focused to high intensity, it shatters gallstones, pulverizes tissue and heats a muscle deep below the skin. At intensities ten million times smaller it forms an image, because a wave partly reflects wherever the acoustic impedance of the material changes. The impedance sets the fraction of the intensity a boundary returns. The time an echo takes gives the depth of its reflector, and the wavelength limits the detail a probe can resolve. Doppler-shifted ultrasound shifts twice, and you measure the shift as the beats the echo makes against the broadcast.",
  "objectives": [
   "Define acoustic impedance and intensity reflection coefficient.",
   "Describe medical and other uses of ultrasound technology.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -27,6 +31,10 @@
    },
    {
     "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
     "effort": "low"
    }
   ]
@@ -174,7 +182,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Infrasound is sound below 20 Hz, so its wavelength in air or in water is very long, tens of meters or more, and the same rule of thumb that limits ultrasound to a few hundred wavelengths gives infrasound an enormous reach. A long wave is absorbed only weakly by the medium it travels through, so it loses little of its intensity over a great distance. A long wavelength also passes around obstacles, a hill, a stand of trees or a ridge on the sea floor, that would reflect or scatter a short wave, so the signal is not blocked by whatever lies between the animals. The price is the one this section names for a long wavelength everywhere: no fine detail can be carried, which is why infrasound serves for a call and not for an image."
+    "solution": "Infrasound is sound below 20 Hz, so its wavelength in air or in water is very long, tens of meters or more. The same rule of thumb that limits ultrasound to a few hundred wavelengths gives infrasound an enormous reach. The medium absorbs a long wave only weakly, so it loses little of its intensity over a great distance. A long wavelength also passes around obstacles, such as a hill, a stand of trees or a ridge on the sea floor, that would reflect or scatter a short wave. Nothing between the animals blocks the signal. The price is the same as for any long wavelength: it cannot carry fine detail, which is why infrasound serves for a call and not for an image."
    }
   },
   {
@@ -202,7 +210,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Check the figure against the intensities the section gives for this use. Ultrasound pulverizes tissue at $10^3$ to $10^5\\ \\text{W/m}^2$, and $10^5\\ \\text{W/cm}^2$ is $10^9\\ \\text{W/m}^2$, ten thousand times larger than the largest of them, so the number as read cannot be the sound intensity level this text uses. The explanation is the other decibel scale: in water and in biological tissue, sound is often quoted as a sound pressure level, and those numbers run 60 to 70 dB higher than the sound intensity level for the same sound. Subtracting that amount leaves about 140 to 150 dB, which is $10^2$ to $10^3\\ \\text{W/m}^2$, squarely in the range the section quotes for surgical ultrasound. The figure is not wrong; it is quoted on a scale that has to be named before it can be read."
+    "solution": "Check the figure against the intensities given for this use. Ultrasound pulverizes tissue at $10^3$ to $10^5\\ \\text{W/m}^2$, and $10^5\\ \\text{W/cm}^2$ is $10^9\\ \\text{W/m}^2$, ten thousand times larger than the largest of them. The number as read cannot be the sound intensity level this text uses. The explanation is the other decibel scale. In water and in biological tissue, sound is often quoted as a sound pressure level, and those numbers run 60 to 70 dB higher than the sound intensity level for the same sound. Subtracting that amount leaves about 140 to 150 dB, which is $10^2$ to $10^3\\ \\text{W/m}^2$, squarely in the range for surgical ultrasound. The figure is not wrong, but you must know its scale before you can read it."
    }
   },
   {
@@ -254,7 +262,7 @@
      {
       "part": "(a)",
       "value": 1.0,
-      "hint": "Table 17.5 gives 429 for air and $30.8 \\times 10^{6}\\ \\text{kg/}(\\text{m}^2\\cdot\\text{s})$ for barium titanate. Put them into $a = (Z_2 - Z_1)^2/(Z_1 + Z_2)^2$ and notice how little the 429 changes either the difference or the sum."
+      "hint": "Table 17.5 gives 429 for air and $30.8 \\times 10^{6}\\ \\text{kg/}(\\text{m}^2\\cdot\\text{s})$ for barium titanate. Put them into $a = (Z_2 - Z_1)^2/(Z_1 + Z_2)^2$; the 429 barely changes either the difference or the sum."
      },
      {
       "part": "(b)",

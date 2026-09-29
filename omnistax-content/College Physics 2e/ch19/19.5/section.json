@@ -4,7 +4,7 @@
  "chapter": "19",
  "title": "Capacitors and Dielectrics",
  "short": "Capacitors and dielectrics",
- "lead": "A capacitor is two conductors held close together but not touching, and a battery connected across them separates a charge onto one and an equal charge of the opposite sign onto the other. This section defines the capacitance as the charge stored per volt and the farad as its unit, shows that for a parallel plate capacitor the capacitance is set by the area of the plates and the distance between them and by nothing else, and then puts an insulator between the plates: the dielectric raises the capacitance by its own factor, lets the plates be brought closer without breaking down, and does both because its molecules polarize.",
+ "lead": "A capacitor is two conductors held close together but not touching. A battery connected across them separates a charge onto one and an equal charge of the opposite sign onto the other. The capacitance is the charge stored per volt, and its unit is the farad. For a parallel plate capacitor the area of the plates and the distance between them alone set the capacitance. An insulator between the plates, a dielectric, raises the capacitance by its own factor and lets the plates come closer without breaking down, and it does both because its molecules polarize.",
  "objectives": [
   "Describe the action of a capacitor and define capacitance.",
   "Explain parallel plate capacitors and their capacitances.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -282,7 +286,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The dielectric polarizes. Its molecules turn so that each presents a layer of charge of the opposite sign to the plate nearest it, and the Coulomb force between those surface layers and the plates is strong because they are very close together, so more charge is drawn onto the plates for the same voltage. Seen the other way, the field lines end on the surface charges of the dielectric, fewer of them cross from one plate to the other, and the field, and with it the voltage $\\kV = \\kEf\\kd$, is smaller for the same charge; since $\\kCap = \\kQch/\\kV$, the capacitance is greater, by the factor $\\kappa$. The independent reason a greater voltage may be applied is the dielectric strength: many insulators withstand a far greater electric field than air before they break down and conduct, and since the field between the plates is $\\kV/\\kd$, a material that tolerates a greater field tolerates a greater voltage at the same separation. Teflon at 1.00 mm takes 60,000 V where air takes 3000 V."
+    "solution": "The dielectric polarizes. Its molecules turn so that each presents a layer of charge of the opposite sign to the plate nearest it. The Coulomb force between those surface layers and the plates is strong because they are very close together, so more charge collects on the plates for the same voltage. Seen the other way, the field lines end on the surface charges of the dielectric, and fewer of them cross from one plate to the other. The field, and with it the voltage $\\kV = \\kEf\\kd$, is smaller for the same charge, and since $\\kCap = \\kQch/\\kV$, the capacitance is greater by the factor $\\kappa$. The dielectric strength is a separate reason the capacitor can take a greater voltage. Many insulators withstand a far greater electric field than air before they break down and conduct. The field between the plates is $\\kV/\\kd$, so a material that tolerates a greater field tolerates a greater voltage at the same separation. Teflon at 1.00 mm takes 60,000 V where air takes 3000 V."
    }
   },
   {
@@ -314,7 +318,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Humid air carries water molecules, and a water molecule is polar. In the field between the plates each one turns to line up with the field, and, being already charged at both ends, it is pulled towards the plates and is easily torn apart by a field that would leave a symmetric molecule of nitrogen or oxygen alone. Once a molecule is ionized the air has free charges in it and begins to conduct, which is what a spark is. So the dielectric strength of humid air is lower than that of dry air, and since the field between the plates is $\\kEf = \\kV/\\kd$, breakdown is reached at a lower voltage."
+    "solution": "Humid air carries water molecules, and a water molecule is polar. In the field between the plates each one turns to line up with the field. It is already charged at both ends, so the field pulls it towards the plates and easily tears it apart, where a symmetric molecule of nitrogen or oxygen would stay whole. Once a molecule ionizes, the air has free charges in it and begins to conduct, which is what a spark is. The dielectric strength of humid air is therefore lower than that of dry air, and since the field between the plates is $\\kEf = \\kV/\\kd$, breakdown comes at a lower voltage."
    }
   },
   {
@@ -386,7 +390,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "It does not vary. The battery sets the voltage across whatever is connected to it, so the voltage across the capacitor stays at the battery’s value however the plates are moved. What changes is the capacitance, $\\kCap = \\varepsilon_0 A/\\kd$, which falls as the plates are drawn apart, and with it the charge, $\\kQch = \\kCap\\kV$: charge flows back into the battery as the separation grows and out of it as the separation shrinks. Only if the battery were first disconnected, leaving the charge fixed, would the voltage change, and then it would grow in proportion to the separation."
+    "solution": "It does not vary. The battery sets the voltage across whatever you connect to it, so the voltage across the capacitor stays at the battery’s value however the plates move. What changes is the capacitance, $\\kCap = \\varepsilon_0 A/\\kd$, which falls as the plates move apart, and with it the charge, $\\kQch = \\kCap\\kV$. Charge flows back into the battery as the separation grows and out of it as the separation shrinks. Only if you first disconnected the battery, fixing the charge, would the voltage change, and then it would grow in proportion to the separation."
    }
   },
   {
@@ -426,7 +430,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Build one parallel plate capacitor and change nothing about it but what fills the space between the plates. Two square metal plates held at a fixed small separation by an insulating frame will do, with sheets of the materials to be tested cut to the same thickness as the gap. Measure the capacitance with nothing between the plates, which gives $\\kCair = \\varepsilon_0 A/\\kd$, then slide in each sheet in turn and measure again; the relative permittivity of that material is the ratio $\\kappa = \\kCap/\\kCair$. A capacitance meter reads the capacitance directly, and without one the capacitor may be charged to a known voltage and its charge measured, since $\\kCap = \\kQch/\\kV$. The results should give a ratio of exactly 1 for a vacuum and very nearly 1 for air; a few for the common plastics and glasses, around 2 for Teflon and around 5 or 6 for Bakelite and Pyrex; and a very large number for a polar material, about 80 for water, because a molecule whose charge is already separated needs only to turn to line up with the field. The sheet must fill the gap, or the air left beside it lowers the reading."
+    "solution": "Build one parallel plate capacitor and change nothing about it but what fills the space between the plates. Two square metal plates held at a fixed small separation by an insulating frame will do, with sheets of the test materials cut to the same thickness as the gap. Measure the capacitance with nothing between the plates, which gives $\\kCair = \\varepsilon_0 A/\\kd$. Then slide in each sheet in turn and measure again; the relative permittivity of that material is the ratio $\\kappa = \\kCap/\\kCair$. A capacitance meter reads the capacitance directly. Without one, charge the capacitor to a known voltage and measure its charge, since $\\kCap = \\kQch/\\kV$. Expect a ratio of exactly 1 for a vacuum and very nearly 1 for air. The common plastics and glasses give a few, around 2 for Teflon and around 5 or 6 for Bakelite and Pyrex. A polar material gives a very large number, about 80 for water, because a molecule whose charge is already separated needs only to turn to line up with the field. The sheet must fill the gap, or the air left beside it lowers the reading."
    }
   },
   {

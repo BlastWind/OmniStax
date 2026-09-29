@@ -4,7 +4,7 @@
  "chapter": "17",
  "title": "Sound Intensity and Sound Level",
  "short": "Sound intensity and sound level",
- "lead": "Loudness is a familiar experience, and the physical quantity behind it is the intensity of the sound, the power it carries across each square meter. This section defines intensity, relates it to the square of the pressure amplitude of the wave, and then, because the ear responds to the logarithm of the intensity rather than to the intensity itself, defines the sound intensity level in decibels against the threshold of hearing, so that a factor of ten in intensity is a step of 10 dB and a factor of two is about 3 dB.",
+ "lead": "Loudness is a familiar experience, and the physical quantity behind it is the intensity of the sound, the power it carries across each square meter. Intensity is proportional to the square of the pressure amplitude of the wave. The ear responds to the logarithm of the intensity rather than to the intensity itself, so we measure the sound intensity level in decibels against the threshold of hearing. A factor of ten in intensity is a step of 10 dB, and a factor of two is about 3 dB.",
  "objectives": [
   "Define intensity, sound intensity, and sound pressure level.",
   "Calculate sound intensity levels in decibels (dB)."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -295,7 +299,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Think about how the sound reaches the inner ear in each case. In air, sound arrives as a pressure wave in the air that must pass down the ear canal to the eardrum, and an earplug stops most of it, so on the mat the swimmers hear the music faintly. In water, the body is nearly the same density as the water around it, so the sound wave passes into the head and reaches the inner ear directly through the tissue and bone without needing the ear canal at all; the earplugs make little difference there. There is also the matter of the medium: the density and speed of sound in water are far greater than in air, so a sound of the same pressure amplitude carries a different intensity, and underwater speakers are built to make the music loud enough to be heard through the body. On the mat, with plugged ears and only the air to carry the sound, the music is much harder to follow."
+    "solution": "Think about how the sound reaches the inner ear in each case. In air, sound arrives as a pressure wave that must pass down the ear canal to the eardrum, and an earplug stops most of it, so on the mat the swimmers hear the music faintly. In water, the body has nearly the same density as the water around it. The sound wave passes into the head and reaches the inner ear directly through the tissue and bone, without needing the ear canal at all, so the earplugs make little difference there. The medium matters too: the density and speed of sound in water are far greater than in air, so a sound of the same pressure amplitude carries a different intensity. Underwater speakers make the music loud enough to hear through the body. On the mat, with plugged ears and only the air to carry the sound, the music is much harder to follow."
    }
   },
   {
@@ -500,7 +504,7 @@
     "value": 28.2,
     "unit": "dB",
     "generated_by": "source",
-    "hint": "The power gathered over $15.0\\ \\text{cm}^2$ is delivered, at 40.0% efficiency and with the factor of 100 for direct contact, onto $0.900\\ \\text{cm}^2$; the ratio of the intensity at the eardrums to the intensity in the air is $100 \\times 0.400 \\times (15.0/0.900)$, and the gain in decibels is ten times its logarithm.",
+    "hint": "The ear trumpet gathers the power over $15.0\\ \\text{cm}^2$ and delivers it onto $0.900\\ \\text{cm}^2$ at 40.0% efficiency, with the factor of 100 for direct contact. The ratio of the intensity at the eardrums to the intensity in the air is $100 \\times 0.400 \\times (15.0/0.900)$, and the gain in decibels is ten times its logarithm.",
     "solution": "28.2 dB"
    }
   }

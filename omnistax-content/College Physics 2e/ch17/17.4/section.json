@@ -4,7 +4,7 @@
  "chapter": "17",
  "title": "Doppler Effect and Sonic Booms",
  "short": "Doppler effect and sonic booms",
- "lead": "The scream of a motorcycle drops to a roar as it passes, because the motion of a source or of an observer changes the frequency that is received. This section explains why the wavelength is shortened ahead of a moving source and lengthened behind it, gives the frequency an observer receives for a moving source and for a moving observer, and follows a source past the speed of sound, where its waves pile up into a sonic boom.",
+ "lead": "The scream of a motorcycle drops to a roar as it passes, because the motion of a source or of an observer changes the frequency the observer hears. The wavelength is shorter ahead of a moving source and longer behind it. The received frequency follows one formula for a moving source and another for a moving observer. A source faster than sound piles its waves up into a sonic boom.",
  "objectives": [
   "Define Doppler effect, Doppler shift, and sonic boom.",
   "Calculate the frequency of a sound heard by someone observing Doppler shift.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -288,7 +292,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The horn is a moving source and the student a stationary observer, so the two flat parts of the graph are the two readings of $\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)$ with $\\kfsrc = 200\\ \\text{Hz}$: 218 Hz while the car approaches, with the minus sign, and 181 Hz after it has passed, with the plus sign. For (a), solve either reading for the speed of the car. The approaching reading gives $\\kvs = \\kvw\\left(1 - \\frac{200\\ \\text{Hz}}{218\\ \\text{Hz}}\\right) = 0.083\\,\\kvw$ and the receding reading gives $\\kvs = \\kvw\\left(\\frac{200\\ \\text{Hz}}{181\\ \\text{Hz}} - 1\\right) = 0.105\\,\\kvw$; the two differ because the frequencies are read off a graph, so take a speed of sound of about 343 m/s and report a speed of roughly 30 m/s. The sloping part between 0.5 s and 0.8 s is the car going by, when its motion is no longer along the line to the student. For (b), a car twice as fast has twice the ratio $\\kvs/\\kvw$, about 0.17, so its line starts higher, near $200\\ \\text{Hz}/(1 - 0.17) \\approx 240\\ \\text{Hz}$, and ends lower, near $200\\ \\text{Hz}/(1 + 0.17) \\approx 170\\ \\text{Hz}$. The car covers the same stretch of road in half the time, so the sloping part of the new line is half as wide, running from 0.5 s to about 0.65 s, and both shifts are larger than before: the shift up is larger than the shift down, as the two equations require."
+    "solution": "The horn is a moving source and the student a stationary observer, so the two flat parts of the graph are the two readings of $\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)$ with $\\kfsrc = 200\\ \\text{Hz}$. The reading is 218 Hz while the car approaches, with the minus sign, and 181 Hz after it has passed, with the plus sign. For (a), solve either reading for the speed of the car. The approaching reading gives $\\kvs = \\kvw\\left(1 - \\frac{200\\ \\text{Hz}}{218\\ \\text{Hz}}\\right) = 0.083\\,\\kvw$, and the receding reading gives $\\kvs = \\kvw\\left(\\frac{200\\ \\text{Hz}}{181\\ \\text{Hz}} - 1\\right) = 0.105\\,\\kvw$. The two differ because you read the frequencies off a graph, so take a speed of sound of about 343 m/s and report a speed of roughly 30 m/s. The sloping part between 0.5 s and 0.8 s is the car going by, when its motion is no longer along the line to the student. For (b), a car twice as fast has twice the ratio $\\kvs/\\kvw$, about 0.17. Its line starts higher, near $200\\ \\text{Hz}/(1 - 0.17) \\approx 240\\ \\text{Hz}$, and ends lower, near $200\\ \\text{Hz}/(1 + 0.17) \\approx 170\\ \\text{Hz}$. The car covers the same stretch of road in half the time, so the sloping part of the new line is half as wide, running from 0.5 s to about 0.65 s. Both shifts are larger than before, and the shift up is larger than the shift down, as the two equations require."
    }
   },
   {
@@ -304,7 +308,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "It is real. Ahead of a moving source the compressions of the air really are closer together, because each one was emitted from a point farther along than the one before, so the wavelength in the air is shorter there and, since $\\kvw = \\kf\\klam$ with $\\kvw$ fixed by the medium, the frequency arriving at a stationary observer really is higher. An observer walking toward a stationary source really does meet more crests each second than one standing still. A microphone, a radar receiver or an ultrasound probe measures the shifted frequency just as an ear hears it, which is why the shift can be used to measure the speed of blood, cars and galaxies."
+    "solution": "It is real. Ahead of a moving source the compressions of the air really are closer together, because the source emits each one from a point farther along than the one before. The wavelength in the air is shorter there, and since $\\kvw = \\kf\\klam$ with $\\kvw$ fixed by the medium, the frequency arriving at a stationary observer really is higher. An observer walking toward a stationary source really does meet more crests each second than one standing still. A microphone, a radar receiver or an ultrasound probe measures the shifted frequency just as an ear hears it, which is why the shift can measure the speed of blood, cars and galaxies."
    }
   },
   {
@@ -336,7 +340,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The plane is moving faster than the sound it makes, so the shock wave trails behind it on a cone and reaches the ground only after the plane has passed overhead. By the time the boom arrives, the plane is well beyond the point where you would look for it, and the sound seems to come from where the plane was rather than from where it is. Figure 17.17 shows this: the observers hear the booms after the aircraft has gone by, and the one the shock wave has not yet reached hears nothing at all."
+    "solution": "The plane is moving faster than the sound it makes, so the shock wave trails behind it on a cone and reaches the ground only after the plane has passed overhead. By the time the boom arrives, the plane is well beyond the point where you would look for it, and the sound comes from where the plane was rather than from where it is. Figure 17.17 shows this: the observers hear the booms after the aircraft has gone by, and the one the shock wave has not yet reached hears nothing at all."
    }
   },
   {

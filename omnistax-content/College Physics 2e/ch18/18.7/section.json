@@ -4,7 +4,7 @@
  "chapter": "18",
  "title": "Conductors and Electric Fields in Static Equilibrium",
  "short": "Conductors in static equilibrium",
- "lead": "A conductor has charges in it that are free to move, and they keep moving as long as anything pushes them. This section follows them to the state they settle into, in which no field is left inside the conductor, the field just outside it stands perpendicular to the surface and every bit of excess charge has been driven onto the surface. Those three properties are then used: to make a very uniform field between two plates, to read Earth’s own field and the storms that reverse it, to see why excess charge crowds onto the sharpest part of a conductor, and to explain the lightning rod, the Faraday cage and the car that is safe to sit in during a storm.",
+ "lead": "A conductor has charges in it that are free to move, and they keep moving as long as anything pushes them. In the state they settle into, no field remains inside the conductor, the field just outside stands perpendicular to the surface, and all excess charge sits on the surface. These three properties make a very uniform field between two plates and explain Earth’s own field and the storms that reverse it. They also explain why excess charge crowds onto the sharpest part of a conductor, and how the lightning rod, the Faraday cage and the car that is safe to sit in during a storm work.",
  "objectives": [
   "List the three properties of a conductor in electrostatic equilibrium.",
   "Explain the effect of an electric field on free charges in a conductor.",
@@ -21,6 +21,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -227,7 +231,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "No. Lines meeting the surface at right angles is something a conductor in equilibrium must show, but it is not something only a conductor can show. An insulator whose surface charge happened to be arranged in the right way would give the same picture outside, and so would a charged insulator of a symmetrical shape. What settles the question is whether any field is left inside the body: a conductor in electrostatic equilibrium has none, because any field there would go on moving its free charges, and an insulator may have as much as it likes."
+    "solution": "No. Every conductor in equilibrium shows lines meeting its surface at right angles, but other bodies can show them too. An insulator with the right arrangement of surface charge would give the same picture outside, and so would a charged insulator of a symmetrical shape. The deciding test is whether any field remains inside the body. A conductor in electrostatic equilibrium has none, because any field there would keep moving its free charges, and an insulator may have as much as it likes."
    }
   },
   {
@@ -255,7 +259,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The field at the point removes whichever sign of charge the conductor is carrying, since that is the charge the field is pushing outward: a positively charged rod loses positive charge to the air and a negatively charged one loses negative charge. A neutral pointed conductor in an externally applied field is a different case. It has no excess charge of its own, and the applied field has driven charge of one sign to the point and charge of the other sign to the far end; what leaves the point is therefore the sign the applied field has gathered there, which is set by the direction of that field and not by the conductor. Either sign can be carried away from a point, which is what makes points useful for moving charge in both directions."
+    "solution": "The field at the point removes whichever sign of charge the conductor carries, since the field pushes that charge outward. A positively charged rod loses positive charge to the air, and a negatively charged one loses negative charge. A neutral pointed conductor in an externally applied field is a different case. It has no excess charge of its own, and the applied field has driven charge of one sign to the point and charge of the other sign to the far end. The charge that leaves the point therefore has the sign the applied field gathered there, and the direction of that field, not the conductor, decides it. A point can shed either sign, which makes points useful for moving charge in both directions."
    }
   },
   {
@@ -283,7 +287,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "No. The belt has to carry charge up to the sphere and hold onto it on the way, and a conductor cannot do that. Excess charge placed on a conductor moves at once until it is spread over the whole surface, so charge put on a conducting belt would run back down the belt and away through whatever the belt touches instead of riding up to the sphere. The belt is made of an insulator for that reason: the charge sprayed onto it stays where it is put and is carried up mechanically, and it is taken off again at the top by a comb of points."
+    "solution": "No. The belt has to carry charge up to the sphere and hold onto it on the way, and a conductor cannot do that. Excess charge on a conductor moves at once until it spreads over the whole surface. Charge on a conducting belt would run back down the belt and away through whatever the belt touches, instead of riding up to the sphere. That is why the belt is an insulator: the charge sprayed onto it stays in place, rides up mechanically and comes off again at the top through a comb of points."
    }
   },
   {
@@ -311,7 +315,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A grounded rod is connected to the earth by a thick conductor, so charge induced on the building by the storm cloud is drawn up to the point and bled continually into the air, and if a strike does come the current has a path to ground that does not pass through the building. Its cost is the installation itself, and the fact that a poor connection or a corroded one is worse than none at all, since it invites the strike and then cannot carry it. A rod merely attached to the building can still concentrate charge at its point and bleed some of it away, but the charge it moves has to come from the building, which is a poor conductor, so it works far less well; and when a strike arrives the current must find its own way down through the structure, which is how fires start. The grounded rod is the better arrangement whenever it can be properly made."
+    "solution": "A thick conductor connects a grounded rod to the earth. The storm cloud induces charge on the building, the rod draws it up to the point and bleeds it continually into the air, and if a strike does come, the current has a path to ground that bypasses the building. Its cost is the installation itself. A poor or corroded connection is also worse than none at all, since it invites the strike and then cannot carry it. A rod merely attached to the building can still concentrate charge at its point and bleed some of it away. The charge it moves has to come from the building, a poor conductor, so it works far less well. When a strike arrives, the current must find its own way down through the structure, which is how fires start. Choose the grounded rod whenever you can install it properly."
    }
   },
   {
@@ -372,7 +376,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The charges $\\kqa$ and $\\kqd$ are the ends of one diagonal and $\\kqb$ and $\\kqc$ the ends of the other. Equal charges at the two ends of a diagonal are the same distance from the center and pull or push the charge there in exactly opposite directions, so each pair cancels on its own and the net force on $\\kq$ is zero: it is in static equilibrium. Whether the equilibrium is stable depends on the signs. If the corner charges have the same sign as $\\kq$, they repel it, and moving $\\kq$ a little toward one corner brings it closer to that corner and farther from the opposite one, so the near charge pushes harder and drives it back: that displacement is stable. If the corner charges have the opposite sign to $\\kq$, they attract it, and the same small displacement is pulled further in the direction it was moved: that displacement is unstable. In general no arrangement of fixed charges gives an equilibrium that is stable against displacement in every direction, so with mixed signs the charge is stable along one diagonal and unstable along the other."
+    "solution": "The charges $\\kqa$ and $\\kqd$ are the ends of one diagonal and $\\kqb$ and $\\kqc$ the ends of the other. Equal charges at the two ends of a diagonal are the same distance from the center and pull or push the charge there in exactly opposite directions. Each pair cancels on its own, so the net force on $\\kq$ is zero and it is in static equilibrium. The signs decide whether the equilibrium is stable. If the corner charges have the same sign as $\\kq$, they repel it. Moving $\\kq$ a little toward one corner brings it closer to that corner and farther from the opposite one, so the near charge pushes harder and drives it back, and that displacement is stable. If the corner charges have the opposite sign to $\\kq$, they attract it, and the same small displacement grows, pulling the charge further the way it moved, so that displacement is unstable. In general no arrangement of fixed charges gives an equilibrium that is stable against displacement in every direction. With mixed signs the charge is stable along one diagonal and unstable along the other."
    }
   },
   {
@@ -414,7 +418,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A car running along a road picks up an excess charge, and a charged car arriving at a window would discharge through the attendant or through the money or ticket being passed. The wire in the pavement is a conductor that runs into the ground, so when the car touches it the excess charge on the car flows away into the earth, harmlessly and before the car reaches the booth. It is the same grounding that a lightning rod’s connection to earth provides, done deliberately and in advance."
+    "solution": "A car running along a road picks up an excess charge, and a charged car arriving at a window would discharge through the attendant or through the money or ticket changing hands. The wire in the pavement is a conductor that runs into the ground. When the car touches it, the excess charge on the car flows away into the earth, harmlessly and before the car reaches the booth. It is the same grounding that a lightning rod’s connection to earth provides, done on purpose and in advance."
    }
   },
   {
@@ -428,7 +432,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "No. The shoes have to be insulators, and dry ones. A conducting sole, or a wet one, connects the person to the ground and the excess charge runs away at once, since ground is a conductor large enough to take any charge offered to it. To discharge the person deliberately, connect them to ground through something that carries the charge away gradually rather than in one spark: a hand laid flat on a large grounded metal surface, or a wire through a resistance. If they simply walk away they stay charged, and the charge will find its own way off at the first thing they touch, which means a spark at a fingertip, a shock, and, near anything flammable or near delicate electronics, real damage."
+    "solution": "No. The shoes have to be insulators, and dry ones. A conducting or wet sole connects the person to the ground, and the excess charge runs away at once, since ground is a conductor large enough to take any charge offered to it. To discharge the person safely, connect them to ground through something that carries the charge away gradually rather than in one spark. A hand laid flat on a large grounded metal surface works, or a wire through a resistance. If they simply walk away they stay charged, and the charge will find its own way off at the first thing they touch. That means a spark at a fingertip, a shock, and, near anything flammable or near delicate electronics, real damage."
    }
   },
   {

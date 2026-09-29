@@ -4,7 +4,7 @@
  "chapter": "18",
  "title": "Electric Field: Concept of a Field Revisited",
  "short": "Electric field",
- "lead": "A charged comb picks up bits of paper without touching them, and the way physics accounts for that is to say that the charge fills the space around it with a field. This section explains what a force field is, shows that the Coulomb force field is not the same at a point for every charge set down there, and then defines the electric field as the force per unit of positive test charge, which does depend on nothing but the charge creating it. From that definition follow the force on any charge placed in a known field and the field of a point charge itself, which falls as the square of the distance.",
+ "lead": "A charged comb picks up bits of paper without touching them, because the charge fills the space around it with a field. A force field maps the force at each point, but the Coulomb force at a point differs for every charge set down there. The electric field is the force per unit of positive test charge, and it depends only on the charge creating it. From it follow the force on any charge in a known field and the field of a point charge, which falls as the square of the distance.",
  "objectives": [
   "Describe a force field and calculate the strength of an electric field due to a point charge.",
   "Calculate the force exerted on a test charge by an electric field.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -134,7 +138,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The field at a point is meant to be a property of the charges that create it, and of nothing else. A test charge is itself a charge, so it exerts forces of its own on those charges and can push them about, and the charge distribution whose field is being measured is then no longer the one the measurement was meant to describe. The smaller the test charge, the smaller that disturbance is, and the ratio $\\kF/\\kq$ approaches the field the charges would have had with no test charge there at all. The ratio itself does not depend on the size of the test charge, since the force is proportional to it; what the vanishingly small test charge buys is the guarantee that nothing has been moved by the act of measuring."
+    "solution": "The field at a point should be a property of the charges that create it, and of nothing else. A test charge is itself a charge, so it exerts forces of its own on those charges and can push them about. The charge distribution you measure is then no longer the one you set out to describe. The smaller the test charge, the smaller that disturbance, and the ratio $\\kF/\\kq$ approaches the field the charges would have with no test charge there at all. The ratio itself does not depend on the size of the test charge, since the force is proportional to it. A vanishingly small test charge guarantees that the act of measuring moves nothing."
    }
   },
   {
@@ -190,7 +194,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The book prints this item with the options $E/3$ and $3F$; $E$ and $3F$; $E/3$ and $F$; $E$ and $F$, and gives no answer, so the approach is suggested rather than graded. The field at the distance $r$ is made by the $+2q$ particle alone, and the definition $\\kEf = \\kF/\\kq$ was arranged so that the field does not depend on the charge set down in it; replacing the $+q$ particle by a $+3q$ particle therefore leaves the field at that point equal to $E$. The force, on the other hand, is $\\kF = \\kq\\kEf$, so tripling the charge in the field triples the force to $3F$. That is the second option."
+    "solution": "The options are $E/3$ and $3F$; $E$ and $3F$; $E/3$ and $F$; $E$ and $F$. The $+2q$ particle alone makes the field at the distance $r$, and the definition $\\kEf = \\kF/\\kq$ keeps the field independent of the charge set down in it. Replacing the $+q$ particle by a $+3q$ particle therefore leaves the field at that point equal to $E$. The force, on the other hand, is $\\kF = \\kq\\kEf$, so tripling the charge in the field triples the force to $3F$. That is the second option."
    }
   },
   {
@@ -270,7 +274,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The book gives no answer to this item, so the approach is suggested rather than graded. The two particles are point charges, so Coulomb's law applies directly: the magnitude of the force is $\\kF = k|\\kqone\\kqtwo|/r^2$, with $k = 8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2\\text{/C}^2$. The particles are identical, so the product of the charges is the square of $3.2 \\times 10^{-19}$ C, and the separation must be written in metres, $5\\ \\text{cm} = 5 \\times 10^{-2}$ m, before it is squared. The same number can be reached through the field: the first particle makes a field $\\kEf = k|\\kQch|/r^2$ at the second, and the force on the second is $\\kF = \\kq\\kEf$. Both charges have the same sign, so the force is a repulsion, and each particle is pushed directly away from the other."
+    "solution": "The two particles are point charges, so Coulomb's law applies directly: the magnitude of the force is $\\kF = k|\\kqone\\kqtwo|/r^2$, with $k = 8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2\\text{/C}^2$. The particles are identical, so the product of the charges is the square of $3.2 \\times 10^{-19}$ C. Write the separation in metres, $5\\ \\text{cm} = 5 \\times 10^{-2}$ m, before you square it. The field gives the same number: the first particle makes a field $\\kEf = k|\\kQch|/r^2$ at the second, and the force on the second is $\\kF = \\kq\\kEf$. Both charges have the same sign, so the force is a repulsion, and it pushes each particle directly away from the other."
    }
   },
   {

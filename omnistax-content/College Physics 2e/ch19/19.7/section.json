@@ -4,7 +4,7 @@
  "chapter": "19",
  "title": "Energy Stored in Capacitors",
  "short": "Energy stored in capacitors",
- "lead": "A capacitor holds its energy in the charge it keeps separated, and the amount it holds is not simply the charge times the voltage. The voltage across a capacitor starts at zero and climbs as the charge goes on, so the charge as a whole passes through only the average of the two, which is half the final voltage, and the energy stored is half the product of the charge and the voltage. This section reasons that result out from the first charge placed on the capacitor to the last, writes it in the three equivalent forms that follow from the relation between charge, voltage and capacitance, and then asks what the stored energy is for. The answer that matters most is the heart defibrillator, whose capacitor is charged to ten thousand volts and discharged in a single burst across a patient's chest.",
+ "lead": "A capacitor holds its energy in the charge it keeps separated, and the amount is not simply the charge times the voltage. The voltage across a capacitor starts at zero and climbs as the charge builds up, so the charge as a whole passes through only the average voltage, half the final value. The energy stored is therefore half the product of the charge and the voltage. The relation between charge, voltage and capacitance gives it three equivalent forms. The most important use of that energy is the heart defibrillator, whose capacitor charges to ten thousand volts and discharges in a single burst across a patient's chest.",
  "objectives": [
   "List some uses of capacitors.",
   "Express in equation form the energy stored in a capacitor.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -133,7 +137,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The capacitor is isolated, so no charge can leave or reach its plates and $\\kQch$ is fixed. Of the three forms of the energy, the one written in the quantities that are known here is $\\kEcap = \\kQch^2/2\\kCap$. Inserting the dielectric raises the capacitance from $\\kCap$ to $\\kappa\\kCap$, and since the charge does not change, the energy falls by the factor $\\kappa$; the voltage across the capacitor falls by the same factor, because $\\kV = \\kQch/\\kCap$. The energy has to go somewhere, and where it goes is into the work done on the slab: the polarized dielectric is attracted into the region between the plates, so the capacitor pulls it in and does work on it, and the slab has to be held back rather than pushed. Work was done, but by the capacitor on the dielectric, not by you on the capacitor."
+    "solution": "The capacitor is isolated, so no charge can leave or reach its plates and $\\kQch$ stays fixed. Of the three forms of the energy, the one written in the known quantities is $\\kEcap = \\kQch^2/2\\kCap$. Inserting the dielectric raises the capacitance from $\\kCap$ to $\\kappa\\kCap$, and since the charge does not change, the energy falls by the factor $\\kappa$. The voltage across the capacitor falls by the same factor, because $\\kV = \\kQch/\\kCap$. The lost energy goes into work done on the slab. The capacitor attracts the polarized dielectric into the region between the plates and does work on it, so you must hold the slab back rather than push it. Work was done, but by the capacitor on the dielectric, not by you on the capacitor."
    }
   },
   {
@@ -149,7 +153,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The battery holds the voltage across the capacitor fixed, so the form to use is $\\kEcap = \\kCap\\kV^2/2$. The dielectric raises the capacitance from $\\kCap$ to $\\kappa\\kCap$ while $\\kV$ stays where the battery puts it, so the stored energy rises by the factor $\\kappa$, and the charge on the plates rises by the same factor, since $\\kQch = \\kCap\\kV$. The extra charge comes from the battery, and the battery does work in driving it onto the plates; it supplies more energy than the capacitor gains, because it also does the work the capacitor does in pulling the slab in. So work was done, and it was done by the battery. Note how differently the two cases run: holding the charge fixed lowers the energy, while holding the voltage fixed raises it, and the whole answer turns on which of the two the circuit holds."
+    "solution": "The battery holds the voltage across the capacitor fixed, so use $\\kEcap = \\kCap\\kV^2/2$. The dielectric raises the capacitance from $\\kCap$ to $\\kappa\\kCap$ while $\\kV$ stays where the battery puts it, so the stored energy rises by the factor $\\kappa$. The charge on the plates rises by the same factor, since $\\kQch = \\kCap\\kV$. The extra charge comes from the battery, which does work in driving it onto the plates. The battery supplies more energy than the capacitor gains, because it also does the work the capacitor does in pulling the slab in. So work was done, and the battery did it. The two cases run in opposite directions: holding the charge fixed lowers the energy, while holding the voltage fixed raises it, and the answer turns on which of the two the circuit holds."
    }
   },
   {
@@ -246,7 +250,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Take from Example 19.1 the energy the car battery moves through its 12.0 V and the voltage it works at, and put them into $\\kEcap = \\kCap\\kV^2/2$ solved for the capacitance, $\\kCap = 2\\kEcap/\\kV^2$. With an energy of the order of $10^6\\ \\text{J}$ and a voltage of only 12.0 V, the capacitance comes out in the tens of thousands of farads, where the largest capacitor in this chapter is measured in microfarads. Two things are responsible, and both are worth naming. The energy goes as the square of the voltage, so a device that works at 12 V rather than at thousands of volts is at a crushing disadvantage; and a capacitor stores its energy in separated charge on two plates, which takes enormous plate area to do in quantity, while a battery stores its energy in a chemical reaction and can hold far more of it in the same volume. A capacitor gives its energy back in a burst, which is what a defibrillator wants; a car wants a steady supply over hours, which is what a battery gives."
+    "solution": "Take from Example 19.1 the energy the car battery moves through its 12.0 V and the voltage it works at. Put them into $\\kEcap = \\kCap\\kV^2/2$ solved for the capacitance, $\\kCap = 2\\kEcap/\\kV^2$. With an energy of the order of $10^6\\ \\text{J}$ and a voltage of only 12.0 V, the capacitance comes out in the tens of thousands of farads, where the largest capacitor in this chapter holds microfarads. Two things are responsible. The energy goes as the square of the voltage, so a device that works at 12 V rather than at thousands of volts is at a crushing disadvantage. And a capacitor stores its energy in separated charge on two plates, which takes enormous plate area in quantity, while a battery stores its energy in a chemical reaction and holds far more of it in the same volume. A capacitor gives its energy back in a burst, which suits a defibrillator. A car needs a steady supply over hours, which a battery gives."
    }
   },
   {
@@ -326,7 +330,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Growing the plates raises the capacitance, since $\\kCap = \\varepsilon_0 A/\\kd$ and the area is in the numerator. What that does to the energy depends on which quantity is held while the area changes, and here it is the charge, so the form to reason with is $\\kEcap = \\kQch^2/2\\kCap$: with $\\kQch$ fixed and $\\kCap$ rising, the stored energy falls, and the voltage across the plates falls with it, since $\\kV = \\kQch/\\kCap$. Compare this with the previous item, where the voltage was held instead and the same growth in area raised the energy. The area does the same thing to the capacitance in both cases; it is the quantity the circuit holds fixed that decides whether the energy goes up or down."
+    "solution": "Growing the plates raises the capacitance, since $\\kCap = \\varepsilon_0 A/\\kd$ and the area is in the numerator. The effect on the energy depends on which quantity stays fixed while the area changes. Here it is the charge, so reason with $\\kEcap = \\kQch^2/2\\kCap$: with $\\kQch$ fixed and $\\kCap$ rising, the stored energy falls. The voltage across the plates falls with it, since $\\kV = \\kQch/\\kCap$. In the previous item the voltage stayed fixed instead, and the same growth in area raised the energy. The area does the same thing to the capacitance in both cases, and the quantity the circuit holds fixed decides whether the energy goes up or down."
    }
   },
   {
@@ -425,7 +429,7 @@
       "part": "(b) $\\kEcap$ in parallel",
       "value": 0.000381,
       "unit": "J",
-      "hint": "Use $\\kEcap = \\kCp\\kV^2/2$ with the parallel capacitance, and note how much more energy the same two capacitors hold this way."
+      "hint": "Use $\\kEcap = \\kCp\\kV^2/2$ with the parallel capacitance; the same two capacitors hold much more energy this way."
      }
     ],
     "solution": "(a) $1.42\\times 10^{-5}\\ \\text{C}$, $6.38\\times 10^{-5}\\ \\text{J}$. (b) $8.46\\times 10^{-5}\\ \\text{C}$, $3.81\\times 10^{-4}\\ \\text{J}$."
