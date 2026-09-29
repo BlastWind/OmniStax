@@ -4,7 +4,7 @@
  "chapter": "23",
  "title": "Induced Emf and Magnetic Flux",
  "short": "Induced emf and magnetic flux",
- "lead": "Faraday closed a switch, and a needle on a second coil swung. He opened it, and the needle swung the other way. While the switch stayed closed, with a steady current and a steady magnetic field, the needle sat at zero. It is the change in the magnetic field, and not the field itself, that induces an emf, and the same is true of a bar magnet pushed into a coil and of a coil turned in a field. The quantity that all three have in common is the magnetic flux, $\\kPhi = \\kBmag A\\cos\\theta$, the field strength times the area times the cosine of the angle between the field and the perpendicular to that area. Every induced emf in this chapter is a change in that one quantity, so this section is where it is worth getting exactly right.",
+ "lead": "Faraday closed a switch, and a needle on a second coil swung. He opened it, and the needle swung the other way. While the switch stayed closed, with a steady current and a steady magnetic field, the needle sat at zero. The change in the magnetic field, and not the field itself, induces an emf, and the same holds for a bar magnet pushed into a coil and for a coil turned in a field. What all three have in common is the magnetic flux, $\\kPhi = \\kBmag A\\cos\\theta$: the field strength times the area times the cosine of the angle between the field and the perpendicular to that area. Every induced emf in this chapter is a change in that one quantity, so get it exactly right here.",
  "objectives": [
   "Calculate the flux of a uniform magnetic field through a loop of arbitrary orientation.",
   "Describe methods to produce an electromotive force (emf) with a magnetic field or magnet and a loop of wire."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -141,7 +145,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Both make the effect larger without changing what causes it. The iron ring carries the field the upper coil makes round to the lower coil instead of letting it spread out into the air, so nearly the whole of that field passes through the lower coil and the flux there is far greater than it would be with the two coils standing apart. Take the iron away, as the figure lets you do, and the swing of the needle almost disappears. The multiple loops help in a different way: each loop of the lower coil encloses the same flux and each has an emf induced in it, and because the loops are joined end to end those emfs add, so a coil of many turns gives many times the emf of a single loop. Faraday needed both, since the emf induced by opening and closing a switch lasts only as long as the field takes to rise or die, and a galvanometer will not register a swing that is too small to see."
+    "solution": "Both make the effect larger without changing what causes it. The iron ring carries the field of the upper coil round to the lower coil instead of letting it spread into the air. Nearly the whole of that field then passes through the lower coil, and the flux there is far greater than with the two coils standing apart. Take the iron away and the swing of the needle almost disappears. The many loops help in a different way. Each loop of the lower coil encloses the same flux and has its own emf, and because the loops are joined end to end those emfs add, so a coil of many turns gives many times the emf of a single loop. Faraday needed both, since the emf from opening or closing a switch lasts only as long as the field takes to rise or die, and a galvanometer will not register a swing too small to see."
    }
   },
   {
@@ -155,7 +159,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The force on the magnet is directed back the way the magnet came, opposing the motion that is being made. Draw the coil with the north pole of the magnet approaching it from above: the flux down through the coil is growing, so the current induced in the coil runs in the sense that makes a field of its own pointing up out of the coil, back against the field that is growing. Curl the fingers of your right hand the way that current runs and your thumb points up along the axis, so the coil's own field leaves its upper face like the field of a north pole. A north pole faces the approaching north pole of the magnet, the two repel, and the magnet is pushed back. Pull the magnet away again and everything reverses: the flux is now falling, the induced current runs the other way, and the coil attracts the magnet and tries to hold it. The size of the force depends on how much current the emf can drive, and that is set by the resistance of the circuit: a galvanometer of low resistance lets a large current flow and the force is large, while one of high resistance lets almost none flow and the magnet is hardly opposed at all. The emf itself is the same either way, since it depends only on how fast the flux changes."
+    "solution": "The force on the magnet points back the way the magnet came, opposing its motion. Draw the coil with the north pole of the magnet approaching from above. The flux down through the coil is growing, so the induced current runs in the sense that makes a field of its own pointing up, against the growing field. Curl the fingers of your right hand the way that current runs and your thumb points up the axis, so the coil's field leaves its upper face like the field of a north pole. That north pole faces the approaching north pole of the magnet, the two repel, and the magnet is pushed back. Pull the magnet away and everything reverses: the flux now falls, the induced current runs the other way, and the coil attracts the magnet and tries to hold it. The size of the force depends on how much current the emf can drive, and the resistance of the circuit sets that. A galvanometer of low resistance lets a large current flow and the force is large; one of high resistance lets almost none flow and hardly opposes the magnet at all. The emf itself is the same either way, since it depends only on how fast the flux changes."
    }
   },
   {
@@ -169,7 +173,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The flux is not the field. It is $\\kPhi = \\kBmag A\\cos\\theta$, and the cosine is zero when the angle between the field and the perpendicular to the area is $90^\\circ$. That is the case of a loop turned edge on to the field, with the field lying in the plane of the loop: the field is as strong as it ever was, but not one line of it passes through the area the loop encloses, and the flux is zero. The other form of the same statement says it in a word: $\\kPhi = \\kBmag_{\\perp}A$, the area times the part of the field that goes straight through it, and a field that lies in the plane of the area has no part that goes through it. Turn the loop in the figure of the section to $90^\\circ$ and watch the count of lines it catches fall to nothing while the lines themselves are unchanged. A flux of zero can also be had by making the area zero, but the interesting case is the one where a strong field and a large area still give nothing at all."
+    "solution": "The flux is not the field. It is $\\kPhi = \\kBmag A\\cos\\theta$, and the cosine is zero when the angle between the field and the perpendicular to the area is $90^\\circ$. That is a loop turned edge on to the field, with the field lying in its plane. The field is as strong as ever, but not one line of it passes through the area the loop encloses, so the flux is zero. The other form of the same statement says it in a word: $\\kPhi = \\kBmag_{\\perp}A$, the area times the part of the field that goes straight through it, and a field lying in the plane of the area has no such part. Turn the loop in the section's figure to $90^\\circ$ and the count of lines it catches falls to nothing while the lines themselves stay the same. A zero area also gives zero flux, but the interesting case is a strong field and a large area that still give nothing at all."
    }
   },
   {
@@ -188,7 +192,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Yes. The flux is $\\kPhi = \\kBmag A\\cos\\theta$, and stretching the coil changes the third of the three factors that can change it: the area it encloses. The field is the same everywhere and the coil stays square to it, so the angle and the field are unchanged, but the area grows as the hands pull the loop out, the flux through it grows with the area, and a changing flux induces an emf. The current runs in the sense that makes a field of its own opposing the growth, and since the field of the figure points into the page, the induced current runs counterclockwise, so that the field it makes inside the loop comes out of the page and holds the flux back. Stop stretching and the emf stops at once, however large the loop has become, since it is the change and not the size that induces it."
+    "solution": "Yes. The flux is $\\kPhi = \\kBmag A\\cos\\theta$, and stretching the coil changes the third factor, the area it encloses. The field is the same everywhere and the coil stays square to it, so the field and the angle stay fixed. The area grows as the hands pull the loop out, the flux grows with it, and a changing flux induces an emf. The current runs in the sense that makes a field opposing the growth. Since the field points into the page, the induced current runs counterclockwise, making a field inside the loop that comes out of the page and holds the flux back. Stop stretching and the emf stops at once, however large the loop has become, because the change and not the size induces it."
    }
   },
   {

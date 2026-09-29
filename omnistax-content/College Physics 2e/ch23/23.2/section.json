@@ -4,7 +4,7 @@
  "chapter": "23",
  "title": "Faraday’s Law of Induction: Lenz’s Law",
  "short": "Faraday’s law and Lenz’s law",
- "lead": "A change in the magnetic flux through a coil drives an emf, and Faraday’s experiments settled exactly what that emf depends on: how much the flux changes, how quickly it changes, and how many turns of wire the change passes through. This section states Faraday’s law of induction, explains the minus sign in front of it as Lenz’s law, which says that the induced current always opposes the change that produced it, gives the six steps for finding the direction of an induced current, and ends with the recording heads, hard drives, cochlear implants and breathing monitors that induction is already at work in.",
+ "lead": "A change in the magnetic flux through a coil drives an emf, and Faraday’s experiments settled exactly what that emf depends on: how much the flux changes, how quickly it changes, and how many turns of wire the change passes through. Faraday’s law of induction puts the three together. The minus sign in front of it is Lenz’s law: the induced current always opposes the change that produced it. Six steps find the direction of any induced current, and induction is already at work in recording heads, hard drives, cochlear implants and breathing monitors.",
  "objectives": [
   "Calculate emf, current, and magnetic fields using Faraday’s Law.",
   "Explain the physical results of Lenz’s Law"
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -181,7 +185,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Turning her head quickly changes the orientation of everything inside it with respect to the field, and by $\\kPhi = \\kBmag A\\cos\\theta$ a change in orientation is a change in flux. Any closed conducting path in the head, and the fluid and tissue of the head is conducting, then has a changing flux through it, so by Faraday’s law an emf is induced round that path and a small current flows. The faster she turns, the smaller $\\kdt$ is and the larger the induced emf, which is why the dizziness comes with a quick turn and not with a slow one. Currents induced in the fluid of the inner ear and in the nerves that report the position of the head are enough to be felt as dizziness, and nothing is induced at all while she holds her head still, however strong the field is."
+    "solution": "Turning her head quickly changes the orientation of everything inside it with respect to the field, and by $\\kPhi = \\kBmag A\\cos\\theta$ a change in orientation is a change in flux. The fluid and tissue of the head conduct, so any closed path in the head has a changing flux through it. By Faraday’s law an emf appears round that path and a small current flows. The faster she turns, the smaller $\\kdt$ is and the larger the induced emf, which is why a quick turn brings the dizziness and a slow one does not. Currents in the fluid of the inner ear and in the nerves that report the position of the head are enough to feel as dizziness. While she holds her head still, nothing is induced at all, however strong the field."
    }
   },
   {
@@ -197,7 +201,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "It could. A moving charge carries a magnetic field of its own, which circles the line of its motion by RHR-2, and a coil wound around the pipe has its own axis along that line. As the particle comes up to the coil the flux of its field through the coil rises, and as it goes away again the flux falls, so the coil sees a flux that rises and then falls and Faraday’s law gives an emf throughout. The graph of the output against time is a pulse one way followed by a pulse the other way, crossing zero at the moment the particle is in the plane of the coil, because that is the moment when the flux is at its largest and is momentarily not changing. The pulse is short and its height grows with the speed of the particle, since a faster particle makes the same change of flux in a smaller $\\kdt$. Whether a single particle can be detected in practice is a question of how large that emf is beside the noise of the amplifier; the emf of one particle is very small, which is why real accelerators read a bunch of many particles at once rather than one."
+    "solution": "It could. A moving charge carries a magnetic field that circles the line of its motion by RHR-2, and a coil wound around the pipe has its axis along that line. As the particle approaches the coil the flux of its field through the coil rises, and as it leaves the flux falls. By Faraday’s law the changing flux gives an emf throughout. The output against time is a pulse one way followed by a pulse the other way. It crosses zero when the particle is in the plane of the coil, because there the flux is largest and momentarily not changing. The pulse is short, and its height grows with the speed of the particle, since a faster particle makes the same change of flux in a smaller $\\kdt$. Whether you can detect a single particle in practice depends on how large that emf is beside the noise of the amplifier. The emf of one particle is very small, which is why real accelerators read a bunch of many particles at once."
    }
   },
   {

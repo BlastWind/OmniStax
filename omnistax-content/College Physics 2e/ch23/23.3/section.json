@@ -4,7 +4,7 @@
  "chapter": "23",
  "title": "Motional Emf",
  "short": "Motional emf",
- "lead": "A conductor that moves across a magnetic field has an emf along it, because the circuit it belongs to encloses new area every second and the flux through that area changes. This section takes that emf from Faraday’s law of induction, finds it to be $\\kemf = \\kBmag\\ell\\kv$ when the field, the conductor and the velocity are mutually perpendicular, shows that only the relative motion of the parts matters, and follows the result out to the Tethered Satellite experiment, in which twenty kilometers of wire moving at orbital speed through the Earth’s weak field was expected to develop several kilovolts.",
+ "lead": "A conductor moving across a magnetic field has an emf along it, because its circuit encloses new area every second and the flux through that area changes. Faraday’s law of induction gives that emf as $\\kemf = \\kBmag\\ell\\kv$ when the field, the conductor and the velocity are mutually perpendicular. Only the relative motion of the parts matters. The Tethered Satellite experiment put the result to the test: twenty kilometers of wire moving at orbital speed through the Earth’s weak field should have developed several kilovolts.",
  "objectives": [
   "Calculate emf, force, magnetic field, and work due to the motion of an object in a magnetic field."
  ],
@@ -15,6 +15,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -186,7 +190,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Turning the solenoid current on rapidly raises the field inside it from nothing to its full value in a very short time, so the flux through the metal cylinder changes at an enormous rate and, by Faraday’s law, a large emf is induced around the cylinder. By Lenz’s law the current that emf drives must oppose the increase, so it circulates the opposite way to the current in the solenoid, and two currents running opposite ways repel one another; the cylinder is thrown out of the coil. The cylinder is a conductor of low resistance, so the induced emf drives a very large current through it, and the power $\\kIcur^2\\kRes$ that current dissipates heats the metal while the field is rising."
+    "solution": "Turning the solenoid current on rapidly raises the field inside from nothing to its full value in a very short time. The flux through the metal cylinder changes at an enormous rate, so by Faraday’s law a large emf appears around the cylinder. By Lenz’s law the current it drives must oppose the increase, so it circulates opposite to the current in the solenoid. Two currents running opposite ways repel, and the cylinder is thrown out of the coil. The cylinder is a conductor of low resistance, so the induced emf drives a very large current through it, and the power $\\kIcur^2\\kRes$ that current dissipates heats the metal while the field is rising."
    }
   },
   {
@@ -202,7 +206,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The surface between the coil and the pot should not be a conductor. The changing field passes through whatever lies over the coil, and a conducting surface would have an emf induced in it just as the pot does, so currents would flow in the surface and heat it, which is the one thing the design is meant to avoid. A steady current in the coil would not work at all, because it makes a steady field and a steady flux through the pot; only a changing flux induces an emf, so nothing would be induced in the pot and nothing would heat it."
+    "solution": "The surface between the coil and the pot should not be a conductor. The changing field passes through whatever lies over the coil, and a conducting surface would have an emf induced in it just as the pot does. Currents would then flow in the surface and heat it, the one thing the design must avoid. A steady current in the coil would not work at all, because it makes a steady field and a steady flux through the pot. Only a changing flux induces an emf, so the pot would get no emf and no heat."
    }
   },
   {

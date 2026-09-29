@@ -4,7 +4,7 @@
   "chapter": "23",
   "title": "Reactance, Inductive and Capacitive",
   "short": "Reactance",
-  "lead": "An inductor and a capacitor each do something to an alternating current that a resistor does not. Put an inductor alone on an AC source and the current still rises and falls with the voltage, but it lags a quarter of a cycle behind it, because the inductor opposes any change in the current; put a capacitor there instead and the current runs a quarter of a cycle ahead of the voltage, because the current is largest at the moment the plates are empty. Each of them limits the current as a resistance does, and the ohms each offers has a name: the inductive reactance $\\kXL = 2\\pi \\kf\\kLind$, which grows with the frequency, and the capacitive reactance $\\kXC = 1/2\\pi \\kf\\kCap$, which falls with it. Ohm's law then gives the current in the same form it always had, $\\kIcur = \\kV/\\kXL$ or $\\kIcur = \\kV/\\kXC$. Because the two run opposite ways with frequency, an inductor put in series with a circuit keeps high frequencies out of it and a capacitor keeps low ones out, which is how a hum is taken out of a sound system and how noise is kept off the supply to a computer. A resistor, for its part, does neither: its voltage and its current are exactly in phase and its ohms do not depend on the frequency at all.",
+  "lead": "An inductor and a capacitor each do something to an alternating current that a resistor does not. Put an inductor alone on an AC source and the current still rises and falls with the voltage, but it lags a quarter of a cycle behind, because the inductor opposes any change in the current. Put a capacitor there instead and the current runs a quarter of a cycle ahead of the voltage, because the current is largest when the plates are empty. Each limits the current as a resistance does, and each has its own ohms: the inductive reactance $\\kXL = 2\\pi \\kf\\kLind$, which grows with the frequency, and the capacitive reactance $\\kXC = 1/2\\pi \\kf\\kCap$, which falls with it. Ohm's law then gives the current in its familiar form, $\\kIcur = \\kV/\\kXL$ or $\\kIcur = \\kV/\\kXC$. Because the two run opposite ways with frequency, an inductor in series keeps high frequencies out of a circuit and a capacitor keeps low ones out. That is how a sound system loses its hum and how a computer's supply stays free of noise. A resistor does neither: its voltage and current are exactly in phase, and its ohms do not depend on the frequency at all.",
   "objectives": [
     "Sketch voltage and current versus time in simple inductive, capacitive, and resistive circuits.",
     "Calculate inductive and capacitive reactance.",
@@ -17,6 +17,10 @@
       {
         "model": "claude-opus-5",
         "effort": "high"
+      },
+      {
+        "model": "claude-opus-5-5",
+        "effort": "low"
       }
     ],
     "figures": [
@@ -91,7 +95,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "Put the capacitor in series with the speaker. A capacitor in series offers a reactance of $1/2\\pi fC$, which is large at low frequencies and small at high ones, so it holds back the low frequencies and lets the high ones through. That is what is wanted here: the listener has lost the high frequencies, so the amplifier's output has to be tilted toward them, and a series capacitor tilts it that way by taking some of the low-frequency output out. A capacitor in parallel with the speaker would do the opposite, since at high frequencies its small reactance would carry the current round the speaker rather than through it, and the sounds the listener has most trouble with are exactly the ones that would be lost."
+        "solution": "Put the capacitor in series with the speaker. A capacitor in series offers a reactance of $1/2\\pi fC$, large at low frequencies and small at high ones, so it holds back the low frequencies and lets the high ones through. That is what you want here. The listener has lost the high frequencies, so the amplifier's output must tilt toward them, and a series capacitor does that by taking out some of the low-frequency output. A capacitor in parallel with the speaker would do the opposite. At high frequencies its small reactance would carry the current round the speaker rather than through it, and the listener would lose exactly the sounds that are hardest to hear."
       }
     },
     {
@@ -119,7 +123,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "It uses a large inductance. The inductive reactance $X_L = 2\\pi fL$ is proportional to the frequency, so an inductor in series with the computer is nearly a plain wire at the 60 Hz the computer is meant to run on and a large number of ohms at the high frequencies of the noise. The noise is therefore held back while the power gets through. A capacitor in series would do the opposite, passing the high-frequency noise and blocking the supply itself, which is why the filter uses the inductor."
+        "solution": "It uses a large inductance. The inductive reactance $X_L = 2\\pi fL$ is proportional to the frequency. An inductor in series with the computer is therefore nearly a plain wire at the 60 Hz the computer runs on, and a large number of ohms at the high frequencies of the noise. The noise is held back while the power gets through. A capacitor in series would do the opposite, passing the high-frequency noise and blocking the supply itself, which is why the filter uses the inductor."
       }
     },
     {
@@ -133,7 +137,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "Inductance depends on neither. It is a property of the device itself, fixed by the number of turns, the area and the length of the coil and by what is inside it, as $L = \\mu_0 N^2 A/\\ell$ shows for a solenoid; the current through the coil and the frequency at which that current alternates do not change it. Inductive reactance is a different quantity and does depend on the frequency, since $X_L = 2\\pi fL$, but it does not depend on the current either: doubling the voltage doubles the current and leaves the ohms the inductor offers exactly where they were, which is what makes $X_L$ an effective resistance and lets Ohm's law be written with it."
+        "solution": "Inductance depends on neither. It is a property of the device itself, fixed by the number of turns, the area and length of the coil and what is inside it, as $L = \\mu_0 N^2 A/\\ell$ shows for a solenoid. Neither the current through the coil nor its frequency changes it. Inductive reactance is a different quantity and does depend on the frequency, since $X_L = 2\\pi fL$. It does not depend on the current either: doubling the voltage doubles the current and leaves the ohms of the inductor unchanged. That is what makes $X_L$ an effective resistance and lets you write Ohm's law with it."
       }
     },
     {
@@ -152,7 +156,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "In (a) the capacitor is in series, in the one path a signal has from the first circuit to the second, so whatever it blocks does not arrive. Its reactance $1/2\\pi fC$ is large at low frequencies and small at high ones, so the low frequencies are held back and the high ones pass: it filters the low frequencies out of what reaches circuit 2. In (b) the capacitor is not in the path at all but hangs from it to earth, and a signal that finds an easy way to earth there never reaches circuit 2. The easy way is the one with the small reactance, which is the high-frequency one, so the high frequencies are shorted to earth and the low frequencies, which see a large reactance to earth, carry on. The same component filters opposite halves of the spectrum depending on whether it stands in the path or across it."
+        "solution": "In (a) the capacitor is in series, in the one path a signal has from the first circuit to the second, so whatever it blocks does not arrive. Its reactance $1/2\\pi fC$ is large at low frequencies and small at high ones, so it holds back the low frequencies and passes the high ones: it filters the low frequencies out of what reaches circuit 2. In (b) the capacitor is not in the path at all but hangs from it to earth, and a signal that finds an easy way to earth there never reaches circuit 2. The easy way is the one with small reactance, the high-frequency one, so the high frequencies short to earth and the low frequencies, which see a large reactance, carry on. The same component filters opposite halves of the spectrum depending on whether it stands in the path or across it."
       }
     },
     {

@@ -4,7 +4,7 @@
  "chapter": "23",
  "title": "Transformers",
  "short": "Transformers",
- "lead": "A transformer is two coils wound on one iron core, and it changes a voltage by induction: the alternating current in the primary sends a changing flux round the core, and that same changing flux induces a voltage in the secondary. This section takes the transformer equation from Faraday’s law applied to each coil, finds that the currents must go the other way from the voltages because the power out is the power in, tells a step-up transformer from a step-down one, and explains why a transformer does nothing at all with a steady direct voltage.",
+ "lead": "A transformer is two coils wound on one iron core, and it changes a voltage by induction. The alternating current in the primary sends a changing flux round the core, and that same changing flux induces a voltage in the secondary. Faraday’s law applied to each coil gives the transformer equation. Because the power out equals the power in, the currents change the opposite way from the voltages. A step-up transformer raises the voltage and a step-down one lowers it, and neither does anything at all with a steady direct voltage.",
  "objectives": [
   "Explain how a transformer works.",
   "Calculate voltage, current, and/or number of turns given the other quantities."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -214,7 +218,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The forces inside a transformer do not depend on which way the flux is running, only on how large it is. The core is magnetized first one way and then the other, and the iron shortens a little whenever it is magnetized, whichever way round the flux points; the laminations and the turns of the coils are pulled on as well by forces that go as the square of the current, and a squared quantity is just as large when the current is negative as when it is positive. So the core is pulled tight and released twice in every cycle of the supply rather than once, and the sound it makes is at twice the frequency of the power it is running on. A transformer running on 60 Hz therefore hums at 120 Hz."
+    "solution": "The forces inside a transformer depend only on how large the flux is, not on which way it runs. The core is magnetized first one way and then the other, and the iron shortens a little whenever it is magnetized, whichever way the flux points. The laminations and the turns of the coils also feel forces that go as the square of the current, and a squared quantity is just as large when the current is negative as when it is positive. So the core tightens and relaxes twice in every cycle of the supply rather than once, and it sounds at twice the supply frequency. A transformer running on 60 Hz therefore hums at 120 Hz."
    }
   },
   {

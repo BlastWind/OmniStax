@@ -4,7 +4,7 @@
  "chapter": "23",
  "title": "RLC Series AC Circuits",
  "short": "RLC series AC circuits",
- "lead": "A resistor, an inductor and a capacitor each impede an alternating current on their own, and this section puts all three of them in series on one source. Their oppositions are all measured in ohms, but they do not add, because the voltage across the inductor peaks a quarter of a cycle before the current and the voltage across the capacitor peaks a quarter of a cycle after it, so the two work against one another. What they combine into is the impedance, and the current is the source voltage divided by it. At one frequency the two reactances are equal and cancel outright, the impedance falls to the resistance alone and the current is greatest; that frequency is the resonant frequency, and it is the same resonance the reader met in Chapter 16, here in a circuit rather than in a spring. What is left over is the angle between the source voltage and the current, and the section ends by showing that the average power is the product of the rms current and the rms voltage only after it has been multiplied by the cosine of that angle.",
+ "lead": "A resistor, an inductor and a capacitor each impede an alternating current, and here all three stand in series on one source. Their oppositions are all measured in ohms, but they do not simply add. The voltage across the inductor peaks a quarter of a cycle before the current and the voltage across the capacitor a quarter of a cycle after it, so the two work against one another. They combine into the impedance, and the current is the source voltage divided by it. At one frequency the two reactances are equal and cancel, the impedance falls to the resistance alone and the current is greatest. That is the resonant frequency, the same resonance you met in Chapter 16, here in a circuit rather than in a spring. What remains is the angle between the source voltage and the current. The average power is the product of the rms current and the rms voltage only after you multiply it by the cosine of that angle.",
  "objectives": [
   "Calculate the impedance, phase angle, resonant frequency, power, power factor, voltage, and/or current in a RLC series circuit.",
   "Draw the circuit diagram for an RLC series circuit.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -313,7 +317,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The average power delivered to the motor is $P_\\text{ave} = I_\\text{rms}V_\\text{rms}\\cos\\phi$, so the power can be raised either by raising the voltage or by raising the power factor. Raising the voltage raises the current in the same proportion, and the heat wasted in the windings goes as the square of the current, so more of the extra power is lost in the motor itself the further you push it, and the insulation has to stand a higher voltage as well. Raising the power factor takes nothing from the supply and wastes nothing: it brings the current back into step with the voltage, so that the same current and the same voltage deliver more useful power. A motor is inductive, its current lagging the voltage, and a capacitor in the circuit cancels part of that inductive reactance and brings the two back into phase, which is why capacitors are fitted to large motors for exactly this purpose."
+    "solution": "The average power delivered to the motor is $P_\\text{ave} = I_\\text{rms}V_\\text{rms}\\cos\\phi$, so you can raise the power either by raising the voltage or by raising the power factor. Raising the voltage raises the current in the same proportion, and the heat wasted in the windings goes as the square of the current. The further you push it, the more of the extra power the motor itself loses, and the insulation must stand a higher voltage as well. Raising the power factor takes nothing from the supply and wastes nothing. It brings the current back into step with the voltage, so the same current and voltage deliver more useful power. A motor is inductive, its current lagging the voltage, and a capacitor in the circuit cancels part of that inductive reactance and brings the two back into phase. That is why large motors carry capacitors for exactly this purpose."
    }
   },
   {

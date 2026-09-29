@@ -4,7 +4,7 @@
   "chapter": "23",
   "title": "Inductance",
   "short": "Inductance",
-  "lead": "Induction has been described so far by what it does, and this is the section that gives it a number. Two coils standing side by side induce emfs in one another, and the constant between the emf in one and the rate at which the current changes in the other is their mutual inductance. A single device does the same thing to itself, and the constant is then its self-inductance, measured in henries, where one henry is one ohm-second. The numbers are larger than they look: a one-henry coil carrying ten amperes answers a switch opened in a millisecond with ten thousand volts, which is enough to strike an arc. For most shapes the inductance can only be measured, but the solenoid has a simple enough field to work out, $\\kLind = \\mu_0 N^2 A/\\ell$, and the section closes on the energy the field holds, $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$, which is the second and perhaps the better way to see why an inductor will not let a current change quickly.",
+  "lead": "So far induction has had no number of its own. Two coils standing side by side induce emfs in one another, and the constant between the emf in one and the rate of change of current in the other is their mutual inductance. A single device does the same thing to itself, and the constant is then its self-inductance, measured in henries, where one henry is one ohm-second. The numbers are larger than they look: a one-henry coil carrying ten amperes answers a switch opened in a millisecond with ten thousand volts, enough to strike an arc. For most shapes you can only measure the inductance, but the solenoid has a simple enough field to work out, $\\kLind = \\mu_0 N^2 A/\\ell$. The energy the field holds, $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$, gives a second way to see why an inductor will not let a current change quickly.",
   "objectives": [
     "Calculate the inductance of an inductor.",
     "Calculate the energy stored in an inductor.",
@@ -12,25 +12,32 @@
   ],
   "summary_html": "<ul><li>Inductance is the property of a device that tells how effectively it induces an emf in another device.</li><li>Mutual inductance is the effect of two devices in inducing emfs in each other.</li><li>A change in current $\\Delta \\kIcurone/\\kdt$ in one induces an emf $\\kemftwo$ in the second: $\\kemftwo = -\\kMind\\frac{\\Delta \\kIcurone}{\\kdt}$, where $\\kMind$ is defined to be the mutual inductance between the two devices, and the minus sign is due to Lenz's law.</li><li>Symmetrically, a change in current $\\Delta \\kIcurtwo/\\kdt$ through the second device induces an emf $\\kemfone$ in the first: $\\kemfone = -\\kMind\\frac{\\Delta \\kIcurtwo}{\\kdt}$, where $\\kMind$ is the same mutual inductance as in the reverse process.</li><li>Current changes in a device induce an emf in the device itself.</li><li>Self-inductance is the effect of the device inducing emf in itself.</li><li>The device is called an inductor, and the emf induced in it by a change in current through it is $\\kemf = -\\kLind\\frac{\\kdIcur}{\\kdt}$, where $\\kLind$ is the self-inductance of the inductor, and $\\kdIcur/\\kdt$ is the rate of change of current through it. The minus sign indicates that emf opposes the change, as required by Lenz's law.</li><li>The unit of self- and mutual inductance is the henry (H), where $1\\;\\text{H} = 1\\;\\Omega\\cdot\\text{s}$.</li><li>The self-inductance $\\kLind$ of an inductor is proportional to how much flux changes with current. For an $N$-turn inductor, $\\kLind = N\\frac{\\kdPhi}{\\kdIcur}$.</li><li>The self-inductance of a solenoid is $\\kLind = \\frac{\\mu_0 N^2 A}{\\ell}$, where $N$ is its number of turns, $A$ is its cross-sectional area, $\\ell$ is its length, and $\\mu_0 = 4\\pi\\times 10^{-7}\\;\\text{T}\\cdot\\text{m/A}$ is the permeability of free space.</li><li>The energy stored in an inductor $\\kEind$ is $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$.</li></ul>",
   "notes": "Eight of the section's fourteen problems have no answer in the book and are left out: the 5.00 mH pair and its switched 2.00 A, the device that reaches 3.00 A in 0.100 ms, the two that ask for a derivation of the units of inductance rather than a number, the camera flash's switching time, the 50.0 cm solenoid of 1000 loops, the hair dryer's heating coils, the 150 A through a 0.250 H inductor, and the Unreasonable Results item on the 25.0 H inductor. The book's own answer key is the only source of the answers that are kept.",
-  "ai": { "text": [
-  {
-    "model": "claude-opus-5",
-    "effort": "high"
-  }
-], "figures": [
-  {
-    "model": "claude-opus-5",
-    "effort": "high"
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5",
+        "effort": "high"
+      },
+      {
+        "model": "claude-opus-5-5",
+        "effort": "low"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5",
+        "effort": "high"
+      },
+      {
+        "model": "claude-fable-5-1",
+        "effort": "low"
+      },
+      {
+        "model": "claude-opus-5-5",
+        "effort": "low"
+      }
+    ]
   },
-  {
-    "model": "claude-fable-5-1",
-    "effort": "low"
-  },
-  {
-    "model": "claude-opus-5-5",
-    "effort": "low"
-  }
-] },
   "built": "2026-09-15",
   "exercise_notes": "Bloom levels, concept tags, weights, hints and the suggested approaches to the three conceptual questions are AI-generated and marked as such. Every numeric answer comes from the book's own key and nothing is computed here\\; the eight problems the book leaves unkeyed are left out and named in the section's notes. The section prints no Check Your Understanding box and no AP test prep item, so every exercise sits at the end. Numeric answers accept 2% tolerance.",
   "figures": [
@@ -125,7 +132,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "The mutual inductance measures how much of the flux one coil makes passes through the other, so the question is really about how the two faces are set against one another. The greatest mutual inductance comes from laying the coils flat on one another, face to face and lined up so that their axes coincide and their turns sit directly over one another. Almost every line of field the first coil makes then goes straight through the second, and a change in the current in either one carries the whole of that change in flux into the other. The least comes from turning one of them through a right angle, so that the two axes are perpendicular and the second coil stands edge-on to the field of the first. The field of the first coil then runs along the plane of the second rather than through it, the flux through it is nearly zero whatever the current does, and almost no emf is induced. This is the same geometry that made the flux zero in $\\kPhi = \\kBmag A\\cos\\theta$ at $\\theta = 90^\\circ$, and it is worth noticing that the coils are just as close together in the second arrangement as in the first: it is the orientation and not the distance that has done the work."
+        "solution": "The mutual inductance measures how much of the flux one coil makes passes through the other, so the question is how the two faces stand relative to one another. The greatest mutual inductance comes from laying the coils flat on one another, face to face, with their axes lined up and their turns directly over one another. Almost every field line of the first coil then goes straight through the second, and a change in current in either carries the whole change in flux into the other. The least comes from turning one coil through a right angle, so the two axes are perpendicular and the second coil stands edge-on to the field of the first. That field then runs along the plane of the second coil rather than through it, the flux is nearly zero whatever the current does, and almost no emf appears. This is the same geometry that made the flux zero in $\\kPhi = \\kBmag A\\cos\\theta$ at $\\theta = 90^\\circ$. The coils are just as close together in the second arrangement as in the first: orientation, not distance, makes the difference."
       }
     },
     {
@@ -139,7 +146,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "The self-inductance of a solenoid is $\\kLind = \\mu_0 N^2 A/\\ell$, and the number of turns enters it squared, so a fixed length of wire is best spent on as many turns as possible enclosing as much area as possible. Wind it into a tight coil of many turns, all in the same sense and packed into a short length, with an iron core if one is allowed, and the flux each turn makes threads all the others\\; that gives the greatest self-inductance. For the least, undo everything that made it large. Straighten the wire out, or better, fold it in half and run the two halves side by side so that the current goes out along one and back along the other. The two carry equal currents in opposite directions, their fields cancel almost everywhere, the flux the arrangement encloses is nearly zero, and so is its self-inductance. That is counterwinding, and it is exactly what the section recommends for the heating element of a clothes dryer and what part (c) of the problem on the precision laboratory resistor is doing."
+        "solution": "The self-inductance of a solenoid is $\\kLind = \\mu_0 N^2 A/\\ell$, and the number of turns enters it squared. A fixed length of wire is therefore best spent on as many turns as possible enclosing as much area as possible. Wind it into a tight coil of many turns, all in the same sense and packed into a short length, with an iron core if you may, and the flux of each turn threads all the others. That gives the greatest self-inductance. For the least, undo everything that made it large. Straighten the wire out, or better, fold it in half and run the two halves side by side so the current goes out along one and back along the other. The two carry equal currents in opposite directions, their fields cancel almost everywhere, and the enclosed flux, and with it the self-inductance, is nearly zero. That is counterwinding, exactly what the section recommends for the heating element of a clothes dryer and what part (c) of the problem on the precision laboratory resistor does."
       }
     },
     {

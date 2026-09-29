@@ -4,7 +4,7 @@
  "chapter": "23",
  "title": "Electrical Safety: Systems and Devices",
  "short": "Electrical safety",
- "lead": "The wiring of a house is arranged so that a fault does as little harm as it can, and this section is about those arrangements. It follows the three wires modern wiring uses and says what each of them prevents, shows why the case of an appliance is connected to the earth when worn insulation or an induced emf could otherwise leave it at a dangerous voltage, and works through the two devices that use induction itself to protect a person: the ground fault interrupter, which compares the current going out with the current coming back, and the isolation transformer, which leaves a person touching one wire with no complete circuit to be part of.",
+ "lead": "House wiring is arranged so that a fault does as little harm as it can. Modern wiring uses three wires, and each prevents a particular hazard. The case of an appliance connects to the earth, because worn insulation or an induced emf could otherwise leave it at a dangerous voltage. Two devices use induction itself to protect a person. The ground fault interrupter compares the current going out with the current coming back. The isolation transformer leaves a person touching one wire with no complete circuit to be part of.",
  "objectives": [
   "Explain how various modern safety features in electric circuits work, with an emphasis on how induction is employed."
  ],
@@ -15,6 +15,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -274,7 +278,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A circuit breaker or a fuse sits in series on the live/hot wire and opens when the current through it is larger than the wiring is built to carry, which in a household circuit is 15 or 20 A. A shock needs nothing like that much current: 5 mA is taken to be the largest harmless one, and a few tens of milliamperes through the chest can be fatal. A person can therefore be receiving a dangerous shock while the breaker reads a current a thousand times below its rating and does nothing whatever. There is a second reason as well. The current that passes through a person on its way to earth need not raise the current the breaker sees at all, since it returns to the source through the ground rather than through the wire the breaker is in. A breaker protects the wiring from overheating, which is a thermal hazard; keeping current out of a person is a different job and needs a different device, which is what the ground fault interrupter is."
+    "solution": "A circuit breaker or a fuse sits in series on the live/hot wire and opens when the current through it exceeds what the wiring can safely carry, 15 or 20 A in a household circuit. A shock needs nothing like that much current: 5 mA is the accepted largest harmless one, and a few tens of milliamperes through the chest can be fatal. A person can therefore receive a dangerous shock while the breaker reads a current a thousand times below its rating and does nothing. There is a second reason as well. Current passing through a person to earth need not raise the current the breaker sees at all, since it returns to the source through the ground rather than through the breaker's wire. A breaker protects the wiring from overheating, a thermal hazard. Keeping current out of a person is a different job and needs a different device, the ground fault interrupter."
    }
   },
   {
@@ -290,7 +294,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Start from what the device actually measures. A GFI does not measure a leakage current directly; it passes both wires through one coil and reads the emf induced in that coil, and it relies on the two wires being alike in every way except the direction their currents run, so that equal currents induce equal and opposite emfs and nothing is left over. A length difference breaks that likeness. The longer run is not coupled to the sensing coil in quite the same way as the shorter one, so equal currents in the two no longer induce emfs that cancel exactly; the longer run also lies alongside more of the alternating fields of everything else in the building and has more capacitance to the earth and to its neighbors, so a little of its current does genuinely return to the source by a path other than the neutral wire. Any of these leaves a small net emf in the coil where there should be none, and the device cannot tell that emf from the one a real leakage would produce. Since it is set to act on a difference as small as 5 mA, which is one part in two thousand of the current a 10 A appliance draws, a very small asymmetry is enough to open the circuit."
+    "solution": "Start from what the device actually measures. A GFI does not measure a leakage current directly. It passes both wires through one coil and reads the emf induced in that coil, relying on the two wires being alike in every way except the direction of their currents, so that equal currents induce equal and opposite emfs and nothing remains. A length difference breaks that likeness. The longer run couples to the sensing coil differently from the shorter one, so equal currents no longer induce emfs that cancel exactly. The longer run also lies alongside more of the alternating fields of everything else in the building and has more capacitance to the earth and its neighbors, so a little of its current genuinely returns to the source by a path other than the neutral wire. Any of these leaves a small net emf in the coil where there should be none, and the device cannot tell it from the emf of a real leakage. The device acts on a difference as small as 5 mA, one part in two thousand of the current a 10 A appliance draws, so a very small asymmetry is enough to open the circuit."
    }
   },
   {
@@ -330,7 +334,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A ground fault interrupter compares the current going out to an appliance with the current coming back from it. Both the live/hot wire and the neutral wire are passed through the same coil, and because their currents run in opposite directions they induce emfs in that coil that are equal and opposite. While every ampere that leaves by the live/hot wire returns by the neutral wire the two emfs cancel and the coil produces nothing. If some of the current is returning to the source by another path — through a person, or through an earth/ground wire — the neutral wire carries less than the live/hot wire, the cancellation fails, and an emf appears in the coil. That emf operates a circuit breaker, which opens the circuit. GFIs are usually set to act on a difference greater than 5 mA, the accepted maximum harmless shock, so the circuit is broken before the leakage can do much harm, and they act whether the leakage is going through a person or safely to earth through an intact earth/ground wire, since a leakage of either kind is a fault to be repaired."
+    "solution": "A ground fault interrupter compares the current going out to an appliance with the current coming back from it. Both the live/hot wire and the neutral wire pass through the same coil. Their currents run in opposite directions, so they induce equal and opposite emfs in that coil. While every ampere that leaves by the live/hot wire returns by the neutral wire, the two emfs cancel and the coil produces nothing. If some current returns to the source by another path — through a person, or through an earth/ground wire — the neutral wire carries less than the live/hot wire, the cancellation fails, and an emf appears in the coil. That emf operates a circuit breaker, which opens the circuit. GFIs usually act on a difference greater than 5 mA, the accepted maximum harmless shock, so they break the circuit before the leakage can do much harm. They act whether the leakage goes through a person or safely to earth through an intact earth/ground wire, since a leakage of either kind is a fault that needs repair."
    }
   },
   {
