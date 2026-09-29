@@ -4,7 +4,7 @@
  "chapter": "2",
  "title": "Graphical Analysis of One-Dimensional Motion",
  "short": "Graphical analysis",
- "lead": "A graph of motion can be read for the motion itself. This section shows that the slope of a graph of position against time is the velocity and the slope of a graph of velocity against time is the acceleration, how the tangent to a curve gives its slope at a point, and how a graph of velocity is derived from a graph of position and a graph of acceleration from a graph of velocity.",
+ "lead": "You can read a graph of motion for the motion itself. The slope of a graph of position against time is the velocity, and the slope of a graph of velocity against time is the acceleration. The tangent to a curve gives its slope at a point, so you can derive a graph of velocity from a graph of position, and a graph of acceleration from a graph of velocity.",
  "objectives": [
   "Describe a straight-line graph in terms of its slope and <em>y</em>-intercept.",
   "Determine average velocity or instantaneous velocity from a graph of position vs. time.",
@@ -19,6 +19,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -28,6 +32,10 @@
    },
    {
     "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
     "effort": "low"
    }
   ]
@@ -295,7 +303,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "(a) The velocity graph is the graph of the slope of the position graph. Where the position curve falls, from $t_a$ to $t_c$ and from $t_e$ to $t_g$, the velocity is negative; where it rises, from $t_c$ to $t_e$ and from $t_g$ to $t_l$, the velocity is positive; and at each turning point, $t_c$, $t_e$, and $t_g$, the velocity passes through zero. The velocity is largest in magnitude where the curve is steepest, near $t_b$, $t_d$, $t_f$, and $t_j$, and it returns to zero as the curve flattens out at $t_l$. So the sketch is a smooth curve that starts negative, crosses zero at $t_c$, peaks near $t_d$, crosses zero at $t_e$, dips below zero near $t_f$, crosses zero again at $t_g$, rises to a second peak near $t_j$, and comes back to zero at $t_l$. (b) The instantaneous velocity is greatest where the position rises most steeply, in the middle of a climb, near $t_d$ and again near $t_i$ or $t_j$; the two climbs are about equally steep in the figure. (c) It is zero at $t_c$, $t_e$, $t_g$, and $t_l$, where the tangent to the curve is horizontal. (d) It is negative between $t_a$ and $t_c$ and between $t_e$ and $t_g$, where the position is decreasing."
+    "solution": "(a) The velocity graph is the graph of the slope of the position graph. Where the position curve falls, from $t_a$ to $t_c$ and from $t_e$ to $t_g$, the velocity is negative. Where it rises, from $t_c$ to $t_e$ and from $t_g$ to $t_l$, the velocity is positive. At each turning point, $t_c$, $t_e$, and $t_g$, the velocity passes through zero. The velocity is largest in magnitude where the curve is steepest, near $t_b$, $t_d$, $t_f$, and $t_j$, and it returns to zero as the curve flattens out at $t_l$. So the sketch is a smooth curve that starts negative, crosses zero at $t_c$, peaks near $t_d$, and crosses zero at $t_e$. It then dips below zero near $t_f$, crosses zero again at $t_g$, rises to a second peak near $t_j$, and comes back to zero at $t_l$. (b) The instantaneous velocity is greatest where the position rises most steeply, in the middle of a climb, near $t_d$ and again near $t_i$ or $t_j$; the two climbs are about equally steep in the figure. (c) It is zero at $t_c$, $t_e$, $t_g$, and $t_l$, where the tangent to the curve is horizontal. (d) It is negative between $t_a$ and $t_c$ and between $t_e$ and $t_g$, where the position is decreasing."
    }
   },
   {
@@ -355,7 +363,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "(a) The slope of the position graph is the velocity, so the position graph is found by asking how steep it must be at each time. During the first 3 seconds the velocity grows from zero, so the position curve starts level and bends upward, growing steeper, like the position graph of the accelerating jet car. From 3 s to 18 s the velocity is constant at 3 m/s, so the position rises along a straight line of slope 3 m/s, gaining 45 m over those 15 seconds. During the last 5 seconds the velocity falls to zero, so the position curve bends the other way and levels off, ending flat at the final position, which is 4.5 m plus 45 m plus 7.5 m, or 57 m above the start. (b) The acceleration is the slope of the velocity graph, so it is constant and positive, $1\\ \\text{m/s}^2$, during the first 3 seconds, zero during the 15 seconds of constant velocity, and constant and negative, $-0.6\\ \\text{m/s}^2$, during the last 5 seconds. The graph of acceleration versus time is three level segments, and it jumps between them at 3 s and at 18 s."
+    "solution": "(a) The slope of the position graph is the velocity, so ask how steep the position graph must be at each time. During the first 3 seconds the velocity grows from zero, so the position curve starts level and bends upward, growing steeper, like the position graph of the accelerating jet car. From 3 s to 18 s the velocity is constant at 3 m/s, so the position rises along a straight line of slope 3 m/s, gaining 45 m over those 15 seconds. During the last 5 seconds the velocity falls to zero, so the position curve bends the other way and levels off. It ends flat at the final position, 4.5 m plus 45 m plus 7.5 m, or 57 m above the start. (b) The acceleration is the slope of the velocity graph. It is constant and positive, $1\\ \\text{m/s}^2$, during the first 3 seconds, zero during the 15 seconds of constant velocity, and constant and negative, $-0.6\\ \\text{m/s}^2$, during the last 5 seconds. The graph of acceleration versus time is three level segments, and it jumps between them at 3 s and at 18 s."
    }
   },
   {
@@ -371,7 +379,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Take the positive direction to be up the plane, with the origin at the starting point. The cylinder starts with a positive velocity, slows as it rolls up, stops for an instant at the top of its path, and then rolls back down faster and faster, passing the origin with a velocity equal in size and opposite in direction to the velocity it started with. The position graph therefore rises from the origin, bending over as it goes, reaches its greatest value at the instant the cylinder stops, and then falls back through zero and continues below it: it is a parabola opening downward, like the graph of the height of a ball thrown upward. The velocity graph is a straight line with a negative slope, starting at the positive initial velocity, crossing zero at the top of the path, and continuing to negative values. The acceleration graph is a level line at a constant negative value, since the acceleration points down the plane throughout and does not change when the velocity reverses."
+    "solution": "Take the positive direction to be up the plane, with the origin at the starting point. The cylinder starts with a positive velocity, slows as it rolls up, and stops for an instant at the top of its path. It then rolls back down faster and faster, passing the origin with a velocity equal in size and opposite in direction to its starting velocity. The position graph therefore rises from the origin, bending over as it goes, and reaches its greatest value at the instant the cylinder stops. It then falls back through zero and continues below it: a parabola opening downward, like the graph of the height of a ball thrown upward. The velocity graph is a straight line with a negative slope, starting at the positive initial velocity, crossing zero at the top of the path, and continuing to negative values. The acceleration graph is a level line at a constant negative value, since the acceleration points down the plane throughout and does not change when the velocity reverses."
    }
   },
   {
