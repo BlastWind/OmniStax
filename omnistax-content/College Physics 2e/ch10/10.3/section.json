@@ -4,7 +4,7 @@
  "chapter": "10",
  "title": "Dynamics of Rotational Motion: Rotational Inertia",
  "short": "Rotational inertia",
- "lead": "A door swings slowly when it is pushed near its hinges, and a heavy door swings more slowly still, so force, mass and the point where the force is applied all have a say in how a rotation changes. This section works out the rotational form of Newton’s second law, first for a single point mass on a tether, where the torque comes to the mass times the square of the radius times the angular acceleration, and then for any body at all, whose moment of inertia is that sum taken over every bit of it. The relation between the net torque, the moment of inertia and the angular acceleration is applied to a father pushing a merry-go-round with and without a child on it, which shows that the moment of inertia depends on where the mass sits and not only on how much there is.",
+ "lead": "A door swings slowly when you push it near its hinges, and a heavy door swings more slowly still, so force, mass and the point where the force acts all have a say in how a rotation changes. You work out the rotational form of Newton’s second law first for a single point mass on a tether, where the torque comes to the mass times the square of the radius times the angular acceleration. For any body at all, the moment of inertia is that sum taken over every bit of it. A father pushing a merry-go-round with and without a child on it shows that the moment of inertia depends on where the mass sits and not only on how much there is.",
  "objectives": [
   "Understand the relationship between force, mass and acceleration.",
   "Study the turning effect of force.",
@@ -20,6 +20,10 @@
    },
    {
     "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -339,7 +343,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Begin with the definition, $\\kI = \\sum m\\kr^2$: the rod is a row of small pieces, each contributing its own mass times the square of its own distance from the end. Half of the rod's mass lies beyond the center of mass, out to a distance $L$, and half lies short of it, in toward the pivot. Because the distance is squared, the far half gains more than the near half loses. For example, a piece at $3L/4$ contributes $(3L/4)^2 = 9L^2/16$ per unit mass while a piece at $L/4$ contributes only $L^2/16$, and the two together average $5L^2/16$, which is more than the $4L^2/16$ that both would contribute if they sat at $L/2$. Summing over the whole rod gives $ML^2/3$ rather than $ML^2/4$. A point mass at the center of mass reproduces the rod's mass but not its spread, and it is the spread of mass away from the axis that the moment of inertia measures."
+    "solution": "Begin with the definition, $\\kI = \\sum m\\kr^2$: the rod is a row of small pieces, each contributing its own mass times the square of its own distance from the end. Half of the rod's mass lies beyond the center of mass, out to a distance $L$, and half lies short of it, in toward the pivot. Because the distance enters squared, the far half gains more than the near half loses. A piece at $3L/4$ contributes $(3L/4)^2 = 9L^2/16$ per unit mass while a piece at $L/4$ contributes only $L^2/16$. The two together average $5L^2/16$, more than the $4L^2/16$ that both would contribute at $L/2$. Summing over the whole rod gives $ML^2/3$ rather than $ML^2/4$. A point mass at the center of mass reproduces the rod's mass but not its spread, and the moment of inertia measures that spread of mass away from the axis."
    }
   },
   {
@@ -355,7 +359,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Ask where the mass sits in each body. Every bit of a hoop is at the full distance $\\kR$ from the axis, so its moment of inertia is $M\\kR^2$, the largest a body of that mass and radius can have. A disk of the same mass and radius spreads that mass over the whole face, and most of it lies closer to the axis than the rim; each of those bits contributes less than $m\\kR^2$ to the sum, so the total comes to $\\frac{1}{2}M\\kR^2$. The same reasoning applies to the spheres. The mass of a thin spherical shell is all at the surface, as far from the center as it can be, while a solid sphere of the same mass has most of its mass inside, nearer the axis, so the shell's $\\frac{2}{3}M\\kR^2$ exceeds the solid sphere's $\\frac{2}{5}M\\kR^2$. Neither sphere reaches $M\\kR^2$ because the axis is a diameter, and even the mass on the surface is at a distance $\\kR$ from the axis only at the equator."
+    "solution": "Ask where the mass sits in each body. Every bit of a hoop is at the full distance $\\kR$ from the axis, so its moment of inertia is $M\\kR^2$, the largest a body of that mass and radius can have. A disk of the same mass and radius spreads that mass over its whole face, and most of it lies closer to the axis than the rim. Each of those bits contributes less than $m\\kR^2$ to the sum, so the total comes to $\\frac{1}{2}M\\kR^2$. The same reasoning applies to the spheres. A thin spherical shell has all its mass at the surface, while a solid sphere of the same mass has most of its mass inside, nearer the axis, so the shell's $\\frac{2}{3}M\\kR^2$ exceeds the solid sphere's $\\frac{2}{5}M\\kR^2$. Neither sphere reaches $M\\kR^2$, because the axis is a diameter and only the mass at the equator lies a distance $\\kR$ from it."
    }
   },
   {
@@ -408,7 +412,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Ask what can change the ball's spin on the way up. On a frictionless ramp the only forces on the ball are its weight and the normal force, and both act through the center of the ball or along a line through it, so neither exerts a torque about the ball's center. With no net torque there is no angular acceleration, by $\\text{net}\\;\\ktau = \\kI\\kalpha$, and the rolling ball keeps spinning at the rate it started with all the way up. The energy in its spin therefore stays in its spin and does nothing to lift it. Only the motion of the ball's center is traded for height, and that motion is the same in both cases because the initial velocities are the same, so the two balls reach the same height. The rolling ball carries more energy in total, but on a frictionless ramp it has no way to convert the extra part; only if the ramp had friction could a torque slow the spin and let that energy raise the ball higher."
+    "solution": "Ask what can change the ball's spin on the way up. On a frictionless ramp the only forces on the ball are its weight and the normal force, and both act along lines through its center, so neither exerts a torque about that center. With no net torque there is no angular acceleration, by $\\text{net}\\;\\ktau = \\kI\\kalpha$, and the rolling ball keeps spinning at its starting rate all the way up. The energy in its spin stays in its spin and does nothing to lift it. Only the motion of the ball's center turns into height, and that motion is the same in both cases because the initial velocities are the same, so the two balls reach the same height. The rolling ball carries more energy in total, but on a frictionless ramp it cannot convert the extra part. Only friction could exert a torque that slows the spin and lets that energy raise the ball higher."
    }
   },
   {
@@ -474,7 +478,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Begin with $\\kalpha = \\text{net}\\;\\ktau/\\kI$. The disk's moment of inertia is fixed by its mass and its radius, so the angular acceleration, and with it the rate at which the angular velocity grows, is set by the torque alone. Doubling the torque doubles the angular acceleration. Halving the radius at which a given torque is applied changes nothing, because the torque is already the product of the force and its lever arm; if instead it is the force that stays the same and is applied at half the radius, then the torque is halved and the angular velocity grows only half as fast. Either way, doubling the torque produces the greater increase in angular velocity. Note that the radius at which a force is applied matters only through the torque it makes, and the disk's own radius matters only through its moment of inertia."
+    "solution": "Begin with $\\kalpha = \\text{net}\\;\\ktau/\\kI$. The disk's mass and radius fix its moment of inertia, so the torque alone sets the angular acceleration and with it the rate at which the angular velocity grows. Doubling the torque doubles the angular acceleration. Halving the radius at which a given torque acts changes nothing, because the torque already includes the force and its lever arm. If instead the same force acts at half the radius, the torque halves and the angular velocity grows only half as fast. Either way, doubling the torque produces the greater increase in angular velocity. The radius at which a force acts matters only through the torque it makes, and the disk's own radius matters only through its moment of inertia."
    }
   },
   {
@@ -539,7 +543,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The moment of inertia grows with the square of the distance from the axis, so put the pivot where the rod and the weights can be as far from it as possible, and put the heavier weight farthest out. Pivot the rod at one end. The rod then turns about an axis through one end, and Figure 10.12 gives its moment of inertia as $\\frac{1}{3}M\\ell^2 = \\frac{1}{3}(2.0\\ \\text{kg})(1.0\\ \\text{m})^2 = 0.67\\ \\text{kg}\\cdot\\text{m}^2$. Hang the 1.0 kg weight in the hole at the far end, a point mass 1.0 m from the axis, which adds $m\\kr^2 = (1.0\\ \\text{kg})(1.0\\ \\text{m})^2 = 1.0\\ \\text{kg}\\cdot\\text{m}^2$, and the 0.50 kg weight in the middle hole, 0.50 m from the axis, which adds $(0.50\\ \\text{kg})(0.50\\ \\text{m})^2 = 0.13\\ \\text{kg}\\cdot\\text{m}^2$. The moments of inertia about the one axis add, so the system's total is about $1.8\\ \\text{kg}\\cdot\\text{m}^2$. Compare this with the pivot through the middle, where the rod contributes only $\\frac{1}{12}M\\ell^2 = 0.17\\ \\text{kg}\\cdot\\text{m}^2$ and the two weights, each 0.50 m from the axis, add $0.38\\ \\text{kg}\\cdot\\text{m}^2$ between them, for a total of about $0.54\\ \\text{kg}\\cdot\\text{m}^2$; the end pivot gives more than three times as much."
+    "solution": "The moment of inertia grows with the square of the distance from the axis, so put the pivot where the rod and the weights lie as far from it as possible, with the heavier weight farthest out. Pivot the rod at one end. Figure 10.12 then gives its moment of inertia as $\\frac{1}{3}M\\ell^2 = \\frac{1}{3}(2.0\\ \\text{kg})(1.0\\ \\text{m})^2 = 0.67\\ \\text{kg}\\cdot\\text{m}^2$. Hang the 1.0 kg weight in the hole at the far end, a point mass 1.0 m from the axis, which adds $m\\kr^2 = (1.0\\ \\text{kg})(1.0\\ \\text{m})^2 = 1.0\\ \\text{kg}\\cdot\\text{m}^2$. Hang the 0.50 kg weight in the middle hole, 0.50 m from the axis, which adds $(0.50\\ \\text{kg})(0.50\\ \\text{m})^2 = 0.13\\ \\text{kg}\\cdot\\text{m}^2$. Moments of inertia about one axis add, so the system's total is about $1.8\\ \\text{kg}\\cdot\\text{m}^2$. With the pivot through the middle, the rod contributes only $\\frac{1}{12}M\\ell^2 = 0.17\\ \\text{kg}\\cdot\\text{m}^2$ and the two weights, each 0.50 m from the axis, add $0.38\\ \\text{kg}\\cdot\\text{m}^2$ between them, for a total of about $0.54\\ \\text{kg}\\cdot\\text{m}^2$. The end pivot gives more than three times as much."
    }
   },
   {
@@ -556,7 +560,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Measure how the angular velocity grows with time under each push. For example, mark one point on the rim and record with a video camera, or with a stopwatch and a counter, the time at which each revolution is completed while one person pushes steadily at the edge, starting from rest, and then repeat the trial with two people pushing at the edge in the same direction. From the times, find the angular velocity after each revolution, plot it against the time, and take the slope of each line as the angular acceleration. Since the merry-go-round and whoever rides it are the same in both trials, the moment of inertia is the same, and $\\text{net}\\;\\ktau = \\kI\\kalpha$ predicts that twice the torque gives twice the angular acceleration. Comparing the two slopes tests that prediction, and measuring the pushing force with a spring scale and the radius at which it is applied lets you check the torque itself; friction at the axle would show up as a slope somewhat less than doubled."
+    "solution": "Measure how the angular velocity grows with time under each push. Mark one point on the rim and record, with a video camera or a stopwatch and a counter, the time at which it completes each revolution while one person pushes steadily at the edge, starting from rest. Then repeat the trial with two people pushing at the edge in the same direction. From the times, find the angular velocity after each revolution, plot it against the time, and take the slope of each line as the angular acceleration. The merry-go-round and its riders are the same in both trials, so the moment of inertia is the same, and $\\text{net}\\;\\ktau = \\kI\\kalpha$ predicts that twice the torque gives twice the angular acceleration. Comparing the two slopes tests that prediction. A spring scale on the pushing force and the radius at which it acts let you check the torque itself. Friction at the axle would show up as a slope a little less than doubled."
    }
   },
   {

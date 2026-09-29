@@ -4,7 +4,7 @@
  "chapter": "12",
  "title": "The Most General Applications of Bernoulli’s Equation",
  "short": "General applications of Bernoulli",
- "lead": "Bernoulli’s equation is used here without the simplifications of the last section. When the height changes but both pressures are atmospheric, the speed of water leaving a hole in a dam comes out as the speed of a body that has fallen the same distance, which is Torricelli’s theorem. When pressure, speed and height all change at once, as they do in a fire hose run up a ladder, the equation gives the pressure at the base that pays for the speed and the height at the nozzle. And when every term is multiplied by the flow rate, each product is a power, so the same equation says what a pump supplies.",
+ "lead": "Now you use Bernoulli’s equation without the simplifications of the last section. When the height changes but both pressures are atmospheric, water leaves a hole in a dam at the speed of a body that has fallen the same distance, which is Torricelli’s theorem. When pressure, speed and height all change at once, as in a fire hose run up a ladder, the equation gives the pressure at the base that pays for the speed and the height at the nozzle. Multiply every term by the flow rate and each product is a power, so the same equation says what a pump supplies.",
  "objectives": [
   "Calculate using Torricelli’s theorem.",
   "Calculate power in fluid flow."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -187,7 +191,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The three terms of Bernoulli’s equation are each an energy per unit volume, so they name the three forms. $\\frac{1}{2}\\krho\\kv^2$ is the kinetic energy per unit volume, $\\krho\\kg\\kh$ is the gravitational potential energy per unit volume, and $\\kPr$, the pressure, is the energy per unit volume associated with the work done in pushing the fluid along, which is why a pump that only raises the pressure still supplies power. All three are conservative and can be traded for one another without loss, which is what the equation says; the heat produced by viscosity is left out of it."
+    "solution": "The three terms of Bernoulli’s equation are each an energy per unit volume, so they name the three forms. $\\frac{1}{2}\\krho\\kv^2$ is the kinetic energy per unit volume, and $\\krho\\kg\\kh$ is the gravitational potential energy per unit volume. $\\kPr$, the pressure, is the energy per unit volume associated with the work done in pushing the fluid along, which is why a pump that only raises the pressure still supplies power. All three are conservative and trade for one another without loss, which is what the equation says; it leaves out the heat that viscosity produces."
    }
   },
   {
@@ -203,7 +207,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Once the water is in the air it is surrounded by the atmosphere on every side and can have no pressure other than atmospheric, so its gauge pressure is zero, just as $\\kPrtwo$ was in the fire hose example. The force you feel does not come from pressure in the stream but from its kinetic energy, $\\frac{1}{2}\\krho\\kv^2$ per unit volume: the water arrives fast and your hand brings it nearly to rest, and the work done in stopping it is the force you feel times the distance over which it stops. In the terms of Bernoulli’s equation, the kinetic energy the water carries is turned back into pressure against your hand, where the stream is slowed."
+    "solution": "Once the water is in the air, the atmosphere surrounds it on every side and it can have no pressure other than atmospheric, so its gauge pressure is zero, just as $\\kPrtwo$ was in the fire hose example. The force you feel comes not from pressure in the stream but from its kinetic energy, $\\frac{1}{2}\\krho\\kv^2$ per unit volume. The water arrives fast and your hand brings it nearly to rest, and the work done in stopping it is the force you feel times the distance over which it stops. In the terms of Bernoulli’s equation, your hand slows the stream and turns the kinetic energy it carries back into pressure."
    }
   },
   {

@@ -4,7 +4,7 @@
  "chapter": "11",
  "title": "Pascal’s Principle",
  "short": "Pascal’s principle",
- "lead": "Pressure is force per unit area, and a change in pressure applied to an enclosed fluid is transmitted undiminished to every part of the fluid and to the walls of its container. This section states that principle, which is Pascal’s, and follows it into the hydraulic system, where a force on a small piston becomes a larger force on a large one in the ratio of their areas; it works the brakes of a car as its example, and it shows why the larger force cannot do more work than was put in.",
+ "lead": "Pressure is force per unit area, and an enclosed fluid transmits a change in pressure undiminished to every part of itself and to the walls of its container. That is Pascal’s principle. It leads to the hydraulic system, where a force on a small piston becomes a larger force on a large one in the ratio of their areas. The brakes of a car serve as the example, and the larger force still cannot do more work than you put in.",
  "objectives": [
   "Define pressure.",
   "State Pascal’s principle.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -175,7 +179,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The relation $\\kFone/A_1 = \\kFtwo/A_2$ was derived for two pistons at the same height, so that no part of the pressure at either piston came from a difference in depth. Put the pedal cylinder higher and the fluid between the two pistons is a column of height $\\kh$, and the pressure at the lower wheel cylinder is greater than the pressure at the pedal cylinder by the weight of that column, $\\kh\\krho\\kg$, by the result of Variation of Pressure with Depth in a Fluid. Pascal’s principle still transmits the change the pedal makes undiminished, and pressures add, so the pressure at the wheel cylinder is $\\kFone/A_1 + \\kh\\krho\\kg$ and the force there is $\\kFtwo = A_2(\\kFone/A_1 + \\kh\\krho\\kg)$, a little larger than the same-height relation gives. For a car the extra term is small: a meter of brake fluid adds a pressure of roughly $10^4\\;\\text{N/m}^2$, against the $10^7\\;\\text{N/m}^2$ the pedal makes in Example 11.6. If the pedal cylinder were lower than the wheel cylinder instead, the same term would subtract."
+    "solution": "The relation $\\kFone/A_1 = \\kFtwo/A_2$ holds for two pistons at the same height, where no part of the pressure at either piston comes from a difference in depth. Put the pedal cylinder higher, and the fluid between the two pistons forms a column of height $\\kh$. By the result of Variation of Pressure with Depth in a Fluid, the pressure at the lower wheel cylinder then exceeds the pressure at the pedal cylinder by the weight of that column, $\\kh\\krho\\kg$. Pascal’s principle still transmits the pedal's change undiminished, and pressures add, so the pressure at the wheel cylinder is $\\kFone/A_1 + \\kh\\krho\\kg$. The force there is $\\kFtwo = A_2(\\kFone/A_1 + \\kh\\krho\\kg)$, a little larger than the same-height relation gives. For a car the extra term is small: a meter of brake fluid adds a pressure of roughly $10^4\\;\\text{N/m}^2$, against the $10^7\\;\\text{N/m}^2$ the pedal makes in Example 11.6. If the pedal cylinder sat lower than the wheel cylinder instead, the same term would subtract."
    }
   },
   {

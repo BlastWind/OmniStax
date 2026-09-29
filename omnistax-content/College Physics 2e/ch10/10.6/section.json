@@ -4,7 +4,7 @@
  "chapter": "10",
  "title": "Collisions of Extended Bodies in Two Dimensions",
  "short": "Collisions of extended bodies",
- "lead": "When a body that is free to turn is struck, angular momentum passes into the collision along with linear momentum and energy. This section follows a disk that slides across a frictionless table and sticks to a stick nailed at one end. The force at the nail has no lever arm, so angular momentum is conserved, and working the collision through shows that the kinetic energy falls, as it must in an inelastic collision, while the linear momentum of the system actually rises. Asking where the disk would have to strike for the nail to feel no force at all leads to the percussion point, which a tennis player knows as the sweet spot of the racquet.",
+ "lead": "When something strikes a body that is free to turn, angular momentum passes into the collision along with linear momentum and energy. A disk slides across a frictionless table and sticks to a stick nailed at one end. The force at the nail has no lever arm, so angular momentum stays constant. Working the collision through, you find that the kinetic energy falls, as it must in an inelastic collision, while the linear momentum of the system actually rises. Ask where the disk would have to strike for the nail to feel no force at all, and you arrive at the percussion point, which a tennis player knows as the sweet spot of the racquet.",
  "objectives": [
   "Observe collisions of extended bodies in two dimensions.",
   "Examine collision at the point of percussion."
@@ -19,6 +19,10 @@
    },
    {
     "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -166,7 +170,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Hang a ball on a string from a fixed point so that it can swing in a circle, and let a second ball, rolled along the floor or swung on a string of its own, strike it. Before the collision the moving ball has angular momentum about the fixed point equal to its mass times its speed times the perpendicular distance from the point to its path, as the disk in the section has $\\kL = m\\kv\\kr$ about the nail. After the collision you can measure the angular velocity of whatever moves by timing its circling, and its moment of inertia is that of a point mass at the length of the string, so the angular momentum after can be compared with the angular momentum before. Vary how far from the fixed point the second ball strikes, whether the balls stick together or bounce apart, and whether the string is tied to a fixed point or held loosely, and record in each case whether the angular momentum of the two-ball system is the same before and after. The cases in which it is not are the cases in which the string or the support exerted a torque about the point you measured from."
+    "solution": "Hang a ball on a string from a fixed point so that it can swing in a circle, and let a second ball, rolled along the floor or swung on a string of its own, strike it. Before the collision the moving ball has angular momentum about the fixed point equal to its mass times its speed times the perpendicular distance from the point to its path, just as the disk has $\\kL = m\\kv\\kr$ about the nail. After the collision, time the circling of whatever moves to find its angular velocity. Its moment of inertia is that of a point mass at the length of the string, so you can compare the angular momentum after with the angular momentum before. Vary how far from the fixed point the second ball strikes, whether the balls stick together or bounce apart, and whether the string hangs from a fixed point or from a loose hand. Record in each case whether the angular momentum of the two-ball system is the same before and after. Where it is not, the string or the support exerted a torque about the point you measured from."
    }
   },
   {
@@ -180,7 +184,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Angular momentum is changed only by a net external torque, so the condition is whether the forces from outside the system have a lever arm about the point you take your angular momentum about. The disk and the nailed stick of this section are the first kind of collision: the nail pushes hard on the stick, but it pushes at the pivot, where its lever arm is zero, so it exerts no torque and the angular momentum of the disk and stick together is the same after the collision as before. For the second kind, let the same disk strike a stick that is held by a hand partway along its length, or let a ball strike a door that is being pushed shut at the same moment; the hand and the pusher act at a distance from the pivot, so they exert a torque during the collision and the angular momentum about the pivot changes. Note that the choice of point matters: a force that has no lever arm about one point has a lever arm about another, so the same collision can conserve angular momentum about the nail and not about the center of the stick."
+    "solution": "Only a net external torque changes angular momentum, so ask whether the forces from outside the system have a lever arm about the point you take your angular momentum about. The disk and the nailed stick are the first kind of collision. The nail pushes hard on the stick, but at the pivot, where its lever arm is zero, so it exerts no torque and the angular momentum of disk and stick together is the same after the collision as before. For the second kind, let the same disk strike a stick that a hand holds partway along its length, or let a ball strike a door that someone is pushing shut at the same moment. The hand and the pusher act at a distance from the pivot, so they exert a torque during the collision and the angular momentum about the pivot changes. The choice of point matters: a force with no lever arm about one point has a lever arm about another, so the same collision can conserve angular momentum about the nail and not about the center of the stick."
    }
   },
   {
@@ -194,7 +198,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Ask of each quantity what could change it. Linear momentum is changed only by a net external force, and the ice is frictionless and the stick is not nailed down, so no external force acts along the ice and the linear momentum of the puck and stick together is conserved. Angular momentum is changed only by a net external torque, and with no external force there is no external torque either, so angular momentum is conserved as well, about any point you choose. Kinetic energy is the quantity that a collision can lose, as the disk and the stick of the section lose most of theirs when the disk sticks; but the question says the puck and stick are very resilient, which is to say the collision is nearly elastic, so kinetic energy is very nearly conserved too. All three are conserved here, and the stick that was nailed down in the section differs in the one respect that matters: its nail supplied the external force that changed the linear momentum of the system."
+    "solution": "Ask of each quantity what could change it. Only a net external force changes linear momentum. The ice is frictionless and nothing nails the stick down, so no external force acts along the ice and the linear momentum of puck and stick together stays constant. Only a net external torque changes angular momentum, and with no external force there is no external torque either, so angular momentum stays constant too, about any point you choose. Kinetic energy is what a collision can lose, as the disk and the nailed stick lose most of theirs when the disk sticks. But the puck and stick are very resilient, so the collision is nearly elastic and kinetic energy very nearly stays constant as well. All three quantities hold here. The nailed stick differs in the one respect that matters: its nail supplied the external force that changed the linear momentum of the system."
    }
   },
   {
@@ -251,7 +255,7 @@
     "type": "multi",
     "generated_by": "source",
     "parts": [
-     { "part": "a", "value": 1.7, "unit": "rad/s", "hint": "With no nail there is no external force, so linear momentum is conserved as well as angular momentum, and the angular momentum is best taken about the center of mass of the disk and stick together, where the stick’s moment of inertia is $M\\ell^2/12$." },
+     { "part": "a", "value": 1.7, "unit": "rad/s", "hint": "With no nail there is no external force, so linear momentum is conserved as well as angular momentum. Take the angular momentum about the center of mass of the disk and stick together, where the stick’s moment of inertia is $M\\ell^2/12$." },
      { "part": "b", "value": 2.04, "unit": "J", "hint": "The kinetic energy after is the translational kinetic energy of the center of mass plus the rotational kinetic energy about it; the part asks for the final kinetic energy, the initial being the disk’s 22.5 J." },
      { "part": "c", "value": 1.5, "unit": "kg·m/s", "hint": "Nothing external acts along the ice, so the linear momentum after is exactly the disk’s momentum before." }
     ],

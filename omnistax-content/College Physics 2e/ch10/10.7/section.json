@@ -4,7 +4,7 @@
  "chapter": "10",
  "title": "Gyroscopic Effects: Vector Aspects of Angular Momentum",
  "short": "Gyroscopic effects",
- "lead": "Angular momentum has a direction as well as a size, and this section is about that direction. The right-hand rule gives it: curl the fingers of your right hand the way a body turns, and your thumb points along its angular velocity and its angular momentum. A torque changes angular momentum in the torque's own direction, so a torque perpendicular to the angular momentum swings the axis of rotation sideways rather than tipping it over. That is why a spinning bicycle wheel turns toward the person who tries to tip it, why a gyroscope precesses instead of falling, and why Earth's axis sweeps slowly round the sky once in about 26,000 years.",
+ "lead": "Angular momentum has a direction as well as a size. The right-hand rule gives it: curl the fingers of your right hand the way a body turns, and your thumb points along its angular velocity and its angular momentum. A torque changes angular momentum in the torque's own direction, so a torque perpendicular to the angular momentum swings the axis of rotation sideways rather than tipping it over. That is why a spinning bicycle wheel turns toward the person who tries to tip it, why a gyroscope precesses instead of falling, and why Earth's axis sweeps slowly round the sky once in about 26,000 years.",
  "objectives": [
   "Describe the right-hand rule to find the direction of angular velocity, momentum, and torque.",
   "Explain the gyroscopic effect.",
@@ -20,6 +20,10 @@
    },
    {
     "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -165,7 +169,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The direction of an angular momentum changes only when a torque acts on the spinning body, since $\\text{net}\\;\\ktau = \\kdLang / \\kdt$, and a force by itself is not a torque. A force applied at the center of mass of the gyroscope, or a support that acts through its center of mass, has no lever arm and so exerts no torque, however large the force. A guidance gyroscope is therefore mounted in gimbals, a set of rings that let the frame around it turn freely about every axis, so that the vehicle can pitch, roll and accelerate while the mount passes on only forces through the center of the spinning wheel and no torque about it. With no torque there is no $\\kdLang$, the angular momentum keeps its direction in space, and the axle keeps pointing the way it was set no matter how the vehicle around it moves. A large spin helps too: the larger $\\kL$ is, the smaller the angle through which any stray torque can swing it in a given time."
+    "solution": "The direction of an angular momentum changes only when a torque acts on the spinning body, since $\\text{net}\\;\\ktau = \\kdLang / \\kdt$, and a force by itself is not a torque. A force at the center of mass of the gyroscope, or a support that acts through it, has no lever arm and exerts no torque, however large the force. A guidance gyroscope therefore sits in gimbals, a set of rings that let the frame around it turn freely about every axis. The vehicle can pitch, roll and accelerate while the mount passes on only forces through the center of the spinning wheel and no torque about it. With no torque there is no $\\kdLang$, the angular momentum keeps its direction in space, and the axle keeps its original direction however the vehicle moves. A large spin helps too: the larger $\\kL$ is, the smaller the angle through which any stray torque can swing it in a given time."
    }
   },
   {
