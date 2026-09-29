@@ -155,6 +155,8 @@ chains, no editorial framing ("three different questions"). OmniStax's
 sentences are set in the sans face; the reader should feel a change of
 typeface, not a change of writer.
 
+AI-written text is pedagogical, crisp and active, speaks to the learner, and never narrates its own choices, over-describes or hedges (root rule 17). Check a chapter with `python3 tools/voicelint.py "College Physics 2e" --list chNN` from `omnistax-content/`.
+
 ## Types
 
 The book declares its types in `book.json`, in the order the colour
