@@ -4,7 +4,7 @@
  "chapter": "9",
  "title": "The Second Condition for Equilibrium",
  "short": "The second condition",
- "lead": "A force that is balanced by another may still set a body turning, and whether it does depends on where the force is applied and in what direction it points. This section defines torque, the turning effectiveness of a force, gives the two forms of its definition and the perpendicular lever arm they share, states the second condition for equilibrium as a net torque of zero, and works it through on the one system everyone already has an intuition about, two children balancing a seesaw.",
+ "lead": "A force balanced by another may still set a body turning, and whether it does depends on where the force acts and which way it points. Torque is the turning effectiveness of a force. Its definition takes two forms that share the perpendicular lever arm. The second condition for equilibrium is a net torque of zero, and you work it through on the one system everyone already has an intuition about, two children balancing a seesaw.",
  "objectives": [
   "State the second condition that is necessary to achieve equilibrium.",
   "Explain torque and the factors on which it depends.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -245,7 +249,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The magnitude of the force, the distance from the pivot point to the point where the force is applied, and the direction in which the force is applied. The definition $\\ktau = \\krlev\\kF\\sin\\theta$ carries all three: the harder you push the larger the torque, the farther from the pivot you push the larger the torque, and only the part of the force perpendicular to the line back to the pivot counts, which is what the factor $\\sin\\theta$ measures. A force directed straight at the pivot has $\\theta = 0^\\circ$ and produces no torque at all, however large it is."
+    "solution": "The magnitude of the force, the distance from the pivot point to the point where the force acts, and the direction of the force. The definition $\\ktau = \\krlev\\kF\\sin\\theta$ carries all three. The harder you push, the larger the torque, and the farther from the pivot you push, the larger the torque. Only the part of the force perpendicular to the line back to the pivot counts, and the factor $\\sin\\theta$ measures that part. A force directed straight at the pivot has $\\theta = 0^\\circ$ and produces no torque at all, however large it is."
    }
   },
   {
@@ -261,7 +265,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Take the pivot at the bottom of the wall, where it meets the ground. A blow near the top acts a long way from that pivot, so its perpendicular lever arm is nearly the whole height of the wall and the torque it makes about the base is large; the wall is therefore more likely to rotate about its base and fall over than to be driven straight down. The same force delivered at the base has almost no lever arm about that point, so it makes almost no torque, and what it does instead is push the bottom of the wall sideways. If the wall is firmly attached at its base it can neither slide nor turn easily, and the blow does its damage locally rather than toppling the wall; if the base is free to move, the bottom is knocked out from under the wall and the wall comes down more or less where it stood."
+    "solution": "Take the pivot at the bottom of the wall, where it meets the ground. A blow near the top acts far from that pivot, so its perpendicular lever arm is nearly the whole height of the wall and its torque about the base is large. The wall is therefore more likely to rotate about its base and fall over than to be driven straight down. The same force at the base has almost no lever arm about that point and makes almost no torque; instead it pushes the bottom of the wall sideways. A wall firmly fixed at its base can neither slide nor turn easily, so the blow does local damage rather than toppling it. If the base can move, the blow knocks the bottom out from under the wall, and the wall comes down more or less where it stood."
    }
   },
   {
@@ -322,7 +326,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "All five forces have the same magnitude, so by $\\ktau = \\krperp\\kF$ the greatest torque belongs to the force with the longest perpendicular lever arm. The lever arm is the shortest distance from $P$ to the line along which the force acts, not the distance from $P$ to the point of the edge where the force touches, so extend each arrow into a full line right across the drawing and measure from $P$ to that line. A force applied far out along the object but pointing nearly at $P$ has a short lever arm and makes little torque; a force applied the same distance out but at right angles to the line back to $P$ has a lever arm equal to the whole of that distance. Compare the five lines on those two counts together, how far out the force acts and how squarely it is directed, and the one whose line passes farthest from $P$ is the answer."
+    "solution": "All five forces have the same magnitude, so by $\\ktau = \\krperp\\kF$ the greatest torque belongs to the force with the longest perpendicular lever arm. The lever arm is the shortest distance from $P$ to the line along which the force acts, not the distance from $P$ to the point where the force touches the edge. Extend each arrow into a full line across the drawing and measure from $P$ to that line. A force applied far out but pointing nearly at $P$ has a short lever arm and makes little torque. A force applied the same distance out but at right angles to the line back to $P$ has a lever arm equal to that whole distance. Weigh both things together, how far out each force acts and how squarely it points, and the force whose line passes farthest from $P$ is the answer."
    }
   },
   {
@@ -339,7 +343,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Estimate the two quantities the definition asks for and multiply them. A child of school age has a mass of perhaps 30 kg, so a weight of about $(30\\ \\text{kg})(9.80\\ \\text{m/s}^2) \\approx 300\\ \\text{N}$, and half the length of a playground see-saw is about 2 m, which is the distance from the pivot to the child on the end. The weight hangs straight down while the plank runs out horizontally, so $\\theta$ is close to $90^\\circ$ and $\\sin\\theta$ is close to 1. Then $\\ktau = \\krlev\\kF\\sin\\theta \\approx (2\\ \\text{m})(300\\ \\text{N}) = 600\\ \\text{N}\\cdot\\text{m}$. What the question is really asking for is the order of magnitude: a child weighs a few hundred newtons and sits a couple of meters out, so the torque belongs in the hundreds of newton-meters and not in the tens or the thousands."
+    "solution": "Estimate the two quantities the definition asks for and multiply them. A school-age child has a mass of around 30 kg, so a weight of about $(30\\ \\text{kg})(9.80\\ \\text{m/s}^2) \\approx 300\\ \\text{N}$. Half the length of a playground see-saw, the distance from the pivot to the child on the end, is about 2 m. The weight hangs straight down while the plank runs out horizontally, so $\\theta$ is close to $90^\\circ$ and $\\sin\\theta$ is close to 1. Then $\\ktau = \\krlev\\kF\\sin\\theta \\approx (2\\ \\text{m})(300\\ \\text{N}) = 600\\ \\text{N}\\cdot\\text{m}$. The question asks for the order of magnitude: a child weighs a few hundred newtons and sits a couple of meters out, so the torque lies in the hundreds of newton-meters, not the tens or the thousands."
    }
   },
   {

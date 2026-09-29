@@ -4,7 +4,7 @@
  "chapter": "8",
  "title": "Conservation of Momentum",
  "short": "Conservation of momentum",
- "lead": "Momentum is conserved, but only for a system large enough that nothing outside it pushes on it. This section follows two cars through a bump and shows that the momentum one car loses is exactly the momentum the other gains, because the forces the cars exert on each other are equal and opposite and act for the same length of time. That result holds for an isolated system with any number of objects in it, and it is the principle every collision in the rest of the chapter is solved with, on a highway, in a gas, and between the particles inside a nucleus.",
+ "lead": "Momentum is conserved, but only for a system large enough that nothing outside it pushes on it. When one car bumps another, the momentum one car loses is exactly the momentum the other gains, because the forces the cars exert on each other are equal and opposite and act for the same time. The result holds for an isolated system with any number of objects. Every collision in the rest of the chapter rests on it, on a highway, in a gas, and between the particles inside a nucleus.",
  "objectives": [
   "Describe the principle of conservation of momentum.",
   "Derive an expression for the conservation of momentum.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -268,7 +272,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Take the girl and the platform together as the system for the first collision. Nothing outside that pair pushes it horizontally while she lands, so the pair is an isolated system and its total momentum is the same before and after the jump. Before the jump the girl carries her own mass times her own speed and the platform carries nothing, so the total is the girl’s momentum alone; after the jump the girl and the platform move together, so divide that same total by their combined 160 kg to find the velocity they share. The combined momentum is therefore the same number before and after, which is what conservation of momentum says it must be. For the second collision take the boy alone as the system. He carries his mass times his speed before he meets the barrier and nothing at all after it, so his momentum is not conserved, and the reason is that the wall is outside the system and exerts a net external force on him. Enlarge the system to the boy, the barrier and the Earth and the momentum is conserved again, since the Earth takes up what the boy loses. The girl and the platform are a closed system; the boy by himself is an open one."
+    "solution": "Take the girl and the platform together as the system for the first collision. Nothing outside that pair pushes it horizontally while she lands, so the pair is an isolated system and its total momentum is the same before and after the jump. Before the jump the girl carries her mass times her speed and the platform carries nothing, so the total is the girl’s momentum alone. After the jump the girl and the platform move together, so divide that same total by their combined 160 kg to find their shared velocity. The combined momentum is the same number before and after, as conservation of momentum requires. For the second collision take the boy alone as the system. He carries his mass times his speed before he meets the barrier and nothing after it, so his momentum is not conserved: the wall lies outside the system and exerts a net external force on him. Enlarge the system to the boy, the barrier and the Earth and momentum is conserved again, since the Earth takes up what the boy loses. The girl and the platform are a closed system; the boy by himself is an open one."
    }
   },
   {
@@ -308,7 +312,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "For (a), set the two carts on a level track, put a motion sensor at one end or a line of photogates along the track, and record the position of each cart against time from before the collision until well after it. A velocity is the slope of a straight run of those readings, so measure the slope of cart A’s readings before the collision, check that cart B’s readings have zero slope, and measure the slope of the joined readings afterwards. Weigh cart A on a balance so that $m_A$ is known. For (b), the mass of cart B is found from a ratio of velocities, and the final velocity is the smaller of the two, so the same absolute error in it is a larger fractional error; the measurements taken after the collision therefore matter more. For (c), the two carts are an isolated system, so the momentum before the collision equals the momentum after it: $m_A v_A = (m_A + m_B){v′}$, where $v_A$ is the slope of cart A’s points before one second and ${v′}$ is the slope of the joined points after it. Read both slopes off the graph and solve that one equation for $m_B$. For (d), repeat the collision at several different initial speeds of cart A, keeping the masses the same, and each time work out $\\tfrac{1}{2}m_A v_A^2$ before the collision and $\\tfrac{1}{2}(m_A + m_B){v′}^2$ after it; the fraction dissipated is the difference divided by the first of these, and plotting that fraction against the initial speed answers the question."
+    "solution": "For (a), set the two carts on a level track, put a motion sensor at one end or a line of photogates along it, and record each cart’s position against time from before the collision until well after it. A velocity is the slope of a straight run of those readings. Measure the slope of cart A’s readings before the collision, check that cart B’s readings have zero slope, and measure the slope of the joined readings afterwards. Weigh cart A on a balance to get $m_A$. For (b), the mass of cart B comes from a ratio of velocities, and the final velocity is the smaller of the two, so the same absolute error in it is a larger fractional error; the measurements after the collision matter more. For (c), the two carts are an isolated system, so the momentum before the collision equals the momentum after it: $m_A v_A = (m_A + m_B){v′}$, where $v_A$ is the slope of cart A’s points before one second and ${v′}$ is the slope of the joined points after it. Read both slopes off the graph and solve that equation for $m_B$. For (d), repeat the collision at several initial speeds of cart A with the same masses. Each time, work out $\\tfrac{1}{2}m_A v_A^2$ before and $\\tfrac{1}{2}(m_A + m_B){v′}^2$ after. The fraction dissipated is the difference divided by the first, and plotting it against the initial speed answers the question."
    }
   },
   {
@@ -348,7 +352,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The total momentum of a system is the momentum of its center of mass, so the velocity of the center of mass is the total momentum divided by the total mass. The two carts have the same mass, so that is simply the average of the two velocities: add +10 m/s and +4 m/s and halve the result. The two carts are an isolated system, nothing outside them pushes on them, and so the total momentum is the same after the collision as before it; the center-of-mass velocity after the collision is therefore the same number, and it is also the velocity the stuck carts move at. With friction the surface exerts a net external force on the pair, the system is no longer isolated, and the total momentum is not constant, so the center of mass slows steadily both before and after the collision until the carts come to rest."
+    "solution": "The total momentum of a system is the momentum of its center of mass, so the velocity of the center of mass is the total momentum divided by the total mass. The two carts have the same mass, so that velocity is simply the average of theirs: add +10 m/s and +4 m/s and halve the result. The carts form an isolated system, so the total momentum after the collision equals the total before. The center-of-mass velocity afterwards is therefore the same number, and it is also the velocity of the stuck carts. With friction, the surface exerts a net external force on the pair, the system is no longer isolated, and the total momentum changes. The center of mass then slows steadily before and after the collision until the carts come to rest."
    }
   },
   {
@@ -364,7 +368,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Momentum is conserved whenever the system is isolated, that is, whenever the net external force on it is zero. Forces between the objects inside the system are always equal and opposite in pairs and act for the same length of time, so the changes in momentum they produce cancel and cannot change the total. Only a force from outside the system can change it, and Newton’s second law in terms of momentum says by how much: $\\kFnet = \\Delta \\kptot / \\kdt$. If the net external force is not zero, you can often find a larger system that includes the source of that force and for which momentum is conserved after all."
+    "solution": "Momentum is conserved whenever the system is isolated, that is, whenever the net external force on it is zero. Forces between the objects inside the system come in equal and opposite pairs that act for the same length of time, so the changes in momentum they produce cancel and leave the total alone. Only a force from outside the system can change it, and Newton’s second law in terms of momentum says by how much: $\\kFnet = \\Delta \\kptot / \\kdt$. If the net external force is not zero, you can often find a larger system that includes the source of that force and whose momentum is conserved after all."
    }
   },
   {
@@ -397,7 +401,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Yes, but only under two conditions. The first is that the external forces add to zero, since it is the net external force that has to vanish and not each force on its own; a cart rolling on a level track has gravity and the normal force of the track acting on it, and because those two cancel the cart’s momentum is unchanged. The second is that the momentum may be conserved along one direction while it is not conserved along another, because the three directions in space are independent: a projectile has no horizontal force on it and keeps its horizontal momentum even though gravity takes its vertical momentum away. When neither holds, the answer is no, since Newton’s second law written in terms of momentum says that a net external force changes the total momentum at the rate $\\kFnet = \\Delta \\kptot / \\kdt$."
+    "solution": "Yes, but only under two conditions. First, the external forces can add to zero, since the net external force must vanish, not each force on its own. A cart rolling on a level track feels gravity and the normal force of the track, and because those cancel, its momentum stays the same. Second, momentum can hold along one direction and change along another, because the three directions in space are independent. A projectile feels no horizontal force and keeps its horizontal momentum, even as gravity takes its vertical momentum away. When neither holds, the answer is no, since Newton’s second law in terms of momentum says that a net external force changes the total momentum at the rate $\\kFnet = \\Delta \\kptot / \\kdt$."
    }
   },
   {
@@ -413,7 +417,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The angle is ninety degrees, since it is only along perpendicular directions that the motions are independent of one another and can be treated separately. A projectile is the example the section gives: with air resistance negligible there is no horizontal force on it, so its horizontal momentum is unchanged for the whole flight, while the weight acts straight down, so the vertical momentum grows more and more negative as the projectile falls. A puck sliding across a level ice rink and struck sideways is another: the momentum along the line of the push changes and the momentum at right angles to it does not."
+    "solution": "The angle is ninety degrees, since only along perpendicular directions are the motions independent, so that you can treat each on its own. A projectile is one example. With air resistance negligible there is no horizontal force on it, so its horizontal momentum stays the same for the whole flight, while its weight acts straight down and makes its vertical momentum ever more negative. A puck sliding across a level ice rink and struck sideways is another: the momentum along the push changes and the momentum at right angles to it does not."
    }
   },
   {
@@ -462,7 +466,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "No, the two are separate statements and neither one follows from the other. Momentum is conserved when the net external force on the system is zero, and that says nothing about where the energy inside the system goes. Two lumps of clay that meet and stick together are an isolated system, so their total momentum is the same after the collision as before it, while a great deal of their kinetic energy has gone into deforming and warming the clay. What is true is that the total energy of an isolated system is conserved too, if you count every form the energy can take, including the heat; it is the kinetic energy alone that need not be."
+    "solution": "No, the two are separate statements and neither follows from the other. Momentum is conserved when the net external force on the system is zero, and that says nothing about where the energy inside the system goes. Two lumps of clay that meet and stick form an isolated system, so their total momentum after the collision equals the total before, yet much of their kinetic energy has gone into deforming and warming the clay. The total energy of an isolated system is conserved too, if you count every form, heat included; only the kinetic energy alone can change."
    }
   },
   {

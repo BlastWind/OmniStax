@@ -4,7 +4,7 @@
  "chapter": "7",
  "title": "Conservation of Energy",
  "short": "Conservation of energy",
- "lead": "Energy is conserved: whatever forms it passes through, the total at the end of a process is the total it began with. This section states that law, adds one term to the mechanical energy and the nonconservative work for every other kind of energy a system holds, names the forms energy takes beyond the mechanical ones, follows energy through the conversions that are going on all the time, and defines the efficiency of a conversion as the share of the energy put in that comes out as useful work.",
+ "lead": "Energy is conserved: whatever forms it passes through, the total at the end of a process equals the total at the start. The law adds one term to the mechanical energy and the nonconservative work for every other kind of energy a system holds. You meet the forms energy takes beyond the mechanical ones, follow energy through the conversions that go on all the time, and define the efficiency of a conversion as the share of the input that comes out as useful work.",
  "objectives": [
   "Explain the law of the conservation of energy.",
   "Describe some of the many forms of energy.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -26,6 +30,10 @@
    },
    {
     "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
     "effort": "low"
    }
   ]
@@ -204,7 +212,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "In both cases the object is at rest at the beginning and at rest at the end, so its kinetic energy is the same at both instants and the change in kinetic energy over the whole motion is zero. By the work-energy theorem the net work done on the object is therefore zero, even though work has certainly been done: the crane’s cable does positive work on the load while gravity does an equal amount of negative work, and the push does positive work on the object while friction does an equal amount of negative work. The difference between the two systems is where the energy has gone. Gravity is a conservative force, so the work done against it is stored as gravitational potential energy and can be had back by lowering the load; the load is higher than it was and the mechanical energy of the load-Earth system has risen by exactly the work the crane did. Friction is nonconservative, so the work done against it has left as thermal energy in the surface and in the object, and no change of position will give it back; the mechanical energy of that system is what it was, and the energy the push put in is other energy now."
+    "solution": "In both cases the object starts at rest and ends at rest, so the change in its kinetic energy over the whole motion is zero. By the work-energy theorem the net work on it is zero, although work certainly happens. The crane’s cable does positive work on the load while gravity does an equal negative work, and the push does positive work on the object while friction does an equal negative work. The two systems differ in where the energy goes. Gravity is conservative, so the work done against it becomes gravitational potential energy, and lowering the load gets it back. The load sits higher, and the mechanical energy of the load-Earth system has risen by exactly the crane’s work. Friction is nonconservative, so the work done against it leaves as thermal energy in the surface and the object, and no change of position returns it. The mechanical energy of that system is unchanged, and the energy the push put in is now other energy."
    }
   },
   {
@@ -244,7 +252,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "At the first tug the front wagon moves before the rear one does, so the rope stretches and most of the energy the child has put in is potential energy stored in the rope, while the rear wagon is still nearly at rest. The stretched rope then pulls the rear wagon forward: the stretch falls and the wagon speeds up, so the potential energy stored in the rope is converted into the kinetic energy of the wagons. Because the rope is a spring, the rear wagon overshoots, the rope goes slack, and the rear wagon then falls behind again and stretches it once more, so the two forms trade back and forth as the pair rolls along. The total keeps rising, since the child keeps doing work on the front wagon, but at any one moment how it is split depends on how far the rope happens to be stretched. Friction in the wheels and losses in the rope itself turn part of the total into thermal energy while the trading goes on, so the share that is mechanical falls the longer the pull lasts."
+    "solution": "At the first tug the front wagon moves before the rear one, so the rope stretches, and most of the child’s energy goes into potential energy in the rope while the rear wagon is still nearly at rest. The stretched rope then pulls the rear wagon forward: the stretch falls and the wagon speeds up, turning the rope’s potential energy into kinetic energy of the wagons. The rope acts as a spring, so the rear wagon overshoots, the rope goes slack, and the wagon falls behind and stretches it again. The two forms trade back and forth as the pair rolls along. The total keeps rising, since the child keeps doing work on the front wagon, but its split at any moment depends on the rope’s stretch. Friction in the wheels and losses in the rope turn part of the total into thermal energy all the while, so the mechanical share falls the longer the pull lasts."
    }
   },
   {
@@ -276,7 +284,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Look for something across whose boundary no energy passes: nothing is put in and nothing leaks out. Nothing in the world is perfectly closed, so any real example is an approximation over a stretch of time short enough that what does cross the boundary does not matter. A vacuum flask of hot coffee with its stopper in is a good one, because the vacuum between its walls carries away almost no thermal energy, so the energy inside it is very nearly constant for an hour or two. A heavy bob swinging on a long wire inside a sealed and evacuated case is another, since there is no air to rub against and little friction at the support. The Earth is often offered and is a poor choice, because the Sun pours radiant energy onto it all day and the Earth radiates energy back into space all night. Whichever example you choose, say where the boundary of your system is and what would have to cross it for the system to stop being closed."
+    "solution": "Look for something whose boundary no energy crosses: nothing goes in and nothing leaks out. No real system is perfectly closed, so any example holds only over a time short enough that what does cross does not matter. A stoppered vacuum flask of hot coffee is a good one, because the vacuum between its walls carries away almost no thermal energy, and the energy inside stays nearly constant for an hour or two. A heavy bob swinging on a long wire inside a sealed, evacuated case is another, since it has no air to rub against and little friction at the support. The Earth is a poor choice, because the Sun pours radiant energy onto it all day and the Earth radiates energy back into space all night. Whichever example you choose, say where your system’s boundary is and what would have to cross it for the system to stop being closed."
    }
   },
   {
@@ -316,7 +324,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The environment doing work on the water is the Earth, through the gravitational force: as the water falls the gravitational potential energy of the water-Earth system is converted, which is the same thing as saying that gravity does work on the water. For the second part, take the water 100 m up behind the dam as the initial state and the water leaving the outlet at 2.0 m/s as the final state, and write the account. Its potential energy at the start, measured from the outlet, is $\\kPEg = m\\kg\\kh = (10{,}000\\ \\text{kg})(9.80\\ \\text{m/s}^2)(100\\ \\text{m})$, and it starts at rest, so that is all the energy it has. The energy it still carries as it leaves is $\\kKE = \\tfrac{1}{2}m\\kv^2 = \\tfrac{1}{2}(10{,}000\\ \\text{kg})(2.0\\ \\text{m/s})^2$. Whatever the water no longer has, the generators have taken, so the energy generated is the first of those numbers less the second, and less again whatever friction in the pipes turned into thermal energy on the way down, which the question gives you no way to work out and asks you to neglect."
+    "solution": "The environment does work on the water through the gravitational force of the Earth. As the water falls, the gravitational potential energy of the water-Earth system converts to other forms, which is the same as saying that gravity does work on the water. For the second part, take the water 100 m up behind the dam as the initial state and the water leaving the outlet at 2.0 m/s as the final state. Its potential energy at the start, measured from the outlet, is $\\kPEg = m\\kg\\kh = (10{,}000\\ \\text{kg})(9.80\\ \\text{m/s}^2)(100\\ \\text{m})$, and it starts at rest, so that is all its energy. The energy it still carries as it leaves is $\\kKE = \\tfrac{1}{2}m\\kv^2 = \\tfrac{1}{2}(10{,}000\\ \\text{kg})(2.0\\ \\text{m/s})^2$. The generators have taken whatever the water no longer has, so the energy generated is the first number less the second. Friction in the pipes would take some more, but the question gives no way to work it out and asks you to neglect it."
    }
   },
   {
@@ -337,7 +345,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Follow the car through the run and name what it has at every stage. At the top it is at rest, so it has gravitational potential energy and no kinetic energy, and the gasoline in its tank carries chemical energy. As it accelerates down the first hill the engine turns part of that chemical energy into the kinetic energy of the car, the potential energy of the car-Earth system falls into kinetic energy as well, and friction in the drivetrain and the tires and the drag of the air turn part of both into thermal energy, which warms the car and the air. When the gasoline runs out there is no chemical energy left to draw on, and from there the only exchange is between gravitational potential energy and kinetic energy, less what friction keeps taking. Coasting up over the crest the car gives kinetic energy back as potential energy and slows; running down the second hill it takes it back again and speeds up. Braking at the gas station turns all of the kinetic energy that is left into thermal energy in the brakes. Filling the tank transfers chemical energy into the car from outside it, which is a transfer between systems rather than a change of form. At no stage is any energy lost: what one form gives up another has taken."
+    "solution": "Follow the car through the run and name what it has at every stage. At the top it is at rest, so it has gravitational potential energy and no kinetic energy, and the gasoline in its tank carries chemical energy. Down the first hill the engine turns part of that chemical energy into kinetic energy, and the potential energy of the car-Earth system becomes kinetic energy too. Friction in the drivetrain and tires and the drag of the air turn part of both into thermal energy, warming the car and the air. Once the gasoline runs out, the only exchange is between gravitational potential energy and kinetic energy, less what friction keeps taking. Coasting up over the crest, the car trades kinetic energy for potential energy and slows. Down the second hill it takes it back and speeds up. Braking at the gas station turns all the remaining kinetic energy into thermal energy in the brakes. Filling the tank moves chemical energy into the car from outside, a transfer between systems rather than a change of form. At no stage does energy disappear: what one form gives up, another takes."
    }
   },
   {
@@ -353,7 +361,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The chemical energy in the athlete’s muscles is the source of all of it. Picking the javelin up and carrying it to the mark, the athlete converts a little of that chemical energy into the gravitational potential energy of the raised javelin and into the kinetic energy of the run-up, and most of it into thermal energy in the athlete’s body, since a body is only about a fifth efficient. In the throw the athlete does work on the javelin over the length of the arm and the turn of the body, so more chemical energy becomes the kinetic energy the javelin leaves with. In flight the javelin trades kinetic energy for gravitational potential energy as it rises and takes it back as it falls, while the air resistance on it turns a small part of the total into thermal energy in the javelin and the air. When the point strikes the ground the javelin’s kinetic energy goes into the work of pushing the soil apart, into thermal energy in the soil and the shaft, and into the sound of the impact. The javelin ends at rest and lower than it was thrown, and every joule it began with is somewhere else."
+    "solution": "The chemical energy in the athlete’s muscles is the source of all of it. Picking up the javelin and carrying it to the mark, the athlete turns a little of that energy into the gravitational potential energy of the raised javelin and the kinetic energy of the run-up. Most becomes thermal energy in the body, which is only about a fifth efficient. In the throw the athlete does work on the javelin over the length of the arm and the turn of the body, so more chemical energy becomes the javelin’s kinetic energy. In flight the javelin trades kinetic energy for potential energy as it rises and takes it back as it falls, while air resistance turns a small part into thermal energy in the javelin and the air. When the point strikes, the kinetic energy goes into pushing the soil apart, into thermal energy in the soil and the shaft, and into sound. The javelin ends at rest, lower than it started, and every joule it began with is somewhere else."
    }
   },
   {
@@ -385,7 +393,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Electrical energy, chemical energy, radiant energy, nuclear energy and thermal energy are five of the forms this section names, and any four of them will do. Electrical energy is converted into the mechanical energy of a turning shaft in an electric motor. Chemical energy in gasoline is converted into thermal energy and then into mechanical energy in an engine, and the chemical energy in food is converted into the kinetic and potential energy of a person who climbs a flight of stairs. Radiant energy from the Sun is converted into electrical energy in a solar cell, and into chemical energy in a leaf by photosynthesis. Nuclear energy is converted into thermal energy in the core of a reactor, and then into electrical energy in the generator the steam turns. Thermal energy in the steam of a boiler is converted into the mechanical energy of a spinning turbine. Name the form you start from and the form you end at in each case, and say what does the converting."
+    "solution": "Electrical, chemical, radiant, nuclear and thermal energy are five forms beyond the mechanical ones, and any four will do. An electric motor turns electrical energy into the mechanical energy of a turning shaft. An engine turns the chemical energy in gasoline into thermal energy and then mechanical energy, and a person climbing stairs turns the chemical energy in food into kinetic and potential energy. A solar cell turns radiant energy from the Sun into electrical energy, and a leaf turns it into chemical energy by photosynthesis. A reactor core turns nuclear energy into thermal energy, and the generator its steam drives turns that into electrical energy. A turbine turns the thermal energy of a boiler’s steam into mechanical energy. In each case name the starting form and the final form, and say what does the converting."
    }
   },
   {
@@ -401,7 +409,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The rider’s food is the source, so the chain begins with chemical energy in the muscles. That is converted into the mechanical work the legs do on the pedals, and about four fifths of it is converted into thermal energy in the rider at the same time, since cycling is about 20 percent efficient. The work on the pedals becomes the kinetic energy of the rider and the bicycle as they speed up, and becomes gravitational potential energy whenever the road climbs; coming down a hill that potential energy is converted back into kinetic energy. Friction in the chain and the bearings and the drag of the air convert part of the kinetic energy into thermal energy the whole time, which is why pedalling is needed to hold a steady speed on level ground. Braking converts the rest of the kinetic energy into thermal energy in the brake blocks and the rims. If the bicycle has a dynamo, a little of the mechanical energy is converted into electrical energy and then into the radiant energy of the lamp."
+    "solution": "The rider’s food is the source, so the chain begins with chemical energy in the muscles. The legs turn it into mechanical work on the pedals, and about four fifths of it becomes thermal energy in the rider at the same time, since cycling is about 20 percent efficient. The work on the pedals becomes the kinetic energy of rider and bicycle as they speed up, and gravitational potential energy whenever the road climbs. Coming down a hill, that potential energy turns back into kinetic energy. Friction in the chain and bearings and the drag of the air turn part of the kinetic energy into thermal energy the whole time, so the rider must pedal to hold a steady speed on level ground. Braking turns the rest of the kinetic energy into thermal energy in the brake blocks and rims. A dynamo, if fitted, turns a little of the mechanical energy into electrical energy and then into the lamp’s radiant energy."
    }
   },
   {

@@ -4,7 +4,7 @@
  "chapter": "8",
  "title": "Collisions of Point Masses in Two Dimensions",
  "short": "Collisions in two dimensions",
- "lead": "Billiard balls rarely meet head on, and when they scatter to the side the collision is a two-dimensional one. This section chooses a coordinate system with one axis along the velocity of the incoming object, writes conservation of momentum once along each axis, and uses the two equations to find two unknowns, which is how a scattering experiment tells you about an object you never see. It ends with what a pool player knows, that two balls of equal mass leave an elastic collision at right angles to each other.",
+ "lead": "Billiard balls rarely meet head on, and when they scatter to the side the collision is two-dimensional. Choose a coordinate system with one axis along the incoming object’s velocity and write conservation of momentum along each axis. The two equations give two unknowns, and that is how a scattering experiment tells you about an object you never see. A pool player already knows the last result: two balls of equal mass leave an elastic collision at right angles to each other.",
  "objectives": [
   "Discuss two dimensional collisions as an extension of one dimensional analysis.",
   "Define point masses.",
@@ -19,6 +19,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -255,7 +259,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The velocity of the center of mass of a system is its total momentum divided by its total mass, since Conservation of Momentum says that the total momentum can be shown to be the momentum of the center of mass. The two cars push on each other and on nothing else that matters here, so the forces between them are internal to the system, the net external force is zero and the total momentum is conserved. The total mass does not change either, so the center-of-mass velocity is the same after the collision as before it, and this is true whether or not the cars stick together. To put numbers to it, choose the $x$-axis to the east and the $y$-axis to the north, and resolve each velocity into components as this section does: car A contributes $m_A v_A$ along $x$ and nothing along $y$, and car B contributes $m_B v_B \\cos 63^\\circ$ along $x$ and $m_B v_B \\sin 63^\\circ$ along $y$. Add the two components along each axis, divide each sum by the total mass of 5500 kg, and recombine the two results with $v = \\sqrt{{v_x}^2 + {v_y}^2}$ and $\\theta = \\tan^{-1}(v_y / v_x)$ to get the magnitude and direction of the center-of-mass velocity. After the collision the two cars move together as one object of mass 5500 kg, and the same division gives the same velocity again."
+    "solution": "The velocity of the center of mass of a system is its total momentum divided by its total mass, since the total momentum equals the momentum of the center of mass. The two cars push on each other and on nothing else that matters here, so the forces between them are internal, the net external force is zero and the total momentum is conserved. The total mass does not change either, so the center-of-mass velocity after the collision equals the velocity before, whether or not the cars stick together. To put numbers to it, choose the $x$-axis to the east and the $y$-axis to the north, and resolve each velocity into components. Car A contributes $m_A v_A$ along $x$ and nothing along $y$, and car B contributes $m_B v_B \\cos 63^\\circ$ along $x$ and $m_B v_B \\sin 63^\\circ$ along $y$. Add the components along each axis, divide each sum by the total mass of 5500 kg, and recombine with $v = \\sqrt{{v_x}^2 + {v_y}^2}$ and $\\theta = \\tan^{-1}(v_y / v_x)$ to get the magnitude and direction of the center-of-mass velocity. After the collision the two cars move together as one 5500 kg object, and the same division gives the same velocity again."
    }
   },
   {
@@ -276,7 +280,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "(a) The cube is so much more massive than the small object that it barely moves, so ${v'}_2 \\approx 0$ and the collision is very nearly a bounce off a fixed flat surface. An elastic bounce off a flat face reverses the component of the velocity perpendicular to that face and leaves the component along it unchanged, so the object comes away at the same angle to the face that it went in at, and $\\theta_1$ is fixed by the tilt of the face alone. Sliding the object up or down the face, which is what changing the impact parameter $b$ does, does not change the direction of the face, so $\\theta_1$ does not depend on $b$ at all as long as the object strikes the same face. The one thing $b$ decides is which face is struck, and a strike on the next face over gives a quite different $\\theta_1$. (b) A sphere has a different normal at every point of its surface. The normal at the point of impact points from the center of the sphere through that point, and its direction turns continuously as $b$ grows, so $\\theta_1$ now varies smoothly with $b$: a head-on strike at $b = 0$ sends the object straight back, and a grazing strike at $b$ near the radius of the sphere barely deflects it at all. This is why the scattering of a small object tells you about the shape of the object it strikes, which is the point the section makes about experiments on subatomic particles."
+    "solution": "(a) The cube is so much more massive than the small object that it barely moves, so ${v'}_2 \\approx 0$ and the collision is very nearly a bounce off a fixed flat surface. An elastic bounce off a flat face reverses the velocity component perpendicular to the face and keeps the component along it, so the object leaves at the same angle to the face that it arrived at. The tilt of the face alone sets $\\theta_1$. Changing the impact parameter $b$ slides the strike point along the face without turning the face, so $\\theta_1$ does not depend on $b$ as long as the object strikes the same face. The only thing $b$ decides is which face the object strikes, and the next face over gives a very different $\\theta_1$. (b) A sphere has a different normal at every point of its surface. The normal at the point of impact points from the sphere’s center through that point and turns continuously as $b$ grows, so $\\theta_1$ now varies smoothly with $b$. A head-on strike at $b = 0$ sends the object straight back, and a grazing strike at $b$ near the sphere’s radius barely deflects it. So the scattering of a small object tells you the shape of what it strikes, as in experiments on subatomic particles."
    }
   },
   {

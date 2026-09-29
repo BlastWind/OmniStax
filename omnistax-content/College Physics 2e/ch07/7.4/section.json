@@ -4,7 +4,7 @@
   "chapter": "7",
   "title": "Conservative Forces and Potential Energy",
   "short": "Conservative forces and potential energy",
-  "lead": "Some forces give back every joule of work done against them. This section defines a conservative force as one whose work depends only on where a motion starts and where it ends, and not on the path between, finds the potential energy stored in a spring that is stretched or compressed, half the force constant times the square of the displacement, and shows from the work-energy theorem that when only conservative forces act the kinetic energy and the potential energy of a system add to a constant, which is the conservation of mechanical energy.",
+  "lead": "Some forces give back every joule of work done against them. A conservative force is one whose work depends only on where a motion starts and ends, not on the path between. A stretched or compressed spring stores potential energy equal to half the force constant times the square of the displacement. From the work-energy theorem, when only conservative forces act, a system’s kinetic and potential energy add to a constant: mechanical energy is conserved.",
   "objectives": [
     "Define conservative force, potential energy, and mechanical energy.",
     "Explain the potential energy of a spring in terms of its compression when Hooke’s law applies.",
@@ -17,6 +17,10 @@
       {
         "model": "claude-opus-5",
         "effort": "high"
+      },
+      {
+        "model": "claude-opus-5-5",
+        "effort": "low"
       }
     ],
     "figures": [
@@ -26,6 +30,10 @@
       },
       {
         "model": "claude-fable-5-1",
+        "effort": "low"
+      },
+      {
+        "model": "claude-opus-5-5",
         "effort": "low"
       }
     ]
@@ -252,7 +260,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "Just before the swimmer steps on it the board is undeformed, so it holds no potential energy. As the swimmer walks out along it and then pushes down, the board bends, and the work done against the board’s restoring force is stored in it as potential energy, in the same way that work done against a spring is stored as $\\kPEs = \\frac{1}{2}\\kk\\kx^2$; the potential energy is greatest when the board is bent farthest down and the swimmer is momentarily at his lowest point. The board then straightens and gives that energy back, so its potential energy falls as the swimmer rises, and it is zero again at the instant the board passes through its undeformed shape. Just after the swimmer’s feet leave it the board holds whatever energy is left in its own vibration, and the rest has gone to the swimmer as kinetic energy and as the potential energy of his height. Because the board’s force is conservative, none of the energy is lost along the way; it only changes which part of the system holds it."
+        "solution": "Just before the swimmer steps on it the board is straight, so it holds no potential energy. As the swimmer walks out and pushes down, the board bends, and the work done against its restoring force becomes potential energy in the board, just as work done against a spring becomes $\\kPEs = \\frac{1}{2}\\kk\\kx^2$. The potential energy is greatest when the board bends farthest down and the swimmer is momentarily at his lowest point. The board then straightens and gives that energy back, so its potential energy falls as the swimmer rises and is zero again when the board passes through its straight shape. Just after the swimmer’s feet leave, the board holds only the energy of its own vibration. The rest has gone to the swimmer as kinetic energy and as the potential energy of his height. The board’s force is conservative, so no energy is lost along the way; it only moves from one part of the system to another."
       }
     },
     {
@@ -284,7 +292,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "A potential energy can be defined for a force only when that force is conservative. Because the work done against a conservative force depends only on the starting and the ending configuration and not on the path, that work can be written as a quantity belonging to the configuration itself, which is what the potential energy is. The work done by the conservative force is then minus the change in that potential energy, $\\kWc = -\\kdPE$, so the energy stored by doing work against the force is completely recoverable as work done by it. A force whose work depends on the path, such as friction, has no potential energy associated with it."
+        "solution": "A force has a potential energy only when it is conservative. The work done against a conservative force depends only on the starting and ending configuration, not on the path. That work is therefore a quantity belonging to the configuration itself, and that quantity is the potential energy. The work done by the conservative force is then minus the change in potential energy, $\\kWc = -\\kdPE$, so you can recover all the energy stored against the force as work done by it. A force whose work depends on the path, such as friction, has no potential energy."
       }
     },
     {
@@ -345,7 +353,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "To find the kinetic energy of something attached to a spring you need its mass and its speed, since $\\kKE = \\frac{1}{2}m\\kv^2$, so you need information about one object, the one that moves. To find the potential energy stored in the spring you need the spring’s force constant $\\kk$ and the distance $\\kx$ by which it is stretched or compressed from its undeformed length, since $\\kPEs = \\frac{1}{2}\\kk\\kx^2$; the mass plays no part, and the information is again about one object, the spring itself. To find the gravitational potential energy you need the mass of the object, the height it has been raised through, and the acceleration due to gravity, since the change is $m\\kg\\kh$, and because $\\kg$ belongs to the Earth this case really concerns two objects, the raised body and the Earth it is raised above."
+        "solution": "For the kinetic energy of something attached to a spring you need its mass and its speed, since $\\kKE = \\frac{1}{2}m\\kv^2$. That is information about one object, the one that moves. For the potential energy in the spring you need its force constant $\\kk$ and the distance $\\kx$ it stretches or compresses from its undeformed length, since $\\kPEs = \\frac{1}{2}\\kk\\kx^2$. The mass plays no part, and the information again concerns one object, the spring. For the gravitational potential energy you need the object’s mass, the height it rises through and the acceleration due to gravity, since the change is $m\\kg\\kh$. Because $\\kg$ belongs to the Earth, this case concerns two objects, the raised body and the Earth below it."
       }
     },
     {
@@ -385,7 +393,7 @@
       "answer": {
         "type": "open",
         "generated_by": "ai",
-        "solution": "Any system that stores energy in its shape or its configuration and gives it back will do. A wind-up kitchen timer is one: turning the dial does work against a coiled spring, that work is stored as potential energy because the spring’s force is conservative, and the spring gives it back slowly as it unwinds and drives the mechanism. The retractable ballpoint pen, the spring in a stapler, the elastic of a hair tie and the mattress you sleep on all store energy the same way, by being deformed. Whichever you choose, say what is deformed, what does the work of deforming it, and how the stored energy is recovered later; for a spring that obeys Hooke’s law the amount stored is $\\kPEs = \\frac{1}{2}\\kk\\kx^2$."
+        "solution": "Any system that stores energy in its shape or configuration and gives it back will do. A wind-up kitchen timer is one. Turning the dial does work against a coiled spring, the spring’s force is conservative so it stores that work as potential energy, and the spring gives it back slowly as it unwinds and drives the mechanism. A retractable ballpoint pen, the spring in a stapler, a hair tie and the mattress you sleep on all store energy the same way, by changing shape. Whichever you choose, say what deforms, what does the work of deforming it, and how you get the stored energy back. For a spring that obeys Hooke’s law the energy stored is $\\kPEs = \\frac{1}{2}\\kk\\kx^2$."
       }
     },
     {
