@@ -4,7 +4,7 @@
  "chapter": "14",
  "title": "Radiation",
  "short": "Radiation",
- "lead": "Heat reaches you from a fire and from the Sun across space that holds nothing to conduct or convect it, carried by electromagnetic waves that every object emits and absorbs. This section says that a hotter body radiates more and at shorter wavelengths, that a good absorber is a good emitter, and that the rate goes as the fourth power of the absolute temperature, which is the Stefan-Boltzmann law with its emissivity; it then writes the net rate of exchange between an object and its surroundings, works it for a person in a dark room, and follows the same balance between the Sun, the Earth and the dark sky to the greenhouse effect, before closing the chapter with the problem-solving strategies for all three methods of heat transfer.",
+ "lead": "Heat reaches you from a fire and from the Sun across space that holds nothing to conduct or convect it, carried by electromagnetic waves that every object emits and absorbs. A hotter body radiates more and at shorter wavelengths, and a good absorber is a good emitter. The rate goes as the fourth power of the absolute temperature, which is the Stefan-Boltzmann law with its emissivity. The net rate of exchange between an object and its surroundings applies to a person in a dark room, and the same balance between the Sun, the Earth and the dark sky leads to the greenhouse effect. The chapter closes with problem-solving strategies for all three methods of heat transfer.",
  "objectives": [
   "Discuss heat transfer by radiation.",
   "Explain the power of different materials."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -177,7 +181,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The car is a small greenhouse. Sunlight, which is mostly visible light and short-wavelength infrared, passes through the glass and is absorbed by the seats, the dashboard and the floor, which warm up. Being much cooler than the Sun, they radiate at much longer infrared wavelengths, and to those wavelengths the glass is nearly opaque, so most of that radiation is absorbed by the glass or returned to the interior rather than escaping. The closed windows also stop convection: the air warmed by contact with the hot interior surfaces cannot be carried away and replaced by cooler outside air, as it would be with the windows open. Conduction through the glass and the body of the car is slow. So energy arrives by radiation faster than it can leave by radiation, convection or conduction, and the interior settles at a temperature well above the outside air. A dark interior absorbs more of the sunlight and makes the effect stronger; a reflective sunshade in the windshield or lighter upholstery reduces it."
+    "solution": "The car is a small greenhouse. Sunlight, mostly visible light and short-wavelength infrared, passes through the glass, and the seats, the dashboard and the floor absorb it and warm up. Being much cooler than the Sun, they radiate at much longer infrared wavelengths, to which the glass is nearly opaque, so the glass absorbs most of that radiation or returns it to the interior. The closed windows also stop convection: warm air next to the hot interior surfaces cannot leave and let cooler outside air in, as it would with the windows open. Conduction through the glass and the body of the car is slow. Energy arrives by radiation faster than it can leave by radiation, convection or conduction, and the interior settles at a temperature well above the outside air. A dark interior absorbs more of the sunlight and makes the effect stronger; a reflective sunshade in the windshield or lighter upholstery reduces it."
    }
   },
   {
@@ -205,7 +209,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A sensor emits its own radiation at the rate $\\sigma e A \\kTemp^4$, and what it measures is the net exchange between itself and what it looks at. The radiation from 3 K space is extraordinarily faint, since the rate goes as the fourth power of the absolute temperature: a sensor at room temperature, about 300 K, emits $(300/3)^4 = 10^8$ times more than the sky it is trying to see, and the sky’s signal is buried in the sensor’s own glow and its fluctuations. Cooling the sensor to a few kelvin brings its own emission down toward that of the sky so that the net signal it registers is the sky’s, and shading it from the Sun, the Earth and the Moon keeps their far stronger radiation from warming it and from swamping the measurement."
+    "solution": "A sensor emits its own radiation at the rate $\\sigma e A \\kTemp^4$, and it measures the net exchange between itself and what it looks at. The radiation from 3 K space is extraordinarily faint, since the rate goes as the fourth power of the absolute temperature. A sensor at room temperature, about 300 K, emits $(300/3)^4 = 10^8$ times more than the sky it is trying to see, and its own glow and fluctuations bury the sky’s signal. Cooling the sensor to a few kelvin brings its own emission down toward that of the sky, so the net signal it registers is the sky’s. Shading it from the Sun, the Earth and the Moon keeps their far stronger radiation from warming it and swamping the measurement."
    }
   },
   {
@@ -233,7 +237,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "A thermometer reads its own temperature, and that settles where the heat it gains balances the heat it loses. In the shade its only exchanges are conduction and convection with the surrounding air and a radiation exchange with surroundings near the air temperature, so it settles at the air temperature, which is what a weather station wants to record. In direct sunshine it also absorbs radiation from the Sun, whose surface is at about 6000 K, at a rate far larger than anything the air supplies, and it must warm above the air temperature until its extra losses by radiation and convection carry that energy away. An unshielded thermometer therefore reads something higher than the air temperature that depends on how dark and how large it is, on the wind and on the angle of the Sun, a number that is neither the air temperature nor the temperature of anything else in particular. The Take-Home Experiment shows the difference, and the handkerchief soaked in nail polish remover shows a third reading, lowered by evaporation."
+    "solution": "A thermometer reads its own temperature, which settles where the heat it gains balances the heat it loses. In the shade its only exchanges are conduction and convection with the surrounding air and radiation with surroundings near the air temperature. It settles at the air temperature, which is what a weather station wants to record. In direct sunshine it also absorbs radiation from the Sun, whose surface is at about 6000 K, far faster than anything the air supplies. It must warm above the air temperature until its extra losses by radiation and convection carry that energy away. An unshielded thermometer therefore reads higher than the air temperature, by an amount that depends on how dark and how large it is, on the wind and on the angle of the Sun. That number is neither the air temperature nor the temperature of anything else in particular. The Take-Home Experiment shows the difference, and the handkerchief soaked in nail polish remover shows a third reading, lowered by evaporation."
    }
   },
   {
@@ -247,7 +251,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Cooler. The Earth’s surface temperature is set by a balance between the sunlight it absorbs and the infrared it radiates. The atmosphere is nearly transparent to the incoming sunlight, so it changes little on the absorbing side, but the carbon dioxide and water vapor in it absorb much of the long-wavelength infrared the surface emits and radiate part of it back down. With that return the surface must radiate more, and so stand warmer, before what escapes to space balances the sunlight absorbed. Without an atmosphere every bit of infrared the surface emitted would go straight to dark space, and the surface would settle about 40 °C lower than it does, as the text states; the Moon, which has no atmosphere, shows how cold a body at the Earth’s distance from the Sun becomes. Clouds complicate the average, since they reflect sunlight as well as returning infrared, but the net effect of the atmosphere is to warm the surface."
+    "solution": "Cooler. The Earth’s surface temperature comes from a balance between the sunlight it absorbs and the infrared it radiates. The atmosphere is nearly transparent to incoming sunlight, so it changes little on the absorbing side. The carbon dioxide and water vapor in it, however, absorb much of the long-wavelength infrared the surface emits and radiate part of it back down. With that return the surface must radiate more, and so stand warmer, before what escapes to space balances the sunlight absorbed. Without an atmosphere every bit of infrared the surface emitted would go straight to dark space, and the surface would settle about 40 °C lower than it does. The Moon, which has no atmosphere, shows how cold a body at the Earth’s distance from the Sun becomes. Clouds complicate the average, since they reflect sunlight as well as returning infrared, but the net effect of the atmosphere is to warm the surface."
    }
   },
   {

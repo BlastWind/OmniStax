@@ -4,7 +4,7 @@
  "chapter": "15",
  "title": "Applications of Thermodynamics: Heat Pumps and Refrigerators",
  "short": "Heat pumps and refrigerators",
- "lead": "A heat engine run backward takes heat transfer from a cold reservoir and, with work put in, delivers more than that work to a hot one. This section shows how a heat pump, an air conditioner and a refrigerator are that one machine, follows its working fluid through the condenser, the expansion valve, the evaporator and the compressor, defines the coefficient of performance as the ratio of what you get to what you spend, in its heat pump form and its refrigerator form, works out the best a heat pump can do between two temperatures, and closes with the book’s strategy for thermodynamics problems.",
+ "lead": "A heat engine run backward takes heat transfer from a cold reservoir and, with work put in, delivers more than that work to a hot one. A heat pump, an air conditioner and a refrigerator are all this one machine, and its working fluid passes through the condenser, the expansion valve, the evaporator and the compressor. The coefficient of performance, the ratio of what you get to what you spend, takes one form for a heat pump and another for a refrigerator. A Carnot heat pump sets the best performance possible between two temperatures, and the chapter ends with a strategy for thermodynamics problems.",
  "objectives": [
   "Describe the use of heat engines in heat pumps and refrigerators.",
   "Demonstrate how a heat pump works to warm an interior space.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -206,7 +210,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "There is an argument for the claim. Each refrigerator and freezer is a heat pump whose hot reservoir is the store, and its coefficient of performance $\\text{COP}_{\\text{ref}} = \\kQC/\\kW$ is largest when the difference between its inside and the store is small; a cool store therefore lets every one of them remove its heat transfer with less work, and there is less heat transfer into them through their doors and walls in the first place. There is also an argument against it. Keeping the store cool in summer is itself the work of an air conditioner, another heat pump, which must move all the heat transfer that enters the building from outside plus everything the refrigerators reject into the store, $\\kQH = \\kQC + \\kW$ from each of them, and the cooler the store is held against a hot day the larger its own temperature difference and the smaller its coefficient of performance. Which effect wins depends on the numbers: how much of the store’s load is the refrigerators, how well insulated they are, and how hot it is outside. A fair answer says that the refrigerators alone favor a cool store, that the air conditioning alone favors a warm one, and that the total is least at some temperature between."
+    "solution": "One argument supports the claim. Each refrigerator and freezer is a heat pump whose hot reservoir is the store, and its coefficient of performance $\\text{COP}_{\\text{ref}} = \\kQC/\\kW$ is largest when the difference between its inside and the store is small. A cool store therefore lets each of them remove its heat transfer with less work, and less heat leaks into them through their doors and walls in the first place. Another argument opposes it. Keeping the store cool in summer is itself the work of an air conditioner, another heat pump. It must move all the heat transfer that enters the building from outside plus everything the refrigerators reject into the store, $\\kQH = \\kQC + \\kW$ from each of them. The cooler the store against a hot day, the larger the air conditioner’s temperature difference and the smaller its coefficient of performance. Which effect wins depends on the numbers: how much of the store’s load comes from the refrigerators, how well insulated they are, and how hot it is outside. The refrigerators alone favor a cool store, the air conditioning alone favors a warm one, and the total is least at some temperature between."
    }
   },
   {
@@ -235,7 +239,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Take the system to be the inside of the refrigerator, its food and air. While the door is closed, heat transfer leaks into it from the warmer kitchen through the walls and the door seal, which would raise its internal energy and its temperature. The refrigerator is a heat engine run backward: its compressor does work $\\kW$ on the working fluid, and the fluid takes heat transfer $\\kQC$ from the inside at the evaporator and gives $\\kQH = \\kQC + \\kW$ to the kitchen at the condenser coils. Over any period in which the inside holds its temperature, the heat transfer removed, $\\kQC$, equals the heat transfer that leaked in, so the internal energy of the system does not change and the first law reads $\\Delta E_{\\text{int}} = 0$ for it. Energy is conserved overall: the kitchen receives the heat transfer that leaked into the refrigerator plus the work the compressor was paid, and the electrical energy that supplied that work is what has been used up."
+    "solution": "Take the system to be the inside of the refrigerator, its food and air. While the door is closed, heat leaks in from the warmer kitchen through the walls and the door seal, which would raise its internal energy and its temperature. The refrigerator is a heat engine run backward. Its compressor does work $\\kW$ on the working fluid, and the fluid takes heat transfer $\\kQC$ from the inside at the evaporator and gives $\\kQH = \\kQC + \\kW$ to the kitchen at the condenser coils. Over any period in which the inside holds its temperature, the heat transfer removed, $\\kQC$, equals the heat that leaked in. The internal energy of the system does not change, and the first law reads $\\Delta E_{\\text{int}} = 0$ for it. Energy is conserved overall: the kitchen receives the heat that leaked into the refrigerator plus the compressor’s work, and the electrical energy that supplied that work is what the refrigerator has used up."
    }
   },
   {

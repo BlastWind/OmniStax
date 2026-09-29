@@ -4,7 +4,7 @@
  "chapter": "15",
  "title": "Introduction to the Second Law of Thermodynamics: Heat Engines and Their Efficiency",
  "short": "Second law and heat engines",
- "lead": "Heat transfer goes from hot to cold, a braking car warms its brakes, and a puff of gas spreads through a chamber, and none of these processes ever runs backward on its own, although the first law would allow it. The law that forbids the reverse is the second law of thermodynamics, and this section states it in two ways, follows heat transfer through a heat engine to find how much of it can become work, defines the efficiency of an engine, works out what a coal-fired power station does in a day, and looks inside a gasoline engine at the Otto cycle that drives it.",
+ "lead": "Heat transfer goes from hot to cold, a braking car warms its brakes, and a puff of gas spreads through a chamber. None of these processes ever runs backward on its own, although the first law would allow it. The second law of thermodynamics forbids the reverse, and it has two equivalent statements. Following heat transfer through a heat engine shows how much of it can become work and defines the efficiency of an engine. A coal-fired power station shows what that means over a day, and the Otto cycle drives a gasoline engine.",
  "objectives": [
   "State the expressions of the second law of thermodynamics.",
   "Calculate the efficiency and carbon dioxide emission of a coal-fired electricity plant, using second law characteristics.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -254,7 +258,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The estimate treats every joule in the gasoline as work lifting the car, which is an efficiency of 1. A car’s engine is a heat engine, and its efficiency is its work output divided by the heat transfer from the burning fuel, $\\text{Eff} = \\kW/\\kQH$; the second law says that a large part of $\\kQH$ must leave as heat transfer $\\kQC$ to the environment, through the radiator and the exhaust, so a gasoline engine turns only about a quarter of the fuel’s energy into work. Of that work, much is spent on things other than raising the car: friction in the drivetrain and the tires, air resistance, the work of driving the alternator and other accessories, and any braking on the way, which turns kinetic energy into heat transfer that is lost. The road also winds, so the car travels much farther than 3000 meters and does work against friction and drag over the whole distance. Each of these lowers the overall efficiency of turning gasoline into height, so the trip takes far more than a quart of gas."
+    "solution": "The estimate treats every joule in the gasoline as work lifting the car, an efficiency of 1. A car’s engine is a heat engine, and its efficiency is its work output divided by the heat transfer from the burning fuel, $\\text{Eff} = \\kW/\\kQH$. The second law says that a large part of $\\kQH$ must leave as heat transfer $\\kQC$ to the environment, through the radiator and the exhaust, so a gasoline engine turns only about a quarter of the fuel’s energy into work. Much of that work goes into things other than raising the car: friction in the drivetrain and the tires, air resistance, driving the alternator and other accessories, and any braking on the way, which turns kinetic energy into heat transfer that is lost. The road also winds, so the car travels much farther than 3000 meters and works against friction and drag over the whole distance. Each of these lowers the overall efficiency of turning gasoline into height, so the trip takes far more than a quart of gas."
    }
   },
   {
@@ -286,7 +290,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Both definitions are the ratio of what we get to what we spend: useful work output divided by the energy input. For a heat engine the input is heat transfer from the hot reservoir, so $\\text{Eff} = \\kW/\\kQH$, and the second law limits it because part of $\\kQH$ must go to the cold reservoir. For the human body the input is the chemical energy of food, and the efficiency is the useful work done divided by the energy the body consumes, which it measures by oxygen use. The body is not a heat engine; it converts chemical potential energy directly into work in its muscles rather than taking heat transfer from a hot reservoir, so its efficiency is not bounded by the temperatures of two reservoirs, although it is still small, about 20% at best, because most of the food energy leaves as heat transfer to the surroundings. In each case the denominator is the form of energy actually being converted, heat transfer for the engine and food energy for the body."
+    "solution": "Both definitions are the ratio of what we get to what we spend: useful work output divided by energy input. For a heat engine the input is heat transfer from the hot reservoir, so $\\text{Eff} = \\kW/\\kQH$, and the second law limits it because part of $\\kQH$ must go to the cold reservoir. For the human body the input is the chemical energy of food, and the efficiency is the useful work done divided by the energy the body consumes, measured by oxygen use. The body is not a heat engine. Its muscles convert chemical potential energy directly into work rather than taking heat transfer from a hot reservoir, so the temperatures of two reservoirs do not bound its efficiency. That efficiency is still small, about 20% at best, because most of the food energy leaves as heat transfer to the surroundings. In each case the denominator is the form of energy actually converted: heat transfer for the engine and food energy for the body."
    }
   },
   {

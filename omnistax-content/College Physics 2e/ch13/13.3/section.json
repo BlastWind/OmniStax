@@ -4,7 +4,7 @@
  "chapter": "13",
  "title": "The Ideal Gas Law",
  "short": "The ideal gas law",
- "lead": "Every gas expands at nearly the same rate when it is warmed, because its molecules are so far apart that the forces between them hardly matter. This section turns that fact into the ideal gas law, which relates the pressure, volume and absolute temperature of a gas to the number of molecules in it, uses the law to find how the pressure of a tire changes as it warms and how many molecules a cubic meter of air holds, introduces the mole and Avogadro’s number as a way of counting molecules by the mole, and restates the law in terms of moles and the universal gas constant.",
+ "lead": "Every gas expands at nearly the same rate when it warms, because its molecules are so far apart that the forces between them hardly matter. That fact leads to the ideal gas law, which relates the pressure, volume and absolute temperature of a gas to the number of molecules in it. The law tells how the pressure of a tire changes as it warms and how many molecules a cubic meter of air holds. The mole and Avogadro’s number count molecules in convenient bundles, and the law takes a second form in terms of moles and the universal gas constant.",
  "objectives": [
   "State the ideal gas law in terms of molecules and in terms of moles.",
   "Use the ideal gas law to calculate pressure change, temperature change, volume change, or the number of molecules or moles in a given volume.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -376,7 +380,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "The law rests on two assumptions stated in the section: the molecules occupy a negligible fraction of the volume, and they do not interact with one another except in perfectly elastic collisions. Both fail when the molecules are pushed close together, which happens at high pressure, where the volume the molecules themselves take up is no longer a negligible part of $V$, and at low temperature, near the temperature at which the gas condenses, where the molecules move slowly enough for the weak attractive forces between them to matter. The section says the law holds at temperatures well above the boiling temperature, so expect a gas to depart from it as it approaches the point of becoming a liquid, or when it is compressed to a density approaching a liquid’s; a gas at ordinary pressure and well above its boiling point is close to ideal."
+    "solution": "The law rests on two assumptions: the molecules occupy a negligible fraction of the volume, and they interact only through perfectly elastic collisions. Both fail when the molecules crowd close together. At high pressure, the volume the molecules themselves take up is no longer a negligible part of $V$. At low temperature, near condensation, the molecules move slowly enough for the weak attractive forces between them to matter. The law holds at temperatures well above the boiling temperature. Expect a gas to depart from it as it approaches the point of becoming a liquid, or when you compress it to nearly a liquid’s density. A gas at ordinary pressure and well above its boiling point is close to ideal."
    }
   },
   {
@@ -428,7 +432,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "(a) Take the five trials at one temperature, say trials 1 to 5 at 270 K, and fill a blank column with $1/V$ for each; then plot $\\kPr$ against $1/V$, with $1/V$ in $\\text{m}^{-3}$ from 0 to 125 along the horizontal axis and $\\kPr$ in units of $10^5$ Pa from 0 to 3 up the vertical axis. The ideal gas law at fixed $N$ and $\\kTemp$ says $\\kPr = (Nk\\kTemp)(1/V)$, a straight line through the origin, so the best-fit line should pass through the origin if the gas is ideal. Another choice is to fill the column with $\\kPr V$ for every trial and plot it against $\\kTemp$, which the law says is a straight line through the origin with slope $Nk$. (b) The products $\\kPr V$ are close to constant at each temperature, about $2.2\\times10^{3}$ J at 270 K, $2.4\\times10^{3}$ J at 290 K and $2.6\\times10^{3}$ J at 310 K, and they rise in proportion to the absolute temperature, so the points lie on a straight line through the origin to within the scatter of the measurements and the gas behaves as an ideal gas. (c) Halving the amount of gas halves $N$, so every pressure at the same volume and temperature is halved and the line has half the slope, but it is still a straight line through the origin: the gas is still ideal. The pressure comes from molecules striking the walls, and the law assumes the molecules act on the walls independently of one another, so half as many molecules give half as many strikes and half the pressure; the conclusion does not change."
+    "solution": "(a) Take the five trials at one temperature, say trials 1 to 5 at 270 K, and fill a blank column with $1/V$ for each. Then plot $\\kPr$ against $1/V$, with $1/V$ in $\\text{m}^{-3}$ from 0 to 125 along the horizontal axis and $\\kPr$ in units of $10^5$ Pa from 0 to 3 up the vertical axis. The ideal gas law at fixed $N$ and $\\kTemp$ says $\\kPr = (Nk\\kTemp)(1/V)$, a straight line through the origin, so the best-fit line should pass through the origin if the gas is ideal. Alternatively, fill the column with $\\kPr V$ for every trial and plot it against $\\kTemp$; the law predicts a straight line through the origin with slope $Nk$. (b) The products $\\kPr V$ are close to constant at each temperature: about $2.2\\times10^{3}$ J at 270 K, $2.4\\times10^{3}$ J at 290 K and $2.6\\times10^{3}$ J at 310 K. They rise in proportion to the absolute temperature, so the points lie on a straight line through the origin within the scatter of the measurements, and the gas behaves as an ideal gas. (c) Halving the amount of gas halves $N$. Every pressure at the same volume and temperature halves and the line has half the slope, but it is still a straight line through the origin, so the gas is still ideal. The pressure comes from molecules striking the walls, and the law assumes the molecules act on the walls independently. Half as many molecules give half as many strikes and half the pressure, and the conclusion does not change."
    }
   },
   {

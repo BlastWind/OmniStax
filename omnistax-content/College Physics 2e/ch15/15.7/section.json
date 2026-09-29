@@ -4,7 +4,7 @@
  "chapter": "15",
  "title": "Statistical Interpretation of Entropy and the Second Law of Thermodynamics: The Underlying Explanation",
  "short": "Statistical interpretation of entropy",
- "lead": "The other formulations of the second law of thermodynamics say what happens; this section says why. A macrostate is what you can see of a system, such as the number of heads in a toss of coins or the pressure and temperature of a gas, and a microstate is one detailed arrangement that produces it. Every microstate is equally probable, and the disorderly macrostates have vastly more microstates than the orderly ones, so a system left to itself goes from order to disorder because that is overwhelmingly the more likely outcome. Boltzmann's expression, the entropy as his constant times the natural logarithm of the number of microstates, ties the entropy of a macrostate to that count, and the change in entropy between two macrostates follows from their counts.",
+ "lead": "The other statements of the second law of thermodynamics say what happens; statistics says why. A macrostate is what you can see of a system, such as the number of heads in a toss of coins or the pressure and temperature of a gas, and a microstate is one detailed arrangement that produces it. Every microstate is equally probable, and the disorderly macrostates have vastly more microstates than the orderly ones. A system left to itself goes from order to disorder because that is overwhelmingly the more likely outcome. Boltzmann's expression, the entropy as his constant times the natural logarithm of the number of microstates, ties the entropy of a macrostate to that count, and the change in entropy between two macrostates follows from their counts.",
  "objectives": [
   "Identify probabilities in entropy.",
   "Analyze statistical probabilities in entropic systems."
@@ -16,6 +16,10 @@
    {
     "model": "claude-opus-5",
     "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
    }
   ],
   "figures": [
@@ -25,6 +29,10 @@
    },
    {
     "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
     "effort": "low"
    }
   ]
@@ -239,7 +247,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "Take the bricks as the parts of the system and the two macrostates as the building and the pile. A building is a particular arrangement: each brick has a place it must occupy and a way it must face, and a brick out of place or turned the wrong way no longer makes that building, so there is essentially one way, or at most a handful of ways, to form it from the bricks. A disorganized pile is any arrangement at all: the bricks can lie in any order, at any angle and in any heap, and every one of those arrangements is still the same pile, so the number of microstates of the pile is enormous. The entropy of a macrostate is $\\kSent = k\\ln W$, where $W$ is the number of microstates that produce it, so the building, with its few microstates, has a much smaller entropy than the pile, which can be formed in an immense number of ways. This is also why a building can fall into a pile and a pile never gathers itself into a building: the pile is overwhelmingly the more probable macrostate, and the change from building to pile is an increase in entropy."
+    "solution": "Take the bricks as the parts of the system and the two macrostates as the building and the pile. A building is a particular arrangement. Each brick has a place it must occupy and a way it must face, and a brick out of place or turned the wrong way no longer makes that building, so there is essentially one way, or at most a handful, to form it. A disorganized pile is any arrangement at all. The bricks can lie in any order, at any angle and in any heap, and every such arrangement is still the same pile, so the pile has an enormous number of microstates. The entropy of a macrostate is $\\kSent = k\\ln W$, where $W$ is the number of microstates that produce it. The building, with its few microstates, has a much smaller entropy than the pile. This is also why a building can fall into a pile and a pile never gathers itself into a building: the pile is overwhelmingly the more probable macrostate, and the change from building to pile increases the entropy."
    }
   },
   {
@@ -279,7 +287,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "One simple version uses a set of identical balls on a smooth, level surface, such as the balls on a billiard table or a bag of marbles on a tray. Spread most of them over the surface at rest, or rolling slowly in random directions, and send one ball in fast; that ball is the very high energy particle. It strikes a neighbor and shares its kinetic energy with it, as the collisions of Chapter 8 describe, the two of them strike others, and after a few rounds of collisions no ball is moving much faster than the rest. To decide whether an equilibrium has been reached, record the motion, for example by filming the surface and measuring how far each ball moves between frames, and see whether the spread of speeds settles to a steady pattern in which the ball that started fast can no longer be picked out; that steady spread of speeds in random directions is the macroscopic version of the Maxwell-Boltzmann distribution of kinetic theory. The simulation is imperfect, because rolling friction removes energy that the atoms of a gas would keep, so the balls slow and stop; pucks on an air table come closer. Either way, the energy that began in one ball is never seen to gather back into one ball, because the arrangement in which it is shared among all of them has vastly more microstates than the arrangement in which one ball has it all, which is the reason the flash-heated layer of gas in the previous item spreads its energy and never regains it."
+    "solution": "Use a set of identical balls on a smooth, level surface, such as the balls on a billiard table or marbles on a tray. Spread most of them over the surface at rest, or rolling slowly in random directions, and send one ball in fast; that ball is the very high energy particle. It strikes a neighbor and shares its kinetic energy, as in the collisions of Chapter 8, the two strike others, and after a few rounds of collisions no ball moves much faster than the rest. To decide whether the balls have reached equilibrium, record the motion, for example by filming the surface and measuring how far each ball moves between frames. See whether the spread of speeds settles to a steady pattern in which you can no longer pick out the ball that started fast. That steady spread of speeds in random directions is the macroscopic version of the Maxwell-Boltzmann distribution of kinetic theory. The simulation is imperfect, because rolling friction removes energy that the atoms of a gas would keep, so the balls slow and stop; pucks on an air table come closer. Either way, the energy that began in one ball never gathers back into one ball. The arrangement in which all the balls share it has vastly more microstates than the arrangement in which one ball has it all. For the same reason, the flash-heated layer of gas in the previous item spreads its energy and never regains it."
    }
   },
   {
