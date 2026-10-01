@@ -50,11 +50,13 @@
     {"span": "light-ejects-electrons", "concept": "electron-volt", "verb": "uses"},
     {"span": "photons", "concept": "photon-energy", "verb": "introduces"},
     {"span": "photons", "concept": "quantum-energy-step", "verb": "uses"},
+    {"span": "photons", "concept": "photon", "verb": "introduces"},
     {"span": "photoelectric-properties", "concept": "photoelectric-properties", "verb": "introduces"},
     {"span": "photoelectric-properties", "concept": "photoelectric-equation", "verb": "introduces"},
     {"span": "photoelectric-properties", "concept": "binding-energy-threshold", "verb": "introduces"},
     {"span": "photoelectric-properties", "concept": "photoelectric-effect", "verb": "reinforces"},
     {"span": "photoelectric-properties", "concept": "photon-energy", "verb": "uses"},
+    {"span": "photoelectric-properties", "concept": "work-function", "verb": "introduces"},
     {"span": "violet-light-on-calcium", "concept": "photon-energy-from-wavelength", "verb": "introduces"},
     {"span": "violet-light-on-calcium", "concept": "photon-energy", "verb": "uses"},
     {"span": "violet-light-on-calcium", "concept": "photoelectric-equation", "verb": "uses"},
@@ -63,10 +65,16 @@
   ],
   "exercises": [
     {
-      "id": "ap1", "source_id": "fs-id1705205", "kind": "ap-test-prep", "bloom": "Understand", "place": {"at": "end"}, "cite": "photons",
+      "id": "ap1",
+      "source_id": "fs-id1705205",
+      "kind": "ap-test-prep",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "photons",
       "prompt": "A metal exposed to a beam of light with a wavelength equal to or shorter than a specific wavelength emits electrons. What property of light, as described in the quantum explanation of blackbody radiation, accounts for this photoelectric process?",
       "answer": {
-        "type": "choice", "generated_by": "source",
+        "type": "choice",
+        "generated_by": "source",
         "options": ["The energy of light increases as its speed increases.", "The energy of light increases as its intensity increases.", "The energy of light increases as its frequency increases.", "The energy of light increases as its wavelength increases."],
         "correct": 2,
         "hint": "A photon carries the energy $\\kE = h\\kf$, and a shorter wavelength means a higher frequency.",
@@ -74,112 +82,203 @@
       }
     },
     {
-      "id": "ap2", "source_id": "fs-id1766785", "kind": "ap-test-prep", "bloom": "Analyze", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "ap2",
+      "source_id": "fs-id1766785",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "During his experiments that confirmed the existence of electromagnetic waves, Heinrich Hertz used a spark across a gap between two electrodes to provide the rapidly changing electric current that produced electromagnetic waves. He noticed, however, that production of the spark required a lower voltage in a well-lighted laboratory than when the room was dark. Describe how this curious event can be explained in terms of the quantum interpretation of the photoelectric effect.",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "Light in the laboratory contains photons, and those with a high enough frequency carry more energy than the binding energy of the metal in the electrodes. Each such photon that is absorbed frees one electron from the metal at once. These free electrons are already in the gap when the voltage is applied, so a smaller voltage is enough to accelerate them and start the spark. In the dark no photons eject electrons, and the voltage alone must pull electrons from the metal, which takes more. The effect depends on the frequency of the light and not only on how bright it is, which is what the photon picture predicts."
       }
     },
     {
-      "id": "cq1", "source_id": "fs-id874567", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "cq1",
+      "source_id": "fs-id874567",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "Is visible light the only type of EM radiation that can cause the photoelectric effect?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "No. Any photon whose energy $h\\kf$ is greater than the binding energy of the material can eject an electron. Ultraviolet light, x rays and gamma rays have higher frequencies than visible light, so their photons eject electrons from every metal. Infrared and radio photons have much lower energies than the few electron volts that bind electrons in metals, so they cannot."
       }
     },
     {
-      "id": "cq2", "source_id": "fs-id1559465", "kind": "conceptual-question", "bloom": "Analyze", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "cq2",
+      "source_id": "fs-id1559465",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "Which aspects of the photoelectric effect cannot be explained without photons? Which can be explained without photons? Are the latter inconsistent with the existence of photons?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "The threshold frequency below which no electrons leave however intense the light, the ejection without delay, the maximum kinetic energy that does not depend on intensity, and the linear rise of $\\kKEe$ with frequency all need photons. That light can eject electrons at all, and that more intense light ejects more electrons, could be explained by a wave that carries energy. These last two are not inconsistent with photons: more intense light is more photons, and each photon can free one electron."
       }
     },
     {
-      "id": "cq3", "source_id": "fs-id1565970", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "photons",
+      "id": "cq3",
+      "source_id": "fs-id1565970",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "photons",
       "prompt": "Is the photoelectric effect a direct consequence of the wave character of EM radiation or of the particle character of EM radiation? Explain briefly.",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "It is a consequence of the particle character. The effect is explained by one photon giving all of its energy $h\\kf$ to one electron. A simple wave would deposit energy gradually and would let brighter light give electrons more energy, which is not what is observed."
       }
     },
     {
-      "id": "cq4", "source_id": "fs-id1631189", "kind": "conceptual-question", "bloom": "Analyze", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "cq4",
+      "source_id": "fs-id1631189",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "Insulators (nonmetals) have a higher BE than metals, and it is more difficult for photons to eject electrons from insulators. Discuss how this relates to the free charges in metals that make them good conductors.",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "In a metal some electrons are free to move through the whole material, which is why metals conduct. These electrons are only loosely held, so a photon needs little energy to lift one out of the surface, and the binding energy is small. In an insulator every electron is tightly bound to its own atom, so no electron can move freely to carry a current, and a photon must supply much more energy to tear one away."
       }
     },
     {
-      "id": "cq5", "source_id": "fs-id1545718", "kind": "conceptual-question", "bloom": "Analyze", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "cq5",
+      "source_id": "fs-id1545718",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "If you pick up and shake a piece of metal that has electrons in it free to move as a current, no electrons fall out. Yet if you heat the metal, electrons can be boiled off. Explain both of these facts as they relate to the amount and distribution of energy involved with shaking the object as compared with heating it.",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "Shaking the metal gives every electron the same small motion as the metal itself, and the kinetic energy each electron gains is far less than its binding energy of a few electron volts, so none escapes. Heating puts energy into random thermal motion shared among the particles, and that energy is distributed unevenly: at a high temperature a small fraction of electrons have energies well above the average, enough to exceed the binding energy, and these leave the surface."
       }
     },
     {
-      "id": "p1", "source_id": "fs-id1556226", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "p1",
+      "source_id": "fs-id1556226",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "What is the longest-wavelength EM radiation that can eject a photoelectron from silver, given that the binding energy is 4.73 eV? Is this in the visible range?",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 263, "unit": "nm",
+        "type": "number",
+        "generated_by": "source",
+        "value": 263,
+        "unit": "nm",
         "hint": "At the longest wavelength the photon energy just equals the binding energy, so $h\\kc/\\klam = \\kBE$.",
         "solution": "263 nm"
       }
     },
     {
-      "id": "p2", "source_id": "fs-id1408238", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "p2",
+      "source_id": "fs-id1408238",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "What is the binding energy in eV of electrons in magnesium, if the longest-wavelength photon that can eject electrons is 337 nm?",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 3.69, "unit": "eV",
+        "type": "number",
+        "generated_by": "source",
+        "value": 3.69,
+        "unit": "eV",
         "hint": "The longest wavelength is the threshold, where $\\kBE = h\\kc/\\klam$.",
         "solution": "3.69 eV"
       }
     },
     {
-      "id": "p3", "source_id": "fs-id1260430", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "violet-light-on-calcium",
+      "id": "p3",
+      "source_id": "fs-id1260430",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "violet-light-on-calcium",
       "prompt": "What is the maximum kinetic energy in eV of electrons ejected from sodium metal by 450-nm EM radiation, given that the binding energy is 2.28 eV?",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 0.483, "unit": "eV",
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.483,
+        "unit": "eV",
         "hint": "Find the photon energy from $\\kE = h\\kc/\\klam$ in eV, then subtract the binding energy.",
         "solution": "0.483 eV"
       }
     },
     {
-      "id": "p4", "source_id": "fs-id1471553", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "violet-light-on-calcium",
+      "id": "p4",
+      "source_id": "fs-id1471553",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "violet-light-on-calcium",
       "prompt": "Violet light of wavelength 400 nm ejects electrons with a maximum kinetic energy of 0.860 eV from sodium metal. What is the binding energy of electrons to sodium metal?",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 2.25, "unit": "eV",
+        "type": "number",
+        "generated_by": "source",
+        "value": 2.25,
+        "unit": "eV",
         "hint": "Rearrange $\\kKEe = h\\kf - \\kBE$ to $\\kBE = h\\kf - \\kKEe$.",
         "solution": "2.25 eV"
       }
     },
     {
-      "id": "p5", "source_id": "fs-id1451351", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "violet-light-on-calcium",
+      "id": "p5",
+      "source_id": "fs-id1451351",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "violet-light-on-calcium",
       "prompt": "What is the wavelength of EM radiation that ejects 2.00-eV electrons from calcium metal, given that the binding energy is 2.71 eV? What type of EM radiation is this?",
       "answer": {
-        "type": "number", "generated_by": "source", "part": "(a)", "value": 264, "unit": "nm",
+        "type": "number",
+        "generated_by": "source",
+        "part": "(a)",
+        "value": 264,
+        "unit": "nm",
         "hint": "The photon must carry the binding energy plus the kinetic energy, $h\\kf = \\kKEe + \\kBE$; then $\\klam = h\\kc/\\kE$.",
         "solution": "(a) 264 nm\n\n(b) Ultraviolet"
       }
     },
     {
-      "id": "p6", "source_id": "fs-id1284461", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "violet-light-on-calcium",
+      "id": "p6",
+      "source_id": "fs-id1284461",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "violet-light-on-calcium",
       "prompt": "What is the maximum velocity of electrons ejected from a material by 80-nm photons, if they are bound to the material by 4.73 eV?",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 1950000, "unit": "m/s",
+        "type": "number",
+        "generated_by": "source",
+        "value": 1950000,
+        "unit": "m/s",
         "hint": "Find $\\kKEe$ in eV, convert it to joules, and set it equal to $\\frac{1}{2}mv^2$ with the electron’s mass.",
         "solution": "$1.95\\times 10^{6}\\;\\text{m/s}$"
       }
     },
     {
-      "id": "p7", "source_id": "fs-id1309710", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "p7",
+      "source_id": "fs-id1309710",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "A laser with a power output of 2.00 mW at a wavelength of 400 nm is projected onto calcium metal. (a) How many electrons per second are ejected? (b) What power is carried away by the electrons, given that the binding energy is 2.71 eV?",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "(a) the electrons ejected per second", "value": 4.02e15, "unit": "/s", "hint": "Each photon ejects one electron, so divide the power by the energy of one photon."},
           {"part": "(b) the power carried away", "value": 0.256, "unit": "mW", "hint": "Multiply the number of electrons per second by each electron’s kinetic energy, $h\\kf - \\kBE$, in joules."}
@@ -188,10 +287,19 @@
       }
     },
     {
-      "id": "p8", "source_id": "fs-id1555510", "kind": "problem", "bloom": "Evaluate", "place": {"at": "end"}, "cite": "photoelectric-properties",
+      "id": "p8",
+      "source_id": "fs-id1555510",
+      "kind": "problem",
+      "bloom": "Evaluate",
+      "place": {"at": "end"},
+      "cite": "photoelectric-properties",
       "prompt": "<strong>Unreasonable Results</strong> Red light having a wavelength of 700 nm is projected onto magnesium metal to which electrons are bound by 3.68 eV. (a) Use $\\kKEe = h\\kf - \\kBE$ to calculate the kinetic energy of the ejected electrons. (b) What is unreasonable about this result? (c) Which assumptions are unreasonable or inconsistent?",
       "answer": {
-        "type": "number", "generated_by": "source", "part": "(a)", "value": -1.9, "unit": "eV",
+        "type": "number",
+        "generated_by": "source",
+        "part": "(a)",
+        "value": -1.9,
+        "unit": "eV",
         "hint": "Find the photon energy of 700-nm light in eV and subtract the binding energy, then ask whether the result can be a kinetic energy.",
         "solution": "(a) $-1.90\\;\\text{eV}$\n\n(b) Negative kinetic energy\n\n(c) That the electrons would be knocked free."
       }

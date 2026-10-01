@@ -1,0 +1,351 @@
+{
+  "chapter": "ch29",
+  "kinds": {
+    "energy-quantization": "idea",
+    "blackbody-radiation": "idea",
+    "planck-oscillator-energy": "axiom",
+    "quantum-energy-step": "result",
+    "correspondence-principle": "idea",
+    "atomic-spectra-quantized": "idea",
+    "photoelectric-effect": "idea",
+    "photon-energy": "axiom",
+    "photoelectric-properties": "idea",
+    "photoelectric-equation": "result",
+    "binding-energy-threshold": "result",
+    "photon-energy-from-wavelength": "skill",
+    "photon-energy-in-ev": "skill",
+    "photon-energy-and-radiation-effects": "idea",
+    "ionizing-photons": "idea",
+    "x-ray-tube-maximum-energy": "result",
+    "x-ray-tube-spectrum": "idea",
+    "photons-per-second": "skill",
+    "photon-momentum": "result",
+    "compton-effect": "idea",
+    "photon-momentum-and-energy": "result",
+    "photon-momentum-is-small": "idea",
+    "photon-momentum-conservation": "skill",
+    "particle-wave-duality": "idea",
+    "particle-or-wave-in-one-observation": "idea",
+    "de-broglie-wavelength": "axiom",
+    "wave-effects-need-matching-size": "idea",
+    "electron-diffraction": "idea",
+    "electron-wavelength-and-energy": "skill",
+    "electron-microscope": "idea",
+    "bragg-equation": "result",
+    "probability-distribution": "idea",
+    "measurement-affects-the-system": "idea",
+    "position-momentum-uncertainty": "axiom",
+    "energy-time-uncertainty": "axiom",
+    "uncertainty-principle-calculation": "skill",
+    "uncertainty-negligible-for-large-objects": "idea",
+    "particle-wave-duality-universal": "idea",
+    "classical-limit-of-duality": "idea",
+    "integrated-quantum-problem": "skill"
+  },
+  "statements": {
+    "energy-quantization": "A quantized system can have only certain energies and not a continuum of them, which would be like a car that could travel only at certain speeds. This was the first break with classical physics.",
+    "correspondence-principle": "In the classical limit of large, slow-moving objects, quantum mechanics gives the same results as classical physics. This is why quantization goes unnoticed in everyday life.",
+    "atomic-spectra-quantized": "A hot gas emits only certain wavelengths, a line spectrum, and if each emission carries an energy $\\Delta E = hf$, the energies of the electrons in the emitting atoms must be quantized.",
+    "photon-energy": "Einstein proposed that EM radiation is itself made of quanta, photons, each with an energy $E = hf$ proportional to its frequency. This is a quantization of the radiation, not only of the oscillators that emit it.",
+    "binding-energy-threshold": "A photon whose energy is less than the binding energy cannot free an electron at all, so each material has a threshold frequency $f_0 = \\text{BE}/h$, and a longest wavelength, below which no electrons are ejected.",
+    "photon-energy-in-ev": "On the scale of atoms the electron volt is the natural unit, and with $h = 4.14 \\times 10^{-15}$ eV·s and $hc = 1240$ eV·nm a photon energy is found in one division.",
+    "integrated-quantum-problem": "A problem that joins photon energy and momentum to momentum conservation, heat transfer, circuits, wave optics or relativity is solved by identifying the physical principles involved and solving each part with the strategy of its own chapter."
+  },
+  "new": [
+    {
+      "id": "quantized",
+      "kind": "definition",
+      "section": "29.1",
+      "name": "Quantized",
+      "statement": "A physical quantity is quantized when it exists only with particular discrete values and not with every value in a continuum.",
+      "introduces": "plancks-contribution",
+      "prereqs": []
+    },
+    {
+      "id": "blackbody",
+      "kind": "definition",
+      "section": "29.1",
+      "name": "Blackbody",
+      "statement": "A blackbody is an ideal radiator, one that can radiate equally well at all wavelengths.",
+      "introduces": "plancks-contribution",
+      "prereqs": [
+        "emissivity",
+        "electromagnetic-spectrum"
+      ]
+    },
+    {
+      "id": "plancks-constant",
+      "kind": "axiom",
+      "section": "29.1",
+      "name": "Planck’s constant, $h = 6.626 \\times 10^{-34}$ J·s",
+      "statement": "Planck’s constant $h = 6.626 \\times 10^{-34}$ J·s is the constant that sets the size of the quantum steps of energy; Planck found its value by fitting his theory to the measured blackbody spectrum.",
+      "introduces": "plancks-contribution",
+      "prereqs": [
+        "blackbody-radiation",
+        "energy",
+        "time"
+      ]
+    },
+    {
+      "id": "atomic-spectra",
+      "kind": "definition",
+      "section": "29.1",
+      "name": "Atomic spectra",
+      "statement": "Atomic spectra are the electromagnetic emission from atoms and molecules, which for a hot gas consists of only certain wavelengths.",
+      "introduces": "atomic-spectra",
+      "prereqs": [
+        "electromagnetic-spectrum",
+        "atom"
+      ]
+    },
+    {
+      "id": "photon",
+      "kind": "definition",
+      "section": "29.2",
+      "name": "Photon",
+      "statement": "A photon is a quantum, or particle, of electromagnetic radiation.",
+      "introduces": "photons",
+      "prereqs": [
+        "electromagnetic-wave",
+        "quantized"
+      ]
+    },
+    {
+      "id": "work-function",
+      "kind": "definition",
+      "section": "29.2",
+      "name": "Binding energy (work function), $\\kBE$",
+      "statement": "The binding energy, also called the work function, is the energy needed to eject an electron from a material.",
+      "introduces": "photoelectric-properties",
+      "prereqs": [
+        "energy",
+        "electron"
+      ]
+    },
+    {
+      "id": "microwaves",
+      "kind": "definition",
+      "section": "29.3",
+      "name": "Microwaves",
+      "statement": "Microwaves are the band of electromagnetic radiation with wavelengths from about a millimeter to about a meter, below the infrared in photon energy.",
+      "introduces": "lower-energy-photons",
+      "prereqs": [
+        "electromagnetic-spectrum"
+      ]
+    },
+    {
+      "id": "bremsstrahlung",
+      "kind": "definition",
+      "section": "29.3",
+      "name": "Bremsstrahlung",
+      "statement": "Bremsstrahlung, German for braking radiation, is the radiation produced when electrons are decelerated, as in the anode of an x-ray tube.",
+      "introduces": "x-ray-spectrum",
+      "prereqs": [
+        "em-waves-from-accelerating-charges",
+        "x-ray-radiation"
+      ]
+    },
+    {
+      "id": "characteristic-x-rays",
+      "kind": "definition",
+      "section": "29.3",
+      "name": "Characteristic x rays",
+      "statement": "Characteristic x rays are x rays whose energies depend on the material they were produced in, appearing as sharp peaks in the spectrum of an x-ray tube.",
+      "introduces": "x-ray-spectrum",
+      "prereqs": [
+        "x-ray-radiation",
+        "atomic-spectra"
+      ]
+    },
+    {
+      "id": "heisenberg-uncertainty-principle",
+      "kind": "axiom",
+      "section": "29.7",
+      "name": "Heisenberg’s uncertainty principle",
+      "statement": "Heisenberg’s uncertainty principle sets a fundamental limit to the precision with which pairs of quantities, such as position and momentum or energy and time, can be measured together.",
+      "introduces": "heisenberg-uncertainty",
+      "prereqs": [
+        "probability-distribution",
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "uncertainty-in-position",
+      "kind": "definition",
+      "section": "29.7",
+      "name": "Uncertainty in position, $\\kdx$",
+      "statement": "The uncertainty in position is the lack of precision, or lack of knowledge, in the results of measurements of a particle’s position.",
+      "introduces": "heisenberg-uncertainty",
+      "prereqs": [
+        "uncertainty",
+        "position"
+      ]
+    },
+    {
+      "id": "uncertainty-in-momentum",
+      "kind": "definition",
+      "section": "29.7",
+      "name": "Uncertainty in momentum, $\\kdp$",
+      "statement": "The uncertainty in momentum is the lack of precision, or lack of knowledge, in the results of measurements of a particle’s momentum.",
+      "introduces": "heisenberg-uncertainty",
+      "prereqs": [
+        "uncertainty",
+        "linear-momentum"
+      ]
+    },
+    {
+      "id": "uncertainty-in-energy",
+      "kind": "definition",
+      "section": "29.7",
+      "name": "Uncertainty in energy, $\\kdE$",
+      "statement": "The uncertainty in energy is the lack of precision, or lack of knowledge, in the results of measurements of energy.",
+      "introduces": "energy-time-uncertainty",
+      "prereqs": [
+        "uncertainty",
+        "energy"
+      ]
+    },
+    {
+      "id": "uncertainty-in-time",
+      "kind": "definition",
+      "section": "29.7",
+      "name": "Uncertainty in time, $\\kdt$",
+      "statement": "The uncertainty in time is the lack of precision, or lack of knowledge, in the results of measurements of time, such as the lifetime of a state.",
+      "introduces": "energy-time-uncertainty",
+      "prereqs": [
+        "uncertainty",
+        "time"
+      ]
+    }
+  ],
+  "glossary": {
+    "29.1/quantized": "quantized",
+    "29.1/correspondence principle": "correspondence-principle",
+    "29.1/quantum mechanics": "quantum-mechanics",
+    "29.1/blackbody": "blackbody",
+    "29.1/blackbody radiation": "blackbody-radiation",
+    "29.1/Planck’s constant": "plancks-constant",
+    "29.1/atomic spectra": "atomic-spectra",
+    "29.2/photoelectric effect": "photoelectric-effect",
+    "29.2/photon": "photon",
+    "29.2/photon energy": "photon-energy",
+    "29.2/binding energy": "work-function",
+    "29.3/gamma ray": "gamma-ray-radiation",
+    "29.3/ionizing radiation": "ionizing-radiation",
+    "29.3/x ray": "x-ray-radiation",
+    "29.3/bremsstrahlung": "bremsstrahlung",
+    "29.3/characteristic x rays": "characteristic-x-rays",
+    "29.3/ultraviolet radiation": "ultraviolet-radiation",
+    "29.3/visible light": "visible-light",
+    "29.3/infrared radiation": "infrared-radiation",
+    "29.3/microwaves": "microwaves",
+    "29.4/photon momentum": "photon-momentum",
+    "29.4/Compton effect": "compton-effect",
+    "29.5/particle-wave duality": "particle-wave-duality",
+    "29.6/de Broglie wavelength": "de-broglie-wavelength",
+    "29.7/Heisenberg’s uncertainty principle": "heisenberg-uncertainty-principle",
+    "29.7/uncertainty in energy": "uncertainty-in-energy",
+    "29.7/uncertainty in time": "uncertainty-in-time",
+    "29.7/uncertainty in momentum": "uncertainty-in-momentum",
+    "29.7/uncertainty in position": "uncertainty-in-position",
+    "29.7/probability distribution": "probability-distribution"
+  },
+  "variables": {
+    "29.1/E": "energy",
+    "29.1/n": "planck-oscillator-energy",
+    "29.1/h_planck": "plancks-constant",
+    "29.1/f": "frequency",
+    "29.1/ΔE": "quantum-energy-step",
+    "29.2/KE_e": "kinetic-energy",
+    "29.2/BE": "work-function",
+    "29.2/f_0": "binding-energy-threshold",
+    "29.2/λ": "wavelength",
+    "29.2/c": "speed-of-light-in-vacuum",
+    "29.3/q": "electric-charge",
+    "29.3/V_volt": "potential-difference",
+    "29.3/f_max": "x-ray-tube-maximum-energy",
+    "29.4/p": "linear-momentum",
+    "29.4/E_prime": "energy",
+    "29.6/m": "mass",
+    "29.6/v": "velocity",
+    "29.6/d": "length",
+    "29.6/θ": "angle",
+    "29.7/Δx": "uncertainty-in-position",
+    "29.7/Δp": "uncertainty-in-momentum",
+    "29.7/Δv": "velocity",
+    "29.7/ΔE": "uncertainty-in-energy",
+    "29.7/Δt": "uncertainty-in-time"
+  },
+  "equations": {
+    "eq-planck-oscillator-energy": "planck-oscillator-energy",
+    "eq-planck-constant": "plancks-constant",
+    "eq-quantum-energy-step": "quantum-energy-step",
+    "eq-photon-energy": "photon-energy",
+    "eq-photoelectric-equation": "photoelectric-equation",
+    "eq-binding-energy-threshold": "binding-energy-threshold",
+    "eq-photon-energy-wavelength": "photon-energy-from-wavelength",
+    "eq-planck-constant-ev": "plancks-constant",
+    "eq-hc-ev-nm": "photon-energy-in-ev",
+    "eq-x-ray-maximum-energy": "x-ray-tube-maximum-energy",
+    "eq-photon-momentum": "photon-momentum",
+    "eq-photon-momentum-energy": "photon-momentum-and-energy",
+    "eq-de-broglie-wavelength": "de-broglie-wavelength",
+    "eq-electron-speed-from-wavelength": "electron-wavelength-and-energy",
+    "eq-bragg-equation": "bragg-equation",
+    "eq-position-uncertainty-estimate": "position-momentum-uncertainty",
+    "eq-momentum-uncertainty-estimate": "position-momentum-uncertainty",
+    "eq-uncertainty-product-estimate": "position-momentum-uncertainty",
+    "eq-position-momentum-uncertainty": "position-momentum-uncertainty",
+    "eq-energy-time-uncertainty": "energy-time-uncertainty"
+  },
+  "edges": [
+    [
+      "blackbody-radiation",
+      "blackbody"
+    ],
+    [
+      "atomic-spectra-quantized",
+      "atomic-spectra"
+    ],
+    [
+      "atomic-spectra-quantized",
+      "quantized"
+    ],
+    [
+      "photon-energy",
+      "photon"
+    ],
+    [
+      "ionizing-photons",
+      "photon"
+    ],
+    [
+      "position-momentum-uncertainty",
+      "uncertainty-in-position"
+    ],
+    [
+      "position-momentum-uncertainty",
+      "uncertainty-in-momentum"
+    ],
+    [
+      "energy-time-uncertainty",
+      "uncertainty-in-energy"
+    ],
+    [
+      "energy-time-uncertainty",
+      "uncertainty-in-time"
+    ],
+    [
+      "bremsstrahlung-and-characteristic-x-rays",
+      "bremsstrahlung"
+    ],
+    [
+      "bremsstrahlung-and-characteristic-x-rays",
+      "characteristic-x-rays"
+    ],
+    [
+      "discrete-atomic-spectra",
+      "atomic-spectra"
+    ]
+  ]
+}

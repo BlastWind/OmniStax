@@ -47,6 +47,7 @@
  "variables": [
   {
    "sym": "ΔE",
+   "concept": "energy",
    "type": "energy",
    "meaning": "the energy borrowed to create a virtual particle, in temporary violation of the conservation of mass-energy",
    "unit": "J",
@@ -54,6 +55,7 @@
   },
   {
    "sym": "Δt",
+   "concept": "time",
    "type": "time",
    "meaning": "the time for which the virtual particle can exist",
    "unit": "s",
@@ -61,16 +63,19 @@
   },
   {
    "sym": "h_planck",
+   "concept": "plancks-constant",
    "meaning": "Planck’s constant, $6.63 \\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$",
    "section": "33.1"
   },
   {
    "sym": "m",
+   "concept": "mass",
    "meaning": "the mass of the carrier particle, in $\\text{MeV}/c^{2}$",
    "section": "33.1"
   },
   {
    "sym": "d",
+   "concept": "distance",
    "type": "position",
    "meaning": "the range of the force, the greatest distance the carrier particle can travel in the time $\\Delta t$",
    "unit": "m",
@@ -78,6 +83,7 @@
   },
   {
    "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
    "type": "velocity",
    "meaning": "the speed of light, nearly the speed of the carrier particle",
    "unit": "m/s",
@@ -85,6 +91,7 @@
   },
   {
    "sym": "ΔE",
+   "concept": "energy",
    "type": "energy",
    "meaning": "the energy put into a collision, from which new matter can be created",
    "unit": "J",
@@ -92,11 +99,13 @@
   },
   {
    "sym": "m",
+   "concept": "mass",
    "meaning": "the mass that can be created from the energy $\\Delta E$",
    "section": "33.3"
   },
   {
    "sym": "PE_el",
+   "concept": "electric-potential-energy",
    "type": "energy",
    "meaning": "the energy given to a particle in one gap between accelerating tubes",
    "unit": "J",
@@ -104,6 +113,7 @@
   },
   {
    "sym": "q",
+   "concept": "electric-charge",
    "type": "charge",
    "meaning": "the charge of the accelerated particle",
    "unit": "C",
@@ -111,6 +121,7 @@
   },
   {
    "sym": "V_gap",
+   "concept": "potential-difference",
    "type": "voltage",
    "meaning": "the voltage across one gap between accelerating tubes",
    "unit": "V",
@@ -118,31 +129,37 @@
   },
   {
    "sym": "B_bary",
+   "concept": "baryon-number",
    "meaning": "baryon number, $+1$ for a baryon, $-1$ for an antibaryon and 0 for mesons and leptons",
    "section": "33.4"
   },
   {
    "sym": "L_e",
+   "concept": "electron-family-number",
    "meaning": "electron family number",
    "section": "33.4"
   },
   {
    "sym": "L_mu",
+   "concept": "muon-family-number",
    "meaning": "muon family number",
    "section": "33.4"
   },
   {
    "sym": "L_tau",
+   "concept": "tau-family-number",
    "meaning": "tau family number",
    "section": "33.4"
   },
   {
    "sym": "S_str",
+   "concept": "strangeness",
    "meaning": "strangeness, conserved by the strong force but not by the weak force",
    "section": "33.4"
   },
   {
    "sym": "q_e",
+   "concept": "electric-charge",
    "type": "charge",
    "meaning": "the charge of a proton, the unit in which quark charges are fractions",
    "unit": "C",
@@ -150,11 +167,13 @@
   },
   {
    "sym": "B_bary",
+   "concept": "baryon-number",
    "meaning": "baryon number, $\\pm\\frac{1}{3}$ for each quark or antiquark",
    "section": "33.5"
   },
   {
    "sym": "S_str",
+   "concept": "strangeness",
    "meaning": "strangeness, $-1$ for each strange quark",
    "section": "33.5"
   }
@@ -162,7 +181,7 @@
  "equations": [
   {
    "id": "eq-energy-time-uncertainty",
-   "concept": "virtual-particle-exchange",
+   "concept": "energy-time-uncertainty",
    "section": "33.1",
    "latex": "\\Delta E\\,\\Delta t \\ge \\frac{h}{4\\pi}",
    "ktex": "\\kdE\\,\\kdt \\ge \\frac{h}{4\\pi}",
@@ -170,7 +189,7 @@
   },
   {
    "id": "eq-virtual-particle-time",
-   "concept": "virtual-particle-exchange",
+   "concept": "energy-time-uncertainty",
    "section": "33.1",
    "latex": "\\Delta t \\approx \\frac{h}{4\\pi\\,\\Delta E}",
    "ktex": "\\kdt \\approx \\frac{h}{4\\pi\\,\\kdE}",
@@ -178,7 +197,7 @@
   },
   {
    "id": "eq-virtual-particle-energy",
-   "concept": "virtual-particle-exchange",
+   "concept": "rest-energy",
    "section": "33.1",
    "latex": "\\Delta E = mc^{2}",
    "ktex": "\\kdE = m\\kc^{2}",
@@ -286,231 +305,277 @@
   {
    "section": "33.1",
    "term": "pion",
+   "concept": "pion",
    "definition": "particle exchanged between nucleons, transmitting the force between them"
   },
   {
    "section": "33.1",
    "term": "virtual particles",
+   "concept": "virtual-particle",
    "definition": "particles which cannot be directly observed but their effects can be directly observed"
   },
   {
    "section": "33.1",
    "term": "meson",
+   "concept": "meson",
    "definition": "particle whose mass is intermediate between the electron and nucleon masses"
   },
   {
    "section": "33.2",
    "term": "Feynman diagram",
+   "concept": "feynman-diagrams",
    "definition": "a graph of time versus position that describes the exchange of virtual particles between subatomic particles"
   },
   {
    "section": "33.2",
    "term": "gluons",
+   "concept": "gluon",
    "definition": "exchange particles, analogous to the exchange of photons that gives rise to the electromagnetic force between two charged particles"
   },
   {
    "section": "33.2",
    "term": "quantum electrodynamics",
+   "concept": "quantum-electrodynamics",
    "definition": "the theory of electromagnetism on the particle scale"
   },
   {
    "section": "33.3",
    "term": "colliding beams",
+   "concept": "colliding-beams",
    "definition": "head-on collisions between particles moving in opposite directions"
   },
   {
    "section": "33.3",
    "term": "cyclotron",
+   "concept": "cyclotron",
    "definition": "accelerator that uses fixed-frequency alternating electric fields and fixed magnets to accelerate particles in a circular spiral path"
   },
   {
    "section": "33.3",
    "term": "linear accelerator",
+   "concept": "linear-accelerator",
    "definition": "accelerator that accelerates particles in a straight line"
   },
   {
    "section": "33.3",
    "term": "synchrotron",
+   "concept": "synchrotron",
    "definition": "a version of a cyclotron in which the frequency of the alternating voltage and the magnetic field strength are increased as the beam particles are accelerated"
   },
   {
    "section": "33.3",
    "term": "synchrotron radiation",
+   "concept": "synchrotron-radiation",
    "definition": "radiation caused by a magnetic field accelerating a charged particle perpendicular to its velocity"
   },
   {
    "section": "33.3",
    "term": "Van de Graaff",
+   "concept": "van-de-graaff",
    "definition": "early accelerator: simple, large-scale version of the electron gun"
   },
   {
    "section": "33.4",
    "term": "boson",
+   "concept": "boson",
    "definition": "particle with zero or an integer value of intrinsic spin"
   },
   {
    "section": "33.4",
    "term": "baryons",
+   "concept": "baryon",
    "definition": "hadrons that always decay to another baryon"
   },
   {
    "section": "33.4",
    "term": "baryon number",
+   "concept": "baryon-number",
    "definition": "a conserved physical quantity that is zero for mesons and leptons and $\\pm 1$ for baryons and antibaryons, respectively"
   },
   {
    "section": "33.4",
    "term": "conservation of total baryon number",
+   "concept": "baryon-number-conservation",
    "definition": "a general rule based on the observation that the total number of nucleons was always conserved in nuclear reactions and decays"
   },
   {
    "section": "33.4",
    "term": "conservation of total electron family number",
+   "concept": "conservation-of-electron-family-number",
    "definition": "a general rule stating that the total electron family number stays the same through an interaction"
   },
   {
    "section": "33.4",
    "term": "conservation of total muon family number",
+   "concept": "muon-family-number-conservation",
    "definition": "a general rule stating that the total muon family number stays the same through an interaction"
   },
   {
    "section": "33.4",
    "term": "electron family number",
+   "concept": "electron-family-number",
    "definition": "the number $\\pm 1$ that is assigned to all members of the electron family, or the number 0 that is assigned to all particles not in the electron family"
   },
   {
    "section": "33.4",
    "term": "fermion",
+   "concept": "fermion",
    "definition": "particle with a half-integer value of intrinsic spin"
   },
   {
    "section": "33.4",
    "term": "gauge boson",
+   "concept": "carrier-particle",
    "definition": "particle that carries one of the four forces"
   },
   {
    "section": "33.4",
    "term": "hadrons",
+   "concept": "hadron",
    "definition": "particles that feel the strong nuclear force"
   },
   {
    "section": "33.4",
    "term": "leptons",
+   "concept": "lepton",
    "definition": "particles that do not feel the strong nuclear force"
   },
   {
    "section": "33.4",
    "term": "meson",
+   "concept": "meson",
    "definition": "hadrons that can decay to leptons and leave no hadrons"
   },
   {
    "section": "33.4",
    "term": "muon family number",
+   "concept": "muon-family-number",
    "definition": "the number $\\pm 1$ that is assigned to all members of the muon family, or the number 0 that is assigned to all particles not in the muon family"
   },
   {
    "section": "33.4",
    "term": "strangeness",
+   "concept": "strangeness",
    "definition": "a physical quantity assigned to various particles based on decay systematics"
   },
   {
    "section": "33.4",
    "term": "tau family number",
+   "concept": "tau-family-number",
    "definition": "the number $\\pm 1$ that is assigned to all members of the tau family, or the number 0 that is assigned to all particles not in the tau family"
   },
   {
    "section": "33.5",
    "term": "bottom",
+   "concept": "bottom-quark",
    "definition": "a quark flavor"
   },
   {
    "section": "33.5",
    "term": "charm",
+   "concept": "charm-quark",
    "definition": "a quark flavor, which is the counterpart of the strange quark"
   },
   {
    "section": "33.5",
    "term": "color",
+   "concept": "quark-color",
    "definition": "a quark flavor"
   },
   {
    "section": "33.5",
    "term": "down",
+   "concept": "down-quark",
    "definition": "the second-lightest of all quarks"
   },
   {
    "section": "33.5",
    "term": "flavors",
+   "concept": "quark-flavors",
    "definition": "quark type"
   },
   {
    "section": "33.5",
    "term": "fundamental particle",
+   "concept": "fundamental-particles",
    "definition": "particle with no substructure"
   },
   {
    "section": "33.5",
    "term": "quantum chromodynamics",
+   "concept": "quantum-chromodynamics",
    "definition": "quark theory including color"
   },
   {
    "section": "33.5",
    "term": "quark",
+   "concept": "quark",
    "definition": "an elementary particle and a fundamental constituent of matter"
   },
   {
    "section": "33.5",
    "term": "strange",
+   "concept": "strange-quark",
    "definition": "the third lightest of all quarks"
   },
   {
    "section": "33.5",
    "term": "theory of quark confinement",
+   "concept": "quark-confinement",
    "definition": "explains how quarks can exist and yet never be isolated or directly observed"
   },
   {
    "section": "33.5",
    "term": "top",
+   "concept": "top-quark",
    "definition": "a quark flavor"
   },
   {
    "section": "33.5",
    "term": "up",
+   "concept": "up-quark",
    "definition": "the lightest of all quarks"
   },
   {
    "section": "33.6",
    "term": "electroweak theory",
+   "concept": "electroweak-unification",
    "definition": "theory showing connections between EM and weak forces"
   },
   {
    "section": "33.6",
    "term": "grand unified theory",
+   "concept": "grand-unified-theories",
    "definition": "theory that shows unification of the strong and electroweak forces"
   },
   {
    "section": "33.6",
    "term": "gluons",
+   "concept": "gluon",
    "definition": "eight proposed particles which carry the strong force"
   },
   {
    "section": "33.6",
    "term": "Higgs boson",
+   "concept": "higgs-boson",
    "definition": "a massive particle that, if observed, would give validity to the theory that carrier particles are identical under certain circumstances"
   },
   {
    "section": "33.6",
    "term": "quantum chromodynamics",
+   "concept": "quantum-chromodynamics",
    "definition": "the governing theory of connecting quantum number color to gluons"
   },
   {
    "section": "33.6",
    "term": "standard model",
+   "concept": "standard-model",
    "definition": "combination of quantum chromodynamics and electroweak theory"
   },
   {
    "section": "33.6",
    "term": "superstring theory",
+   "concept": "superstring-theory",
    "definition": "a theory of everything based on vibrating strings some ${\\text{10}}^{-\\text{35}}\\;\\text{m}$ in length"
   }
  ]

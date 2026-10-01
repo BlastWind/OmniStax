@@ -1,0 +1,320 @@
+{
+  "chapter": "ch21",
+  "kinds": {
+    "series-connection": "definition",
+    "series-resistance": "result",
+    "voltage-divides-in-series": "result",
+    "parallel-connection": "definition",
+    "parallel-resistance": "result",
+    "current-divides-in-parallel": "result",
+    "parallel-resistance-least": "result",
+    "reduce-resistor-network": "skill",
+    "wire-resistance-ir-drop": "idea",
+    "emf": "definition",
+    "internal-resistance": "definition",
+    "terminal-voltage": "result",
+    "current-with-load": "result",
+    "sources-in-series": "result",
+    "sources-in-parallel": "result",
+    "charging-reverses-the-current": "idea",
+    "battery-voltage-from-chemistry": "idea",
+    "kirchhoff-from-conservation": "idea",
+    "junction-rule": "result",
+    "loop-rule": "result",
+    "loop-rule-signs": "skill",
+    "apply-kirchhoffs-rules": "skill",
+    "voltmeter-in-parallel": "result",
+    "ammeter-in-series": "result",
+    "galvanometer": "definition",
+    "galvanometer-as-voltmeter": "result",
+    "galvanometer-as-ammeter": "result",
+    "measurement-alters-circuit": "idea",
+    "null-measurement": "idea",
+    "potentiometer": "result",
+    "ohmmeter": "idea",
+    "wheatstone-bridge": "result",
+    "rc-circuit": "definition",
+    "charging-a-capacitor": "result",
+    "time-constant": "definition",
+    "discharging-a-capacitor": "result",
+    "fraction-per-time-constant": "result",
+    "rc-timing-circuits": "idea"
+  },
+  "statements": {},
+  "new": [
+    {
+      "id": "resistor",
+      "kind": "definition",
+      "section": "21.1",
+      "name": "Resistor",
+      "statement": "A resistor is a component made to have a definite resistance, and in a circuit diagram every device that converts electrical energy, from a lamp to a heater, is drawn as one.",
+      "introduces": "connections",
+      "prereqs": [
+        "resistance"
+      ]
+    },
+    {
+      "id": "voltmeter",
+      "kind": "definition",
+      "section": "21.4",
+      "name": "Voltmeter",
+      "statement": "A voltmeter is an instrument that measures the potential difference between two points, the voltage across whatever it is connected to.",
+      "introduces": "meters",
+      "prereqs": [
+        "potential-difference"
+      ]
+    },
+    {
+      "id": "ammeter",
+      "kind": "definition",
+      "section": "21.4",
+      "name": "Ammeter",
+      "statement": "An ammeter is an instrument that measures the current through the branch of a circuit in which it is placed.",
+      "introduces": "meters",
+      "prereqs": [
+        "electric-current"
+      ]
+    },
+    {
+      "id": "analog-meter",
+      "kind": "definition",
+      "section": "21.4",
+      "name": "Analog meter",
+      "statement": "An analog meter gives its reading as the position of a needle over a marked scale, and most are built around a galvanometer.",
+      "introduces": "meters",
+      "prereqs": []
+    },
+    {
+      "id": "digital-meter",
+      "kind": "definition",
+      "section": "21.4",
+      "name": "Digital meter",
+      "statement": "A digital meter gives its reading as a number on a display, measuring the quantity with electronic circuits rather than a moving needle.",
+      "introduces": "meters",
+      "prereqs": []
+    },
+    {
+      "id": "full-scale-deflection",
+      "kind": "definition",
+      "section": "21.4",
+      "name": "Full-scale deflection",
+      "statement": "The full-scale deflection of a meter is the largest reading its needle can show, and the current that gives it is the galvanometer's current sensitivity.",
+      "introduces": "galvanometer",
+      "prereqs": [
+        "galvanometer"
+      ]
+    },
+    {
+      "id": "shunt-resistance",
+      "kind": "definition",
+      "section": "21.4",
+      "name": "Shunt resistance",
+      "statement": "A shunt resistance is a small resistance connected in parallel with a galvanometer, so that most of the current passes around the galvanometer and the combination can measure larger currents.",
+      "introduces": "as-ammeter",
+      "prereqs": [
+        "resistance",
+        "parallel-connection",
+        "galvanometer"
+      ]
+    },
+    {
+      "id": "bridge-device",
+      "kind": "definition",
+      "section": "21.5",
+      "name": "Bridge device",
+      "statement": "A bridge device connects two branches of a circuit through a meter, and adjusting it until the meter reads zero lets one quantity be found by a null measurement.",
+      "introduces": "wheatstone-bridge",
+      "prereqs": [
+        "null-measurement"
+      ]
+    },
+    {
+      "id": "kirchhoffs-rules",
+      "kind": "result",
+      "section": "21.3",
+      "name": "Kirchhoff's rules",
+      "statement": "Kirchhoff's rules are the junction rule and the loop rule together, two statements of conservation that let you analyze any circuit, simple or complex.",
+      "introduces": "rules",
+      "prereqs": [
+        "junction-rule",
+        "loop-rule"
+      ]
+    },
+    {
+      "id": "conservation-laws",
+      "kind": "idea",
+      "section": "21.3",
+      "name": "Conservation laws",
+      "statement": "The conservation laws require that energy and charge be conserved in a system, and in a circuit they become Kirchhoff's two rules.",
+      "introduces": "rules",
+      "prereqs": [
+        "conservation-of-charge",
+        "conservation-of-energy"
+      ]
+    },
+    {
+      "id": "current-sensitivity",
+      "kind": "definition",
+      "section": "21.4",
+      "name": "Current sensitivity",
+      "statement": "The current sensitivity of a galvanometer is the current that gives it a full-scale deflection.",
+      "introduces": "galvanometer",
+      "prereqs": [
+        "galvanometer",
+        "full-scale-deflection"
+      ]
+    }
+  ],
+  "glossary": {
+    "21.1/series": "series-connection",
+    "21.1/resistor": "resistor",
+    "21.1/resistance": "resistance",
+    "21.1/Ohm’s law": "ohms-law",
+    "21.1/voltage": "potential-difference",
+    "21.1/voltage drop": "ir-drop",
+    "21.1/current": "electric-current",
+    "21.1/Joule’s law": "power-and-resistance",
+    "21.1/parallel": "parallel-connection",
+    "21.2/electromotive force (emf)": "emf",
+    "21.2/internal resistance": "internal-resistance",
+    "21.2/potential difference": "potential-difference",
+    "21.2/terminal voltage": "terminal-voltage",
+    "21.3/Kirchhoff’s rules": "kirchhoffs-rules",
+    "21.3/junction rule": "junction-rule",
+    "21.3/loop rule": "loop-rule",
+    "21.3/conservation laws": "conservation-laws",
+    "21.4/voltmeter": "voltmeter",
+    "21.4/ammeter": "ammeter",
+    "21.4/analog meter": "analog-meter",
+    "21.4/digital meter": "digital-meter",
+    "21.4/galvanometer": "galvanometer",
+    "21.4/current sensitivity": "current-sensitivity",
+    "21.4/full-scale deflection": "full-scale-deflection",
+    "21.4/shunt resistance": "shunt-resistance",
+    "21.5/null measurements": "null-measurement",
+    "21.5/potentiometer": "potentiometer",
+    "21.5/ohmmeter": "ohmmeter",
+    "21.5/bridge device": "bridge-device",
+    "21.5/Wheatstone bridge": "wheatstone-bridge",
+    "21.6/RC circuit": "rc-circuit",
+    "21.6/capacitor": "capacitor",
+    "21.6/capacitance": "capacitance"
+  },
+  "variables": {
+    "21.1/R_resone": "resistance",
+    "21.1/R_restwo": "resistance",
+    "21.1/R_resthree": "resistance",
+    "21.1/R_ress": "resistance",
+    "21.1/R_resp": "resistance",
+    "21.1/R_restot": "resistance",
+    "21.1/I_curr": "electric-current",
+    "21.1/I_onecurr": "electric-current",
+    "21.1/I_twocurr": "electric-current",
+    "21.1/I_threecurr": "electric-current",
+    "21.1/V_volt": "potential-difference",
+    "21.1/V_1volt": "potential-difference",
+    "21.1/V_2volt": "potential-difference",
+    "21.1/V_3volt": "potential-difference",
+    "21.1/V_p": "potential-difference",
+    "21.1/P": "power",
+    "21.1/P_onepow": "power",
+    "21.1/P_twopow": "power",
+    "21.1/P_threepow": "power",
+    "21.2/emf": "emf",
+    "21.2/V_volt": "terminal-voltage",
+    "21.2/r_int": "internal-resistance",
+    "21.2/R_load": "resistance",
+    "21.2/I_curr": "electric-current",
+    "21.2/emf_one": "emf",
+    "21.2/emf_two": "emf",
+    "21.2/r_intone": "internal-resistance",
+    "21.2/r_inttwo": "internal-resistance",
+    "21.2/r_inttot": "internal-resistance",
+    "21.2/P": "power",
+    "21.3/I_onecurr": "electric-current",
+    "21.3/I_twocurr": "electric-current",
+    "21.3/I_threecurr": "electric-current",
+    "21.3/emf": "emf",
+    "21.3/r_int": "internal-resistance",
+    "21.3/R_resone": "resistance",
+    "21.3/R_restwo": "resistance",
+    "21.4/R_res": "resistance",
+    "21.4/r_int": "internal-resistance",
+    "21.4/R_restot": "resistance",
+    "21.4/I_Gcurr": "electric-current",
+    "21.4/I_curr": "electric-current",
+    "21.4/V_volt": "potential-difference",
+    "21.5/emf_x": "emf",
+    "21.5/emf_s": "emf",
+    "21.5/R_resx": "resistance",
+    "21.5/R_ress": "resistance",
+    "21.5/R_resone": "resistance",
+    "21.5/R_restwo": "resistance",
+    "21.5/R_resthree": "resistance",
+    "21.5/I_curr": "electric-current",
+    "21.6/R_res": "resistance",
+    "21.6/C_cap": "capacitance",
+    "21.6/τ_RC": "time-constant",
+    "21.6/t": "time",
+    "21.6/V_volt": "potential-difference",
+    "21.6/V_zero": "potential-difference",
+    "21.6/V_c": "potential-difference",
+    "21.6/emf": "emf",
+    "21.6/I_0curr": "electric-current",
+    "21.6/Q_charge": "electric-charge",
+    "21.1/R_resfour": "resistance"
+  },
+  "equations": {
+    "eq-series-resistance": "series-resistance",
+    "eq-series-voltage": "voltage-divides-in-series",
+    "eq-parallel-resistance": "parallel-resistance",
+    "eq-parallel-current": "current-divides-in-parallel",
+    "eq-mixed-total-resistance": "reduce-resistor-network",
+    "eq-terminal-voltage": "terminal-voltage",
+    "eq-current-with-load": "current-with-load",
+    "eq-sources-in-series": "sources-in-series",
+    "eq-sources-opposed": "charging-reverses-the-current",
+    "eq-sources-in-parallel": "sources-in-parallel",
+    "eq-junction-rule": "junction-rule",
+    "eq-loop-rule": "loop-rule",
+    "eq-voltmeter-resistance": "galvanometer-as-voltmeter",
+    "eq-shunt-resistance": "galvanometer-as-ammeter",
+    "eq-potentiometer": "potentiometer",
+    "eq-wheatstone-bridge": "wheatstone-bridge",
+    "eq-capacitor-voltage": "capacitance",
+    "eq-initial-current": "ohms-law",
+    "eq-charging-capacitor": "charging-a-capacitor",
+    "eq-time-constant": "time-constant",
+    "eq-discharging-capacitor": "discharging-a-capacitor"
+  },
+  "edges": [
+    [
+      "reduce-resistor-network",
+      "resistor"
+    ],
+    [
+      "voltmeter-in-parallel",
+      "voltmeter"
+    ],
+    [
+      "ammeter-in-series",
+      "ammeter"
+    ],
+    [
+      "galvanometer-as-voltmeter",
+      "voltmeter"
+    ],
+    [
+      "galvanometer-as-ammeter",
+      "ammeter"
+    ],
+    [
+      "galvanometer-as-ammeter",
+      "shunt-resistance"
+    ],
+    [
+      "apply-kirchhoffs-rules",
+      "kirchhoffs-rules"
+    ]
+  ]
+}

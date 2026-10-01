@@ -1,0 +1,342 @@
+{
+  "chapter": "ch13",
+  "kinds": {
+    "temperature": "definition",
+    "thermometer": "idea",
+    "temperature-scales": "definition",
+    "convert-temperature-scales": "skill",
+    "absolute-zero": "idea",
+    "thermal-equilibrium": "definition",
+    "zeroth-law-of-thermodynamics": "axiom",
+    "thermal-expansion": "idea",
+    "linear-thermal-expansion": "axiom",
+    "area-thermal-expansion": "result",
+    "holes-expand-too": "result",
+    "volume-thermal-expansion": "axiom",
+    "differential-thermal-expansion": "skill",
+    "anomalous-expansion-of-water": "idea",
+    "thermal-stress": "result",
+    "ideal-gas": "idea",
+    "ideal-gas-law": "axiom",
+    "boltzmann-constant": "axiom",
+    "ideal-gas-ratio-method": "skill",
+    "mole": "definition",
+    "avogadros-number": "definition",
+    "ideal-gas-law-moles": "result",
+    "molar-volume-at-stp": "result",
+    "ideal-gas-law-energy": "idea",
+    "kinetic-theory": "idea",
+    "molecular-origin-of-pressure": "result",
+    "thermal-energy": "result",
+    "rms-speed": "result",
+    "molecular-mass-from-molar-mass": "skill",
+    "maxwell-boltzmann-distribution": "idea",
+    "atmospheric-escape": "idea",
+    "real-gas-condensation": "idea",
+    "pv-diagram": "idea",
+    "critical-point": "definition",
+    "phase-diagram": "idea",
+    "sublimation": "definition",
+    "triple-point": "definition",
+    "phase-equilibrium": "idea",
+    "vapor-pressure": "definition",
+    "daltons-law": "axiom",
+    "relative-humidity": "definition",
+    "vapor-density-from-vapor-pressure": "skill",
+    "percent-relative-humidity": "definition",
+    "dew-point": "definition",
+    "humidity-from-the-table": "skill",
+    "boiling": "idea",
+    "evaporative-cooling": "idea"
+  },
+  "statements": {
+    "thermal-equilibrium": "Two systems in thermal contact are in thermal equilibrium when they have the same temperature, so that no heat flows between them and neither temperature changes. Any two systems placed in thermal contact but isolated from the rest of the environment reach this state: heat flows from the hotter object to the cooler one until their temperatures are equal. That is why a thermometer, which actually takes its own temperature, reads the temperature of the object it touches once enough time has passed. A single object is in internal thermal equilibrium when no heat flows within it and its temperature is uniform."
+  },
+  "new": [
+    {
+      "id": "coefficient-of-linear-expansion",
+      "kind": "definition",
+      "section": "13.2",
+      "name": "Coefficient of linear expansion $\\alpha$",
+      "statement": "The coefficient of linear expansion is the change in length per unit length per degree of temperature change. It depends on the material and varies slightly with temperature, and its unit is the inverse degree Celsius, 1/°C.",
+      "introduces": "linear-expansion",
+      "prereqs": [
+        "length",
+        "temperature"
+      ]
+    },
+    {
+      "id": "coefficient-of-volume-expansion",
+      "kind": "definition",
+      "section": "13.2",
+      "name": "Coefficient of volume expansion $\\beta$",
+      "statement": "The coefficient of volume expansion is the change in volume per unit volume per degree of temperature change. For a solid it is very nearly three times the coefficient of linear expansion, and liquids have much larger values than solids.",
+      "introduces": "two-and-three-dimensions",
+      "prereqs": [
+        "volume",
+        "temperature",
+        "coefficient-of-linear-expansion"
+      ]
+    },
+    {
+      "id": "universal-gas-constant",
+      "kind": "definition",
+      "section": "13.3",
+      "name": "The universal gas constant $R = N_\\text{A}k$",
+      "statement": "The universal gas constant is the product of Avogadro's number and the Boltzmann constant, R = 8.31 J/(mol·K). It plays the part for a mole of gas that the Boltzmann constant plays for a single molecule.",
+      "introduces": "moles-form",
+      "prereqs": [
+        "avogadros-number",
+        "boltzmann-constant"
+      ]
+    },
+    {
+      "id": "vapor",
+      "kind": "definition",
+      "section": "13.5",
+      "name": "Vapor",
+      "statement": "A vapor is a gas at a temperature below the boiling temperature of its substance, so that it can coexist with the liquid.",
+      "introduces": "equilibrium",
+      "prereqs": [
+        "phase-equilibrium"
+      ]
+    },
+    {
+      "id": "partial-pressure",
+      "kind": "definition",
+      "section": "13.5",
+      "name": "Partial pressure",
+      "statement": "The partial pressure of a gas in a mixture is the pressure it would create if it alone occupied the total volume available.",
+      "introduces": "vapor-pressure",
+      "prereqs": [
+        "pressure",
+        "volume"
+      ]
+    },
+    {
+      "id": "celsius-scale",
+      "kind": "definition",
+      "section": "13.1",
+      "name": "The Celsius scale",
+      "statement": "The Celsius scale is the temperature scale on which the freezing point of water is 0 °C and its boiling point is 100 °C, both at standard atmospheric pressure.",
+      "introduces": "temperature-scales",
+      "prereqs": [
+        "temperature-scales"
+      ]
+    },
+    {
+      "id": "degree-celsius",
+      "kind": "definition",
+      "section": "13.1",
+      "name": "The degree Celsius, °C",
+      "statement": "The degree Celsius is the unit of the Celsius scale, one hundredth of the interval between the freezing and boiling points of water. It is the same size as the kelvin.",
+      "introduces": "temperature-scales",
+      "prereqs": [
+        "celsius-scale"
+      ]
+    },
+    {
+      "id": "fahrenheit-scale",
+      "kind": "definition",
+      "section": "13.1",
+      "name": "The Fahrenheit scale",
+      "statement": "The Fahrenheit scale is the temperature scale on which the freezing point of water is 32 °F and its boiling point is 212 °F, both at standard atmospheric pressure.",
+      "introduces": "temperature-scales",
+      "prereqs": [
+        "temperature-scales"
+      ]
+    },
+    {
+      "id": "degree-fahrenheit",
+      "kind": "definition",
+      "section": "13.1",
+      "name": "The degree Fahrenheit, °F",
+      "statement": "The degree Fahrenheit is the unit of the Fahrenheit scale, one hundred eightieth of the interval between the freezing and boiling points of water, so a degree Celsius is 1.8 times as large.",
+      "introduces": "temperature-scales",
+      "prereqs": [
+        "fahrenheit-scale"
+      ]
+    },
+    {
+      "id": "kelvin-scale",
+      "kind": "definition",
+      "section": "13.1",
+      "name": "The Kelvin scale",
+      "statement": "The Kelvin scale is the absolute temperature scale of science. Its zero is absolute zero, and its unit, the kelvin, is written K with no degree sign and equals a degree Celsius in size, so water freezes at 273.15 K and boils at 373.15 K.",
+      "introduces": "temperature-scales",
+      "prereqs": [
+        "temperature-scales",
+        "absolute-zero"
+      ]
+    },
+    {
+      "id": "critical-temperature",
+      "kind": "definition",
+      "section": "13.5",
+      "name": "Critical temperature $T_\\text{c}$",
+      "statement": "The critical temperature of a substance is the temperature above which its liquid phase cannot exist, however great the pressure.",
+      "introduces": "pv-diagrams",
+      "prereqs": [
+        "critical-point",
+        "temperature"
+      ]
+    },
+    {
+      "id": "critical-pressure",
+      "kind": "definition",
+      "section": "13.5",
+      "name": "Critical pressure",
+      "statement": "The critical pressure of a substance is the minimum pressure needed for its liquid phase to exist at the critical temperature.",
+      "introduces": "pv-diagrams",
+      "prereqs": [
+        "critical-point",
+        "critical-temperature",
+        "pressure"
+      ]
+    },
+    {
+      "id": "saturation",
+      "kind": "definition",
+      "section": "13.6",
+      "name": "Saturation",
+      "statement": "Air is saturated when its relative humidity is 100%, so that it holds the most water vapor it can at its temperature and the partial pressure equals the vapor pressure of water.",
+      "introduces": "humidity",
+      "prereqs": [
+        "relative-humidity",
+        "vapor-pressure"
+      ]
+    }
+  ],
+  "glossary": {
+    "13.1/temperature": "temperature",
+    "13.1/Celsius scale": "celsius-scale",
+    "13.1/degree Celsius": "degree-celsius",
+    "13.1/Fahrenheit scale": "fahrenheit-scale",
+    "13.1/degree Fahrenheit": "degree-fahrenheit",
+    "13.1/Kelvin scale": "kelvin-scale",
+    "13.1/absolute zero": "absolute-zero",
+    "13.1/thermal equilibrium": "thermal-equilibrium",
+    "13.1/zeroth law of thermodynamics": "zeroth-law-of-thermodynamics",
+    "13.2/thermal expansion": "thermal-expansion",
+    "13.2/coefficient of linear expansion": "coefficient-of-linear-expansion",
+    "13.2/coefficient of volume expansion": "coefficient-of-volume-expansion",
+    "13.2/thermal stress": "thermal-stress",
+    "13.3/ideal gas law": "ideal-gas-law",
+    "13.3/Boltzmann constant": "boltzmann-constant",
+    "13.3/Avogadro's number": "avogadros-number",
+    "13.3/mole": "mole",
+    "13.4/thermal energy": "thermal-energy",
+    "13.5/PV diagram": "pv-diagram",
+    "13.5/critical point": "critical-point",
+    "13.5/critical temperature": "critical-temperature",
+    "13.5/critical pressure": "critical-pressure",
+    "13.5/vapor": "vapor",
+    "13.5/vapor pressure": "vapor-pressure",
+    "13.5/phase diagram": "phase-diagram",
+    "13.5/triple point": "triple-point",
+    "13.5/sublimation": "sublimation",
+    "13.5/partial pressure": "partial-pressure",
+    "13.5/Dalton's law of partial pressures": "daltons-law",
+    "13.6/dew point": "dew-point",
+    "13.6/saturation": "saturation",
+    "13.6/percent relative humidity": "percent-relative-humidity",
+    "13.6/relative humidity": "relative-humidity"
+  },
+  "variables": {
+    "13.1/T_temp": "temperature",
+    "13.1/T_C": "temperature",
+    "13.1/T_F": "temperature",
+    "13.1/T_K": "temperature",
+    "13.1/P_press": "pressure",
+    "13.2/ΔL": "length",
+    "13.2/L_len": "length",
+    "13.2/ΔT": "temperature",
+    "13.2/α_exp": "coefficient-of-linear-expansion",
+    "13.2/ΔA": "area",
+    "13.2/A": "area",
+    "13.2/ΔV": "volume",
+    "13.2/V": "volume",
+    "13.2/β": "coefficient-of-volume-expansion",
+    "13.2/P_press": "pressure",
+    "13.2/B_bulk": "bulk-deformation",
+    "13.2/V_0": "volume",
+    "13.2/F": "force",
+    "13.3/P_press": "pressure",
+    "13.3/V": "volume",
+    "13.3/N_count": "ideal-gas-law",
+    "13.3/k_boltz": "boltzmann-constant",
+    "13.3/T_temp": "temperature",
+    "13.3/P_0": "pressure",
+    "13.3/P_f": "pressure",
+    "13.3/T_0temp": "temperature",
+    "13.3/T_ftemp": "temperature",
+    "13.3/n": "mole",
+    "13.3/N_A": "avogadros-number",
+    "13.3/R_gas": "universal-gas-constant",
+    "13.3/M": "mole",
+    "13.4/P_press": "pressure",
+    "13.4/V": "volume",
+    "13.4/N_count": "ideal-gas-law",
+    "13.4/m": "mass",
+    "13.4/v2_bar": "rms-speed",
+    "13.4/KE_bar": "thermal-energy",
+    "13.4/k_boltz": "boltzmann-constant",
+    "13.4/T_temp": "temperature",
+    "13.4/v_rms": "rms-speed",
+    "13.4/v_p": "maxwell-boltzmann-distribution",
+    "13.4/v_x": "instantaneous-velocity",
+    "13.4/Δp": "linear-momentum",
+    "13.4/Δt": "elapsed-time",
+    "13.4/F": "force",
+    "13.4/l": "length",
+    "13.4/A": "area",
+    "13.4/T_1temp": "temperature",
+    "13.4/T_2temp": "temperature",
+    "13.5/P_press": "pressure",
+    "13.5/V": "volume",
+    "13.5/T_temp": "temperature",
+    "13.5/N_count": "ideal-gas-law",
+    "13.5/k_boltz": "boltzmann-constant",
+    "13.5/T_c": "critical-temperature",
+    "13.6/P_press": "vapor-pressure",
+    "13.6/n": "mole",
+    "13.6/V": "volume",
+    "13.6/R_gas": "universal-gas-constant",
+    "13.6/T_temp": "temperature",
+    "13.6/ρ_dens": "density"
+  },
+  "equations": {
+    "eq-celsius-to-fahrenheit": "convert-temperature-scales",
+    "eq-fahrenheit-to-celsius": "convert-temperature-scales",
+    "eq-celsius-to-kelvin": "convert-temperature-scales",
+    "eq-kelvin-to-celsius": "convert-temperature-scales",
+    "eq-fahrenheit-to-kelvin": "convert-temperature-scales",
+    "eq-kelvin-to-fahrenheit": "convert-temperature-scales",
+    "eq-linear-expansion": "linear-thermal-expansion",
+    "eq-area-expansion": "area-thermal-expansion",
+    "eq-volume-expansion": "volume-thermal-expansion",
+    "eq-beta-three-alpha": "volume-thermal-expansion",
+    "eq-spill-volume": "differential-thermal-expansion",
+    "eq-bulk-volume-change": "bulk-deformation",
+    "eq-thermal-stress": "thermal-stress",
+    "eq-ideal-gas-law": "ideal-gas-law",
+    "eq-boltzmann-constant": "boltzmann-constant",
+    "eq-ideal-gas-ratio": "ideal-gas-ratio-method",
+    "eq-avogadros-number": "avogadros-number",
+    "eq-moles-from-molecules": "mole",
+    "eq-ideal-gas-law-moles": "ideal-gas-law-moles",
+    "eq-gas-constant": "universal-gas-constant",
+    "eq-gas-constant-other-units": "universal-gas-constant",
+    "eq-molar-volume-stp": "molar-volume-at-stp",
+    "eq-pressure-from-molecules": "molecular-origin-of-pressure",
+    "eq-force-one-molecule": "molecular-origin-of-pressure",
+    "eq-mean-square-components": "molecular-origin-of-pressure",
+    "eq-thermal-energy": "thermal-energy",
+    "eq-rms-speed": "rms-speed",
+    "eq-temperature-from-speed": "thermal-energy",
+    "eq-molecular-mass": "molecular-mass-from-molar-mass",
+    "eq-isotherm": "pv-diagram",
+    "eq-vapor-density": "vapor-density-from-vapor-pressure",
+    "eq-percent-relative-humidity": "percent-relative-humidity"
+  }
+}

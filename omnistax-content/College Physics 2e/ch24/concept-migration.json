@@ -1,0 +1,334 @@
+{
+  "chapter": "ch24",
+  "kinds": {
+    "maxwells-equations": "axiom",
+    "changing-fields-generate-each-other": "axiom",
+    "speed-of-light-from-constants": "result",
+    "light-is-an-electromagnetic-wave": "idea",
+    "hertz-observations": "idea",
+    "em-waves-from-accelerating-charges": "idea",
+    "antenna-field-cycle": "idea",
+    "magnetic-part-of-the-wave": "idea",
+    "em-wave-is-transverse": "result",
+    "e-over-b-equals-c": "result",
+    "find-b-from-e": "skill",
+    "em-wave-in-a-medium": "result",
+    "antenna-resonance": "idea",
+    "c-equals-f-lambda": "result",
+    "find-wavelength-or-frequency": "skill",
+    "electromagnetic-spectrum": "idea",
+    "spectrum-rules-of-thumb": "idea",
+    "transmission-reflection-absorption": "idea",
+    "radio-waves-and-modulation": "idea",
+    "antenna-length-and-wavelength": "result",
+    "microwaves-and-their-uses": "idea",
+    "sources-across-the-spectrum": "idea",
+    "radiation-and-living-tissue": "idea",
+    "wave-energy-from-field-amplitude": "result",
+    "average-intensity-from-e0": "result",
+    "intensity-from-the-magnetic-amplitude": "result",
+    "peak-intensity-is-twice-average": "result",
+    "find-fields-from-intensity": "skill"
+  },
+  "statements": {},
+  "new": [
+    {
+      "id": "electromagnetic-wave",
+      "kind": "definition",
+      "section": "24.1",
+      "name": "Electromagnetic wave",
+      "statement": "An electromagnetic wave is a pair of changing electric and magnetic fields that generate each other and travel together through space, carrying energy, at the speed of light in a vacuum.",
+      "introduces": "prediction",
+      "prereqs": [
+        "electric-field",
+        "magnetic-field",
+        "wave"
+      ]
+    },
+    {
+      "id": "thermal-agitation",
+      "kind": "idea",
+      "section": "24.3",
+      "name": "Thermal agitation",
+      "statement": "Thermal agitation is the thermal motion of the atoms and molecules of any object above absolute zero, which makes them emit and absorb radiation, mostly in the infrared.",
+      "introduces": "infrared",
+      "prereqs": [
+        "temperature"
+      ]
+    },
+    {
+      "id": "infrared-radiation",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Infrared radiation (IR)",
+      "statement": "Infrared radiation is the band of the electromagnetic spectrum with frequencies from just below those of red light down to the microwaves.",
+      "introduces": "infrared",
+      "prereqs": [
+        "electromagnetic-spectrum"
+      ]
+    },
+    {
+      "id": "visible-light",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Visible light",
+      "statement": "Visible light is the narrow band of the electromagnetic spectrum to which the normal human eye responds, with wavelengths from about 380 nm to 760 nm.",
+      "introduces": "visible-light",
+      "prereqs": [
+        "electromagnetic-spectrum"
+      ]
+    },
+    {
+      "id": "ultraviolet-radiation",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Ultraviolet radiation (UV)",
+      "statement": "Ultraviolet radiation is the band of the electromagnetic spectrum extending upward in frequency from violet light and overlapping the lowest x rays.",
+      "introduces": "ultraviolet",
+      "prereqs": [
+        "electromagnetic-spectrum"
+      ]
+    },
+    {
+      "id": "x-ray-radiation",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "X rays",
+      "statement": "X rays are invisible, penetrating electromagnetic radiation of very high frequency, overlapping the ultraviolet below and the gamma rays above.",
+      "introduces": "x-rays",
+      "prereqs": [
+        "electromagnetic-spectrum"
+      ]
+    },
+    {
+      "id": "gamma-ray-radiation",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Gamma rays ($\\gamma$ rays)",
+      "statement": "Gamma rays are electromagnetic radiation of extremely high frequency, emitted by the nucleus of an atom in nuclear decay or in other nuclear and particle processes.",
+      "introduces": "gamma-rays",
+      "prereqs": [
+        "electromagnetic-spectrum"
+      ]
+    },
+    {
+      "id": "carrier-wave",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Carrier wave",
+      "statement": "A carrier wave is an electromagnetic wave that carries a signal by the modulation of its amplitude or of its frequency.",
+      "introduces": "radio-tv",
+      "prereqs": [
+        "electromagnetic-wave"
+      ]
+    },
+    {
+      "id": "amplitude-modulation",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Amplitude modulation (AM)",
+      "statement": "Amplitude modulation places information on an electromagnetic wave by varying the amplitude of a carrier wave with the signal, while its frequency stays fixed.",
+      "introduces": "radio-tv",
+      "prereqs": [
+        "carrier-wave",
+        "amplitude"
+      ]
+    },
+    {
+      "id": "frequency-modulation",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Frequency modulation (FM)",
+      "statement": "Frequency modulation places information on an electromagnetic wave by varying the frequency of a carrier wave with the signal, while its amplitude stays fixed.",
+      "introduces": "fm-radio",
+      "prereqs": [
+        "carrier-wave",
+        "frequency"
+      ]
+    },
+    {
+      "id": "hertz",
+      "kind": "definition",
+      "section": "24.1",
+      "name": "The hertz, $1\\;\\text{Hz} = 1\\;\\text{cycle/s}$",
+      "statement": "The hertz is the SI unit of frequency, one cycle per second, named for Heinrich Hertz, who first generated and detected electromagnetic waves.",
+      "introduces": "hertz",
+      "prereqs": [
+        "frequency"
+      ]
+    },
+    {
+      "id": "oscillation",
+      "kind": "definition",
+      "section": "24.2",
+      "name": "Oscillation",
+      "statement": "To oscillate is to fluctuate back and forth in a steady beat, as the charges in an antenna do and as the fields of the wave they send out do.",
+      "introduces": "varying-current",
+      "prereqs": [
+        "periodic-motion"
+      ]
+    },
+    {
+      "id": "radar",
+      "kind": "idea",
+      "section": "24.3",
+      "name": "Radar",
+      "statement": "Radar is a common application of microwaves: it finds the distance to objects as diverse as clouds and aircraft from the time a reflected pulse takes to return.",
+      "introduces": "microwaves",
+      "prereqs": [
+        "microwaves-and-their-uses"
+      ]
+    },
+    {
+      "id": "extremely-low-frequency",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Extremely low frequency (ELF)",
+      "statement": "Extremely low frequency radiation is electromagnetic radiation of the lowest frequencies, usually from 0 to 300 Hz but also up to about 1 kHz.",
+      "introduces": "radio-tv",
+      "prereqs": [
+        "electromagnetic-spectrum"
+      ]
+    },
+    {
+      "id": "television",
+      "kind": "idea",
+      "section": "24.3",
+      "name": "TV",
+      "statement": "Television carries video and audio signals on electromagnetic waves, broadcast in the radio band.",
+      "introduces": "radio-tv",
+      "prereqs": [
+        "radio-waves-and-modulation"
+      ]
+    },
+    {
+      "id": "very-high-frequency",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Very high frequency (VHF)",
+      "statement": "Very high frequency TV channels use frequencies in the two ranges from 54 to 88 MHz and from 174 to 222 MHz.",
+      "introduces": "radio-tv",
+      "prereqs": [
+        "television"
+      ]
+    },
+    {
+      "id": "ultra-high-frequency",
+      "kind": "definition",
+      "section": "24.3",
+      "name": "Ultra-high frequency (UHF)",
+      "statement": "Ultra-high frequency TV channels use frequencies above those of VHF, from 470 to 1000 MHz.",
+      "introduces": "radio-tv",
+      "prereqs": [
+        "television"
+      ]
+    },
+    {
+      "id": "maximum-field-strength",
+      "kind": "definition",
+      "section": "24.4",
+      "name": "Maximum field strength, $\\kEfo$ and $\\kBmago$",
+      "statement": "The maximum field strength of an electromagnetic wave is the amplitude of its electric or magnetic field, the largest value the field reaches as it oscillates.",
+      "introduces": "energy-and-amplitude",
+      "prereqs": [
+        "amplitude",
+        "electric-field",
+        "magnetic-field-strength-defined"
+      ]
+    }
+  ],
+  "glossary": {
+    "24.1/electromagnetic waves": "electromagnetic-wave",
+    "24.1/Maxwell’s equations": "maxwells-equations",
+    "24.1/RLC circuit": "rlc-circuit",
+    "24.1/hertz": "hertz",
+    "24.1/speed of light": "speed-of-light-in-vacuum",
+    "24.1/electromotive force (emf)": "emf",
+    "24.1/electric field lines": "electric-field-lines",
+    "24.1/magnetic field lines": "magnetic-field-lines",
+    "24.2/electric field": "electric-field",
+    "24.2/electric field strength": "electric-field",
+    "24.2/magnetic field": "magnetic-field",
+    "24.2/magnetic field strength": "magnetic-field-strength-defined",
+    "24.2/transverse wave": "transverse-wave",
+    "24.2/standing wave": "standing-wave",
+    "24.2/wavelength": "wavelength",
+    "24.2/amplitude": "amplitude",
+    "24.2/frequency": "frequency",
+    "24.2/resonant": "resonance",
+    "24.2/oscillate": "oscillation",
+    "24.3/electromagnetic spectrum": "electromagnetic-spectrum",
+    "24.3/radio waves": "radio-waves-and-modulation",
+    "24.3/microwaves": "microwaves-and-their-uses",
+    "24.3/thermal agitation": "thermal-agitation",
+    "24.3/radar": "radar",
+    "24.3/infrared radiation (IR)": "infrared-radiation",
+    "24.3/ultraviolet radiation (UV)": "ultraviolet-radiation",
+    "24.3/visible light": "visible-light",
+    "24.3/amplitude modulation (AM)": "amplitude-modulation",
+    "24.3/extremely low frequency (ELF)": "extremely-low-frequency",
+    "24.3/carrier wave": "carrier-wave",
+    "24.3/frequency modulation (FM)": "frequency-modulation",
+    "24.3/TV": "television",
+    "24.3/very high frequency (VHF)": "very-high-frequency",
+    "24.3/ultra-high frequency (UHF)": "ultra-high-frequency",
+    "24.3/X-ray": "x-ray-radiation",
+    "24.3/gamma ray": "gamma-ray-radiation",
+    "24.4/maximum field strength": "maximum-field-strength",
+    "24.4/intensity": "intensity"
+  },
+  "variables": {
+    "24.1/c": "speed-of-light-in-vacuum",
+    "24.1/μ_0": "permeability-of-free-space",
+    "24.1/ε_0": "permittivity-of-free-space",
+    "24.1/f_0": "resonant-frequency-of-an-rlc-circuit",
+    "24.2/E_field": "electric-field",
+    "24.2/B_mag": "magnetic-field-strength-defined",
+    "24.2/c": "speed-of-light-in-vacuum",
+    "24.2/T": "period",
+    "24.2/f": "frequency",
+    "24.2/λ": "wavelength",
+    "24.2/v": "instantaneous-velocity",
+    "24.2/n": "index-of-refraction",
+    "24.3/c": "speed-of-light-in-vacuum",
+    "24.3/f": "frequency",
+    "24.3/λ": "wavelength",
+    "24.3/v_w": "instantaneous-velocity",
+    "24.4/I_intens": "intensity",
+    "24.4/I_ave": "intensity",
+    "24.4/I_0peak": "intensity",
+    "24.4/E_0field": "maximum-field-strength",
+    "24.4/B_0mag": "maximum-field-strength",
+    "24.4/P": "power",
+    "24.4/A": "@Area",
+    "24.4/c": "speed-of-light-in-vacuum",
+    "24.4/ε_0": "permittivity-of-free-space",
+    "24.4/μ_0": "permeability-of-free-space"
+  },
+  "equations": {
+    "eq-speed-of-light-constants": "speed-of-light-from-constants",
+    "eq-rlc-resonant-frequency": "resonant-frequency-of-an-rlc-circuit",
+    "eq-e-over-b": "e-over-b-equals-c",
+    "eq-b-from-e": "e-over-b-equals-c",
+    "eq-speed-in-medium": "em-wave-in-a-medium",
+    "eq-e-over-b-medium": "em-wave-in-a-medium",
+    "eq-wave-speed-general": "wave-speed-wavelength-frequency",
+    "eq-c-equals-f-lambda": "c-equals-f-lambda",
+    "eq-wavelength-from-frequency": "c-equals-f-lambda",
+    "eq-half-wavelength-antenna": "antenna-length-and-wavelength",
+    "eq-quarter-wavelength-antenna": "antenna-length-and-wavelength",
+    "eq-intensity-power-area": "intensity",
+    "eq-intensity-from-e0": "average-intensity-from-e0",
+    "eq-intensity-from-b0": "intensity-from-the-magnetic-amplitude",
+    "eq-intensity-from-e0-b0": "intensity-from-the-magnetic-amplitude",
+    "eq-peak-intensity": "peak-intensity-is-twice-average",
+    "eq-e0-from-intensity": "average-intensity-from-e0",
+    "eq-b0-from-e0": "e-over-b-equals-c"
+  },
+  "edges": [
+    [
+      "light-is-an-electromagnetic-wave",
+      "electromagnetic-wave"
+    ]
+  ]
+}

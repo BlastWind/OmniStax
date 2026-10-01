@@ -53,6 +53,7 @@
  "variables": [
   {
    "sym": "R_act",
+   "concept": "activity",
    "type": "activity",
    "meaning": "the activity of a radiopharmaceutical dose, typically a few millicuries",
    "unit": "Bq",
@@ -60,6 +61,7 @@
   },
   {
    "sym": "t_half",
+   "concept": "half-life",
    "type": "time",
    "meaning": "the half-life of the nuclide used, short to limit the dose to the patient",
    "unit": "s",
@@ -67,6 +69,7 @@
   },
   {
    "sym": "E",
+   "concept": "energy",
    "type": "energy",
    "meaning": "the energy of a single $\\gamma$ ray or of a nuclear reaction, of the order of MeV",
    "unit": "MeV",
@@ -74,6 +77,7 @@
   },
   {
    "sym": "dose",
+   "concept": "absorbed-dose-rad-and-gray",
    "type": "dose",
    "meaning": "the radiation dose, the ionizing energy deposited per kilogram of tissue, in Gy or rad; multiplied by the RBE it is the dose equivalent, in Sv or rem",
    "unit": "Gy",
@@ -81,11 +85,13 @@
   },
   {
    "sym": "RBE",
+   "concept": "relative-biological-effectiveness",
    "meaning": "the relative biological effectiveness, or quality factor, of a type of radiation",
    "section": "32.2"
   },
   {
    "sym": "BE",
+   "concept": "binding-energy",
    "type": "energy",
    "meaning": "the binding energy of a nucleus; $\\text{BE}/A$ is the binding energy per nucleon",
    "unit": "MeV",
@@ -93,23 +99,27 @@
   },
   {
    "sym": "A_nuc",
+   "concept": "mass-number",
    "meaning": "the mass number of a nucleus",
    "section": "32.5"
   },
   {
    "sym": "m_i",
+   "concept": "mass",
    "meaning": "the total mass of the reactants",
    "unit": "u",
    "section": "32.5"
   },
   {
    "sym": "m_f",
+   "concept": "mass",
    "meaning": "the total mass of the products",
    "unit": "u",
    "section": "32.5"
   },
   {
    "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
    "type": "velocity",
    "meaning": "the speed of light, whose square converts a mass destroyed into the energy released",
    "unit": "m/s",
@@ -117,6 +127,7 @@
   },
   {
    "sym": "E_gamma",
+   "concept": "energy",
    "type": "energy",
    "meaning": "the energy carried away by the $\\gamma$ ray of a reaction",
    "unit": "MeV",
@@ -124,6 +135,7 @@
   },
   {
    "sym": "T_temp",
+   "concept": "temperature",
    "type": "temperature",
    "meaning": "the temperature of fusion fuel, of the order of $10^{8}$ K for nuclei to touch",
    "unit": "K",
@@ -131,6 +143,7 @@
   },
   {
    "sym": "P",
+   "concept": "power",
    "type": "power",
    "meaning": "the average power output of a fusion or fission source",
    "unit": "W",
@@ -138,6 +151,7 @@
   },
   {
    "sym": "t",
+   "concept": "time",
    "type": "time",
    "meaning": "the time over which the energy is released",
    "unit": "s",
@@ -145,28 +159,33 @@
   },
   {
    "sym": "Δm",
+   "concept": "mass",
    "meaning": "the mass destroyed in a fission or fusion reaction",
    "unit": "u",
    "section": "32.6"
   },
   {
    "sym": "m_products",
+   "concept": "mass",
    "meaning": "the total mass of the fission products",
    "unit": "u",
    "section": "32.6"
   },
   {
    "sym": "FF_1",
+   "concept": "fission-fragments",
    "meaning": "the first fission fragment, one of the two daughter nuclei of a fission",
    "section": "32.6"
   },
   {
    "sym": "FF_2",
+   "concept": "fission-fragments",
    "meaning": "the second fission fragment",
    "section": "32.6"
   },
   {
    "sym": "x_fis",
+   "concept": "neutron-induced-fission",
    "meaning": "the number of neutrons produced in a fission; a chain reaction needs $x > 1$",
    "section": "32.6"
   }
@@ -174,28 +193,28 @@
  "equations": [
   {
    "id": "eq-rad",
-   "concept": "absorbed-dose-rad-and-gray",
+   "concept": "rad",
    "section": "32.2",
    "latex": "1\\;\\text{rad} = 0.01\\;\\text{J/kg}",
    "important": true
   },
   {
    "id": "eq-gray",
-   "concept": "absorbed-dose-rad-and-gray",
+   "concept": "gray",
    "section": "32.2",
    "latex": "1\\;\\text{Gy} = 1\\;\\text{J/kg} = 100\\;\\text{rad}",
    "important": true
   },
   {
    "id": "eq-rem",
-   "concept": "dose-equivalent-rem-and-sievert",
+   "concept": "rem",
    "section": "32.2",
    "latex": "\\text{rem} = \\text{rad}\\times\\text{RBE}",
    "important": true
   },
   {
    "id": "eq-sievert",
-   "concept": "dose-equivalent-rem-and-sievert",
+   "concept": "sievert",
    "section": "32.2",
    "latex": "1\\;\\text{Sv} = 1\\;\\text{Gy}\\times\\text{RBE} = 100\\;\\text{rem}",
    "important": true
@@ -258,7 +277,7 @@
   },
   {
    "id": "eq-fusion-energy-from-masses",
-   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "concept": "nuclear-reaction-energy",
    "section": "32.5",
    "latex": "E = (m_{\\text{i}} - m_{\\text{f}})c^{2}",
    "ktex": "\\kE = (m_{\\text{i}} - m_{\\text{f}})\\kc^{2}",
@@ -266,7 +285,7 @@
   },
   {
    "id": "eq-average-power",
-   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "concept": "power",
    "section": "32.5",
    "latex": "P = \\frac{E}{t}",
    "ktex": "\\kP = \\frac{\\kE}{\\kt}",
@@ -288,7 +307,7 @@
   },
   {
    "id": "eq-fission-energy",
-   "concept": "fission-energy-from-masses",
+   "concept": "nuclear-reaction-energy",
    "section": "32.6",
    "latex": "E = (\\Delta m)c^{2}",
    "ktex": "\\kE = (\\Delta m)\\kc^{2}",
@@ -329,191 +348,229 @@
   {
    "section": "32.1",
    "term": "Anger camera",
+   "concept": "anger-camera",
    "definition": "a common medical imaging device that uses a scintillator connected to a series of photomultipliers"
   },
   {
    "section": "32.1",
    "term": "gamma camera",
+   "concept": "anger-camera",
    "definition": "another name for an Anger camera"
   },
   {
    "section": "32.1",
    "term": "positron emission tomography",
+   "concept": "pet-annihilation-pair",
    "definition": "tomography technique that uses $\\beta^{+}$ emitters and detects the two annihilation $\\gamma$ rays, aiding in source localization"
   },
   {
    "section": "32.1",
    "term": "radiopharmaceutical",
+   "concept": "radiopharmaceuticals-and-tagging",
    "definition": "compound used for medical imaging"
   },
   {
    "section": "32.1",
    "term": "single-photon-emission computed tomography",
+   "concept": "spect-imaging",
    "definition": "tomography performed with $\\gamma$-emitting radiopharmaceuticals"
   },
   {
    "section": "32.1",
    "term": "tagged",
+   "concept": "tagged-compound",
    "definition": "process of attaching a radioactive substance to a chemical compound"
   },
   {
    "section": "32.2",
    "term": "gray",
+   "concept": "gray",
    "definition": "the SI unit for radiation dose which is defined to be $1\\;\\text{Gy} = 1\\;\\text{J/kg} = 100\\;\\text{rad}$"
   },
   {
    "section": "32.2",
    "term": "linear hypothesis",
+   "concept": "linear-hypothesis-and-long-term-risk",
    "definition": "assumption that risk is directly proportional to risk from high doses"
   },
   {
    "section": "32.2",
    "term": "rad",
+   "concept": "rad",
    "definition": "the ionizing energy deposited per kilogram of tissue"
   },
   {
    "section": "32.2",
    "term": "sievert",
+   "concept": "sievert",
    "definition": "the SI equivalent of the rem"
   },
   {
    "section": "32.2",
    "term": "relative biological effectiveness",
+   "concept": "relative-biological-effectiveness",
    "definition": "a number that expresses the relative amount of damage that a fixed amount of ionizing radiation of a given type can inflict on biological tissues"
   },
   {
    "section": "32.2",
    "term": "quality factor",
+   "concept": "relative-biological-effectiveness",
    "definition": "same as relative biological effectiveness"
   },
   {
    "section": "32.2",
    "term": "roentgen equivalent man",
+   "concept": "rem",
    "definition": "a dose unit more closely related to effects in biological tissue"
   },
   {
    "section": "32.2",
    "term": "low dose",
+   "concept": "low-dose",
    "definition": "a dose less than 100 mSv (10 rem)"
   },
   {
    "section": "32.2",
    "term": "moderate dose",
+   "concept": "moderate-dose",
    "definition": "a dose from 0.1 Sv to 1 Sv (10 to 100 rem)"
   },
   {
    "section": "32.2",
    "term": "high dose",
+   "concept": "high-dose",
    "definition": "a dose greater than 1 Sv (100 rem)"
   },
   {
    "section": "32.2",
    "term": "hormesis",
+   "concept": "hormesis",
    "definition": "a term used to describe generally favorable biological responses to low exposures of toxins or radiation"
   },
   {
    "section": "32.2",
    "term": "shielding",
+   "concept": "shielding",
    "definition": "a technique to limit radiation exposure"
   },
   {
    "section": "32.3",
    "term": "radiotherapy",
+   "concept": "radiotherapy",
    "definition": "the use of ionizing radiation to treat ailments"
   },
   {
    "section": "32.3",
    "term": "therapeutic ratio",
+   "concept": "therapeutic-ratio",
    "definition": "the ratio of abnormal cells killed to normal cells killed"
   },
   {
    "section": "32.4",
    "term": "food irradiation",
+   "concept": "food-irradiation",
    "definition": "treatment of food with ionizing radiation"
   },
   {
    "section": "32.4",
    "term": "free radicals",
+   "concept": "free-radicals",
    "definition": "ions with unstable oxygen- or hydrogen-containing molecules"
   },
   {
    "section": "32.4",
    "term": "radiolytic products",
+   "concept": "radiolytic-products",
    "definition": "compounds produced due to chemical reactions of free radicals"
   },
   {
    "section": "32.5",
    "term": "break-even",
+   "concept": "break-even",
    "definition": "when fusion power produced equals the heating power input"
   },
   {
    "section": "32.5",
    "term": "ignition",
+   "concept": "ignition",
    "definition": "when a fusion reaction produces enough energy to be self-sustaining after external energy input is cut off"
   },
   {
    "section": "32.5",
    "term": "inertial confinement",
+   "concept": "inertial-confinement",
    "definition": "a technique that aims multiple lasers at tiny fuel pellets evaporating and crushing them to high density"
   },
   {
    "section": "32.5",
    "term": "magnetic confinement",
+   "concept": "magnetic-confinement-fusion",
    "definition": "a technique in which charged particles are trapped in a small region because of difficulty in crossing magnetic field lines"
   },
   {
    "section": "32.5",
    "term": "nuclear fusion",
+   "concept": "nuclear-fusion",
    "definition": "a reaction in which two nuclei are combined, or fused, to form a larger nucleus"
   },
   {
    "section": "32.5",
    "term": "proton-proton cycle",
+   "concept": "proton-proton-cycle",
    "definition": "the combined reactions ${}^{1}\\text{H} + {}^{1}\\text{H} \\to {}^{2}\\text{H} + e^{+} + v_{\\text{e}}$, ${}^{1}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{He} + \\gamma$, and ${}^{3}\\text{He} + {}^{3}\\text{He} \\to {}^{4}\\text{He} + {}^{1}\\text{H} + {}^{1}\\text{H}$"
   },
   {
    "section": "32.6",
    "term": "breeder reactors",
+   "concept": "breeder-reactor",
    "definition": "reactors that are designed specifically to make plutonium"
   },
   {
    "section": "32.6",
    "term": "breeding",
+   "concept": "breeding-plutonium",
    "definition": "reaction process that produces ${}^{239}\\text{Pu}$"
   },
   {
    "section": "32.6",
    "term": "criticality",
+   "concept": "criticality",
    "definition": "condition in which a chain reaction easily becomes self-sustaining"
   },
   {
    "section": "32.6",
    "term": "critical mass",
+   "concept": "critical-mass",
    "definition": "minimum amount necessary for self-sustained fission of a given nuclide"
   },
   {
    "section": "32.6",
    "term": "fission fragments",
+   "concept": "fission-fragments",
    "definition": "a daughter nuclei"
   },
   {
    "section": "32.6",
    "term": "liquid drop model",
+   "concept": "liquid-drop-model",
    "definition": "a model of nucleus (only to understand some of its features) in which nucleons in a nucleus act like atoms in a drop"
   },
   {
    "section": "32.6",
    "term": "nuclear fission",
+   "concept": "nuclear-fission",
    "definition": "reaction in which a nucleus splits"
   },
   {
    "section": "32.6",
    "term": "neutron-induced fission",
+   "concept": "neutron-induced-fission",
    "definition": "fission that is initiated after the absorption of neutron"
   },
   {
    "section": "32.6",
    "term": "supercriticality",
+   "concept": "supercriticality",
    "definition": "an exponential increase in fissions"
   }
  ]

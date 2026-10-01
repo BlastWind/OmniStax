@@ -1,0 +1,301 @@
+{
+  "chapter": "ch22",
+  "kinds": {
+    "magnetic-poles": "axiom",
+    "like-poles-repel": "axiom",
+    "no-magnetic-monopoles": "axiom",
+    "ferromagnetic-materials": "definition",
+    "magnetic-domains": "idea",
+    "curie-temperature": "definition",
+    "electromagnet": "idea",
+    "current-is-the-source-of-magnetism": "idea",
+    "magnetic-field": "definition",
+    "direction-of-field-lines": "definition",
+    "rules-for-magnetic-field-lines": "axiom",
+    "magnetic-force-on-a-moving-charge": "axiom",
+    "magnetic-field-strength-defined": "definition",
+    "the-tesla": "definition",
+    "right-hand-rule-1": "skill",
+    "force-reverses-with-sign-of-charge": "result",
+    "magnetic-force-does-no-work": "result",
+    "circular-motion-in-a-magnetic-field": "result",
+    "radius-of-curvature": "result",
+    "spiral-along-field-lines": "result",
+    "magnetic-mirror": "idea",
+    "magnetic-confinement": "idea",
+    "hall-effect": "idea",
+    "hall-emf": "result",
+    "sign-of-charge-carriers": "skill",
+    "hall-probe-and-flow-measurement": "idea",
+    "magnetic-force-on-a-current-carrying-wire": "result",
+    "force-per-unit-length-on-a-wire": "result",
+    "direction-of-force-on-a-current": "skill",
+    "magnetohydrodynamic-pump": "idea",
+    "torque-on-a-current-loop": "result",
+    "torque-varies-with-angle": "result",
+    "net-force-on-a-loop-is-zero": "result",
+    "brushes-reverse-the-current": "idea",
+    "meter-and-galvanometer": "idea",
+    "field-of-a-long-straight-wire": "axiom",
+    "right-hand-rule-2": "skill",
+    "permeability-of-free-space": "definition",
+    "amperes-law": "axiom",
+    "field-at-the-centre-of-a-loop": "result",
+    "field-inside-a-solenoid": "result",
+    "force-between-parallel-currents": "result",
+    "attraction-and-repulsion-of-currents": "result",
+    "pinch-effect": "idea",
+    "definition-of-the-ampere": "definition",
+    "mass-spectrometry": "idea",
+    "velocity-selector": "result",
+    "steering-an-electron-beam": "idea",
+    "magnetic-resonance-imaging": "idea",
+    "biomagnetic-measurement": "idea"
+  },
+  "statements": {
+    "magnetic-field": "The magnetic field, traditionally called the B-field, is the representation of magnetic forces. Like the gravitational and electric fields, it maps the forces that surround an object and can act on another object at a distance, and it represents the object that generates it, not the probe that tests it."
+  },
+  "new": [
+    {
+      "id": "electromagnetism",
+      "kind": "definition",
+      "section": "22.2",
+      "name": "Electromagnetism",
+      "statement": "Electromagnetism is the use of electric currents to produce magnetism, and more broadly the single subject that electricity and magnetism become once a current is known to make a magnetic field.",
+      "introduces": "electromagnets",
+      "prereqs": [
+        "electric-current",
+        "magnetic-poles"
+      ]
+    },
+    {
+      "id": "magnetic-field-lines",
+      "kind": "definition",
+      "section": "22.3",
+      "name": "Magnetic field lines",
+      "statement": "Magnetic field lines are a pictorial representation of a magnetic field: the field points along them, and they are closer together where the field is stronger.",
+      "introduces": "field",
+      "prereqs": [
+        "magnetic-field"
+      ]
+    },
+    {
+      "id": "number-of-turns",
+      "kind": "definition",
+      "section": "22.8",
+      "name": "Number of turns, $N$",
+      "statement": "A coil is a wire wound into loops, and its number of turns $N$ is how many loops it has. Each turn feels the same torque in a field and encloses the same flux, so many quantities of a coil are $N$ times those of a single loop.",
+      "introduces": "torque-on-a-loop",
+      "prereqs": []
+    },
+    {
+      "id": "electric-motor",
+      "kind": "definition",
+      "section": "22.8",
+      "name": "Electric motor",
+      "statement": "An electric motor is a loop of wire, or a coil of many loops, mounted on a shaft in a magnetic field, so that the torque the field exerts on its current turns the shaft.",
+      "introduces": "keeping-the-coil-turning",
+      "prereqs": [
+        "torque-on-a-current-loop"
+      ]
+    },
+    {
+      "id": "solenoid",
+      "kind": "definition",
+      "section": "22.9",
+      "name": "Solenoid, $n = N/l$",
+      "statement": "A solenoid is a thin wire wound into a long coil, and the number of loops per unit length, $n = N/l$, describes how tightly it is wound.",
+      "introduces": "solenoid",
+      "prereqs": [
+        "number-of-turns",
+        "@Length"
+      ]
+    },
+    {
+      "id": "nuclear-magnetic-resonance",
+      "kind": "idea",
+      "section": "22.11",
+      "name": "Nuclear magnetic resonance",
+      "statement": "Nuclear magnetic resonance is the interaction of an applied magnetic field with the nuclei of certain atoms, whose own small magnetic fields line up with it and absorb radio waves at a frequency set by the field strength.",
+      "introduces": "mri",
+      "prereqs": [
+        "magnetic-field"
+      ]
+    },
+    {
+      "id": "north-magnetic-pole",
+      "kind": "definition",
+      "section": "22.1",
+      "name": "North magnetic pole",
+      "statement": "The north magnetic pole of a magnet is the end or side that is attracted toward Earth's geographic north pole, the end that points north when the magnet is free to turn.",
+      "introduces": "poles",
+      "prereqs": [
+        "magnetic-poles"
+      ]
+    },
+    {
+      "id": "south-magnetic-pole",
+      "kind": "definition",
+      "section": "22.1",
+      "name": "South magnetic pole",
+      "statement": "The south magnetic pole of a magnet is the end or side that is attracted toward Earth's geographic south pole.",
+      "introduces": "poles",
+      "prereqs": [
+        "magnetic-poles"
+      ]
+    },
+    {
+      "id": "magnetized",
+      "kind": "definition",
+      "section": "22.2",
+      "name": "Magnetized",
+      "statement": "A material is magnetized when it has been turned into a magnet, either induced to be magnetic for a time or made into a permanent magnet.",
+      "introduces": "ferromagnets",
+      "prereqs": [
+        "ferromagnetic-materials"
+      ]
+    },
+    {
+      "id": "gauss",
+      "kind": "definition",
+      "section": "22.4",
+      "name": "The gauss, $1\\;\\text{G} = 10^{-4}\\;\\text{T}$",
+      "statement": "The gauss is a smaller unit of magnetic field strength than the tesla, with $1\\;\\text{G} = 10^{-4}\\;\\text{T}$.",
+      "introduces": "tesla-and-gauss",
+      "prereqs": [
+        "the-tesla"
+      ]
+    },
+    {
+      "id": "biot-savart-law",
+      "kind": "axiom",
+      "section": "22.9",
+      "name": "The Biot-Savart law",
+      "statement": "The Biot-Savart law gives the magnetic field made by each small segment of a current, so that the field of any current is the sum of the fields of its segments.",
+      "introduces": "amperes-law",
+      "prereqs": [
+        "electric-current",
+        "magnetic-field"
+      ]
+    },
+    {
+      "id": "magnetocardiogram",
+      "kind": "definition",
+      "section": "22.11",
+      "name": "Magnetocardiogram (MCG)",
+      "statement": "A magnetocardiogram is a recording of the heart's magnetic field as it beats.",
+      "introduces": "biomagnetic",
+      "prereqs": [
+        "biomagnetic-measurement"
+      ]
+    },
+    {
+      "id": "magnetoencephalogram",
+      "kind": "definition",
+      "section": "22.11",
+      "name": "Magnetoencephalogram (MEG)",
+      "statement": "A magnetoencephalogram is a measurement of the brain's magnetic field.",
+      "introduces": "biomagnetic",
+      "prereqs": [
+        "biomagnetic-measurement"
+      ]
+    }
+  ],
+  "glossary": {
+    "22.1/north magnetic pole": "north-magnetic-pole",
+    "22.1/south magnetic pole": "south-magnetic-pole",
+    "22.2/ferromagnetic": "ferromagnetic-materials",
+    "22.2/magnetized": "magnetized",
+    "22.2/domains": "magnetic-domains",
+    "22.2/Curie temperature": "curie-temperature",
+    "22.2/electromagnetism": "electromagnetism",
+    "22.2/electromagnet": "electromagnet",
+    "22.2/magnetic monopoles": "no-magnetic-monopoles",
+    "22.3/magnetic field": "magnetic-field",
+    "22.3/B-field": "magnetic-field",
+    "22.3/magnetic field lines": "magnetic-field-lines",
+    "22.3/direction of magnetic field lines": "direction-of-field-lines",
+    "22.4/right hand rule 1 (RHR-1)": "right-hand-rule-1",
+    "22.4/Lorentz force": "magnetic-force-on-a-moving-charge",
+    "22.4/tesla": "the-tesla",
+    "22.4/magnetic force": "magnetic-force-on-a-moving-charge",
+    "22.4/gauss": "gauss",
+    "22.6/Hall effect": "hall-effect",
+    "22.6/Hall emf": "hall-emf",
+    "22.8/motor": "electric-motor",
+    "22.8/meter": "meter-and-galvanometer",
+    "22.9/right hand rule 2 (RHR-2)": "right-hand-rule-2",
+    "22.9/magnetic field strength (magnitude) produced by a long straight current-carrying wire": "field-of-a-long-straight-wire",
+    "22.9/permeability of free space": "permeability-of-free-space",
+    "22.9/magnetic field strength at the center of a circular loop": "field-at-the-centre-of-a-loop",
+    "22.9/solenoid": "solenoid",
+    "22.9/magnetic field strength inside a solenoid": "field-inside-a-solenoid",
+    "22.9/Biot-Savart law": "biot-savart-law",
+    "22.9/Ampere’s law": "amperes-law",
+    "22.9/Maxwell’s equations": "maxwells-equations",
+    "22.11/magnetic resonance imaging (MRI)": "magnetic-resonance-imaging",
+    "22.11/nuclear magnetic resonance (NMR)": "nuclear-magnetic-resonance",
+    "22.11/magnetocardiogram (MCG)": "magnetocardiogram",
+    "22.11/magnetoencephalogram (MEG)": "magnetoencephalogram"
+  },
+  "variables": {
+    "22.4/B_mag": "magnetic-field-strength-defined",
+    "22.4/F": "force",
+    "22.4/q": "electric-charge",
+    "22.4/v": "instantaneous-velocity",
+    "22.4/θ": "@Angle",
+    "22.5/r_curv": "radius-of-curvature",
+    "22.5/m": "mass",
+    "22.6/E_field": "electric-field",
+    "22.6/emf_hall": "hall-emf",
+    "22.7/I_curr": "electric-current",
+    "22.6/l": "@Length",
+    "22.8/A": "@Area",
+    "22.8/N_count": "number-of-turns",
+    "22.8/w_loop": "@Length",
+    "22.8/τ": "torque",
+    "22.9/μ_0": "permeability-of-free-space",
+    "22.9/R": "@Length",
+    "22.9/n": "solenoid",
+    "22.10/B_1mag": "magnetic-field-strength-defined"
+  },
+  "equations": {
+    "eq-magnetic-force": "magnetic-force-on-a-moving-charge",
+    "eq-field-from-force": "magnetic-field-strength-defined",
+    "eq-tesla": "the-tesla",
+    "eq-magnetic-force-is-centripetal": "circular-motion-in-a-magnetic-field",
+    "eq-radius-of-curvature": "radius-of-curvature",
+    "eq-hall-force-balance": "hall-effect",
+    "eq-hall-emf": "hall-emf",
+    "eq-force-on-a-current": "magnetic-force-on-a-current-carrying-wire",
+    "eq-force-per-length-on-a-current": "force-per-unit-length-on-a-wire",
+    "eq-torque-one-turn": "torque-on-a-current-loop",
+    "eq-torque-on-a-loop": "torque-on-a-current-loop",
+    "eq-maximum-torque": "torque-varies-with-angle",
+    "eq-field-of-a-straight-wire": "field-of-a-long-straight-wire",
+    "eq-field-at-centre-of-a-loop": "field-at-the-centre-of-a-loop",
+    "eq-field-of-a-flat-coil": "field-at-the-centre-of-a-loop",
+    "eq-field-inside-a-solenoid": "field-inside-a-solenoid",
+    "eq-turns-per-unit-length": "solenoid",
+    "eq-field-of-wire-one": "field-of-a-long-straight-wire",
+    "eq-force-on-wire-two": "magnetic-force-on-a-current-carrying-wire",
+    "eq-force-per-length-parallel": "force-between-parallel-currents",
+    "eq-the-ampere": "definition-of-the-ampere",
+    "eq-velocity-selector": "velocity-selector",
+    "eq-mass-spectrometer-radius": "radius-of-curvature"
+  },
+  "edges": [
+    [
+      "rules-for-magnetic-field-lines",
+      "magnetic-field-lines"
+    ],
+    [
+      "field-inside-a-solenoid",
+      "solenoid"
+    ],
+    [
+      "solenoid-inductance",
+      "solenoid"
+    ]
+  ]
+}

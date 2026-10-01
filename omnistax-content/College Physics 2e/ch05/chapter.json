@@ -29,6 +29,7 @@
  "variables": [
   {
    "sym": "f_fric",
+   "concept": "friction",
    "type": "force",
    "meaning": "magnitude of the friction force, which is parallel to the contact surface and always opposes motion or attempted motion",
    "unit": "N",
@@ -37,6 +38,7 @@
   },
   {
    "sym": "f_s",
+   "concept": "static-friction",
    "type": "force",
    "meaning": "magnitude of static friction, the force between two systems that are in contact and are not moving relative to one another",
    "unit": "N",
@@ -45,6 +47,7 @@
   },
   {
    "sym": "f_smax",
+   "concept": "static-friction",
    "type": "force",
    "meaning": "the largest static friction the surfaces can supply; once the applied force exceeds it, the object moves",
    "unit": "N",
@@ -53,6 +56,7 @@
   },
   {
    "sym": "f_k",
+   "concept": "kinetic-friction",
    "type": "force",
    "meaning": "magnitude of kinetic friction, the force between two systems that are in contact and moving relative to one another",
    "unit": "N",
@@ -61,6 +65,7 @@
   },
   {
    "sym": "N",
+   "concept": "normal-force",
    "type": "force",
    "meaning": "magnitude of the normal force, the force perpendicular to the contact surface between the systems",
    "unit": "N",
@@ -69,6 +74,7 @@
   },
   {
    "sym": "F",
+   "concept": "force",
    "type": "force",
    "meaning": "the force applied parallel to the surface, which static friction answers with an equal and opposite force until the object breaks away",
    "unit": "N",
@@ -77,6 +83,7 @@
   },
   {
    "sym": "μ_s",
+   "concept": "coefficient-of-friction",
    "meaning": "coefficient of static friction, which depends on both of the materials in contact and carries no units",
    "unit": "",
    "section": "5.1",
@@ -84,6 +91,7 @@
   },
   {
    "sym": "μ_k",
+   "concept": "coefficient-of-friction",
    "meaning": "coefficient of kinetic friction, which is less than the coefficient of static friction for the same two materials",
    "unit": "",
    "section": "5.1",
@@ -91,6 +99,7 @@
   },
   {
    "sym": "w",
+   "concept": "weight",
    "type": "force",
    "meaning": "the weight of the skier, which the coordinate system of the slope splits into a component perpendicular to the slope and a component along it",
    "unit": "N",
@@ -99,6 +108,7 @@
   },
   {
    "sym": "w_perp",
+   "concept": "weight",
    "type": "force",
    "meaning": "the component of the weight perpendicular to the slope, equal in magnitude to the normal force, so that there is no motion perpendicular to the slope",
    "unit": "N",
@@ -107,6 +117,7 @@
   },
   {
    "sym": "w_par",
+   "concept": "weight",
    "type": "force",
    "meaning": "the component of the weight along the slope, which is larger than the friction and so accelerates the skier down it",
    "unit": "N",
@@ -115,6 +126,7 @@
   },
   {
    "sym": "θ",
+   "concept": "angle",
    "meaning": "the angle the slope makes with the horizontal",
    "unit": "°",
    "section": "5.1",
@@ -122,6 +134,7 @@
   },
   {
    "sym": "m",
+   "concept": "mass",
    "meaning": "the mass of the system whose weight presses the two surfaces together",
    "unit": "kg",
    "section": "5.1",
@@ -129,6 +142,7 @@
   },
   {
    "sym": "g",
+   "concept": "acceleration-due-to-gravity",
    "type": "acceleration",
    "meaning": "the acceleration due to gravity, which turns the mass resting on the surface into a weight",
    "unit": "m/s²",
@@ -137,6 +151,7 @@
   },
   {
    "sym": "F_D",
+   "concept": "drag-force",
    "type": "force",
    "meaning": "magnitude of the drag force on an object moving through a fluid, which always opposes the motion",
    "unit": "N",
@@ -145,6 +160,7 @@
   },
   {
    "sym": "C_drag",
+   "concept": "drag-coefficient",
    "meaning": "the drag coefficient, a dimensionless number determined empirically in a wind tunnel, which depends on the shape of the object",
    "unit": "",
    "section": "5.2",
@@ -152,6 +168,7 @@
   },
   {
    "sym": "A",
+   "concept": "area",
    "meaning": "the area of the object facing the fluid",
    "unit": "m²",
    "section": "5.2",
@@ -159,6 +176,7 @@
   },
   {
    "sym": "ρ",
+   "concept": "density",
    "meaning": "the density of the fluid the object moves through, which for air is 1.21 kg/m³",
    "unit": "kg/m³",
    "section": "5.2",
@@ -166,6 +184,7 @@
   },
   {
    "sym": "v",
+   "concept": "instantaneous-velocity",
    "type": "velocity",
    "meaning": "the speed of the object through the fluid, which the drag force depends on",
    "unit": "m/s",
@@ -174,6 +193,7 @@
   },
   {
    "sym": "v_t",
+   "concept": "terminal-velocity",
    "type": "velocity",
    "meaning": "the terminal velocity, the constant speed a falling object reaches when the drag force has grown equal to its weight",
    "unit": "m/s",
@@ -182,6 +202,7 @@
   },
   {
    "sym": "b",
+   "concept": "drag-force-equation",
    "meaning": "the constant 0.5CρA, which gathers the shape, the size and the fluid into one number so that the drag force is bv²",
    "unit": "kg/m",
    "section": "5.2",
@@ -189,6 +210,7 @@
   },
   {
    "sym": "m",
+   "concept": "mass",
    "meaning": "the mass of the falling object, whose weight the drag force grows to match",
    "unit": "kg",
    "section": "5.2",
@@ -196,6 +218,7 @@
   },
   {
    "sym": "g",
+   "concept": "acceleration-due-to-gravity",
    "type": "acceleration",
    "meaning": "the acceleration due to gravity, which gives the falling object the weight mg",
    "unit": "m/s²",
@@ -204,6 +227,7 @@
   },
   {
    "sym": "F_s",
+   "concept": "stokes-law",
    "type": "force",
    "meaning": "magnitude of the drag force given by Stokes' law, which holds for a very small object moving slowly or in a medium denser than air",
    "unit": "N",
@@ -212,6 +236,7 @@
   },
   {
    "sym": "r",
+   "concept": "length",
    "meaning": "the radius of the small object that Stokes' law applies to",
    "unit": "m",
    "section": "5.2",
@@ -219,6 +244,7 @@
   },
   {
    "sym": "η",
+   "concept": "viscosity",
    "meaning": "the viscosity of the fluid, measured in kilograms per meter per second",
    "unit": "kg/(m·s)",
    "section": "5.2",
@@ -226,6 +252,7 @@
   },
   {
    "sym": "F",
+   "concept": "force",
    "type": "force",
    "meaning": "the force applied to the object, which changes its shape rather than its motion",
    "unit": "N",
@@ -234,6 +261,7 @@
   },
   {
    "sym": "ΔL",
+   "concept": "deformation",
    "type": "position",
    "meaning": "the deformation, the change in length the force produces",
    "unit": "m",
@@ -242,6 +270,7 @@
   },
   {
    "sym": "k",
+   "concept": "force-constant",
    "type": "stiffness",
    "meaning": "a proportionality constant that depends on the shape and the composition of the object and on the direction of the force",
    "unit": "N/m",
@@ -250,6 +279,7 @@
   },
   {
    "sym": "L_0",
+   "concept": "youngs-modulus",
    "type": "position",
    "meaning": "the original length of the wire or rod, before the force is applied",
    "unit": "m",
@@ -258,6 +288,7 @@
   },
   {
    "sym": "A",
+   "concept": "area",
    "meaning": "the cross-sectional area of the wire or rod, which is πr² for a cylinder of radius r",
    "unit": "m²",
    "section": "5.3",
@@ -265,6 +296,7 @@
   },
   {
    "sym": "Y",
+   "concept": "youngs-modulus",
    "type": "elastic-modulus",
    "meaning": "Young's modulus, the elastic modulus for a change in length, which depends on the substance; a material with a large Y deforms little for a given tension or compression",
    "unit": "N/m²",
@@ -273,6 +305,7 @@
   },
   {
    "sym": "S",
+   "concept": "shear-deformation",
    "type": "elastic-modulus",
    "meaning": "the shear modulus, which sets the sideways deformation that a shearing force produces",
    "unit": "N/m²",
@@ -281,6 +314,7 @@
   },
   {
    "sym": "B_bulk",
+   "concept": "bulk-deformation",
    "type": "elastic-modulus",
    "meaning": "the bulk modulus, which sets the change in volume that a force per unit area applied evenly inward on all surfaces produces",
    "unit": "N/m²",
@@ -289,6 +323,7 @@
   },
   {
    "sym": "Δx",
+   "concept": "shear-deformation",
    "type": "position",
    "meaning": "the shear deformation, which is perpendicular to the original length rather than parallel to it",
    "unit": "m",
@@ -297,6 +332,7 @@
   },
   {
    "sym": "ΔV",
+   "concept": "bulk-deformation",
    "meaning": "the change in volume produced by a force applied evenly inward on every surface",
    "unit": "m³",
    "section": "5.3",
@@ -304,6 +340,7 @@
   },
   {
    "sym": "V_0",
+   "concept": "volume",
    "meaning": "the original volume of the object, before it is compressed",
    "unit": "m³",
    "section": "5.3",
@@ -311,6 +348,7 @@
   },
   {
    "sym": "w",
+   "concept": "weight",
    "type": "force",
    "meaning": "the weight hung from the guitar string or from the nail, which is the force that deforms it",
    "redefines": true,
@@ -320,6 +358,7 @@
   },
   {
    "sym": "r",
+   "concept": "length",
    "meaning": "the radius of the rod, wire or nail, from which the cross-sectional area πr² is found",
    "unit": "m",
    "section": "5.3",
@@ -327,6 +366,7 @@
   },
   {
    "sym": "m",
+   "concept": "mass",
    "meaning": "the mass whose weight deforms the object",
    "unit": "kg",
    "section": "5.3",
@@ -346,6 +386,7 @@
   },
   {
    "id": "eq-fs-max",
+   "concept": "static-friction-magnitude",
    "section": "5.1",
    "latex": "f_{\\text{s}(\\text{max})} = \\mu_{\\text{s}} N",
    "ktex": "\\kfsmax = \\mu_{\\text{s}} \\kN",
@@ -365,6 +406,7 @@
   },
   {
    "id": "eq-N-incline",
+   "concept": "weight-components-on-incline",
    "section": "5.1",
    "latex": "N = w_{\\perp} = w\\cos\\theta = mg\\cos\\theta",
    "ktex": "\\kN = \\kwperp = \\kwgt\\cos\\theta = m\\kg\\cos\\theta",
@@ -384,6 +426,7 @@
   },
   {
    "id": "eq-mu-k-slope",
+   "concept": "friction-on-an-incline",
    "section": "5.1",
    "latex": "\\mu_{\\text{k}} = \\frac{f_{\\text{k}}}{N} = \\frac{f_{\\text{k}}}{mg\\cos\\theta}",
    "ktex": "\\mu_{\\text{k}} = \\frac{\\kfk}{\\kN} = \\frac{\\kfk}{m\\kg\\cos\\theta}",
@@ -392,6 +435,7 @@
   },
   {
    "id": "eq-mu-tan",
+   "concept": "friction-on-an-incline",
    "section": "5.1",
    "latex": "\\mu_{\\text{k}} = \\frac{mg\\sin\\theta}{mg\\cos\\theta} = \\tan\\theta",
    "ktex": "\\mu_{\\text{k}} = \\frac{m\\kg\\sin\\theta}{m\\kg\\cos\\theta} = \\tan\\theta",
@@ -401,6 +445,7 @@
   },
   {
    "id": "eq-drag-prop",
+   "concept": "drag-force-equation",
    "section": "5.2",
    "latex": "F_{\\text{D}} \\propto v^2",
    "ktex": "\\kFD \\propto \\kv^2",
@@ -420,6 +465,7 @@
   },
   {
    "id": "eq-drag-b",
+   "concept": "drag-force-equation",
    "section": "5.2",
    "latex": "F_{\\text{D}} = bv^2, \\quad b = 0.5 C \\rho A",
    "ktex": "\\kFD = b\\kv^2, \\quad b = 0.5 C \\rho A",
@@ -428,6 +474,7 @@
   },
   {
    "id": "eq-terminal-balance",
+   "concept": "terminal-velocity",
    "section": "5.2",
    "latex": "F_{\\text{net}} = mg - F_{\\text{D}} = ma = 0",
    "ktex": "\\kFnet = m\\kg - \\kFD = m\\ka = 0",
@@ -457,6 +504,7 @@
   },
   {
    "id": "eq-hooke-dl",
+   "concept": "hookes-law",
    "section": "5.3",
    "latex": "F = k\\Delta L",
    "ktex": "\\kF = \\kk\\kdL",
@@ -466,6 +514,7 @@
   },
   {
    "id": "eq-dl-from-k",
+   "concept": "hookes-law",
    "section": "5.3",
    "latex": "\\Delta L = \\frac{F}{k}",
    "ktex": "\\kdL = \\frac{\\kF}{\\kk}",
@@ -484,6 +533,7 @@
   },
   {
    "id": "eq-stress-strain-form",
+   "concept": "stress-strain",
    "section": "5.3",
    "latex": "\\frac{F}{A} = Y\\frac{\\Delta L}{L_0}",
    "ktex": "\\frac{\\kF}{A} = \\kY\\frac{\\kdL}{\\kLo}",
@@ -501,6 +551,7 @@
   },
   {
    "id": "eq-F-YA",
+   "concept": "youngs-modulus",
    "section": "5.3",
    "latex": "F = YA\\frac{\\Delta L}{L_0}",
    "ktex": "\\kF = \\kY A\\frac{\\kdL}{\\kLo}",
@@ -509,6 +560,7 @@
   },
   {
    "id": "eq-k-rod",
+   "concept": "youngs-modulus",
    "section": "5.3",
    "latex": "k = \\frac{YA}{L_0}",
    "ktex": "\\kk = \\frac{\\kY A}{\\kLo}",
@@ -528,6 +580,7 @@
   },
   {
    "id": "eq-shear-F",
+   "concept": "shear-deformation",
    "section": "5.3",
    "latex": "F = \\frac{SA}{L_0}\\Delta x",
    "ktex": "\\kF = \\frac{\\kS A}{\\kLo}\\kdx",
@@ -546,6 +599,7 @@
   },
   {
    "id": "eq-dv-over-v0",
+   "concept": "bulk-deformation",
    "section": "5.3",
    "latex": "\\frac{\\Delta V}{V_0} = \\frac{1}{B}\\frac{F}{A}",
    "ktex": "\\frac{\\Delta V}{V_0} = \\frac{1}{\\kBb}\\frac{\\kF}{A}",
@@ -557,66 +611,79 @@
   {
    "section": "5.1",
    "term": "friction",
+   "concept": "friction",
    "definition": "a force that opposes relative motion or attempts at motion between systems in contact"
   },
   {
    "section": "5.1",
    "term": "kinetic friction",
+   "concept": "kinetic-friction",
    "definition": "a force that opposes the motion of two systems that are in contact and moving relative to one another"
   },
   {
    "section": "5.1",
    "term": "static friction",
+   "concept": "static-friction",
    "definition": "a force that opposes the motion of two systems that are in contact and are not moving relative to one another"
   },
   {
    "section": "5.1",
    "term": "magnitude of static friction",
+   "concept": "static-friction-magnitude",
    "definition": "fₛ ≤ μₛN, where μₛ is the coefficient of static friction and N is the magnitude of the normal force"
   },
   {
    "section": "5.1",
    "term": "magnitude of kinetic friction",
+   "concept": "kinetic-friction-magnitude",
    "definition": "fₖ = μₖN, where μₖ is the coefficient of kinetic friction"
   },
   {
    "section": "5.2",
    "term": "drag force",
+   "concept": "drag-force",
    "definition": "the force on an object moving through a fluid, found to be proportional to the square of the speed of the object: it is ½CρAv², where C is the drag coefficient, A is the area of the object facing the fluid, and ρ is the density of the fluid"
   },
   {
    "section": "5.2",
    "term": "Stokes' law",
+   "concept": "stokes-law",
    "definition": "Fₛ = 6πrηv, where r is the radius of the object, η is the viscosity of the fluid, and v is the object's velocity"
   },
   {
    "section": "5.3",
    "term": "deformation",
+   "concept": "deformation",
    "definition": "change in shape due to the application of force"
   },
   {
    "section": "5.3",
    "term": "Hooke's law",
+   "concept": "hookes-law",
    "definition": "proportional relationship between the force F on a material and the deformation ΔL it causes, F = kΔL"
   },
   {
    "section": "5.3",
    "term": "tensile strength",
+   "concept": "tensile-strength",
    "definition": "the breaking stress that will cause permanent deformation or fracture of a material"
   },
   {
    "section": "5.3",
    "term": "stress",
+   "concept": "stress",
    "definition": "ratio of force to area"
   },
   {
    "section": "5.3",
    "term": "strain",
+   "concept": "strain",
    "definition": "ratio of change in length to original length"
   },
   {
    "section": "5.3",
    "term": "shear deformation",
+   "concept": "shear-deformation",
    "definition": "deformation perpendicular to the original length of an object"
   }
  ]

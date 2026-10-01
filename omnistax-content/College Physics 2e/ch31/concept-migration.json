@@ -1,0 +1,631 @@
+{
+  "chapter": "ch31",
+  "kinds": {
+    "nuclear-radioactivity": "idea",
+    "radiation-is-nuclear-in-origin": "idea",
+    "alpha-beta-gamma-rays": "idea",
+    "ionizing-radiation": "definition",
+    "range-of-radiation": "idea",
+    "ionization-energy-to-count": "skill",
+    "radiation-detection-by-ionization": "idea",
+    "geiger-tube": "idea",
+    "scintillator-and-photomultiplier": "idea",
+    "solid-state-detector": "idea",
+    "nucleons": "definition",
+    "atomic-mass-unit": "definition",
+    "nuclide-notation": "skill",
+    "isotopes": "definition",
+    "nuclear-radius": "axiom",
+    "nuclear-density": "skill",
+    "strong-and-weak-nuclear-forces": "axiom",
+    "chart-of-the-nuclides": "idea",
+    "magic-numbers": "idea",
+    "parent-daughter-decay-series": "idea",
+    "alpha-decay": "skill",
+    "nuclear-reaction-energy": "result",
+    "decay-energy-from-atomic-masses": "skill",
+    "beta-minus-decay-and-the-neutrino": "skill",
+    "beta-plus-decay-and-electron-capture": "skill",
+    "conservation-of-electron-family-number": "axiom",
+    "conservation-of-nucleon-number": "axiom",
+    "gamma-decay": "idea",
+    "half-life": "definition",
+    "exponential-decay-law": "result",
+    "decay-constant": "result",
+    "radioactive-dating": "skill",
+    "activity": "definition",
+    "activity-from-number-and-half-life": "result",
+    "activity-decays-exponentially": "result",
+    "binding-energy": "definition",
+    "mass-defect": "result",
+    "binding-energy-from-atomic-masses": "skill",
+    "binding-energy-per-nucleon-curve": "idea",
+    "short-range-nuclear-force-and-coulomb-repulsion": "idea",
+    "bound-in-a-potential-well": "idea",
+    "quantum-tunneling": "idea",
+    "alpha-decay-by-tunneling": "idea",
+    "scanning-tunneling-microscope": "idea"
+  },
+  "statements": {
+    "nuclear-radioactivity": "Radioactivity is the spontaneous decay of some nuclei, which destroys a small part of their mass and emits energetic rays from the nucleus.",
+    "radiation-is-nuclear-in-origin": "The rays of radioactivity come from the nucleus, not the electrons: they do not vary with chemical state, temperature, pressure or ionization, all of which affect electrons, and each event carries energies of the order of a million electron volts, far beyond atomic energies of a few eV.",
+    "ionizing-radiation": "Ionizing radiation is radiation, whether nuclear in origin or not, that ionizes the material that absorbs it. Nuclear decays emit from a few keV to more than 10 MeV per event, while it takes only a few eV to ionize an atom, so the radiation damages tissue and electronics and can be detected.",
+    "range-of-radiation": "The range of radiation is the distance it travels through a material. Higher energy gives a greater range, a material dense in electrons gives a smaller one, and at the same energy alphas stop first, betas go farther and gammas farthest, because a greater charge and a lower speed make a particle ionize more readily.",
+    "ionization-energy-to-count": "The number of ion pairs a particle can create is the energy it deposits divided by the energy needed to create each pair, which connects the MeV energies of nuclear radiation to the tens of eV of an ionization.",
+    "radiation-detection-by-ionization": "Ionizing radiation cannot be sensed directly, and every radiation detector, from photographic film to a semiconductor, turns the ionization or excitation that radiation produces into something that can be seen or measured.",
+    "geiger-tube": "In a Geiger tube a voltage between a cylinder and a wire along its axis sweeps up the ion pairs that radiation creates in the gas, and the counter records the brief current as a count. A count does not give the energy, charge or type of the radiation.",
+    "nucleons": "Nucleons are the particles found inside nuclei, the positive proton and the neutral neutron, with nearly the same mass and both far heavier than an electron.",
+    "atomic-mass-unit": "The unified atomic mass unit is defined so that a neutral $^{12}$C atom has a mass of exactly 12 u, and $1\\;\\text{u} = 1.6605 \\times 10^{-27}$ kg $= 931.5$ MeV/$c^{2}$. A mass in MeV/$c^{2}$ becomes an energy in MeV when multiplied by $c^{2}$.",
+    "nuclide-notation": "A nuclide is written ${}^{A}_{Z}\\text{X}_{N}$, with the mass number $A$ above, the atomic number $Z$ below, the element symbol, and the neutron number $N$ after it, and with $A = N + Z$ any one of these can be found from the others.",
+    "isotopes": "Isotopes are nuclei with the same $Z$ and different $N$, such as hydrogen, deuterium and tritium. Their chemistry follows $Z$, while their mass and stability follow the whole nucleus.",
+    "nuclear-radius": "The radius of a nucleus is $r = r_0 A^{1/3}$ with $r_0 = 1.2$ fm, so its volume is proportional to the number of nucleons $A$. This is what happens if nucleons are packed so closely that there is no empty space between them.",
+    "nuclear-density": "The density of nuclear matter is found from $r = r_0 A^{1/3}$ and a mass of $A$ u; every nucleus has about the same density, about $2 \\times 10^{14}$ times that of water.",
+    "strong-and-weak-nuclear-forces": "Two forces act in the nucleus beside the Coulomb force: the strong nuclear force, about 100 times more attractive than the electromagnetic repulsion between protons but falling to zero within a few fm, and the weak nuclear force. Their strength is why nuclear decay energies are so large.",
+    "chart-of-the-nuclides": "The chart of the nuclides plots every known nuclide by $N$ against $Z$. Stable nuclei lie near $N = Z$ for light nuclei and with progressively more neutrons than protons for heavier ones, and nuclei off this band decay toward it.",
+    "magic-numbers": "Nuclei with certain numbers of protons or neutrons, the magic numbers, are unusually stable, which means the nucleus has shells as the atom does and closed shells are more stable.",
+    "parent-daughter-decay-series": "A decay turns a parent nuclide into a daughter, and a daughter may itself be unstable, so some parents start a whole series of decays that ends only at a stable nuclide, as the $^{238}$U series ends at $^{206}$Pb.",
+    "alpha-decay": "An $\\alpha$ decay equation is written by removing a $^{4}$He nucleus from the parent, ${}^{A}_{Z}\\text{X}_{N} \\to {}^{A-4}_{Z-2}\\text{Y}_{N-2} + {}^{4}_{2}\\text{He}_{2}$: the daughter is the element two places lower in the periodic table, with a mass number four smaller.",
+    "nuclear-reaction-energy": "The energy released in a nuclear reaction comes from the mass destroyed in it, $E = (\\Delta m)c^{2}$. When the products have less total mass than the parent, the reaction releases energy and can happen spontaneously; when they have more, it needs an input of energy.",
+    "decay-energy-from-atomic-masses": "A decay energy is found from the atomic masses in the tables, which are those of neutral atoms, so the electrons must be counted. In $\\alpha$ and $\\beta^{-}$ decay they balance and the atomic masses can be subtracted directly; in $\\beta^{+}$ decay two electron masses must also be subtracted.",
+    "beta-minus-decay-and-the-neutrino": "In $\\beta^{-}$ decay a neutron in the nucleus becomes a proton, and the nucleus creates and emits an electron and an electron’s antineutrino, ${}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z+1}\\text{Y}_{N-1} + \\beta^{-} + \\bar{\\nu}_{e}$. Without the antineutrino, energy, linear momentum and angular momentum would not be conserved.",
+    "beta-plus-decay-and-electron-capture": "Nuclei with too many protons for stability lower $Z$ by one, either by emitting a positron and an electron’s neutrino, ${}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\beta^{+} + \\nu_{e}$, or by capturing one of their own inner electrons. The two have the same effect on the nucleus.",
+    "conservation-of-electron-family-number": "The total number of members of the electron family is constant: electrons and electron’s neutrinos count $+1$ and their antimatter partners count $-1$, so an electron can never be created without an antimatter family member.",
+    "conservation-of-nucleon-number": "In every decay the total number of nucleons $A$ is the same before and after, even when protons turn into neutrons or the reverse, and the total charge is conserved as always.",
+    "gamma-decay": "In $\\gamma$ decay a nucleus left in an excited state falls to lower levels by emitting photons, as an excited atom does, but with MeV energies. $\\gamma$ decay does not change the nuclide.",
+    "half-life": "The half-life $t_{1/2}$ is the time in which each nucleus has a 50% chance of decaying, whatever its history. A large sample falls to half in one half-life, to a quarter in the next, and so on.",
+    "exponential-decay-law": "The number of radioactive nuclei left at any time is $N = N_0 e^{-\\lambda t}$, an exponential decay that halves in each half-life.",
+    "decay-constant": "The decay constant $\\lambda$ sets how fast the exponential decay falls, and it is related to the half-life by $\\lambda = 0.693/t_{1/2}$: the shorter the half-life, the larger $\\lambda$.",
+    "radioactive-dating": "An age is found from the fraction $N/N_0$ of a radioactive nuclide left in an object and its half-life, given the starting abundance. Carbon-14 dating reaches back 50 or 60 thousand years, and $^{238}$U dating billions of years.",
+    "activity": "The activity $R = \\Delta N/\\Delta t$ of a source is its rate of decay, the number of decays per unit time, measured in becquerels or curies.",
+    "activity-from-number-and-half-life": "The activity of a source grows with the number of radioactive nuclei and falls with their half-life, $R = 0.693N/t_{1/2}$.",
+    "activity-decays-exponentially": "Since activity is proportional to the number of radioactive nuclei, it falls exponentially along with them, $R = R_0 e^{-\\lambda t}$, by half in each half-life.",
+    "binding-energy": "The binding energy of a nucleus is the energy required to completely disassemble it into separate protons and neutrons. The more tightly a nucleus is bound, the larger its binding energy.",
+    "binding-energy-from-atomic-masses": "The binding energy of a nucleus is found from atomic masses as $\\text{BE} = \\{[Zm({}^{1}\\text{H}) + Nm_{\\text{n}}] - m({}^{A}\\text{X})\\}c^{2}$, and dividing by $A$ gives the binding energy per nucleon.",
+    "binding-energy-per-nucleon-curve": "The binding energy per nucleon averages about 8 MeV, rises steeply for light nuclei, peaks near $A = 60$ and falls slowly for heavy ones, with spikes at especially tightly bound nuclei such as $^{4}$He. The larger BE/$A$, the more stable the nucleus.",
+    "short-range-nuclear-force-and-coulomb-repulsion": "The nuclear force is strong but short ranged, so beyond about $A = 60$ a new nucleon feels only its neighbors, while the Coulomb repulsion reaches every proton. Repulsion grows as nuclei get heavier and nuclear attraction does not, so BE/$A$ falls, and heavy stable nuclei carry extra neutrons.",
+    "bound-in-a-potential-well": "Nucleons are bound in the nucleus as a marble sits in a bowl: they move about but lack the energy to get over the rim, and outside the rim the Coulomb repulsion would push an $\\alpha$ away. Classically such a particle stays trapped forever.",
+    "alpha-decay-by-tunneling": "An $\\alpha$ particle escapes the nucleus by tunneling through the barrier. A more energetic $\\alpha$ meets a thinner barrier and escapes more readily, so its half-life is shorter, across 17 orders of magnitude.",
+    "scanning-tunneling-microscope": "Electrons can tunnel across a thin gap between two objects, and because the probability is extremely sensitive to the thickness, the current between a probe and a surface in a scanning tunneling microscope reveals surface features as small as single atoms."
+  },
+  "new": [
+    {
+      "id": "nuclear-radiation",
+      "kind": "definition",
+      "section": "31.1",
+      "name": "Nuclear radiation",
+      "statement": "Nuclear radiation is the rays that originate in the nuclei of atoms, the first examples of which were discovered by Becquerel.",
+      "introduces": null,
+      "prereqs": [
+        "nucleus",
+        "nuclear-radioactivity"
+      ]
+    },
+    {
+      "id": "radioactive",
+      "kind": "definition",
+      "section": "31.1",
+      "name": "Radioactive",
+      "statement": "A substance or object is radioactive when it emits nuclear radiation.",
+      "introduces": null,
+      "prereqs": [
+        "nuclear-radiation"
+      ]
+    },
+    {
+      "id": "alpha-rays",
+      "kind": "definition",
+      "section": "31.1",
+      "name": "Alpha rays ($\\alpha$ rays)",
+      "statement": "Alpha rays are the kind of nuclear radiation bent by a magnetic field as positive charges, later found to be helium nuclei.",
+      "introduces": null,
+      "prereqs": [
+        "nuclear-radiation"
+      ]
+    },
+    {
+      "id": "beta-rays",
+      "kind": "definition",
+      "section": "31.1",
+      "name": "Beta rays ($\\beta$ rays)",
+      "statement": "Beta rays are the kind of nuclear radiation bent by a magnetic field opposite to alpha rays, later found to be electrons created at the instant of decay.",
+      "introduces": null,
+      "prereqs": [
+        "nuclear-radiation",
+        "electron"
+      ]
+    },
+    {
+      "id": "radiation-detector",
+      "kind": "definition",
+      "section": "31.2",
+      "name": "Radiation detector",
+      "statement": "A radiation detector is a device that detects and tracks the radiation from radioactive decay, directly or indirectly through the ionization it creates.",
+      "introduces": null,
+      "prereqs": [
+        "ionizing-radiation"
+      ]
+    },
+    {
+      "id": "scintillator",
+      "kind": "definition",
+      "section": "31.2",
+      "name": "Scintillator",
+      "statement": "A scintillator is a radiation detector that records the light produced when radiation interacts with its material.",
+      "introduces": null,
+      "prereqs": [
+        "radiation-detector"
+      ]
+    },
+    {
+      "id": "photomultiplier",
+      "kind": "definition",
+      "section": "31.2",
+      "name": "Photomultiplier",
+      "statement": "A photomultiplier is a device that converts light into an electrical signal by multiplying the photoelectrons a flash produces.",
+      "introduces": null,
+      "prereqs": [
+        "photoelectric-effect"
+      ]
+    },
+    {
+      "id": "nucleus",
+      "kind": "definition",
+      "section": "31.3",
+      "name": "Nucleus",
+      "statement": "The nucleus is the region at the center of an atom, consisting of protons and neutrons.",
+      "introduces": null,
+      "prereqs": [
+        "atom",
+        "proton",
+        "neutron"
+      ]
+    },
+    {
+      "id": "neutron",
+      "kind": "definition",
+      "section": "31.3",
+      "name": "Neutron",
+      "statement": "A neutron is a neutral particle found in the nucleus, with nearly the same mass as a proton.",
+      "introduces": null,
+      "prereqs": [
+        "mass"
+      ]
+    },
+    {
+      "id": "nuclide",
+      "kind": "definition",
+      "section": "31.3",
+      "name": "Nuclide",
+      "statement": "A nuclide is a type of atom whose nucleus has specific numbers of protons and neutrons.",
+      "introduces": null,
+      "prereqs": [
+        "nucleus",
+        "nucleons"
+      ]
+    },
+    {
+      "id": "mass-number",
+      "kind": "definition",
+      "section": "31.3",
+      "name": "Mass number $A = N + Z$",
+      "statement": "The mass number $A$ is the number of nucleons in a nucleus, the sum of its neutron number $N$ and its atomic number $Z$.",
+      "introduces": null,
+      "prereqs": [
+        "nucleons",
+        "atomic-number",
+        "neutron-number"
+      ]
+    },
+    {
+      "id": "neutron-number",
+      "kind": "definition",
+      "section": "31.3",
+      "name": "Neutron number $N$",
+      "statement": "The neutron number $N$ is the number of neutrons in a nucleus.",
+      "introduces": null,
+      "prereqs": [
+        "neutron"
+      ]
+    },
+    {
+      "id": "atomic-mass",
+      "kind": "definition",
+      "section": "31.3",
+      "name": "Atomic mass",
+      "statement": "The atomic mass is the total mass of the protons, neutrons and electrons in a single atom.",
+      "introduces": null,
+      "prereqs": [
+        "atom",
+        "mass",
+        "atomic-mass-unit"
+      ]
+    },
+    {
+      "id": "parent-nuclide",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Parent",
+      "statement": "The parent is the original nucleus before a decay.",
+      "introduces": null,
+      "prereqs": [
+        "nuclide",
+        "nuclear-decay"
+      ]
+    },
+    {
+      "id": "daughter-nuclide",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Daughter",
+      "statement": "The daughter is the nucleus produced when a parent nucleus decays.",
+      "introduces": null,
+      "prereqs": [
+        "parent-nuclide"
+      ]
+    },
+    {
+      "id": "nuclear-decay",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Decay",
+      "statement": "Decay is the process by which the nucleus of an unstable atom loses mass and energy by emitting radiation.",
+      "introduces": null,
+      "prereqs": [
+        "nuclear-radioactivity",
+        "nucleus"
+      ]
+    },
+    {
+      "id": "alpha-decay-process",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Alpha decay ($\\alpha$ decay)",
+      "statement": "Alpha decay is the type of radioactive decay in which a nucleus emits an alpha particle, a $^{4}$He nucleus.",
+      "introduces": null,
+      "prereqs": [
+        "nuclear-decay",
+        "alpha-rays"
+      ]
+    },
+    {
+      "id": "beta-decay",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Beta decay ($\\beta$ decay)",
+      "statement": "Beta decay is the type of radioactive decay in which a nucleus emits a beta particle, an electron or a positron.",
+      "introduces": null,
+      "prereqs": [
+        "nuclear-decay",
+        "beta-rays"
+      ]
+    },
+    {
+      "id": "positron",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Positron (antielectron)",
+      "statement": "The positron, or antielectron, is the antiparticle of the electron, with the electron’s mass and a positive charge; it is emitted in positive beta decay.",
+      "introduces": null,
+      "prereqs": [
+        "electron",
+        "antimatter"
+      ]
+    },
+    {
+      "id": "positron-decay",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Positron decay ($\\beta^{+}$ decay)",
+      "statement": "Positron decay is the type of beta decay in which a proton in the nucleus is converted to a neutron, releasing a positron and an electron’s neutrino.",
+      "introduces": null,
+      "prereqs": [
+        "beta-decay",
+        "positron",
+        "electron-neutrino"
+      ]
+    },
+    {
+      "id": "neutrino",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Neutrino",
+      "statement": "A neutrino is an electrically neutral, weakly interacting elementary particle.",
+      "introduces": null,
+      "prereqs": [
+        "strong-and-weak-nuclear-forces"
+      ]
+    },
+    {
+      "id": "electron-neutrino",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Electron’s neutrino $\\nu_e$",
+      "statement": "The electron’s neutrino is the neutrino of the electron family, an elementary particle with no net electric charge.",
+      "introduces": null,
+      "prereqs": [
+        "neutrino"
+      ]
+    },
+    {
+      "id": "electron-antineutrino",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Electron’s antineutrino $\\bar{\\nu}_e$",
+      "statement": "The electron’s antineutrino is the antiparticle of the electron’s neutrino.",
+      "introduces": null,
+      "prereqs": [
+        "electron-neutrino",
+        "antimatter"
+      ]
+    },
+    {
+      "id": "antimatter",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Antimatter",
+      "statement": "Antimatter is matter composed of antiparticles, each with the same mass as its partner and the opposite charge.",
+      "introduces": null,
+      "prereqs": [
+        "electron"
+      ]
+    },
+    {
+      "id": "decay-series",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Decay series",
+      "statement": "A decay series is a chain of decays in which each daughter is itself unstable and decays in turn, until a stable nuclide is produced.",
+      "introduces": null,
+      "prereqs": [
+        "parent-nuclide",
+        "daughter-nuclide"
+      ]
+    },
+    {
+      "id": "electron-capture",
+      "kind": "definition",
+      "section": "31.4",
+      "name": "Electron capture",
+      "statement": "Electron capture is the process in which a proton-rich nuclide absorbs one of its own inner atomic electrons and emits an electron’s neutrino, ${}^{A}_{Z}\\text{X}_{N} + e^{-} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\nu_{e}$.",
+      "introduces": null,
+      "prereqs": [
+        "nuclear-decay",
+        "electron-neutrino"
+      ]
+    },
+    {
+      "id": "becquerel",
+      "kind": "definition",
+      "section": "31.5",
+      "name": "Becquerel, $1\\;\\text{Bq} = 1$ decay/s",
+      "statement": "The becquerel is the SI unit of activity, one decay per second.",
+      "introduces": null,
+      "prereqs": [
+        "activity"
+      ]
+    },
+    {
+      "id": "curie",
+      "kind": "definition",
+      "section": "31.5",
+      "name": "Curie, $1\\;\\text{Ci} = 3.70 \\times 10^{10}$ Bq",
+      "statement": "The curie is a unit of activity equal to the activity of 1 g of $^{226}$Ra, $3.70 \\times 10^{10}$ Bq.",
+      "introduces": null,
+      "prereqs": [
+        "activity",
+        "becquerel"
+      ]
+    },
+    {
+      "id": "radioactive-dating-technique",
+      "kind": "definition",
+      "section": "31.5",
+      "name": "Radioactive dating",
+      "statement": "Radioactive dating is the use of radioactive decay to determine the age of a material from the amount of a radioactive nuclide left in it.",
+      "introduces": null,
+      "prereqs": [
+        "half-life",
+        "exponential-decay-law"
+      ]
+    },
+    {
+      "id": "carbon-14-dating",
+      "kind": "idea",
+      "section": "31.5",
+      "name": "Carbon-14 dating",
+      "statement": "Carbon-14 dating is a radioactive dating technique based on the decay of carbon-14, whose abundance in living tissue is fixed until the organism dies.",
+      "introduces": null,
+      "prereqs": [
+        "radioactive-dating-technique"
+      ]
+    },
+    {
+      "id": "binding-energy-per-nucleon",
+      "kind": "definition",
+      "section": "31.6",
+      "name": "Binding energy per nucleon, BE/$A$",
+      "statement": "The binding energy per nucleon is the binding energy of a nucleus divided by its number of nucleons; it reveals the details of the nuclear force, and the larger it is, the more stable the nucleus.",
+      "introduces": null,
+      "prereqs": [
+        "binding-energy",
+        "mass-number"
+      ]
+    }
+  ],
+  "glossary": {
+    "31.1/alpha rays": "alpha-rays",
+    "31.1/beta rays": "beta-rays",
+    "31.1/gamma rays": "gamma-ray-radiation",
+    "31.1/ionizing radiation": "ionizing-radiation",
+    "31.1/nuclear radiation": "nuclear-radiation",
+    "31.1/radioactivity": "nuclear-radioactivity",
+    "31.1/radioactive": "radioactive",
+    "31.1/range of radiation": "range-of-radiation",
+    "31.2/Geiger tube": "geiger-tube",
+    "31.2/photomultiplier": "photomultiplier",
+    "31.2/radiation detector": "radiation-detector",
+    "31.2/scintillators": "scintillator",
+    "31.2/solid-state radiation detectors": "solid-state-detector",
+    "31.3/atomic mass": "atomic-mass",
+    "31.3/atomic number": "atomic-number",
+    "31.3/chart of the nuclides": "chart-of-the-nuclides",
+    "31.3/isotopes": "isotopes",
+    "31.3/magic numbers": "magic-numbers",
+    "31.3/mass number": "mass-number",
+    "31.3/neutron": "neutron",
+    "31.3/nucleons": "nucleons",
+    "31.3/nucleus": "nucleus",
+    "31.3/nuclide": "nuclide",
+    "31.3/protons": "proton",
+    "31.3/radius of a nucleus": "nuclear-radius",
+    "31.4/parent": "parent-nuclide",
+    "31.4/daughter": "daughter-nuclide",
+    "31.4/positron": "positron",
+    "31.4/decay": "nuclear-decay",
+    "31.4/alpha decay": "alpha-decay-process",
+    "31.4/beta decay": "beta-decay",
+    "31.4/gamma decay": "gamma-decay",
+    "31.4/decay equation": "exponential-decay-law",
+    "31.4/nuclear reaction energy": "nuclear-reaction-energy",
+    "31.4/neutrino": "neutrino",
+    "31.4/electron’s antineutrino": "electron-antineutrino",
+    "31.4/positron decay": "positron-decay",
+    "31.4/antielectron": "positron",
+    "31.4/decay series": "decay-series",
+    "31.4/electron’s neutrino": "electron-neutrino",
+    "31.4/antimatter": "antimatter",
+    "31.4/electron capture": "electron-capture",
+    "31.4/electron capture equation": "electron-capture",
+    "31.5/becquerel": "becquerel",
+    "31.5/half-life": "half-life",
+    "31.5/radioactive dating": "radioactive-dating-technique",
+    "31.5/decay constant": "decay-constant",
+    "31.5/carbon-14 dating": "carbon-14-dating",
+    "31.5/activity": "activity",
+    "31.5/rate of decay": "activity",
+    "31.5/curie": "curie",
+    "31.6/binding energy": "binding-energy",
+    "31.6/binding energy per nucleon": "binding-energy-per-nucleon",
+    "31.7/barrier penetration": "quantum-tunneling",
+    "31.7/quantum mechanical tunneling": "quantum-tunneling",
+    "31.7/tunneling": "quantum-tunneling"
+  },
+  "variables": {
+    "31.1/E": "energy",
+    "31.1/q_e": "elementary-charge",
+    "31.3/m_p": "mass",
+    "31.3/m_n": "mass",
+    "31.3/m_e": "electron-mass",
+    "31.3/Z": "atomic-number",
+    "31.3/N_neut": "neutron-number",
+    "31.3/A_nuc": "mass-number",
+    "31.3/r_nuc": "nuclear-radius",
+    "31.3/r_0nuc": "nuclear-radius",
+    "31.3/ρ_dens": "density",
+    "31.3/c": "speed-of-light-in-vacuum",
+    "31.4/Δm": "mass",
+    "31.5/N_count": "exponential-decay-law",
+    "31.5/N_0nuc": "exponential-decay-law",
+    "31.5/t": "time",
+    "31.5/t_half": "half-life",
+    "31.5/λ_dec": "decay-constant",
+    "31.5/R_act": "activity",
+    "31.5/R_0act": "activity",
+    "31.5/ΔN": "activity",
+    "31.5/Δt": "time",
+    "31.6/BE": "binding-energy",
+    "31.6/m_tot": "atomic-mass"
+  },
+  "equations": {
+    "eq-atomic-mass-unit": "atomic-mass-unit",
+    "eq-proton-rest-energy": "atomic-mass-unit",
+    "eq-nuclide-notation": "nuclide-notation",
+    "eq-mass-number": "mass-number",
+    "eq-nuclear-radius": "nuclear-radius",
+    "eq-nuclear-density": "nuclear-density",
+    "eq-alpha-decay": "alpha-decay",
+    "eq-nuclear-reaction-energy": "nuclear-reaction-energy",
+    "eq-beta-minus-decay": "beta-minus-decay-and-the-neutrino",
+    "eq-neutron-decay": "beta-minus-decay-and-the-neutrino",
+    "eq-beta-plus-decay": "beta-plus-decay-and-electron-capture",
+    "eq-beta-plus-mass-difference": "decay-energy-from-atomic-masses",
+    "eq-electron-capture": "electron-capture",
+    "eq-gamma-decay": "gamma-decay",
+    "eq-exponential-decay": "exponential-decay-law",
+    "eq-decay-constant": "decay-constant",
+    "eq-activity-definition": "activity",
+    "eq-becquerel": "becquerel",
+    "eq-curie": "curie",
+    "eq-activity-number-half-life": "activity-from-number-and-half-life",
+    "eq-activity-exponential": "activity-decays-exponentially",
+    "eq-mass-defect": "mass-defect",
+    "eq-binding-energy-nuclear": "mass-defect",
+    "eq-binding-energy": "binding-energy-from-atomic-masses"
+  },
+  "edges": [
+    [
+      "nuclide-notation",
+      "nuclide"
+    ],
+    [
+      "chart-of-the-nuclides",
+      "nuclide"
+    ],
+    [
+      "decay-energy-from-atomic-masses",
+      "atomic-mass"
+    ],
+    [
+      "binding-energy-from-atomic-masses",
+      "atomic-mass"
+    ],
+    [
+      "beta-minus-decay-and-the-neutrino",
+      "neutrino"
+    ],
+    [
+      "beta-minus-decay-and-the-neutrino",
+      "beta-decay"
+    ],
+    [
+      "beta-plus-decay-and-electron-capture",
+      "beta-decay"
+    ],
+    [
+      "beta-plus-decay-and-electron-capture",
+      "electron-capture"
+    ],
+    [
+      "parent-daughter-decay-series",
+      "decay-series"
+    ],
+    [
+      "radioactive-dating",
+      "radioactive-dating-technique"
+    ],
+    [
+      "binding-energy-per-nucleon-curve",
+      "binding-energy-per-nucleon"
+    ],
+    [
+      "antimatter-and-annihilation",
+      "antimatter"
+    ],
+    [
+      "odd-neutron-number-fissile",
+      "neutron-number"
+    ],
+    [
+      "neutron-induced-fission",
+      "neutron"
+    ],
+    [
+      "solar-neutrinos",
+      "neutrino"
+    ],
+    [
+      "neutrino-oscillations",
+      "neutrino"
+    ]
+  ]
+}

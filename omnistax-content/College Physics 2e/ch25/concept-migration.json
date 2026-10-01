@@ -1,0 +1,374 @@
+{
+  "chapter": "ch25",
+  "kinds": {
+    "ray": "definition",
+    "three-paths-of-light": "idea",
+    "ray-approximation": "idea",
+    "geometric-optics": "definition",
+    "law-of-reflection": "axiom",
+    "specular-and-diffuse-reflection": "idea",
+    "image-behind-a-flat-mirror": "result",
+    "refraction": "definition",
+    "speed-of-light-in-vacuum": "definition",
+    "index-of-refraction": "definition",
+    "speed-in-a-medium-from-the-index": "skill",
+    "snells-law": "axiom",
+    "bending-toward-or-away-from-the-normal": "result",
+    "find-an-index-or-an-angle": "skill",
+    "critical-angle": "definition",
+    "critical-angle-from-the-indices": "result",
+    "total-internal-reflection": "idea",
+    "find-a-critical-angle": "skill",
+    "fiber-optics": "idea",
+    "corner-reflector": "idea",
+    "sparkle-of-diamond": "idea",
+    "dispersion": "definition",
+    "color-and-wavelength": "idea",
+    "index-depends-on-wavelength": "axiom",
+    "rainbow-formation": "idea",
+    "converging-and-diverging-lenses": "definition",
+    "focal-point-and-focal-length": "definition",
+    "power-of-a-lens": "definition",
+    "ray-tracing-rules-for-lenses": "skill",
+    "real-and-virtual-images": "definition",
+    "thin-lens-equation": "result",
+    "magnification": "definition",
+    "three-cases-of-lens-images": "result",
+    "solve-with-the-thin-lens-equations": "skill",
+    "image-in-a-flat-mirror": "result",
+    "focal-length-of-a-spherical-mirror": "result",
+    "converging-and-diverging-mirrors": "definition",
+    "ray-tracing-rules-for-mirrors": "skill",
+    "three-cases-of-mirror-images": "result",
+    "solve-mirror-problems": "skill",
+    "mirrors-and-lenses-are-analogous": "idea"
+  },
+  "statements": {
+    "ray": "A ray is a straight line that originates at some point. Light travels in straight lines, and modeling it as a bundle of rays lets us describe mirrors, lenses and images with nothing more than geometry and simple trigonometry.",
+    "three-paths-of-light": "Light can travel from a source to another location in three ways: directly through empty space, through a medium such as air or glass, or after reflecting from something. Every situation in geometric optics is one of these three or a combination of them.",
+    "ray-approximation": "Light behaves like a ray when it interacts with objects several times as large as its wavelength. The wavelength of visible light is less than a micron, so this covers nearly everything we can see with unaided eyes. For smaller objects the wave characteristics of light dominate.",
+    "geometric-optics": "Geometric optics is the part of optics in which the ray aspect of light dominates, so that geometry and simple trigonometry describe light fully. Two laws govern it: the law of reflection, for light that bounces off matter, and the law of refraction, for light that passes through it.",
+    "law-of-reflection": "The angle of reflection equals the angle of incidence. Both angles are measured from the perpendicular to the surface at the point where the ray strikes it, not from the surface itself.",
+    "refraction": "Refraction is the changing of a light ray's direction when it passes through variations in matter. It makes a fish appear to be in two places at once, makes a pool look shallower than it is, and makes a lens work.",
+    "speed-of-light-in-vacuum": "The speed of light in a vacuum, $c = 2.99792458 \\times 10^{8}$ m/s, is fixed by definition and is one of the basic physical quantities. It does not depend on the motion of the source or the observer, and light never travels faster than this.",
+    "index-of-refraction": "The index of refraction of a material is the speed of light in a vacuum divided by its speed in the material, so a large index means a slow medium. Because light is never faster in matter than in a vacuum, the index is always one or greater, and the indices of gases are so close to one that we take them to be one.",
+    "speed-in-a-medium-from-the-index": "Rearranging $n = c/v$ into $v = c/n$ gives the speed of light in a material from its index of refraction, which tells how much slower light is in water or glass than in air.",
+    "snells-law": "The law of refraction, or Snell's law, ties the two angles a ray makes with the perpendicular to the indices of refraction of the two media, $n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2$, so that any three of the four quantities give the fourth.",
+    "bending-toward-or-away-from-the-normal": "Light entering a slower medium bends toward the perpendicular, and light entering a faster medium bends away from it. The larger the change in speed, the larger the change in direction.",
+    "find-an-index-or-an-angle": "Given both angles, Snell's law yields the index of refraction of an unknown medium, which is how a measurement identifies a substance. Given the two indices and the incident angle, it yields the refracted angle.",
+    "critical-angle": "The critical angle is the incident angle that produces an angle of refraction of 90°. It exists only for light going from a medium of larger index into one of smaller index, where the ray bends away from the perpendicular.",
+    "critical-angle-from-the-indices": "Putting a refracted angle of 90° into Snell's law leaves $n_1 \\sin\\theta_1 = n_2$, so the critical angle is $\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)$, and it exists only when $n_1$ is larger than $n_2$. The critical angle is a property of a pair of materials, not of one.",
+    "total-internal-reflection": "Beyond the critical angle no light crosses the boundary: every ray is reflected back into the first medium. Total internal reflection is a perfect mirror, better than any silvered surface, which absorbs part of the light that falls on it.",
+    "find-a-critical-angle": "To find a critical angle, take the medium the light travels in as medium 1, look up or measure the two indices, and take the inverse sine of $n_2/n_1$. Run backward, the same step turns a measured critical angle into the index of an unknown substance.",
+    "fiber-optics": "Fiber optics is the transmission of light down fibers of plastic or glass by total internal reflection. Light entering a thin fiber strikes its inside surface at angles greater than the critical angle and follows the fiber even around corners, and a cladding of lower index keeps the light in one fiber from crossing into its neighbor.",
+    "corner-reflector": "A corner reflector is two mutually perpendicular reflecting surfaces, which return light exactly parallel to the direction from which it came, whatever the angle of incidence. Made of glass rather than silvered mirrors, it is perfectly efficient, because the reflections are total.",
+    "sparkle-of-diamond": "Diamond's index of refraction is so large that its critical angle with air is only 24.4°, so light that enters it has trouble getting out again. The facets are cut so that the light can leave in only a few directions, and it comes out concentrated at those few places.",
+    "dispersion": "Dispersion is the spreading of white light into its full spectrum of wavelengths. More generally, it occurs whenever a process changes the direction of light in a way that depends on wavelength, and it can happen to any kind of wave.",
+    "color-and-wavelength": "We see each pure wavelength of visible light as one of about six colors, from red at the long end to violet at the short, and white light is a nearly uniform mixture of all of them. A spreading by wavelength is therefore a spreading into colors.",
+    "index-depends-on-wavelength": "For a given medium the index of refraction depends on wavelength, growing slowly as the wavelength falls, so violet light meets a larger index than red light in the same glass and is bent more by refraction.",
+    "rainbow-formation": "A rainbow is made when sunlight refracts as it enters a water drop, reflects from the back of the drop and refracts again as it leaves. Because the index depends on wavelength, the colors leave at slightly different angles, and only drops at the one correct angle from the line between the observer and the sun send a given color to the eye, so the colors form an arc.",
+    "converging-and-diverging-lenses": "A converging lens is a convex lens, thicker in the middle, which brings rays that enter it parallel to its axis together at a single point on the opposite side. A diverging lens is a concave lens, thicker at the edges, which bends such rays away from its axis.",
+    "focal-point-and-focal-length": "The focal point of a converging lens or mirror is the point at which rays arriving parallel to the axis cross; for a diverging lens or mirror it is the point from which they appear to originate. The focal length is the distance from the center of the lens or mirror to its focal point, positive for a converging lens and negative for a diverging one.",
+    "power-of-a-lens": "The power of a lens is the inverse of its focal length, $P = 1/f$, measured in diopters when the focal length is in meters. A short focal length is a powerful lens that bends light strongly. This power has nothing to do with the power in watts of Chapter 7.",
+    "ray-tracing-rules-for-lenses": "Ray tracing finds an image with nothing but a straight edge. A ray arriving parallel to the axis leaves through the focal point, a ray through the center goes straight on, and a ray through the near focal point leaves parallel to the axis. Two rays locate an image, and a third is a check.",
+    "real-and-virtual-images": "A real image is one that can be projected: the rays from a point on the object actually cross, so a screen, a piece of film or a retina can catch it. A virtual image cannot be projected: the rays only appear to come from a common point, and a screen put there catches nothing.",
+    "thin-lens-equation": "The thin lens equation relates the object distance, the image distance and the focal length, so that any one of the three follows from the other two. A negative image distance means the image is virtual and on the same side as the object.",
+    "magnification": "The magnification is the ratio of image height to object height, and it equals minus the ratio of image distance to object distance. A negative magnification means the image is inverted, and a magnitude greater or less than one says whether it is enlarged or reduced.",
+    "three-cases-of-lens-images": "A converging lens with the object farther away than the focal length makes a real, inverted image. The same lens with the object closer makes an enlarged, upright, virtual image, which is what a magnifier does. A diverging lens always makes a reduced, upright, virtual image, whatever the object distance.",
+    "image-in-a-flat-mirror": "The image in a flat mirror is virtual, upright and the same size as the object, and it lies as far behind the mirror as the object stands in front of it. In the language of the thin lens equations, $d_{\\text{i}} = -d_{\\text{o}}$, which gives a magnification of exactly one and a mirror of infinite focal length.",
+    "focal-length-of-a-spherical-mirror": "A spherical mirror that is small compared with its radius of curvature brings parallel rays to a focus halfway between its surface and its center of curvature, so its focal length is half the radius, $f = R/2$. The power $P = 1/f$ is defined for a mirror exactly as for a lens.",
+    "converging-and-diverging-mirrors": "A converging mirror is a concave mirror, which brings rays striking it parallel to its axis together in front of itself and has a positive focal length. A diverging mirror is a convex mirror, which spreads such rays so that they appear to come from a point behind it and has a negative focal length.",
+    "ray-tracing-rules-for-mirrors": "The rules for tracing rays at a mirror are the rules for lenses with the light sent back the way it came. A ray arriving parallel to the axis leaves through the focal point, or appears to come from it. A ray striking the center leaves at the same angle to the axis. A ray through the focal point leaves parallel to the axis.",
+    "three-cases-of-mirror-images": "A concave mirror with the object farther away than the focal length makes a real, inverted image on the same side as the object. The same mirror with the object closer makes an enlarged, upright, virtual image behind it, which is what a makeup mirror does. A convex mirror always makes a reduced, upright, virtual image, which is what a security mirror does.",
+    "solve-mirror-problems": "For a mirror small compared with its radius of curvature, the thin lens equation and the magnification hold unchanged, with the focal length equal to half the radius of curvature and signed by the kind of mirror. Find the focal length, solve for the unknown distance, take the magnification, and check the answer against the case.",
+    "mirrors-and-lenses-are-analogous": "Mirrors form exactly the same three types of image as lenses do, with the same signs and the same conditions: a concave mirror acts like a convex lens, and a convex mirror like a concave lens."
+  },
+  "new": [
+    {
+      "id": "mirror",
+      "kind": "definition",
+      "section": "25.2",
+      "name": "Mirror",
+      "statement": "A mirror is a smooth surface that reflects light at specific angles, forming an image of the person or object in front of it.",
+      "introduces": "mirror-images",
+      "prereqs": [
+        "law-of-reflection",
+        "specular-and-diffuse-reflection"
+      ]
+    },
+    {
+      "id": "angle-of-incidence",
+      "kind": "definition",
+      "section": "25.2",
+      "name": "Angle of incidence, $\\theta_{\\text{i}}$",
+      "statement": "The angle of incidence is the angle between an incoming ray and the perpendicular to the surface at the point where the ray strikes it.",
+      "introduces": "law-of-reflection",
+      "prereqs": [
+        "ray"
+      ]
+    },
+    {
+      "id": "angle-of-reflection",
+      "kind": "definition",
+      "section": "25.2",
+      "name": "Angle of reflection, $\\theta_{\\text{r}}$",
+      "statement": "The angle of reflection is the angle between a reflected ray and the perpendicular to the surface at the point where the ray strikes it.",
+      "introduces": "law-of-reflection",
+      "prereqs": [
+        "ray"
+      ]
+    },
+    {
+      "id": "angle-of-refraction",
+      "kind": "definition",
+      "section": "25.3",
+      "name": "Angle of refraction, $\\theta_2$",
+      "statement": "The angle of refraction is the angle between a refracted ray and the perpendicular to the surface, in the medium the ray crosses into.",
+      "introduces": "law-of-refraction",
+      "prereqs": [
+        "ray",
+        "refraction"
+      ]
+    },
+    {
+      "id": "zircon",
+      "kind": "definition",
+      "section": "25.4",
+      "name": "Zircon",
+      "statement": "Zircon is a natural gemstone with a large index of refraction, about 1.9, which makes it sparkle in the way a diamond does.",
+      "introduces": "diamond-sparkle",
+      "prereqs": [
+        "index-of-refraction"
+      ]
+    },
+    {
+      "id": "object-distance",
+      "kind": "definition",
+      "section": "25.6",
+      "name": "Object distance, $\\kdobj$",
+      "statement": "The object distance is the distance of an object from the center of a lens or mirror.",
+      "introduces": "thin-lens-equations",
+      "prereqs": []
+    },
+    {
+      "id": "image-distance",
+      "kind": "definition",
+      "section": "25.6",
+      "name": "Image distance, $\\kdimg$",
+      "statement": "The image distance is the distance of an image from the center of a lens or mirror. It is positive for a real image and negative for a virtual one.",
+      "introduces": "thin-lens-equations",
+      "prereqs": [
+        "real-and-virtual-images"
+      ]
+    },
+    {
+      "id": "radius-of-curvature-of-a-mirror",
+      "kind": "definition",
+      "section": "25.7",
+      "name": "Radius of curvature, $\\kRcur$",
+      "statement": "The radius of curvature of a spherical mirror is the radius of the sphere of which the mirror is a part, the distance from the mirror's surface to its center of curvature.",
+      "introduces": "mirror-focal-length",
+      "prereqs": [
+        "mirror"
+      ]
+    },
+    {
+      "id": "rainbow",
+      "kind": "idea",
+      "section": "25.5",
+      "name": "Rainbow",
+      "statement": "A rainbow is the dispersion of sunlight into a continuous distribution of colors according to wavelength, produced by the refraction and reflection of sunlight by water droplets in the sky.",
+      "introduces": "rainbows",
+      "prereqs": [
+        "rainbow-formation",
+        "dispersion"
+      ]
+    },
+    {
+      "id": "converging-lens",
+      "kind": "definition",
+      "section": "25.6",
+      "name": "Converging lens",
+      "statement": "A converging lens is a convex lens in which light rays that enter it parallel to its axis converge at a single point on the opposite side.",
+      "introduces": "converging-lens",
+      "prereqs": [
+        "converging-and-diverging-lenses"
+      ]
+    },
+    {
+      "id": "diverging-lens",
+      "kind": "definition",
+      "section": "25.6",
+      "name": "Diverging lens",
+      "statement": "A diverging lens is a concave lens in which light rays that enter it parallel to its axis bend away, or diverge, from its axis.",
+      "introduces": "diverging-lens",
+      "prereqs": [
+        "converging-and-diverging-lenses"
+      ]
+    },
+    {
+      "id": "focal-point",
+      "kind": "definition",
+      "section": "25.6",
+      "name": "Focal point F",
+      "statement": "For a converging lens or mirror, the focal point is the point at which converging light rays cross; for a diverging lens or mirror, it is the point from which diverging light rays appear to originate.",
+      "introduces": "converging-lens",
+      "prereqs": [
+        "focal-point-and-focal-length"
+      ]
+    },
+    {
+      "id": "focal-length",
+      "kind": "definition",
+      "section": "25.6",
+      "name": "Focal length $\\kffoc$",
+      "statement": "The focal length is the distance from the center of a lens or curved mirror to its focal point. It is positive for a converging lens or mirror and negative for a diverging one.",
+      "introduces": "converging-lens",
+      "prereqs": [
+        "focal-point-and-focal-length",
+        "focal-point"
+      ]
+    },
+    {
+      "id": "real-image",
+      "kind": "definition",
+      "section": "25.6",
+      "name": "Real image",
+      "statement": "A real image is an image that can be projected: the rays from a point on the object actually cross there, so a screen can catch it.",
+      "introduces": "image-formation",
+      "prereqs": [
+        "real-and-virtual-images"
+      ]
+    },
+    {
+      "id": "virtual-image",
+      "kind": "definition",
+      "section": "25.6",
+      "name": "Virtual image",
+      "statement": "A virtual image is an image that cannot be projected: the rays from a point on the object only appear to come from it.",
+      "introduces": "image-formation",
+      "prereqs": [
+        "real-and-virtual-images"
+      ]
+    },
+    {
+      "id": "converging-mirror",
+      "kind": "definition",
+      "section": "25.7",
+      "name": "Converging mirror",
+      "statement": "A converging mirror is a concave mirror in which light rays that strike it parallel to its axis converge at one or more points along the axis.",
+      "introduces": "mirror-focal-length",
+      "prereqs": [
+        "converging-and-diverging-mirrors"
+      ]
+    },
+    {
+      "id": "diverging-mirror",
+      "kind": "definition",
+      "section": "25.7",
+      "name": "Diverging mirror",
+      "statement": "A diverging mirror is a convex mirror in which light rays that strike it parallel to its axis bend away, or diverge, from its axis.",
+      "introduces": "mirror-focal-length",
+      "prereqs": [
+        "converging-and-diverging-mirrors"
+      ]
+    }
+  ],
+  "glossary": {
+    "25.1/ray": "ray",
+    "25.1/geometric optics": "geometric-optics",
+    "25.2/mirror": "mirror",
+    "25.2/law of reflection": "law-of-reflection",
+    "25.3/refraction": "refraction",
+    "25.3/index of refraction": "index-of-refraction",
+    "25.4/critical angle": "critical-angle",
+    "25.4/fiber optics": "fiber-optics",
+    "25.4/corner reflector": "corner-reflector",
+    "25.4/zircon": "zircon",
+    "25.5/dispersion": "dispersion",
+    "25.5/rainbow": "rainbow",
+    "25.6/converging lens": "converging-lens",
+    "25.6/diverging lens": "diverging-lens",
+    "25.6/focal point": "focal-point",
+    "25.6/focal length": "focal-length",
+    "25.6/magnification": "magnification",
+    "25.6/power": "power-of-a-lens",
+    "25.6/real image": "real-image",
+    "25.6/virtual image": "virtual-image",
+    "25.7/converging mirror": "converging-mirror",
+    "25.7/diverging mirror": "diverging-mirror",
+    "25.7/law of reflection": "law-of-reflection"
+  },
+  "variables": {
+    "25.2/θ_i": "angle-of-incidence",
+    "25.2/θ_r": "angle-of-reflection",
+    "25.3/c": "speed-of-light-in-vacuum",
+    "25.3/v": "instantaneous-speed",
+    "25.3/n": "index-of-refraction",
+    "25.3/n_1": "index-of-refraction",
+    "25.3/n_2": "index-of-refraction",
+    "25.3/θ_1": "angle-of-incidence",
+    "25.3/θ_2": "angle-of-refraction",
+    "25.4/θ_c": "critical-angle",
+    "25.4/θ_1": "angle-of-incidence",
+    "25.4/θ_2": "angle-of-refraction",
+    "25.4/n_1": "index-of-refraction",
+    "25.4/n_2": "index-of-refraction",
+    "25.5/λ": "wavelength",
+    "25.5/n": "index-of-refraction",
+    "25.6/f_focal": "focal-length",
+    "25.6/P_lens": "power-of-a-lens",
+    "25.6/d_obj": "object-distance",
+    "25.6/d_img": "image-distance",
+    "25.6/h_obj": "length",
+    "25.6/h_img": "length",
+    "25.6/m": "magnification",
+    "25.7/R_curv": "radius-of-curvature-of-a-mirror",
+    "25.7/f_focal": "focal-length",
+    "25.7/P_lens": "power-of-a-lens",
+    "25.7/d_obj": "object-distance",
+    "25.7/d_img": "image-distance",
+    "25.7/h_obj": "length",
+    "25.7/h_img": "length",
+    "25.7/m": "magnification"
+  },
+  "equations": {
+    "eq-law-of-reflection": "law-of-reflection",
+    "eq-speed-of-light": "speed-of-light-in-vacuum",
+    "eq-index-of-refraction": "index-of-refraction",
+    "eq-speed-from-index": "speed-in-a-medium-from-the-index",
+    "eq-snells-law": "snells-law",
+    "eq-index-from-angles": "snells-law",
+    "eq-refracted-angle": "snells-law",
+    "eq-critical-angle-condition": "critical-angle-from-the-indices",
+    "eq-critical-angle": "critical-angle-from-the-indices",
+    "eq-lens-power": "power-of-a-lens",
+    "eq-thin-lens": "thin-lens-equation",
+    "eq-magnification": "magnification",
+    "eq-thin-lens-rearranged": "thin-lens-equation",
+    "eq-image-distance-solved": "thin-lens-equation",
+    "eq-mirror-focal-length": "focal-length-of-a-spherical-mirror"
+  },
+  "edges": [
+    [
+      "image-behind-a-flat-mirror",
+      "mirror"
+    ],
+    [
+      "ray-tracing-rules-for-mirrors",
+      "mirror"
+    ],
+    [
+      "focal-length-of-a-spherical-mirror",
+      "focal-length"
+    ],
+    [
+      "focal-length-of-a-spherical-mirror",
+      "radius-of-curvature-of-a-mirror"
+    ],
+    [
+      "distant-image-at-the-focal-length",
+      "focal-length"
+    ]
+  ]
+}

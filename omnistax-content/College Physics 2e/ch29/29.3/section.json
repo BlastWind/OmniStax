@@ -73,6 +73,8 @@
     {"span": "x-ray-photon-energy", "concept": "photon-energy-in-ev", "verb": "uses"},
     {"span": "x-ray-spectrum", "concept": "x-ray-tube-spectrum", "verb": "introduces"},
     {"span": "x-ray-spectrum", "concept": "x-ray-tube-maximum-energy", "verb": "uses"},
+    {"span": "x-ray-spectrum", "concept": "bremsstrahlung", "verb": "introduces"},
+    {"span": "x-ray-spectrum", "concept": "characteristic-x-rays", "verb": "introduces"},
     {"span": "ultraviolet", "concept": "ionizing-photons", "verb": "reinforces"},
     {"span": "uv-photon-energy", "concept": "photon-energy-in-ev", "verb": "uses"},
     {"span": "uv-photon-energy", "concept": "photon-energy-from-wavelength", "verb": "uses"},
@@ -80,14 +82,21 @@
     {"span": "visible-light", "concept": "photon-energy-and-radiation-effects", "verb": "reinforces"},
     {"span": "bulb-photons", "concept": "photons-per-second", "verb": "introduces"},
     {"span": "bulb-photons", "concept": "photon-energy-from-wavelength", "verb": "uses"},
-    {"span": "lower-energy-photons", "concept": "photon-energy-and-radiation-effects", "verb": "reinforces"}
+    {"span": "lower-energy-photons", "concept": "photon-energy-and-radiation-effects", "verb": "reinforces"},
+    {"span": "lower-energy-photons", "concept": "microwaves", "verb": "introduces"}
   ],
   "exercises": [
     {
-      "id": "ap1", "source_id": "fs-id2345857", "kind": "ap-test-prep", "bloom": "Apply", "place": {"at": "end"}, "cite": "lower-energy-photons",
+      "id": "ap1",
+      "source_id": "fs-id2345857",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "lower-energy-photons",
       "prompt": "A microwave oven produces electromagnetic radiation in the radio portion of the spectrum. These microwave photons are absorbed by water molecules, resulting in an increase in the molecules’ rotational energies. This added energy is transferred by heat to the surrounding food, which as a result becomes hot very quickly. If the energy absorbed by a water molecule is $1.0\\times 10^{-5}$ eV, what is the corresponding wavelength of the microwave photons?",
       "answer": {
-        "type": "choice", "generated_by": "source",
+        "type": "choice",
+        "generated_by": "source",
         "options": ["1.22 GHz", "2.45 GHz", "4.90 GHz", "9.80 Hz"],
         "correct": 1,
         "hint": "The choices are frequencies, so find $\\kf = \\kE/h$ with $h = 4.14\\times 10^{-15}$ eV·s.",
@@ -95,82 +104,142 @@
       }
     },
     {
-      "id": "ap2", "source_id": "fs-id3440661", "kind": "ap-test-prep", "bloom": "Analyze", "place": {"at": "end"}, "cite": "x-ray-spectrum",
+      "id": "ap2",
+      "source_id": "fs-id3440661",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "x-ray-spectrum",
       "prompt": "In the intensity versus frequency curve for x rays (Figure 29.12), the intensity is mostly a smooth curve associated with <em>bremsstrahlung</em> (“breaking radiation”). However, there are two spikes (characteristic x rays) that exhibit high-intensity output. Explain how the smooth curve can be described by classical electrodynamics, whereas the peaks require a quantum mechanical interpretation. (Recall that the acceleration or deceleration of electric charges causes the emission of electromagnetic radiation.)",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "The smooth curve comes from electrons that slow down as they pass near the atoms of the anode. An electron can lose any amount of its kinetic energy in this way, from none up to all of $\\kq\\kV$, and a decelerated charge radiates, so the emitted photons have a continuous range of energies, just as classical electrodynamics predicts for a braking charge. The peaks come at a few definite frequencies set by the anode material. An electron from the beam knocks an inner electron out of an anode atom, and another electron of that atom drops into the vacancy, emitting a photon whose energy equals the difference between two allowed energy levels. Only certain energies are possible, which is a quantum result."
       }
     },
     {
-      "id": "cq1", "source_id": "fs-id1439156", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "gamma-rays-and-x-rays",
+      "id": "cq1",
+      "source_id": "fs-id1439156",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "gamma-rays-and-x-rays",
       "prompt": "Why are UV, x rays, and $\\gamma$ rays called ionizing radiation?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "Their photons carry more energy than the roughly 10 to 1000 eV needed to remove an electron from an atom or molecule. Since one photon interacts with one atom or molecule, a single UV, x-ray or $\\gamma$-ray photon can ionize what absorbs it, while a photon of visible light, IR or microwaves carries too little energy to do so."
       }
     },
     {
-      "id": "cq2", "source_id": "fs-id1573950", "kind": "conceptual-question", "bloom": "Apply", "place": {"at": "end"}, "cite": "gamma-rays-and-x-rays",
+      "id": "cq2",
+      "source_id": "fs-id1573950",
+      "kind": "conceptual-question",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "gamma-rays-and-x-rays",
       "prompt": "How can treating food with ionizing radiation help keep it from spoiling? UV is not very penetrating. What else could be used?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "Ionizing radiation breaks up the molecules of bacteria, molds and insects in the food, killing them or stopping them from reproducing, so the food spoils more slowly. UV is absorbed near the surface and would treat only the outside. X rays or $\\gamma$ rays have higher photon energies and penetrate much further, so they can treat the whole volume of the food."
       }
     },
     {
-      "id": "cq3", "source_id": "fs-id1579323", "kind": "conceptual-question", "bloom": "Apply", "place": {"at": "end"}, "cite": "x-ray-photon-energy",
+      "id": "cq3",
+      "source_id": "fs-id1579323",
+      "kind": "conceptual-question",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "x-ray-photon-energy",
       "prompt": "Some television tubes are CRTs. They use an approximately 30-kV accelerating potential to send electrons to the screen, where the electrons stimulate phosphors to emit the light that forms the pictures we watch. Would you expect x rays also to be created?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "Yes. Each electron reaches the screen with an energy of about 30 keV, and as it is decelerated it can give up to that much energy to a single photon. Photons of several keV to 30 keV are x rays, so a CRT television produces some x rays, which is why the glass of its screen is made to absorb them."
       }
     },
     {
-      "id": "cq4", "source_id": "fs-id1320422", "kind": "conceptual-question", "bloom": "Evaluate", "place": {"at": "end"}, "cite": "ultraviolet",
+      "id": "cq4",
+      "source_id": "fs-id1320422",
+      "kind": "conceptual-question",
+      "bloom": "Evaluate",
+      "place": {"at": "end"},
+      "cite": "ultraviolet",
       "prompt": "Tanning salons use “safe” UV with a longer wavelength than some of the UV in sunlight. This “safe” UV has enough photon energy to trigger the tanning mechanism. Is it likely to be able to cause cell damage and induce cancer with prolonged exposure?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "Yes. Tanning is itself a response to molecular changes in the skin, so a photon that can trigger it has enough energy to alter molecules. Photons of this energy can also alter DNA, and with prolonged exposure the damage from many such photons adds up, so cell damage and cancer remain possible even if each photon is less energetic than the shorter-wavelength UV in sunlight."
       }
     },
     {
-      "id": "cq5", "source_id": "fs-id1311496", "kind": "conceptual-question", "bloom": "Analyze", "place": {"at": "end"}, "cite": "ultraviolet",
+      "id": "cq5",
+      "source_id": "fs-id1311496",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "ultraviolet",
       "prompt": "Your pupils dilate when visible light intensity is reduced. Does wearing sunglasses that lack UV blockers increase or decrease the UV hazard to your eyes? Explain.",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "It increases the hazard. The dark lenses cut the visible light, so the pupils open wider, but the UV passes through the lenses almost unchanged. With the pupils larger, more UV photons enter the eye than would without the sunglasses, and each of them has enough energy to damage molecules in the eye."
       }
     },
     {
-      "id": "cq6", "source_id": "fs-id1254818", "kind": "conceptual-question", "bloom": "Analyze", "place": {"at": "end"}, "cite": "lower-energy-photons",
+      "id": "cq6",
+      "source_id": "fs-id1254818",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "lower-energy-photons",
       "prompt": "One could feel heat transfer in the form of infrared radiation from a large nuclear bomb detonated in the atmosphere 75 km from you. However, none of the profusely emitted x rays or $\\gamma$ rays reaches you. Explain.",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "The x-ray and $\\gamma$-ray photons have enough energy to ionize the molecules of the air, so they are absorbed by the air and do not travel 75 km. Infrared photons have too little energy to ionize air, and air is nearly transparent to many IR frequencies, so the infrared radiation crosses the distance and is felt as heat."
       }
     },
     {
-      "id": "cq7", "source_id": "fs-id1564950", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "lower-energy-photons",
+      "id": "cq7",
+      "source_id": "fs-id1564950",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "lower-energy-photons",
       "prompt": "Can a single microwave photon cause cell damage? Explain.",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "No. A microwave photon carries only about $10^{-5}$ eV, far less than the roughly 1 to 10 eV needed to break the bonds of a molecule or the 10 eV or more needed to ionize it. Microwaves can damage cells only when huge numbers of photons act together, for example by heating the tissue."
       }
     },
     {
-      "id": "cq8", "source_id": "fs-id2673559", "kind": "conceptual-question", "bloom": "Evaluate", "place": {"at": "end"}, "cite": "x-ray-photon-energy",
+      "id": "cq8",
+      "source_id": "fs-id2673559",
+      "kind": "conceptual-question",
+      "bloom": "Evaluate",
+      "place": {"at": "end"},
+      "cite": "x-ray-photon-energy",
       "prompt": "In an x-ray tube, the maximum photon energy is given by $h\\kf = \\kq\\kV.$ Would it be technically more correct to say $h\\kf = \\kq\\kV + \\kBE,$ where BE is the binding energy of electrons in the target anode? Why isn’t the energy stated the latter way?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "In principle yes: an electron that falls into the anode and becomes bound there gives up its binding energy as well as its kinetic energy, so the most energetic photon could carry $\\kq\\kV + \\kBE$. The binding energy is only a few eV, while $\\kq\\kV$ is tens of thousands of eV, so the correction is far smaller than the precision of the numbers and is left out."
       }
     },
     {
-      "id": "p1", "source_id": "fs-id2700906", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "ionizing-radiation",
+      "id": "p1",
+      "source_id": "fs-id2700906",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "ionizing-radiation",
       "prompt": "What is the energy in joules and eV of a photon in a radio wave from an AM station that has a 1530-kHz broadcast frequency?",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "the energy in eV", "value": 6.34e-9, "unit": "eV", "hint": "Use $\\kE = h\\kf$ with $h = 4.14\\times 10^{-15}$ eV·s."},
           {"part": "the energy in joules", "value": 1.01e-27, "unit": "J", "hint": "Use $\\kE = h\\kf$ with $h = 6.63\\times 10^{-34}$ J·s."}
@@ -179,28 +248,50 @@
       }
     },
     {
-      "id": "p2", "source_id": "fs-id1444344", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "gamma-rays-and-x-rays",
+      "id": "p2",
+      "source_id": "fs-id1444344",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "gamma-rays-and-x-rays",
       "prompt": "Calculate the frequency in hertz of a 1.00-MeV $\\gamma$-ray photon.",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 2.42e20, "unit": "Hz",
+        "type": "number",
+        "generated_by": "source",
+        "value": 2.42e20,
+        "unit": "Hz",
         "hint": "Solve $\\kE = h\\kf$ for $\\kf$, with the energy in eV and $h = 4.14\\times 10^{-15}$ eV·s.",
         "solution": "$2.42\\times 10^{20}\\;\\text{Hz}$"
       }
     },
     {
-      "id": "p3", "source_id": "eip-876", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "ionizing-radiation",
+      "id": "p3",
+      "source_id": "eip-876",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "ionizing-radiation",
       "prompt": "Do the unit conversions necessary to show that $h\\kc = 1240\\;\\text{eV}\\cdot\\text{nm},$ as stated in the text.",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 1240, "unit": "eV·nm",
+        "type": "number",
+        "generated_by": "source",
+        "value": 1240,
+        "unit": "eV·nm",
         "hint": "Multiply $h$ in J·s by $\\kc$ in m/s, then convert meters to nanometers and joules to electron volts.",
         "solution": "$h\\kc = (6.62607\\times 10^{-34}\\;\\text{J}\\cdot\\text{s})(2.99792\\times 10^{8}\\;\\text{m/s})\\left(\\frac{10^{9}\\;\\text{nm}}{1\\;\\text{m}}\\right)\\left(\\frac{1.00000\\;\\text{eV}}{1.60218\\times 10^{-19}\\;\\text{J}}\\right) = 1239.84\\;\\text{eV}\\cdot\\text{nm} \\approx 1240\\;\\text{eV}\\cdot\\text{nm}$"
       }
     },
     {
-      "id": "p4", "source_id": "fs-id2352714", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "lower-energy-photons",
+      "id": "p4",
+      "source_id": "fs-id2352714",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "lower-energy-photons",
       "prompt": "(a) Calculate the energy in eV of an IR photon of frequency $2.00\\times 10^{13}\\;\\text{Hz}.$ (b) How many of these photons would need to be absorbed simultaneously by a tightly bound molecule to break it apart? (c) What is the energy in eV of a $\\gamma$ ray of frequency $3.00\\times 10^{20}\\;\\text{Hz}?$ (d) How many tightly bound molecules could a single such $\\gamma$ ray break apart?",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "(a) the IR photon’s energy", "value": 0.0829, "unit": "eV", "hint": "Use $\\kE = h\\kf$ with $h = 4.14\\times 10^{-15}$ eV·s."},
           {"part": "(b) the number of IR photons", "value": 121, "unit": "", "hint": "A tightly bound molecule is bound by about 10 eV (Table 29.1); divide by the energy of one photon."},
@@ -211,10 +302,16 @@
       }
     },
     {
-      "id": "p5", "source_id": "fs-id2655394", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "x-ray-photon-energy",
+      "id": "p5",
+      "source_id": "fs-id2655394",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "x-ray-photon-energy",
       "prompt": "(a) What is the maximum energy in eV of photons produced in a CRT using a 25.0-kV accelerating potential, such as a color TV? (b) What is their frequency?",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "(a) the maximum photon energy", "value": 25000, "unit": "eV", "hint": "An electron accelerated through $\\kV$ volts gains $\\kq\\kV$, the same number of eV, and can give all of it to one photon."},
           {"part": "(b) the frequency", "value": 6.04e18, "unit": "Hz", "hint": "Solve $h\\kf = \\kq\\kV$ for $\\kf$ with $h = 4.14\\times 10^{-15}$ eV·s."}
@@ -223,10 +320,16 @@
       }
     },
     {
-      "id": "p6", "source_id": "fs-id2673466", "kind": "problem", "bloom": "Analyze", "place": {"at": "end"}, "cite": "bulb-photons",
+      "id": "p6",
+      "source_id": "fs-id2673466",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "bulb-photons",
       "prompt": "(a) What is the ratio of power outputs by two microwave ovens having frequencies of 950 and 2560 MHz, if they emit the same number of photons per second? (b) What is the ratio of photons per second if they have the same power output?",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "(a) the ratio of power outputs", "value": 2.69, "unit": "", "hint": "With the same number of photons per second, the power is proportional to the energy $h\\kf$ of each photon."},
           {"part": "(b) the ratio of photons per second", "value": 0.371, "unit": "", "hint": "With the same power, the number of photons per second is inversely proportional to the energy of each photon."}
@@ -235,10 +338,16 @@
       }
     },
     {
-      "id": "p7", "source_id": "fs-id2299312", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "bulb-photons",
+      "id": "p7",
+      "source_id": "fs-id2299312",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "bulb-photons",
       "prompt": "Some satellites use nuclear power. (a) If such a satellite emits a 1.00-W flux of $\\gamma$ rays having an average energy of 0.500 MeV, how many are emitted per second? (b) These $\\gamma$ rays affect other satellites. How far away must another satellite be to only receive one $\\gamma$ ray per second per square meter?",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "(a) the photons emitted per second", "value": 1.25e13, "unit": "photons/s", "hint": "Convert 0.500 MeV to joules and divide the power by it."},
           {"part": "(b) the distance", "value": 997, "unit": "km", "hint": "The photons spread over a sphere of area $4\\pi r^2$; set the number per second divided by that area equal to one per square meter."}
@@ -247,19 +356,35 @@
       }
     },
     {
-      "id": "p8", "source_id": "fs-id1437653", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "bulb-photons",
+      "id": "p8",
+      "source_id": "fs-id1437653",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "bulb-photons",
       "prompt": "How many x-ray photons per second are created by an x-ray tube that produces a flux of x rays having a power of 1.00 W? Assume the average energy per photon is 75.0 keV.",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 8.33e13, "unit": "photons/s",
+        "type": "number",
+        "generated_by": "source",
+        "value": 8.33e13,
+        "unit": "photons/s",
         "hint": "Convert 75.0 keV to joules and divide the power by the energy of one photon.",
         "solution": "$8.33\\times 10^{13}\\;\\text{photons/s}$"
       }
     },
     {
-      "id": "p9", "source_id": "fs-id2352550", "kind": "problem", "bloom": "Analyze", "place": {"at": "end"}, "cite": "bulb-photons",
+      "id": "p9",
+      "source_id": "fs-id2352550",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "bulb-photons",
       "prompt": "Assuming that 10.0% of a 100-W light bulb’s energy output is in the visible range (typical for incandescent bulbs) with an average wavelength of 580 nm, and that the photons spread out uniformly and are not absorbed by the atmosphere, how far away would you be if 500 photons per second enter the 3.00-mm diameter pupil of your eye? (This number easily stimulates the retina.)",
       "answer": {
-        "type": "number", "generated_by": "source", "value": 181, "unit": "km",
+        "type": "number",
+        "generated_by": "source",
+        "value": 181,
+        "unit": "km",
         "hint": "Start from Example 29.4’s $2.92\\times 10^{19}$ photons per second, spread them over a sphere of area $4\\pi r^2$, and find the $r$ at which the pupil’s area collects 500 per second.",
         "solution": "181 km"
       }
