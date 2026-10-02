@@ -80,52 +80,142 @@
    "kind": "definition",
    "section": "6.1",
    "name": "Uniform circular motion",
+   "terms": [
+    "uniform circular motion"
+   ],
    "statement": "Uniform circular motion is motion in a circular path at constant speed, and it is the simplest form of curved motion. The centripetal acceleration, the centripetal force and the orbits of satellites are all worked out for this case first."
   },
   {
    "id": "arc-length",
    "kind": "definition",
    "section": "6.1",
-   "name": "Arc length $\\kds$",
-   "statement": "The arc length is the distance an object travels along a circular path, and it is the distance of Chapter 2 measured along a curve rather than along a line. Every rotation angle and every linear speed in this section is worked out from it."
+   "name": "Arc length",
+   "symbol": "Δs",
+   "terms": [
+    "arc length"
+   ],
+   "statement": "The arc length is the distance an object travels along a circular path, the distance of Chapter 2 measured along a curve rather than along a line. Every rotation angle and every linear speed of circular motion comes from it.",
+   "forms": [
+    {
+     "id": "eq-arc",
+     "latex": "s = L\\theta",
+     "ktex": "\\ks = L\\theta",
+     "section": "16.4",
+     "anchor": "16.4-small-angle"
+    }
+   ]
   },
   {
    "id": "rotation-angle",
    "kind": "definition",
    "section": "6.1",
-   "name": "Rotation angle, $\\Delta\\theta = \\kds / \\kr$",
+   "name": "Rotation angle",
+   "symbol": "Δθ",
+   "terms": [
+    "rotation angle"
+   ],
    "statement": "The rotation angle is the amount of rotation, defined as the ratio of the arc length to the radius of curvature, and it is the angular quantity that stands in for linear distance. Because it is a ratio of two lengths, every point of a rotating object turns through the same rotation angle in the same time, however far from the axis it sits.",
-   "eq": "eq-rotation-angle"
+   "forms": [
+    {
+     "id": "eq-rotation-angle",
+     "latex": "\\Delta\\theta = \\frac{\\Delta s}{r}",
+     "ktex": "\\Delta\\theta = \\frac{\\kds}{\\kr}",
+     "anchor": "6.1-rotation-angle"
+    }
+   ]
   },
   {
    "id": "radian",
    "kind": "definition",
    "section": "6.1",
-   "name": "Radian, $2\\pi\\ \\text{rad} = 1\\ \\text{revolution}$",
-   "statement": "One complete revolution carries a point once round the circumference, so the rotation angle of a revolution is $2\\pi r / r = 2\\pi$. That result fixes the unit of the rotation angle: the radian is defined so that $2\\pi$ rad is one revolution, and one radian is about 57.3º. Because a radian is a ratio of two lengths it carries no unit of its own, which is why it may be inserted into or dropped from an answer.",
-   "eq": "eq-radian-revolution"
+   "name": "Radian",
+   "terms": [
+    "radians"
+   ],
+   "statement": "One complete revolution carries a point once round the circumference, so the rotation angle of a revolution is $2\\pi r / r = 2\\pi$. That fixes the unit: $2\\pi$ rad is one revolution, and one radian is about 57.3º. A radian is a ratio of two lengths and carries no unit of its own, so you can insert it into an answer or drop it.",
+   "forms": [
+    {
+     "id": "eq-radian-revolution",
+     "latex": "2\\pi\\;\\text{rad} = 1\\;\\text{revolution} = 360^\\circ",
+     "anchor": "6.1-radians"
+    },
+    {
+     "id": "eq-one-revolution",
+     "latex": "\\Delta\\theta = \\frac{2\\pi r}{r} = 2\\pi",
+     "ktex": "\\Delta\\theta = \\frac{2\\pi \\kr}{\\kr} = 2\\pi",
+     "condition": "one complete revolution",
+     "anchor": "6.1-radians"
+    },
+    {
+     "id": "eq-radian-degree",
+     "latex": "1\\;\\text{rad} = \\frac{360^\\circ}{2\\pi} \\approx 57.3^\\circ",
+     "anchor": "6.1-radians"
+    }
+   ]
   },
   {
    "id": "angular-velocity",
    "kind": "definition",
    "section": "6.1",
-   "name": "Angular velocity, $\\kw = \\Delta\\theta / \\kdt$",
+   "name": "Angular velocity",
+   "symbol": "ω",
+   "terms": [
+    "angular velocity"
+   ],
    "statement": "The angular velocity is the rate of change of the rotation angle, and it answers the question of how fast an object is rotating. It is the angular quantity analogous to linear velocity, it is measured in radians per second, and with respect to the axis of rotation it has only two directions, clockwise and counterclockwise.",
-   "eq": "eq-omega"
+   "forms": [
+    {
+     "id": "eq-omega",
+     "latex": "\\omega = \\frac{\\Delta\\theta}{\\Delta t}",
+     "ktex": "\\kw = \\frac{\\Delta\\theta}{\\kdt}",
+     "anchor": "6.1-angular-velocity"
+    },
+    {
+     "id": "eq-angular-velocity-recalled",
+     "latex": "\\omega = \\frac{\\Delta\\theta}{\\Delta t}",
+     "ktex": "\\kw = \\frac{\\Delta\\theta}{\\kdt}",
+     "section": "10.1",
+     "anchor": "10.1-uniform-circular-motion"
+    }
+   ]
   },
   {
    "id": "linear-angular-velocity",
    "kind": "result",
    "section": "6.1",
-   "name": "Linear and angular velocity, $\\kv = \\kr\\kw$",
+   "name": "Linear and angular velocity",
    "statement": "A pit on a rotating CD moves an arc length $\\Delta s = r\\Delta\\theta$ in a time $\\Delta t$, so its linear speed is $v = r\\omega$. Read one way, the relation says that a point on the rim moves faster than a point near the axis; read the other way, $\\omega = v/r$ says that a car with small tires must spin them faster than a car with large ones to travel at the same speed.",
-   "eq": "eq-v-romega"
+   "forms": [
+    {
+     "id": "eq-v-romega",
+     "latex": "v = r\\omega \\quad\\text{or}\\quad \\omega = \\frac{v}{r}",
+     "ktex": "\\kv = \\kr\\kw \\quad\\text{or}\\quad \\kw = \\frac{\\kv}{\\kr}",
+     "anchor": "6.1-linear-angular"
+    },
+    {
+     "id": "eq-v-arc",
+     "latex": "v = \\frac{\\Delta s}{\\Delta t}",
+     "ktex": "\\kv = \\frac{\\kds}{\\kdt}",
+     "anchor": "6.1-linear-angular"
+    },
+    {
+     "id": "eq-omega-from-v",
+     "latex": "v = r\\omega \\quad\\text{or}\\quad \\omega = \\frac{v}{r}",
+     "ktex": "\\kv = \\kr\\kw \\quad\\text{or}\\quad \\kw = \\frac{\\kv}{\\kr}",
+     "section": "10.1",
+     "anchor": "10.1-uniform-circular-motion"
+    }
+   ]
   },
   {
    "id": "circular-path-radius",
    "kind": "definition",
    "section": "6.1",
-   "name": "Radius of curvature $\\kr$",
+   "name": "Radius of curvature",
+   "symbol": "r_curv",
+   "terms": [
+    "radius of curvature"
+   ],
    "statement": "The radius of curvature is the radius of a circular path, the distance from the center of rotation out to the point that moves."
   },
   {
@@ -133,22 +223,55 @@
    "kind": "definition",
    "section": "6.1",
    "name": "Pit",
+   "terms": [
+    "pit"
+   ],
    "statement": "A pit is a tiny indentation on the spiral track moulded into the top of the polycarbonate layer of a CD."
   },
   {
    "id": "centripetal-acceleration",
    "kind": "definition",
    "section": "6.2",
-   "name": "Centripetal acceleration $\\kac$",
+   "name": "Centripetal acceleration",
+   "symbol": "a_c",
+   "terms": [
+    "centripetal acceleration"
+   ],
    "statement": "In uniform circular motion the magnitude of the velocity never changes but its direction changes constantly, so there is an acceleration. Taking the difference of the velocities at two nearby points shows that the change points directly toward the center of curvature, and so does the acceleration. Centripetal means center seeking, and it is what you notice as a sideways acceleration when you turn a corner in your car."
   },
   {
    "id": "centripetal-acceleration-magnitude",
    "kind": "result",
    "section": "6.2",
-   "name": "Centripetal acceleration, $\\kac = \\kv^2 / \\kr$ and $\\kac = \\kr\\kw^2$",
+   "name": "Magnitude of centripetal acceleration",
    "statement": "The triangle formed by the two velocities and the triangle formed by the two radii are similar, and following that through gives $a_{\\text{c}} = v^2/r$. Substituting $v = r\\omega$ gives the second form, $a_{\\text{c}} = r\\omega^2$, and you may use whichever is more convenient. Because the speed enters squared, it is four times as hard to take a curve at 100 km/h as at 50 km/h, and a sharp corner, having a small radius, asks more again.",
-   "eq": "eq-ac"
+   "forms": [
+    {
+     "id": "eq-ac",
+     "latex": "a_{\\text{c}} = \\frac{v^2}{r}",
+     "ktex": "\\kac = \\frac{\\kv^2}{\\kr}",
+     "anchor": "6.2-magnitude"
+    },
+    {
+     "id": "eq-similar-triangles",
+     "latex": "\\frac{\\Delta v}{v} = \\frac{\\Delta s}{r}",
+     "ktex": "\\frac{\\kdv}{\\kv} = \\frac{\\kds}{\\kr}",
+     "condition": "the triangle of the velocities and the triangle of the radii are similar",
+     "anchor": "6.2-magnitude"
+    },
+    {
+     "id": "eq-dv-step",
+     "latex": "\\Delta v = \\frac{v}{r}\\Delta s",
+     "ktex": "\\kdv = \\frac{\\kv}{\\kr}\\kds",
+     "anchor": "6.2-magnitude"
+    },
+    {
+     "id": "eq-ac-omega",
+     "latex": "a_{\\text{c}} = r\\omega^2",
+     "ktex": "\\kac = \\kr\\kw^2",
+     "anchor": "6.2-magnitude"
+    }
+   ]
   },
   {
    "id": "centrifuge",
@@ -161,7 +284,7 @@
    "id": "acceleration-in-multiples-of-g",
    "kind": "skill",
    "section": "6.2",
-   "name": "Quote a centripetal acceleration in multiples of $\\kg$",
+   "name": "Quoting an acceleration in multiples of g",
    "statement": "Dividing a centripetal acceleration by the acceleration due to gravity states it in multiples of g, which tells you at once how it compares with what we feel standing still. Centrifuges carry ratings in multiples of g, astronauts' tolerance to launch and reentry is stated the same way, and the ratio shows whether a ride would be uncomfortable or dangerous."
   },
   {
@@ -169,75 +292,173 @@
    "kind": "definition",
    "section": "6.2",
    "name": "Ultracentrifuge",
+   "terms": [
+    "ultracentrifuge"
+   ],
    "statement": "An ultracentrifuge is a centrifuge optimized for spinning a rotor at very high speeds."
   },
   {
    "id": "centripetal-force",
    "kind": "definition",
    "section": "6.3",
-   "name": "Centripetal force, $\\kFc = m\\kac$",
+   "name": "Centripetal force",
+   "symbol": "F_c",
+   "terms": [
+    "centripetal force"
+   ],
    "statement": "Any net force causing uniform circular motion is a centripetal force. It is not a new kind of force: the tension in the rope on a tether ball, the force of Earth's gravity on the Moon, friction between skates and a rink floor, and a banked roadway's force on a car can each be the centripetal force. What makes a force centripetal is its direction, toward the center of curvature, and Newton's second law then gives its magnitude.",
-   "eq": "eq-Fc-mac"
+   "forms": [
+    {
+     "id": "eq-Fc-mac",
+     "latex": "F_{\\text{c}} = m a_{\\text{c}}",
+     "ktex": "\\kFc = m\\kac",
+     "anchor": "6.3-centripetal-force"
+    }
+   ]
   },
   {
    "id": "centripetal-force-magnitude",
    "kind": "result",
    "section": "6.3",
-   "name": "Centripetal force, $\\kFc = m\\kv^2 / \\kr$ and $\\kFc = m\\kr\\kw^2$",
+   "name": "Magnitude of centripetal force",
    "statement": "Putting the two forms of the centripetal acceleration into $F_{\\text{c}} = ma_{\\text{c}}$ gives two forms of the centripetal force, and you use whichever is more convenient: the first when you know the speed, the second when you know the angular velocity. The force is always perpendicular to the path and always points toward the center of curvature, because the acceleration does.",
-   "eq": "eq-Fc"
+   "forms": [
+    {
+     "id": "eq-Fc",
+     "latex": "F_{\\text{c}} = m\\frac{v^2}{r}",
+     "ktex": "\\kFc = m\\frac{\\kv^2}{\\kr}",
+     "anchor": "6.3-two-forms"
+    },
+    {
+     "id": "eq-Fc-omega",
+     "latex": "F_{\\text{c}} = mr\\omega^2",
+     "ktex": "\\kFc = m\\kr\\kw^2",
+     "anchor": "6.3-two-forms"
+    }
+   ]
   },
   {
    "id": "radius-and-centripetal-force",
    "kind": "result",
    "section": "6.3",
-   "name": "Radius from the centripetal force, $\\kr = m\\kv^2 / \\kFc$",
+   "name": "Radius from centripetal force",
    "statement": "Solving the centripetal force for the radius shows that for a given mass and speed a large force makes a tight curve and a small force a wide one. It is the reading that tells you why a car with too little friction under it runs wide off the road rather than stopping, and why the stress in a high-speed tire depends on the tire's diameter.",
-   "eq": "eq-r-from-Fc"
+   "forms": [
+    {
+     "id": "eq-r-from-Fc",
+     "latex": "r = \\frac{mv^2}{F_{\\text{c}}}",
+     "ktex": "\\kr = \\frac{m\\kv^2}{\\kFc}",
+     "anchor": "6.3-radius"
+    }
+   ]
   },
   {
    "id": "friction-as-centripetal-force",
    "kind": "result",
    "section": "6.3",
-   "name": "Friction on a level curve, $\\mu_{\\text{s}} = \\kv^2 / \\kr\\kg$",
-   "statement": "On a level curve the only horizontal force on the car is friction, so friction is the whole centripetal force. Setting $mv^2/r$ equal to the greatest static friction $\\mu_{\\text{s}}N = \\mu_{\\text{s}}mg$ and cancelling the mass gives the smallest coefficient of friction with which the curve can be taken at that speed. The mass cancels because friction is proportional to the normal force, so it does not matter how heavily the car is loaded.",
-   "eq": "eq-mu-s"
+   "name": "Friction on a level curve",
+   "statement": "On a level curve the only horizontal force on the car is friction, so friction is the whole centripetal force. Set $mv^2/r$ equal to the greatest static friction $\\mu_{\\text{s}}N = \\mu_{\\text{s}}mg$ and cancel the mass, and you get the smallest coefficient of friction that lets the car take the curve at that speed. The mass cancels because friction is proportional to the normal force, so the car's load does not matter.",
+   "forms": [
+    {
+     "id": "eq-mu-s",
+     "latex": "\\mu_{\\text{s}} = \\frac{v^2}{rg}",
+     "ktex": "\\mu_{\\text{s}} = \\frac{\\kv^2}{\\kr\\kg}",
+     "condition": "an unbanked curve taken at the greatest speed static friction allows",
+     "anchor": "6.3-ex-flat-curve"
+    },
+    {
+     "id": "eq-friction-centripetal",
+     "latex": "F_{\\text{c}} = f = \\mu_{\\text{s}} N = \\mu_{\\text{s}} mg",
+     "ktex": "\\kFc = \\kff = \\mu_{\\text{s}} \\kN = \\mu_{\\text{s}} m\\kg",
+     "condition": "an unbanked curve, where friction is the only horizontal force",
+     "anchor": "6.3-ex-flat-curve"
+    }
+   ]
   },
   {
    "id": "banked-curve",
    "kind": "definition",
    "section": "6.3",
-   "name": "Banked curve and ideal banking",
-   "statement": "A banked curve is one whose road is sloped so that the slope helps you negotiate the curve, and the greater the angle the faster the curve can be taken. In an ideally banked curve the angle is such that the curve can be taken at a certain speed without the aid of friction at all, because the normal force alone supplies the centripetal force."
+   "name": "Banked curve",
+   "terms": [
+    "banked curve"
+   ],
+   "statement": "A banked curve slopes the road so that the slope helps you negotiate the curve, and the greater the angle, the faster you can take it. On an ideally banked curve you can take the curve at one speed with no friction at all, because the normal force alone supplies the centripetal force."
   },
   {
    "id": "ideal-banking-angle",
    "kind": "result",
    "section": "6.3",
-   "name": "Ideal banking angle, $\\theta = \\tan^{-1}(\\kv^2 / \\kr\\kg)$",
+   "name": "Ideal banking angle",
+   "terms": [
+    "ideal angle"
+   ],
    "statement": "On a frictionless banked curve the horizontal component of the normal force $N\\sin\\theta$ must supply the centripetal force and the vertical component $N\\cos\\theta$ must balance the weight. Dividing one by the other removes the normal force and the mass together and leaves $\\tan\\theta = v^2/rg$. Roads must therefore be steeply banked for high speeds and for sharp curves, and the angle does not depend on the mass of the vehicle.",
-   "eq": "eq-banking"
+   "forms": [
+    {
+     "id": "eq-banking",
+     "latex": "\\theta = \\tan^{-1}\\left(\\frac{v^2}{rg}\\right)",
+     "ktex": "\\theta = \\tan^{-1}\\left(\\frac{\\kv^2}{\\kr\\kg}\\right)",
+     "condition": "an ideally banked curve, no friction",
+     "anchor": "6.3-banked"
+    },
+    {
+     "id": "eq-N-sin",
+     "latex": "N\\sin\\theta = \\frac{mv^2}{r}",
+     "ktex": "\\kN\\sin\\theta = \\frac{m\\kv^2}{\\kr}",
+     "condition": "an ideally banked curve, no friction",
+     "anchor": "6.3-banked"
+    },
+    {
+     "id": "eq-N-cos",
+     "latex": "N\\cos\\theta = mg",
+     "ktex": "\\kN\\cos\\theta = m\\kg",
+     "condition": "an ideally banked curve, no friction",
+     "anchor": "6.3-banked"
+    },
+    {
+     "id": "eq-tan-theta",
+     "latex": "\\tan\\theta = \\frac{v^2}{rg}",
+     "ktex": "\\tan\\theta = \\frac{\\kv^2}{\\kr\\kg}",
+     "condition": "an ideally banked curve, no friction",
+     "anchor": "6.3-banked"
+    }
+   ]
   },
   {
    "id": "ideal-speed",
    "kind": "result",
    "section": "6.3",
-   "name": "Ideal speed, $\\kv = (\\kr\\kg\\tan\\theta)^{1/2}$",
+   "name": "Ideal speed",
+   "terms": [
+    "ideal speed"
+   ],
    "statement": "Reading the banking relation the other way gives the speed a curve of a given radius and bank is built for, which the book calls the ideal speed. It is the speed at which the road alone holds you on the curve, and friction then lets you take the curve at a greater or a lower speed without sliding.",
-   "eq": "eq-ideal-speed"
+   "forms": [
+    {
+     "id": "eq-ideal-speed",
+     "latex": "v = (rg\\tan\\theta)^{1/2}",
+     "ktex": "\\kv = (\\kr\\kg\\tan\\theta)^{1/2}",
+     "condition": "an ideally banked curve, no friction",
+     "anchor": "6.3-ex-ideal-speed"
+    }
+   ]
   },
   {
    "id": "free-body-circular-motion",
    "kind": "skill",
    "section": "6.3",
-   "name": "Solve a circular-motion problem from a free-body diagram",
-   "statement": "A circular-motion problem is a Newton's second law problem in which the direction of the acceleration is known in advance: it points at the center of curvature. You draw the free-body diagram, choose axes with one of them along the radius, and set the net force along that axis equal to $mv^2/r$. Every case in the section, the level curve, the banked curve, the vertical loop and the swinging cage, is worked that way."
+   "name": "Solving a circular-motion problem",
+   "statement": "A circular-motion problem is a Newton's second law problem in which you know the direction of the acceleration in advance: it points at the center of curvature. Draw the free-body diagram, put one axis along the radius, and set the net force along that axis equal to $mv^2/r$. The level curve, the banked curve, the vertical loop and the swinging cage all work this way."
   },
   {
    "id": "ideal-banking",
    "kind": "definition",
    "section": "6.3",
    "name": "Ideal banking",
+   "terms": [
+    "ideal banking"
+   ],
    "statement": "Ideal banking is the sloping of a curve in a road at the angle that lets a vehicle negotiate the curve at a given speed without the aid of friction between the tires and the road."
   },
   {
@@ -245,6 +466,9 @@
    "kind": "definition",
    "section": "6.4",
    "name": "Non-inertial frame of reference",
+   "terms": [
+    "non-inertial frame of reference"
+   ],
    "statement": "A non-inertial frame of reference is an accelerated frame. The car turning the corner and the rotating merry-go-round are both non-inertial, and inside such a frame Newton's laws do not hold as they stand unless forces with no physical origin are added to them."
   },
   {
@@ -252,6 +476,9 @@
    "kind": "definition",
    "section": "6.4",
    "name": "Fictitious force",
+   "terms": [
+    "fictitious force"
+   ],
    "statement": "A fictitious force is a force having no physical origin, invented so that Newton's laws can be applied inside an accelerating or rotating frame. Nothing pushes the passenger to the left as the car turns right; the passenger is going in a straight line and the car is moving to the right underneath. Either view allows us to describe nature, but the view from an inertial frame is the simplest and truest, because in it every force has a real origin."
   },
   {
@@ -259,6 +486,9 @@
    "kind": "definition",
    "section": "6.4",
    "name": "Centrifugal force",
+   "terms": [
+    "centrifugal force"
+   ],
    "statement": "The centrifugal force is the fictitious force that seems to throw you off a rotating frame, and it is not to be confused with the centripetal force, which is real and points the other way. In Earth's frame nothing throws the rider off the merry-go-round; the rider must hang on in order to go in a circle rather than travel in a straight line off the edge. A centrifuge works for the same reason: the inertia of the particles carries them along a tangent while the test tube is forced round."
   },
   {
@@ -266,52 +496,106 @@
    "kind": "definition",
    "section": "6.4",
    "name": "Coriolis force",
+   "terms": [
+    "Coriolis force"
+   ],
    "statement": "A ball slid straight out across a rotating merry-go-round follows a straight path over the ground and a path curved to the right across the boards, and in the merry-go-round's frame that curve is explained by a fictitious force, the Coriolis force. Earth turns the same way seen from above the North Pole, so any motion in the northern hemisphere is deflected to the right and any motion in the southern hemisphere to the left. The deflection is usually negligible, but on the scale of a weather system it turns the winds flowing into a low pressure into a counterclockwise circulation, which is why hurricanes rotate one way north of the equator and tropical cyclones the other way south of it."
   },
   {
    "id": "universal-gravitation",
    "kind": "axiom",
    "section": "6.5",
-   "name": "Newton's universal law of gravitation, $\\kF = GmM/\\kr^2$",
+   "name": "Newton’s universal law of gravitation",
+   "terms": [
+    "Newton’s universal law of gravitation"
+   ],
    "statement": "Every particle in the universe attracts every other particle with a force along a line joining them, directly proportional to the product of their masses and inversely proportional to the square of the distance between them. The force is always attractive, it depends on nothing but the masses and the separation, and the same formula holds for a father and a baby, for Earth and the Moon, and for one galaxy and another. The magnitude of the force on each of the two bodies is the same, consistent with Newton's third law, however different the two masses are.",
-   "eq": "eq-gravitation"
+   "forms": [
+    {
+     "id": "eq-gravitation",
+     "latex": "F = G\\frac{mM}{r^2}",
+     "ktex": "\\kF = G\\frac{mM}{\\kr^2}",
+     "anchor": "6.5-universal-law"
+    },
+    {
+     "id": "eq-gravitational-force",
+     "latex": "F_{\\text{G}} = G\\frac{mM}{r^2}",
+     "ktex": "\\kFG = G\\frac{mM}{r^2}",
+     "section": "18.3",
+     "anchor": "18.3-against-gravity"
+    }
+   ]
   },
   {
    "id": "gravitational-constant",
    "kind": "axiom",
    "section": "6.5",
-   "name": "Gravitational constant $G$",
+   "name": "Gravitational constant",
+   "symbol": "G",
+   "terms": [
+    "gravitational constant, G"
+   ],
    "statement": "$G$ is the proportionality factor in the universal law of gravitation, measured to be $6.674 \\times 10^{-11}\\ \\text{N}\\cdot\\text{m}^2/\\text{kg}^2$ and thought to be the same everywhere in the universe. Its small size is why two 1.000 kg masses 1.000 m apart attract each other with only $6.674 \\times 10^{-11}$ N, and why we are unaware that even large objects like mountains exert gravitational forces on us. Of all the fundamental constants in physics, $G$ is by far the least well determined.",
-   "eq": "eq-G"
+   "forms": [
+    {
+     "id": "eq-G",
+     "latex": "G = 6.674 \\times 10^{-11}\\;\\frac{\\text{N}\\cdot\\text{m}^2}{\\text{kg}^2}",
+     "anchor": "6.5-gravitational-constant"
+    }
+   ]
   },
   {
    "id": "center-of-mass",
    "kind": "definition",
    "section": "6.5",
    "name": "Center of mass",
+   "terms": [
+    "center of mass"
+   ],
    "statement": "The bodies gravity acts between tend to be large, so the law is applied by assuming that each body acts as if its entire mass were concentrated at one point, its center of mass. The center of mass is the average location of the mass, and a system of objects responds to external forces as if all of its mass were concentrated there. It is between the two centers of mass that the distance $r$ in the law of gravitation is measured."
   },
   {
    "id": "g-from-gravitation",
    "kind": "result",
    "section": "6.5",
-   "name": "The acceleration due to gravity, $\\kg = GM/\\kr^2$",
+   "name": "Acceleration due to gravity from gravitation",
    "statement": "The weight of an object $mg$ is the gravitational force between it and Earth, so $mg = GmM/r^2$. The mass of the object cancels, leaving $g = GM/r^2$, and substituting Earth's mass and radius gives $9.80\\ \\text{m/s}^2$. This is why all masses fall with the same acceleration, and it takes Galileo's observation a step further by explaining it in terms of a force. The same expression gives $g$ on the Moon, on Mars, at the distance of the Moon, or wherever a mass and a distance are known.",
-   "eq": "eq-g-GM"
+   "forms": [
+    {
+     "id": "eq-g-GM",
+     "latex": "g = G\\frac{M}{r^2}",
+     "ktex": "\\kg = G\\frac{M}{\\kr^2}",
+     "anchor": "6.5-g-from-gravity"
+    },
+    {
+     "id": "eq-mg-gravitation",
+     "latex": "mg = G\\frac{mM}{r^2}",
+     "ktex": "m\\kg = G\\frac{mM}{\\kr^2}",
+     "condition": "the weight of an object is the gravitational force between it and Earth",
+     "anchor": "6.5-g-from-gravity"
+    }
+   ]
   },
   {
    "id": "mass-from-g",
    "kind": "skill",
    "section": "6.5",
-   "name": "Find a body's mass from $\\kg$ and its radius, $M = \\kg\\kr^2/G$",
-   "statement": "Once $G$ is known, the relation $g = GM/r^2$ can be turned round to give the mass of the body rather than its surface gravity. This is how an accurate value for Earth's mass was finally obtained, more than a hundred years after Newton published the law, and it is one reason the measurement of $G$ mattered so much.",
-   "eq": "eq-M-from-g"
+   "name": "Finding a body’s mass from its gravity",
+   "statement": "Once you know $G$, you can turn $g = GM/r^2$ round to give the mass of the body rather than its surface gravity. That is how physicists finally obtained an accurate value for Earth's mass, more than a hundred years after Newton published the law, and it is one reason the measurement of $G$ mattered so much.",
+   "forms": [
+    {
+     "id": "eq-M-from-g",
+     "latex": "M = \\frac{gr^2}{G}",
+     "ktex": "M = \\frac{\\kg\\kr^2}{G}",
+     "anchor": "6.5-cavendish"
+    }
+   ]
   },
   {
    "id": "gravity-as-centripetal-force",
    "kind": "result",
    "section": "6.5",
-   "name": "Gravity supplies the Moon's centripetal acceleration",
+   "name": "Gravity and the Moon’s orbit",
    "statement": "Newton's own test of his law was to ask whether the acceleration due to Earth's gravity at the distance of the Moon is the acceleration the Moon's orbit needs. Working out $GM/r^2$ at $3.84 \\times 10^8$ m gives $2.70 \\times 10^{-3}\\ \\text{m/s}^2$, and working out $r\\omega^2$ from the Moon's 27.3-day period gives $2.72 \\times 10^{-3}\\ \\text{m/s}^2$. The two differ by less than one per cent, and the clear implication is that Earth's gravitational force causes the Moon to orbit Earth."
   },
   {
@@ -332,7 +616,7 @@
    "id": "cavendish-experiment",
    "kind": "idea",
    "section": "6.5",
-   "name": "The Cavendish experiment",
+   "name": "Cavendish experiment",
    "statement": "Henry Cavendish measured the tiny gravitational attraction between two ordinary-sized masses hung on a torsion fiber, and so fixed the value of $G$ in 1798, more than a hundred years after Newton published the law; his value differs by less than one per cent from the best modern one. The measurement is important because it determines the strength of one of the four forces in nature and because it made Earth's mass calculable. Experiments of the same design are still run, to ask whether the gravitational force depends on substance as well as mass and whether the inverse square law holds over sub-millimetre distances."
   },
   {
@@ -340,66 +624,121 @@
    "kind": "definition",
    "section": "6.5",
    "name": "Microgravity",
+   "terms": [
+    "microgravity"
+   ],
    "statement": "Microgravity is an environment in which the apparent net acceleration of a body is small compared with that produced by Earth at its surface."
   },
   {
    "id": "satellite-conditions",
    "kind": "idea",
    "section": "6.6",
-   "name": "The two conditions for a simple orbit",
+   "name": "Conditions for a simple orbit",
    "statement": "Kepler's laws and everything derived from them hold for a small mass $m$ orbiting a much larger mass $M$ in a system isolated from other masses. The first condition lets you view the motion as if $M$ were stationary, from an inertial frame placed on it; the second lets you neglect the small effects of everything else. Earth's satellites including the Moon, the objects orbiting the Sun, and the satellites of other planets all satisfy the two conditions to good approximation, which is why so much can be said about them without a computer."
   },
   {
    "id": "keplers-first-law",
    "kind": "result",
    "section": "6.6",
-   "name": "Kepler's first law: the orbit is an ellipse with $M$ at one focus",
+   "name": "Kepler’s first law",
    "statement": "The orbit of each planet about the Sun is an ellipse with the Sun at one focus. An ellipse is a closed curve such that the sum of the distances from a point on the curve to the two foci is a constant, and a circle is the special case in which the two foci coincide. The law holds for any closed gravitational orbit, not only for the planets it was stated for."
   },
   {
    "id": "keplers-second-law",
    "kind": "result",
    "section": "6.6",
-   "name": "Kepler's second law: equal areas in equal times",
+   "name": "Kepler’s second law",
    "statement": "Each planet moves so that an imaginary line drawn from the Sun to the planet sweeps out equal areas in equal times. Because the areas are equal, the planet must move fastest when it is closest to the Sun and slowest when it is furthest away. The law was devised for planets orbiting the Sun but has broader validity."
   },
   {
    "id": "keplers-third-law",
    "kind": "result",
    "section": "6.6",
-   "name": "Kepler's third law, $\\kTorbone^2/\\kTorbtwo^2 = \\krone^3/\\krtwo^3$",
+   "name": "Kepler’s third law",
    "statement": "The ratio of the squares of the periods of any two planets about the Sun equals the ratio of the cubes of their average distances from the Sun. It is a descriptive equation only: Kepler found it in Tycho Brahe's twenty years of observations and it gives no information as to the cause of the equality. It is enough, though, to find the period of one orbit from the period of another, which is how the period of a satellite 1500 km up is got from the period of the Moon.",
-   "eq": "eq-kepler3"
+   "forms": [
+    {
+     "id": "eq-kepler3",
+     "latex": "\\frac{T_1^2}{T_2^2} = \\frac{r_1^3}{r_2^3}",
+     "ktex": "\\frac{\\kTorbone^2}{\\kTorbtwo^2} = \\frac{\\krone^3}{\\krtwo^3}",
+     "condition": "two small masses orbiting the same large one",
+     "anchor": "6.6-keplers-laws"
+    }
+   ]
   },
   {
    "id": "orbital-speed",
    "kind": "result",
    "section": "6.6",
-   "name": "Orbital speed, $GM/\\kr = \\kv^2$",
+   "name": "Orbital speed",
    "statement": "For a circular orbit gravity is the whole net external force, so $GmM/r^2 = mv^2/r$. The satellite's own mass cancels, leaving $GM/r = v^2$: at a given orbital radius all masses orbit at the same speed. This is the same fact as all masses falling with the same acceleration, seen from further out.",
-   "eq": "eq-v2-orbit"
+   "forms": [
+    {
+     "id": "eq-v2-orbit",
+     "latex": "G\\frac{M}{r} = v^2",
+     "ktex": "G\\frac{M}{\\kr} = \\kv^2",
+     "condition": "a circular orbit",
+     "anchor": "6.6-derivation"
+    },
+    {
+     "id": "eq-Fnet-circular",
+     "latex": "F_{\\text{net}} = ma_{\\text{c}} = m\\frac{v^2}{r}",
+     "ktex": "\\kFnet = m\\kac = m\\frac{\\kv^2}{\\kr}",
+     "condition": "a circular orbit",
+     "anchor": "6.6-derivation"
+    },
+    {
+     "id": "eq-gravity-is-centripetal",
+     "latex": "G\\frac{mM}{r^2} = m\\frac{v^2}{r}",
+     "ktex": "G\\frac{mM}{\\kr^2} = m\\frac{\\kv^2}{\\kr}",
+     "condition": "a circular orbit, in which gravity supplies the whole centripetal force",
+     "anchor": "6.6-derivation"
+    }
+   ]
   },
   {
    "id": "kepler-third-law-derivation",
    "kind": "result",
    "section": "6.6",
-   "name": "Kepler's third law from gravitation, $\\kT^2 = 4\\pi^2\\kr^3/GM$",
+   "name": "Kepler’s third law from gravitation",
    "statement": "Substituting the average speed $v = 2\\pi r/T$ into $GM/r = v^2$ gives $T^2 = 4\\pi^2 r^3/GM$, and taking the ratio of that expression for two satellites of the same parent body gives Kepler's third law, with $M$ cancelling. The derivation shows that the force of gravity is the cause of what Kepler only described, and why the third law compares satellites of one parent body only.",
-   "eq": "eq-T2"
+   "forms": [
+    {
+     "id": "eq-T2",
+     "latex": "T^2 = \\frac{4\\pi^2}{GM} r^3",
+     "ktex": "\\kT^2 = \\frac{4\\pi^2}{GM} \\kr^3",
+     "condition": "a circular orbit about a mass M",
+     "anchor": "6.6-derivation"
+    },
+    {
+     "id": "eq-v-circumference",
+     "latex": "v = \\frac{2\\pi r}{T}",
+     "ktex": "\\kv = \\frac{2\\pi \\kr}{\\kT}",
+     "condition": "a circular orbit of period T",
+     "anchor": "6.6-derivation"
+    }
+   ]
   },
   {
    "id": "mass-from-orbit",
    "kind": "skill",
    "section": "6.6",
-   "name": "Weigh a parent body from a satellite's orbit, $\\kr^3/\\kT^2 = GM/4\\pi^2$",
-   "statement": "Solving $T^2 = 4\\pi^2 r^3/GM$ for the ratio $r^3/T^2$ gives a quantity that is the same for every satellite of one parent body and that depends on nothing but $G$ and the parent's mass. So if the radius and the period of one satellite are known, the mass of the body it goes round can be calculated, and this principle has been used extensively to find the masses of heavenly bodies that have satellites.",
-   "eq": "eq-r3-T2"
+   "name": "Finding a mass from an orbit",
+   "statement": "Solving $T^2 = 4\\pi^2 r^3/GM$ for the ratio $r^3/T^2$ gives a quantity that is the same for every satellite of one parent body and depends only on $G$ and the parent's mass. So if you know the radius and the period of one satellite, you can calculate the mass of the body it goes round. Astronomers use this principle to find the masses of heavenly bodies that have satellites.",
+   "forms": [
+    {
+     "id": "eq-r3-T2",
+     "latex": "\\frac{r^3}{T^2} = \\frac{G}{4\\pi^2} M",
+     "ktex": "\\frac{\\kr^3}{\\kT^2} = \\frac{G}{4\\pi^2} M",
+     "anchor": "6.6-parent-mass"
+    }
+   ]
   },
   {
    "id": "descriptive-versus-causal-law",
    "kind": "idea",
    "section": "6.6",
-   "name": "A description and a cause",
+   "name": "Description versus cause",
    "statement": "Kepler's laws describe how the planets move; Newton's universal law of gravitation says why, and that single equation covers every situation in which gravity acts. The earlier Ptolemaic model was a list of facts, with a different rule for each heavenly body and no cause behind any of it, while the Copernican model needs a small set of rules and a single underlying force."
   }
  ],

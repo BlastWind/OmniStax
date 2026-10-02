@@ -168,59 +168,94 @@
    "id": "induction",
    "kind": "axiom",
    "section": "23.1",
-   "name": "Only a changing magnetic field induces an emf",
+   "name": "Induction",
+   "terms": [
+    "induction",
+    "electromagnetic induction"
+   ],
    "statement": "Faraday closed a switch and a galvanometer on a second coil swung. He opened it and the needle swung the other way. While the switch stayed closed, with a steady current and a steady magnetic field in the iron ring, the needle sat at zero. It is the change in the magnetic field, and not the field itself, that creates the emf, and a reader who carries nothing else out of this chapter should carry that. The same experiment done with a bar magnet says it again: the faster the magnet moves, the greater the emf, and a magnet held still inside the coil produces nothing at all."
   },
   {
    "id": "magnetic-flux",
    "kind": "definition",
    "section": "23.1",
-   "name": "Magnetic flux, $\\kPhi = \\kBmag A\\cos\\theta$",
+   "name": "Magnetic flux",
+   "symbol": "Φ",
+   "terms": [
+    "magnetic flux"
+   ],
    "statement": "The magnetic flux through an area is the field strength times the area times the cosine of the angle between the field and the perpendicular to the area, $\\Phi = BA\\cos\\theta$, and its units are $\\text{T}\\cdot\\text{m}^2$. A large loop gathers more field than a small one, and a loop turned edge-on to the field gathers none. Every induced emf in this chapter is the rate at which this one quantity changes.",
-   "eq": "eq-magnetic-flux"
+   "forms": [
+    {
+     "id": "eq-magnetic-flux",
+     "latex": "\\Phi = BA\\cos\\theta",
+     "ktex": "\\kPhi = \\kBmag A\\cos\\theta",
+     "anchor": "23.1-flux-defined"
+    }
+   ]
   },
   {
    "id": "flux-and-orientation",
    "kind": "result",
    "section": "23.1",
-   "name": "Flux counts only the perpendicular component, $\\kPhi = B_{\\perp}A$",
-   "statement": "Because $B\\cos\\theta$ is the component of the field along the perpendicular to the area, the flux can also be read as the area times the part of the field that goes straight through it. This is the form that makes the awkward cases obvious: a field lying in the plane of a loop has no perpendicular component and threads no flux through it, even though the field is as strong as ever. The reader who holds this form in mind never has to decide whether a particular angle goes in the cosine or the sine.",
-   "eq": "eq-flux-perpendicular"
+   "name": "Flux and orientation",
+   "statement": "Because $B\\cos\\theta$ is the component of the field along the perpendicular to the area, the flux is also the area times the part of the field that goes straight through it. This form makes the awkward cases obvious: a field lying in the plane of a loop has no perpendicular component and threads no flux through it, however strong it is. With this form in mind, you never have to decide whether an angle goes in the cosine or the sine.",
+   "forms": [
+    {
+     "id": "eq-flux-perpendicular",
+     "latex": "\\Phi = B_{\\perp}A",
+     "ktex": "\\kPhi = \\kBmag_{\\perp}A",
+     "anchor": "23.1-flux-defined"
+    }
+   ]
   },
   {
    "id": "ways-to-change-flux",
    "kind": "skill",
    "section": "23.1",
-   "name": "Recognizing which of the three factors is changing",
+   "name": "Recognizing how flux changes",
    "statement": "Since the flux is a product of a field, an area and a cosine, there are exactly three ways to change it, and every method of inducing an emf in this chapter is one of them. Faraday changed the field by switching his coil on and off; the experimenter with the bar magnet changed the field at the coil by moving the magnet; the generator changes the angle by rotating the coil; and the rod sliding on its rails in the next section changes the area. Sorting a new situation into one of the three is the first step in every problem the chapter sets."
   },
   {
    "id": "faradays-law",
    "kind": "axiom",
    "section": "23.2",
-   "name": "Faraday's law of induction, $\\kemf = -N\\frac{\\kdPhi}{\\kdt}$",
-   "statement": "Faraday's experiments showed that the induced emf depends on only a few things: it is proportional to the change in flux, it is greater the more quickly the change is made, and it is proportional to the number of turns in the coil. Those three facts together are one equation, and it is the equation the rest of the chapter is built on. The units come out in volts, as they must, since an emf is a potential difference.",
-   "eq": "eq-faradays-law"
+   "name": "Faraday’s law of induction",
+   "terms": [
+    "Faraday’s law of induction"
+   ],
+   "statement": "Faraday's experiments showed that the induced emf depends on only a few things. It is proportional to the change in flux, greater the more quickly the change happens, and proportional to the number of turns in the coil. Those three facts together are one equation, and the rest of the chapter rests on it. The units come out in volts, as they must, since an emf is a potential difference.",
+   "forms": [
+    {
+     "id": "eq-faradays-law",
+     "latex": "\\text{emf} = -N\\frac{\\Delta\\Phi}{\\Delta t}",
+     "ktex": "\\kemf = -N\\frac{\\kdPhi}{\\kdt}",
+     "anchor": "23.2-faradays-and-lenzs-law"
+    }
+   ]
   },
   {
    "id": "turns-multiply-emf",
    "kind": "result",
    "section": "23.2",
-   "name": "An $N$-turn coil produces $N$ times the emf of one loop",
-   "statement": "Each turn of a coil encloses the same changing flux and each contributes its own emf, and because the turns are joined end to end those emfs add. This is why the practical business of induction is done with coils rather than single loops: the worked example's single loop manages 22.6 mV, which the book calls easily measured but not large enough to be useful, and a thousand turns of the same wire make it volts."
+   "name": "Emf of an N-turn coil",
+   "statement": "Each turn of a coil encloses the same changing flux and contributes its own emf, and because the turns are joined end to end those emfs add. That is why practical induction uses coils rather than single loops. The worked example's single loop manages 22.6 mV, which the book calls easily measured but not large enough to be useful, and a thousand turns of the same wire make it volts."
   },
   {
    "id": "lenzs-law",
    "kind": "axiom",
    "section": "23.2",
-   "name": "Lenz's law: the induced current opposes the change in flux",
-   "statement": "The minus sign in Faraday's law is not bookkeeping. It says that the induced emf drives a current whose own magnetic field opposes the change in flux that produced it: push a north pole toward a coil and the coil raises a north pole to meet it; pull the magnet away and the coil raises a south pole to hold it. The direction is as much of the physics as the size, and the sign is the only part of the chapter the reader cannot get by substitution."
+   "name": "Lenz’s law",
+   "terms": [
+    "Lenz’s law"
+   ],
+   "statement": "The minus sign in Faraday's law is not bookkeeping. The induced emf drives a current whose own magnetic field opposes the change in flux that produced it. Push a north pole toward a coil and the coil raises a north pole to meet it; pull the magnet away and the coil raises a south pole to hold it. The direction is as much of the physics as the size, and the sign is the one part of the chapter you cannot get by substitution."
   },
   {
    "id": "lenz-from-energy-conservation",
    "kind": "idea",
    "section": "23.2",
-   "name": "Lenz's law is conservation of energy",
+   "name": "Lenz’s law and conservation of energy",
    "statement": "A change in flux is a change in energy, and energy can enter or leave a system but not instantaneously. If the induced emf pointed the other way it would reinforce the change that made it, which would feed on itself and give energy from no source at all. Lenz's law is therefore not an extra rule to be memorized beside Faraday's: it is the only sign the law can have, and a reader who sees that will never write it backward."
   },
   {
@@ -234,24 +269,38 @@
    "id": "induction-applications",
    "kind": "idea",
    "section": "23.2",
-   "name": "Where induction is used to read and to carry a signal",
-   "statement": "Induction is how a varying magnetic pattern is turned back into a varying voltage, and that is the whole of magnetic recording: a tape or a hard disk carries regions magnetized one way or the other, and a coil passed over them has an emf induced in it that reproduces the signal. The same idea carries a signal across a barrier where wires cannot go, as in a cochlear implant, and reports a change in a body, as in the apnea monitor whose coil changes area as an infant's chest rises and falls."
+   "name": "Applications of induction",
+   "statement": "Induction turns a varying magnetic pattern back into a varying voltage, and that is the whole of magnetic recording. A tape or a hard disk carries regions magnetized one way or the other, and a coil passing over them has an emf induced in it that reproduces the signal. The same idea carries a signal across a barrier where wires cannot go, as in a cochlear implant. It also reports a change in a body, as in the apnea monitor whose coil changes area as an infant's chest rises and falls."
   },
   {
    "id": "motional-emf",
    "kind": "result",
    "section": "23.3",
-   "name": "Motional emf, $\\kemf = \\kBmag\\ell\\kv$",
+   "name": "Motional emf",
    "statement": "When a conductor of length $\\ell$ moves at speed $v$ across a magnetic field $B$, with the three mutually perpendicular, an emf of $B\\ell v$ appears along it. This is the same expression the Hall effect gave in the preceding chapter, which is the point: the Hall effect turns out to be one case of induction rather than a separate phenomenon. It is also the first of the chapter's results that can be used the other way round, to measure a field or a speed from a voltage.",
-   "eq": "eq-motional-emf"
+   "forms": [
+    {
+     "id": "eq-motional-emf",
+     "latex": "\\text{emf} = B\\ell v",
+     "ktex": "\\kemf = \\kBmag\\ell\\kv",
+     "anchor": "23.3-rod-on-rails"
+    }
+   ]
   },
   {
    "id": "motional-emf-from-faradays-law",
    "kind": "skill",
    "section": "23.3",
-   "name": "Getting $\\kemf = \\kBmag\\ell\\kv$ from the area the rod sweeps",
+   "name": "Getting motional emf from Faraday’s law",
    "statement": "The derivation is short and worth following, because it shows that motional emf is not a new law. The rod, the rails and the resistor enclose an area that grows as the rod moves; the field is perpendicular to that area, so $\\Delta\\Phi = B\\Delta A = B\\ell\\Delta x$; divide by $\\Delta t$ and $\\Delta x/\\Delta t$ is the speed. A reader who can run this argument can handle the cases the formula does not cover, such as a conductor that is not perpendicular to the field.",
-   "eq": "eq-swept-area"
+   "forms": [
+    {
+     "id": "eq-swept-area",
+     "latex": "\\Delta\\Phi = B\\Delta A = B\\ell\\Delta x",
+     "ktex": "\\kdPhi = \\kBmag\\Delta A = \\kBmag\\ell\\kdx",
+     "anchor": "23.3-rod-on-rails"
+    }
+   ]
   },
   {
    "id": "relative-motion-induces",
@@ -264,137 +313,222 @@
    "id": "motional-emf-power-conversion",
    "kind": "idea",
    "section": "23.3",
-   "name": "Motional emf converts mechanical energy into electrical energy",
-   "statement": "Where the induced emf drives a current, the magnetic force on that current opposes the motion, and the work done against it is where the electrical energy comes from. The Tethered Satellite experiment is the case drawn large: a 20 km cable moving at orbital speed through the Earth's field was predicted to develop 5 kV, the ionosphere completing the circuit, and the drag on the current would have taken the energy out of the shuttle's own kinetic and potential energy. The same accounting explains why a generator is hard to turn when it is delivering power."
+   "name": "Energy conversion by motional emf",
+   "statement": "Where the induced emf drives a current, the magnetic force on that current opposes the motion, and the work done against it supplies the electrical energy. The Tethered Satellite experiment is the case drawn large. A 20 km cable moving at orbital speed through the Earth's field should have developed 5 kV, with the ionosphere completing the circuit, and the drag on the current would have drawn the energy from the shuttle's own kinetic and potential energy. The same accounting explains why a generator is hard to turn when it is delivering power."
   },
   {
    "id": "eddy-current",
    "kind": "definition",
    "section": "23.4",
    "name": "Eddy currents",
+   "terms": [
+    "eddy current"
+   ],
    "statement": "A conductor does not have to be a wire for induction to drive a current through it. Where a solid piece of metal moves through a changing flux, the induced emf drives current in closed loops within the metal itself, and those loops are called eddy currents. They are induction with no circuit drawn for it, and they are the reason a metal plate behaves quite differently from a plastic one in the same experiment."
   },
   {
    "id": "magnetic-damping",
    "kind": "result",
    "section": "23.4",
-   "name": "Magnetic damping opposes the motion and vanishes with it",
-   "statement": "The eddy current in a plate crossing a field is a current in a field, so it feels a magnetic force, and by Lenz's law that force opposes the motion that produced it. A metal pendulum bob swinging between the poles of a magnet is brought quickly to rest, while an insulating bob is untouched. Two features of this drag are worth keeping: it acts both on the way in and on the way out, since the flux increases in one and decreases in the other, and it is proportional to speed, so it disappears as the motion stops, which is exactly what a sensitive instrument wants."
+   "name": "Magnetic damping",
+   "terms": [
+    "magnetic damping"
+   ],
+   "statement": "The eddy current in a plate crossing a field is a current in a field, so it feels a magnetic force, and by Lenz's law that force opposes the motion that produced it. A metal pendulum bob swinging between the poles of a magnet quickly comes to rest, while an insulating bob swings on unaffected. Two features of this drag matter. It acts both on the way in and on the way out, since the flux increases in one and decreases in the other. It is also proportional to speed, so it disappears as the motion stops, exactly what a sensitive instrument wants."
   },
   {
    "id": "slotting-reduces-eddy-currents",
    "kind": "result",
    "section": "23.4",
-   "name": "Slots and laminations make eddy currents ineffective",
-   "statement": "The size of an eddy current loop is set by how far the current can run before it must turn back, so cutting slots in a plate, or building it from thin layers separated by insulation, breaks one large loop into many small ones. Neighbouring small loops carry current in opposite directions and their forces very nearly cancel. This is why a slotted bob barely slows, and it is why a transformer core is laminated rather than solid, which the chapter uses again in a later section."
+   "name": "Reducing eddy currents",
+   "statement": "How far the current can run before it must turn back sets the size of an eddy current loop. Cutting slots in a plate, or building it from thin layers separated by insulation, breaks one large loop into many small ones. Neighbouring small loops carry current in opposite directions and their forces very nearly cancel. That is why a slotted bob barely slows, and why a transformer core is laminated rather than solid, as a later section of the chapter shows."
   },
   {
    "id": "applications-of-magnetic-damping",
    "kind": "idea",
    "section": "23.4",
-   "name": "Where magnetic damping is put to work",
-   "statement": "Because the drag is frictionless in the ordinary sense and dies away with the motion, magnetic damping is used wherever an instrument must settle quickly and then be left alone: a laboratory balance damps its own oscillations with a disc turning in a fixed field. Because it acts only on conductors, it sorts them: trash sent down a ramp over a powerful magnet leaves its metals behind. And because a nearby conductor changes what a coil induces, it detects them, in a hand-held metal detector and in an airport gate. Braking a roller coaster is the same drag used to take energy out of a moving vehicle, and an induction cooktop is the eddy current itself doing the heating."
+   "name": "Applications of magnetic damping",
+   "statement": "Magnetic damping is frictionless in the ordinary sense and dies away with the motion, so instruments use it wherever they must settle quickly and then stay still: a laboratory balance damps its own oscillations with a disc turning in a fixed field. It acts only on conductors, so it sorts them: trash sent down a ramp over a powerful magnet leaves its metals behind. A nearby conductor changes what a coil induces, so it detects them, in a hand-held metal detector and in an airport gate. Braking a roller coaster uses the same drag to take energy out of a moving vehicle, and in an induction cooktop the eddy current itself does the heating."
   },
   {
    "id": "electric-generator",
    "kind": "definition",
    "section": "23.5",
-   "name": "An electric generator induces an emf by rotating a coil in a field",
+   "name": "Electric generator",
+   "terms": [
+    "electric generator"
+   ],
    "statement": "An electric generator is a coil turned in a magnetic field, with rings and brushes to carry the induced emf away. Turning the coil changes the angle between the field and the coil's perpendicular, so the flux through the coil changes, and by Faraday's law an emf appears. The generator is the same machine as the motor of the preceding chapter, with the shaft turned by hand instead of by a current."
   },
   {
    "id": "average-emf-of-a-generator",
    "kind": "skill",
    "section": "23.5",
-   "name": "Finding the average emf over a quarter turn",
+   "name": "Finding the average emf of a generator",
    "statement": "Before the full time dependence, the book does the easy case: turn the coil from the position where the flux is greatest to the position where it is zero, and Faraday's law gives the average emf over that quarter revolution as $NAB/\\Delta t$, because the change in flux is just $AB$. The 200-turn, 5.00 cm coil of the worked example gives 131 V in 15.0 ms, which is close to household voltage and makes the point that a generator of ordinary size is a practical source."
   },
   {
    "id": "generator-emf-versus-time",
    "kind": "result",
    "section": "23.5",
-   "name": "The emf of a generator, $\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt$",
-   "statement": "The average emf hides what the reader most wants, which is the emf at each instant. Taking the motional emf on the two side wires of a rectangular loop, each moving at an angle $\\theta$ to the field, and writing $\\theta = \\omega t$ for a coil turning at constant angular velocity, gives an emf that varies as $\\sin\\omega t$. This is where the sinusoidal AC voltage of Chapter 20 comes from: it is not a convention but the shape a rotating coil produces.",
-   "eq": "eq-generator-emf"
+   "name": "Emf of a generator",
+   "terms": [
+    "emf induced in a generator coil"
+   ],
+   "statement": "The average emf hides what you most want, the emf at each instant. Take the motional emf on the two side wires of a rectangular loop, each moving at an angle $\\theta$ to the field, and write $\\theta = \\omega t$ for a coil turning at constant angular velocity. The emf then varies as $\\sin\\omega t$. This is where the sinusoidal AC voltage of Chapter 20 comes from: it is not a convention but the shape a rotating coil produces.",
+   "forms": [
+    {
+     "id": "eq-generator-emf",
+     "latex": "\\text{emf} = NAB\\omega\\sin\\omega t",
+     "ktex": "\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt",
+     "anchor": "23.5-the-emf-at-each-instant"
+    },
+    {
+     "id": "eq-two-side-emf",
+     "latex": "\\text{emf} = 2B\\ell v\\sin\\theta",
+     "ktex": "\\kemf = 2\\kBmag\\ell\\kv\\sin\\theta",
+     "anchor": "23.5-the-emf-at-each-instant"
+    },
+    {
+     "id": "eq-generator-emf-peak-form",
+     "latex": "\\text{emf} = \\text{emf}_0\\sin\\omega t",
+     "ktex": "\\kemf = \\kemfo\\sin\\kw\\kt",
+     "anchor": "23.5-the-emf-at-each-instant"
+    }
+   ]
   },
   {
    "id": "peak-emf",
    "kind": "result",
    "section": "23.5",
-   "name": "The peak emf, $\\kemfo = NA\\kBmag\\kw$",
+   "name": "Peak emf",
+   "terms": [
+    "peak emf"
+   ],
    "statement": "The largest value the emf reaches is $NAB\\omega$, and every factor in it makes sense: more turns, a larger coil, a stronger field and a faster rotation all give more voltage. The last is the one with a story attached, since a bicycle generator spun fast enough will burn out the lamp it feeds. The peak emf is also what an AC problem usually gives, the rms value of Chapter 20 following from it.",
-   "eq": "eq-peak-emf"
+   "forms": [
+    {
+     "id": "eq-peak-emf",
+     "latex": "\\text{emf}_0 = NAB\\omega",
+     "ktex": "\\kemfo = NA\\kBmag\\kw",
+     "anchor": "23.5-the-emf-at-each-instant"
+    }
+   ]
   },
   {
    "id": "commutator-pulsed-dc",
    "kind": "idea",
    "section": "23.5",
-   "name": "Split rings turn the output into pulsed DC",
-   "statement": "Replacing the generator's two rings with one split ring reverses the connection to the outside circuit each half turn, so the half of the cycle that would have come out negative comes out positive instead and the output is a train of positive pulses. This is a generator's answer to the same problem the motor of the preceding chapter solved with brushes, and more elaborate arrangements of coils and split rings smooth the pulses, although ripple-free DC is made electronically now."
+   "name": "Split rings and pulsed DC",
+   "statement": "Replacing the generator's two rings with one split ring reverses the connection to the outside circuit each half turn. The half of the cycle that would have come out negative comes out positive instead, and the output is a train of positive pulses. The motor of the preceding chapter solved the same problem with brushes. More elaborate arrangements of coils and split rings smooth the pulses, although electronics now make ripple-free DC."
   },
   {
    "id": "motor-is-a-generator",
    "kind": "idea",
    "section": "23.6",
-   "name": "A motor with a turning shaft is also a generator",
+   "name": "Motor as a generator",
    "statement": "Motors and generators have the same construction, and the difference between them is which way the energy is going. Whenever a motor's coil turns, whatever is turning it, the flux through the coil changes and an emf is induced in it. This is not an unwanted side effect to be designed out; it is unavoidable, and the rest of the section is about what follows from it."
   },
   {
    "id": "back-emf",
    "kind": "result",
    "section": "23.6",
-   "name": "Back emf grows with the motor's speed",
-   "statement": "By Lenz's law the emf a motor generates opposes the emf driving it, which is why it is called the back emf. It is zero when the motor is not turning and grows in proportion to the angular velocity, so a motor running freely speeds up until its back emf nearly cancels the driving voltage and it draws only enough current to overcome friction. The back emf is the motor's own regulator."
+   "name": "Back emf",
+   "terms": [
+    "back emf"
+   ],
+   "statement": "By Lenz's law the emf a motor generates opposes the emf driving it, so we call it the back emf. It is zero when the motor is not turning and grows in proportion to the angular velocity. A motor running freely therefore speeds up until its back emf nearly cancels the driving voltage, and it then draws only enough current to overcome friction. The back emf is the motor's own regulator."
   },
   {
    "id": "back-emf-and-current-drawn",
    "kind": "result",
    "section": "23.6",
-   "name": "The current a motor draws is set by the driving voltage minus the back emf",
+   "name": "Back emf and motor current",
    "statement": "Only the difference between the driving emf and the back emf appears across the motor's coils, so the current is that difference divided by the coil resistance. A motor just switched on has no back emf and draws its largest current, which is why lights dim when a refrigerator starts; a loaded motor slows, its back emf drops, and it draws more current and does more work; and a motor held too slow draws a current large enough to burn out its coils. The book's own numbers make the point: 120 A and 5.76 kW at rest against 20 A and 160 W at speed."
   },
   {
    "id": "transformer",
    "kind": "definition",
    "section": "23.7",
-   "name": "A transformer changes an AC voltage by induction",
+   "name": "Transformer",
+   "terms": [
+    "transformer"
+   ],
    "statement": "Two coils wound on one iron core are Faraday's apparatus put to work. The AC in the primary makes a time-varying flux, the core carries that flux to the secondary and strengthens it, and the changing flux induces a voltage in the secondary. The device is everywhere, from the plug-in unit on a laptop to the substations that step the grid's voltage down for a street, and the whole of its behaviour follows from Faraday's law applied twice."
   },
   {
    "id": "transformer-equation",
    "kind": "result",
    "section": "23.7",
-   "name": "The transformer equation, $\\frac{\\kVsec}{\\kVprim} = \\frac{N_{\\text{s}}}{N_{\\text{p}}}$",
+   "name": "Transformer equation",
+   "terms": [
+    "transformer equation"
+   ],
    "statement": "Both coils sit on the same core and so see the same $\\Delta\\Phi/\\Delta t$; Faraday's law then gives each a voltage proportional to its own number of turns, and dividing one by the other leaves a ratio of turns. So the output voltage is the input voltage times the turns ratio, and a transformer's job is settled entirely by how its two coils are wound.",
-   "eq": "eq-transformer-equation"
+   "forms": [
+    {
+     "id": "eq-transformer-equation",
+     "latex": "\\frac{V_{\\text{s}}}{V_{\\text{p}}} = \\frac{N_{\\text{s}}}{N_{\\text{p}}}",
+     "ktex": "\\frac{\\kVsec}{\\kVprim} = \\frac{N_{\\text{s}}}{N_{\\text{p}}}",
+     "anchor": "23.7-the-transformer-equation"
+    },
+    {
+     "id": "eq-secondary-voltage",
+     "latex": "V_{\\text{s}} = -N_{\\text{s}}\\frac{\\Delta\\Phi}{\\Delta t}",
+     "ktex": "\\kVsec = -N_{\\text{s}}\\frac{\\kdPhi}{\\kdt}",
+     "anchor": "23.7-the-transformer-equation"
+    },
+    {
+     "id": "eq-primary-voltage",
+     "latex": "V_{\\text{p}} = -N_{\\text{p}}\\frac{\\Delta\\Phi}{\\Delta t}",
+     "ktex": "\\kVprim = -N_{\\text{p}}\\frac{\\kdPhi}{\\kdt}",
+     "anchor": "23.7-the-transformer-equation"
+    }
+   ]
   },
   {
    "id": "transformer-current-ratio",
    "kind": "result",
    "section": "23.7",
-   "name": "The current ratio, $\\frac{\\kIsec}{\\kIprim} = \\frac{N_{\\text{p}}}{N_{\\text{s}}}$",
+   "name": "Transformer current ratio",
    "statement": "A transformer is not a source of energy, and a good one wastes very little: transformer efficiency often exceeds 99 per cent, so the power out equals the power in. Setting $I_\\text{p}V_\\text{p} = I_\\text{s}V_\\text{s}$ and using the voltage ratio gives a current ratio that is the turns ratio upside down. Raising a voltage lowers the current in the same proportion, which is why power is sent across country at hundreds of kilovolts and why a step-up transformer's spectacular arcs are relatively safe.",
-   "eq": "eq-transformer-current"
+   "forms": [
+    {
+     "id": "eq-transformer-current",
+     "latex": "\\frac{I_{\\text{s}}}{I_{\\text{p}}} = \\frac{N_{\\text{p}}}{N_{\\text{s}}}",
+     "ktex": "\\frac{\\kIsec}{\\kIprim} = \\frac{N_{\\text{p}}}{N_{\\text{s}}}",
+     "anchor": "23.7-currents-and-power"
+    },
+    {
+     "id": "eq-transformer-power",
+     "latex": "P_{\\text{p}} = I_{\\text{p}}V_{\\text{p}} = I_{\\text{s}}V_{\\text{s}} = P_{\\text{s}}",
+     "ktex": "\\kPprim = \\kIprim\\kVprim = \\kIsec\\kVsec = \\kPsec",
+     "anchor": "23.7-currents-and-power"
+    }
+   ]
   },
   {
    "id": "step-up-and-step-down",
    "kind": "skill",
    "section": "23.7",
-   "name": "Telling a step-up transformer from a step-down one and choosing its turns",
-   "statement": "A transformer with more turns on the secondary raises the voltage and is called a step-up transformer; one with fewer lowers it and is called a step-down transformer. Deciding which is wanted, and then finding the turns, the current or the power from the two ratios, is what the section asks the reader to do, and the arithmetic is only ever one ratio and one multiplication. The check that keeps it honest is that the power out must equal the power in."
+   "name": "Choosing a step-up or step-down transformer",
+   "statement": "A transformer with more turns on the secondary raises the voltage and is a step-up transformer; one with fewer lowers it and is a step-down transformer. Decide which you need, then find the turns, the current or the power from the two ratios. The arithmetic is only ever one ratio and one multiplication. The check that keeps it honest is that the power out must equal the power in."
   },
   {
    "id": "transformers-need-ac",
    "kind": "result",
    "section": "23.7",
-   "name": "A transformer does nothing with steady DC",
-   "statement": "Since the secondary voltage depends on the rate at which the flux changes, a steady primary current induces nothing at all. Switching DC on and off does produce something, but it is a train of spikes rather than the sinusoid most appliances need. This is the plainest reason AC is used wherever voltages must be raised or lowered, and it is worth stating because the reader who has just learned the turns ratio will otherwise expect it to work on a battery."
+   "name": "Transformers and DC",
+   "statement": "Since the secondary voltage depends on the rate at which the flux changes, a steady primary current induces nothing at all. Switching DC on and off does produce something, but it is a train of spikes rather than the sinusoid most appliances need. This is the plainest reason for using AC wherever voltages must rise or fall. Once you know the turns ratio, do not expect it to work on a battery."
   },
   {
    "id": "step-up-transformer",
    "kind": "definition",
    "section": "23.7",
    "name": "Step-up transformer",
+   "terms": [
+    "step-up transformer"
+   ],
    "statement": "A step-up transformer has more turns on its secondary coil than on its primary, so it raises the voltage."
   },
   {
@@ -402,255 +536,456 @@
    "kind": "definition",
    "section": "23.7",
    "name": "Step-down transformer",
+   "terms": [
+    "step-down transformer"
+   ],
    "statement": "A step-down transformer has fewer turns on its secondary coil than on its primary, so it lowers the voltage."
   },
   {
    "id": "three-wire-system",
    "kind": "idea",
    "section": "23.8",
-   "name": "The three-wire system: live, neutral and earth/ground",
-   "statement": "Modern wiring carries three conductors rather than two. The live wire supplies the voltage and the current; the neutral wire is the return path and is connected to the earth at both the source and the user, which forces it to zero volts; and the earth/ground wire holds the appliance's case at zero volts as well. A circuit breaker or fuse sits in series on the live wire against thermal overload, and the case itself keeps a person from touching what is inside. Each of the three has its own job, and the rest of the section is about what each prevents."
+   "name": "Three-wire system",
+   "terms": [
+    "three-wire system"
+   ],
+   "statement": "Modern wiring carries three conductors rather than two. The live wire supplies the voltage and the current. The neutral wire is the return path; it connects to the earth at both the source and the user, which forces it to zero volts. The earth/ground wire holds the appliance's case at zero volts as well. A circuit breaker or fuse sits in series on the live wire against thermal overload, and the case itself keeps a person from touching what is inside. Each of the three has its own job and prevents its own hazard."
   },
   {
    "id": "grounding-the-case",
    "kind": "result",
    "section": "23.8",
-   "name": "Grounding the case prevents two kinds of shock",
-   "statement": "Worn insulation can bring the live wire into contact with a metal case, and a person touching that case while touching a tap completes a circuit to earth: with the earth/ground wire intact the breaker trips instead, forcing the fault to be repaired. Grounding also deals with a subtler problem that belongs to this chapter: the alternating current in an appliance induces an emf on its own case, and if the case is not held at zero volts that emf can drive a leakage current through anyone who touches it."
+   "name": "Grounding the case",
+   "statement": "Worn insulation can bring the live wire into contact with a metal case, and a person touching that case and a tap completes a circuit to earth. With the earth/ground wire intact, the breaker trips instead, and the fault must be repaired. Grounding also deals with a subtler problem that belongs to this chapter. The alternating current in an appliance induces an emf on its own case, and if the case is not held at zero volts that emf can drive a leakage current through anyone who touches it."
   },
   {
    "id": "ground-fault-interrupter",
    "kind": "idea",
    "section": "23.8",
-   "name": "A ground fault interrupter compares the live and neutral currents",
+   "name": "Ground fault interrupter",
    "statement": "A GFI carries both wires through one coil so that equal currents induce equal and opposite emfs in it and nothing happens. If some of the current is returning by another path, the two are unequal, an emf appears, and the circuit is interrupted, usually at a difference of about 5 mA, which is the largest shock taken to be harmless. It is the only device in the section that works by induction rather than by heating, and it is the only one that acts before the person is badly hurt rather than after."
   },
   {
    "id": "isolation-transformer",
    "kind": "idea",
    "section": "23.8",
-   "name": "An isolation transformer breaks the circuit to earth",
-   "statement": "An isolation transformer usually has equal input and output voltages, so it changes nothing about what the appliance receives. What it changes is that neither output wire is connected to the original source or to earth, so a person touching one of them is not part of any complete circuit: for current to flow it would have to cross the high resistance of the material between the coils. It is the clearest example in the section of a safety device that works by removing a path rather than by interrupting one."
+   "name": "Isolation transformer",
+   "statement": "An isolation transformer usually has equal input and output voltages, so it changes nothing about what the appliance receives. What it changes is that neither output wire connects to the original source or to earth. A person touching one of them is therefore not part of any complete circuit: for current to flow it would have to cross the high resistance of the material between the coils. It is a safety device that works by removing a path rather than by interrupting one."
   },
   {
    "id": "inductance",
    "kind": "definition",
    "section": "23.9",
-   "name": "Inductance measures how effective a device is at inducing an emf",
-   "statement": "Some arrangements induce a large emf for a given change and some induce almost none, and the quantity that says which is inductance. Once the geometry of a device is fixed, the only thing that changes the flux is the current, so inductance is written as a relation between an induced emf and a rate of change of current. It is the property that makes a transformer worth building and the property an appliance's designer tries to keep small between its coils and its case."
+   "name": "Inductance",
+   "terms": [
+    "inductance"
+   ],
+   "statement": "Some arrangements induce a large emf for a given change and some induce almost none, and inductance says which. Once the geometry of a device is fixed, only the current changes the flux, so inductance relates an induced emf to a rate of change of current. It is the property that makes a transformer worth building and the property an appliance's designer keeps small between its coils and its case."
   },
   {
    "id": "mutual-inductance",
    "kind": "definition",
    "section": "23.9",
-   "name": "Mutual inductance, $\\kemftwo = -\\kMind\\frac{\\Delta \\kIcurone}{\\kdt}$",
-   "statement": "Mutual inductance is one device's effect on another: a change in the current in the first induces an emf in the second, and $M$ is the constant between them. Nature is symmetric here, and the same $M$ works the other way round, so a transformer run backward is as effective as it was forward. A large $M$ is wanted between a transformer's coils and is not wanted between an appliance's heating element and its case, which is a distinction the reader should carry into the next section on safety.",
-   "eq": "eq-mutual-inductance"
+   "name": "Mutual inductance",
+   "symbol": "M_ind",
+   "terms": [
+    "mutual inductance"
+   ],
+   "statement": "Mutual inductance is one device's effect on another: a change in the current in the first induces an emf in the second, and $M$ is the constant between them. Nature is symmetric here, and the same $M$ works the other way round, so a transformer run backward works as well as forward. A transformer's coils need a large $M$; an appliance's heating element and its case need a small one, a distinction that matters again for electrical safety.",
+   "forms": [
+    {
+     "id": "eq-mutual-inductance",
+     "latex": "\\text{emf}_2 = -M\\frac{\\Delta I_1}{\\Delta t}",
+     "ktex": "\\kemftwo = -\\kMind\\frac{\\Delta \\kIcurone}{\\kdt}",
+     "anchor": "23.9-inductors"
+    },
+    {
+     "id": "eq-mutual-inductance-reverse",
+     "latex": "\\text{emf}_1 = -M\\frac{\\Delta I_2}{\\Delta t}",
+     "ktex": "\\kemfone = -\\kMind\\frac{\\Delta \\kIcurtwo}{\\kdt}",
+     "anchor": "23.9-inductors"
+    }
+   ]
   },
   {
    "id": "self-inductance",
    "kind": "definition",
    "section": "23.9",
-   "name": "Self-inductance, $\\kemf = -\\kLind\\frac{\\kdIcur}{\\kdt}$",
-   "statement": "A device also induces an emf in itself: its own changing current changes its own flux, and by Lenz's law the induced emf opposes the change. The constant is the self-inductance $L$, and a device with a large one is called an inductor. The minus sign matters practically as well as formally, since switching off a large current quickly can raise thousands of volts and strike an arc across the switch, which is why a 1 H coil carrying 10 A cannot simply be turned off in a millisecond.",
-   "eq": "eq-self-inductance"
+   "name": "Self-inductance",
+   "symbol": "L_ind",
+   "terms": [
+    "self-inductance"
+   ],
+   "statement": "A device also induces an emf in itself: its own changing current changes its own flux, and by Lenz's law the induced emf opposes the change. The constant is the self-inductance $L$, and a device with a large one is an inductor. The minus sign matters practically as well as formally. Switching off a large current quickly can raise thousands of volts and strike an arc across the switch, which is why you cannot simply switch off a 1 H coil carrying 10 A in a millisecond.",
+   "forms": [
+    {
+     "id": "eq-self-inductance",
+     "latex": "\\text{emf} = -L\\frac{\\Delta I}{\\Delta t}",
+     "ktex": "\\kemf = -\\kLind\\frac{\\kdIcur}{\\kdt}",
+     "anchor": "23.9-self-inductance"
+    }
+   ]
   },
   {
    "id": "henry",
    "kind": "definition",
    "section": "23.9",
-   "name": "The henry, $1\\;\\text{H} = 1\\;\\Omega\\cdot\\text{s}$",
+   "name": "Henry",
+   "terms": [
+    "henry"
+   ],
    "statement": "The unit of both mutual and self-inductance is the henry, named for Joseph Henry, and it is volt-seconds per ampere, which is the same as an ohm-second. Knowing that identity is not bookkeeping: it is what makes the time constant $L/R$ come out in seconds in the next section and what makes $2\\pi fL$ come out in ohms in the section after that. A 1 H inductor is a large one, and a solenoid of ordinary size has an inductance of about a millihenry.",
-   "eq": "eq-henry"
+   "forms": [
+    {
+     "id": "eq-henry",
+     "latex": "1\\;\\text{H} = 1\\;\\Omega\\cdot\\text{s}",
+     "anchor": "23.9-inductors"
+    }
+   ]
   },
   {
    "id": "inductance-from-flux-and-current",
    "kind": "result",
    "section": "23.9",
-   "name": "Inductance from flux and current, $\\kLind = N\\frac{\\kdPhi}{\\kdIcur}$",
+   "name": "Inductance from flux and current",
    "statement": "Equating Faraday's law with the definition of self-inductance and cancelling the time gives a relation with no time in it at all: the inductance is the number of turns times the change in flux per unit change in current. This is always true, and it says what inductance really depends on, which is how effectively the device's own current makes flux through its own turns. It is also the route to the one inductance the book calculates from a shape.",
-   "eq": "eq-inductance-from-flux"
+   "forms": [
+    {
+     "id": "eq-inductance-from-flux",
+     "latex": "L = N\\frac{\\Delta\\Phi}{\\Delta I}",
+     "ktex": "\\kLind = N\\frac{\\kdPhi}{\\kdIcur}",
+     "anchor": "23.9-calculating-inductance"
+    }
+   ]
   },
   {
    "id": "solenoid-inductance",
    "kind": "result",
    "section": "23.9",
-   "name": "The inductance of a solenoid, $\\kLind = \\frac{\\mu_0 N^2 A}{\\ell}$",
-   "statement": "For most shapes the inductance is too hard to calculate and is simply given, but a solenoid has a nearly uniform field inside, almost none outside and a simple shape, so its inductance can be worked out from $B = \\mu_0 NI/\\ell$ and the relation above. The answer depends only on the solenoid's own geometry, as the definition of inductance says it must, and it is proportional to the square of the number of turns, since more turns make more flux and more turns feel it.",
-   "eq": "eq-solenoid-inductance"
+   "name": "Inductance of a solenoid",
+   "statement": "For most shapes the inductance is too hard to calculate and the book simply gives it. A solenoid, though, has a nearly uniform field inside, almost none outside and a simple shape, so you can work out its inductance from $B = \\mu_0 NI/\\ell$ and the relation above. The answer depends only on the solenoid's own geometry, as the definition of inductance says it must. It is proportional to the square of the number of turns, since more turns make more flux and more turns feel it.",
+   "forms": [
+    {
+     "id": "eq-solenoid-inductance",
+     "latex": "L = \\frac{\\mu_0 N^2 A}{\\ell}",
+     "ktex": "\\kLind = \\frac{\\mu_0 N^2 A}{\\ell}",
+     "anchor": "23.9-calculating-inductance"
+    }
+   ]
   },
   {
    "id": "energy-stored-in-an-inductor",
    "kind": "result",
    "section": "23.9",
-   "name": "Energy stored in an inductor, $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$",
-   "statement": "There is a second way to see why an inductor opposes a change in current: energy is stored in its magnetic field, and it takes time to put energy in and time to take it out. The stored energy is $\\frac{1}{2}LI^2$, which is the same shape as the energy stored in a capacitor, and it is enough to make a spark if the current is interrupted. It is also the quantity the next section's exponential decay is spending.",
-   "eq": "eq-inductor-energy"
+   "name": "Energy stored in an inductor",
+   "terms": [
+    "energy stored in an inductor"
+   ],
+   "statement": "There is a second way to see why an inductor opposes a change in current: its magnetic field stores energy, and putting energy in and taking it out both take time. The stored energy is $\\frac{1}{2}LI^2$, the same shape as the energy in a capacitor, and it can make a spark when the current stops suddenly. It is also the energy the exponential decay of an RL circuit spends.",
+   "forms": [
+    {
+     "id": "eq-inductor-energy",
+     "latex": "E_{\\text{ind}} = \\frac{1}{2}LI^2",
+     "ktex": "\\kEind = \\frac{1}{2}\\kLind\\kIcur^2",
+     "anchor": "23.9-inductor-energy"
+    }
+   ]
   },
   {
    "id": "counterwinding-cancels-inductance",
    "kind": "skill",
    "section": "23.9",
-   "name": "Counterwinding a coil to cancel its inductance",
-   "statement": "Since the flux a coil makes depends on which way it is wound, winding half the turns one way and half the other makes the two fields cancel, and with them the inductance. This is how an appliance's heating element is kept from inducing a dangerous emf on its case, and how a laboratory resistor is kept from behaving like an inductor when an alternating current is passed through it. It is the practical counterpart of everything else in the section: knowing what makes inductance large is knowing how to make it small."
+   "name": "Counterwinding a coil",
+   "statement": "The flux a coil makes depends on which way it is wound, so winding half the turns one way and half the other makes the two fields cancel, and the inductance with them. This keeps an appliance's heating element from inducing a dangerous emf on its case, and keeps a laboratory resistor from behaving like an inductor under alternating current. Knowing what makes inductance large is knowing how to make it small."
   },
   {
    "id": "inductor",
    "kind": "definition",
    "section": "23.9",
    "name": "Inductor",
+   "terms": [
+    "inductor"
+   ],
    "statement": "An inductor is a device with a large self-inductance, usually a coil, whose induced emf strongly opposes any change in the current through it."
   },
   {
    "id": "rl-circuit",
    "kind": "definition",
    "section": "23.10",
-   "name": "An RL circuit: current cannot start or stop at once",
-   "statement": "Put an inductor in series with a resistor and a battery and the current does not jump to its final value: the inductor's own induced emf opposes the change, and the opposition is greatest at the beginning when the change is fastest. Take the battery out and the current does not stop either, since the inductor keeps it going while the energy stored in its field is dissipated. The section is the answer to a question the preceding one left open, which is how long the opposition lasts.",
-   "eq": "eq-rl-final-current"
+   "name": "RL circuit",
+   "statement": "Put an inductor in series with a resistor and a battery and the current does not jump to its final value. The inductor's own induced emf opposes the change, most strongly at the beginning when the change is fastest. Take the battery out and the current does not stop either, since the inductor keeps it going while the resistor dissipates the energy stored in its field. The RL circuit shows how long the opposition lasts."
   },
   {
    "id": "rl-time-constant",
    "kind": "definition",
    "section": "23.10",
-   "name": "The RL time constant, $\\ktauRL = \\frac{\\kLind}{\\kRes}$",
-   "statement": "The whole of the timing is carried by one number, $L/R$, and it comes out in seconds because a henry is an ohm-second. Both dependences make sense: a larger inductance opposes change more strongly, and a smaller resistance means a larger final current and so a greater change to get to. In both cases more energy ends up stored in the inductor and more time is needed to move it in and out. This is Chapter 21's RC time constant with a different pair of components.",
-   "eq": "eq-rl-time-constant"
+   "name": "RL time constant",
+   "symbol": "τ_RL",
+   "terms": [
+    "characteristic time constant"
+   ],
+   "statement": "One number, $L/R$, sets the whole of the timing, and it comes out in seconds because a henry is an ohm-second. Both dependences make sense. A larger inductance opposes change more strongly, and a smaller resistance means a larger final current and so a greater change to make. Either way the inductor stores more energy and needs more time to move it in and out. This is Chapter 21's RC time constant with a different pair of components.",
+   "forms": [
+    {
+     "id": "eq-rl-time-constant",
+     "latex": "\\tau = \\frac{L}{R}",
+     "ktex": "\\ktauRL = \\frac{\\kLind}{\\kRes}",
+     "anchor": "23.10-current-turning-on"
+    }
+   ]
   },
   {
    "id": "current-growth-in-an-rl-circuit",
    "kind": "result",
    "section": "23.10",
-   "name": "Turning on, $\\kIcur = \\kIocur(1 - e^{-\\kt/\\ktauRL})$",
-   "statement": "The opposing emf is proportional to how much change is left to make, which is the hallmark of exponential behaviour, so the current climbs toward its final value $V/R$ along a curve that never quite arrives. In the first time constant it covers 0.632 of the way, and 0.632 of what remains in each time constant after that, so in a few multiples of $\\tau$ it is there for any practical purpose.",
-   "eq": "eq-rl-current-on"
+   "name": "Current growth in an RL circuit",
+   "statement": "The opposing emf is proportional to how much change remains, the hallmark of exponential behaviour, so the current climbs toward its final value $V/R$ along a curve that never arrives. In the first time constant it covers 0.632 of the way, and 0.632 of what remains in each time constant after that. After a few multiples of $\\tau$ it is there for any practical purpose.",
+   "forms": [
+    {
+     "id": "eq-rl-current-on",
+     "latex": "I = I_0(1 - e^{-t/\\tau})",
+     "ktex": "\\kIcur = \\kIocur(1 - e^{-\\kt/\\ktauRL})",
+     "anchor": "23.10-current-turning-on"
+    }
+   ]
   },
   {
    "id": "current-decay-in-an-rl-circuit",
    "kind": "result",
    "section": "23.10",
-   "name": "Turning off, $\\kIcur = \\kIocur e^{-\\kt/\\ktauRL}$",
-   "statement": "With the battery cut out, the inductor drives the current on while the resistor dissipates the stored energy, and since the dissipation rate is $I^2R$ the decay slows as the current falls. The current drops to 0.368 of its value in each time constant. The same $\\tau$ governs both the growth and the decay, which is worth saying, because the reader who has met the RC circuit will expect it and should be right.",
-   "eq": "eq-rl-current-off"
+   "name": "Current decay in an RL circuit",
+   "statement": "With the battery cut out, the inductor drives the current on while the resistor dissipates the stored energy, and since the dissipation rate is $I^2R$ the decay slows as the current falls. The current drops to 0.368 of its value in each time constant. The same $\\tau$ governs both the growth and the decay, just as it did in the RC circuit.",
+   "forms": [
+    {
+     "id": "eq-rl-current-off",
+     "latex": "I = I_0 e^{-t/\\tau}",
+     "ktex": "\\kIcur = \\kIocur e^{-\\kt/\\ktauRL}",
+     "anchor": "23.10-current-turning-off"
+    }
+   ]
   },
   {
    "id": "fraction-per-time-constant-rl",
    "kind": "skill",
    "section": "23.10",
-   "name": "Counting in time constants rather than solving the exponential",
-   "statement": "Because the same fraction is covered in every time constant, many questions can be answered by counting: after one $\\tau$ the current is 0.368 of what it was, after two it is 0.368 of that, and so on, and the same counting upward with 0.632 answers the growth. The book does its own worked example this way, in two steps rather than by substituting into the exponential. The approximation is good to a few per cent, and one of the section's problems asks the reader to measure exactly how good."
+   "name": "Counting in time constants",
+   "statement": "Because the current covers the same fraction in every time constant, you can answer many questions by counting. After one $\\tau$ the current is 0.368 of what it was, after two it is 0.368 of that, and so on; counting upward with 0.632 answers the growth. The book does its own worked example this way, in two steps rather than by substituting into the exponential. The approximation is good to a few per cent, and one of the problems measures exactly how good."
   },
   {
    "id": "inductor-voltage-leads-current",
    "kind": "result",
    "section": "23.11",
-   "name": "In an inductor the voltage leads the current by 90°",
-   "statement": "Drive an inductor with a sinusoidal voltage and the current does not follow it in step: the current starts at zero and rises to its peak a quarter of a cycle after the voltage that drives it, exactly as it lagged when a DC voltage was switched on in the preceding section. Inductors oppose a change in current, so the current is always behind. This one sentence is what makes the next section's algebra necessary, and it should be understood before any reactance is calculated."
+   "name": "Phase lead in an inductor",
+   "statement": "Drive an inductor with a sinusoidal voltage and the current does not follow it in step. The current starts at zero and reaches its peak a quarter of a cycle after the voltage that drives it, just as it lagged when a DC voltage switched on in the RL circuit. Inductors oppose a change in current, so the current is always behind. Understand this before you calculate any reactance, since the algebra of the RLC circuit rests on it."
   },
   {
    "id": "inductive-reactance",
    "kind": "result",
    "section": "23.11",
-   "name": "Inductive reactance, $\\kXL = 2\\pi \\kf\\kLind$ and $\\kIcur = \\frac{\\kV}{\\kXL}$",
+   "name": "Inductive reactance",
+   "symbol": "X_L",
+   "terms": [
+    "inductive reactance"
+   ],
    "statement": "An inductor's opposition to an alternating current behaves like a resistance: the rms current is the rms voltage divided by a quantity measured in ohms, and that quantity is $2\\pi fL$. Both factors make sense, since a larger inductance opposes change more strongly and a higher frequency means a faster change to oppose. The consequence is that an inductor impedes high frequencies most, which is what a filter in series with a computer's power supply is for.",
-   "eq": "eq-inductive-reactance"
+   "forms": [
+    {
+     "id": "eq-inductive-reactance",
+     "latex": "X_L = 2\\pi fL",
+     "ktex": "\\kXL = 2\\pi \\kf\\kLind",
+     "anchor": "23.11-inductors-and-inductive-reactance"
+    },
+    {
+     "id": "eq-ohms-law-inductor",
+     "latex": "I = \\frac{V}{X_L}",
+     "ktex": "\\kIcur = \\frac{\\kV}{\\kXL}",
+     "anchor": "23.11-inductors-and-inductive-reactance"
+    }
+   ]
   },
   {
    "id": "capacitor-voltage-follows-current",
    "kind": "result",
    "section": "23.11",
-   "name": "In a capacitor the voltage follows the current by 90°",
-   "statement": "A capacitor does the opposite of an inductor. Its voltage is greatest when it is fully charged and the current has stopped, and the current is greatest when the capacitor is empty and the voltage across it is zero, so the voltage follows the current by a quarter of a cycle. Holding the two rules side by side, voltage ahead in an inductor and behind in a capacitor, is what makes the cancellation in an RLC circuit expected rather than surprising."
+   "name": "Phase lag in a capacitor",
+   "statement": "A capacitor does the opposite of an inductor. Its voltage is greatest when it is fully charged and the current has stopped, and the current is greatest when the capacitor is empty and its voltage is zero, so the voltage follows the current by a quarter of a cycle. Hold the two rules side by side, voltage ahead in an inductor and behind in a capacitor, and the cancellation in an RLC circuit becomes expected rather than surprising."
   },
   {
    "id": "capacitive-reactance",
    "kind": "result",
    "section": "23.11",
-   "name": "Capacitive reactance, $\\kXC = \\frac{1}{2\\pi \\kf\\kCap}$ and $\\kIcur = \\frac{\\kV}{\\kXC}$",
+   "name": "Capacitive reactance",
+   "symbol": "X_C",
+   "terms": [
+    "capacitive reactance"
+   ],
    "statement": "A capacitor also limits an alternating current, and the ohms it offers are $1/2\\pi fC$. Both dependences are inverse, and both are reasonable: a larger capacitor stores more charge and passes more current, and a higher frequency leaves less time to charge up and stop the current. So a capacitor impedes low frequencies most, which is the exact opposite of an inductor and is why a capacitor in series is what removes a 60 Hz hum.",
-   "eq": "eq-capacitive-reactance"
+   "forms": [
+    {
+     "id": "eq-capacitive-reactance",
+     "latex": "X_C = \\frac{1}{2\\pi fC}",
+     "ktex": "\\kXC = \\frac{1}{2\\pi \\kf\\kCap}",
+     "anchor": "23.11-capacitors-and-capacitive-reactance"
+    },
+    {
+     "id": "eq-ohms-law-capacitor",
+     "latex": "I = \\frac{V}{X_C}",
+     "ktex": "\\kIcur = \\frac{\\kV}{\\kXC}",
+     "anchor": "23.11-capacitors-and-capacitive-reactance"
+    }
+   ]
   },
   {
    "id": "resistor-voltage-in-phase",
    "kind": "result",
    "section": "23.11",
-   "name": "In a resistor the voltage and the current are exactly in phase",
-   "statement": "A plain resistance does not care about frequency and introduces no phase difference at all: the voltage across a resistor rises and falls with the current through it. It is the third of the section's three rules and the simplest, and it is worth stating alongside the others rather than taking for granted, because in the next section it is the resistor that fixes where the total voltage sits between the inductor's lead and the capacitor's lag."
+   "name": "Phase in a resistor",
+   "statement": "A plain resistance does not care about frequency and introduces no phase difference at all: the voltage across a resistor rises and falls with the current through it. It is the simplest of the three rules, but do not take it for granted. In an RLC circuit the resistor fixes where the total voltage sits between the inductor's lead and the capacitor's lag."
   },
   {
    "id": "filtering-by-frequency",
    "kind": "skill",
    "section": "23.11",
-   "name": "Choosing an inductor or a capacitor to filter a frequency",
-   "statement": "The two reactances run opposite ways with frequency, so choosing between them is how a circuit is made to pass some frequencies and block others. An inductor in series blocks high frequencies, which is how power-line noise is kept out of a computer; a capacitor in series blocks low ones, which is how a hum is kept out of a loudspeaker; and a capacitor to earth shorts the high frequencies away instead. The reader who knows which way each reactance runs can answer all of these without a calculation."
+   "name": "Filtering by frequency",
+   "statement": "The two reactances run opposite ways with frequency, so choosing between them lets a circuit pass some frequencies and block others. An inductor in series blocks high frequencies, which keeps power-line noise out of a computer. A capacitor in series blocks low ones, which keeps a hum out of a loudspeaker. A capacitor to earth shorts the high frequencies away instead. Know which way each reactance runs and you can answer all of these without a calculation."
   },
   {
    "id": "impedance",
    "kind": "result",
    "section": "23.12",
-   "name": "Impedance, $\\kZimp = \\sqrt{\\kRes^{2} + (\\kXL - \\kXC)^{2}}$",
-   "statement": "Put a resistor, an inductor and a capacitor in series on one AC source and their oppositions do not simply add, because the inductor's voltage leads the current and the capacitor's lags it by the same quarter cycle, so the two are opposite and partly cancel. What is left is the impedance, which is the resistance and the difference of the reactances combined as the two legs of a right triangle. It is an ohm like any other ohm, and it plays the part resistance plays in a DC circuit.",
-   "eq": "eq-impedance"
+   "name": "Impedance",
+   "terms": [
+    "impedance"
+   ],
+   "statement": "Put a resistor, an inductor and a capacitor in series on one AC source and their oppositions do not simply add. The inductor's voltage leads the current and the capacitor's lags it by the same quarter cycle, so the two are opposite and partly cancel. What remains is the impedance: the resistance and the difference of the reactances combined as the two legs of a right triangle. It is an ohm like any other ohm, and it plays the part resistance plays in a DC circuit.",
+   "forms": [
+    {
+     "id": "eq-impedance",
+     "latex": "Z = \\sqrt{R^{2} + (X_L - X_C)^{2}}",
+     "ktex": "\\kZimp = \\sqrt{\\kRes^{2} + (\\kXL - \\kXC)^{2}}",
+     "anchor": "23.12-impedance"
+    }
+   ]
   },
   {
    "id": "ac-ohms-law-with-impedance",
    "kind": "result",
    "section": "23.12",
-   "name": "Ohm's law for an AC circuit, $\\kIrms = \\frac{\\kVrms}{\\kZimp}$",
-   "statement": "With impedance in hand, the current follows from a law the reader has had since Chapter 20: the current is the voltage divided by the impedance, in peak values or in rms values, whichever the problem gives. The greater the impedance, the smaller the current, and the reason for computing $Z$ at all is that this one line then answers the circuit.",
-   "eq": "eq-ac-ohms-law"
+   "name": "Ohm’s law for an AC circuit",
+   "statement": "With impedance in hand, the current follows from the law of Chapter 20: the current is the voltage divided by the impedance, in peak values or in rms values, whichever the problem gives. The greater the impedance, the smaller the current, and the reason for computing $Z$ at all is that this one line then answers the circuit.",
+   "forms": [
+    {
+     "id": "eq-ac-ohms-law",
+     "latex": "I_0 = \\frac{V_0}{Z}\\;\\text{or}\\;I_{\\text{rms}} = \\frac{V_{\\text{rms}}}{Z}",
+     "ktex": "\\kIocur = \\frac{\\kVo}{\\kZimp}\\;\\text{or}\\;\\kIrms = \\frac{\\kVrms}{\\kZimp}",
+     "anchor": "23.12-impedance"
+    }
+   ]
   },
   {
    "id": "voltages-do-not-simply-add",
    "kind": "result",
    "section": "23.12",
-   "name": "The peak voltages add as the sides of a triangle, not as numbers",
+   "name": "Adding voltages in an RLC circuit",
    "statement": "The current is the same everywhere in a series circuit and is in phase with itself, but the three voltages peak at different moments: $V_R$ with the current, $V_L$ a quarter cycle ahead and $V_C$ a quarter cycle behind. So $V_L$ and $V_C$ are half a cycle apart and tend to cancel, and the source's peak voltage is not the sum of the three peaks but $\\sqrt{V_{0R}^2 + (V_{0L} - V_{0C})^2}$. This is the fact the whole section rests on, and it is the fact a reader is most likely to get wrong by treating an AC circuit as a DC one.",
-   "eq": "eq-peak-voltage-sum"
+   "forms": [
+    {
+     "id": "eq-peak-voltage-sum",
+     "latex": "V_0 = \\sqrt{V_{0R}^{2} + (V_{0L} - V_{0C})^{2}}",
+     "ktex": "\\kVo = \\sqrt{\\kVoR^{2} + (\\kVoL - \\kVoC)^{2}}",
+     "anchor": "23.12-impedance"
+    }
+   ]
   },
   {
    "id": "resonant-frequency-of-an-rlc-circuit",
    "kind": "result",
    "section": "23.12",
-   "name": "The resonant frequency, $\\kfo = \\frac{1}{2\\pi\\sqrt{\\kLind\\kCap}}$",
+   "name": "Resonant frequency of an RLC circuit",
+   "terms": [
+    "resonant frequency"
+   ],
    "statement": "One reactance grows with frequency and the other falls, so somewhere between they are equal and cancel exactly. There the impedance is just the resistance, which is the least it can be, and the current is the greatest. Setting $X_L = X_C$ and solving gives the frequency, and it depends only on the inductance and the capacitance. This is the natural frequency at which the circuit would oscillate on its own, and it is Chapter 16's resonance in an electrical system rather than a mechanical one.",
-   "eq": "eq-resonant-frequency"
+   "forms": [
+    {
+     "id": "eq-resonant-frequency",
+     "latex": "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}",
+     "ktex": "\\kfo = \\frac{1}{2\\pi\\sqrt{\\kLind\\kCap}}",
+     "anchor": "23.12-resonance-in-rlc-series-ac-circuits"
+    },
+    {
+     "id": "eq-resonance-condition",
+     "latex": "X_L = X_C",
+     "ktex": "\\kXL = \\kXC",
+     "anchor": "23.12-resonance-in-rlc-series-ac-circuits"
+    },
+    {
+     "id": "eq-rlc-resonant-frequency",
+     "latex": "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}",
+     "ktex": "\\kfo = \\frac{1}{2\\pi\\sqrt{LC}}",
+     "section": "24.1",
+     "anchor": "24.1-hertz"
+    }
+   ]
   },
   {
    "id": "resonance-peak-and-resistance",
    "kind": "idea",
    "section": "23.12",
-   "name": "Resistance lowers and broadens the resonance peak",
+   "name": "Resonance peak and resistance",
    "statement": "Plotting the current against frequency gives a peak at $f_0$, and its shape depends on the resistance: a small resistance gives a tall narrow peak and a large one gives a low broad peak. A radio receiver is an RLC circuit tuned by a variable capacitor, and the narrowness of its peak is what lets it pick one station and reject the next, so a circuit with too much resistance would not be selective. This is the same relation between damping and the sharpness of resonance that Chapter 16 drew for a driven oscillator."
   },
   {
    "id": "phase-angle",
    "kind": "result",
    "section": "23.12",
-   "name": "The phase angle, $\\cos\\phi = \\frac{\\kRes}{\\kZimp}$",
+   "name": "Phase angle",
+   "terms": [
+    "phase angle"
+   ],
    "statement": "Because the source voltage and the current are out of step, there is an angle between them, and it is fixed by how much of the impedance is resistance: $\\cos\\phi = R/Z$. At resonance, or in a circuit with nothing but resistance, $Z = R$ and the angle is zero. Where a capacitor dominates, as it does at low frequency, the angle approaches 90°, which is what a pure capacitive circuit gives.",
-   "eq": "eq-power-factor"
+   "forms": [
+    {
+     "id": "eq-power-factor",
+     "latex": "\\cos\\phi = \\frac{R}{Z}",
+     "ktex": "\\cos\\phi = \\frac{\\kRes}{\\kZimp}",
+     "anchor": "23.12-power-in-rlc-series-ac-circuits"
+    }
+   ]
   },
   {
    "id": "power-factor",
    "kind": "result",
    "section": "23.12",
-   "name": "Average power, $\\kPave = \\kIrms\\kVrms\\cos\\phi$",
-   "statement": "In a circuit where the voltage and the current are out of step, the average power is not simply their product: it is their product times $\\cos\\phi$, which is called the power factor and runs from 0 to 1. All of the power is dissipated in the resistance; the inductor and the capacitor take energy in and give it back without spending any. A power factor near 1 is what an efficient motor is designed for, and at resonance the factor is exactly 1.",
-   "eq": "eq-average-power"
+   "name": "Power factor",
+   "terms": [
+    "power factor"
+   ],
+   "statement": "In a circuit where the voltage and the current are out of step, the average power is not simply their product. It is their product times $\\cos\\phi$, the power factor, which runs from 0 to 1. The resistance dissipates all of the power; the inductor and the capacitor take energy in and give it back without spending any. Engineers design efficient motors for a power factor near 1, and at resonance the factor is exactly 1.",
+   "forms": [
+    {
+     "id": "eq-average-power",
+     "latex": "P_{\\text{ave}} = I_{\\text{rms}}V_{\\text{rms}}\\cos\\phi",
+     "ktex": "\\kPave = \\kIrms\\kVrms\\cos\\phi",
+     "anchor": "23.12-power-in-rlc-series-ac-circuits"
+    }
+   ]
   },
   {
    "id": "lc-oscillation-analogy",
    "kind": "idea",
    "section": "23.12",
-   "name": "An LC circuit oscillates like a mass on a spring",
-   "statement": "With the resistance negligible, energy simply moves back and forth between the capacitor's electric field and the inductor's magnetic field, and the circuit oscillates at $f_0$ of its own accord, which is how a clock circuit in a digital watch keeps time. The mechanical counterpart is exact: the charge on the capacitor is the stretch of a spring, the current is the speed of the mass, and the resistance is the shock absorber that damps a car's wheel on a corrugated road. It is the closest analogy between two systems in the whole book, and it is worth taking seriously rather than as a figure of speech."
+   "name": "LC oscillation",
+   "statement": "With the resistance negligible, energy moves back and forth between the capacitor's electric field and the inductor's magnetic field, and the circuit oscillates at $f_0$ of its own accord. That is how a clock circuit in a digital watch keeps time. The mechanical counterpart is exact: the charge on the capacitor is the stretch of a spring, the current is the speed of the mass, and the resistance is the shock absorber that damps a car's wheel on a corrugated road. It is the closest analogy between two systems in the whole book, and it holds as physics, not as a figure of speech."
   },
   {
    "id": "rlc-circuit",
    "kind": "definition",
    "section": "23.12",
    "name": "RLC circuit",
+   "terms": [
+    "RLC circuit"
+   ],
    "statement": "An RLC circuit contains a resistor, an inductor and a capacitor, and in a series RLC circuit the same alternating current passes through all three."
   }
  ],

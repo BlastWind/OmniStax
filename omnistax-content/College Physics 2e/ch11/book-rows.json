@@ -164,29 +164,43 @@
       "kind": "definition",
       "section": "11.1",
       "name": "Fluid",
+      "terms": [
+        "fluids"
+      ],
       "statement": "A fluid is a state of matter that yields to a sideways, or shearing, force, while a solid resists one. Liquids, gases, and plasmas are all fluids, because in each of them the particles slide past one another and the substance flows. This one property is what the rest of the chapter rests on: because a fluid cannot withstand a shearing force, it cannot exert one either, and so the force it exerts on any surface is perpendicular to that surface."
     },
     {
       "id": "phases-of-matter",
       "kind": "idea",
       "section": "11.1",
-      "name": "The common phases of matter",
+      "name": "Phases of matter",
       "statement": "Matter most commonly exists as a solid, a liquid, a gas, or a plasma. A solid has a definite shape and a specific volume, a liquid has a definite volume but takes the shape of whatever holds it, and a gas or a plasma has neither, since its particles move to fill the container. Knowing which phase a substance is in tells you at once whether it will flow and whether it can be compressed."
     },
     {
       "id": "atomic-arrangement-and-phase",
       "kind": "idea",
       "section": "11.1",
-      "name": "Atomic arrangement explains the phases",
-      "statement": "The forces between atoms explain what we see. Atoms in a solid are in contact and held near their neighbors, so a solid keeps its shape and resists compression. Atoms in a liquid are also in close contact but can slide over one another, so a liquid flows and yet still resists compression. Atoms in a gas and charged particles in a plasma are far apart and pull on one another only weakly, so a gas both flows and compresses easily."
+      "name": "Atomic arrangement and phase",
+      "statement": "The forces between atoms explain the phases. Atoms in a solid are in contact and held near their neighbors, so a solid keeps its shape and resists compression. Atoms in a liquid are also in close contact but can slide over one another, so a liquid flows and yet still resists compression. Atoms in a gas and charged particles in a plasma are far apart and pull on one another only weakly, so a gas both flows and compresses easily."
     },
     {
       "id": "density",
       "kind": "definition",
       "section": "11.2",
-      "name": "Density, $\\krho = m/V$",
+      "name": "Density",
+      "symbol": "ρ_dens",
+      "terms": [
+        "density"
+      ],
       "statement": "Density is the mass per unit volume of a substance or object, and it is what the old riddle about a ton of feathers and a ton of bricks turns on: the two have the same mass, but the feathers occupy a far greater volume, so their density is much lower. Density is crucial in determining whether an object sinks or floats in a fluid, which is why the chapter defines it before it defines anything else.",
-      "eq": "eq-density"
+      "forms": [
+        {
+          "id": "eq-density",
+          "latex": "\\rho = \\frac{m}{V}",
+          "ktex": "\\krho = \\frac{m}{V}",
+          "anchor": "11.2-definition"
+        }
+      ]
     },
     {
       "id": "density-identifies-substance",
@@ -199,78 +213,149 @@
       "id": "calculate-mass-from-density",
       "kind": "skill",
       "section": "11.2",
-      "name": "Finding a mass from a density and a volume",
+      "name": "Finding a mass from a density",
       "statement": "Solving $\\krho = m/V$ for the mass gives $m = \\krho V$, so once the volume of a body is known from its dimensions and its density is looked up, its mass follows. This is how the chapter weighs the water behind a dam, and it is the first step of almost every buoyancy calculation later in the chapter.",
-      "eq": "eq-mass-from-density"
+      "forms": [
+        {
+          "id": "eq-mass-from-density",
+          "latex": "m = \\rho V",
+          "ktex": "m = \\krho V",
+          "anchor": "11.2-reservoir"
+        }
+      ]
     },
     {
       "id": "pressure",
       "kind": "definition",
       "section": "11.3",
-      "name": "Pressure, $\\kPr = \\kF/A$",
-      "statement": "Pressure is the force divided by the area perpendicular to the force over which the force is applied. A given force can have a very different effect depending on the area it is spread over, which is why being poked with a finger is merely irritating while the same force applied through the sharp end of a needle breaks the skin. Pressure is defined for all states of matter, but it matters most in fluids.",
-      "eq": "eq-pressure"
+      "name": "Pressure",
+      "symbol": "P_press",
+      "terms": [
+        "pressure"
+      ],
+      "statement": "Pressure is the force divided by the area perpendicular to the force over which it acts. The same force can have a very different effect depending on the area it spreads over. A poke with a finger merely irritates, while the same force through the sharp end of a needle breaks the skin. Pressure applies to all states of matter, but it matters most in fluids.",
+      "forms": [
+        {
+          "id": "eq-pressure",
+          "latex": "P = \\frac{F}{A}",
+          "ktex": "\\kPr = \\frac{\\kF}{A}",
+          "anchor": "11.3-pressure-defined"
+        }
+      ]
     },
     {
       "id": "pascal-unit",
       "kind": "definition",
       "section": "11.3",
-      "name": "The pascal, $1\\;\\text{Pa} = 1\\;\\text{N/m}^2$",
+      "name": "Pascal",
       "statement": "The SI unit of pressure is the pascal, which is one newton per square meter. Everyday pressures run to large numbers of pascals, so several other units stay in common use: millibars in meteorology, pounds per square inch for tire pressure, and millimeters of mercury for blood pressure. Knowing what each is worth in pascals is what lets a measurement taken with one instrument be compared with another.",
-      "eq": "eq-pascal"
+      "forms": [
+        {
+          "id": "eq-pascal",
+          "latex": "1\\;\\text{Pa} = 1\\;\\text{N/m}^2",
+          "anchor": "11.3-units"
+        }
+      ]
     },
     {
       "id": "pressure-is-scalar",
       "kind": "result",
       "section": "11.3",
-      "name": "Fluid pressure has no direction",
-      "statement": "A static fluid cannot withstand a shearing force, and so it cannot exert one either. The force a fluid exerts on any surface is therefore perpendicular to that surface, and it is exerted on every surface at once: a swimmer feels pressure on all sides, and the air in a tire pushes outward on every part of it. The pressure itself is a scalar quantity and has no direction; only the forces it produces have one."
+      "name": "Direction of fluid pressure",
+      "statement": "A static fluid cannot withstand a shearing force, and so it cannot exert one either. The force a fluid exerts on any surface is therefore perpendicular to that surface, and the fluid pushes on every surface at once: a swimmer feels pressure on all sides, and the air in a tire pushes outward on every part of it. The pressure itself is a scalar quantity and has no direction; only the forces it produces have one."
     },
     {
       "id": "force-from-pressure",
       "kind": "skill",
       "section": "11.3",
-      "name": "Finding a force from a pressure, $\\kF = \\kPr A$",
+      "name": "Finding a force from a pressure",
       "statement": "Rearranging the definition of pressure gives the force a pressure exerts on a surface, $\\kF = \\kPr A$. The force is directly proportional to the area acted upon as well as to the pressure itself, which is why the flat end of a gas cylinder must be strong and why a hammered nail can split wood.",
-      "eq": "eq-force-from-pressure"
+      "forms": [
+        {
+          "id": "eq-force-from-pressure",
+          "latex": "F = PA",
+          "ktex": "\\kF = \\kPr A",
+          "anchor": "11.3-force-from-pressure"
+        }
+      ]
     },
     {
       "id": "pressure-from-weight-of-fluid",
       "kind": "result",
       "section": "11.4",
-      "name": "Pressure due to the weight of a fluid, $\\kPr = \\kh\\krho\\kg$",
+      "name": "Pressure due to the weight of a fluid",
       "statement": "The pressure due to the weight of a fluid at a depth $h$ below its surface is $P = h\\rho g$, where $\\rho$ is the density of the fluid. The bottom of a container supports the whole weight of the fluid above it, $\\rho Ahg$, and dividing that weight by the area gives the pressure.",
-      "eq": "eq-pressure-depth"
+      "forms": [
+        {
+          "id": "eq-pressure-depth",
+          "latex": "P = h\\rho g",
+          "ktex": "\\kPr = \\kh\\krho\\kg",
+          "anchor": "11.4-weight-of-fluid"
+        },
+        {
+          "id": "eq-pressure-from-weight",
+          "latex": "P = \\frac{mg}{A}",
+          "ktex": "\\kPr = \\frac{m\\kg}{A}",
+          "anchor": "11.4-weight-of-fluid"
+        },
+        {
+          "id": "eq-mass-of-fluid-column",
+          "latex": "m = \\rho Ah",
+          "ktex": "m = \\krho A\\kh",
+          "anchor": "11.4-weight-of-fluid"
+        }
+      ]
     },
     {
       "id": "pressure-independent-of-container",
       "kind": "result",
       "section": "11.4",
-      "name": "Pressure depends on depth, not on the shape of the container",
-      "statement": "Because $\\kPr = \\kh\\krho\\kg$ contains no width and no length, the pressure at a point in a fluid does not depend on how much fluid there is or on the shape of what holds it. The pressure on a dam is set by the average depth of the water at the dam, not by how far the reservoir stretches behind it, and a small column of water inside a ring of sandbags can balance a whole flooded river."
+      "name": "Pressure independent of container shape",
+      "statement": "Because $\\kPr = \\kh\\krho\\kg$ contains no width and no length, the pressure at a point in a fluid does not depend on how much fluid there is or on the shape of its container. The average depth of the water at a dam sets the pressure on it, not how far the reservoir stretches behind it. A small column of water inside a ring of sandbags can balance a whole flooded river."
     },
     {
       "id": "depth-in-a-liquid-versus-a-gas",
       "kind": "idea",
       "section": "11.4",
-      "name": "Where $\\kPr = \\kh\\krho\\kg$ can be used",
-      "statement": "The result assumes the density is the same everywhere in the fluid. Liquids are nearly incompressible, so it holds in them to great depths. Gases are quite compressible, and their density falls with height, so the result can be applied to a gas only over a depth small enough that the density changes little, or with an average density standing in for the true one."
+      "name": "Pressure with depth in liquids and gases",
+      "statement": "The result assumes the density is the same everywhere in the fluid. Liquids are nearly incompressible, so it holds in them to great depths. Gases compress easily, and their density falls with height, so the result applies to a gas only over a depth small enough that the density changes little, or with an average density standing in for the true one."
     },
     {
       "id": "atmospheric-pressure",
       "kind": "definition",
       "section": "11.4",
-      "name": "Atmospheric pressure, $\\kPatm = 1.01\\times 10^{5}\\;\\text{N/m}^2$",
+      "name": "Atmospheric pressure",
+      "symbol": "P_atm",
       "statement": "Atmospheric pressure is pressure due to the weight of a fluid like any other, in this case the weight of the air above a given height. On average at sea level a column of air standing on one square meter weighs $1.01\\times 10^{5}$ N, and that is one atmosphere. It falls as you climb, because there is less air above you, which is why your ears pop on a plane flight.",
-      "eq": "eq-atmospheric-pressure"
+      "forms": [
+        {
+          "id": "eq-atmospheric-pressure",
+          "latex": "1\\;\\text{atm} = P_{\\text{atm}} = 1.01\\times 10^{5}\\;\\text{N/m}^2 = 101\\;\\text{kPa}",
+          "ktex": "1\\;\\text{atm} = \\kPatm = 1.01\\times 10^{5}\\;\\text{N/m}^2 = 101\\;\\text{kPa}",
+          "anchor": "11.4-atmosphere"
+        }
+      ]
     },
     {
       "id": "force-on-a-dam",
       "kind": "skill",
       "section": "11.4",
-      "name": "Average pressure and the force on a wall, $\\kF = \\kPbar A$",
+      "name": "Finding the force on a wall",
       "statement": "Pressure increases linearly with depth, so the average pressure on a vertical wall is the pressure at its average depth, and the force on the wall is that average pressure times the area of contact. This is how the force on a dam is found, and it is why a dam is built thicker at the bottom, where the pressure is greatest.",
-      "eq": "eq-average-pressure-depth"
+      "forms": [
+        {
+          "id": "eq-average-pressure-depth",
+          "latex": "\\bar{P} = \\bar{h}\\rho g",
+          "ktex": "\\kPbar = \\khbar\\krho\\kg",
+          "anchor": "11.4-dam"
+        },
+        {
+          "id": "eq-force-on-dam",
+          "latex": "F = \\bar{P}A",
+          "ktex": "\\kF = \\kPbar A",
+          "anchor": "11.4-dam"
+        }
+      ]
     },
     {
       "id": "density-from-pressure-and-height",
@@ -278,22 +363,45 @@
       "section": "11.4",
       "name": "Finding a density or a depth from a pressure",
       "statement": "Because $\\kPr = \\kh\\krho\\kg$ ties three quantities together, any one of them follows from the other two. Solving for the density gives the average density of a fluid from the pressure it exerts and the height of its column, and solving for the height gives the depth at which a fluid reaches a stated pressure.",
-      "eq": "eq-average-density-from-pressure"
+      "forms": [
+        {
+          "id": "eq-average-density-from-pressure",
+          "latex": "\\bar{\\rho} = \\frac{P}{hg}",
+          "ktex": "\\krhobar = \\frac{\\kPr}{\\kh\\kg}",
+          "anchor": "11.4-atmosphere"
+        },
+        {
+          "id": "eq-depth-from-pressure",
+          "latex": "h = \\frac{P}{\\rho g}",
+          "ktex": "\\kh = \\frac{\\kPr}{\\krho\\kg}",
+          "anchor": "11.4-water-and-air"
+        }
+      ]
     },
     {
       "id": "pascals-principle",
       "kind": "axiom",
       "section": "11.5",
-      "name": "Pascal's principle",
+      "name": "Pascal’s principle",
+      "terms": [
+        "Pascal’s principle"
+      ],
       "statement": "A change in pressure applied to an enclosed fluid is transmitted undiminished to all portions of the fluid and to the walls of its container. The atoms in a fluid are free to move about, so they carry the change everywhere, and an enclosed fluid cannot flow away from the push as a river would. This experimentally verified fact is what makes pressure so important in fluids, since a pressure applied at one place is then known at every other.",
-      "eq": "eq-hydraulic-pressures-equal"
+      "forms": [
+        {
+          "id": "eq-hydraulic-pressures-equal",
+          "latex": "P_1 = P_2",
+          "ktex": "\\kProne = \\kPrtwo",
+          "anchor": "11.5-hydraulic-forces"
+        }
+      ]
     },
     {
       "id": "pressures-add",
       "kind": "result",
       "section": "11.5",
-      "name": "Pressures from different sources add",
-      "statement": "Because a change in pressure is transmitted undiminished, the total pressure in a fluid is the sum of the pressures from the different sources acting on it. The pressure 10.3 m down in a swimming pool is two atmospheres, half from the water above and half from the air above the water, and the pressure anywhere in a fluid open to the air is the fluid's own pressure plus atmospheric pressure."
+      "name": "Addition of pressures",
+      "statement": "A fluid transmits a change in pressure undiminished, so the total pressure in a fluid is the sum of the pressures from the different sources acting on it. The pressure 10.3 m down in a swimming pool is two atmospheres, half from the water above and half from the air above the water. The pressure anywhere in a fluid open to the air is the fluid's own pressure plus atmospheric pressure."
     },
     {
       "id": "hydraulic-system",
@@ -306,47 +414,89 @@
       "id": "hydraulic-force-ratio",
       "kind": "result",
       "section": "11.5",
-      "name": "Forces in a hydraulic system, $\\kFone/A_1 = \\kFtwo/A_2$",
+      "name": "Forces in a hydraulic system",
       "statement": "In a simple hydraulic system with its two pistons at the same height, the pressure at one piston equals the pressure at the other, so $F_1/A_1 = F_2/A_2$. The force on the larger piston is larger by the ratio of the areas.",
-      "eq": "eq-hydraulic-force-ratio"
+      "forms": [
+        {
+          "id": "eq-hydraulic-force-ratio",
+          "latex": "\\frac{F_1}{A_1} = \\frac{F_2}{A_2}",
+          "ktex": "\\frac{\\kFone}{A_1} = \\frac{\\kFtwo}{A_2}",
+          "anchor": "11.5-hydraulic-forces"
+        },
+        {
+          "id": "eq-hydraulic-output-force",
+          "latex": "F_2 = \\frac{A_2}{A_1}F_1",
+          "ktex": "\\kFtwo = \\frac{A_2}{A_1}\\kFone",
+          "anchor": "11.5-hydraulic-forces"
+        }
+      ]
     },
     {
       "id": "hydraulic-work-limit",
       "kind": "result",
       "section": "11.5",
-      "name": "A hydraulic system cannot do more work than is done on it",
-      "statement": "A hydraulic system increases force the way a simple machine does, and like a simple machine it obeys conservation of energy. Work is force times the distance moved, and the wheel cylinder moves through a smaller distance than the pedal cylinder by exactly the factor the force is multiplied by, so the work output equals the work input. The more wheel cylinders are added, the smaller the distance each one moves."
+      "name": "Work in a hydraulic system",
+      "statement": "A hydraulic system increases force the way a simple machine does, and like a simple machine it obeys conservation of energy. Work is force times the distance moved. The wheel cylinder moves through a smaller distance than the pedal cylinder by exactly the factor by which the force grows, so the work output equals the work input. The more wheel cylinders you add, the smaller the distance each one moves."
     },
     {
       "id": "gauge-pressure",
       "kind": "definition",
       "section": "11.6",
       "name": "Gauge pressure",
+      "symbol": "P_g",
+      "terms": [
+        "gauge pressure"
+      ],
       "statement": "Gauge pressure is the pressure relative to atmospheric pressure. Pressure gauges are built to read zero at atmospheric pressure, which is why a tire with a gaping hole in it reads zero even though there is air inside."
     },
     {
       "id": "absolute-pressure",
       "kind": "definition",
       "section": "11.6",
-      "name": "Absolute pressure, $\\kPabs = \\kPg + \\kPatm$",
+      "name": "Absolute pressure",
+      "symbol": "P_abs",
+      "terms": [
+        "absolute pressure"
+      ],
       "statement": "Because pressures add, atmospheric pressure adds to the pressure in any fluid that is not enclosed in a rigid container. The total, or absolute, pressure is therefore the gauge pressure plus atmospheric pressure. Fluids push rather than pull, so in most cases the absolute pressure cannot be negative, and the smallest possible gauge pressure is $-\\kPatm$; there is no theoretical limit on how large a gauge pressure can be.",
-      "eq": "eq-absolute-pressure"
+      "forms": [
+        {
+          "id": "eq-absolute-pressure",
+          "latex": "P_{\\text{abs}} = P_{\\text{g}} + P_{\\text{atm}}",
+          "ktex": "\\kPabs = \\kPg + \\kPatm",
+          "anchor": "11.6-absolute"
+        }
+      ]
     },
     {
       "id": "manometer",
       "kind": "skill",
       "section": "11.6",
-      "name": "Reading a gauge pressure from a manometer, $\\kPg = \\kh\\krho\\kg$",
+      "name": "Reading a manometer",
       "statement": "A manometer is a U-shaped tube with one side open to the atmosphere. With both sides open the fluid stands at the same depth on each side, because atmospheric pressure pushes down equally on both. Connect one side to a source of pressure and the levels shift until the height difference balances the difference in pressure, so the gauge pressure is $\\kh\\krho\\kg$ and is found by measuring $\\kh$. The height difference is positive when the source is above atmospheric pressure and negative when it is below.",
-      "eq": "eq-gauge-pressure-manometer"
+      "forms": [
+        {
+          "id": "eq-gauge-pressure-manometer",
+          "latex": "P_{\\text{g}} = h\\rho g",
+          "ktex": "\\kPg = \\kh\\krho\\kg",
+          "anchor": "11.6-manometer"
+        }
+      ]
     },
     {
       "id": "barometer",
       "kind": "idea",
       "section": "11.6",
-      "name": "The barometer, $\\kh\\krho\\kg = \\kPatm$",
+      "name": "Barometer",
       "statement": "A barometer is a tube with a nearly pure vacuum above the fluid rather than air, so it measures absolute pressure rather than gauge pressure, and what it measures is the pressure of the atmosphere. The mercury stands at whatever height makes the pressure due to its weight equal to atmospheric pressure, which is why atmospheric pressure is so often quoted in millimeters of mercury and why a barometer also works as an altimeter.",
-      "eq": "eq-barometer"
+      "forms": [
+        {
+          "id": "eq-barometer",
+          "latex": "h\\rho g = P_{\\text{atm}}",
+          "ktex": "\\kh\\krho\\kg = \\kPatm",
+          "anchor": "11.6-barometer"
+        }
+      ]
     },
     {
       "id": "blood-pressure-measurement",
@@ -360,6 +510,9 @@
       "kind": "definition",
       "section": "11.6",
       "name": "Systolic pressure",
+      "terms": [
+        "systolic pressure"
+      ],
       "statement": "Systolic pressure is the maximum blood pressure in the artery, reached during each beat because of the pumping action of the heart. In a young adult it is typically about 120 mm Hg."
     },
     {
@@ -367,74 +520,141 @@
       "kind": "definition",
       "section": "11.6",
       "name": "Diastolic pressure",
+      "terms": [
+        "diastolic pressure"
+      ],
       "statement": "Diastolic pressure is the minimum blood pressure in the artery, reached between beats of the heart. In a young adult it is typically about 80 mm Hg."
     },
     {
       "id": "mm-hg",
       "kind": "definition",
       "section": "11.6",
-      "name": "The millimeter of mercury, $1.0\\;\\text{mm Hg} = 133\\;\\text{Pa}$",
-      "statement": "A millimeter of mercury is the pressure that supports a column of mercury one millimeter high, which is 133 Pa. Mercury barometers and manometers are so common that atmospheric pressure and blood pressure are often quoted in this unit."
+      "name": "Millimeter of mercury",
+      "statement": "A millimeter of mercury is the pressure that supports a column of mercury one millimeter high, which is 133 Pa. Mercury barometers and manometers are so common that atmospheric pressure and blood pressure are often quoted in this unit.",
+      "forms": [
+        {
+          "id": "eq-mm-hg",
+          "latex": "1.0\\;\\text{mm Hg} = 133\\;\\text{Pa}",
+          "anchor": "11.6-blood-pressure"
+        }
+      ]
     },
     {
       "id": "buoyant-force",
       "kind": "definition",
       "section": "11.7",
       "name": "Buoyant force",
+      "symbol": "F_B",
+      "terms": [
+        "buoyant force"
+      ],
       "statement": "The buoyant force is the net upward force a fluid exerts on any object in it. It arises because pressure increases with depth, so the fluid pushes up on the bottom of the object harder than it pushes down on the top.",
-      "eq": "eq-buoyant-force-difference"
+      "forms": [
+        {
+          "id": "eq-buoyant-force-difference",
+          "latex": "F_{\\text{B}} = F_2 - F_1",
+          "ktex": "\\kFB = \\kFtwo - \\kFone",
+          "anchor": "11.7-buoyant-force"
+        }
+      ]
     },
     {
       "id": "float-sink-suspend",
       "kind": "result",
       "section": "11.7",
-      "name": "Whether an object floats, sinks or stays suspended",
+      "name": "Floating and sinking",
       "statement": "The buoyant force competes with the object's weight. If the buoyant force is greater than the weight, the object rises to the surface and floats; if it is less, the object sinks; and if the two are equal, the object remains suspended at that depth. A submarine is built to move between the three by changing what it holds in its ballast tanks."
     },
     {
       "id": "archimedes-principle",
       "kind": "result",
       "section": "11.7",
-      "name": "Archimedes' principle, $\\kFB = \\kwfl$",
+      "name": "Archimedes’ principle",
+      "terms": [
+        "Archimedes’ principle"
+      ],
       "statement": "The buoyant force on an object equals the weight of the fluid it displaces. If the object were taken out, the space it occupied would be filled by fluid that the surrounding fluid holds up, so the buoyant force must equal the weight of that fluid.",
-      "eq": "eq-archimedes"
+      "forms": [
+        {
+          "id": "eq-archimedes",
+          "latex": "F_{\\text{B}} = w_{\\text{fl}}",
+          "ktex": "\\kFB = \\kwfl",
+          "anchor": "11.7-archimedes"
+        }
+      ]
     },
     {
       "id": "average-density-decides-floating",
       "kind": "result",
       "section": "11.7",
-      "name": "Average density decides whether an object floats",
+      "name": "Average density and floating",
       "statement": "An object floats when its average density is less than the density of the fluid around it. The fluid, having the higher density, contains more mass and hence more weight in the same volume, so the buoyant force, which is that weight, exceeds the object's own. This is why a lump of clay sinks and the same clay molded into the shape of a boat floats: the shape changes the average density, not the mass."
     },
     {
       "id": "fraction-submerged",
       "kind": "result",
       "section": "11.7",
-      "name": "The fraction submerged, $\\krhoobj/\\krhofl$",
+      "name": "Fraction submerged",
       "statement": "The fraction of a floating object that lies below the surface is the ratio of its average density to the density of the fluid, $\\bar{\\rho}_{\\text{obj}}/\\rho_{\\text{fl}}$, because the volume submerged equals the volume of fluid displaced and the two have the same mass.",
-      "eq": "eq-fraction-submerged"
+      "forms": [
+        {
+          "id": "eq-fraction-submerged",
+          "latex": "\\text{fraction submerged} = \\frac{\\bar{\\rho}_{\\text{obj}}}{\\rho_{\\text{fl}}}",
+          "ktex": "\\text{fraction submerged} = \\frac{\\krhoobj}{\\krhofl}",
+          "anchor": "11.7-density-and-archimedes"
+        },
+        {
+          "id": "eq-fraction-submerged-volumes",
+          "latex": "\\text{fraction submerged} = \\frac{V_{\\text{sub}}}{V_{\\text{obj}}} = \\frac{V_{\\text{fl}}}{V_{\\text{obj}}}",
+          "anchor": "11.7-density-and-archimedes"
+        }
+      ]
     },
     {
       "id": "specific-gravity",
       "kind": "definition",
       "section": "11.7",
       "name": "Specific gravity",
+      "terms": [
+        "specific gravity"
+      ],
       "statement": "Specific gravity is the ratio of the density of an object to the density of a fluid, usually water, and it is dimensionless, so it comes out the same whatever units the densities are written in. A substance whose specific gravity is less than one floats, one greater than one sinks, and one exactly equal to one remains suspended, which is the state a scuba diver tries to reach. For a floating object the specific gravity is also the fraction submerged, which is what a hydrometer reads off directly.",
-      "eq": "eq-specific-gravity"
+      "forms": [
+        {
+          "id": "eq-specific-gravity",
+          "latex": "\\text{specific gravity} = \\frac{\\bar{\\rho}}{\\rho_{\\text{w}}}",
+          "ktex": "\\text{specific gravity} = \\frac{\\krhobar}{\\krhow}",
+          "anchor": "11.7-specific-gravity"
+        }
+      ]
     },
     {
       "id": "apparent-weight-loss",
       "kind": "skill",
       "section": "11.7",
-      "name": "Finding a density by weighing an object twice",
+      "name": "Finding a density by weighing twice",
       "statement": "A submerged object appears to weigh less, and the apparent weight loss is exactly the weight of the fluid it displaces; on a balance that measures mass, the apparent mass loss is the mass of the fluid displaced. Weigh an object in air and again submerged in a fluid of known density, and its volume, and so its density, follow. The same two measurements give the density of the fluid instead when the density of the object is already known.",
-      "eq": "eq-apparent-weight-loss"
+      "forms": [
+        {
+          "id": "eq-apparent-weight-loss",
+          "latex": "\\text{apparent weight loss} = \\text{weight of fluid displaced}",
+          "anchor": "11.7-density-measurements"
+        },
+        {
+          "id": "eq-apparent-mass-loss",
+          "latex": "\\text{apparent mass loss} = \\text{mass of fluid displaced}",
+          "anchor": "11.7-density-measurements"
+        }
+      ]
     },
     {
       "id": "cohesive-forces",
       "kind": "definition",
       "section": "11.8",
       "name": "Cohesive forces",
+      "terms": [
+        "cohesive forces"
+      ],
       "statement": "Cohesive forces are the attractive forces between molecules of the same type. They are what hold a liquid together in an open container, what draw its surface into the smallest area it can take, and what let a column of sap in a tree be pulled upward like a chain held together at every link."
     },
     {
@@ -442,23 +662,56 @@
       "kind": "definition",
       "section": "11.8",
       "name": "Adhesive forces",
+      "terms": [
+        "adhesive forces"
+      ],
       "statement": "Adhesive forces are the attractive forces between molecules of different types. They are what make a drop cling to a window pane, what let water spread across bare paint but bead up on wax, and what draw blood into a small-diameter tube that merely touches a drop. The competition between adhesion and cohesion decides how a liquid meets a solid."
     },
     {
       "id": "surface-tension",
       "kind": "definition",
       "section": "11.8",
-      "name": "Surface tension, $\\kgamma = \\kF/L$",
+      "name": "Surface tension",
+      "symbol": "γ",
+      "terms": [
+        "surface tension"
+      ],
       "statement": "Molecules at the surface of a liquid are pulled inward by their neighbors below, while molecules inside the liquid feel no net force at all, so the surface contracts to the smallest area it can. The surface then behaves like a stretched elastic sheet: it dents under an insect's foot and holds up a steel needle although the needle is far denser than water. Surface tension $\\kgamma$ is the force per unit length exerted by that stretched membrane, and it is greater for a liquid whose cohesive forces are stronger.",
-      "eq": "eq-surface-tension"
+      "forms": [
+        {
+          "id": "eq-surface-tension",
+          "latex": "\\gamma = \\frac{F}{L}",
+          "ktex": "\\kgamma = \\frac{\\kF}{L}",
+          "anchor": "11.8-surface-tension"
+        },
+        {
+          "id": "eq-slide-wire-force",
+          "latex": "F = \\gamma L = \\gamma(2l)",
+          "ktex": "\\kF = \\kgamma L = \\kgamma(2l)",
+          "anchor": "11.8-surface-tension"
+        },
+        {
+          "id": "eq-insect-weight",
+          "latex": "w = \\gamma L\\sin\\theta",
+          "ktex": "\\kwgt = \\kgamma L\\sin\\theta",
+          "anchor": "11.8-surface-tension"
+        }
+      ]
     },
     {
       "id": "pressure-inside-a-bubble",
       "kind": "result",
       "section": "11.8",
-      "name": "Pressure inside a bubble, $\\kPr = 4\\kgamma/r$",
+      "name": "Pressure inside a bubble",
       "statement": "Surface tension pulls a bubble into a sphere and squeezes the gas inside, so the gauge pressure within a bubble is $4\\kgamma/r$. The smaller the bubble, the greater that excess pressure, which is why opening a valve between a small balloon and a large one empties the small one into the large one rather than the other way about.",
-      "eq": "eq-bubble-pressure"
+      "forms": [
+        {
+          "id": "eq-bubble-pressure",
+          "latex": "P = \\frac{4\\gamma}{r}",
+          "ktex": "\\kPr = \\frac{4\\kgamma}{r}",
+          "anchor": "11.8-bubbles"
+        }
+      ]
     },
     {
       "id": "alveoli-and-surfactant",
@@ -472,15 +725,29 @@
       "kind": "definition",
       "section": "11.8",
       "name": "Contact angle",
+      "symbol": "θ",
+      "terms": [
+        "contact angle"
+      ],
       "statement": "Where a liquid meets a solid, the angle between the tangent to the liquid surface and the solid surface is the contact angle, and it says which of the two kinds of force is winning. A large angle means the cohesive forces are strong relative to the adhesive ones and the liquid draws itself into a droplet; a small angle means adhesion is flattening the drop against the solid. Water on waxed car paint stands at a large angle, water on bare paint at a small one."
     },
     {
       "id": "capillary-action",
       "kind": "result",
       "section": "11.8",
-      "name": "Capillary action, $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$",
+      "name": "Capillary action",
+      "terms": [
+        "capillary action"
+      ],
       "statement": "Capillary action is the tendency of a fluid to be raised or lowered in a narrow tube. Surface tension raises the liquid when the contact angle is less than $90^\\circ$ and lowers it when the angle is greater, to a height $h = 2\\gamma\\cos\\theta/\\rho gr$.",
-      "eq": "eq-capillary-height"
+      "forms": [
+        {
+          "id": "eq-capillary-height",
+          "latex": "h = \\frac{2\\gamma\\cos\\theta}{\\rho gr}",
+          "ktex": "\\kh = \\frac{2\\kgamma\\cos\\theta}{\\krho\\kg r}",
+          "anchor": "11.8-capillary-action"
+        }
+      ]
     },
     {
       "id": "pressures-in-the-body",
@@ -493,30 +760,47 @@
       "id": "blood-pressure-and-height",
       "kind": "result",
       "section": "11.9",
-      "name": "Blood pressure and height in the body, $\\kdPr = \\kdh\\krho\\kg$",
-      "statement": "Blood is a fluid with weight, so the pressure in it varies with height in the body exactly as it does in any other fluid. Standing up puts the feet about 1.4 m below the heart, which raises the pressure there by 108 mm Hg, and standing still for a long time lets blood accumulate in the legs and the legs swell, which is why soldiers required to stand at attention have been known to faint and why doctors recommend tight stockings for long flights.",
-      "eq": "eq-pressure-in-feet"
+      "name": "Blood pressure and height",
+      "statement": "Blood is a fluid with weight, so the pressure in it varies with height in the body exactly as in any other fluid. Standing up puts the feet about 1.4 m below the heart, which raises the pressure there by 108 mm Hg. Standing still for a long time lets blood accumulate in the legs and the legs swell. That is why soldiers standing at attention sometimes faint and why doctors recommend tight stockings for long flights.",
+      "forms": [
+        {
+          "id": "eq-pressure-in-feet",
+          "latex": "\\Delta P = \\Delta h\\rho g",
+          "ktex": "\\kdPr = \\kdh\\krho\\kg",
+          "anchor": "11.9-blood-pressure"
+        }
+      ]
     },
     {
       "id": "intraocular-pressure",
       "kind": "definition",
       "section": "11.9",
       "name": "Pressure in the eye",
+      "terms": [
+        "intraocular pressure"
+      ],
       "statement": "The shape of the eye is maintained by the pressure of the fluid inside it, normally in the range of 12.0 to 24.0 mm Hg. When the circulation of that fluid is blocked the pressure builds, a condition called glaucoma, and it can reach 85.0 mm Hg, which over the $6.0\\;\\text{cm}^2$ at the back of the eye is a force of 6.8 N, the weight of about a 680 g mass resting on the eye. That is enough to damage the optic nerve permanently.",
-      "eq": "eq-eye-force"
+      "forms": [
+        {
+          "id": "eq-eye-force",
+          "latex": "F = h\\rho gA",
+          "ktex": "\\kF = \\kh\\krho\\kg A",
+          "anchor": "11.9-eye"
+        }
+      ]
     },
     {
       "id": "lung-pressures",
       "kind": "idea",
       "section": "11.9",
-      "name": "Pressures in the lungs and the chest",
-      "statement": "The pressure inside the lungs drops below atmospheric pressure when muscle action in the diaphragm and the rib cage expands the chest, and that is what draws air in; it rises above atmospheric pressure when the muscles relax and surface tension in the alveoli contracts them, and that is what forces air out. The liquid attaching the lungs to the inside of the chest wall is at a negative gauge pressure of $-4$ to $-8$ mm Hg, and it is that attachment which keeps the lungs from collapsing; letting air into the chest cavity breaks it and a lung may collapse."
+      "name": "Pressures in the lungs",
+      "statement": "The pressure inside the lungs drops below atmospheric pressure when muscle action in the diaphragm and the rib cage expands the chest, and that draws air in. It rises above atmospheric pressure when the muscles relax and surface tension in the alveoli contracts them, and that forces air out. The liquid attaching the lungs to the inside of the chest wall is at a negative gauge pressure of $-4$ to $-8$ mm Hg, and that attachment keeps the lungs from collapsing. Letting air into the chest cavity breaks it, and a lung may collapse."
     },
     {
       "id": "bladder-pressure",
       "kind": "idea",
       "section": "11.9",
-      "name": "Bladder pressure and the micturition reflex",
+      "name": "Bladder pressure",
       "statement": "Bladder pressure climbs steadily from zero to about 25 mm Hg as the bladder fills to its normal capacity of $500\\;\\text{cm}^3$. That pressure triggers the micturition reflex, which produces the feeling of needing to urinate and also contracts the muscles around the bladder, raising the pressure to over 100 mm Hg and accentuating the sensation. Coughing, straining, tight clothes and the weight of a fetus all add to the pressure and can trigger the reflex."
     },
     {
@@ -531,6 +815,9 @@
       "kind": "definition",
       "section": "11.9",
       "name": "Glaucoma",
+      "terms": [
+        "glaucoma"
+      ],
       "statement": "Glaucoma is the condition caused by the buildup of fluid pressure in the eye when the circulation of that fluid is blocked. The raised pressure pushes on the retina and the optic nerve and can damage them."
     },
     {
@@ -538,6 +825,9 @@
       "kind": "definition",
       "section": "11.9",
       "name": "Micturition reflex",
+      "terms": [
+        "micturition reflex"
+      ],
       "statement": "The micturition reflex is the feeling of needing to urinate, triggered by the pressure in the bladder as it fills toward its normal capacity."
     }
   ],
