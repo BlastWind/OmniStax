@@ -83,14 +83,12 @@ and Optical Instruments, `ch26`), 27 (Wave Optics, `ch27`), 28 (Special
 Relativity, `ch28`) and 29 (Quantum Physics, `ch29`). Chapters 30 to 34 are
 prepared (source, chapter tables, concepts, introduction pages and notes)
 and have no section pages yet.
-Chapters 4 to 9 were built in one job on 2026-09-11 (LOG passes 27 to
-33), 10 to 15 on 2026-09-14 (LOG passes 35 to 40), and 16.7 to 16.11
-with 17 to 19 on 2026-09-14 and 15 (LOG passes 41 to 44), and 20 to 22
-on 2026-09-15 (LOG passes 45 to 47), 23 and 24 on 2026-09-16 (LOG passes 48 and 49),
-and 25 to 29 on 2026-09-28 (LOG passes 50 to 54),
-all under
-`Plan.md` at the repository root. A chapter
-folder is `ch` followed by the two-digit chapter number. The whole table
+All were built under `Plan.md` at the repository root: Chapters 4 to 9
+in one job on 2026-09-11 (LOG passes 27 to 33), 10 to 15 on 2026-09-14
+(LOG passes 35 to 40), 16.7 to 16.11 with 17 to 19 on 2026-09-14 and 15
+(LOG passes 41 to 44), 20 to 22 on 2026-09-15 (LOG passes 45 to 47), 23
+and 24 on 2026-09-16 (LOG passes 48 and 49), and 25 to 29 on 2026-09-28
+(LOG passes 50 to 54). A chapter folder is `ch` followed by the two-digit chapter number. The whole table
 of contents is in `toc.md`. Every built chapter's introduction and the
 Preface (m42955) are pages of their own in their `intro/` folders. A
 chapter's book-level rows (types, symbols, concepts, prerequisite edges)
@@ -155,7 +153,9 @@ chains, no editorial framing ("three different questions"). OmniStax's
 sentences are set in the sans face; the reader should feel a change of
 typeface, not a change of writer.
 
-AI-written text is pedagogical, crisp and active, speaks to the learner, and never narrates its own choices, over-describes or hedges (root rule 17). Check a chapter with `python3 tools/voicelint.py "College Physics 2e" --list chNN` from `omnistax-content/`.
+AI-written text speaks to the learner in crisp, active, teaching prose
+and never narrates its own choices, over-describes or hedges (root rule
+17). Check a chapter with `python3 tools/voicelint.py "College Physics 2e" --list chNN` from `omnistax-content/`.
 
 ## Types
 
@@ -174,14 +174,16 @@ thirty-four in all. Mass,
 length, angle, count, amount of substance and every material constant
 (a specific heat, a latent heat, a conductivity, an emissivity, an
 expansion coefficient) are not typed and stay in ink; heat is an energy
-and a rate of heat transfer is a power. With this many types a hue must still be legible and distinct: since
+and a rate of heat transfer is a power.
+
+With this many types each hue must still be legible and distinct. Since
 2026-09-15 the app's scheme for a book of up to thirty types is a fixed
-palette of thirty hues at one lightness, dealt to the declared order so
-that neighbours in the order and quantities drawn together on one page
+palette of thirty hues at one lightness, each readable against both
+grounds. The hues are dealt to the declared order so that neighbours in
+the order stay far apart, as do quantities drawn together on one page
 (force with pressure, position with velocity and acceleration, energy
-with temperature and entropy, voltage with the electric field) stay far
-apart, each hue reading against both grounds; a page binds only the
-types it draws, and the scheme itself is the app's matter.
+with temperature and entropy, voltage with the electric field). A page
+binds only the types it draws; the scheme itself is the app's matter.
 
 Variants of one type share its hue and differ by decoration: an initial
 value (subscript 0) is hollow or dashed, an average (bar) is dashed, a
@@ -196,8 +198,8 @@ a measured value A and its uncertainty δA) has a row with its LaTeX only.
 The speed of light c is a velocity and takes that hue (`\kc`). Chapter 1
 is qualitative, and its pages colour only the time and the speed that pass
 through the unit conversions; everything else there (a length, a mass, a
-count, a percent) is untyped and in ink. The macros are derived from the table, so
-a new symbol is a new row, not a new macro.
+count, a percent) is untyped and in ink. The macros are derived from the
+table, so a new symbol is a new row, not a new macro.
 
 ## Exercise kinds
 
@@ -277,11 +279,11 @@ Candidates not yet built are the torque vector of a merry-go-round (10.7),
 which lifts out of the platform's plane, and the equipotential map of 19.4
 rising into a surface of potential.
 
-Photographs are kept
-where the text points the reader at them (Chapter 1 does this for
-most of its photographs: "See Figure 1.4 and Figure 1.5") or where they
-show the thing the passage is about (the Tacoma Narrows bridge, 16.8), and
-dropped where they are a splash image at the head of a section.
+Photographs are kept where the text points the reader at them (Chapter
+1 does this for most of its photographs: "See Figure 1.4 and Figure
+1.5") or where they show the thing the passage is about (the Tacoma
+Narrows bridge, 16.8). A splash image at the head of a section is
+dropped.
 
 ## Files
 
