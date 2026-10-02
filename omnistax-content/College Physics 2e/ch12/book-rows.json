@@ -127,14 +127,14 @@
    "id": "flow-rate-units",
    "kind": "skill",
    "section": "12.1",
-   "name": "Converting flow rate to convenient units",
-   "statement": "The SI unit of flow rate is the cubic meter per second, but almost nothing is quoted in it: a heart is measured in liters per minute, a fire hose in liters per second, a capillary in cubic centimeters per second. A liter is a thousandth of a cubic meter, and the section says plainly that whatever metric units are most convenient for a given situation are the ones to use, so converting between them is part of working almost every problem in the set."
+   "name": "Converting flow rate units",
+   "statement": "The SI unit of flow rate is the cubic meter per second, but almost nothing uses it: a heart pumps liters per minute, a fire hose delivers liters per second, and a capillary carries cubic centimeters per second. A liter is a thousandth of a cubic meter. Use whatever metric units are most convenient for the situation, and expect to convert between them in almost every problem."
   },
   {
    "id": "flow-rate-velocity",
    "kind": "result",
    "section": "12.1",
-   "name": "Flow rate from area and speed, $\\kQ = A\\kvb$",
+   "name": "Flow rate and velocity",
    "statement": "The flow rate is the cross-sectional area of the conduit times the average velocity of the fluid across it, $Q = A\\bar{v}$. Flow rate and velocity are therefore related but different quantities: a wide, slow river can carry more water than a narrow, fast one.",
    "forms": [
     {
@@ -156,7 +156,7 @@
    "id": "equation-of-continuity",
    "kind": "result",
    "section": "12.1",
-   "name": "Equation of continuity, $A_1\\kvbone = A_2\\kvbtwo$",
+   "name": "Equation of continuity",
    "statement": "Because the fluid is incompressible, the same amount of fluid must flow past any point of a tube in a given time, so the flow rate is the same at all points along it. Where the cross-sectional area decreases the velocity must necessarily increase, and where it increases the velocity drops. That is the purpose of a nozzle, and it is why water slows considerably when a river empties into a reservoir and picks up speed again when it leaves.",
    "forms": [
     {
@@ -172,8 +172,8 @@
    "id": "continuity-branching",
    "kind": "result",
    "section": "12.1",
-   "name": "Continuity where the flow branches, $n_1A_1\\kvbone = n_2A_2\\kvbtwo$",
-   "statement": "In the cardiovascular system and in any other branching network the flow does not stay in one tube. Continuity still holds, but what is maintained is the sum of the flow rates in all the branches in any portion along the tube, so the number of branches enters the equation along with their areas and their speeds. Because the capillaries have an enormously greater total cross-section than the aorta, the blood in them moves at about a millimeter per second, which is slow enough for substances to be exchanged with the cells and still fast enough to avoid clotting.",
+   "name": "Continuity in branching flow",
+   "statement": "In the cardiovascular system and in any other branching network, the flow does not stay in one tube. Continuity still holds, but for the sum of the flow rates in all the branches in any portion along the tube, so the number of branches enters the equation along with their areas and their speeds. The capillaries have an enormously greater total cross-section than the aorta, so the blood in them moves at about a millimeter per second. That is slow enough for the blood to exchange substances with the cells and still fast enough to avoid clotting.",
    "forms": [
     {
      "id": "eq-continuity-branching",
@@ -198,7 +198,7 @@
    "id": "liter",
    "kind": "definition",
    "section": "12.1",
-   "name": "The liter, $1\\;\\text{L} = 10^{-3}\\;\\text{m}^3$",
+   "name": "Liter",
    "terms": [
     "liter"
    ],
@@ -208,14 +208,14 @@
    "id": "pressure-drops-in-fast-fluid",
    "kind": "result",
    "section": "12.2",
-   "name": "Pressure drops in a rapidly moving fluid",
+   "name": "Pressure drop in a fast fluid",
    "statement": "Where a fluid speeds up, its pressure drops. A fluid flowing into a narrower channel gains kinetic energy, and that energy comes from the net work done by the higher pressure behind it pushing it into the channel."
   },
   {
    "id": "bernoullis-equation",
    "kind": "result",
    "section": "12.2",
-   "name": "Bernoulli’s equation, $\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{constant}$",
+   "name": "Bernoulli’s equation",
    "terms": [
     "Bernoulli’s equation"
    ],
@@ -241,7 +241,7 @@
    "id": "bernoulli-energy-per-volume",
    "kind": "idea",
    "section": "12.2",
-   "name": "Every term of Bernoulli’s equation is an energy per unit volume",
+   "name": "Bernoulli’s equation as energy per volume",
    "statement": "Bernoulli’s equation is a form of the conservation of energy principle. The second and third terms are the kinetic and the gravitational potential energy with the mass replaced by the density, so each is an energy divided by a volume, and the pressure is an energy per unit volume too, since a newton per square meter multiplied by meter over meter is a joule per cubic meter. Bernoulli’s equation is, in fact, just a convenient statement of conservation of energy for an incompressible fluid in the absence of friction.",
    "forms": [
     {
@@ -262,8 +262,8 @@
    "id": "bernoulli-static-fluid",
    "kind": "result",
    "section": "12.2",
-   "name": "Bernoulli’s equation for a static fluid, $\\kPrtwo = \\kProne + \\krho\\kg\\khone$",
-   "statement": "When the fluid is not moving, both terms in the speed vanish and Bernoulli’s equation says that pressure increases with depth: going down by a height adds the weight of that column of fluid to the pressure. In the simplest case the pressure at the top is zero and the familiar relationship for the pressure due to the weight of a fluid is recovered. Although Bernoulli’s equation is introduced for fluid flow, it includes much of what was studied for static fluids in the preceding chapter.",
+   "name": "Bernoulli’s equation for a static fluid",
+   "statement": "When the fluid is not moving, both speed terms vanish and Bernoulli’s equation says that pressure increases with depth: going down by a height adds the weight of that column of fluid to the pressure. In the simplest case the pressure at the top is zero, and you recover the familiar relationship for the pressure due to the weight of a fluid. So although Bernoulli’s equation describes fluid flow, it includes much of what the preceding chapter found for static fluids.",
    "forms": [
     {
      "id": "eq-bernoulli-static",
@@ -278,7 +278,7 @@
    "id": "bernoullis-principle",
    "kind": "result",
    "section": "12.2",
-   "name": "Bernoulli’s principle, $\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2$",
+   "name": "Bernoulli’s principle",
    "terms": [
     "Bernoulli’s principle"
    ],
@@ -304,14 +304,14 @@
    "id": "lift-from-bernoulli",
    "kind": "idea",
    "section": "12.2",
-   "name": "Lift on a wing and a sail",
-   "statement": "The airplane wing is a beautiful example of Bernoulli’s principle in action. The wing is tilted upward at a small angle and its upper surface is longer, so air flows faster over the top, the pressure there is reduced, and the difference is a net upward force. A sail has the characteristic shape of a wing too: the pressure on its front is lower than the pressure on its back, which gives a forward force and even allows a boat to sail into the wind. Wings also gain lift by pushing air downward, and the deflected air pushes back on the wing by Newton’s third law."
+   "name": "Lift on a wing",
+   "statement": "The airplane wing is a beautiful example of Bernoulli’s principle in action. The wing tilts upward at a small angle and its upper surface is longer, so air flows faster over the top, the pressure there drops, and the difference is a net upward force. A sail has the characteristic shape of a wing too: the pressure on its front is lower than the pressure on its back, which gives a forward force and even lets a boat sail into the wind. Wings also gain lift by pushing air downward, and the deflected air pushes back on the wing by Newton’s third law."
   },
   {
    "id": "velocity-measurement",
    "kind": "result",
    "section": "12.2",
-   "name": "Measuring fluid speed with a manometer, $\\kvtwo \\propto \\sqrt{\\kh}$",
+   "name": "Measuring fluid speed",
    "statement": "Two tubes small enough not to disturb the flow, joined by a manometer, measure the speed of a fluid. The tube facing the oncoming fluid creates a dead spot with zero velocity in front of it, while the fluid passing the other tube keeps its speed, so the pressure at the second opening is lower by the term in the square of the speed. The manometer fluid rises by a height proportional to that term, and the speed is therefore proportional to the square root of the height. The pitot tube built on this principle is the air speed indicator of an aircraft.",
    "forms": [
     {
@@ -332,7 +332,7 @@
    "id": "torricellis-theorem",
    "kind": "result",
    "section": "12.3",
-   "name": "Torricelli’s theorem, $\\kvtwo^2 = \\kvone^2 + 2\\kg\\kh$",
+   "name": "Torricelli’s theorem",
    "statement": "Fluid leaving a reservoir through an opening a height $h$ below its surface emerges at the speed it would have if it had fallen freely through that height, $v_2^2 = v_1^2 + 2gh$, whatever the size of the opening.",
    "forms": [
     {
@@ -347,14 +347,14 @@
    "id": "bernoulli-general-application",
    "kind": "skill",
    "section": "12.3",
-   "name": "Applying Bernoulli’s equation where pressure, speed and height all change",
-   "statement": "Every earlier use of Bernoulli’s equation simplified it first, by holding the height constant or the pressure equal at both points. The general case keeps all three terms at both points: the speeds are found from the flow rate and the two cross-sections, the heights are measured from whichever point is taken as the reference, and the remaining pressure is what is solved for. A fire hose that runs ten meters up a ladder to a narrow nozzle is exactly this case, and its pressure falls for both reasons at once."
+   "name": "Applying Bernoulli’s equation",
+   "statement": "Every earlier use of Bernoulli’s equation simplified it first, by holding the height constant or the pressure equal at both points. The general case keeps all three terms at both points. Find the speeds from the flow rate and the two cross-sections, measure the heights from whichever point you take as the reference, and solve for the remaining pressure. A fire hose that runs ten meters up a ladder to a narrow nozzle is exactly this case, and its pressure falls for both reasons at once."
   },
   {
    "id": "power-in-fluid-flow",
    "kind": "result",
    "section": "12.3",
-   "name": "Power in fluid flow, $\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power}$",
+   "name": "Power in fluid flow",
    "statement": "Power is the rate at which work is done or energy is used or supplied. Every term of Bernoulli’s equation is an energy per unit volume, so multiplying the whole equation by the flow rate, which is a volume per unit time, gives a power. Each term then has a clear physical meaning: one is the power supplied to give the fluid its pressure, one the power supplied to give it its kinetic energy, and one the power that goes to gravitational potential energy.",
    "forms": [
     {
@@ -369,8 +369,8 @@
    "id": "pump-power",
    "kind": "skill",
    "section": "12.3",
-   "name": "Finding the power a pump supplies, $\\text{power} = \\kPr\\kQ$",
-   "statement": "A pump that takes fluid in and sends it out through a hose of the same diameter at the same height changes neither the speed nor the height of the fluid, so its kinetic and gravitational potential energy are unchanged and the only term left is the pressure. The power the pump supplies is then the pressure it adds multiplied by the flow rate. A pump that raises velocity and height as well, as the heart does, needs all three terms.",
+   "name": "Finding the power of a pump",
+   "statement": "A pump that takes fluid in and sends it out through a hose of the same diameter at the same height changes neither the speed nor the height of the fluid. Its kinetic and gravitational potential energy stay the same, and only the pressure term remains. The power the pump supplies is then the pressure it adds multiplied by the flow rate. A pump that raises velocity and height as well, as the heart does, needs all three terms.",
    "forms": [
     {
      "id": "eq-power-from-pressure",
@@ -430,14 +430,14 @@
    "id": "velocity-profile-in-tube",
    "kind": "idea",
    "section": "12.4",
-   "name": "The velocity profile across a tube",
+   "name": "Velocity profile in a tube",
    "statement": "If the flow in a tube has negligible resistance the speed is the same all across it. When a viscous fluid flows, the layer in contact with the wall does not move at all, and the speed increases steadily to its maximum at the center of the tube. The shape of a Bunsen burner flame is that velocity profile made visible, even though the viscosity of natural gas is small."
   },
   {
    "id": "flow-resistance",
    "kind": "definition",
    "section": "12.4",
-   "name": "Flow rate from pressure difference and resistance, $\\kQ = (\\kPrtwo - \\kProne)/R$",
+   "name": "Resistance to flow",
    "symbol": "R_flow",
    "statement": "The resistance to flow is defined by the relationship between flow rate and pressure difference: the flow rate is the pressure difference divided by the resistance, $Q = (P_2 - P_1)/R$, and it is in the direction from high to low pressure. The resistance includes everything except pressure that affects the flow rate.",
    "forms": [
@@ -453,7 +453,7 @@
    "id": "poiseuilles-law-resistance",
    "kind": "result",
    "section": "12.4",
-   "name": "Poiseuille’s law for resistance, $R = 8\\keta l/\\pi r^4$",
+   "name": "Poiseuille’s law for resistance",
    "terms": [
     "Poiseuille’s law for resistance"
    ],
@@ -472,7 +472,7 @@
    "id": "poiseuilles-law",
    "kind": "result",
    "section": "12.4",
-   "name": "Poiseuille’s law, $\\kQ = (\\kPrtwo - \\kProne)\\pi r^4/8\\keta l$",
+   "name": "Poiseuille’s law",
    "terms": [
     "Poiseuille’s law"
    ],
@@ -491,15 +491,15 @@
    "id": "radius-fourth-power-sensitivity",
    "kind": "idea",
    "section": "12.4",
-   "name": "Flow is extraordinarily sensitive to a tube’s radius",
-   "statement": "Because the radius is raised to the fourth power, any change in it has a very large effect on the resistance: doubling the radius decreases the resistance by a factor of sixteen, and reducing a vessel’s radius by only five percent cuts the flow to about eighty-one percent of its original value. This is why the body regulates blood flow mostly by dilating and constricting vessels rather than by working the heart harder, and why plaque in an artery is dangerous out of all proportion to its thickness. The body may compensate by raising the blood pressure, but that puts the heart and any weakened vessel at risk."
+   "name": "Sensitivity of flow to radius",
+   "statement": "The radius enters to the fourth power, so any change in it has a very large effect on the resistance. Doubling the radius decreases the resistance by a factor of sixteen, and reducing a vessel’s radius by only five percent cuts the flow to about eighty-one percent of its original value. That is why the body regulates blood flow mostly by dilating and constricting vessels rather than by working the heart harder, and why plaque in an artery is dangerous out of all proportion to its thickness. The body may compensate by raising the blood pressure, but that puts the heart and any weakened vessel at risk."
   },
   {
    "id": "pressure-drop-from-resistance",
    "kind": "result",
    "section": "12.4",
-   "name": "Pressure drop from flow and resistance, $\\kPrtwo - \\kProne = R\\kQ$",
-   "statement": "Rearranged, the relationship between flow rate, pressure difference and resistance says that flow through a resistance causes the pressure to drop along it. That is why the water pressure in a house is lower on a hot summer day when the neighborhood is drawing heavily: the flow rate in the main is large, so the drop along it is large, and what arrives is what is left. The relationship holds for turbulent as well as for laminar flow, and it can be applied to a system whose radius is not the same everywhere, where the drop is greatest at the narrowest place.",
+   "name": "Pressure drop from resistance",
+   "statement": "Rearranged, the relationship between flow rate, pressure difference and resistance says that flow through a resistance makes the pressure drop along it. That is why the water pressure in a house is lower on a hot summer day when the neighborhood draws heavily: the flow rate in the main is large, so the drop along it is large, and less pressure arrives. The relationship holds for turbulent as well as laminar flow. It also applies to a system whose radius varies, where the drop is greatest at the narrowest place.",
    "forms": [
     {
      "id": "eq-pressure-drop",
@@ -513,7 +513,7 @@
    "id": "reynolds-number",
    "kind": "definition",
    "section": "12.5",
-   "name": "Reynolds number for flow in a tube, $N_{\\text{R}} = 2\\krho\\kv r/\\keta$",
+   "name": "Reynolds number for flow in a tube",
    "symbol": "N_R",
    "terms": [
     "Reynolds number"
@@ -533,7 +533,7 @@
    "id": "turbulence-onset-thresholds",
    "kind": "axiom",
    "section": "12.5",
-   "name": "When flow in a tube turns turbulent",
+   "name": "Onset of turbulence",
    "statement": "For a Reynolds number below about 2000 the flow is laminar, and above about 3000 it is turbulent. Between 2000 and 3000 the flow is unstable: it can be laminar, but small obstructions and surface roughness can make it turbulent, and it may oscillate randomly between the two. Most of the blood flow in the body is quiet and laminar; the exception is the aorta, where the speed rises above a critical value and the flow becomes turbulent."
   },
   {
@@ -554,7 +554,7 @@
    "id": "reynolds-number-object",
    "kind": "definition",
    "section": "12.6",
-   "name": "Reynolds number for an object in a fluid, ${N'}_{\\text{R}} = \\krho\\kv L/\\keta$",
+   "name": "Reynolds number for an object",
    "symbol": "N_Rprime",
    "statement": "The Reynolds number for an object moving in a fluid, ${N'}_{\\text{R}} = \\rho vL/\\eta$, where $L$ is a characteristic length of the object, indicates whether the flow around it is laminar or turbulent. A moving object in a still fluid is equivalent to a stationary object in a flowing stream.",
    "forms": [
@@ -571,7 +571,7 @@
    "id": "flow-regimes-around-object",
    "kind": "idea",
    "section": "12.6",
-   "name": "How the flow around an object changes with its Reynolds number",
+   "name": "Flow around an object",
    "statement": "Below about 1 the flow around an object can be laminar, particularly if the object has a smooth shape. Between 1 and about 10 the flow turns turbulent, the exact point depending on surface roughness, and a turbulent wake forms behind the object while some laminar flow remains over its surface. Between 10 and a million the flow may be either and may oscillate between the two, and above a million it is turbulent everywhere, even at the surface. Laminar flow occurs mostly when the objects are small, such as raindrops, pollen and blood cells in plasma, so most large objects, airplanes and sailboats among them, create significant turbulence as they move."
   },
   {
@@ -606,7 +606,7 @@
    "id": "random-walk-distance",
    "kind": "result",
    "section": "12.7",
-   "name": "Distance travelled by diffusion, $\\kxrms = \\sqrt{2D\\kt}$",
+   "name": "Diffusion distance",
    "symbol": "x_rms",
    "statement": "The root-mean-square distance a molecule travels by diffusion is proportional to the square root of the time, $x_{\\text{rms}} = \\sqrt{2Dt}$, not to the time itself, which is what makes diffusion so slow over any large distance.",
    "forms": [
@@ -622,7 +622,7 @@
    "id": "diffusion-constant",
    "kind": "definition",
    "section": "12.7",
-   "name": "The diffusion constant",
+   "name": "Diffusion constant",
    "symbol": "D_diff",
    "statement": "The diffusion constant is determined experimentally and gathers into one number most of the things that set the rate: the molecule, the medium, the temperature and the cohesive and adhesive forces. It gets progressively smaller for more massive molecules, because the average molecular speed at a given temperature is inversely proportional to molecular mass, and it is far smaller in water than in air, because a molecule in water makes many more collisions in its random walk. It increases with temperature, since the average kinetic energy of the molecules is proportional to absolute temperature."
   },
@@ -630,7 +630,7 @@
    "id": "diffusion-rate-direction",
    "kind": "idea",
    "section": "12.7",
-   "name": "The rate and direction of diffusion",
+   "name": "Rate and direction of diffusion",
    "statement": "A drop of food coloring placed carefully in still water spreads until its concentration is the same everywhere, which is free diffusion, since no barrier inhibits it. Molecular motion is random in direction, so simple chance dictates that more molecules leave a region of high concentration than enter it, and the net rate of diffusion is proportional to the difference in concentration; if the concentrations were the same there would be no net movement at all. The net rate is higher at the start than after the process is partly complete, and it is proportional to the diffusion constant as well."
   },
   {
