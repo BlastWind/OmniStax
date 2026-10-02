@@ -109,8 +109,19 @@
    "kind": "definition",
    "section": "12.1",
    "name": "Flow rate",
+   "symbol": "Q",
+   "terms": [
+    "flow rate"
+   ],
    "statement": "Flow rate is the volume of fluid that passes a location through an area during a period of time, and it is the quantity almost every question about a moving fluid is asked in: how much blood a heart pumps, how much water a hose delivers, how much air a duct carries. Because it counts volume rather than distance, it tells you nothing on its own about how fast the fluid is moving or how wide the conduit is, only about the product of the two.",
-   "eq": "eq-flow-rate"
+   "forms": [
+    {
+     "id": "eq-flow-rate",
+     "latex": "Q = \\frac{V}{t}",
+     "ktex": "\\kQ = \\frac{V}{\\kt}",
+     "anchor": "12.1-flow-rate"
+    }
+   ]
   },
   {
    "id": "flow-rate-units",
@@ -125,7 +136,14 @@
    "section": "12.1",
    "name": "Flow rate from area and speed, $\\kQ = A\\kvb$",
    "statement": "The flow rate is the cross-sectional area of the conduit times the average velocity of the fluid across it, $Q = A\\bar{v}$. Flow rate and velocity are therefore related but different quantities: a wide, slow river can carry more water than a narrow, fast one.",
-   "eq": "eq-flow-rate-velocity"
+   "forms": [
+    {
+     "id": "eq-flow-rate-velocity",
+     "latex": "Q = A\\bar{v}",
+     "ktex": "\\kQ = A\\kvb",
+     "anchor": "12.1-flow-rate-velocity"
+    }
+   ]
   },
   {
    "id": "incompressible-fluid",
@@ -140,7 +158,15 @@
    "section": "12.1",
    "name": "Equation of continuity, $A_1\\kvbone = A_2\\kvbtwo$",
    "statement": "Because the fluid is incompressible, the same amount of fluid must flow past any point of a tube in a given time, so the flow rate is the same at all points along it. Where the cross-sectional area decreases the velocity must necessarily increase, and where it increases the velocity drops. That is the purpose of a nozzle, and it is why water slows considerably when a river empties into a reservoir and picks up speed again when it leaves.",
-   "eq": "eq-continuity"
+   "forms": [
+    {
+     "id": "eq-continuity",
+     "latex": "Q_1 = Q_2,\\quad A_1\\bar{v}_1 = A_2\\bar{v}_2",
+     "ktex": "\\kQone = \\kQtwo,\\quad A_1\\kvbone = A_2\\kvbtwo",
+     "condition": "incompressible fluid",
+     "anchor": "12.1-continuity"
+    }
+   ]
   },
   {
    "id": "continuity-branching",
@@ -148,13 +174,24 @@
    "section": "12.1",
    "name": "Continuity where the flow branches, $n_1A_1\\kvbone = n_2A_2\\kvbtwo$",
    "statement": "In the cardiovascular system and in any other branching network the flow does not stay in one tube. Continuity still holds, but what is maintained is the sum of the flow rates in all the branches in any portion along the tube, so the number of branches enters the equation along with their areas and their speeds. Because the capillaries have an enormously greater total cross-section than the aorta, the blood in them moves at about a millimeter per second, which is slow enough for substances to be exchanged with the cells and still fast enough to avoid clotting.",
-   "eq": "eq-continuity-branching"
+   "forms": [
+    {
+     "id": "eq-continuity-branching",
+     "latex": "n_1A_1\\bar{v}_1 = n_2A_2\\bar{v}_2",
+     "ktex": "n_1A_1\\kvbone = n_2A_2\\kvbtwo",
+     "condition": "incompressible fluid that branches",
+     "anchor": "12.1-branching"
+    }
+   ]
   },
   {
    "id": "fluid-dynamics",
    "kind": "definition",
    "section": "12.1",
    "name": "Fluid dynamics",
+   "terms": [
+    "fluid dynamics"
+   ],
    "statement": "Fluid dynamics is the physics of fluids in motion."
   },
   {
@@ -162,6 +199,9 @@
    "kind": "definition",
    "section": "12.1",
    "name": "The liter, $1\\;\\text{L} = 10^{-3}\\;\\text{m}^3$",
+   "terms": [
+    "liter"
+   ],
    "statement": "A liter is a unit of volume equal to $10^{-3}\\;\\text{m}^3$, or 1000 cubic centimeters."
   },
   {
@@ -176,8 +216,26 @@
    "kind": "result",
    "section": "12.2",
    "name": "Bernoulli’s equation, $\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{constant}$",
+   "terms": [
+    "Bernoulli’s equation"
+   ],
    "statement": "Bernoulli’s equation states the relationship between pressure and velocity in a fluid quantitatively: for an incompressible, frictionless fluid the sum of the pressure, the term in the square of the speed and the term in the height is constant along the path a bit of fluid follows. Various quantities in the sum may change as the fluid moves, but the total does not, so a gain in speed or in height has to be paid for out of pressure.",
-   "eq": "eq-bernoulli"
+   "forms": [
+    {
+     "id": "eq-bernoulli",
+     "latex": "P + \\frac{1}{2}\\rho v^2 + \\rho gh = \\text{constant}",
+     "ktex": "\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{constant}",
+     "condition": "incompressible, frictionless fluid",
+     "anchor": "12.2-bernoullis-equation"
+    },
+    {
+     "id": "eq-bernoulli-two-points",
+     "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho gh_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho gh_2",
+     "ktex": "\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo",
+     "condition": "incompressible, frictionless fluid",
+     "anchor": "12.2-bernoullis-equation"
+    }
+   ]
   },
   {
    "id": "bernoulli-energy-per-volume",
@@ -185,7 +243,20 @@
    "section": "12.2",
    "name": "Every term of Bernoulli’s equation is an energy per unit volume",
    "statement": "Bernoulli’s equation is a form of the conservation of energy principle. The second and third terms are the kinetic and the gravitational potential energy with the mass replaced by the density, so each is an energy divided by a volume, and the pressure is an energy per unit volume too, since a newton per square meter multiplied by meter over meter is a joule per cubic meter. Bernoulli’s equation is, in fact, just a convenient statement of conservation of energy for an incompressible fluid in the absence of friction.",
-   "eq": "eq-ke-per-volume"
+   "forms": [
+    {
+     "id": "eq-ke-per-volume",
+     "latex": "\\frac{1}{2}\\rho v^2 = \\frac{\\frac{1}{2}mv^2}{V} = \\frac{\\text{KE}}{V}",
+     "ktex": "\\frac{1}{2}\\krho\\kv^2 = \\frac{\\frac{1}{2}m\\kv^2}{V} = \\frac{\\kKE}{V}",
+     "anchor": "12.2-bernoullis-equation"
+    },
+    {
+     "id": "eq-pe-per-volume",
+     "latex": "\\rho gh = \\frac{mgh}{V} = \\frac{\\text{PE}_{\\text{g}}}{V}",
+     "ktex": "\\krho\\kg\\kh = \\frac{m\\kg\\kh}{V} = \\frac{\\kPEg}{V}",
+     "anchor": "12.2-bernoullis-equation"
+    }
+   ]
   },
   {
    "id": "bernoulli-static-fluid",
@@ -193,15 +264,34 @@
    "section": "12.2",
    "name": "Bernoulli’s equation for a static fluid, $\\kPrtwo = \\kProne + \\krho\\kg\\khone$",
    "statement": "When the fluid is not moving, both terms in the speed vanish and Bernoulli’s equation says that pressure increases with depth: going down by a height adds the weight of that column of fluid to the pressure. In the simplest case the pressure at the top is zero and the familiar relationship for the pressure due to the weight of a fluid is recovered. Although Bernoulli’s equation is introduced for fluid flow, it includes much of what was studied for static fluids in the preceding chapter.",
-   "eq": "eq-bernoulli-static"
+   "forms": [
+    {
+     "id": "eq-bernoulli-static",
+     "latex": "P_2 = P_1 + \\rho gh_1",
+     "ktex": "\\kPrtwo = \\kProne + \\krho\\kg\\khone",
+     "condition": "static fluid, with the lower point taken as the reference height",
+     "anchor": "12.2-static-fluids"
+    }
+   ]
   },
   {
    "id": "bernoullis-principle",
    "kind": "result",
    "section": "12.2",
    "name": "Bernoulli’s principle, $\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2$",
+   "terms": [
+    "Bernoulli’s principle"
+   ],
    "statement": "When a fluid moves but its depth is constant, the terms in the height subtract out and Bernoulli’s equation becomes a statement about pressure and speed alone. Situations of that kind are so important that the equation has a name of its own. It says what the opening of the section argued: if the speed at one point is greater, the pressure there must be less for the equality to hold.",
-   "eq": "eq-bernoullis-principle"
+   "forms": [
+    {
+     "id": "eq-bernoullis-principle",
+     "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 = P_2 + \\frac{1}{2}\\rho v_2^2",
+     "ktex": "\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2",
+     "condition": "constant depth",
+     "anchor": "12.2-bernoullis-principle"
+    }
+   ]
   },
   {
    "id": "entrainment",
@@ -223,7 +313,20 @@
    "section": "12.2",
    "name": "Measuring fluid speed with a manometer, $\\kvtwo \\propto \\sqrt{\\kh}$",
    "statement": "Two tubes small enough not to disturb the flow, joined by a manometer, measure the speed of a fluid. The tube facing the oncoming fluid creates a dead spot with zero velocity in front of it, while the fluid passing the other tube keeps its speed, so the pressure at the second opening is lower by the term in the square of the speed. The manometer fluid rises by a height proportional to that term, and the speed is therefore proportional to the square root of the height. The pitot tube built on this principle is the air speed indicator of an aircraft.",
-   "eq": "eq-speed-from-manometer"
+   "forms": [
+    {
+     "id": "eq-speed-from-manometer",
+     "latex": "v_2 \\propto \\sqrt{h}",
+     "ktex": "\\kvtwo \\propto \\sqrt{\\kh}",
+     "anchor": "12.2-velocity-measurement"
+    },
+    {
+     "id": "eq-manometer-height",
+     "latex": "h \\propto \\frac{1}{2}\\rho v_2^2",
+     "ktex": "\\kh \\propto \\frac{1}{2}\\krho\\kvtwo^2",
+     "anchor": "12.2-velocity-measurement"
+    }
+   ]
   },
   {
    "id": "torricellis-theorem",
@@ -231,15 +334,21 @@
    "section": "12.3",
    "name": "Torricelli’s theorem, $\\kvtwo^2 = \\kvone^2 + 2\\kg\\kh$",
    "statement": "Fluid leaving a reservoir through an opening a height $h$ below its surface emerges at the speed it would have if it had fallen freely through that height, $v_2^2 = v_1^2 + 2gh$, whatever the size of the opening.",
-   "eq": "eq-torricelli"
+   "forms": [
+    {
+     "id": "eq-torricelli",
+     "latex": "v_2^2 = v_1^2 + 2gh",
+     "ktex": "\\kvtwo^2 = \\kvone^2 + 2\\kg\\kh",
+     "anchor": "12.3-torricellis-theorem"
+    }
+   ]
   },
   {
    "id": "bernoulli-general-application",
    "kind": "skill",
    "section": "12.3",
    "name": "Applying Bernoulli’s equation where pressure, speed and height all change",
-   "statement": "Every earlier use of Bernoulli’s equation simplified it first, by holding the height constant or the pressure equal at both points. The general case keeps all three terms at both points: the speeds are found from the flow rate and the two cross-sections, the heights are measured from whichever point is taken as the reference, and the remaining pressure is what is solved for. A fire hose that runs ten meters up a ladder to a narrow nozzle is exactly this case, and its pressure falls for both reasons at once.",
-   "eq": "eq-bernoulli-two-points"
+   "statement": "Every earlier use of Bernoulli’s equation simplified it first, by holding the height constant or the pressure equal at both points. The general case keeps all three terms at both points: the speeds are found from the flow rate and the two cross-sections, the heights are measured from whichever point is taken as the reference, and the remaining pressure is what is solved for. A fire hose that runs ten meters up a ladder to a narrow nozzle is exactly this case, and its pressure falls for both reasons at once."
   },
   {
    "id": "power-in-fluid-flow",
@@ -247,7 +356,14 @@
    "section": "12.3",
    "name": "Power in fluid flow, $\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power}$",
    "statement": "Power is the rate at which work is done or energy is used or supplied. Every term of Bernoulli’s equation is an energy per unit volume, so multiplying the whole equation by the flow rate, which is a volume per unit time, gives a power. Each term then has a clear physical meaning: one is the power supplied to give the fluid its pressure, one the power supplied to give it its kinetic energy, and one the power that goes to gravitational potential energy.",
-   "eq": "eq-power-in-fluid-flow"
+   "forms": [
+    {
+     "id": "eq-power-in-fluid-flow",
+     "latex": "\\left(P + \\frac{1}{2}\\rho v^2 + \\rho gh\\right)Q = \\text{power}",
+     "ktex": "\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power}",
+     "anchor": "12.3-power-in-fluid-flow"
+    }
+   ]
   },
   {
    "id": "pump-power",
@@ -255,13 +371,23 @@
    "section": "12.3",
    "name": "Finding the power a pump supplies, $\\text{power} = \\kPr\\kQ$",
    "statement": "A pump that takes fluid in and sends it out through a hose of the same diameter at the same height changes neither the speed nor the height of the fluid, so its kinetic and gravitational potential energy are unchanged and the only term left is the pressure. The power the pump supplies is then the pressure it adds multiplied by the flow rate. A pump that raises velocity and height as well, as the heart does, needs all three terms.",
-   "eq": "eq-power-from-pressure"
+   "forms": [
+    {
+     "id": "eq-power-from-pressure",
+     "latex": "\\text{power} = PQ",
+     "ktex": "\\text{power} = \\kPr\\kQ",
+     "anchor": "12.3-pump-power"
+    }
+   ]
   },
   {
    "id": "laminar-flow",
    "kind": "definition",
    "section": "12.4",
    "name": "Laminar flow",
+   "terms": [
+    "laminar"
+   ],
    "statement": "Laminar flow is characterized by the smooth flow of a fluid in layers that do not mix. The lines drawn in the figures of this chapter are streamlines, the paths followed by small volumes of fluid, and in laminar flow they are smooth and continuous. The precise definition of viscosity is based on laminar flow, and so is Poiseuille’s law, so the whole of this section assumes it."
   },
   {
@@ -269,6 +395,9 @@
    "kind": "definition",
    "section": "12.4",
    "name": "Turbulent flow",
+   "terms": [
+    "turbulence"
+   ],
    "statement": "Turbulence is characterized by eddies and swirls that mix layers of fluid together, and its streamlines break up rather than running smoothly. It has two main causes: any obstruction or sharp corner imparts velocities perpendicular to the flow, and high speeds alone will do it, since the drag between adjacent layers and between the fluid and its surroundings forms swirls if the speed is great enough. Turbulent flow mixes the fluid, heats it more and resists more than laminar flow does."
   },
   {
@@ -276,8 +405,26 @@
    "kind": "definition",
    "section": "12.4",
    "name": "Viscosity",
+   "symbol": "η_visc",
+   "terms": [
+    "viscosity"
+   ],
    "statement": "Viscosity is fluid friction, both within the fluid and between the fluid and its surroundings: juice pours freely and syrup sticks to the pitcher. It is measured by shearing a fluid between two plates, one held fixed and one moved at a steady speed, and finding the force that keeps the top plate moving. That force grows with the speed, with the area of the plate and with the viscosity, and falls as the plates are moved apart, so the viscosity is the force times the separation divided by the speed times the area. Viscosities vary from one fluid to another by several orders of magnitude, gases being far less viscous than liquids, and most of them depend on temperature.",
-   "eq": "eq-viscosity-force"
+   "forms": [
+    {
+     "id": "eq-viscosity-force",
+     "latex": "F = \\eta\\frac{vA}{L}",
+     "ktex": "\\kF = \\keta\\frac{\\kv A}{L}",
+     "condition": "laminar flow",
+     "anchor": "12.4-laminar-viscosity"
+    },
+    {
+     "id": "eq-viscosity-definition",
+     "latex": "\\eta = \\frac{FL}{vA}",
+     "ktex": "\\keta = \\frac{\\kF L}{\\kv A}",
+     "anchor": "12.4-laminar-viscosity"
+    }
+   ]
   },
   {
    "id": "velocity-profile-in-tube",
@@ -291,24 +438,54 @@
    "kind": "definition",
    "section": "12.4",
    "name": "Flow rate from pressure difference and resistance, $\\kQ = (\\kPrtwo - \\kProne)/R$",
+   "symbol": "R_flow",
    "statement": "The resistance to flow is defined by the relationship between flow rate and pressure difference: the flow rate is the pressure difference divided by the resistance, $Q = (P_2 - P_1)/R$, and it is in the direction from high to low pressure. The resistance includes everything except pressure that affects the flow rate.",
-   "eq": "eq-flow-from-resistance"
+   "forms": [
+    {
+     "id": "eq-flow-from-resistance",
+     "latex": "Q = \\frac{P_2 - P_1}{R}",
+     "ktex": "\\kQ = \\frac{\\kPrtwo - \\kProne}{R}",
+     "anchor": "12.4-poiseuille"
+    }
+   ]
   },
   {
    "id": "poiseuilles-law-resistance",
    "kind": "result",
    "section": "12.4",
    "name": "Poiseuille’s law for resistance, $R = 8\\keta l/\\pi r^4$",
+   "terms": [
+    "Poiseuille’s law for resistance"
+   ],
    "statement": "For laminar flow of an incompressible fluid through a horizontal tube of uniform radius, the resistance is eight times the viscosity times the length, divided by pi times the fourth power of the radius. Resistance directly proportional to viscosity and to length makes good intuitive sense, since both directly affect the amount of friction encountered. The fourth power of the radius is the surprise. J. L. Poiseuille derived the law in an attempt to understand the flow of blood.",
-   "eq": "eq-poiseuille-resistance"
+   "forms": [
+    {
+     "id": "eq-poiseuille-resistance",
+     "latex": "R = \\frac{8\\eta l}{\\pi r^4}",
+     "ktex": "R = \\frac{8\\keta l}{\\pi r^4}",
+     "condition": "laminar flow in a horizontal tube of uniform radius",
+     "anchor": "12.4-poiseuille"
+    }
+   ]
   },
   {
    "id": "poiseuilles-law",
    "kind": "result",
    "section": "12.4",
    "name": "Poiseuille’s law, $\\kQ = (\\kPrtwo - \\kProne)\\pi r^4/8\\keta l$",
+   "terms": [
+    "Poiseuille’s law"
+   ],
    "statement": "Putting the resistance into the relationship between flow rate and pressure difference gives one equation for laminar flow through a tube: the flow rate is the pressure difference times pi times the fourth power of the radius, divided by eight times the viscosity times the length. It is the working equation of the section, and of every medical application in the chapter.",
-   "eq": "eq-poiseuille"
+   "forms": [
+    {
+     "id": "eq-poiseuille",
+     "latex": "Q = \\frac{(P_2 - P_1)\\pi r^4}{8\\eta l}",
+     "ktex": "\\kQ = \\frac{(\\kPrtwo - \\kProne)\\pi r^4}{8\\keta l}",
+     "condition": "laminar flow in a horizontal tube of uniform radius",
+     "anchor": "12.4-poiseuille"
+    }
+   ]
   },
   {
    "id": "radius-fourth-power-sensitivity",
@@ -323,15 +500,34 @@
    "section": "12.4",
    "name": "Pressure drop from flow and resistance, $\\kPrtwo - \\kProne = R\\kQ$",
    "statement": "Rearranged, the relationship between flow rate, pressure difference and resistance says that flow through a resistance causes the pressure to drop along it. That is why the water pressure in a house is lower on a hot summer day when the neighborhood is drawing heavily: the flow rate in the main is large, so the drop along it is large, and what arrives is what is left. The relationship holds for turbulent as well as for laminar flow, and it can be applied to a system whose radius is not the same everywhere, where the drop is greatest at the narrowest place.",
-   "eq": "eq-pressure-drop"
+   "forms": [
+    {
+     "id": "eq-pressure-drop",
+     "latex": "P_2 - P_1 = RQ",
+     "ktex": "\\kPrtwo - \\kProne = R\\kQ",
+     "anchor": "12.4-pressure-drops"
+    }
+   ]
   },
   {
    "id": "reynolds-number",
    "kind": "definition",
    "section": "12.5",
    "name": "Reynolds number for flow in a tube, $N_{\\text{R}} = 2\\krho\\kv r/\\keta$",
+   "symbol": "N_R",
+   "terms": [
+    "Reynolds number"
+   ],
    "statement": "The Reynolds number for flow in a tube, $N_{\\text{R}} = 2\\rho vr/\\eta$, is a dimensionless quantity that reveals whether the flow is likely to be laminar or turbulent.",
-   "eq": "eq-reynolds-tube"
+   "forms": [
+    {
+     "id": "eq-reynolds-tube",
+     "latex": "N_{\\text{R}} = \\frac{2\\rho vr}{\\eta}",
+     "ktex": "N_{\\text{R}} = \\frac{2\\krho\\kv r}{\\keta}",
+     "condition": "flow in a tube of uniform diameter",
+     "anchor": "12.5-reynolds-number"
+    }
+   ]
   },
   {
    "id": "turbulence-onset-thresholds",
@@ -359,8 +555,17 @@
    "kind": "definition",
    "section": "12.6",
    "name": "Reynolds number for an object in a fluid, ${N'}_{\\text{R}} = \\krho\\kv L/\\keta$",
+   "symbol": "N_Rprime",
    "statement": "The Reynolds number for an object moving in a fluid, ${N'}_{\\text{R}} = \\rho vL/\\eta$, where $L$ is a characteristic length of the object, indicates whether the flow around it is laminar or turbulent. A moving object in a still fluid is equivalent to a stationary object in a flowing stream.",
-   "eq": "eq-reynolds-object"
+   "forms": [
+    {
+     "id": "eq-reynolds-object",
+     "latex": "{N'}_{\\text{R}} = \\frac{\\rho vL}{\\eta}",
+     "ktex": "{N'}_{\\text{R}} = \\frac{\\krho\\kv L}{\\keta}",
+     "condition": "object moving in a fluid",
+     "anchor": "12.6-reynolds-object"
+    }
+   ]
   },
   {
    "id": "flow-regimes-around-object",
@@ -374,6 +579,10 @@
    "kind": "definition",
    "section": "12.6",
    "name": "Viscous drag",
+   "symbol": "F_V",
+   "terms": [
+    "viscous drag"
+   ],
    "statement": "One of the consequences of viscosity is a resistance force called viscous drag, exerted on an object moving through a fluid. Unlike simple friction it depends on the object’s speed, and how it depends on it changes with the Reynolds number: for laminar flow the drag is proportional to the speed, while between about 10 and a million it is proportional to the speed squared, which is why even a small headwind costs a bicycle racer so much and why cyclists take turns leading the pack. For laminar flow around a sphere the drag is proportional to the viscosity, the size of the object and its speed, all of which makes sense, since the more viscous the fluid and the larger the object the more drag is to be expected; Stokes’ law gives the constant."
   },
   {
@@ -388,6 +597,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Diffusion",
+   "terms": [
+    "diffusion"
+   ],
    "statement": "Atoms and molecules are in constant motion at any temperature, and in fluids they move about randomly even where there is no macroscopic flow. That motion is a random walk, and diffusion is the movement of substances that it produces. It explains how an ice cube picks up the odors of a freezer, and fluids can even diffuse through solids. It is a slow process over macroscopic distances, because the densities of common materials are great enough that a molecule cannot travel far before a collision scatters it in any direction, including straight backward."
   },
   {
@@ -395,14 +607,23 @@
    "kind": "result",
    "section": "12.7",
    "name": "Distance travelled by diffusion, $\\kxrms = \\sqrt{2D\\kt}$",
+   "symbol": "x_rms",
    "statement": "The root-mean-square distance a molecule travels by diffusion is proportional to the square root of the time, $x_{\\text{rms}} = \\sqrt{2Dt}$, not to the time itself, which is what makes diffusion so slow over any large distance.",
-   "eq": "eq-rms-distance"
+   "forms": [
+    {
+     "id": "eq-rms-distance",
+     "latex": "x_{\\text{rms}} = \\sqrt{2Dt}",
+     "ktex": "\\kxrms = \\sqrt{2D\\kt}",
+     "anchor": "12.7-diffusion"
+    }
+   ]
   },
   {
    "id": "diffusion-constant",
    "kind": "definition",
    "section": "12.7",
    "name": "The diffusion constant",
+   "symbol": "D_diff",
    "statement": "The diffusion constant is determined experimentally and gathers into one number most of the things that set the rate: the molecule, the medium, the temperature and the cohesive and adhesive forces. It gets progressively smaller for more massive molecules, because the average molecular speed at a given temperature is inversely proportional to molecular mass, and it is far smaller in water than in air, because a molecule in water makes many more collisions in its random walk. It increases with temperature, since the average kinetic energy of the molecules is proportional to absolute temperature."
   },
   {
@@ -417,6 +638,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Semipermeable membranes",
+   "terms": [
+    "semipermeable"
+   ],
    "statement": "A semipermeable membrane allows only certain small molecules to pass through it. Membranes in living things are generally of this kind, and they affect the rates at which substances diffuse across them."
   },
   {
@@ -424,6 +648,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Osmosis",
+   "terms": [
+    "osmosis"
+   ],
    "statement": "Osmosis is the transport of water through a semipermeable membrane from a region of high concentration to a region of low concentration, and it is driven by the imbalance in water concentration. Water is more concentrated in the body than in Epsom salt, so soaking a swollen ankle in Epsom salt moves water out of the body into the lower-concentration region in the salt. Both osmosis and dialysis are used by the kidneys to cleanse the blood."
   },
   {
@@ -431,6 +658,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Dialysis",
+   "terms": [
+    "dialysis"
+   ],
    "statement": "Dialysis is the transport of any molecule other than water through a semipermeable membrane because of its concentration difference. It is the same process as osmosis with a different substance moving, and like osmosis it can create substantial pressures. The kidneys use both."
   },
   {
@@ -438,6 +668,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Osmotic pressure and back pressure",
+   "terms": [
+    "osmotic pressure"
+   ],
    "statement": "Osmosis can create a substantial pressure. Water moving through a membrane raises the solution on the low-concentration side, and the movement continues until the pressure created by the extra height of fluid is large enough to stop further osmosis. That back pressure is called the relative osmotic pressure if neither solution is pure water and the osmotic pressure if one of them is, and it can be very large: pure water and sea water separated by a membrane that passes no salt come to equilibrium at 25.9 atmospheres, which would raise the salt water 268 meters above the pure water. Turgor, the pressure of a plant cell’s fluid against its wall, is the same effect holding a plant up. Where the back pressure is sufficient to reverse the normal direction, the process becomes reverse osmosis or reverse dialysis, which is how water is desalinated and how a membrane is used to filter."
   },
   {
@@ -445,6 +678,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Active transport",
+   "terms": [
+    "active transport"
+   ],
    "statement": "Substances sometimes pass through a membrane in the direction opposite to the one expected. Cypress tree roots extract pure water from salt water although osmosis would move it the other way, and this is not reverse osmosis, because there is no back pressure to cause it. What is happening is active transport, a process in which a living membrane expends energy to move substances across it. Many living membranes do this, the kidneys among them, and it is estimated that at least a quarter of the body’s energy is expended on active transport at the cellular level."
   },
   {
@@ -452,6 +688,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Relative osmotic pressure",
+   "terms": [
+    "relative osmotic pressure"
+   ],
    "statement": "Relative osmotic pressure is the back pressure that stops the osmotic process when neither solution is pure water."
   },
   {
@@ -459,6 +698,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Reverse osmosis",
+   "terms": [
+    "reverse osmosis"
+   ],
    "statement": "Reverse osmosis is the process that occurs when back pressure is great enough to reverse the normal direction of osmosis, driving water out of the more concentrated solution. It is used to desalinate water by forcing it through a membrane that will not pass salt."
   },
   {
@@ -466,6 +708,9 @@
    "kind": "definition",
    "section": "12.7",
    "name": "Reverse dialysis",
+   "terms": [
+    "reverse dialysis"
+   ],
    "statement": "Reverse dialysis is the process that occurs when back pressure is great enough to reverse the normal direction of dialysis, and it can be used to filter out a substance that a membrane will not pass."
   }
  ],

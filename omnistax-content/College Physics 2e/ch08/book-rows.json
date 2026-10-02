@@ -204,8 +204,26 @@
    "kind": "definition",
    "section": "8.1",
    "name": "Linear momentum, $\\kp = m\\kv$",
-   "eq": "eq-momentum",
-   "statement": "Linear momentum is the product of a system’s mass and its velocity, and it is the quantity that says how hard a moving object is to stop. A large, fast-moving object has greater momentum than a smaller, slower one."
+   "symbol": "p",
+   "terms": [
+    "linear momentum"
+   ],
+   "statement": "Linear momentum is the product of a system’s mass and its velocity, and it is the quantity that says how hard a moving object is to stop. A large, fast-moving object has greater momentum than a smaller, slower one.",
+   "forms": [
+    {
+     "id": "eq-momentum",
+     "latex": "p = m\\mathbf{v}",
+     "ktex": "\\kp = m\\mathbf{v}",
+     "anchor": "8.1-momentum"
+    },
+    {
+     "id": "eq-momentum-mag",
+     "latex": "p = mv",
+     "ktex": "\\kp = m\\kv",
+     "condition": "only the magnitude of the momentum is considered",
+     "anchor": "8.1-calculating"
+    }
+   ]
   },
   {
    "id": "calculate-momentum",
@@ -219,31 +237,102 @@
    "kind": "axiom",
    "section": "8.1",
    "name": "Newton’s second law in terms of momentum, $\\kFnet = \\kdp / \\kdt$",
-   "eq": "eq-newton2-momentum",
-   "statement": "Newton stated his second law as the net external force equals the change in momentum of a system divided by the time over which it changes. This is the more general statement, because it holds for a system whose mass changes, such as a rocket, as well as for one whose mass is constant."
+   "terms": [
+    "second law of motion"
+   ],
+   "statement": "Newton stated his second law as the net external force equals the change in momentum of a system divided by the time over which it changes. This is the more general statement, because it holds for a system whose mass changes, such as a rocket, as well as for one whose mass is constant.",
+   "forms": [
+    {
+     "id": "eq-newton2-momentum",
+     "latex": "F_{\\text{net}} = \\frac{\\Delta p}{\\Delta t}",
+     "ktex": "\\kFnet = \\frac{\\kdp}{\\kdt}",
+     "anchor": "8.1-second-law"
+    }
+   ]
   },
   {
    "id": "constant-mass-second-law",
    "kind": "result",
    "section": "8.1",
    "name": "The familiar $\\kFnet = m\\ka$ as the constant-mass case",
-   "eq": "eq-newton2-const-mass",
-   "statement": "When the mass of the system does not change, the change in momentum is the mass times the change in velocity, and dividing by the time gives the acceleration. The familiar form of the second law, $F_{\\text{net}} = ma$, is therefore the special case of the momentum form for a constant mass."
+   "statement": "When the mass of the system does not change, the change in momentum is the mass times the change in velocity, and dividing by the time gives the acceleration. The familiar form of the second law, $F_{\\text{net}} = ma$, is therefore the special case of the momentum form for a constant mass.",
+   "forms": [
+    {
+     "id": "eq-newton2-const-mass",
+     "latex": "F_{\\text{net}} = ma",
+     "ktex": "\\kFnet = m\\ka",
+     "condition": "the mass of the system is constant",
+     "anchor": "8.1-constant-mass"
+    }
+   ]
   },
   {
    "id": "change-in-momentum",
    "kind": "definition",
    "section": "8.2",
    "name": "Change in momentum $\\kdp$",
-   "statement": "The change in momentum is the difference between the final and the initial momentum, and for a constant mass it is the mass times the change in velocity. It is the quantity that a force acting for a time produces."
+   "symbol": "Δp",
+   "terms": [
+    "change in momentum"
+   ],
+   "statement": "The change in momentum is the difference between the final and the initial momentum, and for a constant mass it is the mass times the change in velocity. It is the quantity that a force acting for a time produces.",
+   "forms": [
+    {
+     "id": "eq-delta-p",
+     "latex": "\\Delta p = \\Delta(mv)",
+     "ktex": "\\kdp = \\Delta(m\\kv)",
+     "section": "8.1",
+     "anchor": "8.1-constant-mass"
+    },
+    {
+     "id": "eq-delta-p-const-mass",
+     "latex": "\\Delta p = m\\Delta v",
+     "ktex": "\\kdp = m\\kdv",
+     "condition": "the mass of the system is constant",
+     "section": "8.1",
+     "anchor": "8.1-constant-mass"
+    },
+    {
+     "id": "eq-delta-p-velocities",
+     "latex": "\\Delta p = m\\Delta v = m(v_{\\text{f}} - v_i)",
+     "ktex": "\\kdp = m\\kdv = m(\\kvf - \\kvi)",
+     "condition": "the mass of the system is constant",
+     "section": "8.1",
+     "anchor": "8.1-tennis"
+    }
+   ]
   },
   {
    "id": "impulse",
    "kind": "result",
    "section": "8.2",
    "name": "Impulse, $\\kdp = \\kFnet\\kdt$",
-   "eq": "eq-impulse",
-   "statement": "Rearranging Newton’s second law shows that the change in momentum equals the average net external force multiplied by the time this force acts, and that product is called the impulse. Impulse is the same as the change in momentum, so the effect of a force depends on how long it acts as well as on how great it is."
+   "terms": [
+    "impulse"
+   ],
+   "statement": "Rearranging Newton’s second law shows that the change in momentum equals the average net external force multiplied by the time this force acts, and that product is called the impulse. Impulse is the same as the change in momentum, so the effect of a force depends on how long it acts as well as on how great it is.",
+   "forms": [
+    {
+     "id": "eq-impulse",
+     "latex": "\\Delta p = F_{\\text{net}}\\Delta t",
+     "ktex": "\\kdp = \\kFnet\\kdt",
+     "anchor": "8.2-impulse"
+    },
+    {
+     "id": "eq-impulse-perpendicular",
+     "latex": "\\Delta p_x = -2mu",
+     "ktex": "\\Delta p_x = -2m\\ku",
+     "condition": "the ball strikes the wall along the perpendicular and rebounds with the same speed",
+     "anchor": "8.2-billiard"
+    },
+    {
+     "id": "eq-impulse-at-angle",
+     "latex": "\\Delta p_x = -2mu\\;\\text{cos}\\;30^\\circ",
+     "ktex": "\\Delta p_x = -2m\\ku\\;\\text{cos}\\;30^\\circ",
+     "condition": "the ball strikes the wall at 30° from the perpendicular and rebounds at the same angle with the same speed",
+     "anchor": "8.2-billiard"
+    }
+   ]
   },
   {
    "id": "extending-collision-time",
@@ -257,6 +346,7 @@
    "kind": "definition",
    "section": "8.2",
    "name": "Average effective force $\\kFeff$",
+   "symbol": "F_eff",
    "statement": "A real force is not constant over the brief time of a collision, but you can always find an average effective force that produces the same result. On a graph of force against time, the area under the actual curve is the impulse, and the rectangle of the effective force over the same interval has the same area."
   },
   {
@@ -271,24 +361,96 @@
    "kind": "result",
    "section": "8.3",
    "name": "The two changes in momentum cancel, $\\Delta \\kpone + \\Delta \\kptwo = 0$",
-   "eq": "eq-dp-sum-zero",
-   "statement": "The two cars push on each other for the same length of time, and Newton’s third law makes the two forces equal and opposite. The impulses are therefore equal and opposite, so the momentum one car loses is the momentum the other gains, and this is the whole argument for conservation of momentum."
+   "statement": "The two cars push on each other for the same length of time, and Newton’s third law makes the two forces equal and opposite. The impulses are therefore equal and opposite, so the momentum one car loses is the momentum the other gains, and this is the whole argument for conservation of momentum.",
+   "forms": [
+    {
+     "id": "eq-dp1-impulse",
+     "latex": "\\Delta p_1 = F_1\\Delta t",
+     "ktex": "\\Delta \\kpone = \\kFone\\kdt",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-dp2-impulse",
+     "latex": "\\Delta p_2 = F_2\\Delta t",
+     "ktex": "\\Delta \\kptwo = \\kFtwo\\kdt",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-dp2-newton3",
+     "latex": "\\Delta p_2 = -F_1\\Delta t = -\\Delta p_1",
+     "ktex": "\\Delta \\kptwo = -\\kFone\\kdt = -\\Delta \\kpone",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-dp-sum-zero",
+     "latex": "\\Delta p_1 + \\Delta p_2 = 0",
+     "ktex": "\\Delta \\kpone + \\Delta \\kptwo = 0",
+     "anchor": "8.3-two-cars"
+    }
+   ]
   },
   {
    "id": "conservation-of-momentum",
    "kind": "result",
    "section": "8.3",
    "name": "Conservation of momentum, $\\kptot = \\kptotprime$",
-   "eq": "eq-ptot-constant",
-   "statement": "The total momentum of an isolated system is constant, whatever happens inside it and however many objects it holds. Momentum is one of the few quantities nature conserves, and every collision in the rest of the chapter is solved by writing the total momentum before the collision equal to the total momentum after it."
+   "terms": [
+    "conservation of momentum principle"
+   ],
+   "statement": "The total momentum of an isolated system is constant, whatever happens inside it and however many objects it holds. Momentum is one of the few quantities nature conserves, and every collision in the rest of the chapter is solved by writing the total momentum before the collision equal to the total momentum after it.",
+   "forms": [
+    {
+     "id": "eq-ptot-constant",
+     "latex": "p_{\\text{tot}} = \\text{constant}",
+     "ktex": "\\kptot = \\text{constant}",
+     "anchor": "8.3-conservation"
+    },
+    {
+     "id": "eq-p-pair-constant",
+     "latex": "p_1 + p_2 = \\text{constant}",
+     "ktex": "\\kpone + \\kptwo = \\text{constant}",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-p-pair-conserved",
+     "latex": "p_1 + p_2 = {p'}_1 + {p'}_2",
+     "ktex": "\\kpone + \\kptwo = \\kponeprime + \\kptwoprime",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-ptot-conserved",
+     "latex": "p_{\\text{tot}} = {p'}_{\\text{tot}}",
+     "ktex": "\\kptot = \\kptotprime",
+     "condition": "the system is isolated",
+     "anchor": "8.3-conservation"
+    },
+    {
+     "id": "eq-collision-momentum",
+     "latex": "m_1 v_1 + m_2 v_2 = m_1 {v'}_1 + m_2 {v'}_2",
+     "ktex": "m_1 \\kvone + m_2 \\kvtwo = m_1 \\kvoneprime + m_2 \\kvtwoprime",
+     "condition": "the net external force on the two-object system is zero",
+     "section": "8.4",
+     "anchor": "8.4-equations"
+    }
+   ]
   },
   {
    "id": "isolated-system",
    "kind": "definition",
    "section": "8.3",
    "name": "Isolated system, $\\kFnet = 0$",
-   "eq": "eq-isolated-system",
-   "statement": "An isolated system is one for which the net external force is zero, and that is exactly the condition momentum needs in order to be conserved. Before you can use conservation of momentum you have to choose a system large enough that the forces that matter are internal to it."
+   "terms": [
+    "isolated system"
+   ],
+   "statement": "An isolated system is one for which the net external force is zero, and that is exactly the condition momentum needs in order to be conserved. Before you can use conservation of momentum you have to choose a system large enough that the forces that matter are internal to it.",
+   "forms": [
+    {
+     "id": "eq-isolated-system",
+     "latex": "F_{\\text{net}} = 0",
+     "ktex": "\\kFnet = 0",
+     "anchor": "8.3-conservation"
+    }
+   ]
   },
   {
    "id": "recoil",
@@ -316,6 +478,9 @@
    "kind": "definition",
    "section": "8.3",
    "name": "Quark",
+   "terms": [
+    "quark"
+   ],
    "statement": "A quark is a fundamental constituent of matter and an elementary particle."
   },
   {
@@ -323,23 +488,54 @@
    "kind": "definition",
    "section": "8.4",
    "name": "Elastic collision",
-   "eq": "eq-elastic-kinetic-energy",
-   "statement": "An elastic collision is one that conserves internal kinetic energy as well as momentum. That second conservation law is the extra equation you need when both final velocities are unknown, so knowing whether a collision is elastic decides how you can solve it."
+   "terms": [
+    "elastic collision"
+   ],
+   "statement": "An elastic collision is one that conserves internal kinetic energy as well as momentum. That second conservation law is the extra equation you need when both final velocities are unknown, so knowing whether a collision is elastic decides how you can solve it.",
+   "forms": [
+    {
+     "id": "eq-elastic-kinetic-energy",
+     "latex": "\\frac{1}{2}m_1{v_1}^2 + \\frac{1}{2}m_2{v_2}^2 = \\frac{1}{2}m_1{{v'}_1}^2 + \\frac{1}{2}m_2{{v'}_2}^2",
+     "ktex": "\\frac{1}{2}m_1{\\kvone}^2 + \\frac{1}{2}m_2{\\kvtwo}^2 = \\frac{1}{2}m_1{\\kvoneprime}^2 + \\frac{1}{2}m_2{\\kvtwoprime}^2",
+     "condition": "the collision is elastic, so internal kinetic energy is conserved",
+     "anchor": "8.4-equations"
+    }
+   ]
   },
   {
    "id": "internal-kinetic-energy",
    "kind": "definition",
    "section": "8.4",
    "name": "Internal kinetic energy $\\kKEint$",
-   "eq": "eq-internal-kinetic-energy",
-   "statement": "The internal kinetic energy of a system is the sum of the kinetic energies of the objects in it. It is the quantity that is conserved in an elastic collision and changed in an inelastic one, so it is the bookkeeping that tells the two kinds of collision apart."
+   "symbol": "KE_int",
+   "terms": [
+    "internal kinetic energy"
+   ],
+   "statement": "The internal kinetic energy of a system is the sum of the kinetic energies of the objects in it. It is the quantity that is conserved in an elastic collision and changed in an inelastic one, so it is the bookkeeping that tells the two kinds of collision apart.",
+   "forms": [
+    {
+     "id": "eq-internal-kinetic-energy",
+     "latex": "\\text{KE}_{\\text{int}} = \\frac{1}{2}m_1{v_1}^2 + \\frac{1}{2}m_2{v_2}^2",
+     "ktex": "\\kKEint = \\frac{1}{2}m_1{\\kvone}^2 + \\frac{1}{2}m_2{\\kvtwo}^2",
+     "anchor": "8.4-elastic"
+    }
+   ]
   },
   {
    "id": "elastic-collision-1d",
    "kind": "skill",
    "section": "8.4",
    "name": "Find both final velocities of a one-dimensional elastic collision",
-   "statement": "Two unknown final velocities need two independent equations, and an elastic collision supplies them: conservation of momentum and conservation of internal kinetic energy. Solving the pair gives a quadratic with two roots, and the root that repeats the initial condition describes the situation before the collision and is discarded."
+   "statement": "Two unknown final velocities need two independent equations, and an elastic collision supplies them: conservation of momentum and conservation of internal kinetic energy. Solving the pair gives a quadratic with two roots, and the root that repeats the initial condition describes the situation before the collision and is discarded.",
+   "forms": [
+    {
+     "id": "eq-v2-from-momentum",
+     "latex": "{v'}_2 = \\frac{m_1}{m_2}(v_1 - {v'}_1)",
+     "ktex": "\\kvtwoprime = \\frac{m_1}{m_2}(\\kvone - \\kvoneprime)",
+     "condition": "the second object is initially at rest",
+     "anchor": "8.4-example"
+    }
+   ]
   },
   {
    "id": "nearly-elastic-collisions",
@@ -353,6 +549,9 @@
    "kind": "definition",
    "section": "8.5",
    "name": "Inelastic collision",
+   "terms": [
+    "inelastic collision"
+   ],
    "statement": "An inelastic collision is one in which the internal kinetic energy changes. The forces between the colliding objects do work that can turn internal kinetic energy into heat transfer, or turn stored energy into internal kinetic energy, so only momentum can be counted on here."
   },
   {
@@ -360,24 +559,50 @@
    "kind": "definition",
    "section": "8.5",
    "name": "Perfectly inelastic collision, $m_1\\kvone = (m_1 + m_2)\\kvprime$",
-   "eq": "eq-perfectly-inelastic-momentum",
-   "statement": "A collision in which the objects stick together is called perfectly inelastic, because it reduces internal kinetic energy more than any other kind of collision can while still conserving momentum. Since the two objects share one final velocity afterwards, conservation of momentum alone is enough to find it."
+   "terms": [
+    "perfectly inelastic collision"
+   ],
+   "statement": "A collision in which the objects stick together is called perfectly inelastic, because it reduces internal kinetic energy more than any other kind of collision can while still conserving momentum. Since the two objects share one final velocity afterwards, conservation of momentum alone is enough to find it.",
+   "forms": [
+    {
+     "id": "eq-perfectly-inelastic-momentum",
+     "latex": "m_1 v_1 = (m_1 + m_2)v'",
+     "ktex": "m_1 \\kvone = (m_1 + m_2)\\kvprime",
+     "condition": "the objects stick together and the second is initially at rest",
+     "anchor": "8.5-recoil"
+    }
+   ]
   },
   {
    "id": "recoil-velocity",
    "kind": "result",
    "section": "8.5",
    "name": "Recoil velocity, $\\kvprime = m_1\\kvone / (m_1 + m_2)$",
-   "eq": "eq-recoil-velocity",
-   "statement": "When a moving object is caught by one that is at rest, the two move off together at the incoming velocity reduced by the ratio of the incoming mass to the total mass. A goalie who catches a puck therefore recoils only a few centimetres a second, which is why the recoil of a heavy body is so easy to miss."
+   "statement": "When a moving object is caught by one that is at rest, the two move off together at the incoming velocity reduced by the ratio of the incoming mass to the total mass. A goalie who catches a puck therefore recoils only a few centimetres a second, which is why the recoil of a heavy body is so easy to miss.",
+   "forms": [
+    {
+     "id": "eq-recoil-velocity",
+     "latex": "v' = \\frac{m_1}{m_1 + m_2}v_1",
+     "ktex": "\\kvprime = \\frac{m_1}{m_1 + m_2}\\kvone",
+     "condition": "the objects stick together and the second is initially at rest",
+     "anchor": "8.5-recoil"
+    }
+   ]
   },
   {
    "id": "kinetic-energy-lost-in-collision",
    "kind": "skill",
    "section": "8.5",
    "name": "Find the internal kinetic energy lost in a collision",
-   "eq": "eq-internal-kinetic-energy-after",
-   "statement": "Once the final velocities are known you can add up the kinetic energies before the collision and after it and subtract. The difference is what was lost to thermal energy and sound, and in a perfectly inelastic collision it is nearly all of what there was to begin with."
+   "statement": "Once the final velocities are known you can add up the kinetic energies before the collision and after it and subtract. The difference is what was lost to thermal energy and sound, and in a perfectly inelastic collision it is nearly all of what there was to begin with.",
+   "forms": [
+    {
+     "id": "eq-internal-kinetic-energy-after",
+     "latex": "{\\text{KE}'}_{\\text{int}} = \\frac{1}{2}m_1{{v'}_1}^2 + \\frac{1}{2}m_2{{v'}_2}^2",
+     "ktex": "\\kKEintprime = \\frac{1}{2}m_1{\\kvoneprime}^2 + \\frac{1}{2}m_2{\\kvtwoprime}^2",
+     "anchor": "8.5-released"
+    }
+   ]
   },
   {
    "id": "energy-released-in-collision",
@@ -398,6 +623,9 @@
    "kind": "definition",
    "section": "8.6",
    "name": "Point mass",
+   "terms": [
+    "point masses"
+   ],
    "statement": "Two objects that collide off centre can begin to spin, and rotation is not treated until later. A point mass is a structureless particle that cannot rotate or spin, and restricting the analysis to point masses is what keeps the collision describable by the velocities alone."
   },
   {
@@ -405,39 +633,104 @@
    "kind": "result",
    "section": "8.6",
    "name": "Momentum along the x-axis, $m_1\\kvone = m_1\\kvoneprime\\cos\\theta_1 + m_2\\kvtwoprime\\cos\\theta_2$",
-   "eq": "eq-momentum-x",
-   "statement": "With the x-axis chosen parallel to the velocity of the incoming object and the second object at rest, the whole of the initial momentum lies along x. Conservation of momentum along that axis then relates the one initial speed to the two final speeds and the two scattering angles."
+   "statement": "With the x-axis chosen parallel to the velocity of the incoming object and the second object at rest, the whole of the initial momentum lies along x. Conservation of momentum along that axis then relates the one initial speed to the two final speeds and the two scattering angles.",
+   "forms": [
+    {
+     "id": "eq-momentum-x",
+     "latex": "m_1 v_1 = m_1 {v'}_1\\;\\text{cos}\\;\\theta_1 + m_2 {v'}_2\\;\\text{cos}\\;\\theta_2",
+     "ktex": "m_1 \\kvone = m_1 \\kvoneprime\\;\\text{cos}\\;\\theta_1 + m_2 \\kvtwoprime\\;\\text{cos}\\;\\theta_2",
+     "condition": "the second object is initially at rest and the x-axis is parallel to the velocity of the incoming object",
+     "anchor": "8.6-x-axis"
+    },
+    {
+     "id": "eq-momentum-x-components",
+     "latex": "p_{1x} + p_{2x} = {p'}_{1x} + {p'}_{2x}",
+     "ktex": "\\kponex + \\kptwox = {p'}_{1x} + {p'}_{2x}",
+     "anchor": "8.6-x-axis"
+    }
+   ]
   },
   {
    "id": "momentum-conservation-y",
    "kind": "result",
    "section": "8.6",
    "name": "Momentum along the y-axis, $0 = m_1\\kvoneprime\\sin\\theta_1 + m_2\\kvtwoprime\\sin\\theta_2$",
-   "eq": "eq-momentum-y",
-   "statement": "Neither object has any momentum along the y-axis before the collision, so the two y-components afterwards must add to zero. This is the second of the two independent equations, and it is the one that ties the two scattering angles to each other."
+   "statement": "Neither object has any momentum along the y-axis before the collision, so the two y-components afterwards must add to zero. This is the second of the two independent equations, and it is the one that ties the two scattering angles to each other.",
+   "forms": [
+    {
+     "id": "eq-momentum-y",
+     "latex": "0 = m_1 {v'}_1\\;\\text{sin}\\;\\theta_1 + m_2 {v'}_2\\;\\text{sin}\\;\\theta_2",
+     "ktex": "0 = m_1 \\kvoneprime\\;\\text{sin}\\;\\theta_1 + m_2 \\kvtwoprime\\;\\text{sin}\\;\\theta_2",
+     "condition": "the second object is initially at rest and the x-axis is parallel to the velocity of the incoming object",
+     "anchor": "8.6-y-axis"
+    },
+    {
+     "id": "eq-momentum-y-components",
+     "latex": "p_{1y} + p_{2y} = {p'}_{1y} + {p'}_{2y}",
+     "ktex": "\\kponey + \\kptwoy = {p'}_{1y} + {p'}_{2y}",
+     "anchor": "8.6-y-axis"
+    }
+   ]
   },
   {
    "id": "scattering-to-find-unseen-object",
    "kind": "skill",
    "section": "8.6",
    "name": "Find an unseen object’s velocity from the scattering of another",
-   "statement": "Two equations can be solved for two unknowns. Taking the ratio of the two conservation equations removes the unknown speed and leaves the unknown angle, and either equation then gives the speed, so a measurement of what comes out of a collision tells you about what you could not see going in."
+   "statement": "Two equations can be solved for two unknowns. Taking the ratio of the two conservation equations removes the unknown speed and leaves the unknown angle, and either equation then gives the speed, so a measurement of what comes out of a collision tells you about what you could not see going in.",
+   "forms": [
+    {
+     "id": "eq-scattering-angle",
+     "latex": "\\text{tan}\\;\\theta_2 = \\frac{{v'}_1\\;\\text{sin}\\;\\theta_1}{{v'}_1\\;\\text{cos}\\;\\theta_1 - v_1}",
+     "ktex": "\\text{tan}\\;\\theta_2 = \\frac{\\kvoneprime\\;\\text{sin}\\;\\theta_1}{\\kvoneprime\\;\\text{cos}\\;\\theta_1 - \\kvone}",
+     "condition": "the second object is initially at rest",
+     "anchor": "8.6-unseen"
+    }
+   ]
   },
   {
    "id": "equal-mass-elastic-2d",
    "kind": "result",
    "section": "8.6",
    "name": "Equal masses colliding elastically, $\\frac{1}{2}m\\kvone^2 = \\frac{1}{2}m\\kvoneprime^2 + \\frac{1}{2}m\\kvtwoprime^2 + m\\kvoneprime\\kvtwoprime\\cos(\\theta_1 - \\theta_2)$",
-   "eq": "eq-equal-mass-identity",
-   "statement": "For two objects of equal mass, conservation of momentum along both axes gives an expression for the initial kinetic energy that carries one extra term beyond the elastic condition. The two statements can both be true only if that extra term is zero, and what follows from that is the whole of what pool players know about angles."
+   "statement": "For two objects of equal mass, conservation of momentum along both axes gives an expression for the initial kinetic energy that carries one extra term beyond the elastic condition. The two statements can both be true only if that extra term is zero, and what follows from that is the whole of what pool players know about angles.",
+   "forms": [
+    {
+     "id": "eq-equal-mass-identity",
+     "latex": "\\frac{1}{2}m{v_1}^2 = \\frac{1}{2}m{{v'}_1}^2 + \\frac{1}{2}m{{v'}_2}^2 + m{v'}_1{v'}_2\\;\\text{cos}(\\theta_1 - \\theta_2)",
+     "ktex": "\\frac{1}{2}m{\\kvone}^2 = \\frac{1}{2}m{\\kvoneprime}^2 + \\frac{1}{2}m{\\kvtwoprime}^2 + m\\kvoneprime\\kvtwoprime\\;\\text{cos}(\\theta_1 - \\theta_2)",
+     "condition": "the two objects have equal masses and the second is initially at rest",
+     "anchor": "8.6-equal-masses"
+    },
+    {
+     "id": "eq-equal-mass-kinetic-energy",
+     "latex": "\\frac{1}{2}m{v_1}^2 = \\frac{1}{2}m{{v'}_1}^2 + \\frac{1}{2}m{{v'}_2}^2",
+     "ktex": "\\frac{1}{2}m{\\kvone}^2 = \\frac{1}{2}m{\\kvoneprime}^2 + \\frac{1}{2}m{\\kvtwoprime}^2",
+     "condition": "the two objects have equal masses, the collision is elastic and the second object is initially at rest",
+     "anchor": "8.6-equal-masses"
+    }
+   ]
   },
   {
    "id": "ninety-degree-separation",
    "kind": "result",
    "section": "8.6",
    "name": "Equal masses separate at $\\theta_1 - \\theta_2 = 90^\\circ$",
-   "eq": "eq-separation-angle",
-   "statement": "The extra term can be zero in three ways: the incoming object stops, the incoming object misses, or the angle of separation is ninety degrees. All three are familiar at a pool table, and the third is the one that lets you find the second object’s direction without any further calculation."
+   "statement": "The extra term can be zero in three ways: the incoming object stops, the incoming object misses, or the angle of separation is ninety degrees. All three are familiar at a pool table, and the third is the one that lets you find the second object’s direction without any further calculation.",
+   "forms": [
+    {
+     "id": "eq-separation-angle",
+     "latex": "\\theta_1 - \\theta_2 = 90^\\circ",
+     "condition": "the two objects have equal masses, the collision is elastic and both of them move after it",
+     "anchor": "8.6-separation"
+    },
+    {
+     "id": "eq-separation-term-zero",
+     "latex": "m{v'}_1{v'}_2\\;\\text{cos}(\\theta_1 - \\theta_2) = 0",
+     "ktex": "m\\kvoneprime\\kvtwoprime\\;\\text{cos}(\\theta_1 - \\theta_2) = 0",
+     "anchor": "8.6-separation"
+    }
+   ]
   },
   {
    "id": "rocket-propulsion",
@@ -451,16 +744,30 @@
    "kind": "result",
    "section": "8.7",
    "name": "Thrust, $\\kFthrust = \\kve\\,\\Delta m / \\kdt$",
-   "eq": "eq-rocket-thrust",
-   "statement": "The exhaust velocity multiplied by the rate at which mass leaves the rocket is a quantity with the units of newtons, and it is the force the exhaust gases exert on the rocket. The faster the rocket burns its fuel, and the faster the gas leaves, the greater the thrust."
+   "statement": "The exhaust velocity multiplied by the rate at which mass leaves the rocket is a quantity with the units of newtons, and it is the force the exhaust gases exert on the rocket. The faster the rocket burns its fuel, and the faster the gas leaves, the greater the thrust.",
+   "forms": [
+    {
+     "id": "eq-rocket-thrust",
+     "latex": "F_{\\text{thrust}} = v_{\\text{e}}\\frac{\\Delta m}{\\Delta t}",
+     "ktex": "\\kFthrust = \\kve\\frac{\\Delta m}{\\kdt}",
+     "anchor": "8.7-factors"
+    }
+   ]
   },
   {
    "id": "rocket-acceleration",
    "kind": "result",
    "section": "8.7",
    "name": "Acceleration of a rocket, $\\ka = (\\kve / m)(\\Delta m / \\kdt) - \\kg$",
-   "eq": "eq-rocket-acceleration",
-   "statement": "Equating the change in momentum of the whole system over a short time to the impulse of gravity gives a good approximation for the acceleration of what is left of the rocket, $a = (v_{\\text{e}}/m)(\\Delta m/\\Delta t) - g$. It describes a system whose mass changes as it moves."
+   "statement": "Equating the change in momentum of the whole system over a short time to the impulse of gravity gives a good approximation for the acceleration of what is left of the rocket, $a = (v_{\\text{e}}/m)(\\Delta m/\\Delta t) - g$. It describes a system whose mass changes as it moves.",
+   "forms": [
+    {
+     "id": "eq-rocket-acceleration",
+     "latex": "a = \\frac{v_{\\text{e}}}{m}\\;\\frac{\\Delta m}{\\Delta t} - g",
+     "ktex": "\\ka = \\frac{\\kve}{m}\\;\\frac{\\Delta m}{\\kdt} - \\kg",
+     "anchor": "8.7-ejecting-mass"
+    }
+   ]
   },
   {
    "id": "factors-affecting-rocket-acceleration",
@@ -474,8 +781,16 @@
    "kind": "result",
    "section": "8.7",
    "name": "Final velocity of a rocket, $\\kv = \\kve \\ln(m_0 / m_{\\text{r}})$",
-   "eq": "eq-rocket-velocity",
-   "statement": "Neglecting air resistance and gravity, the velocity a rocket gains depends only on the exhaust velocity and on the natural logarithm of the ratio of its initial mass to the mass that is left when the fuel is gone. Because the ratio enters through a logarithm, going faster costs a great deal more fuel than you might expect."
+   "statement": "Neglecting air resistance and gravity, the velocity a rocket gains depends only on the exhaust velocity and on the natural logarithm of the ratio of its initial mass to the mass that is left when the fuel is gone. Because the ratio enters through a logarithm, going faster costs a great deal more fuel than you might expect.",
+   "forms": [
+    {
+     "id": "eq-rocket-velocity",
+     "latex": "v = v_{\\text{e}}\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}}",
+     "ktex": "\\kv = \\kve\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}}",
+     "condition": "air resistance is absent, the gravitational force is neglected and the rocket starts from rest",
+     "anchor": "8.7-mass-ratio"
+    }
+   ]
   },
   {
    "id": "multistage-rocket",

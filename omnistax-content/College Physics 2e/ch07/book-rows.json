@@ -204,8 +204,27 @@
    "kind": "definition",
    "section": "7.1",
    "name": "Work",
+   "symbol": "W",
+   "terms": [
+    "work"
+   ],
    "statement": "In science, work is not effort but a transfer of energy. A force does work on a system only when the system is displaced and the force has a component along that displacement, and the work is the product of that component and the distance the force acts through, $W = Fd\\cos\\theta$.",
-   "eq": "eq-work"
+   "forms": [
+    {
+     "id": "eq-work",
+     "latex": "W = Fd\\cos\\theta",
+     "ktex": "\\kW = \\kF\\kd\\cos\\theta",
+     "condition": "a constant force and one-way motion in one dimension",
+     "anchor": "7.1-definition"
+    },
+    {
+     "id": "eq-work-force-distance",
+     "latex": "W = Fd",
+     "ktex": "\\kW = \\kF\\kd",
+     "section": "15.2",
+     "anchor": "15.2-pv-diagrams"
+    }
+   ]
   },
   {
    "id": "work-sign",
@@ -219,8 +238,17 @@
    "kind": "definition",
    "section": "7.1",
    "name": "The joule",
+   "terms": [
+    "joule"
+   ],
    "statement": "Work and energy have the units of force times distance, and in SI that is the newton-meter, which is given the name joule. One joule is not a large amount of energy; it would lift a small 100-gram apple a distance of about 1 meter.",
-   "eq": "eq-joule"
+   "forms": [
+    {
+     "id": "eq-joule",
+     "latex": "1\\ \\text{J} = 1\\ \\text{N}\\cdot\\text{m} = 1\\ \\text{kg}\\cdot\\text{m}^2/\\text{s}^2",
+     "anchor": "7.1-joule-unit"
+    }
+   ]
   },
   {
    "id": "calculate-work",
@@ -234,6 +262,10 @@
    "kind": "definition",
    "section": "7.1",
    "name": "Energy",
+   "symbol": "E",
+   "terms": [
+    "energy"
+   ],
    "statement": "Energy is the ability to do work. Work done on a system transfers energy to it, and work done by a system transfers energy out of it."
   },
   {
@@ -248,8 +280,26 @@
    "kind": "definition",
    "section": "7.2",
    "name": "Net work",
+   "symbol": "W_net",
+   "terms": [
+    "net work"
+   ],
    "statement": "The work that changes a system's motion is the work done by the net external force, and it is also the sum of the work done by each force separately. A force perpendicular to the displacement, such as the weight or the normal force on a package sliding along a belt, does no work and drops out of the sum.",
-   "eq": "eq-wnet"
+   "forms": [
+    {
+     "id": "eq-wnet",
+     "latex": "W_{\\text{net}} = F_{\\text{net}}d\\cos\\theta",
+     "ktex": "\\kWnet = \\kFnet\\kd\\cos\\theta",
+     "anchor": "7.2-net-work"
+    },
+    {
+     "id": "eq-wnet-parallel",
+     "latex": "W_{\\text{net}} = F_{\\text{net}}d",
+     "ktex": "\\kWnet = \\kFnet\\kd",
+     "condition": "the net force parallel to the displacement",
+     "anchor": "7.2-theorem"
+    }
+   ]
   },
   {
    "id": "work-as-area",
@@ -263,16 +313,51 @@
    "kind": "definition",
    "section": "7.2",
    "name": "Kinetic energy, $\\kKE = \\tfrac{1}{2}m\\kv^2$",
+   "symbol": "KE",
+   "terms": [
+    "kinetic energy"
+   ],
    "statement": "The quantity the net work changes is one half the mass times the speed squared, and it is given the name translational kinetic energy: the energy a body has by reason of its motion. Because the speed is squared, a car travelling at 100 km/h carries four times the kinetic energy it carries at 50 km/h, which helps explain why high-speed collisions are so devastating.",
-   "eq": "eq-ke"
+   "forms": [
+    {
+     "id": "eq-ke",
+     "latex": "\\text{KE} = \\frac{1}{2}mv^2",
+     "ktex": "\\kKE = \\frac{1}{2}m\\kv^2",
+     "anchor": "7.2-kinetic-energy"
+    }
+   ]
   },
   {
    "id": "work-energy-theorem",
    "kind": "result",
    "section": "7.2",
    "name": "The work-energy theorem, $\\kWnet = \\tfrac{1}{2}m\\kv^2 - \\tfrac{1}{2}m\\kvo^2$",
+   "terms": [
+    "work-energy theorem"
+   ],
    "statement": "Put Newton's second law and the constant-acceleration relation between speed and distance into the net work and the distance cancels, leaving the net work equal to the change in the kinetic energy. It was derived here for a constant force along the motion, but it holds in general, even for forces that vary in direction and magnitude.",
-   "eq": "eq-wet"
+   "forms": [
+    {
+     "id": "eq-wet",
+     "latex": "W_{\\text{net}} = \\frac{1}{2}mv^2 - \\frac{1}{2}mv_0^2",
+     "ktex": "\\kWnet = \\frac{1}{2}m\\kv^2 - \\frac{1}{2}m\\kvo^2",
+     "anchor": "7.2-theorem"
+    },
+    {
+     "id": "eq-wnet-mad",
+     "latex": "W_{\\text{net}} = mad",
+     "ktex": "\\kWnet = m\\ka\\kd",
+     "condition": "a constant net force parallel to the displacement",
+     "anchor": "7.2-theorem"
+    },
+    {
+     "id": "eq-work-energy-fluid",
+     "latex": "W_{\\text{net}} = \\frac{1}{2}mv^2 - \\frac{1}{2}mv_0^2",
+     "ktex": "\\kWnet = \\frac{1}{2}m\\kv^2 - \\frac{1}{2}m\\kvo^2",
+     "section": "12.2",
+     "anchor": "12.2-pressure-drop"
+    }
+   ]
   },
   {
    "id": "speed-from-work-energy",
@@ -286,6 +371,10 @@
    "kind": "definition",
    "section": "7.3",
    "name": "Potential energy",
+   "symbol": "PE_i",
+   "terms": [
+    "potential energy"
+   ],
    "statement": "Work done against a force that can give the energy back is not lost; it is stored in the system as potential energy. Potential energy is a property of a system rather than of a single body, since it belongs to the arrangement of the parts: lifting a mass stores energy in the mass-Earth system, and the system gives it back when the mass comes down."
   },
   {
@@ -293,8 +382,27 @@
    "kind": "result",
    "section": "7.3",
    "name": "Gravitational potential energy, $\\kdPEg = m\\kg\\kh$",
+   "symbol": "PE_g",
+   "terms": [
+    "gravitational potential energy"
+   ],
    "statement": "Lifting a mass at constant speed takes a force equal to its weight, so the work done in raising it through a height is the weight times the height. That work is the change in the gravitational potential energy of the object-Earth system, and it is the same whether the mass is lifted or lowered, with the sign of the height carrying the difference.",
-   "eq": "eq-peg"
+   "forms": [
+    {
+     "id": "eq-peg",
+     "latex": "\\Delta\\text{PE}_{\\text{g}} = mgh",
+     "ktex": "\\kdPEg = m\\kg\\kh",
+     "condition": "a change in height h that is small compared with the radius of Earth",
+     "anchor": "7.3-converting"
+    },
+    {
+     "id": "eq-w-lift",
+     "latex": "W = Fd = mgh",
+     "ktex": "\\kW = \\kF\\kd = m\\kg\\kh",
+     "condition": "an object lifted straight up at constant speed",
+     "anchor": "7.3-lifting"
+    }
+   ]
   },
   {
    "id": "pe-reference-level",
@@ -316,7 +424,22 @@
    "section": "7.3",
    "name": "Potential energy becomes kinetic energy, $-\\kdPEg = \\kdKE$",
    "statement": "Release a raised mass and gravity does work equal to the potential energy given up, so the kinetic energy grows by exactly that amount. When friction is negligible, the speed of a falling body then depends only on its initial speed and on the change in height, and not on its mass or on the path it takes.",
-   "eq": "eq-ke-peg"
+   "forms": [
+    {
+     "id": "eq-ke-peg",
+     "latex": "-\\Delta\\text{PE}_{\\text{g}} = \\Delta\\text{KE}",
+     "ktex": "-\\kdPEg = \\kdKE",
+     "condition": "work done by frictional forces is negligible",
+     "anchor": "7.3-coaster"
+    },
+    {
+     "id": "eq-v-from-h",
+     "latex": "v = \\sqrt{2g|h| + v_0^2}",
+     "ktex": "\\kv = \\sqrt{2\\kg|\\kh| + \\kvo^2}",
+     "condition": "work done by frictional forces is negligible",
+     "anchor": "7.3-coaster"
+    }
+   ]
   },
   {
    "id": "stopping-force-from-energy",
@@ -330,22 +453,61 @@
    "kind": "definition",
    "section": "7.4",
    "name": "Conservative force",
+   "terms": [
+    "conservative force"
+   ],
    "statement": "A conservative force is one for which the work done by it or against it depends only on where the motion starts and where it ends, and not on the path between. Gravity is one and the force of an ideal spring is another, and it is exactly this property that lets a potential energy be defined for the force, so that the work need never be calculated along the path at all.",
-   "eq": "eq-wc-pe"
+   "forms": [
+    {
+     "id": "eq-wc-pe",
+     "latex": "W_{\\text{c}} = -\\Delta\\text{PE}",
+     "ktex": "\\kWc = -\\kdPE",
+     "anchor": "7.4-conservation"
+    }
+   ]
   },
   {
    "id": "elastic-potential-energy",
    "kind": "result",
    "section": "7.4",
    "name": "Potential energy of a spring, $\\kPEs = \\tfrac{1}{2}\\kk\\kx^2$",
+   "terms": [
+    "potential energy of a spring",
+    "elastic potential energy"
+   ],
    "statement": "The force needed to stretch a spring grows from zero to the force constant times the stretch, so its average is half of that, and the work done is one half the force constant times the stretch squared. The same quantity is the area of the triangle under the graph of force against stretch, and because the spring force is conservative that work is stored and can be fully recovered.",
-   "eq": "eq-pes"
+   "forms": [
+    {
+     "id": "eq-pes",
+     "latex": "\\text{PE}_{\\text{s}} = \\frac{1}{2}kx^2",
+     "ktex": "\\kPEs = \\frac{1}{2}\\kk\\kx^2",
+     "condition": "Hooke's law applies to the spring",
+     "anchor": "7.4-spring-energy"
+    },
+    {
+     "id": "eq-ws",
+     "latex": "W_{\\text{s}} = Fd = \\left(\\frac{kx}{2}\\right)x = \\frac{1}{2}kx^2",
+     "ktex": "\\kWs = \\kF\\kd = \\left(\\frac{\\kk\\kx}{2}\\right)\\kx = \\frac{1}{2}\\kk\\kx^2",
+     "condition": "Hooke's law applies to the spring",
+     "anchor": "7.4-spring-energy"
+    },
+    {
+     "id": "eq-pe-el",
+     "latex": "\\text{PE}_{\\text{el}} = \\tfrac{1}{2} k x^2",
+     "ktex": "\\kPE = \\tfrac{1}{2}\\kk\\kx^2",
+     "section": "16.1",
+     "anchor": "16.1-elastic-energy"
+    }
+   ]
   },
   {
    "id": "mechanical-energy",
    "kind": "definition",
    "section": "7.4",
    "name": "Mechanical energy",
+   "terms": [
+    "mechanical energy"
+   ],
    "statement": "The total kinetic plus potential energy of a system is called its mechanical energy. Writing it as one quantity is what lets a problem be answered by comparing two configurations, since in a system with only conservative forces the energy changes only in form, moving between kinetic energy and the various kinds of potential energy while the total stays put."
   },
   {
@@ -353,8 +515,33 @@
    "kind": "result",
    "section": "7.4",
    "name": "Conservation of mechanical energy, $\\kKEi + \\kPEi = \\kKEf + \\kPEf$",
+   "terms": [
+    "conservation of mechanical energy"
+   ],
    "statement": "If only conservative forces act, the work-energy theorem says the change in kinetic energy is the work done by those forces, and that work is minus the change in potential energy. The two changes therefore cancel, so the kinetic and potential energies of the system add to a constant and the values at the start equal the values at the end.",
-   "eq": "eq-cme"
+   "forms": [
+    {
+     "id": "eq-cme",
+     "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}}",
+     "ktex": "\\kKEi + \\kPEi = \\kKEf + \\kPEf",
+     "condition": "conservative forces only",
+     "anchor": "7.4-conservation"
+    },
+    {
+     "id": "eq-ke-pe-zero",
+     "latex": "\\Delta\\text{KE} + \\Delta\\text{PE} = 0",
+     "ktex": "\\kdKE + \\kdPE = 0",
+     "condition": "conservative forces only",
+     "anchor": "7.4-conservation"
+    },
+    {
+     "id": "eq-cme-full",
+     "latex": "\\frac{1}{2}mv_{\\text{i}}^2 + mgh_{\\text{i}} + \\frac{1}{2}kx_{\\text{i}}^2 = \\frac{1}{2}mv_{\\text{f}}^2 + mgh_{\\text{f}} + \\frac{1}{2}kx_{\\text{f}}^2",
+     "ktex": "\\frac{1}{2}m\\kvi^2 + m\\kg\\khi + \\frac{1}{2}\\kk\\kxi^2 = \\frac{1}{2}m\\kvf^2 + m\\kg\\khf + \\frac{1}{2}\\kk\\kxf^2",
+     "condition": "conservative forces only, a gravitational force and a spring",
+     "anchor": "7.4-using-conservation"
+    }
+   ]
   },
   {
    "id": "solve-with-mechanical-energy",
@@ -368,6 +555,9 @@
    "kind": "definition",
    "section": "7.5",
    "name": "Nonconservative force",
+   "terms": [
+    "nonconservative force"
+   ],
    "statement": "A nonconservative force is one for which the work done depends on the path taken, and friction is the plain example: the longer the route between two points, the more work is done against it. Because the work depends on the path, no potential energy can be defined for such a force, and the work it does has to be counted directly."
   },
   {
@@ -382,8 +572,28 @@
    "kind": "result",
    "section": "7.5",
    "name": "Nonconservative work changes the mechanical energy, $\\kWnc = \\kdKE + \\kdPE$",
+   "symbol": "W_nc",
    "statement": "Split the net work into the part done by conservative forces and the part done by nonconservative ones, and replace the conservative part by minus the change in potential energy. What is left says that the total mechanical energy changes by exactly the work the nonconservative forces do: positive work adds to it, negative work takes from it, and zero work leaves it conserved.",
-   "eq": "eq-wnc"
+   "forms": [
+    {
+     "id": "eq-wnc",
+     "latex": "W_{\\text{nc}} = \\Delta\\text{KE} + \\Delta\\text{PE}",
+     "ktex": "\\kWnc = \\kdKE + \\kdPE",
+     "anchor": "7.5-work-energy"
+    },
+    {
+     "id": "eq-wnet-split",
+     "latex": "W_{\\text{net}} = W_{\\text{nc}} + W_{\\text{c}}",
+     "ktex": "\\kWnet = \\kWnc + \\kWc",
+     "anchor": "7.5-work-energy"
+    },
+    {
+     "id": "eq-wnc-form",
+     "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} + W_{\\text{nc}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}}",
+     "ktex": "\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf",
+     "anchor": "7.5-work-energy"
+    }
+   ]
   },
   {
    "id": "solve-with-friction",
@@ -397,8 +607,18 @@
    "kind": "axiom",
    "section": "7.6",
    "name": "The law of conservation of energy",
+   "terms": [
+    "law of conservation of energy"
+   ],
    "statement": "Total energy is constant in any process. It may change in form or pass from one system to another, but the total remains the same, and writing the law down means adding to the mechanical energy and the nonconservative work one more term for every other kind of energy the system holds. In most problems all but a few of those terms are the same at the start and at the end and simply cancel.",
-   "eq": "eq-conservation"
+   "forms": [
+    {
+     "id": "eq-conservation",
+     "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} + W_{\\text{nc}} + \\text{OE}_{\\text{i}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}} + \\text{OE}_{\\text{f}}",
+     "ktex": "\\kKEi + \\kPEi + \\kWnc + \\kOEi = \\kKEf + \\kPEf + \\kOEf",
+     "anchor": "7.6-other-energy"
+    }
+   ]
   },
   {
    "id": "forms-of-energy",
@@ -419,8 +639,19 @@
    "kind": "definition",
    "section": "7.6",
    "name": "Efficiency, $\\text{Eff} = \\kWout/\\kEin$",
+   "symbol": "Eff",
+   "terms": [
+    "efficiency"
+   ],
    "statement": "Energy is conserved in a conversion, but the useful energy or work that comes out is always less than the energy put in, and the efficiency is the ratio of the two. A coal-fired power plant turns about 40 percent of the chemical energy in its fuel into electricity, and the rest leaves as thermal energy through the flue and the cooling towers.",
-   "eq": "eq-efficiency"
+   "forms": [
+    {
+     "id": "eq-efficiency",
+     "latex": "\\text{Eff} = \\frac{W_{\\text{out}}}{E_{\\text{in}}}",
+     "ktex": "\\text{Eff} = \\frac{\\kWout}{\\kEin}",
+     "anchor": "7.6-efficiency"
+    }
+   ]
   },
   {
    "id": "energy-problem-solving",
@@ -434,6 +665,9 @@
    "kind": "definition",
    "section": "7.6",
    "name": "Electrical energy",
+   "terms": [
+    "electrical energy"
+   ],
    "statement": "Electrical energy is the energy carried by a flow of charge."
   },
   {
@@ -441,6 +675,9 @@
    "kind": "definition",
    "section": "7.6",
    "name": "Chemical energy",
+   "terms": [
+    "chemical energy"
+   ],
    "statement": "Chemical energy is the energy in a substance stored in the bonds between atoms and molecules, which can be released in a chemical reaction."
   },
   {
@@ -448,6 +685,9 @@
    "kind": "definition",
    "section": "7.6",
    "name": "Radiant energy",
+   "terms": [
+    "radiant energy"
+   ],
    "statement": "Radiant energy is the energy carried by electromagnetic waves."
   },
   {
@@ -455,6 +695,9 @@
    "kind": "definition",
    "section": "7.6",
    "name": "Nuclear energy",
+   "terms": [
+    "nuclear energy"
+   ],
    "statement": "Nuclear energy is energy released by changes within atomic nuclei, such as the fusion of two light nuclei or the fission of a heavy one."
   },
   {
@@ -462,6 +705,9 @@
    "kind": "definition",
    "section": "7.6",
    "name": "Thermal energy",
+   "terms": [
+    "thermal energy"
+   ],
    "statement": "Thermal energy is the energy within an object due to the random motion of its atoms and molecules, and it accounts for the object's temperature."
   },
   {
@@ -469,16 +715,47 @@
    "kind": "definition",
    "section": "7.7",
    "name": "Power",
+   "symbol": "P",
+   "terms": [
+    "power"
+   ],
    "statement": "Power is the rate at which work is done, and since work is a transfer of energy it is also the rate at which energy is spent. A 60-W light bulb spends 60 J every second. Great power means a large amount of work done or energy spent in a short time, which is what a dragster, a volcano and a rocket have in common.",
-   "eq": "eq-power"
+   "forms": [
+    {
+     "id": "eq-power",
+     "latex": "P = \\frac{W}{t}",
+     "ktex": "\\kP = \\frac{\\kW}{\\kt}",
+     "anchor": "7.7-what-is-power"
+    },
+    {
+     "id": "eq-average-power-32",
+     "latex": "P = \\frac{E}{t}",
+     "ktex": "\\kP = \\frac{\\kE}{\\kt}",
+     "section": "32.5"
+    }
+   ]
   },
   {
    "id": "watt",
    "kind": "definition",
    "section": "7.7",
    "name": "The watt and the horsepower",
+   "terms": [
+    "watt"
+   ],
    "statement": "The SI unit of power is the watt, one joule per second. The older horsepower is still used for motors and engines, and one horsepower is 746 watts, so the woman running up the stairs puts out a little less than a horsepower; a person can beat that for a few seconds, and a horse can hold it for hours.",
-   "eq": "eq-watt"
+   "forms": [
+    {
+     "id": "eq-watt",
+     "latex": "1\\ \\text{W} = 1\\ \\text{J/s}",
+     "anchor": "7.7-what-is-power"
+    },
+    {
+     "id": "eq-horsepower",
+     "latex": "1\\ \\text{hp} = 746\\ \\text{W}",
+     "anchor": "7.7-calculating-power"
+    }
+   ]
   },
   {
    "id": "calculate-power",
@@ -493,7 +770,14 @@
    "section": "7.7",
    "name": "Energy consumed in a time, $\\kE = \\kP\\kt$",
    "statement": "Turn the definition of power around and the energy a device uses is its power times the time it runs. Electricity bills are written in kilowatt-hours, the product of a power in kilowatts and a time in hours, because household appliances draw about a kilowatt for hours at a stretch and that makes the number a convenient size.",
-   "eq": "eq-energy-pt"
+   "forms": [
+    {
+     "id": "eq-energy-pt",
+     "latex": "E = Pt",
+     "ktex": "\\kE = \\kP\\kt",
+     "anchor": "7.7-consumption"
+    }
+   ]
   },
   {
    "id": "cost-of-energy",
@@ -507,6 +791,9 @@
    "kind": "definition",
    "section": "7.7",
    "name": "Kilowatt-hour, $1\\;\\text{kW}\\cdot\\text{h} = 3.6 \\times 10^{6}\\;\\text{J}$",
+   "terms": [
+    "kilowatt-hour"
+   ],
    "statement": "The kilowatt-hour is a unit of energy, the energy used in one hour at a power of one kilowatt, and it is the unit in which electric utility companies bill electrical energy."
   },
   {
@@ -514,6 +801,9 @@
    "kind": "definition",
    "section": "7.7",
    "name": "Horsepower, $1\\;\\text{hp} = 746\\;\\text{W}$",
+   "terms": [
+    "horsepower"
+   ],
    "statement": "The horsepower is an older non-SI unit of power, with one horsepower equal to 746 watts."
   },
   {
@@ -528,6 +818,10 @@
    "kind": "definition",
    "section": "7.8",
    "name": "Metabolic rate and the basal metabolic rate",
+   "symbol": "P",
+   "terms": [
+    "metabolic rate"
+   ],
    "statement": "The rate at which the body uses food energy to stay alive and to do things is its metabolic rate, a power like any other. The rate at rest is the basal metabolic rate, about 85 W, and it is divided among the organs, with the liver and spleen taking the largest share and the brain the next. About 75 percent of the calories burned in a day go to these basic functions."
   },
   {
@@ -542,6 +836,9 @@
    "kind": "definition",
    "section": "7.8",
    "name": "Useful work",
+   "terms": [
+    "useful work"
+   ],
    "statement": "Work done by a person means work done on the outside world, such as lifting weights, climbing stairs or accelerating to a run. Internal work, such as the heart pumping blood or the muscles of a shiver pulling against one another, is not counted, even though it costs energy; the forces the body exerts are nonconservative, so they can change the mechanical energy of whatever is worked on."
   },
   {
@@ -556,6 +853,9 @@
    "kind": "definition",
    "section": "7.8",
    "name": "Basal metabolic rate",
+   "terms": [
+    "basal metabolic rate"
+   ],
    "statement": "The basal metabolic rate is the total energy conversion rate of a person at rest."
   },
   {
@@ -563,6 +863,9 @@
    "kind": "idea",
    "section": "7.9",
    "name": "Renewable energy sources",
+   "terms": [
+    "renewable forms of energy"
+   ],
    "statement": "Renewable forms of energy are those that cannot be used up: water, wind, solar and biomass. They are still a small share of the world's supply, but they are the fastest growing part of it, and some countries already draw a large fraction of their electricity from them, as New Zealand does from hydroelectric power."
   },
   {
@@ -570,6 +873,9 @@
    "kind": "idea",
    "section": "7.9",
    "name": "Fossil fuels and the world's energy needs",
+   "terms": [
+    "fossil fuels"
+   ],
    "statement": "About 85 percent of the world's energy comes from the nonrenewable fossil fuels, oil, natural gas and coal, and roughly a third of it from oil alone, much of that for transport. Demand has tripled in the past fifty years and may triple again in the next thirty, and the likelihood of a link between fossil fuel use and global warming has made the shift away from them urgent."
   },
   {

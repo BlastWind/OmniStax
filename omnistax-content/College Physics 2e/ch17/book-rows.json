@@ -142,6 +142,9 @@
    "kind": "definition",
    "section": "17.1",
    "name": "Sound",
+   "terms": [
+    "sound"
+   ],
    "statement": "Sound is a disturbance of matter that is transmitted from its source outward, and it is a wave. On the atomic scale it is a disturbance of atoms that is far more ordered than their thermal motions, and in many instances it is a periodic wave in which the atoms undergo simple harmonic motion."
   },
   {
@@ -156,6 +159,9 @@
    "kind": "definition",
    "section": "17.1",
    "name": "Hearing",
+   "terms": [
+    "hearing"
+   ],
    "statement": "Hearing is the perception of sound, just as vision is the perception of visible light. The physical phenomenon and its perception are related but not the same thing, and the chapter keeps them apart: wavelength, frequency, amplitude and speed of propagation belong to the wave, and pitch and loudness belong to the listener."
   },
   {
@@ -163,6 +169,9 @@
    "kind": "definition",
    "section": "17.2",
    "name": "Pitch",
+   "terms": [
+    "pitch"
+   ],
    "statement": "Perception of frequency is called pitch. You can sense the frequency of a sound directly, and the wavelength is sensed only indirectly, through the correlation of the size of a musical instrument with its pitch: small instruments such as a piccolo make high-pitch, short-wavelength sounds and large instruments such as a tuba make low-pitch, long-wavelength ones."
   },
   {
@@ -171,7 +180,20 @@
    "section": "17.2",
    "name": "Speed of sound, frequency and wavelength, $\\kvw = \\kf\\klam$",
    "statement": "The relationship of the speed of sound, its frequency and its wavelength is the same as for all waves. The wavelength is the distance between adjacent identical parts of the wave, for example between adjacent compressions, and the frequency is that of the source, the number of waves that pass a point per unit time. In a given medium under fixed conditions the speed is constant, so the higher the frequency, the smaller the wavelength.",
-   "eq": "eq-speed-frequency-wavelength"
+   "forms": [
+    {
+     "id": "eq-speed-frequency-wavelength",
+     "latex": "v_{\\text{w}} = f\\lambda",
+     "ktex": "\\kvw = \\kf\\klam",
+     "anchor": "17.2-wave-relation"
+    },
+    {
+     "id": "eq-wavelength-from-speed",
+     "latex": "\\lambda = \\frac{v_{\\text{w}}}{f}",
+     "ktex": "\\klam = \\frac{\\kvw}{\\kf}",
+     "anchor": "17.2-ex-wavelengths"
+    }
+   ]
   },
   {
    "id": "speed-of-sound-in-media",
@@ -186,7 +208,15 @@
    "section": "17.2",
    "name": "Speed of sound in air and temperature, $\\kvw = (331\\ \\text{m/s})\\sqrt{\\kTemp/273\\ \\text{K}}$",
    "statement": "For air at sea level the speed of sound is 331 m/s at 0 °C and grows as the square root of the kelvin temperature, because the speed of sound in a gas is related to the average speed of its particles, which itself goes as the square root of the temperature. The dependence is real but not strong: at 20.0 °C the speed is 343 m/s, less than a 4% increase.",
-   "eq": "eq-speed-of-sound-air"
+   "forms": [
+    {
+     "id": "eq-speed-of-sound-air",
+     "latex": "v_{\\text{w}} = (331\\ \\text{m/s})\\sqrt{\\frac{T}{273\\ \\text{K}}}",
+     "ktex": "\\kvw = (331\\ \\text{m/s})\\sqrt{\\frac{\\kTemp}{273\\ \\text{K}}}",
+     "condition": "air at sea level, T in kelvin",
+     "anchor": "17.2-temperature"
+    }
+   ]
   },
   {
    "id": "speed-of-sound-independent-of-frequency",
@@ -215,7 +245,14 @@
    "section": "17.3",
    "name": "Intensity of a sound wave, $\\kIntens = \\kP/A$",
    "statement": "Intensity is the power per unit area carried by a wave, where power is the rate at which energy is transferred by the wave, and its SI unit is the watt per metre squared. It is the physical quantity behind the loudness we are all familiar with, and it is valid for every sound whether or not it is in the audible range. The intensities of ordinary sounds are quite small: only about 10⁻¹⁶ W falls on the eardrum at the threshold of hearing.",
-   "eq": "eq-intensity"
+   "forms": [
+    {
+     "id": "eq-intensity-17",
+     "latex": "I = \\frac{P}{A}",
+     "ktex": "\\kIntens = \\frac{\\kP}{A}",
+     "anchor": "17.3-intensity"
+    }
+   ]
   },
   {
    "id": "intensity-and-pressure-amplitude",
@@ -223,15 +260,34 @@
    "section": "17.3",
    "name": "Intensity and pressure amplitude, $\\kIntens = (\\kdpamp)^2/2\\krho\\kvw$",
    "statement": "The intensity of a sound wave is related to its amplitude squared. The pressure amplitude is half the difference between the maximum and minimum pressure in the wave, the density is that of the material the sound travels in, and the speed is the speed of sound in that medium. The energy of an oscillating element of air is proportional to its amplitude squared, and the pressure variation is proportional to the amplitude of the oscillation, so the intensity goes as the square of the pressure amplitude: the greater the amplitude, the more the air is compressed in the sound it creates.",
-   "eq": "eq-intensity-pressure-amplitude"
+   "forms": [
+    {
+     "id": "eq-intensity-pressure-amplitude",
+     "latex": "I = \\frac{(\\Delta p)^2}{2\\rho v_{\\text{w}}}",
+     "ktex": "\\kIntens = \\frac{(\\kdpamp)^2}{2\\krho\\kvw}",
+     "anchor": "17.3-pressure-amplitude"
+    }
+   ]
   },
   {
    "id": "sound-intensity-level",
    "kind": "definition",
    "section": "17.3",
    "name": "Sound intensity level in decibels, $\\beta\\ (\\text{dB}) = 10\\log_{10}(\\kIntens/\\kIo)$",
+   "symbol": "β_dB",
+   "terms": [
+    "sound intensity level"
+   ],
    "statement": "Sound intensity levels are quoted in decibels much more often than intensities in watts per metre squared, because how our ears perceive sound is more accurately described by the logarithm of the intensity than by the intensity itself. The level of a sound of intensity $I$ is ten times the logarithm of its ratio to the reference intensity $I_0 = 10^{-12}$ W/m². Because it is defined in terms of a ratio it is a unitless quantity telling you the level of the sound relative to a fixed standard, and the decibel indicates that the ratio's logarithm is multiplied by ten.",
-   "eq": "eq-sound-intensity-level"
+   "forms": [
+    {
+     "id": "eq-sound-intensity-level",
+     "latex": "\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\frac{I}{I_0}\\right)",
+     "ktex": "\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\frac{\\kIntens}{\\kIo}\\right)",
+     "condition": "I₀ = 10⁻¹² W/m²",
+     "anchor": "17.3-decibels"
+    }
+   ]
   },
   {
    "id": "threshold-of-hearing",
@@ -246,7 +302,19 @@
    "section": "17.3",
    "name": "Ratios of intensities as differences in level, $\\beta_2 - \\beta_1 = 10\\log_{10}(\\kItwo/\\kIone)$",
    "statement": "Each factor of 10 in intensity corresponds to 10 dB, so a 90 dB sound is three factors of 10, or 1000 times, as intense as a 60 dB sound. Because the logarithm of a ratio is the difference of the logarithms, the difference in level between two sounds depends only on the ratio of their intensities: doubling the intensity raises the level by about 3 dB and a factor of five raises it by 7 dB, whatever the intensities themselves are.",
-   "eq": "eq-sound-level-difference"
+   "forms": [
+    {
+     "id": "eq-sound-level-difference",
+     "latex": "\\beta_2 - \\beta_1 = 10\\log_{10}\\left(\\frac{I_2}{I_1}\\right)",
+     "ktex": "\\beta_2 - \\beta_1 = 10\\log_{10}\\left(\\frac{\\kItwo}{\\kIone}\\right)",
+     "anchor": "17.3-ratios"
+    },
+    {
+     "id": "eq-log-of-ratio",
+     "latex": "\\log_{10} b - \\log_{10} a = \\log_{10}\\left(\\frac{b}{a}\\right)",
+     "anchor": "17.3-ratios"
+    }
+   ]
   },
   {
    "id": "combining-sound-sources",
@@ -260,6 +328,9 @@
    "kind": "definition",
    "section": "17.3",
    "name": "The sound pressure level",
+   "terms": [
+    "sound pressure level"
+   ],
    "statement": "There is another decibel scale in use, the sound pressure level, based on the ratio of the pressure amplitude to a reference pressure rather than of intensity to a reference intensity. It is used particularly where sound travels in water, and very different decibel numbers can be quoted for the same sound: ocean noise from ships may be 200 dB as a sound pressure level where the sound intensity level would be under 140 dB, and 17.7 notes that its numbers run 60 to 70 dB above the levels this text uses."
   },
   {
@@ -267,6 +338,9 @@
    "kind": "idea",
    "section": "17.4",
    "name": "The Doppler effect",
+   "terms": [
+    "Doppler effect"
+   ],
    "statement": "The Doppler effect is an alteration in the observed frequency of a sound due to motion of either the source or the observer, and the actual change in frequency is the Doppler shift. Each compression spreads out spherically from the point where it was emitted; when the source moves, the point of emission moves, so the compressions are closer together ahead of the source and farther apart behind it, and since the speed of sound in the medium is fixed, a shorter wavelength is received as a higher frequency. When the observer moves instead, the rate at which she meets the compressions changes. Relative motion toward one another raises the received frequency, motion apart lowers it, and the greater the relative speed, the greater the effect."
   },
   {
@@ -275,7 +349,15 @@
    "section": "17.4",
    "name": "Doppler shift for a moving source, $\\kfobs = \\kfsrc\\left(\\kvw/(\\kvw \\pm \\kvs)\\right)$",
    "statement": "For a stationary observer and a moving source, the frequency received is the source frequency times the ratio of the speed of sound to the speed of sound plus or minus the source's speed along the line joining them, the minus sign for motion toward the observer and the plus sign for motion away. The greater the speed of the source, the greater the effect, and the shifts toward and away are not symmetric.",
-   "eq": "eq-doppler-moving-source"
+   "forms": [
+    {
+     "id": "eq-doppler-moving-source",
+     "latex": "f_{\\text{obs}} = f_{\\text{s}}\\left(\\frac{v_{\\text{w}}}{v_{\\text{w}} \\pm v_{\\text{s}}}\\right)",
+     "ktex": "\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)",
+     "condition": "stationary observer, moving source; minus for motion toward the observer, plus for motion away",
+     "anchor": "17.4-doppler-shift"
+    }
+   ]
   },
   {
    "id": "doppler-shift-moving-observer",
@@ -283,7 +365,15 @@
    "section": "17.4",
    "name": "Doppler shift for a moving observer, $\\kfobs = \\kfsrc\\left((\\kvw \\pm \\kvobs)/\\kvw\\right)$",
    "statement": "For a stationary source and a moving observer, the frequency received is the source frequency times the ratio of the speed of sound plus or minus the observer's speed to the speed of sound, the plus sign for motion toward the source and the minus sign for motion away. The form differs from the moving-source case because the observer passes through more or fewer crests of a wave whose wavelength is unchanged.",
-   "eq": "eq-doppler-moving-observer"
+   "forms": [
+    {
+     "id": "eq-doppler-moving-observer",
+     "latex": "f_{\\text{obs}} = f_{\\text{s}}\\left(\\frac{v_{\\text{w}} \\pm v_{\\text{obs}}}{v_{\\text{w}}}\\right)",
+     "ktex": "\\kfobs = \\kfsrc\\left(\\frac{\\kvw \\pm \\kvobs}{\\kvw}\\right)",
+     "condition": "stationary source, moving observer; plus for motion toward the source, minus for motion away",
+     "anchor": "17.4-doppler-shift"
+    }
+   ]
   },
   {
    "id": "doppler-shift-source-and-observer",
@@ -291,13 +381,25 @@
    "section": "17.4",
    "name": "Doppler shift when both source and observer move",
    "statement": "When both move relative to the air there are two Doppler shifts, one for the moving observer and one for the moving source, and the received frequency is the product of the two factors. Source and observer carried together, as an engineer and the horn of the same train, receive the emitted frequency unchanged because the factors cancel; what matters is that they are not moving relative to each other.",
-   "eq": "eq-doppler-source-and-observer"
+   "forms": [
+    {
+     "id": "eq-doppler-source-and-observer",
+     "latex": "f_{\\text{obs}} = \\left[f_{\\text{s}}\\left(\\frac{v_{\\text{w}} \\pm v_{\\text{obs}}}{v_{\\text{w}}}\\right)\\right]\\left(\\frac{v_{\\text{w}}}{v_{\\text{w}} \\pm v_{\\text{s}}}\\right)",
+     "ktex": "\\kfobs = \\left[\\kfsrc\\left(\\frac{\\kvw \\pm \\kvobs}{\\kvw}\\right)\\right]\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)",
+     "condition": "both source and observer moving",
+     "anchor": "17.4-ex-train-horn"
+    }
+   ]
   },
   {
    "id": "sonic-boom",
    "kind": "idea",
    "section": "17.4",
    "name": "Sonic booms",
+   "symbol": "θ",
+   "terms": [
+    "sonic boom"
+   ],
    "statement": "As a source's speed approaches the speed of sound the observed frequency ahead of it approaches infinity, because each successive wave is superimposed on the previous one. If the source exceeds the speed of sound, no sound reaches an observer until the source has passed, and the waves interfere constructively along the lines of a cone: this superposition is a sonic boom, a constructive interference of sound created by an object moving faster than sound. Inside the cone the interference is mostly destructive. The faster the source, the smaller the cone's angle, and an aircraft makes two booms, one from its nose and one from its tail."
   },
   {
@@ -305,6 +407,9 @@
    "kind": "idea",
    "section": "17.4",
    "name": "Bow wakes",
+   "terms": [
+    "bow wake"
+   ],
    "statement": "Sonic booms are one example of a bow wake, the V-shaped disturbance created when a wave source moves faster than the wave propagation speed. Water waves spread in circles from the point where they are made, and a duck moving faster than they spread leaves the familiar wake; a subatomic particle moving through water faster than light moves in water leaves a cone of light called Cerenkov radiation."
   },
   {
@@ -312,6 +417,9 @@
    "kind": "definition",
    "section": "17.4",
    "name": "Doppler shift",
+   "terms": [
+    "Doppler shift"
+   ],
    "statement": "The Doppler shift is the actual change in frequency due to relative motion of source and observer."
   },
   {
@@ -340,6 +448,7 @@
    "kind": "definition",
    "section": "17.5",
    "name": "Fundamental, overtones and harmonics",
+   "symbol": "n",
    "statement": "The lowest resonant frequency of a system is its fundamental, all higher resonant frequencies are overtones, and because every resonant frequency is an integral multiple of the fundamental they are collectively called harmonics: the fundamental is the first harmonic, the first overtone the second harmonic, and so on. For a tube closed at one end the first overtone is three times the fundamental and so is the third harmonic; which overtones are present and how intense they are is what makes a trumpet's middle C differ from a clarinet's and one voice from another."
   },
   {
@@ -348,7 +457,29 @@
    "section": "17.5",
    "name": "Resonant frequencies of a tube closed at one end, $\\kfn = n\\kvw/4L$, $n = 1, 3, 5, \\ldots$",
    "statement": "With one-fourth of a wavelength in the tube at the fundamental and three-fourths at the first overtone, the pattern generalises to a single expression: the resonant frequencies of a tube closed at one end are odd multiples of the speed of sound over four times the length. They depend on the speed of sound and hence on temperature, which is why musicians bring their wind instruments to room temperature before playing them together.",
-   "eq": "eq-closed-tube-harmonics"
+   "forms": [
+    {
+     "id": "eq-closed-tube-harmonics",
+     "latex": "f_n = n\\frac{v_{\\text{w}}}{4L},\\ n = 1, 3, 5, \\ldots",
+     "ktex": "\\kfn = n\\frac{\\kvw}{4L},\\ n = 1, 3, 5, \\ldots",
+     "condition": "tube closed at one end",
+     "anchor": "17.5-closed-tube"
+    },
+    {
+     "id": "eq-closed-tube-fundamental",
+     "latex": "f = \\frac{v_{\\text{w}}}{\\lambda} = \\frac{v_{\\text{w}}}{4L}",
+     "ktex": "\\kf = \\frac{\\kvw}{\\klam} = \\frac{\\kvw}{4L}",
+     "condition": "tube closed at one end, λ = 4L",
+     "anchor": "17.5-closed-tube"
+    },
+    {
+     "id": "eq-closed-tube-first-overtone",
+     "latex": "f' = 3\\frac{v_{\\text{w}}}{4L} = 3f",
+     "ktex": "\\kfprime = 3\\frac{\\kvw}{4L} = 3\\kf",
+     "condition": "tube closed at one end, λ′ = 4L/3",
+     "anchor": "17.5-closed-tube"
+    }
+   ]
   },
   {
    "id": "open-tube-resonances",
@@ -356,7 +487,15 @@
    "section": "17.5",
    "name": "Resonant frequencies of a tube open at both ends, $\\kfn = n\\kvw/2L$, $n = 1, 2, 3, \\ldots$",
    "statement": "A tube open at both ends has maximum air displacements at both ends, so its resonant frequencies are all integer multiples of the speed of sound over twice the length. Its fundamental is twice what it would be if the tube were closed at one end, and it has a different spectrum of overtones, which is why two tubes with the same fundamental, one open and one closed, sound different when played.",
-   "eq": "eq-open-tube-harmonics"
+   "forms": [
+    {
+     "id": "eq-open-tube-harmonics",
+     "latex": "f_n = n\\frac{v_{\\text{w}}}{2L},\\ n = 1, 2, 3, \\ldots",
+     "ktex": "\\kfn = n\\frac{\\kvw}{2L},\\ n = 1, 2, 3, \\ldots",
+     "condition": "tube open at both ends",
+     "anchor": "17.5-open-tube"
+    }
+   ]
   },
   {
    "id": "tube-length-from-resonance",
@@ -364,7 +503,15 @@
    "section": "17.5",
    "name": "Finding a tube's length or frequency from the speed of sound",
    "statement": "To find the length of a tube that sounds a given fundamental, or the frequency a given length sounds, the speed of sound on the day is found first from the air temperature, and the resonance relation for the tube's kind of ends is then solved for the unknown. The same reckoning gives the range of fundamentals of the ear canal and the fraction by which an instrument's frequencies change between a cold and a warm room.",
-   "eq": "eq-tube-length"
+   "forms": [
+    {
+     "id": "eq-tube-length",
+     "latex": "L = \\frac{v_{\\text{w}}}{4f_1}",
+     "ktex": "L = \\frac{\\kvw}{4\\kfone}",
+     "condition": "tube closed at one end",
+     "anchor": "17.5-closed-tube"
+    }
+   ]
   },
   {
    "id": "sounding-box-resonance",
@@ -378,6 +525,9 @@
    "kind": "definition",
    "section": "17.5",
    "name": "Antinode",
+   "terms": [
+    "antinode"
+   ],
    "statement": "An antinode is a point of maximum displacement in a standing wave. In a tube it lies at an open end, where the air moves freely."
   },
   {
@@ -385,6 +535,10 @@
    "kind": "definition",
    "section": "17.5",
    "name": "Node",
+   "terms": [
+    "nodes",
+    "node"
+   ],
    "statement": "A node is a point of zero displacement in a standing wave. In a tube it lies at a closed end, where the air cannot move."
   },
   {
@@ -392,6 +546,10 @@
    "kind": "definition",
    "section": "17.5",
    "name": "Fundamental",
+   "terms": [
+    "fundamental frequency",
+    "fundamental"
+   ],
    "statement": "The fundamental is the lowest-frequency resonance of a system."
   },
   {
@@ -399,6 +557,9 @@
    "kind": "definition",
    "section": "17.5",
    "name": "Overtones",
+   "terms": [
+    "overtones"
+   ],
    "statement": "Overtones are all the resonant frequencies of a system higher than the fundamental."
   },
   {
@@ -406,6 +567,9 @@
    "kind": "definition",
    "section": "17.5",
    "name": "Harmonics",
+   "terms": [
+    "harmonics"
+   ],
    "statement": "Harmonics is the term used to refer collectively to the fundamental and its overtones, each an integral multiple of the fundamental. The fundamental is the first harmonic."
   },
   {
@@ -427,6 +591,9 @@
    "kind": "definition",
    "section": "17.6",
    "name": "Loudness and its dependence on frequency",
+   "terms": [
+    "loudness"
+   ],
    "statement": "The perception of intensity is loudness. At a given frequency a difference of about 1 dB can be discerned and a change of 3 dB is easily noticed, but loudness is not related to intensity alone: the ear has its maximum sensitivity between 2000 and 5000 Hz, so sounds there seem louder than sounds at 500 or 10,000 Hz of the same intensity, and sounds near the extremes of the hearing range seem less loud still. The ear responds over a range of a trillion in intensity, which very few instruments can match."
   },
   {
@@ -434,6 +601,10 @@
    "kind": "definition",
    "section": "17.6",
    "name": "Timbre, tone and note",
+   "terms": [
+    "timbre",
+    "tone"
+   ],
    "statement": "When a violin and a piano play the same middle C there is no mistaking one for the other, because each produces a distinctive set of frequencies and intensities. Our perception of these combinations is tone quality, or timbre, described by words such as dull, brilliant, warm or rich; it is more subjective than loudness or pitch and takes the subject into perceptual psychology. A note is the basic unit of music with a specific name, and combinations of notes constitute music."
   },
   {
@@ -462,6 +633,9 @@
    "kind": "definition",
    "section": "17.6",
    "name": "The phon",
+   "terms": [
+    "phon"
+   ],
    "statement": "The phon is the numerical unit of loudness. A sound's loudness in phons is the intensity level in decibels of a 1000 Hz tone that sounds equally loud, so at 1000 Hz phons and decibels are numerically equal."
   },
   {
@@ -469,6 +643,9 @@
    "kind": "definition",
    "section": "17.6",
    "name": "Note",
+   "terms": [
+    "note"
+   ],
    "statement": "A note is a basic unit of music with a specific name, such as middle C, and notes are combined to make tunes."
   },
   {
@@ -476,6 +653,9 @@
    "kind": "definition",
    "section": "17.6",
    "name": "Ultrasound",
+   "terms": [
+    "ultrasound"
+   ],
    "statement": "Ultrasound is sound with frequencies above 20,000 Hz, the top of the range of normal human hearing. The ear does not perceive it."
   },
   {
@@ -483,6 +663,9 @@
    "kind": "definition",
    "section": "17.6",
    "name": "Infrasound",
+   "terms": [
+    "infrasound"
+   ],
    "statement": "Infrasound is sound with frequencies below 20 Hz, the bottom of the range of normal human hearing. The ear does not perceive it, though it can sometimes be felt as vibrations."
   },
   {
@@ -497,16 +680,37 @@
    "kind": "definition",
    "section": "17.7",
    "name": "Acoustic impedance, $Z = \\krho\\kv$",
+   "symbol": "Z",
+   "terms": [
+    "acoustic impedance"
+   ],
    "statement": "Reflections at boundaries between two media occur because of differences in their acoustic impedance, the product of a medium's density and the speed of sound through it, in kg/(m²·s). The acoustic impedances of soft tissues do not vary much, but there is a big difference between soft tissue and air and between soft tissue and bone, which is why those boundaries reflect so strongly.",
-   "eq": "eq-acoustic-impedance"
+   "forms": [
+    {
+     "id": "eq-acoustic-impedance",
+     "latex": "Z = \\rho v",
+     "ktex": "Z = \\krho\\kv",
+     "anchor": "17.7-impedance"
+    }
+   ]
   },
   {
    "id": "intensity-reflection-coefficient",
    "kind": "result",
    "section": "17.7",
    "name": "Intensity reflection coefficient, $a = (Z_2 - Z_1)^2/(Z_1 + Z_2)^2$",
+   "symbol": "a_refl",
+   "terms": [
+    "intensity reflection coefficient"
+   ],
    "statement": "At a boundary between media of different acoustic impedance some of the wave energy is reflected and some transmitted, and the greater the difference in impedance the greater the reflection. The intensity reflection coefficient is the ratio of the reflected intensity to the incident intensity; it is zero, total transmission, when the two impedances are the same, and an impedance match is what couples sound efficiently from one medium into another. An ultrasound image is made by tracking these reflections and mapping their intensity in a plane.",
-   "eq": "eq-intensity-reflection-coefficient"
+   "forms": [
+    {
+     "id": "eq-intensity-reflection-coefficient",
+     "latex": "a = \\frac{(Z_2 - Z_1)^2}{(Z_1 + Z_2)^2}",
+     "anchor": "17.7-reflection"
+    }
+   ]
   },
   {
    "id": "ultrasound-imaging-resolution",
@@ -520,8 +724,18 @@
    "kind": "result",
    "section": "17.7",
    "name": "Doppler-shifted ultrasound and its beat frequency, $\\kfB = |\\kfobs - \\kfsrc|$",
+   "terms": [
+    "Doppler-shifted ultrasound"
+   ],
    "statement": "Ultrasound reflected from moving blood or a beating fetal heart is Doppler shifted twice: the reflector receives a shifted frequency as a moving observer and then returns it as a moving source, and the magnitude of the shift is directly proportional to the reflector's velocity. The echo is superimposed on the broadcast frequency to produce beats, and the beat frequency, the absolute difference of the two, is easy to measure where the shift itself, a few hundred hertz out of a couple of megahertz, is not, is unaffected by a drift in the broadcast frequency, and falls in the audible range. Doppler radar measures wind, aircraft and car speeds by the same principle.",
-   "eq": "eq-beat-frequency-echo"
+   "forms": [
+    {
+     "id": "eq-beat-frequency-echo",
+     "latex": "f_{\\text{B}} = |f_{\\text{obs}} - f_{\\text{s}}|",
+     "ktex": "\\kfB = |\\kfobs - \\kfsrc|",
+     "anchor": "17.7-doppler"
+    }
+   ]
   }
  ],
  "concept_prereqs": [

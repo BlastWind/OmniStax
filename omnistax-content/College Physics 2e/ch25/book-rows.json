@@ -17,6 +17,9 @@
    "kind": "definition",
    "section": "25.1",
    "name": "A ray, a straight line that light travels along",
+   "terms": [
+    "ray"
+   ],
    "statement": "A ray is a straight line that originates at some point. Light travels in straight lines, and modeling it as a bundle of rays lets us describe mirrors, lenses and images with nothing more than geometry and simple trigonometry."
   },
   {
@@ -38,6 +41,9 @@
    "kind": "definition",
    "section": "25.1",
    "name": "Geometric optics, and its two laws",
+   "terms": [
+    "geometric optics"
+   ],
    "statement": "Geometric optics is the part of optics in which the ray aspect of light dominates, so that geometry and simple trigonometry describe light fully. Two laws govern it: the law of reflection, for light that bounces off matter, and the law of refraction, for light that passes through it."
   },
   {
@@ -45,8 +51,17 @@
    "kind": "axiom",
    "section": "25.2",
    "name": "The law of reflection, $\\theta_{\\text{r}} = \\theta_{\\text{i}}$",
+   "terms": [
+    "law of reflection"
+   ],
    "statement": "The angle of reflection equals the angle of incidence. Both angles are measured from the perpendicular to the surface at the point where the ray strikes it, not from the surface itself.",
-   "eq": "eq-law-of-reflection"
+   "forms": [
+    {
+     "id": "eq-law-of-reflection",
+     "latex": "\\theta_{\\text{r}} = \\theta_{\\text{i}}",
+     "anchor": "25.2-law-of-reflection"
+    }
+   ]
   },
   {
    "id": "specular-and-diffuse-reflection",
@@ -67,6 +82,9 @@
    "kind": "definition",
    "section": "25.2",
    "name": "Mirror",
+   "terms": [
+    "mirror"
+   ],
    "statement": "A mirror is a smooth surface that reflects light at specific angles, forming an image of the person or object in front of it."
   },
   {
@@ -74,6 +92,7 @@
    "kind": "definition",
    "section": "25.2",
    "name": "Angle of incidence, $\\theta_{\\text{i}}$",
+   "symbol": "θ_1",
    "statement": "The angle of incidence is the angle between an incoming ray and the perpendicular to the surface at the point where the ray strikes it."
   },
   {
@@ -81,6 +100,7 @@
    "kind": "definition",
    "section": "25.2",
    "name": "Angle of reflection, $\\theta_{\\text{r}}$",
+   "symbol": "θ_r",
    "statement": "The angle of reflection is the angle between a reflected ray and the perpendicular to the surface at the point where the ray strikes it."
   },
   {
@@ -88,6 +108,9 @@
    "kind": "definition",
    "section": "25.3",
    "name": "Refraction, the change of direction when light passes from one material into another",
+   "terms": [
+    "refraction"
+   ],
    "statement": "Refraction is the changing of a light ray's direction when it passes through variations in matter. It makes a fish appear to be in two places at once, makes a pool look shallower than it is, and makes a lens work."
   },
   {
@@ -95,16 +118,38 @@
    "kind": "definition",
    "section": "25.3",
    "name": "The speed of light in a vacuum, $\\kc = 3.00 \\times 10^{8}$ m/s",
+   "symbol": "c",
+   "terms": [
+    "speed of light"
+   ],
    "statement": "The speed of light in a vacuum, $c = 2.99792458 \\times 10^{8}$ m/s, is fixed by definition and is one of the basic physical quantities. It does not depend on the motion of the source or the observer, and light never travels faster than this.",
-   "eq": "eq-speed-of-light"
+   "forms": [
+    {
+     "id": "eq-speed-of-light",
+     "latex": "c = 2.99792458 \\times 10^{8}\\;\\text{m/s} \\approx 3.00 \\times 10^{8}\\;\\text{m/s}",
+     "ktex": "\\kc = 2.99792458 \\times 10^{8}\\;\\text{m/s} \\approx 3.00 \\times 10^{8}\\;\\text{m/s}",
+     "anchor": "25.3-speed-of-light"
+    }
+   ]
   },
   {
    "id": "index-of-refraction",
    "kind": "definition",
    "section": "25.3",
    "name": "Index of refraction, $n = \\kc/\\kv$",
+   "symbol": "n",
+   "terms": [
+    "index of refraction"
+   ],
    "statement": "The index of refraction of a material is the speed of light in a vacuum divided by its speed in the material, so a large index means a slow medium. Because light is never faster in matter than in a vacuum, the index is always one or greater, and the indices of gases are so close to one that we take them to be one.",
-   "eq": "eq-index-of-refraction"
+   "forms": [
+    {
+     "id": "eq-index-of-refraction",
+     "latex": "n = \\frac{c}{v}",
+     "ktex": "n = \\frac{\\kc}{\\kv}",
+     "anchor": "25.3-speed-of-light"
+    }
+   ]
   },
   {
    "id": "speed-in-a-medium-from-the-index",
@@ -112,7 +157,14 @@
    "section": "25.3",
    "name": "Find the speed of light in a material from its index of refraction",
    "statement": "Rearranging $n = c/v$ into $v = c/n$ gives the speed of light in a material from its index of refraction, which tells how much slower light is in water or glass than in air.",
-   "eq": "eq-speed-from-index"
+   "forms": [
+    {
+     "id": "eq-speed-from-index",
+     "latex": "v = \\frac{c}{n}",
+     "ktex": "\\kv = \\frac{\\kc}{n}",
+     "anchor": "25.3-speed-of-light"
+    }
+   ]
   },
   {
    "id": "snells-law",
@@ -120,7 +172,23 @@
    "section": "25.3",
    "name": "The law of refraction, $n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2$",
    "statement": "The law of refraction, or Snell's law, ties the two angles a ray makes with the perpendicular to the indices of refraction of the two media, $n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2$, so that any three of the four quantities give the fourth.",
-   "eq": "eq-snells-law"
+   "forms": [
+    {
+     "id": "eq-snells-law",
+     "latex": "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2",
+     "anchor": "25.3-law-of-refraction"
+    },
+    {
+     "id": "eq-index-from-angles",
+     "latex": "n_2 = n_1 \\frac{\\sin\\theta_1}{\\sin\\theta_2}",
+     "anchor": "25.3-law-of-refraction"
+    },
+    {
+     "id": "eq-refracted-angle",
+     "latex": "\\sin\\theta_2 = \\frac{n_1}{n_2}\\sin\\theta_1",
+     "anchor": "25.3-law-of-refraction"
+    }
+   ]
   },
   {
    "id": "bending-toward-or-away-from-the-normal",
@@ -134,14 +202,14 @@
    "kind": "skill",
    "section": "25.3",
    "name": "Find an index of refraction or a refracted angle from Snell's law",
-   "statement": "Given both angles, Snell's law yields the index of refraction of an unknown medium, which is how a measurement identifies a substance. Given the two indices and the incident angle, it yields the refracted angle.",
-   "eq": "eq-index-from-angles"
+   "statement": "Given both angles, Snell's law yields the index of refraction of an unknown medium, which is how a measurement identifies a substance. Given the two indices and the incident angle, it yields the refracted angle."
   },
   {
    "id": "angle-of-refraction",
    "kind": "definition",
    "section": "25.3",
    "name": "Angle of refraction, $\\theta_2$",
+   "symbol": "θ_2",
    "statement": "The angle of refraction is the angle between a refracted ray and the perpendicular to the surface, in the medium the ray crosses into."
   },
   {
@@ -149,6 +217,10 @@
    "kind": "definition",
    "section": "25.4",
    "name": "The critical angle, the incident angle that refracts a ray along the surface",
+   "symbol": "θ_c",
+   "terms": [
+    "critical angle"
+   ],
    "statement": "The critical angle is the incident angle that produces an angle of refraction of 90°. It exists only for light going from a medium of larger index into one of smaller index, where the ray bends away from the perpendicular."
   },
   {
@@ -157,7 +229,18 @@
    "section": "25.4",
    "name": "The critical angle from the two indices, $\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)$",
    "statement": "Putting a refracted angle of 90° into Snell's law leaves $n_1 \\sin\\theta_1 = n_2$, so the critical angle is $\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)$, and it exists only when $n_1$ is larger than $n_2$. The critical angle is a property of a pair of materials, not of one.",
-   "eq": "eq-critical-angle"
+   "forms": [
+    {
+     "id": "eq-critical-angle",
+     "latex": "\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)\\;\\text{for}\\;n_1 > n_2",
+     "anchor": "25.4-critical-angle"
+    },
+    {
+     "id": "eq-critical-angle-condition",
+     "latex": "n_1 \\sin\\theta_1 = n_2",
+     "anchor": "25.4-critical-angle"
+    }
+   ]
   },
   {
    "id": "total-internal-reflection",
@@ -178,6 +261,9 @@
    "kind": "idea",
    "section": "25.4",
    "name": "Fiber optics, light piped by total internal reflection",
+   "terms": [
+    "fiber optics"
+   ],
    "statement": "Fiber optics is the transmission of light down fibers of plastic or glass by total internal reflection. Light entering a thin fiber strikes its inside surface at angles greater than the critical angle and follows the fiber even around corners, and a cladding of lower index keeps the light in one fiber from crossing into its neighbor."
   },
   {
@@ -185,6 +271,9 @@
    "kind": "idea",
    "section": "25.4",
    "name": "A corner reflector sends light back the way it came",
+   "terms": [
+    "corner reflector"
+   ],
    "statement": "A corner reflector is two mutually perpendicular reflecting surfaces, which return light exactly parallel to the direction from which it came, whatever the angle of incidence. Made of glass rather than silvered mirrors, it is perfectly efficient, because the reflections are total."
   },
   {
@@ -199,6 +288,9 @@
    "kind": "definition",
    "section": "25.4",
    "name": "Zircon",
+   "terms": [
+    "zircon"
+   ],
    "statement": "Zircon is a natural gemstone with a large index of refraction, about 1.9, which makes it sparkle in the way a diamond does."
   },
   {
@@ -206,6 +298,9 @@
    "kind": "definition",
    "section": "25.5",
    "name": "Dispersion, the spreading of white light into its spectrum",
+   "terms": [
+    "dispersion"
+   ],
    "statement": "Dispersion is the spreading of white light into its full spectrum of wavelengths. More generally, it occurs whenever a process changes the direction of light in a way that depends on wavelength, and it can happen to any kind of wave."
   },
   {
@@ -234,6 +329,9 @@
    "kind": "idea",
    "section": "25.5",
    "name": "Rainbow",
+   "terms": [
+    "rainbow"
+   ],
    "statement": "A rainbow is the dispersion of sunlight into a continuous distribution of colors according to wavelength, produced by the refraction and reflection of sunlight by water droplets in the sky."
   },
   {
@@ -255,8 +353,19 @@
    "kind": "definition",
    "section": "25.6",
    "name": "The power of a lens, $P = 1/\\kffoc$, in diopters",
+   "symbol": "P_lens",
+   "terms": [
+    "power"
+   ],
    "statement": "The power of a lens is the inverse of its focal length, $P = 1/f$, measured in diopters when the focal length is in meters. A short focal length is a powerful lens that bends light strongly. This power has nothing to do with the power in watts of Chapter 7.",
-   "eq": "eq-lens-power"
+   "forms": [
+    {
+     "id": "eq-lens-power",
+     "latex": "P = \\frac{1}{f}",
+     "ktex": "P = \\frac{1}{\\kffoc}",
+     "anchor": "25.6-lens-power"
+    }
+   ]
   },
   {
    "id": "ray-tracing-rules-for-lenses",
@@ -278,15 +387,45 @@
    "section": "25.6",
    "name": "The thin lens equation, $1/\\kdobj + 1/\\kdimg = 1/\\kffoc$",
    "statement": "The thin lens equation relates the object distance, the image distance and the focal length, so that any one of the three follows from the other two. A negative image distance means the image is virtual and on the same side as the object.",
-   "eq": "eq-thin-lens"
+   "forms": [
+    {
+     "id": "eq-thin-lens",
+     "latex": "\\frac{1}{d_{\\text{o}}} + \\frac{1}{d_{\\text{i}}} = \\frac{1}{f}",
+     "ktex": "\\frac{1}{\\kdobj} + \\frac{1}{\\kdimg} = \\frac{1}{\\kffoc}",
+     "anchor": "25.6-thin-lens-equations"
+    },
+    {
+     "id": "eq-thin-lens-rearranged",
+     "latex": "\\frac{1}{d_{\\text{i}}} = \\frac{1}{f} - \\frac{1}{d_{\\text{o}}}",
+     "ktex": "\\frac{1}{\\kdimg} = \\frac{1}{\\kffoc} - \\frac{1}{\\kdobj}",
+     "anchor": "25.6-thin-lens-equations"
+    },
+    {
+     "id": "eq-image-distance-solved",
+     "latex": "d_{\\text{i}} = \\frac{f d_{\\text{o}}}{d_{\\text{o}} - f}",
+     "ktex": "\\kdimg = \\frac{\\kffoc \\kdobj}{\\kdobj - \\kffoc}",
+     "anchor": "25.6-thin-lens-equations"
+    }
+   ]
   },
   {
    "id": "magnification",
    "kind": "definition",
    "section": "25.6",
    "name": "Magnification, $\\khimg/\\khobj = -\\kdimg/\\kdobj = m$",
+   "symbol": "m",
+   "terms": [
+    "magnification"
+   ],
    "statement": "The magnification is the ratio of image height to object height, and it equals minus the ratio of image distance to object distance. A negative magnification means the image is inverted, and a magnitude greater or less than one says whether it is enlarged or reduced.",
-   "eq": "eq-magnification"
+   "forms": [
+    {
+     "id": "eq-magnification",
+     "latex": "\\frac{h_{\\text{i}}}{h_{\\text{o}}} = -\\frac{d_{\\text{i}}}{d_{\\text{o}}} = m",
+     "ktex": "\\frac{\\khimg}{\\khobj} = -\\frac{\\kdimg}{\\kdobj} = m",
+     "anchor": "25.6-thin-lens-equations"
+    }
+   ]
   },
   {
    "id": "three-cases-of-lens-images",
@@ -300,14 +439,14 @@
    "kind": "skill",
    "section": "25.6",
    "name": "Solve a lens problem with the thin lens equations",
-   "statement": "This is what the section is for. The reader identifies the case from the sign of the focal length and the object distance, solves the thin lens equation for the unknown distance, remembering to invert $1/d_{\\text{i}}$ at the end, and then takes the magnification from the two distances. The last step is to check the answer against the case: a case 2 image must come out virtual, upright and enlarged, and an answer that does not is a mistake in the arithmetic rather than a discovery.",
-   "eq": "eq-image-distance-solved"
+   "statement": "This is what the section is for. The reader identifies the case from the sign of the focal length and the object distance, solves the thin lens equation for the unknown distance, remembering to invert $1/d_{\\text{i}}$ at the end, and then takes the magnification from the two distances. The last step is to check the answer against the case: a case 2 image must come out virtual, upright and enlarged, and an answer that does not is a mistake in the arithmetic rather than a discovery."
   },
   {
    "id": "object-distance",
    "kind": "definition",
    "section": "25.6",
    "name": "Object distance, $\\kdobj$",
+   "symbol": "d_obj",
    "statement": "The object distance is the distance of an object from the center of a lens or mirror."
   },
   {
@@ -315,6 +454,7 @@
    "kind": "definition",
    "section": "25.6",
    "name": "Image distance, $\\kdimg$",
+   "symbol": "d_img",
    "statement": "The image distance is the distance of an image from the center of a lens or mirror. It is positive for a real image and negative for a virtual one."
   },
   {
@@ -322,6 +462,9 @@
    "kind": "definition",
    "section": "25.6",
    "name": "Converging lens",
+   "terms": [
+    "converging lens"
+   ],
    "statement": "A converging lens is a convex lens in which light rays that enter it parallel to its axis converge at a single point on the opposite side."
   },
   {
@@ -329,6 +472,9 @@
    "kind": "definition",
    "section": "25.6",
    "name": "Diverging lens",
+   "terms": [
+    "diverging lens"
+   ],
    "statement": "A diverging lens is a concave lens in which light rays that enter it parallel to its axis bend away, or diverge, from its axis."
   },
   {
@@ -336,6 +482,9 @@
    "kind": "definition",
    "section": "25.6",
    "name": "Focal point F",
+   "terms": [
+    "focal point"
+   ],
    "statement": "For a converging lens or mirror, the focal point is the point at which converging light rays cross; for a diverging lens or mirror, it is the point from which diverging light rays appear to originate."
   },
   {
@@ -343,6 +492,10 @@
    "kind": "definition",
    "section": "25.6",
    "name": "Focal length $\\kffoc$",
+   "symbol": "f_focal",
+   "terms": [
+    "focal length"
+   ],
    "statement": "The focal length is the distance from the center of a lens or curved mirror to its focal point. It is positive for a converging lens or mirror and negative for a diverging one."
   },
   {
@@ -350,6 +503,9 @@
    "kind": "definition",
    "section": "25.6",
    "name": "Real image",
+   "terms": [
+    "real image"
+   ],
    "statement": "A real image is an image that can be projected: the rays from a point on the object actually cross there, so a screen can catch it."
   },
   {
@@ -357,6 +513,9 @@
    "kind": "definition",
    "section": "25.6",
    "name": "Virtual image",
+   "terms": [
+    "virtual image"
+   ],
    "statement": "A virtual image is an image that cannot be projected: the rays from a point on the object only appear to come from it."
   },
   {
@@ -372,7 +531,14 @@
    "section": "25.7",
    "name": "The focal length of a spherical mirror, $\\kffoc = \\kRcur/2$",
    "statement": "A spherical mirror that is small compared with its radius of curvature brings parallel rays to a focus halfway between its surface and its center of curvature, so its focal length is half the radius, $f = R/2$. The power $P = 1/f$ is defined for a mirror exactly as for a lens.",
-   "eq": "eq-mirror-focal-length"
+   "forms": [
+    {
+     "id": "eq-mirror-focal-length",
+     "latex": "f = \\frac{R}{2}",
+     "ktex": "\\kffoc = \\frac{\\kRcur}{2}",
+     "anchor": "25.7-mirror-focal-length"
+    }
+   ]
   },
   {
    "id": "converging-and-diverging-mirrors",
@@ -400,8 +566,7 @@
    "kind": "skill",
    "section": "25.7",
    "name": "Solve a mirror problem with the thin lens equations",
-   "statement": "For a mirror small compared with its radius of curvature, the thin lens equation and the magnification hold unchanged, with the focal length equal to half the radius of curvature and signed by the kind of mirror. Find the focal length, solve for the unknown distance, take the magnification, and check the answer against the case.",
-   "eq": "eq-thin-lens"
+   "statement": "For a mirror small compared with its radius of curvature, the thin lens equation and the magnification hold unchanged, with the focal length equal to half the radius of curvature and signed by the kind of mirror. Find the focal length, solve for the unknown distance, take the magnification, and check the answer against the case."
   },
   {
    "id": "mirrors-and-lenses-are-analogous",
@@ -415,6 +580,7 @@
    "kind": "definition",
    "section": "25.7",
    "name": "Radius of curvature, $\\kRcur$",
+   "symbol": "R_curv",
    "statement": "The radius of curvature of a spherical mirror is the radius of the sphere of which the mirror is a part, the distance from the mirror's surface to its center of curvature."
   },
   {
@@ -422,6 +588,9 @@
    "kind": "definition",
    "section": "25.7",
    "name": "Converging mirror",
+   "terms": [
+    "converging mirror"
+   ],
    "statement": "A converging mirror is a concave mirror in which light rays that strike it parallel to its axis converge at one or more points along the axis."
   },
   {
@@ -429,6 +598,9 @@
    "kind": "definition",
    "section": "25.7",
    "name": "Diverging mirror",
+   "terms": [
+    "diverging mirror"
+   ],
    "statement": "A diverging mirror is a convex mirror in which light rays that strike it parallel to its axis bend away, or diverge, from its axis."
   }
  ],

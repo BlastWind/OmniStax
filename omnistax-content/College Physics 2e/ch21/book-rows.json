@@ -181,6 +181,9 @@
    "kind": "definition",
    "section": "21.1",
    "name": "Resistors in series carry the same current",
+   "terms": [
+    "series"
+   ],
    "statement": "Resistors are in series whenever the flow of charge must pass through them one after the other, so that there is only one path and every resistor carries the same current. The book's own example is a person holding a screwdriver: the shaft, the handle, the body and the shoes are four resistances the same current must cross in turn. Recognizing the connection is what decides which of the two combination rules applies, so it comes before either of them."
   },
   {
@@ -189,7 +192,14 @@
    "section": "21.1",
    "name": "Resistance in series, $\\kRess = \\kResone + \\kRestwo + \\kResthree + \\ldots$",
    "statement": "Since all of the current must pass through each resistor, it meets the resistance of each in turn, and the resistances simply add. The result follows from conservation of energy: the energy the source gives a charge is the energy the resistors take from it, so the source's voltage is the sum of the voltage drops, and dividing by the common current leaves the sum of the resistances. It is the rule that says a longer cord or a thicker sole reduces the current.",
-   "eq": "eq-series-resistance"
+   "forms": [
+    {
+     "id": "eq-series-resistance",
+     "latex": "R_{\\text{s}} = R_1 + R_2 + R_3 + \\ldots",
+     "ktex": "\\kRess = \\kResone + \\kRestwo + \\kResthree + \\ldots",
+     "anchor": "21.1-series"
+    }
+   ]
   },
   {
    "id": "voltage-divides-in-series",
@@ -197,13 +207,23 @@
    "section": "21.1",
    "name": "Voltages divide in series, $\\kV = \\kVone + \\kVtwo + \\kVthree$",
    "statement": "The energy supplied to a charge by the source is the energy the resistors take from it, since there is nowhere else for the energy to go. Writing that energy as $qV$ on both sides and canceling the charge leaves the voltage of the source as the sum of the voltage drops across the resistors. Individual resistors in series do not each get the source's whole voltage; they divide it in proportion to their resistances.",
-   "eq": "eq-series-voltage"
+   "forms": [
+    {
+     "id": "eq-series-voltage",
+     "latex": "V = V_1 + V_2 + V_3",
+     "ktex": "\\kV = \\kVone + \\kVtwo + \\kVthree",
+     "anchor": "21.1-series"
+    }
+   ]
   },
   {
    "id": "parallel-connection",
    "kind": "definition",
    "section": "21.1",
    "name": "Resistors in parallel all have the source's full voltage",
+   "terms": [
+    "parallel"
+   ],
    "statement": "Resistors are in parallel when each one is connected directly to the voltage source by wires of negligible resistance, so that each has the full voltage of the source across it and draws the current it would draw if it were alone. That is why a house, a car and every power distribution system is wired in parallel: each device gets the same voltage and works independently of the others."
   },
   {
@@ -212,7 +232,14 @@
    "section": "21.1",
    "name": "Resistance in parallel, $1/\\kResp = 1/\\kResone + 1/\\kRestwo + 1/\\kResthree + \\ldots$",
    "statement": "Each branch has the source's full voltage, so the current in each is that voltage divided by its own resistance, and conservation of charge makes the source's current the sum of the branch currents. Factoring the voltage out of the sum leaves the reciprocals of the resistances adding, which is the rule for a parallel connection. Adding a branch adds a path, so it always raises the current and lowers the total resistance.",
-   "eq": "eq-parallel-resistance"
+   "forms": [
+    {
+     "id": "eq-parallel-resistance",
+     "latex": "\\frac{1}{R_{\\text{p}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} + \\ldots",
+     "ktex": "\\frac{1}{\\kResp} = \\frac{1}{\\kResone} + \\frac{1}{\\kRestwo} + \\frac{1}{\\kResthree} + \\ldots",
+     "anchor": "21.1-parallel"
+    }
+   ]
   },
   {
    "id": "current-divides-in-parallel",
@@ -220,7 +247,14 @@
    "section": "21.1",
    "name": "Currents divide in parallel, $\\kIcur = \\kIone + \\kItwo + \\kIthree$",
    "statement": "Charge is conserved, so whatever current the source drives out must be exactly the current the branches carry between them. Parallel resistors do not each get the total current; they divide it, and the smallest resistance takes the largest share. This is the statement conservation of charge makes about a parallel connection, as the sum of the voltages is the statement conservation of energy makes about a series one.",
-   "eq": "eq-parallel-current"
+   "forms": [
+    {
+     "id": "eq-parallel-current",
+     "latex": "I = I_1 + I_2 + I_3",
+     "ktex": "\\kIcur = \\kIcurone + \\kIcurtwo + \\kIcurthree",
+     "anchor": "21.1-parallel"
+    }
+   ]
   },
   {
    "id": "parallel-resistance-least",
@@ -235,7 +269,14 @@
    "section": "21.1",
    "name": "Reduce a network of series and parallel parts to one resistance",
    "statement": "More complex connections of resistors are often just combinations of series and parallel parts, and wire resistance in series with parallel devices makes the case a common one. The parts are identified, each is replaced by its equivalent, and the replacement is repeated until a single resistance is left. The process is more time consuming than difficult, and it is what lets Ohm's law be applied to a circuit that is not one loop.",
-   "eq": "eq-mixed-total-resistance"
+   "forms": [
+    {
+     "id": "eq-mixed-total-resistance",
+     "latex": "R_{\\text{tot}} = R_1 + R_{\\text{p}}",
+     "ktex": "\\kRestot = \\kResone + \\kResp",
+     "anchor": "21.1-combinations"
+    }
+   ]
   },
   {
    "id": "wire-resistance-ir-drop",
@@ -249,6 +290,9 @@
    "kind": "definition",
    "section": "21.1",
    "name": "Resistor",
+   "terms": [
+    "resistor"
+   ],
    "statement": "A resistor is a component made to have a definite resistance, and in a circuit diagram every device that converts electrical energy, from a lamp to a heater, is drawn as one."
   },
   {
@@ -256,6 +300,10 @@
    "kind": "definition",
    "section": "21.2",
    "name": "Electromotive force is the potential difference of a source when no current flows",
+   "symbol": "emf",
+   "terms": [
+    "electromotive force (emf)"
+   ],
    "statement": "Every voltage source, whether it is a battery, a generator, a solar cell or a thermoelectric device, creates a potential difference that can drive current through a resistance. That potential difference, measured when no current flows, is called the electromotive force, or emf. Emf is not a force at all; it is a special type of potential difference, and its unit is the volt. It is set by the source's construction, such as the particular combination of chemicals in a battery."
   },
   {
@@ -263,6 +311,10 @@
    "kind": "definition",
    "section": "21.2",
    "name": "A real source has an internal resistance in series with its emf",
+   "symbol": "r_int",
+   "terms": [
+    "internal resistance"
+   ],
    "statement": "Every voltage source has two fundamental parts, a source of electrical energy and an internal resistance, and the two are in series. The internal resistance is the inherent resistance to the flow of current within the source itself, and the smaller it is for a given emf, the more current and the more power the source can supply. It is why a truck battery and a motorcycle battery of the same emf are not interchangeable, and it rises as a battery is depleted."
   },
   {
@@ -270,8 +322,19 @@
    "kind": "result",
    "section": "21.2",
    "name": "Terminal voltage, $\\kV = \\kemf - \\kIcur\\krint$",
+   "symbol": "V_volt",
+   "terms": [
+    "terminal voltage"
+   ],
    "statement": "The voltage measured across a source's terminals is its emf less the voltage drop across its own internal resistance, so the larger the current drawn, or the larger the internal resistance, the smaller the terminal voltage. Terminal voltage equals emf only when no current flows. This one equation explains why car lights dim gradually as a battery runs down instead of blinking off, and why a battery tester measures the voltage under a load.",
-   "eq": "eq-terminal-voltage"
+   "forms": [
+    {
+     "id": "eq-terminal-voltage",
+     "latex": "V = \\mathcal{E} - Ir",
+     "ktex": "\\kV = \\kemf - \\kIcur\\krint",
+     "anchor": "21.2-terminal"
+    }
+   ]
   },
   {
    "id": "current-with-load",
@@ -279,7 +342,14 @@
    "section": "21.2",
    "name": "Current delivered to a load, $\\kIcur = \\kemf/(\\kRload + \\krint)$",
    "statement": "The internal resistance is in series with the load, so the total resistance of the circuit is the load plus the internal resistance and Ohm's law gives the current. The smaller the internal resistance, the greater the current a source supplies to a given load. When a battery ages and its internal resistance becomes a significant fraction of the load, the current falls noticeably, which is what a worn battery in a flashlight or a starter motor shows.",
-   "eq": "eq-current-with-load"
+   "forms": [
+    {
+     "id": "eq-current-with-load",
+     "latex": "I = \\frac{\\mathcal{E}}{R_{\\text{load}} + r}",
+     "ktex": "\\kIcur = \\frac{\\kemf}{\\kRload + \\krint}",
+     "anchor": "21.2-terminal"
+    }
+   ]
   },
   {
    "id": "sources-in-series",
@@ -287,7 +357,14 @@
    "section": "21.2",
    "name": "Sources in series add their emfs and their internal resistances",
    "statement": "When voltage sources are connected in series, their emfs add algebraically and their internal resistances add, so a row of cells produces a larger total emf than one cell. Cells put into an appliance backward subtract instead of adding. The disadvantage of the series connection is that the internal resistances add too, which is what limited the author's two six-volt batteries in place of one twelve-volt battery.",
-   "eq": "eq-sources-in-series"
+   "forms": [
+    {
+     "id": "eq-sources-in-series",
+     "latex": "I = \\frac{\\mathcal{E}_1 + \\mathcal{E}_2}{r_1 + r_2 + R_{\\text{load}}}",
+     "ktex": "\\kIcur = \\frac{\\kemfone + \\kemftwo}{\\krintone + \\krinttwo + \\kRload}",
+     "anchor": "21.2-multiple-sources"
+    }
+   ]
   },
   {
    "id": "sources-in-parallel",
@@ -295,7 +372,14 @@
    "section": "21.2",
    "name": "Sources in parallel keep the emf and lower the internal resistance",
    "statement": "Two identical sources connected in parallel produce the same total emf as one of them, since each has the same potential difference, but their internal resistances are in parallel and so the total internal resistance is smaller than either. The parallel connection therefore delivers more current to a load than one source could. Some diesel cars use two twelve-volt batteries in parallel for exactly this reason: twelve volts, and enough current to turn a diesel engine.",
-   "eq": "eq-sources-in-parallel"
+   "forms": [
+    {
+     "id": "eq-sources-in-parallel",
+     "latex": "I = \\frac{\\mathcal{E}}{r_{\\text{tot}} + R_{\\text{load}}}",
+     "ktex": "\\kIcur = \\frac{\\kemf}{\\krinttot + \\kRload}",
+     "anchor": "21.2-multiple-sources"
+    }
+   ]
   },
   {
    "id": "charging-reverses-the-current",
@@ -303,7 +387,14 @@
    "section": "21.2",
    "name": "Charging a battery drives current backwards through it",
    "statement": "A battery can be recharged by passing current through it in the direction opposite to the current it supplies, which reverses its chemical reaction. To do that the charger's emf must be larger than the battery's, and the two sources are then in series with their emfs opposed, so the current is set by the difference of the emfs and the sum of the internal resistances. While a battery is charging its terminal voltage is greater than its emf, since the current in $V = \\mathcal{E} - Ir$ is now negative.",
-   "eq": "eq-sources-opposed"
+   "forms": [
+    {
+     "id": "eq-sources-opposed",
+     "latex": "I = \\frac{\\mathcal{E}_1 - \\mathcal{E}_2}{r_1 + r_2}",
+     "ktex": "\\kIcur = \\frac{\\kemfone - \\kemftwo}{\\krintone + \\krinttwo}",
+     "anchor": "21.2-multiple-sources"
+    }
+   ]
   },
   {
    "id": "battery-voltage-from-chemistry",
@@ -324,16 +415,36 @@
    "kind": "result",
    "section": "21.3",
    "name": "The junction rule, $\\kIone = \\kItwo + \\kIthree$",
+   "terms": [
+    "junction rule"
+   ],
    "statement": "Current is the flow of charge and charge is conserved, so whatever charge flows into a junction in a given time must flow out of it in the same time; charge cannot pile up at a point in a wire. The sum of the currents entering a junction therefore equals the sum of the currents leaving it. Each junction gives one equation, and together with the loop rule these equations are what determine the unknown currents in a network.",
-   "eq": "eq-junction-rule"
+   "forms": [
+    {
+     "id": "eq-junction-rule",
+     "latex": "I_1 = I_2 + I_3",
+     "ktex": "\\kIcurone = \\kIcurtwo + \\kIcurthree",
+     "anchor": "21.3-junction"
+    }
+   ]
   },
   {
    "id": "loop-rule",
    "kind": "result",
    "section": "21.3",
    "name": "The loop rule, $\\kemf = \\kIcur\\krint + \\kIcur\\kResone + \\kIcur\\kRestwo$",
+   "terms": [
+    "loop rule"
+   ],
    "statement": "Around any closed path the algebraic sum of the changes in potential must be zero, because a charge carried around the loop returns to where it started and must have the same potential energy there. Whatever energy the emf supplies is transferred into other forms by the devices in the loop, so the emf equals the sum of the $IR$ drops. Each independent loop gives one more equation, and as many independent equations as unknowns are needed to solve the circuit.",
-   "eq": "eq-loop-rule"
+   "forms": [
+    {
+     "id": "eq-loop-rule",
+     "latex": "\\mathcal{E} = Ir + IR_1 + IR_2",
+     "ktex": "\\kemf = \\kIcur\\krint + \\kIcur\\kResone + \\kIcur\\kRestwo",
+     "anchor": "21.3-loop"
+    }
+   ]
   },
   {
    "id": "loop-rule-signs",
@@ -354,6 +465,9 @@
    "kind": "result",
    "section": "21.3",
    "name": "Kirchhoff's rules",
+   "terms": [
+    "Kirchhoff’s rules"
+   ],
    "statement": "Kirchhoff's rules are the junction rule and the loop rule together, two statements of conservation that let you analyze any circuit, simple or complex."
   },
   {
@@ -361,6 +475,9 @@
    "kind": "idea",
    "section": "21.3",
    "name": "Conservation laws",
+   "terms": [
+    "conservation laws"
+   ],
    "statement": "The conservation laws require that energy and charge be conserved in a system, and in a circuit they become Kirchhoff's two rules."
   },
   {
@@ -382,6 +499,9 @@
    "kind": "definition",
    "section": "21.4",
    "name": "The galvanometer and its current sensitivity",
+   "terms": [
+    "galvanometer"
+   ],
    "statement": "The heart of most analog meters is a galvanometer, a device whose needle deflects in proportion to the current through it. Two numbers describe one: its resistance and its current sensitivity, the current that gives a full-scale deflection. A galvanometer of $50\\ \\mu\\text{A}$ sensitivity reads half scale at $25\\ \\mu\\text{A}$, and with a $25\\text{-}\\Omega$ resistance it needs only 1.25 mV across it to read full scale. Everything a voltmeter or an ammeter can do is this one device with one resistor added."
   },
   {
@@ -390,7 +510,14 @@
    "section": "21.4",
    "name": "A galvanometer in series with a large resistance is a voltmeter",
    "statement": "To read a given voltage at full scale, the total resistance of the meter must be that voltage divided by the galvanometer's current sensitivity, and since the galvanometer's own resistance is tiny by comparison, nearly all of that resistance is the one placed in series with it. The larger the voltage to be measured, the larger that resistance must be, and switching different resistances into series is how a meter gets its several scales.",
-   "eq": "eq-voltmeter-resistance"
+   "forms": [
+    {
+     "id": "eq-voltmeter-resistance",
+     "latex": "R_{\\text{tot}} = R + r = \\frac{V}{I}",
+     "ktex": "\\kRestot = \\kRes + \\krint = \\frac{\\kV}{\\kIcur}",
+     "anchor": "21.4-as-voltmeter"
+    }
+   ]
   },
   {
    "id": "galvanometer-as-ammeter",
@@ -398,7 +525,14 @@
    "section": "21.4",
    "name": "A galvanometer in parallel with a small shunt is an ammeter",
    "statement": "Placing a small resistance in parallel with the galvanometer sends nearly all of the current around it, so the instrument can read currents far larger than the one that deflects its needle fully, and the galvanometer is protected. Since the shunt and the galvanometer have the same voltage across them, the shunt's resistance is the galvanometer's resistance scaled by the ratio of the galvanometer's current to the total. The larger the current to be measured, the smaller the shunt must be.",
-   "eq": "eq-shunt-resistance"
+   "forms": [
+    {
+     "id": "eq-shunt-resistance",
+     "latex": "R = r\\frac{I_{\\text{G}}}{I}",
+     "ktex": "\\kRes = \\krint\\frac{\\kIcurG}{\\kIcur}",
+     "anchor": "21.4-as-ammeter"
+    }
+   ]
   },
   {
    "id": "measurement-alters-circuit",
@@ -412,6 +546,9 @@
    "kind": "definition",
    "section": "21.4",
    "name": "Voltmeter",
+   "terms": [
+    "voltmeter"
+   ],
    "statement": "A voltmeter is an instrument that measures the potential difference between two points, the voltage across whatever it is connected to."
   },
   {
@@ -419,6 +556,9 @@
    "kind": "definition",
    "section": "21.4",
    "name": "Ammeter",
+   "terms": [
+    "ammeter"
+   ],
    "statement": "An ammeter is an instrument that measures the current through the branch of a circuit in which it is placed."
   },
   {
@@ -426,6 +566,9 @@
    "kind": "definition",
    "section": "21.4",
    "name": "Analog meter",
+   "terms": [
+    "analog meter"
+   ],
    "statement": "An analog meter gives its reading as the position of a needle over a marked scale, and most are built around a galvanometer."
   },
   {
@@ -433,6 +576,9 @@
    "kind": "definition",
    "section": "21.4",
    "name": "Digital meter",
+   "terms": [
+    "digital meter"
+   ],
    "statement": "A digital meter gives its reading as a number on a display, measuring the quantity with electronic circuits rather than a moving needle."
   },
   {
@@ -440,6 +586,9 @@
    "kind": "definition",
    "section": "21.4",
    "name": "Full-scale deflection",
+   "terms": [
+    "full-scale deflection"
+   ],
    "statement": "The full-scale deflection of a meter is the largest reading its needle can show, and the current that gives it is the galvanometer's current sensitivity."
   },
   {
@@ -447,6 +596,9 @@
    "kind": "definition",
    "section": "21.4",
    "name": "Shunt resistance",
+   "terms": [
+    "shunt resistance"
+   ],
    "statement": "A shunt resistance is a small resistance connected in parallel with a galvanometer, so that most of the current passes around the galvanometer and the combination can measure larger currents."
   },
   {
@@ -454,6 +606,9 @@
    "kind": "definition",
    "section": "21.4",
    "name": "Current sensitivity",
+   "terms": [
+    "current sensitivity"
+   ],
    "statement": "The current sensitivity of a galvanometer is the current that gives it a full-scale deflection."
   },
   {
@@ -461,6 +616,9 @@
    "kind": "idea",
    "section": "21.5",
    "name": "A null measurement draws no current, so it alters nothing",
+   "terms": [
+    "null measurements"
+   ],
    "statement": "Standard meters alter the circuit they measure because they must draw some current to work. A null measurement instead balances the circuit until no current at all flows through the measuring device, so that nothing is disturbed and the quantity is sensed directly. Null methods are more accurate but more complex than standard meters, and they still have limits: the balance can never be made exactly zero, and the standards they rely on carry their own uncertainties."
   },
   {
@@ -468,14 +626,27 @@
    "kind": "result",
    "section": "21.5",
    "name": "The potentiometer, $\\kemfx = \\kemfs\\kResx/\\kRess$",
+   "terms": [
+    "potentiometer"
+   ],
    "statement": "A steady current down a long uniform wire makes the potential fall evenly along it, so touching a contact at the right place produces any voltage between zero and the full drop. An unknown emf is connected in opposition through a galvanometer and the contact is moved until the needle reads zero; no current then flows through the unknown, so the balance point measures the emf itself rather than a terminal voltage. Repeating the balance with a known standard emf makes the unknown emf a ratio of two wire lengths, with the current canceling out.",
-   "eq": "eq-potentiometer"
+   "forms": [
+    {
+     "id": "eq-potentiometer",
+     "latex": "\\mathcal{E}_{\\text{x}} = \\mathcal{E}_{\\text{s}}\\frac{R_{\\text{x}}}{R_{\\text{s}}}",
+     "ktex": "\\kemfx = \\kemfs\\frac{\\kResx}{\\kRess}",
+     "anchor": "21.5-potentiometer"
+    }
+   ]
   },
   {
    "id": "ohmmeter",
    "kind": "idea",
    "section": "21.5",
    "name": "An ohmmeter calculates a resistance from a voltage and a current",
+   "terms": [
+    "ohmmeter"
+   ],
    "statement": "What the common ohmmeters do is apply a voltage to a resistance, measure the current and report the quotient as the resistance. Their accuracy is limited, because the two meters they use alter both the voltage across the resistor and the current through it. Measuring the terminal voltage rather than assuming the source's is better, but the voltage is known most accurately when the current is small and the current is known most accurately when it is large, so the two cannot both be at their best."
   },
   {
@@ -483,14 +654,27 @@
    "kind": "result",
    "section": "21.5",
    "name": "The Wheatstone bridge, $\\kResx = \\kResthree\\kRestwo/\\kResone$",
+   "terms": [
+    "Wheatstone bridge"
+   ],
    "statement": "Two known resistances and one variable one are arranged in two branches with a galvanometer bridging them. The variable arm is adjusted until the galvanometer reads zero, which means the two bridged points are at the same potential and no current crosses the bridge, so the galvanometer disturbs nothing. Equating the $IR$ drops along the matching parts of the two branches and taking their ratio leaves the unknown resistance as a product and a quotient of the three known ones, with the currents canceled out.",
-   "eq": "eq-wheatstone-bridge"
+   "forms": [
+    {
+     "id": "eq-wheatstone-bridge",
+     "latex": "R_{\\text{x}} = R_3\\frac{R_2}{R_1}",
+     "ktex": "\\kResx = \\kResthree\\frac{\\kRestwo}{\\kResone}",
+     "anchor": "21.5-wheatstone-bridge"
+    }
+   ]
   },
   {
    "id": "bridge-device",
    "kind": "definition",
    "section": "21.5",
    "name": "Bridge device",
+   "terms": [
+    "bridge device"
+   ],
    "statement": "A bridge device connects two branches of a circuit through a meter, and adjusting it until the meter reads zero lets one quantity be found by a null measurement."
   },
   {
@@ -498,8 +682,10 @@
    "kind": "definition",
    "section": "21.6",
    "name": "An RC circuit charges a capacitor through a resistor",
-   "statement": "A circuit containing a resistor and a capacitor behaves differently from a purely resistive one, because the capacitor's voltage $V_{\\text{c}} = Q/C$ grows as charge collects on its plates and opposes the source. The current begins at $I_0 = \\mathcal{E}/R$, when all of the potential difference is across the resistor, and falls to zero as the capacitor's voltage rises to the emf. The smaller the resistance, the faster a given capacitor charges, and the resistance includes the source's internal resistance and the wires.",
-   "eq": "eq-capacitor-voltage"
+   "terms": [
+    "RC circuit"
+   ],
+   "statement": "A circuit containing a resistor and a capacitor behaves differently from a purely resistive one, because the capacitor's voltage $V_{\\text{c}} = Q/C$ grows as charge collects on its plates and opposes the source. The current begins at $I_0 = \\mathcal{E}/R$, when all of the potential difference is across the resistor, and falls to zero as the capacitor's voltage rises to the emf. The smaller the resistance, the faster a given capacitor charges, and the resistance includes the source's internal resistance and the wires."
   },
   {
    "id": "charging-a-capacitor",
@@ -507,15 +693,30 @@
    "section": "21.6",
    "name": "Charging, $\\kV = \\kemf(1 - e^{-\\kt/\\kRes\\kCap})$",
    "statement": "The voltage across a charging capacitor rises steeply at first, when the current is largest, and then more and more slowly as the capacitor's own voltage opposes the source. The approach to the emf is exponential and asymptotic: the final value is never quite reached, though after a few multiples of the time constant the difference no longer matters. The same equation is what fixes how long a flash unit, a timing circuit or a pacemaker must wait between pulses.",
-   "eq": "eq-charging-capacitor"
+   "forms": [
+    {
+     "id": "eq-charging-capacitor",
+     "latex": "V = \\mathcal{E}\\left(1 - e^{-t/RC}\\right)",
+     "ktex": "\\kV = \\kemf\\left(1 - e^{-\\kt/\\kRes\\kCap}\\right)",
+     "anchor": "21.6-rc-circuits"
+    }
+   ]
   },
   {
    "id": "time-constant",
    "kind": "definition",
    "section": "21.6",
    "name": "The time constant, $\\ktauRC = \\kRes\\kCap$",
+   "symbol": "τ_RC",
    "statement": "The product of the resistance and the capacitance has units of seconds and sets the pace of the whole circuit. A small resistance lets a larger current flow, and a small capacitance needs less charge, so either makes the circuit faster; both facts are contained in $\\tau = RC$. Because the exponent in both exponential laws is $-t/RC$, the time constant is the only time in the problem, and every statement about charging and discharging is a statement about multiples of it.",
-   "eq": "eq-time-constant"
+   "forms": [
+    {
+     "id": "eq-time-constant",
+     "latex": "\\tau = RC",
+     "ktex": "\\ktauRC = \\kRes\\kCap",
+     "anchor": "21.6-rc-circuits"
+    }
+   ]
   },
   {
    "id": "discharging-a-capacitor",
@@ -523,7 +724,14 @@
    "section": "21.6",
    "name": "Discharging, $\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}$",
    "statement": "A charged capacitor discharged through a resistor drives its own current, largest at the start when its voltage is highest, and its voltage falls exponentially with the same time constant. A flash discharges far faster than it charges because the ionized gas of the flash tube has a much smaller resistance than the battery that charged it, and it is that brevity, less than a microsecond, that freezes a hummingbird's wings or a bullet in flight.",
-   "eq": "eq-discharging-capacitor"
+   "forms": [
+    {
+     "id": "eq-discharging-capacitor",
+     "latex": "V = V_0 e^{-t/RC}",
+     "ktex": "\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}",
+     "anchor": "21.6-discharging"
+    }
+   ]
   },
   {
    "id": "fraction-per-time-constant",

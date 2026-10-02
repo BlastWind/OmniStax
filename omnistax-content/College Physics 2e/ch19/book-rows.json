@@ -169,24 +169,61 @@
    "kind": "definition",
    "section": "19.1",
    "name": "Electric potential energy and the work of the Coulomb force, $\\kW = -\\kdPE$",
+   "symbol": "PE",
    "statement": "The electrostatic or Coulomb force is conservative, which means that the work done on a charge is independent of the path taken, exactly as for gravity in the absence of friction. When a force is conservative, it is possible to define a potential energy associated with the force, and it is usually easier to deal with the potential energy, because it depends only on position, than to calculate the work directly. The work done by a conservative force is the negative of the change in potential energy, so work done to accelerate a positive charge from rest is positive and results from a loss in PE.",
-   "eq": "eq-work-and-pe"
+   "forms": [
+    {
+     "id": "eq-work-and-pe",
+     "latex": "W = -\\Delta\\text{PE}",
+     "ktex": "\\kW = -\\kdPE",
+     "anchor": "19.1-electric-potential-energy"
+    }
+   ]
   },
   {
    "id": "electric-potential",
    "kind": "definition",
    "section": "19.1",
    "name": "Electric potential, $\\kV = \\kPEtot/\\kq$",
+   "symbol": "V_volt",
+   "terms": [
+    "electric potential"
+   ],
    "statement": "The electric potential is the potential energy per unit charge, $V = \\text{PE}/q$. Since the work done by the field, and hence the change in potential energy, is proportional to the test charge, the dependence on the charge cancels and $V$ does not depend on $q$.",
-   "eq": "eq-electric-potential"
+   "forms": [
+    {
+     "id": "eq-electric-potential",
+     "latex": "V = \\frac{\\text{PE}}{q}",
+     "ktex": "\\kV = \\frac{\\kPEtot}{\\kq}",
+     "anchor": "19.1-electric-potential"
+    }
+   ]
   },
   {
    "id": "potential-difference",
    "kind": "definition",
    "section": "19.1",
    "name": "Potential difference and the volt, $\\kdV = \\kVB - \\kVA = \\kdPE/\\kq$",
+   "symbol": "V_volt",
+   "terms": [
+    "potential difference (or voltage)",
+    "voltage",
+    "potential difference"
+   ],
    "statement": "The potential difference between points A and B is the change in potential energy of a charge moved from A to B, divided by the charge. Its unit, the joule per coulomb, is the volt, named after Alessandro Volta. Voltage is the common name for potential difference, and a voltage always means the potential difference between two points. Voltage is not the same as energy: a motorcycle battery and a car battery can both be 12 V, yet one stores much more energy than the other.",
-   "eq": "eq-potential-difference"
+   "forms": [
+    {
+     "id": "eq-potential-difference",
+     "latex": "\\Delta V = V_{\\text{B}} - V_{\\text{A}} = \\frac{\\Delta\\text{PE}}{q}",
+     "ktex": "\\kdV = \\kVB - \\kVA = \\frac{\\kdPE}{\\kq}",
+     "anchor": "19.1-potential-difference"
+    },
+    {
+     "id": "eq-volt",
+     "latex": "1\\ \\text{V} = 1\\ \\frac{\\text{J}}{\\text{C}}",
+     "anchor": "19.1-potential-difference"
+    }
+   ]
   },
   {
    "id": "energy-from-potential-difference",
@@ -194,7 +231,14 @@
    "section": "19.1",
    "name": "Energy from a potential difference, $\\kdPE = \\kq\\kdV$",
    "statement": "The relationship between potential difference and electrical potential energy can be read either way: the potential difference is the change in potential energy per unit charge, and the change in potential energy is the charge times the potential difference. To find the energy a battery delivers, multiply the charge it moves by its voltage; to find the charge that moved, divide the energy by the voltage. The energies so found are absolute values, and the change in potential energy of a battery that loses energy is negative.",
-   "eq": "eq-pe-from-voltage"
+   "forms": [
+    {
+     "id": "eq-pe-from-voltage",
+     "latex": "\\Delta V = \\frac{\\Delta\\text{PE}}{q}\\ \\text{and}\\ \\Delta\\text{PE} = q\\Delta V",
+     "ktex": "\\kdV = \\frac{\\kdPE}{\\kq}\\ \\text{and}\\ \\kdPE = \\kq\\kdV",
+     "anchor": "19.1-energy-from-voltage"
+    }
+   ]
   },
   {
    "id": "charge-sign-and-potential",
@@ -215,8 +259,17 @@
    "kind": "definition",
    "section": "19.1",
    "name": "The electron volt, $1\\ \\text{eV} = 1.60 \\times 10^{-19}\\ \\text{J}$",
+   "terms": [
+    "electron volt"
+   ],
    "statement": "On the submicroscopic scale the energy per particle is a tiny fraction of a joule and yet can be enough to break up organic molecules and harm living tissue, so it is convenient to define an energy unit related to submicroscopic effects. The electron volt is the energy given to a fundamental charge accelerated through a potential difference of 1 V, so that an electron accelerated through 50 V is given 50 eV and a doubly charged ion accelerated through 100 V is given 200 eV. The energy of the electron in electron volts is numerically the same as the voltage between the plates.",
-   "eq": "eq-electron-volt"
+   "forms": [
+    {
+     "id": "eq-electron-volt",
+     "latex": "1\\ \\text{eV} = (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{V}) = (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{J/C}) = 1.60 \\times 10^{-19}\\ \\text{J}",
+     "anchor": "19.1-electron-volt"
+    }
+   ]
   },
   {
    "id": "energy-conservation-for-charges",
@@ -224,7 +277,22 @@
    "section": "19.1",
    "name": "Conservation of energy for a charge, $\\kKEi + \\kPEi = \\kKEf + \\kPEf$",
    "statement": "The total energy of a system is conserved if there is no net addition or subtraction of work or heat transfer, and for conservative forces such as the electrostatic force, conservation of energy states that mechanical energy, the sum of the kinetic energy and the potential energy, is a constant. A loss of PE of a charged particle becomes an increase in its KE, where PE is now the electric potential energy. As many times before, considering energy gives insight and makes problems easier than following the force.",
-   "eq": "eq-energy-conservation-charge"
+   "forms": [
+    {
+     "id": "eq-energy-conservation-charge",
+     "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}}",
+     "ktex": "\\kKEi + \\kPEi = \\kKEf + \\kPEf",
+     "condition": "conservative forces only",
+     "anchor": "19.1-conservation-of-energy"
+    },
+    {
+     "id": "eq-mechanical-energy-constant",
+     "latex": "\\text{KE} + \\text{PE} = \\text{constant}",
+     "ktex": "\\kKE + \\kPEtot = \\text{constant}",
+     "condition": "conservative forces only",
+     "anchor": "19.1-conservation-of-energy"
+    }
+   ]
   },
   {
    "id": "speed-from-potential-difference",
@@ -232,7 +300,15 @@
    "section": "19.1",
    "name": "Speed of a charge accelerated through a voltage, $\\kv = \\sqrt{2\\kq\\kV/m}$",
    "statement": "With only conservative forces acting, all of the electrical potential energy of a charge accelerated from rest in a vacuum is converted into kinetic energy, so that $qV = mv^2/2$ and the final speed follows. The large final speed of an electron confirms that the gravitational force is negligible and shows how easy it is to accelerate electrons with small voltages because of their very small mass; voltages much higher than 100 V produce speeds so great that relativistic effects must be taken into account.",
-   "eq": "eq-speed-from-voltage"
+   "forms": [
+    {
+     "id": "eq-speed-from-voltage",
+     "latex": "v = \\sqrt{\\frac{2qV}{m}}",
+     "ktex": "\\kv = \\sqrt{\\frac{2\\kq\\kV}{m}}",
+     "condition": "a charge accelerated from rest, non-relativistic",
+     "anchor": "19.1-ex-electron-speed"
+    }
+   ]
   },
   {
    "id": "voltage-across-uniform-field",
@@ -240,7 +316,21 @@
    "section": "19.2",
    "name": "Voltage and field between parallel plates, $\\kVAB = \\kEf\\kd$ and $\\kEf = \\kVAB/\\kd$",
    "statement": "In a uniform electric field the voltage between two points is the field strength times the distance between them along the field, $V_\\text{AB} = Ed$, so the field is the voltage divided by the distance. The work the field does on a positive charge moved from the positive plate to the negative plate is both $qV_\\text{AB}$ and $qEd$, and the charge cancels.",
-   "eq": "eq-uniform-field-voltage"
+   "forms": [
+    {
+     "id": "eq-uniform-field-voltage",
+     "latex": "V_{\\text{AB}} = Ed \\quad E = \\frac{V_{\\text{AB}}}{d}",
+     "ktex": "\\kVAB = \\kEf\\kd \\quad \\kEf = \\frac{\\kVAB}{\\kd}",
+     "condition": "uniform electric field only",
+     "anchor": "19.2-voltage-between-plates"
+    },
+    {
+     "id": "eq-work-in-uniform-field",
+     "latex": "W = -\\Delta\\text{PE} = -q\\Delta V = qV_{\\text{AB}}",
+     "ktex": "\\kW = -\\kdPE = -\\kq\\kdV = \\kq\\kVAB",
+     "anchor": "19.2-voltage-between-plates"
+    }
+   ]
   },
   {
    "id": "potential-scalar-field-vector",
@@ -255,7 +345,13 @@
    "section": "19.2",
    "name": "Units of the electric field, $1\\ \\text{N/C} = 1\\ \\text{V/m}$",
    "statement": "The relation $E = V_\\text{AB}/d$ implies that the units for electric field are volts per meter, and the units already known from the definition of the field are newtons per coulomb, so the two must be the same unit. Which of the two is written depends on whether the field is being read from a force or from a voltage; the force on a charge in Example 19.5 comes out in newtons because 1 V/m is 1 N/C.",
-   "eq": "eq-field-units"
+   "forms": [
+    {
+     "id": "eq-field-units",
+     "latex": "1\\ \\text{N/C} = 1\\ \\text{V/m}",
+     "anchor": "19.2-voltage-between-plates"
+    }
+   ]
   },
   {
    "id": "dielectric-breakdown-of-air",
@@ -270,7 +366,14 @@
    "section": "19.2",
    "name": "The field is the gradient of the potential, $\\kEf = -\\kdV/\\kds$",
    "statement": "In more general situations, whether or not the electric field is uniform, it points in the direction of decreasing potential, because the force on a positive charge is in the direction of the field and also in the direction of lower potential. Furthermore, the magnitude of the field equals the rate of decrease of the potential with distance: the faster the potential decreases over distance, the greater the field. The minus sign says that the field points toward decreasing potential, and for continually changing potentials the differences become infinitesimals and differential calculus must be employed.",
-   "eq": "eq-field-gradient"
+   "forms": [
+    {
+     "id": "eq-field-gradient",
+     "latex": "E = -\\frac{\\Delta V}{\\Delta s}",
+     "ktex": "\\kEf = -\\frac{\\kdV}{\\kds}",
+     "anchor": "19.2-field-as-gradient"
+    }
+   ]
   },
   {
    "id": "potential-of-point-charge",
@@ -278,15 +381,22 @@
    "section": "19.3",
    "name": "Electric potential of a point charge, $\\kV = k\\kQch/\\kr$",
    "statement": "Point charges such as electrons are among the fundamental building blocks of matter, and spherical charge distributions create external fields exactly like a point charge, so the potential due to a point charge is a case that must be considered. Using calculus to find the work needed to move a test charge from a large distance away to a distance $r$ from a point charge, and noting that $W = -q\\Delta V$, it can be shown that the potential is $kQ/r$, with the potential at infinity chosen to be zero. A negative value means a positive charge would be attracted from a larger distance, since the potential there is lower than at larger distances.",
-   "eq": "eq-point-charge-potential"
+   "forms": [
+    {
+     "id": "eq-point-charge-potential",
+     "latex": "V = \\frac{kQ}{r}",
+     "ktex": "\\kV = \\frac{k\\kQch}{\\kr}",
+     "condition": "point charge, with V = 0 at infinity",
+     "anchor": "19.3-point-charge-potential"
+    }
+   ]
   },
   {
    "id": "potential-versus-field-of-point-charge",
    "kind": "idea",
    "section": "19.3",
    "name": "The potential of a point charge falls as $1/r$ where its field falls as $1/r^2$",
-   "statement": "The potential of a point charge decreases with distance, whereas the field of a point charge decreases with distance squared, since the field is the force per unit charge and Coulomb's law is an inverse square law. The two describe the same charge in two ways, and the difference in their fall-off is the difference between an energy per charge, which accumulates over the whole path in from infinity, and a force per charge, which acts at one point.",
-   "eq": "eq-point-charge-field"
+   "statement": "The potential of a point charge decreases with distance, whereas the field of a point charge decreases with distance squared, since the field is the force per unit charge and Coulomb's law is an inverse square law. The two describe the same charge in two ways, and the difference in their fall-off is the difference between an energy per charge, which accumulates over the whole path in from infinity, and a force per charge, which acts at one point."
   },
   {
    "id": "superposition-of-potential",
@@ -314,6 +424,9 @@
    "kind": "definition",
    "section": "19.4",
    "name": "Equipotential lines and equipotential surfaces",
+   "terms": [
+    "equipotential line"
+   ],
    "statement": "Electric potentials can be represented pictorially, just as electric fields are drawn with field lines. Lines along which the electric potential is constant are called equipotential lines in two dimensions, or equipotential surfaces in three; the term equipotential is also used as a noun. The potential of a point charge is the same anywhere on a sphere of radius $r$ surrounding the charge, since it is given by $kQ/r$, so an equipotential surface of a point charge is a sphere and, in the plane, a circle. No work is required to move a charge anywhere along one of these lines, and work is needed to move a charge from one equipotential to another."
   },
   {
@@ -322,7 +435,22 @@
    "section": "19.4",
    "name": "Equipotential lines are perpendicular to electric field lines, since $\\kW = -\\kq\\kdV = 0$ along one",
    "statement": "No work is required to move a charge along an equipotential, since the potential difference along it is zero, and work is zero only if the force is perpendicular to the motion. The force on a charge is in the direction of the field, so motion along an equipotential must be perpendicular to the field: with neither the charge, the field nor the distance zero, the cosine of the angle between them must vanish and the angle must be 90°. The rule holds in every case, and it is what lets the equipotential lines be drawn from the field lines and the field lines from the equipotentials.",
-   "eq": "eq-work-along-equipotential"
+   "forms": [
+    {
+     "id": "eq-work-along-equipotential",
+     "latex": "W = -\\Delta\\text{PE} = -q\\Delta V = 0",
+     "ktex": "\\kW = -\\kdPE = -\\kq\\kdV = 0",
+     "condition": "motion along an equipotential",
+     "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+     "id": "eq-work-perpendicular-to-field",
+     "latex": "W = Fd\\cos\\theta = qEd\\cos\\theta = 0",
+     "ktex": "\\kW = \\kF\\kd\\cos\\theta = \\kq\\kEf\\kd\\cos\\theta = 0",
+     "condition": "motion along an equipotential",
+     "anchor": "19.4-perpendicular-to-field"
+    }
+   ]
   },
   {
    "id": "conductor-is-equipotential",
@@ -350,6 +478,9 @@
    "kind": "definition",
    "section": "19.5",
    "name": "A capacitor stores separated charge, $+Q$ and $-Q$, on two conductors",
+   "terms": [
+    "capacitor"
+   ],
    "statement": "A capacitor is a device used to store electric charge, with applications ranging from filtering static out of radio reception to energy storage in heart defibrillators. Typically a commercial capacitor has two conducting parts close to one another but not touching, usually with an insulator between them. When battery terminals are connected to an initially uncharged capacitor, equal amounts of positive and negative charge are separated onto its two plates; the capacitor remains neutral overall, but it is said to store a charge $Q$. The amount of charge it can store depends on the voltage applied and on its physical characteristics, such as its size."
   },
   {
@@ -357,8 +488,43 @@
    "kind": "definition",
    "section": "19.5",
    "name": "Capacitance, $\\kCap = \\kQch/\\kV$, and the farad",
+   "symbol": "C_cap",
+   "terms": [
+    "capacitance"
+   ],
    "statement": "Capacitance is the amount of charge a capacitor stores per volt applied across it, $C = Q/V$. The greater the voltage applied to any capacitor, the greater the charge stored in it, and different capacitors store different charges for the same voltage. The unit of capacitance, the farad, is a coulomb per volt, a very large capacitance, and typical capacitors run from picofarads to millifarads.",
-   "eq": "eq-capacitance"
+   "forms": [
+    {
+     "id": "eq-capacitance",
+     "latex": "C = \\frac{Q}{V}",
+     "ktex": "\\kCap = \\frac{\\kQch}{\\kV}",
+     "anchor": "19.5-charge-and-voltage"
+    },
+    {
+     "id": "eq-charge-proportional-to-voltage",
+     "latex": "E \\propto Q, \\quad V \\propto E, \\quad Q \\propto V",
+     "ktex": "\\kEf \\propto \\kQch, \\quad \\kV \\propto \\kEf, \\quad \\kQch \\propto \\kV",
+     "anchor": "19.5-charge-and-voltage"
+    },
+    {
+     "id": "eq-charge-stored",
+     "latex": "Q = CV",
+     "ktex": "\\kQch = \\kCap\\kV",
+     "anchor": "19.5-charge-and-voltage"
+    },
+    {
+     "id": "eq-farad",
+     "latex": "1\\ \\text{F} = \\frac{1\\ \\text{C}}{1\\ \\text{V}}",
+     "anchor": "19.5-charge-and-voltage"
+    },
+    {
+     "id": "eq-capacitor-voltage",
+     "latex": "V_{\\text{c}} = \\frac{Q}{C}",
+     "ktex": "\\kVc = \\frac{\\kQch}{\\kCap}",
+     "section": "21.6",
+     "anchor": "21.6-rc-circuits"
+    }
+   ]
   },
   {
    "id": "parallel-plate-capacitance",
@@ -366,13 +532,24 @@
    "section": "19.5",
    "name": "Capacitance of a parallel plate capacitor, $\\kCap = \\varepsilon_0 A/\\kd$",
    "statement": "A parallel plate capacitor is two identical conducting plates of area $A$ separated by a distance $d$. Since like charges repel, unlike charges attract and the force between charges decreases with distance, the bigger the plates the more charge they can store, because the charges can spread out more, and the closer the plates the greater the attraction of the opposite charges on them; so the capacitance should grow with the area and shrink with the separation, and it can be shown that these are the only two factors. The constant is the permittivity of free space, $8.85 \\times 10^{-12}$ F/m, whose small value is related to the large size of the farad: a parallel plate capacitor must have a large area to approach a farad.",
-   "eq": "eq-parallel-plate-capacitance"
+   "forms": [
+    {
+     "id": "eq-parallel-plate-capacitance",
+     "latex": "C = \\varepsilon_0\\frac{A}{d}",
+     "ktex": "\\kCap = \\varepsilon_0\\frac{A}{\\kd}",
+     "condition": "parallel plates separated by air or free space",
+     "anchor": "19.5-parallel-plate"
+    }
+   ]
   },
   {
    "id": "dielectric",
    "kind": "definition",
    "section": "19.5",
    "name": "A dielectric between the plates lets the separation be small and withstands a larger field than air",
+   "terms": [
+    "dielectric"
+   ],
    "statement": "If the separation is made smaller to produce a larger capacitance, the maximum voltage must be reduced proportionally to avoid breakdown, since $E = V/d$. An important solution to this difficulty is to put an insulating material, called a dielectric, between the plates and allow the separation to be as small as possible: not only does the smaller separation make the capacitance greater, but many insulators can withstand greater electric fields than air before breaking down. Water has a large dielectric constant but is rarely used, and humid air sparks at a lower voltage than dry."
   },
   {
@@ -381,13 +558,24 @@
    "section": "19.5",
    "name": "Capacitance with a dielectric, $\\kCap = \\kappa\\varepsilon_0 A/\\kd$",
    "statement": "Depending on the material used, the capacitance with a dielectric between the plates is greater than that of the same plates in vacuum by a factor $\\kappa$, called the dielectric constant. The constant for vacuum is exactly 1 and for air very close to it, so air-filled capacitors act much like those with vacuum between their plates except that air can become conductive if the field grows too great; Teflon's is 2.1, water's 80 and strontium titanate's 233. The same capacitor filled with Teflon has a greater capacitance and can be subjected to a much greater voltage, and so stores 42 times the charge.",
-   "eq": "eq-parallel-plate-dielectric"
+   "forms": [
+    {
+     "id": "eq-parallel-plate-dielectric",
+     "latex": "C = \\kappa\\varepsilon_0\\frac{A}{d}",
+     "ktex": "\\kCap = \\kappa\\varepsilon_0\\frac{A}{\\kd}",
+     "condition": "parallel plate capacitor with dielectric",
+     "anchor": "19.5-dielectric"
+    }
+   ]
   },
   {
    "id": "dielectric-strength",
    "kind": "definition",
    "section": "19.5",
    "name": "Dielectric strength limits the voltage a capacitor can take for a given separation",
+   "terms": [
+    "dielectric strength"
+   ],
    "statement": "The maximum electric field strength above which an insulating material begins to break down and conduct is called its dielectric strength. Since the field between parallel plates is the voltage over the separation, the dielectric strength imposes a limit on the voltage that can be applied for a given plate separation: for 1.00 mm of air the limit is 3000 V, and for 1.00 mm of Teflon, whose strength is $60 \\times 10^6$ V/m, it is 60,000 V."
   },
   {
@@ -395,14 +583,23 @@
    "kind": "idea",
    "section": "19.5",
    "name": "Polarization of the dielectric reduces the field inside the capacitor and raises its capacitance, $\\kappa = \\kEfo/\\kEf$",
+   "symbol": "κ",
    "statement": "Microscopically, a dielectric increases capacitance because it is polarized: the more easily its molecules are polarized, the greater its dielectric constant. The Coulomb force between the closest ends of the polarized molecules and the charge on the plates is attractive and very strong, since they are very close together, and it attracts more charge onto the plates than if the space were empty. Seen the other way, the field lines end on the surface charges of the dielectric, so fewer of them cross from one plate to the other, the field inside is less than in vacuum for the same charge, the voltage $V = Ed$ is smaller for the same charge, and since $C = Q/V$ the capacitance is greater. The dielectric constant is generally defined as the ratio of the field in vacuum to the field in the material, and it is intimately related to the polarizability of the material. An atom polarizes because its electron cloud is shifted by the external charges, and a polar molecule such as water carries an inherent separation of charge and so polarizes more readily.",
-   "eq": "eq-dielectric-constant"
+   "forms": [
+    {
+     "id": "eq-dielectric-constant",
+     "latex": "\\kappa = \\frac{E_0}{E}",
+     "ktex": "\\kappa = \\frac{\\kEfo}{\\kEf}",
+     "anchor": "19.5-polarization"
+    }
+   ]
   },
   {
    "id": "permittivity-of-free-space",
    "kind": "axiom",
    "section": "19.5",
    "name": "Permittivity of free space, $\\varepsilon_0 = 8.85 \\times 10^{-12}$ F/m",
+   "symbol": "ε_0",
    "statement": "The permittivity of free space is the constant $\\varepsilon_0 = 8.85 \\times 10^{-12}$ F/m that sets the capacitance of a parallel plate capacitor with a vacuum between its plates. Its small value is related to the large size of the farad."
   },
   {
@@ -410,6 +607,9 @@
    "kind": "definition",
    "section": "19.5",
    "name": "Parallel plate capacitor",
+   "terms": [
+    "parallel plate capacitor"
+   ],
    "statement": "A parallel plate capacitor is two identical conducting plates separated by a distance."
   },
   {
@@ -425,7 +625,22 @@
    "section": "19.6",
    "name": "Total capacitance in series, $1/\\kCS = 1/\\kCone + 1/\\kCtwo + 1/\\kCthree + \\ldots$",
    "statement": "When a voltage is applied across a series connection of capacitors, opposite charges of magnitude $Q$ flow to either side of the originally uncharged combination, and conservation of charge requires equal-magnitude charges on the plates of each individual capacitor, since charge is only being separated in these originally neutral devices. The voltages across the individual capacitors are $Q/C_1$, $Q/C_2$ and $Q/C_3$, and the total voltage is their sum; writing the total as $Q/C_\\text{S}$ and cancelling the charge gives the sum of reciprocals. The combination resembles a single capacitor with an effective plate separation greater than any of the individual ones, so the total capacitance in series is less than any of the individual capacitances.",
-   "eq": "eq-series-capacitance"
+   "forms": [
+    {
+     "id": "eq-series-capacitance",
+     "latex": "\\frac{1}{C_{\\text{S}}} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\frac{1}{C_3} + \\ldots",
+     "ktex": "\\frac{1}{\\kCS} = \\frac{1}{\\kCone} + \\frac{1}{\\kCtwo} + \\frac{1}{\\kCthree} + \\ldots",
+     "condition": "capacitors in series",
+     "anchor": "19.6-series"
+    },
+    {
+     "id": "eq-series-voltages",
+     "latex": "V = V_1 + V_2 + V_3",
+     "ktex": "\\kV = \\kVone + \\kVtwo + \\kVthree",
+     "condition": "capacitors in series",
+     "anchor": "19.6-series"
+    }
+   ]
   },
   {
    "id": "parallel-capacitance",
@@ -433,7 +648,22 @@
    "section": "19.6",
    "name": "Total capacitance in parallel, $\\kCp = \\kCone + \\kCtwo + \\kCthree + \\ldots$",
    "statement": "In a parallel connection the voltage across each capacitor is the same as that of the source, since each is connected directly to it through a conductor and conductors are equipotentials, so each capacitor holds the charge it would hold alone. The total charge is the sum of the individual charges, $C_\\text{p}V = C_1V + C_2V + C_3V$, and cancelling the voltage gives the total capacitance in parallel as simply the sum of the individual capacitances. The equivalent capacitor has an effectively larger plate area and so a larger capacitance.",
-   "eq": "eq-parallel-capacitance"
+   "forms": [
+    {
+     "id": "eq-parallel-capacitance",
+     "latex": "C_{\\text{p}} = C_1 + C_2 + C_3 + \\ldots",
+     "ktex": "\\kCp = \\kCone + \\kCtwo + \\kCthree + \\ldots",
+     "condition": "capacitors in parallel",
+     "anchor": "19.6-parallel"
+    },
+    {
+     "id": "eq-parallel-charges",
+     "latex": "Q = Q_1 + Q_2 + Q_3",
+     "ktex": "\\kQch = \\kQchone + \\kQchtwo + \\kQchthree",
+     "condition": "capacitors in parallel",
+     "anchor": "19.6-parallel"
+    }
+   ]
   },
   {
    "id": "reduce-series-parallel-combinations",
@@ -447,8 +677,22 @@
    "kind": "result",
    "section": "19.7",
    "name": "Energy stored in a capacitor, $\\kEcap = \\kQch\\kV/2 = \\kCap\\kV^2/2 = \\kQch^2/2\\kCap$",
+   "symbol": "E_cap",
    "statement": "Energy stored in a capacitor is electrical potential energy and is related to the charge and voltage on the capacitor, but $\\Delta\\text{PE} = q\\Delta V$ must be applied with care, because the capacitor starts with zero voltage and comes up to its full voltage as it is charged. The average voltage during charging is half the final voltage, so the energy stored is half the product of the charge and the voltage, not the whole product, and since $Q = CV$ the same energy can be written in terms of any two of the charge, the voltage and the capacitance. The energy is in joules for a charge in coulombs, a voltage in volts and a capacitance in farads.",
-   "eq": "eq-capacitor-energy"
+   "forms": [
+    {
+     "id": "eq-capacitor-energy",
+     "latex": "E_{\\text{cap}} = \\frac{QV}{2} = \\frac{CV^2}{2} = \\frac{Q^2}{2C}",
+     "ktex": "\\kEcap = \\frac{\\kQch\\kV}{2} = \\frac{\\kCap\\kV^2}{2} = \\frac{\\kQch^2}{2\\kCap}",
+     "anchor": "19.7-energy-stored"
+    },
+    {
+     "id": "eq-capacitor-energy-qv",
+     "latex": "E_{\\text{cap}} = \\frac{QV}{2}",
+     "ktex": "\\kEcap = \\frac{\\kQch\\kV}{2}",
+     "anchor": "19.7-energy-stored"
+    }
+   ]
   },
   {
    "id": "average-voltage-while-charging",
@@ -469,6 +713,9 @@
    "kind": "idea",
    "section": "19.7",
    "name": "The defibrillator",
+   "terms": [
+    "defibrillator"
+   ],
    "statement": "A defibrillator is a machine that delivers an electrical shock to a heart attack victim's heart to restore its normal beating pattern. It stores its energy in a capacitor and releases it in a burst."
   }
  ],

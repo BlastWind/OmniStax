@@ -25,6 +25,9 @@
    "kind": "axiom",
    "section": "24.1",
    "name": "Maxwell's equations, the four laws of electricity and magnetism",
+   "terms": [
+    "Maxwell’s equations"
+   ],
    "statement": "Maxwell gathered the work of Oersted, Coulomb, Gauss and Faraday into four statements that together are a complete theory of electricity and magnetism. The first says that electric field lines begin on positive charges and end on negative ones, the second that magnetic field lines have no beginning and no end, the third that a changing magnetic field induces an electric field, and the fourth that magnetic fields are made by moving charges and by changing electric fields. Everything else in this chapter follows from them, so the reader who can restate the four has the theory the rest of the chapter uses."
   },
   {
@@ -40,7 +43,14 @@
    "section": "24.1",
    "name": "The speed of an electromagnetic wave from the constants of free space, $\\kc = 1/\\sqrt{\\mu_0\\varepsilon_0}$",
    "statement": "Maxwell's theory does not merely say that a wave exists; it says how fast the wave goes, and it says so in terms of two constants measured in the laboratory with charges and with currents, having nothing to do with light. The permittivity of free space sets the strength of the electric force and the permeability of free space sets the strength of the magnetic force, and the square root of their product is the one speed at which the two fields can carry each other along.",
-   "eq": "eq-speed-of-light-constants"
+   "forms": [
+    {
+     "id": "eq-speed-of-light-constants",
+     "latex": "c = \\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}}",
+     "ktex": "\\kc = \\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}}",
+     "anchor": "24.1-prediction"
+    }
+   ]
   },
   {
    "id": "light-is-an-electromagnetic-wave",
@@ -61,6 +71,9 @@
    "kind": "definition",
    "section": "24.1",
    "name": "Electromagnetic wave",
+   "terms": [
+    "electromagnetic waves"
+   ],
    "statement": "An electromagnetic wave is a pair of changing electric and magnetic fields that generate each other and travel together through space, carrying energy, at the speed of light in a vacuum."
   },
   {
@@ -68,6 +81,9 @@
    "kind": "definition",
    "section": "24.1",
    "name": "The hertz, $1\\;\\text{Hz} = 1\\;\\text{cycle/s}$",
+   "terms": [
+    "hertz"
+   ],
    "statement": "The hertz is the SI unit of frequency, one cycle per second, named for Heinrich Hertz, who first generated and detected electromagnetic waves."
   },
   {
@@ -104,15 +120,34 @@
    "section": "24.2",
    "name": "The ratio of the field strengths in a vacuum, $\\kEf/\\kBmag = \\kc$",
    "statement": "The stronger the electric field made by the separated charge, the greater the current that flows and so the greater the magnetic field, so the two field strengths ought to rise and fall together. They do, and the constant ratio between them is the speed of light itself, at every instant and at every point in space. Because $\\kc$ is such a large number, the result also says that the magnetic part of any electromagnetic wave is very weak beside the electric part.",
-   "eq": "eq-e-over-b"
+   "forms": [
+    {
+     "id": "eq-e-over-b",
+     "latex": "\\frac{E}{B} = c",
+     "ktex": "\\frac{\\kEf}{\\kBmag} = \\kc",
+     "anchor": "24.2-field-ratio"
+    },
+    {
+     "id": "eq-b-from-e",
+     "latex": "B = \\frac{E}{c}",
+     "ktex": "\\kBmag = \\frac{\\kEf}{\\kc}",
+     "anchor": "24.2-field-ratio"
+    },
+    {
+     "id": "eq-b0-from-e0",
+     "latex": "B_0 = \\frac{E_0}{c}",
+     "ktex": "\\kBmago = \\frac{\\kEfo}{\\kc}",
+     "section": "24.4",
+     "anchor": "24.4-fields-from-intensity"
+    }
+   ]
   },
   {
    "id": "find-b-from-e",
    "kind": "skill",
    "section": "24.2",
    "name": "Find one field strength of a wave from the other, $\\kBmag = \\kEf/\\kc$",
-   "statement": "Rearranging the ratio gives either field from the other in one step, and this is the calculation the section's problems ask for over and over. Dividing a field of 1000 V/m by the speed of light leaves a few microtesla, less than a tenth of the Earth's own weak field, which is the concrete form of the statement that the magnetic part of a wave is small. Checking that the units of volts per metre divided by metres per second really are teslas is worth doing once.",
-   "eq": "eq-b-from-e"
+   "statement": "Rearranging the ratio gives either field from the other in one step, and this is the calculation the section's problems ask for over and over. Dividing a field of 1000 V/m by the speed of light leaves a few microtesla, less than a tenth of the Earth's own weak field, which is the concrete form of the statement that the magnetic part of a wave is small. Checking that the units of volts per metre divided by metres per second really are teslas is worth doing once."
   },
   {
    "id": "em-wave-in-a-medium",
@@ -120,7 +155,20 @@
    "section": "24.2",
    "name": "A wave in a medium travels at $\\kv = \\kc/n$, and the ratio of its fields falls with it",
    "statement": "Outside a vacuum an electromagnetic wave is slower, by the factor the medium's index of refraction names. The ratio of the field strengths is reduced in exactly the same proportion, so in a medium it is the wave's own speed, not the speed of light, that the two fields stand in. The result matters wherever a wave is not travelling through empty space, which is most of the places a reader will meet one.",
-   "eq": "eq-speed-in-medium"
+   "forms": [
+    {
+     "id": "eq-speed-in-medium",
+     "latex": "v = \\frac{c}{n}",
+     "ktex": "\\kv = \\frac{\\kc}{n}",
+     "anchor": "24.2-field-ratio"
+    },
+    {
+     "id": "eq-e-over-b-medium",
+     "latex": "\\frac{E}{B} = \\frac{c}{n}",
+     "ktex": "\\frac{\\kEf}{\\kBmag} = \\frac{\\kc}{n}",
+     "anchor": "24.2-field-ratio"
+    }
+   ]
   },
   {
    "id": "antenna-resonance",
@@ -134,6 +182,9 @@
    "kind": "definition",
    "section": "24.2",
    "name": "Oscillation",
+   "terms": [
+    "oscillate"
+   ],
    "statement": "To oscillate is to fluctuate back and forth in a steady beat, as the charges in an antenna do and as the fields of the wave they send out do."
   },
   {
@@ -142,21 +193,36 @@
    "section": "24.3",
    "name": "For every electromagnetic wave, $\\kc = \\kf\\klam$",
    "statement": "Propagation speed, frequency and wavelength are related for any wave by $\\kvw = \\kf\\klam$, and for an electromagnetic wave in a vacuum the propagation speed is always the speed of light. Since $\\kc$ never changes, the frequency and the wavelength can only trade against each other: the greater the frequency, the smaller the wavelength. This one relation is what lets the whole spectrum be laid out on a single axis and read in either unit.",
-   "eq": "eq-c-equals-f-lambda"
+   "forms": [
+    {
+     "id": "eq-c-equals-f-lambda",
+     "latex": "c = f\\lambda",
+     "ktex": "\\kc = \\kf\\klam",
+     "anchor": "24.3-wave-relation"
+    },
+    {
+     "id": "eq-wavelength-from-frequency",
+     "latex": "\\lambda = \\frac{c}{f}",
+     "ktex": "\\klam = \\frac{\\kc}{\\kf}",
+     "anchor": "24.3-fm-radio"
+    }
+   ]
   },
   {
    "id": "find-wavelength-or-frequency",
    "kind": "skill",
    "section": "24.3",
    "name": "Find a wavelength from a frequency, or a frequency from a wavelength",
-   "statement": "Rearranged, the relation gives $\\klam = \\kc/\\kf$, and this is the arithmetic that most of the section's problems come down to. An AM carrier of 1530 kHz is nearly 200 m long, an FM carrier of 105.1 MHz is 2.85 m, and a cell phone's 1.90 GHz signal is 15.8 cm; those three numbers explain why an AM mast is enormous and a phone's antenna is hidden inside the case. Carrying the units through as cycles per second keeps the answer in metres.",
-   "eq": "eq-wavelength-from-frequency"
+   "statement": "Rearranged, the relation gives $\\klam = \\kc/\\kf$, and this is the arithmetic that most of the section's problems come down to. An AM carrier of 1530 kHz is nearly 200 m long, an FM carrier of 105.1 MHz is 2.85 m, and a cell phone's 1.90 GHz signal is 15.8 cm; those three numbers explain why an AM mast is enormous and a phone's antenna is hidden inside the case. Carrying the units through as cycles per second keeps the answer in metres."
   },
   {
    "id": "electromagnetic-spectrum",
    "kind": "idea",
    "section": "24.3",
    "name": "The electromagnetic spectrum and its bands",
+   "terms": [
+    "electromagnetic spectrum"
+   ],
    "statement": "All electromagnetic waves are the same phenomenon, and the only thing that separates a radio wave from a gamma ray is frequency, and therefore wavelength. Sorting them by frequency gives the named bands — radio, microwave, infrared, visible, ultraviolet, X-ray and gamma ray — over a range of frequencies and wavelengths the book calls remarkable. Some of the dividing lines are sharp and others are not: the bands overlap, and where two bands overlap the name a wave is given depends on how it was made rather than on how fast it oscillates."
   },
   {
@@ -178,6 +244,9 @@
    "kind": "idea",
    "section": "24.3",
    "name": "Radio waves, and how a signal is carried on a carrier wave",
+   "terms": [
+    "radio waves"
+   ],
    "statement": "Radio waves are defined by their source: any electromagnetic wave produced by currents in wires and circuits is one, whatever made the circuit. To carry information on such a wave, a carrier at the station's own frequency is varied, either in amplitude, which is AM, or in frequency, which is FM, and the receiver is tuned to resonate at the carrier frequency and to respond to whichever kind of variation. Because noise adds to amplitude, an FM receiver can throw away what an AM receiver must treat as part of the signal, which is why FM is the quieter of the two."
   },
   {
@@ -186,13 +255,29 @@
    "section": "24.3",
    "name": "The most efficient antenna is half a wavelength long, or a quarter with one end on the ground",
    "statement": "An antenna radiates best when it is the length that lets a standing wave sit on it, and for a linear antenna that length is $\\klam/2$; with one end on the ground, a quarter wavelength does the same work, exactly as a tube closed at one end resonates at a quarter of its fundamental wavelength. The rule explains the sizes of the things a reader sees: an AM broadcast antenna must be hundreds of metres, while an FM or mobile phone antenna is small enough to hide and is instead put high up for a clear line of sight.",
-   "eq": "eq-half-wavelength-antenna"
+   "forms": [
+    {
+     "id": "eq-half-wavelength-antenna",
+     "latex": "L = \\frac{\\lambda}{2}",
+     "ktex": "L = \\frac{\\klam}{2}",
+     "anchor": "24.3-fm-radio"
+    },
+    {
+     "id": "eq-quarter-wavelength-antenna",
+     "latex": "L = \\frac{\\lambda}{4}",
+     "ktex": "L = \\frac{\\klam}{4}",
+     "anchor": "24.3-fm-radio"
+    }
+   ]
   },
   {
    "id": "microwaves-and-their-uses",
    "kind": "idea",
    "section": "24.3",
    "name": "Microwaves, radar and dielectric heating",
+   "terms": [
+    "microwaves"
+   ],
    "statement": "Microwaves are the highest frequencies that currents in ordinary circuits can produce, from about $10^{9}$ Hz up to the highest practical $LC$ resonance near $10^{12}$ Hz, and their short wavelengths make them good for carrying information and for seeing detail. Radar finds a distance by timing an echo and a speed by the Doppler shift in it, and maps a planet through cloud that stops visible light. In a microwave oven the frequency is chosen so that polar molecules turning to follow the alternating field absorb the energy, which heats the food and not the plate, and the hot spots are an interference pattern."
   },
   {
@@ -214,6 +299,9 @@
    "kind": "idea",
    "section": "24.3",
    "name": "Thermal agitation",
+   "terms": [
+    "thermal agitation"
+   ],
    "statement": "Thermal agitation is the thermal motion of the atoms and molecules of any object above absolute zero, which makes them emit and absorb radiation, mostly in the infrared."
   },
   {
@@ -221,6 +309,10 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Infrared radiation (IR)",
+   "terms": [
+    "infrared radiation (IR)",
+    "infrared radiation"
+   ],
    "statement": "Infrared radiation is the band of the electromagnetic spectrum with frequencies from just below those of red light down to the microwaves."
   },
   {
@@ -228,6 +320,9 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Visible light",
+   "terms": [
+    "visible light"
+   ],
    "statement": "Visible light is the narrow band of the electromagnetic spectrum to which the normal human eye responds, with wavelengths from about 380 nm to 760 nm."
   },
   {
@@ -235,6 +330,10 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Ultraviolet radiation (UV)",
+   "terms": [
+    "ultraviolet radiation (UV)",
+    "ultraviolet radiation"
+   ],
    "statement": "Ultraviolet radiation is the band of the electromagnetic spectrum extending upward in frequency from violet light and overlapping the lowest x rays."
   },
   {
@@ -242,6 +341,11 @@
    "kind": "definition",
    "section": "24.3",
    "name": "X rays",
+   "terms": [
+    "X-ray",
+    "x ray",
+    "x rays"
+   ],
    "statement": "X rays are invisible, penetrating electromagnetic radiation of very high frequency, overlapping the ultraviolet below and the gamma rays above."
   },
   {
@@ -249,6 +353,10 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Gamma rays ($\\gamma$ rays)",
+   "terms": [
+    "gamma ray",
+    "gamma rays"
+   ],
    "statement": "Gamma rays are electromagnetic radiation of extremely high frequency, emitted by the nucleus of an atom in nuclear decay or in other nuclear and particle processes."
   },
   {
@@ -256,6 +364,9 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Carrier wave",
+   "terms": [
+    "carrier wave"
+   ],
    "statement": "A carrier wave is an electromagnetic wave that carries a signal by the modulation of its amplitude or of its frequency."
   },
   {
@@ -263,6 +374,9 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Amplitude modulation (AM)",
+   "terms": [
+    "amplitude modulation (AM)"
+   ],
    "statement": "Amplitude modulation places information on an electromagnetic wave by varying the amplitude of a carrier wave with the signal, while its frequency stays fixed."
   },
   {
@@ -270,6 +384,9 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Frequency modulation (FM)",
+   "terms": [
+    "frequency modulation (FM)"
+   ],
    "statement": "Frequency modulation places information on an electromagnetic wave by varying the frequency of a carrier wave with the signal, while its amplitude stays fixed."
   },
   {
@@ -277,6 +394,9 @@
    "kind": "idea",
    "section": "24.3",
    "name": "Radar",
+   "terms": [
+    "radar"
+   ],
    "statement": "Radar is a common application of microwaves: it finds the distance to objects as diverse as clouds and aircraft from the time a reflected pulse takes to return."
   },
   {
@@ -284,6 +404,9 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Extremely low frequency (ELF)",
+   "terms": [
+    "extremely low frequency (ELF)"
+   ],
    "statement": "Extremely low frequency radiation is electromagnetic radiation of the lowest frequencies, usually from 0 to 300 Hz but also up to about 1 kHz."
   },
   {
@@ -291,6 +414,9 @@
    "kind": "idea",
    "section": "24.3",
    "name": "TV",
+   "terms": [
+    "TV"
+   ],
    "statement": "Television carries video and audio signals on electromagnetic waves, broadcast in the radio band."
   },
   {
@@ -298,6 +424,9 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Very high frequency (VHF)",
+   "terms": [
+    "very high frequency (VHF)"
+   ],
    "statement": "Very high frequency TV channels use frequencies in the two ranges from 54 to 88 MHz and from 174 to 222 MHz."
   },
   {
@@ -305,6 +434,9 @@
    "kind": "definition",
    "section": "24.3",
    "name": "Ultra-high frequency (UHF)",
+   "terms": [
+    "ultra-high frequency (UHF)"
+   ],
    "statement": "Ultra-high frequency TV channels use frequencies above those of VHF, from 470 to 1000 MHz."
   },
   {
@@ -320,7 +452,20 @@
    "section": "24.4",
    "name": "Average intensity from the electric amplitude, $\\kIave = \\kc\\varepsilon_0\\kEfo^2/2$",
    "statement": "Intensity is power per unit area, as it has been since the chapter on waves, and for a continuous sinusoidal electromagnetic wave it can be written from the electric amplitude alone. The factor of a half is what is left after averaging the square of a sine over a cycle, and the speed of light and the permittivity of free space are the constants that turn a field strength into a power per square metre. This is the form to reach for when the electric field is the quantity given or wanted.",
-   "eq": "eq-intensity-from-e0"
+   "forms": [
+    {
+     "id": "eq-intensity-from-e0",
+     "latex": "I_{\\text{ave}} = \\frac{c\\varepsilon_0 E_0^2}{2}",
+     "ktex": "\\kIave = \\frac{\\kc\\varepsilon_0 \\kEfo^2}{2}",
+     "anchor": "24.4-average-intensity"
+    },
+    {
+     "id": "eq-e0-from-intensity",
+     "latex": "E_0 = \\left(\\frac{2I_{\\text{ave}}}{c\\varepsilon_0}\\right)^{1/2}",
+     "ktex": "\\kEfo = \\left(\\frac{2\\kIave}{\\kc\\varepsilon_0}\\right)^{1/2}",
+     "anchor": "24.4-fields-from-intensity"
+    }
+   ]
   },
   {
    "id": "intensity-from-the-magnetic-amplitude",
@@ -328,7 +473,20 @@
    "section": "24.4",
    "name": "The same intensity from the magnetic amplitude, $\\kIave = \\kc\\kBmago^2/2\\mu_0$ and $\\kIave = \\kEfo\\kBmago/2\\mu_0$",
    "statement": "Substituting $\\kBmag = \\kEf/\\kc$ and $\\varepsilon_0 = 1/\\mu_0\\kc^2$ into the first expression gives the intensity in terms of the magnetic amplitude, and substituting only part of the way gives it in terms of both amplitudes at once. The three forms are not three results but one, written in whichever quantities a problem happens to supply, and the principle behind all three is the same: energy in a wave is related to amplitude squared.",
-   "eq": "eq-intensity-from-b0"
+   "forms": [
+    {
+     "id": "eq-intensity-from-b0",
+     "latex": "I_{\\text{ave}} = \\frac{cB_0^2}{2\\mu_0}",
+     "ktex": "\\kIave = \\frac{\\kc\\kBmago^2}{2\\mu_0}",
+     "anchor": "24.4-average-intensity"
+    },
+    {
+     "id": "eq-intensity-from-e0-b0",
+     "latex": "I_{\\text{ave}} = \\frac{E_0B_0}{2\\mu_0}",
+     "ktex": "\\kIave = \\frac{\\kEfo\\kBmago}{2\\mu_0}",
+     "anchor": "24.4-average-intensity"
+    }
+   ]
   },
   {
    "id": "peak-intensity-is-twice-average",
@@ -336,21 +494,31 @@
    "section": "24.4",
    "name": "Peak intensity is twice the average, $\\kIopeak = 2\\kIave$",
    "statement": "The three expressions are written for a sinusoidal wave, and averaging the square of a sine over a cycle leaves half of its maximum. So the intensity at the crest of the wave is twice the average intensity the same expressions give, and a problem that asks for a peak rather than an average needs the factor of two. The same factor is why the root mean square field is the amplitude divided by the square root of two.",
-   "eq": "eq-peak-intensity"
+   "forms": [
+    {
+     "id": "eq-peak-intensity",
+     "latex": "I_0 = 2I_{\\text{ave}}",
+     "ktex": "\\kIopeak = 2\\kIave",
+     "anchor": "24.4-average-intensity"
+    }
+   ]
   },
   {
    "id": "find-fields-from-intensity",
    "kind": "skill",
    "section": "24.4",
    "name": "Find the field amplitudes of a wave from its intensity",
-   "statement": "The common problem of the section runs in one direction: a source of known power spreads it over a known area, which gives the intensity, and the intensity gives the electric amplitude by rearranging the first expression, after which dividing by the speed of light gives the magnetic amplitude. Doing it in that order avoids the awkward constants twice over, and the answers are worth a glance for size, since a kilowatt in an oven gives a field of a few kilovolts per metre and a few microtesla.",
-   "eq": "eq-e0-from-intensity"
+   "statement": "The common problem of the section runs in one direction: a source of known power spreads it over a known area, which gives the intensity, and the intensity gives the electric amplitude by rearranging the first expression, after which dividing by the speed of light gives the magnetic amplitude. Doing it in that order avoids the awkward constants twice over, and the answers are worth a glance for size, since a kilowatt in an oven gives a field of a few kilovolts per metre and a few microtesla."
   },
   {
    "id": "maximum-field-strength",
    "kind": "definition",
    "section": "24.4",
    "name": "Maximum field strength, $\\kEfo$ and $\\kBmago$",
+   "symbol": "E_0field",
+   "terms": [
+    "maximum field strength"
+   ],
    "statement": "The maximum field strength of an electromagnetic wave is the amplitude of its electric or magnetic field, the largest value the field reaches as it oscillates."
   }
  ],

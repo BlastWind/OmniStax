@@ -105,15 +105,38 @@
    "kind": "definition",
    "section": "20.1",
    "name": "Electric current, $\\kIcur = \\kdQch/\\kdt$",
+   "symbol": "I_curr",
+   "terms": [
+    "electric current",
+    "current"
+   ],
    "statement": "Electric current is defined to be the rate at which charge flows. A large current, such as that used to start a truck engine, moves a large amount of charge in a small time, whereas a small current, such as that used to operate a handheld calculator, moves a small amount of charge over a long period of time. Defining the current as a rate rather than as an amount is what lets the same idea describe a lightning bolt and a clock battery, and every other result in the chapter is built on it.",
-   "eq": "eq-current"
+   "forms": [
+    {
+     "id": "eq-current",
+     "latex": "I = \\frac{\\Delta Q}{\\Delta t}",
+     "ktex": "\\kIcur = \\frac{\\kdQch}{\\kdt}",
+     "anchor": "20.1-electric-current"
+    }
+   ]
   },
   {
    "id": "ampere",
    "kind": "definition",
    "section": "20.1",
    "name": "The ampere, $1\\;\\text{A} = 1\\;\\text{C/s}$",
-   "statement": "Since current is a charge divided by a time, its SI unit is one coulomb per second, named the ampere for the French physicist André-Marie Ampère. Fuses, circuit breakers and many electrical appliances carry ratings in amperes."
+   "terms": [
+    "ampere"
+   ],
+   "statement": "Since current is a charge divided by a time, its SI unit is one coulomb per second, named the ampere for the French physicist André-Marie Ampère. Fuses, circuit breakers and many electrical appliances carry ratings in amperes.",
+   "forms": [
+    {
+     "id": "eq-ampere",
+     "latex": "1\\;\\text{A} = 1\\;\\text{C/s}",
+     "ktex": "1\\;\\text{A} = 1\\;\\text{C/s}",
+     "anchor": "20.1-electric-current"
+    }
+   ]
   },
   {
    "id": "conventional-current",
@@ -141,6 +164,10 @@
    "kind": "definition",
    "section": "20.1",
    "name": "Drift velocity, $\\kvd$",
+   "symbol": "v_d",
+   "terms": [
+    "drift velocity"
+   ],
    "statement": "The drift velocity is the average velocity of the free charges in a conductor. An individual electron moves quickly and almost at random, colliding with atoms and with other electrons, but an electric field tilts that random walk so that the whole crowd creeps one way. The drift velocity is quite small, on the order of $10^{-4}$ m/s, because there are so many free charges: the larger the density of carriers, the lower the velocity needed to carry a given current."
   },
   {
@@ -155,38 +182,98 @@
    "kind": "result",
    "section": "20.1",
    "name": "Current from drift velocity, $\\kIcur = n\\kq A\\kvd$",
+   "symbol": "n",
    "statement": "Counting the free charges in a segment of wire gives the current directly: a segment of cross-sectional area $A$ and length $x$ holds $nAx$ carriers of charge $q$ each, and if they all leave the segment in a time $\\Delta t$ then the current is that charge divided by that time. Since $x/\\Delta t$ is the drift velocity, the current is $I = nqAv_\\text{d}$, which ties the number the reader can measure with an ammeter to the microscopic picture of a crowd of electrons.",
-   "eq": "eq-current-drift"
+   "forms": [
+    {
+     "id": "eq-current-drift",
+     "latex": "I = nqAv_{\\text{d}}",
+     "ktex": "\\kIcur = n\\kq A\\kvd",
+     "anchor": "20.1-current-from-drift"
+    }
+   ]
   },
   {
    "id": "ohms-law",
    "kind": "axiom",
    "section": "20.2",
    "name": "Ohm's law, $\\kIcur = \\kV/\\kRes$",
+   "terms": [
+    "Ohm’s law"
+   ],
    "statement": "Georg Simon Ohm was the first to demonstrate experimentally that the current in a metal wire is directly proportional to the voltage applied to it. Combining that proportionality with the fact that current is inversely proportional to resistance gives $I = V/R$, which can be read as a cause-and-effect relationship with voltage the cause and current the effect. It is the relation the rest of the chapter, and the whole of circuit analysis, rests on.",
-   "eq": "eq-ohms-law"
+   "forms": [
+    {
+     "id": "eq-ohms-law",
+     "latex": "I = \\frac{V}{R}",
+     "ktex": "\\kIcur = \\frac{\\kV}{\\kRes}",
+     "anchor": "20.2-resistance-circuits"
+    },
+    {
+     "id": "eq-current-proportional-voltage",
+     "latex": "I \\propto V",
+     "ktex": "\\kIcur \\propto \\kV",
+     "anchor": "20.2-ohms-law"
+    },
+    {
+     "id": "eq-current-inverse-resistance",
+     "latex": "I \\propto \\frac{1}{R}",
+     "ktex": "\\kIcur \\propto \\frac{1}{\\kRes}",
+     "anchor": "20.2-resistance-circuits"
+    },
+    {
+     "id": "eq-initial-current",
+     "latex": "I_0 = \\frac{\\mathcal{E}}{R}",
+     "ktex": "\\kIocur = \\frac{\\kemf}{\\kRes}",
+     "section": "21.6",
+     "anchor": "21.6-rc-circuits"
+    },
+    {
+     "id": "eq-rl-final-current",
+     "latex": "I_0 = \\frac{V}{R}",
+     "ktex": "\\kIocur = \\frac{\\kV}{\\kRes}",
+     "section": "23.10",
+     "anchor": "23.10-current-turning-on"
+    }
+   ]
   },
   {
    "id": "resistance",
    "kind": "definition",
    "section": "20.2",
    "name": "Resistance, $\\kRes = \\kV/\\kIcur$",
-   "statement": "If voltage drives current, something must impede it, and that electric property is called resistance. Collisions of moving charges with the atoms and molecules of a substance transfer energy to the substance and limit the current, so current is inversely proportional to resistance and is cut in half if the resistance doubles. Resistances range over many orders of magnitude, from $10^{-5}\\;\\Omega$ for a meter of thick copper wire to $10^{12}\\;\\Omega$ for a ceramic insulator.",
-   "eq": "eq-current-inverse-resistance"
+   "symbol": "R_res",
+   "terms": [
+    "resistance"
+   ],
+   "statement": "If voltage drives current, something must impede it, and that electric property is called resistance. Collisions of moving charges with the atoms and molecules of a substance transfer energy to the substance and limit the current, so current is inversely proportional to resistance and is cut in half if the resistance doubles. Resistances range over many orders of magnitude, from $10^{-5}\\;\\Omega$ for a meter of thick copper wire to $10^{12}\\;\\Omega$ for a ceramic insulator."
   },
   {
    "id": "ohm",
    "kind": "definition",
    "section": "20.2",
    "name": "The ohm, $1\\;\\Omega = 1\\;\\text{V/A}$",
+   "terms": [
+    "ohm"
+   ],
    "statement": "The unit of resistance is one volt per ampere, which is named the ohm and written with the capital Greek omega, $1\\;\\Omega = 1\\;\\text{V/A}$. An object that has simple resistance is called a resistor, even when its resistance is small.",
-   "eq": "eq-ohm-unit"
+   "forms": [
+    {
+     "id": "eq-ohm-unit",
+     "latex": "1\\;\\Omega = 1\\;\\frac{\\text{V}}{\\text{A}}",
+     "ktex": "1\\;\\Omega = 1\\;\\frac{\\text{V}}{\\text{A}}",
+     "anchor": "20.2-resistance-circuits"
+    }
+   ]
   },
   {
    "id": "ohmic-material",
    "kind": "definition",
    "section": "20.2",
    "name": "Ohmic materials",
+   "terms": [
+    "ohmic"
+   ],
    "statement": "Ohm's law, like Hooke's law, is not universally valid. The many substances for which it holds are called ohmic, and they include good conductors like copper and aluminum and some poor conductors under certain circumstances; an ohmic material has a resistance that does not depend on the voltage across it or the current through it. Knowing that the law is empirical rather than fundamental tells the reader when a straight line through the origin is the right model and when it is not."
   },
   {
@@ -194,6 +281,9 @@
    "kind": "definition",
    "section": "20.2",
    "name": "The simple circuit",
+   "terms": [
+    "simple circuit"
+   ],
    "statement": "A simple circuit has a single voltage source and a single resistor, with the connecting wires assumed to have negligible resistance or their resistance included in $R$. It is the smallest complete circuit there is, and settling how voltage, current and resistance behave in it is what makes the more complicated circuits of the next chapter tractable."
   },
   {
@@ -201,14 +291,28 @@
    "kind": "result",
    "section": "20.2",
    "name": "The $IR$ drop, $\\kV = \\kIcur\\kRes$",
+   "terms": [
+    "voltage drop"
+   ],
    "statement": "Solving Ohm's law for the voltage gives $V = IR$, which is the voltage drop across a resistor produced by the current flowing through it, often called the $IR$ drop. If voltage is measured at various points in a circuit it is seen to increase at the voltage source and decrease at the resistor, and conservation of energy requires that in a simple circuit the voltage supplied by the source equals the voltage dropped across the resistor, since the same charge flows through each.",
-   "eq": "eq-ir-drop"
+   "forms": [
+    {
+     "id": "eq-ir-drop",
+     "latex": "V = IR",
+     "ktex": "\\kV = \\kIcur\\kRes",
+     "anchor": "20.2-resistance-circuits"
+    }
+   ]
   },
   {
    "id": "resistivity",
    "kind": "definition",
    "section": "20.3",
    "name": "Resistivity, $\\rho$",
+   "symbol": "ρ",
+   "terms": [
+    "resistivity"
+   ],
    "statement": "For a given shape, the resistance depends on the material the object is made of, and the resistivity is the property that carries that dependence. Resistivity is an intrinsic property of a material, independent of its shape or size, and its unit is the ohm-meter."
   },
   {
@@ -217,7 +321,14 @@
    "section": "20.3",
    "name": "The resistance of a cylinder, $\\kRes = \\rho L/A$",
    "statement": "The resistance of a uniform cylinder is directly proportional to its length and inversely proportional to its cross-sectional area, just as the resistance a pipe offers to fluid flow is: the longer the cylinder, the more collisions the charges make with its atoms, and the greater its diameter, the more current it can carry. With the resistivity of the material this gives the resistance of any simple shape from its dimensions alone.",
-   "eq": "eq-resistance-cylinder"
+   "forms": [
+    {
+     "id": "eq-resistance-cylinder",
+     "latex": "R = \\frac{\\rho L}{A}",
+     "ktex": "\\kRes = \\frac{\\rho L}{A}",
+     "anchor": "20.3-material-and-shape"
+    }
+   ]
   },
   {
    "id": "conductors-semiconductors-insulators",
@@ -231,6 +342,9 @@
    "kind": "idea",
    "section": "20.3",
    "name": "Zero resistivity below a critical temperature",
+   "terms": [
+    "superconductors"
+   ],
    "statement": "The resistivity of all materials depends on temperature, and some become superconductors, with zero resistivity, at very low temperatures. A sample of mercury has no resistance at all up to about 4.2 K, and above that critical temperature its resistance makes a sudden jump and then increases nearly linearly. A material with no resistance carries a steady current with no continual supply of energy, which is why the possibility matters far beyond the laboratory."
   },
   {
@@ -238,6 +352,10 @@
    "kind": "definition",
    "section": "20.3",
    "name": "The temperature coefficient of resistivity, $\\alpha$",
+   "symbol": "α_res",
+   "terms": [
+    "temperature coefficient of resistivity"
+   ],
    "statement": "The temperature coefficient of resistivity is the empirical quantity that describes how much a material's resistivity changes with temperature. It is positive for metals, because their atoms vibrate more rapidly and over larger distances at higher temperatures so the electrons make more collisions, and negative for the semiconductors of Table 20.2, because increased thermal agitation there increases the number of free charges available to carry current. Some alloys, such as manganin, are made to have a coefficient close to zero, which is how a temperature-independent resistance standard is built."
   },
   {
@@ -246,7 +364,14 @@
    "section": "20.3",
    "name": "Resistivity with temperature, $\\rho = \\rho_0(1 + \\alpha\\kdTemp)$",
    "statement": "Over relatively small temperature changes, about 100 °C or less, the resistivity varies linearly with the temperature change, where $\\rho_0$ is the original resistivity and $\\alpha$ is the temperature coefficient. For larger changes the coefficient may itself vary or a nonlinear equation may be needed, so the reader should treat the linear form as the approximation it is.",
-   "eq": "eq-resistivity-temperature"
+   "forms": [
+    {
+     "id": "eq-resistivity-temperature",
+     "latex": "\\rho = \\rho_0(1 + \\alpha\\Delta T)",
+     "ktex": "\\rho = \\rho_0(1 + \\alpha\\kdTemp)",
+     "anchor": "20.3-temperature-variation"
+    }
+   ]
   },
   {
    "id": "resistance-and-temperature",
@@ -254,23 +379,62 @@
    "section": "20.3",
    "name": "Resistance with temperature, $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$",
    "statement": "Since the resistance of a cylinder is proportional to the resistivity, and since the length and the area change far less with temperature than the resistivity does, the resistance of an object has the same temperature dependence as the resistivity. Numerous thermometers are based on this effect, the most common being the thermistor, a semiconductor crystal with a strong temperature dependence whose resistance is measured to obtain its temperature.",
-   "eq": "eq-resistance-temperature"
+   "forms": [
+    {
+     "id": "eq-resistance-temperature",
+     "latex": "R = R_0(1 + \\alpha\\Delta T)",
+     "ktex": "\\kRes = \\kReso(1 + \\alpha\\kdTemp)",
+     "anchor": "20.3-resistance-with-temperature"
+    }
+   ]
   },
   {
    "id": "electric-power",
    "kind": "result",
    "section": "20.4",
    "name": "Electric power, $\\kP = \\kIcur\\kV$",
+   "terms": [
+    "electric power"
+   ],
    "statement": "Electric power is the rate at which electrical energy is supplied by a source or dissipated by a device. Since electric energy is $\\text{PE} = qV$, the power is the charge per second times the voltage, which is the current times the voltage, $P = IV$. One ampere-volt is one watt.",
-   "eq": "eq-power-iv"
+   "forms": [
+    {
+     "id": "eq-power-iv",
+     "latex": "P = IV",
+     "ktex": "\\kP = \\kIcur\\kV",
+     "anchor": "20.4-power-in-electric-circuits"
+    },
+    {
+     "id": "eq-power-from-charge",
+     "latex": "P = \\frac{\\text{PE}}{t} = \\frac{qV}{t}",
+     "ktex": "\\kP = \\frac{\\kPEtot}{\\kt} = \\frac{\\kq\\kV}{\\kt}",
+     "anchor": "20.4-power-in-electric-circuits"
+    }
+   ]
   },
   {
    "id": "power-and-resistance",
    "kind": "result",
    "section": "20.4",
    "name": "Power from resistance, $\\kP = \\kV^2/\\kRes$ and $\\kP = \\kIcur^2\\kRes$",
+   "terms": [
+    "Joule’s law"
+   ],
    "statement": "Substituting Ohm's law into $P = IV$ gives two further expressions, and each yields its own insight. The first says that the lower the resistance connected to a given voltage source, the greater the power delivered, and that because the voltage is squared the effect of raising it is larger than expected, which is why a 25-W bulb connected to 240 V glows brightly and burns out. The second is the form to use when the current rather than the voltage is fixed, as it is in a transmission line. The first expression is always valid; these two can be used only for resistors.",
-   "eq": "eq-power-v2r"
+   "forms": [
+    {
+     "id": "eq-power-v2r",
+     "latex": "P = \\frac{V^2}{R}",
+     "ktex": "\\kP = \\frac{\\kV^2}{\\kRes}",
+     "anchor": "20.4-power-in-electric-circuits"
+    },
+    {
+     "id": "eq-power-i2r",
+     "latex": "P = I^2R",
+     "ktex": "\\kP = \\kIcur^2\\kRes",
+     "anchor": "20.4-power-in-electric-circuits"
+    }
+   ]
   },
   {
    "id": "power-supplied-equals-dissipated",
@@ -284,8 +448,22 @@
    "kind": "result",
    "section": "20.4",
    "name": "The energy a device uses, $\\kE = \\kP\\kt$",
+   "symbol": "E",
    "statement": "Since power is energy per unit time, the energy a device uses is its power multiplied by the time it is on, and that is what appears on an electric bill. The energy unit on electric bills is the kilowatt-hour, which is $3.6\\times10^{6}$ J, and the cost of running anything can be estimated from its power rating in kilowatts, the hours it is on and the cost per kilowatt-hour.",
-   "eq": "eq-energy-from-power"
+   "forms": [
+    {
+     "id": "eq-energy-from-power",
+     "latex": "E = Pt",
+     "ktex": "\\kE = \\kP\\kt",
+     "anchor": "20.4-cost-of-electricity"
+    },
+    {
+     "id": "eq-kilowatt-hour",
+     "latex": "1\\;\\text{kW}\\cdot\\text{h} = 3.6\\times10^{6}\\;\\text{J}",
+     "ktex": "1\\;\\text{kW}\\cdot\\text{h} = 3.6\\times10^{6}\\;\\text{J}",
+     "anchor": "20.4-cost-of-electricity"
+    }
+   ]
   },
   {
    "id": "lighting-efficiency",
@@ -299,6 +477,9 @@
    "kind": "definition",
    "section": "20.5",
    "name": "Direct current",
+   "terms": [
+    "direct current"
+   ],
    "statement": "Direct current is the flow of electric charge in only one direction, and it is the steady state of a constant-voltage circuit such as one driven by a battery. Naming it is what makes the contrast with alternating current sharp, and most of the examples of the chapter so far have been of this kind."
   },
   {
@@ -306,8 +487,26 @@
    "kind": "definition",
    "section": "20.5",
    "name": "Alternating current, $\\kV = \\kVo\\sin 2\\pi \\kf\\kt$",
+   "symbol": "V_0volt",
+   "terms": [
+    "alternating current",
+    "AC current"
+   ],
    "statement": "Alternating current is the flow of electric charge that periodically reverses direction, and when the source varies sinusoidally the circuit is an alternating current circuit. The voltage between the terminals is $V = V_0\\sin 2\\pi ft$, where $V_0$ is the peak voltage and $f$ the frequency in hertz, and in a simple resistance circuit the current follows it in phase as $I = I_0\\sin 2\\pi ft$ with $I_0 = V_0/R$. The commercial and residential power that serves most of our needs is of this kind, so the reader needs its form before anything else in the section.",
-   "eq": "eq-ac-voltage"
+   "forms": [
+    {
+     "id": "eq-ac-voltage",
+     "latex": "V = V_0\\sin 2\\pi ft",
+     "ktex": "\\kV = \\kVo\\sin 2\\pi \\kf\\kt",
+     "anchor": "20.5-alternating-current"
+    },
+    {
+     "id": "eq-ac-current",
+     "latex": "I = I_0\\sin 2\\pi ft",
+     "ktex": "\\kIcur = \\kIocur\\sin 2\\pi \\kf\\kt",
+     "anchor": "20.5-alternating-current"
+    }
+   ]
   },
   {
    "id": "ac-power",
@@ -315,7 +514,20 @@
    "section": "20.5",
    "name": "Average AC power, $\\kPave = \\frac{1}{2}\\kIocur\\kVo$",
    "statement": "Since the power supplied is the product of the current and the voltage and the two are in phase, the power is $I_0V_0\\sin^2 2\\pi ft$, which is never negative and fluctuates between zero and $I_0V_0$ twice in each cycle. We are most often concerned with the average rather than the fluctuation, and the average is half the peak, as is evident from the graph, since the areas above and below the half-peak line are equal.",
-   "eq": "eq-ac-power-average"
+   "forms": [
+    {
+     "id": "eq-ac-power-average",
+     "latex": "P_{\\text{ave}} = \\frac{1}{2}I_0V_0",
+     "ktex": "\\kPave = \\frac{1}{2}\\kIocur\\kVo",
+     "anchor": "20.5-ac-power"
+    },
+    {
+     "id": "eq-ac-power-rms",
+     "latex": "P_{\\text{ave}} = I_{\\text{rms}}V_{\\text{rms}}",
+     "ktex": "\\kPave = \\kIrms\\kVrms",
+     "anchor": "20.5-rms-values"
+    }
+   ]
   },
   {
    "id": "rms-values",
@@ -323,7 +535,20 @@
    "section": "20.5",
    "name": "The rms current and voltage, $\\kIrms = \\kIocur/\\sqrt{2}$ and $\\kVrms = \\kVo/\\sqrt{2}$",
    "statement": "The ordinary average of an alternating current is zero, so a different kind of average is needed: the quantity is squared, its mean is found, and the square root is taken, which gives the root mean square. It is standard practice to quote the rms current and voltage and the average power rather than the peak values, so household electricity described as 120 V AC has an rms voltage of 120 V and a peak of about 170 V. The reader can think of these as the equivalent DC values for a simple resistive circuit.",
-   "eq": "eq-rms-current"
+   "forms": [
+    {
+     "id": "eq-rms-current",
+     "latex": "I_{\\text{rms}} = \\frac{I_0}{\\sqrt{2}}",
+     "ktex": "\\kIrms = \\frac{\\kIocur}{\\sqrt{2}}",
+     "anchor": "20.5-rms-values"
+    },
+    {
+     "id": "eq-rms-voltage",
+     "latex": "V_{\\text{rms}} = \\frac{V_0}{\\sqrt{2}}",
+     "ktex": "\\kVrms = \\frac{\\kVo}{\\sqrt{2}}",
+     "anchor": "20.5-rms-values"
+    }
+   ]
   },
   {
    "id": "ac-ohms-law",
@@ -331,7 +556,26 @@
    "section": "20.5",
    "name": "Ohm's law and power for AC, $\\kIrms = \\kVrms/\\kRes$",
    "statement": "When dealing with alternating current, Ohm's law and the expressions for power are completely analogous to those for direct current, provided rms and average values are used throughout. That is what makes the rms average worth defining: once it is, everything the reader learned in 20.2 and 20.4 carries over unchanged.",
-   "eq": "eq-ohms-law-ac"
+   "forms": [
+    {
+     "id": "eq-ohms-law-ac",
+     "latex": "I_{\\text{rms}} = \\frac{V_{\\text{rms}}}{R}",
+     "ktex": "\\kIrms = \\frac{\\kVrms}{\\kRes}",
+     "anchor": "20.5-ac-ohms-law"
+    },
+    {
+     "id": "eq-ac-power-v2r",
+     "latex": "P_{\\text{ave}} = \\frac{V_{\\text{rms}}^{2}}{R}",
+     "ktex": "\\kPave = \\frac{\\kVrms^{2}}{\\kRes}",
+     "anchor": "20.5-ac-ohms-law"
+    },
+    {
+     "id": "eq-ac-power-i2r",
+     "latex": "P_{\\text{ave}} = I_{\\text{rms}}^{2}R",
+     "ktex": "\\kPave = \\kIrms^{2}\\kRes",
+     "anchor": "20.5-ac-ohms-law"
+    }
+   ]
   },
   {
    "id": "high-voltage-transmission",
@@ -345,6 +589,9 @@
    "kind": "definition",
    "section": "20.5",
    "name": "AC voltage, $\\kV = \\kVo\\sin 2\\pi \\kf\\kt$",
+   "terms": [
+    "AC voltage"
+   ],
    "statement": "An AC voltage is a voltage that fluctuates sinusoidally with time, $V = V_0\\sin 2\\pi ft$, where $V_0$ is its peak value and $f$ its frequency."
   },
   {
@@ -352,6 +599,9 @@
    "kind": "definition",
    "section": "20.5",
    "name": "RMS current, $\\kIrms = \\kIocur/\\sqrt{2}$",
+   "terms": [
+    "rms current"
+   ],
    "statement": "The rms current is the root mean square of an alternating current, $I_\\text{rms} = I_0/\\sqrt{2}$, where $I_0$ is the peak current."
   },
   {
@@ -359,6 +609,9 @@
    "kind": "definition",
    "section": "20.5",
    "name": "RMS voltage, $\\kVrms = \\kVo/\\sqrt{2}$",
+   "terms": [
+    "rms voltage"
+   ],
    "statement": "The rms voltage is the root mean square of an AC voltage, $V_\\text{rms} = V_0/\\sqrt{2}$, where $V_0$ is the peak voltage."
   },
   {
@@ -366,6 +619,9 @@
    "kind": "definition",
    "section": "20.6",
    "name": "Thermal hazards",
+   "terms": [
+    "thermal hazard"
+   ],
    "statement": "A thermal hazard is one in which excessive electric power causes undesired thermal effects, such as starting a fire in the wall of a house. Electric power causes such heating whenever electric energy is converted to thermal energy faster than it can safely be dissipated, and naming the hazard separately from shock is what lets the reader see that the two are governed by different quantities."
   },
   {
@@ -373,8 +629,18 @@
    "kind": "definition",
    "section": "20.6",
    "name": "The short circuit, $\\kP = \\kV^2/\\krshort$",
+   "terms": [
+    "short circuit"
+   ],
    "statement": "A short circuit is a low-resistance path between the terminals of a voltage source, such as the one made when worn insulation lets two wires touch. Because the resistance of the short is very small and the power dissipated in it is $V^2/r$, that power is very large: 120 V across 0.100 Ω gives 144 kW, far more than any household appliance uses, and thermal energy delivered at that rate very quickly melts or ignites the surrounding materials. Worse, the heating can ionize the material and lower the resistance further, raising the power again.",
-   "eq": "eq-short-circuit-power"
+   "forms": [
+    {
+     "id": "eq-short-circuit-power",
+     "latex": "P = \\frac{V^2}{r}",
+     "ktex": "\\kP = \\frac{\\kV^2}{\\krshort}",
+     "anchor": "20.6-thermal-hazards"
+    }
+   ]
   },
   {
    "id": "overloaded-wires",
@@ -382,13 +648,23 @@
    "section": "20.6",
    "name": "Overloaded wires, fuses and circuit breakers, $\\kP = \\kIcur^2\\kRw$",
    "statement": "A less dramatic thermal hazard occurs when the wires supplying a user carry too great a current, since the power dissipated in them is $I^2R_\\text{w}$: a worn cord with 2.00 Ω rather than the 0.100 Ω it should have dissipates 200 W when 10.0 A passes through it. Fuses and circuit breakers limit such currents by opening the circuit automatically when a sustained current exceeds safe limits, a fuse by melting a metal strip and a breaker by bending a bimetallic strip that trips a spring.",
-   "eq": "eq-wire-heating"
+   "forms": [
+    {
+     "id": "eq-wire-heating",
+     "latex": "P = I^2R_{\\text{w}}",
+     "ktex": "\\kP = \\kIcur^2\\kRw",
+     "anchor": "20.6-thermal-hazards"
+    }
+   ]
   },
   {
    "id": "shock-hazard",
    "kind": "definition",
    "section": "20.6",
    "name": "Shock hazards",
+   "terms": [
+    "shock hazard"
+   ],
    "statement": "A shock hazard occurs when electric current passes through a person, and the effects range from painful but otherwise harmless to heart-stopping. Current through people is not always harmful and is sometimes useful, since it can block back pain, burn off warts, drive a pacemaker or bring a heart out of fibrillation; what decides the outcome is the amount of the current, the path it takes, the duration of the shock and the frequency of the current."
   },
   {
@@ -410,6 +686,9 @@
    "kind": "definition",
    "section": "20.6",
    "name": "Microshock sensitivity",
+   "terms": [
+    "microshock sensitive"
+   ],
    "statement": "A person is microshock sensitive when the resistance of the skin is bypassed, possibly by a medical procedure, so that a very small current can reach the heart."
   },
   {
@@ -431,6 +710,9 @@
    "kind": "idea",
    "section": "20.7",
    "name": "How a nerve impulse propagates",
+   "terms": [
+    "nerve conduction"
+   ],
    "statement": "An action potential is a voltage pulse at one place on a membrane, and the changing voltage and electric fields there alter the permeability of the adjacent membrane, so the same process happens next door, and then farther down. The result is a nerve impulse that moves along the cell membrane at about 1 m/s, slowly in electrical terms, and although it is due to sodium and potassium crossing the membrane it is equivalent to a wave of charge moving along the outside and inside of it."
   },
   {
@@ -445,6 +727,9 @@
    "kind": "idea",
    "section": "20.7",
    "name": "The electrocardiogram",
+   "terms": [
+    "electrocardiogram (ECG)"
+   ],
    "statement": "The depolarization that makes a muscle cell contract can stimulate the cells next to it, so a depolarization wave crosses the heart from the sinoatrial node and coordinates its rhythmic contractions. An electrocardiogram is a record of the voltages that wave and the repolarization after it create, read as vector components between pairs of electrodes on the body. In the lead II potential the P wave is the depolarization of the atria, the QRS complex the depolarization of the ventricles, and the T wave their repolarization, with the systolic blood pressure following shortly after the QRS complex."
   },
   {
@@ -452,6 +737,9 @@
    "kind": "idea",
    "section": "20.7",
    "name": "Bioelectricity",
+   "terms": [
+    "bioelectricity"
+   ],
    "statement": "Bioelectricity is the electrical effects in and created by biological systems. Nerve cells carry electrical signals, and the currents that make muscles contract produce voltages that can be measured outside the body."
   }
  ],

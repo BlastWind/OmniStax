@@ -194,6 +194,9 @@
    "kind": "definition",
    "section": "4.1",
    "name": "Dynamics",
+   "terms": [
+    "dynamics"
+   ],
    "statement": "Dynamics is the study of the forces that cause objects and systems to move. Kinematics describes how an object moves, and dynamics asks why it moves that way; Newton’s laws of motion are its foundation."
   },
   {
@@ -201,6 +204,10 @@
    "kind": "definition",
    "section": "4.1",
    "name": "Force",
+   "symbol": "F",
+   "terms": [
+    "force"
+   ],
    "statement": "A force is a push or a pull, and it has both a magnitude and a direction, so it is a vector and adds as other vectors add."
   },
   {
@@ -208,6 +215,9 @@
    "kind": "definition",
    "section": "4.1",
    "name": "External force",
+   "terms": [
+    "external force"
+   ],
    "statement": "Only the forces that act on a body from outside it change its motion, so before any law can be applied the forces have to be sorted into those that come from outside and those that act between parts of the body. A body cannot push itself along."
   },
   {
@@ -229,6 +239,9 @@
    "kind": "definition",
    "section": "4.1",
    "name": "Free-body diagram",
+   "terms": [
+    "free-body diagram"
+   ],
    "statement": "A free-body diagram is a sketch showing all of the external forces acting on an object or system, with the system represented by a dot and the forces by arrows extending outward from it."
   },
   {
@@ -236,6 +249,10 @@
    "kind": "axiom",
    "section": "4.2",
    "name": "Newton’s first law of motion",
+   "terms": [
+    "law of inertia",
+    "Newton’s first law of motion"
+   ],
    "statement": "A body at rest remains at rest, and a body in motion remains in motion at a constant velocity, unless a net external force acts on it. The law says that a change in velocity has a cause, so a sliding object that stops has been stopped by something, and friction is that something."
   },
   {
@@ -243,6 +260,9 @@
    "kind": "definition",
    "section": "4.2",
    "name": "Inertia",
+   "terms": [
+    "inertia"
+   ],
    "statement": "Inertia is the property of a body that keeps it at rest or keeps it moving at a constant velocity, which is why Newton’s first law is also called the law of inertia. Some bodies have more of it than others, and that difference is what mass measures."
   },
   {
@@ -250,6 +270,10 @@
    "kind": "definition",
    "section": "4.2",
    "name": "Mass",
+   "symbol": "m",
+   "terms": [
+    "mass"
+   ],
    "statement": "Mass is the quantity of matter in a body, and it is how much inertia the body has. Unlike weight, mass does not vary with location: a body has the same mass on Earth, in orbit and on the Moon, and masses are found in practice by comparison with the standard kilogram."
   },
   {
@@ -257,22 +281,85 @@
    "kind": "skill",
    "section": "4.3",
    "name": "Define the system of interest",
-   "statement": "Which forces count as external depends on where the boundary of the system is drawn, so the boundary has to be chosen before Newton’s second law can be written down. The wagon and its rider make one system; the wagon alone makes another, and the two give different net forces."
+   "statement": "Which forces count as external depends on where the boundary of the system is drawn, so the boundary has to be chosen before Newton’s second law can be written down. The wagon and its rider make one system; the wagon alone makes another, and the two give different net forces.",
+   "forms": [
+    {
+     "id": "eq-fnet-floor",
+     "latex": "F_{\\text{net}} = F_{\\text{floor}} - f",
+     "ktex": "\\kFnet = \\kFfloor - \\kff",
+     "condition": "the professor, the cart and the equipment taken as one system",
+     "section": "4.4",
+     "anchor": "4.4-choosing-a-system"
+    },
+    {
+     "id": "eq-fprof",
+     "latex": "F_{\\text{prof}} = F_{\\text{net}} + f",
+     "ktex": "\\kFprof = \\kFnet + \\kff",
+     "condition": "the cart and the equipment taken as the system",
+     "section": "4.4",
+     "anchor": "4.4-choosing-a-system"
+    }
+   ]
   },
   {
    "id": "net-external-force",
    "kind": "definition",
    "section": "4.3",
    "name": "Net external force",
-   "statement": "The net external force is the vector sum of all the external forces acting on a system, found head to tail or by components as any other vectors are. It is the single force that stands in for all of them, and it is what the second law relates to the acceleration."
+   "symbol": "F_net",
+   "terms": [
+    "net external force"
+   ],
+   "statement": "The net external force is the vector sum of all the external forces acting on a system, found head to tail or by components as any other vectors are. It is the single force that stands in for all of them, and it is what the second law relates to the acceleration.",
+   "forms": [
+    {
+     "id": "eq-fapp-magnitude",
+     "latex": "F_{\\text{app}} = \\sqrt{F_x^2 + F_y^2}",
+     "ktex": "\\kFa = \\sqrt{\\kFx^2 + \\kFy^2}",
+     "condition": "the two applied forces are perpendicular",
+     "section": "4.7",
+     "anchor": "4.7-drag"
+    }
+   ]
   },
   {
    "id": "newtons-second-law",
    "kind": "axiom",
    "section": "4.3",
    "name": "Newton’s second law of motion, $\\kFnet = m\\ka$",
+   "terms": [
+    "Newton’s second law of motion"
+   ],
    "statement": "The acceleration of a system is directly proportional to the net external force on it and in the same direction, and inversely proportional to its mass. It is a relation among three quantities that can each be measured on their own, not a definition.",
-   "eq": "eq-newton2"
+   "forms": [
+    {
+     "id": "eq-newton2",
+     "latex": "\\mathbf{F}_{\\text{net}} = m\\mathbf{a}",
+     "anchor": "4.3-second-law"
+    },
+    {
+     "id": "eq-a-prop-fnet",
+     "latex": "\\mathbf{a} \\propto \\mathbf{F}_{\\text{net}}",
+     "anchor": "4.3-net-force"
+    },
+    {
+     "id": "eq-a-prop-mass",
+     "latex": "\\mathbf{a} \\propto \\frac{1}{m}",
+     "anchor": "4.3-net-force"
+    },
+    {
+     "id": "eq-newton2-a",
+     "latex": "\\mathbf{a} = \\frac{\\mathbf{F}_{\\text{net}}}{m}",
+     "anchor": "4.3-second-law"
+    },
+    {
+     "id": "eq-newton2-mag",
+     "latex": "F_{\\text{net}} = ma",
+     "ktex": "\\kFnet = m\\ka",
+     "condition": "only the magnitudes of the force and the acceleration are considered",
+     "anchor": "4.3-second-law"
+    }
+   ]
   },
   {
    "id": "newton-unit",
@@ -280,15 +367,32 @@
    "section": "4.3",
    "name": "The newton, $1\\ \\text{N} = 1\\ \\text{kg}\\cdot\\text{m/s}^2$",
    "statement": "The SI unit of force is defined from Newton’s second law: one newton is the force that accelerates a one-kilogram system at one meter per second squared.",
-   "eq": "eq-newton-unit"
+   "forms": [
+    {
+     "id": "eq-newton-unit",
+     "latex": "1\\ \\text{N} = 1\\ \\text{kg}\\cdot\\text{m/s}^2",
+     "anchor": "4.3-newton"
+    }
+   ]
   },
   {
    "id": "weight",
    "kind": "result",
    "section": "4.3",
    "name": "Weight, $\\kwgt = m\\kg$",
+   "symbol": "w",
+   "terms": [
+    "weight"
+   ],
    "statement": "The weight of an object is the gravitational force on it, and Newton’s second law applied to a falling object gives its magnitude as the mass times the acceleration due to gravity. Weight is a force and is measured in newtons, and it changes with the body the object is near.",
-   "eq": "eq-weight"
+   "forms": [
+    {
+     "id": "eq-weight",
+     "latex": "w = mg",
+     "ktex": "\\kwgt = m\\kg",
+     "anchor": "4.3-weight"
+    }
+   ]
   },
   {
    "id": "mass-versus-weight",
@@ -302,6 +406,10 @@
    "kind": "definition",
    "section": "4.3",
    "name": "Friction",
+   "symbol": "f_fric",
+   "terms": [
+    "friction"
+   ],
    "statement": "Friction is a force that opposes the motion past each other of objects that are touching. It is an external force, and it is what slows a sliding object down."
   },
   {
@@ -309,6 +417,9 @@
    "kind": "definition",
    "section": "4.3",
    "name": "System",
+   "terms": [
+    "system"
+   ],
    "statement": "A system is the object or collection of objects being observed, defined by its boundaries. All forces originating from outside the system are external forces."
   },
   {
@@ -316,6 +427,9 @@
    "kind": "axiom",
    "section": "4.4",
    "name": "Newton’s third law of motion",
+   "terms": [
+    "Newton’s third law of motion"
+   ],
    "statement": "Whenever one body exerts a force on a second body, the first body experiences a force equal in magnitude and opposite in direction to the force it exerts. Forces always occur in pairs, and no body can exert a force on another without experiencing one itself."
   },
   {
@@ -337,6 +451,10 @@
    "kind": "definition",
    "section": "4.4",
    "name": "Thrust",
+   "symbol": "T_force",
+   "terms": [
+    "thrust"
+   ],
    "statement": "Thrust is the forward reaction force on a rocket that throws gas backward: it pushes hard on the gas, and by the third law the gas pushes just as hard forward on the rocket. Thrust drives rockets, airplanes and cars."
   },
   {
@@ -344,8 +462,20 @@
    "kind": "definition",
    "section": "4.5",
    "name": "Normal force $\\kN$",
+   "symbol": "N",
+   "terms": [
+    "normal force"
+   ],
    "statement": "Whatever supports a load must push up on it, and where that support is perpendicular to the surface of contact it is called the normal force. A table sags under a bag of dog food until its restoring force is as large as the weight, and on a level surface that makes the normal force equal to the weight; on an incline, or when the object accelerates, it is not.",
-   "eq": "eq-normal"
+   "forms": [
+    {
+     "id": "eq-normal",
+     "latex": "N = mg",
+     "ktex": "\\kN = m\\kg",
+     "condition": "an object at rest on a horizontal surface that is not accelerating",
+     "anchor": "4.5-normal-force"
+    }
+   ]
   },
   {
    "id": "weight-components-on-incline",
@@ -353,7 +483,30 @@
    "section": "4.5",
    "name": "Weight on an incline, $\\kwpar = m\\kg\\sin\\theta$ and $\\kwperp = m\\kg\\cos\\theta$",
    "statement": "On a slope the convenient axes are along and across the surface, and the weight is the one force that lies along neither, so it is resolved into a component parallel to the slope, which drives the object down it, and a component perpendicular to it, which the normal force balances.",
-   "eq": "eq-w-parallel"
+   "forms": [
+    {
+     "id": "eq-w-parallel",
+     "latex": "w_{\\parallel} = w\\sin\\theta = mg\\sin\\theta",
+     "ktex": "\\kwpar = \\kwgt\\sin\\theta = m\\kg\\sin\\theta",
+     "condition": "an incline that makes an angle θ with the horizontal",
+     "anchor": "4.5-weight-on-incline"
+    },
+    {
+     "id": "eq-w-perp",
+     "latex": "w_{\\perp} = w\\cos\\theta = mg\\cos\\theta",
+     "ktex": "\\kwperp = \\kwgt\\cos\\theta = m\\kg\\cos\\theta",
+     "condition": "an incline that makes an angle θ with the horizontal",
+     "anchor": "4.5-weight-on-incline"
+    },
+    {
+     "id": "eq-N-incline",
+     "latex": "N = w_{\\perp} = w\\cos\\theta = mg\\cos\\theta",
+     "ktex": "\\kN = \\kwperp = \\kwgt\\cos\\theta = m\\kg\\cos\\theta",
+     "condition": "there is no motion perpendicular to the slope",
+     "section": "5.1",
+     "anchor": "5.1-incline"
+    }
+   ]
   },
   {
    "id": "acceleration-on-frictionless-incline",
@@ -361,13 +514,25 @@
    "section": "4.5",
    "name": "Acceleration down a frictionless incline, $\\kapar = \\kg\\sin\\theta$",
    "statement": "Dividing the parallel component of the weight by the mass cancels the mass, so every object slides down a frictionless incline of the same angle with the same acceleration, just as every object falls with the same acceleration in the absence of air resistance.",
-   "eq": "eq-a-incline"
+   "forms": [
+    {
+     "id": "eq-a-incline",
+     "latex": "a_{\\parallel} = g\\sin\\theta",
+     "ktex": "\\kapar = \\kg\\sin\\theta",
+     "condition": "friction on the incline is negligible",
+     "anchor": "4.5-weight-on-incline"
+    }
+   ]
   },
   {
    "id": "tension",
    "kind": "definition",
    "section": "4.5",
    "name": "Tension",
+   "symbol": "T_force",
+   "terms": [
+    "tension"
+   ],
    "statement": "A tension is a force carried along the length of a flexible connector such as a rope, a cable or a tendon. A connector can only pull, never push, so the force it carries is always parallel to its length, and where there is no friction the tension is the same everywhere along it."
   },
   {
@@ -376,7 +541,15 @@
    "section": "4.5",
    "name": "Tension in a rope supporting a weight, $\\kTf = m\\kg$",
    "statement": "A mass hanging at rest from a rope has no acceleration, so the net force on it is zero and the tension must equal the weight. Once the tension is known at one point of a frictionless connector it is known everywhere along it.",
-   "eq": "eq-tension-weight"
+   "forms": [
+    {
+     "id": "eq-tension-weight",
+     "latex": "T = w = mg",
+     "ktex": "\\kTf = \\kwgt = m\\kg",
+     "condition": "a rope of negligible mass supporting a stationary object",
+     "anchor": "4.5-tension"
+    }
+   ]
   },
   {
    "id": "tension-from-perpendicular-force",
@@ -384,13 +557,31 @@
    "section": "4.5",
    "name": "Tension from a perpendicular force, $\\kTf = \\kFperp / (2\\sin\\theta)$",
    "statement": "Pushing sideways at the middle of a connector that is nearly straight creates a tension far larger than the push, because only the small vertical component of each half supports it. That is how a car is pulled out of the mud with a chain, and it is why no connector can be exactly horizontal.",
-   "eq": "eq-tension-perp"
+   "forms": [
+    {
+     "id": "eq-tension-perp",
+     "latex": "T = \\frac{F_{\\perp}}{2\\sin\\theta}",
+     "ktex": "\\kTf = \\frac{\\kFperp}{2\\sin\\theta}",
+     "condition": "a force perpendicular to the length of a flexible connector, exerted at its middle",
+     "anchor": "4.5-large-tension"
+    },
+    {
+     "id": "eq-tension-sag",
+     "latex": "T = \\frac{w}{2\\sin\\theta}",
+     "ktex": "\\kTf = \\frac{\\kwgt}{2\\sin\\theta}",
+     "condition": "a weight at the middle of a connector that sags by an angle θ on either side",
+     "anchor": "4.5-tightrope"
+    }
+   ]
   },
   {
    "id": "inertial-frame",
    "kind": "definition",
    "section": "4.5",
    "name": "Inertial frame of reference",
+   "terms": [
+    "inertial frame of reference"
+   ],
    "statement": "An inertial frame of reference is a frame that is neither accelerating nor rotating, and only in such a frame do Newton’s laws take their simple forms. In an accelerating frame an observer sees forces with no physical origin, such as the westward push on a satellite seen from a rotating Earth, and those fictitious forces are an artifact of the frame."
   },
   {
@@ -406,7 +597,30 @@
    "section": "4.6",
    "name": "Net force along each axis, $\\kFnetx = m\\ka$ and $\\kFnety = 0$",
    "statement": "Before the force equations are written, decide in which directions the system accelerates. Where there is no acceleration along an axis the net force along that axis is zero, and where there is, the net force along it is the mass times that acceleration; the two axes are then two one-dimensional problems.",
-   "eq": "eq-fnet-x"
+   "forms": [
+    {
+     "id": "eq-fnet-x",
+     "latex": "F_{\\text{net}\\,x} = ma",
+     "ktex": "\\kFnetx = m\\ka",
+     "condition": "the system accelerates along the x-axis",
+     "anchor": "4.6-axes"
+    },
+    {
+     "id": "eq-a-incline-friction",
+     "latex": "a_{\\parallel} = \\frac{mg\\sin\\theta - f}{m}",
+     "ktex": "\\kapar = \\frac{m\\kg\\sin\\theta - \\kff}{m}",
+     "condition": "friction of magnitude f opposes the motion down the incline",
+     "section": "4.5",
+     "anchor": "4.5-weight-on-incline"
+    },
+    {
+     "id": "eq-fnet-y",
+     "latex": "F_{\\text{net}\\,y} = 0",
+     "ktex": "\\kFnety = 0",
+     "condition": "the system has no acceleration along the y-axis",
+     "anchor": "4.6-axes"
+    }
+   ]
   },
   {
    "id": "resolve-forces-into-components",
@@ -421,23 +635,52 @@
    "section": "4.7",
    "name": "Two wires at different angles carry different tensions",
    "statement": "When an object hangs from two wires the horizontal components of the tensions must cancel and the vertical components must add to the weight. The two tensions are equal only when the two angles are equal; the wire that is nearer the vertical carries the greater share.",
-   "eq": "eq-tension-two-wires"
+   "forms": [
+    {
+     "id": "eq-tension-two-wires",
+     "latex": "T_1\\cos\\theta_1 = T_2\\cos\\theta_2, \\quad T_1\\sin\\theta_1 + T_2\\sin\\theta_2 = w",
+     "ktex": "\\kTone\\cos\\theta_1 = \\kTtwo\\cos\\theta_2, \\quad \\kTone\\sin\\theta_1 + \\kTtwo\\sin\\theta_2 = \\kwgt",
+     "condition": "an object hanging at rest from two wires",
+     "anchor": "4.7-tensions"
+    }
+   ]
   },
   {
    "id": "apparent-weight",
    "kind": "result",
    "section": "4.7",
    "name": "What a scale reads, $\\kFs = m\\ka + m\\kg$",
+   "symbol": "F_s",
    "statement": "A bathroom scale reads the force it pushes up with, not the weight. In an elevator accelerating upward it reads more than the weight, at any constant velocity it reads the weight exactly, and in free fall it reads zero and the person appears weightless.",
-   "eq": "eq-apparent-weight"
+   "forms": [
+    {
+     "id": "eq-apparent-weight",
+     "latex": "F_{\\text{s}} = ma + mg",
+     "ktex": "\\kFs = m\\ka + m\\kg",
+     "condition": "a person standing on a scale in a system accelerating vertically",
+     "anchor": "4.7-scale"
+    }
+   ]
   },
   {
    "id": "drag-force",
    "kind": "definition",
    "section": "4.7",
    "name": "Drag force",
+   "symbol": "F_D",
+   "terms": [
+    "drag force"
+   ],
    "statement": "A drag force is the frictional force a fluid such as air or water exerts on an object moving through it, and like any friction it opposes the motion.",
-   "eq": "eq-drag"
+   "forms": [
+    {
+     "id": "eq-drag",
+     "latex": "F_{\\text{D}} = F_{\\text{app}} - ma",
+     "ktex": "\\kFD = \\kFa - m\\ka",
+     "condition": "the drag is opposite to the applied force and the motion is along one line",
+     "anchor": "4.7-drag"
+    }
+   ]
   },
   {
    "id": "integrated-kinematics-dynamics",
@@ -458,6 +701,10 @@
    "kind": "idea",
    "section": "4.8",
    "name": "Force field",
+   "terms": [
+    "force field",
+    "field"
+   ],
    "statement": "All forces act at a distance, so something must carry them between objects. A force field surrounds the object that creates it and is a characteristic of that object alone; a test object placed in the field experiences a force that depends on where it is."
   },
   {
@@ -465,6 +712,10 @@
    "kind": "idea",
    "section": "4.8",
    "name": "Carrier particle",
+   "terms": [
+    "carrier particle",
+    "gauge boson"
+   ],
    "statement": "Fields leave open what actually carries a force, and the proposal that has held since Yukawa is that every force is transmitted by the exchange of an elementary particle, as two people passing a basketball push each other apart without touching."
   }
  ],
