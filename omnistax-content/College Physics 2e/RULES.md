@@ -129,34 +129,6 @@ on its photographs as a "(credit: …)" clause at the end of the caption, so
 a kept photograph keeps that clause. All of this is in `book.json`; this
 file records where it came from.
 
-## Voice
-
-Full sentences in plain second person, patient rather than clever. The
-book prefers "for example" and "note that" to a colon, names things by
-their own names every time, and explains before it summarises. A few
-sentences from 16.1 to write against:
-
-> Newton's first law implies that an object oscillating back and forth is
-> experiencing forces. Without force, the object would move in a straight
-> line at a constant speed rather than oscillate.
-
-> The force constant k is related to the rigidity (or stiffness) of a
-> system—the larger the force constant, the greater the restoring force,
-> and the stiffer the system.
-
-> Consider the car to be in its equilibrium position x = 0 before the
-> person gets in. The car then settles down 1.20 cm, which means it is
-> displaced to a position x = −1.20 × 10⁻² m.
-
-No fragment-headed captions ("The landing."), no telegraphic semicolon
-chains, no editorial framing ("three different questions"). OmniStax's
-sentences are set in the sans face; the reader should feel a change of
-typeface, not a change of writer.
-
-AI-written text speaks to the learner in crisp, active, teaching prose
-and never narrates its own choices, over-describes or hedges (root rule
-17). Check a chapter with `python3 tools/voicelint.py "College Physics 2e" --list chNN` from `omnistax-content/`.
-
 ## Types
 
 The book declares its types in `book.json`, in the order the colour
@@ -284,32 +256,3 @@ Photographs are kept where the text points the reader at them (Chapter
 1.5") or where they show the thing the passage is about (the Tacoma
 Narrows bridge, 16.8). A splash image at the head of a section is
 dropped.
-
-## Files
-
-The layout is the one the root `RULES.md` draws. Three things are specific
-to this book:
-
-- `figures.js` is `window.OMNISTAX_FIGURES['<section>'] = function (root, F) {…}`,
-  one function per figure, every lookup through `F.sim(root, id, H)` or
-  `F.byId(root, id)`. The types a figure draws are the ones its sliders
-  carry (`cls`), its colour lookups name (`C('velocity')`) and its
-  readouts write with a `\k` macro; the `draws` column of the figures
-  table lists them.
-- `text.html` carries the article body with local ids and `\k` macros in
-  its math, and each `<figure>` carries `id`, `class` (sim or photo),
-  `data-figure`, `data-original`, `data-original-caption` and, where the
-  row carries `widths`, `data-original-width` (a photograph carries its
-  one width as `data-width` on the `<img>`), which must agree with the
-  figures table; the validator checks that they do.
-- A dollar sign is written `&#36;` in the prose of `text.html`, where a
-  bare `$` would open math, but inside an exercise's `prompt` or
-  `solution` in `section.json` it is written as the fullwidth `＄`,
-  because the entity is decoded into a bare `$` before the math sweep
-  reads the string and the sweep then takes the rest of the sentence for
-  an equation; a display equation that needs the sign writes the
-  fullwidth character inside `\text{}` for the same reason. No math at all
-  goes inside an attribute: a `$…$` in `data-original-caption` is swept
-  into KaTeX markup with quotes, the attribute breaks and the caption
-  spills into the page as text, and the validator does not catch it, so
-  a caption attribute writes its symbols as plain text (f₀, ΔL).
