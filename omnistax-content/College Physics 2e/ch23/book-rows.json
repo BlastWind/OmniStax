@@ -40,7 +40,6 @@
   {
    "sym": "E_ind",
    "latex": "E_{\\text{ind}}",
-   "type": "energy",
    "macro": "\\kEind"
   },
   {
@@ -61,25 +60,21 @@
   {
    "sym": "Z_imp",
    "latex": "Z",
-   "type": "resistance",
    "macro": "\\kZimp"
   },
   {
    "sym": "emf_0",
    "latex": "\\mathcal{E}_0",
-   "type": "voltage",
    "macro": "\\kemfo"
   },
   {
    "sym": "V_prim",
    "latex": "V_{\\text{p}}",
-   "type": "voltage",
    "macro": "\\kVprim"
   },
   {
    "sym": "V_sec",
    "latex": "V_{\\text{s}}",
-   "type": "voltage",
    "macro": "\\kVsec"
   },
   {
@@ -394,6 +389,7 @@
    "terms": [
     "peak emf"
    ],
+   "type": "voltage",
    "statement": "The largest value the emf reaches is $NAB\\omega$, and every factor in it makes sense: more turns, a larger coil, a stronger field and a faster rotation all give more voltage. The last is the one with a story attached, since a bicycle generator spun fast enough will burn out the lamp it feeds. The peak emf is also what an AC problem usually gives, the rms value of Chapter 20 following from it.",
    "forms": [
     {
@@ -672,6 +668,7 @@
    "terms": [
     "energy stored in an inductor"
    ],
+   "type": "energy",
    "statement": "There is a second way to see why an inductor opposes a change in current: its magnetic field stores energy, and putting energy in and taking it out both take time. The stored energy is $\\frac{1}{2}LI^2$, the same shape as the energy in a capacitor, and it can make a spark when the current stops suddenly. It is also the energy the exponential decay of an RL circuit spends.",
    "forms": [
     {
@@ -851,6 +848,7 @@
    "terms": [
     "impedance"
    ],
+   "type": "resistance",
    "statement": "Put a resistor, an inductor and a capacitor in series on one AC source and their oppositions do not simply add. The inductor's voltage leads the current and the capacitor's lags it by the same quarter cycle, so the two are opposite and partly cancel. What remains is the impedance: the resistance and the difference of the reactances combined as the two legs of a right triangle. It is an ohm like any other ohm, and it plays the part resistance plays in a DC circuit.",
    "forms": [
     {
@@ -899,6 +897,7 @@
    "terms": [
     "resonant frequency"
    ],
+   "type": "frequency",
    "statement": "One reactance grows with frequency and the other falls, so somewhere between they are equal and cancel exactly. There the impedance is just the resistance, which is the least it can be, and the current is the greatest. Setting $X_L = X_C$ and solving gives the frequency, and it depends only on the inductance and the capacitance. This is the natural frequency at which the circuit would oscillate on its own, and it is Chapter 16's resonance in an electrical system rather than a mechanical one.",
    "forms": [
     {

@@ -3,25 +3,21 @@
   {
    "sym": "E_n",
    "latex": "E_n",
-   "type": "energy",
    "macro": "\\kEn"
   },
   {
    "sym": "E_0bohr",
    "latex": "E_0",
-   "type": "energy",
    "macro": "\\kEobohr"
   },
   {
    "sym": "E_ini",
    "latex": "E_{\\text{i}}",
-   "type": "energy",
    "macro": "\\kEini"
   },
   {
    "sym": "E_fin",
    "latex": "E_{\\text{f}}",
-   "type": "energy",
    "macro": "\\kEfin"
   },
   {
@@ -32,19 +28,16 @@
   {
    "sym": "E_max",
    "latex": "E_{\\text{max}}",
-   "type": "energy",
    "macro": "\\kEmax"
   },
   {
    "sym": "r_n",
    "latex": "r_n",
-   "type": "position",
    "macro": "\\krn"
   },
   {
    "sym": "a_B",
    "latex": "a_{\\text{B}}",
-   "type": "position",
    "macro": "\\kaB"
   },
   {
@@ -56,19 +49,16 @@
   {
    "sym": "L_z",
    "latex": "L_z",
-   "type": "angular-momentum",
    "macro": "\\kLz"
   },
   {
    "sym": "S_spin",
    "latex": "S",
-   "type": "angular-momentum",
    "macro": "\\kSspin"
   },
   {
    "sym": "S_z",
    "latex": "S_z",
-   "type": "angular-momentum",
    "macro": "\\kSz"
   },
   {
@@ -99,7 +89,8 @@
   },
   {
    "sym": "m_l",
-   "latex": "m_l"
+   "latex": "m_l",
+   "type": null
   },
   {
    "sym": "m_s",
@@ -299,6 +290,7 @@
    "kind": "result",
    "section": "30.3",
    "name": "Bohr orbit radii",
+   "type": "position",
    "statement": "Setting the Coulomb force equal to the centripetal force, with the speed from the quantized angular momentum, gives the radius of every allowed orbit of a hydrogen-like atom, $r_n = (n^2/Z)a_{\\text{B}}$. The radii grow as $n^2$, and the smallest, the Bohr radius, agrees with the measured size of hydrogen.",
    "forms": [
     {
@@ -316,6 +308,7 @@
    "terms": [
     "energies of hydrogen-like atoms"
    ],
+   "type": "energy",
    "statement": "The orbital energy is the sum of the electron's kinetic energy and its negative electric potential energy, and with Bohr's radii it comes out as $-13.6$ eV divided by $n^2$ for hydrogen. The energies are negative because the electron is bound, they crowd together toward zero as $n$ grows, and their differences reproduce every line of the spectrum. The same formula, with $Z^2$, serves any atom stripped to one electron.",
    "forms": [
     {
@@ -390,6 +383,7 @@
    "terms": [
     "Bohr radius"
    ],
+   "type": "position",
    "statement": "The Bohr radius, $a_{\\text{B}} = h^2/4\\pi^2 m_{\\text{e}} k q_{\\text{e}}^2 = 0.529 \\times 10^{-10}$ m, is the mean radius of the orbit of the electron of a hydrogen atom in its ground state.",
    "forms": [
     {
@@ -432,6 +426,7 @@
    "kind": "result",
    "section": "30.4",
    "name": "Highest x-ray energy",
+   "type": "energy",
    "statement": "The most energetic x ray a tube can make is the one for which an electron’s whole kinetic energy becomes a single photon, $E_{\\text{max}} = hf_{\\text{max}} = q_{\\text{e}}V$. A 100-kV tube makes photons of at most 100 keV.",
    "forms": [
     {
@@ -697,6 +692,7 @@
    "terms": [
     "orbital angular momentum"
    ],
+   "type": "angular-momentum",
    "statement": "Orbital angular momentum is the angular momentum of an electron that corresponds to the quantum analog of classical angular momentum, from its motion about the nucleus."
   },
   {
@@ -735,6 +731,7 @@
    "terms": [
     "z-component of the angular momentum"
    ],
+   "type": "angular-momentum",
    "statement": "The component of orbital angular momentum along the $z$-axis can take only the values $L_z = m_l h/2\\pi$, with $m_l$ running from $-l$ to $l$ in steps of one. Each value of $m_l$ has a different energy in a magnetic field.",
    "forms": [
     {
@@ -836,6 +833,7 @@
    "terms": [
     "magnitude of the intrinsic (internal) spin angular momentum"
    ],
+   "type": "angular-momentum",
    "statement": "The magnitude of the intrinsic, or internal, spin angular momentum of an electron is $S = \\sqrt{s(s+1)}\\,h/2\\pi$.",
    "forms": [
     {
@@ -854,6 +852,7 @@
    "terms": [
     "z-component of spin angular momentum"
    ],
+   "type": "angular-momentum",
    "statement": "The $z$-component of spin angular momentum is the component of an electron’s intrinsic spin along the $z$-axis, $S_z = m_s h/2\\pi$.",
    "forms": [
     {
@@ -1583,5 +1582,6 @@
    "concept": "shell-filling-and-the-periodic-table",
    "prereq": "subshell"
   }
- ]
+ ],
+ "types": []
 }
