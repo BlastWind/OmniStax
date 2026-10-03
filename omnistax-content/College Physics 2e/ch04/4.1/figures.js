@@ -6,7 +6,7 @@ const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const RAD = Math.PI / 180;
 
-/* ---------- sprites, in ink ---------- */
+/* ---------- sprites ---------- */
 /* an ice skater seen from above, centred on (x, y), the arms reaching toward the angle a measured as the canvas measures it */
 function skater(ctx, x, y, a, color) {
   /* seen from above: a shoulder bar across the facing direction with the head on it, the two
@@ -71,12 +71,12 @@ function hook(ctx, x, y, color) {
 
     /* ---- the scene: the third skater, a pusher behind each arrow, and the head-to-tail construction ---- */
     const px = 250, py = 400, R = 112;   /* the pushers' hands reach the third skater's shoulders */
-    skater(ctx, px - R, py, 0, PAL.ink);
-    skater(ctx, px - R * Math.cos(th), py + R * Math.sin(th), -th, PAL.ink);
-    skater(ctx, px, py, Math.PI / 2, PAL.ink);
+    skater(ctx, px - R, py, 0, F.ref('skater-1'));
+    skater(ctx, px - R * Math.cos(th), py + R * Math.sin(th), -th, F.ref('skater-2'));
+    skater(ctx, px, py, Math.PI / 2, F.ref('skater-3'));
     /* named below and to the side the second skater has left free */
     const side = TH.v <= 90 ? 1 : -1;
-    text(ctx, 'the third skater', px + side * 30, py + (TH.v <= 110 ? 52 : 84), PAL.muted, { size: 17, align: side > 0 ? 'left' : 'right' });
+    text(ctx, 'the third skater', px + side * 30, py + (TH.v <= 110 ? 52 : 84), F.ref('skater-3'), { size: 17, align: side > 0 ? 'left' : 'right' });
     const h1x = px + F1.v * U, h1y = py;
     const tx = h1x + F2.v * U * Math.cos(th), ty = h1y - F2.v * U * Math.sin(th);
     line(ctx, h1x, h1y, tx, ty, alpha(C('force'), 0.45), 4, [10, 10]);

@@ -15,31 +15,26 @@
   {
    "sym": "Φ",
    "latex": "\\Phi",
-   "type": "magnetic-flux",
    "macro": "\\kPhi"
   },
   {
    "sym": "ΔΦ",
    "latex": "\\Delta\\Phi",
-   "type": "magnetic-flux",
    "macro": "\\kdPhi"
   },
   {
    "sym": "ΔI_curr",
    "latex": "\\Delta I",
-   "type": "current",
    "macro": "\\kdIcur"
   },
   {
    "sym": "L_ind",
    "latex": "L",
-   "type": "inductance",
    "macro": "\\kLind"
   },
   {
    "sym": "M_ind",
    "latex": "M",
-   "type": "inductance",
    "macro": "\\kMind"
   },
   {
@@ -51,19 +46,16 @@
   {
    "sym": "τ_RL",
    "latex": "\\tau",
-   "type": "time",
    "macro": "\\ktauRL"
   },
   {
    "sym": "X_L",
    "latex": "X_L",
-   "type": "resistance",
    "macro": "\\kXL"
   },
   {
    "sym": "X_C",
    "latex": "X_C",
-   "type": "resistance",
    "macro": "\\kXC"
   },
   {
@@ -101,25 +93,21 @@
   {
    "sym": "I_prim",
    "latex": "I_{\\text{p}}",
-   "type": "current",
    "macro": "\\kIprim"
   },
   {
    "sym": "I_sec",
    "latex": "I_{\\text{s}}",
-   "type": "current",
    "macro": "\\kIsec"
   },
   {
    "sym": "P_prim",
    "latex": "P_{\\text{p}}",
-   "type": "power",
    "macro": "\\kPprim"
   },
   {
    "sym": "P_sec",
    "latex": "P_{\\text{s}}",
-   "type": "power",
    "macro": "\\kPsec"
   },
   {
@@ -184,6 +172,7 @@
    "terms": [
     "magnetic flux"
    ],
+   "type": "magnetic-flux",
    "statement": "The magnetic flux through an area is the field strength times the area times the cosine of the angle between the field and the perpendicular to the area, $\\Phi = BA\\cos\\theta$, and its units are $\\text{T}\\cdot\\text{m}^2$. A large loop gathers more field than a small one, and a loop turned edge-on to the field gathers none. Every induced emf in this chapter is the rate at which this one quantity changes.",
    "forms": [
     {
@@ -591,6 +580,7 @@
    "terms": [
     "mutual inductance"
    ],
+   "type": "inductance",
    "statement": "Mutual inductance is one device's effect on another: a change in the current in the first induces an emf in the second, and $M$ is the constant between them. Nature is symmetric here, and the same $M$ works the other way round, so a transformer run backward works as well as forward. A transformer's coils need a large $M$; an appliance's heating element and its case need a small one, a distinction that matters again for electrical safety.",
    "forms": [
     {
@@ -616,6 +606,7 @@
    "terms": [
     "self-inductance"
    ],
+   "type": "inductance",
    "statement": "A device also induces an emf in itself: its own changing current changes its own flux, and by Lenz's law the induced emf opposes the change. The constant is the self-inductance $L$, and a device with a large one is an inductor. The minus sign matters practically as well as formally. Switching off a large current quickly can raise thousands of volts and strike an arc across the switch, which is why you cannot simply switch off a 1 H coil carrying 10 A in a millisecond.",
    "forms": [
     {
@@ -724,6 +715,7 @@
    "terms": [
     "characteristic time constant"
    ],
+   "type": "time",
    "statement": "One number, $L/R$, sets the whole of the timing, and it comes out in seconds because a henry is an ohm-second. Both dependences make sense. A larger inductance opposes change more strongly, and a smaller resistance means a larger final current and so a greater change to make. Either way the inductor stores more energy and needs more time to move it in and out. This is Chapter 21's RC time constant with a different pair of components.",
    "forms": [
     {
@@ -787,6 +779,7 @@
    "terms": [
     "inductive reactance"
    ],
+   "type": "resistance",
    "statement": "An inductor's opposition to an alternating current behaves like a resistance: the rms current is the rms voltage divided by a quantity measured in ohms, and that quantity is $2\\pi fL$. Both factors make sense, since a larger inductance opposes change more strongly and a higher frequency means a faster change to oppose. The consequence is that an inductor impedes high frequencies most, which is what a filter in series with a computer's power supply is for.",
    "forms": [
     {
@@ -819,6 +812,7 @@
    "terms": [
     "capacitive reactance"
    ],
+   "type": "resistance",
    "statement": "A capacitor also limits an alternating current, and the ohms it offers are $1/2\\pi fC$. Both dependences are inverse, and both are reasonable: a larger capacitor stores more charge and passes more current, and a higher frequency leaves less time to charge up and stop the current. So a capacitor impedes low frequencies most, which is the exact opposite of an inductor and is why a capacitor in series is what removes a 60 Hz hum.",
    "forms": [
     {

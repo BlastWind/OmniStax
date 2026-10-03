@@ -7,7 +7,7 @@ themselves are in the repository's root `RULES.md`, and this book's own
 keep a `COLOR.md` of its own that refines this one: it may bind fewer types,
 never invent a hue.
 
-A colour belongs to a type, and a type is a kind of physical quantity. The
+A colour belongs to a type, and in this book a type is a kind of physical quantity. The
 book declares its types in `book.json` in the order the colour scheme lays
 its hues along, says nothing about hues itself, and the app dresses them
 from the reader's scheme. A page colours only the types it binds, the ones
@@ -64,7 +64,7 @@ energy's. A variant of one type keeps the hue and differs by decoration: an
 initial value is hollow or dashed, an average is dashed, a maximum and a
 value after a change are told by their subscript or their prime.
 
-Of root rule 7's four families this book uses all four, three of them
+Of root rule 7's five families this book uses four, three of them
 sparingly. Type hues from the scheme, bound per page, carry almost
 everything it draws. The categorical palette `F.cat(i)` tells apart
 instances that carry no type and must be distinguished — two cars in a

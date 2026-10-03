@@ -3,31 +3,26 @@
   {
    "sym": "emf",
    "latex": "\\mathcal{E}",
-   "type": "voltage",
    "macro": "\\kemf"
   },
   {
    "sym": "emf_one",
    "latex": "\\mathcal{E}_1",
-   "type": "voltage",
    "macro": "\\kemfone"
   },
   {
    "sym": "emf_two",
    "latex": "\\mathcal{E}_2",
-   "type": "voltage",
    "macro": "\\kemftwo"
   },
   {
    "sym": "emf_x",
    "latex": "\\mathcal{E}_{\\text{x}}",
-   "type": "voltage",
    "macro": "\\kemfx"
   },
   {
    "sym": "emf_s",
    "latex": "\\mathcal{E}_{\\text{s}}",
-   "type": "voltage",
    "macro": "\\kemfs"
   },
   {
@@ -51,127 +46,106 @@
   {
    "sym": "r_int",
    "latex": "r",
-   "type": "resistance",
    "macro": "\\krint"
   },
   {
    "sym": "r_intone",
    "latex": "r_1",
-   "type": "resistance",
    "macro": "\\krintone"
   },
   {
    "sym": "r_inttwo",
    "latex": "r_2",
-   "type": "resistance",
    "macro": "\\krinttwo"
   },
   {
    "sym": "r_inttot",
    "latex": "r_{\\text{tot}}",
-   "type": "resistance",
    "macro": "\\krinttot"
   },
   {
    "sym": "R_resone",
    "latex": "R_1",
-   "type": "resistance",
    "macro": "\\kResone"
   },
   {
    "sym": "R_restwo",
    "latex": "R_2",
-   "type": "resistance",
    "macro": "\\kRestwo"
   },
   {
    "sym": "R_resthree",
    "latex": "R_3",
-   "type": "resistance",
    "macro": "\\kResthree"
   },
   {
    "sym": "R_resfour",
    "latex": "R_4",
-   "type": "resistance",
    "macro": "\\kResfour"
   },
   {
    "sym": "R_ress",
    "latex": "R_{\\text{s}}",
-   "type": "resistance",
    "macro": "\\kRess"
   },
   {
    "sym": "R_resp",
    "latex": "R_{\\text{p}}",
-   "type": "resistance",
    "macro": "\\kResp"
   },
   {
    "sym": "R_restot",
    "latex": "R_{\\text{tot}}",
-   "type": "resistance",
    "macro": "\\kRestot"
   },
   {
    "sym": "R_resx",
    "latex": "R_{\\text{x}}",
-   "type": "resistance",
    "macro": "\\kResx"
   },
   {
    "sym": "R_load",
    "latex": "R_{\\text{load}}",
-   "type": "resistance",
    "macro": "\\kRload"
   },
   {
    "sym": "I_onecurr",
    "latex": "I_1",
-   "type": "current",
    "macro": "\\kIcurone"
   },
   {
    "sym": "I_twocurr",
    "latex": "I_2",
-   "type": "current",
    "macro": "\\kIcurtwo"
   },
   {
    "sym": "I_threecurr",
    "latex": "I_3",
-   "type": "current",
    "macro": "\\kIcurthree"
   },
   {
    "sym": "I_Gcurr",
    "latex": "I_{\\text{G}}",
-   "type": "current",
    "macro": "\\kIcurG"
   },
   {
    "sym": "P_onepow",
    "latex": "P_1",
-   "type": "power",
    "macro": "\\kPonepow"
   },
   {
    "sym": "P_twopow",
    "latex": "P_2",
-   "type": "power",
    "macro": "\\kPtwopow"
   },
   {
    "sym": "P_threepow",
    "latex": "P_3",
-   "type": "power",
    "macro": "\\kPthreepow"
   },
   {
    "sym": "τ_RC",
    "latex": "\\tau",
-   "type": "time",
    "macro": "\\ktauRC"
   }
  ],
@@ -304,6 +278,7 @@
    "terms": [
     "electromotive force (emf)"
    ],
+   "type": "voltage",
    "statement": "Every voltage source, whether it is a battery, a generator, a solar cell or a thermoelectric device, creates a potential difference that can drive current through a resistance. That potential difference, measured when no current flows, is called the electromotive force, or emf. Emf is not a force at all; it is a special type of potential difference, and its unit is the volt. It is set by the source's construction, such as the particular combination of chemicals in a battery."
   },
   {
@@ -315,6 +290,7 @@
    "terms": [
     "internal resistance"
    ],
+   "type": "resistance",
    "statement": "Every voltage source has two fundamental parts, a source of electrical energy and an internal resistance, and the two are in series. The internal resistance is the inherent resistance to the flow of current within the source itself, and the smaller it is for a given emf, the more current and the more power the source can supply. It is why a truck battery and a motorcycle battery of the same emf are not interchangeable, and it rises as a battery is depleted."
   },
   {
@@ -326,6 +302,7 @@
    "terms": [
     "terminal voltage"
    ],
+   "type": "voltage",
    "statement": "The voltage measured across a source's terminals is its emf less the voltage drop across its own internal resistance, so the larger the current drawn, or the larger the internal resistance, the smaller the terminal voltage. Terminal voltage equals emf only when no current flows. This one equation explains why car lights dim gradually as a battery runs down instead of blinking off, and why a battery tester measures the voltage under a load.",
    "forms": [
     {
@@ -708,6 +685,7 @@
    "section": "21.6",
    "name": "Time constant",
    "symbol": "τ_RC",
+   "type": "time",
    "statement": "The product of the resistance and the capacitance has units of seconds and sets the pace of the whole circuit. A small resistance lets a larger current flow, and a small capacitance needs less charge, so either makes the circuit faster; both facts are contained in $\\tau = RC$. Because the exponent in both exponential laws is $-t/RC$, the time constant is the only time in the problem, and every statement about charging and discharging is a statement about multiples of it.",
    "forms": [
     {

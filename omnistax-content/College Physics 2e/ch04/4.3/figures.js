@@ -29,8 +29,8 @@ function headLabel(ctx, s, tail, head, y, color, size) {
    forces share a scale of their own so that a push can be told from a friction,
    and the weight and the support of the ground, which are always equal and
    opposite, are drawn at a fixed length and read from their labels. */
-function fbd(ctx, cx, cy, horiz, vert, k, title) {
-  if (title) text(ctx, title, cx, cy - 150, PAL.muted, { size: 18, align: 'center' });
+function fbd(ctx, cx, cy, horiz, vert, k, title, body) {
+  if (title) text(ctx, title, cx, cy - 150, body ?? PAL.muted, { size: 18, align: 'center' });
   vert.forEach((f) => {
     arrow(ctx, cx, cy, cx, cy + f.dy * 96, f.c, 4);
     text(ctx, f.label, cx + 14, cy + f.dy * 96 + f.dy * 16, f.c, { size: 19, weight: 600 });
@@ -40,7 +40,7 @@ function fbd(ctx, cx, cy, horiz, vert, k, title) {
     arrow(ctx, cx, y, cx + f.dx * alen(f.v, k), y, f.c, 4);
     text(ctx, f.label, cx + f.dx * (alen(f.v, k) + 12), y, f.c, { size: 19, weight: 600, align: f.dx > 0 ? 'left' : 'right' });
   });
-  dot(ctx, cx, cy, PAL.ink, true, 8);
+  dot(ctx, cx, cy, body ?? PAL.ink, true, 8);
 }
 
 /* ---------- sprites, in ink ---------- */
@@ -132,11 +132,12 @@ function bathScale(ctx, x, y, w, color) {
     const wx = SX(Math.min(x, XMAX)), wy = gy, K = 3, cf = C('force');
     /* the two children who push, one a step behind the other: feet on the ground, leaning into
        the back of the wagon with both hands on its rim, walking whenever the wagon rolls. The
-       farther child is drawn in the muted ink so the two read as two. */
-    const walk = v > 0.02 ? (wx - x0) / 28 + 0.6 : 0;
-    person(ctx, wx - 130, gy, PAL.muted, { face: 1, s: 1.0, lean: 0.5, phase: walk ? walk + 2.2 : 0, reach: { x: wx - 86, y: wy - 44 } });
-    person(ctx, wx - 106, gy, PAL.ink, { face: 1, s: 1.12, lean: 0.45, phase: walk, reach: { x: wx - 84, y: wy - 54 } });
-    wagon(ctx, wx, wy, PAL.ink);
+       pushers and the system they push wear the two colours the text marks them with, and the
+       farther child is a paler shade of the pushers' so the two read as two. */
+    const walk = v > 0.02 ? (wx - x0) / 28 + 0.6 : 0, cp = F.ref('pushers'), cw = F.ref('wagon');
+    person(ctx, wx - 130, gy, F.mixColor(cp, PAL.panel, 0.45), { face: 1, s: 1.0, lean: 0.5, phase: walk ? walk + 2.2 : 0, reach: { x: wx - 86, y: wy - 44 } });
+    person(ctx, wx - 106, gy, cp, { face: 1, s: 1.12, lean: 0.45, phase: walk, reach: { x: wx - 84, y: wy - 54 } });
+    wagon(ctx, wx, wy, cw);
     /* the two pushes, anchored at the back of the wagon where the hands are, one row each */
     [[F1.v, 'F_1', wy - 158], [F2.v, 'F_2', wy - 132]].forEach(([val, lab, y]) => {
       const L = alen(val, K, 10);
@@ -168,7 +169,7 @@ function bathScale(ctx, x, y, w, color) {
        { dx: -1, v: fr(), label: 'f = ' + fmt(fr(), 1) + ' N', c: cf, row: 0 }],
       [{ dy: 1, label: 'w = ' + sig3(w) + ' N', c: cf },
        { dy: -1, label: 'N = ' + sig3(w) + ' N', c: cf }],
-      k, 'the external forces on the wagon and its rider');
+      k, 'the external forces on the wagon and its rider', cw);
     /* the net force is a force and takes the force hue; it is told from the others by standing
        alone on its own row below the diagram */
     if (n > 0) {
@@ -223,25 +224,26 @@ function bathScale(ctx, x, y, w, color) {
     const L = 40 + Fp.v * 0.34, gy = 300;
     line(ctx, 80, gy, 680, gy, PAL.muted, 3); line(ctx, 740, gy, 1340, gy, PAL.muted, 3);
     F.person(ctx, 214, gy, PAL.ink, { lean: 0.22, reach: { x: 276, y: gy - 50 } });
-    basketball(ctx, 300, gy - 50, PAL.ink, 26);
+    const cb = F.ref('ball'), cs = F.ref('suv');
+    basketball(ctx, 300, gy - 50, cb, 26);
     arrow(ctx, 332, gy - 50, 332 + L, gy - 50, cf, 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', 332 + L / 2, gy - 78, cf, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'a basketball of ' + fmt(mb.v, 3) + ' kg', 360, gy + 36, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'a basketball of ' + fmt(mb.v, 3) + ' kg', 360, gy + 36, cb, { size: 18, align: 'center' });
     text(ctx, 'a = ' + sig3(ab) + ' m/s²', 360, gy - 140, ca, { size: 22, weight: 600, align: 'center' });
     F.person(ctx, 860, gy, PAL.ink, { lean: 0.22, reach: { x: 922, y: gy - 44 } });
-    car(ctx, 980, gy - 26, PAL.ink, 1.5);
+    car(ctx, 980, gy - 26, cs, 1.5);
     arrow(ctx, 1046, gy - 50, 1046 + L, gy - 50, cf, 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', 1046 + L / 2, gy - 78, cf, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'an SUV of ' + commas(fmt(ms.v, 0)) + ' kg', 1020, gy + 36, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'an SUV of ' + commas(fmt(ms.v, 0)) + ' kg', 1020, gy + 36, cs, { size: 18, align: 'center' });
     text(ctx, 'a = ' + sig3(as) + ' m/s²', 1020, gy - 140, ca, { size: 22, weight: 600, align: 'center' });
     /* (c) the two free-body diagrams the book draws beneath the scenes: one arrow apiece, the same
        push drawn the same length on each, which is what makes the two situations comparable */
     text(ctx, '(c) the free-body diagrams are identical, so the two situations can be compared directly', 700, 420, PAL.muted, { size: 18, align: 'center' });
-    [[360, 'the basketball'], [1020, 'the SUV']].forEach(([bx, name]) => {
-      dot(ctx, bx - 150, 500, PAL.ink, true, 10);
+    [[360, 'the basketball', cb], [1020, 'the SUV', cs]].forEach(([bx, name, cr]) => {
+      dot(ctx, bx - 150, 500, cr, true, 10);
       arrow(ctx, bx - 150, 500, bx - 150 + L, 500, cf, 5);
       text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', bx - 150 + L / 2, 472, cf, { size: 20, weight: 600, align: 'center' });
-      text(ctx, name, bx - 150, 534, PAL.muted, { size: 18 });
+      text(ctx, name, bx - 150, 534, cr, { size: 18 });
     });
     /* acceleration against mass, both axes stepping by tens */
     const gbox = { l: 220, r: 1230, t: 620, b: 910 };
@@ -257,9 +259,9 @@ function bathScale(ctx, x, y, w, color) {
     });
     /* a mass so large, or a push so small, that the point falls below the floor of the graph is
        pinned at that edge with its value beside it rather than drawn outside the frame */
-    [[mb.v, ab, 'the ball'], [ms.v, as, 'the SUV']].forEach(([m, a, name]) => {
+    [[mb.v, ab, 'the ball', cb], [ms.v, as, 'the SUV', cs]].forEach(([m, a, name, cr]) => {
       const p = pinned(ctx, gbox, g.X, g.Y, Math.log10(m) + MX, Math.log10(a) + MY, ca, sig3(a) + ' m/s²');
-      text(ctx, name, p.x + 16, p.y + 24, PAL.ink, { size: 18, weight: 600 });
+      text(ctx, name, p.x + 16, p.y + 24, cr, { size: 18, weight: 600 });
     });
     text(ctx, 'every step of ten in the mass is a step of a tenth in the acceleration', g.X(2.6), g.Y(5.5), PAL.muted, { size: 17, align: 'center' });
     headline(ctx, 'The same ' + fmt(Fp.v, 0) + ' N gives the ' + fmt(mb.v, 3) + ' kg ball ' + sig3(ab) + ' m/s² and the ' + commas(fmt(ms.v, 0)) + ' kg SUV ' + sig3(as) + ' m/s²');

@@ -128,13 +128,13 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     });
     ctx.restore();
     /* the two charges that make the field */
-    dot(ctx, px(-SEP), py(0), PAL.ink, true, 22);
-    dot(ctx, px(SEP), py(0), PAL.ink, false, 22);
+    dot(ctx, px(-SEP), py(0), F.ref('positive-charge'), true, 22);
+    dot(ctx, px(SEP), py(0), F.ref('negative-charge'), false, 22);
     text(ctx, '+', px(-SEP), py(0) - 1, PAL.panel, { size: 26, weight: 600, align: 'center' });
-    text(ctx, '−', px(SEP), py(0) - 1, PAL.ink, { size: 26, weight: 600, align: 'center' });
+    text(ctx, '−', px(SEP), py(0) - 1, F.ref('negative-charge'), { size: 26, weight: 600, align: 'center' });
     /* the two charges are named above the field, where no line runs through the words */
-    text(ctx, 'the positive charge', px(-SEP), 92, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'the negative charge', px(SEP), 92, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'the positive charge', px(-SEP), 92, F.ref('positive-charge'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'the negative charge', px(SEP), 92, F.ref('negative-charge'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     /* the two distances, in the position hue, so the reader can see where in the field the charge sits */
     line(ctx, px(-SEP), py(0), px(x), py(y), C('position'), 3, [9, 6]);
     line(ctx, px(SEP), py(0), px(x), py(y), C('position'), 3, [9, 6]);
@@ -151,7 +151,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
       text(ctx, 'F', px(x) + ux * (len + 18), py(y) - uy * (len + 18), C('force'),
         { weight: 600, size: 24, align: 'center', bg: PAL.panel });
     }
-    dot(ctx, px(x), py(y), PAL.ink, true, 7 + 3 * q);
+    dot(ctx, px(x), py(y), F.ref('test-charge'), true, 7 + 3 * q);
     text(ctx, 'q = ' + fmt(q, 1), px(x), py(y) + (uy >= 0 ? 1 : -1) * (26 + 3 * q), PAL.ink, { size: 17, align: 'center', bg: PAL.panel });
     headline(ctx, near ? 'At a charge itself the field has no single direction, so the force on the test charge there is not defined'
       : Math.abs(ang) < 1 ? 'The force on the test charge is ' + fmt(Fm, 2) + ' units and runs straight along the axis, following the field line through it'
@@ -200,8 +200,8 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     /* the people, on their ground line */
     text(ctx, 'a basketball passed between two people', 60, 96, PAL.muted, { size: 20, weight: 600 });
     line(ctx, 120, yb, 1280, yb, PAL.rule, 3);
-    F.person(ctx, xa, yb, PAL.ink, !flying && !caught ? { reach: { x: hand1[0], y: hand1[1] } } : { lean: 0.1 });
-    F.person(ctx, xb, yb, PAL.ink, caught || (flying && u > 0.72) ? { face: -1, reach: { x: hand2[0], y: hand2[1] } } : { face: -1, lean: 0.1 });
+    F.person(ctx, xa, yb, F.ref('thrower'), !flying && !caught ? { reach: { x: hand1[0], y: hand1[1] } } : { lean: 0.1 });
+    F.person(ctx, xb, yb, F.ref('catcher'), caught || (flying && u > 0.72) ? { face: -1, reach: { x: hand2[0], y: hand2[1] } } : { face: -1, lean: 0.1 });
     ball(ctx, bx, by, PAL.ink);
     if (t > THROW && t < THROW + 1.6) {
       const L = 40 + 0.9 * f;

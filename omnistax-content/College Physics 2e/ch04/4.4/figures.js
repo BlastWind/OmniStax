@@ -23,7 +23,7 @@ function boundary(ctx, l, t, r, b, label) {
 /* a ruled panel for a free-body diagram */
 function panel(ctx, l, t, r, b) { ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(l, t, r - l, b - t); ctx.restore(); }
 
-/* ---------- sprites, in ink ---------- */
+/* ---------- sprites, each in the colour its caller gives it ---------- */
 /* a swimmer lying in the water, head to the left and feet to the right; kick swings the legs */
 function swimmerSprite(ctx, x, y, color, kick) {
   /* a filled torso, the head ahead of it, both arms stretched out in front and the legs behind */
@@ -90,11 +90,12 @@ function plume(ctx, x, y, color, f) {
     /* the pool: its water surface and the wall she pushes off */
     line(ctx, 50, 96, WALL, 96, PAL.muted, 3, [22, 14]);
     fixed(ctx, WALL, 96, 58, 300);
-    text(ctx, 'the wall of the pool', WALL + 29, 414, PAL.muted, { size: 17, align: 'center' });
+    ctx.save(); ctx.strokeStyle = F.ref('wall'); ctx.lineWidth = 3; ctx.strokeRect(WALL, 96, 58, 300); ctx.restore();
+    text(ctx, 'the wall of the pool', WALL + 29, 414, F.ref('wall'), { size: 17, align: 'center' });
     scale(ctx, SX, 0, XMAX, 1, 418, 'm', 1);
     /* the system of interest, and the swimmer inside it */
     boundary(ctx, cx - 112, 172, cx + 86, 276, 'the system of interest');
-    swimmerSprite(ctx, cx, 220, PAL.ink, pushing ? 4 : 10 * Math.sin(tau * 7));
+    swimmerSprite(ctx, cx, 220, F.ref('swimmer'), pushing ? 4 : 10 * Math.sin(tau * 7));
     /* the pair of forces, each drawn where it acts */
     if (pushing) {
       arrow(ctx, WALL, 210, WALL + L, 210, cf, 5);
@@ -196,11 +197,11 @@ function plume(ctx, x, y, color, f) {
     const { ctx } = begin(d.c);
     const r = run(), tau = cy.now(), cf = C('force');
     const s = 0.5 * r.a * tau * tau, px = 320 + (s / ROOM) * 660, cxx = px + 140;
-    line(ctx, 40, FLOOR, 1360, FLOOR, PAL.muted, 3);
+    line(ctx, 40, FLOOR, 1360, FLOOR, F.ref('floor'), 3);
     boundary(ctx, px - 96, 118, cxx + 70, 344, 'System 1');
     boundary(ctx, cxx - 96, 148, cxx + 58, 344, 'System 2');
-    F.person(ctx, px + 30, FLOOR, PAL.ink, { lean: 0.2, phase: tau * 6, reach: { x: cxx - 80, y: FLOOR - 92 } });
-    cartSprite(ctx, cxx, FLOOR, PAL.ink);
+    F.person(ctx, px + 30, FLOOR, F.ref('professor'), { lean: 0.2, phase: tau * 6, reach: { x: cxx - 80, y: FLOOR - 92 } });
+    cartSprite(ctx, cxx, FLOOR, F.ref('cart'));
     /* the pair between the professor and the cart, internal to System 1 */
     const Lp = r.Fprof * KF, hand = px + 50;
     arrow(ctx, hand, 200, hand + Lp, 200, cf, 5);
@@ -258,9 +259,9 @@ function plume(ctx, x, y, color, f) {
     const past = s > XMAX, rx = RX(Math.min(s, XMAX));
     STARS.forEach(([sx, sy]) => dot(ctx, sx, sy, PAL.rule, true, 3));
     text(ctx, 'empty space: no ground below, no air behind', 700, 86, PAL.muted, { size: 18, align: 'center' });
-    /* the exhaust gas is a body, not a force, so it is drawn in ink and never in the force hue */
-    plume(ctx, rx - 48, 214, alpha(PAL.ink, 0.5), tau);
-    rocketSprite(ctx, rx, 214, PAL.ink);
+    /* the exhaust gas is a body, not a force, so it wears its referent colour and never the force hue */
+    plume(ctx, rx - 48, 214, alpha(F.ref('gas'), 0.7), tau);
+    rocketSprite(ctx, rx, 214, F.ref('rocket'));
     const cf = C('force'), L = Fk.v * 10;
     arrow(ctx, rx, 152, rx + L, 152, cf, 5);
     text(ctx, 'thrust: the force the gas exerts on the rocket', rx + L / 2, 124, cf, { size: 19, weight: 600, align: 'center' });

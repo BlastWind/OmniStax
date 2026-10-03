@@ -32,7 +32,8 @@ const RAD = Math.PI / 180;
      torso, and legs hanging free; drawn here rather than with the library's person, whose
      hands do not reach above its head */
   function hanging(ctx, cx) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const body = F.ref('tarzan');
+    ctx.save(); ctx.strokeStyle = body; ctx.fillStyle = body; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(cx - 8, GRIP); ctx.lineTo(cx - 16, GRIP + 60); ctx.moveTo(cx + 8, GRIP); ctx.lineTo(cx + 16, GRIP + 60); ctx.stroke();
     ctx.beginPath(); ctx.arc(cx, GRIP + 46, 14, 0, Math.PI * 2); ctx.fill();
     ctx.beginPath(); ctx.moveTo(cx - 16, GRIP + 60); ctx.lineTo(cx + 16, GRIP + 60); ctx.lineTo(cx + 11, GRIP + 126); ctx.lineTo(cx - 11, GRIP + 126); ctx.closePath(); ctx.fill();
@@ -44,8 +45,9 @@ const RAD = Math.PI / 180;
   /* the branch and the vine the man hangs from; only the sketch shows the branch, so the tension arrow of the
      other panels has clear room above the hand */
   function vine(ctx, i, cx) {
-    if (i === 0) { fixed(ctx, PX[i], 296, PW, 22); line(ctx, cx - 5, 318, cx + 4, 350, PAL.muted, 5); }
-    if (i < 2) line(ctx, cx + (i === 0 ? 4 : 0), 350, cx, GRIP, PAL.muted, 5);
+    const rope = F.ref('vine');
+    if (i === 0) { fixed(ctx, PX[i], 296, PW, 22); line(ctx, cx - 5, 318, cx + 4, 350, rope, 5); }
+    if (i < 2) line(ctx, cx + (i === 0 ? 4 : 0), 350, cx, GRIP, rope, 5);
   }
   function draw() {
     const { ctx } = begin(d.c);

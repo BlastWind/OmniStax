@@ -54,12 +54,12 @@ function trafficLight(ctx, x, y, color) {
     /* (a) the scene from above: the barge, the two tugs and the acceleration */
     const bx = 440, by = 330, S = 22;
     text(ctx, '(a) seen from above', 110, 116, PAL.muted, { size: 19 });
-    block(ctx, bx, by, 250, 104, PAL.ink);
-    text(ctx, 'the barge', bx + 110, by + 34, PAL.ink, { size: 19, weight: 600, align: 'right' });
+    block(ctx, bx, by, 250, 104, F.ref('barge'));
+    text(ctx, 'the barge', bx + 110, by + 34, F.ref('barge'), { size: 19, weight: 600, align: 'right' });
     /* each tug has its bow against the hull, and its push is drawn from that point of contact
        on into the barge, so the arrow lies on the body it pushes */
-    tug(ctx, bx - 125 - 48, by, 1, 0, PAL.muted);
-    tug(ctx, bx, by + 52 + 48, 0, -1, PAL.muted);
+    tug(ctx, bx - 125 - 48, by, 1, 0, F.ref('tug-1'));
+    tug(ctx, bx, by + 52 + 48, 0, -1, F.ref('tug-2'));
     const Lx = 60 + fx.v * 30, Ly = 60 + fy.v * 30;
     arrow(ctx, bx - 125, by, bx - 125 + Lx, by, fc, 5);
     text(ctx, 'F_x = ' + fmt(fx.v, 1) + ' × 10⁵ N', bx - 190, by + 78, fc, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
@@ -196,10 +196,10 @@ function trafficLight(ctx, x, y, color) {
     fixed(ctx, sl - 34, 60, 34, 540); fixed(ctx, sr, 60, 34, 540);
     const carT = floor - 300;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(sl, carT, sr - sl, 300); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.strokeRect(sl, carT, sr - sl, 300); ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('elevator'); ctx.lineWidth = 4; ctx.strokeRect(sl, carT, sr - sl, 300); ctx.restore();
     line(ctx, (sl + sr) / 2, 60, (sl + sr) / 2, carT, PAL.muted, 5);
-    block(ctx, 320, floor - 16, 150, 32, PAL.ink);
-    F.person(ctx, 320, floor - 32, PAL.ink, { s: 1.65 });
+    block(ctx, 320, floor - 16, 150, 32, F.ref('scale'));
+    F.person(ctx, 320, floor - 32, F.ref('man'), { s: 1.65 });
     /* the book's part (a) draws every force on the lift, the scale and the person; its part (b)
        takes the person alone as the system of interest and draws the two forces that are left */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.setLineDash([12, 10]);
@@ -213,7 +213,7 @@ function trafficLight(ctx, x, y, color) {
     if (Math.abs(aAt(t)) > 0.01) { const sgn = aAt(t) > 0 ? -1 : 1; arrow(ctx, sr + 86, floor - 262, sr + 86, floor - 262 + sgn * 66, acc, 4); text(ctx, 'a', sr + 100, floor - 262 + sgn * 82, acc, { size: 20, weight: 600 }); }
     /* the dial of the scale, under the shaft */
     const dx = 320, dy = 700, r = 58;
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3;
+    ctx.save(); ctx.strokeStyle = F.ref('scale'); ctx.fillStyle = PAL.panel; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(dx, dy, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
     for (let i = 0; i <= 8; i++) { const g = (-210 + 30 * i) * RAD; line(ctx, dx + (r - 12) * Math.cos(g), dy + (r - 12) * Math.sin(g), dx + (r - 3) * Math.cos(g), dy + (r - 3) * Math.sin(g), PAL.muted, 2); }
     const ang = (-210 + 240 * Math.min(1, Fs / (2 * w))) * RAD;
@@ -280,9 +280,10 @@ function trafficLight(ctx, x, y, color) {
     const stot = 0.5 * a * el1.v * el1.v, s = 0.5 * a * t * t, v = a * t;
     const x0 = 140, x1 = 1120, X = (meters) => x0 + (x1 - x0) * (stot > 0 ? meters / stot : 0);
     strip(ctx, 80, 1340, 300, 46);
+    line(ctx, 80, 277, 1340, 277, F.ref('ground'), 3); line(ctx, 80, 323, 1340, 323, F.ref('ground'), 3);
     F.scale(ctx, X, 0, Math.floor(stot), Math.max(1, Math.round(stot / 8)), 345, 'm', 2);
     const px = X(s);
-    F.person(ctx, px, 300, PAL.ink, { s: 1.35, lean: 0.2, phase: t > 0 && t < el1.v ? t * 8 : 0 });
+    F.person(ctx, px, 300, F.ref('player'), { s: 1.35, lean: 0.2, phase: t > 0 && t < el1.v ? t * 8 : 0 });
     const late = px > 760, fl = 70 + 130 * (Fn / 1200), vl = 180 * (v / vf.v);
     /* the push of the ground is drawn from his body, at the height of his hips, and the velocity
        from his chest, ahead of him */
@@ -327,8 +328,8 @@ function trafficLight(ctx, x, y, color) {
     fixed(ctx, 110, 130, 150, 330);
     text(ctx, 'the burning building', 280, 152, PAL.muted, { size: 19 });
     strip(ctx, 80, 1340, 460, 24);
-    line(ctx, px, py, e1x, e1y, PAL.ink, 4); line(ctx, px, py, e2x, e2y, PAL.ink, 4);
-    F.person(ctx, px, py + 120, PAL.muted, { s: 1.3, reach: { x: px, y: py } });
+    line(ctx, px, py, e1x, e1y, F.ref('rope-left'), 4); line(ctx, px, py, e2x, e2y, F.ref('rope-right'), 4);
+    F.person(ctx, px, py + 120, F.ref('rescued'), { s: 1.3, reach: { x: px, y: py } });
     line(ctx, px, py, px, py - 180, PAL.rule, 2, [8, 8]);
     line(ctx, px, py, px + 240, py, PAL.rule, 2, [8, 8]);
     angleArc(ctx, px, py, 90, a1, 120, PAL.muted); angleArc(ctx, px, py, 0, a2, 180, PAL.muted);
@@ -341,9 +342,9 @@ function trafficLight(ctx, x, y, color) {
     dot(ctx, px, py, PAL.ink, true, 8);
     /* the two notes sit clear of the ropes: the left one above the building, the right one above the
        long rope, so neither line is crossed by a word */
-    text(ctx, 'the left rope makes 15° with the vertical', 120, 100, PAL.ink, { size: 20 });
-    text(ctx, 'the right rope rises 10° above the horizontal', 900, 130, PAL.ink, { size: 20 });
-    text(ctx, 'the person, of mass 76.0 kg, is momentarily motionless', px, 502, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'the left rope makes 15° with the vertical', 120, 100, F.ref('rope-left'), { size: 20 });
+    text(ctx, 'the right rope rises 10° above the horizontal', 900, 130, F.ref('rope-right'), { size: 20 });
+    text(ctx, 'the person, of mass 76.0 kg, is momentarily motionless', px, 502, F.ref('rescued'), { size: 20, weight: 600, align: 'center' });
     headline(ctx, 'A person is held motionless by two ropes, one 15° from the vertical and the other 10° above the horizontal');
   }
   register(d.fig, { update: () => {}, draw });

@@ -127,19 +127,19 @@ function walker(ctx, x, y, color) {
     text(ctx, '(b) resting on the table', BX, 92, PAL.muted, { size: 20, align: 'center' });
     /* (a) the hand holds the sack up: the palm under it, the forearm running off to the left */
     palm(ctx, AX - 6, 396, PAL.ink);
-    sack(ctx, AX, 398, PAL.ink);
+    sack(ctx, AX, 398, F.ref('dog-food'));
     fvec(ctx, AX + 110, 304, 0, -L, col, 'F_hand = ' + num(w, 1) + ' N');
     fvec(ctx, AX + 110, 332, 0, L, col, 'w = ' + num(w, 1) + ' N');
     /* (b) the table, seen from the side: two legs and a top that sags under the sack until it
        pushes back with the weight; the dashed line is where the top lies unloaded */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    ctx.save(); ctx.strokeStyle = F.ref('table'); ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.rect(BX - 196, TOP + 14, 22, 150); ctx.rect(BX + 174, TOP + 14, 22, 150); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(BX - 226, TOP); ctx.quadraticCurveTo(BX, TOP + 2 * sag, BX + 226, TOP);
     ctx.lineTo(BX + 226, TOP + 18); ctx.quadraticCurveTo(BX, TOP + 18 + 2 * sag, BX - 226, TOP + 18); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.restore();
     line(ctx, BX - 226, TOP, BX + 226, TOP, PAL.muted, 2, [8, 8]);
-    text(ctx, 'the table', BX + 150, TOP + 186, PAL.muted, { size: 18, align: 'center' });
-    sack(ctx, BX, TOP + sag + 2, PAL.ink);
+    text(ctx, 'the table', BX + 150, TOP + 186, F.ref('table'), { size: 18, align: 'center' });
+    sack(ctx, BX, TOP + sag + 2, F.ref('dog-food'));
     fvec(ctx, BX + 110, TOP + sag - 30, 0, -L, col, 'N = ' + num(w, 1) + ' N');
     fvec(ctx, BX + 110, TOP + sag + 6, 0, L, col, 'w = ' + num(w, 1) + ' N');
     /* the sag, bracketed at the left end of the top between the unloaded level and the loaded one */
@@ -153,7 +153,7 @@ function walker(ctx, x, y, color) {
     text(ctx, 'Free-body diagrams', 700, 626, PAL.muted, { size: 20, align: 'center' });
     [[AX, 'F_hand'], [BX, 'N']].forEach(function (row) {
       const x = row[0];
-      dot(ctx, x, 740, PAL.ink, true, 9);
+      dot(ctx, x, 740, F.ref('dog-food'), true, 9);
       arrow(ctx, x, 732, x, 672, col, 5); text(ctx, row[1], x + 22, 700, col, { weight: 600 });
       arrow(ctx, x, 748, x, 808, col, 5); text(ctx, 'w', x + 22, 780, col, { weight: 600 });
     });
@@ -379,12 +379,12 @@ function walker(ctx, x, y, color) {
     /* the hand that holds the rope, reaching down from the top of the picture: a forearm, a fist
        closed round the rope with its fingers drawn across the front, and the rope leaving the
        bottom of the fist with a spring cut into it above the mass */
-    hand(ctx, X, 232, PAL.ink);
+    hand(ctx, X, 232, F.ref('hand'));
     line(ctx, X, 250, X, 300, PAL.ink, 5);
     spring(ctx, X, 300, X, 366 + stretch, 7, 18, PAL.ink, 4);
     line(ctx, X, 366 + stretch, X, 466, PAL.ink, 5);
-    block(ctx, X, 524, 170, 116, PAL.ink);
-    text(ctx, 'm', X, 524, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    block(ctx, X, 524, 170, 116, F.ref('hanging-mass'));
+    text(ctx, 'm', X, 524, F.ref('hanging-mass'), { size: 22, weight: 600, align: 'center' });
     /* the rope pulls down on the hand and up on the mass with the same tension */
     fvec(ctx, X - 70, 236, 0, L, col, '');
     text(ctx, 'T, on the hand', X - 88, 236 + L / 2, col, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
@@ -394,7 +394,7 @@ function walker(ctx, x, y, color) {
     text(ctx, 'the spring reads ' + num(T, 1) + ' N', X + 34, 340, C('force'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
     /* the free-body diagram of the mass */
     text(ctx, 'the free-body diagram of the mass', 1010, 160, PAL.muted, { size: 20, align: 'center' });
-    dot(ctx, 1010, 400, PAL.ink, true, 9);
+    dot(ctx, 1010, 400, F.ref('hanging-mass'), true, 9);
     fvec(ctx, 1010, 390, 0, -130, col, 'T = ' + num(T, 1) + ' N');
     fvec(ctx, 1010, 410, 0, 130, col, 'w = ' + num(T, 1) + ' N');
     headline(ctx, 'A ' + fmt(M.v, 2) + ' kg mass hangs at rest, so the rope carries ' + num(T, 1) + ' N at every point along it');
@@ -470,9 +470,9 @@ function walker(ctx, x, y, color) {
     /* the scene: two posts, the wire sagging to the walker at its middle */
     const CX = 700, TOPY = 210, half = Math.min(500, 120 / Math.tan(th)), sagY = TOPY + half * Math.tan(th);
     fixed(ctx, CX - half - 40, TOPY - 130, 36, 280); fixed(ctx, CX + half + 4, TOPY - 130, 36, 280);
-    line(ctx, CX - half, TOPY, CX, sagY, PAL.ink, 4); line(ctx, CX, sagY, CX + half, TOPY, PAL.ink, 4);
+    line(ctx, CX - half, TOPY, CX, sagY, F.ref('wire'), 4); line(ctx, CX, sagY, CX + half, TOPY, F.ref('wire'), 4);
     line(ctx, CX - half, TOPY, CX + half, TOPY, PAL.rule, 2, [10, 10]);
-    walker(ctx, CX, sagY, PAL.ink);
+    walker(ctx, CX, sagY, F.ref('walker'));
     const LT = Math.min(280, 80 + 200 * Math.min(1, T / 8000));
     tvec(ctx, CX, sagY, -Math.cos(th), -Math.sin(th), LT, col, 'T_L = ' + num(T, 0) + ' N', -1, 20);
     tvec(ctx, CX, sagY, Math.cos(th), -Math.sin(th), LT, col, 'T_R = ' + num(T, 0) + ' N', 1, 20);
@@ -481,7 +481,7 @@ function walker(ctx, x, y, color) {
     /* the components, as the book's second drawing has them */
     text(ctx, 'the same forces on horizontal and vertical axes', 380, 470, PAL.muted, { size: 20, align: 'center' });
     const OX = 380, OY = 620, U = 150;
-    dot(ctx, OX, OY, PAL.ink, true, 9);
+    dot(ctx, OX, OY, F.ref('walker'), true, 9);
     tvec(ctx, OX, OY, -Math.cos(th), -Math.sin(th), U, col, 'T_L', -1, 20);
     tvec(ctx, OX, OY, Math.cos(th), -Math.sin(th), U, col, 'T_R', 1, 20);
     fvec(ctx, OX, OY, 0, 120, col, 'w', 20);
@@ -528,28 +528,28 @@ function walker(ctx, x, y, color) {
   const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0.5, max: 15, step: 0.25, value: 2, unit: '°', dec: 2, aria: 'angle of the bent chain' });
   const tension = (thDeg, f) => f / (2 * Math.sin(thDeg * RAD));
   /* a car seen from above, its nose to the right, centred on (x, y) */
-  function carTop(ctx, x, y) {
-    ctx.save(); ctx.fillStyle = PAL.ink;
+  function carTop(ctx, x, y, color) {
+    ctx.save(); ctx.fillStyle = color;
     ctx.fillRect(x - 76, y - 60, 34, 14); ctx.fillRect(x - 76, y + 46, 34, 14);
     ctx.fillRect(x + 40, y - 60, 34, 14); ctx.fillRect(x + 40, y + 46, 34, 14);
-    ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(x - 100, y - 40); ctx.lineTo(x + 84, y - 46); ctx.lineTo(x + 104, y - 22);
     ctx.lineTo(x + 104, y + 22); ctx.lineTo(x + 84, y + 46); ctx.lineTo(x - 100, y + 40); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(x - 26, y - 38); ctx.lineTo(x + 30, y - 34); ctx.lineTo(x + 30, y + 34); ctx.lineTo(x - 26, y + 38); ctx.closePath(); ctx.stroke();
     ctx.restore();
   }
-  function tree(ctx, x, y) {
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+  function tree(ctx, x, y, color) {
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(x, y, 58, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'tree', x, y + 86, PAL.ink, { size: 19, align: 'center' });
+    text(ctx, 'tree', x, y + 86, color, { size: 19, align: 'center' });
   }
   function draw() {
     const { ctx } = begin(d.c);
     const th = TH.v * RAD, T = tension(TH.v, FP.v), col = C('force');
     const CARX = 250, TREEX = 1240, LX = CARX + 108, RX = TREEX - 58, MIDX = (LX + RX) / 2, CY = 250;
     const MIDY = CY + ((RX - LX) / 2) * Math.tan(th);
-    carTop(ctx, CARX, CY); tree(ctx, TREEX, CY);
-    text(ctx, 'the car is stuck in the mud', CARX, CY + 104, PAL.muted, { size: 19, align: 'center' });
+    carTop(ctx, CARX, CY, F.ref('car')); tree(ctx, TREEX, CY, F.ref('tree'));
+    text(ctx, 'the car is stuck in the mud', CARX, CY + 104, F.ref('car'), { size: 19, align: 'center' });
     line(ctx, LX, CY, RX, CY, PAL.rule, 2, [10, 10]);
     line(ctx, LX, CY, MIDX, MIDY, PAL.ink, 4); line(ctx, MIDX, MIDY, RX, CY, PAL.ink, 4);
     /* the push at the middle, perpendicular to the chain, and the tension it makes at each end */
