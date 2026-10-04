@@ -5,8 +5,9 @@
    cycle, none carries a transport, and a slider's input alone redraws it.
    A heat transfer is an arrow in the energy hue as wide as the energy it
    carries, a temperature wears its hue on the label of the reservoir that
-   holds it, and an entropy change is a bar or a gauge in the entropy hue, a
-   loss told from a gain by its sign and direction and never by a second hue.
+   holds it, and an entropy change is a bar or a gauge in the entropy hue, or
+   in a referent's hue where a row of bars gives one to each referent, a loss
+   told from a gain by its sign, its hatching and its direction.
    Reservoirs, states, paths, engines, the ice and the water, the Sun, the
    Earth and deep space are referents and wear their own hues. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -218,7 +219,7 @@ function earthSprite(ctx, x, y, r, color) {
     const cols = [['ΔS_h', dSh, 'hot reservoir', F.ref('hot-reservoir')], ['ΔS_c', dSc, 'cold reservoir', F.ref('cold-reservoir')], ['ΔS_tot', tot, 'total', PAL.muted]];
     cols.forEach(([nm, v, who, wc], i) => {
       const xc = box.l + ((i + 0.5) / 3) * (box.r - box.l), bw = 90;
-      const { y } = bar(ctx, xc, bw, Y, v, sc, LO, HI);
+      const { y } = bar(ctx, xc, bw, Y, v, who === 'total' ? sc : wc, LO, HI);
       const above = v >= 0;
       text(ctx, plus3(v) + ' J/K', xc, above ? y - 24 : y + 24, sc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, nm, xc, box.b + 28, sc, { size: 22, weight: 600, align: 'center' });
@@ -404,7 +405,7 @@ function earthSprite(ctx, x, y, r, color) {
     const cols = [['Sun', dSsun, '−Q/T_h', F.ref('sun')], ['Earth', dSs, 'ΔS_syst', F.ref('earth')], ['deep space', dSspace, '+Q/T_c', F.ref('deep-space')], ['total', tot, 'ΔS_tot', PAL.muted]];
     cols.forEach(([who, v, nm, wc], i) => {
       const xc = box.l + ((i + 0.5) / 4) * (box.r - box.l);
-      const { y } = bar(ctx, xc, 110, Y, v, sc, LO, HI);
+      const { y } = bar(ctx, xc, 110, Y, v, who === 'total' ? sc : wc, LO, HI);
       text(ctx, (Math.abs(v) < 1 ? plus(v, 2) : plus(v, 0)) + ' J/K', xc, v >= 0 ? y - 24 : Y(0) - 24, sc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, nm, xc, box.b + 28, sc, { size: 22, weight: 600, align: 'center' });
       text(ctx, who, xc, box.b + 56, wc, { size: 17, align: 'center' });
