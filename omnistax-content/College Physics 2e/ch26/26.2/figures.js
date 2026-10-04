@@ -1,10 +1,11 @@
-/* Figures for section 26.2 Vision Correction. The page binds position alone, as
-   ch26/COLOR.md gives 26.2: the far point, the near point and the distances from
-   the spectacle lens share its hue and are told apart by their brackets. Every
-   power in diopters, the astigmatism and its axis are untyped and in ink, as are
-   the eye, the spectacle lens and the chart; the rays are the categorical palette's
-   first hue. Nothing here moves: a defect and its correction are states, so every
-   figure registers no cycle and redraws on its controls alone (root rule 14). */
+/* Figures for section 26.2 Vision Correction. The figures colour position and
+   angle: the far point, the near point and the distances from the spectacle lens
+   share position's hue and are told apart by their brackets, and the axis of the
+   astigmatism is an angle. The spectacle lens and the retina are referents and wear
+   F.ref; every power in diopters, the strength of the astigmatism, the rest of the
+   eye and the chart are ink. The rays take F.cat(2), past the two referents' places.
+   Nothing here moves: a defect and its correction are states, so every figure
+   registers no cycle and redraws on its controls alone (root rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['26.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, begin, line, dot, text, topline, hbracket, hover } = F;
@@ -26,7 +27,7 @@ function eye(ctx, ex, y, R) {
   ctx.fillStyle = alpha(PAL.ink, 0.04);
   ctx.beginPath(); ctx.arc(ex, y, R, -a, a); ctx.arc(cx, y, cr, ca, 2 * Math.PI - ca); ctx.closePath(); ctx.fill(); ctx.stroke();
   ctx.restore();
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(ex, y, R - 7, -1.9, 1.9); ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.strokeStyle = F.ref('retina'); ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(ex, y, R - 7, -1.9, 1.9); ctx.stroke(); ctx.restore();
   const ix = jx + 18;
   line(ctx, ix, y - Math.sqrt(R * R - (ix - ex) ** 2) + 4, ix, y - 0.3 * R, PAL.ink, 6);
   line(ctx, ix, y + 0.3 * R, ix, y + Math.sqrt(R * R - (ix - ex) ** 2) - 4, PAL.ink, 6);
@@ -45,7 +46,7 @@ function spectacle(ctx, x, y, h, converging) {
   ctx.quadraticCurveTo(x + w / 2 + 2 * b, y, x + w / 2, y + h);
   ctx.lineTo(x - w / 2, y + h);
   ctx.quadraticCurveTo(x - w / 2 - 2 * b, y, x - w / 2, y - h);
-  ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.8); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+  ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = F.ref('spectacle-lens'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
 }
 
 /* =====================================================================
@@ -96,7 +97,7 @@ function spectacle(ctx, x, y, h, converging) {
     const near = defect.value === 'near', on = specs.value === 'on', v = pt.v;
     const Peye = 1 / v + 1 / DI;
     const dI = on ? DI : near ? 1 / Peye : 1 / (Peye - 1 / NEAR);
-    const ray = cat(0), PC = C('position');
+    const PC = C('position'), ray = cat(2), SL = F.ref('spectacle-lens');
 
     line(ctx, 30, Y, 1370, Y, alpha(PAL.ink, 0.3), 2, [10, 10]);
     g = eye(ctx, EX, Y, R);
@@ -143,10 +144,10 @@ function spectacle(ctx, x, y, h, converging) {
     if (on) {
       dot(ctx, xv, Y, ray, false, 7);
       text(ctx, 'image', xv + 12, Y + 30, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
-      text(ctx, 'spectacle lens', SX, Y - 100, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+      text(ctx, 'spectacle lens', SX, Y - 100, SL, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     }
     text(ctx, 'lens', XL, Y + 90, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
-    text(ctx, 'retina', EX + R + 12, Y - 110, PAL.muted, { size: 18, align: 'left' });
+    text(ctx, 'retina', EX + R + 12, Y - 110, F.ref('retina'), { size: 18, weight: 600, align: 'left' });
 
     const cm = (x) => sig3(x * 100) + ' cm';
     if (on) {
@@ -190,7 +191,7 @@ function spectacle(ctx, x, y, h, converging) {
 (function () {
   const d = sim('sim-astigmatism-chart', 540);
   const s = ctl(d.controls, { label: '\\text{astigmatism}', cls: '', min: 0, max: 2, step: 0.05, value: 0, unit: 'D', dec: 2, aria: 'the strength of the astigmatism' });
-  const ax = ctl(d.controls, { label: '\\text{axis}', cls: '', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, aria: 'the axis along which lines stay sharp', detents: [0, 45, 90, 135, 180] });
+  const ax = ctl(d.controls, { label: '\\text{axis}', cls: 'angle', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, aria: 'the axis along which lines stay sharp', detents: [0, 45, 90, 135, 180] });
   const CX = 700, CY = 290, R0 = 70, R1 = 225;
 
   function draw() {

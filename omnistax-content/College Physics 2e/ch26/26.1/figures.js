@@ -1,11 +1,11 @@
-/* Figures for section 26.1 Physics of the Eye. The page binds position alone, as
-   ch26/COLOR.md gives 26.1: the object distance and the lens-to-retina distance
-   share its hue and are told apart by their brackets. The power in diopters, the
-   magnification and every index of refraction are untyped and in ink, as are the
-   eye and its parts. The rays from the top and the bottom of the object are told
-   apart by the categorical palette. Nothing here moves: focusing is a setting, not
-   a motion, so every figure registers no cycle and redraws on its controls alone
-   (root rule 14). */
+/* Figures for section 26.1 Physics of the Eye. The figures colour position: the
+   object distance and the lens-to-retina distance share its hue and are told apart
+   by their brackets. The cornea, the lens, the retina and the tree are referents and
+   wear F.ref in both figures; the rest of the eye, the power in diopters, the
+   magnification and every index of refraction are ink. The rays from the top and the
+   bottom of the tree are told apart by F.cat past the referents' places. Nothing here
+   moves: focusing is a setting, not a motion, so every figure registers no cycle and
+   redraws on its controls alone (root rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['26.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, cat, ctl, register, begin, line, dot, text, topline, hbracket, hover } = F;
@@ -36,7 +36,8 @@ function eye(ctx, ex, y, R) {
   ctx.fillStyle = alpha(PAL.ink, 0.04);
   ctx.beginPath(); ctx.arc(ex, y, R, -a, a); ctx.arc(cx, y, cr, ca, 2 * Math.PI - ca); ctx.closePath(); ctx.fill(); ctx.stroke();
   ctx.restore();
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(ex, y, R - 7, -1.9, 1.9); ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.strokeStyle = F.ref('cornea'); ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(cx, y, cr, ca, 2 * Math.PI - ca); ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.strokeStyle = F.ref('retina'); ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(ex, y, R - 7, -1.9, 1.9); ctx.stroke(); ctx.restore();
   const ix = jx + 18;
   line(ctx, ix, y - Math.sqrt(R * R - (ix - ex) ** 2) + 4, ix, y - 0.3 * R, PAL.ink, 6);
   line(ctx, ix, y + 0.3 * R, ix, y + Math.sqrt(R * R - (ix - ex) ** 2) - 4, PAL.ink, 6);
@@ -44,7 +45,7 @@ function eye(ctx, ex, y, R) {
 }
 function eyeLens(ctx, x, y, rx, ry) {
   ctx.save(); ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
-  ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.8); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+  ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = F.ref('lens'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
 }
 /* where the cornea's arc sits at height s off the axis */
 const corneaX = (g, s) => g.cx - Math.sqrt(g.cr * g.cr - s * s);
@@ -60,19 +61,21 @@ function tree(ctx, x, y, h, color) {
 function ray(ctx, pts, color, w) {
   for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], color, w || 3, pts[i][2]);
 }
-/* a label set at (lx, ly) with a faint leader back to the part it names */
-function tag(ctx, s, px, py, lx, ly) {
+/* a label set at (lx, ly) with a faint leader back to the part it names, in the
+   part's referent colour where it has one */
+function tag(ctx, s, px, py, lx, ly, color) {
   const right = lx > px;
   line(ctx, px, py, lx + (right ? -8 : 8), ly, alpha(PAL.ink, 0.45), 1.5);
-  dot(ctx, px, py, alpha(PAL.ink, 0.6), true, 3.5);
-  text(ctx, s, lx, ly, PAL.ink, { size: 20, align: right ? 'left' : 'right', bg: PAL.panel });
+  dot(ctx, px, py, alpha(color || PAL.ink, 0.6), true, 3.5);
+  text(ctx, s, lx, ly, color || PAL.ink, { size: 20, weight: color ? 600 : undefined, align: right ? 'left' : 'right', bg: PAL.panel });
 }
 
 /* =====================================================================
    FIGURE 26.2 · sim-eye-anatomy · still · flat, a faithful copy
    The eye in cross-section with the ten parts the book names, set in two leadered
    columns as the book sets them. The media light passes through carry their
-   indices from Table 26.1 as hover names.
+   indices from Table 26.1 as hover names. The cornea, the lens and the retina wear
+   the referent colours they wear in the text.
 ===================================================================== */
 (function () {
   const d = sim('sim-eye-anatomy', 520);
@@ -94,14 +97,14 @@ function tag(ctx, s, px, py, lx, ly) {
     const fov = [g.retina - 2, Y];
     dot(ctx, fov[0], fov[1], PAL.ink, true, 6);
     const lx = 300, rx = 1110, c = Math.cos, s = Math.sin;
-    tag(ctx, 'cornea', g.apex, Y - 30, lx, Y - 30);
+    tag(ctx, 'cornea', g.apex, Y - 30, lx, Y - 30, F.ref('cornea'));
     tag(ctx, 'iris', g.ix, Y - 0.62 * R, lx, Y - 150);
     tag(ctx, 'ciliary fibers', LX - 8, Y - 100, lx, Y - 205);
     tag(ctx, 'aqueous humor', (g.apex + g.ix) / 2 + 8, Y + 40, lx, Y + 60);
-    tag(ctx, 'lens', LX, Y + 50, lx, Y + 160);
+    tag(ctx, 'lens', LX, Y + 50, lx, Y + 160, F.ref('lens'));
     tag(ctx, 'sclera', EX + R * c(-1.2), Y + R * s(-1.2), rx, Y - 205);
     tag(ctx, 'vitreous humor', EX + 40, Y - 70, rx, Y - 140);
-    tag(ctx, 'retina', EX + (R - 7) * c(-0.55), Y + (R - 7) * s(-0.55), rx, Y - 75);
+    tag(ctx, 'retina', EX + (R - 7) * c(-0.55), Y + (R - 7) * s(-0.55), rx, Y - 75, F.ref('retina'));
     tag(ctx, 'fovea', fov[0], fov[1], rx, Y);
     tag(ctx, 'disc', EX + R * c(0.38), Y + R * s(0.38), rx, Y + 110);
     tag(ctx, 'optic nerve', EX + R + 120, Y + R * s(0.38) + 40, rx, Y + 190);
@@ -124,7 +127,9 @@ function tag(ctx, s, px, py, lx, ly) {
    of the power. The eye's power is 1/d_o + 1/d_i up to the greatest power the
    second slider allows; past it the rays meet behind the retina, at a distance
    drawn three times the true excess, and the lens is drawn fatter by 4 units per
-   diopter above 50.0 D.
+   diopter above 50.0 D. The cornea, the lens, the retina and the tree wear their
+   referent colours; the rays from the top and the bottom of the tree take F.cat(4)
+   and F.cat(5), past the four referents' places.
 ===================================================================== */
 (function () {
   const d = sim('sim-eye-accommodation', 600);
@@ -143,13 +148,14 @@ function tag(ctx, s, px, py, lx, ly) {
     const v = dO.v, need = 1 / v + 1 / DI, clear = need <= pMax.v + 1e-9;
     const P = clear ? need : pMax.v, dI = clear ? DI : 1 / (pMax.v - 1 / v);
     const xo = xOf(v), yt = Y - TH;
+    const PC = C('position'), TR = F.ref('tree'), RT = cat(4), RB = cat(5);
 
     line(ctx, 40, Y, 1340, Y, alpha(PAL.ink, 0.3), 2, [10, 10]);
     g = eye(ctx, EX, Y, R);
     XL = g.ix + 32;
     const rx = 12 + (P - 50) * 4;
     eyeLens(ctx, XL, Y, rx, 60);
-    tree(ctx, xo, Y, TH, alpha(PAL.ink, 0.8));
+    tree(ctx, xo, Y, TH, TR);
 
     /* the meeting point of rays from the tree's top: along the line through the
        lens's center, on the retina, or beyond it by three times the true excess */
@@ -172,23 +178,23 @@ function tag(ctx, s, px, py, lx, ly) {
       if (t < 1) line(ctx, hit[0], hit[1], to[0], to[1], color, 2.5, [6, 8]);
       return hit;
     }
-    const hitsTop = [-42, -8, 30].map((s) => trace([xo, yt], top, s, cat(0)));
-    const hitsBot = [-36, 36].map((s) => trace([xo, Y], bot, s, cat(1)));
+    const hitsTop = [-42, -8, 30].map((s) => trace([xo, yt], top, s, RT));
+    const hitsBot = [-36, 36].map((s) => trace([xo, Y], bot, s, RB));
 
     if (clear) {
       tree(ctx, top[0] - 4, Y, -(top[1] - Y), alpha(PAL.ink, 0.8));
     } else {
       const ys = hitsTop.map((p) => p[1]);
-      line(ctx, g.retina + 2, Math.min(...ys), g.retina + 2, Math.max(...ys), cat(0), 9);
+      line(ctx, g.retina + 2, Math.min(...ys), g.retina + 2, Math.max(...ys), RT, 9);
       const yb = hitsBot.map((p) => p[1]);
-      line(ctx, g.retina + 2, Math.min(...yb), g.retina + 2, Math.max(...yb), cat(1), 9);
+      line(ctx, g.retina + 2, Math.min(...yb), g.retina + 2, Math.max(...yb), RB, 9);
     }
-    text(ctx, 'cornea', g.apex - 8, Y - 110, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, 'cornea', g.apex - 8, Y - 110, F.ref('cornea'), { size: 18, weight: 600, align: 'right' });
     line(ctx, g.apex - 4, Y - 100, corneaX(g, -70), Y - 70, alpha(PAL.ink, 0.4), 1.5);
-    text(ctx, 'lens', XL, Y + 90, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
-    text(ctx, 'retina', EX + R + 14, Y - 110, PAL.muted, { size: 18, align: 'left' });
+    text(ctx, 'lens', XL, Y + 90, F.ref('lens'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'retina', EX + R + 14, Y - 110, F.ref('retina'), { size: 18, weight: 600, align: 'left' });
+    text(ctx, 'tree', xo, Y + 30, TR, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
 
-    const PC = C('position');
     hbracket(ctx, xo, XL, Y + 215, PC, 'd_o = ' + sig3(v) + ' m', { side: 'below' });
     hbracket(ctx, XL, g.retina, Y + 215, PC, 'd_i = 2.00 cm', { side: 'below' });
     text(ctx, 'not to scale', 40, 580, PAL.muted, { size: 17, align: 'left' });

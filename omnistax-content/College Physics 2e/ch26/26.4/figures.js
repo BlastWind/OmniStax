@@ -1,11 +1,15 @@
-/* Figures for section 26.4 Microscopes. The page binds position alone, as
-   ch26/COLOR.md gives 26.4: the object and image distances of both lenses, the
-   separation of the lenses and the aperture diameter share its hue and are told
-   apart by their brackets and labels. Every magnification, the numerical aperture,
-   the f-number, every angle and every index are untyped and in ink, as are the
-   lenses, the fiber, the cover glass and every frame. Rays are told apart by the
-   categorical palette. Nothing here moves: a ray diagram is a set of paths, so every
-   figure registers no cycle and redraws on its controls alone (root rule 14). */
+/* Figures for section 26.4 Microscopes. The figures colour position and angle: the
+   object and image distances of both lenses, the separation of the lenses and the
+   aperture diameter share position's hue and are told apart by their brackets and
+   labels; the half-angle of acceptance, the ray's tilt and the fiber's α_max are
+   angles. The objective, the eyepiece, the object and its two images; the specimen,
+   cover glass and objective of the acceptance cone; the fiber's ray, core and
+   cladding; and the condenser lens, concave mirror, annular stop and glass reflector
+   are referents and wear F.ref. Every magnification, the numerical aperture, the
+   f-number and every index are ink, as is every frame. Rays the text does not name
+   one by one take F.cat past their figure's referent places. Nothing here moves: a
+   ray diagram is a set of paths, so every figure registers no cycle and redraws on
+   its controls alone (root rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['26.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, begin, line, dot, text, topline, hbracket, hover, angleArc, view, face } = F;
@@ -31,12 +35,12 @@ function ray(ctx, x1, y1, x2, y2, color, w, dash) {
 }
 
 /* a thin converging lens at x, half height h, drawn as the book draws it */
-function lens(ctx, x, y, h, bulge) {
+function lens(ctx, x, y, h, bulge, color) {
   const b = bulge || 40;
   ctx.save(); ctx.beginPath();
   ctx.moveTo(x, y - h); ctx.quadraticCurveTo(x + b, y, x, y + h); ctx.quadraticCurveTo(x - b, y, x, y - h);
   ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fill();
-  ctx.strokeStyle = alpha(PAL.ink, 0.75); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+  ctx.strokeStyle = color || alpha(PAL.ink, 0.75); ctx.lineWidth = color ? 3 : 2.5; ctx.stroke(); ctx.restore();
 }
 function focus(ctx, x, y, name) {
   dot(ctx, x, y, PAL.ink, true, 6);
@@ -59,7 +63,9 @@ function arrowUp(ctx, x, y, h, color, dash) {
    out, still obeys the thin lens equation for the drawn distances, and the rays
    stay straight. One vertical scale serves the whole drawing, chosen so that the
    final image stays in frame. Paraxial rays: a ray meeting a lens at height y
-   leaves with its slope less y/f in the drawing's own units.
+   leaves with its slope less y/f in the drawing's own units. The objective, the
+   eyepiece, the object and the first and final images are the five referents; the two
+   rays take F.cat(5) and F.cat(6).
 ===================================================================== */
 (function () {
   const d = sim('sim-compound-microscope', 720);
@@ -72,6 +78,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
   const XO = 330, Y = 300, FD = 60, S2 = 2.2;
   const FR = { l: 16, r: 1384, t: 96, b: 708 };
   const PC = () => C('position');
+  const OB = () => F.ref('objective'), EY = () => F.ref('eyepiece'), OJ = () => F.ref('object'), I1 = () => F.ref('first-image'), I2 = () => F.ref('final-image');
 
   function state() {
     const dO = doS.v, L = LS.v, fe = feS.v;
@@ -85,6 +92,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
   function draw() {
     const { ctx } = begin(d.c);
     const s = state();
+    PC();
     const xOb = XO - s.a, xI1 = XO + s.b, XE = s.XE;
     const mdO = -s.b / s.a;
     const fin = !s.inf && Math.abs(s.diP * S2) < 1400;
@@ -98,8 +106,8 @@ function arrowUp(ctx, x, y, h, color, dash) {
     /* two rays from the tip of the object: parallel to the axis, and through the
        center of the objective; both pass through the tip of the first image */
     const rays = [
-      { col: cat(0), pts: [[xOb, hd], [XO, hd]] },
-      { col: cat(1), pts: [[xOb, hd], [XO, 0]] },
+      { col: cat(5), pts: [[xOb, hd], [XO, hd]] },
+      { col: cat(6), pts: [[xOb, hd], [XO, 0]] },
     ];
     const hits = [];
     rays.forEach((r) => {
@@ -109,8 +117,8 @@ function arrowUp(ctx, x, y, h, color, dash) {
       r.pts.push([XE, hE]); r.out = out; hits.push(hE);
     });
     const HE = Math.max(110, Math.min(210, Math.max(...hits.map(Math.abs)) + 30));
-    lens(ctx, XO, Y, 90, 26);
-    lens(ctx, XE, Y, HE, 46);
+    lens(ctx, XO, Y, 90, 26, OB());
+    lens(ctx, XE, Y, HE, 46, EY());
 
     rays.forEach((r) => {
       const p = r.pts;
@@ -128,10 +136,10 @@ function arrowUp(ctx, x, y, h, color, dash) {
     focus(ctx, XO - FD, Y, 'F_{o}'); focus(ctx, XO + FD, Y, 'F_{o}');
     focus(ctx, XE - s.fdE, Y, 'F_{e}'); focus(ctx, XE + s.fdE, Y, 'F_{e}');
 
-    arrowUp(ctx, xOb, Y, hd, PAL.ink);
-    arrowUp(ctx, xI1, Y, h1, alpha(PAL.ink, 0.75));
+    arrowUp(ctx, xOb, Y, hd, OJ());
+    arrowUp(ctx, xI1, Y, h1, I1());
     const i2in = fin && xI2 > FR.l + 10 && xI2 < FR.r - 10;
-    if (i2in) arrowUp(ctx, xI2, Y, h2, alpha(PAL.ink, s.diP < 0 ? 0.45 : 0.75), s.diP < 0 ? [8, 6] : undefined);
+    if (i2in) arrowUp(ctx, xI2, Y, h2, s.diP < 0 ? alpha(I2(), 0.6) : I2(), s.diP < 0 ? [8, 6] : undefined);
     ctx.restore();
 
     /* the brackets, above the axis as the book sets them */
@@ -142,11 +150,11 @@ function arrowUp(ctx, x, y, h, color, dash) {
     else hbracket(ctx, xI1, XE, yb, PC());
     if (i2in && Math.abs(xI2 - XE) > 40) hbracket(ctx, Math.min(xI2, XE), Math.max(xI2, XE), FR.b - 56, PC(), 'd_{i}′', { side: 'above' });
 
-    text(ctx, 'objective', XO, Y + 118, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
-    text(ctx, 'eyepiece', XE + 30, Y - HE - 4, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
-    text(ctx, 'object', xOb - 12, Y - hd - 18, PAL.muted, { size: 18, align: 'right', bg: PAL.panel });
-    text(ctx, 'first image', xI1, Y - h1 + 26, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
-    if (i2in) text(ctx, 'final image', xI2 + (s.diP < 0 ? 14 : -14), Math.min(FR.b - 16, Y - h2 - 16), PAL.muted, { size: 18, align: s.diP < 0 ? 'left' : 'right', bg: PAL.panel });
+    text(ctx, 'objective', XO, Y + 118, OB(), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'eyepiece', XE + 30, Y - HE - 4, EY(), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
+    text(ctx, 'object', xOb - 12, Y - hd - 18, OJ(), { size: 18, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'first image', xI1, Y - h1 + 26, I1(), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    if (i2in) text(ctx, 'final image', xI2 + (s.diP < 0 ? 14 : -14), Math.min(FR.b - 16, Y - h2 - 16), I2(), { size: 18, weight: 600, align: s.diP < 0 ? 'left' : 'right', bg: PAL.panel });
     text(ctx, 'not to scale', FR.r - 10, FR.b - 14, PAL.muted, { size: 17, align: 'right' });
 
     const mm = (x) => sig3(Math.abs(x)) + ' mm';
@@ -184,13 +192,14 @@ function arrowUp(ctx, x, y, h, color, dash) {
    rays leaves P every 5° inside the glass; each refracts at the top of the glass
    by the law of refraction, or is totally reflected, and reaches the objective or
    misses it. The objective's width follows α and the medium, so that its edge
-   ray is exactly the edge of the cone.
+   ray is exactly the edge of the cone. The specimen's point P, the cover glass and
+   the objective are the referents; the rays take F.cat(3), and α is an angle.
 ===================================================================== */
 (function () {
   const d = sim('sim-numerical-aperture', 620);
   const N = { air: 1.0, water: 1.33, oil: 1.51 }, NAME = { air: 'air', water: 'water', oil: 'oil' };
   const med = choice(d.controls, { label: '\\text{medium}', options: [{ value: 'air', label: 'air' }, { value: 'water', label: 'water' }, { value: 'oil', label: 'oil' }], value: 'air', aria: 'the medium between the objective and the cover glass' });
-  const aS = ctl(d.controls, { label: '\\alpha', cls: '', min: 10, max: 72, step: 0.1, value: 48.6, unit: '°', dec: 1, aria: 'half the angle of acceptance',
+  const aS = ctl(d.controls, { label: '\\kalphahalf', cls: 'angle', min: 10, max: 72, step: 0.1, value: 48.6, unit: '°', dec: 1, aria: 'half the angle of acceptance',
     specials: [
       { at: () => Math.asin(0.1 / N[med.value]) / DEG, label: '0.10 NA' },
       { at: () => Math.asin(0.75 / N[med.value]) / DEG, label: '0.75 NA' },
@@ -204,13 +213,14 @@ function arrowUp(ctx, x, y, h, color, dash) {
     const n = med.mix((v) => N[v]), nv = N[med.value], al = aS.v * DEG;
     const bA = Math.asin(Math.min(1, (n * Math.sin(al)) / NG));
     const W = T * Math.tan(bA) + G * Math.tan(al);
+    const AC = C('angle'), PC = C('position'), SP = F.ref('specimen'), CG = F.ref('cover-glass'), NO = F.ref('na-objective'), RY = cat(3);
 
     /* the medium, a faint panel where it is a liquid; the cover glass */
     ctx.save(); ctx.globalAlpha = Math.min(1, (n - 1) / 0.33) * 0.06; ctx.fillStyle = PAL.ink; ctx.fillRect(40, LY, 1000, G); ctx.restore();
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(40, GT, 1000, T); ctx.strokeStyle = alpha(PAL.ink, 0.6); ctx.lineWidth = 2; ctx.strokeRect(40, GT, 1000, T); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(40, GT, 1000, T); ctx.strokeStyle = CG; ctx.lineWidth = 2.5; ctx.strokeRect(40, GT, 1000, T); ctx.restore();
 
     /* the objective: a barrel and its front lens */
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 3;
+    ctx.save(); ctx.strokeStyle = NO; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(CX - W - 14, LY); ctx.lineTo(CX - W - 14, TOP + 40); ctx.moveTo(CX + W + 14, LY); ctx.lineTo(CX + W + 14, TOP + 40); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(CX - W, LY); ctx.quadraticCurveTo(CX, LY - 2 * Math.min(90, W * 0.5), CX + W, LY); ctx.closePath();
     ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fill(); ctx.stroke(); ctx.restore();
@@ -221,40 +231,40 @@ function arrowUp(ctx, x, y, h, color, dash) {
       all++;
       if (Math.abs(sg) >= 1) {
         const xr = xs + T * Math.tan(b);
-        line(ctx, CX, GB, xs, GT, alpha(cat(0), 0.3), 2);
-        line(ctx, xs, GT, Math.max(40, Math.min(1040, xr)), GB, alpha(cat(0), 0.3), 2, [6, 6]);
+        line(ctx, CX, GB, xs, GT, alpha(RY, 0.3), 2);
+        line(ctx, xs, GT, Math.max(40, Math.min(1040, xr)), GB, alpha(RY, 0.3), 2, [6, 6]);
         continue;
       }
       const g = Math.asin(sg), xl = xs + G * Math.tan(g);
       if (Math.abs(xl - CX) <= W + 0.5) {
         inN++;
-        line(ctx, CX, GB, xs, GT, cat(0), 3);
-        ray(ctx, xs, GT, xl, LY, cat(0), 3);
+        line(ctx, CX, GB, xs, GT, RY, 3);
+        ray(ctx, xs, GT, xl, LY, RY, 3);
       } else {
         const yEnd = Math.max(TOP, LY - (Math.abs(1040 - CX) - Math.abs(xl - CX)) / Math.max(0.05, Math.abs(Math.tan(g))));
         const xEnd = xs + (GT - yEnd) * Math.tan(g);
-        line(ctx, CX, GB, xs, GT, alpha(cat(0), 0.35), 2);
-        line(ctx, xs, GT, xEnd, yEnd, alpha(cat(0), 0.35), 2);
+        line(ctx, CX, GB, xs, GT, alpha(RY, 0.35), 2);
+        line(ctx, xs, GT, xEnd, yEnd, alpha(RY, 0.35), 2);
       }
     }
     /* the edge of the cone and its half-angle, at the point the edge ray leaves the glass */
     const xe = CX + T * Math.tan(bA);
     line(ctx, xe, GT, xe, LY - 10, alpha(PAL.ink, 0.35), 2, [6, 6]);
-    angleArc(ctx, { x: xe, y: GT }, 70, Math.PI / 2 - al, Math.PI / 2, 'α');
-    dot(ctx, CX, GB, PAL.ink, true, 8);
-    text(ctx, 'P', CX, GB + 30, PAL.ink, { size: 22, align: 'center', weight: 600 });
-    hbracket(ctx, CX - W, CX + W, TOP + 18, C('position'), 'D', { side: 'below' });
+    angleArc(ctx, { x: xe, y: GT }, 70, Math.PI / 2 - al, Math.PI / 2, 'α', undefined, AC);
+    dot(ctx, CX, GB, SP, true, 8);
+    text(ctx, 'P', CX, GB + 30, SP, { size: 22, align: 'center', weight: 600 });
+    hbracket(ctx, CX - W, CX + W, TOP + 18, PC, 'D', { side: 'below' });
 
     text(ctx, `${NAME[med.value]}, n = ${fmt(nv, 2)}`, 1070, LY + G / 2, PAL.muted, { size: 18, align: 'left' });
-    text(ctx, 'cover glass, n = 1.52', 1070, GT + T / 2, PAL.muted, { size: 18, align: 'left' });
-    text(ctx, 'objective', CX + W + 28, TOP + 90, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
+    text(ctx, 'cover glass, n = 1.52', 1070, GT + T / 2, CG, { size: 18, weight: 600, align: 'left' });
+    text(ctx, 'objective', CX + W + 28, TOP + 90, NO, { size: 18, weight: 600, align: 'left', bg: PAL.panel });
 
     const NA = nv * Math.sin(al);
     topline(ctx, `In ${NAME[med.value]}, ${inN} of the ${all} rays drawn from P reach the objective, and its numerical aperture is ${fmt(NA, 3)}.`);
     const note = med.value === 'air'
       ? `In air the f-number is about 1/(2NA) = ${fmt(1 / (2 * NA), 2)}. Rays leaving the glass beyond ${fmt(Math.asin(1 / NG) / DEG, 1)}° are totally reflected.`
       : `The ${NAME[med.value]} lets the rays leave the cover glass with ${med.value === 'oil' ? 'almost no' : 'less'} bending.`;
-    readout(d.readout, `\\text{NA} = n\\sin\\alpha = ${fmt(nv, 2)}\\sin ${fmt(aS.v, 1)}^\\circ = ${fmt(NA, 3)}`, note);
+    readout(d.readout, `\\text{NA} = n\\sin\\kalphahalf = ${fmt(nv, 2)}\\sin ${fmt(aS.v, 1)}^\\circ = ${fmt(NA, 3)}`, note);
   }
   hover(d.stage, () => [
     { x: CX, y: GB, r: 18, name: 'a point P on the specimen' },
@@ -272,12 +282,13 @@ function arrowUp(ctx, x, y, h, color, dash) {
    the center of the face in the plane of the drawing; inside the cone
    (sin α_max = √(n₁² − n₂²)) it strikes the cladding beyond the critical angle and
    is reflected down the fiber, and outside it passes into the cladding. World units
-   are about one logical unit each; the fiber runs along x.
+   are about one logical unit each; the fiber runs along x. The ray, the core and the
+   cladding are the referents, and the tilt and α_max are angles.
 ===================================================================== */
 (function () {
   const d = sim('sim-fiber-acceptance', 540);
   const N1 = 1.5;
-  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 0.1, value: 20, unit: '°', dec: 1, aria: 'the angle the ray makes with the axis of the fiber',
+  const thS = ctl(d.controls, { label: '\\theta', cls: 'angle', min: 0, max: 60, step: 0.1, value: 20, unit: '°', dec: 1, aria: 'the angle the ray makes with the axis of the fiber',
     specials: [{ at: () => amax() / DEG, label: 'α max' }] });
   const n2S = ctl(d.controls, { label: 'n_{2}', cls: '', min: 1.3, max: 1.48, step: 0.01, value: 1.4, unit: '', dec: 2, aria: 'the index of the cladding' });
   function amax() { return Math.asin(Math.min(1, Math.sqrt(N1 * N1 - n2S.v * n2S.v))); }
@@ -304,6 +315,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
   function draw() {
     const { ctx } = begin(d.c);
     const am = amax(), th = thS.v * DEG, n2 = n2S.v;
+    const AC = C('angle'), CO = F.ref('core'), CL2 = F.ref('cladding');
 
     /* the acceptance cone, opening back from the center of the face */
     const R = CL * Math.tan(am), apex = P([X0, 0, 0]), mouth = ring(X0 - CL, R);
@@ -314,15 +326,16 @@ function arrowUp(ctx, x, y, h, color, dash) {
     line(ctx, apex[0], apex[1], e2[0], e2[1], alpha(PAL.ink, 0.5), 2, [8, 6]);
 
     /* the cladding and the core, each the outline of its two end rings */
-    face(ctx, hull(ring(X0, RL).concat(ring(X1, RL))), 0.08, 2);
-    poly(ctx, hull(ring(X0, RC).concat(ring(X1, RC))), alpha(PAL.ink, 0.07), alpha(PAL.ink, 0.45));
-    poly(ctx, ring(X0, RL), alpha(PAL.ink, 0.04), alpha(PAL.ink, 0.6));
-    poly(ctx, ring(X0, RC), alpha(PAL.ink, 0.05), alpha(PAL.ink, 0.6));
+    const cladHull = hull(ring(X0, RL).concat(ring(X1, RL)));
+    face(ctx, cladHull, 0.08, 0); poly(ctx, cladHull, null, CL2);
+    poly(ctx, hull(ring(X0, RC).concat(ring(X1, RC))), alpha(PAL.ink, 0.07), CO);
+    poly(ctx, ring(X0, RL), alpha(PAL.ink, 0.04), CL2);
+    poly(ctx, ring(X0, RC), alpha(PAL.ink, 0.05), CO);
     const a0 = P([X0 - CL - 60, 0, 0]), a1 = P([X1 + 40, 0, 0]);
     line(ctx, a0[0], a0[1], a1[0], a1[1], alpha(PAL.ink, 0.4), 2, [10, 8]);
 
     /* the ray, in the plane z = 0, arriving from below the axis */
-    const col = cat(0), src = [X0 - CL * Math.cos(th), -CL * Math.sin(th), 0];
+    const col = F.ref('ray'), src = [X0 - CL * Math.cos(th), -CL * Math.sin(th), 0];
     const s0 = P(src);
     ray(ctx, s0[0], s0[1], apex[0], apex[1], col, 3.5);
     const tr = Math.asin(Math.sin(th) / N1), inc = Math.PI / 2 - tr;
@@ -356,13 +369,13 @@ function arrowUp(ctx, x, y, h, color, dash) {
 
     /* the half-angle of the cone, between the axis and its lower edge */
     const arc = []; for (let i = 0; i <= 20; i++) { const f = (i / 20) * am; arc.push(P([X0 - 120 * Math.cos(f), -120 * Math.sin(f), 0])); }
-    pl(ctx, arc, alpha(PAL.ink, 0.9), 2.5);
+    pl(ctx, arc, AC, 2.5);
     const lm = P([X0 - 150 * Math.cos(am / 2), -150 * Math.sin(am / 2), 0]);
-    text(ctx, 'α_{max}', lm[0] - 8, lm[1] + 6, PAL.ink, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'α_{max}', lm[0] - 8, lm[1] + 6, AC, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
 
     const lc = P([X1 - 80, RL + 20, 0]), lk = P([X1 - 80, 0, 0]);
-    text(ctx, `cladding, n₂ = ${fmt(n2, 2)}`, lc[0], lc[1] - 22, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
-    text(ctx, 'core, n₁ = 1.50', lk[0], lk[1] + 26, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+    text(ctx, `cladding, n₂ = ${fmt(n2, 2)}`, lc[0], lc[1] - 22, CL2, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'core, n₁ = 1.50', lk[0], lk[1] + 26, CO, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     const lcone = P([X0 - CL, R, 0]);
     text(ctx, 'acceptance cone', lcone[0], lcone[1] - 24, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
 
@@ -370,7 +383,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
     topline(ctx, guided
       ? `A ray at ${fmt(thS.v, 1)}°, inside the ${fmt(amD, 1)}° cone, is totally reflected and carried along the fiber.`
       : `A ray at ${fmt(thS.v, 1)}°, outside the ${fmt(amD, 1)}° cone, passes into the cladding and is lost.`);
-    readout(d.readout, `\\text{NA} = n\\sin\\alpha_{\\text{max}} = 1.00\\sin ${fmt(amD, 1)}^\\circ = ${fmt(Math.sin(am), 3)}`,
+    readout(d.readout, `\\text{NA} = n\\sin\\kalphamax = 1.00\\sin ${fmt(amD, 1)}^\\circ = ${fmt(Math.sin(am), 3)}`,
       'The light enters from air, so n = 1.00.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -379,8 +392,10 @@ function arrowUp(ctx, x, y, h, color, dash) {
 /* =====================================================================
    FIGURE 26.20 · sim-illumination · still · flat
    One specimen under one objective, lit four ways. The choice fades the parts only
-   one scheme has and keeps the specimen and the objective in place. Illuminating
-   light is cat(0) and the light the specimen scatters is cat(1).
+   one scheme has and keeps the specimen and the objective in place. The condenser
+   lens, the concave mirror, the annular stop and the glass reflector are referents;
+   illuminating light is F.cat(4) and the light the specimen scatters is F.cat(5),
+   past their places.
 ===================================================================== */
 (function () {
   const d = sim('sim-illumination', 600);
@@ -389,7 +404,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
     { value: 'dark', label: 'dark field' }, { value: 'laser', label: 'reflected laser' }], value: 'lens', aria: 'how the specimen is illuminated' });
 
   const CX = 560, SY = 330, OY = 250, OW = 110, TOP = 100;
-  const IL = () => cat(0), SC = () => cat(1);
+  const IL = () => cat(4), SC = () => cat(5);
 
   function objective(ctx) {
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 3;
@@ -403,7 +418,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
   function condenser(ctx, cy, w) {
     w = w || 150;
     ctx.save(); ctx.beginPath(); ctx.moveTo(CX - w, cy + 40); ctx.quadraticCurveTo(CX, cy - 60, CX + w, cy + 40); ctx.closePath();
-    ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+    ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fill(); ctx.strokeStyle = F.ref('condenser'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
   }
   /* rays from the specimen up into the objective */
   function fanUp(ctx, xs, color, w) { xs.forEach((dx) => ray(ctx, CX, SY - 8, CX + dx, OY - 4, color, w || 3)); }
@@ -417,11 +432,11 @@ function arrowUp(ctx, x, y, h, color, dash) {
         line(ctx, CX + dx, yc, CX, SY + 6, IL(), 3);
         ray(ctx, CX, SY - 6, CX - dx * 0.8, OY - 4, IL(), 3);
       });
-      text(ctx, 'condenser lens', CX + 170, 490, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
+      text(ctx, 'condenser lens', CX + 170, 490, F.ref('condenser'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
     },
     mirror(ctx) {
       const mx = CX + 170, my = 500;
-      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.75); ctx.lineWidth = 6; ctx.beginPath();
+      ctx.save(); ctx.strokeStyle = F.ref('concave-mirror'); ctx.lineWidth = 6; ctx.beginPath();
       ctx.moveTo(mx - 230, my + 70); ctx.quadraticCurveTo(mx - 60, my + 40, mx + 90, my - 60); ctx.stroke(); ctx.restore();
       [[0.15, 560], [0.45, 520], [0.75, 470]].forEach(([t, y]) => {
         const x = (1 - t) * (1 - t) * (mx - 230) + 2 * (1 - t) * t * (mx - 60) + t * t * (mx + 90);
@@ -430,11 +445,11 @@ function arrowUp(ctx, x, y, h, color, dash) {
         line(ctx, x, yy, CX, SY + 6, IL(), 3);
         ray(ctx, CX, SY - 6, CX - (x - CX) * 0.45, OY - 4, IL(), 3);
       });
-      text(ctx, 'concave mirror', mx + 20, my + 60, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
+      text(ctx, 'concave mirror', mx + 20, my + 60, F.ref('concave-mirror'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
     },
     dark(ctx) {
       condenser(ctx, 470, 270);
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.45); ctx.fillRect(CX - 300, 548, 600, 12); ctx.restore();
+      ctx.save(); ctx.fillStyle = F.ref('annular-stop'); ctx.fillRect(CX - 300, 548, 600, 12); ctx.restore();
       [-1, 1].forEach((s) => {
         const x0 = CX + s * 250;
         ray(ctx, x0, 590, x0, 500, IL(), 3.5);
@@ -444,12 +459,12 @@ function arrowUp(ctx, x, y, h, color, dash) {
         ray(ctx, CX, SY, CX + ux * k * 0.72, SY + uy * k * 0.72, IL(), 3.5);
       });
       fanUp(ctx, [-80, -40, 0, 40, 80], SC(), 2.5);
-      text(ctx, 'annular stop', CX + 310, 554, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
-      text(ctx, 'condenser lens', CX + 170, 490, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
+      text(ctx, 'annular stop', CX + 310, 554, F.ref('annular-stop'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
+      text(ctx, 'condenser lens', CX + 170, 490, F.ref('condenser'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
     },
     laser(ctx) {
       const ry = 170;
-      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.8); ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(CX - 90, ry - 70); ctx.lineTo(CX + 90, ry + 70); ctx.stroke(); ctx.restore();
+      ctx.save(); ctx.strokeStyle = F.ref('reflector'); ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(CX - 90, ry - 70); ctx.lineTo(CX + 90, ry + 70); ctx.stroke(); ctx.restore();
       [-40, 0, 40].forEach((dy) => {
         const xm = CX + (dy * 90) / 70;
         ray(ctx, 60, ry + dy, xm, ry + dy, IL(), 3);
@@ -457,7 +472,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
         line(ctx, xm, OY - 20, CX, SY - 8, IL(), 3);
       });
       [-70, 70].forEach((dx) => { line(ctx, CX, SY - 8, CX + dx, OY - 20, SC(), 2.5); ray(ctx, CX + dx, OY - 20, CX + dx, TOP + 10, SC(), 2.5); });
-      text(ctx, 'plain glass reflector', CX + 110, ry + 76, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
+      text(ctx, 'plain glass reflector', CX + 110, ry + 76, F.ref('reflector'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
     },
   };
   const HEAD = {

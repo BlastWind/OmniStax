@@ -1,61 +1,56 @@
 # Chapter 26 colour plan
 
-Prepared 2026-09-28 in the chapter's prep pass, beside `config.md`. This chapter
-uses the book's declared types and the app's selected palette, as root rule 7 and
-root rule 22 require. It declares no type of its own, hard-codes no hue except
-where a hue is a physical fact.
+Prepared 2026-09-28 in the chapter's prep pass, beside `config.md`, and brought
+under root `RULES.md` item 7 on 2026-10-04. This chapter uses the book's declared
+types and the app's selected palette, as root rule 7 and root rule 22 require. It
+declares no type of its own and hard-codes no hue except where a hue is a physical
+fact.
 
-The chapter follows Chapter 25: optics colours its lengths and little else. The
-power of a lens in diopters, every magnification, the angular magnification, the
-numerical aperture, the $f$-number, every angle and every index of refraction are
-untyped and stay in ink.
+The chapter follows Chapter 25: optics colours its lengths and angles. The power of
+a lens in diopters, every magnification, the angular magnification, the numerical
+aperture, the $f$-number and every index of refraction are untyped and stay in ink.
 
-| Quantity | Existing type | Treatment |
+| Quantity | Type | Treatment |
 |---|---|---|
-| Object and image distances $d_{\text{o}}$, $d_{\text{i}}$, $d_{\text{o}}'$, $d_{\text{i}}'$; heights $h_{\text{o}}$, $h_{\text{i}}$; focal lengths $f$, $f_{\text{o}}$, $f_{\text{e}}$; the lens-to-retina distance, the near and far points; the aperture diameter $D$; the wavelength $\lambda$ | `position` (Chapter 2) | One hue for every measured length; they are told apart by their brackets, labels and subscripts, and a negative distance by its sign and its side of the lens |
-| Relative intensity on the emission spectra of Figure 26.13 | `intensity` (Chapter 17) | Coloured on 26.3 only if its figure draws a labelled intensity axis; a relative sensitivity (Figure 26.11) is dimensionless and in ink |
-| Power $P$, magnifications $m$, $m_{\text{o}}$, $m_{\text{e}}$, $M$; $\text{NA}$, $f/\#$; angles $\theta$, $\theta'$, $\alpha$; the index $n$ | Untyped | Ink, with the lenses, the eye's outline, the axis, the rays where they carry no colour of their own, and every label |
+| Object and image distances $d_{\text{o}}$, $d_{\text{i}}$, $d_{\text{o}}'$, $d_{\text{i}}'$; heights $h_{\text{o}}$, $h_{\text{i}}$; focal lengths $f$, $f_{\text{o}}$, $f_{\text{e}}$; the mirror's radius of curvature; the lens-to-retina distance, the near and far points; the aperture diameter $D$; the wavelength $\lambda$ | `position` (Chapter 2) | One hue for every measured length; they are told apart by their brackets, labels and subscripts, and a negative distance by its sign and its side of the lens |
+| The angle of acceptance $\theta$ and its half $\alpha$, the fiber's $\alpha_{\text{max}}$, the angles $\theta$ and $\theta'$ a telescope's object and image subtend, the tilt of the light in 26.6, the axis of an astigmatism | `angle` (Chapter 3) | Coloured where the text writes the symbol or names a particular angle, and on every slider and arc that carries one |
+| The relative intensity of 26.3's emission spectra and the intensities of its three primaries | `intensity` (Chapter 17) | The emission spectra's axis title and the primaries' sliders |
+| Power $P$, magnifications $m$, $m_{\text{o}}$, $m_{\text{e}}$, $M$; $\text{NA}$, $f/\#$; the index $n$; the relative sensitivity of Figure 26.11 | Untyped | Ink, with the axis, the rays where they carry no colour of their own, and every label of the frame |
 
-Which section colours what:
-
-| Section | Types coloured |
-|---|---|
-| intro | none |
-| 26.1 | `position` |
-| 26.2 | `position` |
-| 26.3 | `position` for the wavelength; Figure 26.13's relative intensity is drawn as a ratio in ink, so `intensity` is not coloured |
-| 26.4 | `position` |
-| 26.5 | `position` |
-| 26.6 | `position` for the wavelength, the focal length and the aperture diameter |
-
-Of root rule 7's four families this chapter uses three.
+Of item 7's four ways this chapter uses three.
 
 **A colour that is the physical fact.** 26.3 is about colour itself, and there a
-light, a cone's peak, an object's reflected light and a spectrum are drawn in
-their true colours; 26.6's violet and red rays and their focal points V and R are
-drawn violet and red. This is the only place a hex literal is written in a
-figure, named in the plan line. A coloured ray is never a typed thing, and a
-reader who turns colour off keeps these colours. The grey strips of Figure 26.14
-are grey levels that are the fact the figure shows, and are drawn as greys.
+light, a cone's curve, an object's face, the dark screen of the primaries, the tint
+a source gives a white cloth and a spectrum are drawn in their true colours, and the
+grey strips of Figure 26.14 are the grey levels the figure shows; 26.6's violet and
+red rays and their focal points V and R, and the ray of the chosen wavelength, are
+drawn in their spectral colours. Every such hex literal goes through `F.fact`, so
+the reader's Facts and conventions switch reaches it, and a coloured ray is never a
+typed thing.
 
-**Type hues from the scheme.** `position` carries the lengths of
-every ray diagram.
+**Referents.** Each figure's particular things are referents and wear `F.ref`, the
+text marking every reference to them: the cornea, lens, retina and tree of 26.1's
+accommodating eye (the anatomy figure draws the same three parts in the same
+colours); the spectacle lens and retina of 26.2; the Sun, fluorescent lamp,
+incandescent light, helium-neon laser and the white tablecloth of 26.3, each
+source's emission spectrum in its own colour; the objective, eyepiece, object and
+first and final images of 26.4's compound microscope, the specimen, cover glass and
+objective of its acceptance cone, the fiber's ray, core and cladding, and the
+condenser lens, concave mirror, annular stop and glass reflector of its
+illumination; the objective, eyepiece, erecting lens and first image of 26.5's lens
+telescope, and the concave mirror, its eyepiece and the flat mirror of the
+reflecting telescope; the crown and flint lenses of 26.6's doublet. The focal
+lengths $f_{\text{o}}$ and $f_{\text{e}}$ of 26.4 and 26.5 split, their subscripts
+in the objective's and the eyepiece's colours. Instances the text never names one
+by one keep `F.cat`, placed past their figure's referent colours: the rays from the
+top and bottom of the tree, the rays of the ray diagrams, the illuminating and
+scattered light of Figure 26.20 and the lens zones of Figure 26.29 + 26.30. A cone
+type of Figure 26.11 is drawn in its spectral colour, which is the fact, and is no
+referent.
 
-**The categorical palette `F.cat(i)`.** It tells apart instances that carry no type:
-the three cone types' curves where they are not drawn in spectral colour, the
-four emission spectra of Figure 26.13, the rays traced from the top and bottom of
-an object, the objective and eyepiece where the two need telling apart, and the
-media of 26.19's three immersion panels. It is never used in a category hue the figure draws, and never on a ray whose colour is its wavelength.
+**Categories.** `position`, `angle` and `intensity`, as the table gives them.
 
 The element palette does not arise. A medium is never tinted to say what it is:
 cornea, humors, oil and water are told by their labels and indices, with at most a
-faint neutral panel marking a boundary.
-
-The test for one figure is root rule 7's: everything in it with an identity is
-coloured, or the whole figure is ink. Colour-off drops the type hues and keeps
-the physical and categorical colours, so every figure must stay legible from its
-labels, ray directions and caption alone.
-
-As built (chapter pass, 2026-09-28): every page colours `position` alone and the
-introduction colours nothing. The mirror's radius of curvature in 26.5 takes
-Chapter 25's `R_curv` and its `position` hue.
+faint neutral panel marking a boundary. With colour coding off every figure stays
+legible from its labels, ray directions and caption alone.

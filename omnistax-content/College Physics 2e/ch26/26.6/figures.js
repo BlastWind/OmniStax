@@ -1,9 +1,10 @@
-/* Figures for section 26.6 Aberrations. The page binds position alone, as
-   ch26/COLOR.md gives 26.6: the wavelength, the aperture diameter and the bracket
-   between the violet and red focal points share its hue. The violet, red and chosen
-   rays of Figure 26.28 are drawn in their spectral colours, the physical fact; the
-   zones of Figure 26.29 + 26.30 are told apart by the categorical palette, and the
-   lenses, the axis and the angle are ink. Both figures are computed from the
+/* Figures for section 26.6 Aberrations. The figures colour position and angle: the
+   wavelength, the aperture diameter and the bracket between the violet and red focal
+   points share position's hue, and the tilt of the light in Figure 26.29 + 26.30 is
+   an angle. The violet, red and chosen rays of Figure 26.28 are drawn in their
+   spectral colours through F.fact, the physical fact; the crown and flint lenses of
+   the doublet are referents and wear F.ref; the zones of Figure 26.29 + 26.30, which
+   the text never names one by one, are told apart by F.cat, and the axis is ink. Both figures are computed from the
    published Sellmeier indices of Schott's N-BK7 crown and F2 flint glass. Nothing
    here moves, so each figure registers no cycle and redraws on its controls alone
    (root rule 14). */
@@ -61,21 +62,20 @@ function spectral(nm) {
   };
   const Y = 260, L = 230, S = 9, HS = [-150, 150];
   const X = (mm) => L + S * mm;
-  const VIOLET = spectral(400), RED = spectral(700);
 
-  function biconvex(ctx, x0, x1, h, bulge, fill) {
+  function biconvex(ctx, x0, x1, h, bulge, fill, color) {
     ctx.save(); ctx.beginPath();
     ctx.moveTo(x0, Y - h); ctx.lineTo(x1, Y - h);
     ctx.quadraticCurveTo(x1 + bulge, Y, x1, Y + h); ctx.lineTo(x0, Y + h);
     ctx.quadraticCurveTo(x0 - bulge, Y, x0, Y - h); ctx.closePath();
-    ctx.fillStyle = fill; ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.8); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+    ctx.fillStyle = fill; ctx.fill(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
   }
   /* the flint element: its left face fits the crown's right face, its right face flat */
   function flint(ctx, x0, x1, h, bulge, k) {
     ctx.save(); ctx.globalAlpha *= k; ctx.beginPath();
     ctx.moveTo(x0, Y - h); ctx.lineTo(x1, Y - h); ctx.lineTo(x1, Y + h); ctx.lineTo(x0, Y + h);
     ctx.quadraticCurveTo(x0 + bulge, Y, x0, Y - h); ctx.closePath();
-    ctx.fillStyle = alpha(PAL.ink, 0.22); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.8); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+    ctx.fillStyle = alpha(PAL.ink, 0.22); ctx.fill(); ctx.strokeStyle = F.ref('flint-lens'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
   }
 
   let at = null;
@@ -83,11 +83,12 @@ function spectral(nm) {
     const { ctx } = begin(d.c);
     const f = lens.mix((v) => ({ V: focal(v, 400), R: focal(v, 700), W: focal(v, lam.v), shift: v === 'doublet' ? 1 : 0 }));
     const kD = lens.a('doublet');
+    const PC = C('position'), VIOLET = F.fact(spectral(400)), RED = F.fact(spectral(700)), WL = F.fact(spectral(lam.v)), CR = F.ref('crown-lens'), FL = F.ref('flint-lens');
     line(ctx, 30, Y, 1370, Y, alpha(PAL.ink, 0.3), 2, [10, 10]);
 
     /* the doublet slides its crown left so the two elements sit together about the lens plane */
     const sh = -16 * f.shift;
-    biconvex(ctx, L - 14 + sh, L + 14 + sh, 175, 16, alpha(PAL.ink, 0.08));
+    biconvex(ctx, L - 14 + sh, L + 14 + sh, 175, 16, alpha(PAL.ink, 0.08), CR);
     if (kD > 0) flint(ctx, L + 14 + sh, L + 34 + sh, 175, 16, kD);
 
     for (const h of HS) {
@@ -98,26 +99,25 @@ function spectral(nm) {
       };
       end(f.R, RED, 3);
       end(f.V, VIOLET, 3);
-      end(f.W, spectral(lam.v), 4.5);
+      end(f.W, WL, 4.5);
     }
     line(ctx, 30, Y, 1370, Y, alpha(PAL.ink, 0.6), 3);
 
     const xV = X(f.V), xR = X(f.R), xW = X(f.W);
     dot(ctx, xR, Y, RED, true, 8);
     dot(ctx, xV, Y, VIOLET, true, 8);
-    dot(ctx, xW, Y, spectral(lam.v), false, 11);
+    dot(ctx, xW, Y, WL, false, 11);
     at = { xV, xR };
     const apart = Math.abs(xR - xV) > 34;
     text(ctx, 'V', xV - (apart ? 0 : 16), Y - 40, VIOLET, { size: 24, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'R', xR + (apart ? 0 : 16), Y - 40, RED, { size: 24, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'white light', 40, Y - 176, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
     if (kD > 0.5) {
-      text(ctx, 'crown', L - 40 + sh, Y + 196, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
-      text(ctx, 'flint', L + 50 + sh, Y + 196, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
-    } else text(ctx, 'crown glass', L, Y + 196, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
+      text(ctx, 'crown', L - 40 + sh, Y + 196, CR, { size: 17, weight: 600, align: 'center', bg: PAL.panel });
+      text(ctx, 'flint', L + 50 + sh, Y + 196, FL, { size: 17, weight: 600, align: 'center', bg: PAL.panel });
+    } else text(ctx, 'crown glass', L, Y + 196, CR, { size: 17, weight: 600, align: 'center', bg: PAL.panel });
 
     const spread = focal(lens.value, 700) - focal(lens.value, 400);
-    const PC = C('position');
     hbracket(ctx, Math.min(xV, xR), Math.max(xV, xR), Y + 50, PC, fmt(Math.abs(spread), 2) + ' mm', { side: 'below' });
     hbracket(ctx, L, X(100), 490, alpha(PAL.ink, 0.5), '100 mm', { side: 'below', size: 17 });
 
@@ -149,7 +149,7 @@ function spectral(nm) {
 ===================================================================== */
 (function () {
   const d = sim('sim-coma-spherical', 660);
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 12, step: 0.5, value: 6, unit: '°', dec: 1,
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 12, step: 0.5, value: 6, unit: '°', dec: 1,
     aria: 'the angle of the incoming light to the axis', detents: [0] });
   const Dm = ctl(d.controls, { label: '\\kD', cls: 'position', min: 20, max: 70, step: 1, value: 70, unit: 'mm', dec: 0,
     aria: 'the diameter of the aperture' });

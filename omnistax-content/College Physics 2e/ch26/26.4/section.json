@@ -4,7 +4,7 @@
  "chapter": "26",
  "title": "Microscopes",
  "short": "Microscopes",
- "lead": "A compound microscope is two convex lenses used one after the other, the image formed by the objective becoming the object for the eyepiece. The overall magnification is the product of the magnifications of the two lenses. The numerical aperture, immersion, illumination and electrons each let a microscope see finer detail.",
+ "lead": "A compound microscope is <span data-ref=\"objective eyepiece\">two convex lenses</span> used one after the other, <span data-ref=\"first-image\">the image formed by the objective</span> becoming the object for <span data-ref=\"eyepiece\">the eyepiece</span>. The overall magnification is the product of the magnifications of <span data-ref=\"objective eyepiece\">the two lenses</span>. The numerical aperture, immersion, illumination and electrons each let a microscope see finer detail.",
  "objectives": [
   "Investigate different types of microscopes.",
   "Learn how image is formed in a compound microscope."
@@ -30,8 +30,8 @@
  "figures": [
   {"id": "photo-microscope-in-use", "kind": "photo", "number": "26.15", "widths": [250]},
   {"id": "sim-compound-microscope", "kind": "sim", "number": "26.16", "originals": ["/media/ch26/Figure_27_04_02.jpg"], "original_caption": "A compound microscope composed of two lenses, an objective and an eyepiece. The objective forms a case 1 image that is larger than the object. This first image is the object for the eyepiece. The eyepiece forms a case 2 final image that is further magnified.", "widths": [500], "draws": ["position"]},
-  {"id": "sim-numerical-aperture", "kind": "sim", "number": "26.17", "folds": ["26.19"], "originals": ["/media/ch26/Figure_27_04_03.jpg", "/media/ch26/Figure_27_04_05.jpg"], "original_caption": "(Figure 26.17) (a) The numerical aperture $\\text{(NA)}$ of a microscope objective lens refers to the light-gathering ability of the lens and is calculated using half the angle of acceptance $\\theta$. (b) Here, $\\alpha$ is half the acceptance angle for light rays from a specimen entering a camera lens, and $D$ is the diameter of the aperture that controls the light entering the lens. (Figure 26.19) Light rays from a specimen entering the objective. Paths for immersion medium of air (a), water (b) $(n = 1.33)$, and oil (c) $(n = 1.51)$ are shown. The water and oil immersions allow more rays to enter the objective, increasing the resolution.", "widths": [400, 225], "draws": ["position"]},
-  {"id": "sim-fiber-acceptance", "kind": "sim", "number": "26.18", "originals": ["/media/ch26/Figure_27_04_04.jpg"], "original_caption": "Light rays enter an optical fiber. The numerical aperture of the optical fiber can be determined by using the angle $\\alpha_{\\text{max}}$.", "widths": [500], "draws": []},
+  {"id": "sim-numerical-aperture", "kind": "sim", "number": "26.17", "folds": ["26.19"], "originals": ["/media/ch26/Figure_27_04_03.jpg", "/media/ch26/Figure_27_04_05.jpg"], "original_caption": "(Figure 26.17) (a) The numerical aperture $\\text{(NA)}$ of a microscope objective lens refers to the light-gathering ability of the lens and is calculated using half the angle of acceptance $\\theta$. (b) Here, $\\alpha$ is half the acceptance angle for light rays from a specimen entering a camera lens, and $D$ is the diameter of the aperture that controls the light entering the lens. (Figure 26.19) Light rays from a specimen entering the objective. Paths for immersion medium of air (a), water (b) $(n = 1.33)$, and oil (c) $(n = 1.51)$ are shown. The water and oil immersions allow more rays to enter the objective, increasing the resolution.", "widths": [400, 225], "draws": ["position", "angle"]},
+  {"id": "sim-fiber-acceptance", "kind": "sim", "number": "26.18", "originals": ["/media/ch26/Figure_27_04_04.jpg"], "original_caption": "Light rays enter an optical fiber. The numerical aperture of the optical fiber can be determined by using the angle $\\alpha_{\\text{max}}$.", "widths": [500], "draws": ["angle"]},
   {"id": "sim-illumination", "kind": "sim", "number": "26.20", "originals": ["/media/ch26/Figure_27_04_06.jpg"], "original_caption": "Illumination of a specimen in a microscope. (a) Transmitted light from a condenser lens. (b) Transmitted light from a mirror condenser. (c) Dark field illumination by scattering (the illuminating beam misses the objective lens). (d) High magnification illumination with reflected light – normally laser light.", "widths": [475], "draws": []},
   {"id": "photo-electron-microscope", "kind": "photo", "number": "26.21", "widths": [250]},
   {"id": "photo-bacteria-sand", "kind": "photo", "number": "26.22", "widths": [300]}
@@ -83,5 +83,82 @@
   {"exercise": "p3", "concept": "overall-magnification"},
   {"exercise": "p4", "concept": "solve-a-multiple-element-system"},
   {"exercise": "p4", "concept": "overall-magnification"}
+ ],
+ "referents": [
+  {
+   "id": "objective",
+   "label": "the objective of the compound microscope, 6.00 mm in focal length in Example 26.5",
+   "figure": "sim-compound-microscope"
+  },
+  {
+   "id": "eyepiece",
+   "label": "the eyepiece of the compound microscope",
+   "figure": "sim-compound-microscope"
+  },
+  {
+   "id": "object",
+   "label": "the object under the objective",
+   "figure": "sim-compound-microscope"
+  },
+  {
+   "id": "first-image",
+   "label": "the first image, formed by the objective and viewed by the eyepiece",
+   "figure": "sim-compound-microscope"
+  },
+  {
+   "id": "final-image",
+   "label": "the final image, formed by the eyepiece",
+   "figure": "sim-compound-microscope"
+  },
+  {
+   "id": "specimen",
+   "label": "the point P on the specimen",
+   "figure": "sim-numerical-aperture"
+  },
+  {
+   "id": "cover-glass",
+   "label": "the cover glass over the specimen",
+   "figure": "sim-numerical-aperture"
+  },
+  {
+   "id": "na-objective",
+   "label": "the objective whose cone of acceptance is drawn",
+   "figure": "sim-numerical-aperture"
+  },
+  {
+   "id": "ray",
+   "label": "the ray the reader tilts into the fiber",
+   "figure": "sim-fiber-acceptance"
+  },
+  {
+   "id": "core",
+   "label": "the core of the fiber, of index 1.50",
+   "figure": "sim-fiber-acceptance"
+  },
+  {
+   "id": "cladding",
+   "label": "the cladding of the fiber",
+   "figure": "sim-fiber-acceptance"
+  },
+  {
+   "id": "condenser",
+   "label": "the condenser lens",
+   "figure": "sim-illumination"
+  },
+  {
+   "id": "concave-mirror",
+   "label": "the concave mirror condenser",
+   "figure": "sim-illumination"
+  },
+  {
+   "id": "annular-stop",
+   "label": "the annular stop of dark field illumination",
+   "figure": "sim-illumination"
+  },
+  {
+   "id": "reflector",
+   "label": "the plain glass reflector",
+   "figure": "sim-illumination"
+  }
  ]
 }

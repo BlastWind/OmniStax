@@ -1,10 +1,12 @@
-/* Figures for section 26.5 Telescopes. The page binds position alone, as
-   ch26/COLOR.md gives 26.5: the focal lengths of objective and eyepiece and the
-   mirror's radius of curvature share its hue and are told apart by their brackets.
-   The angular magnification and the angles are untyped and in ink, as are the
-   lenses, the mirrors, the images and the eye; the rays are the categorical
-   palette's first hue. Nothing here moves: optics has no clock, so every figure
-   registers no cycle and redraws on its controls alone (root rule 14). */
+/* Figures for section 26.5 Telescopes. The figures colour position and angle: the
+   focal lengths of objective and eyepiece and the mirror's radius of curvature share
+   position's hue and are told apart by their brackets, and the angles θ and θ′ are
+   angles. The objective, the eyepiece, the erecting lens and the first image of the
+   lens telescope, and the concave mirror, its eyepiece and the flat mirror of the
+   reflecting telescope, are referents and wear F.ref. The angular magnification, the
+   second image and the eye are ink; the rays take F.cat past each figure's referent
+   places. Nothing here moves: optics has no clock, so every figure registers no cycle
+   and redraws on its controls alone (root rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['26.5'] = function (root, F) {
 const { fmt, tex, C, PAL, alpha, cat, ctl, choice, register, begin, line, dot, text, topline, hbracket, vbracket, angleArc, hover } = F;
@@ -18,14 +20,14 @@ const minus = (s) => s.replace('-', '−');
 
 /* a thin lens at x with half-height h, bulging by b: thick at the middle when b > 0
    (converging), thin there when b < 0 (diverging) */
-function lens(ctx, x, y, h, b, a = 1) {
+function lens(ctx, x, y, h, b, a = 1, color = alpha(PAL.ink, 0.8)) {
   const w = 14;
   ctx.save(); ctx.globalAlpha *= a; ctx.beginPath();
   ctx.moveTo(x - w / 2, y - h); ctx.lineTo(x + w / 2, y - h);
   ctx.quadraticCurveTo(x + w / 2 + 2 * b, y, x + w / 2, y + h);
   ctx.lineTo(x - w / 2, y + h);
   ctx.quadraticCurveTo(x - w / 2 - 2 * b, y, x - w / 2, y - h);
-  ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.8); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+  ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
 }
 /* a small image, an arrow from the axis to height y above it (negative: below) */
 function image(ctx, x, Y, y, color, a = 1) {
@@ -54,7 +56,9 @@ function eye(ctx, x, y, R) {
    focal length from the last image, so the rays leave parallel. The drawn angle is
    θ_d = min(0.12, 0.35/|M|) rad, the same factor on θ and θ', so their ratio is M.
    The arrangement morphs: lens positions and powers blend, the erecting lens's
-   power grows from nothing, and the rays are traced through the blend.
+   power grows from nothing, and the rays are traced through the blend. The objective,
+   the eyepiece, the erecting lens and the first image are the referents; the rays
+   take F.cat(4).
 ===================================================================== */
 (function () {
   const d = sim('sim-telescope', 540);
@@ -82,7 +86,8 @@ function eye(ctx, x, y, R) {
   let parts = [];
   function draw() {
     const { ctx } = begin(d.c);
-    const v = arr.value, L = arr.mix(layout), ray = cat(0), PC = C('position');
+    const v = arr.value, L = arr.mix(layout), PC = C('position'), AC = C('angle'), ray = cat(4);
+    const OB = F.ref('objective'), EY = F.ref('eyepiece'), ER = F.ref('erecting-lens'), I1 = F.ref('first-image');
     const o = fo.v, e = fe.v, xf = cmx(o);
     const M = v === 'galileo' ? o / e : v === 'kepler' ? -o / e : o / e;
 
@@ -104,9 +109,9 @@ function eye(ctx, x, y, R) {
     };
     const rays = [A, 0, -A].map(trace);
 
-    lens(ctx, XO, Y, A + 16, 12);
-    lens(ctx, L.xr, Y, Math.max(reach.r + 16, 50), 12, arr.a('erect'));
-    lens(ctx, L.xe, Y, Math.max(reach.e + 16, 50), 12 * L.bulge);
+    lens(ctx, XO, Y, A + 16, 12, 1, OB);
+    lens(ctx, L.xr, Y, Math.max(reach.r + 16, 50), 12, arr.a('erect'), ER);
+    lens(ctx, L.xe, Y, Math.max(reach.e + 16, 50), 12 * L.bulge, 1, EY);
 
     for (const r of rays) {
       for (let i = 1; i < r.pts.length; i++) line(ctx, r.pts[i - 1][0], Y - r.pts[i - 1][1], r.pts[i][0], Y - r.pts[i][1], ray, 3);
@@ -122,14 +127,14 @@ function eye(ctx, x, y, R) {
     const yi = -o * S * L.th;
     dot(ctx, xf, Y, PAL.ink, true, 6);
     text(ctx, 'F_o', xf + 10, Y + 24, PAL.ink, { size: 20, align: 'left', bg: PAL.panel });
-    if (v !== 'galileo') image(ctx, xf, Y, yi, PAL.ink);
+    if (v !== 'galileo') image(ctx, xf, Y, yi, I1);
     arr.only(ctx, 'erect', () => image(ctx, cmx(o + 4 * FR), Y, -yi, PAL.ink), [0, 0]);
 
     const chief = rays[1];
-    angleArc(ctx, { x: XO, y: Y }, 80, Math.PI, Math.PI - L.th, 'θ');
+    angleArc(ctx, { x: XO, y: Y }, 80, Math.PI, Math.PI - L.th, 'θ', undefined, AC);
     const ex = chief.pts[chief.pts.length - 2];
     const up = Math.atan(chief.u);
-    angleArc(ctx, { x: ex[0], y: Y - ex[1] }, 46, 0, up, 'θ′');
+    angleArc(ctx, { x: ex[0], y: Y - ex[1] }, 46, 0, up, 'θ′', undefined, AC);
     eye(ctx, 1300, Y, 34);
 
     hbracket(ctx, XO, xf, Y - 170, PC, 'f_o = ' + sig3(o) + ' cm');
@@ -137,10 +142,10 @@ function eye(ctx, x, y, R) {
     const fFrom = v === 'erect' ? cmx(o + 4 * FR) : xf;
     hbracket(ctx, Math.min(fFrom, xe), Math.max(fFrom, xe), Y + 150, PC, 'f_e = ' + minus(sig3(v === 'galileo' ? -e : e)) + ' cm', { side: 'below' });
 
-    const lab = { size: 18, align: 'center', bg: PAL.panel };
-    text(ctx, 'objective', XO, Y + A + 44, PAL.muted, lab);
-    text(ctx, 'eyepiece', xe, Y - Math.max(reach.e + 16, 50) - 20, PAL.muted, lab);
-    arr.only(ctx, 'erect', () => text(ctx, 'erecting lens', cmx(o + 2 * FR), Y - Math.max(reach.r + 16, 50) - 20, PAL.muted, lab), [0, 0]);
+    const lab = { size: 18, weight: 600, align: 'center', bg: PAL.panel };
+    text(ctx, 'objective', XO, Y + A + 44, OB, lab);
+    text(ctx, 'eyepiece', xe, Y - Math.max(reach.e + 16, 50) - 20, EY, lab);
+    arr.only(ctx, 'erect', () => text(ctx, 'erecting lens', cmx(o + 2 * FR), Y - Math.max(reach.r + 16, 50) - 20, ER, lab), [0, 0]);
     text(ctx, 'from a very distant object', 24, Y - 110, PAL.muted, { size: 18, align: 'left' });
 
     parts = [{ x: xf, y: Y - yi / 2, r: 20, name: v === 'galileo' ? 'where the rays would meet, the focal point of the objective' : 'the first image, at the focal point of the objective' }];
@@ -151,7 +156,7 @@ function eye(ctx, x, y, R) {
     topline(ctx, `The image is ${upright ? 'upright' : 'inverted'}, and it subtends ${sig3(Math.abs(M))} times the angle the object subtends.`);
     const m = (c) => `${minus(fmt(c / 100, 3))}\\ \\text{m}`;
     const nfo = `\\mk{nfo}{${m(o)}}`, nfe = `\\mk{nfe}{${m(v === 'galileo' ? -e : e)}}`, nM = `\\mk{nM}{${minus(sig3(M))}}`;
-    const head = `\\mk{M}{M} = \\mk{r}{\\frac{\\theta'}{\\theta}}`;
+    const head = `\\mk{M}{M} = \\mk{r}{\\frac{\\kthetaprime}{\\ktheta}}`;
     const note = `An object that subtends 0.500° to the unaided eye subtends ${sig3(0.5 * Math.abs(M))}° through the telescope${v === 'erect' ? ', and the erecting lens inverts the image once more, so that it is upright.' : '.'}`;
     ro.set(v === 'erect'
       ? `${head} = \\left(-\\frac{\\mk{fo}{\\kfobj}}{\\mk{fe}{\\kfeye}}\\right)\\mk{inv}{(-1)} = \\left(-\\frac{${nfo}}{${nfe}}\\right)\\mk{ninv}{(-1)} = ${nM}`
@@ -169,7 +174,8 @@ function eye(ctx, x, y, R) {
    is visibly flatter. Parallel rays reflect toward the focal point; a flat mirror
    at 45°, 150 px before it, turns them down to a focus 150 px below the axis. The
    eyepiece stands its focal length below that focus, 30 px for 1.00 cm to 120 px
-   for 10.0 cm on a logarithmic run, and sends the rays out parallel.
+   for 10.0 cm on a logarithmic run, and sends the rays out parallel. The concave
+   mirror, its eyepiece and the flat mirror are the referents; the rays take F.cat(3).
 ===================================================================== */
 (function () {
   const d = sim('sim-reflecting-telescope', 620);
@@ -180,7 +186,7 @@ function eye(ctx, x, y, R) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const ray = cat(0), PC = C('position');
+    const PC = C('position'), ray = cat(3), MI = F.ref('mirror'), ME = F.ref('mirror-eyepiece'), FM = F.ref('flat-mirror');
     const fd = 260 + 420 * Math.log10(R.v), Rd = 2 * fd, xF = XM - fd, xd = xF + DROP;
     const ed = 30 + 90 * Math.log10(fe.v), yF = Y + DROP, ye = yF + ed;
 
@@ -190,7 +196,7 @@ function eye(ctx, x, y, R) {
     const a = Math.asin(H / Rd);
     ctx.save(); ctx.lineWidth = 7; ctx.strokeStyle = alpha(PAL.ink, 0.25);
     ctx.beginPath(); ctx.arc(XM - Rd + 5, Y, Rd, -a, a); ctx.stroke();
-    ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.beginPath(); ctx.arc(XM - Rd, Y, Rd, -a, a); ctx.stroke(); ctx.restore();
+    ctx.lineWidth = 3.5; ctx.strokeStyle = MI; ctx.beginPath(); ctx.arc(XM - Rd, Y, Rd, -a, a); ctx.stroke(); ctx.restore();
 
     for (const h of HS) {
       const yy = Y + h, xh = XM - Rd + Math.sqrt(Rd * Rd - h * h);
@@ -204,20 +210,20 @@ function eye(ctx, x, y, R) {
       line(ctx, lx, ye, lx, 610, ray, 3);
     }
     /* the flat mirror, "/" through (xd, Y) */
-    line(ctx, xd - 66, Y + 66, xd + 66, Y - 66, PAL.ink, 6);
+    line(ctx, xd - 66, Y + 66, xd + 66, Y - 66, FM, 6);
     const half = 110 * (DROP + ed) / fd + 20;
     ctx.save(); ctx.beginPath(); ctx.ellipse(xd, ye, half, 12, 0, 0, Math.PI * 2);
-    ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.8); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+    ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = ME; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
     dot(ctx, xd, yF, PAL.ink, true, 6);
     dot(ctx, xF, Y, alpha(PAL.ink, 0.5), false, 6);
 
     hbracket(ctx, xF, XM, Y - 165, PC, 'f_o = R/2 = ' + sig3(R.v / 2) + ' m', { side: 'below' });
     vbracket(ctx, xd - half - 26, yF, ye, PC, 'f_e = ' + sig3(fe.v) + ' cm', -1);
 
-    const lab = { size: 18, bg: PAL.panel };
-    text(ctx, 'concave mirror (objective)', XM + 20, Y + H + 34, PAL.muted, { ...lab, align: 'right' });
-    text(ctx, 'eyepiece', xd + half + 16, ye, PAL.muted, { ...lab, align: 'left' });
-    text(ctx, 'flat mirror', xd + 76, Y - 70, PAL.muted, { ...lab, align: 'left' });
+    const lab = { size: 18, weight: 600, bg: PAL.panel };
+    text(ctx, 'concave mirror (objective)', XM + 20, Y + H + 34, MI, { ...lab, align: 'right' });
+    text(ctx, 'eyepiece', xd + half + 16, ye, ME, { ...lab, align: 'left' });
+    text(ctx, 'flat mirror', xd + 76, Y - 70, FM, { ...lab, align: 'left' });
     text(ctx, 'not to scale', 24, 600, PAL.muted, { size: 17, align: 'left' });
 
     parts = [
@@ -227,7 +233,7 @@ function eye(ctx, x, y, R) {
 
     const M = -(R.v / 2) / (fe.v / 100);
     topline(ctx, `A mirror with a ${sig3(R.v)} m radius of curvature brings parallel light to a focus ${sig3(R.v / 2)} m in front of it.`);
-    tex(d.readout, `M = -\\frac{\\kfobj}{\\kfeye} = -\\frac{R/2}{\\kfeye} = -\\frac{${sig3(R.v / 2)}\\ \\text{m}}{${fmt(fe.v / 100, 4)}\\ \\text{m}} = ${minus(sig3(M))}`);
+    tex(d.readout, `M = -\\frac{\\kfobj}{\\kfeye} = -\\frac{\\kRcur/2}{\\kfeye} = -\\frac{${sig3(R.v / 2)}\\ \\text{m}}{${fmt(fe.v / 100, 4)}\\ \\text{m}} = ${minus(sig3(M))}`);
   }
   hover(d.stage, () => parts);
   register(d.fig, { update: () => {}, draw });
