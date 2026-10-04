@@ -7,8 +7,8 @@ hue.
 
 ## Categories
 
-The categories are the `types` of `book.json`, in the order the palette lays
-its hues along. In this book each is a kind of physical quantity.
+The categories are the `types` of `book.json`, in the order "Apply in order"
+lays a palette along. In this book each is a kind of physical quantity.
 
 | Type | What wears it | Declared in |
 |---|---|---|
@@ -59,6 +59,8 @@ its hues along. In this book each is a kind of physical quantity.
 | `diffusion-constant` | The diffusion constant of a molecule in a medium | Chapter 12 |
 | `temperature-coefficient` | A fractional change per degree: the coefficients of linear and volume expansion, the temperature coefficient of resistivity | Chapter 13 |
 | `thermal-conductivity` | Thermal conductivity | Chapter 14 |
+| `flow-resistance` | The resistance a vessel or tube offers to fluid flow | Chapter 12 |
+| `lens-power` | The power of a lens, of the eye or of a mirror, in diopters | Chapter 25 |
 
 A material property is a category: what a material or a medium is like,
 which differs from one to the next. The expansion coefficients and the
@@ -73,10 +75,7 @@ number); and a rating, one number comparing two quantities of one kind
 (efficiency, a coefficient of performance, mechanical advantage, magnification,
 numerical aperture, a coefficient of friction or of drag, the index of
 refraction, emissivity, a reflection coefficient, RBE, the Reynolds number,
-the sound level in decibels, a percent). The book has used all forty-eight
-places the scheme deals; the flow resistance of 12.4 and the power of a lens
-of 25.6 pass the test but wait for a place, and stay in ink until one is
-found.
+the sound level in decibels, a percent).
 
 A derived quantity is another category, and nothing is coerced into a
 neighbouring one to save a colour: a frequency is not a time, a force

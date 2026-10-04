@@ -291,6 +291,16 @@
       "id": "thermal-conductivity",
       "label": "thermal conductivity",
       "dimension": "J/(s·m·°C)"
+    },
+    {
+      "id": "flow-resistance",
+      "label": "flow resistance",
+      "dimension": "Pa·s/m³"
+    },
+    {
+      "id": "lens-power",
+      "label": "power of a lens",
+      "dimension": "D"
     }
   ],
   "symbols": [
@@ -9396,7 +9406,8 @@
           "ktex": "\\kQ = \\frac{\\kPrtwo - \\kProne}{R}",
           "anchor": "12.4-poiseuille"
         }
-      ]
+      ],
+      "type": "flow-resistance"
     },
     {
       "id": "poiseuilles-law-resistance",
@@ -18920,7 +18931,8 @@
           "ktex": "P = \\frac{1}{\\kffoc}",
           "anchor": "25.6-lens-power"
         }
-      ]
+      ],
+      "type": "lens-power"
     },
     {
       "id": "ray-tracing-rules-for-lenses",
@@ -40796,5 +40808,211 @@
       "concept": "free-body-diagram",
       "prereq": "free-body-diagram-def"
     }
-  ]
+  ],
+  "colours": {
+    "palette": "oklab",
+    "vision": "deutan",
+    "assign": {
+      "time": {
+        "light": "#6B2E04",
+        "dark": "#FAB18B"
+      },
+      "position": {
+        "light": "#BD4D00",
+        "dark": "#D8662A"
+      },
+      "velocity": {
+        "light": "#762494",
+        "dark": "#DB8AFE"
+      },
+      "acceleration": {
+        "light": "#A35A75",
+        "dark": "#BD728D"
+      },
+      "force": {
+        "light": "#3F1E46",
+        "dark": "#F7CDFF"
+      },
+      "energy": {
+        "light": "#3C2B02",
+        "dark": "#F1DBB1"
+      },
+      "frequency": {
+        "light": "#6A2743",
+        "dark": "#F9A9C5"
+      },
+      "stiffness": {
+        "light": "#814D81",
+        "dark": "#C088BF"
+      },
+      "angular-rate": {
+        "light": "#895FA9",
+        "dark": "#A177C3"
+      },
+      "stress": {
+        "light": "#5C3825",
+        "dark": "#E6B9A3"
+      },
+      "elastic-modulus": {
+        "light": "#8925A4",
+        "dark": "#D775F4"
+      },
+      "power": {
+        "light": "#AC3225",
+        "dark": "#F17260"
+      },
+      "torque": {
+        "light": "#4D518F",
+        "dark": "#9DA4E9"
+      },
+      "momentum": {
+        "light": "#8F5564",
+        "dark": "#C38493"
+      },
+      "angular-acceleration": {
+        "light": "#0E3721",
+        "dark": "#BFEBCE"
+      },
+      "rotational-inertia": {
+        "light": "#963E37",
+        "dark": "#E6867B"
+      },
+      "angular-momentum": {
+        "light": "#5F2C5B",
+        "dark": "#E9ADE3"
+      },
+      "pressure": {
+        "light": "#894ABF",
+        "dark": "#AE6FE8"
+      },
+      "density": {
+        "light": "#7C6292",
+        "dark": "#A185B8"
+      },
+      "surface-tension": {
+        "light": "#4C271B",
+        "dark": "#FCCBBB"
+      },
+      "flow-rate": {
+        "light": "#522645",
+        "dark": "#F5BDE2"
+      },
+      "viscosity": {
+        "light": "#9A3356",
+        "dark": "#EB7C9C"
+      },
+      "entropy": {
+        "light": "#80225A",
+        "dark": "#F891C7"
+      },
+      "temperature": {
+        "light": "#C53764",
+        "dark": "#E1527B"
+      },
+      "charge": {
+        "light": "#9C1F45",
+        "dark": "#FD7B96"
+      },
+      "electric-field": {
+        "light": "#825EB9",
+        "dark": "#9A76D4"
+      },
+      "intensity": {
+        "light": "#3F2D5B",
+        "dark": "#D9C6FE"
+      },
+      "voltage": {
+        "light": "#602171",
+        "dark": "#EAA6FF"
+      },
+      "capacitance": {
+        "light": "#422136",
+        "dark": "#FBCFE9"
+      },
+      "current": {
+        "light": "#A35588",
+        "dark": "#BD6DA1"
+      },
+      "resistance": {
+        "light": "#6E55CF",
+        "dark": "#907BF8"
+      },
+      "magnetic-field": {
+        "light": "#7143BB",
+        "dark": "#AC82FF"
+      },
+      "magnetic-flux": {
+        "light": "#013D30",
+        "dark": "#AFE5D4"
+      },
+      "inductance": {
+        "light": "#C04444",
+        "dark": "#DC5E5B"
+      },
+      "activity": {
+        "light": "#803A71",
+        "dark": "#DA8DC8"
+      },
+      "decay-constant": {
+        "light": "#A45723",
+        "dark": "#CC7B49"
+      },
+      "dose": {
+        "light": "#624727",
+        "dark": "#D1B18E"
+      },
+      "latent-heat": {
+        "light": "#37688D",
+        "dark": "#72A5CD"
+      },
+      "acoustic-impedance": {
+        "light": "#B8284D",
+        "dark": "#F15F7A"
+      },
+      "specific-heat": {
+        "light": "#6A3F42",
+        "dark": "#DBA8AB"
+      },
+      "area": {
+        "light": "#8F2D01",
+        "dark": "#FB906C"
+      },
+      "mass": {
+        "light": "#6E59E2",
+        "dark": "#8472FE"
+      },
+      "volume": {
+        "light": "#4C3E6D",
+        "dark": "#C3B3EC"
+      },
+      "resistivity": {
+        "light": "#5F3E69",
+        "dark": "#CDA8D9"
+      },
+      "angle": {
+        "light": "#823E5C",
+        "dark": "#DD90AF"
+      },
+      "diffusion-constant": {
+        "light": "#6D397D",
+        "dark": "#D198E3"
+      },
+      "temperature-coefficient": {
+        "light": "#532A2C",
+        "dark": "#F6C2C2"
+      },
+      "thermal-conductivity": {
+        "light": "#663083",
+        "dark": "#D59CF8"
+      },
+      "flow-resistance": {
+        "light": "#562B02",
+        "dark": "#FAC49E"
+      },
+      "lens-power": {
+        "light": "#6E59A7",
+        "dark": "#9D89DB"
+      }
+    }
+  }
 }

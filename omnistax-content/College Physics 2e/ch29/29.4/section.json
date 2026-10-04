@@ -41,12 +41,21 @@
       "originals": ["/media/ch29/Figure_30_04_02a.jpg"],
       "original_caption": "The Compton effect is the name given to the scattering of a photon by an electron. Energy and momentum are conserved, resulting in a reduction of both for the scattered photon. Studying this effect, Compton verified that photons have momentum.",
       "widths": [225],
-      "draws": ["momentum", "energy", "position", "angle"]
+      "draws": ["momentum", "energy", "position", "angle"],
+      "conventions": [
+        "e-"
+      ]
     },
     {
       "id": "sim-photon-electron",
       "kind": "sim",
-      "draws": ["momentum", "energy", "velocity", "position", "mass"]
+      "draws": ["momentum", "energy", "velocity", "position", "mass"],
+      "conventions": [
+        "e-"
+      ],
+      "facts": [
+        "spectrum"
+      ]
     },
     {
       "id": "photo-space-sail",
@@ -68,10 +77,16 @@
   ],
   "exercises": [
     {
-      "id": "ap1", "source_id": "fs-id1878082", "kind": "ap-test-prep", "bloom": "Apply", "place": {"at": "end"}, "cite": "electron-photon-momentum",
+      "id": "ap1",
+      "source_id": "fs-id1878082",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "electron-photon-momentum",
       "prompt": "The mass of a proton is 1.67 × 10<sup>–27</sup> kg. If a proton has the same momentum as a photon with a wavelength of 325 nm, what is its speed?",
       "answer": {
-        "type": "choice", "generated_by": "source",
+        "type": "choice",
+        "generated_by": "source",
         "options": ["2.73 × 10<sup>–3</sup> m/s", "0.819 m/s", "1.22 m/s", "2.71 × 10<sup>4</sup> m/s"],
         "correct": 2,
         "hint": "Find the photon’s momentum from $\\kp = h/\\klam$, then divide it by the proton’s mass.",
@@ -79,18 +94,30 @@
       }
     },
     {
-      "id": "ap2", "source_id": "fs-id1354550", "kind": "ap-test-prep", "bloom": "Analyze", "place": {"at": "end"}, "cite": "electron-photon-momentum",
+      "id": "ap2",
+      "source_id": "fs-id1354550",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "electron-photon-momentum",
       "prompt": "A strip of metal foil with a mass of 5.00 × 10<sup>–7</sup> kg is suspended in a vacuum and exposed to a pulse of light. The velocity of the foil changes from zero to 1.00 × 10<sup>–3</sup> m/s in the same direction as the initial light pulse, and the light pulse is entirely reflected from the surface of the foil. Given that the wavelength of the light is 450 nm, and assuming that this wavelength is the same before and after the collision, how many photons in the pulse collide with the foil?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "Momentum is conserved in the collision. Each photon arrives with momentum $h/\\klam$ and leaves in the opposite direction with the same magnitude, so each one gives the foil $2h/\\klam$. For $N$ photons the foil gains $N(2h/\\klam) = m\\kv$, so $N = m\\kv\\klam/(2h) = (5.00\\times 10^{-7}\\;\\text{kg})(1.00\\times 10^{-3}\\;\\text{m/s})(450\\times 10^{-9}\\;\\text{m})/(2 \\times 6.63\\times 10^{-34}\\;\\text{J}\\cdot\\text{s})$, which is about $1.7\\times 10^{17}$ photons."
       }
     },
     {
-      "id": "ap3", "source_id": "fs-id1773803", "kind": "ap-test-prep", "bloom": "Apply", "place": {"at": "end"}, "cite": "measuring-photon-momentum",
+      "id": "ap3",
+      "source_id": "fs-id1773803",
+      "kind": "ap-test-prep",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "measuring-photon-momentum",
       "prompt": "In an experiment in which the Compton effect is observed, a “gamma ray” photon with a wavelength of 5.00 × 10<sup>–13</sup> m scatters from an electron. If the change in the electron energy is 1.60 × 10<sup>–15</sup> J, what is the wavelength of the photon after the collision with the electron?",
       "answer": {
-        "type": "choice", "generated_by": "source",
+        "type": "choice",
+        "generated_by": "source",
         "options": ["4.95 × 10<sup>–13</sup> m", "4.98 × 10<sup>–13</sup> m", "5.02 × 10<sup>–13</sup> m", "5.05 × 10<sup>–13</sup> m"],
         "correct": 2,
         "hint": "The photon loses the energy the electron gains, so $\\kEprime = h\\kc/\\klam - 1.60\\times 10^{-15}$ J; the scattered wavelength is then $h\\kc/\\kEprime$, which must be longer.",
@@ -98,51 +125,90 @@
       }
     },
     {
-      "id": "ap4", "source_id": "fs-id1312194", "kind": "ap-test-prep", "bloom": "Analyze", "place": {"at": "end"}, "cite": "electron-photon-momentum",
+      "id": "ap4",
+      "source_id": "fs-id1312194",
+      "kind": "ap-test-prep",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "electron-photon-momentum",
       "prompt": "Consider two experiments involving a metal sphere with a radius of 2.00 μm that is suspended in a vacuum. In one experiment, a pulse of <em>N</em> photons reflects from the surface of the sphere, causing the sphere to acquire momentum. In a second experiment, an identical pulse of photons is completely absorbed by the sphere, so that the sphere acquires momentum. Identify each type of collision as either elastic or inelastic, and, assuming that the change in the photon wavelength can be ignored, use linear momentum conservation to derive the expression for the momentum of the sphere in each experiment.",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "When the photons reflect with their wavelength unchanged, they keep all their energy, so the collision is elastic. Each photon arrives with momentum $h/\\klam$ and leaves with $-h/\\klam$, so conservation of momentum gives $N h/\\klam = -N h/\\klam + \\kp_{\\text{sphere}}$, and the sphere acquires $\\kp_{\\text{sphere}} = 2Nh/\\klam$. When the photons are absorbed, their energy goes into the sphere and none leaves as kinetic energy of the photons, so the collision is inelastic. Then $N h/\\klam = \\kp_{\\text{sphere}}$, and the sphere acquires $Nh/\\klam$, half as much as when the photons reflect."
       }
     },
     {
-      "id": "cq1", "source_id": "fs-id1605378", "kind": "conceptual-question", "bloom": "Remember", "place": {"at": "end"}, "cite": "relativistic-photon-momentum",
+      "id": "cq1",
+      "source_id": "fs-id1605378",
+      "kind": "conceptual-question",
+      "bloom": "Remember",
+      "place": {"at": "end"},
+      "cite": "relativistic-photon-momentum",
       "prompt": "Which formula may be used for the momentum of all particles, with or without mass?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "The relation $\\kE^{2} = (\\kp\\kc)^{2} + (m\\kc^{2})^{2}$ holds for every particle. For a particle with mass it gives the relativistic momentum, and for a photon, whose mass is zero, it becomes $\\kp = \\kE/\\kc$, which is the same as $\\kp = h/\\klam$. The expression $\\kp = \\gamma m u$ holds only for particles having mass."
       }
     },
     {
-      "id": "cq2", "source_id": "fs-id1407914", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "measuring-photon-momentum",
+      "id": "cq2",
+      "source_id": "fs-id1407914",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "measuring-photon-momentum",
       "prompt": "Is there any measurable difference between the momentum of a photon and the momentum of matter?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "No. Momentum is momentum, whatever carries it. A photon that collides with an electron, as in the Compton effect, gives the electron momentum you measure in the same way as momentum from any other particle, and the total stays constant in the collision. The only difference lies in how the momentum relates to other quantities: a photon’s momentum is $h/\\klam$, or $\\kE/\\kc$, and does not depend on a mass."
       }
     },
     {
-      "id": "cq3", "source_id": "fs-id2686753", "kind": "conceptual-question", "bloom": "Understand", "place": {"at": "end"}, "cite": "measuring-photon-momentum",
+      "id": "cq3",
+      "source_id": "fs-id2686753",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {"at": "end"},
+      "cite": "measuring-photon-momentum",
       "prompt": "Why don’t we feel the momentum of sunlight when we are on the beach?",
       "answer": {
-        "type": "open", "generated_by": "ai",
+        "type": "open",
+        "generated_by": "ai",
         "solution": "Each photon of sunlight carries a very small momentum, $h/\\klam$, because $h$ is very small. Even the enormous number of photons that strike a person each second carry a total momentum per second, which is a force, of only a few millionths of a newton. That is far too small to feel against the forces of gravity, the ground and the wind."
       }
     },
     {
-      "id": "p1", "source_id": "fs-id1746754", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "measuring-photon-momentum",
+      "id": "p1",
+      "source_id": "fs-id1746754",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "measuring-photon-momentum",
       "prompt": "(a) Find the momentum of a 4.00-cm-wavelength microwave photon. (b) Discuss why you expect the answer to (a) to be very small.",
       "answer": {
-        "type": "number", "generated_by": "source", "part": "(a)", "value": 1.66e-32, "unit": "kg·m/s",
+        "type": "number",
+        "generated_by": "source",
+        "part": "(a)",
+        "value": 1.66e-32,
+        "unit": "kg·m/s",
         "hint": "Use $\\kp = h/\\klam$ with the wavelength in meters.",
         "solution": "(a) $1.66\\times 10^{-32}\\;\\text{kg}\\cdot\\text{m/s}$\n\n(b) The wavelength of microwave photons is large, so the momentum they carry is very small."
       }
     },
     {
-      "id": "p2", "source_id": "fs-id1231452", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "relativistic-photon-momentum",
+      "id": "p2",
+      "source_id": "fs-id1231452",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "relativistic-photon-momentum",
       "prompt": "(a) What is the wavelength of a photon that has a momentum of $5.00\\times 10^{-29}\\;\\text{kg}\\cdot\\text{m/s}$? (b) Find its energy in eV.",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "(a) the wavelength", "value": 13.3, "unit": "μm", "hint": "Rearrange $\\kp = h/\\klam$ to $\\klam = h/\\kp$."},
           {"part": "(b) the energy", "value": 0.0938, "unit": "eV", "hint": "Use $\\kE = \\kp\\kc$ and convert joules to electron volts."}
@@ -151,10 +217,16 @@
       }
     },
     {
-      "id": "p3", "source_id": "fs-id2616086", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "electron-photon-momentum",
+      "id": "p3",
+      "source_id": "fs-id2616086",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "electron-photon-momentum",
       "prompt": "(a) Calculate the momentum of a photon having a wavelength of $2.50\\;\\mu\\text{m}$. (b) Find the velocity of an electron having the same momentum. (c) What is the kinetic energy of the electron, and how does it compare with that of the photon?",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "(a) the photon’s momentum", "value": 2.65e-28, "unit": "kg·m/s", "hint": "Use $\\kp = h/\\klam$."},
           {"part": "(b) the electron’s velocity", "value": 291, "unit": "m/s", "hint": "The electron is slow, so $\\kv = \\kp/m$ with the electron’s mass."},
@@ -164,10 +236,16 @@
       }
     },
     {
-      "id": "p4", "source_id": "fs-id1575254", "kind": "problem", "bloom": "Apply", "place": {"at": "end"}, "cite": "relativistic-photon-momentum",
+      "id": "p4",
+      "source_id": "fs-id1575254",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {"at": "end"},
+      "cite": "relativistic-photon-momentum",
       "prompt": "(a) Calculate the wavelength of a photon that has the same momentum as a proton moving at 1.00% of the speed of light. (b) What is the energy of the photon in MeV? (c) What is the kinetic energy of the proton in MeV?",
       "answer": {
-        "type": "multi", "generated_by": "source",
+        "type": "multi",
+        "generated_by": "source",
         "parts": [
           {"part": "(a) the wavelength", "value": 1.32e-13, "unit": "m", "hint": "The proton is slow, so its momentum is $m\\kv$; then $\\klam = h/\\kp$."},
           {"part": "(b) the photon’s energy", "value": 9.39, "unit": "MeV", "hint": "Use $\\kE = \\kp\\kc$."},
@@ -177,18 +255,33 @@
       }
     },
     {
-      "id": "p5", "source_id": "fs-id2709001", "kind": "problem", "bloom": "Analyze", "place": {"at": "end"}, "cite": "relativistic-photon-momentum",
+      "id": "p5",
+      "source_id": "fs-id2709001",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {"at": "end"},
+      "cite": "relativistic-photon-momentum",
       "prompt": "Take the ratio of relativistic rest energy, $E = \\gamma mc^{2} mc^{2}$, to relativistic momentum, $\\kp = \\gamma m u$, and show that in the limit that mass approaches zero, you find $\\kE/\\kp = \\kc$.",
       "answer": {
-        "type": "open", "generated_by": "source",
+        "type": "open",
+        "generated_by": "source",
         "solution": "$E = \\gamma mc^{2} mc^{2}$ and $P = \\gamma mu$, so\n\n$$\\frac{E}{P} = \\frac{\\gamma mc^{2}}{\\gamma mu} = \\frac{c^{2}}{u}.$$\n\nAs the mass of particle approaches zero, its velocity $u$ will approach $c$, so that the ratio of energy to momentum in this limit is\n\n$$\\lim_{m\\to 0}\\frac{E}{P} = \\frac{c^{2}}{c} = c$$\n\nwhich is consistent with the equation for photon energy."
       }
     },
     {
-      "id": "p6", "source_id": "fs-id1606117", "kind": "problem", "bloom": "Evaluate", "place": {"at": "end"}, "cite": "relativistic-photon-momentum",
+      "id": "p6",
+      "source_id": "fs-id1606117",
+      "kind": "problem",
+      "bloom": "Evaluate",
+      "place": {"at": "end"},
+      "cite": "relativistic-photon-momentum",
       "prompt": "<strong>Unreasonable Results</strong> A car feels a small force due to the light it sends out from its headlights, equal to the momentum of the light divided by the time in which it is emitted. (a) Calculate the power of each headlight, if they exert a total force of $2.00\\times 10^{-2}\\;\\text{N}$ backward on the car. (b) What is unreasonable about this result? (c) Which assumptions are unreasonable or inconsistent?",
       "answer": {
-        "type": "number", "generated_by": "source", "part": "(a)", "value": 3.00e6, "unit": "W",
+        "type": "number",
+        "generated_by": "source",
+        "part": "(a)",
+        "value": 3.00e6,
+        "unit": "W",
         "hint": "The momentum per second is the force, and for light $\\kp = \\kE/\\kc$, so the energy per second of both headlights is the force times $\\kc$.",
         "solution": "(a) $3.00\\times 10^{6}\\;\\text{W}$\n\n(b) Headlights are way too bright.\n\n(c) Force is too large."
       }
